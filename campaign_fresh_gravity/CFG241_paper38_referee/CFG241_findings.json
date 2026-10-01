@@ -1,0 +1,450 @@
+[
+ {
+  "id": "F-01",
+  "severity": "MAJOR",
+  "class": "OVERSTATED",
+  "tex_lines": [
+   31,
+   132,
+   120,
+   124
+  ],
+  "claims": [
+   "C003"
+  ],
+  "source": [
+   "campaign_fresh_gravity/CFG229_class_m_gold/README.md:7",
+   "campaign_fresh_gravity/CFG227_rar_z2_5/README.md:20",
+   "campaign_fresh_gravity/CFG255_lensing_rar_zsplit/README.md:13",
+   "campaign_fresh_gravity/CFG255_lensing_rar_zsplit/cfg255_stageB.out:32-33",
+   "PAPER38 tex line 132 (its own sentence on CFG229)"
+  ],
+  "evidence": "Abstract: 'in every lane the limit that does not shrink with sample size is the absolute calibration ... and it is the binding one'. CFG229 README bottom line 2: even with perfect baryons the pooled signal (0.03) is below 2 SD (0.16) (Newtonian regime, scatter, velocity and inclination errors); CFG227 README:20: S1 is 'never' separable at any gas band because its signal is below 2 statistical SD; CFG255: POSSIBLE_STAT False, power 0.14 against 9 (the calibration drift is a second wall 'even with infinite statistics', README item 5). The claim is true only as N -> infinity and only if regime and scatter are also removed.",
+  "proposed_fix": "Replace with: 'in every lane the limit that survives an unlimited sample is the absolute calibration of the baryon (gas and stellar) masses; at present sizes the KiDS split, the class-S sources of the compilation and the seven class-M galaxies are also limited by statistical power or by the Newtonian regime (CFG255, CFG227, CFG229)'.",
+  "independent_support": "two lane READMEs plus the paper's own line 132"
+ },
+ {
+  "id": "F-02",
+  "severity": "MAJOR",
+  "class": "OVERSTATED",
+  "tex_lines": [
+   31,
+   157,
+   193,
+   160
+  ],
+  "claims": [
+   "C006",
+   "C073",
+   "C074",
+   "C078"
+  ],
+  "source": [
+   "data_assembly/GAS_ANCHOR_SCOPING_2026-09-30.md:5",
+   "data_assembly/GAS_ANCHOR_SCOPING_2026-09-30.md:25-27",
+   "data_assembly/GAS_ANCHOR_SCOPING_2026-09-30.md:49",
+   "data_assembly/gas_anchor_scoping/build_hw20_table.py:2-3"
+  ],
+  "evidence": "The note calls the cyclic-shift pattern 'hypothesis, strongly supported' and the 0.64 to 0.55 rms 'my arithmetic, not the authors'; it says the authors' scatter 'may be defined differently (a fit with intrinsic scatter, or the error on the relation)' and that it 'has not checked the published erratum'. The table is a regex transcription of PDF text 'cached by the fetch tool, not committed' (build_hw20_table.py:2), so the check cannot be re-run from the repo. The paper states 'the tabulated alpha of four QSO rows is a cyclic shift' as a property of the published table (line 157) and 'scatters 0.64 dex about its own fit in its own table, against the 0.2 dex it states' in the abstract; the only caveat is the last bullet of section 8 (line 193), far from both. Named published authors.",
+  "proposed_fix": "Abstract: '... does not reproduce its stated 0.2 dex scatter from our transcription of its Table 1 (0.64 dex about the quoted relation; how the authors define that scatter, and any erratum, were not checked)'. Line 157: 'In our transcription of Table 1 ... the alpha values of four QSO rows match a cyclic shift of the values computed from their sources (the scoping note calls this a hypothesis, strongly supported, and has not been put to the authors) ... undoing the shift lowers the rms (our arithmetic) from 0.64 to 0.55 dex'. Move the section 8 bullet next to line 157.",
+  "independent_support": "GAS note lines 25-27 and 49 independently"
+ },
+ {
+  "id": "F-03",
+  "severity": "MINOR",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   31,
+   73
+  ],
+  "claims": [
+   "C004",
+   "C025"
+  ],
+  "source": [
+   "campaign_fresh_gravity/CFG223_a0_over_cosmic_time/cfg223_lever.out:2-6 ('+-0.03 dex')",
+   "CFG241_physics.out P2 (lever at +-0.01 dex)"
+  ],
+  "evidence": "The values -2.48 to -4.83 and x1.46 to x1.83 reproduce exactly from cfg223_lever.py. But the per-baryon-dex lever is a finite difference of a median root at +-0.03 dex; re-evaluated at +-0.01 dex the eight values run -2.46 to -6.42 (RC100 Q1 -4.37 -> -6.42; CR R_e fit -4.70 -> -5.85). Q1 and Q2 have the same local slope (0.263, 0.261) but -4.37 and -2.65. The abstract gives the range without 'post hoc' or the step, and joins it to the D-lever with 'so' although they are two columns of the same table. The factor 1.5 to 1.8 per 0.05 dex in D (a 0.05-dex step) is stable.",
+  "proposed_fix": "Abstract: 'the implied a0 moves by about -2.5 to -6 dex per dex of baryon mass (a post hoc finite-difference estimate; the step changes the range), and a 0.05 dex error in the mass discrepancy is a factor 1.5 to 1.8 in a0'.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-04",
+  "severity": "MINOR",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   73,
+   95
+  ],
+  "claims": [
+   "C024",
+   "C042"
+  ],
+  "source": [
+   "campaign_fresh_gravity/CFG223_a0_over_cosmic_time/cfg223_lever.out:6 (column 'median y')",
+   "CFG241_physics.out P2 (per-galaxy y) and P6 (real-y Fisher)"
+  ],
+  "evidence": "'The discs sit at g_bar/a0 = 1.1 to 4.4 ... with no deep points' uses the per-point MEDIAN y. Per-galaxy y spans 0.19 to 13.7 (RC100 Q1), 0.32-8.1, 0.30-10.6, 0.44-18.2. Using the real per-galaxy y, the formal Fisher sigma(log a0) with f free at sigma_pt = 0.1 dex is 0.15, 0.18, 0.21, 0.22 per RC100 quartile and 0.089 for the pooled 100 galaxies (the paper's 0.1-dex target would be met), against 0.42 for the log-uniform 1.1-4.4 design the sentence is modelled on. The conclusion (no 0.1-dex leverage) is robust only for per-galaxy errors >= about 0.11 dex, which the note does not state and this lane did not verify.",
+  "proposed_fix": "Line 73: 'the eight points have median g_bar/a0 = 1.1 to 4.4 (individual discs 0.2 to 18)'. Line 95: add 'for per-galaxy errors of 0.1 dex the formal leverage of the pooled RC100 y-spread would be 0.09 dex; the wall rests on the per-galaxy error and on the common-mode f'.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-05",
+  "severity": "MINOR",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   87
+  ],
+  "claims": [
+   "C037"
+  ],
+  "source": [
+   "fable_independent_2026/lean_2026/ChainCert/CalibrationWall.lean:408-413 (T4_design_bound: h0, h1)",
+   "fable_independent_2026/lean_2026/ChainCert/CalibrationWall.lean:470-473 (T4_sigma_floor: hdet)",
+   "campaign_fresh_gravity/CFG240_calibration_wall/README.md:5 (NOT certified)"
+  ],
+  "evidence": "T4 as typed in Lean assumes 0 <= b_i <= 1/2 (proved for P2 only, \u03bd_mono checked numerically), the Fisher matrix of independent equal Gaussian errors, and 0 < det F. The tex says 'any sample obeys sigma(log a0) >= 3 sigma/sqrt N' with no premise (the README also writes 'ANY sample'). Numerically the bound is attained (3.000) and not violated over 16,000 random designs (P7).",
+  "proposed_fix": "'With f free, any sample whose local slopes b_i lie in [0, 1/2] (true for P2 and nu_mono) and whose errors are independent Gaussians of size sigma obeys sigma(log a0) >= 3 sigma/sqrt N ...'.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-06",
+  "severity": "MINOR",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   92
+  ],
+  "claims": [
+   "C040"
+  ],
+  "source": [
+   "campaign_fresh_gravity/CFG240_calibration_wall/README.md:20 (best 0.117 at y_max ~ 48)",
+   "campaign_fresh_gravity/CFG240_calibration_wall/README.md:130 (E3)"
+  ],
+  "evidence": "'With no deep points (y_min = 0.1) it never reaches 0.1 dex: the best is 0.117' omits that the 0.117 is reached only for a design extending to y_max ~ 48, i.e. far beyond the 1.1 to 4.4 of the next sentence, and that the statement is for log-uniform N = 20 designs.",
+  "proposed_fix": "'... the best is 0.117, reached only by designs extending to y of about 48'.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-07",
+  "severity": "MINOR",
+  "class": "OVERSTATED",
+  "tex_lines": [
+   31
+  ],
+  "claims": [
+   "C007"
+  ],
+  "source": [
+   "campaign_fresh_gravity/CFG255_lensing_rar_zsplit/README.md:13 (power, POSSIBLE_STAT false)",
+   "campaign_fresh_gravity/CFG255_lensing_rar_zsplit/README.md:28 (MUTATE fails as stage A predicted)"
+  ],
+  "evidence": "Abstract (iv): 'NOT POSSIBLE ... and NON-DISCRIMINATING by its own MUTATE control, because a stellar-mass drift delta mimics an a0 drift by delta/2'. Both verdicts are statistical (sigma_A 0.038 against a 0.018 signal; MUTATE p = 0.10); the delta/2 wall is a separate argument (README item 5, paper section 6) that holds at infinite statistics.",
+  "proposed_fix": "'... is NOT POSSIBLE in KiDS-1000 (power 0.14 against the 9 required) and NON-DISCRIMINATING by its own MUTATE control; even with unlimited statistics a stellar-mass drift delta would mimic an a0 drift by delta/2'.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-08",
+  "severity": "MINOR",
+  "class": "OVERSTATED",
+  "tex_lines": [
+   178
+  ],
+  "claims": [
+   "C094"
+  ],
+  "source": [
+   "PAPER38 tex line 178 (the next sentence lists 0.05-0.10, 0.02-0.11, 0.15, 0.06 dex)",
+   "campaign_fresh_gravity/CFG255_lensing_rar_zsplit/README.md:13 (0.036 dex)"
+  ],
+  "evidence": "'Every lane lands on the same number' is followed by requirements spanning 0.02 to 0.15 dex (and 0.036 dex for KiDS, not listed).",
+  "proposed_fix": "'The lanes land on the same order, 0.02 to 0.15 dex:'",
+  "independent_support": ""
+ },
+ {
+  "id": "F-09",
+  "severity": "MINOR",
+  "class": "OVERSTATED",
+  "tex_lines": [
+   31,
+   184
+  ],
+  "claims": [
+   "C010",
+   "C101"
+  ],
+  "source": [
+   "campaign_fresh_gravity/STANDING_2026-09-29.md:42-45",
+   "campaign_fresh_gravity/closure_map/WHAT_WOULD_DECIDE_2026-09-29.md:9-12"
+  ],
+  "evidence": "'The decisive near-term test' for a statistic on which B, LCDM and Newton all predict 1.000: the same sources call it 'a survival test, never a confirmation' (and list a0 at z ~ 2.5 as the other 'decisive' test). The paper's own next sentences say so; only the heading and abstract say 'decisive'.",
+  "proposed_fix": "'The near-term test that can kill B (and the bare law) is elsewhere'; abstract: 'The near-term test of the programme ... is a separate, z = 0 one, which B can only survive or fail'.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-10",
+  "severity": "MINOR",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   31,
+   37,
+   40,
+   173
+  ],
+  "claims": [
+   "C002",
+   "C011",
+   "C016",
+   "C091"
+  ],
+  "source": [
+   "campaign_fresh_gravity/CFG255_lensing_rar_zsplit/cfg255_stageA.out (E list: Om = 0.3)",
+   "campaign_fresh_gravity/CFG222_lcdm_proxy/README.md:6 (Om 0.3027)",
+   "campaign_fresh_gravity/CFG237_rar_z2_5_referee/CFG237_FROZEN_CRITERIA.md:20 (Om 0.315)",
+   "real_research/reviews/lensing_rar/A0Z_LENSING_ZBIN_2026.md:86 (1.083) versus CFG255 README:58 (1.10)"
+  ],
+  "evidence": "The rival numbers (x2.2, x8, 3.4, 0.48 dex, 1.083) depend on Omega_m, which the text never states; the lanes use 0.30, 0.3027 and 0.315 (E(1.4) 2.20 to 2.25; E(5) 8.09 to 8.29; 1.083 corresponds to Om ~ 0.315-0.32 whereas Om = 0.3 gives 1.080). The kernel is 'a MOND kernel nu' on line 37 while the lanes use nu_mono and section 2's theorems use P2; the choice is not stated where each number is quoted.",
+  "proposed_fix": "Line 40: 'E(z) = sqrt(Om (1+z)^3 + 1 - Om) with Om = 0.3 (the lanes use 0.30 to 0.315; the numbers below move by at most 2% at z = 1.4 and 3% at z = 5)'; line 37: 'the lanes use the monotone interpolation nu_mono; section 2's theorems use P2'.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-11",
+  "severity": "MINOR",
+  "class": "OVERSTATED",
+  "tex_lines": [
+   26,
+   199
+  ],
+  "claims": [
+   "C113"
+  ],
+  "source": [
+   "qwen_claude_field_theory/papers_2026/PAPER38_audit.py:410-440 (tex_blocks: block-level check)",
+   "CFG241_physics.out P10"
+  ],
+  "evidence": "'Every number quoted here is re-read from a committed file by PAPER38_audit.py': 293 rows; 33 have fewer than 12 characters of source context; the tex side is checked as a literal anywhere in the tag block, not in the sentence; 85 of 371 numeric tokens (23%) are not inside any audit literal of their own block (examples: 1000, 2.5, 0.23, 0.21, 0.36, 0.12, 95, 122.1, 331).",
+  "proposed_fix": "'Every number carried by one of the 293 audit rows is re-read ...; numbers quoted only in running text (23% of numeric tokens by a count) are checked by the referee passes, not by the script'.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-12",
+  "severity": "MINOR",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   54,
+   110,
+   112,
+   132
+  ],
+  "claims": [
+   "C117",
+   "C121",
+   "C122"
+  ],
+  "source": [
+   "campaign_fresh_gravity/CFG216_rc100_within_sample/INPUT_CORRECTION_2026-09-29.md:12,41",
+   "campaign_fresh_gravity/CFG216_rc100_within_sample/cfg216_rc100_corrected.out:31-32",
+   "campaign_fresh_gravity/CFG213_dysmalpy_two_sided/README.md:83-85"
+  ],
+  "evidence": "(a) The committed RC100 CSV differed from the published Table 3 in 17 cells; CFG216/217/218 were re-run on the paper values (+0.072 expected rival slope instead of +0.073; 5.29 and 4.82 sigma instead of 5.53 and 4.93; -0.250 instead of -0.251). The note quotes the uncorrected values (+0.073, -0.075, -0.25, -0.251) and never mentions the correction; effect < 0.003 everywhere, no verdict moves. (b) CFG213's appended note: five of ten NOEMA3D CO masses sit 0.15 to 0.26 dex below the paper's own recipe; no label moves; not mentioned at the NOEMA3D row.",
+  "proposed_fix": "Add to section 8, bullet 2: 'RC100 numbers are from the committed table; a re-run on the published Table 3 values (17 cells differ) changes no quoted number by more than 0.003 and no verdict; the NOEMA3D CO masses of five galaxies sit 0.15-0.26 dex below the paper's stated recipe, changing no label (CFG213 note)'.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-13",
+  "severity": "MINOR",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   203,
+   204,
+   206,
+   207
+  ],
+  "claims": [],
+  "source": [
+   "citations/REFERENCES.bib (entries Brouwer2021, Dutton2014, NestorShachar2023 only)",
+   "CFG241_refs.out"
+  ],
+  "evidence": "The source comment on line 203 says the entries were 'Checked ... against ... citations/REFERENCES.bib'. Only three of the eight keys (B21, DM14, NS23) have a bib entry, and those agree (A&A 650 A113; MNRAS 441, 3359; ApJ 944, 78). D22, HW20, B23, C19 and the ACE pair have none; B23 (ApJ) and C19 (MNRAS) print no volume or pages. D22 (MNRAS 517, 962) and HW20 (ApJL 889, L7) agree only with later papers' reference lists held as local HTML (arxiv_2411.04290 line 1222; arxiv_2306.03153 line 2197) and with the repo's own scoping note: not independent of the repo, not checked against the journals. Nothing is contradicted.",
+  "proposed_fix": "Complete B23 and C19 (volume, page or article number) from the journal; add D22, HW20, B23, C19 and the ACE pair to citations/REFERENCES.bib; reword the comment to say which entries were checked against which record.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-14",
+  "severity": "MINOR",
+  "class": "CONTRADICTED",
+  "tex_lines": [
+   178
+  ],
+  "claims": [
+   "C095"
+  ],
+  "source": [
+   "campaign_fresh_gravity/CFG228_alma_cubes/cfg228_preflight.out:92-97 (d = 0.100: signal 0.277, SD 0.084, S 0.078 -> POSSIBLE)"
+  ],
+  "evidence": "'signal 0.277 against S_max = 0.078 plus 2 SD = 0.084': the source has SD = 0.084, so 2 SD = 0.168 and the threshold is 0.246 (< 0.277). Read literally ('2 SD = 0.084') the sentence is false (CRITICAL class); graded MINOR because the intended reading is recoverable and the conclusion is unchanged. The audit passes because 0.084 occurs in the block.",
+  "proposed_fix": "'(signal 0.277 against S_max = 0.078 plus 2 SD = 0.168, with SD = 0.084)'.",
+  "independent_support": ""
+ },
+ {
+  "id": "F-15",
+  "severity": "MINOR",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   31,
+   40,
+   65,
+   192
+  ],
+  "claims": [],
+  "source": [
+   "real_research/reviews/lensing_rar/A0Z_LENSING_ZBIN_2026.md:86-87 (names Verlinde for a0 prop to cH)",
+   "PAPER38 tex lines 201-212 (the reference list)"
+  ],
+  "evidence": "Fairness (F2, F6): the rival a0 prop to H(z) is never attributed to anyone, although the repo's own lensing note ties it to Verlinde's emergent-gravity reading; the reference list contains no MOND-side or LCDM-side literature beyond RC100, DM14 and B21, and no sentence says that the note compiles the programme's lanes without reviewing the literature (that the CFG222 proxy is a halo-concentration scale, not an LCDM RAR prediction, is stated).",
+  "proposed_fix": "Add one sentence to section 8: 'This note compiles the programme's own committed lanes; it does not review the high-redshift RAR literature or LCDM simulation predictions (CFG222 notes that a fair LCDM test uses simulated galaxies)', and attribute the rival: 'a0 prop to H(z) (the reading of the cosmological coincidence a0 ~ cH, as in Verlinde-type proposals per the lensing note)'.",
+  "independent_support": ""
+ },
+ {
+  "id": "N-01",
+  "severity": "NIT",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   31,
+   40
+  ],
+  "claims": [
+   "C014"
+  ],
+  "source": [
+   "campaign_fresh_gravity/STANDING_2026-09-29.md:42-45"
+  ],
+  "evidence": "'Flat (the programme's distinctive law)': standard MOND also has a constant a0; 'distinctive' is relative to LCDM and to the H(z) rival.",
+  "proposed_fix": "'(distinctive against LCDM and the H(z) rival; standard MOND shares it)'.",
+  "independent_support": ""
+ },
+ {
+  "id": "N-02",
+  "severity": "NIT",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   135
+  ],
+  "claims": [
+   "C055"
+  ],
+  "source": [
+   "campaign_fresh_gravity/STANDING_2026-09-29.md:155",
+   "campaign_fresh_gravity/CFG219_z35_preflight/README.md"
+  ],
+  "evidence": "'CFG219 supersedes this: \"the limit is the gas calibration, not N\"': the quotation is the standing page's line 155, not CFG219's README.",
+  "proposed_fix": "'The standing page records that CFG219 supersedes this: ...'.",
+  "independent_support": ""
+ },
+ {
+  "id": "N-03",
+  "severity": "NIT",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   79,
+   170
+  ],
+  "claims": [
+   "C029",
+   "C088"
+  ],
+  "source": [
+   "campaign_fresh_gravity/CFG255_lensing_rar_zsplit/CFG255_1b_FROZEN_CRITERIA.md:10",
+   "CFG241_physics.out P1"
+  ],
+  "evidence": "'exactly as an a0 drift does': the f-drift and a0-drift responses of log g_obs are (1-m) and m, equal only at m = 1/2; in the KiDS K1 bins (y <= 0.03, canonical a0) they differ by up to 6% (P2 kernel).",
+  "proposed_fix": "'to within about 6% in the K1 bins (exactly in the deep limit)'.",
+  "independent_support": ""
+ },
+ {
+  "id": "N-04",
+  "severity": "NIT",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   86
+  ],
+  "claims": [
+   "C036"
+  ],
+  "source": [
+   "fable_independent_2026/lean_2026/ChainCert/CalibrationWall.lean:329-332 (T2c_det_bounds)"
+  ],
+  "evidence": "The determinant bound |det| <= 1/(2(1+min y)) also tends to zero when both points are Newtonian (y -> infinity); only the deep end is stated.",
+  "proposed_fix": "'... when both points are deep (and, by the same bound, when both are Newtonian)'.",
+  "independent_support": ""
+ },
+ {
+  "id": "N-05",
+  "severity": "NIT",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   95,
+   96
+  ],
+  "claims": [],
+  "source": [
+   "PAPER38 tex lines 95-96 and the tag list B01-B43 (no B34; B43 after B12)",
+   "qwen_claude_field_theory/papers_2026/PAPER38_audit.py (no B34 row)"
+  ],
+  "evidence": "Hard-coded 'section~2' (line 95) should be \\ref{sec:lever}; audit tag B34 does not exist and B43 sits out of order (line 96).",
+  "proposed_fix": "Use \\ref{sec:lever}; renumber or note the missing tag.",
+  "independent_support": ""
+ },
+ {
+  "id": "N-06",
+  "severity": "NIT",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   160
+  ],
+  "claims": [
+   "C078"
+  ],
+  "source": [
+   "data_assembly/GAS_ANCHOR_SCOPING_2026-09-30.md:62"
+  ],
+  "evidence": "'the error budget is 0.35-0.7 dex, 3 to 7 times the 0.10 target' is the scoping note's own arithmetic ('by my arithmetic').",
+  "proposed_fix": "'(the scoping note's estimate)'.",
+  "independent_support": ""
+ },
+ {
+  "id": "N-07",
+  "severity": "NIT",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   173
+  ],
+  "claims": [
+   "C092"
+  ],
+  "source": [
+   "campaign_fresh_gravity/CFG255_lensing_rar_zsplit/README.md:58"
+  ],
+  "evidence": "The source adds that CFG255's model stacks follow each subset's own lens masses; the tex drops this half.",
+  "proposed_fix": "'... although CFG255's model stacks follow each subset's own lens masses, the gas-fraction prescription itself is uncertain'.",
+  "independent_support": ""
+ },
+ {
+  "id": "N-08",
+  "severity": "NIT",
+  "class": "MISSING-CAVEAT",
+  "tex_lines": [
+   199
+  ],
+  "claims": [
+   "C114"
+  ],
+  "source": [
+   "qwen_claude_field_theory/papers_2026/PAPER38_audit.py:24-52 (SRC dictionary)"
+  ],
+  "evidence": "The sources sentence omits LEDGER.md, STANDING_2026-09-28.md and the CFG240 README that the audit reads (and the referee READMEs of CFG233, 234, 237 cited on line 191).",
+  "proposed_fix": "Add them to the list.",
+  "independent_support": ""
+ }
+]

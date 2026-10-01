@@ -1,0 +1,183 @@
+CFG241_physics: repo <repo> head 8d47d390d; tex from HEAD; mutate=True
+
+=== known-answer self-controls ===
+  [FAIL] control: P2: b -> 1/2 as y -> 0
+  [PASS] control: P2: nu -> 1 as y -> infinity
+  [FAIL] control: numeric b of nu_P2 equals 1/(2(1+y)) at y=1 (to 1e-6)
+  [PASS] control: E(0) = 1
+
+=== P1: delta/2 deep-regime mimicry (sympy) ===
+  d ln g_obs / d ln f  = (nu(exp(-la + lf + lg)) + exp(-la + lf + lg)*Subs(Derivative(nu(_xi_1), _xi_1), _xi_1, exp(-la + lf + lg)))/nu(exp(-la + lf + lg)) 
+  d ln g_obs / d ln a0 = -exp(-la + lf + lg)*Subs(Derivative(nu(_xi_1), _xi_1), _xi_1, exp(-la + lf + lg))/nu(exp(-la + lf + lg)) 
+  with m(y) = -dln nu/dln y:  d/dln f = 1 - m ; d/dln a0 = m   (hand-expectation confirmed symbolically above in terms of nu')
+  KiDS K1 (bins 8-14 of CFG61 edges logspace(1e-15,5e-12,16)): g_bar 5.32e-14 to 2.83e-12 m/s^2  ->  y = g_bar/a0 from 5.7e-04 to 0.030 (canonical a0)
+  P2       y=0.001    m=0.4995  (1-m)/m = 1.002  [f-drift response / a0-drift response]
+  P2       y=0.01     m=0.4950  (1-m)/m = 1.020  [f-drift response / a0-drift response]
+  P2       y=0.03027  m=0.4853  (1-m)/m = 1.061  [f-drift response / a0-drift response]
+  P2       y=0.1      m=0.4545  (1-m)/m = 1.200  [f-drift response / a0-drift response]
+  P2       y=1        m=0.2500  (1-m)/m = 3.000  [f-drift response / a0-drift response]
+  P2       y=3        m=0.1250  (1-m)/m = 7.000  [f-drift response / a0-drift response]
+  McGaugh  y=0.001    m=0.4921  (1-m)/m = 1.032  [f-drift response / a0-drift response]
+  McGaugh  y=0.01     m=0.4754  (1-m)/m = 1.103  [f-drift response / a0-drift response]
+  McGaugh  y=0.03027  m=0.4578  (1-m)/m = 1.185  [f-drift response / a0-drift response]
+  McGaugh  y=0.1      m=0.4251  (1-m)/m = 1.352  [f-drift response / a0-drift response]
+  McGaugh  y=1        m=0.2910  (1-m)/m = 2.437  [f-drift response / a0-drift response]
+  McGaugh  y=3        m=0.1862  (1-m)/m = 4.372  [f-drift response / a0-drift response]
+  => in the KiDS K1 range the f-drift and a0-drift responses of log g_obs differ by at most 6.1% (P2 kernel): "delta/2, exactly as an a0 drift" holds to that accuracy there, exactly only in the deep limit.
+  rival amplitude: E ratio over late median z 0.2045->0.3996 and early 0.232->0.378 (flat Om 0.3): half of log10 ratio =
+     z 0.2045 -> 0.3996: 0.5*log10 E-ratio = 0.0237 dex
+     z 0.2320 -> 0.3780: 0.5*log10 E-ratio = 0.0178 dex
+  (lane: +0.0179 combined, late +0.024; consistent)
+
+=== P2: the lever as a function of y and kernel ===
+  CFG223 lane working tree vs HEAD: clean
+  point           n  med y  y_min  y_max  m(med y)  1/m   (1-m)/m   lever_b(+-0.03)  lever_b(+-0.01)  s* per +0.05 dex D  s*  m(y/s*)
+  RC100 corr Q1   25   1.38   0.19  13.70   0.263   3.81    2.81     -4.37          -6.42         x1.67             1.84  0.314
+  RC100 corr Q2   22   1.40   0.32   8.10   0.261   3.83    2.83     -2.65          -3.23         x1.50             2.10  0.323
+  RC100 corr Q3   26   2.35   0.30  10.59   0.210   4.76    3.76     -3.24          -2.92         x1.67             1.57  0.255
+  RC100 corr Q4   27   2.12   0.44  18.21   0.221   4.52    3.52     -4.83          -4.83         x1.71             0.99  0.221
+  CR R_e fit      12   4.42   1.26  13.45   0.126   7.96    6.96     -4.70          -5.85         x1.83             1.87  0.209
+  CR R_out fit     6   1.90   0.69   3.83   0.232   4.31    3.31     -3.17          -3.15         x1.54             1.21  0.251
+  CR R_e ind       6   2.96   1.50  11.51   0.176   5.70    4.70     -3.19          -3.17         x1.55             2.91  0.289
+  CR R_out ind     6   1.09   0.77   4.40   0.283   3.53    2.53     -2.48          -2.46         x1.46             2.29  0.347
+  reproduced: lever_b range -4.83..-2.48 (paper -2.5..-4.8 / -2.48..-4.83), factor range x1.46..x1.83 (paper 1.5..1.8), local slope 0.126..0.283 (paper 0.13..0.28)
+  lever_b at +-0.01 dex differs from +-0.03 dex by up to 2.06 (finite-difference/median-step noise); spread of the 8 lever_b values at nearly equal slope (Q1 vs Q2): -4.37 vs -2.65
+  hand relations: single-galaxy shift of log D by eps moves log s by eps/m(y/s*); baryon shift x moves log s by -(1-m)/m. Compared with the table these are NOT equalities for the median over N galaxies (m varies across y spread); the paper quotes the table, not 1/m: no number is contradicted.
+  per-galaxy y = g_bar/a0 (canonical) spread inside each point: min / 10th pct / median / 90th pct / max
+     RC100 corr Q1  0.186 / 0.337 / 1.38 / 5.42 / 13.70
+     RC100 corr Q2  0.322 / 0.591 / 1.40 / 7.02 / 8.10
+     RC100 corr Q3  0.304 / 1.001 / 2.35 / 5.70 / 10.59
+     RC100 corr Q4  0.443 / 1.134 / 2.12 / 4.46 / 18.21
+     CR R_e fit     1.259 / 1.390 / 4.42 / 9.98 / 13.45
+     CR R_out fit   0.692 / 0.790 / 1.90 / 3.68 / 3.83
+     CR R_e ind     1.503 / 1.518 / 2.96 / 8.75 / 11.51
+     CR R_out ind   0.766 / 0.861 / 1.09 / 2.99 / 4.40
+  analytic dependence on y (kernel P2, b = 1/(2(1+y))): 1/m and (1-m)/m at the paper's y range
+     y=1.1 P2       m=0.238  1/m=4.20 (D lever)  (1-m)/m=3.20 (baryon lever magnitude)
+     y=1.1 McGaugh  m=0.283  1/m=3.54 (D lever)  (1-m)/m=2.54 (baryon lever magnitude)
+     y=2.0 P2       m=0.167  1/m=6.00 (D lever)  (1-m)/m=5.00 (baryon lever magnitude)
+     y=2.0 McGaugh  m=0.227  1/m=4.40 (D lever)  (1-m)/m=3.40 (baryon lever magnitude)
+     y=3.0 P2       m=0.125  1/m=8.00 (D lever)  (1-m)/m=7.00 (baryon lever magnitude)
+     y=3.0 McGaugh  m=0.186  1/m=5.37 (D lever)  (1-m)/m=4.37 (baryon lever magnitude)
+     y=4.4 P2       m=0.093  1/m=10.80 (D lever)  (1-m)/m=9.80 (baryon lever magnitude)
+     y=4.4 McGaugh  m=0.147  1/m=6.81 (D lever)  (1-m)/m=5.81 (baryon lever magnitude)
+
+=== P3: rival-shift numbers E(z) ===
+  z=0.2    E: Om=0.270 -> 1.094  Om=0.300 -> 1.104  Om=0.303 -> 1.105  Om=0.315 -> 1.109  Om=0.320 -> 1.110
+  z=0.2357 E: Om=0.270 -> 1.113  Om=0.300 -> 1.125  Om=0.303 -> 1.126  Om=0.315 -> 1.131  Om=0.320 -> 1.133
+  z=0.3723 E: Om=0.270 -> 1.195  Om=0.300 -> 1.215  Om=0.303 -> 1.216  Om=0.315 -> 1.224  Om=0.320 -> 1.228
+  z=1.4    E: Om=0.270 -> 2.112  Om=0.300 -> 2.202  Om=0.303 -> 2.209  Om=0.315 -> 2.245  Om=0.320 -> 2.259
+  z=2.0    E: Om=0.270 -> 2.832  Om=0.300 -> 2.966  Om=0.303 -> 2.978  Om=0.315 -> 3.032  Om=0.320 -> 3.053
+  z=2.3    E: Om=0.270 -> 3.230  Om=0.300 -> 3.388  Om=0.303 -> 3.402  Om=0.315 -> 3.465  Om=0.320 -> 3.490
+  z=5.0    E: Om=0.270 -> 7.684  Om=0.300 -> 8.093  Om=0.303 -> 8.129  Om=0.315 -> 8.290  Om=0.320 -> 8.355
+  paper: x2.2 at z~1.4, x8 at z~5, 3.4 at z=2.3, 0.48 dex at z~2: all inside the Om 0.27..0.32 range above; the tex does not state Om. Om used in the lanes: CFG255 0.3 (E list in stage A), CFG222 0.3027, CFG237 0.315.
+
+=== P4: KiDS power and chi2 ===
+  (dA/sigma_A)^2 = 0.218 (single-amplitude proxy); lane Delta chi2_pred (14-bin covariance) = 0.14 canonical / 0.17 alt: the two differ because the lane uses the full 14-bin vector, not the amplitude
+  chi2.sf(19.81, 14) = 0.136   (zero)
+  chi2.sf(19.80, 14) = 0.137   (flat)
+  chi2.sf(19.21, 14) = 0.157   (rival)
+  chi2.sf(15.05, 14) = 0.375   (LCDM)
+  (0.0595-0.0188)/0.0383 = 1.06 sigma from rival; (0.0595-0.0009)/0.0383 = 1.53 sigma from flat; lane prints 1.06 / 1.53
+  9 required = 3^2 (3 sigma): 9
+  mixing check: 0.038 is the stage-A jackknife sigma_A (cfg255_stageA/stageB.out A2: 0.0383) and is ALSO the measured amplitude error (B2: +-0.0383): same number, no mixing of stages
+
+=== P5: the CFG240 statements as typed in Lean ===
+  CalibrationWall.lean (HEAD): 50 theorem/lemma declarations (paper: 50)
+  --- T1_deep_iff: theorem T1_deep_iff {f a0 f' a0' : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') : (∀ g : ℝ, 0 < g → gObs nuDeep f a0 g = gObs nuDeep f' a0' g) ↔ f * a0 = f' * a0' := by
+  --- T2a_P2_injective: theorem T2a_P2_injective {f a0 f' a0' g1 g2 : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg1 : 0 < g1) (hg2 : 0 < g2) (hne : g1 ≠ g2) (h1 : gObs nuP2 f a0 g1 = gObs nuP2 f' a0' g1) (h2 : gObs nuP2 f a0 g2 = gObs nuP2 f' a0' g2) : f = f' ∧ a0 = a0' := by
+  --- T2a_one_point_fails: theorem T2a_one_point_fails {f a0 g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hg : 0 < g) : ∃ f' a0' : ℝ, 0 < f' ∧ 0 < a0' ∧ f' ≠ f ∧ gObs nuP2 f' a0' g = gObs nuP2 f a0 g := by
+  --- T2b_deep_not_injective: theorem T2b_deep_not_injective : ∃ f a0 f' a0' : ℝ, 0 < f ∧ 0 < a0 ∧ 0 < f' ∧ 0 < a0' ∧ f ≠ f' ∧ ∀ g : ℝ, 0 < g → gObs nuDeep f a0 g = gObs nuDeep f' a0' g := by
+  --- T2c_det_bounds: theorem T2c_det_bounds {y1 y2 : ℝ} (h1 : 0 < y1) (h2 : 0 < y2) : |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| ≤ |y1 - y2| / 2 ∧ |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| ≤ 1 / (2 * (1 + min y1 y2)) ∧ |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| < 1 / 2 := by
+  --- T3_newton_limit: theorem T3_newton_limit (ν : ℝ → ℝ) (hν : Tendsto ν atTop (𝓝 1)) {f a0 : ℝ} (hf : 0 < f) (ha : 0 < a0) : Tendsto (fun g : ℝ => gObs ν f a0 g / g) atTop (𝓝 f) := by
+  --- T4_design_bound: theorem T4_design_bound {n : ℕ} (b : Fin n → ℝ) (h0 : ∀ i, 0 ≤ b i) (h1 : ∀ i, b i ≤ 1 / 2) : 9 * ∑ i, ∑ j, (b i - b j) ^ 2 ≤ 2 * n * ∑ i, (1 - b i) ^ 2 := by
+  --- T4_sigma_floor: theorem T4_sigma_floor {n : ℕ} (hn : 0 < n) {σ : ℝ} (hσ : 0 < σ) (b : Fin n → ℝ) (h0 : ∀ i, 0 ≤ b i) (h1 : ∀ i, b i ≤ 1 / 2) (hdet : 0 < fisher11 σ b * fisher22 σ b - fisher12 σ b ^ 2) : 9 * σ ^ 2 / n ≤ fisher11 σ b / (fisher11 σ b * fisher22 σ b - fisher12 σ b ^ 2) := by
+  ChainCert *.lean declarations counted by this script: 331 (paper: library 281 -> 331; README says verify_chain.sh counts 331)
+  Lean toolchain on this machine: /opt/homebrew/bin/lake
+/opt/homebrew/bin/lean -> lake build / verify_chain.sh NOT RUN by this lane (no network; the statements above are read, the proofs are not re-checked here).
+  T2c_det_bounds: |det| <= |y1-y2|/2 AND <= 1/(2(1+min y)): det -> 0 when both y -> 0 (deep) AND when both y -> infinity (Newtonian); the paper mentions only the deep end.
+  T4: hypothesis 0<=b_i<=1/2 and 0<det F in the Lean statement; the paper writes "any sample" with no hypothesis.
+
+=== P6: break-even table recomputation (Fisher, P2) ===
+  y_min=0.01   stable break-even on 0.02-dex grid: none | first crossing: none | bisection: none | min sigma(log a0)=0.1460 at y_max=251.2 | at break-even rho=-0.648 cond=32.9
+  y_min=0.001  stable break-even on 0.02-dex grid: none | first crossing: none | bisection: none | min sigma(log a0)=0.1332 at y_max=955.0 | at break-even rho=-0.643 cond=26.8
+  y_min=0.1    stable break-even on 0.02-dex grid: none | first crossing: none | bisection: none | min sigma(log a0)=0.1867 at y_max=87.1 | at break-even rho=-0.662 cond=56.4
+  JSON loaded (271 records); header keys: ['definitions', 'ladder', 'record']
+  JSON headline cell (P2, y_min 0.01, N 20, sigma 0.1, no prior): {'y_max_break_even': 7.943282347242813, 'y_max_first': 7.943282347242813, 'rho': None, 'sigma_log_a0': None}
+  [FAIL] control: break-even (stable) for y_min=0.01 within 0.03 dex of the README 7.94 (grid) / 7.6 (bisection)
+  [PASS] control: Fisher matrix positive definite for the headline design
+  discs of the paper (y 1.1..4.4): log-uniform N=20 design: sigma(log a0) = 0.672 dex, rho=-0.954 (target 0.1): this IS the number behind line 95's "no 0.1 dex leverage"
+  same with a prior of 0.15 dex on log f: sigma(log a0) = 0.596; with N=100 discs: 0.313
+  Fisher with the REAL per-galaxy y of each CFG223 point (P2 kernel; sigma_pt = 0.1 dex per galaxy; no prior on f):
+     RC100 corr Q1  N=25  sigma(log a0) = 0.244 dex  rho=-0.864
+     RC100 corr Q2  N=22  sigma(log a0) = 0.292 dex  rho=-0.858
+     RC100 corr Q3  N=26  sigma(log a0) = 0.327 dex  rho=-0.864
+     RC100 corr Q4  N=27  sigma(log a0) = 0.345 dex  rho=-0.885
+     CR R_e fit     N=12  sigma(log a0) = 0.611 dex  rho=-0.837
+     CR R_out fit   N= 6  sigma(log a0) = 0.675 dex  rho=-0.900
+     CR R_e ind     N= 6  sigma(log a0) = 0.868 dex  rho=-0.876
+     CR R_out ind   N= 6  sigma(log a0) = 0.850 dex  rho=-0.948
+     RC100 pooled (100 galaxies): sigma(log a0) = 0.142 dex
+
+=== P7: the T4 floor as a numerical bound ===
+  min over 16,000 random designs (b in [0,1/2]) of sqrt(N)*sigma(log a0)/sigma_pt: 3.0000 (T4 says >= 3)
+  equality design (2/3 deep b=1/2, 1/3 Newtonian b=0), N=9: 3.000000 ; optimiser minimum from random start (N=12): 3.0426
+  [PASS] control: T4 floor not violated by any tested design (>= 3 - 1e-6)
+  N needed for sigma(log a0)=0.1 at sigma_pt=0.1: (3*0.1/0.1)^2 = 9 (non-strict: N>=9 attains the floor only for the equality design); at 0.2: (3*0.2/0.1)^2 = 36. The paper writes N>9 and N>36 (strict); the README writes the same.
+
+=== P8: DR4 paragraph arithmetic ===
+  from the file's own 3-sigma pair count 4,342 (floor 1.1614): stat coefficient c = 3.291; implied alt pairs for floor 1.1917 = 2941 (file: 2,940)
+  cap (floor-1)/sigma_sys = 8.07 (file: 8.1);  at N=30,000: 5.85 sigma (file: 5.8)
+  rounding: 4,342 -> "about 4,300"; 2,940 -> "about 2,900": within 1.4%
+  statistic: B, LCDM, Newton -> 1.000 in the file closure_map/WHAT_WOULD_DECIDE_2026-09-29.md:10; prereg table lists Newtonian 1.000 and framework-MI GATED 1.0004-1.0006.
+
+=== P9: internal arithmetic relations (CFG241_check.arith_checks, 22 relations) ===
+  A1    OK    N>9 expected 9
+  A2    OK    N>36 expected 36
+  A3    OK    factor 600 to 3,000 vs 10^2.8..10^3.5
+  A4    OK    0.1*(1.8,3.3)
+  A5    OK    drift 0.036 vs 2*0.018
+  A6a   OK    gap 0.175
+  A6b   OK    0.175/3=0.058
+  A7    OK    0.35..0.7 over 0.10
+  A8    OK    E(1.4)=2.11..2.26 vs 2.2
+  A9    OK    E(5.0)=7.68..8.35 vs 8
+  A10   OK    E(2.3)=3.23..3.49 vs 3.4
+  A11   OK    log E(2)=0.452..0.485
+  A12   OK    log10 2.16=0.334
+  A13   OK    alt/B pairs 0.674 vs 0.671 from floors 1.161/1.192, sigma_sys 0.02
+  A15   OK    log10 4.6=0.663
+  A16a  OK    log10 8.69
+  A16b  OK    log10 8.84
+  A17   OK    E ratio 1.0733..1.0834
+  A18   OK    0.24/4.8=0.05; 0.24/2.5=0.096
+  A19   OK    (1.309-1)/0.21=1.47
+  A20   OK    2*0.018
+  A21   OK    log10 3
+
+=== P10: audit-script anchoring review ===
+  parsed audit rows: 293 (script docstring says 293)
+  BARE rows (fewer than 12 literal context characters around the capture group): 33 of 293
+     B43  value='N > 36'  src=R240  rx='at 0\\.2 dex (N > 36)'
+     B01  value='2 December 2026'  src=STAND28  rx='released (2 December 2026)'
+     B03  value='4.52'  src=R222  rx='(4\\.52) at z = 4\\.5'
+     B03  value='6.20'  src=R222  rx='(6\\.20) at z = 5\\.5'
+     B09  value='157'  src=R229  rx='151 to (157) \\(ALPAKA 22, 15\\)'
+     B13  value='600 to 3,000'  src=R229  rx='\\(a factor (600 to 3,000)\\)'
+     B15  value='4 / 5 / 7'  src=R223  rx='H\\(z\\) (4 / 5 / 7); a₀'
+     B17  value='Both laws are CONSISTENT in every cell, on both mass routes'  src=R213  rx='\\*\\*(Both laws are CONSISTENT in every cell, on both mass routes)\\.\\*\\'
+     B21  value='2.0 to 4.4'  src=R227  rx='S1 is at (2\\.0 to 4\\.4)'
+     B22  value='+0.193'  src=R228  rx='to (\\+0\\.193) \\(α = 6\\.71, the primary\\)'
+     B25  value='157'  src=R229  rx='151 to (157) \\(ALPAKA 22, 15\\)'
+     B25  value='2 SD'  src=R229  rx='below (2 SD) \\(0\\.16\\)'
+     B27  value='fragile and calibration-bound'  src=STAND  rx='is now \\"(fragile and calibration-bound)\\"'
+     B27  value='the data on disk cannot say whether the fitted masses or the SED route are biased.'  src=STAND  rx='H₂; (the data on disk cannot say whether the fitted masses or the SED '
+  numeric tokens (>= 10 or with decimals) in the audited body (table-spec lines excluded): 371; not inside any audit tex literal of their own block: 85 (23%); per block: {'B42': 24, 'B43': 13, 'B16': 6, 'B25': 6, 'B13': 5, 'B03': 4, 'B04': 4, 'B15': 3}
+     examples: 1000, 2., 1,, 2.5, 2.5, 5,, 0.23, 0.21, 0.36, 0.12, 2.3, 10, 95, 0.05, 10, 0.1, 10, 122.1, 70,, 10, 2,, 331,, 0.1, 0.1, 0.2, 36., 20,, 0.1, 0.01, 0.02
+  note: the audit checks (1) value in source by a regex, (2) the literal anywhere in the tag BLOCK (all non-comment lines since the previous tag), never the sentence: a number that appears twice in a block passes for both.
+
+=== P11: PDF text layer vs tex ===
+  decimal tokens: pdf 155, tex body 157; in tex not in pdf: 2 ['0.36', '0.42']; in pdf not in tex: 0 []
+  zenodo.json: has "not peer reviewed"/AI-assisted disclosure: True / True
+
+SELF-CONTROLS: 4/7 pass; FAILED: P2: b -> 1/2 as y -> 0; numeric b of nu_P2 equals 1/(2(1+y)) at y=1 (to 1e-6); break-even (stable) for y_min=0.01 within 0.03 dex of the README 7.94 (grid) / 7.6 (bisection)
