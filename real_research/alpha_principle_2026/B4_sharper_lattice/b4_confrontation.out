@@ -1,0 +1,27 @@
+B4.3 confrontation (MUTATE=False)
+  Y1 targets at M_P: 1/alpha = (55.234, 49.203, 52.971) for (Y, SU(2), SU(3)); 1-sigma (0.127, 0.010, 0.064)
+
+Reproduction of the papers' conversion at the papers' triple points (gate G-CONV):
+  SU(2) (0.54, 2.4): not exponentiated 15.83 (printed 15.7), exponentiated 16.59 (printed 16.5)
+  SU(3) (0.8, 5.4):  not exponentiated 18.02 (printed 17.7), exponentiated 19.41 (printed 18.9)  [the papers rounded 25.45 to 25; documented in B1]
+  [PASS] G-CONV1 SU(2) conversion reproduces the printed 15.7 / 16.5 within 0.2 
+  [PASS] G-CONV2 SU(3) conversion reproduces the printed 17.7 / 18.9 within the documented rounding 0.6 
+
+Non-Abelian rows (conversion fixed in the pre-registration; lattice errors from b4_tp_*.json):
+  SU2: triple point (beta_F, beta_A) = (0.484 +- 0.026, 2.4563 +- 0.0139)  -> 1/alpha(M_P) = 50.55 +- 0.42 (lattice: stat+FSS 0.27, fit-range 0.32; 0.8%) +- 2.30 (inherited exp-vs-not); not exponentiated 48.25
+        Y1 target 49.203: z = +0.58 (with inherited), lattice-only z = +3.24 (exponentiated) / -2.27 (not exponentiated)  -> PASS-WEAK [provisional: gate G-W failed (marginal); the pre-registered precision claim is not certified]; 3% criterion NOT certified; central minus target = +1.35 (+2.7%)
+        precision: B4 0.8% vs papers 14% vs B2 5.5% (B2 central 49.89)
+        variant win : triple point (0.484 +- 0.026, 2.4555 +- 0.0126); 1/alpha exp 50.54, not-exp 48.24, lattice +- 0.45 (0.9%)
+        variant mix : triple point (0.484 +- 0.026, 2.4563 +- 0.0139); 1/alpha exp 50.55, not-exp 48.25, lattice +- 0.42 (0.8%)
+        variant prod: triple point (0.496 +- 0.010, 2.4508 +- 0.0127); 1/alpha exp 50.55, not-exp 48.25, lattice +- 0.38 (0.8%)
+  SU3: triple point (beta_F, beta_A) = (0.715 +- 0.451, 6.1473 +- 0.1578)  -> 1/alpha(M_P) = 67.70 +- 1.63 (lattice: stat+FSS 1.63, fit-range 0.05; 2.4%) +- 3.80 (inherited exp-vs-not); not exponentiated 63.90
+        Y1 target 52.971: z = +3.56 (with inherited), lattice-only z = +9.04 (exponentiated) / +6.71 (not exponentiated)  -> FAIL [provisional: gate G-W failed (marginal); the pre-registered precision claim is not certified]; 3% criterion NOT certified; central minus target = +14.73 (+27.8%)
+        precision: B4 2.4% vs papers 15% vs B2 16.7% (B2 central 66.69)
+        variant win : triple point (0.715 +- 0.451, 6.1473 +- 0.1578); 1/alpha exp 67.70, not-exp 63.90, lattice +- 1.63 (2.4%)
+        robustness: along the S1 line (beta_A = 6.363 + -0.302 beta_F) for ANY junction at beta_F in [0.6, 1.0] the conversion gives at least 1/alpha_3 = 67.4 (exponentiated) / 63.5 (not exponentiated), versus the Y1 target 52.97
+
+SUMMARY:
+  SU2: PASS-WEAK (1/alpha 50.55 +- 0.42[lat] +- 2.30[inh]; z +0.58; 3% criterion NOT certified)
+  SU3: FAIL (1/alpha 67.70 +- 1.63[lat] +- 3.80[inh]; z +3.56; 3% criterion NOT certified)
+  Y: UNDECIDED (U(1): the authors' model, untouched (lane B3 audits it))
+exit 0
