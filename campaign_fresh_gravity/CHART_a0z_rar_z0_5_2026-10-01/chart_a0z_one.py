@@ -28,6 +28,9 @@ pts = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CHART_a0z_
 J223 = json.load(open(os.path.join(CFG, "CFG223_a0_over_cosmic_time", "cfg223_results.json")))
 J228 = json.load(open(os.path.join(CFG, "CFG228_alma_cubes", "cfg228_score_results.json")))
 J229 = json.load(open(os.path.join(CFG, "CFG229_class_m_gold", "cfg229_score_results.json")))
+J255 = json.load(open(os.path.join(CFG, "CFG255_lensing_rar_zsplit", "cfg255_stageB_results.json")))["numbers"]
+J199 = json.load(open(os.path.join(CFG, "CFG199_musedark_level_pressure", "cfg199_musedark_level_results.json")))["numbers"]["readings"]
+MD = J199["b: v_perp = v_file / sin i"]["L1"]     # reading (b), the better-supported one (CFG199 README); a LOWER bound (no pressure term)
 rar = list(csv.DictReader(open(os.path.join(CFG, "CFG227_rar_z2_5", "cfg227_points.csv"))))
 cur = J223["curves"]; Zc = np.array(cur["z"])
 f = lambda r, k: float(r[k]) if r[k] not in ("", "nan") else np.nan
@@ -65,6 +68,8 @@ check("Amvrosiadis without an a0: 8", len(amv) == 8, f"({len(amv)})")
 nr = [o for o in ("ALPAKA15", "ALPAKA18", "ALPAKA19", "ALPAKA20", "ALPAKA22", "SINS_BX610", "VC5110377875", "SPT0418-47") if pts[o]["no_root"] == "1"]
 check("DESI CPL curve is nearly flat: about 0.87 x local at z = 2", abs(np.interp(2.0, Zc, cur["M-DEC"]) - 0.87) < 0.01, f"({np.interp(2.0, Zc, cur['M-DEC']):.3f})")
 check("SINS AO 35 and KMOS3D 192 cube products on disk", len(sins) == 35 and len(k3d) == 192, f"({len(sins)}, {len(k3d)})")
+check("KiDS split: A = +0.060 +- 0.038 dex, FLAT +0.001, RIVAL +0.019 (CFG255 stage B)", abs(J255["A_data"] - 0.0595) < 1e-3 and abs(J255["sigma_A"] - 0.0383) < 1e-3, f"(A {J255['A_data']:.4f}, sigma {J255['sigma_A']:.4f})")
+check("MUSE-DARK lower bound at z~0.52, reading (b): log a0 >= -10.14 [-10.45, -9.94], n = 36", abs(MD["median"] + 10.143) < 2e-3 and MD["n"] == 36, f"({MD['median']:.3f}, n {MD['n']})")
 check("eight calculated galaxies with no a0 solution (6 class M + 2 ALMA)", len(nr) == 8, f"({len(nr)})")
 for lab, z0, z1, note in TODO: P(f"  no-a0-yet row: {lab:28s} z {z0:.2f}-{z1:.2f}  {note}")
 
@@ -113,12 +118,12 @@ def point(r, x, col, mk, size, hollow=False):
                edgecolor=col if hollow else "white", linewidth=1.8 if hollow else 1.0)
 for q in ("Q1", "Q2", "Q3", "Q4"):
     r = pts[f"RC100 corr {q}"]; point(r, f(r, "z"), COL["RC100"], "o", 95)
-ax.text(1.05, 5.6, "RC100\n100 discs in 4 bins", color=COL["RC100"], fontsize=10, ha="center", fontweight="bold")
+ax.text(1.05, 6.0, "RC100\n100 discs in 4 bins", color=COL["RC100"], fontsize=10, ha="center", fontweight="bold")
 r = pts["ALESS_122.1"]; point(r, 2.13, COL["M"], "*", 360)
-ax.annotate("ALESS 122.1\nbest gas data, 1 galaxy", xy=(2.18, f(r, "s_star") * U), xytext=(2.45, 15.5), fontsize=10,
+ax.annotate("ALESS 122.1\nbest gas data, 1 galaxy", xy=(2.08, f(r, "s_star") * U), xytext=(1.98, 14.5), fontsize=10, ha="right",
             color=COL["M"], fontweight="bold", va="center", arrowprops=dict(arrowstyle="-", color=COL["M"], lw=0.8))
 r = pts["ALPINE6 pooled"]; point(r, 4.58, COL["ALMA"], "s", 110, hollow=True)
-ax.text(4.46, 6.6, "6 ALMA rotators\n(pooled)", color=COL["ALMA"], fontsize=10, ha="right", fontweight="bold")
+ax.text(4.46, 1.95, "6 ALMA rotators\n(pooled)", color=COL["ALMA"], fontsize=10, ha="right", va="center", fontweight="bold")
 point(pts["CR R_e ind"], 5.12, COL["CRISTAL"], "s", 95); point(pts["CR R_out ind"], 5.36, COL["CRISTAL"], "s", 95)
 ax.text(5.46, 2.0, "CRISTAL\n6 discs,\n2 radii", color=COL["CRISTAL"], fontsize=10, ha="left", va="center", fontweight="bold")
 # calculated, no solution
@@ -128,6 +133,28 @@ for o, x in NRX.items():
     ax.scatter([x], [0.215], marker="v", s=70, color=COL["M"] if not o.startswith(("SPT", "VC")) else COL["ALMA"], zorder=6, edgecolor="white", lw=0.6)
 ax.text(0.12, 0.222, "calculated, but no $a_0$ fits (8 galaxies):\nthe stars + gas already exceed what the rotation needs  ▸",
         fontsize=9.5, color="#7a5a1a", va="center")
+# MUSE-DARK (CFG199): no-pressure LOWER bound on the level at z ~ 0.52; the true a0 lies above it
+COL_MD = "#b0548f"; zmd = 0.52; lb = 10 ** MD["median"] / 1e-10; lo, hi = (10 ** c / 1e-10 for c in MD["ci"])
+ax.plot([zmd, zmd], [lo, hi], color=COL_MD, lw=4.6, solid_capstyle="butt", zorder=5, alpha=0.55)
+ax.annotate("", xy=(zmd, lb * 2.3), xytext=(zmd, lb), arrowprops=dict(arrowstyle="-|>", color=COL_MD, lw=2.0), zorder=6)
+ax.plot([zmd - 0.07, zmd + 0.07], [lb, lb], color=COL_MD, lw=2.6, zorder=6)
+ax.text(zmd - 0.06, 0.47, "MUSE-DARK\n36 galaxies,\nlower bound", color=COL_MD, fontsize=9.5, ha="right", va="center", fontweight="bold")
+# KiDS lensing (CFG255): only a CHANGE between z 0.20 and 0.40 is measured; bracket marks its redshifts, inset gives the numbers
+zl, zh = J255["quantiles"]["q1"] if isinstance(J255["quantiles"].get("q1"), list) else (0.2045, 0.3996)
+zl, zh = 0.2045, 0.3996   # medians of the extreme thirds (CFG255 README, corrected by the calc chat's re-run)
+ax.plot([zl, zl, zh, zh], [12.5, 13.5, 13.5, 12.5], color="#2a6f97", lw=1.6, zorder=6)
+ax.text((zl + zh) / 2, 11.8, "KiDS lensing\n(change only,\nsee inset)", color="#2a6f97", fontsize=9, ha="center", va="top", fontweight="bold")
+ins = ax.inset_axes([0.50, 0.77, 0.20, 0.15])
+A, sA = J255["A_data"], J255["sigma_A"]
+ins.axvspan(A - 2 * sA, A + 2 * sA, color="#2a6f97", alpha=0.12, lw=0); ins.axvspan(A - sA, A + sA, color="#2a6f97", alpha=0.25, lw=0)
+ins.axvline(A, color="#2a6f97", lw=2.2)
+for key, lab, c, yy in (("FLAT_canonical", "constant", LAW["FLAT"], 0.78), ("RIVAL_canonical", "H(z)", LAW["H(z)"], 0.50), ("LCDM", "ΛCDM", LAW["PROXY"], 0.22)):
+    v = J255["amp_models"][key]; ins.axvline(v, color=c, lw=1.6, ls=(0, (3, 2)))
+    ins.text(v + (0.004 if key != "FLAT_canonical" else -0.004), yy, lab, color=c, fontsize=8, ha="left" if key != "FLAT_canonical" else "right", va="center", transform=ins.get_xaxis_transform())
+ins.text(A + 0.004, 0.86, "measured", color="#2a6f97", fontsize=8, fontweight="bold", transform=ins.get_xaxis_transform())
+ins.set_xlim(-0.04, 0.16); ins.set_yticks([]); ins.tick_params(axis="x", labelsize=8)
+ins.set_title("KiDS lensing, z 0.20 → 0.40:\nchange in signal (dex), ±1σ / ±2σ", fontsize=8.5, color="#2a6f97", loc="left")
+for sp in ("top", "right", "left"): ins.spines[sp].set_visible(False)
 ax.set_ylabel(r"$a_0$ implied by the rotation   [$10^{-10}$ m s$^{-2}$]", fontsize=12)
 ax.set_yticks([0.3, 0.5, 1, 2, 3, 5, 10, 20]); ax.set_yticklabels(["0.3", "0.5", "1", "2", "3", "5", "10", "20"])
 ax.grid(True, which="major", axis="y", color="#e4e7eb", lw=0.7, zorder=0)
@@ -166,8 +193,7 @@ fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from
          "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  The dashed sets at the bottom are data in hand with no $a_0$ value yet.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229 (calculated); "
-         "CFG197, CFG235, CFG258, L328 (tests that gave no $a_0$ value).  Some points nudged in z for legibility.  Plot only: chart_a0z_one.py.",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229 (calculated); CFG255 KiDS and CFG199 MUSE-DARK (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
