@@ -34,3 +34,6 @@
   - CFG242 triaged 20 untested routes and ran the top two: both are scoped no-gos, and ownership needs memory.
   - CFG243 (running) tests a conserved component created once at turnaround. It descends from the owner's "one-time pass" idea (CFG251), combined with the PAPER36 conservation rule and CFG242's memory requirement.
 - **"One more swing" (owner-directed, 2026-10-01):** CFG245 tests the last unscored ingredient after CFG242–244: an early cold fluid that relaxes, at a vacuum-set rate, toward the law's dark density written in local fields. The owner chose to take this swing before the closure map is written up.
+- **The 4 = (1/κ)² (owner-directed, 2026-10-01):** "launch some research on 4 = (1/κ)²". This launched CFG263, an audit of the 32π no-gos for a wrongly closed door, and CFG264, the untried routes to a rational 4.
+  - The owner then proposed a specific idea, tested in CFG264 as an owner-directed route: ½ is the ratio between the horizon's ¼ (S = A/4) and the bulk 8π coupling, a 2D-to-4D degrees-of-freedom conversion.
+  - The owner also directed a hostile referee of PAPER39 before any deposit (CFG265).
