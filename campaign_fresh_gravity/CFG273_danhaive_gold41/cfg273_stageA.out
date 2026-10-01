@@ -1,0 +1,94 @@
+CFG273 -- implied-a0 upper bounds (or no-root floors) for the 41 Danhaive+25 "gold" JADES discs (z 3.80-5.82): stars-only baryons (a lower limit), class D (no gas).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG273_danhaive_gold41/FROZEN_CRITERIA.md (92a868901).
+  g_obs     G M_dyn / (1.8 r_e^2) at r = r_e from the authors' M_dyn (pressure included once); g_bar  B0 = stars only, one thin exponential disc with R_e,* = r_e; B2 = scaling-relation gas (sensitivity).
+  STAGE=A   the blind pre-flight: M_dyn, sigma0 and v/sigma0 are NOT loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (M_dyn x 4); STAGE=B SELFTEST=1 (fabricated M_dyn on the law at s = 2).
+
+STAGE A
+danhaive2025_gold.csv sha256 4519252ca08da4a2; 41 rows; kinematic columns loaded: False
+z bins: Pz1 21, Pz2 12, Pz3 8; CRISTAL-08 z-candidates in the table: [1088814, 1077545, 1086406]
+
+STAGE A  THE BLIND PRE-FLIGHT (M_dyn, sigma0 and v/sigma0 are not loaded; no g_obs, D, delta or s* is formed)
+  [PASS] C1 CONTROL: 41 rows, finite z, M*, r_e and M* errors, z bins 21 / 12 / 8, the CRISTAL-08 candidates present
+         N 41; bins [21, 12, 8]; candidates [1088814, 1077545, 1086406]
+  [PASS] C2 CONTROL: Freeman's peak V^2 = 0.3872 G M / R_d to 0.003, g -> G M / r^2 far from a compact mass to 1e-3, and gdisc equals CFG229's on 200 random inputs to 1e-12
+         peak 0.3870; far-field ratio 1.00064; max deviation 0.0e+00
+  [PASS] C3 CONTROL (counts only): CFG235's committed sample counts 41 Danhaive rows
+         CFG235 counts {'D': 41, 'C': 14, 'R': 4, 'A': 2, 'P': 1}
+  [PASS] C4 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C5 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every row's stars-only baryon side
+         max |d log10 s| 2.4e-15
+
+A1 / A2  BARYON SIDE AND THE CFG240 READING (noiseless world; B0 = stars only at r = r_e; ILL-CONDITIONED iff |lever| >= 10 or not computable)
+    y(B0): min 0.08, 16/50/84% 0.29 / 1.65 / 3.69, max 8.80;  y(B2) median 6.84
+    rows with y < 0.3: 7; y > 6: 4; y > 8: 1; ILL-CONDITIONED: 4 (ids [1088814, 1085659, 1082948, 1091153]; log M* [10.6, 10.17, 10.68, 10.37])
+    PALL: n 41, y(B0) median 1.65 (min 0.08, max 8.80), ILL 4, T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex: 0.094 dex (calibration f free)
+    Pz1: n 21, y(B0) median 1.44 (min 0.08, max 8.80), ILL 3, T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex: 0.131 dex (calibration f free)
+    Pz2: n 12, y(B0) median 0.93 (min 0.15, max 6.49), ILL 1, T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex: 0.173 dex (calibration f free)
+    Pz3: n 8, y(B0) median 2.37 (min 1.50, max 3.02), ILL 0, T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex: 0.212 dex (calibration f free)
+    per row: id z log M* r_e y(B0) nu(y) lever ILL mu_mol B2/B0
+       1028887 z 5.19 M* 9.56 r_e 1.12 y   2.69 nu 1.241 lever    -4.5     mu 2.89 B2/B0 3.89
+       1002030 z 5.18 M* 9.48 r_e 1.37 y   1.50 nu 1.417 lever    -2.9     mu 3.12 B2/B0 4.12
+        191250 z 5.39 M* 10.17 r_e 2.45 y   2.29 nu 1.282 lever    -3.9     mu 1.58 B2/B0 2.58
+       1002222 z 5.29 M* 9.47 r_e 0.98 y   2.86 nu 1.227 lever    -4.8     mu 3.10 B2/B0 4.10
+        214966 z 5.54 M* 9.54 r_e 1.41 y   1.62 nu 1.388 lever    -3.1     mu 2.79 B2/B0 3.79
+       1025527 z 5.30 M* 9.39 r_e 1.06 y   2.03 nu 1.316 lever    -3.5     mu 3.34 B2/B0 4.34
+       1001674 z 5.18 M* 9.92 r_e 1.60 y   3.02 nu 1.215 lever    -5.1     mu 2.06 B2/B0 3.06
+        201125 z 5.82 M* 9.96 r_e 1.86 y   2.45 nu 1.264 lever    -4.1     mu 1.79 B2/B0 2.79
+       1094616 z 4.06 M* 9.40 r_e 1.35 y   1.28 nu 1.475 lever    -2.7     mu 3.83 B2/B0 4.83
+       1000989 z 3.97 M* 9.07 r_e 0.87 y   1.44 nu 1.430 lever    -2.9     mu 5.26 B2/B0 6.26
+       1088814 z 4.41 M* 10.60 r_e 2.39 y   6.49 nu 1.103 lever   -12.7 ILL mu 1.20 B2/B0 2.20 CRISTAL-08?
+       1087148 z 4.38 M* 8.24 r_e 1.05 y   0.15 nu 3.143 lever    -1.4     mu 11.14 B2/B0 12.14
+       1015956 z 4.02 M* 9.54 r_e 1.40 y   1.65 nu 1.383 lever    -3.1     mu 3.37 B2/B0 4.37 KNOWN-LOW
+       1085659 z 4.06 M* 10.17 r_e 1.47 y   6.37 nu 1.105 lever   -12.4 ILL mu 1.85 B2/B0 2.85 KNOWN-LOW
+       1083165 z 4.15 M* 9.78 r_e 1.12 y   4.47 nu 1.147 lever    -7.8     mu 2.66 B2/B0 3.66
+       1065488 z 4.15 M* 8.01 r_e 1.10 y   0.08 nu 4.088 lever    -1.3     mu 14.13 B2/B0 15.13
+       1025101 z 4.91 M* 8.99 r_e 1.19 y   0.64 nu 1.814 lever    -2.1     mu 5.16 B2/B0 6.16
+       1090526 z 3.96 M* 9.93 r_e 2.47 y   1.30 nu 1.471 lever    -2.7     mu 2.34 B2/B0 3.34
+       1077545 z 4.42 M* 9.27 r_e 0.87 y   2.29 nu 1.282 lever    -3.9     mu 4.20 B2/B0 5.20 CRISTAL-08?
+       1089583 z 3.93 M* 9.01 r_e 1.16 y   0.71 nu 1.758 lever    -2.1     mu 5.58 B2/B0 6.58
+       1077261 z 3.92 M* 9.36 r_e 1.12 y   1.70 nu 1.373 lever    -3.1     mu 4.01 B2/B0 5.01
+       1095186 z 4.02 M* 9.37 r_e 1.92 y   0.59 nu 1.863 lever    -2.0     mu 3.95 B2/B0 4.95
+       1091580 z 4.80 M* 8.09 r_e 0.88 y   0.15 nu 3.133 lever    -1.4     mu 12.24 B2/B0 13.24
+       1086992 z 4.04 M* 9.37 r_e 3.42 y   0.19 nu 2.851 lever    -1.5     mu 3.95 B2/B0 4.95
+       1090054 z 4.82 M* 9.62 r_e 1.27 y   2.41 nu 1.269 lever    -4.0     mu 2.88 B2/B0 3.88
+       1014130 z 4.38 M* 8.49 r_e 1.32 y   0.17 nu 2.995 lever    -1.5     mu 8.80 B2/B0 9.80
+       1082948 z 3.91 M* 10.68 r_e 2.25 y   8.80 nu 1.077 lever   -25.2 ILL mu 1.16 B2/B0 2.16 KNOWN-LOW
+       1000110 z 4.06 M* 9.52 r_e 1.66 y   1.12 nu 1.532 lever    -2.6     mu 3.42 B2/B0 4.42
+       1091153 z 4.07 M* 10.37 r_e 1.85 y   6.37 nu 1.105 lever   -12.4 ILL mu 1.53 B2/B0 2.53
+       1094903 z 3.87 M* 10.34 r_e 2.06 y   4.80 nu 1.138 lever    -8.5     mu 1.60 B2/B0 2.60
+       1079264 z 4.05 M* 8.73 r_e 2.24 y   0.10 nu 3.695 lever    -1.4     mu 7.22 B2/B0 8.22
+       1086406 z 4.41 M* 9.46 r_e 0.91 y   3.24 nu 1.201 lever    -5.4     mu 3.51 B2/B0 4.51 CRISTAL-08?
+       1013488 z 3.80 M* 9.57 r_e 1.07 y   3.02 nu 1.216 lever    -5.0     mu 3.31 B2/B0 4.31
+       1028072 z 4.40 M* 9.17 r_e 1.66 y   0.50 nu 1.973 lever    -1.9     mu 4.62 B2/B0 5.62
+       1090742 z 4.62 M* 9.37 r_e 1.34 y   1.22 nu 1.497 lever    -2.7     mu 3.74 B2/B0 4.74
+       1091236 z 4.17 M* 9.34 r_e 0.84 y   2.89 nu 1.225 lever    -4.8     mu 4.02 B2/B0 5.02
+       1009935 z 4.89 M* 9.65 r_e 1.02 y   4.00 nu 1.164 lever    -6.8     mu 2.77 B2/B0 3.77 KNOWN-LOW
+       1085494 z 4.06 M* 8.90 r_e 1.06 y   0.66 nu 1.800 lever    -2.1     mu 6.14 B2/B0 7.14
+       1090891 z 3.92 M* 9.74 r_e 1.55 y   2.13 nu 1.303 lever    -3.6     mu 2.80 B2/B0 3.80
+       1008197 z 4.40 M* 8.76 r_e 1.11 y   0.43 nu 2.071 lever    -1.8     mu 6.81 B2/B0 7.81
+       1029814 z 4.16 M* 8.38 r_e 1.28 y   0.14 nu 3.240 lever    -1.4     mu 9.96 B2/B0 10.96
+
+C6  COVERAGE (noiseless world on each row's B0 baryons; declared 0.15 dex error on log M_dyn; the published M* errors; 200 mock datasets, B = 1,000)
+    coverage 68 %: median 0.69 (min 0.10); 95 %: median 0.94 (min 0.71); median 68 % half-width 0.50 dex; for the conditioned rows: 68 % median 0.71, 95 % median 0.94
+  [PASS] C6 (reported; load-bearing for the conditioned rows): the median coverage of the conditioned rows is >= 60 % (68 %) and >= 88 % (95 %)
+         conditioned rows 37: 68 % 0.71, 95 % 0.94
+
+A3  KNOB EFFECTS ON g_bar (dex relative to B0; baryon side only; median / min / max over the 41 rows)
+    compact stars r_e/1.58: median +0.203, min +0.203, max +0.203
+    R_e x1.5: median -0.267, min -0.267, max -0.267
+    R_e /1.5: median +0.186, min +0.186, max +0.186
+    spherical: median -0.097, min -0.097, max -0.097
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C5)
+  PF-D2 ILL-CONDITIONED rows (4 of 41): ids [1088814, 1085659, 1082948, 1091153]
+  PF-D3 DRAWABLE as an upper bound: 37 of 41 rows (every drawable row is an upper bound on s*, never a measurement)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9) scored (HE3-HE7 are scored at stage B):
+    HE1: hit
+    HE2: hit
+
+6/6 checks pass; load-bearing failures: 0   (82 s)
