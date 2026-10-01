@@ -1,0 +1,91 @@
+CFG264 R2 -- MUTATE run (separate outputs)
+====================================================================================================
+
+--- M1 one-sided (J1 uses a_out instead of abar): 35 (J, Sg) systems ---
+   J1+Sg1     no_solution
+   J1+Sg2     k2 = 8*pi/3                             (8.377580; rational x pi^1)
+   J1+Sg3     k2 = 8*pi/3                             (8.377580; rational x pi^1)
+   J1+Sg4     no_solution
+   J1+Sg5     no_solution
+   J1+Sg6     k2 = 32*pi/9                            (11.170107; rational x pi^1)
+   J2++Sg1    k2 = pi/3                               (1.047198; rational x pi^1)
+   J2++Sg2    k2 = 8*pi/9                             (2.792527; rational x pi^1)
+   J2++Sg3    no_solution
+   J2++Sg4    no_solution
+   J2++Sg5    no_solution
+   J2++Sg6    k2 = 8*pi/9                             (2.792527; rational x pi^1)
+   J2-+Sg1    no_solution
+   J2-+Sg2    no_solution
+   J2-+Sg3    no_solution
+   J2-+Sg4    no_solution
+   J2-+Sg5    no_solution
+   J2-+Sg6    no_solution
+   J3+Sg1     no_solution
+   J3+Sg2     k2 = 8*pi/3                             (8.377580; rational x pi^1)
+   J3+Sg3     k2 = 8*pi/3                             (8.377580; rational x pi^1)
+   J3+Sg4     no_solution
+   J3+Sg5     no_solution
+   J3+Sg6     k2 = 32*pi/9                            (11.170107; rational x pi^1)
+   J4+Sg1     k2 = sqrt(2)*pi/3                       (1.480961; algebraic x pi^1)
+   J4+Sg2     k2 = 8*sqrt(5)*pi/15                    (3.746568; algebraic x pi^1)
+   J4+Sg3     no_solution
+   J4+Sg4     no_solution
+   J4+Sg5     no_solution
+   J4+Sg6     k2 = 16*pi/9                            (5.585054; rational x pi^1)
+   J5+Sg2     no_solution
+   J5+Sg3     k2 = 2*pi/3                             (2.094395; rational x pi^1)
+   J5+Sg4     no_solution
+   J5+Sg5     no_solution
+   J5+Sg6     k2 = 2*pi/9                             (0.698132; rational x pi^1)
+[PASS] M1 one-sided instead of two-sided changes the J1 rows -- ['J1+Sg1', 'J1+Sg2', 'J1+Sg3', 'J1+Sg6']
+   J1+Sg1 one-sided: []  (two-sided: 2*pi/3)
+
+--- M2 D = 4 -> 5: 35 (J, Sg) systems ---
+   J1+Sg1     k2 = pi/3                               (1.047198; rational x pi^1)
+   J1+Sg2     k2 = 2*pi/3                             (2.094395; rational x pi^1)
+   J1+Sg3     k2 = pi/3                               (1.047198; rational x pi^1)
+   J1+Sg4     no_solution
+   J1+Sg5     no_solution
+   J1+Sg6     k2 = pi                                 (3.141593; rational x pi^1)
+   J2++Sg1    k2 = pi/6                               (0.523599; rational x pi^1)
+   J2++Sg2    k2 = 4*pi/9                             (1.396263; rational x pi^1)
+   J2++Sg3    no_solution
+   J2++Sg4    no_solution
+   J2++Sg5    no_solution
+   J2++Sg6    k2 = 4*pi/9                             (1.396263; rational x pi^1)
+   J2-+Sg1    no_solution
+   J2-+Sg2    no_solution
+   J2-+Sg3    no_solution
+   J2-+Sg4    no_solution
+   J2-+Sg5    no_solution
+   J2-+Sg6    no_solution
+   J3+Sg1     no_solution
+   J3+Sg2     k2 = 4*pi/3                             (4.188790; rational x pi^1)
+   J3+Sg3     k2 = 4*pi/3                             (4.188790; rational x pi^1)
+   J3+Sg4     no_solution
+   J3+Sg5     no_solution
+   J3+Sg6     k2 = 16*pi/9                            (5.585054; rational x pi^1)
+   J4+Sg1     k2 = sqrt(2)*pi/6                       (0.740480; algebraic x pi^1)
+   J4+Sg2     k2 = 4*sqrt(5)*pi/15                    (1.873284; algebraic x pi^1)
+   J4+Sg3     no_solution
+   J4+Sg4     no_solution
+   J4+Sg5     no_solution
+   J4+Sg6     k2 = 8*pi/9                             (2.792527; rational x pi^1)
+   J5+Sg2     no_solution
+   J5+Sg3     k2 = pi/3                               (1.047198; rational x pi^1)
+   J5+Sg4     no_solution
+   J5+Sg5     no_solution
+   J5+Sg6     k2 = pi/9                               (0.349066; rational x pi^1)
+[PASS] M2 D = 5 changes the table -- 15 systems changed
+
+--- M3 control: sigma = q a0/G (q a free positive number; NOT a declared closure, shows where the pi enters) ---
+   J1   k2(q) = ['1/(3*q)']
+   J2+  k2(q) = ['1/(3*q*(2*pi*q + 1))']
+   J2-  k2(q) = ['1/(3*q*(2*pi*q - 1))', '1/(3*q*(2*pi*q - 1))']
+   J3   k2(q) = ['-1/(3*q*(2*pi*q - 1))', '-1/(3*q*(2*pi*q - 1))']
+   J4   k2(q) = ['1/(3*q*sqrt(4*pi**2*q**2 + 1))']
+   J5   k2(q) = []
+[PASS] M3 J1 (two-sided) with sigma = q a0/G gives the pi-free k2 = 1/(3q): kappa = 1/2 <=> q = 4/3
+[PASS] M3b the one-sided J3 with the same sigma re-introduces pi through the self-gravity term (k2 depends on pi q) -- ['-1/(3*q*(2*pi*q - 1))', '-1/(3*q*(2*pi*q - 1))']
+
+SUMMARY r2_two_sided_junction_MUTATE: 4 PASS, 0 FAIL

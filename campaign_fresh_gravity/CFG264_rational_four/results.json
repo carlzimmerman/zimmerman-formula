@@ -1,0 +1,153 @@
+{
+  "lane": "CFG264 -- constrained attempt to derive the rational 4 in G rho_Lambda = 4 a0^2/c^2",
+  "frozen_criteria_original_sha256": "ff8657eb7286103a635ace15c142bcea90d299766b8a377c9b345c3abedce769",
+  "frozen_hash_matches_record": true,
+  "addenda": [
+    "Addendum 1: R1 alpha list corrected (shell polar moment = 1); run {3/5, 2/3, 1}",
+    "Addendum 2: OD B7 identical to B6; B7' added; X3 cross-check added",
+    "Addendum 3 (post-run, coordinator after CFG263): OD section F -- does the balance couple an a0-sector energy density?"
+  ],
+  "frozen_ranking": [
+    {
+      "route": "R1 deep-MOND virial with the vacuum",
+      "P": "0.3%",
+      "cost_h": 1.0,
+      "run": true
+    },
+    {
+      "route": "R2 two-sided MOND-critical junction",
+      "P": "0.4%",
+      "cost_h": 1.5,
+      "run": true
+    },
+    {
+      "route": "R3 two halvings in one equation",
+      "P": "0.2%",
+      "cost_h": 2.0,
+      "run": false,
+      "note": "its equation is inside R1 (Tolman x virial)"
+    },
+    {
+      "route": "R4 rho-linear extremum",
+      "P": "0.3%",
+      "cost_h": 3.0,
+      "run": false
+    },
+    {
+      "route": "R5 dimensional reduction / pi-free cell",
+      "P": "0.1%",
+      "cost_h": 4.0,
+      "run": false
+    },
+    {
+      "route": "OD OWNER-DIRECTED horizon quarter vs bulk 8 pi",
+      "P": "0.2%",
+      "cost_h": 1.5,
+      "run": true
+    }
+  ],
+  "R1": {
+    "verdict": "SCOPED NO-GO: no admissible system (vacuum dynamics used, no R*) gives k2 = 1/4. Binding failures: (i) c-free sub-class -- Buckingham (k2 carries c^-2; the c-free conditions are invariant under (a0,R,M)->(l a0,l R,l^3 M)); (ii) with relativistic closures -- pi-weight: the vacuum enters only as H^2 = (8 pi/3) G rho_L and every one of the 129 admissible k2 is (rational or algebraic) x pi^1; no declared closure cancels the pi. The only k2 = 1/4 systems are C2+C4+C6 (Schwarzschild surface gravity at R*), which use R* and no vacuum dynamics and are unchanged by every mutation: RESTATEMENT (the gemini reading).",
+    "checks": "19 PASS / 0 FAIL",
+    "mutate": "3 PASS / 0 FAIL",
+    "systems": 495,
+    "status_counts": {
+      "inconsistent": 203,
+      "unique": 255,
+      "no_positive_solution": 33,
+      "underdetermined": 4
+    },
+    "c_free_fixing_k2": 0,
+    "admissible_with_k2": 129,
+    "admissible_target_hits": [],
+    "restatement_hits_k2_quarter": [
+      [
+        "3/5",
+        "C2+C4+C6",
+        false,
+        true,
+        "1/4"
+      ],
+      [
+        "2/3",
+        "C2+C4+C6",
+        false,
+        true,
+        "1/4"
+      ],
+      [
+        "1",
+        "C2+C4+C6",
+        false,
+        true,
+        "1/4"
+      ]
+    ]
+  },
+  "R2": {
+    "verdict": "SCOPED NO-GO: no declared (J, Sg) pair gives k2 = 1/4; the two-sided average abar = rho c^2/(3 sigma) is pi-free, but every declared sigma-closure is a Gauss/Israel field or budget condition that carries pi (binding failure: the Gauss 2 pi in Sigma_M; pi-weight). The natural MOND-critical wall gives k2 = 2 pi/3 (a0 = c H_L/2, kappa = 1.447).",
+    "checks": "15 PASS / 0 FAIL",
+    "mutate": "4 PASS / 0 FAIL",
+    "target_hits": [],
+    "pi_free_values": [],
+    "M3_piFree_sigma_control": {
+      "J1": [
+        "1/(3*q)"
+      ],
+      "J2+": [
+        "1/(3*q*(2*pi*q + 1))"
+      ],
+      "J2-": [
+        "1/(3*q*(2*pi*q - 1))",
+        "1/(3*q*(2*pi*q - 1))"
+      ],
+      "J3": [
+        "-1/(3*q*(2*pi*q - 1))",
+        "-1/(3*q*(2*pi*q - 1))"
+      ],
+      "J4": [
+        "1/(3*q*sqrt(4*pi**2*q**2 + 1))"
+      ],
+      "J5": []
+    }
+  },
+  "OD": {
+    "label": "OWNER-DIRECTED",
+    "verdict": "SCOPED NO-GO (binding failure: hbar-cancellation). For hbar to cancel the quarter must travel with the thermal 1/(2 pi), as 1/(8 pi); in any entropy-vs-vacuum-energy budget that 8 pi CANCELS Einstein's 8 pi instead of multiplying it, so every declared condition gives k2 = (rational) x pi (HS/HR) or the de Sitter identity with k2 = 8 pi/3, i.e. a0 = c H_Lambda (HdS). The 'conversion factor' reading (32 pi = 8 pi x 4, 4 = 1/quarter) is a RESTATEMENT: the 1/4 enters only when inserted as a number, which is the DERIVE_Z strike-3 double count.",
+    "checks": "20 PASS / 0 FAIL",
+    "mutate": "4 PASS / 0 FAIL",
+    "target_hits": [],
+    "dS_identities": [
+      "B1 TS = E_vac",
+      "B4 N_sur kT/2 = E_Komar"
+    ],
+    "M1_no_thermal_2pi_values": [
+      "1",
+      "1/3",
+      "16/3",
+      "2",
+      "2/3",
+      "4",
+      "4/3",
+      "8/3"
+    ],
+    "post_run_CFG263_check (Addendum 3)": {
+      "F1_clean": true,
+      "F1b_q_values": [
+        "1/4",
+        "1/2",
+        "3/4",
+        "1",
+        "3/2",
+        "2",
+        "3",
+        "4"
+      ],
+      "F2_dS_identity": true,
+      "F2b_W": [
+        "3/(4*pi)"
+      ]
+    }
+  },
+  "kappa_half": "FITTED (no derivation landed; no independent re-derivation needed or claimed)"
+}

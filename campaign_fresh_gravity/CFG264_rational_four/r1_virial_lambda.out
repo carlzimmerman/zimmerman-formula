@@ -1,0 +1,91 @@
+CFG264 R1 -- deep-MOND virial theorem with the vacuum term (main run)
+====================================================================================================
+
+A. Buckingham: the c-free system {G, a0, rho_L, M, R}
+[PASS] A1 dimension matrix of the c-free set has rank 3 and 2 Pi-groups -- Pi-groups: G**3*M*rho_L**2/a0**3; G*R*rho_L/a0
+[PASS] A2 k2 = a0^2/(c^2 G rho) carries c^-2, so no function of the c-free Pi-groups can fix it
+[PASS] A3 k2 is dimensionless (in the null space of the full matrix)
+[PASS] A4 every c-free condition (S1, S2, S4, D1, D2) is invariant under (a0,R,M)->(l a0, l R, l^3 M): a0 is never fixed
+[PASS] A5 every c-carrying closure breaks that scaling (C2-C6 checked; C1 is c^2 by construction) -- ['C2', 'C3', 'C4', 'C5', 'C6']
+
+B. The ingredients, re-derived
+[PASS] B1 uniform sphere: W = -(2/3) sqrt(G a0) M^{3/2}
+[PASS] B2 Plummer profile (numeric): W/(sqrt(G a0) M^{3/2}) = -2/3 (profile-independent) -- -0.666666666666667
+[PASS] B3 N-body relation, test-particle limit: sum r.F -> -m sqrt(G M a0) (deep-MOND circular orbit)
+[PASS] B4 Tolman source of the vacuum is -2 rho_L
+[PASS] B5 vacuum field g = +(8 pi/3) G rho_L r = (Lambda c^2/3) r with Lambda = 8 pi G rho_L/c^2 (Einstein, not the puzzle)
+[PASS] B6 Poisson check: div g = -4 pi G (rho + 3p/c^2)
+[PASS] B7 polar moment of a uniform sphere I = (3/5) M R^2 (Addendum 1: shell = M R^2, rho~r = 2/3 M R^2)
+[PASS] B8 vacuum virial term sum m r.(H^2 r) = H^2 I with H^2 = (8 pi/3) G rho_L (= Friedmann H_L^2)
+
+C. Dimensional consistency and circularity guard of every declared condition
+[PASS] C1 every declared condition is dimensionless (all alphas)
+   circularity guard S1: ok
+   circularity guard S2: ok
+   circularity guard S4: ok
+   circularity guard C1: ok
+   circularity guard C2: ok (K absent)
+   circularity guard C3: ok
+   circularity guard C4: ok (K absent)
+   circularity guard C5: ok (K absent)
+   circularity guard C6: ok
+   circularity guard D1: ok (K absent)
+   circularity guard D2: ok (K absent)
+[PASS] C2 no single declared condition forces k2 = 1/4 on its own
+   circularity audit (by hand, per input): S1/S2/S4 use only Milgrom's deep-MOND virial and the Tolman-sourced vacuum force (Einstein's 8 pi G); C1-C3, C5, C6 are relativistic identifications that contain no rho-a0 relation; C4 = R* contains rho_L but not a0 (any hit through it is a RESTATEMENT by the frozen rule); D1, D2 are densities. No input contains kappa, 32 pi or Lambda = 32 pi a0^2/c^4.
+
+D. The declared menu: (V) + three conditions from {S1,S2,S4,C1..C6,D1,D2}, alpha in {3/5, 2/3, 1}
+
+--- baseline d = 3: 495 systems ---
+status counts: inconsistent=203, no_positive_solution=33, underdetermined=4, unique=255
+c-free systems: 30, of which fix k2: 0
+admissible systems with a k2: 129
+pi-content of admissible k2: algebraic=9, rational=120
+admissible systems with k2 RATIONAL (pi^0): 0
+systems hitting k2 = 1/4 (any class): 3
+   alpha=3/5 C2+C4+C6 admissible=False uses_R*=True k2=1/4
+   alpha=2/3 C2+C4+C6 admissible=False uses_R*=True k2=1/4
+   alpha=1 C2+C4+C6 admissible=False uses_R*=True k2=1/4
+decoy hits (all systems): 1:24
+[PASS] D1 Buckingham confirmed on the menu: no c-free system fixes k2
+   INFO (verdict input, not a check): admissible systems hitting k2 = 1/4: 0 (a derivation needs >= 1)
+   distinct rational k2 among admissible systems: []
+   (kind, pi exponent) among admissible unique k2: ('algebraic', '1'):9, ('rational', '1'):120
+   systems using C4 (R*) with a unique k2: 69, rational pi^0: 27
+     alpha=3/5 S1+C3+C4: k2 = 1  (vacuum dynamics used: True)
+     alpha=3/5 S2+C3+C4: k2 = 1  (vacuum dynamics used: True)
+     alpha=3/5 S4+C3+C4: k2 = 1  (vacuum dynamics used: True)
+     alpha=3/5 C1+C3+C4: k2 = 1  (vacuum dynamics used: False)
+     alpha=3/5 C2+C3+C4: k2 = 1  (vacuum dynamics used: False)
+     alpha=3/5 C2+C4+C6: k2 = 1/4  (vacuum dynamics used: False)
+     alpha=3/5 C3+C4+C6: k2 = 1  (vacuum dynamics used: False)
+     alpha=3/5 C3+C4+D1: k2 = 1  (vacuum dynamics used: False)
+     alpha=3/5 C3+C4+D2: k2 = 1  (vacuum dynamics used: False)
+     alpha=2/3 S1+C3+C4: k2 = 1  (vacuum dynamics used: True)
+     alpha=2/3 S2+C3+C4: k2 = 1  (vacuum dynamics used: True)
+     alpha=2/3 S4+C3+C4: k2 = 1  (vacuum dynamics used: True)
+     alpha=2/3 C1+C3+C4: k2 = 1  (vacuum dynamics used: False)
+     alpha=2/3 C2+C3+C4: k2 = 1  (vacuum dynamics used: False)
+     alpha=2/3 C2+C4+C6: k2 = 1/4  (vacuum dynamics used: False)
+     alpha=2/3 C3+C4+C6: k2 = 1  (vacuum dynamics used: False)
+     alpha=2/3 C3+C4+D1: k2 = 1  (vacuum dynamics used: False)
+     alpha=2/3 C3+C4+D2: k2 = 1  (vacuum dynamics used: False)
+     alpha=1 S1+C3+C4: k2 = 1  (vacuum dynamics used: True)
+     alpha=1 S2+C3+C4: k2 = 1  (vacuum dynamics used: True)
+     alpha=1 S4+C3+C4: k2 = 1  (vacuum dynamics used: True)
+     alpha=1 C1+C3+C4: k2 = 1  (vacuum dynamics used: False)
+     alpha=1 C2+C3+C4: k2 = 1  (vacuum dynamics used: False)
+     alpha=1 C2+C4+C6: k2 = 1/4  (vacuum dynamics used: False)
+     alpha=1 C3+C4+C6: k2 = 1  (vacuum dynamics used: False)
+     alpha=1 C3+C4+D1: k2 = 1  (vacuum dynamics used: False)
+     alpha=1 C3+C4+D2: k2 = 1  (vacuum dynamics used: False)
+[PASS] D3 every admissible unique k2 is (rational or algebraic) x pi^1: the vacuum's 8 pi/3 is never cancelled by any declared closure -- 129 admissible unique systems
+[PASS] D4 no admissible system is left unclassified (numeric/multiple) -- []
+   k2 = 1/4 hit: alpha=3/5 C2+C4+C6 -> R = 2GM/c^2 (C2), R = R* (C4), G M a0 = c^4/4 (C6): a0 = c^2/(2 R*), the Schwarzschild surface gravity evaluated at R* -- the gemini reading; uses R*, no vacuum dynamics -> RESTATEMENT by the frozen rule
+   k2 = 1/4 hit: alpha=2/3 C2+C4+C6 -> R = 2GM/c^2 (C2), R = R* (C4), G M a0 = c^4/4 (C6): a0 = c^2/(2 R*), the Schwarzschild surface gravity evaluated at R* -- the gemini reading; uses R*, no vacuum dynamics -> RESTATEMENT by the frozen rule
+   k2 = 1/4 hit: alpha=1 C2+C4+C6 -> R = 2GM/c^2 (C2), R = R* (C4), G M a0 = c^4/4 (C6): a0 = c^2/(2 R*), the Schwarzschild surface gravity evaluated at R* -- the gemini reading; uses R*, no vacuum dynamics -> RESTATEMENT by the frozen rule
+[PASS] D5 every k2 = 1/4 hit uses C4 (R*) and no vacuum-dynamics condition (restatement class)
+
+VERDICT R1: SCOPED NO-GO: no admissible system (vacuum dynamics used, no R*) gives k2 = 1/4. Binding failures: (i) c-free sub-class -- Buckingham (k2 carries c^-2; the c-free conditions are invariant under (a0,R,M)->(l a0,l R,l^3 M)); (ii) with relativistic closures -- pi-weight: the vacuum enters only as H^2 = (8 pi/3) G rho_L and every one of the 129 admissible k2 is (rational or algebraic) x pi^1; no declared closure cancels the pi. The only k2 = 1/4 systems are C2+C4+C6 (Schwarzschild surface gravity at R*), which use R* and no vacuum dynamics and are unchanged by every mutation: RESTATEMENT (the gemini reading).
+
+SUMMARY r1_virial_lambda: 19 PASS, 0 FAIL
