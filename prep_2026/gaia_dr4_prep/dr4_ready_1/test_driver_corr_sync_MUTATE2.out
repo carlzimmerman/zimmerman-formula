@@ -1,0 +1,20 @@
+DRIVER SYNC FALLBACK FOR STAGE G'S CORRELATION FETCH: offline equivalence test (DR3 code-path numbers)   *** MUTATE=2: the last row of every sync answer dropped (S3 must FAIL) ***
+truth: 20,786 stars from the two on-disk builder caches (int64, float32)
+  [PASS] S1 the reference run (on-disk cache only) reproduces the DR3 CSV (sha256 prefix 6fff64d964ebaa72)
+         6,210 pairs, 6fff64d964ebaa72
+  [PASS] S2 the run with the builder's ASYNC fetch (mock server, empty temporary cache) gives a byte-identical stage-G CSV and a cache equal to the truth at the requested ids
+         20,460 ids in 11 async calls (largest 2000; 4 ids not in the on-disk caches answered with the offline path's zero fill); CSV identical True; cache values equal truth True
+  [FAIL] S3 the SYNC fallback completes, gives the same CSV, and its cache arrays sorted by source_id are BYTE-IDENTICAL to the async run's (same dtypes) and equal to the truth
+         the sync run RAISED: RuntimeError: the synchronous correlation query returned 1998 rows for 1999 requested ids (missing or extra ids): stopping, nothing is repaired
+  [PASS] S4 every sync call carried at most 1,999 ids and the number of calls is ceil(n / 1999); the async run used the builder's 2,000-id chunks
+         sync call sizes [1999]
+  [PASS] S5 the SELECT texts of the two transports are identical up to the id list
+         not evaluated (the sync run raised)
+  [FAIL] S6 the sync run's report records the transport
+         not evaluated (the sync run raised)
+  [FAIL] S7 a seed-sweep build with a PARTIAL primary cache fetches ONLY the missing ids through the sync query (one call, 50 ids) and gives the same CSV as the offline seed build
+         offline seed build 6,195 pairs 4b106c38f7e16982; networked sync RAISED RuntimeError: the synchronous correlation query returned 49 rows for 50 requested ids (missing or extra ids): stopping, nothing is repaired; calls [('sync', 50)]
+  [PASS] S8 the driver's own self-test still passes 7/7, and --corr-transport sync without --allow-network is refused
+         self-test: 7/7 pass -> ALL PASS  (17 s); refusal: --corr-transport sync only matters with --allow-network (offline, the correlations come from the on-disk cache
+
+[MUTATE CONTROL] MUTATE=2: S3 FAILED as designed; checks that failed: ['S3', 'S6', 'S7']

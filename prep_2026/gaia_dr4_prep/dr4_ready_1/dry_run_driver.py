@@ -34,10 +34,17 @@ CONES-BASED CUT 13 (added 2026-09-30, NEW CODE ONLY, OFFLINE; design CONES_CUT13
   --missing-cones error | extract-fallback   a pair that reaches cut 13 without a cone raises ConeCoverageError (default); 'extract-fallback' (a labelled DR3 code-path option) uses the builder's own flags for it and reports the counts
   --dump-candidates PATH   write the pairs that reach cut 13 (source_id1, source_id2) so a Q1 can be planned on them
   The report gains a 'cut13_cones' block only when a cones kind is used.
+
+DR4 RELEASE-DAY TOOLING (added 2026-10-01, NEW CODE ONLY, OFFLINE-TESTED; design DR4_Q1_TOOLING_DESIGN_FROZEN.md, 6742d206d; every default unchanged):
+  --corr-transport async|sync   how stage G's correlations are fetched when --allow-network is given: async (default) = the frozen builder's own fetch_correlations; sync = fetch_correlations_sync, the SAME SELECT run
+                                SYNCHRONOUSLY in chunks of at most 1,999 ids (a result of exactly 2,000 rows would be indistinguishable from the endpoint's silent truncation), 120 s alarm, three attempts, every id must come back.
+                                A run that uses it records `correlation_transport`, the calls, ids and the largest chunk in its report (and must be recorded in the release manifest).
+  --neighbours-manifest PATH    a JSON list of {table, neighbours, pairs, include}: the entries with include true are used as --neighbours / --neighbour-pairs, and the report records which tables were included or left out
+                                (the Amendment 16(b) release-day decision on crowded_field_source / gaia_source_environment as one recorded switch).
 """
 import sys
 sys.dont_write_bytecode = True
-import argparse, contextlib, csv, hashlib, io, json, socket, time
+import argparse, contextlib, csv, hashlib, io, json, signal, socket, time
 from pathlib import Path
 import numpy as np
 
@@ -115,6 +122,74 @@ def fetch_correlations_delta(release, source_ids, cache, prime_from=None, query_
     return have
 
 
+SYNC_IDS_PER_CALL = 1999                                     # a result of exactly 2,000 rows would be indistinguishable from the synchronous endpoint's silent truncation
+SYNC_TIMEOUT_S = 120
+_SYNC_STATS = dict(calls=0, ids=0, max_chunk=0)
+
+
+class SyncTimeout(Exception):
+    pass
+
+
+def _sync_alarm(signum, frame):
+    raise SyncTimeout(f"no answer within {SYNC_TIMEOUT_S} s")
+
+
+def _gaia_sync(q, tries=3):
+    """one SYNCHRONOUS archive query (astroquery's launch_job) with a hard SIGALRM timeout (main thread) and three attempts; returns the astropy Table.  Networked: the offline tests replace astroquery's Gaia object."""
+    from astroquery.gaia import Gaia
+    Gaia.ROW_LIMIT = -1
+    for att in range(tries):
+        old = signal.signal(signal.SIGALRM, _sync_alarm)
+        signal.alarm(SYNC_TIMEOUT_S)
+        try:
+            r = Gaia.launch_job(q).get_results()
+            signal.alarm(0)
+            return r
+        except Exception as exc:
+            signal.alarm(0)
+            print(f"  sync correlation query attempt {att + 1} failed ({type(exc).__name__}: {str(exc)[:120]}); retrying in {20 * (att + 1)} s", flush=True)
+            time.sleep(20 * (att + 1))
+        finally:
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, old)
+    raise RuntimeError("a synchronous correlation query failed 3 times")
+
+
+def _sync_corr_query(release, ids, query=None):
+    """the builder's correlation SELECT (build_catalog.fetch_correlations, the same text), run SYNCHRONOUSLY in chunks of at most SYNC_IDS_PER_CALL ids; every requested id must come back (otherwise it raises: the builder would only fail later, on
+    a KeyError in vt_error_mc); returns the arrays sorted by source_id.  `query` replaces the network call (offline tests)."""
+    query = query or _gaia_sync
+    ids = np.unique(np.asarray(ids))
+    got = {c: [] for c in _CORR_COLS}
+    for j in range(0, len(ids), SYNC_IDS_PER_CALL):
+        chunk_ids = ids[j:j + SYNC_IDS_PER_CALL]
+        chunk = ",".join(str(int(x)) for x in chunk_ids)
+        r = query(f"SELECT source_id, parallax_pmra_corr, parallax_pmdec_corr FROM gaia{release}.gaia_source WHERE source_id IN ({chunk})")
+        _SYNC_STATS["calls"] += 1; _SYNC_STATS["ids"] += int(len(chunk_ids)); _SYNC_STATS["max_chunk"] = max(_SYNC_STATS["max_chunk"], int(len(chunk_ids)))
+        if len(r) != len(chunk_ids) or not np.array_equal(np.sort(np.array(r["source_id"])), chunk_ids):
+            raise RuntimeError(f"the synchronous correlation query returned {len(r)} rows for {len(chunk_ids)} requested ids (missing or extra ids): stopping, nothing is repaired")
+        for c in got:
+            got[c].append(np.array(r[c]))
+    if not got["source_id"]:
+        return {c: np.zeros(0, np.int64 if c == "source_id" else np.float32) for c in _CORR_COLS}
+    out = {c: np.concatenate(v) for c, v in got.items()}
+    o = np.argsort(out["source_id"], kind="stable")
+    return {c: v[o] for c, v in out.items()}
+
+
+def fetch_correlations_sync(release, source_ids, cache, query=None):
+    """the sync fallback with the frozen builder's fetch_correlations semantics: a cache that holds every id is used as it is; else the correlations are fetched by _sync_corr_query and saved (np.savez) to `cache`."""
+    _SYNC_STATS.update(calls=0, ids=0, max_chunk=0)
+    if Path(cache).exists():
+        z = np.load(cache)
+        if np.isin(source_ids, z["source_id"]).all():
+            return {k: z[k] for k in z.files}
+    out = _sync_corr_query(release, source_ids, query=query)
+    np.savez(cache, **out)
+    return out
+
+
 def offline_correlations(ext, variant, note, cache_file=None):
     """cache-only correlation source (never queries): the variant's own file if it exists, else the union of the builder's
     two on-disk files; uncovered ids get zero correlation and are counted in `note`."""
@@ -174,7 +249,7 @@ def apply_manifest_columns(S, manifest, report):
     return S
 
 
-def stage_g(S, F, ext, variant, release, third, correlations_note, allow_network, seed_offset=0, cache_path=None, candidates_out=None):
+def stage_g(S, F, ext, variant, release, third, correlations_note, allow_network, seed_offset=0, cache_path=None, candidates_out=None, corr_transport="async"):
     """frozen stage G as build_catalog.main() runs it (COPIED), with `third` supplied (cut 13) and the per-variant cache."""
     extra = {"third": np.zeros(len(F["a"]), bool)}
     pre, _, _ = B.frozen_cuts(S, F["a"], F["b"], F["R"], extra)
@@ -187,12 +262,22 @@ def stage_g(S, F, ext, variant, release, third, correlations_note, allow_network
     extra["third"][idx] = third(S, F["a"][idx], F["b"][idx])
     pre2, _, tab0 = B.frozen_cuts(S, F["a"], F["b"], F["R"], extra)
     idx2 = np.flatnonzero(pre2)
-    if allow_network and seed_offset:                                              # a sweep build: delta fetch into its own cache
+    sync_fb = bool(allow_network and corr_transport == "sync")
+    if sync_fb:                                                                    # the SYNC fallback (DR4 tooling): the same SELECT, a different transport
+        _SYNC_STATS.update(calls=0, ids=0, max_chunk=0)
+        if seed_offset:
+            fetch = lambda rel, ids, cache: fetch_correlations_delta(rel, ids, cache, prime_from=corr_cache_path(ext, variant), query_fn=_sync_corr_query)
+        else:
+            fetch = fetch_correlations_sync
+    elif allow_network and seed_offset:                                            # a sweep build: delta fetch into its own cache
         fetch = lambda rel, ids, cache: fetch_correlations_delta(rel, ids, cache, prime_from=corr_cache_path(ext, variant))
     else:
         fetch = B.fetch_correlations if allow_network else offline_correlations(ext, variant, correlations_note, cache_file=cache_path)
     corr = fetch(release, np.concatenate([S["source_id"][F["a"][idx2]], S["source_id"][F["b"][idx2]]]),
                  cache_path if cache_path is not None else corr_cache_path(ext, variant))
+    if sync_fb:
+        correlations_note.append(dict(transport="sync (driver fallback, the builder's SELECT, at most %d ids per call)" % SYNC_IDS_PER_CALL, calls=_SYNC_STATS["calls"], ids=_SYNC_STATS["ids"],
+                                      max_ids_per_call=_SYNC_STATS["max_chunk"], from_cache=bool(_SYNC_STATS["calls"] == 0)))
     if seed_offset:                                                                 # build k > 0: the G seed SEED + k, passed explicitly
         sig_vt = B.vt_error_mc(S, F["a"][idx2], F["b"][idx2], F["th"][idx2], corr, seed=B.SEED + int(seed_offset))
     else:
@@ -235,7 +320,7 @@ def third_function(kind, S, cones=None, missing="error"):
     return lambda S_, a, b: fn(S_, a, b).flags
 
 
-def run(release, variant, cut13_kind, manifest, allow_network, seed_offset=0, stage_dir=None, cones=None, missing_cones="error", dump_candidates=None):
+def run(release, variant, cut13_kind, manifest, allow_network, seed_offset=0, stage_dir=None, cones=None, missing_cones="error", dump_candidates=None, corr_transport="async"):
     ext = extract_dir(release, variant)
     cache_path = corr_cache_path_k(ext, variant, seed_offset) if seed_offset else None
     report = {"release": release, "variant": variant, "cut13": cut13_kind, "extract": ext.name,
@@ -250,9 +335,11 @@ def run(release, variant, cut13_kind, manifest, allow_network, seed_offset=0, st
     note = []
     third_fn = third_function(cut13_kind, S, cones, missing_cones)
     with contextlib.redirect_stdout(io.StringIO()):
-        csv_bytes, flow = stage_g(S, F, ext, variant, release, third_fn, note, allow_network, seed_offset=seed_offset, cache_path=cache_path, candidates_out=dump_candidates)
+        csv_bytes, flow = stage_g(S, F, ext, variant, release, third_fn, note, allow_network, seed_offset=seed_offset, cache_path=cache_path, candidates_out=dump_candidates, corr_transport=corr_transport)
     if getattr(third_fn, "info", None) is not None:                                 # only for a cones kind
         report["cut13_cones"] = third_fn.info
+    if corr_transport != "async":                                                   # key added ONLY when the sync fallback was requested, so the default report is unchanged
+        report["correlation_transport"] = corr_transport
     report.update(n_pairs=csv_bytes.count(b"\n") - 1, sha256=hashlib.sha256(csv_bytes).hexdigest(), cut_flow=flow,
                   correlations=note)
     return csv_bytes, report
@@ -342,11 +429,24 @@ def main():
     ap.add_argument("--seed-offset", type=int, default=0, help="Amendment 18 seed sweep: build k (stage-G seed SEED + k, own correlation cache); 0 = the frozen seeds, unchanged")
     ap.add_argument("--stage-dir", default=None, help="the directory holding this build's stage_F.npz (default: the extract)")
     ap.add_argument("--out-csv", default=None, help="write the final catalogue here")
+    ap.add_argument("--corr-transport", choices=("async", "sync"), default="async", help="stage G's correlation fetch with --allow-network: the builder's own async fetch (default) or the driver's sync fallback (same SELECT, at most 1,999 ids per call)")
+    ap.add_argument("--neighbours-manifest", default=None, help="JSON list of {table, neighbours, pairs, include}: the entries with include true are used as --neighbours / --neighbour-pairs; the report records the choice")
     args = ap.parse_args()
+    if args.corr_transport == "sync" and not args.allow_network:
+        raise SystemExit("--corr-transport sync only matters with --allow-network (offline, the correlations come from the on-disk caches)")
     init(args.allow_network)
     if args.self_test:
         return self_test()
     manifest = json.loads(Path(args.manifest).read_text()) if args.manifest else None
+    nm_report = None
+    if args.neighbours_manifest:
+        nm_text = Path(args.neighbours_manifest).read_bytes()
+        entries = json.loads(nm_text)
+        for e in entries:
+            if e.get("include") is True:
+                args.neighbours.append(e["neighbours"]); args.neighbour_pairs.append(e["pairs"])
+        nm_report = dict(path=str(args.neighbours_manifest), sha256=hashlib.sha256(nm_text).hexdigest(), included=[e["table"] for e in entries if e.get("include") is True],
+                         left_out=[e["table"] for e in entries if e.get("include") is not True])
     cones = None
     if args.cut13.startswith("cones-"):
         import cones_cut13
@@ -354,7 +454,9 @@ def main():
             raise SystemExit("a cones kind needs --neighbours and --neighbour-pairs, repeated the same number of times")
         cones = cones_cut13.ConeTable.from_files(zip(args.neighbours, args.neighbour_pairs))
     csv_bytes, report = run(args.release, args.variant, args.cut13, manifest, args.allow_network, seed_offset=args.seed_offset, stage_dir=args.stage_dir, cones=cones, missing_cones=args.missing_cones,
-                            dump_candidates=args.dump_candidates)
+                            dump_candidates=args.dump_candidates, corr_transport=args.corr_transport)
+    if nm_report is not None:
+        report["neighbours_manifest"] = nm_report
     if args.out_csv:
         Path(args.out_csv).write_bytes(csv_bytes)
     print(json.dumps(report, indent=1, default=str))
