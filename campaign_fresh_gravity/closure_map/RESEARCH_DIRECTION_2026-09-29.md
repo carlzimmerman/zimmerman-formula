@@ -33,3 +33,4 @@
 - **Closure, owner-directed ("keep swinging for closure"; "prove the mechanism that makes the framework the way it is"):**
   - CFG242 triaged 20 untested routes and ran the top two: both are scoped no-gos, and ownership needs memory.
   - CFG243 (running) tests a conserved component created once at turnaround. It descends from the owner's "one-time pass" idea (CFG251), combined with the PAPER36 conservation rule and CFG242's memory requirement.
+- **"One more swing" (owner-directed, 2026-10-01):** CFG245 tests the last unscored ingredient after CFG242–244: an early cold fluid that relaxes, at a vacuum-set rate, toward the law's dark density written in local fields. The owner chose to take this swing before the closure map is written up.
