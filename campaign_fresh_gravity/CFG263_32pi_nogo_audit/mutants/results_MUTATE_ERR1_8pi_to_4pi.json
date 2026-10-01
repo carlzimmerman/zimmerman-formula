@@ -1,0 +1,111 @@
+{
+ "NG-P12B3": {
+  "checks": [
+   {
+    "detail": "G^t_t = -2*Derivative(m(r), r)/r**2 = -8 pi rho  =>  m' = 4 pi r^2 rho; G^r_r = G^t_t (p_r = -rho when N = 1)",
+    "id": "P1_Gtt",
+    "pass": true
+   },
+   {
+    "detail": "f(r_h) = 0, kappa = f'(r_h)/2  =>  1 - 2 kappa r_h = 8 pi rho(r_h) r_h^2",
+    "id": "P2_horizon_identity",
+    "pass": false
+   },
+   {
+    "detail": "kappa r_h = 1/2 forces 8 pi rho r_h^2 = 0: no positive rho solves it (rho(r_h) = 0 only)",
+    "id": "P3A_half_iff_rho_zero",
+    "pass": true
+   },
+   {
+    "detail": "constant vacuum (8 pi rho = Lambda): kappa r_h = (1 - Lambda r_h^2)/2 = (1 - 8pi)/2 = -12.0664",
+    "id": "P3B_vacuum_8pi",
+    "pass": true
+   },
+   {
+    "detail": "Lambda r^2 = 3: kappa r = -1 (cosmological horizon, f-normalised kappa = H)",
+    "id": "P3C_dS_horizon",
+    "pass": true
+   },
+   {
+    "detail": "G^t_t = -2m'/r^2 for any N(r): rho still fixes m",
+    "id": "P4_Gtt_lapse_independent",
+    "pass": true
+   },
+   {
+    "detail": "G^r_r - G^t_t = (2f/r) N'/N = 8 pi (p_r + rho)  =>  N'/N = 4 pi r (rho + p_r)/f",
+    "id": "P4b_lapse_equation",
+    "pass": true
+   },
+   {
+    "detail": "kappa^2 = -(1/2) nabla xi . nabla xi at f = 0 equals (N_h f'(r_h)/2)^2: kappa = N_h f'(r_h)/2",
+    "id": "P4c_covariant_kappa",
+    "pass": true
+   },
+   {
+    "detail": "(8 pi - 1)/2 = 12.0664 > 1/2",
+    "id": "P5_bound_value",
+    "pass": true
+   },
+   {
+    "detail": "f'(r_h) r_h = 1 - 8 pi < 0 at rho(r_h) = rho_Lambda, Lambda r_h^2 = 8 pi: only a cosmological-type horizon",
+    "id": "P5b_bh_type_impossible",
+    "pass": true
+   },
+   {
+    "detail": "vacuole + dust layer + vacuum shell, m0 = 0.089 > 0, f(r_h) = -4.7e-04, static region from r = 0.177; observer at r = 0.178: ln(N_h/N_ref) = 0.118 >= 0, |kappa_ref| r_h = 13.58 >= 12.07",
+    "id": "P5c_numeric_NEC_profile",
+    "pass": true
+   },
+   {
+    "detail": "f = 1 - 2M/r - Lambda_e r^2/3: 2 kappa r_h = 1 - Lambda_e r_h^2 at every horizon, every coupling",
+    "id": "P6_SdS_form",
+    "pass": true
+   },
+   {
+    "detail": "(2 kappa r_h + 2)(1 + 2a) = 3(1 + a - Lambda_b r_h^2/3), a = alpha/r_h^2 (B3 README:16 at D = 4)",
+    "id": "P7_GL_horizon_relation",
+    "pass": true
+   },
+   {
+    "detail": "kappa r_h = 1/2 needs alpha = -Lambda_b*r_h**4/3 = -Lambda_b r_h^4/3; at Lambda_b r_h^2 = 8 pi: a = -8pi/3, 1 + 2a = -15.755 (G_eff < 0): a dimensionful coupling tied to 1/a0^2",
+    "id": "P7b_GL_required_coupling",
+    "pass": true
+   },
+   {
+    "detail": "R*/L = sqrt(8 pi/3) = 2.8944 > 1: R* = c/sqrt(G rho_Lambda) is not a static radius of the de Sitter patch",
+    "id": "P8_Rstar_outside_static_patch",
+    "pass": true
+   }
+  ],
+  "core": [
+   "P1_Gtt",
+   "P2_horizon_identity",
+   "P3B_vacuum_8pi",
+   "P4b_lapse_equation",
+   "P4c_covariant_kappa",
+   "P6_SdS_form",
+   "P7_GL_horizon_relation"
+  ],
+  "flags": {
+   "headline_scope_ok": true,
+   "premise_unverified": false,
+   "step_false": true
+  },
+  "flags_B3": {
+   "headline_scope_ok": false,
+   "premise_unverified": false,
+   "step_false": true
+  },
+  "flags_P12": {
+   "headline_scope_ok": true,
+   "premise_unverified": false,
+   "step_false": true
+  },
+  "nec_strengthening": true,
+  "pass": 14,
+  "total": 15,
+  "values": {
+   "P5_kappa_ref_rh_NEC_example": 13.582235471294746
+  }
+ }
+}
