@@ -46,3 +46,11 @@ Two untested exits are now scoped no-gos on their frozen classes. Each was run s
 - **The bound subset of secondary infall scales as M^0.33–0.34, not M^½,** so it fails the amount gate by a factor of about 3. It reduces to ΛCDM plus the a₀–Λ coincidence.
 - **At satellites the data lean (non-binding, power 0.28) toward bound cores over "own nothing".**
 - **The closure target after CFG242–244:** an early cold fluid present before structure (CFG243), with a memory-carrying ownership (CFG242), whose distribution carries the acceleration scale ∝ M^½ itself (CFG118/244). Not a free-falling bound remnant. The one unscored ingredient is a baryon-coupled relaxation.
+
+## Appended 2026-10-01: CFG245 (vacuum-rate relaxation of an early cold fluid; 48ef9f534, re-run by the orchestrator, identical)
+- **The binding failure is the timescale:** Γτ ≤ 0.79 against the ≈ 4.1 needed, for H_Λ, a₀/c and √(Gρ_Λ).
+- **Partial relaxation misses the RAR** by 0.15–0.28 dex.
+- **The local target needs non-local labels:** a bound domain and a supply cap.
+- **Ownership does not follow.**
+- **Arithmetic, not a finding:** the galaxy and cluster rate windows nearly meet near 1.7–1.9 H_Λ, a rate no vacuum candidate provides.
+- **Day total:** CFG242–245 are four scoped no-gos.
