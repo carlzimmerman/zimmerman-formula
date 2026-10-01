@@ -115,3 +115,23 @@ Implementation note + one reduction fix, both registered BEFORE the adjudicating
    halving the predicted a = 0.925 - 0.3083 = 0.6167. The brief's original "a = ... + Wb M2"
    formula was WRONG on this factor; corrected here before any passing run. No gate or
    threshold touched. Lattice conjecture unchanged (halving affects no log structure).
+
+## AMENDMENT 2 (2026-10-01, post-run, outcome record)
+
+The lattice conjecture is ADJUDICATED: a = 37/60 is pure rational; b and c carry
+weight-3 pieces — b = (217 − 489 ln2 − 8 pi^2 + 251 zeta(3))/151,
+c = (17 + 47 pi^2 − 423 ln2 − 137 zeta(3))/121. zeta(3) enters (the brief's
+weight<=2 conjecture was too narrow; AMENDMENT 1 kept the zeta(3) basis defensively).
+ln^2 2 absent, as the u-branch analysis predicted (u-branches only on m1/m3/J10/J11).
+Run history: 9 runs; every fire preserved verbatim in E2F1_stdout_0.txt — R1 NameError
+(wwg typo, pre-gate); R2 magnitude inflation (missing sech^2(u) Jacobian, a = 18.39)
++ G0b def crash; R3 the c00f = W2^2/2 halving fix (registered as AMENDMENT 1 BEFORE the
+first corrected run; un-halved a = 0.925, b = 0.831, c = 0.189986 with c already at
+z = -0.7 of stored); R4 G0b FIRED (E_Wb = 0.9524: missing x uu in the CHECK-block
+quadrature); R5 G0b FIRED (1.51e-10: UMAX = 12 tail truncation -> UMAX = 30, instrument
+fix, threshold untouched); R6 symbolic-leg TypeError (free-symbol leak: exp(-2v) not
+matched by an exp(v)-key); R7 G1 FIRED at rel 0.60 (the /(2 r^{j+1}) prefactor dropped
+in a patch — the gate against quadrature caught it); R8 G1 FIRED at rel 3.79 (cu^2 lost
+inside the P2 weight in the same patch); R9 BANKED. Math never tuned to a gate.
+Caution on record: b's exact form sits 3.6e-13 from the rational 701/1050 — a
+rational-only nsimplify would have MISFIRED; the derived form is authoritative.

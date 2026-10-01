@@ -57,7 +57,7 @@ from numpy.polynomial.legendre import leggauss
 
 # ============ S1: numeric pipeline in exponential coordinates ============
 log("S1: numeric (a,b,c) via exponential-coordinate spectral nesting")
-UMAX = 12.0
+UMAX = 30.0
 def num_coeffs(Nu=90, Nv=70, Nw=70):
     xg, wg = leggauss(Nu); us = 0.5*(xg+1)*UMAX; wu = 0.5*wg*UMAX
     vg, wvg = leggauss(Nv); wg_, wwg = leggauss(Nw)
@@ -107,14 +107,14 @@ if rule_dev > 1e-11:
 
 # ---- G0b internal consistency ----
 log("G0b: internal consistency checks")
-xg, wg = leggauss(90); us_ = 0.5*(xg+1)*UMAX; wus = 0.5*wg*UMAX
-wg_, wwg = leggauss(70)
+xg, wg = leggauss(240); us_ = 0.5*(xg+1)*UMAX; wus = 0.5*wg*UMAX
+wg_, wwg_ = leggauss(180)
 J10s = []; J20s = []
 for uu in us_:
     r = math.tanh(uu); c = 1/math.cosh(uu); W = uu*wg_
     ew = np.exp(W); chw = np.cosh(W)
-    J10s.append(np.sum(wwg_*(c*ew)*(c/r)*chw))
-    J20s.append(np.sum(wwg_*(c*ew)**2*(c/r)*chw))
+    J10s.append(np.sum(uu*wwg_*(c*ew)*(c/r)*chw))
+    J20s.append(np.sum(uu*wwg_*(c*ew)**2*(c/r)*chw))
 J10s = np.array(J10s); J20s = np.array(J20s)
 sech2_ = 1.0/np.cosh(us_)**2
 E_Wb   = 1.5*np.sum(wus*np.tanh(us_)**2*sech2_*J10s)
@@ -194,34 +194,18 @@ try:
     cu = sp.symbols("cu", positive=True)     # c = sqrt(1-r^2)
     vv = sp.symbols("v", real=True)
     uuS = sp.symbols("u", real=True)         # u = atanh(r); cosh(u) = 1/c, sinh(u) = r/c
-    EXP = sp.exp(vv)
+    qs = sp.Symbol("q", positive=True)   # e^{u} bridge for clean power extraction
     def inner_moment_sym(j, n, p2w):
-        expr = (cu)**(j+n+1) * sp.sinh(vv)**j * sp.exp(-n*vv) * sp.cosh(vv)
+        # build sinh/cosh DIRECTLY as exponential expansions (subs into powers is unreliable)
+        sinhE = sp.expand(((sp.exp(vv) - sp.exp(-vv))/2)**j)
+        coshE = sp.expand((sp.exp(vv) + sp.exp(-vv))/2)
+        expr = (cu)**(j+n+1) * sinhE * sp.exp(-n*vv) * coshE
         if p2w:
-            expr = expr * ((3*(cu*sp.sinh(vv)/rr)**2 - 1)/2)
-        # expand sinh/cosh into exponentials
-        e1 = sp.expand(sp.sinh(vv).rewrite(sp.exp)); e1c = sp.expand(sp.cosh(vv).rewrite(sp.exp))
-        repl = {sp.sinh(vv): e1, sp.cosh(vv): e1c}
-        ex = sp.expand(expr.subs(repl))
-        acc = {}
-        for term in sp.Add.make_args(ex):
-            d = term.as_powers_dict()
-            lam = int(d.get(sp.exp(vv), 0))
-            rest = term/(sp.exp(vv)**lam if lam else 1)
-            key = lam
-            acc[key] = acc.get(key, sp.Integer(0)) + sp.cancel(rest)
-        tot = 0
-        for lam, cf in acc.items():
-            if cf == 0: continue
-            if lam == 0:
-                tot += cf*2*uuS
-            else:
-                tot += cf*((sp.exp(lam*uuS) - sp.exp(-lam*uuS))/lam)
-        res = tot/(2*rr**(j+1))
-        res = res.subs(sp.exp(uuS), (1+rr)/cu).subs(sp.exp(-uuS), cu/(1+rr))
-        for k in range(1, 25):
-            res = res.subs(sp.exp(k*uuS), ((1+rr)/cu)**k).subs(sp.exp(-k*uuS), (cu/(1+rr))**k)
-        res = sp.cancel(sp.expand(res))
+            expr = expr * ((3*(cu**2*sp.expand(((sp.exp(vv) - sp.exp(-vv))/2)**2))/rr**2 - 1)/2)
+        res = sp.integrate(sp.expand(expr), (vv, -uuS, uuS))
+        res = sp.expand(res.subs(uuS, sp.log(qs)))
+        res = sp.cancel(sp.expand(res.subs(qs, (1+rr)/cu)))
+        res = res/(2*rr**(j+1))
         res = res.subs(cu**2, 1-rr**2)
         res = sp.simplify(sp.cancel(res.subs(cu, sp.sqrt(1-rr**2))))
         return res
@@ -237,24 +221,12 @@ try:
     JT = {}
     for k in (1, 2):
         for p2w, tg in ((False,0), (True,1)):
-            expr = (cu*sp.exp(wwS))**k * (cu/rr)*sp.cosh(wwS)
-            if p2w: expr = expr*((3*(cu*sp.sinh(wwS)/rr)**2 - 1)/2)
-            e1 = sp.expand(sp.sinh(wwS).rewrite(sp.exp)); e1c = sp.expand(sp.cosh(wwS).rewrite(sp.exp))
-            ex = sp.expand(expr.subs({sp.sinh(wwS): e1, sp.cosh(wwS): e1c}))
-            acc = {}
-            for term in sp.Add.make_args(ex):
-                d = term.as_powers_dict()
-                lam = int(d.get(sp.exp(wwS), 0))
-                rest = term/(sp.exp(wwS)**lam if lam else 1)
-                acc[lam] = acc.get(lam, sp.Integer(0)) + sp.cancel(rest)
-            tot = 0
-            for lam, cf in acc.items():
-                if cf == 0: continue
-                if lam == 0: tot += cf*2*uuS
-                else: tot += cf*((sp.exp(lam*uuS) - sp.exp(-lam*uuS))/lam)
-            res = tot.subs(sp.exp(uuS), (1+rr)/cu).subs(sp.exp(-uuS), cu/(1+rr))
-            for kk in range(1, 25):
-                res = res.subs(sp.exp(kk*uuS), ((1+rr)/cu)**kk).subs(sp.exp(-kk*uuS), (cu/(1+rr))**kk)
+            coshE = sp.expand((sp.exp(wwS) + sp.exp(-wwS))/2)
+            expr = (cu*sp.exp(wwS))**k * (cu/rr)*coshE
+            if p2w: expr = expr*((3*(cu**2*sp.expand(((sp.exp(wwS) - sp.exp(-wwS))/2)**2))/rr**2 - 1)/2)
+            res = sp.integrate(sp.expand(expr), (wwS, -uuS, uuS))
+            res = sp.expand(res.subs(uuS, sp.log(qs)))
+            res = sp.cancel(sp.expand(res.subs(qs, (1+rr)/cu)))
             res = sp.cancel(sp.expand(res)).subs(cu**2, 1-rr**2)
             res = sp.simplify(sp.cancel(res.subs(cu, sp.sqrt(1-rr**2))))
             JT[(k,tg)] = res
