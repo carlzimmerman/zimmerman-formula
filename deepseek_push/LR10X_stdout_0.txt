@@ -26,3 +26,10 @@ LR10X_diag (same tick, diagnostic follow-up to localize the kill):
   - E2F1's own caution (register Z16 row: 'b sits 3.6e-13 from the rational 701/1050 -- rational-only nsimplify would have MISFIRED; the derived form is authoritative') is INVERTED by the evidence: the rational is exact; the derived form is the misfire.
 
 LR10X run-5 fire (preserved verbatim): AssertionError G-T3 PARITY 'log(1+r) at even r-power 0 in term 7: 57*r*log(r+1)/80' -- detection bug: a bare r factor (power 1, odd) is a Symbol not a Pow, misread as pexp 0. Fix: exponent from term.as_powers_dict()[rr] (tooling, no math change).
+LR10X run-6 (2026-10-01, Z17) -- BANKED (exit 0):
+  channel a: CONFIRMED-EXACT (syntactic zero: tot == 37/60) | G-T1 PASS | G-T2 0.0 | G-T4a 1.23e-14 | G-T4b 5.41e-13
+  channel b: KILLED-REFORMED: E2F1 zeta(3)-form off by +3.566e-13; exact tot = 701/1050 | G-T1 PASS | G-T2 1.7e-41 | G-T4a 1.10e-14 | G-T4b 7.13e-14
+  channel c: KILLED-REFORMED: E2F1 form off by -1.490e-13; exact tot = 3491/18375 | G-T1 PASS | G-T2 6.0e-41 | G-T4a 1.05e-14 | G-T4b 9.31e-13
+  E2(q) = 37/60 + (701/1050) q + (3491/18375) q^2 -- ALL PURE RATIONAL; c1(q) = 17/60 + (117/350) q + (627/6125) q^2.
+  The 'weight-3 zeta(3)-class CONFIRMED' claim of Z16 E2F1 is RETRACTED (nsimplify lattice artifacts inside tol 1e-11, invisible to G3/G4/G5).
+
