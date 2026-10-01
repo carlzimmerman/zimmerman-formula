@@ -328,7 +328,7 @@ R("B45", "survives an unlimited sample", "P38", r"the limit that (survives an un
   "the limit that survives an unlimited sample is the absolute baryon calibration")
 R("B45", "statistical power or by the Newtonian regime", "P38", r"also limited by (statistical power or by the Newtonian regime)",
   "statistical power or by the Newtonian regime")
-R("B45", "1.2", "P38", r"version (1\.2) \(wording corrections after an independent referee, CFG241", "version 1.2")
+R("B45", "1.2", "P38", r"version 1\.3 \(version (1\.2)'s wording corrections after the independent referee CFG241", "version 1.2")
 R("B45", "1.2–1.4", "STAND", r"lower by (1\.2–1\.4) dex", "1.2--1.4 dex")
 R("B46", "2.5", "STAND", r"systematic floor \(ultra-faints (2\.5)σ", r"near 2.5\sigma")
 R("B46", "0.077", "WWD", r"floors are the Upsilon_V range \((0\.077)\)", "0.077 and")
