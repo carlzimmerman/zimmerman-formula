@@ -1,0 +1,48 @@
+CFG255 -- does the KiDS-1000 lensing signal at fixed g_bar change with lens redshift as a0 proportional to H(z) predicts?
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG255_lensing_rar_zsplit/FROZEN_CRITERIA.md (8c925db21).
+  data     cfg110_perlens.npz (CFG110's per-lens sums of the June KiDS-1000 estimator), lr_lenses.npz, the 50 June patches.
+  split    within each colour class: high-z third (z >= class 2/3 quantile) minus low-z third (z < class 1/3 quantile); K1 = bins 8-14.
+  models   FLAT = CFG61's law stack (both footings); RIVAL = the same with every profile rebuilt at a0 * E(z_grid) (truncation too);
+           LCDM = CFG67's colour-split stack (reported; its tables carry no z dependence beyond the lens mass distribution).
+  STAGE=A  the pre-flight: power and amplitude gap from the jackknife covariance alone (D never printed); declared M* drift scenarios.
+  STAGE=B  the measurement (run only after stage A is committed).
+  MUTATE=1 (stage B): the high-z third's wgE times the model ratio [RIVAL(hi)/RIVAL(lo)] / [FLAT(hi)/FLAT(lo)] (canonical).
+
+STAGE B
+
+C1 / C2  CONTROLS (data)
+  [PASS] C1 CONTROL: per-lens sums reproduce the June per-patch sums to 1e-9 relative
+         max relative deviation 3.1e-11
+  [PASS] C2 CONTROL: the thirds are disjoint and each holds 1/3 of its class to 1%
+         class 0: z < 0.257 (0.333) / z >= 0.353 (0.333); median z lo 0.205, hi 0.400; class 1: z < 0.276 (0.333) / z >= 0.343 (0.333); median z lo 0.232, hi 0.378
+
+C3 / C4  CONTROLS (models)
+  [PASS] C3 CONTROL: the FLAT machinery reproduces CFG61's committed law stacks (canonical, both classes) to 1e-9
+         max relative deviation 0.0e+00
+  [PASS] C4 CONTROL: the RIVAL machinery with E(z) = 1 reproduces FLAT to 1e-9
+         max relative deviation 0.0e+00
+  rival profiles rebuilt at a0 x E(z) on z grid [0.05, 0.15, 0.25, 0.35, 0.45, 0.55] (E = [1.023, 1.075, 1.134, 1.199, 1.271, 1.348])  [101 s]
+
+STAGE A  THE PRE-FLIGHT (covariance and models only; the data difference D is not printed)
+  [PASS] C5 CONTROL: covariance calibration -- mean Hartlap chi2 of 200 random one-third vs one-third draws (14 bins) in [9.8, 18.2]
+         mean 13.79, median 12.50, 16-84% 7.9-19.2
+  [PASS] A1 (pre-flight) power Delta chi2_pred(RIVAL vs FLAT) from the covariance alone; POSSIBLE_STAT needs >= 9 on both footings
+         canonical: 0.14; alt: 0.17  (LCDM vs FLAT canonical: 3.32)
+  [PASS] A2 (pre-flight) amplitude gap Delta A = A_RIVAL - A_FLAT (dex, combined) against the jackknife sigma_A
+         canonical: A_FLAT +0.0009, A_RIVAL +0.0188, gap +0.0179; alt: A_FLAT +0.0008, A_RIVAL +0.0188, gap +0.0180; A_LCDM +0.0029; sigma_A 0.0383 (late 0.1020, early 0.0414)
+  [PASS] A4 (pre-flight) DECISION
+         POSSIBLE_STAT False; POSSIBLE_SYS at delta = 0 / 0.02 / 0.05 dex: False / False / False  (delta = 0 is the statistics-only reference, not a scenario)
+
+STAGE B  THE MEASUREMENT
+  [PASS] B1 chi2 of D (high-z third minus low-z third, K1, both classes; Hartlap, 14 dof)
+         zero 19.81 (p 1.36e-01); LCDM 15.05 (p 3.75e-01); FLAT_canonical 19.80 (p 1.37e-01); RIVAL_canonical 19.21 (p 1.57e-01); FLAT_alt 19.80 (p 1.37e-01); RIVAL_alt 19.17 (p 1.58e-01)
+         D late [-3.797, 1.953, -12.458, -14.671, -2.824, 4.868, 2.537] early [0.197, 4.707, -0.089, 23.951, 7.186, 2.29, 19.875] (Msun/pc^2)
+         sigma late [4.35, 5.167, 6.183, 8.01, 11.231, 16.773, 23.343] early [2.713, 4.092, 5.402, 6.046, 7.014, 9.4, 14.144]
+  [PASS] B2 amplitude A_data +- sigma_A (combined) against the models (dex)
+         A_data +0.0595 +- 0.0383 (late -0.1597 +- 0.1020, early +0.0956 +- 0.0414); canonical: FLAT +0.0009 (+1.53 sigma), RIVAL +0.0188 (+1.06 sigma); alt: FLAT +0.0008 (+1.53 sigma), RIVAL +0.0188 (+1.06 sigma); LCDM +0.0029 (+1.48 sigma)
+  [PASS] B3 the reading (by A4's gate)
+         canonical: not separated; alt: not separated
+         NO verdict words: stage A gave POSSIBLE_SYS at no declared drift scenario, so the reading is DESCRIPTIVE ONLY
+
+11/11 checks pass; load-bearing failures: 0   (108 s)
