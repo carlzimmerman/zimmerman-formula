@@ -29,3 +29,10 @@ Every line cites the commit that holds its evidence. All are scoped no-gos or re
 
 ## Erratum (2026-09-29, after CFG230, 1b859cbf5)
 Item 13's cap window of "about one decade" is superseded by the corrected value, 11× up to 1e4–1e5 (per CFG230's audit of the committed lanes).
+
+## Appended 2026-10-01: CFG242 (closure swing; e04b22b5a, re-run by the orchestrator with 0 unexpected outcomes)
+Two untested exits are now scoped no-gos on their frozen classes. Each was run separately and never pooled; each stopped at its first binding FAIL, and neither reached G1.
+- **The legality of a causal doubled-field ownership latch (Gap 1):** causality and bound-only pass, but persistence fails: there is no memory at θ_b = 0. A post-hoc energy-driven variant persists only after 5 free-fall times and needs an untied coupling; it is not a result.
+- **A foliated bimetric (BIMOND) interaction:** it is not strongly hyperbolic and leaves its helicity-0 sector undetermined.
+- The frozen triage scored 20 untested routes at P(all gates) ≤ 1.3e-3 each.
+- Not covered: Hossenfelder's covariant action as written, non-spherical baryons, a Boltzmann CMB.
