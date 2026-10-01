@@ -1,0 +1,29 @@
+DR4 RELEASE-DAY CONE FETCH: offline test against a mock archive (DR3 code-path numbers)
+mock sky: 43,948 sources (653 real stage-A ones), 37,344 photometry rows; 150 pairs; brute-force truth 60,104 (pair, comp, source) rows of which 8,982 without G; 2509 planned ranges
+run A ended with: CRASH after 20 calls; the cache holds 14 accepted batches
+run B (resume) ended with: None; 66 new calls; manifest queries_total 81
+  [PASS] T1 the all-source fetch (crash + resume, LEFT OUTER JOIN) equals the brute-force truth including the NULL-G rows (missing 0, spurious 0)
+  [PASS] T2 the truncation path was exercised and no truncated result reached the output (manifest 2 discarded)
+  [PASS] T3 the rows without G are present with NULL G and counted (exact 8982 vs truth 8982; raw 6596)
+  [PASS] T4 the local completeness check reports 0 missing of 1034 and the output is marked usable
+  [PASS] T4b the resumed run used the cache (batches resumed 14), probed the schema again at its start, and the manifest keeps the first session's probe and start time besides the probe, caps, approval text and spec
+  [PASS] T8a a cache that belongs to a different plan is refused
+         AssertionError: the cache belongs to a different plan: refusing to resume (move or delete the cache 
+  [PASS] T8b the accepted-bytes cap stops the run, writes the reason and keeps the cache (CapStop: STOPPED: accepted 0.31 MB (4,250 rows) after 8 queries agains)
+  [PASS] T8c the transfer cap stops the run (CapStop: STOPPED: received 0.40 MB in 5 queries against the 0 MB trans)
+  [PASS] T8d the query-count cap stops the run (CapStop: STOPPED: more than 6 queries -- the cache keeps every accepte)
+  [PASS] T8e a run without a go text, without caps, and --plan-only each issue NO query (calls 0, 0, 0); the first two are refused
+  [PASS] T5 a mock whose column is renamed (parallax_error -> parallax_err): SchemaMismatch naming it, after exactly ONE query (the probe) (1 queries; SchemaMismatch: the schema probe query failed (a schema mismatch or an archive error): Run)
+  [PASS] T6 a column that drifts mid-run (after 6 data queries) raises SchemaMismatch at that batch; upper-case column names from the archive are accepted and give the same rows (SchemaMismatch: batch 4: the returned table lacks the column(s) ['phot)
+  [PASS] T7 a duplicated photometry row (the join multiplies rows) stops the run with JoinMultiplicity (80 of the 80 duplicated ids lie inside the planned ranges, so the control can fire; JoinMultiplicity: batch 0: 80 repeated source_id rows (the join multiplied rows): stopping)
+  [PASS] T9 gaia_source_environment (ranges on healpix29, ids unrelated to HEALPix) and crowded_field_source (batched cones, the dense cone of 2,600 sources split by declination) equal their brute-force truths
+         environment: 1,768 rows (truth 1,768), 14 healpix29 range queries, no source_id range query; crowded: 5,767 rows (truth 5,767), truncated 14, slab split used True; errors None, None
+  [PASS] T10 DR3 regression: the DR3 spec's SQL text equals the existing tools' (True) and its rows equal the existing q1_delta_ranges tool's on the same mock archive (60,104 vs 60,104; errors None)
+  [PASS] T11 the estimator reproduces both DR3 runs within 6 % (worst 4.7 %), is linear in the pair count, and is monotone in density and pace (central 49,000 pairs: 39,243 queries, 1,687 MB, 47 h)
+  [PASS] T12 the spot check agrees on a clean mock (14 of 14 cones, 0 skipped) and DETECTS planted source ids that no longer encode their pixel (SpotCheckFailed: the position query found rows the range fetch did not (or the r; usable False)
+  [PASS] T13 the driver's --neighbours-manifest includes exactly the tables marked include and records the choice (covered pairs 60 / 40 / 100 for A only / B only / both)
+  [PASS] T15 the generic planner at FULL size reproduces the existing DR3 delta tool's plan (387,987 pixels, 63,048 ranges), the command line's --plan-only runs offline, and the command line refuses without a go text or without its required arguments
+  [PASS] T14 the real manifests and the DR3 data directory are exactly as before the test (no file added, none changed)
+         data dir entries before 28, after 28
+
+20/20 checks pass -> ALL PASS  (75 s)
