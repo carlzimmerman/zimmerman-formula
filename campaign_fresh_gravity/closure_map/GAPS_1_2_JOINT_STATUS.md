@@ -36,3 +36,8 @@ Two untested exits are now scoped no-gos on their frozen classes. Each was run s
 - **A foliated bimetric (BIMOND) interaction:** it is not strongly hyperbolic and leaves its helicity-0 sector undetermined.
 - The frozen triage scored 20 untested routes at P(all gates) ≤ 1.3e-3 each.
 - Not covered: Hossenfelder's covariant action as written, non-spherical baryons, a Boltzmann CMB.
+
+## Appended 2026-10-01: CFG243 (turnaround-created conserved dust; e8b702457, re-run by the orchestrator with 0 unexpected outcomes)
+- **It cannot be the cosmic cold component:** at z = 1100 nothing has turned around, so the shortfall is 10^1376.
+- **Gap 2's object must exist before structure forms.** Gap 1's ownership must be a separate, memory-carrying assignment on that early fluid.
+- **Scope correction:** "the ledger is not the obstacle" applies to the heat ledger only. For created rest mass the ledger fails.
