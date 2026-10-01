@@ -54,3 +54,9 @@ Phase 1a found no public isolated-lens sample with stellar masses beyond z = 0.5
 - **Independent code:** a separate re-implementation of the measurement side (`cfg255_rerun_xcheck.py`, no shared code) agrees on A_data and σ_A to about 1e-15.
 - **Analytic checks:** the deep-limit rival shift is +0.0187 / +0.0204 against the stack's +0.0188, and the analytic power is 0.151 against 0.14 / 0.17.
 - **Mirror note:** a re-run mirror needs `hunt_2026/` at the repo root (CFG61's prefix chain reads it).
+
+## The prior lane, read after CFG255 closed (b3be606a0, `real_research/reviews/lensing_rar/A0Z_LENSING_ZBIN_2026.md`)
+- **Design:** an independent free-a₀ fit in two lens-z halves (z_eff 0.236 / 0.372).
+- **Result:** a₀(high)/a₀(low) = 1.31 ± 0.21 (statistical only), against 1.10 for the rival and 1.00 for FLAT. Every branch is consistent at ≤ 1.4σ, and nothing is excluded at 2σ.
+- **Agreement:** consistent with CFG255's null.
+- **An additional systematic CFG255's budget did not name:** the magnitude-limited halves differ by 0.465 dex in mean log M_gal. A mass-dependent baryon term (the hot/cold gas fraction in g_bar) therefore does not cancel between the redshift halves; the prior lane adds 0.9 per unit z to the slope error. CFG255's model stacks follow each subset's own lens masses, but the gas-fraction prescription itself is uncertain, which strengthens NOT POSSIBLE.
