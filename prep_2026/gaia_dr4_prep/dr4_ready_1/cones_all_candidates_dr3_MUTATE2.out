@@ -1,0 +1,15 @@
+THE ALL-SOURCE CUT 13 ON ALL 10,231 DR3 CANDIDATES THROUGH THE DRIVER, AGAINST THE EXTRACT-BASED PATH (DR3 numbers are code-path tests, never results; non-scoring)   *** MUTATE=2: the delta parallax shifted by 1e-3 mas (X3 must FAIL) ***
+candidates 10,231 (final 6,210, delta 4,021); stage A 4,582,547 sources; reference CSV sha256 6fff64d964ebaa72
+neighbour tables read in 0 s: full-Q1 1,956,086 rows, delta 1,242,252 rows
+
+CONTROLS
+  [PASS] X1 the combined cone table covers all 10,231 candidates, and a table of the final-pair file alone raises ConeCoverageError naming 4,021 of 10,231
+         covered 10,231 of 10,231, missing 0; final-only guard: 4021 of 10231 pairs that reach cut 13 have NO neighbour cone (covered 6210); a pair without a cone i
+  [PASS] X0 cones built from the EXTRACT for all 10,231 candidates reproduce the extract paths' candidate flags exactly (literal = extract-literal; orbit = extract-builder)
+         flags: extract-literal 2, extract-builder 1, extract-orbit 1
+  [PASS] X1b every local-extract source inside the exact cone of each candidate is among the cone rows keyed to THAT pair in the combined table (the pair_id mapping)
+         74,887 (pair, comp, source) triples from the extract; missing from the combined table: 0
+  [FAIL] X3 for every source the fetched files share with stage A, the nine numeric columns agree (relative difference <= 1e-6, NaNs matching)
+         full-Q1: 47,781 shared sources, max relative difference 0.0e+00, NaN mismatches 0; delta-Q1: 27,106 shared sources, max relative difference 2.9e-04, NaN mismatches 0
+
+[MUTATE CONTROL] MUTATE=2: X3 FAILED as designed; checks that failed: ['X3']

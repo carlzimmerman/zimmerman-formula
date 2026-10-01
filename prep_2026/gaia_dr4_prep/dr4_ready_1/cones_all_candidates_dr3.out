@@ -1,0 +1,82 @@
+THE ALL-SOURCE CUT 13 ON ALL 10,231 DR3 CANDIDATES THROUGH THE DRIVER, AGAINST THE EXTRACT-BASED PATH (DR3 numbers are code-path tests, never results; non-scoring)
+candidates 10,231 (final 6,210, delta 4,021); stage A 4,582,547 sources; reference CSV sha256 6fff64d964ebaa72
+neighbour tables read in 0 s: full-Q1 1,956,086 rows, delta 1,242,252 rows
+
+CONTROLS
+  [PASS] X1 the combined cone table covers all 10,231 candidates, and a table of the final-pair file alone raises ConeCoverageError naming 4,021 of 10,231
+         covered 10,231 of 10,231, missing 0; final-only guard: 4021 of 10231 pairs that reach cut 13 have NO neighbour cone (covered 6210); a pair without a cone i
+  [PASS] X0 cones built from the EXTRACT for all 10,231 candidates reproduce the extract paths' candidate flags exactly (literal = extract-literal; orbit = extract-builder)
+         flags: extract-literal 2, extract-builder 1, extract-orbit 1
+  [PASS] X1b every local-extract source inside the exact cone of each candidate is among the cone rows keyed to THAT pair in the combined table (the pair_id mapping)
+         74,887 (pair, comp, source) triples from the extract; missing from the combined table: 0
+  [PASS] X3 for every source the fetched files share with stage A, the nine numeric columns agree (relative difference <= 1e-6, NaNs matching)
+         full-Q1: 47,781 shared sources, max relative difference 0.0e+00, NaN mismatches 0; delta-Q1: 27,106 shared sources, max relative difference 0.0e+00, NaN mismatches 0
+
+Q1  THE DIRECT EFFECT: candidates flagged by cut 13 (of 10,231)
+  extract-literal     2 flagged  (final 1, delta 1)
+  extract-builder     1 flagged  (final 0, delta 1)
+  extract-orbit       1 flagged  (final 0, delta 1)
+  cones-literal       7 flagged  (final 2, delta 5)
+  cones-orbit         4 flagged  (final 0, delta 4)
+  [PASS] X2 flags(extract path) is a subset of flags(matched cones path): literal and orbit (and extract-orbit against cones-orbit)
+         violations literal 0, orbit 0, orbit_vs_extract-orbit 0
+  flagged by cones-literal but not by extract-literal: 5 pairs
+      candidate index 2318  source_id1 1184816588877641984  source_id2 1184816378424289280  final  parallax 4.90 mas
+      candidate index 3125  source_id1 2282631842012175232  source_id2 2282631876372185856  delta  parallax 3.99 mas
+      candidate index 4185  source_id1 2535273397593202688  source_id2 2535273397593202944  delta  parallax 4.43 mas
+      candidate index 5095  source_id1 3288966181525956736  source_id2 3288966181526975488  delta  parallax 4.16 mas
+      candidate index 8818  source_id1 6050601702990631296  source_id2 6050601664333964800  delta  parallax 5.30 mas
+  flagged by cones-orbit but not by extract-builder: 3 pairs
+      candidate index 3125  source_id1 2282631842012175232  source_id2 2282631876372185856  delta  parallax 3.99 mas
+      candidate index 4185  source_id1 2535273397593202688  source_id2 2535273397593202944  delta  parallax 4.43 mas
+      candidate index 5095  source_id1 3288966181525956736  source_id2 3288966181526975488  delta  parallax 4.16 mas
+  [PASS] X4 a kinematic twin planted into the cone of a delta pair the real cones-literal does not flag FLAGS it (and changes no other pair); a background star (a third of the parallax, a different proper motion) does NOT
+         pair index 18: twin -> flagged True (pairs changed 1); background star -> flagged False (pairs changed 0)
+
+Q4  NEIGHBOUR STATISTICS
+  exact two-cone rows: full-Q1 1,956,086, delta-Q1 1,242,252; local-extract sources in the same cones (candidates): final pairs 47,781, delta pairs 27,106
+  fetched rows / local-extract sources: final 40.9, delta 45.8 (full Q1 reference 40.9)
+  cone rows per pair (the combined table): mean 313, median 117, max 42388
+  neighbours entering the criterion: literal 1766551, orbit 1766551; cone rows used 3198338
+
+Q2  THE FINAL SETS THE DRIVER WRITES (seed offset 0, the primary build)
+  extract-builder   6210 final pairs  sha256 6fff64d964ebaa72
+  extract-literal   6189 final pairs  sha256 0fa9abe6fcebe20f
+  extract-orbit     6210 final pairs  sha256 6fff64d964ebaa72
+  cones-literal     6180 final pairs  sha256 c5cb89e8f95bfe3d
+  cones-orbit       6190 final pairs  sha256 31b1c8b99a594b6e
+  cones-literal against extract-literal: 6180 against 6189 final pairs; only in the extract path 161, only in the cones path 152; FLIPS (half the symmetric difference) 156.5; of which the DIRECT cut-13 removals D_out 1, the stage-G Monte-Carlo re-roll component 155.5
+  cones-orbit against extract-builder: 6190 against 6210 final pairs; only in the extract path 155, only in the cones path 135; FLIPS (half the symmetric difference) 145.0; of which the DIRECT cut-13 removals D_out 0, the stage-G Monte-Carlo re-roll component 145.0
+  cones-orbit against extract-orbit: 6190 against 6210; flips 145.0
+  cones-literal against cones-orbit: flips 143.0
+
+REFERENCE R1  independent stage-G realizations at the primary's array (the committed G-only sweep, 50 builds): flips against k0 mean 147.1, SD 5.8, 16-84% 141.0-152.5
+
+NULL  (30 draws per matched pair: the extract path's flags plus n_extra random extra candidates flagged, seeds 20261230 + i)
+  note: removing one pair re-aligns the stage-G stream of every later pair, so the null draws are NESTED versions of one alternative realization; their spread is small and is NOT the spread of independent realizations (REFERENCE R1 above, and the G-only sweep's SD of gamma-hat, are)
+  literal: n_extra 5; null flips mean 157.6, SD 5.3, 16-84% 153.0-162.2  (min 146.0, max 168.5);  the cones path: 156.5 (D_out 1)
+  orbit: n_extra 3; null flips mean 149.1, SD 4.5, 16-84% 143.6-153.5  (min 140.0, max 156.5);  the cones path: 145.0 (D_out 0)
+
+Q3  THE FIT EFFECT (the pipeline's own --catalog fit at the registered seed 20261216; DR3 code-path numbers)
+  extract-builder  canonical 1.0750 +- 0.0550; alt 1.0775 +- 0.0512; pipeline self-test passed: True
+  extract-literal  canonical 1.1175 +- 0.0625; alt 1.0875 +- 0.0537; pipeline self-test passed: True
+  extract-orbit    canonical 1.0750 +- 0.0550; alt 1.0775 +- 0.0512; pipeline self-test passed: True
+  cones-literal    canonical 1.1375 +- 0.0575; alt 1.0875 +- 0.0537; pipeline self-test passed: True
+  cones-orbit      canonical 1.0950 +- 0.0600; alt 1.0700 +- 0.0500; pipeline self-test passed: True
+  gamma-hat shift, cones-literal minus extract-literal: canonical +0.320 sigma_fit, alt +0.000 sigma_fit   (build-to-build SD 0.3 to 0.44 sigma_fit)
+  gamma-hat shift, cones-orbit minus extract-builder: canonical +0.364 sigma_fit, alt -0.146 sigma_fit   (build-to-build SD 0.3 to 0.44 sigma_fit)
+  shifts against the PRIMARY (extract-builder): cones-literal +1.136 / +0.195; cones-orbit +0.364 / -0.146; extract-literal +0.773 / +0.195  (canonical / alt, sigma_fit)
+  REFERENCE R2  the committed G-only sweep's gamma-hat (51 builds): canonical mean 1.1088, SD 0.0249; alt mean 1.0858, SD 0.0211
+  position of each variant in that distribution (SD units; canonical / alt): extract-builder -1.36 / -0.40; extract-literal +0.35 / +0.08; extract-orbit -1.36 / -0.40; cones-literal +1.15 / +0.08; cones-orbit -0.55 / -0.75
+  NULL shifts (extract-literal plus 5 random extra removals, 10 draws): canonical mean +0.076, SD 0.394; alt mean -0.135, SD 0.217 (sigma_fit)
+
+HAND ESTIMATES (frozen in CONES_VS_EXTRACT_DESIGN_FROZEN.md, scored by code)
+  H1: MISS  cones-literal flags 7 (2 to 7), cones-orbit 4 (0 to 2)
+  H2: PASS  X2 violations {'literal': 0, 'orbit': 0, 'orbit_vs_extract-orbit': 0}
+  H3: MISS  flips 156.5 (80 to 250), D_out 1 (>= 2)
+  H4: PASS  null mean 157.6 (100 to 230); cones flips 156.5 in [152.0, 163.2]
+  H5: PASS  shifts {'literal': {'canonical': 0.32, 'alt': 0.0}, 'orbit': {'canonical': 0.364, 'alt': -0.146}} (|shift| < 0.8 sigma_fit)
+  H6: PASS  delta rows / local-extract sources 45.8 (35 to 47)
+  H7: PASS  X3 passes
+
+6/6 controls pass -> ALL PASS   (278 s)
