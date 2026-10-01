@@ -1,0 +1,42 @@
+# CFG274 — the eight Amvrosiadis+25 sub-mm discs without an a₀: seven have NO ROOT (the baryons exceed the dynamics at 2 r_e), and the one with a root is ill-conditioned
+
+> **κ = ½ FITTED. a₀(z) FLAT is the framework's distinctive law, a₀ ∝ H(z) the rival, ΛCDM has no a₀ (PROXY = CFG223's effective-a₀ curve). Class S (CO only; α_CO = 0.92 justified by the paper's own dynamics: partly circular). The baryon model is OURS (one thin exponential disc with the CO half-light radius for stars and gas). No sentence says the data favour a law. NOT blind: the record already held the group-level result (CFG227's first run: median δ_FLAT −0.31).**
+> Hashes: criteria **a7c4f7eef** · stage A pre-flight **b6b81fb26** (with Addendum 1, after the first run failed C3) · SELFTEST **7c3627634** · measurement, MUTATE and this README: the commit that carries this file. Data on disk only (the Amvrosiadis parent and best-fit tables, CFG227's and CFG229's committed files for the controls); nothing fetched.
+
+## Bottom line
+1. **Seven of the eight discs have NO ROOT in the headline reading** (a root needs the measured D = g_obs/g_bar above 1): the CFG227 class-S baryon model puts **more acceleration at 2 r_e than the published V_circ gives**, by factors 1.5 to 10:
+
+| disc | z | y = g_bar/a₀ | D = g_obs/g_bar | δ_FLAT (68 %) | Δ_floor (dex) | baryon shift for s\* = 1 (dex) | headline |
+|---|---|---|---|---|---|---|---|
+| 007.1 | 2.692 | 15.6 | 0.357 | −0.47 (−0.63…−0.33) | −0.45 | −0.50 | NO ROOT |
+| 022.1 | 2.263 | 16.7 | 0.311 | −0.52 (−0.79…−0.32) | −0.51 | −0.57 | NO ROOT |
+| 041.1 | 2.547 | 52.8 | 0.220 | −0.66 (−0.82…−0.51) | −0.66 | −0.69 | NO ROOT |
+| 049.1 | 2.945 | 21.5 | 0.654 | −0.20 (−0.36…−0.07) | −0.18 | −0.21 | NO ROOT |
+| 065.1 | 4.445 | 29.6 | 0.565 | −0.26 (−0.45…−0.11) | −0.25 | −0.27 | NO ROOT |
+| 066.1 | 2.553 | 11.1 | 0.519 | −0.31 (−0.74…−0.01) | −0.28 | −0.34 | NO ROOT |
+| 071.1 | 3.709 | 75.1 | 0.095 | −1.03 (−1.09…−0.97) | −1.02 | −1.06 | NO ROOT |
+| **075.1** | 2.552 | 6.0 | **1.644** | +0.17 (+0.09…+0.24) | +0.22 | +0.18 | **s\* = 6.9** (a₀ = 6.5e-10; 95 % rooted 1.5–16; ILL-CONDITIONED) |
+
+   Δ_floor = log₁₀ D: negative means the baryon mass would have to **fall** by that many dex before a root exists. The median δ_FLAT of the eight is −0.39, against CFG227's first-run group median −0.31 for nine sources including ALESS 122.1 (which has a root).
+2. **No knob creates a root for any of the seven.** The stellar disc at 2 R_e,CO (g_bar −0.04 … −0.24 dex), R_e × 1.5 and / 1.5, spherical baryons, helium × 1.36, no pressure (P−), kernel P2 and **even CFG227's double-counted pressure (V_circ² + 3.36 σ², P+)** leave all seven without a root; the baryon deficit (0.18–1.02 dex) is larger than every single geometry or convention change. Only the lower corners of the bands produce a root: all baryons −0.30 dex for three rows (049.1 s\* ≤ 5.1, 065.1 ≤ 2.85, 066.1 ≤ 0.29), gas only −0.671 dex for two (049.1 ≤ 6.2, 065.1 ≤ 9.0), stars only −0.30 dex for none; **007.1, 022.1, 041.1 and 071.1 have no root in any band corner.**
+3. **Pooled rows are NO ROOT** (P8: median D = 0.438, Δ_floor −0.36; P6 without the two poor-SED discs: median D = 0.334, Δ_floor −0.48), so the pooled mix of z 2.26–4.45 gives no a₀ either.
+4. **075.1 is not an a₀ measurement:** it sits at y = 6.0 (ν_mono = 1.11 at s = 1), its root is a 64 % excess of g_obs over g_bar that moves between s\* = 3.8 and 10.9 with the published errors, the baryon ±0.30 band reaches no root at its upper-baryon corner (outer interval 0.001–22.9), and the double-counted pressure, no pressure (−0.53 dex) and helium (−0.27 dex) move it by 0.3–0.5 dex. It is drawn as a labelled marker only; the one-disc stellar-size knob (+0.14), R_e × 1.5 (+0.24) and spherical (+0.25) also push it up.
+5. **What this says (descriptively):** the baryon census of these discs (MAGPHYS SED stellar masses of 10^10.5 – 10^12.3 M⊙ plus CO gas of 10^10.6 – 10^11.2 M⊙ in a CO-sized exponential disc) exceeds the circular acceleration of the kinematic model at 2 r_e for seven of eight discs. The record had attributed the offset to the SED stellar mass (CFG237: JOINT / NOT DECIDABLE); nothing in this lane decides it. It says nothing about the law: **a no-root row is a statement about baryons against dynamics.**
+
+## Controls and MUTATE (nothing hidden)
+- **Stage A (b6b81fb26):** C1, C2, C4, C5 pass; **C3 FAILED in the first run** (g_bar against CFG227's committed g_bar to 1e-6: 4.6e-5) because the committed file prints five significant digits — all eight g_bar equal its printed strings exactly — and was restated by Addendum 1 before any velocity was loaded (`cfg274_stageA_firstrun.*` kept); C6 coverage fails for the near-Newtonian rows by construction (68 % coverage 0.00–0.43 for seven of eight).
+- **Stage B:** M1 (alt footing, 1e-16), M3 (pooled sets 8 and 6) and M4 (points-file header) pass. **M2 MUTATE=1 passes:** with every V_circ × 2 six rows have a root (the main run has one) and every rooted row equals the independent closed-form inversion of its own (D, g_bar) to 4e-16 dex.
+- **M5 (the ALESS 122.1 cross-check) FAILS AS FROZEN, marginally:** this lane's functions with CFG229's committed inputs give log₁₀ s\* = 0.945357 against CFG229's 0.945356 — a difference of **1.2e-6 dex against the frozen 1e-6** — and Monte Carlo quantiles within 0.006 dex (limit 0.05). The residual 1.2e-6 dex (2.8e-6 in s\*) is of the order of the rounding of CFG229's committed input CSV (six to seven digits) amplified by its lever of −2; the frozen tolerance was too tight for a rounded input file, as C3's was. Reported as printed; the script exits 1 on it; nothing was re-run.
+- **SELFTEST (7c3627634):** a fabricated world exactly on the law at s_true = 2 with 0.15 dex scatter on g_obs returns s\* = 6.4 / 38 / 39 / no root / 35 / no root / no root / 6.3 for the eight discs: the ill-conditioning in action (the scatter exceeds the 1–11 % headroom).
+
+## Hand estimates (frozen before any number; kept as they fall)
+- **Stage A:** HE1 hits on y and the lever clause but **misses on "049.1 and 065.1 are the least ill-conditioned"** (they are among the most Newtonian: compact discs have a high g at 2 r_e); HE2 hit (8 of 8 ILL-CONDITIONED); **HE3 misses** (the rooted-draw half-widths are 0.41–0.44 dex, not above 1).
+- **Stage B:** **HE4 hits** (7 of 8 galaxy rows have no root; P8 and P6 have none). **HE5 hits** (075.1: s\* = 6.9 ≥ 2 and a 95 % rooted interval 1.5–16.4, 1.03 dex). **HE6 misses** (no knob, P+ included, creates a root in any no-root row: 0 more rows, frozen at least 3 and 2). **HE7 misses** (Δ_floor is negative for every no-root row, but the median deficit is 0.45 dex, not 0.1–0.4, and the baryon shift for s\* = 1 exists for every row, not only the one with a root). **HE8 misses marginally** (1.2e-6 against 1e-6).
+
+## Disclosures
+- **No-root rows in the points file:** the `stat68_*` / `stat95_*` columns of a NO ROOT row hold percentiles of the Monte Carlo draws **that have a root** (the frozen rule), which are 0–19 % of the draws (`frac_mc_noroot` 1.00, 1.00, 1.00, 0.92, 0.95, 0.81, 1.00 for the seven rows); they are not a measurement and the chart should draw floor triangles at s = 0.001 and ignore them. The `quality` column says NO ROOT.
+- The published errors are used as given (collapsed MAGPHYS errors 007.1 +0.01/−0.02, 071.1 +0.00/−0.03, 075.1 +0.00/−0.21 understate the stellar uncertainty; the baryon bands cover it); r_e is held fixed in the Monte Carlo (CFG229's convention) and varied only as a knob; 065.1's r_e lower error exceeds its value; 2 r_e lies below the beam major axis for seven of the eight discs (V_circ comes from a kinematic model with the beam inside it).
+- One run; no re-run to change a result. The helper library `../HZQ_common/hzq_core.py` is shared with the queued lanes.
+
+## Files
+`FROZEN_CRITERIA.md`, `ADDENDUM_1.md`, `PREFLIGHT_RESULTS.md`, `cfg274_amvrosiadis_eight.py`; `cfg274_stageA.out` / `_results.json` (+ `_firstrun`), `cfg274_stageB.out` / `_results.json`, **`cfg274_points_stageB.csv`** (chart shape; 10 rows: eight discs, P8, P6; extra columns y, lever, D, δ_FLAT, Δ_floor, baryon shift for s\* = 1, gas-only and stars-only bands, flags, quality), `cfg274_stageB_MUTATE1.*`, `cfg274_stageB_SELFTEST*.*`. Run: `STAGE=A python3 cfg274_amvrosiadis_eight.py`, then `STAGE=B` (and `STAGE=B MUTATE=1`); about 25 s.
