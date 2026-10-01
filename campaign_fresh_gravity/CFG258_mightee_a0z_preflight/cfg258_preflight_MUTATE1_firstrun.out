@@ -1,0 +1,54 @@
+CFG258 -- a BLIND pre-flight of the MIGHTEE-HI / LADUMA RAR sample: FLAT a0 against a0 ~ H(z) and against the anchored slope (mocks only; nothing downloaded; criteria frozen in a88864716)   *** MUTATE=1: a planted shared offset equal to (iii): it must be detected by E1 and attributed to an offset by E2 ***
+pool: 135 SPARC template galaxies, 2800 points; mock truth Upsilon_disc 0.6, bulge 0.84; sigma_int 0.06 dex; kernel nu_mono; footings {'canonical': 9.360324825027975e-11, 'alt': 1.1312035414413022e-10}
+anchor library canonical: 1500 realizations, theta_S - truth: mean +0.0221 dex, sd 0.0385 dex  (12 s)
+anchor library alt: 1500 realizations, theta_S - truth: mean +0.0206 dex, sd 0.0380 dex  (27 s)
+
+PART A  WHAT THE ANCHORED CLAIM IMPLIES (arithmetic; a1 = 5.23e-10 +- 1.05e-10 m/s2 per unit z, quoted, not verified)
+  canonical b3 = a1/a0 = 5.5874 (+-1.1218); z=0.02: x1.112 (+0.046 dex) vs rival x1.010; z=0.055: x1.307 (+0.116 dex) vs rival x1.027; z=0.09: x1.503 (+0.177 dex) vs rival x1.045
+  alt       b3 = a1/a0 = 4.6234 (+-0.9282); z=0.02: x1.092 (+0.038 dex) vs rival x1.010; z=0.055: x1.254 (+0.098 dex) vs rival x1.027; z=0.09: x1.416 (+0.151 dex) vs rival x1.045
+  sample-minus-anchor a0 offset implied at mean z 0.04 / 0.055 / 0.07: canonical: +0.0876 / +0.1164 / +0.1434 dex; alt: +0.0737 / +0.0984 / +0.1218 dex
+  [PASS] C1 CONTROL: the script's b3, E(z) and the implied changes equal the frozen arithmetic (section 0) to 1e-3
+         b3 5.5874 / 4.6234; E(0.09) 1.0454; x1.5029
+
+CONTROLS (noiseless)
+  [PASS] C2 CONTROL: with every random and shared term OFF, FLAT gives theta = log10 a0 and b = 0 (1e-8), ANCH gives b = b3 (1e-6), and RIVAL's E2 slope equals an independent scipy least-squares fit (1e-3), both footings
+         largest deviation 1.34e-08 (the RIVAL comparison); the others <= 3.5e-09
+  [PASS] C3 CONTROL: on a synthetic deep-regime sample (y = 1e-8) the finite-difference levers are -1 (tauML, stars only), -1 (taugas), -2 (tauD), +4 (tauV), +1 (tausel) to 1e-3
+         tauML -1.00010; taugas -1.00010; tauD -2.00010; tauV +4.00020; tausel +1.00000
+
+PART B  LEVERS AND THE OFFSETS THAT MIMIC (iii) (noiseless fits on a 1,000-galaxy design; dex of log10 a0 per dex of knob)
+  levers C0 (canonical, rand6): R_ML -1.121; R_gas -0.391; R_D -2.512; R_V +5.025; R_sel +1.000
+  levers C1 (alt, rand6): R_ML -1.096; R_gas -0.377; R_D -2.473; R_V +4.946; R_sel +1.000
+  levers C5 (canonical, out6): R_ML -0.874; R_gas -0.507; R_D -2.382; R_V +4.764; R_sel +1.000
+  mimic offsets canonical (the knob value at which the noiseless sample-level shift equals log10(1 + b3 zbar)); level-B half-ranges: tauML 0.15, taugas 0.06, tauD 0.04, tauV 0.03, tausel 0.08
+     zbar 0.04: tauML -0.080; taugas -0.267; tauD -0.035; tauV +0.018; tausel +0.088
+     zbar 0.055: tauML -0.107; taugas -0.382; tauD -0.047; tauV +0.023; tausel +0.116
+     zbar 0.07: tauML -0.133; taugas -0.512; tauD -0.058; tauV +0.029; tausel +0.143
+  mimic offsets alt (the knob value at which the noiseless sample-level shift equals log10(1 + b3 zbar)); level-B half-ranges: tauML 0.15, taugas 0.06, tauD 0.04, tauV 0.03, tausel 0.08
+     zbar 0.04: tauML -0.069; taugas -0.226; tauD -0.030; tauV +0.015; tausel +0.074
+     zbar 0.055: tauML -0.092; taugas -0.321; tauD -0.040; tauV +0.020; tausel +0.098
+     zbar 0.07: tauML -0.115; taugas -0.425; tauD -0.050; tauV +0.025; tausel +0.122
+  S_joint (aligned worst case, per unit z) at C0: level A: E1 6.61, E2 3.73; level B: E1 20.22, E2 12.01
+  planted shared stellar-mass-scale offset tau_ML* (noiseless E1 slope = b3): C0 -0.118, C1 -0.103, C5 -0.157, C12 -0.299
+  [PASS] C7 CONTROL: the solved lambda reproduces the authors' formal sigma(a1) = 1.05e-10 within 2 %, or its unreachability is reported
+         not run in this mode
+
+MONTE CARLO: 72 runs (324,000 mocks) on 12 processes  (45 s so far)
+  done in 562 s
+
+MUTATE=1: THE PLANTED OFFSET EQUAL TO (iii)
+  C0: tau_ML* -0.118; E1 detects (formal z > 3): planted 0.942 (clean) / 0.706 (level B), physical (iii) 0.948 / 0.701, FLAT level B 0.335; E2 mean slope: planted +0.36 / +0.97, physical +6.31 (b3 5.59); classified PHYS: planted 0.265 (Gaussian prediction 0.353), physical 0.683 (prediction 0.715); control FAILS
+  C1: tau_ML* -0.103; E1 detects (formal z > 3): planted 0.890 (clean) / 0.656 (level B), physical (iii) 0.894 / 0.650, FLAT level B 0.326; E2 mean slope: planted +0.29 / +0.88, physical +5.30 (b3 4.62); classified PHYS: planted 0.289 (Gaussian prediction 0.376), physical 0.671 (prediction 0.704); control FAILS
+  C2: tau_ML* -0.136; E1 detects (formal z > 3): planted 0.979 (clean) / 0.749 (level B), physical (iii) 0.981 / 0.743, FLAT level B 0.343; E2 mean slope: planted +0.63 / +1.39, physical +7.17 (b3 5.59); classified PHYS: planted 0.292 (Gaussian prediction 0.405), physical 0.665 (prediction 0.712); control FAILS
+  C3: tau_ML* -0.114; E1 detects (formal z > 3): planted 0.920 (clean) / 0.689 (level B), physical (iii) 0.920 / 0.670, FLAT level B 0.336; E2 mean slope: planted +0.08 / +0.34, physical +5.83 (b3 5.59); classified PHYS: planted 0.210 (Gaussian prediction 0.236), physical 0.714 (prediction 0.734); control FAILS
+  C4: tau_ML* -0.105; E1 detects (formal z > 3): planted 0.969 (clean) / 0.730 (level B), physical (iii) 0.967 / 0.733, FLAT level B 0.377; E2 mean slope: planted +0.59 / +1.20, physical +6.56 (b3 5.59); classified PHYS: planted 0.287 (Gaussian prediction 0.390), physical 0.681 (prediction 0.714); control FAILS
+  C5: tau_ML* -0.157; E1 detects (formal z > 3): planted 0.945 (clean) / 0.702 (level B), physical (iii) 0.944 / 0.710, FLAT level B 0.316; E2 mean slope: planted +0.23 / +0.64, physical +6.10 (b3 5.59); classified PHYS: planted 0.240 (Gaussian prediction 0.290), physical 0.695 (prediction 0.720); control FAILS
+  C6: tau_ML* -0.118; E1 detects (formal z > 3): planted 0.957 (clean) / 0.733 (level B), physical (iii) 0.965 / 0.723, FLAT level B 0.367; E2 mean slope: planted +0.34 / +1.03, physical +6.19 (b3 5.59); classified PHYS: planted 0.276 (Gaussian prediction 0.355), physical 0.690 (prediction 0.716); control FAILS
+  C7: tau_ML* -0.118; E1 detects (formal z > 3): planted 0.850 (clean) / 0.640 (level B), physical (iii) 0.856 / 0.651, FLAT level B 0.279; E2 mean slope: planted +0.37 / +1.00, physical +6.26 (b3 5.59); classified PHYS: planted 0.272 (Gaussian prediction 0.356), physical 0.683 (prediction 0.715); control FAILS
+  C8: tau_ML* -0.118; E1 detects (formal z > 3): planted 0.976 (clean) / 0.722 (level B), physical (iii) 0.968 / 0.715, FLAT level B 0.345; E2 mean slope: planted +0.14 / +0.71, physical +5.80 (b3 5.59); classified PHYS: planted 0.252 (Gaussian prediction 0.298), physical 0.707 (prediction 0.729); control FAILS
+  C9: tau_ML* -0.118; E1 detects (formal z > 3): planted 0.978 (clean) / 0.723 (level B), physical (iii) 0.983 / 0.732, FLAT level B 0.366; E2 mean slope: planted +0.09 / +0.63, physical +5.74 (b3 5.59); classified PHYS: planted 0.228 (Gaussian prediction 0.281), physical 0.725 (prediction 0.734); control FAILS
+  C10: tau_ML* -0.118; E1 detects (formal z > 3): planted 0.985 (clean) / 0.752 (level B), physical (iii) 0.987 / 0.748, FLAT level B 0.406; E2 mean slope: planted +0.03 / +0.47, physical +5.62 (b3 5.59); classified PHYS: planted 0.203 (Gaussian prediction 0.243), physical 0.732 (prediction 0.741); control FAILS
+  C12: tau_ML* -0.299; E1 detects (formal z > 3): planted 1.000 (clean) / 0.970 (level B), physical (iii) 1.000 / 0.974, FLAT level B 0.334; E2 mean slope: planted +0.08 / +nan, physical +5.83 (b3 5.59); classified PHYS: planted 0.019 (Gaussian prediction nan), physical 0.871 (prediction 0.838); control FAILS
+  [FAIL] C6 CONTROL (MUTATE=1): the planted offset equal to (iii) is DETECTED by E1 (>= 95 % clean, >= 80 % at level B), E2 reads it as no slope (within 0.15 b3 of FLAT's, physical (iii) within 5 % of b3) and the PHYS / OFFSET classification rates equal the Gaussian prediction within 3 MC errors, in every cell
+
+[MUTATE CONTROL] MUTATE=1: C6 FAILS; controls: {'C1': True, 'C2': True, 'C3': True, 'C7': True, 'C6': False}
