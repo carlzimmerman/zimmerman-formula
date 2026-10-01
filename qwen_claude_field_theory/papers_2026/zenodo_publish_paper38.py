@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Publish PAPER38 (the baryon-calibration wall for a0(z)) to Zenodo (production), gated on PAPER38_audit.py passing.
 Reads ZENODO_ACCESS_TOKEN from the .env one directory above the repository -- NEVER printed.
-Deposited on the owner's explicit go: PUBLISHED 2026-10-01, DOI 10.5281/zenodo.23073072 (concept 23073071); the owner ran this script.
+Deposited on the owner's explicit go: v1.1 PUBLISHED 2026-10-01, DOI 10.5281/zenodo.23073072 (concept 23073071); the owner ran this script.
+v1.2 (a new version, same concept): python3 zenodo_publish_paper38.py --newversion 23073072
 Usage: python zenodo_publish_paper38.py   (run from qwen_claude_field_theory/papers_2026/)
 """
 import json, os, sys, time, urllib.request, urllib.error
@@ -59,8 +60,22 @@ def main():
     if not all(meta.get(k) for k in ("title", "creators", "upload_type")):
         sys.exit("ERROR: metadata lacks title/creators/upload_type -- not depositing")
 
-    # 1) create deposition (or reuse an existing DRAFT id passed as argv[1])
-    if len(sys.argv) > 1:
+    # 1) create deposition, OR a new version of a published record (--newversion <record_id>), OR reuse a DRAFT id (argv[1])
+    if "--newversion" in sys.argv:
+        rid = sys.argv[sys.argv.index("--newversion") + 1]
+        st, nv = req("POST", f"{BASE}/deposit/depositions/{rid}/actions/newversion", tok, tries=1)
+        if st not in (200, 201):
+            sys.exit(f"newversion failed [{st}]: {nv}")
+        draft = nv["links"]["latest_draft"].rstrip("/").split("/")[-1]
+        st, dep = req("GET", f"{BASE}/deposit/depositions/{draft}", tok, tries=6)
+        if st != 200:
+            sys.exit(f"cannot fetch new-version draft {draft} [{st}]")
+        for f in dep.get("files", []):              # drop the files inherited from the previous version
+            dst, _ = req("DELETE", f"{BASE}/deposit/depositions/{draft}/files/{f['id']}", tok, tries=4)
+            print(f"  removed inherited {f.get('filename')!r} [{dst}]")
+        st, dep = req("GET", f"{BASE}/deposit/depositions/{draft}", tok, tries=6)
+        print(f"new-version draft {draft} of record {rid} (same concept DOI)")
+    elif len(sys.argv) > 1:
         st, dep = req("GET", f"{BASE}/deposit/depositions/{sys.argv[1]}", tok)
         if st != 200:
             sys.exit(f"reuse fetch failed [{st}]: {dep}")
