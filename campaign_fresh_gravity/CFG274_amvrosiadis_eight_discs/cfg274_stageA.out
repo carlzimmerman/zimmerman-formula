@@ -1,0 +1,69 @@
+CFG274 -- implied-a0 points (or no-root / ill-conditioned markers) for the eight Amvrosiadis+25 sub-mm discs without an a0: ALESS 007.1, 022.1, 041.1, 049.1, 065.1, 066.1, 071.1, 075.1.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG274_amvrosiadis_eight_discs/FROZEN_CRITERIA.md (a7c4f7eef).
+  model     CFG227's class-S rule: g_obs = V_circ(2 r_e)^2 / (2 r_e) (pressure included once); g_bar = one thin exponential disc (R_d = r_e / 1.678) of M* + M_gas at r = 2 r_e.
+  estimator CFG223's median-residual s* (CFG229's a0implied), nu_mono, canonical a0; a root exists only if the row's median D > 1.
+  STAGE=A   the blind pre-flight: the velocity columns are NOT loaded; no g_obs, D, delta or s* of any disc is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_circ x 2); STAGE=B SELFTEST=1 (fabricated V on the law at s = 2).
+
+STAGE A
+parent amvrosiadis_parent.csv sha256 b1da2ddb4166e42e; best-fit amvrosiadis_bestfit.csv sha256 232bdb33dd4b794e; velocity columns loaded: False
+rows: 007.1 z 2.692 R_e 4.96 kpc log M* 11.87 log Mgas 11.22 SNR 9.9 i 34 2r_e/beam 0.68; 022.1 z 2.263 R_e 3.71 kpc log M* 11.67 log Mgas 10.89 SNR 13.5 i 34 2r_e/beam 0.49; 041.1 z 2.547 R_e 2.39 kpc log M* 11.83 log Mgas 10.57 SNR 29.1 i 69 2r_e/beam 0.47; 049.1 z 2.945 R_e 1.51 kpc log M* 10.58 log Mgas 10.89 SNR 27.9 i 90 2r_e/beam 0.31; 065.1 z 4.445 R_e 1.43 kpc log M* 10.48 log Mgas 11.05 SNR 10.4 i 58 2r_e/beam 0.42; 066.1 z 2.553 R_e 3.54 kpc log M* 11.42 log Mgas 10.83 SNR 13.3 i 52 2r_e/beam 1.00; 071.1 z 3.709 R_e 3.52 kpc log M* 12.31 log Mgas 11.20 SNR 17.6 i 71 2r_e/beam 0.83; 075.1 z 2.552 R_e 2.63 kpc log M* 10.48 log Mgas 10.84 SNR 38.7 i 55 2r_e/beam 0.52
+
+STAGE A  THE BLIND PRE-FLIGHT (the velocity columns are not loaded; no g_obs, D, delta or s* of any disc is formed)
+  [PASS] C1 CONTROL: the eight rows exist with the stated ids, finite z, baryon and geometry inputs, and the CSV hashes are printed above
+         8 rows; z [2.692, 2.263, 2.547, 2.945, 4.445, 2.553, 3.709, 2.552]
+  [PASS] C2 CONTROL: Freeman's peak V^2 = 0.3872 G M / R_d to 0.003, g -> G M / r^2 far from a compact mass to 1e-3, and gdisc equals CFG229's on 200 random inputs to 1e-12
+         peak 0.3870; far-field ratio 1.00064; max deviation from CFG229's gdisc 0.0e+00
+  [PASS] C3 CONTROL (restated by Addendum 1): every g_bar formatted %.4e equals CFG227's printed five-significant-digit string, and the relative deviation is at most 5.1e-5 (only g_bar is read from that file)
+         exact string match for 8 of 8; max relative deviation 4.6e-05 (the file's rounding)
+  [PASS] C4 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C5 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every galaxy's baryon side
+         max |d log10 s| 7.4e-15
+
+A1  BARYON SIDE (noiseless world: D = nu_mono(y), y = g_bar(2 r_e) / a0; lever = d log10 s* / d(baryon dex); ILL-CONDITIONED iff |lever| >= 10)
+    007.1: g_bar 1.460e-09 m/s^2  y 15.6  nu_mono(y) 1.0442  lever +nan (flag)  ILL-CONDITIONED  2r_e/beam 0.68  SNR 9.9
+    022.1: g_bar 1.566e-09 m/s^2  y 16.7  nu_mono(y) 1.0413  lever +nan (flag)  ILL-CONDITIONED  2r_e/beam 0.49  SNR 13.5
+    041.1: g_bar 4.943e-09 m/s^2  y 52.8  nu_mono(y) 1.0137  lever +nan (flag)  ILL-CONDITIONED  2r_e/beam 0.47  SNR 29.1
+    049.1: g_bar 2.014e-09 m/s^2  y 21.5  nu_mono(y) 1.0325  lever +nan (flag)  ILL-CONDITIONED  2r_e/beam 0.31  SNR 27.9
+    065.1: g_bar 2.768e-09 m/s^2  y 29.6  nu_mono(y) 1.0239  lever +nan (flag)  ILL-CONDITIONED  2r_e/beam 0.42  SNR 10.4
+    066.1: g_bar 1.043e-09 m/s^2  y 11.1  nu_mono(y) 1.0610  lever +nan (flag)  ILL-CONDITIONED  2r_e/beam 1.00  SNR 13.3
+    071.1: g_bar 7.028e-09 m/s^2  y 75.1  nu_mono(y) 1.0098  lever +nan (flag)  ILL-CONDITIONED  2r_e/beam 0.83  SNR 17.6
+    075.1: g_bar 5.662e-10 m/s^2  y 6.0  nu_mono(y) 1.1100  lever -11.5  ILL-CONDITIONED  2r_e/beam 0.52  SNR 38.7
+
+C6 / A2  COVERAGE AND PRECISION FORECAST (noiseless world on each galaxy's baryons; declared fractional V error 0.10 on V, i.e. 0.087 dex on g_obs; published M* and gas errors; 300 mock datasets, B = 1,000)
+    007.1: coverage 68 % 0.43, 95 % 0.94 (mocks with a rooted interval 288 of 300); median 68 % half-width 0.42 dex
+    022.1: coverage 68 % 0.33, 95 % 0.90 (mocks with a rooted interval 295 of 300); median 68 % half-width 0.43 dex
+    041.1: coverage 68 % 0.01, 95 % 0.48 (mocks with a rooted interval 295 of 300); median 68 % half-width 0.44 dex
+    049.1: coverage 68 % 0.19, 95 % 0.89 (mocks with a rooted interval 296 of 300); median 68 % half-width 0.42 dex
+    065.1: coverage 68 % 0.11, 95 % 0.83 (mocks with a rooted interval 296 of 300); median 68 % half-width 0.43 dex
+    066.1: coverage 68 % 0.05, 95 % 0.82 (mocks with a rooted interval 296 of 300); median 68 % half-width 0.44 dex
+    071.1: coverage 68 % 0.00, 95 % 0.59 (mocks with a rooted interval 291 of 300); median 68 % half-width 0.43 dex
+    075.1: coverage 68 % 0.78, 95 % 0.99 (mocks with a rooted interval 294 of 300); median 68 % half-width 0.41 dex
+  [PASS] C6 (reported; load-bearing only for the conditioned rows): the Monte Carlo interval covers the truth in >= 60 % (68 %) and >= 88 % (95 %) of the mocks for every conditioned row
+         007.1 0.43/0.94; 022.1 0.33/0.90; 041.1 0.01/0.48; 049.1 0.19/0.89; 065.1 0.11/0.83; 066.1 0.05/0.82; 071.1 0.00/0.59; 075.1 0.78/0.99  (no conditioned row: not applicable)
+
+A3  KNOB EFFECTS ON g_bar (baryon side only; dex relative to the headline g_bar)
+    007.1: stars 2R_e -0.199; R_e x1.5 -0.118; R_e /1.5 +0.023; spherical -0.126; helium x1.36 +0.028
+    022.1: stars 2R_e -0.211; R_e x1.5 -0.118; R_e /1.5 +0.023; spherical -0.126; helium x1.36 +0.022
+    041.1: stars 2R_e -0.241; R_e x1.5 -0.118; R_e /1.5 +0.023; spherical -0.126; helium x1.36 +0.008
+    049.1: stars 2R_e -0.069; R_e x1.5 -0.118; R_e /1.5 +0.023; spherical -0.126; helium x1.36 +0.094
+    065.1: stars 2R_e -0.043; R_e x1.5 -0.118; R_e /1.5 +0.023; spherical -0.126; helium x1.36 +0.108
+    066.1: stars 2R_e -0.192; R_e x1.5 -0.118; R_e /1.5 +0.023; spherical -0.126; helium x1.36 +0.031
+    071.1: stars 2R_e -0.234; R_e x1.5 -0.118; R_e /1.5 +0.023; spherical -0.126; helium x1.36 +0.011
+    075.1: stars 2R_e -0.064; R_e x1.5 -0.118; R_e /1.5 +0.023; spherical -0.126; helium x1.36 +0.097
+
+A4  POOLED-ROW FORECAST: median y of P8 = 19.1, of P6 = 25.5
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C5)
+  PF-D2 ILL-CONDITIONED rows (8 of 8): 007.1, 022.1, 041.1, 049.1, 065.1, 066.1, 071.1, 075.1; conditioned: none
+  PF-D3 DRAWABLE as an a0 point: none; every other row is a marker (floor triangle if it has no root, labelled open symbol otherwise), never a measurement
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9) scored (HE4-HE8 are scored at stage B):
+    HE1: MISS (kept as it falls)
+    HE2: hit
+    HE3: MISS (kept as it falls)
+
+6/6 checks pass; load-bearing failures: 0   (23 s)
