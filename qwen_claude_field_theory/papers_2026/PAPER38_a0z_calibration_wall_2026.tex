@@ -20,7 +20,7 @@
 
 \begin{center}
 {\Large\bfseries Measuring the MOND Acceleration Scale at High Redshift: What Current Public Data Can and Cannot Say (the Baryon-Calibration Wall)}\\[6pt]
-{\small The authors --- draft for review, 2026-09-30, version 1 --- AI-assisted research programme; not peer reviewed}
+{\small The authors --- draft for review, 2026-09-30, version 1.1 (adds the CFG240 theorems) --- AI-assisted research programme; not peer reviewed}
 \end{center}
 
 % Conventions of this draft. Every number quoted below is audited by PAPER38_audit.py against a committed file (git HEAD).
@@ -76,8 +76,24 @@ The largest observable signal, 0.29\,dex at $z\approx5$ (CFG218), is smaller tha
 \textbf{The same lever in the other lanes.} In the ALMA lane (CFG228) the lever is $\lambda=-1.8$ at the measured pooled root and $-3.3$ at the nominal $s^*=1$: a 0.1\,dex baryon error moves $\log_{10}s^*$ by 0.18 to 0.33\,dex, against 0.66\,dex between the flat and proxy expectations and 0.87\,dex between flat and $H(z)$. In the class-M lane (CFG229) the one galaxy at $g_{\rm bar}/a_0=4.8$ (ALESS 122.1) has $\lambda=-2.0$; for the discs at $g_{\rm bar}/a_0>10$ the pre-flight lever is $-56$ to $-70$, so a 0.05\,dex baryon error would move $\log_{10}a_0$ by 2.8 to 3.5 (a factor 600 to 3,000).
 % AUDIT: B13
 
-\textbf{The deep regime.} Deep in the MOND regime $g_{\rm obs}\simeq\sqrt{g_{\rm bar}a_0}$, so an amplitude test there measures the product of the baryon calibration factor and $a_0$: in the KiDS lensing lane (CFG255) a stellar-mass calibration drift $\delta$ between two redshift bins moves the amplitude by $\delta/2$, exactly as an $a_0$ drift does. Outside the deep limit the kernel's shape does in principle separate the calibration from $a_0$, so $a_0$ is not unidentifiable in general; but the separation rests on the curvature of $\nu$, and the estimate becomes ill-conditioned, its error growing without bound as the sample's largest $g_{\rm bar}/a_0$ falls toward the deep regime. A formal treatment of this conditioning is in preparation and is not used here.
+\textbf{The deep regime.} Deep in the MOND regime $g_{\rm obs}\simeq\sqrt{g_{\rm bar}a_0}$, so an amplitude test there measures the product of the baryon calibration factor and $a_0$: in the KiDS lensing lane (CFG255) a stellar-mass calibration drift $\delta$ between two redshift bins moves the amplitude by $\delta/2$, exactly as an $a_0$ drift does. Outside the deep limit the kernel's shape does in principle separate the calibration from $a_0$, so $a_0$ is not unidentifiable in general; but the separation rests on the curvature of $\nu$, and the estimate becomes ill-conditioned, its error growing without bound as the sample's largest $g_{\rm bar}/a_0$ falls toward the deep regime. The formal treatment is CFG240 (below).
 % AUDIT: B14
+
+\textbf{The conditioning, as theorems (CFG240).} The lane \fpath{campaign_fresh_gravity/CFG240_calibration_wall/} formalises this in the ChainCert Lean library (50 theorems; the library goes from 281 to 331, standard axioms only). Lean certifies implications from stated premises, not any empirical fact. With one calibration factor $f$ on $g_{\rm bar}$:
+\begin{itemize}
+\item \emph{Deep limit.} $g_{\rm obs}$ depends on $(f,a_0)$ only through $f a_0$.
+\item \emph{Identifiability.} For the exact P2 kernel, two distinct $g_{\rm bar}$ values determine $(f,a_0)$, and one value does not.
+\item \emph{Conditioning.} The Jacobian determinant tends to zero when both points are deep.
+\item \emph{A floor.} With $f$ free, any sample obeys $\sigma(\log a_0)\ge 3\sigma/\sqrt N$: at a per-point error $\sigma=0.1$\,dex, a 0.1\,dex $a_0$ needs $N>9$; at 0.2\,dex it needs $N>36$.
+\end{itemize}
+Its Fisher companion (log-uniform design, P2, $N=20$, $\sigma=0.1$\,dex, no prior on $f$) finds:
+\begin{itemize}
+\item A sample with $y_{\min}=0.01$ must reach $y=g_{\rm bar}/a_0\gtrsim8$ (the break-even on a 0.1\,dex grid of $y_{\max}$), and one with $y_{\min}=10^{-3}$ must reach $y\gtrsim5.5$.
+\item With no deep points ($y_{\min}=0.1$) it never reaches 0.1\,dex: the best is 0.117.
+\item Even at break-even the two estimates stay correlated ($\rho\approx-0.8$): the degeneracy is broken in $\sigma$, not removed.
+\end{itemize}
+The high-$z$ discs of section~2 sit at $y=1.1$ to 4.4 with no deep points, the regime where this table gives no 0.1\,dex leverage on $a_0$ without an external calibration of $f$.
+% AUDIT: B43
 
 \textbf{What the points show (descriptive).} With the caveats above (author decompositions, gas-route-limited, not a detection), flat $a_0$ (ratio 1) lies inside the 95\% statistical interval of 7 of the 8 CFG223 points; the exception, CRISTAL at $R_e$ on the fit route, sits 0.065\,dex below its interval, so the lane's frozen caption rule does not release the sentence ``consistent with a constant $a_0$''. Inside the statistical / $\pm0.15$ / $\pm0.30$\,dex band-widened intervals the counts are flat 7/8/8, proxy 5/7/7 and $H(z)$ 4/5/7. The independent-route CRISTAL points carry no information (one of them has no root in 10\% of resamples).
 % AUDIT: B15

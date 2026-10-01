@@ -50,6 +50,7 @@ SRC = {
     "O255B": CFG + "CFG255_lensing_rar_zsplit/cfg255_stageB.out",
     "GAS": "data_assembly/GAS_ANCHOR_SCOPING_2026-09-30.md",
     "LENS": "real_research/reviews/lensing_rar/A0Z_LENSING_ZBIN_2026.md",
+    "R240": CFG + "CFG240_calibration_wall/README.md",
 }
 _cache = {}
 
@@ -75,6 +76,18 @@ def R(b, value, f, rx, tex=None):
     ROWS.append((b, value, f, rx, tex))
 
 
+# ---------------------------------------------------------------- B43 CFG240 (added after CFG240 was committed, 7b73ef6a0)
+R("B43", "50", "R240", r"namespace `CalibrationWall`; (50) theorems", "50 theorems")
+R("B43", "281", "R240", r"library (281) -> 331", "from 281 to 331")
+R("B43", "331", "R240", r"library 281 -> (331)", "to 331")
+R("B43", "3 sigma/sqrt(N)", "R240", r"sigma\(log a0\) >= (3 sigma/sqrt\(N\)) for ANY sample", r"3\sigma/\sqrt N")
+R("B43", "N > 9", "R240", r"the target 0\.1 needs (N > 9)", "N>9")
+R("B43", "N > 36", "R240", r"at 0\.2 dex (N > 36)", "N>36")
+R("B43", "8", "R240", r"the sample must reach \*\*y >~ (8)\*\*", r"\gtrsim8")
+R("B43", "5.5", "R240", r"with y_min = 1e-3, y >~ (5\.5);", r"\gtrsim5.5")
+R("B43", "0.117", "R240", r"it never reaches 0\.1 dex \(best (0\.117) at", "0.117")
+R("B43", "1.1 to 4.4", "R223", r"these discs sit at g_bar/a₀ = (1\.1 to 4\.4)", "1.1 to 4.4")
+R("B43", "-0.8", "R240", r"Even at break-even rho ~ (-0\.8)", r"\rho\approx-0.8")
 # ---------------------------------------------------------------- B01 abstract
 R("B01", "2.2", "R213", r"about ×(2\.2) at z ≈ 1\.4", r"\times2.2")
 R("B01", "8", "R213", r"and about ×(8) at z ≈ 5", r"\times8")
