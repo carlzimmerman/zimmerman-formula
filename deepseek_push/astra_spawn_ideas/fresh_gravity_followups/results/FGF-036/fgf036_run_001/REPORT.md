@@ -1,0 +1,13 @@
+# FGF036 proof-only worker report
+
+The full coupled quadratic energy admits a positive closed weighted form on all sufficiently short induced-wall patches of the same FGF035 zero-flux crossing. This keeps the existing counterexample to ordinary H1 coercivity intact.
+
+The phi space is the completion with finite integral(A psi prime squared+psi squared) and zero outer traces. Since integral1/A is finite, its members have a single continuous center value. The flux coordinate s=integral1/A identifies this space with an ordinary H1_0 interval; an explicit center-flattening approximation proves that smooth physical-coordinate test functions are dense. The embedding into the kinetic L2 space is compact by a direct modulus-of-continuity argument.
+
+Two mixed-term estimates retain the fluid and scale response. Their harmful constants vanish as the actual central solution is shortened: alpha=2C rho_max ell integral(1/A)/cs² tends to zero, and beta=ell²(2sup(q_s²/A)+sup negative m)/J tends to zero. With alpha<=1/4 and beta<=1/2, the full form controls half the fluid energy, one quarter of the weighted phi energy and half the scale-gradient energy. It is equivalent to the declared complete form norm and bounds the positive kinetic norm by a symbolic time-squared constant. No numerical physical interval or frequency is supplied.
+
+The associated operator is derived from the weak form. Its domain requires continuous global H1 fluid enthalpy perturbation and perturbed phi flux, and H2 scale perturbation, in addition to the form domain. These conditions impose continuity through the center, not a reflecting wall. An explicit admissible coupled state has nonzero central phi flux, showing why zero central flux cannot be silently imposed.
+
+Variational inversion followed by the proved compact embedding gives an injective positive symmetric compact inverse. The proof constructs its eigenbasis and the positive self-adjoint differential operator, and uses oscillator series to obtain unique conserved-energy linear evolution for initial data in form space times kinetic space. This is a linear wall-system result only; it neither establishes nonlinear stability nor supplies the former H2 nonlinear parameter-response theorem at the cusp.
+
+This pass is proof-only. No experiment, numerical spectrum, manifest or potential fitting was used. All input hashes were verified; the candidate was frozen before reading new root/auditor work. Both reference normalizations, distinct vacuum/frozen-H/evolving-H hypotheses, signed MOND Q source, open RAR transfer and absent M action remain explicit. Local responsive scale, metric/photon/DOF, filtered MONO, conserved physical scale interpretation and instrument calibration remain unresolved.

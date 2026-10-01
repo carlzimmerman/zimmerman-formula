@@ -1,0 +1,30 @@
+import Mathlib
+
+noncomputable section
+
+#check Real.arctan
+#check Real.hasDerivAt_arctan
+#check hasDerivAt_arctan
+#check Real.tendsto_arctan_atTop
+#check Real.tendsto_arctan_atBot
+#check Real.arctan_zero
+#check Real.arctan_lt_pi_div_two
+#check Real.arctan_pos
+#check intervalIntegral.integral_deriv_eq_sub
+#check intervalIntegral.integral_hasDerivAt_deriv
+#check MeasureTheory.integral_Ioi
+#check MeasureTheory.integral_Ioi_of_hasDerivAt
+#check Real.integral_Ioi_one_div_one_add_sq
+#check HasDerivAt.comp
+#check Filter.HasDerivAt.div_const
+#check HasDerivAt.div_const
+#check tendsto_id
+#check tendsto_id_atTop
+#check tendsto_const_nhds
+#check Filter.Tendsto.const_mul
+#check Filter.Tendsto.mul_const
+#check Real.continuous_arctan
+#check ContinuousOn.intervalIntegrable
+#check intervalIntegral.intervalIntegrable_const
+#check continuousOn_id
+#check ContinuousOn.div

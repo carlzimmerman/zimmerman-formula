@@ -1,0 +1,72 @@
+CFG1 -- THE EVIDENCE AUDIT.  Every empirical result the fresh-gravity campaign must answer, how it was measured, the model
+assumptions built into its pipeline, how far a framework-consistent but physically defensible treatment could move it (the
+SAME treatment applied to LCDM's use of the same data), and a class for each.  Then the record's own "equipment": the
+computational approximations that decided or bent past verdicts, with their status and commits.  Then the framework's OWN
+empirical results, audited the same way (the author's rule 0, relayed 2026-09-27).  It ends with the requirements list.
+
+THE BASE.  a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 FITTED and not derived (Z = kappa-form = 2 sqrt(8 pi/3) = 5.7888, never ~21);
+both footings everywhere a0 enters: canonical 9.3603e-11, alt 1.1312e-10 m/s^2 (read from FP0's committed results).  Nothing
+here says the theory is closed.  The dark component, where one is needed, is the framework's own field, and a mass is still
+required.
+
+METHOD.
+  * Numbers are READ from committed result files (git-tracked and unmodified; each file's sha256 is recorded) or COMPUTED here
+    from committed machinery re-executed read-only (FP18's pincer, FP20's projectors, XR26's lensing Limber and band powers, FP6's
+    linear spectrum and kernel).  Published values not on disk are cited in the row that uses them.
+  * Numbers from lanes still in flight (uncommitted when this lane ran: XR34, FP24, XR35, XR24, XR28) are quoted as PENDING and never
+    decide a class; this script records whether each is committed at run time.  FP22 (bfe9a2fe5), FP20b (3924bb8c2), XR32 (fa341733d)
+    and XR18b (3c0cf3c37) were committed while this lane was being written; they are cited by commit (XR32 carries the hub's
+    "re-run pending" flag).
+  * Every shift is applied to the DATA, through one function (`seen`), so the framework and LCDM are scored against the same
+    shifted data; LCDM's pull at the shift the framework needs is printed beside it.
+
+THE CLASS RULE (declared before the first full run; applied mechanically in `classify`).
+  1. CONTESTED if at least two published analyses (or the record's own independent analyses) of the same observable disagree by
+     more than their combined quoted uncertainties; the disagreement is printed.
+  2. Otherwise the STAKE is computed.  For a record FAIL: the favourable data shift that brings the framework's MOST FAVOURABLE
+     scored variant (either construction -- M* or the derivation chain -- and either footing) to the record's own gate; a failure
+     is only called model-independent if it survives for the variant most charitable to the framework.  For a record PASS: the
+     unfavourable shift that would push its LEAST favourable variant over the gate.  Where no verdict is scored, the stake is the
+     smallest discrepancy the campaign's gates register (stated per row).
+  3. The BUDGET is the documented data-side systematics (published budgets or the record's committed machinery), each at its edge
+     in the relevant direction, combined in quadrature ("defensible"); the aligned corner (linear sum) is printed beside it.
+  4. SOFT if BUDGET >= STAKE, MODEL-INDEPENDENT otherwise.  The class is a property of the result at the level at stake; it says
+     nothing about whether the framework is right.
+  5. (Clarified after the development run, before the recorded runs; disclosed.)  If a record FAIL's most favourable variant already
+     lies inside the gate, the FAIL is not established for that variant; the stake is then that variant's margin to the gate (the
+     shift that would make it fail), as for a PASS.  Where LCDM's number is a per-object fit (a halo mass fitted to each object), it
+     refits under any shift, so no LCDM pull at a shifted datum is printed for it.
+
+PRE-DECLARED HYPOTHESES (written before the first full run; scored in section H, kept as run).
+  H1  the three controls reproduce FP18's pincer (T 102.0 face value, 7.50 profiled), FP20's projector errors and XR26's Planck
+      lensing amplitude (1.1492 linear / 2.1344 halofit, f* 0.618 / 0.178) exactly (relative deviation <= 1e-9).
+  H2  MODEL-INDEPENDENT includes at least: the Solar-System quadrupole, GW speed, BBN (Y_P, D/H), the CMB primary spectra, the CMB
+      lensing amplitude (data side), BAO, the RAR's shape, the cluster mass beyond MOND and the Bullet offsets.
+  H3  the Local Group row: the R0 measurement is at least SOFT at the pincer level (FP18: 9.8 -> 2.3 sigma), and the chain's own
+      R0 overshoot stays >= 2 sigma with FP18's honest errors.
+  H4  at least two of the three external-field samples (cluster-infall BTFR slope, LV-dwarf statistic C, Coma UDGs) are
+      MODEL-INDEPENDENT: their documented data-side systematics cannot bring even the most favourable variant to 2 sigma.
+  H5  the CMB-lensing FAIL is equipment-dependent in magnitude: with XR21's real-space box numbers mapped onto XR26's committed
+      A(f), the linear-base amplitude in the baryons-only reading lies within 2 sigma of Planck 2018 (8-400), while the
+      all-matter reading fails on the halofit base at every mapped factor.
+  H6  X-COP (FP16's too-much-mass failure) is SOFT: the hydrostatic/non-thermal bias it needs lies inside the published range
+      (<= 0.2) but above X-COP's own 6%.
+  H7  SLACS is CONTESTED (the published IMF methods disagree by more than the shift the framework needs).
+  H8  the forest: DE11b's pass survives the kernel-argument factor estimated from FP6's own kernel (worst <= 0.02 against 0.10),
+      and the chain's linear forest proxies are not established.
+  H9  the fairness check passes in the main run and FAILS in the MUTATE run.
+  H10 the framework's own results: the SN-Ia host step is MODEL-INDEPENDENT as a step with its a0 attribution untested; the
+      environmental null is MODEL-INDEPENDENT; kappa is SOFT; flat a0(z) is CONTESTED; the directional EFE, the comet anisotropy,
+      the vertical force and the forest b-cutoff are SOFT or CONTESTED, none MODEL-INDEPENDENT.
+
+  *** MUTATE=1: every systematic is applied to the FRAMEWORK'S comparison only; LCDM keeps the unshifted data.  F1 (fairness) must FAIL, rc = 1 ***
+
+======================================================================================================================
+K  CONTROLS: the footings; FP18's pincer; FP20's projectors; XR26's CMB lensing; the sources; the commits
+======================================================================================================================
+  [PASS] K6 THE FOOTINGS AND Z: FP0's committed a0 values are the charter's 9.3603e-11 / 1.1312e-10 m/s^2 (to 1e-4); Z = 2 sqrt(8 pi/3) = 5.7888 (kappa = 1/2 FITTED, the same number)
+         measured: a0 canonical 9.36032e-11, alt 1.13120e-10; Z = 5.7888
+  [FAIL] K1 CONTROL -- FP18'S PINCER, RE-EXECUTED READ-ONLY: T_nominal (stack + LG, honest R0 errors, free profile) and the profiled T (six comparability systematics under their priors) equal FP18's committed values, and so do the profiled nuisances
+         measured: T_nominal 101.967322 vs 101.967322; T_profiled 7.497390 vs 7.497390; max |d nuisance| 0.0e+00 (39 s)
+  [PASS] K2 CONTROL -- FP20'S PROJECTOR AUDIT, RE-EXECUTED READ-ONLY: every projector's error against the analytic profiles (SIS, three NFW, point masses, the chain's phantom, the carrier templates) at the 15 KiDS radii equals FP20's committed table
+         measured: max |d| over 88 projector rows 1.1e-11 pp; esd_of_M on the SIS at 35 kpc -58.56% (2 s)

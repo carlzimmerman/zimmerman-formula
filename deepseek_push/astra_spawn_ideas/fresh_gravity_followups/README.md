@@ -18,10 +18,10 @@ review records; the presence of a task file does not mean a worker was launched.
   Cross-link equivalent tasks; dispatch a continuation only if it changes the
   unresolved implication or experimental regime.
 
-The current [21-task index](INDEX.md) is described in `queue.json`; individual instructions are in
+The current [task index](INDEX.md) is described in `queue.json`; individual instructions are in
 `tasks/`. Read `FRAMEWORK_AND_EXECUTION.md` with each task. Source hashes are in
 `source_snapshot.json`. Scientific ancestry starts at Astra stage 3.
-The latest [stage-six checkpoint](../../../campaign_fresh_gravity_astra/stage_06/README.md)
+The latest [current checkpoint](../../../campaign_fresh_gravity_astra/AUTORESEARCH.md)
 links the dated, hash-pinned reviews of stage-four and new results. Only their
 explicitly reviewed claims are accepted. Task specifications are hypotheses to investigate.
 

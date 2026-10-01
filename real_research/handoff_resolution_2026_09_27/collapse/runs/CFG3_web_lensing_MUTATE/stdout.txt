@@ -1,0 +1,121 @@
+CFG3_web_lensing -- THE EXPANDING LINEAR WEB UNDER THE PRINCIPLE: growth and the CMB lensing amplitude (Planck 2018 VIII).
+
+WHAT THE PRINCIPLE SAYS ABOUT THE WEB.  The linear web is never behind the vacuum (CFG3_principle D5: H^2 - H_Lambda^2 =
+8 pi G rho_m/3 > 0, and theta/3 < H_Lambda needs delta > 0.98 at every z <= 1100), so at first order in delta the vacuum's
+answer is identically absent: the linear equations are GR + the dark field, growth is LCDM's, and the lensing boost B(k, z) = 1
+on every linear mode.  The answer lives only in gated regions (collapsing patches and their infall zones), where each region's
+phantom is COMPENSATED (D6: zero net mass), so it can reach the lensing power only through the change of mass profiles on the
+regions' own scales.
+
+MACHINERY (read-only).  XR26_cmb.py's lensing pipeline is exec'd from its committed source (the slices that set up CAMB/CLASS at the
+Planck 2018 best fit, FP13's growth yardstick, the Limber integral, Planck 2018 VIII's MV band powers and amplitude estimator); its
+patched-CLASS build, its C section and its L3-L5 are not run.  CLASS 3.3.4 supplies P_lin and halofit P(k, z).  The halo-model
+estimate uses the Sheth-Tormen mass function and bias on CLASS's linear spectrum, NFW halos with Duffy+08 concentrations,
+Moster+13 stellar masses, and this lane's gate radius (CFG3_common.gate_radius).
+
+CHECKS
+  K1 CONTROL: XR26's committed lensing numbers are reproduced by its own code: LCDM chi^2 = 10.1456 and pull -0.393 (8-400), the
+     chain's headline amplitude 1.149178 (linear base) / 2.134361 (halofit), the phantom budget f* = 0.6182 / 0.1776.
+  S1 [HEADLINE; load-bearing; MUTATE must fail] THE LINEAR WEB: with B = 1 on every linear mode (derived), Planck 2018's 8-400
+     amplitude relative to its best fit is 1.0000, within 2 sigma of 1.011 +- 0.028; chi^2 as LCDM's.
+  S2 (reported) GROWTH: the linear growth, f sigma_8(z) and S8 are LCDM's (CLASS's sigma_8 = XR26 K1's 0.8120): neutral on the mild
+     S8 tension, not a solution.
+  S3 (reported; an ESTIMATE) THE GATED REGIONS' NONLINEAR IMPRINT: halos of 1e10-1e13 Msun carry their galaxy's isolated Bose
+     phantom out to the gate radius r_g(M, z), compensated there (no EFE: an upper bound), (a) added to LCDM's halo, or (b) with the
+     halo's own dark mass displaced to r_g (mass conserved: the dark field must not sit in galaxies, CFG3_sparc S5).  Halo-model
+     Delta P(k, z) -> R(L) on both bases -> the 8-400 amplitude.  Groups and clusters (M > 1e13) are taken at LCDM's totals (their
+     required dark mass fills the answer's deficit: stated, not computed).
+  S4 (reported; an estimate) COSMIC SHEAR: the same halo-model imprint (bracket b) on a KiDS-like source sample (n(z) ~ z^2
+     exp[-(z/0.6)^1.5]), halofit base, with no EFE and with a representative in-region external field e = 0.01 / 0.03 a0 capping
+     each phantom at r_e = v_f^2/e; the implied S8 read-off shift (C_l ~ S8^2.5 at l ~ 300).
+PRE-DECLARED HYPOTHESES (written before the first run of this script):
+  H1 K1 reproduces XR26 exactly (the same code).  EXPECT TRUE.
+  H2 S1: amplitude 1.0000, pull -0.39 sigma, chi^2 10.15.  EXPECT TRUE (it is LCDM's by derivation).
+  H3 S3: compensation keeps the gated regions' imprint on the 8-400 amplitude below Planck's 2 sigma in bracket (b) and below
+     XR26's linear-base excess (+4.9 sigma) in bracket (a).  UNCERTAIN: the isolated phantom is large at Mpc radii (M_ph(<r) ~ r
+     v_f^2/G) and z < 0.5 gated regions are big (r_g ~ 2-3 r_ta).
+  H4 [added after the first development run showed B(z = 0, k = 1/Mpc) ~ 2 on the halofit base; disclosed] S4: with the
+     in-region EFE the S8 shift stays below +5%; with none it exceeds it.  UNCERTAIN.
+MUTATE=1: the vacuum answers all matter, including the expanding web (the gate removed): the web's MOND boost is XR26's own
+headline B(k, z) (FP13's yardstick, the chain's web MOND) -- S1 must FAIL (1.149, +4.9 sigma), rc = 1.
+Run from the repository root (MUTATE first):  MUTATE=1 python3 campaign_fresh_gravity/CFG3_web_lensing.py; python3 campaign_fresh_gravity/CFG3_web_lensing.py
+
+  inputs: a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt) m/s^2 [FP0]; rho_Lambda = 5.8424e-27 kg/m^3; H_Lambda = 1.8074e-18 1/s; Z = 5.788810 (kappa = 1/2 FITTED)
+
+  *** MUTATE=1: the vacuum answers the expanding web too (no gate): B(k, z) = XR26's headline web MOND -- S1 must FAIL ***
+
+======================================================================================================================
+K1  CONTROL: XR26's lensing pipeline (exec'd read-only) reproduces its committed numbers
+======================================================================================================================
+    reproduced (9 s): LCDM chi^2 10.1456 (committed 10.1456), pull -0.393; chain amplitude linear 1.149178 (committed 1.149178), halofit 2.134360 (committed 2.134361); f* 0.6182 / 0.1776
+  [FAIL] K1 CONTROL: XR26's committed lensing numbers are reproduced by its own code (exec'd read-only): LCDM chi^2 and pull, the chain's headline amplitude on both bases, the phantom budget f*
+         measured: max |d amp| 4.4e-07, |d chi^2| 6.3e-05, |d f*| 2.0e-07
+
+======================================================================================================================
+S1  THE LINEAR WEB UNDER THE PRINCIPLE: the gate is closed on every linear mode (CFG3_principle D5), so B(k, z) = 1
+======================================================================================================================
+    lin base, 8-400  : amplitude 1.1492 vs 1.011 +- 0.028 (pull +4.93 sigma), chi^2 81.16 (9 bins)
+    lin base, 8-2048 : amplitude 1.2726 vs 0.995 +- 0.026 (pull +10.68 sigma), chi^2 726.27 (14 bins)
+    NL  base, 8-400  : amplitude 2.1344 vs 1.011 +- 0.028 (pull +40.12 sigma), chi^2 4249.45 (9 bins)
+    NL  base, 8-2048 : amplitude 3.1971 vs 0.995 +- 0.026 (pull +84.70 sigma), chi^2 46791.36 (14 bins)
+  [FAIL] S1 [HEADLINE; MUTATE must fail] THE LINEAR WEB IS GR BY DERIVATION: the vacuum does not answer matter that expands faster than it (H > H_Lambda at every z), so B(k, z) = 1 on every linear mode and Planck 2018's conservative 8-400 lensing amplitude is LCDM's -- within 2 sigma of 1.011 +- 0.028 on both bases
+         measured: lin|8-400: 1.1492 (+4.93 sigma); lin|8-2048: 1.2726 (+10.68 sigma); NL|8-400: 2.1344 (+40.12 sigma); NL|8-2048: 3.1971 (+84.70 sigma)
+
+======================================================================================================================
+S2  GROWTH
+======================================================================================================================
+    sigma_8 = 0.8116 (XR26 K1: CAMB 0.8120), S8 = 0.8327; f sigma_8(z) = 0.3: 0.4731, 0.5: 0.4741, 0.8: 0.4524, 1.0: 0.4310, 1.5: 0.3741  -- all LCDM's: the gate is closed on the linear web
+  [PASS] (reported) S2 (reported) GROWTH IS LCDM's: the linear growth equations are GR + the dark field, so sigma_8, S8 and f sigma_8(z) equal LCDM's at the Planck best fit -- neutral on the survey-S8 question (not a solution)
+         measured: sigma_8 0.8116, S8 0.8327
+
+======================================================================================================================
+S3  (reported; an estimate) THE GATED REGIONS' NONLINEAR IMPRINT, compensated phantoms in a halo model
+======================================================================================================================
+    gate radius r_g [physical Mpc] (rows z = [0.0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0, 5.0]; columns log M = [10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0]):
+      z = 0.00:  1.053  1.397  1.850  2.446  3.259  4.335  5.815
+      z = 0.10:  0.863  1.142  1.524  2.050  2.725  3.652  4.883
+      z = 0.25:  0.664  0.893  1.187  1.608  2.152  2.904  3.911
+      z = 0.50:  0.467  0.632  0.854  1.151  1.548  2.101  2.846
+      z = 0.75:  0.353  0.477  0.648  0.880  1.207  1.632  2.228
+      z = 1.00:  0.281  0.382  0.518  0.710  0.970  1.323  1.824
+      z = 1.50:  0.195  0.267  0.369  0.504  0.694  0.954  1.308
+      z = 2.00:  0.151  0.206  0.284  0.390  0.536  0.744  1.032
+      z = 3.00:  0.101  0.141  0.194  0.270  0.374  0.518  0.715
+      z = 4.00:  0.077  0.106  0.147  0.204  0.282  0.395  0.544
+      z = 5.00:  0.061  0.085  0.118  0.165  0.228  0.319  0.438
+    (41 s)
+    canonical bracket (a) lin base: amplitude 1.0054 (pull -0.20 sigma), chi^2 10.27; R(100/400/1000) = 1.0037/1.0183/1.0711; B(z=0; k = 0.1/0.3/1 /Mpc) = 1.076/1.771/12.500
+    canonical bracket (a) NL  base: amplitude 1.0053 (pull -0.20 sigma), chi^2 10.26; R(100/400/1000) = 1.0037/1.0173/1.0585; B(z=0; k = 0.1/0.3/1 /Mpc) = 1.070/1.353/2.177
+    canonical bracket (b) lin base: amplitude 1.0042 (pull -0.24 sigma), chi^2 10.22; R(100/400/1000) = 1.0030/1.0132/1.0460; B(z=0; k = 0.1/0.3/1 /Mpc) = 1.067/1.670/10.201
+    canonical bracket (b) NL  base: amplitude 1.0041 (pull -0.25 sigma), chi^2 10.22; R(100/400/1000) = 1.0029/1.0125/1.0378; B(z=0; k = 0.1/0.3/1 /Mpc) = 1.062/1.307/1.941
+    alt       bracket (a) lin base: amplitude 1.0061 (pull -0.18 sigma), chi^2 10.29; R(100/400/1000) = 1.0041/1.0205/1.0806; B(z=0; k = 0.1/0.3/1 /Mpc) = 1.083/1.862/14.418
+    alt       bracket (a) NL  base: amplitude 1.0059 (pull -0.18 sigma), chi^2 10.29; R(100/400/1000) = 1.0041/1.0194/1.0664; B(z=0; k = 0.1/0.3/1 /Mpc) = 1.077/1.394/2.373
+    alt       bracket (b) lin base: amplitude 1.0048 (pull -0.22 sigma), chi^2 10.24; R(100/400/1000) = 1.0034/1.0153/1.0545; B(z=0; k = 0.1/0.3/1 /Mpc) = 1.075/1.757/11.934
+    alt       bracket (b) NL  base: amplitude 1.0047 (pull -0.23 sigma), chi^2 10.24; R(100/400/1000) = 1.0033/1.0145/1.0448; B(z=0; k = 0.1/0.3/1 /Mpc) = 1.069/1.347/2.119
+    (42 s)
+  [PASS] (reported) S3 (H3, reported; an estimate) THE GATED REGIONS' IMPRINT: compensated phantoms keep Planck's 8-400 amplitude within 2 sigma when the galaxy halos' dark mass is displaced (bracket b), and below XR26's linear-base excess when it is added (bracket a)
+         measured: canonical|a|lin: 1.0054 (-0.20); canonical|a|NL: 1.0053 (-0.20); canonical|b|lin: 1.0042 (-0.24); canonical|b|NL: 1.0041 (-0.25); alt|a|lin: 1.0061 (-0.18); alt|a|NL: 1.0059 (-0.18); alt|b|lin: 1.0048 (-0.22); alt|b|NL: 1.0047 (-0.23)
+
+======================================================================================================================
+S4  (reported; an estimate) THE SAME IMPRINT IN COSMIC SHEAR: a KiDS-like source sample, halofit base
+======================================================================================================================
+    canonical bracket (b), in-region EFE e = 0.00 a0: C_l ratio at l = 100: 1.047, 200: 1.113, 300: 1.175, 500: 1.268, 1000: 1.366, 2000: 1.349  -> an S8 read off at l = 300 would move by +6.7%
+    canonical bracket (b), in-region EFE e = 0.01 a0: C_l ratio at l = 100: 1.014, 200: 1.034, 300: 1.054, 500: 1.089, 1000: 1.146, 2000: 1.188  -> an S8 read off at l = 300 would move by +2.1%
+    canonical bracket (b), in-region EFE e = 0.03 a0: C_l ratio at l = 100: 1.000, 200: 1.000, 300: 0.999, 500: 0.999, 1000: 0.997, 2000: 0.996  -> an S8 read off at l = 300 would move by -0.0%
+    alt       bracket (b), in-region EFE e = 0.00 a0: C_l ratio at l = 100: 1.054, 200: 1.130, 300: 1.203, 500: 1.313, 1000: 1.436, 2000: 1.426  -> an S8 read off at l = 300 would move by +7.7%
+    alt       bracket (b), in-region EFE e = 0.01 a0: C_l ratio at l = 100: 1.014, 200: 1.035, 300: 1.056, 500: 1.091, 1000: 1.154, 2000: 1.211  -> an S8 read off at l = 300 would move by +2.2%
+    alt       bracket (b), in-region EFE e = 0.03 a0: C_l ratio at l = 100: 1.000, 200: 1.000, 300: 0.999, 500: 0.999, 1000: 0.998, 2000: 0.998  -> an S8 read off at l = 300 would move by -0.0%
+    (1 s)
+  [PASS] (reported) S4 (reported; an estimate) COSMIC SHEAR: with a representative in-region external field (e = 0.01-0.03 a0, the neighbours inside the same region) the gated phantoms move a KiDS-like S8 read-off by less than +5%; with no EFE at all (the upper bound) the shift is printed
+         measured: canonical|e_in=0.0: +6.7%; canonical|e_in=0.01: +2.1%; canonical|e_in=0.03: -0.0%; alt|e_in=0.0: +7.7%; alt|e_in=0.01: +2.2%; alt|e_in=0.03: -0.0%
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    WL1      DERIVED     the linear web is not answered (H > H_Lambda): B = 1 on every linear mode; Planck 8-400 amplitude 1.1492 (pull +4.93)  --  S1
+    WL2      NEUTRAL     growth, sigma_8 = 0.8116, S8 = 0.8327: LCDM's  --  S2
+    WL3      ESTIMATE    compensated gated phantoms (no EFE, upper bound): amplitude canonical|a|lin 1.005; canonical|a|NL 1.005; canonical|b|lin 1.004; canonical|b|NL 1.004; alt|a|lin 1.006; alt|a|NL 1.006; alt|b|lin 1.005; alt|b|NL 1.005  --  S3
+    WL4      AT RISK     cosmic shear: the gated phantoms' small-scale imprint moves a KiDS-like S8 read-off by canonical|e_in=0.0 +6.7%; canonical|e_in=0.01 +2.1%; canonical|e_in=0.03 -0.0%; alt|e_in=0.0 +7.7%; alt|e_in=0.01 +2.2%; alt|e_in=0.03 -0.0% (needs the in-region EFE computed, not assumed)  --  S4
+
+  3/5 checks pass; load-bearing failures: 2 ['K1', 'S1']; reported failures: none; wrote CFG3_web_lensing_results_MUTATE.json (53 s)
+rc = 1

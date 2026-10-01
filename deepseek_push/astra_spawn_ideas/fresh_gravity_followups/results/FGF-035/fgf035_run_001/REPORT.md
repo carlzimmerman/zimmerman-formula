@@ -1,0 +1,13 @@
+# FGF035 proof-only worker report
+
+The inherited coupled Q hydrostatic equations admit a local two-sided static crossing of zero signed MOND flux for finite prescribed phi, chi, chi prime and positive prescribed density. Signed flux B is a regular independent coordinate because B prime=C rho remains positive. The transformed system is continuous in B and uniformly locally Lipschitz in its dependent state even at B=0; inversion reconstructs a local solution in physical x.
+
+The physical field gradient has the leading cusp g=sgn(x) sqrt(a_* C rho_* |x|). The potential is C^(1,1/2) and W^(2,p) for p<2, but is not H2 across the crossing: its second derivative has a nonzero |x|^(−1/2) leading term. Density is C^(1,1/2), also not H2; the signed flux is C^(2,1/2), and the responsive scale is C^(3,1/2). These statements follow from the exact equations, not differentiation of an unbounded asymptotic error.
+
+There is no delta-function source: the constitutive flux is continuous and its derivative equals the continuous density source. The divergent potential curvature is not the source in this model. Field energy scales locally as |x|^(3/2), while the fluid/scale/interaction terms remain bounded, so total static energy is locally integrable.
+
+The full directional Hessian keeps the matter and scale couplings, including the signed mixed coefficient on the negative-gradient side. On legitimate phi-only localized tests its stiffness coefficient A decays as sqrt(|x|). Tests with fixed H1 derivative norm therefore have energy tending to zero, proving failure of any positive standard product-H1 coercivity constant. Each such test still has positive energy: this is not a negative-energy direction or a ghost/ill-posedness theorem.
+
+The previous positive-gradient H2 inverse and fixed-wall response proof cannot be applied unchanged. The present IVP induces its endpoint values and mass; it is not a family with arbitrarily prescribed walls or fixed mass, and it supplies no physical global potential V. A weighted variational/operator treatment of the full coupled model is the next separate mathematical obligation if this crossing is retained.
+
+No numerical computation or manifest was needed. All task and ancestor hashes were verified, and the proof was fixed without viewing the new root/auditor work. Both registered reference normalizations, constant-vacuum versus frozen/evolving-H hypotheses, Q versus open RAR transfer and absent M action, and the unresolved filtered-MONO metric/photon/DOF and calibration requirements remain explicit. This is conditional mathematical evidence about the diagnostic action, not physical theory closure.

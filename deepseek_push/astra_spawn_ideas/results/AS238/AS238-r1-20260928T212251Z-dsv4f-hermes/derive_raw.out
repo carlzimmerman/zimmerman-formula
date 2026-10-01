@@ -1,0 +1,33 @@
+TT check k.e row1: 0
+TT check k.e row2: 0
+TT check k.e row3: 0
+TT check trace: 0
+e2 = e_ij e_ij (TT): e11**2 + e22**2 + (e11 + e22)**2 + (e11*kx**2 + e11*kz**2 - e22*ky**2 + e22*kz**2)**2/(2*ky**2*kz**2) + (-e11*kx**2 + e11*kz**2 + e22*ky**2 + e22*kz**2)**2/(2*kx**2*kz**2) + (e11*kx**2 + e11*kz**2 + e22*ky**2 + e22*kz**2)**2/(2*kx**2*ky**2)
+
+LINEAR PIECE after EXACT TT (C-part, S-part): 0 , 0
+
+--- extracted coefficients (exact TT, generic k) ---
+A / [(M/8) a^3] = (e11**2*kx**6 + e22**2*ky**6 + 2*kx**2*ky**2*kz**2*(e11**2 + e11*e22 + e22**2) + kx**2*ky**2*(e11**2*kx**2 - 2*e11*e22*kx**2 - 2*e11*e22*ky**2 + e22**2*ky**2) + kx**2*kz**2*(3*e11**2*kx**2 + 3*e11**2*kz**2 + 2*e11*e22*kx**2 + 4*e11*e22*kz**2 + e22**2*kz**2) + ky**2*kz**2*(e11**2*kz**2 + 2*e11*e22*ky**2 + 4*e11*e22*kz**2 + 3*e22**2*ky**2 + 3*e22**2*kz**2) + kz**6*(e11**2 + 2*e11*e22 + e22**2))/(4*kx**2*ky**2*kz**2)
+D / [(M/8) a^3] = -(kx**2 + ky**2 + kz**2)*(6*H**2*M*a(t)**2 + 4*Hdot*M*a(t)**2 - 2*Lambda*M*a(t)**2 + M*kx**2 + M*ky**2 + M*kz**2 + 2*T*a(t)**2 - 2*V*a(t)**2 - 2*V0*a(t)**2)*(e11**2*kx**4 + 2*e11**2*kx**2*kz**2 + e11**2*kz**4 - 2*e11*e22*kx**2*ky**2 + 2*e11*e22*kx**2*kz**2 + 2*e11*e22*ky**2*kz**2 + 2*e11*e22*kz**4 + e22**2*ky**4 + 2*e22**2*ky**2*kz**2 + e22**2*kz**4)/(4*M*kx**2*ky**2*kz**2*a(t)**2)
+e2 = (kx**2 + ky**2 + kz**2)*(e11**2*kx**4 + 2*e11**2*kx**2*kz**2 + e11**2*kz**4 - 2*e11*e22*kx**2*ky**2 + 2*e11*e22*kx**2*kz**2 + 2*e11*e22*ky**2*kz**2 + 2*e11*e22*kz**4 + e22**2*ky**4 + 2*e22**2*ky**2*kz**2 + e22**2*kz**4)/(2*kx**2*ky**2*kz**2)
+
+A / A_canon = 1
+mass / [a^3 e2/2] (pre-Friedmann): -(3*H**2*M + 2*Hdot*M - Lambda*M + T - V - V0)/4
+mass after Friedmann: 0
+mass after Friedmann, occupied Lambda=0: 0
+
+EOM (per polarization): 3*H*M*a(t)**3*Derivative(q(t), t)/4 + M*a(t)**3*Derivative(q(t), (t, 2))/4 + (M*kx**2*a(t)/4 + M*ky**2*a(t)/4 + M*kz**2*a(t)/4)*q(t)
+coeff qddot / [(M/4) a^3] = 1
+coeff qdot  / [(M/4) a^3] = 3*H
+coeff q     / [(M/4) a^3] = (kx**2 + ky**2 + kz**2)/a(t)**2
+residual after extraction: 0
+frozen-coefficient symbol (q ~ e^{+iwt}): (3*I*H*w*a(t)**2 + kx**2 + ky**2 + kz**2 - w**2*a(t)**2)/a(t)**2
+dispersion roots: [3*I*H/2 - sqrt(-9*H**2*a(t)**2 + 4*kx**2 + 4*ky**2 + 4*kz**2)/(2*a(t)), 3*I*H/2 + sqrt(-9*H**2*a(t)**2 + 4*kx**2 + 4*ky**2 + 4*kz**2)/(2*a(t))]
+substitution-back residual per root: [0, 0]
+
+--- shear negative control ---
+kinetic clean: M*(2*kx**2*ky**2*kz**2*(e11**2 + e22**2 + (e11 + e22)**2) + kx**2*(e11*kx**2 + e11*kz**2 - e22*ky**2 + e22*kz**2)**2 + ky**2*(-e11*kx**2 + e11*kz**2 + e22*ky**2 + e22*kz**2)**2 + kz**2*(e11*kx**2 + e11*kz**2 + e22*ky**2 + e22*kz**2)**2)*a(t)**3/(32*kx**2*ky**2*kz**2)  with shear: (M + kappa)*(2*kx**2*ky**2*kz**2*(e11**2 + e22**2 + (e11 + e22)**2) + kx**2*(e11*kx**2 + e11*kz**2 - e22*ky**2 + e22*kz**2)**2 + ky**2*(-e11*kx**2 + e11*kz**2 + e22*ky**2 + e22*kz**2)**2 + kz**2*(e11*kx**2 + e11*kz**2 + e22*ky**2 + e22*kz**2)**2)*a(t)**3/(32*kx**2*ky**2*kz**2)
+speed^2 ratio: M/(M + kappa)  (kappa=0 -> 1 )
+residual of pure-Einstein w^2 = k^2/a^2 in shear-modified EOM: -kappa*(kx**2 + ky**2 + kz**2)/(8*a(t)**2)   (fires iff kappa != 0)
+
+wall time sympy: 29.8 s

@@ -1,0 +1,94 @@
+[0.1s] GamT built
+[0.5s] clock normal; unit check (trunc) = 0
+[2.7s] clock a, K built
+[3.5s] densities E_A, V_a, K^2, E_B2 built
+[3.6s] L2diag: 37 terms
+
+==============================================================================
+ANCHOR A (capability gate): pure Einstein  alpha=ell=c2=0
+==============================================================================
+  [PASS] A ladder regular  (dict)
+   static: Psi_k = -4*pi*rhok, Phi_k = 4*pi*rhok, s22_k = 0
+   U_amp = 4*pi
+  [PASS] A no-slip Psi + Phi = 0 (AS226 Psi = -Phi_t spelling)  (Psi_k + Phi_k = 0)
+  [PASS] A alpha_1 = 0 (Einstein limit: no preferred-frame response)  (a1 = 0)
+
+==============================================================================
+MAIN CELL C1 = (alpha=3/10, ell=1/25, c2=1/2, S->0)
+==============================================================================
+  [PASS] C1 regular  (dict)
+   static: Psi_k = -80*pi*rhok/17, Phi_k = 80*pi*rhok/17, s22_k = 0
+   U_amp = 80*pi/17
+   no-slip Psi_k + Phi_k = 0
+   alpha_1(C1) = 52/15  ~ 3.46666666667
+   measured-G normalization: G_N/G_bare = 1/c_N = 20/17 (AS226)
+   substitution-back residuals (original brackets, solved fields):
+  [PASS] C1b bracket     Psib: (wb^0, wb^1) residual = 0  ((0, 0))
+  [PASS] C1b bracket     Phib: (wb^0, wb^1) residual = 0  ((0, 0))
+  [PASS] C1b bracket      B2b: (wb^0, wb^1) residual = 0  ((0, 0))
+  [PASS] C1b bracket     s22b: (wb^0, wb^1) residual = 0  ((0, 0))
+  [PASS] C1b bracket       Fb: (wb^0, wb^1) residual = 0  ((0, 0))
+   clock-tie a = D F at wb^1 (F decoupled in the window; residual):
+   C1c a_0 = D_0F @ wb^1 : 0 (satisfied by the F-decoupling)
+   C1c note: a_1 - D_1F @ wb^1 = I*B2b*E_is*eps*k_x*w2*(-4*E_is*Phib*eps + 2*E_is*eps*s22b - 1) (F frozen)
+   C1c a_2 = D_2F @ wb^1 : 0 (satisfied by the F-decoupling)
+   C1c a_3 = D_3F @ wb^1 : 0 (satisfied by the F-decoupling)
+
+==============================================================================
+CLOSED FORM: alpha_1(alpha, c2) at exact rational cells
+==============================================================================
+   alpha=0, c2=0: alpha_1 = 0  (0)
+   alpha=0, c2=1/4: alpha_1 = 8/7  (1.142857143)
+   alpha=0, c2=1/2: alpha_1 = 8/3  (2.666666667)
+   alpha=1/10, c2=0: alpha_1 = 1/5  (0.2000000000)
+   alpha=1/10, c2=1/4: alpha_1 = 48/35  (1.371428571)
+   alpha=1/10, c2=1/2: alpha_1 = 44/15  (2.933333333)
+   alpha=3/10, c2=0: alpha_1 = 3/5  (0.6000000000)
+   alpha=3/10, c2=1/4: alpha_1 = 64/35  (1.828571429)
+   alpha=3/10, c2=1/2: alpha_1 = 52/15  (3.466666667)
+   alpha=1/2, c2=0: alpha_1 = 1  (1.000000000)
+   alpha=1/2, c2=1/4: alpha_1 = 16/7  (2.285714286)
+   alpha=1/2, c2=1/2: alpha_1 = 4  (4.000000000)
+   alpha=3/4, c2=0: alpha_1 = 3/2  (1.500000000)
+   alpha=3/4, c2=1/4: alpha_1 = 20/7  (2.857142857)
+   alpha=3/4, c2=1/2: alpha_1 = 14/3  (4.666666667)
+   alpha=1, c2=0: alpha_1 = 2  (2.000000000)
+   alpha=1, c2=1/4: alpha_1 = 24/7  (3.428571429)
+   alpha=1, c2=1/2: alpha_1 = 16/3  (5.333333333)
+   exact closed form with c2 SYMBOLIC (alpha = 3/10):
+   alpha_1(c2) = -2*(20*c2 + 3)/(5*(c2 - 2))
+   hypothesis: alpha_1 = 4(alpha + 2 c2)/(2 - c2);
+  [PASS] K closed form alpha_1 = 4(alpha + 2 c2)/(2 - c2) over all cells  (18 exact rational cells, alpha in {0,1/10,3/10,1/2,3/4,1}, c2 in {0,1/4,1/2})
+   limits: c2 -> 0: alpha_1 = 2 alpha (pure clock-origin response, khronon-like);
+   alpha -> 0: alpha_1 = 8 c2/(2 - c2) (trace-mixing channel alone);
+   Einstein limit alpha = c2 = 0: alpha_1 = 0 (no preferred-frame response).
+
+==============================================================================
+ell-independence of alpha_1 in the window (compensator vanishes, S->0)
+==============================================================================
+   ell=1/25: alpha_1 = 52/15
+  [PASS] Kell ell=1/25 window-independent (52/15)
+   ell=1/2: alpha_1 = 52/15
+  [PASS] Kell ell=1/2 window-independent (52/15)
+   ell=1: alpha_1 = 52/15
+  [PASS] Kell ell=1 window-independent (52/15)
+
+==============================================================================
+NEGATIVE CONTROL: alpha_1 = -4E (trace-mixing branch, NO action dictionary)
+==============================================================================
+   alpha_1(CA5-GNC-R; C1 = 3/10, 1/25, 1/2) = 52/15 ~ 3.466666667
+   alpha_1 + 4E = 4*E + 52/15
+  [PASS] N1 alpha_1 = -4E REJECTED at E=1/100  (residual = 3.506666667)
+  [PASS] N1 alpha_1 = -4E REJECTED at E=1/4  (residual = 4.466666667)
+  [PASS] N1 alpha_1 = -4E REJECTED at E=1  (residual = 7.466666667)
+  [PASS] N2 -4E candidate in ORIGINAL B2-bracket: residual != 0 (REJECTED)  (residual = 16*pi*rhok*w2*(-15*E - 13)/17 ~ -38.881829 at E=1/100)
+
+==============================================================================
+FOOTINGS (both a0 footings) and kappa back-check
+==============================================================================
+  [PASS] F canonical a0 = 9.3619e-11: rho_Lambda = 5.844412e-27 kg/m^3, kappa_back = 0.500000000
+  [PASS] F alternative a0 = 1.1279e-10: rho_Lambda = 8.483090e-27 kg/m^3, kappa_back = 0.500000000
+   alpha_1 is a dimensionless shift/Newtonian-potential ratio; both footings
+   give the same coefficient; G_N/G_bare = 1/c_N (AS226) scales amplitudes.
+
+all_pass: True  failures: []  total 3.9s

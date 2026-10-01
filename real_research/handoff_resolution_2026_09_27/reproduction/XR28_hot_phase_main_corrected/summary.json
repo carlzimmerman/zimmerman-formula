@@ -1,0 +1,29 @@
+{
+  "script": "real_research/cross_thread_review_2026_09_26/XR28_hot_phase.py",
+  "mutation": false,
+  "status": "failed",
+  "exit_code": 1,
+  "runtime_s": 313.371575208148,
+  "mirror": "/var/folders/66/fvmh_ndx2bj_y7k8v29wk3m40000gn/T/handoff-repro-ujfluce7/mirror",
+  "patch": {
+    "source": "real_research/cross_thread_review_2026_09_26/XR28_common.py",
+    "old_sha256": "48e3085f5235968f962d6f7a1869de69c3a8292f87cb39fa2b34ef4e50634d4a",
+    "new_sha256": "c01069cfd3b7f57b177f56a216172b5fbc06e3dc0b2571d82a83a185ce65ad54",
+    "substitutions": [
+      [
+        "(0.43 * k * s / h)",
+        "(0.43 * k * s)"
+      ],
+      [
+        "q = k * th * th / ge",
+        "q = (k / h) * th * th / ge"
+      ]
+    ],
+    "basis": "FP24 fix_block: physical k in Mpc^-1 requires k/h in q and no /h in k*s."
+  },
+  "source_sha256_before": "05da721a876cc194127f33b292b4c4f663fe2f36901a64900fd94468cd8360ab",
+  "source_sha256_after": "05da721a876cc194127f33b292b4c4f663fe2f36901a64900fd94468cd8360ab",
+  "differences": {
+    "XR28_hot_phase_results.json": 1474
+  }
+}

@@ -1,0 +1,146 @@
+V01_chord_moment_2d.lean:117:59: warning: Variable name `hs` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hs
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+V01_chord_moment_2d.lean:118:5: warning: Variable name `ht` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ht
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+V01_chord_moment_2d.lean:126:12: warning: This simp argument is unused:
+  Real.volume_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+V01_chord_moment_2d.lean:144:6: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+V01_chord_moment_2d.lean:144:43: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+V01_chord_moment_2d.lean:138:64: warning: Variable name `hf` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hf
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+V01_chord_moment_2d.lean:162:6: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+V01_chord_moment_2d.lean:162:42: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+V01_chord_moment_2d.lean:157:51: warning: Variable name `hg` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hg
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+V01_chord_moment_2d.lean:248:17: warning: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+V01_chord_moment_2d.lean:246:18: warning: This simp argument is unused:
+  Real.volume_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'V01.step4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.final_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.peel_r' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.peel_v' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.step2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.inner_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+V01_chord_moment_2d.lean:405:4: error: linarith failed to find a contradiction
+r v : ℝ
+hr0 : 0 ≤ r
+hr1 : r ≤ 1
+hv : |v| ≤ 1
+hr2 : r ^ 2 ≤ 1
+h1 : |v| ≤ 1
+a✝ : 1 < v ^ 2
+⊢ False
+failed
+V01_chord_moment_2d.lean:410:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  |1 - r ^ 2 + v ^ 2|
+in the target expression
+  r * |√(1 - r ^ 2 + v ^ 2)| ≤ √2
+
+r v : ℝ
+hr0 : 0 ≤ r
+hr1 : r ≤ 1
+hv : |v| ≤ 1
+hr2 : r ^ 2 ≤ 1
+hv2 : v ^ 2 ≤ 1
+hpos : 0 ≤ 1 - r ^ 2 + v ^ 2
+⊢ r * |√(1 - r ^ 2 + v ^ 2)| ≤ √2
+V01_chord_moment_2d.lean:417:4: error: Type mismatch
+  htri
+has type
+  |tri r v| ≤ √2
+but is expected to have type
+  |tri r v| ≤ 2
+V01_chord_moment_2d.lean:419:2: error: No goals to be solved
+V01_chord_moment_2d.lean:424:4: error: Type mismatch
+  MeasurableSet.inter (measurableSet_lt measurable_snd measurable_fst) (measurableSet_le measurable_snd measurable_fst)
+has type
+  MeasurableSet ({a | a.2 < a.1} ∩ {a | a.2 ≤ a.1})
+but is expected to have type
+  MeasurableSet {p | -p.1 < p.2 ∧ p.2 ≤ p.1}
+V01_chord_moment_2d.lean:430:39: warning: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+V01_chord_moment_2d.lean:432:11: error(lean.invalidField): Invalid field `indicator`: The environment does not contain `MeasurableSpace.GenerateMeasurable.indicator`, so it is not possible to project the field `indicator` from an expression
+  hs
+of type
+  MeasurableSpace.GenerateMeasurable
+    ((fun m => {t | MeasurableSet t}) (MeasurableSpace.comap Prod.fst Real.measurableSpace) ⊔
+      (fun m => {t | MeasurableSet t}) (MeasurableSpace.comap Prod.snd Real.measurableSpace))
+    {p | -p.1 < p.2 ∧ p.2 ≤ p.1}
+V01_chord_moment_2d.lean:445:7: error: unknown tactic
+V01_chord_moment_2d.lean:442:10: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (MeasureTheory.Measure.prod ?m.89 ?m.90) (?m.100 ×ˢ ?m.109)
+in the target expression
+  MeasureTheory.volume (Ioc 0 1 ×ˢ Ioc (-1) 1) < ⊤
+
+case right.refine_1
+⊢ MeasureTheory.volume (Ioc 0 1 ×ˢ Ioc (-1) 1) < ⊤
+V01_chord_moment_2d.lean:441:2: error: unsolved goals
+case right.refine_2
+⊢ ∀ᵐ (x : ℝ × ℝ) ∂MeasureTheory.volume.restrict (Ioc 0 1 ×ˢ Ioc (-1) 1), ‖G x.1 x.2‖ ≤ 2
+V01_chord_moment_2d.lean:461:20: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  r ^ 2 * ∫ (μ : ℝ) in -1..1, √(1 - r ^ 2 + r ^ 2 * μ ^ 2)
+in the target expression
+  r ^ 2 * (1 / 2 * ∫ (μ : ℝ) in -1..1, √(1 - r ^ 2 + r ^ 2 * μ ^ 2)) = 1 / 2 * ∫ (v : ℝ) in -r..r, tri r v
+
+r : ℝ
+hr : 0 ≤ r ∧ r ≤ 1
+⊢ r ^ 2 * (1 / 2 * ∫ (μ : ℝ) in -1..1, √(1 - r ^ 2 + r ^ 2 * μ ^ 2)) = 1 / 2 * ∫ (v : ℝ) in -r..r, tri r v
+V01_chord_moment_2d.lean:476:39: error: `fun_prop` was unable to prove `Continuous (tri r)`
+
+Issues:
+  No theorems found for `V01.tri` in order to prove `Continuous fun v => tri r v`
+V01_chord_moment_2d.lean:483:9: error(lean.unknownIdentifier): Unknown identifier `le_or_lt`
+V01_chord_moment_2d.lean:483:27: error: Tactic `rcases` failed: `x✝ : ?m.29` is not an inductive datatype
+V01_chord_moment_2d.lean:518:11: error: Tactic `rcases` failed: `hr : (r ∈ uIoc 0 1 → G r v = (Ici |v|).indicator (fun x => tri x v) r) →
+  False` is not an inductive datatype
+V01_chord_moment_2d.lean:523:45: error: `fun_prop` was unable to prove `Continuous fun x => tri x v`
+
+Issues:
+  No theorems found for `V01.tri` in order to prove `Continuous fun x => tri x v`
+V01_chord_moment_2d.lean:516:18: warning: This simp argument is unused:
+  Real.volume_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+V01_chord_moment_2d.lean:533:9: error: typeclass instance problem is stuck
+  NormedSpace ℝ ?m.13
+
+Note: Lean will not try to resolve this typeclass instance problem because the second and fourth type arguments to `NormedSpace` contain metavariables. These arguments must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+'V01.step2_all' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.J_as_G' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.G_measurable' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.G_integrable' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.G_eq_or_edge' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.inner_flip' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.J_swap' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.J_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.chord_moment_main' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

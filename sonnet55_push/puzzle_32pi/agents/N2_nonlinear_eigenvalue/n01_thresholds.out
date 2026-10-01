@@ -1,0 +1,97 @@
+PASS menu hash matches declared 4ed1cc407c91
+
+== T1/T2: fold and source range ==
+simple           monotone=True  turns=[]
+standard         monotone=True  turns=[]
+mu_n=1.5         monotone=True  turns=[]
+mu_n=3           monotone=True  turns=[]
+mu_n=4           monotone=True  turns=[]
+mu_n=6           monotone=True  turns=[]
+exponential      monotone=True  turns=[]
+OR N=2           monotone=True  turns=[]
+OR N=3           monotone=True  turns=[]
+RAR              monotone=True  turns=[]
+DBI-BI           monotone=True  turns=[]
+cubic Gal c=+1   monotone=False  turns=[(-0.4988, -0.25)]
+cubic Gal c=-1   monotone=False  turns=[(0.5023, 0.25)]
+PASS simple: S monotone on signed g (no fold, regular solution for every source s)
+PASS standard: S monotone on signed g (no fold, regular solution for every source s)
+PASS mu_n=1.5: S monotone on signed g (no fold, regular solution for every source s)
+PASS mu_n=3: S monotone on signed g (no fold, regular solution for every source s)
+PASS mu_n=4: S monotone on signed g (no fold, regular solution for every source s)
+PASS mu_n=6: S monotone on signed g (no fold, regular solution for every source s)
+PASS exponential: S monotone on signed g (no fold, regular solution for every source s)
+PASS OR N=2: S monotone on signed g (no fold, regular solution for every source s)
+PASS OR N=3: S monotone on signed g (no fold, regular solution for every source s)
+PASS RAR: S monotone on signed g (no fold, regular solution for every source s)
+PASS DBI-BI: S monotone on signed g (no fold, regular solution for every source s)
+PASS Galileon c=+1: fold at g=-1/2, s=-1/4 (analytic), repulsive side
+PASS Galileon c=-1: fold at g=+1/2, s=+1/4 (analytic), attractive side
+PASS CONTROL planted non-monotone S is flagged (would FAIL if detector were blind)
+
+== P1 profile scans: does a regular solution exist for all r in (0,L]?  (a0=1,H=Z,L=1/Z) ==
+Z=0.1     standard:OK  OR N=2:OK  RAR:OK  DBI-BI:OK  cubic Gal c=+1:OK  cubic Gal c=-1:OK
+Z=0.25    standard:OK  OR N=2:OK  RAR:OK  DBI-BI:OK  cubic Gal c=+1:fail@r/L=1  cubic Gal c=-1:OK
+Z=1       standard:OK  OR N=2:OK  RAR:OK  DBI-BI:OK  cubic Gal c=+1:fail@r/L=0.2505  cubic Gal c=-1:OK
+Z=5.7888  standard:OK  OR N=2:OK  RAR:OK  DBI-BI:OK  cubic Gal c=+1:fail@r/L=0.04322  cubic Gal c=-1:OK
+PASS Galileon c=+1 vacuum: r_fail/L = 1/(4Z) (to grid)
+PASS Galileon c=+1 vacuum global solution exists iff Z<=1/4 (a0>=4H): Z=0.25 ok, Z=0.26 fails
+PASS MUTATE: flipping Lambda to attractive removes the c=+1 fold
+PASS c=-1 vacuum (repulsive s<0, fold at s=+1/4) never fails; with mass fails at small r, r_fail^2 ~ 4M/a0
+PASS   c=-1 r_fail equals the root of M/r^2 - Z^2 r = 1/4 (0.028719 vs 0.02872); for Z->0 it is sqrt(4M/a0)
+PASS standard: regular solution to the horizon for all tested (Z,M)
+PASS simple: regular solution to the horizon for all tested (Z,M)
+PASS OR N=2: regular solution to the horizon for all tested (Z,M)
+PASS RAR: regular solution to the horizon for all tested (Z,M)
+PASS DBI-BI: regular solution to the horizon for all tested (Z,M)
+
+== T4: y_h=1  => Z_T4 = S(1) = mu(1);   T9: transition centre (max dln mu/dln y) ==
+simple       Z_T4=0.5000  dlnmu/dlny monotone decreasing 1->0 (T9 transition centre degenerate=True)
+PASS T9 (declared 'transition centre' extremum) is degenerate for all families: extremum sits on the boundary
+standard     Z_T4=0.7071  dlnmu/dlny monotone decreasing 1->0 (T9 transition centre degenerate=True)
+PASS T9 (declared 'transition centre' extremum) is degenerate for all families: extremum sits on the boundary
+mu_n=1.5     Z_T4=0.6300  dlnmu/dlny monotone decreasing 1->0 (T9 transition centre degenerate=True)
+PASS T9 (declared 'transition centre' extremum) is degenerate for all families: extremum sits on the boundary
+mu_n=3       Z_T4=0.7937  dlnmu/dlny monotone decreasing 1->0 (T9 transition centre degenerate=True)
+PASS T9 (declared 'transition centre' extremum) is degenerate for all families: extremum sits on the boundary
+mu_n=4       Z_T4=0.8409  dlnmu/dlny monotone decreasing 1->0 (T9 transition centre degenerate=True)
+PASS T9 (declared 'transition centre' extremum) is degenerate for all families: extremum sits on the boundary
+mu_n=6       Z_T4=0.8909  dlnmu/dlny monotone decreasing 1->0 (T9 transition centre degenerate=True)
+PASS T9 (declared 'transition centre' extremum) is degenerate for all families: extremum sits on the boundary
+exponential  Z_T4=0.6321  dlnmu/dlny monotone decreasing 1->0 (T9 transition centre degenerate=True)
+PASS T9 (declared 'transition centre' extremum) is degenerate for all families: extremum sits on the boundary
+OR N=2       Z_T4=0.5556  dlnmu/dlny monotone decreasing 1->0 (T9 transition centre degenerate=True)
+PASS T9 (declared 'transition centre' extremum) is degenerate for all families: extremum sits on the boundary
+OR N=3       Z_T4=0.5781  dlnmu/dlny monotone decreasing 1->0 (T9 transition centre degenerate=True)
+PASS T9 (declared 'transition centre' extremum) is degenerate for all families: extremum sits on the boundary
+RAR          Z_T4=0.5106  dlnmu/dlny monotone decreasing 1->0 (T9 transition centre degenerate=True)
+PASS T9 (declared 'transition centre' extremum) is degenerate for all families: extremum sits on the boundary
+PASS simple mu(1)=1/2, standard 1/sqrt2 (closed forms)
+T6: Z=sqrt3 for M_c=M_Nariai (M_c=L/Z^3, M_N=L/(3sqrt3))
+PASS T6 algebra: sqrt(M/a0)=(M L^2)^(1/3) => M=L/Z^3 ; M_c/M_N=3sqrt3/Z^3=0.0268 at Z=5.7888
+
+== T7 DBI-BI speed limit and T5 observer transition ==
+DBI-BI vacuum horizon field g_h/a0: [0.099504 0.707107 0.985405 0.99995  1.      ]  (limit 1, never reached)
+PASS DBI-BI g_h<1 for every Z (no speed-limit breakdown; also no MOND regime: g->a0 = constant force)
+T5 r_t/L = 1/sqrt(1+Z^2) at Z=5.7888: 0.17022613072986614
+
+== T8 FRW dS attractor, quasi-static perturbation: delta'' + 2H delta' = 4piG rho delta / S'(g) ==
+standard  y0=0.1   delta(a=1e3)=1.252 delta(a=1e4)=1.252  ratio=1.00000
+PASS standard y0=0.1: delta tends to a constant in the dS attractor (ratio-1<1e-2)
+standard  y0=10.0  delta(a=1e3)=1.094 delta(a=1e4)=1.094  ratio=1.00000
+PASS standard y0=10.0: delta tends to a constant in the dS attractor (ratio-1<1e-2)
+RAR       y0=0.1   delta(a=1e3)=1.298 delta(a=1e4)=1.298  ratio=1.00000
+PASS RAR y0=0.1: delta tends to a constant in the dS attractor (ratio-1<1e-2)
+RAR       y0=10.0  delta(a=1e3)=1.095 delta(a=1e4)=1.095  ratio=1.00000
+PASS RAR y0=10.0: delta tends to a constant in the dS attractor (ratio-1<1e-2)
+PASS T8 k-essence fixed point needs P_X=0 (mu=F'=0) at X*>0; every monotone family has mu>0: none
+
+== Decoy control (declared recipe) ==
+menu values: [0.5   0.707 0.63  0.794 0.841 0.891 0.632 0.556 0.578 0.511 1.732 0.25
+ 4.   ]
+hits (within 10% of any target after normalisation factors): 5 of 13 ['standard', 'mu_n=1.5', 'mu_n=3', 'mu_n=4', 'exponential']
+decoy hit rate (log-uniform [0.2,30]): 0.5579
+PASS decoy hit rate is large (>40%): a hit from this menu is uninformative
+PASS MUTATE decoy without normalisation-factor freedom: rate drops (control of the inflation)
+
+PASS 45 FAIL 0

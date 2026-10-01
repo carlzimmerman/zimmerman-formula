@@ -1,0 +1,40 @@
+PASS 1 SdS horizon: 1 - 2 kappa_f r = Lambda r^2 (kappa_f=f'/2, f=1-2M/r-Lambda r^2/3, f(r)=0)
+PASS 2 shell-free junction f_in=1-2M/R, f_out=1-Lambda R^2/3: R^3 = 6M/Lambda
+PASS 3 Einstein-Straus radius is Lambda-independent: M=(4 pi/3) rho_m R^3 (Lambda cancels between interior and FRW)
+PASS 4 r_J = r_ES(rho_m = rho_L) exactly (Lambda=8 pi rho_L)
+PASS 5 mean density inside r_ZF = Lambda/4pi = 2 rho_L (rho+3p of dust 2rho_L cancels the vacuum -2 rho_L): so r_ZF = r_ES(w=2) exactly
+PASS 6 numeric: (3M/Lambda)^(1/3) = ES radius for w=2 (L=1: 3M/(4 pi 2 Lambda/8pi)=3M/Lambda)
+PASS 7 horizon equation numerically, 30 masses: kappa_b r_b=(1-3 r_b^2)/2, kappa_c r_c=(3 r_c^2-1)/2 (signed f'/2 convention) 
+G12 roots of |1-3x^2|=1 : [sqrt(6)/3]
+   |kappa_c| r_c = 1/2 at r_c^2 Lambda = 2: r_c/L=0.816497, M/M_N = sqrt(2)/2 = 0.707107
+PASS 8 G12: BH horizon has kappa_f r = 1/2 only as Lambda r_b^2 -> 0 (M->0); cosmological horizon has |kappa_c| r_c = 1/2 exactly at r_c^2 Lambda = 2, M = M_N/sqrt2 (value 2, not 8 pi)
+PASS 9 horizon-radius bounds r_b^2 Lambda <= 1, r_c^2 Lambda <= 3 (independent of Killing normalisation) so 8 pi is unreachable by any SdS horizon (max 0.8868, 2.9942 vs 25.13)
+PASS 10 G13: SdS horizons exist iff r_s^2 Lambda < 4/9 (= 12 M^2 Lambda... M<M_N); the puzzle r_s^2 Lambda=8 pi is 56.5 times above this bound
+
+COINCIDENCES (L=1; r^2 Lambda = 3 r^2):
+  r_s = r_b : none for M>0 (b,c exist only M<M_N)
+  r_s = r_c : none for M>0 (b,c exist only M<M_N)
+  r_s = r_zf : M/M_N = 1.837117, r^2 Lambda = 1.500000, algebraic poly(M)=[-8, 0, 1]
+  r_s = r_j : M/M_N = 2.598076, r^2 Lambda = 3.000000, algebraic poly(M)=[-2, 1]
+  r_b = r_c : M/M_N = 1.000000, r^2 Lambda = 1.000000, algebraic poly(M)=[27, 0, -1]
+  r_b = r_zf : M/M_N = 1.000000, r^2 Lambda = 1.000000, algebraic poly(M)=[27, 0, -1]
+  r_b = r_j : none for M>0 (b,c exist only M<M_N)
+  r_c = r_zf : M/M_N = 1.000000, r^2 Lambda = 1.000000, algebraic poly(M)=[27, 0, -1]
+  r_c = r_j : M/M_N = 0.918559, r^2 Lambda = 1.500000, algebraic poly(M)=[-32, 0, 1]
+  r_zf = r_j : none for M>0 (b,c exist only M<M_N)
+PASS 11 every coincidence mass is algebraic (findpoly deg<=6) -> r^2 Lambda algebraic, never 8 pi (transcendental)
+PASS 12 no coincidence gives r^2 Lambda within 0.25 of 8 pi
+PASS 13 control: findpoly CANNOT find an algebraic relation for 8 pi/3 at the same settings (the detector discriminates)
+
+Exact points: r_s=r_J -> M=1/2 (2.598 M_N), r_s=L; r_s=r_ZF -> M=1/(2 sqrt2) (1.837 M_N), r^2 Lambda=3/2 ; r_J=r_c -> r_c^2=1/2
+PASS 14 r_s=r_J at M=1/2: r_s^2 Lambda=3 (the Hubble-radius hole); r_s=r_ZF at M^2=1/8: r_s^2 Lambda=3/2; both are above M_N (no SdS horizon)
+
+Mass needed for each radius to satisfy r^2 Lambda = 8 pi, and radii at that mass (L=1):
+  r_s          M=1.4472 L = 7.52 M_N : r_s=2.8944 r_ZF=1.1311 r_J=1.4251 (L)
+  r_ZF         M=24.2481 L = 126.00 M_N : r_s=48.4962 r_ZF=2.8944 r_J=3.6467 (L)
+  r_J=r_ES(1)  M=12.1241 L = 63.00 M_N : r_s=24.2481 r_ZF=2.2973 r_J=2.8944 (L)
+PASS 15 at the mass where r_s^2 Lambda = 8 pi, the shell-free junction radius r_J=1.425 L is INSIDE r_s=2.894 L (junction would sit inside the horizon): no consistent vacuole with w=1
+PASS 16 mutation: if Lambda were 4 pi rho (wrong coupling) r_J=ES(w=1) identity (check 4) fails
+PASS 17 G11: de Sitter-regular normalisation kappa_BH(c)=H holds only at M=0 (min over M>0 of kappa_BH(c)/H = 1.030957 > 1)
+
+17/17

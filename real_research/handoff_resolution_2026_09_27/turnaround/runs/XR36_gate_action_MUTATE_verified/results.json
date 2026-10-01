@@ -1,0 +1,762 @@
+{
+ "lane": "XR36",
+ "part": "1: the gate as an action term",
+ "mutate": true,
+ "checks": {
+  "K1": {
+   "ok": true,
+   "measured": "det = 16*k2**3*(B*C**2*C_T*W2*Wbar*k2 + B*C**2*W2*k2 - 4); zero k^2 = [4/(B*C**2*W2*(C_T*Wbar + 1))]; local term -pi*G*delta_rho*e*(C_T*Wbar + 1)**2; all equal to FP3's committed strings: True",
+   "load_bearing": true,
+   "name": "K1 CONTROL (FP3 C1): this lane's static-symbol engine, given FP3's density-read gate (B W'' (C lap phi)^2/2 on the C-H bracket), reproduces FP3's committed determinant, its zero, the Newtonian response and the gate's local (anti-pressure) term"
+  },
+  "K2": {
+   "ok": true,
+   "measured": "max relative deviation 0.0e+00; c_gate_max 576-3741 km/s, Gamma/H 1.3e+03-4.9e+04",
+   "load_bearing": true,
+   "name": "K2 CONTROL (DE12): DE12's transition() (definitions loaded unedited, XR18's recipe) reproduces DE12's committed c_gate_max and Gamma(1/kpc)/H of its density-read gate on all 24 layers"
+  },
+  "K3": {
+   "ok": true,
+   "measured": "q >= 0: True; stiffness: True; yield: True; band-pass I_min = 0.009261057103834824",
+   "load_bearing": true,
+   "name": "K3 THE SIGN (all four formulations): at fixed fields the MOND sector's contribution to the Lagrangian is LARGEST when MOND is on -- QUMOND's +q W with q >= 0 (MOND on = W = 1); the AQUAL stiffness -s Y and the yield -2 y sqrt(Y) fall as the switch closes; FP19 A2's committed dS/dB = V 4 pi G rho^2 I(B) with I > 0 (opening the band-pass adds binding)"
+  },
+  "A1": {
+   "ok": false,
+   "measured": "1-D residual B*W2*sigma*(a11**2*rho_0**2 - b11**2)/2; 3-D residual B*sigma*(-2*W1*a11*a22*rho_0 - 2*W1*a11*a33*rho_0 - 2*W1*a11*b22 - 2*W1*a11*b33 + 2*W1*a12*a21*rho_0 + 2*W1*a12*b21 + 2*W1*a13*a31*rho_0 + 2*W1*a13*b31 + 2*W1*a21*b12 - 2*W1*a22*a33*rho_0 - 2*W1*a22*b11 - 2*W1*a22*b33 + 2*W1*a23*a32*rho_0 + 2*W1*a23*b32 + 2*W1*a31*b13 + 2*W1*a32*b23 - 2*W1*a33*b11 - 2*W1*a33*b22 + W2*a11**2*rho_0**2 + 2*W2*a11*a22*rho_0**2 + 2*W2*a11*a33*rho_0**2 + W2*a22**2*rho_0**2 + 2*W2*a22*a33*rho_0**2 + W2*a33**2*rho_0**2 - W2*b11**2 - 2*W2*b11*b22 - 2*W2*b11*b33 - W2*b22**2 - 2*W2*b22*b33 - W2*b33**2)/2; null Lagrangian True; Hubble-flow delta theta True",
+   "load_bearing": true,
+   "name": "A1 [H1, HEADLINE; MUTATE must fail] THE STATIC SECTOR IS UNTOUCHED: expanded to second order in the displacement about a static background (1-D and 3-D, sympy) the gate term sigma B J W(J-dot/J) contributes exactly (1/2) sigma B W'' (div xi-dot)^2 plus W0 x a null Lagrangian plus W' x its time derivative -- no potential (static) term; on a Hubble-flow background delta theta = div xi-dot (Lagrangian frame).  FP3 C1's static symbol gains no gate term and DE12's c_gate^2 = rho_b S is 0"
+  },
+  "A2": {
+   "ok": true,
+   "measured": "omega^2 = rho_b*(c_s2*k**2 - fourpiGrho)/(L_thth*k**2 + rho_b); pole at k^2 = -rho_b/L_thth: True",
+   "load_bearing": true,
+   "name": "A2 [H2] THE KINETIC SECTOR: the longitudinal (compressive) mode has kinetic coefficient m(k) = rho_b + L_thth k^2 with L_thth = sigma B W''_theta, potential K(k) = rho_b (c_s^2 k^2 - 4 pi G rho) (the gate adds nothing to K: A1); omega^2 = K/m has a POLE at k_g^2 = -rho_b/L_thth wherever L_thth < 0 -- the stability rule is the MIRROR of FP3 C1 (density gates: W concave in rho; theta gates: L convex in theta)"
+  },
+  "A3": {
+   "ok": true,
+   "measured": "Delta_x 0.01: min W'' -9.84e+04 at x = 0.002; Delta_x 0.1: min W'' -9.84e+02 at x = 0.022; Delta_x 0.3: min W'' -1.09e+02 at x = 0.065; Delta_x 1.0: min W'' -9.84e+00 at x = 0.218; Delta_x 3.0: min W'' -1.09e+00 at x = 0.655; ramp kinks -1.00 (x = 0), +1.00 (x = 1); forms min L'' QUMOND -9.84e+00, AQUAL -4.92e+01, yield -1.97e-01, band-pass -9.84e+00",
+   "load_bearing": true,
+   "name": "A3 [H3] THE MIRROR LEMMA: with sigma = +1 (K3) a gate flat on the turned-around side (theta <= 0) and lower on the expanding side makes L_g(theta) flat-then-decreasing, hence NOT convex: L_g'' < 0 just above theta = 0 -- on DE12's C-inf step at every width (-> -oo in the sharp limit), on the linear ramp (a concave kink at theta = 0: W' jumps by -1; its convex kink sits at the Hubble flow) and in all four formulations (QUMOND, AQUAL stiffness, yield, band-pass)"
+  },
+  "A4": {
+   "ok": false,
+   "measured": "ghost at 1/kpc on 24/24 layers; 1/k_g on the layers 132.2-1756.0 kpc; Gamma(1/kpc) 0.7-4.7 H (DE12's density gate 1.3e3-4.9e4 H)",
+   "load_bearing": true,
+   "name": "A4 [H4] DE12's OWN 24 LAYERS (same gas, same MOND energy B = a0^2 q(y)/(8 pi G), both footings): with the gate at its natural width Delta_x = 1 the compressive velocity symbol is NEGATIVE at k = 1/kpc on every layer (a ghost at DE12's own scale), the pole sits at 1/k_g <= 1 Mpc on every layer, and the static c_gate is 0 (A1)"
+  },
+  "A5": {
+   "ok": true,
+   "measured": "0.25/1e+11/canonical: Gamma(1.001 k_g) = 3.8e+01 H; 0.25/1e+11/alt: Gamma(1.001 k_g) = 3.8e+01 H; 2.5/1e+11/canonical: Gamma(1.001 k_g) = 2.8e+01 H",
+   "load_bearing": false,
+   "name": "A5 (reported) THE POLE: next to k_g the growth rate of the pressure-supported gas exceeds any bound (Gamma -> oo as k -> k_g+), so the linearised evolution is not bounded in any norm -- the XR18 standard (a symbol that changes sign) calls this ill posed; the sharp theta = 0 gate is the limit Delta_x -> 0, where k_g -> 0 (the whole layer is ghost-like)"
+  },
+  "A6": {
+   "ok": true,
+   "measured": "(a) f_acc allowed <= 0.077-0.190 x Delta_x; (b) R_min galaxies (1e10-1e11, all z) 0.084-0.546 Mpc, 1e12 0.261-1.065 Mpc, 1e14 cluster 7.37-7.75 Mpc",
+   "load_bearing": true,
+   "name": "A6 [H5] THE WELL-POSED VERSIONS COST THE GATE ITS PURPOSE: (a) the convex (unsaturated) gate is healthy but multiplies MOND by 1 + |x|/Delta_x in contracting hosts, so SPARC's 0.01 dex needs accretion below ~0.07 Delta_x per Hubble time in every SPARC host; (b) filtering the argument on a heat-kernel length R is healthy iff R >= R_min, which spans galaxy layers to clusters -- no single R keeps every layer healthy and stays below an isolated galaxy's turnaround radius"
+  },
+  "A7": {
+   "ok": true,
+   "measured": "2 v_k/r / <K>_h at 0.3 / 1 / 3 Mpc (600 km/s): 17.4 / 5.2 / 1.7",
+   "load_bearing": false,
+   "name": "A7 [H6] (reported) MS1: at the baryons' switch-on surface theta_b = 0, so a total-matter reading adds f_d x 2 v_k/r > 0 from any outstreaming daughter fraction f_d and pushes the switch-on inward; 2 v_k/r exceeds <K>_h by the printed factors -- the total-matter gate turns MOND off around galaxies after their carrier converts (a leak into the wrong region); the gate reads the BARYON flow (part 2 prices the shift of the switch-on radius)"
+  },
+  "A8": {
+   "ok": true,
+   "measured": "0.25/1e+10/canonical: force/gravity 4.6e-02, feedback 2.0e+00 H; 0.25/1e+11/canonical: force/gravity 6.5e-02, feedback 1.9e+00 H; 0.25/1e+12/canonical: force/gravity 8.1e-02, feedback 1.8e+00 H; 2.5/1e+11/canonical: force/gravity 1.4e-01, feedback 1.4e+01 H",
+   "load_bearing": false,
+   "name": "A8 (reported) the gate's FIRST-order effects: its own force (d/dt of grad(B W')) and the feedback of the switch on the flow's expansion (more expansion -> less MOND -> more expansion) at the switch-on layer -- the printed ratios; a Hubble-time switch, not an ill-posedness"
+  }
+ },
+ "numbers": {
+  "K1": {
+   "det": "16*k2**3*(B*C**2*C_T*W2*Wbar*k2 + B*C**2*W2*k2 - 4)",
+   "zero": "[4/(B*C**2*W2*(C_T*Wbar + 1))]",
+   "local": "-pi*G*delta_rho*e*(C_T*Wbar + 1)**2"
+  },
+  "K2": {
+   "0.25/1e+10/canonical": {
+    "c_gate": 1526169.663408363,
+    "Gamma_over_H": 19820.49479645704,
+    "r_edge_kpc": 767.6069303912268
+   },
+   "0.25/1e+10/alt": {
+    "c_gate": 1691390.9304525757,
+    "Gamma_over_H": 21978.36046223407,
+    "r_edge_kpc": 803.6034764231235
+   },
+   "0.25/1e+11/canonical": {
+    "c_gate": 2235367.4907267606,
+    "Gamma_over_H": 29076.91404443589,
+    "r_edge_kpc": 1372.9307065177638
+   },
+   "0.25/1e+11/alt": {
+    "c_gate": 2456660.356336827,
+    "Gamma_over_H": 31963.00589490002,
+    "r_edge_kpc": 1436.2847326523006
+   },
+   "0.25/1e+12/canonical": {
+    "c_gate": 3435985.10042231,
+    "Gamma_over_H": 44729.716026738424,
+    "r_edge_kpc": 2469.3397951294696
+   },
+   "0.25/1e+12/alt": {
+    "c_gate": 3741208.1860559196,
+    "Gamma_over_H": 48707.561911009136,
+    "r_edge_kpc": 2579.792986372766
+   },
+   "1.0/1e+10/canonical": {
+    "c_gate": 1017628.202118111,
+    "Gamma_over_H": 8393.794601839769,
+    "r_edge_kpc": 315.00347140640747
+   },
+   "1.0/1e+10/alt": {
+    "c_gate": 1106870.208168927,
+    "Gamma_over_H": 9139.403698458409,
+    "r_edge_kpc": 329.38454682194765
+   },
+   "1.0/1e+11/canonical": {
+    "c_gate": 1642196.3626414356,
+    "Gamma_over_H": 13601.531512376194,
+    "r_edge_kpc": 568.4329604117785
+   },
+   "1.0/1e+11/alt": {
+    "c_gate": 1772168.0467784076,
+    "Gamma_over_H": 14683.34151264512,
+    "r_edge_kpc": 593.3804019789931
+   },
+   "1.0/1e+12/canonical": {
+    "c_gate": 2726349.7378062303,
+    "Gamma_over_H": 22617.916212615048,
+    "r_edge_kpc": 1038.4323886828065
+   },
+   "1.0/1e+12/alt": {
+    "c_gate": 2933052.3075049426,
+    "Gamma_over_H": 24335.79725013855,
+    "r_edge_kpc": 1080.9224258998925
+   },
+   "2.5/1e+10/canonical": {
+    "c_gate": 705801.1940407053,
+    "Gamma_over_H": 2747.8180662638856,
+    "r_edge_kpc": 74.69898300694953
+   },
+   "2.5/1e+10/alt": {
+    "c_gate": 753932.7221578455,
+    "Gamma_over_H": 2940.350765427333,
+    "r_edge_kpc": 77.7176065711075
+   },
+   "2.5/1e+11/canonical": {
+    "c_gate": 1187795.602260736,
+    "Gamma_over_H": 4666.601571191324,
+    "r_edge_kpc": 139.13359346677265
+   },
+   "2.5/1e+11/alt": {
+    "c_gate": 1276767.4032982695,
+    "Gamma_over_H": 5019.474279132467,
+    "r_edge_kpc": 144.17331851905277
+   },
+   "2.5/1e+12/canonical": {
+    "c_gate": 1921084.2552867858,
+    "Gamma_over_H": 7570.45971796391,
+    "r_edge_kpc": 265.09571854178614
+   },
+   "2.5/1e+12/alt": {
+    "c_gate": 2081798.6522587077,
+    "Gamma_over_H": 8206.068458328657,
+    "r_edge_kpc": 273.348892041275
+   },
+   "4.0/1e+10/canonical": {
+    "c_gate": 576197.8004779747,
+    "Gamma_over_H": 1325.7196966739314,
+    "r_edge_kpc": 28.414597613217467
+   },
+   "4.0/1e+10/alt": {
+    "c_gate": 620757.0111412553,
+    "Gamma_over_H": 1432.5082714584141,
+    "r_edge_kpc": 29.397854624519283
+   },
+   "4.0/1e+11/canonical": {
+    "c_gate": 913663.7750724637,
+    "Gamma_over_H": 2129.3537497678444,
+    "r_edge_kpc": 54.271504634896345
+   },
+   "4.0/1e+11/alt": {
+    "c_gate": 991518.0273687965,
+    "Gamma_over_H": 2313.7173596665116,
+    "r_edge_kpc": 55.900818555048254
+   },
+   "4.0/1e+12/canonical": {
+    "c_gate": 1398301.661025347,
+    "Gamma_over_H": 3274.44312963847,
+    "r_edge_kpc": 105.60680711767318
+   },
+   "4.0/1e+12/alt": {
+    "c_gate": 1526393.2014632379,
+    "Gamma_over_H": 3576.4344814052197,
+    "r_edge_kpc": 108.30862075129376
+   }
+  },
+  "K3": {
+   "q_min": 1.3332833369029948e-12,
+   "I_min": 0.009261057103834824
+  },
+  "A1": {
+   "g2_1d": "B*W2*a11**2*rho_0**2*sigma/2",
+   "res_1d": "B*W2*sigma*(a11**2*rho_0**2 - b11**2)/2",
+   "res_3d": "B*sigma*(-2*W1*a11*a22*rho_0 - 2*W1*a11*a33*rho_0 - 2*W1*a11*b22 - 2*W1*a11*b33 + 2*W1*a12*a21*rho_0 + 2*W1*a12*b21 + 2*W1*a13*a31*rho_0 + 2*W1*a13*b31 + 2*W1*a21*b12 - 2*W1*a22*a33*rho_0 - 2*W1*a22*b11 - 2*W1*a22*b33 + 2*W1*a23*a32*rho_0 + 2*W1*a23*b32 + 2*W1*a31*b13 + 2*W1*a32*b23 - 2*W1*a33*b11 - 2*W1*a33*b22 + W2*a11**2*rho_0**2 + 2*W2*a11*a22*rho_0**2 + 2*W2*a11*a33*rho_0**2 + W2*a22**2*rho_0**2 + 2*W2*a22*a33*rho_0**2 + W2*a33**2*rho_0**2 - W2*b11**2 - 2*W2*b11*b22 - 2*W2*b11*b33 - W2*b22**2 - 2*W2*b22*b33 - W2*b33**2)/2",
+   "null_ok": true,
+   "hubble_ok": true,
+   "static_1d": "B*W2*a11**2*rho_0**2*sigma/2"
+  },
+  "A2": {
+   "omega2": "rho_b*(c_s2*k**2 - fourpiGrho)/(L_thth*k**2 + rho_b)",
+   "pole": "[-sqrt(rho_b)*sqrt(-1/L_thth), sqrt(rho_b)*sqrt(-1/L_thth)]"
+  },
+  "A3": {
+   "steps": {
+    "0.01": {
+     "min_Wpp": -98409.95371003248,
+     "x_at_min": 0.0021800000000000708,
+     "W_at_min": 0.9647152998332964,
+     "max_Wpp": 98409.95371003229
+    },
+    "0.1": {
+     "min_Wpp": -984.1040904424706,
+     "x_at_min": 0.021830000000000016,
+     "W_at_min": 0.9644832789305355,
+     "max_Wpp": 984.1040904424693
+    },
+    "0.3": {
+     "min_Wpp": -109.34491352998256,
+     "x_at_min": 0.0654800000000001,
+     "W_at_min": 0.96450910276878,
+     "max_Wpp": 109.34491352998252
+    },
+    "1.0": {
+     "min_Wpp": -9.84104228936991,
+     "x_at_min": 0.21826,
+     "W_at_min": 0.9645142662242902,
+     "max_Wpp": 9.84104228936991
+    },
+    "3.0": {
+     "min_Wpp": -1.0934491445920793,
+     "x_at_min": 0.6547700000000001,
+     "W_at_min": 0.9645168477880278,
+     "max_Wpp": 1.093449144592079
+    }
+   },
+   "ramp_kinks": [
+    -0.999999999992724,
+    1.0000000000000568
+   ],
+   "forms": {
+    "QUMOND +q W": {
+     "min_Lxx": -9.841042628970172,
+     "x_at_min": 0.21826,
+     "L_on": 1.0,
+     "L_off": 0.0
+    },
+    "AQUAL stiffness -s Y": {
+     "min_Lxx": -49.20521196248592,
+     "x_at_min": 0.21827000000000008,
+     "L_on": -0.0,
+     "L_off": -5.0
+    },
+    "yield -2 y sqrt Y": {
+     "min_Lxx": -0.19682084797489097,
+     "x_at_min": 0.21827000000000008,
+     "L_on": -0.0,
+     "L_off": -0.02
+    },
+    "band-pass S(B), dS/dB > 0": {
+     "min_Lxx": -9.841042628970172,
+     "x_at_min": 0.21826,
+     "L_on": 1.0,
+     "L_off": 0.0
+    }
+   }
+  },
+  "A4": {
+   "0.25/1e+10/canonical": {
+    "inv_kg_kpc_layer": 435.0279388547673,
+    "inv_kg_kpc_layer_min": 326.3485586914337,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 4.68150798408446,
+    "inv_kg_kpc_profile_max": 5413.381973996043,
+    "r_layer_kpc": [
+     687.2286240800057,
+     885.5500536149053
+    ],
+    "vB_kms_layer": 27.84332761973588,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 19820.49479645704
+   },
+   "0.25/1e+10/alt": {
+    "inv_kg_kpc_layer": 434.58884273179905,
+    "inv_kg_kpc_layer_min": 322.8883442955577,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 4.731677574163902,
+    "inv_kg_kpc_profile_max": 5911.135223456981,
+    "r_layer_kpc": [
+     719.2617535257265,
+     927.2864276134642
+    ],
+    "vB_kms_layer": 27.66973845198565,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 21978.36046223407
+   },
+   "0.25/1e+11/canonical": {
+    "inv_kg_kpc_layer": 891.8342657504476,
+    "inv_kg_kpc_layer_min": 706.6835516981288,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 2.1619262773150605,
+    "inv_kg_kpc_profile_max": 13820.19296794606,
+    "r_layer_kpc": [
+     1229.7006068403869,
+     1583.000807253397
+    ],
+    "vB_kms_layer": 58.76187922970913,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 29076.91404443589
+   },
+   "0.25/1e+11/alt": {
+    "inv_kg_kpc_layer": 900.8467411640098,
+    "inv_kg_kpc_layer_min": 705.7041036628366,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 2.164926824828778,
+    "inv_kg_kpc_profile_max": 15108.088777214067,
+    "r_layer_kpc": [
+     1286.3822899446623,
+     1655.967470530154
+    ],
+    "vB_kms_layer": 59.00255221833146,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 31963.00589490002
+   },
+   "0.25/1e+12/canonical": {
+    "inv_kg_kpc_layer": 1718.567062939329,
+    "inv_kg_kpc_layer_min": 1448.4810191558524,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 1.05475774581767,
+    "inv_kg_kpc_profile_max": 35852.96610365285,
+    "r_layer_kpc": [
+     2214.5900472782646,
+     2842.3968897043355
+    ],
+    "vB_kms_layer": 116.77128861213791,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 44729.716026738424
+   },
+   "0.25/1e+12/alt": {
+    "inv_kg_kpc_layer": 1756.0456440907467,
+    "inv_kg_kpc_layer_min": 1462.7808531448077,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 1.04444665395788,
+    "inv_kg_kpc_profile_max": 39205.48643150838,
+    "r_layer_kpc": [
+     2313.230032326049,
+     2970.47060973786
+    ],
+    "vB_kms_layer": 118.63606378198081,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 48707.561911009136
+   },
+   "1.0/1e+10/canonical": {
+    "inv_kg_kpc_layer": 375.0842780548557,
+    "inv_kg_kpc_layer_min": 315.9132684704484,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 3.083010376329256,
+    "inv_kg_kpc_profile_max": 3023.7051307986862,
+    "r_layer_kpc": [
+     282.25027370821067,
+     362.9827580524305
+    ],
+    "vB_kms_layer": 39.96874319541352,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 8393.794601839769
+   },
+   "1.0/1e+10/alt": {
+    "inv_kg_kpc_layer": 383.07055256801186,
+    "inv_kg_kpc_layer_min": 318.9040488175052,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 3.0540966702395798,
+    "inv_kg_kpc_profile_max": 3301.730783061269,
+    "r_layer_kpc": [
+     295.1141100125615,
+     379.52605744251514
+    ],
+    "vB_kms_layer": 40.58764645054855,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 9139.403698458409
+   },
+   "1.0/1e+11/canonical": {
+    "inv_kg_kpc_layer": 689.3975793250055,
+    "inv_kg_kpc_layer_min": 612.3633287002561,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 1.5904941693724255,
+    "inv_kg_kpc_profile_max": 7645.403076193775,
+    "r_layer_kpc": [
+     510.074677861618,
+     654.0260021105121
+    ],
+    "vB_kms_layer": 75.30919047976806,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 13601.531512376194
+   },
+   "1.0/1e+11/alt": {
+    "inv_kg_kpc_layer": 710.50165404387,
+    "inv_kg_kpc_layer_min": 625.2066782054382,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 1.557821253322887,
+    "inv_kg_kpc_profile_max": 8357.873777929428,
+    "r_layer_kpc": [
+     532.2664809704139,
+     682.8187385390213
+    ],
+    "vB_kms_layer": 77.28081379056117,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 14683.34151264512
+   },
+   "1.0/1e+12/canonical": {
+    "inv_kg_kpc_layer": 1219.235099233573,
+    "inv_kg_kpc_layer_min": 1123.4582297689496,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 0.8669297755852369,
+    "inv_kg_kpc_profile_max": 19664.350849581966,
+    "r_layer_kpc": [
+     933.7374436878962,
+     1191.339120616215
+    ],
+    "vB_kms_layer": 135.3392500306559,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 22617.916212615048
+   },
+   "1.0/1e+12/alt": {
+    "inv_kg_kpc_layer": 1263.962515497224,
+    "inv_kg_kpc_layer_min": 1157.2996670274647,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 0.8415792352898409,
+    "inv_kg_kpc_profile_max": 21503.114642979523,
+    "r_layer_kpc": [
+     971.470808182383,
+     1241.325194620146
+    ],
+    "vB_kms_layer": 139.9177161078772,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 24335.79725013855
+   },
+   "2.5/1e+10/canonical": {
+    "inv_kg_kpc_layer": 216.10774931313364,
+    "inv_kg_kpc_layer_min": 206.78761701317947,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 2.2394157971400337,
+    "inv_kg_kpc_profile_max": 1073.165544338878,
+    "r_layer_kpc": [
+     67.16900277687877,
+     85.6997448713454
+    ],
+    "vB_kms_layer": 51.24461171216491,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 2747.8180662638856
+   },
+   "2.5/1e+10/alt": {
+    "inv_kg_kpc_layer": 225.10237582307963,
+    "inv_kg_kpc_layer_min": 215.06574789163471,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 2.1532161764650124,
+    "inv_kg_kpc_profile_max": 1171.8416842215177,
+    "r_layer_kpc": [
+     69.84877896821018,
+     89.2071308581285
+    ],
+    "vB_kms_layer": 53.346325895070464,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 2940.350765427333
+   },
+   "2.5/1e+11/canonical": {
+    "inv_kg_kpc_layer": 373.18003658628146,
+    "inv_kg_kpc_layer_min": 356.6774963466443,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 1.2983153300891084,
+    "inv_kg_kpc_profile_max": 2660.087816476103,
+    "r_layer_kpc": [
+     125.35663892015114,
+     159.22908790945056
+    ],
+    "vB_kms_layer": 88.37055309979361,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 4666.601571191324
+   },
+   "2.5/1e+11/alt": {
+    "inv_kg_kpc_layer": 388.9796346063541,
+    "inv_kg_kpc_layer_min": 371.5592689234133,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 1.2463145378498528,
+    "inv_kg_kpc_profile_max": 2907.9798653838398,
+    "r_layer_kpc": [
+     129.8424672208588,
+     165.09045020487207
+    ],
+    "vB_kms_layer": 92.09341007805988,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 5019.474279132467
+   },
+   "2.5/1e+12/canonical": {
+    "inv_kg_kpc_layer": 643.8529696468474,
+    "inv_kg_kpc_layer_min": 611.957630494161,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 0.7567168650060391,
+    "inv_kg_kpc_profile_max": 6745.725349632281,
+    "r_layer_kpc": [
+     239.223356326034,
+     302.6621754996049
+    ],
+    "vB_kms_layer": 151.97213747636044,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 7570.45971796391
+   },
+   "2.5/1e+12/alt": {
+    "inv_kg_kpc_layer": 671.7848196984518,
+    "inv_kg_kpc_layer_min": 638.3000137562586,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 0.7254873879132382,
+    "inv_kg_kpc_profile_max": 7376.5010934128895,
+    "r_layer_kpc": [
+     246.55986109650482,
+     312.2533248018323
+    ],
+    "vB_kms_layer": 158.54541604680705,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 8206.068458328657
+   },
+   "4.0/1e+10/canonical": {
+    "inv_kg_kpc_layer": 139.19183373589948,
+    "inv_kg_kpc_layer_min": 132.22432929211703,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 2.084674593183974,
+    "inv_kg_kpc_profile_max": 514.2549934132192,
+    "r_layer_kpc": [
+     25.586599406802954,
+     32.51641817361986
+    ],
+    "vB_kms_layer": 55.161369972740054,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 1325.7196966739314
+   },
+   "4.0/1e+10/alt": {
+    "inv_kg_kpc_layer": 145.07715351274467,
+    "inv_kg_kpc_layer_min": 137.8387032372137,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 1.9997581540355067,
+    "inv_kg_kpc_profile_max": 561.5400538897461,
+    "r_layer_kpc": [
+     26.46286144462891,
+     33.66332870837527
+    ],
+    "vB_kms_layer": 57.49969760267433,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 1432.5082714584141
+   },
+   "4.0/1e+11/canonical": {
+    "inv_kg_kpc_layer": 244.83269985718843,
+    "inv_kg_kpc_layer_min": 230.07861545722446,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 1.1980227699026882,
+    "inv_kg_kpc_profile_max": 1254.1365252056553,
+    "r_layer_kpc": [
+     48.87636892369603,
+     62.05245097668108
+    ],
+    "vB_kms_layer": 96.48594058521115,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 2129.3537497678444
+   },
+   "4.0/1e+11/alt": {
+    "inv_kg_kpc_layer": 255.50456856602273,
+    "inv_kg_kpc_layer_min": 240.06936077551188,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 1.1481648766203718,
+    "inv_kg_kpc_profile_max": 1371.0087844287004,
+    "r_layer_kpc": [
+     50.32544307199939,
+     63.95547628993427
+    ],
+    "vB_kms_layer": 100.68217317639383,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 2313.7173596665116
+   },
+   "4.0/1e+12/canonical": {
+    "inv_kg_kpc_layer": 430.46660158373584,
+    "inv_kg_kpc_layer_min": 399.9157618164162,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 0.6892393466708459,
+    "inv_kg_kpc_profile_max": 3146.175636351967,
+    "r_layer_kpc": [
+     94.95053483811608,
+     120.96587104847187
+    ],
+    "vB_kms_layer": 168.66424655959014,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 3274.44312963847
+   },
+   "4.0/1e+12/alt": {
+    "inv_kg_kpc_layer": 450.4453957193582,
+    "inv_kg_kpc_layer_min": 418.21015411158487,
+    "ghost_at_1kpc_layer": true,
+    "Gamma_1kpc_over_H_layer": 0.6590887426917652,
+    "inv_kg_kpc_profile_max": 3440.3665756840173,
+    "r_layer_kpc": [
+     97.37906275552876,
+     124.05978721646615
+    ],
+    "vB_kms_layer": 176.428324822128,
+    "c_gate_static": 0.0,
+    "DE12_Gamma_over_H": 3576.4344814052197
+   }
+  },
+  "A5": {
+   "0.25/1e+11/canonical": [
+    38.33467688277863,
+    12.204068002473306,
+    4.112106099017009,
+    1.9781109277656284,
+    1.7217245676289565
+   ],
+   "0.25/1e+11/alt": [
+    37.95115955723627,
+    12.081973024724123,
+    4.070966742651612,
+    1.95832101757652,
+    1.7044996617424877
+   ],
+   "2.5/1e+11/canonical": [
+    27.768109801878108,
+    8.840139734542154,
+    2.9786455230507234,
+    1.4328645996014775,
+    1.2471485540026241
+   ]
+  },
+  "A6": {
+   "convex_x_allowed": {
+    "0.01": 0.025742737655178177,
+    "0.1": 0.03195665073311798,
+    "1.0": 0.06331691742700364
+   },
+   "f_acc_allowed": {
+    "0.01": 0.07722821296553453,
+    "0.1": 0.09586995219935393,
+    "1.0": 0.18995075228101094
+   },
+   "R_min_Mpc": {
+    "0.25/1e+10/canonical": 0.2638577827470092,
+    "0.25/1e+10/alt": 0.263591457485868,
+    "0.25/1e+11/canonical": 0.5409248255599509,
+    "0.25/1e+11/alt": 0.5463911682181828,
+    "0.25/1e+12/canonical": 1.0423636144449937,
+    "0.25/1e+12/alt": 1.065095522995857,
+    "1.0/1e+10/canonical": 0.22750011461644848,
+    "1.0/1e+10/alt": 0.23234403496555928,
+    "1.0/1e+11/canonical": 0.41814076859228805,
+    "1.0/1e+11/alt": 0.4309410369541457,
+    "1.0/1e+12/canonical": 0.7395034690829373,
+    "1.0/1e+12/alt": 0.7666320183765711,
+    "2.5/1e+10/canonical": 0.13107597575990737,
+    "2.5/1e+10/alt": 0.13653149251085364,
+    "2.5/1e+11/canonical": 0.22634513378226195,
+    "2.5/1e+11/alt": 0.23592807439257107,
+    "2.5/1e+12/canonical": 0.39051656643784044,
+    "2.5/1e+12/alt": 0.4074580898766344,
+    "4.0/1e+10/canonical": 0.08442411474244628,
+    "4.0/1e+10/alt": 0.087993741629316,
+    "4.0/1e+11/canonical": 0.14849853896360568,
+    "4.0/1e+11/alt": 0.15497135453194152,
+    "4.0/1e+12/canonical": 0.26109119184283863,
+    "4.0/1e+12/alt": 0.27320894303018056,
+    "0.25/1e+14/canonical (cluster, 2-12 Mpc)": 7.36985283764779,
+    "0.25/1e+14/alt (cluster, 2-12 Mpc)": 7.746575657751517
+   }
+  },
+  "A7": {
+   "575/0.1": 49.93150319054432,
+   "575/0.3": 16.64383439684811,
+   "575/1.0": 4.993150319054433,
+   "575/3.0": 1.6643834396848107,
+   "600/0.1": 52.10243811187234,
+   "600/0.3": 17.36747937062411,
+   "600/1.0": 5.210243811187233,
+   "600/3.0": 1.7367479370624113,
+   "650/0.1": 56.44430795452836,
+   "650/0.3": 18.814769318176122,
+   "650/1.0": 5.644430795452837,
+   "650/3.0": 1.881476931817612
+  },
+  "A8": {
+   "0.25/1e+10/canonical": {
+    "force_over_gravity": 0.04624702078440364,
+    "feedback_over_H": 1.9738919913347113,
+    "r_kpc": 780.1123924792803
+   },
+   "0.25/1e+11/canonical": {
+    "force_over_gravity": 0.06501426543947691,
+    "feedback_over_H": 1.9268574247224501,
+    "r_kpc": 1395.2121893491058
+   },
+   "0.25/1e+12/canonical": {
+    "force_over_gravity": 0.08091921566111258,
+    "feedback_over_H": 1.8361761001974433,
+    "r_kpc": 2508.932813439594
+   },
+   "2.5/1e+11/canonical": {
+    "force_over_gravity": 0.1414728564472024,
+    "feedback_over_H": 13.71745592289463,
+    "r_kpc": 141.3163476417953
+   }
+  }
+ },
+ "ledger": [
+  {
+   "link": "XR36-a",
+   "status": "DERIVED",
+   "what": "the turnaround gate as an action term: sigma B W(theta_m/<K>_h) on a Lagrangian-coordinate (Brown/Schutz) fluid; theta_m = d ln J/dt, a velocity-dependent term with no Ostrogradsky mode",
+   "basis": "A1"
+  },
+  {
+   "link": "XR36-b",
+   "status": "DERIVED",
+   "what": "the theta gate adds NO static term: FP3 C1's density lemma and DE12's baryon-stiffness instability are escaped exactly (c_gate = 0)",
+   "basis": "A1, K1, K2"
+  },
+  {
+   "link": "XR36-c",
+   "status": "DERIVED",
+   "what": "the mirror lemma: well-posedness needs L convex in theta; MOND-on raises L at fixed fields in every formulation (K3), so a gate saturated on the turned-around side is concave at the switch-on",
+   "basis": "A2, A3, K3"
+  },
+  {
+   "link": "XR36-d",
+   "status": "FAILS",
+   "what": "the sharp theta = 0 gate and every saturated smooth gate: the compressive velocity symbol changes sign (a ghost with a pole), on all 24 of DE12's layers at k = 1/kpc",
+   "basis": "A4, A5"
+  },
+  {
+   "link": "XR36-e",
+   "status": "CONSTRAINT",
+   "what": "a well-posed theta gate is either unsaturated (MOND x (1 + |x|/Delta_x) in contracting hosts: SPARC) or filtered on R >= R_min (galaxies to clusters: no single R); either adds a constant",
+   "basis": "A6"
+  },
+  {
+   "link": "XR36-f",
+   "status": "CONSTRAINT",
+   "what": "MS1: the gate must read the baryon flow; the total-matter reading is switched off by the carrier's outstreaming daughters",
+   "basis": "A7"
+  }
+ ],
+ "verdict": {
+  "passed": 9,
+  "total": 11,
+  "load_bearing_failures": 2
+ }
+}

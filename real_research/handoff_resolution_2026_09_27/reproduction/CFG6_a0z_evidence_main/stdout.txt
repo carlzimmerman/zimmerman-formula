@@ -1,0 +1,365 @@
+CFG6 (part 2) -- THE BRANCHES AGAINST THE RECORD'S a0(z) EVIDENCE: which branch the data prefer, how much an evolving dark
+energy erodes or sharpens the z ~ 2.5 flat-a0 test, how many z ~ 1-2.5 objects would separate the branches, and what changes
+elsewhere on the record's scorecard if a branch other than A (the unimodular tie, exactly flat) holds.
+
+THE BRANCHES (part 1, CFG6_a0z_branches.py, whose main-run JSON this script reads):
+  A  a0 reads the Henneaux-Teitelboim constant: flat for any dark-energy history.
+  B  a0 ~ sqrt(rho_DE); C  a0 ~ sqrt(V); D  a0 ~ sqrt(-p).  Each FOLLOWING the DESI DR2 CPL fits (-CPL; needs a ghost or a
+     braided dark energy past w = -1), or with a HEALTHY thawing field, w0-matched (-thaw(w0)) or conditioned on the posterior
+     (-thaw(post)).  Uncertainties: the DESI DR2 public chains (L275's thinned copies).
+
+THE EVIDENCE (the record's, not re-litigated; its readings inherited):
+  - the a0(z) fork likelihood (prep_2026/a0z_crossscale/a0z_fork_likelihood_2026.py): 10 committed constraints (MSA-3D,
+    MUSE-DARK III = Ciocan+26, Jeanneau+26, Ubler+17 KMOS3D z = 0.9 and 2.3, Amvrosiadis+25, Tiley+19 KROSS, the Big Wheel,
+    McGaugh+24, Milgrom 2017), with the framework's own dilution lever and the LambdaCDM-degenerate apparent-drift nuisance
+    marginalised over the record's four priors.  Its own head is executed read-only (as a0z_lcdm_native_hypothesis_2026.py
+    does) so every model gets the identical treatment;
+  - the RC100 closed-form inversion (hunt_2026/h16: d log a0/dz = -0.112 +/- 0.063, with its caveat);
+  - the Jeanneau+26 deep-MOND refit (prep_2026/jeanneau_refit: Delta_b = +0.140 +/- 0.272 at z = 1.06, lever 0.76);
+  - the 17-row high-z Tully-Fisher ledger (prep_2026/highz_tfr_fork/data_ledger.csv; L276's pulls);
+  - MUSE-DARK III's apparent a0 at z ~ 1 (+0.377 dex; the record reads it as APPARENT, non-diagnostic);
+  - the pre-registered z ~ 2.5 zero point (PAPER7: 0.00 vs LambdaCDM-native +0.334 (L274) at +/-0.13 dex), the JWST IFU
+    forecast's per-object precision (prep_2026/a0z_crossscale/a0z_deepmond_ifu_forecast_2026) and M*'s flagship carrier
+    residue (XR17: +0.106..+0.126 dex).
+
+PRE-DECLARED (copied from the lane's hypothesis file, written 2026-09-27T16:03Z before any code of this lane ran):
+  H8 controls: the fork likelihood's face chi^2 302.086/15.455/233.886 and marginalised log10 B under its four priors to 1e-6;
+     h16's RC100 slope -0.1123 +/- 0.0625; the Jeanneau refit's 0.51 sigma; L276's max pulls; L274's +0.334.  EXPECT TRUE.
+  H9 which branch: no branch beats A by |log10 B| > 0.5 on the drift-marginalised fork likelihood; at face value the rising
+     branches win on Ciocan alone.  The RC100 slope prefers declining branches: B-CPL within 1 sigma, A at 1.8 sigma, healthy
+     thawing at 2.5-3 sigma.  RC100 is the only datum separating branches at > 2 sigma, only against healthy thawing; with its
+     caveat a lean, not a verdict.
+  H10 erosion at sigma_obj = 0.13, z = 2.5: flat 2.57 sigma from LCDM-emergent; B-CPL 3.3, C-CPL 2.8, D-CPL 2.3, healthy
+     thawing 1.4-2.0; healthy thawing + the flagship carrier residue (+0.106..+0.126, XR17) falls below 1 sigma.  EXPECT TRUE.
+  H11 N objects (3 sigma, z = 2.5): A vs B-CPL ~16 at 0.13 (~170 at 0.43); A vs healthy thawing 6-31 at 0.13; each branch vs
+     LCDM-emergent 2-6.  EXPECT within a factor 2.
+  H12 elsewhere: gates at z <= 0.5 move by less than the committed canonical-vs-alt lever (0.0823 dex in a0); the forest stays
+     >= 10x inside its line; the flagship is the one gate where a non-A branch matters (-0.10..+0.16 dex vs its +/-0.10
+     tolerance).
+  MUTATE: branch A reads rho_total: the fork-likelihood 'A = M-FLAT' control and the headline 'A inside +/-0.13 at 2.5' must
+     FAIL, rc = 1.
+CHECKS
+  C1 CONTROL the fork likelihood (its committed head executed read-only): face chi^2 of M-DEC/M-RISE/M-FLAT and the
+     marginalised log10 B of its three pairs under its four priors equal its committed JSON (1e-6).
+  C1b CONTROL branch A through the same machinery equals the committed M-FLAT (face chi^2 233.886; every prior) -- MUTATE fails it.
+  C2 CONTROL h16's RC100 selection, closed-form inversion and bootstrap (its RNG replayed): -0.1123 +/- 0.0625 (N = 99).
+  C3 CONTROL the Jeanneau refit's committed Delta_b, band, lever, z and the flat law's 0.51 sigma (re-derived).
+  C4 CONTROL L276's bTFR pulls: 'max |pull| per law' for its five laws, re-derived from the ledger and L275's bands.
+  C5 CONTROL the inputs this part quotes: L274's +0.334, XR17's residue range, the IFU forecast's per-object sigma(log a0).
+  C6 CONTROL part 1's main-run results exist, are not the MUTATE file, and passed HEADLINE-FLAT with rc = 0.
+  C7 CONTROL the environment null (A0_COSMICWEB_ENVIRONMENT_2026-06.md): the committed slopes and the rho_local fork's exclusion.
+  E1 the branches on the fork likelihood: face and marginalised log10 Z relative to A, three subsets (all 10; without Ciocan;
+     the clean near-a0 subset), both footings (the alt lever uses y_alt = y a0_can/a0_alt).  Dark-energy uncertainty
+     marginalised: -CPL over 200 chain draws per combination, -thaw(w0) over 150, -thaw(post) over the part-1 node weights.
+  E2 RC100: each branch's predicted d log a0/dz on the same 99 redshifts, and its pull.
+  E3 the Jeanneau refit: each branch's Delta_b = -0.76 Delta log a0(1.06) and its pull.
+  E4 the bTFR ledger rows (full systematics): each branch's chi^2 and max pull.
+  E5 MUSE-DARK III: the gap left at z = 1 and the fraction closed.
+  E6 the z ~ 2.5 zero point: separation from LambdaCDM-native (+0.334) and from H(z) (+0.576) at sigma_obj = 0.13, 0.215,
+     0.257, 0.431; with M*'s flagship residue added; the erosion (or sharpening) relative to A.
+  E7 the number of objects for a 3-sigma separation of each branch from A and from LambdaCDM-native at z = 1, 1.5, 2, 2.5,
+     with and without a 0.05 dex coherent floor.
+  E8 elsewhere: KiDS, cosmic shear, the forest, the flagship (prediction, edge margin, residue), clusters (eRASS1's eta
+     trend), Harvey, the z ~ 0 gates, CMB lensing -- each branch's change against each gate's margin, sized by the committed
+     canonical-vs-alt pair where one exists.
+  E9 the environment null: each branch's predicted environmental slope against the measured ones.
+  HEADLINE branch A's z = 2.5 prediction is 0.000, inside the pre-registered +/-0.13 -- MUTATE fails it.
+  W  the ledger and the recommendation.
+MUTATE=1: branch A reads rho_total (a0 ~ H(z)): C1b and HEADLINE must FAIL (rc = 1).
+
+SCOPE.  Every datum and its reading are the record's; nothing is re-fitted.  The gate sizes in E8 are linear responses built
+from committed canonical/alt pairs (a uniform +0.0823 dex shift in a0 at the gate's epoch); a redshift-dependent shift is
+approximated by its value at the gate's epoch.  Harvey has no committed footing pair and is not sized.  The IFU per-object
+precisions are the forecast's, at its design point y = 0.2.
+
+======================================================================================================================
+C   CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL the fork likelihood's committed head, executed read-only: face chi^2 (M-DEC/M-RISE/M-FLAT) and the marginalised log10 B of its three pairs under the four drift priors equal its committed JSON
+         measured: max |diff| 8.5e-14; face chi^2 302.086/15.455/233.886
+  [PASS] C1b CONTROL branch A through the same machinery is the committed M-FLAT (the framework's flat law = its w -> -1 limit), face value and every prior
+         measured: max |d ln Z| vs M-FLAT 0.0e+00; A's face chi^2 233.886 (committed M-FLAT 233.886)
+  [PASS] C2 CONTROL h16 (RC100 through the closed-form kernel inversion): this lane's replay of its selection, inversion and bootstrap (RNG 1627) prints the committed line
+         measured: '[all] d log a_0/dz = -0.1123 +- 0.0625 (N = 99)' found in h16's .out: True
+  [PASS] C3 CONTROL the Jeanneau+26 deep-MOND refit: Delta_b, the honest band, the median lever and z, and the flat law's committed 0.51 sigma (re-derived as Delta_b/band)
+         measured: {'db': 0.14, 'band': 0.272, 'lever': 0.76, 'z': 1.06, 'flat': 0.51}; re-derived 0.51 sigma
+  [PASS] C4 CONTROL L276: the per-law maximum pull over the bTFR rows (full systematics, per-sample dilution) re-derived from the committed ledger and L275's bands
+         measured: 'max |pull| per law: framework, own law 1.2, framework, DESI w(z) at face value 1.2, density mapping 1.2, H(z) law 1.1, ΛCDM emergent scale 1.2' found in L276's .out: True
+  [PASS] C5 CONTROL the quoted inputs: L274's LambdaCDM-native +0.334 dex at z = 2.5; XR17's residue shifts at z = 2.5 for M*'s carrier (four kicks); the IFU forecast's per-object sigma(log a0) at its design point
+         measured: LCDM +0.334; XR17 [0.1258, 0.1175, 0.1108, 0.1055]; sigma_obj {'PAPER7 requirement': 0.13, 'JWST IFU + CO gas + incl.': 0.21525813129154683, 'JWST IFU + CO gas': 0.25696387275748706, 'JWST IFU only': 0.4310593437738863}
+  [PASS] C6 CONTROL part 1's main-run results: present, not the MUTATE file, HEADLINE-FLAT passed, no load-bearing failure
+         measured: mutate False; HEADLINE-FLAT True; load-bearing failures 0
+  [PASS] C7 CONTROL the environment null (the BIG-SPARC-class fork on the public SPARC, A0_COSMICWEB_ENVIRONMENT_2026-06.md): the committed slopes d log a0/d log(1 + delta) and their distance from the rho_local fork (+0.5), re-derived (the writeup quotes 10.5 and 6.8 sigma)
+         measured: {'2MRS': (0.052, 0.043), '2M++ (real space)': (-0.046, 0.081), 'Tully group mass': (0.036, 0.03)}; +0.5 excluded at 2MRS 10.42 sigma, 2M++ (real space) 6.74 sigma
+         reading:  a0 is set by a spatially uniform density (rho_Lambda), not by the local one: the design constraint every branch must meet
+
+======================================================================================================================
+E1  THE BRANCHES ON THE FORK LIKELIHOOD (log10 Z relative to branch A; > 0 favours the branch)
+======================================================================================================================
+    evidences computed in 9 s
+
+    canonical footing: log10 Z(branch) - log10 Z(A), DESY5 draws (Pantheon+ / Union3 in brackets for the dark-energy branches)
+    branch          subset                           face                P-HALF                 P-MAG                 P-MSA                P-WIDE
+    B-CPL           all 10            -4.20 [+2.37/-3.11]   -3.40 [+0.65/-2.70]   -2.47 [-0.95/-2.10]   -1.42 [-0.99/-1.36]   -0.20 [-0.11/-0.28]
+    B-CPL           no Ciocan         -0.32 [-0.25/-0.36]   -0.27 [-0.20/-0.31]   -0.20 [-0.15/-0.24]   -0.16 [-0.11/-0.19]   -0.12 [-0.08/-0.15]
+    B-CPL           clean near-a0     -0.11 [-0.08/-0.12]   -0.08 [-0.06/-0.10]   -0.05 [-0.03/-0.06]   -0.03 [-0.01/-0.04]   -0.01 [+0.00/-0.02]
+    C-CPL           all 10            +0.86 [+1.74/+4.60]   -0.14 [+0.46/+2.14]   -0.84 [-0.56/-0.05]   -0.59 [-0.52/-0.49]   -0.06 [-0.03/-0.08]
+    C-CPL           no Ciocan         -0.14 [-0.12/-0.13]   -0.11 [-0.10/-0.11]   -0.09 [-0.07/-0.10]   -0.07 [-0.06/-0.08]   -0.06 [-0.04/-0.07]
+    C-CPL           clean near-a0     -0.03 [-0.03/-0.02]   -0.02 [-0.02/-0.02]   -0.01 [-0.01/-0.02]   -0.01 [-0.00/-0.02]   -0.00 [+0.00/-0.02]
+    D-CPL           all 10           +6.17 [+5.26/+12.51]   +3.31 [+2.60/+6.80]   +0.78 [+0.42/+1.70]   -0.04 [-0.10/+0.03]   -0.08 [-0.04/-0.15]
+    D-CPL           no Ciocan         +0.00 [-0.02/+0.02]   -0.02 [-0.02/-0.02]   -0.03 [-0.03/-0.06]   -0.04 [-0.03/-0.08]   -0.05 [-0.03/-0.10]
+    D-CPL           clean near-a0     +0.01 [+0.01/-0.00]   -0.01 [-0.00/-0.04]   -0.03 [-0.01/-0.07]   -0.04 [-0.01/-0.08]   -0.04 [-0.02/-0.10]
+    B-thaw(w0)      all 10         +16.27 [+12.48/+26.11]  +8.92 [+6.83/+13.89]   +2.69 [+2.01/+3.49]   +0.34 [+0.29/+0.33]   -0.08 [-0.05/-0.13]
+    B-thaw(w0)      no Ciocan         +0.14 [+0.10/+0.16]   +0.08 [+0.06/+0.09]   +0.03 [+0.03/+0.01]   -0.00 [+0.01/-0.03]   -0.03 [-0.01/-0.06]
+    B-thaw(w0)      clean near-a0     +0.02 [+0.02/-0.00]   -0.02 [-0.00/-0.05]   -0.05 [-0.03/-0.10]   -0.07 [-0.04/-0.12]   -0.08 [-0.05/-0.14]
+    C-thaw(w0)      all 10         +21.61 [+17.10/+32.57] +11.70 [+9.36/+16.54]   +3.28 [+2.60/+3.85]   +0.35 [+0.33/+0.29]   -0.12 [-0.07/-0.18]
+    C-thaw(w0)      no Ciocan         +0.16 [+0.12/+0.18]   +0.09 [+0.08/+0.08]   +0.02 [+0.03/-0.01]   -0.02 [+0.00/-0.07]   -0.05 [-0.02/-0.11]
+    C-thaw(w0)      clean near-a0     +0.01 [+0.02/-0.04]   -0.04 [-0.01/-0.10]   -0.08 [-0.04/-0.16]   -0.11 [-0.06/-0.18]   -0.12 [-0.07/-0.21]
+    D-thaw(w0)      all 10         +27.41 [+22.05/+39.61]+14.41 [+11.91/+18.48]   +3.71 [+3.09/+4.02]   +0.32 [+0.34/+0.22]   -0.16 [-0.09/-0.26]
+    D-thaw(w0)      no Ciocan         +0.18 [+0.14/+0.16]   +0.09 [+0.09/+0.04]   +0.00 [+0.03/-0.07]   -0.05 [-0.01/-0.14]   -0.09 [-0.04/-0.19]
+    D-thaw(w0)      clean near-a0     -0.02 [+0.01/-0.10]   -0.08 [-0.03/-0.18]   -0.13 [-0.06/-0.25]   -0.16 [-0.08/-0.28]   -0.18 [-0.09/-0.30]
+    B-thaw(post)    all 10            +5.97 [+3.92/+7.66]   +3.22 [+1.95/+3.87]   +1.09 [+0.58/+1.10]   +0.19 [+0.10/+0.17]   -0.02 [-0.01/-0.02]
+    B-thaw(post)    no Ciocan         +0.06 [+0.03/+0.05]   +0.04 [+0.02/+0.03]   +0.02 [+0.01/+0.02]   +0.01 [+0.00/+0.01]   -0.00 [-0.00/-0.00]
+    B-thaw(post)    clean near-a0     +0.02 [+0.01/+0.01]   +0.00 [+0.00/+0.00]   -0.01 [-0.00/-0.01]   -0.02 [-0.01/-0.01]   -0.02 [-0.01/-0.02]
+    C-thaw(post)    all 10           +8.89 [+6.14/+11.36]   +4.74 [+3.09/+5.81]   +1.52 [+0.86/+1.56]   +0.24 [+0.13/+0.21]   -0.03 [-0.01/-0.03]
+    C-thaw(post)    no Ciocan         +0.07 [+0.04/+0.06]   +0.05 [+0.02/+0.04]   +0.02 [+0.01/+0.02]   +0.01 [+0.01/+0.01]   -0.00 [-0.00/-0.00]
+    C-thaw(post)    clean near-a0     +0.02 [+0.01/+0.01]   +0.00 [+0.00/+0.00]   -0.01 [-0.00/-0.01]   -0.02 [-0.01/-0.02]   -0.03 [-0.01/-0.02]
+    D-thaw(post)    all 10          +12.04 [+8.55/+15.33]   +6.40 [+4.37/+7.88]   +1.94 [+1.16/+2.01]   +0.28 [+0.16/+0.24]   -0.04 [-0.02/-0.04]
+    D-thaw(post)    no Ciocan         +0.09 [+0.05/+0.08]   +0.06 [+0.03/+0.05]   +0.03 [+0.02/+0.02]   +0.01 [+0.01/+0.01]   -0.01 [-0.00/-0.01]
+    D-thaw(post)    clean near-a0     +0.02 [+0.01/+0.02]   -0.00 [+0.00/-0.00]   -0.02 [-0.01/-0.02]   -0.03 [-0.01/-0.03]   -0.04 [-0.02/-0.03]
+    rival H(z)      all 10                         +47.43                +20.08                 +3.18                 -0.98                 -1.47
+    rival H(z)      no Ciocan                       -0.95                 -1.29                 -1.56                 -1.70                 -1.79
+    rival H(z)      clean near-a0                   -1.45                 -1.67                 -1.83                 -1.91                 -1.95
+    LCDM-emergent   all 10                         +32.72                +17.67                 +3.94                 -0.21                 -0.70
+    LCDM-emergent   no Ciocan                       -0.07                 -0.27                 -0.45                 -0.55                 -0.63
+    LCDM-emergent   clean near-a0                   -0.45                 -0.58                 -0.68                 -0.73                 -0.77
+
+    alt footing: log10 Z(branch) - log10 Z(A), DESY5 draws (Pantheon+ / Union3 in brackets for the dark-energy branches)
+    branch          subset                           face                P-HALF                 P-MAG                 P-MSA                P-WIDE
+    B-CPL           all 10            -4.19 [+2.37/-3.11]   -3.40 [+0.65/-2.69]   -2.47 [-0.96/-2.10]   -1.42 [-0.98/-1.36]   -0.20 [-0.11/-0.27]
+    B-CPL           no Ciocan         -0.33 [-0.25/-0.37]   -0.28 [-0.21/-0.31]   -0.20 [-0.15/-0.24]   -0.16 [-0.11/-0.19]   -0.11 [-0.08/-0.14]
+    B-CPL           clean near-a0     -0.12 [-0.09/-0.14]   -0.09 [-0.06/-0.10]   -0.05 [-0.03/-0.07]   -0.03 [-0.01/-0.04]   -0.01 [+0.00/-0.02]
+    C-CPL           all 10            +0.87 [+1.74/+4.61]   -0.13 [+0.46/+2.15]   -0.84 [-0.56/-0.05]   -0.59 [-0.52/-0.49]   -0.05 [-0.03/-0.08]
+    C-CPL           no Ciocan         -0.13 [-0.12/-0.12]   -0.11 [-0.10/-0.11]   -0.09 [-0.07/-0.09]   -0.07 [-0.05/-0.08]   -0.06 [-0.04/-0.07]
+    C-CPL           clean near-a0     -0.03 [-0.03/-0.03]   -0.02 [-0.02/-0.02]   -0.01 [-0.01/-0.02]   -0.01 [-0.00/-0.02]   -0.00 [+0.00/-0.02]
+    D-CPL           all 10           +6.18 [+5.27/+12.52]   +3.32 [+2.60/+6.80]   +0.78 [+0.41/+1.69]   -0.04 [-0.11/+0.02]   -0.09 [-0.04/-0.16]
+    D-CPL           no Ciocan         +0.01 [-0.01/+0.03]   -0.01 [-0.02/-0.01]   -0.03 [-0.02/-0.06]   -0.04 [-0.03/-0.08]   -0.05 [-0.03/-0.10]
+    D-CPL           clean near-a0     +0.01 [+0.01/-0.00]   -0.01 [-0.00/-0.04]   -0.03 [-0.01/-0.07]   -0.04 [-0.01/-0.09]   -0.05 [-0.02/-0.10]
+    B-thaw(w0)      all 10         +16.27 [+12.49/+26.11]  +8.92 [+6.83/+13.86]   +2.68 [+2.00/+3.46]   +0.33 [+0.28/+0.31]   -0.09 [-0.06/-0.15]
+    B-thaw(w0)      no Ciocan         +0.15 [+0.11/+0.17]   +0.09 [+0.07/+0.09]   +0.03 [+0.03/+0.01]   -0.01 [+0.00/-0.04]   -0.03 [-0.01/-0.07]
+    B-thaw(w0)      clean near-a0     +0.02 [+0.02/-0.00]   -0.02 [-0.00/-0.06]   -0.06 [-0.03/-0.11]   -0.07 [-0.04/-0.13]   -0.09 [-0.05/-0.15]
+    C-thaw(w0)      all 10         +21.61 [+17.11/+32.55] +11.68 [+9.36/+16.50]   +3.27 [+2.59/+3.82]   +0.33 [+0.32/+0.27]   -0.13 [-0.08/-0.21]
+    C-thaw(w0)      no Ciocan         +0.17 [+0.13/+0.18]   +0.10 [+0.08/+0.08]   +0.02 [+0.03/-0.02]   -0.02 [-0.00/-0.08]   -0.06 [-0.03/-0.13]
+    C-thaw(w0)      clean near-a0     +0.01 [+0.02/-0.04]   -0.05 [-0.01/-0.11]   -0.09 [-0.04/-0.17]   -0.12 [-0.06/-0.20]   -0.13 [-0.07/-0.22]
+    D-thaw(w0)      all 10         +27.41 [+22.05/+39.56]+14.38 [+11.89/+18.39]   +3.69 [+3.07/+3.98]   +0.29 [+0.32/+0.19]   -0.18 [-0.10/-0.29]
+    D-thaw(w0)      no Ciocan         +0.19 [+0.15/+0.17]   +0.09 [+0.09/+0.04]   -0.00 [+0.02/-0.09]   -0.06 [-0.01/-0.16]   -0.10 [-0.04/-0.21]
+    D-thaw(w0)      clean near-a0     -0.02 [+0.01/-0.11]   -0.09 [-0.03/-0.20]   -0.14 [-0.07/-0.27]   -0.17 [-0.09/-0.30]   -0.19 [-0.10/-0.33]
+    B-thaw(post)    all 10            +5.98 [+3.92/+7.67]   +3.22 [+1.95/+3.87]   +1.09 [+0.58/+1.10]   +0.19 [+0.10/+0.16]   -0.03 [-0.01/-0.02]
+    B-thaw(post)    no Ciocan         +0.06 [+0.03/+0.05]   +0.04 [+0.02/+0.03]   +0.02 [+0.01/+0.02]   +0.01 [+0.00/+0.01]   -0.00 [-0.00/-0.00]
+    B-thaw(post)    clean near-a0     +0.02 [+0.01/+0.01]   +0.00 [+0.00/+0.00]   -0.01 [-0.00/-0.01]   -0.02 [-0.01/-0.01]   -0.02 [-0.01/-0.02]
+    C-thaw(post)    all 10           +8.90 [+6.15/+11.37]   +4.74 [+3.09/+5.81]   +1.52 [+0.86/+1.56]   +0.24 [+0.13/+0.20]   -0.04 [-0.02/-0.03]
+    C-thaw(post)    no Ciocan         +0.08 [+0.04/+0.07]   +0.05 [+0.03/+0.04]   +0.02 [+0.01/+0.02]   +0.01 [+0.01/+0.01]   -0.01 [-0.00/-0.01]
+    C-thaw(post)    clean near-a0     +0.02 [+0.01/+0.02]   +0.00 [+0.00/+0.00]   -0.02 [-0.01/-0.01]   -0.02 [-0.01/-0.02]   -0.03 [-0.01/-0.03]
+    D-thaw(post)    all 10          +12.05 [+8.56/+15.34]   +6.40 [+4.37/+7.87]   +1.93 [+1.15/+2.01]   +0.27 [+0.16/+0.24]   -0.05 [-0.02/-0.04]
+    D-thaw(post)    no Ciocan         +0.10 [+0.05/+0.08]   +0.06 [+0.03/+0.05]   +0.03 [+0.02/+0.02]   +0.01 [+0.01/+0.00]   -0.01 [-0.00/-0.01]
+    D-thaw(post)    clean near-a0     +0.02 [+0.01/+0.02]   -0.00 [+0.00/-0.00]   -0.02 [-0.01/-0.02]   -0.03 [-0.01/-0.03]   -0.04 [-0.02/-0.04]
+    rival H(z)      all 10                         +47.29                +19.91                 +3.00                 -1.15                 -1.64
+    rival H(z)      no Ciocan                       -1.09                 -1.45                 -1.74                 -1.88                 -1.98
+    rival H(z)      clean near-a0                   -1.62                 -1.86                 -2.03                 -2.11                 -2.15
+    LCDM-emergent   all 10                         +32.68                +17.60                 +3.85                 -0.30                 -0.79
+    LCDM-emergent   no Ciocan                       -0.11                 -0.33                 -0.52                 -0.63                 -0.71
+    LCDM-emergent   clean near-a0                   -0.51                 -0.65                 -0.76                 -0.81                 -0.85
+
+    largest |log10 B| of any dark-energy branch against A (any footing, any combination):
+    all 10             face +39.61  P-HALF +18.48   P-MAG  +4.02   P-MSA  -1.42  P-WIDE  -0.29
+    no Ciocan          face  -0.37  P-HALF  -0.31   P-MAG  -0.24   P-MSA  -0.19  P-WIDE  -0.21
+    clean near-a0      face  -0.14  P-HALF  -0.20   P-MAG  -0.27   P-MSA  -0.30  P-WIDE  -0.33
+  [FAIL] E1 = H9 (reported as it falls) no dark-energy branch beats or loses to A by more than |log10 B| = 0.5 on the drift-marginalised fork likelihood (P-MAG, P-MSA; every subset, footing and combination); at face value the rising branches are favoured (Ciocan alone)
+         measured: max |log10 B| under P-MAG/P-MSA 4.02; face value, all 10, C-thaw(w0)/D-CPL/D-thaw(w0) vs A: +21.61/+6.17/+27.41
+
+======================================================================================================================
+E2-E5  RC100's slope, the Jeanneau refit, the bTFR ledger, MUSE-DARK III -- per branch (DESY5 draws; P+/U3 medians)
+======================================================================================================================
+    RC100 observed d log a0/dz = -0.1123 +/- 0.0625; Jeanneau Delta_b = +0.140 +/- 0.272 at z = 1.06; MUSE +0.377 dex at z = 1; bTFR rows 4
+    branch           RC100 slope   pull  Jeanneau Db   pull  bTFR chi2   max     z=1  MUSE gap  closed
+    A                    +0.0000  -1.80       -0.000  +0.51       2.68  1.25  +0.000    +0.377    0.0%
+    B-CPL                -0.0681  -0.71       +0.001  +0.51       2.76  1.24  +0.002    +0.374    0.6%   P+/U3 RC100 pull -0.98/-0.52
+    C-CPL                -0.0543  -0.93       -0.036  +0.65       2.63  1.21  +0.049    +0.327   13.1%   P+/U3 RC100 pull -1.14/-0.78
+    D-CPL                -0.0430  -1.11       -0.074  +0.79       2.52  1.18  +0.098    +0.278   26.1%   P+/U3 RC100 pull -1.28/-0.99
+    B-thaw(w0)           +0.0120  -1.99       -0.052  +0.70       2.51  1.21  +0.067    +0.310   17.7%   P+/U3 RC100 pull -1.92/-2.07
+    C-thaw(w0)           +0.0170  -2.07       -0.067  +0.76       2.46  1.19  +0.087    +0.290   23.0%   P+/U3 RC100 pull -1.97/-2.18
+    D-thaw(w0)           +0.0224  -2.15       -0.086  +0.83       2.42  1.18  +0.110    +0.266   29.3%   P+/U3 RC100 pull -2.02/-2.30
+    B-thaw(post)         +0.0036  -1.85       -0.017  +0.58       2.62  1.23  +0.022    +0.354    5.9%   P+/U3 RC100 pull -1.82/-1.84
+    C-thaw(post)         +0.0052  -1.88       -0.023  +0.60       2.60  1.23  +0.029    +0.347    7.8%   P+/U3 RC100 pull -1.83/-1.87
+    D-thaw(post)         +0.0069  -1.91       -0.029  +0.62       2.58  1.23  +0.037    +0.340    9.8%   P+/U3 RC100 pull -1.84/-1.89
+    rival H(z)           +0.2204  -5.32       -0.205  +1.27       2.04  1.10  +0.255    +0.121   67.7%   P+/U3 RC100 pull -5.33/-5.30
+    LCDM-emergent        +0.1572  -4.31       -0.075  +0.79       2.28  1.20  +0.091    +0.286   24.0%
+    (h16's linear LambdaCDM-native slope log10(2.13)/2.5 = +0.1314: pull -3.90; the exact DM14 slope on the same redshifts is in the LCDM-emergent row)
+  [FAIL] E2 = H9 (RC100, reported as it falls) the RC100 slope prefers declining branches: B-CPL within 1 sigma, A at 1.8 sigma, the healthy thawing branches at 2.5-3 sigma
+         measured: A -1.80, B-CPL -0.71, C-CPL -0.93, D-CPL -1.11, B-thaw(w0) -1.99, C-thaw(w0) -2.07, D-thaw(w0) -2.15, B-thaw(post) -1.85, C-thaw(post) -1.88, D-thaw(post) -1.91, rival H(z) -5.32, LCDM-emergent -4.31
+  [PASS] E3/E4 (reported) the Jeanneau refit and the bTFR ledger separate no branch: every branch within 1 sigma of the refit and within 2 sigma of every bTFR row
+         measured: A 1.25, B-CPL 1.25, C-CPL 1.23, D-CPL 1.21, B-thaw(w0) 1.22, C-thaw(w0) 1.21, D-thaw(w0) 1.20, B-thaw(post) 1.24, C-thaw(post) 1.24, D-thaw(post) 1.24
+         reading:  the archival Tully-Fisher arm stays undecided (FORK_RESULTS, L276)
+  [PASS] E5 (reported) no branch reaches MUSE-DARK III's apparent +0.377 dex at z = 1: the smallest gap is > 0.2 dex, so MUSE stays non-diagnostic of the branch (the record reads it as an apparent, method-localised a0)
+         measured: A +0.377, B-CPL +0.374, C-CPL +0.327, D-CPL +0.278, B-thaw(w0) +0.310, C-thaw(w0) +0.290, D-thaw(w0) +0.266, B-thaw(post) +0.354, C-thaw(post) +0.347, D-thaw(post) +0.340
+
+======================================================================================================================
+E6  THE z ~ 2.5 ZERO POINT: separation from LambdaCDM-native (+0.334) and H(z), per branch; the erosion relative to A
+======================================================================================================================
+    branch                     z=2.5 [68%]   PAPER7 requirement  JWST IFU + CO gas    JWST IFU + CO gas       JWST IFU only    +XR17 res (0.13)   vs H(z) (0.13)
+    A               +0.000 [+0.000,+0.000]                    2.57                1.55                1.30                0.77     1.60..1.76            4.43
+    B-CPL           -0.101 [-0.136,-0.063]                    3.22                1.99                1.67                1.00     2.29..2.44            5.20
+    C-CPL           -0.036 [-0.062,-0.011]                    2.79                1.71                1.43                0.86     1.84..2.00            4.71
+    D-CPL           +0.027 [+0.007,+0.048]                    2.33                1.42                1.19                0.71     1.38..1.53            4.22
+    B-thaw(w0)      +0.080 [+0.063,+0.102]                    1.93                1.17                0.98                0.59     0.97..1.13            3.81
+    C-thaw(w0)      +0.106 [+0.084,+0.134]                    1.72                1.05                0.88                0.53     0.77..0.92            3.61
+    D-thaw(w0)      +0.136 [+0.107,+0.173]                    1.48                0.91                0.76                0.46     0.54..0.69            3.38
+    B-thaw(post)    +0.026 [+0.016,+0.041]                    2.35                1.43                1.20                0.71     1.39..1.55            4.23
+    C-thaw(post)    +0.035 [+0.022,+0.055]                    2.28                1.38                1.16                0.69     1.32..1.47            4.16
+    D-thaw(post)    +0.045 [+0.027,+0.070]                    2.20                1.34                1.12                0.67     1.24..1.40            4.09
+    erosion (<1) or sharpening (>1) of the flat test's separation from LambdaCDM at 0.13: A 1.00, B-CPL 1.25, C-CPL 1.09, D-CPL 0.91, B-thaw(w0) 0.75, C-thaw(w0) 0.67, D-thaw(w0) 0.57, B-thaw(post) 0.92, C-thaw(post) 0.89, D-thaw(post) 0.85
+  [PASS] E6 = H10 (reported as it falls) at 0.13 dex per object: flat 2.57 sigma from LambdaCDM-native; B-CPL 3.3, C-CPL 2.8, D-CPL 2.3; healthy thawing 1.4-2.0; healthy thawing plus M*'s flagship residue below 1 sigma
+         measured: A 2.57, B-CPL 3.22, C-CPL 2.79, D-CPL 2.33, B-thaw(w0) 1.93, C-thaw(w0) 1.72, D-thaw(w0) 1.48, B-thaw(post) 2.35, C-thaw(post) 2.28, D-thaw(post) 2.20; with residue (thaw w0): C-thaw(w0) 0.77-0.92, D-thaw(w0) 0.54-0.69, C-thaw(post) 1.32-1.47
+
+======================================================================================================================
+E7  HOW MANY OBJECTS: N for a 3-sigma separation (sigma_obj per object on log a0; coherent floor f)
+======================================================================================================================
+
+    sigma_obj 0.13, floor 0.00:                           z=1.0             z=1.5             z=2.0             z=2.5
+    B-CPL           vs A / vs LCDM:   32431 /  19.5       158 /   3.9        33 /   1.5        15 /   0.8   
+    C-CPL           vs A / vs LCDM:      63 /  89.2       257 /   7.6      5501 /   2.4       116 /   1.1   
+    D-CPL           vs A / vs LCDM:      16 /2580.4        24 /  20.8        53 /   4.0       210 /   1.6   
+    B-thaw(w0)      vs A / vs LCDM:      34 / 266.9        27 /  18.4        25 /   5.3        24 /   2.4   
+    C-thaw(w0)      vs A / vs LCDM:      20 /9613.8        16 /  33.2        14 /   7.2        13 /   2.9   
+    D-thaw(w0)      vs A / vs LCDM:      13 / 392.8        10 /  92.8         9 /  11.3         8 /   3.9   
+    B-thaw(post)    vs A / vs LCDM:     305 /  32.7       249 /   7.7       228 /   3.1       218 /   1.6   
+    C-thaw(post)    vs A / vs LCDM:     177 /  40.6       141 /   8.6       128 /   3.3       122 /   1.7   
+    D-thaw(post)    vs A / vs LCDM:     112 /  52.6        89 /   9.9        81 /   3.6        76 /   1.8   
+    A                    vs LCDM:                18.6               5.6               2.5               1.4
+
+    sigma_obj 0.13, floor 0.05:                           z=1.0             z=1.5             z=2.0             z=2.5
+    B-CPL           vs A / vs LCDM:     inf /   inf       inf /   9.5       inf /   2.0       inf /   0.9   
+    C-CPL           vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   3.6       inf /   1.3   
+    D-CPL           vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   9.9       inf /   2.1   
+    B-thaw(w0)      vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  23.8       inf /   3.6   
+    C-thaw(w0)      vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   inf       inf /   5.2   
+    D-thaw(w0)      vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   inf       inf /   9.2   
+    B-thaw(post)    vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   5.6       inf /   2.1   
+    C-thaw(post)    vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   6.5       inf /   2.3   
+    D-thaw(post)    vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   7.8       inf /   2.5   
+    A                    vs LCDM:                 inf              31.2               3.9               1.7
+
+    sigma_obj 0.257 (IFU + CO gas), floor 0.00:                           z=1.0             z=1.5             z=2.0             z=2.5
+    B-CPL           vs A / vs LCDM:  126711 /  76.1       618 /  15.4       131 /   6.0        59 /   3.1   
+    C-CPL           vs A / vs LCDM:     245 / 348.5      1005 /  29.8     21492 /   9.2       455 /   4.3   
+    D-CPL           vs A / vs LCDM:      62 /10082.1        93 /  81.4       206 /  15.7       821 /   6.3   
+    B-thaw(w0)      vs A / vs LCDM:     134 /1042.6       107 /  71.9        97 /  20.6        92 /   9.2   
+    C-thaw(w0)      vs A / vs LCDM:      79 /37562.2        62 / 129.8        56 /  28.3        53 /  11.5   
+    D-thaw(w0)      vs A / vs LCDM:      49 /1534.8        38 / 362.7        34 /  44.1        32 /  15.2   
+    B-thaw(post)    vs A / vs LCDM:    1192 / 127.7       973 /  30.0       890 /  12.0       851 /   6.3   
+    C-thaw(post)    vs A / vs LCDM:     690 / 158.7       553 /  33.8       501 /  13.0       477 /   6.7   
+    D-thaw(post)    vs A / vs LCDM:     439 / 205.6       349 /  38.6       315 /  14.2       299 /   7.1   
+    A                    vs LCDM:                72.5              21.7               9.6               5.3
+
+    sigma_obj 0.257 (IFU + CO gas), floor 0.05:                           z=1.0             z=1.5             z=2.0             z=2.5
+    B-CPL           vs A / vs LCDM:     inf /   inf       inf /  36.9       inf /   7.7       inf /   3.6   
+    C-CPL           vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  14.2       inf /   5.2   
+    D-CPL           vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  38.7       inf /   8.3   
+    B-thaw(w0)      vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  93.0       inf /  14.2   
+    C-thaw(w0)      vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   inf       inf /  20.3   
+    D-thaw(w0)      vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   inf       inf /  35.9   
+    B-thaw(post)    vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  22.0       inf /   8.3   
+    C-thaw(post)    vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  25.6       inf /   8.9   
+    D-thaw(post)    vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  30.6       inf /   9.7   
+    A                    vs LCDM:                 inf             122.1              15.2               6.7
+
+    sigma_obj 0.431 (IFU only), floor 0.00:                           z=1.0             z=1.5             z=2.0             z=2.5
+    B-CPL           vs A / vs LCDM:  356569 / 214.1      1738 /  43.3       368 /  16.8       165 /   8.9   
+    C-CPL           vs A / vs LCDM:     690 / 980.7      2828 /  84.0     60480 /  26.0      1281 /  12.2   
+    D-CPL           vs A / vs LCDM:     173 /28371.4       261 / 229.2       580 /  44.2      2309 /  17.8   
+    B-thaw(w0)      vs A / vs LCDM:     376 /2934.0       301 / 202.4       273 /  57.9       259 /  26.0   
+    C-thaw(w0)      vs A / vs LCDM:     223 /105701.5       175 / 365.2       157 /  79.5       148 /  32.3   
+    D-thaw(w0)      vs A / vs LCDM:     138 /4318.9       107 /1020.7        96 / 124.2        90 /  42.8   
+    B-thaw(post)    vs A / vs LCDM:    3355 / 359.4      2738 /  84.5      2504 /  33.8      2394 /  17.7   
+    C-thaw(post)    vs A / vs LCDM:    1941 / 446.7      1555 /  95.1      1410 /  36.6      1341 /  18.8   
+    D-thaw(post)    vs A / vs LCDM:    1236 / 578.6       981 / 108.5       885 /  39.9       840 /  20.0   
+    A                    vs LCDM:               204.0              61.1              27.1              15.0
+
+    sigma_obj 0.431 (IFU only), floor 0.05:                           z=1.0             z=1.5             z=2.0             z=2.5
+    B-CPL           vs A / vs LCDM:     inf /   inf       inf / 103.9       inf /  21.7       inf /  10.1   
+    C-CPL           vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  40.0       inf /  14.6   
+    D-CPL           vs A / vs LCDM:     inf /   inf       inf /   inf       inf / 108.8       inf /  23.3   
+    B-thaw(w0)      vs A / vs LCDM:     inf /   inf       inf /   inf       inf / 261.8       inf /  40.0   
+    C-thaw(w0)      vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   inf       inf /  57.1   
+    D-thaw(w0)      vs A / vs LCDM:     inf /   inf       inf /   inf       inf /   inf       inf / 101.0   
+    B-thaw(post)    vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  62.0       inf /  23.2   
+    C-thaw(post)    vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  72.0       inf /  25.1   
+    D-thaw(post)    vs A / vs LCDM:     inf /   inf       inf /   inf       inf /  86.0       inf /  27.4   
+    A                    vs LCDM:                 inf             343.6              42.7              18.8
+  [FAIL] E7 = H11 (reported as it falls, within a factor 2) at z = 2.5 and 3 sigma: A vs B-CPL ~16 objects at 0.13 (~170 at 0.43); A vs healthy thawing (w0-matched) 6-31 at 0.13; each branch vs LambdaCDM-native 2-6
+         measured: A vs B-CPL 15 (0.13), 165 (0.43); A vs thawing(w0) 24/13/8; vs LCDM 0.8-3.9
+
+======================================================================================================================
+E8  WHAT CHANGES ELSEWHERE: each branch's shift at each gate's epoch against the gate's margin (DESY5 medians)
+======================================================================================================================
+    levers: KiDS +36.7 chi^2/dex (DE10 -37.03 -> -34.01); shear +0.912 R/dex (MS4 1.049/1.124 vs 1.2); forest x6.88/dex (DE11 0.00352 -> 0.00412 vs 0.10); flagship edge r_e/r_F 3.17/3.64; CMB-lensing ACT (uncut, linear) +0.680/dex x f_eff 0.14-0.26; cluster d ln nu/d ln a0 at y = 0.33-0.58 = 0.352
+    branch          KiDS dchi2   shear can/alt    forest flag. dpred   edge (HT/DE)  +res vs LCDM  eta slope Harvey z.3  z<=.03  CMBlens
+    A                    +0.00   1.049/1.124   0.00412      +0.000 +0.000/+0.000 +0.208..+0.229    -0.0000     +0.000 +0.0000  +0.0000
+    B-CPL                +0.82   1.071/1.146   0.00362      -0.101 -0.068/-0.168 +0.309..+0.329    +0.0014     +0.024 +0.0034  -0.0055
+    C-CPL                +1.54   1.100/1.175   0.00408      -0.036 -0.019/-0.120 +0.244..+0.265    -0.0144     +0.046 +0.0058  +0.0043
+    D-CPL                +2.43   1.133/1.208   0.00457      +0.027 +0.028/-0.073 +0.181..+0.202    -0.0303     +0.074 +0.0089  +0.0142
+    B-thaw(w0)           +1.11   1.093/1.168   0.00480      +0.080 +0.051/+0.132 +0.128..+0.148    -0.0223     +0.035 +0.0034  +0.0132
+    C-thaw(w0)           +1.39   1.105/1.180   0.00503      +0.106 +0.071/+0.151 +0.102..+0.122    -0.0292     +0.043 +0.0042  +0.0174
+    D-thaw(w0)           +1.73   1.120/1.195   0.00532      +0.136 +0.093/+0.173 +0.072..+0.092    -0.0373     +0.054 +0.0052  +0.0222
+    B-thaw(post)         +0.38   1.064/1.139   0.00434      +0.026 +0.017/+0.043 +0.182..+0.202    -0.0074     +0.012 +0.0012  +0.0044
+    C-thaw(post)         +0.49   1.068/1.143   0.00441      +0.035 +0.024/+0.050 +0.173..+0.193    -0.0098     +0.015 +0.0015  +0.0058
+    D-thaw(post)         +0.60   1.073/1.148   0.00449      +0.045 +0.031/+0.057 +0.164..+0.184    -0.0124     +0.019 +0.0018  +0.0073
+    margins: KiDS 30.3 (M*'s worst -26.28 vs +4.0); shear 1.2 - R = 0.151/0.076; forest line 0.10; flagship tolerance 0.10 dex (S_crit); flagship edge log(r_e/r_F) = 0.50/0.56; eRASS1 eta trend +0.187 +/- 0.013 per unit z (constant a0 requires 0); Harvey +0.096 vs +0.10 (not sized: no footing pair)
+  [FAIL] E8 = H12 (reported as it falls) gates at z <= 0.5 move by less than the committed canonical-vs-alt lever (|d log a0| < 0.0823 dex) for every branch; the forest stays >= 10x inside its line; the flagship prediction moves by -0.10..+0.16 dex
+         measured: branches within the lever at z <= 0.5: ['A', 'B-CPL', 'C-CPL', 'B-thaw(w0)', 'C-thaw(w0)', 'D-thaw(w0)', 'B-thaw(post)', 'C-thaw(post)', 'D-thaw(post)']; |d log a0(0.5)|: A 0.000, B-CPL 0.024, C-CPL 0.056, D-CPL 0.092, B-thaw(w0) 0.048, C-thaw(w0) 0.061, D-thaw(w0) 0.078, B-thaw(post) 0.017, C-thaw(post) 0.021, D-thaw(post) 0.026; worst forest 0.0053; flagship d pred -0.101..+0.136; shear crosses 1.2 on the alt footing for ['D-CPL']
+
+======================================================================================================================
+E9  THE ENVIRONMENT NULL: every branch reads a spatially uniform density
+======================================================================================================================
+    A                       : predicted |d log a0/d log(1 + delta)| <= 0.0e+00
+    C (alpha(phi), local)   : predicted |d log a0/d log(1 + delta)| <= 5.0e-12  (XR20 E6's 3.4e-11 at a 1e14 Msun centre over a 3-dex contrast)
+    B, D (leaf-averaged)    : predicted |d log a0/d log(1 + delta)| <= 0.0e+00
+  [PASS] E9 every branch meets the environment null: the dark energy is uniform on galaxy scales, so a0 carries no environmental slope (A exactly 0; the local potential tie <= 1e-11; the leaf-averaged ties 0 in space), within 2 sigma of every measured slope, while the rho_local reading stays excluded
+         measured: max |pull| of a zero slope: A 1.21, C (alpha(phi), local) 1.21, B, D (leaf-averaged) 1.21; rho_local excluded at >= 6.7 sigma
+         reading:  the evolving-dark-energy branches change a0 in time, never in space: they inherit the null's support for rho_Lambda over rho_local
+
+======================================================================================================================
+HEADLINE: branch A's z = 2.5 prediction
+======================================================================================================================
+  [PASS] HEADLINE branch A predicts 0.000 dex at z = 2.5 -- the pre-registered framework value, inside +/-0.13 -- for every dark-energy history
+         measured: A at z = 2.5: +0.000 dex; separation from LambdaCDM-native 2.57 sigma at 0.13
+
+======================================================================================================================
+W   THE LEDGER AND THE RECOMMENDATION
+======================================================================================================================
+    X-CFG6-1  DATA PREFER all 10 fork constraints: the rising branches are favoured only while the drift prior is below the record's headline (P-MAG up to +4.02, from MUSE-DARK III); headline P-MSA -1.42 (B-CPL); without Ciocan at most 0.37; clean near-a0 subset at most 0.33: undecided; RC100's slope pulls A -1.80, B-CPL -0.71, C-thaw(w0) -2.07, C-thaw(post) -1.88 (a constraint on a rise, not a detection of a decline: h16's caveat)
+    X-CFG6-2  EROSION     at 0.13 dex: A 2.57 sigma from LambdaCDM-native; B-CPL 3.22; C-CPL 2.79; D-CPL 2.33; healthy thawing: w0-matched 1.72 (C), posterior-conditioned 2.28 (C)
+    X-CFG6-3  OBJECTS     3 sigma at z = 2.5: A vs LambdaCDM 1.4 objects at 0.13 (15 at 0.43); A vs B-CPL 15 (165); A vs C-thaw(post) 122
+    X-CFG6-4  ELSEWHERE   z <= 0.5 gates: KiDS |dchi2| <= 2.4 against a 30 margin; cosmic shear's alt margin (0.076) is crossed by ['D-CPL']; forest <= 0.0053 vs 0.10; flagship prediction -0.101..+0.136 dex
+    X-CFG6-5  ENVIRONMENT every branch ties a0 to a spatially uniform density: predicted environmental slope <= 1e-11 against 2MRS +0.052 +/- 0.043, 2M++ (real space) -0.046 +/- 0.081, Tully group mass +0.036 +/- 0.030; rho_local excluded at >= 6.7 sigma
+  [PASS] W (reported) the ledger
+         measured: 5 links
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  Against the record's a0(z) evidence the data do not pick a branch.  On all ten fork constraints the rising branches win only
+  while the LambdaCDM-degenerate drift prior is below the record's headline (face value up to +39.6, P-MAG
+  +4.02 in log10 B), and every bit of that comes from MUSE-DARK III, which sits above every branch;
+  at the headline prior the largest is -1.42 (B-CPL); without MUSE-DARK III every branch is within
+  0.37 of the flat law, and within 0.33 on the clean near-a0 subset.
+  RC100's slope, the one datum with power, leans against a rise (A -1.80 sigma,
+  healthy w0-matched thawing -2.07, the declining density branch -0.71), with h16's caveat.
+  At z = 2.5 and 0.13 dex per object the flat law sits 2.57 sigma from LambdaCDM-native; following the DESI fits the
+  density and potential ties sharpen it (B 3.22, C 2.79) and the pressure tie erodes it slightly
+  (D 2.33);
+  a healthy thawing field erodes it (2.28 conditioned on the posterior, 1.72 w0-matched).
+  kappa stays FITTED; nothing here derives it; the data do not favour the framework over LambdaCDM.
+
+  14/18 checks pass; load-bearing failures: 0; wrote CFG6_a0z_evidence_results.json  (10 s)
+rc = 0

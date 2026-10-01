@@ -1,0 +1,121 @@
+CFG3_solar_system -- THE SOLAR SYSTEM UNDER THE PRINCIPLE: Cassini's quadrupole, the phantom mass inside Saturn's orbit and the
+planets' sunward anomaly, with the answer coherent only above l* (both filters), both footings.
+
+WHY THE SUN IS ANSWERED AT ALL.  The Sun sits inside the Galaxy's held-back region (the gate is open), and the Galaxy's field at
+the Sun is internal to that region, so it enters the kernel's argument in full (CFG3_principle D7): the Solar System sees
+QUMOND with the Bose kernel in the Galactic field -- exactly the setting in which the strict law fails Cassini by ~6x (FP14 X5,
+FP17, f29 V1).  FP17's theorem says (a0, Lambda, G, c) cannot supply the separating length; the principle's (v) does: the
+answer is a coarse-grained property of the vacuum state, coherent only above l*, the state's Airy length at a0,
+l_A = (hbar^2/(2 m^2 a0))^(1/3) (CFG3_principle D8), TIED to the dark field's mass m (floor 1.9-5.2e-19 eV, FP10):
+l* = 1.25-2.60 pc.  Putting the coarse-graining S in the action filters both the source and the answer (D3).
+
+MACHINERY.  f29's phantom-density quadrature (hunt_2026/f29_coherence_length_law.py: QUMOND with nu_RAR -- the Bose kernel --
+on a Gaussian-smoothed Sun in the uniform Newtonian Galactic field, axisymmetric log-r x theta grid; its interior quadrupole
+in the record's frozen convention Q2 = 3 G I2; its enclosed monopole), exec'd read-only.  f29 filters the SOURCE only.  This
+lane adds the OUTPUT filter: the phantom density's l = 0 and l = 2 Legendre parts are convolved with the same 3-D Gaussian,
+K_l(r, r') = 4 pi (2 pi s^2)^(-3/2) exp(-(r - r')^2/2s^2) [e^-z i_l(z)], z = r r'/s^2 (the exact radial kernel of an isotropic
+Gaussian acting on r^l-type harmonics).  Gates (the record's): Q2 < 5.2e-27 s^-2 (Park 2026 2-sigma ceiling, FP1/f29); extra
+mass inside Saturn's orbit < 6.7e-11 Msun (Pitjev & Pitjeva 2013 via f29 S4); sunward anomaly at 1 AU < 3.66e-14 m/s^2 (FP1).
+
+CHECKS
+  K1 CONTROL: f29's committed table is reproduced by its own functions at its own footings (hunt_lib's 9.36e-11 / 1.13e-10):
+     Q2/ceiling at xi = 0.03 / 0.05 / 0.10 pc (1.1239, 0.2330, 0.0289 canonical; 1.3238, 0.2731, 0.0339 alt) and the Saturn
+     monopole ratio (3.405, 0.735, 0.092 canonical) to their printed digits.
+  K2 CONTROL: the output-filter kernel is exact on an analytic case: a Gaussian blob of width s1 (l = 0) smoothed by s2 is the
+     Gaussian of width sqrt(s1^2 + s2^2), and an l = 2 Gaussian-weighted harmonic r^2 exp(-r^2/2 s1^2) P2 maps to the analytic
+     result; both to < 1e-3 on the lane's grids.
+  S1 [HEADLINE; load-bearing; MUTATE must fail] AT THE TIE (l* = l_A at m = 1.9e-19 and 5.2e-19 eV, both footings) the Sun clears
+     all three gates with both filters: Q2/ceiling < 1, monopole/bound < 1, sunward anomaly/bound < 1.
+  S2 (reported) THE FLOOR: the smallest l* clearing all three gates, double filter and source-only (f29's 0.045 pc), both
+     footings; through the tie it is an UPPER bound on the dark field's mass: m <= m_max with l_A(m_max) = the floor.
+  S3 (reported) the record's other length: ONE_NEW_THING's 0.032 pc (hbar c/2e-22 eV) under the double filter.
+PRE-DECLARED HYPOTHESES (written before the first run of this script):
+  H1 at the tie every gate is cleared by >= 4 orders of magnitude (f29's xi^-3 law from 0.03 pc to ~1.3 pc).  EXPECT TRUE.
+  H2 the output filter LOWERS the floor below f29's source-only 0.045 pc (it spreads the phantom further).  EXPECT TRUE,
+     size uncertain (a floor between 0.025 and 0.045 pc expected).
+  H3 ONE_NEW_THING's 0.032 pc passes Q2 but not the monopole under the source-only filter (f29's table) and may pass both
+     with the double filter.  UNCERTAIN.
+MUTATE=1: the coherence length removed (l* -> 0: the answer read and written pointwise) -- S1 must FAIL (the strict law's Q2 is
+~6x the ceiling), rc = 1.
+Run from the repository root (MUTATE first):  MUTATE=1 python3 campaign_fresh_gravity/CFG3_solar_system.py; python3 campaign_fresh_gravity/CFG3_solar_system.py
+
+  inputs: a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt) m/s^2 [FP0]; rho_Lambda = 5.8424e-27 kg/m^3; H_Lambda = 1.8074e-18 1/s; Z = 5.788810 (kappa = 1/2 FITTED)
+
+======================================================================================================================
+K1  CONTROL: f29's committed Solar-System table, from its own functions
+======================================================================================================================
+    canonical xi = 0.03 pc: Q2/ceiling 1.1239 (f29 1.1239); monopole/bound 3.405 (f29 3.405)
+    canonical xi = 0.05 pc: Q2/ceiling 0.2330 (f29 0.233); monopole/bound 0.735 (f29 0.735)
+    canonical xi = 0.10 pc: Q2/ceiling 0.0289 (f29 0.0289); monopole/bound 0.092 (f29 0.092)
+    alt       xi = 0.03 pc: Q2/ceiling 1.3237 (f29 1.3238)
+    alt       xi = 0.05 pc: Q2/ceiling 0.2731 (f29 0.2731)
+    alt       xi = 0.10 pc: Q2/ceiling 0.0339 (f29 0.0339)
+  [PASS] K1 CONTROL: f29's phantom quadrature (exec'd read-only) reproduces its committed Q2/ceiling (canonical and alt) and Saturn-monopole ratios at xi = 0.03 / 0.05 / 0.10 pc to their printed digits
+         measured: max |d(Q2/ceil)| 1.0e-04; max |d(monopole ratio)| 0.0e+00
+
+======================================================================================================================
+K2  CONTROL: the output-filter kernel against analytic Gaussian convolutions
+======================================================================================================================
+    l = 0 Gaussian: max rel error 1.4e-12;  l = 2 harmonic Gaussian: max rel error 6.1e-16
+  [PASS] K2 CONTROL: the output-filter kernel is exact on analytic convolutions (l = 0: Gaussian -> wider Gaussian; l = 2: r^2 P2 e^(-r^2/2s1^2) -> (s1/s12)^7 r^2 P2 e^(-r^2/2s12^2))
+         measured: l = 0 1.4e-12; l = 2 6.1e-16
+
+======================================================================================================================
+S1  THE SUN UNDER THE PRINCIPLE: both filters, the FP0 footings
+======================================================================================================================
+    l_A from CFG3_principle D8 (committed): 1.9e-19|canonical: 2.602 pc; 1.9e-19|alt: 2.443 pc; 5.2e-19|canonical: 1.330 pc; 5.2e-19|alt: 1.249 pc
+    canonical: e_N = 1.722e-10 m/s^2 (1.840 a0), r_M(Sun) = 0.0386 pc
+       l* [pc]    Q2/ceil  M(<Sat)/bnd  a(1AU)/bnd | source-only:   Q2/ceil     M/bnd
+        0.0200  1.216e+00    4.145e+00   2.584e-02 |              4.485e+00 1.149e+01
+        0.0250  6.460e-01    2.128e+00   1.327e-02 |              2.037e+00 5.883e+00
+        0.0300  3.788e-01    1.233e+00   7.684e-03 |              1.124e+00 3.405e+00
+        0.0320  3.130e-01    1.016e+00   6.333e-03 |              9.165e-01 2.805e+00
+        0.0350  2.399e-01    7.766e-01   4.841e-03 |              6.929e-01 2.144e+00
+        0.0400  1.611e-01    5.204e-01   3.244e-03 |              4.593e-01 1.436e+00
+        0.0450  1.133e-01    3.655e-01   2.278e-03 |              3.207e-01 1.009e+00
+        0.0500  8.268e-02    2.665e-01   1.661e-03 |              2.330e-01 7.354e-01
+        0.0600  4.789e-02    1.542e-01   9.613e-04 |              1.344e-01 4.256e-01
+        0.0700  3.017e-02    9.712e-02   6.054e-04 |              8.451e-02 2.680e-01
+        0.1000  1.035e-02    3.331e-02   2.076e-04 |              2.894e-02 9.193e-02
+        0.2000  1.294e-03    4.164e-03   2.596e-05 |              3.613e-03 1.149e-02
+        0.5000  8.281e-05    2.665e-04   1.661e-06 |              2.310e-04 7.535e-04
+        1.0000  1.035e-05    3.331e-05   2.077e-07 |              2.884e-05 9.285e-05
+        1.3301  4.399e-06    1.416e-05   8.824e-08 |              1.225e-05 3.879e-05
+        2.6024  5.873e-07    1.890e-06   1.178e-08 |              1.634e-06 5.137e-06
+        3.0000  3.834e-07    1.234e-06   7.691e-09 |              1.066e-06 3.380e-06
+    alt: e_N = 1.619e-10 m/s^2 (1.431 a0), r_M(Sun) = 0.0351 pc
+       l* [pc]    Q2/ceil  M(<Sat)/bnd  a(1AU)/bnd | source-only:   Q2/ceil     M/bnd
+        0.0200  1.414e+00    5.314e+00   4.146e-02 |              5.384e+00 1.463e+01
+        0.0250  7.549e-01    2.730e+00   2.130e-02 |              2.414e+00 7.493e+00
+        0.0300  4.434e-01    1.582e+00   1.234e-02 |              1.325e+00 4.336e+00
+        0.0320  3.665e-01    1.303e+00   1.017e-02 |              1.079e+00 3.573e+00
+        0.0350  2.810e-01    9.964e-01   7.773e-03 |              8.147e-01 2.731e+00
+        0.0400  1.888e-01    6.677e-01   5.209e-03 |              5.393e-01 1.829e+00
+        0.0450  1.328e-01    4.690e-01   3.659e-03 |              3.764e-01 1.285e+00
+        0.0500  9.692e-02    3.419e-01   2.667e-03 |              2.733e-01 9.366e-01
+        0.0600  5.614e-02    1.979e-01   1.544e-03 |              1.576e-01 5.420e-01
+        0.0700  3.537e-02    1.246e-01   9.722e-04 |              9.906e-02 3.413e-01
+        0.1000  1.213e-02    4.274e-02   3.335e-04 |              3.392e-02 1.171e-01
+        0.2000  1.517e-03    5.343e-03   4.168e-05 |              4.234e-03 1.463e-02
+        0.5000  9.709e-05    3.420e-04   2.667e-06 |              2.707e-04 9.623e-04
+        1.0000  1.214e-05    4.275e-05   3.335e-07 |              3.380e-05 1.195e-04
+        1.2487  6.233e-06    2.195e-05   1.712e-07 |              1.735e-05 6.159e-05
+        2.4432  8.321e-07    2.931e-06   2.286e-08 |              2.314e-06 8.234e-06
+        3.0000  4.495e-07    1.583e-06   1.235e-08 |              1.250e-06 4.402e-06
+  [PASS] S1 [HEADLINE; MUTATE must fail] AT THE TIE the Sun clears Cassini's quadrupole, the ephemeris mass bound inside Saturn's orbit and the sunward-anomaly bound, with both filters, at both dark-field mass floors and both footings (l* = l_A = 1.25-2.60 pc)
+         measured: 1.9e-19|canonical: l* 2.602 pc, Q2 5.9e-07, M 1.9e-06, a 1.2e-08; 1.9e-19|alt: l* 2.443 pc, Q2 8.3e-07, M 2.9e-06, a 2.3e-08; 5.2e-19|canonical: l* 1.330 pc, Q2 4.4e-06, M 1.4e-05, a 8.8e-08; 5.2e-19|alt: l* 1.249 pc, Q2 6.2e-06, M 2.2e-05, a 1.7e-07; worst 2.2e-05
+    floors (all three gates): canonical: double filter 0.0322 pc, source only 0.0451 pc; alt: double filter 0.0350 pc, source only 0.0489 pc
+    through the tie l_A(m) >= floor:  m <= canonical: 1.38e-16 eV; alt: 1.11e-16 eV
+  [PASS] (reported) S2 (H2, reported) THE FLOOR: the output filter lowers the Solar-System floor below the source-only one (f29: 0.045 pc); through the tie the floor is an upper bound on the dark field's mass
+         measured: canonical: 0.0322 vs 0.0451 pc, m <= 1.38e-16 eV; alt: 0.0350 vs 0.0489 pc, m <= 1.11e-16 eV
+  [FAIL] (reported) S3 (H3, reported) ONE_NEW_THING's 0.032 pc (hbar c/2e-22 eV) under the double filter: all three gates
+         measured: canonical: Q2 0.31, M 1.02, a 6.33e-03 (source-only Q2 0.92, M 2.81); alt: Q2 0.37, M 1.30, a 1.02e-02 (source-only Q2 1.08, M 3.57)
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    SS1      PASS        at the tie (l* = l_A(m_floor) = 1.25-2.60 pc) the Sun clears every gate, worst ratio 2.2e-05  --  S1
+    SS2      TIED        l* = l_A = (hbar^2/(2 m^2 a0))^(1/3); the Solar System bounds it from below: l* >= 0.032 / 0.035 pc => m <= 1.4e-16 / 1.1e-16 eV  --  S2
+
+  4/5 checks pass; load-bearing failures: 0 ; reported failures: ['S3']; wrote CFG3_solar_system_results.json (24 s)
+rc = 0

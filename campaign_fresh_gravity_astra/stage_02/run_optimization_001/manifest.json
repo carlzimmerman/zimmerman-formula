@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "AFG-007",
+  "repository": {
+    "commit": "eccd1c0e59459b5ec1acf2e916fb7a05a7f67971",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "-B",
+    "campaign_fresh_gravity_astra/stage_02/optimal_weights.py",
+    "--out",
+    "campaign_fresh_gravity_astra/stage_02/run_optimization_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Minimum-variance linear Q-scale estimator with latent u² cancellation, PSF noise and calibration tests; loss under coarsening.",
+    "coefficient_domain": "binary64",
+    "conventions": "Poisson raw-moment covariance; fixed scale-1 design covariance; nullspace cutoff 1e-12.",
+    "inputs": [
+      "campaign_fresh_gravity_astra/stage_02/optimal_weights.py",
+      "campaign_fresh_gravity_astra/stage_02/measurement.py",
+      "campaign_fresh_gravity_astra/stage_02/CONTRACT.md"
+    ],
+    "bounds": {
+      "source_cells": 64,
+      "full_pixels": 64,
+      "coarse_pixels": 16,
+      "psf_sigmas": [
+        0.05,
+        0.2,
+        0.4,
+        0.7,
+        1.0
+      ],
+      "width_calibration_factors": [
+        0.9,
+        1.1
+      ]
+    },
+    "non_claims": [
+      "No minimum variance claim among all nonlinear estimators; no empirical instrument or spectra."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T17:58:05.396481+00:00",
+    "runtime_seconds": 0.248323,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "campaign_fresh_gravity_astra/stage_02/optimal_weights.py",
+    "campaign_fresh_gravity_astra/stage_02/measurement.py",
+    "campaign_fresh_gravity_astra/stage_02/CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/optimal_weights.py",
+      "sha256": "7959cf3393e9455be3b82611403980f3b9abf996217c7f27894203d137a3091b",
+      "sha256_after": "7959cf3393e9455be3b82611403980f3b9abf996217c7f27894203d137a3091b"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/measurement.py",
+      "sha256": "029b59e92adffe3502dc91880831525838d0afc0b22be48ef78b029ead158e91",
+      "sha256_after": "029b59e92adffe3502dc91880831525838d0afc0b22be48ef78b029ead158e91"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/CONTRACT.md",
+      "sha256": "b1cfdd48cb951a89ed5e1f197c6ecb6162809de38cb85f3162e25b035e6993ad",
+      "sha256_after": "b1cfdd48cb951a89ed5e1f197c6ecb6162809de38cb85f3162e25b035e6993ad"
+    }
+  ],
+  "output_directory": "campaign_fresh_gravity_astra/stage_02/run_optimization_001",
+  "declared_results": [
+    "campaign_fresh_gravity_astra/stage_02/run_optimization_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/run_optimization_001/stdout.txt",
+      "sha256": "d362b0da1f856607ecd475a33e84552434efed6296e5df42adeb117e0ed38c94",
+      "kind": "log"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/run_optimization_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_02/run_optimization_001/results.json",
+      "sha256": "d362b0da1f856607ecd475a33e84552434efed6296e5df42adeb117e0ed38c94",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

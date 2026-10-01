@@ -81,7 +81,7 @@ Write the actual result and artifacts under `measurement_decade_2017_2026/result
 
 Declared dependencies: No predeclared seed-ID dependency. Discover and register the exact theory/data dependencies before execution; this does not imply the observation map already exists.
 
-Identify repeated objects, exposures, sky modes and calibration inputs within this source family and across years. Use conditional increments or joint covariance, not a product of overlapping likelihoods. Reuse any old AS result for the generic lemma; this task evaluates the explicitly named new release-specific output.
+Identify repeated objects, exposures, sky modes and calibration inputs within this source family and across years. Use conditional increments or joint covariance, not a product of overlapping likelihoods. Reuse any old AS result for the generic lemma; this task evaluates the explicitly named new release-specific output. Closest earlier obligation: MY2018-067 (external-field lemma; new 3D orientation/velocity likelihood). Inspect its actual owner/evidence and reuse accepted generic results; it is not assumed completed or an automatic hard dependency.
 
 Before claiming work, search both seed manifests, child registries and live AS/MY/FGF claims/results. Reuse an existing generic theorem or active owner. New title/year alone is not novelty. Shared objects, pixels, events, calibrations or simulations need a joint covariance, conditional increment, or separate alternative analysis; do not multiply dependent evidence.
 

@@ -1,0 +1,7 @@
+# Unexecuted follow-up refinement after proof freeze
+
+The coordinator requested this narrower next gate after the original FGF043 proof/result package was pinned. It changes one actually violated equation rather than repeating a static moment mismatch or selecting another weak residual topology. The DERIVATION and its scientific claims are unchanged. The original result bytes are preserved in result_before_followup_refinement.json (SHA256 0a04e0cfc35bb005581bc9a10337ac78821e252dd8dd2b6aa7a56eb43ef5a961).
+
+Select ONE explicit compact nonnegative stationary velocity profile with a controllable flow, stating any changed regularity. Retain the FGF043 width/amplitude, fixed slab, physical coefficients and walls. Starting at the same rho, solve continuity EXACTLY by its flow: n_t+(n v)_x=0. Keep the original fields only as a residual ansatz. Test the full density/entropy/kinetic budget, integrated cubic energy flux, field and momentum residuals, and initial/wall terms. Determine whether finite initial baryonic supply extinguishes the persistent cubic spacetime flux, or whether concentration instead violates entropy/global-energy admissibility. Do not assert a repaired family is an exact coupled solution.
+
+This target is not executed or proved in FGF043. No regularity choice, flow formula, estimate, outcome or numerical run is being promoted here. It supersedes the broader next-task wording in the original report without changing the accepted mathematical scope.

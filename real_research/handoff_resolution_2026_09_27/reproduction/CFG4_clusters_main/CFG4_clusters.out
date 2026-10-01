@@ -1,0 +1,101 @@
+CFG4 (part 3 of 5) -- CLUSTERS AND MERGERS: the collisionless mass the data require beyond the galaxy law, in units of the
+baryons, and how it must be distributed.  Twelve X-COP clusters (the record's corrected hydrostatic audit, the rows L7 reads)
+and the Bullet cluster (Clowe et al. 2006 Table 2, as the record transcribes it).
+
+THE BASE.  a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 FITTED, flat in z; footings 9.3603e-11 / 1.1312e-10 m/s^2 (FP0).
+The galaxy law of part 1 (P2 and nu_mono) applied to the cluster baryons in the spherical reading M_law(<r) =
+nu(g_bar/a0) M_b(<r); a cluster's external field is negligible against its own (y_ext << y).  Where a dark component is
+needed it is the framework's own field (not a particle species), and a mass is still required.
+
+DATA (read-only): qwen_claude_field_theory/closure_2026/cluster_measurement_audit_2026/results.json (the corrected X-COP
+audit: g_HSE and g_bar per radius, twelve clusters, two footings, the rows fable_independent_2026/L7_cosmic_ratio.py reads);
+real_research/data/xcop/xcop_r500_ettori2019.json (R500, M500); opus_48_extended_research/reviews/bullet/bullet_data_table.py
+(Clowe et al. 2006 Table 2 verbatim: positions, 100-kpc aperture plasma and stellar masses, mean convergences).  Planck 2018
+Omega_c h^2 = 0.1200, Omega_b h^2 = 0.02237 for the cosmic share.
+
+PRE-DECLARED (written before any run of this script):
+  H1 CONTROLS.  (a) L7_cosmic_ratio.py, exec'd read-only, is reproduced exactly by this lane's own code on the same rows:
+     twelve clusters at the outermost audited radius (median 1000 kpc = 0.80 R500), f_bar median 0.149, Newtonian
+     M_dark/M_bar median 5.73 +- 0.68, the framework residual (L7's saturated nu_RAR) 3.09 +- 0.71 (canonical) / 2.76 (alt);
+     (b) the record's Bullet table script, exec'd read-only, gives the offsets this lane recomputes from the same coordinates.
+     EXPECT TRUE.
+  H2 [HEADLINE] THE CLUSTERS NEED A DARK COMPONENT BEYOND THE LAW, AND IT IS THE COSMIC SHARE.  With the adopted kernels (P2,
+     nu_mono) on both footings, the law alone falls short of X-COP's masses at the outermost audited radius by
+     eta = M_HSE/M_law >= 1.5 (median), a residual M_x = M_HSE - M_law of 2-4 M_b, far from zero (>= 8 sigma on the median).
+     The 'identity' reading -- the cold component carries the cosmic share Omega_c/Omega_b of the baryons and supplies the
+     phantom wherever it can, so the dark mass is max(M_phantom, (Omega_c/Omega_b) M_b) -- reproduces X-COP's measured mass
+     at that radius within 20% (median) on both footings for both kernels.  EXPECT TRUE.
+  H3 THE DISTRIBUTION.  The residual's density falls as r^s with s in [-1.8, -1.2] over 40-750 kpc (the record's g04a -1.53,
+     L41 -1.42): more concentrated than the gas.  The law removes a minority of the Newtonian dark mass at 0.8 R500 (the record
+     carries both '74-89%' and '~32% at R500'; this lane measures it).  EXPECT TRUE for the slope; UNCERTAIN for the removed
+     fraction.
+  H4 THE HYDROSTATIC BIAS.  For b in [0, 0.2] (M_true = M_HSE/(1 - b); X-COP's own non-thermal share ~6% at R500) the
+     residual stays above 1.5 M_b; no admissible b removes it (the record's L18: a rescue needs b < 0).  EXPECT TRUE.
+  H5 THE BULLET.  The lensing peaks sit on the galaxies, offset from the plasma by ~150-200 kpc (main and sub), while the
+     plasma apertures hold MORE baryons than the galaxy apertures; the mean-convergence contrast Delta kappa-bar at the galaxies
+     implies a collisionless projected mass there of several times the aperture baryons.  EXPECT TRUE.
+MUTATE=1 removes the cold component from the clusters (the dark mass is the law's phantom only): the headline H2 must FAIL
+(rc = 1).
+
+======================================================================================================================
+K1  CONTROL: L7_cosmic_ratio.py (exec'd read-only) and this lane's own code on the same audited X-COP rows
+======================================================================================================================
+    L7 committed .out (canonical): f_bar 0.149, Newtonian 5.73 +- 0.68, framework residual 3.09 +- 0.71; this lane: f_bar 0.149 [0.115, 0.160], Newtonian 5.73 +- 0.68, residual 3.09 +- 0.71 (12 clusters); alt residual 2.76
+  [PASS] K1 CONTROL: L7_cosmic_ratio.py (exec'd read-only) and this lane's independent code on the same audited X-COP rows agree to machine precision, and both reproduce L7's committed output (f_bar 0.149; Newtonian 5.73 +- 0.68; framework residual 3.09 +- 0.71 canonical / 2.76 alt)
+         measured: this lane: 0.1486, 5.7297 +- 0.6808, 3.0877 +- 0.7077, alt 2.7560; L7 namespace medians {'alt': 5.729671510294423, 'canonical': 5.729671510294423}
+
+======================================================================================================================
+K2  CONTROL: the record's Bullet table (Clowe et al. 2006 Table 2, exec'd read-only) and this lane's offsets
+======================================================================================================================
+    offsets (lensing peak = BCG/galaxies vs plasma): main 209.4 kpc (record 209.4), sub 194.1 kpc (record 194.1); plate scale 4.413 kpc/arcsec
+  [PASS] K2 CONTROL: the record's Bullet table script (exec'd read-only) and this lane's recomputation from the same Table 2 coordinates give the same galaxy-plasma offsets
+         measured: main 209.38 / 209.38, sub 194.08 / 194.08 kpc
+
+======================================================================================================================
+C  THE LAW ON TWELVE X-COP CLUSTERS: eta = M_HSE/M_law, the residual beyond the law, the Newtonian dark mass, the cosmic share
+======================================================================================================================
+    canonical P2       (b = 0): at 1000 kpc (0.80 R500): eta = 2.029 +- 0.268; the law's phantom 2.39 M_b; residual beyond the law 3.47 +- 0.70 M_b (17 sigma on the median); Newtonian dark 5.73 +- 0.68 M_b (cosmic 5.36); the law removes 40% of the Newtonian dark mass; identity reading / measured = 0.946 +- 0.080; residual density slope -1.56 +- 0.22 (baryons -1.25)
+                        b = 0.06: eta 2.158, residual 3.92 M_b, identity/measured 0.889
+                        b = 0.10: eta 2.254, residual 4.25 M_b, identity/measured 0.851
+                        b = 0.20: eta 2.536, residual 5.23 M_b, identity/measured 0.757
+    canonical nu_mono  (b = 0): at 1000 kpc (0.80 R500): eta = 1.820 +- 0.232; the law's phantom 2.76 M_b; residual beyond the law 3.09 +- 0.71 M_b (15 sigma on the median); Newtonian dark 5.73 +- 0.68 M_b (cosmic 5.36); the law removes 47% of the Newtonian dark mass; identity reading / measured = 0.946 +- 0.080; residual density slope -1.58 +- 0.24 (baryons -1.25)
+                        b = 0.06: eta 1.936, residual 3.54 M_b, identity/measured 0.889
+                        b = 0.10: eta 2.022, residual 3.87 M_b, identity/measured 0.851
+                        b = 0.20: eta 2.275, residual 4.85 M_b, identity/measured 0.757
+    alt       P2       (b = 0): at 1000 kpc (0.80 R500): eta = 1.861 +- 0.248; the law's phantom 2.70 M_b; residual beyond the law 3.14 +- 0.72 M_b (15 sigma on the median); Newtonian dark 5.73 +- 0.68 M_b (cosmic 5.36); the law removes 45% of the Newtonian dark mass; identity reading / measured = 0.946 +- 0.080; residual density slope -1.58 +- 0.24 (baryons -1.25)
+                        b = 0.06: eta 1.980, residual 3.59 M_b, identity/measured 0.889
+                        b = 0.10: eta 2.068, residual 3.92 M_b, identity/measured 0.851
+                        b = 0.20: eta 2.326, residual 4.90 M_b, identity/measured 0.757
+    alt       nu_mono  (b = 0): at 1000 kpc (0.80 R500): eta = 1.679 +- 0.216; the law's phantom 3.08 M_b; residual beyond the law 2.75 +- 0.72 M_b (13 sigma on the median); Newtonian dark 5.73 +- 0.68 M_b (cosmic 5.36); the law removes 52% of the Newtonian dark mass; identity reading / measured = 0.946 +- 0.080; residual density slope -1.62 +- 0.31 (baryons -1.25)
+                        b = 0.06: eta 1.786, residual 3.20 M_b, identity/measured 0.889
+                        b = 0.10: eta 1.865, residual 3.53 M_b, identity/measured 0.851
+                        b = 0.20: eta 2.098, residual 4.51 M_b, identity/measured 0.757
+  [PASS] H2 [HEADLINE] THE CLUSTERS NEED A DARK COMPONENT BEYOND THE LAW, AND THE COSMIC SHARE SUPPLIES IT: the law alone falls short of X-COP (median eta >= 1.5, the residual >= 8 sigma from zero on the median) while the identity reading -- dark mass = max(phantom, (Omega_c/Omega_b) M_b) -- reproduces the measured mass within 20% (median), both footings, both kernels
+         measured: can/P2: eta 2.03, residual 3.47 M_b (17 sigma), identity/measured 0.946 +- 0.080; can/nu_mono: eta 1.82, residual 3.09 M_b (15 sigma), identity/measured 0.946 +- 0.080; alt/P2: eta 1.86, residual 3.14 M_b (15 sigma), identity/measured 0.946 +- 0.080; alt/nu_mono: eta 1.68, residual 2.75 M_b (13 sigma), identity/measured 0.946 +- 0.080
+  [PASS] (reported) H3 THE DISTRIBUTION: the residual's density falls as r^s with s in [-1.8, -1.2] over 40-750 kpc (steeper than a cored phantom, like the galaxies and the record's g04a -1.53 / L41 -1.42); the law removes the printed share of the Newtonian dark mass
+         measured: can/P2: slope -1.56 +- 0.22, removed 40%; can/nu_mono: slope -1.58 +- 0.24, removed 47%; alt/P2: slope -1.58 +- 0.24, removed 45%; alt/nu_mono: slope -1.62 +- 0.31, removed 52%
+         reading:  the record carries two numbers for the removed share ('74-89%' in the category-search index line, '~32% at R500' in its body); on X-COP at 0.8 R500 with the adopted kernels it is the printed value
+  [PASS] (reported) H4 THE HYDROSTATIC BIAS: for b up to 0.2 the residual beyond the law stays >= 1.5 M_b (a positive b RAISES the true mass; no admissible b removes the residual)
+         measured: can/P2: residual at b = 0.2 5.23 M_b; can/nu_mono: residual at b = 0.2 4.85 M_b; alt/P2: residual at b = 0.2 4.90 M_b; alt/nu_mono: residual at b = 0.2 4.51 M_b
+
+======================================================================================================================
+H5  THE BULLET: lensing on the galaxies, plasma offset, and the collisionless mass the contrast requires
+======================================================================================================================
+    main: kappa-bar galaxies 0.36 +- 0.06, plasma 0.05 +- 0.06 -> contrast +0.31 +- 0.08 (3.7 sigma) while the aperture baryons are 6.04e+12 (galaxies) vs 6.83e+12 (plasma), contrast -12%; projected mass contrast 2.77e+13 Msun = 4.6 x the galaxy aperture's baryons (Sigma_crit 2.841e+09 Msun/kpc^2)
+    sub : kappa-bar galaxies 0.20 +- 0.05, plasma 0.02 +- 0.06 -> contrast +0.18 +- 0.08 (2.3 sigma) while the aperture baryons are 3.28e+12 (galaxies) vs 5.92e+12 (plasma), contrast -45%; projected mass contrast 1.61e+13 Msun = 4.9 x the galaxy aperture's baryons (Sigma_crit 2.841e+09 Msun/kpc^2)
+  [PASS] (reported) H5 THE BULLET: the lensing peaks sit on the galaxies ~100-250 kpc from the plasma, the plasma apertures hold MORE baryons, and the convergence contrast implies a collisionless projected mass at the galaxies of > 2x the aperture baryons (main and sub)
+         measured: main: offset 209 kpc, contrast 3.7 sigma, collisionless 4.6 x M_b(ap); sub: offset 194 kpc, contrast 2.3 sigma, collisionless 4.9 x M_b(ap); combined aperture contrast 4.3 sigma (Clowe et al.'s full-map offset: 8 sigma)
+         reading:  the law's phantom follows the baryons, which the plasma dominates; the lensing follows the galaxies, so the component that supplies it is collisionless and rides with the galaxies through the collision
+
+======================================================================================================================
+W  THE LEDGER: part 3 (clusters and mergers)
+======================================================================================================================
+    X1       MEASURED    X-COP at 0.8 R500: the law alone short by eta = 1.82 / 1.68 (nu_mono, can/alt); residual 3.09 / 2.75 M_b  --  H2
+    X2       MEASURED    the Newtonian dark mass 5.73 +- 0.68 M_b = 1.07 x the cosmic Omega_c/Omega_b = 5.36; f_b 0.149 vs cosmic 0.157  --  K1
+    X3       CONSTRAINT  the residual is distributed as rho_x ~ r^-1.58 (40-750 kpc), collisionless (the Bullet: lensing on the galaxies, offsets 209 / 194 kpc)  --  H3, H5
+    X4       DERIVED     identity reading (dark = max(phantom, cosmic share)) / measured = 0.946 / 0.946  --  H2
+  [PASS] (reported) W (reported) the ledger of part 3
+         measured: 4 rows
+
+  7/7 checks pass; load-bearing failures: 0; wrote CFG4_clusters_results.json (0 s)
+rc = 0

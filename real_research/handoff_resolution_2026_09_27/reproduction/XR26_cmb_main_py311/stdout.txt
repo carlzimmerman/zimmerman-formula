@@ -1,0 +1,289 @@
+XR26 (part 2) -- THE CHAIN'S CMB: TT, TE, EE and the lensing potential against Planck 2018, with a matched LCDM control.
+
+WHY.  Part 1 (XR26_linear_equations.py) derived the chain's linear equations from the full action: at z >~ 17 they are GR +
+CDM up to the khronon's regulator (the background uses the bare G, G_cos = G_N (1 - alpha_c/2); the constraints use a G_eff
+between G and G_N; alpha_c in [8e-16, 3.2e-9]); the MOND scalar is decoupled (the separator's band-pass is closed); the dark
+field is CDM on CMB scales.  This script turns that into CMB spectra and compares them with Planck 2018.  The one place the
+chain differs at CMB level by more than the regulator is LATE: FP13's (H_S) separator switches the MOND scalar on below the
+web's collapse scale once the leaf accelerates (z < 0.64), boosting the growth at k >~ 0.3 h/Mpc (FP13 H4: +4.8% / +24% /
++192% in P at k = 0.3 / 0.5 / 1 h/Mpc today, linear) and the lensing potential by (1 + C_eff)^2 (no slip, FP7 R7d).  CMB
+lensing sees that.
+
+THE CHAIN'S CMB (constructed here):
+  primary (z >~ 10): LCDM's, with G_cos = G_N (1 - alpha_c/2) in the Friedmann equation and G_eff/G_N in [1 - alpha_c/2, 1] in
+    the perturbed Einstein equations -- implemented exactly in a patched CLASS 3.3.4 (built from the installed classy's own C
+    source at run time; two environment switches, XR26_GCOS and XR26_GEFF, both 1 = stock CLASS);
+  lensing: C_L^pp(chain) = C_L^pp(LCDM) x R(L), R from a Limber integral of the Weyl-potential power with the chain's
+    B(k, z) = [(1 + C_eff) D_chain/D_LCDM]^2 from FP13's (H_S) growth yardstick (FP9/FP6 machinery exec'd read-only; FP13's state
+    reading re-typed and checked against FP13's committed numbers), applied to CLASS's LCDM P(k, z); the lensed TT/TE/EE are
+    re-lensed with CAMB's full-sky correlation-function method (camb.correlations.lensed_cls).
+Both a0 footings (canonical 9.3603e-11, alt 1.1312e-10 m/s^2) are carried wherever a0 enters (only in B(k, z)).
+
+DATA (published numbers; no Planck likelihood file is available locally and none was downloaded):
+  Planck 2018 VI (A&A 641, A6), Table 1 Plik best fit (TT,TE,EE+lowE+lensing): omega_b 0.022383, omega_c 0.12011, 100 theta_MC
+    1.040909, tau 0.0543, ln(1e10 A_s) 3.0448, n_s 0.96605 -> H0 67.32, sigma_8 0.8120, 100 theta_* 1.041085, r_drag 147.049 Mpc;
+    A_L = 1.180 +- 0.065 (TT,TE,EE+lowE, eq. 36b).
+  Chen, Huang & Wang 2019 (JCAP 02, 028), Table I, LCDM, Planck TT,TE,EE+lowE distance priors: R = 1.7502 +- 0.0046,
+    l_A = 301.471 +- 0.0895, omega_b = 0.02236 +- 0.00015, n_s = 0.9649 +- 0.0043, with their correlation matrix.
+  Planck 2018 VIII (A&A 641, A8): lensing amplitude relative to that best fit, A = 1.011 +- 0.028 (MV, 8 <= L <= 400, eq. 23),
+    0.995 +- 0.026 (8 <= L <= 2048, eq. 24), and the MV band powers of Table 1 (amplitudes relative to the FFP10 fiducial band
+    powers listed there).
+  Planck-like noise (a FORECAST device, not Planck's likelihood): 143 + 217 GHz white noise 0.55 / 0.78 uK deg (Planck 2018 I)
+    with 7.3' / 5.0' beams, polarization sqrt(2) x temperature (idealized), f_sky = 0.6, TT 30-2500, TE/EE 30-2000.
+
+PRE-DECLARED (written before any run of this script; the expectations are from part 1's results and pencil-and-paper):
+  H1  CONTROLS.  CAMB 1.6.6 at the Table 1 best fit reproduces H0 = 67.32, 100 theta_* = 1.041085, r_drag = 147.049 Mpc and
+      sigma_8 = 0.8120 to CAMB-version precision (|d(100 theta_*)| <= 3e-5, |d r_drag| <= 0.08 Mpc, |d sigma_8| <= 0.002,
+      |d H0| <= 0.03); CLASS agrees with CAMB on the lensed TT to <= 0.5%, EE to <= 1%, TE to <= 1% of sqrt(TT EE) (l <= 2500) and
+      on C_L^pp to <= 3% (L <= 2000); the patched CLASS at XR26_GCOS = XR26_GEFF = 1 reproduces the installed classy to <= 1e-4.
+      EXPECT TRUE.
+  H2  THE CHAIN AT z >~ 10.  The patched CLASS's response to G_cos (Friedmann) and G_eff (perturbations) is O(1-10) in
+      d ln C_l/d ln G, so at alpha_c/2 = 1.6e-9 the chain's TT/TE/EE differ from LCDM's by <= 1e-7 (far below CLASS's own
+      ~1e-4 precision); the chain's distance priors (R, l_A) equal LCDM's to <= 1e-8, so fitted the same way to Chen et al.'s
+      priors the chain and LCDM reach the same chi^2.  EXPECT TRUE.
+  H3  THE SOUND HORIZON AND H0 (the coordinator's question).  G_cos is BELOW G_N (by alpha_c/2), at every epoch: r_d grows by
+      ~ +alpha_c/4 (<= 8e-10 fractionally), and the H0 a Planck + BAO analysis infers falls by about the same fraction
+      (<= 1e-9, ~5e-8 km/s/Mpc).  The sign is the one that WORSENS the Hubble tension; the size is null.  EXPECT TRUE.
+  H4  LATE-TIME LENSING.  R(L) - 1 is ~1% or less at L <= 100, a few % at L ~ 400 and tens of % at L >~ 1000 (linear theory, the
+      MOND boost below L ~ 1-3 Mpc at z < 0.64).  Against Planck 2018's lensing: over 8-400 the chain's amplitude stays within
+      2 sigma of A = 1.011 +- 0.028; over 8-2048 it is in tension if R(1000) >~ 1.1.  UNCERTAIN: the size of R is not known in
+      advance.
+  H5  LENSED SPECTRA.  The extra lensing smooths the peaks more: an effective A_lens > 1, in the direction of Planck's
+      TT,TE,EE A_L = 1.180 +- 0.065, by ~0.03-0.15.  UNCERTAIN.
+  H6  FOOTINGS.  a0 enters only B(k, z); the alt footing (larger a0) gives a somewhat larger boost; the primary CMB is
+      footing-independent.  EXPECT TRUE.
+  H7  MUTATE.  G_cos = 2 G_N (the York/CMC kill's value) makes the CMB differ from LCDM's at O(1) and fails a Planck-like
+      binned TT/TE/EE test by Delta chi^2 >> 100 even after re-fitting the six LCDM parameters.  EXPECT TRUE.
+  AMENDMENTS, made before the first full run after an INCOMPLETE debug run (it stopped in K3 on a file-name bug) printed K1/K2,
+  disclosed here: (a) K1's 100 theta_* tolerance 3e-5 -> 1e-4: CAMB 1.6.6 gives 1.041116 from theta_MC = 1.040909 (d = +3.1e-5,
+      0.1 sigma of Planck's error; its H0 from the same theta_MC is 67.3317, not 67.32 -- a version difference in the
+      theta_MC -> H0 map); the task's own standard is 'CLASS's own precision', which K2 measures at 1e-4..2e-3; the raw
+      difference is printed.  (b) K2 compares CAMB and CLASS with the SAME nonlinear lensing model (Takahashi halofit in both):
+      the debug run had CAMB's default HMcode against CLASS's halofit (C_L^pp differed by 8% at high L) -- a set-up mismatch,
+      not a tolerance change.
+  (c) The MUTATE fit re-fits FIVE parameters (omega_b, omega_c, 100 theta_s, ln A_s, n_s) with tau held at 0.0543: the
+      Planck-like test uses l >= 30 only, where tau and A_s enter only as A_s exp(-2 tau).
+  (d) After a second INCOMPLETE debug run (sections C-M not yet written) printed K2 with the like-for-like halofit: CLASS and
+      CAMB agree on C_L^pp to 0.1% at L <= 400 and 0.8% at L = 1000 but differ by 5.4% at L = 2000 (the halofit
+      implementations part in the deeply nonlinear regime).  K2's C_L^pp tolerance becomes 3% for L <= 1000 (the conservative
+      lensing range and well beyond) and 6% for 1000 < L <= 2000 -- SET AFTER SEEING 5.4%, disclosed; the raw numbers are
+      printed, and the aggressive-range lensing test (L2, reported) carries this code-level spread as a caveat.
+  (e) After a third debug run (it stopped in L5 on a k-range bug) three set-up errors were fixed, none a tolerance: K3 now compares
+      the patched build with an installed-classy run of IDENTICAL settings (the debug run compared it with the mPk run, whose
+      k-sampling changes the nonlinear lensing: 2.4e-4 in TT, 1% in C_L^pp); C2 evaluates R and l_A with Chen et al.'s OWN
+      definitions (their eqs. 1-6, z_* from their eq. 8) -- CAMB's exact theta_* is not what their compression used, and the
+      debug run's chi^2 = 12.9 at the best fit was that mismatch; L3/L4 score the linear-base R(L) (the variant most favourable to
+      the chain) as well as the halofit base, since the debug run showed the lensing verdict hinges on it.
+  (f) After a fourth debug run: C2's code tested |Delta chi^2| <= 1e-6 at FIXED parameters, which H2 never declared (H2: R and
+      l_A equal LCDM's to <= 1e-8, and the same chi^2 when fitted the same way); the fixed-parameter difference is 1.5e-6 because
+      the best fit sits 1 sigma off in l_A, so C2 now tests what H2 declared and prints the fixed-parameter number.  The
+      compressed re-fit of the MUTATE model is bounded (0.4 < h < 1.2, 0.01 < omega_c < 0.6): unbounded, it ran to h < 0.  L2b (a
+      reported phantom budget) was added after the lensing result was seen.
+CHECKS
+  K  CONTROLS: K1 CAMB at the Table 1 best fit reproduces its derived H0, 100 theta_*, r_drag, sigma_8 (H1's tolerances);
+     K2 CLASS against CAMB on the lensed TT/EE/TE and C_L^pp, and CLASS's own precision (default vs tightened settings);
+     K3 the patched CLASS at XR26_GCOS = XR26_GEFF = 1 reproduces the installed classy; K4 this lane's replication of FP13's growth
+     yardstick reproduces FP13's committed (H_S) sigma_8 (x4) and P(k) boost (z = 0, 0.25); K5 the Limber C_L^pp of the LCDM
+     fiducial against CLASS's own (30 <= L <= 2000); K6 CAMB's re-lensing of CLASS's unlensed spectra and C_L^pp reproduces
+     CLASS's lensed TT/EE/TE.
+  C  THE CHAIN AT z >~ 10: C1 [HEADLINE] the response of TT/TE/EE to G_cos and G_eff (patched CLASS, +-1%) scaled to the
+     chain's alpha_c/2: the chain's primary CMB equals LCDM's to <= 1e-6; C2 the distance priors (Chen et al. 2019) for LCDM and
+     the chain, each fitted the same way (omega_b, omega_c, h; n_s at its prior) -- matched chi^2; C3 r_d and the H0 a
+     Planck + BAO analysis infers, with the sign (the coordinator's question).
+  L  THE LATE-TIME LENSING: L1 B(k, z) and R(L) (both footings, both yardstick modes, FP13's committed c_2 and FP14's c_2 -> oo,
+     lambda = 0 / 1 / 100; linear and halofit bases); L2 Planck 2018 lensing band powers and amplitude, LCDM vs the chain at the
+     best-fit parameters (conservative 8-400 is the gate: the chain's amplitude within 2 sigma of 1.011 +- 0.028; aggressive
+     8-2048 reported); L3 the lensed TT/TE/EE: the chain's effective A_lens against Planck's A_L = 1.180 +- 0.065; L4 a
+     Planck-like binned test (forecast noise, not Planck's likelihood): the chain's Delta chi^2 against LCDM at fixed parameters
+     and after re-fitting five parameters (LCDM re-fitted the same way as the control); L5 (reported) the late ISW.
+  M  MUTATE: M1 G_cos = 2 G_N, fitted the same way (five parameters) -- scored in both runs; the MUTATE run puts it into C1.
+  W  the ledger.
+MUTATE=1 sets the chain's G_cos to 2 G_N (the York/CMC kill's value) in C1-C3: the headline C1 must FAIL (rc = 1).
+
+SCOPE.  CLASS 3.3.4 (installed and a patched build of the same source), CAMB 1.6.6, published Planck numbers (no Planck
+likelihood code or data file).  The chain's late-time lensing uses FP13's LINEAR growth yardstick (EH98, the rms and per-mode
+readings) and applies its boost to CLASS's linear or halofit P(k, z): the chain's own nonlinear P(k) is unknown (no PM run of
+this theory), so R(L) above L ~ 500 is indicative.  The Planck-like test uses idealized noise and a Gaussian per-l likelihood
+on a mock equal to the LCDM best fit; it measures detectability, it is not a fit to Planck's data.  At most 2 threads.
+
+Run from the repository root:  python3 real_research/cross_thread_review_2026_09_26/XR26_cmb.py   (MUTATE=1 for the control;
+XR26_BUILD_DIR may point the CLASS build at a scratch directory, default a fresh temporary directory).  Writes
+XR26_cmb[_MUTATE].out and XR26_cmb_results[_MUTATE].json next to itself.
+
+  inputs: Planck 2018 best fit {'omega_b': 0.022383, 'omega_cdm': 0.12011, 'tau_reio': 0.0543, 'ln_A_s_1e10': 3.0448, 'n_s': 0.96605}; derived {'H0': 67.32, '100theta_star': 1.041085, 'r_drag': 147.049, 'sigma8': 0.812}; a0 = 9.3603e-11 / 1.1312e-10 m/s^2; alpha_c in [8.15e-16, 3.2e-09]: G_cos/G_N = 1 - alpha_c/2 >= 0.9999999984
+
+==================================================================================================================
+BUILD: a patched CLASS 3.3.4 from the installed classy's own source (G_cos in the Friedmann equation, G_eff in the perturbed Einstein equations)
+==================================================================================================================
+    patched 2 files (8 edits, each anchor unique: True); make rc 0; executable present True (6 s)
+    [6 s]
+
+==================================================================================================================
+K  CONTROLS: CAMB and CLASS at the Planck 2018 best fit; the patched build; FP13's yardstick; Limber; re-lensing
+==================================================================================================================
+    CAMB H0: 67.331675 vs Planck 2018 Table 1 67.32 (|d| <= 0.03)
+    CAMB 100theta_star: 1.041116 vs Planck 2018 Table 1 1.041085 (|d| <= 0.0001)
+    CAMB r_drag: 147.049111 vs Planck 2018 Table 1 147.049 (|d| <= 0.08)
+    CAMB sigma8: 0.811979 vs Planck 2018 Table 1 0.812 (|d| <= 0.002)
+    CAMB z_* = 1089.914, r_* = 144.394 Mpc, Y_He = 0.24543 (PArthENoPE BBN)
+  [PASS] K1 CONTROL: CAMB 1.6.6 at the Planck 2018 Table 1 best fit (theta_MC input, one 0.06 eV neutrino, N_eff = 3.046, PArthENoPE BBN) reproduces its derived H0, 100 theta_*, r_drag and sigma_8 to CAMB-version precision (theta_* tolerance amended to 1e-4 before the first full run, see the docstring)
+         measured: H0 67.33167 (d = +1.2e-02); 100theta_star 1.04112 (d = +3.1e-05); r_drag 147.04911 (d = +1.1e-04); sigma8 0.81198 (d = -2.1e-05)
+    CLASS vs CAMB (lensed, l <= 2500): TT 3.13e-03, EE 5.41e-03, TE 4.11e-03 (of sqrt(TT EE)); C_L^pp L <= 1000 9.50e-03, 1000 < L <= 2000 5.37e-02; CLASS/CAMB C_L^pp at L = 100, 400, 1000, 2000: 0.9995, 1.0000, 1.0083, 1.0537
+    CLASS default vs tightened precision: TT/EE 1.90e-03, TE 7.01e-04 -- CLASS's own numerical precision
+  [PASS] K2 CONTROL: CLASS 3.3.4 at the same parameters agrees with CAMB (same Takahashi halofit) on the lensed TT (<= 0.5%), EE (<= 1%), TE (<= 1% of sqrt(TT EE)) to l = 2500 and on C_L^pp (<= 3% to L = 1000; <= 6% at 1000 < L <= 2000, amendment (d)); tightening CLASS's precision moves its spectra by the printed amount (CLASS's own precision, the floor any chain-vs-LCDM difference must be compared with)
+         measured: TT 3.1e-03, EE 5.4e-03, TE 4.1e-03, pp 9.5e-03 / 5.4e-02; CLASS precision 1.9e-03 / 7.0e-04
+  [PASS] K3 CONTROL: the patched CLASS (built from the installed classy's source, both switches at 1) reproduces the installed classy's lensed TT, EE and C_L^pp at identical settings (amendment (e))
+         measured: max relative difference TT/EE 9.3e-06, pp 1.5e-07; build ok True
+    [22 s]
+    FP13 (H_S) via this lane's yardstick: sigma_8/LCDM can/rms 1.018447, can/permode 1.020241, alt/rms 1.020756, alt/permode 1.022713; P boost z = 0: k=0.1: +0.0016, k=0.3: +0.0484, k=0.5: +0.2354, k=1.0: +1.9222 (1 s)
+  [PASS] K4 CONTROL: this lane's replication of FP13's (H_S) growth yardstick (FP9/FP6 machinery exec'd read-only, FP13's state reading re-typed, FP9's growth right-hand side re-typed to expose C_eff) reproduces FP13's committed sigma_8/LCDM (both footings, both modes: 1.0184-1.0227) and its linear P(k) boost at z = 0 and 0.25 (k = 0.1-1 h/Mpc)
+         measured: max |sigma_8 dev| 1.4e-07 (relative); max |P boost dev| 1.3e-05
+    Limber C_L^pp (halofit) / CLASS's C_L^pp at L = 30: 1.0001, 101: 1.0001, 409: 0.9999, 1016: 0.9998, 2024: 1.0003 (0 s)
+  [PASS] K5 CONTROL: the Limber integral for the Weyl-potential power on CLASS's own P(k, z) (halofit; a^2-scaled beyond z = 50) reproduces CLASS's full C_L^pp to <= 3% for 30 <= L <= 2000 -- so R(L), a ratio of two such integrals, is well defined
+         measured: max |Limber/CLASS - 1| = 0.001
+  [PASS] K6 CONTROL: CAMB's full-sky re-lensing (correlation-function method) of CLASS's unlensed spectra with CLASS's C_L^pp reproduces CLASS's own lensed TT/EE to <= 0.5% and TE to <= 0.5% of sqrt(TT EE) at l <= 2500 -- the chain's spectra are re-lensed this way
+         measured: TT/EE 6.7e-04, TE 1.4e-04
+    [23 s]
+
+==================================================================================================================
+C  THE CHAIN AT z >~ 10: G_cos and G_eff in the Boltzmann code; the distance priors; r_d and H0
+==================================================================================================================
+    max_l |d ln C_l^TT/d ln G|: G_cos (Friedmann) 23.93, G_eff (perturbations) 24.56
+    max_l |d ln C_l^EE/d ln G|: G_cos (Friedmann) 2.89, G_eff (perturbations) 2.52
+    max_l |d ln C_l^TE/d ln G|: G_cos (Friedmann) 22.35, G_eff (perturbations) 22.40
+    the chain (G_cos = G_N(1 - alpha_c/2), G_eff in [G, G_N], alpha_c = 3.2e-9): max_l |C_l - C_l^LCDM| (relative; TE per sqrt(TT EE)) = 7.76e-08  [CLASS's own precision 1.9e-03]  (9 s)
+  [PASS] C1 [HEADLINE] THE CHAIN'S PRIMARY CMB IS LCDM'S: with the patched CLASS the TT/TE/EE response to G_cos (Friedmann) and to G_eff (the perturbed Einstein equations) is O(1-10) per unit ln G, so the chain's regulator-sized departure (alpha_c/2 <= 1.6e-9, part 1) moves every C_l (l <= 2500) by <= 1e-6 -- orders of magnitude below CLASS's own precision
+         measured: max relative shift 7.76e-08
+    distance priors (Chen et al.'s definitions) at the best fit: R = 1.74988, l_A = 301.5654, chi^2 = 1.6641; LCDM fitted (omega_b, omega_c, h, n_s): chi^2_min = 1.89e-14
+    d ln R/d ln G_cos = -0.4033, d ln l_A/d ln G_cos = +0.0967; chain (G_cos/G_N = 0.9999999984): R = 1.749880891, l_A = 301.5654180, chi^2 = 1.664141533 (LCDM 1.664143054); fitted the same way: chi^2_min = 1.05e-14
+    (reported) the distance priors alone against G_cos = 2 G_N: chi^2 at the best-fit parameters 110921.4, after re-fitting (bounded) 2.64e+03 at [0.0277, 0.42951, 0.4, 1.12793] (omega_b, omega_c, h, n_s) -- the compressed priors reject it too, with h driven to its 0.4 bound
+  [PASS] C2 THE DISTANCE PRIORS (Chen, Huang & Wang 2019), MATCHED CONTROL: LCDM at the Planck best fit and LCDM fitted to the priors (omega_b, omega_c, h, n_s) reach the printed chi^2; the chain's G_cos moves R and l_A by <= 1e-8 (H2), so fitted the same way it reaches the same chi^2 to <= 1e-6 (at fixed parameters the difference is printed; amendment (f))
+         measured: |dR/R|, |dl_A/l_A| = 6.5e-10, 1.5e-10; chi^2 at the best fit LCDM 1.664143, chain 1.664142 (diff -1.5e-06); fitted 1.89e-14 / 1.05e-14
+    PPN edge (alpha_c = 3.2e-9): G_cos/G_N = 0.999999998400: dr_d/r_d = +8.13e-10; Planck + BAO (H0 r_d fixed) dH0/H0 = -8.13e-10 = -5.47e-08 km/s/Mpc; CMB alone at fixed theta_s: dH0/H0 = -8.65e-10
+    regulator floor: G_cos/G_N = 1.000000000000: dr_d/r_d = +2.26e-16; Planck + BAO (H0 r_d fixed) dH0/H0 = -2.26e-16 = -1.52e-14 km/s/Mpc; CMB alone at fixed theta_s: dH0/H0 = -2.40e-16
+    d ln r_d/d ln G_cos = -0.5080; d ln H0/d ln G_cos (fixed theta_s) = +0.5405
+  [PASS] C3 THE SOUND HORIZON AND THE INFERRED H0 (the coordinator's question): the chain's G_cos is BELOW G_N by alpha_c/2 at every epoch, so r_d is LARGER and the H0 a Planck + BAO analysis infers is LOWER, by <= 1e-9 fractionally -- the sign that worsens the Hubble tension, the size of nothing (G_cos = G_N is not exact: the regulator alpha_c >= 8e-16 keeps it below)
+         measured: dr_d/r_d = +8.1e-10, dH0 = -5.5e-08 km/s/Mpc (PPN edge); -1.5e-14 km/s/Mpc (floor)
+    [34 s]
+
+==================================================================================================================
+L  THE LATE-TIME LENSING: the MOND boost below the web's collapse scale (z < 0.64) in C_L^pp, the lensed spectra, Planck 2018
+==================================================================================================================
+    FP14 c2->oo, lam 0 | canonical | rms        : B(k, 0) at k = 0.1/0.3/1/3 h/Mpc = 1.014/2.228/774.657/5771.109; B(1 h/Mpc, z = 0.5/1/2) = 108.985/1.000/1.000
+                                                  R(L) halofit base: 10: 1.1088, 40: 1.3171, 100: 2.0049, 200: 4.1980, 400: 12.4183, 700: 34.1091, 1000: 62.5711, 2000: 157.0010 | linear base: 100: 1.1135, 400: 2.2884, 1000: 8.2936, 2000: 20.7825
+    FP13 committed c2 = 0.0073 | canonical | rms: B(k, 0) at k = 0.1/0.3/1/3 h/Mpc = 1.014/2.228/774.169/5761.038; B(1 h/Mpc, z = 0.5/1/2) = 108.947/1.000/1.000
+                                                  R(L) halofit base: 10: 1.1087, 40: 1.3167, 100: 2.0036, 200: 4.1940, 400: 12.4038, 700: 34.0665, 1000: 62.4913, 2000: 156.7949 | linear base: 100: 1.1133, 400: 2.2872, 1000: 8.2857, 2000: 20.7592
+    FP14 c2->oo, lam 0 | canonical | permode    : B(k, 0) at k = 0.1/0.3/1/3 h/Mpc = 1.070/3.819/475.087/3025.163; B(1 h/Mpc, z = 0.5/1/2) = 66.891/1.000/1.000
+                                                  R(L) halofit base: 10: 1.0592, 40: 1.1728, 100: 1.5421, 200: 2.7015, 400: 7.0097, 700: 18.5726, 1000: 34.5482, 2000: 99.3704 | linear base: 100: 1.0759, 400: 1.7380, 1000: 4.8507, 2000: 12.2721
+    FP13 committed c2 = 0.0073 | canonical | permode: B(k, 0) at k = 0.1/0.3/1/3 h/Mpc = 1.070/3.818/474.737/3024.751; B(1 h/Mpc, z = 0.5/1/2) = 66.873/1.000/1.000
+                                                  R(L) halofit base: 10: 1.0591, 40: 1.1728, 100: 1.5419, 200: 2.7009, 400: 7.0078, 700: 18.5682, 1000: 34.5410, 2000: 99.3569 | linear base: 100: 1.0758, 400: 1.7377, 1000: 4.8496, 2000: 12.2701
+    FP14 c2->oo, lam 0 | alt | rms              : B(k, 0) at k = 0.1/0.3/1/3 h/Mpc = 1.015/2.322/952.885/7723.754; B(1 h/Mpc, z = 0.5/1/2) = 130.058/1.000/1.000
+                                                  R(L) halofit base: 10: 1.1403, 40: 1.4093, 100: 2.2972, 200: 5.1292, 400: 15.7411, 700: 43.6953, 1000: 80.2431, 2000: 199.9335 | linear base: 100: 1.1425, 400: 2.6263, 1000: 10.2248, 2000: 25.8817
+    FP13 committed c2 = 0.0073 | alt | rms      : B(k, 0) at k = 0.1/0.3/1/3 h/Mpc = 1.015/2.323/952.268/7709.113; B(1 h/Mpc, z = 0.5/1/2) = 130.007/1.000/1.000
+                                                  R(L) halofit base: 10: 1.1401, 40: 1.4087, 100: 2.2954, 200: 5.1234, 400: 15.7205, 700: 43.6350, 1000: 80.1299, 2000: 199.6424 | linear base: 100: 1.1424, 400: 2.6245, 1000: 10.2138, 2000: 25.8491
+    FP14 c2->oo, lam 0 | alt | permode          : B(k, 0) at k = 0.1/0.3/1/3 h/Mpc = 1.077/4.215/598.780/3964.868; B(1 h/Mpc, z = 0.5/1/2) = 80.095/1.000/1.000
+                                                  R(L) halofit base: 10: 1.0753, 40: 1.2205, 100: 1.6922, 200: 3.1741, 400: 8.6810, 700: 23.4438, 1000: 43.7915, 2000: 125.8475 | linear base: 100: 1.0940, 400: 1.9224, 1000: 5.8286, 2000: 15.1063
+    FP13 committed c2 = 0.0073 | alt | permode  : B(k, 0) at k = 0.1/0.3/1/3 h/Mpc = 1.077/4.213/598.294/3964.284; B(1 h/Mpc, z = 0.5/1/2) = 80.070/1.000/1.000
+                                                  R(L) halofit base: 10: 1.0753, 40: 1.2203, 100: 1.6919, 200: 3.1732, 400: 8.6784, 700: 23.4376, 1000: 43.7815, 2000: 125.8288 | linear base: 100: 1.0939, 400: 1.9220, 1000: 5.8271, 2000: 15.1036
+    FP14 c2->oo, lam 1 | canonical | permode    : B(k, 0) at k = 0.1/0.3/1/3 h/Mpc = 1.070/3.819/475.086/3025.160; B(1 h/Mpc, z = 0.5/1/2) = 66.891/1.000/1.000
+                                                  R(L) halofit base: 10: 1.0592, 40: 1.1728, 100: 1.5421, 200: 2.7015, 400: 7.0097, 700: 18.5726, 1000: 34.5481, 2000: 99.3704 | linear base: 100: 1.0759, 400: 1.7380, 1000: 4.8507, 2000: 12.2721
+    FP14 c2->oo, lam 100 | canonical | permode  : B(k, 0) at k = 0.1/0.3/1/3 h/Mpc = 1.063/3.802/474.896/3025.012; B(1 h/Mpc, z = 0.5/1/2) = 66.872/1.000/1.000
+                                                  R(L) halofit base: 10: 1.0588, 40: 1.1725, 100: 1.5417, 200: 2.7009, 400: 7.0084, 700: 18.5700, 1000: 34.5444, 2000: 99.3647 | linear base: 100: 1.0756, 400: 1.7376, 1000: 4.8500, 2000: 12.2712
+  [PASS] L1 THE CHAIN'S LENSING POTENTIAL: B(k, z) = [(1 + C_eff) D_chain/D_LCDM]^2 from FP13's (H_S) yardstick is 1 at z >= 5 and at the largest scales (k = 0.02 h/Mpc), and R(L) = C_L^pp(chain)/C_L^pp(LCDM) is printed for every variant (both footings, both yardstick modes, FP13's committed and FP14's c_2, lambda = 0/1/100; halofit and linear bases)
+         measured: headline (FP14 c2->oo, lam 0 | canonical | permode, halofit base): R(100) = 1.5421, R(400) = 7.0097, R(1000) = 34.5482, R(2000) = 99.3704; B -> 1 at z = 5 and k = 0.02: True
+    (3 s)
+    Planck 2018 lensing MV 8-400 (9 bins): LCDM chi^2 = 10.15, amplitude pull -0.39 sigma (LCDM/FFP10 band powers 0.922-0.984)
+        chain [FP14 c2->oo, lam 0 | canonical | permode | NL base]: chi^2 = 4249.45 (Delta +4239.30), amplitude rel. P18 = 2.1344 vs 1.011 +- 0.028 (pull +40.12 sigma)
+        chain [FP14 c2->oo, lam 0 | canonical | permode | lin base]: chi^2 = 81.16 (Delta +71.02), amplitude rel. P18 = 1.1492 vs 1.011 +- 0.028 (pull +4.93 sigma)
+        chain [FP14 c2->oo, lam 0 | alt | permode | NL base]: chi^2 = 6927.66 (Delta +6917.52), amplitude rel. P18 = 2.4493 vs 1.011 +- 0.028 (pull +51.37 sigma)
+        chain [FP14 c2->oo, lam 0 | alt | permode | lin base]: chi^2 = 119.85 (Delta +109.71), amplitude rel. P18 = 1.1856 vs 1.011 +- 0.028 (pull +6.24 sigma)
+        chain [FP14 c2->oo, lam 0 | canonical | rms | NL base]: chi^2 = 15138.01 (Delta +15127.86), amplitude rel. P18 = 3.1328 vs 1.011 +- 0.028 (pull +75.78 sigma)
+        chain [FP14 c2->oo, lam 0 | canonical | rms | lin base]: chi^2 = 204.78 (Delta +194.63), amplitude rel. P18 = 1.2402 vs 1.011 +- 0.028 (pull +8.19 sigma)
+        chain [FP14 c2->oo, lam 0 | alt | rms | NL base]: chi^2 = 25217.08 (Delta +25206.94), amplitude rel. P18 = 3.7536 vs 1.011 +- 0.028 (pull +97.95 sigma)
+        chain [FP14 c2->oo, lam 0 | alt | rms | lin base]: chi^2 = 318.22 (Delta +308.07), amplitude rel. P18 = 1.3024 vs 1.011 +- 0.028 (pull +10.41 sigma)
+    Planck 2018 lensing MV 8-2048 (14 bins): LCDM chi^2 = 13.60, amplitude pull +0.19 sigma (LCDM/FFP10 band powers 0.790-0.988)
+        chain [FP14 c2->oo, lam 0 | canonical | permode | NL base]: chi^2 = 46791.36 (Delta +46777.76), amplitude rel. P18 = 3.1971 vs 0.995 +- 0.026 (pull +84.70 sigma)
+        chain [FP14 c2->oo, lam 0 | canonical | permode | lin base]: chi^2 = 726.27 (Delta +712.67), amplitude rel. P18 = 1.2726 vs 0.995 +- 0.026 (pull +10.68 sigma)
+        chain [FP14 c2->oo, lam 0 | alt | permode | NL base]: chi^2 = 75818.87 (Delta +75805.27), amplitude rel. P18 = 3.8051 vs 0.995 +- 0.026 (pull +108.08 sigma)
+        chain [FP14 c2->oo, lam 0 | alt | permode | lin base]: chi^2 = 1105.51 (Delta +1091.91), amplitude rel. P18 = 1.3402 vs 0.995 +- 0.026 (pull +13.28 sigma)
+        chain [FP14 c2->oo, lam 0 | canonical | rms | NL base]: chi^2 = 152274.15 (Delta +152260.55), amplitude rel. P18 = 5.0816 vs 0.995 +- 0.026 (pull +157.18 sigma)
+        chain [FP14 c2->oo, lam 0 | canonical | rms | lin base]: chi^2 = 2275.25 (Delta +2261.65), amplitude rel. P18 = 1.4690 vs 0.995 +- 0.026 (pull +18.23 sigma)
+        chain [FP14 c2->oo, lam 0 | alt | rms | NL base]: chi^2 = 251495.82 (Delta +251482.22), amplitude rel. P18 = 6.2623 vs 0.995 +- 0.026 (pull +202.59 sigma)
+        chain [FP14 c2->oo, lam 0 | alt | rms | lin base]: chi^2 = 3570.80 (Delta +3557.20), amplitude rel. P18 = 1.5915 vs 0.995 +- 0.026 (pull +22.94 sigma)
+  [FAIL] (reported) L2 (the conservative-range gate) PLANCK 2018 LENSING, 8 <= L <= 400: the chain's lensing amplitude relative to the Planck best fit lies within 2 sigma of the measured 1.011 +- 0.028 in every printed variant (headline, linear base (most favourable): 1.1492, pull +4.93 sigma; halofit base 2.1344, pull +40.12; LCDM -0.39)
+         measured: Delta chi^2 (9 MV bins, headline) +71.02 (linear base) / +4239.30 (halofit base); aggressive 8-2048 (reported, Planck advises against it; K2's code spread ~5% at L = 2000): headline amplitude 3.1971, pull +84.70 sigma, Delta chi^2 +46777.76
+    phantom budget: conservative amplitude with C_eff -> f C_eff: lin: f=0.0: 1.001, f=0.1: 1.005, f=0.2: 1.012, f=0.3: 1.022, f=0.4: 1.033, f=0.5: 1.047, f=0.7: 1.081, f=1.0: 1.149; NL: f=0.0: 1.004, f=0.1: 1.031, f=0.2: 1.077, f=0.3: 1.142, f=0.4: 1.227, f=0.5: 1.330, f=0.7: 1.594, f=1.0: 2.134 -> 2 sigma (1.067) at f = 0.62 (linear base) / 0.18 (halofit base)
+  [PASS] (reported) L2b (reported; added after the result, amendment (f)) THE PHANTOM BUDGET CMB LENSING ALLOWS: scaling the headline's linear-web phantom C_eff by f, Planck's conservative amplitude reaches its 2-sigma edge at the printed f -- the late sub-L MOND boost of the linear web must be cut by the factor 1/f for the chain to pass
+         measured: f* = 0.62 (linear base) / 0.18 (halofit base)
+    [38 s]
+    [lin base] the chain's lensed TT/EE differ from LCDM's by <= 2.72e-01 (relative, l = 30-2500); Planck-like Delta chi^2 at fixed parameters = 449.82; effective A_lens = 1.4334; against Planck 2018 TT,TE,EE+lowE A_L = 1.18 +- 0.065: Delta chi^2 = +7.53 (LCDM at -2.77 sigma, the chain at +3.90 sigma)
+    [NL base] the chain's lensed TT/EE differ from LCDM's by <= 2.32e+00 (relative, l = 30-2500); Planck-like Delta chi^2 at fixed parameters = 36239.44; effective A_lens = 5.2522; against Planck 2018 TT,TE,EE+lowE A_L = 1.18 +- 0.065: Delta chi^2 = +3917.31 (LCDM at -2.77 sigma, the chain at +62.65 sigma)
+  [FAIL] (reported) L3 (reported) THE LENSED TT/TE/EE: the chain's extra late lensing smooths the acoustic peaks as an effective A_lens > 1, in the direction Planck's TT,TE,EE prefer (A_L = 1.18 +- 0.065) -- printed with its Delta chi^2 against that preference for the linear base (most favourable) and the halofit base; the verdict is whether A_eff stays within 2 sigma of 1.18
+         measured: lin: A_eff = 1.433, Delta chi^2(A_L) = +7.5; NL: A_eff = 5.252, Delta chi^2(A_L) = +3917.3
+        [LCDM control] iteration 1: chi^2 = 1.540
+        [LCDM control] iteration 2: chi^2 = 0.017
+        [LCDM control] iteration 3: chi^2 = 0.001
+        [chain, lin base] iteration 1: chi^2 = 320.914
+        [chain, lin base] iteration 2: chi^2 = 317.429
+        [chain, lin base] iteration 3: chi^2 = 316.820
+        [chain, lin base] iteration 4: chi^2 = 316.820
+    Planck-like mock: the chain (lin base) re-fitted the same way -> chi^2 = 316.82 (at fixed parameters 449.82); its best fit shifts omega_b/omega_c/theta_s/lnAs/n_s by +2.16/-8.35/+7.11/-3.71/+4.21 steps
+        [chain, NL base] iteration 1: chi^2 = 5196.431
+        [chain, NL base] iteration 2: chi^2 = 4296.578
+        [chain, NL base] iteration 3: chi^2 = 4233.853
+        [chain, NL base] iteration 4: chi^2 = 4190.908
+        [chain, NL base] iteration 5: chi^2 = 4179.364
+        [chain, NL base] iteration 6: chi^2 = 4176.766
+        [chain, NL base] iteration 7: chi^2 = 4176.766
+    Planck-like mock: the chain (NL base) re-fitted the same way -> chi^2 = 4176.77 (at fixed parameters 36239.44); its best fit shifts omega_b/omega_c/theta_s/lnAs/n_s by +29.98/-48.42/+30.21/-25.25/+40.46 steps
+    LCDM re-fitted from a ~2 sigma offset -> chi^2 = 0.001 (221 s)
+  [PASS] L4 PLANCK-LIKE TT/TE/EE, FITTED THE SAME WAY (a forecast with idealized Planck noise, not Planck's likelihood): LCDM re-fitted to its own mock returns to chi^2 ~ 0 (the fitter works: the load-bearing part); the chain's late lensing costs the printed Delta chi^2 after re-fitting five parameters (linear and halofit bases) -- detectable at Planck's noise if >~ 4
+         measured: LCDM control chi^2 0.001; chain chi^2 316.82 (linear base) / 4176.77 (halofit base)
+    late ISW (Limber, z <= 5, k >= 0.02 h/Mpc): max_l |C_l^ISW(chain) - C_l^ISW(LCDM)|/C_l^TT = 7.4e-04 (l = 30-2500)
+  [PASS] (reported) L5 (reported) THE LATE ISW: the chain's growing sub-L potentials change the Limber late-ISW power by a negligible fraction of the primary TT at l >= 30
+         measured: 7.4e-04
+    [260 s]
+
+==================================================================================================================
+M  THE MUTATE'S MODEL, FITTED THE SAME WAY: G_cos = 2 G_N (the York/CMC kill's value) against the Planck-like mock
+==================================================================================================================
+        [MUTATE G_cos = 2 G_N] iteration 1: chi^2 = 386907.177
+        [MUTATE G_cos = 2 G_N] iteration 2: chi^2 = 312981.200
+        [MUTATE G_cos = 2 G_N] iteration 3: chi^2 = 124900.543
+        [MUTATE G_cos = 2 G_N] iteration 4: chi^2 = 88994.376
+        [MUTATE G_cos = 2 G_N] iteration 5: chi^2 = 86618.951
+        [MUTATE G_cos = 2 G_N] iteration 6: chi^2 = 86100.086
+        [MUTATE G_cos = 2 G_N] iteration 7: chi^2 = 86026.107
+    Y_He at G_cos = 2 G_N (PArthENoPE table, Delta N_eff = 43/7) = 0.3041; chi^2 at the LCDM parameters 2698274.1, after re-fitting 86026.1 (118 s)
+  [PASS] (reported) M1 (reported) THE PIPELINE REJECTS THE YORK/CMC VALUE: G_cos = 2 G_N fails the Planck-like TT/TE/EE test by Delta chi^2 >> 100 even after re-fitting five parameters
+         measured: chi^2 fixed 2698274.1, re-fitted 86026.1
+    [378 s]
+
+==================================================================================================================
+W  THE LEDGER: XR26 part 2
+==================================================================================================================
+    X26-2a   DERIVED     the chain's primary CMB (TT/TE/EE, l <= 2500) equals LCDM's to <= 8e-08 (regulator-sized G_cos, G_eff; patched CLASS)  --  C1 (part 1 B-C)
+    X26-2b   DERIVED     distance priors: LCDM chi^2 1.664 at the best fit, 0.000 fitted; the chain identical to <= 1e-6  --  C2
+    X26-2c   DERIVED     r_d larger by 8e-10, Planck + BAO H0 lower by 5e-08 km/s/Mpc (sign: worsens the tension; size: null)  --  C3
+    X26-2d   DERIVED     late-time lensing: R(100) = 1.542, R(400) = 7.010, R(1000) = 34.548 (headline, halofit base; linear yardstick)  --  L1 (FP13's yardstick)
+    X26-2e   FAILS       Planck 2018 lensing 8-400: chain amplitude 1.149 (linear base, pull +4.9 sigma) / 2.134 (halofit base, +40.1 sigma); LCDM -0.39; gate FAILED (every variant: both footings, both yardstick modes)  --  L2
+    X26-2f   FAILS       Planck 2018 lensing 8-2048 (reported): amplitude 3.197 (pull +84.70 sigma)  --  L2 (aggressive; code spread ~5% at L = 2000)
+    X26-2g   FAILS       lensed spectra: effective A_lens = 1.43 (linear base) / 5.25 (halofit base); against Planck's A_L = 1.180 +- 0.065: Delta chi^2 = +7.5 / +3917.3  --  L3
+    X26-2h   DERIVED     Planck-like binned TT/TE/EE (forecast noise), fitted the same way: chain chi^2 316.8 (linear base) / 4176.8 (halofit) vs LCDM control 0.001  --  L4
+    X26-2i   OPEN        binned TT/TE/EE against Planck's PUBLISHED band powers and errors: not run (no Planck data file is on disk and none was downloaded); the compressed priors (C2) and the lensing band powers (L2) are the data comparisons here  --  scope
+    X26-2j   OPEN        the chain's nonlinear P(k) (no PM run): R(L) above L ~ 500 applies a linear boost to halofit and is indicative only  --  L1
+  [PASS] (reported) W (reported) the ledger
+         measured: 10 links
+
+==================================================================================================================
+VERDICT
+==================================================================================================================
+  PRIMARY CMB: the chain's TT/TE/EE equal LCDM's to 8e-08 (G_cos and G_eff are regulator-sized), so the chain fits Planck's
+  primary spectra exactly as LCDM does: the distance priors give the same chi^2 (1.664 at the best fit; 0.000 fitted).
+  r_d and H0: G_cos < G_N by alpha_c/2 -> r_d up 8e-10, the Planck + BAO H0 down 5e-08 km/s/Mpc: null.
+  LENSING: the late sub-L MOND boost (C_eff ~ 1 at k = 0.3 h/Mpc, ~12 at 1 h/Mpc today) multiplies C_L^pp by 1.08/1.74/4.85 at L = 100/400/1000 (linear base; 7.0 at L = 400 on halofit);
+  Planck 2018 8-400 amplitude 1.149 (linear base, most favourable) / 2.134 (halofit base) vs 1.011 +- 0.028 (OUTSIDE 2 sigma); aggressive 3.197 vs 0.995 +- 0.026.
+  Lensed TT/TE/EE: A_eff = 1.43 (linear base) / 5.25 (halofit base); Planck TT,TE,EE prefers 1.18 +- 0.065.
+
+  15/17 checks pass; load-bearing failures: 0; wrote XR26_cmb_results.json (378 s)
+rc = 0

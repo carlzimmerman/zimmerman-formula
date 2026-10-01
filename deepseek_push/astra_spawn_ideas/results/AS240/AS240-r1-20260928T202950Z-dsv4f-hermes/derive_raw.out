@@ -1,0 +1,49 @@
+==============================================================================
+AS240-r1 derive: exact algebra (sympy), run id AS240-r1-20260928T202950Z-dsv4f-hermes
+==============================================================================
+
+[D1] Quadratic TT-tensor Lagrangian directly from g = a^2 eta + a^2 h_TT
+EL residual after exact coefficient extraction (must be 0): 0
+kappa (coeff q''): -a(eta)**2
+-coeff q_xx (must equal kappa): -a(eta)**2
+friction/kappa - 2 a'/a (must be 0): 0
+canonical kinetic coefficient (must be +a^2/2 > 0): a(eta)**2/2
+canonical gradient coefficient: -a(eta)**2/2
+[D1] FAIL-CAPABLE action check: EOM = kappa * [q'' + 2 H q' - d3^2 q] = 0, kappa = -a(eta)**2 ; quadratic action = (M_P^2/2)*(a^2/2)[q'^2 - (d3 q)^2] -> POSITIVE tensor kinetic energy (requirement 6), speed^2 = 1 exactly, friction +2H (expanding branch damps).
+
+[D2] First-order trace of extrinsic curvature for pure TT mode
+K^(1) for h_+ mode (q,-q,0): 0  -> exactly 0
+[D2] Q_K^(1) = K^(1) - <K^(1)>_h = 0; the (K^(1))^2 quadratic-TT piece of c2 Q_K^2 vanishes. Scalar/tensor decoupling at quadratic order on the homogeneous isotropic background -> the TT operator is the Einstein one (FINAL_ACTION sec.6 reduced form, weight a^2 in conformal time).
+
+[D3] WKB: L[q] = d_eta^2 + 2 H d_eta - d_x^2 on A(eta) e^{i S/eps}, S = -omega eta + k x
+eps^-2 (eikonal) coefficient: (k - omega)*(k + omega)*A(eta)
+eps^-1 (transport) coefficient: -2*I*omega*(A(eta)*H(eta) + Derivative(A(eta), eta))
+eps^0  coefficient: 2*H(eta)*Derivative(A(eta), eta) + Derivative(A(eta), (eta, 2))
+eikonal residual at omega = k : 0  (must be 0)
+transport coefficient (A_x = 0): -2*I*omega*(A(eta)*H(eta) + Derivative(A(eta), eta))
+transport equation: A' + H A = 0  (residual form: A(eta)*H(eta) + Derivative(A(eta), eta) )
+substitution residual of A = A0 a0/a into the transport equation: 0  (must be 0)
+[D3] transport law: A(eta) = A0 a0 / a(eta);  substitution residual 0 EXACT.
+eps^0 residual with A = A0 a0/a: -A0*a0*Derivative(a(eta), (eta, 2))/a(eta)**2  (!= 0: subleading correction, relative order (H/omega)^2)
+
+[D4] D_L^GW = D_L^EM for constant M_P (flux bookkeeping)
+D_L^GW^2 =  aob**4*rM**2/aem**2
+D_L^EM   =  aob**2*rM/aem
+D_L^GW / D_L^EM - 1 = 0  (must be 0)
+[D4] D_L^GW = D_L^EM identically (constant M_P^2 = 1/(8 pi G_bare)); no extra damping, no varying mass, same null rays of the single physical metric g.
+
+[D5] Negative control algebra: G_N normalization is calibration, not friction
+d/dz ln(h_cal/h) = 0  (must be 0: calibration is z-independent)
+d/dz ln(h_fric/h) = -gam*Derivative(phi(z), z)  (z-dependent for non-constant phi: friction)
+hypothetical G_*(z): h/h0 = sqrt(G_*(z)/G_*(0)) -> D_L^GW/D_L^EM = sqrt(Gst(0))/sqrt(Gst(z))
+d/dz ln(ratio) for varying G_*: Derivative(Gst(z), z)/(2*Gst(z))  (nonzero iff G_* varies)
+[D5] In CA5-GNC-R the tensor kinetic coupling M_P^2 = 1/(8 pi G_bare) is constant and G_cosm/G_N = c_N = 1 - alpha/2 is exactly z-independent, so a wrong-G_N calibration is absorbed by sqrt(c_N) (amplitude calibration) and CANNOT masquerade as a friction term. Numeric discrimination in as240_numeric.py (NC-1, NC-2, NC-3).
+
+[D6] Both a0 footings, separate
+canonical  a0 = 9.3619e-11 m/s^2 (kappa = 1/2 adopted): rho_Lambda = 5.844412454021876e-27 kg/m^3;  eps_Lambda = 5.252695959726114e-10 J/m^3;  kappa = 1/2 (adopted input, not derived)
+alternative a0 = 1.1279e-10 m/s^2 at fixed rho_Lambda (canonical): kappa_eff = 0.6023884041 (!= 1/2)
+alternative a0 = 1.1279e-10 m/s^2 at fixed kappa = 1/2: rho_Lambda' = 8.483089619559099e-27 kg/m^3;  eps_Lambda' = 7.624220727267281e-10 J/m^3
+Transport law is dimensionless (A prop 1/a; D_L^GW/D_L^EM = 1): identical on BOTH footings; a0 enters only the static/gate sector, absent in the propagation-only tensor law.
+footing cross-consistency with AS658/AS215 run constants: OK
+
+ALL DERIVE CHECKS PASSED (D1-D6, residuals exact 0 where required).

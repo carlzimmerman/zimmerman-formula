@@ -1,0 +1,163 @@
+CFG5 (1/6) -- THE PRINCIPLE: the vacuum caps the stress the dark field can carry, and the cap is written in at collapse.
+
+THE CHAIN (lane CFG5 of campaign_fresh_gravity).  Gravity is exactly GR; there is no MOND field.  The dark component is the
+framework's own cold coherent field (FL1: a classical order parameter at occupation ~1e77, not a particle species; its mass is
+still required).  The field already has a conversion that ejects dark mass (FK1: its two real components split by
+eps Re(Phi^2); phi_H phi_H -> phi_L phi_L back to back at v_k = 575-650 km/s, Bose-stimulated).  The founding idea: the galaxy
+law is written into each halo DURING COLLAPSE by a process keyed to a0 = kappa c sqrt(G rho_Lambda).
+
+THE PRINCIPLE, IN PLAIN WORDS.  The vacuum limits how hard the dark field can be squeezed.  The field's own internal stress --
+the momentum flux of its streams, measured in its mean rest frame, a local invariant of its stress tensor -- cannot exceed
+the stress at which a self-gravitating body of that field would pull with the vacuum's acceleration a0.  Where collapse drives
+the stress past that limit, the field changes state (FK1's conversion) and the converted part leaves (galaxies) or stays
+bound and hotter (clusters).  The conversion is a coherent, Bose-stimulated process, so it runs while the crossing streams are
+still cold; a phase-mixed halo is a broadband pump and no longer converts.  The cap is therefore written at shell crossing:
+a fossil of collapse.
+
+THE DERIVATION (this script, sympy + numbers).
+  P1  The self-gravitating isothermal equilibrium is the unique self-similar one, and on it 8 pi G P = g^2 at every radius.
+      That identity turns a stress into an acceleration without a new number: the limit is 8 pi G P_d <= a0^2.
+  P2  The same limit in the three forms the brief lists -- the field energy density against rho_Lambda c^2
+      (P_d <= kappa^2 rho_Lambda c^2/8pi), the local acceleration (g_SIS <= a0), and the collapse rate against the vacuum's
+      rate (sqrt(8 pi G rho_d) sigma_d <= kappa c sqrt(G rho_Lambda)): identities, one threshold.  TIED to the core law.
+  P3  At collapse the baryons still follow the dark field (fraction f_b, Planck 2018).  The dark field carries (1 - f_b) of
+      the stress, so the cap reads g <= a0/sqrt(1 - f_b), i.e. the dark field's own pull g_d <= sqrt(1 - f_b) a0 = 0.918 a0.
+      f_b is measured by the CMB; no constant is added.
+  P4  The switch is DERIVED, not added: a single cold stream carries no internal stress.  A plane collapse sampled with N
+      particles has coarse-grained stress exactly zero until shell crossing and positive after.  The Hubble flow and every
+      linear perturbation are single-stream, so the linear universe never converts: the CMB, BAO and linear growth are the
+      cold field's (LCDM's).  Post-crossing sheets and filaments sit orders of magnitude below the cap: the conversion stays
+      out of the voids and the web (the record's XR19 found the same for FK1's trigger; here it is a consequence of the gate).
+  P5  (reported, estimate) The coherence clause: FK1's conversion in a phase-mixed halo is Doppler-broadened; its rate falls by
+      sqrt(pi) G/(m v_k sigma) relative to a cold stream (FP10 A5's broadband rate over the narrowband one).
+  P6  [data, pre-declared H1] The principle's cap against the observed dark acceleration in SPARC.
+  P7  [pre-declared H2] The relaxed fossil of a dark-dominated core: the isothermal equilibrium whose central stress is the
+      cap.  Its central surface density (Burkert fit, the observers' definition) against the observed universal value.
+  P8  (reported) the maximum dark pull of that relaxed core.
+
+HYPOTHESES (declared before the first full run of this script; exploratory scratch runs are disclosed under HISTORY).
+  H1  The observed dark acceleration h_obs = (g_obs - g_bar)/a0 in SPARC (the record's loader, Upsilon_d = 0.5) has a plateau
+      at y = g_bar/a0 in [1.5, 5] whose median lies within 0.15 of the principle's sqrt(1 - f_b) = 0.918, on BOTH footings.
+  H2  The relaxed capped core's Burkert central surface density rho_B r_B lies inside the observed 1-sigma band of the
+      universal value, 89-224 Msun/pc^2 (central 141), on BOTH footings.
+
+====================================================================================================================
+C1  CONTROL: FK1's committed N1, N2, N3 reproduced exactly (FK1 executed read-only)
+====================================================================================================================
+    compared 38 committed numbers of N1-N3; e.g. N1 e-folds at 2e-19 eV = 178.054610 (committed 178.054610); N3 G/mc^2 at 2e-19 eV = 1.806091e-09; N2 background peak 1.347947 at z = 0.298
+  [PASS] C1 CONTROL: FK1's committed N1-N3 reproduced exactly
+         measured: 38 numbers, max relative deviation 0.0e+00
+
+====================================================================================================================
+C2  CONTROL: the record's SPARC RAR fit (L92 A1 = L61's gate) reproduced to the printed digits
+====================================================================================================================
+    committed (L92 .out): {'n_gal': 155, 'n_pt': 2786, 'rms': ('0.1453', '0.1421'), 'med': ('+0.030', '+0.003')}
+    this lane's loader:   {'n_gal': 155, 'n_pt': 2786, 'rms': ('0.1453', '0.1421'), 'med': ('+0.030', '+0.003')}
+  [PASS] C2 CONTROL: the record's SPARC RAR fit reproduced (155 galaxies / 2786 points; 0.1453/0.1421 dex; +0.030/+0.003)
+         measured: {'n_gal': 155, 'n_pt': 2786, 'rms': ('0.1453', '0.1421'), 'med': ('+0.030', '+0.003')}
+
+====================================================================================================================
+P1  THE SIS IDENTITY: on the self-gravitating isothermal equilibrium 8 pi G P = g^2 at every radius
+====================================================================================================================
+    rho = sigma^2/(2 pi G r^2): g = 2*sigma**2/r,  P = rho sigma^2,  Jeans residual dP/dr + rho g = 0,  8 pi G P - g^2 = 0
+  [PASS] P1 on the self-gravitating isothermal equilibrium (Jeans-balanced) 8 pi G P = g^2 identically: a stress maps to an acceleration with no new number
+         measured: Jeans residual 0; 8 pi G P - g^2 = 0
+
+====================================================================================================================
+P2  ONE THRESHOLD, THREE FORMS: field energy vs rho_Lambda c^2, local acceleration, collapse rate vs vacuum rate
+====================================================================================================================
+    P_c = a0^2/(8 pi G) with a0 = kappa c sqrt(G rho_L):  P_c - kappa^2 rho_L c^2/(8 pi) = 0
+    rate form: [sqrt(8 pi G rho_d) sigma_d]^2 = 8 pi G P_d (residual 0); vacuum side [kappa c sqrt(G rho_L)]^2 - 8 pi G P_c = 0
+    numbers: P_c = 5.2232e-12 / 7.6284e-12 Pa = 0.00996 / 0.01454 of rho_Lambda c^2 (kappa^2/8pi = 0.00995; the alt footing is kappa = 0.6043 on rho_Lambda)
+  [PASS] P2 the stress limit is one threshold in the three forms (energy density vs rho_Lambda c^2; acceleration; rate x speed vs vacuum rate x c): TIED to a0 = kappa c sqrt(G rho_Lambda), no new constant
+         measured: residuals 0, 0, 0
+
+====================================================================================================================
+P3  THE CAP ON THE DARK FIELD'S OWN PULL AT COLLAPSE: g_d <= sqrt(1 - f_b) a0
+====================================================================================================================
+    dark stress in a mixture following the dark field: P_d = (1 - f_b) g^2/(8 pi G) -> g_max = a_0/sqrt(epsilon_b), g_d,max = a_0*sqrt(epsilon_b)   (epsilon_b = 1 - f_b)
+    f_b = Omega_b/Omega_m = 0.1564 (Planck 2018) -> sqrt(1 - f_b) = 0.9185: g_c = 8.5971e-11 / 1.0390e-10 m/s^2
+  [PASS] P3 at collapse the dark field carries (1 - f_b) of the mixture's stress, so the cap reads g_d <= sqrt(1 - f_b) a0 (f_b measured by the CMB: TIED, no new constant)
+         measured: g_d,max = a_0*sqrt(epsilon_b); = 0.9185 a0
+
+====================================================================================================================
+P4  THE SWITCH IS DERIVED: a single cold stream carries no stress; only shell crossing creates it
+====================================================================================================================
+    D = 0.300: max coarse stress (400 cells) 7.582e-04, refined/coarse 0.062  (single stream: stress is the cell-gradient term, falls ~16x on 4x refinement)
+    D = 0.600: max coarse stress (400 cells) 4.067e-03, refined/coarse 0.062  (single stream: stress is the cell-gradient term, falls ~16x on 4x refinement)
+    D = 0.900: max coarse stress (400 cells) 2.336e-01, refined/coarse 0.063  (single stream: stress is the cell-gradient term, falls ~16x on 4x refinement)
+    D = 0.999: max coarse stress (400 cells) 5.848e+00, refined/coarse 0.254  (single stream: stress is the cell-gradient term, falls ~16x on 4x refinement)
+    D = 1.200: max coarse stress (400 cells) 5.045e+01, refined/coarse 0.981  (multistream: survives refinement)
+    D = 1.600: max coarse stress (400 cells) 2.530e+01, refined/coarse 0.998  (multistream: survives refinement)
+    D = 2.500: max coarse stress (400 cells) 8.993e+00, refined/coarse 0.996  (multistream: survives refinement)
+    sheet                     : rho =     10 rho_bar, sigma =    20 km/s -> P/P_c = 2.06e-06 / 1.41e-06
+    filament                  : rho =     30 rho_bar, sigma =    50 km/s -> P/P_c = 3.86e-05 / 2.64e-05
+    filament, dense           : rho =    100 rho_bar, sigma =   100 km/s -> P/P_c = 5.14e-04 / 3.52e-04
+    group outskirts (r200)    : rho =    635 rho_bar, sigma =   400 km/s -> P/P_c = 5.22e-02 / 3.58e-02
+    cluster outskirts (r200)  : rho =    635 rho_bar, sigma =   900 km/s -> P/P_c = 2.64e-01 / 1.81e-01
+  [PASS] P4 a single cold stream carries no stress (its cell stress is a resolution term that vanishes on refinement) and shell crossing creates a stress that survives refinement: the linear universe and the Hubble flow never reach the cap; the post-crossing web sits >= 100x below it (the conversion stays out of voids and the web)
+         measured: refined/coarse at D = 0.3/0.6/0.9: [0.0625, 0.0625, 0.0626]; at 1.2/1.6/2.5: [0.981, 0.998, 0.996]; web max P/P_c = 5.1e-04
+
+====================================================================================================================
+P5  (reported, estimate) THE COHERENCE CLAUSE: a phase-mixed halo is a broadband pump and converts ~1e3x slower
+====================================================================================================================
+    broadband/narrowband rate = sqrt(pi) G/(m v_k sigma), G/mc^2 = 1.81e-09 (FK1 N3 at 2e-19 eV):  sigma/v_k 30/575: 1.7e-02, sigma/v_k 30/650: 1.5e-02, sigma/v_k 100/575: 5.0e-03, sigma/v_k 100/650: 4.4e-03, sigma/v_k 300/575: 1.7e-03, sigma/v_k 300/650: 1.5e-03
+  [PASS] (reported) P5 (reported) in a phase-mixed halo the conversion rate is suppressed by ~1e-3 relative to a cold crossing stream, so the cap is written at shell crossing (an estimate with O(1) factors; FK1's halo-regime rate carries the same caveat)
+         measured: {'30/575': '1.7e-02', '30/650': '1.5e-02', '100/575': '5.0e-03', '100/650': '4.4e-03', '300/575': '1.7e-03', '300/650': '1.5e-03'}
+
+====================================================================================================================
+P6  [H1] THE OBSERVED DARK-ACCELERATION PLATEAU IN SPARC against the principle's sqrt(1 - f_b) a0
+====================================================================================================================
+    [canonical] y in [1.5, 5): N = 360 points; median h_obs = 0.903 +- 0.227 (galaxy bootstrap); principle 0.918; difference -0.015
+               Upsilon_d = 0.4 / 0.6 / 0.7 (Upsilon_b = 1.4 Upsilon_d): median h_obs = 1.544 / 0.485 / 0.176 (reported)
+    [alt      ] y in [1.5, 5): N = 313 points; median h_obs = 0.710 +- 0.225 (galaxy bootstrap); principle 0.918; difference -0.208
+               Upsilon_d = 0.4 / 0.6 / 0.7 (Upsilon_b = 1.4 Upsilon_d): median h_obs = 1.351 / 0.355 / 0.050 (reported)
+  [FAIL] P6 [H1] the observed dark-acceleration plateau (y in [1.5, 5], Upsilon_d = 0.5) lies within 0.15 of sqrt(1 - f_b) = 0.918 on BOTH footings
+         measured: {'canonical': '0.903 vs 0.918 (diff -0.015)', 'alt': '0.710 vs 0.918 (diff -0.208)'}
+         reading:  in absolute units the plateau is 8.452e-11 / 8.035e-11 m/s^2 (the two footings' readings of one set of points); the caps are 8.597e-11 / 1.039e-10
+
+====================================================================================================================
+P7  [H2] THE RELAXED FOSSIL OF A DARK-DOMINATED CORE: the isothermal sphere whose central stress is the cap
+====================================================================================================================
+    [canonical] P_c = 5.223e-12 Pa: sigma 20 km/s: rho_B r_B = 132.8 Msun/pc^2, <Sigma>(<r_B) = 77.5, r_B = 0.66 kpc, max g/a0 = 0.366; sigma 50 km/s: rho_B r_B = 132.8 Msun/pc^2, <Sigma>(<r_B) = 77.5, r_B = 4.14 kpc, max g/a0 = 0.366; sigma 150 km/s: rho_B r_B = 132.8 Msun/pc^2, <Sigma>(<r_B) = 77.5, r_B = 37.28 kpc, max g/a0 = 0.366
+    [alt      ] P_c = 7.628e-12 Pa: sigma 20 km/s: rho_B r_B = 160.5 Msun/pc^2, <Sigma>(<r_B) = 93.7, r_B = 0.55 kpc, max g/a0 = 0.366; sigma 50 km/s: rho_B r_B = 160.5 Msun/pc^2, <Sigma>(<r_B) = 93.7, r_B = 3.43 kpc, max g/a0 = 0.366; sigma 150 km/s: rho_B r_B = 160.5 Msun/pc^2, <Sigma>(<r_B) = 93.7, r_B = 30.85 kpc, max g/a0 = 0.366
+  [PASS] P7 [H2] the relaxed capped core has a universal Burkert central surface density rho_B r_B (independent of sigma) inside the observed 1-sigma band 89-224 Msun/pc^2, on BOTH footings
+         measured: {'canonical': '132.8 Msun/pc^2 (sigma-spread 1.000x)', 'alt': '160.5 Msun/pc^2 (sigma-spread 1.000x)'}
+
+====================================================================================================================
+P8  (reported) THE MAXIMUM DARK PULL OF THE RELAXED CAPPED CORE
+====================================================================================================================
+    canonical: max g_d/a0 = 0.366; alt: max g_d/a0 = 0.366  (the relaxed core of a dark-dominated system; the RAR's nu_RAR peak is 0.648 a0, the principle's collapse cap 0.918 a0)
+  [PASS] (reported) P8 (reported) the relaxed capped core's maximum dark pull, in a0 units
+         measured: {'canonical': 0.366, 'alt': 0.366}
+
+====================================================================================================================
+W   THE TIE LEDGER: which of the record's own results each step uses
+====================================================================================================================
+    W1     FITTED     kappa = 1/2 (Z = 5.7888): the only fitted constant of the core, used through a0  --  core; charter
+    W2     TIED       the stress cap P_c = a0^2/(8 pi G) = (kappa^2/8 pi) rho_Lambda c^2: the SIS identity maps a0 to a stress  --  P1, P2
+    W3     TIED       the cap is exactly constant in time and space: a0 and Lambda are one unimodular integration constant  --  XR20 T1, XR30
+    W4     TIED       the cap reads rho_Lambda, never the local density: the BIG-SPARC environmental null  --  BIG-SPARC null (record)
+    W5     TIED       the dark share at collapse (1 - f_b), f_b = 0.1564 from the CMB: g_d <= sqrt(1 - f_b) a0  --  P3
+    W6     DERIVED    the switch: zero stress in single-stream flow -> no conversion in the Hubble flow, the linear universe, the voids  --  P4; consistent with XR19
+    W7     DERIVED    the cold field is GDM(0,0,0) on linear scales before collapse: LCDM's CMB and linear growth  --  GDM theorem; FL1 F5
+    W8     DECLARED   the conversion mechanism and its kick v_k = 575-650 km/s (eps/m^2 = 1.84-2.35e-6)  --  FK1 K2
+    W9     DECLARED   the coherence clause (conversion needs a narrowband pump): a window on the coupling lambda  --  P5; FK1 K3/K4
+    W10    DECLARED   the field's mass m >= 2-5e-19 eV (CDM-like on every scale tested)  --  FL1 F5, L383
+    W11    REMOVED    FK1's K-gate exponent q and the khronon: the stress gate replaces them (no khronon in a GR chain)  --  P4
+  [PASS] (reported) W the tie ledger (reported)
+         measured: 11 links
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  The principle is one number-free statement: the dark field's stress cannot exceed a0^2/(8 pi G) = (kappa^2/8pi) rho_Lambda c^2.
+  Through the self-gravitating isothermal identity it is at once a field-energy bound against rho_Lambda c^2, an acceleration
+  bound at a0 and a rate bound against the vacuum's rate (P1, P2).  At collapse the dark field carries (1 - f_b) of the stress, so
+  it caps the dark field's own pull at sqrt(1 - f_b) a0 = 0.918 a0 (P3).  The switch is derived: single-stream flow carries no
+  stress, so the linear universe never converts (P4).  Against SPARC: the observed dark plateau at y = 1.5-5 is
+  0.903 (canonical) / 0.710 (alt) against 0.918 (P6); the relaxed capped core's central
+  surface density is 133 / 161 Msun/pc^2 against the observed 141 (89-224) (P7).
+  kappa stays fitted; nothing here is closed.
+
+  checks: 10/11 pass; load-bearing failures: 1; wrote campaign_fresh_gravity/CFG5_1_principle_results.json   [1s]

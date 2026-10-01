@@ -1,0 +1,74 @@
+====================================================================================================
+AS500.C01 -- matter-only Ward separation at pin b8c04d4e...7546e (CA4-GNC/CA5-GNC-R + k04)
+====================================================================================================
+
+[STEP 1] on-shell sector identities in the N sqrt(h) measure (premises P1-P4b):
+  heat   : E_Wk = E_Lk = E_lam0 = E_U = 0 (all k);  terminal BC L_b = -R_W, lam0 = L_0
+  U(1)   : div J_phi = +E_ex , div J_chi = -E_ex   =>  div J_total = 0 on shell
+  vacuum : d_mu q = 0 (flux constancy, three-form EOM)
+  matter : E_b = 0 ; S_b[g] host-free (minimal coupling)
+
+[STEP 1] assembled cross-source charges (premises P2-P4, N sqrt(h) measure):
+  Q_heat = N*(E_L0*dL0 + E_L1*dL1 + E_L2*dL2 + E_L3*dL3 + E_U*dU + E_W0*dW0 + E_W1*dW1 + E_W2*dW2 + E_W3*dW3 + E_lam0*dlam0 + W0p*(-L_0 + lam0) + Wbp*(L_b + R_W))
+  Q_U1   = div J_phi + div J_chi = dJchi + dJphi   (on-shell exchange cancellation)
+  Q_vac  = div T_vac = dq*g_metric_factor*q*(-Z - 2*b*beta**2)
+
+[STEP 2] on-shell reduction of EACH sector (AS133 BC + sector EOMs):
+  div Q_heat |_shell = 0
+  div Q_U1   |_shell = 0
+  div Q_vac  |_shell = 0
+  div Q_b    |_shell = 0
+
+  SUM div(Q_heat+Q_U1+Q_vac) |_shell = 0   (exact 0 — decoupling)
+  zero-polynomial check in r = Z/beta^2: Poly(0, r, domain='ZZ')  (all coeffs 0)
+  zero-polynomial check in (Z, b, beta, q): Poly(0, Z, b, beta, q, domain='ZZ')
+
+[STEP 2] DECOUPLING LEMMA (the matter-only atom, verdict (a)):
+  On shell: div Q_heat = 0  AND  div Q_U1 = 0  AND  div Q_vac = 0 (each by its own
+  sector equations + AS133 terminal BC + flux constancy), hence
+  div(Q_heat + Q_U1 + Q_vac) = 0  and the total-Ward cancellation gives
+  div Q_b = -div(Q_heat+Q_U1+Q_vac) = 0  in the N sqrt(h) measure.
+  Independently (P1): div Q_b = E_b(xi.dpsi) = 0 for E_b = 0 (minimal coupling);
+  both routes agree: the ordinary-matter sector carries NO nonmetric force on this pin.
+
+[NEG-1] residual of 'Ward applied to Q_b alone WITHOUT the decoupling lemma':
+  residual := -(div Q_heat + div Q_U1 + div Q_vac)|_generic = E_L0*N*dL0 + E_L1*N*dL1 + E_L2*N*dL2 + E_L3*N*dL3 + E_U*N*dU + E_W0*N*dW0 + E_W1*N*dW1 + E_W2*N*dW2 + E_W3*N*dW3 + E_lam0*N*dlam0 - L_0*N*W0p + L_b*N*Wbp + N*R_W*Wbp + N*W0p*lam0 - Z*dq*g_metric_factor*q - 2*b*beta**2*dq*g_metric_factor*q + dJchi + dJphi
+  (generic off-shell jets: E_Wk, E_Lk, E_lam0, E_U, dq, L_b+R_W, lam0-L_0 retained)
+  exact rational witness (heat EOM E_W0 = 3/2 NOT imposed): residual = 15 != 0
+  exact rational witness (terminal BC L_b = -R_W, lam0 = L_0 NOT imposed): residual = 20 != 0
+
+[NEG-2] three-form bulk EOM with q != const (retained hypothesis check, AS658):
+  EOM residual = -(Z+2b beta^2) * d_mu q  (symbolic, P_qq = Z+2b beta^2 > 0):
+  -q1*(Z + 2*b*beta**2)   != 0 for d_mu q != 0
+  numeric witness (q = q0*(1 + 0.3 sin x0), tuned ratio): EOM residual = -2.40000000000 != 0
+  => any (b)-witness declaring div Q_vac != 0 via q != const is OFF shell (violates the
+     retained three-form EOM) and cannot establish (b).  (b) is therefore excluded on
+     the vacuum side; verdict (a) stands.
+
+[STEP 3] sampled coupling points in the audited band (real residuals):
+  point alpha    K_B      r=Z/beta^2             on-shell sum   NEG-1 |res|  NEG-2 |res| 
+  P1    1/2      0        1.0                    0.0            1.9788       0.310803    
+  P2    1        1/8      4.0                    0.0            21.9638      1.21013     
+  P3    3/2      1/4      7.9639892129110015     0.0            48.3754      2.39865     
+  P4    7/10     0        16.0                   0.0            101.979      4.8108      
+  P5    19/10    1/4      64.0                   0.0            421.949      19.2095     
+
+[STEP 3] random exact-rational jets (seed 20260928):
+  on-shell decoupling sums == 0  : 100/100
+  off-shell residuals != 0       : 100/100
+
+[FOOTINGS] framework bookkeeping (a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 ADOPTED):
+  rho_Lambda(canonical) = 5.844412454E-27 kg/m^3
+  rho_Lambda(alt)       = 8.483089620E-27 kg/m^3
+  all statements dimensionless -> apply identically to both footings;
+  G_N/G_bare/G_cosmo kept separate; kappa = 1/2 adopted, never derived.
+
+wall_time_seconds = 2.349
+
+VERDICT: (a) LANDS.
+  On the pinned cell (compact closed leaf, all fields on shell, terminal heat BC
+  L_b = -R_W, lam0 = L_0, flux constancy d_mu q = 0):  each cross-source sector
+  current closes on shell (div Q_heat = 0, div Q_U1 = 0, div Q_vac = 0), so
+  div(Q_heat + Q_U1 + Q_vac) = 0 identically over the audited coupling band and
+  div Q_b = 0 in the N sqrt(h) measure.  Matter-only Ward separation PROVED;
+  the gate-P5 matter atom is landed on this pin.  NEG-1 and NEG-2 both fire.

@@ -1,0 +1,113 @@
+XR26 (part 3) -- BIG BANG NUCLEOSYNTHESIS IN THE CHAIN: helium-4, deuterium and lithium-7 with the chain's G_cos.
+
+WHY.  Part 1 (XR26_linear_equations.py) found the chain's Friedmann equation is GR's with the bare G, so during BBN the
+expansion rate uses G_cos = G_N (1 - alpha_c/2), alpha_c in [8e-16, 3.2e-9] (FP14 A3's floor, FP2's PPN bound), with no other
+energy component: the khronon has no background energy, the MOND scalar is decoupled (its datum phibar-dot = 0 is declared;
+part 1 F1 bounds it), and the dark field (m >= 1.9-5.2e-19 eV) is frozen until T ~ 28-46 keV with Delta N_eff <= 2e-4 (part 1
+E1).  BBN therefore tests only G_cos/G_N at T ~ 1 MeV - 30 keV, and the baryon density the chain's CMB fit returns (part 2:
+identical to LCDM's).
+
+METHOD.  (i) The standard-BBN tables shipped with CAMB 1.6.6 -- PRIMAT 2024 (Pitrou et al.; tau_n = 878.4 s, LUNA d(p,g)3He)
+and PArthENoPE 2017 (tau_n = 880.2 s, Planck 2018's) -- give Y_P^BBN and D/H versus (omega_b, Delta N_eff); a change of G at
+BBN is mapped to the equivalent Delta N_eff through S^2 = G_BBN/G_0 = 1 + 7 Delta N/43 before e+e- annihilation (Steigman 2012,
+Adv. High Energy Phys. 268321, eqs. 7-8) and S^2 = 1 + 0.135 Delta N after it (eq. 10); both maps are carried.  (ii) An
+independent BBN-lite integration (this script): the n <-> p weak rates in the Born approximation with Fermi-Dirac e+- and
+neutrinos, normalised to tau_n; exact e+e- thermodynamics and entropy transfer; H^2 = (8 pi G_cos/3) rho; the neutron fraction
+integrated to the deuterium bottleneck (Saha) with free decay; Y_P = 2 X_n(T_nuc).  It puts G_cos into H directly, with no
+Delta N_eff map, and is calibrated once to the PRIMAT table at G_cos = G_N.  (iii) Lithium-7: standard BBN's value at Planck's
+omega_b (Fields, Olive, Yeh & Young 2020, JCAP 03, 010, as quoted by the PDG 2024 review) with its S-dependence from Steigman's
+fit y_Li = 4.82 (eta_Li/6)^2, eta_Li = eta_10 - 3(S - 1) (2012, eqs. 18, 21).
+OBSERVED (cited): Y_P = 0.245 +- 0.003 (PDG 2024, Fields, Molaro & Sarkar, eq. 24.3) and 0.2453 +- 0.0034 (Aver et al. 2021,
+JCAP 03, 027); D/H = (2.547 +- 0.029) x 1e-5 (PDG 2024 eq. 24.2) and (2.527 +- 0.030) x 1e-5 (Cooke, Pettini & Steidel 2018,
+ApJ 855, 102); 7Li/H = (1.6 +- 0.3) x 1e-10 (PDG 2024 eq. 24.4, the Spite plateau, -2.8 < [Fe/H] < -1.5).  omega_b = 0.02236 +-
+0.00015 (Planck 2018 VI, TT,TE,EE+lowE).  Both a0 footings (canonical 9.3603e-11, alt 1.1312e-10 m/s^2) are carried.
+
+PRE-DECLARED (written before any run of this script):
+  H1  CONTROLS.  The CAMB tables reproduce Planck 2018 VI's quoted standard-BBN numbers at omega_b = 0.02236: PArthENoPE
+      Y_P^BBN = 0.24672 (eq. 72a) and D/H = 2.587e-5 (eq. 74, case a) to <= 3e-4 in Y_P and 1.5% in D/H; the BBN-lite Y_P lies
+      within 3% of PRIMAT's before calibration and its response dY_P/d(Delta N_eff) within 20% of the table's.  EXPECT TRUE.
+  H2  THE CHAIN.  G_cos/G_N - 1 = -alpha_c/2 >= -1.6e-9 shifts Y_P by ~ -1e-10, D/H and 7Li/H by ~ +1e-9 (relative): the
+      chain's light elements are standard BBN's at the chain's omega_b (= LCDM's), for both footings (a0 enters nothing here).
+      EXPECT TRUE.
+  H3  AGAINST OBSERVATIONS (the chain = standard BBN): Y_P ~ 0.247 vs 0.245 +- 0.003 (within 1 sigma); D/H 2.4-2.6e-5
+      depending on the nuclear rates (PRIMAT low by ~2-3 sigma, PArthENoPE within ~1 sigma of 2.547 +- 0.029); 7Li/H ~ 4.7e-10
+      vs 1.6 +- 0.3e-10: the factor-3 lithium problem, untouched by the chain.  EXPECT TRUE.
+  H4  MUTATE (G_cos = 2 G_N, the York/CMC kill's value): Y_P rises to ~0.31-0.33 and D/H by ~50-100%: excluded at > 10 sigma.
+      EXPECT TRUE.
+  DISCLOSURE (added after the first full run, which was made on a scratch copy of this script): H1's BBN-lite expectation FAILED
+  -- the uncalibrated Y_P came out 7.2% below PRIMAT's (declared <= 3%), while the Delta N_eff response agreed to 9% (declared
+  <= 20%).  K2 is kept exactly as declared (so this script's main run returns rc = 1 on that control); a post-hoc diagnostic,
+  K2b (reported, not load-bearing), shows where the deficit comes from (the Saha X_D = X_n bottleneck at 66 keV sits late).
+  Only the calibrated RESPONSE of BBN-lite is used below; the abundances themselves come from the PRIMAT/PArthENoPE tables.
+CHECKS
+  K  CONTROLS: K1 CAMB's PArthENoPE table reproduces Planck 2018 VI's quoted standard-BBN Y_P^BBN and D/H at omega_b = 0.02236;
+     K2 the BBN-lite integration against the PRIMAT 2024 table (Y_P before calibration; the Delta N_eff response); K3 part 1's
+     committed dark-field Delta N_eff at BBN (XR26_linear_equations_results.json, E1) is read and bounded.
+  B  THE CHAIN: B1 [HEADLINE] the shifts of Y_P, D/H and 7Li/H at G_cos/G_N = 1 - alpha_c/2 (BBN-lite directly; both Delta N_eff
+     maps; Steigman's lithium fit) are negligible: <= 1e-7 (absolute in Y_P, relative in D/H and Li); B2 (reported) the chain's
+     (= standard BBN's) abundances at its omega_b against the observed values; B3 (reported) lithium-7 and the Spite plateau
+     (the coordinator's question); B4 both a0 footings; M (reported in the main run) the MUTATE's numbers.  W the ledger.
+MUTATE=1 sets G_cos = 2 G_N in B1 (the York/CMC kill's value): B1 must FAIL (rc = 1).
+
+SCOPE.  BBN-lite is a freeze-out + bottleneck calculation, not a network: it carries G_cos into Y_P directly and is calibrated to
+PRIMAT; D/H and lithium come from the tables and fits named above.  At most 2 threads (single-threaded numpy here).
+
+Run from the repository root:  python3 real_research/cross_thread_review_2026_09_26/XR26_bbn.py   (MUTATE=1 for the control).
+Writes XR26_bbn[_MUTATE].out and XR26_bbn_results[_MUTATE].json next to itself.
+
+  inputs: omega_b = 0.02236 +- 0.00015 (eta_10 = 6.124); G_cos/G_N = 1 - alpha_c/2 in [0.9999999984, 0.9999999999999996]; observed {'Y_P (PDG 2024)': (0.245, 0.003), 'Y_P (Aver+2021)': (0.2453, 0.0034), 'D/H (PDG 2024)': (2.547e-05, 2.9e-07), 'D/H (Cooke+2018)': (2.527e-05, 3e-07), 'Li/H (PDG 2024, Spite plateau)': (1.6e-10, 3e-11)}
+
+==================================================================================================================
+K  CONTROLS
+==================================================================================================================
+  [PASS] K1 CONTROL: CAMB's PArthENoPE table (tau_n = 880.2 s) reproduces Planck 2018 VI's quoted standard-BBN predictions at omega_b = 0.02236 -- Y_P^BBN = 0.24672 (eq. 72a) and D/H = 2.587e-5 (eq. 74, case a)
+         measured: Y_P 0.24672, D/H 2.5875e-05
+    BBN-lite: Y_P = 0.22916 at T_nuc = 66.3 keV (PRIMAT 2024 0.24698: calibration x1.0778); Delta N_eff = -1/+1: lite -0.01570/+0.01368 vs table -0.01446/+0.01253
+  [FAIL] K2 CONTROL: the BBN-lite freeze-out integration lands within 3% of PRIMAT 2024's Y_P before calibration and reproduces its Delta N_eff = +-1 response to within 20% after it -- good enough to carry a G_cos change into Y_P directly
+         measured: uncalibrated 0.22916 vs 0.24698 (7.2%); response mismatch 9.2%
+  [PASS] (reported) K2b (reported; post-hoc, see the docstring's disclosure) THE BBN-LITE DEFICIT IS THE BOTTLENECK TEMPERATURE: the same integration stopped at a fixed photon temperature gives the printed Y_P -- stopping at ~75-80 keV instead of the Saha point (66 keV) removes most of the 7% (less free-neutron decay); the calibrated response used below does not depend on this choice
+         measured: T = 66 keV: 0.2285, T = 70 keV: 0.2379, T = 75 keV: 0.2480, T = 80 keV: 0.2568, T = 85 keV: 0.2643 (PRIMAT 0.2470)
+  [PASS] K3 CONTROL: part 1's committed dark-field numbers (E1, misalignment normalised to Omega_c) bound its Delta N_eff-equivalent at every BBN temperature (1 MeV - 30 keV) by <= 1e-3 -- the dark field does not enter BBN
+         measured: max Delta N_eff (both masses) 2.0e-04
+    (1 s)
+
+==================================================================================================================
+B  THE CHAIN'S BBN
+==================================================================================================================
+    dY_P/d ln G_cos: BBN-lite direct +0.0976, PRIMAT with the pre-annihilation map +0.0824; d ln(D/H)/d ln G_cos +1.002 (post map) / +0.831 (pre map); d ln(Li/H)/d ln G_cos -0.490 (Steigman's fit)
+    the chain (G_cos/G_N = 0.9999999984): dY_P = -1.56e-10, d ln(D/H) = -1.60e-09 (-1.33e-09 pre map), d ln(Li/H) = +7.84e-10; at the regulator's floor: dY_P = -4.3e-17
+  [PASS] B1 [HEADLINE] THE CHAIN'S LIGHT ELEMENTS ARE STANDARD BBN'S: G_cos/G_N = 1 - alpha_c/2 (>= 1 - 1.6e-9) moves Y_P, D/H and 7Li/H by <= 1e-7 (absolute in Y_P, relative in D/H and Li) -- a million times below the observational errors; G_cos = G_N is not exact (alpha_c >= 8e-16), but the difference is invisible
+         measured: dY_P -1.6e-10, d ln D/H -1.6e-09, d ln Li +7.8e-10
+    PRIMAT 2024: Y_P = 0.24698 +- 0.00013, D/H = 2.4482e-05 +- 3.84e-07 (omega_b and rate errors); pulls vs Y_P (PDG 2024) +0.66, Y_P (Aver+2021) +0.49, D/H (PDG 2024) -2.05, D/H (Cooke+2018) -1.62
+    PArthENoPE 2017: Y_P = 0.24672 +- 0.00006, D/H = 2.5875e-05 +- 2.80e-07 (omega_b and rate errors); pulls vs Y_P (PDG 2024) +0.57, Y_P (Aver+2021) +0.42, D/H (PDG 2024) +1.00, D/H (Cooke+2018) +1.47
+  [PASS] (reported) B2 (reported) AGAINST OBSERVATIONS: the chain's (= standard BBN's) Y_P lies within 1 sigma of the PDG 2024 and Aver+2021 values; D/H depends on the nuclear rates -- the printed pulls (PRIMAT low, PArthENoPE close), exactly as for LCDM
+         measured: PRIMAT 2024: Y +0.66, D/H -2.05 sigma; PArthENoPE 2017: Y +0.57, D/H +1.00 sigma
+    7Li/H: standard BBN (Fields et al. 2020) 4.720e-10 +- 7.20e-11; the chain 4.720000e-10 (relative shift +7.8e-10); Spite plateau 1.60e-10 +- 3.0e-11: ratio 2.95, 4.0 sigma (PDG 2024: 'a factor 3.1 ... a 4.4 sigma discrepancy')
+  [PASS] (reported) B3 (reported) LITHIUM-7 (the coordinator's question): the chain's G_cos changes 7Li/H by ~ +1e-9 (relative), so the chain inherits standard BBN's overprediction of the Spite plateau unchanged -- a factor ~3, ~4 sigma: the chain neither solves nor worsens the lithium problem
+         measured: Li/H = 4.720e-10; ratio to the plateau 2.95; 4.0 sigma
+  [PASS] (reported) B4 (reported) BOTH a0 FOOTINGS: the BBN inputs are G_cos/G_N (alpha_c), omega_b, N_eff and the dark field's frozen energy -- a0 enters none of them (part 1 B9), so the canonical (9.3603e-11) and alt (1.1312e-10 m/s^2) footings give identical BBN
+         measured: a0-free inputs
+    the MUTATE's model (G_cos = 2 G_N): Y_P = 0.3156 (BBN-lite, calibrated) -> +23.5 sigma from PDG 2024; D/H = 4.736e-05 (post map, Delta N = 7.00; the table stops at 7) / 4.456e-05 (pre map); 7Li/H ~ 3.00e-10 (Steigman's fit far outside its range)
+  [PASS] (reported) M (reported) the MUTATE's model fails BBN: G_cos = 2 G_N puts Y_P more than 10 sigma above the observed value
+         measured: Y_P 0.3156 (+23.5 sigma)
+
+==================================================================================================================
+W  THE LEDGER: XR26 part 3
+==================================================================================================================
+    X26-3a   DERIVED     BBN in the chain = standard BBN at the chain's omega_b: G_cos/G_N = 1 - alpha_c/2 shifts Y_P by -2e-10, D/H and 7Li/H by ~1e-9 (relative); dark field and khronon absent  --  B1, K3
+    X26-3b   DERIVED     Y_P = 0.2470 (PRIMAT) / 0.2467 (PArthENoPE) vs 0.245 +- 0.003: consistent  --  B2
+    X26-3c   DERIVED     D/H = 2.448e-05 (PRIMAT, -2.1 sigma) / 2.587e-05 (PArthENoPE, +1.0 sigma) vs 2.547 +- 0.029e-5: the same nuclear-rate question LCDM has  --  B2
+    X26-3d   FAILS       7Li/H = 4.72e-10 vs the Spite plateau 1.6 +- 0.3e-10: the factor-3 lithium problem, unchanged  --  B3 (standard BBN's failure, inherited)
+    X26-3e   CONSTRAINT  the datum phibar-dot = 0 (lambda > 0) must be < ~1e-12 H0/sqrt(lambda) today (a stiff component at BBN)  --  part 1 F1
+  [PASS] (reported) W (reported) the ledger
+         measured: 5 links
+
+==================================================================================================================
+VERDICT
+==================================================================================================================
+  The chain's BBN is standard BBN: G_cos/G_N = 1 - alpha_c/2 moves Y_P by -2e-10 and D/H, 7Li/H by ~1e-9.  At the
+  chain's omega_b (= LCDM's) Y_P = 0.2470, D/H = 2.448e-05 (PRIMAT) / 2.587e-05 (PArthENoPE), 7Li/H = 4.72e-10:
+  helium consistent, deuterium as good or as tense as LCDM's (rate-dependent), lithium overpredicted ~3x exactly as in standard BBN.
+
+  9/10 checks pass; load-bearing failures: 1; wrote XR26_bbn_results.json (2 s)
+rc = 1

@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "claim_id": "kick_moments/controls_mutation",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/control.py"
+  ],
+  "environment": {
+    "software": [
+      "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+      "numpy1.26.2",
+      "CLASS3.3.4.0 for benchmark, local build"
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact isotropic kick integral controls or bounded event-localized shell numerical audit; failures retained",
+    "coefficient_domain": "float64",
+    "conventions": "source units kpc,km/s; kappa1/2 fitted; no-cooling constant spin benchmark",
+    "inputs": [
+      "real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/control.py",
+      "real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/exact_moments.py"
+    ],
+    "input_sha256": {
+      "real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/control.py": "13dd950d4721d52ce6dfe8a2dfad7c2839570e1ae268021ead6fcc239081450d",
+      "real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/exact_moments.py": "018437e8d2a0016aa9d1db3947e04b2b1b9e63a4afcecf3b9d10c86642d46241"
+    },
+    "bounds": {
+      "angular_quadrature": "32x64 for exact-kick controls",
+      "event_examples": "turnaround .37, pressure .63; harmonic20/40/80 steps",
+      "timeout": "tiny deterministic run, no enforced subprocess timeout"
+    },
+    "non_claims": [
+      "No full-action completion",
+      "No numerical convergence claim from boundedgrid"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "none; inherited RNG initialization has no draws",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:48:46.216326+00:00",
+    "runtime_seconds": 0.10303824999999997,
+    "exit_status": 1
+  },
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/control_mutation.json",
+      "sha256": "34925e4c9b904716d61576c4ff613272a94ff1ca2539042eaf80935f5b83eefe"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/controls_mutation.stdout.txt",
+      "sha256": "89fab2a912a7279cf5d2dd53c473d37f3abdf371761d36d61f04b17fae5eeb58"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/controls_mutation.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "checks": [
+    {
+      "name": "oblique/fraction",
+      "passed": true
+    },
+    {
+      "name": "oblique/moments",
+      "passed": false
+    },
+    {
+      "name": "radial/fraction",
+      "passed": true
+    },
+    {
+      "name": "radial/moments",
+      "passed": false
+    },
+    {
+      "name": "tangent/fraction",
+      "passed": true
+    },
+    {
+      "name": "tangent/moments",
+      "passed": false
+    },
+    {
+      "name": "all/fraction",
+      "passed": true
+    },
+    {
+      "name": "all/moments",
+      "passed": true
+    },
+    {
+      "name": "none/fraction",
+      "passed": true
+    },
+    {
+      "name": "none/moments",
+      "passed": true
+    },
+    {
+      "name": "rest_bound",
+      "passed": true
+    },
+    {
+      "name": "rest_none",
+      "passed": true
+    },
+    {
+      "name": "zero_kick",
+      "passed": true
+    },
+    {
+      "name": "rest_equality",
+      "passed": true
+    }
+  ],
+  "result": "Mutation failed named event/moment checks",
+  "residual_risks": [
+    "Legacyv1 capture does not enforce resources",
+    "Controls establish only their explicit finite/model scope"
+  ]
+}

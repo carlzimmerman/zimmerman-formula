@@ -1,0 +1,309 @@
+CFG6 (part 1) -- SHOULD a0 FOLLOW THE DARK ENERGY THROUGH COSMIC TIME?  The branches: what each tie reads, which have a
+healthy action, which need a ghost, their constants, and their a0(z) for z = 0-5 under the DESI DR2 fits, both footings.
+
+FOUNDING PRINCIPLE (this lane, plain words).  a0 is set by the vacuum's energy: a0 = kappa c sqrt(G rho_vac), kappa = 1/2
+FITTED, never derived (equivalently Z = 5.7888).  If the dark energy is a true constant, a0 is exactly flat in redshift --
+the framework's distinctive prediction against the rival a0 ~ H(z).  If the dark energy evolves, the principle does not say
+by itself WHICH scalar of the dark-energy sector a0 reads.  This lane writes each reading down, asks whether it can be put
+into an action with no new constant and no harm, and computes its a0(z) under the published fits.
+
+THE BRANCHES (each: a0(z)/a0(0), field content, constants)
+  A  unimodular tie (XR20 T1, XR30): a0 reads the Henneaux-Teitelboim integration constant Lambda_0.  a0(z)/a0(0) = 1
+     exactly, whatever else the dark energy does.  Fields: the HT 3-form multiplier (1 global DOF, no local mode).
+  B  density tie (FP0 R3b; L273 Parts 1-3): a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE(0)).
+  C  potential tie (XR20 T5): a0 ~ sqrt(V(phi)), V = (rho - p)/2 for any scalar.
+  D  pressure tie (stage-17's promotion a0^2 ~ -K(Q); L273 Part 4; PAPER7 v2's note): a0 ~ sqrt(-p).  With stage-17's
+     w = -1 vacuum and its excitation it is flat to < 1% for z <= 5 (PAPER7's 'own law'); with DESI's w(z) read through
+     it, L273 Part 4.
+  Each of B, C, D is evaluated two ways: FOLLOWING the published CPL fits (which cross w = -1 at z = 0.35-0.44; a minimally
+  coupled single field cannot follow them past the crossing) and with a HEALTHY canonical thawing field (exponential
+  potential), projected onto the fits two ways -- matched to each posterior sample's w0 (XR20's convention) and
+  conditioned on the fits' posterior through its CPL-equivalent (w0, wa) (a Gaussian likelihood proxy).
+
+INPUTS.  DESI DR2 BAO + CMB + SNe w0waCDM (DESI Collaboration 2025, arXiv:2503.14738): DESY5 (-0.752, -0.86), Pantheon+
+(-0.838, -0.62), Union3 (-0.667, -1.09); the SNe samples are Pantheon+ (Scolnic et al. 2022; Brout et al. 2022), Union3
+(Rubin et al. 2023, arXiv:2311.12098) and DES-SN5YR (DES Collaboration 2024, arXiv:2401.02929).  Uncertainties are
+propagated through the DESI DR2 public chains (data.desi.lbl.gov, cobaya base_w_wa), in the thinned copies L275 committed
+(fable_independent_2026/data/desi_dr2_w0wa_thinned/).  Footings: FP0's a0 = 9.3603e-11 (canonical) and 1.1312e-10 (alt)
+m/s^2; on rho_Lambda the alt value is kappa = 0.6043.  The chain's MOND term is FP7's -(1/16 pi G) 2 alpha^2 J(Y/alpha^2),
+with J_P2 (FP7) and nu_mono (L340/XC4; the kernel the record adopted on 09-26), both in two-field form.
+
+PRE-DECLARED (copied from the lane's hypothesis file, written 2026-09-27T16:03Z before any code of this lane ran; from
+hand algebra, no probe outputs):
+  H1 controls: FP0 R3b 0.7956404957595 (1e-12); XR20's sqrt(V) track (+0.051 at z = 1, -0.034 at z = 2.5, DESY5; the full
+     E2 table vs XR20's JSON); L275's chain bands at z = 2.5 exactly; L273's Gaussian rho = -0.9 pressure bands quoted by
+     PAPER7 v2 (+0.007/+0.030/+0.058; [-0.015,+0.028], [+0.007,+0.054], [+0.019,+0.097]) by replaying L273's RNG; XR20's
+     thawing tracks (+0.111/+0.070/+0.156 at z = 2.5, 1e-6); stage-17's flat law < 1% for z <= 5 over its nu0 window
+     [2.1e-5, 1.8e-4], z_t in [18, 36]; PAPER7's LCDM-emergent factors 1.23/1.76/2.13/2.82 at z = 1/2/2.5/3.25, +0.33 dex.
+     EXPECT TRUE.
+  H2 reading family: alpha^2 = kappa^2 G Phi, Phi = u rho + v(-p) = (u+v) V + (u-v) X for a canonical field.  B (1,0),
+     C (1/2,1/2), D (0,1).  Only C is a function of the field alone; B and D need X (local, derivative couplings).
+     EXPECT TRUE.
+  H3 health of derivative ties with the chain's MOND term -(1/8 pi G) A J(Y/A): P_X,eff = 1 + b eps F,
+     P_XX,eff = -b^2 eps s^2 J''/Phi, eps = kappa^2/8 pi, b = u - v.  D (b = -1): ghost where eps F > 1, y >~ 200 (can) /
+     140 (alt) with J_P2 (~560 AU around a solar mass).  B (b = +1): P_X > 0, but c_s^2 < 0 for modes transverse to the
+     MOND field where eps(1+w) s^2 J'' > 1 + eps F: J_P2 at y >~ 20-30 for 1+w = 0.25; nu_mono only if 1+w >~ 0.05.
+     C (b = 0): healthy.  EXPECT D fails around every star; B fails for DESI-like 1+w0 (0.16-0.33) in the Newtonian regime
+     on both kernels; C passes.  Uncertain: the nu_mono threshold on 1+w (hand estimate 0.05); longitudinal mixing on the
+     lambda = 0 root expected to stabilise k || grad(phi): K_eff = 1 + eps[bF - b^2 (1+w) s^2 J'' J'/(J' + 2 s J'')] > 0.
+  H4 global realisation: a leaf-averaged tie alpha^2 = kappa^2 G <Phi>_h on the CMC leaves reads Phi exactly on FRW; its
+     coupling to a localised perturbation is O(1/V_leaf).  B and D realisable this way with healthy local dynamics; A is
+     Phi = Lambda.  EXPECT TRUE.
+  H5 constants: every branch = kappa (fitted) + the DE history (measured).  A with an evolving DE component needs one extra
+     choice (the HT share of today's DE).  EXPECT TRUE.
+  H6 predictions at z = 2.5, DESY5 chains, median [68%]: B-CPL -0.099 [-0.140, -0.060]; C-CPL -0.034 (+/-0.03); D-CPL
+     +0.030 [+0.007, +0.053]; thawing w0-matched C +0.07..+0.16, B ~+0.05..+0.12, D ~+0.09..+0.20.  A healthy field fitted
+     to the data rises less: 30-60% of the w0-matched rise (C-thaw <= +0.08 at z = 2.5).
+  H7 z = 0 normalisation with kappa = 1/2 held: the DESI w0wa cosmologies move a0(0) by -0.014..+0.002 dex.  EXPECT TRUE.
+  MUTATE: branch A reads rho_total (a0 ~ H(z)): the flat-law control must FAIL, rc = 1.
+CHECKS
+  C1-C8 CONTROLS (numbers the record committed, reproduced by this lane's own code): C1 FP0 R3b; C2 XR20's sqrt(V) E2 table;
+     C3 L275's chain bands (density, pressure, H(z); all z, all three combinations); C4 L273's Gaussian pressure bands and
+     PAPER7 v2's quoted strings (RNG replayed); C5 XR20's thawing tracks; C6 stage-17's derived pressure law (the window,
+     z_t, < 1% for z <= 5, and PAPER7's sentence); C7 PAPER7's LCDM-emergent factors (the parent's convention) and L274's
+     +0.334; C8 FP0's footings and the canonical->alt lever.
+  B1 (sympy) the reading family Phi = u rho + v(-p) for L = X - V and for a general P(X, phi); which readings need X.
+  B2 (sympy) the tie's derivatives of the MOND term (random-point identities with J_P2) and the local dispersion relation
+     of (d phi_DE, d phi_MOND) plane waves on a static MOND background with the DE field rolling: K_eff(theta), the
+     transverse k-essence criterion, lambda-independence of the transverse mode.
+  B3 the health map on J_P2 and nu_mono, both footings: D's ghost radius, B's instability onset for DESI-like w, the nu_mono
+     threshold on 1 + w, C's health (mass^2 > 0 for an exponential V).
+  B4 the leaf-averaged (global) tie on an N-site lattice (sympy + numeric): uniform P_X,eff = 1 + b <eps F>, cross terms
+     O(1/N); <eps F> for today's universe (reported estimate).
+  B5 the phantom crossing in the chains (posterior mass crossing w = -1 in 0 < z < 2.5).
+  B6 the branch ledger: formula, field content, constants, action, ghost/crossing need.
+  P1 CPL-following B, C, D from the chains; P2 thawing w0-matched from the chains; P3 thawing conditioned on the posterior;
+  P4 the rival H(z) and LCDM-emergent references; P5 both footings in absolute units and the z = 0 normalisation.
+  HEADLINE-FLAT branch A is exactly flat (1e-12) at every z of the table on both footings.
+  W  the ledger.
+The main run also writes CFG6_a0z_branches_thawgrid.json (the thawing tracks, 1e-7 dex, z <= 3.5), which part 2 reads; the
+MUTATE run does not write it (the grid does not depend on the MUTATE switch).
+MUTATE=1: branch A's tie reads the TOTAL density (a0 ~ H(z)) instead of the HT constant: HEADLINE-FLAT must FAIL (rc = 1).
+
+SCOPE.  The CPL form beyond z ~ 2.5 is an extrapolation of fits constrained at z <~ 2.3 (flagged in the tables).  The thawing
+field is one potential shape (exponential), frozen at z = 30, dust + field (radiation ignored below z = 30).  The
+posterior-conditioned projection uses a 3-d Gaussian of the chains in (w0, wa, Omega_m) as a likelihood proxy and each
+thawing track's least-squares CPL equivalent over z <= 2.5; it is a projection, not a fit to the BAO/SNe/CMB likelihoods.
+The local stability analysis is flat-space, frozen coefficients, gravity decoupled (the high-k/UV question); the MOND
+scalar's inertia lambda is kept general (FP7) and at 0 (FP14's root).
+
+  inputs: FP0 a0 = 9.3603e-11 / 1.1312e-10 m/s^2; kappa on rho_Lambda 0.5000 / 0.6043; eps = kappa^2/8pi = 0.00995 / 0.01453; DESI DR2 CPL: DESY5 (-0.752, -0.86); Pantheon+ (-0.838, -0.62); Union3 (-0.667, -1.09)
+
+======================================================================================================================
+C   CONTROLS: the record's committed a0(z) numbers, reproduced by this lane's own code
+======================================================================================================================
+  [PASS] C1 CONTROL FP0 R3b: the density tie's a0(2.5)/a0(0) on DESY5 equals FP0's committed number (1e-12)
+         measured: 0.7956404957595 vs FP0 0.7956404957595
+  [PASS] C2 CONTROL XR20 T5: the potential tie sqrt(V) (and the density and pressure rows) reproduce XR20's committed E2 table, all three fits, z = 0.25-3 (1e-12); the headline +0.051 at z = 1 and -0.034 at z = 2.5 (DESY5)
+         measured: max |diff| 0.0e+00; DESY5 sqrt(V): +0.051 at z = 1, -0.034 at z = 2.5
+  [PASS] C3 CONTROL L275: the DESI DR2 chain bands (16/50/84) of the density, pressure and H(z) readings, z = 0.5-5, all three combinations, reproduced from the committed thinned chains
+         measured: 72 bands, max |diff| 1.1e-16
+  [PASS] C4 CONTROL L273 Part 4 / PAPER7 v2's note: the face-value DESI pressure mapping at z = 2.5 (Gaussian, rho = -0.9, L273's RNG sequence replayed) reproduces L273's committed bands and the strings PAPER7 v2 prints
+         measured: max |diff| vs L273 JSON 7.6e-17; PAPER7 central '$+0.007$, $+0.030$ and $+0.058$' found: True; bands '$[-0.015,+0.028]$, $[+0.007,+0.054]$, $[+0.019,+0.097]$' found: True
+  [PASS] C5 CONTROL XR20 E4: this lane's thawing solver, at XR20's lambda for each fit, reproduces XR20's committed sqrt(V) tracks (z = 0.25-3) and w0 (1e-6)
+         measured: max |diff| 1.1e-15; z = 2.5: DESY5 +0.111, Pantheon+ +0.070, Union3 +0.156
+  [PASS] C6 CONTROL stage-17 / PAPER7: the derived pressure law a0^2/a0^2(0) = [1 - (1 - (1+nu^2)^-1/2)]/[...](nu0), nu = nu0 (1+z)^3, is flat to < 1% for z <= 5 across its window; this lane's window, transition redshift and recombination off-switch equal the numbers stage-17's committed code prints (run read-only); PAPER7's 'within 1% of flat for z <= 5' located
+         measured: max |a0(z)/a0(0) - 1| over z <= 5 and the window = 3.64e-04; this lane: window [2.14e-05, 0.000177], z_t [16.8, 35], a0(1090)/a0(0) 0.0021-0.006; stage 17 prints ('2.14e-5', '0.000177', '16.8', '35.0', '0.0021', '0.006')
+         reading:  branch D's own law (a w = -1 vacuum plus the excitation's pressure) is flat: it is branch A at the rotator's precision.  Reading note: stage-17's docstring gives 'z_t in [18, 36]', which is 1 + z_t; its code prints z_t in [16.8, 35.0] (this lane's pre-declared H1 copied the docstring's numbers)
+  [PASS] C7 CONTROL PAPER7's LambdaCDM-native emergent scale: the parent's convention gives the factors PAPER7 prints at z = 1, 2, 2.5, 3.25; L274's convention gives its committed +0.334 dex at z = 2.5
+         measured: 'factors $1.23$, $1.76$, $2.13$ and $2.82$' found in PAPER7: True; L274 +0.3338 vs committed +0.334
+  [PASS] C8 CONTROL FP0's footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2 (kappa 0.5000 / 0.6043 on rho_Lambda); the canonical->alt lever is +0.0823 dex in a0 (the committed yardstick for 'how much does a gate move per dex of a0')
+         measured: 9.3603e-11 / 1.1312e-10; kappa 0.5000 / 0.6043; lever +0.0822 dex
+
+======================================================================================================================
+B1  WHAT EACH TIE READS: alpha^2 = kappa^2 G Phi, Phi = u rho + v (-p)
+======================================================================================================================
+    B density (1, 0)        : Phi = V + X   (d Phi/dX = b = 1)
+    C potential (1/2, 1/2)  : Phi = V   (d Phi/dX = b = 0)
+    D pressure (0, 1)       : Phi = V - X   (d Phi/dX = b = -1)
+    general P(X, phi): rho = 2*X*Derivative(P(X, phi), X) - P(X, phi); (rho - p)/2 = X*Derivative(P(X, phi), X) - P(X, phi)  -> depends on X unless P is linear in X
+  [PASS] B1 THE READING FAMILY: for a canonical field Phi = u rho + v(-p) = (u+v) V + (u-v) X, so only the potential tie C (u = v) is a function of the field alone; the density tie B (b = +1) and the pressure tie D (b = -1) read the kinetic scalar X = -(d phi)^2/2 too: they are local, but derivative, couplings.  (XR20 E1's 'no local coupling realises sqrt(rho_DE)' holds for alpha(phi); alpha(phi, X) does realise it on FRW, exactly.)
+         measured: identity True; b = +1 / 0 / -1 for B / C / D
+
+======================================================================================================================
+B2  THE DERIVATIVE TIES ON A STATIC MOND BACKGROUND: the local dispersion relation (sympy)
+======================================================================================================================
+  [PASS] B2a the tie's second derivatives of the MOND term (J_P2, random rational points, both signs of b): L_X = 1 + b eps F, L_XX = -b^2 eps s^2 J''/Phi, L_XY = b eps s J''/A, L_Y = -g J', L_YY = -g J''/A, with eps = kappa^2/8 pi, F = s J' - J, s = Y/A, A = kappa^2 G Phi
+         measured: max relative residual 0.0e+00 over 6 points x 5 derivatives
+    det M at lambda = 0 (factored): 2*(-L_X*L_Y*k_x**4 - 2*L_X*L_Y*k_x**2*k_z**2 + L_X*L_Y*k_x**2*omega**2 - L_X*L_Y*k_z**4 + L_X*L_Y*k_z**2*omega**2 - 2*L_X*L_YY*Y_0*k_x**4 - 2*L_X*L_YY*Y_0*k_x**2*k_z**2 + 2*L_X*L_YY*Y_0*k_x**2*omega**2 + L_XX*L_Y*k_x**2*omega**2*v**2 + L_XX*L_Y*k_z**2*omega**2*v**2 + 2*L_XX*L_YY*Y_0*k_x**2*omega**2*v**2 - 2*L_XY**2*Y_0*k_x**2*omega**2*v**2)
+    lambda = 0: omega^2 = L_X k^2 / K_eff(theta), K_eff = L_X + L_XX v^2 + (2 v sqrt(Y0) L_XY)^2 kx^2/(S_x kx^2 + S_z kz^2): residual 0 = True
+    transverse (k_x = 0), any lambda: the DE mode decouples, omega^2 = L_X k^2/(L_X + L_XX v^2): True
+    with the tie: K_eff(theta) = 1 + eps [b F - b^2 r_v s^2 J'' J'/(J' + 2 s J'' cos^2 theta)], r_v = v^2/Phi: True
+  [PASS] B2b THE LOCAL DISPERSION RELATION (sympy, Euler-Lagrange on plane waves): a rolling DE field (d_t phi = v) with the tie, on a static MOND background (grad phi_M along x), has omega^2 = L_X k^2 / K_eff(theta); for waves transverse to the MOND field the DE mode decouples at ANY MOND inertia lambda and obeys the k-essence law c_s^2 = L_X/(L_X + L_XX v^2); with the tie K_eff = 1 + eps[bF - b^2 r_v s^2 J'' J'/(J' + 2 s J'' cos^2 theta)], r_v = 2X/Phi (1 + w for B, (1+w)/(-w) for D)
+         measured: lambda = 0 dispersion: True; transverse decoupling: True; K_eff closed form: True
+         reading:  the instability, where it exists, is transverse: no inertia of the MOND scalar can remove it
+
+======================================================================================================================
+B3  THE HEALTH MAP: where each derivative tie breaks, on J_P2 (FP7) and nu_mono (the adopted kernel), both footings
+======================================================================================================================
+    J_P2     canonical: D ghost (1 - eps F < 0) from y =    203.5  (within     558 AU of a solar mass)
+                        B transverse c_s^2 < 0 from y = 26 (1+w CPL w0, Pantheon+), 20.8 (1+w CPL w0, DESY5), 17.7 (1+w CPL w0, Union3), 33.6 (1+w 0.10), 49.6 (1+w 0.05), 83.1 (1+w 0.02)
+                        B's threshold on 1 + w, (1 + eps F)/(eps s^2 J''): y=1e2 0.0149, y=1e4 0.0001, 1 AU 0.0000, solar surface 0.0000
+                        C: min over y of (s^2 J'' - F) = +5.782e-06 (>= 0: an exponential V keeps mass^2 > 0); B longitudinal K_eff(0) min at 1+w = 0.333: +1.0000
+    J_P2     alt      : D ghost (1 - eps F < 0) from y =    139.4  (within     613 AU of a solar mass)
+                        B transverse c_s^2 < 0 from y = 21.7 (1+w CPL w0, Pantheon+), 17.2 (1+w CPL w0, DESY5), 14.8 (1+w CPL w0, Union3), 28.2 (1+w 0.10), 41.6 (1+w 0.05), 70.8 (1+w 0.02)
+                        B's threshold on 1 + w, (1 + eps F)/(eps s^2 J''): y=1e2 0.0117, y=1e4 0.0001, 1 AU 0.0000, solar surface 0.0000
+                        C: min over y of (s^2 J'' - F) = +5.782e-06 (>= 0: an exponential V keeps mass^2 > 0); B longitudinal K_eff(0) min at 1+w = 0.333: +1.0000
+    nu_mono  canonical: D ghost (1 - eps F < 0) from y =    143.8  (within     664 AU of a solar mass)
+                        B transverse c_s^2 < 0 from y = 142 (1+w CPL w0, Pantheon+), 72.3 (1+w CPL w0, DESY5), 48.9 (1+w CPL w0, Union3), 474 (1+w 0.10), 8.33e+08 (1+w 0.05), never (1+w 0.02)
+                        B's threshold on 1 + w, (1 + eps F)/(eps s^2 J''): y=1e2 0.2003, y=1e4 0.0706, 1 AU 0.0535, solar surface 0.0415
+                        C: min over y of (s^2 J'' - F) = +5.525e-06 (>= 0: an exponential V keeps mass^2 > 0); B longitudinal K_eff(0) min at 1+w = 0.333: +1.0000
+    nu_mono  alt      : D ghost (1 - eps F < 0) from y =    100.7  (within     722 AU of a solar mass)
+                        B transverse c_s^2 < 0 from y = 101 (1+w CPL w0, Pantheon+), 50.6 (1+w CPL w0, DESY5), 33.6 (1+w CPL w0, Union3), 345 (1+w 0.10), 8.33e+08 (1+w 0.05), never (1+w 0.02)
+                        B's threshold on 1 + w, (1 + eps F)/(eps s^2 J''): y=1e2 0.1627, y=1e4 0.0703, 1 AU 0.0537, solar surface 0.0417
+                        C: min over y of (s^2 J'' - F) = +5.525e-06 (>= 0: an exponential V keeps mass^2 > 0); B longitudinal K_eff(0) min at 1+w = 0.333: +1.0000
+  [PASS] B3a = H3 (D) THE LOCAL PRESSURE TIE IS A GHOST AROUND EVERY STAR: its DE field's kinetic coefficient 1 - eps F turns negative for y above ~150-200 on both kernels and footings (J_P2: 200/140 pre-declared), i.e. within a few hundred AU of every solar-mass star, and throughout the Solar System
+         measured: J_P2 canonical: y > 203 (r < 558 AU); J_P2 alt: y > 139 (r < 613 AU); nu_mono canonical: y > 144 (r < 664 AU); nu_mono alt: y > 101 (r < 722 AU)
+         reading:  a derivative-coupled pressure tie has no healthy local action; the same structure sits in stage-17's a0^2 ~ -K(Q) promotion if it is coupled to this MOND term (its K'' term flips with 1 - eps F; the charge suppression covers only K')
+  [PASS] B3b = H3 (B) THE LOCAL DENSITY TIE IS ILL-POSED FOR DESI-LIKE w: with 1 + w = 0.16-0.33 (the CPL w0's) its transverse modes have c_s^2 < 0 (Hadamard growth ~ k) from y of a few tens, on both kernels and footings: within ~10^3 AU of every solar-mass star and in every inner galaxy
+         measured: J_P2 canonical: y > 18-26; J_P2 alt: y > 15-22; nu_mono canonical: y > 49-142; nu_mono alt: y > 34-101
+         reading:  alpha(phi, X) reads sqrt(rho_DE) exactly on FRW but turns the dark energy into a k-essence with P_XX < 0 wherever the MOND term is stiff; the density tie needs another realisation (B4)
+  [PASS] B3c (reported; H3's uncertain part) the nu_mono threshold on 1 + w for B's instability is ~0.05 (hand estimate): below it the local density tie is healthy even in the Solar System
+         measured: y=1e2 0.2003, y=1e4 0.0706, 1 AU 0.0535, solar surface 0.0415
+  [PASS] B3d = H3 (C) THE POTENTIAL TIE IS HEALTHY at every y from 1e-3 to 1e13: no derivative coupling (L_X = 1, L_XX = 0, no mixing at O(k^2)); its field-dependence adds only a mass term, eps V'^2/V (s^2 J'' - F) + (1 - eps F) V'', positive for an exponential V because s^2 J'' >= F everywhere
+         measured: min (s^2 J'' - F) = J_P2 canonical: +5.78e-06, J_P2 alt: +5.78e-06, nu_mono canonical: +5.53e-06, nu_mono alt: +5.53e-06; J_P2's closed-form H vs quadrature 1.7e-39
+  [PASS] B3e (reported; H3's longitudinal expectation) on the lambda = 0 root the density tie's LONGITUDINAL mode is stable (K_eff(0) > 0) at every y even at 1 + w = 0.333: the MOND scalar's constraint adds a positive term; the failure is transverse only
+         measured: J_P2 canonical: min K_eff(0) +1.000, J_P2 alt: min K_eff(0) +1.000, nu_mono canonical: min K_eff(0) +1.000, nu_mono alt: min K_eff(0) +1.000
+
+======================================================================================================================
+B4  THE GLOBAL REALISATION: a leaf-averaged tie alpha^2 = kappa^2 G <Phi>_h on the khronon's CMC leaves
+======================================================================================================================
+    N = 3: dL/dX_0 = 1 + (kappa^2 G b/N) sum_j dL_M/dA (uniform: the same at every site): residual 0
+    cross term d^2L/dX_0 dX_1 = (kappa^2 G b/N)^2 sum_j d^2 L_M/dA^2 -> O(1/N)
+    numeric (J_P2, y_j uniform in log 0.01-100): N = 10: cross 1.12e+00, N x cross 11.158, <eps F> 0.0904; N = 100: cross 6.01e-02, N x cross 6.010, <eps F> 0.0540; N = 1000: cross 5.97e-03, N x cross 5.967, <eps F> 0.0542
+    today's <eps F> (one 6e10 Msun galaxy per 100 Mpc^3, nu_mono to the 1.75 Mpc cap): canonical 2.4e-09, alt 2.6e-09
+  [PASS] B4 = H4 THE LEAF-AVERAGED TIE: with alpha^2 = kappa^2 G <Phi>_h (the same kind of term as FP14's leaf average <K>_h), the DE field's kinetic coefficient is 1 + b <eps F> at EVERY site (the MOND term's weight averaged over the leaf), and the cross terms fall as 1/N: a localised perturbation feels no derivative coupling.  On FRW it reads Phi exactly.  B and D are realisable this way with healthy local dynamics; A is the Phi = Lambda case
+         measured: uniformity residual 0; N x cross term 11.158 / 6.010 / 5.967 (N = 10/100/1000); today's <eps F> 2.4e-09 / 2.6e-09 (reported estimate)
+         reading:  no new field and no new constant; the price is the preferred foliation the khronon already supplies, and a drift of a0 of order <eps F> as structure forms (~1e-7 or less)
+
+======================================================================================================================
+B5  THE PHANTOM CROSSING in the DESI DR2 chains (w = w0 + wa z/(1+z) crossing -1 in 0 < z < 2.5)
+======================================================================================================================
+    DESY5     : posterior mass crossing -1 in 0 < z < 2.5: 0.9998; never below -1 on [0, 2.5]: 0.0002; median z_cross 0.405
+    Pantheon+ : posterior mass crossing -1 in 0 < z < 2.5: 0.9978; never below -1 on [0, 2.5]: 0.0011; median z_cross 0.356
+    Union3    : posterior mass crossing -1 in 0 < z < 2.5: 0.9998; never below -1 on [0, 2.5]: 0.0002; median z_cross 0.444
+  [PASS] B5 THE FITS CROSS: more than 90% of every combination's posterior crosses w = -1 inside 0 < z < 2.5, so following the fits past the crossing needs a ghost (a minimally coupled single field cannot cross; Vikman 2005) or a non-minimally coupled / kinetically braided dark energy (Deffayet, Pujolas, Sawicki & Vikman 2010) -- new physics this record does not have
+         measured: DESY5 1.000 (z_cross 0.41); Pantheon+ 0.998 (z_cross 0.36); Union3 1.000 (z_cross 0.44)
+
+======================================================================================================================
+P   a0(z)/a0(0) FOR EVERY BRANCH, z = 0-5, DESI DR2 chains propagated (dex; median [16, 84])
+======================================================================================================================
+    thawing grid: 13 Omega_m x 41 lambda nodes built in 36 s; w0 range -1.000 to -0.202; monotone in lambda at every Omega_m: True
+    DESY5      posterior-conditioned thawing: best node Omega_m 0.32, lambda 0.90 (CPL-equivalent w0 -0.884, wa -0.161); chi^2-proxy 12.0 there vs 19.8 for Lambda (same 3-d proxy); weighted <w0_eff> -0.915, <lambda> 0.75
+               flags: w0 < -1 (set to Lambda) 0.0000; Omega_m outside [0.27, 0.39] (clipped) 0.0000; w0 above the grid (clipped) 0.0000
+    Pantheon+  posterior-conditioned thawing: best node Omega_m 0.31, lambda 0.60 (CPL-equivalent w0 -0.949, wa -0.072); chi^2-proxy 7.4 there vs 9.9 for Lambda (same 3-d proxy); weighted <w0_eff> -0.960, <lambda> 0.47
+               flags: w0 < -1 (set to Lambda) 0.0013; Omega_m outside [0.27, 0.39] (clipped) 0.0000; w0 above the grid (clipped) 0.0000
+    Union3     posterior-conditioned thawing: best node Omega_m 0.31, lambda 0.65 (CPL-equivalent w0 -0.939, wa -0.085); chi^2-proxy 11.8 there vs 15.0 for Lambda (same 3-d proxy); weighted <w0_eff> -0.928, <lambda> 0.65
+               flags: w0 < -1 (set to Lambda) 0.0001; Omega_m outside [0.27, 0.39] (clipped) 0.0000; w0 above the grid (clipped) 0.0058
+
+    branch            z:                    0.50                  1.00                  1.50                  2.00                  2.50                  3.00                  5.00
+    A                DESY5  +0.000 [+0.000,+0.000]+0.000 [+0.000,+0.000]+0.000 [+0.000,+0.000]+0.000 [+0.000,+0.000]+0.000 [+0.000,+0.000]+0.000 [+0.000,+0.000]+0.000 [+0.000,+0.000]
+                     P+/U3         +0.000 / +0.000       +0.000 / +0.000       +0.000 / +0.000       +0.000 / +0.000       +0.000 / +0.000       +0.000 / +0.000       +0.000 / +0.000
+    B-CPL            DESY5  +0.025 [+0.018,+0.032]+0.004 [-0.008,+0.015]-0.029 [-0.050,-0.009]-0.064 [-0.096,-0.035]-0.098 [-0.140,-0.060]-0.131 [-0.183,-0.084]-0.245 [-0.331,-0.166]
+                     P+/U3         +0.014 / +0.037       -0.004 / +0.014       -0.030 / -0.024       -0.057 / -0.066       -0.083 / -0.107       -0.107 / -0.147       -0.193 / -0.285
+    C-CPL            DESY5  +0.058 [+0.044,+0.072]+0.051 [+0.037,+0.065]+0.027 [+0.011,+0.042]-0.003 [-0.024,+0.017]-0.034 [-0.063,-0.007]-0.064 [-0.101,-0.029]-0.171 [-0.241,-0.108]
+                     P+/U3         +0.037 / +0.080       +0.029 / +0.075       +0.009 / +0.047       -0.013 / +0.012       -0.037 / -0.025       -0.060 / -0.061       -0.140 / -0.192
+    D-CPL            DESY5  +0.095 [+0.072,+0.120]+0.101 [+0.077,+0.128]+0.084 [+0.062,+0.106]+0.058 [+0.037,+0.079]+0.030 [+0.007,+0.053]+0.002 [-0.027,+0.029]-0.100 [-0.157,-0.050]
+                     P+/U3         +0.061 / +0.131       +0.063 / +0.144       +0.049 / +0.124       +0.029 / +0.093       +0.007 / +0.059       -0.014 / +0.025       -0.090 / -0.099
+    B-thaw(w0)       DESY5  +0.050 [+0.038,+0.063]+0.069 [+0.052,+0.088]+0.077 [+0.058,+0.098]+0.081 [+0.061,+0.104]+0.084 [+0.063,+0.107]+0.085 [+0.064,+0.108]+0.087 [+0.065,+0.111]
+                     P+/U3         +0.032 / +0.069       +0.044 / +0.097       +0.049 / +0.109       +0.051 / +0.115       +0.052 / +0.118       +0.053 / +0.120       +0.054 / +0.123
+    C-thaw(w0)       DESY5  +0.064 [+0.049,+0.079]+0.090 [+0.068,+0.113]+0.101 [+0.077,+0.128]+0.107 [+0.081,+0.136]+0.110 [+0.083,+0.140]+0.112 [+0.085,+0.143]+0.115 [+0.086,+0.146]
+                     P+/U3         +0.041 / +0.087       +0.057 / +0.124       +0.064 / +0.142       +0.068 / +0.150       +0.070 / +0.155       +0.071 / +0.158       +0.072 / +0.162
+    D-thaw(w0)       DESY5  +0.080 [+0.061,+0.101]+0.114 [+0.086,+0.145]+0.130 [+0.098,+0.165]+0.137 [+0.103,+0.175]+0.141 [+0.106,+0.181]+0.144 [+0.108,+0.184]+0.147 [+0.110,+0.189]
+                     P+/U3         +0.051 / +0.112       +0.072 / +0.160       +0.082 / +0.183       +0.086 / +0.194       +0.089 / +0.201       +0.090 / +0.204       +0.092 / +0.210
+    B-thaw(post)     DESY5  +0.017 [+0.010,+0.026]+0.022 [+0.014,+0.036]+0.025 [+0.015,+0.040]+0.026 [+0.016,+0.041]+0.027 [+0.016,+0.042]+0.027 [+0.016,+0.043]+0.027 [+0.017,+0.044]
+                     P+/U3         +0.007 / +0.014       +0.010 / +0.019       +0.011 / +0.021       +0.011 / +0.022       +0.011 / +0.023       +0.012 / +0.023       +0.012 / +0.023
+    C-thaw(post)     DESY5  +0.021 [+0.013,+0.034]+0.030 [+0.019,+0.047]+0.033 [+0.021,+0.052]+0.035 [+0.022,+0.055]+0.035 [+0.022,+0.056]+0.036 [+0.022,+0.058]+0.037 [+0.023,+0.059]
+                     P+/U3         +0.009 / +0.018       +0.013 / +0.025       +0.014 / +0.029       +0.015 / +0.030       +0.015 / +0.031       +0.016 / +0.031       +0.016 / +0.032
+    D-thaw(post)     DESY5  +0.026 [+0.016,+0.042]+0.037 [+0.023,+0.059]+0.042 [+0.025,+0.067]+0.044 [+0.027,+0.071]+0.045 [+0.028,+0.072]+0.046 [+0.028,+0.073]+0.046 [+0.029,+0.075]
+                     P+/U3         +0.012 / +0.023       +0.016 / +0.032       +0.018 / +0.035       +0.019 / +0.037       +0.019 / +0.038       +0.020 / +0.038       +0.020 / +0.040
+    rival H(z)       DESY5  +0.133 [+0.128,+0.137]+0.256 [+0.251,+0.260]+0.373 [+0.369,+0.378]+0.480 [+0.476,+0.484]+0.575 [+0.571,+0.579]+0.659 [+0.655,+0.663]+0.920 [+0.916,+0.924]
+                     P+/U3         +0.126 / +0.140       +0.250 / +0.262       +0.369 / +0.379       +0.476 / +0.485       +0.570 / +0.580       +0.654 / +0.664       +0.915 / +0.925
+    LCDM-emergent    (L274) +0.033 [+0.005,+0.061]+0.091 [+0.034,+0.145]+0.165 [+0.084,+0.243]+0.248 [+0.145,+0.346]+0.334 [+0.210,+0.450]+0.419 [+0.276,+0.551]+0.726 [+0.516,+0.917]
+    (z > 2.5 extrapolates CPL fits constrained at z <~ 2.3; the thawing rows are healthy fields, not fits)
+  [PASS] P1 = H6 (CPL rows, reported as they fall) at z = 2.5 on DESY5: B-CPL -0.099 [-0.140, -0.060], C-CPL -0.034 (band within +/-0.03), D-CPL +0.030 [+0.007, +0.053] (the pre-declared values)
+         measured: B -0.098 [-0.140, -0.060]; C -0.034 [-0.063, -0.007]; D +0.030 [+0.007, +0.053]
+  [FAIL] P2 = H6 (thawing rows, reported as they fall) the w0-matched healthy field rises at z = 2.5 by C +0.07..+0.16, B +0.05..+0.12, D +0.09..+0.20; the posterior-conditioned healthy field rises by 30-60% of the w0-matched rise (C <= +0.08)
+         measured: w0-matched (DESY5/P+/U3): B +0.084/+0.052/+0.118; C +0.110/+0.070/+0.155; D +0.141/+0.089/+0.201 | posterior-conditioned: B +0.027/+0.011/+0.023; C +0.035/+0.015/+0.031; D +0.045/+0.019/+0.038 | C ratio 0.32/0.22/0.20
+
+======================================================================================================================
+P5  BOTH FOOTINGS: absolute a0(z) (DESY5 medians) and the z = 0 normalisation under each DESI cosmology
+======================================================================================================================
+    canonical a0(z) [1e-11 m/s^2]      z=0.0    z=1.0    z=2.5    z=5.0
+              A                          9.360    9.360    9.360    9.360
+              B-CPL                      9.360    9.439    7.467    5.329
+              C-CPL                      9.360   10.530    8.663    6.314
+              D-CPL                      9.360   11.823   10.029    7.429
+              B-thaw(w0)                 9.360   10.977   11.346   11.425
+              C-thaw(w0)                 9.360   11.508   12.067   12.192
+              D-thaw(w0)                 9.360   12.175   12.963   13.142
+              B-thaw(post)               9.360    9.856    9.951    9.972
+              C-thaw(post)               9.360   10.019   10.156   10.185
+              D-thaw(post)               9.360   10.189   10.379   10.417
+              rival H(z)                 9.360   16.860   35.164   77.834
+    alt       a0(z) [1e-11 m/s^2]      z=0.0    z=1.0    z=2.5    z=5.0
+              A                         11.312   11.312   11.312   11.312
+              B-CPL                     11.312   11.407    9.024    6.440
+              C-CPL                     11.312   12.726   10.469    7.630
+              D-CPL                     11.312   14.288   12.120    8.978
+              B-thaw(w0)                11.312   13.266   13.712   13.807
+              C-thaw(w0)                11.312   13.907   14.583   14.734
+              D-thaw(w0)                11.312   14.714   15.666   15.882
+              B-thaw(post)              11.312   11.911   12.026   12.051
+              C-thaw(post)              11.312   12.108   12.274   12.308
+              D-thaw(post)              11.312   12.313   12.543   12.590
+              rival H(z)                11.312   20.376   42.496   94.063
+    DESY5      (H0 66.74, Omega_m 0.3191): kappa = 1/2 held -> a0(0) moves -0.0055 dex; a0(0) held -> kappa = 0.5064 (alt 0.6119)
+    Pantheon+  (H0 67.51, Omega_m 0.3114): kappa = 1/2 held -> a0(0) moves +0.0019 dex; a0(0) held -> kappa = 0.4978 (alt 0.6016)
+    Union3     (H0 65.91, Omega_m 0.3275): kappa = 1/2 held -> a0(0) moves -0.0136 dex; a0(0) held -> kappa = 0.5159 (alt 0.6235)
+  [PASS] P5 = H7 (reported) holding kappa = 1/2, the DESI w0wa cosmologies move today's a0 by -0.014..+0.002 dex (rho_DE,0 ~ H0^2 Omega_DE changes); holding a0(0), kappa refits by the same fraction -- a z = 0 normalisation, not a redshift dependence
+         measured: DESY5 -0.0055, Pantheon+ +0.0019, Union3 -0.0136
+
+======================================================================================================================
+HEADLINE: branch A (the unimodular tie) is exactly flat
+======================================================================================================================
+  [PASS] HEADLINE-FLAT branch A's a0(z)/a0(0) = 1 at every z of the table (0-5), on both footings, whatever the dark energy does (1e-12)
+         measured: max |log ratio| 0.00e+00; max |a0(z)/a0(0) - 1| over both footings 0.00e+00
+         reading:  A decouples a0 from the dark energy's dynamics: DESI's w(z) does not touch the flat law
+
+======================================================================================================================
+B6/W  THE BRANCH LEDGER: formula, field content, constants, action, ghost/crossing
+======================================================================================================================
+    A: a0(z)/a0(0) = 1 (a0 reads the HT constant Lambda_0)
+       fields: HT 3-form multiplier: 1 global DOF, 0 local
+       constants: kappa (FITTED) + Lambda (measured); with an evolving DE component also the HT share of today's DE (1 choice)
+       action: YES (XR20 T1, XR30)
+       ghost/crossing: none; flat for ANY dark-energy history
+    B: sqrt(rho_DE(z)/rho_DE(0))
+       fields: none new if leaf-averaged (khronon leaves); +1 derivative coupling if local
+       constants: kappa + the DE history (measured)
+       action: leaf-averaged: YES, healthy (B4); local alpha(phi, X): ILL-POSED for 1+w >~ 0.05 (B3b)
+       ghost/crossing: following the CPL fits: a ghost or braided DE past z_cross; healthy DE: a thawing field (rises)
+    C: sqrt(V(z)/V(0)), V = (rho - p)/2
+       fields: none new beyond the DE scalar (alpha(phi))
+       constants: kappa + the DE history
+       action: YES, local, healthy (XR20 E7; B3d)
+       ghost/crossing: following the CPL fits: a ghost past z_cross; healthy DE: rises
+    D: sqrt(p(z)/p(0)); stage-17's own law flat < 1% (z <= 5)
+       fields: none new if leaf-averaged; stage-17: the (closed) v9 sector
+       constants: kappa + the DE history
+       action: leaf-averaged: YES (B4); local alpha(phi, X) / stage-17 form: GHOST within ~550 AU of every star (B3a)
+       ghost/crossing: following the CPL fits: a ghost past z_cross; with a w = -1 vacuum: flat (= A)
+  [PASS] B6 = H5 (reported) THE CONSTANT COUNT: every branch carries kappa (fitted) and the dark-energy history (measured) and no other constant; branch A with an evolving dark-energy component needs one extra choice (the HT share of today's DE), which moves kappa's fitted value, not the flat law
+         measured: 4 branches tabulated
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  The founding principle (a0 set by the vacuum's energy, kappa = 1/2 fitted) fixes the form, not the reading.  Four readings:
+  A (the unimodular constant) is flat for any dark-energy history and has a healthy action; C (the potential) has a healthy local
+  action; B (the density) and D (the pressure) are realisable locally only through the dark energy's kinetic scalar, and that
+  derivative coupling is ill-posed (B, for 1 + w >~ 0.05) or a ghost (D, within ~558 AU of every star);
+  both are healthy as leaf-averaged (global) ties on the khronon's leaves, with no new field or constant.
+  Under DESI DR2 (DESY5, chains propagated) at z = 2.5: A 0.000; B -0.098, C -0.034, D +0.030 following
+  the fits (which cross w = -1: a ghost or braided dark energy is needed); a healthy thawing field raises a0 instead:
+  w0-matched C +0.110, conditioned on the posterior C +0.035 (B +0.027, D +0.045).
+  Every branch adds no constant beyond kappa and the measured dark-energy history.  kappa stays FITTED; nothing here derives it.
+
+  22/23 checks pass; load-bearing failures: 0; wrote CFG6_a0z_branches_results.json  (40 s)
+rc = 0

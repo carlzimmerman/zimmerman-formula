@@ -1,0 +1,1 @@
+Mb=1e10 eps=0.0038588721293244224 mode=orbit norb=2000 q=0.05 rta=0.7 rtol=1e-10

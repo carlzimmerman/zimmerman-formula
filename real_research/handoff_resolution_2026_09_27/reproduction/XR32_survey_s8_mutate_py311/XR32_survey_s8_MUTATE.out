@@ -1,0 +1,33 @@
+XR32 (2/3) -- THE S8 A LENSING SURVEY WOULD INFER FROM THE CHAIN: xi+- in the KiDS-1000 and DES-Y3 set-ups, fitted with
+LCDM templates the way the surveys fit, against the published KiDS-1000, KiDS-Legacy, DES Y3 and HSC Y3 values.
+
+WHY.  A scale-dependent suppression is not a lower sigma8: a survey fits xi+- over its own scales with LCDM templates and
+nuisance parameters that can absorb part of it (baryon feedback, intrinsic alignments).  XR32_matter_power builds the
+chain's P(k, z); this part asks what S8 a survey would report, and whether that lands on the low-z weak-lensing values.
+
+METHOD
+  THE SET-UPS.
+    KiDS-1000: five tomographic bins (Z_B 0.1-0.3-0.5-0.7-0.9-1.2).  n(z): lensfit-weighted stacks of Gaussian photo-z
+      PDFs (Z_B, half the 68% interval) from the DR4.1 gold catalogue in the repository, moment-matched to Asgari+21 Table
+      A.1's SOM means (0.26/0.40/0.56/0.79/0.98) and stds (0.16/0.16/0.20/0.16/0.25) -- an approximation (the SOM n(z)
+      needs the spectroscopic calibration sample; its tails come out ~3x lighter than Table A.1's).  theta: 9 log bins
+      0.5-300 arcmin, xi- only above 4 arcmin (225 points, Asgari+21 Table 3's DoF).  Covariance: analytic Gaussian
+      (sample variance, shape noise from Table 1's n_eff and sigma_e, the mixed term, E and B shape noise), A = 777.4 deg^2.
+    DES Y3: the official 2pt file (repository copy): source n(z), 20 theta bins 2.5-250 arcmin, the LCDM-optimised scale
+      cuts (cosmosis-standard-library des-y3-LCDM-optimised-scale-cuts.ini), the official covariance.
+    Both: Limber with l + 1/2 (checked against CAMB's own lensing source windows), NLA intrinsic alignments, xi+- averaged
+      over each theta bin with theta d theta weights through analytic Bessel integrals.
+  THE CHAIN'S DATA.  P_chain(k, z) = R(k, z) x P_template(k, z; Planck-2018 truth), R = XR32_common's halo-model response
+    (the model XR32_matter_power documents), noiseless, no intrinsic alignment in the truth.  Normalised to Planck 2018
+    (an ASSUMPTION pending XR26).
+  THE FIT, the way the surveys fit.  LCDM templates on grids (Omega_m 0.18-0.46 in 0.02, S8 0.44-1.12 in 0.04; cubic
+    interpolation): KiDS -- CAMB HMcode (mead2016) with A_bary in [2, 3.13] (eta_0 = 0.98 - 0.12 A_bary), NLA A_IA in
+    [-6, 6] (Asgari+21's model and priors); DES -- CAMB Takahashi halofit, NLA A_1 in [-5, 5], eta_1 in [-3, 3], z_0 = 0.62.
+    Fixed at the truth (disclosed): h, omega_b, n_s, sum m_nu; no photo-z or shear-calibration nuisances (priors centred
+    on the truth).  Inferred S8 = the best fit (minimum chi^2 with the survey covariance); the Delta chi^2 = 1 width of
+    the S8 profile is reported for the key cells; chi^2_min measures how well LCDM can mimic the chain.
+  CONFIGURATIONS.  The ten histories of XR32_matter_power (delta_t0 5.31-25, conservative, pump, halo only, v_k 575/650);
+    four recapture readings and two halo populations at the nominal cell; the phantom bracket: none / the 1.7 Mpc
+    stand-in on both a0 footings (canonical 9.3603e-11, alt 1.1312e-10); sensitivities: running L(z), heat-kernel edge.
+
+  *** MUTATE=1: conversion switched off; the no-phantom data are the truth; H2a must FAIL ***

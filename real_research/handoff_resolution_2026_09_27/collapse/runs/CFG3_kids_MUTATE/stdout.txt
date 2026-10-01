@@ -1,0 +1,87 @@
+CFG3_kids -- KiDS-1000 WEAK LENSING AROUND ISOLATED LENSES UNDER THE PRINCIPLE (Brouwer et al. 2021, four stellar-mass bins, full
+covariance), with FP20's EXACT projector.  esd_of_M, DE8's esd_from_mlens and L352's project_M2 are not used.
+
+THE LENS UNDER THE PRINCIPLE.  An isolated lens is a held-back region of its own.  Inside it the vacuum answers the baryons with
+the Bose kernel (CFG3_principle D2), read in the region's own free fall (D7): the web's bulk-flow field drops out, the web's TIDAL
+field across the region survives.  At the region's edge r_g the answer stops and its mass is compensated (D6): a negative shell
+-M_b (nu(r_g) - 1).  The edge is where the lens's infall flow first fell behind the vacuum's expansion (theta = 3 H_Lambda), computed
+for the lens's Lagrangian patch (CFG3_common.gate_radius; the patch's mass from Moster+13 at z = 0.25 with M_* = M_b/1.4, bracketed
+by M_b/1.0 and M_b/2.0).  No constant is chosen: H_Lambda, a0 and the linear spectrum fix everything.
+THE TIDAL RESIDUAL (the principle's in-region field for an isolated lens): the rms traceless tide of the matter outside the region,
+|T r| = 4 pi G rho_m(z) sigma_delta(R_g, z) sqrt(2/9) r (R_g the region's Lagrangian radius; FP1 E's linear spectrum), entered in
+the record's stacked-monopole form N(y, e) (FP1 E / BS2) with e = |T r|/a0 at each radius.
+
+MACHINERY (read-only): FP1_static_sector.py's E section (L355's KiDS-1000 machinery: data, covariance in its corrected order, M_b
+profiled per bin on 9.8..11.8, the linear 2-halo template with amplitude in [0, A_max]) exec'd from its committed source, with
+FP20's exact projector (FP20_esd_projection_fix.py's shell_mats/ESDFix, exec'd) swapped in.
+
+CHECKS
+  K1 CONTROL: with FP20's projector the harness reproduces FP20's corrected numbers: isolated P2 at FP0's pair 139.800 / 133.948
+     (FP20 R6, E3 KiDS_ref) and isolated nu_mono at L355's pair 162.600 / 154.890 (FP20 R8, L355 K1), to < 1e-3.
+  S1 [HEADLINE; load-bearing; MUTATE must fail] THE PRINCIPLE'S LENS PASSES KiDS: with the phantom gated at each lens's own r_g,
+     compensated, and the rms tidal residual in the kernel's argument, d chi^2 <= +9 against the isolated Bose law (the record's
+     gate, CFG4's convention), with the 2-halo template (A <= 2) on both sides; both footings, all three M_b/M_* brackets.
+  S2 (reported) the same without the 2-halo term, and with the tide set to zero (a perfectly quiet region).
+  S1b, S1c (reported; ADDED AFTER THE FIRST DEVELOPMENT RUN, disclosed): S1b the own-matter reading (iii') -- no external tide in the
+     argument -- as the best variant; S1c half the rms tide (the environment's uncertainty, reported as a bracket).
+  S3 (reported) the numbers: r_g and the tidal field at 1 Mpc per bin mass; the chi^2 values.
+PRE-DECLARED HYPOTHESES (written before the first run of this script):
+  H1 K1 reproduces FP20 to < 1e-3.  EXPECT TRUE.
+  H2 S1 passes: r_g(z = 0.25) = 1.2-4 Mpc for the bins' patch masses (CFG4 found the phantom must reach >= 0.5 Mpc with a 2-halo
+     term, >= 0.84 without), and the rms tide at <= 1 Mpc is ~1e-3 a0 or less.  UNCERTAIN: the tide is comparable to KiDS's
+     tolerated field (FP20: e_KiDS ~ 2-5e-4 a0) at 0.3-1 Mpc.
+  H3 S2: without the 2-halo term the compensation shell costs more; with zero tide the law is the isolated law up to the shell.
+MUTATE=1: the free-fall frame removed -- the web's full (bulk-flow) field enters the kernel's argument (FP1 E's all-matter Maxwell
+stack, the record's 'all-matter kernel'): S1 must FAIL (rc = 1).
+Run from the repository root (MUTATE first):  MUTATE=1 python3 campaign_fresh_gravity/CFG3_kids.py; python3 campaign_fresh_gravity/CFG3_kids.py
+
+  inputs: a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt) m/s^2 [FP0]; rho_Lambda = 5.8424e-27 kg/m^3; H_Lambda = 1.8074e-18 1/s; Z = 5.788810 (kappa = 1/2 FITTED)
+
+  *** MUTATE=1: the web's full field enters the kernel (no free-fall frame): S1 must FAIL ***
+    FP1 E's KiDS machinery and FP20's exact projector loaded (0 s); lens redshift z_l = 0.25
+
+======================================================================================================================
+K1  CONTROL: FP1 E's harness with FP20's exact projector reproduces FP20's corrected numbers
+======================================================================================================================
+    canonical: isolated P2 139.800 (FP20 139.800);  isolated nu_mono at L355's a0 162.600 (FP20 162.600)
+    alt      : isolated P2 133.948 (FP20 133.948);  isolated nu_mono at L355's a0 154.890 (FP20 154.890)
+  [PASS] K1 CONTROL: FP1 E's KiDS-1000 harness (exec'd read-only) with FP20's exact projector (exec'd) reproduces FP20's corrected isolated P2 (139.800 / 133.948) and isolated nu_mono (162.600 / 154.890) chi^2
+         measured: max |d chi^2| 5.7e-14
+
+======================================================================================================================
+S1  THE PRINCIPLE'S LENS: the Bose answer gated at the lens's own r_g, compensated, with the tidal residual
+======================================================================================================================
+    canonical M_b/M_* = 1.0: rms tide|A2: 551.5 (d +391.9); rms tide|A0: 772.5 (d +609.9); half tide|A2: 551.5 (d +391.9); half tide|A0: 772.5 (d +609.9); no tide|A2: 551.5 (d +391.9); no tide|A0: 772.5 (d +609.9)   [ref A=2 159.6, A=0 162.6]
+    canonical M_b/M_* = 1.4: rms tide|A2: 551.8 (d +392.2); rms tide|A0: 772.3 (d +609.7); half tide|A2: 551.8 (d +392.2); half tide|A0: 772.3 (d +609.7); no tide|A2: 551.8 (d +392.2); no tide|A0: 772.3 (d +609.7)   [ref A=2 159.6, A=0 162.6]
+    canonical M_b/M_* = 2.0: rms tide|A2: 550.8 (d +391.2); rms tide|A0: 773.4 (d +610.8); half tide|A2: 550.8 (d +391.2); half tide|A0: 773.4 (d +610.8); no tide|A2: 550.8 (d +391.2); no tide|A0: 773.4 (d +610.8)   [ref A=2 159.6, A=0 162.6]
+    alt       M_b/M_* = 1.0: rms tide|A2: 567.8 (d +415.5); rms tide|A0: 791.5 (d +636.8); half tide|A2: 567.8 (d +415.5); half tide|A0: 791.5 (d +636.8); no tide|A2: 567.8 (d +415.5); no tide|A0: 791.5 (d +636.8)   [ref A=2 152.3, A=0 154.8]
+    alt       M_b/M_* = 1.4: rms tide|A2: 569.2 (d +416.9); rms tide|A0: 791.2 (d +636.4); half tide|A2: 569.2 (d +416.9); half tide|A0: 791.2 (d +636.4); no tide|A2: 569.2 (d +416.9); no tide|A0: 791.2 (d +636.4)   [ref A=2 152.3, A=0 154.8]
+    alt       M_b/M_* = 2.0: rms tide|A2: 565.6 (d +413.3); rms tide|A0: 789.0 (d +634.2); half tide|A2: 565.6 (d +413.3); half tide|A0: 789.0 (d +634.2); no tide|A2: 565.6 (d +413.3); no tide|A0: 789.0 (d +634.2)   [ref A=2 152.3, A=0 154.8]
+  [FAIL] S1 [HEADLINE; MUTATE must fail] THE PRINCIPLE'S LENS PASSES KiDS-1000: gated at each lens's own r_g, compensated, with the rms tidal residual in the kernel's argument and the 2-halo template (A <= 2), d chi^2 <= +9 against the isolated Bose law on both footings and all three M_b/M_* brackets
+         measured: d chi^2 = +391.9, +392.2, +391.2, +415.5, +416.9, +413.3
+  [FAIL] (reported) S2 (reported) without the 2-halo term and/or with a perfectly quiet region (tide zero): d chi^2 against the isolated law, same gate
+         measured: canonical|1.0|rms tide|A0: +609.9; canonical|1.0|half tide|A2: +391.9; canonical|1.0|half tide|A0: +609.9; canonical|1.0|no tide|A2: +391.9; canonical|1.0|no tide|A0: +609.9; canonical|1.4|rms tide|A0: +609.7; canonical|1.4|half tide|A2: +392.2; canonical|1.4|half tide|A0: +609.7; canonical|1.4|no tide|A2: +392.2; canonical|1.4|no tide|A0: +609.7; canonical|2.0|rms tide|A0: +610.8; canonical|2.0|half tide|A2: +391.2; canonical|2.0|half tide|A0: +610.8; canonical|2.0|no tide|A2: +391.2; canonical|2.0|no tide|A0: +610.8; alt|1.0|rms tide|A0: +636.8; alt|1.0|half tide|A2: +415.5; alt|1.0|half tide|A0: +636.8; alt|1.0|no tide|A2: +415.5; alt|1.0|no tide|A0: +636.8; alt|1.4|rms tide|A0: +636.4; alt|1.4|half tide|A2: +416.9; alt|1.4|half tide|A0: +636.4; alt|1.4|no tide|A2: +416.9; alt|1.4|no tide|A0: +636.4; alt|2.0|rms tide|A0: +634.2; alt|2.0|half tide|A2: +413.3; alt|2.0|half tide|A0: +634.2; alt|2.0|no tide|A2: +413.3; alt|2.0|no tide|A0: +634.2
+  [FAIL] (reported) S1b (reported; the BEST VARIANT, a post-hoc amendment disclosed: added after the first development run showed S1 failing) THE OWN-MATTER READING (iii'): the answer reads only the field of the region's own matter, so external tides drop out as the bulk field does -- gated at r_g, compensated, 2-halo A <= 2: d chi^2 <= +9 on both footings and all three brackets
+         measured: d chi^2 = +391.9, +392.2, +391.2, +415.5, +416.9, +413.3
+         reading:  the variant changes only external tides (satellites, group members, the Local Group's pair and Chae's bound neighbours are the region's own matter under both readings); it is the one amendment this lane proposes, and it must be re-tested before adoption
+  [FAIL] (reported) S1c (reported; environmental-uncertainty bracket, not a knob) the declared reading with half the rms tide
+         measured: d chi^2 = +391.9, +392.2, +391.2, +415.5, +416.9, +413.3
+
+======================================================================================================================
+S3  THE NUMBERS PER LENS MASS: the region edge and the tide
+======================================================================================================================
+    log M_b = 10.0: log M_patch = 11.54; r_ta = 0.86, r_g = 1.64 Mpc (physical); sigma(R_g = 3.2 Mpc) = 1.507; tide at 1 Mpc = 1.03e-03 a0 (canonical)
+    log M_b = 10.5: log M_patch = 11.87; r_ta = 1.08, r_g = 1.99 Mpc (physical); sigma(R_g = 3.9 Mpc) = 1.366; tide at 1 Mpc = 9.30e-04 a0 (canonical)
+    log M_b = 11.0: log M_patch = 12.62; r_ta = 1.83, r_g = 3.11 Mpc (physical); sigma(R_g = 6.2 Mpc) = 1.065; tide at 1 Mpc = 7.25e-04 a0 (canonical)
+    log M_b = 11.5: log M_patch = 14.11; r_ta = 5.10, r_g = 7.52 Mpc (physical); sigma(R_g = 15.7 Mpc) = 0.582; tide at 1 Mpc = 3.96e-04 a0 (canonical)
+  [FAIL] (reported) S3 (reported) the gate radii of the bins' lenses lie at 1-4 Mpc (beyond CFG4's KiDS reach of 0.5-0.84 Mpc) and the rms tide at 1 Mpc is below 3e-3 a0
+         measured: logMb 10.0: r_g 1.64 Mpc, tide 1.0e-03 a0; logMb 10.5: r_g 1.99 Mpc, tide 9.3e-04 a0; logMb 11.0: r_g 3.11 Mpc, tide 7.2e-04 a0; logMb 11.5: r_g 7.52 Mpc, tide 4.0e-04 a0
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    KD1      FAIL        KiDS-1000 isolated lenses, the principle's lens (gated, compensated, rms tide, 2-halo): d chi^2 +391.2 .. +416.9 vs the isolated law  --  S1
+    KD2      DERIVED     the web's bulk field drops out (free-fall frame): the record's all-matter kernel (+528 / +542, FP20) is not this law's  --  S1, MUTATE
+
+  1/6 checks pass; load-bearing failures: 1 ['S1']; reported failures: ['S2', 'S1b', 'S1c', 'S3']; wrote CFG3_kids_results_MUTATE.json (69 s)
+rc = 1

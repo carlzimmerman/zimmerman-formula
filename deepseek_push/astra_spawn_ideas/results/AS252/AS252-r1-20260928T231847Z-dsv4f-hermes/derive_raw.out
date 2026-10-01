@@ -1,0 +1,44 @@
+==============================================================================
+STEP 1: coefficient multiplying homogeneous energy in the lapse equation
+==============================================================================
+PASS C1_lapse_flat_homogeneous: residual 0 (exact)
+PASS C1b_coeff_of_rho_in_H2: residual 0 (exact)
+PASS C1c_coeff_via_Gcosm: residual 0 (exact)
+PASS C1d_Gcosm_is_bare: residual 0 (exact)
+==============================================================================
+STEP 2: local normalization supplied by the compensated host (trace, AS226)
+==============================================================================
+PASS C2_trace_local_normalization: residual 0 (exact)
+PASS C2b_ratio: residual 0 (exact)
+    [trace] G_cosm = G_N  <=>  c_N = 1  <=>  alpha = []  (forces the open-domain boundary)
+==============================================================================
+STEP 3: H^2 and the vacuum-scale relation in G_N + ratio; conversion into rho_Lambda
+==============================================================================
+PASS C3_vacuum_lambda_dictionary: residual 0 (exact)
+PASS C3b_naive_mismatch_factor: residual 0 (exact)
+PASS C3c_Hvac2: residual 0 (exact)
+PASS C3d_rhoL_in_Gcosm: residual 0 (exact)
+PASS C3e_Friedmann_in_GN_and_ratio: residual 0 (exact)
+==============================================================================
+CONTROL A: alpha -> 0 recovers the Einstein normalization
+==============================================================================
+PASS A1_cN_at_alpha0: residual 0 (exact)
+PASS A2_GN_equals_bare: residual 0 (exact)
+PASS A3_LamEff_equals_naive: residual 0 (exact)
+PASS A4_standard_coeff: residual 0 (exact)
+==============================================================================
+CONTROL B (negative control): set G_cosm = G_N prematurely
+==============================================================================
+PASS B1_premature_mismatch: residual 0 (exact)
+    [control] Lam_naive - Lam_eff = 32*a0**2*pi*(1 - cN)/c**4  = (alpha/2) * Lam_naive at c_N = 1 - alpha/2 -> fires for alpha in (0,2)
+PASS B2_mismatch_equals_alpha_half: residual 0 (exact)
+PASS B3_removed_lapse_density_term: residual 0 (exact)
+PASS B4_removed_gate_prefactor: residual 0 (exact)
+    [control] c_N = 1 forces alpha = []: 0 is NOT in the open domain (0,2) -> assumption absent
+==============================================================================
+SUMMARY
+==============================================================================
+G_cosm/G_N = c_N = 1 - alpha/2  (alpha in (0,2)) : residual 0
+Lambda_eff = 32 pi c_N a0^2/c^4 ;  H_vac^2 = (32 pi/3) c_N a0^2/c^4
+rho_Lambda = 4 a0^2/(G_N c^2) = 4 c_N a0^2/(G_cosm c^2)
+ALL_SYMBOLIC_CHECKS_PASS = True

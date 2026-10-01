@@ -1,0 +1,46 @@
+PASS criteria file hash matches the pre-declared hash
+PASS simple nu: x*(f=1)=1/2 exactly
+PASS numeric x*(simple,f=1)=0.5
+PASS standard nu: x*(f=1)=1/sqrt12
+PASS RAR delta=1: x*(f=1)=(ln2)^2
+
+S3: vacuum's own density (f=1), horizon coincidence R*=c/H  ->  Z = 2 x*
+  simple    x*=0.5000  Z=1.0000
+  standard  x*=0.2887  Z=0.5774
+  rar_d1    x*=0.4805  Z=0.9609
+  delta2    x*=0.2877  Z=0.5754
+PASS S3/S6: f=1, s=1 gives Z in (0.5,1.1) for all four nu (nowhere near 5.79)
+PASS Z(f) (simple nu, s=1) is monotone increasing, range 0.026..1999.0
+
+S6 (end): f needed so that the homogeneous closure gives each target (simple nu, s=1)
+  Z=sqrt(32pi/3)=5.7888  f=1.7054
+  3sqrt3                 f=1.6772
+  6                      f=1.7143
+  2pi                    f=1.7254
+  decoy 4.5              f=1.6364
+  decoy 7.3              f=1.7590
+  decoy 8.1              f=1.7802
+PASS every target, including decoys, has a solution f in (0,2): closure cannot discriminate
+  natural f candidates give Z: {0.5: 0.333, 1: 1.0, 1.3333333333333333: 2.0, 1.5: 3.0}
+  f in [0.8,1.2] (simple nu): Z in [0.667,1.500]
+PASS f within +-20% of 1 does NOT reach 5.789 (window max 1.50): a genuine failure of the closure
+  delta in [0.2,4] at f=1: Z range [0.508,2551.683]
+  delta needed (f=1,s=1): {'Z=sqrt(32pi/3)=5.7888': 0.469, '3sqrt3': 0.482, '6': 0.464, '2pi': 0.459, 'decoy 4.5': 0.501, 'decoy 7.3': 0.442, 'decoy 8.1': 0.432}
+PASS every target (incl. decoys) reachable by a one-parameter interpolation family delta at f=1: no discrimination
+PASS simple nu: f=12/7 gives exactly Z=6 (rational f for rational Z; not a natural density factor)
+
+S4: M = vacuum mass in the Hubble sphere, deep-MOND ZF radius vs horizon
+PASS deep-MOND R_ZF/R_H=(2Z)^(-1/4)=0.542
+PASS deep-MOND self-consistency x=Z^(3/2)/sqrt2=9.85 must be <<1: FAILS (x>>1)
+  exact simple nu: x=4.058  R_ZF/R_H=0.8445  nu=1.2046
+FAIL exact R_ZF/R_H for M_Lambda(R_H) at Z=5.789 is not 1 (0.844)
+PASS horizon=ZF coincidence for M_Lambda(R_H) is the same equation nu(Z/2)=2 as f=1,s=1 (consistency)
+PASS M_c/M_Hubble-vac = 2/Z^3 = 0.0103
+  M_c = a0^3/(G H^4) = 9.39e+20 Msun (SI, a0=1.1e-10, H_Lambda=1.81e-18 /s)
+
+S3 pi-content: for the simple nu, solving Z=2x*(f)/f for f: [2*Z/(Z + 1)]
+PASS closure Z(f) is an algebraic (pi-free) function; any pi in Z must come from f (the inserted density factor) or s
+PASS Z=sqrt(32pi/3) requires f=1.7054, not a simple rational (matching by hand)
+PASS CONTROL nu=1: fixed point requires f=2 exactly (nu=2/f=1), any Z then arbitrary: no a0 scale at all
+PASS MUTATE: a hand-built vacuum with a wrong 4/3 factor changes f and moves Z (claim 'f=1 -> Z~1' is f-specific): Z(f=4/3)=2.000
+N32 pass=19 fail=1

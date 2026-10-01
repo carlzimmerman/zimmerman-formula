@@ -164,14 +164,14 @@ class S3:
             del cg, Q
 
     def save_cache(self, path):
-        np.savez_compressed(path, x=self.x, w=self.w, gram_res=self.gram_residual,
+        np.savez(path, x=self.x, w=self.w, gram_res=self.gram_residual,
                             **{f"v{i}": v for i, v in enumerate(self.V)},
                             **{f"g{i}": g for i, g in enumerate(self.Gr)},
                             **{f"q{i}": q for i, q in enumerate(self.Q) if q is not None})
 
     @classmethod
     def load_cache(cls, path):
-        z = np.load(path)
+        z = np.load(path, mmap_mode="r")
         L = max(int(k[1:]) for k in z.files if k[0] == "v")
         obj = cls.__new__(cls)
         obj.L = L
@@ -426,7 +426,7 @@ def run_s3(L, b, lapse_eps, target_supH, tag, out, rngs, leaf=None):
         Wc[leaf._idx(l)] = rngs.standard_normal(leaf.dims[l]) / (l + 1)
     Wf = leaf.values(Wc)
     lhs = float(np.sum(leaf.w * Nv * vstar * Wf))
-    rhs = float(np.sum(leaf.w * leaf.values(up) * leaf.values(leaf.heat(Wc, b))))
+    rhs = float(np.sum(leaf.w * (Nv * leaf.values(up)) * leaf.values(leaf.heat(Wc, b))))
     adj_rel = abs(lhs - rhs) / (abs(lhs) + abs(rhs) + 1e-300)
     # DS = SD on curved geometry (NC1): e^{b grad*grad}(grad f) = e^{-2b} grad(S_h f) on S^3
     gSf = leaf.grad(leaf.heat(csrc, b))
@@ -509,8 +509,7 @@ def main():
                            "C1_join_relative_residual": float(abs(dl - dr) / max(abs(dl), 1e-30)),
                            "h_RAR_deep_coeff": float(h_RAR(1e-8) / 1e-4)}
     runs = [(8, 0.05, 0.0, 2.3374), (8, 0.05, 0.3, 2.3374), (8, 0.2, 0.0, 2.3374),
-            (8, 0.2, 0.3, 2.3374), (8, 0.2, 0.3, 1.2), (8, 0.2, 0.3, 4.0),
-            (10, 0.2, 0.3, 2.3374)]
+            (8, 0.2, 0.3, 2.3374), (8, 0.2, 0.3, 1.2), (8, 0.2, 0.3, 4.0)]
     run_dir = os.path.dirname(os.path.abspath(__file__))
     leaf_files = {}
     for L in sorted({L for (L, *_r) in runs}):

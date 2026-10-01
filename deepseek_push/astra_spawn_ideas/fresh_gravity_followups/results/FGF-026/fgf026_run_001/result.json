@@ -1,0 +1,147 @@
+{
+  "task_id": "FGF-026",
+  "task_sha256": "6766c03927611c09aba51c81a87768ed0bd48907ebf049b1dc2cb05ed8337ff3",
+  "run_id": "fgf026_run_001",
+  "worker": {
+    "agent": "/root/coupled_dynamics",
+    "execution_id": "/root/coupled_dynamics:fgf026_run_001",
+    "mechanism": "authorized existing agent followup"
+  },
+  "started_utc": "2026-09-30T05:25:29.783851+00:00",
+  "started_utc_note": "Reservation timestamp; exact sampling start not independently timed.",
+  "finished_utc": "2026-09-30T05:30:17.423672+00:00",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For a fixed diagnostic Q/R hydrostatic IVP retaining smooth positive B,rho,g through a finite first endpoint zero D* of w=chi_prime, with w(0)>0 and w>0 before D*, the zero is simple with w_prime(D*)<0. The complete regular fixed-mass Dirichlet H1_0 longitudinal quadratic energy is coercively positive at D* and has a positive kinetic spectral gap. On a sufficiently small right extension of the SAME full IVP prefix, the original regular quadratic form remains coercively positive despite w<0 near the new wall. The extension size and gap are background dependent and not numerically quantified.",
+  "new_assumptions": [
+    "Finite first zero exists along the fixed initial-data continuation while all original coefficients remain regular and B,rho,g positive.",
+    "Both fields and fluid displacement retain homogeneous Dirichlet perturbation endpoints; no extra quotient trace condition.",
+    "Smooth regular ODE continuation near the endpoint permits coefficient-continuous pullback to a fixed domain."
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/tasks/FGF-026.md": "6766c03927611c09aba51c81a87768ed0bd48907ebf049b1dc2cb05ed8337ff3",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/FRAMEWORK_AND_EXECUTION.md": "ff0d2873065578b0bd8aa50907e0a39495ff8da775bf2b4890768d83775fd750",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/RESULT_CONTRACT.json": "ba388d0ca8e447a38649a478483e3ff4c2d3293e842eedc8f035499c77a20c29",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/FGF-025_RECONCILIATION.md": "b8fd17f5ee67b4bbe828148be9b796d5703b4fac17ec02118bfa7843ee236079",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-025/fgf025_run_001/result.json": "ca42d5780edfe908280f2a56155ece28250f23ceba8af3fb7831a16e7e21825d",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-025/fgf025_run_001/DERIVATION.md": "8422512f6d1d2b4b0dcd88ae3a5b7a47de1db5de2220024bfd35f902ae0e206a",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-023/fgf023_run_001/DERIVATION.md": "0b9babab32edd602cf5aea8db63126a52f09c379b858e5c5967d46835bbf1f4a",
+    "campaign_fresh_gravity_astra/stage_10/monotone_scale/TURNING_POINT_CONTROL.md": "23043744ec32d6fef7d903772a12b722a842801dc44188d79d7f078caaf0d942",
+    "campaign_fresh_gravity_astra/stage_10/monotone_scale/audit_result.json": "50f0bc95450558faed7fe8eae87c5217cfc2319be90794922447797583506974",
+    "campaign_fresh_gravity_astra/stage_09/slab_audit/DIRICHLET_REDUCTION.md": "a6661d1abb5e14943f8f1a945344bcd2355fb0998fc396a693071003f2ae2fa5"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-026/fgf026_run_001/DERIVATION.md": "62e61864197e1688e35ba2c50b6fa1adb5eb1af2c47202c371faf0daafb01713",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-026/fgf026_run_001/REPORT.md": "3e2e2b906c24b1044dd7caecce6b5e6cc01985f30088d0525926bd656285c2a4",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-026/fgf026_run_001/input_sha256.json": "af3a908c96adf6926cd186d053ca78e426a8d6b869dcd359d1a9d16d5fa9baa8"
+  },
+  "commands": [],
+  "commands_reason": "Proof-only endpoint/domain argument; administrative reads and source-hash checks only, no numerical experiment.",
+  "execution_bounds": {
+    "numerical_processes": 0,
+    "numerical_caps": "not applicable; no run",
+    "proof_scope": "one first-zero endpoint and its local full-prefix continuation"
+  },
+  "checks": [
+    {
+      "name": "Pinned ancestry",
+      "observed": "All four task-specified hashes match.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "First-zero simplicity",
+      "observed": "If w_prime vanished then negative w_doubleprime forces negative w immediately to left, contradiction.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "Physical trace",
+      "observed": "eta\u00b2/(D-x) bounded by tail derivative energy tending to zero.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "Hardy integrability",
+      "observed": "eta/w and w(eta/w)_prime lie in L2; weighted positive terms are integrable.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "Form domain",
+      "observed": "Original H1_0 domain retained; quotient H1_0 condition explicitly rejected.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "Endpoint positivity",
+      "observed": "Four-square identity extends by justified trace/integrability limits.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "Coercivity and gap",
+      "observed": "Regular leading-derivative lower bound plus compactness upgrades positivity to gap and H1 coercivity.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "Same-domain continuation",
+      "observed": "Pullbacks to [0,1] converge in form norm; existing coercivity survives small right extension.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "Mass interpretation",
+      "observed": "Mass fixed within each perturbation problem, generally changes across prefix lengths.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "Static compatibility",
+      "observed": "Positive rank-one wall term and complete eta operator retained.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "Nonempty first-turn subfamily",
+      "observed": "Parent-supplied small initial w argument checked by uniform local ODE bound.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    },
+    {
+      "name": "No stability extrapolation",
+      "observed": "No uniform gap, arbitrary extension length, or eventually negative mode asserted.",
+      "status": "passed_by_exact_derivation_or_hash_check"
+    }
+  ],
+  "tested_domain": {
+    "evidence": "conditional exact proof",
+    "space": "H1_0(0,D)^3",
+    "background": "one fixed-IVP family of induced-boundary prefixes",
+    "laws": [
+      "Q",
+      "RAR"
+    ],
+    "a0_m_s2": [
+      9.3619e-11,
+      1.1279e-10
+    ],
+    "histories": [
+      "constant vacuum reference",
+      "separate frozen H reference"
+    ],
+    "numeric_samples": 0
+  },
+  "failed_attempts": [
+    {
+      "route": "Require eta/w to be in ordinary H1_0 at the first-zero wall.",
+      "cause": "False: admitted eta proportional to (D-x)^(3/4) with cutoff makes eta/w diverge. Replaced by original H1_0 domain, tail trace estimate and weighted integrability.",
+      "record": "DERIVATION.md sections 3 and 8"
+    },
+    {
+      "route": "Infer a gap from strict positivity alone.",
+      "cause": "Insufficient in infinite dimensions. Supplied regular-form derivative bound plus compactness to close the implication.",
+      "record": "DERIVATION.md section 5"
+    }
+  ],
+  "limitations": [
+    "No selected numerical IVP, spectrum, physical length, gap value or quantitative extension radius.",
+    "Mass and right boundary data generally change across family members; no fixed-mass family or moving-wall dynamics.",
+    "No uniform gap over parameters or arbitrary farther continuation.",
+    "No arbitrary initial data first-turn guarantee; auxiliary small-initial-slope subfamily proves only nonemptiness.",
+    "No M action, filtered-MONO, physical metric/photon, vacuum-identity repair, nonlinear/3D, free-wall or observational claim."
+  ],
+  "next_unresolved_implication": "For a specified continued full prefix beyond the first-turn neighborhood, does the original coercive gap persist or eventually vanish, and can its sign be certified with controlled errors?",
+  "suggested_followup": "Continue one fixed-IVP full-domain family farther past its first turn and certify the original regular quadratic sign; preserve induced-boundary and changing-background-mass interpretation. Do not repeat the endpoint singularity proof or substitute a short centered patch.",
+  "attribution": "FGF025 weighted identity is inherited and attributed there to root. This worker independently derived endpoint trace/gap/continuation arguments. Root supplied the auxiliary small-initial-slope first-turn existence control during this task; its proof is identified in DERIVATION.md.",
+  "acceptance_state": "unreviewed"
+}

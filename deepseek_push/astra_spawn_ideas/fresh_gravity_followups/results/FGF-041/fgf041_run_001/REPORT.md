@@ -1,0 +1,13 @@
+# FGF041 proof-only report
+
+One fixed-profile traveling concentration demonstrates a precise failure of weak closure. In the fixed-reference Q action, choose an interior regular-side packet whose width is L epsilon, potential amplitude Psi sqrt(epsilon), and speed 1/sqrt(tau). Keep the actual density, zero matter momentum and scale at the reviewed static crossing. The original source, scale, mass and matter residuals tend to zero in the declared weak norms; a direct full-stress calculation establishes the combined momentum residual separately. This direct calculation is necessary because a weak source residual cannot safely be multiplied by the concentrating gradient.
+
+The packet produces a nonzero moving energy measure of mass E_*=Psi² integral(f'²)/(C L), momentum E_*/c_tau and stress E_*. The limiting current fields are the background, whose stresses do not contain that measure. The full energy-flux defect travels consistently at c_tau. The initial energy and momentum defects are already nonzero: this is neither an exact-solution sequence nor a creation-from-zero-energy construction. Original field walls, mass and the scale cap are unchanged.
+
+The amplitude control Psi epsilon f instead has vanishing total relative energy and strong derivative convergence. In this fixed-density/scale class, strong L2 convergence of both field derivatives identifies all displayed momentum/energy fluxes in L1. Convergence in measure plus uniform integrability of their squares is sufficient; a mere L2 bound is not. General varying-fluid energy fluxes require additional hypotheses.
+
+This is an exact analytic counterexample to one weak-residual/energy-bound compactness implication, with every weak space stated. There is no numerical run, scan, spectrum, simulation, fabricated manifest or claim of exact nonlinear solution existence. Both a0 hypotheses remain separate, as do constant-vacuum, frozen-H and evolving-H histories. No RAR/M, physical metric, reservoir, empirical or theory-closure transfer follows.
+
+The author proof was fixed before any new root/reviewer proof or previews. All seven ancestry pins and the task hash were checked. Independent audit and coordinator acceptance remain separate from this worker report. No failed numerical execution or unrecorded corrected proof is present.
+
+A coordinator-suggested next gate changes the premise: retain part of the exact Q Bregman remainder and ask whether vanishing FULL relative energy, strongly prepared initial energy and an assumed energy inequality force strong unweighted L2 field-gradient convergence, eliminating this packet defect. That new implication is not proved here. Existence and local energy-flux regularity remain separate obligations.

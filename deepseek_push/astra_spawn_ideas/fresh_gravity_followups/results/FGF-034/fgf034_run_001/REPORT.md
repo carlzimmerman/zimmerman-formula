@@ -1,0 +1,11 @@
+# FGF034 proof-only worker report
+
+A genuine local differentiable equilibrium branch follows from the stated regular positive-gradient, positive-density base and the reviewed coercive full fixed-reference form, with total mass, physical interval/coefficient values and both phi/chi wall values held fixed. No global-driver force balance or chosen potential V is required to construct this local branch.
+
+The proof eliminates hydrostatic density exactly with its mass normalization. Its derivative contains the weighted mean, so the reduced field operator has a nonlocal negative weighted-variance term. Minimization over all zero-integral density perturbations identifies this reduced operator with the full Q0 Schur complement. Full coercivity yields a weak inverse, and the one-dimensional equations give a bounded H2 Dirichlet-to-L2 inverse. The nonlinear map is continuously differentiable on an H2 neighborhood preserving positive gradient; a contraction argument supplies the actual local C1 branch. Bare formal susceptibility is not used as a substitute for this gate.
+
+On that branch, the mass-preserving displacement response is exactly minus the full-form inverse response z. The integrated scale source has derivative R'=integral T_chi/C+Q0[z]. Therefore FGF033's global stability margin at an actual intersection V'=R is V''−R'. No V, intersection, neighborhood radius, numerical susceptibility or spectral value is supplied.
+
+The old fixed-left-IVP family is a negative domain control: its induced total mass and right field walls generally change. Its energy derivative retains h M' and field endpoint work, and its density derivative retains rho M'/M. It cannot be substituted for the constrained response without separately checking those derivatives vanish. Fixing field values also does not mean separately fixing both field fluxes.
+
+Evidence is exact conditional proof only, with no computational run or manifest. All specified ancestry hashes were verified. The worker did not inspect stage20 root or independent audit outputs. Both reference normalizations, separate constant-vacuum and frozen/evolving H hypotheses, Q versus RAR/registered M, and MOND source balance remain explicit. This diagnostic construction does not close the scale-vacuum, filtered-MONO metric/photon, empirical calibration or global/nonlinear theory questions.

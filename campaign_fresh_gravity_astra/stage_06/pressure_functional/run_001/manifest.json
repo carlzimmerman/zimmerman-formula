@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "claim_id": "PF1_FINITE_CONTROL",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "campaign_fresh_gravity_astra/stage_06/pressure_functional/check_finite.py",
+    "campaign_fresh_gravity_astra/stage_06/pressure_functional/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact positive C2 toy profiles with two unchanged moments and differing point gradients",
+    "coefficient_domain": "rational",
+    "conventions": "Dimensionless x in [-2,2]; observations against 1 and x, not instrument response",
+    "inputs": [
+      "campaign_fresh_gravity_astra/stage_06/pressure_functional/DERIVATION.md",
+      "campaign_fresh_gravity_astra/stage_06/pressure_functional/FINITE_CONTROL.md",
+      "campaign_fresh_gravity_astra/stage_06/pressure_functional/check_finite.py"
+    ],
+    "bounds": {
+      "n": [
+        2,
+        8,
+        32
+      ],
+      "profiles": 3
+    },
+    "non_claims": [
+      "Not C-infinity witnesses; exact theorem audited separately. No empirical evidence."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:34:20.676563+00:00",
+    "runtime_seconds": 0.049177,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 100,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "campaign_fresh_gravity_astra/stage_06/pressure_functional/DERIVATION.md",
+    "campaign_fresh_gravity_astra/stage_06/pressure_functional/FINITE_CONTROL.md",
+    "campaign_fresh_gravity_astra/stage_06/pressure_functional/check_finite.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "campaign_fresh_gravity_astra/stage_06/pressure_functional/DERIVATION.md",
+      "sha256": "102dee0743c300c38781846828a38a72e52701be648dd39931f0d2b332676cd1",
+      "sha256_after": "102dee0743c300c38781846828a38a72e52701be648dd39931f0d2b332676cd1"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_06/pressure_functional/FINITE_CONTROL.md",
+      "sha256": "3496d6d24be5b3cad6f7d4a7f47c2ddddebbff2d7327f1853c6e227a7ce03910",
+      "sha256_after": "3496d6d24be5b3cad6f7d4a7f47c2ddddebbff2d7327f1853c6e227a7ce03910"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_06/pressure_functional/check_finite.py",
+      "sha256": "867fcf585f26ddfd023f215f796772d9a8cf0650cd61f5bc5ce994868a4f6e79",
+      "sha256_after": "867fcf585f26ddfd023f215f796772d9a8cf0650cd61f5bc5ce994868a4f6e79"
+    }
+  ],
+  "output_directory": "campaign_fresh_gravity_astra/stage_06/pressure_functional/run_001",
+  "declared_results": [
+    "campaign_fresh_gravity_astra/stage_06/pressure_functional/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "campaign_fresh_gravity_astra/stage_06/pressure_functional/run_001/stdout.txt",
+      "sha256": "f97f2fcb78380ed8e13339b26d432f748a6972294f30d99c16ee34d0ca9ac5e8",
+      "kind": "log"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_06/pressure_functional/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/stage_06/pressure_functional/run_001/results.json",
+      "sha256": "ddf3312fa4f9efb93375927ccb3169b110cda8f24d39378bbe2c5d089f1013fb",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

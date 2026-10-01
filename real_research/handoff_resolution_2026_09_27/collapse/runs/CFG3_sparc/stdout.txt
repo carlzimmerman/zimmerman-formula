@@ -1,0 +1,90 @@
+CFG3_sparc -- THE PRINCIPLE'S GALAXY LAW ON SPARC: the radial acceleration relation and the baryonic Tully-Fisher relation.
+
+WHAT THE PRINCIPLE GIVES IN A GALAXY.  Every SPARC galaxy is a held-back region (bound; the gate is open, CFG3_principle D5),
+the dark component is not answered and must not sit there (the requirement quantified in S6), and the answer is the Bose
+kernel nu(y) = 1 + 1/(e^sqrt(y) - 1) (D2) acting on the baryons' field, with a0 = kappa c sqrt(G rho_Lambda) (kappa = 1/2
+FITTED).  The coherence length l* >= 0.05 pc changes kpc-scale forces by <= 7.5 (l*/a)^2 (FP1 C1's bound: 3e-5 at 1 pc on a
+0.5-kpc galaxy), so on SPARC the law is g_obs = nu(g_bar/a0) g_bar at every point.  The statistic is the record's
+(real_research/rar_framework_a0_mlfit.py as FP1 C copies it: weighted rms of log g_obs - log nu g_bar, Upsilon_disc profiled on
+0.30..1.20 in steps of 0.01, Upsilon_bul = 1.4 Upsilon_disc, weights (e_V/V)^-2), both footings, a0 fixed (never fitted).
+
+CHECKS
+  K1 CONTROL: the copied statistic reproduces FP1's committed numbers -- C0 (P2 at the ml-fit script's a0 and Upsilon = 0.70:
+     0.108 dex) and C2 (P2 0.10827/0.10355, nu_mono 0.10033/0.09910 dex, Upsilon 0.70/0.65/0.61/0.57) to < 1e-9 -- which also
+     validates this lane's copy of nu_mono.
+  K2 CONTROL: the record's BTFR door (real_research/reviews/mi_btfr_intercept_kappa_door_2026.py, exec'd read-only) reproduces
+     its kappa_hat = 0.465 +- 0.076 on its adopted Route-A kernel, and that kernel IS the Bose kernel (to 1e-12).
+  S1 [HEADLINE] the Bose kernel on SPARC, both footings, Upsilon profiled, with FP1's paired galaxy bootstrap against nu_mono and P2.
+  S2 [load-bearing; MUTATE must fail] the derived kernel is as good as the record's best kernel: its rms lies within 0.005 dex
+     of nu_mono's on both footings.
+  S3 (reported) the residual trend: binned median residual vs y at the best Upsilon, |median| < 0.05 dex in every bin with >= 30 points.
+  S4 the BTFR: slope exactly 4 from the Rayleigh-Jeans limit (V^4 = G M a0 with coefficient 1, D2), and the intercept's kappa
+     (K2) within 1 sigma of 1/2.
+  S5 (reported) the dark-field requirement: adding a fraction f of each galaxy's LCDM-like halo (Moster+13 halo mass, Duffy+08
+     NFW concentration) to the Bose law's g_obs raises the SPARC rms; the largest f with d rms <= +0.005 dex is the amount of
+     unanswered dark field a galaxy's gated region may hold.
+PRE-DECLARED HYPOTHESES (written before the first run of this script):
+  H1 |rms(Bose) - rms(nu_mono)| <= 0.003 dex on both footings (the kernels differ by <= 0.0104 dex, only above y = 2.34). EXPECT TRUE.
+  H2 the Bose kernel beats P2 in >= 95% of paired galaxy resamples on both footings (as nu_mono does, FP1 C2). EXPECT TRUE.
+  H3 S5's f_max < 0.3: the dark field must be cleared from galaxies to well below its cosmic share. EXPECT TRUE.
+MUTATE=1 replaces the Bose occupation by Fermi-Dirac (nu = 1 + 1/(e^sqrt(y) + 1): no classical enhancement): S2 must FAIL (rc = 1).
+Run from the repository root (MUTATE first):  MUTATE=1 python3 campaign_fresh_gravity/CFG3_sparc.py; python3 campaign_fresh_gravity/CFG3_sparc.py
+
+  inputs: a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt) m/s^2 [FP0]; rho_Lambda = 5.8424e-27 kg/m^3; H_Lambda = 1.8074e-18 1/s; Z = 5.788810 (kappa = 1/2 FITTED)
+
+======================================================================================================================
+K1  CONTROL: FP1's SPARC statistic and its committed numbers
+======================================================================================================================
+    canonical: P2 0.108272 dex (Upsilon 0.70; FP1 0.108272, 0.70);  nu_mono 0.100329 (Upsilon 0.61; FP1 0.100329, 0.61)
+    alt      : P2 0.103549 dex (Upsilon 0.65; FP1 0.103549, 0.65);  nu_mono 0.099103 (Upsilon 0.57; FP1 0.099103, 0.57)
+  [PASS] K1 CONTROL: the copied statistic (rar_framework_a0_mlfit.py's, as FP1 C) reproduces FP1 C0 (P2 at a0 = 9.3614e-11, Upsilon = 0.70: 0.108 dex) and FP1 C2's committed rms and best Upsilon for P2 and nu_mono on both footings -- validating this lane's nu_mono copy
+         measured: C0 0.1083 dex (175 galaxies); max |dev| vs FP1 C2 2.8e-17
+
+======================================================================================================================
+K2  CONTROL: the record's BTFR intercept door, and its kernel
+======================================================================================================================
+    the record's door (exec'd read-only, stdout captured): kappa_hat = 0.465 +- 0.076 on its adopted Route-A kernel; max |nu_RouteA/nu_Bose - 1| = 2.2e-16
+  [PASS] K2 CONTROL: the record's BTFR door reproduces kappa_hat = 0.465 +- 0.076 on its adopted kernel, and that kernel is the Bose kernel to 1e-12 -- so the record's BTFR measurement IS this law's
+         measured: kappa_hat 0.465 +- 0.076; kernel dev 2.2e-16
+
+======================================================================================================================
+S1  THE DERIVED KERNEL ON SPARC (Bose (derived)), both footings, Upsilon profiled, paired galaxy bootstrap
+======================================================================================================================
+    canonical: Bose (derived) 0.09985 dex (Upsilon 0.62);  nu_mono 0.10033;  P2 0.10827;  paired d(rms) law - mono -0.00046 [-0.00087, -0.00011];  law beats P2 in 1.000
+    alt      : Bose (derived) 0.09885 dex (Upsilon 0.57);  nu_mono 0.09910;  P2 0.10355;  paired d(rms) law - mono -0.00022 [-0.00054, +0.00008];  law beats P2 in 0.989
+  [PASS] (reported) S1 (H1, H2) THE DERIVED KERNEL FITS SPARC AS WELL AS THE RECORD'S BEST: |rms(Bose) - rms(nu_mono)| <= 0.003 dex and the Bose kernel beats P2 in >= 95% of paired galaxy resamples, on both footings
+         measured: canonical: 0.0999 vs mono 0.1003, beats P2 in 1.000; alt: 0.0989 vs mono 0.0991, beats P2 in 0.989
+  [PASS] S2 [load-bearing; MUTATE must fail] the derived kernel's SPARC rms lies within 0.005 dex of the record's best kernel (nu_mono) on both footings
+         measured: canonical: 0.0999 vs 0.1003; alt: 0.0989 vs 0.0991
+
+======================================================================================================================
+S3  THE RESIDUAL TREND ALONG y (the shape the Bose occupation fixes)
+======================================================================================================================
+    canonical (Upsilon 0.62): [-2.0,-1.5) N=162 med +0.013; [-1.5,-1.0) N=875 med -0.034; [-1.0,-0.5) N=803 med -0.013; [-0.5,+0.0) N=601 med -0.026; [+0.0,+0.5) N=505 med -0.030; [+0.5,+1.0) N=279 med -0.067; [+1.0,+1.5) N=122 med -0.090; [+1.5,+2.5) N=35 med -0.082
+    alt       (Upsilon 0.57): [-2.0,-1.5) N=265 med -0.047; [-1.5,-1.0) N=1009 med -0.047; [-1.0,-0.5) N=695 med -0.025; [-0.5,+0.0) N=614 med -0.029; [+0.0,+0.5) N=427 med -0.029; [+0.5,+1.0) N=253 med -0.053; [+1.0,+1.5) N=91 med -0.058
+  [FAIL] (reported) S3 (reported) no residual trend along y: the binned median residual is below 0.05 dex in every bin with >= 30 points, both footings
+         measured: canonical: max |median| 0.090; alt: max |median| 0.058
+
+======================================================================================================================
+S4  THE BARYONIC TULLY-FISHER RELATION
+======================================================================================================================
+  [PASS] S4 THE BTFR: the Rayleigh-Jeans limit of the Bose kernel gives V^4 = G M_b a0 with coefficient exactly 1 (slope 4, D2); the record's intercept door on this very kernel measures kappa_hat = 0.465 +- 0.076, within 1 sigma of the fitted 1/2 (and of 1/2pi: the intercept cannot separate them, the door's own D8b)
+         measured: kappa_hat 0.465 +- 0.076: -0.46 sigma from 1/2
+
+======================================================================================================================
+S5  (reported) HOW MUCH UNANSWERED DARK FIELD A GALAXY MAY HOLD
+======================================================================================================================
+    canonical: d rms for f = 0.02: -0.0006 (Ups 0.60), 0.05: -0.0007 (Ups 0.59), 0.10: +0.0007 (Ups 0.56), 0.20: +0.0081 (Ups 0.52), 0.30: +0.0194 (Ups 0.48), 0.50: +0.0467 (Ups 0.41), 1.00: +0.1168 (Ups 0.30)  -> f_max = 0.1
+    alt      : d rms for f = 0.02: +0.0001 (Ups 0.56), 0.05: +0.0007 (Ups 0.54), 0.10: +0.0030 (Ups 0.52), 0.20: +0.0112 (Ups 0.48), 0.30: +0.0223 (Ups 0.44), 0.50: +0.0482 (Ups 0.38), 1.00: +0.1146 (Ups 0.30)  -> f_max = 0.1
+  [PASS] (reported) S5 (H3, reported) THE DARK-FIELD REQUIREMENT: the principle does not answer the dark field, so any dark field left inside a galaxy adds Newtonian mass on top of the answer; SPARC tolerates (d rms <= +0.005 dex) only a fraction f_max < 0.3 of an LCDM-like halo -- the dark sector must clear galaxies (the record's FP10 kick is one candidate)
+         measured: canonical: f_max 0.1; alt: f_max 0.1
+
+======================================================================================================================
+W  THE LEDGER
+======================================================================================================================
+    SP1      DERIVED     on SPARC the principle's law is nu_Bose = nu_RAR at fixed a0 (kappa = 1/2): rms 0.0999 / 0.0989 dex (canonical / alt)  --  S1, S2
+    SP2      DERIVED     BTFR slope 4 with coefficient 1; the record's intercept on this kernel: kappa_hat = 0.465 +- 0.076  --  S4, K2
+    SP3      REQUIREMENT unanswered dark field inside galaxies <= f_max of an LCDM halo: 0.1 / 0.1  --  S5
+
+  6/7 checks pass; load-bearing failures: 0 ; reported failures: ['S3']; wrote CFG3_sparc_results.json (7 s)
+rc = 0

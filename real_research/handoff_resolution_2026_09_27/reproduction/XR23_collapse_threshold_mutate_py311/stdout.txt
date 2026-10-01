@@ -1,0 +1,92 @@
+XR23a -- HOW FAST DO THE FIRST MASSIVE HALOS FORM IN THE DERIVATION CHAIN? The chain's spherical-collapse threshold
+delta_c,eff(M, z) at z = 6-20 (the JWST era) and at z = 0-1 (where FP13's separator sets its band-pass length).
+
+THE MODEL (read, not re-derived: FP7's AQUAL-type root + FP13's separator H_S, committed 27faacc84):
+  * the MOND sector reads the band-passed field chi = (S_xi - S_B) phi, B = L^2/2, with L(z) set by the state,
+    <(S_B delta_m)^2>_h = s^2, s = delta_c = 1.686 on the actual (halofit) field; the yield floor y_th = the web's
+    band-passed leaf-rms field/a0 x max(0, 2q) (on while the leaf decelerates, z > 0.635; off after);
+  * the static law as FP6/FP9 implement it (FP6 phantom() with FP9's yield hook): g_bp = (1 - S_L) g_N, raw phantom
+    a0 x_P2(|g_bp|/a0 - y_th) along g_bp, the variation's output filter (1 - S_L) on the phantom;
+  * applied here to the PECULIAR field of a spherical perturbation (the FRW leaf carries no field), inside FP6's background
+    (h = 0.6736, Omega_m = 0.3138, radiation included), both a0 footings (9.3603e-11 / 1.1312e-10 m/s^2, FP0);
+  * the dark mass is FL1/FK1's cold coherent field (FP10: 'the MOND kernel reads the baryons only; Psi feels Newtonian
+    gravity'); its conversion (the kick) acts only after collapse and is not modelled.
+TWO READINGS, NEVER POOLED:  T (the linear yardstick's convention: the kernel reads the total matter, the phantom acts on all
+  matter -- the maximal-MOND bracket);  B (the action's content: the kernel reads the baryons' band-passed field, the phantom
+  acts on baryons only, the dark field falls under Newtonian gravity).
+PROFILES: headline = a Lagrangian multi-shell collapse of the conditional mean profile around a point whose top-hat-smoothed
+  linear contrast at R_L is fixed (C(q, R)/C(R, R)), piecewise-uniform density between shells, the band-pass applied to it
+  exactly (closed-form smoothing of a uniform ball), shells frozen (virialised) at half their maximum radius; brackets
+  (single shell) = a sharp-edged top hat (its band-passed field has an edge layer ~L thick: the most MOND the band-pass
+  allows) and a compact profile (the excess at the centre: FP6 phantom()'s own geometry).
+THRESHOLD: delta_c,eff(M, z) = delta_c^LCDM(z) x A_chain/A_LCDM, where A is the growing-mode amplitude that forms the shell at
+  R_L (half its maximum radius) at z, and delta_c^LCDM(z) the same code's MOND-off r -> 0 threshold (1.676 at z = 0, 1.6876 at
+  z = 6: radiation included).  The r -> 0 convention is reported beside it for the single-shell brackets.  Numerics: each
+  model runs on a grid of 28 amplitudes; the small shift Delta(A) = N_form,chain(A) - N_form,LCDM(A) is interpolated
+  (monotone cubic) and inverted against a dense, exact LCDM table (the MOND-off collapse does not depend on M).  [Superseded
+  after the smoke runs: a coarse grid of 16 amplitudes brackets each target formation redshift and a safeguarded secant on
+  the model itself refines it to |dN| < 2e-6; the LCDM amplitude comes from the dense exact table.]
+STATE VARIANTS (the band-pass length and yield at high z): V0 = FP13 as committed (FP6's EH98 spectrum); V1 = the same
+  construction on the textbook EH98 spectrum (FP6's transfer function evaluates q = k Theta^2/(Om h ...) with k in 1/Mpc and
+  0.43 k s/h; EH98 eqs. 28/30 need q = (k/h) Theta^2/Gamma_eff and 0.43 k s -- XR23b K3 scores it against CLASS); V2/V3 = V1
+  with the dark field's wave cut-off (Hu, Barkana & Gruzinov 2000) at m = 1.9e-19 / 5.2e-19 eV; V4/V5 = V1 at s = 1.3 / 2.6
+  (FP13's nonlinear window ends); V6/V7 = V0 at s = 1.3 / 2.6.
+
+  *** MUTATE=1: the band-pass is removed from the force law (L = 1e3 Mpc at every epoch) -- C1 must FAIL ***
+
+  machinery: FP13 exec'd read-only up to its K banner (FP9 -> FP6 inside); footings a0 = 9.36032e-11 / 1.13120e-10 m/s^2; f_b = 0.1571; Omega_m = 0.3138, h = 0.6736, Omega_r = 9.221e-05
+
+======================================================================================================================
+K  CONTROLS
+======================================================================================================================
+  [PASS] K1 CONTROL: the LCDM spherical-collapse threshold (MOND off, matter + Lambda, r -> 0) equals the textbook value (3/20)(12 pi)^(2/3) [1 + 0.0123 log10 Omega_m(z)] (Kitayama & Suto 1996; the EdS 1.68647 at high z) at z = 0-20
+         measured: z=0: 1.67595 vs 1.67603, z=0.5: 1.68208 vs 1.68197, z=1: 1.68439 vs 1.68429, z=6: 1.68644 vs 1.68641, z=10: 1.68649 vs 1.68646, z=20: 1.68653 vs 1.68647; max rel dev 6.8e-05
+    the chain's background (radiation included) -> delta_c^LCDM(z), r -> 0: 0: 1.6761, 0.5: 1.6823, 1: 1.6846, 6: 1.6876, 7: 1.6878, 10: 1.6884, 14: 1.6893, 20: 1.6906  (radiation raises it 0.07-0.25% at z = 6-20)
+  [PASS] K2 CONTROL: this lane's implementation of the chain's force law (band-pass, yield, output filter; compact geometry) reproduces FP6's committed phantom() with FP9's yield hook at r = 0.3-3 L for five (L, y_th) cells
+         measured: max |dg|/max|g| = 1.6e-04 over 20 points
+  [PASS] K3 CONTROL: the closed-form Gaussian-smoothed uniform ball (this lane's) equals the quadrature of FP6's shell_frac over the ball
+         measured: max abs dev 2.7e-15 over 8 (u, lambda) cells
+  [PASS] K4 CONTROL: the multi-shell code in the Newtonian limit reproduces the single-shell top hat at z = 7 (formation at half the maximum radius: delta = 1.584; collapse r -> 0: 1.688), and reading B's two-species Newtonian limit equals T's
+         measured: formation 1.584139 vs 1.584122; collapse 1.687786 vs 1.687785; B/T - 1 = 1.2e-14
+  [PASS] K5 CONTROL: FP13's committed state -- L(z) and y_th(z) at z = 0-3 (its H1 table) -- is reproduced by FP13's own machinery exec'd read-only
+         measured: max rel dev 1.1e-10
+    3 s
+
+======================================================================================================================
+S  THE STATE AT HIGH z: the band-pass length L(z), the yield y_th(z), and where the band-pass closes
+======================================================================================================================
+    V0 (FP13 as committed (FP6's EH98), s = delta_c): band-pass closed for z >= 17.38; L [kpc] z=6/7/10/14: 17.50/10.54/2.70/0.55; y_th(can) z=6/7/10/14: 9.3e-03/8.2e-03/5.2e-03/2.3e-03
+    V1 (textbook EH98, s = delta_c          ): band-pass closed for z >= 13.59; L [kpc] z=6/7/10/14: 10.98/6.08/1.20/0.00; y_th(can) z=6/7/10/14: 5.5e-03/4.5e-03/2.1e-03/2.6e-12
+    V2 (V1 x wave cut-off m = 1.9e-19 eV    ): band-pass closed for z >= 10.06; L [kpc] z=6/7/10/14: 10.98/6.10/0.00/0.00; y_th(can) z=6/7/10/14: 5.5e-03/4.5e-03/9.8e-04/4.3e-13
+    V3 (V1 x wave cut-off m = 5.2e-19 eV    ): band-pass closed for z >= 10.85; L [kpc] z=6/7/10/14: 10.98/6.08/1.82/0.00; y_th(can) z=6/7/10/14: 5.5e-03/4.5e-03/2.8e-03/7.1e-13
+    V4 (V1, s = 1.3                         ): band-pass closed for z >= 13.59; L [kpc] z=6/7/10/14: 15.98/8.92/1.79/0.00; y_th(can) z=6/7/10/14: 6.5e-03/5.3e-03/2.6e-03/2.6e-12
+    V5 (V1, s = 2.6                         ): band-pass closed for z >= 13.59; L [kpc] z=6/7/10/14: 5.97/3.28/0.63/0.00; y_th(can) z=6/7/10/14: 4.1e-03/3.3e-03/1.5e-03/2.6e-12
+    V6 (V0, s = 1.3                         ): band-pass closed for z >= 17.38; L [kpc] z=6/7/10/14: 25.08/15.21/3.97/0.82; y_th(can) z=6/7/10/14: 1.1e-02/9.5e-03/6.1e-03/2.9e-03
+    V7 (V0, s = 2.6                         ): band-pass closed for z >= 17.38; L [kpc] z=6/7/10/14: 9.74/5.80/1.45/0.29; y_th(can) z=6/7/10/14: 7.1e-03/6.2e-03/3.8e-03/1.5e-03
+  [PASS] (reported) S1 (H1) THE BAND-PASS CLOSES AT HIGH z: where the state's smallest-scale variance no longer reaches s, L = xi and chi = 0 -- the MOND sector is exactly off; closure by z = 11-16 on V1, 15-19 on V0 (FP13 as committed), <= 12 with the dark field's wave cut-off (V2, V3)
+         measured: V0: z_close 17.38; V1: z_close 13.59; V2: z_close 10.06; V3: z_close 10.85; V4: z_close 13.59; V5: z_close 13.59; V6: z_close 17.38; V7: z_close 17.38
+
+  the grid: 4 models x (16 amplitudes + per-target refinement) on 2 worker processes  [3 s]
+  grid done  [33 s]; slowest model 17 s; refinement runs 15
+  monotone amplitude -> formation maps: 4/4
+
+======================================================================================================================
+C  THE JWST ERA (z = 6-20): the chain's threshold against LCDM's
+======================================================================================================================
+  [FAIL] C0 THE BAND-PASS CONFINES THE CHAIN'S MOND AT JWST HOST MASSES: reading T's threshold (multi-shell) moves by < 5% at M >= 1e11 Msun, z = 6-14 [MUTATE: band-pass removed, V1, canonical]
+         measured: max |A_chain/A_LCDM - 1| = inf%
+    [MUTATE] M = 1e+09: A_chain/A_LCDM z=6: nan, z=7: nan, z=8: nan, z=9: nan, z=10: nan, z=12: nan, z=14: nan
+    [MUTATE] M = 1e+10: A_chain/A_LCDM z=6: nan, z=7: nan, z=8: nan, z=9: nan, z=10: nan, z=12: nan, z=14: nan
+    [MUTATE] M = 1e+11: A_chain/A_LCDM z=6: nan, z=7: nan, z=8: nan, z=9: nan, z=10: nan, z=12: nan, z=14: 0.0141
+    [MUTATE] M = 1e+12: A_chain/A_LCDM z=6: nan, z=7: nan, z=8: nan, z=9: 0.0031, z=10: 0.0372, z=12: 0.1760, z=14: 0.3220
+  [FAIL] (reported) C1 (H2) READING T: the chain's threshold is within 1% of LCDM's for M >= 1e11 and 3% for M >= 1e10 at z = 6-14 (multi-shell, V0 and V1, both footings)
+         measured: [MUTATE, V1 canonical] max |shift| M>=1e11 99.7%, M>=1e10 99.7%
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  MUTATE: with the band-pass removed the chain's MOND reads every halo's full peculiar field (y ~ 0.1-1 early on) and the
+  threshold collapses far below LCDM's (most cells fall below the amplitude grid) -- C0 fails, as pre-declared.
+  Not 'closed'.  Time 34 s.
+
+  6/8 checks pass; load-bearing failures: 1; wrote XR23_collapse_threshold_results_MUTATE.json

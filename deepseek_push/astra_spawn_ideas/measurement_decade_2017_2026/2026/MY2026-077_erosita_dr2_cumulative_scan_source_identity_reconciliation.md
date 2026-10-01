@@ -37,7 +37,7 @@ Reconcile DR1 and DR2 membership before interpreting deeper counts as new object
 Mathematical starting relation/estimand:
 
 ```text
-N_union=N1+N_added-N_removed after source matching and deblending.
+For reconciled one-to-one identity sets A and B, N2=N1+N_added-N_removed and N_union=N1+N_added=N1+N2-N_intersection. Splits/merges require a separate matching relation.
 ```
 
 Define every symbol, units, sign, domain and approximation before use. Treat schematic formulas as obligations to derive, not established framework theorems.

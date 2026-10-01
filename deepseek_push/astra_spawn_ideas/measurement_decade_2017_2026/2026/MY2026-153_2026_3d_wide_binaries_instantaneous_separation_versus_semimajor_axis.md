@@ -37,7 +37,7 @@ Derive the phase-conditioned orbital likelihood for the measured 3D pairs.
 Mathematical starting relation/estimand:
 
 ```text
-r(t)=a(1-e cos E) and projected separation do not uniquely determine a.
+Newtonian/Kepler comparison only: r(t)=a(1-e cos E); projected separation does not uniquely determine a. Derive the candidate phase likelihood from its actual trajectories, or define and evolve osculating elements; do not impose exact Kepler ellipses on filtered MONO.
 ```
 
 Define every symbol, units, sign, domain and approximation before use. Treat schematic formulas as obligations to derive, not established framework theorems.

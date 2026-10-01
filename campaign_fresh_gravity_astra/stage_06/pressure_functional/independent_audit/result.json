@@ -1,0 +1,81 @@
+{
+  "claim_id": "PF1",
+  "audit_id": "PF1-independent-proof-audit",
+  "worker": {
+    "agent": "/root/proof_precision",
+    "execution_kind": "actual Astra independent proof review",
+    "delegation": "Independent review attached to PF1, not a duplicate scientific task"
+  },
+  "started_utc": "2026-09-27T20:35:04.394661+00:00",
+  "finished_utc": "2026-09-27T20:37:45.519843+00:00",
+  "outcome": "supports_scoped_claim",
+  "primary_verdict": "proved as written under declared nonnegative-profile and off-target-rank assumptions, with integral/test-space typing made explicit",
+  "acceptance_state": "independent audit complete; coordinator reconciliation pending",
+  "exact_claim": "For finitely many fixed integral pressure observations with measurable kernels uniformly bounded on the local perturbation neighborhood and compensation supports, well-defined baseline observations, a smooth nonnegative baseline bounded positively below near an interior target and on a separated compensation region, and independent restricted observation functionals on smooth compactly supported test functions there, smooth nonnegative profiles converge uniformly to the baseline, preserve every observation exactly, and have point derivatives diverging to either sign. Profiles are strictly positive on changed supports; global strict positivity additionally requires it of the baseline. Without compensation rank, the uncorrected local family is accepted by any fixed finite strictly positive error box centered at the baseline observations.",
+  "input_sha256": {
+    "campaign_fresh_gravity_astra/stage_06/pressure_functional/DERIVATION.md": "102dee0743c300c38781846828a38a72e52701be648dd39931f0d2b332676cd1",
+    "campaign_fresh_gravity_astra/stage_06/pressure_functional/ancestry.json": "3bed7cd7e78728556aa9acf2bada44c48dcce9eb77dded40a431a730f04df469"
+  },
+  "input_freshness": "Actual task source byte hashes unchanged at completion; candidate hash matches ancestry. Earlier ancestry-linked scientific claims were not read or audited.",
+  "output_sha256": {
+    "campaign_fresh_gravity_astra/stage_06/pressure_functional/independent_audit/AUDIT.md": "ed363d562e927ae15a5dd2fb3cc1173ac71cd4179230eaba48ac2aaf0f596f06",
+    "campaign_fresh_gravity_astra/stage_06/pressure_functional/independent_audit/INPUT_VERIFICATION.json": "6a3586ec0ef2049de76a15531af928dfc2b784261f371cb36787553efeaa8bb7"
+  },
+  "self_hash_policy": "result.json does not contain its own hash; completion message supplies that digest.",
+  "checks": [
+    {
+      "obligation": "Functional rank yields invertible fixed compensation matrix",
+      "result": "proved",
+      "evidence": "Finite-dimensional annihilator argument proves surjectivity onto R^m; select preimages of basis vectors."
+    },
+    {
+      "obligation": "Local measurement and compensation exponents",
+      "result": "proved",
+      "evidence": "Change of variables gives O(delta^(alpha+1)); fixed finite matrix inverse and fixed smooth compensation functions preserve this order."
+    },
+    {
+      "obligation": "Uniform convergence and positivity",
+      "result": "proved within exact scope",
+      "evidence": "Local sup change O(delta^alpha), compensation O(delta^(alpha+1)); each is eventually below half its baseline positive margin; unchanged points remain nonnegative."
+    },
+    {
+      "obligation": "Divergent target derivative",
+      "result": "proved",
+      "evidence": "Compensation vanishes on a neighborhood of x0, so derivative difference is exactly b delta^(alpha-1), for fixed b nonzero and 0<alpha<1."
+    },
+    {
+      "obligation": "Finite tolerance without rank",
+      "result": "proved",
+      "evidence": "Finite fixed positive widths give a common sufficiently small delta from coordinate convergence to baseline; no numerical tolerance experiment used."
+    },
+    {
+      "obligation": "Counterexample attempts",
+      "result": "scope controls established, no counterexample to normalized PF1",
+      "evidence": "Dropping off-target rank can prevent compensation; baseline zeros defeat global strict positivity; a derivative observation outside the bounded-kernel class defeats exact derivative freedom."
+    }
+  ],
+  "coverage": "Exact symbolic proof reconstruction of conditional functional lemma, support typing, positivity, exponents, quantifiers, and finite-tolerance claim. No actual instrument kernels, rank measurement, gravity theory, or ancestral scientific result audited.",
+  "execution": {
+    "proof_only": true,
+    "new_numerical_runs": 0,
+    "symbolic_software_runs": 0,
+    "numerical_commands": [],
+    "numerical_manifest": null,
+    "manifest_omission_reason": "Pure algebra/analysis review; filesystem reads, SHA256 verification and JSON generation are provenance operations, not mathematical computation evidence.",
+    "checkout_head_at_start": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "checkout_head_at_completion": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "scientific_freshness_basis": "Pinned candidate and ancestry bytes, not mutable shared checkout HEAD",
+    "new_root_finite_controls": "Not inspected or rerun; excluded from all audit coverage and verdicts."
+  },
+  "failed_computational_attempts": [],
+  "limitations": [
+    "Global strict positivity does not follow from a merely nonnegative baseline with untouched zeros.",
+    "Off-target independence is sufficient for the displayed construction, not proved necessary for all possible null families.",
+    "The finite-tolerance claim requires a fixed acceptance neighborhood around baseline, not exact constraints, boundary-only one-sided sets, or shrinking error widths.",
+    "Actual linear response kernels, off-target rank and admissible physical perturbations remain unauthenticated.",
+    "Point derivative divergence does not establish divergence of a fixed-resolution averaged gradient.",
+    "No hydrostatic, monotonicity, curvature, X-ray, thermal-equilibrium, boundary-flux or filtered-MONO consistency is supplied by this lemma.",
+    "No theory exclusion, empirical result, novelty result or complete gravity theory claimed."
+  ],
+  "first_remaining_implication": "Authenticate the actual fixed linear map/beam pressure operator and its off-target rank on a positive-pressure region, jointly with the physically allowed perturbation class; finite-basis rank alone does not settle the continuum derivative question."
+}

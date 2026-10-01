@@ -1,0 +1,24 @@
+import Mathlib
+noncomputable section
+open scoped Real
+#check sin_mul_sin
+#check cos_mul_cos
+#check sin_mul_cos
+#check cos_mul_sin
+#check Real.sin_sq_cos_sq
+#check Real.cos_sq
+#check Function.Periodic.zsmul
+#check Function.Periodic.int_mul
+#check Function.Periodic.nsmul
+#check Real.continuous_exp
+#check Real.continuous_sin
+#check Real.continuous_cos
+#check Continuous.comp
+#check Continuous.mul
+#check Continuous.add
+#check Continuous.const
+#check Continuous.neg
+#check Continuous.sub
+#check Continuous.id
+#check Continuous.const_mul
+#check Continuous.mul_const

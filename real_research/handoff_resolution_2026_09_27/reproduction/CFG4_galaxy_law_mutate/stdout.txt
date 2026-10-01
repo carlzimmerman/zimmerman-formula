@@ -1,0 +1,143 @@
+CFG4 (part 1 of 5) -- THE GALAXY LAW THE DATA FORCE: the total field of bound galaxies as a function of their baryons, read
+off SPARC (175 galaxies) with a0 fixed by the framework on both footings; the functional form nu and its allowed range; the
+scatter budget; the baryonic Tully-Fisher normalisation; the dark density the law implies,
+rho_eff = div[(nu - 1) g_bar]/(4 pi G), and its integral properties (surface density, core radius); and a verdict on the
+record's use of a halo surface density ~ a0/(2 pi G).
+
+THE BASE.  a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 FITTED (never derived; Z = 2 sqrt(8 pi/3) = 5.7888 is the same
+statement), flat in z.  Footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2 (FP0's committed pair).  The law's form is the
+framework's own: g_obs = nu(g_bar/a0) g_bar.  Two named kernels are carried: P2 = sqrt(1 + 1/y) (the framework's postulate,
+FP0/FP1) and nu_mono (the chain's monotone repair of the exponential RAR shape, the 09-26 kernel decision; FP1's committed
+definition exec'd read-only).  To say what the DATA allow, a one-parameter transition family is scanned:
+nu_beta(y) = (1 + y^-beta)^(1/(2 beta)) (deep limit y^-1/2 for every beta; beta = 1 is P2).  This family is an effective
+description of the transition sharpness, not a theory.
+
+DATA.  real_research/data/sparc_data/*_rotmod.dat (175 rotation curves with their baryonic components) and
+real_research/data/SPARC_Lelli2016c.mrt (distances, inclinations, 3.6 um luminosities, HI masses, Vflat, quality flags).
+The record's statistic is kept exactly (real_research/rar_framework_a0_mlfit.py; FP1 C0/C2): the weighted rms of
+log10(g_obs) - log10(nu g_bar), weights (V_obs/e_V)^2 with e_V, V_obs clipped at 1 km/s, Upsilon_bul = 1.4 Upsilon_disk,
+one global Upsilon_disk profiled on the grid 0.30-1.20 (step 0.01).
+
+PRE-DECLARED (written before any run of this script; expectations from FP1 and the record's RAR fit):
+  H1 CONTROLS.  (a) The record's SPARC RAR fit, real_research/rar_framework_a0_mlfit.py, exec'd read-only, is reproduced
+     exactly by this lane's vectorised statistic (its own a0 = 9.3614e-11, Upsilon = 0.70: 0.108 dex; its fine-grid optimum
+     0.70); (b) FP1 C2's committed rms and Upsilon for P2 and nu_mono on both footings are reproduced to < 1e-9.
+     EXPECT TRUE.
+  H2 [HEADLINE] THE LAW FITS.  At the framework's a0 on both footings, with one global Upsilon profiled, P2 and nu_mono fit
+     SPARC with a weighted rms <= 0.110 dex at a 3.6-um Upsilon_disk inside 0.50-0.80, while the Newtonian law (no phantom)
+     cannot do better than 0.25 dex at any Upsilon.  EXPECT TRUE.
+  H3 THE SHAPE.  SPARC at fixed a0 constrains the transition sharpness beta to a finite band.  Expected: the band sits
+     ABOVE beta = 1 (the data prefer a sharper transition than P2, as nu_mono's lower rms suggests, FP1 C2), with P2 outside
+     or at the edge of the galaxy-bootstrap 95% band.  UNCERTAIN; the measured band is the law's allowed range.
+  H4 THE SCATTER BUDGET.  The observational error model (velocity errors per point; distance, inclination and Upsilon
+     (0.10 dex population scatter) coherent per galaxy) accounts for most of the observed scatter, and the maximum-likelihood
+     per-point intrinsic scatter is <= 0.06 dex at 95% on both footings for both kernels.  EXPECT TRUE.
+  H5 THE BTFR.  On the clean Vflat sample (Q <= 2, e_Vflat/Vflat <= 0.1) the free slope lies in 3.5-4.5; at slope 4 the
+     observed normalisation agrees within 0.10 dex with the law's own finite-radius prediction (the BTFR is the RAR's outer
+     part), and differs from the deep-limit value 1/(G a0) by the finite-y offset.  UNCERTAIN on the deep-limit comparison.
+  H6 THE DARK DENSITY AND ITS SURFACE DENSITY.  In spherical symmetry the phantom's enclosed surface density is exactly
+     Sigma_ph(<r) = y (nu(y) - 1) a0/(pi G): for P2 it is bounded by Sigma_M = a0/(2 pi G) (reached only as y -> oo); nu_RAR's
+     bound is 1.2952 Sigma_M (the record's h122); nu_mono has none (logarithmic growth).  On SPARC the median of each galaxy's
+     largest Sigma_ph(<r) lies at 0.4-0.8 Sigma_M; the phantom's Burkert product rho0 r0 lies within 0.3 dex of Sigma_M.
+     UNCERTAIN; the verdict on the record's 'halo surface density ~ a0/(2 pi G)' follows the numbers.
+MUTATE=1 replaces the law by Newton (nu = 1) in every place the law is scored: the headline H2 must FAIL (rc = 1).
+
+  *** MUTATE=1: the law is replaced by Newton (nu = 1) wherever it is scored -- the headline H2 must FAIL ***
+
+  a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt) m/s^2 [FP0]; Sigma_M = a0/(2 pi G) = 106.9 / 129.2 Msun/pc^2; kappa = 1/2 fitted; Z = 5.7888
+
+  SPARC: 175 galaxies, 3391 points; master table rows matched 175; Upsilon grid 0.30-1.20
+
+======================================================================================================================
+K  CONTROLS: the record's SPARC RAR fit (rar_framework_a0_mlfit.py) and FP1 C2, reproduced exactly
+======================================================================================================================
+    rar_framework_a0_mlfit.py (exec'd read-only): a0 = 9.3614e-11; its fine-grid optimum Upsilon_disk = 0.70, scatter 0.108 dex; its scatter() at Upsilon 0.70 = 0.108268467441 (mean offset +0.0072); this lane at the same point 0.108268467441
+    its coarse table: U 0.50: 0.145 (+0.10), U 0.60: 0.117 (+0.05), U 0.70: 0.108 (+0.01), U 0.80: 0.116 (-0.03), U 1.00: 0.155 (-0.10)  [committed doc FRAMEWORK_A0_RAR_MLFIT_2026-06-06.md: 0.145/0.117/0.108/0.116/0.155]
+  [PASS] K1 CONTROL: the record's SPARC RAR fit (real_research/rar_framework_a0_mlfit.py, exec'd read-only) is reproduced exactly: at its own a0 = 9.3614e-11 and Upsilon_disk = 0.70 this lane's vectorised statistic equals its scatter() to < 1e-12, its fine-grid optimum is 0.70 at 0.108 dex, and its coarse table is the committed one
+         measured: |mine - theirs| = 2.8e-17; optimum 0.70 / 0.108 dex; coarse 0.145/0.117/0.108/0.116/0.155
+  [PASS] K2 CONTROL: FP1 C2's committed SPARC numbers (P2 and nu_mono, both footings, Upsilon profiled) are reproduced
+         measured: canonical: P2 0.108272 (U 0.70) vs 0.108272, mono 0.100329 (U 0.61) vs 0.100329; alt: P2 0.103549 (U 0.65) vs 0.103549, mono 0.099103 (U 0.57) vs 0.099103; max |d rms| 2.8e-17, max |d U| 0.00
+
+======================================================================================================================
+H2  THE LAW ON SPARC: P2 and nu_mono at the framework's a0 (both footings), one global Upsilon profiled; Newton for contrast
+======================================================================================================================
+    canonical: P2 0.2755 dex (Upsilon_disk 1.20); nu_mono 0.2755 dex (Upsilon 1.20); Newton 0.2755 dex (Upsilon 1.20, the grid's edge)
+    alt      : P2 0.2755 dex (Upsilon_disk 1.20); nu_mono 0.2755 dex (Upsilon 1.20); Newton 0.2755 dex (Upsilon 1.20, the grid's edge)
+  [FAIL] H2 [HEADLINE] THE LAW FITS SPARC: at the framework's a0 on both footings, with one global Upsilon profiled, P2 and nu_mono reach a weighted rms <= 0.110 dex at a 3.6-um Upsilon_disk inside 0.50-0.80, while Newton (no phantom) stays >= 0.25 dex
+         measured: canonical: P2 0.2755@1.20, mono 0.2755@1.20, Newton 0.2755; alt: P2 0.2755@1.20, mono 0.2755@1.20, Newton 0.2755
+
+======================================================================================================================
+H2b (reported) a0 AND Upsilon: the fitted a0 at the 3.6-um prior Upsilon_disk = 0.50, and the kappa each reading implies
+======================================================================================================================
+    P2      : at Upsilon_disk = 0.50 the best a0 = 3.162e-11 m/s^2 (rms 0.4544) -> kappa = 0.169 (the canonical footing is kappa = 0.5 with Upsilon 1.20)
+    nu_mono : at Upsilon_disk = 0.50 the best a0 = 3.162e-11 m/s^2 (rms 0.4544) -> kappa = 0.169 (the canonical footing is kappa = 0.5 with Upsilon 1.20)
+  [PASS] (reported) H2b (reported) a0 and Upsilon are degenerate on SPARC: at the 3.6-um prior Upsilon_disk = 0.50 the fitted a0 is the printed value; the framework's kappa = 1/2 is the same fit at a higher Upsilon -- kappa stays FITTED
+         measured: P2: a0 3.162e-11 (kappa 0.169); nu_mono: a0 3.162e-11 (kappa 0.169)
+
+======================================================================================================================
+H3  THE SHAPE THE DATA ALLOW: the transition family nu_beta = (1 + y^-beta)^(1/(2 beta)), galaxy bootstrap
+======================================================================================================================
+    canonical: best beta = 0.25 (rms 0.2755, Upsilon 1.20); bootstrap 68% [0.25, 0.25], 95% [0.25, 0.25]; beta = 1 (P2) rms 0.2755, worse than the resample's best in 0.000 of resamples (median excess +0.0000 dex)
+               rms(beta): 0.25: 0.2755, 0.37: 0.2755, 0.55: 0.2755, 0.82: 0.2755, 1.22: 0.2755, 1.82: 0.2755, 2.71: 0.2755, 4.03: 0.2755, 6.00: 0.2755
+    alt      : best beta = 0.25 (rms 0.2755, Upsilon 1.20); bootstrap 68% [0.25, 0.25], 95% [0.25, 0.25]; beta = 1 (P2) rms 0.2755, worse than the resample's best in 0.000 of resamples (median excess +0.0000 dex)
+               rms(beta): 0.25: 0.2755, 0.37: 0.2755, 0.55: 0.2755, 0.82: 0.2755, 1.22: 0.2755, 1.82: 0.2755, 2.71: 0.2755, 4.03: 0.2755, 6.00: 0.2755
+  [FAIL] (reported) H3 (reported; pre-declared UNCERTAIN) the SPARC band on beta lies above beta = 1: the data prefer a sharper transition than P2, with P2 outside the galaxy-bootstrap 95% band
+         measured: canonical: best 0.25, 95% [0.25, 0.25]; alt: best 0.25, 95% [0.25, 0.25]
+         reading:  the band is the law's allowed transition sharpness at the framework's a0; the deep limit (y^-1/2, the BTFR's slope 4) and the Newtonian limit are common to every member and are not what the band measures
+
+======================================================================================================================
+H4  THE SCATTER BUDGET: velocity errors per point; distance, inclination and Upsilon coherent per galaxy; ML intrinsic scatter
+======================================================================================================================
+    canonical P2      : observed rms 0.2713 dex (weighted; unweighted 0.3593), the error model's rms 0.1485 (30% of the variance); ML intrinsic scatter 0.1200 dex, 95% upper bound inf (3389 points, Upsilon 1.20)
+    canonical nu_mono : observed rms 0.2713 dex (weighted; unweighted 0.3593), the error model's rms 0.1485 (30% of the variance); ML intrinsic scatter 0.1200 dex, 95% upper bound inf (3389 points, Upsilon 1.20)
+    alt       P2      : observed rms 0.2713 dex (weighted; unweighted 0.3593), the error model's rms 0.1485 (30% of the variance); ML intrinsic scatter 0.1200 dex, 95% upper bound inf (3389 points, Upsilon 1.20)
+    alt       nu_mono : observed rms 0.2713 dex (weighted; unweighted 0.3593), the error model's rms 0.1485 (30% of the variance); ML intrinsic scatter 0.1200 dex, 95% upper bound inf (3389 points, Upsilon 1.20)
+    sensitivity (canonical, nu_mono) to the declared Upsilon scatter: 0.05 dex -> s_int 0.1200; 0.15 dex -> 0.1200 (4 s)
+  [FAIL] (reported) H4 (reported) THE SCATTER BUDGET: the error model (per-point velocity errors; coherent distance, inclination and 0.10 dex Upsilon per galaxy) carries most of the observed variance, and the ML per-point intrinsic scatter is <= 0.06 dex at 95% for both kernels on both footings
+         measured: can/P2: s_int 0.120 (95% <= inf), errors 30%; can/nu_mono: s_int 0.120 (95% <= inf), errors 30%; alt/P2: s_int 0.120 (95% <= inf), errors 30%; alt/nu_mono: s_int 0.120 (95% <= inf), errors 30%
+         reading:  the intrinsic scatter bounds any hidden second parameter of the galaxy law (an environment, a formation history, a variable a0): at fixed baryons the total field is deterministic to this level
+
+======================================================================================================================
+H5  THE BARYONIC TULLY-FISHER RELATION: slope, normalisation, and the law's own finite-radius prediction
+======================================================================================================================
+    canonical P2       (Upsilon 1.20, 124 galaxies): free slope 3.977 (intrinsic 0.136 dex); at slope 4: A_obs = 85.6 Msun/(km/s)^4; deep limit 1/(G a0) = 80.5 (obs - deep +0.027 dex); the law's own outer velocities give 390.9 (obs - law -0.660 dex); kappa read from A_obs as a deep-limit normalisation 0.470
+    canonical nu_mono  (Upsilon 1.20, 124 galaxies): free slope 3.977 (intrinsic 0.136 dex); at slope 4: A_obs = 85.6 Msun/(km/s)^4; deep limit 1/(G a0) = 80.5 (obs - deep +0.027 dex); the law's own outer velocities give 390.9 (obs - law -0.660 dex); kappa read from A_obs as a deep-limit normalisation 0.470
+    alt       P2       (Upsilon 1.20, 124 galaxies): free slope 3.977 (intrinsic 0.136 dex); at slope 4: A_obs = 85.6 Msun/(km/s)^4; deep limit 1/(G a0) = 66.6 (obs - deep +0.109 dex); the law's own outer velocities give 390.9 (obs - law -0.660 dex); kappa read from A_obs as a deep-limit normalisation 0.470
+    alt       nu_mono  (Upsilon 1.20, 124 galaxies): free slope 3.977 (intrinsic 0.136 dex); at slope 4: A_obs = 85.6 Msun/(km/s)^4; deep limit 1/(G a0) = 66.6 (obs - deep +0.109 dex); the law's own outer velocities give 390.9 (obs - law -0.660 dex); kappa read from A_obs as a deep-limit normalisation 0.470
+  [FAIL] (reported) H5 (reported) THE BTFR: the free slope lies in 3.5-4.5 and, at slope 4, the observed normalisation agrees within 0.10 dex with the law's own outer-radius prediction on both footings (the deep-limit 1/(G a0) differs by the printed finite-y offset)
+         measured: can/P2: slope 3.98, obs-law -0.660, obs-deep +0.027 dex; can/nu_mono: slope 3.98, obs-law -0.660, obs-deep +0.027 dex; alt/P2: slope 3.98, obs-law -0.660, obs-deep +0.109 dex; alt/nu_mono: slope 3.98, obs-law -0.660, obs-deep +0.109 dex
+         reading:  the BTFR normalisation is the deep-MOND 1/(G a0) only asymptotically; SPARC's V_flat sits at finite y, so reading kappa off A_obs as a deep-limit number biases it (the record's 0.465 +- 0.076 is that reading)
+
+======================================================================================================================
+H6  THE DARK DENSITY THE LAW IMPLIES: rho_eff = div[(nu - 1) g_bar]/(4 pi G), its surface density and core radius
+======================================================================================================================
+    analytic (spherical): Sigma_ph(<r) = y (nu(y) - 1) a0/(pi G) = 2 y (nu - 1) Sigma_M.  sup over y: P2 1.0000 Sigma_M (at y = 6e+07, approached as y -> oo); nu_RAR 1.2952 Sigma_M at y = 2.541 (the record's h122: 1.2952); nu_mono 1.490 at y <= 100, 1.787 at y <= 1e4, 2.384 at y <= 1e8 (no bound: logarithmic)
+    at the MOND radius of a point mass (y = 1): P2 0.8284 Sigma_M, nu_mono 1.1640 Sigma_M
+    canonical P2      : 159 galaxies (Q <= 2); max_r Sigma_ph(<r)/Sigma_M median 0.000 [16-84%: 0.000-0.000], above Sigma_M in 0%; central column Sigma_ph(0)/Sigma_M median 0.64
+                         Burkert fit to M_ph(<r) (0 galaxies with fit rms < 0.1 dex): log10 rho0 r0 = nan +- nan (Msun/pc^2; Sigma_M = 2.029, offset +nan dex; Donato+09 2.15 +- 0.2); pISO nan; core radius r0 = nan R_disk (corr +nan) = nan r_M (corr +nan)
+    canonical nu_mono : 159 galaxies (Q <= 2); max_r Sigma_ph(<r)/Sigma_M median 0.000 [16-84%: 0.000-0.000], above Sigma_M in 0%; central column Sigma_ph(0)/Sigma_M median 0.64
+                         Burkert fit to M_ph(<r) (0 galaxies with fit rms < 0.1 dex): log10 rho0 r0 = nan +- nan (Msun/pc^2; Sigma_M = 2.029, offset +nan dex; Donato+09 2.15 +- 0.2); pISO nan; core radius r0 = nan R_disk (corr +nan) = nan r_M (corr +nan)
+    alt       P2      : 159 galaxies (Q <= 2); max_r Sigma_ph(<r)/Sigma_M median 0.000 [16-84%: 0.000-0.000], above Sigma_M in 0%; central column Sigma_ph(0)/Sigma_M median 0.58
+                         Burkert fit to M_ph(<r) (0 galaxies with fit rms < 0.1 dex): log10 rho0 r0 = nan +- nan (Msun/pc^2; Sigma_M = 2.111, offset +nan dex; Donato+09 2.15 +- 0.2); pISO nan; core radius r0 = nan R_disk (corr +nan) = nan r_M (corr +nan)
+    alt       nu_mono : 159 galaxies (Q <= 2); max_r Sigma_ph(<r)/Sigma_M median 0.000 [16-84%: 0.000-0.000], above Sigma_M in 0%; central column Sigma_ph(0)/Sigma_M median 0.58
+                         Burkert fit to M_ph(<r) (0 galaxies with fit rms < 0.1 dex): log10 rho0 r0 = nan +- nan (Msun/pc^2; Sigma_M = 2.111, offset +nan dex; Donato+09 2.15 +- 0.2); pISO nan; core radius r0 = nan R_disk (corr +nan) = nan r_M (corr +nan)
+  [FAIL] (reported) H6 (reported; pre-declared UNCERTAIN) THE SURFACE DENSITY: analytically P2's phantom surface density is bounded by exactly Sigma_M = a0/(2 pi G) (nu_RAR 1.2952 Sigma_M, nu_mono unbounded); on SPARC each galaxy's largest Sigma_ph(<r) has a median in 0.4-0.8 Sigma_M, and the phantom's Burkert rho0 r0 lies within 0.3 dex of Sigma_M, on both footings for both kernels
+         measured: sup: P2 1.0000, RAR 1.2952, mono(1e2/1e8) 1.49/2.38 Sigma_M; can/P2: Sig_max 0.00, Burkert +nan dex; can/nu_mono: Sig_max 0.00, Burkert +nan dex; alt/P2: Sig_max 0.00, Burkert +nan dex; alt/nu_mono: Sig_max 0.00, Burkert +nan dex
+
+    VERDICT on the record's 'halo surface density ~ a0/(2 pi G)' (hunt_2026/WHAT_THE_HUNT_TAUGHT.md item 5; hy4_push/H033):
+      * as an IDENTITY it holds only as P2's analytic CEILING: Sigma_ph(<r) < Sigma_M for every spherical system, equality as y -> oo; for nu_mono (the adopted kernel) there is no ceiling (Sigma_ph(<r) reaches 1.79 Sigma_M at y = 1e4).
+      * as a MEASUREMENT on SPARC the typical phantom sits BELOW it: median max Sigma_ph(<r) = 0.00 (P2) / 0.00 (nu_mono) Sigma_M (canonical); the Burkert product rho0 r0 = 10^nan / 10^nan Msun/pc^2 vs Sigma_M = 107 (canonical) -- a fit-convention number, not an identity.
+
+======================================================================================================================
+W  THE LEDGER: part 1 (the galaxy law)
+======================================================================================================================
+    G1       FITTED      the galaxy law g = nu(g_bar/a0) g_bar at a0 = kappa c sqrt(G rho_L), kappa = 1/2: SPARC rms 0.2755/0.2755 (nu_mono), 0.2755/0.2755 (P2) at Upsilon 1.20/1.20 and 1.20/1.20  --  H2
+    G2       CONSTRAINT  transition sharpness beta (nu_beta family) 95%: [0.25, 0.25] canonical, [0.25, 0.25] alt (P2 = 1)  --  H3
+    G3       CONSTRAINT  intrinsic scatter (per point, ML, 95%): can/P2 <= inf, can/nu_mono <= inf, alt/P2 <= inf, alt/nu_mono <= inf  --  H4
+    G4       MEASURED    BTFR at slope 4: can/P2 A_obs 85.6 vs law 390.9 vs 1/(G a0) 80.5, can/nu_mono A_obs 85.6 vs law 390.9 vs 1/(G a0) 80.5, alt/P2 A_obs 85.6 vs law 390.9 vs 1/(G a0) 66.6, alt/nu_mono A_obs 85.6 vs law 390.9 vs 1/(G a0) 66.6  --  H5
+    G5       DERIVED     phantom surface density ceiling: P2 exactly a0/(2 pi G) (sup 1.0000); nu_RAR 1.2952x; nu_mono none  --  H6
+  [PASS] (reported) W (reported) the ledger of part 1
+         measured: 5 rows
+
+  4/9 checks pass; load-bearing failures: 1; wrote CFG4_galaxy_law_results_MUTATE.json (10 s)
+rc = 1

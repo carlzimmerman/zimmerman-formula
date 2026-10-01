@@ -1,0 +1,58 @@
+{
+  "run_id": "AS500-C01-r1-20260929T000610Z-dsv4f-hermes",
+  "task": "AS500.C01",
+  "task_sha256": "7d0a46c2825ced3133d1d8c44bef2c59c550464bfe70ae17b3274a30d18a2caf",
+  "verdict": "(a) decoupling proven: div Q_b = 0 on shell in the N sqrt(h) measure; matter-only Ward separation LANDS on the pinned cell",
+  "on_shell_reductions": {
+    "div_Q_heat_shell": "0 (exact; heat EOMs E_Wk = E_Lk = E_lam0 = E_U = 0 + AS133 terminal BC L_b = -R_W, lam0 = L_0)",
+    "div_Q_U1_shell": "0 (exact; phi,chi EOM pair div J_phi = +E_ex, div J_chi = -E_ex, AS147)",
+    "div_Q_vac_shell": "0 (exact; three-form flux constancy dq = 0, AS651/AS658)",
+    "div_Q_b_shell": "0 (exact; matter EOM E_b = 0, minimal coupling, AS137)",
+    "sum_cross_source_shell": "0 (exact symbolic)",
+    "poly_in_r_Z_beta2": "Poly(0, r) over ZZ - zero polynomial, all coefficients 0",
+    "poly_multi_Z_b_beta_q": "Poly(0, Z, b, beta, q) over ZZ - zero polynomial, all coefficients 0",
+    "random_jet_stats": {"n_on_shell_zero": 100, "n_off_shell_nonzero": 100, "seed": 20260928}
+  },
+  "NEG_1_ward_on_Qb_alone_without_decoupling_lemma": {
+    "residual_symbolic": "(Q_heat + Q_U1 + Q_vac) with generic off-shell jets (E_Wk, E_Lk, E_lam0, E_U, dq, L_b+R_W, lam0-L_0 retained)",
+    "witness_a_heat_eom_omitted": "15 != 0 (exact rational; E_W0 = 3/2, N = 10, dW0 = 1)",
+    "witness_b_terminal_bc_omitted": "20 != 0 (exact rational; L_b = -R_W + 1, lam0 = L_0 - 1, N = 10, Wbp = 1, W0p = 1)",
+    "verdict": "FIRES: without the sector-decoupling lemma the residual is nonzero - the matter-only atom does NOT follow from the total Ward identity alone; the separation is genuinely carried by the sector identities"
+  },
+  "NEG_2_q_nonconst_in_bulk": {
+    "retained_hypothesis": "three-form bulk EOM (AS658): EOM = 0 iff d_mu P_q = 0, P_qq = Z + 2 b beta^2 > 0, hence q = const in the bulk",
+    "eom_residual_symbolic": "-(Z + 2 b beta^2) * q1  (q1 = d_mu q component)",
+    "numeric_witness": "-2.40000000000 (tuned ratio Z/beta^2 = 8 - 2b, q = q0*(1 + 0.3 sin x0))",
+    "verdict": "FIRES: a (b)-witness declaring q != const violates the retained hypothesis and cannot establish (b)"
+  },
+  "sampled_coupling_points": [
+    {"point": "P1", "alpha": "1/2", "K_B": "0", "r_Z_over_beta2": 1.0, "ell": 0.04, "delta": 0.05, "on_shell_sum": 0.0, "neg1_residual_abs": 1.9788, "neg2_residual_abs": 0.310803},
+    {"point": "P2", "alpha": "1", "K_B": "1/8", "r_Z_over_beta2": 4.0, "ell": 0.04, "delta": 0.05, "on_shell_sum": 0.0, "neg1_residual_abs": 21.9638, "neg2_residual_abs": 1.21013},
+    {"point": "P3", "alpha": "3/2", "K_B": "1/4", "r_Z_over_beta2": 7.9639892129110018909, "ell": 0.04, "delta": 0.05, "on_shell_sum": 0.0, "neg1_residual_abs": 48.3754, "neg2_residual_abs": 2.39865},
+    {"point": "P4", "alpha": "7/10", "K_B": "0", "r_Z_over_beta2": 16.0, "ell": 0.04, "delta": 0.05, "on_shell_sum": 0.0, "neg1_residual_abs": 101.979, "neg2_residual_abs": 4.8108},
+    {"point": "P5", "alpha": "19/10", "K_B": "1/4", "r_Z_over_beta2": 64.0, "ell": 0.04, "delta": 0.05, "on_shell_sum": 0.0, "neg1_residual_abs": 421.949, "neg2_residual_abs": 19.2095}
+  ],
+  "lean_certificates": {
+    "file": "AS500C01_matter_ward_decoupling.lean",
+    "compile_exit": 0,
+    "n_theorems": 9,
+    "sorry_count": 0,
+    "axioms": "[propext, Classical.choice, Quot.sound] for all 9 theorems (unfiltered #print axioms, lean_axioms.out)",
+    "theorems": ["matter_closes_on_shell", "heat_closes_on_shell", "u1_exchange_zero", "vacuum_div_zero_on_shell", "cross_source_closes", "matter_decoupling", "neg1_heat_eom_omitted", "neg1_terminal_bc_omitted", "eom_rejects_nonconst_q"]
+  },
+  "footings": {
+    "kappa": "1/2 ADOPTED (never derived)",
+    "rho_Lambda_canonical": "5.844412454e-27 kg/m^3 (a0 = 9.3619e-11 m/s^2)",
+    "rho_Lambda_alternative": "8.483089620e-27 kg/m^3 (a0 = 1.1279e-10 m/s^2)",
+    "both_footings": "all statements dimensionless; apply identically to both footings",
+    "G_split": "G_N/G_bare/G_cosmo kept as separate symbols; only G_N = 6.67430e-11 enters footprint prints"
+  },
+  "execution": {
+    "wall_s": 2.5,
+    "max_rss_bytes": 68583424,
+    "threads": 1,
+    "cpu_cap": "ulimit -t 120 (shell-enforced)",
+    "lean_compile": "lake env lean from fable_independent_2026/lean_2026 (compile host only); 2.05-2.41 s",
+    "precision": "exact symbolic (sympy) for all reductions; exact rational witnesses; mpmath/sympy Float at 20+ digits for the 5 sampled points"
+  }
+}

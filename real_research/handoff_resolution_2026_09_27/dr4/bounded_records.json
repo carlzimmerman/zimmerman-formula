@@ -1,0 +1,578 @@
+[
+  {
+    "script": "XR31",
+    "mutate": true,
+    "rc": 1,
+    "seconds": 10.692203044891357,
+    "differences": [
+      [
+        "/numbers/H3/K0/secant_min_on_band",
+        0.011463671247576367,
+        0.011463671247576364
+      ],
+      [
+        "/numbers/H1/K25/secs",
+        1.410221815109253,
+        1.5001192092895508
+      ],
+      [
+        "/numbers/H1/TA/secs",
+        1.3147780895233154,
+        1.2317750453948975
+      ],
+      [
+        "/numbers/H1/K0/secs",
+        1.4532089233398438,
+        1.3879930973052979
+      ],
+      [
+        "/numbers/H4/rows/K0/0/CT",
+        3.826409264842834,
+        3.826409264842835
+      ],
+      [
+        "/numbers/H4/rows/K0/1/CT",
+        4.685399099807552,
+        4.685399099807553
+      ],
+      [
+        "/numbers/H4/rows/K0/2/CT",
+        7.8089984996792525,
+        7.808998499679255
+      ],
+      [
+        "/numbers/H4/rows/K0/3/CT",
+        15.617996999358505,
+        15.61799699935851
+      ],
+      [
+        "/numbers/H4/rows/K0/4/CT",
+        31.23599399871701,
+        31.23599399871702
+      ],
+      [
+        "/numbers/H4/rows/K0/5/CT",
+        78.08998499679252,
+        78.08998499679255
+      ],
+      [
+        "/numbers/H4/rows/K0/6/CT",
+        156.17996999358505,
+        156.1799699935851
+      ],
+      [
+        "/numbers/H4/rows/K0/7/CT",
+        234.26995499037758,
+        234.26995499037764
+      ],
+      [
+        "/summary/seconds",
+        9.927571296691895,
+        12.239267110824585
+      ]
+    ],
+    "checks": {
+      "C0": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROL: k04's own script, run unmodified from the repository root, reproduces its committed .out verbatim",
+        "measured": "rc = 0; 27 lines identical: True; committed F6 row: '[PASS] F6 [stability] the effective flux stiffness Z_eff = Z + (2-K_B) beta^2 (s Delta - j)/(8 pi) is positive everywhere (s Delta - j >= 0)   (min(s ...'"
+      },
+      "C0b": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROL: this lane's route B (bracketed root of the flux equation, its own quadrature) in k04's convention reproduces k04's committed F3 rows (K_B = 0, 0.25) and F5 rows (both footings) to the printed digits",
+        "measured": "4/4 rows found verbatim in k04's committed .out"
+      },
+      "C1": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROL: XR20's own script (byte-identical copy, run from a scratch mirror with its inputs copied; nothing in the repository written) reproduces its committed T2f line for k04's kernel verbatim",
+        "measured": "XR20 rc = 0; source sha256 identical: True; line identical to the committed .out: True"
+      },
+      "C1b": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CROSS-CHECK: this lane's solver in XR20's convention (c = kappa^2/8 pi, K_B = 0) on XR20's own 400-point grid returns XR20's printed peaks and u(100); the precise fold lies within one grid step of each",
+        "measured": "canonical: grid argmax 2.3976 (XR20 2.40), precise fold 2.3851, grid step 0.045; alt: grid argmax 2.3140 (XR20 2.31), precise fold 2.3229, grid step 0.042; u(100) 0.2315 (XR20 0.231)"
+      },
+      "C2": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROL: the SPARC loader reads 175 galaxies and reproduces FP7's count of 3391 points under FP7's own selection (V_obs > 0, errV > 0); the RAR cuts of FP1 (Upsilon_bul = 1.4 Upsilon, g_bar > 0, g_obs > 0) leave the reported number at Upsilon = 0.7",
+        "measured": "175 galaxies; FP7 selection 3391 points; with FP1's RAR cuts at Upsilon = 0.7: 3389 points"
+      },
+      "C3": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROL: the kernel's constants (exact saturation point: e^t (1 - t/2) = 1, t = sqrt(s)) equal the record's printed values (k01: s_sat, Delta_sat; k04 F2: I = j_sat)",
+        "measured": "s_sat = 2.539638 (k01 2.540), Delta_sat = 0.647610 (0.6476), j_sat = 0.452525 (0.4525); 40-digit route: s_sat 2.53963828219, Delta_sat 0.647610237892, j_sat 0.452524896675"
+      },
+      "A1": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "k04's F3 equation re-derived: dL/dr|_Y = r [Zt + (2 - K_B)(s Delta - j)/(8 pi)] (the three-form's conserved conjugate) and J_Y = s/Delta, so the scalar's law J_Y g_phi = g_N is y = s r",
+        "measured": "ds/dr|_Y = -Delta/(Deltap*r); conjugate identity True; J_Y = s/Delta True"
+      },
+      "A2": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "THE FOLD IDENTITY: on shell L_rr|_Y = Zt N/Delta' and du/ds = N/(1 + cF)^2 with N = Delta'(1 + c(F + s Delta)) - c Delta^2, so the Legendre map q -> Pi at fixed Y degenerates exactly where the slaved force peaks; dy/ds = (1 + c(F - s F'))/(1 + cF)^2, so C_L,eff = dy/du = (1 + c(F - sF'))/N",
+        "measured": "du/ds True; L_rr|_Y True; dy/ds True"
+      },
+      "A3": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "F6'S QUANTITY IS POSITIVE BY CONSTRUCTION: for k04's kernel F' = Delta - s Delta' = Delta (sqrt(s)/2) e^sqrt(s)/(e^sqrt(s) - 1) > 0 (F' = Delta_sat on the saturated branch) and F(0) = 0, so F >= 0 and F6's Z_eff = Z (1 + cF) >= Z at every s -- whatever the slaved kernel does",
+        "measured": "identity (sympy True, 30-digit spot values 0.0e+00) True; F' > 0 on (0, s_sat) True; min F on k04's own 60-point grid 1.054e-05 (k04 printed 1.05e-05); min F on 1e-6..1e4 3.333e-10"
+      },
+      "A4": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "THE SATURATED BRANCH: the flux equation is linear there, r = (1 - c D_sat y)/(1 - c j_sat); the slaved force FALLS at du/dy = -c D_sat^2/(1 - c j_sat) to zero at y_off = 1/(c D_sat); C_L,eff = -(1 - c j_sat)/(c D_sat^2) < 0",
+        "measured": "r = (D_sat*c*y - 1)/(c*j_sat - 1); du/dy = D_sat**2*c/(c*j_sat - 1); y_off = 1/(D_sat*c); C_L,eff: K0 -238.62 (y_off 155.23), K25 -272.87 (y_off 177.41), TA -163.05 (y_off 106.29)"
+      },
+      "A5": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "THE FLUX EQUATION IS WELL-POSED (the restricted sense of F6): dy/ds = (1 + c(s^2 Delta' - j))/(1 + cF)^2 >= (1 - c j_sat)/(1 + cF)^2 > 0, so r(y) is single-valued: exactly one root, 0 < a0_loc <= a0, at every y below y_off",
+        "measured": "F - sF' = s^2 Delta' - j: True; min_s (1 + c(F - sF')): K0 0.99550, K25 0.99606, TA 0.99343"
+      },
+      "H1-K0": {
+        "ok": false,
+        "load_bearing": true,
+        "name": "THE SLAVED KERNEL FOLDS (K0): u(y) peaks at y_f in [2.2, 2.6], routes A and B agree to < 1e-6, du/dy > 0 below and < 0 on the whole band up to the switch-off y_off = 1/(c D_sat)",
+        "measured": "y_f A 2.385081513 / B None / C 2.385081513; |A - B| = n/a; y_off 155.2337; signs below/band True/False"
+      },
+      "H1-K25": {
+        "ok": false,
+        "load_bearing": true,
+        "name": "THE SLAVED KERNEL FOLDS (K25): u(y) peaks at y_f in [2.2, 2.6], routes A and B agree to < 1e-6, du/dy > 0 below and < 0 on the whole band up to the switch-off y_off = 1/(c D_sat)",
+        "measured": "y_f A 2.402858081 / B None / C 2.402858080; |A - B| = n/a; y_off 177.4100; signs below/band True/False"
+      },
+      "H1-TA": {
+        "ok": false,
+        "load_bearing": true,
+        "name": "THE SLAVED KERNEL FOLDS (TA): u(y) peaks at y_f in [2.2, 2.6], routes A and B agree to < 1e-6, du/dy > 0 below and < 0 on the whole band up to the switch-off y_off = 1/(c D_sat)",
+        "measured": "y_f A 2.322851252 / B None / C 2.322851251; |A - B| = n/a; y_off 106.2886; signs below/band True/False"
+      },
+      "H2": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "dg_obs/dg_N = 1 + du/dy >= 0.99 everywhere below y_off (all cases)",
+        "measured": "K0: min 1.00000, K25: min 1.00000, TA: min 1.00000"
+      },
+      "MONO": {
+        "ok": true,
+        "load_bearing": false,
+        "name": "the slaved scalar force u(y) is monotone non-decreasing on (0, y_off) (pre-declared EXPECT FALSE on the main run, TRUE under MUTATE)",
+        "measured": "K0: True, K25: True, TA: True"
+      },
+      "H3": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "F6'S CRITERION HOLDS ON THE UNSTABLE BAND (secant c F > 0 there), while the tangent stiffness L_rr|_Y changes sign at the fold (+ below, - above); the dual stiffness at fixed flux stays positive (the flux equation is well-posed)",
+        "measured": "K0: secant 0.011, L_rr 2.49 -> -5.83, dual min 7.964; K25: secant 0.010, L_rr 2.68 -> -7.11, dual min 7.968; TA: secant 0.017, L_rr 1.38 -> -2.5, dual min 5.442"
+      },
+      "H4": {
+        "ok": false,
+        "load_bearing": true,
+        "name": "STATIC ELLIPTICITY FAILS ON THE BAND: C_L,eff < 0 (C_T,eff > 0) at every band point, route B = route C to 1e-6, = A4's constant on the saturated branch to 1e-8, and = route A's primal Schur complement in the unsaturated slice",
+        "measured": "sign False; B vs C False (max rel inf); saturated constant False; primal Schur True; C_L,eff at y = 20: K0 -238.62, K25 -272.87, TA -163.05"
+      },
+      "H5": {
+        "ok": false,
+        "load_bearing": true,
+        "name": "DYNAMICAL INSTABILITY ON THE BAND: omega^2_par/omega^2_perp < 0 in the scalar's own sector (any inertia), and with C_phi = C_L,eff the chain root's committed quadratic form has exactly one omega^2 < 0 (lambda = 1, 277, 1.07e7; sigma = 1, 0.1), scaling as k^2 (Hadamard), and FP14's lambda = 0 roots are negative, at every band point",
+        "measured": "K0: omega^2_-(y = 20, lambda = 1) = 2253483.158 (ck)^2, e-fold inf yr at k = 1/kpc; K25: omega^2_-(y = 20, lambda = 1) = 2253483.158 (ck)^2, e-fold inf yr at k = 1/kpc; TA: omega^2_-(y = 20, lambda = 1) = 2253483.158 (ck)^2, e-fold inf yr at k = 1/kpc; omega^2(10 k)/omega^2(k) = 100 to 0.0e+00"
+      },
+      "H5c": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROLS at fixed a0 (no four-form): both roots positive at y = 1 and in the saturated wall's limit; FP14's lambda = 0 roots positive",
+        "measured": "y=1 (fixed a0, unsaturated): min root 7.683e-07, FP14 0.02964 / 2.74; saturated wall (fixed a0, C_phi -> oo): min root 2.253e+06, FP14 2.253e+06 / 2.083e+08"
+      },
+      "H6a": {
+        "ok": true,
+        "load_bearing": false,
+        "name": "SPARC: the band holds a sizeable fraction of the inner points (reported)",
+        "measured": "canonical/K0/U0.7: 0.000; canonical/K25/U0.7: 0.000; alt/K0/U0.7: 0.000; alt/K25/U0.7: 0.000; alt/TA/U0.7: 0.000"
+      },
+      "H6b": {
+        "ok": false,
+        "load_bearing": false,
+        "name": "a solar-mass star: the scalar is off inside ~640 AU and unstable in a shell out to ~5000 AU (reported)",
+        "measured": ""
+      },
+      "H6c": {
+        "ok": false,
+        "load_bearing": true,
+        "name": "WIDE BINARIES: DR4's 2 kAU bin (1.5 Msun) lies in the unstable band on both footings, in isolation and for every orientation of the Galactic field",
+        "measured": "canonical: 2 kAU y = 23.76, all in band False; alt: 2 kAU y = 19.66, all in band False"
+      },
+      "H7a": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "F1 (sign) and F2 (coefficient) live on the Y = 0 background: r = 1 there and y = 0 lies outside the band -- F6 does not touch them (F2 remains k04's own FAIL: Z/beta^2 is free)",
+        "measured": "r(0) = 1.0, 0 in band: False"
+      },
+      "H7b": {
+        "ok": false,
+        "load_bearing": true,
+        "name": "F3's rows: s = 0.01, 0.1, 1 lie below the fold (stable, their < 0.0005 dex shifts stand); s = 2.54, 10, 100 lie in the unstable band (static numbers of an unstable solution); s = 1000 in the switched-off core",
+        "measured": "K0: 0.01 below, 0.1 below, 1 below, 2.54 below, 10 below, 100 below, 1000 below; K25: 0.01 below, 0.1 below, 1 below, 2.54 below, 10 below, 100 below, 1000 below"
+      },
+      "H7c": {
+        "ok": false,
+        "load_bearing": true,
+        "name": "F4 (monopole screening): every planet lies in the switched-off core (y > y_off) -- a static statement F6 does not touch; but the core is wrapped in the unstable shell, so its standing needs a stable exterior the construction lacks",
+        "measured": "min planet y 58236.9 vs y_off None"
+      },
+      "H7d": {
+        "ok": false,
+        "load_bearing": false,
+        "name": "k04's quoted switch-off radius ('inside 205 AU', 'r < 205 AU') is the radius where g_N = y_off a0 around 1 Msun (pre-declared EXPECT FALSE)",
+        "measured": "quoted [205] AU vs computed 638.9 AU (y_off = 155.23, k04's a0 9.3619e-11); ratio 3.116"
+      },
+      "H7e": {
+        "ok": false,
+        "load_bearing": true,
+        "name": "F5 (DR4's 2 kAU bin, k04's own inputs): the bin lies in the unstable band on both footings, so its dgamma_v = -0.019 / -0.015 is a number of an unstable static solution, not a prediction",
+        "measured": "canonical: y = 23.76, in band False, alt: y = 19.72, in band False"
+      }
+    },
+    "output_sha256": "014fa55cdc1af93373e10071839034db79755c99a8fda94a2af7da073ae98bd4"
+  },
+  {
+    "script": "XR31",
+    "mutate": false,
+    "rc": 0,
+    "seconds": 11.174807071685791,
+    "differences": [
+      [
+        "/numbers/H3/K0/secant_min_on_band",
+        0.011463671247576367,
+        0.011463671247576364
+      ],
+      [
+        "/numbers/H1/K25/secs",
+        1.4385778903961182,
+        1.5756678581237793
+      ],
+      [
+        "/numbers/H1/TA/dmin_below",
+        3.832907277678821e-05,
+        3.832907263801033e-05
+      ],
+      [
+        "/numbers/H1/TA/secs",
+        1.3466989994049072,
+        1.3694689273834229
+      ],
+      [
+        "/numbers/H1/TA/yfB",
+        2.3228512518088738,
+        2.3228512518088227
+      ],
+      [
+        "/numbers/H1/K0/dmin_below",
+        3.5604879849993054e-05,
+        3.560487969271146e-05
+      ],
+      [
+        "/numbers/H1/K0/ufB",
+        0.6402869715246466,
+        0.640286971524647
+      ],
+      [
+        "/numbers/H1/K0/dmax_band",
+        -3.557116360723237e-05,
+        -3.557116400506229e-05
+      ],
+      [
+        "/numbers/H1/K0/secs",
+        1.4625189304351807,
+        1.4100069999694824
+      ],
+      [
+        "/numbers/H1/K0/yfB",
+        2.3850815129995344,
+        2.385081513005839
+      ],
+      [
+        "/numbers/H6/solar/alt/outer/anti-aligned",
+        3705.601606205981,
+        3705.6016062029225
+      ],
+      [
+        "/numbers/H6/solar/alt/outer/aligned",
+        7423.076981272647,
+        7423.076981248057
+      ],
+      [
+        "/numbers/H6/solar/alt/outer/perpendicular",
+        5244.708379385317,
+        5244.708379374466
+      ],
+      [
+        "/numbers/H6/solar/alt/outer/isolated",
+        4688.7555139447195,
+        4688.755513938521
+      ],
+      [
+        "/numbers/H6/solar/canonical/outer/anti-aligned",
+        3870.653249262684,
+        3870.6532492597985
+      ],
+      [
+        "/numbers/H6/solar/canonical/outer/aligned",
+        10827.086945861492,
+        10827.086945798352
+      ],
+      [
+        "/numbers/H6/solar/canonical/outer/perpendicular",
+        6473.631072825232,
+        6473.631072803943
+      ],
+      [
+        "/numbers/H6/solar/canonical/outer/isolated",
+        5154.4508407459,
+        5154.450840739088
+      ],
+      [
+        "/summary/seconds",
+        10.836515665054321,
+        12.138604164123535
+      ],
+      [
+        "/checks/H1-K0/measured",
+        "y_f A 2.385081513 / B 2.385081513 / C 2.385081513; |A - B| = 4.8e-12; y_off 155.2337; signs below/band True/True",
+        "y_f A 2.385081513 / B 2.385081513 / C 2.385081513; |A - B| = 1.5e-12; y_off 155.2337; signs below/band True/True"
+      ],
+      [
+        "/checks/H1-TA/measured",
+        "y_f A 2.322851252 / B 2.322851251 / C 2.322851251; |A - B| = 6.9e-13; y_off 106.2886; signs below/band True/True",
+        "y_f A 2.322851252 / B 2.322851251 / C 2.322851251; |A - B| = 6.4e-13; y_off 106.2886; signs below/band True/True"
+      ]
+    ],
+    "checks": {
+      "C0": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROL: k04's own script, run unmodified from the repository root, reproduces its committed .out verbatim",
+        "measured": "rc = 0; 27 lines identical: True; committed F6 row: '[PASS] F6 [stability] the effective flux stiffness Z_eff = Z + (2-K_B) beta^2 (s Delta - j)/(8 pi) is positive everywhere (s Delta - j >= 0)   (min(s ...'"
+      },
+      "C0b": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROL: this lane's route B (bracketed root of the flux equation, its own quadrature) in k04's convention reproduces k04's committed F3 rows (K_B = 0, 0.25) and F5 rows (both footings) to the printed digits",
+        "measured": "4/4 rows found verbatim in k04's committed .out"
+      },
+      "C1": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROL: XR20's own script (byte-identical copy, run from a scratch mirror with its inputs copied; nothing in the repository written) reproduces its committed T2f line for k04's kernel verbatim",
+        "measured": "XR20 rc = 0; source sha256 identical: True; line identical to the committed .out: True"
+      },
+      "C1b": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CROSS-CHECK: this lane's solver in XR20's convention (c = kappa^2/8 pi, K_B = 0) on XR20's own 400-point grid returns XR20's printed peaks and u(100); the precise fold lies within one grid step of each",
+        "measured": "canonical: grid argmax 2.3976 (XR20 2.40), precise fold 2.3851, grid step 0.045; alt: grid argmax 2.3140 (XR20 2.31), precise fold 2.3229, grid step 0.042; u(100) 0.2315 (XR20 0.231)"
+      },
+      "C2": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROL: the SPARC loader reads 175 galaxies and reproduces FP7's count of 3391 points under FP7's own selection (V_obs > 0, errV > 0); the RAR cuts of FP1 (Upsilon_bul = 1.4 Upsilon, g_bar > 0, g_obs > 0) leave the reported number at Upsilon = 0.7",
+        "measured": "175 galaxies; FP7 selection 3391 points; with FP1's RAR cuts at Upsilon = 0.7: 3389 points"
+      },
+      "C3": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROL: the kernel's constants (exact saturation point: e^t (1 - t/2) = 1, t = sqrt(s)) equal the record's printed values (k01: s_sat, Delta_sat; k04 F2: I = j_sat)",
+        "measured": "s_sat = 2.539638 (k01 2.540), Delta_sat = 0.647610 (0.6476), j_sat = 0.452525 (0.4525); 40-digit route: s_sat 2.53963828219, Delta_sat 0.647610237892, j_sat 0.452524896675"
+      },
+      "A1": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "k04's F3 equation re-derived: dL/dr|_Y = r [Zt + (2 - K_B)(s Delta - j)/(8 pi)] (the three-form's conserved conjugate) and J_Y = s/Delta, so the scalar's law J_Y g_phi = g_N is y = s r",
+        "measured": "ds/dr|_Y = -Delta/(Deltap*r); conjugate identity True; J_Y = s/Delta True"
+      },
+      "A2": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "THE FOLD IDENTITY: on shell L_rr|_Y = Zt N/Delta' and du/ds = N/(1 + cF)^2 with N = Delta'(1 + c(F + s Delta)) - c Delta^2, so the Legendre map q -> Pi at fixed Y degenerates exactly where the slaved force peaks; dy/ds = (1 + c(F - s F'))/(1 + cF)^2, so C_L,eff = dy/du = (1 + c(F - sF'))/N",
+        "measured": "du/ds True; L_rr|_Y True; dy/ds True"
+      },
+      "A3": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "F6'S QUANTITY IS POSITIVE BY CONSTRUCTION: for k04's kernel F' = Delta - s Delta' = Delta (sqrt(s)/2) e^sqrt(s)/(e^sqrt(s) - 1) > 0 (F' = Delta_sat on the saturated branch) and F(0) = 0, so F >= 0 and F6's Z_eff = Z (1 + cF) >= Z at every s -- whatever the slaved kernel does",
+        "measured": "identity (sympy True, 30-digit spot values 0.0e+00) True; F' > 0 on (0, s_sat) True; min F on k04's own 60-point grid 1.054e-05 (k04 printed 1.05e-05); min F on 1e-6..1e4 3.333e-10"
+      },
+      "A4": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "THE SATURATED BRANCH: the flux equation is linear there, r = (1 - c D_sat y)/(1 - c j_sat); the slaved force FALLS at du/dy = -c D_sat^2/(1 - c j_sat) to zero at y_off = 1/(c D_sat); C_L,eff = -(1 - c j_sat)/(c D_sat^2) < 0",
+        "measured": "r = (D_sat*c*y - 1)/(c*j_sat - 1); du/dy = D_sat**2*c/(c*j_sat - 1); y_off = 1/(D_sat*c); C_L,eff: K0 -238.62 (y_off 155.23), K25 -272.87 (y_off 177.41), TA -163.05 (y_off 106.29)"
+      },
+      "A5": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "THE FLUX EQUATION IS WELL-POSED (the restricted sense of F6): dy/ds = (1 + c(s^2 Delta' - j))/(1 + cF)^2 >= (1 - c j_sat)/(1 + cF)^2 > 0, so r(y) is single-valued: exactly one root, 0 < a0_loc <= a0, at every y below y_off",
+        "measured": "F - sF' = s^2 Delta' - j: True; min_s (1 + c(F - sF')): K0 0.99550, K25 0.99606, TA 0.99343"
+      },
+      "H1-K0": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "THE SLAVED KERNEL FOLDS (K0): u(y) peaks at y_f in [2.2, 2.6], routes A and B agree to < 1e-6, du/dy > 0 below and < 0 on the whole band up to the switch-off y_off = 1/(c D_sat)",
+        "measured": "y_f A 2.385081513 / B 2.385081513 / C 2.385081513; |A - B| = 4.8e-12; y_off 155.2337; signs below/band True/True"
+      },
+      "H1-K25": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "THE SLAVED KERNEL FOLDS (K25): u(y) peaks at y_f in [2.2, 2.6], routes A and B agree to < 1e-6, du/dy > 0 below and < 0 on the whole band up to the switch-off y_off = 1/(c D_sat)",
+        "measured": "y_f A 2.402858081 / B 2.402858080 / C 2.402858080; |A - B| = 5.5e-13; y_off 177.4100; signs below/band True/True"
+      },
+      "H1-TA": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "THE SLAVED KERNEL FOLDS (TA): u(y) peaks at y_f in [2.2, 2.6], routes A and B agree to < 1e-6, du/dy > 0 below and < 0 on the whole band up to the switch-off y_off = 1/(c D_sat)",
+        "measured": "y_f A 2.322851252 / B 2.322851251 / C 2.322851251; |A - B| = 6.9e-13; y_off 106.2886; signs below/band True/True"
+      },
+      "H2": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "dg_obs/dg_N = 1 + du/dy >= 0.99 everywhere below y_off (all cases)",
+        "measured": "K0: min 0.99581, K25: min 0.99634, TA: min 0.99387"
+      },
+      "MONO": {
+        "ok": false,
+        "load_bearing": false,
+        "name": "the slaved scalar force u(y) is monotone non-decreasing on (0, y_off) (pre-declared EXPECT FALSE on the main run, TRUE under MUTATE)",
+        "measured": "K0: False, K25: False, TA: False"
+      },
+      "H3": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "F6'S CRITERION HOLDS ON THE UNSTABLE BAND (secant c F > 0 there), while the tangent stiffness L_rr|_Y changes sign at the fold (+ below, - above); the dual stiffness at fixed flux stays positive (the flux equation is well-posed)",
+        "measured": "K0: secant 0.011, L_rr 2.49 -> -5.83, dual min 7.964; K25: secant 0.010, L_rr 2.68 -> -7.11, dual min 7.968; TA: secant 0.017, L_rr 1.38 -> -2.5, dual min 5.442"
+      },
+      "H4": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "STATIC ELLIPTICITY FAILS ON THE BAND: C_L,eff < 0 (C_T,eff > 0) at every band point, route B = route C to 1e-6, = A4's constant on the saturated branch to 1e-8, and = route A's primal Schur complement in the unsaturated slice",
+        "measured": "sign True; B vs C True (max rel 2.5e-11); saturated constant True; primal Schur True; C_L,eff at y = 20: K0 -238.62, K25 -272.87, TA -163.05"
+      },
+      "H5": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "DYNAMICAL INSTABILITY ON THE BAND: omega^2_par/omega^2_perp < 0 in the scalar's own sector (any inertia), and with C_phi = C_L,eff the chain root's committed quadratic form has exactly one omega^2 < 0 (lambda = 1, 277, 1.07e7; sigma = 1, 0.1), scaling as k^2 (Hadamard), and FP14's lambda = 0 roots are negative, at every band point",
+        "measured": "K0: omega^2_-(y = 20, lambda = 1) = -0.857 (ck)^2, e-fold 3.52e+03 yr at k = 1/kpc; K25: omega^2_-(y = 20, lambda = 1) = -0.980 (ck)^2, e-fold 3.29e+03 yr at k = 1/kpc; TA: omega^2_-(y = 20, lambda = 1) = -0.586 (ck)^2, e-fold 4.26e+03 yr at k = 1/kpc; omega^2(10 k)/omega^2(k) = 100 to 2.2e-16"
+      },
+      "H5c": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "CONTROLS at fixed a0 (no four-form): both roots positive at y = 1 and in the saturated wall's limit; FP14's lambda = 0 roots positive",
+        "measured": "y=1 (fixed a0, unsaturated): min root 7.683e-07, FP14 0.02964 / 2.74; saturated wall (fixed a0, C_phi -> oo): min root 2.253e+06, FP14 2.253e+06 / 2.083e+08"
+      },
+      "H6a": {
+        "ok": true,
+        "load_bearing": false,
+        "name": "SPARC: the band holds a sizeable fraction of the inner points (reported)",
+        "measured": "canonical/K0/U0.7: 0.170; canonical/K25/U0.7: 0.169; alt/K0/U0.7: 0.151; alt/K25/U0.7: 0.150; alt/TA/U0.7: 0.153"
+      },
+      "H6b": {
+        "ok": true,
+        "load_bearing": false,
+        "name": "a solar-mass star: the scalar is off inside ~640 AU and unstable in a shell out to ~5000 AU (reported)",
+        "measured": "canonical: off < 639 AU, band to 5154 AU (isolated); alt: off < 581 AU, band to 4689 AU (isolated)"
+      },
+      "H6c": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "WIDE BINARIES: DR4's 2 kAU bin (1.5 Msun) lies in the unstable band on both footings, in isolation and for every orientation of the Galactic field",
+        "measured": "canonical: 2 kAU y = 23.76, all in band True; alt: 2 kAU y = 19.66, all in band True"
+      },
+      "H7a": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "F1 (sign) and F2 (coefficient) live on the Y = 0 background: r = 1 there and y = 0 lies outside the band -- F6 does not touch them (F2 remains k04's own FAIL: Z/beta^2 is free)",
+        "measured": "r(0) = 1.0, 0 in band: False"
+      },
+      "H7b": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "F3's rows: s = 0.01, 0.1, 1 lie below the fold (stable, their < 0.0005 dex shifts stand); s = 2.54, 10, 100 lie in the unstable band (static numbers of an unstable solution); s = 1000 in the switched-off core",
+        "measured": "K0: 0.01 below, 0.1 below, 1 below, 2.54 band, 10 band, 100 band, 1000 off; K25: 0.01 below, 0.1 below, 1 below, 2.54 band, 10 band, 100 band, 1000 off"
+      },
+      "H7c": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "F4 (monopole screening): every planet lies in the switched-off core (y > y_off) -- a static statement F6 does not touch; but the core is wrapped in the unstable shell, so its standing needs a stable exterior the construction lacks",
+        "measured": "min planet y 58236.9 vs y_off 155.23"
+      },
+      "H7d": {
+        "ok": false,
+        "load_bearing": false,
+        "name": "k04's quoted switch-off radius ('inside 205 AU', 'r < 205 AU') is the radius where g_N = y_off a0 around 1 Msun (pre-declared EXPECT FALSE)",
+        "measured": "quoted [205] AU vs computed 638.9 AU (y_off = 155.23, k04's a0 9.3619e-11); ratio 3.116"
+      },
+      "H7e": {
+        "ok": true,
+        "load_bearing": true,
+        "name": "F5 (DR4's 2 kAU bin, k04's own inputs): the bin lies in the unstable band on both footings, so its dgamma_v = -0.019 / -0.015 is a number of an unstable static solution, not a prediction",
+        "measured": "canonical: y = 23.76, in band True, alt: y = 19.72, in band True"
+      }
+    },
+    "output_sha256": "64f31c83aa3cdc66738899b4467708ae0a3fd7671c25fae29c067c982e5463cf"
+  },
+  {
+    "script": "XR22 exact K0-K3 prefix",
+    "seconds": 26.332283973693848,
+    "differences": [
+      [
+        "/K3/r05",
+        1.0033834345320258,
+        1.003383434532027
+      ],
+      [
+        "/K3/r05q",
+        1.004560351926958,
+        1.0045603519269566
+      ],
+      [
+        "/K3/richardson",
+        1.0007225181995245,
+        1.0007225181995316
+      ],
+      [
+        "/K3/r025",
+        1.0013877472826498,
+        1.0013877472826553
+      ]
+    ],
+    "checks": {
+      "K0 THE LOCAL REDUCTION: at z = 0 the chain's separator adds nothing on wide-binary scales (FP13: y_th(0) = 0; the band-pass's Mpc leg changes the pair's relative force by < 1e-12), alpha_c renormalises G by <= 1.6e-9 (FP14), and the pair is quasi-static (retardation < 1e-5): the law is FP7's double-filtered two-field AQUAL with J_P2": {
+        "ok": true,
+        "measured": "y_th(0) = 0.0; band-pass leak 1.3e-22; retardation 7.7e-07",
+        "load_bearing": true
+      },
+      "K1 CONTROL: the frozen pipeline's own y_extN reproduces section 1.1 (1.4647 / 1.1513); the banked MG asymptote 1.1389 is sqrt(B_par) of the chain's unfiltered two-field law (B_par = 1 + 1/mu_T = nu_P2(y_extN) identically); FP7's committed stiffnesses at 2.32e-10 reproduced to the printed digits": {
+        "ok": true,
+        "measured": "y_extN 1.4647/1.1513; sqrt(B_par) 1.13895; B_par - nu 0.0e+00; FP7 0.4501/4.507/49.64",
+        "load_bearing": true
+      },
+      "K2 CONTROL: the linear kernel reproduces the analytic anisotropic-Coulomb tensor at xi = 0 and direct quadrature at xi > 0 to 1e-7; the closed-form orientation average matches quadrature": {
+        "ok": true,
+        "measured": "2.2e-15; 4.2e-11; 4.8e-08",
+        "load_bearing": true
+      },
+      "K3 CONTROL (deep-MOND two-body): the independent 2-D solver reproduces Milgrom's exact two-body force within 0.5% at xi/s = 0.05 (q = 1 and 0.3), 0.25% at 0.025, 0.1% after Richardson": {
+        "ok": true,
+        "measured": "1.00338, 1.00456, 1.00139; Richardson 1.00072",
+        "load_bearing": true
+      }
+    }
+  }
+]

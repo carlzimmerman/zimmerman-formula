@@ -1,0 +1,74 @@
+{
+  "audit_id": "AS228_INTAKE_001_VARIATION_AUDIT",
+  "auditor": "/root/metric_intake",
+  "time_utc": "2026-09-30T01:31:07.111187+00:00",
+  "primary_verdict": "refuted, with the smallest valid counterexample",
+  "verdict_scope": "Implementation-to-action first-variation implication; not a no-go for the action or complete framework",
+  "evidence_class": "exact local algebra and finite extracted-function binary64 counterchecks",
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/AS228_intake_001/result.json": "3d86207d87e551810491bf828bc4040053c5214af78ea5bc9c2b70c443ea7803",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/AS228_intake_001/derivation.md": "9dfebd11e6d7ea195eb0b46e121ac3d9dc7f6ce5654c43b0a426f2a15071e3b0",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/AS228_intake_001/as228_slip.py": "31b8c03cf24db15baf24e3dfa57fffe45bf4da51a7a064998635f0985e8a2369",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/AS228_intake_001/as228_phase.py": "f8087883697f3728ff861726c677a94cb8d81960d2643d012f27b77a715e3472",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/AS228_intake_001/raw_output.json": "948d5998d9f6f97b8fa9f48d5bb579f8006a37d63bf4de96d3087445f044db20",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/AS228_intake_001/INTAKE.json": "d5bad158d2dd9d30a4ad230ef517a6cb21a2b5c8b4cb85a101c6f5a2684735a4",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e"
+  },
+  "provenance_note": "Fourteen coordinator checks match; framework_cell prose hashes conflict with dictionary hashes. Primary snapshots untouched.",
+  "findings": [
+    "gate chain derivative df*dY instead of f*dY",
+    "kernel variation doubled",
+    "four-curvature missing lapse connection terms and extra N",
+    "FFT spacing d=1 rather than L/N",
+    "Poisson residuals are mean-projection identities",
+    "local density RMS does not test integrated action stationarity",
+    "inverse response has wrong sign; untracked U feedback",
+    "idle cell f_max=1 does not test globally inactive gate"
+  ],
+  "controls": {
+    "fourier_amplitude": 0.3926990816987247,
+    "fourier_expected": 0.7853981633974483,
+    "gate_fd": 1.0000000000287557,
+    "gate_code": 0.0,
+    "curvature_code": 1.5421256876927346e-05,
+    "curvature_expected": 3.0839429810423195e-05,
+    "poisson_residual_range": [
+      -2.0000000000000027,
+      -1.999999999999997
+    ]
+  },
+  "command": "python3 - <<'PY'\nimport ast, numpy as np\nfrom pathlib import Path\np=Path('deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/AS228_intake_001/as228_slip.py')\nt=ast.parse(p.read_text())\nnames={'Torus3','gate_f','gate_G','ricci_scalar4_static'}\nbody=[n for n in t.body if isinstance(n,(ast.ClassDef,ast.FunctionDef)) and n.name in names]\nassert len(body)==4\ns={'np':np,'DELTA_GATE':1.,'B_HEAT':.125}\nexec(compile(ast.Module(body=body,type_ignores=[]),'<reviewed definitions>','exec'),s)\nT=s['Torus3'](16,8.); f=np.sin(2*np.pi*T.X/8)\nprint('Fourier amplitude',np.max(T.D(0,f)), 'expected',2*np.pi/8)\nrhs=2+np.cos(2*np.pi*T.X/8); r=T.lap(T.poisson(rhs))-rhs\nprint('Projection residual',r.min(),r.max())\nY=np.array([2.]); dy=np.array([1.]); e=1e-6\nprint('Gate true FD',(s['gate_G'](Y+e*dy)-s['gate_G'](Y-e*dy))/(2*e))\nprint('Gate implemented',(s['gate_f'](Y+e*dy)-s['gate_f'](Y-e*dy))/(2*e)*dy)\nT=s['Torus3'](16,16.); e=1e-4; k=2*np.pi/16; N=1+e*np.cos(k*T.X)\nR=s['ricci_scalar4_static'](T,(N*N-1)/2,np.zeros_like(N))\nprint('Curvature at x0',R[0,0,0],'expected',2*e*k*k/(1+e))\n\nPY",
+  "observed_exit_code": 0,
+  "observed_wall_seconds": 0.196637416,
+  "scope_limits": [
+    "No full external script run",
+    "No physical fit",
+    "No H(z) versus constant-vacuum test",
+    "No full metric or degrees-of-freedom claim",
+    "No confidence region or universal parameter scan"
+  ],
+  "child_proposal": {
+    "scientific_fingerprint": "fixed-domain integrated gate/kernel/curvature variational foundations with sign-linear controls before slip-source derivation",
+    "distinct_from": "AS228.c1 full ten-component metric solve",
+    "dispatch_state": "not_dispatched"
+  },
+  "audit_markdown_sha256": "58900adc92bd80cb33eb0d4825ed666cc14457b107cc3112b0917be5200edaaa",
+  "environment": {
+    "python": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+    "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "numpy": "1.26.2",
+    "platform": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "reproduction_check": {
+    "command": [
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+      "-c",
+      "<embedded reproduction code>"
+    ],
+    "exit_code": 0,
+    "stdout": "Fourier amplitude 0.3926990816987247 expected 0.7853981633974483\nProjection residual -2.0000000000000027 -1.999999999999997\nGate true FD [1.]\nGate implemented [0.]\nCurvature at x0 1.5421256876927346e-05 expected 3.0839429810423195e-05\n",
+    "stderr": "",
+    "timeout_seconds": 20,
+    "runner_manifest": null
+  }
+}

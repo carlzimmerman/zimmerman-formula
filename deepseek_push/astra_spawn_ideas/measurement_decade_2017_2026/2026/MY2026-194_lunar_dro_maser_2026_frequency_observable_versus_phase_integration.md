@@ -37,7 +37,7 @@ Derive an equivalent phase-domain and frequency-domain likelihood with proper co
 Mathematical starting relation/estimand:
 
 ```text
-Phase residual phi(t)=integral y(t)dt has correlated errors after integration.
+For fractional frequency y, time deviation x(t)=x0+integral y(t)dt is in seconds; phase in radians is delta_phi(t)=phi0+2*pi*nu0*integral y(t)dt. Equivalent phase/frequency likelihoods must retain the unknown integration constant, sampling/averaging operator and correlated errors.
 ```
 
 Define every symbol, units, sign, domain and approximation before use. Treat schematic formulas as obligations to derive, not established framework theorems.

@@ -1,0 +1,17 @@
+# FGF039 proof-only worker report
+
+Exact mass-constrained entropy elimination removes the pointwise density cap from the full static lower-energy result. At fixed potential perturbation psi, the unique minimizing density is rho_psi=rho exp(−psi/cs²)/Z, with Z chosen to retain the same mass M. The exact remainder is the nonnegative relative entropy D(n|rho_psi), proved by elementary convexity.
+
+The minimized negative functional is bounded globally by −M osc(psi)²/(8cs²). The proof differentiates a normalized exponential integral twice and bounds its variance by the squared range divided by four. Weighted endpoint control then absorbs this term into the retained field energy on a sufficiently short patch. Together with the unchanged exact scale treatment, the full bound is Delta E >= cs²D(n|rho_psi)+(k/4)E_phi+E_eta/4+S0 integral eta²/(2C), for every nonnegative fixed-mass finite-entropy density, with the scale quarter-cap retained. The gates are alpha=C M integral(1/A)/(8cs²)<=k/4 and the existing beta<=1/4.
+
+An elementary scalar entropy estimate gives D(n|rho_psi)>=||n−rho_psi||1²/(4M). A separate tilted-density derivative bound converts this to a quantified L1 bound relative to the original background rho, retaining the potential contribution. No pointwise or fixed quadratic density bound is inferred.
+
+There is no positive energy barrier for the old density half-cap: make density zero on a shrinking interval and multiply the exterior background density by the unique mass-restoring factor. Its exact energy is cs² M log[M/(M−m)], tending to zero with the removed mass m. This family is finite-entropy and admissible for the energy comparison, not a family of static solutions or a claimed nonlinear evolution.
+
+The scale cap has a different status. The endpoint gradient estimate gives an energy barrier J/(16C ell) for reaching ||eta||infinity=1/4. If an already existing trajectory has finite-action fields, nonnegative fixed-mass finite-entropy density, H1-continuous scale, impermeable/fixed field walls and conserved full fixed-reference energy below this barrier, a first-hitting argument keeps its scale below the cap for its existing lifetime. No nonlinear existence, extension, uniqueness, weak energy equality or no-vacuum theorem follows.
+
+The next bounded evolution-admissibility question is whether finite entropy for n and finite action for phi make the actual force density n phi_x locally integrable in the coupled weak momentum equation. The separate L log L and L2 controls do not by themselves supply a product estimate. One admissible fixed-mass family or a direct bound should decide that gate; it does not require rederiving the known smooth energy identity or launching a global Cauchy program.
+
+The candidate was frozen before new root/auditor inspection and all source pins were verified. This is proof-only, with no numerical run or manifest. Both reference normalizations, distinct vacuum/frozen-H/evolving-H branches and Q/RAR/M distinctions remain explicit. No new physical potential, empirical or metric/photon/DOF closure is supplied; FGF037 upper/Taylor failures remain unchanged.
+
+Independent audit correction: the original sentence about equality in the lower bound was false; positive density entropy can saturate that bound. It has been corrected to state that zero excess energy forces the background. The original proof/result bytes and exact counterexample are preserved in this run's correction record.

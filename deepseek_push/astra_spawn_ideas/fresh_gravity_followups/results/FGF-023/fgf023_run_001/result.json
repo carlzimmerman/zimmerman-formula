@@ -1,0 +1,138 @@
+{
+  "task_id": "FGF-023",
+  "task_sha256": "f12af88c67e1225057ae26bd04ca29275f377f6e5d7ecf64c63de662c84c9181",
+  "run_id": "fgf023_run_001",
+  "worker": {
+    "agent": "/root/coupled_dynamics",
+    "execution_id": "/root/coupled_dynamics:fgf023_run_001",
+    "mechanism": "authorized existing Codex agent followup"
+  },
+  "started_utc": "2026-09-30T03:24:47.230261+00:00",
+  "finished_utc": "2026-09-30T03:28:13.344168+00:00",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For either diagnostic Q/R constitutive law, positive finite K,J,v_chi,cs,S0 and smooth hydrostatic scalar-scale-fluid IVP with B_i,rho_i,w_i>0, chi_i=0, there exists a sufficiently short finite interval with varying rho and chi, induced fixed field endpoints and fixed wall mass, on which the full Dirichlet longitudinal quadratic energy is strictly positive. For any such regular interval the sufficient condition is alpha>0,beta>0,alpha*beta>R\u00b2 with alpha=cs\u00b2rho_min*pi\u00b2/d\u00b2-N, beta=(J*pi\u00b2/d\u00b2+M_min)/C, N=max(-rho*q*chi_prime/A,0), R=max(abs(rho*q/A)), and M=U_doubleprime-2T+gq-q\u00b2/A. Full gradient/boundary terms and exact static Dirichlet elimination are given.",
+  "new_assumptions": [
+    "Isothermal barotropic internal energy with fixed total mass and impermeable walls.",
+    "Finite positive-gradient patch with incoming B_i>0, positive density and initial scale slope; no zero-field continuation.",
+    "Boundary field values and total mass induced by a valid local equilibrium IVP, not arbitrary boundary data.",
+    "Dirichlet xi,psi,eta at both walls, without extra flux conditions.",
+    "Short interval or stated sufficient energy bound; positive kinetic coefficients inherited."
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/tasks/FGF-023.md": "f12af88c67e1225057ae26bd04ca29275f377f6e5d7ecf64c63de662c84c9181",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/FRAMEWORK_AND_EXECUTION.md": "ff0d2873065578b0bd8aa50907e0a39495ff8da775bf2b4890768d83775fd750",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/RESULT_CONTRACT.json": "ba388d0ca8e447a38649a478483e3ff4c2d3293e842eedc8f035499c77a20c29",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/FGF-014_RECONCILIATION.md": "05257938217339b4b6d08ab9db0ecf657e5b8029ea2c78cf7786abbd03dc28f7",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-014/fgf014_run_001/result.json": "ed32191c7e0a3169c3218ef69ad3b43464f40306c802a1abd6176491d444ffff",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-014/fgf014_run_001/DERIVATION.md": "de002f57e6ae4b20ef9a0a0879991b4657ccbe487537ee56b8d02f6bbab85a25",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-015/fgf015_run_001/DERIVATION.md": "f17b1ca2934a9aa6b02db071a95e4765f3b02a7ea4b57a120aa49f4d0e6a7fd0",
+    "campaign_fresh_gravity_astra/stage_04/scale_dynamics/DERIVATION.md": "2d00fa29165b274d7288505ffc7756c2189a6915dbec6d500fd1a775f6ffb724"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-023/fgf023_run_001/DERIVATION.md": "0b9babab32edd602cf5aea8db63126a52f09c379b858e5c5967d46835bbf1f4a",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-023/fgf023_run_001/REPORT.md": "8948087ee0f385d3fe57605f59f92d5b28731629f19875437c672be1dc69a56e",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-023/fgf023_run_001/input_sha256.json": "314d3b0109c61d03ad6fdb98d93eb089659b8f31c97ed927c1bd5904fbc64258"
+  },
+  "commands": [],
+  "commands_reason": "Proof-only task; administrative file/hash reads were used but no mathematical numerical experiment or spectral computation was launched.",
+  "execution_bounds": {
+    "numerical_processes": 0,
+    "numerical_wall_cpu_thread_log_caps": "Not applicable: no numerical run",
+    "proof_scope": "One finite 1D hydrostatic background family and its exact quadratic energy"
+  },
+  "checks": [
+    {
+      "name": "Background IVP and positive rho,g,nonconstant chi",
+      "observed": "Local smooth existence and continuity; rho exact exponential integral.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Fixed source and hydrostatic equations",
+      "observed": "B prime=C rho; cs\u00b2rho prime=-rho g; no source subtraction or volume force.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Exact original second variation",
+      "observed": "Derived from isothermal internal energy at fixed mass and stationary field action.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Linear field coupling signs",
+      "observed": "phi cross derivative partial(q eta) and chi term -q psi prime are adjoints.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Full endpoint terms",
+      "observed": "Quadratic energy flux B1 and factorization boundary term explicit; both vanish at chosen fixed walls.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Gradient-aware factorization",
+      "observed": "Residual rho q/A times (chi prime xi squared+2xi eta) retained.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Nonuniform cosh Schur identity",
+      "observed": "M=S0 exp(-2chi)+Bq/A+2J chi double-prime.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Poincare sufficient positivity",
+      "observed": "alpha,beta positive and alpha beta>R squared imply positive full form.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Nonempty stable family",
+      "observed": "Shrinking valid IVP domain gives d^-2 diagonal bounds and bounded mixed coefficient.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Dirichlet elimination control",
+      "observed": "Positive rank-one term retained; local square need not vanish.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Frozen-scale reduction",
+      "observed": "eta=0 alone does not erase chi prime term; FGF015 separate model.",
+      "status": "passed_by_exact_derivation"
+    },
+    {
+      "name": "Task ancestry hashes",
+      "observed": "Both explicit task-specified SHA256 values match.",
+      "status": "passed_by_hash_verification"
+    }
+  ],
+  "tested_domain": {
+    "evidence_kind": "exact conditional analytic proof",
+    "laws": [
+      "Q",
+      "R"
+    ],
+    "dimension": 1,
+    "interval": "[0,d] sufficiently short or satisfying explicit sufficient bound",
+    "rho": "strictly positive smooth",
+    "g": "strictly positive",
+    "chi": "spatially varying",
+    "boundary": "homogeneous Dirichlet perturbations; equilibrium endpoints induced by IVP",
+    "a0_m_s2": [
+      9.3619e-11,
+      1.1279e-10
+    ],
+    "histories": [
+      "constant-vacuum reference",
+      "distinct frozen a0 E(z) comparison, not an evolving solution"
+    ]
+  },
+  "failed_attempts": [],
+  "limitations": [
+    "No numerical spectrum or observational evidence.",
+    "No arbitrary boundary-value or global isolated-object existence theorem.",
+    "No universal sign statement for longer intervals outside the sufficient bound.",
+    "No actual-a literal constant-vacuum compatibility.",
+    "No 3D/nonlinear/free-boundary or zero-field stability.",
+    "No M local action, filtered-MONO, metric or photon theory."
+  ],
+  "next_unresolved_implication": "For longer physically specified slabs, determine the exact remaining nonlocal displacement/scale Schur form, including the positive Dirichlet rank-one term, and whether any admissible negative direction exists.",
+  "suggested_followup": "Derive and audit the exact psi-eliminated coupled xi/eta operator with its rank-one term; distinguish failure of a sufficient bound from an actual negative-energy mode.",
+  "acceptance_state": "unreviewed"
+}

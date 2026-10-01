@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "HR01_COLLAPSE_EDGE",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/usr/bin/env",
+    "MUTATE=0",
+    "EDGE_OUTPUT=real_research/handoff_resolution_2026_09_27/collapse/edge_main/result.json",
+    "/usr/bin/python3",
+    "real_research/handoff_resolution_2026_09_27/collapse/edge_audit.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite edge hydrostatic and Gauss consistency; nonuniqueness of orbital histories; bounded accreting-potential tracer sensitivity",
+    "coefficient_domain": "float64 with analytical identities separately proved in report",
+    "conventions": "Newtonian weak-field, point baryons, positive inward g, radius in SI for fluid and dimensionless for tracer",
+    "inputs": [
+      "edge_audit.py",
+      "a0 canonical 9.3603e-11; alternate 1.1312e-10; kappa=1/2 fitted"
+    ],
+    "bounds": {
+      "p": [
+        0,
+        0.5,
+        1,
+        2,
+        3
+      ],
+      "ell": [
+        0.1,
+        0.2,
+        0.4
+      ],
+      "xe": [
+        0.2,
+        0.31,
+        0.4,
+        0.48,
+        0.7
+      ],
+      "tracer_max_time": 30
+    },
+    "non_claims": [
+      "No self-consistent cosmological shell simulation",
+      "No universal edge interval",
+      "No derived action or global stability"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T19:59:25.396052+00:00",
+    "runtime_seconds": 0.432234,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/handoff_resolution_2026_09_27/collapse/edge_audit.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/edge_audit.py",
+      "sha256": "1e013184af0b545501fea7b62a2165c159ddd49f418d17a85a245b4e7e3e6cbc",
+      "sha256_after": "1e013184af0b545501fea7b62a2165c159ddd49f418d17a85a245b4e7e3e6cbc"
+    }
+  ],
+  "output_directory": "real_research/handoff_resolution_2026_09_27/collapse/edge_main",
+  "declared_results": [
+    "real_research/handoff_resolution_2026_09_27/collapse/edge_main/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/edge_main/stdout.txt",
+      "sha256": "fbc68a1a65555cbd0b851c2aa0f00504604035b2b597ac23295392423cfca21f",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/edge_main/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/edge_main/result.json",
+      "sha256": "460204a61cd26594f77e3db2ca48f8d25fb676f69a1daba2e5aacad875aa68ce",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

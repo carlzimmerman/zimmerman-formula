@@ -1,0 +1,69 @@
+{
+  "claim_id": "AFG-004-006",
+  "mathematics": {
+    "assertion_tested": "Q geometry/PSF invariant, width-correction row-space obstruction, Gaussian-width scale degeneracy and sixth-moment separation.",
+    "coefficient_domain": "Binary64 with separately written exact proofs.",
+    "conventions": "Dimensionless velocities sqrt(a_reference*r_reference), source B/a_reference, radius/r_reference; Poisson unnormalized raw moments.",
+    "inputs": [
+      "campaign_fresh_gravity_astra/stage_02/measurement.py",
+      "campaign_fresh_gravity_astra/stage_02/run.py",
+      "campaign_fresh_gravity_astra/stage_02/CONTRACT.md"
+    ],
+    "bounds": {
+      "source_grid": [
+        8,
+        8
+      ],
+      "psf_sigmas": [
+        0.05,
+        0.2,
+        0.4,
+        0.7,
+        1.0
+      ],
+      "scales": [
+        1.0,
+        4.565632486304608
+      ],
+      "line_noise": [
+        "gaussian",
+        "symmetric uniform"
+      ],
+      "MC_replicates": 400,
+      "MC_expected_photons": 5000,
+      "derivative_grid": [
+        0.0001,
+        10000.0,
+        101
+      ]
+    },
+    "non_claims": [
+      "No real spectra, empirical instrument calibration, global gravity closure or historical novelty.",
+      "The linear-estimator obstruction is not a no-go for model-based inference."
+    ]
+  },
+  "execution_artifacts": [
+    "campaign_fresh_gravity_astra/stage_02/measurement.py",
+    "campaign_fresh_gravity_astra/stage_02/run.py",
+    "campaign_fresh_gravity_astra/stage_02/CONTRACT.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng / PCG64",
+    "seed": 27092026
+  }
+}

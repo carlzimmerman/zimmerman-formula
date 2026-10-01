@@ -1,0 +1,301 @@
+{
+  "checks": [
+    {
+      "name": "M1 kernel at crossing: h'_RAR(y*) = delta h_p/(y*+y_p) solved at y* ~ 2.3374",
+      "ok": true,
+      "value": "2.923e-52",
+      "threshold": "< 1e-40",
+      "note": "y* = 2.3374124 vs rounded landmark 2.3374"
+    },
+    {
+      "name": "M2 monotonicity h'_mono > 0 on [1e-3, 10] (diagnostic; consistent by construction: max of two positive branches)",
+      "ok": true,
+      "value": "0.002582",
+      "threshold": "> 0",
+      "note": "h'_RAR > 0 on [0, y*] (pre-peak), filter branch > 0 on [y*, 10]"
+    },
+    {
+      "name": "T1 RAR primitive reproduced: I_rar = jsat = 2(y_p h_p - int_0^{y_p} h_RAR)",
+      "ok": true,
+      "value": "0.4525248967",
+      "threshold": "|d| < 1e-7",
+      "note": "parent AS651 I_rar = jsat = 0.45252490 (K_B = 0 -> b_RAR = jsat/8pi)"
+    },
+    {
+      "name": "T2 same-sign primitive theorem step 1: h'_mono > 0 on (0, y_p] implies I_mono = 2 int s h'_mono ds > 0 (to be confirmed after step 1)",
+      "ok": true,
+      "value": "structure: integrand s*h'_mono > 0 a.e.",
+      "threshold": "product of positive factors",
+      "note": "exact same-sign structure; numeric I_mono in step 1"
+    },
+    {
+      "name": "T3 same-sign primitive theorem step 2: J(0) = -I a0^2 < 0 (RAR witness)",
+      "ok": true,
+      "value": "-0.4525249",
+      "threshold": "< 0",
+      "note": "k01 dictionary transfers if I_mono > 0 (checked numerically in step 1); J_mono(0) reported there"
+    },
+    {
+      "name": "I1 I_mono: two independent representations agree (integrand vs antiderivative)",
+      "ok": true,
+      "value": "8.686e-51",
+      "threshold": "< 1e-45",
+      "note": "equal-span primitive of the MONO response, span [0, y_p] identical to RAR's [0, s_sat]"
+    },
+    {
+      "name": "I2 refinement I_mono dps 50 vs 100",
+      "ok": true,
+      "value": "1.127e-52",
+      "threshold": "< 1e-40",
+      "note": "declared refinement"
+    },
+    {
+      "name": "I3 same-sign transfer numeric: I_mono > 0",
+      "ok": true,
+      "value": "0.4558149305",
+      "threshold": "> 0",
+      "note": "h'_mono > 0 on (0, y_p] => I_mono > 0 (exact structure, M2)"
+    },
+    {
+      "name": "I4 FIRST OBLIGATION verified: J_mono(0) = -I_mono a0^2 < 0 (same sign as J_RAR(0) = -I_rar a0^2 < 0)",
+      "ok": true,
+      "value": "sign J_mono(0) = - (I_mono = 0.4558149305); sign J_RAR(0) = -",
+      "threshold": "both < 0",
+      "note": "response-to-primitive dictionary of k01 transfers to h_mono: same sign, J(0) < 0"
+    },
+    {
+      "name": "I5 analytic check: dI/dy* = 2 y* (h'_RAR(y*) - delta h_p/(y*+y_p)) = 0 at the crossing (kernel at crossing)",
+      "ok": true,
+      "value": "-1.367e-51",
+      "threshold": "< 1e-40",
+      "note": "the primitive is stationary at the join because the branches meet with equal slope (C^1 join)"
+    },
+    {
+      "name": "I6 finite-difference confirmation dI/dy* |_FD (h = 1e-3, split-point quadrature)",
+      "ok": true,
+      "value": "3.677e-9",
+      "threshold": "< 1e-5",
+      "note": "FD of the y*-parametrized primitive vanishes at the crossing (analytic residual 0; independent FD confirmation)"
+    },
+    {
+      "name": "R1 ratio shift: 8 - 2 b_mono != 8 - 2 b_RAR (kernel transfer changes the required ratio)",
+      "ok": true,
+      "value": "Delta = -0.000261813",
+      "threshold": "|shift| > 1e-6",
+      "note": "K_B=0: 8-2b_RAR = 7.963989 -> 8-2b_mono = 7.963727"
+    },
+    {
+      "name": "R2 ratio matches parent RAR value 7.96398921 (reproduction)",
+      "ok": true,
+      "value": "7.9639892129",
+      "threshold": "|d| < 1e-6",
+      "note": "parent AS651 Z/beta^2 = 8 - 2b = 7.96398921 at K_B = 0"
+    },
+    {
+      "name": "R3 acceptance: 8 - 2 b_mono to 6 digits",
+      "ok": true,
+      "value": "7.96372740",
+      "threshold": "6 digits",
+      "note": "K_B=0: 7.963727; K_B=1/4: 7.968261"
+    },
+    {
+      "name": "B4 projection continuum (B-iv): 7 distinct kappa values incl. tuned r_half -> kappa = 1/2 exactly",
+      "ok": true,
+      "value": "[1.38924227, 0.99105336, 0.70392235, 0.5, 0.49887032, 0.35315331, 0.17672662]",
+      "threshold": "all distinct; kappa(r_half) = 0.5 to 1e-12",
+      "note": "kappa^2 = 1/(r/2 + b_mono) strictly decreasing in r: continuum, rank-1 selection fails"
+    },
+    {
+      "name": "B5 q-cancellation: kappa^2 independent of flux amplitude q (E2 analogue, MONO kernel)",
+      "ok": true,
+      "value": "6.682e-52",
+      "threshold": "< 1e-40",
+      "note": "kappa^2 = beta^2/(Z/2 + b_mono beta^2); q_0 never enters"
+    },
+    {
+      "name": "B6 candidate E*: rho_vac/rho_Lambda = 1 exactly at Z/beta^2 = 8 - 2 b_mono (E3 analogue)",
+      "ok": true,
+      "value": "0.0",
+      "threshold": "< 1e-45",
+      "note": "vacuum-magnitude equation and kappa equation collapse to the ONE codimension-1 condition on couplings"
+    },
+    {
+      "name": "B1 (B-i) shift-breaking: the pinned construction never couples the primitive shift C into P(q) - NOT ESTABLISHED (unchanged by kernel transfer)",
+      "ok": true,
+      "value": "C not coupled in the pinned class",
+      "threshold": "report as NOT ESTABLISHED",
+      "note": "b depends on the kernel integral I_mono, not on the additive constant C (same as AS651)"
+    },
+    {
+      "name": "B2 (B-ii) no new datum: FAILS - Z/beta^2 = 8 - 2 b_mono is a VALUE, not an equation fixing it",
+      "ok": true,
+      "value": "0 fixing equations for (q_0, Z/beta^2)",
+      "threshold": "FAILS",
+      "note": "kernel transfer shifts the required ratio but supplies no equation selecting it (B-ii unchanged)"
+    },
+    {
+      "name": "B3 (B-iii) positive vacuum: eps_vac = +(Z/2 + b_mono beta^2) q^2 > 0 for all q != 0 (structural, sign)",
+      "ok": true,
+      "value": "+Z q^2/2 + b_mono beta^2 q^2",
+      "threshold": "> 0 for q != 0",
+      "note": "sign independent of the kernel: PASSES structurally; magnitude = adopted flux datum q_0"
+    },
+    {
+      "name": "F1 G_N separate from G_bare/G_cosmo (single-G promotion is k04's own assumption)",
+      "ok": true,
+      "value": "G_N = 6.67430e-11 only",
+      "threshold": "no identification",
+      "note": ""
+    },
+    {
+      "name": "N1 stiffness min(s h_mono - j_mono) >= 0 on [1e-3, 10] (NEGATIVE CONTROL; capable of failing)",
+      "ok": true,
+      "value": "1.054e-5",
+      "threshold": ">= -1e-12",
+      "note": "F6 analogue: effective flux stiffness Z_eff positive on the operative domain [0, 10]"
+    },
+    {
+      "name": "N2 stiffness monotonicity gate: h(s) - s h'(s) > 0 on [1e-3, 10] (h - s h' = -s^2 nu' > 0 on the RAR segment; h_mono - delta h_p s/(s+y_p) > 0 on the log branch)",
+      "ok": true,
+      "value": "0.01581",
+      "threshold": "> 0",
+      "note": "kernel-specific: on [0, y*]: h_RAR - s h'_RAR = -s^2 nu'_RAR > 0 (nu'_RAR < 0); on [y*, 10]: h_mono - s*filter >= h_RAR(y*) - delta h_p > 0"
+    },
+    {
+      "name": "N3 deep-end limiting behaviour (same measure): stiffness -> +inf on the MONO log branch (vs RAR frozen-truncation -> 0+)",
+      "ok": true,
+      "value": "8292.0",
+      "threshold": "> 1e3",
+      "note": "the MONO continuation does not saturate: the k04 peak-truncation convention has no MONO analogue - documented measure fact"
+    },
+    {
+      "name": "F2 both footings: dimensionless ratio statement applies identically (no footing-specific b)",
+      "ok": true,
+      "value": "b, Z/beta^2, kappa dimensionless",
+      "threshold": "same on both footings",
+      "note": "only G_N enters; footings never share fixed rho and fixed kappa"
+    },
+    {
+      "name": "M0 measure: full-domain primitive 2 int s dh_mono diverges (integrand -> delta h_p != 0); the EQUAL-SPAN primitive [0, y_p] is the operative finite object - kernel transfer defined under the equal-span reading",
+      "ok": true,
+      "value": "['7.938', '103.1']",
+      "threshold": "ratios ~ 10, 100 (linear divergence)",
+      "note": "missing input under a full-domain reading: a MONO truncation rule (h_mono has no peak; k04's 'truncate at the peak' does not apply)"
+    },
+    {
+      "name": "R4 kappa = 1/2 at the tuned MONO ratio (kappa(r_half) = 0.500000)",
+      "ok": true,
+      "value": "0.500000000000",
+      "threshold": "|d| < 1e-12",
+      "note": "the same-form equivalence kappa = 1/2 <=> Z/beta^2 = 8 - 2 b_mono holds (Lean-certified in the ratio-algebra certificate)"
+    }
+  ],
+  "meta": {
+    "task": "AS651.C01",
+    "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter) via Hermes Agent subagent (AS651.C01 child)",
+    "kernel": "operative filtered-MONO: h'_mono = max(h'_RAR, delta h_p/(y+y_p)), joined C^1 at y*; equal-span primitive over [0, y_p]",
+    "branch": "k04 four-form (pinned 15c0a7e1...) with the MONO kernel in place of the RAR Delta (kernel transfer; same source/action conventions)",
+    "landmarks": {
+      "y_p": 2.5396382821881653,
+      "h_p": 0.6476102378919149,
+      "y_star": 2.3374124052663294,
+      "delta": 0.05,
+      "crossing_residual": 2.923336401663339e-52
+    },
+    "I_rar": 0.4525248966751305,
+    "I_mono": 0.4558149305036417,
+    "b_RAR": {
+      "0.0": "0.018005393544499055249221453680574610452900333196999",
+      "0.25": "0.015754719351436673343068771970502784146287791547375"
+    },
+    "b_mono": {
+      "0.0": "0.018136299831185831157529468829829343849334208770523",
+      "0.25": "0.015869262352287602262838285226100675868167432674207"
+    },
+    "ratio_RAR": {
+      "0.0": "7.963989212911001889501557092638850779094199333606",
+      "0.25": "7.9684905612971266533138624560589944317074244169053"
+    },
+    "ratio_mono": {
+      "0.0": "7.963727400337628337684941062340341312301331582459",
+      "0.25": "7.9682614752954247954743234295477986482636651346516"
+    },
+    "kappa_grid": [
+      [
+        1.0,
+        1.389242274326862
+      ],
+      [
+        2.0,
+        0.9910533619921142
+      ],
+      [
+        4.0,
+        0.703922347436981
+      ],
+      [
+        7.963727400337628,
+        0.5
+      ],
+      [
+        8.0,
+        0.4988703213481123
+      ],
+      [
+        16.0,
+        0.3531533113173089
+      ],
+      [
+        64.0,
+        0.1767266216562064
+      ]
+    ],
+    "r_half": 7.963727400337628,
+    "first_obligation": {
+      "hp_min": 0.0025822524674089203,
+      "I_mono_pos": true,
+      "J0_RAR_sign": "-",
+      "J0_MONO_sign": "-",
+      "J0_canonical": -3.9949977806391896e-21,
+      "J0_alternative": -5.7986879724377335e-21
+    },
+    "neg_control": {
+      "stiffness_min": 1.0540398506440404e-05,
+      "stiffness_gate_min": 0.01581007075102833,
+      "stiff_deep_1e4": 8292.304885662234
+    },
+    "measure_report": {
+      "full_span_values": [
+        0.7903236134640862,
+        6.273195133202802,
+        646.6540486220819
+      ],
+      "growth_ratios": [
+        7.937501836376382,
+        103.08208734006497
+      ],
+      "divergence": "linear in T (integrand -> delta h_p != 0); equal-span [0, y_p] finite"
+    },
+    "footings": {
+      "canonical": {
+        "a0": 9.3619e-11,
+        "rho_Lambda": 5.844412454021876e-27,
+        "eps_Lambda": 5.252695959726114e-10,
+        "s": 1.87238e-10,
+        "q_star_beta1": 1.1459380393073304e-05
+      },
+      "alternative": {
+        "a0": 1.1279e-10,
+        "rho_Lambda": 8.483089619559099e-27,
+        "eps_Lambda": 7.624220727267281e-10,
+        "s": 2.2558e-10,
+        "q_star_beta1": 1.3805995733074889e-05,
+        "kappa_eff_fixed_canonical_rho": 0.6023884040632778
+      }
+    },
+    "constants": {
+      "G": 6.6743e-11,
+      "c": 299792458.0
+    }
+  }
+}

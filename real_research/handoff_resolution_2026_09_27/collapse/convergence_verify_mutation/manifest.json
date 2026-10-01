@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "claim_id": "HR01_CONVERGENCE_REPEATABILITY",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/usr/bin/env",
+    "MUTATE=1",
+    "CONVERGENCE_VERIFY_OUTPUT=real_research/handoff_resolution_2026_09_27/collapse/convergence_verify_mutation/result.json",
+    "/usr/bin/python3",
+    "real_research/handoff_resolution_2026_09_27/collapse/verify_convergence.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Stored same-input solver repetition has identical initial arrays, output profiles, and conversion budget",
+    "coefficient_domain": "float64 with analytical identities separately proved in report",
+    "conventions": "Newtonian weak-field, point baryons, positive inward g, radius in SI for fluid and dimensionless for tracer",
+    "inputs": [
+      "six bounded solver runs in convergence_results.json"
+    ],
+    "bounds": {
+      "N": 600,
+      "neighbours": 24,
+      "host_Msun": 1000000000000.0,
+      "seed": 1
+    },
+    "non_claims": [
+      "Repeatability is not continuum convergence",
+      "Mutating record selection audits evidence bookkeeping, not astrophysical falsification"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:15:42.087489+00:00",
+    "runtime_seconds": 0.048699,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/handoff_resolution_2026_09_27/collapse/verify_convergence.py",
+    "real_research/handoff_resolution_2026_09_27/collapse/convergence_results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/verify_convergence.py",
+      "sha256": "a499fa4bc10b4091b1b2f6772f21360a0167e28a1bfe2ccaf53ea7dd7894ab9b",
+      "sha256_after": "a499fa4bc10b4091b1b2f6772f21360a0167e28a1bfe2ccaf53ea7dd7894ab9b"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/convergence_results.json",
+      "sha256": "9618dfb5f7ddba9093dddceb84d09c7537e0129f42823699d6c7eb15a8c33c2d",
+      "sha256_after": "9618dfb5f7ddba9093dddceb84d09c7537e0129f42823699d6c7eb15a8c33c2d"
+    }
+  ],
+  "output_directory": "real_research/handoff_resolution_2026_09_27/collapse/convergence_verify_mutation",
+  "declared_results": [
+    "real_research/handoff_resolution_2026_09_27/collapse/convergence_verify_mutation/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/convergence_verify_mutation/stdout.txt",
+      "sha256": "77bd610d99bf7fc2eecbf2be93c01d47c343faf8c803a96c46fa74d36c12b3b8",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/convergence_verify_mutation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/convergence_verify_mutation/result.json",
+      "sha256": "46688d85ccde7d0fd745e9c1a378b331554a2285b634a3a6acffcddf1f38bd40",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

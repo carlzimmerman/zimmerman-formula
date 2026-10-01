@@ -1,0 +1,148 @@
+{
+  "task_id": "FGF-037",
+  "task_sha256": "2653a38bbfb66c710ff2ec47c22c8992543063ce80fcf871478f503873f005ad",
+  "run_id": "fgf037_run_001",
+  "worker": {
+    "agent": "/root/coupled_dynamics",
+    "execution_id": "/root/coupled_dynamics:fgf037_run_001",
+    "mode": "proof-only"
+  },
+  "started_utc": "2026-09-30T18:33:00.089661+00:00",
+  "started_utc_note": "Task reservation timestamp; reasoning start was not separately instrumented.",
+  "finished_utc": "2026-09-30T18:37:42.427402+00:00",
+  "outcome": "counterexample",
+  "exact_claim": "For the same fixed short Q crossing and its completed weighted phi space V_A, the exact nonlinear energy is not finite on any weighted neighborhood of the background. A direction with psi prime proportional to abs(x)^(-1/2) is in V_A but has infinite exact field energy at every nonzero amplitude. Even on smooth fixed-wall phi-only finite-energy perturbations with unchanged density/scale/mass, the single dimensionally restored beta=3/8 bump family tends to zero in V_A with norm squared of order delta^(1/4), while its exact equilibrium-linear-subtracted full energy is asymptotic to a positive constant times delta^(-1/4). Thus continuity and uniform quadratic Taylor control in this weighted topology fail. Finite exact field energy at fixed bounded scale requires the ordinary L2 gradient/H1 potential domain. The prior linear form/operator/evolution theorem survives and no nonlinear instability or ghost is inferred.",
+  "new_assumptions": [
+    "Retain exactly the reviewed fixed Q crossing, physical coefficients, bounded positive scale and induced fixed walls/mass.",
+    "Restrict controls to phi-only perturbations with density and scale unchanged, so fluid positivity and mass stay exact.",
+    "One fixed smooth compact bump and fixed physical reference units with dimensionless beta=3/8 concentration; no exponent or parameter scan."
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/FGF-036_RECONCILIATION.md": "2ce6b03d38f4d5f7bb63da3a718c87b04e8bd46143c4e3c5da49045e06b259c5",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-036/fgf036_run_001/result.json": "d238f3db45e4aacbce15487c89c1c66f7131915cba7a1c6e5043179b0e30c515",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-036/fgf036_run_001/DERIVATION.md": "71727e56c1c7d88bd2d24988af4683339b5fdc4db6f9ca54d9c800752a747f1a",
+    "campaign_fresh_gravity_astra/stage_23/weighted_crossing/ROOT_DERIVATION.md": "1ad5e82feb6a57aebd7a30df7ce0b6fb3be0a42e01ea14a084371aff578e2dc0",
+    "campaign_fresh_gravity_astra/stage_23/weighted_crossing/audit_result.json": "fa69589f5bf89d9ffd10faf5e15f35b6dab691d8b7e34f84a1da585d114e6075",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-035/fgf035_run_001/DERIVATION.md": "5aa9e64b81a9dcaac14926f43c680a82d44d57be838423ccc4b0ebeee1cb1d3b",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-023/fgf023_run_001/DERIVATION.md": "0b9babab32edd602cf5aea8db63126a52f09c379b858e5c5967d46835bbf1f4a",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/tasks/FGF-037.md": "2653a38bbfb66c710ff2ec47c22c8992543063ce80fcf871478f503873f005ad",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/FRAMEWORK_AND_EXECUTION.md": "ff0d2873065578b0bd8aa50907e0a39495ff8da775bf2b4890768d83775fd750",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/RESULT_CONTRACT.json": "ba388d0ca8e447a38649a478483e3ff4c2d3293e842eedc8f035499c77a20c29"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-037/fgf037_run_001/DERIVATION.md": "07a7a0d4e22c18c8963d4264dc61b69de035c99acd09624f8a54966d8822ce38",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-037/fgf037_run_001/REPORT.md": "f7f1fe8958f06030fe0052a8419f17bf26c1254fe8b2ce81c5323d2947e276fd",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-037/fgf037_run_001/input_sha256.json": "976e140d9d12e235c7931183311cbb74f608e588053fb9ca35cabcb89578cf75"
+  },
+  "commands": [],
+  "commands_reason": "Proof-only exact inequalities and explicit counterexample families; file operations/hashing/JSON checks were administrative. No numerical or symbolic computation run.",
+  "execution_bounds": {
+    "mode": "proof_only",
+    "requested_if_computation_used": {
+      "wall_seconds": 120,
+      "cpu_seconds": 110,
+      "cooperative_threads": 1,
+      "log_bytes": 1048576
+    },
+    "actually_enforced": null,
+    "reason": "No experiment was needed, so no manifest or numerical resource-enforcement claim."
+  },
+  "checks": [
+    {
+      "name": "exact_Q_growth",
+      "method": "exact analytic derivation/control",
+      "observed_result": "s\u00b2/2\u2212as/2<=W<=s\u00b2/2 and W>=s\u00b2/4\u2212a\u00b2/4 follow directly from Q; no deep-limit extrapolation.",
+      "tolerance": "exact, no numerical computation",
+      "pass": true
+    },
+    {
+      "name": "finite_energy_class",
+      "method": "exact analytic derivation/control",
+      "observed_result": "At bounded positive a on a finite interval, integral W finite iff physical gradient is L2.",
+      "tolerance": "exact, no numerical computation",
+      "pass": true
+    },
+    {
+      "name": "singular_weighted_direction",
+      "method": "exact analytic derivation/control",
+      "observed_result": "A smooth transformed-coordinate profile with nonzero center derivative belongs to V_A but has physical derivative proportional to abs(x)^(-1/2), not L2.",
+      "tolerance": "exact, no numerical computation",
+      "pass": true
+    },
+    {
+      "name": "finite_linear_terms",
+      "method": "exact analytic derivation/control",
+      "observed_result": "Potential and matter interaction remain bounded; B psi prime is integrable and its integral cancels C integral rho psi exactly.",
+      "tolerance": "exact, no numerical computation",
+      "pass": true
+    },
+    {
+      "name": "single_smooth_beta",
+      "method": "exact analytic derivation/control",
+      "observed_result": "One fixed compact smooth bump, beta=3/8, gives weighted norm squared O(delta^(1/4)), physical gradient norm squared proportional to delta^(-1/4).",
+      "tolerance": "exact, no numerical computation",
+      "pass": true
+    },
+    {
+      "name": "exact_smooth_energy",
+      "method": "exact analytic derivation/control",
+      "observed_result": "Global growth bounds control all bump points including derivative zeroes; exact full increment is asymptotic to positive Psi_ref\u00b2 J0/(2C L_ref) delta^(-1/4).",
+      "tolerance": "exact, no numerical computation",
+      "pass": true
+    },
+    {
+      "name": "Taylor_obstruction",
+      "method": "exact analytic derivation/control",
+      "observed_result": "D minus quadratic H divided by weighted norm squared diverges positively; no uniform quadratic remainder or continuity in this topology.",
+      "tolerance": "exact, no numerical computation",
+      "pass": true
+    },
+    {
+      "name": "physical_units",
+      "method": "exact analytic derivation/control",
+      "observed_result": "Reference potential and length remain fixed while dimensionless delta changes; W/C integrated over physical x has energy/area units.",
+      "tolerance": "exact, no numerical computation",
+      "pass": true
+    },
+    {
+      "name": "surviving_scope",
+      "method": "exact analytic derivation/control",
+      "observed_result": "Closed weighted linear form/operator/evolution remain valid; no negative energy or nonlinear evolution theorem follows.",
+      "tolerance": "exact, no numerical computation",
+      "pass": true
+    },
+    {
+      "name": "ancestry",
+      "method": "SHA256 source verification",
+      "observed_result": "All seven task-pinned ancestors and task hash matched.",
+      "tolerance": "exact, no numerical computation",
+      "pass": true
+    }
+  ],
+  "tested_domain": {
+    "kind": "exact singular and smooth counterexample families on one fixed background",
+    "weighted_space": "V_A from FGF036 with A~a_A sqrt(abs(x)), integral1/A finite, zero outer traces; full triples restricted to (0,psi,0).",
+    "smooth_family": "psi_delta=Psi_ref delta^(3/8) f(x/(L_ref delta)); one fixed f(y)=exp(\u22121/(1\u2212y\u00b2)) on abs(y)<1 and zero outside, fixed Psi_ref,L_ref>0, delta tends to0 with support inside the same interval.",
+    "singular_family": "psi=v(s(x)), s=integral1/A, with smooth compact transformed-coordinate v and fixed nonzero v_s near center; nonzero scalar amplitudes only.",
+    "units": "Psi_ref potential; L_ref length; delta dimensionless; gradient acceleration; energy integral W/C per transverse area.",
+    "branches": "Both positive a_ref values separately, Q only, fixed scale profile during each comparison; constant-vacuum/frozen-H/evolving-H distinct."
+  },
+  "failed_attempts": [
+    {
+      "path": "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-037/fgf037_run_001/DERIVATION.md",
+      "implication": "Promote completed weighted linear energy control to finite/continuous nonlinear energy and a uniform quadratic Taylor bound",
+      "cause": "Explicit singular direction has infinite nonlinear energy at every nonzero amplitude, and smooth beta=3/8 sequence has vanishing weighted norm but diverging positive exact energy. This is the intended diagnostic counterexample, not a failed numerical run."
+    }
+  ],
+  "limitations": [
+    "Counterexample to one topology/domain implication, not impossibility of nonlinear evolution on all stronger domains.",
+    "No ghost, negative energy direction, growing dynamical mode or nonlinear ill-posedness result.",
+    "Finite-energy ordinary H1 membership and strong-H1 continuity on the fixed-density/scale slice do not establish twice-Frechet differentiability or nonlinear coupled well-posedness.",
+    "No new physical V, RAR transfer, M action, filtered-MONO/metric/photon/DOF, instrument calibration or physical theory closure.",
+    "Responsive local scale remains diagnostic and does not establish literal scale-vacuum matching or an evolving-H reservoir."
+  ],
+  "next_unresolved_implication": "Any proposed nonlinear or physical continuation must specify a stronger finite-energy domain and a justified target, then independently prove the required nonlinear differentiability/evolution properties. The weighted linear theorem alone is insufficient.",
+  "suggested_followup": "Close this weighted-to-nonlinear implication with the recorded counterexamples. Require a separately justified nonlinear/physical target before further refinement; do not repeat positivity or parameter scans to bypass the domain obstruction.",
+  "acceptance_state": "unreviewed_worker_result",
+  "independence": "Raw proof fixed before viewing any new root or auditor proof for FGF037; independent review required."
+}

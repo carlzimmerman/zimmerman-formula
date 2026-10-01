@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "AFG-003",
+  "repository": {
+    "commit": "08548fc85550e53ba681b9b1322011b7b7abd066",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "-B",
+    "campaign_fresh_gravity_astra/check_bounds.py",
+    "--out",
+    "campaign_fresh_gravity_astra/run_bounds_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent bound and moment checks plus deliberate false-rule controls.",
+    "coefficient_domain": "binary64 with written real-variable proofs",
+    "conventions": "Raw line moments, common geometry and response weights.",
+    "inputs": [
+      "campaign_fresh_gravity_astra/check_bounds.py",
+      "campaign_fresh_gravity_astra/DERIVATIONS.md",
+      "campaign_fresh_gravity_astra/run_002/results.json",
+      "campaign_fresh_gravity_astra/run_transition_001/results.json"
+    ],
+    "bounds": {
+      "transition_cases": 24,
+      "pointwise_R_grid": [
+        1e-12,
+        100000000.0,
+        10001
+      ],
+      "controls": 2
+    },
+    "non_claims": [
+      "Finite checking is not the universal proof; no empirical spectral measurement."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T15:43:23.884335+00:00",
+    "runtime_seconds": 0.368403,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "campaign_fresh_gravity_astra/check_bounds.py",
+    "campaign_fresh_gravity_astra/DERIVATIONS.md",
+    "campaign_fresh_gravity_astra/run_002/results.json",
+    "campaign_fresh_gravity_astra/run_transition_001/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "campaign_fresh_gravity_astra/check_bounds.py",
+      "sha256": "7bc67f468f0788c9d14a2e1766aa9fa4322741aa6fc908ab723b53889e5cdb39",
+      "sha256_after": "7bc67f468f0788c9d14a2e1766aa9fa4322741aa6fc908ab723b53889e5cdb39"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/DERIVATIONS.md",
+      "sha256": "8da8176e3daeaeeaf9e42edb1585f271c92a50c0d9fdd842aa10caee462fb889",
+      "sha256_after": "8da8176e3daeaeeaf9e42edb1585f271c92a50c0d9fdd842aa10caee462fb889"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/run_002/results.json",
+      "sha256": "bc4472d7f3cfc3a87ee33f9e5abfcece457878d128a8b8a069084c3406edb090",
+      "sha256_after": "bc4472d7f3cfc3a87ee33f9e5abfcece457878d128a8b8a069084c3406edb090"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/run_transition_001/results.json",
+      "sha256": "775692587a4de5257264d1acbe5d5ab186580aa38025483e560d30d8eb58ae1f",
+      "sha256_after": "775692587a4de5257264d1acbe5d5ab186580aa38025483e560d30d8eb58ae1f"
+    }
+  ],
+  "output_directory": "campaign_fresh_gravity_astra/run_bounds_001",
+  "declared_results": [
+    "campaign_fresh_gravity_astra/run_bounds_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "campaign_fresh_gravity_astra/run_bounds_001/stdout.txt",
+      "sha256": "0e90d1c55b4ce6afe2bfd753af642a4d637a99fcf2eacd28eb88073634e0644c",
+      "kind": "log"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/run_bounds_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "campaign_fresh_gravity_astra/run_bounds_001/results.json",
+      "sha256": "0e90d1c55b4ce6afe2bfd753af642a4d637a99fcf2eacd28eb88073634e0644c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

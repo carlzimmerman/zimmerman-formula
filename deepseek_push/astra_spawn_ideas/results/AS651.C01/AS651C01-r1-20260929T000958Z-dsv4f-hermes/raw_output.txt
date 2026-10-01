@@ -1,0 +1,70 @@
+====================================================================================================
+AS651.C01 -- MONO kernel transfer of b into the four-form vacuum condition
+====================================================================================================
+
+[0] FIRST OBLIGATION -- response-to-primitive transfer (h'_mono > 0 => J(0) < 0, k01 dictionary)
+    landmarks: y_p (RAR peak) = 2.53963828219, h_p = 0.647610237892
+    crossing y* (h'_RAR = delta h_p/(y+y_p)) = 2.33741240527  (landmark 2.3374)
+    crossing residual = 2.923e-52
+  [PASS] M1 kernel at crossing: h'_RAR(y*) = delta h_p/(y*+y_p) solved at y* ~ 2.3374: 2.923e-52  (thr < 1e-40)  y* = 2.3374124 vs rounded landmark 2.3374
+  [PASS] M2 monotonicity h'_mono > 0 on [1e-3, 10] (diagnostic; consistent by construction: max of two positive branches): 0.002582  (thr > 0)  h'_RAR > 0 on [0, y*] (pre-peak), filter branch > 0 on [y*, 10]
+  [PASS] T1 RAR primitive reproduced: I_rar = jsat = 2(y_p h_p - int_0^{y_p} h_RAR): 0.4525248967  (thr |d| < 1e-7)  parent AS651 I_rar = jsat = 0.45252490 (K_B = 0 -> b_RAR = jsat/8pi)
+  [PASS] T2 same-sign primitive theorem step 1: h'_mono > 0 on (0, y_p] implies I_mono = 2 int s h'_mono ds > 0 (to be confirmed after step 1): structure: integrand s*h'_mono > 0 a.e.  (thr product of positive factors)  exact same-sign structure; numeric I_mono in step 1
+  [PASS] T3 same-sign primitive theorem step 2: J(0) = -I a0^2 < 0 (RAR witness): -0.4525249  (thr < 0)  k01 dictionary transfers if I_mono > 0 (checked numerically in step 1); J_mono(0) reported there
+
+[1] I_mono = 2 int_0^{y_p} s h'_mono(s) ds  (equal-span primitive: RAR saturation span [0, y_p], MONO response)
+    I_mono (quadrature of s*h'_mono) = 0.4558149305036417
+    I_mono (antiderivative form)     = 0.4558149305036417
+  [PASS] I1 I_mono: two independent representations agree (integrand vs antiderivative): 8.686e-51  (thr < 1e-45)  equal-span primitive of the MONO response, span [0, y_p] identical to RAR's [0, s_sat]
+  [PASS] I2 refinement I_mono dps 50 vs 100: 1.127e-52  (thr < 1e-40)  declared refinement
+  [PASS] I3 same-sign transfer numeric: I_mono > 0: 0.4558149305  (thr > 0)  h'_mono > 0 on (0, y_p] => I_mono > 0 (exact structure, M2)
+  [PASS] I4 FIRST OBLIGATION verified: J_mono(0) = -I_mono a0^2 < 0 (same sign as J_RAR(0) = -I_rar a0^2 < 0): sign J_mono(0) = - (I_mono = 0.4558149305); sign J_RAR(0) = -  (thr both < 0)  response-to-primitive dictionary of k01 transfers to h_mono: same sign, J(0) < 0
+    J_mono(0) = -I_mono a0^2 : canonical a0 -> -3.995e-21 m^4 s^-4;  alternative a0 -> -5.79869e-21
+  [PASS] I5 analytic check: dI/dy* = 2 y* (h'_RAR(y*) - delta h_p/(y*+y_p)) = 0 at the crossing (kernel at crossing): -1.367e-51  (thr < 1e-40)  the primitive is stationary at the join because the branches meet with equal slope (C^1 join)
+  [PASS] I6 finite-difference confirmation dI/dy* |_FD (h = 1e-3, split-point quadrature): 3.677e-9  (thr < 1e-5)  FD of the y*-parametrized primitive vanishes at the crossing (analytic residual 0; independent FD confirmation)
+
+[2] b_mono = (2-K_B) I_mono / (16 pi):  ratio 8 - 2 b_mono
+    K_B = 0.0: b_RAR = 0.0180053935  b_mono = 0.0181362998   ratio 8-2b: RAR 7.9639892129 -> MONO 7.9637274003
+    K_B = 0.25: b_RAR = 0.0157547194  b_mono = 0.0158692624   ratio 8-2b: RAR 7.9684905613 -> MONO 7.9682614753
+  [PASS] R1 ratio shift: 8 - 2 b_mono != 8 - 2 b_RAR (kernel transfer changes the required ratio): Delta = -0.000261813  (thr |shift| > 1e-6)  K_B=0: 8-2b_RAR = 7.963989 -> 8-2b_mono = 7.963727
+  [PASS] R2 ratio matches parent RAR value 7.96398921 (reproduction): 7.9639892129  (thr |d| < 1e-6)  parent AS651 Z/beta^2 = 8 - 2b = 7.96398921 at K_B = 0
+  [PASS] R3 acceptance: 8 - 2 b_mono to 6 digits: 7.96372740  (thr 6 digits)  K_B=0: 7.963727; K_B=1/4: 7.968261
+
+[3] E* audit (AS075 obligation B) with the MONO kernel
+    r = Z/beta^2 =   1.000000:  kappa = 1.389242
+    r = Z/beta^2 =   2.000000:  kappa = 0.991053
+    r = Z/beta^2 =   4.000000:  kappa = 0.703922
+    r = Z/beta^2 =   7.963727:  kappa = 0.500000
+    r = Z/beta^2 =   8.000000:  kappa = 0.498870
+    r = Z/beta^2 =  16.000000:  kappa = 0.353153
+    r = Z/beta^2 =  64.000000:  kappa = 0.176727
+  [PASS] B4 projection continuum (B-iv): 7 distinct kappa values incl. tuned r_half -> kappa = 1/2 exactly: [1.38924227, 0.99105336, 0.70392235, 0.5, 0.49887032, 0.35315331, 0.17672662]  (thr all distinct; kappa(r_half) = 0.5 to 1e-12)  kappa^2 = 1/(r/2 + b_mono) strictly decreasing in r: continuum, rank-1 selection fails
+  [PASS] B5 q-cancellation: kappa^2 independent of flux amplitude q (E2 analogue, MONO kernel): 6.682e-52  (thr < 1e-40)  kappa^2 = beta^2/(Z/2 + b_mono beta^2); q_0 never enters
+  [PASS] B6 candidate E*: rho_vac/rho_Lambda = 1 exactly at Z/beta^2 = 8 - 2 b_mono (E3 analogue): 0.0  (thr < 1e-45)  vacuum-magnitude equation and kappa equation collapse to the ONE codimension-1 condition on couplings
+  [PASS] B1 (B-i) shift-breaking: the pinned construction never couples the primitive shift C into P(q) - NOT ESTABLISHED (unchanged by kernel transfer): C not coupled in the pinned class  (thr report as NOT ESTABLISHED)  b depends on the kernel integral I_mono, not on the additive constant C (same as AS651)
+  [PASS] B2 (B-ii) no new datum: FAILS - Z/beta^2 = 8 - 2 b_mono is a VALUE, not an equation fixing it: 0 fixing equations for (q_0, Z/beta^2)  (thr FAILS)  kernel transfer shifts the required ratio but supplies no equation selecting it (B-ii unchanged)
+  [PASS] B3 (B-iii) positive vacuum: eps_vac = +(Z/2 + b_mono beta^2) q^2 > 0 for all q != 0 (structural, sign): +Z q^2/2 + b_mono beta^2 q^2  (thr > 0 for q != 0)  sign independent of the kernel: PASSES structurally; magnitude = adopted flux datum q_0
+
+    canonical a0 = 9.3619e-11: rho_Lambda = 5.8444124540e-27 kg/m^3, eps = 5.2526959597e-10 J/m^3, s = 1.872380e-10, q_* = 1.145938e-05/beta
+    alternative a0 = 1.1279e-10: rho_Lambda = 8.4830896196e-27 kg/m^3, eps = 7.6242207273e-10 J/m^3, s = 2.255800e-10, q_* = 1.380600e-05/beta
+    kappa_eff at fixed canonical density (relabel diagnostic) = 0.602388404
+  [PASS] F1 G_N separate from G_bare/G_cosmo (single-G promotion is k04's own assumption): G_N = 6.67430e-11 only  (thr no identification)  
+
+[4] NEGATIVE CONTROL -- stiffness s h_mono(s) - j_mono(s) >= 0  (F6 analogue, live MONO kernel)
+  [PASS] N1 stiffness min(s h_mono - j_mono) >= 0 on [1e-3, 10] (NEGATIVE CONTROL; capable of failing): 1.054e-5  (thr >= -1e-12)  F6 analogue: effective flux stiffness Z_eff positive on the operative domain [0, 10]
+  [PASS] N2 stiffness monotonicity gate: h(s) - s h'(s) > 0 on [1e-3, 10] (h - s h' = -s^2 nu' > 0 on the RAR segment; h_mono - delta h_p s/(s+y_p) > 0 on the log branch): 0.01581  (thr > 0)  kernel-specific: on [0, y*]: h_RAR - s h'_RAR = -s^2 nu'_RAR > 0 (nu'_RAR < 0); on [y*, 10]: h_mono - s*filter >= h_RAR(y*) - delta h_p > 0
+  [PASS] N3 deep-end limiting behaviour (same measure): stiffness -> +inf on the MONO log branch (vs RAR frozen-truncation -> 0+): 8292.0  (thr > 1e3)  the MONO continuation does not saturate: the k04 peak-truncation convention has no MONO analogue - documented measure fact
+    K_B = 0.0: b_mono = 0.0181362998, required Z/beta^2 = 8 - 2 b_mono = 7.9637274003
+    K_B = 0.25: b_mono = 0.0158692624, required Z/beta^2 = 8 - 2 b_mono = 7.9682614753
+  [PASS] F2 both footings: dimensionless ratio statement applies identically (no footing-specific b): b, Z/beta^2, kappa dimensionless  (thr same on both footings)  only G_N enters; footings never share fixed rho and fixed kappa
+
+[M] measure report: the k01 primitive over the FULL domain
+    int_0^10 s h'_mono ds = 0.79032361
+    int_0^100 s h'_mono ds = 6.2731951
+    int_0^10000 s h'_mono ds = 646.65405
+    growth ratios (10->100, 100->1e4): ['7.938', '103.1']  (linear growth ~ T, i.e. divergent)
+  [PASS] M0 measure: full-domain primitive 2 int s dh_mono diverges (integrand -> delta h_p != 0); the EQUAL-SPAN primitive [0, y_p] is the operative finite object - kernel transfer defined under the equal-span reading: ['7.938', '103.1']  (thr ratios ~ 10, 100 (linear divergence))  missing input under a full-domain reading: a MONO truncation rule (h_mono has no peak; k04's 'truncate at the peak' does not apply)
+  [PASS] R4 kappa = 1/2 at the tuned MONO ratio (kappa(r_half) = 0.500000): 0.500000000000  (thr |d| < 1e-12)  the same-form equivalence kappa = 1/2 <=> Z/beta^2 = 8 - 2 b_mono holds (Lean-certified in the ratio-algebra certificate)
+
+RESULT: 0 FAIL / 27 checks
+wall 1.091 s

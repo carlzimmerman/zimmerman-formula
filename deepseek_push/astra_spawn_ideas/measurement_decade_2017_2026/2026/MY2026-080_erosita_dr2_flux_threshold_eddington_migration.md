@@ -37,7 +37,7 @@ Quantify the asymmetric count migration caused by DR2 flux errors near threshold
 Mathematical starting relation/estimand:
 
 ```text
-p(F_true|F_obs,det) is proportional to p(F_obs|F_true) n(F_true)S.
+p(F_true|F_obs,D=1) is proportional to n(F_true)*p(F_obs,D=1|F_true). Define selection variables before factorization; a deterministic selection on the conditioned F_obs adds no second latent-flux factor.
 ```
 
 Define every symbol, units, sign, domain and approximation before use. Treat schematic formulas as obligations to derive, not established framework theorems.

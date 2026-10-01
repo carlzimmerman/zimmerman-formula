@@ -1,0 +1,185 @@
+XR36 (part 3) -- THE TURNAROUND GATE IN THE COSMIC WEB: CMB lensing (Planck 2018, ACT DR6), sigma_8 and the Lyman-alpha forest.
+How much of the web's MOND phantom survives a gate that is on only where the matter flow has turned around?
+
+WHY.  XR26 (68135cb7a) found that the chain's separator over-lenses the CMB: Planck's 8-400 amplitude 1.149 against
+1.011 +- 0.028 on FP13's linear yardstick (+4.9 sigma), 2.13 on the halofit base; passing needs the web's phantom cut to
+f* = 0.62 (linear) / 0.18 (halofit).  The candidate (part 1) switches MOND on only where theta_m = div u <= 0.  The per-mode
+linear yardstick cannot see a spatial mask: a linear mode's own divergence is 3H(1 - f delta/3) > 0, so on that yardstick the
+gate removes the web's phantom by construction -- but the gate reads the LOCAL flow, and at z < 1 much of the web's mass sits in
+collapsing sheets, filaments and knots.  This part measures, on a resolved web, what fraction of the phantom's lensing power
+the gate keeps, and scores the result with XR26's own machinery.
+
+THE WEB (XR19's grid, reproduced exactly).  A Zel'dovich web on the record's CLASS P(k) (XR16's head), 128^3 Lagrangian cells
+of 0.5 Mpc/h (XR19's box, seed 19).  Per cell and epoch the deformation eigenvalues d_i = D(z) lambda_i give the per-axis
+expansion e_i = H (1 - f d_i/(1 - d_i)); an axis that has shell-crossed (d_i >= 1) is virialised along that axis (e_i = 0);
+theta = e_1 + e_2 + e_3 (the D1 reading of part 2 on the web).  The gates: SHARP (W = 1 where theta <= 0), RAMP
+(clip(1 - theta/3H)), ALL3 (every axis contracting: 3-D bound) and the MUTATE (theta <= 3H: the expanding web counted as turned
+around).  The phantom is the chain's real-space operator in its local QUMOND form on the CIC density of the Zel'dovich particles
+(the all-matter reading of XR26/FP13): delta_ph = -div[W_E (nu_P2(|g_bp|/a0) - 1) g_bp]/(4 pi G rho_bar a), g_bp the band-passed
+Newtonian field (FP13's H_S length, and H_K1's 2.9 Omega_L(<K>_h) Mpc), W_E the mass-weighted gate of the cell's matter.  The
+gate's keep-fraction f_gate(k, z) = (sqrt(B_g) - 1)/(sqrt(B_u) - 1), B = P(delta + delta_ph)/P(delta), gated vs ungated.
+THE LENSING.  XR26's machinery exec'd from its committed source (CLASS P(k, z) at XR26's committed inputs, FP13's growth yardstick,
+the Limber integral, Planck 2018 VIII's MV band powers and amplitudes); the chain's per-mode C_eff is multiplied by f_gate(k, z)
+in the growth equation and in the Weyl potential.  Two candidates: HYBRID (the separator's yield kept; the gate acts where the
+yield is off, z < 0.635) and GATE-ALONE (the yield removed; the gate is the only switch at every z).
+
+PRE-DECLARED (written before this script's first run; the exploratory scratch runs listed under DISCLOSED came first).
+ H1 [load-bearing; MUTATE must fail] the HYBRID with the sharp gate passes Planck 2018's conservative lensing (8-400) on XR26's
+    LINEAR base: its amplitude lies within 2 sigma of 1.011 +- 0.028 on both footings (expected ~1.01-1.02: f_gate ~ 0.2).
+ H2 (reported) on XR26's halofit base the hybrid is marginal or fails (f_gate ~ 0.2 against the budget 0.18).
+ H3 (reported) the ramp keeps f ~ 0.5 (passes the linear base, fails halofit); the all-axes (3-D bound) gate keeps f <~ 0.05.
+ H4 sigma_8 of the gated hybrid stays inside FP6's band (0.922-1.05) and below FP13's ungated 1.018-1.023.
+ H5 (reported) THE FOREST: every forest absorber (1 + delta = 2-11 at z = 2-3) still expands along at least one axis, but the
+    trace theta is <= 0 for most absorbers at 1 + delta >= 5 -- a filament collapsing along two axes has turned around by the
+    trace while still expanding along its length; so the GATE-ALONE (no yield) fails FP6's forest proxy (<= 0.10) and the hybrid
+    keeps the separator's forest (0).
+ H6 (reported) THE BOUND REGIONS (sub-grid halos, a halo model): the phantom ADDED on LCDM halos inside r_on = (1-3) R200 raises
+    the 8-400 amplitude by >= 10% in the all-matter reading and less in the baryons-only reading -- both overcount if the chain's
+    galaxies have no CDM halos (its premise: galaxy lensing is baryons + phantom), so the web term decides.
+ H7 (reported) ACT DR6 (A_lens = 1.013 +- 0.023, 40 <= L <= 763; approximate weights, no ACT likelihood on disk): the hybrid lies
+    within 2 sigma.
+ AMENDMENT (after the first debug run, a MUTATE run, before any recorded run): L4 now weights by Planck's own MV bin errors inside
+    ACT's range (the debug run's two brackets, cosmic-variance and flat-ln-L weights, are kept as brackets): the cosmic-variance
+    weighting puts most of the weight at L ~ 500-763, which ACT's reconstruction noise does not.
+
+  *** MUTATE=1: the headline gate is on at theta <= 3H (the expanding web counted as turned around) -- L1 must FAIL ***
+
+  XR26's machinery exec'd from its committed source (inputs, classy_run at XR26's committed H0/YHe, FP13's yardstick, Limber, the L section's growth and band powers, amp_for_f) (6 s)
+
+======================================================================================================================
+K  CONTROLS: XR26's lensing numbers; XR19's eigenvalue statistics; the real-space phantom operator
+======================================================================================================================
+    XR26 headline R(L) (lin base) at 100/400/1000: 1.07587/1.73795/4.85067; 8-400 amplitude lin 1.149178 (committed 1.149178), halofit 2.134360; L2b amps at f = 0.2: 1.012417 / 1.077304
+  [FAIL] K1 CONTROL: XR26's machinery (exec'd from its committed source at its committed inputs) reproduces XR26's committed headline R(L) (8 multipoles, linear and halofit bases), its 8-400 amplitudes (4 variants x 2 bases) and L2b's phantom-budget amplitudes (8 f x 2 bases)
+         measured: max relative deviation: R(L) 2.5e-07; amplitudes 2.2e-07; L2b 2.0e-07
+    XR19's grid rebuilt: T-web [0.079355, 0.419259, 0.422479, 0.078908] (committed [0.079355, 0.419259, 0.422479, 0.078908]); sigma 2.464980363845825 / 2.4147881532664175   [17 s]
+  [PASS] K2 CONTROL: XR19's web rebuilt with its own recipe (XR16's head for the record's CLASS P(k); 128^3, 64 Mpc/h, seed 19) reproduces XR19's committed C3 exactly: the T-web fractions at threshold 0 and the grid's and CLASS's sigma(delta_lin)
+         measured: bit-identical: True
+    plane-wave response: y = 0.001/par: measured 15.8351, predicted 15.8351, y = 0.001/perp: measured 31.6386, predicted 31.6386, y = 0.1/par: measured 1.8091, predicted 1.8091, y = 0.1/perp: measured 3.3166, predicted 3.3166
+  [PASS] K3 CONTROL: this lane's real-space phantom operator reproduces DE12 C1's plane-wave response A = nu + y nu' (along the field) and nu (across) at y = 1e-3 and 1e-1 to 2%
+         measured: max relative deviation 1.7e-10
+    [17 s]
+
+======================================================================================================================
+W  THE WEB CENSUS AND THE GATE'S KEEP-FRACTION f_gate(k, z) (per-axis virialisation; both band-pass lengths; canonical and alt)
+======================================================================================================================
+    z = 0.00: mass on (sharp/ramp/all3/mut) 0.123/0.386/0.016/0.819; crossed axes 0/1/2/3 0.370/0.500/0.125/0.006; f_gate at k = 0.3/1 h/Mpc (H_S, canonical) sharp: 0.142/0.146, ramp: 0.441/0.444, all3: 0.038/0.040, mut: 0.813/0.850   (2 s)
+    z = 0.25: mass on (sharp/ramp/all3/mut) 0.154/0.399/0.015/0.806; crossed axes 0/1/2/3 0.428/0.472/0.096/0.004; f_gate at k = 0.3/1 h/Mpc (H_S, canonical) sharp: 0.185/0.189, ramp: 0.476/0.477, all3: 0.039/0.041, mut: 0.827/0.846   (4 s)
+    z = 0.50: mass on (sharp/ramp/all3/mut) 0.180/0.413/0.013/0.792; crossed axes 0/1/2/3 0.495/0.432/0.070/0.002; f_gate at k = 0.3/1 h/Mpc (H_S, canonical) sharp: 0.228/0.232, ramp: 0.514/0.513, all3: 0.039/0.038, mut: 0.844/0.851   (6 s)
+    z = 0.64: mass on (sharp/ramp/all3/mut) 0.192/0.419/0.012/0.784; crossed axes 0/1/2/3 0.535/0.406/0.058/0.001; f_gate at k = 0.3/1 h/Mpc (H_S, canonical) sharp: 0.251/0.252, ramp: 0.533/0.531, all3: 0.037/0.033, mut: 0.853/0.856   (8 s)
+    z = 1.00: mass on (sharp/ramp/all3/mut) 0.213/0.429/0.008/0.766; crossed axes 0/1/2/3 0.639/0.328/0.032/0.001; f_gate at k = 0.3/1 h/Mpc (H_S, canonical) sharp: 0.296/0.289, ramp: 0.566/0.556, all3: 0.026/0.020, mut: 0.868/0.863   (10 s)
+    z = 1.50: mass on (sharp/ramp/all3/mut) 0.220/0.423/0.005/0.742; crossed axes 0/1/2/3 0.772/0.216/0.012/0.000; f_gate at k = 0.3/1 h/Mpc (H_S, canonical) sharp: 0.310/0.297, ramp: 0.560/0.546, all3: 0.013/0.008, mut: 0.865/0.851   (12 s)
+    z = 2.00: mass on (sharp/ramp/all3/mut) 0.200/0.395/0.003/0.721; crossed axes 0/1/2/3 0.872/0.124/0.003/0.000; f_gate at k = 0.3/1 h/Mpc (H_S, canonical) sharp: 0.274/0.253, ramp: 0.509/0.486, all3: 0.005/0.002, mut: 0.837/0.818   (14 s)
+    z = 3.00: mass on (sharp/ramp/all3/mut) 0.121/0.305/0.001/0.688; crossed axes 0/1/2/3 0.973/0.027/0.000/0.000; f_gate at k = 0.3/1 h/Mpc (H_S, canonical) sharp: 0.149/0.118, ramp: 0.363/0.315, all3: 0.001/0.001, mut: 0.764/0.728   (16 s)
+  [PASS] (reported) W1 (reported) THE WEB CENSUS: the mass fraction the gate switches on at each epoch (per-axis virialisation: a shell-crossed axis contributes 0, the others their Zel'dovich expansion) -- most shell-crossed mass is sheets and filaments still expanding along their other axes
+         measured: z = 0.25: sharp 0.154, ramp 0.399, all3 0.015, mut 0.806; z = 1.0: sharp 0.213, ramp 0.429, all3 0.008, mut 0.766; z = 2.0: sharp 0.200, ramp 0.395, all3 0.003, mut 0.721
+  [PASS] (reported) W2 (reported) THE GATE'S KEEP-FRACTION of the web phantom's lensing boost at z = 0.25 (k = 0.2-1.5 h/Mpc, H_S's band-pass, canonical): sharp ~0.2, ramp ~0.5, all-axes <~ 0.05, MUTATE (theta <= 3H) ~0.9
+         measured: sharp: 0.189, ramp: 0.477, all3: 0.043, mut: 0.832
+    [33 s]
+    the web's matter at z = 0.25 by theta/3H (mass quantiles 10/25/50/75/90%): -0.51/+0.34/+0.70/+0.91/+1.20
+    lens canonical/A/10.5: its outskirts expand at theta/3H = 1.24 (0.5 Mpc) / 1.31 (1 Mpc); a gate on at those rates switches on 0.92 / 0.96 of the web's mass
+    lens canonical/A/11.0: its outskirts expand at theta/3H = 1.12 (0.5 Mpc) / 1.29 (1 Mpc); a gate on at those rates switches on 0.85 / 0.95 of the web's mass
+    lens canonical/A/11.2: its outskirts expand at theta/3H = 1.03 (0.5 Mpc) / 1.27 (1 Mpc); a gate on at those rates switches on 0.82 / 0.94 of the web's mass
+    lens canonical/B/10.5: its outskirts expand at theta/3H = 0.94 (0.5 Mpc) / 1.00 (1 Mpc); a gate on at those rates switches on 0.77 / 0.80 of the web's mass
+    lens canonical/B/11.0: its outskirts expand at theta/3H = 0.82 (0.5 Mpc) / 0.98 (1 Mpc); a gate on at those rates switches on 0.63 / 0.79 of the web's mass
+    lens canonical/B/11.2: its outskirts expand at theta/3H = 0.73 (0.5 Mpc) / 0.96 (1 Mpc); a gate on at those rates switches on 0.53 / 0.79 of the web's mass
+    lens alt/A/10.5: its outskirts expand at theta/3H = 1.24 (0.5 Mpc) / 1.31 (1 Mpc); a gate on at those rates switches on 0.92 / 0.96 of the web's mass
+    lens alt/A/11.0: its outskirts expand at theta/3H = 1.12 (0.5 Mpc) / 1.29 (1 Mpc); a gate on at those rates switches on 0.85 / 0.95 of the web's mass
+    lens alt/A/11.2: its outskirts expand at theta/3H = 1.03 (0.5 Mpc) / 1.27 (1 Mpc); a gate on at those rates switches on 0.82 / 0.94 of the web's mass
+    lens alt/B/10.5: its outskirts expand at theta/3H = 0.94 (0.5 Mpc) / 1.00 (1 Mpc); a gate on at those rates switches on 0.77 / 0.80 of the web's mass
+    lens alt/B/11.0: its outskirts expand at theta/3H = 0.82 (0.5 Mpc) / 0.98 (1 Mpc); a gate on at those rates switches on 0.63 / 0.79 of the web's mass
+    lens alt/B/11.2: its outskirts expand at theta/3H = 0.73 (0.5 Mpc) / 0.96 (1 Mpc); a gate on at those rates switches on 0.53 / 0.79 of the web's mass
+  [PASS] (reported) W3 (reported) NO EXPANSION THRESHOLD SEPARATES A KiDS LENS'S OUTSKIRTS FROM THE WEB: the matter at 0.5-1 Mpc around an isolated lens (part 2, the chain's baryons-only flow) expands at a rate that most of the web's matter does not exceed -- a gate on there is on across most of the web (the CMB then fails as in XR26)
+         measured: canonical/A/10.5: web fraction switched on 0.92 (0.5 Mpc) / 0.96 (1 Mpc); canonical/A/11.0: web fraction switched on 0.85 (0.5 Mpc) / 0.95 (1 Mpc); canonical/A/11.2: web fraction switched on 0.82 (0.5 Mpc) / 0.94 (1 Mpc); canonical/B/10.5: web fraction switched on 0.77 (0.5 Mpc) / 0.80 (1 Mpc); canonical/B/11.0: web fraction switched on 0.63 (0.5 Mpc) / 0.79 (1 Mpc); canonical/B/11.2: web fraction switched on 0.53 (0.5 Mpc) / 0.79 (1 Mpc)
+
+======================================================================================================================
+L1  THE HEADLINE: the HYBRID (the separator's yield kept) with the sharp gate, Planck 2018 8-400, XR26's linear base  [MUTATE: theta <= 3H]
+======================================================================================================================
+    canonical: 8-400 amplitude lin 1.1087 (+3.49 sigma), halofit 1.8596 (+30.31 sigma); R(L) lin at 100/400/1000: 1.0551/1.5411/3.8866; B(k, 0) at 0.1/0.3/1: 1.056/3.147/329.265
+    alt      : 8-400 amplitude lin 1.1345 (+4.41 sigma), halofit 2.0950 (+38.71 sigma); R(L) lin at 100/400/1000: 1.0678/1.6733/4.6072; B(k, 0) at 0.1/0.3/1: 1.062/3.437/412.377
+  [FAIL] L1 [H1, HEADLINE; MUTATE must fail] THE HYBRID PASSES PLANCK's CONSERVATIVE LENSING on XR26's linear base: with the web's per-mode phantom multiplied by the sharp gate's keep-fraction f_gate(k, z), the 8-400 amplitude lies within 2 sigma of 1.011 +- 0.028 on both footings (XR26's ungated headline: 1.149, +4.9 sigma)
+         measured: canonical: 1.1087 (+3.49 sigma), Delta chi^2 (9 MV bins) +38.27; alt: 1.1345 (+4.41 sigma), Delta chi^2 (9 MV bins) +58.42
+         reading:  MUTATE: counting the expanding web as turned around keeps ~90% of the web's phantom -- XR26's failure returns
+    [34 s]
+
+======================================================================================================================
+L2  (reported) THE HALOFIT BASE, THE OTHER GATES, THE GATE ALONE (no yield), H_K1's band-pass, the rms mode
+======================================================================================================================
+    canonical/ramp/hybrid/H_S         : lin 1.0355 (+0.87 sigma), halofit 1.2815 (+9.66 sigma)
+    canonical/ramp/alone/H_S          : lin 1.0570 (+1.64 sigma), halofit 1.7860 (+27.68 sigma)
+    canonical/all3/hybrid/H_S         : lin 1.0025 (-0.30 sigma), halofit 1.0381 (+0.97 sigma)
+    canonical/all3/alone/H_S          : lin 1.0030 (-0.28 sigma), halofit 1.0552 (+1.58 sigma)
+    canonical/sharp/hybrid/H_S        : lin 1.0108 (-0.01 sigma), halofit 1.1368 (+4.49 sigma)
+    canonical/sharp/hybrid/H_K1       : lin 1.0054 (-0.20 sigma), halofit 1.0657 (+1.95 sigma)
+    canonical/sharp/alone/H_S         : lin 1.0217 (+0.38 sigma), halofit 1.4692 (+16.36 sigma)
+    alt/ramp/hybrid/H_S               : lin 1.0428 (+1.14 sigma), halofit 1.3547 (+12.27 sigma)
+    alt/ramp/alone/H_S                : lin 1.0725 (+2.19 sigma), halofit 2.0638 (+37.60 sigma)
+    alt/all3/hybrid/H_S               : lin 1.0030 (-0.29 sigma), halofit 1.0485 (+1.34 sigma)
+    alt/all3/alone/H_S                : lin 1.0038 (-0.26 sigma), halofit 1.0729 (+2.21 sigma)
+    alt/sharp/hybrid/H_S              : lin 1.0130 (+0.07 sigma), halofit 1.1754 (+5.87 sigma)
+    alt/sharp/hybrid/H_K1             : lin 1.0065 (-0.16 sigma), halofit 1.0837 (+2.60 sigma)
+    alt/sharp/alone/H_S               : lin 1.0283 (+0.62 sigma), halofit 1.6460 (+22.68 sigma)
+    canonical/sharp/hybrid/H_S/rms    : lin 1.0131 (+0.07 sigma), halofit 1.1894 (+6.37 sigma)
+  [FAIL] (reported) L2 [H2, H3] (reported) THE HALOFIT BASE AND THE OTHER GATES: the sharp hybrid on XR26's halofit base; the ramp and all-axes gates; the gate alone (the yield removed: the gate the only switch at every z); H_K1's band-pass; the rms mode -- within 2 sigma?
+         measured: sharp hybrid halofit 1.860/2.095 (+38.7 sigma); ramp hybrid lin 1.035, NL 1.282; all3 hybrid lin 1.002, NL 1.038; sharp ALONE lin 1.022, NL 1.469
+    [38 s]
+
+======================================================================================================================
+L3  (reported) THE BOUND REGIONS: a halo model of the phantom ADDED on LCDM halos inside r_on = x_on R200 (sub-grid)
+======================================================================================================================
+    all      reading, r_on = 1 R200: 8-400 amplitude (halofit base, halos alone) 1.0010 (-0.36 sigma); R(100/400/1000) 1.000/1.005/1.037; B(k, 0.25) at 0.1/0.3/1/3 1.001/1.008/1.193/3.022   (1 s)
+    all      reading, r_on = 2 R200: 8-400 amplitude (halofit base, halos alone) 1.0083 (-0.10 sigma); R(100/400/1000) 1.004/1.043/1.248; B(k, 0.25) at 0.1/0.3/1/3 1.007/1.095/3.164/7.784   (1 s)
+    all      reading, r_on = 3 R200: 8-400 amplitude (halofit base, halos alone) 1.0260 (+0.54 sigma); R(100/400/1000) 1.014/1.127/1.638; B(k, 0.25) at 0.1/0.3/1/3 1.025/1.400/7.621/10.389   (2 s)
+    baryons  reading, r_on = 1 R200: 8-400 amplitude (halofit base, halos alone) 1.0005 (-0.37 sigma); R(100/400/1000) 1.000/1.003/1.019; B(k, 0.25) at 0.1/0.3/1/3 1.000/1.005/1.106/1.975   (2 s)
+    baryons  reading, r_on = 2 R200: 8-400 amplitude (halofit base, halos alone) 1.0035 (-0.27 sigma); R(100/400/1000) 1.002/1.018/1.099; B(k, 0.25) at 0.1/0.3/1/3 1.003/1.045/1.888/3.425   (3 s)
+    baryons  reading, r_on = 3 R200: 8-400 amplitude (halofit base, halos alone) 1.0096 (-0.05 sigma); R(100/400/1000) 1.005/1.045/1.218; B(k, 0.25) at 0.1/0.3/1/3 1.011/1.165/3.206/3.909   (3 s)
+  [PASS] (reported) L3 [H6] (reported) THE BOUND REGIONS: the phantom added on LCDM halos inside r_on = 1-3 R200 (all-matter and baryons-only readings) moves the 8-400 amplitude by the printed amounts -- an overcount if galaxies carry no CDM halo (the chain's premise)
+         measured: all/1.0: 1.001 (-0.4 sigma); all/2.0: 1.008 (-0.1 sigma); all/3.0: 1.026 (+0.5 sigma); baryons/1.0: 1.001 (-0.4 sigma); baryons/2.0: 1.004 (-0.3 sigma); baryons/3.0: 1.010 (-0.0 sigma)
+    [41 s]
+
+======================================================================================================================
+L4  (reported) ACT DR6 LENSING: A_lens = 1.013 +- 0.023 over 40 <= L <= 763 (approximate weights; no ACT likelihood on disk)
+======================================================================================================================
+    canonical/lin : amplitude with Planck's MV bin weights over 40-763 1.1689 (+6.78 sigma); cosmic-variance weights 1.9332 (+40.01); flat per ln L 1.3339 (+13.95)
+    canonical/NL  : amplitude with Planck's MV bin weights over 40-763 2.3891 (+59.83 sigma); cosmic-variance weights 9.2280 (+357.17); flat per ln L 3.8614 (+123.84)
+    alt/lin       : amplitude with Planck's MV bin weights over 40-763 1.2096 (+8.55 sigma); cosmic-variance weights 2.1638 (+50.03); flat per ln L 1.4156 (+17.50)
+    alt/NL        : amplitude with Planck's MV bin weights over 40-763 2.7699 (+76.39 sigma); cosmic-variance weights 11.4859 (+455.34); flat per ln L 4.6464 (+157.97)
+  [FAIL] (reported) L4 [H7] (reported) ACT DR6: the hybrid's lensing amplitude over 40-763 on XR26's linear base within 2 sigma of 1.013 +- 0.023, with Planck's own MV bin errors as the weights inside ACT's range (the cosmic-variance and flat-ln-L weightings bracket it; no ACT likelihood or noise curve on disk)
+         measured: canonical/lin: 1.169 [1.334-1.933]; canonical/NL: 2.389 [3.861-9.228]; alt/lin: 1.210 [1.416-2.164]; alt/NL: 2.770 [4.646-11.486]
+
+======================================================================================================================
+S1  SIGMA_8 of the gated yardstick (FP6's band 0.922-1.05; FP13's ungated H_S 1.018-1.023)
+======================================================================================================================
+    canonical/rms/hybrid: 1.0151; canonical/rms/alone: 1.0178; canonical/permode/hybrid: 1.0166; canonical/permode/alone: 1.0375; alt/rms/hybrid: 1.0169; alt/rms/alone: 1.0216; alt/permode/hybrid: 1.0185; alt/permode/alone: 1.0439
+  [PASS] S1 [H4] SIGMA_8 of the gated hybrid inside FP6's band (0.922-1.05) and below FP13's ungated 1.018-1.023 (per-mode and rms, both footings); the gate alone printed
+         measured: canonical/rms/hybrid: 1.0151, canonical/permode/hybrid: 1.0166, alt/rms/hybrid: 1.0169, alt/permode/hybrid: 1.0185
+
+======================================================================================================================
+R1  (reported) THE FOREST: what 'turned around' means for an absorber, and FP6's forest proxy with the gate alone
+======================================================================================================================
+    z = 2.0, 1 + delta in [1-2): mass 0.200; turned around by the trace 0.004; expanding along >= 1 axis 1.000 (along exactly one: 0.000)
+    z = 2.0, 1 + delta in [2-5): mass 0.166; turned around by the trace 0.247; expanding along >= 1 axis 1.000 (along exactly one: 0.011)
+    z = 2.0, 1 + delta in [5-11): mass 0.071; turned around by the trace 0.936; expanding along >= 1 axis 1.000 (along exactly one: 0.134)
+    z = 2.0, 1 + delta in [11-1e+09): mass 0.066; turned around by the trace 1.000; expanding along >= 1 axis 0.996 (along exactly one: 0.362)
+    z = 2.5, 1 + delta in [1-2): mass 0.241; turned around by the trace 0.001; expanding along >= 1 axis 1.000 (along exactly one: 0.000)
+    z = 2.5, 1 + delta in [2-5): mass 0.185; turned around by the trace 0.169; expanding along >= 1 axis 1.000 (along exactly one: 0.009)
+    z = 2.5, 1 + delta in [5-11): mass 0.069; turned around by the trace 0.913; expanding along >= 1 axis 1.000 (along exactly one: 0.141)
+    z = 2.5, 1 + delta in [11-1e+09): mass 0.056; turned around by the trace 1.000; expanding along >= 1 axis 0.995 (along exactly one: 0.382)
+    z = 3.0, 1 + delta in [1-2): mass 0.280; turned around by the trace 0.000; expanding along >= 1 axis 1.000 (along exactly one: 0.000)
+    z = 3.0, 1 + delta in [2-5): mass 0.193; turned around by the trace 0.110; expanding along >= 1 axis 1.000 (along exactly one: 0.007)
+    z = 3.0, 1 + delta in [5-11): mass 0.061; turned around by the trace 0.880; expanding along >= 1 axis 1.000 (along exactly one: 0.145)
+    z = 3.0, 1 + delta in [11-1e+09): mass 0.041; turned around by the trace 1.000; expanding along >= 1 axis 0.995 (along exactly one: 0.399)
+    FP6's forest proxy (<= 0.10): canonical/rms/hybrid: 0; canonical/rms/alone: 159; canonical/permode/hybrid: 0; canonical/permode/alone: 16.3; alt/rms/hybrid: 0; alt/rms/alone: 247; alt/permode/hybrid: 0; alt/permode/alone: 20.7
+  [PASS] (reported) R1 [H5] (reported) THE FOREST: every forest absorber (1 + delta = 2-11, z = 2-3) still expands along >= 1 axis, but the trace has turned around for most at 1 + delta >= 5; the gate alone (no yield) fails FP6's forest proxy, the hybrid keeps the separator's
+         measured: absorbers expanding along >= 1 axis: 1.000-1.000; trace-turned-around at 1 + delta = 5-11: 0.94/0.91/0.88; forest proxy hybrid 0, alone 247
+    [43 s]
+
+======================================================================================================================
+W9  THE LEDGER
+======================================================================================================================
+    XR36-l   DERIVED    on a resolved (Zel'dovich) web the turnaround gate keeps ~20% of the web phantom's lensing boost: most shell-crossed mass is sheets and filaments still expanding along their other axes  [W1, W2]
+    XR36-m   FAILS      the hybrid (the separator's yield kept, the gate at z < 0.635) against Planck's conservative lensing on XR26's linear base  [L1]
+    XR36-n   CONSTRAINT on XR26's halofit base and with the bound regions added on LCDM halos the verdict depends on the halo reading (the chain's galaxies have no CDM halos)  [L2, L3]
+    XR36-o   CONSTRAINT the forest: absorbers keep expanding along one axis but turn around by the trace; the gate alone cannot replace the separator's yield at z = 2-3  [R1]
+
+8/12 checks pass; load-bearing failures: 2   [43 s]

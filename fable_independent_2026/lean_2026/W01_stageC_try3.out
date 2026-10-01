@@ -1,0 +1,133 @@
+V01_chord_moment_2d.lean:117:59: warning: Variable name `hs` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hs
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+V01_chord_moment_2d.lean:118:5: warning: Variable name `ht` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ht
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+V01_chord_moment_2d.lean:126:12: warning: This simp argument is unused:
+  Real.volume_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+V01_chord_moment_2d.lean:144:6: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+V01_chord_moment_2d.lean:144:43: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+V01_chord_moment_2d.lean:138:64: warning: Variable name `hf` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hf
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+V01_chord_moment_2d.lean:162:6: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+V01_chord_moment_2d.lean:162:42: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+V01_chord_moment_2d.lean:157:51: warning: Variable name `hg` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hg
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+V01_chord_moment_2d.lean:248:17: warning: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+V01_chord_moment_2d.lean:246:18: warning: This simp argument is unused:
+  Real.volume_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'V01.step4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.final_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.peel_r' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.peel_v' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.step2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.inner_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+V01_chord_moment_2d.lean:423:43: error: Type mismatch
+  one_mul
+has type
+  ∀ (a : ?m.273), 1 * a = a
+but is expected to have type
+  1 * √(1 - r ^ 2 + v ^ 2) = √(1 - r ^ 2 + v ^ 2)
+V01_chord_moment_2d.lean:430:10: warning: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+V01_chord_moment_2d.lean:433:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  (Ioc (-r) r).indicator ?f v
+in the target expression
+  |G r v| ≤ 2
+
+case pos
+r v : ℝ
+hr0 : 0 ≤ r
+hr1 : r ≤ 1
+hv : |v| ≤ 1
+hr2 : r ^ 2 ≤ 1
+hv2 : v ^ 2 ≤ 1
+htri : |tri r v| ≤ 2
+hmem : v ∈ Ioc (-r) r
+⊢ |G r v| ≤ 2
+V01_chord_moment_2d.lean:435:8: error(lean.unknownIdentifier): Unknown constant `Set.indicator_of_not_mem`
+V01_chord_moment_2d.lean:447:7: error(lean.unknownIdentifier): Unknown identifier `measurable_sqrt.comp`
+V01_chord_moment_2d.lean:474:40: error: linarith failed to find a contradiction
+x : ℝ × ℝ
+hx1 : x.1 ∈ Ioc 0 1
+hx2 : x.2 ∈ Ioc (-1) 1
+hr0 : 0 ≤ x.1
+hr1 : x.1 ≤ 1
+a✝ : x.2 < -1
+⊢ False
+failed
+V01_chord_moment_2d.lean:519:14: error: Function expected at
+  hR
+but this term has type
+  -v ≤ r
+
+Note: Expected a function because this term is being applied to the argument
+  (le_of_lt hr_gt)
+V01_chord_moment_2d.lean:520:22: error: unsolved goals
+r v : ℝ
+hr0 : 0 ≤ r
+hr1 : r ≤ 1
+hL : -r < v ∧ v ≤ r
+hv : |v| = -v ∧ v < 0
+hR : ¬|v| ≤ r
+⊢ r < -v → r = 0 ∨ √(1 - r ^ 2 + v ^ 2) = 0
+V01_chord_moment_2d.lean:513:35: warning: This simp argument is unused:
+  hR
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hL, hv.1, tri]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+V01_chord_moment_2d.lean:520:35: warning: This simp argument is unused:
+  hR
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hL, hv.1, tri]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+V01_chord_moment_2d.lean:552:18: warning: This simp argument is unused:
+  Real.volume_singleton
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'V01.step2_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.J_as_G' depends on axioms: [propext, Classical.choice, Quot.sound]
+'V01.G_measurable' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.G_integrable' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.G_eq_or_edge' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.inner_flip' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.J_swap' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.J_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'V01.chord_moment_main' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

@@ -1,0 +1,172 @@
+CFG2_A -- THE PRINCIPLE AND THE DERIVATION: GR plus the framework's cold dark field, settling in bound systems under a
+stress scale set by the vacuum.
+
+THE FOUNDING PRINCIPLE, IN PLAIN WORDS.  The vacuum fixes a stress scale, P_Lambda = a0^2/(8 pi G) = kappa^2 rho_Lambda c^2/(8 pi):
+the energy density of a gravitational field of strength a0 = kappa c sqrt(G rho_Lambda).  Gravity is exactly GR.  In a bound
+system that can hold it, the framework's cold dark field settles into the state in which the vacuum adds to gravity's field
+stress the geometric mean of the vacuum's stress and the baryons' own field stress:
+
+        P_g = P_N + sqrt(P_N P_Lambda),     P_g = |g|^2/(8 pi G),  P_N = |g_N|^2/(8 pi G)          (the stress law)
+
+and the dark field carries the added stress as mass.  Around a point mass this is literally a statement about the dark field
+as a fluid: the settled dark medium is in GR hydrostatic equilibrium with pressure P_d = sqrt(P_N P_Lambda) (derived below).
+It settles only where the settled state can hold all the dark mass the system has bound, and only where it is at rest in
+that system; elsewhere (the expanding web, clusters, anything moving through it) the field stays cold and collisionless.
+
+WHAT THIS SCRIPT DERIVES (the galaxy-law part is scored on SPARC in CFG2_B; clusters/KiDS in CFG2_C; the rest in CFG2_D):
+  A1  the vacuum stress scale on both footings;
+  A2  THE POINT-MASS THEOREM (sympy): a static dark medium in hydrostatic equilibrium in the GR (weak-field) potential of a
+      point mass, with pressure P_d = sqrt(P_Lambda P_N), has total enclosed mass M = M_b sqrt(1 + a0 r^2/(G M_b)) -- the
+      framework's own kernel P2, nu = sqrt(1 + 1/y) -- uniquely; its local temperature is sigma^2 = v_c^2/2 and its pressure
+      force on every sphere is a0 M_b/2.  Conversely P2 is the only kernel whose point-mass phantom has this pressure at
+      every y (nu_mono and nu_RAR reach it only in the deep limit);
+  A3  the BTFR v^4 = G M_b a0, exactly, for ANY finite spherical baryon distribution, in both readings of the law;
+  A4  the settled dark column is bounded by exactly a0/(2 pi G) (the halo surface density), both footings;
+  A5  the two readings for extended baryons: E (the stress law holds locally in the field) and F (the medium's pressure law
+      holds locally): they coincide for point masses and far outside the baryons; inside a distribution M_b ~ r^n the deep
+      dark mass of F is sqrt((2 - n)/(n + 2)) of E's -- SPARC decides between them (CFG2_B);
+  A6  THE OBSTRUCTION FOR GRAVITY-ONLY AND THERMAL SETTLING (design constraints): (i) a gravity-only pressure law
+      P_d = Pi(|g|) CAN give P2 around a point mass, but in the deep regime it is the stress-free law, which leaves no dark
+      matter inside diffuse baryons (v_f^2 = G M_b/R for a uniform sphere, BTFR broken by (r_M/R)^2); (ii) an isothermal dark
+      sphere capped at P_Lambda holds at most M_b/3 inside the MOND radius, nu(1) <= 4/3 < sqrt 2;
+  A7  THE SCOPE (the settled window): with the record's LambdaCDM accretion conventions (Moster+13 as the record inverts it,
+      the record's Planck-2018 cosmology), the settled state's capacity inside R_200 is compared with the dark mass accreted;
+  A8  a0(z): P_Lambda is set by rho_Lambda, so the settled law's scale is flat in z (the rival a0 ~ H(z) is +0.576 dex at 2.5);
+  A9  the constant count (fitted / declared / tied / derived).
+PRE-DECLARED HYPOTHESES (written before the first full run; the SPARC ladder of readings was explored first in scratch runs,
+disclosed in CFG2_README.md):
+  H1 P_Lambda = kappa^2 rho c^2/(8 pi) exactly on both footings (identity).  EXPECT TRUE.
+  H2 [HEADLINE] the point-mass theorem: sympy solves the hydrostatic dark medium with P_d = sqrt(P_Lambda P_N) to exactly
+     M = M_b sqrt(1 + 1/y) (P2), with sigma^2 = v_c^2/2 and 4 pi r^2 P_d = a0 M_b/2; numerically the solution's BTFR
+     normalisation v^4/(G M_b a0) -> 1 to < 1e-6 at r = 1e4 r_M on both footings.  EXPECT TRUE.
+  H3 P2 is singled out: the hydrostatic pressure of nu_mono's and nu_RAR's point-mass phantoms departs from sqrt(P_Lambda P_N)
+     by > 10% somewhere in 0.1 <= y <= 10 and tends to it as y -> 0.  EXPECT TRUE.
+  H4 the BTFR is exact for any finite spherical distribution in both readings (sympy for F; E is algebraic), checked
+     numerically on an exponential and a Hernquist sphere to < 1e-4 at 1e3 scale radii.  EXPECT TRUE.
+  H5 the settled column sup_r M_d(<r)/(pi r^2) = a0/(2 pi G) exactly (P2, point mass), = 106.9 / 129.2 Msun/pc^2, inside
+     Donato+09's log rho0 r0 = 2.15 +- 0.2 on both footings.  EXPECT TRUE.
+  H6 the deep-regime ratio of the readings is M_F^2/M_E^2 = (2 - n)/(n + 2) for M_b ~ r^n (sympy).  EXPECT TRUE.
+  H7 the obstruction statements (i) and (ii) hold (sympy).  EXPECT TRUE.
+  H8 (reported) the settled window: capacity >= accreted for disc-galaxy masses and < for dwarf spheroidals, massive
+     galaxies and clusters, on both footings.  UNCERTAIN (the record's Moster extrapolation below M* ~ 1e8 is soft).
+  H9 a0(z): the settled scale is flat; FP0's committed rival E(2.5) = 3.7687 is reproduced.  EXPECT TRUE.
+MUTATE=1 sets the principle's a0 to zero (P_Lambda = 0): the dark medium carries no stress, so H2's BTFR normalisation and H5's
+column must FAIL (rc = 1).
+
+  base: a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt) m/s^2 [FP0]; kappa = 1/2 FITTED; Z = 5.7888
+
+======================================================================================================================
+A1  THE VACUUM STRESS SCALE P_Lambda = a0^2/(8 pi G)
+======================================================================================================================
+    canonical: P_Lambda = 5.2232e-12 Pa = 0.009947 rho c^2 (kappa^2/(8 pi) = 0.009947); rho = 5.8424e-27 kg/m^3; a0 = kappa c sqrt(G rho) to 0.0e+00
+    alt      : P_Lambda = 7.6284e-12 Pa = 0.009947 rho c^2 (kappa^2/(8 pi) = 0.009947); rho = 8.5329e-27 kg/m^3; a0 = kappa c sqrt(G rho) to 1.1e-16
+  [PASS] H1 THE VACUUM STRESS SCALE: P_Lambda = a0^2/(8 pi G) = kappa^2 rho c^2/(8 pi) (sympy identity) and equals the printed numbers on both footings (rho_Lambda canonical, rho_total alt)
+         measured: identity True; canonical 5.2232e-12 Pa, alt 7.6284e-12 Pa; fraction of rho c^2 = 0.009947 = 1/(32 pi) at kappa = 1/2
+
+======================================================================================================================
+A2  THE POINT-MASS THEOREM: a hydrostatic dark medium with P_d = sqrt(P_Lambda P_N) IS the framework's kernel P2
+======================================================================================================================
+    the hydrostatic ODE with P_d = sqrt(P_Lambda P_N) is (1/2) d(M^2)/dr = a0 M_b r / G  [reduction verified: True]
+    dsolve with M(0) = M_b:  M(r) = sqrt(G*M_b**2 + M_b*a0*r**2)/sqrt(G)   == M_b sqrt(1 + a0 r^2/(G M_b)) = M_b nu_P2(y): True
+    uniqueness: the ODE is first order in M^2 with a right side independent of M, so M^2 = M_b^2 + a0 M_b r^2/G is its only solution through M(0) = M_b
+    hydrostatic residual of the P2 phantom with that pressure: True;  local temperature sigma^2 = P/rho = v_c^2/2: True;  4 pi r^2 P_d = M_b*a0/2
+    canonical: numerical medium (principle's a0 = 9.3603e-11): v^4/(G M_b a0) at 1e4 r_M = 1.00000001; max |M/(M_b nu_P2) - 1| = 7.77e-16 over 1e-4..1e4 r_M
+    alt      : numerical medium (principle's a0 = 1.1312e-10): v^4/(G M_b a0) at 1e4 r_M = 1.00000001; max |M/(M_b nu_P2) - 1| = 5.55e-16 over 1e-4..1e4 r_M
+  [PASS] H2 [HEADLINE] THE POINT-MASS THEOREM: a static dark medium in GR hydrostatic equilibrium around a point mass, with pressure the geometric mean of the vacuum stress and the baryons' field stress, P_d = sqrt(P_Lambda P_N) = a0 g_N/(8 pi G), has M(<r) = M_b sqrt(1 + a0 r^2/(G M_b)) -- the framework's own kernel P2 -- uniquely (sympy dsolve), with local temperature sigma^2 = v_c^2/2 and pressure force a0 M_b/2 on every sphere; numerically its BTFR normalisation v^4/(G M_b a0) -> 1 to < 1e-6 at 1e4 r_M on both footings
+         measured: P2: True; hydrostatic True; virial True; flux M_b*a0/2; BTFR norm canonical 1.00000001, alt 1.00000001; max dev from P2 7.8e-16
+
+======================================================================================================================
+A3  P2 IS SINGLED OUT: the hydrostatic pressure of other kernels' point-mass phantoms against sqrt(P_Lambda P_N)
+======================================================================================================================
+    P2      : P/sqrt(P_Lambda P_N) = 1.0000 (y = 1e-3), 1.0000 (y = 1), 1.0000 (y = 10); max |ratio - 1| over 0.1 <= y <= 10: 0.000
+    nu_mono : P/sqrt(P_Lambda P_N) = 1.0105 (y = 1e-3), 1.3159 (y = 1), 1.4459 (y = 10); max |ratio - 1| over 0.1 <= y <= 10: 0.484
+    nu_RAR  : P/sqrt(P_Lambda P_N) = 1.0105 (y = 1e-3), 1.3159 (y = 1), 1.5887 (y = 10); max |ratio - 1| over 0.1 <= y <= 10: 0.594
+  [PASS] H3 P2 IS SINGLED OUT: the point-mass phantom of P2 has pressure exactly sqrt(P_Lambda P_N) at every y (numerical quadrature, < 1e-3), while nu_mono's and nu_RAR's depart from it by > 10% somewhere in 0.1 <= y <= 10 and approach it in the deep limit (y = 1e-3: within 5%)
+         measured: P2: max dev 0.000, deep 1.000; nu_mono: max dev 0.484, deep 1.011; nu_RAR: max dev 0.594, deep 1.011
+         reading:  every kernel shares the deep-limit pressure a0 g_N/(8 pi G) (the isothermal tail); only P2 keeps it at finite y, so the principle derives nu = P2 -- the framework's own interpolation -- not nu_mono
+
+======================================================================================================================
+A4  THE BTFR v^4 = G M_b a0 FOR ANY FINITE SPHERICAL DISTRIBUTION, IN BOTH READINGS
+======================================================================================================================
+    reading F outside the baryons: M^2 = M(R_b)^2 + a0 M_tot (r^2 - R_b^2)/G solves the hydrostatic law: True; lim v^4/(G M_tot a0) = 1
+    reading E: lim (g r)^2/(G M_tot a0) = 1
+    canonical exponential (M_b = 1e10, scale 3 kpc): v^4/(G M_b a0) at 1000 scale radii: reading F 0.99999, reading E 1.00000
+    canonical hernquist   (M_b = 1e10, scale 3 kpc): v^4/(G M_b a0) at 1000 scale radii: reading F 0.99410, reading E 0.99800
+    alt       exponential (M_b = 1e10, scale 3 kpc): v^4/(G M_b a0) at 1000 scale radii: reading F 0.99999, reading E 1.00000
+    alt       hernquist   (M_b = 1e10, scale 3 kpc): v^4/(G M_b a0) at 1000 scale radii: reading F 0.99410, reading E 0.99800
+  [PASS] H4 THE BTFR IS EXACT FOR ANY FINITE SPHERICAL DISTRIBUTION: outside the baryons reading F's hydrostatic medium is the point-mass solution with M_tot (sympy), and both readings give lim v^4/(G M_b a0) = 1 (sympy); numerically an exponential and a Hernquist sphere give 1 to < 1e-2 at 1000 scale radii (finite-r approach ~ r_M/r) on both footings
+         measured: F solves: True; limits F 1, E 1; numeric can/expo F 1.0000 E 1.0000, can/hern F 0.9941 E 0.9980, alt/expo F 1.0000 E 1.0000, alt/hern F 0.9941 E 0.9980
+
+======================================================================================================================
+A5  THE SETTLED DARK COLUMN: sup M_d(<r)/(pi r^2) = a0/(2 pi G) (the halo surface density)
+======================================================================================================================
+    Sigma_d(<r)/Sigma_M = 2 y (sqrt(1 + 1/y) - 1): increasing in y (d/dy > 0 at sample points: True), limit y -> oo = 1
+    canonical: ceiling a0/(2 pi G) = 106.9 Msun/pc^2 (log 2.029); Donato+09 log rho0 r0 = 2.15 +- 0.2: offset -0.121 dex
+    alt      : ceiling a0/(2 pi G) = 129.2 Msun/pc^2 (log 2.111); Donato+09 log rho0 r0 = 2.15 +- 0.2: offset -0.039 dex
+  [PASS] H5 THE HALO SURFACE DENSITY: the settled column M_d(<r)/(pi r^2) rises monotonically to exactly a0/(2 pi G) (sympy); the ceiling is 106.9 / 129.2 Msun/pc^2, inside Donato+09's 2.15 +- 0.2 dex on both footings (the SPARC Burkert product of the settled profiles is scored in CFG2_B)
+         measured: limit 1, monotone True; canonical: 106.9 (-0.121 dex); alt: 129.2 (-0.039 dex)
+
+======================================================================================================================
+A6  THE TWO READINGS INSIDE EXTENDED BARYONS: deep-regime dark mass for M_b(<r) = K r^n
+======================================================================================================================
+    reading E (deep): M^2 = a0 r^2 M_b/G;  reading F (deep): M^2 = (a0/G)(4 int_0^r s M_b ds - r^2 M_b)  [F's deep ODE residual: 0]
+    M_F^2/M_E^2 = (2 - n)/(n + 2)  (== (2 - n)/(n + 2): True):  n = 0 (point mass) 1;  n = 1: 1/3;  n = 2 (inner exponential disc): 0
+  [PASS] H6 THE TWO READINGS DIFFER INSIDE EXTENDED BARYONS: for M_b ~ r^n the deep dark mass of reading F (medium pressure local) is sqrt((2 - n)/(n + 2)) of reading E's (stress law local) (sympy): equal for point masses, 1/sqrt 3 for n = 1, zero for the r^2 inner disc -- F under-supplies dark mass exactly where Renzo's rule is tested
+         measured: ratio (2 - n)/(n + 2); target identity True; F's deep ODE residual 0
+
+======================================================================================================================
+A7  DESIGN CONSTRAINTS: gravity-only and thermal settling (the obstruction)
+======================================================================================================================
+    (i) Pi(g) = (a0/(16 pi G))(sqrt(a0^2 + 4 g^2) - a0): on P2's field equals sqrt(P_Lambda P_N): residual 0; deep limit g^2/(8 pi G) (the stress-free law): True
+        stress-free law inside a uniform baryon sphere: dM_d/dr at M_d = 0 is -M_R*r**2/(2*R_b**3) < 0 -> no dark medium inside; outside v^2 = G M_b/R_b, so v^4/(G M_b a0) = G*M_R/(R_b**2*a0) = (r_M/R_b)^2
+    (ii) isothermal dark sphere with central pressure P_Lambda and the BTFR temperature: M_d(<r_M)/M_b <= 1/3, so nu(1) <= 1.3333 < nu_P2(1) = 1.4142 (nu_mono(1) = 1.5820); the baryons' well only lowers it further (the density falls as exp(-Delta psi) away from the capped centre)
+  [PASS] H7 THE OBSTRUCTION (design constraints): (i) a gravity-only pressure law P_d = Pi(|g|) reproduces P2 around a point mass but reduces to the stress-free law in the deep regime, which leaves no dark medium inside diffuse baryons and gives v^4/(G M_b a0) = (r_M/R_b)^2 for a uniform sphere; (ii) an isothermal sphere capped at P_Lambda holds <= M_b/3 inside r_M, nu(1) <= 4/3 < sqrt 2 (sympy)
+         measured: Pi on P2 residual 0; deep stress-free True; inner slope -M_R*r**2/(2*R_b**3); BTFR ratio G*M_R/(R_b**2*a0); thermal bound 1/3
+         reading:  the settled dark mass must be fixed by the ENCLOSED baryonic field (a field-stress law), not by the medium's own pressure support: that is what SPARC tests in CFG2_B
+
+======================================================================================================================
+A8  THE SCOPE: the settled window -- capacity inside R_200 against the accreted dark mass (the record's LambdaCDM conventions)
+======================================================================================================================
+    gas prescription (SPARC at Upsilon = 0.5, 175 galaxies): log(1.33 M_HI/M*) = +4.191 -0.456 log M*  (declared; also gas-free)
+    canonical sparc_fit: settled (eta <= 1) for log M* in [5.00, 10.65];  eta = M_d,acc/capacity at log M* 6.0: 0.86, 7.0: 0.85, 8.0: 0.81, 9.0: 0.71, 10.0: 0.62, 10.5: 0.74, 11.0: 2.26, 11.5: 9.16
+    canonical gas_free : settled (eta <= 1) for log M* in [9.15, 10.60];  eta = M_d,acc/capacity at log M* 6.0: 4.67, 7.0: 2.82, 8.0: 1.71, 9.0: 1.06, 10.0: 0.73, 10.5: 0.83, 11.0: 2.42, 11.5: 9.55
+    alt       sparc_fit: settled (eta <= 1) for log M* in [5.00, 10.70];  eta = M_d,acc/capacity at log M* 6.0: 0.78, 7.0: 0.78, 8.0: 0.74, 9.0: 0.65, 10.0: 0.56, 10.5: 0.67, 11.0: 2.05, 11.5: 8.32
+    alt       gas_free : settled (eta <= 1) for log M* in [8.95, 10.65];  eta = M_d,acc/capacity at log M* 6.0: 4.25, 7.0: 2.57, 8.0: 1.56, 9.0: 0.96, 10.0: 0.66, 10.5: 0.75, 11.0: 2.20, 11.5: 8.67
+  [FAIL] (reported) H8 (reported) THE SETTLED WINDOW: with the record's Moster+13 accretion the settled state can hold the accreted dark mass (eta <= 1) for disc-galaxy stellar masses and cannot below (dwarf spheroidals, M* < 1e6) or above (massive galaxies, groups, clusters), on both footings (SPARC gas prescription)
+         measured: canonical window log M* [5.00, 10.65]; alt [5.00, 10.70]
+         reading:  the window is where the RAR can hold; outside it the dark field keeps its cold collisionless (LambdaCDM) state, so those systems lie ABOVE the RAR (more dark mass), never below; the Moster relation is extrapolated below M* ~ 1e8
+
+======================================================================================================================
+A9  a0(z): the settled scale P_Lambda is set by rho_Lambda (flat for w = -1); the rival a0 ~ H(z)
+======================================================================================================================
+    settled scale: P_Lambda(z) / P_Lambda(0) = rho_Lambda(z)/rho_Lambda(0) = 1 for a cosmological constant (BTFR zero point and column ceiling flat); rival a0 ~ H(z): E(2.5) = 3.7687 -> +0.576 dex (FP0 committed; reproduced with Omega_m = 0.3153 to 0.0e+00)
+  [PASS] H9 a0(z) IS FLAT IN THE SETTLED LAW: its only scale is P_Lambda ~ rho_Lambda (constant for w = -1); FP0's committed rival E(z) is reproduced (the rival puts the z = 2.5 BTFR zero point +0.576 dex away)
+         measured: reproduced FP0 rival E(z) to 0.0e+00; rival +0.576 dex at z = 2.5
+
+======================================================================================================================
+A10  THE CONSTANT COUNT (fitted / declared / tied / derived) and what the principle eliminates
+======================================================================================================================
+    FITTED     kappa = 1/2 (Z = 5.7888): the normalisation of a0 = kappa c sqrt(G rho_Lambda)
+    DECLARED   m, the dark field's mass: enters only small-scale linear cosmology (>= 2e-21 eV, forest; CFG2_D)
+    DECLARED   Omega_c, the dark field's amount (initial data, as in LambdaCDM)
+    DECLARED   the scope RULE (settle iff capacity >= accreted, at rest in the system): a rule, no number; it uses the record's Moster+13 accretion convention
+    DECLARED   the reading (E: the stress law local in the field) -- chosen by SPARC over F (CFG2_B)
+    TIED       P_Lambda = a0^2/(8 pi G) = kappa^2 rho_Lambda c^2/(8 pi): from a0
+    DERIVED    nu = P2 = sqrt(1 + 1/y), uniquely, from the point-mass hydrostatic medium (A2, A3)
+    DERIVED    BTFR v^4 = G M_b a0 exactly (A4); the halo column ceiling a0/(2 pi G) (A5); sigma^2 = v_c^2/2 (A2)
+    DERIVED    the settled window in M* (A8); flat a0(z) (A9); no EFE (SEP: the medium responds only where it is at rest)
+    ELIMINATED xi (the Solar-System screening length: GR there, CFG2_D); alpha_c, c_2, lambda (no khronon); the separator's 4 constants (no MOND in the web); the kick eps, v_k (clusters keep CDM because they are unsettled)
+  [PASS] (reported) A10 (reported) THE CONSTANT COUNT: 1 fitted (kappa), 1 declared number (m, cosmology only), 1 initial datum (Omega_c), 2 declared rules (scope; reading E), 1 tied (P_Lambda), the kernel and the BTFR/column derived
+         measured: 1 / 1 / 1 / 2 rules / 1 tied
+
+======================================================================================================================
+W  LEDGER
+======================================================================================================================
+    CFG2-A1  DERIVED     P2 = the hydrostatic dark medium with P_d = sqrt(P_Lambda P_N) around a point mass (unique)  --  A2/A3
+    CFG2-A2  DERIVED     BTFR exact (any spherical distribution); column ceiling a0/(2 pi G) = 106.9/129.2 Msun/pc^2  --  A4/A5
+    CFG2-A3  CONSTRAINT  readings E vs F differ inside extended baryons by (2-n)/(n+2) in M^2  --  A6
+    CFG2-A4  CONSTRAINT  gravity-only pressure and thermal settling cannot make the RAR (stress-free inside diffuse baryons; nu(1) <= 4/3)  --  A7
+    CFG2-A5  PREDICTION  settled window in M*; outside it systems sit ABOVE the RAR  --  A8
+
+  9/10 checks pass; load-bearing failures: 0; wrote CFG2_A_principle_results.json (1 s)
+rc = 0

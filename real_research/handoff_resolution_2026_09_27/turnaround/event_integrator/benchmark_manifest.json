@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "claim_id": "event_integrator/benchmark",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/benchmark.py"
+  ],
+  "environment": {
+    "software": [
+      "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+      "numpy1.26.2",
+      "CLASS3.3.4.0 for benchmark, local build"
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact isotropic kick integral controls or bounded event-localized shell numerical audit; failures retained",
+    "coefficient_domain": "float64",
+    "conventions": "source units kpc,km/s; kappa1/2 fitted; no-cooling constant spin benchmark",
+    "inputs": [
+      "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/benchmark.py",
+      "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/event_step.py",
+      "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/engine_events.py",
+      "real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/exact_moments.py",
+      "real_research/handoff_resolution_2026_09_27/collapse/mirror/campaign_fresh_gravity/CFG5_common.py"
+    ],
+    "input_sha256": {
+      "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/benchmark.py": "d6a1bf96082272de93ea42bab623f8d2229e9932778bf9940915a08be026c77a",
+      "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/event_step.py": "a35e2c6b6a1d3ccf1a26ebec16e6ba677da6d2d400e2db66ad132b91ed228e49",
+      "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/engine_events.py": "4398e0370557b929d64ed320d1acdb1efc4cd802f3509c43ba3ad598407bf87d",
+      "real_research/handoff_resolution_2026_09_27/turnaround/kick_moments/exact_moments.py": "018437e8d2a0016aa9d1db3947e04b2b1b9e63a4afcecf3b9d10c86642d46241",
+      "real_research/handoff_resolution_2026_09_27/collapse/mirror/campaign_fresh_gravity/CFG5_common.py": "a62158a6b76dcb1a0162659da456f376923d807d9f6e6ff27daa0cf76fd69f1f"
+    },
+    "bounds": {
+      "runs": 12,
+      "N": [
+        80,
+        600,
+        1000
+      ],
+      "eta": [
+        0.03,
+        0.015
+      ],
+      "sequential": true,
+      "aggregate_guard_seconds": 320,
+      "per_run_guard_seconds": 48,
+      "event_maxsteps": 100000,
+      "scope": "no cooling, constant spin.25, M0=1e12, botha0footings"
+    },
+    "non_claims": [
+      "No full-action completion",
+      "No numerical convergence claim from boundedgrid"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "none; inherited RNG initialization has no draws",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:44:00.035056+00:00",
+    "runtime_seconds": 194.674068375,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/results.json",
+      "sha256": "235009b8e9a175e57edb710690684c2e194f74ec671ec5d9606aada00399a717"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/benchmark.out",
+      "sha256": "62d979587e2b876c6938c965eea9f90115625c5ac80e76ff9fc44c453d8de398"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/benchmark.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/turnaround/event_integrator/comparisons.json",
+      "sha256": "3b33ddf13f11ba15befef0704e0ec655af13dfd1f4110acb87c626d65c2d4d87"
+    }
+  ],
+  "checks": [
+    {
+      "name": "all requested bounded runs completed",
+      "passed": true
+    },
+    {
+      "name": "all_requested_cases_completed",
+      "passed": true
+    },
+    {
+      "name": "mass_accounting",
+      "passed": true
+    },
+    {
+      "name": "time_brackets",
+      "passed": true
+    },
+    {
+      "name": "phase_residual_below_1e-5_km_s",
+      "passed": false
+    },
+    {
+      "name": "pressure_residual_below_1e-3_cap",
+      "passed": false
+    },
+    {
+      "name": "original_exact_engine_unchanged",
+      "passed": true
+    }
+  ],
+  "result": "Bounded outputs recorded; scientific failures and scope retained",
+  "residual_risks": [
+    "Legacyv1 retrospective capture; started_at estimated as result file mtime minus recordedruntime, not an original process timestamp",
+    "No resource enforcement is supplied by this manifest; explicit cooperative guards are in benchmark.py and eventengine",
+    "No continuum convergence, causal action or stability from exit0"
+  ]
+}

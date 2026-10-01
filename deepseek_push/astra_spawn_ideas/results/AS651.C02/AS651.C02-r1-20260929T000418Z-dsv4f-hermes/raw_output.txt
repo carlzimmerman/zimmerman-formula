@@ -1,0 +1,44 @@
+======================================================================================================================
+AS651.C02 -- boundary ensemble for the three-form flux: origin of q_0?
+======================================================================================================================
+
+-- S1  boundary term  delta S = int dL/dF ^ delta A  (box prototype) --
+  [PASS] S1a direct variation: dS/dv = P_q(q_0) = (Z+2b beta^2) q_0 at 80 digits (FD h=1e-30)   (FD 0.000091675043144586421077 vs theory 0.000091675043144586421077, |d| = 1.49e-62)
+  [PASS] S1b chain rule over the 24-ordering sum: dq/dF_0123 = F_0123/q = +1   (|d| = 9.33e-58)
+    S1c canonical  :  Pi_0* = (Z+2b beta^2) q_* = 9.16750431446e-5  (== 8 q_*, the parent AS651 N4 residual 9.167504e-05 reruns as a boundary datum)
+    S1c alternative:  Pi_0* = (Z+2b beta^2) q_* = 0.000110447965865  (== 8 q_*, the parent AS651 N4 residual 9.167504e-05 reruns as a boundary datum)
+  [PASS] S1c tuned boundary datum Pi_0* = 8 beta^2 q_* (canonical, beta=1): 9.16750431446e-5 rerun identically   (9.16750431446e-05)
+
+-- S2  q_0 vs ensemble parameters --
+  [PASS] S2a boundary law q_0 = Pi_0/(Z+2b beta^2) is a bijection Pi_0 <-> q_0 (roundtrip residual 0 at 50 digits)   (max roundtrip |d| = 0.0e+00)
+  [PASS] S2b q_0(mu) sweeps a continuum in the ensemble datum mu while kappa^2 = beta^2/(Z/2+b beta^2) is IDENTICAL (residual 0): the ensemble does not move kappa   (q_0 in [1.0e-9, 1.0]; max |dkappa^2| = 0.0e+00)
+  [PASS] S2c unadorned Gibbs weight is strictly decreasing in q>0 (d eps/dq = (Z+2b beta^2) q > 0)   (min d eps = 9.17e-37 > 0; W(q)/W(q_*) = ['0.77880078', '0.36787944', '0.018315639', '3.720076e-44'])
+  [PASS] S2c' the MODE of the unadorned ensemble is q -> 0+, NOT q_* : exp(-eps(q_*)/eps_L) = e^-1 = 0.3679 != 1 (fires)   (W(q_*)/W(0) = 0.36787944)
+  [PASS] S2d discharge chain (single flux, levels q_n = n dq): equilibrium mode at the LOWEST level n=0; q_* not stationary   (mode n = 0)
+  [PASS] S2e r-BLINDNESS: with FIXED ensemble datum Pi_0, the boundary law holds at every r (residual 0) -- the ensemble supplies ZERO equations constraining r = Z/beta^2; kappa(r) = 7 distinct values (continuum)   (max ens-law residual 0.0e+00; kappa grid ['1.38942', '0.991117', '0.703945', '0.5', '0.498878', '0.353156', '0.176727'])
+
+-- S3  B-ii test: data vs equations --
+  [PASS] S3 eps_vac = eps_L is q_0-free: r = 8 - 2b exactly (q_0 cancels); the ensemble's equation set is DISJOINT from the ratio condition   (q_0(r) under fixed Pi_0 varies 8.84885e-5 -> 1.43162e-6 but eps-matching gives r = 8-2b for every one of them)
+    B-ii ledger: adopted reals {r, Pi_0}: 2 ; theory equations fixing them: 0  ->  B-ii deficit conserved (parent: {q_0, r}: 2 adopted, 0 equations; q_0 relocated to Pi_0)
+
+-- S4  NEGATIVE CONTROL: does the ensemble leak into the bulk Einstein equations? --
+  [PASS] S4a FINE-GRAINED membrane: bulk window at 50 regulator widths has ZERO overlap -- wall stress is distributional (delta-like), bulk Einstein residual 0.000e+00 (boundary-localized)   (dimensionless leak = 0.0e+00)
+  [PASS] S4b COARSE-GRAINED ('fluid') representation of the SAME ensemble: bulk window integral != 0 -- the wall leaks rho_w/eps_L into the Friedmann RHS; localization FAILS for this representation (capable of failing and it fires)   (leak = 0.0781 != 0 per wall at natural density)
+  [PASS] S4c static sector: d S_ens/d C = 0 identically (C never couples); the ensemble does not touch the primitive shift (B-i unaffected, status unchanged)   (dS/dC = 0.0)
+  [PASS] S4d membrane transverse-scalar kinetic: sqrt(1 + s^2) = 1 + s^2/2 - s^4/8 + s^6/16 + ... : d2S_w term = +sigma/2 (phi-dot)^2 > 0 : healthy, 1 transverse DOF per wall, non-gravitational   (residual vs s^6/16 tail = 3.91e-26 (next term 5 s^8/128 = 3.9e-26); coefficient = 0.99999975)
+  [PASS] S4e wall-gas energy fraction at natural density (=1 wall per Hubble volume): rho_w/eps_L = sigma0/(eps_L lH): canonical 1.0, alternative 0.689 -- a coarse-grained fluid of these walls changes the background at O(1); the localization property is representation-dependent (control content)   (canonical 1.0000, alternative 0.6889)
+
+-- S5  alternative changed model: topological mass term  lambda q  (B-ii relocation audit) --
+  [PASS] S5a lambda q model: unique stationary point q* = -lam/(Z + 2 b beta^2) (residual 0, exact), and eps_vac = q P_q - P = (Z/2 + b beta^2) q^2 is lam-FREE (symbolic)   (q* = -lamb/(Z + 2*beta**2*lam))
+  [PASS] S5b kappa^2 is lam-independent: the linear-term repair does NOT select kappa (B-ii relocates the datum q_0 -> lam; deficit conserved: {r, lam} adopted, 0 equations)   (kappa^2(lam) constant = 0.25 for lam in [mpf('-0.010000000000000000000000000000000000000000000000000000000000000000000000000000000005'), mpf('-0.0000099999999999999999999999999999999999999999999999999999999999999999999999999999999933'), mpf('-0.000079999999999999999999999999999999999999999999999999999999999999999999999999999999946'), mpf('-1.0'), mpf('-100.0')])
+  [PASS] S5c eps_vac(q*) > 0: the lambda model keeps a positive vacuum (magnitude = adopted lam-derived)   (eps(q*) = 4.0e-10 J/m^3-scale)
+
+-- footings (kappa = 1/2 ADOPTED, both quoted separately) --
+    canonical  : a0 = 9.3619e-11 m/s^2, rho_L = 5.8444124540e-27 kg/m^3, eps_L = 5.2526959597e-10 J/m^3, q_* = 1.145938039e-5/beta
+    alternative: a0 = 1.1279e-10 m/s^2, rho_L = 8.4830896196e-27 kg/m^3, eps_L = 7.6242207273e-10 J/m^3, q_* = 1.380599573e-5/beta
+  [PASS] F1 footings: q_* = a0/(beta sqrt(G)) at 50 digits, both footings, exact against the framework constants   (canonical 1.145938e-5, alternative 1.3805996e-5)
+  [PASS] F2 fixed-canonical-density relabel: kappa_eff (alt a0 on canonical rho_L) = a0_alt/(2 a0_can) = 0.602388404 (parent rerun)   (0.6023884041)
+  [PASS] F3 r* = 8 - 2b (parent rerun): 7.96398921 (K_B=0), 7.96849056 (K_B=1/4)   (K_B=0 7.96398921291, K_B=1/4 7.96849056248)
+
+  RESULT: 0 FAIL(s)
+  wall time 0.08 s

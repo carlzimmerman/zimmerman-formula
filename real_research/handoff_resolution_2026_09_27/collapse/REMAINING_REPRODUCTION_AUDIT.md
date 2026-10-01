@@ -1,0 +1,31 @@
+# Remaining reproduction audit (in progress)
+
+Read-only audit of parent-managed XR28/XR29/XR23 runs. No duplicate runs or source edits. Completed results are compared with the preserved source-lane JSON, not inferred from process exit status. XR28 hot phase, XR29 and XR23 collapse are still pending in the inventory read for this revision.
+
+## XR28 controls: a substantive convergence failure
+
+The preserved controls main had one **reported** failure K6 (unregularized readout changed 75.8%) but passed its load-bearing production convergence test K6b. The unchanged-source Python3.11 reproduction still fails K6 (16.3%) and now fails K6b: the LCDM 600→1200-shell comparison changes the production DK14 readout by 7.1%, beyond the declared 5%. This is a newly exposed numerical-convergence failure, not merely a strict printed-digit reference drift.
+
+The corrected clone changes two EH98 unit expressions in XR28_common: physical k in Mpc^-1 requires q=(k/h)Theta²/Gamma_eff and 0.43 k s (without the extra /h). The parent patch records both substitutions and old/new source hashes. The driver is unchanged. This corrects local spectrum, variance and initial/accretion-profile construction; it does not automatically recompute every externally supplied separator/conversion table.
+
+Corrected K6 remains failed (16.1%); K6b now fails by 64.0%. At chain L0=.75 Mpc, changing ds=.00075 to .0005 moves the fitted WL x_sp from the readout ceiling 3.0 to 1.07915, whereas the 3D x_sp changes only 1.01779→1.01875 and the fitted galaxy readout stays at 3.0. Thus the 64% discrepancy is specifically a window/feature-selection discontinuity of the DK14 WL readout, not evidence that a physically unique splashback radius moved 64%. The fixed [0.5,3]r200m argmin can return a window boundary; a boundary extremum must not be treated as a resolved physical caustic. The preserved blanket ≤5% production-accuracy claim is not reproduced.
+
+The corrected other tested comparisons are smaller: LCDM shell/step changes1.8%/2.8%; H_Y shell/step/kick-node changes2.6%/.4%/4.5%. Those local passes do not rescue the failed L=.75-Mpc configuration used to locate the preferred outskirts window. Accurate algebraic/projector controls also do not imply convergence of this nonlinear fitted observable. A precise L0≈1–1.3-Mpc exclusion/allowed-edge statement needs a stable forward readout across the relevant L grid and a quantified numerical error, rather than inheriting the old K6b pass.
+
+Unchanged-source MUTATE meaningfully fails K1 (Bertschinger caustics 1.34/3.89/6.99% off the reference) and K2 (Adhikari ratios .310–.662). Its nonzero exit is not merely the pre-existing K6b failure. No corrected-controls mutation result is presently assumed.
+
+## XR28 outskirts and hot phase: preserved hypotheses and pending fresh conclusions
+
+Preserved outskirts main already fails O2 (trough radius1.66–5.17L outside the claimed1–3L envelope) and O3 (physical trough-radius spread .22dex >.15dex). Its O4 proxy exclusion and numerical L upper bound are distinct from those failed hypotheses. Preserved hot-phase main already fails HP1 (slope response−1.31 to+.19, not uniformly ≥.5 shallower) and HP2 (WL slope spread extends+.55, beyond.5). These must not be called fresh failures if repeated.
+
+Completed unchanged-source outskirts MUTATE removes the band-pass: O2 changes from64/64 troughs to0/64 and O3 has no finite trough spread. This is a meaningful change beyond repeating the same failed Boolean check: the structural compensated-trough signal disappears. The unchanged-source main outskirts also completed (848.39s). Although its failed-check Booleans remain O2/O3, the soft allowed-range conclusion changes: L0=1.0 now gives+2.7/+3.3 and passes the ≤4-both criterion (preserved+3.8/+4.6, no allowed points); L0=.75 gives+4.0/+4.5. H_Y stays+25.8/+31.9. Thus an unchanged-source runtime drift already crosses the preferred-window threshold before the physical-k correction is applied. Reported checks O5/H are reporting containers, so their true Booleans do not establish unchanged scientific conclusions. Hot-phase results remain pending.
+
+The corrected outskirts main has now completed (846.87s): O2/O3 remain failed, O4 remains true, but important numerical conclusions change. The compensated trough persists in64/64 cases, now spanning .53–3.71L; H_Y physical trough spread grows to.31dex. H_Y retains a substantial summary-statistic penalty +17.9/+28.2. Yet the previously least-disfavored .75–1Mpc region is no longer least-disfavored: corrected penalties are +45.7/+36.8 at.75 and+20.9/+40.7 at1.0. The1.3Mpc point instead gives+7.7/+10.5, so the preserved claim that every point≥1.3 is excluded on both footings changes. No tested point reaches≤4 on both footings. The reported H3 claim that galaxies lie≥10%insideLCDM atH_Y flips false→true. A true O4 only asserts that at least one tested L is excluded; it does not validate the old upper-bound shape or location. The corrected grid therefore supports qualitative H_Y tension within this proxy, but not the preserved precise preferred range or a numerically established universal upper limit.
+
+Corrected no-band-pass penalties remain positive (+14.9/+15.4, versus old+42.1/+26.0), and the outer-profile shape proxy still fails every tested L. These remain proxy comparisons, not a new direct observational likelihood.
+
+## Dependency cautions to preserve
+
+XR28's local EH correction does not update its hard-coded H_Y/H_S separator lengths or the FP10/XR19 conversion budgets that XR28_common reads. Corrected outskirts and hot-phase scores must be evaluated against their own corrected LCDM control. Reusing original LCDM or original hot-phase readouts in a cross-lane composite would mix conventions. The published summary-statistic/pull proxy (including capped pulls and fitted DK14 readouts) is not a direct covariance-weighted cluster-lensing likelihood.
+
+XR23 mass-function reproduction previously audited in PARENT_COSMOLOGY_AUDIT.md consumed the preserved collapse-threshold result, not the new threshold run. Once the latter completes, changed relevant barriers require an end-to-end mass-function/efficiency reread before calling the ceiling result reproduced with fresh upstream inputs. Numerical reproduction and physical closure remain separate.

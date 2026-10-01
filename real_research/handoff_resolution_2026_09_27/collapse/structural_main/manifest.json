@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "HR01_COLLAPSE_STRUCTURAL",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/usr/bin/env",
+    "MUTATE=0",
+    "STRUCTURAL_OUTPUT=real_research/handoff_resolution_2026_09_27/collapse/structural_main/result.json",
+    "/usr/bin/python3",
+    "real_research/handoff_resolution_2026_09_27/collapse/structural_controls.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Neighbour stress distinguishes affine monokinetic flow from two genuine streams; F pressure sign and Gaussian-semigroup uniqueness controls",
+    "coefficient_domain": "float64 with analytical identities separately proved in report",
+    "conventions": "Newtonian weak-field, point baryons, positive inward g, radius in SI for fluid and dimensionless for tracer",
+    "inputs": [
+      "structural_controls.py"
+    ],
+    "bounds": {
+      "shells": [
+        600,
+        1200
+      ],
+      "neighbours": [
+        24,
+        48
+      ],
+      "r": [
+        0.8,
+        1.2
+      ],
+      "stream_velocity_offsets": [
+        -0.5,
+        0.5
+      ]
+    },
+    "non_claims": [
+      "No general nonlinear velocity detrending estimator",
+      "No modified engine performance or phase-space convergence"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:05:01.040298+00:00",
+    "runtime_seconds": 0.089559,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/handoff_resolution_2026_09_27/collapse/structural_controls.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/structural_controls.py",
+      "sha256": "2be057ddef8b2677f80b748b2d0981bf2e26dee1b3dcbf4d2b170854e1358df5",
+      "sha256_after": "2be057ddef8b2677f80b748b2d0981bf2e26dee1b3dcbf4d2b170854e1358df5"
+    }
+  ],
+  "output_directory": "real_research/handoff_resolution_2026_09_27/collapse/structural_main",
+  "declared_results": [
+    "real_research/handoff_resolution_2026_09_27/collapse/structural_main/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/structural_main/stdout.txt",
+      "sha256": "31dd7fc0d06be9a83a3b482490de1e1272add90460cd870066918a749ffa90f3",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/structural_main/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/structural_main/result.json",
+      "sha256": "615416aeac4102edfcac2ab483dea65f0a6dc511ead0bebf7548cac2c0942ff1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

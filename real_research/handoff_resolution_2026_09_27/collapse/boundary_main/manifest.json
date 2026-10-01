@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "HR01_BOUNDARY_SELECTION",
+  "repository": {
+    "commit": "48905ae11213afcb9ff1b7726530bb5dd1933fe3",
+    "dirty": true
+  },
+  "command": [
+    "/usr/bin/env",
+    "MUTATE=0",
+    "BOUNDARY_OUTPUT=real_research/handoff_resolution_2026_09_27/collapse/boundary_main/result.json",
+    "/usr/bin/python3",
+    "real_research/handoff_resolution_2026_09_27/collapse/boundary_selection.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Original CFG2 pressure matched to positive vacuum stress Pc has edge rM; check two footings and three masses",
+    "coefficient_domain": "float64 with analytical identities separately proved in report",
+    "conventions": "Newtonian weak-field, point baryons, positive inward g, radius in SI for fluid and dimensionless for tracer",
+    "inputs": [
+      "boundary_selection.py"
+    ],
+    "bounds": {
+      "Mb_Msun": [
+        1000000000.0,
+        10000000000.0,
+        100000000000.0
+      ],
+      "rta_kpc": 500,
+      "xe": [
+        0.31,
+        0.4,
+        0.48
+      ]
+    },
+    "non_claims": [
+      "rta=500 kpc is illustrative",
+      "No external pressure law or covariant action derived"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-27T20:07:20.416926+00:00",
+    "runtime_seconds": 0.042269,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "real_research/handoff_resolution_2026_09_27/collapse/boundary_selection.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/boundary_selection.py",
+      "sha256": "366280336f27bfcf3495f7191b3164079508c1f49a7fa186600f3d020a675336",
+      "sha256_after": "366280336f27bfcf3495f7191b3164079508c1f49a7fa186600f3d020a675336"
+    }
+  ],
+  "output_directory": "real_research/handoff_resolution_2026_09_27/collapse/boundary_main",
+  "declared_results": [
+    "real_research/handoff_resolution_2026_09_27/collapse/boundary_main/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/boundary_main/stdout.txt",
+      "sha256": "5d2a3796133d16ef4b6485f6b2ab947e0239537958dfd5ac6705944b976fe79e",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/boundary_main/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "real_research/handoff_resolution_2026_09_27/collapse/boundary_main/result.json",
+      "sha256": "325e1ac0da7b20d84aaff0d496dbe7343eb8691dd6f878a0d423d607b3f79efe",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

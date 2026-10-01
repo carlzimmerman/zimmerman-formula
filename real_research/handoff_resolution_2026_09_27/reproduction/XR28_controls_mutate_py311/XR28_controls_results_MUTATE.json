@@ -1,0 +1,450 @@
+{
+ "lane": "XR28 controls",
+ "mutate": true,
+ "checks": [
+  {
+   "name": "K1 BERTSCHINGER (1985): the self-consistent self-similar collisionless solution puts the first three caustics at 0.364, 0.236, 0.179 r_ta (published) -- each within 1%",
+   "ok": false,
+   "measured": "caustics 0.3689, 0.2268, 0.1665 (published (0.364, 0.236, 0.179)); deviations 1.34%, 3.89%, 6.99%; 1 iterations, tau_max 300, softening 0.0003",
+   "load_bearing": true
+  },
+  {
+   "name": "K2 ADHIKARI et al. (2014): their toy model reproduces their eq. (3) within 10% over s = 1-3, Omega_M = 0.3-1 (a Lambda cosmology control of the orbit integration)",
+   "ok": false,
+   "measured": "ratios 0.310-0.662; s = 1: 0.620, 0.639, 0.662",
+   "load_bearing": true
+  },
+  {
+   "name": "K3 XR19's committed R table: the comoving reach of a daughter born at z_e = 1 with v_k = 600 km/s (peculiar speed ~ 1/a) is reproduced exactly from XR19_common's E(z) and H0 and its 4001-point trapezoid",
+   "ok": true,
+   "measured": "this lane 4.945567068731957 Mpc; XR19 committed 4.945567068731957; independent quadrature 4.945566989 (|d| = 8.0e-08)",
+   "load_bearing": true
+  },
+  {
+   "name": "K3b (reported) the same reach by adaptive quadrature agrees to 1e-6",
+   "ok": true,
+   "measured": "7.99e-08 Mpc",
+   "load_bearing": false
+  },
+  {
+   "name": "K4 THE PHANTOM: this lane's band-passed phantom equals FP6's committed phantom() (M_b 1e11-1e14 Msun, L 0.5-3 Mpc, both footings) to 1e-6, and its L -> oo limit is the unfiltered P2 phantom to 1e-9",
+   "ok": true,
+   "measured": "max relative deviation 4.6e-08; L -> oo 2.7e-13 (FP6's S8_LCDM in its namespace: 0.8101)",
+   "load_bearing": true
+  },
+  {
+   "name": "K5 THE PROJECTION: the uniform-shell Delta Sigma equals Wright & Brainerd's NFW to 0.5% (M200m 1.8e14-1.4e15 h^-1, c 3-4, 14 radii 0.2-20 h^-1 cMpc); the DK14 forward-fit recovers a known DK14 profile's r_sp to 2%",
+   "ok": true,
+   "measured": "NFW max deviation 6.6e-04; DK14 r_sp true 1.575, fitted 1.586 (+0.73%), gamma -3.87 -> -3.86",
+   "load_bearing": true
+  },
+  {
+   "name": "K5b THE PROJECTOR ON FP20's TEST CASES (FP20 listed this lane by the function name model_esd; the projector is FP20's own exact uniform-shell formula): truncated SIS, NFW, a cored and a hollow template (at 35 kpc and the 14 WL radii) within 0.2% of an independent singularity-free quadrature; a compact mass passed as extended is kept exactly; the model's histogram profiles are projected to 1e-6",
+   "ok": true,
+   "measured": "SIS: 3.9e-04; NFW (r_s = 0.35): 5.7e-04; cored (r_c = 50 kpc): 5.3e-04; hollow (empty inside 50 kpc): 5.2e-04; compact mass (model_esd): 2.2e-16; histogram (model_esd, exact): 1.1e-14",
+   "load_bearing": true
+  },
+  {
+   "name": "K6 (reported; as first written -- it FELL in this lane's first run, the MUTATE run, and is kept as run) CONVERGENCE of the t = 0 member with no apocentre scatter and an unwindowed read-out: 1200 shells and a halved step move the 3D lensing and the DK14 WL r_sp/r200m by <= 5%",
+   "ok": false,
+   "measured": "max change 16.3%",
+   "load_bearing": false
+  },
+  {
+   "name": "K6b CONVERGENCE of the production configuration (3-member ensemble, apocentre scatter 0.12, [0.5, 3] r200m read-out, ds = 0.00075, 2 kick nodes): 1200 shells, ds = 0.0005 and 4 kick nodes move the DK14 WL and galaxy r_sp/r200m by <= 5% (LCDM; the chain at H_Y's L0 and at L0 = 0.75 Mpc, where the outskirts are LCDM-like)",
+   "ok": false,
+   "measured": "LCDM|600|0.00075|2: 0.0%; LCDM|1200|0.00075|2: 7.1%; LCDM|600|0.0005|2: 1.4%; chain H_Y|600|0.00075|2: 0.0%; chain H_Y|1200|0.00075|2: 1.6%; chain H_Y|600|0.0005|2: 0.0%; chain H_Y|600|0.00075|4: 3.3%; chain 0.75|600|0.00075|2: 0.0%; chain 0.75|600|0.0005|2: 0.2%",
+   "load_bearing": true
+  },
+  {
+   "name": "K7 (reported) LCDM REALISM: the model's 3D r_sp/r200m against More, Diemer & Kravtsov (2015) eq. (5) at the model's own Gamma (Delta ln M200m/Delta ln a over the window), and its DK14 WL r_sp/r200m against Shin et al. (2021)'s N-body 1.07",
+   "ok": true,
+   "measured": "Gamma 2.72: model 3D 1.070 vs More+15 1.101; DK14 WL 1.228 vs N-body 1.07",
+   "load_bearing": false
+  },
+  {
+   "name": "K8 (reported) the inputs are the committed files (sha256 recorded)",
+   "ok": true,
+   "measured": "{'FP10_internal_splitting_dark_sector_results.json': '14e02f0cc62489bc535a105b239c645bd2eeaec10cb632fbf2e1feb65ee8872a', 'XR19_web_runaway_results.json': 'c973dd1005b89c85da642fa5da3d16d3a79da8ae3df47fc00b2d6c62f7855dbd', 'XR19_front_physics_results.json': '7419f0f4f8f88fbb8eeff09feb5f2b08ff0c4da406971f745a0682db8eaa40f4'}",
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "K1": {
+   "caustics": [
+    0.36888580650270014,
+    0.22681264868672726,
+    0.16649544806400046
+   ],
+   "published": [
+    0.364,
+    0.236,
+    0.179
+   ],
+   "dev": [
+    0.01342254533708842,
+    0.038929454717257284,
+    0.0698578320446901
+   ],
+   "history": [
+    {
+     "it": 0,
+     "dM": 0.21200905666768677,
+     "caustics": [
+      0.36888580650270014,
+      0.22681264868672726,
+      0.16649544806400046
+     ]
+    }
+   ]
+  },
+  "K2": {
+   "1|0.3": {
+    "model": 85.57762422078858,
+    "fit": 138.0937471383895,
+    "Om": 0.29999849019474173,
+    "ratio": 0.6197067281766762
+   },
+   "1|0.5": {
+    "model": 67.90150874684392,
+    "fit": 106.32909019454183,
+    "Om": 0.5000041704931621,
+    "ratio": 0.6385976652542588
+   },
+   "1|1.0": {
+    "model": 51.68387824774398,
+    "fit": 78.06846201212082,
+    "Om": 0.9999999997486403,
+    "ratio": 0.6620327455627294
+   },
+   "2|0.3": {
+    "model": 86.81827950655988,
+    "fit": 201.651785083274,
+    "Om": 0.2999997101263413,
+    "ratio": 0.43053563582741133
+   },
+   "2|0.5": {
+    "model": 68.91648181132682,
+    "fit": 153.69007569426955,
+    "Om": 0.5000001300000828,
+    "ratio": 0.4484120493792978
+   },
+   "2|1.0": {
+    "model": 52.47276774045461,
+    "fit": 111.28766568440692,
+    "Om": 0.999999999744803,
+    "ratio": 0.47150569128890296
+   },
+   "3|0.3": {
+    "model": 87.47801728315058,
+    "fit": 281.86646926911436,
+    "Om": 0.2999996055281702,
+    "ratio": 0.310352691151888
+   },
+   "3|0.5": {
+    "model": 69.43834117605353,
+    "fit": 212.64145618765494,
+    "Om": 0.5000048207993927,
+    "ratio": 0.3265512869455454
+   },
+   "3|1.0": {
+    "model": 52.88754137567563,
+    "fit": 151.85556357640476,
+    "Om": 0.9999999997427855,
+    "ratio": 0.34827529614392916
+   }
+  },
+  "K3": {
+   "mine": 4.945567068731957,
+   "committed": 4.945567068731957,
+   "quad": 4.945566988845126
+  },
+  "K4": {
+   "dev": 4.6462470747409975e-08,
+   "dev_inf": 2.7355895326763857e-13
+  },
+  "K5": {
+   "nfw_dev": [
+    0.0006017353555338723,
+    0.0006295344390290225,
+    0.0006585707264830098
+   ],
+   "dk14": {
+    "true": 1.5748652324030374,
+    "fit": 1.5864110988156834,
+    "g_true": -3.867798385073229,
+    "g_fit": -3.8616423737636296
+   }
+  },
+  "K5b": {
+   "SIS": 0.0003898237550592487,
+   "NFW (r_s = 0.35)": 0.0005701700615716732,
+   "cored (r_c = 50 kpc)": 0.0005297423755745712,
+   "hollow (empty inside 50 kpc)": 0.0005182509451598927,
+   "compact mass (model_esd)": 2.220446049250313e-16,
+   "histogram (model_esd, exact)": 1.0658141036401503e-14
+  },
+  "K6": {
+   "LCDM": {
+    "600|0.0015": {
+     "x3": 1.0751412361909505,
+     "g3": -6.03596505832963,
+     "xwl": 1.258703131953158,
+     "gwl": -3.301821196703969,
+     "xgal": 1.040979945250761,
+     "ggal": -3.4188598366569067,
+     "M": 698554281834219.9
+    },
+    "1200|0.0015": {
+     "x3": 1.0070722414045268,
+     "g3": -6.113541866118435,
+     "xwl": 1.211390116758341,
+     "gwl": -3.300316076018106,
+     "xgal": 1.0018508617386512,
+     "ggal": -3.5837964371587816,
+     "M": 707740135450255.2
+    },
+    "600|0.00075": {
+     "x3": 1.0748044461671087,
+     "g3": -5.475312461392079,
+     "xwl": 1.3051155648380055,
+     "gwl": -3.090382068204889,
+     "xgal": 1.0218224434036647,
+     "ggal": -3.025546926647138,
+     "M": 699151532711078.9
+    }
+   },
+   "chain H_Y": {
+    "600|0.0015": {
+     "x3": 1.1406214161294566,
+     "g3": -13.520112899966122,
+     "xwl": 0.8760464207597288,
+     "gwl": -4.438229623655587,
+     "xgal": 0.8570577509372737,
+     "ggal": -3.5920294004476716,
+     "M": 695407565416764.1
+    },
+    "1200|0.0015": {
+     "x3": 0.9541420660365181,
+     "g3": -11.225674588216705,
+     "xwl": 0.8645247308050197,
+     "gwl": -4.454996230798258,
+     "xgal": 0.8396301872490762,
+     "ggal": -3.631389968106191,
+     "M": 692456937819091.0
+    },
+    "600|0.00075": {
+     "x3": 1.1405606113633138,
+     "g3": -12.265290703435618,
+     "xwl": 0.8792049803044404,
+     "gwl": -4.412677827314582,
+     "xgal": 0.8570120625121926,
+     "ggal": -3.524743233054295,
+     "M": 695507711955986.4
+    }
+   }
+  },
+  "K6b": {
+   "runs": {
+    "LCDM|600|0.00075|2": {
+     "x3": 1.0704119898404196,
+     "g3": -4.125641163102689,
+     "xwl": 1.2284118320248707,
+     "gwl": -3.0772047838567573,
+     "xgal": 1.0104567152171826,
+     "ggal": -2.8338683866913073,
+     "M": 713015122656043.4
+    },
+    "LCDM|1200|0.00075|2": {
+     "x3": 1.0774810949929947,
+     "g3": -4.370254573924662,
+     "xwl": 1.1410843358557,
+     "gwl": -3.2088956776554767,
+     "xgal": 0.9613429775493889,
+     "ggal": -2.992737413300972,
+     "M": 696686627318478.1
+    },
+    "LCDM|600|0.0005|2": {
+     "x3": 1.0675939546480446,
+     "g3": -3.950003705808271,
+     "xwl": 1.2456700154127751,
+     "gwl": -3.01402844549159,
+     "xgal": 1.0165165110771597,
+     "ggal": -2.7094661771265294,
+     "M": 718102954772726.1
+    },
+    "chain H_Y|600|0.00075|2": {
+     "x3": 1.0724884371601373,
+     "g3": -9.29389411060677,
+     "xwl": 0.8930013408111457,
+     "gwl": -4.278642582651315,
+     "xgal": 0.863251514043131,
+     "ggal": -2.8664791662436073,
+     "M": 704848470434254.0
+    },
+    "chain H_Y|1200|0.00075|2": {
+     "x3": 1.0728932351298475,
+     "g3": -9.782207841798224,
+     "xwl": 0.8859104284063583,
+     "gwl": -4.306976255996631,
+     "xgal": 0.8771259152762458,
+     "ggal": -2.864709604164517,
+     "M": 704388680702042.9
+    },
+    "chain H_Y|600|0.0005|2": {
+     "x3": 1.0724209400637563,
+     "g3": -9.306932829571346,
+     "xwl": 0.8930013408111457,
+     "gwl": -4.282773387487282,
+     "xgal": 0.863251514043131,
+     "ggal": -2.856609798378429,
+     "M": 704977206937754.9
+    },
+    "chain H_Y|600|0.00075|4": {
+     "x3": 1.069396946105989,
+     "g3": -10.706681581304116,
+     "xwl": 0.863251514043131,
+     "gwl": -4.259575838201357,
+     "xgal": 0.8411721463063543,
+     "ggal": -3.0074109344546684,
+     "M": 708423370999789.5
+    },
+    "chain 0.75|600|0.00075|2": {
+     "x3": 1.2106444730226364,
+     "g3": -13.469088290168484,
+     "xwl": 1.1969927657038013,
+     "gwl": -2.9492887315640814,
+     "xgal": 1.0044330438327695,
+     "ggal": -2.854801815370678,
+     "M": 706148686816354.1
+    },
+    "chain 0.75|600|0.0005|2": {
+     "x3": 1.1398612902568477,
+     "g3": -9.37877795527956,
+     "xwl": 1.199380821123536,
+     "gwl": -2.942634197129479,
+     "xgal": 1.0044330438327695,
+     "ggal": -2.8482222399617285,
+     "M": 706708497866192.6
+    }
+   },
+   "change": {
+    "LCDM|600|0.00075|2": 0.0,
+    "LCDM|1200|0.00075|2": 0.07108975499301662,
+    "LCDM|600|0.0005|2": 0.014049183619028405,
+    "chain H_Y|600|0.00075|2": 0.0,
+    "chain H_Y|1200|0.00075|2": 0.016072258209119727,
+    "chain H_Y|600|0.0005|2": 0.0,
+    "chain H_Y|600|0.00075|4": 0.03331442564351783,
+    "chain 0.75|600|0.00075|2": 0.0,
+    "chain 0.75|600|0.0005|2": 0.0019950458249682335
+   }
+  },
+  "K7": {
+   "Gamma": 2.721123128026429,
+   "x3": 1.0704119898404196,
+   "more15": 1.1014743083769287,
+   "xwl": 1.2284118320248707,
+   "sim": 1.07
+  },
+  "K8": {
+   "hashes": {
+    "FP10_internal_splitting_dark_sector_results.json": "14e02f0cc62489bc535a105b239c645bd2eeaec10cb632fbf2e1feb65ee8872a",
+    "XR19_web_runaway_results.json": "c973dd1005b89c85da642fa5da3d16d3a79da8ae3df47fc00b2d6c62f7855dbd",
+    "XR19_front_physics_results.json": "7419f0f4f8f88fbb8eeff09feb5f2b08ff0c4da406971f745a0682db8eaa40f4"
+   },
+   "F": [
+    0.6291593037823382,
+    0.6198179001062486,
+    0.6052608937657534,
+    0.59029258131127,
+    0.570066415958845,
+    0.5498647888970439,
+    0.5299231188634851,
+    0.5055685981256225,
+    0.48197830630606553,
+    0.4592110419294449,
+    0.43728073724706773,
+    0.3958848669406272,
+    0.35762525815205,
+    0.3223019204872756,
+    0.2897259271533942,
+    0.23217716315836037,
+    0.18371283683779382,
+    0.10906333326577744,
+    0.05875756731974805,
+    0.028454839696883213,
+    0.007836768237244428,
+    0.00042354742314811147,
+    0.0
+   ],
+   "Fb": [
+    0.49106991553298607,
+    0.49106991553298607,
+    0.49106991553298607,
+    0.49106991553298607,
+    0.49106991553298607,
+    0.49106991553298607,
+    0.49106991553298607,
+    0.49106991553298607,
+    0.49106991553298607,
+    0.49106991553298607,
+    0.49106991553298607,
+    0.49106991553298607,
+    0.4857668149552867,
+    0.4735815700318944,
+    0.4564519263629976,
+    0.4132887883175426,
+    0.3646229740809689,
+    0.26458865861056136,
+    0.17237233123660356,
+    0.10005109985160024,
+    0.035621509383191155,
+    0.0029867187025209604,
+    0.0
+   ],
+   "Ftot": {
+    "z": [
+     0.0,
+     0.25,
+     0.5,
+     0.75,
+     1.0,
+     1.25,
+     1.5,
+     1.75,
+     2.0,
+     2.25,
+     2.5,
+     2.75,
+     3.0,
+     3.5,
+     4.0,
+     5.0,
+     6.0
+    ],
+    "F": [
+     0.9115520682794349,
+     0.8990929316465541,
+     0.8798647409142086,
+     0.8513472984738788,
+     0.8106605922013007,
+     0.751980598977743,
+     0.6895722642671148,
+     0.6209858084458151,
+     0.5538459576935872,
+     0.494398600329071,
+     0.44380646664576795,
+     0.4006228629902979,
+     0.3632526485691891,
+     0.30553647949642676,
+     0.25711322909842255,
+     0.176652565706328,
+     0.11533721044777355
+    ]
+   }
+  }
+ },
+ "verdict": "7/11 checks pass; load-bearing failures: 3",
+ "n_fail_load_bearing": 3
+}

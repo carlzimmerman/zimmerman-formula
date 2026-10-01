@@ -1,0 +1,73 @@
+{
+  "task": "FGF-043",
+  "reviewer": "pressure_extrema",
+  "reviewed_utc": "2026-10-01T00:41:59.543399+00:00",
+  "primary_verdict": "correct only after a stated restriction",
+  "scope": "Stationary weak-residual counterexample and spatial bounded-velocity flux estimate pass; spacetime corollary requires the explicit time-integrability conditions in CORRECTION.md.",
+  "source_sha256": {
+    "campaign_fresh_gravity_astra/stage_30/local_energy/ROOT_DERIVATION.md": "45236fe01ee93bdcedbe785bcb2948d408b4ea05869aa81235095e2cfec2ca27",
+    "campaign_fresh_gravity_astra/stage_30/local_energy/PROOF_RECORD.json": "1b232c9b97c284dc0a640302fe8486316f4c22cbae0ebf5e88a0362a831b8197",
+    "campaign_fresh_gravity_astra/stage_30/local_energy/CORRECTION.md": "cfa5cc3117ba7b42b3fafee936fec35f1353042c5d429986277a24e51fdafa74",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/FGF-042_RECONCILIATION.md": "126efc72f57202dd5b54d3a998d822073d6de93325f44995c7f7c3f938c3838c",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-042/fgf042_run_001/result.json": "fbb5c7f72862ec396329109feb42383156f756f530d3484c42f7ef377adf1755",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-042/fgf042_run_001/DERIVATION.md": "5bf4313e3d16941520a97dfae12fbfd237112c7a14c80e5d6cd433c7d0b90e68",
+    "campaign_fresh_gravity_astra/stage_29/independent_audit/FROZEN_DERIVATION.md": "7b7b39527363bbf110db05a72bb76b05e54598172fb4773ae847d056b8b83b5b",
+    "campaign_fresh_gravity_astra/stage_29/energy_compactness/ROOT_DERIVATION.md": "30c4906982fffc0a31475b4363ed01c8e0153be407c214d995729bf86a31d938",
+    "campaign_fresh_gravity_astra/stage_29/energy_compactness/audit_result.json": "9618ed8b61ca872f4e0490cb28d7200e516d058400df99229f376ff282307087",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/FGF-041_RECONCILIATION.md": "7049d8be55bf55a63741fdd0d6630dd89cea8d84285bd48e114c387461e84b72",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/reviews/FGF-032_RECONCILIATION.md": "a7612d873f13635df650bb1ca09c824ceb91a191169a5b4861e243804e2464b0",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-023/fgf023_run_001/DERIVATION.md": "0b9babab32edd602cf5aea8db63126a52f09c379b858e5c5967d46835bbf1f4a",
+    "deepseek_push/astra_spawn_ideas/fresh_gravity_followups/tasks/FGF-043.md": "c1468fef3816a6d41c047609eb6d5817ca15116496e74a9087f77675c69fc33a",
+    "campaign_fresh_gravity_astra/stage_17/energy_identity/ROOT_DERIVATION.md": "c37b0c4831348da9676d6ab420dff375262f68da403b8275eef3925f265c50a5"
+  },
+  "all_proof_record_pins_verified": true,
+  "report_sha256": "7b459fc71af5173beabfbc06b8e7f5078e6085cc74280e70b55799901f479c0f",
+  "independence": {
+    "root_only": true,
+    "new_fgf043_author_proof_or_preview_read": false,
+    "new_fgf043_other_reviewer_proof_or_preview_read": false,
+    "mathematical_computations": 0,
+    "method": "Analytic reconstruction of all residuals, off-shell identity, measure and sign limits, and flux estimate; old off-shell source inspected and all record pins verified.",
+    "correction_chronology": "Reviewer identified spatial-to-spacetime time-integrability gap before any completed audit was written. Root supplied credited CORRECTION.md, then independently checked by reviewer. No completed pre-correction audit was overwritten."
+  },
+  "checks": {
+    "conservative_and_primitive_residuals": "passed",
+    "all_claimed_residual_norms": "passed",
+    "combined_momentum_strong_l1": "passed",
+    "initial_small_energy": "passed",
+    "exact_static_global_energy_equality": "passed",
+    "cubic_flux_delta_weight": "passed",
+    "local_residual_derivative_sign": "passed",
+    "both_signs_on_nonnegative_tests": "passed",
+    "initial_and_wall_accounting": "passed",
+    "offshell_convention_conversion": "passed",
+    "amplitude_control": "passed",
+    "uniform_velocity_full_spatial_flux": "passed",
+    "vacuum_and_entropy_estimate": "passed",
+    "corrected_spacetime_condition": "passed",
+    "units_and_framework_scope": "passed"
+  },
+  "errors_found": [
+    {
+      "location": "ROOT_DERIVATION.md paragraph after estimate (2)",
+      "error": "Spatial convergence was used for compact spacetime residual convergence without an explicit time-integrability hypothesis.",
+      "resolution": "CORRECTION.md requires RHS of (2) to vanish in L1 time, plus spacetime L1 energy density and field flux convergence; FGF042 uniform-in-time small energy with a fixed velocity cap is one sufficient setup.",
+      "status": "corrected by scoped addendum; original bytes preserved"
+    }
+  ],
+  "assumptions": [
+    "Inherited fixed-reference Q action, static crossing, mass and wall data.",
+    "Concentrating family is a stationary comparison sequence, not exact trajectories.",
+    "General spatial flux corollary additionally assumes a uniform finite velocity bound on positive density and the vacuum current convention.",
+    "Spacetime corollary additionally assumes corrected time-integrated convergence or the sufficient uniform-in-time FGF042 setup."
+  ],
+  "qualifications": [
+    "All new author/reviewer proof previews excluded; no numerical run.",
+    "No H\u22121 smallness of conservative momentum residual is asserted.",
+    "Local energy delta derivative has no net integrated production and no hidden initial or wall source.",
+    "Local energy admissibility excludes this family but does not establish general strong compactness or existence.",
+    "The velocity bound is an additional analytic hypothesis, not a propagated estimate or physical cutoff.",
+    "No metric/photon/reservoir construction, observational evidence or theory closure."
+  ],
+  "remaining_gap": "Construct a defensible energy-consistent approximation/evolution with justified local energy flux, time integrability and traces; the global static energy budget alone is insufficient."
+}

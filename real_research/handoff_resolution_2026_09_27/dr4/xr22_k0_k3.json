@@ -1,0 +1,71 @@
+{
+  "lane": "XR22_force_law",
+  "mutate": false,
+  "checks": {
+    "K0 THE LOCAL REDUCTION: at z = 0 the chain's separator adds nothing on wide-binary scales (FP13: y_th(0) = 0; the band-pass's Mpc leg changes the pair's relative force by < 1e-12), alpha_c renormalises G by <= 1.6e-9 (FP14), and the pair is quasi-static (retardation < 1e-5): the law is FP7's double-filtered two-field AQUAL with J_P2": {
+      "ok": true,
+      "measured": "y_th(0) = 0.0; band-pass leak 1.3e-22; retardation 7.7e-07",
+      "load_bearing": true
+    },
+    "K1 CONTROL: the frozen pipeline's own y_extN reproduces section 1.1 (1.4647 / 1.1513); the banked MG asymptote 1.1389 is sqrt(B_par) of the chain's unfiltered two-field law (B_par = 1 + 1/mu_T = nu_P2(y_extN) identically); FP7's committed stiffnesses at 2.32e-10 reproduced to the printed digits": {
+      "ok": true,
+      "measured": "y_extN 1.4647/1.1513; sqrt(B_par) 1.13895; B_par - nu 0.0e+00; FP7 0.4501/4.507/49.64",
+      "load_bearing": true
+    },
+    "K2 CONTROL: the linear kernel reproduces the analytic anisotropic-Coulomb tensor at xi = 0 and direct quadrature at xi > 0 to 1e-7; the closed-form orientation average matches quadrature": {
+      "ok": true,
+      "measured": "2.2e-15; 4.2e-11; 4.8e-08",
+      "load_bearing": true
+    },
+    "K3 CONTROL (deep-MOND two-body): the independent 2-D solver reproduces Milgrom's exact two-body force within 0.5% at xi/s = 0.05 (q = 1 and 0.3), 0.25% at 0.025, 0.1% after Richardson": {
+      "ok": true,
+      "measured": "1.00338, 1.00456, 1.00139; Richardson 1.00072",
+      "load_bearing": true
+    }
+  },
+  "numbers": {
+    "K0": {
+      "a0": {
+        "canonical": 9.360324825027975e-11,
+        "alt": 1.1312035414413022e-10
+      },
+      "floors": {
+        "canonical": 0.024281419855163956,
+        "alt": 0.026832267367263626
+      },
+      "L0_kpc": 2879.2890622037007,
+      "yth0": 0.0,
+      "bandpass_leak_30kAU": 1.2889395868595054e-22,
+      "cs_over_c": 1.0590181887955157,
+      "retardation": 7.659904574501476e-07
+    },
+    "K1": {
+      "y_extN": {
+        "canonical": 1.46468827043885,
+        "alt": 1.1513216382487537
+      },
+      "Bpar": 1.2972043528625528,
+      "sqrtBpar": 1.1389487929062276,
+      "Bperp": 1.1005920253027734,
+      "fp7": {
+        "xe": 0.4500701294905154,
+        "muT": 4.5070227991580785,
+        "muL": 49.64055462257759
+      }
+    },
+    "K2": {
+      "tensor_err": 2.207259931414438e-15,
+      "quad_err": 4.153165910642689e-11,
+      "orient_avg": 1.1310158767783578
+    },
+    "K3": {
+      "r05": 1.0033834345320258,
+      "r025": 1.0013877472826498,
+      "r05q": 1.004560351926958,
+      "richardson": 1.0007225181995245
+    }
+  },
+  "tables": {},
+  "lin_tables": {},
+  "ledger": []
+}

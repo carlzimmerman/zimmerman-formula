@@ -37,7 +37,7 @@ Derive a candidate-specific bound-orbit support condition for the measured pairs
 Mathematical starting relation/estimand:
 
 ```text
-v_esc^2=2[Phi_boundary-Phi(r)] requires a boundary potential and external environment.
+For a stationary conservative potential per unit mass in a fixed frame, v_esc^2=2[Phi_boundary-Phi(r)] defines an energy threshold. Rotating tides can require an effective potential/Jacobi integral; a time-dependent environment need not admit a scalar escape speed.
 ```
 
 Define every symbol, units, sign, domain and approximation before use. Treat schematic formulas as obligations to derive, not established framework theorems.

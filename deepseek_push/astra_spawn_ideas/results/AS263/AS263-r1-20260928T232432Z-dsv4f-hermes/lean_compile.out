@@ -1,0 +1,29 @@
+AS263.covariance_centering {n : ℕ} (w c z : Fin n → ℝ) (hW : S w ≠ 0) :
+  (Avg w fun i => c i * (z i - Avg w z)) = (Avg w fun i => c i * z i) - Avg w z * Avg w c
+AS263.mean_deriv_value {n : ℕ} (w z zd c : Fin n → ℝ) (hW : S w ≠ 0) :
+  ((∑ i, (c i * w i * z i + w i * zd i)) * S w - (∑ i, w i * z i) * ∑ i, c i * w i) / S w ^ 2 =
+    (Avg w zd + Avg w fun i => c i * z i) - Avg w z * Avg w c
+AS263.mean_deriv_quotient {n : ℕ} (w z : Fin n → ℝ → ℝ) (zd c : Fin n → ℝ) (τ : ℝ)
+  (hw : ∀ (i : Fin n), HasDerivAt (w i) (c i * w i τ) τ) (hz : ∀ (i : Fin n), HasDerivAt (z i) (zd i) τ)
+  (hW : (S fun i => w i τ) ≠ 0) :
+  HasDerivAt (fun t => Avg (fun i => w i t) fun i => z i t)
+    ((Avg (fun i => w i τ) zd + Avg (fun i => w i τ) fun i => c i * z i τ) -
+      (Avg (fun i => w i τ) fun i => z i τ) * Avg (fun i => w i τ) c)
+    τ
+AS263.projector_commutator {n : ℕ} (w z : Fin n → ℝ → ℝ) (zd c : Fin n → ℝ) (τ : ℝ)
+  (hw : ∀ (i : Fin n), HasDerivAt (w i) (c i * w i τ) τ) (hz : ∀ (i : Fin n), HasDerivAt (z i) (zd i) τ)
+  (hW : (S fun i => w i τ) ≠ 0) (i : Fin n) :
+  deriv (fun t => Proj (fun j => w j t) (fun j => z j t) i) τ =
+    zd i - Avg (fun j => w j τ) zd - Avg (fun j => w j τ) fun j => c j * (z j τ - Avg (fun k => w k τ) fun k => z k τ)
+AS263.constant_field_commutator {n : ℕ} (w z : Fin n → ℝ → ℝ) (C τ : ℝ) (hz : ∀ (i : Fin n) (t : ℝ), z i t = C)
+  (hW : ∀ (t : ℝ), (S fun j => w j t) ≠ 0) (i : Fin n) : deriv (fun t => Proj (fun j => w j t) (fun j => z j t) i) τ = 0
+AS263.homogeneous_sector {n : ℕ} (w z : Fin n → ℝ → ℝ) (zd : Fin n → ℝ) (C τ : ℝ)
+  (hw : ∀ (i : Fin n), HasDerivAt (w i) (C * w i τ) τ) (hz : ∀ (i : Fin n), HasDerivAt (z i) (zd i) τ)
+  (hW : (S fun i => w i τ) ≠ 0) (hZ : (Avg (fun j => w j τ) fun j => z j τ) = 0) (i : Fin n) :
+  deriv (fun t => Proj (fun j => w j t) (fun j => z j t) i) τ = zd i - Avg (fun j => w j τ) zd
+'AS263.covariance_centering' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS263.mean_deriv_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS263.mean_deriv_quotient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS263.projector_commutator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS263.constant_field_commutator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS263.homogeneous_sector' depends on axioms: [propext, Classical.choice, Quot.sound]

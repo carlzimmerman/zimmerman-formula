@@ -1,0 +1,150 @@
+XR32 (1/3) -- THE CHAIN'S MATTER POWER WITH ITS LATE-TIME DARK-FLUID CONVERSION: P(k, z) and sigma_8(z) for z = 0-3.
+
+WHY.  XR19 found that FK1/FP10's dark fluid converts through the collapsed and turned-around web at z <~ 1.5 (converted
+fraction of the whole fluid 0.36/0.55/0.81/0.91 at z = 3/2/1/0, nominal delta_t0 = 5.31), that the daughters stream at
+200-400 km/s today and leave galaxies and groups, and that the linear S8 ratio is 0.931.  It did not score cosmic shear.
+This part builds the chain's matter power to the scales a lensing survey uses; XR32_survey_s8.py projects it into KiDS-1000
+and DES-Y3 shear, and XR32_consistency.py scores CMB lensing, cluster counts, RSD and sum m_nu.
+
+THE MODEL (nothing fitted; no constant added)
+  LINEAR, TWO COMPONENTS.  L319's validated linear solver (exec'd via L357's committed head, unedited): the cold phase
+    (baryons + unconverted or retained carrier) and the daughters, kicked at v_k in the local frame, Hubble-cooled as 1/a,
+    each birth cohort free-streaming through its own j0 kernel, all coupled through Poisson.  The survival history is
+    XR19's S(a) = 1 - F_esc(a), F_esc = the bias-weighted escaped halo fraction + the web part (rebuilt exactly as
+    XR19_web_runaway.py builds it from its results JSON).  Histories: halo only; nominal (delta_t0 = 5.31); every O(1)
+    choice at its conservative end; pump = full density; delta_t0 = 7.54 (forest floor), 14.6 (canonical top), 22.8 (alt
+    top), 25 (FK1 upper); v_k 575 and 650 (XR19's census variants, with the same kick in the solver).
+  NONLINEAR: A HALO-MODEL RESPONSE ON A CALIBRATED LCDM P_NL.  P_chain(k, z) = R(k, z) x P_HMcode2020(k, z; Planck 2018),
+    R = [P_lin,chain (I_1 + B_ph)^2 + P_1h,chain] / [P_lin,LCDM I_1^2 + P_1h,LCDM]; Sheth-Tormen, NFW (Duffy+08 c_vir),
+    HMcode-2020's 1-halo damping; P_lin,chain = T^2_tot(k, z) P_lin from the solver.  Every halo holds its baryons and a
+    retained carrier fraction ret(M, z) of its LCDM share:
+      phase-space recapture (PRIMARY): ret = (1 - F_esc) ret_in + F_esc cap_TG, i.e. the carrier that arrives unconverted
+        converts in place (1 - L357's esc(): the whole halo converts, isotropic kick on a Maxwellian parent in the
+        truncated NFW), and the free daughters (1D dispersion sigma_d(z) from the history) are recaptured up to the
+        Tremaine-Gunn limit rho_d <= f_max (4 pi/3) v_esc(r)^3 (Maxwellian proxy; an UPPER bound on recapture);
+      in place (FP10's pessimistic reading for X-COP: escaped daughters all re-accreted before the in-place conversion);
+      no recapture (FP10/AT4's optimistic reading: min(ret_in, 1 - F_esc), escaped daughters never return);
+      PM (L388): the committed particle-mesh retention by mass at 600 km/s (z-independent).
+    Halo population: LCDM's (PRIMARY: the cold field's small-scale variance stays near LCDM's because conversion is recent);
+    bracket 'cold': Sheth-Tormen on the solver's cold-field linear power (the cold field's growth suppression).
+  THE MOND PHANTOM, a labelled BRACKET only (the separator is under repair, FP19; the chain's KiDS projection is being
+    fixed, FP20): (a) none; (b) a STAND-IN: the isolated nu_mono phantom of each halo's GP0 'observed' bound baryons,
+    truncated at L = 1.7 Mpc physical (H_Y's z = 0 value, at every z) and compensated there (L363/MS3's region-phantom
+    transform), carried by halos of 1e10-10^15.5 Msun (the record's halo-model range), on both a0 footings (9.3603e-11
+    and 1.1312e-10 m/s^2).  Reported sensitivities only (canonical): H_Y's running L(z) = 2.46 Omega_L(z) Mpc; H_Y's
+    heat-kernel band-pass in place of the truncation (the isolated phantom x (1 - exp(-k^2 L^2/2))).
+  NORMALISATION: Planck 2018 LCDM (an ASSUMPTION pending XR26); the solver's own cosmology (L319's CLASS, A_s 2.1e-9,
+    massless nu) supplies only ratios.
+
+  *** MUTATE=1: conversion switched off (F_esc = 0, carrier kept in every halo); H1a, H1c, H1d must FAIL ***
+
+  L357's head loaded (L319's solver, L357's esc()); solver LCDM S8 0.841456570604178   [3s]
+  solved 10 histories (two threads)   [51s]
+
+======================================================================================================================
+C1-C5  CONTROLS
+======================================================================================================================
+    halo only: 0.8041193821 vs 0.8041193821; nominal (dt0 5.31): 0.7833765570 vs 0.7833765570; most conservative: 0.7924631634 vs 0.7924631634; pump s = 1: 0.7774286745 vs 0.7774286745; dt0 14.6 (canonical top): 0.7937237653 vs 0.7937237653; dt0 22.8 (alt top): 0.7981894643 vs 0.7981894643; dt0 25 (FK1 upper): 0.7990234378 vs 0.7990234378
+  [FAIL] C1 CONTROL: XR19's seven on-disk S8 values (X section; uncommitted file) reproduced exactly
+         measured: max |dev| 1.1e-16
+    FP10 A8: z_web 1.8: 0.9176948251485045 vs 0.9176948251485045; z_web 1.2: 0.9289243047010352 vs 0.9289243047010354; z_web 0.5: 0.9478783701783267 vs 0.9478783701783269
+  [FAIL] C2 CONTROL: FP10 A8's committed maximal-web S8 ratios reproduced exactly
+         measured: 0.0e+00; -2.2e-16; -2.2e-16
+  [PASS] C3 CONTROL: the component solver's recombination is bit-identical to L319's run() (nominal history)
+         measured: max |diff| 0.0e+00
+  CAMB Planck-2018 base (HMcode-2020) and the halo model ready   [86s]
+  [PASS] C4 CONTROL: no conversion gives T^2 = 1 bit-for-bit (L319's run with S = 1) and the response R = 1 exactly
+         measured: run(S=1) == LCDM: True; max |R - 1| 0.0e+00
+  [PASS] C5 CONTROL: the Planck-2018 normalisation (posterior means, sum m_nu 0.06 eV): CAMB's sigma8 and S8 within 0.5 sigma of the quoted
+         measured: sigma8 0.8109 (0.8111 +- 0.0060), S8 0.8312 (0.832 +- 0.013), Om 0.3152
+  [PASS] (reported) C6 (reported) the raw halo model against HMcode-2020 (LCDM, P_HM/P_HMcode at k = 0.1/0.3/1/3/10 h/Mpc)
+         measured: {0.0: {0.1: 1.039, 0.3: 0.912, 1.0: 0.886, 3.0: 1.022, 10.0: 0.867}, 0.5: {0.1: 1.002, 0.3: 0.887, 1.0: 0.803, 3.0: 0.955, 10.0: 0.873}, 1.0: {0.1: 0.992, 0.3: 0.885, 1.0: 0.738, 3.0: 0.888, 10.0: 0.885}}
+         reading:  a vanilla halo model misses 10-26% in the 2-halo/1-halo transition, so the chain enters only as a response on HMcode
+
+======================================================================================================================
+M1  LINEAR sigma8(z) AND S8 (Planck-2018 normalised) FOR EVERY HISTORY
+======================================================================================================================
+    halo only                 : sigma8 ratio z=0/0.25/0.5/0.75/1/1.5/2/2.5/3 = 1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000; S8 0.8312 (record's S8_of ratio 1.0000); F_esc(0/1/2/3) 0.000/0.000/0.000/0.000; sigma_d(0/0.5/1/2) 346/346/346/346 km/s
+    nominal (dt0 5.31)        : sigma8 ratio z=0/0.25/0.5/0.75/1/1.5/2/2.5/3 = 1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000; S8 0.8312 (record's S8_of ratio 1.0000); F_esc(0/1/2/3) 0.000/0.000/0.000/0.000; sigma_d(0/0.5/1/2) 346/346/346/346 km/s
+    most conservative         : sigma8 ratio z=0/0.25/0.5/0.75/1/1.5/2/2.5/3 = 1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000; S8 0.8312 (record's S8_of ratio 1.0000); F_esc(0/1/2/3) 0.000/0.000/0.000/0.000; sigma_d(0/0.5/1/2) 346/346/346/346 km/s
+    pump s = 1                : sigma8 ratio z=0/0.25/0.5/0.75/1/1.5/2/2.5/3 = 1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000; S8 0.8312 (record's S8_of ratio 1.0000); F_esc(0/1/2/3) 0.000/0.000/0.000/0.000; sigma_d(0/0.5/1/2) 346/346/346/346 km/s
+    dt0 7.54 (forest floor)   : sigma8 ratio z=0/0.25/0.5/0.75/1/1.5/2/2.5/3 = 1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000; S8 0.8312 (record's S8_of ratio 1.0000); F_esc(0/1/2/3) 0.000/0.000/0.000/0.000; sigma_d(0/0.5/1/2) 346/346/346/346 km/s
+    dt0 14.6 (canonical top)  : sigma8 ratio z=0/0.25/0.5/0.75/1/1.5/2/2.5/3 = 1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000; S8 0.8312 (record's S8_of ratio 1.0000); F_esc(0/1/2/3) 0.000/0.000/0.000/0.000; sigma_d(0/0.5/1/2) 346/346/346/346 km/s
+    dt0 22.8 (alt top)        : sigma8 ratio z=0/0.25/0.5/0.75/1/1.5/2/2.5/3 = 1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000; S8 0.8312 (record's S8_of ratio 1.0000); F_esc(0/1/2/3) 0.000/0.000/0.000/0.000; sigma_d(0/0.5/1/2) 346/346/346/346 km/s
+    dt0 25 (FK1 upper)        : sigma8 ratio z=0/0.25/0.5/0.75/1/1.5/2/2.5/3 = 1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000; S8 0.8312 (record's S8_of ratio 1.0000); F_esc(0/1/2/3) 0.000/0.000/0.000/0.000; sigma_d(0/0.5/1/2) 346/346/346/346 km/s
+    v_k 575                   : sigma8 ratio z=0/0.25/0.5/0.75/1/1.5/2/2.5/3 = 1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000; S8 0.8312 (record's S8_of ratio 1.0000); F_esc(0/1/2/3) 0.000/0.000/0.000/0.000; sigma_d(0/0.5/1/2) 332/332/332/332 km/s
+    v_k 650                   : sigma8 ratio z=0/0.25/0.5/0.75/1/1.5/2/2.5/3 = 1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000/1.0000; S8 0.8312 (record's S8_of ratio 1.0000); F_esc(0/1/2/3) 0.000/0.000/0.000/0.000; sigma_d(0/0.5/1/2) 375/375/375/375 km/s
+  [FAIL] H1a the conversion lowers the linear sigma8(z = 0) by 4-8% across delta_t0 = 5.31-25 (ratio 0.92-0.96)
+         measured: ratio 1.0000-1.0000 (S8 0.8312-0.8312)
+         reading:  the daughters' free-streaming scale (k_fs ~ 0.2-0.3 h/Mpc) sits just above sigma8's window
+  [PASS] H1b the sigma8 suppression fades with z: monotone, >= 0.95 at z = 2 and >= 0.97 at z = 3 (nominal)
+         measured: monotone True; z = 2: 1.0000; z = 3: 1.0000
+
+======================================================================================================================
+M2  THE LINEAR TRANSFER T^2(k, z) (total; cold field) AND THE COLD FRACTION
+======================================================================================================================
+    halo only              z=0.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    halo only              z=0.5: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    halo only              z=1.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    halo only              z=2.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    nominal (dt0 5.31)     z=0.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    nominal (dt0 5.31)     z=0.5: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    nominal (dt0 5.31)     z=1.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    nominal (dt0 5.31)     z=2.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    most conservative      z=0.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    most conservative      z=0.5: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    most conservative      z=1.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    most conservative      z=2.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    dt0 22.8 (alt top)     z=0.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    dt0 22.8 (alt top)     z=0.5: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    dt0 22.8 (alt top)     z=1.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+    dt0 22.8 (alt top)     z=2.0: T^2_tot(k=0.1/0.3/1/3) 1.000/1.000/1.000/1.000; cold field 1.000/1.000/1.000/1.000; cold fraction 1.000
+  [FAIL] H1c the linear small-scale power collapses: T^2(k = 1 h/Mpc, z = 0.5) <= 0.2 at the nominal cell
+         measured: 1.0000 (XR19: 0.118)
+         reading:  two thirds of the matter is free-streaming daughters at z < 1; only the cold third clusters at k > k_fs
+
+======================================================================================================================
+M3  THE NONLINEAR RESPONSE R(k, z) = P_chain/P_LCDM: recapture readings x halo population x phantom bracket
+======================================================================================================================
+    phase-space recapture (primary)   : R(k=0.3/1/3, z=0.5), pop lcdm: phantom none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946; L1.7 alt 1.239/2.912/5.555 || pop cold, none 1.000/1.000/1.000   [123s]
+    in place                          : R(k=0.3/1/3, z=0.5), pop lcdm: phantom none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946; L1.7 alt 1.239/2.912/5.555 || pop cold, none 1.000/1.000/1.000   [123s]
+    no recapture                      : R(k=0.3/1/3, z=0.5), pop lcdm: phantom none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946; L1.7 alt 1.239/2.912/5.555 || pop cold, none 1.000/1.000/1.000   [123s]
+    PM (L388)                         : R(k=0.3/1/3, z=0.5), pop lcdm: phantom none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946; L1.7 alt 1.239/2.912/5.555 || pop cold, none 1.000/1.000/1.000   [123s]
+    retained carrier fraction (primary) z = 0.0: 1e11: 1.000, 1e12: 1.000, 1e13: 1.000, 1e14: 1.000, 1e15: 1.000  (sigma_d 346 km/s, F_esc 0.000)
+    retained carrier fraction (primary) z = 0.5: 1e11: 1.000, 1e12: 1.000, 1e13: 1.000, 1e14: 1.000, 1e15: 1.000  (sigma_d 346 km/s, F_esc 0.000)
+    retained carrier fraction (primary) z = 1.0: 1e11: 1.000, 1e12: 1.000, 1e13: 1.000, 1e14: 1.000, 1e15: 1.000  (sigma_d 346 km/s, F_esc 0.000)
+    halo only                  primary: R(k=0.3/1/3, z=0.5) none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946   [123s]
+    most conservative          primary: R(k=0.3/1/3, z=0.5) none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946   [123s]
+    pump s = 1                 primary: R(k=0.3/1/3, z=0.5) none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946   [123s]
+    dt0 7.54 (forest floor)    primary: R(k=0.3/1/3, z=0.5) none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946   [123s]
+    dt0 14.6 (canonical top)   primary: R(k=0.3/1/3, z=0.5) none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946   [123s]
+    dt0 22.8 (alt top)         primary: R(k=0.3/1/3, z=0.5) none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946   [123s]
+    dt0 25 (FK1 upper)         primary: R(k=0.3/1/3, z=0.5) none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946   [123s]
+    v_k 575                    primary: R(k=0.3/1/3, z=0.5) none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946   [123s]
+    v_k 650                    primary: R(k=0.3/1/3, z=0.5) none 1.000/1.000/1.000; L1.7 can 1.217/2.683/4.946   [123s]
+  [FAIL] H1d without the phantom the conversion suppresses the nonlinear power at k = 1 h/Mpc, z = 0.5 by more than 20% in every recapture reading (both halo populations)
+         measured: R(1, 0.5): pop lcdm phase-space recapture (primary): 1.000, in place: 1.000, no recapture: 1.000, PM (L388): 1.000; pop cold phase-space recapture (primary): 1.000, in place: 1.000, no recapture: 1.000, PM (L388): 1.000
+  [PASS] H1e the 1.7 Mpc phantom stand-in more than restores the lensing power at k = 1 h/Mpc, z = 0.5 (R > 1; primary, both footings)
+         measured: R(1, 0.5): canonical 2.683, alt 2.912
+  [FAIL] H1f recapture matters: the primary (phase-space) R(k = 0.5, z = 0.5) exceeds the no-recapture reading's by >= 0.1
+         measured: difference +0.000
+
+======================================================================================================================
+M4  P(k, z) OF THE KEY CONFIGURATIONS (Planck-2018 normalised; HMcode-2020 base x response)
+======================================================================================================================
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom none: P_chain/P_LCDM at k = 0.1/1/10, z = 0/1/2: 1.000/1.000/1.000; 1.000/1.000/1.000; 1.000/1.000/1.000
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 canonical: P_chain/P_LCDM at k = 0.1/1/10, z = 0/1/2: 1.011/1.479/5.077; 1.051/5.462/3.067; 1.128/14.207/1.666
+    nominal (dt0 5.31) | phase-space recapture (primary) | pop lcdm | phantom L1.7 alt: P_chain/P_LCDM at k = 0.1/1/10, z = 0/1/2: 1.012/1.538/5.738; 1.056/6.132/3.365; 1.141/16.391/1.754
+    halo only | phase-space recapture (primary) | pop lcdm | phantom none: P_chain/P_LCDM at k = 0.1/1/10, z = 0/1/2: 1.000/1.000/1.000; 1.000/1.000/1.000; 1.000/1.000/1.000
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  Linear: the conversion lowers sigma8(0) by 0.0% at the nominal cell (S8 0.831 on Planck 2018's normalisation)
+  and by 0.0-0.0% across delta_t0 = 5.31-25; the suppression fades to 0.0% at z = 3.  Below the daughters'
+  free-streaming scale the linear power drops to T^2(1, 0.5) = 1.000.
+  Nonlinear: without the phantom the chain's power at k = 1, z = 0.5 is 1.00-1.00 of LCDM's across the recapture readings;
+  the 1.7 Mpc phantom stand-in takes it to 2.68 (canonical) / 2.91 (alt).  Which side the chain lands on is set by the
+  MOND sector's small-scale lensing, which is under repair (FP19/FP20).
+
+  checks: 6/12 pass; load-bearing failures: 6   [123s]

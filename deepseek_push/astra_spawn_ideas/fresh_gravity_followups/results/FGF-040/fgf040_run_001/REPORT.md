@@ -1,0 +1,13 @@
+# FGF040 proof-only worker report
+
+Finite isothermal entropy and finite Q action do not ensure that the separate Euler force density n phi_x is locally integrable. One exact counterexample keeps mass and all outer field values fixed: mix half the background density with a normalized x^(-2/3) density on an interior one-sided interval, and add a zero-integral potential gradient with x^(-2/5) singularity and a compensating bounded segment. The density entropy and gradient-square integral are finite, while their positive force product grows as x^(-16/15), which is not locally integrable. Scale and instantaneous velocities are unchanged. This is an admissible comparison state, not a nonlinear solution.
+
+For smooth solutions of the actual full equations, the combined momentum density is P=j−(tau phi_t phi_x+sigma chi_t chi_x)/C. Its flux is j²/n+cs²n plus [tau phi_t²/2+sigma chi_t²/2+B phi_x−W+J chi_x²/2−U]/C. Direct differentiation cancels both the finite-scale exchange and the matter force, giving P_t+Pi_x=0. The signed MOND source remains B_x=C n+tau phi_tt.
+
+P and Pi are integrable in the instantaneous energy class even for the counterexample where n phi_x is not. Spacetime requires additional time-integrated component bounds and compatibility of field velocities with weak derivatives. The proof also shows that an assumed uniform upper bound on the full energy, fixed mass and a uniform scale cap provide the needed component bounds on the finite wall interval, after correctly absorbing the possibly negative interaction energy.
+
+Mass, the two field equations and combined momentum can then be written as a candidate distributional system. This is a meaningful proposed weak formulation, not a proof that it is equivalent to the separate matter momentum equation at that regularity. The smooth cancellation must occur before a weak limit; undefined distribution products cannot justify it afterward. Nonlinear stress convergence and possible defect terms remain open.
+
+Wall and initial traces are separate obligations. Fixed field values and impermeable matter walls do not generally imply zero momentum traction; global momentum may be exchanged with the walls. L1 fluxes and L2 gradients alone do not provide their endpoint traces. The proof states what extra trace assumptions are needed for boundary/initial tests.
+
+All input pins were verified; the independent candidate was frozen before new root/reviewer material. No numerical run or manifest was used. Both reference normalizations and distinct vacuum/frozen-H/evolving-H cases remain explicit. No RAR/M transfer, weak solution existence/uniqueness, energy inequality, physical metric/photon/DOF or empirical closure follows.

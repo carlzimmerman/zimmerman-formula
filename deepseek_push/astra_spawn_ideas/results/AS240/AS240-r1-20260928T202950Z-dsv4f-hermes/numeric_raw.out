@@ -1,0 +1,49 @@
+==========================================================================
+AS240-r1 numeric: wave-code amplitude transport + negative controls
+==========================================================================
+
+[N1] Wave-code envelope transport: A(eta) = A0*a0/a(eta)
+  B1 matter        expanding, a: 1 -> 4                 res_coarse=6.855e-05  res_fine=6.856e-05  thr=1.0e-03  A-tracks-1/a=True
+  B2 radiation     expanding, a: 1 -> 2                 res_coarse=7.212e-09  res_fine=4.007e-11  thr=1.0e-03  A-tracks-1/a=True
+  B3 de Sitter     expanding, a: 1 -> 2                 res_coarse=6.149e-05  res_fine=6.149e-05  thr=1.0e-03  A-tracks-1/a=True
+  B4 contracting   CONTRACTING (sign control), a: 4 -> 1 res_coarse=4.156e-05  res_fine=4.217e-05  thr=1.0e-03  A-tracks-1/a=True
+  B5 flat          flat limiting case H = 0             res_coarse=2.286e-08  res_fine=2.233e-11  thr=1.0e-06  A-tracks-1/a=True
+  averaging measure: <sin^2> = 1.000000000000000, <cos^2> = 1.000000000000000 (must be 1; discrete measure orthonormal on the box harmonics)
+  B5 flat: phase speed c_T = 1.0000000000 (must be 1; tensor dispersion check, AS238 substitute)
+
+[N2] WKB validity: fractional error ~ (H/omega)^2 (matter era, eta in [4,8])
+  omega/H : [ 6.  9. 24. 60.]
+  error   : [0.013 0.006 0.001 0.   ]
+  two-term fit: err = C1 (H/w)^2 + C2 (H/w)^4, C1 = 0.5218, C2 = -1.420
+  raw log-log slope = -1.942; slope of the C1-term (leading order) = -1.973 (expect -2.00 +/- 0.05)
+
+[N3] D_L^GW = D_L^EM  (matter+Lambda background, both footings a0-free)
+  S(z) constancy: max|S - <S>|/<S> = 4.441e-16   (threshold 1e-10)
+  D_L^GW/D_L^EM - 1: max |ratio-1| = 3.331e-16   (threshold 1e-10)
+  canonical footing  a0 = 9.3619e-11 m/s^2: rho_Lambda = 5.844412e-27 kg/m^3 (kappa=1/2 adopted)
+  alternative footing a0 = 1.1279e-10 m/s^2: kappa_eff(at fixed rho_L) = 0.60238840 ; rho_Lambda(fixed kappa) = 8.483090e-27 kg/m^3
+  dimensionless transport law identical on both footings (no a0 in A ~ 1/a or D_L ratio)
+
+[NC] Negative controls: G_N calibration vs propagation friction
+  NC-1 planted gamma_p = 0.12: gamma=0 model max|resid| = 1.195e-01 (>> sigma), slope of residuals = -0.120 per unit z (z-monotone: control FIRES)
+      friction fit: gamma_hat = 0.11987 +- 5.37e-05 (planted 0.12); max|resid| = 2.883e-03
+  NC-2 G_N calibration sqrt(c_N) = 0.866025: strain ratio z-independence max|ratio-mean|/mean = 2.564e-16 (threshold 1e-13)
+      friction fit on miscalibrated data: gamma_hat = -0.00013 +- 5.37e-05 (must be ~ 0: no false friction), max|resid| = 2.883e-03
+  NC-3 equal-L exponent: (1+z)^(1+delta)/D_L fit -> delta_hat = +0.00027 +- 8.65e-05 (must be ~ 0)
+      planted delta_p = 0.08 -> delta_hat = +0.08027 (control capable of failing, recovered)
+
+==========================================================================
+RESULT: 11/11 checks passed
+  [PASS] N1 B1 matter
+  [PASS] N1 B2 radiation
+  [PASS] N1 B3 de Sitter
+  [PASS] N1 B4 contracting
+  [PASS] N1 B5 flat
+  [PASS] N1 B5 speed
+  [PASS] N2 WKB order
+  [PASS] N3 D_L equality
+  [PASS] NC-1 friction discriminability
+  [PASS] NC-2 calibration != friction
+  [PASS] NC-3 exponent neutrality
+wall time 3.38 s; peak RSS 136.9 MiB; active threads = 1
+ALL NUMERIC CHECKS PASSED

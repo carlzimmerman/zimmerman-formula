@@ -1,0 +1,38 @@
+==============================================================================
+FOOTINGS table: rho_Lambda, epsilon_Lambda, kappa back-check (kappa = 1/2 adopted)
+==============================================================================
+PASS N1_rhoL_canonical: a0=9.3619e-11 -> rho_Lambda=5.844412e-27 kg/m^3, eps=rho*c^2=5.252696e-10 J/m^3, kappa_back=0.500000000000000
+PASS N1_rhoL_alternative: a0=1.1279e-10 -> rho_Lambda=8.483090e-27 kg/m^3, eps=rho*c^2=7.624221e-10 J/m^3, kappa_back=0.500000000000000
+PASS N2_kappa_eff_fixed_canonical_density: alternative a0 with canonical rho_Lambda=5.844412e-27: kappa_eff=0.602388 != 1/2 (the two footings do not share BOTH fixed density AND fixed kappa)
+==============================================================================
+VACUUM-SCALE DICTIONARY per footing (alpha sample 0.3 -> c_N = 0.85)
+==============================================================================
+PASS N3_dict_canonical_identity: Lambda_eff*c^4/(32 pi a0^2) = c_N = 0.8500000000
+PASS N4_Hvac_canonical: H_vac = c*sqrt(Lambda_eff/3) = 1.666641e-18 1/s (H_nat = 5.559316e-27 1/m), r_dS = sqrt(3/Lambda_eff) = 1.798782e+26 m = 5.8295 Gpc; naive r_dS = 1.658395e+26 m
+PASS N5_ratio_canonical: Lambda_eff/Lambda_naive = c_N = 0.85 < 1 (cosmological coefficient BELOW naive same-G)
+PASS N6_control_fires_canonical: premature G_cosm=G_N residual = 1 - c_N = 0.150000 != 0 (fires); alpha/2 = 0.1500 (term removed)
+PASS N3_dict_alternative_identity: Lambda_eff*c^4/(32 pi a0^2) = c_N = 0.8500000000
+PASS N4_Hvac_alternative: H_vac = c*sqrt(Lambda_eff/3) = 2.007930e-18 1/s (H_nat = 6.697735e-27 1/m), r_dS = sqrt(3/Lambda_eff) = 1.493042e+26 m = 4.8386 Gpc; naive r_dS = 1.376517e+26 m
+PASS N5_ratio_alternative: Lambda_eff/Lambda_naive = c_N = 0.85 < 1 (cosmological coefficient BELOW naive same-G)
+PASS N6_control_fires_alternative: premature G_cosm=G_N residual = 1 - c_N = 0.150000 != 0 (fires); alpha/2 = 0.1500 (term removed)
+==============================================================================
+alpha sweep: c_N, Lambda_eff, H_vac, dictionary factors (canonical footing)
+==============================================================================
+alpha=0.05 c_N=0.9750 Lambda_eff=1.063530e-52 1/m^2 H_vac=1.784986e-18 1/s r_dS=5.4430 Gpc naive_factor=1.0256
+alpha=0.10 c_N=0.9500 Lambda_eff=1.036260e-52 1/m^2 H_vac=1.761953e-18 1/s r_dS=5.5141 Gpc naive_factor=1.0526
+alpha=0.20 c_N=0.9000 Lambda_eff=9.817198e-53 1/m^2 H_vac=1.714959e-18 1/s r_dS=5.6652 Gpc naive_factor=1.1111
+alpha=0.30 c_N=0.8500 Lambda_eff=9.271798e-53 1/m^2 H_vac=1.666641e-18 1/s r_dS=5.8295 Gpc naive_factor=1.1765
+alpha=0.50 c_N=0.7500 Lambda_eff=8.180998e-53 1/m^2 H_vac=1.565537e-18 1/s r_dS=6.2059 Gpc naive_factor=1.3333
+alpha=1.00 c_N=0.5000 Lambda_eff=5.453999e-53 1/m^2 H_vac=1.278255e-18 1/s r_dS=7.6007 Gpc naive_factor=2.0000
+alpha=1.50 c_N=0.2500 Lambda_eff=2.726999e-53 1/m^2 H_vac=9.038630e-19 1/s r_dS=10.7490 Gpc naive_factor=4.0000
+==============================================================================
+CONTROL: alpha -> 0 recovers the Einstein normalization (both footings)
+==============================================================================
+PASS A1_canonical: alpha=0: c_N=1, Lambda_eff = 32 pi a0^2/c^4 = 1.090800e-52 (naive same-G value recovered); G_N = G_bare, coefficient 1/(16 pi G_bare) standard
+PASS A1_alternative: alpha=0: c_N=1, Lambda_eff = 32 pi a0^2/c^4 = 1.583282e-52 (naive same-G value recovered); G_N = G_bare, coefficient 1/(16 pi G_bare) standard
+==============================================================================
+SI coupling table (alpha = 0.3 sample)
+==============================================================================
+PASS N7_SI_ratio: G_cosm = G_bare = 5.673155e-11 m^3 kg^-1 s^-2; G_cosm/G_N = 0.8500000000 = c_N = 0.85
+rho_Lambda table: canonical=5.844412e-27 kg/m^3; alternative=8.483090e-27 kg/m^3
+ALL_NUMERIC_CHECKS_PASS = True
