@@ -30,3 +30,6 @@
 - **The headline a₀(z) figure:** CFG223. Its frozen caption rule did NOT release "consistent with a constant a₀", because the baryon-calibration bands dominate.
 - **The symmetric break search:** CFG235. INCONCLUSIVE: no trials-corrected break for either theory.
 - **An outside contact / recombination as a paddle on water / nothing before recombination:** CFG254. "Nothing before" is contradicted by BBN, the acoustic peaks and N_eff; a one-time contact is bounded, a continuing drive excluded, and a bubble/brane contact untestable as stated. There are two new testable predictions.
+- **Closure, owner-directed ("keep swinging for closure"; "prove the mechanism that makes the framework the way it is"):**
+  - CFG242 triaged 20 untested routes and ran the top two: both are scoped no-gos, and ownership needs memory.
+  - CFG243 (running) tests a conserved component created once at turnaround. It descends from the owner's "one-time pass" idea (CFG251), combined with the PAPER36 conservation rule and CFG242's memory requirement.
