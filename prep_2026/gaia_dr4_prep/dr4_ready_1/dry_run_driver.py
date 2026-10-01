@@ -44,7 +44,7 @@ DR4 RELEASE-DAY TOOLING (added 2026-10-01, NEW CODE ONLY, OFFLINE-TESTED; design
 """
 import sys
 sys.dont_write_bytecode = True
-import argparse, contextlib, csv, hashlib, io, json, signal, socket, time
+import argparse, contextlib, csv, hashlib, io, json, os, signal, socket, time
 from pathlib import Path
 import numpy as np
 
@@ -136,16 +136,22 @@ def _sync_alarm(signum, frame):
 
 
 def _gaia_sync(q, tries=3):
-    """one SYNCHRONOUS archive query (astroquery's launch_job) with a hard SIGALRM timeout (main thread) and three attempts; returns the astropy Table.  Networked: the offline tests replace astroquery's Gaia object."""
+    """one SYNCHRONOUS archive query with a hard SIGALRM timeout (main thread) and three attempts; returns the astropy Table.  The call pattern is the one the Q1 fetches used for about 5,300 real queries
+    (q1_pilot_ranges.launch_query / run_query): astroquery's launch_job with dump_to_file=True, output_format='fits', the file read back.  Networked: the offline tests replace the astroquery.gaia module (importing the real one
+    opens a connection)."""
+    import tempfile
+    from astropy.table import Table
     from astroquery.gaia import Gaia
     Gaia.ROW_LIMIT = -1
     for att in range(tries):
+        fd, tmp = tempfile.mkstemp(suffix=".fits")
+        os.close(fd)
         old = signal.signal(signal.SIGALRM, _sync_alarm)
         signal.alarm(SYNC_TIMEOUT_S)
         try:
-            r = Gaia.launch_job(q).get_results()
+            Gaia.launch_job(q, dump_to_file=True, output_file=tmp, output_format="fits")
             signal.alarm(0)
-            return r
+            return Table.read(tmp, format="fits")
         except Exception as exc:
             signal.alarm(0)
             print(f"  sync correlation query attempt {att + 1} failed ({type(exc).__name__}: {str(exc)[:120]}); retrying in {20 * (att + 1)} s", flush=True)
@@ -153,6 +159,8 @@ def _gaia_sync(q, tries=3):
         finally:
             signal.alarm(0)
             signal.signal(signal.SIGALRM, old)
+            if os.path.exists(tmp):
+                os.unlink(tmp)
     raise RuntimeError("a synchronous correlation query failed 3 times")
 
 

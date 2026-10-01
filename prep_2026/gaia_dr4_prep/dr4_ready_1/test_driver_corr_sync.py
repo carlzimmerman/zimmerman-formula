@@ -92,8 +92,12 @@ class FakeGaia:
     def launch_job_async(self, q, *a, **k):
         return FakeJob(answer(q, "async", None))
 
-    def launch_job(self, q, *a, **k):
-        return FakeJob(answer(q, "sync", 2000))
+    def launch_job(self, q, dump_to_file=False, output_file=None, output_format="votable_gzip", **k):
+        t = answer(q, "sync", 2000)
+        if dump_to_file:                                                            # the pattern _gaia_sync uses (the one the real Q1 fetches used): a FITS file, read back
+            assert output_format == "fits" and output_file, "the sync fallback must dump a FITS file"
+            t.write(output_file, format="fits", overwrite=True)
+        return FakeJob(t)
 
 
 Gaia = FakeGaia()
