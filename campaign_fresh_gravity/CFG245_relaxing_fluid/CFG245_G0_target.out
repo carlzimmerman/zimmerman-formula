@@ -1,0 +1,70 @@
+
+======================================================================================================================
+CFG245 Gate G0 -- definitions and controls (frozen section 3)
+======================================================================================================================
+
+======================================================================================================================
+G0.1 / C-L1 -- the local-field target by 3D finite differences against the spherical enclosed-mass form and the hand closed form (P2)
+======================================================================================================================
+  uniform sphere (a = 3 r_M)         n =   451413: max rel diff  3D-FD vs spherical form 6.87e-05;  3D-FD vs hand closed form 6.87e-05;  spherical numeric vs closed form 7.58e-11
+  Plummer (eps = 0.5 r_M)            n =   519128: max rel diff  3D-FD vs spherical form 2.46e-04;  3D-FD vs hand closed form 2.46e-04;  spherical numeric vs closed form 1.02e-10
+  exponential sphere (h = 1 r_M)     n =   519128: max rel diff  3D-FD vs spherical form 1.26e-04;  3D-FD vs hand closed form 1.26e-04;  spherical numeric vs closed form 5.63e-11
+  [PASS] C-L1 3D local-field target equals the spherical form and the hand closed form (tolerance 1e-3, r in [1,5] r_M, away from the sphere edge; h = 0.100, N = 161, 4th-order)
+         worst 2.46e-04
+
+======================================================================================================================
+C-L2 -- point mass: C_loc = C_44 (P2) exactly; nu_mono point-mass ratio at x = 1 (CFG44 README:39: 1.46)
+======================================================================================================================
+  P2      : max |C_loc/C_44 - 1| on x in [0.15, 25] = 2.542e-07;  ratio at x = 1: 1.0000
+  nu_mono : max |C_loc/C_44 - 1| on x in [0.15, 25] = 6.121e-01;  ratio at x = 1: 1.4565
+  [PASS] C-L2 point mass: P2 C_loc/C_44 = 1.000 (1e-3); nu_mono ratio at x = 1 equals CFG44's 1.46 (within 0.02)
+  uniform sphere interior, deep regime (r << r_M): C_loc/C_44 = 2.495-2.498 (hand: 2.5)
+
+======================================================================================================================
+G0.2 -- target identity: R_loc = C_loc/C_44 on CFG118's exponential spheres (reported; IDENTICAL if max R_loc <= 1.10, else DIFFERS)
+======================================================================================================================
+  P2       canonical  1e+09: max R_loc 2.310 at x=0.10 (h/r_M = 1.64)  1e+10: max R_loc 2.016 at x=0.10 (h/r_M = 0.78)  1e+11: max R_loc 1.434 at x=0.10 (h/r_M = 0.33)  1e+12: max R_loc 1.063 at x=0.10 (h/r_M = 0.13)
+  P2       alt        1e+09: max R_loc 2.332 at x=0.10 (h/r_M = 1.80)  1e+10: max R_loc 2.067 at x=0.10 (h/r_M = 0.85)  1e+11: max R_loc 1.499 at x=0.10 (h/r_M = 0.36)  1e+12: max R_loc 1.079 at x=0.10 (h/r_M = 0.14)
+  nu_mono  canonical  1e+09: max R_loc 2.462 at x=0.10 (h/r_M = 1.64)  1e+10: max R_loc 2.404 at x=0.10 (h/r_M = 0.78)  1e+11: max R_loc 2.187 at x=0.10 (h/r_M = 0.33)  1e+12: max R_loc 1.624 at x=0.60 (h/r_M = 0.13)
+  nu_mono  alt        1e+09: max R_loc 2.466 at x=0.10 (h/r_M = 1.80)  1e+10: max R_loc 2.415 at x=0.10 (h/r_M = 0.85)  1e+11: max R_loc 2.227 at x=0.10 (h/r_M = 0.36)  1e+12: max R_loc 1.628 at x=0.57 (h/r_M = 0.14)
+  [DIFFERS] G0.2 target identity (P2, all exponential spheres, both footings; reported, not binding)
+         max R_loc (P2) = 2.332; max R_loc (nu_mono) = 2.466
+
+======================================================================================================================
+G0.3 -- positivity of the local-field target
+======================================================================================================================
+  spherical exponential spheres (all kernels/footings/masses): min rho_ph = 8.837e-05 (P2 closed form is >= 0; nu_mono reported)
+  [PASS] G0.3 spherical positivity (P2)
+         min over P2 rows 8.837e-05
+  two equal masses (M = 1 each, r_M = 1), Plummer eps = 0.3, box +-20 r_M, 4th-order differences; f_neg = int rho_ph^- / int |rho_ph|
+    d =  1.0 r_M: N = 161 (h = 0.250): f_neg = -0.0000, rho_ph in [9.86e-05, 5.35e-01]; N = 201 (h = 0.200): f_neg = -0.0000, rho_ph in [9.76e-05, 6.57e-01]
+    d =  3.0 r_M: N = 161 (h = 0.250): f_neg = 0.0001, rho_ph in [-1.57e-02, 5.30e-01]; N = 201 (h = 0.200): f_neg = 0.0001, rho_ph in [-2.07e-02, 6.12e-01]
+    d = 10.0 r_M: N = 161 (h = 0.250): f_neg = 0.0009, rho_ph in [-4.86e-03, 5.30e-01]; N = 201 (h = 0.200): f_neg = 0.0009, rho_ph in [-5.50e-03, 6.61e-01]
+  [PASS] G0.3 non-spherical, two equal masses (f_neg <= 0.01 at every separation and both resolutions)
+         max f_neg = 0.0009
+  exponential thin disc (h_d = 1, scale height 0.25), r_M/h_d = 0.3, 1, 3 (a0 = 1/r_M^2):
+    r_M/h_d = 0.3: f_neg = -0.0000, rho_ph in [1.10e-03, 1.54e+00]
+    r_M/h_d = 1.0: f_neg = -0.0000, rho_ph in [3.28e-04, 3.75e-01]
+    r_M/h_d = 3.0: f_neg = -0.0000, rho_ph in [1.08e-04, 7.44e-02]
+  [PASS] G0.3 non-spherical, exponential thin disc (f_neg <= 0.01)
+         max f_neg = -0.0000
+
+======================================================================================================================
+G0.4 -- mass conservation of the relaxation (flux) operator inside the closed domain D, and positivity of the relaxed density
+======================================================================================================================
+  canonical two-sided: |M_c(<R_D, t_0) - M_c(<R_D, 0)|/M = 0.00e+00; min shell mass after relaxation = 9.200e+07 Msun (>= 0: density non-negative)
+  canonical one-sided: |M_c(<R_D, t_0) - M_c(<R_D, 0)|/M = 0.00e+00; min shell mass after relaxation = 1.584e+08 Msun (>= 0: density non-negative)
+  creation form (variant V-CREATE), no cap: M_c(<x = 28.2) changes by +7.851 M_b over t_0 (mass is NOT conserved)
+  [PASS] G0.4 flux operator conserves mass in D to 1e-12 and keeps the density non-negative
+         canonical|two: {'mass_change_rel': 0.0, 'min_shell_mass': 92004624.78600809}; canonical|one: {'mass_change_rel': 0.0, 'min_shell_mass': 158417043.44972813}; creation form: {'mass_created_over_Mb': 7.851192567538256}
+  M_ph(<r) for a point mass = M_b (sqrt(1+x^2) - 1) -> sqrt(M a0/G) r: coefficient M_b/r_M (Msun/kpc): 1e+09: 8.195e+08, 1e+10: 2.591e+09, 1e+11: 8.195e+09, 1e+12: 2.591e+10
+
+======================================================================================================================
+G0.5 -- ownership from the local form: a satellite in a host's field (local-field target on the TOTAL Newtonian field)
+======================================================================================================================
+  m_sat = 1e+05 Msun (r_M = 0.0122 kpc): d=   30: 1.044/1.413/2.724  d=  100: 1.044/1.414/3.159  d=  250: 1.044/1.414/3.162
+  m_sat = 1e+08 Msun (r_M = 0.3859 kpc): d=   30: 1.044/1.413/2.707  d=  100: 1.044/1.414/3.159  d=  250: 1.044/1.414/3.162
+  columns: ratio at r = 0.3 / 1 / 3 r_M(sat); the isolated top-level law gives nu(1/x^2) = 1.044 / 1.414 / 3.162
+  [FAIL] G0.5 ownership produced by the local form (internal ratio = 1 within 1e-3 at every row)
+         max |ratio - 1| = 2.162; expected FAIL: ownership is a separate label (ChainCert ownership_not_field_local)
+  [PASS] G0 controls (C-L1, C-L2) -- the lane stops UNDEFINED only if one fails

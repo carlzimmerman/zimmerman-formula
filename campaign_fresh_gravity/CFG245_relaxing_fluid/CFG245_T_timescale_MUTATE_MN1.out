@@ -1,0 +1,91 @@
+
+======================================================================================================================
+CFG245 Gate T -- TIMESCALE (frozen model; point cores; committed CFG244 passive products read-only)  (MUTATE MN1)
+======================================================================================================================
+  H_Lambda = 0.057050 /Gyr (1/H_L = 17.528 Gyr), t_0 = 13.7962 Gyr (Planck-2018 inputs H0 = 67.4, Omega_m = 0.315), rho_Lambda = 86.361 Msun/kpc^3
+  a0 footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2; kappa = 1/2 FITTED; masses 1e+09, 1e+10, 1e+11, 1e+12 Msun; q = (0.05, 0.1, 0.2)
+  T-G1 grid: 18 bin centres x in [0.355, 17.78]; T-RAR grid x in [0.355, 8.91]
+
+======================================================================================================================
+CONTROLS (reproduction)
+======================================================================================================================
+  [PASS] C-T1 residual fractions e^(-Gamma t_0) equal the frozen table (0.455 / 0.873,0.849 / 0.762,0.720 within 0.002)
+         G-H canonical: 0.4552; G-H alt: 0.4552; G-a canonical: 0.8729; G-a alt: 0.8485; G-b canonical: 0.7620; G-b alt: 0.7200
+  [PASS] C-T0 Gamma = 0 reproduces CFG244's committed Gate A numbers (README.md lines 27, 88; displayed precision) and its target
+         A2 largest |ratio-1| over brackets: canonical 7.99-10.73 (committed 8.0-10.7), alt 6.83-9.81 (6.8-9.8); exponent p = 0.3427 / 0.3392 / 0.3269 (committed 0.343 / 0.339 / 0.327); max |M_ph(mine)/target_sims - 1| = 3.00e-07 (< 1e-6). The frozen text said 'to 1e-9': the committed README quotes 1-3 decimals, so the reproduction is at DISPLAYED precision (disclosed).
+
+======================================================================================================================
+T-G1 (BINDING: shared G1 line, cumulative amount R_cum in [0.90, 1.10], x in [0.3, 20]) -- Gamma*tau and residual fraction per candidate
+======================================================================================================================
+  favourable bracket tau_gal = t_0 = 13.796 Gyr (relaxation active since the start: deliberately generous)
+  kernel P2, R-FLUX-2 (primary)
+  cand  footing      rate /Gyr  Gamma*tau  residual e   T-G1       max|R-1| q=.05/.1/.2  req Gamma*tau  req /H_L
+  G-H   canonical     0.057050     0.7871      0.4552   FAIL             4.89/4.16/3.64           4.23      5.37
+  G-a   canonical     0.009853     0.1359      0.8729   FAIL             9.37/7.98/6.97           4.23      5.37
+  G-b   canonical     0.019706     0.2719      0.7620   FAIL             8.18/6.96/6.09           4.23      5.37
+  G-H   alt           0.057050     0.7871      0.4552   FAIL             4.46/3.74/3.11           4.07      5.17
+  G-a   alt           0.011908     0.1643      0.8485   FAIL             8.32/6.97/5.80           4.07      5.17
+  G-b   alt           0.023815     0.3286      0.7200   FAIL             7.06/5.91/4.92           4.07      5.17
+  (the unguarded failing-bin count and the guarded count per q are in the JSON; the noise guard never rescued a bin if the two counts are equal)
+  guarded / unguarded failing bins (q = .05/.1/.2), all masses pooled: G-H canonical: [51, 48, 47] / [56, 56, 52]; G-a canonical: [58, 55, 56] / [64, 65, 63]; G-b canonical: [58, 53, 53] / [62, 62, 60]; G-H alt: [49, 47, 47] / [55, 56, 51]; G-a alt: [58, 54, 56] / [63, 64, 59]; G-b alt: [57, 53, 52] / [63, 62, 57]
+
+  [FAIL (BINDING)] T-G1 verdict (a FAIL binds only if it fails for ALL THREE declared rates on BOTH footings)
+         per candidate: G-H FAIL, G-a FAIL, G-b FAIL; survivors carried: none
+
+======================================================================================================================
+T-RAR (reported; the owner's question: the RAR at SPARC precision?), x in [0.3, 10], D1 = max|Delta|, D2 = mass spread at fixed x (dex)
+======================================================================================================================
+  lines: PASS <= 0.048 (record's RAR intrinsic bound), AMBIGUOUS <= 0.10 (SPARC rms), FAIL otherwise; a lean is not a pass
+  kernel/mode    cand  footing       D1/D2 q=.05           q=.1           q=.2   category  req Gt(.048)  req Gt(.10)   req/H_L (.048;.10)
+  P2             G-H   canonical   0.163/0.151  0.165/0.169  0.155/0.174       FAIL          2.15         1.36          2.73 ; 1.73
+  P2             G-a   canonical   0.273/0.275  0.276/0.289  0.261/0.313       FAIL          2.15         1.36          2.73 ; 1.73
+  P2             G-b   canonical   0.247/0.241  0.249/0.260  0.235/0.277       FAIL          2.15         1.36          2.73 ; 1.73
+  P2             G-H   alt         0.147/0.145  0.150/0.162  0.142/0.167       FAIL          2.03         1.24          2.58 ; 1.58
+  P2             G-a   alt         0.244/0.263  0.248/0.282  0.235/0.303       FAIL          2.03         1.24          2.58 ; 1.58
+  P2             G-b   alt         0.215/0.221  0.218/0.244  0.207/0.259       FAIL          2.03         1.24          2.58 ; 1.58
+  nu_mono        G-H   canonical   0.130/0.143  0.133/0.160  0.127/0.165       FAIL          1.94         1.17          2.46 ; 1.49
+  nu_mono        G-a   canonical   0.222/0.272  0.227/0.286  0.218/0.310       FAIL          1.94         1.17          2.46 ; 1.49
+  nu_mono        G-b   canonical   0.199/0.237  0.204/0.253  0.195/0.271       FAIL          1.94         1.17          2.46 ; 1.49
+  nu_mono        G-H   alt         0.114/0.137  0.117/0.153  0.115/0.159       FAIL          1.87         1.12          2.38 ; 1.42
+  nu_mono        G-a   alt         0.203/0.261  0.207/0.277  0.199/0.299       FAIL          1.87         1.12          2.38 ; 1.42
+  nu_mono        G-b   alt         0.168/0.217  0.173/0.237  0.171/0.253       FAIL          1.87         1.12          2.38 ; 1.42
+  P2-R-FLUX-1    G-H   canonical   0.302/0.277  0.305/0.302  0.288/0.292       FAIL          none         none                - ; -
+  P2-R-FLUX-1    G-a   canonical   0.302/0.293  0.305/0.317  0.288/0.336       FAIL          none         none                - ; -
+  P2-R-FLUX-1    G-b   canonical   0.302/0.282  0.305/0.313  0.288/0.323       FAIL          none         none                - ; -
+  P2-R-FLUX-1    G-H   alt         0.276/0.261  0.280/0.280  0.267/0.274       FAIL          none         none                - ; -
+  P2-R-FLUX-1    G-a   alt         0.276/0.281  0.280/0.310  0.267/0.328       FAIL          none         none                - ; -
+  P2-R-FLUX-1    G-b   alt         0.276/0.269  0.280/0.299  0.267/0.306       FAIL          none         none                - ; -
+  extension x in [10, 28.2] with the supply-capped target (reported): D1/D2 per q, P2 two-sided
+    G-H   canonical  q=0.05: 0.156/0.121  q=0.1: 0.152/0.111  q=0.2: 0.148/0.122
+    G-a   canonical  q=0.05: 0.337/0.252  q=0.1: 0.326/0.236  q=0.2: 0.316/0.253
+    G-b   canonical  q=0.05: 0.281/0.215  q=0.1: 0.273/0.200  q=0.2: 0.265/0.216
+    G-H   alt        q=0.05: 0.161/0.120  q=0.1: 0.158/0.108  q=0.2: 0.154/0.121
+    G-a   alt        q=0.05: 0.337/0.246  q=0.1: 0.331/0.227  q=0.2: 0.319/0.247
+    G-b   alt        q=0.05: 0.271/0.202  q=0.1: 0.267/0.184  q=0.2: 0.258/0.203
+  sensitivity (reported, never in the verdict): tau_gal = 10.5 Gyr (central) and 7 Gyr (unfavourable), P2 two-sided
+    tau= 10.5 canonical  G-H: Gt=0.599 e=0.549 G1 FAIL RAR FAIL D1(.1)=0.193; G-a: Gt=0.103 e=0.902 G1 FAIL RAR FAIL D1(.1)=0.283; G-b: Gt=0.207 e=0.813 G1 FAIL RAR FAIL D1(.1)=0.262
+    tau= 10.5 alt        G-H: Gt=0.599 e=0.549 G1 FAIL RAR FAIL D1(.1)=0.175; G-a: Gt=0.125 e=0.882 G1 FAIL RAR FAIL D1(.1)=0.255; G-b: Gt=0.250 e=0.779 G1 FAIL RAR FAIL D1(.1)=0.232
+    tau=  7.0 canonical  G-H: Gt=0.399 e=0.671 G1 FAIL RAR FAIL D1(.1)=0.226; G-a: Gt=0.069 e=0.933 G1 FAIL RAR FAIL D1(.1)=0.290; G-b: Gt=0.138 e=0.871 G1 FAIL RAR FAIL D1(.1)=0.275
+    tau=  7.0 alt        G-H: Gt=0.399 e=0.671 G1 FAIL RAR FAIL D1(.1)=0.206; G-a: Gt=0.083 e=0.920 G1 FAIL RAR FAIL D1(.1)=0.263; G-b: Gt=0.167 e=0.846 G1 FAIL RAR FAIL D1(.1)=0.247
+
+======================================================================================================================
+Hand-estimate comparison: Delta (dex) at x about 1.12 and x about 28.2, q = 0.1, canonical (frozen: G-H +0.017..+0.165 / -0.138..-0.072; G-a +0.033..+0.276 / -0.321..-0.152)
+======================================================================================================================
+  G-H: x=1.12  Delta in [+0.018, +0.165];  x=28.2  Delta in [-0.152, -0.083]  (e = 0.455)
+  G-a: x=1.12  Delta in [+0.033, +0.276];  x=28.2  Delta in [-0.326, -0.152]  (e = 0.873)
+  G-b: x=1.12  Delta in [+0.029, +0.249];  x=28.2  Delta in [-0.273, -0.133]  (e = 0.762)
+  passive R_cum at x=1.12: 1e+09: 1.271, 1e+10: 1.983, 1e+11: 2.774, 1e+12: 4.038; at x=28.2: 1e+09: 0.379, 1e+10: 0.470, 1e+11: 0.570, 1e+12: 0.655
+
+======================================================================================================================
+T3 -- a0_eff(z) of this class (a PREDICTION of the model; it says NOTHING about which a0(z) law the data favour)
+======================================================================================================================
+  delta(z) = 2 log10[f(z)/f(0)], f(z) = 1 - exp(-Gamma t(z)) (deep regime: M_c ~ sqrt(a0), a0_eff ~ f^2); Planck-2018 t(z)
+  record's scored laws, numbers only: flat 0.00; a0 ~ H(z): z=0.3: +0.07, z=0.85: +0.21, z=1.5: +0.37, z=2.5: +0.58, z=4.4: +0.85, z=5.5: +0.97; T law t(z)/t_0: z=0.3: -0.13, z=0.85: -0.33, z=1.5: -0.51, z=2.5: -0.72, z=4.4: -1.00, z=5.5: -1.12
+  G-H   canonical  z=0.3: -0.180 z=0.85: -0.490 z=1.5: -0.804 z=2.5: -1.191 z=4.4: -1.720 z=5.5: -1.953   -> OUTSIDE THE CALIBRATION BAND: steeper than the T law, opposite in sign to a0 proportional to H(z)
+  G-a   canonical  z=0.3: -0.243 z=0.85: -0.622 z=1.5: -0.980 z=2.5: -1.399 z=4.4: -1.954 z=5.5: -2.193   -> OUTSIDE THE CALIBRATION BAND: steeper than the T law, opposite in sign to a0 proportional to H(z)
+  G-b   canonical  z=0.3: -0.228 z=0.85: -0.592 z=1.5: -0.941 z=2.5: -1.353 z=4.4: -1.902 z=5.5: -2.140   -> OUTSIDE THE CALIBRATION BAND: steeper than the T law, opposite in sign to a0 proportional to H(z)
+  G-H   alt        z=0.3: -0.180 z=0.85: -0.490 z=1.5: -0.804 z=2.5: -1.191 z=4.4: -1.720 z=5.5: -1.953   -> OUTSIDE THE CALIBRATION BAND: steeper than the T law, opposite in sign to a0 proportional to H(z)
+  G-a   alt        z=0.3: -0.240 z=0.85: -0.616 z=1.5: -0.971 z=2.5: -1.389 z=4.4: -1.943 z=5.5: -2.182   -> OUTSIDE THE CALIBRATION BAND: steeper than the T law, opposite in sign to a0 proportional to H(z)
+  G-b   alt        z=0.3: -0.223 z=0.85: -0.580 z=1.5: -0.925 z=2.5: -1.334 z=4.4: -1.881 z=5.5: -2.119   -> OUTSIDE THE CALIBRATION BAND: steeper than the T law, opposite in sign to a0 proportional to H(z)
+  the z = 0 value f(0) < 1 means the fitted kappa would be kappa_true f(0); kappa = 1/2 stays FITTED.  Reading: prediction only; the record's own T-law verdict was not robust (STANDING_2026-09-29.md:104).
+  MUTATE MN1: T-RAR categories P2 ('FAIL', 'FAIL', 'FAIL') vs nu_mono ('FAIL', 'FAIL', 'FAIL')

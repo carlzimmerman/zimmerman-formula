@@ -1,0 +1,77 @@
+
+======================================================================================================================
+CFG245 Gate E -- ENERGY, CAUSALITY, STABILITY  (MUTATE ME1)
+======================================================================================================================
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C-E1 virial identity E = W/2 (circular test orbits, 1e-9) and the W integral on the target profile equals the closed form -x_cap (1e-4)
+         W_target(S = 26) = -26.98147 vs -x_cap = -26.98148
+  vacuum energy of the turnaround ball in units of M_b c^2: CFG48 convention 1e+09: 1.171, 1e+10: 1.171, 1e+11: 1.171, 1e+12: 1.171 (CFG243 README:76: 1.17, mass independent); B's law r_ta (P2, Delta = 11.81, my implementation) 1e+09: 97.5, 1e+10: 54.8, 1e+11: 30.8, 1e+12: 17.3 (CFG243 README:76 quotes 98 / 55 / 31 / 18 from CFG7_common with its own kernel)
+  [PASS] C-E2 CFG48-convention ball energy 1.17 M_b c^2 reproduced (0.02); B's-convention numbers reported (not reproduced exactly if they differ)
+
+======================================================================================================================
+E1 -- energy ledger: |Delta E| / (1/2 M_b V_f^2) = |Delta W| (units G M_b^2/r_M), virial E = W/2; shared G3 line <= 1
+======================================================================================================================
+  foot           M_b     q   S/M_b   x_cap  W_target  W_pass(near)  W_pass(far)  ratio near  ratio far
+  canonical    1e+09  0.05   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  canonical    1e+09  0.10   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  canonical    1e+09  0.20   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  canonical    1e+10  0.05   25.71   26.70   -26.696       -26.696      -26.696        0.00       0.00
+  canonical    1e+10  0.10   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  canonical    1e+10  0.20   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  canonical    1e+11  0.05   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  canonical    1e+11  0.10   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  canonical    1e+11  0.20   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  canonical    1e+12  0.05   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  canonical    1e+12  0.10   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  canonical    1e+12  0.20   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+09  0.05   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+09  0.10   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+09  0.20   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+10  0.05   25.71   26.70   -26.696       -26.696      -26.696        0.00       0.00
+  alt          1e+10  0.10   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+10  0.20   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+11  0.05   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+11  0.10   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+11  0.20   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+12  0.05   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+12  0.10   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  alt          1e+12  0.20   26.02   27.00   -27.000       -27.000      -27.000        0.00       0.00
+  sign of Delta W (relaxed minus passive, near closure, mean over q): canonical|1e+09: ENERGY MUST BE SUPPLIED (less bound); canonical|1e+10: ENERGY MUST BE SUPPLIED (less bound); canonical|1e+11: ENERGY MUST BE SUPPLIED (less bound); canonical|1e+12: ENERGY MUST BE SUPPLIED (less bound)
+  per-bracket worst case over masses and footings (generous closure): q = 0.05: 0.00, q = 0.1: 0.00, q = 0.2: 0.00
+  [PASS] E1 energy ledger at the shared G3 line (<= 1 x the baryons' orbital energy; generous closure per case; some bracket q must have all four masses <= 1)
+         |Delta E|/(1/2 M_b V_f^2): generous closure 0.00 to 0.0, either closure up to 0.0; frozen hand: about 20 (10-40) -- the hand estimate was high by about 2x and its SIGN (energy removal) holds only for 1e9-1e10 Msun. The frozen text asked for 'both r_ta conventions': Delta E is the energy of the whole bound domain D and does not depend on the convention; the conventions enter only the vacuum-ball ratio below (disclosed departure)
+  |Delta E| / E_vac(ball) (E_vac = rho_Lambda c^2 V of the turnaround ball): ratio of (1/2) ratio V_f^2/c^2 to the ball's M_b c^2 content
+    M_b = 1e+09: V_f =   59.4 km/s, |Delta E|/(M_b c^2) = 0.00e+00; /E_vac(ball): CFG48 0.0e+00, B's 0.0e+00 (frozen hand: about 1e-5)
+    M_b = 1e+10: V_f =  105.6 km/s, |Delta E|/(M_b c^2) = 0.00e+00; /E_vac(ball): CFG48 0.0e+00, B's 0.0e+00 (frozen hand: about 1e-5)
+    M_b = 1e+11: V_f =  187.7 km/s, |Delta E|/(M_b c^2) = 0.00e+00; /E_vac(ball): CFG48 0.0e+00, B's 0.0e+00 (frozen hand: about 1e-5)
+    M_b = 1e+12: V_f =  333.8 km/s, |Delta E|/(M_b c^2) = 0.00e+00; /E_vac(ball): CFG48 0.0e+00, B's 0.0e+00 (frozen hand: about 1e-5)
+  heating row (reported only; limits from memory, unverified): a 1e11 Msun galaxy: |Delta E| = 0.00e+00 erg over t_0 = mean 0.0e+00 erg/s (cluster X-ray luminosities are of order 1e44-1e45 erg/s; the FIRAS Compton-y bound is of order 1.5e-5; not compared further: for 1e11-1e12 the sign is energy SUPPLIED, and the cluster case is outflow toward the phantom)
+
+======================================================================================================================
+E2 -- causality: drift speed at the start of the relaxation, w = Gamma |M_target - M_inf| / (dM_inf/dr); PASS iff max w/c <= 1e-3 (relativistic completion UNDEFINED)
+======================================================================================================================
+  canonical : max w = 121.6 km/s (4.1e-04 c), median over cases of the bin-median = 0.4 km/s (Gamma = H_Lambda, the fastest candidate; slower candidates scale down)
+  alt       : max w = 112.7 km/s (3.8e-04 c), median over cases of the bin-median = 0.3 km/s (Gamma = H_Lambda, the fastest candidate; slower candidates scale down)
+  [PASS] E2 drift speed (max w/c <= 1e-3)
+         max w = 121.6 km/s; relativistic completion UNDEFINED (no action written)
+  [UNDEFINED] E2 relativistic completion / causal cone
+         the class is a Newtonian-limit statement; no action
+
+======================================================================================================================
+E3 -- stability of the relaxation block
+======================================================================================================================
+  sympy: div J - Gamma (rho_c - rho_ph) simplifies to 0: True; linearised relaxation eigenvalue lambda = -Gamma (in units of Gamma)
+  [PASS] E3(a) the relaxation block has the single eigenvalue -Gamma (damped, no propagating mode, no sound speed)
+         discretised operator (n = 40): eigenvalues in [-1.000e+00, -1.000e+00] (units Gamma)
+  [PASS] E3(b) Lyapunov L = (G/2) int (M_t - M_c)^2/r^2 dr decreases as exp(-2 Gamma t)
+         d ln L/dt = -0.114101 /Gyr vs -2 Gamma = -0.114101; L(5 Gyr)/L(0) = 0.5652
+  [NOT ADDRESSED] E3(c) coupled Vlasov-Poisson + relaxation system
+         J depends on rho_c only through -Gamma rho_c (fluid perturbations never feed the target); no further linearisation
+  [NOT ADDRESSED] E3(d) a bound-only gate written as an action term
+         statement only: it would inherit DE12/DE13's obstruction
+  [UNDEFINED] E4 reaction row (G3)
+         non-spherical flows have no momentum partner (the w = -1 vacuum cannot, CFG230 R12a); spherical: net momentum zero
+  MUTATE ME1: passive state := relaxed state: E1 PASS (baseline expectation FAIL)

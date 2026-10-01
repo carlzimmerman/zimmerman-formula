@@ -1,0 +1,64 @@
+
+======================================================================================================================
+CFG245 Gate A -- AMOUNT (supply ceiling, relaxed state, selectivity)  (MUTATE MM1)
+======================================================================================================================
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C-A1 the passive set-up reproduces CFG118's z = 0 turnaround mass 23.6 M_b at every mass (CFG118 README:55) within 1%
+         M_ta/M_b = 23.642-23.642; S/M_b = 25.71-26.02 (bound cold mass incl. the bound shells beyond the turnaround)
+
+======================================================================================================================
+A0 -- supply ceiling: S/M_ph(<30) >= 0.90 at every mass and bracket (BINDING)
+======================================================================================================================
+  target at x = 30: M_ph = M_b (sqrt(901) - 1) = 29.017 M_b
+       M_b     q    S/M_b  frac bound  S/M_ph(<30)   x_cap  x(S/Mph=.9)
+     1e+09  0.05   26.018     0.33440          inf     inf          inf
+     1e+09  0.10   26.018     0.33440          inf     inf          inf
+     1e+09  0.20   26.018     0.33440          inf     inf          inf
+     1e+10  0.05   25.715     0.33050          inf     inf          inf
+     1e+10  0.10   26.018     0.33440          inf     inf          inf
+     1e+10  0.20   26.018     0.33440          inf     inf          inf
+     1e+11  0.05   26.018     0.33440          inf     inf          inf
+     1e+11  0.10   26.018     0.33440          inf     inf          inf
+     1e+11  0.20   26.018     0.33440          inf     inf          inf
+     1e+12  0.05   26.018     0.33440          inf     inf          inf
+     1e+12  0.10   26.018     0.33440          inf     inf          inf
+     1e+12  0.20   26.018     0.33440          inf     inf          inf
+  min ratio = inf; max = inf  (line 0.90; frozen hand: 0.78 for S = 22.6 M_b or 0.86 for S = 25)
+  [FAIL (BINDING)] A0 supply ceiling (baseline, passive S)
+         min S/M_ph(<30) = 0.8862. KNIFE-EDGE: S/M_ph(<30) = 0.8862-0.8967 against the line 0.90 (a margin of 0.3-1.4% of the ratio; one shell is 0.0039 M_b = 1.3e-4 of the target); the frozen line is applied exactly and the failure is reported as a failure of the frozen line, not as a large shortfall
+  cosmic-share cap (S = 5.36 M_b, CFG131 README:7): x_cap = 6.28; the record's cosmic budget row: Omega_ph = 0.47-0.55 against Omega_c = 0.265 if every galaxy's phantom ran to its turnaround radius (CFG4_README.md:296)
+
+======================================================================================================================
+A1 -- relaxed state (Gamma = infinity), M_c = min(M_ph, S): C within 10% to x_cap (P-DECLARED); beyond x_cap the fluid is exhausted
+======================================================================================================================
+  M_b = 1e+09: S = 26.02 M_b, x_cap = 27.00; R_cum = 1 to machine precision for x <= x_cap (True); R_cum(x = 28.2) = 0.9565 (-0.019 dex in g_tot); R_cum(x = 30) = 0.8967 (-0.046 dex); local C/C_target = 0 beyond x_cap
+  M_b = 1e+10: S = 25.92 M_b, x_cap = 26.90; R_cum = 1 to machine precision for x <= x_cap (True); R_cum(x = 28.2) = 0.9528 (-0.020 dex in g_tot); R_cum(x = 30) = 0.8932 (-0.047 dex); local C/C_target = 0 beyond x_cap
+  M_b = 1e+11: S = 26.02 M_b, x_cap = 27.00; R_cum = 1 to machine precision for x <= x_cap (True); R_cum(x = 28.2) = 0.9565 (-0.019 dex in g_tot); R_cum(x = 30) = 0.8967 (-0.046 dex); local C/C_target = 0 beyond x_cap
+  M_b = 1e+12: S = 26.02 M_b, x_cap = 27.00; R_cum = 1 to machine precision for x <= x_cap (True); R_cum(x = 28.2) = 0.9565 (-0.019 dex in g_tot); R_cum(x = 30) = 0.8967 (-0.046 dex); local C/C_target = 0 beyond x_cap
+  [PASS as P-DECLARED (selectivity: not a result; the scale is supplied by the target)] A1 relaxed state (point cores)
+         controls: R_cum = 1 for x <= x_cap at every mass
+  exponential spheres (CFG118 h = 2,3,4,5 kpc): the relaxed fluid at Gamma = infinity builds the LOCAL-FIELD target M_ph,loc(<r) = (nu - 1) M_b(<r); the shared G1 target is the sims' C_44 cumulative mass
+    canonical : M_ph,loc(<r)/M_target,44(<r) over x in [0.3, 28.2]: 1e+09: 1.018-1.513  1e+10: 1.003-1.411  1e+11: 1.000-1.199  1e+12: 1.000-1.040
+    alt       : M_ph,loc(<r)/M_target,44(<r) over x in [0.3, 28.2]: 1e+09: 1.022-1.521  1e+10: 1.004-1.429  1e+11: 1.000-1.223  1e+12: 1.000-1.049
+    -> the class cannot pass the shared G1 exponential-sphere cell against C_44 even at Gamma = infinity wherever this ratio leaves [0.90, 1.10] (stated, per G0.2)
+
+======================================================================================================================
+A2 -- selectivity: a Verlinde-shaped target handed to the relaxed operator (M_V = M_b x) is reproduced
+======================================================================================================================
+  [PASS (restatement: P-derived impossible)] A2 selectivity: the relaxed state reproduces M_V = M_b x to 1e-12 where supply allows
+         max deviation 0.00e+00
+
+======================================================================================================================
+A3 -- supply sensitivity rows (reported, not binding)
+======================================================================================================================
+  SHMR-halo supply (declared function shape, f_ret = 0.104): M_b = 1e+09: S = 51.5 M_b, S/M_ph(<30) = 1.78, x_cap = 52.5
+  SHMR-halo supply (declared function shape, f_ret = 0.258): M_b = 1e+10: S = 20.8 M_b, S/M_ph(<30) = 0.72, x_cap = 21.8
+  SHMR-halo supply (declared function shape, f_ret = 0.086): M_b = 1e+11: S = 62.3 M_b, S/M_ph(<30) = 2.15, x_cap = 63.3
+  SHMR-halo supply (declared function shape, f_ret = 0.002): M_b = 1e+12: S = 2680.0 M_b, S/M_ph(<30) = 92.36, x_cap = 2681.0  [f_ret = 0.002 at 1e12 is the record's own flagged-absurd Moster inversion]
+  renormalised-amplitude reading: a0_eff = [S/M_ph(<R_b)]^2 a0 with R_b = r_ta(z = 0) of the passive run
+    canonical : x_ta = 193, 132, 90, 61; S/M_ph(<r_ta) = 0.135, 0.199, 0.293, 0.433; amplitude spread 3.20 (a0_eff spread 1.01 dex)
+    alt       : x_ta = 212, 145, 99, 67; S/M_ph(<r_ta) = 0.123, 0.181, 0.267, 0.393; amplitude spread 3.19 (a0_eff spread 1.01 dex)
+  MUTATE MM1: A0 baseline FAIL -> creation form PASS; mass created inside D at Gamma = infinity: +14.410 M_b (baseline 0)

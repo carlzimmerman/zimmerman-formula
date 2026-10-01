@@ -1,0 +1,418 @@
+{
+ "slug": "CFG245_G0_target",
+ "mutate": null,
+ "cells": {
+  "C-L1 3D local-field target equals the spherical form and the hand closed form (tolerance 1e-3, r in [1,5] r_M, away from the sphere edge; h = 0.100, N = 161, 4th-order)": {
+   "outcome": "PASS",
+   "detail": "worst 2.46e-04"
+  },
+  "C-L2 point mass: P2 C_loc/C_44 = 1.000 (1e-3); nu_mono ratio at x = 1 equals CFG44's 1.46 (within 0.02)": {
+   "outcome": "PASS",
+   "detail": ""
+  },
+  "G0.2 target identity (P2, all exponential spheres, both footings; reported, not binding)": {
+   "outcome": "DIFFERS",
+   "detail": "max R_loc (P2) = 2.332; max R_loc (nu_mono) = 2.466"
+  },
+  "G0.3 spherical positivity (P2)": {
+   "outcome": "PASS",
+   "detail": "min over P2 rows 8.837e-05"
+  },
+  "G0.3 non-spherical, two equal masses (f_neg <= 0.01 at every separation and both resolutions)": {
+   "outcome": "PASS",
+   "detail": "max f_neg = 0.0009"
+  },
+  "G0.3 non-spherical, exponential thin disc (f_neg <= 0.01)": {
+   "outcome": "PASS",
+   "detail": "max f_neg = -0.0000"
+  },
+  "G0.4 flux operator conserves mass in D to 1e-12 and keeps the density non-negative": {
+   "outcome": "PASS",
+   "detail": "canonical|two: {'mass_change_rel': 0.0, 'min_shell_mass': 92004624.78600809}; canonical|one: {'mass_change_rel': 0.0, 'min_shell_mass': 158417043.44972813}; creation form: {'mass_created_over_Mb': 7.851192567538256}"
+  },
+  "G0.5 ownership produced by the local form (internal ratio = 1 within 1e-3 at every row)": {
+   "outcome": "FAIL",
+   "detail": "max |ratio - 1| = 2.162; expected FAIL: ownership is a separate label (ChainCert ownership_not_field_local)"
+  },
+  "G0 controls (C-L1, C-L2) -- the lane stops UNDEFINED only if one fails": {
+   "outcome": "PASS",
+   "detail": ""
+  }
+ },
+ "numbers": {
+  "seconds": 8.471503973007202
+ },
+ "binding_fail": false,
+ "controls_ok": true,
+ "results": {
+  "C-L1": {
+   "ok": true,
+   "detail": {
+    "uniform sphere (a = 3 r_M)": [
+     6.874223177066874e-05,
+     6.874226717945575e-05,
+     7.578782046380184e-11,
+     451413
+    ],
+    "Plummer (eps = 0.5 r_M)": [
+     0.00024614551266188833,
+     0.00024614547978996093,
+     1.0174860953782172e-10,
+     519128
+    ],
+    "exponential sphere (h = 1 r_M)": [
+     0.00012594427226586546,
+     0.0001259442557897117,
+     5.628852939310036e-11,
+     519128
+    ]
+   },
+   "worst": 0.00024614551266188833
+  },
+  "C-L2": {
+   "ok": true,
+   "P2": {
+    "max_dev": 2.541650269138884e-07,
+    "ratio_at_1": 0.9999997458350457
+   },
+   "nu_mono": {
+    "max_dev": 0.6120668057549774,
+    "ratio_at_1": 1.4564840997680335
+   }
+  },
+  "deep_uniform_factor": 2.4960986773642144,
+  "G0.2": {
+   "category": "DIFFERS",
+   "max_P2": 2.332441668833658,
+   "table": {
+    "P2|canonical|1e+09": {
+     "h_over_rM": 1.638964730724054,
+     "max": 2.3098817352937964,
+     "x_at_max": 0.1,
+     "min": 1.0000161144102586,
+     "min_rho_ph": 8.83716632229496e-05
+    },
+    "P2|canonical|1e+10": {
+     "h_over_rM": 0.777429233065884,
+     "max": 2.0160319539455904,
+     "x_at_max": 0.1,
+     "min": 0.9999999971323487,
+     "min_rho_ph": 8.837033218528856e-05
+    },
+    "P2|canonical|1e+11": {
+     "h_over_rM": 0.3277929461448108,
+     "max": 1.4341772207210532,
+     "x_at_max": 0.1,
+     "min": 0.9999999816564403,
+     "min_rho_ph": 8.837033218525841e-05
+    },
+    "P2|canonical|1e+12": {
+     "h_over_rM": 0.129571538844314,
+     "max": 1.0632471554796739,
+     "x_at_max": 0.1,
+     "min": 0.9999998776243627,
+     "min_rho_ph": 8.837033218525841e-05
+    },
+    "P2|alt|1e+09": {
+     "h_over_rM": 1.8017495493438689,
+     "max": 2.332441668833658,
+     "x_at_max": 0.1,
+     "min": 1.0000633874952385,
+     "min_rho_ph": 8.837552837600002e-05
+    },
+    "P2|alt|1e+10": {
+     "h_over_rM": 0.8546448523662843,
+     "max": 2.066528168171335,
+     "x_at_max": 0.1,
+     "min": 0.99999999766111,
+     "min_rho_ph": 8.837033218575096e-05
+    },
+    "P2|alt|1e+11": {
+     "h_over_rM": 0.36034990986877385,
+     "max": 1.4987516199339999,
+     "x_at_max": 0.1,
+     "min": 0.9999999850186642,
+     "min_rho_ph": 8.837033218525841e-05
+    },
+    "P2|alt|1e+12": {
+     "h_over_rM": 0.14244080872771406,
+     "max": 1.079432979595862,
+     "x_at_max": 0.1,
+     "min": 0.9999998977082892,
+     "min_rho_ph": 8.837033218525841e-05
+    },
+    "nu_mono|canonical|1e+09": {
+     "h_over_rM": 1.638964730724054,
+     "max": 2.4619539093512954,
+     "x_at_max": 0.1,
+     "min": 1.0166831414777202,
+     "min_rho_ph": 8.841270195489796e-05
+    },
+    "nu_mono|canonical|1e+10": {
+     "h_over_rM": 0.777429233065884,
+     "max": 2.40383057190486,
+     "x_at_max": 0.1,
+     "min": 1.016666167407688,
+     "min_rho_ph": 8.841131710742603e-05
+    },
+    "nu_mono|canonical|1e+11": {
+     "h_over_rM": 0.3277929461448108,
+     "max": 2.186758037122204,
+     "x_at_max": 0.1,
+     "min": 1.0166661674080284,
+     "min_rho_ph": 8.84113171074562e-05
+    },
+    "nu_mono|canonical|1e+12": {
+     "h_over_rM": 0.129571538844314,
+     "max": 1.6237030654184632,
+     "x_at_max": 0.5998952628094264,
+     "min": 1.0166661674080284,
+     "min_rho_ph": 8.84113171074562e-05
+    },
+    "nu_mono|alt|1e+09": {
+     "h_over_rM": 1.8017495493438689,
+     "max": 2.466043727854912,
+     "x_at_max": 0.1,
+     "min": 1.0167329673164094,
+     "min_rho_ph": 8.841672721497392e-05
+    },
+    "nu_mono|alt|1e+10": {
+     "h_over_rM": 0.8546448523662843,
+     "max": 2.4148345867493606,
+     "x_at_max": 0.1,
+     "min": 1.0166661674133,
+     "min_rho_ph": 8.841131710789848e-05
+    },
+    "nu_mono|alt|1e+11": {
+     "h_over_rM": 0.36034990986877385,
+     "max": 2.2266427660245394,
+     "x_at_max": 0.1,
+     "min": 1.0166661674080284,
+     "min_rho_ph": 8.84113171074562e-05
+    },
+    "nu_mono|alt|1e+12": {
+     "h_over_rM": 0.14244080872771406,
+     "max": 1.6275666378508529,
+     "x_at_max": 0.5731283012254651,
+     "min": 1.0166661674080284,
+     "min_rho_ph": 8.84113171074562e-05
+    }
+   }
+  },
+  "G0.3": {
+   "two_masses": {
+    "1.0": {
+     "161": {
+      "fneg": -0.0,
+      "rho_min": 9.857253384819597e-05,
+      "rho_max": 0.5351967498895874,
+      "h": 0.25
+     },
+     "201": {
+      "fneg": -0.0,
+      "rho_min": 9.757007984152505e-05,
+      "rho_max": 0.6574708280273752,
+      "h": 0.1999999999999993
+     }
+    },
+    "3.0": {
+     "161": {
+      "fneg": 0.00011468209229616104,
+      "rho_min": -0.015676103547725393,
+      "rho_max": 0.5296080347159275,
+      "h": 0.25
+     },
+     "201": {
+      "fneg": 0.00012910858712885935,
+      "rho_min": -0.020746745390202548,
+      "rho_max": 0.6124324965175283,
+      "h": 0.1999999999999993
+     }
+    },
+    "10.0": {
+     "161": {
+      "fneg": 0.0009196537007657644,
+      "rho_min": -0.004861763532972503,
+      "rho_max": 0.529696172444706,
+      "h": 0.25
+     },
+     "201": {
+      "fneg": 0.0009439082396764878,
+      "rho_min": -0.005500242246340106,
+      "rho_max": 0.6612042435303384,
+      "h": 0.1999999999999993
+     }
+    }
+   },
+   "two_max": 0.0009439082396764878,
+   "disc": {
+    "0.3": {
+     "fneg": -0.0,
+     "rho_min": 0.0010970572297349195,
+     "rho_max": 1.540624445341628
+    },
+    "1.0": {
+     "fneg": -0.0,
+     "rho_min": 0.0003284971724255872,
+     "rho_max": 0.3749434002544589
+    },
+    "3.0": {
+     "fneg": -0.0,
+     "rho_min": 0.00010774616775792488,
+     "rho_max": 0.0744367499699622
+    }
+   },
+   "spherical_min": 8.837033218525841e-05,
+   "two_outcome": "PASS",
+   "disc_outcome": "PASS"
+  },
+  "G0.4": {
+   "ok": true,
+   "table": {
+    "canonical|two": {
+     "mass_change_rel": 0.0,
+     "min_shell_mass": 92004624.78600809
+    },
+    "canonical|one": {
+     "mass_change_rel": 0.0,
+     "min_shell_mass": 158417043.44972813
+    },
+    "creation form": {
+     "mass_created_over_Mb": 7.851192567538256
+    }
+   },
+   "linear_coeff": {
+    "1e+09": 819482365.362027,
+    "1e+10": 2591430776.8862796,
+    "1e+11": 8194823653.620271,
+    "1e+12": 25914307768.8628
+   }
+  },
+  "G0.5": {
+   "ok": false,
+   "worst": 2.162181478296017,
+   "rows": [
+    {
+     "m_sat": 100000.0,
+     "d_kpc": 30.0,
+     "r_over_rM": 0.3,
+     "ratio": 1.0440294803242958
+    },
+    {
+     "m_sat": 100000.0,
+     "d_kpc": 30.0,
+     "r_over_rM": 1.0,
+     "ratio": 1.412907312785588
+    },
+    {
+     "m_sat": 100000.0,
+     "d_kpc": 30.0,
+     "r_over_rM": 3.0,
+     "ratio": 2.723914124827627
+    },
+    {
+     "m_sat": 100000.0,
+     "d_kpc": 100.0,
+     "r_over_rM": 0.3,
+     "ratio": 1.044030641409477
+    },
+    {
+     "m_sat": 100000.0,
+     "d_kpc": 100.0,
+     "r_over_rM": 1.0,
+     "ratio": 1.4142029788599375
+    },
+    {
+     "m_sat": 100000.0,
+     "d_kpc": 100.0,
+     "r_over_rM": 3.0,
+     "ratio": 3.1585218100300168
+    },
+    {
+     "m_sat": 100000.0,
+     "d_kpc": 250.0,
+     "r_over_rM": 0.3,
+     "ratio": 1.0440306506483266
+    },
+    {
+     "m_sat": 100000.0,
+     "d_kpc": 250.0,
+     "r_over_rM": 1.0,
+     "ratio": 1.4142132914348544
+    },
+    {
+     "m_sat": 100000.0,
+     "d_kpc": 250.0,
+     "r_over_rM": 3.0,
+     "ratio": 3.162181478296017
+    },
+    {
+     "m_sat": 100000000.0,
+     "d_kpc": 30.0,
+     "r_over_rM": 0.3,
+     "ratio": 1.0440294802309122
+    },
+    {
+     "m_sat": 100000000.0,
+     "d_kpc": 30.0,
+     "r_over_rM": 1.0,
+     "ratio": 1.4129045720522015
+    },
+    {
+     "m_sat": 100000000.0,
+     "d_kpc": 30.0,
+     "r_over_rM": 3.0,
+     "ratio": 2.7073690823299295
+    },
+    {
+     "m_sat": 100000000.0,
+     "d_kpc": 100.0,
+     "r_over_rM": 0.3,
+     "ratio": 1.0440306414094405
+    },
+    {
+     "m_sat": 100000000.0,
+     "d_kpc": 100.0,
+     "r_over_rM": 1.0,
+     "ratio": 1.4142029780555905
+    },
+    {
+     "m_sat": 100000000.0,
+     "d_kpc": 100.0,
+     "r_over_rM": 3.0,
+     "ratio": 3.1585165971936977
+    },
+    {
+     "m_sat": 100000000.0,
+     "d_kpc": 250.0,
+     "r_over_rM": 0.3,
+     "ratio": 1.0440306506483266
+    },
+    {
+     "m_sat": 100000000.0,
+     "d_kpc": 250.0,
+     "r_over_rM": 1.0,
+     "ratio": 1.414213291432814
+    },
+    {
+     "m_sat": 100000000.0,
+     "d_kpc": 250.0,
+     "r_over_rM": 3.0,
+     "ratio": 3.162181467396887
+    }
+   ],
+   "isolated": {
+    "0.3": 1.044030650891055,
+    "1.0": 1.4142135623730951,
+    "3.0": 3.1622776601683795
+   }
+  }
+ },
+ "outcomes": {
+  "G0.2": "DIFFERS",
+  "G0.3 two masses": "PASS",
+  "G0.3 disc": "PASS",
+  "G0.4": "PASS",
+  "G0.5": "FAIL"
+ }
+}

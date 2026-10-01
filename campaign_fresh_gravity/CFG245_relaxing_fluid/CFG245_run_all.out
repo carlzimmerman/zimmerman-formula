@@ -1,0 +1,38 @@
+=== CFG245_G0_target.py
+=== CFG245_T_timescale.py
+=== CFG245_C_clusters.py
+=== CFG245_A_supply.py
+=== CFG245_E_ledger.py
+MUTATE MG1 (CFG245_G0_target.py): expected exit 1, observed 1
+MUTATE MG2 (CFG245_G0_target.py): expected exit 1, observed 0  <-- UNEXPECTED
+MUTATE MG3 (CFG245_G0_target.py): expected exit 1, observed 1
+MUTATE MT1 (CFG245_T_timescale.py): expected exit 1, observed 1
+MUTATE MT2a (CFG245_T_timescale.py): expected exit 1, observed 1
+MUTATE MT2b (CFG245_C_clusters.py): expected exit 1, observed 1
+MUTATE MT3 (CFG245_E_ledger.py): expected exit 1, observed 1
+MUTATE MM1 (CFG245_A_supply.py): expected exit 1, observed 1
+MUTATE MC1 (CFG245_C_clusters.py): expected exit 1, observed 1
+MUTATE MC2 (CFG245_C_clusters.py): expected exit 1, observed 1
+MUTATE MA1 (CFG245_A_supply.py): expected exit 1, observed 1
+MUTATE MA2 (CFG245_A_supply.py): expected exit 1, observed 1
+MUTATE ME1 (CFG245_E_ledger.py): expected exit 1, observed 1
+MUTATE ME2 (CFG245_E_ledger.py): expected exit 1, observed 1
+MUTATE MN1 (CFG245_T_timescale.py): expected exit 0, observed 0
+MUTATE MN2 (CFG245_T_timescale.py): expected exit 0, observed 0
+
+======================================================================================================================
+CFG245 VERDICT (frozen order G0, T, C, A, E; stop at the first binding FAIL)
+======================================================================================================================
+  G0 controls (C-L1, C-L2): PASS; G0 outcomes: {'G0.2': 'DIFFERS', 'G0.3 two masses': 'PASS', 'G0.3 disc': 'PASS', 'G0.4': 'PASS', 'G0.5': 'FAIL'}
+  Gate T: BINDING FAIL   [CFG245_T_timescale]
+  Gate C: BINDING FAIL   [CFG245_C_clusters_POSTHOC]
+  Gate A: BINDING FAIL   [CFG245_A_supply_POSTHOC]
+  Gate E: BINDING FAIL   [CFG245_E_ledger_POSTHOC]
+
+  FIRST BINDING FAIL: Gate T
+  named failure: T-G1 -- Gamma*tau (favourable bracket tau = t_0) and residual fraction of the passive-infall deviation, per candidate:
+    canonical  G-H Gamma*tau = 0.787, e = 0.455; G-a Gamma*tau = 0.136, e = 0.873; G-b Gamma*tau = 0.272, e = 0.762; Gamma*tau needed for the 10% line = 4.23 (= 5.37 H_Lambda at tau = t_0)
+    alt        G-H Gamma*tau = 0.787, e = 0.455; G-a Gamma*tau = 0.164, e = 0.849; G-b Gamma*tau = 0.329, e = 0.720; Gamma*tau needed for the 10% line = 4.07 (= 5.17 H_Lambda at tau = t_0)
+  post-hoc extras (labelled, no verdict depends on them): C, A, E
+  gates that WOULD bind on their own frozen lines: T, C, A, E
+unexpected outcomes: 1
