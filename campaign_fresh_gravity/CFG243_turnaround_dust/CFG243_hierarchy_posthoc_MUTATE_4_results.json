@@ -1,0 +1,94 @@
+{
+ "slug": "CFG243_hierarchy_posthoc_MUTATE_4",
+ "mutate": "4",
+ "robust": "",
+ "runtime_s": 26.88,
+ "checks": [
+  {
+   "name": "C1 the integrated tangent dynamics fire no source in the first 20 Myr of a freely expanding Kepler cloud (theta_b > 0)",
+   "ok": true,
+   "detail": "0 crossings",
+   "kind": "control"
+  },
+  {
+   "name": "H1 created dust in a satellite inside a host <= 0.10 of the isolated amount (every row, amplitude and count)",
+   "ok": true,
+   "detail": "host point 30 kpc: amp 0.05, count 1.00; host point 100 kpc: amp 0.44, count 1.00; inside the host: amp 1.00, count 1.00  [MUTATE=4: label]",
+   "kind": "result"
+  },
+  {
+   "name": "H2 the unflagged source creates nothing further for baryons that already turned around (<= 0.10 of the first-crossing dust)",
+   "ok": false,
+   "detail": "21.0 of the first-crossing dust (from the G0-b multiplicity)",
+   "kind": "result"
+  },
+  {
+   "name": "H2F the flagged source creates nothing further (0 by construction)",
+   "ok": true,
+   "detail": "F: prescribed label, not derived",
+   "kind": "result"
+  },
+  {
+   "name": "H3 >= 90% of the baryons first turn around inside a system of >= 0.1 of the final mass (top-level, not bottom-level, ownership)",
+   "ok": false,
+   "detail": "0.1635 (M_min 1e5); 0.1810 (1e6); 0.2119 (1e7)",
+   "kind": "result"
+  }
+ ],
+ "numbers": {
+  "H1": {
+   "host point 30 kpc": {
+    "amp_F": 0.04709749640676395,
+    "amp_U": 0.04709749640676395,
+    "count": 1.0
+   },
+   "host point 100 kpc": {
+    "amp_F": 0.44483698745574823,
+    "amp_U": 0.44483698745574823,
+    "count": 1.0
+   },
+   "inside the host (uniform sphere R = 300 kpc, d = 100)": {
+    "amp_F": 0.9956466516333962,
+    "amp_U": 0.9956466516333962,
+    "count": 1.0
+   }
+  },
+  "H2": {
+   "median_crossings": 22.0,
+   "extra_over_first": 21.0
+  },
+  "H3": {
+   "100000.0": {
+    "frac_top": 0.1635,
+    "med_Mfc": 27384196.34264361,
+    "p10": 115478.19846894582,
+    "p90": 365174127254.8377,
+    "med_zfc": 6.915723576022554,
+    "Qratio_mean": 1.9268711951856257
+   },
+   "1000000.0": {
+    "frac_top": 0.181,
+    "med_Mfc": 100000000.0,
+    "p10": 1154781.9846894583,
+    "p90": 421696503428.5823,
+    "med_zfc": 6.244109320708759,
+    "Qratio_mean": 1.1998542878446847
+   },
+   "10000000.0": {
+    "frac_top": 0.21185,
+    "med_Mfc": 562341325.1903491,
+    "p10": 11547819.84689458,
+    "p90": 562341325190.3491,
+    "med_zfc": 5.353826581180844,
+    "Qratio_mean": 0.8114418849447294
+   }
+  },
+  "verdicts": {
+   "HIERARCHY (post hoc)": {
+    "status": "FAIL",
+    "why": "H1 PASS (unflagged); H2 unflagged FAIL, flagged PASS only as a prescribed label; H3 FAIL"
+   }
+  }
+ },
+ "control_bites": true
+}

@@ -1,0 +1,63 @@
+# CFG243_hierarchy_posthoc_MUTATE_4   repo = <repo>   mode = 4
+CFG243_hierarchy_posthoc -- GATE 4 (HIERARCHY), run as a POST-HOC EXTRA: the frozen stop rule halted the lane at COSMIC, so nothing here is part of the
+frozen verdict.  Frozen text: CFG243_FROZEN_CRITERIA.md section 2, Gate 4 (H1-H4).
+
+TOY (frozen, with its declared departures): a host (a point mass of 1e12 Msun, or the same mass as a uniform sphere of radius 300 kpc for the 'inside the host'
+row) and a satellite core of 1e9 Msun on a circular orbit at d = 30 or 100 kpc; a cloud of N = 3000 pressureless baryon TEST particles around the satellite
+(radii 1-4 kpc, outward radial speed v = sqrt(G M_s / r) so that each decelerates and turns around at 2 r).  theta_b = tr(A) with A_ij = d v_i/d x_j integrated EXACTLY
+along each trajectory by the tangent dynamics dA/dt = -A.A - Hessian(Phi) (single-stream, test particles: no noise, no estimator).  The same cloud is run in isolation
+(host off).  The source (version U: every downward zero of theta_b; version F: the first only) creates dust Q m_p with Q = a0 / (3 g_loc), g_loc = the particle's total
+acceleration magnitude (host + satellite): the AMT-2 closure with the peculiar field.  The cloud's own gravity and the cosmic expansion are neglected (timescales ~1 Gyr).
+H1: dust created in the satellite (with host)/(isolated), both for the amplitude-weighted amount and the number of firing particles; pass iff <= 0.10 at every row.
+H2: accreted satellite: extra dust created by the already-turned-around baryons while they fall through the host, U versus F (F: none by the flag).
+H3: top-level, not bottom-level ownership: excursion-set (sharp-k random walks, sigma^2(M) from CLASS) for baryons that end in a 1e12 Msun system turning around at z = 0:
+    the mass of the first turned-around system containing each baryon (the walk's maximum fixes the earliest time).  Pass iff >= 90% have M_fc >= 0.1 M_final.
+H4: the status of the flag (text).
+MUTATE=4: the source is given the host's membership (n = 1 for baryons in a host): H1 must flip FAIL -> PASS (a prescribed label, CFG48 G3: PARTIAL).
+
+  *** POST-HOC: the frozen stop rule halted the lane at COSMIC; nothing below is part of the frozen verdict ***
+
+====================================================================================================
+controls
+====================================================================================================
+  [PASS] (control) C1 the integrated tangent dynamics fire no source in the first 20 Myr of a freely expanding Kepler cloud (theta_b > 0)   (0 crossings)
+
+====================================================================================================
+H1 (embedded: a formed-embedded cloud turning around inside a host) and the unflagged count
+====================================================================================================
+  isolated                                               : 3000/3000 clouds particles fire; crossings (U)  3000 (median per firing particle 1.0); dust F = 1.323e+04, U = 1.323e+04 (Q m_p units); 4 s
+  host point 30 kpc                                      : 3000/3000 clouds particles fire; crossings (U)  3000 (median per firing particle 1.0); dust F = 623.3, U = 623.3 (Q m_p units); 5 s
+  host point 100 kpc                                     : 3000/3000 clouds particles fire; crossings (U)  3000 (median per firing particle 1.0); dust F = 5887, U = 5887 (Q m_p units); 5 s
+  inside the host (uniform sphere R = 300 kpc, d = 100)  : 3000/3000 clouds particles fire; crossings (U)  3000 (median per firing particle 1.0); dust F = 1.318e+04, U = 1.318e+04 (Q m_p units); 4 s
+  host point 30 kpc                                      : dust(host)/dust(isolated): F 0.047, U 0.047; firing-particle count ratio 1.000
+  host point 100 kpc                                     : dust(host)/dust(isolated): F 0.445, U 0.445; firing-particle count ratio 1.000
+  inside the host (uniform sphere R = 300 kpc, d = 100)  : dust(host)/dust(isolated): F 0.996, U 0.996; firing-particle count ratio 1.000
+  *** MUTATE=4: the source is given the host's membership (n = 1 for baryons inside a host): dust(host) = 0 ***
+  [PASS] (result) H1 created dust in a satellite inside a host <= 0.10 of the isolated amount (every row, amplitude and count)   (host point 30 kpc: amp 0.05, count 1.00; host point 100 kpc: amp 0.44, count 1.00; inside the host: amp 1.00, count 1.00  [MUTATE=4: label])
+
+====================================================================================================
+H2 (accreted): do the already-turned-around baryons create more when they fall through the host?
+====================================================================================================
+  The single-stream tangent integration above stops at the first caustic (A -> infinity: its crossing counts are lower bounds), so the multi-crossing multiplicity is taken from the
+  G0-b shell toy (CFG243_g0_legality_posthoc_results.json): the median number of downward theta_b crossings per inner shell over 13.8 Gyr.
+  unflagged (U): a baryon element that already turned around fires again at each later downward crossing: median 22.0 crossings, i.e. 21.0 times the first-crossing dust created again; flagged (F): 0 by the flag (a prescribed label: CFG48 G3 PARTIAL)
+  [FAIL] (result) H2 the unflagged source creates nothing further for baryons that already turned around (<= 0.10 of the first-crossing dust)   (21.0 of the first-crossing dust (from the G0-b multiplicity))
+  [PASS] (result) H2F the flagged source creates nothing further (0 by construction)   (F: prescribed label, not derived)
+  The satellite keeps what it owned: the dust is conserved, so 'keeps >= 0.90' is the conservation of the created component (tidal stripping of the dust is not computed here; reported as not covered).
+
+====================================================================================================
+H3 (top-level, not bottom-level ownership): excursion-set first-crossing mass for baryons in a 1e12 Msun system turning around at z = 0
+====================================================================================================
+  M_min = 1e+05: fraction with M_fc >= 0.1 M_final = 0.1635; median M_fc = 2.74e+07 (p10 1.15e+05, p90 3.65e+11) Msun; median earliest-turnaround z = 6.9; mean Q(M_fc)/Q(M_final) = 1.93
+  M_min = 1e+06: fraction with M_fc >= 0.1 M_final = 0.1810; median M_fc = 1e+08 (p10 1.15e+06, p90 4.22e+11) Msun; median earliest-turnaround z = 6.2; mean Q(M_fc)/Q(M_final) = 1.2
+  M_min = 1e+07: fraction with M_fc >= 0.1 M_final = 0.2119; median M_fc = 5.62e+08 (p10 1.15e+07, p90 5.62e+11) Msun; median earliest-turnaround z = 5.4; mean Q(M_fc)/Q(M_final) = 0.811
+  [FAIL] (result) H3 >= 90% of the baryons first turn around inside a system of >= 0.1 of the final mass (top-level, not bottom-level, ownership)   (0.1635 (M_min 1e5); 0.1810 (1e6); 0.2119 (1e7))
+  H4 (status of the flag): n is an advected scalar with a first-order transport equation along u_b (causal), initialised to 0 at the start and set at the first theta_b crossing of each baryon element.  Inside an action it is a history variable: CFG48 G3 FAIL (advanced dependence 8.5e-4 and 1.7e-2). As a prescribed advected label: CFG48 G3 PARTIAL (a postulate, ownership as initial data).  It is not derived from the baryon state.
+
+====================================================================================================
+HIERARCHY verdict
+====================================================================================================
+  H1 PASS; H2 (unflagged) FAIL, (flagged) PASS as a label; H3 FAIL
+  >>> HIERARCHY (post hoc): FAIL -- H1 PASS (unflagged); H2 unflagged FAIL, flagged PASS only as a prescribed label; H3 FAIL
+
+MUTATE 4: control BITES (exit 1)

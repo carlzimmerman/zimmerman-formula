@@ -1,0 +1,33 @@
+# CFG243_verdict   repo = <repo>   mode = main
+CFG243_verdict -- applies the frozen stop rule to the committed JSONs and prints the gate table.  The frozen order is COSMIC -> G0 -> AMOUNT -> HIERARCHY -> G3/G4; the lane
+STOPS at the first binding FAIL.  Results from scripts with `_posthoc` in the name are printed in a separate, labelled block and are never part of the verdict.
+
+====================================================================================================
+controls
+====================================================================================================
+  9 controls, 0 failed: none
+
+====================================================================================================
+frozen verdict (stop rule)
+====================================================================================================
+  COSMIC C1: FAIL   (supplied 10^-1377.7 vs line 0.06; shortfall factor 10^1376.5)
+  COSMIC C1b (order-of-magnitude shortfall = the binding FAIL if it fails): FAIL
+
+  BINDING FAIL: COSMIC.  A scoped no-go on the frozen class (a pressureless conserved dust created once at theta_b = 0 by a local causal source, funded by the vacuum), under the declared estimator.
+    M_min = 1e+05: Omega_dust h^2 at z = 1100 = 0.1200 x 10^-1376.8 (line 0.060; total 0.1200); z = 10: 0.0436; z = 2.5: 0.1007; z = 0: 0.1200
+    M_min = 1e+08: Omega_dust h^2 at z = 1100 = 0.1200 x 10^-3451.1 (line 0.060; total 0.1200); z = 10: 0.0177; z = 2.5: 0.0888; z = 0: 0.1200
+    M_min = 1e+10: Omega_dust h^2 at z = 1100 = 0.1200 x 10^-7892.3 (line 0.060; total 0.1200); z = 10: 0.0032; z = 2.5: 0.0719; z = 0: 0.1200
+  The lane stops here: G0, AMOUNT, HIERARCHY and G3/G4 are NOT part of the frozen verdict.
+
+====================================================================================================
+gate table (frozen cells; post-hoc cells labelled and never part of the verdict)
+====================================================================================================
+  COSMIC       FAIL (binding)         [CFG243_cosmic.py]  (FROZEN verdict)
+  G0 legality  POST-HOC FAIL          [CFG243_g0_legality_posthoc.py]  a (locus) FAIL, d (bound-only) FAIL, e (vacuum compensation) FAIL; b needs a counting rule; c, f pass
+  AMOUNT       POST-HOC FAIL          [CFG243_amount_posthoc.py]  AMT-1 P-declared; AMT-3 FAIL; AMT-4 FAIL; AMT-5 FAIL (largest deviation over the cases run: 0.987)
+  HIERARCHY    POST-HOC FAIL          [CFG243_hierarchy_posthoc.py]  H1 FAIL (unflagged); H2 unflagged FAIL, flagged PASS only as a prescribed label; H3 FAIL
+  G3/G4        POST-HOC FAIL          [CFG243_g3g4_ledger_posthoc.py]  L1 PASS (0, trivially); L2 FAIL (>= 6.7e+05 x the orbital energy); L3 FAIL (f up to 24.76; a0 shift 12.38 against 1e-2); L4 FAIL (strict: N)
+  G5           NOT ADDRESSED          [outside the frozen order: well-posedness and Solar System]
+  G2 (growth)  NOT ADDRESSED          [outside the frozen order: perturbation-level growth to k = 30/Mpc]
+
+RESULT: 0 checks, 0 control failure(s): none   (0 s)

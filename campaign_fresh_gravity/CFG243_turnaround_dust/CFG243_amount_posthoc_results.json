@@ -1,0 +1,298 @@
+{
+ "slug": "CFG243_amount_posthoc",
+ "mutate": "",
+ "robust": "",
+ "runtime_s": 58.0,
+ "checks": [
+  {
+   "name": "AMT-1 control: the tie a0 = kappa c sqrt(G rho_Lambda) gives a0/(c H0) = kappa sqrt(3 Omega_Lambda/8 pi) to 2%",
+   "ok": true,
+   "detail": "0.1431 vs 0.1429",
+   "kind": "control"
+  },
+  {
+   "name": "AMT-1 a0 (through Pi = a0/g_loc or a0/(cH)) is the only route to an M^(1/2) scale; the amplitude is F(Pi) with F a DECLARED shape, no new constant (P-declared)",
+   "ok": true,
+   "detail": "the theorem fixes the variable, not the function",
+   "kind": "result"
+  },
+  {
+   "name": "AMT-2a the closure rho_c = a0 rho_bar_b(<r)/(3 g_tot) with g_tot = G M_dyn/r^2 reproduces M_dyn = M_b sqrt(1+x^2) (point mass; exact)",
+   "ok": true,
+   "detail": "4.1e-12",
+   "kind": "control"
+  },
+  {
+   "name": "AMT-2b uniform sphere: the LOCAL closure (rho_b, g_loc, a0) reproduces the target density to 1e-6",
+   "ok": true,
+   "detail": "4.4e-16",
+   "kind": "control"
+  },
+  {
+   "name": "AMT-3 a closure built only from local data (rho_b, g_loc, a0) reproduces the target within 10% for the point mass, uniform, power-law and exponential profiles",
+   "ok": false,
+   "detail": "14 of 16 (profile, footing) cells exceed 10%; only the uniform sphere passes",
+   "kind": "result"
+  },
+  {
+   "name": "AMT-3b the closure is a function of local data only (locality test: identical local data give the same closure value)",
+   "ok": true,
+   "detail": "counterexample pair: identical local data, target ratio 3.00",
+   "kind": "result"
+  },
+  {
+   "name": "AMT-4 the retained-baryon spread across 1e9-1e12 gives an amplitude error <= 10% (a source that knows only turnaround data)",
+   "ok": false,
+   "detail": "spread 128.05, amplitude error 10.32",
+   "kind": "result"
+  },
+  {
+   "name": "AMT-5 G1: C_final/C_target in [0.9, 1.1] over x in [0.1, 30] with the same constants and no rescaling (cases run)",
+   "ok": false,
+   "detail": "1e9 c q0.1: max dev 0.88; 1e12 c q0.1: max dev 0.99; 1e10 c q0.05: max dev 0.74; 1e10 c q0.1: max dev 0.88; 1e10 c q0.2: max dev 0.97; 1e10 alt q0.1: max dev 0.89",
+   "kind": "result"
+  },
+  {
+   "name": "AMT-6 (reported, NOT a frozen pass line) the created dust leaves later turnarounds unchanged (median shift <= 5%)",
+   "ok": false,
+   "detail": "median t_ta(on)/t_ta(off) = 0.853; zero-velocity radius 678 vs 243 kpc",
+   "kind": "reported"
+  }
+ ],
+ "numbers": {
+  "AMT3": {
+   "canonical|point": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "canonical|uniform(R=300)": [
+    5.551115123125783e-16,
+    0.9999999999999994,
+    1.0000000000000004
+   ],
+   "canonical|powerlaw(s=1)": [
+    0.3333333333333335,
+    0.6666666666666665,
+    0.666666666666667
+   ],
+   "canonical|powerlaw(s=2)": [
+    0.6666666666666667,
+    0.33333333333333326,
+    0.3333333333333335
+   ],
+   "canonical|exp_sphere(h=2)": [
+    1.0,
+    2.350718405719501e-21,
+    0.9522369286392467
+   ],
+   "canonical|exp_sphere(h=3)": [
+    0.9999999999998331,
+    1.6686343949707933e-13,
+    0.9680517688348023
+   ],
+   "canonical|exp_sphere(h=4)": [
+    0.9999999989104124,
+    1.0895876244284863e-09,
+    0.9759993201227792
+   ],
+   "canonical|exp_sphere(h=5)": [
+    0.9999998178779869,
+    1.821220130974779e-07,
+    0.9807805729127098
+   ],
+   "alt|point": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "alt|uniform(R=300)": [
+    4.440892098500626e-16,
+    0.9999999999999997,
+    1.0000000000000004
+   ],
+   "alt|powerlaw(s=1)": [
+    0.3333333333333336,
+    0.6666666666666664,
+    0.666666666666667
+   ],
+   "alt|powerlaw(s=2)": [
+    0.6666666666666667,
+    0.3333333333333332,
+    0.3333333333333335
+   ],
+   "alt|exp_sphere(h=2)": [
+    1.0,
+    3.3038967004376004e-19,
+    0.9565128158462707
+   ],
+   "alt|exp_sphere(h=3)": [
+    0.9999999999958968,
+    4.1031772563613835e-12,
+    0.9709208881233446
+   ],
+   "alt|exp_sphere(h=4)": [
+    0.9999999887930389,
+    1.120696117665255e-08,
+    0.9781580302612507
+   ],
+   "alt|exp_sphere(h=5)": [
+    0.9999988896288173,
+    1.1103711826808667e-06,
+    0.9825108191725134
+   ]
+  },
+  "AMT4": {
+   "fret": [
+    0.10362686043329106,
+    0.25771277337495335,
+    0.08644889231128831,
+    0.0020125769802332234
+   ],
+   "spread": 128.0511383694197,
+   "amp_err": 10.315968291287303,
+   "spread_1e9_1e11": 2.981099774499965
+  },
+  "AMT5": {
+   "1e9 c q0.1": {
+    "maxdev": 0.8751787130265538,
+    "x_within": 0.1,
+    "r_x011": 0.3047382701646835,
+    "r_x1": 0.3842580385486821,
+    "r_x28": 1.1941655643397786,
+    "cum1": 0.28033025229327485,
+    "cum10": 1.122904033287196,
+    "cum30": 1.2326317279649768,
+    "dust_over_Mb": 259.61158566415594,
+    "nd": 301,
+    "steps": 38244,
+    "med_1_30": 0.9429968235576364
+   },
+   "1e12 c q0.1": {
+    "maxdev": 0.98724389898662,
+    "x_within": 0.0,
+    "r_x011": 0.13657281440517358,
+    "r_x1": 0.446883389230789,
+    "r_x28": 0.012756101013379961,
+    "cum1": 0.3980514773661053,
+    "cum10": 0.5309668993147555,
+    "cum30": 0.28679659090188575,
+    "dust_over_Mb": 12.789531542191556,
+    "nd": 168,
+    "steps": 26961,
+    "med_1_30": 0.3682127370236066
+   },
+   "1e10 c q0.05": {
+    "maxdev": 0.7411294957735154,
+    "x_within": 0.2,
+    "r_x011": 0.2588705042264846,
+    "r_x1": 0.6501341762769264,
+    "r_x28": 0.33951246753850267,
+    "cum1": 0.5989821696517595,
+    "cum10": 1.0982494523102768,
+    "cum30": 0.7700346916067365,
+    "dust_over_Mb": 85.29650890589649,
+    "nd": 238,
+    "steps": 45502,
+    "med_1_30": 0.955319243084226
+   },
+   "1e10 c q0.1": {
+    "maxdev": 0.883662484156736,
+    "x_within": 0.1,
+    "r_x011": 0.20010717579154,
+    "r_x1": 0.39525434571258333,
+    "r_x28": 0.44855047462321707,
+    "cum1": 0.40990976396532053,
+    "cum10": 1.1019522057199267,
+    "cum30": 0.9113384703941193,
+    "dust_over_Mb": 82.78328117632458,
+    "nd": 236,
+    "steps": 39645,
+    "med_1_30": 0.8674412184831192
+   },
+   "1e10 c q0.2": {
+    "maxdev": 0.9651967450804892,
+    "x_within": 0.0,
+    "r_x011": 0.10811088850080336,
+    "r_x1": 0.20327476964749266,
+    "r_x28": 0.44213133888539385,
+    "cum1": 0.1528187279085002,
+    "cum10": 0.7528106666112545,
+    "cum30": 0.7853871515063932,
+    "dust_over_Mb": 76.52838417025195,
+    "nd": 231,
+    "steps": 27308,
+    "med_1_30": 0.44213133888539385
+   },
+   "1e10 alt q0.1": {
+    "maxdev": 0.8884753824738432,
+    "x_within": 0.30000000000000004,
+    "r_x011": 0.20959569813744744,
+    "r_x1": 0.3176061716935211,
+    "r_x28": 0.5657120199313515,
+    "cum1": 0.2869101370271154,
+    "cum10": 0.9628932084677188,
+    "cum30": 0.8800605281054648,
+    "dust_over_Mb": 106.89440878217704,
+    "nd": 249,
+    "steps": 37903,
+    "med_1_30": 0.6218922401106899
+   },
+   "1e10 c q0.1 s0.25": {
+    "maxdev": 0.9720114895348129,
+    "x_within": 0.0,
+    "r_x011": 0.05580467097925724,
+    "r_x1": 0.07743256654208114,
+    "r_x28": 0.04145351493106081,
+    "cum1": 0.08156058601737126,
+    "cum10": 0.2635308760374426,
+    "cum30": 0.23691340803601643,
+    "dust_over_Mb": 15.01907491029646,
+    "nd": 172,
+    "steps": 35275,
+    "med_1_30": 0.0973421091045332
+   },
+   "1e10 c q0.1 s0.5": {
+    "maxdev": 0.9308700996204451,
+    "x_within": 0.0,
+    "r_x011": 0.10947371687693498,
+    "r_x1": 0.17274709755496415,
+    "r_x28": 0.10841983482526633,
+    "cum1": 0.19097266687072878,
+    "cum10": 0.6045023837051171,
+    "cum30": 0.42883803337230986,
+    "dust_over_Mb": 33.48027597584486,
+    "nd": 197,
+    "steps": 36085,
+    "med_1_30": 0.288630774715794
+   },
+   "1e10 c q0.1 s2": {
+    "maxdev": 1.489537792238108,
+    "x_within": 0.0,
+    "r_x011": 0.40302036318972856,
+    "r_x1": 0.6864878981858682,
+    "r_x28": 1.6327837276800952,
+    "cum1": 0.6059822402532232,
+    "cum10": 1.6120334315052294,
+    "cum30": 1.5223515586472942,
+    "dust_over_Mb": 228.81931526091972,
+    "nd": 293,
+    "steps": 40023,
+    "med_1_30": 1.822070012241482
+   }
+  },
+  "AMT6": {
+   "median_ratio": 0.8528706751157742,
+   "rz_on": 677.6571648094897,
+   "rz_off": 243.49399907078111,
+   "turned_on": 261,
+   "turned_off": 141
+  },
+  "verdicts": {
+   "AMOUNT (post hoc)": {
+    "status": "FAIL",
+    "why": "AMT-1 P-declared; AMT-3 FAIL; AMT-4 FAIL; AMT-5 FAIL (largest deviation over the cases run: 0.987)"
+   }
+  }
+ }
+}

@@ -1,0 +1,77 @@
+# CFG243_g0_legality_posthoc_MUTATE_5   repo = <repo>   mode = 5
+CFG243_g0_legality_posthoc -- GATE 2 (G0 legality), run as a POST-HOC EXTRA: the frozen stop rule halted the lane at COSMIC (the binding FAIL),
+so nothing here is part of the verdict.  Frozen text: CFG243_FROZEN_CRITERIA.md section 2, Gate 2 (rows G0-a ... G0-f), run on the shell toy of
+CFG243_shells.py (its departures are listed in that file's docstring).
+
+ROWS (frozen pass lines):
+  G0-a locus      |t_theta0 - t_ta|/t_ta <= 0.25 for >= 90% of the shells that turn around (undefined theta0 counts as a miss).
+  G0-b multiplicity  median downward theta_b crossings per shell, shells with r_ta < r_ta,max/2, <= 1.1 (else 'a counting rule is required').
+  G0-c causality  c_adv <= 1e-12 at N = 200 and 400, with a detector control that fires (a centred time difference).
+  G0-d bound-only  <= 0.10 of the created dust in elements that are not 3D-bound.  Operationalisation chosen HERE (the frozen text gave none
+                   for the Zel'dovich toy; labelled post hoc): an element is 3D-turned-around iff every axis has turned around, T_i = f D lambda_i/(1 - D lambda_i) >= 1
+                   at the theta_b = 0 event; sum_i T_i = 3 at that event, so T_min < 1 unless the element is exactly spherical.
+  G0-e vacuum compensation  curl of S u_mu = 0 (the d_mu rho_L = S c^2 u_mu integrability of CFG131 D1): alignment of grad theta with u_mu.
+  G0-f inertness  no source in the FRW flow (no core) and none in shells that never turn around.
+MUTATE=5: the counting rule is imposed (each shell is counted once): G0-b must flip from 'a counting rule is required' to exactly 1.
+
+  *** POST-HOC: the frozen stop rule halted the lane at COSMIC; nothing below is part of the frozen verdict ***
+
+====================================================================================================
+controls
+====================================================================================================
+  [PASS] (control) C1 with no core the shells stay on the Planck Hubble flow to 1e-5 at a = 1 (CFG118's control reached 4.3e-7)   (1.52e-06)
+  [PASS] (control) C1b no theta_b zero crossing occurs anywhere in the unperturbed Hubble flow (G0-f, FRW row)   (0 triggers)
+  control variant (shells carry all the matter): zero-velocity shell at a = 1: enclosed mean density / mean matter density = 11.79 against the committed GR top-hat 11.76
+  class toy itself (baryon shells, the rest of the matter smooth and NOT falling in): zero-velocity-shell contrast 9.69 against the top-hat 11.76 (-18%): the same control, run on the class toy, FAILS by construction (the toy's rest does not fall in); the all-matter variant above is the control that was kept
+  [FAIL] (reported) C2-toy (reported, FAILED as first run: the class toy's smooth rest does not fall in) the class toy's zero-velocity contrast matches the top-hat to 6%   (9.69 vs 11.76)
+  [PASS] (control) C2 the shell code's turnaround contrast matches the committed top-hat 1 + delta_ta(a=1) to 6% (the zero-velocity shell at a = 1; all-matter shells variant, because in the class toy the rest of the matter does not fall in)   (11.79 vs 11.76)
+
+====================================================================================================
+G0-a (locus) and G0-b (multiplicity) on the baryon-shell flow (creation OFF: pure infall)
+====================================================================================================
+  M_b = 1e+09: 141 shells turned around, 133 have a theta_b zero by a = 1; (t_theta0 - t_ta)/t_ta: median +0.596 (p10 +0.593, p90 +0.635); fraction within 0.25: 0.000; r_theta0/r_ta median 0.856
+      crossings per inner shell (n = 119; hysteresis p = 0.01 / 0.05 / 0.2): medians 21.0 / 21.0 / 19.0
+  M_b = 1e+10: 141 shells turned around, 133 have a theta_b zero by a = 1; (t_theta0 - t_ta)/t_ta: median +0.596 (p10 +0.594, p90 +0.635); fraction within 0.25: 0.000; r_theta0/r_ta median 0.856
+      crossings per inner shell (n = 119; hysteresis p = 0.01 / 0.05 / 0.2): medians 23.0 / 22.0 / 22.0
+  M_b = 1e+12: 141 shells turned around, 133 have a theta_b zero by a = 1; (t_theta0 - t_ta)/t_ta: median +0.596 (p10 +0.594, p90 +0.635); fraction within 0.25: 0.000; r_theta0/r_ta median 0.856
+      crossings per inner shell (n = 119; hysteresis p = 0.01 / 0.05 / 0.2): medians 24.0 / 24.0 / 22.0
+  [FAIL] (result) G0-a theta_b = 0 coincides with the shell turnaround to 25% for >= 90% of the shells   (fraction 0.000 at 1e10 (0.000 at 1e9, 0.000 at 1e12); theta_b = 0 comes +0.60 of t_ta later)
+  *** MUTATE=5: the counting rule (each shell counted once) is imposed ***
+  [PASS] (result) G0-b the unflagged source fires once per shell (median crossings <= 1.1); otherwise a counting rule is required   (median 1.0 downward crossings per inner shell (p = 0.05) at 1e10; 1e9: 21.0; 1e12: 24.0)
+
+====================================================================================================
+G0-c (causality): advanced dependence of the trigger functional on the trajectory (CFG242 C1's definition)
+====================================================================================================
+  N = 200 time samples (200 recorded), 12 cut points: retarded (backward difference) c_adv = 0.000e+00; detector control (centred difference) c_adv = 1.000e+00
+  N = 400 time samples (400 recorded), 12 cut points: retarded (backward difference) c_adv = 0.000e+00; detector control (centred difference) c_adv = 1.000e+00
+  spatial stencil: perturbing shell 140 changes theta only on its two neighbours and itself; max change elsewhere = 0.0e+00
+  [PASS] (result) G0-c the retarded trigger has no advanced dependence (c_adv <= 1e-12 at N = 200 and 400) and the detector fires   (retarded 0.0e+00/0.0e+00; control 1.0e+00/1.0e+00; spatial 0.0e+00)
+
+====================================================================================================
+G0-d (bound-only): which elements fire?  Zel'dovich three-axis toy, Gaussian eigenvalue distribution (Doroshkevich), sigma from CLASS (cosmic-script table)
+====================================================================================================
+  M = 1e+10 (sigma_lin(z=0) = 3.920): 0.793 of Lagrangian points reach theta_b = 0 by z = 0; at the event: not 3D-turned-around (T_min < 1): 1.000000; T_min < 0.5: 0.998; lambda_3 <= 0 (an axis that never collapses): 0.900; median T_min -0.341; max |sum T - 3| = 7.1e-15
+  M = 1e+12 (sigma_lin(z=0) = 2.252): 0.651 of Lagrangian points reach theta_b = 0 by z = 0; at the event: not 3D-turned-around (T_min < 1): 1.000000; T_min < 0.5: 0.998; lambda_3 <= 0 (an axis that never collapses): 0.879; median T_min -0.270; max |sum T - 3| = 7.1e-15
+  [FAIL] (result) G0-d <= 0.10 of the created dust is in elements that are not 3D-turned-around at the theta_b = 0 event (sheets, filaments)   (1.0000 (1e12); 1.0000 (1e10); sum_i T_i = 3 at the event forces T_min < 1 for any non-spherical element)
+  The spherical shell toy cannot test this (its flow is spherical by construction): G0-d rests on the Zel'dovich identity and the Gaussian eigenvalue sample; a halo-finder census on an N-body field is not run.
+
+====================================================================================================
+G0-e (vacuum compensation): is grad(theta_b) parallel to u_mu on the theta_b = 0 locus?  (curl of S u_mu = 0 needs it)
+====================================================================================================
+  Alignment d_mu theta || u_mu needs d_r theta = -(v/c^2) d_t theta (Eulerian), i.e. d_r theta = -(v/c^2)(D theta/Dt - v d_r theta).
+  132 firing shells (1e10): median |residual| / |d_r theta| = 1.000000005; median |d_r theta| / (|v||D theta/Dt|/c^2) = 9.344e+07 (alignment needs 1)
+  [FAIL] (result) G0-e the localised source is consistent with a Lorentz-invariant vacuum compensator (grad theta aligned with u_mu to 1e-6)   (misalignment 1.000000; gradient exceeds the aligned value by 9.34e+07x; record: CFG131 D1/A5, CFG253 (C))
+
+====================================================================================================
+G0-f (inertness)
+====================================================================================================
+  [PASS] (result) G0-f no source in the unperturbed FRW flow (no core) and none in shells that never turn around   (FRW triggers 0; triggers among never-turned shells 0 (of 133))
+  (The toy's triggers all occur AFTER the shell's turnaround (G0-a), so the bound-only property of the toy flow is automatic for the spherical case; it is the G0-d web census that bites.)
+
+====================================================================================================
+G0 verdict
+====================================================================================================
+  a FAIL; b PASS; c PASS; d FAIL; e FAIL; f PASS
+  >>> G0 (post hoc): FAIL -- a (locus) FAIL, d (bound-only) FAIL, e (vacuum compensation) FAIL; b needs a counting rule; c, f pass
+
+MUTATE 5: control BITES (exit 1)

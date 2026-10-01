@@ -1,0 +1,41 @@
+# CFG243_controls   repo = <repo>   mode = main
+CFG243_controls -- the frozen controls K1-K5 (reproduce committed numbers before any gate), plus the controls this phase adds for the
+tools it substitutes for memory (K6 the CLASS velocity-divergence normalisation, K7 the CLASS growth against CFG7's committed growth).
+A failed control stops the lane (the run_all script checks the exit code).
+
+FROZEN (section 5): K1 CLASS sigma_8 = 0.8116 (CFG4_cosmology.out); K2 CFG251's A1 ratio (0.4)^3 = 0.064; K3 CFG131's x* = 20.2 and
+f = 1.70 at x = 30 from the Omega ratios; K4 CFG118's M_ta = 23.6 M_b scaling (consistency, not a reproduction: no shell run here);
+K5 CFG4's thresholds 11.81 / 8.89 / 7.09 / 5.72 (and delta_lin 1.276 -> 1.076).
+
+====================================================================================================
+K1/K7: CLASS reproduces CFG4's sigma_8 and the committed growth
+====================================================================================================
+  CLASS: Omega_m = 0.31573 (CFG4 uses 0.3157); sigma_8 (d_m) = 0.81186, (d_tot) = 0.81165; CFG4_cosmology.out: 0.8116
+  [PASS] (control) K1 CLASS sigma_8 reproduces CFG4_cosmology.out's 0.8116 (|diff| <= 5e-4)   (0.81165 / 0.81186)
+  [PASS] (control) K1b CLASS total matter Omega_m = 0.3157 (CFG4's committed value; |diff| <= 5e-4)   (0.31573)
+  sigma_8(z=10)/sigma_8(0): CLASS 0.11612 vs CFG7_common's D(1/11)/D(1) = 0.11533
+  [PASS] (control) K7 CLASS growth (z = 10 to 0 on 8/h Mpc) agrees with CFG7_common's committed D(a) to 2%   (0.11612 vs 0.11533)
+
+====================================================================================================
+K2/K3: CFG251's A1 ratio and CFG131's vacuum-ledger numbers
+====================================================================================================
+  [PASS] (control) K2 CFG251 A1: (r_e/r_ta)^3 = 0.4^3 = 0.064   (0.06400000000000002)
+  x* = 20.24 (CFG131: 20.2); f(x=30) = 1.702 (CFG131: 1.70); no-conversion limit x = 6.28 (CFG131: 6.29)
+  [PASS] (control) K3 CFG131: x* = 20.2, f(30) = 1.70, no-conversion limit 6.29   (20.24, 1.702, 6.28)
+
+====================================================================================================
+K4/K5: CFG118's turnaround mass and CFG4's thresholds
+====================================================================================================
+  top-hat mass inside CFG118's r_ta(1e9) = 236 kpc at the committed contrast 11.76: 25.7 M_b (CFG118: 23.6)
+  [PASS] (control) K4 CFG118's M_ta = 23.6 M_b is consistent with its r_ta = 236 kpc and the committed contrast (to 15%; no shell run here)   (25.7)
+  committed LCDM (CFG7_common) turnaround contrast / delta_lin vs CFG4_README: z=0: 11.76/1.274 (CFG4 11.81); z=0.25: 8.87/1.206 (CFG4 8.89); z=0.64: 7.08/1.142 (CFG4 7.09); z=2.5: 5.71/1.073 (CFG4 5.72)
+  [PASS] (control) K5 CFG4's contrasts 11.81 / 8.89 / 7.09 / 5.72 reproduced to 0.6% by the committed LCDM   (11.76, 8.87, 7.08, 5.71)
+  [PASS] (control) K5b CFG4's delta_lin 1.276 (z=0) and 1.076 (z=2.5) reproduced to 0.5% (the frozen thresholds)   (1.2742, 1.0733)
+
+====================================================================================================
+K6: CLASS velocity-divergence normalisation (Newtonian gauge): theta_tot / (calH delta_tot) = -f at z = 10, k = 1/Mpc
+====================================================================================================
+  k = 0.892/Mpc: theta_tot/(calH delta_tot) = -0.9936; -f(z=10) from CFG7_common = -0.9991
+  [PASS] (control) K6 theta_tot/(calH delta_tot) = -f (3%): the transfer normalisation of t_tot is the physical divergence per unit delta   (-0.9936 vs -0.9991)
+
+RESULT: 9 checks, 0 control failure(s): none   (39 s)

@@ -1,0 +1,94 @@
+# CFG243_cosmic_MUTATE_2   repo = <repo>   mode = 2
+CFG243_cosmic -- GATE 1 (COSMIC), run exactly as frozen: can a turnaround-triggered source supply the cold matter the CMB needs at
+recombination?  Frozen text: campaign_fresh_gravity/CFG243_FROZEN_CRITERIA.md section 2, Gate 1.
+
+DECLARED ESTIMATOR (frozen): Press-Schechter turned-around mass fraction F_ta(z; M > M_min) = erfc(delta_ta(z) / (sqrt2 sigma(M_min, z))) with the
+frozen thresholds delta_ta = 1.0624 (z >= 10, the EdS value), 1.076 (z = 2.5), 1.276 (z = 0).  Phase 2 replaces the memory-level sigma(M, z)
+and D(z) by CLASS (3.x, the Planck 2018 inputs of CFG4_cosmology.py): sigma(M, z) from the CLASS matter transfer function d_m(k, z) with the
+primordial P_R(k) = A_s (k/0.05)^(n_s - 1), a spherical top-hat window, rho_m = Omega_m rho_crit,0.  M_min in {1e5, 1e8, 1e10} Msun (declared).
+MOST GENEROUS READING (frozen): the amount is normalised so that Omega_dust(z = 0) = Omega_c (so Omega_dust h^2(z) = 0.1200 F_ta(z)/F_ta(0));
+the collapse fractions use the LCDM sigma(M), which presupposes the cold matter the class does not have: circular in the class's favour.
+BINDING LINE: Omega_dust h^2(z = 1100) >= 0.5 x 0.1200 = 0.060.  A shortfall of an order of magnitude or more (<= 0.006) is the binding FAIL.
+The verdict cell uses the most favourable of the three M_min (M_min = 1e5 Msun, which maximises F_ta at high z).
+
+ROWS: C1 (binding), C2 (z = 10, 2.5), C3 (sigma needed for F_ta(1100) = 0.5), C4 (baryon-only linear sigma_b at z = 0 against delta_ta(0) = 1.276),
+C5 (max |delta theta_b|/(3H) at z = 1100 and the rms; CLASS Newtonian-gauge t_b), C6 (CFG4's cold budget at z = 0, restated).
+
+MUTATE=1: the turnaround trigger is replaced by creation of Omega_c h^2 = 0.12 of uniform dust at z_i = 1e5 (initial data).  C1 must flip FAIL -> PASS.
+MUTATE=2: the pass line is evaluated at z = 0 instead of z = 1100.  C1 must flip FAIL -> PASS.
+ROBUST=1 (frozen as expected NOT to bite): the requirement is lowered from 0.1200 to 0.01 (line 0.5 x 0.01).
+ROBUST=2 (expected NOT to bite): delta_ta(1100) = 0.5 instead of 1.0624.
+
+  CLASS (python wrapper 'classy', version 3.3.4.0): h = 0.673317, Omega_m = 0.31573, Omega_b = 0.04937; requirement Omega_c h^2 = 0.12; line = 0.5 x requirement
+
+====================================================================================================
+sigma(M, z) from CLASS and the Press-Schechter turned-around fractions
+====================================================================================================
+  sigma(M, z):          M=   1e+05   M=   1e+06   M=   1e+08   M=   1e+10   M=   1e+12   
+    z =      0         9.1745       8.1196       5.9177       3.9199       2.2516 
+    z =    2.5         3.3246       2.9307       2.1326       1.4124      0.81128 
+    z =     10         1.0749      0.94555      0.68748      0.45531      0.26152 
+    z =    100         0.1203      0.10532     0.076433     0.050614     0.029071 
+    z =   1100       0.013352      0.01164    0.0084298    0.0055735    0.0031902 
+  [PASS] (control) S0 sigma_8 from this lane's sigma(R) = 0.8116 (CFG4_cosmology.out), |diff| <= 1e-3   (0.81186)
+  M* (sigma(M*, z=0) = 1.686) = 6.69e+12 Msun (memory said ~3e12)
+
+  F_ta(z; M > M_min), frozen thresholds {1100: 1.0624, 10: 1.0624, 2.5: 1.076, 0: 1.276}:
+   M_min       z=1100   sigma     log10 F     z=10     sigma     log10 F     z=2.5    sigma     log10 F     z=0      sigma     log10 F   
+     1e+05       0.01335   -1376.88         1.075      -0.49         3.325      -0.13         9.175      -0.05 
+     1e+08       0.00843   -3451.21        0.6875      -0.91         2.133      -0.21         5.918      -0.08 
+     1e+10      0.005573   -7892.44        0.4553      -1.71         1.412      -0.35          3.92      -0.13 
+
+  Omega_dust h^2(z) = 0.1200 F_ta(z)/F_ta(0) (generous normalisation; the ratio is log10-resolved, no underflow):
+   M_min       z=1100                z=10        z=2.5        z=0
+     1e+05   10^-1376.83 x0.1200    0.0436      0.1007      0.1200
+     1e+08   10^-3451.13 x0.1200    0.0177      0.0888      0.1200
+     1e+10   10^-7892.31 x0.1200    0.0032      0.0719      0.1200
+
+====================================================================================================
+C1 (BINDING): Omega_dust h^2 at z = 1100 against the 0.5 x requirement line
+====================================================================================================
+  most favourable M_min = 1e+05 Msun: Omega_dust h^2(1100) = 0.1200 x 10^-1376.8  (requirement 0.12, line 0.06)
+  supplied abundance: 10^-1377.7; shortfall against the line: 10^1376.5; against the total 0.1200: 10^1376.8
+  *** MUTATE=2: the pass line is evaluated at z = 0 (Omega_dust h^2(0) = 0.1200 by the normalisation) ***
+  [PASS] (result) C1 COSMIC: Omega_dust h^2 at the evaluation epoch >= 0.5 x requirement   (supplied 10^-0.9 vs line 0.06; shortfall factor 10^-0.3)
+  [PASS] (result) C1b COSMIC: the shortfall is NOT an order of magnitude or more (the binding FAIL if this fails)   (order-of-magnitude line 0.006)
+  >>> COSMIC: PASS -- Omega_dust h^2 = 10^-0.9 against the line 0.06 (total needed 0.12); the run stops here for the frozen verdict
+
+====================================================================================================
+C2 (reported): z = 10 and z = 2.5 (the cold-early requirement R05 / G2)
+====================================================================================================
+  M_min = 1e+05: Omega_dust h^2(z=10) = 0.0436 (0.363 of 0.1200; shortfall 2.8x); z = 2.5: 0.1007 (0.839)
+  M_min = 1e+08: Omega_dust h^2(z=10) = 0.0177 (0.147 of 0.1200; shortfall 6.8x); z = 2.5: 0.0888 (0.740)
+  M_min = 1e+10: Omega_dust h^2(z=10) = 0.0032 (0.026 of 0.1200; shortfall 37.9x); z = 2.5: 0.0719 (0.599)
+
+====================================================================================================
+C3 (reported): the sigma(M) that would be needed for F_ta(1100) = 0.5
+====================================================================================================
+  M_min = 1e+05: needs sigma(M, 1100) = 1.575 against CLASS 0.01335: amplification x118; equivalent z = 0 sigma = 1082 (CLASS z = 0: 9.17)
+  M_min = 1e+08: needs sigma(M, 1100) = 1.575 against CLASS 0.00843: amplification x187; equivalent z = 0 sigma = 1106 (CLASS z = 0: 5.92)
+  M_min = 1e+10: needs sigma(M, 1100) = 1.575 against CLASS 0.005573: amplification x283; equivalent z = 0 sigma = 1108 (CLASS z = 0: 3.92)
+
+====================================================================================================
+C4 (reported, with its own line): linear baryon-only sigma_b(R, z = 0) against delta_ta(0) = 1.276
+====================================================================================================
+  baryon-only run: omega_cdm = 1e-7, flat (Omega_Lambda = 0.9491); max over R in [1e-3, 100] Mpc of sigma_b(R, z = 0) = 0.07615 at R = 0.00134 Mpc
+    at the LCDM-mass radius of M = 1e+08: sigma_b = 0.07615 (LCDM sigma = 5.92)
+    at the LCDM-mass radius of M = 1e+10: sigma_b = 0.07615 (LCDM sigma = 3.92)
+    at the LCDM-mass radius of M = 1e+12: sigma_b = 0.07609 (LCDM sigma = 2.25)
+  [FAIL] (result) C4 the baryon-only linear field reaches delta_ta(0) = 1.276 on some scale at z = 0 (the trigger can fire without any cold matter)   (max sigma_b = 0.07615; shortfall 16.8x)
+
+====================================================================================================
+C5 (reported): the acoustic baryon velocity divergence against the Hubble value, |delta theta_b|/(3H), k <= 100/Mpc
+====================================================================================================
+  z = 1100: max over k <= 100/Mpc of sqrt(P_R)|theta_b|/(3 calH) = 2.355e-04 at k = 0.138/Mpc; rms = 2.319e-04  (trigger needs ~1)
+  z = 10: max over k <= 100/Mpc of sqrt(P_R)|theta_b|/(3 calH) = 1.896e-01 at k = 89.1/Mpc; rms = 3.130e-01  (trigger needs ~1)
+  [FAIL] (result) C5 the acoustic theta_b reaches the Hubble value 3H at z = 1100 (the trigger can fire in the plasma)   (max 2.35e-04)
+
+====================================================================================================
+C6 (reported): CFG4's z = 0 cold budget, restated (not a new number)
+====================================================================================================
+  CFG4_README.md (cold budget, H3): Omega_ph = 0.47-0.55 if every galaxy's phantom ran to its turnaround radius, against Omega_c = 0.265; the budget edge x <= 0.46 uses all of Omega_c at z = 0 (canonical). Restated, not a pass: it is CFG4's own budget row.
+  [PASS] (control) C6 CFG4_README.md carries the quoted budget numbers (0.47-0.55 against 0.265)
+
+MUTATE 2: control BITES (exit 1)

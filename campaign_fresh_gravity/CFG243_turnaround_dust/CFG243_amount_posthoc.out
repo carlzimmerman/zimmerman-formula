@@ -1,0 +1,93 @@
+# CFG243_amount_posthoc   repo = <repo>   mode = main
+CFG243_amount_posthoc -- GATE 3 (AMOUNT), run as a POST-HOC EXTRA: the frozen stop rule halted the lane at COSMIC, so nothing here is part of the
+frozen verdict.  Frozen text: CFG243_FROZEN_CRITERIA.md section 2, Gate 3 (AMT-1 ... AMT-6).
+
+AMT-1 dimension (sympy): the amplitude's dependence on a0 enters through Pi = a0/g_loc or a0/(c H); PASS as a DECLARED shape (P-declared).
+AMT-2 explicit construction: point mass M_dyn = M_b sqrt(1 + x^2) from the closure ODE; uniform sphere: the local closure reproduces the target to 1e-12.
+AMT-3 locality of the amount for extended baryons: local closure rho_c = (a0 / 3 g_tot) rho_b(r) against the target a0 M_b(<r)/(4 pi r^3 g_tot), x in [0.1, 30].
+      PASS iff within 10% for the point mass, uniform sphere and exponential spheres (h = 2, 3, 4, 5 kpc); with the counterexample pair.
+AMT-4 retention: spread of f_ret(M_b) = M_b / (f_b M_halo) from the committed SHMR (CFG35's h48 function); PASS iff the amplitude error sqrt(spread) - 1 <= 10%.
+AMT-5 survival (G1 proper): the shell toy of CFG243_shells.py with the source ON (closure Q = a0 / (3 g_loc), version F), compared with the target on x in [0.1, 30]
+      (25 bins of 0.1 dex).  Run set (a DEPARTURE from the frozen full coverage, declared: a FAIL needs one failing case): M_b = 1e9 and 1e12, qj = 0.1, canonical
+      footing; 1e10 at qj = 0.05, 0.1, 0.2 and the alt footing; creation_scale scan {0.25, 0.5, 1, 2} at 1e10 (labelled; a scale is a constant).
+      Point-core baryons only (the exponential-sphere core is not run).
+AMT-6 the dust's own gravity moves the turnaround of later shells: turnaround times and the zero-velocity radius at a = 1 with the source ON / OFF.
+MUTATE=3: Q depends on the enclosed baryon mass (hand-fed): AMT-3 must flip FAIL -> PASS for every profile, and the locality test must flip PASS -> FAIL.
+
+  *** POST-HOC: the frozen stop rule halted the lane at COSMIC; nothing below is part of the frozen verdict ***
+
+====================================================================================================
+AMT-1 (dimension): which dimensionless amplitudes can the local source use?
+====================================================================================================
+  variables ['G', 'c', 'a0', 'rho_b', 'thetadot', 'H', 'g_loc']; dimension matrix rank 3; 4 independent dimensionless groups (exponent vectors over ['G', 'c', 'a0', 'rho_b', 'thetadot', 'H', 'g_loc']):
+     G^1 c^2 a0^-2 rho_b^1
+     c^2 a0^-2 thetadot^1
+     c^1 a0^-1 H^1
+     a0^-1 g_loc^1
+  length = G^a M^b c^d a0^e: a = b, d = 2 - 4*b, e = b - 1 (b free).  b = 1/2 -> a = 1/2, d = 0, e = -1/2: r_M = sqrt(G M/a0); without a0 (e = 0) the length is G M/c^2 (b = 1).
+  with e = 0: [{a: 1, b: 1, d: -2}]  (b = 1 only; no M^(1/2) length without an acceleration scale: ChainCert Dimension: sqrtM_length_iff, acc_unique; premises: monomial family, G4's inventory)
+  a0/(c H0) = 0.1431; kappa sqrt(3 Omega_Lambda / 8 pi) = 0.1429 (the Lambda tie; the check that a0 is the tied acceleration scale)
+  [PASS] (control) AMT-1 control: the tie a0 = kappa c sqrt(G rho_Lambda) gives a0/(c H0) = kappa sqrt(3 Omega_Lambda/8 pi) to 2%   (0.1431 vs 0.1429)
+  [PASS] (result) AMT-1 a0 (through Pi = a0/g_loc or a0/(cH)) is the only route to an M^(1/2) scale; the amplitude is F(Pi) with F a DECLARED shape, no new constant (P-declared)   (the theorem fixes the variable, not the function)
+
+====================================================================================================
+AMT-2 (explicit construction)
+====================================================================================================
+  point mass, closure ODE vs M_dyn = M_b sqrt(1+x^2): max rel dev over x = 0.1..30: 4.09e-12; M_c/M_b = 0.005, 0.414, 2.162, 9.050, 29.017
+  [PASS] (control) AMT-2a the closure rho_c = a0 rho_bar_b(<r)/(3 g_tot) with g_tot = G M_dyn/r^2 reproduces M_dyn = M_b sqrt(1+x^2) (point mass; exact)   (4.1e-12)
+  [PASS] (control) AMT-2b uniform sphere: the LOCAL closure (rho_b, g_loc, a0) reproduces the target density to 1e-6   (4.4e-16)
+
+====================================================================================================
+AMT-3 (locality of the amount for extended baryons)
+====================================================================================================
+  point                  canonical: max |closure/target - 1| = 1  (closure/target in [0, 0]); alt: 1
+  uniform(R=300)         canonical: max |closure/target - 1| = 5.55e-16  (closure/target in [1, 1]); alt: 4.44e-16
+  powerlaw(s=1)          canonical: max |closure/target - 1| = 0.333  (closure/target in [0.667, 0.667]); alt: 0.333
+  powerlaw(s=2)          canonical: max |closure/target - 1| = 0.667  (closure/target in [0.333, 0.333]); alt: 0.667
+  exp_sphere(h=2)        canonical: max |closure/target - 1| = 1  (closure/target in [2.35e-21, 0.952]); alt: 1
+  exp_sphere(h=3)        canonical: max |closure/target - 1| = 1  (closure/target in [1.67e-13, 0.968]); alt: 1
+  exp_sphere(h=4)        canonical: max |closure/target - 1| = 1  (closure/target in [1.09e-09, 0.976]); alt: 1
+  exp_sphere(h=5)        canonical: max |closure/target - 1| = 1  (closure/target in [1.82e-07, 0.981]); alt: 1
+  counterexample pair: uniform sphere at r = 60 kpc and a rho ~ r^-2 sphere at r = 20 kpc have the same local rho_b = 2387 Msun/kpc^3 and g_loc = 2.581 = 2.581 (km/s)^2/kpc, but mean enclosed densities 2387 vs 7162: the target dust densities differ by 3.000 (3/(3 - s) = 3)
+  [FAIL] (result) AMT-3 a closure built only from local data (rho_b, g_loc, a0) reproduces the target within 10% for the point mass, uniform, power-law and exponential profiles   (14 of 16 (profile, footing) cells exceed 10%; only the uniform sphere passes)
+  [PASS] (result) AMT-3b the closure is a function of local data only (locality test: identical local data give the same closure value)   (counterexample pair: identical local data, target ratio 3.00)
+  tidal-tensor variant (CFG44 B3): rho_c g_tot = (a0/4 pi G) T_perp is an identity for spherical baryons (T_perp = G M/r^3), but it contains g_tot (the preferred-frame acceleration) and fails for a thin disc by 3-15x (CFG44, cited); it is excluded by the frozen line (no preferred-frame g_loc).
+
+====================================================================================================
+AMT-4 (retention: the target keys on the galaxy's present baryons, the trigger on the turned-around cosmic baryons)
+====================================================================================================
+  M_b = 1e+09: M_* = 3.31e+08, M_halo = 6.14e+10 (h48 SHMR), f_ret = M_b/(f_b M_halo) = 0.1036
+  M_b = 1e+10: M_* = 6.6e+09, M_halo = 2.47e+11 (h48 SHMR), f_ret = M_b/(f_b M_halo) = 0.2577
+  M_b = 1e+11: M_* = 8.62e+10, M_halo = 7.36e+12 (h48 SHMR), f_ret = M_b/(f_b M_halo) = 0.0864
+  M_b = 1e+12: M_* = 9.49e+11, M_halo = 3.16e+15 (h48 SHMR), f_ret = M_b/(f_b M_halo) = 0.0020
+  f_ret spread max/min = 128.05 over 1e9-1e12 (dominated by the 1e12 end, where the SHMR puts a 1e12 Msun baryon system in a ~3e15 halo); over 1e9-1e11: 2.98; the target amplitude goes as M_b^(1/2), so a source keyed to the turnaround baryons errs by sqrt(spread) - 1 = 10.32 (1e9-1e11: 0.73); line 0.10
+  [FAIL] (result) AMT-4 the retained-baryon spread across 1e9-1e12 gives an amplitude error <= 10% (a source that knows only turnaround data)   (spread 128.05, amplitude error 10.32)
+
+====================================================================================================
+AMT-5 (survival) and AMT-6 (the dust's gravity moves later turnarounds): the shell toy with the source ON
+====================================================================================================
+  1e9 c q0.1          : C_final/C_target at x = 0.11 / 1.1 / 28: 0.305 / 0.384 / 1.19; largest |ratio - 1| = 0.875; longest stretch within 10% = 0.1 dex; median over x in [1, 30] = 0.943; cumulative M_c/target at x = 1 / 10 / 30: 0.28 / 1.12 / 1.23; dust/M_b = 259.6 (301 dust shells, 38244 steps, 9 s)
+  1e12 c q0.1         : C_final/C_target at x = 0.11 / 1.1 / 28: 0.137 / 0.447 / 0.0128; largest |ratio - 1| = 0.987; longest stretch within 10% = 0.0 dex; median over x in [1, 30] = 0.368; cumulative M_c/target at x = 1 / 10 / 30: 0.398 / 0.531 / 0.287; dust/M_b = 12.8 (168 dust shells, 26961 steps, 4 s)
+  1e10 c q0.05        : C_final/C_target at x = 0.11 / 1.1 / 28: 0.259 / 0.65 / 0.34; largest |ratio - 1| = 0.741; longest stretch within 10% = 0.2 dex; median over x in [1, 30] = 0.955; cumulative M_c/target at x = 1 / 10 / 30: 0.599 / 1.1 / 0.77; dust/M_b = 85.3 (238 dust shells, 45502 steps, 7 s)
+  1e10 c q0.1         : C_final/C_target at x = 0.11 / 1.1 / 28: 0.2 / 0.395 / 0.449; largest |ratio - 1| = 0.884; longest stretch within 10% = 0.1 dex; median over x in [1, 30] = 0.867; cumulative M_c/target at x = 1 / 10 / 30: 0.41 / 1.1 / 0.911; dust/M_b = 82.8 (236 dust shells, 39645 steps, 6 s)
+  1e10 c q0.2         : C_final/C_target at x = 0.11 / 1.1 / 28: 0.108 / 0.203 / 0.442; largest |ratio - 1| = 0.965; longest stretch within 10% = 0.0 dex; median over x in [1, 30] = 0.442; cumulative M_c/target at x = 1 / 10 / 30: 0.153 / 0.753 / 0.785; dust/M_b = 76.5 (231 dust shells, 27308 steps, 4 s)
+  1e10 alt q0.1       : C_final/C_target at x = 0.11 / 1.1 / 28: 0.21 / 0.318 / 0.566; largest |ratio - 1| = 0.888; longest stretch within 10% = 0.3 dex; median over x in [1, 30] = 0.622; cumulative M_c/target at x = 1 / 10 / 30: 0.287 / 0.963 / 0.88; dust/M_b = 106.9 (249 dust shells, 37903 steps, 6 s)
+  1e10 c q0.1 s0.25   : C_final/C_target at x = 0.11 / 1.1 / 28: 0.0558 / 0.0774 / 0.0415; largest |ratio - 1| = 0.972; longest stretch within 10% = 0.0 dex; median over x in [1, 30] = 0.0973; cumulative M_c/target at x = 1 / 10 / 30: 0.0816 / 0.264 / 0.237; dust/M_b = 15.0 (172 dust shells, 35275 steps, 5 s)
+  1e10 c q0.1 s0.5    : C_final/C_target at x = 0.11 / 1.1 / 28: 0.109 / 0.173 / 0.108; largest |ratio - 1| = 0.931; longest stretch within 10% = 0.0 dex; median over x in [1, 30] = 0.289; cumulative M_c/target at x = 1 / 10 / 30: 0.191 / 0.605 / 0.429; dust/M_b = 33.5 (197 dust shells, 36085 steps, 6 s)
+  1e10 c q0.1 s2      : C_final/C_target at x = 0.11 / 1.1 / 28: 0.403 / 0.686 / 1.63; largest |ratio - 1| = 1.49; longest stretch within 10% = 0.0 dex; median over x in [1, 30] = 1.82; cumulative M_c/target at x = 1 / 10 / 30: 0.606 / 1.61 / 1.52; dust/M_b = 228.8 (293 dust shells, 40023 steps, 6 s)
+  [FAIL] (result) AMT-5 G1: C_final/C_target in [0.9, 1.1] over x in [0.1, 30] with the same constants and no rescaling (cases run)   (1e9 c q0.1: max dev 0.88; 1e12 c q0.1: max dev 0.99; 1e10 c q0.05: max dev 0.74; 1e10 c q0.1: max dev 0.88; 1e10 c q0.2: max dev 0.97; 1e10 alt q0.1: max dev 0.89)
+  creation_scale scan (labelled; a scale is a constant, G4): median ratio over x in [1, 30] = s0.25: 0.10, s0.5: 0.29, s2: 1.82; no scale brings the largest deviation below 0.93 (line 0.10)
+
+====================================================================================================
+AMT-6 (reported): the dust moves the later turnarounds
+====================================================================================================
+  M_b = 1e+10: shells turning around in both runs: 141; median t_ta(on)/t_ta(off) = 0.853 (p10 0.374, p90 1.000); zero-velocity radius at a = 1: 678 kpc (on) vs 243 kpc (off), outermost turned label 260 vs 140; turned-around shells 261 vs 141
+  [FAIL] (reported) AMT-6 (reported, NOT a frozen pass line) the created dust leaves later turnarounds unchanged (median shift <= 5%)   (median t_ta(on)/t_ta(off) = 0.853; zero-velocity radius 678 vs 243 kpc)
+
+====================================================================================================
+AMOUNT verdict
+====================================================================================================
+  AMT-1 PASS (P-declared); AMT-3 FAIL; AMT-4 FAIL; AMT-5 FAIL
+  >>> AMOUNT (post hoc): FAIL -- AMT-1 P-declared; AMT-3 FAIL; AMT-4 FAIL; AMT-5 FAIL (largest deviation over the cases run: 0.987)
+
+RESULT: 9 checks, 0 control failure(s): none   (58 s)

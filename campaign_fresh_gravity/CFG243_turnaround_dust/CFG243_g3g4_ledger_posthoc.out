@@ -1,0 +1,73 @@
+# CFG243_g3g4_ledger_posthoc   repo = <repo>   mode = main
+CFG243_g3g4_ledger_posthoc -- GATE 5 (G3/G4: energy and ledger), run as a POST-HOC EXTRA: the frozen stop rule halted the lane at COSMIC, so nothing here is part of
+the frozen verdict.  Frozen text: CFG243_FROZEN_CRITERIA.md section 2, Gate 5 (L1-L4).
+
+L1 reaction on the baryons: the baryon equation carries no source (CFG131 D4); the closed forms of CFG48 G4 / CFG70 apply only to a MAINTAINED exchange (reported).
+L2 literal energy line: E_supplied = M_c c^2 against the baryons' orbital kinetic energy (1/2) M_b V_f^2 (V_f^4 = G a0 M_b), both r_ta conventions (CFG48's and B's committed).
+L3 vacuum ledger: f_ta = M_c(<x r_M) / M_Lambda(<r_ta), M_Lambda = rho_Lambda (4 pi/3) r_ta^3 (rho_Lambda from the tie), x <= 30, both r_ta conventions; and CFG131 D4's
+   Lagrangian-volume ledger f_Lag = (M_c - 5.366 M_b)/(13.86 M_b).  PASS iff f <= 1 for all x <= 30 in both conventions AND the implied local a0 shift f/2 <= 1e-2.
+L4 constants: every constant that entered a verdict of this lane.
+MUTATE=6: the vacuum energy of a ball 1e3 times larger than the creation region (a non-local reservoir): L3 must flip FAIL -> PASS.
+
+  *** POST-HOC: the frozen stop rule halted the lane at COSMIC; nothing below is part of the frozen verdict ***
+  rho_Lambda from the tie a0 = kappa c sqrt(G rho_Lambda): 86.33 Msun/kpc^3 (CFG242_common: 86.33); a0 = 2888.3 (km/s)^2/kpc
+
+====================================================================================================
+controls: r_ta conventions reproduce CFG70's committed values
+====================================================================================================
+  M_b = 1e+09: r_ta(CFG48) 148.0 (CFG70 JSON 148.0); r_ta(B, nu_mono) 647.5 (CFG70 JSON 647.5)
+  M_b = 1e+10: r_ta(CFG48) 318.8 (CFG70 JSON 318.8); r_ta(B, nu_mono) 1151.8 (CFG70 JSON 1151.8)
+  M_b = 1e+11: r_ta(CFG48) 686.9; r_ta(B, nu_mono) 2049.6 (not in CFG70's table)
+  M_b = 1e+12: r_ta(CFG48) 1479.8 (CFG70 JSON 1479.8); r_ta(B, nu_mono) 3648.9 (CFG70 JSON 3648.9)
+  [PASS] (control) C1 the two r_ta conventions reproduce CFG70's committed r_ta to 0.2% (1e9, 1e10, 1e12)
+
+====================================================================================================
+L1 (reaction on the baryons)
+====================================================================================================
+  maintained exchange (CFG48 G4 / CFG70 closed form, pressure-slaved), reaction/g_law at x = 0.3, 1, 3, 10, 30: 0.0647 / 0.53 / 2.13 / 7.46 / 22.5  (CFG70: 0.065 / 0.53 / 2.1 / 7.5 / 22.5).  These apply only if the exchange is MAINTAINED; the class creates dust once.
+  [PASS] (control) L1-ctrl the closed form reproduces CFG70's reaction table (0.065, 0.53, 2.1, 7.5, 22.5 to 3%)
+  creation-event reaction: the dust is created at the baryon velocity and the baryon equation has no source term (CFG131 D4: non-gravitational reaction = 0); the momentum budget of the creation is the G0-e integrability row (it fails there), not a reaction on the baryons.
+  [PASS] (result) L1 the reaction on the baryons from the creation event <= 0.10 g_law at x = 0.3, 1, 3, 10, 30 (0 by construction: no source in the baryon equation)   (PASS trivially (CFG131 D4); the momentum accounting is G0-e)
+
+====================================================================================================
+L2 (literal energy line): M_c c^2 against the baryons' orbital kinetic energy
+====================================================================================================
+  M_b = 1e+09 (V_f = 59 km/s): M_c c^2/E_orb at x = 1 / 3 / 10 / 30: 2.11e+07 / 1.10e+08 / 4.62e+08 / 1.48e+09; at r_e: r_e(CFG48) 2.42e+09, r_e(B) 1.08e+10
+  M_b = 1e+10 (V_f = 106 km/s): M_c c^2/E_orb at x = 1 / 3 / 10 / 30: 6.68e+06 / 3.49e+07 / 1.46e+08 / 4.68e+08; at r_e: r_e(CFG48) 5.17e+08, r_e(B) 1.91e+09
+  M_b = 1e+11 (V_f = 188 km/s): M_c c^2/E_orb at x = 1 / 3 / 10 / 30: 2.11e+06 / 1.10e+07 / 4.62e+07 / 1.48e+08; at r_e: r_e(CFG48) 1.10e+08, r_e(B) 3.38e+08
+  M_b = 1e+12 (V_f = 334 km/s): M_c c^2/E_orb at x = 1 / 3 / 10 / 30: 6.68e+05 / 3.49e+06 / 1.46e+07 / 4.68e+07; at r_e: r_e(CFG48) 2.32e+07, r_e(B) 5.94e+07
+  [FAIL] (result) L2 the energy the vacuum must supply (rest mass) <= the baryons' orbital kinetic energy, both r_ta conventions   (smallest ratio over the table 6.68e+05; CFG131 D4 quotes ~1e6-1e8 (net of the cosmic share, beyond x = 6.29))
+
+====================================================================================================
+L3 (vacuum ledger)
+====================================================================================================
+  M_b = 1e+09, r_ta(CFG48) =   148.0 kpc: M_Lambda(<r_ta)/M_b =     1.17; f at x = 30 (M_c = 29.0 M_b) =  24.763; f for the dust out to r_ta:  102.64; out to r_e:  40.55
+  M_b = 1e+09, r_ta(B) =   647.5 kpc: M_Lambda(<r_ta)/M_b =    98.15; f at x = 30 (M_c = 29.0 M_b) =   0.296; f for the dust out to r_ta:    5.40; out to r_e:   2.15
+  M_b = 1e+10, r_ta(CFG48) =   318.8 kpc: M_Lambda(<r_ta)/M_b =     1.17; f at x = 30 (M_c = 29.0 M_b) =  24.763; f for the dust out to r_ta:   69.66; out to r_e:  27.36
+  M_b = 1e+10, r_ta(B) =  1151.8 kpc: M_Lambda(<r_ta)/M_b =    55.25; f at x = 30 (M_c = 29.0 M_b) =   0.525; f for the dust out to r_ta:    5.38; out to r_e:   2.14
+  M_b = 1e+11, r_ta(CFG48) =   686.9 kpc: M_Lambda(<r_ta)/M_b =     1.17; f at x = 30 (M_c = 29.0 M_b) =  24.763; f for the dust out to r_ta:   47.19; out to r_e:  18.38
+  M_b = 1e+11, r_ta(B) =  2049.6 kpc: M_Lambda(<r_ta)/M_b =    31.13; f at x = 30 (M_c = 29.0 M_b) =   0.932; f for the dust out to r_ta:    5.36; out to r_e:   2.13
+  M_b = 1e+12, r_ta(CFG48) =  1479.8 kpc: M_Lambda(<r_ta)/M_b =     1.17; f at x = 30 (M_c = 29.0 M_b) =  24.763; f for the dust out to r_ta:   31.88; out to r_e:  12.26
+  M_b = 1e+12, r_ta(B) =  3648.9 kpc: M_Lambda(<r_ta)/M_b =    17.57; f at x = 30 (M_c = 29.0 M_b) =   1.652; f for the dust out to r_ta:    5.33; out to r_e:   2.10
+  CFG131 D4 Lagrangian-volume ledger: f_Lag(x = 30) = 1.706 (net of the cosmic share 5.366 M_b against Omega_Lambda/Omega_b = 13.86), crossing 1 at x* = 20.2; gross f(30) = 2.094
+  worst f over the masses, both conventions and the Lagrangian ledger: 24.763; implied local a0 shift f/2 = 12.381 (line 1e-2: needs f <= 0.02)
+  [FAIL] (result) L3 f <= 1 for every x <= 30 in both r_ta conventions and in CFG131's Lagrangian ledger   (CFG48-convention max f(30) = 24.76; B-convention max 1.65; Lagrangian 1.71)
+  [FAIL] (result) L3b the implied local a0 shift f/2 <= 1e-2 (f <= 0.02)   (worst f 24.763, shift 12.381)
+  CFG242 route A's ledger (heat: at most 1.9e-4 of the ball's vacuum energy, a0 shift <= 9.5e-5) is for the dust's KINETIC energy; this ledger is for its REST MASS, which the record (CFG131 D4, CFG253 (C)) says is a different and larger number.
+
+====================================================================================================
+L4 (constants that entered a verdict of this lane)
+====================================================================================================
+   - N, the generous normalisation of COSMIC (dust per turned-around mass tuned so that Omega_dust(z=0) = Omega_c): enters the COSMIC verdict (in the class's favour: removing it lowers the abundance further)
+   - F(u), the form of the amplitude Q = a0/(3 g_loc): a declared function shape (allowed), P-declared in AMT-1
+   - qj, the pericentre bracket r_peri/r_ta (0.05, 0.1, 0.2): a declared bracket (as CFG118), not fitted; the AMT-5 verdict is FAIL at all three
+   - creation_scale s (0.25-2) in the AMT-5 scan: a labelled scan only; it enters no verdict; no s passes
+   - hysteresis p in the crossing count (0.01, 0.05, 0.2): a numerical regulator; the G0-b median is 19-24 at all three
+  [FAIL] (result) L4 no constant beyond kappa and Omega_c h^2 enters a verdict (the strict reading: N enters COSMIC)   (N (the generous normalisation) enters the COSMIC verdict)
+
+====================================================================================================
+G3/G4 verdict
+====================================================================================================
+  >>> G3/G4 (post hoc): FAIL -- L1 PASS (0, trivially); L2 FAIL (>= 6.7e+05 x the orbital energy); L3 FAIL (f up to 24.76; a0 shift 12.38 against 1e-2); L4 FAIL (strict: N)
+
+RESULT: 7 checks, 0 control failure(s): none   (3 s)
