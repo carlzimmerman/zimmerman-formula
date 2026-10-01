@@ -69,3 +69,27 @@ verbatim re-run of the E2F1 S1 numeric pipeline, GL(90,70,70) + GL(140,110,110)
 rule-doubling gate 1e-11, vs N(tot,50) at <= 1e-12) + G-X3b (numeric values parsed
 from the G3 lines of E2F1_results.json's own log — loaded-not-transcribed, 12-digit
 precision on disk — vs tot at <= 2e-12, the parse-precision floor).
+
+## AMENDMENT 3 (pre-run-5, after the run-4 KILL at channel b + LR10X_diag)
+The run-4 kill is HONEST and stands. LR10X_diag localized it: all 11 channel-b
+term integrals are pure rational (per-term mpmath quad rel <= 3.9e-30); tot_b =
+701/1050 EXACTLY (cache-free == cached; no collision); E2F1's form_b is a lattice
+misfire 3.566e-13 high, inside nsimplify tolerance 1e-11. Structure: Fa/Fb carry
+only single logs, log(1+r) only at ODD r-powers (ln2 coefficient vanishes by
+parity), log(1-r) integrals rational at all p => a, b, c all exactly rational.
+The door RE-REGISTERS as: (1) confirm/kill E2F1's a-form (run-4: CONFIRMED-EXACT,
+syntactic zero, G-X2 5.4e-56); (2) test E2F1's c-form exactly; (3) wherever
+tot_channel is a pure rational R, E2F1's atom-bearing form is KILLED and replaced
+by R. NEW GATES (values frozen here, BEFORE run-5):
+- G-T1 (per channel, per term): every term integral vs independent mpmath quad
+  (dps 40, subdivided [0,.5,.9,.99,.9999,1]) rel <= 1e-25.
+- G-T2 (per channel): sum of per-term quad values vs the exact tot, rel <= 1e-30.
+- G-T3 (per channel): tot free_symbols == {r} only; each term carries at most ONE
+  log factor; every log(1+r) term sits at an ODD r-power (parity audit, syntactic).
+- G-T4 (per channel): fresh numeric pipeline (S1 re-run, rule-doubling <= 1e-11)
+  vs exact tot rel <= 1e-13; parsed-log G3 values vs tot rel <= 2e-12.
+- G-T5 (per channel): EXACT test tot == form (syntactic zero). Match => E2F1 form
+  CONFIRMED-EXACT. Mismatch => E2F1 form KILLED, replaced by the exact tot value
+  (must be a pure rational; if not pure rational, record honestly and stop).
+- Verdicts: statuses CONFIRMED-EXACT / KILLED-REFORMED only; the E2F1 register row
+  is corrected by APPENDED rows (append-only), never rewritten.

@@ -13,3 +13,15 @@ values parsed from E2F1_results.json's own log (loaded-not-transcribed, 12-digit
 precision on disk). Gate VALUES unchanged; no math touched.
 LR10X run-2 fire (preserved verbatim): AssertionError 'G3 numeric values not found in E2F1 log' -- regex was line-anchored but E2F1 log lines carry a '[  5.8s] ' timestamp prefix; fix: re.search without anchor (tooling, no math change). Numeric values confirmed present on disk: a 0.616666666667, b 0.667619047619, c 0.189986394558.
 LR10X run-3 fire (preserved verbatim): ValueError in form_mp (leftover dead line 'c_, atoms = sp.Mul.make_args(term) if term != 1 else ...' -- expected 2 values, got 1). Fix: dead line removed (tooling, no math change). Chain state at fire: 12 moments + 4 Js closed, tot_a (8 terms), tot_b (11), tot_c (11) built, S1-fresh rule-doubling dev 1.26e-14 PASS.
+LR10X run-4 (2026-10-01, Z17) -- KILL fired at channel b, PRESERVED VERBATIM:
+  channel a: BANKED-EXACT (syntactic zero) | G-X2 rel 5.41e-56 | G-X3a rel 1.23e-14 | G-X3b rel 5.41e-13
+  channel b: G-X1 branch (i): syntactic residual NOT 0 after cancel/expand/simplify
+  VERDICT: KILL: channel b: tot - form nonzero (syntactic residual -251*zeta(3)/151 - 121999/158550 + 8*pi**2/151 + 489*log(2)/151; equals(0)=False; N(d,30)=-3.566218770951454e-13) (exit 1)
+
+LR10X_diag (same tick, diagnostic follow-up to localize the kill):
+  - ALL 11 channel-b term integrals verified vs independent mpmath quad (dps 40, subdivided): rel <= 3.9e-30 -- every integral PURE RATIONAL (see LR10X_diag.json).
+  - tot_b (no cache) == E2F1-style cached tot_b == 701/1050 EXACTLY (no srepr collision; N(tot_b,30) = 0.667619047619047619047619047619).
+  - E2F1 form_b (zeta(3)-form) = 0.667619047619404... -- off by +3.566e-13 from the exact tot, INSIDE nsimplify tolerance 1e-11: lattice-recognition artifact.
+  - Structural reading: Fa/Fb contain ONLY single logs; every log(1+r) term sits at an ODD r-power (ln2 coefficient [1-(-1)^(p+1)]/(p+1) vanishes at odd p); log(1-r) integrals are pure rational for all p => a, b, c are ALL exactly rational; E2F1's c-form atoms (pi^2, zeta(3), ln2) are suspected artifacts of the same misfire.
+  - E2F1's own caution (register Z16 row: 'b sits 3.6e-13 from the rational 701/1050 -- rational-only nsimplify would have MISFIRED; the derived form is authoritative') is INVERTED by the evidence: the rational is exact; the derived form is the misfire.
+
