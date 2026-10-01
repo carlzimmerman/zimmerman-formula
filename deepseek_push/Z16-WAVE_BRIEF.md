@@ -94,3 +94,24 @@ OPEN (honest scope) — NOT claimed as exact.
 ## House rules 1-10 acknowledged (LOOP_CONDUCTOR.md). Append-only; honest FAILs;
 kill conditions above frozen; no lane collisions (E2F1_* fresh prefix); conductor
 commits; no commit of raw data or astra_spawn_ideas/tmp files.
+
+## AMENDMENT 1 (2026-10-01, before run-4; runs 1-3 preserved verbatim in E2F1_stdout_0.txt)
+
+Implementation note + one reduction fix, both registered BEFORE the adjudicating run:
+
+1. Exponential coordinates (implementation of the SAME reduction): r = tanh(uu),
+   c = sech(uu), t = rx = c sinh(v), mu = (c/r) sinh(w), v,w in [-uu,uu]
+   (asinh(r/c) = uu identically) giving W2 = c e^{-v}, Wb = c e^{w}, A = c cosh w —
+   every nested integrand an exponential polynomial => entire => spectral quadrature
+   (rule-doubling 6e-15 on runs 2-3) and a mechanical symbolic closure.
+
+2. REDUCTION FIX (caught against the on-disk estimator, house rule 3): in the q^0/q^1
+   assembly I had written M2 = Ibar[W2^2]; the estimator's c0f is W2^2/2, so the
+   W2^2-moment enters HALVED: Fa = (1/2)(m1 J20 + (m1q/2) J21) + (1/2)(m2 J10 + (m2q/2) J11),
+   and b's r^2-M2 piece inherits the halving through Fa. Fb (m3 = Ibar[A2],
+   m4 = Ibar[c0qf]) unchanged. Evidence: run-3 (Jacobian missing, then halving missing)
+   gave a = 0.925000, b = 0.830952, c = 0.189986 — c already at z = -0.7 of the stored
+   0.190069+-0.000119 while a/b were off exactly by the un-halved c00f pieces; with the
+   halving the predicted a = 0.925 - 0.3083 = 0.6167. The brief's original "a = ... + Wb M2"
+   formula was WRONG on this factor; corrected here before any passing run. No gate or
+   threshold touched. Lattice conjecture unchanged (halving affects no log structure).
