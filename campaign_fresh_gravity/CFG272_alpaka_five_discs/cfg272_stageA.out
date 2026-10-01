@@ -1,0 +1,68 @@
+CFG272 -- implied-a0 bounds (or no-root floors) for the five ALPAKA I discs without a gas mass or an a0: IDs 13, 23, 24, 25, 28 (z 2.10-3.63).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG272_alpaka_five_discs/FROZEN_CRITERIA.md (e06a91b8a).
+  baryons   LOWER LIMITS: B0 = stars only (headline), B1 = stars + a gas floor (alpha_CO,min = 0.8, r_J1 = 1; alpha_[CI],min = 1.0 for ID 13), B2 = conventional gas (sensitivity).
+  g_obs     V_ext^2 / R_ext (a rotation speed, pressure term is a knob); inclination as adopted by the paper, in the Monte Carlo.
+  STAGE=A   the blind pre-flight: no velocity column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V x 2); STAGE=B SELFTEST=1 (fabricated V on the law at s = 2).
+
+STAGE A
+sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038; velocity columns loaded: False
+rows: 13 COSMOS 3182 z 2.103 line [CI](2-1) R_ext 3.18 kpc R_e 2.65 (R_ext/1.2) M* 1.20e+11 i 37 (i_HST); 23 ADF22.1 z 3.089 line CO(3-2) R_ext 6.34 kpc R_e 5.28 (R_ext/1.2) M* 5.30e+11 i 70 (i_ALMA); 24 ADF22.5 z 3.094 line CO(3-2) R_ext 3.55 kpc R_e 2.96 (R_ext/1.2) M* nan i 75 (i_ALMA); 25 ADF22.7 z 3.088 line CO(3-2) R_ext 3.94 kpc R_e 3.28 (R_ext/1.2) M* 1.10e+11 i 74 (i_ALMA); 28 W0410-0913 z 3.630 line CO(6-5) R_ext 4.36 kpc R_e 1.86 (dashed) M* 1.30e+11 i 53 (i_HST)
+
+STAGE A  THE BLIND PRE-FLIGHT (no velocity column is loaded; no g_obs, D, delta or s* is formed)
+  [PASS] C1 CONTROL: the five rows exist with finite z, R_ext, R_e, inclination, L' and (except ID 24) M*, and the CSV hashes are printed above
+         z [2.103, 3.089, 3.094, 3.088, 3.63]; M* finite for [13, 23, 25, 28]
+  [PASS] C2 CONTROL: Freeman's peak V^2 = 0.3872 G M / R_d to 0.003, g -> G M / r^2 far from a compact mass to 1e-3, and gdisc equals CFG229's on 200 random inputs to 1e-12
+         peak 0.3870; far-field ratio 1.00064; max deviation from CFG229's gdisc 0.0e+00
+  [PASS] C3 CONTROL: the stars-only g_bar of 13, 23, 25, 28 formatted %.4e equals CFG227's printed S3 g_bar string and the relative deviation is at most 5.1e-5 (only g_bar is read from that file)
+         rows found in CFG227 S3: [13, 23, 25, 28] (missing []); exact match True; max relative deviation 4.3e-05
+  [PASS] C4 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C5 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every stars-only baryon side
+         max |d log10 s| 2.3e-15
+
+A1 / A2  BARYON SIDE AND THE CFG240 READING (noiseless world; lever = d log10 s* / d(baryon dex); ILL-CONDITIONED iff |lever| >= 10 or not computable; CFG240 T3: nu -> 1 at large y removes the a0 dependence; break-even needs y >~ 8 with deep points)
+    13 COSMOS 3182: B0 g_bar 1.284e-09  y 13.7  nu(y) 1.0500  lever +nan (flag)  ILL-CONDITIONED   B1 y 14.7  B2 y 23.7   one radius per disc: no point below y_min = 0.1 (CFG240: never reaches 0.1 dex)
+    23 ADF22.1: B0 g_bar 1.428e-09  y 15.3  nu(y) 1.0451  lever +nan (flag)  ILL-CONDITIONED   B1 y 16.4  B2 y 21.4   one radius per disc: no point below y_min = 0.1 (CFG240: never reaches 0.1 dex)
+    25 ADF22.7: B0 g_bar 7.680e-10  y 8.2  nu(y) 1.0820  lever -20.1  ILL-CONDITIONED   B1 y 9.9  B2 y 9.9   one radius per disc: no point below y_min = 0.1 (CFG240: never reaches 0.1 dex)
+    28 W0410-0913: B0 g_bar 1.129e-09  y 12.1  nu(y) 1.0566  lever +nan (flag)  ILL-CONDITIONED   B1 y 18.1  B2 y 18.1   one radius per disc: no point below y_min = 0.1 (CFG240: never reaches 0.1 dex)
+    24 ADF22.5: no M*; gas floor only: B1 y 2.20, B2 y 12.00 (a baryon lower limit made of the gas alone: uninformative; no point)
+
+C6  COVERAGE (noiseless world on the B0 baryons; declared 10 % V error, the published inclination error truncated to [5, 85] deg, the published M* error; 300 mock datasets, B = 1,000)
+    13: coverage 68 % 0.05, 95 % 0.79 (rooted mocks 292 of 300); median 68 % half-width 0.67 dex
+    23: coverage 68 % 0.02, 95 % 0.78 (rooted mocks 291 of 300); median 68 % half-width 0.46 dex
+    25: coverage 68 % 0.28, 95 % 0.94 (rooted mocks 295 of 300); median 68 % half-width 0.44 dex
+    28: coverage 68 % 0.10, 95 % 0.79 (rooted mocks 296 of 300); median 68 % half-width 0.47 dex
+  [PASS] C6 (reported; load-bearing only for conditioned rows): the Monte Carlo interval covers the truth in >= 60 % (68 %) and >= 88 % (95 %) of the mocks for every conditioned row
+         13 0.05/0.79; 23 0.02/0.78; 25 0.28/0.94; 28 0.10/0.79  (no conditioned row: not applicable)
+
+A3  KNOB EFFECTS ON g_bar (dex relative to B0; baryon side only)
+    13: stars 2R_e -0.441; R_e x1.5 -0.233; R_e /1.5 +0.143; spherical -0.114; JWST R_e 3.34 -0.123
+    23: stars 2R_e -0.441; R_e x1.5 -0.233; R_e /1.5 +0.143; spherical -0.114
+    25: stars 2R_e -0.441; R_e x1.5 -0.233; R_e /1.5 +0.143; spherical -0.114
+    28: stars 2R_e -0.195; R_e x1.5 -0.079; R_e /1.5 -0.006; spherical -0.118
+
+A4  GAS FLOOR AS A FRACTION OF THE STARS (g_bar ratios B1/B0 and B2/B0 at R_ext, and the mass ratio)
+    13: M_gas,B1/M* 0.075, M_gas,B2/M* 0.728; g_bar B1/B0 1.075, B2/B0 1.727
+    23: M_gas,B1/M* 0.074, M_gas,B2/M* 0.403; g_bar B1/B0 1.074, B2/B0 1.403
+    25: M_gas,B1/M* 0.204, M_gas,B2/M* 0.204; g_bar B1/B0 1.204, B2/B0 1.204
+    28: M_gas,B1/M* 0.502, M_gas,B2/M* 0.502; g_bar B1/B0 1.502, B2/B0 1.502
+
+A5  INCLINATION (no velocity): the g_obs factor between the adopted and the other inclination, sin^2(i_adopted)/sin^2(i_other) (dex)
+    13: i 37 (i_HST) vs 24: factor 2.19 = +0.340 dex
+    23: i 70 (i_ALMA), no second value (error 3.0 deg)
+    24: i 75 (i_ALMA), no second value (error 6.0 deg)
+    25: i 74 (i_ALMA), no second value (error 4.5 deg)
+    28: i 53 (i_HST) vs 52: factor 1.03 = +0.012 dex
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C5)
+  PF-D2 ILL-CONDITIONED rows (4 of 4 with an M*): 13, 23, 25, 28; ID 24: no M*, no point
+  PF-D3 DRAWABLE as an a0 point: none; every row is in any case a LIMIT (baryons are a lower limit), never a measurement
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9) scored (HE3-HE7 are scored at stage B):
+    HE1: hit
+    HE2: hit
+
+6/6 checks pass; load-bearing failures: 0   (12 s)
