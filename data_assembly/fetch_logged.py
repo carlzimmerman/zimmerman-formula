@@ -57,7 +57,7 @@ def main():
     os.replace(tmp, dest)
     nbytes = os.path.getsize(dest); digest = sha256(dest)
     code, _, final = r.stdout.partition(" ")
-    rec = dict(label=label, url=url, final_url=final, dest=dest.replace(os.path.dirname(HERE) + "/", "<repo-parent>/"), bytes=nbytes, sha256=digest, http=code, content_type=hdr.get("content-type"), advertised=adv, cap=cap,
+    rec = dict(label=label, url=url, final_url=final, dest=dest.replace(os.path.dirname(os.path.dirname(HERE)) + "/", "<repo-parent>/"), bytes=nbytes, sha256=digest, http=code, content_type=hdr.get("content-type"), advertised=adv, cap=cap,
                utc=datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
     with open(MAN, "a") as f:
         f.write(json.dumps(rec) + "\n")

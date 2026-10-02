@@ -59,7 +59,7 @@ from scipy import ndimage as ndi
 from scipy.optimize import linprog
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_IMAGE = '/Users/carlzimmerman/new_physics/_external_data/arxiv_src/2302.00030/Rotcur.jpg'
+DEFAULT_IMAGE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(HERE))), '_external_data', 'arxiv_src', '2302.00030', 'Rotcur.jpg')   # repo parent / _external_data / ...
 CSV_NAME = 'lelli2023_rotcur_digitised.csv'
 OVERLAY_NAME = 'qa_overlay.png'
 
