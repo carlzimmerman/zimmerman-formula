@@ -1,0 +1,56 @@
+CFG284 -- ADF22.5 (ALPAKA 24, z = 3.094) with its literature stellar mass (Huang+2025, ADF22+ Table 3, source A7): CFG272's three baryon routes.
+  B0 = stars only (the headline; a LOWER limit), B1 = stars + the CO gas floor (alpha_CO,min = 0.8, r_J1 = 1; a lower limit), B2 = stars + Galactic gas (alpha_CO = 4.36; sensitivity).
+  Stars and gas are Freeman discs of the measured JWST F444W R_e = 2.24 kpc (CFG272's convention: the optical R_e where a measurement exists).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG284_adf22_5_with_stars/FROZEN_CRITERIA.md (b1ca92033) with the look-up record data_assembly/adf22_5_literature_2026-10-02/.
+  STAGE=A   the engineering pre-flight with real hand predictions: no velocity column is loaded.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_ext, sigma_ext x 2); STAGE=B SELFTEST=1 (fabricated V_ext on the law at s = 2; the real velocities are never loaded).
+Points file: no_root = 1 only for a FLOOR; a CEILING (D > 1 but s* > 1000) is written s_star = 1000, no_root = 0, status = ceiling (CFG277's convention); `resolution` = RESOLVED-ROOT / RESOLVED-FLOOR / UNRESOLVED (the Monte Carlo no-root fraction <= 0.16 / >= 0.84 / between).
+
+STAGE A
+sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038, adf22_5_literature_values.csv 3e6596df5bbdb484; velocity columns loaded: False
+row: ID 24 ADF22.5 z 3.094  L' 3.000e+10 +- 4.00e+09  R_ext 3.551 kpc (7.757 kpc/arcsec)  i_ALMA 75 +- 6  | M* 4.400e+10 (+2.60e+10 -2.50e+10; log 10.64345 +0.20165 -0.36470)  F444W R_e 2.24 +- 0.25 kpc n 3.21 b/a 0.54 (thin-disc i 57.3 deg)  870um R_e 1.53 kpc b/a 0.58 (i 54.5 deg)  laws at z: FLAT 1.000, PROXY 2.721, H(z) 4.722
+baryon side: B0: g_bar 4.8577e-10 y 5.190 nu(y) 1.1275; B1: g_bar 7.5074e-10 y 8.020 nu(y) 1.0838; B2: g_bar 1.9298e-09 y 20.617 nu(y) 1.0338; g_* 4.8577e-10 (M* 4.40e+10); gas force per unit alpha_CO 3.3121e-10
+
+STAGE A  THE ENGINEERING PRE-FLIGHT (no velocity column is loaded; no g_obs, D, delta or s* is formed)
+  [PASS] C1 CONTROL: the ID 24 row and the literature record load (M*, its asymmetric errors and the log widths agree with the record's own log row to 1e-4, F444W and 870 um sizes and axis ratios finite) and the ALPAKA coordinates equal the record's A7 position within 1 arcsec
+         M* 4.400e+10 +2.60e+10 -2.50e+10 (log 10.64345 +0.20165 -0.36470; record log row consistent True); R_e 2.24 / 1.53; b/a 0.54 / 0.58; separation 0.04 arcsec; z 3.094
+  [PASS] C2 CONTROL: Freeman's peak V^2 = 0.3872 G M / R_d to 0.003, g -> G M / r^2 far from a compact mass to 1e-3, gdisc equals CFG229's on 200 random inputs to 1e-12, and the Hankel thin Sersic disc equals Freeman's exact exponential disc (n = 1) and the exact Gaussian (n = 0.5) closed form to 2e-3
+         peak 0.3870; far-field ratio 1.00064; max deviation from CFG229's gdisc 0.0e+00; Hankel vs Freeman 9.4e-04; vs Gaussian 1.1e-04
+  [PASS] C3 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C4 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on the B1 baryons
+         max |d log10 s| 8.3e-16
+  [PASS] C5 CONTINUITY: with M* = 0 and the gas at R_ext/1.2 the B1 and B2 g_bar equal CFG283's committed values to 1e-9 relative (only the baryon values are read)
+         relative deviation 0.0e+00 (B1 2.061820e-10 vs 2.061820e-10; B2 1.123692e-09 vs 1.123692e-09)
+  [PASS] C6 CONTROL: the tabulated L' equals the line-flux formula L' = 3.25e7 S dv nu_obs^-2 D_L^2 (1+z)^-3 (flat LCDM 67.4 / 0.315) to 5 %
+         S dv = 0.63 +- 0.09 Jy km/s; D_L 27004.5 Mpc; formula 3.050e+10 vs table 3.000e+10 (+0.017)
+
+A1  BARYON SIDE AND THE CFG240 READING (noiseless world; lever = d log10 s* / d(baryon dex); ILL-CONDITIONED iff |lever| >= 10 or not computable)
+    B0 (alpha_CO 0.0): g_bar 4.858e-10  y 5.190  nu(y) 1.1275  lever -9.36  conditioned   one radius (R_ext): no deep point
+    B1 (alpha_CO 0.8): g_bar 7.507e-10  y 8.020  nu(y) 1.0838  lever -18.93  ILL-CONDITIONED   one radius (R_ext): no deep point
+    B2 (alpha_CO 4.36): g_bar 1.930e-09  y 20.617  nu(y) 1.0338  lever +nan (flag: a +-0.03 dex baryon move removes the noiseless root)  ILL-CONDITIONED   one radius (R_ext): no deep point
+
+A2  KNOB EFFECTS ON g_bar (dex relative to the nominal; baryon side only; B0 / B1 / B2)
+    R_e x1.5 (stars and gas): -0.173 / -0.173 / -0.173
+    R_e /1.5 (stars and gas): +0.076 / +0.076 / +0.076
+    stars R_e +1 sigma: -0.036 / -0.023 / -0.009
+    stars R_e -1 sigma: +0.032 / +0.021 / +0.008
+    spherical (enclosed mass as a point mass): -0.128 / -0.128 / -0.128
+    gas at R_ext/1.2 (CFG283's R_e): +0.000 / -0.035 / -0.079
+    gas at the 870 um dust R_e: +0.000 / +0.027 / +0.056
+    stars as the Sersic n = 3.21 thin disc (Hankel): -0.129 / -0.079 / -0.029
+    M* x 10^-0.30: -0.300 / -0.169 / -0.058
+    M* x 10^+0.30: +0.300 / +0.216 / +0.097
+    gas: r_31 = 0.6 (gas x 1/0.6): +0.000 / +0.092 / +0.176
+    gas: helium x 1.36: +0.000 / +0.052 / +0.104
+
+A3  g_*/g_bar by route: B0 1.000, B1 0.647, B2 0.252; M*/M_gas: B1 1.83, B2 0.34; beam 0.24 x 0.20 arcsec = 1.86 x 1.55 kpc against R_ext 3.55 kpc; the thin-disc inclinations 57.3 / 54.5 deg against the kinematic 75 +- 6: g_obs factors 1.317 / 1.406 (no velocity)
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR, GEOMETRY AND BARYON SIDE VALIDATED: True (controls C1-C6)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9; HE2-HE9 are scored at stage B):
+    HE1: y(B0) in [5.0, 5.4], y(B1) in [7.8, 8.3], y(B2) in [20, 21.5]; lever B0 in [-8.5, -5.5] (conditioned), |lever| B1 in [8.5, 13], B2 not computable (ILL): MISS (kept as it falls)  (y 5.190 / 8.020 / 20.617; lever -9.36 / -18.93 / nan)
+
+6/6 checks pass; load-bearing failures: 0   (4 s)
