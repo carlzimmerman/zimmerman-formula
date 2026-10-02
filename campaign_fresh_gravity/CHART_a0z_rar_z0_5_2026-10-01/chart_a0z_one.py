@@ -47,6 +47,7 @@ k3d = [float(r["Z"]) for r in csv.DictReader(open(os.path.join(DA, "kmos3d_cubes
 A272 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG272_alpaka_five_discs", "cfg272_points_stageB.csv"))) if "pooled" not in r["object"] and r["s_star"] != "nan"]   # CFG272 d993f02dc
 A270 = list(csv.DictReader(open(os.path.join(CFG, "CFG270_kmos3d_cube_fits", "cfg270_points_stageB.csv"))))   # CFG270 b2e86a913
 A271 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG271_hz9_three_rings", "cfg271_points_stageB.csv")))}   # CFG271 a18b17d72
+A277 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG277_roman_oliveira_four_discs", "cfg277_points_stageB.csv")))}   # CFG277 0f6c4cd58
 A273 = list(csv.DictReader(open(os.path.join(CFG, "CFG273_danhaive_gold41", "cfg273_points_stageB_relabelled.csv"))))   # CFG273 208944196 (relabelled: two ceiling rows)
 A274 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG274_amvrosiadis_eight_discs", "cfg274_points_stageB.csv"))) if "pooled" not in r["object"]]   # CFG274 255f07244
 TODO = [  # (label, zmin, zmax, short note)       sources: CFG227 'Listed, no point' + CFG237 + CFG258 + L328
@@ -56,7 +57,6 @@ TODO = [  # (label, zmin, zmax, short note)       sources: CFG227 'Listed, no po
     ("Lelli+23 (1)", 2.24, 2.24, "mean speed only"),
     ("PKS 0529-549 (1)", 2.57, 2.57, "no radius / stellar mass"),
     ("GN20 (1)", 4.05, 4.05, "no radius / stellar mass"),
-    (f"Roman-Oliveira+23 ({len(ro)})", min(z for _, z in ro), max(z for _, z in ro), "no stellar mass"),
 ]
 
 P("chart_a0z_one: plot only")
@@ -66,6 +66,7 @@ check("Danhaive gold: 41 discs at z 3.80-5.82", len(dan) == 41 and abs(min(dan) 
 check("Roman-Oliveira with kinematics: 4", len(ro) == 4, f"({len(ro)}: {[i for i, _ in ro]})")
 check("CFG270 KMOS3D: pooled PT1 (72 fits) <= 2.44 at z 2.228; 16 T1 fits at the floor (b2e86a913)", any(r["object"] == "KMOS3D pooled PT1" and abs(float(r["s_star"]) - 2.4413) < 1e-3 for r in A270) and sum(r["tier"] == "T1" and r["no_root"] == "1" for r in A270) == 16, f"({sum(r['tier'] == 'T1' and r['no_root'] == '1' for r in A270)} T1 floor)")
 check("CFG271 HZ9: outer-ring stars-only upper bounds 14.85 (corpus M*) and 48.9 (Parlanti M*) (a18b17d72)", abs(float(A271["HZ9 [M103]"]["s_star"]) - 14.847) < 1e-2 and abs(float(A271["HZ9 [M986]"]["s_star"]) - 48.906) < 1e-2)
+check("CFG277 Roman-Oliveira: J081740 [gas] and BRI1335-0417 [gas] no root; SGP pair vacuous (51, 28) (0f6c4cd58)", A277["J081740 [gas]"]["no_root"] == "1" and A277["BRI1335-0417 [gas]"]["no_root"] == "1" and round(float(A277["SGP38326-1 [gas]"]["s_star"])) == 51)
 check("CFG273 Danhaive: 7 no root (relabelled file), pooled PALL <= 29.4 at z 4.17 (208944196)", sum(r["no_root"] == "1" for r in A273) == 7 and any("PALL" in r["object"] and abs(float(r["s_star"]) - 29.45) < 0.01 for r in A273), f"({sum(r['no_root'] == '1' for r in A273)} no root)")
 check("CFG272 ALPAKA: 13 and 23 no root; 25 <= 3.30 and 28 <= 0.74 upper bounds; 24 no M* (d993f02dc)", sorted(r["object"].split()[1] for r in A272 if r["no_root"] == "1") == ["13", "23"] and sorted(round(float(r["s_star"]), 2) for r in A272 if r["no_root"] == "0") == [0.74, 3.3], f"({len(A272)} rows)")
 check("CFG274 Amvrosiadis: 7 of 8 no root, ALESS 075.1 s* 6.89 (255f07244)", sum(r["no_root"] == "1" for r in A274) == 7 and any(r["no_root"] == "0" and abs(float(r["s_star"]) - 6.887) < 0.01 for r in A274), f"({sum(r['no_root'] == '1' for r in A274)} no root)")
@@ -178,7 +179,11 @@ hz = A271["HZ9 [M103]"]; zh, shz = 5.62, f(hz, "s_star") * U   # corpus M* branc
 ax.scatter([zh], [shz], marker="o", s=55, facecolor="white", edgecolor=HZC, linewidth=1.8, zorder=6)
 ax.annotate("", xy=(zh, shz / 1.9), xytext=(zh, shz), arrowprops=dict(arrowstyle="-|>", color=HZC, lw=1.6), zorder=6)
 ax.text(zh + 0.06, shz, "HZ9 ≤ 15×\n(≤ 49× alt M*)", color=HZC, fontsize=8, va="center", ha="left", clip_on=False)
-N_NR = len(k3_floor) + 8 + sum(r["no_root"] == "1" for r in A274) + sum(r["no_root"] == "1" for r in A272) + sum(r["no_root"] == "1" and "pooled" not in r["object"] for r in A273)
+ROC = "#2e7d6b"
+ro_floor = [A277[k] for k in ("J081740 [gas]", "BRI1335-0417 [gas]")]   # primary CO-gas rows; SGP pair vacuous bounds not drawn
+for r in ro_floor:
+    ax.scatter([f(r, "z")], [0.252], marker="v", s=60, color=ROC, zorder=6, edgecolor="white", lw=0.6)
+N_NR = len(ro_floor) + len(k3_floor) + 8 + sum(r["no_root"] == "1" for r in A274) + sum(r["no_root"] == "1" for r in A272) + sum(r["no_root"] == "1" and "pooled" not in r["object"] for r in A273)
 ax.text(0.12, 0.222, f"calculated, but no $a_0$ fits ({N_NR} galaxies):\nthe stars + gas already exceed what the rotation needs  ▸",
         fontsize=9.5, color="#7a5a1a", va="center")
 # MUSE-DARK (CFG262, fb24a5922): implied a0 in z-thirds BY BARYON ROUTE, reading bD (projected + asymmetric drift, CFG236's
@@ -259,7 +264,7 @@ fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from
          "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  The dashed sets at the bottom are data in hand with no $a_0$ value yet.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–274 (calculated); CFG261 KiDS and CFG262 MUSE-DARK (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–274, CFG277 (calculated); CFG261 KiDS and CFG262 MUSE-DARK (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
