@@ -1,0 +1,27 @@
+column,name,unit,"description (Maksymowicz-Maciata+2026, arXiv:2605.28731, Section 4.7)"
+1,ID_catalogue,,unique identifier from the sky coordinates
+2,RA_deg,deg,J2000 right ascension of the optical counterpart of the HI detection
+3,Dec_deg,deg,J2000 declination of the optical counterpart
+4,freq_MHz,MHz,frequency centred on the HI detection
+5,z_HI,,z = (nu_rest - nu_obs)/nu_obs with nu_rest = 1420.40575 MHz
+6,z_spec,,DESI spectroscopic redshift of cross-matched galaxies; -99 = not in DESI
+7,D_L_Mpc,Mpc,"luminosity distance, LCDM H0 = 70, Omega_M = 0.3, ignoring cosmic flows"
+8,S_HI_Jy_Hz,Jy Hz,total observed HI flux
+9,S_HI_Jy_Hz_err,Jy Hz,its error
+10,log_M_HI,log Msun,total HI mass from the HI flux (the paper's Eq. 5)
+11,log_M_HI_err,log Msun,its error
+12,SNR_3D,,integrated SNR of the HI detection (paper Section 4.4)
+13,W_50_km_s,km/s,HI spectral-profile width at 50% of the flux peak (busy-function fit); NOT inclination corrected
+14,W_50_km_s_err,km/s,its error (channel resolution ~5.5 km/s combined in quadrature with the measurement error)
+15,incl_deg,deg,"inclination of the optical disc (edge-on 90, face-on 0): cos^2 i = (b^2/a^2 - q0^2)/(1 - q0^2) with q0 = 0.2, from g-band photutils isophotes (outermost isophote), checked by eye"
+16,axis_ratio,,minor/major axis of the optical disc
+17,log_M_stel,log Msun,"stellar mass from BAGPIPES SED fitting (Chabrier IMF, Bruzual & Charlot 2003, delayed SFH, Calzetti dust with A_V 0-2, redshift fixed to z_HI)"
+18,log_M_stel_err,log Msun,its error (16th/84th percentiles)
+19,sfr_M_sol_year,Msun/yr,star formation rate from the SED fit
+20,sfr_M_sol_year_err,Msun/yr,its error
+21-38,m_g..m_K (+errors),mag (AB),"observed magnitudes in g, r, i, z, y, Y, J, H, K and their errors (minimum 5% flux uncertainty)"
+39,low_confidence_flag,0/1,1 = detection judged unreliable although it has an optical counterpart
+40,blended_flag,0/1,1 = galaxies with small separation whose HI cannot be separated
+41,confused_flag,0/1,"1 = potentially confused (small separation, HI morphology not strongly blended)"
+42,bad_ellipse_flag,0/1,1 = irregular optical shape: no confident axis ratio or inclination
+43,contaminated_source_flag,0/1,1 = optical photometry contaminated by foreground/background sources
