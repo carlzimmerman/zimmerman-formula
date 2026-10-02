@@ -1,0 +1,47 @@
+CFG275 -- implied-a0 rows for PKS 0529-549 (z = 2.5706) from the five-ring [CI](2-1) circular-velocity curve of Lin et al. (arXiv:2411.08958):
+independent baryons, eight stellar x gas branches never pooled (SED 3e11 or the preliminary CIGALE range 0.4-1.2e11 for the stars; none / CO / [CI] / dust for the gas).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG275_pks0529_ci_rings/FROZEN_CRITERIA.md (4108d99e9).
+  g_obs   V_c^2 / R, V_c = the authors' asymmetric-drift-corrected circular velocity (digitised from the vector figures), split-normal errors, inclination 53 +- 5 deg
+  g_bar   stars: the authors' MaxDisk geometry (Freeman disc R_e 4.7 kpc + de Vaucouleurs bulge R_e 0.47 kpc, B/D = 0.9); gas: a razor-thin Sersic disc (n 0.52, R_e 2.57 kpc) by a Hankel transform
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V_c x 2).
+
+STAGE B
+digitised rings lin2024_rings_digitised.csv sha256 f26f9e4504b64bb1; multitracer row file 98fe74763cf766ca; velocity-bearing columns loaded: True; rings R = [0.37  1.109 1.849 2.589 3.328] kpc
+PKS 0529-549: z 2.5706, 5 rings, inclination 53 +- 5 deg, gas Sersic n 0.52 R_e 2.57 kpc, MaxDisk stars (disc R_e 4.7, bulge n 4.0 R_e 0.47, B/D 0.9); stellar branches SED log M* 11.477 +- 0.3; CIG log M* 10.841 +- 0.24; gas CO 7.3e+10; CI 3.1e+11; dust 2.2e+11
+
+STAGE B  THE MEASUREMENT
+  PKS0529 [SED; none]      D [0.181 0.29  0.22  0.265 0.298]  D_med 0.265  dF -0.585  y [549.138 121.227  57.447  35.579  25.146]  FLOOR (D <= 1); MC 68 % [0.945, 12.3] 95 % [0.094, 28.9] (no root 0.97, ceiling 0.00); to s*=1 -0.61 dex; recipe half-width nan (0/9 knobs rooted) ILL
+  PKS0529 [SED; CO]        D [0.181 0.274 0.189 0.206 0.217]  D_med 0.206  dF -0.693  y [551.708 128.114  66.922  45.772  34.614]  FLOOR (D <= 1); MC 68 % [1.75, 14.9] 95 % [0.39, 35.4] (no root 1.00, ceiling 0.00); to s*=1 -0.72 dex; recipe half-width nan (0/12 knobs rooted) ILL
+  PKS0529 [SED; CI]        D [0.178 0.234 0.129 0.12  0.115]  D_med 0.129  dF -0.892  y [560.051 150.473  97.683  78.865  65.351]  FLOOR (D <= 1); MC no draw interval (< 20 rooted draws) (no root 1.00, ceiling 0.00); to s*=1 -0.91 dex; recipe half-width nan (0/12 knobs rooted) ILL
+  PKS0529 [SED; dust]      D [0.179 0.248 0.147 0.142 0.14 ]  D_med 0.147  dF -0.837  y [556.883 141.982  86.001  66.298  53.679]  FLOOR (D <= 1); MC no draw interval (< 20 rooted draws) (no root 1.00, ceiling 0.00); to s*=1 -0.86 dex; recipe half-width nan (0/12 knobs rooted) ILL
+  PKS0529 [CIG; none]      D [0.785 1.256 0.952 1.148 1.291]  D_med 1.148  dF +0.026  y [126.818  27.996  13.267   8.217   5.807]  s* <= 1.85; MC 68 % [2.28, 26.9] 95 % [0.361, 64.5] (no root 0.44, ceiling 0.00); to s*=1 +0.03 dex; recipe half-width 1.571 (8/9 knobs rooted) ILL
+  PKS0529 [CIG; CO]        D [0.77  1.008 0.555 0.513 0.491]  D_med 0.555  dF -0.269  y [129.388  34.883  22.742  18.41   15.275]  FLOOR (D <= 1); MC 68 % [1.09, 13.2] 95 % [0.169, 31.7] (no root 0.89, ceiling 0.00); to s*=1 -0.28 dex; recipe half-width nan (0/12 knobs rooted) ILL
+  PKS0529 [CIG; CI]        D [0.723 0.614 0.236 0.183 0.163]  D_med 0.236  dF -0.633  y [137.731  57.242  53.502  51.502  46.012]  FLOOR (D <= 1); MC no draw interval (< 20 rooted draws) (no root 1.00, ceiling 0.00); to s*=1 -0.65 dex; recipe half-width nan (0/12 knobs rooted) ILL
+  PKS0529 [CIG; dust]      D [0.74  0.721 0.302 0.242 0.218]  D_med 0.302  dF -0.528  y [134.563  48.751  41.821  38.935  34.34 ]  FLOOR (D <= 1); MC 68 % [1.31, 10.7] 95 % [0.241, 24.6] (no root 0.99, ceiling 0.00); to s*=1 -0.54 dex; recipe half-width nan (0/12 knobs rooted) ILL
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 1.1e-16 (1 rows with a root)
+  [PASS] M3 the eight rows are present with their roles (four literature stellar mass, four preliminary stellar range) and five radii each
+         ['literature stellar mass', 'literature stellar mass', 'literature stellar mass', 'literature stellar mass', 'preliminary stellar range', 'preliminary stellar range', 'preliminary stellar range', 'preliminary stellar range']; ring counts [5, 5, 5, 5, 5, 5, 5, 5]
+  [FAIL] M5 the digitised V_rot, V_c (constant sigma_v) and V_c (varying sigma_v) agree pointwise within the digitised V_rot error bars (the paper: 'consistent within the errors')
+         max |V_c - V_rot| / error: constant 0.36, varying 1.23
+  [PASS] M6 (validates my gas geometry against the authors' own fit): the thin-disc Sersic gas with the gas-only M_gas = 8.5e10 reproduces V_c at rings 3-5 with median |V_gas/V_c - 1| <= 0.25
+         V_gas/V_c at rings 3-5: [0.935 1.122 1.213]; median |ratio - 1| 0.122
+  [PASS] M7 (validates my stellar function against the authors' own fit): the spherical Sersic with the stars-only best fit (M = 1.05e11, n = 5.6, R_e = 3.0 kpc) reproduces V_c at rings 3-5 with median |V_*/V_c - 1| <= 0.25
+         V_*/V_c at rings 3-5: [1.078 0.987 0.923]; median |ratio - 1| 0.077
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9; HE1-HE3 were scored at stage A) scored:
+    HE4: SED rows' statuses ['floor', 'floor', 'floor', 'floor'] (all floor needed); D_med [SED; CO] 0.206 (needs 0.12-0.35): hit
+    HE5: [CIG; CO] floor D_med 0.555 (0.45-0.80); [CIG; CI] floor 0.236 (0.12-0.35); [CIG; dust] floor 0.302 (0.15-0.45): hit
+    HE6: [CIG; none] D_med 1.148 (0.9-1.4), status root, s* 1.85: MISS (kept as it falls)
+    HE7: the kinematic readings move the median g_obs by {'V_c constant': 0.0008640077250052424, 'V_c varying': 0.008041934291206566, 'V_rot': -0.014596776520268546} dex (needs |.| <= 0.04): hit
+    HE8: M5, M6 and M7 do not all hold: MISS (kept as it falls)
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg275_points_stageB.csv (8 rows)
+
+5/6 checks pass; load-bearing failures: 1   (10 s)

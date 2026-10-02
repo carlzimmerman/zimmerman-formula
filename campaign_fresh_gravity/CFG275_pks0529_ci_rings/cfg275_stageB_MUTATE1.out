@@ -1,0 +1,32 @@
+CFG275 -- implied-a0 rows for PKS 0529-549 (z = 2.5706) from the five-ring [CI](2-1) circular-velocity curve of Lin et al. (arXiv:2411.08958):
+independent baryons, eight stellar x gas branches never pooled (SED 3e11 or the preliminary CIGALE range 0.4-1.2e11 for the stars; none / CO / [CI] / dust for the gas).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG275_pks0529_ci_rings/FROZEN_CRITERIA.md (4108d99e9).
+  g_obs   V_c^2 / R, V_c = the authors' asymmetric-drift-corrected circular velocity (digitised from the vector figures), split-normal errors, inclination 53 +- 5 deg
+  g_bar   stars: the authors' MaxDisk geometry (Freeman disc R_e 4.7 kpc + de Vaucouleurs bulge R_e 0.47 kpc, B/D = 0.9); gas: a razor-thin Sersic disc (n 0.52, R_e 2.57 kpc) by a Hankel transform
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V_c x 2).
+
+STAGE B  *** MUTATE=1: V_c x 2 (g_obs x 4) ***
+digitised rings lin2024_rings_digitised.csv sha256 f26f9e4504b64bb1; multitracer row file 98fe74763cf766ca; velocity-bearing columns loaded: True; rings R = [0.37  1.109 1.849 2.589 3.328] kpc
+PKS 0529-549: z 2.5706, 5 rings, inclination 53 +- 5 deg, gas Sersic n 0.52 R_e 2.57 kpc, MaxDisk stars (disc R_e 4.7, bulge n 4.0 R_e 0.47, B/D 0.9); stellar branches SED log M* 11.477 +- 0.3; CIG log M* 10.841 +- 0.24; gas CO 7.3e+10; CI 3.1e+11; dust 2.2e+11
+
+STAGE B  THE MEASUREMENT (MUTATE: V_c x 2)
+  PKS0529 [SED; none]      D [0.726 1.16  0.879 1.061 1.193]  D_med 1.061  dF +0.017  y [549.138 121.227  57.447  35.579  25.146]  s* <= 3.18; MC 68 % [9.92, 125] 95 % [1.59, 328] (no root 0.50, ceiling 0.00); to s*=1 +0.02 dex; recipe half-width 1.666 (6/9 knobs rooted) ILL
+  PKS0529 [SED; CO]        D [0.722 1.097 0.755 0.825 0.866]  D_med 0.825  dF -0.091  y [551.708 128.114  66.922  45.772  34.614]  FLOOR (D <= 1); MC 68 % [7.26, 80.6] 95 % [1.07, 219] (no root 0.62, ceiling 0.00); to s*=1 -0.09 dex; recipe half-width nan (2/12 knobs rooted) ILL
+  PKS0529 [SED; CI]        D [0.711 0.934 0.517 0.479 0.459]  D_med 0.517  dF -0.290  y [560.051 150.473  97.683  78.865  65.351]  FLOOR (D <= 1); MC 68 % [4.6, 55.2] 95 % [0.587, 156] (no root 0.89, ceiling 0.00); to s*=1 -0.29 dex; recipe half-width nan (0/12 knobs rooted) ILL
+  PKS0529 [SED; dust]      D [0.715 0.99  0.587 0.569 0.559]  D_med 0.587  dF -0.235  y [556.883 141.982  86.001  66.298  53.679]  FLOOR (D <= 1); MC 68 % [5.84, 57.5] 95 % [0.787, 139] (no root 0.82, ceiling 0.00); to s*=1 +nan dex; recipe half-width nan (1/12 knobs rooted) ILL
+  PKS0529 [CIG; none]      D [3.142 5.022 3.806 4.593 5.164]  D_med 4.593  dF +0.628  y [126.818  27.996  13.267   8.217   5.807]  s* <= 143; MC 68 % [79.9, 455] 95 % [23.6, 807] (no root 0.04, ceiling 0.03); to s*=1 +0.65 dex; recipe half-width 0.755 (9/9 knobs rooted) ILL
+  PKS0529 [CIG; CO]        D [3.079 4.031 2.22  2.05  1.963]  D_med 2.220  dF +0.333  y [129.388  34.883  22.742  18.41   15.275]  s* <= 63.5; MC 68 % [26.9, 192] 95 % [6.47, 448] (no root 0.03, ceiling 0.00); to s*=1 +nan dex; recipe half-width 0.689 (12/12 knobs rooted) ILL
+  PKS0529 [CIG; CI]        D [2.893 2.456 0.944 0.733 0.652]  D_med 0.944  dF -0.031  y [137.731  57.242  53.502  51.502  46.012]  FLOOR (D <= 1); MC 68 % [7.61, 79.3] 95 % [0.977, 203] (no root 0.51, ceiling 0.00); to s*=1 -0.03 dex; recipe half-width nan (5/12 knobs rooted) ILL
+  PKS0529 [CIG; dust]      D [2.961 2.884 1.207 0.969 0.873]  D_med 1.207  dF +0.074  y [134.563  48.751  41.821  38.935  34.34 ]  s* <= 13.3; MC 68 % [9.72, 95.8] 95 % [1.37, 236] (no root 0.32, ceiling 0.00); to s*=1 +0.07 dex; recipe half-width 1.693 (11/12 knobs rooted) ILL
+
+CONTROLS (stage B)
+  [PASS] M2 MUTATE=1 (reactivity; the count is of rows with median D > 1, not of roots): V_c x 2 (g_obs x 4); rows with status ROOT satisfy the median-residual equation at their own s* to 1e-6 and the number of rows with median D > 1 is at least the main run's
+         rows with median D > 1: mutated 4, main 1; rows with a root 4; max |median residual| 9.6e-17
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg275_points_stageB_MUTATE1.csv (8 rows)
+
+2/2 checks pass; load-bearing failures: 0   (11 s)
