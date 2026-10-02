@@ -1,0 +1,53 @@
+CFG280 -- implied-a0 estimates (upper bounds or floors) from the PUBLISHED SINS/zC-SINF AO kinematics (Forster Schreiber+18 Tables 1 and 6): stars-only baryons (a lower limit) with PHIBSS CO gas on four rows; coverage only.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG280_sins_ao_published/FROZEN_CRITERIA.md (96d52c268).
+  g_obs     V_c^2 / R_e with V_c = (V_rot^2 + 3.36 sigma0^2)^0.5 from the table (peak-to-peak, radius NOT recorded: r = R_e is a convention)
+  g_bar     B0 = stars only (Table 1 M*, one exponential disc of scale R_e); B1 = stars + PHIBSS M_mol on four rows (class S); B2 = scaling gas (sensitivity)
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_rot, sigma0, V_c x 2); STAGE=B SELFTEST=1 (fabricated V_c on the law at s = 2).
+
+STAGE B  *** MUTATE=1: V_rot, sigma0 and V_c x 2 (g_obs x 4) ***
+tables: sins Table 1 9cb20e34bbc3dc2d, Table 6 7f3da7ed8c857848, Table 2 316911ad45e60b9f, PHIBSS 3e6da4a05c10e1f5, RC100 names 56121a5550679db5; velocity-bearing columns loaded: True
+tiers: T1 11, T2 18, T0 38; pooled sizes PT1 11, PT2 18, PT0 38, PT2z1 9, PT2z2 9, PT2_new 9; RC100 name matches 12 (T1 5, T2 8); KMOS3D five 5; PHIBSS name matches 6; R1 gas rows ['Q1623-BX599', 'Q2343-BX513', 'Q2343-BX610', 'ZC406690']
+
+STAGE B  THE MEASUREMENT (MUTATE: V_rot, sigma0, V_c x 2)
+  per-galaxy rows computed (27 s); status counts (38 stars-only rows): {'root': 36, 'floor': 2, 'ceiling': 0}; T2: root: 18, floor: 0, ceiling: 0; T1: root: 11, floor: 0, ceiling: 0
+  rows (T2 and the gas rows): source, z, log M*, R_e, D, delta_FLAT, y, status and bound (B0 or B1) | B2
+    Q1623-BX455   z 2.41 M* 10.01 R_e  2.1 D  12.503 dF +0.984 y  2.17  s* <= 313              | B2 s* = 87.5 T1
+    Q1623-BX502   z 2.16 M* 9.36 R_e  1.1 D   7.997 dF +0.770 y  1.77  s* <= 99.1             | B2 s* = 12.1
+    Q2343-BX610   z 2.21 M* 11.00 R_e  4.5 D   4.810 dF +0.624 y  4.60  s* <= 84.6             | B2 s* = 39.7 T1 PHIBSS
+    Q2346-BX482   z 2.26 M* 10.26 R_e  6.0 D  45.437 dF +1.355 y  0.48  s* <= 960              | B2 s* = 371 PHIBSS
+    Deep3a-6004   z 2.39 M* 11.50 R_e  5.1 D   3.395 dF +0.505 y 11.31  s* <= 92.9             | B2 s* = 50.8 ILL
+    Deep3a-6397   z 1.51 M* 11.08 R_e  5.9 D   9.854 dF +0.913 y  3.21  s* <= 280              | B2 s* = 177 T1
+    Deep3a-15504  z 2.38 M* 11.04 R_e  6.0 D   8.759 dF +0.852 y  2.82  s* <= 192              | B2 s* = 99.4 T1
+    K20-ID6       z 2.23 M* 10.43 R_e  3.9 D  12.730 dF +0.963 y  1.63  s* <= 244              | B2 s* = 95.6 RC100 KMOS3D
+    GMASS-2363    z 2.45 M* 10.33 R_e  2.3 D   5.020 dF +0.632 y  3.80  s* <= 77               | B2 s* = 20.4 T1 KMOS3D
+    ZC400528      z 2.39 M* 11.04 R_e  2.4 D   3.842 dF +0.568 y 17.77  s* <= 196              | B2 s* = 84.6 RC100 ILL
+    ZC400569N     z 2.24 M* 11.11 R_e  7.1 D  11.334 dF +0.950 y  2.38  s* <= 279              | B2 s* = 156
+    ZC403741      z 1.45 M* 10.65 R_e  2.2 D   2.972 dF +0.440 y  8.56  s* <= 50.9             | B2 s* = 19.8 T1 RC100 ILL
+    ZC405226      z 2.29 M* 9.97 R_e  5.4 D  27.377 dF +1.061 y  0.30  s* <= 214              | B2 s* = 66.1 T1 RC100
+    ZC405501      z 2.15 M* 9.92 R_e  5.8 D  19.852 dF +0.880 y  0.23  s* <= 87               | B2 s* = 25.9 T1 RC100
+    ZC406690      z 2.19 M* 10.62 R_e  7.0 D  27.733 dF +1.212 y  0.79  s* <= 583              | B2 s* = 272 RC100 PHIBSS
+    ZC407302      z 2.18 M* 10.39 R_e  3.6 D  12.646 dF +0.968 y  1.75  s* <= 258              | B2 s* = 99.6 T1 RC100
+    ZC410041      z 2.45 M* 9.66 R_e  4.7 D  27.301 dF +0.988 y  0.19  s* <= 139              | B2 s* = 33 T1 RC100 KMOS3D
+    ZC415876      z 2.44 M* 9.96 R_e  2.4 D  12.025 dF +0.928 y  1.49  s* <= 197              | B2 s* = 52.2 T1
+    Q1623-BX599 [stars+CO]   D   1.222 dF +0.070 y 17.22  s* <= 5.88             (stars-only row: root s* <= 28.2; D 2.302) gas band inner [0.001, 18.7] outer [0.001, 49.7] ILL
+    Q2343-BX513 [stars+CO]   D   1.360 dF +0.099 y  8.12  s* <= 4.6              (stars-only row: root s* <= 22.1; D 2.971) gas band inner [0.001, 12.3] outer [0.001, 32.7] ILL
+    Q2343-BX610 [stars+CO]   D   1.457 dF +0.144 y 15.17  s* <= 11.3             (stars-only row: root s* <= 84.6; D 4.810) gas band inner [0.001, 28.9] outer [0.001, 85.5] ILL
+    ZC406690 [stars+CO]      D   9.304 dF +0.863 y  2.34  s* <= 181              (stars-only row: root s* <= 583; D 27.733) gas band inner [109, 293] outer [32.5, 633]
+  PT1      (n  11, z_med 2.287): median D 12.025  ROOT s* <= 192; bootstrap 68 % [87, 214] 95 % [84.6, 258]; baryon +-0.15 [129, 281] +-0.30 [84.1, 407]; Delta_floor +1.080; gas_req +10.54; median delta_FLAT +0.913; B2 root s* = 52.2; recipe half-width 0.517
+  PT2      (n  18, z_med 2.250): median D 11.679  ROOT s* <= 196; bootstrap 68 % [163, 229] 95 % [99.1, 268]; baryon +-0.15 [132, 294] +-0.30 [87.1, 423]; Delta_floor +1.067; gas_req +10.27; median delta_FLAT +0.921; B2 root s* = 73.5; recipe half-width 0.440
+  PT0      (n  38, z_med 2.238): median D 9.307  ROOT s* <= 128; bootstrap 68 % [105, 177] 95 % [91.1, 206]; baryon +-0.15 [87.5, 186] +-0.30 [57.6, 267]; Delta_floor +0.969; gas_req +8.02; median delta_FLAT +0.845; B2 root s* = 39.1; recipe half-width 0.505
+  PT2z1    (n   9, z_med 2.182): median D 11.334  ROOT s* <= 244; bootstrap 68 % [99.1, 258] 95 % [84.6, 280]; baryon +-0.15 [167, 353] +-0.30 [112, 507]; Delta_floor +1.054; gas_req +10.01; median delta_FLAT +0.913; B2 root s* = 95.6; recipe half-width 0.414
+  PT2z2    (n   9, z_med 2.387): median D 12.025  ROOT s* <= 196; bootstrap 68 % [192, 197] 95 % [92.9, 313]; baryon +-0.15 [129, 286] +-0.30 [84.1, 411]; Delta_floor +1.080; gas_req +10.54; median delta_FLAT +0.928; B2 root s* = 66.1; recipe half-width 0.460
+  PT2_new  (n   9, z_med 2.257): median D 9.854  ROOT s* <= 197; bootstrap 68 % [192, 279] 95 % [92.9, 313]; baryon +-0.15 [134, 286] +-0.30 [90.1, 411]; Delta_floor +0.994; gas_req +8.60; median delta_FLAT +0.913; B2 root s* = 87.5; recipe half-width 0.409
+
+CONTROLS (stage B)
+  [PASS] M2 MUTATE=1 (reactivity; the count is of rows with D > 1, not of roots, because of the solver bracket): V_rot, sigma0 and V_c x 2; rows with status ROOT satisfy the closed-form inversion of their own (D, g_bar) to 1e-6 dex and the number of rows with D > 1 is at least the main run's
+         rows with D > 1: mutated 36, main 29; rows with a root 36; max |d log10 s*| against the independent inversion 8.9e-16
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg280_points_stageB_MUTATE1.csv (48 rows)
+
+2/2 checks pass; load-bearing failures: 0   (37 s)
