@@ -1,0 +1,36 @@
+CFG271 -- implied-a0 upper bounds (or floor / ceiling markers) for HZ9 (z = 5.5413) from the three-ring [CII] curve: stars-only baryons (a lower limit), class D (no gas), two stellar-mass branches never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG271_hz9_three_rings/FROZEN_CRITERIA.md (0f7f661b5).
+  rows      HZ9 [M986] / HZ9 [M103] (outer ring R = 2.68 kpc; headline pair), the same two branches with the three rings as three rows, and with Parlanti+23's M_rot(< 5 kpc) at R = 5 kpc (sensitivity rows)
+  g_obs     (V^2 + 2 sigma0^2 R / r_D) / R with sigma0 = 51 +- 9.5 and r_D = 2.7 kpc; g_bar  B0 = stars only (one exponential disc, scale r_D), B2 = scaling gas (extrapolated)
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V, sigma0 x 2, M_rot x 4); STAGE=B SELFTEST=1 (fabricated V on the law at s = 2).
+
+STAGE B  *** SELFTEST: FABRICATED V on the law at s_true = 2 (+0.15 dex scatter); debugging only ***
+rings corpus_z1_rings.csv sha256 feb449af227f7e57; Jones A3 c9beb7b92673c28a; galaxies d7fcf09c06338d37; classes 25928a3a48e90229; Parlanti rows (L328 sources) 87288708bef3b710; L328 table 3dc641be4abe0825; velocity-bearing columns loaded: False
+HZ9: z 5.5413, rings R [0.54, 1.61, 2.68] kpc, r_D 2.7 kpc (R_e,* 4.531), inclination 58 +- 7 deg; branches: M986 log M* 9.86 +- 0.23 (Parlanti+23 Table 2 (Capak+2015)); M103 log M* 10.3 +- 0.2 (corpus row (no source or error recorded); declared 0.20 dex); kpc/arcsec 6.091, beam FWHM 6.09 kpc
+
+STAGE B  THE MEASUREMENT (SELFTEST)
+SELFTEST: V fabricated from the law at s_true = 2 on each branch's B0 baryons (+0.15 dex scatter), sigma0 = 0, 10 % errors; the real velocity-bearing columns are not even loaded
+  HZ9 [M986]             R [2.68]: g_obs [1.492e-10]  D [3.869]  dF +0.263  y [0.412]  s* <= 4.61; MC 68 % [1.76, 11.1] 95 % [0.513, 24.2] (no root 0.01, ceiling 0.00); B2 D [1.26] s* = 0.514; gas_req +1.45; recipe half-width 0.773; rotation-only changes g_obs by -0.000 dex
+  HZ9 [M103]             R [2.68]: g_obs [3.027e-10]  D [2.85]  dF +0.271  y [1.135]  s* <= 6.08; MC 68 % [2.32, 14.5] 95 % [0.57, 31.1] (no root 0.02, ceiling 0.00); B2 D [1.21] s* = 0.854; gas_req +1.28; recipe half-width 0.700; rotation-only changes g_obs by -0.000 dex
+  HZ9 [M986; 3 rings]    R [0.54 1.61 2.68]: g_obs [6.676e-11 1.830e-10 1.492e-10]  D [2.485 4.69  3.869]  dF +0.263  y [0.287 0.417 0.412]  s* <= 4.61; MC 68 % [1.67, 10] 95 % [0.46, 22.1] (no root 0.01, ceiling 0.00); B2 D [0.81 1.53 1.26] s* = 0.514; gas_req +1.45; recipe half-width 0.773; rotation-only changes g_obs by -0.000 dex
+  HZ9 [M103; 3 rings]    R [0.54 1.61 2.68]: g_obs [1.393e-10 2.074e-10 3.027e-10]  D [1.882 1.929 2.85 ]  dF +0.103  y [0.791 1.148 1.135]  s* <= 2.15; MC 68 % [0.914, 6.44] 95 % [0.202, 13.9] (no root 0.07, ceiling 0.00); B2 D [0.8  0.82 1.21] FLOOR; gas_req +0.38; recipe half-width 0.851; rotation-only changes g_obs by -0.000 dex
+  HZ9 [M986; Mrot]       R [5.]: g_obs [1.098e-10]  D [3.846]  dF +0.213  y [0.305]  s* <= 3.36; MC 68 % [0.562, 31.4] 95 % [0.0832, 192] (no root 0.11, ceiling 0.00); B2 D [1.26] s* = 0.37; gas_req +1.13; recipe half-width 0.820; rotation-only changes g_obs by -0.000 dex
+  HZ9 [M103; Mrot]       R [5.]: g_obs [1.21e-10]  D [1.54]  dF -0.034  y [0.84]  s* <= 0.764; MC 68 % [0.425, 17.4] 95 % [0.0559, 111] (no root 0.35, ceiling 0.00); B2 D [0.65] FLOOR; gas_req -0.11; recipe half-width 1.250; rotation-only changes g_obs by -0.000 dex
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 1.1e-16 (6 rows with a root)
+  [PASS] M3 the six rows are present with their roles (two headline, four sensitivity) and radii (1, 1, 3, 3, 1, 1)
+         [('headline', 1), ('headline', 1), ('sensitivity', 3), ('sensitivity', 3), ('sensitivity', 1), ('sensitivity', 1)]
+  [PASS] SELFTEST: the conditioned rows with a root return the fabricated truth (s = 2) inside their 95 % interval for at least 4 of the 6 rows (the rows are correlated)
+         6 of 6 conditioned rooted rows inside; rows: [('HZ9 [M986]', 't'), ('HZ9 [M103]', 't'), ('HZ9 [M986; 3 rings]', 't'), ('HZ9 [M103; 3 rings]', 't'), ('HZ9 [M986; Mrot]', 't'), ('HZ9 [M103; Mrot]', 't')]
+  SELFTEST repeat (reported): HZ9 [M986]: the 95 % interval contains s = 2 in 99 of 100 fabricated worlds with a root
+  SELFTEST repeat (reported): HZ9 [M103]: the 95 % interval contains s = 2 in 94 of 94 fabricated worlds with a root
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg271_points_stageB_SELFTEST.csv (6 rows)
+
+4/4 checks pass; load-bearing failures: 0   (7 s)
