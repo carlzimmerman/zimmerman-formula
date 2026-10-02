@@ -1,0 +1,18 @@
+CFG300 -- the MIGHTEE-HI DR1 cube probe: can resolved rotation curves be extracted from the L2 cubes at z 0.02-0.09, or only HI widths?  Three targets (the paper's public example rows), r0p0 and r0p5 cutouts by HTTP range requests.
+
+Criteria frozen and committed before any cube voxel was read: campaign_fresh_gravity/CFG300_mightee_cube_probe/FROZEN_CRITERIA.md (d14e5082a) (+ the pre-run addendum on MUTATE=1 in FROZEN_CRITERIA_ADDENDUM_1.md).
+  STAGE=S   the SYNTHETIC SELFTEST of the analysis (a fabricated rotating disc and a noise-only cube); no archive access.
+  STAGE=F   the fetch: headers + one contiguous row-block per channel plane through data_assembly/fetch_range_logged.py (SARAO only; cumulative hard cap 10 GB); one run; cutouts saved OUTSIDE the repository.
+  STAGE=B   the analysis of the local cutouts; STAGE=B MUTATE=1 (the line window shifted by +(W50 + 150) km/s) or MUTATE=2 (the velocity axis reversed): separate outputs.
+
+STAGE B  THE ANALYSIS (MUTATE=1)
+  T1 r0p0 (MGTH_J100357.1+022505): NO detection (seed labels 1); sigma/channel 0.251 mJy/beam; seeds in free channels 4, in the ring 12
+  T1 r0p5 (MGTH_J100357.1+022505): NO detection (seed labels 1); sigma/channel 0.199 mJy/beam; seeds in free channels 5, in the ring 3
+  T2 r0p0 (MGTH_J100256.4+023440): NO detection (seed labels 0); sigma/channel 0.137 mJy/beam; seeds in free channels 0, in the ring 0
+  T3 r0p0 (MGTH_J095951.4+014224): NO detection (seed labels 0); sigma/channel 0.094 mJy/beam; seeds in free channels 0, in the ring 5
+
+CONTROLS AND VERDICTS
+  [PASS] M1 MUTATE=1 (reactivity): with the line window shifted by +(W50 + 150) km/s no target has a >= 5 sigma detection
+         detected []
+
+1/1 checks pass; load-bearing failures: 0   (0 s)

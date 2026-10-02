@@ -1,0 +1,62 @@
+CFG300 -- the MIGHTEE-HI DR1 cube probe: can resolved rotation curves be extracted from the L2 cubes at z 0.02-0.09, or only HI widths?  Three targets (the paper's public example rows), r0p0 and r0p5 cutouts by HTTP range requests.
+
+Criteria frozen and committed before any cube voxel was read: campaign_fresh_gravity/CFG300_mightee_cube_probe/FROZEN_CRITERIA.md (d14e5082a) (+ the pre-run addendum on MUTATE=1 in FROZEN_CRITERIA_ADDENDUM_1.md).
+  STAGE=S   the SYNTHETIC SELFTEST of the analysis (a fabricated rotating disc and a noise-only cube); no archive access.
+  STAGE=F   the fetch: headers + one contiguous row-block per channel plane through data_assembly/fetch_range_logged.py (SARAO only; cumulative hard cap 10 GB); one run; cutouts saved OUTSIDE the repository.
+  STAGE=B   the analysis of the local cutouts; STAGE=B MUTATE=1 (the line window shifted by +(W50 + 150) km/s) or MUTATE=2 (the velocity axis reversed): separate outputs.
+
+STAGE B  THE ANALYSIS
+  T1 r0p0 (MGTH_J100357.1+022505): detected; S_int 7272 Jy Hz (catalogue 12783 +- 672); S/N_int 66.4; extent 127 arcsec = 126 deconvolved = 10.3 beams (beam 12.27 arcsec); W50 380 km/s (catalogue 392 +- 12); centroid offset 4.6 arcsec; PV points +4 / -4, rho -1.00; sigma/channel 0.251 mJy/beam; seeds in free channels 4, in the ring 9; RC_CAPABLE True
+  T1 r0p5 (MGTH_J100357.1+022505): detected; S_int 9666 Jy Hz (catalogue 12783 +- 672); S/N_int 92.2; extent 211 arcsec = 210 deconvolved = 12.9 beams (beam 16.33 arcsec); W50 374 km/s (catalogue 392 +- 12); centroid offset 13.7 arcsec; PV points +3 / -4, rho -0.60; sigma/channel 0.199 mJy/beam; seeds in free channels 5, in the ring 107; RC_CAPABLE False
+  T2 r0p0 (MGTH_J100256.4+023440): detected; S_int 346 Jy Hz (catalogue 1471 +- 110); S/N_int 16.4; extent 44 arcsec = 42 deconvolved = 3.4 beams (beam 12.27 arcsec); W50 141 km/s (catalogue 167 +- 7); centroid offset 0.9 arcsec; PV points +1 / -1, rho nan; sigma/channel 0.137 mJy/beam; seeds in free channels 0, in the ring 0; RC_CAPABLE False
+  T3 r0p0 (MGTH_J095951.4+014224): detected; S_int 629 Jy Hz (catalogue 1074 +- 69); S/N_int 33.3; extent 49 arcsec = 47 deconvolved = 3.9 beams (beam 12.27 arcsec); W50 75 km/s (catalogue 101 +- 7); centroid offset 3.4 arcsec; PV points +1 / -1, rho nan; sigma/channel 0.094 mJy/beam; seeds in free channels 0, in the ring 0; RC_CAPABLE False
+
+CONTROLS AND VERDICTS
+  [FAIL] C2 T1_r0p0: S_int within 25 % of the catalogue S_HI
+         ratio 0.569
+  [PASS] C3 T1_r0p0: the HI centroid is within one beam of the catalogue position
+         4.6 arcsec vs 12.27
+  [PASS] C4 T1_r0p0: W50 within max(3 sigma_cat, 25 km/s) of the catalogue
+         380 vs 392 +- 12
+  [FAIL] C5 T1_r0p0: no 5-sigma seed in the line-free channels or the off-source ring
+         4 / 9
+  [PASS] C2 T1_r0p5: S_int within 25 % of the catalogue S_HI
+         ratio 0.756
+  [PASS] C3 T1_r0p5: the HI centroid is within one beam of the catalogue position
+         13.7 arcsec vs 16.33
+  [PASS] C4 T1_r0p5: W50 within max(3 sigma_cat, 25 km/s) of the catalogue
+         374 vs 392 +- 12
+  [FAIL] C5 T1_r0p5: no 5-sigma seed in the line-free channels or the off-source ring
+         5 / 107
+  [FAIL] C2 T2_r0p0: S_int within 25 % of the catalogue S_HI
+         ratio 0.235
+  [PASS] C3 T2_r0p0: the HI centroid is within one beam of the catalogue position
+         0.9 arcsec vs 12.27
+  [FAIL] C4 T2_r0p0: W50 within max(3 sigma_cat, 25 km/s) of the catalogue
+         141 vs 167 +- 7
+  [PASS] C5 T2_r0p0: no 5-sigma seed in the line-free channels or the off-source ring
+         0 / 0
+  [FAIL] C2 T3_r0p0: S_int within 25 % of the catalogue S_HI
+         ratio 0.586
+  [PASS] C3 T3_r0p0: the HI centroid is within one beam of the catalogue position
+         3.4 arcsec vs 12.27
+  [FAIL] C4 T3_r0p0: W50 within max(3 sigma_cat, 25 km/s) of the catalogue
+         75 vs 101 +- 7
+  [PASS] C5 T3_r0p0: no 5-sigma seed in the line-free channels or the off-source ring
+         0 / 0
+
+PROBE VERDICTS (frozen map; no verdict words)
+  T1_r0p0: RC_CAPABLE True; WIDTH_USABLE True
+  T1_r0p5: RC_CAPABLE False; WIDTH_USABLE True
+  T2_r0p0: RC_CAPABLE False; WIDTH_USABLE False
+  T3_r0p0: RC_CAPABLE False; WIDTH_USABLE False
+  resolved rotation curves: 1 of 3 targets at r0p0; widths: 1 of 3
+
+HAND ESTIMATES (frozen in the criteria, section 5)
+    HE1 (extent in beams at r0p0: T1 3-10, T2 1-4, T3 0.5-3): MISS (kept as it falls)  (T1 10.27, T2 3.41, T3 3.87)
+    HE2 (integrated S/N at r0p0: T1 8-40, T2 5-30, T3 5-30; T1 r0p5/r0p0 1.0-1.8): MISS (kept as it falls)
+    HE3 (W50: T1 340-440, T2 130-210, T3 70-140): hit
+    HE4 (T1 RC-CAPABLE, T2 and T3 not, all three width-usable): MISS (kept as it falls)
+    HE5 (C2 passes for all three): MISS (kept as it falls);  HE6 (C3 and C5 pass for all three): MISS (kept as it falls)
+
+9/16 checks pass; load-bearing failures: 7   (0 s)
