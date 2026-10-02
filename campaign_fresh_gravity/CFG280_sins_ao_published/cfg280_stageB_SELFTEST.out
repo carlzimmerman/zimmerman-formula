@@ -1,0 +1,60 @@
+CFG280 -- implied-a0 estimates (upper bounds or floors) from the PUBLISHED SINS/zC-SINF AO kinematics (Forster Schreiber+18 Tables 1 and 6): stars-only baryons (a lower limit) with PHIBSS CO gas on four rows; coverage only.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG280_sins_ao_published/FROZEN_CRITERIA.md (96d52c268).
+  g_obs     V_c^2 / R_e with V_c = (V_rot^2 + 3.36 sigma0^2)^0.5 from the table (peak-to-peak, radius NOT recorded: r = R_e is a convention)
+  g_bar     B0 = stars only (Table 1 M*, one exponential disc of scale R_e); B1 = stars + PHIBSS M_mol on four rows (class S); B2 = scaling gas (sensitivity)
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_rot, sigma0, V_c x 2); STAGE=B SELFTEST=1 (fabricated V_c on the law at s = 2).
+
+STAGE B  *** SELFTEST: FABRICATED V_c on the law at s_true = 2 (+0.15 dex scatter); debugging only ***
+tables: sins Table 1 9cb20e34bbc3dc2d, Table 6 7f3da7ed8c857848, Table 2 316911ad45e60b9f, PHIBSS 3e6da4a05c10e1f5, RC100 names 56121a5550679db5; velocity-bearing columns loaded: False
+tiers: T1 11, T2 18, T0 38; pooled sizes PT1 11, PT2 18, PT0 38, PT2z1 9, PT2z2 9, PT2_new 9; RC100 name matches 12 (T1 5, T2 8); KMOS3D five 5; PHIBSS name matches 6; R1 gas rows ['Q1623-BX599', 'Q2343-BX513', 'Q2343-BX610', 'ZC406690']
+
+STAGE B  THE MEASUREMENT (SELFTEST)
+SELFTEST: V_c fabricated from the law at s_true = 2 on each galaxy's B0 baryons (+0.15 dex scatter), V_rot = V_c, sigma0 = 0; the real velocity-bearing columns are not even loaded
+  per-galaxy rows computed (27 s); status counts (38 stars-only rows): {'root': 31, 'floor': 7, 'ceiling': 0}; T2: root: 12, floor: 6, ceiling: 0; T1: root: 8, floor: 3, ceiling: 0
+  rows (T2 and the gas rows): source, z, log M*, R_e, D, delta_FLAT, y, status and bound (B0 or B1) | B2
+    Q1623-BX455   z 2.41 M* 10.01 R_e  2.1 D   1.167 dF -0.046 y  2.17  s* <= 0.552            | B2 FLOOR T1
+    Q1623-BX502   z 2.16 M* 9.36 R_e  1.1 D   1.677 dF +0.091 y  1.77  s* <= 2.15             | B2 FLOOR
+    Q2343-BX610   z 2.21 M* 11.00 R_e  4.5 D   1.202 dF +0.022 y  4.60  s* <= 1.43             | B2 FLOOR T1 PHIBSS
+    Q2346-BX482   z 2.26 M* 10.26 R_e  6.0 D   1.862 dF -0.033 y  0.48  s* <= 0.801            | B2 FLOOR PHIBSS
+    Deep3a-6004   z 2.39 M* 11.50 R_e  5.1 D   0.743 dF -0.154 y 11.31  FLOOR (D <= 1)         | B2 FLOOR ILL
+    Deep3a-6397   z 1.51 M* 11.08 R_e  5.9 D   0.973 dF -0.092 y  3.21  FLOOR (D <= 1)         | B2 FLOOR T1
+    Deep3a-15504  z 2.38 M* 11.04 R_e  6.0 D   4.002 dF +0.512 y  2.82  s* <= 34.1             | B2 s* = 15 T1
+    K20-ID6       z 2.23 M* 10.43 R_e  3.9 D   1.000 dF -0.142 y  1.63  FLOOR (D <= 1)         | B2 FLOOR RC100 KMOS3D
+    GMASS-2363    z 2.45 M* 10.33 R_e  2.3 D   0.987 dF -0.075 y  3.80  FLOOR (D <= 1)         | B2 FLOOR T1 KMOS3D
+    ZC400528      z 2.39 M* 11.04 R_e  2.4 D   0.777 dF -0.126 y 17.77  FLOOR (D <= 1)         | B2 FLOOR RC100 ILL
+    ZC400569N     z 2.24 M* 11.11 R_e  7.1 D   1.860 dF +0.165 y  2.38  s* <= 4                | B2 s* = 0.671
+    ZC403741      z 1.45 M* 10.65 R_e  2.2 D   0.834 dF -0.112 y  8.56  FLOOR (D <= 1)         | B2 FLOOR T1 RC100 ILL
+    ZC405226      z 2.29 M* 9.97 R_e  5.4 D   4.682 dF +0.294 y  0.30  s* <= 5.14             | B2 s* = 0.848 T1 RC100
+    ZC405501      z 2.15 M* 9.92 R_e  5.8 D   2.222 dF -0.071 y  0.23  s* <= 0.65             | B2 FLOOR T1 RC100
+    ZC406690      z 2.19 M* 10.62 R_e  7.0 D   3.633 dF +0.330 y  0.79  s* <= 7.59             | B2 s* = 2.32 RC100 PHIBSS
+    ZC407302      z 2.18 M* 10.39 R_e  3.6 D   1.926 dF +0.150 y  1.75  s* <= 3.27             | B2 FLOOR T1 RC100
+    ZC410041      z 2.45 M* 9.66 R_e  4.7 D   7.924 dF +0.451 y  0.19  s* <= 10.6             | B2 s* = 1.74 T1 RC100 KMOS3D
+    ZC415876      z 2.44 M* 9.96 R_e  2.4 D   1.750 dF +0.091 y  1.49  s* <= 2.07             | B2 FLOOR T1
+    Q1623-BX599 [stars+CO]   D   0.534 dF -0.290 y 17.22  FLOOR (D <= 1)         (stars-only row: root s* <= 0.0677; D 1.006) gas band inner [0.001, 0.001] outer [0.001, 4.71] ILL
+    Q2343-BX513 [stars+CO]   D   0.533 dF -0.307 y  8.12  FLOOR (D <= 1)         (stars-only row: root s* <= 0.938; D 1.166) gas band inner [0.001, 0.001] outer [0.001, 2.59] ILL
+    Q2343-BX610 [stars+CO]   D   0.364 dF -0.458 y 15.17  FLOOR (D <= 1)         (stars-only row: root s* <= 1.43; D 1.202) gas band inner [0.001, 0.001] outer [0.001, 1.49] ILL
+    ZC406690 [stars+CO]      D   1.219 dF -0.020 y  2.34  s* <= 0.788            (stars-only row: root s* <= 7.59; D 3.633) gas band inner [0.001, 2.67] outer [0.001, 8.44]
+  PT1      (n  11, z_med 2.287): median D 1.750  ROOT s* <= 1.43; bootstrap 68 % [0.552, 3.27] 95 % [0.001, 5.14]; baryon +-0.15 [0.322, 3.92] +-0.30 [0.001, 6.55]; Delta_floor +0.243; gas_req +0.06; median delta_FLAT +0.022; B2 floor; recipe half-width 0.790
+  PT2      (n  18, z_med 2.250): median D 1.714  ROOT s* <= 0.948; bootstrap 68 % [0.62, 2.11] 95 % [0.001, 3.61]; baryon +-0.15 [0.326, 3.29] +-0.30 [0.001, 6.79]; Delta_floor +0.234; gas_req -0.02; median delta_FLAT -0.005; B2 floor; recipe half-width 0.849
+  PT0      (n  38, z_med 2.238): median D 1.772  ROOT s* <= 2.11; bootstrap 68 % [1.66, 2.78] 95 % [0.974, 3.48]; baryon +-0.15 [0.68, 4.15] +-0.30 [0.001, 7.75]; Delta_floor +0.248; gas_req +0.31; median delta_FLAT +0.087; B2 floor; recipe half-width 0.898
+  PT2z1    (n   9, z_med 2.182): median D 1.677  ROOT s* <= 1.43; bootstrap 68 % [0.65, 2.15] 95 % [0.001, 4]; baryon +-0.15 [0.322, 4.12] +-0.30 [0.001, 7.04]; Delta_floor +0.225; gas_req +0.06; median delta_FLAT +0.022; B2 floor; recipe half-width 0.790
+  PT2z2    (n   9, z_med 2.387): median D 1.750  ROOT s* <= 0.801; bootstrap 68 % [0.552, 2.07] 95 % [0.001, 10.6]; baryon +-0.15 [0.332, 1.83] +-0.30 [0.001, 6.55]; Delta_floor +0.243; gas_req -0.11; median delta_FLAT -0.033; B2 floor; recipe half-width 0.908
+  PT2_new  (n   9, z_med 2.257): median D 1.677  ROOT s* <= 1.43; bootstrap 68 % [0.801, 2.07] 95 % [0.001, 4]; baryon +-0.15 [0.332, 3.92] +-0.30 [0.001, 6.55]; Delta_floor +0.225; gas_req +0.06; median delta_FLAT +0.022; B2 floor; recipe half-width 0.822
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every galaxy row with a root
+         max |d log10| = 4.4e-16 (31 rows with a root)
+  [PASS] M3 the tier memberships and the pooled sizes (PT1 11, PT2 18, PT0 38; the z halves partition PT2; PT2_new is T2 without any RC100 or KMOS3D match)
+         [('PT1', 11), ('PT2', 18), ('PT0', 38), ('PT2z1', 9), ('PT2z2', 9), ('PT2_new', 9)]
+  [PASS] M7 (reported) the cross-match counts of stage A are unchanged
+         RC100 12, KMOS3D 5, PHIBSS 6, gas rows 4
+  [PASS] SELFTEST: the conditioned T2 rows with a root return the fabricated truth (s = 2) inside their 95 % interval in at least 80 % of cases
+         10 of 12; pooled PT2 s* 0.948 (root), 95 % [0.001, 3.61]
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg280_points_stageB_SELFTEST.csv (48 rows)
+
+5/5 checks pass; load-bearing failures: 0   (37 s)
