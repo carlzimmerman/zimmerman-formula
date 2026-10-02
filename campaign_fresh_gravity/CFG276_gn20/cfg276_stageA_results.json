@@ -1,0 +1,152 @@
+{
+ "stage": "A",
+ "mutate": false,
+ "selftest": false,
+ "checks": [
+  {
+   "name": "C1 CONTROL (loader): every frozen number is found in the two TeX files (Uebler+24: the fiducial and inflow model tables, R_e 3.6, n 0.42, the 2.5e10 nuclear mass, the 11.4 +- 0.3 prior, Tan+14 1.1e11, Hodge+12 1.3e11, the i = 150 deg numbers; Boogaard+25: the TED and TUNER gas masses, r_exp, n, alpha_CO, r_eff 4 kpc)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1b CONTROL: v_circ^2 = v_rot^2 + 3.36 sigma_0^2 at R_e to 0.5 % for the fiducial and the inflow model (the pressure term is in the published v_circ once)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL (geometry): the Hankel thin disc equals Freeman's exact exponential disc (n = 1) and the exact Gaussian-disc closed form (n = 0.5) to 2e-3 at 1, 3.6 and 7.2 kpc; the exact Sersic b_n puts half the mass inside R_e (1e-12) for n = 0.42, 0.5, 1; the deprojected n = 4 profile's projected half-mass radius equals R_e to 1 %",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every row's baryon side",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "M5 (validates my geometry against Uebler's own model): the baryonic circular velocity at R_e of the total baryons log M_bar = 11.42 split as in Uebler's model (B/T = 0.1 nuclear n = 4 R_e 0.8; 0.9 in the n = 0.42 R_e = 3.6 disc, thin) is within 25 % of the model's v_bar = v_circ sqrt(1 - f_DM) with f_DM(<R_e) = 0.30",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "inputs": {
+   "z": 4.055,
+   "R_e": 3.6,
+   "M_star": 110000000000.0,
+   "nuclear_frac": 0.22727272727272727,
+   "gas": {
+    "none": 0.0,
+    "H12": 130000000000.0,
+    "RT": 287000000000.0
+   },
+   "sig": [
+    0.1,
+    0.3,
+    0.213
+   ],
+   "gobs": [
+    [
+     "Re",
+     "fid",
+     2.214676549088736e-09
+    ],
+    [
+     "Re",
+     "inflow",
+     2.0055382589432596e-09
+    ],
+    [
+     "Re",
+     "i150",
+     2.9726548552785364e-09
+    ],
+    [
+     "Re",
+     "rot",
+     1.9801251480152e-09
+    ],
+    [
+     "2Re",
+     "fid",
+     1.2869000465960207e-09
+    ],
+    [
+     "2Re",
+     "inflow",
+     8.700512125347178e-10
+    ],
+    [
+     "2Re",
+     "i150",
+     1.8821007017042656e-09
+    ]
+   ]
+  },
+  "rows": {
+   "GN20 [stars; Re]": {
+    "R": 3.6,
+    "gb0": 7.791635378218844e-10,
+    "y0": 8.324129972563746,
+    "lever": -20.859550562514467,
+    "ill": true
+   },
+   "GN20 [stars+H12; Re]": {
+    "R": 3.6,
+    "gb0": 1.5361973879427595e-09,
+    "y0": 16.4118392353104,
+    "lever": null,
+    "ill": true
+   },
+   "GN20 [stars+RT; Re]": {
+    "R": 3.6,
+    "gb0": 2.4504613453964316e-09,
+    "y0": 26.17930349878136,
+    "lever": null,
+    "ill": true
+   },
+   "GN20 [stars; 2Re]": {
+    "R": 7.2,
+    "gb0": 3.864444306257518e-10,
+    "y0": 4.128547489137653,
+    "lever": -7.110374407765137,
+    "ill": false
+   },
+   "GN20 [stars+H12; 2Re]": {
+    "R": 7.2,
+    "gb0": 7.642577383041873e-10,
+    "y0": 8.164885081719467,
+    "lever": -19.794908066387773,
+    "ill": true
+   },
+   "GN20 [stars+RT; 2Re]": {
+    "R": 7.2,
+    "gb0": 1.220539963731221e-09,
+    "y0": 13.039538943529811,
+    "lever": null,
+    "ill": true
+   }
+  },
+  "hand_estimates": {
+   "HE1": true,
+   "HE2": false,
+   "HE3": true,
+   "HE7": true
+  },
+  "pf": {
+   "PF_D1": true
+  },
+  "controls_numbers": {
+   "hankel_vs_freeman": 0.0009419249471831481,
+   "hankel_vs_gaussian": 0.00010604305483519205,
+   "half_mass_n4": 0.4998976293034181,
+   "v_bar_mine": 445.6687116951788,
+   "v_bar_model": 414.98337316090146
+  }
+ }
+}

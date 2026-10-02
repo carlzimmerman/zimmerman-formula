@@ -1,0 +1,57 @@
+CFG276 -- implied-a0 rows for GN20 (z = 4.055) from the JWST/NIRSpec DysmalPy circular velocity of Uebler+24 (arXiv:2403.03192) with independent baryons
+(Tan+14 stars 1.1e11; Hodge+12 gas 1.3e11 or the Boogaard+25 resolved radiative-transfer gas 2.87e11): six rows = three baryon branches x R_e / 2 R_e, never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG276_gn20/FROZEN_CRITERIA.md (bc2ed906d).
+  g_obs   R_e: v_circ(R_e)^2 / R_e with v_circ = 496 km/s (the model's circular velocity: the pressure term 3.36 sigma0^2 is in it once); 2 R_e: G M_dyn(<2 R_e) / (2 R_e)^2, log M_dyn = 11.68; 0.10 dex declared
+  g_bar   stars: Sersic n = 0.42 disc (R_e 3.6 kpc, Hankel thin disc) + nuclear component (n = 4, R_e 0.8 kpc, 2.5e10); gas: exponential disc R_e = 4.0 kpc (Freeman)
+  STAGE=A the baryon side (no g_obs-based quantity); STAGE=B the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (g_obs x 4).
+
+STAGE A
+GN20: z 4.055, R_e 3.6 kpc (2 R_e 7.2); stars 1.10e+11 (nuclear fraction 0.227); gas H12 1.30e+11, RT 2.87e+11; g_obs(R_e) fiducial 2.215e-09, (2 R_e) 1.287e-09 m/s^2; sigma_g 0.1 dex, sigma_M* 0.3, sigma_gas 0.213
+
+STAGE A  THE BARYON SIDE (g_obs of the rows is printed as A6; no D, delta or s* is formed)
+  [PASS] C1 CONTROL (loader): every frozen number is found in the two TeX files (Uebler+24: the fiducial and inflow model tables, R_e 3.6, n 0.42, the 2.5e10 nuclear mass, the 11.4 +- 0.3 prior, Tan+14 1.1e11, Hodge+12 1.3e11, the i = 150 deg numbers; Boogaard+25: the TED and TUNER gas masses, r_exp, n, alpha_CO, r_eff 4 kpc)
+         Uebler 19 of 19 [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True]; Boogaard 7 of 7 [True, True, True, True, True, True, True]
+  [PASS] C1b CONTROL: v_circ^2 = v_rot^2 + 3.36 sigma_0^2 at R_e to 0.5 % for the fiducial and the inflow model (the pressure term is in the published v_circ once)
+         fiducial: sqrt(469^2 + 3.36 x 89^2) = 496.56 against 496 (diff 0.0011); inflow: 472.08 against 472 (diff 0.0002); i = 150 deg v_circ = 574.6
+  [PASS] C2 CONTROL (geometry): the Hankel thin disc equals Freeman's exact exponential disc (n = 1) and the exact Gaussian-disc closed form (n = 0.5) to 2e-3 at 1, 3.6 and 7.2 kpc; the exact Sersic b_n puts half the mass inside R_e (1e-12) for n = 0.42, 0.5, 1; the deprojected n = 4 profile's projected half-mass radius equals R_e to 1 %
+         Hankel vs Freeman 9.4e-04; vs Gaussian 1.1e-04; |P(2n, b_n) - 1/2| 0.0e+00; n=4 projected fraction within R_e 0.4999
+  [PASS] C3 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C4 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every row's baryon side
+         max |d log10 s| 4.7e-15
+
+A1 / A2  BARYON SIDE AND THE CFG240 READING (noiseless world; ILL-CONDITIONED iff |lever| >= 10 or not computable)
+    GN20 [stars; Re]         R 3.6 kpc: g_bar 7.792e-10 m/s^2, y 8.32, lever -20.86  ILL-CONDITIONED
+    GN20 [stars+H12; Re]     R 3.6 kpc: g_bar 1.536e-09 m/s^2, y 16.41, lever +nan (not computable)  ILL-CONDITIONED
+    GN20 [stars+RT; Re]      R 3.6 kpc: g_bar 2.450e-09 m/s^2, y 26.18, lever +nan (not computable)  ILL-CONDITIONED
+    GN20 [stars; 2Re]        R 7.2 kpc: g_bar 3.864e-10 m/s^2, y 4.13, lever -7.11  conditioned
+    GN20 [stars+H12; 2Re]    R 7.2 kpc: g_bar 7.643e-10 m/s^2, y 8.16, lever -19.79  ILL-CONDITIONED
+    GN20 [stars+RT; 2Re]     R 7.2 kpc: g_bar 1.221e-09 m/s^2, y 13.04, lever +nan (not computable)  ILL-CONDITIONED
+    CFG240: T4 floor 3 sigma / sqrt(N) at sigma = 0.2 dex is 0.60 dex for N = 1 (calibration free); y(B) spans 4.1 to 26.2; the break-even design needs y >~ 8 with deep points (y < 0.3): none here
+
+A3  KNOB EFFECTS ON g_bar (dex relative to the baseline; stars at unit mass, gas at unit mass) at R_e and 2 R_e
+    stars: all in the disc: R_e -0.032, 2 R_e +0.035 dex
+    stars: exp disc R_e=4.0: R_e -0.085, 2 R_e -0.082 dex
+    gas: TED input scale R_e=4.89: R_e -0.133, 2 R_e -0.059 dex
+    gas: compact R_e=2.5: R_e +0.233, 2 R_e +0.045 dex
+    gas: point mass: R_e -0.085, 2 R_e -0.129 dex
+A5  ENCLOSED FRACTIONS at R_e and 2 R_e: gas (exponential R_e 4.0, projected) 0.446, 0.804; nuclear n=4 R_e 0.8 0.820, 0.931; Sersic n=0.42 disc projected 0.500, 0.956
+
+A6  g_obs OF THE ROWS AND VARIANTS (numbers from the papers' tables; m s^-2): Re fid: 2.215e-09 (23.7 a0); Re inflow: 2.006e-09 (21.4 a0); Re i150: 2.973e-09 (31.8 a0); Re rot: 1.980e-09 (21.2 a0); 2Re fid: 1.287e-09 (13.7 a0); 2Re inflow: 8.701e-10 (9.3 a0); 2Re i150: 1.882e-09 (20.1 a0)
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C4)
+  PF-D2 ILL-CONDITIONED rows: GN20 [stars; Re], GN20 [stars+H12; Re], GN20 [stars+RT; Re], GN20 [stars+H12; 2Re], GN20 [stars+RT; 2Re]
+
+M5 (a control that needs only the baryon side) -- Uebler's baryonic circular velocity at R_e against my geometry
+  [PASS] M5 (validates my geometry against Uebler's own model): the baryonic circular velocity at R_e of the total baryons log M_bar = 11.42 split as in Uebler's model (B/T = 0.1 nuclear n = 4 R_e 0.8; 0.9 in the n = 0.42 R_e = 3.6 disc, thin) is within 25 % of the model's v_bar = v_circ sqrt(1 - f_DM) with f_DM(<R_e) = 0.30
+         v_bar (mine, thin disc) 445.7 km/s; model 415.0 km/s (496 x sqrt(0.70)); ratio 0.931
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 7) scored (HE4-HE7 are scored at stage B; HE7 = M5 is scored here):
+    HE1: y at R_e: stars 8.3 (5-12), +H12 16.4 (10-20), +RT 26.2 (15-35): hit
+    HE2: all six rows ILL-CONDITIONED (5 of 6): MISS (kept as it falls)
+    HE3: g_obs(R_e) 2.215e-09 (2.1-2.3e-9), g_obs(2R_e) 1.287e-09 (1.2-1.4e-9): hit
+    HE7: M5 holds (ratio 0.931): hit
+
+6/6 checks pass; load-bearing failures: 0   (4 s)
