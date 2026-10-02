@@ -1,0 +1,44 @@
+CFG277 -- implied-a0 estimates (upper bounds or floors) for the four Roman-Oliveira+23 [CII] discs (z 4.26-4.43): measured CO gas (class S), stars missing; J081740's corpus M* as a separate branch.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG277_roman_oliveira_four_discs/FROZEN_CRITERIA.md (e591b71c1).
+  rows      J081740 [gas], J081740 [gas+M*], BRI1335-0417 [gas], SGP38326-1 [gas], SGP38326-2 [gas] (headline); J081740 [FIR gas], J081740 [CII gas] (sensitivity)
+  g_obs     (V_ext^2 + 3.36 sigma_ext^2) / r_ext, r_ext = (N - 1) RADSEP kpc/arcsec (CFG197's committed constants); g_bar = f_enc G (M_gas [+ M*]) / r_ext^2 with f_enc = 0.5
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_ext and sigma_ext x 2); STAGE=B SELFTEST=1 (fabricated V_ext on the law at s = 2).
+
+STAGE B
+tables: sample 985ef40cb89bff54, gas 42701921add400ee, kinematics e344a4f21739ecf4, multitracer 98fe74763cf766ca, corpus galaxies d7fcf09c06338d37, Neeleman+20 TeX 6593e2e2fb944ea1; velocity-bearing columns loaded: True
+rows: J081740 [gas]: r_ext 2.699 kpc, M_gas 8.80e+10 (sigma 0.128 dex); J081740 [gas+M*]: r_ext 2.699 kpc, M_gas 8.80e+10 (sigma 0.128 dex), M* 3.16e+10; BRI1335-0417 [gas]: r_ext 4.092 kpc, M_gas 1.00e+11 (sigma 0.043 dex); SGP38326-1 [gas]: r_ext 3.536 kpc, M_gas 1.90e+11 (sigma 0.300 dex); SGP38326-2 [gas]: r_ext 1.632 kpc, M_gas 7.60e+10 (sigma 0.300 dex); J081740 [FIR gas]: r_ext 2.699 kpc, M_gas 5.70e+10 (sigma 0.053 dex); J081740 [CII gas]: r_ext 2.699 kpc, M_gas 9.80e+10 (sigma 0.027 dex)
+
+STAGE B  THE MEASUREMENT
+  J081740 [gas]          r 2.70: g_obs 7.885e-10 (rot-only 7.445e-10)  g_bar 8.420e-10  D 0.936  dF -0.060  y 9.00  FLOOR (D <= 1); MC 68 % [1.13, 10.6] 95 % [0.156, 23.5] (no root 0.56, ceiling 0.00); baryon ratio for s* = 1: -0.14; recipe half-width nan; band inner [0.001, 4.89] outer [0.001, 28.7] ILL
+  J081740 [gas+M*]       r 2.70: g_obs 7.885e-10 (rot-only 7.445e-10)  g_bar 1.145e-09  D 0.689  dF -0.185  y 12.23  FLOOR (D <= 1); MC 68 % [0.837, 8.48] 95 % [0.139, 18] (no root 0.83, ceiling 0.00); baryon ratio for s* = 1: -0.37; recipe half-width nan; band inner [0.001, 0.931] outer [0.001, 11.9] ILL
+  BRI1335-0417 [gas]     r 4.09: g_obs 2.102e-10 (rot-only 1.237e-10)  g_bar 4.162e-10  D 0.505  dF -0.357  y 4.45  FLOOR (D <= 1); MC 68 % [0.0814, 0.843] 95 % [0.0211, 1.9] (no root 0.99, ceiling 0.00); baryon ratio for s* = 1: -0.64; recipe half-width nan; band inner [0.001, 0.001] outer [0.001, 3.15]
+  SGP38326-1 [gas]       r 3.54: g_obs 2.817e-09 (rot-only 2.752e-09)  g_bar 1.059e-09  D 2.660  dF +0.400  y 11.31  s* <= 50.9; MC 68 % [16.2, 157] 95 % [3.05, 364] (no root 0.09, ceiling 0.00); baryon ratio for s* = 1: +1.59; recipe half-width 0.694; band inner [20.4, 101] outer [0.001, 346] ILL
+  SGP38326-2 [gas]       r 1.63: g_obs 3.429e-09 (rot-only 3.322e-09)  g_bar 1.989e-09  D 1.724  dF +0.223  y 21.25  s* <= 28.2; MC 68 % [12.5, 118] 95 % [2.1, 280] (no root 0.24, ceiling 0.00); baryon ratio for s* = 1: +0.69; recipe half-width 0.689; band inner [2.83, 67.6] outer [0.001, 260] ILL
+  J081740 [FIR gas]      r 2.70: g_obs 7.885e-10 (rot-only 7.445e-10)  g_bar 5.454e-10  D 1.446  dF +0.113  y 5.83  s* <= 4.21; MC 68 % [1.78, 15.3] 95 % [0.337, 31] (no root 0.21, ceiling 0.00); baryon ratio for s* = 1: +0.33; recipe half-width 1.000; band inner [0.001, 11.8] outer [0.001, 48.8] ILL
+  J081740 [CII gas]      r 2.70: g_obs 7.885e-10 (rot-only 7.445e-10)  g_bar 9.377e-10  D 0.841  dF -0.104  y 10.02  FLOOR (D <= 1); MC 68 % [0.824, 7.39] 95 % [0.104, 14.7] (no root 0.68, ceiling 0.00); baryon ratio for s* = 1: -0.23; recipe half-width nan; band inner [0.001, 3.61] outer [0.001, 25] ILL
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 4.4e-16 (3 rows with a root)
+  [PASS] M3 the seven rows are present with their branches and tracers (five headline, two sensitivity)
+         [('headline', 'CO(2-1)'), ('headline', 'CO(2-1)'), ('headline', 'CO'), ('headline', 'CO'), ('headline', 'CO'), ('sensitivity', 'FIR continuum'), ('sensitivity', '[CII] luminosity')]
+  [PASS] M5 Roman-Oliveira's V_ext for J081740 equals the mean of the corpus rings' V (two on-disk fits of one galaxy) to within 5 %
+         V_ext 249.0 against the ring mean 249.78 (rings [247.46 252.09]); relative difference 0.003
+  [PASS] M6 V_ext / sigma_ext reproduces the table's vext_over_sigma_ext to within 2 % for the four discs (the table prints one decimal)
+         BRI1335-0417 2.19 vs 2.2 (diff 0.003); J081740 7.55 vs 7.6 (diff 0.007); SGP38326-1 11.91 vs 11.8 (diff 0.010); SGP38326-2 10.22 vs 10.2 (diff 0.002)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9; HE1-HE3 were scored at stage A) scored:
+    HE4: BRI1335-0417 floor, D 0.505 (needs a floor and D in 0.35-0.8): hit
+    HE5: J081740 [gas] floor D 0.936 (0.6-1.2), [gas+M*] floor D 0.689 (0.45-0.9): hit
+    HE6: SGP38326-1 root D 2.66 s* <= 50.9 ILL True; SGP38326-2 root D 1.72 s* <= 28.2 ILL True (needs D 2-3.5 / 1.3-2.3, s* 30-90 / 40-130, both ILL): MISS (kept as it falls)
+    HE7: alpha = 0 lowers g_obs by 0.230 dex (BRI1335-0417; needs 0.15-0.30) and by 0.025 / 0.010 / 0.014 dex (J081740, SGP-1, SGP-2; each < 0.05): hit
+    HE8: J081740 [FIR gas] root s* <= 4.21 (needs a root in 2-8); [CII gas] floor (needs a floor): hit
+    HE9: M5 and M6 hold: hit
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg277_points_stageB.csv (7 rows)
+
+5/5 checks pass; load-bearing failures: 0   (5 s)

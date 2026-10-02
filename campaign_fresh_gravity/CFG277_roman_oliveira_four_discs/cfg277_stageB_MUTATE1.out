@@ -1,0 +1,30 @@
+CFG277 -- implied-a0 estimates (upper bounds or floors) for the four Roman-Oliveira+23 [CII] discs (z 4.26-4.43): measured CO gas (class S), stars missing; J081740's corpus M* as a separate branch.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG277_roman_oliveira_four_discs/FROZEN_CRITERIA.md (e591b71c1).
+  rows      J081740 [gas], J081740 [gas+M*], BRI1335-0417 [gas], SGP38326-1 [gas], SGP38326-2 [gas] (headline); J081740 [FIR gas], J081740 [CII gas] (sensitivity)
+  g_obs     (V_ext^2 + 3.36 sigma_ext^2) / r_ext, r_ext = (N - 1) RADSEP kpc/arcsec (CFG197's committed constants); g_bar = f_enc G (M_gas [+ M*]) / r_ext^2 with f_enc = 0.5
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_ext and sigma_ext x 2); STAGE=B SELFTEST=1 (fabricated V_ext on the law at s = 2).
+
+STAGE B  *** MUTATE=1: V_ext and sigma_ext x 2 (g_obs x 4) ***
+tables: sample 985ef40cb89bff54, gas 42701921add400ee, kinematics e344a4f21739ecf4, multitracer 98fe74763cf766ca, corpus galaxies d7fcf09c06338d37, Neeleman+20 TeX 6593e2e2fb944ea1; velocity-bearing columns loaded: True
+rows: J081740 [gas]: r_ext 2.699 kpc, M_gas 8.80e+10 (sigma 0.128 dex); J081740 [gas+M*]: r_ext 2.699 kpc, M_gas 8.80e+10 (sigma 0.128 dex), M* 3.16e+10; BRI1335-0417 [gas]: r_ext 4.092 kpc, M_gas 1.00e+11 (sigma 0.043 dex); SGP38326-1 [gas]: r_ext 3.536 kpc, M_gas 1.90e+11 (sigma 0.300 dex); SGP38326-2 [gas]: r_ext 1.632 kpc, M_gas 7.60e+10 (sigma 0.300 dex); J081740 [FIR gas]: r_ext 2.699 kpc, M_gas 5.70e+10 (sigma 0.053 dex); J081740 [CII gas]: r_ext 2.699 kpc, M_gas 9.80e+10 (sigma 0.027 dex)
+
+STAGE B  THE MEASUREMENT (MUTATE: V_ext and sigma_ext x 2)
+  J081740 [gas]          r 2.70: g_obs 3.154e-09 (rot-only 2.978e-09)  g_bar 8.420e-10  D 3.746  dF +0.542  y 9.00  s* <= 93.3; MC 68 % [30.3, 224] 95 % [7.1, 438] (no root 0.01, ceiling 0.00); baryon ratio for s* = 1: +2.65; recipe half-width 0.530; band inner [44.8, 173] outer [0.001, 558] ILL
+  J081740 [gas+M*]       r 2.70: g_obs 3.154e-09 (rot-only 2.978e-09)  g_bar 1.145e-09  D 2.755  dF +0.417  y 12.23  s* <= 60.2; MC 68 % [17.5, 144] 95 % [3.59, 312] (no root 0.04, ceiling 0.00); baryon ratio for s* = 1: +1.69; recipe half-width 0.654; band inner [26.8, 113] outer [0.001, 287] ILL
+  BRI1335-0417 [gas]     r 4.09: g_obs 8.408e-10 (rot-only 4.950e-10)  g_bar 4.162e-10  D 2.020  dF +0.245  y 4.45  s* <= 9.53; MC 68 % [4.03, 21.9] 95 % [1.05, 39.4] (no root 0.02, ceiling 0.00); baryon ratio for s* = 1: +0.87; recipe half-width 2.110; band inner [2.65, 20.9] outer [0.001, 76.2]
+  SGP38326-1 [gas]       r 3.54: g_obs 1.127e-08 (rot-only 1.101e-08)  g_bar 1.059e-09  D 10.642  dF +1.002  y 11.31  CEILING (s* > 1000); MC 68 % [263, 838] 95 % [86.2, 974] (no root 0.56, ceiling 0.56); baryon ratio for s* = 1: +nan; recipe half-width nan; band inner [666, 1e+03] outer [157, 1e+03] ILL
+  SGP38326-2 [gas]       r 1.63: g_obs 1.371e-08 (rot-only 1.329e-08)  g_bar 1.989e-09  D 6.896  dF +0.825  y 21.25  s* <= 866; MC 68 % [211, 814] 95 % [70.1, 965] (no root 0.42, ceiling 0.42); baryon ratio for s* = 1: +nan; recipe half-width 0.417; band inner [475, 1e+03] outer [76.8, 1e+03] ILL
+  J081740 [FIR gas]      r 2.70: g_obs 3.154e-09 (rot-only 2.978e-09)  g_bar 5.454e-10  D 5.783  dF +0.715  y 5.83  s* <= 162; MC 68 % [59.7, 347] 95 % [15.7, 622] (no root 0.01, ceiling 0.00); baryon ratio for s* = 1: +4.64; recipe half-width 0.440; band inner [86.4, 285] outer [9.81, 880] ILL
+  J081740 [CII gas]      r 2.70: g_obs 3.154e-09 (rot-only 2.978e-09)  g_bar 9.377e-10  D 3.363  dF +0.498  y 10.02  s* <= 80.5; MC 68 % [27.3, 184] 95 % [6.24, 343] (no root 0.01, ceiling 0.00); baryon ratio for s* = 1: +2.28; recipe half-width 0.568; band inner [37, 152] outer [0.001, 498] ILL
+
+CONTROLS (stage B)
+  [PASS] M2 MUTATE=1 (reactivity; the count is of rows with D > 1, not of roots): V_ext and sigma_ext x 2; rows with status ROOT satisfy the closed-form inversion of their own (D, g_bar) to 1e-6 dex and the number of rows with D > 1 is at least the main run's
+         rows with D > 1: mutated 7, main 3; rows with a root 6; max |d log10 s*| against the independent inversion 6.7e-16
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg277_points_stageB_MUTATE1.csv (7 rows)
+
+2/2 checks pass; load-bearing failures: 0   (5 s)
