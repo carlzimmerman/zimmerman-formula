@@ -50,12 +50,12 @@ A271 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG271_hz
 A277 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG277_roman_oliveira_four_discs", "cfg277_points_stageB.csv")))}   # CFG277 0f6c4cd58
 A280 = list(csv.DictReader(open(os.path.join(CFG, "CFG280_sins_ao_published", "cfg280_points_stageB.csv"))))   # CFG280 396299a9f
 M279 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG279_mightee_published_values", "cfg279_points.csv")))}   # CFG279 7cecb04bc
+A275 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG275_pks0529_ci_rings", "cfg275_points_stageB.csv")))}   # CFG275 093132b4c
 A273 = list(csv.DictReader(open(os.path.join(CFG, "CFG273_danhaive_gold41", "cfg273_points_stageB_relabelled.csv"))))   # CFG273 208944196 (relabelled: two ceiling rows)
 A274 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG274_amvrosiadis_eight_discs", "cfg274_points_stageB.csv"))) if "pooled" not in r["object"]]   # CFG274 255f07244
 TODO = [  # (label, zmin, zmax, short note)       sources: CFG227 'Listed, no point' + CFG237 + CFG258 + L328
     ("ALPAKA 24 (1)", alp["24"], alp["24"], "no stellar mass"),
     ("Lelli+23 (1)", 2.24, 2.24, "mean speed only"),
-    ("PKS 0529-549 (1)", 2.57, 2.57, "no radius / stellar mass"),
     ("GN20 (1)", 4.05, 4.05, "no radius / stellar mass"),
 ]
 
@@ -69,6 +69,7 @@ check("CFG271 HZ9: outer-ring stars-only upper bounds 14.85 (corpus M*) and 48.9
 check("CFG277 Roman-Oliveira: J081740 [gas] and BRI1335-0417 [gas] no root; SGP pair vacuous (51, 28) (0f6c4cd58)", A277["J081740 [gas]"]["no_root"] == "1" and A277["BRI1335-0417 [gas]"]["no_root"] == "1" and round(float(A277["SGP38326-1 [gas]"]["s_star"])) == 51)
 check("CFG280 SINS: PT2_new <= 9.09 (overlap-free); 7 stars-only floor galaxies without an RC100/KMOS3D match (396299a9f)", any(r["object"] == "SINS pooled PT2_new" and abs(float(r["s_star"]) - 9.0878) < 1e-3 for r in A280) and len([r for r in A280 if r["no_root"] == "1" and "[" not in r["object"] and r["rc100_match"] == "0" and r["kmos3d_match"] == "0"]) == 7)
 check("CFG279 MIGHTEE-HI: published whole-sample a0 = 1.50e-10 at z 0.055 (7cecb04bc)", abs(float(M279["MIGHTEE-HI paper: whole sample, z-averaged"]["a0_1e-10_m_s2"]) - 1.50) < 1e-6)
+check("CFG275 PKS 0529-549: chart row [CIG; CO] is a FLOOR (no root), 7 of 8 rows floor (093132b4c)", A275["PKS0529 [CIG; CO]"]["no_root"] == "1" and sum(r["no_root"] == "1" for r in A275.values()) == 7)
 check("CFG273 Danhaive: 7 no root (relabelled file), pooled PALL <= 29.4 at z 4.17 (208944196)", sum(r["no_root"] == "1" for r in A273) == 7 and any("PALL" in r["object"] and abs(float(r["s_star"]) - 29.45) < 0.01 for r in A273), f"({sum(r['no_root'] == '1' for r in A273)} no root)")
 check("CFG272 ALPAKA: 13 and 23 no root; 25 <= 3.30 and 28 <= 0.74 upper bounds; 24 no M* (d993f02dc)", sorted(r["object"].split()[1] for r in A272 if r["no_root"] == "1") == ["13", "23"] and sorted(round(float(r["s_star"]), 2) for r in A272 if r["no_root"] == "0") == [0.74, 3.3], f"({len(A272)} rows)")
 check("CFG274 Amvrosiadis: 7 of 8 no root, ALESS 075.1 s* 6.89 (255f07244)", sum(r["no_root"] == "1" for r in A274) == 7 and any(r["no_root"] == "0" and abs(float(r["s_star"]) - 6.887) < 0.01 for r in A274), f"({sum(r['no_root'] == '1' for r in A274)} no root)")
@@ -194,7 +195,9 @@ zs, ss = 1.88, f(ptn, "s_star") * U
 ax.scatter([zs], [ss], marker="o", s=55, facecolor="white", edgecolor=SNC, linewidth=1.8, zorder=6)
 ax.annotate("", xy=(zs, ss / 1.9), xytext=(zs, ss), arrowprops=dict(arrowstyle="-|>", color=SNC, lw=1.6), zorder=6)
 ax.text(zs - 0.06, ss, "SINS (z 2.26): ≤ 9×", color=SNC, fontsize=8.5, ha="right", va="center", fontweight="bold")
-N_NR = len(sins_floor) + len(ro_floor) + len(k3_floor) + 8 + sum(r["no_root"] == "1" for r in A274) + sum(r["no_root"] == "1" for r in A272) + sum(r["no_root"] == "1" and "pooled" not in r["object"] for r in A273)
+PKSC = "#bc6c25"
+ax.scatter([2.61], [0.188], marker="v", s=60, color=PKSC, zorder=6, edgecolor="white", lw=0.6)   # PKS 0529-549, true z 2.5706, nudged clear of the Amvrosiadis row
+N_NR = 1 + len(sins_floor) + len(ro_floor) + len(k3_floor) + 8 + sum(r["no_root"] == "1" for r in A274) + sum(r["no_root"] == "1" for r in A272) + sum(r["no_root"] == "1" and "pooled" not in r["object"] for r in A273)
 ax.text(0.12, 0.222, f"calculated, but no $a_0$ fits ({N_NR} galaxies):\nthe stars + gas already exceed what the rotation needs  ▸",
         fontsize=9.5, color="#7a5a1a", va="center")
 # MUSE-DARK (CFG262, fb24a5922): implied a0 in z-thirds BY BARYON ROUTE, reading bD (projected + asymmetric drift, CFG236's
@@ -280,7 +283,7 @@ fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from
          "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  The dashed sets at the bottom are data in hand with no $a_0$ value yet.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–274, CFG277, CFG280 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–275, CFG277, CFG280 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
