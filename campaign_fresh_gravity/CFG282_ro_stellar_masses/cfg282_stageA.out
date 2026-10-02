@@ -1,0 +1,46 @@
+CFG282 -- CFG277's Roman-Oliveira+23 [CII] discs (SGP38326-1, SGP38326-2, BRI1335-0417) with the literature SED stellar masses added: gas (CFG277's CO masses, class S) + SED stars, five rows never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG282_ro_stellar_masses/FROZEN_CRITERIA.md (3af1cf10d, corrected in section 9 by e111bcc30: provenance wording only).
+  rows     SGP38326-1 [gas+M* T26 11.04] / [gas+M* Ma19 11.52]; SGP38326-2 [T26 11.39] / [Ma19 11.27]; BRI1335-0417 [T26 12.05, AGN-included, unconstrained]
+  g_obs    (V_ext^2 + 3.36 sigma_ext^2) / r_ext;  g_bar = 0.5 G (M_gas + M*) / r_ext^2 (CFG197's point-mass geometry, f_enc = 0.5);  CFG223's s*
+  STAGE=A  the blind pre-flight (no velocity-bearing column loaded).  STAGE=B  the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V_ext, sigma_ext x 2).
+
+STAGE A
+tables: sample 985ef40cb89bff54, gas 42701921add400ee, kinematics e344a4f21739ecf4, stellar masses 487f01bc104d5ef8; velocity-bearing columns loaded: False
+rows: SGP38326-1 [gas+M* T26]: r_ext 3.536 kpc, M_gas 1.90e+11 (sigma 0.300 dex), M* 1.10e+11; SGP38326-1 [gas+M* Ma19]: r_ext 3.536 kpc, M_gas 1.90e+11 (sigma 0.300 dex), M* 3.31e+11; SGP38326-2 [gas+M* T26]: r_ext 1.632 kpc, M_gas 7.60e+10 (sigma 0.300 dex), M* 2.45e+11; SGP38326-2 [gas+M* Ma19]: r_ext 1.632 kpc, M_gas 7.60e+10 (sigma 0.300 dex), M* 1.86e+11; BRI1335-0417 [gas+M* T26]: r_ext 4.092 kpc, M_gas 1.00e+11 (sigma 0.043 dex), M* 1.12e+12
+
+STAGE A  THE BLIND PRE-FLIGHT (no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed)
+  [PASS] C1 CONTROL (loader): the five SED stellar masses (11.04 and 11.52, 11.39 and 11.27, 12.05) are found in the agent's table with limit_flag 'none' and the stated source; the three ids are in the sample, gas and kinematics tables; the sample's kpc/arcsec equals the programme's cosmology to 0.5 %; the gas masses are CFG277's (1.9e11 / 7.6e10 approx, 1.0e11)
+         found [('SGP38326-1 [gas+M* T26]', True), ('SGP38326-1 [gas+M* Ma19]', True), ('SGP38326-2 [gas+M* T26]', True), ('SGP38326-2 [gas+M* Ma19]', True), ('BRI1335-0417 [gas+M* T26]', True)]; sed rows in the table 5; ids True; kpc/arcsec deviation 7.2e-04; gas {'BRI1335-0417': (100000000000.0, 10000000000.0), 'SGP38326-1': (190000000000.0, nan), 'SGP38326-2': (76000000000.0, nan)}
+  [PASS] C2 CONTROL (reproduction of CFG197's committed gas-only numbers): r_ext (primary and variant) to 1e-3 and g_gas/a0 at f_enc = 0.5 (canonical) to 1e-4, relative, for the three discs
+         max relative difference in r_ext 0.0e+00; in g_gas/a0 2.9e-05
+  [PASS] C3 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C4 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every row's baryon side
+         max |d log10 s| 1.6e-14
+
+A1 / A2  BARYON SIDE AND THE CFG240 READING (noiseless world; point mass, f_enc = 0.5; ILL-CONDITIONED iff |lever| >= 10 or not computable)
+    SGP38326-1 [gas+M* T26]      z 4.424 r_ext 3.536 kpc: y(gas only, CFG277) 11.31 -> y(gas+M*) 17.84 (M*/M_gas 0.58); lever +nan (not computable)  ILL-CONDITIONED
+    SGP38326-1 [gas+M* Ma19]     z 4.424 r_ext 3.536 kpc: y(gas only, CFG277) 11.31 -> y(gas+M*) 31.03 (M*/M_gas 1.74); lever +nan (not computable)  ILL-CONDITIONED
+    SGP38326-2 [gas+M* T26]      z 4.427 r_ext 1.632 kpc: y(gas only, CFG277) 21.25 -> y(gas+M*) 89.87 (M*/M_gas 3.23); lever +nan (not computable)  ILL-CONDITIONED
+    SGP38326-2 [gas+M* Ma19]     z 4.427 r_ext 1.632 kpc: y(gas only, CFG277) 21.25 -> y(gas+M*) 73.30 (M*/M_gas 2.45); lever +nan (not computable)  ILL-CONDITIONED
+    BRI1335-0417 [gas+M* T26]    z 4.407 r_ext 4.092 kpc: y(gas only, CFG277) 4.45 -> y(gas+M*) 54.34 (M*/M_gas 11.22); lever +nan (not computable)  ILL-CONDITIONED
+
+A3  KNOB EFFECTS ON g_bar (dex relative to the primary; f_enc, helium on the gas, radius, the other SED branch)
+    SGP38326-1 [gas+M* T26]      f_enc 0.25 -0.301, f_enc 1.0 +0.301, helium x1.36 on the gas +0.089, radius variant +0.116, the other SED branch +0.240
+    SGP38326-1 [gas+M* Ma19]     f_enc 0.25 -0.301, f_enc 1.0 +0.301, helium x1.36 on the gas +0.054, radius variant +0.116, the other SED branch -0.240
+    SGP38326-2 [gas+M* T26]      f_enc 0.25 -0.301, f_enc 1.0 +0.301, helium x1.36 on the gas +0.035, radius variant +0.250, the other SED branch -0.088
+    SGP38326-2 [gas+M* Ma19]     f_enc 0.25 -0.301, f_enc 1.0 +0.301, helium x1.36 on the gas +0.043, radius variant +0.250, the other SED branch +0.088
+    BRI1335-0417 [gas+M* T26]    f_enc 0.25 -0.301, f_enc 1.0 +0.301, helium x1.36 on the gas +0.013, radius variant +0.116
+
+A5  THE CFG277 REFERENCE (gas-only, committed): BRI1335-0417 [gas]: D 0.505, floor; SGP38326-1 [gas]: D 2.660, root s* <= 50.9; SGP38326-2 [gas]: D 1.724, root s* <= 28.2
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C4)
+  PF-D2 ILL-CONDITIONED rows: SGP38326-1 [gas+M* T26], SGP38326-1 [gas+M* Ma19], SGP38326-2 [gas+M* T26], SGP38326-2 [gas+M* Ma19], BRI1335-0417 [gas+M* T26]
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 8) scored (HE3-HE6 are scored at stage B):
+    HE1: y(gas+M*) [17.8, 31.0, 89.9, 73.3, 54.3] (needs 14-22, 25-38, 70-110, 60-90, 40-70): hit
+    HE2: all five rows ILL-CONDITIONED (5 of 5): hit
+
+4/4 checks pass; load-bearing failures: 0   (1 s)
