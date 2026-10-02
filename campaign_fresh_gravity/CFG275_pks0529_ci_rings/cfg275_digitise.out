@@ -1,0 +1,17 @@
+CFG275 (lane F) -- digitiser for the rotation-curve points of Lin et al. (arXiv:2411.08958, PKS 0529-549 [CI](2-1)) from the paper's VECTOR figures.
+
+The e-print's figures are vector PDFs: marker centres and error-bar ends are exact coordinates, calibrated from the axes' major tick marks.
+  ADC_compare.pdf               V_rot (black circles + error bars), V_c with constant sigma_v (red squares), V_c with varying sigma_v (blue diamonds); x in arcsec
+  PKS_0529-549_MaxGas_MCMC.pdf  V_c (black circles + error bars) used in the mass-model fits; x in kpc
+Output: lin2024_rings_digitised.csv (long format).  QA is printed WITHOUT velocity values.
+Not blind: the author of this script had already decoded these curves by hand before writing it (disclosed in FROZEN_CRITERIA.md section 0).
+    ADC_compare.pdf x (arcsec): 4 major ticks, slope 0.00236558 data/pt, max |residual| 8.33e-17 data units
+    ADC_compare.pdf y (km/s): 9 major ticks, slope -3.17842 data/pt, max |residual| 1.98e-03 data units
+    PKS_0529-549_MaxGas_MCMC.pdf x (kpc): 4 major ticks, slope 0.0228647 data/pt, max |residual| 6.86e-06 data units
+    PKS_0529-549_MaxGas_MCMC.pdf y (km/s): 9 major ticks, slope -3.17842 data/pt, max |residual| 1.98e-03 data units
+  ADC_compare.pdf sha256 750bc8f70056a2da; PKS_0529-549_MaxGas_MCMC.pdf sha256 ef3c00814f73dae5
+  marker counts ADC: V_rot circles 5, V_c const-sigma squares 5, V_c varying-sigma diamonds 5, error bars 5; MCMC: V_c circles 5, error bars 5
+  ring radii (arcsec) equal 0.045 + 0.09 k (the paper's 0.09-arcsec rings) to 5.6e-17; radii in kpc from the MCMC figure equal arcsec x 8.22 to 8.0e-04 kpc
+  the MCMC figure's V_c data equal the ADC figure's constant-sigma V_c: max |difference| 0.334 km/s (the same five points, two figures)
+  calibration max residual 1.98e-03 data units; ticks and tick labels agree to 0.02 pt
+  wrote lin2024_rings_digitised.csv (20 rows)
