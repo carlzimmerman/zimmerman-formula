@@ -1,0 +1,39 @@
+CFG276 -- implied-a0 rows for GN20 (z = 4.055) from the JWST/NIRSpec DysmalPy circular velocity of Uebler+24 (arXiv:2403.03192) with independent baryons
+(Tan+14 stars 1.1e11; Hodge+12 gas 1.3e11 or the Boogaard+25 resolved radiative-transfer gas 2.87e11): six rows = three baryon branches x R_e / 2 R_e, never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG276_gn20/FROZEN_CRITERIA.md (bc2ed906d).
+  g_obs   R_e: v_circ(R_e)^2 / R_e with v_circ = 496 km/s (the model's circular velocity: the pressure term 3.36 sigma0^2 is in it once); 2 R_e: G M_dyn(<2 R_e) / (2 R_e)^2, log M_dyn = 11.68; 0.10 dex declared
+  g_bar   stars: Sersic n = 0.42 disc (R_e 3.6 kpc, Hankel thin disc) + nuclear component (n = 4, R_e 0.8 kpc, 2.5e10); gas: exponential disc R_e = 4.0 kpc (Freeman)
+  STAGE=A the baryon side (no g_obs-based quantity); STAGE=B the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (g_obs x 4).
+
+STAGE B  *** SELFTEST: FABRICATED g_obs on the law at s_true = 2 (+0.10 dex scatter); debugging only ***
+GN20: z 4.055, R_e 3.6 kpc (2 R_e 7.2); stars 1.10e+11 (nuclear fraction 0.227); gas H12 1.30e+11, RT 2.87e+11; g_obs(R_e) fiducial 2.215e-09, (2 R_e) 1.287e-09 m/s^2; sigma_g 0.1 dex, sigma_M* 0.3, sigma_gas 0.213
+
+STAGE B  THE MEASUREMENT (SELFTEST)
+SELFTEST: g_obs fabricated from the law at s_true = 2 on each row's own baryons (+0.10 dex scatter); the tabulated velocities are not used
+  GN20 [stars; Re]         g_obs 7.333e-10 D 0.941 dF -0.060 y 8.32  FLOOR (D <= 1); MC 68 % [1.56, 16] 95 % [0.226, 39.1] (no root 0.53, ceiling 0.00); to s*=1 -0.07 dex; recipe half-width nan (2/3 knobs rooted) ILL
+  GN20 [stars+H12; Re]     g_obs 2.039e-09 D 1.327 dF +0.105 y 16.41  s* <= 8.37; MC 68 % [4.04, 32.3] 95 % [0.606, 67.4] (no root 0.33, ceiling 0.00); to s*=1 +0.11 dex; recipe half-width 0.277 (5/6 knobs rooted) ILL
+  GN20 [stars+RT; Re]      g_obs 2.515e-09 D 1.026 dF -0.000 y 26.18  s* <= 0.98; MC 68 % [3.36, 29.8] 95 % [0.435, 67.5] (no root 0.53, ceiling 0.00); to s*=1 -0.00 dex; recipe half-width 1.075 (5/6 knobs rooted) ILL
+  GN20 [stars; 2Re]        g_obs 5.503e-10 D 1.424 dF +0.089 y 4.13  s* <= 2.81; MC 68 % [1.63, 16.4] 95 % [0.278, 39.7] (no root 0.31, ceiling 0.00); to s*=1 +0.10 dex; recipe half-width 0.272 (3/3 knobs rooted)
+  GN20 [stars+H12; 2Re]    g_obs 5.246e-10 D 0.686 dF -0.198 y 8.16  FLOOR (D <= 1); MC 68 % [0.536, 4.79] 95 % [0.0715, 9.65] (no root 0.83, ceiling 0.00); to s*=1 -0.22 dex; recipe half-width nan (0/6 knobs rooted) ILL
+  GN20 [stars+RT; 2Re]     g_obs 8.349e-10 D 0.684 dF -0.187 y 13.04  FLOOR (D <= 1); MC 68 % [0.833, 7.24] 95 % [0.101, 17.7] (no root 0.83, ceiling 0.00); to s*=1 -0.20 dex; recipe half-width nan (0/6 knobs rooted) ILL
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 1.1e-16 (3 rows with a root)
+  [PASS] M3 the six rows are present with their roles (three headline at R_e, three sensitivity at 2 R_e)
+         [('headline', [3.6]), ('headline', [3.6]), ('headline', [3.6]), ('sensitivity', [7.2]), ('sensitivity', [7.2]), ('sensitivity', [7.2])]
+  [PASS] SELFTEST: the conditioned rooted rows return the fabricated truth (s = 2) inside their 95 % interval
+         1 of 1 inside
+  SELFTEST repeat (reported): GN20 [stars; Re]: the 95 % interval contains s = 2 in 71 of 71 fabricated worlds with a root (29 of 100 worlds at the floor)
+  SELFTEST repeat (reported): GN20 [stars+H12; Re]: the 95 % interval contains s = 2 in 59 of 59 fabricated worlds with a root (41 of 100 worlds at the floor)
+  SELFTEST repeat (reported): GN20 [stars+RT; Re]: the 95 % interval contains s = 2 in 56 of 61 fabricated worlds with a root (39 of 100 worlds at the floor)
+  SELFTEST repeat (reported): GN20 [stars; 2Re]: the 95 % interval contains s = 2 in 91 of 91 fabricated worlds with a root (9 of 100 worlds at the floor)
+  SELFTEST repeat (reported): GN20 [stars+H12; 2Re]: the 95 % interval contains s = 2 in 81 of 81 fabricated worlds with a root (19 of 100 worlds at the floor)
+  SELFTEST repeat (reported): GN20 [stars+RT; 2Re]: the 95 % interval contains s = 2 in 65 of 65 fabricated worlds with a root (35 of 100 worlds at the floor)
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg276_points_stageB_SELFTEST.csv (6 rows)
+
+4/4 checks pass; load-bearing failures: 0   (13 s)
