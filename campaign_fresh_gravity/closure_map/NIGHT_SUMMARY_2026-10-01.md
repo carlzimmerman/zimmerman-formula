@@ -36,6 +36,7 @@ Every lane below was re-run by the orchestrator from the committed state before 
 | CFG273 | Danhaive gold 41 | conditioned, gas missing; upper bound only | 208944196 (+ 42b45bfc0) |
 | CFG274 | Amvrosiadis eight discs | 7/8 no root; near-Newtonian | 255f07244 |
 | CFG277 | Roman-Oliveira four [CII] discs | gas vs dynamics; not a₀ | 0f6c4cd58 |
+| CFG280 | published SINS AO sample (coverage) | stars-only upper bound; floors with gas | 396299a9f |
 
 ## Papers
 - **PAPER38** v1.2 is deposited (DOI 10.5281/zenodo.23085582, concept 23073071). v1.3 (the DR4-paragraph correction) is prepared, not deposited (180e14149).
