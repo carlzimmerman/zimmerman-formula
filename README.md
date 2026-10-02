@@ -59,6 +59,15 @@ $$\mathcal{Q}_0=\frac{g_{\rm tot}-g_N}{c\,v}\;\approx\;2.4\times10^{-3}\,\text{�
 
 interior to Skordis & Złośnik's own CMB fits, containing both their MOND-compatible parameter sets and excluding their MOND-incompatible one ([DOI 10.5281/zenodo.21937958](https://doi.org/10.5281/zenodo.21937958)).
 
+**Standing 2026-10-01, late (rev. 28): every public high-z sample scored, and the earliest galaxies checked.** Nothing here changes the bottom line.
+- **Scope.** Twenty-two source papers were audited (CFG267): only three state a₀, all at ≥ 1.2×10⁻¹⁰ with the RAR function.
+- **The z 2.5–4 gap** has no conditioned sample with measured gas (CFG268).
+- **FLAT vs a₀ ∝ H(z) from z 4 to 14** (CFG269, including the z ≈ 14 JWST record-holders) separates in no redshift bin: the baryon inventory and the virial coefficient are as large as the gap.
+- **The MIGHTEE "5σ" a₀ rise** flips sign with the stellar mass-to-light choice in the authors' own table (CFG279).
+- **Amendment 19** (a transport-only fallback for the DR4 correlation fetch) is filed.
+- **Charts:** `campaign_fresh_gravity/CHART_a0z_rar_z0_5_2026-10-01/` and `campaign_fresh_gravity/CHART_flat_vs_rival_z4_14_2026-10-01/`.
+- **Summary:** `campaign_fresh_gravity/closure_map/NIGHT_SUMMARY_2026-10-01.md`.
+
 **Standing 2026-10-01 (rev. 27): the closure map, the 32π audit, and the high-z sweep.** Nothing here changes the bottom line.
 - **Closure.** Four further routes to a complete mechanism are scoped no-gos (CFG242–245), and a closure map (PAPER39, prepared after an independent referee, not yet deposited) tabulates 25 routes and a reading of what any mechanism would need:
   - an early cold fluid present before structure forms;

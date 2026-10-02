@@ -42,8 +42,26 @@ Every lane below was re-run by the orchestrator from the committed state before 
 - **PAPER38** v1.2 is deposited (DOI 10.5281/zenodo.23085582, concept 23073071). v1.3 (the DR4-paragraph correction) is prepared, not deposited (180e14149).
 - **PAPER39** v1.1 (the closure map) is prepared after the CFG265 referee, not deposited (12de6965e, 80aa3a19a).
 
+## Late additions (each re-run by the orchestrator before recording)
+| lane | what | verdict | commit |
+|---|---|---|---|
+| CFG267 | methods audit of the 22 source papers (owner-directed) | only 3 state an a₀ (KiDS 1.20e-10 fixed; MIGHTEE 1.50e-10; MUSE-DARK III 2.38e-10), all with the RAR function; lanes inherit recipes, not verdicts | b4c905cc2 |
+| CFG268 | the z 2.5–4 gap (owner-directed) | 0 of 33 conditioned with measured gas; shortlist ADF22.1, KDS/AMAZE, the Big Wheel | 48466e61b |
+| CFG269 | FLAT vs a₀ ∝ H(z), z 4–14 (owner-directed, "JWST z 14") | no bin separates the laws; complete pools MARGINAL at ±0.15 dex, NOT POSSIBLE at ±0.30 | 19093417e |
+| CFG275 | PKS 0529-549, z 2.57 | 7/8 baryon rows at the floor; a census tension | 093132b4c |
+| CFG276 | GN20, z 4.055 | near-Newtonian; marginal floor, not informative | 231d32a8c |
+| CFG278 | Lelli+23 two discs | one floor, one conditioned upper bound restating an M★ conflict | 9878bfcec |
+| CFG279 | MIGHTEE published values | slope consistent with both laws; the anchored "5σ" flips sign with the M/L choice | 7cecb04bc |
+| CFG281 | BUDHIES local control | the chain works locally (s* 1.45); BUDHIES/local 0.18 is not an a₀(z) measurement | 4b0d76369 |
+| CFG282 | Roman-Oliveira with SED masses | ill-conditioned; baryon excess vs dynamics | 0f0ef264e |
+| CFG283 | ALPAKA 24, gas only | conditioned but vacuous; α_CO-limited | b20adfc0e |
+
+Charts: the a₀(z) one-chart (CHART_a0z_rar_z0_5_2026-10-01) and the flat-vs-rival chart (CHART_flat_vs_rival_z4_14_2026-10-01, 63a478352).
+Also filed: Amendment 19 (43e07b44b, transport-only).
+Privacy: the owner's name leaked into FETCH_LOG/MANIFEST rows (fixed at HEAD 387fb2210; older commits still carry it; a history rewrite is the owner's call).
+
 ## Waiting on the owner
 1. Deposit PAPER38 v1.3 (`--newversion 23085582`) and PAPER39 v1.1.
-2. Before DR4: a registered Gaia archive account, and whether to file Amendment 19 (pre-registering the sync correlation fallback).
+2. Before DR4: a registered Gaia archive account (Amendment 19 is now filed).
 3. The calculation chat's open download question (in that chat).
 4. Whether to scrub the owner's name and home path from the 401 held peer files so they can be committed.
