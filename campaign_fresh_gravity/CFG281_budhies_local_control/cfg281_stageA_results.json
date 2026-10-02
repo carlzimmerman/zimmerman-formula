@@ -1,0 +1,103 @@
+{
+ "stage": "A",
+ "mutate": 0,
+ "selftest": false,
+ "checks": [
+  {
+   "name": "C1 CONTROL (loader): the table has 31,503 rows with both source flags; the stage-A loader reads no width column (the loaded frame contains none); the PC log M_HI quartiles equal CFG260's 9.588 / 9.849 / 9.936 / 10.124 / 10.525 and N = 32",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: log M_HI = log10(2.356e5 D^2 S21) to 0.01 dex for every selected row (the catalogue's own identity)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: the imported estimators equal CFG223's original (bit for bit, hzq_core) and CFG260's `implied` (1e-12) on 200 random sets",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 CONTROL: the noiseless world (widths from the inverse chain on the law at s_true = 0.5, 1, 2.5, sin i_eff = sin 60 for every galaxy) returns s_true to 1e-6 dex on L and on every one of 200 matched resamples",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C5 CONTROL: the matched resamples carry equal weight per PC-quartile bin (exactly 100 draws each) and their log M_HI quartiles lie within 0.05 dex of the PC's",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "selection": [
+   [
+    "in both catalogues",
+    31500
+   ],
+   [
+    "HI code 1",
+    25432
+   ],
+   [
+    "M_HI >= 3e9",
+    15935
+   ],
+   [
+    "20 <= D <= 85 Mpc",
+    1518
+   ],
+   [
+    "complete photometry and a valid flux",
+    1370
+   ]
+  ],
+  "pc": {
+   "n": 32,
+   "quartiles": [
+    9.58771096501891,
+    9.848614473231638,
+    9.935905515878737,
+    10.123785254239834,
+    10.524785449321222
+   ]
+  },
+  "bins": [
+   642,
+   141,
+   154,
+   60
+  ],
+  "y": {
+   "L": [
+    0.024881012305232136,
+    0.02979664692677995,
+    0.04061914309959609,
+    0.06943701019558651,
+    0.19342135492930962
+   ],
+   "matched": [
+    0.025213828109960222,
+    0.0333108739909861,
+    0.04818127011799518,
+    0.0729935044955503,
+    0.16218844883196487
+   ]
+  },
+  "gas_fraction": {
+   "L": 0.5708154506437769,
+   "matched": 0.47920333707783963
+  },
+  "hand_estimates": {
+   "HE1": true,
+   "HE2": true
+  },
+  "pf": {
+   "PF_D1": true
+  },
+  "controls_numbers": {
+   "mhi_identity_max": 0.005914383489207253,
+   "noiseless_max": 2.220446049250313e-16
+  }
+ }
+}

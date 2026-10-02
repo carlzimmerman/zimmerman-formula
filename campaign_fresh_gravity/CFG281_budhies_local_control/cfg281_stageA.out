@@ -1,0 +1,39 @@
+CFG281 -- the BUDHIES width -> V -> baryon chain (CFG260) run on a same-pipeline LOCAL HI sample (ALFALFA widths + SDSS stellar masses), mass-matched to the BUDHIES primary set PC.
+A calibration of the chain, not a gravity test.  kappa = 1/2 is FITTED.  No verdict words.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG281_budhies_local_control/FROZEN_CRITERIA.md (b766cf43e).
+  local set L   code 1, M_HI >= 3e9, 20-85 Mpc, complete photometry; matched set LC = 4,000 stratified resamples of 100 galaxies in each of the four equal-count bins of the PC's log M_HI quartiles
+  chain         W_c = (W50 - 9) / (1+z); V = W_c / (2 sin 60 deg); M_gas = 1.33 M_HI; M* = the catalogue's Taylor+11 colour mass; R = D_HI/2 (D_HI-M_HI relation); g_bar = G M_b / R^2; g_obs = V^2 / R; CFG223's s*
+  STAGE=A  blind: no width column is loaded.   STAGE=B  the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (widths x 1.1892); STAGE=B MUTATE=2 (sin i_eff 0.70).
+Variants and knobs use the first 1,000 of the same resamples (common random numbers); the primary estimate and its interval use all 4,000.
+
+STAGE A
+local table alfalfa_sdss.csv sha256 c790a7ec68c45b66; 31503 rows; width columns loaded: False
+selection: in both catalogues 31500 -> HI code 1 25432 -> M_HI >= 3e9 15935 -> 20 <= D <= 85 Mpc 1518 -> complete photometry and a valid flux 1370
+PC (BUDHIES primary set): N 32, log M_HI quartiles [ 9.588  9.849  9.936 10.124 10.525], z_bar 0.1960; local galaxies per PC-quartile bin [642, 141, 154, 60]; below the PC minimum 370, above the maximum 3
+
+STAGE A  THE BLIND PRE-FLIGHT (no width column is loaded)
+  [PASS] C1 CONTROL (loader): the table has 31,503 rows with both source flags; the stage-A loader reads no width column (the loaded frame contains none); the PC log M_HI quartiles equal CFG260's 9.588 / 9.849 / 9.936 / 10.124 / 10.525 and N = 32
+         rows 31503; in both 31500; width columns in the loaded frame []; PC quartiles [ 9.588  9.849  9.936 10.124 10.525]; N 32
+  [PASS] C2 CONTROL: log M_HI = log10(2.356e5 D^2 S21) to 0.01 dex for every selected row (the catalogue's own identity)
+         max deviation 0.0059 dex (AGC 2374, D = 41.7 Mpc); median 0.0025
+  [PASS] C3 CONTROL: the imported estimators equal CFG223's original (bit for bit, hzq_core) and CFG260's `implied` (1e-12) on 200 random sets
+         hzq_core identical True; cfg260_core within 1e-12 True
+  [PASS] C4 CONTROL: the noiseless world (widths from the inverse chain on the law at s_true = 0.5, 1, 2.5, sin i_eff = sin 60 for every galaxy) returns s_true to 1e-6 dex on L and on every one of 200 matched resamples
+         max |d log10 s| 2.2e-16
+  [PASS] C5 CONTROL: the matched resamples carry equal weight per PC-quartile bin (exactly 100 draws each) and their log M_HI quartiles lie within 0.05 dex of the PC's
+         draws per bin [100, 100, 100, 100]; matched quartiles [ 9.848  9.935 10.122] against PC [ 9.849  9.936 10.124]
+
+A1  THE BARYON SIDE (no width: y, gas fraction and radii of the set and of the matched resamples)
+    L (N = 1370): y quartiles [0.0249 0.0298 0.0406 0.0694 0.1934] (5/25/50/75/95 %); fraction y < 0.3 0.985; gas fraction median 0.571; R median 20.4 kpc; log M_HI median 9.690; z median 0.0158
+    matched: y quartiles [0.0252 0.0333 0.0482 0.073  0.1622]; fraction y < 0.3 0.996; gas fraction median 0.479; PC y (CFG260): median 0.068, Q1 0.042, Q3 0.114, max 0.207, all below 0.3
+    stellar mass methods (log M*, median over L): Taylor 9.720, McGaugh 9.950 (6 missing), GSWLC 9.880 (964 missing); stars/gas mass ratio median 0.75
+    variant sets: 20-50 Mpc 256, 50-85 Mpc 1114, M_HI >= 5e9 674; axis-ratio quartiles [0.2  0.35 0.53 0.71 0.89]
+
+DECISION  PF-D1 ESTIMATOR AND LOADER VALIDATED: True (controls C1-C5)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 8) scored (HE3-HE9 are scored at stage B):
+    HE1: matched median y 0.0482 (0.03-0.12), fraction y < 0.3 0.996 (>= 0.90), gas fraction median 0.479 (0.45-0.80): hit
+    HE2: M_HI identity max deviation 0.0059 dex (<= 0.01): hit
+
+5/5 checks pass; load-bearing failures: 0   (4 s)
