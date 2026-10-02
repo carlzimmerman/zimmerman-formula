@@ -1,0 +1,48 @@
+CFG283 -- ALPAKA 24 (ADF22.5, z = 3.094) with gas-only baryons: B1 = a gas floor (alpha_CO,min = 0.8, r_J1 = 1; a LOWER limit, the headline) and B2 = the Galactic conversion (alpha_CO = 4.36, r_J1 = 1; sensitivity). No stellar mass exists.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG283_alpaka24_gas_only/FROZEN_CRITERIA.md (e46390c14).
+  STAGE=A   the engineering pre-flight: no velocity column is loaded; every number it prints was seen in the criteria's section 0.3 (it is NOT blind).
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_ext, sigma_ext x 2); STAGE=B SELFTEST=1 (fabricated V_ext on the law at s = 2; the real velocities are never loaded).
+Points file: no_root = 1 only for a FLOOR; a CEILING (D > 1 but s* > 1000) is written s_star = 1000, no_root = 0, status = ceiling (CFG277's convention).
+
+STAGE B  *** SELFTEST: FABRICATED V_ext on the law at s_true = 2 (+0.15 dex scatter); the real velocities are never loaded; debugging only ***
+sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038; velocity columns loaded: False
+row: ID 24 ADF22.5 z 3.094  L' 3.000e+10 +- 4.00e+09 (0.0579 dex)  R_ext 3.551 kpc (0.4578 arcsec, 7.757 kpc/arcsec)  R_e 2.959 kpc (R_ext/1.2, assumed)  i_ALMA 75 +- 6  M* nan  beam 0.24 x 0.20 arcsec = 1.86 x 1.55 kpc
+baryon side: B1: alpha_CO 0.8 M_gas 2.400e+10 g_bar 2.0618e-10 y 2.203 nu(y) 1.2931; B2: alpha_CO 4.36 M_gas 1.308e+11 g_bar 1.1237e-09 y 12.005 nu(y) 1.0568
+
+STAGE B  THE MEASUREMENT (SELFTEST)
+SELFTEST: V_ext fabricated from the law at s_true = 2 on the B1 baryons (+0.15 dex scatter on g_obs); the real velocities are not used
+  ALPAKA 24 ADF22.5 [gas floor]: z 3.094  g_obs 5.1777e-10  g_bar 2.0618e-10  D 2.5112  delta_FLAT +0.288 [+0.190, +0.390]  y 2.203  status ROOT  s* <= 8.54 (a0 <= 7.994e-10)
+      Monte Carlo (B = 10000): draws without a root 0.000 (floor 0.000, ceiling 0.000); rooted 68 % [4.71, 15]  95 % [2.162, 24.23]  median 8.834
+      bands: all baryons +-0.15 [4.553, 14.22]  +-0.30 [1.754, 22.28];  gas +-0.213 [3.258, 17.26]  +-0.671 [0.001, 59.63] (no-root corner)
+      Delta_floor +0.400 dex; baryon shift for s* = 1: +0.344 dex; alpha_CO at D = 1: 2.009; alpha_CO at s* = 1: 1.768; lever (noiseless) -3.75 (conditioned); knobs with a root 11/11; recipe half-width 0.581
+      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 +0.331 [root; +0.233]; R_e /1.5 -0.259 [root; -0.143]; spherical +0.171 [root; +0.114]; pressure +1.68 sigma^2 +0.019 [root; +0.007]; pressure +3.36 sigma^2 +0.037 [root; +0.014]; inclination -1 sigma +0.076 [root; +0.030]; inclination +1 sigma -0.051 [root; -0.019]; V_ext at R_mean of the last two rings +0.086 [root; +0.012]; kernel P2 +0.136 [root; +0.000]; gas: r_31 = 0.6 (gas x 1/0.6) -0.441 [root; -0.222]; gas: helium x 1.36 -0.239 [root; -0.134]
+      knob groups (max |Delta log10 s*|): geometry 0.331, pressure 0.037, inclination 0.076, radius 0.086, kernel 0.136, gas conversion 0.441
+  ALPAKA 24 ADF22.5 [gas Galactic]: z 3.094  g_obs 5.1777e-10  g_bar 1.1237e-09  D 0.4608  delta_FLAT -0.361 [-0.463, -0.253]  y 12.005  status FLOOR
+      Monte Carlo (B = 10000): draws without a root 1.000 (floor 1.000, ceiling 0.000); rooted 68 % [nan, nan]  95 % [nan, nan]  median nan
+      bands: all baryons +-0.15 [0.001, 0.001] (no-root corner)  +-0.30 [0.001, 0.001] (no-root corner);  gas +-0.213 [0.001, 0.001] (no-root corner)  +-0.671 [0.001, 6.627] (no-root corner)
+      Delta_floor -0.337 dex; baryon shift for s* = 1: -0.392 dex; alpha_CO at D = 1: 2.009; alpha_CO at s* = 1: 1.769; lever (noiseless) +nan ILL-CONDITIONED; knobs with a root 0/11; recipe half-width nan
+      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 -- [floor; +0.233]; R_e /1.5 -- [floor; -0.143]; spherical -- [floor; +0.114]; pressure +1.68 sigma^2 -- [floor; +0.007]; pressure +3.36 sigma^2 -- [floor; +0.014]; inclination -1 sigma -- [floor; +0.030]; inclination +1 sigma -- [floor; -0.019]; V_ext at R_mean of the last two rings -- [floor; +0.012]; kernel P2 -- [floor; +0.000]; gas: r_31 = 0.6 (gas x 1/0.6) -- [floor; -0.222]; gas: helium x 1.36 -- [floor; -0.134]
+      knob groups (max |Delta log10 s*|): none (no root at the base)
+
+  context: M_dyn(< R_ext) = V_ext^2 R_ext / G = 4.684e+10 Msun (a scale, not a baryon mass); M_gas B1 2.400e+10, B2 1.308e+11
+
+  SELFTEST (100 worlds): V_ext fabricated from the law at s_true = 2 on the B1 baryons, 0.15 dex scatter on g_obs, 10 % V errors; Monte Carlo B = 1,000 per world; the L' error is drawn as in the main run
+    status of the fabricated worlds: root 89, floor 11, ceiling 0; of the 89 rooted worlds the 95 % interval contains s = 2 in 79; s* of the rooted worlds: median 2.12, 16-84 % [0.613, 6.12]
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 1.1e-16 (1 rows with a root)
+  [PASS] M3 two rows (B1, B2), both ID 24
+         rows ['ALPAKA 24 ADF22.5 [gas floor]', 'ALPAKA 24 ADF22.5 [gas Galactic]']
+  [PASS] M6 CONTROL: the two routes give the same conversion equivalents (alpha_CO at D = 1 to 1e-9 relative; at s* = 1 to 0.01 dex, the grid of the shift)
+         D = 1: B1 2.008966 vs B2 2.008966; s* = 1: B1 1.7681 vs B2 1.7685
+
+HAND ESTIMATES SCORED (frozen in FROZEN_CRITERIA.md section 9):
+    HE8 (SELFTEST: the fraction of worlds at the floor in [3 %, 20 %]): hit  (11 of 100)
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg283_points_stageB_SELFTEST.csv (2 rows)
+
+4/4 checks pass; load-bearing failures: 0   (2 s)

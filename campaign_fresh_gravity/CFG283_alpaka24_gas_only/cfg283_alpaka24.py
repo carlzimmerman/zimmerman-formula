@@ -69,6 +69,7 @@ ALPHA = {"B1": 0.8, "B2": 4.36}                                                 
 ROUTES = ["B1", "B2"]
 LABEL = {"B1": f"ALPAKA 24 {NAME} [gas floor]", "B2": f"ALPAKA 24 {NAME} [gas Galactic]"}
 GCL = {"B1": "L (line L' only; alpha_CO frozen as a lower limit)", "B2": "L (line L' only; alpha_CO 4.36 Galactic, r_J1 = 1; sensitivity)"}
+VEXT = EVHI = EVLO = SIG = float("nan")                                                      # placeholders: g_bar never uses them; stage B (real) overwrites, SELFTEST fabricates
 if STAGE == "B" and not SELFTEST:
     k = KIN.loc[ID]
     VEXT, EVHI, EVLO, SIG = float(k["vext_kms"]), float(k["vext_errhi"]), float(k["vext_errlo"]), float(k["sigma_ext_kms"])
