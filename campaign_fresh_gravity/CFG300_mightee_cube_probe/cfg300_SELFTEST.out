@@ -1,0 +1,24 @@
+CFG300 -- the MIGHTEE-HI DR1 cube probe: can resolved rotation curves be extracted from the L2 cubes at z 0.02-0.09, or only HI widths?  Three targets (the paper's public example rows), r0p0 and r0p5 cutouts by HTTP range requests.
+
+Criteria frozen and committed before any cube voxel was read: campaign_fresh_gravity/CFG300_mightee_cube_probe/FROZEN_CRITERIA.md (d14e5082a) (+ the pre-run addendum on MUTATE=1 in FROZEN_CRITERIA_ADDENDUM_1.md).
+  STAGE=S   the SYNTHETIC SELFTEST of the analysis (a fabricated rotating disc and a noise-only cube); no archive access.
+  STAGE=F   the fetch: headers + one contiguous row-block per channel plane through data_assembly/fetch_range_logged.py (SARAO only; cumulative hard cap 10 GB); one run; cutouts saved OUTSIDE the repository.
+  STAGE=B   the analysis of the local cutouts; STAGE=B MUTATE=1 (the line window shifted by +(W50 + 150) km/s) or MUTATE=2 (the velocity axis reversed): separate outputs.
+
+STAGE S  SYNTHETIC SELFTEST (no archive access)
+  A large disc: extent 100 arcsec, V sin i 190 km/s, S/N 25: detected; S/N_int 24.6; extent 93 arcsec (7.5 beams deconvolved); W50 388 (input 376); PV points +3/-3, rho -1.00; centroid offset 0.3 arcsec; RC_CAPABLE True
+  B medium disc: 35 arcsec, S/N 12: detected; S/N_int 10.8; extent 37 arcsec (2.8 beams deconvolved); W50 238 (input 230); PV points +1/-1, rho nan; centroid offset 0.3 arcsec; RC_CAPABLE False
+  C small disc: 15 arcsec, S/N 8: NO detection; free-channel seeds 0, ring seeds 1
+  D noise only: NO detection; free-channel seeds 0, ring seeds 0
+  [PASS] S1 the large disc is detected, W50 within 30 km/s of the input, the extent within 40 % of the input FWHM-scale 100 arcsec, the centroid within one beam, and it is RC-CAPABLE
+         W50 387.5285805723423, extent 93.228486783915, offset 0.3020103857853616, RC True
+  [PASS] S2 the small disc is NOT RC-CAPABLE (detected or not), and the medium disc is not RC-CAPABLE with fewer than 6 deconvolved beams
+         B False (n_beams 2.8280630349818727), C None
+  [PASS] S3 the noise-only cube has no detection and no 5-sigma seed in the line-free channels
+         detected False, free seeds 0
+  [PASS] S4 MUTATE=2 reactivity on the large disc: reversing the velocity axis flips the sign of the PV correlation and leaves W50, S_int and the extent unchanged
+         rho -1.00 -> 1.00; W50 387.5 vs 387.5; S_int 6.14e+06 vs 6.14e+06
+  [PASS] S5 MUTATE=1 reactivity on the large disc: the line window shifted by +(W50 + 150) km/s finds no detection
+         detected False
+
+5/5 checks pass; load-bearing failures: 0   (2 s)
