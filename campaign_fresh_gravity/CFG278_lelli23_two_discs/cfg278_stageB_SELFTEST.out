@@ -1,0 +1,41 @@
+CFG278 -- implied-a0 rows for the two ALMA CO discs of Lelli et al. 2023 (arXiv:2302.00030), zC-400569 (z = 2.240) and zC-488879 (z = 1.470), from the digitised multi-line rotation curves
+with independent baryons (SED stars x CO-based gas): six rows = two galaxies x {stars, stars+CO a=0.4, stars+CO a=4.3}, never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG278_lelli23_two_discs/FROZEN_CRITERIA.md (9a45bbdae).
+  g_obs   V_rot^2 / R at every digitised point (all lines pooled), no pressure term; inclination N(54.5, 5.0) / N(71.6, 4.1) deg common draw; V errors = the digitised bar half-widths
+  g_bar   stars (SED, 0.30 dex): deprojected de Vaucouleurs bulge (fraction f_bul = 0.33 / 0.63) + exponential Freeman disc; gas (L'_CO x alpha_CO, 0.213 dex): exponential disc of the stellar disc's R_e
+  STAGE=A   the blind pre-flight: only the radius column of the digitised CSV is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V x 2).
+
+STAGE B  *** SELFTEST: FABRICATED V on the law at s_true = 2 (+0.15 dex scatter); debugging only ***
+digitised curves lelli2023_rotcur_digitised.csv sha256 c67eadd84e7e2897; velocity-bearing columns loaded: False; 25 points; lines: zC-400569: Halpha 6, CO(3-2) 5, CO(4-3) 4; zC-488879: CO(2-1) 5, CO(3-2) 5
+galaxies: zC-400569: z 2.23999, 8.448 kpc/arcsec, L'_CO(1-0) 2.339e+10 K km/s pc2, M_gas(a=0.4) 9.36e+09, (a=4.3) 1.01e+11, M* 2.19e+11, R_e,bul 1.01, R_e,disc 6.42 kpc, f_bul 0.33, i 54.5 +- 5.0; zC-488879: z 1.46997, 8.686 kpc/arcsec, L'_CO(1-0) 1.949e+10 K km/s pc2, M_gas(a=0.4) 7.79e+09, (a=4.3) 8.38e+10, M* 5.20e+10, R_e,bul 3.04, R_e,disc 7.64 kpc, f_bul 0.63, i 71.6 +- 4.1
+
+STAGE B  THE MEASUREMENT (SELFTEST)
+SELFTEST: V fabricated from the law at s_true = 2 on each row's own baryons (+0.15 dex scatter), 10 % errors; the real velocity-bearing columns are not even loaded
+  zC-400569 [stars]              N 15 D_med 1.232 (range 0.60-2.15) dF +0.035 y_med 9.40  s* <= 2.34; MC 68 % [2.55, 25.9] 95 % [0.371, 59.7] (no root 0.39, ceiling 0.00); to s*=1 +0.04 dex; recipe half-width 0.804 (7/8 knobs rooted) ILL
+  zC-400569 [stars+CO a=0.4]     N 15 D_med 1.121 (range 0.50-2.47) dF +0.015 y_med 9.66  s* <= 1.45; MC 68 % [1.75, 21.1] 95 % [0.25, 53.4] (no root 0.41, ceiling 0.00); to s*=1 +0.02 dex; recipe half-width 2.652 (11/11 knobs rooted) ILL
+  zC-400569 [stars+CO a=4.3]     N 15 D_med 1.031 (range 0.57-2.20) dF +0.000 y_med 12.21  s* <= 1.1; MC 68 % [3.64, 31.2] 95 % [0.511, 64.1] (no root 0.44, ceiling 0.00); to s*=1 +0.00 dex; recipe half-width 1.751 (8/11 knobs rooted) ILL
+  zC-488879 [stars]              N 10 D_med 1.464 (range 1.03-2.92) dF +0.063 y_med 1.58  s* <= 2.14; MC 68 % [0.986, 8.61] 95 % [0.168, 19.4] (no root 0.28, ceiling 0.00); to s*=1 +0.07 dex; recipe half-width 0.554 (8/8 knobs rooted)
+  zC-488879 [stars+CO a=0.4]     N 10 D_med 1.949 (range 1.19-2.94) dF +0.176 y_med 1.74  s* <= 4.33; MC 68 % [1.46, 10.7] 95 % [0.241, 20.7] (no root 0.16, ceiling 0.00); to s*=1 +0.21 dex; recipe half-width 0.310 (11/11 knobs rooted)
+  zC-488879 [stars+CO a=4.3]     N 10 D_med 1.162 (range 0.72-2.39) dF +0.006 y_med 3.25  s* <= 1.11; MC 68 % [0.792, 5.82] 95 % [0.133, 11.7] (no root 0.38, ceiling 0.00); to s*=1 +0.01 dex; recipe half-width 1.564 (10/11 knobs rooted)
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 1.1e-16 (6 rows with a root)
+  [PASS] M3 the six rows are present (two galaxies x three branches), with 15 and 10 points
+         [('zC-400569', 15), ('zC-400569', 15), ('zC-400569', 15), ('zC-488879', 10), ('zC-488879', 10), ('zC-488879', 10)]
+  [PASS] SELFTEST: the conditioned rooted rows return the fabricated truth (s = 2) inside their 95 % interval
+         3 of 3 inside; rows [('zC-488879 [stars]', 't'), ('zC-488879 [stars+CO a=0.4]', 't'), ('zC-488879 [stars+CO a=4.3]', 't')]
+  SELFTEST repeat (reported): zC-400569 [stars]: the 95 % interval contains s = 2 in 86 of 86 fabricated worlds with a root (14 of 100 worlds at the floor)
+  SELFTEST repeat (reported): zC-400569 [stars+CO a=0.4]: the 95 % interval contains s = 2 in 88 of 88 fabricated worlds with a root (12 of 100 worlds at the floor)
+  SELFTEST repeat (reported): zC-400569 [stars+CO a=4.3]: the 95 % interval contains s = 2 in 83 of 83 fabricated worlds with a root (17 of 100 worlds at the floor)
+  SELFTEST repeat (reported): zC-488879 [stars]: the 95 % interval contains s = 2 in 100 of 100 fabricated worlds with a root (0 of 100 worlds at the floor)
+  SELFTEST repeat (reported): zC-488879 [stars+CO a=0.4]: the 95 % interval contains s = 2 in 100 of 100 fabricated worlds with a root (0 of 100 worlds at the floor)
+  SELFTEST repeat (reported): zC-488879 [stars+CO a=4.3]: the 95 % interval contains s = 2 in 99 of 99 fabricated worlds with a root (1 of 100 worlds at the floor)
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg278_points_stageB_SELFTEST.csv (6 rows)
+
+4/4 checks pass; load-bearing failures: 0   (87 s)
