@@ -1,0 +1,47 @@
+CFG283 -- ALPAKA 24 (ADF22.5, z = 3.094) with gas-only baryons: B1 = a gas floor (alpha_CO,min = 0.8, r_J1 = 1; a LOWER limit, the headline) and B2 = the Galactic conversion (alpha_CO = 4.36, r_J1 = 1; sensitivity). No stellar mass exists.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG283_alpaka24_gas_only/FROZEN_CRITERIA.md (e46390c14).
+  STAGE=A   the engineering pre-flight: no velocity column is loaded; every number it prints was seen in the criteria's section 0.3 (it is NOT blind).
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_ext, sigma_ext x 2); STAGE=B SELFTEST=1 (fabricated V_ext on the law at s = 2; the real velocities are never loaded).
+Points file: no_root = 1 only for a FLOOR; a CEILING (D > 1 but s* > 1000) is written s_star = 1000, no_root = 0, status = ceiling (CFG277's convention).
+
+STAGE A
+sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038; velocity columns loaded: False
+row: ID 24 ADF22.5 z 3.094  L' 3.000e+10 +- 4.00e+09 (0.0579 dex)  R_ext 3.551 kpc (0.4578 arcsec, 7.757 kpc/arcsec)  R_e 2.959 kpc (R_ext/1.2, assumed)  i_ALMA 75 +- 6  M* nan  beam 0.24 x 0.20 arcsec = 1.86 x 1.55 kpc
+baryon side: B1: alpha_CO 0.8 M_gas 2.400e+10 g_bar 2.0618e-10 y 2.203 nu(y) 1.2931; B2: alpha_CO 4.36 M_gas 1.308e+11 g_bar 1.1237e-09 y 12.005 nu(y) 1.0568
+
+STAGE A  THE ENGINEERING PRE-FLIGHT (no velocity column is loaded; not blind: every number below was seen in the criteria's section 0.3)
+  [PASS] C1 CONTROL: the ID 24 row exists with finite z, L', e_L', R_ext, inclination and its error; M* is empty; R_e is the assumed R_ext/1.2; the CSV hashes are printed above
+         z 3.094; L' 3.00e+10 +- 4.0e+09; R_ext 3.551; i 75 +- 6; M* nan; R_e 2.959 (assumed True)
+  [PASS] C2 CONTROL: Freeman's peak V^2 = 0.3872 G M / R_d to 0.003, g -> G M / r^2 far from a compact mass to 1e-3, and gdisc equals CFG229's on 200 random inputs to 1e-12
+         peak 0.3870; far-field ratio 1.00064; max deviation from CFG229's gdisc 0.0e+00
+  [PASS] C3 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C4 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on the B1 baryons
+         max |d log10 s| 5.0e-16
+  [PASS] C5 CONTROL: the B1 and B2 g_bar equal CFG272's committed GB_B1 and GB_B2 to 1e-9 relative (only the baryon values are used at stage A)
+         relative deviation 0.0e+00 (B1 2.061820e-10 vs 2.061820e-10; B2 1.123692e-09 vs 1.123692e-09)
+  [PASS] C6 CONTROL (load-bearing: the gas mass is the only baryon): the tabulated L' equals the line-flux formula L' = 3.25e7 S dv nu_obs^-2 D_L^2 (1+z)^-3 (flat LCDM 67.4 / 0.315) to 5 %
+         S dv = 0.63 +- 0.09 Jy km/s (7.0 sigma); nu_obs 84.464 GHz; D_L 27004.5 Mpc; formula 3.050e+10 vs table 3.000e+10 (+0.017)
+
+A1  BARYON SIDE AND THE CFG240 READING (noiseless world; lever = d log10 s* / d(baryon dex); ILL-CONDITIONED iff |lever| >= 10 or not computable; CFG240 T3: nu -> 1 at large y removes the a0 dependence)
+    B1 (alpha_CO 0.8): M_gas 2.400e+10  g_bar 2.062e-10  y 2.203  nu(y) 1.2931  lever -3.75  conditioned   one radius (R_ext): no deep point
+    B2 (alpha_CO 4.36): M_gas 1.308e+11  g_bar 1.124e-09  y 12.005  nu(y) 1.0568  lever +nan (flag: a +-0.03 dex baryon move removes the noiseless root)  ILL-CONDITIONED   one radius (R_ext): no deep point
+
+A2  KNOB EFFECTS ON g_bar (dex relative to B1; baryon side only)
+    R_e x1.5: g_bar -0.233 dex
+    R_e /1.5: g_bar +0.143 dex
+    spherical: g_bar -0.114 dex
+    V_ext at R_mean of the last two rings: g_bar +0.055 dex
+    gas: r_31 = 0.6 (gas x 1/0.6): g_bar +0.222 dex
+    gas: helium x 1.36: g_bar +0.134 dex
+
+A3  M_gas(B2) / M_gas(B1) = 5.450 (+0.736 dex); beam 0.24 x 0.20 arcsec = 1.86 x 1.55 kpc against R_ext 3.55 kpc (1.9 beams); R_e assumed 2.959 kpc
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR AND BARYON SIDE VALIDATED: True (controls C1-C6)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9; HE1-HE9 are scored at stage B):
+    HE10: C1-C6 pass; y(B1) 2.203, y(B2) 12.005, B1 lever -3.75 conditioned, B2 not computable (ILL) reproduced: hit
+
+6/6 checks pass; load-bearing failures: 0   (1 s)
