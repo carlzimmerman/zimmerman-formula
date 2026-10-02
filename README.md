@@ -59,6 +59,18 @@ $$\mathcal{Q}_0=\frac{g_{\rm tot}-g_N}{c\,v}\;\approx\;2.4\times10^{-3}\,\text{�
 
 interior to Skordis & Złośnik's own CMB fits, containing both their MOND-compatible parameter sets and excluding their MOND-incompatible one ([DOI 10.5281/zenodo.21937958](https://doi.org/10.5281/zenodo.21937958)).
 
+**Standing 2026-10-01 (rev. 27): the closure map, the 32π audit, and the high-z sweep.** Nothing here changes the bottom line.
+- **Closure.** Four further routes to a complete mechanism are scoped no-gos (CFG242–245), and a closure map (PAPER39, prepared after an independent referee, not yet deposited) tabulates 25 routes and a reading of what any mechanism would need:
+  - an early cold fluid present before structure forms;
+  - ownership that remembers boundness;
+  - a distribution that carries the M^½ scale itself;
+  - no created rest mass.
+- **κ = ½ / the 32π.** A hostile audit of the earlier ~40 no-gos found no door closed wrongly (CFG263), and three fresh routes, including a horizon-entropy idea, fail for named reasons (CFG264). A mechanism whose only scales are an acceleration and H cannot give ½; a derivation must couple an a₀-sector energy density to gravity with a coefficient fixed at 4. κ = ½ stays fitted.
+- **a₀(z).** Twelve public high-z samples were scored (CFG260–262, 270–277). None measures a₀: they are limited by missing or uncalibrated gas or by the Lean-proved conditioning wall (CFG240). The best-conditioned sample lies mostly beyond ALMA's declination limit (CFG266).
+- **Satellites.** B's ultra-faint failure (3.5–3.9σ) survives the 2026 binary-corrected dispersions (CFG259).
+- **PAPER38 v1.3** (prepared) corrects a mislabelled Gaia DR4 sentence: the framework's own P2 kernel gives 1.063–1.127 (2.3–4.6σ from ownership); the 1.161 floor belongs to Arm A's ν_RAR kernel.
+- **Summary:** `campaign_fresh_gravity/closure_map/NIGHT_SUMMARY_2026-10-01.md`.
+
 **Standing 2026-09-30 (rev. 26): the decisive test is ready, and the high-redshift question is calibration-limited.** Nothing below changes the bottom line of rev. 24.
 - **Gaia DR4 (2 December 2026) is ready.** Amendments 15–18 were filed before the data, on the owner's go: the DR4 table mapping, the extinction and all-source neighbour cuts, the non-single-star screen, and a reported build-seed sensitivity.
   - The pipeline is rehearsed end to end on DR3 (code-path tests only, never results). Rebuilding the catalogue with different random seeds moves γ̂ by 0.3–0.44 of its fit error, a mechanism an independent referee confirmed (CFG239).
