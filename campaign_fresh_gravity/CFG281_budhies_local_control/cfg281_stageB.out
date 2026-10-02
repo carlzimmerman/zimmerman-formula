@@ -1,0 +1,46 @@
+CFG281 -- the BUDHIES width -> V -> baryon chain (CFG260) run on a same-pipeline LOCAL HI sample (ALFALFA widths + SDSS stellar masses), mass-matched to the BUDHIES primary set PC.
+A calibration of the chain, not a gravity test.  kappa = 1/2 is FITTED.  No verdict words.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG281_budhies_local_control/FROZEN_CRITERIA.md (b766cf43e).
+  local set L   code 1, M_HI >= 3e9, 20-85 Mpc, complete photometry; matched set LC = 4,000 stratified resamples of 100 galaxies in each of the four equal-count bins of the PC's log M_HI quartiles
+  chain         W_c = (W50 - 9) / (1+z); V = W_c / (2 sin 60 deg); M_gas = 1.33 M_HI; M* = the catalogue's Taylor+11 colour mass; R = D_HI/2 (D_HI-M_HI relation); g_bar = G M_b / R^2; g_obs = V^2 / R; CFG223's s*
+  STAGE=A  blind: no width column is loaded.   STAGE=B  the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (widths x 1.1892); STAGE=B MUTATE=2 (sin i_eff 0.70).
+Variants and knobs use the first 1,000 of the same resamples (common random numbers); the primary estimate and its interval use all 4,000.
+
+STAGE B
+local table alfalfa_sdss.csv sha256 c790a7ec68c45b66; 31503 rows; width columns loaded: True
+selection: in both catalogues 31500 -> HI code 1 25432 -> M_HI >= 3e9 15935 -> 20 <= D <= 85 Mpc 1518 -> complete photometry and a valid flux 1370
+PC (BUDHIES primary set): N 32, log M_HI quartiles [ 9.588  9.849  9.936 10.124 10.525], z_bar 0.1960; local galaxies per PC-quartile bin [642, 141, 154, 60]; below the PC minimum 370, above the maximum 3
+
+STAGE B  THE MEASUREMENT
+  PRIMARY matched set LC: N(L) 1370, dropped (W - delta <= 0) 0; s* = 1.4492 (log10 +0.1611); resample SD 0.0374 dex; 68 % [1.2878, 1.5241], 95 % [1.2100, 1.6613]; no-root fraction 0.0000; the SPARC-empirical scale is 1.282
+  UNMATCHED set LU: N 1370; s* = 1.3324; bootstrap SD 0.0179 dex; 95 % [1.2275, 1.4560]
+  regime (L): y quartiles [0.0298 0.0406 0.0694]; fraction y < 0.3 0.985
+  baryon bands (all baryons x 10^t): -0.30: s* 3.1367, -0.15: s* 2.1475, +0.15: s* 0.9256, +0.30: s* 0.5711
+  recipe knobs (half-width of each, dex): delta: 0.067; sini: 0.133; tau_ms: 0.148; rdex: 0.033; hubble: 0.038; quadrature half-width 0.216 dex
+  variants: V1 20-50 Mpc: s* 1.6108 (N 256); V1 50-85 Mpc: s* 1.2646 (N 1116); V2 M_HI >= 5e9: s* 1.3800 (N 674); V4 stellar mass: McGaugh: s* 1.0663 (N 394); V4 stellar mass: GSWLC: s* 1.2089 (N 106); V5 inclination from b/a: s* 1.7003; V6 other frame (k = 0): s* 1.5226; V7 H2 added (0.3 M_HI): s* 1.2367; V8 P2 kernel: s* 1.6627; V9 BTFR route: s* 1.7015; V10 alt footing: s* 1.1972
+
+  CALIBRATION (frozen rule): (i) |log10(s*_LC / 1.282)| = 0.053 (<= 0.15): True; (ii) recipe half-width 0.216 (<= 0.20): False; (iii) distance-window drift 0.105 (<= 0.10): False  ->  NOT CALIBRATED; local chain offset b_L = +0.053 dex
+  BUDHIES / local: rho = s*_B(PC, rest) 0.2602 / s*_LC 1.4492 = 0.1796 (log10 -0.7458 +- 0.166 statistics, +- 0.391 with both recipe widths 0.280 and 0.216); statistics-only pulls: FLAT (F = 1) -4.49, H(z) (F = 1.098) -4.73; with the recipe widths -1.91 / -2.01  [valid only under the same-pipeline assumption]
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 (matched primary)
+         max |d log10| = 2.8e-17
+  [PASS] M5 the same-chain control: this script's chain core, fed the BUDHIES PC arrays with CFG260's recipe (delta 28, k = 0, the B - R colour step through cfg260_core.baryons), reproduces CFG260's s* (PC, rest-frame) to 1e-6
+         mine 0.260210, cfg260_core 0.260210, CFG260's committed result 0.260210
+  [PASS (not load-bearing)] M3 (reported) the unmatched set's s* and the matched set's agree within the recipe band
+         matched 1.4492, unmatched 1.3324: difference 0.036 dex against the half-width 0.216
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 8; HE1-HE2 were scored at stage A) scored:
+    HE3: s*_LC 1.4492 (needs 0.6-2.0): hit
+    HE4: CALIBRATED False (needs True): MISS (kept as it falls)
+    HE5: the b/a inclination variant moves s* by 0.070 dex (against the same 1,000 resamples) (needs <= 0.10): hit
+    HE6: the stellar-mass methods move s* by [0.133, 0.078] dex (needs <= 0.08): MISS (kept as it falls)
+    HE7: rho 0.1796 (needs 0.10-0.40): hit
+    HE8: the distance-window drift 0.105 dex (needs <= 0.10): MISS (kept as it falls)
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg281_points_stageB.csv (2 rows)
+
+4/4 checks pass; load-bearing failures: 0   (124 s)

@@ -1,0 +1,28 @@
+CFG281 -- the BUDHIES width -> V -> baryon chain (CFG260) run on a same-pipeline LOCAL HI sample (ALFALFA widths + SDSS stellar masses), mass-matched to the BUDHIES primary set PC.
+A calibration of the chain, not a gravity test.  kappa = 1/2 is FITTED.  No verdict words.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG281_budhies_local_control/FROZEN_CRITERIA.md (b766cf43e).
+  local set L   code 1, M_HI >= 3e9, 20-85 Mpc, complete photometry; matched set LC = 4,000 stratified resamples of 100 galaxies in each of the four equal-count bins of the PC's log M_HI quartiles
+  chain         W_c = (W50 - 9) / (1+z); V = W_c / (2 sin 60 deg); M_gas = 1.33 M_HI; M* = the catalogue's Taylor+11 colour mass; R = D_HI/2 (D_HI-M_HI relation); g_bar = G M_b / R^2; g_obs = V^2 / R; CFG223's s*
+  STAGE=A  blind: no width column is loaded.   STAGE=B  the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (widths x 1.1892); STAGE=B MUTATE=2 (sin i_eff 0.70).
+Variants and knobs use the first 1,000 of the same resamples (common random numbers); the primary estimate and its interval use all 4,000.
+
+STAGE B  *** MUTATE=2: sin i_eff 0.70 ***
+local table alfalfa_sdss.csv sha256 c790a7ec68c45b66; 31503 rows; width columns loaded: True
+selection: in both catalogues 31500 -> HI code 1 25432 -> M_HI >= 3e9 15935 -> 20 <= D <= 85 Mpc 1518 -> complete photometry and a valid flux 1370
+PC (BUDHIES primary set): N 32, log M_HI quartiles [ 9.588  9.849  9.936 10.124 10.525], z_bar 0.1960; local galaxies per PC-quartile bin [642, 141, 154, 60]; below the PC minimum 370, above the maximum 3
+
+STAGE B  THE MEASUREMENT (MUTATE=2)
+  PRIMARY matched set LC: N(L) 1370, dropped (W - delta <= 0) 0; s* = 3.6045 (log10 +0.5568); resample SD 0.0374 dex; 68 % [3.2775, 3.8411], 95 % [3.0385, 4.1514]; no-root fraction 0.0000; the SPARC-empirical scale is 1.282
+  UNMATCHED set LU: N 1370; s* = 3.3361; bootstrap SD 0.0174 dex; 95 % [3.0753, 3.6101]
+  regime (L): y quartiles [0.0298 0.0406 0.0694]; fraction y < 0.3 0.985
+
+CONTROLS (stage B)
+  [PASS] M2 MUTATE=2 (reactivity): sin i_eff 0.70 instead of 0.866 raises s* by 0.37 +- 0.06 dex
+         main +0.1611, mutated +0.5568: response +0.3957 dex (window 0.31-0.43)
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg281_points_stageB_MUTATE2.csv (2 rows)
+
+2/2 checks pass; load-bearing failures: 0   (36 s)
