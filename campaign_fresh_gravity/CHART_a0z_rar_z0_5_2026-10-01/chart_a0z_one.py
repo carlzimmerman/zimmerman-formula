@@ -52,11 +52,11 @@ A280 = list(csv.DictReader(open(os.path.join(CFG, "CFG280_sins_ao_published", "c
 M279 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG279_mightee_published_values", "cfg279_points.csv")))}   # CFG279 7cecb04bc
 A275 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG275_pks0529_ci_rings", "cfg275_points_stageB.csv")))}   # CFG275 093132b4c
 A276 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG276_gn20", "cfg276_points_stageB.csv")))}   # CFG276 231d32a8c
+A278 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG278_lelli23_two_discs", "cfg278_points_stageB.csv")))}   # CFG278 9878bfcec
 A273 = list(csv.DictReader(open(os.path.join(CFG, "CFG273_danhaive_gold41", "cfg273_points_stageB_relabelled.csv"))))   # CFG273 208944196 (relabelled: two ceiling rows)
 A274 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG274_amvrosiadis_eight_discs", "cfg274_points_stageB.csv"))) if "pooled" not in r["object"]]   # CFG274 255f07244
 TODO = [  # (label, zmin, zmax, short note)       sources: CFG227 'Listed, no point' + CFG237 + CFG258 + L328
     ("ALPAKA 24 (1)", alp["24"], alp["24"], "no stellar mass"),
-    ("Lelli+23 (1)", 2.24, 2.24, "mean speed only"),
 ]
 
 P("chart_a0z_one: plot only")
@@ -71,6 +71,7 @@ check("CFG280 SINS: PT2_new <= 9.09 (overlap-free); 7 stars-only floor galaxies 
 check("CFG279 MIGHTEE-HI: published whole-sample a0 = 1.50e-10 at z 0.055 (7cecb04bc)", abs(float(M279["MIGHTEE-HI paper: whole sample, z-averaged"]["a0_1e-10_m_s2"]) - 1.50) < 1e-6)
 check("CFG275 PKS 0529-549: chart row [CIG; CO] is a FLOOR (no root), 7 of 8 rows floor (093132b4c)", A275["PKS0529 [CIG; CO]"]["no_root"] == "1" and sum(r["no_root"] == "1" for r in A275.values()) == 7)
 check("CFG276 GN20: frozen row [stars+RT; Re] is a floor but uninformative (D 0.90) (231d32a8c)", A276["GN20 [stars+RT; Re]"]["no_root"] == "1")
+check("CFG278 Lelli+23: zC-400569 [stars+CO a=0.4] floor; zC-488879 [stars+CO a=0.4] <= 33.4 (9878bfcec)", A278["zC-400569 [stars+CO a=0.4]"]["no_root"] == "1" and abs(float(A278["zC-488879 [stars+CO a=0.4]"]["s_star"]) - 33.424) < 1e-2)
 check("CFG273 Danhaive: 7 no root (relabelled file), pooled PALL <= 29.4 at z 4.17 (208944196)", sum(r["no_root"] == "1" for r in A273) == 7 and any("PALL" in r["object"] and abs(float(r["s_star"]) - 29.45) < 0.01 for r in A273), f"({sum(r['no_root'] == '1' for r in A273)} no root)")
 check("CFG272 ALPAKA: 13 and 23 no root; 25 <= 3.30 and 28 <= 0.74 upper bounds; 24 no M* (d993f02dc)", sorted(r["object"].split()[1] for r in A272 if r["no_root"] == "1") == ["13", "23"] and sorted(round(float(r["s_star"]), 2) for r in A272 if r["no_root"] == "0") == [0.74, 3.3], f"({len(A272)} rows)")
 check("CFG274 Amvrosiadis: 7 of 8 no root, ALESS 075.1 s* 6.89 (255f07244)", sum(r["no_root"] == "1" for r in A274) == 7 and any(r["no_root"] == "0" and abs(float(r["s_star"]) - 6.887) < 0.01 for r in A274), f"({sum(r['no_root'] == '1' for r in A274)} no root)")
@@ -91,15 +92,17 @@ LAW = {"FLAT": "#111111", "H(z)": "#d1342f", "PROXY": "#7b3fbf", "M-DEC": "#1b9a
 COL = {"RC100": "#1f5aa6", "CRISTAL": "#e07b00", "M": "#8a5a00", "ALMA": "#2e8b3e"}
 
 fig = plt.figure(figsize=(14, 10.2), dpi=170)
-ax = fig.add_axes([0.075, 0.33, 0.885, 0.50])
-sx = fig.add_axes([0.075, 0.118, 0.885, 0.215], sharex=ax)
+HS = 0.035 + 0.024 * max(len(TODO), 1)          # the strip shrinks as its rows are calculated
+sx_bottom = 0.118
+ax = fig.add_axes([0.075, sx_bottom + HS + 0.012, 0.885, 0.83 - (sx_bottom + HS + 0.012)])
+sx = fig.add_axes([0.075, sx_bottom, 0.885, HS], sharex=ax)
 XLO, XHI, YLO, YHI = -0.12, 6.0, 0.17, 30
 
 # ---------------- main: calculated a0 ----------------
 ax.set_yscale("log"); ax.set_xlim(XLO, XHI); ax.set_ylim(YLO, YHI)
 for x0, x1, t in ((0.6, 2.6, "cosmic noon"), (4.0, 6.0, "first 1.5 billion years")):
     ax.axvspan(x0, x1, color="#eef1f5", zorder=0, lw=0); sx.axvspan(x0, x1, color="#eef1f5", zorder=0, lw=0)
-    ax.text((x0 + x1) / 2, 23, t, ha="center", color="#8a94a0", fontsize=10, style="italic")
+    ax.text(1.05 if t == "cosmic noon" else (x0 + x1) / 2, 23, t, ha="center", color="#8a94a0", fontsize=10, style="italic")
 ax.axhspan(YLO, 0.30, color="#f6f2ea", zorder=0, lw=0)
 m = Zc <= XHI
 lo_b = np.minimum(np.array(cur["DESI DESY5"]), np.array(cur["DESI Union3"]))[m] * U
@@ -200,7 +203,13 @@ PKSC = "#bc6c25"
 ax.scatter([2.61], [0.188], marker="v", s=60, color=PKSC, zorder=6, edgecolor="white", lw=0.6)   # PKS 0529-549, true z 2.5706, nudged clear of the Amvrosiadis row
 ax.scatter([4.055], [0.252], marker="v", s=60, facecolor="white", edgecolor="#8a8a8a", lw=1.3, zorder=6)   # GN20: D 0.90, NOT informative; not counted
 ax.text(4.08, 0.33, "GN20 · near-Newtonian,\nnot informative", color="#7a7a7a", fontsize=8, ha="left", va="bottom")
-N_NR = 1 + len(sins_floor) + len(ro_floor) + len(k3_floor) + 8 + sum(r["no_root"] == "1" for r in A274) + sum(r["no_root"] == "1" for r in A272) + sum(r["no_root"] == "1" and "pooled" not in r["object"] for r in A273)
+LLC = "#6a4c93"
+ax.scatter([2.20], [0.252], marker="v", s=60, color=LLC, zorder=6, edgecolor="white", lw=0.6)   # zC-400569 (z 2.240), nudged clear of KMOS3D's marker
+zl8 = A278["zC-488879 [stars+CO a=0.4]"]   # <= 33.4: off the top of the axis; a BARYON-LIMITED bound, not an a0 measurement
+ax.annotate("", xy=(1.47, 18.5), xytext=(1.47, 28.5), arrowprops=dict(arrowstyle="-|>", color=LLC, lw=1.6), zorder=6)
+ax.scatter([1.47], [28.5], marker="o", s=45, facecolor="white", edgecolor=LLC, linewidth=1.6, zorder=6, clip_on=False)
+ax.text(1.40, 18.5, "zC-488879 (Lelli+23): ≤ 33×, baryon-limited\n(SED M* 4× below dynamical)", color=LLC, fontsize=8, ha="right", va="center")
+N_NR = 2 + len(sins_floor) + len(ro_floor) + len(k3_floor) + 8 + sum(r["no_root"] == "1" for r in A274) + sum(r["no_root"] == "1" for r in A272) + sum(r["no_root"] == "1" and "pooled" not in r["object"] for r in A273)
 ax.text(0.12, 0.222, f"calculated, but no $a_0$ fits ({N_NR} galaxies):\nthe stars + gas already exceed what the rotation needs  ▸",
         fontsize=9.5, color="#7a5a1a", va="center")
 # MUSE-DARK (CFG262, fb24a5922): implied a0 in z-thirds BY BARYON ROUTE, reading bD (projected + asymmetric drift, CFG236's
@@ -261,7 +270,7 @@ top.set_xlabel("age of the universe (billion years)", fontsize=10, color=MUTED, 
 ax.text(0.008, 0.975, "a₀ CALCULATED", transform=ax.transAxes, fontsize=10.5, color=INK, fontweight="bold", ha="left", va="top")
 
 # ---------------- strip: data in hand, no a0 value yet ----------------
-sx.set_ylim(max(len(TODO), 7) - 0.4, -0.8); sx.set_yticks([]); sx.spines["left"].set_visible(False)
+sx.set_ylim(len(TODO) - 0.4, -0.8); sx.set_yticks([]); sx.spines["left"].set_visible(False)
 sx.spines["top"].set_visible(True); sx.spines["top"].set_color("#bbb"); sx.spines["top"].set_linestyle((0, (3, 3)))
 for i, (lab, z0, z1, note) in enumerate(TODO):
     if z1 - z0 > 0.04:
@@ -286,7 +295,7 @@ fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from
          "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  The dashed sets at the bottom are data in hand with no $a_0$ value yet.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–277, CFG280 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
