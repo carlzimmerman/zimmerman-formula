@@ -1,0 +1,32 @@
+CFG300 -- the MIGHTEE-HI DR1 cube probe: can resolved rotation curves be extracted from the L2 cubes at z 0.02-0.09, or only HI widths?  Three targets (the paper's public example rows), r0p0 and r0p5 cutouts by HTTP range requests.
+
+Criteria frozen and committed before any cube voxel was read: campaign_fresh_gravity/CFG300_mightee_cube_probe/FROZEN_CRITERIA.md (d14e5082a) (+ the pre-run addendum on MUTATE=1 in FROZEN_CRITERIA_ADDENDUM_1.md).
+  STAGE=S   the SYNTHETIC SELFTEST of the analysis (a fabricated rotating disc and a noise-only cube); no archive access.
+  STAGE=F   the fetch: headers + one contiguous row-block per channel plane through data_assembly/fetch_range_logged.py (SARAO only; cumulative hard cap 10 GB); one run; cutouts saved OUTSIDE the repository.
+  STAGE=B   the analysis of the local cutouts; STAGE=B MUTATE=1 (the line window shifted by +(W50 + 150) km/s) or MUTATE=2 (the velocity axis reversed): separate outputs.
+
+STAGE F  THE FETCH (SARAO only; cumulative cap 10 GB; one run)
+ledger before: {'cap': 10000000000, 'used': 198552, 'requests': 15, 'note': "cap = the owner's hard cap (10 GB, cumulative); used = the XML listings (2 first-level + 6 folder listings), the two index pages (counted before the helper existed)"}
+  T1 r0p0: cutout (193, 151, 151) (channels 482-674, 1381.115-1386.131 MHz); box x 503-653, y 2607-2757; target at (74.7, 75.2); 536 MB read; repeat read identical True; finite 1.0000
+  [PASS] C0 T1 r0p0: the repeated plane read is byte-identical
+         True
+  [PASS] C1 T1 r0p0: the target pixel is at the cutout centre within a pixel and the channels cover the requested frequency range
+         target (74.73, 75.17) vs 75; 1381.115-1386.131 MHz vs 1381.122-1386.124
+  T1 r0p5: cutout (193, 151, 151) (channels 482-674, 1381.115-1386.131 MHz); box x 503-653, y 2607-2757; target at (74.7, 75.2); 536 MB read; repeat read identical True; finite 1.0000
+  [PASS] C0 T1 r0p5: the repeated plane read is byte-identical
+         True
+  [PASS] C1 T1 r0p5: the target pixel is at the cutout centre within a pixel and the channels cover the requested frequency range
+         target (74.73, 75.17) vs 75; 1381.115-1386.131 MHz vs 1381.122-1386.124
+  T2 r0p0: cutout (113, 101, 101) (channels 628-740, 1358.804-1361.730 MHz); box x 983-1083, y 2920-3020; target at (50.0, 49.9); 210 MB read; repeat read identical True; finite 1.0000
+  [PASS] C0 T2 r0p0: the repeated plane read is byte-identical
+         True
+  [PASS] C1 T2 r0p0: the target pixel is at the cutout centre within a pixel and the channels cover the requested frequency range
+         target (49.96, 49.92) vs 50; 1358.804-1361.730 MHz vs 1358.829-1361.705
+  T3 r0p0: cutout (91, 101, 101) (channels 611-701, 1384.485-1386.836 MHz); box x 2370-2470, y 1352-1452; target at (49.5, 49.7); 169 MB read; repeat read identical True; finite 1.0000
+  [PASS] C0 T3 r0p0: the repeated plane read is byte-identical
+         True
+  [PASS] C1 T3 r0p0: the target pixel is at the cutout centre within a pixel and the channels cover the requested frequency range
+         target (49.51, 49.74) vs 50; 1384.485-1386.836 MHz vs 1384.500-1386.820
+ledger after: {'cap': 10000000000, 'used': 1461163352, 'requests': 613, 'note': "cap = the owner's hard cap (10 GB, cumulative); used = the XML listings (2 first-level + 6 folder listings), the two index pages (counted before the helper existed)"}
+
+8/8 checks pass; load-bearing failures: 0   (1850 s)
