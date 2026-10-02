@@ -1,0 +1,45 @@
+CFG275 -- implied-a0 rows for PKS 0529-549 (z = 2.5706) from the five-ring [CI](2-1) circular-velocity curve of Lin et al. (arXiv:2411.08958):
+independent baryons, eight stellar x gas branches never pooled (SED 3e11 or the preliminary CIGALE range 0.4-1.2e11 for the stars; none / CO / [CI] / dust for the gas).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG275_pks0529_ci_rings/FROZEN_CRITERIA.md (4108d99e9).
+  g_obs   V_c^2 / R, V_c = the authors' asymmetric-drift-corrected circular velocity (digitised from the vector figures), split-normal errors, inclination 53 +- 5 deg
+  g_bar   stars: the authors' MaxDisk geometry (Freeman disc R_e 4.7 kpc + de Vaucouleurs bulge R_e 0.47 kpc, B/D = 0.9); gas: a razor-thin Sersic disc (n 0.52, R_e 2.57 kpc) by a Hankel transform
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V_c x 2).
+
+STAGE B  *** SELFTEST: FABRICATED V_c on the law at s_true = 2 (+0.15 dex scatter); debugging only ***
+digitised rings lin2024_rings_digitised.csv sha256 f26f9e4504b64bb1; multitracer row file 98fe74763cf766ca; velocity-bearing columns loaded: False; rings R = [0.37  1.109 1.849 2.589 3.328] kpc
+PKS 0529-549: z 2.5706, 5 rings, inclination 53 +- 5 deg, gas Sersic n 0.52 R_e 2.57 kpc, MaxDisk stars (disc R_e 4.7, bulge n 4.0 R_e 0.47, B/D 0.9); stellar branches SED log M* 11.477 +- 0.3; CIG log M* 10.841 +- 0.24; gas CO 7.3e+10; CI 3.1e+11; dust 2.2e+11
+
+STAGE B  THE MEASUREMENT (SELFTEST)
+SELFTEST: V_c fabricated from the law at s_true = 2 on each row's own baryons (+0.15 dex scatter), 10 % errors; the real velocity-bearing columns are not even loaded
+  PKS0529 [SED; none]      D [0.849 1.134 0.569 0.925 0.944]  D_med 0.925  dF -0.042  y [549.138 121.227  57.447  35.579  25.146]  FLOOR (D <= 1); MC 68 % [8.12, 72] 95 % [1.06, 176] (no root 0.56, ceiling 0.00); to s*=1 -0.04 dex; recipe half-width nan (3/7 knobs rooted) ILL
+  PKS0529 [SED; CO]        D [0.905 1.321 0.833 1.426 0.687]  D_med 0.905  dF -0.044  y [551.708 128.114  66.922  45.772  34.614]  FLOOR (D <= 1); MC 68 % [20.7, 154] 95 % [2.71, 332] (no root 0.53, ceiling 0.00); to s*=1 +nan dex; recipe half-width nan (3/10 knobs rooted) ILL
+  PKS0529 [SED; CI]        D [0.948 0.85  0.879 0.892 0.693]  D_med 0.879  dF -0.059  y [560.051 150.473  97.683  78.865  65.351]  FLOOR (D <= 1); MC 68 % [10.5, 89] 95 % [1.46, 197] (no root 0.67, ceiling 0.00); to s*=1 +nan dex; recipe half-width nan (4/10 knobs rooted) ILL
+  PKS0529 [SED; dust]      D [1.078 0.464 0.568 1.684 0.947]  D_med 0.947  dF -0.030  y [556.883 141.982  86.001  66.298  53.679]  FLOOR (D <= 1); MC 68 % [8.42, 65.9] 95 % [1.37, 137] (no root 0.66, ceiling 0.00); to s*=1 -0.03 dex; recipe half-width nan (6/10 knobs rooted) ILL
+  PKS0529 [CIG; none]      D [0.723 1.724 1.555 1.969 1.388]  D_med 1.555  dF +0.170  y [126.818  27.996  13.267   8.217   5.807]  s* <= 12.5; MC 68 % [4.42, 48.8] 95 % [0.709, 117] (no root 0.24, ceiling 0.00); to s*=1 +0.18 dex; recipe half-width 0.914 (7/7 knobs rooted) ILL
+  PKS0529 [CIG; CO]        D [1.317 1.262 1.252 0.657 1.244]  D_med 1.252  dF +0.084  y [129.388  34.883  22.742  18.41   15.275]  s* <= 8.83; MC 68 % [4.61, 36.3] 95 % [0.683, 73.4] (no root 0.40, ceiling 0.00); to s*=1 +0.09 dex; recipe half-width 0.898 (10/10 knobs rooted) ILL
+  PKS0529 [CIG; CI]        D [1.702 0.748 0.907 1.699 2.07 ]  D_med 1.699  dF +0.224  y [137.731  57.242  53.502  51.502  46.012]  s* <= 65.3; MC 68 % [19.3, 149] 95 % [3.09, 304] (no root 0.27, ceiling 0.00); to s*=1 +0.22 dex; recipe half-width 0.464 (10/10 knobs rooted) ILL
+  PKS0529 [CIG; dust]      D [0.947 0.751 1.233 2.079 0.683]  D_med 0.947  dF -0.026  y [134.563  48.751  41.821  38.935  34.34 ]  FLOOR (D <= 1); MC 68 % [5.65, 59.4] 95 % [0.72, 132] (no root 0.56, ceiling 0.00); to s*=1 +nan dex; recipe half-width nan (5/10 knobs rooted) ILL
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 4.4e-16 (3 rows with a root)
+  [PASS] M3 the eight rows are present with their roles (four literature stellar mass, four preliminary stellar range) and five radii each
+         ['literature stellar mass', 'literature stellar mass', 'literature stellar mass', 'literature stellar mass', 'preliminary stellar range', 'preliminary stellar range', 'preliminary stellar range', 'preliminary stellar range']; ring counts [5, 5, 5, 5, 5, 5, 5, 5]
+  [PASS (not load-bearing)] SELFTEST: no row is both rooted and conditioned in the fabricated world (every row is ILL-CONDITIONED or has no root): the coverage statement is not evaluated; the 100-world repeat below is the reported evidence
+         rooted rows ['PKS0529 [CIG; none]', 'PKS0529 [CIG; CO]', 'PKS0529 [CIG; CI]']; ill rows 8 of 8
+  SELFTEST repeat (reported): PKS0529 [SED; none]: the 95 % interval contains s = 2 in 15 of 50 fabricated worlds with a root (50 of 100 worlds at the floor)
+  SELFTEST repeat (reported): PKS0529 [SED; CO]: the 95 % interval contains s = 2 in 19 of 53 fabricated worlds with a root (47 of 100 worlds at the floor)
+  SELFTEST repeat (reported): PKS0529 [SED; CI]: the 95 % interval contains s = 2 in 6 of 51 fabricated worlds with a root (49 of 100 worlds at the floor)
+  SELFTEST repeat (reported): PKS0529 [SED; dust]: the 95 % interval contains s = 2 in 13 of 63 fabricated worlds with a root (37 of 100 worlds at the floor)
+  SELFTEST repeat (reported): PKS0529 [CIG; none]: the 95 % interval contains s = 2 in 70 of 73 fabricated worlds with a root (26 of 100 worlds at the floor)
+  SELFTEST repeat (reported): PKS0529 [CIG; CO]: the 95 % interval contains s = 2 in 63 of 65 fabricated worlds with a root (35 of 100 worlds at the floor)
+  SELFTEST repeat (reported): PKS0529 [CIG; CI]: the 95 % interval contains s = 2 in 42 of 60 fabricated worlds with a root (40 of 100 worlds at the floor)
+  SELFTEST repeat (reported): PKS0529 [CIG; dust]: the 95 % interval contains s = 2 in 48 of 55 fabricated worlds with a root (45 of 100 worlds at the floor)
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg275_points_stageB_SELFTEST.csv (8 rows)
+
+4/4 checks pass; load-bearing failures: 0   (52 s)
