@@ -78,6 +78,7 @@ check("CFG278 Lelli+23: zC-400569 [stars+CO a=0.4] floor; zC-488879 [stars+CO a=
 check("CFG282 RO + SED M*: SGP38326-2 [gas+M* Ma19] and BRI1335-0417 [gas+M* T26] are floors (0f0ef264e)", A282["SGP38326-2 [gas+M* Ma19]"]["no_root"] == "1" and A282["BRI1335-0417 [gas+M* T26]"]["no_root"] == "1")
 check("CFG283 ALPAKA 24: gas-floor route vacuous (<= 27.6), Galactic route a floor (b20adfc0e)", A283["ALPAKA 24 ADF22.5 [gas floor]"]["no_root"] == "0" and A283["ALPAKA 24 ADF22.5 [gas Galactic]"]["no_root"] == "1")
 check("CFG284 ALPAKA 24 with a literature M*: stars-only upper bound s* <= 6.91 (0c79648e9)", abs(float(A284["ALPAKA 24 ADF22.5 [M* H25 stars only]"]["s_star"]) - 6.905) < 1e-2)
+check("CFG285 ALPAKA 24 gas-only (a0.8) bound s* <= 9.98, drawn as the upper-bound marker", abs(float(A285["ALPAKA 24 ADF22.5 [CO(1-0) gas only a0.8]"]["s_star"]) - 9.979) < 1e-2)
 check("CFG285 ALPAKA 24 measured CO(1-0): stars + published gas (a3.6) is a FLOOR (0383bbfc2)", A285["ALPAKA 24 ADF22.5 [stars + CO(1-0) gas a3.6 (published)]"]["no_root"] == "1")
 check("CFG273 Danhaive: 7 no root (relabelled file), pooled PALL <= 29.4 at z 4.17 (208944196)", sum(r["no_root"] == "1" for r in A273) == 7 and any("PALL" in r["object"] and abs(float(r["s_star"]) - 29.45) < 0.01 for r in A273), f"({sum(r['no_root'] == '1' for r in A273)} no root)")
 check("CFG272 ALPAKA: 13 and 23 no root; 25 <= 3.30 and 28 <= 0.74 upper bounds; 24 no M* (d993f02dc)", sorted(r["object"].split()[1] for r in A272 if r["no_root"] == "1") == ["13", "23"] and sorted(round(float(r["s_star"]), 2) for r in A272 if r["no_root"] == "0") == [0.74, 3.3], f"({len(A272)} rows)")
@@ -216,7 +217,7 @@ zl8 = A278["zC-488879 [stars+CO a=0.4]"]   # <= 33.4: off the top of the axis; a
 ax.annotate("", xy=(1.47, 18.5), xytext=(1.47, 28.5), arrowprops=dict(arrowstyle="-|>", color=LLC, lw=1.6), zorder=6)
 ax.scatter([1.47], [28.5], marker="o", s=45, facecolor="white", edgecolor=LLC, linewidth=1.6, zorder=6, clip_on=False)
 ax.text(1.40, 18.5, "zC-488879 (Lelli+23): ≤ 33×, baryon-limited\n(SED M* 4× below dynamical)", color=LLC, fontsize=8, ha="right", va="center")
-a24 = A284["ALPAKA 24 ADF22.5 [M* H25 stars only]"]   # CFG284: stars-only B0 headline, a RESOLVED upper bound (provisional M*)
+a24 = A285["ALPAKA 24 ADF22.5 [CO(1-0) gas only a0.8]"]   # CFG285 gas-only bound (independent of the AGN-host SED mass; geometry-robust per 905139255); replaces CFG284 stars-only <= 6.91
 z24, s24 = 3.14, f(a24, "s_star") * U   # true z 3.094, nudged clear of ALPAKA 25
 ax.scatter([z24], [s24], marker="o", s=55, facecolor="white", edgecolor=ALP, linewidth=1.8, zorder=6)
 ax.annotate("", xy=(z24, s24 / 1.6), xytext=(z24, s24), arrowprops=dict(arrowstyle="-|>", color=ALP, lw=1.6), zorder=6)
