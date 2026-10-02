@@ -32,3 +32,6 @@ It does not measure a₀ at z = 4.4: near-Newtonian rows, a close pair (tides) w
 - **HE4 (B):** SGP-1 Ma19: D in [0.8, 1.2] (status FLOOR, or a ROOT with s\* > 100).
 - **HE5 (B):** both SGP-2 rows are FLOOR with D in [0.3, 0.6]; BRI1335 T26 is FLOOR with D in [0.02, 0.08].
 - **HE6 (B):** M5 holds and MUTATE=1's reactivity holds.
+
+## 9. Correction written before any script (provenance wording only; no design change)
+§0.1 says BRI1335's CO mass was "derived by me from its y as 1.0 × 10¹¹ M☉". That is wrong as a provenance statement: **it is tabulated** in `data_assembly/arxiv_tables/romanoliveira2023_gasmasses.csv` (M_H2 = 1.0 × 10¹¹ ± 1.0 × 10¹⁰ M☉; the SGP38326 masses carry the flag "approx" and no error). I derived it from y only as a cross-check of my arithmetic, which agreed. The Monte Carlo gas σ for BRI1335 is therefore the published 0.043 dex (as §3 says), the SGP rows' 0.30 dex declared.
