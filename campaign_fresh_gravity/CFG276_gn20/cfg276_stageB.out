@@ -1,0 +1,35 @@
+CFG276 -- implied-a0 rows for GN20 (z = 4.055) from the JWST/NIRSpec DysmalPy circular velocity of Uebler+24 (arXiv:2403.03192) with independent baryons
+(Tan+14 stars 1.1e11; Hodge+12 gas 1.3e11 or the Boogaard+25 resolved radiative-transfer gas 2.87e11): six rows = three baryon branches x R_e / 2 R_e, never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG276_gn20/FROZEN_CRITERIA.md (bc2ed906d).
+  g_obs   R_e: v_circ(R_e)^2 / R_e with v_circ = 496 km/s (the model's circular velocity: the pressure term 3.36 sigma0^2 is in it once); 2 R_e: G M_dyn(<2 R_e) / (2 R_e)^2, log M_dyn = 11.68; 0.10 dex declared
+  g_bar   stars: Sersic n = 0.42 disc (R_e 3.6 kpc, Hankel thin disc) + nuclear component (n = 4, R_e 0.8 kpc, 2.5e10); gas: exponential disc R_e = 4.0 kpc (Freeman)
+  STAGE=A the baryon side (no g_obs-based quantity); STAGE=B the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (g_obs x 4).
+
+STAGE B
+GN20: z 4.055, R_e 3.6 kpc (2 R_e 7.2); stars 1.10e+11 (nuclear fraction 0.227); gas H12 1.30e+11, RT 2.87e+11; g_obs(R_e) fiducial 2.215e-09, (2 R_e) 1.287e-09 m/s^2; sigma_g 0.1 dex, sigma_M* 0.3, sigma_gas 0.213
+
+STAGE B  THE MEASUREMENT
+  GN20 [stars; Re]         g_obs 2.215e-09 D 2.842 dF +0.420 y 8.32  s* <= 44.3; MC 68 % [14.6, 139] 95 % [3.26, 323] (no root 0.08, ceiling 0.00); to s*=1 +0.44 dex; recipe half-width 0.354 (6/6 knobs rooted) ILL
+  GN20 [stars+H12; Re]     g_obs 2.215e-09 D 1.442 dF +0.141 y 16.41  s* <= 11.7; MC 68 % [5.03, 39.1] 95 % [0.786, 81.4] (no root 0.27, ceiling 0.00); to s*=1 +0.14 dex; recipe half-width 0.866 (9/9 knobs rooted) ILL
+  GN20 [stars+RT; Re]      g_obs 2.215e-09 D 0.904 dF -0.055 y 26.18  FLOOR (D <= 1); MC 68 % [2.55, 23] 95 % [0.396, 52.7] (no root 0.64, ceiling 0.00); to s*=1 -0.06 dex; recipe half-width nan (3/9 knobs rooted) ILL
+  GN20 [stars; 2Re]        g_obs 1.287e-09 D 3.330 dF +0.458 y 4.13  s* <= 32.4; MC 68 % [11, 91.6] 95 % [2.56, 211] (no root 0.05, ceiling 0.00); to s*=1 +0.50 dex; recipe half-width 0.460 (5/5 knobs rooted)
+  GN20 [stars+H12; 2Re]    g_obs 1.287e-09 D 1.684 dF +0.192 y 8.16  s* <= 10.1; MC 68 % [3.68, 27.8] 95 % [0.698, 59.1] (no root 0.19, ceiling 0.00); to s*=1 +0.20 dex; recipe half-width 0.802 (8/8 knobs rooted) ILL
+  GN20 [stars+RT; 2Re]     g_obs 1.287e-09 D 1.054 dF +0.001 y 13.04  s* <= 1.04; MC 68 % [1.88, 16.1] 95 % [0.286, 36.3] (no root 0.52, ceiling 0.00); to s*=1 +0.00 dex; recipe half-width 1.291 (6/8 knobs rooted) ILL
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 4.4e-16 (5 rows with a root)
+  [PASS] M3 the six rows are present with their roles (three headline at R_e, three sensitivity at 2 R_e)
+         [('headline', [3.6]), ('headline', [3.6]), ('headline', [3.6]), ('sensitivity', [7.2]), ('sensitivity', [7.2]), ('sensitivity', [7.2])]
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 7; HE1-HE3 and HE7 were scored at stage A) scored:
+    HE4: D(R_e) stars 2.842 (2.0-3.5), +H12 1.442 (1.1-1.7), +RT 0.904 (0.7-1.0); statuses root / root / floor: hit
+    HE5: s* (R_e) stars 44.3 (15-120), +H12 11.7 (4-40): hit
+    HE6: kinematic knobs move g_obs(R_e) by {'inflow': -0.043079355712219373, 'i150': 0.12783418070387187} dex (needs -0.043 and +0.127 within 0.01): hit
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg276_points_stageB.csv (6 rows)
+
+3/3 checks pass; load-bearing failures: 0   (6 s)

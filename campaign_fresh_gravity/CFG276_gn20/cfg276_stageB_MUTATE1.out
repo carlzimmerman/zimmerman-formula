@@ -1,0 +1,28 @@
+CFG276 -- implied-a0 rows for GN20 (z = 4.055) from the JWST/NIRSpec DysmalPy circular velocity of Uebler+24 (arXiv:2403.03192) with independent baryons
+(Tan+14 stars 1.1e11; Hodge+12 gas 1.3e11 or the Boogaard+25 resolved radiative-transfer gas 2.87e11): six rows = three baryon branches x R_e / 2 R_e, never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG276_gn20/FROZEN_CRITERIA.md (bc2ed906d).
+  g_obs   R_e: v_circ(R_e)^2 / R_e with v_circ = 496 km/s (the model's circular velocity: the pressure term 3.36 sigma0^2 is in it once); 2 R_e: G M_dyn(<2 R_e) / (2 R_e)^2, log M_dyn = 11.68; 0.10 dex declared
+  g_bar   stars: Sersic n = 0.42 disc (R_e 3.6 kpc, Hankel thin disc) + nuclear component (n = 4, R_e 0.8 kpc, 2.5e10); gas: exponential disc R_e = 4.0 kpc (Freeman)
+  STAGE=A the baryon side (no g_obs-based quantity); STAGE=B the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (g_obs x 4).
+
+STAGE B  *** MUTATE=1: g_obs x 4 ***
+GN20: z 4.055, R_e 3.6 kpc (2 R_e 7.2); stars 1.10e+11 (nuclear fraction 0.227); gas H12 1.30e+11, RT 2.87e+11; g_obs(R_e) fiducial 2.215e-09, (2 R_e) 1.287e-09 m/s^2; sigma_g 0.1 dex, sigma_M* 0.3, sigma_gas 0.213
+
+STAGE B  THE MEASUREMENT (MUTATE: g_obs x 4)
+  GN20 [stars; Re]         g_obs 8.859e-09 D 11.370 dF +1.022 y 8.32  s* <= 982; MC 68 % [256, 827] 95 % [106, 974] (no root 0.49, ceiling 0.49); to s*=1 +nan dex; recipe half-width 0.102 (2/6 knobs rooted) ILL
+  GN20 [stars+H12; Re]     g_obs 8.859e-09 D 5.767 dF +0.743 y 16.41  s* <= 452; MC 68 % [177, 676] 95 % [72.3, 931] (no root 0.10, ceiling 0.10); to s*=1 +0.75 dex; recipe half-width 0.332 (9/9 knobs rooted) ILL
+  GN20 [stars+RT; Re]      g_obs 8.859e-09 D 3.615 dF +0.547 y 26.18  s* <= 250; MC 68 % [95.8, 453] 95 % [31.7, 777] (no root 0.03, ceiling 0.02); to s*=1 +nan dex; recipe half-width 0.404 (9/9 knobs rooted) ILL
+  GN20 [stars; 2Re]        g_obs 5.148e-09 D 13.320 dF +1.060 y 4.13  s* <= 678; MC 68 % [214, 776] 95 % [84.5, 962] (no root 0.33, ceiling 0.33); to s*=1 +1.12 dex; recipe half-width 0.369 (4/5 knobs rooted)
+  GN20 [stars+H12; 2Re]    g_obs 5.148e-09 D 6.735 dF +0.794 y 8.16  s* <= 316; MC 68 % [132, 534] 95 % [55.8, 839] (no root 0.04, ceiling 0.04); to s*=1 +nan dex; recipe half-width 0.390 (8/8 knobs rooted) ILL
+  GN20 [stars+RT; 2Re]     g_obs 5.148e-09 D 4.217 dF +0.603 y 13.04  s* <= 178; MC 68 % [72.8, 332] 95 % [26.9, 621] (no root 0.01, ceiling 0.01); to s*=1 +0.62 dex; recipe half-width 0.430 (8/8 knobs rooted) ILL
+
+CONTROLS (stage B)
+  [PASS] M2 MUTATE=1 (reactivity; the count is of rows with median D > 1, not of roots): g_obs x 4; rows with status ROOT satisfy the median-residual equation at their own s* to 1e-6 and the number of rows with median D > 1 is at least the main run's
+         rows with median D > 1: mutated 6, main 5; rows with a root 6; max |median residual| 1.9e-16
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg276_points_stageB_MUTATE1.csv (6 rows)
+
+2/2 checks pass; load-bearing failures: 0   (6 s)
