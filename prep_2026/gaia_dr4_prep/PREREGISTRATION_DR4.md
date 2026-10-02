@@ -1725,6 +1725,34 @@ gamma by −0.0150 (flagged systematic, §1.5). DR3 dry run: §1.6 numbers,
 > - `dr4_ready_1/WP2_GAMMA_SPREAD_FROZEN.md` and `wp2_gamma_spread_full_dr3.*` (72f9a7ed4).
 > - Filed on the owner's explicit instruction, 2026-09-30, after the independent referee CFG239 (7f102a38f) and the orchestrator's re-runs of the seed-sweep tooling, the edge table and the label.
 >
+> ### 🚨 AMENDMENT 19 — 2026-10-01, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THIS AMENDMENT REGISTERS A DATA-TRANSPORT FALLBACK FOR STAGE G'S CORRELATION FETCH. IT CHANGES NO CUT, THRESHOLD, ESTIMATOR SETTING, σ_tot, DECISION ROW, SEED OR ARM.**
+> **κ = ½ FITTED, NOT DERIVED.**
+>
+> **(a) The primary transport is unchanged.** Stage G's correlations are fetched by the frozen builder's own asynchronous query (`fetch_correlations`).
+>
+> **(b) The fallback.** If the asynchronous fetch fails or stalls on release day, the release driver's synchronous fetch (`dry_run_driver.py --corr-transport sync`, function `fetch_correlations_sync`) may be used instead. It:
+> - issues the SAME SELECT on the same table;
+> - uses at most 1,999 ids per call;
+> - requires every requested id to come back, and stops otherwise;
+> - sorts the returned arrays exactly as the builder does.
+>
+> **(c) Equivalence, required before use.**
+> - The fallback may be used only if the release-day manifest records the transport, the number of calls, the number of ids and the largest chunk.
+> - On DR3 the two transports gave a byte-identical stage-G catalogue (sha256 prefix 6fff64d964ebaa72) and byte-identical correlation arrays (test_driver_corr_sync.py, 8/8).
+> - On release day, if both transports are available for any subset, a byte comparison of that subset is recorded. Any difference is reported, and the asynchronous result is primary.
+>
+> **(d) Against interest.** The DR3 equivalence used the on-disk caches served by a mock archive; the real server's synchronous and asynchronous endpoints were not compared on identical requests. This amendment does not assume they agree; it requires the manifest record in (c) and reports any difference.
+>
+> **Untouched:** the estimator; the cut table; the error model and σ_tot; the strictness ladder; the frozen N = 30,000; both a₀ footings; Arms A, B and C; Amendments 10–18 (including Amendment 18's seed rules and label); the primary build's frozen seeds; the pipeline's registered RNG seed. κ = ½ remains fitted.
+>
+> **Provenance.**
+> - `prep_2026/gaia_dr4_prep/AMENDMENT19_DRAFT_NOT_FILED.md`
+> - `dr4_ready_1/dry_run_driver.py` (795d49285, e8dce8c78) and `dr4_ready_1/test_driver_corr_sync.py` with its outputs
+> - design `6742d206d`
+> - Filed on the owner's explicit instruction, 2026-10-01, after the orchestrator's re-run of test_driver_corr_sync.py (8/8, MUTATE 1-4 biting).
+>
 
 ---
 

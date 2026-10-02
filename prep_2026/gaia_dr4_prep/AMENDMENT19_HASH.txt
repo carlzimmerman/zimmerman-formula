@@ -1,0 +1,8 @@
+AMENDMENT 19 -- A data-transport fallback for stage G's correlation fetch: the primary remains the frozen builder's asynchronous fetch_correlations; if it fails or stalls on release day, the release driver's synchronous fetch_correlations_sync (dry_run_driver.py --corr-transport sync) may be used -- the SAME SELECT on the same table, at most 1,999 ids per call, every id required, arrays sorted as the builder does; byte-identical stage-G catalogue and correlation arrays on DR3 (test_driver_corr_sync.py 8/8); use must be recorded in the release manifest (transport, calls, ids, largest chunk); any release-day sync/async difference is reported and the asynchronous result is primary.
+  NO CUT, THRESHOLD, ESTIMATOR SETTING, SIGMA_TOT, DECISION ROW, SEED OR ARM CHANGES.
+date: 2026-10-01
+sha256(PREREGISTRATION_DR4.md) before Amendment 19 (= after Amendment 18): 1c666985cd7091d4c06306eeb1482fa6704be1c53d21cec42f23740e38553e90
+sha256(PREREGISTRATION_DR4.md) after Amendment 19: 1cbd1659e4b5f5409a893f3a5196a40a4e19db60dc70f2c7aebea0688d8a74fd
+added: the amendment block only (append-only, +28/-0; no existing line changed), inserted after Amendment 18's provenance block.
+unchanged: the estimator; the cut table; the error model and sigma_tot; the strictness ladder; the frozen N = 30,000; both a0 footings; ARMS A, B AND C; Amendments 10-18 (including Amendment 18's seed rules and label); the primary build's frozen seeds and the pipeline's registered RNG seed. KAPPA = 1/2 FITTED, NOT DERIVED.
+source: prep_2026/gaia_dr4_prep/AMENDMENT19_DRAFT_NOT_FILED.md (d38d8798b); implementation dr4_ready_1/dry_run_driver.py (795d49285, e8dce8c78), test dr4_ready_1/test_driver_corr_sync.py; design 6742d206d. The go to file was given by the owner. Filed 2026-10-01.
