@@ -53,6 +53,7 @@ M279 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG279_mi
 A275 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG275_pks0529_ci_rings", "cfg275_points_stageB.csv")))}   # CFG275 093132b4c
 A276 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG276_gn20", "cfg276_points_stageB.csv")))}   # CFG276 231d32a8c
 A278 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG278_lelli23_two_discs", "cfg278_points_stageB.csv")))}   # CFG278 9878bfcec
+A282 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG282_ro_stellar_masses", "cfg282_points_stageB.csv")))}   # CFG282 0f0ef264e
 A273 = list(csv.DictReader(open(os.path.join(CFG, "CFG273_danhaive_gold41", "cfg273_points_stageB_relabelled.csv"))))   # CFG273 208944196 (relabelled: two ceiling rows)
 A274 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG274_amvrosiadis_eight_discs", "cfg274_points_stageB.csv"))) if "pooled" not in r["object"]]   # CFG274 255f07244
 TODO = [  # (label, zmin, zmax, short note)       sources: CFG227 'Listed, no point' + CFG237 + CFG258 + L328
@@ -72,6 +73,7 @@ check("CFG279 MIGHTEE-HI: published whole-sample a0 = 1.50e-10 at z 0.055 (7cecb
 check("CFG275 PKS 0529-549: chart row [CIG; CO] is a FLOOR (no root), 7 of 8 rows floor (093132b4c)", A275["PKS0529 [CIG; CO]"]["no_root"] == "1" and sum(r["no_root"] == "1" for r in A275.values()) == 7)
 check("CFG276 GN20: frozen row [stars+RT; Re] is a floor but uninformative (D 0.90) (231d32a8c)", A276["GN20 [stars+RT; Re]"]["no_root"] == "1")
 check("CFG278 Lelli+23: zC-400569 [stars+CO a=0.4] floor; zC-488879 [stars+CO a=0.4] <= 33.4 (9878bfcec)", A278["zC-400569 [stars+CO a=0.4]"]["no_root"] == "1" and abs(float(A278["zC-488879 [stars+CO a=0.4]"]["s_star"]) - 33.424) < 1e-2)
+check("CFG282 RO + SED M*: SGP38326-2 [gas+M* Ma19] and BRI1335-0417 [gas+M* T26] are floors (0f0ef264e)", A282["SGP38326-2 [gas+M* Ma19]"]["no_root"] == "1" and A282["BRI1335-0417 [gas+M* T26]"]["no_root"] == "1")
 check("CFG273 Danhaive: 7 no root (relabelled file), pooled PALL <= 29.4 at z 4.17 (208944196)", sum(r["no_root"] == "1" for r in A273) == 7 and any("PALL" in r["object"] and abs(float(r["s_star"]) - 29.45) < 0.01 for r in A273), f"({sum(r['no_root'] == '1' for r in A273)} no root)")
 check("CFG272 ALPAKA: 13 and 23 no root; 25 <= 3.30 and 28 <= 0.74 upper bounds; 24 no M* (d993f02dc)", sorted(r["object"].split()[1] for r in A272 if r["no_root"] == "1") == ["13", "23"] and sorted(round(float(r["s_star"]), 2) for r in A272 if r["no_root"] == "0") == [0.74, 3.3], f"({len(A272)} rows)")
 check("CFG274 Amvrosiadis: 7 of 8 no root, ALESS 075.1 s* 6.89 (255f07244)", sum(r["no_root"] == "1" for r in A274) == 7 and any(r["no_root"] == "0" and abs(float(r["s_star"]) - 6.887) < 0.01 for r in A274), f"({sum(r['no_root'] == '1' for r in A274)} no root)")
@@ -187,9 +189,9 @@ ax.scatter([zh], [shz], marker="o", s=55, facecolor="white", edgecolor=HZC, line
 ax.annotate("", xy=(zh, shz / 1.9), xytext=(zh, shz), arrowprops=dict(arrowstyle="-|>", color=HZC, lw=1.6), zorder=6)
 ax.text(zh + 0.06, shz, "HZ9 ≤ 15×\n(≤ 49× alt M*)", color=HZC, fontsize=8, va="center", ha="left", clip_on=False)
 ROC = "#2e7d6b"
-ro_floor = [A277[k] for k in ("J081740 [gas]", "BRI1335-0417 [gas]")]   # primary CO-gas rows; SGP pair vacuous bounds not drawn
+ro_floor = [A277["J081740 [gas]"], A282["BRI1335-0417 [gas+M* T26]"], A282["SGP38326-2 [gas+M* Ma19]"]]   # CFG282 adds SED M*: SGP38326-2 becomes a floor; SGP38326-1 (non-measurement) not drawn
 for r in ro_floor:
-    ax.scatter([f(r, "z")], [0.252], marker="v", s=60, color=ROC, zorder=6, edgecolor="white", lw=0.6)
+    ax.scatter([f(r, "z") + (0.06 if r["object"].startswith("SGP38326-2") else 0.0)], [0.252], marker="v", s=60, color=ROC, zorder=6, edgecolor="white", lw=0.6)
 SNC = "#1f7a8c"
 sins_floor = [r for r in A280 if r["no_root"] == "1" and "[" not in r["object"] and r["rc100_match"] == "0" and r["kmos3d_match"] == "0"]   # BX610 is CFG229's
 ax.scatter([3.15], [0.252], marker="v", s=70, color=SNC, zorder=6, edgecolor="white", lw=0.6)

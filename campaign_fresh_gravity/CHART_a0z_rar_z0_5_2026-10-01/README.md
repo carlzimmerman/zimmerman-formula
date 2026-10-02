@@ -60,3 +60,10 @@ Requested by the owner as a single figure. Top: the calculated implied-a₀ poin
 Layout: the strip now shrinks with its row count, and the main panel takes the freed height; the "cosmic noon" label moved to z 1.05. Lelli+23 is removed from the strip. The floor count is now 51. 21/21 checks pass.
 
 **BUDHIES local control (CFG281, 4b0d76369): BUDHIES still NOT drawn.** The frozen calibration rule returns NOT CALIBRATED. The same width → V → baryon chain on 1,370 ALFALFA galaxies, mass-matched to BUDHIES's PC set, gives s* = 1.449, within +0.053 dex of the SPARC scale 1.282, so the chain works locally. But two precision clauses fail narrowly: recipe half-width 0.216 against ≤ 0.20, and distance-window drift 0.105 against ≤ 0.10. The BUDHIES/local ratio, 0.18 (log₁₀ −0.75 ± 0.17 stat, ± 0.39 with both recipe widths), is a ratio of two chain outputs under an untested same-pipeline assumption (instrument, S/N, selection and stellar step differ). It is NOT an a₀(z) measurement. The note stays "computed, chain not calibrated" (CFG260 d7eeb195b + CFG281 4b0d76369). The two local-control rows (z 0.016) are not plotted.
+
+**Roman-Oliveira + SED stellar masses (CFG282, 0f0ef264e).** The first SED stellar masses were added to CFG277's CO gas, and the frozen-rule rows (the lower-mass SED branch of each source) replace CFG277's gas-only SGP rows.
+- **SGP38326-2 [gas+M* Ma19]: FLOOR** (D 0.50; a floor in both branches), drawn as a third teal floor triangle, nudged +0.06 in z.
+- **BRI1335-0417 [gas+M* T26]: FLOOR** (D 0.041; its SED mass includes the AGN and is flagged unconstrained, so it only shows the floor stays).
+- **SGP38326-1: not drawn.** Its frozen row is a root s* ≤ 22.1 (ill-conditioned, recipe ±0.72 dex), and the other branch is a floor by only 0.013 dex.
+
+All are near-Newtonian (y 18–90), so these are statements of baryon excess, not a₀ values. The Ma+19 masses are provisional (read from the VizieR HTML). The floor count is now 52. 22/22 checks pass.
