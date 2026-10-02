@@ -1,0 +1,204 @@
+{
+ "stage": "A",
+ "mutate": false,
+ "selftest": false,
+ "checks": [
+  {
+   "name": "C1 CONTROL: the paper's record is self-consistent: log(3.6 L'(1-0)) equals the published log M_mol to 0.01 dex; log L'(3-2) - log L'(1-0) equals log r31 to 0.02 dex; the paper's L'(3-2) equals ALPAKA's table value within its 1 sigma; the stellar mass and its errors in the paper's Table 1 equal CFG284's record to the table's rounding (0.006 dex)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: Freeman's peak V^2 = 0.3872 G M / R_d to 0.003, g -> G M / r^2 far from a compact mass to 1e-3, gdisc equals CFG229's on 200 random inputs to 1e-12, and the Hankel thin Sersic disc equals Freeman's exact exponential disc (n = 1) and the exact Gaussian (n = 0.5) closed form to 2e-3",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on the S1 baryons",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C5 CONTINUITY with CFG284: the S0 g_bar equals CFG284's committed B0 g_bar to 1e-9 relative (only the baryon value is read)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C5b CONTINUITY with CFG283: gas only at 0.8 x the ALPAKA L'(3-2) in the R_ext/1.2 disc equals CFG283's committed B1 g_bar to 1e-9 relative",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C6 CONTROL (load-bearing): the tabulated L'(1-0) equals the line-flux formula L' = 3.25e7 S dv nu_obs^-2 D_L^2 (1+z)^-3 (nu_rest 115.2712 GHz) to 0.05 dex for flat LCDM 67.4 / 0.315 and for the paper's 70 / 0.30",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "inputs": {
+   "z": 3.094,
+   "LP10": 45708818961.48752,
+   "SLP10": 0.03,
+   "R_ext": 3.551,
+   "R_mean": 3.0455,
+   "i": 75.0,
+   "ei": 6.0,
+   "Mstar": 44000000000.0,
+   "GB": {
+    "S0": 4.85770148418495e-10,
+    "S1": 8.894788715267842e-10,
+    "S2": 2.3024594024057966e-09,
+    "G1": 4.0370872310828923e-10,
+    "G2": 6.863048292840917e-10,
+    "G3": 1.8166892539873017e-09
+   },
+   "GSTAR": 4.85770148418495e-10,
+   "GUN_GAS": 5.046359038853616e-10,
+   "y": {
+    "S0": 5.189685676938719,
+    "S1": 9.502674823742659,
+    "S2": 24.598136837556453,
+    "G1": 4.3129891468039405,
+    "G2": 7.332081549566698,
+    "G3": 19.408451160617734
+   },
+   "nuy": {
+    "S0": 1.127535850585495,
+    "S1": 1.0711619280908575,
+    "S2": 1.0285606116220718,
+    "G1": 1.152556078601096,
+    "G2": 1.0913509965402453,
+    "G3": 1.0358434155397824
+   },
+   "La": 47959039554.03849,
+   "Lb": 45778837830.42469,
+   "i_F444W": 57.31636115374206,
+   "i_870": 54.54945736082459
+  },
+  "lever": {
+   "S0": -9.357728757727282,
+   "S1": null,
+   "S2": null,
+   "G1": -7.4786983109460525,
+   "G2": -15.662388908072101,
+   "G3": null
+  },
+  "ill": {
+   "S0": false,
+   "S1": true,
+   "S2": true,
+   "G1": false,
+   "G2": true,
+   "G3": true
+  },
+  "knob_gbar_dex": {
+   "R_e x1.5 (stars and gas)": [
+    -0.17307502047202128,
+    -0.1730750204720212,
+    -0.17307502047202128,
+    -0.1730750204720212,
+    -0.17307502047202128,
+    -0.17307502047202136
+   ],
+   "R_e /1.5 (stars and gas)": [
+    0.07553004157638835,
+    0.07553004157638843,
+    0.07553004157638843,
+    0.07553004157638858,
+    0.0755300415763885,
+    0.07553004157638843
+   ],
+   "stars R_e +1 sigma": [
+    -0.03605698792681876,
+    -0.019319905872759148,
+    -0.007362077028036267,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "stars R_e -1 sigma": [
+    0.03228590348650429,
+    0.01792898697524127,
+    0.007014276497002381,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "spherical (enclosed mass as a point mass)": [
+    -0.12789423995103497,
+    -0.12789423995103485,
+    -0.12789423995103497,
+    -0.12789423995103485,
+    -0.12789423995103485,
+    -0.12789423995103497
+   ],
+   "gas at R_ext/1.2 (CFG283's R_e)": [
+    0.0,
+    -0.046091977088717005,
+    -0.08357086571322236,
+    -0.10893864887505562,
+    -0.10893864887505555,
+    -0.10893864887505568
+   ],
+   "gas at the 870 um dust R_e": [
+    0.0,
+    0.03501433027019557,
+    0.05917055534617469,
+    0.07371555118014754,
+    0.07371555118014762,
+    0.07371555118014754
+   ],
+   "stars as the Sersic n = 3.21 thin disc (Hankel)": [
+    -0.12868954117305795,
+    -0.06552907311802579,
+    -0.02415726064496723,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "M* x 10^-0.30": [
+    -0.30000000000000004,
+    -0.1381169104178889,
+    -0.0482929172076786,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "M* x 10^+0.30": [
+    0.2999999999999998,
+    0.18851832392827853,
+    0.08277792637961949,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "M* x 10^-0.50 (AGN contamination)": [
+    -0.5000000000000001,
+    -0.20302887910057013,
+    -0.06765890480375703,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "gas: helium x 1.36": [
+    0.0,
+    0.06572666421350697,
+    0.10858113286172053,
+    0.13353890837021762,
+    0.13353890837021748,
+    0.1335389083702174
+   ]
+  },
+  "hand_estimates": {
+   "HE1": true
+  },
+  "pf": {
+   "PF_D1": true
+  }
+ }
+}
