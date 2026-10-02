@@ -5,7 +5,7 @@
 **Order.** Criteria 80f05e155 were committed before the corrected file or any re-run existed. The corrected copy came next (51c70923f). This README was written after the runs.
 
 ## Bottom line
-- **One verdict moves against the framework: L323.** Its frozen check "the level is a tie" goes from PASS to FAIL. On the corrected table the framework's best systematic cell is [−0.038, −0.007] (it was [−0.028, +0.009]), so it no longer contains zero offset. Three ΛCDM variants (NFW, H, C) still contain zero. The record's "a tie (L323/L331)" (CFG0 inventory W14) holds only through L331, whose numbers move toward both models: framework +0.9σ → +0.3σ, ΛCDM +3.0σ → +2.6σ.
+- **One verdict moves against the framework: L323.** Its frozen check "the level is a tie" goes from PASS to FAIL. On the corrected table the framework's best systematic cell's **68% bootstrap interval** (about 1σ, with no calibration systematic in it) is [−0.038, −0.007] (it was [−0.028, +0.009]), so it no longer contains zero offset. Three ΛCDM variants (NFW, H, C) still contain zero. The record's "a tie (L323/L331)" (CFG0 inventory W14) holds only through L331, whose numbers move toward both models: framework +0.9σ → +0.3σ, ΛCDM +3.0σ → +2.6σ.
 - **One check breaks by a fit failure: hunt k-hzs-4.** The Υ-lever check turns from PASS to FAIL because, with the corrected masses at Υ × 1.5, the RC100 level fit returns NaN. That sample's lever is undetermined, not measured. In the same script, RC100's own residual slope moves from −0.43σ to −2.00σ, and the two-survey common slope separates less from the rivals (a₀ ∝ cH(z): −2.97σ → −2.33σ; MUSE-DARK III: −3.23σ → −2.47σ). Its flat-law distance is unchanged (−1.65σ → −1.61σ).
 - **CFG287's bound for CFG90 was too small.** CFG90 hard-codes the absolute repository path, so the driver could not substitute the file. Run with the path pointed at each mirror (`cfg289_supplement.py`), the z ≥ 1.5 pool loses two RC100 galaxies (K20 ID9, GS4 01529; N 15 → 13):
   - ⟨D_flat⟩ +0.137 → +0.035 (+1.00σ → +0.25σ);
@@ -50,6 +50,13 @@
 - **Root `STANDING.md`** (an older status file): L320 "3.0–3.4σ" → 2.8–3.2σ on the corrected table. The adopted status record is `campaign_fresh_gravity/STANDING_2026-09-29.md`, where this lane is recorded.
 - **CFG287 AUDIT.md**: its "CFG52/CFG90 pool moves 0.03 dex" holds for CFG52; CFG90 moves 0.10 dex (0.74σ).
 - **MNRAS v3** reads the corrected file directly.
+
+## Post hoc (labelled, at the owner's question "are we sure RC100 did it right?")
+- `cfg289_posthoc_l323_flagged_rows.py`: L323 on the corrected table without RC100's own flagged rows. The flip survives:
+  - without rows 67/83 (V_rot² < 0 by the paper's eq. 8): [−0.038, −0.007];
+  - without all 16 flagged rows (n = 84): [−0.034, −0.004].
+  S4 (every ΛCDM variant's inverted a₀ rises, against RC100's trend) also survives.
+- **What it is not:** a statement about nature. RC100's f_DM and M_baryon come from the authors' own mass models, with gas from scaling relations, and f_DM tracks their M_baryon prior (CFG217 G2). The edge sits at the ~1σ level and carries no calibration systematic. The record's standing stays: **RC100 decides nothing.**
 
 ## Disclosed departures
 - `cfg289_supplement.py` (CFG90 with the mirror path; CFG52's pooled.py and mock_bias.py) was added after the first comparison. CFG90's hard-coded path made the driver's FIX run of it void, and CFG52's pooled result lives in a script that does not name the CSV.
