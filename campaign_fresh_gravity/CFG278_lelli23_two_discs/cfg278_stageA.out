@@ -1,0 +1,62 @@
+CFG278 -- implied-a0 rows for the two ALMA CO discs of Lelli et al. 2023 (arXiv:2302.00030), zC-400569 (z = 2.240) and zC-488879 (z = 1.470), from the digitised multi-line rotation curves
+with independent baryons (SED stars x CO-based gas): six rows = two galaxies x {stars, stars+CO a=0.4, stars+CO a=4.3}, never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG278_lelli23_two_discs/FROZEN_CRITERIA.md (9a45bbdae).
+  g_obs   V_rot^2 / R at every digitised point (all lines pooled), no pressure term; inclination N(54.5, 5.0) / N(71.6, 4.1) deg common draw; V errors = the digitised bar half-widths
+  g_bar   stars (SED, 0.30 dex): deprojected de Vaucouleurs bulge (fraction f_bul = 0.33 / 0.63) + exponential Freeman disc; gas (L'_CO x alpha_CO, 0.213 dex): exponential disc of the stellar disc's R_e
+  STAGE=A   the blind pre-flight: only the radius column of the digitised CSV is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V x 2).
+
+STAGE A
+digitised curves lelli2023_rotcur_digitised.csv sha256 c67eadd84e7e2897; velocity-bearing columns loaded: False; 25 points; lines: zC-400569: Halpha 6, CO(3-2) 5, CO(4-3) 4; zC-488879: CO(2-1) 5, CO(3-2) 5
+galaxies: zC-400569: z 2.23999, 8.448 kpc/arcsec, L'_CO(1-0) 2.339e+10 K km/s pc2, M_gas(a=0.4) 9.36e+09, (a=4.3) 1.01e+11, M* 2.19e+11, R_e,bul 1.01, R_e,disc 6.42 kpc, f_bul 0.33, i 54.5 +- 5.0; zC-488879: z 1.46997, 8.686 kpc/arcsec, L'_CO(1-0) 1.949e+10 K km/s pc2, M_gas(a=0.4) 7.79e+09, (a=4.3) 8.38e+10, M* 5.20e+10, R_e,bul 3.04, R_e,disc 7.64 kpc, f_bul 0.63, i 71.6 +- 4.1
+
+STAGE A  THE BLIND PRE-FLIGHT (only the radius column loaded; no g_obs, D, delta or s* is formed)
+  [PASS] C1 CONTROL (loader): the CSV has 25 rows; per-line counts equal 4/5/6 (zC-400569: CO(4-3), CO(3-2), Halpha) and 5/5 (zC-488879); radii positive and distinct within each line; the paper's constants of the criteria section 0.1 are found in the TeX
+         rows 25; counts {'zC-400569': [4, 5, 6], 'zC-488879': [5, 5]}; radii ok True; TeX 20 of 20: all found
+  [PASS] C1b CONTROL: my CO luminosity code reproduces the hand arithmetic of the criteria (gas masses 9.4e9 / 1.0e11 for zC-400569, 7.8e9 / 8.4e10 for zC-488879 at alpha 0.4 / 4.3) within 5 %; the kpc/arcsec scales equal 8.45 and 8.69 (the paper's rounded 8.5) within 1 %
+         relative differences [0.0046 0.0007 0.0058 0.0025]; kpc/arcsec 8.448, 8.686; the authors' dynamical gas masses alpha 2.1 / 2.9 x L'10 = 4.91e+10 / 5.65e+10
+  [PASS] C2 CONTROL (geometry): the Hankel thin disc equals Freeman's exact exponential disc and the exact Gaussian closed form to 2e-3; the deprojected n = 4 profile's projected half-mass radius equals R_e to 1 %; the enclosed fraction tends to 1
+         Hankel vs Freeman 9.4e-04; vs Gaussian 1.1e-04; n=4 projected fraction within R_e 0.4999; |f(inf) - 1| 0.0e+00
+  [PASS] C3 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C4 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every row's baryon side
+         max |d log10 s| 2.2e-15
+
+A1 / A2  BARYON SIDE AND THE CFG240 READING (noiseless world; ILL-CONDITIONED iff |lever| >= 10 or not computable)
+    zC-400569 [stars]              N 15: R 0.68-7.43 kpc (median 4.01); y 4.72-75.81 (median 9.40); lever -44.42  ILL-CONDITIONED
+    zC-400569 [stars+CO a=0.4]     N 15: R 0.68-7.43 kpc (median 4.01); y 4.90-75.99 (median 9.66); lever +nan (not computable)  ILL-CONDITIONED
+    zC-400569 [stars+CO a=4.3]     N 15: R 0.68-7.43 kpc (median 4.01); y 6.74-77.68 (median 12.21); lever +nan (not computable)  ILL-CONDITIONED
+    zC-488879 [stars]              N 10: R 0.91-8.60 kpc (median 4.67); y 0.75-9.27 (median 1.58); lever -3.03  conditioned
+    zC-488879 [stars+CO a=0.4]     N 10: R 0.91-8.60 kpc (median 4.67); y 0.86-9.38 (median 1.74); lever -3.19  conditioned
+    zC-488879 [stars+CO a=4.3]     N 10: R 0.91-8.60 kpc (median 4.67); y 1.97-10.44 (median 3.25); lever -5.44  conditioned
+    CFG240: T4 floor 3 sigma / sqrt(N_eff) at sigma = 0.2 dex: 0.24 dex (N_eff ~ 6, zC-400569) and 0.30 dex (N_eff ~ 4, zC-488879); y(B) spans 0.75 to 77.7; the break-even design needs y >~ 8 with deep points (y < 0.3)
+
+A3  KNOB EFFECTS ON g_bar BY POINT (median over the points, dex relative to the baseline; stars at unit mass / gas at unit mass)
+    zC-400569 no bulge: stars -0.186, gas +0.000 dex
+    zC-400569 f_bul x2: stars +0.130, gas +0.000 dex
+    zC-400569 gas R_e x0.6: stars +0.000, gas +0.338 dex
+    zC-400569 gas R_e x1.5: stars +0.000, gas -0.336 dex
+    zC-400569 gas point mass: stars +0.000, gas -0.030 dex
+    zC-400569 8.5 kpc/arcsec: stars -0.005, gas -0.005 dex
+    zC-488879 no bulge: stars -0.186, gas +0.000 dex
+    zC-488879 f_bul x2: stars +0.060, gas +0.000 dex
+    zC-488879 gas R_e x0.6: stars +0.000, gas +0.343 dex
+    zC-488879 gas R_e x1.5: stars +0.000, gas -0.339 dex
+    zC-488879 gas point mass: stars +0.000, gas -0.026 dex
+    zC-488879 8.5 kpc/arcsec: stars +0.019, gas +0.019 dex
+
+A4  THE BEAM (CO beams from Table tab:cubes; major axis in arcsec; HWHM = half of it): zC-400569: CO(3-2) 1/5 points inside the HWHM, CO(4-3) 1/4 points inside the HWHM; zC-488879: CO(2-1) 1/5 points inside the HWHM, CO(3-2) 1/5 points inside the HWHM
+A5  innermost-of-line points (knob): 5; the digitiser-flagged (occluded) points are identified from the notes column at stage B only
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C4)
+  PF-D2 ILL-CONDITIONED rows: zC-400569 [stars], zC-400569 [stars+CO a=0.4], zC-400569 [stars+CO a=4.3]
+  PF-D3 DRAWABLE as an upper bound or floor: zC-488879 [stars], zC-488879 [stars+CO a=0.4], zC-488879 [stars+CO a=4.3]
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 7) scored (HE4-HE7 are scored at stage B):
+    HE1: y at R = 4 kpc, stars only: zC-400569 9.43 (needs 5-15), zC-488879 1.89 (needs 0.8-4): hit
+    HE2: zC-488879 rows conditioned [True, True, True]; zC-400569 rows ILL [True, True, True]: hit
+    HE3: CO-based gas masses within 5 % of the hand arithmetic (max 0.0058): hit
+
+5/5 checks pass; load-bearing failures: 0   (3 s)
