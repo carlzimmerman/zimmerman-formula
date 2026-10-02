@@ -1,0 +1,272 @@
+{
+ "stage": "A",
+ "mutate": false,
+ "selftest": false,
+ "checks": [
+  {
+   "name": "C1 CONTROL (loader): the digitised CSV has 20 rows = 4 series x 5 rings; radii equal 0.045 + 0.09 k arcsec (1e-4) and x 8.22 kpc (2e-3) in every series; the cosmology gives 8.22 kpc/arcsec at z = 2.5706 to 0.01",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1b CONTROL: the paper's constants are found verbatim in the TeX (gas / dust Sersic rows, i = 53 +- 5, 8.22 kpc per arcsec, the 0.09-arcsec rings, the stars-only and gas-only table rows, the 0.4-1.2e11 CIGALE range, the CO gas mass)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1c CONTROL: the on-disk multitracer row (arXiv:2411.04290 Table 5) holds the frozen constants (CI 3.1 +- 0.6, CO 0.73 +- 0.09, dust 2.2 +- 0.2, M* ~ 3 +- 2, all 1e11) and z = 2.5725; the frozen CO mass (7.3e10) equals 0.73e11",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL (geometry): the Hankel thin disc equals Freeman's exact exponential disc (n = 1) to 2e-3 and the exact Gaussian-disc closed form (n = 0.5, R_e = 2.57) to 2e-3 at the five radii; the deprojected-Sersic profile's projected half-mass radius equals R_e to 1 % for n = 4 and 5.6 (numerical projection); the enclosed fraction tends to 1; the stellar B/D partition sums to 1",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every row's baryon side",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "inputs": {
+   "z": 2.5706,
+   "rings_R": [
+    0.3698,
+    1.1094,
+    1.8491,
+    2.5887,
+    3.3283
+   ],
+   "inc": [
+    53.0,
+    5.0
+   ],
+   "kpc_per_arcsec": 8.22,
+   "gas": [
+    0.52,
+    2.57
+   ],
+   "dust": [
+    1.3,
+    4.7
+   ],
+   "maxdisk": {
+    "disc_Re": 4.7,
+    "bulge_n": 4.0,
+    "bulge_Re": 0.47,
+    "BD": 0.9
+   },
+   "stellar": {
+    "SED": {
+     "lm": 11.477121254719663,
+     "elm": 0.3,
+     "role": "literature stellar mass"
+    },
+    "CIG": {
+     "lm": 10.840620618687794,
+     "elm": 0.24,
+     "role": "preliminary stellar range"
+    }
+   },
+   "gas_masses": {
+    "none": null,
+    "CO": 73000000000.0,
+    "CI": 310000000000.0,
+    "dust": 220000000000.0
+   },
+   "sig_gas_dex": 0.213,
+   "hwhm_kpc": 0.7398
+  },
+  "rows": {
+   "PKS0529 [SED; none]": {
+    "gb0": [
+     5.1400951978460246e-08,
+     1.1347238046638655e-08,
+     5.377214770502359e-09,
+     3.330345176604812e-09,
+     2.3537576576354412e-09
+    ],
+    "y0": [
+     549.1378692826111,
+     121.22729022188022,
+     57.44703450212449,
+     35.5794704935185,
+     25.146177554516854
+    ],
+    "lever": null,
+    "ill": true
+   },
+   "PKS0529 [SED; CO]": {
+    "gb0": [
+     5.1641501803195435e-08,
+     1.199187321676365e-08,
+     6.2640872906328e-09,
+     4.284438735899121e-09,
+     3.239953917054075e-09
+    ],
+    "y0": [
+     551.7077636741924,
+     128.11419737362743,
+     66.92186458375052,
+     45.77245105284148,
+     34.61378286010144
+    ],
+    "lever": null,
+    "ill": true
+   },
+   "PKS0529 [SED; CI]": {
+    "gb0": [
+     5.2422464932815164e-08,
+     1.4084729864977677e-08,
+     9.143385746398754e-09,
+     7.381975359909413e-09,
+     6.117056841467996e-09
+    ],
+    "y0": [
+     560.0511194386415,
+     150.47306031834106,
+     97.68261430081037,
+     78.86473040297226,
+     65.3510767974103
+    ],
+    "lever": null,
+    "ill": true
+   },
+   "PKS0529 [SED; dust]": {
+    "gb0": [
+     5.212589665574438e-08,
+     1.3289974175782478e-08,
+     8.049981269525606e-09,
+     6.2056956292725935e-09,
+     5.0244861106778995e-09
+    ],
+    "y0": [
+     556.8827564901165,
+     141.98235287098146,
+     86.00131693990156,
+     66.2980420421631,
+     53.67868669463478
+    ],
+    "lever": null,
+    "ill": true
+   },
+   "PKS0529 [CIG; none]": {
+    "gb0": [
+     1.187054138454682e-08,
+     2.6205323763142367e-09,
+     1.2418145580959875e-09,
+     7.691102736828641e-10,
+     5.435770468971861e-10
+    ],
+    "y0": [
+     126.81795866101321,
+     27.99624345709258,
+     13.266824333578917,
+     8.216726746822902,
+     5.807260952076173
+    ],
+    "lever": null,
+    "ill": true
+   },
+   "PKS0529 [CIG; CO]": {
+    "gb0": [
+     1.211109120928201e-08,
+     3.2651675464392326e-09,
+     2.128687078226429e-09,
+     1.7232038329771733e-09,
+     1.42977330631582e-09
+    ],
+    "y0": [
+     129.38785305259458,
+     34.883150608839806,
+     22.741654415204952,
+     18.409707306145883,
+     15.274866257660758
+    ],
+    "lever": null,
+    "ill": true
+   },
+   "PKS0529 [CIG; CI]": {
+    "gb0": [
+     1.2892054338901736e-08,
+     5.35802419465326e-09,
+     5.007985533992382e-09,
+     4.820740456987464e-09,
+     4.30687623072974e-09
+    ],
+    "y0": [
+     137.73120881704364,
+     57.24201355355341,
+     53.5024041322648,
+     51.50198665627666,
+     46.0121601949696
+    ],
+    "lever": null,
+    "ill": true
+   },
+   "PKS0529 [CIG; dust]": {
+    "gb0": [
+     1.2595486061830954e-08,
+     4.563268505458059e-09,
+     3.914581057119235e-09,
+     3.6444607263506448e-09,
+     3.2143054999396444e-09
+    ],
+    "y0": [
+     134.56284586851868,
+     48.75130610619381,
+     41.82110677135599,
+     38.935298295467504,
+     34.3397700921941
+    ],
+    "lever": null,
+    "ill": true
+   }
+  },
+  "enclosed": {
+   "gas": [
+    0.014584880873366166,
+    0.12307920115797505,
+    0.30366284106630864,
+    0.5051613732859043,
+    0.684540619971979
+   ],
+   "bulge": [
+    0.351885375271241,
+    0.6602462140177372,
+    0.7903886940561338,
+    0.8593344908336734,
+    0.9004149091698742
+   ],
+   "disc": [
+    0.007985055585570833,
+    0.06050381583262865,
+    0.14208411021617529,
+    0.23639128890703842,
+    0.33313046276489233
+   ]
+  },
+  "hand_estimates": {
+   "HE1": true,
+   "HE2": true,
+   "HE3": false
+  },
+  "pf": {
+   "PF_D1": true,
+   "PF_D4": true
+  },
+  "controls_numbers": {
+   "hankel_vs_freeman": 0.0006658456251241729,
+   "hankel_vs_gaussian": 0.0005731447074360796,
+   "half_mass_n4": 0.4998976293034181,
+   "half_mass_n56": 0.5000418565810152
+  }
+ }
+}

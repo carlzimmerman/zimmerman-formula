@@ -1,0 +1,61 @@
+CFG275 -- implied-a0 rows for PKS 0529-549 (z = 2.5706) from the five-ring [CI](2-1) circular-velocity curve of Lin et al. (arXiv:2411.08958):
+independent baryons, eight stellar x gas branches never pooled (SED 3e11 or the preliminary CIGALE range 0.4-1.2e11 for the stars; none / CO / [CI] / dust for the gas).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG275_pks0529_ci_rings/FROZEN_CRITERIA.md (4108d99e9).
+  g_obs   V_c^2 / R, V_c = the authors' asymmetric-drift-corrected circular velocity (digitised from the vector figures), split-normal errors, inclination 53 +- 5 deg
+  g_bar   stars: the authors' MaxDisk geometry (Freeman disc R_e 4.7 kpc + de Vaucouleurs bulge R_e 0.47 kpc, B/D = 0.9); gas: a razor-thin Sersic disc (n 0.52, R_e 2.57 kpc) by a Hankel transform
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V_c x 2).
+
+STAGE A
+digitised rings lin2024_rings_digitised.csv sha256 f26f9e4504b64bb1; multitracer row file 98fe74763cf766ca; velocity-bearing columns loaded: False; rings R = [0.37  1.109 1.849 2.589 3.328] kpc
+PKS 0529-549: z 2.5706, 5 rings, inclination 53 +- 5 deg, gas Sersic n 0.52 R_e 2.57 kpc, MaxDisk stars (disc R_e 4.7, bulge n 4.0 R_e 0.47, B/D 0.9); stellar branches SED log M* 11.477 +- 0.3; CIG log M* 10.841 +- 0.24; gas CO 7.3e+10; CI 3.1e+11; dust 2.2e+11
+
+STAGE A  THE BLIND PRE-FLIGHT (no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed)
+  [PASS] C1 CONTROL (loader): the digitised CSV has 20 rows = 4 series x 5 rings; radii equal 0.045 + 0.09 k arcsec (1e-4) and x 8.22 kpc (2e-3) in every series; the cosmology gives 8.22 kpc/arcsec at z = 2.5706 to 0.01
+         rows 20, per-series counts ok True; radii ok True; kpc/arcsec 8.2176
+  [PASS] C1b CONTROL: the paper's constants are found verbatim in the TeX (gas / dust Sersic rows, i = 53 +- 5, 8.22 kpc per arcsec, the 0.09-arcsec rings, the stars-only and gas-only table rows, the 0.4-1.2e11 CIGALE range, the CO gas mass)
+         found 10 of 10: [True, True, True, True, True, True, True, True, True, True]
+  [PASS] C1c CONTROL: the on-disk multitracer row (arXiv:2411.04290 Table 5) holds the frozen constants (CI 3.1 +- 0.6, CO 0.73 +- 0.09, dust 2.2 +- 0.2, M* ~ 3 +- 2, all 1e11) and z = 2.5725; the frozen CO mass (7.3e10) equals 0.73e11
+         row found 1; strings [True, True, True, True]; z 2.5725
+  [PASS] C2 CONTROL (geometry): the Hankel thin disc equals Freeman's exact exponential disc (n = 1) to 2e-3 and the exact Gaussian-disc closed form (n = 0.5, R_e = 2.57) to 2e-3 at the five radii; the deprojected-Sersic profile's projected half-mass radius equals R_e to 1 % for n = 4 and 5.6 (numerical projection); the enclosed fraction tends to 1; the stellar B/D partition sums to 1
+         Hankel vs Freeman 6.7e-04; Hankel vs Gaussian 5.7e-04; projected fraction within R_e: n=4 0.4999, n=5.6 0.5000; |f(inf) - 1| 4.1e-10; partition 1.0
+  [PASS] C3 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C4 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every row's baryon side
+         max |d log10 s| 1.4e-14
+
+A1 / A2  BARYON SIDE AND THE CFG240 READING (noiseless world; ILL-CONDITIONED iff |lever| >= 10 or not computable)
+    PKS0529 [SED; none]      g_bar [5.140e-08 1.135e-08 5.377e-09 3.330e-09 2.354e-09] m/s^2; y [549.138 121.227  57.447  35.579  25.146]; lever +nan (not computable)  ILL-CONDITIONED
+    PKS0529 [SED; CO]        g_bar [5.164e-08 1.199e-08 6.264e-09 4.284e-09 3.240e-09] m/s^2; y [551.708 128.114  66.922  45.772  34.614]; lever +nan (not computable)  ILL-CONDITIONED
+    PKS0529 [SED; CI]        g_bar [5.242e-08 1.408e-08 9.143e-09 7.382e-09 6.117e-09] m/s^2; y [560.051 150.473  97.683  78.865  65.351]; lever +nan (not computable)  ILL-CONDITIONED
+    PKS0529 [SED; dust]      g_bar [5.213e-08 1.329e-08 8.050e-09 6.206e-09 5.024e-09] m/s^2; y [556.883 141.982  86.001  66.298  53.679]; lever +nan (not computable)  ILL-CONDITIONED
+    PKS0529 [CIG; none]      g_bar [1.187e-08 2.621e-09 1.242e-09 7.691e-10 5.436e-10] m/s^2; y [126.818  27.996  13.267   8.217   5.807]; lever +nan (not computable)  ILL-CONDITIONED
+    PKS0529 [CIG; CO]        g_bar [1.211e-08 3.265e-09 2.129e-09 1.723e-09 1.430e-09] m/s^2; y [129.388  34.883  22.742  18.41   15.275]; lever +nan (not computable)  ILL-CONDITIONED
+    PKS0529 [CIG; CI]        g_bar [1.289e-08 5.358e-09 5.008e-09 4.821e-09 4.307e-09] m/s^2; y [137.731  57.242  53.502  51.502  46.012]; lever +nan (not computable)  ILL-CONDITIONED
+    PKS0529 [CIG; dust]      g_bar [1.260e-08 4.563e-09 3.915e-09 3.644e-09 3.214e-09] m/s^2; y [134.563  48.751  41.821  38.935  34.34 ]; lever +nan (not computable)  ILL-CONDITIONED
+    CFG240: y(B) spans 5.8 to 560.1 over all rows and rings (the break-even design needs y >~ 8 with deep points, y < 0.3: none here); T4 floor 3 sigma / sqrt(N) at sigma = 0.2 dex is 0.27 dex for N = 5 and 0.36 dex for N_eff = 2.75 (calibration free)
+
+A3  KNOB EFFECTS ON g_bar BY RING (dex relative to the baseline; stars at unit mass, gas at unit mass)
+    stars: sph n=4 R_e=1: [0.048 0.124 0.129 0.109 0.081] dex
+    stars: sph n=5.6 R_e=3.0: [-0.283 -0.172 -0.137 -0.132 -0.139] dex
+    stars: exp disc R_e=4.7: [-1.795 -0.918 -0.55  -0.346 -0.222] dex
+    gas: exp disc R_e=2.57: [ 0.583  0.284  0.11   0.002 -0.06 ] dex
+    gas: dust profile: [ 0.232 -0.116 -0.274 -0.354 -0.378] dex
+    gas: point mass: [ 0.654  0.198  0.008 -0.095 -0.149] dex
+
+A4  THE BEAM ([CI](2-1) beam 0.18 arcsec = 1.48 kpc FWHM, HWHM 0.74 kpc; ring width 0.09 arcsec = half the beam): R/HWHM = [0.5 1.5 2.5 3.5 4.5]; rings inside the HWHM: 1 of 5; N_eff of the correlated rings ~ 2.5-3
+A5  ENCLOSED FRACTIONS at the rings: gas (projected Sersic) [0.015 0.123 0.304 0.505 0.685]; bulge [0.352 0.66  0.79  0.859 0.9  ]; stellar disc [0.008 0.061 0.142 0.236 0.333]
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C4)
+  PF-D2 ILL-CONDITIONED rows: PKS0529 [SED; none], PKS0529 [SED; CO], PKS0529 [SED; CI], PKS0529 [SED; dust], PKS0529 [CIG; none], PKS0529 [CIG; CO], PKS0529 [CIG; CI], PKS0529 [CIG; dust]
+  PF-D3 DRAWABLE as an upper bound: none (every drawable row is an upper bound on s*, never a measurement)
+  PF-D4 BEAM-LIMITED: True (the innermost ring at 0.37 kpc against the beam HWHM 0.74 kpc; reported, not blocking)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9) scored (HE4-HE8 are scored at stage B):
+    HE1: y at the outer ring: [SED; CO] 34.6 (needs 15-50), [CIG; none] 5.81 (needs 3-9): hit
+    HE2: all eight rows ILL-CONDITIONED (8 of 8): hit
+    HE3: thin-disc Sersic gas g at R = 3.33 kpc for 1e11 Msun = 1.214e-09 m/s^2 (needs 7.5e-10 to 1.1e-9): MISS (kept as it falls)
+
+6/6 checks pass; load-bearing failures: 0   (6 s)
