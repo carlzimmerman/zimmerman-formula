@@ -1,0 +1,14 @@
+# MIGHTEE-HI DR1 cubes: the capped probe (the owner's yes in the calc chat, 2026-10-02: "probe, cap 10 GB")
+
+**Status: step 0 (metadata only).** No cube voxel has been read. The cumulative ledger (`LEDGER.json`) stands at **198,552 bytes of the 10,000,000,000-byte hard cap**. Source: the public SARAO archive only (DOI 10.48479/jkc0-g916, Heywood+2024, MNRAS 534, 76; CC BY-NC 4.0; cite the paper). Helper: `data_assembly/fetch_range_logged.py` (host allow-list, cumulative cap, HTTP 206 only, one log line per request in `FETCH_MANIFEST_MIGHTEE_PROBE_2026-10-02.jsonl`).
+
+**What was read.** The XML listings of the tree and the two small index pages (`listing_data_2026-10-02.json`, `index_*.html`); the FITS headers (first 28,800 bytes) of one L2 clean_conv_contsub sub-cube per weighting (r0p0, r0p5, r1p0; `headers/`); and the per-channel beam tables at the end of the r0p0 and r0p5 files (30,000 bytes each).
+
+**Facts from those reads.**
+- **The release holds the cubes only** (`data/` with L1 r0p0 / r0p5 and L2 r0p0 / r0p5 / r1p0 FITS files, 4.6–196 GB each, 5.9 TB in all): **there is no HI source catalogue in this DOI.** A separate catalogue exists (Maksymowicz-Maciata et al., arXiv:2605.28731, 293 HI sources, 0.004 < z < 0.093; found by another session; host of its table unverified; it needs the owner's yes to fetch).
+- **L2 sub-cube geometry (r0p0, r0p5):** 4600 × 4600 pixels of 2.0″ (9200″ = 2.56° on a side), 1055 channels, a 4th (Stokes) axis; frequency **ascending** from 1290.146304 MHz in steps of 26.1253 kHz (5.6 km s⁻¹); BITPIX −32; contiguous channel planes (a plane is 84.6 MB), so a row block of one channel is one contiguous range. r1p0: 1200 × 1200 pixels of 8″, 3 axes, 1290.123036 MHz start, BUNIT Jy/beam (a 40″ taper).
+- **Homogenised beams (median of the per-channel table; circular):** **r0p0 12.27″, r0p5 16.33″** (r1p0 to be read from the High-z session's local copy; flagged channels show larger values, up to 265″ and 187″).
+- **HI z 0.02–0.09 is channels 496–3919 of the L2 spectrum, in four sub-cubes:** 0001-1055 (z 0.0780–0.1010), 1001-2055 (0.0570–0.0791), 2001-3055 (0.0368–0.0581), 3001-4055 (**0.0174–0.0379**, the nearest and best resolved).
+- **Beams per HI-disc radius** (D_HI = 10^(0.506 log M_HI − 3.293) kpc, R = D_HI/2; beam 12.27″ / 16.33″): log M_HI 9.5: 3.2 / 2.4 at z = 0.02, 1.3 / 1.0 at 0.05, 0.8 / 0.6 at 0.09; log M_HI 10.0: 5.7 / 4.3, 2.3 / 1.8, 1.4 / 1.0; log M_HI 10.5: 10.1 / 7.6, 4.2 / 3.2, 2.4 / 1.8. **Resolved rotation curves are possible only for the nearest, most massive discs; for most of the sample only widths are available.**
+
+**Coordination (2026-10-02).** The High-z session is downloading the four L2 r1p0 clean_conv_contsub sub-cubes (24.4 GB, cap 30 GB, the owner's yes in its chat) into the shared external-data folder; this probe does not fetch r1p0 and will read those local files when they land. CFG300–309 are reserved for this lane (LEDGER 6676daaf0).
