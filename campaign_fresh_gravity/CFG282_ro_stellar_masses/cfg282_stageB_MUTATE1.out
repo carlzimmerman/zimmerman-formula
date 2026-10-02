@@ -1,0 +1,27 @@
+CFG282 -- CFG277's Roman-Oliveira+23 [CII] discs (SGP38326-1, SGP38326-2, BRI1335-0417) with the literature SED stellar masses added: gas (CFG277's CO masses, class S) + SED stars, five rows never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG282_ro_stellar_masses/FROZEN_CRITERIA.md (3af1cf10d, corrected in section 9 by e111bcc30: provenance wording only).
+  rows     SGP38326-1 [gas+M* T26 11.04] / [gas+M* Ma19 11.52]; SGP38326-2 [T26 11.39] / [Ma19 11.27]; BRI1335-0417 [T26 12.05, AGN-included, unconstrained]
+  g_obs    (V_ext^2 + 3.36 sigma_ext^2) / r_ext;  g_bar = 0.5 G (M_gas + M*) / r_ext^2 (CFG197's point-mass geometry, f_enc = 0.5);  CFG223's s*
+  STAGE=A  the blind pre-flight (no velocity-bearing column loaded).  STAGE=B  the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V_ext, sigma_ext x 2).
+
+STAGE B  *** MUTATE=1: V_ext and sigma_ext x 2 (g_obs x 4) ***
+tables: sample 985ef40cb89bff54, gas 42701921add400ee, kinematics e344a4f21739ecf4, stellar masses 487f01bc104d5ef8; velocity-bearing columns loaded: True
+rows: SGP38326-1 [gas+M* T26]: r_ext 3.536 kpc, M_gas 1.90e+11 (sigma 0.300 dex), M* 1.10e+11; SGP38326-1 [gas+M* Ma19]: r_ext 3.536 kpc, M_gas 1.90e+11 (sigma 0.300 dex), M* 3.31e+11; SGP38326-2 [gas+M* T26]: r_ext 1.632 kpc, M_gas 7.60e+10 (sigma 0.300 dex), M* 2.45e+11; SGP38326-2 [gas+M* Ma19]: r_ext 1.632 kpc, M_gas 7.60e+10 (sigma 0.300 dex), M* 1.86e+11; BRI1335-0417 [gas+M* T26]: r_ext 4.092 kpc, M_gas 1.00e+11 (sigma 0.043 dex), M* 1.12e+12
+
+STAGE B  THE MEASUREMENT (MUTATE: V_ext and sigma_ext x 2)
+  SGP38326-1 [gas+M* T26]      r 3.54: g_obs 1.127e-08  g_bar 1.670e-09  D 6.748  dF +0.813  y 17.84  s* <= 694; MC 68 % [199, 772] 95 % [71.5, 958] (no root 0.25, ceiling 0.25); baryon ratio for s* = 1: +nan; recipe half-width 0.499; band inner [405, 1e+03] outer [104, 1e+03] ILL
+  SGP38326-1 [gas+M* Ma19]     r 3.54: g_obs 1.127e-08  g_bar 2.905e-09  D 3.880  dF +0.579  y 31.03  s* <= 349; MC 68 % [107, 589] 95 % [28.6, 891] (no root 0.08, ceiling 0.06); baryon ratio for s* = 1: +nan; recipe half-width 0.579; band inner [196, 575] outer [43.5, 1e+03] ILL
+  SGP38326-2 [gas+M* T26]      r 1.63: g_obs 1.371e-08  g_bar 8.412e-09  D 1.630  dF +0.209  y 89.87  s* <= 99.5; MC 68 % [38.7, 311] 95 % [5.82, 632] (no root 0.26, ceiling 0.00); baryon ratio for s* = 1: +nan; recipe half-width 0.733; band inner [22.4, 207] outer [0.001, 408] ILL
+  SGP38326-2 [gas+M* Ma19]     r 1.63: g_obs 1.371e-08  g_bar 6.861e-09  D 1.999  dF +0.296  y 73.30  s* <= 152; MC 68 % [48.3, 364] 95 % [9.31, 707] (no root 0.16, ceiling 0.01); baryon ratio for s* = 1: +0.98; recipe half-width 0.847; band inner [60.1, 288] outer [0.001, 557] ILL
+  BRI1335-0417 [gas+M* T26]    r 4.09: g_obs 8.408e-10  g_bar 5.086e-09  D 0.165  dF -0.787  y 54.34  FLOOR (D <= 1); MC no draw interval (< 20 rooted draws) (no root 1.00, ceiling 0.00); baryon ratio for s* = 1: -0.85; recipe half-width nan; band inner [0.001, 0.001] outer [0.001, 0.001] ILL
+
+CONTROLS (stage B)
+  [PASS] M2 MUTATE=1 (reactivity; the count is of rows with D > 1, not of roots): V_ext and sigma_ext x 2; rows with status ROOT satisfy the closed-form inversion of their own (D, g_bar) to 1e-6 dex and the number of rows with D > 1 is at least the main run's
+         rows with D > 1: mutated 4, main 1; rows with a root 4; max |d log10 s*| against the independent inversion 8.9e-16
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg282_points_stageB_MUTATE1.csv (5 rows)
+
+2/2 checks pass; load-bearing failures: 0   (3 s)
