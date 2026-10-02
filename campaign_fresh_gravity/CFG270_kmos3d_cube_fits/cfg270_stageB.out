@@ -1,0 +1,116 @@
+CFG270 -- implied-a0 upper bounds (or floor / ceiling markers) from the 192 KMOS3D cube fits (z 2.00-2.68): stars-only baryons (a lower limit), class D (no gas).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG270_kmos3d_cube_fits/FROZEN_CRITERIA.md (b35c2f5c3).
+  r         2.2 r_d = 1.31 RHALF (the radius of the fit's V_22); g_obs = (V_22^2 + 4.4 sigma0^2) / r (pressure-corrected); g_bar  B0 = stars only (H-band RHALF exponential disc), B2 = scaling gas (sensitivity).
+  STAGE=A   the blind pre-flight: no velocity column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_22 and sigma0 x 2); STAGE=B SELFTEST=1 (fabricated V_22 on the law at s = 2).
+
+STAGE B
+fits k3d_fits_main_final_flags.csv sha256 71ce04edfb790a25; catalogue kmos3d_catalog.csv sha256 18e76b3df142cf0c; velocity columns loaded: True; rows 192
+tiers: T1 72, T2 62, T0 192; PT1 z terciles (cuts 2.192, 2.314): PT1z1 24, PT1z2 24, PT1z3 24; RC100 matches 18 (T1: 14); SINS overlap 5
+
+STAGE B  THE MEASUREMENT
+  per-galaxy rows computed (124 s); status counts: root: 137, floor: 55, ceiling: 0; T1: root: 56, floor: 16, ceiling: 0
+  T1 rows: id, z, log M*, r (kpc), g_obs/g_bar = D, delta_FLAT, y, status and bound (B0 = stars only) | B2 (scaling gas) status and s*
+     COS4_02672 z 2.31 M* 10.57 r  5.52 D   1.531 dF +0.037 y  1.54  s* <= 1.38             | B2 FLOOR RC100
+     COS4_03206 z 2.10 M* 11.36 r  8.30 D   2.009 dF +0.240 y  4.21  s* <= 8.88             | B2 s* = 3.29 EDGE
+     COS4_03324 z 2.31 M* 10.62 r  6.32 D   0.525 dF -0.445 y  1.32  FLOOR (D <= 1)         | B2 FLOOR EDGE
+     COS4_04453 z 2.44 M* 10.50 r  4.05 D   1.646 dF +0.114 y  2.44  s* <= 2.79             | B2 FLOOR
+     COS4_04519 z 2.23 M* 10.61 r  3.20 D   1.037 dF -0.038 y  5.04  s* <= 0.266            | B2 FLOOR
+     COS4_04930 z 2.23 M* 10.51 r  5.08 D   2.026 dF +0.162 y  1.59  s* <= 3.43             | B2 FLOOR
+     COS4_05433 z 2.19 M* 10.92 r  9.38 D   1.023 dF -0.167 y  1.20  s* <= 0.0387           | B2 FLOOR RC100 EDGE
+     COS4_05706 z 2.44 M* 10.56 r  5.24 D   2.340 dF +0.230 y  1.68  s* <= 5.39             | B2 s* = 0.379 EDGE
+     COS4_06079 z 2.44 M* 10.57 r  7.01 D   3.409 dF +0.328 y  0.96  s* <= 7.94             | B2 s* = 2.01 RC100 EDGE
+     COS4_06279 z 2.22 M* 10.27 r  3.17 D   2.860 dF +0.351 y  2.35  s* <= 12.7             | B2 s* = 1.36 EDGE
+     COS4_06750 z 2.13 M* 10.12 r  4.00 D   3.447 dF +0.343 y  1.04  s* <= 8.87             | B2 s* = 1.28
+     COS4_08775 z 2.16 M* 10.35 r  4.76 D   1.216 dF -0.087 y  1.25  s* <= 0.414            | B2 FLOOR RC100 EDGE
+     COS4_09044 z 2.20 M* 9.94 r  2.05 D   2.167 dF +0.240 y  2.62  s* <= 6.83             | B2 FLOOR
+     COS4_10056 z 2.56 M* 11.12 r  5.87 D   0.305 dF -0.571 y  4.84  FLOOR (D <= 1)         | B2 FLOOR EDGE
+     COS4_10347 z 2.06 M* 10.76 r  5.57 D   2.402 dF +0.275 y  2.35  s* <= 8.11             | B2 s* = 1.88 RC100
+     COS4_12148 z 2.46 M* 10.22 r  1.16 D   0.776 dF -0.129 y 15.54  FLOOR (D <= 1)         | B2 FLOOR ILL
+     COS4_13174 z 2.10 M* 11.03 r  8.41 D   2.344 dF +0.245 y  1.92  s* <= 6.19             | B2 s* = 1.97 RC100 EDGE
+     COS4_13701 z 2.17 M* 10.64 r  5.35 D   0.914 dF -0.163 y  1.93  FLOOR (D <= 1)         | B2 FLOOR EDGE
+     COS4_14180 z 2.22 M* 10.09 r  5.33 D   2.235 dF +0.068 y  0.55  s* <= 1.56             | B2 FLOOR EDGE
+     COS4_19680 z 2.17 M* 10.85 r  3.23 D   0.345 dF -0.495 y  8.61  FLOOR (D <= 1)         | B2 FLOOR ILL EDGE
+     COS4_19753 z 2.47 M* 10.51 r  5.45 D   1.670 dF +0.062 y  1.38  s* <= 1.65             | B2 FLOOR RC100
+     COS4_22995 z 2.47 M* 11.13 r  1.62 D   0.100 dF -1.005 y 65.23  FLOOR (D <= 1)         | B2 FLOOR ILL EDGE
+     COS4_25229 z 2.18 M* 10.04 r  1.64 D   1.094 dF -0.014 y  5.13  s* <= 0.722            | B2 FLOOR
+     COS4_27120 z 2.48 M* 10.17 r  3.79 D   1.990 dF +0.132 y  1.31  s* <= 2.68             | B2 FLOOR
+      GS4_01529 z 2.12 M* 10.55 r  5.14 D  12.604 dF +0.963 y  1.70  s* <= 249              | B2 s* = 107 RC100 EDGE
+      GS4_05828 z 2.38 M* 10.15 r  2.12 D   0.855 dF -0.135 y  3.97  FLOOR (D <= 1)         | B2 FLOOR
+      GS4_10500 z 2.53 M* 10.41 r  4.75 D   2.742 dF +0.282 y  1.44  s* <= 7                | B2 s* = 0.763 EDGE
+      GS4_11016 z 2.04 M* 11.24 r  8.59 D   1.652 dF +0.132 y  2.98  s* <= 3.45             | B2 s* = 0.417 EDGE
+      GS4_11678 z 2.00 M* 9.79 r  1.50 D   1.439 dF +0.083 y  3.49  s* <= 2.48             | B2 FLOOR
+      GS4_14070 z 2.31 M* 10.48 r  4.58 D   1.168 dF -0.063 y  1.82  s* <= 0.468            | B2 FLOOR
+      GS4_15819 z 2.04 M* 10.75 r  6.34 D   1.699 dF +0.097 y  1.77  s* <= 2.25             | B2 FLOOR
+      GS4_17817 z 2.57 M* 10.26 r  3.52 D   2.206 dF +0.215 y  1.86  s* <= 5.1              | B2 FLOOR EDGE
+      GS4_24110 z 2.00 M* 10.89 r  6.43 D   1.190 dF -0.029 y  2.38  s* <= 0.69             | B2 FLOOR RC100 EDGE
+      GS4_27404 z 2.04 M* 10.66 r  9.39 D   3.489 dF +0.287 y  0.66  s* <= 5.75             | B2 s* = 1.88
+      GS4_28870 z 2.47 M* 9.90 r  1.26 D   1.055 dF -0.020 y  6.34  s* <= 0.511            | B2 FLOOR ILL EDGE
+      GS4_29868 z 2.22 M* 10.28 r  7.65 D   4.557 dF +0.334 y  0.41  s* <= 6.71             | B2 s* = 1.67 SINS
+      GS4_30548 z 2.11 M* 10.03 r  3.91 D   5.143 dF +0.497 y  0.89  s* <= 19               | B2 s* = 4.05 EDGE
+      GS4_33639 z 2.23 M* 10.53 r  5.15 D   2.370 dF +0.232 y  1.62  s* <= 5.4              | B2 s* = 0.507 SINS
+      GS4_34568 z 2.57 M* 10.74 r  5.56 D   2.313 dF +0.254 y  2.25  s* <= 7.01             | B2 s* = 0.967
+      GS4_35056 z 2.23 M* 10.50 r  3.12 D   1.539 dF +0.123 y  4.11  s* <= 3.73             | B2 FLOOR EDGE
+      GS4_35937 z 2.33 M* 10.69 r  6.94 D   0.291 dF -0.705 y  1.29  FLOOR (D <= 1)         | B2 FLOOR
+      GS4_36705 z 2.31 M* 10.28 r  2.21 D   0.923 dF -0.089 y  4.93  FLOOR (D <= 1)         | B2 FLOOR EDGE
+      GS4_37988 z 2.20 M* 10.27 r  3.23 D   2.573 dF +0.301 y  2.26  s* <= 9.34             | B2 s* = 0.34
+      GS4_38807 z 2.32 M* 10.30 r  3.40 D   1.106 dF -0.068 y  2.19  s* <= 0.349            | B2 FLOOR
+      GS4_39671 z 2.23 M* 10.36 r  5.85 D   1.724 dF +0.016 y  0.85  s* <= 1.13             | B2 FLOOR
+      GS4_40218 z 2.45 M* 9.85 r  2.08 D   2.225 dF +0.230 y  2.08  s* <= 5.83             | B2 FLOOR SINS EDGE
+      GS4_40679 z 2.41 M* 10.69 r  5.41 D   1.821 dF +0.145 y  2.12  s* <= 3.33             | B2 FLOOR EDGE
+      GS4_41748 z 2.30 M* 10.83 r  1.87 D   0.959 dF -0.031 y 24.43  FLOOR (D <= 1)         | B2 FLOOR ILL EDGE
+      GS4_41886 z 2.14 M* 10.86 r  1.87 D   0.645 dF -0.202 y 26.18  FLOOR (D <= 1)         | B2 FLOOR ILL
+      GS4_42089 z 2.26 M* 10.03 r  2.54 D   2.717 dF +0.318 y  2.10  s* <= 9.98             | B2 FLOOR
+      GS4_42127 z 2.44 M* 10.66 r  4.40 D   1.148 dF -0.026 y  2.99  s* <= 0.673            | B2 FLOOR EDGE
+      GS4_42235 z 2.43 M* 10.14 r  4.12 D   4.004 dF +0.407 y  1.03  s* <= 12.5             | B2 s* = 2.07 EDGE
+      GS4_42930 z 2.45 M* 10.34 r  3.13 D   1.172 dF -0.021 y  2.82  s* <= 0.741            | B2 FLOOR RC100 SINS
+      GS4_43631 z 2.14 M* 10.24 r  2.57 D   1.245 dF +0.017 y  3.32  s* <= 1.25             | B2 FLOOR
+       U4_09825 z 2.31 M* 10.48 r  2.54 D   1.208 dF +0.036 y  5.92  s* <= 1.89             | B2 FLOOR RC100 ILL
+       U4_09947 z 2.30 M* 10.64 r  2.53 D   1.308 dF +0.084 y  8.62  s* <= 4.13             | B2 FLOOR ILL EDGE
+       U4_12708 z 2.48 M* 10.93 r  8.14 D   0.602 dF -0.363 y  1.62  FLOOR (D <= 1)         | B2 FLOOR EDGE
+       U4_13704 z 2.23 M* 10.41 r  6.20 D   3.990 dF +0.380 y  0.85  s* <= 10.2             | B2 s* = 2.64 RC100
+       U4_16442 z 2.22 M* 11.22 r  5.63 D   0.848 dF -0.113 y  6.63  FLOOR (D <= 1)         | B2 FLOOR ILL EDGE
+       U4_18191 z 2.22 M* 10.25 r  4.43 D   2.092 dF +0.138 y  1.15  s* <= 2.71             | B2 FLOOR EDGE
+       U4_20547 z 2.19 M* 10.60 r  3.62 D   1.393 dF +0.076 y  3.85  s* <= 2.41             | B2 FLOOR
+       U4_20682 z 2.30 M* 10.26 r  3.61 D   1.572 dF +0.063 y  1.77  s* <= 1.73             | B2 FLOOR EDGE
+       U4_20704 z 2.19 M* 11.46 r  9.30 D   0.938 dF -0.091 y  4.22  FLOOR (D <= 1)         | B2 FLOOR RC100
+       U4_22581 z 2.17 M* 10.19 r  5.12 D   2.805 dF +0.211 y  0.75  s* <= 3.86             | B2 s* = 0.265
+       U4_22669 z 2.47 M* 10.52 r  3.37 D   2.026 dF +0.236 y  3.70  s* <= 7.99             | B2 FLOOR
+       U4_24609 z 2.30 M* 10.24 r  4.72 D   3.529 dF +0.347 y  0.99  s* <= 8.88             | B2 s* = 1.52
+       U4_25808 z 2.03 M* 10.34 r  5.41 D   5.576 dF +0.540 y  0.95  s* <= 24.2             | B2 s* = 7.7
+       U4_26264 z 2.18 M* 9.96 r  1.85 D   1.171 dF -0.008 y  3.39  s* <= 0.884            | B2 FLOOR EDGE
+       U4_26977 z 2.16 M* 10.89 r  1.48 D   0.828 dF -0.089 y 44.85  FLOOR (D <= 1)         | B2 FLOOR ILL EDGE
+       U4_27046 z 2.53 M* 10.80 r  4.05 D   0.583 dF -0.289 y  4.87  FLOOR (D <= 1)         | B2 FLOOR
+       U4_31872 z 2.15 M* 10.46 r  4.06 D   1.939 dF +0.176 y  2.21  s* <= 4.21             | B2 FLOOR
+       U4_34138 z 2.52 M* 11.05 r  7.74 D   2.453 dF +0.285 y  2.37  s* <= 8.65             | B2 s* = 2.61 RC100 EDGE
+  PT1        (n  72, z_med 2.228): median D 1.649  ROOT s* <= 2.44; bootstrap 68 % [1.69, 3.06] 95 % [1.17, 3.8]; baryon +-0.15 [0.606, 5.4] +-0.30 [0.001, 9.62]; Delta_floor +0.217; gas_req +0.26; median delta_FLAT +0.084; B2 floor; recipe half-width 0.610
+  PT2        (n  62, z_med 2.228): median D 1.685  ROOT s* <= 2.7; bootstrap 68 % [1.83, 3.44] 95 % [1.34, 4.13]; baryon +-0.15 [0.777, 5.44] +-0.30 [0.001, 9.7]; Delta_floor +0.226; gas_req +0.36; median delta_FLAT +0.106; B2 floor; recipe half-width 0.513
+  PT0        (n 192, z_med 2.297): median D 1.630  ROOT s* <= 2.59; bootstrap 68 % [1.69, 2.93] 95 % [1.33, 3.33]; baryon +-0.15 [0.602, 5.44] +-0.30 [0.001, 9.67]; Delta_floor +0.212; gas_req +0.25; median delta_FLAT +0.083; B2 floor; recipe half-width 0.665
+  PT1z1      (n  24, z_med 2.134): median D 1.546  ROOT s* <= 2.44; bootstrap 68 % [1.55, 3.83] 95 % [0.722, 5.75]; baryon +-0.15 [0.537, 5.87] +-0.30 [0.001, 9.7]; Delta_floor +0.189; gas_req +0.29; median delta_FLAT +0.090; B2 floor; recipe half-width 0.598
+  PT1z2      (n  24, z_med 2.228): median D 1.648  ROOT s* <= 2.4; bootstrap 68 % [1.56, 3.68] 95 % [1.1, 5.4]; baryon +-0.15 [0.532, 5.77] +-0.30 [0.001, 10.1]; Delta_floor +0.217; gas_req +0.24; median delta_FLAT +0.076; B2 floor; recipe half-width 1.007
+  PT1z3      (n  24, z_med 2.463): median D 1.658  ROOT s* <= 2.12; bootstrap 68 % [0.673, 3.33] 95 % [0.349, 5.39]; baryon +-0.15 [0.664, 4.27] +-0.30 [0.001, 7.72]; Delta_floor +0.220; gas_req +0.30; median delta_FLAT +0.088; B2 floor; recipe half-width 0.621
+  PT1_RC100  (n  14, z_med 2.209): median D 1.601  ROOT s* <= 1.73; bootstrap 68 % [1.12, 6.19] 95 % [0.69, 8.11]; baryon +-0.15 [0.411, 4.03] +-0.30 [0.001, 7.33]; Delta_floor +0.204; gas_req +0.16; median delta_FLAT +0.050; B2 floor; recipe half-width 0.679
+
+  rotation-only (no pressure) pooled PT1: median D(rot) = 0.883 vs headline 1.649; median log10(g_obs,head/g_obs,rot) over T1 = +0.197 dex
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 8.9e-16 (137 galaxy rows with a root)
+  [PASS] M3 the tier memberships (PT1 72, PT0 192, PT2 <= 69) and the z terciles partition PT1
+         PT1 72, PT2 62, PT0 192, terciles [24, 24, 24], RC100 in T1 14
+  [PASS] M5 the five SINS-overlap galaxies' fitted V_22 against the published SINS V_rot within 30 % for at least 4 of 5 (the data chat's C1 reported 5 of 5; reproduction, not a blind test)
+         GS4_33639 0.97; GS4_29868 0.70; GS4_40218 1.00; GS4_42930 1.00; COS4_08515 0.93; within 30 %: 5 of 5
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9; HE1, HE2 were scored at stage A) scored:
+    HE3: median D(B0) of T1 1.649 (needs > 2), T1 rows at D <= 1 16 of 72 = 22 % (needs >= 10 %): MISS (kept as it falls)
+    HE4: PT1 root, s* <= 2.44 (needs a root >= 1); CEILING rows among T1 with y > 1: 0 (needs 0): hit
+    HE5: log10 [median g_obs(headline) / median g_obs(rotation only)] over T1 = +0.296 (needs >= 0.1; median of the per-row ratios +0.197): hit
+    HE6: PT1 with B2: floor: hit
+    HE7: M5 holds: hit
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg270_points_stageB.csv (199 rows)
+
+4/4 checks pass; load-bearing failures: 0   (163 s)
