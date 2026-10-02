@@ -274,3 +274,4 @@ both a₀ footings; κ = ½ fitted; nothing here says the theory is closed. Each
 | CFG288 | (orchestrator, owner-directed 10-02) One field whose background is the dark energy and whose clumps are the cold component; seeding-time CAMB row incl. recombination. In progress. | — |
 | CFG289 | (orchestrator, 10-02) Reach of the 17 wrong cells in the repo's RC100 CSV: corrected copy (51c70923f) + ORIG/FIX re-runs of every reader. Criteria 80f05e155. In progress. | — |
 | CFG300–309 | RESERVED for the calc chat (MIGHTEE-HI cubes), used only if the owner approves that download in the calc chat. | — |
+| CFG290 | (orchestrator, 10-02) Hostile MNRAS referee of the v3 manuscript (32f9a609c): number trace, RC100 handling, statistics, over-claims, MNRAS compliance. In progress. | — |
