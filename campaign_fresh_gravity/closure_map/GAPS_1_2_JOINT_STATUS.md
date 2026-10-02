@@ -54,3 +54,8 @@ Two untested exits are now scoped no-gos on their frozen classes. Each was run s
 - **Ownership does not follow.**
 - **Arithmetic, not a finding:** the galaxy and cluster rate windows nearly meet near 1.7–1.9 H_Λ, a rate no vacuum candidate provides.
 - **Day total:** CFG242–245 are four scoped no-gos.
+
+## Appended 2026-10-02: CFG286 (derived tidal stripping at measured pericentres; c71d0124f criteria, a7d6d25c2 results; re-run by the orchestrator, identical)
+- **FAIL on both footings; binding: the M31 LVD, z −2.67 / −2.66.** The ultra-faints pass.
+- **Ownership by a tidal radius is inert for dispersions:** r_t is 11–34× the measurement radius, so the rule reduces to "own everything" (CFG45 S) at the radii that are measured.
+- **Constraint for Gap 1/2:** any ownership that separates UFDs from classicals must act INSIDE ~r_half (inner density, cores, heating), not at the tidal edge.
