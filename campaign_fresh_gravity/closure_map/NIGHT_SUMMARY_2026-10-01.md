@@ -58,7 +58,7 @@ Every lane below was re-run by the orchestrator from the committed state before 
 
 Charts: the a₀(z) one-chart (CHART_a0z_rar_z0_5_2026-10-01) and the flat-vs-rival chart (CHART_flat_vs_rival_z4_14_2026-10-01, 63a478352).
 Also filed: Amendment 19 (43e07b44b, transport-only).
-Privacy: the owner's name leaked into FETCH_LOG/MANIFEST rows (fixed at HEAD 387fb2210; older commits still carry it; a history rewrite is the owner's call).
+Privacy: the owner's name leaked into FETCH_LOG/MANIFEST rows (fixed at HEAD 387fb2210; older commits still carry it). Owner decision 2026-10-02: do NOT rewrite history; leaks are fixed by forward commits.
 
 ## Waiting on the owner
 1. Deposit PAPER38 v1.3 (`--newversion 23085582`) and PAPER39 v1.1.
