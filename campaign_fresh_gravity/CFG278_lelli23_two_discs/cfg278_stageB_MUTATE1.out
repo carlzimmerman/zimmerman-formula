@@ -1,0 +1,30 @@
+CFG278 -- implied-a0 rows for the two ALMA CO discs of Lelli et al. 2023 (arXiv:2302.00030), zC-400569 (z = 2.240) and zC-488879 (z = 1.470), from the digitised multi-line rotation curves
+with independent baryons (SED stars x CO-based gas): six rows = two galaxies x {stars, stars+CO a=0.4, stars+CO a=4.3}, never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG278_lelli23_two_discs/FROZEN_CRITERIA.md (9a45bbdae).
+  g_obs   V_rot^2 / R at every digitised point (all lines pooled), no pressure term; inclination N(54.5, 5.0) / N(71.6, 4.1) deg common draw; V errors = the digitised bar half-widths
+  g_bar   stars (SED, 0.30 dex): deprojected de Vaucouleurs bulge (fraction f_bul = 0.33 / 0.63) + exponential Freeman disc; gas (L'_CO x alpha_CO, 0.213 dex): exponential disc of the stellar disc's R_e
+  STAGE=A   the blind pre-flight: only the radius column of the digitised CSV is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V x 2).
+
+STAGE B  *** MUTATE=1: V x 2 (g_obs x 4) ***
+digitised curves lelli2023_rotcur_digitised.csv sha256 c67eadd84e7e2897; velocity-bearing columns loaded: True; 25 points; lines: zC-400569: Halpha 6, CO(3-2) 5, CO(4-3) 4; zC-488879: CO(2-1) 5, CO(3-2) 5
+galaxies: zC-400569: z 2.23999, 8.448 kpc/arcsec, L'_CO(1-0) 2.339e+10 K km/s pc2, M_gas(a=0.4) 9.36e+09, (a=4.3) 1.01e+11, M* 2.19e+11, R_e,bul 1.01, R_e,disc 6.42 kpc, f_bul 0.33, i 54.5 +- 5.0; zC-488879: z 1.46997, 8.686 kpc/arcsec, L'_CO(1-0) 1.949e+10 K km/s pc2, M_gas(a=0.4) 7.79e+09, (a=4.3) 8.38e+10, M* 5.20e+10, R_e,bul 3.04, R_e,disc 7.64 kpc, f_bul 0.63, i 71.6 +- 4.1
+
+STAGE B  THE MEASUREMENT (MUTATE: V x 2)
+  zC-400569 [stars]              N 15 D_med 2.347 (range 1.27-3.12) dF +0.335 y_med 9.40  s* <= 31.1; MC 68 % [10.8, 110] 95 % [1.86, 250] (no root 0.11, ceiling 0.00); to s*=1 +0.35 dex; recipe half-width 0.360 (9/9 knobs rooted) ILL
+  zC-400569 [stars+CO a=0.4]     N 15 D_med 2.275 (range 1.26-3.00) dF +0.323 y_med 9.66  s* <= 30; MC 68 % [10.5, 99.5] 95 % [1.96, 224] (no root 0.11, ceiling 0.00); to s*=1 +0.34 dex; recipe half-width 0.363 (12/12 knobs rooted) ILL
+  zC-400569 [stars+CO a=4.3]     N 15 D_med 1.856 (range 1.24-2.22) dF +0.250 y_med 12.21  s* <= 21.5; MC 68 % [7.85, 59.4] 95 % [1.34, 121] (no root 0.16, ceiling 0.00); to s*=1 +nan dex; recipe half-width 0.478 (12/12 knobs rooted) ILL
+  zC-488879 [stars]              N 10 D_med 21.548 (range 16.75-25.95) dF +1.190 y_med 1.58  s* <= 700; MC 68 % [286, 821] 95 % [138, 965] (no root 0.35, ceiling 0.35); to s*=1 +1.32 dex; recipe half-width 0.095 (8/9 knobs rooted)
+  zC-488879 [stars+CO a=0.4]     N 10 D_med 19.634 (range 16.56-22.53) dF +1.163 y_med 1.74  s* <= 635; MC 68 % [288, 801] 95 % [144, 966] (no root 0.26, ceiling 0.26); to s*=1 +1.28 dex; recipe half-width 0.198 (12/12 knobs rooted)
+  zC-488879 [stars+CO a=4.3]     N 10 D_med 10.656 (range 9.44-14.88) dF +0.942 y_med 3.25  s* <= 324; MC 68 % [183, 514] 95 % [103, 773] (no root 0.01, ceiling 0.01); to s*=1 +1.02 dex; recipe half-width 0.279 (12/12 knobs rooted)
+
+CONTROLS (stage B)
+  [PASS] M2 MUTATE=1 (reactivity; the count is of rows with median D > 1, not of roots): V x 2 (g_obs x 4); rows with status ROOT satisfy the median-residual equation at their own s* to 1e-6 and the number of rows with median D > 1 is at least the main run's
+         rows with median D > 1: mutated 6, main 3; rows with a root 6; max |median residual| 1.6e-16
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg278_points_stageB_MUTATE1.csv (6 rows)
+
+2/2 checks pass; load-bearing failures: 0   (11 s)

@@ -1,0 +1,42 @@
+CFG278 -- implied-a0 rows for the two ALMA CO discs of Lelli et al. 2023 (arXiv:2302.00030), zC-400569 (z = 2.240) and zC-488879 (z = 1.470), from the digitised multi-line rotation curves
+with independent baryons (SED stars x CO-based gas): six rows = two galaxies x {stars, stars+CO a=0.4, stars+CO a=4.3}, never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG278_lelli23_two_discs/FROZEN_CRITERIA.md (9a45bbdae).
+  g_obs   V_rot^2 / R at every digitised point (all lines pooled), no pressure term; inclination N(54.5, 5.0) / N(71.6, 4.1) deg common draw; V errors = the digitised bar half-widths
+  g_bar   stars (SED, 0.30 dex): deprojected de Vaucouleurs bulge (fraction f_bul = 0.33 / 0.63) + exponential Freeman disc; gas (L'_CO x alpha_CO, 0.213 dex): exponential disc of the stellar disc's R_e
+  STAGE=A   the blind pre-flight: only the radius column of the digitised CSV is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V x 2).
+
+STAGE B
+digitised curves lelli2023_rotcur_digitised.csv sha256 c67eadd84e7e2897; velocity-bearing columns loaded: True; 25 points; lines: zC-400569: Halpha 6, CO(3-2) 5, CO(4-3) 4; zC-488879: CO(2-1) 5, CO(3-2) 5
+galaxies: zC-400569: z 2.23999, 8.448 kpc/arcsec, L'_CO(1-0) 2.339e+10 K km/s pc2, M_gas(a=0.4) 9.36e+09, (a=4.3) 1.01e+11, M* 2.19e+11, R_e,bul 1.01, R_e,disc 6.42 kpc, f_bul 0.33, i 54.5 +- 5.0; zC-488879: z 1.46997, 8.686 kpc/arcsec, L'_CO(1-0) 1.949e+10 K km/s pc2, M_gas(a=0.4) 7.79e+09, (a=4.3) 8.38e+10, M* 5.20e+10, R_e,bul 3.04, R_e,disc 7.64 kpc, f_bul 0.63, i 71.6 +- 4.1
+
+STAGE B  THE MEASUREMENT
+  zC-400569 [stars]              N 15 D_med 0.587 (range 0.32-0.78) dF -0.267 y_med 9.40  FLOOR (D <= 1); MC 68 % [0.672, 7.11] 95 % [0.0868, 17.1] (no root 0.76, ceiling 0.00); to s*=1 -0.29 dex; recipe half-width nan (0/9 knobs rooted) ILL
+  zC-400569 [stars+CO a=0.4]     N 15 D_med 0.569 (range 0.32-0.75) dF -0.279 y_med 9.66  FLOOR (D <= 1); MC 68 % [0.57, 6.63] 95 % [0.0743, 16.9] (no root 0.79, ceiling 0.00); to s*=1 -0.30 dex; recipe half-width nan (0/12 knobs rooted) ILL
+  zC-400569 [stars+CO a=4.3]     N 15 D_med 0.464 (range 0.31-0.55) dF -0.352 y_med 12.21  FLOOR (D <= 1); MC 68 % [0.339, 3.64] 95 % [0.0544, 7.47] (no root 0.93, ceiling 0.00); to s*=1 -0.39 dex; recipe half-width nan (0/12 knobs rooted) ILL
+  zC-488879 [stars]              N 10 D_med 5.387 (range 4.19-6.49) dF +0.587 y_med 1.58  s* <= 37.5; MC 68 % [16.1, 90.8] 95 % [5.05, 193] (no root 0.01, ceiling 0.00); to s*=1 +0.69 dex; recipe half-width 0.243 (9/9 knobs rooted)
+  zC-488879 [stars+CO a=0.4]     N 10 D_med 4.908 (range 4.14-5.63) dF +0.561 y_med 1.74  s* <= 33.4; MC 68 % [14.6, 72.1] 95 % [4.33, 133] (no root 0.01, ceiling 0.00); to s*=1 +0.65 dex; recipe half-width 0.236 (12/12 knobs rooted)
+  zC-488879 [stars+CO a=4.3]     N 10 D_med 2.664 (range 2.36-3.72) dF +0.340 y_med 3.25  s* <= 14.1; MC 68 % [6.2, 26.2] 95 % [1.95, 44.4] (no root 0.02, ceiling 0.00); to s*=1 +0.38 dex; recipe half-width 0.440 (12/12 knobs rooted)
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 4.4e-16 (3 rows with a root)
+  [PASS] M3 the six rows are present (two galaxies x three branches), with 15 and 10 points
+         [('zC-400569', 15), ('zC-400569', 15), ('zC-400569', 15), ('zC-488879', 10), ('zC-488879', 10), ('zC-488879', 10)]
+  [PASS] M5 the digitised mean V_rot equals the paper's table value (254 and 336 km/s) within 1 km/s and the per-line counts equal 4/5/6 and 5/5
+         means {'zC-400569': 254.0993333333334, 'zC-488879': 335.97999999999996}; SD {'zC-400569': 21.648522043471388, 'zC-488879': 11.046182849996454}; counts {'zC-400569': [4, 5, 6], 'zC-488879': [5, 5]}
+  [PASS] M6 (validates my geometry against the authors' own baryon-only fits): with their fitted masses and my geometry the baryonic V at the digitised radii reproduces V_rot with median |V_bar/V_rot - 1| <= 0.25 in each galaxy
+         zC-400569: median |ratio - 1| 0.099 (median ratio 0.901; M_bul 2.54e+10, M_disc 5.26e+10, M_gas 4.91e+10); zC-488879: median |ratio - 1| 0.057 (median ratio 0.943; M_bul 1.34e+11, M_disc 7.72e+10, M_gas 5.65e+10)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 7; HE1-HE3 were scored at stage A) scored:
+    HE4: zC-400569 statuses ['floor', 'floor', 'floor'] D_med [0.587, 0.569, 0.464] (all floor, 0.3-0.8): hit
+    HE5: zC-488879 statuses ['root', 'root', 'root'] D_med [5.387, 4.908, 2.664] (2-8), s* [37.493, 33.424, 14.132] (5-150): hit
+    HE6: the pressure knob moves the median g_obs by [0.0045, 0.0045, 0.0045, 0.0017, 0.0017, 0.0017] dex (needs <= 0.02): hit
+    HE7: M5 and M6 hold: hit
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg278_points_stageB.csv (6 rows)
+
+5/5 checks pass; load-bearing failures: 0   (11 s)
