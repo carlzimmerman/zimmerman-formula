@@ -1,0 +1,56 @@
+CFG300 -- POST HOC diagnostics of the failed controls (written AFTER the first stage-B run, a5018f01c; dated 2026-10-02; NOT frozen; no verdict of the frozen map is changed by anything here).
+
+Question: the first run failed C2 (integrated flux vs the catalogue S_HI: 0.569 / 0.756 / 0.235 / 0.586), C4 for T2 and T3 (W50 26 km/s narrower than the catalogue) and C5 (>= 5 sigma seeds in the line-free channels / the off-source ring for T1).
+Are these (a) the frozen detection mask's S/N threshold, (b) real extra emission or non-Gaussian noise, or (c) a flux-scale question that stays OPEN?  No archive access: the four local cutouts only.
+
+Everything below is fixed BEFORE it is computed (the rules are in this docstring and in the printed header):
+  PH0  same-chain control: the mask rebuilt here (the frozen lines of analyze(), copied verbatim) reproduces the first run's nvox, S_int, W50 and n_beams (1e-6 relative).
+  D1   the C5 seeds: counts of >= 5 sigma and <= -5 sigma voxels in the same two regions C5 used (free channels within three beams; the ring in the line window) and over the whole line-free part of the cube; connected clumps of the positive seeds with their offsets (arcsec) and velocities.
+       Reading rule: positive and negative counts within a factor of 2 of each other -> heavy-tailed (non-Gaussian) noise; positives >> negatives in compact clumps -> real emission or artefact at that position/velocity; neither is a verdict on the frozen control (C5 stays FAIL).
+  D2   the curve of growth of the UNMASKED circular-aperture flux in the frozen line window |v| <= W50_cat/2 + 50 km/s, centred on the catalogue position, for radii R = f x (frozen mask major axis / 2), f in {0.5, 0.75, 1, 1.25, 1.5, 2} (only apertures that fit inside the cutout), with the noise-propagated sigma_S = sigma_med dnu sqrt(N_vox / n_beam).
+       Reading rule: if S_ap(R = 1.0 or 1.5 x R_mask) is within 25 % of S_cat -> the C2 deficit is the mask threshold; if it stays below 0.75 S_cat by more than 2 sigma_S -> the flux-scale question stays OPEN (not resolved here).
+  D3   W50 from the unmasked aperture spectrum (R = 1.0 and 1.5 x R_mask; 3-channel boxcar; 50 % of the smoothed peak; the frozen interpolation) and its noise scatter (200 noise realisations at the aperture-spectrum sigma, seed 3001).
+       Reading rule: within max(3 sigma_cat, 25 km/s) of the catalogue -> the narrow W50 is a mask effect; otherwise it is not.
+  NULL control (can fail): the unmasked aperture flux per channel in the line-free channels (|v| > W50/2 + 80) is consistent with zero: |z| < 3 with z = mean / (sigma_ap / sqrt(n_free)), sigma_ap = sigma_med sqrt(N_pix n_beam).
+
+kappa = 1/2 is FITTED.  A data-feasibility diagnostic, not an a0 measurement.  No verdict words.
+
+POST HOC DIAGNOSTICS (2026-10-02; not frozen)
+  [PASS] PH0 T1_r0p0: the rebuilt frozen mask reproduces the first run (nvox, S_int, W50) to 1e-6
+         nvox 11863 vs 11863; S_int 7271.6683 vs 7271.6684; W50 380.120 vs 380.120
+  T1_r0p0 D1 free channels within 3 beams: >= +5 sigma 4, <= -5 sigma 0 of 102528 voxels; positive clumps 1: [4 vox at (+9, -24) arcsec, v +314 km/s, peak 6.3]
+  T1_r0p0 D1 ring in the line window: >= +5 sigma 9, <= -5 sigma 18 of 1299867 voxels; positive clumps 6: [2 vox at (-80, +143) arcsec, v +142 km/s, peak 5.9]; [2 vox at (-21, -129) arcsec, v +57 km/s, peak 5.4]; [1 vox at (-139, -114) arcsec, v +11 km/s, peak 5.2]; [2 vox at (-126, +34) arcsec, v -62 km/s, peak 5.1]; [1 vox at (-105, -0) arcsec, v -119 km/s, peak 5.0]; [1 vox at (-85, -104) arcsec, v -204 km/s, peak 5.0]
+  T1_r0p0 D1 whole line-free channel range (all pixels, 2188896 voxels): >= +5 sigma 35, <= -5 sigma 27 (Gaussian expectation per tail 0.63); ring pixels only: +26 / -21
+  T1_r0p0 D2 unmasked aperture flux in the line window (S_cat 12783 +- 672; frozen mask S_int 7272, ratio 0.569): R 32" (0.5x): 6382 +- 263 = 0.50; R 47" (0.75x): 7821 +- 395 = 0.61; R 63" (1.0x): 8179 +- 526 = 0.64; R 79" (1.25x): 9237 +- 658 = 0.72; R 95" (1.5x): 9730 +- 790 = 0.76; R 127" (2.0x): 9407 +- 1053 = 0.74
+  T1_r0p0 D3 W50: frozen mask 380.1; catalogue 392 +- 12 (tolerance 36); unmasked aperture R 63" (1.0x): 374.1 (noise 16-84 % 366.6-384.8; peak 7.7 sigma); R 95" (1.5x): 380.9 (noise 16-84 % 360.7-620.5; peak 5.4 sigma)
+  [PASS] NULL T1_r0p0: the unmasked aperture flux per channel in the 96 line-free channels is consistent with zero (|z| < 3)
+         mean -4.679e-04 Jy/beam summed, sigma/sqrt(n) 9.401e-03: z = -0.05
+  [PASS] PH0 T1_r0p5: the rebuilt frozen mask reproduces the first run (nvox, S_int, W50) to 1e-6
+         nvox 30673 vs 30673; S_int 9665.7109 vs 9665.7104; W50 374.410 vs 374.410
+  T1_r0p5 D1 free channels within 3 beams: >= +5 sigma 5, <= -5 sigma 0 of 181152 voxels; positive clumps 1: [5 vox at (+8, -26) arcsec, v +311 km/s, peak 5.8]
+  T1_r0p5 D1 ring in the line window: >= +5 sigma 107, <= -5 sigma 9 of 1299867 voxels; positive clumps 6: [3 vox at (-17, -130) arcsec, v +62 km/s, peak 7.6]; [83 vox at (+94, +41) arcsec, v +50 km/s, peak 9.8]; [6 vox at (+87, +52) arcsec, v +54 km/s, peak 7.3]; [2 vox at (-68, +85) arcsec, v +68 km/s, peak 6.3]; [2 vox at (+118, +30) arcsec, v +45 km/s, peak 5.5]; [11 vox at (+149, +1) arcsec, v +18 km/s, peak 6.8]
+  T1_r0p5 D1 whole line-free channel range (all pixels, 2188896 voxels): >= +5 sigma 45, <= -5 sigma 35 (Gaussian expectation per tail 0.63); ring pixels only: +37 / -32
+  T1_r0p5 D2 unmasked aperture flux in the line window (S_cat 12783 +- 672; frozen mask S_int 9666, ratio 0.756): R 53" (0.5x): 8566 +- 261 = 0.67; R 79" (0.75x): 10069 +- 391 = 0.79; R 105" (1.0x): 10819 +- 521 = 0.85; R 132" (1.25x): 10595 +- 652 = 0.83
+  T1_r0p5 D3 W50: frozen mask 374.4; catalogue 392 +- 12 (tolerance 36); unmasked aperture R 105" (1.0x): 537.6 (noise 16-84 % 350.0-547.9; peak 8.4 sigma)
+  [PASS] NULL T1_r0p5: the unmasked aperture flux per channel in the 96 line-free channels is consistent with zero (|z| < 3)
+         mean -1.350e-02 Jy/beam summed, sigma/sqrt(n) 1.649e-02: z = -0.82
+  [PASS] PH0 T2_r0p0: the rebuilt frozen mask reproduces the first run (nvox, S_int, W50) to 1e-6
+         nvox 1467 vs 1467; S_int 345.5112 vs 345.5112; W50 140.546 vs 140.546
+  T2_r0p0 D1 free channels within 3 beams: >= +5 sigma 0, <= -5 sigma 0 of 59752 voxels; positive clumps 0: 
+  T2_r0p0 D1 ring in the line window: >= +5 sigma 0, <= -5 sigma 0 of 346766 voxels; positive clumps 0: 
+  T2_r0p0 D1 whole line-free channel range (all pixels, 571256 voxels): >= +5 sigma 2, <= -5 sigma 5 (Gaussian expectation per tail 0.16); ring pixels only: +0 / -5
+  T2_r0p0 D2 unmasked aperture flux in the line window (S_cat 1471 +- 110; frozen mask S_int 346, ratio 0.235): R 11" (0.5x): 280 +- 37 = 0.19; R 16" (0.75x): 385 +- 55 = 0.26; R 22" (1.0x): 430 +- 73 = 0.29; R 27" (1.25x): 483 +- 91 = 0.33; R 33" (1.5x): 526 +- 109 = 0.36; R 44" (2.0x): 534 +- 145 = 0.36
+  T2_r0p0 D3 W50: frozen mask 140.5; catalogue 167 +- 7 (tolerance 25); unmasked aperture R 22" (1.0x): 145.9 (noise 16-84 % 137.3-157.3; peak 6.2 sigma); R 33" (1.5x): 157.0 (noise 16-84 % 143.1-404.5; peak 4.0 sigma)
+  [PASS] NULL T2_r0p0: the unmasked aperture flux per channel in the 56 line-free channels is consistent with zero (|z| < 3)
+         mean -6.219e-04 Jy/beam summed, sigma/sqrt(n) 2.313e-03: z = -0.27
+  [PASS] PH0 T3_r0p0: the rebuilt frozen mask reproduces the first run (nvox, S_int, W50) to 1e-6
+         nvox 2517 vs 2517; S_int 628.9822 vs 628.9822; W50 74.551 vs 74.551
+  T3_r0p0 D1 free channels within 3 beams: >= +5 sigma 0, <= -5 sigma 0 of 46772 voxels; positive clumps 0: 
+  T3_r0p0 D1 ring in the line window: >= +5 sigma 0, <= -5 sigma 17 of 257810 voxels; positive clumps 0: 
+  T3_r0p0 D1 whole line-free channel range (all pixels, 448844 voxels): >= +5 sigma 11, <= -5 sigma 1 (Gaussian expectation per tail 0.13); ring pixels only: +11 / -1
+  T3_r0p0 D2 unmasked aperture flux in the line window (S_cat 1074 +- 69; frozen mask S_int 629, ratio 0.586): R 12" (0.5x): 516 +- 24 = 0.48; R 18" (0.75x): 665 +- 36 = 0.62; R 24" (1.0x): 709 +- 48 = 0.66; R 31" (1.25x): 745 +- 60 = 0.69; R 37" (1.5x): 763 +- 72 = 0.71; R 49" (2.0x): 750 +- 96 = 0.70
+  T3_r0p0 D3 W50: frozen mask 74.6; catalogue 101 +- 7 (tolerance 25); unmasked aperture R 24" (1.0x): 86.3 (noise 16-84 % 76.9-88.1; peak 11.2 sigma); R 37" (1.5x): 81.9 (noise 16-84 % 66.0-85.5; peak 8.8 sigma)
+  [PASS] NULL T3_r0p0: the unmasked aperture flux per channel in the 44 line-free channels is consistent with zero (|z| < 3)
+         mean -2.800e-03 Jy/beam summed, sigma/sqrt(n) 2.005e-03: z = -1.40
+
+8/8 checks pass; load-bearing failures: 0   (1 s)
