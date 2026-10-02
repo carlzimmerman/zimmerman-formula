@@ -1,0 +1,46 @@
+CFG271 -- implied-a0 upper bounds (or floor / ceiling markers) for HZ9 (z = 5.5413) from the three-ring [CII] curve: stars-only baryons (a lower limit), class D (no gas), two stellar-mass branches never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG271_hz9_three_rings/FROZEN_CRITERIA.md (0f7f661b5).
+  rows      HZ9 [M986] / HZ9 [M103] (outer ring R = 2.68 kpc; headline pair), the same two branches with the three rings as three rows, and with Parlanti+23's M_rot(< 5 kpc) at R = 5 kpc (sensitivity rows)
+  g_obs     (V^2 + 2 sigma0^2 R / r_D) / R with sigma0 = 51 +- 9.5 and r_D = 2.7 kpc; g_bar  B0 = stars only (one exponential disc, scale r_D), B2 = scaling gas (extrapolated)
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V, sigma0 x 2, M_rot x 4); STAGE=B SELFTEST=1 (fabricated V on the law at s = 2).
+
+STAGE B
+rings corpus_z1_rings.csv sha256 feb449af227f7e57; Jones A3 c9beb7b92673c28a; galaxies d7fcf09c06338d37; classes 25928a3a48e90229; Parlanti rows (L328 sources) 87288708bef3b710; L328 table 3dc641be4abe0825; velocity-bearing columns loaded: True
+HZ9: z 5.5413, rings R [0.54, 1.61, 2.68] kpc, r_D 2.7 kpc (R_e,* 4.531), inclination 58 +- 7 deg; branches: M986 log M* 9.86 +- 0.23 (Parlanti+23 Table 2 (Capak+2015)); M103 log M* 10.3 +- 0.2 (corpus row (no source or error recorded); declared 0.20 dex); kpc/arcsec 6.091, beam FWHM 6.09 kpc
+
+STAGE B  THE MEASUREMENT
+  HZ9 [M986]             R [2.68]: g_obs [4.397e-10]  D [11.404]  dF +0.733  y [0.412]  s* <= 48.9; MC 68 % [21.3, 111] 95 % [8.53, 239] (no root 0.00, ceiling 0.00); B2 D [3.73] s* = 12.9; gas_req +8.81; recipe half-width 0.756; rotation-only changes g_obs by -0.067 dex
+  HZ9 [M103]             R [2.68]: g_obs [4.397e-10]  D [4.14]  dF +0.434  y [1.135]  s* <= 14.8; MC 68 % [5.86, 34.9] 95 % [1.84, 72.2] (no root 0.00, ceiling 0.00); B2 D [1.75] s* = 3.76; gas_req +2.56; recipe half-width 1.606; rotation-only changes g_obs by -0.067 dex
+  HZ9 [M986; 3 rings]    R [0.54 1.61 2.68]: g_obs [1.520e-09 5.571e-10 4.397e-10]  D [56.577 14.276 11.404]  dF +0.832  y [0.287 0.417 0.412]  s* <= 79.1; MC 68 % [41.8, 182] 95 % [19.6, 383] (no root 0.00, ceiling 0.00); B2 D [18.49  4.67  3.73] s* = 21.9; gas_req +11.68; recipe half-width 0.963; rotation-only changes g_obs by -0.052 dex
+  HZ9 [M103; 3 rings]    R [0.54 1.61 2.68]: g_obs [1.520e-09 5.571e-10 4.397e-10]  D [20.542  5.183  4.14 ]  dF +0.533  y [0.791 1.148 1.135]  s* <= 25; MC 68 % [12.4, 59.5] 95 % [5.08, 120] (no root 0.00, ceiling 0.00); B2 D [8.71 2.2  1.75] s* = 7.34; gas_req +3.60; recipe half-width 1.832; rotation-only changes g_obs by -0.052 dex
+  HZ9 [M986; Mrot]       R [5.]: g_obs [4.142e-10]  D [14.513]  dF +0.789  y [0.305]  s* <= 59.8; MC 68 % [11.4, 258] 95 % [2.56, 740] (no root 0.06, ceiling 0.06); B2 D [4.74] s* = 16.6; gas_req +11.36; recipe half-width 0.302; rotation-only changes g_obs by -0.071 dex
+  HZ9 [M103; Mrot]       R [5.]: g_obs [4.142e-10]  D [5.269]  dF +0.500  y [0.84]  s* <= 19; MC 68 % [3.24, 109] 95 % [0.557, 462] (no root 0.04, ceiling 0.02); B2 D [2.23] s* = 5.62; gas_req +3.49; recipe half-width 0.343; rotation-only changes g_obs by -0.071 dex
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 0.0e+00 (6 rows with a root)
+  [PASS] M3 the six rows are present with their roles (two headline, four sensitivity) and radii (1, 1, 3, 3, 1, 1)
+         [('headline', 1), ('headline', 1), ('sensitivity', 3), ('sensitivity', 3), ('sensitivity', 1), ('sensitivity', 1)]
+  [PASS] M5 V^2 R / G reproduces the corpus's M_dyn of the three rings to within 5 % (the table prints two to three digits)
+         V^2 R / G = [3.050e+09 9.200e+09 1.944e+10] against [3.0e+09 9.2e+09 1.9e+10]; relative differences [1.654e-02 8.314e-06 2.317e-02]
+  [PASS] M6 the Parlanti sigma and its error and M* and its error equal the L328 table's HZ9 row (sigma0 and its error parsed from the table's construction text; to 5e-5)
+         Parlanti sigma 51.0 +- 9.5; L328 construction sigma0 51 +- 9.5; M* 9.86 +- 0.23 vs 9.86 +- 0.23; frozen constants sigma0 51.0 +- 9.5, log M_rot 10.8 +- 0.4 (Parlanti row: 10.8)
+  [PASS] M7 (reported addition to the frozen list; a loader control) the corpus rings' V, its error, sigma and its error equal the Jones+21 A3 table's
+         identical True; ring sigma [71.1  75.12  4.82] (galaxy mean 50.35; the third ring's 4.82 +- 8 is the suspect value)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9; HE1-HE3 were scored at stage A) scored:
+    HE4: outer-ring D(B0) 4.14 (M103; needs 3-6) and 11.40 (M986; needs 8-16), statuses root / root: hit
+    HE5: s* upper bounds 14.8 (M103; needs 8-30) and 48.9 (M986; needs 20-120): hit
+    HE6: gas-to-stars ratio for s* = 1 (M103) +2.56 (needs 1.5-4): hit
+    HE7: B2 statuses root / root, s*(B2) 3.76 (M103; needs 2-6) and 12.9 (M986; needs 7-25): hit
+    HE8: the pressure term raises the outer-ring g_obs by 0.067 dex (needs 0.05-0.09): hit
+    HE9: D(Mrot)/D(outer) = 1.27 (M986), 1.27 (M103) (needs 1/1.5-1.5): hit
+    HE10: M5 and M6 hold: hit
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg271_points_stageB.csv (6 rows)
+
+6/6 checks pass; load-bearing failures: 0   (4 s)

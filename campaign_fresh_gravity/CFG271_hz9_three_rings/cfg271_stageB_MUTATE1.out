@@ -1,0 +1,29 @@
+CFG271 -- implied-a0 upper bounds (or floor / ceiling markers) for HZ9 (z = 5.5413) from the three-ring [CII] curve: stars-only baryons (a lower limit), class D (no gas), two stellar-mass branches never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG271_hz9_three_rings/FROZEN_CRITERIA.md (0f7f661b5).
+  rows      HZ9 [M986] / HZ9 [M103] (outer ring R = 2.68 kpc; headline pair), the same two branches with the three rings as three rows, and with Parlanti+23's M_rot(< 5 kpc) at R = 5 kpc (sensitivity rows)
+  g_obs     (V^2 + 2 sigma0^2 R / r_D) / R with sigma0 = 51 +- 9.5 and r_D = 2.7 kpc; g_bar  B0 = stars only (one exponential disc, scale r_D), B2 = scaling gas (extrapolated)
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V, sigma0 x 2, M_rot x 4); STAGE=B SELFTEST=1 (fabricated V on the law at s = 2).
+
+STAGE B  *** MUTATE=1: V and sigma0 x 2, M_rot x 4 (g_obs x 4) ***
+rings corpus_z1_rings.csv sha256 feb449af227f7e57; Jones A3 c9beb7b92673c28a; galaxies d7fcf09c06338d37; classes 25928a3a48e90229; Parlanti rows (L328 sources) 87288708bef3b710; L328 table 3dc641be4abe0825; velocity-bearing columns loaded: True
+HZ9: z 5.5413, rings R [0.54, 1.61, 2.68] kpc, r_D 2.7 kpc (R_e,* 4.531), inclination 58 +- 7 deg; branches: M986 log M* 9.86 +- 0.23 (Parlanti+23 Table 2 (Capak+2015)); M103 log M* 10.3 +- 0.2 (corpus row (no source or error recorded); declared 0.20 dex); kpc/arcsec 6.091, beam FWHM 6.09 kpc
+
+STAGE B  THE MEASUREMENT (MUTATE: V and sigma0 x 2, M_rot x 4)
+  HZ9 [M986]             R [2.68]: g_obs [1.759e-09]  D [45.615]  dF +1.335  y [0.412]  s* <= 838; MC 68 % [299, 834] 95 % [142, 974] (no root 0.42, ceiling 0.42); B2 D [14.91] s* = 261; gas_req +42.86; recipe half-width 0.643; rotation-only changes g_obs by -0.067 dex
+  HZ9 [M103]             R [2.68]: g_obs [1.759e-09]  D [16.562]  dF +1.036  y [1.135]  s* <= 293; MC 68 % [133, 557] 95 % [60.7, 861] (no root 0.05, ceiling 0.05); B2 D [7.02] s* = 113; gas_req +14.93; recipe half-width 0.707; rotation-only changes g_obs by -0.067 dex
+  HZ9 [M986; 3 rings]    R [0.54 1.61 2.68]: g_obs [6.081e-09 2.229e-09 1.759e-09]  D [226.307  57.104  45.615]  dF +1.434  y [0.287 0.417 0.412]  CEILING (s* > 1000); MC 68 % [448, 906] 95 % [259, 985] (no root 0.71, ceiling 0.71); B2 D [73.96 18.66 14.91] s* = 421; gas_req +54.30; recipe half-width nan; rotation-only changes g_obs by -0.052 dex
+  HZ9 [M103; 3 rings]    R [0.54 1.61 2.68]: g_obs [6.081e-09 2.229e-09 1.759e-09]  D [82.167 20.733 16.562]  dF +1.135  y [0.791 1.148 1.135]  s* <= 470; MC 68 % [240, 756] 95 % [126, 951] (no root 0.17, ceiling 0.17); B2 D [34.82  8.79  7.02] s* = 186; gas_req +19.08; recipe half-width 0.912; rotation-only changes g_obs by -0.052 dex
+  HZ9 [M986; Mrot]       R [5.]: g_obs [1.657e-09]  D [58.051]  dF +1.391  y [0.305]  CEILING (s* > 1000); MC 68 % [124, 723] 95 % [41.7, 946] (no root 0.51, ceiling 0.51); B2 D [18.97] s* = 318; gas_req +54.70; recipe half-width nan; rotation-only changes g_obs by -0.071 dex
+  HZ9 [M103; Mrot]       R [5.]: g_obs [1.657e-09]  D [21.077]  dF +1.102  y [0.84]  s* <= 355; MC 68 % [55.8, 564] 95 % [15.9, 911] (no root 0.27, ceiling 0.27); B2 D [8.93] s* = 141; gas_req +19.22; recipe half-width 0.297; rotation-only changes g_obs by -0.071 dex
+
+CONTROLS (stage B)
+  [PASS] M2 MUTATE=1 (reactivity; the count is of rows with median D > 1, not of roots): V and sigma0 x 2, M_rot x 4; rows with status ROOT satisfy the independent inversion of their own (D, g_bar) (closed form for one radius, the residual's zero for three) to 1e-6 and the number of rows with median D > 1 is at least the main run's
+         rows with median D > 1: mutated 6, main 6; rows with a root 4; max inversion residual 4.4e-16
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg271_points_stageB_MUTATE1.csv (6 rows)
+
+2/2 checks pass; load-bearing failures: 0   (4 s)
