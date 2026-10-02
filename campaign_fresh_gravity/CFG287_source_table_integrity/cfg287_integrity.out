@@ -1,0 +1,610 @@
+CFG287 integrity audit of the published tables behind the a0 lanes
+criteria FROZEN_CRITERIA.md sha256 3cc1d8df01bd601b7efb82e89f5b2ae68a55cf12dd2c261a194a37cb192eea77; seed 287; MUTATE=0
+kappa = 1/2 FITTED. Data audit only: no lane is re-run, no verdict word is applied to a law.
+
+=== CHECK 1: INTERNAL CONSISTENCY
+
+=== S01 SPARC (Lelli+16)
+  file real_research/data/SPARC_Lelli2016c.mrt sha256 5aa0501f6b0d881f
+  [S] MRT data rows follow the header's byte-by-byte layout (bytes 1-113): n=175 {'FLAG': 1} -> FLAG
+        token counts [19]; line widths [131]: the header ends at byte 113, so a fixed-width (CDS) reader would misparse; whitespace parsing (all repo loaders) is unaffected
+  [H] 175 MRT rows, 175 rotmod files, names one-to-one: n=175 {'CONSISTENT': 1} -> PASS
+        MRT rows 175, rotmod files 175, only-in-MRT [], only-rotmod []
+  [H] SBeff = L[3.6] / (2 pi Reff^2): n=175 {'PROBLEM': 52, 'CONSISTENT': 91, 'ROUNDING-EDGE': 32} -> PROBLEM
+        MRT byte columns 35-41, 49-53, 54-61; worst |diff|/tolerance 471.69 at NGC4010
+        row: CamB: printed 7.89 recomputed 8.15287 diff -0.263 envelope 0.127 (+C 0) [PROBLEM]
+        row: DDO161: printed 20.74 recomputed 20.9575 diff -0.218 envelope 0.127 (+C 0) [ROUNDING-EDGE]
+        row: ESO563-G021: printed 429.37 recomputed 441.607 diff -12.2 envelope 0.423 (+C 0) [PROBLEM]
+        row: F561-1: printed 22.12 recomputed 22.3349 diff -0.215 envelope 0.0492 (+C 0) [PROBLEM]
+        row: F565-V2: printed 6.93 recomputed 6.98064 diff -0.0506 envelope 0.0308 (+C 0) [ROUNDING-EDGE]
+        row: F568-1: printed 20.36 recomputed 20.3069 diff +0.0531 envelope 0.0356 (+C 0) [ROUNDING-EDGE]
+        row: F574-1: printed 29.98 recomputed 30.1941 diff -0.214 envelope 0.0587 (+C 0) [PROBLEM]
+        row: F579-V1: printed 56.6 recomputed 56.8356 diff -0.236 envelope 0.106 (+C 0) [PROBLEM]
+        row: IC2574: printed 15.88 recomputed 15.9904 diff -0.11 envelope 0.0632 (+C 0) [ROUNDING-EDGE]
+        row: KK98-251: printed 7.89 recomputed 8.25694 diff -0.367 envelope 0.118 (+C 0) [PROBLEM]
+        row: NGC0024: printed 151.65 recomputed 153.203 diff -1.55 envelope 0.787 (+C 0) [ROUNDING-EDGE]
+        row: NGC0247: printed 33.79 recomputed 33.8662 diff -0.0762 envelope 0.065 (+C 0) [ROUNDING-EDGE]
+        ... 72 more
+  [S] POST-HOC: SBeff printed / recomputed, distribution: n=175 {'INFO': 1} -> PASS
+        median 0.9961, 16-84% 0.9861-1.0007; |ratio - 1| > 5%: [('NGC4010', 0.237), ('UGC02953', 0.946), ('UGC03205', 0.929), ('UGCA444', 1.051)]
+  [S] L_disk = 2 pi SBdisk Rdisk^2 vs L[3.6] (0.2..1.5): n=175 {'CONSISTENT': 71, 'FLAG': 104} -> FLAG
+        exponential-fit disc luminosity against the total
+        row: D512-2: L_disk/L = 2.79 (L 0.325, SBdisk 93.94, Rdisk 1.24)
+        row: D631-7: L_disk/L = 1.81 (L 0.196, SBdisk 115.04, Rdisk 0.7)
+        row: DDO064: L_disk/L = 2.89 (L 0.157, SBdisk 151.65, Rdisk 0.69)
+        row: DDO161: L_disk/L = 2.89 (L 0.548, SBdisk 169.37, Rdisk 1.22)
+        row: DDO168: L_disk/L = 3.16 (L 0.191, SBdisk 92.22, Rdisk 1.02)
+        row: DDO170: L_disk/L = 3.25 (L 0.543, SBdisk 73.93, Rdisk 1.95)
+        row: ESO079-G014: L_disk/L = 7.19 (L 51.733, SBdisk 2295.25, Rdisk 5.08)
+        row: ESO116-G012: L_disk/L = 4.41 (L 4.292, SBdisk 1320.78, Rdisk 1.51)
+        row: ESO563-G021: L_disk/L = 3.93 (L 311.177, SBdisk 6558.89, Rdisk 5.45)
+        row: F563-1: L_disk/L = 1.71 (L 1.903, SBdisk 41.77, Rdisk 3.52)
+        row: F563-V1: L_disk/L = 2.38 (L 1.54, SBdisk 40.63, Rdisk 3.79)
+        row: F563-V2: L_disk/L = 1.82 (L 2.986, SBdisk 146.16, Rdisk 2.43)
+        ... 92 more
+  [H] rotmod header distance = MRT D: n=175 {'CONSISTENT': 175} -> PASS
+  [H] rotmod: Rad increasing, errV > 0, Vobs >= 0: n=175 {'CONSISTENT': 175} -> PASS
+        48 files carry negative Vgas (SPARC convention for a negative gas contribution; not a problem)
+  [S] Vflat vs median of the last three Vobs (3 e_Vflat + 5%): n=135 {'CONSISTENT': 135} -> PASS
+  [H] Vflat = 0 iff e_Vflat = 0: n=175 {'CONSISTENT': 175} -> PASS
+  [H] generic: errors >= 0, positive D/L/Reff, Inc in [0,90]: n=1400 {'CONSISTENT': 1400} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [H] SPARC_table.txt is a 404 page; scripts naming it: n=1 {'CONSISTENT': 1} -> PASS
+        404 page: True; 1 .py files name it (inspect whether they read it): ['deepseek_push/L06_rar_moment.py']
+
+=== S02 LVD (Pace)
+  file real_research/data/dsph/lvd_dwarf_mw.csv sha256 6970dea6a1c29f9e
+  file real_research/data/dsph/lvd_dwarf_m31.csv sha256 eb5a6cedf4a585cf
+  file real_research/data/dsph/lvd_dwarf_local_field.csv sha256 d9ea1a0cf93e2eb1
+  [H] distance = 10^(mu/5+1) pc: n=175 {'CONSISTENT': 175} -> PASS
+        kpc; worst |diff|/tolerance 0.08 at carina_2
+  [H] M_V = m_V - mu: n=173 {'CONSISTENT': 173} -> PASS
+        ; worst |diff|/tolerance 0.38 at carina_2
+  [H] rhalf_physical = distance x rhalf(arcmin): n=169 {'PROBLEM': 14, 'CONSISTENT': 127, 'ROUNDING-EDGE': 28} -> PROBLEM
+        pc; worst |diff|/tolerance 6.85 at tucana_2
+        row: antlia_2: printed 3761.92 recomputed 3778.11 diff -16.2 envelope 1.96 (+C 0.001) [PROBLEM]
+        row: bootes_2: printed 38.25 recomputed 38.443 diff -0.193 envelope 0.0702 (+C 0.001) [ROUNDING-EDGE]
+        row: bootes_3: printed 570.46 recomputed 573.142 diff -2.68 envelope 0.77 (+C 0.001) [ROUNDING-EDGE]
+        row: bootes_4: printed 458.32 recomputed 461.892 diff -3.57 envelope 3.05 (+C 0.001) [ROUNDING-EDGE]
+        row: canes_venatici_2: printed 70.33 recomputed 70.7263 diff -0.396 envelope 0.24 (+C 0.001) [ROUNDING-EDGE]
+        row: carina_2: printed 94.26 recomputed 94.5151 diff -0.255 envelope 0.072 (+C 0.001) [ROUNDING-EDGE]
+        row: carina_3: printed 30.02 recomputed 30.3251 diff -0.305 envelope 0.1 (+C 0.001) [PROBLEM]
+        row: carina_4: printed 40.22 recomputed 40.8149 diff -0.595 envelope 0.159 (+C 0.001) [PROBLEM]
+        row: cetus_3: printed 88.48 recomputed 89.8739 diff -1.39 envelope 0.372 (+C 0.001) [PROBLEM]
+        row: coma_berenices_1: printed 69.14 recomputed 69.3486 diff -0.209 envelope 0.0747 (+C 0.001) [ROUNDING-EDGE]
+        row: crater_2: printed 1054.19 recomputed 1057.96 diff -3.77 envelope 1.75 (+C 0.001) [ROUNDING-EDGE]
+        row: eridanus_4: printed 65.33 recomputed 65.8038 diff -0.474 envelope 0.111 (+C 0.001) [PROBLEM]
+        ... 30 more
+  [H] rhalf_sph_physical = rhalf_physical sqrt(1 - e): n=169 {'CONSISTENT': 133, 'PROBLEM': 23, 'ROUNDING-EDGE': 13} -> PROBLEM
+        missing e taken as 0; worst |diff|/tolerance 25.14 at andromeda_20
+        row: aquarius_3: printed 36.28 recomputed 37.6018 diff -1.32 envelope 0.186 (+C 0.001) [PROBLEM]
+        row: carina_3: printed 19.51 recomputed 20.138 diff -0.628 envelope 0.12 (+C 0.001) [PROBLEM]
+        row: carina_4: printed 33.33 recomputed 35.7483 diff -2.42 envelope 0.123 (+C 0.001) [PROBLEM]
+        row: cetus_3: printed 42.66 recomputed 43.3462 diff -0.686 envelope 0.459 (+C 0.001) [ROUNDING-EDGE]
+        row: draco_2: printed 16.1 recomputed 16.4092 diff -0.309 envelope 0.147 (+C 0.001) [ROUNDING-EDGE]
+        row: hydra_2: printed 56.73 recomputed 57.8687 diff -1.14 envelope 0.2 (+C 0.001) [PROBLEM]
+        row: hydrus_1: printed 52.42 recomputed 52.6892 diff -0.269 envelope 0.176 (+C 0.001) [ROUNDING-EDGE]
+        row: leo_5: printed 35.23 recomputed 36.7375 diff -1.51 envelope 0.17 (+C 0.001) [PROBLEM]
+        row: leo_6: printed 86.86 recomputed 90.5102 diff -3.65 envelope 0.5 (+C 0.001) [PROBLEM]
+        row: phoenix_3: printed 18.35 recomputed 19.877 diff -1.53 envelope 0.112 (+C 0.001) [PROBLEM]
+        row: pictor_2: printed 31.86 recomputed 32.0858 diff -0.226 envelope 0.112 (+C 0.001) [ROUNDING-EDGE]
+        row: tucana_2: printed 161.67 recomputed 162.976 diff -1.31 envelope 0.677 (+C 0.001) [ROUNDING-EDGE]
+        ... 24 more
+  majority M_V,sun for mass_stellar: 4.83 (173/173 rows within the envelope)
+  [H] mass_stellar = log10(2 L_V), M_V,sun = 4.83: n=173 {'CONSISTENT': 173} -> PASS
+        log10 Msun; worst |diff|/tolerance 0.72 at wlm
+  majority radius for mass_dynamical_wolf: rhalf_sph_physical (66/92)
+  [H] mass_dynamical_wolf = log10(930 sigma^2 rhalf_sph_physical): n=92 {'CONSISTENT': 72, 'ROUNDING-EDGE': 11, 'PROBLEM': 9} -> PROBLEM
+        log10 Msun; worst |diff|/tolerance 8.70 at leo_6
+        row: aquarius_2: printed 6.39 recomputed 6.40501 diff -0.015 envelope 0.0143 (+C 0) [ROUNDING-EDGE]
+        row: canes_venatici_2: printed 6.13 recomputed 6.14647 diff -0.0165 envelope 0.00586 (+C 0) [PROBLEM]
+        row: carina_3: printed 5.72 recomputed 5.75512 diff -0.0351 envelope 0.0129 (+C 0) [PROBLEM]
+        row: leo_5: printed 5.53 recomputed 5.57066 diff -0.0407 envelope 0.00635 (+C 0) [PROBLEM]
+        row: leo_6: printed 5.76 recomputed 5.81699 diff -0.057 envelope 0.00655 (+C 0) [PROBLEM]
+        row: pegasus_3: printed 5.75 recomputed 5.76475 diff -0.0148 envelope 0.0066 (+C 0) [PROBLEM]
+        row: segue_1: printed 5.45 recomputed 5.45654 diff -0.00654 envelope 0.00621 (+C 0) [ROUNDING-EDGE]
+        row: tucana_2: printed 6.32 recomputed 6.33668 diff -0.0167 envelope 0.0164 (+C 0) [ROUNDING-EDGE]
+        row: andromeda_10: printed 6.81 recomputed 6.8248 diff -0.0148 envelope 0.0118 (+C 0) [ROUNDING-EDGE]
+        row: andromeda_11: printed 6.72 recomputed 6.76694 diff -0.0469 envelope 0.0107 (+C 0) [PROBLEM]
+        row: andromeda_19: printed 8.07 recomputed 8.08519 diff -0.0152 envelope 0.0106 (+C 0) [ROUNDING-EDGE]
+        row: andromeda_20: printed 6.49 recomputed 6.53122 diff -0.0412 envelope 0.0111 (+C 0) [PROBLEM]
+        ... 8 more
+  [S] POST-HOC: size-column ratios: n=169 {'INFO': 1} -> PASS
+        rhalf_physical / (D x rhalf): median 0.9970, 1-99% 0.984-1.006; rhalf_sph / (rhalf_phys sqrt(1-e)): median 0.9997; rows beyond 2%: [('aquarius_3', 0.965), ('carina_3', 0.969), ('carina_4', 0.932), ('leo_5', 0.959), ('leo_6', 0.96), ('phoenix_3', 0.923), ('andromeda_09', 0.968), ('andromeda_10', 0.925), ('andromeda_11', 0.932), ('andromeda_12', 0.948), ('andromeda_13', 0.958), ('andromeda_14', 0.969), ('andromeda_20', 0.901), ('andromeda_22', 0.979), ('andromeda_24', 0.933), ('andromeda_25', 0.97), ('andromeda_26', 0.883), ('andromeda_27', 0.978), ('andromeda_35', 0.971), ('triangulum_4', 0.976), ('sculptor_a', 0.976), ('sculptor_b', 0.954)]
+  [H] generic: errors >= 0, ellipticity in [0,1): n=5329 {'CONSISTENT': 5329} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+
+=== S03 KiDS-1000 lensing RAR (Brouwer+21)
+  [H] covariance symmetric and positive semi-definite: n=9 {'CONSISTENT': 9} -> PASS
+  [H] error column vs sqrt(diag covariance): n=9 {'CONSISTENT': 9} -> PASS
+        Fig-10_RAR-KiDS-isolated-dwarfs: best form sqrt(diag C) = error (max rel dev 2.89e-05); [CONSISTENT]; Fig-3_Lensing-rotation-curves_Massbins: best form sqrt(diag C) = error (max rel dev 4.01e-05); [CONSISTENT]; Fig-4-5-C1_RAR-KiDS-isolated: best form sqrt(diag C) = error (max rel dev 4.08e-05); [CONSISTENT]; Fig-4-C1_RAR-GAMA-isolated: best form sqrt(diag C) = error (max rel dev 3.31e-05); [CONSISTENT] ...
+  [H] g_bar grid identical across bins and log-uniform: n=9 {'CONSISTENT': 9} -> PASS
+  [S] bias (1+K) constant per file, in (0.8,1.2): n=20 {'CONSISTENT': 20} -> PASS
+  [S] cross-shear ESD_x null test (diagonal errors): n=20 {'CONSISTENT': 20} -> PASS
+        Fig-10_RAR-KiDS-isolated-dwarfs_Nobins.txt: ESD_x chi2/dof 3.9/5 p 0.571; Fig-3_Lensing-rotation-curves_Massbin-1.txt: ESD_x chi2/dof 12.2/15 p 0.662; Fig-3_Lensing-rotation-curves_Massbin-2.txt: ESD_x chi2/dof 9.7/15 p 0.838; Fig-3_Lensing-rotation-curves_Massbin-3.txt: ESD_x chi2/dof 9.0/15 p 0.88; Fig-3_Lensing-rotation-curves_Massbin-4.txt: ESD_x chi2/dof 19.8/15 p 0.179; Fig-4-5-C1_RAR-KiDS-isolated_Nobins.txt: ESD_x chi2/dof 15.6/15 p 0.408
+
+=== S04 RC100 (Nestor Shachar+23)
+  original real_research/data/rc100_nestorshachar2023_table3.csv sha256 6a574c79367b268b; paper values data_assembly/rc100_provenance/rc100_table3_six_fields_paper_values.csv sha256 56121a5550679db5
+  [H] original CSV: g_Re = Vc^2/Re (repo-derived column): n=100 {'CONSISTENT': 100} -> PASS
+        m/s^2; worst |diff|/tolerance 0.04 at 45 COS4 10048
+  [H] original CSV: Vc^4/(G Mbar) (repo-derived column): n=100 {'CONSISTENT': 100} -> PASS
+        m/s^2; worst |diff|/tolerance 0.13 at 45 COS4 10048
+  [H] original CSV: ratio to 1.2e-10 (repo-derived column): n=100 {'CONSISTENT': 100} -> PASS
+        ; worst |diff|/tolerance 0.50 at 67 zC 405501
+  [H] original CSV: deepMOND flag = (g_Re < 1.2e-10): n=100 {'CONSISTENT': 100} -> PASS
+  [H] paper-values file: changed_cells column vs actual differences: n=100 {'CONSISTENT': 100} -> PASS
+        17 cells differ between the original CSV and the paper values in 16 rows
+  [S] paper values: implied baryon coefficient k = (1-fDM) Vc^2 Re/(G Mbar) outliers (> 0.5 dex): n=100 {'CONSISTENT': 99, 'FLAG': 1} -> FLAG
+        median log k -0.225 (k = 0.60); spread 16-84% -0.32..-0.14
+        row: 83 K20 ID5: log k = -0.97 (median -0.23)
+  [S] original CSV: the same k test (shows which uncorrected rows stand out): n=100 {'FLAG': 3, 'CONSISTENT': 97} -> FLAG
+        row: 62 K20 ID9: log k = +0.31
+        row: 65 GS4 01529: log k = +1.33
+        row: 83 K20 ID5: log k = -0.97
+  arithmetic: median Vc^4/(G Mbar) original 3.0663e-10 vs paper values 2.7766e-10 (+0.0431 dex); largest single-row change 1.70 dex
+  [H] POST-HOC: V_rot(R_e)^2 = Vc^2 - 3.36 sigma0^2 > 0 (the paper's eq. 8 at R_e): n=100 {'CONSISTENT': 98, 'PROBLEM': 2} -> PROBLEM
+        added after the targeted re-read of row 83; not in the frozen criteria
+        row: 67 zC 405501: Vc 89, sigma0 61: Vc^2 - 3.36 sigma0^2 = -4582 (km/s)^2 < 0
+        row: 83 K20 ID5: Vc 174, sigma0 100: Vc^2 - 3.36 sigma0^2 = -3324 (km/s)^2 < 0
+  [S] POST-HOC: V_rot(R_e)/sigma0 >= 2.3 (the selection cut, if applied at R_e): n=98 {'CONSISTENT': 84, 'FLAG': 14} -> FLAG
+        the paper's cut may be applied to the observed curve, not at R_e
+        row: 41 U4 32570: V_rot(R_e)/sigma0 = 2.16
+        row: 43 zC 403741: V_rot(R_e)/sigma0 = 2.02
+        row: 44 U4 33383: V_rot(R_e)/sigma0 = 0.56
+        row: 47 U4 31577: V_rot(R_e)/sigma0 = 1.97
+        row: 60 GS3 15675: V_rot(R_e)/sigma0 = 1.72
+        row: 61 zC 412369: V_rot(R_e)/sigma0 = 1.02
+        row: 66 CDFS 2954: V_rot(R_e)/sigma0 = 2.17
+        row: 68 COS4 08775: V_rot(R_e)/sigma0 = 1.97
+        row: 70 SSA22 MD41: V_rot(R_e)/sigma0 = 1.85
+        row: 75 U4 20704: V_rot(R_e)/sigma0 = 2.28
+        row: 84 K20 ID6: V_rot(R_e)/sigma0 = 1.68
+        row: 88 zC 405226: V_rot(R_e)/sigma0 = 1.63
+        ... 2 more
+
+=== S05 KMOS3D release (Wisnioski+19)
+  file data_assembly/kmos3d_phibss/kmos3d_catalog.csv sha256 18e76b3df142cf0c
+  [S] |Z - HAFIT_Z| <= 0.002: n=581 {'CONSISTENT': 581} -> PASS
+  [H] 0 < Q <= 1, errors >= 0, FILE begins with ID (sentinels -99/-1 excluded): n=785 {'CONSISTENT': 736, 'PROBLEM': 49} -> PROBLEM
+        sentinel counts {'Q': 0, 'RHALF': 0, 'LMSTAR': 0, 'Z': 0, 'HAFIT_Z': 79, 'HAFIT_SIG': 79, 'HAFIT_SIG_ERR': 79}
+        row: COS4_13786: RHALFERR -999.0
+        row: GS4_12434: RHALFERR -999.0
+        row: U4_35085: RHALFERR -999.0
+        row: COS4_22012: FILE COS4_21860_YJ.fits
+        row: U4_11730: FILE U4_11918_YJ.fits
+        row: U4_17365: FILE U4_17879_YJ.fits
+        row: GS4_36979: FILE GS4_36854_YJ.fits
+        row: GS4_42684: FILE GS4_42221_YJ.fits
+        row: GS4_41226: FILE GS4_41249_K.fits
+        row: GS4_27688: FILE GS4_27882_K.fits
+        row: GS4_40386: FILE GS4_40477_K.fits
+        row: GS4_19017: FILE GS4_18936_K.fits
+        ... 37 more
+  [S] POST-HOC: what the flagged rows are: n=785 {'INFO': 1} -> PASS
+        FILE named after ID_TARGETED (the cube of the targeted galaxy): 0 rows (0 with FLAG_ADDGALDET = 1); FILE matching neither ID nor ID_TARGETED: 46; RHALFERR = -999 (a sentinel missing from the frozen list): 3
+
+=== S06 RC41 (Price+21)
+  file data_assembly/price2021_rc41/price2021_rc41.csv sha256 05785e34481eadc6
+  [H] generic: interval half-widths >= 0, fDM in [0,1], positive Re: n=492 {'CONSISTENT': 492} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [S] log Mbar(1D) vs log(M*_SED + Mgas) (0.5 dex): n=41 {'CONSISTENT': 38, 'FLAG': 3} -> FLAG
+        the fit has a 0.2 dex prior centred on M*+Mgas
+        row: U3_15226: logMbar 10.67 vs log(M*+Mgas) 11.21
+        row: EGS_13004291: logMbar 11.12 vs log(M*+Mgas) 11.64
+        row: zC_400569: logMbar 10.98 vs log(M*+Mgas) 11.50
+
+=== S07 SINS/zC-SINF AO (FS+18)
+  table 6 data_assembly/highz_literature_tables/sins_ao/sins_ao_table6_kinematics.csv sha256 7f3da7ed8c857848
+  [H] Vc = sqrt(Vrot^2 + 3.36 sigma0^2) (eq. 1): n=38 {'CONSISTENT': 38} -> PASS
+        km/s; worst |diff|/tolerance 0.74 at ZC400528
+  [H] Mdyn = 2 Re Vc^2 / G (eq. 2): n=38 {'CONSISTENT': 38} -> PASS
+        1e10 Msun; worst |diff|/tolerance 0.60 at Q1623-BX455
+  [H] Vrot/sigma0 column = Vrot / sigma0: n=38 {'CONSISTENT': 38} -> PASS
+        ; worst |diff|/tolerance 0.88 at ZC407376
+  [H] table 6 generic: errors >= 0, positive Re/V/sigma/Vc/Mdyn, sin i in [0,1]: n=1026 {'CONSISTENT': 1026} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [S] C_PSF = Vrot sin i / (dv_obs/2) in [1,2]: n=38 {'CONSISTENT': 37, 'FLAG': 1} -> FLAG
+        beam-smearing correction implied by the table
+        row: ZC404221: C_PSF = Vrot sin i / (dv/2) = 2.05
+  [H] table 1: sSFR_SED = SFR_SED / M* (Gyr^-1): n=38 {'CONSISTENT': 38} -> PASS
+        Gyr^-1; worst |diff|/tolerance 0.79 at GMASS-2363
+  [S] table 5: r1/2,circ vs Re sqrt(q) (paper: +10% +- 15%): n=36 {'CONSISTENT': 36} -> PASS
+
+=== S08 SINS (FS+09)
+  file data_assembly/high_z_tf_tables/sins2009_dynamics.csv sha256 ace80a2bc0bd75db
+  [H] generic: errors >= 0; positive V, Mdyn, r1/2: n=602 {'CONSISTENT': 602} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [S] Mdyn G/(V^2 r1/2) coefficient, method 'Kinematic modeling' (0.1 dex from the median): n=18 {'FLAG': 8, 'CONSISTENT': 10} -> FLAG
+        median k = 2.324
+        row: Q2343-BX610: log k +0.228 (median +0.366)
+        row: Q2346-BX416: log k +0.695 (median +0.366)
+        row: K20-ID9: log k +0.164 (median +0.366)
+        row: D3a-6004: log k +0.246 (median +0.366)
+        row: D3a-6397: log k +0.200 (median +0.366)
+        row: D3a-7144: log k +0.470 (median +0.366)
+        row: GMASS-1084: log k +0.498 (median +0.366)
+        row: ZC-782941: log k +0.468 (median +0.366)
+  [S] Mdyn G/(V^2 r1/2) coefficient, method 'Velocity gradient+width' (0.1 dex from the median): n=15 {'FLAG': 7, 'CONSISTENT': 8} -> FLAG
+        median k = 2.734
+        row: Q1623-BX376: log k +0.301 (median +0.437)
+        row: GMASS-167: log k +0.594 (median +0.437)
+        row: GMASS-1146: log k +0.013 (median +0.437)
+        row: GMASS-2252: log k +0.548 (median +0.437)
+        row: GMASS-2438: log k +0.543 (median +0.437)
+        row: SA12-8768: log k +0.324 (median +0.437)
+        row: SA15-5365: log k +0.325 (median +0.437)
+  [S] Mdyn G/(V^2 r1/2) coefficient, method 'Velocity width' (0.1 dex from the median): n=13 {'FLAG': 0, 'CONSISTENT': 13} -> PASS
+        median k = 2.227
+
+=== S09 PHIBSS (Tacconi+13)
+  file data_assembly/kmos3d_phibss/phibss13_joined.csv sha256 3e6da4a05c10e1f5
+  [H] M_bar = M_mol + M* (repo-derived column): n=67 {'CONSISTENT': 67} -> PASS
+        Msun
+  [H] M_mol = 4.36 x 2 x L'CO(3-2) (ReadMe note 5): n=67 {'CONSISTENT': 53, 'ROUNDING-EDGE': 2, 'PROBLEM': 12} -> PROBLEM
+        Msun; worst |diff|/tolerance 91.70 at Q2343-MD59
+        row: EGS13017843: printed 5.6e+10 recomputed 5.4936e+10 diff +1.06e+09 envelope 9.36e+08 (+C 0) [ROUNDING-EDGE]
+        row: EGS13018312: printed 6.5e+10 recomputed 6.3656e+10 diff +1.34e+09 envelope 9.36e+08 (+C 0) [ROUNDING-EDGE]
+        row: Q2343-MD59: printed 9.5e+10 recomputed 5.4064e+11 diff -4.46e+11 envelope 4.86e+09 (+C 0) [PROBLEM]
+        row: BzK4171: printed 9.6e+10 recomputed 1.6568e+11 diff -6.97e+10 envelope 4.86e+09 (+C 0) [PROBLEM]
+        row: BzK16000: printed 7.3e+10 recomputed 1.2208e+11 diff -4.91e+10 envelope 4.86e+09 (+C 0) [PROBLEM]
+        row: BzK17999: printed 7.9e+10 recomputed 1.308e+11 diff -5.18e+10 envelope 4.86e+09 (+C 0) [PROBLEM]
+        row: BzK12591: printed 1.5e+11 recomputed 2.5288e+11 diff -1.03e+11 envelope 9.36e+09 (+C 0) [PROBLEM]
+        row: J2135-0102: printed 8e+10 recomputed 1.0464e+11 diff -2.46e+10 envelope 9.36e+09 (+C 0) [PROBLEM]
+        row: PEPJ123712: printed 1.9e+10 recomputed 2.7904e+10 diff -8.9e+09 envelope 9.36e+08 (+C 0) [PROBLEM]
+        row: PEPJ123709: printed 3.4e+10 recomputed 4.9704e+10 diff -1.57e+10 envelope 9.36e+08 (+C 0) [PROBLEM]
+        row: PEPJ123759: printed 4.2e+10 recomputed 6.1912e+10 diff -1.99e+10 envelope 9.36e+08 (+C 0) [PROBLEM]
+        row: PEPJ123633: printed 6.5e+10 recomputed 9.592e+10 diff -3.09e+10 envelope 4.86e+09 (+C 0) [PROBLEM]
+        ... 2 more
+  [H] f_gas (quoted) = M_mol / (M_mol + M*): n=67 {'CONSISTENT': 63, 'LIMIT-SKIPPED': 6, 'PROBLEM': 4} -> PROBLEM
+        ; worst |diff|/tolerance 8.98 at PEPJ123712
+        row: PEPJ123712: printed 0.43 recomputed 0.311475 diff +0.119 envelope 0.0132 (+C 0) [PROBLEM]
+        row: PEPJ123709: printed 0.56 recomputed 0.596491 diff -0.0365 envelope 0.0138 (+C 0) [PROBLEM]
+        row: PEPJ123759: printed 0.58 recomputed 0.525 diff +0.055 envelope 0.0113 (+C 0) [PROBLEM]
+        row: PEPJ123633: printed 0.43 recomputed 0.411392 diff +0.0186 envelope 0.00816 (+C 0) [PROBLEM]
+  the build's own flag fgas_inconsistent_in_source = 1 for 3 rows
+  [H] L'CO(3-2) = 3.25e7 S dV nu_obs^-2 D_L^2 (1+z)^-3 (H0 70, Om 0.3): n=52 {'CONSISTENT': 43, 'ROUNDING-EDGE': 8, 'PROBLEM': 1} -> PROBLEM
+        K km/s pc^2; rows with a CO(2-1) line (BzK/PEP) would deviate by the line frequency; worst |diff|/tolerance 62.74 at Q2343-MD59
+        row: EGS12007881: printed 8.5e+09 recomputed 8.1696e+09 diff +3.3e+08 envelope 1.58e+08 (+C 0.02) [ROUNDING-EDGE]
+        row: EGS12024462: printed 5.8e+09 recomputed 5.55478e+09 diff +2.45e+08 envelope 1.1e+08 (+C 0.02) [ROUNDING-EDGE]
+        row: EGS13004684: printed 9.5e+09 recomputed 9.20844e+09 diff +2.92e+08 envelope 8.94e+07 (+C 0.02) [ROUNDING-EDGE]
+        row: EGS13034541: printed 9.1e+09 recomputed 8.77305e+09 diff +3.27e+08 envelope 1.16e+08 (+C 0.02) [ROUNDING-EDGE]
+        row: zC406690: printed 9.4e+09 recomputed 9.0326e+09 diff +3.67e+08 envelope 1.83e+08 (+C 0.02) [ROUNDING-EDGE]
+        row: Q1700-MD94: printed 3.7e+10 recomputed 3.55612e+10 diff +1.44e+09 envelope 6.57e+08 (+C 0.02) [ROUNDING-EDGE]
+        row: Q2343-BX610: printed 2.6e+10 recomputed 2.48111e+10 diff +1.19e+09 envelope 6.4e+08 (+C 0.02) [ROUNDING-EDGE]
+        row: Q2343-MD59: printed 6.2e+10 recomputed 1.03834e+10 diff +5.16e+10 envelope 6.15e+08 (+C 0.02) [PROBLEM]
+        row: Q2346-BX482se: printed 9.2e+09 recomputed 8.71046e+09 diff +4.9e+08 envelope 1.89e+08 (+C 0.02) [ROUNDING-EDGE]
+
+=== S10 ALMA-CRISTAL (Lee+25)
+  sample data_assembly/arxiv_tables/cristal2025_sample.csv sha256 5411a4df85f462ce
+  kinematics data_assembly/arxiv_tables/cristal2025_kinematics.csv sha256 cea592f372b02239
+  dynamics data_assembly/arxiv_tables/cristal2025_dynamics.csv sha256 b575d62adb19a209
+  [H] dynamics generic: errors >= 0, fDM in [0,1], inc in [0,90], positive Re/Vrot/sigma0: n=216 {'CONSISTENT': 216} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [S] dynamics: value - lower error < 0 or asymmetric > 10x: n=42 {'CONSISTENT': 40, 'FLAG': 2} -> FLAG
+        value - lower error < 0 (positive-definite) or asymmetric errors > 10x
+        row: 03: sigma0_kms asymmetric +28.5/-0.2
+        row: 15: sigma0_kms asymmetric +27.0/-1.0
+  [H] kinematics generic: f_molgas in [0,1], errors >= 0: n=75 {'CONSISTENT': 75} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [S] implied baryon coefficient k = (1-fDM)(Vrot^2+3.36 sigma0^2) Re/(G Mtot) outliers (> 0.5 dex): n=14 {'FLAG': 0, 'CONSISTENT': 14} -> PASS
+        median k = 0.52; values [-0.23, -0.22, -0.31, -0.29, -0.25, -0.27, -0.32, -0.29, -0.3, -0.3, -0.25, -0.28, -0.28, -0.18]
+
+=== S11 ALPINE (Jones+21) + corpus copy
+  data_assembly/highz_literature_tables/jones2021_alpine/jones2021_tableA3_rings.csv sha256 c9beb7b92673c28a
+  data_assembly/highz_literature_tables/jones2021_alpine/jones2021_table1_sample_classes.csv sha256 25928a3a48e90229
+  data_assembly/highz_literature_tables/alpine_corpus_z1/corpus_z1_galaxies.csv sha256 d7fcf09c06338d37
+  data_assembly/highz_literature_tables/alpine_corpus_z1/corpus_z1_rings.csv sha256 feb449af227f7e57
+  [H] rings: Mdyn = Vrot^2 R / G: n=18 {'CONSISTENT': 18} -> PASS
+        Msun; worst |diff|/tolerance 0.67 at J0817 R=0.95
+  [H] corpus rings are a cell-by-cell copy of the Jones rings: n=18 {'CONSISTENT': 18} -> PASS
+        18 corpus rings vs 18 Jones rings
+  [H] corpus rings: v_over_sigma = Vrot/sigma: n=18 {'CONSISTENT': 18} -> PASS
+        ; worst |diff|/tolerance 0.57 at DC494057 R=3.13
+  [H] corpus galaxies: means, maxima, log Mdyn, v/sigma, n_rings from the rings: n=56 {'CONSISTENT': 56} -> PASS
+  [S] Table 1 parse: KC1 and class_L20 are distinct columns: n=30 {'FLAG': 1} -> FLAG
+        KC1 == class_L20 in 30/30 rows (build.py assigns both from the same HTML cell r[11]); checked against the HTML in the transcription step
+  corpus HZ9 row: log_mstar 10.3 reference 'Jones et al. (2021), MNRAS; Le Fèvre et al. (2020), A&A 643, A1' (no M* source; disclosed in CFG271)
+
+=== S12 sigma-M* compilation (HZ9 et al.)
+  file real_research/virial_floor_2026/highz_sigma_mstar.csv sha256 3dc641be4abe0825
+  [H] sigma_eff = sqrt(sigma0^2 + V^2/3) per the construction string: n=62 {'CONSISTENT': 62} -> PASS
+        km/s; worst |diff|/tolerance 0.10 at COS-30 (2304.00036)
+
+=== S13 ALPAKA I (Rizzo+23)
+  sample data_assembly/arxiv_tables/alpaka1_sample.csv sha256 77e58a33402af3cd
+  alma_obs data_assembly/arxiv_tables/alpaka1_alma_obs.csv sha256 70010984b909623e
+  properties data_assembly/arxiv_tables/alpaka1_properties.csv sha256 cf3317bac8dc5225
+  geometry data_assembly/arxiv_tables/alpaka1_geometry.csv sha256 e756a6345f572f1e
+  kinematics data_assembly/arxiv_tables/alpaka1_kinematics.csv sha256 3bc70338600f5e54
+  [H] L' = 3.25e7 S dV nu_obs^-2 D_L^2 (1+z)^-3 (Planck18; line from the ALMA table): n=28 {'CONSISTENT': 28} -> PASS
+        1e10 K km/s pc^2
+  [H] V_ext <= V_max: n=19 {'CONSISTENT': 19} -> PASS
+  [H] Vmax/sigma_m column = Vmax / sigma_m: n=16 {'CONSISTENT': 13, 'LIMIT-SKIPPED': 3, 'ROUNDING-EDGE': 3} -> PASS
+        integer prints; worst |diff|/tolerance 1.50 at ID 15 Vmax/sigma_m
+        row: ID 15 Vmax/sigma_m: printed 5 recomputed 4.21212 diff +0.788 envelope 0.526 (+C 0) [ROUNDING-EDGE]
+        row: ID 18 Vmax/sigma_m: printed 12 recomputed 12.725 diff -0.725 envelope 0.672 (+C 0) [ROUNDING-EDGE]
+        row: ID 20 Vmax/sigma_m: printed 8 recomputed 8.78947 diff -0.789 envelope 0.629 (+C 0) [ROUNDING-EDGE]
+  [H] Vext/sigma_ext column = Vext / sigma_ext: n=16 {'CONSISTENT': 13, 'LIMIT-SKIPPED': 3, 'ROUNDING-EDGE': 3} -> PASS
+        integer prints; worst |diff|/tolerance 1.98 at ID 18 Vext/sigma_ext
+        row: ID 8 Vext/sigma_ext: printed 11 recomputed 12.1875 diff -1.19 envelope 0.706 (+C 0) [ROUNDING-EDGE]
+        row: ID 18 Vext/sigma_ext: printed 14 recomputed 15.5333 diff -1.53 envelope 0.776 (+C 0) [ROUNDING-EDGE]
+        row: ID 23 Vext/sigma_ext: printed 21 recomputed 22.2273 diff -1.23 envelope 1.03 (+C 0) [ROUNDING-EDGE]
+  [H] geometry: inclinations in [0,90], errors >= 0: n=311 {'CONSISTENT': 311} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [H] properties: errors >= 0, positive M*/SFR/L': n=266 {'CONSISTENT': 266} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  digitised data_assembly/arxiv_tables/alpaka1_digitised/alpaka1_vrot_digitised.csv sha256 1223627961db7cd7
+  [H] digitised: table V_ext vs mean of the last two digitised points (3% + rounding): n=19 {'CONSISTENT': 19} -> PASS
+  [H] digitised: table V_max vs maximum digitised point (3% + rounding): n=19 {'CONSISTENT': 19} -> PASS
+  [H] digitised: kpc/arcsec vs Planck18 at z (2%): n=19 {'CONSISTENT': 19} -> PASS
+  [H] arXiv:2601.03338 tables: errors >= 0: n=42 {'CONSISTENT': 42} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+
+=== S14 Amvrosiadis+25 (arXiv v1)
+  data_assembly/arxiv_tables/amvrosiadis_bestfit.csv sha256 232bdb33dd4b794e
+  data_assembly/arxiv_tables/amvrosiadis_parent.csv sha256 b1da2ddb4166e42e
+  [H] best-fit: errors >= 0, inc in [0,90], positive r_e/V/sigma: n=239 {'CONSISTENT': 239} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [H] parent: errors >= 0: n=90 {'CONSISTENT': 90} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [H] Vcirc(2re)^2 - 3.36 sigma^2 <= Vmax^2 (arctan V_rot <= V_max): n=12 {'CONSISTENT': 10, 'ROUNDING-EDGE': 2} -> PASS
+        within rounding (+1 sigma on Vmax for ROUNDING-EDGE)
+        row: 041.1: Vcirc(2re)^2 - 3.36 sigma^2 = 151600 vs Vmax^2 = 148225 [ROUNDING-EDGE]
+        row: 062.2: Vcirc(2re)^2 - 3.36 sigma^2 = 78625 vs Vmax^2 = 64516 [ROUNDING-EDGE]
+  [S] Mdyn(10 kpc) vs Vcirc(2re)^2 x 10 kpc / G where 2 r_e is within 20% of 10 kpc: n=2 {'CONSISTENT': 2} -> PASS
+        007.1: 2 r_e = 9.9 kpc; V(10 kpc) from Mdyn 410 vs Vcirc(2re) 399 (ratio 1.026); 122.1: 2 r_e = 10.6 kpc; V(10 kpc) from Mdyn 529 vs Vcirc(2re) 533 (ratio 0.992)
+  [S] baryons (M* + M_gas, parent table) vs Mdyn(10 kpc): n=12 {'FLAG': 4, 'CONSISTENT': 8} -> FLAG
+        (M*+Mgas)/Mdyn per disc: [('007.1', 2.33), ('017.1', 0.95), ('022.1', 1.95), ('041.1', 1.78), ('049.1', 0.23), ('062.2', 0.23), ('065.1', 0.3), ('066.1', 0.87), ('071.1', 6.11), ('075.1', 0.21), ('098.1', 0.62), ('122.1', 0.43)] (total masses vs a 10 kpc dynamical mass; CFG227 already recorded g_obs < g_bar in 7 of 9)
+        row: 007.1: (M*+Mgas)/Mdyn(10kpc) = 2.33
+        row: 022.1: (M*+Mgas)/Mdyn(10kpc) = 1.95
+        row: 041.1: (M*+Mgas)/Mdyn(10kpc) = 1.78
+        row: 071.1: (M*+Mgas)/Mdyn(10kpc) = 6.11
+
+=== S15 Danhaive+25 (arXiv v1, 41 gold)
+  file data_assembly/arxiv_tables/danhaive2025_gold.csv sha256 4519252ca08da4a2
+  [H] generic: errors >= 0, positive r_e/sigma0: n=540 {'CONSISTENT': 540} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [H] log Mdyn = log[1.8 r_e (v^2 + 3.36 sigma0^2)/G], v = (v/sigma0) sigma0 (non-limit rows): n=24 {'CONSISTENT': 23, 'LIMIT-SKIPPED': 17, 'ROUNDING-EDGE': 1} -> PASS
+        dex (C = 1% in mass); worst |diff|/tolerance 1.38 at 1077545
+        row: 1077545: printed 9.86 recomputed 9.81981 diff +0.0402 envelope 0.0248 (+C 0.00043) [ROUNDING-EDGE]
+  [S] sigma0-limit rows: printed log Mdyn against the formula evaluated at the limit (information): n=17 {'INFO': 17} -> PASS
+        row: 191250: sigma0 < 39.0, v/sigma0 13.9: printed logMdyn 10.8 - formula at the limit 11.49 = -0.69
+        row: 1000989: sigma0 < 39.0, v/sigma0 5.4: printed logMdyn 9.76 - formula at the limit 10.26 = -0.50
+        row: 1087148: sigma0 < 63.0, v/sigma0 2.4: printed logMdyn 9.82 - formula at the limit 10.20 = -0.38
+        row: 1015956: sigma0 < 32.0, v/sigma0 1.7: printed logMdyn 9.08 - formula at the limit 9.57 = -0.49
+        row: 1065488: sigma0 < 68.0, v/sigma0 2.1: printed logMdyn 9.94 - formula at the limit 10.22 = -0.28
+        row: 1090526: sigma0 < 86.0, v/sigma0 1.4: printed logMdyn 10.1 - formula at the limit 10.61 = -0.51
+        row: 1091580: sigma0 < 56.0, v/sigma0 1.0: printed logMdyn 9.45 - formula at the limit 9.70 = -0.25
+        row: 1086992: sigma0 < 28.0, v/sigma0 4.7: printed logMdyn 9.84 - formula at the limit 10.46 = -0.62
+        row: 1014130: sigma0 < 61.0, v/sigma0 1.9: printed logMdyn 9.78 - formula at the limit 10.16 = -0.38
+        row: 1082948: sigma0 < 22.0, v/sigma0 1.4: printed logMdyn 8.87 - formula at the limit 9.38 = -0.51
+        row: 1091153: sigma0 < 98.0, v/sigma0 1.4: printed logMdyn 10.3 - formula at the limit 10.60 = -0.30
+        row: 1079264: sigma0 < 32.0, v/sigma0 1.6: printed logMdyn 9.24 - formula at the limit 9.75 = -0.51
+        ... 5 more
+
+=== S16 Roman-Oliveira+23
+  sample data_assembly/arxiv_tables/romanoliveira2023_sample.csv sha256 985ef40cb89bff54
+  gasmasses data_assembly/arxiv_tables/romanoliveira2023_gasmasses.csv sha256 42701921add400ee
+  kinematics data_assembly/arxiv_tables/romanoliveira2023_kinematics.csv sha256 e344a4f21739ecf4
+  [H] Vmax/sigma = Vrot,max / sigma_mean: n=4 {'CONSISTENT': 3, 'ROUNDING-EDGE': 1} -> PASS
+        ; worst |diff|/tolerance 1.43 at SGP38326-2 Vmax/sigma
+        row: SGP38326-2 Vmax/sigma: printed 8.3 recomputed 8.5102 diff -0.21 envelope 0.147 (+C 0) [ROUNDING-EDGE]
+  [H] Vext/sigma_ext = Vrot,ext / sigma_ext: n=4 {'CONSISTENT': 4} -> PASS
+        ; worst |diff|/tolerance 0.59 at SGP38326-1 Vext/sigma_ext
+  [H] V_ext <= V_max: n=4 {'CONSISTENT': 4} -> PASS
+  [H] kinematics: errors >= 0: n=48 {'CONSISTENT': 48} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [H] kpc/arcsec = Planck18-like (67.7, 0.31) scale at z: n=5 {'CONSISTENT': 5} -> PASS
+        kpc/arcsec; worst |diff|/tolerance 0.19 at AzTEC 1
+
+=== S17 Lelli+23
+  data_assembly/arxiv_tables/lelli2023_massmodels.csv sha256 3ac5da0da08a3880
+  data_assembly/arxiv_tables/lelli2023_3dbarolo.csv sha256 6b4a0ded13db85e4
+  data_assembly/lelli2023_rotcur_digitised/lelli2023_rotcur_digitised.csv sha256 c67eadd84e7e2897
+  [H] M_bar = M_gas + M_disk + M_bul: n=6 {'CONSISTENT': 6} -> PASS
+        1e10 Msun; worst |diff|/tolerance 0.50 at zC-400569 / Baryons only
+  [H] M_bul/M_bar column = M_bul / M_bar: n=6 {'CONSISTENT': 6} -> PASS
+        ; worst |diff|/tolerance 0.61 at zC-488879 / Baryons only
+  [S] table mean V_rot vs mean of the digitised CO points (3% + rounding): n=2 {'CONSISTENT': 2} -> PASS
+        zC-400569: table $\langle V_{\rm rot} \rangle$ (\kms) = 254.0 vs mean digitised CO V = 253.7 over 9 points; zC-488879: table $\langle V_{\rm rot} \rangle$ (\kms) = 336.0 vs mean digitised CO V = 336.0 over 10 points
+
+=== S18 MUSE-DARK I numeric set (+ II/III tables)
+  file data_assembly/musedark_catalogues/musedark_numeric.csv sha256 e13be9ebca08fc72
+  [H] log_X + log Mvir = stored sum (repo-derived): n=126 {'CONSISTENT': 126} -> PASS
+        dex; worst |diff|/tolerance 0.00 at 32
+  [H] Re(kpc) from table = Re(arcsec) x kpc/arcsec: n=126 {'CONSISTENT': 126} -> PASS
+        kpc; worst |diff|/tolerance 0.93 at 929
+  [S] catalogue Re vs table Re: n=126 {'CONSISTENT': 126} -> PASS
+  [H] kpc/arcsec vs Planck15 at z (majority cosmology): n=126 {'CONSISTENT': 126} -> PASS
+        kpc/arcsec; worst |diff|/tolerance 0.00 at 918
+  [H] has_bulge iff log M_bulge is finite: n=126 {'CONSISTENT': 126} -> PASS
+  [H] generic: fDM in [0,1], inc in [0,90], errors >= 0: n=630 {'CONSISTENT': 629, 'PROBLEM': 1} -> PROBLEM
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+        row: 1035: incl_deg = 90.2 (outside [0,90])
+  known duplicated catalogue rows (build record duplicated_rows.json): {'DC14': 1} galaxies per model
+
+=== S19 ADF22.5 literature values (Umehata+25 / Huang+25 / ADF22-WEB)
+  file data_assembly/adf22_5_literature_2026-10-02/adf22_5_literature_values.csv sha256 3e6596df5bbdb484
+  [H] log M* and its errors from the linear value (4.4 +2.6/-2.5 e10): n=1 {'CONSISTENT': 1} -> PASS
+        recomputed 10.64345 +0.20165 -0.36470 vs stored 10.64345 +0.20165 -0.3647
+  [H] positions within 1 arcsec of the ALPAKA ID 24 table position: n=2 {'CONSISTENT': 2} -> PASS
+        position_huang25: separation from ALPAKA 24 0.04 arcsec; position_umehata25: separation from ALPAKA 24 0.06 arcsec
+  [H] z (Huang+25) vs ALPAKA 24: n=1 {'CONSISTENT': 1} -> PASS
+        |dz| = 0.0000
+  provenance: {'on disk (committed table)': 1, 'WebFetch summary': 22, 'arithmetic': 1}; values used in CFG284 that were read only through a page summariser: ['name_adf22_A', 'position_huang25', 'position_umehata25', 'redshift', 'Mstar', 'sed_method_huang25', 'sed_method_tsujita24', 'F444W_sersic_n', 'F444W_Re', 'F444W_axis_ratio', 'alma870_sersic_n', 'alma870_Re', 'alma870_axis_ratio', 'caveat_offset', 'alpaka_statement_ID24']
+  arXiv:2609.06679 PDF text layer (178860 chars): {'alpha_CO 3.6': True, 'M* 4.4e10 (as 10.64 dex or 4.4)': True, 'A7 named': True, 'CO(1-0)': True}
+
+=== S20 PKS 0529-549 (Lin+24, digitised)
+  file campaign_fresh_gravity/CFG275_pks0529_ci_rings/lin2024_rings_digitised.csv sha256 f26f9e4504b64bb1
+  [H] R_kpc / R_arcsec constant across rings (1e-3): n=20 {'CONSISTENT': 1} -> PASS
+        kpc/arcsec 8.2178..8.2219 (relative spread 5.0e-04)
+  z = 2.5725 (multitracer table); Planck18 kpc/arcsec 8.2124 vs digitised 8.2200
+  [S] V_c (constant sigma_v) >= V_rot ring by ring (1% digitisation): n=5 {'CONSISTENT': 5} -> PASS
+  [H] radii increasing and errors >= 0 per series: n=4 {'CONSISTENT': 4} -> PASS
+
+=== S21 GN20 (Ubler+24 / Boogaard+25) constants in CFG276
+  [H] each hard-coded CFG276 constant is in the lane script and in the source TeX: n=13 {'CONSISTENT': 13} -> PASS
+  [H] v_circ = sqrt(v_rot^2 + 3.36 sigma0^2) for the fiducial model: n=2 {'CONSISTENT': 2} -> PASS
+        fiducial: v_c(Re) vs v_rot 469, sigma0 89: printed/used 496.0 recomputed 496.6 [CONSISTENT]; i = 150 deg: sqrt(551^2 + 3.36 x 89^2) used as V_150: printed/used 574.6 recomputed 574.6 [CONSISTENT]
+
+=== S22 MIGHTEE (Varasteanu+26 table; Jarvis+25)
+  [H] CFG279's PAPER values each found in the TeX (independent search): n=7 {'CONSISTENT': 7} -> PASS
+        a0_all = 1.50 +- 0.05: found True; a0_mig = 1.54 +- 0.11: found True; a1_mig = -1.60 +- 2.33: found True; a0_anc = 1.15 +- 0.02: found True; a1_anc = 5.23 +- 1.05: found True; a1_btfr_mig = -8.1 +- 2.3: found True; a1_btfr_anc = -6.3 +- 0.9: found True
+  Jarvis+25 table data_assembly/mightee_hi_highz/mightee_hi_highz.csv sha256 0ffe3c087909ecd1
+  [H] Jarvis+25: W50c = W50 / sin i (C = 8%, the build's own statement): n=11 {'CONSISTENT': 11} -> PASS
+        km/s; worst |diff|/tolerance 0.10 at 1
+
+=== CHECK 2: CROSS-SURVEY OVERLAPS
+  RC100 vs Price+21: 205 comparisons {'AGREE': 200, 'TENSION': 4, 'DISAGREE': 1}
+      TENSION: EGS3_10098 sigma0: 29.0 vs 61.79 (pull -2.62) RC100 = mean of methods A, B, C; Price = method B MAP
+      TENSION: COS3_22796 sigma0: 25.0 vs 11.0 (pull +2.21) RC100 = mean of methods A, B, C; Price = method B MAP
+      TENSION: D3a_6397 sigma0: 60.0 vs 82.52 (pull -2.48) RC100 = mean of methods A, B, C; Price = method B MAP
+      DISAGREE: zC_407302 sigma0: 43.0 vs 63.62 (pull -3.57) RC100 = mean of methods A, B, C; Price = method B MAP
+      TENSION: zC_407302 f_DM(R_e): 0.4 vs 0.61 (pull -2.21) RC100 = mean of methods A, B, C; Price = method B MAP
+  RC100 vs KMOS3D release: 50 comparisons {'TENSION': 1, 'AGREE': 48, 'DISAGREE': 1}
+      TENSION: U4 38210 z: 0.61 vs 0.60221 (dv 1454 km/s) RC100 2 decimals
+      DISAGREE [PROBLEM: same definition]: U3 10584 z: 2.22 vs 2.24554 (dv 2368 km/s) RC100 2 decimals
+  Price+21 vs KMOS3D release: 10 comparisons {'NO-ERRORS': 10}
+  FS+18 vs FS+09: 51 comparisons {'AGREE': 51}
+  FS+18 vs Tacconi+13: 17 comparisons {'AGREE': 14, 'DISAGREE': 1, 'TENSION': 2}
+      DISAGREE: Q1623-BX599 position:  vs  (diff +1.34) optical vs CO/optical position (arcsec)
+      TENSION: Q2346-BX482 z: 2.2571 vs 2.264 (dv 634 km/s) Halpha vs CO
+      TENSION: Q2346-BX482 log M*: 10.264817823009537 vs 9.778151250383644 (pull +2.04) Tacconi+13: +-30% systematic
+  FS+18 vs RC100: 72 comparisons {'AGREE': 63, 'TENSION': 7, 'DISAGREE': 2}
+      TENSION: K20-ID6 sigma0: 29.0 vs 62.0 (pull -2.54) direct estimate vs forward model
+      DISAGREE: K20-ID6 R_e: 3.9 vs 5.19 (pull -4.30) light R_e vs disc R_e of the mass model
+      TENSION: ZC400528 sigma0: 28.0 vs 74.0 (pull -2.42) direct estimate vs forward model
+      TENSION: ZC400569 R_e: 7.4 vs 4.31 (pull +2.21) light R_e vs disc R_e of the mass model
+      DISAGREE: ZC400569 V_c (eq.1, no radius) vs V_c(R_e): 321.0 vs 241.0 (pull +4.32) different radius definitions
+      TENSION: ZC403741 sigma0: 36.0 vs 66.0 (pull -2.40) direct estimate vs forward model
+      TENSION: ZC403741 R_e: 2.2 vs 3.01 (pull -2.31) light R_e vs disc R_e of the mass model
+      TENSION: ZC405501 V_c (eq.1, no radius) vs V_c(R_e): 139.0 vs 89.0 (pull +2.22) different radius definitions
+      TENSION: ZC412369 z: 2.0281 vs 2.02 (dv 803 km/s) RC100 2 decimals
+  FS+18 vs Price+21: 13 comparisons {'AGREE': 13}
+  FS+18 vs KMOS3D release (1" match): 10 comparisons {'AGREE': 10}
+  Lelli+23 vs FS+18: 1 comparisons {'DISAGREE': 1}
+      DISAGREE: zC-400569 <V_rot> (CO) vs V_c (Halpha, eq.1): 254.0 vs 321.0 (pull -3.62) different tracers and definitions
+  Lelli+23 vs RC100: 3 comparisons {'NO-ERRORS': 3}
+  Lelli+23 vs Price+21: 1 comparisons {'TENSION': 1}
+      TENSION: zC-400569 log M_bar (Baryons+NFW) vs Price log M_bar: 10.838849090737256 vs 10.98 (pull -2.17) different mass models
+  ALPAKA 14 vs FS+18: 2 comparisons {'AGREE': 2}
+  ALPAKA 14 vs FS+09: 1 comparisons {'AGREE': 1}
+  ALPAKA 14 vs Tacconi+13: 1 comparisons {'AGREE': 1}
+  ALPAKA 14 vs RC100: 1 comparisons {'AGREE': 1}
+  ALPAKA I vs arXiv:2601.03338: 12 comparisons {'AGREE': 12}
+  CRISTAL vs Jones+21: 18 comparisons {'AGREE': 18}
+  CRISTAL vs ALPINE corpus: 18 comparisons {'NO-ERRORS': 18}
+  sigma-M* compilation (Parlanti row) vs Jones+21: 2 comparisons {'TENSION': 2}
+      TENSION: HZ9 z: 5.529 vs 5.5413 (dv 564 km/s) both should be [CII] systemic redshifts
+      TENSION: HZ4 z: 5.534 vs 5.5446 (dv 486 km/s) both should be [CII] systemic redshifts
+  sigma-M* compilation (Parlanti row) vs ALPINE corpus: 4 comparisons {'AGREE': 3, 'DISAGREE': 1}
+      DISAGREE: HZ4 sigma0 vs ring-mean sigma: 66.0 vs 49.11 (pull +5.63) Method-II sigma0 vs 3DBarolo ring mean
+  sigma-M* compilation (Parlanti row) vs CRISTAL: 2 comparisons {'TENSION': 2}
+      TENSION: HZ4 = CRISTAL-20 z: 5.534 vs 5.545 (dv 504 km/s) both [CII]
+      TENSION: HZ7 = CRISTAL-21 z: 5.245 vs 5.255 (dv 480 km/s) both [CII]
+  Jones+21 rings (outer) vs Roman-Oliveira+23: 1 comparisons {'AGREE': 1}
+  Jones+21 rings (mean) vs Roman-Oliveira+23: 1 comparisons {'AGREE': 1}
+  ALPINE corpus vs Roman-Oliveira+23: 1 comparisons {'AGREE': 1}
+  sigma-M* compilation vs Danhaive gold: 42 comparisons {'NO-ERRORS': 28, 'AGREE': 14}
+  SPARC vs LVD: 2 comparisons {'AGREE': 2}
+      CRISTAL vs corpus |d log M*| > 0.3: CRISTAL-25 = VC5101218326: 10.9 vs 10.4 (+0.50 dex)
+  RC100 row 80 'U3 10584' (z 2.22, log Mbar 10.61; the page prints log M* 10.5) vs KMOS3D release U3_10584: Z 2.24554, LMSTAR 8.99, ID_SKELTON 99999 (no 3D-HST match): identity UNRESOLVED (RC100 requires log M* > 9.5)
+  Price+21 vs KMOS3D release (no errors): 10 differences, median +0.000, max |d| 0.020
+  Lelli+23 vs RC100 (no errors): 3 differences, median +0.059, max |d| 0.157
+  CRISTAL vs ALPINE corpus (no errors): 18 differences, median +0.000, max |d| 0.500
+  sigma-M* compilation vs Danhaive gold (no errors): 28 differences, median +0.000, max |d| 0.000
+
+=== CHECK 3: VERSIONS AND ERRATA (page-read record versions_errata_pagereads.json + on-disk facts)
+  CITATION ERROR in the repo record: 1: 2411.07424 Pace LVD
+  PUBLISHED-DIFFERS: 2: 2312.08959 Amvrosiadis+25; 2503.21863 Danhaive+25
+  SAME: 27: 2109.02659 RC41, Price+21; 2006.03046 RC41, Genzel+20; 1909.11096 KMOS3D release, Wisnioski+19; 0903.1872 SINS, FS+09; 1211.5743 PHIBSS, Tacconi+13; 2507.11600 ALMA-CRISTAL kinematics, Lee+25; 2505.06340 ALMA-CRISTAL overview; 2104.03099 ALPINE kinematics, Jones+21; 2303.16227 ALPAKA I, Rizzo+23; 2601.03338 ALPAKA JWST decompositions, Roman-Oliveira+26; 2302.03049 Roman-Oliveira+23; 2304.00036 Parlanti+23; 2506.19721 MUSE-DARK I; 2603.28856 MUSE-DARK II; 2604.22613 MUSE-DARK III; 2302.00030 Lelli+23; 2503.23372 Huang+25 (ADF22+); 2411.08958 Lin+24 PKS 0529-549; 2403.03192 Ubler+24 GN20; 2510.17804 Boogaard+25 GN20; 2106.11677 Brouwer+21 KiDS-1000 RAR; 2608.03576 Varasteanu+26 MIGHTEE-HI/LADUMA; 2506.11935 Jarvis+25 MIGHTEE-HI z>0.25; 1606.09251 SPARC, Lelli+16; 2005.09661 Neeleman+20 J0817; 2302.07272 Tsukui+23 BRI1335; 2609.30375 TRICEPS I (Lelli+26)
+  UNVERIFIED: 4: 2209.12199 RC100, Nestor Shachar+23; 1802.07276 SINS/zC-SINF AO, FS+18; 2502.01868 Umehata+25 (ADF22-WEB I); 2305.04382 Puglisi+23 KURVS-CDFS
+  on disk: 1: 2609.06679 ADF22-WEB 2026 (CO gas)
+  registered errata or corrigenda: none
+  ALPAKA tarball: the compile (.fls) read ['alpaka_v2.tex', 'shortcut.tex']
+  ALPAKA tab:mstar: alpaka_v2.tex (used) vs aanda.tex: 202 of 386 numeric components differ ['ID 1 cell 5 v: v2 0.8 vs aanda.tex 0.32', 'ID 1 cell 5 p: v2 0.2 vs aanda.tex 0.07', 'ID 1 cell 5 m: v2 0.2 vs aanda.tex 0.07']
+  ALPAKA tab:mstar: alpaka_v2.tex (used) vs aanda2.tex: 205 of 389 numeric components differ ['ID 1 cell 5 v: v2 0.8 vs aanda2.tex 0.32', 'ID 1 cell 5 p: v2 0.2 vs aanda2.tex 0.07', 'ID 1 cell 5 m: v2 0.2 vs aanda2.tex 0.07']
+  ALPAKA tab:PA: alpaka_v2.tex (used) vs aanda.tex: 37 of 326 numeric components differ ['ID 4 cell 2 v: v2 37.0 vs aanda.tex 36.0', 'ID 4 cell 5 v: v2 175.0 vs aanda.tex 158.0', 'ID 4 cell 5 p: v2 16.0 vs aanda.tex 10.0']
+  ALPAKA tab:PA: alpaka_v2.tex (used) vs aanda2.tex: 0 of 418 numeric components differ []
+  ALPAKA tab:vsigma: alpaka_v2.tex (used) vs aanda.tex: 79 of 283 numeric components differ ['ID 1 cell 2 p: v2 3.0 vs aanda.tex 4.0', 'ID 1 cell 2 m: v2 2.0 vs aanda.tex 4.0', 'ID 1 cell 4 p: v2 2.0 vs aanda.tex 5.0']
+  ALPAKA tab:vsigma: alpaka_v2.tex (used) vs aanda2.tex: 0 of 339 numeric components differ []
+
+=== CHECK 4: TRANSCRIPTION (seed 287; frozen table order)
+  [T] S04 RC100 Table 3 (PDF page images, visual): seed rows [1, 5, 7, 56, 59, 68, 70, 79, 80, 85] + targeted row 83; 77 cells; paper-values file mismatches 0; original CSV mismatches 0
+  [T] S06 Price+21 Tables 1+3 (HTML): CSV rows 41, matched to source 41; mapped columns 25, unmapped 0; sample 103 cells, 0 fail; full scan 1025 cells, 0 mismatch -> PASS
+  [T] S07 FS+18 sins_ao_table1_sample.csv (HTML S2.T1.2): CSV rows 38, matched to source 38; mapped columns 10, unmapped 0; sample 30 cells, 0 fail; full scan 294 cells, 0 mismatch -> PASS
+        DROPPED: Q2346-BX482 / K_AB: CSV empty, source prints 22.34
+  [T] S07 FS+18 sins_ao_table5_sizes.csv (HTML S5.T5.2): CSV rows 38, matched to source 38; mapped columns 30, unmapped 0; sample 109 cells, 0 fail; full scan 1090 cells, 0 mismatch -> PASS
+  [T] S07 FS+18 sins_ao_table6_kinematics.csv (HTML S6.T6.2): CSV rows 38, matched to source 38; mapped columns 31, unmapped 0; sample 115 cells, 0 fail; full scan 1143 cells, 0 mismatch -> PASS
+  [T] S10 CRISTAL cristal2025_sample.csv (TeX tab:main_table): CSV rows 32, matched to source 32; mapped columns 6, unmapped 0; sample 19 cells, 0 fail; full scan 184 cells, 0 mismatch -> PASS
+  [T] S10 CRISTAL cristal2025_kinematics.csv (TeX tab:kins_props): CSV rows 34, matched to source 34; mapped columns 10, unmapped 0; sample 29 cells, 0 fail; full scan 285 cells, 0 mismatch -> PASS
+  [T] S10 CRISTAL cristal2025_dynamics.csv (TeX tab:dysmalpy_results): CSV rows 14, matched to source 14; mapped columns 21, unmapped 0; sample 28 cells, 0 fail; full scan 272 cells, 0 mismatch -> PASS
+  [T] S11 Jones+21 Table 1 (HTML S3.T1.6): CSV rows 30, matched to source 30; mapped columns 12, unmapped 0; sample 36 cells, 0 fail; full scan 358 cells, 0 mismatch -> PASS
+  [T] S11 Jones+21 rings (HTML A3.T2.4): CSV rows 18, matched to source 18; mapped columns 7, unmapped 0; sample 13 cells, 0 fail; full scan 126 cells, 0 mismatch -> PASS
+  [T] S13 ALPAKA alpaka1_sample.csv (TeX tab:tab1): CSV rows 28, matched to source 28; mapped columns 3, unmapped 0; sample 9 cells, 0 fail; full scan 84 cells, 0 mismatch -> PASS
+  [T] S13 ALPAKA alpaka1_alma_obs.csv (TeX tab:tab2): CSV rows 28, matched to source 28; mapped columns 4, unmapped 1; sample 12 cells, 0 fail; full scan 112 cells, 0 mismatch -> PASS
+        unmapped (derived/converted, excluded): ['beam_minor_arcsec']
+  [T] S13 ALPAKA alpaka1_properties.csv (TeX tab:mstar): CSV rows 28, matched to source 28; mapped columns 13, unmapped 0; sample 35 cells, 0 fail; full scan 342 cells, 3 mismatch -> PASS
+        full-scan mismatch: 23 / lambda_rest_eff_A = 1.0: source cell 9 has no 'v' component
+        full-scan mismatch: 24 / lambda_rest_eff_A = 3.0: source cell 9 has no 'v' component
+        full-scan mismatch: 25 / lambda_rest_eff_A = 2.0: source cell 9 has no 'v' component
+  [T] S13 ALPAKA alpaka1_geometry.csv (TeX tab:PA): CSV rows 28, matched to source 28; mapped columns 15, unmapped 0; sample 39 cells, 0 fail; full scan 390 cells, 0 mismatch -> PASS
+  [T] S13 ALPAKA alpaka1_kinematics.csv (TeX tab:vsigma): CSV rows 19, matched to source 19; mapped columns 18, unmapped 0; sample 32 cells, 0 fail; full scan 320 cells, 0 mismatch -> PASS
+  [T] S13 arXiv:2601.03338 alpaka_jwst2026_data.csv (TeX tab:data): CSV rows 3, matched to source 3; mapped columns 10, unmapped 0; sample 5 cells, 0 fail; full scan 30 cells, 0 mismatch -> PASS
+  [T] S13 arXiv:2601.03338 alpaka_jwst2026_fiducial_fit.csv (TeX tab:fid): CSV rows 3, matched to source 3; mapped columns 18, unmapped 0; sample 6 cells, 0 fail; full scan 54 cells, 0 mismatch -> PASS
+  [T] S14 Amvrosiadis amvrosiadis_parent.csv (TeX tab:properties): CSV rows 30, matched to source 30; mapped columns 10, unmapped 0; sample 30 cells, 0 fail; full scan 300 cells, 0 mismatch -> PASS
+  [T] S14 Amvrosiadis amvrosiadis_bestfit.csv (TeX tab:table1): CSV rows 12, matched to source 12; mapped columns 21, unmapped 0; sample 26 cells, 0 fail; full scan 251 cells, 0 mismatch -> PASS
+        DROPPED: 049.1 / theta_deg_errhi: CSV empty, source prints 5
+  [T] S15 Danhaive gold (TeX tab:results-gold): CSV rows 41, matched to source 41; mapped columns 19, unmapped 0; sample 75 cells, 0 fail; full scan 745 cells, 0 mismatch -> PASS
+  [T] S16 Roman-Oliveira romanoliveira2023_sample.csv (TeX tab:data): CSV rows 5, matched to source 5; mapped columns 9, unmapped 1; sample 5 cells, 0 fail; full scan 45 cells, 0 mismatch -> PASS
+        unmapped (derived/converted, excluded): ['beam_minor_arcsec']
+  [T] S16 Roman-Oliveira romanoliveira2023_gasmasses.csv (TeX tab:masses): CSV rows 5, matched to source 5; mapped columns 6, unmapped 0; sample 5 cells, 0 fail; full scan 23 cells, 0 mismatch -> PASS
+  [T] S16 Roman-Oliveira romanoliveira2023_kinematics.csv (TeX tab:vel): CSV rows 4, matched to source 4; mapped columns 18, unmapped 0; sample 8 cells, 0 fail; full scan 72 cells, 0 mismatch -> PASS
+  [T] S17 Lelli+23 mass models (TeX tab:mass): CSV rows 6, matched to source 6; mapped columns 22, unmapped 0; sample 11 cells, 0 fail; full scan 107 cells, 0 mismatch -> PASS
+        DROPPED: zC-400569|Baryons only / Mdisk_1e10_errhi: CSV empty, source prints 2.3
+  [T] S18 MUSE-DARK II Table 3 (TeX tab:TFR_fits): CSV rows 6, matched to source 6; mapped columns 9, unmapped 0; sample 5 cells, 0 fail; full scan 44 cells, 0 mismatch -> PASS
+  [T] S22 Jarvis+25 Tables 2+3 (HTML): CSV rows 12, matched to source 12; mapped columns 23, unmapped 1; sample 27 cells, 0 fail; full scan 268 cells, 0 mismatch -> PASS
+        unmapped (derived/converted, excluded): ['logMHI_err_syst']
+  [T] S05 KMOS3D catalogue vs FITS (machine read): 26276 cells, sample 2628, 0 fail
+  [T] S08 FS+09 vs CDS .dat (machine read): 988 cells, sample 99, 0 fail; full scan mismatches 0
+  [T] S09 Tacconi+13 vs CDS .dat (machine read): 869 cells, sample 87, 0 fail; full scan mismatches 0
+  raw_small TeX fragments verbatim in the original TeX: 23 yes, 0 no []
+
+=== CHECK 5: IMPACT ARITHMETIC (no lane is re-run)
+  LVD x CFG28: 31 UFD rows; 3 with |log rhalf_sph - log(rhalf sqrt(1-e))| > 0.01 dex: [('Carina III', -0.014), ('Leo V', -0.018), ('Leo VI', -0.018)]
+    sigma_pred depends on r at most as r^-1/2 (Newtonian limit; ~r^0 deep-MOND): median-offset shift <= 0.5 x 0.018 = 0.009 dex; CFG28 KM median 0.325 +- 0.038 (floor 0.077) -> worst case 3.67 sigma instead of 3.77
+  RC100 original CSV readers (git grep): 33 files; median Vc^4/(G Mbar) shift +0.0431 dex
+  CFG52/CFG90 z >= 1.5, g_bar < a0 pool (CFG90 per-object values): N 14; RC100 rows with a corrected M_bar inside it: [('K20 ID9', 1.5)] (y with the paper M_bar); weighted Df/Dr +0.099/-0.070 -> +0.068/-0.099 (N 13); shift -0.030/-0.029 dex vs the pool's correlated sigma 0.136
+  GS4 01529 (excluded after seeing it in CFG52; CFG90 calls it 'mutually inconsistent'): logM 9.63 in the original CSV is the paper's log M_bulge; the paper's log M_baryon is 11.33 (+1.70 dex): y_can 0.20 -> 9.8, i.e. not a g_bar < a0 object
+
+=== SUMMARY
+  hard-check PROBLEM entries (frozen rules): 10
+    S01 SPARC (Lelli+16) :: SBeff = L[3.6] / (2 pi Reff^2) (52 rows)
+    S02 LVD (Pace) :: rhalf_physical = distance x rhalf(arcmin) (14 rows)
+    S02 LVD (Pace) :: rhalf_sph_physical = rhalf_physical sqrt(1 - e) (23 rows)
+    S02 LVD (Pace) :: mass_dynamical_wolf = log10(930 sigma^2 rhalf_sph_physical) (9 rows)
+    S04 RC100 (Nestor Shachar+23) :: POST-HOC: V_rot(R_e)^2 = Vc^2 - 3.36 sigma0^2 > 0 (the paper's eq. 8 at R_e) (2 rows)
+    S05 KMOS3D release (Wisnioski+19) :: 0 < Q <= 1, errors >= 0, FILE begins with ID (sentinels -99/-1 excluded) (49 rows)
+    S09 PHIBSS (Tacconi+13) :: M_mol = 4.36 x 2 x L'CO(3-2) (ReadMe note 5) (12 rows)
+    S09 PHIBSS (Tacconi+13) :: f_gas (quoted) = M_mol / (M_mol + M*) (4 rows)
+    S09 PHIBSS (Tacconi+13) :: L'CO(3-2) = 3.25e7 S dV nu_obs^-2 D_L^2 (1+z)^-3 (H0 70, Om 0.3) (1 rows)
+    S18 MUSE-DARK I numeric set (+ II/III tables) :: generic: fDM in [0,1], inc in [0,90], errors >= 0 (1 rows)
+  soft FLAG entries: 12
+    S01 SPARC (Lelli+16) :: MRT data rows follow the header's byte-by-byte layout (bytes 1-113) (1)
+    S01 SPARC (Lelli+16) :: L_disk = 2 pi SBdisk Rdisk^2 vs L[3.6] (0.2..1.5) (104)
+    S04 RC100 (Nestor Shachar+23) :: paper values: implied baryon coefficient k = (1-fDM) Vc^2 Re/(G Mbar) outliers (> 0.5 dex) (1)
+    S04 RC100 (Nestor Shachar+23) :: original CSV: the same k test (shows which uncorrected rows stand out) (3)
+    S04 RC100 (Nestor Shachar+23) :: POST-HOC: V_rot(R_e)/sigma0 >= 2.3 (the selection cut, if applied at R_e) (14)
+    S06 RC41 (Price+21) :: log Mbar(1D) vs log(M*_SED + Mgas) (0.5 dex) (3)
+    S07 SINS/zC-SINF AO (FS+18) :: C_PSF = Vrot sin i / (dv_obs/2) in [1,2] (1)
+    S08 SINS (FS+09) :: Mdyn G/(V^2 r1/2) coefficient, method 'Kinematic modeling' (0.1 dex from the median) (8)
+    S08 SINS (FS+09) :: Mdyn G/(V^2 r1/2) coefficient, method 'Velocity gradient+width' (0.1 dex from the median) (7)
+    S10 ALMA-CRISTAL (Lee+25) :: dynamics: value - lower error < 0 or asymmetric > 10x (2)
+    S11 ALPINE (Jones+21) + corpus copy :: Table 1 parse: KC1 and class_L20 are distinct columns (1)
+    S14 Amvrosiadis+25 (arXiv v1) :: baryons (M* + M_gas, parent table) vs Mdyn(10 kpc) (4)
+  cross-survey same-definition DISAGREE: 2
+    RC100 vs KMOS3D release :: U3 10584 z (RC100 2 decimals)
+    RC100 vs KMOS3D release :: U3 10584 log M* (RC100 page 10.5) vs LMSTAR (name match only; KMOS3D row has no 3D-HST counterpart (ID_SKELTON 99999); z 2.22 vs 2.2455; identity unresolved)
+  transcription sample results: S04 RC100: PASS, S06 Price+21: PASS, S07 FS+18 sins_ao_table1_sample.csv: PASS, S07 FS+18 sins_ao_table5_sizes.csv: PASS, S07 FS+18 sins_ao_table6_kinematics.csv: PASS, S10 CRISTAL cristal2025_sample.csv: PASS, S10 CRISTAL cristal2025_kinematics.csv: PASS, S10 CRISTAL cristal2025_dynamics.csv: PASS, S11 Jones Table 1: PASS, S11 Jones rings: PASS, S13 ALPAKA alpaka1_sample.csv: PASS, S13 ALPAKA alpaka1_alma_obs.csv: PASS, S13 ALPAKA alpaka1_properties.csv: PASS, S13 ALPAKA alpaka1_geometry.csv: PASS, S13 ALPAKA alpaka1_kinematics.csv: PASS, S13 alpaka_jwst2026_data.csv: PASS, S13 alpaka_jwst2026_fiducial_fit.csv: PASS, S14 Amvrosiadis amvrosiadis_parent.csv: PASS, S14 Amvrosiadis amvrosiadis_bestfit.csv: PASS, S15 Danhaive: PASS, S16 RO23 romanoliveira2023_sample.csv: PASS, S16 RO23 romanoliveira2023_gasmasses.csv: PASS, S16 RO23 romanoliveira2023_kinematics.csv: PASS, S17 Lelli mass models: PASS, S18 MUSE-DARK II Table 3: PASS, S22 Jarvis+25: PASS, S05 KMOS3D FITS: PASS, S08 FS+09 CDS: PASS, S09 Tacconi13 CDS: PASS
+  full-scan mismatches outside the sample: {'S13 ALPAKA alpaka1_properties.csv': 3}
+  dropped cells: {'S07 FS+18 sins_ao_table1_sample.csv': ['Q2346-BX482 / K_AB: CSV empty, source prints 22.34'], 'S14 Amvrosiadis amvrosiadis_bestfit.csv': ['049.1 / theta_deg_errhi: CSV empty, source prints 5'], 'S17 Lelli mass models': ['zC-400569|Baryons only / Mdisk_1e10_errhi: CSV empty, source prints 2.3']}

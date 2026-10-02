@@ -1,0 +1,73 @@
+CFG287 integrity audit of the published tables behind the a0 lanes
+criteria FROZEN_CRITERIA.md sha256 3cc1d8df01bd601b7efb82e89f5b2ae68a55cf12dd2c261a194a37cb192eea77; seed 287; MUTATE=1
+kappa = 1/2 FITTED. Data audit only: no lane is re-run, no verdict word is applied to a law.
+
+=== MUTATE: three planted errors in a copy of FS+18 Table 6
+  wrote campaign_fresh_gravity/CFG287_source_table_integrity/CFG287_MUTATE_sins_ao_table6.csv; planted cells that differ from the original: 7
+    Deep3a-6397 / Vc_kms: 367.0 -> 376.0
+    Deep3a-15504 / Vc_kms: 327.0 -> 367.0
+    K20-ID6 / Vc_kms: 242.0 -> 327.0
+    K20-ID7 / Vc_kms: 270.0 -> 242.0
+    GMASS-2303 / Vc_kms: 146.0 -> 270.0
+    ZC400569N / Mdyn_1e10Msun: 46.0 -> 460.0
+    ZC405501 / Vrot_kms: 101.0 -> -101.0
+
+=== MUTATE baseline (unmutated copy)
+  table 6 data_assembly/highz_literature_tables/sins_ao/sins_ao_table6_kinematics.csv sha256 7f3da7ed8c857848  [MUTATED COPY IN USE]
+  [H] Vc = sqrt(Vrot^2 + 3.36 sigma0^2) (eq. 1): n=38 {'CONSISTENT': 38} -> PASS
+        km/s; worst |diff|/tolerance 0.74 at ZC400528
+  [H] Mdyn = 2 Re Vc^2 / G (eq. 2): n=38 {'CONSISTENT': 38} -> PASS
+        1e10 Msun; worst |diff|/tolerance 0.60 at Q1623-BX455
+  [H] Vrot/sigma0 column = Vrot / sigma0: n=38 {'CONSISTENT': 38} -> PASS
+        ; worst |diff|/tolerance 0.88 at ZC407376
+  [H] table 6 generic: errors >= 0, positive Re/V/sigma/Vc/Mdyn, sin i in [0,1]: n=1026 {'CONSISTENT': 1026} -> PASS
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+  [S] C_PSF = Vrot sin i / (dv_obs/2) in [1,2]: n=38 {'CONSISTENT': 37, 'FLAG': 1} -> FLAG
+        beam-smearing correction implied by the table
+        row: ZC404221: C_PSF = Vrot sin i / (dv/2) = 2.05
+
+=== MUTATE (mutated copy)
+  table 6 data_assembly/highz_literature_tables/sins_ao/sins_ao_table6_kinematics.csv sha256 7f3da7ed8c857848  [MUTATED COPY IN USE]
+  [H] Vc = sqrt(Vrot^2 + 3.36 sigma0^2) (eq. 1): n=38 {'CONSISTENT': 33, 'PROBLEM': 5} -> PROBLEM
+        km/s; worst |diff|/tolerance 88.66 at GMASS-2303
+        row: Deep3a-6397: printed 376 recomputed 367.283 diff +8.72 envelope 1.25 (+C 0) [PROBLEM]
+        row: Deep3a-15504: printed 367 recomputed 326.13 diff +40.9 envelope 1.29 (+C 0) [PROBLEM]
+        row: K20-ID6: printed 327 recomputed 241.913 diff +85.1 envelope 1.19 (+C 0) [PROBLEM]
+        row: K20-ID7: printed 242 recomputed 269.413 diff -27.4 envelope 1.28 (+C 0) [PROBLEM]
+        row: GMASS-2303: printed 270 recomputed 146.646 diff +123 envelope 1.39 (+C 0) [PROBLEM]
+  [H] Mdyn = 2 Re Vc^2 / G (eq. 2): n=38 {'CONSISTENT': 32, 'ROUNDING-EDGE': 2, 'PROBLEM': 4} -> PROBLEM
+        1e10 Msun; worst |diff|/tolerance 295.63 at ZC400569N
+        row: Deep3a-6397: printed 37 recomputed 38.7868 diff -1.79 envelope 0.932 (+C 0.01) [ROUNDING-EDGE]
+        row: Deep3a-15504: printed 30 recomputed 37.5785 diff -7.58 envelope 3.73 (+C 0.01) [ROUNDING-EDGE]
+        row: K20-ID6: printed 11 recomputed 19.3917 diff -8.39 envelope 0.808 (+C 0.01) [PROBLEM]
+        row: K20-ID7: printed 28 recomputed 22.8752 diff +5.12 envelope 0.731 (+C 0.01) [PROBLEM]
+        row: GMASS-2303: printed 1.6 recomputed 5.4238 diff -3.82 envelope 0.24 (+C 0.01) [PROBLEM]
+        row: ZC400569N: printed 460 recomputed 45.6878 diff +414 envelope 0.945 (+C 0.01) [PROBLEM]
+  [H] Vrot/sigma0 column = Vrot / sigma0: n=38 {'CONSISTENT': 37, 'PROBLEM': 1} -> PROBLEM
+        ; worst |diff|/tolerance 49.08 at ZC405501
+        row: ZC405501: printed 1.9 recomputed -1.94231 diff +3.84 envelope 0.0783 (+C 0) [PROBLEM]
+  [H] table 6 generic: errors >= 0, positive Re/V/sigma/Vc/Mdyn, sin i in [0,1]: n=1026 {'CONSISTENT': 1025, 'PROBLEM': 1} -> PROBLEM
+        errors >= 0; positive-definite > 0; fractions in [0,1]; inclinations in [0,90] (cells tested)
+        row: ZC405501: Vrot_kms = -101.0 (not > 0)
+  [S] C_PSF = Vrot sin i / (dv_obs/2) in [1,2]: n=38 {'CONSISTENT': 36, 'FLAG': 2} -> FLAG
+        beam-smearing correction implied by the table
+        row: ZC404221: C_PSF = Vrot sin i / (dv/2) = 2.05
+        row: ZC405501: C_PSF = Vrot sin i / (dv/2) = -1.15
+  [T] MUTATE copy vs the FS+18 HTML (all cells): CSV rows 38, matched to source 38; mapped columns 31, unmapped 0; sample 0 cells, 0 fail; full scan 1143 cells, 7 mismatch -> PASS
+        full-scan mismatch: Deep3a-6397 / Vc_kms = 376.0 vs source 367
+        full-scan mismatch: Deep3a-15504 / Vc_kms = 367.0 vs source 327
+        full-scan mismatch: K20-ID6 / Vc_kms = 327.0 vs source 242
+        full-scan mismatch: K20-ID7 / Vc_kms = 242.0 vs source 270
+        full-scan mismatch: GMASS-2303 / Vc_kms = 270.0 vs source 146
+        full-scan mismatch: ZC400569N / Mdyn_1e10Msun = 460.0 vs source 46
+        full-scan mismatch: ZC405501 / Vrot_kms = -101.0 vs source 101
+  M1 shifted Vc rows ['Deep3a-15504', 'Deep3a-6397', 'GMASS-2303', 'K20-ID6', 'K20-ID7']: eq.1 flags ['Deep3a-15504', 'Deep3a-6397', 'GMASS-2303', 'K20-ID6', 'K20-ID7'] -> PASS
+  M2 unit slip ['ZC400569N']: eq.2 flags ['ZC400569N'] -> PASS
+  M3 sign flip ['ZC405501']: positivity ['ZC405501'], Vrot/sigma0 ['ZC405501'] -> PASS
+  newly flagged rows ['Deep3a-15504', 'Deep3a-6397', 'GMASS-2303', 'K20-ID6', 'K20-ID7', 'ZC400569N', 'ZC405501'] all inside the planted rows: True
+  transcription (all cells) flags exactly the planted cells: True (7 flagged, 7 planted)
+  cross-survey (reported only): Deep3a-6397: RC100 V_c(R_e) 225 vs mutated FS+18 Vc 376.0 (original 367.0)
+  cross-survey (reported only): Deep3a-15504: RC100 V_c(R_e) 234 vs mutated FS+18 Vc 367.0 (original 327.0)
+  cross-survey (reported only): K20-ID6: RC100 V_c(R_e) 154 vs mutated FS+18 Vc 327.0 (original 242.0)
+  cross-survey (reported only): K20-ID7: RC100 V_c(R_e) 282 vs mutated FS+18 Vc 242.0 (original 270.0)
+  MUTATE overall: PASS
