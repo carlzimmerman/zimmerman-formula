@@ -1,0 +1,23 @@
+CFG286 POST-HOC (labelled; written after the main and MUTATE runs; no verdict depends on it): WHY IS THE STRIPPING INERT?
+
+Reads the committed main-run table cfg286_pericentres.csv (r_t, M_c per satellite) and reports, per population and footing, the fraction of
+each satellite's collapse-debris mass that the frozen rule removes (1 - M_NFW(<r_t) / M_c, with r_t capped at R_200) beside the fraction
+of the debris inside the estimator radius r_ev, M_NFW(<r_ev) / M_c.  The NFW helper is h48's committed nfw_enclosed (exec'd through
+CFG45's prefix, read-only).  Satellites with f_ex = 0 carry no debris and are listed separately.
+
+  --- canonical ---
+    ufd     n=31: debris removed by stripping, median 81.8% (range 0.0%-99.3%); debris inside r_ev, median 0.12% of M_c
+    ufd_ul  n= 9: debris removed by stripping, median 87.0% (range 55.6%-100.0%); debris inside r_ev, median 0.03% of M_c
+    cls     n=14: debris removed by stripping, median 76.8% (range 53.0%-90.3%); debris inside r_ev, median 0.42% of M_c; f_ex = 0 (no debris): Fornax, LMC, Sagittarius, SMC
+    m31     n=34: debris removed by stripping, median 66.1% (range 27.4%-92.7%); debris inside r_ev, median 0.54% of M_c; f_ex = 0 (no debris): Andromeda VII, Andromeda X, M 32, NGC 147, NGC 185, NGC 205
+    col     n=14: debris removed by stripping, median 67.2% (range 27.3%-90.8%); debris inside r_ev, median 0.99% of M_c; f_ex = 0 (no debris): And XI, And XXVI
+
+  --- alt ---
+    ufd     n=31: debris removed by stripping, median 83.2% (range 0.0%-99.4%); debris inside r_ev, median 0.12% of M_c
+    ufd_ul  n= 9: debris removed by stripping, median 88.2% (range 56.8%-100.0%); debris inside r_ev, median 0.03% of M_c
+    cls     n=14: debris removed by stripping, median 79.0% (range 54.5%-87.2%); debris inside r_ev, median 0.46% of M_c; f_ex = 0 (no debris): Fornax, Leo I, LMC, Sagittarius, SMC
+    m31     n=34: debris removed by stripping, median 67.6% (range 30.5%-93.8%); debris inside r_ev, median 0.54% of M_c; f_ex = 0 (no debris): Andromeda VII, Andromeda X, M 32, NGC 147, NGC 185, NGC 205
+    col     n=14: debris removed by stripping, median 69.6% (range 30.5%-91.8%); debris inside r_ev, median 0.99% of M_c; f_ex = 0 (no debris): And XI, And XXVI
+
+  Reading: the frozen truncation removes most of each satellite's collapse mass (its outer halo), but the dispersion is measured at r_ev,
+  inside which about 0.03-1 per cent of M_c sits (medians) and which lies well inside r_t; so the predicted dispersions do not move.  POST-HOC, not a verdict.

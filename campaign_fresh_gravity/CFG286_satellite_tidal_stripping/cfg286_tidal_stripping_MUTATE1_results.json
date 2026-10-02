@@ -1,0 +1,339 @@
+{
+ "slug": "cfg286_tidal_stripping_MUTATE1",
+ "summary": {
+  "n_checks": 12,
+  "n_pass": 9,
+  "load_bearing_failures": 0,
+  "failed": [
+   "C-HOST: the tabulated host field equals the direct formula on 1000 radii in [0.5, 3000] kp",
+   "H2 classicals consistent: |z| < 2 for MW classical, M31 LVD and M31 Collins+13 on both foo",
+   "H2-alt (decides PARTIAL): the same with the M31 3D route"
+  ],
+  "seconds": 47.7
+ },
+ "checks": [
+  {
+   "name": "C-HOST: the tabulated host field equals the direct formula on 1000 radii in [0.5, 3000] kpc; deep limit at y = 1e-4",
+   "detail": "max |rel dev| 5.3e-08 (<= 1e-6); deep-limit deviation +5.0e-03 (|.| <= 1e-3; nu_mono's next-order term)",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "C-HOST diagnostic (reported; added before the first run): nu_mono(y) sqrt(y) equals 1 + sqrt(y)/2 at y = 1e-4 (the deep limit with its next-order term)",
+   "detail": "difference +8.3e-06 (expected O(y/12) ~ 1e-5)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C-COORD: the central Galactocentric distances equal the LVD's distance_gc within max(1.5 kpc, 2%) for all 54 MW systems",
+   "detail": "max |d| 0.01 kpc; failures: []",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C-COORD (reported): central Galactocentric radial velocities against the LVD's velocity_gsr (its own solar motion; line-of-sight GSR is not v_r, so a sanity check only)",
+   "detail": "median |d| 7.7 km/s, max 62.4 km/s over 54",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C-ORB: every central orbit's leapfrog pericentre equals the exact (E, L) root to 1%",
+   "detail": "canonical: max |rel| 5.34e-04 (2 central orbits without a pericentre in t_H); fraction of all draws off by > 1%: 0.0002; alt: max |rel| 5.75e-04 (2 central orbits without a pericentre in t_H); fraction of all draws off by > 1%: 0.0002",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "M2 CONTROL: no stripping (r_t = inf) reproduces CFG45's committed reading S (UF km/err/f_ups/f_mh/tot/z; CL med/tot/z; 4 populations, both footings)",
+   "detail": "max |d| 0.0e+00 over 30 numbers (<= 1e-9)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "M3 CONTROL: full stripping (r_t = 0) reproduces CFG45's committed reading L (= B's frozen isolated law, CFG244's (a1) 'own nothing'), and P1's KM median equals CFG28's committed RES",
+   "detail": "max |d| 0.0e+00 over 30 numbers; CFG28 KM |d| 0.0e+00 (<= 1e-9)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C-JAC CONTROL: the Jacobi solve satisfies r_t^3 D_t = G m(<r_t) for every satellite solved; Kepler limit r_p (m / 3M)^(1/3)",
+   "detail": "max residual 7.5e-14 (<= 1e-8); Kepler 3.466806 vs 3.466806 kpc (rel -1.9e-15, <= 1e-6)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "H1 ultra-faints consistent: |z| < 2 on both footings",
+   "detail": "canonical: -0.059 dex, z -0.41; alt: -0.059 dex, z -0.41",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "H2 classicals consistent: |z| < 2 for MW classical, M31 LVD and M31 Collins+13 on both footings (primary M31 route)",
+   "detail": "canonical: cls -1.78, m31 -2.67, col -0.22; alt: cls -1.90, m31 -2.66, col -0.15",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "H2-alt (decides PARTIAL): the same with the M31 3D route",
+   "detail": "canonical: cls -1.78, m31 -2.67, col -0.22; alt: cls -1.90, m31 -2.66, col -0.15",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "M1 [MUTATE; must FAIL for the stripping to bite] UNCHANGED: every classical population's median offset within 0.01 dex of the main run's, both footings",
+   "detail": "max |shift| 0.0000 dex",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "M1_shifts": {
+   "cls|canonical": 0.0,
+   "m31|canonical": 0.0,
+   "col|canonical": 0.0,
+   "cls|alt": 0.0,
+   "m31|alt": 0.0,
+   "col|alt": 0.0
+  },
+  "mode": 1,
+  "ST": {
+   "ufd|canonical|proj": {
+    "med": -0.058571531456453184,
+    "err": 0.052967808483771826,
+    "f_ups": 0.00207536267176512,
+    "f_mh": 0.13288781257122206,
+    "tot": 0.1430701457179559,
+    "z": -0.40939031104308304
+   },
+   "cls|canonical|proj": {
+    "med": -0.11832586436665879,
+    "err": 0.062290782428164604,
+    "f_ups": 0.02352762884079876,
+    "f_mh": 0.0,
+    "tot": 0.0665859661969647,
+    "z": -1.7770390838310404
+   },
+   "m31|canonical|proj": {
+    "med": -0.10686686437501051,
+    "err": 0.039168258841839707,
+    "f_ups": 0.00586952419913106,
+    "f_mh": 0.006035563925101246,
+    "tot": 0.04006284871198656,
+    "z": -2.6674804166643447
+   },
+   "col|canonical|proj": {
+    "med": -0.024037756570714306,
+    "err": 0.09136838614012222,
+    "f_ups": 0.012692516840924126,
+    "f_mh": 0.056623752422614984,
+    "tot": 0.1082383079506753,
+    "z": -0.222081784405466
+   },
+   "m31|canonical|3d": {
+    "med": -0.10686686437501051,
+    "err": 0.039168258841839707,
+    "f_ups": 0.00586952419913106,
+    "f_mh": 0.006035563925101246,
+    "tot": 0.04006284871198656,
+    "z": -2.6674804166643447
+   },
+   "col|canonical|3d": {
+    "med": -0.024037756570714306,
+    "err": 0.09136838614012222,
+    "f_ups": 0.012692516840924126,
+    "f_mh": 0.056623752422614984,
+    "tot": 0.1082383079506753,
+    "z": -0.222081784405466
+   },
+   "ufd|alt|proj": {
+    "med": -0.059110714983187554,
+    "err": 0.0528338540782145,
+    "f_ups": 0.0020040128645845215,
+    "f_mh": 0.13564506607742105,
+    "tot": 0.1455850821872468,
+    "z": -0.40602178530325844
+   },
+   "cls|alt|proj": {
+    "med": -0.12326015660069237,
+    "err": 0.06127012635268295,
+    "f_ups": 0.02093505869645053,
+    "f_mh": 0.0,
+    "tot": 0.06474801206135647,
+    "z": -1.9036902088034557
+   },
+   "m31|alt|proj": {
+    "med": -0.10863775394943308,
+    "err": 0.038839594054289606,
+    "f_ups": 0.00045603485723710174,
+    "f_mh": 0.01271861822287345,
+    "tot": 0.040871570603443076,
+    "z": -2.6580273854286696
+   },
+   "col|alt|proj": {
+    "med": -0.016058982321536415,
+    "err": 0.09015790098272684,
+    "f_ups": 0.0071050245081063085,
+    "f_mh": 0.05416046685005643,
+    "tot": 0.10541482178654021,
+    "z": -0.1523408383126147
+   },
+   "m31|alt|3d": {
+    "med": -0.10863775394943308,
+    "err": 0.038839594054289606,
+    "f_ups": 0.00045603485723710174,
+    "f_mh": 0.01271861822287345,
+    "tot": 0.040871570603443076,
+    "z": -2.6580273854286696
+   },
+   "col|alt|3d": {
+    "med": -0.016058982321536415,
+    "err": 0.09015790098272684,
+    "f_ups": 0.0071050245081063085,
+    "f_mh": 0.05416046685005643,
+    "tot": 0.10541482178654021,
+    "z": -0.1523408383126147
+   }
+  },
+  "ST_S": {
+   "ufd|canonical": {
+    "med": -0.058571531456453184,
+    "tot": 0.1430701457179559,
+    "z": -0.40939031104308304
+   },
+   "cls|canonical": {
+    "med": -0.11832586436665879,
+    "tot": 0.0665859661969647,
+    "z": -1.7770390838310404
+   },
+   "m31|canonical": {
+    "med": -0.10686686437501051,
+    "tot": 0.04006284871198656,
+    "z": -2.6674804166643447
+   },
+   "col|canonical": {
+    "med": -0.024037756570714306,
+    "tot": 0.1082383079506753,
+    "z": -0.222081784405466
+   },
+   "ufd|alt": {
+    "med": -0.059110714983187554,
+    "tot": 0.1455850821872468,
+    "z": -0.40602178530325844
+   },
+   "cls|alt": {
+    "med": -0.12326015660069237,
+    "tot": 0.06474801206135647,
+    "z": -1.9036902088034557
+   },
+   "m31|alt": {
+    "med": -0.10863775394943308,
+    "tot": 0.040871570603443076,
+    "z": -2.6580273854286696
+   },
+   "col|alt": {
+    "med": -0.016058982321536415,
+    "tot": 0.10541482178654021,
+    "z": -0.1523408383126147
+   }
+  },
+  "ST_L": {
+   "ufd|canonical": {
+    "med": 0.32450745070728154,
+    "tot": 0.08597671548040689,
+    "z": 3.7743643600950665
+   },
+   "cls|canonical": {
+    "med": 0.027005451155909445,
+    "tot": 0.08468323355219205,
+    "z": 0.31889962183913795
+   },
+   "m31|canonical": {
+    "med": 0.04351096192934267,
+    "tot": 0.07240587544045785,
+    "z": 0.6009313700671076
+   },
+   "col|canonical": {
+    "med": 0.06402851827101053,
+    "tot": 0.08245344615902239,
+    "z": 0.7765414455512635
+   },
+   "ufd|alt": {
+    "med": 0.3044977656083742,
+    "tot": 0.08583217526942521,
+    "z": 3.547594647957631
+   },
+   "cls|alt": {
+    "med": 0.007595534013544351,
+    "tot": 0.08432687024762792,
+    "z": 0.09007252363617764
+   },
+   "m31|alt": {
+    "med": 0.030762526541358283,
+    "tot": 0.07344335390454713,
+    "z": 0.41886058990905733
+   },
+   "col|alt": {
+    "med": 0.045033027986457946,
+    "tot": 0.08232358350146142,
+    "z": 0.5470246322022475
+   }
+  },
+  "H1": {
+   "canonical": true,
+   "alt": true
+  },
+  "H2": {
+   "canonical": false,
+   "alt": false
+  },
+  "H2alt": {
+   "canonical": false,
+   "alt": false
+  },
+  "VERDICT": "FAIL",
+  "BIND": {
+   "canonical": "P3 M31 LVD (34) (z -2.67, -0.107 dex)",
+   "alt": "P3 M31 LVD (34) (z -2.66, -0.109 dex)"
+  },
+  "one_sigma": {
+   "canonical": false,
+   "alt": false
+  },
+  "A2_one_sided": {
+   "canonical": false,
+   "alt": false
+  },
+  "controls": {
+   "C_ORB": {
+    "canonical": [
+     0.0005336265019315611,
+     2
+    ],
+    "canonical_all": 0.0001951067233776876,
+    "alt": [
+     0.0005745288284129124,
+     2
+    ],
+    "alt_all": 0.00019436345966958212
+   },
+   "M2": 0.0,
+   "M3": 0.0,
+   "CFG28": 0.0,
+   "C_JAC": 7.494005416219807e-14
+  },
+  "reported": {},
+  "n_stripped": {
+   "canonical": {
+    "ufd": 1,
+    "cls": 0,
+    "m31": 0,
+    "col": 0
+   },
+   "alt": {
+    "ufd": 1,
+    "cls": 0,
+    "m31": 0,
+    "col": 0
+   }
+  }
+ }
+}
