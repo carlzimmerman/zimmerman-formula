@@ -1,0 +1,96 @@
+CFG266 scoping helper   [MUTATE=1: field rule inverted; C2 must FAIL]
+
+CONTROLS
+  C1 41 rows; gold CSV IDs equal CFG273 row order: PASS  (41 rows)
+  C2 ID rule agrees with the filter rule (every z < 4.941 row is GOODS-N): FAIL  (disagreeing rows: ['1094616', '1000989', '1088814', '1087148', '1015956', '1085659', '1083165', '1065488', '1025101', '1090526', '1077545', '1089583', '1077261', '1095186', '1091580', '1086992', '1090054', '1014130', '1082948', '1000110', '1091153', '1094903', '1079264', '1086406', '1013488', '1028072', '1090742', '1091236', '1009935', '1085494', '1090891', '1008197', '1029814'])
+  C3 dust conversion reproduces CFG142's committed KURVS-11 S(mu_dust=2) = 0.912 mJy at 272.5 GHz (0.5%): PASS  (0.9121 mJy)
+  C4 Scoville coefficient 1.78e10 (1%) and Gamma_0 = 0.71 (2%) as CFG142 C-a / C-b: PASS  (1.7761e+10, 0.6994)
+  C5 Zanella relation gives alpha_[CII] = M/L in 25-35 at M = 1e10 (the paper's ~31): PASS  (30.2 Msun/Lsun)
+  C6 L' <-> S dv round trip: PASS  (0.0e+00)
+  C7 (info): Halpha in F444W (3.9-5.0 um) for z 4.941-6.617; in F356W (3-4 um) for z 3.570-5.093
+
+PER ROW (requirement fluxes at the favourable end; 'P' = powered = requirement >= 3 sigma at the survey's quoted depth)
+        id     z field    lgM*    req    M_req    S850   S1.2   S2.0    SGA    SAS  CO21pk/ 3sig  HDFN pk/ 3sig   [CII]  powered
+   1028887  5.19 GOODS-S  9.56  +0.61 2.22e+09                        0.022  0.020        /              /        0.095  -
+   1002030  5.18 GOODS-S  9.48  +7.84 2.37e+10                        0.230  0.209        /              /        0.972  goodsalma_265,aspecs_12
+    191250  5.39 GOODS-N 10.17  +2.50 3.69e+10   0.464  0.324  0.108                 0.153/0.275    0.955/0.487   1.416  hdfn
+   1002222  5.29 GOODS-S  9.47  +1.21 3.58e+09                        0.035  0.032        /              /        0.148  aspecs_12
+    214966  5.54 GOODS-N  9.54  +5.02 1.74e+10   0.212  0.152  0.052                 0.054/0.244    0.340/0.437   0.651  -
+   1025527  5.30 GOODS-S  9.39 +13.05 3.20e+10                        0.309  0.282        /              /        1.263  goodsalma_265,aspecs_12
+   1001674  5.18 GOODS-S  9.92  +9.44 7.86e+10                        0.762  0.694        /              /        3.149  goodsalma_265,aspecs_12
+    201125  5.82 GOODS-N  9.96  +4.87 4.44e+10   0.507  0.384  0.137                 0.102/0.217    0.640/0.398   1.513  hdfn
+   1094616  4.06 GOODS-S  9.40                                                            /              /               [ceiling]
+   1000989  3.97 GOODS-S  9.07  +2.89 3.40e+09                        0.034  0.030        /              /        0.218  aspecs_12
+   1088814  4.41 GOODS-S 10.60  -0.21                                                     /              /               [floor (D<=1)]
+   1087148  4.38 GOODS-S  8.24 +28.30 4.92e+09                        0.049  0.043        /              /        0.269  aspecs_12
+   1015956  4.02 GOODS-S  9.54  -0.90                                                     /              /               [floor (D<=1)]
+   1085659  4.06 GOODS-S 10.17  -0.75                                                     /              /               [floor (D<=1)]
+   1083165  4.15 GOODS-S  9.78  +1.79 1.08e+10                        0.107  0.094        /              /        0.631  aspecs_12
+   1065488  4.15 GOODS-S  8.01 +66.21 6.78e+09                        0.067  0.059        /              /        0.400  aspecs_12
+   1025101  4.91 GOODS-S  8.99                                                            /              /               [ceiling]
+   1090526  3.96 GOODS-S  9.93  -0.14                                                     /              /               [stars-only bound already below s=1]
+   1077545  4.42 GOODS-S  9.27  +2.17 4.03e+09                        0.040  0.036        /              /        0.218  aspecs_12
+   1089583  3.93 GOODS-S  9.01 +15.35 1.57e+10                        0.155  0.137        /              /        0.994  aspecs_12
+   1077261  3.92 GOODS-S  9.36  +2.49 5.70e+09                        0.056  0.050        /              /        0.370  aspecs_12
+   1095186  4.02 GOODS-S  9.37  +5.46 1.28e+10                        0.126  0.112        /              /        0.785  aspecs_12
+   1091580  4.80 GOODS-S  8.09 +14.98 1.84e+09                        0.018  0.016        /              /        0.089  -
+   1086992  4.04 GOODS-S  9.37  -0.13                                                     /              /               [stars-only bound already below s=1]
+   1090054  4.82 GOODS-S  9.62  +7.18 2.99e+10                        0.294  0.265        /              /        1.365  goodsalma_265,aspecs_12
+   1014130  4.38 GOODS-S  8.49 +12.42 3.84e+09                        0.038  0.034        /              /        0.211  aspecs_12
+   1082948  3.91 GOODS-S 10.68  -1.00                                                     /              /               [floor (D<=1)]
+   1000110  4.06 GOODS-S  9.52 +15.29 5.06e+10                        0.501  0.443        /              /        2.975  goodsalma_265,aspecs_12
+   1091153  4.07 GOODS-S 10.37  -0.35                                                     /              /               [floor (D<=1)]
+   1094903  3.87 GOODS-S 10.34  +1.42 3.10e+10                        0.306  0.269        /              /        1.986  goodsalma_265,aspecs_12
+   1079264  4.05 GOODS-S  8.73  -0.36                                                     /              /               [stars-only bound already below s=1]
+   1086406  4.41 GOODS-S  9.46  -0.27                                                     /              /               [floor (D<=1)]
+   1013488  3.80 GOODS-S  9.57  +6.32 2.35e+10                        0.231  0.203        /              /        1.554  goodsalma_265,aspecs_12
+   1028072  4.40 GOODS-S  9.17  +1.26 1.87e+09                        0.019  0.017        /              /        0.104  -
+   1090742  4.62 GOODS-S  9.37  +0.04 1.03e+08                        0.001  0.001        /              /        0.006  -
+   1091236  4.17 GOODS-S  9.34  +2.82 6.18e+09                        0.061  0.054        /              /        0.363  aspecs_12
+   1009935  4.89 GOODS-S  9.65  -0.91                                                     /              /               [floor (D<=1)]
+   1085494  4.06 GOODS-S  8.90  +5.92 4.70e+09                        0.046  0.041        /              /        0.290  aspecs_12
+   1090891  3.92 GOODS-S  9.74 +11.49 6.32e+10                        0.623  0.549        /              /        3.904  goodsalma_265,aspecs_12
+   1008197  4.40 GOODS-S  8.76  +6.59 3.79e+09                        0.038  0.034        /              /        0.207  aspecs_12
+   1029814  4.16 GOODS-S  8.38 +52.80 1.27e+10                        0.125  0.111        /              /        0.737  aspecs_12
+
+3-sigma thresholds (mJy): scuba2_850 0.840, n2cls_12 0.510, n2cls_20 0.141, goodsalma_265 0.205, aspecs_12 0.028; COLDz 3 sigma at 200 km/s 0.275 (scaled by sqrt(200/FWHM)); HDF-N per-row (best cube rms 0.42 mJy / 9 MHz)
+
+COUNTS
+  fields: GOODS-N 3, GOODS-S 38; grism: CONGRESS 33, FRESCO 8 (FRESCO GOODS-N 3, FRESCO GOODS-S 5)
+  category: 29  needs gas for FLAT
+  category:  2  ceiling: requirement above CFG273's bracket; not computed
+  category:  7  floor (D<=1): FLAT below the stars alone; gas cannot change the FLAT reading
+  category:  3  stars-only bound already below s=1: gas cannot change the FLAT reading
+  scuba2_850    : rows with a requirement in reach of the survey's field/z window  3; powered  0 []
+  n2cls_12      : rows with a requirement in reach of the survey's field/z window  3; powered  0 []
+  n2cls_20      : rows with a requirement in reach of the survey's field/z window  3; powered  0 []
+  goodsalma_265 : rows with a requirement in reach of the survey's field/z window 26; powered  8 ['1002030', '1025527', '1001674', '1090054', '1000110', '1094903', '1013488', '1090891']
+  aspecs_12     : rows with a requirement in reach of the survey's field/z window 26; powered 22 ['1002030', '1002222', '1025527', '1001674', '1000989', '1087148', '1083165', '1065488', '1077545', '1089583', '1077261', '1095186', '1090054', '1014130', '1000110', '1094903', '1013488', '1091236', '1085494', '1090891', '1008197', '1029814']
+  coldz         : rows with a requirement in reach of the survey's field/z window  3; powered  0 []
+  hdfn          : rows with a requirement in reach of the survey's field/z window  3; powered  2 ['191250', '201125']
+  scuba2_850    : powered at gas-to-dust x2:  0 []; and with the CMB contrast:  0 []
+  n2cls_12      : powered at gas-to-dust x2:  0 []; and with the CMB contrast:  0 []
+  n2cls_20      : powered at gas-to-dust x2:  0 []; and with the CMB contrast:  0 []
+  goodsalma_265 : powered at gas-to-dust x2:  3 ['1001674', '1000110', '1090891']; and with the CMB contrast:  3 ['1001674', '1000110', '1090891']
+  aspecs_12     : powered at gas-to-dust x2: 13 ['1002030', '1025527', '1001674', '1083165', '1065488', '1089583', '1095186', '1090054', '1000110', '1094903', '1013488', '1090891', '1029814']; and with the CMB contrast: 12 ['1002030', '1025527', '1001674', '1083165', '1089583', '1095186', '1090054', '1000110', '1094903', '1013488', '1090891', '1029814']
+  hdfn powered rows and the excitation r_J1 each needs to stay powered: 191250 CO(5-4) r>=0.51, 201125 CO(5-4) r>=0.62
+  any route powered at the favourable end (IF the row lies inside that survey's footprint; positions unknown): 24 ['1002030', '191250', '1002222', '1025527', '1001674', '201125', '1000989', '1087148', '1083165', '1065488', '1077545', '1089583', '1077261', '1095186', '1090054', '1014130', '1000110', '1094903', '1013488', '1091236', '1085494', '1090891', '1008197', '1029814']
+  dust routes still powered at gas-to-dust x2 with the CMB contrast: 12 ['1002030', '1025527', '1001674', '1083165', '1089583', '1095186', '1090054', '1000110', '1094903', '1013488', '1090891', '1029814']
+  rows ALMA can observe at all (GOODS-S; ALMA upper declination limit +47 deg): 38 ['1028887', '1002030', '1002222', '1025527', '1001674', '1094616', '1000989', '1088814', '1087148', '1015956', '1085659', '1083165', '1065488', '1025101', '1090526', '1077545', '1089583', '1077261', '1095186', '1091580', '1086992', '1090054', '1014130', '1082948', '1000110', '1091153', '1094903', '1079264', '1086406', '1013488', '1028072', '1090742', '1091236', '1009935', '1085494', '1090891', '1008197', '1029814']
+
+PRECISION A GAS MASS WOULD NEED (arithmetic on CFG273's own columns; no s* computed)
+  separation of the rival from FLAT in log a0 = log10 E(z), E = sqrt(Om (1+z)^3 + 1 - Om), Om 0.30 / 0.315 (PAPER38's range);
+  a COMMON-MODE baryon-calibration error sigma_cal moves log s* by |lever| sigma_cal and does not average down, so a k-sigma
+  separation needs sigma_cal <= log10 E / (k |lever|). lever = CFG273's d log10 s*/d(baryon dex) at STARS-ONLY baryons;
+  adding the gas FLAT needs raises y and |lever| (toward the Newtonian side), so these are upper bounds on sigma_cal.
+  per-galaxy |lever| (conditioned rows, |lever| < 10, N = 37): median 2.95, range 1.31-8.49
+     row      z E(0.30) E(0.315)  dlog a0 |lever|  sigma_cal(3sig) pooled-lever / median-row-lever / PAPER38 4.8   T4 floor 3*0.2/sqrt(N)
+    PALL  4.170    6.49     6.65    0.812    1.15  0.236 / 0.092 / 0.056 dex   0.094
+    PDET  4.165    6.48     6.64    0.812    1.18  0.228 / 0.092 / 0.056 dex   0.122
+     Pz1  4.040    6.25     6.40    0.796    1.48  0.179 / 0.090 / 0.055 dex   0.131
+     Pz2  4.415    6.95     7.12    0.842    1.23  0.228 / 0.095 / 0.058 dex   0.173
+     Pz3  5.295    8.69     8.90    0.939    1.18  0.264 / 0.106 / 0.065 dex   0.212
+     P38  4.155    6.47     6.62    0.811    1.19  0.227 / 0.092 / 0.056 dex   0.097
+
+wrote campaign_fresh_gravity/CFG266_danhaive_gas_scoping/cfg266_rows_MUTATE1.csv
+FAILED: ['C2 ID rule agrees with the filter rule (every z < 4.941 row is GOODS-N)']
