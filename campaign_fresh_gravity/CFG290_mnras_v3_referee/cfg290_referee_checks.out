@@ -1,0 +1,77 @@
+
+====================================================================================================
+R1  ABSTRACT LENGTH
+====================================================================================================
+  plain whitespace count 250;  math spans counted as one word 262;  MNRAS limit 250
+
+====================================================================================================
+R2  RC100 INVERSION: FLAGGED ROWS, AND THE RIGHT COMPARATOR SLOPE
+====================================================================================================
+  re-derived from the table: eq.-8 violators ['67', '83'];  below the V_rot/sigma0 = 2.3 cut at R_e: 14 rows
+  agree with CFG287/CFG289's lists: eq8 True, cut True
+  all            N  99: slope -0.111 +/- 0.063 (constant -1.8 sigma);  halo law fitted the same way at these z: +0.153 (4.2 sigma; with the paper's 0->2.5 mean 0.131: 3.9);  H(z) fitted: +0.225 (5.3 sigma; paper's 0.230: 5.4)
+  no_eq8         N  97: slope -0.089 +/- 0.061 (constant -1.5 sigma);  halo law fitted the same way at these z: +0.153 (4.0 sigma; with the paper's 0->2.5 mean 0.131: 3.6);  H(z) fitted: +0.225 (5.1 sigma; paper's 0.230: 5.2)
+  no_16_flagged  N  83: slope -0.095 +/- 0.062 (constant -1.5 sigma);  halo law fitted the same way at these z: +0.153 (4.0 sigma; with the paper's 0->2.5 mean 0.131: 3.7);  H(z) fitted: +0.225 (5.2 sigma; paper's 0.230: 5.3)
+  mean slope over 0.6 < z < 2.5 (end points): halo +0.150, H(z) +0.225;  over 0 < z < 2.5: halo +0.131, H(z) +0.230
+
+====================================================================================================
+R3  THE DESIGN ODDS: CLOSED FORM vs MONTE CARLO, PROBABILITY OF 20:1, AND THE HALO MASS THE GATE SELECTS
+====================================================================================================
+  N = 1, sigma_m = 0.13, Delta = 0.328: closed-form <ln B> = 1.324 / 2.227;  MC 1.323 / 2.226  (table odds 3.8:1).  P(reach 20:1) = 0.05 (const true) / 0.35 (halo true);  P(evidence the WRONG way) = 0.14 / 0.22;  P(20:1 the wrong way) = 0.005 / 0.002
+  N = 2, sigma_m = 0.10, Delta = 0.328: closed-form <ln B> = 3.203 / 6.198;  MC 3.203 / 6.198  (table odds 24.6:1).  P(reach 20:1) = 0.60 (const true) / 0.72 (halo true);  P(evidence the WRONG way) = 0.06 / 0.09;  P(20:1 the wrong way) = 0.004 / 0.010
+  N = 3, sigma_m = 0.13, Delta = 0.328: closed-form <ln B> = 3.971 / 6.680;  MC 3.967 / 6.661  (table odds 53.1:1).  P(reach 20:1) = 0.70 (const true) / 0.77 (halo true);  P(evidence the WRONG way) = 0.05 / 0.07;  P(20:1 the wrong way) = 0.004 / 0.008
+  N = 4, sigma_m = 0.20, Delta = 0.328: closed-form <ln B> = 3.365 / 4.570;  MC 3.364 / 4.559  (table odds 28.9:1).  P(reach 20:1) = 0.59 (const true) / 0.66 (halo true);  P(evidence the WRONG way) = 0.07 / 0.09;  P(20:1 the wrong way) = 0.006 / 0.008
+  the idealised rule sigma = Delta/sqrt(2 ln 20): ln B ~ N(3.00, 2.45^2):  P(ln B > ln 20) = 0.50;  P(ln B < 0) = 0.110
+  halo-emergent Delta at z = 2.5: M200 = 1e11 -> +0.227;  3e11 -> +0.275;  1e12 (the paper's decision value) -> +0.328
+     N = 2, sigma_m = 0.10: odds    24.6:1 at Delta = 0.328  ->     5.1:1 at Delta = 0.227
+     N = 3, sigma_m = 0.13: odds    53.1:1 at Delta = 0.328  ->     7.3:1 at Delta = 0.227
+     N = 4, sigma_m = 0.20: odds    28.9:1 at Delta = 0.328  ->     5.2:1 at Delta = 0.227
+     N = 6, sigma_m = 0.20: odds   155.6:1 at Delta = 0.328  ->    11.9:1 at Delta = 0.227
+     N = 8, sigma_m = 0.20: odds   837.2:1 at Delta = 0.328  ->    27.2:1 at Delta = 0.227
+
+====================================================================================================
+R4  SHARED-CALIBRATION CELL BY MONTE CARLO (delta_c = 0.10, N = 4, sigma_m = 0.20, halo law)
+====================================================================================================
+  A_bar(0.2) = 1.522;  MC <ln B> = 1.425 / 1.614 -> odds 4.16:1 (Table 10: 4.2:1);  P(reach 20:1) 0.16 / 0.23
+
+====================================================================================================
+R5  ESTIMATOR A UNDER THE REPOSITORY'S OWN H0-CONVENTION AUDIT
+====================================================================================================
+  committed MIXED (D_HF at H0 = 73, rho_Lambda at 67.4)   kappa = 0.465 +/- 0.076: 1/2 at +0.46 sigma, cH_Lambda/2pi at -0.06 sigma
+  R1 Planck-consistent (OPERATIVE in the audit)           kappa = 0.450 +/- 0.074: 1/2 at +0.68 sigma, cH_Lambda/2pi at +0.14 sigma
+  R2a H0 = 73, Omega_L fixed                              kappa = 0.430 +/- 0.070: 1/2 at +1.00 sigma, cH_Lambda/2pi at +0.44 sigma
+  R2b H0 = 73, omega_m fixed                              kappa = 0.416 +/- 0.068: 1/2 at +1.24 sigma, cH_Lambda/2pi at +0.66 sigma
+  Fig. 2(b) grey bar for A is hard-coded [0.450, 0.465] (R1..MIXED); the audit's full box is [0.416, 0.465]. For B the bar is [0.492, 0.589] (R2b..R1).
+
+====================================================================================================
+R6  THE LIKELIHOOD RATIO BETWEEN 1/2 AND 0.461
+====================================================================================================
+  ln LR(1/2 : 0.461): A alone -0.104; B alone +0.086; summed (treats A and B as independent) -0.019
+
+====================================================================================================
+R7  SPARC HUBBLE-FLOW COUNT; MIGHTEE-HI COLOUR GROUPS
+====================================================================================================
+  SPARC galaxies with f_D = 1 (Hubble flow, H0 = 73 assumed by SPARC): 97
+  MIGHTEE-HI digitised: 80 points in 18 colour groups (the survey has 19 galaxies); group sizes [3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 11]
+  the three largest groups (points, points in the window, log g_bar span): [(11, 11, 0.22330000000000005), (6, 3, 1.186300000000001), (5, 5, 0.9918999999999993)]
+
+====================================================================================================
+R8  THE HALO MASS OF A GATE-PASSING DISC AT z = 2.5, AND DESMOND (2023)'s a0 ON THE PAPER'S TWO FOOTINGS
+====================================================================================================
+  V_f =  85.0 km/s, V_f/V_200 = 1.0: M200(z = 2.5) = 5.62e+10 Msun -> Dutton-Maccio halo law +0.201 dex
+  V_f =  85.0 km/s, V_f/V_200 = 1.2: M200(z = 2.5) = 3.25e+10 Msun -> Dutton-Maccio halo law +0.176 dex
+  V_f = 106.0 km/s, V_f/V_200 = 1.0: M200(z = 2.5) = 1.09e+11 Msun -> Dutton-Maccio halo law +0.231 dex
+  V_f = 106.0 km/s, V_f/V_200 = 1.2: M200(z = 2.5) = 6.31e+10 Msun -> Dutton-Maccio halo law +0.206 dex
+  V_f = 130.0 km/s, V_f/V_200 = 1.0: M200(z = 2.5) = 2.01e+11 Msun -> Dutton-Maccio halo law +0.258 dex
+  V_f = 130.0 km/s, V_f/V_200 = 1.2: M200(z = 2.5) = 1.16e+11 Msun -> Dutton-Maccio halo law +0.233 dex
+  Desmond (2023) a0 = (1.19 +/- 0.04 +/- 0.09)e-10 -> kappa_Lambda = 0.636 +/- 0.053: 1/2 at 2.6 sigma, 0.461 at 3.3 sigma, cH0/2pi (0.557) at 1.5 sigma, 1/2 on rho_crit (kappa_Lambda 0.604) at 0.6 sigma
+
+====================================================================================================
+R9  ESTIMATOR B AND THE STANDARD FIT WHEN SPARC'S HUBBLE-FLOW DISTANCES ARE PUT ON THE PLANCK H0 (the audit's R1)
+====================================================================================================
+  as tabulated (MIXED)        : estimator B (Ups 0.6/0.7) kappa = 0.547;  standard fit (Ups 0.5/0.7) kappa = 0.636
+  R1: HF distances x 73/67.4  : estimator B (Ups 0.6/0.7) kappa = 0.584;  standard fit (Ups 0.5/0.7) kappa = 0.560
+  as tabulated (MIXED)        : the standard fit gives kappa = 1/2 at Upsilon_disc = 0.621 (bulge 0.7)
+  R1: HF distances x 73/67.4  : the standard fit gives kappa = 1/2 at Upsilon_disc = 0.555 (bulge 0.7)
+
+wrote cfg290_referee_checks_results.json
