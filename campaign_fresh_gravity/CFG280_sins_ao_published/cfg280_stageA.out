@@ -1,0 +1,110 @@
+CFG280 -- implied-a0 estimates (upper bounds or floors) from the PUBLISHED SINS/zC-SINF AO kinematics (Forster Schreiber+18 Tables 1 and 6): stars-only baryons (a lower limit) with PHIBSS CO gas on four rows; coverage only.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG280_sins_ao_published/FROZEN_CRITERIA.md (96d52c268).
+  g_obs     V_c^2 / R_e with V_c = (V_rot^2 + 3.36 sigma0^2)^0.5 from the table (peak-to-peak, radius NOT recorded: r = R_e is a convention)
+  g_bar     B0 = stars only (Table 1 M*, one exponential disc of scale R_e); B1 = stars + PHIBSS M_mol on four rows (class S); B2 = scaling gas (sensitivity)
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_rot, sigma0, V_c x 2); STAGE=B SELFTEST=1 (fabricated V_c on the law at s = 2).
+
+STAGE A
+tables: sins Table 1 9cb20e34bbc3dc2d, Table 6 7f3da7ed8c857848, Table 2 316911ad45e60b9f, PHIBSS 3e6da4a05c10e1f5, RC100 names 56121a5550679db5; velocity-bearing columns loaded: False
+tiers: T1 11, T2 18, T0 38; pooled sizes PT1 11, PT2 18, PT0 38, PT2z1 9, PT2z2 9, PT2_new 9; RC100 name matches 12 (T1 5, T2 8); KMOS3D five 5; PHIBSS name matches 6; R1 gas rows ['Q1623-BX599', 'Q2343-BX513', 'Q2343-BX610', 'ZC406690']
+
+STAGE A  THE BLIND PRE-FLIGHT (no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed)
+  [PASS] C1 CONTROL (counts): Tables 1 and 6 hold the same 38 sources (35 galaxies + the three component rows ZC400569N, ZC407376N, ZC407376S), unique; z range 1.446-2.521; log M* range 9.36-11.50; tiers T1 11, T2 18, T0 38; six PHIBSS name matches and four R1 gas rows; RC100 name matches 12 (T1 5); the KMOS3D five all present
+         Table 1 38, Table 6 38, equal True, unique True; z [1.4457, 2.5209]; log M* [9.362, 11.500]; T1 11, T2 18; PHIBSS matches 6 ['Q1623-BX599', 'Q2343-BX389', 'Q2343-BX513', 'Q2343-BX610', 'Q2346-BX482', 'ZC406690']; gas rows ['Q1623-BX599', 'Q2343-BX513', 'Q2343-BX610', 'ZC406690']; RC100 12 (T1 5); KMOS3D five present 5
+  [PASS] C2 CONTROL: Freeman's peak V^2 = 0.3872 G M / R_d to 0.003, g -> G M / r^2 far from a compact mass to 1e-3, and gdisc equals CFG229's on 200 random inputs to 1e-12
+         peak 0.3870; far-field ratio 1.00064; max deviation 0.0e+00
+  [PASS] C3 CONTROL: the six PHIBSS rows' comp, type, co_upper_limit and the rule R1 equal CFG196's committed roles
+         Q1623-BX599: {'comp': '', 'type': 'Merger/Disk', 'co_upper_limit': 0, 'R1': True} vs CFG196 {'comp': '', 'type': 'Merger/Disk', 'co_upper_limit': 0, 'R1': True} =; Q2343-BX389: {'comp': '', 'type': 'Disk(A)', 'co_upper_limit': 1, 'R1': False} vs CFG196 {'comp': '', 'type': 'Disk(A)', 'co_upper_limit': 1, 'R1': False} =; Q2343-BX513: {'comp': '', 'type': 'Disp.Dominated', 'co_upper_limit': 0, 'R1': True} vs CFG196 {'comp': '', 'type': 'Disp.Dominated', 'co_upper_limit': 0, 'R1': True} =; Q2343-BX610: {'comp': '', 'type': 'Disk(A)', 'co_upper_limit': 0, 'R1': True} vs CFG196 {'comp': '', 'type': 'Disk(A)', 'co_upper_limit': 0, 'R1': True} =; Q2346-BX482: {'comp': 'se', 'type': 'Disk(A)', 'co_upper_limit': 0, 'R1': False} vs CFG196 {'comp': 'se', 'type': 'Disk(A)', 'co_upper_limit': 0, 'R1': False} =; ZC406690: {'comp': '', 'type': 'Disk(A)', 'co_upper_limit': 0, 'R1': True} vs CFG196 {'comp': '', 'type': 'Disk(A)', 'co_upper_limit': 0, 'R1': True} =
+  [PASS] C4 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C5 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every galaxy's stars-only baryon side
+         max |d log10 s| 4.3e-15
+
+A1 / A2  BARYON SIDE AND THE CFG240 READING (noiseless world; B0 = stars only at r = R_e; ILL-CONDITIONED iff |lever| >= 10 or not computable)
+    T0: n 38, y(B0) 16/50/84 % 0.52 / 2.14 / 5.66 (min 0.19, max 22.83); y(B2) median 4.70; rows y < 0.3: 4, y > 6: 6, y > 8: 6; ILL-CONDITIONED 6 (16 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.097 dex
+    T1: n 11, y(B0) 16/50/84 % 0.27 / 2.17 / 4.12 (min 0.19, max 8.56); y(B2) median 4.81; rows y < 0.3: 3, y > 6: 1, y > 8: 1; ILL-CONDITIONED 1 (9 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.181 dex
+    T2: n 18, y(B0) 16/50/84 % 0.43 / 1.97 / 5.70 (min 0.19, max 17.77); y(B2) median 4.70; rows y < 0.3: 3, y > 6: 3, y > 8: 3; ILL-CONDITIONED 3 (17 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.141 dex
+    PT2z1: n 9, y(B0) 16/50/84 % 1.02 / 1.77 / 4.21 (min 0.23, max 8.56); y(B2) median 4.04; rows y < 0.3: 1, y > 6: 1, y > 8: 1; ILL-CONDITIONED 1 (11 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.200 dex
+    PT2z2: n 9, y(B0) 16/50/84 % 0.35 / 2.17 / 9.20 (min 0.19, max 17.77); y(B2) median 4.92; rows y < 0.3: 2, y > 6: 2, y > 8: 2; ILL-CONDITIONED 2 (22 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.200 dex
+    PT2_new: n 9, y(B0) 16/50/84 % 1.57 / 2.38 / 4.21 (min 0.48, max 11.31); y(B2) median 4.92; rows y < 0.3: 0, y > 6: 1, y > 8: 1; ILL-CONDITIONED 1 (11 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.200 dex
+    rows with 0.3 <= y(B0) <= 6: 28 of 38 (74 %)
+    per row: source z log M* R_e(kpc) y(B0) lever tier criteria RC100 KMOS3D PHIBSS
+      Q1623-BX455   z 2.408 M* 10.01 R_e  2.1 y   2.17 lever    -3.7     T1 [1,2,3,4,5]
+      Q1623-BX502   z 2.156 M* 9.36 R_e  1.1 y   1.77 lever    -3.2     T2 [1,2,3,5  ]
+      Q1623-BX543   z 2.521 M* 9.97 R_e  3.3 y   0.80 lever    -2.2        [Irr      ]
+      Q1623-BX599   z 2.331 M* 10.75 R_e  2.4 y   9.15 lever   -31.0 ILL    [Irr      ] PHIBSS (R1 gas row)
+      Q2343-BX389   z 2.172 M* 10.61 R_e  6.2 y   1.00 lever    -2.4        [1,2      ] PHIBSS
+      Q2343-BX513   z 2.108 M* 10.43 R_e  2.6 y   3.72 lever    -6.3        [Irr      ] PHIBSS (R1 gas row)
+      Q2343-BX610   z 2.211 M* 11.00 R_e  4.5 y   4.60 lever    -8.1     T1 [1,2,3,4,5] PHIBSS (R1 gas row)
+      Q2346-BX482   z 2.257 M* 10.26 R_e  6.0 y   0.48 lever    -1.9     T2 [1,2,3,4  ] PHIBSS
+      Deep3a-6004   z 2.387 M* 11.50 R_e  5.1 y  11.31 lever    +nan ILL T2 [1,2,3,5  ]
+      Deep3a-6397   z 1.513 M* 11.08 R_e  5.9 y   3.21 lever    -5.4     T1 [1,2,3,4,5]
+      Deep3a-15504  z 2.383 M* 11.04 R_e  6.0 y   2.82 lever    -4.7     T1 [1,2,3,4,5]
+      K20-ID6       z 2.235 M* 10.43 R_e  3.9 y   1.63 lever    -3.1     T2 [1,2,3,4  ] RC100 KMOS3D
+      K20-ID7       z 2.224 M* 10.60 R_e  8.4 y   0.52 lever    -1.9        [1,2      ] RC100 KMOS3D
+      GMASS-2303    z 2.451 M* 9.86 R_e  1.6 y   2.62 lever    -4.4        [1,2      ] KMOS3D
+      GMASS-2363    z 2.452 M* 10.33 R_e  2.3 y   3.80 lever    -6.5     T1 [1,2,3,4,5] KMOS3D
+      GMASS-2540    z 1.615 M* 10.28 R_e  8.5 y   0.24 lever    -1.6        […        ]
+      SA12-6339     z 2.297 M* 10.41 R_e  1.2 y  16.61 lever    +nan ILL    [Irr      ]
+      ZC400528      z 2.387 M* 11.04 R_e  2.4 y  17.77 lever    +nan ILL T2 [1,2,3,5  ] RC100
+      ZC400569      z 2.240 M* 11.21 R_e  7.4 y   2.74 lever    -4.6        [Irr      ] RC100
+      ZC400569N     z 2.243 M* 11.11 R_e  7.1 y   2.38 lever    -4.0     T2 [1,2,3,5  ]
+      ZC401925      z 2.141 M* 9.76 R_e  2.6 y   0.80 lever    -2.2        [1        ]
+      ZC403741      z 1.446 M* 10.65 R_e  2.2 y   8.56 lever   -22.7 ILL T1 [1,2,3,4,5] RC100
+      ZC404221      z 2.220 M* 10.20 R_e  0.8 y  22.83 lever    +nan ILL    [Irr      ]
+      ZC405226      z 2.287 M* 9.97 R_e  5.4 y   0.30 lever    -1.7     T1 [1,2,3,4,5] RC100
+      ZC405501      z 2.154 M* 9.92 R_e  5.8 y   0.23 lever    -1.6     T1 [1,2,3,4,5] RC100
+      ZC406690      z 2.195 M* 10.62 R_e  7.0 y   0.79 lever    -2.2     T2 [1,2,3,4  ] RC100 PHIBSS (R1 gas row)
+      ZC407302      z 2.182 M* 10.39 R_e  3.6 y   1.75 lever    -3.2     T1 [1,2,3,4,5] RC100
+      ZC407376      z 2.173 M* 10.40 R_e  5.5 y   0.78 lever    -2.2        [Irr      ]
+      ZC407376S     z 2.173 M* 10.14 R_e  1.6 y   5.05 lever    -9.0        [Irr      ]
+      ZC407376N     z 2.173 M* 10.06 R_e  1.4 y   5.41 lever    -9.9        [1,2      ]
+      ZC409985      z 2.457 M* 10.21 R_e  1.9 y   4.15 lever    -7.2        [Irr      ]
+      ZC410041      z 2.454 M* 9.66 R_e  4.7 y   0.19 lever    -1.5     T1 [1,2,3,4,5] RC100 KMOS3D
+      ZC410123      z 2.199 M* 9.62 R_e  3.2 y   0.38 lever    -1.8        [1        ]
+      ZC411737      z 2.444 M* 9.53 R_e  1.8 y   0.98 lever    -2.4        [1,2      ]
+      ZC412369      z 2.028 M* 10.34 R_e  3.1 y   2.10 lever    -3.6        [1        ] RC100
+      ZC413507      z 2.480 M* 9.94 R_e  2.6 y   1.21 lever    -2.7        [1,2      ]
+      ZC413597      z 2.450 M* 9.88 R_e  1.6 y   2.73 lever    -4.6        [Irr      ] RC100
+      ZC415876      z 2.435 M* 9.96 R_e  2.4 y   1.49 lever    -2.9     T1 [1,2,3,4,5]
+
+A3  KNOB EFFECTS ON g_bar (dex relative to B0; median / min / max over all 38)
+    R_e,* x1.5: median -0.267, min -0.267, max -0.267
+    R_e,* /1.5: median +0.186, min +0.186, max +0.186
+    spherical: median -0.097, min -0.097, max -0.097
+    radius 1.5 R_e: median -0.167, min -0.167, max -0.167
+    radius 2 R_e: median -0.343, min -0.343, max -0.343
+
+A4  mu_mol AND THE B2 / B0 RATIO (z ~ 2.2 is inside the range the relation was calibrated on)
+    mu_mol (T2) median 1.29; B2/B0 g_bar median 2.29; all 38: 1.40
+
+A5  THE PHIBSS GAS ROWS (class S; Galactic alpha_CO 4.36 incl. He; same disc and R_e as the stars)
+    Q1623-BX599   [Merger/Disk] M_mol 5.00e+10 (flux error 0.091 dex), M* (Table 1) 5.66e+10 vs PHIBSS 5.70e+10, R_e 2.4; y(B0) 9.15 -> y(B1) 17.22
+    Q2343-BX513   [Disp.Dominated] M_mol 3.20e+10 (flux error 0.145 dex), M* (Table 1) 2.70e+10 vs PHIBSS 2.70e+10, R_e 2.6; y(B0) 3.72 -> y(B1) 8.12
+    Q2343-BX610   [Disk(A)] M_mol 2.30e+11 (flux error 0.023 dex), M* (Table 1) 1.00e+11 vs PHIBSS 1.00e+11, R_e 4.5; y(B0) 4.60 -> y(B1) 15.17
+    ZC406690      [Disk(A)] M_mol 8.20e+10 (flux error 0.099 dex), M* (Table 1) 4.14e+10 vs PHIBSS 4.00e+10, R_e 7.0; y(B0) 0.79 -> y(B1) 2.34
+    not gas rows: Q2346-BX482 (the CO is the companion BX482se's) and Q2343-BX389 (a 3-sigma upper limit)
+
+A5b CROSS-MATCH SIZES (so no galaxy is counted twice): PT2 18; PT2 rows with an RC100 name match 8; with a KMOS3D match 3; either 9; PT2_new 9; T1 rows with a match 6 of 11
+
+A6  R_e AGAINST THE AO RESOLUTION (Table 2 res_arcsec FWHM; the component rows take their host's value)
+    R_e < AO PSF FWHM (kpc): T0 4 of 38; T2 1 of 18; median R_e/FWHM (T2) 2.66
+
+C6  COVERAGE (noiseless world on each conditioned T2 row's B0 baryons; a declared 0.15 dex on g_obs; the declared 0.20 dex on M*; the published R_e errors; 100 mocks, B = 1,000)
+    conditioned T2 rows 15 of 18: median 68 % coverage 0.72, 95 % 0.98
+  [PASS] C6 (reported; load-bearing for the conditioned T2 rows): the median coverage of the conditioned T2 rows is >= 60 % (68 %) and >= 88 % (95 %)
+         conditioned T2 rows 15: 68 % 0.72, 95 % 0.98
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C5)
+  PF-D2 ILL-CONDITIONED rows: T0 6 of 38, T1 1 of 11, T2 3 of 18
+  PF-D3 DRAWABLE as an estimate: T2 15 of 18; T0 32 of 38 (every drawable stars-only row is an upper bound on s*, never a measurement)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9) scored (HE4-HE9 are scored at stage B):
+    HE1: hit
+    HE2: hit
+    HE3: hit
+
+6/6 checks pass; load-bearing failures: 0   (16 s)
