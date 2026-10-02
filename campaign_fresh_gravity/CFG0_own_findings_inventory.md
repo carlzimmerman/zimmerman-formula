@@ -225,3 +225,5 @@ repository root. Abbreviations: `chain/` = `real_research/derivation_chain_2026/
   was stopped), F70 (errata).
 - **12 numerology items (N1–N12)**; N8–N12 are new in CFG0.
 - **24 withdrawn or superseded entries (W1–W24).**
+
+> **Addendum 2026-10-02 (CFG289, 15882ff58):** in row W14, the "tie (L323/L331)" no longer holds for L323 on the corrected RC100 table. L323's level check fails, because the framework's best cell [−0.038, −0.007] excludes zero while ΛCDM NFW/H/C contain it. The tie now rests on L331 alone (framework +0.3σ, ΛCDM +2.6σ).

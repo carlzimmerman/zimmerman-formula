@@ -219,3 +219,5 @@ The copy is FS+18 Table 6, written as `CFG287_MUTATE_sins_ao_table6.csv`.
 - `rc100_visual_reread.csv`.
 - `versions_errata_pagereads.json`.
 - `AUDIT.md`.
+
+> **Addendum 2026-10-02 (CFG289, 15882ff58):** the "CFG52/CFG90 pool moves by 0.03 dex" bound holds for CFG52. CFG90 hard-codes the repo path, and once it was run on the corrected table its z ≥ 1.5 pool moves 0.10 dex (0.74σ; flat +1.00σ → +0.25σ, rival −0.25σ → −0.94σ). The L-series is now bounded: L323's tie check flips; the rest are under 1σ. See CFG289's README.

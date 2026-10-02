@@ -1281,3 +1281,5 @@ which the prediction collapses by $a_0/g$ at Saturn to a margin of **1.03×10⁶
 5. **Never say "the theory is closed."**
 6. **Amend frozen pre-registrations in the open, before data.**
 7. **Nothing personal in this repository** — no email addresses, no correspondence.
+
+> **Addendum 2026-10-02 (CFG289):** on the corrected RC100 table (`real_research/data/rc100_nestorshachar2023_table3_CORRECTED.csv`), L320's carrier-vs-RC100 tension is 2.8–3.2σ (was 3.0–3.4σ). The adopted status record is `campaign_fresh_gravity/STANDING_2026-09-29.md`.
