@@ -49,10 +49,10 @@ A270 = list(csv.DictReader(open(os.path.join(CFG, "CFG270_kmos3d_cube_fits", "cf
 A271 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG271_hz9_three_rings", "cfg271_points_stageB.csv")))}   # CFG271 a18b17d72
 A277 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG277_roman_oliveira_four_discs", "cfg277_points_stageB.csv")))}   # CFG277 0f6c4cd58
 A280 = list(csv.DictReader(open(os.path.join(CFG, "CFG280_sins_ao_published", "cfg280_points_stageB.csv"))))   # CFG280 396299a9f
+M279 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG279_mightee_published_values", "cfg279_points.csv")))}   # CFG279 7cecb04bc
 A273 = list(csv.DictReader(open(os.path.join(CFG, "CFG273_danhaive_gold41", "cfg273_points_stageB_relabelled.csv"))))   # CFG273 208944196 (relabelled: two ceiling rows)
 A274 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG274_amvrosiadis_eight_discs", "cfg274_points_stageB.csv"))) if "pooled" not in r["object"]]   # CFG274 255f07244
 TODO = [  # (label, zmin, zmax, short note)       sources: CFG227 'Listed, no point' + CFG237 + CFG258 + L328
-    ("MIGHTEE-HI survey", 0.02, 0.09, "mock forecast only"),
     ("ALPAKA 24 (1)", alp["24"], alp["24"], "no stellar mass"),
     ("Lelli+23 (1)", 2.24, 2.24, "mean speed only"),
     ("PKS 0529-549 (1)", 2.57, 2.57, "no radius / stellar mass"),
@@ -68,6 +68,7 @@ check("CFG270 KMOS3D: pooled PT1 (72 fits) <= 2.44 at z 2.228; 16 T1 fits at the
 check("CFG271 HZ9: outer-ring stars-only upper bounds 14.85 (corpus M*) and 48.9 (Parlanti M*) (a18b17d72)", abs(float(A271["HZ9 [M103]"]["s_star"]) - 14.847) < 1e-2 and abs(float(A271["HZ9 [M986]"]["s_star"]) - 48.906) < 1e-2)
 check("CFG277 Roman-Oliveira: J081740 [gas] and BRI1335-0417 [gas] no root; SGP pair vacuous (51, 28) (0f6c4cd58)", A277["J081740 [gas]"]["no_root"] == "1" and A277["BRI1335-0417 [gas]"]["no_root"] == "1" and round(float(A277["SGP38326-1 [gas]"]["s_star"])) == 51)
 check("CFG280 SINS: PT2_new <= 9.09 (overlap-free); 7 stars-only floor galaxies without an RC100/KMOS3D match (396299a9f)", any(r["object"] == "SINS pooled PT2_new" and abs(float(r["s_star"]) - 9.0878) < 1e-3 for r in A280) and len([r for r in A280 if r["no_root"] == "1" and "[" not in r["object"] and r["rc100_match"] == "0" and r["kmos3d_match"] == "0"]) == 7)
+check("CFG279 MIGHTEE-HI: published whole-sample a0 = 1.50e-10 at z 0.055 (7cecb04bc)", abs(float(M279["MIGHTEE-HI paper: whole sample, z-averaged"]["a0_1e-10_m_s2"]) - 1.50) < 1e-6)
 check("CFG273 Danhaive: 7 no root (relabelled file), pooled PALL <= 29.4 at z 4.17 (208944196)", sum(r["no_root"] == "1" for r in A273) == 7 and any("PALL" in r["object"] and abs(float(r["s_star"]) - 29.45) < 0.01 for r in A273), f"({sum(r['no_root'] == '1' for r in A273)} no root)")
 check("CFG272 ALPAKA: 13 and 23 no root; 25 <= 3.30 and 28 <= 0.74 upper bounds; 24 no M* (d993f02dc)", sorted(r["object"].split()[1] for r in A272 if r["no_root"] == "1") == ["13", "23"] and sorted(round(float(r["s_star"]), 2) for r in A272 if r["no_root"] == "0") == [0.74, 3.3], f"({len(A272)} rows)")
 check("CFG274 Amvrosiadis: 7 of 8 no root, ALESS 075.1 s* 6.89 (255f07244)", sum(r["no_root"] == "1" for r in A274) == 7 and any(r["no_root"] == "0" and abs(float(r["s_star"]) - 6.887) < 0.01 for r in A274), f"({sum(r['no_root'] == '1' for r in A274)} no root)")
@@ -125,7 +126,7 @@ def point(r, x, col, mk, size, hollow=False):
                edgecolor=col if hollow else "white", linewidth=1.8 if hollow else 1.0)
 for q in ("Q1", "Q2", "Q3", "Q4"):
     r = pts[f"RC100 corr {q}"]; point(r, f(r, "z"), COL["RC100"], "o", 95)
-ax.text(1.05, 6.0, "RC100\n100 discs in 4 bins", color=COL["RC100"], fontsize=10, ha="center", fontweight="bold")
+ax.text(1.38, 5.2, "RC100\n100 discs in 4 bins", color=COL["RC100"], fontsize=10, ha="center", fontweight="bold")
 r = pts["ALESS_122.1"]; point(r, 2.13, COL["M"], "*", 360)
 ax.annotate("ALESS 122.1\nbest gas data, 1 galaxy", xy=(2.08, f(r, "s_star") * U), xytext=(1.98, 14.5), fontsize=10, ha="right",
             color=COL["M"], fontweight="bold", va="center", arrowprops=dict(arrowstyle="-", color=COL["M"], lw=0.8))
@@ -236,6 +237,11 @@ for r in K261:
 ax.text(0.03, 13.5, "KiDS lensing", color=KCOL, fontsize=10, fontweight="bold", ha="left")
 ax.text(0.03, 10.9, "◇ early-type lenses", color=KCOL, fontsize=9.5, ha="left")
 ax.text(0.03, 8.9, "● late-type lenses", color=KCOL, fontsize=9.5, ha="left")
+MGC = "#e76f51"   # MIGHTEE-HI (CFG279): the PAPER'S published fit level (exponential RAR, authors' M/L), not our estimator
+mw = M279["MIGHTEE-HI paper: whole sample, z-averaged"]
+ax.plot([f(mw, "z")] * 2, [f(mw, "stat95_lo") * U, f(mw, "stat95_hi") * U], color=MGC, lw=1.2, zorder=6)
+ax.scatter([f(mw, "z")], [f(mw, "a0_1e-10_m_s2")], marker="o", s=60, color=MGC, edgecolor="white", lw=1.0, zorder=7)
+ax.text(0.03, 7.1, "● MIGHTEE-HI (published fit)", color=MGC, fontsize=9.5, ha="left")
 ax.set_ylabel(r"$a_0$ implied by the rotation   [$10^{-10}$ m s$^{-2}$]", fontsize=12)
 ax.set_yticks([0.3, 0.5, 1, 2, 3, 5, 10, 20]); ax.set_yticklabels(["0.3", "0.5", "1", "2", "3", "5", "10", "20"])
 ax.grid(True, which="major", axis="y", color="#e4e7eb", lw=0.7, zorder=0)
@@ -274,7 +280,7 @@ fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from
          "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  The dashed sets at the bottom are data in hand with no $a_0$ value yet.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–274, CFG277, CFG280 (calculated); CFG261 KiDS and CFG262 MUSE-DARK (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–274, CFG277, CFG280 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
