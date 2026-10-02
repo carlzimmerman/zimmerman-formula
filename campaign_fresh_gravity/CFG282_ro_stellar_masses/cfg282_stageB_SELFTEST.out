@@ -1,0 +1,36 @@
+CFG282 -- CFG277's Roman-Oliveira+23 [CII] discs (SGP38326-1, SGP38326-2, BRI1335-0417) with the literature SED stellar masses added: gas (CFG277's CO masses, class S) + SED stars, five rows never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG282_ro_stellar_masses/FROZEN_CRITERIA.md (3af1cf10d, corrected in section 9 by e111bcc30: provenance wording only).
+  rows     SGP38326-1 [gas+M* T26 11.04] / [gas+M* Ma19 11.52]; SGP38326-2 [T26 11.39] / [Ma19 11.27]; BRI1335-0417 [T26 12.05, AGN-included, unconstrained]
+  g_obs    (V_ext^2 + 3.36 sigma_ext^2) / r_ext;  g_bar = 0.5 G (M_gas + M*) / r_ext^2 (CFG197's point-mass geometry, f_enc = 0.5);  CFG223's s*
+  STAGE=A  the blind pre-flight (no velocity-bearing column loaded).  STAGE=B  the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (V_ext, sigma_ext x 2).
+
+STAGE B  *** SELFTEST: FABRICATED V_ext on the law at s_true = 2 (+0.15 dex scatter); debugging only ***
+tables: sample 985ef40cb89bff54, gas 42701921add400ee, kinematics e344a4f21739ecf4, stellar masses 487f01bc104d5ef8; velocity-bearing columns loaded: False
+rows: SGP38326-1 [gas+M* T26]: r_ext 3.536 kpc, M_gas 1.90e+11 (sigma 0.300 dex), M* 1.10e+11; SGP38326-1 [gas+M* Ma19]: r_ext 3.536 kpc, M_gas 1.90e+11 (sigma 0.300 dex), M* 3.31e+11; SGP38326-2 [gas+M* T26]: r_ext 1.632 kpc, M_gas 7.60e+10 (sigma 0.300 dex), M* 2.45e+11; SGP38326-2 [gas+M* Ma19]: r_ext 1.632 kpc, M_gas 7.60e+10 (sigma 0.300 dex), M* 1.86e+11; BRI1335-0417 [gas+M* T26]: r_ext 4.092 kpc, M_gas 1.00e+11 (sigma 0.043 dex), M* 1.12e+12
+
+STAGE B  THE MEASUREMENT (SELFTEST)
+  SGP38326-1 [gas+M* T26]      r 3.54: g_obs 2.848e-09  g_bar 1.670e-09  D 1.705  dF +0.215  y 17.84  s* <= 22.9; MC 68 % [8.11, 63.2] 95 % [1.4, 136] (no root 0.22, ceiling 0.00); baryon ratio for s* = 1: +0.66; recipe half-width 0.706; band inner [4.09, 50.7] outer [0.001, 133] ILL
+  SGP38326-1 [gas+M* Ma19]     r 3.54: g_obs 2.609e-09  g_bar 2.905e-09  D 0.898  dF -0.056  y 31.03  FLOOR (D <= 1); MC 68 % [3.25, 29.9] 95 % [0.419, 66] (no root 0.65, ceiling 0.00); baryon ratio for s* = 1: -0.13; recipe half-width nan; band inner [0.001, 10.9] outer [0.001, 36.3] ILL
+  SGP38326-2 [gas+M* T26]      r 1.63: g_obs 7.583e-09  g_bar 8.412e-09  D 0.902  dF -0.049  y 89.87  FLOOR (D <= 1); MC 68 % [11.8, 98] 95 % [1.59, 215] (no root 0.63, ceiling 0.00); baryon ratio for s* = 1: +nan; recipe half-width nan; band inner [0.001, 30.2] outer [0.001, 90.8] ILL
+  SGP38326-2 [gas+M* Ma19]     r 1.63: g_obs 8.313e-09  g_bar 6.861e-09  D 1.212  dF +0.079  y 73.30  s* <= 23.8; MC 68 % [16.2, 131] 95 % [2.61, 288] (no root 0.43, ceiling 0.00); baryon ratio for s* = 1: +0.20; recipe half-width 0.973; band inner [0.001, 73.4] outer [0.001, 171] ILL
+  BRI1335-0417 [gas+M* T26]    r 4.09: g_obs 4.802e-09  g_bar 5.086e-09  D 0.944  dF -0.031  y 54.34  FLOOR (D <= 1); MC 68 % [9.24, 79.7] 95 % [1.21, 168] (no root 0.54, ceiling 0.00); baryon ratio for s* = 1: -0.07; recipe half-width nan; band inner [0.001, 20.8] outer [0.001, 52.2] ILL
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 0.0e+00 (2 rows with a root)
+  [PASS] M3 the five rows are present (two stellar-mass branches for each SGP38326 disc, one for BRI1335-0417)
+         [11.04, 11.52, 11.39, 11.27, 12.05]
+  SELFTEST: no conditioned row with a root: truth recovery not applicable
+  SELFTEST statuses: SGP38326-1 [gas+M* T26]: root s* 22.9 ILL; SGP38326-1 [gas+M* Ma19]: floor ILL; SGP38326-2 [gas+M* T26]: floor ILL; SGP38326-2 [gas+M* Ma19]: root s* 23.8 ILL; BRI1335-0417 [gas+M* T26]: floor ILL
+  SELFTEST repeat (reported): SGP38326-1 [gas+M* T26]: the 95 % interval contains s = 2 in 53 of 56 fabricated worlds with a root (44 of 100 worlds at the floor)
+  SELFTEST repeat (reported): SGP38326-1 [gas+M* Ma19]: the 95 % interval contains s = 2 in 48 of 54 fabricated worlds with a root (46 of 100 worlds at the floor)
+  SELFTEST repeat (reported): SGP38326-2 [gas+M* T26]: the 95 % interval contains s = 2 in 4 of 56 fabricated worlds with a root (44 of 100 worlds at the floor)
+  SELFTEST repeat (reported): SGP38326-2 [gas+M* Ma19]: the 95 % interval contains s = 2 in 9 of 52 fabricated worlds with a root (48 of 100 worlds at the floor)
+  SELFTEST repeat (reported): BRI1335-0417 [gas+M* T26]: the 95 % interval contains s = 2 in 18 of 61 fabricated worlds with a root (39 of 100 worlds at the floor)
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg282_points_stageB_SELFTEST.csv (5 rows)
+
+3/3 checks pass; load-bearing failures: 0   (9 s)
