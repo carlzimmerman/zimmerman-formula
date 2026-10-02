@@ -1,0 +1,301 @@
+
+==============================================================================================================
+S1  THE RELATION, STEP BY STEP
+==============================================================================================================
+  H0 = 67.4 km/s/Mpc = 2.18429e-18 s^-1
+  rho_crit = 3 H0^2/(8 pi G) = 8.5329e-27 kg m^-3
+  rho_Lambda = Omega_Lambda rho_crit = 5.8450e-27 kg m^-3        (Omega_Lambda = 0.685)
+  G rho_Lambda = 3.9011e-37 s^-2 ;  sqrt = 6.2459e-19 s^-1
+  c sqrt(G rho_Lambda) = 1.8725e-10 m s^-2      <- the unique acceleration built from (c, G, rho_Lambda)
+  kappa = 1/2:  a0 = 9.3624e-11 m s^-2   (rho_Lambda);   1.1312e-10 m s^-2   (rho_crit);  ratio 1.2082 = 1/sqrt(Omega_Lambda)
+  H_Lambda = H0 sqrt(Omega_Lambda) = 1.80782e-18 s^-1 ;  c H_Lambda = 5.4197e-10 ;  c H0 = 6.5483e-10 m s^-2
+  Lambda = 3 H_Lambda^2/c^2 = 1.0909e-52 m^-2 ;  de Sitter radius c/H_Lambda = 1.6583e+26 m = 5.37 Gpc
+  Z = c H_Lambda / a0 = 5.7888 ;  sqrt(32 pi/3) = 5.7888
+  four forms: (c/2)sqrt(G rho_L) = 9.362375e-11;  c^2 sqrt(Lambda/32pi) = 9.362375e-11;  cH_L/sqrt(32pi/3) = 9.362375e-11;  c^2/(sqrt(32pi/3) R_dS) = 9.362375e-11
+  natural units: M_Lambda = rho_Lambda^(1/4) = 2.240 meV ;  M_P = 1.2209e+28 eV ;  M_Lambda^2/(2 M_P) -> 9.362375e-11 m s^-2
+  l0 = c^2/a0 = 9.5996e+26 m ;  Lambda l0^2 = 100.5310 ;  32 pi = 100.5310
+  [PASS] [identity] S1a the four forms of the kappa = 1/2 relation are one number   (max relative difference 2.2e-16)
+  [PASS] [identity] S1b Z = sqrt(32 pi/3) identically (no data content: H cancels)   (Z = 5.788810)
+  [PASS] [identity] S1c a0(rho_Lambda) = 9.36e-11 and a0(rho_crit) = 1.13e-10 to three figures   (9.3624e-11, 1.1312e-10)
+
+==============================================================================================================
+S2  THE STANDARD RADIAL-ACCELERATION FIT ON SPARC, AND ITS MASS-TO-LIGHT DEGENERACY
+==============================================================================================================
+  SPARC: 164 galaxies, 2803 points with velocity error < 10%;  g_bar spans 8.32e-13 - 6.54e-09 m s^-2
+  Upsilon_disc  a0 [1e-10]  kappa(rho_L)  kappa(rho_crit)  rms [dex]
+          0.40       1.489         0.795            0.658      0.148
+          0.50       1.190         0.636            0.526      0.144
+          0.60       0.974         0.520            0.431      0.143
+          0.70       0.812         0.434            0.359      0.145
+          0.80       0.688         0.367            0.304      0.148
+  kappa = 1/2 exactly needs Upsilon_disc = 0.621 (rho_Lambda) or 0.524 (rho_crit), bulge fixed at 0.7
+  a0 fixed at 9.362e-11: least-scatter Upsilon_disc = 0.59, rms = 0.143 dex;   fixed at 1.131e-10: 0.52, 0.143 dex
+  ESTIMATOR B, shape-only (free vertical offset):
+                   Ups_bul = 0.6   Ups_bul = 0.7   Ups_bul = 0.8
+  Ups_disc = 0.5            0.416           0.528           0.663
+  Ups_disc = 0.6            0.442           0.547           0.670
+  Ups_disc = 0.7            0.474           0.573           0.688
+  kappa_B = 0.547 at (Ups_disc, Ups_bul) = (0.6, 0.7);  errors: disc M/L 0.023, bulge M/L 0.114, full M/L grid half-range 0.136, gas scale (11.5%) 0.045, bootstrap over galaxies 0.100
+  ==> kappa_B = 0.55 +/- 0.17   (dominated by the BULGE mass-to-light ratio; the repository's 0.551 +/- 0.043 held Ups_bul fixed at 0.7)
+  a common distance rescaling of 5 and 10 per cent moves the shape-only a0 by 8.4e-11 (fractional) and the standard fit by 22.4% (10 per cent case)
+  bulgeless galaxies only (132 galaxies, 1715 points, g_bar < 16 a0): kappa_B = 0.50, 0.77, 1.11 at Ups_disc = 0.5, 0.6, 0.7  -> the lever arm is too short; no help
+  deep band g_bar < 0.1 a0 (bulge 0.7): kappa = 0.558 (N 858), 0.492 (N 764), 0.441 (N 688) at Upsilon_disc = 0.5, 0.6, 0.7
+     every point, equal weight (no quality cut): 0.444, 0.388, 0.342  <- points with >10% velocity errors pull it down
+  injection (a0 = 0.7, 1.0, 1.3 x canonical, real g_bar, noise = quoted errors + 0.034 dex): returned / injected
+     standard fit 1.004, 1.008, 0.998;  deep band 1.001, 1.021, 1.008
+     with a +0.08 dex common offset (a 20% distance error): shape-only 1.023, 1.015, 1.004;  the standard fit, for contrast, 1.662, 1.639, 1.603
+  [PASS] [data] S2a at Upsilon_disc = 0.5 the fit returns the literature a0 = 1.2e-10 within 5%   (a0 = 1.190e-10)
+  [PASS] [data] S2b the degeneracy is steep: kappa moves by more than 0.15 between Upsilon_disc = 0.5 and 0.7   (0.636 -> 0.434)
+  [PASS] [identity] S2d the shape-only estimator is immune to a common distance rescaling (< 1e-5): the free offset absorbs it by construction   (8.4e-11)
+  [PASS] [data] S2d2 while the standard fit is not: a 10 per cent common rescaling moves it by more than 15 per cent   (22.4%)
+  [PASS] [data] S2e the replication agrees with the repository's estimator B at Upsilon_bul = 0.7, Upsilon_disc = 0.5 and 0.7 (0.529, 0.574) within 0.01   (0.528, 0.573)
+  [PASS] [data] S2f AGAINST THE EARLIER ERROR BAR: the bulge mass-to-light ratio moves estimator B by more than twice the 0.043 previously quoted   (bulge term 0.114; total 0.175)
+  [PASS] [data] S2g the deep band (g_bar < 0.1 a0, quality-cut, error-weighted) gives kappa between 0.40 and 0.60 for Upsilon_disc 0.5-0.7   (0.558, 0.492, 0.441)
+  [PASS] [data] S2h AGAINST INTEREST: giving every deep point equal weight (no quality cut) lowers kappa by at least 0.05 at every Upsilon   (0.444, 0.388, 0.342)
+  [PASS] [injection] I1 the standard fit returns the injected a0 to 2 per cent at 0.7, 1.0 and 1.3 x canonical   (1.004, 1.008, 0.998)
+  [PASS] [injection] I2 the shape-only estimator returns the injected a0 to 3 per cent through a 0.08 dex common offset that biases the standard fit by > 15 per cent   (shape 1.023, 1.015, 1.004; standard 1.662, 1.639, 1.603)
+  [PASS] [injection] I3 the deep-band fit returns the injected a0 to 5 per cent   (1.001, 1.021, 1.008)
+  [PASS] [data] S2c kappa = 1/2 needs a disc mass-to-light ratio inside the population-synthesis range 0.4-0.8   (0.62 / 0.52)
+  estimator A: correction evaluated at the canonical a0 8.7091e-11; at its own output (fixed point) 8.6533e-11 (-0.64%); selection and correction at the 21% higher alternative a0 9.5263e-11 (+9.4%)
+  [PASS] [injection] I4 estimator A is not an echo of the a0 at which its correction is evaluated: iterating to its own output moves it by < 1 per cent, and a 21 per cent change of that a0 moves it by < 10 per cent   (-0.64%, +9.4%)
+
+==============================================================================================================
+S3  CANDIDATE COEFFICIENTS, THE MASS-BUDGET FLOOR, THE H0 LOCK
+==============================================================================================================
+  candidate                                    kappa   pulls: BTFR intercept   shape-only
+  c H_Lambda/2pi (Milgrom 2020, eq. 3)        0.4607    -0.06 sigma    -0.49 sigma
+  1/2 (this paper)                            0.5000    +0.46 sigma    -0.27 sigma
+  c H0/2pi (Milgrom 2020, eq. 3)              0.5566    +1.21 sigma    +0.05 sigma
+  c H0/6 (Verlinde 2017)                      0.5829    +1.55 sigma    +0.20 sigma
+  c H_Lambda (Unruh T = de Sitter T)          2.8944   +31.97 sigma   +13.41 sigma
+  2 c H_Lambda (Milgrom 1999)                 5.7888   +70.05 sigma   +29.95 sigma
+  mass-budget floor: s_U = 0.168, s_G = 0.115:  s_U s_G/sqrt(s_U^2+s_G^2) = 9.49% at f_* = 0.319  (numerical minimum 9.49%)
+  H0 lock (fixed Omega_Lambda): a0(kappa=1/2, H0=67.4) = 9.3624e-11;  a0(kappa=0.4607, H0=73.04) = 9.3475e-11;  ratio 0.9984
+     because kappa ratio 0.9213 against H0 ratio 0.9228
+  variant, Omega_m h^2 held instead: Omega_Lambda(SH0ES) = 0.732; the coefficient that reproduces a0(1/2, Planck) is 0.4464 (-3.1% from 0.4607)
+  a0 as an H0 meter at frozen kappa = 1/2 (fixed Omega_Lambda): BTFR intercept: H0 = 62.7 +/- 10.2 km/s/Mpc
+  a0 as an H0 meter at frozen kappa = 1/2 (fixed Omega_Lambda): shape-only: H0 = 73.7 +/- 23.6 km/s/Mpc
+  separation of 1/2 from 0.4607: 7.9% in a0 = 0.036 dex;  3 sigma needs 2.6% on a0
+  ln[L(1/2)/L(0.461)] from the two measurements = -0.02
+  the two estimators differ by 0.43 sigma (not independent: same galaxies); inverse-variance mean 0.478 is NOT quoted
+  [PASS] [identity] S3a the closed-form floor equals the numerical minimum   (9.49%)
+  [PASS] [identity] S3b the H0 lock: the two (kappa, H0) pairs predict the same a0 to better than 0.5%   (-0.16%)
+  [PASS] [data] S3c 1/2 is inside 1.5 sigma of both measurements; Milgrom-1999's 2cH_Lambda is outside 5 sigma of both
+  [PASS] [data] S3d the data do not single out 1/2: at least three candidates lie within 2.2 sigma of both measurements   (4 candidates inside 2.2 sigma of both)
+
+==============================================================================================================
+S4  THE REDSHIFT LAWS, THE ERROR AMPLIFICATION, THE 20:1 RULE
+==============================================================================================================
+  NFW, M200 = 1e12 Msun, z = 0:   r200 = 212 kpc, c = 8.36, g_max = G M c^2/(2 f(c) r200^2) = 8.105e-11 m s^-2 = 0.68 x 1.2e-10
+  NFW, M200 = 1e12 Msun, z = 2.5: r200 = 87 kpc, c = 3.85, g_max = 1.723e-10 m s^-2;  ratio 2.126
+  Delta = log10[a0(z)/a0(0)] in dex
+     z  constant     H(z)  halo DM14           [range]  halo D08  rho_DE map (DESY5)
+   1.0     0.000    0.253      0.091 [-0.099,+0.276]     0.154               0.004
+   2.0     0.000    0.482      0.245 [+0.027,+0.460]     0.359              -0.065
+   2.5     0.000    0.576      0.328 [+0.096,+0.557]     0.447              -0.099
+   3.0     0.000    0.660      0.410 [+0.166,+0.655]     0.527              -0.133
+  z = 2.5 density mapping under DESI DR2 w0-wa: Pantheon+ -0.085, DESY5 -0.099, Union3 -0.111  (NOT this paper's prediction; shown for scale)
+  check of the gmax route against the closed law: ratio 2.1264 vs E^(4/3) c^2/f(c) ratio 2.1264
+  20:1 rule: two point hypotheses Delta apart, Gaussian error sigma: expected ln B = Delta^2/(2 sigma^2) >= ln 20  =>  sigma <= Delta/sqrt(2 ln 20) = Delta/2.448
+     constant vs halo-emergent at z = 2.5: Delta = 0.328 -> sigma <= 0.134 dex;   constant vs H(z): Delta = 0.576 -> sigma <= 0.235 dex
+  error amplification of the kernel inversion  a0 = g_bar/y,  nu(y) = g_obs/g_bar :
+     d ln a0 = (1 + 1/n) d ln g_bar - (1/n) d ln g_obs,   n = d ln nu/d ln y
+   y = g_bar/a0        n  A_bar=|1+1/n|  A_obs=1/|n|   sigma(log a0) for 0.10 dex M_b, 5% V
+           0.01  -0.4754           1.10         2.10                                  0.143
+           0.10  -0.4251           1.35         2.35                                  0.169
+           0.30  -0.3755           1.66         2.66                                  0.203
+           1.00  -0.2910           2.44         3.44                                  0.286
+           1.70  -0.2429           3.12         4.12                                  0.359
+           3.00  -0.1862           4.37         5.37                                  0.496
+           6.40  -0.1095           8.13         9.13                                  0.905
+  the halo-emergent law at z = 2.5 (dex), by halo mass and concentration-mass relation [central-acceleration scaling E^(4/3) c^2/f(c)]:
+     M200 = 1e+11:  Dutton-Maccio +0.227   Duffy +0.434
+     M200 = 1e+12:  Dutton-Maccio +0.328   Duffy +0.447
+     M200 = 1e+13:  Dutton-Maccio +0.424   Duffy +0.462
+  range of the halo-emergent law over M200 = 1e11-1e13 and the two concentration-mass relations (median concentrations):
+     z = 1.0: [+0.046, +0.162]
+     z = 2.0: [+0.161, +0.372]
+     z = 2.5: [+0.227, +0.462]
+     z = 3.0: [+0.293, +0.544]
+  second structural scaling, V_max^4/(G M) at fixed M_b/M_halo:  3.638 = +0.561 dex at z = 2.5  (a larger M_b/M_halo at high z lowers it one-for-one)
+  a single object: +/-0.11 dex concentration scatter moves its halo-emergent expectation by +/-0.132 dex
+  intrinsic scatter of the relation (0.034 dex in g_obs) amplified through the inversion: y = 0.01: 0.072 dex, y = 0.1: 0.080 dex, y = 0.3: 0.091 dex
+  expected odds (the smaller of the two truths), Delta = 0.328 dex, intrinsic 0.091 dex (y = 0.3), halo scatter 0.132 dex on the LambdaCDM side:
+  sigma_meas        N = 1        N = 2        N = 3        N = 4
+        0.08         6.1:1        36.7:1       222.5:1      1348.2:1
+        0.10         5.0:1        24.6:1       122.2:1       606.4:1
+        0.13         3.8:1        14.1:1        53.0:1       199.3:1
+        0.20         2.3:1         5.4:1        12.5:1        28.9:1
+  measurement budgets at y = 0.2 (A_obs = 2.52, A_bar = 1.52; a magnification error enters as A_obs/2 = 1.26):
+     dV/V = 2.5%, dlog M_b = 0.04, dlog mu = 0.04  ->  sigma_meas = 0.096 dex
+     dV/V = 3.0%, dlog M_b = 0.06, dlog mu = 0.05  ->  sigma_meas = 0.129 dex
+     dV/V = 5.0%, dlog M_b = 0.10, dlog mu = 0.06  ->  sigma_meas = 0.202 dex
+  (idealised: no intrinsic and no halo scatter, total 0.134 dex, one object: 19.9:1)
+  the gate g_bar < 0.3 a0 (a0 = 1e-10, Gamma = 1.2) reads M_b < 1.79e+08 (R/kpc)^2 Msun; examples: M_b = 2e+09, R = 4 kpc -> y = 0.21, V_f = 84 km/s; M_b = 5e+09, R = 6 kpc -> y = 0.23, V_f = 106 km/s; M_b = 1e+10, R = 8 kpc -> y = 0.26, V_f = 127 km/s
+  [PASS] [identity] S4j the gate selects low-mass discs: the three examples pass y < 0.3 and rotate at 80-130 km/s   (84, 106, 127 km/s)
+  [PASS] [identity] S4k the three quoted measurement budgets give 0.10, 0.13 and 0.20 dex   (0.096, 0.129, 0.202)
+  [PASS] [model] S4l four galaxies at 0.20 dex also exceed 20:1   (29:1)
+  [PASS] [model] S4h the smallest structural LambdaCDM expectation in the grid is still a rise of more than 0.2 dex at z = 2.5   (min +0.227, max +0.561)
+  [PASS] [model] S4i AGAINST THE ONE-OBJECT CLAIM: with intrinsic and halo-to-halo scatter included, one object at 0.13 dex does NOT reach 20:1, three objects at 0.10 dex do   (one at 0.13: 3.8:1; three at 0.10: 122.2:1)
+  [PASS] [identity] S4a the closed law E^(4/3) c^2/f(c) is the ratio of NFW central accelerations at fixed M200
+  [PASS] [model] S4b the central acceleration of a 1e12 Msun NFW halo today is within a factor 2 of the galactic scale 1.2e-10   (8.10e-11)
+  [PASS] [model] S4c halo-emergent law at z = 2.5 is a factor 2.0-2.3 (0.30-0.36 dex) for the Dutton-Maccio relation at 1e12 Msun   (2.126 = +0.328 dex)
+  [PASS] [identity] S4d the required single-object precision is 0.13 dex   (0.134)
+  [PASS] [identity] S4e deep limit n -> -1/2 (a0 = g_obs^2/g_bar) and the amplification at y = 0.3 stays below 1.7 (baryons) and 2.7 (kinematics)   (A_bar = 1.66, A_obs = 2.66)
+  [PASS] [identity] S4f at the accelerations of published z > 0.5 samples (1.7-6.4 a0) the kinematic amplification is 4-9   (4.1 - 9.1)
+  [PASS] [model] S4g even the density mapping under DESI w0-wa stays within 0.15 dex of zero at z = 2.5, far from the halo and H(z) laws
+  common-mode calibration (v3): baryonic-mass calibration error delta_c shared by every galaxy, s_C = A_bar delta_c at y = 0.2 (A_bar = 1.52); the shared-term formula reduces to the independent one at s_C = 0 to 3.6e-15
+   delta_c    s_C  halo, N=4 @0.20  halo, N=4 @0.10  halo, N=10 @0.20  H(z), N=4 @0.20  halo: Delta/s_C  H(z): Delta/s_C
+      0.00  0.000            28.9:1           606.4:1           4474.5:1          952815:1              inf              inf
+      0.05  0.076            12.1:1            52.3:1             94.3:1           10917:1             4.31             7.57
+      0.10  0.152             4.2:1             7.0:1              7.4:1             111:1             2.15             3.78
+      0.15  0.228             2.3:1             3.2:1              3.0:1              13:1             1.44             2.52
+      0.20  0.304             1.7:1             2.2:1              2.1:1               5:1             1.08             1.89
+      0.30  0.457             1.4:1             1.7:1              1.6:1               2:1             0.72             1.26
+  20:1 from the sample means alone (any N; expected ln B -> Delta^2/(2 s_C^2)) needs delta_c <= 0.088 dex (halo law) and <= 0.155 dex (H(z) law)
+  a gas-mass scale error of +/-0.2 and +/-0.7 dex at a gas fraction of 0.5 is 0.2: +0.111/-0.089 dex; 0.7: +0.478/-0.222 dex on the baryonic mass
+  Fisher, f free, N = 20 points at 0.1 dex, log-uniform from y = 0.001: sigma(log a0) < 0.1 dex for every y_max >= 17.4; minimum 0.0859 dex at y_max = 661
+  Fisher, f free, N = 20 points at 0.1 dex, log-uniform from y = 0.01: no stable break-even below y_max = 1e4; minimum 0.0958 dex at y_max = 275
+  Fisher, f free, N = 20 points at 0.1 dex, log-uniform from y = 0.1: no stable break-even below y_max = 1e4; minimum 0.1199 dex at y_max = 132
+  the floor sigma(log a0) >= 3 sigma/sqrt(N) (CFG240 T4, any design with b in [0, 1/2]): smallest ratio over 4000 random designs 1.0813
+  CFG240's committed table (nu_mono = this paper's kernel): y_min 0.001: break-even 17.378008287493763, minimum 0.0859; y_min 0.01: break-even None, minimum 0.0958; y_min 0.1: break-even None, minimum 0.1199
+  rows of the table of shared-calibration odds (as typeset):
+     0.00 & 0.000 & 29:1 & 610:1 & $9.5\times10^5$:1 & -- & --\\
+     0.05 & 0.076 & 12:1 & 52:1 & $1.1\times10^4$:1 & 4.3 & 7.6\\
+     0.10 & 0.152 & 4.2:1 & 7.0:1 & 110:1 & 2.2 & 3.8\\
+     0.15 & 0.228 & 2.3:1 & 3.2:1 & 13:1 & 1.4 & 2.5\\
+     0.20 & 0.304 & 1.7:1 & 2.2:1 & 4.9:1 & 1.1 & 1.9\\
+  [PASS] [identity] S4m the shared-calibration odds reduce to the independent-error odds when the common term vanishes (1e-12)   (3.6e-15)
+  [PASS] [model] S4n AGAINST THE DESIGN: a common-mode baryonic-mass calibration error of 0.10 dex drops four galaxies at 0.20 dex from >20:1 to <5:1 against the halo law, and 20:1 from the sample means needs delta_c <= 0.09 dex (halo) and <= 0.16 dex (H(z)) whatever N   (29:1 -> 4.2:1; delta_c 0.088 / 0.155)
+  [PASS] [identity] S4r the table of shared-calibration odds in the manuscript is exactly the computed one   (5 rows typeset)
+  [PASS] [identity] S4o a 0.2-0.7 dex gas-mass scale error at a gas fraction of 0.5 is 0.09-0.48 dex on the baryonic mass (arithmetic)
+  [PASS] [identity] S4p the floor sigma(log a0) >= 3 sigma/sqrt(N) holds on 4000 random designs with b in [0, 1/2] (CFG240 T4; with f free)   (min ratio 1.0813)
+  [PASS] [identity] S4q the Fisher break-even re-computed here for the paper's kernel reproduces CFG240's committed table (N = 20, 0.1 dex; y_min = 0.001, 0.01, 0.1)   (0.001: 17.378008287493763 / 0.0859; 0.01: None / 0.0958; 0.1: None / 0.1199)
+
+==============================================================================================================
+S5  THE CLOSED-FORM INVERSION OF THE RC100 DARK-MATTER FRACTIONS
+==============================================================================================================
+  a0 = (1 - f_DM) g_obs / [ln(1/f_DM)]^2 for 99 of 100 galaxies (f_DM in (0.02, 0.98)); z = 0.61 - 2.52
+  median a0 = 1.386e-10 m s^-2;  16-84%: 4.94e-11 - 3.46e-10;  median y = 1.45
+  accelerations probed: y = g_bar/a0 16/50/84% = 0.33/1.45/5.30;  15 of 99 below 0.3;  A_obs there = 2.7/3.9/7.8
+  d log10 a0/dz = -0.1115 +/- 0.0628 (bootstrap);  constant: 0 (-1.8 sigma);  halo-emergent mean slope +0.1311 (-3.9 sigma);  H(z) mean slope +0.2304 (-5.4 sigma)
+  what drives it: d log10 f_DM/dz = -0.140  (the published fall of the dark-matter fraction with redshift); the inversion is monotone in f_DM
+  scatter about the fit: 0.39 dex;  corr(log a0_hat, log y_hat) = -0.72  (noise in f_DM moves a0_hat and y_hat oppositely)
+  controlling for log g_obs (measured, a0-free):   d log a0/dz = -0.141 +/- 0.063   -> halo-emergent mean slope disfavoured at 4.3 sigma
+  controlling for log y_hat (absorbs noise AND part of any real signal): +0.011 +/- 0.048   -> 2.5 sigma
+  weakest exclusion of the H(z) mean slope over the three treatments: 4.6 sigma
+  range of the redshift slope over the three treatments: -0.14 to +0.01;  weakest exclusion of the halo-emergent slope: 2.5 sigma
+  baryonic-mass calibration drift beta [dex per unit z]  ->  slope, and its distance from constant / from the halo law:
+     beta -0.100: N  92, slope +0.160 +/- 0.069;  constant +2.3 sigma;  halo law -0.4 sigma
+     beta -0.075: N  93, slope +0.090 +/- 0.061;  constant +1.5 sigma;  halo law +0.7 sigma
+     beta -0.050: N  94, slope +0.022 +/- 0.062;  constant +0.4 sigma;  halo law +1.8 sigma
+     beta -0.025: N  97, slope -0.043 +/- 0.059;  constant -0.7 sigma;  halo law +3.0 sigma
+     beta +0.000: N  99, slope -0.111 +/- 0.063;  constant -1.8 sigma;  halo law +3.8 sigma
+     beta +0.025: N  97, slope -0.181 +/- 0.072;  constant -2.5 sigma;  halo law +4.3 sigma
+     beta +0.050: N  90, slope -0.148 +/- 0.074;  constant -2.0 sigma;  halo law +3.8 sigma
+  admitting the one galaxy at the f_DM = 0.02 edge: slope -0.111 -> -0.084 (N 100), a 0.4 sigma move from one object
+  the halo law comes within 2 sigma at beta = -0.05; constancy goes 2 sigma off at beta = -0.1
+  KMOS3D replication (L332): T1 FAILED (framework max |z| 5.4; LCDM min |z|: NFW 6.1, H 6.3, C 6.2, K 6.2, A 6.2, ALL 6.1);  K1: slope <= -0.110; below-baryons fraction z>1.9 0.27-0.54 vs z<1.2 <= 0.11; worst Fisher p 2.6e-04
+  injection (kernel-consistent f_DM with 0.05 noise on the real z, g_bar): injected -> recovered slope: +0.000 -> -0.000, +0.131 -> +0.130, +0.230 -> +0.229
+  RC100 transcription correction (CFG289): corrected file sha256 a1778d75476ede17...; changed primary cells by column: name 5, logMbar_Msun 9, fDM_within_Re 1, Vc_Re_kms 2; total 17; deep-regime flag flips in row(s) [44]
+  cells that enter the inversion (f_DM, and V_c through g = V_c^2/R_e): rows [36, 43, 44]
+     slope d log a0/dz                                   -0.112 ->      -0.111
+     its bootstrap error                                  0.063 ->       0.063
+     median a0 [m s^-2]                               1.385e-10 ->   1.386e-10
+     scatter about the fit [dex]                          0.383 ->       0.391
+     slope | log g_obs                                   -0.138 ->      -0.141
+     slope | log y                                       +0.008 ->      +0.011
+     weakest exclusion of the halo slope [sigma]           2.58 ->        2.51
+     weakest exclusion of the H(z) slope [sigma]           4.67 ->        4.59
+     slope with the f_DM = 0.02 edge galaxy              -0.085 ->      -0.084
+     corr(log a0, log y)                                  -0.73 ->       -0.72
+     16th percentile of a0 [m s^-2]                   5.217e-11 ->   4.938e-11
+     drift beta -0.100: slope +0.159 -> +0.160 (constant +2.3 -> +2.3 sigma; halo -0.4 -> -0.4 sigma)
+     drift beta -0.075: slope +0.089 -> +0.090 (constant +1.5 -> +1.5 sigma; halo +0.7 -> +0.7 sigma)
+     drift beta -0.050: slope +0.021 -> +0.022 (constant +0.3 -> +0.4 sigma; halo +1.8 -> +1.8 sigma)
+     drift beta -0.025: slope -0.044 -> -0.043 (constant -0.7 -> -0.7 sigma; halo +3.0 -> +3.0 sigma)
+     drift beta +0.000: slope -0.112 -> -0.111 (constant -1.8 -> -1.8 sigma; halo +3.9 -> +3.8 sigma)
+     drift beta +0.025: slope -0.182 -> -0.181 (constant -2.5 -> -2.5 sigma; halo +4.3 -> +4.3 sigma)
+     drift beta +0.050: slope -0.148 -> -0.148 (constant -2.0 -> -2.0 sigma; halo +3.8 -> +3.8 sigma)
+  [PASS] [identity] S5a the inversion is exact: nu(y) (1 - f_DM) = 1 at y = [ln(1/f_DM)]^2
+  [PASS] [data] S5e AGAINST INTEREST: a baryonic-mass calibration drift of at most 0.05 dex per unit z brings the halo law within 2 sigma (the result is calibration-conditional)   (beta = -0.05)
+  [PASS] [data] S5f AGAINST INTEREST: the independent KMOS3D replication (L332) failed, and a third to a half of its z > 1.9 galaxies rotate below their own Newtonian baryons   (slope <= -0.110; below-baryons fraction z>1.9 0.27-0.54 vs z<1.2 <= 0.11; worst )
+  [PASS] [identity] S5g the tilt table at beta = 0 reproduces the main fit exactly (same galaxies, same slope)
+  [PASS] [injection] I5 the inversion recovers injected trends (0, halo law, H(z)) to 0.02 dex per unit z when f_DM obeys the kernel   (+0.000->-0.000, +0.131->+0.130, +0.230->+0.229)
+  [PASS] [data] S5b the RC100 trend is consistent with constant a0 within 2.5 sigma and more than 3 sigma below the halo-emergent mean slope   (-0.111 +/- 0.063)
+  [PASS] [data] S5c no decline is claimed: the slope is within 2.5 sigma of zero under every treatment
+  [PASS] [data] S5d AGAINST INTEREST: the 3.9 sigma does not survive every control -- the weakest exclusion of the halo-emergent slope is below 3 sigma, and that is the number to quote   (weakest 2.5 sigma)
+  [PASS] [identity] S5h the corrected RC100 transcription is the CFG289 file (sha256) and differs from the earlier one in exactly 17 primary cells: 5 names, 9 baryonic masses, 1 dark-matter fraction, 2 circular velocities; three of them enter the inversion; one deep-regime flag flips (row 44)   (name 5, logMbar_Msun 9, fDM_within_Re 1, Vc_Re_kms 2)
+  [PASS] [data] S5i the correction changes no RC100 statement of the text (S5b-S5e evaluate the same on both transcriptions) and moves the slope by less than 0.001 dex per unit z (< 0.1 sigma)   (slope -0.1123 -> -0.1115; verdicts (True, True, True, True) -> (True, True, True, True))
+
+==============================================================================================================
+S6  THE DEEP REGIME IN TWO SURVEYS: SLOPE AND AMPLITUDE (SPARC and MIGHTEE-HI)
+==============================================================================================================
+  the kernel's local slope beta(y) = 1 + n(y): y=1e-06: 0.500, y=0.01: 0.525, y=0.05: 0.554, y=0.1: 0.575, y=0.2: 0.603
+  window g_bar < 1.872e-11 m s^-2 (0.2 a0 at the canonical value);  MIGHTEE-HI: 72 of 80 digitised points, 17 of 18 galaxies with >= 3 points
+  sample                 N_gal N_pts   beta   +/- kernel   delta   +/-      z | kernel(crit)      z | kappa_L   +/- kappa_C
+  SPARC Ups_disc = 0.5     125  1261  0.624 0.033  0.570  +0.054 0.033  +1.63 |        0.564  +1.81 |   0.595 0.041   0.492
+  SPARC Ups_disc = 0.6     120  1175  0.614 0.033  0.573  +0.042 0.033  +1.28 |        0.566  +1.47 |   0.517 0.036   0.428
+  SPARC Ups_disc = 0.7     116  1113  0.577 0.038  0.575  +0.002 0.038  +0.06 |        0.568  +0.23 |   0.458 0.031   0.379
+  MIGHTEE-HI (digitised)    17    70  0.602 0.081  0.556  +0.046 0.085  +0.54 |        0.552  +0.60 |   0.892 0.131   0.738
+  pooled with SPARC at 0.5: delta +0.053 +/- 0.031 (z +1.71);  beta 0.621 +/- 0.031: 4.2 sigma from 0.75, 12.4 sigma from 1
+  pooled with SPARC at 0.6: delta +0.042 +/- 0.030 (z +1.39);  beta 0.613 +/- 0.030: 4.5 sigma from 0.75, 12.8 sigma from 1
+  pooled with SPARC at 0.7: delta +0.010 +/- 0.035 (z +0.28);  beta 0.582 +/- 0.035: 4.9 sigma from 0.75, 12.1 sigma from 1
+  MIGHTEE-HI's own fits (Varasteanu et al. 2025, Table 3):  fiducial (spatially varying SED ratio, median 0.35): a0 = 1.69e-10, kappa_L = 0.903 +/- 0.069;  no molecular gas: a0 = 2.06e-10, kappa_L = 1.100 +/- 0.080;  fixed Upsilon_K = 0.6: a0 = 1.08e-10, kappa_L = 0.577 +/- 0.048;  radially averaged ratio: a0 = 1.47e-10, kappa_L = 0.785 +/- 0.069
+  our window fit to the digitised points: a0 = 1.670e-10 (-1.2% from their fiducial)
+  MIGHTEE-HI [fiducial (spatially varying SED ratio, median 0.35)] minus SPARC (Ups_disc 0.5/0.6/0.7), in combined sigma of ln a0: +4.0, +5.3, +6.6
+  MIGHTEE-HI [fixed Upsilon_K = 0.6] minus SPARC (Ups_disc 0.5/0.6/0.7), in combined sigma of ln a0: -0.3, +1.0, +2.1
+  injection (200 draws; quoted errors + 0.034 dex; digitisation 0.036 dex): returned minus kernel slope, SPARC -0.0053 +/- 0.015, MIGHTEE -0.0012 +/- 0.041;  a slope-0.75 power law returns 0.7513 (SPARC), 0.7520 (MIGHTEE)
+  PITFALL: per-galaxy disc ratios fitted to the curves (median 1.17, max 15.3; log-correlation with the Newtonian no-dark-matter ratio r = 0.918, N = 175):
+     window kappa_L = 0.276 +/- 0.031, lower than the population-ratio values by a factor 2.15, 1.87, 1.66
+  [PASS] [identity] S6a the kernel's local slope is 1/2 in the deep limit and 0.60 at y = 0.2 (beta = 1 + n(y))   (0.5002, 0.6035)
+  [PASS] [data] S6b the per-galaxy deep slope agrees with the kernel's own slope at the same points: |z| < 3 for SPARC at each disc ratio, for MIGHTEE-HI, and pooled   (+1.63, +1.28, +0.06; MIGHTEE +0.54)
+  [PASS] [data] S6c the same data exclude the Newtonian slope (beta = 1) at more than 5 sigma, pooled, at every disc ratio   (12.4, 12.8, 12.1)
+  [PASS] [injection] I6 the slope statistic measures: on kernel-consistent data it is unbiased to 0.01, and on a slope-0.75 power law it returns 0.75 to 0.01   (-0.0053, -0.0012; 0.7513, 0.7520)
+  [PASS] [data] S6e the window fit to the digitised MIGHTEE-HI points reproduces the survey's own fiducial a0 (1.69e-10) within 5 per cent   (1.670e-10)
+  one straight line across all SPARC points in the window: Ups 0.5: 0.569 vs kernel 0.562 (z +0.17);  Ups 0.6: 0.549 vs kernel 0.562 (z -0.30);  Ups 0.7: 0.526 vs kernel 0.563 (z -0.82)
+  [PASS] [data] S6d a straight line across all SPARC points in the window, exposed to galaxy-to-galaxy offsets, also agrees with the kernel's (|z| < 2 at every disc ratio)   (+0.17, -0.30, -0.82)
+  [PASS] [data] S6f AGAINST INTEREST: at MIGHTEE-HI's own SED mass-to-light ratios the two surveys disagree on a0 by more than 3 sigma at every SPARC disc ratio   (+4.0, +5.3, +6.6)
+  [PASS] [data] S6g at a fixed Upsilon_K = 0.6 (the survey's own refit) they agree within 2.5 sigma at every SPARC disc ratio   (-0.3, +1.0, +2.1)
+  [PASS] [data] S6h the SPARC window amplitude brackets kappa_Lambda = 1/2 across Upsilon_disc = 0.5-0.7   (0.595, 0.517, 0.458)
+  [PASS] [data] S6i PITFALL: per-galaxy ratios fitted to the curves (log-correlation > 0.8 with the Newtonian no-dark-matter ratio) lower the window kappa by a factor above 1.5 at every disc ratio   (r = 0.918; factors 2.15, 1.87, 1.66)
+  [PASS] [data] S6j the pooled per-galaxy slope excludes a slope of 0.75 at more than 4 sigma at every disc ratio   (4.2, 4.5, 4.9)
+
+==============================================================================================================
+S7  THE HIGH-REDSHIFT RECORD AFTER 2026-09-25, READ FROM THE COMMITTED LANE OUTPUTS
+==============================================================================================================
+  MUSE-DARK route (i) fitted DC14 masses: log s*(third 3) - log s*(third 1) = +0.570 +/- 0.094  (H(z) expects +0.177; constancy 0)  -> +6.1 sigma from constancy, +4.2 sigma from H(z)
+  MUSE-DARK route (ii) SED M* + H2       : log s*(third 3) - log s*(third 1) = -0.115 +/- 0.489  (H(z) expects +0.177; constancy 0)  -> -0.2 sigma from constancy, -0.6 sigma from H(z)
+  MUSE-DARK route (iii) SED M*, no H2     : log s*(third 3) - log s*(third 1) = +0.036 +/- 0.138  (H(z) expects +0.177; constancy 0)  -> +0.3 sigma from constancy, -1.0 sigma from H(z)
+  thirds at z = 0.52 / 0.88 / 1.20;  fitted-minus-SED mass drift -0.723 [-0.970, -0.499] dex per unit z (N 109); at fixed SED stellar mass -0.434 [-0.719, -0.151]; SED-mass bias needed to restore the rise on route (ii): 1.76 / 2.16 dex per unit z
+  KURVS: outermost points at g_bar/a0 = 0.06-0.67 (N 10);  decision cell (Kretschmer pressure, mu 0.67): constant +3.3 sigma, H(z) -0.1 sigma; alpha x 0.6: +1.3 / -2.0;  mu 1.5: +1.2 / -2.1;  measured outer markers: +2.4 / -0.4
+  KURVS: the lean ends for a coherent velocity scale 0.9547 (4.5 per cent lower); likelihood ratio (rival/constant) with gas and pressure as nuisances 0.50-1.72
+  MIGHTEE-HI/LADUMA: within-sample slope b = a1/a0 = -1.04 +/- 1.51 per unit z (constancy -0.69 sigma, H(z) -1.00 sigma); a0 ~ H(z) changes a0 by x1.045 at z = 0.09
+  MIGHTEE-HI/LADUMA anchored to SPARC: a1 = +5.23 +/- 1.05 (varying M/L) vs -4.80 +/- 0.76 (constant 0.6) x 1e-10 per unit z; mocks: empirical/formal scatter 5.2, formal z > 3 under constancy in 11-32 per cent
+  CFG269 B1 4<=z<6|COMPLETE       n  14  P 1.45-1.94  MARGINAL       at c = 0.30: NOT POSSIBLE  
+  CFG269 B1 4<=z<6|LOWER-LIMIT    n  44  P 2.50-2.69  SEPARATES      at c = 0.30: MARGINAL  G4 FAIL: GAS-LIMITED (r > 0; missing gas can remove it)
+  CFG269 B2 6<=z<8|COMPLETE       n   1  P 0.40-0.41  NOT POSSIBLE   at c = 0.30: NOT POSSIBLE  
+  CFG269 B2 6<=z<8|LOWER-LIMIT    n  10  P 3.14-3.24  SEPARATES      at c = 0.30: MARGINAL  G4 FAIL: GAS-LIMITED (r > 0; missing gas can remove it)
+  CFG269 B3 8<=z<=15|COMPLETE     n   2  P 1.28-1.32  MARGINAL       at c = 0.30: NOT POSSIBLE  
+  CFG269 B3 8<=z<=15|LOWER-LIMIT  n   4  P 2.06-2.97  SEPARATES      at c = 0.30: MARGINAL, SEPARATES  G4 FAIL: GAS-LIMITED (r > 0; missing gas can remove it)
+  gas prescriptions at z ~ 2.2 (ACE vs Stripe82 at fixed metallicity, by metallicity slope): 0.21-0.67 dex
+  CFG287 audit: 3703 sampled cells in 29 tables, 0 transcription mismatches; 32 published papers with no erratum registered, 0 with one (registered list: 0)
+  profile likelihood (SPARC, Upsilon free per galaxy, gas fixed): half_L a0 0.9361e-10 dchi2 63.90 (1.82 sigma clustered); twopi_L a0 0.8625e-10 dchi2 154.29 (2.83 sigma clustered); half_crit a0 1.1300e-10 dchi2 7.04 (0.60 sigma clustered); twopi_H0 a0 1.0421e-10 dchi2 5.34 (0.53 sigma clustered); free a0 1.0766e-10 dchi2 0.00 (0.00 sigma clustered); clustered error 5.44%
+  [PASS] [identity] S7a MUSE-DARK by route (CFG262, CFG236) as quoted: route rises +0.57 +/- 0.09 / -0.11 +/- 0.49 / +0.04 +/- 0.14 dex between the thirds at z 0.52 and 1.20 (H(z) +0.18); mass drift -0.72 [-0.97, -0.50] dex/z (-0.43 [-0.72, -0.15] at fixed SED mass); needed SED bias 1.8-2.2 dex/z
+  [PASS] [data] S7b the MUSE-DARK rise travels with the baryon route: the fitted-mass route rises >5 sigma above constancy and >3 sigma above H(z), while neither SED route excludes either law at 2 sigma   ((i) +6.1 / +4.2 sigma, (ii) -0.2 / -0.6 sigma, (iii) +0.3 / -1.0 sigma)
+  [PASS] [identity] S7c KURVS as quoted (CFG140/160/165/189/194): outer g_bar/a0 0.06-0.67; cell +3.3/-0.1 sigma; measured markers +2.4/-0.4; mu 1.5 +1.2/-2.1; alpha x 0.6 +1.3/-2.0; 4.5 per cent velocity scale; likelihood ratio 0.5-1.7
+  [PASS] [data] S7d AGAINST INTEREST, and its limits: at the pre-declared KURVS cell the constant law is >3 sigma high and H(z) fits, but the lean (constant above +2 sigma, H(z) within 2 sigma) ends at 1.5 M* of gas, at 0.6 of the pressure calibration and for a <5 per cent lower velocity scale, and the nuisance-marginalised likelihood ratio is below 2   (cell +3.28/-0.14; mu1.5 +1.21; alpha0.6 +1.30; v 0.955; LR max 1.72)
+  [PASS] [identity] S7e MIGHTEE-HI/LADUMA as quoted (CFG279, CFG258): b = -1.04 +/- 1.51; anchored a1 +5.23 +/- 1.05 vs -4.80 +/- 0.76; empirical/formal 5.2; formal z > 3 under constancy in 11-32 per cent of mocks; H(z) x1.045 at z = 0.09
+  [PASS] [data] S7f the MIGHTEE-HI/LADUMA within-sample slope is consistent with both laws (|pull| < 2), and the SPARC-anchored slope changes sign with the mass-to-light convention   (pulls -0.69 / -1.00)
+  [PASS] [identity] S7g z >= 4 as quoted (CFG269): complete pools z 4-6 (14 objects) P 1.45-1.94 and z 8-14 P 1.28-1.32 MARGINAL at 0.15 dex and NOT POSSIBLE at 0.30 dex; z 6-8 one object, NOT POSSIBLE
+  [PASS] [data] S7h no complete (stars + gas) pool at z >= 4 separates the two laws (P < 2), and every stars-only pool that does carries the gas-limited flag
+  [PASS] [identity] S7i the gas-prescription bracket at z ~ 2.2 (CFG224b, quoted in PAPER38 as 0.2-0.7 dex) is 0.21-0.67 dex
+  [PASS] [identity] S7j the source-table audit (CFG287) as quoted: 22 sources (KURVS not among them), 3703 sampled cells in 29 tables with no transcription mismatch; no erratum registered for any published source paper
+  [PASS] [identity] S7k the footing comparison as quoted: best fit 1.08e-10 with a 5.4 per cent clustered error; dchi2 63.9 / 154.3 / 7.0 / 5.3 (1.8 / 2.8 / 0.6 / 0.5 sigma clustered) for 1/2 and 1/2pi on rho_Lambda, 1/2 on rho_crit and Milgrom's cH0/2pi
+  [PASS] [data] S7l like-for-like on H0 the data do not separate 1/2 from 1/2pi (both within 1 sigma clustered, dchi2 differing by < 2); 1/2 is ahead of 1/2pi only with both placed on the rho_Lambda footing   (7.04 vs 5.34)
+
+RESULT: 71 checks, 0 FAIL
+   28 identity  -- algebra or arithmetic on stated inputs: certifies the arithmetic, can fail only by a coding error, carries NO evidence
+    7 model     -- evaluates a published model or relation at stated inputs: can fail if the model is mis-implemented, carries no evidence
+   30 data      -- can fail on the data
+    6 injection -- feeds an estimator synthetic data with a KNOWN a0 (or trend) built on the real baryons: proves the estimator measures, not echoes
