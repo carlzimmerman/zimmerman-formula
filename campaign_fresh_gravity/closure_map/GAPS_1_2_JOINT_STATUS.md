@@ -59,3 +59,10 @@ Two untested exits are now scoped no-gos on their frozen classes. Each was run s
 - **FAIL on both footings; binding: the M31 LVD, z −2.67 / −2.66.** The ultra-faints pass.
 - **Ownership by a tidal radius is inert for dispersions:** r_t is 11–34× the measurement radius, so the rule reduces to "own everything" (CFG45 S) at the radii that are measured.
 - **Constraint for Gap 1/2:** any ownership that separates UFDs from classicals must act INSIDE ~r_half (inner density, cores, heating), not at the tidal edge.
+
+## Appended 2026-10-02: CFG288 (one field: background = dark energy, clumps = the cold component; c976697f0; re-run identical)
+- **Potential road:** dust from z_d needs ΔV ≥ 0.386(1+z_d)³ ρ_Λ, so the dark energy is a tuned residual (A1, proved).
+- **Shift-charge road:** the amount is an integration constant (A2, proved).
+- **The wave-field construction** passes the behaviour gates. Its amount is free (a misalignment amplitude), and its mass is in a window, not derived.
+- **Recombination seeding is excluded** by the CMB and by the reservoir budget; seeding by z ~ 1e4 is excluded too.
+- **Gap 2's target:** fix the amount (amplitude or charge) from the framework's own constants. Nothing on the record does.
