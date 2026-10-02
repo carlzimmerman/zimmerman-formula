@@ -1,0 +1,67 @@
+CFG277 -- implied-a0 estimates (upper bounds or floors) for the four Roman-Oliveira+23 [CII] discs (z 4.26-4.43): measured CO gas (class S), stars missing; J081740's corpus M* as a separate branch.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG277_roman_oliveira_four_discs/FROZEN_CRITERIA.md (e591b71c1).
+  rows      J081740 [gas], J081740 [gas+M*], BRI1335-0417 [gas], SGP38326-1 [gas], SGP38326-2 [gas] (headline); J081740 [FIR gas], J081740 [CII gas] (sensitivity)
+  g_obs     (V_ext^2 + 3.36 sigma_ext^2) / r_ext, r_ext = (N - 1) RADSEP kpc/arcsec (CFG197's committed constants); g_bar = f_enc G (M_gas [+ M*]) / r_ext^2 with f_enc = 0.5
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_ext and sigma_ext x 2); STAGE=B SELFTEST=1 (fabricated V_ext on the law at s = 2).
+
+STAGE A
+tables: sample 985ef40cb89bff54, gas 42701921add400ee, kinematics e344a4f21739ecf4, multitracer 98fe74763cf766ca, corpus galaxies d7fcf09c06338d37, Neeleman+20 TeX 6593e2e2fb944ea1; velocity-bearing columns loaded: False
+rows: J081740 [gas]: r_ext 2.699 kpc, M_gas 8.80e+10 (sigma 0.128 dex); J081740 [gas+M*]: r_ext 2.699 kpc, M_gas 8.80e+10 (sigma 0.128 dex), M* 3.16e+10; BRI1335-0417 [gas]: r_ext 4.092 kpc, M_gas 1.00e+11 (sigma 0.043 dex); SGP38326-1 [gas]: r_ext 3.536 kpc, M_gas 1.90e+11 (sigma 0.300 dex); SGP38326-2 [gas]: r_ext 1.632 kpc, M_gas 7.60e+10 (sigma 0.300 dex); J081740 [FIR gas]: r_ext 2.699 kpc, M_gas 5.70e+10 (sigma 0.053 dex); J081740 [CII gas]: r_ext 2.699 kpc, M_gas 9.80e+10 (sigma 0.027 dex)
+
+STAGE A  THE BLIND PRE-FLIGHT (no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed)
+  [PASS] C1 CONTROL (loader): five ids in the sample and gas tables, the four kinematics ids, the sample table's kpc/arcsec equal to the programme's cosmology to 0.5 %, the corpus J0817 row with log M* 10.5, the multitracer and TeX gas masses (CO 8.8 +- 2.6e10, FIR 5.7 +- 0.7e10, [CII] 9.8 +- 0.6e10) present and equal to the tables
+         sample ids ['AzTEC 1', 'BRI1335-0417', 'J081740', 'SGP38326-1', 'SGP38326-2']; gas ids ['AzTEC 1', 'BRI1335-0417', 'J081740', 'SGP38326-1', 'SGP38326-2']; kinematics ids ['BRI1335-0417', 'J081740', 'SGP38326-1', 'SGP38326-2']; kpc/arcsec deviation 7.2e-04; corpus J0817 rows 1, log M* 10.5; multitracer CO (88000000000.0, 26000000000.0), FIR (57000000000.0, 7000000000.0), CII (98000000000.0, 6000000000.0); TeX strings found True
+  [PASS] C2 CONTROL (reproduction of CFG197's committed gas-only numbers): r_ext (primary and variant) to 1e-3 and g_gas/a0 at f_enc = 0.5 (canonical) to 1e-4, relative, for the four discs
+         max relative difference in r_ext 0.0e+00; in g_gas/a0 2.9e-05; g_gas/a0: BRI1335-0417 4.4465, J081740 8.9956, SGP38326-1 11.3141, SGP38326-2 21.2453
+  [PASS] C3 CONTROL: the multitracer row's CO mass and error equal the Roman-Oliveira M_H2 for J081740
+         multitracer (88000000000.0, 26000000000.0), table (88000000000.0, 26000000000.0)
+  [PASS] C4 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C5 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every row's baryon side
+         max |d log10 s| 2.8e-15
+
+A1 / A2  BARYON SIDE AND THE CFG240 READING (noiseless world; point mass, f_enc = 0.5; ILL-CONDITIONED iff |lever| >= 10 or not computable)
+    J081740 [gas]          z 4.260 r_ext 2.699 kpc: g_bar 8.420e-10 m/s^2, y = 9.00, lever -27.96  ILL-CONDITIONED
+    J081740 [gas+M*]       z 4.260 r_ext 2.699 kpc: g_bar 1.145e-09 m/s^2, y = 12.23, lever +nan (not computable)  ILL-CONDITIONED
+    BRI1335-0417 [gas]     z 4.407 r_ext 4.092 kpc: g_bar 4.162e-10 m/s^2, y = 4.45, lever -7.75  conditioned
+    SGP38326-1 [gas]       z 4.424 r_ext 3.536 kpc: g_bar 1.059e-09 m/s^2, y = 11.31, lever +nan (not computable)  ILL-CONDITIONED
+    SGP38326-2 [gas]       z 4.427 r_ext 1.632 kpc: g_bar 1.989e-09 m/s^2, y = 21.25, lever +nan (not computable)  ILL-CONDITIONED
+    J081740 [FIR gas]      z 4.260 r_ext 2.699 kpc: g_bar 5.454e-10 m/s^2, y = 5.83, lever -10.90  ILL-CONDITIONED
+    J081740 [CII gas]      z 4.260 r_ext 2.699 kpc: g_bar 9.377e-10 m/s^2, y = 10.02, lever +nan (not computable)  ILL-CONDITIONED
+    CFG240: T3 (the a0 dependence disappears at large y): y(B0) runs 4.4-21.2, near-Newtonian for every row; T4 floor 3 sigma / sqrt(N) at sigma = 0.2 dex is 0.60 dex for N = 1; the break-even design needs y >~ 8 with deep points (y < 0.3): none here
+
+A3  KNOB EFFECTS ON g_bar (dex relative to the primary; f_enc, helium, radius)
+    J081740 [gas]          f_enc 0.25 -0.301, f_enc 1.0 +0.301, helium x1.36 on the gas +0.134, radius variant +0.158 (r 2.249 kpc)
+    J081740 [gas+M*]       f_enc 0.25 -0.301, f_enc 1.0 +0.301, helium x1.36 on the gas +0.102, radius variant +0.158 (r 2.249 kpc)
+    BRI1335-0417 [gas]     f_enc 0.25 -0.301, f_enc 1.0 +0.301, helium x1.36 on the gas +0.134, radius variant +0.116 (r 3.581 kpc)
+    SGP38326-1 [gas]       f_enc 0.25 -0.301, f_enc 1.0 +0.301, helium x1.36 on the gas +0.134, radius variant +0.116 (r 3.094 kpc)
+    SGP38326-2 [gas]       f_enc 0.25 -0.301, f_enc 1.0 +0.301, helium x1.36 on the gas +0.134, radius variant +0.250 (r 1.224 kpc)
+
+A4  r_ext AGAINST THE ALMA BEAM (geometric-mean FWHM from the sample table, in kpc)
+    BRI1335-0417   r_ext 4.092 kpc, beam 1.258 kpc, ratio 3.25 (variant radius 3.581: 2.85)
+    J081740        r_ext 2.699 kpc, beam 1.356 kpc, ratio 1.99 (variant radius 2.249: 1.66)
+    SGP38326-1     r_ext 3.536 kpc, beam 1.154 kpc, ratio 3.06 (variant radius 3.094: 2.68)
+    SGP38326-2     r_ext 1.632 kpc, beam 1.154 kpc, ratio 1.41 (variant radius 1.224: 1.06)
+
+A5  THE J081740 STELLAR-MASS BRANCH
+    y 9.00 [gas] -> 12.23 [gas+M*] (log M* 10.5, M* 3.16e+10 against M_gas 8.80e+10); the corpus value has no source or error; Roman-Oliveira say there is none
+
+C6  COVERAGE (noiseless world on each non-ILL row's baryons; a declared 0.15 dex on g_obs and the row's gas error; 100 mocks, B = 1,000)
+    BRI1335-0417 [gas]: 68 % coverage 0.60, 95 % coverage 0.97 (mocks with a root 98 of 100)
+  [PASS] C6 (reported; load-bearing for the conditioned rows): the 68 % and 95 % coverage of the conditioned rows are >= 60 % and >= 88 %
+         BRI1335-0417 [gas]: 0.60 / 0.97
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C5)
+  PF-D2 ILL-CONDITIONED rows: J081740 [gas], J081740 [gas+M*], SGP38326-1 [gas], SGP38326-2 [gas], J081740 [FIR gas], J081740 [CII gas]
+  PF-D3 DRAWABLE as an estimate: BRI1335-0417 [gas]
+  PF-D4 NEAR-NEWTONIAN (gas-only y >= 4): True (y 4.4-21.2; reported, not blocking: the measurement is run and the label travels with the rows)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9) scored (HE4-HE9 are scored at stage B):
+    HE1: hit
+    HE2: hit
+    HE3: hit
+
+6/6 checks pass; load-bearing failures: 0   (2 s)
