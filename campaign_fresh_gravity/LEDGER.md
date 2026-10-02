@@ -275,3 +275,6 @@ both a₀ footings; κ = ½ fitted; nothing here says the theory is closed. Each
 | CFG289 | (orchestrator, 10-02) Reach of the 17 wrong cells in the repo's RC100 CSV: corrected copy (51c70923f) + ORIG/FIX re-runs of every reader. Criteria 80f05e155. In progress. | — |
 | CFG300–309 | RESERVED for the calc chat (MIGHTEE-HI cubes), used only if the owner approves that download in the calc chat. | — |
 | CFG290 | (orchestrator, 10-02) Hostile MNRAS referee of the v3 manuscript (32f9a609c): number trace, RC100 handling, statistics, over-claims, MNRAS compliance. In progress. | — |
+| CFG291 | (orchestrator, 10-02, owner "extra crispy") khronon dipole radiation in binary pulsars over the filtered C-H/K chassis window (recipe G7/G11). In progress. | — |
+| CFG292 | (orchestrator, 10-02) strong hyperbolicity of GR + the BPS khronon; criterion-B cone compatibility (XC2 OPEN item). In progress. | — |
+| CFG293 | (orchestrator, 10-02) CFG288's wave field → solitonic cores → satellites (CFG286 harness). In progress. | — |
