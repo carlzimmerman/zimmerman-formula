@@ -1,0 +1,65 @@
+CFG271 -- implied-a0 upper bounds (or floor / ceiling markers) for HZ9 (z = 5.5413) from the three-ring [CII] curve: stars-only baryons (a lower limit), class D (no gas), two stellar-mass branches never pooled.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG271_hz9_three_rings/FROZEN_CRITERIA.md (0f7f661b5).
+  rows      HZ9 [M986] / HZ9 [M103] (outer ring R = 2.68 kpc; headline pair), the same two branches with the three rings as three rows, and with Parlanti+23's M_rot(< 5 kpc) at R = 5 kpc (sensitivity rows)
+  g_obs     (V^2 + 2 sigma0^2 R / r_D) / R with sigma0 = 51 +- 9.5 and r_D = 2.7 kpc; g_bar  B0 = stars only (one exponential disc, scale r_D), B2 = scaling gas (extrapolated)
+  STAGE=A   the blind pre-flight: no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V, sigma0 x 2, M_rot x 4); STAGE=B SELFTEST=1 (fabricated V on the law at s = 2).
+
+STAGE A
+rings corpus_z1_rings.csv sha256 feb449af227f7e57; Jones A3 c9beb7b92673c28a; galaxies d7fcf09c06338d37; classes 25928a3a48e90229; Parlanti rows (L328 sources) 87288708bef3b710; L328 table 3dc641be4abe0825; velocity-bearing columns loaded: False
+HZ9: z 5.5413, rings R [0.54, 1.61, 2.68] kpc, r_D 2.7 kpc (R_e,* 4.531), inclination 58 +- 7 deg; branches: M986 log M* 9.86 +- 0.23 (Parlanti+23 Table 2 (Capak+2015)); M103 log M* 10.3 +- 0.2 (corpus row (no source or error recorded); declared 0.20 dex); kpc/arcsec 6.091, beam FWHM 6.09 kpc
+
+STAGE A  THE BLIND PRE-FLIGHT (no velocity-bearing column is loaded; no g_obs, D, delta or s* is formed)
+  [PASS] C1 CONTROL (loader): 3 HZ9 rings in the corpus and in the Jones A3 table with equal radii; one HZ9 row in the Parlanti rows, the corpus galaxy table, the Jones class table and the L328 table; z 5.5413; r_D parses to 2.7; log M* 9.86 +- 0.23 (Parlanti) equals the L328 table's; inclination 58 +- 7; beam 1.0 arcsec; corpus log M* 10.3
+         rings 3, Jones rings 3 (radii equal True); rows: Parlanti 1, galaxy 1, class 1, L328 1; z 5.5413; r_D 2.7; M* 9.86 +- 0.23 (L328 9.86 +- 0.23); inc 58.0 +- 7.0; beam 1.0; corpus M* 10.3
+  [PASS] C2 CONTROL: Freeman's peak V^2 = 0.3872 G M / R_d to 0.003, g -> G M / r^2 far from a compact mass to 1e-3, and gdisc equals CFG229's on 200 random inputs to 1e-12
+         peak 0.3870; far-field ratio 1.00064; max deviation 0.0e+00
+  [PASS] C3 CONTROL: the corpus galaxy row and the Jones+21 class table agree (kinematic inclination 58 +- 7 and PA 17 +- 10; morphological PA 83 +- 22 and inclination 57 +- 14; criteria YYNNN; class ROT)
+         corpus inc_kin 58 +- 7, class inc_3DBarolo 58.0 +- 7.0; PA kin 17 +- 10 vs 17.0 +- 10.0; PA morph 83 +- 22 vs 83.0 +- 22.0; inc morph 57 +- 14 vs 57.0 +- 14.0; W15 YYNNN vs YYNNN; class ROT vs ROT
+  [PASS] C4 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C5 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every row's stars-only baryon side
+         max |d log10 s| 2.8e-16
+
+A1 / A2  BARYON SIDE AND THE CFG240 READING (noiseless world; B0 = stars only, one exponential disc of scale r_D = 2.7 kpc; ILL-CONDITIONED iff |lever| >= 10 or not computable)
+    HZ9 [M986]             R [2.68] kpc: g_bar [3.856e-11] m/s^2, y(B0) [0.412], y(B2) [1.26] (mu_mol 2.06), lever -1.81  conditioned
+    HZ9 [M103]             R [2.68] kpc: g_bar [1.062e-10] m/s^2, y(B0) [1.135], y(B2) [2.677] (mu_mol 1.36), lever -2.58  conditioned
+    HZ9 [M986; 3 rings]    R [0.54 1.61 2.68] kpc: g_bar [2.687e-11 3.903e-11 3.856e-11] m/s^2, y(B0) [0.287 0.417 0.412], y(B2) [0.878 1.276 1.26 ] (mu_mol 2.06), lever -1.81  conditioned
+    HZ9 [M103; 3 rings]    R [0.54 1.61 2.68] kpc: g_bar [7.400e-11 1.075e-10 1.062e-10] m/s^2, y(B0) [0.791 1.148 1.135], y(B2) [1.866 2.71  2.677] (mu_mol 1.36), lever -2.58  conditioned
+    HZ9 [M986; Mrot]       R [5.] kpc: g_bar [2.854e-11] m/s^2, y(B0) [0.305], y(B2) [0.933] (mu_mol 2.06), lever -1.67  conditioned
+    HZ9 [M103; Mrot]       R [5.] kpc: g_bar [7.861e-11] m/s^2, y(B0) [0.84], y(B2) [1.982] (mu_mol 1.36), lever -2.28  conditioned
+    CFG240: T4 floor 3 sigma / sqrt(N) at sigma = 0.2 dex is 0.60 dex for N = 1 (calibration free); the break-even design needs y >~ 8 with deep points (y < 0.3): here y(B0) at the outer ring is 0.41 (M986) and 1.13 (M103)
+
+A3  KNOB EFFECTS ON g_bar AT THE OUTER RING (dex relative to B0; linear in M*, so the same for both branches)
+    stellar scale x1.5: [-0.342] dex
+    stellar scale /1.5: [0.287] dex
+    stellar scale /3 (compact): [0.592] dex
+    spherical: [-0.021] dex
+
+A4  mu_mol AND THE B2 / B0 RATIO (z = 5.54 is outside the range the relation was calibrated on: an extrapolation)
+    M986: mu_mol 2.06; B2 / B0 g_bar = 3.06
+    M103: mu_mol 1.36; B2 / B0 g_bar = 2.36
+
+A5  THE BEAM (1.0 arcsec; kpc/arcsec from flat LCDM H0 = 67.4, Om = 0.315)
+    beam FWHM 6.09 kpc (the corpus quotes a spatial resolution of 6.5 kpc), HWHM 3.05 kpc; R / HWHM for the rings: [0.18 0.53 0.88]; rings inside the HWHM: 3 of 3; R_out / FWHM = 0.44; r_D / HWHM = 0.89
+    W15 criteria passed 2 of 5 (known issues 2); PA mismatch 66 deg; inclination 58 +- 7 deg
+
+C6  COVERAGE (noiseless world on the headline rows' B0 baryons; declared 0.15 dex on g_obs; the branch's M* error; the inclination draw 58 +- 7 deg; 100 mocks, B = 1,000)
+    HZ9 [M986]: 68 % coverage 0.81, 95 % coverage 0.97 (mocks with a root 100 of 100)
+    HZ9 [M103]: 68 % coverage 0.77, 95 % coverage 0.92 (mocks with a root 100 of 100)
+  [PASS] C6 (reported; load-bearing for the conditioned rows): the 68 % and 95 % coverage of the conditioned headline rows are >= 60 % and >= 88 %
+         HZ9 [M986]: 0.81 / 0.97; HZ9 [M103]: 0.77 / 0.92
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C5)
+  PF-D2 ILL-CONDITIONED rows: none
+  PF-D3 DRAWABLE as an upper bound: HZ9 [M986], HZ9 [M103], HZ9 [M986; 3 rings], HZ9 [M103; 3 rings], HZ9 [M986; Mrot], HZ9 [M103; Mrot] (every drawable row is an upper bound on s*, never a measurement)
+  PF-D4 BEAM-LIMITED: True (the outer ring at 2.68 kpc against the beam HWHM 3.05 kpc; reported, not blocking: the measurement is run and carries the label)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9) scored (HE4-HE10 are scored at stage B):
+    HE1: hit
+    HE2: hit
+    HE3: hit
+
+6/6 checks pass; load-bearing failures: 0   (3 s)
