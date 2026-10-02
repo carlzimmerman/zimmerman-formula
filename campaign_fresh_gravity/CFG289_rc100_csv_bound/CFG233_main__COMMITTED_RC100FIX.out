@@ -1,0 +1,53 @@
+<repo> = <repo> | <scratch> = <scratch> | DATA = COMMITTED ( real_research/data/rc100_nestorshachar2023_table3.csv )
+C4 cross-check of re-implemented kernels vs the imported CFG4_common: {'ok': True, 'max_rel_diff_nu_mono': 3.286171779137703e-09, 'max_rel_diff_p2': 0.0, 'a0_canon_alt': (9.360324825027975e-11, 1.1312035414413022e-10), 'a0_match': True, 'y_star': 2.33741240526633, 'y_peak': 2.5396382821881684}
+n rows 100, analysed 100, excluded 0; z 0.61-2.52
+[R1] n analysed / exclusions: mine=(100, 0) target=(100, 0) line=exact -> PASS
+median z 1.53
+C1 max |delta_own|, |delta_other - analytic| over cells: 3.857309866213147e-16
+[C1] on-law delta = 0 (1e-9), other law analytic: mine=3.857309866213147e-16 target=0 line=1e-9 -> PASS
+[C3] injected-slope recovery: mine=0.20000000000000004 target=0.2 line=1e-9 -> PASS
+canonical/nu_mono: flat -0.0304 [-0.0735,+0.0025] rival -0.0915 [-0.1301,-0.0532] sd 0.0195/0.0192 class W-flat exp(rival-true flat)=+0.0725 exp(flat-true rival)=-0.0591
+canonical/P2: flat -0.0328 [-0.0784,+0.0033] rival -0.0848 [-0.1263,-0.0485] sd 0.0201/0.0190 class W-flat exp(rival-true flat)=+0.0579 exp(flat-true rival)=-0.0453
+alt/nu_mono: flat -0.0290 [-0.0699,+0.0050] rival -0.0934 [-0.1312,-0.0563] sd 0.0191/0.0196 class W-flat exp(rival-true flat)=+0.0775 exp(flat-true rival)=-0.0643
+alt/P2: flat -0.0318 [-0.0743,+0.0023] rival -0.0889 [-0.1283,-0.0526] sd 0.0199/0.0187 class W-flat exp(rival-true flat)=+0.0664 exp(flat-true rival)=-0.0514
+[R2a] delta_flat slope (nu_mono canonical): mine=-0.030424080832426464 target=-0.029 line=0.02 -> PASS
+[R2b] delta_rival slope: mine=-0.09149601881526524 target=-0.092 line=0.02 -> PASS
+   tight reporting line 0.003: True True
+[R2c] flat CI: mine=(-0.07345124192388046, 0.002549321067627215) target=(-0.071, 0.002) line=0.015 each edge -> PASS
+[R2d] rival CI: mine=(-0.13011864295760173, -0.053238462013945026) target=(-0.128, -0.055) line=0.015 each edge -> PASS
+[R3] all four cells: negative slopes, rival CI < 0, flat slope in (-0.06,-0.01): mine={'canonical/nu_mono': (-0.0304, -0.0915), 'canonical/P2': (-0.0328, -0.0848), 'alt/nu_mono': (-0.029, -0.0934), 'alt/P2': (-0.0318, -0.0889)} target=signs line=sign -> PASS
+[R4a] expected s_R (rival-true delta_flat slope): mine=0.07246810304701364 target=0.073 line=0.005 -> PASS
+[R4b] expected flat-true delta_rival slope: mine=-0.059099142995130784 target=-0.06 line=0.005 -> PASS
+[R5-z_flat_vs_flat] z-score: mine=-1.5593699007241095 target=1.6 line=0.15 -> PASS
+[R5-z_flat_vs_rival] z-score: mine=-5.273683548406907 target=-5.5 line=0.15 -> FAIL
+[R5-z_rival_vs_flat] z-score: mine=-1.684631878336438 target=-1.7 line=0.15 -> PASS
+[R5-z_rival_vs_rival] z-score: mine=-4.7577769811146755 target=-4.9 line=0.15 -> PASS
+   (sign convention: my z = (obs - expected)/sd, README quotes magnitudes)
+[R5s] sigma_slope (SD) flat / rival: mine=[0.019510496398768968, 0.019230833891215535] target=(0.0185, 0.0188) line=15% rel -> PASS
+[R6a] class nu_mono canonical: mine=W-flat target=W-flat line=labels equal -> PASS
+[R6b] class in all four cells: mine={'canonical/nu_mono': 'W-flat', 'canonical/P2': 'W-flat', 'alt/nu_mono': 'W-flat', 'alt/P2': 'W-flat'} target=W-flat x4 line=labels equal -> PASS
+   near-boundary: flat CI upper edge 0.002549321067627215 ; frac of bootstrap slopes > 0: 0.0333
+   reverse-percentile CI (reported beside): (-0.06339748273248014, 0.012603080259027531)
+   BCa CI (reported beside): -0.07404255273534058 0.0022487958062053894 class flat CI has 0: True
+levels: flat +0.0314 (0.007519621356411373, 0.07106150114817385) over ; rival -0.0485 (-0.07499825130651239, -0.020926805427674836) under
+[R7a] flat level: mine=(0.0314, 'over') target=(0.031, 'over') line=0.02 + label -> PASS
+[R7b] rival level: mine=(-0.0485, 'under') target=(-0.052, 'under') line=0.02 + label -> PASS
+half low: n=51 median z 0.99 flat +0.061 (0.01393192650238952, 0.09893449610361832) over rival +0.003 (-0.045855115638836694, 0.048558090768550895) consistent
+half high: n=49 median z 2.19 flat +0.009 (-0.007289604032102094, 0.06369067781615594) consistent rival -0.096 (-0.13646410125769562, -0.05123162326380149) under
+[R8] z-halves (n, median z, labels): mine={'low': (51, 0.99, 'over', 'consistent'), 'high': (49, 2.19, 'consistent', 'under')} target={'low': (51, 0.99, 'over', 'consistent'), 'high': (49, 2.19, 'consistent', 'under')} line=n exact; z 0.01; labels -> PASS
+RC41 matched 41 of 41 ; unmatched IDs: []
+[R10] matched RC41 names: mine=41 target=38 line=exact -> FAIL
+sens a_RC41: n=41 flat med +0.041 slope +0.009 [-0.055,+0.069] | rival med -0.043 slope -0.051 [-0.117,+0.017] class W-none
+sens b_other: n=59 flat med +0.017 slope -0.063 [-0.113,-0.011] | rival med -0.053 slope -0.118 [-0.163,-0.071] class W-mixed
+sens c_gbar<3a0: n=67 flat med +0.052 slope -0.036 [-0.092,+0.020] | rival med -0.057 slope -0.105 [-0.159,-0.051] class W-flat
+sens d_thin_disc_Mbar: n=100 flat med +0.026 slope -0.056 [-0.112,-0.006] | rival med -0.065 slope -0.112 [-0.170,-0.065] class W-mixed
+[R9-a_RC41] sens n, medians, slopes: mine=(41, 0.041, 0.009, -0.043, -0.051) target=(38, 0.041, 0.005, -0.035, -0.056) line=n exact, 0.02 -> FAIL
+[R9-b_other] sens n, medians, slopes: mine=(59, 0.017, -0.063, -0.053, -0.118) target=(62, 0.017, -0.055, -0.06, -0.112) line=n exact, 0.02 -> FAIL
+[R9-c_gbar<3a0] sens n, medians, slopes: mine=(67, 0.052, -0.036, -0.057, -0.105) target=(67, 0.042, -0.035, -0.061, -0.104) line=n exact, 0.02 -> PASS
+[R9-d_thin_disc_Mbar] sens n, medians, slopes: mine=(100, 0.026, -0.056, -0.065, -0.112) target=(100, 0.049, -0.04, -0.049, -0.095) line=n exact, 0.02 -> FAIL
+[R9s] flat slope negative in every variant; (b) flat CI < 0: mine=(False, (-0.11339291738344712, -0.011368426389789974)) target=(True, '(-0.099,-0.007)') line=sign -> FAIL
+   sensitivity (b) class: W-mixed (frozen rule: expect W-mixed)
+g_bar/a0 stats: median 1.9589083839323802  frac<1 0.21
+
+SUMMARY (COMMITTED): rows meeting their line 20 of 26 ; rows not meeting it: ['R5-z_flat_vs_rival', 'R10', 'R9-a_RC41', 'R9-b_other', 'R9-d_thin_disc_Mbar', 'R9s']
+controls C1,C3,C4 pass: True

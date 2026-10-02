@@ -1,0 +1,111 @@
+--- ORIG/hunt_2026/h101_rungs.json
++++ FIX/hunt_2026/h101_rungs.json
+@@ -4,2 +4,2 @@
+-  "slope": 0.07665419982930434,
+-  "slope_err": 0.0363311269567531
++  "slope": 0.07492232148130448,
++  "slope_err": 0.036376457249716644
+@@ -78,2 +78,2 @@
+-   "a0": 1.384500872319421e-10,
+-   "a0_err": 2.4117584793038485e-11,
++   "a0": 1.38582154071511e-10,
++   "a0_err": 2.565952353142521e-11,
+@@ -115 +115 @@
+-    -9.89496487712734,
++    -9.713568155113329,
+@@ -122,2 +122,2 @@
+-    -10.185395762280322,
+-    -10.136082189762345,
++    -10.29835927404466,
++    -10.611306959014597,
+@@ -181,3 +181,3 @@
+-   "sd": 0.38925177033086844,
+-   "slope": -0.11232645690175291,
+-   "slope_err": 0.06400705483588676,
++   "sd": 0.3968977212256632,
++   "slope": -0.11147915834588532,
++   "slope_err": 0.06412646604970151,
+--- ORIG/stdout:h101_fdm_inversion_surveys
++++ FIX/stdout:h101_fdm_inversion_surveys
+@@ -34 +34 @@
+-  RC100                    99     0.61-2.52    1.385e-10       5.22e-11 - 3.46e-10        +0.170      +0.088       0.389
++  RC100                    99     0.61-2.52    1.386e-10       4.94e-11 - 3.46e-10        +0.170      +0.089       0.397
+@@ -42 +42 @@
+-     RC100            median f_DM = 0.30;  synthetic sd = 0.38 dex, observed sd = 0.39 dex   (ratio 1.03)
++     RC100            median f_DM = 0.30;  synthetic sd = 0.38 dex, observed sd = 0.40 dex   (ratio 1.05)
+@@ -49 +49 @@
+-     RC100            own single-radius RAR residual sd = 0.108 dex  ->  synthetic a_0 sd = 0.36 dex, observed 0.39 dex; first-order A*delta correlates r = +0.973; median bias +0.057 dex
++     RC100            own single-radius RAR residual sd = 0.111 dex  ->  synthetic a_0 sd = 0.37 dex, observed 0.40 dex; first-order A*delta correlates r = +0.975; median bias +0.059 dex
+@@ -51 +51 @@
+-  [PASS] 101-2 the estimator's amplification is not a worry, it IS the entire error budget: injecting only each survey's OWN single-radius RAR residual into data that otherwise obey one a_0 exactly reproduces the observed 0.39-0.55 dex per-galaxy spread in all three surveys.  Nothing in those spreads is physics.  Stated against interest: at SPARC's 0.20 dex residual the estimator's MEDIAN is also biased high by ~0.05 dex, so the levels in the table above are upper-leaning by that much   (SPARC (z~0): observed 0.55 vs synthetic 0.50 dex; RC100: observed 0.39 vs synthetic 0.36 dex; MSA-3D golden: observed 0.44 vs synthetic 0.42 dex; largest median bias +0.057 dex)
++  [PASS] 101-2 the estimator's amplification is not a worry, it IS the entire error budget: injecting only each survey's OWN single-radius RAR residual into data that otherwise obey one a_0 exactly reproduces the observed 0.39-0.55 dex per-galaxy spread in all three surveys.  Nothing in those spreads is physics.  Stated against interest: at SPARC's 0.20 dex residual the estimator's MEDIAN is also biased high by ~0.05 dex, so the levels in the table above are upper-leaning by that much   (SPARC (z~0): observed 0.55 vs synthetic 0.50 dex; RC100: observed 0.40 vs synthetic 0.37 dex; MSA-3D golden: observed 0.44 vs synthetic 0.42 dex; largest median bias +0.059 dex)
+@@ -54 +54 @@
+-  [PASS] 101-3 CONTROL: this script reproduces item 16's committed RC100 number to the third decimal   (d log a_0/dz (RC100) = -0.1123 +- 0.0629; the ledger says -0.112 +- 0.063)
++  [PASS] 101-3 CONTROL: this script reproduces item 16's committed RC100 number to the third decimal   (d log a_0/dz (RC100) = -0.1115 +- 0.0631; the ledger says -0.112 +- 0.063)
+@@ -60 +60 @@
+-      d log a_0/dz = +0.0767 +- 0.0363  (N = 250);  FLAT is 2.1 sigma away, LambdaCDM-native (+0.131) is 1.5 sigma away
++      d log a_0/dz = +0.0749 +- 0.0364  (N = 250);  FLAT is 2.1 sigma away, LambdaCDM-native (+0.131) is 1.6 sigma away
+@@ -65 +65 @@
+-      RC100            median a_0 = 1.385e-10 +- 2.41e-11  (log = -9.859; +0.17 dex from canonical)
++      RC100            median a_0 = 1.386e-10 +- 2.57e-11  (log = -9.858; +0.17 dex from canonical)
+@@ -68,2 +68,2 @@
+-      and their SLOPES have opposite signs: RC100 -0.112 +- 0.064, MSA-3D +0.304 +- 0.309  ->  1.3 sigma apart
+-  [PASS] 101-5 the joint slope is reported anyway, with the caveat attached, and it does NOT reach item 101's target: it neither separates FLAT from the LambdaCDM-native rise at 5 sigma nor improves on RC100 alone once the survey-to-survey disagreement is admitted   (one-line joint d log a_0/dz = +0.0767 +- 0.0363; separation from the LambdaCDM-native rise 1.5 sigma, target was 5 sigma)
++      and their SLOPES have opposite signs: RC100 -0.111 +- 0.064, MSA-3D +0.304 +- 0.309  ->  1.3 sigma apart
++  [PASS] 101-5 the joint slope is reported anyway, with the caveat attached, and it does NOT reach item 101's target: it neither separates FLAT from the LambdaCDM-native rise at 5 sigma nor improves on RC100 alone once the survey-to-survey disagreement is admitted   (one-line joint d log a_0/dz = +0.0749 +- 0.0364; separation from the LambdaCDM-native rise 1.6 sigma, target was 5 sigma)
+@@ -76 +76 @@
+-      RC100               +0.736     -0.056   -0.048     -0.118   -0.175
++      RC100               +0.729     -0.027   -0.037     -0.114   -0.170
+@@ -85,5 +85,5 @@
+-             3.00e-11 - 7.21e-11           0.494  0.503 (n=16)  0.665 (n=10)   0.725 (n=8)
+-             7.21e-11 - 1.73e-10           0.335  0.428 (n=20)  0.400 (n=31)  0.580 (n=12)
+-             1.73e-10 - 4.16e-10           0.184  0.171 (n=13)  0.270 (n=37)      -- (n=2)
+-             4.16e-10 - 1.00e-09           0.072   0.207 (n=4)  0.110 (n=15)      -- (n=0)
+-  [PASS] 101-6 AGAINST MY OWN FIRST GUESS, and this is the sharp form of the disagreement: inside each survey the inverted a_0 shows NO mass and NO g_bar trend -- it is a relabelling of f_DM, nothing else.  But at MATCHED baryonic acceleration the two high-z surveys report dark-matter fractions differing by ~0.18 (about 2 sigma on bootstrap alone) and BOTH sit above what one universal a_0 predicts, while SPARC at z ~ 0 tracks the prediction bin by bin.  The 0.4 dex offset in a_0 is a disagreement between two dynamical decompositions at the same acceleration -- not a redshift effect and not a mass effect   (largest matched-g_bar gap: at g_bar = 1.12e-10, RC100 f_DM = 0.400 (n=31) vs MSA-3D 0.580 (n=12), difference +0.180 +- 0.082; framework predicts 0.335; corr(log a_0, log M) = -0.048 (RC100) / -0.019 (MSA-3D))
++             3.00e-11 - 7.21e-11           0.494  0.503 (n=16)  0.640 (n=11)   0.725 (n=8)
++             7.21e-11 - 1.73e-10           0.335  0.428 (n=20)  0.405 (n=30)  0.580 (n=12)
++             1.73e-10 - 4.16e-10           0.184  0.171 (n=13)  0.265 (n=38)      -- (n=2)
++             4.16e-10 - 1.00e-09           0.072   0.207 (n=4)  0.115 (n=14)      -- (n=0)
++  [PASS] 101-6 AGAINST MY OWN FIRST GUESS, and this is the sharp form of the disagreement: inside each survey the inverted a_0 shows NO mass and NO g_bar trend -- it is a relabelling of f_DM, nothing else.  But at MATCHED baryonic acceleration the two high-z surveys report dark-matter fractions differing by ~0.18 (about 2 sigma on bootstrap alone) and BOTH sit above what one universal a_0 predicts, while SPARC at z ~ 0 tracks the prediction bin by bin.  The 0.4 dex offset in a_0 is a disagreement between two dynamical decompositions at the same acceleration -- not a redshift effect and not a mass effect   (largest matched-g_bar gap: at g_bar = 1.12e-10, RC100 f_DM = 0.405 (n=30) vs MSA-3D 0.580 (n=12), difference +0.175 +- 0.081; framework predicts 0.335; corr(log a_0, log M) = -0.037 (RC100) / -0.019 (MSA-3D))
+@@ -102 +102 @@
+-  [PASS] 101-7 with MUSE-DARK III added as a literature rung in the framework's own kernel, the a_0(z) measurements now span d log a_0/dz from -0.11 to +0.35 -- a 0.46 dex-per-z spread across three samples that all claim to measure the same constant.  Reported as prominently as the joint slope, as item 101 required, and it means NO number on this front should be quoted as a measurement of a_0's redshift dependence today   (RC100 -0.112, MSA-3D +0.304, MUSE-DARK III +0.295; spread 0.416 dex/z against a LambdaCDM-native +0.131 and a framework 0.000)
++  [PASS] 101-7 with MUSE-DARK III added as a literature rung in the framework's own kernel, the a_0(z) measurements now span d log a_0/dz from -0.11 to +0.35 -- a 0.46 dex-per-z spread across three samples that all claim to measure the same constant.  Reported as prominently as the joint slope, as item 101 required, and it means NO number on this front should be quoted as a measurement of a_0's redshift dependence today   (RC100 -0.111, MSA-3D +0.304, MUSE-DARK III +0.295; spread 0.416 dex/z against a LambdaCDM-native +0.131 and a framework 0.000)
+@@ -107,5 +107,5 @@
+-     within-survey z-shuffle: joint slope +0.0720 +- 0.0360 against the real +0.0767 +- 0.0363
+-     RC100            own slope shuffled: -0.0036 +- 0.0618  (real -0.1123 +- 0.0640)
+-     MSA-3D golden    own slope shuffled: +0.6959 +- 0.2588  (real +0.3042 +- 0.3085)
+-  [PASS] M1 the mutation that matters, and it fires: permuting redshift WITHIN each survey leaves the joint slope essentially unchanged, because the joint slope is not a redshift trend at all -- it is three survey medians at three different median redshifts, i.e. the survey ladder of Part 3C read as a line.  A 'joint d log a_0/dz' from stacked surveys is therefore not a measurement of anything until the surveys agree   (shuffled +0.0720 +- 0.0360 vs real +0.0767 +- 0.0363 -- the shuffle removes 6% of it)
+-     RC100            Route A 1.385e-10  vs  simple nu 1.203e-10   (-0.061 dex)
++     within-survey z-shuffle: joint slope +0.1094 +- 0.0349 against the real +0.0749 +- 0.0364
++     RC100            own slope shuffled: -0.0051 +- 0.0621  (real -0.1115 +- 0.0641)
++     MSA-3D golden    own slope shuffled: +0.6354 +- 0.2971  (real +0.3042 +- 0.3085)
++  [PASS] M1 the mutation that matters, and it fires: permuting redshift WITHIN each survey leaves the joint slope essentially unchanged, because the joint slope is not a redshift trend at all -- it is three survey medians at three different median redshifts, i.e. the survey ladder of Part 3C read as a line.  A 'joint d log a_0/dz' from stacked surveys is therefore not a measurement of anything until the surveys agree   (shuffled +0.1094 +- 0.0349 vs real +0.0749 +- 0.0364 -- the shuffle removes 46% of it)
++     RC100            Route A 1.386e-10  vs  simple nu 1.212e-10   (-0.058 dex)
+@@ -114 +114 @@
+-  [PASS] M2 kernel swap AGAINST INTEREST -- inverted through the 'simple' interpolation function nu = (1+sqrt(1+4/y))/2 instead of Route A (a_0 = f g_obs/(1-f) rather than (1-f) g_obs/[ln(1/f)]^2) the answer moves by less than the RAR's own scatter, so this estimator cannot discriminate kernels at all; the compensation is that none of the numbers above is an artifact of Route A either   (largest Route-A-vs-simple difference across the three surveys = 0.061 dex, against the RAR's own 0.11 dex scatter)
++  [PASS] M2 kernel swap AGAINST INTEREST -- inverted through the 'simple' interpolation function nu = (1+sqrt(1+4/y))/2 instead of Route A (a_0 = f g_obs/(1-f) rather than (1-f) g_obs/[ln(1/f)]^2) the answer moves by less than the RAR's own scatter, so this estimator cannot discriminate kernels at all; the compensation is that none of the numbers above is an artifact of Route A either   (largest Route-A-vs-simple difference across the three surveys = 0.058 dex, against the RAR's own 0.11 dex scatter)
+@@ -116,2 +116,2 @@
+-     synthetic RAR at a_0 = 9.360e-11, 0.11 dex of scatter on g_obs: recovered median 1.198e-10 (+0.107 dex bias), sd(log a_0) = 0.384
+-     synthetic RAR at a_0 = 9.360e-11, 0.20 dex of scatter on g_obs: recovered median 1.751e-10 (+0.272 dex bias), sd(log a_0) = 0.542
++     synthetic RAR at a_0 = 9.360e-11, 0.11 dex of scatter on g_obs: recovered median 1.190e-10 (+0.104 dex bias), sd(log a_0) = 0.385
++     synthetic RAR at a_0 = 9.360e-11, 0.20 dex of scatter on g_obs: recovered median 1.743e-10 (+0.270 dex bias), sd(log a_0) = 0.546
+@@ -120 +120 @@
+-  [PASS] M3 closure AGAINST INTEREST -- the estimator is NOT unbiased.  Fed data that obey the RAR exactly it returns the input a_0 exactly; fed the same data with realistic scatter it returns a median biased HIGH, because the low-a_0 tail is truncated at f_DM = 0 and the high tail is not.  Every level this estimator reports, including item 16's, is therefore about 0.05 dex too high, which is most of RC100's +0.17 dex offset from canonical   (bias = +0.000 dex (no scatter), +0.107 dex (0.11 dex), +0.272 dex (0.20 dex))
++  [PASS] M3 closure AGAINST INTEREST -- the estimator is NOT unbiased.  Fed data that obey the RAR exactly it returns the input a_0 exactly; fed the same data with realistic scatter it returns a median biased HIGH, because the low-a_0 tail is truncated at f_DM = 0 and the high tail is not.  Every level this estimator reports, including item 16's, is therefore about 0.05 dex too high, which is most of RC100's +0.17 dex offset from canonical   (bias = +0.000 dex (no scatter), +0.104 dex (0.11 dex), +0.270 dex (0.20 dex))
+@@ -130,2 +130,2 @@
+-  measured, three ways:                          -0.112 (RC100), +0.304 (MSA-3D), +0.295 (MUSE-DARK III)
+-  wrote <mirror>/hunt_2026/h101_rungs.json for item 104
++  measured, three ways:                          -0.111 (RC100), +0.304 (MSA-3D), +0.295 (MUSE-DARK III)
++  wrote <mirror>/hunt_2026/h101_rungs.json for item 104
+@@ -138 +138 @@
+-    (1.18e-10 vs 1.38e-10), which is the one genuinely encouraging number here.
++    (1.18e-10 vs 1.39e-10), which is the one genuinely encouraging number here.
+@@ -140 +140 @@
+-    kernel directly, is further away still.  Slopes across the three: -0.112 +- 0.064, +0.304 +- 0.309, +0.295 -- opposite signs, but only the
++    kernel directly, is further away still.  Slopes across the three: -0.111 +- 0.064, +0.304 +- 0.309, +0.295 -- opposite signs, but only the
+@@ -144 +144 @@
+-    +0.18.  It is a disagreement between two dynamical decompositions at the same acceleration.
++    +0.17.  It is a disagreement between two dynamical decompositions at the same acceleration.
+@@ -146 +146 @@
+-    met (1.5 sigma), and the mutation control shows the joint slope is the survey ladder, not redshift.
++    met (1.6 sigma), and the mutation control shows the joint slope is the survey ladder, not redshift.
