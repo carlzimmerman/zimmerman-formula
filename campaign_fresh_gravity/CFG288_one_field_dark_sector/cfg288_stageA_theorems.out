@@ -1,0 +1,112 @@
+CFG288 STAGE A -- PRE-FLIGHT THEOREMS FOR "ONE FIELD: BACKGROUND = THE DARK ENERGY, CLUMPS = THE COLD COMPONENT".
+
+Frozen in FROZEN_CRITERIA.md section 4 (committed before this script; its sha256 is printed below).  In one line each:
+  A1  potential / oscillation road.  rho = phidot^2/2 + V - V_min is non-increasing (d rho/dt = -3 H phidot^2, sympy exact); a
+      |phi|^(2n) minimum averages to <w> = (n-1)/(n+1) (sympy, Beta functions); so a component that is dust-like from a_d on obeys
+      rho_0 <= Delta V a_d^3, i.e. Delta V >= (Omega_c/Omega_Lambda) rho_Lambda (1+z_d)^3.  Claim tested: a potential whose one scale
+      is tied to rho_Lambda (height <= 1e3 rho_Lambda) cannot supply the dust.  Numerical control: the radiation-era Klein-Gordon
+      solution against the exact Bessel solution.
+  A2  shift-charge road.  P(X) on FRW: d(a^3 P_X phidot)/dt = 0 exactly; the charge C is an integration constant no action parameter
+      fixes; rho_d = sqrt(2 X0) C a^-3, c_s^2 = rho_d/(4 M^4), w = c_s^2/2; coldness needs a second scale M; a seeding event needs a
+      reservoir >= rho_c(z_s) -- the reservoirs at recombination are scored.
+  A3  derived mass scale: m_q = Mbar_Pl^(1-q) (hbar H_Lambda)^q, hbar a0/c^3 (both footings), rho_Lambda^(1/4), against the window
+      [2e-20 eV (Lyman-alpha), the classical-field limit].
+MODES: MUTATE=0 main; MUTATE=1 the kinetic sign flipped (a ghost): A1.1's monotonicity check must FAIL (rc 1).
+kappa = 1/2 FITTED.  No dark-matter particle species: a cold component made of the field's oscillation is a classical field whose
+quanta would be light bosons; the cold MASS is still required.  Nothing here says the theory is closed or that the data favour the
+framework.
+
+  FROZEN_CRITERIA.md sha256 ed0e14428de251fd7fbe25614be6374828ffb692a94ab7c194ea2fe0c0f45b0d
+
+  ledger: h 0.6736, omega_b 0.02237, omega_c 0.12, omega_gamma 2.4730e-05, omega_r(z>=1e3) 4.1837e-05, Omega_m 0.31519, Omega_Lambda 0.68473
+          Omega_c/Omega_Lambda = 0.38624;  rho_Lambda = 5.8358e-27 kg/m^3 = 2.5153e-11 eV^4 (rho_Lambda^(1/4) = 2.2395 meV)
+          Mbar_Pl = 2.43532e+27 eV; hbar H_Lambda = 1.1890e-33 eV; hbar H0 = 1.4369e-33 eV
+
+======================================================================================================================
+A1  POTENTIAL / OSCILLATION ROAD: the oscillation energy is bounded by the potential's height
+======================================================================================================================
+    d rho/dt from the Euler-Lagrange equation = -3*Derivative(a(t), t)*Derivative(phi(t), t)**2/a(t)  ->  coefficient of H phidot^2: -3
+  [PASS] A1.1 [exact, sympy] d rho/dt = -3 H phidot^2 <= 0 for rho = s phidot^2/2 + V - V_min (s = the kinetic sign in the action)
+         kinetic sign s = 1; d rho/dt / (H phidot^2) = -3; monotone non-increasing: True
+
+    A1.2: cycle average of w for V - V_min = lambda |phi|^(2n) (u = phi/phi_max, dt ~ du / sqrt(1 - u^(2n)))
+    <w>(n) = (n - 1)/(n + 1)  (target (n-1)/(n+1)); direct quadrature: n=1 -> 0, n=2 -> 1/3
+  [PASS] A1.2 [exact, sympy] <w> = (n-1)/(n+1) for a |phi|^(2n) minimum (n = 1 dust-like; n >= 2 dilutes faster than a^-3)
+         Beta-function form simplifies to (n-1)/(n+1): True; direct n=1: 0, n=2: 1/3
+
+    A1.3: dust-like from a_d on and rho non-increasing  =>  rho_0 = rho(a_d) a_d^3 <= Delta V a_d^3
+          Delta V_min / rho_Lambda = (Omega_c / Omega_Lambda)(1 + z_d)^3
+      z_d =   1.1e+03:  Delta V/rho_Lambda >= 5.1549e+08;  Delta V^(1/4) >= 3.3744e-01 eV;  V_min/Delta V <= 1.940e-09
+      z_d =   3.4e+03:  Delta V/rho_Lambda >= 1.5194e+10;  Delta V^(1/4) >= 7.8626e-01 eV;  V_min/Delta V <= 6.581e-11
+      z_d =     1e+04:  Delta V/rho_Lambda >= 3.8636e+11;  Delta V^(1/4) >= 1.7656e+00 eV;  V_min/Delta V <= 2.588e-12
+      z_d =     1e+05:  Delta V/rho_Lambda >= 3.8625e+14;  Delta V^(1/4) >= 9.9281e+00 eV;  V_min/Delta V <= 2.589e-15
+      z_d =     1e+06:  Delta V/rho_Lambda >= 3.8624e+17;  Delta V^(1/4) >= 5.5829e+01 eV;  V_min/Delta V <= 2.589e-18
+      z_d =     1e+07:  Delta V/rho_Lambda >= 3.8624e+20;  Delta V^(1/4) >= 3.1395e+02 eV;  V_min/Delta V <= 2.589e-21
+      wave field at m = m_min = 2e-20 eV: H(z_on) = m at z_on = 3.8072e+07  ->  Delta V/rho_Lambda >= 2.1315e+22 (bound at z_d = z_on)
+        exact radiation-era Klein-Gordon (Bessel, constant g*):  Delta V/rho_0 = (1/(2 C_inf)) (m/(2 H0 sqrt(Omega_r)))^(3/2) = 2.6380e+22,  Delta V/rho_Lambda = 1.0189e+22
+  [PASS] A1.4 [claim] a single field whose potential has ONE scale tied to rho_Lambda (height <= 1e3 rho_Lambda) cannot supply the dust (PROVED iff Delta V_min/rho_Lambda > 1e3 at z_d = 3400 and above)
+         Delta V_min/rho_Lambda = 1.519e+10 at z_d = 3400 (x1.5e+07 over the generous 1e3); so the potential needs a second scale >= 0.786 eV and the dark energy is a residual tuned to V_min/Delta V <= 6.58e-11
+
+    A1 numerical control: phi'' + (3/2x) phi' + s^-1 phi = 0 (x = m t, radiation era), phi(0) = 1
+      max |phi_num - phi_Bessel| = 2.04e-12;  max relative step increase of rho = -1.39e-11;  <rho x^1.5>[1e3,3e3] = 0.369835 vs C_inf = 0.369834
+  [PASS] A1-CTRL [numerical; can fail] the ODE matches the exact Bessel solution to 1e-6, rho is non-increasing at every step to 1e-10, and <rho x^1.5> over [1e3, 3e3] equals Gamma(5/4)^2 sqrt(2)/pi to 1e-3
+         Bessel error 2.04e-12; max step increase -1.39e-11; <rho x^1.5>/C_inf - 1 = +3.26e-07
+      reported: quartic V = phi^4/4, <w> over 32 complete cycles in x = [1021, 29957] = 0.3322 (target 1/3)
+  [PASS] (reported) A1-REP (reported) quartic minimum: <w> = 1/3 to 1e-2
+         <w> = 0.3322
+
+======================================================================================================================
+A2  SHIFT-CHARGE ROAD: the dust is a conserved charge (an integration constant)
+======================================================================================================================
+    Euler-Lagrange + d/dt(a^3 P_X phidot) = 0
+  [PASS] A2.1 [exact, sympy] for shift-symmetric P(X) on FRW the equation of motion is d(a^3 P_X phidot)/dt = 0: a^3 P_X phidot = C
+         residual 0
+    f(X) = P_X sqrt(2X): f(X0) = 0; f'(X0(1+d)) x positive factors = 3*X0*deltaX + 2*X0  (> 0 for d > 0)
+  [PASS] A2.2 [exact] for P = -rho_Lambda + (M^4/2)(X/X0 - 1)^2 a solution exists for EVERY C > 0 at fixed action parameters (a^3 P_X sqrt(2X) = C with f(X0) = 0, f' > 0 above X0): C is not fixed by any action parameter
+         f(X0) = 0; f'(X0(1+d)) x positive factors = 3*X0*deltaX + 2*X0 (all coefficients > 0)
+    rho_d (O(C)) = sqrt(2)*C*sqrt(X0)/a**3;  c_s^2 (O(C)) = sqrt(2)*C*sqrt(X0)/(4*M4*a**3);  w (O(C)) = sqrt(2)*C*sqrt(X0)/(8*M4*a**3)
+  [PASS] A2.3 [sympy, leading order in C] rho_d = sqrt(2 X0) C a^-3 with d rho_d/d rho_Lambda = d rho_d/d M^4 = 0; c_s^2 = rho_d/(4 M^4); w = c_s^2/2
+         rho_d ok True; independence of (rho_Lambda, M^4) True; c_s^2 ok True; w ok True
+    coldness (c_s^2 <= 1e-5): M^4/rho_Lambda >= 1.289e+13 at z = 1100 (M >= 4.243 eV); >= 3.799e+14 at z = 3400 (M >= 9.887 eV)
+    single scale: M^4 = 1e3 rho_Lambda -> c_s^2(1100) = 1.289e+05; M^4 = rho_Lambda -> c_s^2(1100) = 1.289e+08 (>> 1: not even in the dust regime)
+  [FAIL] A2.4 [finding] a ghost condensate whose ONE scale is tied to rho_Lambda (M^4 <= 1e3 rho_Lambda) holds Omega_c CMB-cold (c_s^2(1100) <= 1e-5)
+         c_s^2(1100) = 1.29e+05 at M^4 = 1e3 rho_Lambda; cold needs M >= 4.24 eV (M^4 >= 1.29e+13 rho_Lambda): a second scale, and P(X0) = -rho_Lambda is then tuned to rho_Lambda/M^4 <= 7.8e-14
+    seeding at z_s = 1100: needed energy = rho_c(z_s) = 5.155e+08 rho_Lambda = 5.364 rho_b(z_s)
+      reservoir hydrogen_binding        : available / needed = 2.039e-09  (cannot supply; short by x4.91e+08)
+      reservoir all_atomic_binding      : available / needed = 3.007e-09  (cannot supply; short by x3.33e+08)
+      reservoir all_cmb_photons         : available / needed = 2.269e-01  (cannot supply; short by x4.41e+00)
+      reservoir firas_allowed_photons   : available / needed = 1.361e-05  (cannot supply; short by x7.35e+04)
+      reservoir all_radiation           : available / needed = 3.839e-01  (cannot supply; short by x2.61e+00)
+      reservoir vacuum / potential       : needs a vacuum >= rho_c(z_s) = 5.155e+08 rho_Lambda (not the rho_Lambda that sets a0) -> the A1 bound + the CAMB row
+  [FAIL] A2.5 [finding] recombination seeding: the hydrogen binding reservoir supplies rho_c(1100) (available/needed >= 1)
+         available/needed = 2.039e-09
+  [FAIL] A2.5 [finding] recombination seeding: the all atomic binding reservoir supplies rho_c(1100) (available/needed >= 1)
+         available/needed = 3.007e-09
+  [FAIL] A2.5 [finding] recombination seeding: the all cmb photons reservoir supplies rho_c(1100) (available/needed >= 1)
+         available/needed = 2.269e-01
+  [FAIL] A2.5 [finding] recombination seeding: the firas allowed photons reservoir supplies rho_c(1100) (available/needed >= 1)
+         available/needed = 1.361e-05
+  [FAIL] A2.5 [finding] recombination seeding: the all radiation reservoir supplies rho_c(1100) (available/needed >= 1)
+         available/needed = 3.839e-01
+
+======================================================================================================================
+A3  THE DERIVED MASS SCALE: which masses the framework's own constants give, against the allowed window
+======================================================================================================================
+    window: m_min = 2.0e-20 eV (Lyman-alpha); m_max = 37.268 eV (n lambda_dB^3 = 1 at 0.4 GeV/cm^3, 220 km/s); 21.3 decades
+    onset floors m >= hbar H(z_req) for the seeding grid (reported): z 1e+03: 3.38e-29 eV; z 3e+03: 2.26e-28 eV; z 1e+04: 1.60e-27 eV; z 1e+05: 1.40e-25 eV; z 1e+06: 1.38e-23 eV; z 1e+07: 1.38e-21 eV
+      q=0                      m = 2.4353e+27 eV   misses by 25.8 decades
+      q=1/4                    m = 2.0357e+12 eV   misses by 10.7 decades
+      q=1/3                    m = 1.9176e+07 eV   misses by 5.7 decades
+      q=1/2                    m = 1.7016e-03 eV   IN window
+      q=2/3                    m = 1.5100e-13 eV   IN window
+      q=3/4                    m = 1.4224e-18 eV   IN window
+      q=1                      m = 1.1890e-33 eV   misses by 13.2 decades
+      hbar a0/c^3 canonical    m = 2.0551e-34 eV   misses by 14.0 decades
+      hbar a0/c^3 alt          m = 2.4836e-34 eV   misses by 13.9 decades
+      rho_Lambda^(1/4)         m = 2.2395e-03 eV   IN window
+  [FAIL] A3 [finding] the mass is DERIVED: exactly one framework-native candidate lands in the window with no free exponent choice
+         q-family members in the window: ['q=1/2', 'q=2/3', 'q=3/4']; the framework's distinctive scale (q = 1 / hbar a0/c^3) misses by 13.2 / 14.0 decades; rho_Lambda^(1/4) in window: True
+
+  run time 2 s.  kappa = 1/2 FITTED; the cold mass is still required; nothing here says the theory is closed.
+
+  8/15 checks pass; load-bearing failures: 7   (2 s)

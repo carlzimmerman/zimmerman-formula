@@ -1,0 +1,156 @@
+CFG288 STAGE B -- THE BEST HONEST ONE-FIELD CONSTRUCTIONS, SCORED AGAINST EVERY GATE.
+
+Frozen in FROZEN_CRITERIA.md sections 3, 5, 7.4 (committed before this script; its sha256 is printed below).  In one line each:
+  ROAD W (wave field)    S = int sqrt(-g)[Mbar^2 R/2 - |dPhi|^2 - m^2 |Phi|^2 - rho_Lambda] + S_m[g]; Phi complex (FL1's order parameter in
+                         V0's dark slot), lambda = 0, m declared.  The vacuum value rho_Lambda is the dark energy; the oscillation is the cold
+                         component: a classical field whose quanta would be light bosons of mass m.
+  ROAD S (shift charge)  S = int sqrt(-g)[Mbar^2 R/2 + P(X)] + S_m[g], P = -rho_Lambda + (M^4/2)(X/X0 - 1)^2 (the record's K(Q) class),
+                         plus a seeding term -J(t) phi; the dust is the conserved charge (stage A, A2).
+  DERIVED                W1 NR limit -> Schrodinger-Poisson (sympy); W2 background, misalignment amplitude, averaged w (exact radiation-era
+                         solution); W3 dispersion omega^2 = (hbar k^2/2m)^2 - 4 pi G rho (sympy), c_vis^2 = 0 (sympy); W4 HBG transfer;
+                         W5 the 1-D stream test (exact FFT Schrodinger vs exact collisionless vs the single-valued sticky fluid); W6 merger;
+                         W7 tensor equation h'' + 3H h' - h_zz/a^2 = 0 with the field present (sympy, c_T = 1), Hamiltonian positivity;
+                         road S: (box phi)^2 adds no hdot^2 / h_z^2 term (sympy).
+  GATES                  G-BG, G-DUST, G-ONSET, G-AMOUNT, G-STREAM, G-PK, G-MERGER, G-STAB/GW, per road, thresholds as frozen.
+MODES: MUTATE=0 main; MUTATE=1 the wave field's hbar/m raised to nu = 0.02: the wave-vs-collisionless match must FAIL (rc 1).
+kappa = 1/2 FITTED.  No dark-matter particle species is added: the cold component is the dark-energy field doing a second job; its quanta
+would be light bosons; the cold MASS is still required.  Nothing here says the theory is closed or that the data favour the framework.
+
+  FROZEN_CRITERIA.md sha256 ed0e14428de251fd7fbe25614be6374828ffb692a94ab7c194ea2fe0c0f45b0d
+
+  z_req read from cfg288_seeding_camb_results.json: None  (None = undefined under the frozen rule)
+
+======================================================================================================================
+W1  NON-RELATIVISTIC LIMIT OF THE KLEIN-GORDON FIELD IN A WEAK STATIC POTENTIAL (sympy)
+======================================================================================================================
+    O(eps^0): 0;  O(eps^1): -2*U0*m**2*psi0 + 2*I*m*psi_T + psi_XX  ->  i psi_t = -psi_xx/(2m) + m U psi  (hbar = c = 1)
+  [PASS] W1 [sympy] the NR limit of the Klein-Gordon field is Schrodinger-Poisson: the O(eps) equation is 2m (i psi_t + psi_xx/2m - m U psi) = 0
+         O(eps^0) = 0; O(eps^1) matches: True
+
+======================================================================================================================
+W2  BACKGROUND: the vacuum value is the dark energy; the oscillation is the cold component
+======================================================================================================================
+    a0 = kappa c sqrt(G rho): canonical (rho_Lambda) 9.35496e-11 vs record 9.36030e-11 (-5.70e-04); alt (rho_crit) 1.13053e-10 vs record 1.13120e-10 (-5.90e-04)
+    w_DE = -1 exactly (V_min constant: T_mn = -rho_Lambda g_mn); Planck 2018 + SNe + BAO constant w = -1.028 +- 0.031: |dw| = 0.90 sigma
+    the field equation contains rho_Lambda only through H: dV'/d rho_Lambda = 0 (True); rho_Lambda/rho_total at onset (m = 2e-20, z_on = 3.807e+07) = 3.53e-27 -> the dust amount and rho_Lambda are dynamically independent
+    identity 2(K - V) - [d(phi phidot)/dt + 3H phi phidot] = 0 (on the EOM);  adiabatic average: <w>_RD = 3*H**2/(2*m**2), <w>_MD = 9*H**2/(8*m**2)
+    exact Bessel solution, least-squares secular coefficient of (K - V) x^1.5 on x in [200, 400]: 0.13869 vs (3/8) C_inf = 0.13869
+  [PASS] W2-CTRL [sympy + numerical; can fail] <w> = (3/2)(H/m)^2 in radiation domination: the EOM identity holds exactly and the exact Bessel solution's secular (K - V) coefficient equals (3/8) C_inf to 5%
+         identity residual 0; <w>_RD = 3*H**2/(2*m**2); fitted/theory = 1.0000
+    |<w>| <= (3/2)(H/m)^2: z = 3400: 1.91e-16; z = 1100: 4.29e-18 (m = 2e-20 eV)
+    m_min (Lyman-alpha)  m = 2.000e-20 eV: phi_i = 1.470e-02 Mbar_Pl = 3.580e+16 GeV; Delta V = m^2 phi_i^2/2 = 1.019e+22 rho_Lambda (Delta V^(1/4) = 7.115e+02 eV); z_on = 3.807e+07
+    L383 floor           m = 2.000e-19 eV: phi_i = 8.266e-03 Mbar_Pl = 2.013e+16 GeV; Delta V = m^2 phi_i^2/2 = 3.222e+23 rho_Lambda (Delta V^(1/4) = 1.687e+03 eV); z_on = 1.204e+08
+    q=3/4                m = 1.422e-18 eV: phi_i = 5.062e-03 Mbar_Pl = 1.233e+16 GeV; Delta V = m^2 phi_i^2/2 = 6.111e+24 rho_Lambda (Delta V^(1/4) = 3.521e+03 eV); z_on = 3.211e+08
+    q=2/3                m = 1.510e-13 eV: phi_i = 2.804e-04 Mbar_Pl = 6.829e+14 GeV; Delta V = m^2 phi_i^2/2 = 2.114e+32 rho_Lambda (Delta V^(1/4) = 2.700e+05 eV); z_on = 1.046e+11
+    q=1/2                m = 1.702e-03 eV: phi_i = 8.607e-07 Mbar_Pl = 2.096e+12 GeV; Delta V = m^2 phi_i^2/2 = 2.529e+47 rho_Lambda (Delta V^(1/4) = 1.588e+09 eV); z_on = 1.111e+16
+    rho_Lambda^(1/4)     m = 2.239e-03 eV: phi_i = 8.035e-07 Mbar_Pl = 1.957e+12 GeV; Delta V = m^2 phi_i^2/2 = 3.818e+47 rho_Lambda (Delta V^(1/4) = 1.760e+09 eV); z_on = 1.274e+16
+  [PASS] ROAD W G-BG: PASS
+         w = -1 exactly (0.9 sigma from Planck+SNe+BAO); a0 tie canonical -5.7e-04, alt -5.9e-04 (<= 1%). The tie is the vacuum term's: the dust's dynamics never read rho_Lambda (dV'/d rho_Lambda = 0)
+
+======================================================================================================================
+W3  PERTURBATIONS: Schrodinger-Poisson dispersion, sound speed, anisotropic stress (sympy)
+======================================================================================================================
+    linearised SP: omega^2 = -4*pi*G*rhobar + hbar**2*k**4/(4*m**2)
+  [PASS] W3 [sympy] linearised Schrodinger-Poisson gives omega^2 = (hbar k^2/2m)^2 - 4 pi G rho, i.e. c_s^2 = (hbar k/2m)^2 >= 0 for every k
+         matches: True
+  [PASS] W3 [sympy] c_vis^2 = 0: the traceless stress of a scalar is second order in the perturbation (zero at linear order)
+         linear traceless stress = 0: True
+    m = 2e-20 eV: c_s^2(z = 1100, k = 0.3/Mpc) = 2.79e-15 (<= 1e-5); c_s(z = 3, k = 10 h/Mpc) = 1.29e-03 km/s (<= 5); |w(1100)| <= 4.3e-18; c_vis^2 = 0
+  [PASS] ROAD W G-DUST: PASS-CONDITIONAL (m >= 2e-20 eV declared)
+         (w, c_s^2, c_vis^2) at z = 1100 = (<= 4.3e-18, 2.8e-15, 0); forest c_s 1.3e-03 km/s
+  [PASS] ROAD W G-ONSET: PASS (timing); amount -> G-AMOUNT
+         (i) |w(3400)| <= 1.9e-16; (ii) z_on = 3.81e+07 >= 1e+07, the largest value the frozen z_req can take (frozen z_req = None: undefined because the frozen lensed controls failed; post-hoc analogue 1000000.0); (iii) Omega_c h^2 = 0.120 only by the declared phi_i -> G-AMOUNT
+  [FAIL] ROAD W G-AMOUNT: AMOUNT FREE (needs phi_i = 1.47e-02 Mbar_Pl at m = 2e-20 eV, plus m itself)
+         omega_c = 0.120 needs phi_i = 3.58e+16 GeV (Delta V = 1.0e+22 rho_Lambda, a second scale 712 eV); at the A3 candidate q = 3/4 (m = 1.4e-18 eV) phi_i = 5.06e-03 Mbar_Pl. rho_c/rho_Lambda = 0.386 (1+z)^3: no constant tie to rho_Lambda can give it without singling out today
+
+======================================================================================================================
+W4  SMALL-SCALE POWER: Hu-Barkana-Gruzinov transfer at the declared mass
+======================================================================================================================
+    m = 2e-20 eV: 1 - T^2(0.2 h/Mpc) = 2.22e-16 (<= 0.03); T^2(10 h/Mpc) = 0.999998 (>= 0.5)
+    the seeding correspondence: a wave field converts at H(z_on) = m, so the frozen seeding table's EXCLUDED z_seed <= 1e4 says m >~ 1.6e-27 eV (z_seed = 1e4); m_min = 2e-20 eV onsets at 3.8e+07, above every grid z_seed
+  [PASS] ROAD W G-PK: PASS-CONDITIONAL (m >= 2e-20 eV declared; L383 floor 2-5e-19 eV reported)
+         HBG: 1 - T^2(0.2 h/Mpc) = 2.2e-16, T^2(10 h/Mpc) = 1.0000; the mass is a declared constant (stage A, A3: not derived)
+
+======================================================================================================================
+W5  STREAM TEST (1-D free streaming): exact FFT Schrodinger (nu = 5e-05) vs exact collisionless vs the sticky single-valued fluid
+======================================================================================================================
+    t = 2 t_sc: L1(wave, collisionless) = 0.0008; L1(sticky fluid, collisionless) = 1.0276; fluid mass in the shock 0.603   (2 s)
+    t = 3 t_sc: L1(wave, collisionless) = 0.0024; L1(sticky fluid, collisionless) = 1.3491; fluid mass in the shock 0.725   (4 s)
+  [PASS] W5 [the stream test] the wave field's coarse-grained density matches the exact collisionless answer (L1 <= 0.02 at t = 2 and 3 t_sc)
+         L1 = 0.0008 / 0.0024
+  [PASS] W5-POWER [control that can fail] the single-valued sticky fluid FAILS the same match (L1 > 0.02 at both times): the test has power
+         L1 = 1.0276 / 1.3491
+  [PASS] ROAD W G-STREAM: PASS (self-gravitating version INHERITED from L374)
+         wave L1 0.0008/0.0024 vs fluid control 1.028/1.349
+
+======================================================================================================================
+W6  MERGER (Bullet class)
+======================================================================================================================
+    quantum-pressure speed at L = 200 kpc: c_q = hbar k/2m = 1.51e-03 km/s (<= 30); de Broglie length at 3000 km/s = 0.201 pc; lambda = 0: no non-gravitational self-interaction; multistreaming from W5
+  [PASS] ROAD W G-MERGER: PASS
+         c_q 1.5e-03 km/s; superposes (W5); sigma/m = 0 (lambda = 0)
+
+======================================================================================================================
+W7  STABILITY AND GRAVITATIONAL WAVES (sympy)
+======================================================================================================================
+    d/de (G^x_x - G^y_y)|_(e=0) = (1) x (h_tt + 3 H h_t - h_zz/a^2);  T^x_x - T^y_y = 0 for any homogeneous scalar (its stress is isotropic)
+  [PASS] W7 [sympy] with the scalar present the tensor mode obeys h_tt + 3H h_t - h_zz/a^2 = 0: c_T = 1 exactly
+         (G^x_x - G^y_y) linear part / wave operator = 1
+    Hamiltonian density = f1**2*msq/2 + f2**2*msq/2 + g1**2/2 + g2**2/2 + p1**2/2 + p2**2/2 + rho_L  (Phi = (f1 + i f2)/sqrt 2); Hessian eigenvalues [1, msq]
+  [PASS] W7 [sympy] no ghost: the Hamiltonian density is a positive quadratic form (plus the constant rho_Lambda) for m^2 > 0; dispersion omega^2 = k^2 + m^2
+         eigenvalues [1, msq]
+    kernel invisibility INHERITED (not re-derived): L353: 4 checks, 0 load-bearing failures; MS1: 5 checks, 0 load-bearing failures; FL1: 6 checks, 0 load-bearing failures; FL2: 8/8 checks pass; load-bearing failures: 0; wrote FL2_dark_slot_with_the_kick_results.json
+    solar system: dark mass inside 9.5 AU at 0.4 GeV/cm^3 = 4.31e-15 Msun (<= 1.7e-10, Pitjeva & Pitjev 2013)
+  [PASS] ROAD W G-STAB/GW: PASS (kernel invisibility INHERITED)
+         no ghost, c_s^2 >= 0, m^2 > 0, c_T = 1 (derived), metric coupling only; L353/MS1/FL1/FL2 provenance clean: True; solar 4.3e-15 Msun
+
+======================================================================================================================
+ROAD S  THE SEEDED SHIFT CHARGE (ghost-condensate P(X)), scored with stage A's A2 results
+======================================================================================================================
+  [PASS] ROAD S G-BG: PASS
+         at X0: rho = rho_Lambda, P = -rho_Lambda -> w = -1; the same a0 tie as road W (-5.7e-04 / -5.9e-04)
+    G-DUST: c_s^2 = rho_d/(4 M^4) <= 1e-5 at z = 1100 needs M >= 4.243 eV; forest c_s(z=3) there = 2.08e-01 km/s; single scale (M^4 = 1e3 rho_Lambda, M = 12.59 meV): c_s^2(1100) = 1.29e+05
+  [PASS] ROAD S G-DUST: PASS-CONDITIONAL (needs M >= 4.24 eV, a second scale; the single-scale tie FAILS, c_s^2(1100) = 1.3e+05)
+         w = c_s^2/2, c_vis^2 = 0 (perfect fluid); forest 2.1e-01 km/s at M = 4.24 eV
+  [PASS] ROAD S G-ONSET: PASS-CONDITIONAL (needs M >= 3.32e+03 eV to stay in the dust regime back to z = 1e7)
+         (i) |w(3400)| <= 1e-5 needs M >= 8.31 eV; (ii) the dust regime at z = 1e+07 needs M >= 3.32e+03 eV; a SEEDED charge must be created at a z_seed not excluded by the frozen table (z_seed <= 1e4 EXCLUDED)
+  [FAIL] ROAD S G-AMOUNT: AMOUNT FREE (needs the charge C = rho_c0/sqrt(2 X0), i.e. the amount itself)
+         C is an integration constant (A2.1-A2.3); a seeding event needs a reservoir >= rho_c(z_s) = 3.9e+14 rho_Lambda at z_s = 1e5 (the earliest grid z_seed not excluded); recombination's reservoirs fall short by x2.6 to x5e8 (A2.5)
+  [FAIL] ROAD S G-STREAM: FAIL
+         the single-valued gradient flow (u ~ d phi) is this road's dust limit: the W5 sticky-fluid control misses the collisionless answer by L1 = 1.028/1.349; L374 (committed): the condensate EFT breaks at the first stream crossing
+    G-PK: comoving Jeans k_J(z = 1100) at M = 4.24 eV = 2.20e+00 h/Mpc (need >= 2); k_J ~ M^2 -> M >= 4.0 eV (k_J(z = 1100, M) = 2.00 h/Mpc)
+  [PASS] ROAD S G-PK: PASS-CONDITIONAL (needs M >= 4.04 eV; at the coldness-minimal M = 4.24 eV, k_J(1100) = 2.20 h/Mpc: passes there; the binding condition is G-ONSET's M)
+         k_J = a sqrt(4 pi G rho_d)/c_s with c_s^2 = rho_d/(4 M^4); the v9 DBI chassis with M^4 pinned near rho_Lambda failed this (record: 18-300x)
+  [FAIL] ROAD S G-MERGER: FAIL
+         (i) a single-valued flow cannot pass through itself (G-STREAM FAIL); the record's merger gate
+    (box phi)^2 sqrt(-g) at O(h^2): d^2/d(h_t)^2 = 0; d^2/d(h_z)^2 = 0  (no kinetic or gradient term for h)
+  [PASS] S-W7 [sympy] the ghost condensate's (box phi)^2 term adds no h_t^2 or h_z^2 term (P(X) has no metric derivatives): c_T = 1 on road S too
+         coefficients 0, 0
+  [PASS] ROAD S G-STAB/GW: PASS-CONDITIONAL (needs C > 0, the record's forced sign, and the declared k^4 term)
+         c_s^2 = P_X/(P_X + 2 X P_XX) > 0 iff P_X > 0 iff C > 0; P_X + 2 X P_XX > 0 near X0 (no ghost); c_T = 1
+
+======================================================================================================================
+THE GATE TABLE
+======================================================================================================================
+  ROAD W -- linear complex wave field, V = rho_Lambda + m^2 |Phi|^2 (quanta would be light bosons)
+    G-BG       PASS
+    G-DUST     PASS-CONDITIONAL (m >= 2e-20 eV declared)
+    G-ONSET    PASS (timing); amount -> G-AMOUNT
+    G-AMOUNT   AMOUNT FREE (needs phi_i = 1.47e-02 Mbar_Pl at m = 2e-20 eV, plus m itself)
+    G-PK       PASS-CONDITIONAL (m >= 2e-20 eV declared; L383 floor 2-5e-19 eV reported)
+    G-STREAM   PASS (self-gravitating version INHERITED from L374)
+    G-MERGER   PASS
+    G-STAB/GW  PASS (kernel invisibility INHERITED)
+  ROAD S -- seeded shift charge, ghost-condensate P(X) with P(X0) = -rho_Lambda
+    G-BG       PASS
+    G-DUST     PASS-CONDITIONAL (needs M >= 4.24 eV, a second scale; the single-scale tie FAILS, c_s^2(1100) = 1.3e+05)
+    G-ONSET    PASS-CONDITIONAL (needs M >= 3.32e+03 eV to stay in the dust regime back to z = 1e7)
+    G-AMOUNT   AMOUNT FREE (needs the charge C = rho_c0/sqrt(2 X0), i.e. the amount itself)
+    G-STREAM   FAIL
+    G-PK       PASS-CONDITIONAL (needs M >= 4.04 eV; at the coldness-minimal M = 4.24 eV, k_J(1100) = 2.20 h/Mpc: passes there; the binding condition is G-ONSET's M)
+    G-MERGER   FAIL
+    G-STAB/GW  PASS-CONDITIONAL (needs C > 0, the record's forced sign, and the declared k^4 term)
+
+  run time 4 s.  kappa = 1/2 FITTED; the cold mass is still required; nothing here says the theory is closed.
+
+  21/25 checks pass; load-bearing failures: 4   (4 s)

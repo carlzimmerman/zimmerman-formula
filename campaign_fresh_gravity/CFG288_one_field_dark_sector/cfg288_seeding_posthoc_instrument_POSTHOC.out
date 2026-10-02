@@ -1,0 +1,52 @@
+CFG288 POST-HOC (written AFTER the first seeding run, after C-FLUID and C-EARLY FAILED) -- WHERE THE CAMB-FLUID SYSTEMATIC LIVES, AND
+A DIFFERENTIAL COMPARISON THAT CANCELS IT.  NOTHING HERE CHANGES A FROZEN VERDICT.
+
+The frozen seeding run (cfg288_seeding_camb.py) found that CAMB's DarkEnergyFluid carrying "Lambda + dust at all times" (cs2 = 0) does not
+reproduce real CDM to the frozen 0.1% in the LENSED spectra (TT 0.40%, EE 0.56% over 2 <= l <= 2500), so by the frozen rule no seeding
+row may be rated INDISTINGUISHABLE and z_req is undefined.  This script, labelled POST-HOC throughout:
+  D1  locates the systematic: unlensed TT/EE, lensed TT/EE and the lensing potential C_L^phiphi, fluid vs CDM, in l bands, at the frozen
+      settings; plus the lensing-potential deviation at AccuracyBoost 1 and 2 (does it move with numerical accuracy?).
+  D2  a differential comparison for every z_seed (H0 fixed, comparison (a)):
+        (i)  UNLENSED seeded vs UNLENSED CDM reference (valid if the fluid passes 0.1% unlensed: check PH1);
+        (ii) LENSED seeded vs LENSED fluid baseline (the same CAMB fluid with dust at all times: the late-time behaviour is identical, so
+             the fluid's late-time systematic cancels).
+      The frozen thresholds (1% / 0.1% on S_TT over 30 <= l <= 1000) are applied to these statistics only as a POST-HOC READING.
+The frozen verdicts stand as frozen.  kappa = 1/2 FITTED.  The cold mass is still required.  Not a likelihood fit.
+
+  FROZEN_CRITERIA.md sha256 ed0e14428de251fd7fbe25614be6374828ffb692a94ab7c194ea2fe0c0f45b0d
+  machinery: exec'd read-only from cfg288_seeding_camb.py (whole-file sha256 a52893cbc3c82c766ad8c3e38f45e2b9bd6247fcfc906e309674869f14885004)
+
+======================================================================================================================
+D1  WHERE THE CAMB-FLUID SYSTEMATIC LIVES (fluid with dust at all times vs real CDM, frozen settings)
+======================================================================================================================
+    unlensed TT  max |d/ref| per band: 2-29 1.50e-04; 30-300 2.69e-04; 301-1000 5.58e-04; 1001-1600 2.42e-04; 1601-2500 1.56e-04
+    unlensed EE  max |d/ref| per band: 2-29 2.93e-05; 30-300 4.84e-05; 301-1000 3.52e-05; 1001-1600 5.11e-05; 1601-2500 6.26e-05
+    lensed TT    max |d/ref| per band: 2-29 1.37e-04; 30-300 2.66e-04; 301-1000 8.76e-04; 1001-1600 1.59e-03; 1601-2500 3.99e-03
+    lensed EE    max |d/ref| per band: 2-29 1.97e-03; 30-300 1.53e-03; 301-1000 1.75e-03; 1001-1600 2.97e-03; 1601-2500 5.62e-03
+    C_L^phiphi   max |d/ref| per band: 2-29 6.65e-03; 30-300 5.97e-02; 301-1000 9.15e-02; 1001-1600 9.12e-02; 1601-2500 9.08e-02
+  [PASS] PH1 [post-hoc diagnostic] the fluid reproduces CDM in the UNLENSED TT and EE to <= 0.1% over 2 <= l <= 2500 (the unlensed comparison is then a valid instrument)
+         unlensed TT 5.58e-04, EE 6.26e-05
+  [PASS] (reported) PH2 [post-hoc diagnostic] the failure is in the late-time clustering: C_L^phiphi of the fluid deviates by >= 1% at L = 500
+         C_500^phiphi fluid/CDM - 1 = -8.303e-02
+    AccuracyBoost 1.0: C_L^phiphi fluid/CDM - 1 at L = 100 / 500 / 1500: -6.523e-02 / -1.681e-01 / -1.675e-01
+    AccuracyBoost 2.0: C_L^phiphi fluid/CDM - 1 at L = 100 / 500 / 1500: -2.035e-02 / -8.303e-02 / -9.087e-02
+    (37 s)
+
+======================================================================================================================
+D2  DIFFERENTIAL COMPARISON (H0 fixed): unlensed seeded vs unlensed CDM; lensed seeded vs lensed fluid baseline
+======================================================================================================================
+    z_seed     1100: unlensed vs CDM S_TT 3.028e+00 (S_EE 1.29e+01; 2-2500 3.03e+00) -> EXCLUDED;  lensed vs fluid baseline S_TT 2.988e+00 (S_EE 1.24e+01; 2-2500 TT 2.99e+00, EE 1.24e+01) -> EXCLUDED   (51 s)
+    z_seed     3400: unlensed vs CDM S_TT 1.331e+00 (S_EE 2.33e+00; 2-2500 1.33e+00) -> EXCLUDED;  lensed vs fluid baseline S_TT 1.316e+00 (S_EE 2.23e+00; 2-2500 TT 1.32e+00, EE 2.23e+00) -> EXCLUDED   (62 s)
+    z_seed    10000: unlensed vs CDM S_TT 2.253e-01 (S_EE 3.60e-01; 2-2500 3.51e-01) -> EXCLUDED;  lensed vs fluid baseline S_TT 2.149e-01 (S_EE 3.36e-01; 2-2500 TT 3.23e-01, EE 4.23e-01) -> EXCLUDED   (73 s)
+    z_seed   100000: unlensed vs CDM S_TT 1.112e-03 (S_EE 2.47e-03; 2-2500 3.04e-03) -> UNDECIDED;  lensed vs fluid baseline S_TT 1.188e-03 (S_EE 2.27e-03; 2-2500 TT 1.65e-03, EE 3.29e-03) -> UNDECIDED   (84 s)
+    z_seed    1e+06: unlensed vs CDM S_TT 5.551e-04 (S_EE 4.90e-05; 2-2500 5.55e-04) -> INDISTINGUISHABLE;  lensed vs fluid baseline S_TT 1.346e-05 (S_EE 2.21e-05; 2-2500 TT 1.84e-05, EE 2.86e-05) -> INDISTINGUISHABLE   (95 s)
+    z_seed    1e+07: unlensed vs CDM S_TT 5.578e-04 (S_EE 4.84e-05; 2-2500 5.58e-04) -> INDISTINGUISHABLE;  lensed vs fluid baseline S_TT 1.686e-07 (S_EE 7.73e-07; 2-2500 TT 1.69e-07, EE 7.73e-07) -> INDISTINGUISHABLE   (105 s)
+  [PASS] PH3 [post-hoc instrument] the 1e7 control is clean in the differential statistics: unlensed vs CDM and lensed vs fluid baseline both <= 0.1% over 2 <= l <= 2500
+         unlensed TT vs CDM 5.58e-04; lensed TT/EE vs fluid 1.69e-07 / 7.73e-07
+
+    POST-HOC z_req analogue (smallest grid z_seed with both differential readings INDISTINGUISHABLE, and every larger one too): 1000000.0
+    This is a post-hoc reading only.  The frozen rule leaves z_req undefined (the frozen lensed controls failed).
+
+  run time 105 s.  POST-HOC; no frozen verdict changed.  kappa = 1/2 FITTED; the cold mass is still required.
+
+  3/3 checks pass; load-bearing failures: 0   (105 s)

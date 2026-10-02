@@ -1,0 +1,132 @@
+CFG288 SEEDING ROW (CAMB) -- THE OWNER'S QUESTION: COULD THE COLD COMPONENT BE DARK ENERGY CONVERTING TO COLD DUST AT z_seed,
+E.G. AS A BYPRODUCT OF RECOMBINATION (z ~ 1100)?
+
+Frozen in FROZEN_CRITERIA.md section 6 (committed before this script; its sha256 is printed below).  In one line each:
+  REFERENCE  Planck-2018 best-fit LambdaCDM (omega_b 0.02237, omega_c 0.1200, H0 67.36, tau 0.0544, ln 1e10 A_s 3.044, n_s 0.9649,
+             one 0.06 eV neutrino), CAMB 1.6.6, lmax 2500, lens_potential_accuracy 1, accuracy boosts 2, linear lensing.
+  MODEL      omch2 = 1e-6; a seed fluid w_s(a) = w_e + (0 - w_e)(1 + tanh((ln a - ln a_s)/Delta))/2, w_e = -0.999, Delta = 0.05,
+             rest-frame cs2 = 0, energy conserved (rho_s from the exact integral of 3(1 + w_s)), omega_s(today) = 0.1200 - 1e-6.  CAMB
+             carries one dark-energy component, so the separate cosmological constant is folded in: the fluid carries
+             rho_Lambda + rho_s with w_tot = (-rho_Lambda + w_s rho_s)/(rho_Lambda + rho_s) via set_w_a_table (exactly Lambda + seed at
+             linear order: Lambda carries no perturbation or momentum).  Before seeding the fluid holds the vacuum energy rho_c(a_s).
+  GRID       z_seed = 1100 (recombination), 3400, 1e4, 1e5, 1e6; control 1e7.
+  COMPARE    (a) H0 fixed at 67.36; (b) theta*-matched (H0 re-solved so CAMB's thetastar equals the reference's).  (b) decides.
+  RULE       S_TT = max_{30<=l<=1000} |C_l^TT/C_l^TT,ref - 1| (lensed): EXCLUDED if > 1%; INDISTINGUISHABLE if <= 0.1% (only if C-FLUID
+             and C-EARLY pass); else UNDECIDED (needs the Planck likelihood; no binned data on disk).
+  CONTROLS   C-REF (100 theta_MC within 0.0006 of 1.04092); C-BG (CAMB's rho_de(a)/rho_de(1) = the analytic one to 1e-3); C-FLUID (the
+             combined fluid with dust at all times = LambdaCDM to 0.1% in TT and EE, 2 <= l <= 2500); C-EARLY (seeding at 1e7 = LambdaCDM
+             to 0.1%, comparison (a)).
+MODES: MUTATE=0 main; MUTATE=1 C-EARLY's z_seed replaced by 1100 -- its "reproduces LambdaCDM" check must FAIL (rc 1).
+kappa = 1/2 FITTED.  No dark-matter particle species; the cold MASS is still required.  This is not a Planck likelihood fit: the
+precision scale is declared and approximate.  Nothing here says the theory is closed or that the data favour the framework.
+
+  FROZEN_CRITERIA.md sha256 ed0e14428de251fd7fbe25614be6374828ffb692a94ab7c194ea2fe0c0f45b0d
+  CAMB version 1.6.6
+
+======================================================================================================================
+REFERENCE: Planck-2018 best-fit LambdaCDM
+======================================================================================================================
+    100 theta_MC = 1.04098 (Planck 1.04092); 100 theta* = 1.04118; z_eq (this lane's definition) = 3402.5, CAMB zeq = 3402.9
+    TT peaks (l, D_l): [(220, 5730.7), (536, 2593.5), (813, 2540.8)];  H1/H3 = 2.2554, H2/H1 = 0.4526   (1 s)
+  [PASS] C-REF the reference's CAMB 100 theta_MC is within 0.0006 of Planck's 1.04092
+         100 theta_MC = 1.04098 (diff +0.00006)
+
+======================================================================================================================
+C-FLUID: the combined fluid with dust at all times (no seeding) against real CDM
+======================================================================================================================
+    max |dC/C| 2..2500: TT 3.99e-03, EE 5.62e-03; C-BG 3.28e-09; z_eq 3402.5   (3 s)
+  [FAIL] C-FLUID the dust + Lambda combined fluid (cs2 = 0) reproduces LambdaCDM lensed TT and EE to <= 0.1% over 2 <= l <= 2500
+         TT 3.99e-03, EE 5.62e-03
+
+======================================================================================================================
+C-EARLY: seeding at z = 1e+07
+======================================================================================================================
+    max |dC/C| 2..2500: TT 3.99e-03, EE 5.62e-03; S_TT(30-1000) 8.76e-04; f_pre 2.72e-04; C-BG 3.28e-09   (8 s)
+  [FAIL] C-EARLY seeding at z = 1e+07 reproduces LambdaCDM lensed TT and EE to <= 0.1% (2 <= l <= 2500), comparison (a)
+         TT 3.99e-03, EE 5.62e-03
+
+======================================================================================================================
+MAIN GRID: dark energy converting to cold dust at z_seed (decision on (b), theta*-matched, lensed TT, 30 <= l <= 1000)
+======================================================================================================================
+    z_seed     1100: f_pre 6.246e-01 (rho_s/rho_L at seeding 4.894e+08)  (11 s)
+       (a) H0 67.360: S_TT 2.988e+00, S_EE 1.243e+01, S_TT unlensed 3.028e+00, S_TT(2-29) 7.96e-02, S_TT(1001-2500) 8.00e-01; dtheta*/theta* +2.117e-01; H1/H3 2.7324 (+21.15%), H2/H1 0.6667 (+47.33%); z_eq 1133.2; dchi2_CV 3.24e+05; C-BG 3.3e-09
+       (b) no theta*-match in H0 [40, 120]
+       VERDICT (a (no theta*-match in H0 [40, 120])): EXCLUDED
+    z_seed     3400: f_pre 4.090e-01 (rho_s/rho_L at seeding 1.443e+10)  (17 s)
+       (a) H0 67.360: S_TT 1.315e+00, S_EE 2.222e+00, S_TT unlensed 1.331e+00, S_TT(2-29) 4.29e-02, S_TT(1001-2500) 7.51e-01; dtheta*/theta* +4.187e-02; H1/H3 1.5177 (-32.71%), H2/H1 0.8437 (+86.44%); z_eq 3187.1; dchi2_CV 2.07e+05; C-BG 3.3e-09
+       (b) H0 53.951: S_TT 1.109e+00, S_EE 1.146e+00, S_TT unlensed 1.119e+00, S_TT(2-29) 1.75e-01, S_TT(1001-2500) 5.99e-01; dtheta*/theta* +4.360e-12; H1/H3 1.5192 (-32.65%), H2/H1 0.8433 (+86.35%); z_eq 3187.1; dchi2_CV 2.82e+05; C-BG 9.5e-10
+       VERDICT (b): EXCLUDED
+    z_seed    10000: f_pre 2.054e-01 (rho_s/rho_L at seeding 3.668e+11)  (22 s)
+       (a) H0 67.360: S_TT 2.142e-01, S_EE 3.352e-01, S_TT unlensed 2.253e-01, S_TT(2-29) 8.82e-03, S_TT(1001-2500) 3.22e-01; dtheta*/theta* +6.569e-03; H1/H3 1.9742 (-12.47%), H2/H1 0.5059 (+11.79%); z_eq 3402.5; dchi2_CV 5.65e+04; C-BG 3.3e-09
+       (b) H0 65.103: S_TT 2.172e-01, S_EE 2.380e-01, S_TT unlensed 2.266e-01, S_TT(2-29) 3.32e-02, S_TT(1001-2500) 3.14e-01; dtheta*/theta* -3.308e-14; H1/H3 1.9747 (-12.45%), H2/H1 0.5059 (+11.78%); z_eq 3402.5; dchi2_CV 6.56e+04; C-BG 3.1e-09
+       VERDICT (b): EXCLUDED
+    z_seed   100000: f_pre 2.638e-02 (rho_s/rho_L at seeding 3.667e+14)  (27 s)
+       (a) H0 67.360: S_TT 1.093e-03, S_EE 2.759e-03, S_TT unlensed 1.112e-03, S_TT(2-29) 3.47e-05, S_TT(1001-2500) 4.57e-03; dtheta*/theta* -1.723e-06; H1/H3 2.2529 (-0.11%), H2/H1 0.4529 (+0.08%); z_eq 3402.5; dchi2_CV 1.4; C-BG 3.3e-09
+       (b) H0 67.361: S_TT 1.103e-03, S_EE 2.773e-03, S_TT unlensed 1.124e-03, S_TT(2-29) 3.92e-05, S_TT(1001-2500) 4.59e-03; dtheta*/theta* +1.865e-14; H1/H3 2.2529 (-0.11%), H2/H1 0.4529 (+0.08%); z_eq 3402.5; dchi2_CV 1.41; C-BG 3.3e-09
+       VERDICT (b): UNDECIDED
+    z_seed    1e+06: f_pre 2.715e-03 (rho_s/rho_L at seeding 3.667e+17)  (33 s)
+       (a) H0 67.360: S_TT 8.706e-04, S_EE 1.751e-03, S_TT unlensed 5.551e-04, S_TT(2-29) 1.36e-04, S_TT(1001-2500) 3.99e-03; dtheta*/theta* -1.820e-06; H1/H3 2.2535 (-0.08%), H2/H1 0.4527 (+0.03%); z_eq 3402.5; dchi2_CV 1.05; C-BG 3.3e-09
+       (b) H0 67.361: S_TT 8.674e-04, S_EE 1.749e-03, S_TT unlensed 5.521e-04, S_TT(2-29) 1.38e-04, S_TT(1001-2500) 4.00e-03; dtheta*/theta* -3.664e-15; H1/H3 2.2535 (-0.08%), H2/H1 0.4527 (+0.03%); z_eq 3402.5; dchi2_CV 1.05; C-BG 3.3e-09
+       VERDICT (b): UNDECIDED
+
+======================================================================================================================
+REPORTED ROWS (never verdicts): transition width, early w, lensing off (= the unlensed S_TT printed above)
+======================================================================================================================
+    z1100_Delta0.02_we-0.999: S_TT (a) 2.991e+00, (b) None; f_pre 6.319e-01; would read EXCLUDED   (36 s)
+    z1100_Delta0.2_we-0.999: S_TT (a) 2.951e+00, (b) None; f_pre 5.874e-01; would read EXCLUDED   (39 s)
+    z100000_Delta0.02_we-0.999: S_TT (a) 1.092e-03, (b) 1.102e-03; f_pre 2.719e-02; would read UNDECIDED   (44 s)
+    z100000_Delta0.2_we-0.999: S_TT (a) 1.183e-03, (b) 1.194e-03; f_pre 2.266e-02; would read UNDECIDED   (49 s)
+    z100000_Delta0.05_we-0.99: S_TT (a) 1.090e-03, (b) 1.100e-03; f_pre 2.639e-02; would read UNDECIDED   (54 s)
+
+    C-BG: CAMB's rho_de(a)/rho_de(1) vs the analytic (rho_L + rho_s(a))/(rho_L + rho_s(1)), max over runs and 200 a in [1e-9, 1]: 3.28e-09
+  [PASS] C-BG CAMB's dark-energy density history equals the analytic Lambda + seed history to 1e-3 relative for every model run (comparison (a))
+         C-FLUID 3.3e-09; C-EARLY z1e+07 3.3e-09; main z1100 3.3e-09; main z3400 3.3e-09; main z10000 3.3e-09; main z100000 3.3e-09; main z1e+06 3.3e-09; rep z1100_Delta0.02_we-0.999 3.3e-09; rep z1100_Delta0.2_we-0.999 3.3e-09; rep z100000_Delta0.02_we-0.999 3.3e-09; rep z100000_Delta0.2_we-0.999 3.3e-09; rep z100000_Delta0.05_we-0.99 3.3e-09
+
+======================================================================================================================
+THE SEEDING TABLE
+======================================================================================================================
+      z_seed      f_pre    S_TT(a)    S_TT(b)    H0(b)  dH1/H3%     z_eq            verdict
+        1100  6.246e-01  2.988e+00        nan      nan   +21.15   1133.2           EXCLUDED
+        3400  4.090e-01  1.315e+00  1.109e+00   53.951   -32.65   3187.1           EXCLUDED
+       10000  2.054e-01  2.142e-01  2.172e-01   65.103   -12.45   3402.5           EXCLUDED
+      100000  2.638e-02  1.093e-03  1.103e-03   67.361    -0.11   3402.5          UNDECIDED
+       1e+06  2.715e-03  8.706e-04  8.674e-04   67.361    -0.08   3402.5          UNDECIDED
+       1e+07  2.723e-04  8.755e-04  8.722e-04   67.361    -0.08   3402.5 control: UNDECIDED
+
+    z_req (G-ONSET, frozen definition) = None
+  [FAIL] SEED-1100 [the owner's case; finding] dark energy converting to cold dust at recombination (z = 1100) is not excluded by the CMB (verdict INDISTINGUISHABLE or UNDECIDED)
+         verdict EXCLUDED; S_TT (b) = None; f_pre = 0.6246162567386276
+  [FAIL] (reported) SEED-3400 [finding] seeding at z = 3400 is not excluded (INDISTINGUISHABLE or UNDECIDED)
+         verdict EXCLUDED
+  [FAIL] (reported) SEED-10000 [finding] seeding at z = 10000 is not excluded (INDISTINGUISHABLE or UNDECIDED)
+         verdict EXCLUDED
+  [PASS] (reported) SEED-100000 [finding] seeding at z = 100000 is not excluded (INDISTINGUISHABLE or UNDECIDED)
+         verdict UNDECIDED
+  [PASS] (reported) SEED-1e+06 [finding] seeding at z = 1e+06 is not excluded (INDISTINGUISHABLE or UNDECIDED)
+         verdict UNDECIDED
+
+======================================================================================================================
+POST-FREEZE REPORTED ROWS (added after the criteria; no frozen verdict depends on them): BAO sound horizon and a0(z) under an evolving DE
+======================================================================================================================
+    reference: r_d = 147.101 Mpc, z_eq = 3402.5; D_M/r_d at z = 0.5, 1.0, 2.3: [13.272, 23.131, 38.921]; D_H/r_d: [22.878, 16.893, 8.726]
+    precision scales (declared, approximate): Planck r_d ~ 0.2%; DESI DR2 BAO ratios ~ 0.3-1% per bin
+           row  r_d [Mpc]   dr_d/r_d     z_eq   shift of D_M/r_d and D_H/r_d at z = 0.5 / 1.0 / 2.3 (comparison (a): H0 and late-time expansion fixed)            r_d(b)   H0(b)
+       C-FLUID    147.101 -1.913e-06   3402.5   D_M/r_d +1.91e-06 / +1.91e-06 / +1.91e-06;  D_H/r_d +1.91e-06 / +1.91e-06 / +1.91e-06  (late-time distances moved <= 2.3e-09)       n/a     n/a
+          1100    177.725 +2.082e-01   1133.2   D_M/r_d -1.72e-01 / -1.72e-01 / -1.72e-01;  D_H/r_d -1.72e-01 / -1.72e-01 / -1.72e-01  (late-time distances moved <= 2.3e-09)       n/a     n/a
+          3400    153.150 +4.112e-02   3187.1   D_M/r_d -3.95e-02 / -3.95e-02 / -3.95e-02;  D_H/r_d -3.95e-02 / -3.95e-02 / -3.95e-02  (late-time distances moved <= 2.3e-09)   153.150  53.951
+         10000    148.050 +6.451e-03   3402.5   D_M/r_d -6.41e-03 / -6.41e-03 / -6.41e-03;  D_H/r_d -6.41e-03 / -6.41e-03 / -6.41e-03  (late-time distances moved <= 2.3e-09)   148.050  65.103
+        100000    147.101 -1.869e-06   3402.5   D_M/r_d +1.87e-06 / +1.87e-06 / +1.87e-06;  D_H/r_d +1.87e-06 / +1.87e-06 / +1.87e-06  (late-time distances moved <= 2.3e-09)   147.101  67.361
+         1e+06    147.101 -1.890e-06   3402.5   D_M/r_d +1.89e-06 / +1.89e-06 / +1.89e-06;  D_H/r_d +1.89e-06 / +1.89e-06 / +1.89e-06  (late-time distances moved <= 2.3e-09)   147.101  67.361
+         1e+07    147.101 -1.890e-06   3402.5   D_M/r_d +1.89e-06 / +1.89e-06 / +1.89e-06;  D_H/r_d +1.89e-06 / +1.89e-06 / +1.89e-06  (late-time distances moved <= 2.3e-09)   147.101  67.361
+
+    a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE(0)) on the canonical footing (a0 = kappa c sqrt(G rho_DE), kappa = 1/2 FITTED), CPL w(a) = w0 + wa(1 - a),
+    DESI DR2 triples as committed in campaign_fresh_gravity/CFG6_a0z_branches.py (D273):
+      DESY5      (w0 -0.752, wa -0.86):  z = 0.4: 1.0615;  z = 1: 1.0087;  z = 2: 0.8620
+      Pantheon+  (w0 -0.838, wa -0.62):  z = 0.4: 1.0352;  z = 1: 0.9889;  z = 2: 0.8739
+      Union3     (w0 -0.667, wa -1.09):  z = 0.4: 1.0888;  z = 1: 1.0309;  z = 2: 0.8543
+      (w = -1, the construction of this lane: a0(z)/a0(0) = 1 exactly at every z.  An evolving DE is NOT what the one-field construction's
+       vacuum term gives; if DESI's evolution holds, the vacuum term would have to be replaced by a rolling field, outside this lane.)
+
+  run time 54 s.  kappa = 1/2 FITTED; the cold mass is still required; not a likelihood fit; nothing here says the theory is closed.
+
+  4/9 checks pass; load-bearing failures: 3   (54 s)

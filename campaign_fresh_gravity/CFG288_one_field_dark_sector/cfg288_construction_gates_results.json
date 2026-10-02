@@ -1,0 +1,385 @@
+{
+ "slug": "cfg288_construction_gates",
+ "summary": {
+  "n_checks": 25,
+  "n_pass": 21,
+  "load_bearing_failures": 4,
+  "failed": [
+   "ROAD W G-AMOUNT: AMOUNT FREE (needs phi_i = 1.47e-02 Mbar_Pl at m = 2e-20 eV, plus m itsel",
+   "ROAD S G-AMOUNT: AMOUNT FREE (needs the charge C = rho_c0/sqrt(2 X0), i.e. the amount itse",
+   "ROAD S G-STREAM: FAIL",
+   "ROAD S G-MERGER: FAIL"
+  ],
+  "seconds": 4.1
+ },
+ "checks": [
+  {
+   "name": "W1 [sympy] the NR limit of the Klein-Gordon field is Schrodinger-Poisson: the O(eps) equation is 2m (i psi_t + psi_xx/2m - m U psi) = 0",
+   "detail": "O(eps^0) = 0; O(eps^1) matches: True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "W2-CTRL [sympy + numerical; can fail] <w> = (3/2)(H/m)^2 in radiation domination: the EOM identity holds exactly and the exact Bessel solution's secular (K - V) coefficient equals (3/8) C_inf to 5%",
+   "detail": "identity residual 0; <w>_RD = 3*H**2/(2*m**2); fitted/theory = 1.0000",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD W G-BG: PASS",
+   "detail": "w = -1 exactly (0.9 sigma from Planck+SNe+BAO); a0 tie canonical -5.7e-04, alt -5.9e-04 (<= 1%). The tie is the vacuum term's: the dust's dynamics never read rho_Lambda (dV'/d rho_Lambda = 0)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "W3 [sympy] linearised Schrodinger-Poisson gives omega^2 = (hbar k^2/2m)^2 - 4 pi G rho, i.e. c_s^2 = (hbar k/2m)^2 >= 0 for every k",
+   "detail": "matches: True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "W3 [sympy] c_vis^2 = 0: the traceless stress of a scalar is second order in the perturbation (zero at linear order)",
+   "detail": "linear traceless stress = 0: True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD W G-DUST: PASS-CONDITIONAL (m >= 2e-20 eV declared)",
+   "detail": "(w, c_s^2, c_vis^2) at z = 1100 = (<= 4.3e-18, 2.8e-15, 0); forest c_s 1.3e-03 km/s",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD W G-ONSET: PASS (timing); amount -> G-AMOUNT",
+   "detail": "(i) |w(3400)| <= 1.9e-16; (ii) z_on = 3.81e+07 >= 1e+07, the largest value the frozen z_req can take (frozen z_req = None: undefined because the frozen lensed controls failed; post-hoc analogue 1000000.0); (iii) Omega_c h^2 = 0.120 only by the declared phi_i -> G-AMOUNT",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD W G-AMOUNT: AMOUNT FREE (needs phi_i = 1.47e-02 Mbar_Pl at m = 2e-20 eV, plus m itself)",
+   "detail": "omega_c = 0.120 needs phi_i = 3.58e+16 GeV (Delta V = 1.0e+22 rho_Lambda, a second scale 712 eV); at the A3 candidate q = 3/4 (m = 1.4e-18 eV) phi_i = 5.06e-03 Mbar_Pl. rho_c/rho_Lambda = 0.386 (1+z)^3: no constant tie to rho_Lambda can give it without singling out today",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD W G-PK: PASS-CONDITIONAL (m >= 2e-20 eV declared; L383 floor 2-5e-19 eV reported)",
+   "detail": "HBG: 1 - T^2(0.2 h/Mpc) = 2.2e-16, T^2(10 h/Mpc) = 1.0000; the mass is a declared constant (stage A, A3: not derived)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "W5 [the stream test] the wave field's coarse-grained density matches the exact collisionless answer (L1 <= 0.02 at t = 2 and 3 t_sc)",
+   "detail": "L1 = 0.0008 / 0.0024",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "W5-POWER [control that can fail] the single-valued sticky fluid FAILS the same match (L1 > 0.02 at both times): the test has power",
+   "detail": "L1 = 1.0276 / 1.3491",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD W G-STREAM: PASS (self-gravitating version INHERITED from L374)",
+   "detail": "wave L1 0.0008/0.0024 vs fluid control 1.028/1.349",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD W G-MERGER: PASS",
+   "detail": "c_q 1.5e-03 km/s; superposes (W5); sigma/m = 0 (lambda = 0)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "W7 [sympy] with the scalar present the tensor mode obeys h_tt + 3H h_t - h_zz/a^2 = 0: c_T = 1 exactly",
+   "detail": "(G^x_x - G^y_y) linear part / wave operator = 1",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "W7 [sympy] no ghost: the Hamiltonian density is a positive quadratic form (plus the constant rho_Lambda) for m^2 > 0; dispersion omega^2 = k^2 + m^2",
+   "detail": "eigenvalues [1, msq]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD W G-STAB/GW: PASS (kernel invisibility INHERITED)",
+   "detail": "no ghost, c_s^2 >= 0, m^2 > 0, c_T = 1 (derived), metric coupling only; L353/MS1/FL1/FL2 provenance clean: True; solar 4.3e-15 Msun",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD S G-BG: PASS",
+   "detail": "at X0: rho = rho_Lambda, P = -rho_Lambda -> w = -1; the same a0 tie as road W (-5.7e-04 / -5.9e-04)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD S G-DUST: PASS-CONDITIONAL (needs M >= 4.24 eV, a second scale; the single-scale tie FAILS, c_s^2(1100) = 1.3e+05)",
+   "detail": "w = c_s^2/2, c_vis^2 = 0 (perfect fluid); forest 2.1e-01 km/s at M = 4.24 eV",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD S G-ONSET: PASS-CONDITIONAL (needs M >= 3.32e+03 eV to stay in the dust regime back to z = 1e7)",
+   "detail": "(i) |w(3400)| <= 1e-5 needs M >= 8.31 eV; (ii) the dust regime at z = 1e+07 needs M >= 3.32e+03 eV; a SEEDED charge must be created at a z_seed not excluded by the frozen table (z_seed <= 1e4 EXCLUDED)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD S G-AMOUNT: AMOUNT FREE (needs the charge C = rho_c0/sqrt(2 X0), i.e. the amount itself)",
+   "detail": "C is an integration constant (A2.1-A2.3); a seeding event needs a reservoir >= rho_c(z_s) = 3.9e+14 rho_Lambda at z_s = 1e5 (the earliest grid z_seed not excluded); recombination's reservoirs fall short by x2.6 to x5e8 (A2.5)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD S G-STREAM: FAIL",
+   "detail": "the single-valued gradient flow (u ~ d phi) is this road's dust limit: the W5 sticky-fluid control misses the collisionless answer by L1 = 1.028/1.349; L374 (committed): the condensate EFT breaks at the first stream crossing",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD S G-PK: PASS-CONDITIONAL (needs M >= 4.04 eV; at the coldness-minimal M = 4.24 eV, k_J(1100) = 2.20 h/Mpc: passes there; the binding condition is G-ONSET's M)",
+   "detail": "k_J = a sqrt(4 pi G rho_d)/c_s with c_s^2 = rho_d/(4 M^4); the v9 DBI chassis with M^4 pinned near rho_Lambda failed this (record: 18-300x)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD S G-MERGER: FAIL",
+   "detail": "(i) a single-valued flow cannot pass through itself (G-STREAM FAIL); the record's merger gate",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "S-W7 [sympy] the ghost condensate's (box phi)^2 term adds no h_t^2 or h_z^2 term (P(X) has no metric derivatives): c_T = 1 on road S too",
+   "detail": "coefficients 0, 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "ROAD S G-STAB/GW: PASS-CONDITIONAL (needs C > 0, the record's forced sign, and the declared k^4 term)",
+   "detail": "c_s^2 = P_X/(P_X + 2 X P_XX) > 0 iff P_X > 0 iff C > 0; P_X + 2 X P_XX > 0 near X0 (no ghost); c_T = 1",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "W2": {
+   "a0_canonical": 9.354964511015228e-11,
+   "a0_alt": 1.1305322040279839e-10,
+   "d_can": -0.0005700126048067133,
+   "d_alt": -0.0005903429738474131,
+   "rhoL_frac_at_onset": 3.53421545625444e-27,
+   "w_avg": {
+    "gamma_fit": 0.13868921121680616,
+    "gamma_theory": 0.13868789621196742,
+    "w_RD": "3*H**2/(2*m**2)",
+    "w_MD": "9*H**2/(8*m**2)"
+   },
+   "w3400": 1.9107531707989202e-16,
+   "w1100": 4.2912086699752095e-18,
+   "misalignment": {
+    "m_min (Lyman-alpha)": {
+     "m_eV": 2e-20,
+     "phi_i_over_MPl": 0.014698943035505686,
+     "phi_i_GeV": 3.5796680801842904e+16,
+     "dV_eV4": 256280471285.80563,
+     "dV_over_rhoL": 1.0188915052263598e+22,
+     "dV_quarter_eV": 711.5065107074342,
+     "z_on": 38072155.59538847
+    },
+    "L383 floor": {
+     "m_eV": 2e-19,
+     "phi_i_over_MPl": 0.00826582310548372,
+     "phi_i_GeV": 2.0129952919524268e+16,
+     "dV_eV4": 8104300090845.271,
+     "dV_over_rhoL": 3.2220178451126514e+23,
+     "dV_quarter_eV": 1687.2478308986827,
+     "z_on": 120396568.73443447
+    },
+    "q=3/4": {
+     "m_eV": 1.4223993429877307e-18,
+     "phi_i_over_MPl": 0.005061604644916649,
+     "phi_i_GeV": 1.2326644533660732e+16,
+     "dV_eV4": 153710252153972.0,
+     "dV_over_rhoL": 6.111041914357447e+24,
+     "dV_quarter_eV": 3521.078510369666,
+     "z_on": 321078927.629511
+    },
+    "q=2/3": {
+     "m_eV": 1.5099754574595108e-13,
+     "phi_i_over_MPl": 0.00028041493050185833,
+     "phi_i_GeV": 682901058599867.6,
+     "dV_eV4": 5.316494307695498e+21,
+     "dV_over_rhoL": 2.1136729070761865e+32,
+     "dV_quarter_eV": 270026.4695576974,
+     "z_on": 104613353730.44771
+    },
+    "q=1/2": {
+     "m_eV": 0.0017016356649217409,
+     "phi_i_over_MPl": 8.606507685042309e-07,
+     "phi_i_GeV": 2095963006835.807,
+     "dV_eV4": 6.360194393316792e+36,
+     "dV_over_rhoL": 2.5286156242907305e+47,
+     "dV_quarter_eV": 1588062524.9879916,
+     "z_on": 1.110543243150002e+16
+    },
+    "rho_Lambda^(1/4)": {
+     "m_eV": 0.0022394784781166383,
+     "phi_i_over_MPl": 8.035388561364739e-07,
+     "phi_i_GeV": 1956877026838.9407,
+     "dV_eV4": 9.602644700053322e+36,
+     "dV_over_rhoL": 3.817713095150358e+47,
+     "dV_quarter_eV": 1760344691.8748865,
+     "z_on": 1.2740181963916028e+16
+    }
+   }
+  },
+  "W3": {
+   "cs2_rec": 2.7884895050176178e-15,
+   "cs_forest_kms": 0.0012913938272906273
+  },
+  "W4": {
+   "sup02": 2.220446049250313e-16,
+   "T2_10": 0.9999977036001854,
+   "m_floor_from_seeding_1e4": 1.5976345286800895e-27
+  },
+  "W5": {
+   "2.0": {
+    "wave": 0.0008179012895189494,
+    "fluid": 1.027577409116775,
+    "stuck_mass_fraction": 0.6033544540405273
+   },
+   "3.0": {
+    "wave": 0.002352479773283758,
+    "fluid": 1.3490738305841008,
+    "stuck_mass_fraction": 0.7253837585449219
+   },
+   "nu": 5e-05,
+   "N": 32768,
+   "NQ": 2097152,
+   "sigma": 0.01
+  },
+  "W6": {
+   "cq_kms": 0.0015057279396924884,
+   "lambda_dB_pc": 0.20076372529233177
+  },
+  "W7": {
+   "tensor_ratio": "1",
+   "hamiltonian_eigs": [
+    "1",
+    "msq"
+   ],
+   "provenance": {
+    "L353": {
+     "path": "real_research/g03_audit_2026/L353_kernel_invisible_dark_component_results.json",
+     "n_checks": 4,
+     "n_fail_load_bearing": 0
+    },
+    "MS1": {
+     "path": "real_research/mond_sector_gate_2026/MS1_gate_variation_reciprocity_results.json",
+     "n_checks": 5,
+     "n_fail_load_bearing": 0
+    },
+    "FL1": {
+     "path": "real_research/dark_fluid_2026/FL1_order_parameter_results.json",
+     "n_checks": 6,
+     "n_fail_load_bearing": 0
+    },
+    "FL2": {
+     "path": "real_research/dark_fluid_2026/FL2_dark_slot_with_the_kick.out",
+     "last_line": "8/8 checks pass; load-bearing failures: 0; wrote FL2_dark_slot_with_the_kick_results.json"
+    }
+   },
+   "M_dark_9p5AU_Msun": 4.311670826485978e-15
+  },
+  "GATES": {
+   "W": {
+    "G-BG": {
+     "verdict": "PASS",
+     "ok": true,
+     "detail": "w = -1 exactly (0.9 sigma from Planck+SNe+BAO); a0 tie canonical -5.7e-04, alt -5.9e-04 (<= 1%). The tie is the vacuum term's: the dust's dynamics never read rho_Lambda (dV'/d rho_Lambda = 0)"
+    },
+    "G-DUST": {
+     "verdict": "PASS-CONDITIONAL (m >= 2e-20 eV declared)",
+     "ok": true,
+     "detail": "(w, c_s^2, c_vis^2) at z = 1100 = (<= 4.3e-18, 2.8e-15, 0); forest c_s 1.3e-03 km/s"
+    },
+    "G-ONSET": {
+     "verdict": "PASS (timing); amount -> G-AMOUNT",
+     "ok": true,
+     "detail": "(i) |w(3400)| <= 1.9e-16; (ii) z_on = 3.81e+07 >= 1e+07, the largest value the frozen z_req can take (frozen z_req = None: undefined because the frozen lensed controls failed; post-hoc analogue 1000000.0); (iii) Omega_c h^2 = 0.120 only by the declared phi_i -> G-AMOUNT"
+    },
+    "G-AMOUNT": {
+     "verdict": "AMOUNT FREE (needs phi_i = 1.47e-02 Mbar_Pl at m = 2e-20 eV, plus m itself)",
+     "ok": false,
+     "detail": "omega_c = 0.120 needs phi_i = 3.58e+16 GeV (Delta V = 1.0e+22 rho_Lambda, a second scale 712 eV); at the A3 candidate q = 3/4 (m = 1.4e-18 eV) phi_i = 5.06e-03 Mbar_Pl. rho_c/rho_Lambda = 0.386 (1+z)^3: no constant tie to rho_Lambda can give it without singling out today"
+    },
+    "G-PK": {
+     "verdict": "PASS-CONDITIONAL (m >= 2e-20 eV declared; L383 floor 2-5e-19 eV reported)",
+     "ok": true,
+     "detail": "HBG: 1 - T^2(0.2 h/Mpc) = 2.2e-16, T^2(10 h/Mpc) = 1.0000; the mass is a declared constant (stage A, A3: not derived)"
+    },
+    "G-STREAM": {
+     "verdict": "PASS (self-gravitating version INHERITED from L374)",
+     "ok": true,
+     "detail": "wave L1 0.0008/0.0024 vs fluid control 1.028/1.349"
+    },
+    "G-MERGER": {
+     "verdict": "PASS",
+     "ok": true,
+     "detail": "c_q 1.5e-03 km/s; superposes (W5); sigma/m = 0 (lambda = 0)"
+    },
+    "G-STAB/GW": {
+     "verdict": "PASS (kernel invisibility INHERITED)",
+     "ok": true,
+     "detail": "no ghost, c_s^2 >= 0, m^2 > 0, c_T = 1 (derived), metric coupling only; L353/MS1/FL1/FL2 provenance clean: True; solar 4.3e-15 Msun"
+    }
+   },
+   "S": {
+    "G-BG": {
+     "verdict": "PASS",
+     "ok": true,
+     "detail": "at X0: rho = rho_Lambda, P = -rho_Lambda -> w = -1; the same a0 tie as road W (-5.7e-04 / -5.9e-04)"
+    },
+    "G-DUST": {
+     "verdict": "PASS-CONDITIONAL (needs M >= 4.24 eV, a second scale; the single-scale tie FAILS, c_s^2(1100) = 1.3e+05)",
+     "ok": true,
+     "detail": "w = c_s^2/2, c_vis^2 = 0 (perfect fluid); forest 2.1e-01 km/s at M = 4.24 eV"
+    },
+    "G-ONSET": {
+     "verdict": "PASS-CONDITIONAL (needs M >= 3.32e+03 eV to stay in the dust regime back to z = 1e7)",
+     "ok": true,
+     "detail": "(i) |w(3400)| <= 1e-5 needs M >= 8.31 eV; (ii) the dust regime at z = 1e+07 needs M >= 3.32e+03 eV; a SEEDED charge must be created at a z_seed not excluded by the frozen table (z_seed <= 1e4 EXCLUDED)"
+    },
+    "G-AMOUNT": {
+     "verdict": "AMOUNT FREE (needs the charge C = rho_c0/sqrt(2 X0), i.e. the amount itself)",
+     "ok": false,
+     "detail": "C is an integration constant (A2.1-A2.3); a seeding event needs a reservoir >= rho_c(z_s) = 3.9e+14 rho_Lambda at z_s = 1e5 (the earliest grid z_seed not excluded); recombination's reservoirs fall short by x2.6 to x5e8 (A2.5)"
+    },
+    "G-STREAM": {
+     "verdict": "FAIL",
+     "ok": false,
+     "detail": "the single-valued gradient flow (u ~ d phi) is this road's dust limit: the W5 sticky-fluid control misses the collisionless answer by L1 = 1.028/1.349; L374 (committed): the condensate EFT breaks at the first stream crossing"
+    },
+    "G-PK": {
+     "verdict": "PASS-CONDITIONAL (needs M >= 4.04 eV; at the coldness-minimal M = 4.24 eV, k_J(1100) = 2.20 h/Mpc: passes there; the binding condition is G-ONSET's M)",
+     "ok": true,
+     "detail": "k_J = a sqrt(4 pi G rho_d)/c_s with c_s^2 = rho_d/(4 M^4); the v9 DBI chassis with M^4 pinned near rho_Lambda failed this (record: 18-300x)"
+    },
+    "G-MERGER": {
+     "verdict": "FAIL",
+     "ok": false,
+     "detail": "(i) a single-valued flow cannot pass through itself (G-STREAM FAIL); the record's merger gate"
+    },
+    "G-STAB/GW": {
+     "verdict": "PASS-CONDITIONAL (needs C > 0, the record's forced sign, and the declared k^4 term)",
+     "ok": true,
+     "detail": "c_s^2 = P_X/(P_X + 2 X P_XX) > 0 iff P_X > 0 iff C > 0; P_X + 2 X P_XX > 0 near X0 (no ghost); c_T = 1"
+    }
+   }
+  },
+  "mode": 0
+ }
+}

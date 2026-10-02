@@ -1,0 +1,62 @@
+{
+ "slug": "cfg288_seeding_camb_MUTATE1",
+ "summary": {
+  "n_checks": 3,
+  "n_pass": 2,
+  "load_bearing_failures": 1,
+  "failed": [
+   "C-EARLY seeding at z = 1100 reproduces LambdaCDM lensed TT and EE to <= 0.1% (2 <= l <= 25"
+  ],
+  "seconds": 5.0
+ },
+ "checks": [
+  {
+   "name": "C-REF the reference's CAMB 100 theta_MC is within 0.0006 of Planck's 1.04092",
+   "detail": "100 theta_MC = 1.04098 (diff +0.00006)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C-EARLY seeding at z = 1100 reproduces LambdaCDM lensed TT and EE to <= 0.1% (2 <= l <= 2500), comparison (a) [MUTATE: must FAIL]",
+   "detail": "TT 2.99e+00, EE 1.24e+01",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C-BG CAMB's dark-energy density history equals the analytic Lambda + seed history to 1e-3 relative for every model run (comparison (a))",
+   "detail": "C-EARLY z1100 3.3e-09",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "reference": {
+   "cosmomc": 1.0409821721404973,
+   "thetastar": 1.041178103478596,
+   "zeq": 3402.5135532961185,
+   "zeq_camb": 3402.880339068983,
+   "peaks": [
+    [
+     220,
+     5730.6903817182765
+    ],
+    [
+     536,
+     2593.4657302447317
+    ],
+    [
+     813,
+     2540.8283403295914
+    ]
+   ]
+  },
+  "C_EARLY": {
+   "z": 1100.0,
+   "dTT": 2.9880786388720133,
+   "dEE": 12.428967252047128,
+   "cbg": 3.275750115605547e-09,
+   "f_pre": 0.6246162567386276
+  },
+  "mode": 1
+ }
+}

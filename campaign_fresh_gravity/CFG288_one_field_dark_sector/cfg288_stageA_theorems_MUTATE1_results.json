@@ -1,0 +1,211 @@
+{
+ "slug": "cfg288_stageA_theorems_MUTATE1",
+ "summary": {
+  "n_checks": 13,
+  "n_pass": 5,
+  "load_bearing_failures": 1,
+  "failed": [
+   "A1.1 [exact, sympy] d rho/dt = -3 H phidot^2 <= 0 for rho = s phidot^2/2 + V - V_min (s = ",
+   "A2.4 [finding] a ghost condensate whose ONE scale is tied to rho_Lambda (M^4 <= 1e3 rho_La",
+   "A2.5 [finding] recombination seeding: the hydrogen binding reservoir supplies rho_c(1100) ",
+   "A2.5 [finding] recombination seeding: the all atomic binding reservoir supplies rho_c(1100",
+   "A2.5 [finding] recombination seeding: the all cmb photons reservoir supplies rho_c(1100) (",
+   "A2.5 [finding] recombination seeding: the firas allowed photons reservoir supplies rho_c(1",
+   "A2.5 [finding] recombination seeding: the all radiation reservoir supplies rho_c(1100) (av",
+   "A3 [finding] the mass is DERIVED: exactly one framework-native candidate lands in the wind"
+  ],
+  "seconds": 0.5
+ },
+ "checks": [
+  {
+   "name": "A1.1 [exact, sympy] d rho/dt = -3 H phidot^2 <= 0 for rho = s phidot^2/2 + V - V_min (s = the kinetic sign in the action) [MUTATE: must FAIL]",
+   "detail": "kinetic sign s = -1; d rho/dt / (H phidot^2) = 3; monotone non-increasing: False",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "A1.2 [exact, sympy] <w> = (n-1)/(n+1) for a |phi|^(2n) minimum (n = 1 dust-like; n >= 2 dilutes faster than a^-3)",
+   "detail": "Beta-function form simplifies to (n-1)/(n+1): True; direct n=1: 0, n=2: 1/3",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "A1.4 [claim] a single field whose potential has ONE scale tied to rho_Lambda (height <= 1e3 rho_Lambda) cannot supply the dust (PROVED iff Delta V_min/rho_Lambda > 1e3 at z_d = 3400 and above)",
+   "detail": "Delta V_min/rho_Lambda = 1.519e+10 at z_d = 3400 (x1.5e+07 over the generous 1e3); so the potential needs a second scale >= 0.786 eV and the dark energy is a residual tuned to V_min/Delta V <= 6.58e-11",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "A2.1 [exact, sympy] for shift-symmetric P(X) on FRW the equation of motion is d(a^3 P_X phidot)/dt = 0: a^3 P_X phidot = C",
+   "detail": "residual 0",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "A2.2 [exact] for P = -rho_Lambda + (M^4/2)(X/X0 - 1)^2 a solution exists for EVERY C > 0 at fixed action parameters (a^3 P_X sqrt(2X) = C with f(X0) = 0, f' > 0 above X0): C is not fixed by any action parameter",
+   "detail": "f(X0) = 0; f'(X0(1+d)) x positive factors = 3*X0*deltaX + 2*X0 (all coefficients > 0)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "A2.3 [sympy, leading order in C] rho_d = sqrt(2 X0) C a^-3 with d rho_d/d rho_Lambda = d rho_d/d M^4 = 0; c_s^2 = rho_d/(4 M^4); w = c_s^2/2",
+   "detail": "rho_d ok True; independence of (rho_Lambda, M^4) True; c_s^2 ok True; w ok True",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "A2.4 [finding] a ghost condensate whose ONE scale is tied to rho_Lambda (M^4 <= 1e3 rho_Lambda) holds Omega_c CMB-cold (c_s^2(1100) <= 1e-5)",
+   "detail": "c_s^2(1100) = 1.29e+05 at M^4 = 1e3 rho_Lambda; cold needs M >= 4.24 eV (M^4 >= 1.29e+13 rho_Lambda): a second scale, and P(X0) = -rho_Lambda is then tuned to rho_Lambda/M^4 <= 7.8e-14",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "A2.5 [finding] recombination seeding: the hydrogen binding reservoir supplies rho_c(1100) (available/needed >= 1)",
+   "detail": "available/needed = 2.039e-09",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "A2.5 [finding] recombination seeding: the all atomic binding reservoir supplies rho_c(1100) (available/needed >= 1)",
+   "detail": "available/needed = 3.007e-09",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "A2.5 [finding] recombination seeding: the all cmb photons reservoir supplies rho_c(1100) (available/needed >= 1)",
+   "detail": "available/needed = 2.269e-01",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "A2.5 [finding] recombination seeding: the firas allowed photons reservoir supplies rho_c(1100) (available/needed >= 1)",
+   "detail": "available/needed = 1.361e-05",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "A2.5 [finding] recombination seeding: the all radiation reservoir supplies rho_c(1100) (available/needed >= 1)",
+   "detail": "available/needed = 3.839e-01",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "A3 [finding] the mass is DERIVED: exactly one framework-native candidate lands in the window with no free exponent choice",
+   "detail": "q-family members in the window: ['q=1/2', 'q=2/3', 'q=3/4']; the framework's distinctive scale (q = 1 / hbar a0/c^3) misses by 13.2 / 14.0 decades; rho_Lambda^(1/4) in window: True",
+   "ok": false,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "ledger": {
+   "h": 0.6736,
+   "ob": 0.02237,
+   "oc": 0.12,
+   "og": 2.4729753332598054e-05,
+   "o_r": 4.1837027335400375e-05,
+   "Om": 0.315191849347291,
+   "OL": 0.6847285124634858,
+   "ratio_c_L": 0.386241270125785,
+   "rhoL_kgm3": 5.835756338481775e-27,
+   "rhoL_eV4": 2.5152871524713483e-11,
+   "rhoL_quarter_meV": 2.2394784781166384,
+   "MPL_eV": 2.4353234593382037e+27,
+   "HL_eV": 1.1889853584051302e-33,
+   "H0_eV": 1.4368694143222131e-33
+  },
+  "A1": {
+   "1100.0": {
+    "dV_over_rhoL": 515490461.33040917,
+    "dV_quarter_eV": 0.33744426497882707,
+    "tuning_Vmin_over_dV": 1.9399001048809694e-09
+   },
+   "3400.0": {
+    "dV_over_rhoL": 15194225668.319014,
+    "dV_quarter_eV": 0.78626064123502,
+    "tuning_Vmin_over_dV": 6.581447596142181e-11
+   },
+   "10000.0": {
+    "dV_over_rhoL": 386357154094.4471,
+    "dV_quarter_eV": 1.7656073689583476,
+    "tuning_Vmin_over_dV": 2.5882787193207884e-12
+   },
+   "100000.0": {
+    "dV_over_rhoL": 386252857479761.56,
+    "dV_quarter_eV": 9.928069745791062,
+    "tuning_Vmin_over_dV": 2.588977610482524e-15
+   },
+   "1000000.0": {
+    "dV_over_rhoL": 3.862424288507542e+17,
+    "dV_quarter_eV": 55.82926212758502,
+    "tuning_Vmin_over_dV": 2.5890475134372265e-18
+   },
+   "10000000.0": {
+    "dV_over_rhoL": 3.862413859981776e+20,
+    "dV_quarter_eV": 313.9508005755099,
+    "tuning_Vmin_over_dV": 2.589054503871106e-21
+   },
+   "m_min": {
+    "z_on": 38072155.59538573,
+    "dV_over_rhoL_bound_at_zon": 2.1314792584823393e+22,
+    "dV_over_rhoL_exact": 1.0188915052263598e+22,
+    "dV_quarter_eV": 711.5065107074342
+   }
+  },
+  "A1_ghost_numeric": {
+   "frac_steps_rho_up": 1.0,
+   "rho_end_over_start": 6.41324935470557e+21
+  },
+  "A2_coldness": {
+   "M4min_over_rhoL_z1100": 12887261533260.229,
+   "M_min_eV_z1100": 4.243136994391638,
+   "M4min_over_rhoL_z3400": 379855641707975.3,
+   "M_min_eV_z3400": 9.886704147328553,
+   "cs2_1100_single_1e3": 128872.61533260229,
+   "cs2_1100_M4_eq_rhoL": 128872615.33260229
+  },
+  "A2_reservoirs_z1100": {
+   "hydrogen_binding": 2.0386445474264733e-09,
+   "all_atomic_binding": 3.0067035893833017e-09,
+   "all_cmb_photons": 0.22689548682658714,
+   "firas_allowed_photons": 1.361372920959523e-05,
+   "all_radiation": 0.38385472580229846
+  },
+  "A2_vacuum_need_over_rhoL": {
+   "1100.0": 515490461.33040917,
+   "3400.0": 15194225668.319014,
+   "10000.0": 386357154094.4471,
+   "100000.0": 386252857479761.56,
+   "1000000.0": 3.862424288507542e+17,
+   "10000000.0": 3.862413859981776e+20
+  },
+  "A3_candidates_eV": {
+   "q=0": 2.4353234593382037e+27,
+   "q=1/4": 2035689871770.8643,
+   "q=1/3": 19176231.784623697,
+   "q=1/2": 0.001701635664921741,
+   "q=2/3": 1.509975457459516e-13,
+   "q=3/4": 1.422399342987731e-18,
+   "q=1": 1.1889853584051302e-33,
+   "hbar a0/c^3 canonical": 2.0551088636367802e-34,
+   "hbar a0/c^3 alt": 2.483616066307624e-34,
+   "rho_Lambda^(1/4)": 0.0022394784781166383
+  },
+  "A3_in_window": {
+   "q=0": false,
+   "q=1/4": false,
+   "q=1/3": false,
+   "q=1/2": true,
+   "q=2/3": true,
+   "q=3/4": true,
+   "q=1": false,
+   "hbar a0/c^3 canonical": false,
+   "hbar a0/c^3 alt": false,
+   "rho_Lambda^(1/4)": true
+  },
+  "A3_window": {
+   "m_min": 2e-20,
+   "m_max": 37.2681871892883
+  },
+  "mode": 1
+ }
+}
