@@ -1,0 +1,79 @@
+CFG279 -- the MIGHTEE-HI / LADUMA RAR paper (arXiv:2608.03576) read against FLAT, a0 ~ H(z) and the anchored slope, with CFG258's frozen rules; PUBLISHED VALUES ONLY.
+
+Criteria frozen and committed before this script existed: FROZEN_CRITERIA.md (99aec4107); corrected before the first execution by FROZEN_CRITERIA_ADDENDUM_1.md (committed with this script).
+
+*** SELFTEST: the MIGHTEE-only slope replaced by a world on FLAT ***
+paper source 2608.03576/main.tex sha256 e2d5521ab01bc75c; 115232 characters
+  [PASS] C1 CONTROL: every input of the criteria section 1 is found verbatim in the paper's TeX; the Data-availability sentence says 'available on request'; the per-galaxy table's include line is commented out
+         found {'a0_all': True, 'a0_mig': True, 'a1_mig': True, 'a0_anc': True, 'a1_anc': True, 'a1_btfr_mig': True, 'a1_btfr_anc': True, 'diff_2p5': True, 'formal_5p0': True, 'on_request': True}; table commented out True
+  [PASS] C1b CONTROL: the twelve table values and the five sub-sample rows are found verbatim; the authors' four RAR-bTFR tensions are reproduced by quadrature of independent errors to 0.1 sigma, their 'formal 5.0 sigma' (a1/sigma) to 0.05 and 'tentative 2.4 sigma' to 0.1
+         table found 12/12; sub-samples found 5/5; tensions recomputed 1.94 (published 2.0), 0.30 (published 0.3), 8.18 (published 8.2), 3.88 (published 3.9); a1/sigma 4.981 (5.0), 2.392 (2.4)
+  [PASS] C2 CONTROL (amended): the law arithmetic reproduces CFG258's committed f_iii and f_rival at z = 0.02, 0.055, 0.09 (1e-9, CFG258's own a0 constant); its C0 E2 systematic scatters equal the frozen 1.255 and 4.012 (5e-4); nu_mono equals the exponential RAR kernel to 1e-3 relative for y <= Y_PEAK (the as-frozen 1e-9 clause is replaced, addendum 2a)
+         max |difference| 0.0e+00; sigma_sys A 1.2546, B 4.0122; sigma_stat 2.7213; |nu_mono/nu_rar - 1| max 2.09e-04 for y <= 2.540; above it up to 2.42e-02 (at y = 14.4): the s column is a CONVENTION
+  [PASS] C3 CONTROL: the propagated error of b = a1/a0 equals a 10^6-draw Monte Carlo (independent normals) to 2 %
+         propagated 1.5130; Monte Carlo SD 1.5259
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+A. THE ARITHMETIC (a(z)/a(0), exact)
+   z = 0.02: FLAT 1; RIVAL 1.0096; ANCH (paper units, b = 4.548) 1.091; ANCH (CFG258 canonical b3 = 5.587) 1.112
+   z = 0.055: FLAT 1; RIVAL 1.0271; ANCH (paper units, b = 4.548) 1.250; ANCH (CFG258 canonical b3 = 5.587) 1.307
+   z = 0.09: FLAT 1; RIVAL 1.0454; ANCH (paper units, b = 4.548) 1.409; ANCH (CFG258 canonical b3 = 5.587) 1.503
+
+B. THE WITHIN-SAMPLE SLOPE (MIGHTEE+LADUMA alone; the E2 analogue): a1 = +0.000 +- 2.33, a0 = 1.54 +- 0.11  ->  b = a1/a0 = +0.0000 +- 1.5130 per unit z
+   THE ANCHORED FIT (SPARC as the z = 0 anchor; the E1 analogue): a1 = +5.23 +- 1.05, a0 = 1.15 +- 0.02  ->  b = +4.5478 +- 0.9165 per unit z
+
+C. PULLS OF THE WITHIN-SAMPLE SLOPE AGAINST EACH LAW (width: F = formal sigma_b; A = sigma_b + level-A systematic; B = + level-B systematic; DISFAVOURED iff |pull| >= 3.29)
+   FLAT                               b_law +0.0000: F +0.000 sigma (CONSISTENT); A +0.000 sigma (CONSISTENT); B +0.000 sigma (CONSISTENT)
+   RIVAL                              b_law +0.4725: F -0.312 sigma (CONSISTENT); A -0.240 sigma (CONSISTENT); B -0.110 sigma (CONSISTENT)
+   RIVAL (CFG258 C0 E2 slope 0.588)   b_law +0.5876: F -0.388 sigma (CONSISTENT); A -0.299 sigma (CONSISTENT); B -0.137 sigma (CONSISTENT)
+   ANCH (paper units)                 b_law +4.5478: F -3.006 sigma (CONSISTENT); A -2.314 sigma (CONSISTENT); B -1.061 sigma (CONSISTENT)
+   ANCH (CFG258 canonical b3)         b_law +5.5874: F -3.693 sigma (DISFAVOURED); A -2.842 sigma (CONSISTENT); B -1.303 sigma (CONSISTENT)
+
+D. SEPARATIONS BETWEEN LAWS (Delta / sigma_tot; NOT POSSIBLE iff < 3.29)
+   FLAT vs RIVAL: Delta 0.4725; F: 0.312 sigma (NOT POSSIBLE); A: 0.240 sigma (NOT POSSIBLE); B: 0.110 sigma (NOT POSSIBLE)
+   FLAT vs ANCH (paper units): Delta 4.5478; F: 3.006 sigma (NOT POSSIBLE); A: 2.314 sigma (NOT POSSIBLE); B: 1.061 sigma (NOT POSSIBLE)
+   RIVAL vs ANCH (paper units): Delta 4.0753; F: 2.694 sigma (NOT POSSIBLE); A: 2.073 sigma (NOT POSSIBLE); B: 0.950 sigma (NOT POSSIBLE)
+
+E. THE ANCHORED FIT'S OWN PULLS (E1 analogue; reported)
+   anchored slope against FLAT: +4.962 sigma
+   anchored slope against RIVAL: +4.447 sigma
+
+F. THE SAMPLE OFFSET: a0(MIGHTEE-only intercept) / a0(SPARC-anchored z = 0 value) = 1.3391 = +0.1268 +- 0.0319 dex; ANCH implies +0.0970 dex at z = 0.055 (CFG258's canonical b3: +0.1164); CFG258's mimic table at z = 0.055: M* scale 0.107 dex, distances 0.047 dex, velocities 0.023 dex, sample mix 0.116 dex
+   the paper's own bTFR-derived a1 (inverse fit, reported only): MIGHTEE+LADUMA -8.1 +- 2.3; with SPARC -6.3 +- 0.9; the paper states the MIGHTEE-only and anchored RAR fits differ at 2.5 sigma
+
+G. LEVELS FOR THE CHART (published; the authors' M/L modelling and exponential-RAR kernel; s = a0 / 0.9360325 is a CONVENTION, not an a0 implied through nu_mono)
+   whole sample, z-averaged: a0 = 1.50 +- 0.05 e-10 -> s = 1.6025 +- 0.0534
+   MIGHTEE+LADUMA-only fit intercept (z = 0 extrapolation): a0 = 1.54 +- 0.11 e-10 -> s = 1.6452 +- 0.1175
+   SPARC-anchored z = 0 value: a0 = 1.15 +- 0.02 e-10 -> s = 1.2286 +- 0.0214
+
+I. REPORTED ONLY (no decision attached): the authors' Table of a1 and their other fit numbers; arithmetic on published values
+   MIGHTEE+LADUMA only    varying       RAR           a1 =   -1.60 +- 2.33   (a1/sigma = -0.69)
+   MIGHTEE+LADUMA only    varying       bTFR inverse  a1 =   -8.10 +- 2.41   (a1/sigma = -3.36)
+   MIGHTEE+LADUMA only    varying       bTFR direct   a1 =  -11.42 +- 1.31   (a1/sigma = -8.72)
+   MIGHTEE+LADUMA only    constant 0.6  RAR           a1 =   -4.64 +- 1.94   (a1/sigma = -2.39)
+   MIGHTEE+LADUMA only    constant 0.6  bTFR inverse  a1 =   -5.48 +- 2.06   (a1/sigma = -2.66)
+   MIGHTEE+LADUMA only    constant 0.6  bTFR direct   a1 =   -8.39 +- 1.03   (a1/sigma = -8.15)
+   MIGHTEE+LADUMA+SPARC   varying       RAR           a1 =   +5.23 +- 1.05   (a1/sigma = +4.98)
+   MIGHTEE+LADUMA+SPARC   varying       bTFR inverse  a1 =   -6.30 +- 0.94   (a1/sigma = -6.70)
+   MIGHTEE+LADUMA+SPARC   varying       bTFR direct   a1 =   -7.09 +- 0.83   (a1/sigma = -8.54)
+   MIGHTEE+LADUMA+SPARC   constant 0.6  RAR           a1 =   -4.80 +- 0.76   (a1/sigma = -6.32)
+   MIGHTEE+LADUMA+SPARC   constant 0.6  bTFR inverse  a1 =   -8.84 +- 0.71   (a1/sigma = -12.45)
+   MIGHTEE+LADUMA+SPARC   constant 0.6  bTFR direct   a1 =   -9.41 +- 0.63   (a1/sigma = -14.94)
+   the authors' four RAR-bTFR tensions recomputed from the table: MIGHTEE+LADUMA only, varying: 1.94 (published 2.0); MIGHTEE+LADUMA only, constant 0.6: 0.30 (published 0.3); MIGHTEE+LADUMA+SPARC, varying: 8.18 (published 8.2); MIGHTEE+LADUMA+SPARC, constant 0.6: 3.88 (published 3.9)
+   sub-sample levels (a0, 1e-10 m/s2): whole sample, direct photometry N=130 1.50 +- 0.05; whole sample, Sersic photometry N=130 1.48 +- 0.04; well-behaved, direct N=61 1.80 +- 0.08; less well-behaved, direct N=69 1.31 +- 0.06; COSMOS reference, Sersic N=19 1.69 +- 0.13; well-behaved vs less well-behaved: +0.1380 +- 0.0277 dex (the same galaxies' photometric-consistency split)
+   the delta-family kernel fit gives a0 = 1.86 +- 0.06 (delta = 4.10): a different kernel, not comparable with the exponential-RAR levels
+   MIGHTEE-only minus anchored, independent-error quadrature (the authors state 2.5 sigma for the difference, method not given): a1 -2.67 sigma, a0 +3.49 sigma
+   the two fits' central values cross at z = 0.0571: a(z) = 1.54 -1.60 z  vs  1.15 +5.23 z; at z = 0.055: 1.452 vs 1.438 (central values; errors need the paper's covariance); at z = 0: 1.54 vs 1.15; at z = 0.09: 1.396 vs 1.621
+
+  points written: cfg279_points_SELFTEST.csv (3 rows)
+  [PASS] S1 SELFTEST (amended): the pull against FLAT is 0 at every width (1e-9), CONSISTENT
+         [0.0, 0.0, 0.0]
+  [PASS] S2 SELFTEST (amended): the formal-width pull against ANCH equals the frozen hand arithmetic -3.0059 (0.005) and the label is CONSISTENT at 3.29
+         pull ANCH -3.0059 (CONSISTENT)
+  [PASS] S3 SELFTEST (amended): the formal-width pull against RIVAL equals the frozen hand arithmetic -0.3123 (0.005)
+         pull RIVAL -0.3123
+  [FAIL (not load-bearing)] S-as-frozen: in a world on FLAT the within-sample slope is DISFAVOURED against ANCH at the formal width
+         pull ANCH -3.0059 (CONSISTENT); expected FAIL by arithmetic (3.01 < 3.29), addendum 2c
+
+8/9 checks pass; load-bearing failures: 0   (0 s)
