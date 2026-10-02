@@ -54,10 +54,10 @@ A275 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG275_pk
 A276 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG276_gn20", "cfg276_points_stageB.csv")))}   # CFG276 231d32a8c
 A278 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG278_lelli23_two_discs", "cfg278_points_stageB.csv")))}   # CFG278 9878bfcec
 A282 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG282_ro_stellar_masses", "cfg282_points_stageB.csv")))}   # CFG282 0f0ef264e
+A283 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG283_alpaka24_gas_only", "cfg283_points_stageB.csv")))}   # CFG283 b20adfc0e
 A273 = list(csv.DictReader(open(os.path.join(CFG, "CFG273_danhaive_gold41", "cfg273_points_stageB_relabelled.csv"))))   # CFG273 208944196 (relabelled: two ceiling rows)
 A274 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG274_amvrosiadis_eight_discs", "cfg274_points_stageB.csv"))) if "pooled" not in r["object"]]   # CFG274 255f07244
 TODO = [  # (label, zmin, zmax, short note)       sources: CFG227 'Listed, no point' + CFG237 + CFG258 + L328
-    ("ALPAKA 24 (1)", alp["24"], alp["24"], "no stellar mass"),
 ]
 
 P("chart_a0z_one: plot only")
@@ -74,6 +74,7 @@ check("CFG275 PKS 0529-549: chart row [CIG; CO] is a FLOOR (no root), 7 of 8 row
 check("CFG276 GN20: frozen row [stars+RT; Re] is a floor but uninformative (D 0.90) (231d32a8c)", A276["GN20 [stars+RT; Re]"]["no_root"] == "1")
 check("CFG278 Lelli+23: zC-400569 [stars+CO a=0.4] floor; zC-488879 [stars+CO a=0.4] <= 33.4 (9878bfcec)", A278["zC-400569 [stars+CO a=0.4]"]["no_root"] == "1" and abs(float(A278["zC-488879 [stars+CO a=0.4]"]["s_star"]) - 33.424) < 1e-2)
 check("CFG282 RO + SED M*: SGP38326-2 [gas+M* Ma19] and BRI1335-0417 [gas+M* T26] are floors (0f0ef264e)", A282["SGP38326-2 [gas+M* Ma19]"]["no_root"] == "1" and A282["BRI1335-0417 [gas+M* T26]"]["no_root"] == "1")
+check("CFG283 ALPAKA 24: gas-floor route vacuous (<= 27.6), Galactic route a floor (b20adfc0e)", A283["ALPAKA 24 ADF22.5 [gas floor]"]["no_root"] == "0" and A283["ALPAKA 24 ADF22.5 [gas Galactic]"]["no_root"] == "1")
 check("CFG273 Danhaive: 7 no root (relabelled file), pooled PALL <= 29.4 at z 4.17 (208944196)", sum(r["no_root"] == "1" for r in A273) == 7 and any("PALL" in r["object"] and abs(float(r["s_star"]) - 29.45) < 0.01 for r in A273), f"({sum(r['no_root'] == '1' for r in A273)} no root)")
 check("CFG272 ALPAKA: 13 and 23 no root; 25 <= 3.30 and 28 <= 0.74 upper bounds; 24 no M* (d993f02dc)", sorted(r["object"].split()[1] for r in A272 if r["no_root"] == "1") == ["13", "23"] and sorted(round(float(r["s_star"]), 2) for r in A272 if r["no_root"] == "0") == [0.74, 3.3], f"({len(A272)} rows)")
 check("CFG274 Amvrosiadis: 7 of 8 no root, ALESS 075.1 s* 6.89 (255f07244)", sum(r["no_root"] == "1" for r in A274) == 7 and any(r["no_root"] == "0" and abs(float(r["s_star"]) - 6.887) < 0.01 for r in A274), f"({sum(r['no_root'] == '1' for r in A274)} no root)")
@@ -211,6 +212,7 @@ zl8 = A278["zC-488879 [stars+CO a=0.4]"]   # <= 33.4: off the top of the axis; a
 ax.annotate("", xy=(1.47, 18.5), xytext=(1.47, 28.5), arrowprops=dict(arrowstyle="-|>", color=LLC, lw=1.6), zorder=6)
 ax.scatter([1.47], [28.5], marker="o", s=45, facecolor="white", edgecolor=LLC, linewidth=1.6, zorder=6, clip_on=False)
 ax.text(1.40, 18.5, "zC-488879 (Lelli+23): ≤ 33×, baryon-limited\n(SED M* 4× below dynamical)", color=LLC, fontsize=8, ha="right", va="center")
+ax.scatter([3.02], [0.252], marker="v", s=60, facecolor="white", edgecolor="#8a8a8a", lw=1.3, zorder=6)   # ALPAKA 24 (true z 3.094, nudged): measures alpha_CO, not a0; not counted
 N_NR = 2 + len(sins_floor) + len(ro_floor) + len(k3_floor) + 8 + sum(r["no_root"] == "1" for r in A274) + sum(r["no_root"] == "1" for r in A272) + sum(r["no_root"] == "1" and "pooled" not in r["object"] for r in A273)
 ax.text(0.12, 0.222, f"calculated, but no $a_0$ fits ({N_NR} galaxies):\nthe stars + gas already exceed what the rotation needs  ▸",
         fontsize=9.5, color="#7a5a1a", va="center")
@@ -285,7 +287,11 @@ for i, (lab, z0, z1, note) in enumerate(TODO):
     tb = t.get_window_extent(fig.canvas.get_renderer()); inv = sx.transData.inverted()
     xa = inv.transform((tb.x1, 0))[0] + 0.03 if right else inv.transform((tb.x0, 0))[0] - 0.03
     sx.text(xa, i, ("· " + note) if right else (note + " ·"), ha="left" if right else "right", va="center", fontsize=9, color=MUTED)
-sx.text(0.995, 0.975, "DATA IN HAND, NO a₀ VALUE YET", transform=sx.transAxes, fontsize=10.5, color=INK, fontweight="bold", ha="right", va="top")
+if TODO:
+    sx.text(0.995, 0.975, "DATA IN HAND, NO a₀ VALUE YET", transform=sx.transAxes, fontsize=10.5, color=INK, fontweight="bold", ha="right", va="top")
+else:
+    sx.text(0.5, 0.5, "EVERY DATA SET IN HAND NOW HAS AN a₀ CALCULATION.\nBUDHIES (z ≈ 0.2) is computed but kept off: its width chain did not pass the local calibration (CFG260, CFG281).  "
+            "Hollow grey triangles (GN20, ALPAKA 24) are not informative.", transform=sx.transAxes, fontsize=9, color=INK, ha="center", va="center", linespacing=1.6)
 sx.set_xlabel("redshift  z", fontsize=12)
 sx.set_xticks(range(7)); sx.grid(True, axis="x", color="#e4e7eb", lw=0.7, zorder=0)
 for x in range(7): ax.axvline(x, color="#e4e7eb", lw=0.7, zorder=0)
@@ -294,10 +300,10 @@ for x in range(7): ax.axvline(x, color="#e4e7eb", lw=0.7, zorder=0)
 fig.text(0.075, 0.955, "Is $a_0$ constant across 12 billion years?  Not decidable from today's data",
          fontsize=19, fontweight="bold", color=INK)
 fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from one that grows with $H(z)$: at z > 1 the gas masses are uncertain by 0.2-0.7 dex,\n"
-         "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  The dashed sets at the bottom are data in hand with no $a_0$ value yet.",
+         "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  Triangles at the floor: calculated galaxies where no $a_0$ fits.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280–283 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")

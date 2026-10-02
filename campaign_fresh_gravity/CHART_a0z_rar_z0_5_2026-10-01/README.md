@@ -67,3 +67,5 @@ Layout: the strip now shrinks with its row count, and the main panel takes the f
 - **SGP38326-1: not drawn.** Its frozen row is a root s* ≤ 22.1 (ill-conditioned, recipe ±0.72 dex), and the other branch is a floor by only 0.013 dex.
 
 All are near-Newtonian (y 18–90), so these are statements of baryon excess, not a₀ values. The Ma+19 masses are provisional (read from the VizieR HTML). The floor count is now 52. 22/22 checks pass.
+
+**ALPAKA 24 (CFG283, b20adfc0e), gas only, nothing fetched.** At the floor conversion (α_CO 0.8, a baryon lower limit) the root is s* ≤ 27.6, vacuous under the frozen rule. At the Galactic conversion (4.36) it is a FLOOR (D 0.746). The dynamics allow α_CO ≲ 3.25, and the conversion each law needs is 3.0 (FLAT) against 2.2 (H(z)), so the row measures the gas conversion, not a₀. Drawn as a hollow grey "not informative" triangle at z 3.02 (true z 3.094), not counted, like GN20. **With this, every data set in hand has an a₀ calculation.** The strip now carries a closing note in place of rows, and the subtitle's strip sentence was replaced with the floor explanation. The floor count stays 52. 23/23 checks pass.
