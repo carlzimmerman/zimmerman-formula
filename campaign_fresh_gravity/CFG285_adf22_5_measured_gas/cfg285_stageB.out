@@ -1,0 +1,95 @@
+CFG285 -- ADF22.5 (ALPAKA 24, z = 3.094) with the MEASURED CO(1-0) gas of the 2026 ADF22-WEB paper (Umehata+2026, arXiv:2609.06679; A7: log L'CO(1-0) = 10.66 +- 0.03, log M_mol = 11.21 = 3.6 x L'):
+  six rows at the measured L'(1-0): S0 stars only (= CFG284 B0), S1 stars + gas at alpha_CO 0.8 (a lower limit), S2 stars + gas at 3.6 (the published M_mol), G1 gas only at 0.8 (a lower limit that does not use the SED stellar mass),
+  G2 gas only at 1.36 (the DSFG standard), G3 gas only at 3.6 (the published gas alone).  Stars (Huang+2025: log M* 10.64 +0.20/-0.36) and gas are Freeman discs of the measured F444W semi-major-axis R_e = 2.24 kpc (CFG284's geometry).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG285_adf22_5_measured_gas/FROZEN_CRITERIA.md (e6a70d499) with the paper's record data_assembly/adf22_5_literature_2026-10-02/adf22web3_2609.06679_A7_values.csv.
+  STAGE=A   the engineering pre-flight with real hand predictions: no velocity column is loaded.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_ext, sigma_ext x 2); STAGE=B SELFTEST=1 (fabricated V_ext on the law at s = 2; the real velocities are never loaded).
+Points file: no_root = 1 only for a FLOOR; a CEILING (D > 1 but s* > 1000) is written s_star = 1000, no_root = 0, status = ceiling; `resolution` = RESOLVED-ROOT / RESOLVED-FLOOR / UNRESOLVED (Monte Carlo no-root fraction <= 0.16 / >= 0.84 / between).
+
+STAGE B
+sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038, adf22_5_literature_values.csv 3e6596df5bbdb484, adf22web3_2609.06679_A7_values.csv b2a7c2ba725b329c; velocity columns loaded: True
+row: ID 24 ADF22.5 z 3.094  R_ext 3.551 kpc  i_ALMA 75 +- 6 | gas: log L'(1-0) 10.66 +- 0.03 (L' 4.5709e+10), log L'(3-2) paper 10.47, ALPAKA L'(3-2) 3.000e+10, r31 0.65, published log M_mol 11.21 | stars: M* 4.400e+10 (log 10.64345 +0.20165 -0.36470), R_e 2.24 kpc | laws at z: FLAT 1.000, PROXY 2.721, H(z) 4.722
+baryon side: S0 (stars only, alpha 0.0): g_bar 4.8577e-10 y 5.190; S1 (stars + gas, alpha 0.8): g_bar 8.8948e-10 y 9.503; S2 (stars + gas, alpha 3.6): g_bar 2.3025e-09 y 24.598; G1 (gas only, alpha 0.8): g_bar 4.0371e-10 y 4.313; G2 (gas only, alpha 1.36): g_bar 6.8630e-10 y 7.332; G3 (gas only, alpha 3.6): g_bar 1.8167e-09 y 19.408; g_* 4.8577e-10; gas force per unit alpha_CO 5.0464e-10
+
+STAGE B  THE MEASUREMENT
+  ALPAKA 24 ADF22.5 [stars only]: g_obs 8.3788e-10  g_bar 4.8577e-10  D 1.7249  delta_FLAT +0.185 [-0.002, +0.495]  y 5.190  status ROOT  s* <= 6.905 (a0 <= 6.464e-10)  [RESOLVED-ROOT]
+      Monte Carlo (B = 10000): draws without a root 0.126 (floor 0.126, ceiling 0.000); rooted 68 % [2.961, 31.29]  95 % [0.6168, 83.07]  median 9.532
+      bands: all baryons +-0.15 [2.491, 13.16]  +-0.30 [0.001, 22.07] (no-root corner)
+      Delta_floor +0.237 dex; baryon shift for s* = 1: +0.203 dex; alpha_CO (x L'(1-0)) at D = 1: 0.6978; for FLAT 0.5730, PROXY 0.3703, H(z) 0.1635; lever (noiseless) -9.36 (conditioned); variants with a root 19/20 (to a floor 1); recipe half-width 0.946
+      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.317 [root; +0.173]; R_e /1.5 (stars and gas) -0.185 [root; -0.076]; stars R_e +1 sigma +0.075 [root; +0.036]; stars R_e -1 sigma -0.074 [root; -0.032]; spherical (enclosed mass as a point mass) +0.243 [root; +0.128]; gas at R_ext/1.2 (CFG283's R_e) +0.000 [root; +0.000]; gas at the 870 um dust R_e +0.000 [root; +0.000]; stars as the Sersic n = 3.21 thin disc (Hankel) +0.245 [root; +0.129]; pressure +1.68 sigma^2 +0.020 [root; +0.006]; pressure +3.36 sigma^2 +0.039 [root; +0.012]; inclination -1 sigma +0.092 [root; +0.030]; inclination +1 sigma -0.063 [root; -0.019]; inclination from the F444W axis ratio (57.3 deg) +0.349 [root; +0.120]; inclination from the 870 um axis ratio (54.5 deg) +0.425 [root; +0.148]; V_ext at R_mean of the last two rings +0.040 [root; -0.012]; kernel P2 +0.172 [root; +0.000]; M* x 10^-0.30 +0.505 [root; +0.300]; M* x 10^+0.30 -- [floor; -0.300]; M* x 10^-0.50 (AGN contamination) +0.763 [root; +0.500]; gas: helium x 1.36 +0.000 [root; +0.000]
+      knob groups (max |Delta log10 s*|): geometry 0.317, pressure 0.039, inclination 0.425, radius 0.040, kernel 0.172, stellar mass 0.763, gas conversion 0.000
+  ALPAKA 24 ADF22.5 [stars + CO(1-0) gas a0.8]: g_obs 8.3788e-10  g_bar 8.8948e-10  D 0.9420  delta_FLAT -0.056 [-0.182, +0.100]  y 9.503  status FLOOR  [UNRESOLVED]
+      Monte Carlo (B = 10000): draws without a root 0.538 (floor 0.538, ceiling 0.000); rooted 68 % [0.9201, 6.105]  95 % [0.1411, 10.32]  median 2.996
+      bands: all baryons +-0.15 [0.001, 3.47] (no-root corner)  +-0.30 [0.001, 8.259] (no-root corner)
+      Delta_floor -0.026 dex; baryon shift for s* = 1: -0.060 dex; alpha_CO (x L'(1-0)) at D = 1: 0.6978; for FLAT 0.5730, PROXY 0.3703, H(z) 0.1635; lever (noiseless) +nan ILL-CONDITIONED; variants with a root 9/20 (to a floor 0); recipe half-width nan
+      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [root; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.019]; stars R_e -1 sigma -- [floor; -0.018]; spherical (enclosed mass as a point mass) -- [root; +0.128]; gas at R_ext/1.2 (CFG283's R_e) -- [root; +0.046]; gas at the 870 um dust R_e -- [floor; -0.035]; stars as the Sersic n = 3.21 thin disc (Hankel) -- [root; +0.066]; pressure +1.68 sigma^2 -- [floor; +0.006]; pressure +3.36 sigma^2 -- [floor; +0.012]; inclination -1 sigma -- [root; +0.030]; inclination +1 sigma -- [floor; -0.019]; inclination from the F444W axis ratio (57.3 deg) -- [root; +0.120]; inclination from the 870 um axis ratio (54.5 deg) -- [root; +0.148]; V_ext at R_mean of the last two rings -- [floor; -0.012]; kernel P2 -- [floor; +0.000]; M* x 10^-0.30 -- [root; +0.138]; M* x 10^+0.30 -- [floor; -0.189]; M* x 10^-0.50 (AGN contamination) -- [root; +0.203]; gas: helium x 1.36 -- [floor; -0.066]
+      knob groups (max |Delta log10 s*|): none (no root at the base)
+  ALPAKA 24 ADF22.5 [stars + CO(1-0) gas a3.6 (published)]: g_obs 8.3788e-10  g_bar 2.3025e-09  D 0.3639  delta_FLAT -0.451 [-0.526, -0.370]  y 24.598  status FLOOR  [RESOLVED-FLOOR]
+      Monte Carlo (B = 10000): draws without a root 1.000 (floor 1.000, ceiling 0.000); rooted 68 % [nan, nan]  95 % [nan, nan]  median nan
+      bands: all baryons +-0.15 [0.001, 0.001] (no-root corner)  +-0.30 [0.001, 0.001] (no-root corner)
+      Delta_floor -0.439 dex; baryon shift for s* = 1: -0.473 dex; alpha_CO (x L'(1-0)) at D = 1: 0.6978; for FLAT 0.5730, PROXY 0.3703, H(z) 0.1635; lever (noiseless) +nan ILL-CONDITIONED; variants with a root 0/20 (to a floor 0); recipe half-width nan
+      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [floor; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.007]; stars R_e -1 sigma -- [floor; -0.007]; spherical (enclosed mass as a point mass) -- [floor; +0.128]; gas at R_ext/1.2 (CFG283's R_e) -- [floor; +0.084]; gas at the 870 um dust R_e -- [floor; -0.059]; stars as the Sersic n = 3.21 thin disc (Hankel) -- [floor; +0.024]; pressure +1.68 sigma^2 -- [floor; +0.006]; pressure +3.36 sigma^2 -- [floor; +0.012]; inclination -1 sigma -- [floor; +0.030]; inclination +1 sigma -- [floor; -0.019]; inclination from the F444W axis ratio (57.3 deg) -- [floor; +0.120]; inclination from the 870 um axis ratio (54.5 deg) -- [floor; +0.148]; V_ext at R_mean of the last two rings -- [floor; -0.012]; kernel P2 -- [floor; +0.000]; M* x 10^-0.30 -- [floor; +0.048]; M* x 10^+0.30 -- [floor; -0.083]; M* x 10^-0.50 (AGN contamination) -- [floor; +0.068]; gas: helium x 1.36 -- [floor; -0.109]
+      knob groups (max |Delta log10 s*|): none (no root at the base)
+  ALPAKA 24 ADF22.5 [CO(1-0) gas only a0.8]: g_obs 8.3788e-10  g_bar 4.0371e-10  D 2.0755  delta_FLAT +0.255 [+0.199, +0.320]  y 4.313  status ROOT  s* <= 9.979 (a0 <= 9.34e-10)  [RESOLVED-ROOT]
+      Monte Carlo (B = 10000): draws without a root 0.000 (floor 0.000, ceiling 0.000); rooted 68 % [6.905, 14.71]  95 % [4.302, 20.35]  median 10.34
+      bands: all baryons +-0.15 [4.677, 17.54]  +-0.30 [0.4997, 28.3]
+      Delta_floor +0.317 dex; baryon shift for s* = 1: +0.283 dex; alpha_CO (x L'(1-0)) at D = 1: 1.6604; for FLAT 1.5356, PROXY 1.3329, H(z) 1.1261; lever (noiseless) -7.48 (conditioned); variants with a root 20/20 (to a floor 0); recipe half-width 0.582
+      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.279 [root; +0.173]; R_e /1.5 (stars and gas) -0.149 [root; -0.076]; stars R_e +1 sigma +0.000 [root; +0.000]; stars R_e -1 sigma +0.000 [root; +0.000]; spherical (enclosed mass as a point mass) +0.212 [root; +0.128]; gas at R_ext/1.2 (CFG283's R_e) +0.183 [root; +0.109]; gas at the 870 um dust R_e -0.146 [root; -0.074]; stars as the Sersic n = 3.21 thin disc (Hankel) +0.000 [root; +0.000]; pressure +1.68 sigma^2 +0.017 [root; +0.006]; pressure +3.36 sigma^2 +0.035 [root; +0.012]; inclination -1 sigma +0.082 [root; +0.030]; inclination +1 sigma -0.055 [root; -0.019]; inclination from the F444W axis ratio (57.3 deg) +0.319 [root; +0.120]; inclination from the 870 um axis ratio (54.5 deg) +0.390 [root; +0.148]; V_ext at R_mean of the last two rings +0.044 [root; -0.012]; kernel P2 +0.155 [root; +0.000]; M* x 10^-0.30 +0.000 [root; +0.000]; M* x 10^+0.30 +0.000 [root; +0.000]; M* x 10^-0.50 (AGN contamination) +0.000 [root; +0.000]; gas: helium x 1.36 -0.285 [root; -0.134]
+      knob groups (max |Delta log10 s*|): geometry 0.279, pressure 0.035, inclination 0.390, radius 0.044, kernel 0.155, stellar mass 0.000, gas conversion 0.285
+  ALPAKA 24 ADF22.5 [CO(1-0) gas only a1.36]: g_obs 8.3788e-10  g_bar 6.8630e-10  D 1.2209  delta_FLAT +0.049 [-0.007, +0.114]  y 7.332  status ROOT  s* <= 2.488 (a0 <= 2.329e-10)  [RESOLVED-ROOT]
+      Monte Carlo (B = 10000): draws without a root 0.073 (floor 0.073, ceiling 0.000); rooted 68 % [1.189, 4.913]  95 % [0.2386, 7.662]  median 2.812
+      bands: all baryons +-0.15 [0.001, 6.902] (no-root corner)  +-0.30 [0.001, 13.16] (no-root corner)
+      Delta_floor +0.087 dex; baryon shift for s* = 1: +0.052 dex; alpha_CO (x L'(1-0)) at D = 1: 1.6604; for FLAT 1.5356, PROXY 1.3329, H(z) 1.1261; lever (noiseless) -15.66 ILL-CONDITIONED; variants with a root 19/20 (to a floor 1); recipe half-width 1.079
+      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.492 [root; +0.173]; R_e /1.5 (stars and gas) -0.889 [root; -0.076]; stars R_e +1 sigma +0.000 [root; +0.000]; stars R_e -1 sigma +0.000 [root; +0.000]; spherical (enclosed mass as a point mass) +0.393 [root; +0.128]; gas at R_ext/1.2 (CFG283's R_e) +0.348 [root; +0.109]; gas at the 870 um dust R_e -0.822 [root; -0.074]; stars as the Sersic n = 3.21 thin disc (Hankel) +0.000 [root; +0.000]; pressure +1.68 sigma^2 +0.034 [root; +0.006]; pressure +3.36 sigma^2 +0.066 [root; +0.012]; inclination -1 sigma +0.147 [root; +0.030]; inclination +1 sigma -0.123 [root; -0.019]; inclination from the F444W axis ratio (57.3 deg) +0.493 [root; +0.120]; inclination from the 870 um axis ratio (54.5 deg) +0.587 [root; +0.148]; V_ext at R_mean of the last two rings +0.005 [root; -0.012]; kernel P2 +0.160 [root; +0.000]; M* x 10^-0.30 +0.000 [root; +0.000]; M* x 10^+0.30 +0.000 [root; +0.000]; M* x 10^-0.50 (AGN contamination) +0.000 [root; +0.000]; gas: helium x 1.36 -- [floor; -0.134]
+      knob groups (max |Delta log10 s*|): geometry 0.889, pressure 0.066, inclination 0.587, radius 0.005, kernel 0.160, stellar mass 0.000
+  ALPAKA 24 ADF22.5 [CO(1-0) gas only a3.6 (published)]: g_obs 8.3788e-10  g_bar 1.8167e-09  D 0.4612  delta_FLAT -0.351 [-0.411, -0.286]  y 19.408  status FLOOR  [RESOLVED-FLOOR]
+      Monte Carlo (B = 10000): draws without a root 1.000 (floor 1.000, ceiling 0.000); rooted 68 % [nan, nan]  95 % [nan, nan]  median nan
+      bands: all baryons +-0.15 [0.001, 0.001] (no-root corner)  +-0.30 [0.001, 0.001] (no-root corner)
+      Delta_floor -0.336 dex; baryon shift for s* = 1: -0.370 dex; alpha_CO (x L'(1-0)) at D = 1: 1.6604; for FLAT 1.5356, PROXY 1.3329, H(z) 1.1261; lever (noiseless) +nan ILL-CONDITIONED; variants with a root 0/20 (to a floor 0); recipe half-width nan
+      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [floor; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.000]; stars R_e -1 sigma -- [floor; +0.000]; spherical (enclosed mass as a point mass) -- [floor; +0.128]; gas at R_ext/1.2 (CFG283's R_e) -- [floor; +0.109]; gas at the 870 um dust R_e -- [floor; -0.074]; stars as the Sersic n = 3.21 thin disc (Hankel) -- [floor; +0.000]; pressure +1.68 sigma^2 -- [floor; +0.006]; pressure +3.36 sigma^2 -- [floor; +0.012]; inclination -1 sigma -- [floor; +0.030]; inclination +1 sigma -- [floor; -0.019]; inclination from the F444W axis ratio (57.3 deg) -- [floor; +0.120]; inclination from the 870 um axis ratio (54.5 deg) -- [floor; +0.148]; V_ext at R_mean of the last two rings -- [floor; -0.012]; kernel P2 -- [floor; +0.000]; M* x 10^-0.30 -- [floor; +0.000]; M* x 10^+0.30 -- [floor; +0.000]; M* x 10^-0.50 (AGN contamination) -- [floor; +0.000]; gas: helium x 1.36 -- [floor; -0.134]
+      knob groups (max |Delta log10 s*|): none (no root at the base)
+
+  context: M_dyn(< R_ext) = V_ext^2 R_ext / G = 7.580e+10 Msun (a scale); (M* + M_gas(0.8))/M_dyn 1.063; (M* + M_gas(3.6))/M_dyn 2.751; M_gas(3.6)/M_dyn 2.171; M*/M_dyn 0.580
+
+  CONVERSION LADDER (assumed alpha_CO x the measured L'(1-0); NOT data): nominal D, status, s*, Monte Carlo no-root fraction, resolution
+    gas only     alpha  0.80: M_gas 3.657e+10  D 2.075  ROOT   s* <= 9.98  no-root 0.000  RESOLVED-ROOT
+    gas only     alpha  1.00: M_gas 4.571e+10  D 1.660  ROOT   s* <= 6.34  no-root 0.000  RESOLVED-ROOT
+    gas only     alpha  1.36: M_gas 6.216e+10  D 1.221  ROOT   s* <= 2.49  no-root 0.082  RESOLVED-ROOT
+    gas only     alpha  2.10: M_gas 9.599e+10  D 0.791  FLOOR            no-root 0.945  RESOLVED-FLOOR
+    gas only     alpha  3.60: M_gas 1.646e+11  D 0.461  FLOOR            no-root 1.000  RESOLVED-FLOOR
+    gas only     alpha  4.36: M_gas 1.993e+11  D 0.381  FLOOR            no-root 1.000  RESOLVED-FLOOR
+    stars + gas  alpha  0.80: M_gas 3.657e+10  D 0.942  FLOOR            no-root 0.526  UNRESOLVED
+    stars + gas  alpha  1.00: M_gas 4.571e+10  D 0.846  FLOOR            no-root 0.661  UNRESOLVED
+    stars + gas  alpha  1.36: M_gas 6.216e+10  D 0.715  FLOOR            no-root 0.879  RESOLVED-FLOOR
+    stars + gas  alpha  2.10: M_gas 9.599e+10  D 0.542  FLOOR            no-root 0.999  RESOLVED-FLOOR
+    stars + gas  alpha  3.60: M_gas 1.646e+11  D 0.364  FLOOR            no-root 1.000  RESOLVED-FLOOR
+    stars + gas  alpha  4.36: M_gas 1.993e+11  D 0.312  FLOOR            no-root 1.000  RESOLVED-FLOOR
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 1.1e-16 (3 rows with a root)
+  [PASS] M3 six rows, all ID 24
+         rows ['ALPAKA 24 ADF22.5 [stars only]', 'ALPAKA 24 ADF22.5 [stars + CO(1-0) gas a0.8]', 'ALPAKA 24 ADF22.5 [stars + CO(1-0) gas a3.6 (published)]', 'ALPAKA 24 ADF22.5 [CO(1-0) gas only a0.8]', 'ALPAKA 24 ADF22.5 [CO(1-0) gas only a1.36]', 'ALPAKA 24 ADF22.5 [CO(1-0) gas only a3.6 (published)]']
+  [PASS] M6 CONTROL: the alpha_CO equivalents agree across the rows of a family (same stars or none, same gas disc) to 1e-9 relative
+         stars + gas D = 1: [0.697758766500794, 0.697758766500794]; gas only D = 1: [1.6603738810385968, 1.6603738810385968, 1.6603738810385968]
+  [PASS] M7 CONTROL: each law-equivalent alpha_CO returns its law's s to 1e-6 dex when re-solved
+         max |d log10 s| 6.5e-16
+  [PASS] M5 CONTINUITY with CFG284: g_obs equals CFG284's committed GO, and S0's D and s* equal CFG284's B0, to 1e-9 relative
+         relative deviations g_obs 0.0e+00, D 0.0e+00, s* 0.0e+00
+  [PASS] M5b CONTINUITY with CFG283: with the stars removed, L'(1-0) replaced by the ALPAKA L'(3-2), alpha 0.8 and R_e = R_ext/1.2 the gas-only D equals CFG283's committed D_B1 to 1e-9 relative
+         relative deviation 0.0e+00
+
+HAND ESTIMATES SCORED (frozen in FROZEN_CRITERIA.md section 9):
+    HE2 (nominal D, status, s*: G1 1.95-2.20 / root / 8-12.5; G2 1.15-1.30 / root / 1.8-3.6; G3 0.42-0.49 / floor; S1 0.90-0.99 / floor; S2 0.33-0.39 / floor): hit  (D S0 1.7249, S1 0.9420, S2 0.3639, G1 2.0755, G2 1.2209, G3 0.4612; s* G1 9.979, G2 2.488)
+    HE3 (no-root fractions G1 <= 0.02, G2 0.02-0.15, G3 >= 0.99, S1 0.40-0.70, S2 >= 0.99; resolutions): hit  (S0 0.126 RESOLVED-ROOT, S1 0.538 UNRESOLVED, S2 1.000 RESOLVED-FLOOR, G1 0.000 RESOLVED-ROOT, G2 0.073 RESOLVED-ROOT, G3 1.000 RESOLVED-FLOOR)
+    HE4 (equivalents: stars+gas D=1 0.65-0.75, FLAT 0.52-0.63, PROXY 0.33-0.42, H(z) 0.13-0.20; gas only D=1 1.55-1.75, FLAT 1.45-1.65, PROXY 1.20-1.45, H(z) 1.00-1.25): hit  (stars+gas 0.6978; 0.5730, 0.3703, 0.1635; gas only 1.6604; 1.5356, 1.3329, 1.1261)
+    HE5 (ladder: gas only root at 0.8/1.0/1.36 and floor at 2.1/3.6/4.36; stars + gas floor everywhere): hit
+    HE6 (G1 knobs: half-width 0.35-0.75; thin-disc inclinations +0.25..+0.45; R_e x1.5 +0.2..+0.4; helium -0.2..-0.4): hit  (half 0.582; groups {'geometry': 0.2788251209931296, 'pressure': 0.034504610415479586, 'inclination': 0.3900267437326401, 'radius': 0.04415750619949632, 'kernel': 0.15520877183034543, 'stellar mass': 0.0, 'gas conversion': 0.28546451394137096})
+    HE9 (context: (M*+M_gas(0.8))/M_dyn 1.00-1.12; (M*+M_gas(3.6))/M_dyn 2.6-2.9; M_gas(3.6)/M_dyn 2.0-2.3): hit  (1.063, 2.751, 2.171)
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg285_points_stageB.csv (6 rows)
+
+7/7 checks pass; load-bearing failures: 0   (9 s)
