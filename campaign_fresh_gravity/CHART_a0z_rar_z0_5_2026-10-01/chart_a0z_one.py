@@ -56,6 +56,7 @@ A278 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG278_le
 A282 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG282_ro_stellar_masses", "cfg282_points_stageB.csv")))}   # CFG282 0f0ef264e
 A283 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG283_alpaka24_gas_only", "cfg283_points_stageB.csv")))}   # CFG283 b20adfc0e
 A284 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG284_adf22_5_with_stars", "cfg284_points_stageB.csv")))}   # CFG284 0c79648e9
+A285 = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG285_adf22_5_measured_gas", "cfg285_points_stageB.csv")))}   # CFG285 0383bbfc2
 A273 = list(csv.DictReader(open(os.path.join(CFG, "CFG273_danhaive_gold41", "cfg273_points_stageB_relabelled.csv"))))   # CFG273 208944196 (relabelled: two ceiling rows)
 A274 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG274_amvrosiadis_eight_discs", "cfg274_points_stageB.csv"))) if "pooled" not in r["object"]]   # CFG274 255f07244
 TODO = [  # (label, zmin, zmax, short note)       sources: CFG227 'Listed, no point' + CFG237 + CFG258 + L328
@@ -77,6 +78,7 @@ check("CFG278 Lelli+23: zC-400569 [stars+CO a=0.4] floor; zC-488879 [stars+CO a=
 check("CFG282 RO + SED M*: SGP38326-2 [gas+M* Ma19] and BRI1335-0417 [gas+M* T26] are floors (0f0ef264e)", A282["SGP38326-2 [gas+M* Ma19]"]["no_root"] == "1" and A282["BRI1335-0417 [gas+M* T26]"]["no_root"] == "1")
 check("CFG283 ALPAKA 24: gas-floor route vacuous (<= 27.6), Galactic route a floor (b20adfc0e)", A283["ALPAKA 24 ADF22.5 [gas floor]"]["no_root"] == "0" and A283["ALPAKA 24 ADF22.5 [gas Galactic]"]["no_root"] == "1")
 check("CFG284 ALPAKA 24 with a literature M*: stars-only upper bound s* <= 6.91 (0c79648e9)", abs(float(A284["ALPAKA 24 ADF22.5 [M* H25 stars only]"]["s_star"]) - 6.905) < 1e-2)
+check("CFG285 ALPAKA 24 measured CO(1-0): stars + published gas (a3.6) is a FLOOR (0383bbfc2)", A285["ALPAKA 24 ADF22.5 [stars + CO(1-0) gas a3.6 (published)]"]["no_root"] == "1")
 check("CFG273 Danhaive: 7 no root (relabelled file), pooled PALL <= 29.4 at z 4.17 (208944196)", sum(r["no_root"] == "1" for r in A273) == 7 and any("PALL" in r["object"] and abs(float(r["s_star"]) - 29.45) < 0.01 for r in A273), f"({sum(r['no_root'] == '1' for r in A273)} no root)")
 check("CFG272 ALPAKA: 13 and 23 no root; 25 <= 3.30 and 28 <= 0.74 upper bounds; 24 no M* (d993f02dc)", sorted(r["object"].split()[1] for r in A272 if r["no_root"] == "1") == ["13", "23"] and sorted(round(float(r["s_star"]), 2) for r in A272 if r["no_root"] == "0") == [0.74, 3.3], f"({len(A272)} rows)")
 check("CFG274 Amvrosiadis: 7 of 8 no root, ALESS 075.1 s* 6.89 (255f07244)", sum(r["no_root"] == "1" for r in A274) == 7 and any(r["no_root"] == "0" and abs(float(r["s_star"]) - 6.887) < 0.01 for r in A274), f"({sum(r['no_root'] == '1' for r in A274)} no root)")
@@ -218,7 +220,8 @@ a24 = A284["ALPAKA 24 ADF22.5 [M* H25 stars only]"]   # CFG284: stars-only B0 he
 z24, s24 = 3.14, f(a24, "s_star") * U   # true z 3.094, nudged clear of ALPAKA 25
 ax.scatter([z24], [s24], marker="o", s=55, facecolor="white", edgecolor=ALP, linewidth=1.8, zorder=6)
 ax.annotate("", xy=(z24, s24 / 1.6), xytext=(z24, s24), arrowprops=dict(arrowstyle="-|>", color=ALP, lw=1.6), zorder=6)
-N_NR = 2 + len(sins_floor) + len(ro_floor) + len(k3_floor) + 8 + sum(r["no_root"] == "1" for r in A274) + sum(r["no_root"] == "1" for r in A272) + sum(r["no_root"] == "1" and "pooled" not in r["object"] for r in A273)
+ax.scatter([3.094], [0.215], marker="v", s=60, color=ALP, zorder=6, edgecolor="white", lw=0.6)   # ALPAKA 24 with the measured CO(1-0) gas at the published conversion (CFG285): a floor
+N_NR = 3 + len(sins_floor) + len(ro_floor) + len(k3_floor) + 8 + sum(r["no_root"] == "1" for r in A274) + sum(r["no_root"] == "1" for r in A272) + sum(r["no_root"] == "1" and "pooled" not in r["object"] for r in A273)
 ax.text(0.12, 0.222, f"calculated, but no $a_0$ fits ({N_NR} galaxies):\nthe stars + gas already exceed what the rotation needs  ▸",
         fontsize=9.5, color="#7a5a1a", va="center")
 # MUSE-DARK (CFG262, fb24a5922): implied a0 in z-thirds BY BARYON ROUTE, reading bD (projected + asymmetric drift, CFG236's
@@ -308,7 +311,7 @@ fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from
          "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  Triangles at the floor: calculated galaxies where no $a_0$ fits.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280–284 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280–285 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
