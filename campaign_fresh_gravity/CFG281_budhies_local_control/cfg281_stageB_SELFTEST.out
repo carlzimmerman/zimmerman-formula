@@ -1,0 +1,20 @@
+CFG281 -- the BUDHIES width -> V -> baryon chain (CFG260) run on a same-pipeline LOCAL HI sample (ALFALFA widths + SDSS stellar masses), mass-matched to the BUDHIES primary set PC.
+A calibration of the chain, not a gravity test.  kappa = 1/2 is FITTED.  No verdict words.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG281_budhies_local_control/FROZEN_CRITERIA.md (b766cf43e).
+  local set L   code 1, M_HI >= 3e9, 20-85 Mpc, complete photometry; matched set LC = 4,000 stratified resamples of 100 galaxies in each of the four equal-count bins of the PC's log M_HI quartiles
+  chain         W_c = (W50 - 9) / (1+z); V = W_c / (2 sin 60 deg); M_gas = 1.33 M_HI; M* = the catalogue's Taylor+11 colour mass; R = D_HI/2 (D_HI-M_HI relation); g_bar = G M_b / R^2; g_obs = V^2 / R; CFG223's s*
+  STAGE=A  blind: no width column is loaded.   STAGE=B  the measurement (once, after stage A, the SELFTEST and this script are committed); STAGE=B SELFTEST=1; STAGE=B MUTATE=1 (widths x 1.1892); STAGE=B MUTATE=2 (sin i_eff 0.70).
+Variants and knobs use the first 1,000 of the same resamples (common random numbers); the primary estimate and its interval use all 4,000.
+
+STAGE B  *** SELFTEST: FABRICATED widths on the law at s_true = 2 (isotropic inclinations, 0.03 dex scatter in V); debugging only ***
+local table alfalfa_sdss.csv sha256 c790a7ec68c45b66; 31503 rows; width columns loaded: False
+selection: in both catalogues 31500 -> HI code 1 25432 -> M_HI >= 3e9 15935 -> 20 <= D <= 85 Mpc 1518 -> complete photometry and a valid flux 1370
+PC (BUDHIES primary set): N 32, log M_HI quartiles [ 9.588  9.849  9.936 10.124 10.525], z_bar 0.1960; local galaxies per PC-quartile bin [642, 141, 154, 60]; below the PC minimum 370, above the maximum 3
+
+STAGE B  THE MEASUREMENT (SELFTEST)
+  SELFTEST over 100 fabricated worlds (200 matched resamples each): median log10 s* = +0.2783 (truth +0.3010); SD over worlds 0.0245; the resample 95 % interval contains the truth in 0.90 of the worlds; mean unbounded fraction 0.000
+  [PASS] SELFTEST: the median over 100 worlds of the matched estimate lies within 0.05 dex of log10 2 (the isotropic-inclination and median argument)
+         median +0.2783 against +0.3010
+
+1/1 checks pass; load-bearing failures: 0   (72 s)
