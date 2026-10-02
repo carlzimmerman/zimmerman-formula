@@ -1,0 +1,44 @@
+# CFG300 — FROZEN CRITERIA: the MIGHTEE-HI DR1 cube probe: can resolved rotation curves be extracted from the L2 cubes at z 0.02–0.09, or only HI widths? Three targets fixed by rule from the paper's public example rows, r0p0 (12.3″) and r0p5 (16.3″) cutouts by HTTP range requests, about 1.5 GB of the 10 GB cap
+
+**This file is committed before any cube voxel has been read.** The owner's yes in the calc chat on 2026-10-02: "probe, cap 10 GB" (the capped probe I proposed: FITS headers, cutouts for at most 10 well-resolved galaxies, hard cap 10 GB, report before anything bigger). The source is the SARAO public archive only (DOI 10.48479/jkc0-g916, Heywood+2024; CC BY-NC 4.0); the helper `data_assembly/fetch_range_logged.py` enforces the host list and a cumulative cap (ledger 198,552 bytes used before this file). Under the owner's later instruction ("consolidate everything into this chat": the single calculation thread is now the orchestrator) this probe is finished here as chained work and its result goes to the orchestrator as one ANSWER-ROW; no new lane is started.
+
+> **This is a data-feasibility probe, not an a₀ measurement. It reads three galaxies. At z ≤ 0.093 the rival law a₀ ∝ H(z) differs from FLAT by at most 4.5 %, so no result of this probe can separate the two laws. κ = ½ FITTED. No verdict words.**
+
+## 0. What I have read and what I have seen (disclosure)
+1. **Metadata only from the archive:** the XML listings, the two index pages, one FITS header per weighting and the per-channel beam tables of the r0p0 and r0p5 files (step 0, bdbf6c282): frequency ascending from 1290.146304 MHz in 26.1253 kHz steps; 4600 × 4600 pixels of 2.0″, 1055 channels, a Stokes axis; homogenised circular beams 12.27″ (r0p0) and 16.33″ (r0p5); no cube voxel.
+2. **The paper's public example rows (arXiv:2605.28731, Table 3, eight galaxies; read from the PDF):** ID, RA, Dec, frequency, z, D_L, S_HI, log M_HI, SNR_3D, W50, inclination, axis ratio, log M_stel and the magnitudes of eight sources. They are the only catalogue values I have seen; the full table (293 sources) has not been obtained (it sits behind a bot challenge at the publisher).
+3. **Not used:** the High-z session's local r1p0 cubes (30–40″ beams); no other source.
+
+## 1. Targets (fixed by rule from the example rows; this rule uses only those eight rows)
+**Rule:** among the eight example rows with SNR_3D ≥ 10, the three with the largest log M_HI. They are:
+| tag | ID | RA, Dec (deg) | ν (MHz) | z_HI | log M_HI | SNR_3D | W50 (km s⁻¹) | incl. | sub-cube |
+|---|---|---|---|---|---|---|---|---|---|
+| **T1** | MGTH_J100357.1+022505 | 150.988, 2.418 | 1383.623 | 0.0266 | 9.93 | 19.1 | 392 ± 12 | 75° | 3001-4055 (1368.5–1396.1 MHz) |
+| **T2** | MGTH_J100256.4+023440 | 150.735, 2.578 | 1360.267 | 0.0442 | 9.45 | 13.4 | 167 ± 7 | 44° | 2001-3055 (1342.4–1369.9 MHz) |
+| **T3** | MGTH_J095951.4+014224 | 149.964, 1.707 | 1385.660 | 0.0251 | 8.81 | 16.0 | 101 ± 7 | 61° | 3001-4055 |
+T1 is the best case (nearby, massive, high S/N); T2 the median case; T3 a small nearby disc expected to be unresolved.
+
+## 2. Cutouts (HTTP range requests; one contiguous row-block per channel plane)
+For each target and weighting the file is `MIGHTEE-HI_DR1_COSMOS_L2_<r0p0|r0p5>_clean_conv_contsub_<sub-cube>.fits`: the header of that sub-cube is read first (28,800 bytes) to fix the data start (the END card) and the frequency axis; the pixel of the catalogue position comes from the header's celestial WCS (TAN; astropy); channels cover **±(W50 + 150 km s⁻¹)** about the catalogue frequency (T1 193, T2 113, T3 91 channels); the spatial box is **±150″ (T1) or ±100″ (T2, T3)** about the position (151 or 101 rows of the plane; the full row width is read and trimmed afterwards). **Weightings:** r0p0 for all three targets; r0p5 for T1 only (a sensitivity-against-resolution comparison). Expected volume 1.45 GB; **the ledger refuses any request that would pass the 10 GB cumulative cap**; a plane read is repeated once for the reading control.
+
+## 3. Analysis (frozen; applied to each cutout; no tuning after the first look)
+1. **Noise:** per-channel rms by the median absolute deviation (× 1.4826) of the off-source ring (radius > 1.3 × the predicted HI radius and > 60″ from the target; T1 > 100″); a channel with a non-finite or zero rms is dropped and counted.
+2. **Detection mask (seeded region growing):** the cube smoothed by a 3-channel boxcar; voxels ≥ 3σ connected (6-connectivity) to a seed voxel ≥ 5σ and within ±(W50/2 + 50) km s⁻¹ of the catalogue frequency; the mask must contain ≥ 2 beam areas of pixels in the moment-0 footprint.
+3. **Quantities:** integrated flux S_int (Jy Hz) = Σ(I)/(beam area in pixels) × Δν over the mask (beam area = 1.1331 × (θ/2″)²) and its integrated S/N; the moment-0, moment-1 and moment-2 maps; the HI centroid; the major axis by the principal axes of the moment-0 footprint; the 3σ extent along the major axis, deconvolved (D_dec = √(D² − θ²)) and in beams (D_dec/θ); the integrated spectrum and its **W50 at 50 % of the peak of the 3-channel-smoothed spectrum**; a position–velocity cut along the major axis: a **PV point** is a beam-wide bin along the major axis (a strip one beam wide) that contains at least two beam areas of masked voxels (each ≥ 3σ in the smoothed cube), its velocity being the intensity-weighted mean velocity of its masked voxels; the number of PV points on each side of the centroid and the Spearman correlation between bin position and bin velocity (at least 5 bins in all). The **integrated S/N** is ΣI / (σ √(N_vox A_beam)) over the mask (σ the median per-channel rms, N_vox the masked voxels, A_beam the beam area in pixels).
+4. **RC-CAPABLE (P1) iff:** the deconvolved major-axis extent is ≥ 6 beams AND the integrated S/N ≥ 10 AND ≥ 3 PV points on each side AND |Spearman ρ| ≥ 0.8 between the along-axis position and the PV velocity. **WIDTH-USABLE (P2) iff:** the integrated S/N ≥ 5 and the W50 control passes.
+5. **Controls (can fail):** **C0** a repeated plane read is byte-identical; **C1** the cutout's channel frequencies and its central pixel reproduce the requested ν range and the catalogue position to 1 channel and 1 pixel; **C2** S_int equals the catalogue S_HI within 25 % (units and extraction); **C3** the HI centroid is within one beam of the catalogue position; **C4** the integrated-spectrum W50 equals the catalogue W50 within max(3σ_cat, 25 km s⁻¹); **C5** no 5σ seed (3-channel-smoothed voxel) in the line-free channels (|v| > W50/2 + 80 km s⁻¹) within three beams of the target, and none in the off-source ring in the line window; **MUTATE=1** shifts the line window by +300 km s⁻¹ (expect no ≥ 5σ detection for any target); **MUTATE=2** reverses the velocity axis (expect the sign of the PV slope to flip and W50, S_int and the extent to be unchanged).
+6. **Probe verdicts (no verdict words beyond these map entries):** per target P1 and P2; overall "resolved rotation curves: n of 3 targets (r0p0)" and "widths: n of 3"; the comparison of T1 at r0p0 and r0p5 (S/N, beams across).
+
+## 4. Run order and outputs
+`STAGE=F` (fetch; one run) → `cfg300_cutouts*.npz` in the external-data folder (outside the repository) with the ledger and per-request log in `data_assembly/mightee_probe_2026-10-02/`; `STAGE=B` (analysis; reads the local cutouts) → `.out`, `_results.json`; `STAGE=B MUTATE=1` and `MUTATE=2` with separate outputs; README; first runs kept; explicit-path commits; one ANSWER-ROW to the orchestrator.
+
+## 5. Hand estimates (frozen; arithmetic from the paper's example rows and the beam table, before any voxel)
+- **HE1 (extent):** the 3σ deconvolved major-axis extent in beams at r0p0: **T1 in [3, 10]**, T2 in [1, 4], T3 in [0.5, 3]. (D_HI = 10^(0.506 log M_HI − 3.293) kpc gives 54 / 31 / 15 kpc, i.e. 100″ / 35″ / 29″ at the targets' redshifts.)
+- **HE2 (S/N):** the integrated S/N at r0p0: T1 in [8, 40], T2 in [5, 30], T3 in [5, 30]; T1's r0p5 / r0p0 ratio in [1.0, 1.8].
+- **HE3 (W50):** T1 in [340, 440], T2 in [130, 210], T3 in [70, 140] km s⁻¹.
+- **HE4 (verdicts):** T1 RC-CAPABLE at r0p0 (the one best case); T2 and T3 not RC-CAPABLE; all three WIDTH-USABLE.
+- **HE5 (flux):** C2 passes for all three.
+- **HE6 (controls):** C0, C1, C3 and C5 pass; MUTATE=1 finds no ≥ 5σ detection; MUTATE=2 flips the PV slope's sign.
+
+## 6. What this probe cannot say
+It reads three galaxies chosen from eight public example rows; a null for T2 and T3 says nothing about the 293-source catalogue; it does not build rotation curves (it asks whether they could be built); it uses the contsub clean_conv cubes only; it does not touch r1p0; the BUNIT of the r0p0 and r0p5 headers is blank (assumed Jy/beam; C2 tests the flux scale); and a rotation curve from a 12″ beam at z ≥ 0.03 is limited by beam smearing whatever the S/N. **No a₀ number is computed.**
