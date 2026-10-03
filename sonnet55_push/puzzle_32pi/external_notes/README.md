@@ -65,3 +65,32 @@ trajectory can cross `D = 0`.
 - It does not touch `a0`, `kappa`, or the rational 4 in `G rho_Lambda = 4 a0^2`. Its section 6 says the same.
   Interaction and clock coefficients are prescribed, so it matches the campaign verdict
   (see `../README.md`): every route ends at one hand-set number. **`kappa = 1/2` stays FITTED.**
+
+## EXT02 -- six pasted "derivations" of a0 = c^2 sqrt(Lambda/(32 pi)) (2026-10-02)
+
+- File: `EXT02_pasted_32pi_derivations_2026-10-02.md` (chat text from an outside AI conversation, pasted by
+  the owner one after another; transcribed, edits marked). Pasted Lean blocks: `ext02_lean/pasted_P*.lean`.
+- **Verdict: none works. All six are one equation, `a0^2 = Lambda/(32 pi)`, restated with a new label each
+  time; the label is chosen to give the target, so each reply moves the free number somewhere else.**
+  Paste 6's own Lean file is an "equivalence graph" of three restatements, which says the same.
+
+| Paste | Claimed mechanism | What fails (check id in `ext02_check.out`) |
+|---|---|---|
+| 1 | postulate `A Lambda = 32 pi^2`, A = "Rindler disk" | the postulate is the target; `A Lambda = C` gives `a0^2 = pi Lambda/C` for any C (1d); `pi/a0^2` is the Euclidean (tau,rho) disc, not a horizon cross-section (1c) |
+| 2 | same + GHY term + Lean axiom | GHY term computed, never used (1e); the Lean axiom quantifies over all Lambda, a0 and proves `False` (Lean 1) |
+| 3 | "unconditional" Lean proof + heat-kernel boundary anomaly | conditional on the premise; does not compile here; its own density never gives the claimed `4 a0^3` (1f); its stated balance gives `Lambda/(32 pi^2)`, not `Lambda/(32 pi)` (1g); `8 pi a0^2 A = 8 pi^2` has no a0 (1h) |
+| 4 | spin sum rule `7N0 - 28N1/2 + 86N1 = 720` | its balance gives `a0^2 = 180 Lambda/S`, i.e. `Lambda/4` at 720 (2b); `Lambda/(32 pi)` needs S = 5760 pi, irrational (2c); SYM miscounted, "exact" solution is 716, scalar adds 7 not 4 (2d-2f); 39 integer solutions: a knob (2g); its Lean statement is FALSE (Lean 2) |
+| 5 | "d = 4 is unique" | arithmetic reproduces (3a, 3b), but the postulate equates length^(d-4) to a number, so it is dimensionally consistent only at d = 4 by construction (3c, 3d); in d = 4 it is the p08 identity (3e) |
+| 6 | `Vol(D2 x S2)/Vol(S4) = 16 pi` | steps right (4a), but the "fraction" is 50.3 > 1 (4b), the disc radius 5.79 R_dS exceeds pi R_dS so D2 is not inside S^4 (4c, cf. p06), `= 16 pi` is a free choice (4d) and unit-dependent as a "coupling" (4e) |
+
+- `ext02_check.py`: 28/28 (`ext02_check.out`); `MUTATE=1` corrupts the de Sitter radius formula, 26/28, exit 1
+  (`ext02_check_MUTATE.out`).
+- `ext02_lean/ext02_lean_checks.lean` (repo Mathlib pin, `fable_independent_2026/lean_2026`): (1) the paste-2 axiom
+  proves `False`; (2) the paste-4 theorem statement is false (counterexample Lambda = a0 = 1, N = (0,5,10));
+  (3) for fairness, the algebra itself is true: a working proof of `(pi/a0^2) Lambda = 32 pi^2 -> a0 = sqrt(Lambda/(32 pi))`
+  and of F1 <-> F3. Standard axioms only (except (1), which uses the pasted axiom by design). MUTATE (N = (0,5,9))
+  fails. The four pasted Lean files all fail to compile in this pin (`pasted_P*.out`); P2 and P4 contain `sorry`.
+- What would count as progress (the screen we apply to the next idea): the matching condition must come out of an
+  action or principle that would have produced a DIFFERENT number if kappa were different; it must be dimensionally
+  consistent in general d before d = 4 is set; and it must predict something besides a0. None of the six passes the
+  first test. **`kappa = 1/2` stays FITTED.**

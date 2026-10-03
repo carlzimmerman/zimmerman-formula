@@ -1,0 +1,40 @@
+../../sonnet55_push/puzzle_32pi/external_notes/ext02_lean/ext02_lean_checks_MUTATE.lean:37:53: error: Tactic `decide` proved that the proposition
+  boundary_anomaly_sum 0 5 9 = 720
+is false
+../../sonnet55_push/puzzle_32pi/external_notes/ext02_lean/ext02_lean_checks_MUTATE.lean:41:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  boundary_anomaly_sum 0 5 9
+in the target expression
+  1 ^ 2 * (Real.pi / 1 ^ 2) * 1 * ↑(boundary_anomaly_sum 0 5 10) / 720 = 1 / 32 * 32 * Real.pi
+
+h :
+  ∀ (Lambda a_0 : ℝ) (N0 N_half N1 : ℤ),
+    0 < Lambda →
+      0 < a_0 →
+        boundary_anomaly_sum N0 N_half N1 = 720 →
+          a_0 ^ 2 * (Real.pi / a_0 ^ 2) * Lambda * ↑(boundary_anomaly_sum N0 N_half N1) / 720 =
+              Lambda / 32 * 32 * Real.pi →
+            a_0 = √(Lambda / (32 * Real.pi))
+hsum : boundary_anomaly_sum 0 5 9 = 720
+hpi : 0 < Real.pi
+⊢ 1 ^ 2 * (Real.pi / 1 ^ 2) * 1 * ↑(boundary_anomaly_sum 0 5 10) / 720 = 1 / 32 * 32 * Real.pi
+../../sonnet55_push/puzzle_32pi/external_notes/ext02_lean/ext02_lean_checks_MUTATE.lean:42:43: error: Application type mismatch: The argument
+  hsum
+has type
+  boundary_anomaly_sum 0 5 9 = 720
+but is expected to have type
+  boundary_anomaly_sum 0 5 10 = 720
+in the application
+  h 1 1 0 5 10 one_pos one_pos hsum
+../../sonnet55_push/puzzle_32pi/external_notes/ext02_lean/ext02_lean_checks_MUTATE.lean:63:36: warning: Variable name `hL` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hL
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'EXT02.p2_axiom_proves_false' depends on axioms: [propext,
+ Classical.choice,
+ EXT02.topological_boundary_matching,
+ Quot.sound]
+'EXT02.p4_statement_is_false' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'EXT02.algebra_only' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EXT02.f1_iff_f3' depends on axioms: [propext, Classical.choice, Quot.sound]
