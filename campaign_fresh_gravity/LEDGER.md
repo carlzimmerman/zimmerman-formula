@@ -284,3 +284,5 @@ both a₀ footings; κ = ½ fitted; nothing here says the theory is closed. Each
 | CFG294 | (orchestrator, owner "the derivation from first principles … one more piece") nonlinear local well-posedness of the chassis: constant multiplicity (c_S ≥ 443.8 > 1) → Kreiss symmetrizer → Kato quasilinear existence + elliptic lapse (Andersson–Moncrief structure). In progress. | — |
 | CFG304 | (orchestrator) MIGHTEE-HI flux scale: the catalogue vs our raw-cube fluxes, against ALFALFA's Arecibo fluxes (23 matches). In progress. | — |
 | CFG305 | (orchestrator) Journal-version tables (owner's yes in the data-release chat): RC100 row 87 refit + row 78 σ₀ slip → a PUBLISHED CSV and the reader re-runs; Umehata+25 published 870 µm geometry → the CFG285 post hoc variant. In progress. | — |
+| CFG306 | (orchestrator) Hostile referee of PAPER40 (MeerKAT a₀, 00d6c89ae). In progress. | — |
+| CFG307 | (orchestrator, owner "stress test it") ALESS 122.1: a declared grid over the pressure correction, gas tracer/calibration, M★, inclination and radius; plus the six class-M siblings. In progress. | — |
