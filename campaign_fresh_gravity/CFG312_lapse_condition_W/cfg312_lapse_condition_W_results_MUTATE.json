@@ -1,0 +1,295 @@
+{
+ "lane": "CFG312",
+ "mutate": true,
+ "frozen_criteria_commit": "030106e11",
+ "checks": {
+  "C1 W re-derived in-lane from the minisuperspace Lagrangian (anisotropic Bianchi I, dust, homogeneous scalar): W = -2 Lambda - 16 pi G V - 8 pi G rho_rest (2-3u^2)/(1-u^2)^(3/2) after the background lapse equation; k^2 coefficients alpha - 1/2 (F2a) and alpha (physical); identical to CFG294's committed expression": {
+   "ok": true,
+   "measured": "W True; W_raw True; coefficients True; CFG294 string True; ACTION.md Lambda >= 0 True, no V True",
+   "load_bearing": true
+  },
+  "C2 perfect fluid: W = -2 Lambda - 16 pi G V - 8 pi G B/(1-u^2)^2, B = 2 rho - 3 rho u^2 + p u^2 - 2 p u^4 + (rho+p) c_s^2 u^4 (rho, p fluid-frame; c_s^2 = dp/drho); dust limit = C1; at u = 0 the pressure drops out exactly (W = -2 Lambda - 16 pi G rho)": {
+   "ok": true,
+   "measured": "form True; E_bg True; dust limit True; u = 0 True",
+   "load_bearing": true
+  },
+  "C3a dust: for rho > 0 the matter term is negative iff u^2 < 2/3, zero at u^2 = 2/3, positive above": {
+   "ok": true,
+   "measured": "B/rho = 2 - 3u^2; B > 0 on [0, 2/3)",
+   "load_bearing": true
+  },
+  "C3b universal: B = 2 rho (1-u^2)^2 + (rho+p) u^2 (1 - (2 - c_s^2) u^2) identically; so rho >= 0, rho + p >= 0 (null/weak energy condition), c_s^2 >= 0 and u^2 <= 1/(2 - c_s^2) (in particular u^2 <= 1/2 for every fluid) give B >= 2 rho (1-u^2)^2, i.e. a matter term <= -16 pi G rho": {
+   "ok": true,
+   "measured": "identity True; sampled violations 0/200000 (min excess 2.16e-08)",
+   "load_bearing": true
+  },
+  "C3c exact thresholds (p = w rho, c_s^2 = w): dust u^2 = 2/3 (u = 0.8165); radiation u^2 = sqrt(45) - 6 (u = 0.8416); stiff w = 1 none (B = 2 rho (1 - u^2)); w = -1 none (B = 2 rho (1-u^2)^2)": {
+   "ok": true,
+   "measured": "{'dust w=0': [0.816496580927726], 'radiation w=1/3': [0.8415485324681928], 'stiff w=1': [], 'w=-1': []}",
+   "load_bearing": true
+  },
+  "C4 W <= 0 iff 2(Lambda + 8 pi G V) + 8 pi G Sum B_i/(1-u_i^2)^2 >= 0; sufficient: V >= -Lambda/(8 pi G) and all components sub-threshold with rho >= 0; strict W < 0 if Lambda + 8 pi G V > 0 or some rho_i > 0 sub-threshold; chassis-native (V = 0, Lambda > 0): W < 0 strictly": {
+   "ok": true,
+   "measured": "exact form True; sign algebra on 20000 samples True; V bound -Lambda/(8 pi G) True",
+   "load_bearing": true
+  },
+  "C5 (scope) W is derived on homogeneous Bianchi-I flat-leaf backgrounds with the C-H (MOND) sector absent, exactly as in CFG294; on a bound (inhomogeneous, static) system the background equation that turned W_raw into W is not the homogeneous one, so the pointwise W of the backgrounds below is an INDICATOR; the static case is treated properly in C6": {
+   "ok": true,
+   "measured": "W_raw = (K.K - lambda K^2) + 8 pi G phidot^2/N^2 + 8 pi G rho_rest u^2/(1-u^2)^(3/2) is the unrewritten Hessian (C1)",
+   "load_bearing": false
+  },
+  "C6a static flat-leaf patch: the velocity-fixed lapse second variation has gradient coefficient (alpha - 1/2)/N (x2) and potential (2/N)[(K.K - lambda K^2) + (alpha - 1/2) Delta ln N]; W_loc differs from CFG294's W (no -16 pi G rho; a +(1/2 - alpha)|D ln N|^2 piece in vacuum)": {
+   "ok": true,
+   "measured": "potential True; gradient coefficient True",
+   "load_bearing": true
+  },
+  "C6b Hardy sufficient condition for isolated static bodies: max r|D ln N| <= 1/2 for the Sun (2.1e-6), a weak-field neutron-star model (0.2), a Milky Way-like galaxy (5.9e-7) and a cluster (2.2e-5); the s-wave zero-energy solution has no node (no bound state), consistent": {
+   "ok": true,
+   "measured": "{'Sun (uniform, G M/(R c^2) = 2.1e-6)': (2.12e-06, 0), 'neutron star (G M/(R c^2) = 0.2, weak-field model)': (0.19243128, 0), 'Milky Way-like galaxy, v_c = 230 km/s (flat curve): r|D ln N| = v_c^2/c^2': (5.9e-07, 0), 'cluster, 2 sigma^2 with sigma = 1000 km/s: r|D ln N| = 2 sigma^2/c^2': (2.225e-05, 0)}",
+   "load_bearing": true
+  },
+  "C6 control (iv): a super-compact (unphysical) lapse bump violates Hardy and the node-count test finds a bound state": {
+   "ok": true,
+   "measured": "max r|D ln N| = 4.415 > 1/2; bound states 1",
+   "load_bearing": true
+  },
+  "B1 (MUTATE) the mutated backgrounds must give W < 0 -- they must NOT (u^2 > threshold or V below the bound)": {
+   "ok": false,
+   "measured": "0/3 with W < 0",
+   "load_bearing": true
+  },
+  "B2 the maximum allowed |u| relative to the khronon frame (dust 0.8165 c, radiation 0.8416 c, any fluid 0.7071 c) exceeds real peculiar velocities (<= 1e3 km/s = 3.3e-3 c) by x212 and the fastest non-jet bulk motion (ms-pulsar spin, 0.18 c)": {
+   "ok": true,
+   "measured": "universal/peculiar = 212",
+   "load_bearing": true
+  },
+  "J1 (finding) ultra-relativistic jets exceed the threshold: the pointwise W is POSITIVE in every jet tested (AGN Gamma 10-50, GRB Gamma 300-1000) -- the exact sub-class where CFG294's pointwise condition fails": {
+   "ok": true,
+   "measured": "5/5 positive",
+   "load_bearing": false
+  },
+  "J2 (finding) Hardy about the engine covers AGN jets and typical/bright GRBs (W r^2 <= (1/2 - alpha)/4) but NOT the most extreme GRBs (L_iso ~ 1e47 W at Gamma ~ 1000): there invertibility of the F2a lapse operator is not proved": {
+   "ok": true,
+   "measured": "covered 4/5: M87 kpc jet True, powerful blazar True, typical GRB True, bright GRB True, extreme GRB False",
+   "load_bearing": false
+  },
+  "CTL(i) FLRW + Lambda + comoving dust reproduces CFG294: W = -(2 Lambda + 16 pi G rho) < 0 at all 18 record c_2, from the raw Hessian and from the formula": {
+   "ok": true,
+   "measured": "18 points, all -4 (units 8 pi G = Lambda = rho = 1): True",
+   "load_bearing": true
+  },
+  "CTL(ii) vacuum (Lambda = rho = V = 0) gives W = 0 exactly (the relabelling mode)": {
+   "ok": true,
+   "measured": "W = 0",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "inputs": {
+   "W294": "-16*pi*G*V0 - 8*pi*G*mu*(2 - 3*u**2)/(a1*a2*a3*(1 - u**2)**(3/2)) - 2*Lambda",
+   "Lambda": 1.089e-52,
+   "H0_SI": 2.1829889293697243e-18,
+   "Omega_L": 0.6847,
+   "rho_crit": 8.522730151087401e-27,
+   "Lambda_ge_0_in_ACTION": true,
+   "no_scalar_potential_in_action": true
+  },
+  "C1": {
+   "W": "-16*pi*G*V0 - 8*pi*G*mu*(2 - 3*u**2)/(a1*a2*a3*(1 - u**2)**(3/2)) - 2*Lambda",
+   "W_raw": "8*pi*G*mu*u**2/(a1*a2*a3*(1 - u**2)**(3/2)) + 8*pi*G*phidot**2/N0**2 - (c_2 + 1)*(ad3/(N0*a3) + ad2/(N0*a2) + ad1/(N0*a1))**2 + ad3**2/(N0**2*a3**2) + ad2**2/(N0**2*a2**2) + ad1**2/(N0**2*a1**2)",
+   "coef_F2a": "alpha - 1/2",
+   "coef_phys": "alpha"
+  },
+  "C2": {
+   "B": "c_s2*u**4*(p + rho) - 2*p*u**4 + p*u**2 - 3*rho*u**2 + 2*rho",
+   "W_fluid": "-8*pi*G*(c_s2*u**4*(p + rho) - 2*p*u**4 + p*u**2 - 3*rho*u**2 + 2*rho)/(1 - u**2)**2 - 2*Lambda"
+  },
+  "C3": {
+   "thresholds": {
+    "dust w=0": {
+     "B_over_rho": "2 - 3*X",
+     "threshold_u2": [
+      "2/3"
+     ],
+     "threshold_u": [
+      0.816496580927726
+     ]
+    },
+    "radiation w=1/3": {
+     "B_over_rho": "-2*(X**2 + 12*X - 9)/9",
+     "threshold_u2": [
+      "-6 + 3*sqrt(5)"
+     ],
+     "threshold_u": [
+      0.8415485324681928
+     ]
+    },
+    "stiff w=1": {
+     "B_over_rho": "-2*(X - 1)",
+     "threshold_u2": [],
+     "threshold_u": []
+    },
+    "w=-1": {
+     "B_over_rho": "2*(X - 1)**2",
+     "threshold_u2": [],
+     "threshold_u": []
+    }
+   },
+   "identity": "B = 2 rho (1-u^2)^2 + (rho+p) u^2 (1 - (2 - c_s^2) u^2)",
+   "sample_min_excess": 2.1647202676242783e-08
+  },
+  "C6": {
+   "static": {
+    "Sun (uniform, G M/(R c^2) = 2.1e-6)": {
+     "compactness": 2.123047101114776e-06,
+     "max_r_dlnN": 2.1230460940218314e-06,
+     "hardy_ok": true,
+     "swave_bound_states": 0
+    },
+    "neutron star (G M/(R c^2) = 0.2, weak-field model)": {
+     "compactness": 0.2,
+     "max_r_dlnN": 0.19243128140795712,
+     "hardy_ok": true,
+     "swave_bound_states": 0
+    },
+    "Milky Way-like galaxy, v_c = 230 km/s (flat curve): r|D ln N| = v_c^2/c^2": {
+     "compactness": 5.885918796523642e-07,
+     "max_r_dlnN": 5.885918796523642e-07,
+     "hardy_ok": true,
+     "swave_bound_states": 0,
+     "analytic": true
+    },
+    "cluster, 2 sigma^2 with sigma = 1000 km/s: r|D ln N| = 2 sigma^2/c^2": {
+     "compactness": 2.2253001121072377e-05,
+     "max_r_dlnN": 2.2253001121072377e-05,
+     "hardy_ok": true,
+     "swave_bound_states": 0,
+     "analytic": true
+    }
+   },
+   "control_iv": {
+    "A": 6.0,
+    "max_r_dlnN": 4.414553294057308,
+    "bound_states": 1
+   },
+   "W_loc_1AU": 2.177868340269088e-39,
+   "g_crossover": 2.2669602544031782e-09
+  },
+  "backgrounds": [
+   {
+    "background": "MUTATE dust u^2 = 0.70 > 2/3, Lambda = V = 0",
+    "kind": "homogeneous",
+    "W_m^-2": 2.0737751596305452e-26,
+    "matter_terms": [
+     2.0737751596305452e-26
+    ],
+    "u_max": 0.8366600265340756,
+    "W_over_minus2Lambda": NaN,
+    "W_neg": false
+   },
+   {
+    "background": "MUTATE radiation u^2 = 0.75 > 0.7082, Lambda = V = 0",
+    "kind": "homogeneous",
+    "W_m^-2": 3.7327952873349596e-26,
+    "matter_terms": [
+     3.7327952873349596e-26
+    ],
+    "u_max": 0.8660254037844386,
+    "W_over_minus2Lambda": NaN,
+    "W_neg": false
+   },
+   {
+    "background": "MUTATE V = -1.5 Lambda c^4/(8 pi G), no matter",
+    "kind": "homogeneous",
+    "W_m^-2": 1.0889999999999998e-52,
+    "matter_terms": [],
+    "u_max": 0.0,
+    "W_over_minus2Lambda": -0.4999999999999999,
+    "W_neg": false
+   }
+  ],
+  "NS_pressure": {
+   "term_u0": -3.732795287334976e-08,
+   "term_u018": -3.819118010365144e-08,
+   "term_u018_nopressure": -3.793198768211697e-08
+  },
+  "speeds": {
+   "u_max": {
+    "dust": 0.816496580927726,
+    "radiation": 0.8415485324681931,
+    "universal (any fluid, NEC, c_s^2 >= 0)": 0.7071067811865476
+   },
+   "u_obs_peculiar": 0.0033356409519815205,
+   "margin_universal": 211.98528000038326
+  },
+  "jets": {
+   "rows": [
+    {
+     "jet": "M87 kpc jet: L = 1e37 W, Gamma = 10",
+     "W_r2_cold": 5.3738599215625946e-14,
+     "W_r2_hot": 3.5731315717513314e-14,
+     "W_positive": true,
+     "hardy_ok": true
+    },
+    {
+     "jet": "powerful blazar: L = 1e40 W, Gamma = 50",
+     "W_r2_cold": 1.3766946455904955e-09,
+     "W_r2_hot": 9.177044577735414e-10,
+     "W_positive": true,
+     "hardy_ok": true
+    },
+    {
+     "jet": "typical GRB: L_iso = 1e45 W, Gamma = 300",
+     "W_r2_cold": 0.004960924872135565,
+     "W_r2_hot": 0.0033072740606565464,
+     "W_positive": true,
+     "hardy_ok": true
+    },
+    {
+     "jet": "bright GRB: L_iso = 1e46 W, Gamma = 300",
+     "W_r2_cold": 0.049609248721355664,
+     "W_r2_hot": 0.03307274060656545,
+     "W_positive": true,
+     "hardy_ok": true
+    },
+    {
+     "jet": "extreme GRB: L_iso = 1e47 W, Gamma = 1000",
+     "W_r2_cold": 5.512278086444985,
+     "W_r2_hot": 3.674851138912151,
+     "W_positive": true,
+     "hardy_ok": false
+    }
+   ],
+   "hardy_limit": 0.1249999992,
+   "L_crit_by_Gamma": {
+    "10": 3.4983318327327235e+49,
+    "100": 3.4024246795760205e+47,
+    "300": 3.7795476548800295e+46,
+    "1000": 3.401498304962721e+45
+   },
+   "c5_over_16G": 2.2676593152570502e+51
+  }
+ },
+ "verdict": "MUTATE: W > 0 flagged on the mutated data (expected FAIL)",
+ "summary": {
+  "proven": [
+   "W re-derived (C1); V is not a chassis term (V = 0 native), Lambda >= 0 (ACTION.md)",
+   "perfect fluid: W = -2 Lambda - 16 pi G V - 8 pi G B/(1-u^2)^2; pressure drops out at u = 0 (C2)",
+   "B = 2 rho (1-u^2)^2 + (rho+p) u^2 (1 - (2 - c_s^2) u^2): NEC + c_s^2 >= 0 + u^2 <= 1/(2 - c_s^2) => matter term <= -16 pi G rho (C3b)",
+   "thresholds: dust u < 0.8165 c, radiation u < 0.8416 c, stiff and w = -1 none (C3)",
+   "W <= 0 iff 2(Lambda + 8 pi G V) + 8 pi G Sum B_i/(1-u_i^2)^2 >= 0; strict W < 0 for chassis-native data (C4)"
+  ],
+  "exceptions": [
+   "ultra-relativistic flows (u above threshold): W > 0 pointwise; Hardy covers AGN and typical GRB jets, not L_iso Gamma^2 >~ 1e51 W",
+   "an added scalar with V < -Lambda/(8 pi G) (not a chassis field)",
+   "static bound systems: CFG294's pointwise W is the wrong test (W_loc > 0 in vacuum); covered by Hardy for G M/(r c^2) <= 1/2 (weak field)"
+  ],
+  "not_covered": [
+   "C-H sector's zero-order lapse potential",
+   "strong-field interiors (flat-leaf derivation)",
+   "CFG294 A1-A5 remain assumed"
+  ]
+ },
+ "n_pass": 15,
+ "n_checks": 16
+}

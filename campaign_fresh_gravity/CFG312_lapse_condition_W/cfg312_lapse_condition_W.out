@@ -1,0 +1,182 @@
+CFG312 -- CFG294's lapse-kernel condition W <= 0 (F2a, velocities fixed) for realistic data.
+
+SOURCE.  CFG294 S4c(Lag): on Bianchi-I flat leaves the F2a lapse second variation is (alpha_c - 1/2)|k|^2 + W,
+W = -2 Lambda - 16 pi G V - 8 pi G rho_rest (2 - 3u^2)/(1 - u^2)^(3/2); a trivial kernel needs W <= 0, W != 0.
+
+WHAT IS CHECKED (frozen in FROZEN_CRITERIA.md, commit 030106e11, before this script existed)
+  C1  re-derivation of W from an in-lane minisuperspace Lagrangian; identification of V, rho_rest, u
+  C2  barotropic perfect fluid (fixed-flux action): W = -2 Lambda - 16 pi G V - 8 pi G B/(1-u^2)^2,
+      B = 2 rho - 3 rho u^2 + p u^2 - 2 p u^4 + (rho + p) c_s^2 u^4; pressure drops out at u = 0
+  C3  sign theorems on the matter term: dust threshold 2/3; universal identity B = 2 rho (1-u^2)^2 + (rho+p) u^2
+      (1 - (2 - c_s^2) u^2); exact thresholds for w = 0, 1/3, 1, -1
+  C4  W <= 0 iff 2 Lambda + 16 pi G V + 8 pi G Sum B_i/(1-u_i^2)^2 >= 0; sufficient + strict conditions
+  C5  scope of W (homogeneous class, C-H sector absent) -- disclosure
+  C6  static inhomogeneous patch: W_loc = (K.K - lambda K^2) + (alpha - 1/2) Delta ln N; Hardy sufficient conditions;
+      s-wave zero-energy node counts (cross-check), with a control that must bind
+  Backgrounds: FLRW today, radiation era, Solar System, Milky Way at R_sun, a cluster, a neutron star, AGN/GRB jets.
+  Controls: (i) FLRW + Lambda + comoving dust at the 18 record c_2; (ii) vacuum W = 0; (iii) MUTATE=1 (u^2 = 0.70 dust,
+  u^2 = 0.75 radiation, V = -1.5 Lambda/(8 pi G)) must give W > 0 and fail (rc 1); (iv) a super-compact lapse bump
+  must bind in the node-count test.
+
+======================================================================================================================
+INPUTS: committed files
+======================================================================================================================
+    CFG294 committed W: -16*pi*G*V0 - 8*pi*G*mu*(2 - 3*u**2)/(a1*a2*a3*(1 - u**2)**(3/2)) - 2*Lambda
+    CFG294 record points: 18; alpha_c in [9.6241e-14, 3.200e-09]
+    ACTION.md: 'Lambda>=0 is a fixed cosmological constant' True; no scalar potential in the action block True
+    a0kit: Lambda = 1.0890e-52 m^-2; H0 = 67.36 km/s/Mpc, Omega_L = 0.6847: Lambda from H0 = 1.0891e-52 m^-2; rho_crit = 8.5227e-27 kg/m^3
+
+======================================================================================================================
+C1  RE-DERIVATION OF W (in-lane minisuperspace; Bianchi-I flat leaves; velocities fixed)
+======================================================================================================================
+    W_raw = 8 pi G N0 L_NN / sqrt(gamma) = (K.K - lambda K^2) + 8 pi G phidot^2/N0^2 + 8 pi G rho_rest u^2/(1-u^2)^(3/2): True
+    with the background lapse equation: W = -16*pi*G*V0 - 8*pi*G*mu*(2 - 3*u**2)/(a1*a2*a3*(1 - u**2)**(3/2)) - 2*Lambda  : True;  = CFG294's committed string: True
+    k^2 coefficients: F2a alpha - 1/2, physical alpha: True
+    V: potential of an OPTIONAL minimally coupled scalar (CFG294's probe); not in the chassis action -> chassis-native V = 0
+    rho_rest = mu/sqrt(gamma) = Gamma rho_0 (rest mass per proper khronon-leaf volume); u = a1 v/N0 = speed in the khronon frame (units of c)
+  [PASS] C1 W re-derived in-lane from the minisuperspace Lagrangian (anisotropic Bianchi I, dust, homogeneous scalar): W = -2 Lambda - 16 pi G V - 8 pi G rho_rest (2-3u^2)/(1-u^2)^(3/2) after the background lapse equation; k^2 coefficients alpha - 1/2 (F2a) and alpha (physical); identical to CFG294's committed expression
+         measured: W True; W_raw True; coefficients True; CFG294 string True; ACTION.md Lambda >= 0 True, no V True
+         reading:  V is not a chassis term (ACTION.md has R - 2 Lambda, C-H fields, point masses, Maxwell); the chassis-native W has V = 0 and Lambda >= 0.  The scalar's kinetic energy cancels exactly between W_raw and the background equation
+
+======================================================================================================================
+C2  BAROTROPIC PERFECT FLUID (fixed-flux action -N sqrt(gamma) rho(n), J^mu fixed): does pressure enter?
+======================================================================================================================
+    W_fluid (symbolic, background equation used) = -2 Lambda - 8 pi G B/(1-u^2)^2 with the predicted B: True
+    background lapse equation sources E = (rho + p u^2)/(1 - u^2) (khronon-frame energy density): True
+    dust limit reproduces C1 (rho_0 = rho_rest sqrt(1-u^2)): True;  u = 0: W = -2 Lambda - 16 pi G rho, pressure absent: True
+  [PASS] C2 perfect fluid: W = -2 Lambda - 16 pi G V - 8 pi G B/(1-u^2)^2, B = 2 rho - 3 rho u^2 + p u^2 - 2 p u^4 + (rho+p) c_s^2 u^4 (rho, p fluid-frame; c_s^2 = dp/drho); dust limit = C1; at u = 0 the pressure drops out exactly (W = -2 Lambda - 16 pi G rho)
+         measured: form True; E_bg True; dust limit True; u = 0 True
+         reading:  pressure enters W only through moving matter (terms O(p u^2)); a fluid at rest in the khronon frame contributes -16 pi G rho whatever its pressure, so a compact star needs no pressure term in the condition
+
+======================================================================================================================
+C3  SIGN THEOREMS ON THE MATTER TERM (symbolic)
+======================================================================================================================
+    (a) dust: B/rho = 2 - 3*X; B > 0 on X in Interval.Ropen(0, 2/3); B = 0 at X = [2/3]
+    (b) identity B = 2 rho (1-u^2)^2 + (rho+p) u^2 (1 - (2 - c_s^2) u^2): True;  sampled violations of B >= 2 rho (1-u^2)^2 on {rho >= 0, |p| <= rho, 0 <= c_s^2 <= 1, u^2 <= 1/(2 - c_s^2)}: 0/200000
+    (c) dust w=0: B/rho = 2 - 3*X;  roots in [0,1): [2/3] -> u = [0.8165]
+    (c) radiation w=1/3: B/rho = -2*(X**2 + 12*X - 9)/9;  roots in [0,1): [-6 + 3*sqrt(5)] -> u = [0.84155]
+    (c) stiff w=1: B/rho = -2*(X - 1);  roots in [0,1): [] -> u = []
+    (c) w=-1: B/rho = 2*(X - 1)**2;  roots in [0,1): [] -> u = []
+  [PASS] C3a dust: for rho > 0 the matter term is negative iff u^2 < 2/3, zero at u^2 = 2/3, positive above
+         measured: B/rho = 2 - 3u^2; B > 0 on [0, 2/3)
+  [PASS] C3b universal: B = 2 rho (1-u^2)^2 + (rho+p) u^2 (1 - (2 - c_s^2) u^2) identically; so rho >= 0, rho + p >= 0 (null/weak energy condition), c_s^2 >= 0 and u^2 <= 1/(2 - c_s^2) (in particular u^2 <= 1/2 for every fluid) give B >= 2 rho (1-u^2)^2, i.e. a matter term <= -16 pi G rho
+         measured: identity True; sampled violations 0/200000 (min excess 2.16e-08)
+         reading:  the bound needs only NEC + c_s^2 >= 0; DEC (|p| <= rho) is not used beyond rho + p >= 0
+  [PASS] C3c exact thresholds (p = w rho, c_s^2 = w): dust u^2 = 2/3 (u = 0.8165); radiation u^2 = sqrt(45) - 6 (u = 0.8416); stiff w = 1 none (B = 2 rho (1 - u^2)); w = -1 none (B = 2 rho (1-u^2)^2)
+         measured: {'dust w=0': [0.816496580927726], 'radiation w=1/3': [0.8415485324681928], 'stiff w=1': [], 'w=-1': []}
+
+======================================================================================================================
+C4  THE SIGN CONDITION FOR W (exact, sufficient, strict; chassis-native)
+======================================================================================================================
+    W = -[2 (Lambda + 8 pi G V) + 8 pi G Sum_i B_i/(1-u_i^2)^2]: True;  W = 0 with no matter at V = -Lambda/(8*pi*G): True
+    sufficient: V >= -Lambda/(8 pi G) and every component with rho_i >= 0, rho_i + p_i >= 0, c_s^2 >= 0, u_i below threshold;
+    strict:     additionally Lambda + 8 pi G V > 0, or some rho_i > 0 strictly below threshold;
+    chassis-native (V = 0, Lambda > 0 observed): W < 0 for every sub-threshold matter content, including vacuum + Lambda.
+  [PASS] C4 W <= 0 iff 2(Lambda + 8 pi G V) + 8 pi G Sum B_i/(1-u_i^2)^2 >= 0; sufficient: V >= -Lambda/(8 pi G) and all components sub-threshold with rho >= 0; strict W < 0 if Lambda + 8 pi G V > 0 or some rho_i > 0 sub-threshold; chassis-native (V = 0, Lambda > 0): W < 0 strictly
+         measured: exact form True; sign algebra on 20000 samples True; V bound -Lambda/(8 pi G) True
+         reading:  Lean (cfg312_lapse_condition_W.lean) certifies the polynomial core of C3a, C3b, C3c(radiation) and C4
+
+======================================================================================================================
+C5  SCOPE OF W (disclosure)
+======================================================================================================================
+  [PASS] (finding, not load-bearing) C5 (scope) W is derived on homogeneous Bianchi-I flat-leaf backgrounds with the C-H (MOND) sector absent, exactly as in CFG294; on a bound (inhomogeneous, static) system the background equation that turned W_raw into W is not the homogeneous one, so the pointwise W of the backgrounds below is an INDICATOR; the static case is treated properly in C6
+         measured: W_raw = (K.K - lambda K^2) + 8 pi G phidot^2/N^2 + 8 pi G rho_rest u^2/(1-u^2)^(3/2) is the unrewritten Hessian (C1)
+         reading:  the C-H sector's zero-order contribution to the lapse potential is not computed here (CFG294 K4b: it enters at lower order on the U-shell)
+
+======================================================================================================================
+C6  STATIC INHOMOGENEOUS PATCH: the lapse potential with N = N(x), matter at rest, homogeneous expansion term
+======================================================================================================================
+    second variation: potential = (2/N)[A_t/N^2 + (alpha - 1/2) Delta ln N]: True;  gradient coefficient 2(alpha - 1/2)/N: True
+    in CFG294's normalisation: W_loc = (K.K - lambda K^2) + (alpha - 1/2) Delta ln N (+ 8 pi G rho_rest u^2/(1-u^2)^(3/2) if moving)
+    weak field: Delta ln N = Delta N/N - |D ln N|^2 with Delta N/N = 4 pi G (rho + 3p)/c^2 - Lambda  =>  in vacuum W_loc > 0 where
+    (1/2 - alpha)|D ln N|^2 exceeds (9 lambda - 3) H^2/c^2: positive pointwise, so CFG294's pointwise criterion does NOT apply there.
+    Hardy (R^3, centre x0): Int |grad f|^2 >= 1/4 Int f^2/|x - x0|^2.  Since -Delta + Delta ln N >= -Delta - |D ln N|^2 wherever
+    Delta N >= 0, the F2a operator (1/2 - alpha)(-Delta + Delta ln N) + (9 lambda - 3) H^2 is positive if |x - x0| |D ln N| <= 1/2,
+    i.e. G M(r)/(r c^2) <= 1/2 in the weak field (an isolated body).
+  [PASS] C6a static flat-leaf patch: the velocity-fixed lapse second variation has gradient coefficient (alpha - 1/2)/N (x2) and potential (2/N)[(K.K - lambda K^2) + (alpha - 1/2) Delta ln N]; W_loc differs from CFG294's W (no -16 pi G rho; a +(1/2 - alpha)|D ln N|^2 piece in vacuum)
+         measured: potential True; gradient coefficient True
+    Sun (uniform, G M/(R c^2) = 2.1e-6): max r|D ln N| = 2.1230e-06 (<= 1/2: True); s-wave bound states of -Delta + Delta ln N: 0
+    neutron star (G M/(R c^2) = 0.2, weak-field model): max r|D ln N| = 1.9243e-01 (<= 1/2: True); s-wave bound states of -Delta + Delta ln N: 0
+    Milky Way-like galaxy, v_c = 230 km/s (flat curve): r|D ln N| = v_c^2/c^2 = 5.886e-07 (<= 1/2: True)
+    cluster, 2 sigma^2 with sigma = 1000 km/s: r|D ln N| = 2 sigma^2/c^2 = 2.225e-05 (<= 1/2: True)
+    control (iv): ln N = 6.0 exp(-r^2) (super-compact, unphysical): max r|D ln N| = 4.415; s-wave bound states: 1
+    pointwise W_loc at 1 AU (vacuum): -3.181e-52 + (1/2)(g/c^2)^2 = +2.178e-39 m^-2 (positive); crossover g = c^2 sqrt(2 x cos) = 2.267e-09 m/s^2
+  [PASS] C6b Hardy sufficient condition for isolated static bodies: max r|D ln N| <= 1/2 for the Sun (2.1e-6), a weak-field neutron-star model (0.2), a Milky Way-like galaxy (5.9e-7) and a cluster (2.2e-5); the s-wave zero-energy solution has no node (no bound state), consistent
+         measured: {'Sun (uniform, G M/(R c^2) = 2.1e-6)': (2.12e-06, 0), 'neutron star (G M/(R c^2) = 0.2, weak-field model)': (0.19243128, 0), 'Milky Way-like galaxy, v_c = 230 km/s (flat curve): r|D ln N| = v_c^2/c^2': (5.9e-07, 0), 'cluster, 2 sigma^2 with sigma = 1000 km/s: r|D ln N| = 2 sigma^2/c^2': (2.225e-05, 0)}
+         reading:  galaxy and cluster rows are analytic (r g/c^2 = v^2/c^2), no node count.  The pointwise W_loc is positive in the Solar-System vacuum (+(1/2)(g/c^2)^2 beats the cosmological term for g > 2.3e-09 m/s^2) -- CFG294's pointwise W <= 0 is the wrong test there; Hardy covers it.  NS: flat-leaf, weak-field model only; the strong-field interior is outside this derivation
+  [PASS] C6 control (iv): a super-compact (unphysical) lapse bump violates Hardy and the node-count test finds a bound state
+         measured: max r|D ln N| = 4.415 > 1/2; bound states 1
+
+======================================================================================================================
+BACKGROUNDS: W in m^-2 (geometric units: 8 pi G rho/c^2), chassis-native V = 0 unless stated
+======================================================================================================================
+    FLRW today: Lambda + matter, comoving
+        W = -3.1811e-52 m^-2  (W/(-2 Lambda) = 1.4606e+00); u_max = 0.000e+00 c; [homogeneous]
+    FLRW today, matter with 1000 km/s peculiar speed
+        W = -3.1811e-52 m^-2  (W/(-2 Lambda) = 1.4606e+00); u_max = 3.336e-03 c; [homogeneous]
+    radiation era z = 1e4: radiation + matter, comoving
+        W = -3.9140e-40 m^-2  (W/(-2 Lambda) = 1.7971e+12); u_max = 0.000e+00 c; [homogeneous]
+    radiation era z = 1e9: radiation (u = 1e-4) + matter
+        W = -2.9110e-20 m^-2  (W/(-2 Lambda) = 1.3365e+32); u_max = 1.000e-04 c; [homogeneous]
+    radiation fluid at u = 0.80 c (below its 0.8416 threshold), z = 1e4
+        W = -2.2721e-40 m^-2  (W/(-2 Lambda) = 1.0432e+12); u_max = 8.000e-01 c; [homogeneous]
+    Solar interior: mean density 1408 kg/m^3, u = 370 km/s
+        W = -5.2558e-23 m^-2  (W/(-2 Lambda) = 2.4131e+29); u_max = 1.234e-03 c; [indicator]
+    Solar centre: 1.5e5 kg/m^3, p = 2.5e16 Pa, c_s^2 ~ 5e-6
+        W = -5.5992e-21 m^-2  (W/(-2 Lambda) = 2.5708e+31); u_max = 1.234e-03 c; [indicator]
+    Earth: 5514 kg/m^3, u = 400 km/s
+        W = -2.0583e-22 m^-2  (W/(-2 Lambda) = 9.4503e+29); u_max = 1.334e-03 c; [indicator]
+    solar wind at 1 AU: n = 5 cm^-3, u = 770 km/s
+        W = -3.1218e-46 m^-2  (W/(-2 Lambda) = 1.4333e+06); u_max = 2.568e-03 c; [indicator]
+    Milky Way at R_sun: stars 0.043 + gas 0.041 + cold component 0.010 Msun/pc^3, u = 1000 km/s
+        W = -2.3754e-46 m^-2  (W/(-2 Lambda) = 1.0906e+06); u_max = 3.336e-03 c; [indicator]
+    cluster core: ICM 2e-23 kg/m^3 at 1e8 K, galaxies + cold component 1e-22, u = 2500 km/s
+        W = -4.4797e-48 m^-2  (W/(-2 Lambda) = 2.0568e+04); u_max = 8.339e-03 c; [indicator]
+    neutron-star centre: 1e18 kg/m^3, p/(rho c^2) = 0.4, c_s^2 = 0.6, u = 1000 km/s (kick)
+        W = -3.7328e-08 m^-2  (W/(-2 Lambda) = 1.7139e+44); u_max = 3.336e-03 c; [indicator]
+    neutron star, worst case: centre values with u = 0.18 c (fastest ms-pulsar surface spin)
+        W = -3.8191e-08 m^-2  (W/(-2 Lambda) = 1.7535e+44); u_max = 1.800e-01 c; [indicator]
+    neutron star, maximal stiffness p = rho c^2, c_s^2 = 1, u = 0.18 c
+        W = -3.8578e-08 m^-2  (W/(-2 Lambda) = 1.7713e+44); u_max = 1.800e-01 c; [indicator]
+    added scalar with V = -0.5 Lambda c^4/(8 pi G) (above the bound), no matter
+        W = -1.0890e-52 m^-2  (W/(-2 Lambda) = 5.0000e-01); u_max = 0.000e+00 c; [homogeneous]
+  [PASS] B1 every background (homogeneous class exactly; bound systems as pointwise indicators) has W < 0 with the chassis-native V = 0 (and with an added scalar above V = -Lambda/(8 pi G))
+         measured: 15/15 with W < 0
+         reading:  pressure enters only through the O(p u^2) terms; at the NS centre with u = 0.18 c the matter term stays negative
+    NS matter term: u = 0 -3.7328e-08; u = 0.18 c with p = 0.4 rho c^2 -3.8191e-08; same without pressure -3.7932e-08 m^-2
+    max |u|: dust 0.81650 c = 244780 km/s; radiation 0.84155 c = 252290 km/s; universal 0.70711 c = 211985 km/s;  peculiar velocities <= 1e3 km/s = 3.336e-03 c (u^2 = 1.11e-05)
+  [PASS] B2 the maximum allowed |u| relative to the khronon frame (dust 0.8165 c, radiation 0.8416 c, any fluid 0.7071 c) exceeds real peculiar velocities (<= 1e3 km/s = 3.3e-3 c) by x212 and the fastest non-jet bulk motion (ms-pulsar spin, 0.18 c)
+         measured: universal/peculiar = 212
+
+======================================================================================================================
+JETS: ultra-relativistic outflows exceed the threshold; Hardy about the engine (C6(ii) pointwise form)
+======================================================================================================================
+    M87 kpc jet: L = 1e37 W, Gamma = 10: W r^2 cold +5.374e-14, hot +3.573e-14  (W > 0: True; Hardy <= 0.1250: True)
+    powerful blazar: L = 1e40 W, Gamma = 50: W r^2 cold +1.377e-09, hot +9.177e-10  (W > 0: True; Hardy <= 0.1250: True)
+    typical GRB: L_iso = 1e45 W, Gamma = 300: W r^2 cold +4.961e-03, hot +3.307e-03  (W > 0: True; Hardy <= 0.1250: True)
+    bright GRB: L_iso = 1e46 W, Gamma = 300: W r^2 cold +4.961e-02, hot +3.307e-02  (W > 0: True; Hardy <= 0.1250: True)
+    extreme GRB: L_iso = 1e47 W, Gamma = 1000: W r^2 cold +5.512e+00, hot +3.675e+00  (W > 0: True; Hardy <= 0.1250: False)
+    Hardy-covered iff L_iso <~ 3.50e+49 W at Gamma 10, 3.40e+47 W at Gamma 100, 3.78e+46 W at Gamma 300, 3.40e+45 W at Gamma 1000  (L Gamma^2 ~ c^5/(16 G) = 2.27e+51 W)
+  [PASS] (finding, not load-bearing) J1 (finding) ultra-relativistic jets exceed the threshold: the pointwise W is POSITIVE in every jet tested (AGN Gamma 10-50, GRB Gamma 300-1000) -- the exact sub-class where CFG294's pointwise condition fails
+         measured: 5/5 positive
+  [PASS] (finding, not load-bearing) J2 (finding) Hardy about the engine covers AGN jets and typical/bright GRBs (W r^2 <= (1/2 - alpha)/4) but NOT the most extreme GRBs (L_iso ~ 1e47 W at Gamma ~ 1000): there invertibility of the F2a lapse operator is not proved
+         measured: covered 4/5: M87 kpc jet True, powerful blazar True, typical GRB True, bright GRB True, extreme GRB False
+         reading:  Hardy is sufficient, not necessary; a jet is also far outside the homogeneous flat-leaf class of W
+
+======================================================================================================================
+CONTROLS (i) FLRW + Lambda + comoving dust at the 18 record c_2; (ii) vacuum
+======================================================================================================================
+    (i) W_raw = K.K - lambda K^2 and W formula, both = -(2 Lambda + 16 pi G rho) = -4: True at 18 points
+    (ii) vacuum W = 0
+  [PASS] CTL(i) FLRW + Lambda + comoving dust reproduces CFG294: W = -(2 Lambda + 16 pi G rho) < 0 at all 18 record c_2, from the raw Hessian and from the formula
+         measured: 18 points, all -4 (units 8 pi G = Lambda = rho = 1): True
+  [PASS] CTL(ii) vacuum (Lambda = rho = V = 0) gives W = 0 exactly (the relabelling mode)
+         measured: W = 0
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+    verdict: PASS-WITH-EXCEPTIONS (scoped)
+    load-bearing checks: 13/13
+
+16/16 checks pass
