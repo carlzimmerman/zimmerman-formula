@@ -374,13 +374,27 @@ _body = src[_i:_i + 6000] if _i >= 0 else ""
 check("GAMMA_B_PRED" in _body and "GAMMA_B_KILL" in _body and "IN FORCE (Amdt 11" not in _body,
       "F3  report_7e scores Arm B against the Amendment 12 values and no longer labels the Amendment "
       "11 ceilings IN FORCE (they are printed as superseded record only)")
-m_after = re.search(r"after Amendment 12: ([0-9a-f]{64})",
-                    open(os.path.join(PREP, "AMENDMENT12_HASH.txt"), encoding="utf-8").read())
+# F4 (updated 2026-10-03): the freeze is checked against the LATEST filed amendment's 'after' hash, and the hash
+# chain from Amendment 12 onward must be continuous (each 'before n' = 'after n-1').  The earlier form compared
+# with the 'after Amendment 12' hash only, so it failed once Amendments 13-19 were filed legitimately.
+_after, _before = {}, {}
+for _fn in os.listdir(PREP):
+    _mm = re.fullmatch(r"AMENDMENT(\d+)_HASH\.txt", _fn)
+    if not _mm:
+        continue
+    _t = open(os.path.join(PREP, _fn), encoding="utf-8").read()
+    _n = int(_mm.group(1))
+    _a = re.search(rf"after Amendment {_n}: ([0-9a-f]{{64}})", _t)
+    _b = re.search(rf"before Amendment {_n} \(= after Amendment {_n - 1}\): ([0-9a-f]{{64}})", _t)
+    if _a: _after[_n] = _a.group(1)
+    if _b: _before[_n] = _b.group(1)
+_latest = max(_after) if _after else None
+_chain = all(_before.get(n) == _after.get(n - 1) for n in range(13, (_latest or 12) + 1))
 sha_now = hashlib.sha256(open(PREREG, "rb").read()).hexdigest()
-check(m_after is not None and sha_now == m_after.group(1),
-      "F4  the freeze is intact: sha256(PREREGISTRATION_DR4.md) equals the 'after Amendment 12' hash "
-      "recorded in AMENDMENT12_HASH.txt",
-      f"now {sha_now[:16]}...")
+check(_latest is not None and _latest >= 12 and sha_now == _after[_latest] and _chain,
+      "F4  the freeze is intact: sha256(PREREGISTRATION_DR4.md) equals the 'after' hash of the latest filed "
+      "amendment, and the hash chain from Amendment 12 to it is continuous",
+      f"latest Amendment {_latest}; now {sha_now[:16]}...; chain {'continuous' if _chain else 'BROKEN'}")
 check(kill_pipe is not None and kill_pipe != mp.mpf("1.129"),
       "NC6  CONTROL: the superseded Amendment 11 kill threshold 1.129 is NOT what the pipeline "
       "carries, so F2 is a real read of the in-force value")
