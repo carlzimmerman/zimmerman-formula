@@ -290,3 +290,4 @@ both a₀ footings; κ = ½ fitted; nothing here says the theory is closed. Each
 | CFG309 | (orchestrator) Decide the MIGHTEE catalogue W50 frame (rest vs observed): paper text, example spectra, ALFALFA convention, busy-function cube widths; then CFG301 under the decided frame. In progress. | — |
 | CFG310 | (orchestrator) Second-round referee of MNRAS v3.2 and PAPER40 v1.1, both MINOR; fixes applied as MNRAS v3.3 / PAPER40 v1.2 (7c2105f12). Done. | ffccd1068 |
 | CFG311 | (orchestrator, extra crispy) Strong-field NS khronon sensitivities at α_c ≠ 0 (closes CFG291's condition): a derived slow-motion ODE on TOV backgrounds, two or more EOS, pulsars re-scored. In progress. | — |
+| CFG313 | (orchestrator) Framework-native collapse mass for B's cold-mass rule (M_c = M_b/f_b, no abundance matching) → re-score the satellites, SLUGGS, SPARC and the massive discs. In progress. | — |
