@@ -1,0 +1,115 @@
+CFG311 -- STRONG-FIELD NEUTRON-STAR SENSITIVITY s AT alpha_c != 0 IN THE FILTERED C-H/K CHASSIS (closes CFG291's condition).
+Criteria frozen and committed first: campaign_fresh_gravity/CFG311_ns_sensitivity/FROZEN_CRITERIA.md (f41011ad5).
+
+Chassis at NS scales (CFG291 N: the heat filter removes the C-H sector, exponent ~ -6e21): the BPS khronon,
+  I = (1/16 pi G) Int sqrt(-g) [R + alpha a_mu a^mu - lambda K^2],  alpha = alpha_c,  beta = 0,  lambda = c_2.
+Method (FROZEN_CRITERIA sec. 1): first-order (Hellmann-Feynman) perturbation in alpha about Barausse 2019's exact
+alpha = beta = 0 solution (static TOV metric in the star frame + the maximal-slicing (K = 0) khronon of a star moving at
+v relative to the khronon).  -delta m~(v) = (alpha/16 pi G) Int d^3x sqrt(-g) a^2 = dL_0 + dL_2 v^2;  sigma = 2 dL_2 / M,
+s = sigma/(1 + sigma) = alpha (sigma/alpha) + O(alpha^2, alpha^2/lambda).
+DERIVED here (sympy): the khronon ODE (E1), a^2 to O(v^2) two ways (E2), the angle-integrated integrand (E3).
+ADOPTED: Barausse 2019 (alpha = beta = 0 solutions), Foster 2007 eq. 70 (weak-field target), Read et al. 2009 piecewise
+polytropes (RECALLED parameters), CFG291's committed scorer (exec'd read-only, all writes sent to os.devnull).
+
+CFG311_MUTATE=1 flips alpha -> -alpha_c (outputs carry _MUTATE; the window gate must flag it, rc = 1).
+Run from anywhere:  python3 campaign_fresh_gravity/CFG311_ns_sensitivity/cfg311_ns_sensitivity.py
+
+  *** CFG311_MUTATE=1: alpha -> -alpha_c; the window gate must FAIL (rc = 1) ***
+
+================================================================================================================
+S1  SYMBOLIC DERIVATION (sympy): khronon ODE E1, a^2 to O(v^2) two ways E2, angle-integrated integrand E3
+================================================================================================================
+    K at O(v) = -(-r**2*Derivative(F(r), r)*Derivative(Lam(r), r) + 2*r**2*Derivative(F(r), r)*Derivative(Phi(r), r) + r**2*Derivative(F(r), (r, 2)) + 2*r*Derivative(F(r), r) - 2*F(r)*exp(2*Lam(r)))*exp(-2*Lam(r))*exp(-4*Phi(r))*cos(theta)/(r**2*exp(-2*Phi(r))**(5/2))
+    K1 / [(r^2 e^(2Phi-Lam) F')' - 2 e^(2Phi+Lam) F] = -exp(-Lam(r) - 6*Phi(r))*cos(theta)/(r**2*exp(-2*Phi(r))**(5/2))  (no F dependence: True)
+    flat limit (r^2 F')' = 2F: F = C1/r**2 + C2*r
+    a^2 at O(v^0) = exp(-2*Lam(r))*Derivative(Phi(r), r)**2   (both routes agree: True); O(v^1) = 0
+    a^2 at O(v^2): lapse route - Christoffel route = 0
+    E3 I2(r) (angle-integrated a^2 at O(v^2), F'' eliminated) = 4*pi*(-r**3*Derivative(F(r), r)**2*Derivative(Phi(r), r) - 4*r**2*Derivative(F(r), r)**2 + 4*r*F(r)**2*exp(2*Lam(r))*Derivative(Phi(r), r) + 8*r*F(r)*exp(2*Lam(r))*Derivative(F(r), r) - 4*F(r)**2*exp(2*Lam(r)))*exp(-4*Lam(r) + 2*Phi(r))*Derivative(Phi(r), r)/(3*r**3)
+    I2 in TOV variables (r, m, p, e, Phi, F, F') = 4*pi*(m + 4*pi*p*r**3)*(-4*F_v**2*(m + 4*pi*p*r**3) + 4*Fp_v**2*r*(2*m - r)**2 + (2*m - r)*(-4*F_v**2 + 8*F_v*Fp_v*r - Fp_v**2*r*(m + 4*pi*p*r**3)))*exp(2*Phi_v)/(3*r**5*(2*m - r))
+  [PASS] S1 symbolic consistency: E1 is K at O(v) (expected form, flat solutions r and r^-2); a^2 at O(v^2) from the lapse formula equals u^nu nabla_nu u_mu squared; a^2 has no O(v) term
+         measured: K1/E1 = -exp(-Lam(r) - 6*Phi(r))*cos(theta)/(r**2*exp(-2*Phi(r))**(5/2)); flat F = C1/r**2 + C2*r; a2 routes differ by 0
+
+================================================================================================================
+W1(a,b)  WEAK-FIELD LIMIT: leading order in G of sigma vs Foster 2007's (11/3) alpha |Omega_N| / M
+================================================================================================================
+    O(G) khronon equation: -2*r**2*Derivative(U(r), r) + r**2*Derivative(f(r), (r, 2)) - r**2*Derivative(mu(r), r) - 4*r*mu(r) + 2*r*Derivative(f(r), r) - 2*f(r) = 0
+    O(G^2) angle-integrated a^2_(2): 4*pi*(r**2*(3*Derivative(U(r), r) - 2*Derivative(f(r), (r, 2)) + 2*Derivative(mu(r), r)) + 4*r*(r*Derivative(U(r), r) - Derivative(f(r), r)) + 4*f(r))*Derivative(U(r), r)/(3*r**2)
+    uniform sphere: f_in = -M*r/R + 2*M*r**3/(5*R**3), f_out = -M*R**2/(10*r**2) - M/2;  Int r^2 I2 dr = 88*pi*M**2/(5*R);  sigma/alpha / [(11/3)|Omega_N|/M] = 1
+    (I2_wf contains f'': True; U'': False)
+    f'' from the O(G) equation: 2*Derivative(U(r), r) + Derivative(mu(r), r) + 4*mu(r)/r - 2*Derivative(f(r), r)/r + 2*f(r)/r**2  (contains U'' or mu'': False)
+    Newtonian n = 1 polytrope: Omega_N = -372.0753202 (analytic -3GM^2/4R = -372.0753202); ratio = 1.00000000
+
+================================================================================================================
+EOS + TOV  Read et al. 2009 piecewise polytropes (RECALLED parameters) and the strong-field integral
+================================================================================================================
+    exterior Schwarzschild: residual of F = r - M/2 in E1 = 0  (exact solution; the decaying one by reduction of order)
+    SLy  : M_max = 2.0484 Msun (recalled 2.049; -0.03%), R_1.4 = 11.706 km (recalled 11.736; -0.25%)
+    APR4 : M_max = 2.1880 Msun (recalled 2.213; -1.13%), R_1.4 = 11.320 km (recalled 11.428; -0.95%)
+    MPA1 : M_max = 2.4564 Msun (recalled 2.461; -0.19%), R_1.4 = 12.434 km (recalled 12.466; -0.25%)
+  [PASS] T1 TOV with the recalled Read et al. 2009 parameters reproduces the recalled M_max and R_1.4 within 2% for SLy, APR4, MPA1; 2.01 Msun < M_max for each; F = r - M/2 solves E1 exactly in Schwarzschild
+         measured: SLy: M_max 2.048 (-0.03%), R1.4 11.71 (-0.25%); APR4: M_max 2.188 (-1.13%), R1.4 11.32 (-0.95%); MPA1: M_max 2.456 (-0.19%), R1.4 12.43 (-0.25%)
+         reading:  a self-consistency test of recalled numbers (section 0 of FROZEN_CRITERIA), not an independent read
+
+================================================================================================================
+W1(c)  THE FULL STRONG-FIELD CODE ON LOW-COMPACTNESS STARS vs Foster's (11/3) |Omega_N| / M
+================================================================================================================
+    poly1 rho_c = 6.733e+12 g/cm^3: M = 8.4522e-03 Msun, C = 9.972e-04, sigma/alpha = 2.738441e-03, (11/3)|Omega_N|/M = 2.742577e-03, ratio = 0.998492
+    poly1 rho_c = 6.733e+11 g/cm^3: M = 8.4841e-04 Msun, C = 9.997e-05, sigma/alpha = 2.748840e-04, (11/3)|Omega_N|/M = 2.749256e-04, ratio = 0.999849
+    SLy   rho_c = 1.000e+10 g/cm^3: M = 8.8008e-01 Msun, C = 9.597e-04, sigma/alpha = 5.140881e-03, (11/3)|Omega_N|/M = 5.157610e-03, ratio = 0.996756
+    SLy   rho_c = 1.000e+08 g/cm^3: M = 1.0615e+00 Msun, C = 3.932e-04, sigma/alpha = 1.383898e-03, (11/3)|Omega_N|/M = 1.385035e-03, ratio = 0.999179
+  [PASS] W1 weak-field limit (Foster 2007 eq. 70 at beta = 0): (a) uniform sphere exactly 11/3; (b) Newtonian n = 1 polytrope within 1e-4; (c) full code on low-C stars within 1%, deviation shrinking with C
+         measured: (a) 1; (b) 1.00000000; (c) poly1 rho_c=6.733e+12 C=1.0e-03 dev 1.51e-03, poly1 rho_c=6.733e+11 C=1.0e-04 dev 1.51e-04, SLy rho_c=1.000e+10 C=9.6e-04 dev 3.24e-03, SLy rho_c=1.000e+08 C=3.9e-04 dev 8.21e-04
+         reading:  this also tests the Hellmann-Feynman step (no boundary term): a boundary piece would add an O(G) term not equal to 11/3
+
+================================================================================================================
+NS  sigma/alpha AT THE PULSAR MASSES (SLy, APR4, MPA1), with convergence N1 and the alpha = 0 residual Z1
+================================================================================================================
+    SLy   J1738+0333   M = 1.460000: R = 11.666 km, C = 0.1848, sigma/alpha = 0.366416, Foster (11/3)|Omega_N|/M = 0.48425, strong/weak = 0.7567, tail 4.6e-04, interior share 0.219, K residual 2.2e-09 at r/R 0.592 (first-run grad2 measure 8.2e-05 at r/R 0.9241)
+    SLy   J0348+0432   M = 2.010000: R = 10.562 km, C = 0.2810, sigma/alpha = 0.469883, Foster (11/3)|Omega_N|/M = 0.73194, strong/weak = 0.6420, tail 5.5e-04, interior share 0.160, K residual 4.1e-09 at r/R 0.631 (first-run grad2 measure 7.4e-05 at r/R 0.9638)
+    SLy   J0737-3039A  M = 1.338185: R = 11.742 km, C = 0.1683, sigma/alpha = 0.344516, Foster (11/3)|Omega_N|/M = 0.44410, strong/weak = 0.7758, tail 4.5e-04, interior share 0.231, K residual 2.0e-07 at r/R 0.707 (first-run grad2 measure 4.7e-05 at r/R 0.9133)
+    SLy   J0737-3039B  M = 1.248868: R = 11.784 km, C = 0.1565, sigma/alpha = 0.328049, Foster (11/3)|Omega_N|/M = 0.41554, strong/weak = 0.7895, tail 4.4e-04, interior share 0.241, K residual 1.1e-08 at r/R 0.675 (first-run grad2 measure 6.3e-05 at r/R 0.9043)
+    APR4  J1738+0333   M = 1.460000: R = 11.306 km, C = 0.1907, sigma/alpha = 0.372166, Foster (11/3)|Omega_N|/M = 0.49420, strong/weak = 0.7531, tail 4.7e-04, interior share 0.211, K residual 4.5e-09 at r/R 0.609 (first-run grad2 measure 5.3e-05 at r/R 0.9271)
+    APR4  J0348+0432   M = 2.010000: R = 10.847 km, C = 0.2736, sigma/alpha = 0.459097, Foster (11/3)|Omega_N|/M = 0.69464, strong/weak = 0.6609, tail 5.5e-04, interior share 0.156, K residual 4.7e-07 at r/R 0.888 (first-run grad2 measure 6.0e-05 at r/R 0.9615)
+    APR4  J0737-3039A  M = 1.338185: R = 11.330 km, C = 0.1744, sigma/alpha = 0.351547, Foster (11/3)|Omega_N|/M = 0.45592, strong/weak = 0.7711, tail 4.5e-04, interior share 0.224, K residual 3.3e-09 at r/R 0.577 (first-run grad2 measure 4.7e-05 at r/R 0.9168)
+    APR4  J0737-3039B  M = 1.248868: R = 11.339 km, C = 0.1626, sigma/alpha = 0.335846, Foster (11/3)|Omega_N|/M = 0.42828, strong/weak = 0.7842, tail 4.4e-04, interior share 0.234, K residual 4.9e-09 at r/R 0.740 (first-run grad2 measure 1.8e-05 at r/R 0.9086)
+    MPA1  J1738+0333   M = 1.460000: R = 12.448 km, C = 0.1732, sigma/alpha = 0.346482, Foster (11/3)|Omega_N|/M = 0.44649, strong/weak = 0.7760, tail 4.6e-04, interior share 0.217, K residual 3.0e-09 at r/R 0.570 (first-run grad2 measure 8.4e-05 at r/R 0.9141)
+    MPA1  J0348+0432   M = 2.010000: R = 12.387 km, C = 0.2396, sigma/alpha = 0.424187, Foster (11/3)|Omega_N|/M = 0.60352, strong/weak = 0.7029, tail 5.2e-04, interior share 0.171, K residual 5.8e-09 at r/R 0.601 (first-run grad2 measure 7.4e-05 at r/R 0.9488)
+    MPA1  J0737-3039A  M = 1.338185: R = 12.418 km, C = 0.1591, sigma/alpha = 0.327426, Foster (11/3)|Omega_N|/M = 0.41359, strong/weak = 0.7917, tail 4.5e-04, interior share 0.228, K residual 2.6e-08 at r/R 0.614 (first-run grad2 measure 3.4e-05 at r/R 0.9036)
+    MPA1  J0737-3039B  M = 1.248868: R = 12.390 km, C = 0.1488, sigma/alpha = 0.312904, Foster (11/3)|Omega_N|/M = 0.38959, strong/weak = 0.8032, tail 4.4e-04, interior share 0.237, K residual 2.0e-08 at r/R 0.577 (first-run grad2 measure 3.7e-05 at r/R 0.8946)
+    N1 ('SLy', 'J0348+0432'): N 0.46988259, 2N 0.46988259, 4N 0.46988259; rtol 1e-12 0.46988259; r_out x2 0.46988262
+    N1 ('APR4', 'J0737-3039A'): N 0.35154695, 2N 0.35154695, 4N 0.35154695; rtol 1e-12 0.35154695; r_out x2 0.35154696
+  [PASS] N1 convergence: sigma/alpha changes < 1e-4 between 2N and 4N, < 1e-5 under rtol x 1e-2, < 1e-5 when r_out doubles
+         measured: SLy J0348+0432: 1.7e-12/4.5e-12/5.0e-08; APR4 J0737-3039A: 2.1e-12/1.8e-11/2.6e-08
+    sweep SLy: C=0.019: s/a=0.0814 (x0.954 Foster); C=0.060: s/a=0.1675 (x0.903 Foster); C=0.099: s/a=0.2379 (x0.857 Foster); C=0.124: s/a=0.2798 (x0.827 Foster); C=0.150: s/a=0.3189 (x0.797 Foster); C=0.177: s/a=0.3557 (x0.766 Foster); C=0.205: s/a=0.3910 (x0.734 Foster); C=0.236: s/a=0.4262 (x0.697 Foster); C=0.278: s/a=0.4671 (x0.646 Foster); C=0.280: s/a=0.4692 (x0.643 Foster)
+    sweep APR4: C=0.019: s/a=0.0837 (x0.953 Foster); C=0.063: s/a=0.1746 (x0.898 Foster); C=0.104: s/a=0.2472 (x0.851 Foster); C=0.130: s/a=0.2890 (x0.821 Foster); C=0.156: s/a=0.3270 (x0.791 Foster); C=0.183: s/a=0.3621 (x0.762 Foster); C=0.210: s/a=0.3949 (x0.732 Foster); C=0.239: s/a=0.4262 (x0.700 Foster); C=0.272: s/a=0.4575 (x0.663 Foster); C=0.304: s/a=0.4837 (x0.625 Foster)
+    sweep MPA1: C=0.019: s/a=0.0826 (x0.954 Foster); C=0.060: s/a=0.1653 (x0.905 Foster); C=0.097: s/a=0.2312 (x0.862 Foster); C=0.120: s/a=0.2696 (x0.836 Foster); C=0.143: s/a=0.3047 (x0.809 Foster); C=0.166: s/a=0.3372 (x0.784 Foster); C=0.190: s/a=0.3674 (x0.758 Foster); C=0.213: s/a=0.3958 (x0.732 Foster); C=0.238: s/a=0.4229 (x0.704 Foster); C=0.301: s/a=0.4795 (x0.633 Foster)
+    s/alpha_c at J1738+0333   (1.46 Msun): 0.3465 .. 0.3722 over the three EOS (scored: max)
+    s/alpha_c at J0348+0432   (2.01 Msun): 0.4242 .. 0.4699 over the three EOS (scored: max)
+    s/alpha_c at J0737-3039A  (1.338185 Msun): 0.3274 .. 0.3515 over the three EOS (scored: max)
+    s/alpha_c at J0737-3039B  (1.248868 Msun): 0.3129 .. 0.3358 over the three EOS (scored: max)
+
+================================================================================================================
+R1  CFG291's committed scorer, exec'd read-only (every write -> os.devnull), reproduced, then re-scored with computed s
+================================================================================================================
+    CFG291 exec rc = 0; pass counts reproduced: {'B0/computed': True, 'B1/computed': True, 'B2/computed': True, 'B1/universal': True, 'B2/universal': True, 'B3/computed': True}; min s_crit/s_B2 = 5.249761e+04 (committed 5.249761e+04); CFG291 dir git status: 'clean'
+  [PASS] R1 CFG291's committed scorer reproduces its committed W1 pass counts and min s_crit/s_B2 (5.25e4) before the computed s replaces the bracket; CFG291's directory is untouched
+         measured: {'B0/computed': True, 'B1/computed': True, 'B2/computed': True, 'B1/universal': True, 'B2/universal': True, 'B3/computed': True}; margin 5.2498e+04; git 'clean'
+    MUTATE s at alpha = -alpha_c,max: J1738+0333: -1.191e-09, J0348+0432: -1.504e-09, J0737-3039A: -1.125e-09, J0737-3039B: -1.075e-09
+    scorer refuses alpha < 0: ValueError (math domain error) -- c0^2 = lambda(2 - alpha)/(alpha(2 + 3 lambda)) < 0
+    dipole sign-blindness (alpha_c max, c_2 min, J1738): delta_dip with s<0 6.199228e-15, with s>0 6.199228e-15
+    window gate (CFG291 in_window) at alpha = -alpha_c: 0/625 points inside
+  [PASS] MUTATE s flips sign with alpha (sigma/alpha unchanged, s < 0)
+         measured: {'J1738+0333': -1.1909317011772526e-09, 'J0348+0432': -1.5036242952263714e-09, 'J0737-3039A': -1.124950242851466e-09, 'J0737-3039B': -1.0747065114259494e-09}
+  [PASS] (reading) MUTATE the radiation score alone cannot see the sign (dipole quadratic in s1 - s2): disclosed
+         measured: 6.199e-15 vs 6.199e-15
+  [FAIL] WINDOW the scored alpha lies in the frozen chassis window (alpha_c > 0, L340 P1); MUTATE must fail this row
+         measured: 0/625 inside; scorer refuses alpha < 0: ValueError (math domain error) -- c0^2 = lambda(2 - alpha)/(alpha(2 + 3 lambda)) < 0
+
+================================================================================================================
+VERDICT (frozen rule, FROZEN_CRITERIA sec. 5)
+================================================================================================================
+  failed load-bearing checks: ['WINDOW the scored alpha lies in the frozen chassis window (alpha_c > 0, L340 P1); MUTATE must fail this row']
+  VERDICT: MUTATE (alpha -> -alpha_c; window gate test; no chassis verdict)
+  Time 25 s.
+
+  7/8 checks pass; load-bearing failures: 1; wrote cfg311_ns_sensitivity_results_MUTATE.json
