@@ -1,0 +1,131 @@
+CFG308 -- the CRISTAL a0 point at z ~ 5 stress-tested on framework-native inputs (owner: "stress test cristal too").
+Frozen criteria: FROZEN_CRITERIA.md (ca50d064d), committed before any number of this lane was computed.
+kappa = 1/2 FITTED.  The cold mass is still required; no dark-matter particle is added.  No halo-fit quantity enters any cell.
+No sentence here says the data favour a law; a lean is not a detection.
+Estimator: CFG223's implied s* (median-root of log10[D / nu(g_bar / (a0 s))]) and its 10,000-resample galaxy bootstrap, exec'd from the committed source;
+native g_bar = M_bar x CFG216's thin exponential disc (as CFG303).  Grid: gas 7 x M* 3 x pressure (3 at R_e, 5 at R_out) x inclination 3 x radius 2 x sample 2
+(six detections; nine with the three dust upper limits as bounds) = 1,008 decision cells; leave-one-out subgrids as control (iii).
+
+MODE: main
+Frozen file (sha256 at run time): FROZEN_CRITERIA.md 2fdfc3c57a58544c461b34bc0cef02c02b55b789573cfbdeab8a3220f7bca125
+Loaded: campaign_fresh_gravity/CFG223_a0_over_cosmic_time/cfg223_a0_over_time.py (sha 704f2c02c108) up to its CONTROLS marker; campaign_fresh_gravity/CFG216_rc100_within_sample/cfg216_rc100.py (sha f21b079a5355) up to its data marker
+
+INPUTS (record files; no download)
+  CRISTAL tables, cristal_vector outer summary and observed markers; CFG228 L_[CII](CRISTAL-20 = DC494057) = 7.9255e+08 Lsun -> log M_gas,[CII] (alpha 30) = 10.376
+  Jones+21 Table 1 median inclination errors: moment map 19.0 deg, 3DBarolo 9.5 deg  ->  sigma_i: 02 9.5, 03 9.5, 07a 9.5, 08 9.5, 11 9.5, 12 9.5, 19 9.5, 20 19.0, 23b 19.0
+  per disc: id  z  log M*  f_molgas (+hi/-lo)  R_e  V_rot(R_e)  sigma0  inc  | R_mk  V_tot(R_mk)  alpha_c = 3.36 R/R_e  V_r^2 = V_tot^2 - alpha_c sigma0^2  | raw marker V_obs
+    02   5.294 10.30 0.43 (+0.21/-0.11)    2.7  129.0   67.1  47.0 | 7.472  141.0  9.30    -21982 |  28.9 at 7.472
+    03   5.689 10.40 0.13 (+0.14/-0.06)    1.5  165.3   77.8  67.0 | 2.918  219.4  6.54      8584 |  40.2 at 2.918
+    07a  5.154 10.00 0.43 (+0.28/-0.13)    3.0  132.6   63.1  54.7 | 3.422  181.0  3.83     17511 |  77.9 at 3.422
+    08   4.430 9.85 0.63 (+0.29/-0.13) UL 3.4  183.6   62.4  46.0 | 8.382  208.3  8.28     11138 | 100.1 at 8.382
+    11   4.439 9.68 0.73 (+0.23/-0.11)    1.5  160.3  107.8  82.0 | 3.951  257.7  8.85    -36432 |  39.6 at 3.951
+    12   5.572 9.30 0.67 (+0.43/-0.15) UL 1.5   69.6   48.5  58.0 | 3.501  114.1  7.84     -5433 |  20.4 at 3.502
+    19   5.233 9.51 0.70 (+0.27/-0.12)    2.3  156.0   70.3  65.0 | 3.506  192.6  5.12     11779 |  87.8 at 3.506
+    20   5.545 10.11 0.47 (+0.35/-0.15)    3.5   98.7   61.2  64.4 | 5.073  155.4  4.87      5914 |  58.3 at 5.073
+    23b  4.562 10.46 0.25 (+0.18/-0.09) UL 1.4   93.3   66.8  60.9 | 3.257  188.7  7.82       720 |  47.0 at 3.257
+  [PASS] T0 inputs: the declared sigma_i (9.5 deg image, 19 deg [CII] map) are the Jones+21 medians on disk, and CFG228's L_[CII] row for CRISTAL-20 exists: medians 9.50 / 19.00; L20 7.9255e+08
+
+CONTROL (i): CFG303's committed CRISTAL cells reproduced by this lane's builder and CFG223's estimator
+  R_e native, six                                             : s* 2.0137 68% [0.237, 7.272] 95% [0.001, 14.931]; expected FLAT 1.000 H(z) 8.839 (pulls +0.26 / -0.55); max rel |dg| vs CFG303 CSV 3.1e-07; max |diff| vs CFG303 JSON 0.0e+00
+  R_out native, six, outermost data marker (primary)          : s* 1.9530 68% [0.417, 5.054] 95% [0.001, 8.776]; expected FLAT 1.000 H(z) 8.841 (pulls +0.35 / -0.78); max rel |dg| vs CFG303 CSV 4.7e-07; max |diff| vs CFG303 JSON 0.0e+00
+  R_e native, twelve-disc set with SED+gas                    : s* 0.6741 68% [0.554, 3.612] 95% [0.001, 14.010]; expected FLAT 1.000 H(z) 8.773 (pulls -0.14 / -0.90); max rel |dg| vs CFG303 CSV 3.1e-07; max |diff| vs CFG303 JSON 2.8e-17
+  R_out native, six, table R_out (CFG223's radius; model curve: s* 1.9015 68% [0.460, 4.778] 95% [0.001, 8.125]; expected FLAT 1.000 H(z) 8.840 (pulls +0.36 / -0.86); max rel |dg| vs CFG303 CSV 3.4e-07; max |diff| vs CFG303 JSON 0.0e+00
+  [PASS] (i-a) per-galaxy g_bar and g_obs from this builder at the committed settings equal CFG303's per-galaxy CSV (R_e six, R_out six, R_e nine at the limit, table R_out): max relative difference 3.1e-07, 4.7e-07, 3.1e-07, 3.4e-07
+  [PASS] (i-b) R_e six: s*, 68/95 edges, expected s* and pulls (four laws) and the +-0.15/0.30 dex bands equal CFG303's JSON (2.01 [0.24, 7.27] / [0.001, 14.9]): max |diff| 0.0e+00
+  [PASS] (i-b) R_out six (outermost data marker): the same against CFG303's JSON (1.95 [0.42, 5.05] / [0.001, 8.78]): max |diff| 0.0e+00
+  [PASS] (i-b) nine discs with the upper limits AT the limit (R_e) equal CFG303's nine-disc set with the limits used as values (0.674): max |diff| 2.8e-17
+  [PASS] D2 (identity, not graded): CFG303's table-R_out variant (1.90) reproduced: max |diff| 0.0e+00
+
+THE GRID: 4032 cells (1008 decision cells + 3024 leave-one-out cells)
+  evaluated in 136 s (process pool, fork)
+  [PASS] C5 the process-pool results equal a serial re-evaluation in this process (24 spread cells; s*, edges, H(z) expectation, flags): max |diff| 0.0e+00
+
+THE COMMITTED CELLS INSIDE THE GRID (G0, dM* 0, P_auth, committed inclination)
+  Re   six : s* 2.014 (root, no-root resamples 10%) 68% [0.237, 7.272] 95% [0.001, 14.931]; envelope [0.001, 14.931] (none); expected FLAT 1.000, H(z) 8.839 (E(z_med) 8.837); FLAT in, H(z) in
+  Re   nine: s* 0.674 (root, no-root resamples 15%) 68% [0.554, 3.612] 95% [0.001, 14.010] | UL-at-zero end s* 3.612 (root) 95% [0.001, 16.109]; envelope [0.001, 16.109] (UL bracket); expected FLAT 1.000, H(z) 8.773 (E(z_med) 8.773); FLAT in, H(z) in
+  Rout six : s* 1.953 (root, no-root resamples 4%) 68% [0.417, 5.054] 95% [0.001, 8.776]; envelope [0.001, 8.776] (none); expected FLAT 1.000, H(z) 8.841 (E(z_med) 8.837); FLAT in, H(z) OUT
+  Rout nine: s* 0.684 (root, no-root resamples 3%) 68% [0.521, 3.527] 95% [0.001, 7.024] | UL-at-zero end s* 3.527 (root) 95% [0.001, 11.036]; envelope [0.001, 11.036] (UL bracket); expected FLAT 1.000, H(z) 8.773 (E(z_med) 8.773); FLAT in, H(z) in
+  [PASS] (i-c) the grid's committed cells (R_e six, R_out six, R_e nine at the limit) equal the identity runs above: max |diff| 0.0e+00
+
+THE DECISION GRID (1,008 cells: radius x sample {six, nine-with-UL-bounds} x gas x M* x pressure x inclination)
+  ALL: n 1008: H(z) excluded 0.594, FLAT inside 0.760 (FLAT excluded 0.240); rival-disfavoured cells 385, flat-disfavoured 28, both excluded 214, both inside 381; point no root 432
+  -> DECISION (frozen rule, 80% / 80%): NOT DISCRIMINATING
+  secondary readings (reported; they cannot change the headline):
+    root-bearing cells only       : n 576: H(z) excluded 0.309, FLAT inside 0.951 (FLAT excluded 0.049); rival-disfavoured cells 178, flat-disfavoured 28, both excluded 0, both inside 370; point no root 0  [rule would read: NOT DISCRIMINATING]
+    H(z) target = E(z_med)        : n 1008: H(z) excluded 0.594, FLAT inside 0.760 (FLAT excluded 0.240); rival-disfavoured cells 385, flat-disfavoured 28, both excluded 214, both inside 381; point no root 432  [rule would read: NOT DISCRIMINATING]
+    radius Re                     : n 378: H(z) excluded 0.513, FLAT inside 0.849 (FLAT excluded 0.151); rival-disfavoured cells 150, flat-disfavoured 13, both excluded 44, both inside 171; point no root 153  [rule would read: NOT DISCRIMINATING]
+    radius Rout                   : n 630: H(z) excluded 0.643, FLAT inside 0.706 (FLAT excluded 0.294); rival-disfavoured cells 235, flat-disfavoured 15, both excluded 170, both inside 210; point no root 279  [rule would read: NOT DISCRIMINATING]
+    six-disc sample only          : n 504: H(z) excluded 0.637, FLAT inside 0.692 (FLAT excluded 0.308); rival-disfavoured cells 184, flat-disfavoured 18, both excluded 137, both inside 165; point no root 231  [rule would read: NOT DISCRIMINATING]
+    nine-disc (UL bounds) only    : n 504: H(z) excluded 0.552, FLAT inside 0.827 (FLAT excluded 0.173); rival-disfavoured cells 201, flat-disfavoured 10, both excluded 77, both inside 216; point no root 201  [rule would read: NOT DISCRIMINATING]
+    stars-only cells (S)          : n 144: H(z) excluded 0.243, FLAT inside 0.972 (FLAT excluded 0.028); rival-disfavoured cells 31, flat-disfavoured 0, both excluded 4, both inside 109; point no root 24  [rule would read: NOT DISCRIMINATING]
+    detected-gas cells (not S)    : n 864: H(z) excluded 0.653, FLAT inside 0.725 (FLAT excluded 0.275); rival-disfavoured cells 354, flat-disfavoured 28, both excluded 210, both inside 272; point no root 408  [rule would read: NOT DISCRIMINATING]
+
+MARGINALS AND THE DOMINANT AXIS (within each radius sub-grid of the decision grid)
+  Re   gas        : G0 H-excl 0.57 F-excl 0.09; G+ H-excl 0.93 F-excl 0.59; G- H-excl 0.33 F-excl 0.15; C0 H-excl 0.57 F-excl 0.07; C+ H-excl 0.57 F-excl 0.06; C- H-excl 0.57 F-excl 0.09; S H-excl 0.04 F-excl 0.00  | swing H 0.89, F 0.59
+  Re   dMstar     : 0.0 H-excl 0.52 F-excl 0.13; -0.15 H-excl 0.44 F-excl 0.16; 0.15 H-excl 0.57 F-excl 0.16  | swing H 0.13, F 0.02
+  Re   pressure   : P_auth H-excl 0.11 F-excl 0.16; P168 H-excl 0.57 F-excl 0.08; P0 H-excl 0.86 F-excl 0.21  | swing H 0.75, F 0.13
+  Re   inclination: 0 H-excl 0.53 F-excl 0.13; -1 H-excl 0.41 F-excl 0.15; 1 H-excl 0.60 F-excl 0.17  | swing H 0.18, F 0.03
+  Re   sample     : six H-excl 0.56 F-excl 0.24; nine H-excl 0.47 F-excl 0.06  | swing H 0.10, F 0.19
+  Rout gas        : G0 H-excl 0.66 F-excl 0.29; G+ H-excl 0.93 F-excl 0.71; G- H-excl 0.58 F-excl 0.23; C0 H-excl 0.66 F-excl 0.24; C+ H-excl 0.66 F-excl 0.24; C- H-excl 0.66 F-excl 0.29; S H-excl 0.37 F-excl 0.04  | swing H 0.57, F 0.67
+  Rout dMstar     : 0.0 H-excl 0.65 F-excl 0.26; -0.15 H-excl 0.59 F-excl 0.27; 0.15 H-excl 0.69 F-excl 0.35  | swing H 0.10, F 0.09
+  Rout pressure   : P_auth H-excl 0.30 F-excl 0.06; P_B10 H-excl 0.10 F-excl 0.18; P336 H-excl 0.84 F-excl 0.10; P168 H-excl 0.98 F-excl 0.34; P0 H-excl 1.00 F-excl 0.79  | swing H 0.90, F 0.72
+  Rout inclination: 0 H-excl 0.65 F-excl 0.30; -1 H-excl 0.62 F-excl 0.21; 1 H-excl 0.66 F-excl 0.36  | swing H 0.04, F 0.15
+  Rout sample     : six H-excl 0.68 F-excl 0.35; nine H-excl 0.60 F-excl 0.24  | swing H 0.08, F 0.10
+  radius axis: H-excl R_e 0.51 vs R_out 0.64 (swing 0.13); F-excl 0.15 vs 0.29
+  swings in frac_H_excl (max over radius): pressure 0.90, gas 0.89, inclination 0.18, radius 0.13, dMstar 0.13, sample 0.10
+  swings in frac_F_excl (max over radius): pressure 0.72, gas 0.67, sample 0.19, inclination 0.15, radius 0.14, dMstar 0.09
+  -> DOMINANT AXIS (frozen metric, H(z)-exclusion swing): pressure; for FLAT's exclusion: pressure
+  median |d log10 s*| between extreme levels (six discs, root-bearing matched pairs): gas n/a (n 0), dMstar 0.585 (n 57), pressure 0.995 (n 3), inclination 0.273 (n 65), radius (P_auth) 0.077 (n 43)
+
+CONTROL (iii): LEAVE-ONE-OUT (the full (a)-(e) grid on each five-disc subset of the six)
+  drop 02  : n 504: H(z) excluded 0.563, FLAT inside 0.742 (FLAT excluded 0.258); rival-disfavoured cells 172, flat-disfavoured 18, both excluded 112, both inside 202; point no root 199 -> NOT DISCRIMINATING
+       committed cell Re  : s* 3.612 (root, no-root resamples 6%) 68% [0.554, 14.010] 95% [0.001, 16.109]; envelope [0.001, 16.109] (none); expected FLAT 1.000, H(z) 8.773 (E(z_med) 8.773); FLAT in, H(z) in
+       committed cell Rout: s* 3.527 (root, no-root resamples 0%) 68% [0.521, 7.024] 95% [0.066, 11.036]; envelope [0.066, 11.036] (none); expected FLAT 1.000, H(z) 8.773 (E(z_med) 8.773); FLAT in, H(z) in
+  drop 03  : n 504: H(z) excluded 0.563, FLAT inside 0.752 (FLAT excluded 0.248); rival-disfavoured cells 172, flat-disfavoured 13, both excluded 112, both inside 207; point no root 199 -> NOT DISCRIMINATING
+       committed cell Re  : s* 3.612 (root, no-root resamples 6%) 68% [0.554, 14.010] 95% [0.001, 16.109]; envelope [0.001, 16.109] (none); expected FLAT 1.000, H(z) 8.773 (E(z_med) 8.773); FLAT in, H(z) in
+       committed cell Rout: s* 3.527 (root, no-root resamples 6%) 68% [0.521, 7.024] 95% [0.001, 11.036]; envelope [0.001, 11.036] (none); expected FLAT 1.000, H(z) 8.773 (E(z_med) 8.773); FLAT in, H(z) in
+  drop 07a : n 504: H(z) excluded 0.565, FLAT inside 0.724 (FLAT excluded 0.276); rival-disfavoured cells 157, flat-disfavoured 11, both excluded 128, both inside 208; point no root 303 -> NOT DISCRIMINATING
+       committed cell Re  : s* 0.554 (root, no-root resamples 31%) 68% [0.001, 14.010] 95% [0.001, 16.109]; envelope [0.001, 16.109] (none); expected FLAT 1.000, H(z) 8.901 (E(z_med) 8.901); FLAT in, H(z) in
+       committed cell Rout: s* 0.521 (root, no-root resamples 6%) 68% [0.066, 7.024] 95% [0.001, 11.036]; envelope [0.001, 11.036] (none); expected FLAT 1.000, H(z) 8.901 (E(z_med) 8.901); FLAT in, H(z) in
+  drop 11  : n 504: H(z) excluded 0.694, FLAT inside 0.756 (FLAT excluded 0.244); rival-disfavoured cells 238, flat-disfavoured 11, both excluded 112, both inside 143; point no root 299 -> NOT DISCRIMINATING
+       committed cell Re  : s* 0.554 (root, no-root resamples 31%) 68% [0.001, 3.612] 95% [0.001, 14.010]; envelope [0.001, 14.010] (none); expected FLAT 1.000, H(z) 8.901 (E(z_med) 8.901); FLAT in, H(z) in
+       committed cell Rout: s* 0.521 (root, no-root resamples 6%) 68% [0.066, 3.527] 95% [0.001, 7.024]; envelope [0.001, 7.024] (none); expected FLAT 1.000, H(z) 8.901 (E(z_med) 8.901); FLAT in, H(z) OUT
+  drop 19  : n 504: H(z) excluded 0.613, FLAT inside 0.688 (FLAT excluded 0.312); rival-disfavoured cells 163, flat-disfavoured 11, both excluded 146, both inside 184; point no root 300 -> NOT DISCRIMINATING
+       committed cell Re  : s* 0.554 (root, no-root resamples 31%) 68% [0.001, 3.612] 95% [0.001, 16.109]; envelope [0.001, 16.109] (none); expected FLAT 1.000, H(z) 8.901 (E(z_med) 8.901); FLAT in, H(z) in
+       committed cell Rout: s* 0.521 (root, no-root resamples 6%) 68% [0.066, 3.527] 95% [0.001, 11.036]; envelope [0.001, 11.036] (none); expected FLAT 1.000, H(z) 8.901 (E(z_med) 8.901); FLAT in, H(z) in
+  drop 20  : n 504: H(z) excluded 0.563, FLAT inside 0.732 (FLAT excluded 0.268); rival-disfavoured cells 172, flat-disfavoured 23, both excluded 112, both inside 197; point no root 197 -> NOT DISCRIMINATING
+       committed cell Re  : s* 3.612 (root, no-root resamples 31%) 68% [0.001, 14.010] 95% [0.001, 16.109]; envelope [0.001, 16.109] (none); expected FLAT 1.000, H(z) 8.773 (E(z_med) 8.773); FLAT in, H(z) in
+       committed cell Rout: s* 3.527 (root, no-root resamples 6%) 68% [0.066, 7.024] 95% [0.001, 11.036]; envelope [0.001, 11.036] (none); expected FLAT 1.000, H(z) 8.773 (E(z_med) 8.773); FLAT in, H(z) in
+  pooled over the six LOO subgrids (reported): n 3024: H(z) excluded 0.594, FLAT inside 0.732 (FLAT excluded 0.268); rival-disfavoured cells 1074, flat-disfavoured 87, both excluded 722, both inside 1141; point no root 1497
+  [PASS] (iii) LOO stability: the frozen decision recomputed on each of the six leave-one-out subgrids equals the full-grid decision: full NOT DISCRIMINATING; LOO 02: NOT DISCRIMINATING, 03: NOT DISCRIMINATING, 07a: NOT DISCRIMINATING, 11: NOT DISCRIMINATING, 19: NOT DISCRIMINATING, 20: NOT DISCRIMINATING
+
+STRUCTURAL CHECKS (monotonicity of the median-root; point estimates, matched cells, both ends of the UL bracket)
+  [PASS] C1 s*(G+) <= s*(G0) <= s*(G-) and s*(M* +0.15) <= s*(0) <= s*(-0.15) in every matched set: 2136/2136 hold
+  [PASS] C2 s* non-decreasing in the pressure term (R_e: P0 <= P168 <= P_auth; R_out: P0 <= P168 <= P336 <= P_B10): 1116/1116 hold
+  [PASS] C3 stars-only s* >= every gas level's s*, and the UL-at-zero end >= the UL-at-limit end: 4320/4320 hold
+  [PASS] C4 s*(inclination -sigma_i) >= s*(committed) >= s*(+sigma_i): 1488/1488 hold
+
+DIAGNOSTIC D1 (outside the decision): the raw outermost OBSERVED marker (projected, beam-smeared, no correction), deprojected, + alpha sigma0^2; G0, dM* 0, committed i, six
+  alpha 0       : per-disc D 02 0.06, 03 0.04, 07a 0.56, 11 0.07, 19 0.73, 20 0.22; s* 0.001 (no root (floor), no-root 100%) 95% [0.001, 0.001]; FLAT OUT, H(z) 8.84 OUT
+  alpha 1.68    : per-disc D 02 0.38, 03 0.25, 07a 0.98, 11 0.91, 19 1.38, 20 0.55; s* 0.001 (no root (floor), no-root 95%) 95% [0.001, 0.347]; FLAT OUT, H(z) 8.84 OUT
+  alpha 3.36    : per-disc D 02 0.69, 03 0.47, 07a 1.39, 11 1.75, 19 2.02, 20 0.87; s* 0.221 (root, no-root 42%) 95% [0.001, 2.787]; FLAT in, H(z) 8.84 OUT
+  alpha 3.36R/Re: per-disc D 02 1.79, 03 0.87, 07a 1.50, 11 4.51, 19 2.70, 20 1.17; s* 1.534 (root, no-root 1%) 95% [0.021, 14.043]; FLAT in, H(z) 8.84 in
+
+HAND ESTIMATES (frozen in the criteria; scored here, misses kept)
+  HIT  H1 control (i) exact: see control (i)
+  HIT  H2 frac_H_excl in [0.45, 0.80]: 0.594
+  MISS H3 frac_F_in in [0.45, 0.75]: 0.760
+  HIT  H4 decision NOT DISCRIMINATING: NOT DISCRIMINATING
+  MISS H5a root-only: H(z) excluded in 40-75% of root cells: 0.309 (n 576)
+  HIT  H5b root-only: FLAT inside in >= 90% of root cells: 0.951
+  HIT  H6a dominant axis = pressure: pressure
+  HIT  H6b gas route second: gas
+  HIT  H7 R_out P0: no root in every six-disc cell: 63/63
+  MISS H8 H(z) not excluded in >= 80% of stars-only cells: 109/144
+  HIT  H9a decision LOO-stable: True
+  HIT  H9b the committed R_out H(z) exclusion flips under >= 1 LOO: committed R_out H(z) OUT; flips when dropping ['02', '03', '07a', '19', '20']
+  HIT  H11 D1 alpha 0: no root: no root (floor)
+  HIT  H12 frac_F_excl < 0.5: 0.240
+  H10 (MUTATE factors) is scored by the MUTATE run.
+
+13/13 checks pass   (154 s)

@@ -1,0 +1,22 @@
+CFG308 POST HOC (written after the MUTATE run's M0 precondition FAILED; not part of the frozen criteria; the FAIL is kept).
+M0 asked that d log nu_mono / d log y lie in [-1/2, 0] (tolerance 1e-6) on y in [1e-10, 1e10]; the run found -0.500012.
+Question: is that a property of the committed nu_mono implementation (FP1 / L340: 1 + interp(log10 y, table, H_M)/y, a cumulative-trapezoid table
+with step 1e-4 in log10 y, linearly interpolated) or an artefact of the finite-difference probe, and does it affect M2 (the >= 2.25^2 rise bound)?
+History: the first run of this post hoc script had a wrongly posed P3 (FAIL, kept in cfg308_posthoc_m0_slope_firstrun.out); P3 was then corrected.
+
+1. EXACT PIECEWISE LOG-SLOPES OF THE COMMITTED nu_mono INTERPOLANT (both ends of each of the 280,000 table cells)
+  over the whole table (y 1e-14..1e14): min -0.5000288 at y 1.002e-14; max -1.61e-14
+  y in [1e-14, 1e-06]: min slope -0.5000288, excess below -1/2: 2.88e-05
+  y in [1e-06, 1e-03]: min slope -0.4997787, excess below -1/2: 0.00e+00
+  y in [1e-03, 1e+05]: min slope -0.4921616, excess below -1/2: 0.00e+00
+  y in [1e+05, 1e+14]: min slope -0.0000094, excess below -1/2: 0.00e+00
+  -> the committed kernel's log-slope reaches -(1/2 + 2.9e-05) at the lower end of its table cells in the deep-MOND tail: the chord of h ~ sqrt(y) over a 1e-4-dex cell, linearly interpolated in log y, is steeper than 1/2 at the cell's left end by about (ln10 x 1e-4)/8 = 2.9e-05
+  [PASS] P1 the M0 excess is a property of the committed interpolant (exact cell-end slopes reach below -1/2) and is below 1e-4 everywhere: excess 2.88e-05
+  [PASS] P2 the run's finite-difference probe (400,001 points, 1e-10..1e10) reproduces M0's -0.500012 and lies within the exact cell-end range: probe min -0.5000119; exact min -0.5000288
+
+2. THE y RANGE THE GRID USES, AND THE M2 BOUND WITH THE MEASURED SLOPE
+  exact g_bar span of the grid 1.19e-11..4.71e-09 m/s^2 with s in [1e-3, 1e3] -> y 1.3e-04..5.0e+04; min exact slope there -0.4972172
+  M2 bound with the measured slope: 2.25^(1/0.4972172) = 5.10866 (frozen 5.0625); observed minimum rise 5.411 over 2270 roots
+  [PASS] P3 (corrected after the first post hoc run, whose P3 wrongly expected the deep tail inside the used range and FAILED; kept in cfg308_posthoc_m0_slope_firstrun.out) over the y range the grid uses the kernel's log-slope never goes below -1/2, so the frozen 5.0625 bound is conservative there, and every observed rise exceeds the tighter used-range bound: min slope over used range -0.4972172 (>= -0.5); used-range bound 5.10866 >= 5.0625; min observed 5.411; M2 2270/2270
+
+3/3 checks pass (post hoc; the frozen M0 FAIL stands as recorded)
