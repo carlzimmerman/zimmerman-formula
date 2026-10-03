@@ -1,0 +1,29 @@
+CFG301 -- the MIGHTEE-HI DR1 (COSMOS) catalogue width -> V -> baryon chain: a same-pipeline LOCAL a0 / calibration measurement and a distance-trend test,
+plus the direct BTFR row of amendment A1.  kappa = 1/2 is FITTED.  No verdict words.
+At z <= 0.093 this lane CANNOT separate FLAT from a0 ~ H(z) (the rival's lever is E(0.093) ~ 1.045, 2-4.5 % in a0): it measures the chain's local level
+and the drift of that level with distance.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/FROZEN_CRITERIA.md (2555ab142).
+  cut     golden sample (five flags 0); 0.02 <= z_HI <= 0.093; 45 <= incl <= 80 deg; log M_HI >= 9.0; W50 >= 80 km/s and sigma_W50/W50 <= 0.15; SNR_3D >= 8
+  chain   W_c = (W50 - delta)/(1+z), delta = 0; V = W_c/(2 sin i), catalogue inclination; M_gas = 1.33 M_HI; M_b = M_gas + M* (BAGPIPES);
+          R = D_HI/2, D_HI = 10^(0.506 log M_HI - 3.293) kpc; g_bar = G M_b/R^2; g_obs = V^2/R; CFG223's median-residual s* (hzq_core), nu_mono,
+          canonical a0 9.3603e-11 (alt 1.1312e-10 for M1); bootstrap over galaxies B = 4,000; windows = z_HI terciles W1 (nearest), W2, W3
+  A1      a0_BTFR = V^4/(G M_b): median + bootstrap 68/95 % on (i) all survivors, (ii) M_gas > M*, (iii) y < 0.5 at D_HI/2; both footings
+Run order: STAGE=A ; STAGE=SELFTEST ; STAGE=CC2 ; STAGE=B ; STAGE=B MUTATE=1 ; STAGE=B MUTATE=2 ; STAGE=M5   (each writes its own .out and _results.json)
+  DRYRUN=1 STAGE=B [MUTATE=1|2]: the STAGE=B code on FABRICATED widths (the real widths not loaded), run once before the measurement as a code test (_DRYRUN outputs)
+
+STAGE B  *** MUTATE=2: sin i_eff = 0.70 for every galaxy -- a reactivity test, not a measurement ***
+catalogue data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv sha256 bcf9e8558bc56448; 293 rows; width columns loaded as data: True
+  [PASS] B-C0 CONTROL: the survivors and the windows equal stage A's (IDs, in order)
+         N 47 (stage A 47); identical True
+
+STAGE B  THE MEASUREMENT (MUTATE=2)
+  [PASS] B1 CONTROL: every survivor has W - delta > 0 (no galaxy dropped by the chain)
+         dropped 0 of 47
+  MUTATED pooled s* 2.9253 (log10 +0.4662; bootstrap SD 0.0465); windows 3.3221, 2.6295, 2.9253  [MUTATED -- a reactivity test, not a measurement]
+  reference: the main run's isotropic sin 60 variant of the pooled s* log10 +0.0744; response +0.3917 dex
+  diagnostic (not a criterion): the same galaxies placed on the law at the main pooled s* respond by +0.3975 dex (the regime's own expectation for this mutation)
+  [PASS] M2 MUTATE=2 (reactivity, frozen): sin i_eff 0.70 (against the isotropic sin 60 variant) raises the pooled s* by 0.37 +- 0.06 dex
+         response +0.3917 dex (window 0.31-0.43); regime expectation +0.3975
+
+3/3 checks pass; load-bearing failures: 0   (1 s)

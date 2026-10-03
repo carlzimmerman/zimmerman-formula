@@ -1,0 +1,73 @@
+CFG301 -- the MIGHTEE-HI DR1 (COSMOS) catalogue width -> V -> baryon chain: a same-pipeline LOCAL a0 / calibration measurement and a distance-trend test,
+plus the direct BTFR row of amendment A1.  kappa = 1/2 is FITTED.  No verdict words.
+At z <= 0.093 this lane CANNOT separate FLAT from a0 ~ H(z) (the rival's lever is E(0.093) ~ 1.045, 2-4.5 % in a0): it measures the chain's local level
+and the drift of that level with distance.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/FROZEN_CRITERIA.md (2555ab142).
+  cut     golden sample (five flags 0); 0.02 <= z_HI <= 0.093; 45 <= incl <= 80 deg; log M_HI >= 9.0; W50 >= 80 km/s and sigma_W50/W50 <= 0.15; SNR_3D >= 8
+  chain   W_c = (W50 - delta)/(1+z), delta = 0; V = W_c/(2 sin i), catalogue inclination; M_gas = 1.33 M_HI; M_b = M_gas + M* (BAGPIPES);
+          R = D_HI/2, D_HI = 10^(0.506 log M_HI - 3.293) kpc; g_bar = G M_b/R^2; g_obs = V^2/R; CFG223's median-residual s* (hzq_core), nu_mono,
+          canonical a0 9.3603e-11 (alt 1.1312e-10 for M1); bootstrap over galaxies B = 4,000; windows = z_HI terciles W1 (nearest), W2, W3
+  A1      a0_BTFR = V^4/(G M_b): median + bootstrap 68/95 % on (i) all survivors, (ii) M_gas > M*, (iii) y < 0.5 at D_HI/2; both footings
+Run order: STAGE=A ; STAGE=SELFTEST ; STAGE=CC2 ; STAGE=B ; STAGE=B MUTATE=1 ; STAGE=B MUTATE=2 ; STAGE=M5   (each writes its own .out and _results.json)
+
+STAGE B  *** DRYRUN: FABRICATED widths (law at s_true = 2, 0.15 dex scatter, 10 % errors); the real widths are not loaded; a code test, not a measurement ***
+catalogue data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv sha256 bcf9e8558bc56448; 293 rows; width columns loaded as data: False
+  [PASS] B-C0 CONTROL: the survivors and the windows equal stage A's (IDs, in order)
+         N 47 (stage A 47); identical True
+
+STAGE B  THE MEASUREMENT
+  [PASS] B1 CONTROL: every survivor has W - delta > 0 (no galaxy dropped by the chain)
+         dropped 0 of 47
+  matching W1 -> W3 NOT POSSIBLE (decided at stage A: per-bin counts [8, 3, 2, 2], need >= 3); the unmatched W1 is used
+  matching W2 -> W3 NOT POSSIBLE (decided at stage A: per-bin counts [4, 3, 6, 2], need >= 3); the unmatched W2 is used
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 (pooled)
+         |d log10 a0| = 0.0e+00
+
+CALIBRATION CONTROLS (frozen, section 3; evaluated before the a0 numbers below are printed)
+  [FAIL (not load-bearing)] CC1 (calibration control; a finding, not a code failure): W1 s* within +-0.15 dex of 1.282 AND of CFG281's 1.449, recipe half-width <= 0.20 dex
+         W1 s* 2.0910: +0.2125 dex vs 1.282, +0.1592 dex vs 1.449; recipe half-width 0.149 (with the sin 60 sensitivity 0.295)
+  [PASS (not load-bearing)] CC2 (calibration control, from STAGE=CC2): SPARC closure within +-0.15 dex of 1.282
+         s* 1.3044: offset +0.0075 dex
+  [PASS (not load-bearing)] CC3 (calibration control; a finding): |log10 s*(W3) - log10 s*(W1)| <= 0.10 dex
+         drift -0.0609 dex
+  [PASS (not load-bearing)] CC4 (from STAGE=SELFTEST): the estimator recovers s_true = 2 on fabricated widths
+         bias -0.0128 dex, coverage 93/100
+  D1 CALIBRATION STATUS (CC1-CC3): NOT CALIBRATED (failed: CC1)
+
+D2  THE LEVEL (s* = implied a0 / 9.3603e-11; a0 = s* x 9.3603e-11 m/s^2; bootstrap over galaxies, B = 4,000)  -- every number in D2-D4 and A1: NOT CALIBRATED, not an a0 measurement
+  W1: N 16; s* = 2.0910 (log10 +0.3204); a0 = 1.9572e-10; SD 0.1625 dex; 68 % [1.0564, 2.3318], 95 % [0.7686, 2.9223]; no-root fraction 0.0000; recipe half-width 0.149 dex (0.295 with sin 60); bands -0.30/-0.15/+0.15/+0.30: 4.487, 3.084, 1.389, 0.893; y Q1/med/Q3 [0.028 0.033 0.037]; z median 0.0420, median D_L 185.3 Mpc   [NOT CALIBRATED — not an a0 measurement]
+  W2: N 16; s* = 1.3892 (log10 +0.1428); a0 = 1.3003e-10; SD 0.0431 dex; 68 % [1.2319, 1.4693], 95 % [1.0388, 1.6638]; no-root fraction 0.0000; recipe half-width 0.152 dex (0.152 with sin 60); bands -0.30/-0.15/+0.15/+0.30: 2.985, 2.051, 0.919, 0.573; y Q1/med/Q3 [0.028 0.034 0.049]; z median 0.0668, median D_L 300.2 Mpc   [NOT CALIBRATED — not an a0 measurement]
+  W3: N 15; s* = 1.8175 (log10 +0.2595); a0 = 1.7012e-10; SD 0.0832 dex; 68 % [1.5735, 2.4959], 95 % [1.5372, 2.6977]; no-root fraction 0.0000; recipe half-width 0.104 dex (0.113 with sin 60); bands -0.30/-0.15/+0.15/+0.30: 3.849, 2.657, 1.223, 0.803; y Q1/med/Q3 [0.027 0.032 0.04 ]; z median 0.0810, median D_L 368.0 Mpc   [NOT CALIBRATED — not an a0 measurement]
+  pooled: N 47; s* = 1.5614 (log10 +0.1935); a0 = 1.4615e-10; SD 0.0553 dex; 68 % [1.4532, 1.8175], 95 % [1.2595, 2.1179]; no-root fraction 0.0000; recipe half-width 0.146 dex (0.150 with sin 60); bands -0.30/-0.15/+0.15/+0.30: 3.381, 2.315, 1.028, 0.652; y Q1/med/Q3 [0.028 0.033 0.042]   [NOT CALIBRATED — not an a0 measurement]
+  recipe knobs (pooled; half-width, dex): delta = 11 km/s (primary 0): 0.090; M* zero point +-0.25 dex: 0.106; D_HI (R) scale +-0.15 dex: 0.026; H0 = 67.4 (primary 70): 0.036; isotropic sin 60 deg (the draft's sensitivity): 0.034; quadrature (draft knobs) 0.146, with sin 60 0.150   [NOT CALIBRATED — not an a0 measurement]
+  recipe knobs (W1; half-width, dex): delta = 11 km/s (primary 0): 0.084; M* zero point +-0.25 dex: 0.115; D_HI (R) scale +-0.15 dex: 0.023; H0 = 67.4 (primary 70): 0.035; isotropic sin 60 deg (the draft's sensitivity): 0.255; quadrature (draft knobs) 0.149, with sin 60 0.295   [NOT CALIBRATED — not an a0 measurement]
+
+D3  THE DISTANCE TREND   [NOT CALIBRATED — not an a0 measurement]
+  median D_L of W1/W2/W3: 185.3, 300.2, 368.0 Mpc
+  slope d log10 s* / d log10 D_L, W1/W2/W3 (primary): -0.321; joint bootstrap median -0.144, 68 % [-0.537, +0.720], 95 % [-0.918, +1.514]   [NOT CALIBRATED — not an a0 measurement]
+  slope, unmatched W1/W2/W3 (variant): -0.321; bootstrap 68 % [-0.537, +0.720], 95 % [-0.918, +1.514]   [NOT CALIBRATED — not an a0 measurement]
+  rho(W2/W1) = 0.6644 (log10 -0.1776 +- 0.1685 statistics; recipe half-width of log rho 0.0353; total 0.1721): pull against rho = 1 -1.05 (statistics), -1.03 (with the recipe width)   [NOT CALIBRATED — not an a0 measurement]
+  rho(W3/W1) = 0.8692 (log10 -0.0609 +- 0.1825 statistics; recipe half-width of log rho 0.0713; total 0.1960): pull against rho = 1 -0.33 (statistics), -0.31 (with the recipe width)   [NOT CALIBRATED — not an a0 measurement]
+  the rival's lever between W1 and W3 (z 0.0420 -> 0.0810): log10 E ratio +0.0085 dex, against a statistics-only width of log rho(W3) of 0.183 dex: this lane cannot separate FLAT from a0 ~ H(z)
+  CFG281 (ALFALFA, the BUDHIES chain): s* 1.611 at 20-50 Mpc, 1.265 at 50-85 Mpc: change -0.105 dex over a factor ~2 in distance (CFG281 recorded the drift 0.105 and fitted no slope); BUDHIES/ALFALFA rho = 0.180 at z = 0.2 (log10 -0.746)
+
+D4  EXTRAPOLATION, NOT A RESULT: if the primary slope continued from W3 (median D_L 368.0 Mpc) to the BUDHIES distance (z 0.1960, D_L 958 Mpc, H0 70): d log10 s* = -0.321 x 0.416 = -0.133 dex (bootstrap 68 % [-0.223, +0.299], 95 % [-0.381, +0.629]); for scale, BUDHIES/ALFALFA log10 rho = -0.746 (CFG281)   [NOT CALIBRATED — not an a0 measurement]
+
+A1  THE DIRECT BTFR ROWS: a0_BTFR = V^4/(G M_b) per galaxy (deep-MOND limit; overestimates a0 where y is not small); median and bootstrap (B = 4,000)   [NOT CALIBRATED — not an a0 measurement]
+  (i) all survivors: N 47 (median y 0.033); median 1.7124e-10 m/s^2; 68 % [1.5904e-10, 1.9474e-10], 95 % [1.4936e-10, 2.2086e-10]; vs canonical 9.3603e-11: +0.262 dex (68 % [+0.230, +0.318]); vs alt 1.1312e-10: +0.180 dex (68 % [+0.148, +0.236]); recipe half-width 0.122 dex (M* +-0.25 dex 0.094; isotropic sin 60 deg 0.025; delta = 11 km/s 0.074)   [NOT CALIBRATED — not an a0 measurement]
+      diagnostic (baryons only, added after STAGE=CC2): kernel factor median(y nu_mono(y)^2) = 1.197 at a0 = 9.3603e-11 (+0.078 dex), 1.172 at the SPARC scale 1.20e-10 (+0.069 dex): a population on the nu_mono law at that a0 would show a BTFR median about this factor above a0; the SPARC BTFR level of the same recipe is 1.526e-10 (STAGE=CC2)
+  (ii) gas-dominated (M_gas > M*): N 37 (median y 0.029); median 1.9065e-10 m/s^2; 68 % [1.5904e-10, 2.2086e-10], 95 % [1.4936e-10, 2.5375e-10]; vs canonical 9.3603e-11: +0.309 dex (68 % [+0.230, +0.373]); vs alt 1.1312e-10: +0.227 dex (68 % [+0.148, +0.291]); recipe half-width 0.124 dex (M* +-0.25 dex 0.085; isotropic sin 60 deg 0.041; delta = 11 km/s 0.080)   [NOT CALIBRATED — not an a0 measurement]
+      diagnostic (baryons only, added after STAGE=CC2): kernel factor median(y nu_mono(y)^2) = 1.183 at a0 = 9.3603e-11 (+0.073 dex), 1.160 at the SPARC scale 1.20e-10 (+0.064 dex): a population on the nu_mono law at that a0 would show a BTFR median about this factor above a0; the SPARC BTFR level of the same recipe is 1.526e-10 (STAGE=CC2)
+  (iii) deep (y < 0.5 at D_HI/2): N 47 (median y 0.033); median 1.7124e-10 m/s^2; 68 % [1.5904e-10, 1.9474e-10], 95 % [1.4936e-10, 2.3019e-10]; vs canonical 9.3603e-11: +0.262 dex (68 % [+0.230, +0.318]); vs alt 1.1312e-10: +0.180 dex (68 % [+0.148, +0.236]); recipe half-width 0.122 dex (M* +-0.25 dex 0.094; isotropic sin 60 deg 0.025; delta = 11 km/s 0.074)   [NOT CALIBRATED — not an a0 measurement]
+      diagnostic (baryons only, added after STAGE=CC2): kernel factor median(y nu_mono(y)^2) = 1.197 at a0 = 9.3603e-11 (+0.078 dex), 1.172 at the SPARC scale 1.20e-10 (+0.069 dex): a population on the nu_mono law at that a0 would show a BTFR median about this factor above a0; the SPARC BTFR level of the same recipe is 1.526e-10 (STAGE=CC2)
+  (with y on the alt footing the deep subset would hold 47 galaxies; the frozen definition uses the canonical footing)
+  gas-dominated minus deep: +0.047 dex
+
+HAND ESTIMATES (A3, frozen; HE1 was scored at stage A, HE4 at STAGE=CC2):
+    HE2: s*(W1) 2.0910 (estimate 1.4 +- 0.3): MISS (kept as it falls)
+    HE3: |log10 s*(W3)/s*(W1)| 0.0609 (<= 0.3): hit
+    HE5: deep-subset BTFR median 1.7124e-10 (estimate 1.2e-10, plausible 0.7-2.0e-10): hit
+    HE6: gas-dominated minus deep +0.0466 dex (within +-0.15): hit
+
+6/7 checks pass; load-bearing failures: 0   (3 s)

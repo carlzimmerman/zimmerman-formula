@@ -1,0 +1,41 @@
+CFG301 -- the MIGHTEE-HI DR1 (COSMOS) catalogue width -> V -> baryon chain: a same-pipeline LOCAL a0 / calibration measurement and a distance-trend test,
+plus the direct BTFR row of amendment A1.  kappa = 1/2 is FITTED.  No verdict words.
+At z <= 0.093 this lane CANNOT separate FLAT from a0 ~ H(z) (the rival's lever is E(0.093) ~ 1.045, 2-4.5 % in a0): it measures the chain's local level
+and the drift of that level with distance.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/FROZEN_CRITERIA.md (2555ab142).
+  cut     golden sample (five flags 0); 0.02 <= z_HI <= 0.093; 45 <= incl <= 80 deg; log M_HI >= 9.0; W50 >= 80 km/s and sigma_W50/W50 <= 0.15; SNR_3D >= 8
+  chain   W_c = (W50 - delta)/(1+z), delta = 0; V = W_c/(2 sin i), catalogue inclination; M_gas = 1.33 M_HI; M_b = M_gas + M* (BAGPIPES);
+          R = D_HI/2, D_HI = 10^(0.506 log M_HI - 3.293) kpc; g_bar = G M_b/R^2; g_obs = V^2/R; CFG223's median-residual s* (hzq_core), nu_mono,
+          canonical a0 9.3603e-11 (alt 1.1312e-10 for M1); bootstrap over galaxies B = 4,000; windows = z_HI terciles W1 (nearest), W2, W3
+  A1      a0_BTFR = V^4/(G M_b): median + bootstrap 68/95 % on (i) all survivors, (ii) M_gas > M*, (iii) y < 0.5 at D_HI/2; both footings
+Run order: STAGE=A ; STAGE=SELFTEST ; STAGE=CC2 ; STAGE=B ; STAGE=B MUTATE=1 ; STAGE=B MUTATE=2 ; STAGE=M5   (each writes its own .out and _results.json)
+
+STAGE A
+catalogue data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv sha256 bcf9e8558bc56448; 293 rows; width columns loaded as data: False
+
+STAGE A  COUNTS ONLY (the width columns are read by the cut code for cut (e) and discarded; no width, V, g_obs or s* is computed or printed)
+  [PASS] A1 CONTROL (loader): 293 rows, the 43 expected column names in order, sha256 prefix bcf9e8558bc56448, unique IDs; the data frame carries no width column
+         rows 293; header match True (43 columns); sha bcf9e8558bc56448; IDs unique True; width columns in the frame []
+selection: catalogue 293 -> (a) golden sample: five flags 0 202 -> (b) 0.02 <= z_HI <= 0.093 188 -> (c) 45 <= incl <= 80 deg 122 -> (d) log M_HI >= 9.0 78 -> (e) W50 >= 80 km/s and sigma_W50/W50 <= 0.15 70 -> (f) SNR_3D >= 8 47 -> (g) valid inputs (finite; log M* > 0) 47
+parent (all cuts except (e), for the SELFTEST's width-cut variant): (a) golden sample: five flags 0 202 -> (b) 0.02 <= z_HI <= 0.093 188 -> (c) 45 <= incl <= 80 deg 122 -> (d) log M_HI >= 9.0 78 -> (e) not applied (parent) 78 -> (f) SNR_3D >= 8 50 -> (g) valid inputs (finite; log M* > 0) 50
+  [PASS] A2 CONTROL: the estimator used here (hzq_core / a0implied) equals CFG223's original bit for bit and cfg260_core.implied to 1e-12 on 200 random sets
+         bit-identical to CFG223 True; cfg260_core within 1e-12 True
+  [PASS] A3 CONTROL: three equal-count windows (sizes differ by at most 1) partition the survivors in z order
+         sizes [16, 16, 15]; N 47
+  [PASS (not load-bearing)] A4 (reported) the catalogue's M_HI identity log M_HI = log10(49.7 D_L^2 S_HI[Jy Hz]) over the survivors
+         max deviation 0.0060 dex, median 0.0026 (a form from memory; not load-bearing)
+  [PASS (not load-bearing)] A5 (reported) D_L_Mpc equals flat LCDM (H0 70, Omega_M 0.3) at z_HI to 0.5 % (the catalogue's stated distances; the basis of the H0 knob)
+         max |D_L/D_L(z) - 1| 0.0045, median 0.00038
+
+A-COUNTS  windows (z_HI terciles) and the baryon side (no width)
+    W1: N 16; z 0.0266-0.0476 (median 0.0420); median D_L 185.3 Mpc; log M_HI min/Q1/med/Q3/max [ 9.28   9.447  9.605  9.773 10.21 ]; y 5/25/50/75/95 % [0.027 0.028 0.033 0.037 0.068]; fraction y < 0.5 1.00; gas fraction median 0.70; gas-dominated 14
+    W2: N 16; z 0.0506-0.0756 (median 0.0668); median D_L 300.2 Mpc; log M_HI min/Q1/med/Q3/max [ 9.25   9.62   9.79   9.955 10.19 ]; y 5/25/50/75/95 % [0.026 0.028 0.034 0.049 0.063]; fraction y < 0.5 1.00; gas fraction median 0.69; gas-dominated 11
+    W3: N 15; z 0.0773-0.0930 (median 0.0810); median D_L 368.0 Mpc; log M_HI min/Q1/med/Q3/max [ 9.38   9.655  9.76  10.065 10.38 ]; y 5/25/50/75/95 % [0.024 0.027 0.032 0.04  0.057]; fraction y < 0.5 1.00; gas fraction median 0.74; gas-dominated 12
+    pooled: N 47; y 5/25/50/75/95 % [0.025 0.028 0.033 0.042 0.063]; deep subset (y < 0.5) 47; gas-dominated subset (M_gas > M*) 37; gas fraction median 0.70; R median 21.3 kpc; log M_HI median 9.730; log M* median 9.450
+    matching W1 -> W3's log M_HI quartile bins [ 9.38   9.655  9.76  10.065 10.38 ]: W3 per bin [4, 3, 4, 4], W1 per bin [8, 3, 2, 2] (1 outside W3's range); POSSIBLE (>= 3 per bin): False
+    matching W2 -> W3's log M_HI quartile bins [ 9.38   9.655  9.76  10.065 10.38 ]: W3 per bin [4, 3, 4, 4], W2 per bin [4, 3, 6, 2] (1 outside W3's range); POSSIBLE (>= 3 per bin): False
+
+HAND ESTIMATE (A3, frozen): HE1 survivors N = 47 (estimate ~70, plausible 40-120): hit
+
+5/5 checks pass; load-bearing failures: 0   (2 s)
