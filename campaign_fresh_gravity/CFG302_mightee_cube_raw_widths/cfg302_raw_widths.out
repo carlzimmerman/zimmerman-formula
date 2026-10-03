@@ -1,0 +1,87 @@
+CFG302 raw widths / fluxes from the MIGHTEE-HI DR1 r1p0 cubes   MUTATE=0   frozen criteria 7d317dd4f
+cube folder: ../_external_data/mightee_hi_dr1 (relative to the repository root); catalogue: data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv
+
+== Self-tests on synthetic data (no voxel) ==
+  [PASS] S1 the width rule on a noise-free channelised double-horn (box 150 km/s, 25 % trough, edges sigma 8 km/s) returns W50 within 3 km/s of the fine-grid truth
+         W50 152.44 vs truth 151.85 km/s (W20 168.42 vs 164.77); channel 5.845 km/s; integral 1000.0000 of 1000
+  [PASS] S2 a synthetic point source (76 arcsec beam, 8 arcsec pixels) in a zero block: aperture flux / truth in [0.99, 1.005]
+         0.99800
+  [PASS] S3 the PV code on a synthetic 8-beam disc (flat 200 km/s, i = 60 deg, 75 arcsec beam, noise) finds >= 3 bins per side, |rho| >= 0.8, receding side as built
+         beams across 8.24; bins +4/-4; rho -0.950 (expected sign -1); points [(-4, 169.0), (-3, 164.9), (-2, 158.8), (-1, 133.2), (0, -28.4), (1, -141.3), (2, -156.2), (3, -158.5), (4, -147.2)]
+
+== Integrity and grid ==
+  [PASS] C-INT the four sub-cubes match FETCH_MANIFEST.jsonl (size and sha256)
+         0001-1055: 6076831680 B, sha256 2ecaa53f78413f19..., match; 1001-2055: 6076831680 B, sha256 ec91cd8a3f42c8cf..., match; 2001-3055: 6076831680 B, sha256 0819f94f425b1d44..., match; 3001-4055: 6076831680 B, sha256 d6a1ff63bb4a339b..., match
+  [PASS] C-GRID every sub-cube's frequency axis sits on the global grid (1290.123036077 MHz + g x 26.12484126 kHz) to 1 Hz, CTYPE3 FREQ, BUNIT Jy/beam
+         0001-1055: first channel offset +0.000 Hz, CDELT3 offset +0.00e+00 Hz, BUNIT 'Jy/beam', beam TUNIT 'arcmin'; 1001-2055: first channel offset +0.000 Hz, CDELT3 offset +0.00e+00 Hz, BUNIT 'Jy/beam', beam TUNIT 'arcsec'; 2001-3055: first channel offset -0.001 Hz, CDELT3 offset +0.00e+00 Hz, BUNIT 'Jy/beam', beam TUNIT 'arcsec'; 3001-4055: first channel offset -0.000 Hz, CDELT3 offset +0.00e+00 Hz, BUNIT 'Jy/beam', beam TUNIT 'arcsec'
+beams (valid channels): median 75.85 arcsec, range 62.22-77.26; invalid global channels 384 (g 0-383); per-sub-cube medians [77.26, 76.58, 75.6, 74.73]; pixel 8.0 arcsec; beam area at 76 arcsec 102.3 px
+
+catalogue rows 293; golden 202; sample (golden, 0.02 <= z <= 0.093) 188
+  ... 25/190 measured (11 s)
+  ... 50/190 measured (12 s)
+  ... 75/190 measured (13 s)
+  ... 100/190 measured (13 s)
+  ... 125/190 measured (14 s)
+  ... 150/190 measured (15 s)
+  ... 175/190 measured (15 s)
+
+measured 190 (sample 188 + controls T1, T3); flags in the sample: BEAMFLAG 7, STITCH 26, EDGE 0, NAN 2, TRUNC 0, NBFLAG 38; O undefined 0; primary set 179
+noise: median sigma_ch 0.354 mJy per channel in the aperture (range 0.170-2.097); f_corr median 0.806 (range 0.377-2.064); f_corr flagged 0; baseline median / sigma_ch: median -0.001
+
+== Measurement (primary set 179) ==
+detected (S/N_L >= 5): 58; width-defined (W50): 58; W20 defined: 45; MC-unstable W50 (defined fraction < 0.5) among width-defined: 0
+S/N_L: median 2.00, quartiles 0.57/8.42; catalogue SNR_3D median 8.80; Spearman(S/N_L, SNR_3D) 0.638
+
+WIDTHS (W50_ours / W50_cat, rest-frame ours), n = 58: median log ratio -0.0224 dex (ratio 0.950), robust scatter 0.0391 dex, mean +0.0226, std 0.1939
+  outliers beyond 3 robust sigma: 10: [('MGTH_J100222.5+030247', 134.9, 39.0), ('MGTH_J095713.6+020705', 554.0, 89.0), ('MGTH_J095641.0+021014', 679.3, 390.0), ('MGTH_J100349.3+021616', 77.1, 107.0), ('MGTH_J100058.6+022522', 204.9, 132.0), ('MGTH_J100137.0+020623', 301.8, 67.0), ('MGTH_J100236.5+014618', 436.7, 97.0), ('MGTH_J100143.6+021953', 67.2, 129.0), ('MGTH_J100320.1+015351', 65.8, 93.0), ('MGTH_J095919.3+025959', 469.5, 250.0)]
+  pull outliers |W50 - W50_cat| > 3 sqrt(err^2 + err_cat^2): 4 of 58 (6.9 %); median |pull| 0.72; median W50 error ours 12.4 km/s, catalogue 7.0
+  secondary: without NBFLAG n = 43, median -0.0246, scatter 0.0332; Spearman(R_W, z) -0.055, Spearman(R_W, S/N_L) -0.049; observed-frame (1+z) variant median +0.0025 dex
+  W20 (no catalogue W20): median W20/W50 ours 1.450 over 45 with W20 defined
+
+FLUXES (S_win / S_cat): all primary n = 179: median ratio 0.222, robust scatter 0.298
+  detected with S_win > 0, n = 58: median log ratio -0.3035 dex (ratio 0.497), robust scatter 0.2427, mean -0.2522, std 0.3573
+  outliers beyond 3 robust sigma: 3: [('MGTH_J100222.5+030247', 2314.0, 59.65), ('MGTH_J095713.0+015456', 3184.0, 867.87), ('MGTH_J100058.6+022522', 657.0, 156.71)]
+  pull outliers: 46 of 58 (79.3 %); median pull -5.61
+  secondary: S_L median log ratio -0.3081 (n 58); without NBFLAG -0.3850 (n 43); Spearman(R_S, z) -0.325, Spearman(R_S, S/N_L) +0.542
+
+SIZE SCREEN: 3-sigma moment-0 extent (deconvolved, beams) over the sample: median 0.89, max 3.10 (MGTH_J095713.0+015456); >= 6 beams: 0; footprint undefined 45; footprints touching the box edge 0; T1 2.90 beams
+
+== Map entries (the only verdict words; findings, not controls) ==
+  WIDTH-SCALE AGREES (median -0.0224 dex, tolerance 0.03); WIDTH-SCATTER CONSISTENT WITH THE ERRORS (4/58 pull outliers)
+  FLUX-SCALE DIFFERS (lower) (median -0.3035 dex, tolerance 0.05); FLUX-SCATTER NOT CONSISTENT (46/58 pull outliers)
+  Resolved rotation curves at r1p0: 0 (no source reaches 6 beams; no PV extraction ran on the data)
+
+== Controls ==
+  [PASS] C-OFF(a) line-free control: |S/N_L| >= 5 in the offset window for <= 5 % of the primary set (catalogued neighbours inside O not counted)
+         0 of 170 (0.0 %); excluded for a neighbour in O: 9 ['MGTH_J100143.8+031056', 'MGTH_J100147.1+022452', 'MGTH_J100156.5+022253', 'MGTH_J095954.5+020017', 'MGTH_J095901.7+023700', 'MGTH_J100014.4+020023', 'MGTH_J100157.1+015039', 'MGTH_J100218.4+014542', 'MGTH_J100210.0+014901']; O undefined: 0; listed: []
+  [FAIL] C-OFF(b) the robust std of S/N_win in the offset windows is in [0.75, 1.33] (the noise model calibrates)
+         0.489 (plain std 0.604; S/N_L robust std 0.497; n 179)
+  [PASS] C-OFF(c) the median S/N_win in the offset windows is within +-0.5 (no baseline offset)
+         +0.058
+  [PASS] INJ(a) synthetic HI in real noise: median log10(W50_rec / W50_true) over width-defined injections within +-0.03 dex
+         -0.0040 dex over 125 (robust scatter 0.0174); injection detection 127/179 vs main run 58/179
+  [PASS] INJ(b) median log10(S_win,rec / S_injected) within +-0.03 dex
+         +0.0018 dex over 176 (robust scatter 0.0275)
+  [PASS] INJ(c) the robust std of the width pulls (W50_rec - W50_true)/sigma_W50 is in [0.4, 1.5]
+         0.867 (median pull -0.073)
+  injection width bias by injected S/N_L tercile (edges 10.5, 24.0): [0.0029, -0.0059, -0.0041] dex
+  [PASS] C-T1 cross-instrument: T1's r1p0 W50 within max(25 km/s, 3 sigma) of CFG300's frozen r0p0 W50
+         r1p0 384.6 +- 3.2 km/s (S/N_L 62.2) vs CFG300 r0p0 380.1; tolerance 25.0; catalogue 392 +- 12; CFG300 unmasked 374.1 / 380.9
+  T1 flux r1p0 / catalogue 0.964 (CFG300: 0.569 masked r0p0, 0.76 unmasked r0p0, 0.85 r0p5); NBFLAG 1 (MGTH_J100352.4+022534); W20 406.5; extent 2.90 beams
+  T2 (in the sample): W50 148.9 +- 77.5 (CFG300 r0p0 140.5 masked, 145.9 / 157.0 unmasked; catalogue 167 +- 7); flux ratio 0.381 (CFG300 0.235 masked, 0.36 unmasked); S/N_L 8.3
+  T3 (control, not golden): W50 77.4 +- 6.7 (CFG300 74.6 masked, 86.3 / 81.9 unmasked; catalogue 101 +- 7); flux ratio 0.615 (CFG300 0.586 masked, 0.71 unmasked); S/N_L 19.6
+  [PASS] C-BEAM the header beam vs the data: median FWHM_eq / theta over the 20 highest-S/N detections in [0.85, 1.6]
+         0.952 (range 0.871-1.467)
+
+== Hand estimates (frozen; scored as they fall) ==
+  HE1 (detected 58 in 90-175): MISS (kept as it falls)
+  HE2 (median S_win/S_cat 0.222 in 0.70-1.10): MISS (kept as it falls)
+  HE3 (median W50 ratio 0.950 in 0.85-1.05): hit
+  HE4 (sources >= 6 beams: 0 (expected 0)): hit
+  HE5 (C-OFF, INJ, C-BEAM pass (M1-M3 scored in the MUTATE run)): MISS (kept as it falls)
+  HE6 (C-T1 passes and T1 W50 384.6 in 340-440): hit
+  HE7 (largest extent 3.10 beams <= 4): hit
+
+per-galaxy CSV: cfg302_per_galaxy.csv (190 rows); peak resident memory 763 MB
+
+12/13 checks pass   (16 s)

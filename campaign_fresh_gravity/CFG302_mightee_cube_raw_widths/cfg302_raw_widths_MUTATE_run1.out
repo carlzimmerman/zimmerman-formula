@@ -1,0 +1,42 @@
+CFG302 raw widths / fluxes from the MIGHTEE-HI DR1 r1p0 cubes   MUTATE=1   frozen criteria 7d317dd4f
+cube folder: ../_external_data/mightee_hi_dr1 (relative to the repository root); catalogue: data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv
+
+== Self-tests on synthetic data (no voxel) ==
+  [PASS] S1 the width rule on a noise-free channelised double-horn (box 150 km/s, 25 % trough, edges sigma 8 km/s) returns W50 within 3 km/s of the fine-grid truth
+         W50 152.44 vs truth 151.85 km/s (W20 168.42 vs 164.77); channel 5.845 km/s; integral 1000.0000 of 1000
+  [PASS] S2 a synthetic point source (76 arcsec beam, 8 arcsec pixels) in a zero block: aperture flux / truth in [0.99, 1.005]
+         0.99800
+  [PASS] S3 the PV code on a synthetic 8-beam disc (flat 200 km/s, i = 60 deg, 75 arcsec beam, noise) finds >= 3 bins per side, |rho| >= 0.8, receding side as built
+         beams across 8.24; bins +4/-4; rho -0.950 (expected sign -1); points [(-4, 169.0), (-3, 164.9), (-2, 158.8), (-1, 133.2), (0, -28.4), (1, -141.3), (2, -156.2), (3, -158.5), (4, -147.2)]
+
+== Integrity and grid ==
+  [PASS] C-INT the four sub-cubes match FETCH_MANIFEST.jsonl (size)
+         0001-1055: 6076831680 B, sha256 not re-hashed in..., match; 1001-2055: 6076831680 B, sha256 not re-hashed in..., match; 2001-3055: 6076831680 B, sha256 not re-hashed in..., match; 3001-4055: 6076831680 B, sha256 not re-hashed in..., match
+  [PASS] C-GRID every sub-cube's frequency axis sits on the global grid (1290.123036077 MHz + g x 26.12484126 kHz) to 1 Hz, CTYPE3 FREQ, BUNIT Jy/beam
+         0001-1055: first channel offset +0.000 Hz, CDELT3 offset +0.00e+00 Hz, BUNIT 'Jy/beam', beam TUNIT 'arcmin'; 1001-2055: first channel offset +0.000 Hz, CDELT3 offset +0.00e+00 Hz, BUNIT 'Jy/beam', beam TUNIT 'arcsec'; 2001-3055: first channel offset -0.001 Hz, CDELT3 offset +0.00e+00 Hz, BUNIT 'Jy/beam', beam TUNIT 'arcsec'; 3001-4055: first channel offset -0.000 Hz, CDELT3 offset +0.00e+00 Hz, BUNIT 'Jy/beam', beam TUNIT 'arcsec'
+beams (valid channels): median 75.85 arcsec, range 62.22-77.26; invalid global channels 384 (g 0-383); per-sub-cube medians [77.26, 76.58, 75.6, 74.73]; pixel 8.0 arcsec; beam area at 76 arcsec 102.3 px
+
+catalogue rows 293; golden 202; sample (golden, 0.02 <= z <= 0.093) 188
+  ... 25/190 measured (1 s)
+  ... 50/190 measured (1 s)
+  ... 75/190 measured (2 s)
+  ... 100/190 measured (3 s)
+  ... 125/190 measured (3 s)
+  ... 150/190 measured (4 s)
+  ... 175/190 measured (4 s)
+
+measured 190 (sample 188 + controls T1, T3); flags in the sample: BEAMFLAG 7, STITCH 26, EDGE 0, NAN 2, TRUNC 0, NBFLAG 38; O undefined 0; primary set 179
+noise: median sigma_ch 0.352 mJy per channel in the aperture (range 0.164-2.165); f_corr median 0.847 (range 0.330-1.962); f_corr flagged 0; baseline median / sigma_ch: median +0.019
+
+== MUTATE=1: the whole pipeline centred on the off-line window O (primary set with O defined: 179) ==
+S/N_L in the shifted window: median +0.076, robust std 0.483; W50 values returned (any S/N) 112
+  [PASS] M1 width-defined in the shifted window for <= 5 % of the primary set (the widths collapse)
+         0 of 179 (0.0 %): []
+  [PASS] M2 detected (S/N_L >= 5) in the shifted window for <= 5 % of the primary set
+         0 of 179 (0.0 %)
+  [PASS] M3 T1's width collapses in the shifted window (undefined, or outside the C-T1 tolerance)
+         W50 1028.1 (defined False, S/N_L 0.11) vs CFG300 380.1, tolerance 977.9
+
+per-galaxy CSV: cfg302_per_galaxy_MUTATE.csv (190 rows); peak resident memory 761 MB
+
+8/8 checks pass   (5 s)

@@ -1,0 +1,337 @@
+{
+ "lane": "CFG302",
+ "frozen_criteria": "7d317dd4f",
+ "mutate": 0,
+ "cube_folder": "../_external_data/mightee_hi_dr1",
+ "checks": [
+  {
+   "name": "S1 the width rule on a noise-free channelised double-horn (box 150 km/s, 25 % trough, edges sigma 8 km/s) returns W50 within 3 km/s of the fine-grid truth",
+   "ok": true
+  },
+  {
+   "name": "S2 a synthetic point source (76 arcsec beam, 8 arcsec pixels) in a zero block: aperture flux / truth in [0.99, 1.005]",
+   "ok": true
+  },
+  {
+   "name": "S3 the PV code on a synthetic 8-beam disc (flat 200 km/s, i = 60 deg, 75 arcsec beam, noise) finds >= 3 bins per side, |rho| >= 0.8, receding side as built",
+   "ok": true
+  },
+  {
+   "name": "C-INT the four sub-cubes match FETCH_MANIFEST.jsonl (size and sha256)",
+   "ok": true
+  },
+  {
+   "name": "C-GRID every sub-cube's frequency axis sits on the global grid (1290.123036077 MHz + g x 26.12484126 kHz) to 1 Hz, CTYPE3 FREQ, BUNIT Jy/beam",
+   "ok": true
+  },
+  {
+   "name": "C-OFF(a) line-free control: |S/N_L| >= 5 in the offset window for <= 5 % of the primary set (catalogued neighbours inside O not counted)",
+   "ok": true
+  },
+  {
+   "name": "C-OFF(b) the robust std of S/N_win in the offset windows is in [0.75, 1.33] (the noise model calibrates)",
+   "ok": false
+  },
+  {
+   "name": "C-OFF(c) the median S/N_win in the offset windows is within +-0.5 (no baseline offset)",
+   "ok": true
+  },
+  {
+   "name": "INJ(a) synthetic HI in real noise: median log10(W50_rec / W50_true) over width-defined injections within +-0.03 dex",
+   "ok": true
+  },
+  {
+   "name": "INJ(b) median log10(S_win,rec / S_injected) within +-0.03 dex",
+   "ok": true
+  },
+  {
+   "name": "INJ(c) the robust std of the width pulls (W50_rec - W50_true)/sigma_W50 is in [0.4, 1.5]",
+   "ok": true
+  },
+  {
+   "name": "C-T1 cross-instrument: T1's r1p0 W50 within max(25 km/s, 3 sigma) of CFG300's frozen r0p0 W50",
+   "ok": true
+  },
+  {
+   "name": "C-BEAM the header beam vs the data: median FWHM_eq / theta over the 20 highest-S/N detections in [0.85, 1.6]",
+   "ok": true
+  }
+ ],
+ "n_pass": 12,
+ "n_checks": 13,
+ "numbers": {
+  "selftest": {
+   "S1": {
+    "W50": 152.43604364383242,
+    "truth": 151.85285256111288,
+    "W20": 168.422605047731,
+    "truth20": 164.7709411189287
+   },
+   "S2": 0.9979956311602589,
+   "S3": {
+    "beams": 8.237488080995055,
+    "pv": {
+     "points": [
+      [
+       -4,
+       169.04728386629063
+      ],
+      [
+       -3,
+       164.904374253025
+      ],
+      [
+       -2,
+       158.80329778730703
+      ],
+      [
+       -1,
+       133.1707841802807
+      ],
+      [
+       0,
+       -28.353035585986454
+      ],
+      [
+       1,
+       -141.3403844294388
+      ],
+      [
+       2,
+       -156.17270787826266
+      ],
+      [
+       3,
+       -158.46793290391594
+      ],
+      [
+       4,
+       -147.16798502064484
+      ]
+     ],
+     "n_pos": 4,
+     "n_neg": 4,
+     "rho": -0.9500000000000001
+    }
+   }
+  },
+  "beam": {
+   "median_valid": 75.85199737548828,
+   "min_valid": 62.2151985168457,
+   "max_valid": 77.25959777832031,
+   "n_invalid": 384,
+   "per_cube_median": {
+    "0": 77.25959777832031,
+    "1": 76.57559967041016,
+    "2": 75.5999984741211,
+    "3": 74.7251968383789
+   }
+  },
+  "counts": {
+   "n_measured": 190,
+   "n_sample": 188,
+   "n_primary": 179,
+   "BEAMFLAG": 7,
+   "STITCH": 26,
+   "EDGE": 0,
+   "NAN": 2,
+   "TRUNC": 0,
+   "NBFLAG": 38,
+   "O_undefined": 0
+  },
+  "noise": {
+   "sigma_ch_median_mJy": 0.35350255991874213,
+   "f_corr_median": 0.8059682980255484,
+   "f_corr_min": 0.3769372336319577,
+   "f_corr_max": 2.0641887090485618
+  },
+  "widths": {
+   "n": 58,
+   "median": -0.02238535836199167,
+   "robust_scatter": 0.0390923427598296,
+   "mean": 0.0225532566994271,
+   "std": 0.193854908962514,
+   "outliers": [
+    "MGTH_J100222.5+030247",
+    "MGTH_J095713.6+020705",
+    "MGTH_J095641.0+021014",
+    "MGTH_J100349.3+021616",
+    "MGTH_J100058.6+022522",
+    "MGTH_J100137.0+020623",
+    "MGTH_J100236.5+014618",
+    "MGTH_J100143.6+021953",
+    "MGTH_J100320.1+015351",
+    "MGTH_J095919.3+025959"
+   ],
+   "pull_outliers": [
+    "MGTH_J100222.5+030247",
+    "MGTH_J095713.6+020705",
+    "MGTH_J100058.6+022522",
+    "MGTH_J100048.1+011413"
+   ],
+   "n_pull_out": 4,
+   "without_NB": {
+    "n": 43,
+    "median": -0.024553846538464614,
+    "robust_scatter": 0.033195850827062716,
+    "mean": -0.018068016141316746,
+    "std": 0.12559934479907156
+   },
+   "spearman_z": -0.055436772559903154,
+   "spearman_snr": -0.048571164908179275,
+   "obsframe_median": 0.002450180937457532,
+   "map": "AGREES",
+   "scatter_map": "CONSISTENT WITH THE ERRORS"
+  },
+  "fluxes": {
+   "all_linear": {
+    "n": 179,
+    "median": 0.2218516485031631,
+    "robust_scatter": 0.29751441571398674
+   },
+   "detected_log": {
+    "n": 58,
+    "median": -0.30352862034442457,
+    "robust_scatter": 0.242672430605212,
+    "mean": -0.25218816633167335,
+    "std": 0.3573216201553482
+   },
+   "outliers": [
+    "MGTH_J100222.5+030247",
+    "MGTH_J095713.0+015456",
+    "MGTH_J100058.6+022522"
+   ],
+   "pull_outliers": [
+    "MGTH_J100211.2+020117",
+    "MGTH_J100207.0+030327",
+    "MGTH_J100000.5+023759",
+    "MGTH_J095914.8+021131",
+    "MGTH_J095904.2+021517",
+    "MGTH_J095654.6+013159",
+    "MGTH_J095822.5+013505",
+    "MGTH_J095901.6+023259",
+    "MGTH_J100222.5+030247",
+    "MGTH_J095713.0+015456",
+    "MGTH_J095641.0+021014",
+    "MGTH_J095720.5+015506",
+    "MGTH_J100009.2+024247",
+    "MGTH_J095739.0+012402",
+    "MGTH_J100313.8+022030",
+    "MGTH_J100306.1+020637",
+    "MGTH_J100256.4+023440",
+    "MGTH_J100349.3+021616",
+    "MGTH_J100055.2+022343",
+    "MGTH_J100058.6+022522",
+    "MGTH_J100137.0+020623",
+    "MGTH_J100402.8+013741",
+    "MGTH_J100313.5+015343",
+    "MGTH_J100236.3+013039",
+    "MGTH_J100048.1+011413",
+    "MGTH_J100035.1+011432",
+    "MGTH_J100143.2+024109",
+    "MGTH_J095758.8+014009",
+    "MGTH_J095923.1+024137",
+    "MGTH_J095727.5+015921",
+    "MGTH_J100117.0+020337",
+    "MGTH_J100148.8+022629",
+    "MGTH_J100143.6+021953",
+    "MGTH_J100217.8+015124",
+    "MGTH_J100049.0+025833",
+    "MGTH_J100006.2+023808",
+    "MGTH_J100003.9+015253",
+    "MGTH_J100222.1+023934",
+    "MGTH_J095741.0+020415",
+    "MGTH_J100103.7+023053",
+    "MGTH_J095755.9+022608",
+    "MGTH_J095919.3+025959",
+    "MGTH_J100129.9+021705",
+    "MGTH_J095920.4+024626",
+    "MGTH_J100107.0+015416",
+    "MGTH_J095954.5+020017"
+   ],
+   "n_pull_out": 46,
+   "S_L": {
+    "n": 58,
+    "median": -0.3081471760315665,
+    "robust_scatter": 0.22348388446997408,
+    "mean": -0.24807748269552302,
+    "std": 0.30089756777778975
+   },
+   "without_NB": {
+    "n": 43,
+    "median": -0.38503174742577445,
+    "robust_scatter": 0.19928901237529933,
+    "mean": -0.3606971766278297,
+    "std": 0.18170210737754933
+   },
+   "map": "DIFFERS (lower)",
+   "scatter_map": "NOT CONSISTENT"
+  },
+  "detection": {
+   "n_detected": 58,
+   "n_width_defined": 58,
+   "snr_L_median": 2.002756528133516
+  },
+  "size": {
+   "median_beams": 0.889566128398968,
+   "max_beams": 3.103044731402844,
+   "max_id": "MGTH_J095713.0+015456",
+   "n_ge6": 0,
+   "resolved": 0,
+   "T1_beams": 2.900440506123633
+  },
+  "C_OFF": {
+   "n": 170,
+   "n_false": 0,
+   "robust_std_win": 0.4892935014758025,
+   "median_win": 0.05830488064396941,
+   "robust_std_L": 0.49681028869799815
+  },
+  "INJ": {
+   "n_width": 125,
+   "median_logW": -0.004010939214209681,
+   "scatter_logW": 0.017420764267519512,
+   "n_flux": 176,
+   "median_logS": 0.0018391788610003256,
+   "pull_robust_std": 0.8670834542766682,
+   "n_detected": 127,
+   "n_main_detected": 58,
+   "bias_by_snr_tercile": [
+    0.002939763995238185,
+    -0.005881121552195069,
+    -0.00408880536420549
+   ]
+  },
+  "C_T1": {
+   "W50": 384.5712178340737,
+   "W50_err": 3.182367997507299,
+   "cfg300": 380.11964785675605,
+   "tol": 25.0,
+   "ratio_S": 0.9637613536048514,
+   "snr_L": 62.20277332652316
+  },
+  "T2": {
+   "W50": 148.85869903686444,
+   "W50_err": 77.47952274925058,
+   "ratio_S": 0.3814932458099827,
+   "snr_L": 8.303196999889279
+  },
+  "T3": {
+   "W50": 77.38177410598372,
+   "W50_err": 6.655784954375811,
+   "ratio_S": 0.6154740578985648,
+   "snr_L": 19.64163728814748
+  },
+  "C_BEAM": 0.9524217949927554,
+  "hand_estimates": {
+   "HE1": false,
+   "HE2": false,
+   "HE3": true,
+   "HE4": true,
+   "HE5": false,
+   "HE6": true,
+   "HE7": true
+  }
+ },
+ "pv": {}
+}

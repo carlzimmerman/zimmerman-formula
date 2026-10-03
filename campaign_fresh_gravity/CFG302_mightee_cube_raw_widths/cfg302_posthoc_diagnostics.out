@@ -1,0 +1,40 @@
+CFG302 POST HOC diagnostics (not frozen; reading rules in the docstring, fixed before the first run)
+  [PASS] PH0 the re-extraction reproduces the frozen CSV's S_win and W50 to 1e-5 relative (the CSV now carries 10 significant figures) for every primary source
+         mismatches: []
+
+== PH1 noise at long lags (pooled over the primary set; F(n) = robust var of n-channel block sums / (n sigma_ch^2)) ==
+  n =    1: F = 1.004  (blocks 81135)
+  n =    2: F = 1.029  (blocks 40473)
+  n =    4: F = 0.976  (blocks 20124)
+  n =    8: F = 0.843  (blocks 9945)
+  n =   16: F = 0.613  (blocks 4865)
+  n =   32: F = 0.358  (blocks 2374)
+  n =   64: F = 0.236  (blocks 1083)
+  n =  128: F = 0.157  (blocks 535)
+  F(64)/F(8) = 0.280, F(128)/F(8) = 0.186 -> window-sum noise SUPPRESSED at long lags
+  PH1b C-OFF S/N with F(n) at each window's length: robust std S/N_win 1.053, S/N_L 0.809 (frozen: 0.489 / 0.497) -> PH1 explains the C-OFF(b) failure
+
+== PH2 recalibrated detection (k = robust std of S/N_L in the offset windows) ==
+  k = 0.497; calibrated threshold S/N_L >= 2.48: main 83/179; offset windows |S/N_L| >= thr 0/179; MUTATE S/N_L >= thr 0/179 (|.| 0) -> clean
+  recalibrated set n = 79: W50 median log ratio -0.0153 dex (robust scatter 0.0824); flux median log ratio -0.3850 dex (robust scatter 0.2623, n 79)
+
+== PH3 what the flux deficit depends on ==
+  all primary, median S_win/S_cat by SNR_3D tercile (edges 6.9, 11.3): [0.048, 0.226, 0.362] (n [62, 60, 57])
+  Spearman(log S_win/S_cat, SNR_3D) = +0.200 (p 0.077; n 79)
+  Spearman(log S_win/S_cat, W50_cat) = -0.338 (p 0.0024; n 79)
+  Spearman(log S_win/S_cat, z) = -0.411 (p 0.00017; n 79)
+  Spearman(log S_win/S_cat, log S_cat) = -0.014 (p 0.9; n 79)
+  Spearman(residual of log ratio after a linear fit in log SNR_3D, W50_cat) = -0.301 (p 0.007)
+  reading: no significant rise with SNR_3D by the rule; top-tercile median ratio 0.362; ratio falls with W50 at fixed SNR_3D (consistent with spectral filtering)
+
+== PH4 aperture completeness (recalibrated set) ==
+  median S(R)/S(1.5 theta): 1.0 theta 0.987, 2.0 theta 1.000, 2.5 theta 1.002 (point source 0.939, 1.002, 1.002); n 79; any off-image 0
+  reading: the frozen aperture is complete
+  all primary (any S/N): median S(2.5 theta)/S_cat 0.286 vs S(1.5 theta)/S_cat 0.222; non-finite 2.5 theta apertures 2
+
+== PH5 stacked spectra (recalibrated set; added after run 1) ==
+  n 79; stack mean over |u| < 1 (line): 0.596 +- 0.054 (catalogue = 1); flanks 1.2 < |u| < 3: +0.0593 +- 0.0576 (+1.03 sigma); far 4 < |u| < 8: +0.0680 +- 0.0679
+  stack profile (u: mean): -5.5: +0.163, -5.0: +0.110, -4.5: +0.135, -4.0: +0.133, -3.5: +0.041, -3.0: +0.084, -2.5: +0.114, -2.0: +0.157, -1.5: +0.054, -1.0: +0.382, -0.5: +0.688, -0.0: +0.586, +0.5: +0.622, +1.0: +0.230, +1.5: +0.040, +2.0: +0.078, +2.5: +0.010, +3.0: -0.015, +3.5: -0.002, +4.0: -0.028, +4.5: -0.060, +5.0: +0.022, +5.5: +0.060, +6.0: -0.025
+  reading: no bowl seen
+
+1/1 checks pass (post hoc; not frozen)

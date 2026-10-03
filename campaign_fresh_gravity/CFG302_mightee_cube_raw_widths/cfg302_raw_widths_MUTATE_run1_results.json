@@ -1,0 +1,139 @@
+{
+ "lane": "CFG302",
+ "frozen_criteria": "7d317dd4f",
+ "mutate": 1,
+ "cube_folder": "../_external_data/mightee_hi_dr1",
+ "checks": [
+  {
+   "name": "S1 the width rule on a noise-free channelised double-horn (box 150 km/s, 25 % trough, edges sigma 8 km/s) returns W50 within 3 km/s of the fine-grid truth",
+   "ok": true
+  },
+  {
+   "name": "S2 a synthetic point source (76 arcsec beam, 8 arcsec pixels) in a zero block: aperture flux / truth in [0.99, 1.005]",
+   "ok": true
+  },
+  {
+   "name": "S3 the PV code on a synthetic 8-beam disc (flat 200 km/s, i = 60 deg, 75 arcsec beam, noise) finds >= 3 bins per side, |rho| >= 0.8, receding side as built",
+   "ok": true
+  },
+  {
+   "name": "C-INT the four sub-cubes match FETCH_MANIFEST.jsonl (size)",
+   "ok": true
+  },
+  {
+   "name": "C-GRID every sub-cube's frequency axis sits on the global grid (1290.123036077 MHz + g x 26.12484126 kHz) to 1 Hz, CTYPE3 FREQ, BUNIT Jy/beam",
+   "ok": true
+  },
+  {
+   "name": "M1 width-defined in the shifted window for <= 5 % of the primary set (the widths collapse)",
+   "ok": true
+  },
+  {
+   "name": "M2 detected (S/N_L >= 5) in the shifted window for <= 5 % of the primary set",
+   "ok": true
+  },
+  {
+   "name": "M3 T1's width collapses in the shifted window (undefined, or outside the C-T1 tolerance)",
+   "ok": true
+  }
+ ],
+ "n_pass": 8,
+ "n_checks": 8,
+ "numbers": {
+  "selftest": {
+   "S1": {
+    "W50": 152.43604364383242,
+    "truth": 151.85285256111288,
+    "W20": 168.422605047731,
+    "truth20": 164.7709411189287
+   },
+   "S2": 0.9979956311602589,
+   "S3": {
+    "beams": 8.237488080995055,
+    "pv": {
+     "points": [
+      [
+       -4,
+       169.04728386629063
+      ],
+      [
+       -3,
+       164.904374253025
+      ],
+      [
+       -2,
+       158.80329778730703
+      ],
+      [
+       -1,
+       133.1707841802807
+      ],
+      [
+       0,
+       -28.353035585986454
+      ],
+      [
+       1,
+       -141.3403844294388
+      ],
+      [
+       2,
+       -156.17270787826266
+      ],
+      [
+       3,
+       -158.46793290391594
+      ],
+      [
+       4,
+       -147.16798502064484
+      ]
+     ],
+     "n_pos": 4,
+     "n_neg": 4,
+     "rho": -0.9500000000000001
+    }
+   }
+  },
+  "beam": {
+   "median_valid": 75.85199737548828,
+   "min_valid": 62.2151985168457,
+   "max_valid": 77.25959777832031,
+   "n_invalid": 384,
+   "per_cube_median": {
+    "0": 77.25959777832031,
+    "1": 76.57559967041016,
+    "2": 75.5999984741211,
+    "3": 74.7251968383789
+   }
+  },
+  "counts": {
+   "n_measured": 190,
+   "n_sample": 188,
+   "n_primary": 179,
+   "BEAMFLAG": 7,
+   "STITCH": 26,
+   "EDGE": 0,
+   "NAN": 2,
+   "TRUNC": 0,
+   "NBFLAG": 38,
+   "O_undefined": 0
+  },
+  "noise": {
+   "sigma_ch_median_mJy": 0.3521765395137352,
+   "f_corr_median": 0.8470663149710851,
+   "f_corr_min": 0.3298945523853152,
+   "f_corr_max": 1.9620170526526524
+  },
+  "MUTATE": {
+   "n": 179,
+   "n_width_defined": 0,
+   "n_detected": 0,
+   "snr_L_median": 0.07641726371894336,
+   "snr_L_robust_std": 0.4829552059554414,
+   "T1_W50": 1028.0846905854407,
+   "T1_snr_L": 0.11068893888806236
+  }
+ },
+ "pv": {}
+}
