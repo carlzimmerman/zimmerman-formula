@@ -1,34 +1,38 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-paper_numbers.py -- every number quoted in the MNRAS manuscript `mnras_a0_lambda_v3.tex` that is not printed by one
-of the repository estimators (those are re-run by reproduce_all.sh):
+paper_numbers.py -- every number quoted in the MNRAS manuscript `mnras_a0_lambda_v3.tex` (v3.1) that is not printed by
+one of the repository estimators (those are re-run here as subprocesses, or by reproduce_all.sh):
 
-    real_research/reviews/mi_btfr_intercept_kappa_door_2026.py          -> kappa = 0.465 +/- 0.076, the 9.47% floor
-    real_research/reviews/mi_distance_free_gbar_estimator_sparc_2026.py -> kappa = 0.551 +/- 0.043 (shape-only)
-    real_research/reviews/kappa_h0_convention_audit_2026.py             -> the H0-convention shifts
-    real_research/reviews/mi_a0_profile_likelihood_milgrom_footing_2026.py -> the like-for-like footing comparison (S7h)
+    real_research/reviews/mi_btfr_intercept_kappa_door_2026.py          -> estimator A on SPARC's tabulated distances, the floor
+    real_research/reviews/kappa_h0_convention_audit_2026.py             -> estimator A's Hubble-flow weight q_HF and its four conventions
+    real_research/reviews/mi_distance_free_gbar_estimator_sparc_2026.py -> the earlier form of estimator B (reproduce_all.sh step 2)
+    real_research/reviews/mi_a0_profile_likelihood_milgrom_footing_2026.py -> its committed output is REPLICATED here (estimator C, S3)
+
+THE H0 CONVENTION (v3.1).  SPARC's 97 Hubble-flow distances (f_D = 1) assume H0 = 73 (SPARC master table, note 2); rho_Lambda
+is built from H0 = 67.4.  Every SPARC kappa in the paper is computed with those distances multiplied by 73/67.4 (the
+"Planck-consistent" convention R1 of the repository audit; it divides g_obs of those galaxies by 1.083 and leaves g_bar
+unchanged).  The headline estimators are also given on SPARC's tabulated distances (MIXED) and with rho_Lambda rebuilt at
+H0 = 73 (R2a: Omega_Lambda fixed; R2b: Omega_m h^2 fixed): the convention box of S3.
 
 Sections (each ends in checks that CAN fail; exit code 1 if any does):
-    S1  the relation, step by step: rho_crit, rho_Lambda, c sqrt(G rho_Lambda), a0, the four equivalent forms, Z
-    S2  the standard radial-acceleration fit on SPARC and its mass-to-light degeneracy  (kappa against Upsilon_disc)
-    S3  the candidate coefficients, the mass-budget floor, and the H0 lock
-    S4  the redshift laws: constant, H(z), the LambdaCDM emergent scale (NFW + concentration-mass relation),
-        the density mapping under DESI DR2 w0-wa; the error amplification of the kernel inversion; the 20:1 rule;
-        (v3) the same rule with a COMMON-MODE baryonic-mass calibration error, which does not average down, and the
-        Fisher conditioning of a0 with the mass scale free (an independent re-computation of the CFG240 table)
-    S5  the closed-form inversion of the RC100 dark-matter fractions, on the CORRECTED transcription of Table 3
-        (v3; real_research/data/rc100_nestorshachar2023_table3_CORRECTED.csv, CFG289), with the original
-        transcription re-run beside it so that every number the correction moves is printed old -> new
-    S6  the deep regime (g_bar < 0.2 a0) in SPARC and MIGHTEE-HI: the per-galaxy slope against the kernel's own slope at the
-        same points, the amplitude and its dependence on the stellar mass-to-light convention, and the pitfall of ratios
-        fitted to the rotation curves themselves
-    S7  (v3) the high-redshift record after 2026-09-25, read from the committed outputs of the repository lanes that
-        produced it (MUSE-DARK by baryon route, KURVS, MIGHTEE-HI/LADUMA, z = 4-14, the gas-calibration bracket, the
-        source-table audit, and the like-for-like footing comparison of the coefficient).  A check that only confirms
-        that the text quotes a committed number is labelled 'identity': the evidence lies in the lane, which carries
-        its own frozen criteria and controls.  A check that re-derives a comparison from those numbers is 'data'.
-Both densities are carried throughout: rho_Lambda (a0 = 9.36e-11) and rho_crit (a0 = 1.13e-10).
+    S1  the relation, step by step: rho_crit, rho_Lambda, c sqrt(G rho_Lambda), a0, the equivalent forms
+    S2  the standard radial-acceleration fit on SPARC and its mass-to-light degeneracy; estimator B (shape only); injections
+    S3  estimators A, B, C (C = the profile likelihood with Upsilon free per galaxy, re-implemented with equation (nu)),
+        the convention box, the candidate coefficients, published values converted to kappa, the floor, the H0 lock
+    S4  the redshift laws; the error amplification; the gate and the HALO MASS it selects (v3.1: the decision value is the
+        LambdaCDM rise for that halo mass, not for 1e12 Msun); the design: expected log-odds, the probability of reaching
+        20:1 and of misleading evidence (Monte Carlo), the concentration-mass relation as a shared model systematic, the
+        common-mode baryonic-mass calibration, and the Fisher conditioning with the mass scale free (CFG240)
+    S5  the closed-form inversion of the RC100 dark-matter fractions (corrected transcription, CFG289), its calibration
+        drift, RC100's own internally flagged rows, and the prior-tracking of f_DM (CFG217 G2, read)
+    S6  the deep regime (g_bar < 0.2 a0) in SPARC and MIGHTEE-HI: slope, amplitude, the colour-group caveat, the pitfall
+    S7  the high-redshift record, read from committed lane outputs (MUSE-DARK, KURVS, MIGHTEE-HI/LADUMA, z >= 4, the gas
+        bracket, the source-table audit).  A check that only confirms that the text quotes a committed number, or that
+        re-does arithmetic on committed numbers, is labelled 'identity': the evidence lies in the lane.
+Check kinds: identity (no evidence), model (evaluates a published model), data (can fail on the data), injection (feeds an
+estimator synthetic data with a known answer).
+Both densities are carried throughout: rho_Lambda (a0 = 9.36e-11) and rho_crit (a0 = 1.13e-10).  kappa = 1/2 is FITTED.
 Run from anywhere:  python3 paper_numbers.py        Output: paper_numbers.json next to this file.
 """
 import os, sys, glob, json, math, re
@@ -50,7 +54,7 @@ KIND_TEXT = {"identity": "algebra or arithmetic on stated inputs: certifies the 
              "data": "can fail on the data",
              "injection": "feeds an estimator synthetic data with a KNOWN a0 (or trend) built on the real baryons: proves the estimator measures, not echoes"}
 def P(*a): print(*a, flush=True)
-KIND_BY_ID = {"S1a": "identity", "S1b": "identity", "S1c": "identity", "S2d": "identity", "S3a": "identity", "S3b": "identity",
+KIND_BY_ID = {"S1a": "identity", "S1b": "identity", "S1c": "identity", "S2d": "identity", "S2e": "identity", "S3a": "identity", "S3b": "identity",
               "S4a": "identity", "S4d": "identity", "S4e": "identity", "S4f": "identity", "S4j": "identity", "S4k": "identity", "S5a": "identity",
               "S4b": "model", "S4c": "model", "S4g": "model", "S4h": "model", "S4i": "model", "S4l": "model"}
 def check(name, ok, detail="", kind=None):
@@ -72,6 +76,9 @@ HBAR_EVS = 6.582119569e-16       # eV s
 EV = 1.602176634e-19             # J
 H0_KMS, OL, OM = 67.4, 0.685, 0.315          # Planck 2018 (rounded as in the text)
 H0_SHOES = 73.04                              # Riess et al. 2022
+H0_SPARC_HF = 73.0                            # the H0 behind SPARC's Hubble-flow distances (master table, note 2)
+HF_R1 = H0_SPARC_HF / H0_KMS                  # R1: those distances x 73/67.4 -> g_obs / 1.083 (g_bar is distance-free)
+OMH2 = OM * (H0_KMS / 100)**2                 # the CMB holds Omega_m h^2
 
 def nu(y):
     """The radial-acceleration function of McGaugh, Lelli & Schombert (2016); form of Milgrom & Sanders (2008)."""
@@ -114,9 +121,12 @@ l0 = c**2 / a0_L
 P(f"  l0 = c^2/a0 = {l0:.4e} m ;  Lambda l0^2 = {Lam*l0**2:.4f} ;  32 pi = {32*math.pi:.4f}")
 OUT["S1"] = dict(H0_si=H0, rho_crit=rho_crit, rho_L=rho_L, A_L=A_L, a0_L=a0_L, a0_C=a0_C, cH_L=c*H_L, cH0=c*H0, Lambda=Lam,
                  R_dS_Gpc=R_dS/MPC/1e3, Z=Z, M_Lambda_meV=M_L*1e3, M_P_eV=M_P)
+def A_L_at(h_kms, mode="OL"):
+    """c sqrt(G rho_Lambda) at another H0: Omega_Lambda fixed ('OL', R2a) or Omega_m h^2 fixed ('omh2', R2b)."""
+    Hs = h_kms * 1e3 / MPC; OLh = OL if mode == "OL" else 1 - OMH2 / (h_kms / 100)**2
+    return c * math.sqrt(G * OLh * 3 * Hs**2 / (8 * math.pi * G))
 check("S1a the four forms of the kappa = 1/2 relation are one number", max(abs(x/a0_L - 1) for x in (f2, f3, f4, a_nat)) < 1e-9,
       f"max relative difference {max(abs(x/a0_L - 1) for x in (f2, f3, f4, a_nat)):.1e}")
-check("S1b Z = sqrt(32 pi/3) identically (no data content: H cancels)", abs(Z - math.sqrt(32*math.pi/3)) < 1e-12, f"Z = {Z:.6f}")
 check("S1c a0(rho_Lambda) = 9.36e-11 and a0(rho_crit) = 1.13e-10 to three figures", abs(a0_L/9.36e-11 - 1) < 1e-3 and abs(a0_C/1.13e-10 - 1) < 2e-3,
       f"{a0_L:.4e}, {a0_C:.4e}")
 
@@ -129,8 +139,17 @@ def _read(f):
     if f not in _CACHE: _CACHE[f] = np.genfromtxt(f, comments="#")
     return _CACHE[f]
 GAL_INDEX = [None]
-def load_sparc(UD=0.5, UB=0.7, qcut=0.10, GS=1.0, bulgeless=False):
+# SPARC distance methods from the master table (whitespace parse; f_D = 1 is Hubble flow at H0 = 73, note 2)
+SPARC_MRT = os.path.join(ROOT, "real_research", "data", "SPARC_Lelli2016c.mrt")
+FD = {}
+for _ln in open(SPARC_MRT):
+    _p = _ln.split()
+    if len(_p) > 18 and _p[0][0].isalpha() and _p[1].isdigit() and _p[4].isdigit(): FD[_p[0]] = int(_p[4])
+N_HF = sum(1 for v in FD.values() if v == 1)
+def load_sparc(UD=0.5, UB=0.7, qcut=0.10, GS=1.0, bulgeless=False, hf=HF_R1):
     """g_bar, g_obs, error in log10 g_obs, number of galaxies.  GS rescales the gas mass; bulgeless keeps V_bul = 0 galaxies only.
+    hf rescales the Hubble-flow (f_D = 1) distances: HF_R1 = 73/67.4 (the paper's convention), 1.0 = SPARC as tabulated.
+    A distance factor f leaves g_bar = V_bar^2/R unchanged (V_bar^2 ~ D, R ~ D) and divides g_obs = V^2/R by f.
     The galaxy index of every point is left in GAL_INDEX[0] for galaxy-level bootstraps."""
     gb, go, ew, gi, ng = [], [], [], [], 0
     for f in sorted(glob.glob(os.path.join(SPARC, "*_rotmod.dat"))):
@@ -143,7 +162,8 @@ def load_sparc(UD=0.5, UB=0.7, qcut=0.10, GS=1.0, bulgeless=False):
         v2 = GS * np.sign(Vg) * Vg**2 + UD * Vd**2 + UB * Vb**2
         ok = v2 > 0
         if ok.sum() == 0: continue
-        gb.append(v2[ok] / R[ok] * K); go.append(V[ok]**2 / R[ok] * K); ew.append(2 * eV[ok] / V[ok] / math.log(10)); gi.append(np.full(ok.sum(), ng))
+        sc = hf if FD.get(os.path.basename(f).replace("_rotmod.dat", "")) == 1 else 1.0
+        gb.append(v2[ok] / R[ok] * K); go.append(V[ok]**2 / R[ok] * K / sc); ew.append(2 * eV[ok] / V[ok] / math.log(10)); gi.append(np.full(ok.sum(), ng))
         ng += 1
     GAL_INDEX[0] = np.concatenate(gi)
     return np.concatenate(gb), np.concatenate(go), np.concatenate(ew), ng
@@ -156,6 +176,10 @@ def fit_a0(gb, go, ew):
     return a0, float(np.sqrt(np.mean(res**2)))
 gb, go, ew, ngal = load_sparc()
 P(f"  SPARC: {ngal} galaxies, {len(gb)} points with velocity error < 10%;  g_bar spans {gb.min():.2e} - {gb.max():.2e} m s^-2")
+P(f"  H0 convention: {N_HF} galaxies have Hubble-flow distances (f_D = 1, H0 = {H0_SPARC_HF:g}); they are multiplied by {HF_R1:.4f} (R1) unless stated")
+# replication on SPARC's TABULATED distances (McGaugh, Lelli & Schombert 2016 used them): Upsilon 0.5 / 0.7
+a_tab05, rms_tab05 = fit_a0(*load_sparc(UD=0.5, hf=1.0)[:3])
+P(f"  replication, tabulated distances, Upsilon_disc 0.5: a0 = {a_tab05:.3e} (McGaugh+2016: 1.20e-10), rms {rms_tab05:.3f} dex")
 rows = []
 P(f"  {'Upsilon_disc':>12} {'a0 [1e-10]':>11} {'kappa(rho_L)':>13} {'kappa(rho_crit)':>16} {'rms [dex]':>10}")
 for UD in (0.40, 0.50, 0.60, 0.70, 0.80):
@@ -163,9 +187,12 @@ for UD in (0.40, 0.50, 0.60, 0.70, 0.80):
     a0, rms = fit_a0(g1, g2, e1)
     rows.append(dict(UD=UD, a0=a0, kappa_L=a0 / A_L, kappa_C=a0 / A_C, rms=rms))
     P(f"  {UD:12.2f} {a0/1e-10:11.3f} {a0/A_L:13.3f} {a0/A_C:16.3f} {rms:10.3f}")
-ud_half = brentq(lambda u: fit_a0(*load_sparc(UD=u)[:3])[0] / A_L - 0.5, 0.45, 0.80, xtol=1e-4)
-ud_half_C = brentq(lambda u: fit_a0(*load_sparc(UD=u)[:3])[0] / A_C - 0.5, 0.40, 0.80, xtol=1e-4)
-P(f"  kappa = 1/2 exactly needs Upsilon_disc = {ud_half:.3f} (rho_Lambda) or {ud_half_C:.3f} (rho_crit), bulge fixed at 0.7")
+ud_half = brentq(lambda u: fit_a0(*load_sparc(UD=u)[:3])[0] / A_L - 0.5, 0.35, 0.80, xtol=1e-4)
+ud_half_C = brentq(lambda u: fit_a0(*load_sparc(UD=u)[:3])[0] / A_C - 0.5, 0.30, 0.80, xtol=1e-4)
+ud_half_tab = brentq(lambda u: fit_a0(*load_sparc(UD=u, hf=1.0)[:3])[0] / A_L - 0.5, 0.35, 0.80, xtol=1e-4)
+ud_half_C_tab = brentq(lambda u: fit_a0(*load_sparc(UD=u, hf=1.0)[:3])[0] / A_C - 0.5, 0.30, 0.80, xtol=1e-4)
+P(f"  kappa = 1/2 exactly needs Upsilon_disc = {ud_half:.3f} (rho_Lambda) or {ud_half_C:.3f} (rho_crit), bulge fixed at 0.7;"
+  f"  on the tabulated distances {ud_half_tab:.3f} / {ud_half_C_tab:.3f}")
 # residual scatter with a0 FIXED at the two predicted values, stellar mass-to-light free (one global number)
 def rms_fixed(a0fix):
     f = lambda u: (lambda g1, g2, e1, _: np.sqrt(np.mean((np.log10(g2) - np.log10(g1 * nu(g1 / a0fix)))**2)))(*load_sparc(UD=u))
@@ -191,6 +218,11 @@ for UD in (0.5, 0.6, 0.7):
         g1, g2, e1, _ = load_sparc(UD=UD, UB=UB); grid[(UD, UB)] = fit_shape(g1, g2, e1) / A_L; rowk.append(grid[(UD, UB)])
     P(f"  Ups_disc = {UD:3.1f} " + "".join(f"{k_:16.3f}" for k_ in rowk))
 kB = grid[(UD_C, UB_C)]
+# the same estimator on SPARC's TABULATED distances (the earlier convention), and the four-convention box
+kB_tab = fit_shape(*load_sparc(UD=UD_C, UB=UB_C, hf=1.0)[:3]) / A_L
+B_tab_rep = {u: fit_shape(*load_sparc(UD=u, UB=0.7, hf=1.0)[:3]) / A_L for u in (0.5, 0.7)}
+BOX_B = {"R1": kB, "MIXED": kB_tab, "R2a": kB_tab * A_L / A_L_at(H0_SPARC_HF, "OL"), "R2b": kB_tab * A_L / A_L_at(H0_SPARC_HF, "omh2")}
+P(f"  estimator B convention box: " + ", ".join(f"{k_} {v_:.3f}" for k_, v_ in BOX_B.items()))
 ml_disc = 0.5 * (grid[(0.7, UB_C)] - grid[(0.5, UB_C)]); ml_bul = 0.5 * (grid[(UD_C, 0.8)] - grid[(UD_C, 0.6)])
 ml_all = 0.5 * (max(grid.values()) - min(grid.values()))
 gas = 0.5 * abs(fit_shape(*load_sparc(UD=UD_C, UB=UB_C, GS=1.115)[:3]) - fit_shape(*load_sparc(UD=UD_C, UB=UB_C, GS=0.885)[:3])) / A_L
@@ -202,7 +234,7 @@ for _ in range(300):
 statB = float(np.std(boot))
 sB = math.sqrt(ml_all**2 + gas**2 + statB**2)
 P(f"  kappa_B = {kB:.3f} at (Ups_disc, Ups_bul) = ({UD_C}, {UB_C});  errors: disc M/L {ml_disc:.3f}, bulge M/L {ml_bul:.3f}, full M/L grid half-range {ml_all:.3f}, gas scale (11.5%) {gas:.3f}, bootstrap over galaxies {statB:.3f}")
-P(f"  ==> kappa_B = {kB:.2f} +/- {sB:.2f}   (dominated by the BULGE mass-to-light ratio; the repository's 0.551 +/- 0.043 held Ups_bul fixed at 0.7)")
+P(f"  ==> kappa_B = {kB:.2f} +/- {sB:.2f}   (R1; dominated by the BULGE mass-to-light ratio; the repository's 0.551 +/- 0.043 held Ups_bul fixed at 0.7 on the tabulated distances; tabulated centre {kB_tab:.3f})")
 g1r, g2r, e1r, _ = load_sparc(); a_ref = fit_shape(g1r, g2r, e1r)
 imm = max(abs(fit_shape(g1r, g2r / (1 + d), e1r) / a_ref - 1) for d in (0.05, 0.10))
 std_move = abs(fit_a0(g1r, g2r / 1.10, e1r)[0] / fit_a0(g1r, g2r, e1r)[0] - 1)
@@ -240,22 +272,25 @@ P("  injection (a0 = 0.7, 1.0, 1.3 x canonical, real g_bar, noise = quoted error
 P("     standard fit " + ", ".join(f"{v:.3f}" for v in inj["standard"]) + ";  deep band " + ", ".join(f"{v:.3f}" for v in inj["deep"]))
 P("     with a +0.08 dex common offset (a 20% distance error): shape-only " + ", ".join(f"{v:.3f}" for v in inj["shape"]) +
   ";  the standard fit, for contrast, " + ", ".join(f"{v:.3f}" for v in inj["shape_std_bias"]))
-OUT["S2"] = dict(deep_band=deep, injection=inj, shape_only=shape, kappa_B=kB, sigma_B=sB, B_budget=dict(ml_disc=ml_disc, ml_bul=ml_bul, ml_grid=ml_all, gas=gas, stat=statB), bulgeless=bl,
+OUT["S2"] = dict(deep_band=deep, injection=inj, shape_only=shape, kappa_B=kB, sigma_B=sB, kappa_B_tab=kB_tab, box_B=BOX_B, a0_tab_05=a_tab05,
+                 ud_for_half_L_tab=ud_half_tab, ud_for_half_C_tab=ud_half_C_tab, B_budget=dict(ml_disc=ml_disc, ml_bul=ml_bul, ml_grid=ml_all, gas=gas, stat=statB), bulgeless=bl,
                  shape_immunity=imm, standard_move_10pc=std_move, n_gal=ngal, n_pts=int(len(gb)), table=rows, ud_for_half_L=ud_half, ud_for_half_C=ud_half_C,
                  fixed_L=dict(UD=uL, rms=rL), fixed_C=dict(UD=uC, rms=rC))
 r05 = [r for r in rows if abs(r["UD"] - 0.5) < 1e-9][0]
-check("S2a at Upsilon_disc = 0.5 the fit returns the literature a0 = 1.2e-10 within 5%", abs(r05["a0"] / 1.2e-10 - 1) < 0.05, f"a0 = {r05['a0']:.3e}")
+check("S2a REPLICATION: on SPARC's tabulated distances at Upsilon_disc = 0.5 the fit returns the literature a0 = 1.2e-10 within 5%", abs(a_tab05 / 1.2e-10 - 1) < 0.05, f"a0 = {a_tab05:.3e}")
+check("S2a2 the Planck-consistent distances LOWER the standard-fit a0 (the Hubble-flow g_obs fall by 1/1.083): at Upsilon_disc = 0.5 by 5-15 per cent",
+      0.85 < r05["a0"] / a_tab05 < 0.95, f"{r05['a0']:.3e} vs {a_tab05:.3e} ({(r05['a0']/a_tab05-1)*100:+.1f}%)")
 check("S2b the degeneracy is steep: kappa moves by more than 0.15 between Upsilon_disc = 0.5 and 0.7", rows[1]["kappa_L"] - rows[3]["kappa_L"] > 0.15,
       f"{rows[1]['kappa_L']:.3f} -> {rows[3]['kappa_L']:.3f}")
 check("S2d the shape-only estimator is immune to a common distance rescaling (< 1e-5): the free offset absorbs it by construction", imm < 1e-5,
       f"{imm:.1e}")
 check("S2d2 while the standard fit is not: a 10 per cent common rescaling moves it by more than 15 per cent", std_move > 0.15, f"{std_move*100:.1f}%")
-check("S2e the replication agrees with the repository's estimator B at Upsilon_bul = 0.7, Upsilon_disc = 0.5 and 0.7 (0.529, 0.574) within 0.01",
-      abs(grid[(0.5, 0.7)] - 0.529) < 0.01 and abs(grid[(0.7, 0.7)] - 0.574) < 0.01, f"{grid[(0.5, 0.7)]:.3f}, {grid[(0.7, 0.7)]:.3f}")
+check("S2e on the tabulated distances the replication agrees with the repository's earlier estimator B at Upsilon_bul = 0.7, Upsilon_disc = 0.5 and 0.7 (0.529, 0.574) within 0.01 (code replication)",
+      abs(B_tab_rep[0.5] - 0.529) < 0.01 and abs(B_tab_rep[0.7] - 0.574) < 0.01, f"{B_tab_rep[0.5]:.3f}, {B_tab_rep[0.7]:.3f}")
 check("S2f AGAINST THE EARLIER ERROR BAR: the bulge mass-to-light ratio moves estimator B by more than twice the 0.043 previously quoted",
       ml_bul > 2 * 0.043, f"bulge term {ml_bul:.3f}; total {sB:.3f}")
-check("S2g the deep band (g_bar < 0.1 a0, quality-cut, error-weighted) gives kappa between 0.40 and 0.60 for Upsilon_disc 0.5-0.7",
-      all(0.40 < deep[u]["kappa"] < 0.60 for u in deep), ", ".join(f"{deep[u]['kappa']:.3f}" for u in deep))
+check("S2g restricting the fit to the deep band (g_bar < 0.1 a0, quality-cut, error-weighted) does NOT remove the mass-to-light dependence: kappa moves by more than 0.08 across Upsilon_disc 0.5-0.7",
+      deep[0.5]["kappa"] - deep[0.7]["kappa"] > 0.08, ", ".join(f"{deep[u]['kappa']:.3f}" for u in deep))
 check("S2h AGAINST INTEREST: giving every deep point equal weight (no quality cut) lowers kappa by at least 0.05 at every Upsilon",
       all(deep[u]["kappa"] - deep[u]["kappa_unweighted_all"] > 0.05 for u in deep), ", ".join(f"{deep[u]['kappa_unweighted_all']:.3f}" for u in deep))
 check("I1 the standard fit returns the injected a0 to 2 per cent at 0.7, 1.0 and 1.3 x canonical", max(abs(v - 1) for v in inj["standard"]) < 0.02,
@@ -268,30 +303,164 @@ check("S2c kappa = 1/2 needs a disc mass-to-light ratio inside the population-sy
       f"{ud_half:.2f} / {ud_half_C:.2f}")
 
 # ================================================================================================================
-# ---- estimator A (repository script): its correction Q(y) is evaluated at an assumed a0.  Does that assumption do the work?
+# ---- estimator A (repository script, run on SPARC's TABULATED distances): its correction Q(y) is evaluated at an assumed a0
 import subprocess
 _rA = subprocess.run([sys.executable, "mi_btfr_intercept_kappa_door_2026.py"], cwd=os.path.join(ROOT, "real_research", "reviews"), capture_output=True, text=True)
 _m = re.search(r"frozen-y estimate ([0-9.e+-]+) .*?self-consistent fixed point ([0-9.e+-]+) .*?ALT-footing selection\+argument ([0-9.e+-]+)", _rA.stdout)
 A_frozen, A_selfc, A_alt = (float(x) for x in _m.groups())
+A_TOTAL_PCT = float(re.search(r"TOTAL sigma\(a0\)/a0\s+([0-9.]+)%", _rA.stdout).group(1))
 P(f"  estimator A: correction evaluated at the canonical a0 {A_frozen:.4e}; at its own output (fixed point) {A_selfc:.4e} ({(A_selfc/A_frozen-1)*100:+.2f}%);"
-  f" selection and correction at the 21% higher alternative a0 {A_alt:.4e} ({(A_alt/A_frozen-1)*100:+.1f}%)")
-OUT["A_selfconsistency"] = dict(frozen=A_frozen, fixed_point=A_selfc, alt=A_alt)
-check("I4 estimator A is not an echo of the a0 at which its correction is evaluated: iterating to its own output moves it by < 1 per cent, and a 21 per cent change of that a0 moves it by < 10 per cent",
+  f" selection and correction at the 21% higher alternative a0 {A_alt:.4e} ({(A_alt/A_frozen-1)*100:+.1f}%); total error {A_TOTAL_PCT:.2f}%")
+OUT["A_selfconsistency"] = dict(frozen=A_frozen, fixed_point=A_selfc, alt=A_alt, total_pct=A_TOTAL_PCT)
+check("S2i estimator A is not an echo of the a0 at which its correction is evaluated: iterating to its own output moves it by < 1 per cent, and a 21 per cent change of that a0 moves it by < 10 per cent (a sensitivity test on the real data)",
       _rA.returncode == 0 and abs(A_selfc / A_frozen - 1) < 0.01 and abs(A_alt / A_frozen - 1) < 0.10,
-      f"{(A_selfc/A_frozen-1)*100:+.2f}%, {(A_alt/A_frozen-1)*100:+.1f}%", kind="injection")
+      f"{(A_selfc/A_frozen-1)*100:+.2f}%, {(A_alt/A_frozen-1)*100:+.1f}%", kind="data")
+# ---- the repository's H0-convention audit: estimator A's exposure to the Hubble-flow distances is their WEIGHT fraction q_HF,
+#      a0_A ~ (D_HF)^(-2 q_HF) exactly (its check C3), so R1 = MIXED x (73/67.4)^(-2 q_HF)
+_rH = subprocess.run([sys.executable, os.path.join(ROOT, "real_research", "reviews", "kappa_h0_convention_audit_2026.py")], cwd=ROOT, capture_output=True, text=True)
+_aud = {k_: float(re.search(pat, _rH.stdout).group(1)) for k_, pat in (
+    ("q_HF", r"q_HF = ([0-9.]+), against"), ("MIXED", r"committed \(MIXED: numerator 73, denominator [0-9.]+\)\s+kappa = ([0-9.]+)"),
+    ("R1", r"R1  h = [0-9.]+ everywhere\s+kappa = ([0-9.]+)"), ("R2a", r"R2a h = 73 everywhere, Omega_L fixed\s+kappa = ([0-9.]+)"),
+    ("R2b", r"R2b h = 73 everywhere, omega_m fixed \(Om_L=[0-9.]+\) kappa = ([0-9.]+)"))}
+q_HF = _aud["q_HF"]
+kA_tab = A_frozen / A_L; sA_tab = kA_tab * A_TOTAL_PCT / 100
+kA = kA_tab * HF_R1**(-2 * q_HF); sA = kA * A_TOTAL_PCT / 100           # R1 at H0 = 67.4 (the audit's R1 is at 67.36: 0.02% apart)
+BOX_A = {"R1": kA, "MIXED": kA_tab, "R2a": kA_tab * A_L / A_L_at(H0_SPARC_HF, "OL"), "R2b": kA_tab * A_L / A_L_at(H0_SPARC_HF, "omh2")}
+P(f"  H0-convention audit: q_HF = {q_HF};  estimator A box: " + ", ".join(f"{k_} {v_:.4f}" for k_, v_ in BOX_A.items()) +
+  f"  (audit prints MIXED {_aud['MIXED']}, R1 {_aud['R1']}, R2a {_aud['R2a']}, R2b {_aud['R2b']})")
+P(f"  ==> estimator A (R1) kappa = {kA:.3f} +/- {sA:.3f}   [tabulated distances: {kA_tab:.3f} +/- {sA_tab:.3f}]")
+check("S3e estimator A's convention box reproduces the repository audit (R1, MIXED, R2a, R2b) to 0.002, with the paper's H0 = 67.4 in place of the audit's 67.36",
+      _rH.returncode == 0 and all(abs(BOX_A[k_] - _aud[k_]) < 0.002 for k_ in ("R1", "MIXED", "R2a", "R2b")),
+      ", ".join(f"{k_} {BOX_A[k_]:.4f}/{_aud[k_]:.4f}" for k_ in ("R1", "MIXED", "R2a", "R2b")), kind="identity")
 
-head("S3  CANDIDATE COEFFICIENTS, THE MASS-BUDGET FLOOR, THE H0 LOCK")
+head("S3  ESTIMATOR C (PROFILE LIKELIHOOD), THE CONVENTION BOX, CANDIDATES, PUBLISHED VALUES, THE FLOOR, THE H0 LOCK")
+# ---- ESTIMATOR C: the profile likelihood of real_research/reviews/mi_a0_profile_likelihood_milgrom_footing_2026.py (Upsilon_disc
+#      free per galaxy on a grid, Upsilon_bul = 1.4 Upsilon_disc, every point with V > 0, velocity errors clipped at 1 km/s, an
+#      intrinsic scatter set by chi^2/dof = 1).  (i) REPLICATION: with that script's own transition function g_obs^2 = g_bar^2 +
+#      g_bar a0, its constants, its grids and SPARC's tabulated distances, this code must return its committed table.  (ii) THE
+#      PAPER'S ESTIMATOR C: the same likelihood with equation (nu), the R1 distances, a finer Upsilon grid, the scatter set at the
+#      best fit, a continuous minimum and a galaxy bootstrap.  The committed script's function is then a SYSTEMATIC of C.
+def _pl_load(hf, gs=1.0, ugrid=None, kpc_m=KPC):
+    out = []
+    for f in sorted(glob.glob(os.path.join(SPARC, "*_rotmod.dat"))):
+        d = _read(f)
+        if d.ndim != 2 or d.shape[1] < 6: continue
+        R, V, eV, Vg, Vd, Vb = (d[:, i] for i in range(6))
+        m = np.isfinite(R) & np.isfinite(V) & (R > 0) & (V > 0)
+        if m.sum() < 3: continue
+        sc = hf if FD.get(os.path.basename(f).replace("_rotmod.dat", "")) == 1 else 1.0
+        Rm = R[m] * kpc_m; Vv = V[m]; ee = np.clip(eV[m], 1.0, None)
+        gbar = (gs * np.sign(Vg[m]) * Vg[m]**2)[None, :] + ugrid[:, None] * (Vd[m]**2 + 1.4 * Vb[m]**2)[None, :]
+        gbar = gbar * 1e6 / Rm[None, :]
+        out.append((gbar, np.log10((Vv * 1e3)**2 / Rm / sc), (ee / Vv) * 2 / math.log(10)))
+    return out
+def _g_alpha1(gb, a0): return np.sqrt(gb * gb + gb * a0)
+def _g_nu(gb, a0): return gb * nu(gb / a0)
+def _pl_gal(S, a0, sig, kern):
+    """per galaxy: the chi^2 minimised over the Upsilon grid, and its number of points"""
+    ch, nn = np.empty(len(S)), np.empty(len(S))
+    for j, (gbar, lgo, so) in enumerate(S):
+        ok = gbar > 0
+        with np.errstate(invalid="ignore", divide="ignore"):
+            r = lgo[None, :] - np.log10(kern(np.where(ok, gbar, 1.0), a0))
+        c2 = np.sum(np.where(ok, r * r / (so**2 + sig**2)[None, :], 0.0), axis=1); n = ok.sum(1)
+        c2 = np.where(n > 0, c2, np.inf); k = int(np.argmin(c2)); ch[j], nn[j] = c2[k], n[k]
+    return ch, nn
+def _pl_tot(S, a0, sig, kern):
+    ch, nn = _pl_gal(S, a0, sig, kern); return float(ch.sum()), int(nn.sum()), len(S)
+def _pl_sig(S, a0, kern, lo=0.001, hi=0.6, it=40):
+    for _ in range(it):
+        mid = 0.5 * (lo + hi); ch, npt, nU = _pl_tot(S, a0, mid, kern)
+        lo, hi = (mid, hi) if ch / (npt - nU - 1) > 1.0 else (lo, mid)
+    return 0.5 * (lo + hi)
+def _pl_min(tot, agrid):
+    i = int(np.clip(np.argmin(tot), 1, len(agrid) - 2)); A_ = np.polyfit(np.log(agrid[i-1:i+2]), tot[i-1:i+2], 2)
+    return math.exp(-A_[1] / (2 * A_[0]))
+UG_C = np.linspace(0.05, 3.0, 296)
+AGRID_C = A_L * 0.5 * np.exp(np.linspace(math.log(0.55), math.log(1.75), 81))
+def estimator_C(kern=_g_nu, hf=HF_R1, gs=1.0, nboot=300, seed=20261002):
+    S = _pl_load(hf, gs, UG_C)
+    sig = _pl_sig(S, a0_L, kern)                                    # first pass at the canonical value, then at the best fit
+    for _ in range(2):
+        C_ = np.array([_pl_gal(S, a, sig, kern)[0] for a in AGRID_C]).T
+        ab = _pl_min(C_.sum(0), AGRID_C); sig = _pl_sig(S, ab, kern)
+    C_ = np.array([_pl_gal(S, a, sig, kern)[0] for a in AGRID_C]).T; ab = _pl_min(C_.sum(0), AGRID_C)
+    rng_ = np.random.default_rng(seed); ng_ = C_.shape[0]
+    bs_ = [math.log(_pl_min(C_[rng_.integers(0, ng_, ng_)].sum(0), AGRID_C)) for _ in range(nboot)]
+    npt_ = int(sum(int((g_[0][0] > -np.inf).size) for g_ in S))
+    return dict(a0=ab, kappa=ab / A_L, se_ln=float(np.std(bs_)), sig_int=sig, n_gal=ng_, n_pts=int(sum(g_[1].size for g_ in S)))
+# (i) the replication of the committed script, with its own constants (c 2.998e8, G 6.674e-11, kpc 3.0857e19, H0 2.184e-18)
+_c_l, _G_l, _kpc_l, _H0_l = 2.998e8, 6.674e-11, 3.0857e19, 2.184e-18
+_A0FW = (_c_l / 2) * math.sqrt(_G_l * OL * 3 * _H0_l**2 / (8 * math.pi * _G_l)); _A0ALT = 1.13e-10
+_S_rep = _pl_load(1.0, 1.0, np.linspace(0.05, 3.0, 119), kpc_m=_kpc_l)
+_sig_rep = _pl_sig(_S_rep, _A0FW, _g_alpha1, it=45)
+_scan = np.array(sorted(set(np.concatenate([np.linspace(0.70, 1.45, 31) * _A0FW, [_A0FW, _A0ALT, _c_l * _H0_l / (2 * math.pi)]]))))
+_chs = np.array([_pl_tot(_S_rep, a, _sig_rep, _g_alpha1)[0] for a in _scan]); _imin = int(np.argmin(_chs))
+_Z_FW = math.sqrt(32 * math.pi / 3)
+REP = {nm: _pl_tot(_S_rep, a, _sig_rep, _g_alpha1)[0] - _chs[_imin] for nm, a in (("half_L", _A0FW), ("twopi_L", _A0FW * _Z_FW / (2 * math.pi)),
+                                                                                  ("half_crit", _A0ALT), ("twopi_H0", _c_l * _H0_l / (2 * math.pi)))}
+REP["best"] = float(_scan[_imin]); REP["sig_int"] = _sig_rep
+_pl_out = open(os.path.join(ROOT, "real_research", "reviews", "mi_a0_profile_likelihood_milgrom_footing_2026.out")).read()
+_PLC = {}
+for key, pat in (("half_L", r"kappa = 1/2\s+\(THE FRAMEWORK\)"), ("twopi_L", r"kappa = 1/2pi \(Milgrom 2020\)"), ("half_crit", r"alt footing rho_tot/cH0"),
+                 ("twopi_H0", r"Milgrom cH0/2pi \(own footing\)"), ("best", r"free best fit")):
+    mm = re.search(pat + r"\s+([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)", _pl_out); _PLC[key] = (float(mm.group(1)), float(mm.group(3)))
+P(f"  REPLICATION of the committed profile likelihood (g_obs^2 = g_bar^2 + g_bar a0, tabulated distances): best {REP['best']:.4e} (committed {_PLC['best'][0]}e-10);"
+  f" dchi2 " + ", ".join(f"{k_} {REP[k_]:.2f} ({_PLC[k_][1]})" for k_ in ("half_L", "twopi_L", "half_crit", "twopi_H0")))
+check("S3f the profile-likelihood code reproduces the committed script's table exactly (best fit to 1e-4, each dchi2 to 0.01) when given that script's transition function, constants, grids and distances (code replication)",
+      abs(REP["best"] / (_PLC["best"][0] * 1e-10) - 1) < 1e-4 and all(abs(REP[k_] - _PLC[k_][1]) < 0.01 for k_ in ("half_L", "twopi_L", "half_crit", "twopi_H0")),
+      f"best {REP['best']:.4e}", kind="identity")
+# (ii) estimator C with equation (nu): R1, the tabulated distances, the other transition function, and the gas scale (+-11.5%)
+EC = estimator_C()
+EC_tab = estimator_C(hf=1.0, nboot=100)
+EC_a1 = estimator_C(kern=_g_alpha1, nboot=100)
+EC_gp = estimator_C(gs=1.115, nboot=1); EC_gm = estimator_C(gs=0.885, nboot=1)
+kC = EC["kappa"]; C_stat = kC * EC["se_ln"]; C_gas = 0.5 * abs(EC_gm["kappa"] - EC_gp["kappa"]); C_fn = 0.5 * abs(EC_a1["kappa"] - kC)
+sC = math.sqrt(C_stat**2 + C_gas**2 + C_fn**2)
+BOX_C = {"R1": kC, "MIXED": EC_tab["kappa"], "R2a": EC_tab["kappa"] * A_L / A_L_at(H0_SPARC_HF, "OL"), "R2b": EC_tab["kappa"] * A_L / A_L_at(H0_SPARC_HF, "omh2")}
+P(f"  ESTIMATOR C (equation nu, R1): a0 = {EC['a0']:.3e}, kappa = {kC:.3f};  stat (galaxy bootstrap) {C_stat:.3f} ({EC['se_ln']*100:.1f}%), gas scale +-11.5% {C_gas:.3f},"
+  f" transition function (half the difference to g^2 = g_bar^2 + g_bar a0, which gives {EC_a1['kappa']:.3f}) {C_fn:.3f}  ->  kappa_C = {kC:.2f} +/- {sC:.2f};"
+  f"  sigma_int {EC['sig_int']:.4f} dex; {EC['n_gal']} galaxies, {EC['n_pts']} points")
+P(f"  estimator C convention box: " + ", ".join(f"{k_} {v_:.3f}" for k_, v_ in BOX_C.items()) + f";  the other function on the tabulated distances would give about the committed {_PLC['best'][0]/ (A_L/1e-10):.3f}")
+OUT["S3_C"] = dict(EC=EC, EC_tab=EC_tab, EC_alpha1=EC_a1, gas_plus=EC_gp["kappa"], gas_minus=EC_gm["kappa"], kappa=kC, sigma=sC, budget=dict(stat=C_stat, gas=C_gas, function=C_fn),
+                   box=BOX_C, replication=REP)
+check("S3h AGAINST A SINGLE-FUNCTION READING: the transition function moves estimator C by more than its statistical error (the committed script's function is a systematic of C, not a third footing test)",
+      abs(EC_a1["kappa"] - kC) > C_stat, f"{kC:.3f} vs {EC_a1['kappa']:.3f}; stat {C_stat:.3f}")
 k_hor = math.sqrt(8 * math.pi / 3) / (2 * math.pi)             # a0 = c H_Lambda / 2 pi  (the Lambda form of the classical coincidence)
+k_crit_half = 0.5 * A_C / A_L                                   # kappa_Lambda of a0 = (1/2) c sqrt(G rho_crit)
 cands = [("c H_Lambda/2pi (Milgrom 2020, eq. 3)", k_hor), ("1/2 (this paper)", 0.5),
          ("c H0/2pi (Milgrom 2020, eq. 3)", k_hor / math.sqrt(OL)), ("c H0/6 (Verlinde 2017)", math.sqrt(8*math.pi/3) / 6 / math.sqrt(OL)),
          ("c H_Lambda (Unruh T = de Sitter T)", math.sqrt(8*math.pi/3)), ("2 c H_Lambda (Milgrom 1999)", 2 * math.sqrt(8*math.pi/3))]
-MEAS = [("BTFR intercept", 0.465, 0.076), ("shape-only", round(kB, 3), round(sB, 3))]      # A: repository script; B: computed above
+MEAS = [("A: Tully-Fisher intercept", kA, sA), ("B: shape only", kB, sB), ("C: profile likelihood", kC, sC)]      # all on R1
 P(f"  {'candidate':42} {'kappa':>7}   pulls: " + "   ".join(m[0] for m in MEAS))
 ctab = []
 for name, k in cands:
     pulls = [(k - m[1]) / m[2] for m in MEAS]
     ctab.append(dict(name=name, kappa=k, pulls=pulls))
     P(f"  {name:42} {k:7.4f}   " + "   ".join(f"{p:+6.2f} sigma" for p in pulls))
+P(f"  1/2 on rho_crit (a0 = 1.13e-10) is kappa_Lambda = {k_crit_half:.3f}: pulls " + ", ".join(f"{(k_crit_half - m[1])/m[2]:+.2f}" for m in MEAS))
+# ---- the likelihood ratio between 1/2 and 1/2pi, EACH estimator alone (they share galaxies; no product is formed)
+LNLR = {m[0][0]: -0.5 * ((0.5 - m[1]) / m[2])**2 + 0.5 * ((k_hor - m[1]) / m[2])**2 for m in MEAS}
+P("  ln[L(1/2)/L(1/2pi)] per estimator: " + ", ".join(f"{k_} {v_:+.2f}" for k_, v_ in LNLR.items()))
+# ---- published values of a0 converted to kappa on both footings (inputs as published; distance conventions as each paper's)
+PUB = [("McGaugh+2016", "SPARC", r"fixed: 0.5 / 0.7", 1.20e-10, math.hypot(0.02, 0.24) * 1e-10),
+       ("Desmond 2023", "SPARC", r"free (joint inference)", 1.19e-10, math.hypot(0.04, 0.09) * 1e-10),
+       ("Varasteanu+2025", "MIGHTEE-HI", r"resolved SED fits", 1.69e-10, 0.13e-10),
+       ("Varasteanu+2025", "MIGHTEE-HI", r"$\Upsilon_K=0.6$ fixed", 1.08e-10, 0.09e-10),
+       ("Varasteanu+2026", "MIGHTEE-HI/LADUMA", r"fiducial (varying)", 1.50e-10, 0.05e-10)]
+PUBT = []
+for nm, smp, ups, a_, e_ in PUB:
+    kL_, sL_ = a_ / A_L, e_ / A_L
+    PUBT.append(dict(paper=nm, sample=smp, upsilon=ups, a0=a_, err=e_, kappa_L=kL_, s_L=sL_, kappa_C=a_ / A_C, s_C=e_ / A_C, pull_half_L=(kL_ - 0.5) / sL_, pull_half_C=(a_ / A_C - 0.5) / (e_ / A_C)))
+    P(f"  {nm:16s} {smp:18s} a0 = {a_/1e-10:.2f} +/- {e_/1e-10:.2f}: kappa_Lambda {kL_:.3f} +/- {sL_:.3f} (1/2 at {(kL_-0.5)/sL_:+.1f} sigma), kappa_crit {a_/A_C:.3f} (1/2 at {(a_/A_C-0.5)/(e_/A_C):+.1f} sigma)")
+DES = PUBT[1]
+DES_pulls = dict(half=(DES["kappa_L"] - 0.5) / DES["s_L"], hor=(DES["kappa_L"] - k_hor) / DES["s_L"], H0twopi=(DES["kappa_L"] - k_hor / math.sqrt(OL)) / DES["s_L"],
+                 half_crit=(DES["kappa_L"] - k_crit_half) / DES["s_L"])
+P(f"  Desmond (2023): kappa_Lambda = {DES['kappa_L']:.3f} +/- {DES['s_L']:.3f}: 1/2 at {DES_pulls['half']:.1f} sigma, 1/2pi at {DES_pulls['hor']:.1f}, cH0/2pi at {DES_pulls['H0twopi']:.1f}, 1/2 on rho_crit at {DES_pulls['half_crit']:.1f}")
+_r290 = json.load(open(os.path.join(CFG, "CFG290_mnras_v3_referee", "cfg290_referee_checks_results.json")))
+check("S3g AGAINST INTEREST: Desmond (2023)'s a0 = (1.19 +/- 0.04 +/- 0.09)e-10 puts kappa = 1/2 at more than 2.5 sigma on the rho_Lambda footing and within 1 sigma on the rho_crit footing; the arithmetic reproduces the CFG290 referee (R8) to 0.01",
+      DES_pulls["half"] > 2.5 and abs(DES_pulls["half_crit"]) < 1 and abs(DES["kappa_L"] - _r290["R8"]["desmond2023"]["kappa_L"]) < 0.01 and abs(DES_pulls["half"] - _r290["R8"]["desmond2023"]["pull_half"]) < 0.05,
+      f"kappa {DES['kappa_L']:.3f} +/- {DES['s_L']:.3f}; 1/2 at {DES_pulls['half']:.2f}, rho_crit 1/2 at {DES_pulls['half_crit']:.2f}", kind="identity")
 sU, sG = 0.168, 0.115
 floor = sU * sG / math.hypot(sU, sG); fstar = sG**2 / (sU**2 + sG**2)
 grid = np.linspace(0, 1, 200001); floor_num = np.min(np.hypot(grid * sU, (1 - grid) * sG))
@@ -301,28 +470,61 @@ A_shoes = c * math.sqrt(G * OL * 3 * (H0_SHOES * 1e3 / MPC)**2 / (8 * math.pi * 
 a_hor_shoes = k_hor * A_shoes
 P(f"  H0 lock (fixed Omega_Lambda): a0(kappa=1/2, H0={H0_KMS}) = {a_half_planck:.4e};  a0(kappa={k_hor:.4f}, H0={H0_SHOES}) = {a_hor_shoes:.4e};  ratio {a_hor_shoes/a_half_planck:.4f}")
 P(f"     because kappa ratio {k_hor/0.5:.4f} against H0 ratio {H0_KMS/H0_SHOES:.4f}")
-om_h2 = OM * (H0_KMS / 100)**2                                  # the CMB holds Omega_m h^2, not Omega_Lambda
+om_h2 = OMH2
 OL_shoes = 1 - om_h2 / (H0_SHOES / 100)**2
 A_shoes_fixom = c * math.sqrt(G * OL_shoes * 3 * (H0_SHOES * 1e3 / MPC)**2 / (8 * math.pi * G))
 k_fixom = a_half_planck / A_shoes_fixom
 P(f"  variant, Omega_m h^2 held instead: Omega_Lambda(SH0ES) = {OL_shoes:.3f}; the coefficient that reproduces a0(1/2, Planck) is {k_fixom:.4f} ({(k_fixom/k_hor-1)*100:+.1f}% from {k_hor:.4f})")
-for nm, kk, ss in MEAS:
-    P(f"  a0 as an H0 meter at frozen kappa = 1/2 (fixed Omega_Lambda): {nm}: H0 = {H0_KMS*kk/0.5:.1f} +/- {H0_KMS*ss/0.5:.1f} km/s/Mpc")
+# ---- a0 as an H0 meter at kappa = 1/2, SELF-CONSISTENTLY: the Hubble-flow distances are rebuilt at the H0 being solved for.
+#      A: a0_A(h) = a0_A(67.4) (h/67.4)^(2 q_HF) and a0(1/2, h) ~ h  =>  h = 67.4 (kappa_A / 1/2)^(1/(1 - 2 q_HF)).
+#      B: solved directly, kappa_B(h) = shape fit with D_HF x 73/h, over c sqrt(G rho_Lambda(h)), = 1/2.
+hA = H0_KMS * (kA / 0.5)**(1 / (1 - 2 * q_HF)); shA = hA * (sA / kA) / (1 - 2 * q_HF)
+_kBh = lambda h_: fit_shape(*load_sparc(UD=UD_C, UB=UB_C, hf=H0_SPARC_HF / h_)[:3]) / A_L_at(h_, "OL")
+hB = brentq(lambda h_: _kBh(h_) - 0.5, 50.0, 110.0, xtol=1e-3)
+_dB = (math.log(_kBh(hB * 1.02)) - math.log(_kBh(hB / 1.02))) / (2 * math.log(1.02)); shB = hB * (sB / 0.5) / abs(_dB)
+P(f"  a0 as an H0 meter at kappa = 1/2, self-consistent: A: H0 = {hA:.1f} +/- {shA:.1f};  B: H0 = {hB:.1f} +/- {shB:.1f} (d ln kappa_B/d ln h = {_dB:+.2f})")
 sep = 1 - k_hor / 0.5
 P(f"  separation of 1/2 from {k_hor:.4f}: {sep*100:.1f}% in a0 = {abs(math.log10(k_hor/0.5)):.3f} dex;  3 sigma needs {sep/3*100:.1f}% on a0")
-lnLR = sum(-0.5 * ((0.5 - m[1]) / m[2])**2 + 0.5 * ((k_hor - m[1]) / m[2])**2 for m in MEAS)
-P(f"  ln[L(1/2)/L({k_hor:.3f})] from the two measurements = {lnLR:+.2f}")
-w = [1 / m[2]**2 for m in MEAS]; kbar = sum(wi * m[1] for wi, m in zip(w, MEAS)) / sum(w); chi2 = sum(((m[1] - kbar) / m[2])**2 for m in MEAS)
-P(f"  the two estimators differ by {(MEAS[1][1]-MEAS[0][1])/math.hypot(MEAS[0][2], MEAS[1][2]):.2f} sigma (not independent: same galaxies); inverse-variance mean {kbar:.3f} is NOT quoted")
-OUT["S3"] = dict(candidates=ctab, floor=floor, f_star=fstar, kappa_horizon=k_hor, lock_ratio=a_hor_shoes / a_half_planck, lnLR=lnLR, sep_percent=sep * 100,
-                 kappa_fixed_omh2=k_fixom, OL_shoes=OL_shoes, H0_meter=[(m[0], H0_KMS*m[1]/0.5, H0_KMS*m[2]/0.5) for m in MEAS])
+OUT["S3"] = dict(candidates=ctab, floor=floor, f_star=fstar, kappa_horizon=k_hor, kappa_crit_half=k_crit_half, lock_ratio=a_hor_shoes / a_half_planck, lnLR=LNLR, sep_percent=sep * 100,
+                 kappa_fixed_omh2=k_fixom, OL_shoes=OL_shoes, H0_meter=dict(A=(hA, shA), B=(hB, shB), dlnkB_dlnh=_dB), box_A=BOX_A, box_B=BOX_B, box_C=BOX_C,
+                 meas=[(m[0], m[1], m[2]) for m in MEAS], published=PUBT, desmond_pulls=DES_pulls, q_HF=q_HF)
 check("S3a the closed-form floor equals the numerical minimum", abs(floor - floor_num) < 1e-6, f"{floor*100:.2f}%")
 check("S3b the H0 lock: the two (kappa, H0) pairs predict the same a0 to better than 0.5%", abs(a_hor_shoes / a_half_planck - 1) < 5e-3,
       f"{(a_hor_shoes/a_half_planck - 1)*100:+.2f}%")
-check("S3c 1/2 is inside 1.5 sigma of both measurements; Milgrom-1999's 2cH_Lambda is outside 5 sigma of both",
+check("S3c 1/2 is inside 1.5 sigma of all three estimators; Milgrom-1999's 2cH_Lambda is outside 5 sigma of all three",
       all(abs(p) < 1.5 for p in ctab[1]["pulls"]) and all(abs(p) > 5 for p in ctab[5]["pulls"]))
-check("S3d the data do not single out 1/2: at least three candidates lie within 2.2 sigma of both measurements",
-      sum(all(abs(p) < 2.2 for p in r["pulls"]) for r in ctab) >= 3, f"{sum(all(abs(p) < 2.2 for p in r['pulls']) for r in ctab)} candidates inside 2.2 sigma of both")
+check("S3d the data do not single out 1/2: at least three candidates lie within 2.2 sigma of all three estimators",
+      sum(all(abs(p) < 2.2 for p in r["pulls"]) for r in ctab) >= 3, f"{sum(all(abs(p) < 2.2 for p in r['pulls']) for r in ctab)} candidates inside 2.2 sigma of all three")
+check("S3i on either common footing Milgrom's 2pi form is at least as close to estimators A and C as 1/2 is (cH_Lambda/2pi vs 1/2 on rho_Lambda; cH0/2pi vs (1/2)c sqrt(G rho_crit))",
+      all(abs((k_hor - m[1]) / m[2]) <= abs((0.5 - m[1]) / m[2]) and abs((k_hor / math.sqrt(OL) - m[1]) / m[2]) <= abs((k_crit_half - m[1]) / m[2]) for m in (MEAS[0], MEAS[2])),
+      "; ".join(f"{m[0][0]}: {(k_hor-m[1])/m[2]:+.2f} vs {(0.5-m[1])/m[2]:+.2f}, {(k_hor/math.sqrt(OL)-m[1])/m[2]:+.2f} vs {(k_crit_half-m[1])/m[2]:+.2f}" for m in (MEAS[0], MEAS[2])))
+# ---- the three kappa tables, generated here and checked against the manuscript (typeset = computed)
+def _fp(p_): return f"${p_:+.0f}$" if abs(p_) >= 9.95 else ("$0.0$" if abs(p_) < 0.05 else f"${p_:+.1f}$")
+_CNAMES = [r"$cH_\Lambda/2\pi$ \citep{Milgrom2020}", r"$\tfrac12c\sqrt{G\rho_\Lambda}$ (working value)", r"$cH_0/2\pi$ \citep{Milgrom2020}",
+           r"$cH_0/6$ \citep{Verlinde2017}", r"$cH_\Lambda$ (Unruh $=$ de Sitter temperature)", r"$2cH_\Lambda$ \citep{Milgrom1999}"]
+CAND_ROWS = [f"{nm} & {r_['kappa']:.3f} & " + " & ".join(_fp(p_) for p_ in r_["pulls"]) + r" \\" for nm, r_ in zip(_CNAMES, ctab)]
+CAND_ROWS[4] = CAND_ROWS[4].replace(f"{ctab[4]['kappa']:.3f}", f"{ctab[4]['kappa']:.2f}"); CAND_ROWS[5] = CAND_ROWS[5].replace(f"{ctab[5]['kappa']:.3f}", f"{ctab[5]['kappa']:.2f}")
+CAND_ROWS.append(r"$\tfrac12c\sqrt{G\rho_{\rm crit}}$ & " + f"{k_crit_half:.3f} & " + " & ".join(_fp((k_crit_half - m[1]) / m[2]) for m in MEAS) + r" \\")
+CONV_ROWS = [f"{lab} & {bx['R1']:.3f} & {bx['MIXED']:.3f} & {bx['R2a']:.3f} & {bx['R2b']:.3f}" + r" \\" for lab, bx in
+             (("A: Tully--Fisher intercept", BOX_A), ("B: shape only", BOX_B), ("C: profile likelihood", BOX_C))]
+_PNAMES = [r"\citet{McGaugh2016}", r"\citet{Desmond2023}", r"\citet{Varasteanu2025}", r"\citet{Varasteanu2025}", r"\citet{Varasteanu2026}"]
+PUB_ROWS = [f"{nm} & {r_['sample']} & {r_['upsilon']} & ${r_['a0']/1e-10:.2f}\\pm{r_['err']/1e-10:.2f}$ & ${r_['kappa_L']:.2f}\\pm{r_['s_L']:.2f}$ & ${r_['kappa_C']:.2f}\\pm{r_['s_C']:.2f}$" + r" \\"
+            for nm, r_ in zip(_PNAMES, PUBT)]
+for lab, (nm_, k_, s_) in zip(("estimator A", "estimator B", "estimator C"), MEAS):
+    PUB_ROWS.append(f"this paper, {lab} & SPARC & " + {"estimator A": r"0.5--0.7 (budget)", "estimator B": r"grid, Table~\ref{tab:shape}", "estimator C": r"free per galaxy"}[lab]
+                    + f" & ${k_*A_L/1e-10:.2f}\\pm{s_*A_L/1e-10:.2f}$ & ${k_:.2f}\\pm{s_:.2f}$ & ${k_*A_L/A_C:.2f}\\pm{s_*A_L/A_C:.2f}$" + r" \\")
+P("  rows of the candidate table (as typeset):"); [P("     " + r_) for r_ in CAND_ROWS]
+P("  rows of the convention table (as typeset):"); [P("     " + r_) for r_ in CONV_ROWS]
+P("  rows of the published-values table (as typeset):"); [P("     " + r_) for r_ in PUB_ROWS]
+_tex3 = open(os.path.join(HERE, "mnras_a0_lambda_v3.tex")).read()
+def _rows3(label):
+    if r"\label{" + label + "}" not in _tex3: return []
+    t_ = _tex3[_tex3.index(r"\label{" + label + "}"):]; t_ = t_[t_.index(r"\midrule") + len(r"\midrule"):t_.index(r"\bottomrule")]
+    return [l_.strip() for l_ in t_.strip().splitlines() if l_.strip() and not l_.strip().startswith(r"\midrule")]
+check("S3j the candidate, convention and published-values tables in the manuscript are exactly the computed ones",
+      _rows3("tab:cands") == CAND_ROWS and _rows3("tab:conv") == CONV_ROWS and _rows3("tab:pub") == PUB_ROWS,
+      f"{len(_rows3('tab:cands'))}/{len(_rows3('tab:conv'))}/{len(_rows3('tab:pub'))} rows typeset", kind="identity")
+
 
 # ================================================================================================================
 head("S4  THE REDSHIFT LAWS, THE ERROR AMPLIFICATION, THE 20:1 RULE")
@@ -358,12 +560,12 @@ for z in ztab:
     laws.append(row)
     P(f"  {z:4.1f} {0.0:9.3f} {row['Hz']:8.3f} {row['dm14']:10.3f} [{lo:+.3f},{hi:+.3f}] {row['d08']:9.3f} {row['desi']['DESY5']:19.3f}")
 L25 = [r for r in laws if r["z"] == 2.5][0]
+LIMBACH_Z = 1.2                                     # the highest redshift of the Tully-Fisher data of Limbach, Psaltis & Ozel (2008)
+L12 = dict(Hz=float(np.log10(E(LIMBACH_Z))), halo=float(np.log10(ratio_halo(LIMBACH_Z))))
+P(f"  at z = {LIMBACH_Z} (Limbach et al. 2008's limit): H(z) law {L12['Hz']:+.3f} dex, halo law (1e12) {L12['halo']:+.3f} dex; at z = 2 the H(z) factor is {float(E(2.0)):.2f}")
 P(f"  z = 2.5 density mapping under DESI DR2 w0-wa: " + ", ".join(f"{k} {v:+.3f}" for k, v in L25["desi"].items()) + "  (NOT this paper's prediction; shown for scale)")
 P(f"  check of the gmax route against the closed law: ratio {g25/g0:.4f} vs E^(4/3) c^2/f(c) ratio {ratio_halo(2.5):.4f}")
 ln20 = math.log(20.0)
-sig_halo = L25["dm14"] / math.sqrt(2 * ln20); sig_Hz = L25["Hz"] / math.sqrt(2 * ln20)
-P(f"  20:1 rule: two point hypotheses Delta apart, Gaussian error sigma: expected ln B = Delta^2/(2 sigma^2) >= ln 20  =>  sigma <= Delta/sqrt(2 ln 20) = Delta/{math.sqrt(2*ln20):.3f}")
-P(f"     constant vs halo-emergent at z = 2.5: Delta = {L25['dm14']:.3f} -> sigma <= {sig_halo:.3f} dex;   constant vs H(z): Delta = {L25['Hz']:.3f} -> sigma <= {sig_Hz:.3f} dex")
 P(f"  error amplification of the kernel inversion  a0 = g_bar/y,  nu(y) = g_obs/g_bar :")
 P(f"     d ln a0 = (1 + 1/n) d ln g_bar - (1/n) d ln g_obs,   n = d ln nu/d ln y")
 P(f"  {'y = g_bar/a0':>13} {'n':>8} {'A_bar=|1+1/n|':>14} {'A_obs=1/|n|':>12} {'sigma(log a0) for 0.10 dex M_b, 5% V':>38}")
@@ -394,24 +596,112 @@ def ratio_vmax(z, cfun=c_DM14, M=1e12):
 vm25 = float(np.log10(ratio_vmax(2.5)))
 P(f"  second structural scaling, V_max^4/(G M) at fixed M_b/M_halo:  {10**vm25:.3f} = {vm25:+.3f} dex at z = 2.5  (a larger M_b/M_halo at high z lowers it one-for-one)")
 dc = 0.11                                           # halo-to-halo scatter in log10 c (Dutton & Maccio 2014)
-s_halo_obj = 0.5 * (math.log10(ratio_halo(2.5, dlogc=+dc)) - math.log10(ratio_halo(2.5, dlogc=-dc)))
-P(f"  a single object: +/-{dc} dex concentration scatter moves its halo-emergent expectation by +/-{s_halo_obj:.3f} dex")
 s_int = 0.034                                       # intrinsic scatter of the relation in log g_obs (Desmond 2023)
 P(f"  intrinsic scatter of the relation ({s_int} dex in g_obs) amplified through the inversion: " +
   ", ".join(f"y = {a['y']}: {s_int*a['A_obs']:.3f} dex" for a in amp[:3]))
-def expected_lnB(N, s_meas, mu, s_intr, s_h):
-    """expected ln Bayes factor for N objects; H0: N(0, s0^2), H1: N(mu, s1^2) with s1^2 = s0^2 + s_h^2. Returns (truth H0, truth H1)."""
-    s0 = math.hypot(s_meas, s_intr); s1 = math.hypot(s0, s_h)
-    e0 = N * (math.log(s1 / s0) - 0.5 + (s0**2 + mu**2) / (2 * s1**2))
-    e1 = N * (math.log(s0 / s1) - 0.5 + (s1**2 + mu**2) / (2 * s0**2))
-    return e0, e1
-P(f"  expected odds (the smaller of the two truths), Delta = {L25['dm14']:.3f} dex, intrinsic {s_int*amp[2]['A_obs']:.3f} dex (y = 0.3), halo scatter {s_halo_obj:.3f} dex on the LambdaCDM side:")
-P(f"  {'sigma_meas':>10} " + " ".join(f"{'N = '+str(N):>12}" for N in (1, 2, 3, 4)))
-dec = []
-for sm in (0.08, 0.10, 0.13, 0.20):
-    odds = [math.exp(min(expected_lnB(N, sm, L25["dm14"], s_int * amp[2]["A_obs"], s_halo_obj))) for N in (1, 2, 3, 4)]
-    dec.append(dict(sigma_meas=sm, odds=odds))
-    P(f"  {sm:10.2f} " + " ".join(f"{o:11.1f}:1" for o in odds))
+s_intr_d = s_int * amp[2]["A_obs"]
+# ---- (v3.1) THE GATE AND THE HALO MASS IT SELECTS.  g_bar(R_out) < 0.3 a0 with a0 = the working value 9.36e-11 and
+#      g_bar = Gamma G M_b / R^2 (Gamma = 1.2).  A gate-passing disc's V_f follows from equation (btfr); at z = 2.5 its halo has
+#      V_200 = V_f / r with r = V_f/V_200 = 1.0-1.2 (an NFW V_max/V_200 at c ~ 4 is ~1.1), so M_200 = V_200^3 / (10 G H(z)).
+#      The decision value is the Dutton-Maccio halo law at THAT mass (central example, r = 1.1), not at 1e12 Msun.
+GAM = 1.2                                            # disc-versus-point-mass factor at the last measured radius (SPARC median 1.19)
+sig_gate = 0.3 * a0_L / (GAM * G) * KPC**2 / MSUN    # Msun per kpc^2:  M_b < sig_gate R^2
+sig_gate_1e10 = 0.3 * 1.0e-10 / (GAM * G) * KPC**2 / MSUN
+gate = []
+for Mb, R in ((2e9, 4.0), (5e9, 6.0), (1e10, 8.0)):
+    yb = GAM * G * Mb * MSUN / (R * KPC)**2 / a0_L
+    Vf = (float(nu(yb))**2 * yb * GAM * G * Mb * MSUN * a0_L)**0.25 / 1e3
+    gate.append(dict(Mb=Mb, R_kpc=R, y=yb, Vf_kms=Vf))
+P(f"  the gate g_bar < 0.3 a0 (a0 = {a0_L:.3e}, Gamma = {GAM}) reads M_b < {sig_gate:.3e} (R/kpc)^2 Msun (with a0 = 1.0e-10: {sig_gate_1e10:.3e}); examples: " +
+  "; ".join(f"M_b = {g_['Mb']:.0e}, R = {g_['R_kpc']:.0f} kpc -> y = {g_['y']:.2f}, V_f = {g_['Vf_kms']:.0f} km/s" for g_ in gate))
+VRAT = (1.0, 1.1, 1.2)
+def m200_of_vf(Vf_kms, z, r): return (Vf_kms * 1e3 / r)**3 / (10 * G * H0 * float(E(z))) / MSUN
+GH = []
+for g_ in gate:
+    for r in VRAT:
+        M_ = m200_of_vf(g_["Vf_kms"], 2.5, r)
+        GH.append(dict(Mb=g_["Mb"], Vf=g_["Vf_kms"], r=r, M200=M_, dm14=float(np.log10(ratio_halo(2.5, M=M_))), d08=float(np.log10(ratio_halo(2.5, cfun=c_D08, M=M_)))))
+        P(f"     M_b {g_['Mb']:.0e}, V_f {g_['Vf_kms']:5.1f} km/s, V_f/V_200 {r}: M_200(z = 2.5) = {M_:.2e} Msun -> halo law Dutton-Maccio {GH[-1]['dm14']:+.3f}, Duffy {GH[-1]['d08']:+.3f}")
+M_GATE = m200_of_vf(gate[1]["Vf_kms"], 2.5, 1.1)
+DELTA_GATE = float(np.log10(ratio_halo(2.5, M=M_GATE))); DELTA_GATE_D08 = float(np.log10(ratio_halo(2.5, cfun=c_D08, M=M_GATE)))
+GATE_M = (min(x["M200"] for x in GH), max(x["M200"] for x in GH)); GATE_D = (min(x["dm14"] for x in GH), max(x["dm14"] for x in GH))
+GATE_D08 = (min(x["d08"] for x in GH), max(x["d08"] for x in GH))
+s_halo_obj = 0.5 * (math.log10(ratio_halo(2.5, M=M_GATE, dlogc=+dc)) - math.log10(ratio_halo(2.5, M=M_GATE, dlogc=-dc)))
+s_halo_1e12 = 0.5 * (math.log10(ratio_halo(2.5, dlogc=+dc)) - math.log10(ratio_halo(2.5, dlogc=-dc)))
+P(f"  DECISION VALUE: central gate example (M_b 5e9, V_f {gate[1]['Vf_kms']:.0f} km/s, V_f/V_200 = 1.1): M_200 = {M_GATE:.2e} Msun -> Delta_halo(2.5) = {DELTA_GATE:+.3f} (Dutton-Maccio);"
+  f" Duffy at the same mass {DELTA_GATE_D08:+.3f} (concentration-mass relation spread {DELTA_GATE_D08-DELTA_GATE:+.3f} dex)")
+P(f"  gate range: M_200 = {GATE_M[0]:.1e}-{GATE_M[1]:.1e} Msun; Dutton-Maccio {GATE_D[0]:+.3f} to {GATE_D[1]:+.3f}; Duffy {GATE_D08[0]:+.3f} to {GATE_D08[1]:+.3f};"
+  f" halo-to-halo scatter (+/-{dc} dex in log c) at the gate mass {s_halo_obj:.3f} dex (at 1e12: {s_halo_1e12:.3f})")
+# the gate column of the laws table: the same disc (V_f of the central example, V_f/V_200 = 1.1) at each redshift
+for row in laws:
+    row["gate"] = float(np.log10(ratio_halo(row["z"], M=m200_of_vf(gate[1]["Vf_kms"], row["z"], 1.1))))
+P("  halo law for the gate's central disc at z = " + ", ".join(f"{r_['z']}: {r_['gate']:+.3f}" for r_ in laws))
+_r290R8 = _r290["R8"]
+_r8ok = all(abs(_r290R8[f"Vf{Vf:.0f}_r{rr}"]["delta_halo"] - float(np.log10(ratio_halo(2.5, M=m200_of_vf(Vf, 2.5, rr))))) < 0.005 for Vf in (85.0, 106.0, 130.0) for rr in (1.0, 1.2))
+# ---- THE DESIGN.  N galaxies each give Delta_i = log10[a0_hat/a0(0)].  Constancy: Delta_i ~ N(0, s0^2); the halo law: N(Delta, s1^2),
+#      s0^2 = sigma_m^2 + sigma_int^2, s1^2 = s0^2 + sigma_h^2.  Two SHARED terms enter as covariance b J (J = matrix of ones):
+#      a baryonic-mass calibration error shared by the sample (b = (A_bar delta_c)^2, under both hypotheses) and the uncertainty
+#      of the LambdaCDM prediction itself (b = sigma_sys^2, under the halo law only: a composite hypothesis with a Gaussian prior on
+#      Delta).  For covariance a I + b J the inverse and determinant are closed-form, so the exact ln B and the expected ln B
+#      (a Kullback-Leibler divergence) are computed for any N.  'Odds' below = exp(expected ln B), the smaller of the two truths;
+#      the PROBABILITY of reaching 20:1 and of evidence pointing the wrong way come from Monte Carlo.
+def _kl_cs(N, mu, aP, bP, aQ, bQ):
+    lp, lq = aP + N * bP, aQ + N * bQ
+    return 0.5 * ((N - 1) * (aP / aQ - 1 - math.log(aP / aQ)) + (lp / lq - 1 - math.log(lp / lq)) + N * mu**2 / lq)
+def elnB_design(N, sm, mu, s_sys=0.0, s_c=0.0, s_h=None, s_i=None):
+    s_h = s_halo_obj if s_h is None else s_h; s_i = s_intr_d if s_i is None else s_i
+    a0v = sm**2 + s_i**2; a1v = a0v + s_h**2; b0, b1 = s_c**2, s_c**2 + s_sys**2
+    return _kl_cs(N, mu, a0v, b0, a1v, b1), _kl_cs(N, mu, a1v, b1, a0v, b0)
+def _lnL_cs(x, m, a, b):
+    N_ = x.shape[1]; d_ = x - m; S_ = d_.sum(1)
+    return -0.5 * (np.einsum("ij,ij->i", d_, d_) - b * S_**2 / (a + N_ * b)) / a - 0.5 * ((N_ - 1) * math.log(a) + math.log(a + N_ * b))
+def mc_design(N, sm, mu, s_sys=0.0, s_c=0.0, s_h=None, s_i=None, M=40000, seed=7):
+    s_h = s_halo_obj if s_h is None else s_h; s_i = s_intr_d if s_i is None else s_i
+    rng_ = np.random.default_rng(seed); a0v = sm**2 + s_i**2; a1v = a0v + s_h**2; b0, b1 = s_c**2, s_c**2 + s_sys**2; out = {}
+    x = rng_.normal(0, math.sqrt(a0v), (M, N)) + (rng_.normal(0, s_c, (M, 1)) if s_c > 0 else 0.0)
+    lb = _lnL_cs(x, 0.0, a0v, b0) - _lnL_cs(x, mu, a1v, b1)
+    out["const"] = dict(mean=float(lb.mean()), p20=float((lb > ln20).mean()), pwrong=float((lb < 0).mean()))
+    x = rng_.normal(0, math.sqrt(a1v), (M, N)) + mu + (rng_.normal(0, s_c, (M, 1)) if s_c > 0 else 0.0) + (rng_.normal(0, s_sys, (M, 1)) if s_sys > 0 else 0.0)
+    lb = _lnL_cs(x, mu, a1v, b1) - _lnL_cs(x, 0.0, a0v, b0)
+    out["halo"] = dict(mean=float(lb.mean()), p20=float((lb > ln20).mean()), pwrong=float((lb < 0).mean()))
+    return out
+def odds_design(N, sm, mu, **kw): return math.exp(min(min(elnB_design(N, sm, mu, **kw)), 700.0))
+def n_expected20(sm, mu, **kw): return next(N for N in range(1, 2000) if odds_design(N, sm, mu, **kw) >= 20)
+def n_power(sm, mu, target=0.9, **kw):
+    def pw(N):
+        m_ = mc_design(N, sm, mu, M=20000, **kw); return min(m_["const"]["p20"], m_["halo"]["p20"])
+    lo, hi = 1, 8
+    while pw(hi) < target: lo, hi = hi, hi * 2
+    while hi - lo > 1:
+        mid = (lo + hi) // 2; lo, hi = (mid, hi) if pw(mid) < target else (lo, mid)
+    return hi
+# (a) the Monte Carlo against the closed form, and against the CFG290 referee's R3 at the old decision value (1e12 Msun)
+_r3 = _r290["R3"]; MCCHK = []
+for N_, sm_ in ((2, 0.10), (3, 0.13), (4, 0.20)):
+    e_ = elnB_design(N_, sm_, L25["dm14"], s_h=s_halo_1e12); m_ = mc_design(N_, sm_, L25["dm14"], s_h=s_halo_1e12, M=200000)
+    MCCHK.append((abs(m_["const"]["mean"] / e_[0] - 1), abs(m_["halo"]["mean"] / e_[1] - 1), abs(m_["const"]["p20"] - _r3[f"N{N_}_s{sm_}"]["mc"]["const"]["p20"]), abs(m_["halo"]["p20"] - _r3[f"N{N_}_s{sm_}"]["mc"]["halo"]["p20"])))
+P("  Monte Carlo vs closed form and vs CFG290 R3 (Delta = 0.328, 1e12 Msun): max |MC/closed - 1| " + f"{max(max(x[0], x[1]) for x in MCCHK):.4f}; max |P(20:1) - R3| {max(max(x[2], x[3]) for x in MCCHK):.3f}")
+# (b) the design at the gated decision value: N for EXPECTED 20:1 and N for 20:1 WITH 90 PER CENT PROBABILITY, without and with the
+#     concentration-mass relation carried as a shared prior width sigma_sys on the halo law's Delta
+SIGSYS = (0.0, 0.10, 0.20); SMS = (0.10, 0.13, 0.20)
+DESIGN = {}
+for sm in SMS:
+    for ss in SIGSYS:
+        Ne = n_expected20(sm, DELTA_GATE, s_sys=ss); Np = n_power(sm, DELTA_GATE, s_sys=ss)
+        mcN = mc_design(Ne, sm, DELTA_GATE, s_sys=ss, M=100000)
+        DESIGN[(sm, ss)] = dict(N_expected=Ne, N_power90=Np, odds_at_Ne=odds_design(Ne, sm, DELTA_GATE, s_sys=ss),
+                                p20_at_Ne=(mcN["const"]["p20"], mcN["halo"]["p20"]), pwrong_at_Ne=(mcN["const"]["pwrong"], mcN["halo"]["pwrong"]))
+        P(f"  sigma_m {sm:.2f}, sigma_sys {ss:.2f}: expected 20:1 needs N = {Ne:3d} (odds {DESIGN[(sm, ss)]['odds_at_Ne']:.0f}:1; there P(20:1) = {mcN['const']['p20']:.2f} const / {mcN['halo']['p20']:.2f} halo,"
+          f" P(wrong way) = {mcN['const']['pwrong']:.3f} / {mcN['halo']['pwrong']:.3f});  20:1 with 90 per cent probability needs N = {Np}")
+one013 = odds_design(1, 0.13, DELTA_GATE); four020 = odds_design(4, 0.20, DELTA_GATE); two010 = odds_design(2, 0.10, DELTA_GATE); three013 = odds_design(3, 0.13, DELTA_GATE)
+mc4 = mc_design(4, 0.20, DELTA_GATE, M=100000)
+P(f"  at the gated value: one object at 0.13 dex {one013:.1f}:1; two at 0.10 {two010:.1f}:1; three at 0.13 {three013:.1f}:1; four at 0.20 {four020:.1f}:1 (P(20:1) {mc4['const']['p20']:.2f} / {mc4['halo']['p20']:.2f}) -- the v3 designs")
+sig_halo = DELTA_GATE / math.sqrt(2 * ln20); sig_Hz = L25["Hz"] / math.sqrt(2 * ln20)
+P(f"  idealised one-pair rule sigma <= Delta/sqrt(2 ln 20): gated halo law {sig_halo:.3f} dex; H(z) {sig_Hz:.3f} dex (P(20:1) = 0.50 and P(wrong way) = {0.5*(1+math.erf(-ln20/math.sqrt(2*ln20)/math.sqrt(2))):.2f} at that sigma)")
+# the sample-mean error of the recommended design (Fig. 4 bars): N for expected 20:1 at 0.20 dex
+N_REC = DESIGN[(0.20, 0.0)]["N_expected"]
+SE_REC = (math.sqrt((0.20**2 + s_intr_d**2) / N_REC), math.sqrt((0.20**2 + s_intr_d**2 + s_halo_obj**2) / N_REC))
+P(f"  recommended design N = {N_REC} at 0.20 dex: standard error of the sample mean {SE_REC[0]:.3f} dex (constancy) / {SE_REC[1]:.3f} dex (halo law)")
 # ---- measurement budgets.  Lensing conserves surface density, so g_bar is magnification-free while g_obs = V^2/R ~ mu^(1/2):
 #      d log a0 = A_obs [2 dV/V / ln10  (+)  0.5 dlog mu]  (+)  A_bar dlog M_b     (quadrature), evaluated at y = 0.2
 nb = float(n_slope(0.2)); Aob, Aba = 1 / abs(nb), 1 / abs(nb) - 1
@@ -421,34 +711,36 @@ for dv, dm, dmu in ((0.025, 0.04, 0.04), (0.03, 0.06, 0.05), (0.05, 0.10, 0.06))
     tot = math.sqrt((Aob * 2 * dv / math.log(10))**2 + (Aba * dm)**2 + (Aob * 0.5 * dmu)**2)
     budgets.append(dict(dV=dv, dlogM=dm, dlogmu=dmu, total=tot))
     P(f"     dV/V = {dv*100:.1f}%, dlog M_b = {dm:.2f}, dlog mu = {dmu:.2f}  ->  sigma_meas = {tot:.3f} dex")
-ideal = math.exp(L25["dm14"]**2 / (2 * 0.134**2))
-P(f"  (idealised: no intrinsic and no halo scatter, total 0.134 dex, one object: {ideal:.1f}:1)")
 OUT["S4"] = dict(laws=laws, gmax_z0=g0, gmax_z25=g25, r200_z0_kpc=r0, c_z0=float(c0_), sigma_needed_halo=sig_halo, sigma_needed_Hz=sig_Hz, amplification=amp,
-                 massdep=massdep, halo_range={str(k): v for k, v in hrange.items()}, budgets=budgets, vmax_scaling_z25=vm25, halo_scatter_single=s_halo_obj, intrinsic_amp=[s_int * a["A_obs"] for a in amp[:3]], decision=dec)
-# ---- what a gate-passing galaxy looks like
-GAM = 1.2                                            # disc-versus-point-mass factor at the last measured radius (SPARC median 1.19)
-sig_gate = 0.3 * 1.0e-10 / (GAM * G) * KPC**2 / MSUN  # Msun per kpc^2:  M_b < sig_gate R^2
-gate = []
-for Mb, R in ((2e9, 4.0), (5e9, 6.0), (1e10, 8.0)):
-    yb = GAM * G * Mb * MSUN / (R * KPC)**2 / 1.0e-10
-    Vf = (float(nu(yb))**2 * yb * GAM * G * Mb * MSUN * 1.0e-10)**0.25 / 1e3
-    gate.append(dict(Mb=Mb, R_kpc=R, y=yb, Vf_kms=Vf))
-P(f"  the gate g_bar < 0.3 a0 (a0 = 1e-10, Gamma = {GAM}) reads M_b < {sig_gate:.2e} (R/kpc)^2 Msun; examples: " +
-  "; ".join(f"M_b = {g_['Mb']:.0e}, R = {g_['R_kpc']:.0f} kpc -> y = {g_['y']:.2f}, V_f = {g_['Vf_kms']:.0f} km/s" for g_ in gate))
-OUT["S4"]["gate_surface_density"] = sig_gate; OUT["S4"]["gate_examples"] = gate
+                 massdep=massdep, halo_range={str(k): v for k, v in hrange.items()}, budgets=budgets, vmax_scaling_z25=vm25, halo_scatter_single=s_halo_obj,
+                 halo_scatter_1e12=s_halo_1e12, intrinsic_amp=[s_int * a["A_obs"] for a in amp[:3]], gate_surface_density=sig_gate, gate_surface_density_a0_1e10=sig_gate_1e10,
+                 gate_examples=gate, gate_halos=GH, M_gate=M_GATE, delta_gate=DELTA_GATE, delta_gate_D08=DELTA_GATE_D08, gate_M_range=GATE_M, gate_D_range=GATE_D, gate_D08_range=GATE_D08,
+                 design={f"{k_[0]}|{k_[1]}": v_ for k_, v_ in DESIGN.items()}, one_013=one013, two_010=two010, three_013=three013, four_020=four020, four_020_p20=(mc4["const"]["p20"], mc4["halo"]["p20"]),
+                 N_rec=N_REC, se_rec=SE_REC)
 check("S4j the gate selects low-mass discs: the three examples pass y < 0.3 and rotate at 80-130 km/s", all(g_["y"] < 0.3 and 80 < g_["Vf_kms"] < 130 for g_ in gate),
       ", ".join(f"{g_['Vf_kms']:.0f}" for g_ in gate) + " km/s")
 check("S4k the three quoted measurement budgets give 0.10, 0.13 and 0.20 dex", all(abs(b["total"] - t) < 0.006 for b, t in zip(budgets, (0.10, 0.13, 0.20))),
       ", ".join(f"{b['total']:.3f}" for b in budgets))
-check("S4l four galaxies at 0.20 dex also exceed 20:1", dec[3]["odds"][3] > 20, f"{dec[3]['odds'][3]:.0f}:1")
-check("S4h the smallest structural LambdaCDM expectation in the grid is still a rise of more than 0.2 dex at z = 2.5",
-      min(min(v.values()) for v in massdep.values()) > 0.2, f"min {min(min(v.values()) for v in massdep.values()):+.3f}, max {max(max(max(v.values()) for v in massdep.values()), vm25):+.3f}")
-check("S4i AGAINST THE ONE-OBJECT CLAIM: with intrinsic and halo-to-halo scatter included, one object at 0.13 dex does NOT reach 20:1, three objects at 0.10 dex do",
-      dec[2]["odds"][0] < 20 and dec[1]["odds"][2] > 20, f"one at 0.13: {dec[2]['odds'][0]:.1f}:1; three at 0.10: {dec[1]['odds'][2]:.1f}:1")
+check("S4c2 the gate's discs sit in M_200 = 3e10-2e11 Msun haloes at z = 2.5, where the Dutton-Maccio law gives +0.15 to +0.27 dex; the halo masses reproduce the CFG290 referee's R8 cases to 0.005 dex",
+      2e10 < GATE_M[0] and GATE_M[1] < 2.5e11 and 0.15 < GATE_D[0] and GATE_D[1] < 0.27 and _r8ok, f"M {GATE_M[0]:.1e}-{GATE_M[1]:.1e}; Delta {GATE_D[0]:+.3f} to {GATE_D[1]:+.3f}", kind="model")
+check("S4t the concentration-mass relation is a model systematic of ~0.2 dex: at the gate's halo mass Duffy et al. exceed Dutton & Maccio by more than 0.15 dex",
+      DELTA_GATE_D08 - DELTA_GATE > 0.15, f"{DELTA_GATE_D08:+.3f} vs {DELTA_GATE:+.3f}", kind="model")
+check("S4s the design Monte Carlo reproduces the closed-form expected ln B to 2 per cent and the CFG290 referee's P(20:1) at the old decision value to 0.02",
+      max(max(x[0], x[1]) for x in MCCHK) < 0.02 and max(max(x[2], x[3]) for x in MCCHK) < 0.02, kind="model")
+check("S4l AGAINST THE v3 DESIGN: at the gated decision value the v3 designs (two at 0.10, three at 0.13, four at 0.20 dex) all fall below 10:1, and four at 0.20 dex reach 20:1 in fewer than half the trials",
+      max(two010, three013, four020) < 10 and max(mc4["const"]["p20"], mc4["halo"]["p20"]) < 0.5, f"{two010:.1f}, {three013:.1f}, {four020:.1f}:1", kind="model")
+check("S4u AGAINST EXPECTED-ODDS SIZING: at every sigma_m, reaching 20:1 with 90 per cent probability needs at least 1.5 times the N that gives expected 20:1, and at that N the evidence points the wrong way in more than 3 per cent of trials",
+      all(DESIGN[(sm, 0.0)]["N_power90"] >= 1.5 * DESIGN[(sm, 0.0)]["N_expected"] and max(DESIGN[(sm, 0.0)]["pwrong_at_Ne"]) > 0.03 for sm in SMS), kind="model")
+check("S4v carrying the concentration-mass relation as a shared 0.10 dex prior width on the halo law at least doubles the N for expected 20:1 at 0.20 dex",
+      DESIGN[(0.20, 0.10)]["N_expected"] >= 2 * DESIGN[(0.20, 0.0)]["N_expected"], f"{DESIGN[(0.20, 0.0)]['N_expected']} -> {DESIGN[(0.20, 0.10)]['N_expected']}", kind="model")
+check("S4h the smallest structural LambdaCDM expectation in the grid, including the gate's lightest haloes, is still a rise of more than 0.15 dex at z = 2.5",
+      min(min(min(v.values()) for v in massdep.values()), GATE_D[0]) > 0.15, f"min {min(min(min(v.values()) for v in massdep.values()), GATE_D[0]):+.3f}, max {max(max(max(v.values()) for v in massdep.values()), vm25):+.3f}")
+check("S4i AGAINST THE ONE-OBJECT CLAIM: with intrinsic and halo-to-halo scatter included, one object at 0.13 dex gives less than 5:1 at the gated value",
+      one013 < 5, f"{one013:.1f}:1")
 check("S4a the closed law E^(4/3) c^2/f(c) is the ratio of NFW central accelerations at fixed M200", abs(g25 / g0 / ratio_halo(2.5) - 1) < 1e-9)
 check("S4b the central acceleration of a 1e12 Msun NFW halo today is within a factor 2 of the galactic scale 1.2e-10", 0.5 < g0 / 1.2e-10 < 2.0, f"{g0:.2e}")
-check("S4c halo-emergent law at z = 2.5 is a factor 2.0-2.3 (0.30-0.36 dex) for the Dutton-Maccio relation at 1e12 Msun", 0.30 < L25["dm14"] < 0.36, f"{10**L25['dm14']:.3f} = {L25['dm14']:+.3f} dex")
-check("S4d the required single-object precision is 0.13 dex", abs(sig_halo - 0.13) < 0.01, f"{sig_halo:.3f}")
+check("S4c halo-emergent law at z = 2.5 is a factor 2.0-2.3 (0.30-0.36 dex) for the Dutton-Maccio relation at 1e12 Msun (the RC100 comparator)", 0.30 < L25["dm14"] < 0.36, f"{10**L25['dm14']:.3f} = {L25['dm14']:+.3f} dex")
+check("S4d the idealised one-pair precision for the gated value is Delta/2.45", abs(sig_halo - DELTA_GATE / 2.448) < 1e-3, f"{sig_halo:.3f}")
 check("S4e deep limit n -> -1/2 (a0 = g_obs^2/g_bar) and the amplification at y = 0.3 stays below 1.7 (baryons) and 2.7 (kinematics)",
       abs(n_deep + 0.5) < 1e-4 and amp[2]["A_bar"] < 1.7 and amp[2]["A_obs"] < 2.7, f"A_bar = {amp[2]['A_bar']:.2f}, A_obs = {amp[2]['A_obs']:.2f}")
 check("S4f at the accelerations of published z > 0.5 samples (1.7-6.4 a0) the kinematic amplification is 4-9", 4 < amp[4]["A_obs"] < 5 and 8.5 < amp[6]["A_obs"] < 9.5,
@@ -456,42 +748,34 @@ check("S4f at the accelerations of published z > 0.5 samples (1.7-6.4 a0) the ki
 check("S4g even the density mapping under DESI w0-wa stays within 0.15 dex of zero at z = 2.5, far from the halo and H(z) laws",
       all(abs(v) < 0.15 for v in L25["desi"].values()))
 
-# ---- (v3) THE SAME RULE WITH A COMMON-MODE CALIBRATION OF THE BARYONIC MASS.  The table above treats every error as independent
-#      between galaxies.  A calibration shared by the whole sample (an alpha_CO scale, a stellar-mass zero point) does not average
-#      down: Delta_i = c + e_i (+ h_i + Delta under the halo law), c ~ N(0, s_C^2) common, s_C = A_bar * delta_c.  The expected log
-#      Bayes factor is the Kullback-Leibler divergence of two N-variate normals with covariance s^2 I + s_C^2 J (eigenvalues s^2
-#      (N-1 times) and s^2 + N s_C^2 along the unit vector), means 0 and Delta along the unit vector.
-def expected_lnB_shared(N, s_meas, mu, s_intr, s_h, s_c):
-    s0v = s_meas**2 + s_intr**2; s1v = s0v + s_h**2
-    l0, l1 = s0v + N * s_c**2, s1v + N * s_c**2
-    def kl(av, al, bv, bl):
-        return 0.5 * ((N - 1) * (av / bv - 1 - math.log(av / bv)) + (al / bl - 1 - math.log(al / bl)) + N * mu**2 / bl)
-    return kl(s0v, l0, s1v, l1), kl(s1v, l1, s0v, l0)
+# ---- THE SAME DESIGN WITH A COMMON-MODE CALIBRATION OF THE BARYONIC MASS.  A calibration shared by the whole sample (an alpha_CO
+#      scale, a stellar-mass zero point) does not average down: sigma_C = A_bar delta_c enters both hypotheses as b J.  Along the
+#      direction of the mean the variance is s^2/N + sigma_C^2, so the sample means cannot separate by more than Delta/sigma_C.
+def expected_lnB_independent(N, s_meas, mu, s_intr, s_h):
+    s0 = math.hypot(s_meas, s_intr); s1 = math.hypot(s0, s_h)
+    return (N * (math.log(s1 / s0) - 0.5 + (s0**2 + mu**2) / (2 * s1**2)), N * (math.log(s0 / s1) - 0.5 + (s1**2 + mu**2) / (2 * s0**2)))
 _red = max(abs(a - b) for N in (1, 2, 3, 4, 10) for sm in (0.08, 0.10, 0.13, 0.20)
-           for a, b in zip(expected_lnB_shared(N, sm, L25["dm14"], s_int * amp[2]["A_obs"], s_halo_obj, 0.0),
-                           expected_lnB(N, sm, L25["dm14"], s_int * amp[2]["A_obs"], s_halo_obj)))
-s_intr_d = s_int * amp[2]["A_obs"]
-P(f"  common-mode calibration (v3): baryonic-mass calibration error delta_c shared by every galaxy, s_C = A_bar delta_c at y = 0.2 (A_bar = {Aba:.2f});"
+           for a, b in zip(elnB_design(N, sm, DELTA_GATE), expected_lnB_independent(N, sm, DELTA_GATE, s_intr_d, s_halo_obj)))
+N_A, N_B = DESIGN[(0.20, 0.0)]["N_expected"], DESIGN[(0.10, 0.0)]["N_expected"]
+P(f"  common-mode calibration: delta_c shared by every galaxy, s_C = A_bar delta_c at y = 0.2 (A_bar = {Aba:.2f}); designs N = {N_A} at 0.20 dex and N = {N_B} at 0.10 dex;"
   f" the shared-term formula reduces to the independent one at s_C = 0 to {_red:.1e}")
-P(f"  {'delta_c':>8} {'s_C':>6} {'halo, N=4 @0.20':>16} {'halo, N=4 @0.10':>16} {'halo, N=10 @0.20':>17} {'H(z), N=4 @0.20':>16} {'halo: Delta/s_C':>16} {'H(z): Delta/s_C':>16}")
 SHARED = []
 for dcal in (0.0, 0.05, 0.10, 0.15, 0.20, 0.30):
     sc = Aba * dcal
-    oh4 = math.exp(min(expected_lnB_shared(4, 0.20, L25["dm14"], s_intr_d, s_halo_obj, sc)))
-    oh4b = math.exp(min(expected_lnB_shared(4, 0.10, L25["dm14"], s_intr_d, s_halo_obj, sc)))
-    oh10 = math.exp(min(expected_lnB_shared(10, 0.20, L25["dm14"], s_intr_d, s_halo_obj, sc)))
-    lnz = min(expected_lnB_shared(4, 0.20, L25["Hz"], s_intr_d, 0.0, sc))
-    oz4 = math.exp(min(lnz, 700.0))
-    zh = L25["dm14"] / sc if sc > 0 else float("inf"); zz_ = L25["Hz"] / sc if sc > 0 else float("inf")
-    SHARED.append(dict(delta_c=dcal, s_C=sc, halo_N4_020=oh4, halo_N4_010=oh4b, halo_N10_020=oh10, Hz_N4_020=oz4, halo_mean_limit=zh, Hz_mean_limit=zz_))
-    P(f"  {dcal:8.2f} {sc:6.3f} {oh4:15.1f}:1 {oh4b:15.1f}:1 {oh10:16.1f}:1 {min(oz4, 1e6):15.0f}:1 {zh:16.2f} {zz_:16.2f}")
-dc_need_halo = L25["dm14"] / math.sqrt(2 * ln20) / Aba; dc_need_Hz = L25["Hz"] / math.sqrt(2 * ln20) / Aba
-P(f"  20:1 from the sample means alone (any N; expected ln B -> Delta^2/(2 s_C^2)) needs delta_c <= {dc_need_halo:.3f} dex (halo law) and <= {dc_need_Hz:.3f} dex (H(z) law)")
+    oA = odds_design(N_A, 0.20, DELTA_GATE, s_c=sc); oB = odds_design(N_B, 0.10, DELTA_GATE, s_c=sc)
+    pA = mc_design(N_A, 0.20, DELTA_GATE, s_c=sc, M=40000); pA = min(pA["const"]["p20"], pA["halo"]["p20"])
+    oz = odds_design(N_A, 0.20, L25["Hz"], s_c=sc, s_h=0.0)
+    zh = DELTA_GATE / sc if sc > 0 else float("inf"); zz_ = L25["Hz"] / sc if sc > 0 else float("inf")
+    SHARED.append(dict(delta_c=dcal, s_C=sc, halo_NA_020=oA, halo_NA_020_p20=pA, halo_NB_010=oB, Hz_NA_020=oz, halo_mean_limit=zh, Hz_mean_limit=zz_))
+    P(f"  delta_c {dcal:4.2f}  s_C {sc:5.3f}:  halo N={N_A} @0.20 {oA:9.1f}:1 (P(20:1) {pA:.2f});  halo N={N_B} @0.10 {oB:9.1f}:1;  H(z) N={N_A} @0.20 {min(oz, 1e30):10.3g}:1;  Delta/s_C {zh:.2f} / {zz_:.2f}")
+dc_need_halo = DELTA_GATE / math.sqrt(2 * ln20) / Aba; dc_need_Hz = L25["Hz"] / math.sqrt(2 * ln20) / Aba
+P(f"  20:1 from the sample means alone (any N; expected ln B -> Delta^2/(2 s_C^2)) needs delta_c <= {dc_need_halo:.3f} dex (gated halo law) and <= {dc_need_Hz:.3f} dex (H(z) law)")
 def _gas_to_bary(dgas, fg=0.5): return math.log10(1 - fg + fg * 10**dgas)
 GASB = {d: (_gas_to_bary(d), _gas_to_bary(-d)) for d in (0.2, 0.7)}
 P(f"  a gas-mass scale error of +/-0.2 and +/-0.7 dex at a gas fraction of 0.5 is " +
   "; ".join(f"{d}: {a:+.3f}/{b:+.3f} dex" for d, (a, b) in GASB.items()) + " on the baryonic mass")
 OUT["S4"]["shared"] = SHARED; OUT["S4"]["delta_c_needed"] = dict(halo=dc_need_halo, Hz=dc_need_Hz); OUT["S4"]["gas_to_baryon"] = {str(k): v for k, v in GASB.items()}
+OUT["S4"]["shared_designs"] = dict(N_A=N_A, N_B=N_B)
 
 # ---- (v3) THE CONDITIONING OF a0 WITH THE MASS SCALE FREE (CFG240, re-computed here for the paper's kernel).  One calibration
 #      factor f on g_bar, the same at every point: g_obs = f g nu(f g/a0).  In log10 units the Fisher rows are (1 - b, b) with
@@ -529,23 +813,34 @@ def fmt_odds(x):
     """odds as printed in the tables: two significant figures, powers of ten above 1e4"""
     if x >= 1e4:
         e_ = int(math.floor(math.log10(x))); m_ = x / 10**e_
-        return f"${m_:.1f}\\times10^{e_}$:1"
+        return f"${m_:.1f}\\times10^{{{e_}}}$:1"
     if x >= 100: return f"{int(round(x, -int(math.floor(math.log10(x))) + 1))}:1"
     if x >= 10: return f"{x:.0f}:1"
     return f"{x:.1f}:1"
 SHARED_ROWS = []
 for r in SHARED[:5]:
     lim = ("--", "--") if r["s_C"] == 0 else (f"{r['halo_mean_limit']:.1f}", f"{r['Hz_mean_limit']:.1f}")
-    SHARED_ROWS.append(f"{r['delta_c']:.2f} & {r['s_C']:.3f} & {fmt_odds(r['halo_N4_020'])} & {fmt_odds(r['halo_N4_010'])} & {fmt_odds(r['Hz_N4_020'])} & {lim[0]} & {lim[1]}\\\\")
+    SHARED_ROWS.append(f"{r['delta_c']:.2f} & {r['s_C']:.3f} & {fmt_odds(r['halo_NA_020'])} & {r['halo_NA_020_p20']:.2f} & {fmt_odds(r['halo_NB_010'])} & {fmt_odds(r['Hz_NA_020'])} & {lim[0]} & {lim[1]}\\\\")
 P("  rows of the table of shared-calibration odds (as typeset):"); [P("     " + r_) for r_ in SHARED_ROWS]
+DESIGN_ROWS = []
+for sm in SMS:
+    d0 = DESIGN[(sm, 0.0)]
+    DESIGN_ROWS.append(f"{sm:.2f} & {d0['N_expected']} & {min(d0['p20_at_Ne']):.2f} & {max(d0['pwrong_at_Ne']):.2f} & {d0['N_power90']} & "
+                       + " & ".join(f"{DESIGN[(sm, ss)]['N_expected']} & {DESIGN[(sm, ss)]['N_power90']}" for ss in SIGSYS[1:]) + "\\\\")
+P("  rows of the design table (as typeset):"); [P("     " + r_) for r_ in DESIGN_ROWS]
 _tex = open(os.path.join(HERE, "mnras_a0_lambda_v3.tex")).read()
-_tab = _tex[_tex.index(r"\label{tab:shared}"):]; _tab = _tab[_tab.index(r"\midrule") + len(r"\midrule"):_tab.index(r"\bottomrule")]
-_typeset = [l_.strip() for l_ in _tab.strip().splitlines() if l_.strip()]
+def _typeset_rows(label):
+    if r"\label{" + label + "}" not in _tex: return []
+    t_ = _tex[_tex.index(r"\label{" + label + "}"):]; t_ = t_[t_.index(r"\midrule") + len(r"\midrule"):t_.index(r"\bottomrule")]
+    return [l_.strip() for l_ in t_.strip().splitlines() if l_.strip()]
+_typeset = _typeset_rows("tab:shared")
+_typeset_design = _typeset_rows("tab:odds")
 check("S4m the shared-calibration odds reduce to the independent-error odds when the common term vanishes (1e-12)", _red < 1e-12, f"{_red:.1e}", kind="identity")
-check("S4n AGAINST THE DESIGN: a common-mode baryonic-mass calibration error of 0.10 dex drops four galaxies at 0.20 dex from >20:1 to <5:1 against the halo law, and 20:1 from the sample means needs delta_c <= 0.09 dex (halo) and <= 0.16 dex (H(z)) whatever N",
-      SHARED[0]["halo_N4_020"] > 20 and SHARED[2]["halo_N4_020"] < 5 and 0.08 < dc_need_halo < 0.095 and 0.15 < dc_need_Hz < 0.165,
-      f"{SHARED[0]['halo_N4_020']:.0f}:1 -> {SHARED[2]['halo_N4_020']:.1f}:1; delta_c {dc_need_halo:.3f} / {dc_need_Hz:.3f}", kind="model")
+check("S4n AGAINST THE DESIGN: a common-mode baryonic-mass calibration error of 0.10 dex drops the recommended design (expected 20:1 at 0.20 dex) below 5:1 against the gated halo law, and 20:1 from the sample means needs delta_c <= 0.06 dex (halo) and about 0.15 dex (H(z)) whatever N",
+      SHARED[0]["halo_NA_020"] >= 20 and SHARED[2]["halo_NA_020"] < 5 and 0.05 < dc_need_halo < 0.065 and 0.15 < dc_need_Hz < 0.165,
+      f"{SHARED[0]['halo_NA_020']:.0f}:1 -> {SHARED[2]['halo_NA_020']:.1f}:1; delta_c {dc_need_halo:.3f} / {dc_need_Hz:.3f}", kind="model")
 check("S4r the table of shared-calibration odds in the manuscript is exactly the computed one", _typeset == SHARED_ROWS, f"{len(_typeset)} rows typeset", kind="identity")
+check("S4r2 the design table in the manuscript is exactly the computed one", _typeset_design == DESIGN_ROWS, f"{len(_typeset_design)} rows typeset", kind="identity")
 check("S4o a 0.2-0.7 dex gas-mass scale error at a gas fraction of 0.5 is 0.09-0.48 dex on the baryonic mass (arithmetic)",
       abs(min(abs(x) for x in GASB[0.2]) - 0.089) < 0.002 and abs(max(abs(x) for x in GASB[0.7]) - 0.478) < 0.002, kind="identity")
 check("S4p the floor sigma(log a0) >= 3 sigma/sqrt(N) holds on 4000 random designs with b in [0, 1/2] (CFG240 T4; with f free)", _worst >= 1 - 1e-9, f"min ratio {_worst:.4f}", kind="identity")
@@ -570,12 +865,16 @@ def rc100_run(path, verbose=True):
     rng = np.random.default_rng(20260921)
     slope, icpt = np.polyfit(zz, la, 1)
     bs = np.array([np.polyfit(zz[i], la[i], 1)[0] for i in (rng.integers(0, len(zz), len(zz)) for _ in range(4000))])
-    s_halo = math.log10(ratio_halo(2.5)) / 2.5; s_Hz = float(np.log10(E(2.5))) / 2.5
+    s_halo = math.log10(ratio_halo(2.5)) / 2.5; s_Hz = float(np.log10(E(2.5))) / 2.5      # mean slopes from z = 0 to 2.5
+    # the MATCHED comparators: each law fitted by the same OLS at RC100's own redshifts (RC100's discs are massive, so the halo law is
+    # evaluated at 1e12 Msun here, not at the gate's mass)
+    s_halo_ols = float(np.polyfit(zz, np.log10(ratio_halo(zz)), 1)[0]); s_Hz_ols = float(np.polyfit(zz, np.log10(E(zz)), 1)[0])
     _P(f"  a0 = (1 - f_DM) g_obs / [ln(1/f_DM)]^2 for {len(zz)} of {len(rows)} galaxies (f_DM in (0.02, 0.98)); z = {zz.min():.2f} - {zz.max():.2f}")
     _P(f"  median a0 = {10**np.median(la):.3e} m s^-2;  16-84%: {10**np.percentile(la,16):.2e} - {10**np.percentile(la,84):.2e};  median y = {np.median(yy):.2f}")
     y16, y50, y84 = np.percentile(yy, [16, 50, 84])
     _P(f"  accelerations probed: y = g_bar/a0 16/50/84% = {y16:.2f}/{y50:.2f}/{y84:.2f};  {int((yy < 0.3).sum())} of {len(yy)} below 0.3;  A_obs there = {1/abs(float(n_slope(y16))):.1f}/{1/abs(float(n_slope(y50))):.1f}/{1/abs(float(n_slope(y84))):.1f}")
     _P(f"  d log10 a0/dz = {slope:+.4f} +/- {bs.std():.4f} (bootstrap);  constant: 0 ({slope/bs.std():+.1f} sigma);  halo-emergent mean slope {s_halo:+.4f} ({(slope-s_halo)/bs.std():+.1f} sigma);  H(z) mean slope {s_Hz:+.4f} ({(slope-s_Hz)/bs.std():+.1f} sigma)")
+    _P(f"  matched comparators (OLS at RC100's redshifts): halo law (1e12 Msun) {s_halo_ols:+.4f}, H(z) {s_Hz_ols:+.4f}  (formal distances {(s_halo_ols-slope)/bs.std():.1f} and {(s_Hz_ols-slope)/bs.std():.1f} sigma, conditional on RC100's mass models; NOT quoted)")
     dfdm = np.polyfit(zz, np.log10([float(r["fDM_within_Re"]) for r in rows if 0.02 < float(r["fDM_within_Re"]) < 0.98]), 1)[0]
     _P(f"  what drives it: d log10 f_DM/dz = {dfdm:+.3f}  (the published fall of the dark-matter fraction with redshift); the inversion is monotone in f_DM")
     # ---- is the trend a selection effect?  control for a measured acceleration (independent of a0) and, separately, for the inferred y
@@ -602,17 +901,39 @@ def rc100_run(path, verbose=True):
         lat = np.log10(gbt[ok_] / np.log(1 / ft[ok_])**2); zt = zr[ok_]
         st = np.polyfit(zt, lat, 1)[0]
         bt = np.array([np.polyfit(zt[i], lat[i], 1)[0] for i in (rng.integers(0, len(zt), len(zt)) for _ in range(1500))]).std()
-        tilt.append(dict(beta=beta, n=int(ok_.sum()), slope=float(st), err=float(bt), sig_const=float(st / bt), sig_halo=float((s_halo - st) / bt)))
+        tilt.append(dict(beta=beta, n=int(ok_.sum()), slope=float(st), err=float(bt), sig_const=float(st / bt), sig_halo=float((s_halo - st) / bt),
+                         sig_halo_ols=float((s_halo_ols - st) / bt), sig_Hz_ols=float((s_Hz_ols - st) / bt)))
     _P("  baryonic-mass calibration drift beta [dex per unit z]  ->  slope, and its distance from constant / from the halo law:")
     for t in tilt:
-        _P(f"     beta {t['beta']:+.3f}: N {t['n']:3d}, slope {t['slope']:+.3f} +/- {t['err']:.3f};  constant {t['sig_const']:+.1f} sigma;  halo law {t['sig_halo']:+.1f} sigma")
+        _P(f"     beta {t['beta']:+.3f}: N {t['n']:3d}, slope {t['slope']:+.3f} +/- {t['err']:.3f};  constant {t['sig_const']:+.1f} sigma;  halo law {t['sig_halo']:+.1f} sigma (matched {t['sig_halo_ols']:+.1f});  H(z) matched {t['sig_Hz_ols']:+.1f}")
     # one galaxy sits exactly on the f_DM = 0.02 edge of the inversion; admitting it:
     edge = (fr >= 0.02 - 1e-12) & (fr < 0.98)
     la_e = np.log10((1 - fr[edge]) * gr[edge] / np.log(1 / fr[edge])**2); slope_edge = float(np.polyfit(zr[edge], la_e, 1)[0])
     _P(f"  admitting the one galaxy at the f_DM = 0.02 edge: slope {slope:+.3f} -> {slope_edge:+.3f} (N {int(edge.sum())}), a {abs(slope_edge - slope)/bs.std():.1f} sigma move from one object")
     beta_halo2 = max((t["beta"] for t in tilt if t["sig_halo"] < 2.0 and t["beta"] < 0), default=None)
+    beta_halo2_ols = max((t["beta"] for t in tilt if t["sig_halo_ols"] < 2.05 and t["beta"] < 0), default=None)
+    beta_Hz1 = max((t["beta"] for t in tilt if t["sig_Hz_ols"] < 1.05 and t["beta"] < 0), default=None)
     beta_const2 = max((t["beta"] for t in tilt if abs(t["sig_const"]) > 2.0 and t["beta"] < 0), default=None)
-    _P(f"  the halo law comes within 2 sigma at beta = {beta_halo2}; constancy goes 2 sigma off at beta = {beta_const2}")
+    _P(f"  the halo law comes within 2 sigma at beta = {beta_halo2} (matched comparator: {beta_halo2_ols}); H(z) within 1 sigma at beta = {beta_Hz1}; constancy goes 2 sigma off at beta = {beta_const2}")
+    # ---- RC100's OWN internal flags, re-derived from the table: V_rot(R_e)^2 = V_c^2 - 3.36 sigma0^2 < 0 (their eq. 8), and
+    #      V_rot/sigma0 < 2.3 at R_e (their rotation cut).  The slope without those rows.
+    EQ8, CUT = set(), set()
+    for r in rows:
+        v2_ = float(r["Vc_Re_kms"])**2 - 3.36 * float(r["sigma0_kms"])**2
+        if v2_ < 0: EQ8.add(r["idx"])
+        elif math.sqrt(v2_) / float(r["sigma0_kms"]) < 2.3: CUT.add(r["idx"])
+    def _slope_drop(drop):
+        zd, ld = [], []
+        for r in rows:
+            if r["idx"] in drop: continue
+            f_ = float(r["fDM_within_Re"])
+            if not (0.02 < f_ < 0.98): continue
+            zd.append(float(r["z"])); ld.append(math.log10((1 - f_) * float(r["g_Re_ms2"]) / math.log(1 / f_)**2))
+        zd, ld = np.array(zd), np.array(ld); rr_ = np.random.default_rng(290)
+        return float(np.polyfit(zd, ld, 1)[0]), float(np.std([np.polyfit(zd[i], ld[i], 1)[0] for i in (rr_.integers(0, len(zd), len(zd)) for _ in range(4000))])), len(zd)
+    FLAG = dict(eq8=sorted(EQ8, key=int), n_cut=len(CUT), no_eq8=_slope_drop(EQ8), no_flagged=_slope_drop(EQ8 | CUT))
+    _P(f"  RC100's own flags: eq.-8 violators (V_rot^2 < 0 at R_e) rows {FLAG['eq8']}; {FLAG['n_cut']} more rows below V_rot/sigma0 = 2.3 at R_e;"
+       f" slope without the eq.-8 rows {FLAG['no_eq8'][0]:+.3f} +/- {FLAG['no_eq8'][1]:.3f} (N {FLAG['no_eq8'][2]}), without all {len(EQ8 | CUT)} {FLAG['no_flagged'][0]:+.3f} +/- {FLAG['no_flagged'][1]:.3f} (N {FLAG['no_flagged'][2]})")
     # ---- the independent replication (KMOS3D; Ubler+2017 kinematics x KMOS3D sizes), from its committed lane
     L332 = json.load(open(os.path.join(ROOT, "real_research", "dark_sector_2026", "L332_kmos3d_trend_replication_results.json")))
     k1 = L332["checks"]; k1m = [v for k_, v in k1.items() if k_.startswith("K1")][0]["measured"]; t1 = [v for k_, v in k1.items() if k_.startswith("T1")][0]
@@ -628,6 +949,7 @@ def rc100_run(path, verbose=True):
         injR.append((s_in, float(np.mean(rec)), float(np.std(rec))))
     _P("  injection (kernel-consistent f_DM with 0.05 noise on the real z, g_bar): injected -> recovered slope: " + ", ".join(f"{a:+.3f} -> {b:+.3f}" for a, b, _ in injR))
     R = dict(slope_with_edge_galaxy=slope_edge, tilt=tilt, beta_halo_within_2sigma=beta_halo2, beta_const_2sigma_off=beta_const2, L332_T1=t1, L332_K1=k1m, injection=injR,
+             beta_halo_within_2sigma_matched=beta_halo2_ols, beta_Hz_within_1sigma=beta_Hz1, slope_halo_ols=s_halo_ols, slope_Hz_ols=s_Hz_ols, flags=FLAG,
                      N=int(len(zz)), slope=float(slope), slope_err=float(bs.std()), median_a0=float(10**np.median(la)), median_y=float(np.median(yy)),
                      slope_halo=s_halo, slope_Hz=s_Hz, dlogfdm_dz=float(dfdm), scatter=float(np.std(la - (icpt + slope*zz))),
                      slope_ctrl_gobs=sg, err_ctrl_gobs=eg, slope_ctrl_y=sy, err_ctrl_y=ey,
@@ -672,32 +994,41 @@ for t_o, t_n in zip(R5o["tilt"], R5["tilt"]):
     P(f"     drift beta {t_o['beta']:+.3f}: slope {t_o['slope']:+.3f} -> {t_n['slope']:+.3f} (constant {t_o['sig_const']:+.1f} -> {t_n['sig_const']:+.1f} sigma; halo {t_o['sig_halo']:+.1f} -> {t_n['sig_halo']:+.1f} sigma)")
 OUT["S5_correction"] = dict(sha256=_sha, changed=_chg, deep_flag_flips=_flip, inversion_rows=_inv_rows, moves=RC100_MOVES)
 check("S5a the inversion is exact: nu(y) (1 - f_DM) = 1 at y = [ln(1/f_DM)]^2", abs(nu(math.log(1/0.37)**2) * (1 - 0.37) - 1) < 1e-12)
-check("S5e AGAINST INTEREST: a baryonic-mass calibration drift of at most 0.05 dex per unit z brings the halo law within 2 sigma (the result is calibration-conditional)",
-      beta_halo2 is not None and beta_halo2 >= -0.05, f"beta = {beta_halo2}")
-check("S5f AGAINST INTEREST: the independent KMOS3D replication (L332) failed, and a third to a half of its z > 1.9 galaxies rotate below their own Newtonian baryons",
-      (not t1["ok"]) and "0.27-0.54" in k1m, k1m[:80])
+_g217 = json.load(open(os.path.join(CFG, "CFG217_rc100_attack", "cfg217_attack_corrected_results.json")))["numbers"]["G2"]
+P(f"  CFG217 G2 (corrected table; RC41 overlap with SED stellar and gas masses): Spearman rho(constant-a0 residual, log M_bar,fit - log(M* + M_gas)) = {_g217['rho']:+.2f}, p = {_g217['p']:.3f}, n = {_g217['n']}")
+OUT["S5"]["cfg217_G2"] = _g217
+FLAG = R5["flags"]; beta_halo2_ols, beta_Hz1 = R5["beta_halo_within_2sigma_matched"], R5["beta_Hz_within_1sigma"]
+_tb = {t["beta"]: t for t in tilt}
+check("S5e AGAINST INTEREST: the slope is calibration-conditional -- a baryonic-mass drift of -0.05 dex per unit z puts it within 0.5 sigma of constancy and about 2 sigma (< 2.2) of the halo law fitted the same way, -0.075 brings the halo law to about 1 sigma (< 1.1), and -0.10 brings the H(z) law to about 1 sigma (< 1.1); tolerances set after seeing the table (post hoc wording check)",
+      abs(_tb[-0.05]["sig_const"]) < 0.5 and _tb[-0.05]["sig_halo_ols"] < 2.2 and _tb[-0.075]["sig_halo_ols"] < 1.1 and _tb[-0.10]["sig_Hz_ols"] < 1.1,
+      f"-0.05: const {_tb[-0.05]['sig_const']:+.1f}, halo {_tb[-0.05]['sig_halo_ols']:+.1f}; -0.075: halo {_tb[-0.075]['sig_halo_ols']:+.1f}; -0.10: H(z) {_tb[-0.10]['sig_Hz_ols']:+.1f}")
+check("S5f AGAINST INTEREST: the independent KMOS3D replication (L332) failed, and a third to a half of its z > 1.9 galaxies rotate below their own Newtonian baryons (read from the committed lane)",
+      (not t1["ok"]) and "0.27-0.54" in k1m, k1m[:80], kind="identity")
 check("S5g the tilt table at beta = 0 reproduces the main fit exactly (same galaxies, same slope)",
       [t for t in tilt if t["beta"] == 0.0][0]["n"] == len(zz) and abs([t for t in tilt if t["beta"] == 0.0][0]["slope"] - slope) < 1e-9, kind="identity")
 check("I5 the inversion recovers injected trends (0, halo law, H(z)) to 0.02 dex per unit z when f_DM obeys the kernel", all(abs(a - b) < 0.02 for a, b, _ in injR),
       ", ".join(f"{a:+.3f}->{b:+.3f}" for a, b, _ in injR), kind="injection")
-check("S5b the RC100 trend is consistent with constant a0 within 2.5 sigma and more than 3 sigma below the halo-emergent mean slope",
-      abs(slope / bs.std()) < 2.5 and (s_halo - slope) / bs.std() > 3.0, f"{slope:+.3f} +/- {bs.std():.3f}")
+check("S5b the RC100 slope is consistent with a constant a0 (within 2.5 sigma) and is negative, i.e. shows no sign of the rise both comparators predict (their matched slopes are positive)",
+      abs(slope / bs.std()) < 2.5 and slope < 0 < R5["slope_halo_ols"] < R5["slope_Hz_ols"], f"{slope:+.3f} +/- {bs.std():.3f}; comparators {R5['slope_halo_ols']:+.3f}, {R5['slope_Hz_ols']:+.3f}")
 check("S5c no decline is claimed: the slope is within 2.5 sigma of zero under every treatment", abs(slope) < 2.5 * bs.std() and abs(sg) < 2.5 * eg and abs(sy) < 2.5 * ey)
-check("S5d AGAINST INTEREST: the 3.9 sigma does not survive every control -- the weakest exclusion of the halo-emergent slope is below 3 sigma, and that is the number to quote",
-      min((s_halo - slope) / bs.std(), (s_halo - sg) / eg, (s_halo - sy) / ey) < 3.0, f"weakest {min((s_halo-slope)/bs.std(), (s_halo-sg)/eg, (s_halo-sy)/ey):.1f} sigma")
+check("S5d RC100's own flagged rows (2 with V_rot^2 < 0 by their eq. 8; 14 below their V_rot/sigma0 = 2.3 cut at R_e) move the slope by less than 0.5 sigma when dropped",
+      FLAG["eq8"] == ["67", "83"] and FLAG["n_cut"] == 14 and abs(FLAG["no_eq8"][0] - slope) < 0.5 * bs.std() and abs(FLAG["no_flagged"][0] - slope) < 0.5 * bs.std(),
+      f"{slope:+.3f} -> {FLAG['no_eq8'][0]:+.3f} / {FLAG['no_flagged'][0]:+.3f}")
+check("S5j AGAINST 'NO MASS MODEL ENTERS': the constant-a0 residual tracks the offset of RC100's fitted baryonic mass from independent SED + gas masses (CFG217 G2: |rho| >= 0.3, p < 0.05; read from the committed lane)",
+      _g217["prior_driven"] and abs(_g217["rho"]) >= 0.3 and _g217["p"] < 0.05 and _g217["n"] == 41, f"rho {_g217['rho']:+.2f}, p {_g217['p']:.3f}", kind="identity")
 def _rc100_verdicts(R):
-    """the RC100 statements of the text, evaluated on one transcription: (S5b, S5c, S5d, S5e)"""
+    """the RC100 statements of the text, evaluated on one transcription: (S5b, S5c, S5e)"""
     A_ = R["_arrays"]; se = A_["bs"].std()
-    b_ = abs(R["slope"] / se) < 2.5 and (R["slope_halo"] - R["slope"]) / se > 3.0
+    b_ = abs(R["slope"] / se) < 2.5 and R["slope"] < 0 < R["slope_halo_ols"] < R["slope_Hz_ols"]
     c_ = abs(R["slope"]) < 2.5 * se and abs(A_["sg"]) < 2.5 * A_["eg"] and abs(A_["sy"]) < 2.5 * A_["ey"]
-    d_ = R["weakest_excl_halo"] < 3.0
-    e_ = R["beta_halo_within_2sigma"] is not None and R["beta_halo_within_2sigma"] >= -0.05
-    return (b_, c_, d_, e_)
+    tb_ = {t["beta"]: t for t in R["tilt"]}
+    e_ = abs(tb_[-0.05]["sig_const"]) < 0.5 and tb_[-0.05]["sig_halo_ols"] < 2.2 and tb_[-0.075]["sig_halo_ols"] < 1.1 and tb_[-0.10]["sig_Hz_ols"] < 1.1
+    return (b_, c_, e_)
 check("S5h the corrected RC100 transcription is the CFG289 file (sha256) and differs from the earlier one in exactly 17 primary cells: 5 names, 9 baryonic masses, 1 dark-matter fraction, 2 circular velocities; three of them enter the inversion; one deep-regime flag flips (row 44)",
       _sha == RC100_SHA256 and [len(_chg[f]) for f in ("name", "logMbar_Msun", "fDM_within_Re", "Vc_Re_kms")] == [5, 9, 1, 2] and sum(len(v) for v in _chg.values()) == 17 and _flip == [44]
       and len(_inv_rows) == 3,
       ", ".join(f"{f} {len(v)}" for f, v in _chg.items() if v), kind="identity")
-check("S5i the correction changes no RC100 statement of the text (S5b-S5e evaluate the same on both transcriptions) and moves the slope by less than 0.001 dex per unit z (< 0.1 sigma)",
+check("S5i the correction changes no RC100 statement of the text (S5b, S5c, S5e evaluate the same on both transcriptions) and moves the slope by less than 0.001 dex per unit z (< 0.1 sigma)",
       _rc100_verdicts(R5) == _rc100_verdicts(R5o) and abs(R5["slope"] - R5o["slope"]) < min(0.1 * R5["slope_err"], 0.001) and R5["N"] == R5o["N"] == 99,
       f"slope {R5o['slope']:+.4f} -> {R5['slope']:+.4f}; verdicts {_rc100_verdicts(R5o)} -> {_rc100_verdicts(R5)}")
 
@@ -750,6 +1081,11 @@ mig_grp = groups_in_window(mgb, mgi)
 S6 = dict(window=WIN, beta_of_y={str(y): float(beta_of_y(y)) for y in (1e-6, 0.01, 0.05, 0.1, 0.2)}, sparc={}, mightee={})
 S6["mightee"]["slope_L"] = slope_test(mgb, mgo, mig_grp, a0_L); S6["mightee"]["slope_C"] = slope_test(mgb, mgo, mig_grp, a0_C)
 S6["mightee"]["amp"] = amp_fit(mgb, mgo, mew, mgi)
+_gsz = {k_: int((mgi == k_).sum()) for k_ in np.unique(mgi)}; _big = max(_gsz, key=_gsz.get)
+_big_span = float(np.ptp(np.log10(mgb[mgi == _big])))
+_keep = mgi != _big; _grp_nb = groups_in_window(mgb[_keep], mgi[_keep])
+S6["mightee"]["slope_L_without_largest_group"] = slope_test(mgb[_keep], mgo[_keep], _grp_nb, a0_L)
+S6["mightee"]["colour_groups"] = dict(n_groups=len(_gsz), largest=_gsz[_big], largest_span_dex=_big_span, sizes=sorted(_gsz.values()))
 S6["mightee"]["n_points_total"] = int(mgb.size); S6["mightee"]["n_groups_total"] = len(_cols); S6["mightee"]["n_in_window"] = int((mgb < WIN).sum())
 S6["mightee"]["table3"] = {k_: dict(a0=v_[0] * 1e-10, err=v_[1] * 1e-10, kappa_L=v_[0] * 1e-10 / A_L, kappa_C=v_[0] * 1e-10 / A_C, se_ln=v_[1] / v_[0]) for k_, v_ in MIG_T3.items()}
 # ---- SPARC at three disc ratios (bulge 0.7, velocity errors < 10 per cent)
@@ -780,6 +1116,8 @@ for UD in (0.5, 0.6, 0.7):
       f"{p_['z_075']:.1f} sigma from 0.75, {p_['z_1']:.1f} sigma from 1")
 P("  MIGHTEE-HI's own fits (Varasteanu et al. 2025, Table 3):  " + ";  ".join(f"{k_}: a0 = {v_['a0']/1e-10:.2f}e-10, kappa_L = {v_['kappa_L']:.3f} +/- {v_['kappa_L']*v_['se_ln']:.3f}" for k_, v_ in S6["mightee"]["table3"].items()))
 P(f"  our window fit to the digitised points: a0 = {S6['mightee']['amp']['a0']/1e-10:.3f}e-10 ({(S6['mightee']['amp']['a0']/1.69e-10-1)*100:+.1f}% from their fiducial)")
+_cg = S6["mightee"]["colour_groups"]; _mw0 = S6["mightee"]["slope_L_without_largest_group"]
+P(f"  colour groups: {_cg['n_groups']} for the survey's 19 galaxies; largest {_cg['largest']} points spanning {_cg['largest_span_dex']:.2f} dex in g_bar; without it: {_mw0['n_gal']} galaxies, beta {_mw0['beta']:.3f} +/- {_mw0['se_beta']:.3f} vs kernel {_mw0['beta_kernel']:.3f} (z {_mw0['delta']/_mw0['se_delta']:+.2f})")
 def zamp(a, sa, b, sb):          # difference in ln a0, in combined standard errors
     return (math.log(a) - math.log(b)) / math.sqrt(sa**2 + sb**2)
 for key_ in ("fiducial (spatially varying SED ratio, median 0.35)", "fixed Upsilon_K = 0.6"):
@@ -812,10 +1150,11 @@ for f in sorted(glob.glob(os.path.join(SPARC, "*_rotmod.dat"))):
     R, V, eV, Vg, Vd, Vb = (d[:, i] for i in range(6))
     S_, T_ = Vd**2 + Vb**2, V**2 - np.sign(Vg) * Vg**2; okn = S_ > 0
     if okn.sum() >= 3: mlk.append(_ml[nm]); mln.append(float(np.sum(T_[okn] * S_[okn]) / np.sum(S_[okn]**2)))
+    _sc = HF_R1 if FD.get(nm) == 1 else 1.0                                   # the paper's distance convention, as everywhere
     m = (R > 0) & (V > 0) & (eV > 0) & (eV / V < 0.10)
     v2 = (np.sign(Vg) * Vg**2 + _ml[nm] * (Vd**2 + Vb**2))[m]; ok = v2 > 0
     if ok.sum() == 0: continue
-    kb.append(v2[ok] / R[m][ok] * K); ko.append(V[m][ok]**2 / R[m][ok] * K); ke.append((2 * eV[m] / V[m] / math.log(10))[ok]); ki.append(np.full(ok.sum(), len(ki)))
+    kb.append(v2[ok] / R[m][ok] * K); ko.append(V[m][ok]**2 / R[m][ok] * K / _sc); ke.append((2 * eV[m] / V[m] / math.log(10))[ok]); ki.append(np.full(ok.sum(), len(ki)))
 kb, ko, ke, ki = (np.concatenate(x_) for x_ in (kb, ko, ke, ki))
 r_kin = float(np.corrcoef(np.log10(mlk), np.log10(np.clip(mln, 1e-3, None)))[0, 1])
 amp_kin = amp_fit(kb, ko, ke, ki)
@@ -858,11 +1197,15 @@ check("S6d a straight line across all SPARC points in the window, exposed to gal
       all(abs(v["z"]) < 2 for v in pooled_all.values()), ", ".join(f"{v['z']:+.2f}" for v in pooled_all.values()))
 check("S6f AGAINST INTEREST: at MIGHTEE-HI's own SED mass-to-light ratios the two surveys disagree on a0 by more than 3 sigma at every SPARC disc ratio",
       all(z_ > 3 for z_ in zf), ", ".join(f"{z_:+.1f}" for z_ in zf))
-check("S6g at a fixed Upsilon_K = 0.6 (the survey's own refit) they agree within 2.5 sigma at every SPARC disc ratio",
-      all(abs(z_) < 2.5 for z_ in z6), ", ".join(f"{z_:+.1f}" for z_ in z6))
+check("S6g AGAINST FULL AGREEMENT: at a fixed Upsilon_K = 0.6 (the survey's own refit) the two surveys agree within 2.5 sigma for SPARC Upsilon_disc 0.5 and 0.6 but not at 0.7, and going from the SED ratios to the fixed ratio moves the disagreement by more than 4 sigma at every disc ratio",
+      z6[0] < 2.5 and z6[1] < 2.5 and z6[2] > 2.5 and all(a_ - b_ > 4 for a_, b_ in zip(zf, z6)), ", ".join(f"{z_:+.1f}" for z_ in z6))
 check("S6h the SPARC window amplitude brackets kappa_Lambda = 1/2 across Upsilon_disc = 0.5-0.7", kS[0] > 0.5 > kS[2], ", ".join(f"{k_:.3f}" for k_ in kS))
 check("S6i PITFALL: per-galaxy ratios fitted to the curves (log-correlation > 0.8 with the Newtonian no-dark-matter ratio) lower the window kappa by a factor above 1.5 at every disc ratio",
       r_kin > 0.8 and min(fac_kin) > 1.5, f"r = {r_kin:.3f}; factors " + ", ".join(f"{x_:.2f}" for x_ in fac_kin))
+_mw = S6["mightee"]["slope_L_without_largest_group"]
+check("S6k the MIGHTEE-HI slope result does not hinge on the colour-group identification: without the largest group (11 points spanning 0.22 dex in g_bar, possibly two galaxies) the per-galaxy slope still agrees with the kernel's (|z| < 2)",
+      S6["mightee"]["colour_groups"]["n_groups"] == 18 and S6["mightee"]["colour_groups"]["largest"] == 11 and abs(_mw["delta"] / _mw["se_delta"]) < 2,
+      f"{_mw['n_gal']} galaxies, beta {_mw['beta']:.3f} vs kernel {_mw['beta_kernel']:.3f} (z {_mw['delta']/_mw['se_delta']:+.2f})")
 check("S6j the pooled per-galaxy slope excludes a slope of 0.75 at more than 4 sigma at every disc ratio",
       all(S6["sparc"][u]["pooled"]["z_075"] > 4 for u in (0.5, 0.6, 0.7)), ", ".join(f"{S6['sparc'][u]['pooled']['z_075']:.1f}" for u in (0.5, 0.6, 0.7)))
 
@@ -883,6 +1226,17 @@ for r, lab in (("i", "fitted DC14 masses"), ("ii", "SED M* + H2"), ("iii", "SED 
 P(f"  thirds at z = " + " / ".join(f"{z:.2f}" for z in MDz) + f";  fitted-minus-SED mass drift {_m236['b']:+.3f} [{_m236['lo']:+.3f}, {_m236['hi']:+.3f}] dex per unit z (N {_m236['n']});"
   f" at fixed SED stellar mass {_dM[0]:+.3f} [{_dM[1]:+.3f}, {_dM[2]:+.3f}]; SED-mass bias needed to restore the rise on route (ii): {_t236['R198']:.2f} / {_t236['R199a']:.2f} dex per unit z")
 S7["musedark"] = dict(routes=MD, z_thirds=MDz, drift=_m236, drift_fixed_mstar=_dM, tau_star=_t236)
+# ---- the MUSE-DARK and KURVS lanes invert the repository's monotone function nu_mono (CFG4_common), not equation (nu) itself
+sys.path.insert(0, CFG)
+import io as _io, contextlib as _cl
+with _cl.redirect_stdout(_io.StringIO()):
+    import CFG4_common as _K4
+_yy = np.logspace(-3, 2, 5001); _dnu = np.abs(_K4.nu_mono(_yy) / nu(_yy) - 1)
+NUMONO = dict(max_below_1=float(_dnu[_yy <= 1].max()), max_1_100=float(_dnu[_yy > 1].max()), y_first_1e6=float(_yy[np.argmax(_dnu > 1e-6)]))
+P(f"  the lanes' nu_mono against equation (nu): max |dnu/nu| {NUMONO['max_below_1']:.1e} for y <= 1, {NUMONO['max_1_100']*100:.2f}% for 1 < y <= 100 (first exceeds 1e-6 at y = {NUMONO['y_first_1e6']:.2f})")
+S7["nu_mono"] = NUMONO
+check("S7m the lanes' interpolating function equals equation (nu) to 1e-6 for y <= 1 and to 2.5 per cent for 1 < y <= 100", NUMONO["max_below_1"] < 1e-6 and NUMONO["max_1_100"] < 0.025,
+      f"{NUMONO['max_below_1']:.1e}, {NUMONO['max_1_100']*100:.2f}%", kind="model")
 # ---- KURVS-CDFS at z ~ 1.5 (CFG140, CFG160, CFG165, CFG189, CFG194)
 _l140 = [l for l in open(os.path.join(CFG, "CFG140_kurvs_a0z.out")) if "KURVS-3 z 1.54" in l][0]
 KY = [float(x) for x in re.findall(r"g_bar/a0 ([0-9.]+)", _l140)]
@@ -911,6 +1265,9 @@ P(f"  MIGHTEE-HI/LADUMA anchored to SPARC: a1 = {MA['varying']['a1']:+.2f} +/- {
 S7["mightee"] = dict(b=MB, pull_flat=MPF, pull_rival=MPR, anchored=MA, cfg258=M258, rival_x=M_rival)
 # ---- z >= 4 (CFG269): the power P = gap / larger error, common-mode calibration c = 0.15 dex (G1: c = 0.30)
 _b269 = _J("CFG269_highest_z_dynamics", "cfg269_results.json")["bins"]
+_c269 = [l_ for l_ in open(os.path.join(CFG, "CFG269_highest_z_dynamics", "cfg269_discriminate.out")) if "] C1 HZQ rows" in l_][0]
+C269_C1_FAIL = "[FAIL]" in _c269
+P(f"  CFG269's committed run, its own frozen control C1: {_c269.strip()[:150]}")
 for k_, v in _b269.items():
     P(f"  CFG269 {k_:24s} n {v['n']:3d}  P {v['P_range'][0]:.2f}-{v['P_range'][1]:.2f}  {v['verdict']:13s}  at c = 0.30: {', '.join(v['G1_verdicts'])}  {'; '.join(v['G4'])}")
 S7["z4_14"] = {k_: dict(n=v["n"], P=v["P_range"], verdict=v["verdict"], G1=v["G1_verdicts"], G4=v["G4"]) for k_, v in _b269.items()}
@@ -930,17 +1287,6 @@ AUD = dict(tables=len(_tr), cells=sum(v.get("sample_n", v.get("cells", 0)) if "s
            sources=len(_a287["sources"]), kurvs_in=any("KURVS" in k_.upper() for k_ in _a287["sources"]))
 P(f"  CFG287 audit: {AUD['cells']} sampled cells in {AUD['tables']} tables, {AUD['fails']} transcription mismatches; {AUD['papers']} published papers with no erratum registered, {AUD['errata']} with one (registered list: {AUD['registered']})")
 S7["audit"] = AUD
-# ---- the coefficient like-for-like on H0: profile likelihood over SPARC with the stellar mass-to-light ratio free per galaxy
-_pl = open(os.path.join(ROOT, "real_research", "reviews", "mi_a0_profile_likelihood_milgrom_footing_2026.out")).read()
-PL = {}
-for key, pat in (("half_L", r"kappa = 1/2\s+\(THE FRAMEWORK\)"), ("twopi_L", r"kappa = 1/2pi \(Milgrom 2020\)"), ("half_crit", r"alt footing rho_tot/cH0"), ("twopi_H0", r"Milgrom cH0/2pi \(own footing\)"), ("free", r"free best fit")):
-    mm = re.search(pat + r"\s+([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)", _pl)
-    PL[key] = dict(a0=float(mm.group(1)), ratio=float(mm.group(2)), dchi2=float(mm.group(3)), sig_ind=float(mm.group(4)), sig_clu=float(mm.group(5)))
-_cl = re.search(r"sigma\(a0\)/a0, galaxy-clustered\s+=\s+([0-9.]+)%", _pl)
-PL["clustered_pct"] = float(_cl.group(1))
-P("  profile likelihood (SPARC, Upsilon free per galaxy, gas fixed): " + "; ".join(f"{k_} a0 {v['a0']:.4f}e-10 dchi2 {v['dchi2']:.2f} ({v['sig_clu']:.2f} sigma clustered)" for k_, v in PL.items() if k_ != "clustered_pct") +
-  f"; clustered error {PL['clustered_pct']:.2f}%")
-S7["footing"] = PL
 OUT["S7"] = S7
 check("S7a MUSE-DARK by route (CFG262, CFG236) as quoted: route rises +0.57 +/- 0.09 / -0.11 +/- 0.49 / +0.04 +/- 0.14 dex between the thirds at z 0.52 and 1.20 (H(z) +0.18); mass drift -0.72 [-0.97, -0.50] dex/z (-0.43 [-0.72, -0.15] at fixed SED mass); needed SED bias 1.8-2.2 dex/z",
       [round(MD[r]["d"], 2) for r in ("i", "ii", "iii")] == [0.57, -0.11, 0.04] and [round(MD[r]["sd"], 2) for r in ("i", "ii", "iii")] == [0.09, 0.49, 0.14]
@@ -950,40 +1296,42 @@ check("S7a MUSE-DARK by route (CFG262, CFG236) as quoted: route rises +0.57 +/- 
 check("S7b the MUSE-DARK rise travels with the baryon route: the fitted-mass route rises >5 sigma above constancy and >3 sigma above H(z), while neither SED route excludes either law at 2 sigma",
       MD["i"]["d"] / MD["i"]["sd"] > 5 and (MD["i"]["d"] - MD["i"]["rival"]) / MD["i"]["sd"] > 3
       and all(abs(MD[r]["d"]) / MD[r]["sd"] < 2 and abs(MD[r]["d"] - MD[r]["rival"]) / MD[r]["sd"] < 2 for r in ("ii", "iii")),
-      ", ".join(f"({r}) {MD[r]['d']/MD[r]['sd']:+.1f} / {(MD[r]['d']-MD[r]['rival'])/MD[r]['sd']:+.1f} sigma" for r in ("i", "ii", "iii")))
+      ", ".join(f"({r}) {MD[r]['d']/MD[r]['sd']:+.1f} / {(MD[r]['d']-MD[r]['rival'])/MD[r]['sd']:+.1f} sigma" for r in ("i", "ii", "iii")), kind="identity")
 check("S7c KURVS as quoted (CFG140/160/165/189/194): outer g_bar/a0 0.06-0.67; cell +3.3/-0.1 sigma; measured markers +2.4/-0.4; mu 1.5 +1.2/-2.1; alpha x 0.6 +1.3/-2.0; 4.5 per cent velocity scale; likelihood ratio 0.5-1.7",
       len(KY) == 10 and (min(KY), max(KY)) == (0.06, 0.67) and [round(x, 1) for x in KZ["cell"]] == [3.3, -0.1] and list(KZ["markers"]) == [2.4, -0.4]
       and [round(x, 1) for x in KZ["mu15"]] == [1.2, -2.1] and [round(x, 1) for x in KZ["alpha06"]] == [1.3, -2.0] and round((1 - KVS) * 100, 1) == 4.5
       and round(min(KLR), 1) == 0.5 and round(max(KLR), 1) == 1.7, kind="identity")
 check("S7d AGAINST INTEREST, and its limits: at the pre-declared KURVS cell the constant law is >3 sigma high and H(z) fits, but the lean (constant above +2 sigma, H(z) within 2 sigma) ends at 1.5 M* of gas, at 0.6 of the pressure calibration and for a <5 per cent lower velocity scale, and the nuisance-marginalised likelihood ratio is below 2",
       KZ["cell"][0] > 3 and abs(KZ["cell"][1]) < 2 and KZ["mu15"][0] < 2 and KZ["alpha06"][0] < 2 and 0.95 < KVS < 1 and max(KLR) < 2,
-      f"cell {KZ['cell'][0]:+.2f}/{KZ['cell'][1]:+.2f}; mu1.5 {KZ['mu15'][0]:+.2f}; alpha0.6 {KZ['alpha06'][0]:+.2f}; v {KVS:.3f}; LR max {max(KLR):.2f}")
+      f"cell {KZ['cell'][0]:+.2f}/{KZ['cell'][1]:+.2f}; mu1.5 {KZ['mu15'][0]:+.2f}; alpha0.6 {KZ['alpha06'][0]:+.2f}; v {KVS:.3f}; LR max {max(KLR):.2f}", kind="identity")
 check("S7e MIGHTEE-HI/LADUMA as quoted (CFG279, CFG258): b = -1.04 +/- 1.51; anchored a1 +5.23 +/- 1.05 vs -4.80 +/- 0.76; empirical/formal 5.2; formal z > 3 under constancy in 11-32 per cent of mocks; H(z) x1.045 at z = 0.09",
       [round(MB[0], 2), round(MB[1], 2)] == [-1.04, 1.51] and (MA["varying"]["a1"], MA["varying"]["err"], MA["constant 0.6"]["a1"], MA["constant 0.6"]["err"]) == (5.23, 1.05, -4.8, 0.76)
       and round(M258["ratio"], 1) == 5.2 and (round(M258["z3_none"] * 100), round(M258["z3_B"] * 100)) == (11, 32) and round(M_rival, 3) == 1.045
       and (round(MPF, 1), round(MPR, 1)) == (-0.7, -1.0) and round(MA["varying"]["a1"] / MA["varying"]["err"]) == 5, kind="identity")
 check("S7f the MIGHTEE-HI/LADUMA within-sample slope is consistent with both laws (|pull| < 2), and the SPARC-anchored slope changes sign with the mass-to-light convention",
-      abs(MPF) < 2 and abs(MPR) < 2 and MA["varying"]["a1"] > 0 > MA["constant 0.6"]["a1"], f"pulls {MPF:+.2f} / {MPR:+.2f}")
+      abs(MPF) < 2 and abs(MPR) < 2 and MA["varying"]["a1"] > 0 > MA["constant 0.6"]["a1"], f"pulls {MPF:+.2f} / {MPR:+.2f}", kind="identity")
 _B1, _B2, _B3 = _b269["B1 4<=z<6|COMPLETE"], _b269["B2 6<=z<8|COMPLETE"], _b269["B3 8<=z<=15|COMPLETE"]
-check("S7g z >= 4 as quoted (CFG269): complete pools z 4-6 (14 objects) P 1.45-1.94 and z 8-14 P 1.28-1.32 MARGINAL at 0.15 dex and NOT POSSIBLE at 0.30 dex; z 6-8 one object, NOT POSSIBLE",
-      _B1["n"] == 14 and [round(x, 2) for x in _B1["P_range"]] == [1.45, 1.94] and [round(x, 2) for x in _B3["P_range"]] == [1.28, 1.32]
-      and _B1["verdict"] == _B3["verdict"] == "MARGINAL" and set(_B1["G1_verdicts"]) == set(_B3["G1_verdicts"]) == {"NOT POSSIBLE"}
-      and _B2["n"] == 1 and _B2["verdict"] == "NOT POSSIBLE" and _B3["n"] == 2 and round(sum(_B3["P_range"]) / 2, 1) == 1.3, kind="identity")
+check("S7g z >= 4 as described (CFG269, read): every complete (stars + gas) pool is NOT POSSIBLE at a 0.30 dex common calibration, and the committed run FAILS its own frozen control C1 (disclosed in the text)",
+      all(set(v["G1_verdicts"]) == {"NOT POSSIBLE"} for k_, v in _b269.items() if k_.endswith("COMPLETE")) and C269_C1_FAIL, _c269.strip()[:90], kind="identity")
 check("S7h no complete (stars + gas) pool at z >= 4 separates the two laws (P < 2), and every stars-only pool that does carries the gas-limited flag",
       all(v["P_range"][1] < 2 for k_, v in _b269.items() if k_.endswith("COMPLETE"))
-      and all(v["G4"] for k_, v in _b269.items() if k_.endswith("LOWER-LIMIT") and v["verdict"] == "SEPARATES"))
+      and all(v["G4"] for k_, v in _b269.items() if k_.endswith("LOWER-LIMIT") and v["verdict"] == "SEPARATES"), kind="identity")
 check("S7i the gas-prescription bracket at z ~ 2.2 (CFG224b, quoted in PAPER38 as 0.2-0.7 dex) is 0.21-0.67 dex", (round(GAS[0], 2), round(GAS[1], 2)) == (0.21, 0.67), kind="identity")
 check("S7j the source-table audit (CFG287) as quoted: 22 sources (KURVS not among them), 3703 sampled cells in 29 tables with no transcription mismatch; no erratum registered for any published source paper",
       AUD["cells"] == 3703 and AUD["tables"] == 29 and AUD["fails"] == 0 and AUD["passed"] and AUD["errata"] == 0 and AUD["registered"] == 0
       and AUD["sources"] == 22 and not AUD["kurvs_in"], kind="identity")
-check("S7k the footing comparison as quoted: best fit 1.08e-10 with a 5.4 per cent clustered error; dchi2 63.9 / 154.3 / 7.0 / 5.3 (1.8 / 2.8 / 0.6 / 0.5 sigma clustered) for 1/2 and 1/2pi on rho_Lambda, 1/2 on rho_crit and Milgrom's cH0/2pi",
-      round(PL["free"]["a0"], 2) == 1.08 and round(PL["clustered_pct"], 1) == 5.4
-      and [round(PL[k_]["dchi2"], 1) for k_ in ("half_L", "twopi_L", "half_crit", "twopi_H0")] == [63.9, 154.3, 7.0, 5.3]
-      and [round(PL[k_]["sig_clu"], 1) for k_ in ("half_L", "twopi_L", "half_crit", "twopi_H0")] == [1.8, 2.8, 0.6, 0.5], kind="identity")
-check("S7l like-for-like on H0 the data do not separate 1/2 from 1/2pi (both within 1 sigma clustered, dchi2 differing by < 2); 1/2 is ahead of 1/2pi only with both placed on the rho_Lambda footing",
-      PL["half_crit"]["sig_clu"] < 1 and PL["twopi_H0"]["sig_clu"] < 1 and abs(PL["half_crit"]["dchi2"] - PL["twopi_H0"]["dchi2"]) < 2 and PL["half_L"]["dchi2"] < PL["twopi_L"]["dchi2"],
-      f"{PL['half_crit']['dchi2']:.2f} vs {PL['twopi_H0']['dchi2']:.2f}")
 
+# ---- Appendix C quotes the number of checks of each kind; this last check (an identity) compares the text with the tally,
+#      counting itself
+_app = open(os.path.join(HERE, "mnras_a0_lambda_v3.tex")).read()
+_words = {"Five": 5, "Six": 6, "Seven": 7, "Eleven": 11, "Twelve": 12, "Thirteen": 13, "Fourteen": 14, "Fifteen": 15}
+_mm = re.search(r"Of its (\d+) checks, (\d+) are identities.*?([\w-]+) evaluate published models.*?([\w-]+) can fail on the data\. ([\w-]+) are injection tests", _app, re.S)
+_txt = None
+if _mm:
+    def _num(w): return int(w) if w.isdigit() else _words.get(w, {"Thirty": 30, "Twenty-eight": 28, "Twenty-nine": 29, "Thirty-one": 31, "Thirty-two": 32, "Twenty-seven": 27}.get(w, -1))
+    _txt = (int(_mm.group(1)), int(_mm.group(2)), _num(_mm.group(3)), _num(_mm.group(4)), _num(_mm.group(5)))
+_tally = (NCHK[0] + 1, len(KINDS.get("identity", [])) + 1, len(KINDS.get("model", [])), len(KINDS.get("data", [])), len(KINDS.get("injection", [])))
+check("S7n Appendix C quotes the tally of checks by kind exactly (total, identity, model, data, injection; this check included)", _txt == _tally, f"text {_txt}, tally {_tally}", kind="identity")
 # ----------------------------------------------------------------------------------------------------------------
 json.dump(OUT, open(os.path.join(HERE, "paper_numbers.json"), "w"), indent=1, default=float)
 P(""); P(f"RESULT: {NCHK[0]} checks, {len(FAILS)} FAIL" + (f" -> {FAILS}" if FAILS else ""))
