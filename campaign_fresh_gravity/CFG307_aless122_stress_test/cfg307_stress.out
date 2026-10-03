@@ -1,0 +1,146 @@
+CFG307 -- stress test of ALESS 122.1's implied a0 (the one class-M galaxy on the a0(z) chart with a root; CFG229 s* = 8.82).
+A declared full-factorial grid of record-held input choices (pressure x gas x M* x inclination x radius = 540 cells), CFG229's estimator and random stream
+replayed, the frozen decision rule, the same grid on the six class-M siblings, and a common-calibration outlier test.
+Descriptive; one galaxy is not a measurement of a0(z).  kappa = 1/2 FITTED.  FLAT a0(z) is the framework's distinctive law, a0 ~ H(z) the rival; LambdaCDM has no a0.
+No halo-fit quantity enters a cell.  No sentence of this lane says the data favour a law.  A NO-ROOT cell is a statement about baryons against dynamics.
+Frozen criteria: FROZEN_CRITERIA.md (3b1ca88f7), committed before any cell was computed.
+POST HOC EDIT after the first run (outputs kept as *_firstrun.*): sibling cells at the bracket LIMIT (s* > 1e3) are now counted as rooted and above both laws, as the
+criteria define (the first run counted 30 ALPAKA 18 LIMIT cells as no root); the alt-footing label prints the exact footing ratio.  The ALESS 122.1 grid is unchanged.
+MUTATE = none
+
+LOADER (C2): source constants parsed from the TeX on disk (external data directory beside the repo; read only)
+  Amvrosiadis+ (2312.08959): eq. 8 coefficient 1.68, ALESS 122.1 r_e 0.62", i 55.0 (-6.0/+8.0), V_max 564.0, sigma 157.0, V_circ(2 r_e) 533.0 +- 37.0; Calistro Rivera+18 image-plane sigma (quoted) 129.0
+  Dunne+22 (2208.01622) single-tracer SMG row (incl. He): alpha850 7.30e+12 +- 1.0e+11, alpha_CO 3.8 +- 0.1, alpha_CI 16.2 +- 0.4
+  [PASS] C2a the Amvrosiadis TeX gives eq. 8 (1.68 sigma^2 r/r_e), sigma_CR18 = 129 and the ALESS 122.1 row, equal to the repo's best-fit CSV and CFG229's kinematics file: TeX found True; row V_circ 533.0/533.0/533, sigma 157.0/157.0/157.0, V_max 564.0/564.0, i 55.0/55.0/55.0
+  [PASS] C2b the Dunne TeX gives the single-tracer SMG row 7.3 / 3.8 / 16.2 (incl. He): TeX found True; 7.30e+12 / 3.8 / 16.2
+  [PASS] C2c Dunne's ALESS122 opt_ad row equals CFG229's static inputs (logMH2 11.258 +- 0.104) and the master's L'_CO(1-0) 11.110 (JCorr 0), L850 24.052: logMH2 11.258 / 11.258; e 0.104 / 0.104; LCO 11.11 / 11.11; L850 24.052; JCorr 0.0
+
+ALESS 122.1 (z = 2.024; E(z) = 3.0652; canonical a0 9.3603e-11, alt/canonical 1.2085)
+  V_rot(2 r_e) from eq. 8 inverted: sqrt(533^2 - 1.68 x 157^2 x 2) = 448.63 km/s; arctan law with V_max 564: r_t = 1.5221 kpc (0.2864 r_e; not tabulated, solved), V_rot(r_e) = 355.34 km/s
+  [PASS] C3 the reconstruction: eq. 8 at 2 r_e gives back the published V_circ and the arctan law with the solved r_t gives back V_rot(2 r_e) (1e-9): 533.0000000146 vs 533.0; 448.6294239298 vs 448.6294239298
+  levels: pressure P0, C168, EQ8, P1, MSIG; gas G0 log M 11.392 (+-0.104), CO1 log M 11.690 (+-0.068), DU1 log M 11.189 (+-0.049), A08 log M 11.013 (+-0.067), A36 log M 11.666 (+-0.067), A436 log M 11.749 (+-0.067); M* log 10.890 +- 0.21; inclination i55 55, i49 49, i63 63; radius 2 r_e 10.6300 / r_e 5.3150 kpc
+
+RUNNING the full grid: 540 cells x 10000 MC draws ...
+
+COMMITTED CELL (EQ8, G0, M* nominal, i = 55, 2 r_e)
+  V 533.00 km/s, g_obs 8.6611e-10, g_bar 4.5334e-10, y 4.843, D 1.9105, s* 8.82 (log +0.945356), lever -1.97
+  MC (CFG229 convention, rooted draws): log s* 2.5/16/50/84/97.5 % = +0.1801 / +0.6227 / +0.9249 / +1.1575 / +1.3549  -> 68 % 4.20-14.37, 95 % 1.51-22.64; no-root 0.0103
+  MC (secondary, all draws; no-root -> s = 0): +0.0296 / +0.6092 / +0.9216 / +1.1559 / +1.3544  -> 95 % 1.07-22.61
+  [PASS] C1 the committed cell reproduces CFG229 exactly: log10 s*, the five MC quantiles and the no-root fraction (1e-12): log s* 0.945355501945945 vs 0.945355501945945; max |dq| 0.0e+00; no-root 0.0103 vs 0.0103
+  [PASS] C1b the replayed stream reproduces CFG229's committed MC for all seven galaxies (no-root fractions identical; quantiles to 1e-12): max |dq| 0.0e+00; no-root fractions identical True
+  [PASS] C4 every rooted cell's s* equals an independent brentq inversion of nu_mono(y/s) = D (1e-6 dex), and no NO-ROOT cell has one: 304 rooted cells; 0 mismatches
+  [PASS] C5 the Hankel-transform disc force equals the Bessel closed form at 2 r_e and r_e (1e-4): 1.399330e-10 vs 1.399330e-10; 3.083719e-10 vs 3.083718e-10
+  [PASS] C6 directions over the grid: D rises P0 < C168 <= EQ8 < P1 (C168 = EQ8 at r_e), falls with more gas and more stars, rises as the inclination falls: 0 violations []
+  [PASS] C7 bookkeeping: each cell is exactly one of {no root, FLAT excluded above, FLAT inside, FLAT excluded below}; the four fractions sum to 1: cells with exactly one: 540/540; sum 1.000000000000
+
+ONE AXIS AT A TIME about the committed cell (s*; 68 % / 95 % CFG229-convention intervals; FLAT / H(z) vs the 95 % interval)
+  axis       level   V (km/s)  R (kpc)  log Mgas  log M*   y       D        s*          68 %            95 %            no-root  lever    FLAT        H(z)
+  pressure   P0        448.6   10.63   11.392   10.890    4.84   1.3535       2.69       1.15-5.64       0.20-9.57   0.149   -3.25  inside      inside    
+  pressure   C168      492.6   10.63   11.392   10.890    4.84   1.6320       5.38       2.36-9.43      0.60-15.35   0.041   -2.34  inside      inside    
+  pressure   EQ8       533.0   10.63   11.392   10.890    4.84   1.9105       8.82      4.20-14.37      1.51-22.64   0.010   -1.97  excl_above  inside    
+  pressure   P1        605.7   10.63   11.392   10.890    4.84   2.4675       17.9      9.70-27.54      4.72-41.79   0.001   -1.62  excl_above  excl_above
+  pressure   MSIG      507.1   10.63   11.392   10.890    4.84   1.7296        6.5      2.92-11.04      0.90-17.77   0.025   -2.18  inside      inside    
+  gas        G0        533.0   10.63   11.392   10.890    4.84   1.9105       8.82      4.20-14.37      1.51-22.64   0.010   -1.97  excl_above  inside    
+  gas        CO1       533.0   10.63   11.690   10.890    8.48   1.0913       1.16       0.69-4.61       0.10-7.78   0.363  -15.68  inside      inside    
+  gas        DU1       533.0   10.63   11.189   10.890    3.47   2.6675       15.7      9.16-23.13      4.82-33.11   0.000   -1.55  excl_above  excl_above
+  gas        A08       533.0   10.63   11.013   10.890    2.70   3.4255       22.7     13.27-33.47      7.13-48.72   0.000   -1.39  excl_above  excl_above
+  gas        A36       533.0   10.63   11.666   10.890    8.09   1.1432       1.76       0.84-5.05       0.14-8.40   0.286   -8.07  inside      inside    
+  gas        A436      533.0   10.63   11.749   10.890    9.56   0.9682    NO ROOT               -               -   0.589    +nan  noroot      noroot    
+  mstar      M0        533.0   10.63   11.392   10.890    4.84   1.9105       8.82      4.20-14.37      1.51-22.64   0.010   -1.97  excl_above  inside    
+  mstar      M+        533.0   10.63   11.392   11.100    5.56   1.6628       6.58      2.86-11.55      0.78-19.06   0.045   -2.29  inside      inside    
+  mstar      M-        533.0   10.63   11.392   10.680    4.40   2.1038       10.6      5.41-16.95      2.40-25.93   0.004   -1.81  excl_above  inside    
+  incl       i55       533.0   10.63   11.392   10.890    4.84   1.9105       8.82      4.20-14.37      1.51-22.64   0.010   -1.97  excl_above  inside    
+  incl       i49       565.6   10.63   11.392   10.890    4.84   2.1515       12.4      6.30-19.53      2.75-30.20   0.004   -1.78  excl_above  inside    
+  incl       i63       502.9   10.63   11.392   10.890    4.84   1.7010       6.16      2.74-10.55      0.82-17.03   0.030   -2.23  inside      inside    
+  radius     2re       533.0   10.63   11.392   10.890    4.84   1.9105       8.82      4.20-14.37      1.51-22.64   0.010   -1.97  excl_above  inside    
+  radius     re        409.5    5.31   11.392   10.890   10.67   1.0234      0.352       0.84-5.86      0.11-10.50   0.506    +nan  inside      inside    
+
+AXIS RANKING (frozen rule: one-axis range of log10 s*; an axis with a NO-ROOT level ranks above any finite range; ties by the spread of the full-grid root fraction)
+  1. gas       removes the root: True   rooted one-axis range 1.293 dex (s* 1.16 to 22.7)  full-grid root fraction by level: G0 0.73, CO1 0.24, DU1 0.96, A08 0.99, A36 0.30, A436 0.16
+  2. radius    removes the root: False  rooted one-axis range 1.399 dex (s* 0.352 to 8.82)  full-grid root fraction by level: 2re 0.73, re 0.40
+  3. pressure  removes the root: False  rooted one-axis range 0.824 dex (s* 2.69 to 17.9)  full-grid root fraction by level: P0 0.38, C168 0.52, EQ8 0.64, P1 0.75, MSIG 0.53
+  4. incl      removes the root: False  rooted one-axis range 0.303 dex (s* 6.16 to 12.4)  full-grid root fraction by level: i55 0.57, i49 0.65, i63 0.47
+  5. mstar     removes the root: False  rooted one-axis range 0.206 dex (s* 6.58 to 10.6)  full-grid root fraction by level: M0 0.57, M+ 0.51, M- 0.61
+
+FULL-GRID PER-LEVEL TABLE (fraction of the cells at that level: rooted / FLAT excluded above / H(z) excluded above; median rooted log10 s*)
+  pressure  P0: 0.38/0.13/0.04 (+0.61)   C168: 0.52/0.25/0.10 (+0.84)   EQ8: 0.64/0.30/0.17 (+0.81)   P1: 0.75/0.44/0.31 (+1.01)   MSIG: 0.53/0.23/0.12 (+0.81)
+  gas       G0: 0.73/0.23/0.09 (+0.68)   CO1: 0.24/0.02/0.00 (+0.39)   DU1: 0.96/0.60/0.31 (+0.92)   A08: 0.99/0.73/0.48 (+1.13)   A36: 0.30/0.03/0.00 (+0.39)   A436: 0.16/0.00/0.00 (+0.36)
+  mstar     M0: 0.57/0.28/0.15 (+0.83)   M+: 0.51/0.17/0.07 (+0.69)   M-: 0.61/0.36/0.22 (+0.93)
+  incl      i55: 0.57/0.26/0.14 (+0.81)   i49: 0.65/0.35/0.20 (+0.93)   i63: 0.47/0.20/0.09 (+0.69)
+  radius    2re: 0.73/0.40/0.24 (+0.89)   re: 0.40/0.14/0.05 (+0.74)
+
+DECISION (frozen rule; primary = CFG229-convention intervals, canonical footing, all 540 cells)
+  set                         N     FLAT excl.  H(z) excl.  FLAT inside  FLAT below  no root   -> decision
+  PRIMARY (gates the wording)  540      0.270      0.146       0.293       0.000    0.437   -> NOT ROBUST
+  secondary (all draws)        540      0.215      0.143       0.348       0.000    0.437   -> NOT ROBUST
+  alt footing (FLAT s=1.2085)  540      0.246      0.128       0.317       0.000    0.437   -> NOT ROBUST
+  2 r_e only (beside)          270      0.400      0.244       0.330       0.000    0.270   -> NOT ROBUST
+  one axis at a time (beside)   15      0.400      0.200       0.533       0.000    0.067   -> NOT ROBUST
+  rooted cells: 304 of 540; s* median 6.65, 16-84 % of the rooted cells 2.01-17.9, range 0.0697-63.3
+
+BESIDE (one-axis changes from the committed cell that the criteria exclude from the grid; printed only)
+  gas: Dunne luminosity-dependent CO fit (log a_CO = -0.062 log L' + 1.25) D 1.1323  s*     1.64  95 % 0.14-10.38
+  gas: Dunne luminosity-dependent dust fit (log a850 = 0.052 log L850 + 11.60) D 2.6161  s*     15.2  95 % 4.01-35.61
+  gas: Amvrosiadis parent table 11.30 (Calistro Rivera+18; conversion not on disk) D 2.2332  s*     11.8  95 % 2.63-28.54
+  gas: alpha_CO 0.92 x L'_CO (Amvrosiadis; f_DM = 0.25 halo-anchored: EXCLUDED) D 3.1556  s*     20.2  95 % 5.93-45.91
+  stars: CFG229's declared band +0.30 dex                            D 1.5426  s*     5.49  95 % 0.47-17.33
+  stars: CFG229's declared band -0.30 dex                            D 2.1699  s*     11.2  95 % 2.65-27.13
+  pressure: Burkert P1 form with sigma = 129 (3.36 x 129^2 x 2)      D 2.1056  s*     11.7  95 % 2.53-28.68
+
+SIBLINGS: the same grid on each galaxy's own record (committed: ALPAKA P0 / V_ext at R_ext; BX610 P1 at R_e = FS+18 Eq. 1)
+  ALPAKA15    cells  360; committed D 0.204; max D 0.535 at P1/DU1/M-/i_alt/Re; ROOTED cells 0 (0.0 %)
+  ALPAKA18    cells  720; committed D 0.277; max D 10.390 at P1/A08/M-/i-1s/Rext; ROOTED cells 187 (26.0 %); the rooted cells use: pressure ['C168', 'EQ8', 'MSIG', 'P0', 'P1']; gas ['A08', 'A36', 'A436', 'CO1', 'DU1', 'G0']; mstar ['M+', 'M-', 'M0']; incl ['i-1s', 'i0', 'i_alt']; radius ['Re', 'Rext']; s* 0.353-inf
+  ALPAKA19    cells  720; committed D 0.294; max D 1.053 at P1/A08/M-/i-1s/Re; ROOTED cells 5 (0.7 %); the rooted cells use: pressure ['C168', 'EQ8', 'MSIG', 'P1']; gas ['A08']; mstar ['M-']; incl ['i-1s']; radius ['Re', 'Rext']; s* 0.0449-1.01
+  ALPAKA20    cells  360; committed D 0.289; max D 0.598 at P1/A08/M-/i-1s/Rext; ROOTED cells 0 (0.0 %)
+  ALPAKA22    cells  720; committed D 0.269; max D 1.754 at P1/A08/M-/i-1s/Re; ROOTED cells 30 (4.2 %); the rooted cells use: pressure ['C168', 'EQ8', 'MSIG', 'P0', 'P1']; gas ['A08']; mstar ['M+', 'M-', 'M0']; incl ['i-1s']; radius ['Re', 'Rext']; s* 12.8-89.1
+  SINS_BX610  cells  360; committed D 0.456; max D 1.847 at P1/A08/M-/i-1s/Re; ROOTED cells 15 (4.2 %); the rooted cells use: pressure ['C168', 'EQ8', 'P0', 'P1']; gas ['A08']; mstar ['M-', 'M0']; incl ['i+1s', 'i-1s', 'i0']; radius ['Re']; s* 0.646-6.32
+  [PASS] C8 each sibling's committed cell reproduces CFG229's committed D (relative 1e-9): max relative difference 0.0e+00
+  => 4 of 6 siblings gain a root in at least one cell: ['ALPAKA18', 'ALPAKA19', 'ALPAKA22', 'SINS_BX610']; none: ['ALPAKA15', 'ALPAKA20']
+
+COMMON-CALIBRATION OUTLIER TEST (each shared recipe at every galaxy's committed M*, inclination and radius; log10 D; ALESS 122.1's rank and gap to the largest sibling)
+  recipe          n   log D:  ALPAKA15  ALPAKA18  ALPAKA19  ALPAKA20  ALPAKA22 SINS_BX61 ALESS_122   ALESS rank  gap (dex)  galaxies with a root
+  P0/G0           7            -0.691    -0.557    -0.532    -0.539    -0.569    -0.433    +0.131      1       +0.564    ['ALESS_122.1']
+  P0/DU1          7            -0.682    -0.637    -0.577    -0.548    -0.523    -0.524    +0.276      1       +0.799    ['ALESS_122.1']
+  P0/CO1          6                 -    -0.485    -0.440    -0.519    -0.587    -0.307    -0.112      1       +0.195    []
+  P0/A08          6                 -    -0.035    -0.169    -0.483    -0.202    -0.093    +0.385      1       +0.420    ['ALESS_122.1']
+  P0/A36          6                 -    -0.466    -0.427    -0.517    -0.570    -0.296    -0.092      1       +0.204    []
+  P0/A436         6                 -    -0.534    -0.476    -0.525    -0.633    -0.338    -0.164      1       +0.174    []
+  C168/G0         7            -0.643    -0.554    -0.516    -0.526    -0.558    -0.384    +0.213      1       +0.597    ['ALESS_122.1']
+  C168/DU1        7            -0.634    -0.634    -0.561    -0.534    -0.511    -0.476    +0.358      1       +0.833    ['ALESS_122.1']
+  C168/CO1        6                 -    -0.482    -0.424    -0.505    -0.576    -0.259    -0.030      1       +0.228    []
+  C168/A08        6                 -    -0.032    -0.153    -0.470    -0.190    -0.044    +0.466      1       +0.498    ['ALESS_122.1']
+  C168/A36        6                 -    -0.463    -0.411    -0.503    -0.558    -0.247    -0.010      1       +0.237    []
+  C168/A436       6                 -    -0.531    -0.461    -0.512    -0.621    -0.289    -0.082      1       +0.207    []
+  EQ8/G0          7            -0.634    -0.546    -0.513    -0.527    -0.556    -0.384    +0.281      1       +0.666    ['ALESS_122.1']
+  EQ8/DU1         7            -0.625    -0.626    -0.558    -0.535    -0.509    -0.476    +0.426      1       +0.902    ['ALESS_122.1']
+  EQ8/CO1         6                 -    -0.474    -0.421    -0.506    -0.573    -0.259    +0.038      1       +0.296    ['ALESS_122.1']
+  EQ8/A08         6                 -    -0.024    -0.150    -0.470    -0.188    -0.044    +0.535      1       +0.559    ['ALESS_122.1']
+  EQ8/A36         6                 -    -0.455    -0.408    -0.504    -0.556    -0.247    +0.058      1       +0.305    ['ALESS_122.1']
+  EQ8/A436        6                 -    -0.523    -0.457    -0.512    -0.619    -0.289    -0.014      1       +0.275    []
+  P1/G0           7            -0.584    -0.536    -0.495    -0.514    -0.542    -0.341    +0.392      1       +0.733    ['ALESS_122.1']
+  P1/DU1          7            -0.575    -0.616    -0.540    -0.523    -0.495    -0.432    +0.537      1       +0.969    ['ALESS_122.1']
+  P1/CO1          6                 -    -0.464    -0.403    -0.494    -0.560    -0.215    +0.149      1       +0.364    ['ALESS_122.1']
+  P1/A08          6                 -    -0.014    -0.131    -0.458    -0.174    -0.001    +0.646      1       +0.647    ['ALESS_122.1']
+  P1/A36          6                 -    -0.445    -0.389    -0.491    -0.543    -0.203    +0.169      1       +0.373    ['ALESS_122.1']
+  P1/A436         6                 -    -0.513    -0.439    -0.500    -0.605    -0.245    +0.097      1       +0.342    ['ALESS_122.1']
+  => ALESS 122.1 has the largest D in 24 of 24 shared recipes; gap to the largest sibling median +0.396 dex (range +0.174 to +0.969)
+  Dunne+22 per-galaxy optimised conversions (descriptive, read from the opt tables): ALPAKA18: a_CO 3.42, kappa_H 1701; ALPAKA19: a_CO 3.91, kappa_H 1515; ALPAKA20: a_CO 4.15, kappa_H 1465; ALPAKA22: a_CO 2.64, kappa_H 2038; SINS_BX610: a_CO 4.60, kappa_H 1199; ALESS_122.1: a_CO 1.41, kappa_H 3362
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 8; scored by code; misses kept)
+  H1   REPRODUCES the committed cell reproduces CFG229 exactly (C1)
+  H2   REPRODUCES pressure one axis: P0 2.69 (2.2-3.3), C168 5.38 (4.5-6.5), P1 17.9 (15-21), MSIG 6.5 (5.5-7.5)
+  H3   REPRODUCES gas one axis: A436 NO ROOT (NO ROOT), CO1 1.16 (1.0-1.6 or NO ROOT), A36 1.76 (1.4-2.2), DU1 15.7 (13-19), A08 22.7 (18-28)
+  H4   REPRODUCES M* +0.21 -> 6.58 (6.3-6.9), -0.21 -> 10.6 (10.3-10.9)
+  H5   REPRODUCES inclination 49 -> 12.4 (10.5-14.5), 63 -> 6.16 (5.3-7.2)
+  H6   REPRODUCES at r_e D = 1.0234 (0.93-1.12) and s* 0.352 (< 1.5 or NO ROOT)
+  H7   REPRODUCES the dominant axis is the gas and the radius is second (ranking ['gas', 'radius', 'pressure', 'incl', 'mstar'])
+  H8   REPRODUCES decision NOT ROBUST with f_noroot >= 0.25 and f_FLAT,in >= 0.25 (NOT ROBUST; 0.437; 0.293)
+  H9   REPRODUCES f_FLAT,excl 0.270 (0.15-0.35), f_H,excl 0.146 (0.04-0.18), f_noroot 0.437 (0.30-0.55)
+  H10  REPRODUCES the 2 r_e-only subgrid is NOT ROBUST (NOT ROBUST)
+  H11  WRONG      3 or 4 siblings gain a root (4); ALPAKA 15 and 20 none (0, 0); ALPAKA 18 through i-1s (180 cells); every rooted fraction < 0.15 (0.260 max)
+  H12  REPRODUCES ALESS 122.1 has the largest D in every shared recipe (24 of 24) with a median gap >= 0.3 dex (+0.396)
+  H13  scored in the MUTATE run (it needs the mutated grid)
+  H14  REPRODUCES the secondary convention gives the same decision (NOT ROBUST); the committed cell's secondary 95 % lower bound 1.070 in 1.0-1.3
+  => 12 of 13 scored hand estimates reproduce (H13 in the MUTATE run)
+
+11/11 checks pass; 85 s
