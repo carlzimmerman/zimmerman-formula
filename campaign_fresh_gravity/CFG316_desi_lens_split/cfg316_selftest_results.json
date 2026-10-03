@@ -1,0 +1,48 @@
+{
+ "slug": "cfg316_selftest",
+ "summary": {
+  "n_checks": 3,
+  "n_pass": 3,
+  "load_bearing_failures": 0,
+  "failed": [],
+  "seconds": 168.6
+ },
+ "checks": [
+  {
+   "name": "T1 SELFTEST noiseless: recovered ESD = the pair-weighted mean of the injected DeltaSigma to 1e-9; |D(equal)| < 3% of ESD_late per K1 bin",
+   "detail": "max deviation 2.3e-14; max |D_equal| / ESD_late 0.0034; planted D / (0.5 ESD_late) [1.0, 0.999, 0.998, 0.998, 1.003, 1.01, 0.997]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T2 SELFTEST noisy (set i): equal -> chi2(D=0) p > 0.01; planted -> A within 2 sigma of 1 and chi2(D=0) p < 0.01",
+   "detail": "equal p 0.568; planted A 1.109 +- 0.109 ((A-1)/s +1.00), p(0) 5.3e-20",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T3 SELFTEST (set ii, ISO-P size): mean Hartlap chi2 of the equal injection in 4.9-9.1; planted mean amplitude within 2 sigma(mean) of 1",
+   "detail": "mean chi2 7.23; mean A 0.884 +- 0.116; per-realisation sigma_A ~ 0.67 (so a KiDS-size split is 1.5 sigma_A at this sample size, before shared systematics)",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "T1": {
+   "dev": 2.3314683517128287e-14,
+   "relD": 0.0033830936213372184
+  },
+  "T2": {
+   "equal_p": 0.5677863124871209,
+   "planted_A": 1.1088568226828883,
+   "planted_sA": 0.1086304248863534,
+   "planted_p": 5.2725378933205244e-20
+  },
+  "T3": {
+   "mean_chi2": 7.225351435706852,
+   "mean_A": 0.8839708059561266,
+   "sem_A": 0.11638924039173464,
+   "median_sA": 0.6709231822102565
+  }
+ }
+}

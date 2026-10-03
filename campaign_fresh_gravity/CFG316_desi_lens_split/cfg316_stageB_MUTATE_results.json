@@ -1,0 +1,286 @@
+{
+ "slug": "cfg316_stageB_MUTATE",
+ "summary": {
+  "n_checks": 15,
+  "n_pass": 11,
+  "load_bearing_failures": 4,
+  "failed": [
+   "H1 [HEADLINE] with ISO-S, B's prediction (D = D_B) is consistent on K1, p > 0.01 both foot",
+   "H2 with ISO-S4, B's prediction (D = D_B) is consistent on K1, p > 0.01 both footings -- EV",
+   "H3 A_S (ISO-S) vs A_P (ISO-P, same lenses): the difference with its jackknife error",
+   "C4 CONTROL: random points give Delta Sigma consistent with zero on K1 (additive bias); cro"
+  ],
+  "seconds": 45.9
+ },
+ "checks": [
+  {
+   "name": "C2 CONTROL: the stacking code on the committed lr_lenses.npz reproduces lr_esd_jackknife.npz sums (wgE, W, NN) to 1e-9 relative",
+   "detail": "max relative deviation 3.1e-11 (181,477 June lenses, June patch labels)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: ISO-S4 within ISO-S; every count printed",
+   "detail": "headline base 1,034; ISO-S 0; ISO-S4 0; ISO-P 296; nested True  [Stage A cut sequence: {\"BGS targets in the KiDS footprint (D2 footprint)\": 360852, \"+ D1 good redshift\": 282157, \"+ D2 0.1 < z < 0.5\": 237772, \"+ CIGALE main/bright match\": 200140, \"+ CIGALE FLAG_MASSPDF in [1/5, 5]\": 198178, \"+ CIGALE AGNFRAC < 0.1 (frozen proposal)\": 59337, \"+ 8 < log M* < 11 (the original KiDS lens limit M* < 1e11)\": 58000, \"+ matched to KiDS-bright (< 1 arcsec, masked == 0, finite u-r)\": 48497, \"+ D5 completeness (0.1 M*_lens census complete at r < 19.5)\": 1034, \"+ ISO-S (3 Mpc, 1000 km/s) [headline]\": 0, \"+ ISO-S4 (4 Mpc, 2000 km/s) [strict]\": 0, \"+ ISO-P (KiDS photo-z rule) [C1 contrast]\": 296}]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1 CONTROL [decisive contrast]: ISO-P on the overlap reproduces a split consistent with the committed KiDS split (A_P within 2 sigma of 1)",
+   "detail": "A_P = -2.321 +- 1.734 ((A-1)/sigma -1.91; A/sigma -1.34); N early 117, late 179",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1-INFO (reported) can C1 discriminate? (sigma_A < 0.5, i.e. a KiDS-size split is >= 2 sigma_A from zero)",
+   "detail": "sigma_A = 1.734: a split of zero is 1.34 sigma from A_P and a KiDS-size split 1.91 sigma; C1 CANNOT tell them apart",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "H1 [HEADLINE] with ISO-S, B's prediction (D = D_B) is consistent on K1, p > 0.01 both footings -- EVALUABLE?  [MUTATE]",
+   "detail": "NOT EVALUABLE: the ISO-S sample is empty (0 lenses; Stage A). Neither reading (PASS: isolation removes the split; FAIL: the split survives) applies.",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 with ISO-S4, B's prediction (D = D_B) is consistent on K1, p > 0.01 both footings -- EVALUABLE?  [MUTATE]",
+   "detail": "NOT EVALUABLE: the ISO-S4 sample is empty (0 lenses; Stage A). Neither reading (PASS: isolation removes the split; FAIL: the split survives) applies.",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H3 A_S (ISO-S) vs A_P (ISO-P, same lenses): the difference with its jackknife error",
+   "detail": "NOT EVALUABLE: ISO-S is empty",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "D6 (reported) M* bins 10.0-10.5 / 10.5-11.0 and the R-row reweighting",
+   "detail": "10.0-10.5: early 34, late 76; chi2 vs 0 12.14 (p 9.59e-02); A -4.101 +- 2.342; 10.5-11.0: early 83, late 103; chi2 vs 0 12.73 (p 7.91e-02); A -3.380 +- 2.077; late reweighted to the early M* histogram (0.1 dex): chi2 vs 0 15.05 (p 3.54e-02); A -4.963 +- 1.976; effective late N 98",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported) the split with the class from CIGALE colours (option a)",
+   "detail": "early 134, late 162; D [-14.3, -29.4, -83.5, 56.2, 18.0, 167.2, 248.3]; chi2 vs 0 6.59 (p 4.73e-01); A 0.318 +- 2.119",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R5 (reported) chi2 against a uniform differential M/L offset Delta (0-0.5 dex, canonical; a diagnostic, not a fit)",
+   "detail": "0: 16.5, 0.05: 16.6, 0.1: 16.8, 0.15: 16.9, 0.2: 17.1, 0.25: 17.3, 0.3: 17.5, 0.35: 17.7, 0.4: 18.0, 0.45: 18.2, 0.5: 18.5 | p > 0.05 for Delta in none",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R6 (reported) the WMAP7 -> Planck distance rescaling of CIGALE masses (uniform -0.04 dex) on D_B",
+   "detail": "canonical: max |change in D_B| on K1 0.237 Msun/pc^2 (sigma(D) min 29.0); alt: max |change in D_B| on K1 0.298 Msun/pc^2 (sigma(D) min 29.0)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R7 (reported) K1 with each bin dropped (chi2 vs zero, 6 dof)",
+   "detail": "drop 8: 12.1 (p 0.06); drop 9: 15.9 (p 0.01); drop 10: 5.6 (p 0.47); drop 11: 16.6 (p 0.01); drop 12: 15.0 (p 0.02); drop 13: 17.0 (p 0.01); drop 14: 16.7 (p 0.01)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C4 CONTROL: random points give Delta Sigma consistent with zero on K1 (additive bias); cross shear consistent with zero",
+   "detail": "randoms (20,000): tangential [-1.25, 0.43, -4.08, 1.05, -9.09, 1.53, 0.94] chi2 11.00/7 (p 0.14); cross chi2 22.33 (p 0.00); lens cross shear (ISO-P late/early, base late/early): 3.0 (p 0.89), 9.3 (p 0.23), 0.7 (p 1.00), 2.6 (p 0.92)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "E1 (reported) CFG315's environment question: does strict (spectroscopic) isolation remove the x1.8-3.3 excess?",
+   "detail": "NOT ANSWERABLE with the frozen samples: ISO-S and ISO-S4 are empty. Rows above: the photo-z-isolated (ISO-P) and the non-isolated complete DESI lenses on KiDS shear (raw lensfit e, no m-correction: about 1.5% low; KiDS reads 8.6% low vs DES+HSC, CFG315).",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "MUTATE: with labels swapped per patch the ISO-P split vanishes within its errors (chi2 vs zero p > 0.01)",
+   "detail": "chi2 16.52/7 (p 0.021); A -2.321 +- 1.734",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "counts": {
+   "ISO-S": 0,
+   "ISO-S4": 0,
+   "ISO-P": 296
+  },
+  "ISO-P": {
+   "D": [
+    -64.66597551949889,
+    54.75425548266601,
+    -119.68403504804823,
+    12.232157267128184,
+    33.10566269458139,
+    -34.11821648161087,
+    -32.2485773823254
+   ],
+   "sigma": [
+    29.040004543930515,
+    42.38176129204443,
+    45.483195781999484,
+    65.84415760304553,
+    65.72451625818934,
+    102.54558569259352,
+    165.39782613998386
+   ],
+   "chi0": 16.515180026465252,
+   "A": -2.3213169502069606,
+   "sA": 1.7343839213472392,
+   "DB": {
+    "canonical": [
+     0.5000775777648743,
+     0.6731696813701422,
+     0.9128200459883473,
+     1.2473684288617974,
+     1.7197840838653953,
+     2.398234585320484,
+     3.3918727614288287
+    ],
+    "alt": [
+     0.6420878006668902,
+     0.8635997389463075,
+     1.1686118013338778,
+     1.5920252124904977,
+     2.1861314519029733,
+     3.032801885164666,
+     4.26157287984929
+    ]
+   },
+   "chiB": {
+    "canonical": 16.71029369095587,
+    "alt": 16.765886596532287
+   },
+   "n": [
+    117,
+    179
+   ]
+  },
+  "C4": {
+   "rand": 10.999382267249498,
+   "rand_x": 22.328552151629317,
+   "lens_x": [
+    2.9769383704783756,
+    9.254583783095637,
+    0.7292559785137915,
+    2.5883788451597973
+   ]
+  },
+  "ABS": {
+   "ISO-P (photo-z isolated)": {
+    "canonical|catalogue M*": {
+     "Q": -1.0192768199475066,
+     "sQ": 0.9271891833101435,
+     "late": [
+      0.9756397300588726,
+      1.282754349373857
+     ],
+     "early": [
+      0.17907807210264565,
+      0.8900585316898743
+     ],
+     "chi2_Q1": 32.02242977001576
+    },
+    "canonical|B-calibrated M*": {
+     "Q": -0.8769257713172991,
+     "sQ": 0.8016896024682278,
+     "late": [
+      0.8916283282472535,
+      1.1728120979782268
+     ],
+     "early": [
+      0.16100208697147955,
+      0.7551351537175669
+     ],
+     "chi2_Q1": 32.77268680308884
+    },
+    "alt|catalogue M*": {
+     "Q": -0.9434110982387326,
+     "sQ": 0.8480758421861759,
+     "late": [
+      0.8925783840345812,
+      1.1736689893286103
+     ],
+     "early": [
+      0.1592388985285596,
+      0.8147169357824942
+     ],
+     "chi2_Q1": 32.50166487088326
+    },
+    "alt|B-calibrated M*": {
+     "Q": -0.8341649685138472,
+     "sQ": 0.7481029318279574,
+     "late": [
+      0.8418187153804683,
+      1.1072009273516463
+     ],
+     "early": [
+      0.14432988759443433,
+      0.7031720055674663
+     ],
+     "chi2_Q1": 33.25569846812071
+    }
+   },
+   "complete base (NOT isolated)": {
+    "canonical|catalogue M*": {
+     "Q": 0.12938685227093857,
+     "sQ": 0.45873517415033066,
+     "late": [
+      0.8176202647946295,
+      0.5984951672357137
+     ],
+     "early": [
+      -0.40017366356738915,
+      0.4696139308360036
+     ],
+     "chi2_Q1": 25.555922552573684
+    },
+    "canonical|B-calibrated M*": {
+     "Q": 0.08067157678397477,
+     "sQ": 0.40041800775224334,
+     "late": [
+      0.7505876100415914,
+      0.5468705621813396
+     ],
+     "early": [
+      -0.33490217477623696,
+      0.3983514730898077
+     ],
+     "chi2_Q1": 27.26428665437774
+    },
+    "alt|catalogue M*": {
+     "Q": 0.11366456925421335,
+     "sQ": 0.4193211094601798,
+     "late": [
+      0.7438963144281556,
+      0.547154720804362
+     ],
+     "early": [
+      -0.3680729136429559,
+      0.4291510414427831
+     ],
+     "chi2_Q1": 26.42803451383548
+    },
+    "alt|B-calibrated M*": {
+     "Q": 0.06227464059783238,
+     "sQ": 0.37405338635692953,
+     "late": [
+      0.703394304281627,
+      0.5159241629570646
+     ],
+     "early": [
+      -0.3138792962805573,
+      0.3699765972714936
+     ],
+     "chi2_Q1": 28.290595846942708
+    }
+   }
+  },
+  "reading": "NOT DIAGNOSTIC: under the frozen rules the spectroscopic-isolation samples (ISO-S, ISO-S4) are EMPTY on the KiDS-1000 x DESI DR1 overlap (D5 completeness keeps 1,034 of 48,497 lenses and none of them passes ISO-S); H1-H3 are not evaluable. C1 (ISO-P, 296 lenses) is consistent with the KiDS split but cannot discriminate it from zero."
+ }
+}

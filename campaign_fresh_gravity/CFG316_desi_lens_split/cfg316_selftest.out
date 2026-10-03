@@ -1,0 +1,36 @@
+CFG316 SELFTEST: synthetic shear through the lane's estimator (the June agentK estimator, per lens) and split statistic.  The real
+e1/e2 are NOT read: only source positions, lensfit weights and Z_B (pair geometry and Sigma_crit weights).  For every kept lens-source
+pair the synthetic tangential ellipticity is e_t = Sigma_crit^-1 * DeltaSigma_inj(g_bar) + n, n ~ N(0, 0.28) (independent per pair).
+  injected  DeltaSigma_inj(g) = 30 (g / 1e-13 m s^-2)^0.5 Msun/pc^2 (a deep-regime shape), the SAME function for both classes (D = 0),
+            and a planted split: early x 1.5 (D = 0.5 ESD_late).
+  lens sets  (i) the 48,497 matched good-mass lenses (geometry of the full overlap; class (b)); (ii) the frozen ISO-P set (296 lenses), the
+            only non-empty frozen sample, with 50 noise realisations to calibrate the 30-patch jackknife chi2 at that size.
+PRE-DECLARED tolerances
+  T1  noiseless: the recovered per-class ESD equals the independently computed pair-weighted mean of DeltaSigma_inj to 1e-9 relative, and
+      the noiseless D(equal) on K1 is below 3% of ESD_late in every bin (within-bin g distribution differences only).
+  T2  noisy, set (i): equal injection -> chi2(D = 0) on K1 with the 30-patch jackknife has p > 0.01; planted split -> the amplitude
+      A = D.C^-1.T / T.C^-1.T (template T = noiseless planted D) within 2 sigma of 1, and chi2(D = 0) rejects at p < 0.01.
+  T3  set (ii): over 50 realisations of the equal injection, the mean Hartlap chi2 on K1 lies within 7 +- 30% (4.9-9.1), and the planted
+      split's mean amplitude is within 2 sigma(mean) of 1.
+
+======================================================================================================================
+SET (i): 48,497 matched good-mass lenses (early 12,261); 30 patches
+======================================================================================================================
+  equal    noiseless: ESD_late K1 [33.18, 44.09, 58.56, 77.76, 103.22, 136.97, 182.09]; D [0.004, -0.02, -0.03, -0.046, 0.119, 0.463, -0.197]; max |ESD / pair-weighted mean - 1| 2.3e-14
+  planted  noiseless: ESD_late K1 [33.18, 44.09, 58.56, 77.76, 103.22, 136.97, 182.09]; D [16.598, 22.014, 29.236, 38.813, 51.787, 69.18, 90.747]; max |ESD / pair-weighted mean - 1| 1.6e-14
+  [PASS] T1 SELFTEST noiseless: recovered ESD = the pair-weighted mean of the injected DeltaSigma to 1e-9; |D(equal)| < 3% of ESD_late per K1 bin
+         max deviation 2.3e-14; max |D_equal| / ESD_late 0.0034; planted D / (0.5 ESD_late) [1.0, 0.999, 0.998, 0.998, 1.003, 1.01, 0.997]
+  noisy equal:   D [-0.94, 0.99, 1.0, 13.57, 6.33, 17.6, 16.14] +- [3.06, 5.3, 7.14, 7.94, 13.99, 16.23, 26.72]; chi2 5.76/7 p 0.568; A 0.165 +- 0.110
+  noisy planted: D [16.49, 20.52, 36.36, 39.14, 67.62, 82.3, 102.85]; chi2(0) 106.34/7 p 5.27e-20; A 1.109 +- 0.109
+  [PASS] T2 SELFTEST noisy (set i): equal -> chi2(D=0) p > 0.01; planted -> A within 2 sigma of 1 and chi2(D=0) p < 0.01
+         equal p 0.568; planted A 1.109 +- 0.109 ((A-1)/s +1.00), p(0) 5.3e-20
+
+======================================================================================================================
+SET (ii): the frozen ISO-P sample, 296 lenses (early 72); 50 noise realisations
+======================================================================================================================
+  equal: Hartlap chi2 on K1 mean 7.23, median 6.56, fraction p < 0.01 0.04
+  planted: amplitude mean 0.884 +- 0.116 (scatter 0.823; median quoted sigma_A 0.671)
+  [PASS] T3 SELFTEST (set ii, ISO-P size): mean Hartlap chi2 of the equal injection in 4.9-9.1; planted mean amplitude within 2 sigma(mean) of 1
+         mean chi2 7.23; mean A 0.884 +- 0.116; per-realisation sigma_A ~ 0.67 (so a KiDS-size split is 1.5 sigma_A at this sample size, before shared systematics)
+
+  3/3 checks pass; load-bearing failures: 0   (169 s)

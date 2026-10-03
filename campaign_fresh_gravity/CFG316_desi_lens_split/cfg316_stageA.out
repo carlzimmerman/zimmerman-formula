@@ -1,0 +1,87 @@
+CFG316 Stage A: lens counts after each frozen cut, the spectroscopic isolation flags, and the analytic power for D.  NO shear value is
+read: from the KiDS-1000 shear catalogue only positions (RAJ2000, DECJ2000), MASK and the photo-z Z_B are read (footprint, source
+density, source n(z) for the power estimate).
+
+Frozen criteria: FROZEN_CRITERIA.md (c57c69a81), decisions D1-D9 binding.
+  D1  good redshift: ZWARN == 0, DELTACHI2 > 40, SPECTYPE == 'GALAXY', COADD_FIBERSTATUS == 0.
+  D2  KiDS footprint = HEALPix nside 1024 pixels holding SOM-gold sources; 0.1 < z < 0.5.
+  D3  class (b) headline: KiDS LePhare u - r > 2.0 on lenses matched to the KiDS-bright catalogue; (a) variant: CIGALE rest-frame
+      u - r = -2.5 log10(LNU_U / LNU_R), valley transferred by matching on the overlap (quantile map of the KiDS early fraction).
+  D4  ISO-S: no neighbour with M* > 0.1 M*_lens within 3 Mpc physical transverse and |dv| < 1000 km/s; ISO-S4: 4 Mpc, |dv| < 2000 km/s;
+      a BGS target without a good redshift counts as a neighbour if, placed at the lens redshift with the lens-class median M/L, it
+      exceeds 0.1 M*_lens (frozen text); C1 contrast ISO-P: the committed KiDS photo-z rule (|dchi| < 10 Mpc, lr_esd_remeasure v4).
+  D5  lenses whose 0.1 M*_lens neighbour census is not complete at r < 19.5 are DROPPED.
+  D6  M* bins log M* 10.0-10.5, 10.5-11.0.
+  CIGALE quality: the frozen text's proposal (not changed by D1-D9): 1/5 <= FLAG_MASSPDF <= 5 and AGNFRAC < 0.1.
+Outputs (outside git): ../_external_data/cfg316_work/cfg316_lenses.npz; in this folder cfg316_stageA.out / cfg316_stageA_results.json.
+
+======================================================================================================================
+1. KiDS-1000 SOM-gold footprint (positions, MASK, Z_B only; no shear value read)
+======================================================================================================================
+  sources 21,262,011; MASK values (top 6 by count): 0: 19,093,473, 2: 1,092,370, 4098: 794,567, 4096: 281,584, 1: 15, 3: 1
+  KiDS footprint: 286,501 nside-1024 pixels = 939.3 deg2; raw source density 6.29 arcmin^-2
+
+======================================================================================================================
+2. DESI DR1 BGS_BRIGHT full (LSS v1.5) and the CIGALE VAC
+======================================================================================================================
+  BGS_BRIGHT full: 6,419,406 targets; D1-good 3,959,633 (61.7%); in the KiDS footprint 360,852 (D1-good 282,157, 78.2%)
+  [PASS] (reported) A0 (reported) the KiDS-1000 x BGS overlap area vs arXiv:2512.15960 Table 3 (448.2 deg2, nside 1024)
+         KiDS pixels inside the BGS coverage (nside-256 occupancy): 448.7 deg2
+  CIGALE main/bright joined: 3,900,035 of 6,419,406; FLAG_MASSPDF in [1/5, 5]: 3,842,329; and AGNFRAC < 0.1: 1,241,620
+
+======================================================================================================================
+3. KiDS-bright LePhare match (class b) and the committed photo-z isolation rule (ISO-P)
+======================================================================================================================
+
+======================================================================================================================
+4. Lens counts after each cut
+======================================================================================================================
+  match separations of the matched set: median 0.132", 99th pct 0.477"; unmatched within 1": 22,111 (masked or no u-r)
+  class (a) valley: KiDS early fraction on the matched overlap 0.253 -> CIGALE u-r threshold 1.643; agreement with class (b) 85.0%
+  median log(M*/F_r D_L^2) early - late at z = 0.15 / 0.25 / 0.35: +0.42, +0.46, +0.51 dex
+
+======================================================================================================================
+5. Spectroscopic isolation over all 6.4 M BGS_BRIGHT targets (observed and unobserved)
+======================================================================================================================
+  ISO-P computed for 138,307 matched candidates (99,501 of them inside the KiDS lens pool)
+  cut sequence (headline class (b) path):
+    BGS targets in the KiDS footprint (D2 footprint)                            360,852
+    + D1 good redshift                                                          282,157
+    + D2 0.1 < z < 0.5                                                          237,772
+    + CIGALE main/bright match                                                  200,140
+    + CIGALE FLAG_MASSPDF in [1/5, 5]                                           198,178
+    + CIGALE AGNFRAC < 0.1 (frozen proposal)                                     59,337
+    + 8 < log M* < 11 (the original KiDS lens limit M* < 1e11)                   58,000
+    + matched to KiDS-bright (< 1 arcsec, masked == 0, finite u-r)               48,497
+    + D5 completeness (0.1 M*_lens census complete at r < 19.5)                   1,034
+    + ISO-S (3 Mpc, 1000 km/s) [headline]                                             0
+    + ISO-S4 (4 Mpc, 2000 km/s) [strict]                                              0
+    + ISO-P (KiDS photo-z rule) [C1 contrast]                                       296
+  S  : N 0 (early 0, late 0; early fraction 0.000); median log M* early None / late None; M* bins 10.0-10.5 e/l 0/0, 10.5-11.0 e/l 0/0; isolated fraction of the complete base 0.000
+  S4 : N 0 (early 0, late 0; early fraction 0.000); median log M* early None / late None; M* bins 10.0-10.5 e/l 0/0, 10.5-11.0 e/l 0/0; isolated fraction of the complete base 0.000
+  P  : N 296 (early 72, late 224; early fraction 0.243); median log M* early 10.824217274701557 / late 10.503666814868158; M* bins 10.0-10.5 e/l 0/110, 10.5-11.0 e/l 72/114; isolated fraction of the complete base 0.286
+  [PASS] (reported) R1 (reported) counts per sample, early fraction, median log M* per class, isolated fraction
+         {"S": {"N": 0, "early": 0, "late": 0, "fe": 0.0, "medM_e": null, "medM_l": null, "bin1_e": 0, "bin1_l": 0, "bin2_e": 0, "bin2_l": 0, "iso_frac": 0.0}, "S4": {"N": 0, "early": 0, "late": 0, "fe": 0.0, "medM_e": null, "medM_l": null, "bin1_e": 0, "bin1_l": 0, "bin2_e": 0, "bin2_l": 0, "iso_frac": 0.0}, "P": {"N": 296, "early": 72, "late": 224, "fe": 0.24324324324324326, "medM_e": 10.824217274701557, "medM_l": 10.503666814868158, "bin1_e": 0, "bin1_l": 110, "bin2_e": 72, "bin2_l": 114, "iso_frac": 0.2862669245647969}}
+  [PASS] (reported) R2 (reported) lenses excluded ONLY by unobserved neighbours; the completeness-cut loss
+         ISO-S: 21 of 1,034 complete lenses excluded only by unobserved targets (isolated if unobserved targets were ignored: 21); ISO-S4: 1 (ignored: 1); D5 drops 47,463 of 48,497 (with the early-type M/L for every lens: 317 kept)
+  [PASS] C3 CONTROL: ISO-S4 within ISO-S (nested definitions)
+         ISO-S4 0 subset of ISO-S 0: True
+  [PASS] (reported) R-AGN (reported, variant) the same samples without the AGNFRAC < 0.1 cut
+         base 2,234; ISO-S 0; ISO-S4 0; ISO-P 488; AGNFRAC < 0.1 keeps 35.1% of matched lenses (early 18.0%, late 51.6%)
+  [PASS] (reported) R3 (reported) CIGALE minus KiDS LePhare(+0.15) log M* on matched lenses, per class (Q = early - late; Mistele Q = 1.4 = +0.15 dex)
+         late +0.213, early +0.172 dex; class-dependent offset -0.041 dex
+  patches: 30 RA-quantile stripes on the headline base (all lenses in KiDS-N: True); base lenses per patch min/median/max 34/34/35
+
+======================================================================================================================
+9. Expected statistical power for D (analytic scaling of the June KiDS jackknife; no shear value of these lenses read)
+======================================================================================================================
+  calibration of the scaling on the June sample itself (no cross-class term, Hartlap 41/49): lambda vs D_B = 21.6 / 20.1 (CFG95 re-measured chi2 26.68 / 24.79)
+  P  : N 296; information vs the June 181,477 lenses: early x0.003, late x0.009; sigma(D) on K1 x13.90 the June value (median)
+       canonical: a KiDS-size split (CFG88's D) vs B's calibrated D_B: lambda 0.11 -> median 0.69 sigma, P(reject at p<0.01) 0.01; at x1.58: lambda 0.04 -> 0.68 sigma, P 0.01
+       alt      : a KiDS-size split (CFG88's D) vs B's calibrated D_B: lambda 0.10 -> median 0.69 sigma, P(reject at p<0.01) 0.01; at x1.58: lambda 0.04 -> 0.68 sigma, P 0.01
+  [PASS] (reported) P1 (reported) expected power for D (scaling sigma^2 ∝ 1/sum M_gal n_src(>z+0.2) Sigma_crit^-2 / D_A^2 per class from CFG88's June per-class jackknife; Hartlap 21/29; a KiDS-size split assumed true)
+         {"S": null, "S4": null, "P": {"N": 296, "info_ratio_early": 0.002709571062655543, "info_ratio_late": 0.008976147818770503, "sigma_D_K1": [30.439712827971896, 32.47028803437481, 46.0685123327294, 50.827654871757034, 102.56557888049818, 122.4240928346395, 164.91079197694856], "sigma_ratio_vs_june": [14.690844347540905, 13.896274293697113, 13.435328626489941, 14.601770613184776, 13.568649199589675, 14.528246330198055, 13.83822584861424], "canonical_x1.0": {"lam": 0.10669582995807435, "z_median": 0.6917353729913633, "p_median": 0.48910352859745976, "P_reject_001": 0.011099443571910178}, "canonical_x1.58": {"lam": 0.042739877406695374, "z_median": 0.6813863330770904, "p_median": 0.495627068375186, "P_reject_001": 0.010433143985245058}, "alt_x1.0": {"lam": 0.0990225099710686, "z_median": 0.6904919242984447, "p_median": 0.48988488671209196, "P_reject_001": 0.011018347944963362}, "alt_x1.58": {"lam": 0.039666123205843846, "z_median": 0.680889819860469, "p_median": 0.4959412100899354, "P_reject_001": 0.010401670239271849}}}
+
+  wrote ../_external_data/cfg316_work/cfg316_lenses.npz (165,796 stack candidates) and the footprint pixel lists
+
+  7/7 checks pass; load-bearing failures: 0   (104 s)

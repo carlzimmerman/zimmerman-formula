@@ -1,0 +1,229 @@
+{
+ "slug": "cfg316_stageA",
+ "summary": {
+  "n_checks": 7,
+  "n_pass": 7,
+  "load_bearing_failures": 0,
+  "failed": [],
+  "seconds": 104.5
+ },
+ "checks": [
+  {
+   "name": "A0 (reported) the KiDS-1000 x BGS overlap area vs arXiv:2512.15960 Table 3 (448.2 deg2, nside 1024)",
+   "detail": "KiDS pixels inside the BGS coverage (nside-256 occupancy): 448.7 deg2",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R1 (reported) counts per sample, early fraction, median log M* per class, isolated fraction",
+   "detail": "{\"S\": {\"N\": 0, \"early\": 0, \"late\": 0, \"fe\": 0.0, \"medM_e\": null, \"medM_l\": null, \"bin1_e\": 0, \"bin1_l\": 0, \"bin2_e\": 0, \"bin2_l\": 0, \"iso_frac\": 0.0}, \"S4\": {\"N\": 0, \"early\": 0, \"late\": 0, \"fe\": 0.0, \"medM_e\": null, \"medM_l\": null, \"bin1_e\": 0, \"bin1_l\": 0, \"bin2_e\": 0, \"bin2_l\": 0, \"iso_frac\": 0.0}, \"P\": {\"N\": 296, \"early\": 72, \"late\": 224, \"fe\": 0.24324324324324326, \"medM_e\": 10.824217274701557, \"medM_l\": 10.503666814868158, \"bin1_e\": 0, \"bin1_l\": 110, \"bin2_e\": 72, \"bin2_l\": 114, \"iso_frac\": 0.2862669245647969}}",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) lenses excluded ONLY by unobserved neighbours; the completeness-cut loss",
+   "detail": "ISO-S: 21 of 1,034 complete lenses excluded only by unobserved targets (isolated if unobserved targets were ignored: 21); ISO-S4: 1 (ignored: 1); D5 drops 47,463 of 48,497 (with the early-type M/L for every lens: 317 kept)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C3 CONTROL: ISO-S4 within ISO-S (nested definitions)",
+   "detail": "ISO-S4 0 subset of ISO-S 0: True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R-AGN (reported, variant) the same samples without the AGNFRAC < 0.1 cut",
+   "detail": "base 2,234; ISO-S 0; ISO-S4 0; ISO-P 488; AGNFRAC < 0.1 keeps 35.1% of matched lenses (early 18.0%, late 51.6%)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported) CIGALE minus KiDS LePhare(+0.15) log M* on matched lenses, per class (Q = early - late; Mistele Q = 1.4 = +0.15 dex)",
+   "detail": "late +0.213, early +0.172 dex; class-dependent offset -0.041 dex",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "P1 (reported) expected power for D (scaling sigma^2 \u221d 1/sum M_gal n_src(>z+0.2) Sigma_crit^-2 / D_A^2 per class from CFG88's June per-class jackknife; Hartlap 21/29; a KiDS-size split assumed true)",
+   "detail": "{\"S\": null, \"S4\": null, \"P\": {\"N\": 296, \"info_ratio_early\": 0.002709571062655543, \"info_ratio_late\": 0.008976147818770503, \"sigma_D_K1\": [30.439712827971896, 32.47028803437481, 46.0685123327294, 50.827654871757034, 102.56557888049818, 122.4240928346395, 164.91079197694856], \"sigma_ratio_vs_june\": [14.690844347540905, 13.896274293697113, 13.435328626489941, 14.601770613184776, 13.568649199589675, 14.528246330198055, 13.83822584861424], \"canonical_x1.0\": {\"lam\": 0.10669582995807435, \"z_median\": 0.6917353729913633, \"p_median\": 0.48910352859745976, \"P_reject_001\": 0.011099443571910178}, \"canonical_x1.58\": {\"lam\": 0.042739877406695374, \"z_median\": 0.6813863330770904, \"p_median\": 0.495627068375186, \"P_reject_001\": 0.010433143985245058}, \"alt_x1.0\": {\"lam\": 0.0990225099710686, \"z_median\": 0.6904919242984447, \"p_median\": 0.48988488671209196, \"P_reject_001\": 0.011018347944963362}, \"alt_x1.58\": {\"lam\": 0.039666123205843846, \"z_median\": 0.680889819860469, \"p_median\": 0.4959412100899354, \"P_reject_001\": 0.010401670239271849}}}",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "counts": {
+   "BGS targets in the KiDS footprint (D2 footprint)": 360852,
+   "+ D1 good redshift": 282157,
+   "+ D2 0.1 < z < 0.5": 237772,
+   "+ CIGALE main/bright match": 200140,
+   "+ CIGALE FLAG_MASSPDF in [1/5, 5]": 198178,
+   "+ CIGALE AGNFRAC < 0.1 (frozen proposal)": 59337,
+   "+ 8 < log M* < 11 (the original KiDS lens limit M* < 1e11)": 58000,
+   "+ matched to KiDS-bright (< 1 arcsec, masked == 0, finite u-r)": 48497,
+   "+ D5 completeness (0.1 M*_lens census complete at r < 19.5)": 1034,
+   "+ ISO-S (3 Mpc, 1000 km/s) [headline]": 0,
+   "+ ISO-S4 (4 Mpc, 2000 km/s) [strict]": 0,
+   "+ ISO-P (KiDS photo-z rule) [C1 contrast]": 296
+  },
+  "R1": {
+   "S": {
+    "N": 0,
+    "early": 0,
+    "late": 0,
+    "fe": 0.0,
+    "medM_e": null,
+    "medM_l": null,
+    "bin1_e": 0,
+    "bin1_l": 0,
+    "bin2_e": 0,
+    "bin2_l": 0,
+    "iso_frac": 0.0
+   },
+   "S4": {
+    "N": 0,
+    "early": 0,
+    "late": 0,
+    "fe": 0.0,
+    "medM_e": null,
+    "medM_l": null,
+    "bin1_e": 0,
+    "bin1_l": 0,
+    "bin2_e": 0,
+    "bin2_l": 0,
+    "iso_frac": 0.0
+   },
+   "P": {
+    "N": 296,
+    "early": 72,
+    "late": 224,
+    "fe": 0.24324324324324326,
+    "medM_e": 10.824217274701557,
+    "medM_l": 10.503666814868158,
+    "bin1_e": 0,
+    "bin1_l": 110,
+    "bin2_e": 72,
+    "bin2_l": 114,
+    "iso_frac": 0.2862669245647969
+   }
+  },
+  "R2": {
+   "onlyU_S": 21,
+   "onlyU_S4": 1,
+   "base_complete": 1034,
+   "completeness_loss": 47463,
+   "base_before_D5": 48497,
+   "complete_with_early_ML": 317,
+   "isoS_obs_only": 21,
+   "isoS4_obs_only": 1
+  },
+  "R3": {
+   "0": 0.21332343820235877,
+   "1": 0.17228004850572276
+  },
+  "power": {
+   "S": null,
+   "S4": null,
+   "P": {
+    "N": 296,
+    "info_ratio_early": 0.002709571062655543,
+    "info_ratio_late": 0.008976147818770503,
+    "sigma_D_K1": [
+     30.439712827971896,
+     32.47028803437481,
+     46.0685123327294,
+     50.827654871757034,
+     102.56557888049818,
+     122.4240928346395,
+     164.91079197694856
+    ],
+    "sigma_ratio_vs_june": [
+     14.690844347540905,
+     13.896274293697113,
+     13.435328626489941,
+     14.601770613184776,
+     13.568649199589675,
+     14.528246330198055,
+     13.83822584861424
+    ],
+    "canonical_x1.0": {
+     "lam": 0.10669582995807435,
+     "z_median": 0.6917353729913633,
+     "p_median": 0.48910352859745976,
+     "P_reject_001": 0.011099443571910178
+    },
+    "canonical_x1.58": {
+     "lam": 0.042739877406695374,
+     "z_median": 0.6813863330770904,
+     "p_median": 0.495627068375186,
+     "P_reject_001": 0.010433143985245058
+    },
+    "alt_x1.0": {
+     "lam": 0.0990225099710686,
+     "z_median": 0.6904919242984447,
+     "p_median": 0.48988488671209196,
+     "P_reject_001": 0.011018347944963362
+    },
+    "alt_x1.58": {
+     "lam": 0.039666123205843846,
+     "z_median": 0.680889819860469,
+     "p_median": 0.4959412100899354,
+     "P_reject_001": 0.010401670239271849
+    }
+   }
+  },
+  "power_calibration_june": {
+   "canonical": 21.612019109106193,
+   "alt": 20.056900079917906
+  },
+  "area": {
+   "kids": 939.2908931509551,
+   "overlap": 448.6516307273927
+  },
+  "class_a": {
+   "t_a": 1.6431142878589922,
+   "fe_K": 0.2528197620471369,
+   "agree": 0.8497639029218302
+  },
+  "variant_noAGN": {
+   "S": 0,
+   "S4": 0,
+   "P": 488
+  },
+  "patches": {
+   "n": 30,
+   "per_patch": [
+    35,
+    34,
+    35,
+    34,
+    35,
+    34,
+    35,
+    34,
+    34,
+    35,
+    34,
+    35,
+    34,
+    35,
+    34,
+    34,
+    35,
+    34,
+    35,
+    34,
+    35,
+    34,
+    34,
+    35,
+    34,
+    35,
+    34,
+    35,
+    34,
+    35
+   ]
+  }
+ }
+}

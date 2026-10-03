@@ -1,0 +1,95 @@
+CFG316 Stage B scoring: the early/late split per isolation definition on K1, its 30-patch jackknife covariance, B's calibrated
+prediction, the KiDS split amplitude, the absolute ESD against the law (both footings), and the controls.
+
+Frozen criteria: FROZEN_CRITERIA.md (c57c69a81), D1-D9 binding.  Inputs (outside git): ../_external_data/cfg316_work/cfg316_lenses.npz
+(Stage A) and cfg316_stack.npz (cfg316_stageB_stack.py: the only pass that read the real shear).
+  samples   headline base = matched (class (b)), FLAG_MASSPDF in [1/5, 5], AGNFRAC < 0.1, 8 < log M* < 11, D5-complete;
+            ISO-S (3 Mpc, 1000 km/s), ISO-S4 (4 Mpc, 2000 km/s), ISO-P (the KiDS photo-z rule, C1).
+  stat      D = ESD_early - ESD_late on K1 [8..14]; C = leave-one-patch-out jackknife (N = 30), Hartlap (N - p - 2)/(N - 1) = 21/29;
+            chi2_0 = D C^-1 D h; chi2_B = (D - D_B) C^-1 (D - D_B) h, 7 dof, D_B = CFG95's calibrated model stacked on THIS sample's
+            (log M*, z) weights (CIGALE masses read as Chabrier); A = D88 C^-1 D / D88 C^-1 D88 (D88 = the June KiDS split, CFG88),
+            sigma_A by jackknife.  Significances quoted at error scale x1, x1.31 (CFG315 S1) and x1.58 (CFG108) (D8).
+  checks    C1 (A_P within 2 sigma of 1; reported also whether C1 can discriminate), C2 (June sums to 1e-9), C3 (nesting, Stage A),
+            C4 (randoms and cross shear consistent with zero on K1), H1 / H2 (ISO-S / ISO-S4: p > 0.01 both footings), H3 (A_S - A_P).
+MUTATE=1: early/late labels swapped in a random half of the patches (p = 1/2 per patch, seed 316) before stacking; outputs *_MUTATE*.
+
+  *** MUTATE=1: early/late labels swapped per patch (p = 1/2, seed 316) -- the split must vanish within its errors ***
+  MUTATE: 10 of 30 patches swapped
+
+======================================================================================================================
+C2 / C3  CONTROLS
+======================================================================================================================
+  [PASS] C2 CONTROL: the stacking code on the committed lr_lenses.npz reproduces lr_esd_jackknife.npz sums (wgE, W, NN) to 1e-9 relative
+         max relative deviation 3.1e-11 (181,477 June lenses, June patch labels)
+  [PASS] C3 CONTROL: ISO-S4 within ISO-S; every count printed
+         headline base 1,034; ISO-S 0; ISO-S4 0; ISO-P 296; nested True  [Stage A cut sequence: {"BGS targets in the KiDS footprint (D2 footprint)": 360852, "+ D1 good redshift": 282157, "+ D2 0.1 < z < 0.5": 237772, "+ CIGALE main/bright match": 200140, "+ CIGALE FLAG_MASSPDF in [1/5, 5]": 198178, "+ CIGALE AGNFRAC < 0.1 (frozen proposal)": 59337, "+ 8 < log M* < 11 (the original KiDS lens limit M* < 1e11)": 58000, "+ matched to KiDS-bright (< 1 arcsec, masked == 0, finite u-r)": 48497, "+ D5 completeness (0.1 M*_lens census complete at r < 19.5)": 1034, "+ ISO-S (3 Mpc, 1000 km/s) [headline]": 0, "+ ISO-S4 (4 Mpc, 2000 km/s) [strict]": 0, "+ ISO-P (KiDS photo-z rule) [C1 contrast]": 296}]
+
+======================================================================================================================
+THE SPLIT PER ISOLATION DEFINITION (K1, class (b), 30-patch jackknife)
+======================================================================================================================
+  ISO-S: early 0, late 0 -> NO MEASUREMENT POSSIBLE (empty class)
+  ISO-S4: early 0, late 0 -> NO MEASUREMENT POSSIBLE (empty class)
+  ISO-P: early 117, late 179
+    D (Msun/pc^2)        [-64.67, 54.75, -119.68, 12.23, 33.11, -34.12, -32.25]
+    jackknife sigma      [29.04, 42.38, 45.48, 65.84, 65.72, 102.55, 165.4]
+    KiDS June D (CFG88)  [3.26, 7.14, 5.6, 5.33, 11.92, 21.48, 33.28]
+    D_B (canonical)       [0.5, 0.67, 0.91, 1.25, 1.72, 2.4, 3.39]
+    D_B (alt      )       [0.64, 0.86, 1.17, 1.59, 2.19, 3.03, 4.26]
+    chi2 vs zero: x1.0: chi2 16.52 p 2.08e-02 (2.31 sigma), x1.31: chi2 9.62 p 2.11e-01 (1.25 sigma), x1.58: chi2 6.62 p 4.70e-01 (0.72 sigma)
+    chi2 vs D_B (canonical): x1.0: chi2 16.71 p 1.94e-02 (2.34 sigma), x1.31: chi2 9.74 p 2.04e-01 (1.27 sigma), x1.58: chi2 6.69 p 4.61e-01 (0.74 sigma)
+    chi2 vs D_B (alt): x1.0: chi2 16.77 p 1.90e-02 (2.35 sigma), x1.31: chi2 9.77 p 2.02e-01 (1.28 sigma), x1.58: chi2 6.72 p 4.59e-01 (0.74 sigma)
+    A (amplitude of the June KiDS split shape) = -2.321 +- 1.734
+
+======================================================================================================================
+C1 / H1 / H2 / H3
+======================================================================================================================
+  [PASS] C1 CONTROL [decisive contrast]: ISO-P on the overlap reproduces a split consistent with the committed KiDS split (A_P within 2 sigma of 1)
+         A_P = -2.321 +- 1.734 ((A-1)/sigma -1.91; A/sigma -1.34); N early 117, late 179
+  [PASS] (reported) C1-INFO (reported) can C1 discriminate? (sigma_A < 0.5, i.e. a KiDS-size split is >= 2 sigma_A from zero)
+         sigma_A = 1.734: a split of zero is 1.34 sigma from A_P and a KiDS-size split 1.91 sigma; C1 CANNOT tell them apart
+  [FAIL] H1 [HEADLINE] with ISO-S, B's prediction (D = D_B) is consistent on K1, p > 0.01 both footings -- EVALUABLE?  [MUTATE]
+         NOT EVALUABLE: the ISO-S sample is empty (0 lenses; Stage A). Neither reading (PASS: isolation removes the split; FAIL: the split survives) applies.
+  [FAIL] H2 with ISO-S4, B's prediction (D = D_B) is consistent on K1, p > 0.01 both footings -- EVALUABLE?  [MUTATE]
+         NOT EVALUABLE: the ISO-S4 sample is empty (0 lenses; Stage A). Neither reading (PASS: isolation removes the split; FAIL: the split survives) applies.
+  [FAIL] H3 A_S (ISO-S) vs A_P (ISO-P, same lenses): the difference with its jackknife error
+         NOT EVALUABLE: ISO-S is empty
+
+======================================================================================================================
+REPORTED ROWS (on ISO-P, the only non-empty frozen sample; class (b) unless stated)
+======================================================================================================================
+  [PASS] (reported) D6 (reported) M* bins 10.0-10.5 / 10.5-11.0 and the R-row reweighting
+         10.0-10.5: early 34, late 76; chi2 vs 0 12.14 (p 9.59e-02); A -4.101 +- 2.342; 10.5-11.0: early 83, late 103; chi2 vs 0 12.73 (p 7.91e-02); A -3.380 +- 2.077; late reweighted to the early M* histogram (0.1 dex): chi2 vs 0 15.05 (p 3.54e-02); A -4.963 +- 1.976; effective late N 98
+  [PASS] (reported) R4 (reported) the split with the class from CIGALE colours (option a)
+         early 134, late 162; D [-14.3, -29.4, -83.5, 56.2, 18.0, 167.2, 248.3]; chi2 vs 0 6.59 (p 4.73e-01); A 0.318 +- 2.119
+  [PASS] (reported) R5 (reported) chi2 against a uniform differential M/L offset Delta (0-0.5 dex, canonical; a diagnostic, not a fit)
+         0: 16.5, 0.05: 16.6, 0.1: 16.8, 0.15: 16.9, 0.2: 17.1, 0.25: 17.3, 0.3: 17.5, 0.35: 17.7, 0.4: 18.0, 0.45: 18.2, 0.5: 18.5 | p > 0.05 for Delta in none
+  [PASS] (reported) R6 (reported) the WMAP7 -> Planck distance rescaling of CIGALE masses (uniform -0.04 dex) on D_B
+         canonical: max |change in D_B| on K1 0.237 Msun/pc^2 (sigma(D) min 29.0); alt: max |change in D_B| on K1 0.298 Msun/pc^2 (sigma(D) min 29.0)
+  [PASS] (reported) R7 (reported) K1 with each bin dropped (chi2 vs zero, 6 dof)
+         drop 8: 12.1 (p 0.06); drop 9: 15.9 (p 0.01); drop 10: 5.6 (p 0.47); drop 11: 16.6 (p 0.01); drop 12: 15.0 (p 0.02); drop 13: 17.0 (p 0.01); drop 14: 16.7 (p 0.01)
+
+======================================================================================================================
+C4  CONTROL: random points and cross shear on K1
+======================================================================================================================
+  [FAIL] C4 CONTROL: random points give Delta Sigma consistent with zero on K1 (additive bias); cross shear consistent with zero
+         randoms (20,000): tangential [-1.25, 0.43, -4.08, 1.05, -9.09, 1.53, 0.94] chi2 11.00/7 (p 0.14); cross chi2 22.33 (p 0.00); lens cross shear (ISO-P late/early, base late/early): 3.0 (p 0.89), 9.3 (p 0.23), 0.7 (p 1.00), 2.6 (p 0.92)
+
+======================================================================================================================
+ABSOLUTE ESD vs THE LAW (nu_mono, both footings), K1: CFG315's environment question
+======================================================================================================================
+  ISO-P (photo-z isolated)       canonical catalogue M*    : Q = ESD_obs/ESD_law = -1.02 +- 0.93 (late 0.98 +- 1.28, early 0.18 +- 0.89); chi2(Q = 1) 32.0/14 (p 4.0e-03)
+  ISO-P (photo-z isolated)       canonical B-calibrated M* : Q = ESD_obs/ESD_law = -0.88 +- 0.80 (late 0.89 +- 1.17, early 0.16 +- 0.76); chi2(Q = 1) 32.8/14 (p 3.1e-03)
+  ISO-P (photo-z isolated)       alt       catalogue M*    : Q = ESD_obs/ESD_law = -0.94 +- 0.85 (late 0.89 +- 1.17, early 0.16 +- 0.81); chi2(Q = 1) 32.5/14 (p 3.4e-03)
+  ISO-P (photo-z isolated)       alt       B-calibrated M* : Q = ESD_obs/ESD_law = -0.83 +- 0.75 (late 0.84 +- 1.11, early 0.14 +- 0.70); chi2(Q = 1) 33.3/14 (p 2.6e-03)
+  complete base (NOT isolated)   canonical catalogue M*    : Q = ESD_obs/ESD_law = 0.13 +- 0.46 (late 0.82 +- 0.60, early -0.40 +- 0.47); chi2(Q = 1) 25.6/14 (p 2.9e-02)
+  complete base (NOT isolated)   canonical B-calibrated M* : Q = ESD_obs/ESD_law = 0.08 +- 0.40 (late 0.75 +- 0.55, early -0.33 +- 0.40); chi2(Q = 1) 27.3/14 (p 1.8e-02)
+  complete base (NOT isolated)   alt       catalogue M*    : Q = ESD_obs/ESD_law = 0.11 +- 0.42 (late 0.74 +- 0.55, early -0.37 +- 0.43); chi2(Q = 1) 26.4/14 (p 2.3e-02)
+  complete base (NOT isolated)   alt       B-calibrated M* : Q = ESD_obs/ESD_law = 0.06 +- 0.37 (late 0.70 +- 0.52, early -0.31 +- 0.37); chi2(Q = 1) 28.3/14 (p 1.3e-02)
+  [PASS] (reported) E1 (reported) CFG315's environment question: does strict (spectroscopic) isolation remove the x1.8-3.3 excess?
+         NOT ANSWERABLE with the frozen samples: ISO-S and ISO-S4 are empty. Rows above: the photo-z-isolated (ISO-P) and the non-isolated complete DESI lenses on KiDS shear (raw lensfit e, no m-correction: about 1.5% low; KiDS reads 8.6% low vs DES+HSC, CFG315).
+  [PASS] MUTATE: with labels swapped per patch the ISO-P split vanishes within its errors (chi2 vs zero p > 0.01)
+         chi2 16.52/7 (p 0.021); A -2.321 +- 1.734
+
+    READING (declared): NOT DIAGNOSTIC: under the frozen rules the spectroscopic-isolation samples (ISO-S, ISO-S4) are EMPTY on the KiDS-1000 x DESI DR1 overlap (D5 completeness keeps 1,034 of 48,497 lenses and none of them passes ISO-S); H1-H3 are not evaluable. C1 (ISO-P, 296 lenses) is consistent with the KiDS split but cannot discriminate it from zero.
+
+  11/15 checks pass; load-bearing failures: 4   (46 s)
