@@ -79,8 +79,19 @@ def report(fits, R):
                  f"to the row edge {k} = {(f['g'] - k) / R['sigma_tot']:+.2f} sigma_tot; Amendment 14(d) interval: {iv}"
                  + ("  [GRID-EDGE: boundary-pinned]" if on_edge else ""))
     L.append("[A14] distances only; no verdict word (Amendment 7(e)); the stability requirements of the >= row are not evaluated here")
-    L.append("[A14] the pipeline's [aniso] lines are NOT QUOTED (owner decision 2026-10-03, before the data: the proj-PARALLEL "
-             "fit is pinned on the frozen grid floor in the dry run, so the split is not a measurement)")
+    # Amendment 20: per footing, the anisotropy split is measurable only if neither orientation fit sits on a grid edge
+    for fo in ("canonical", "alt"):
+        sub = {f["subset"]: f for f in fits if f["footing"] == fo and f["subset"] != "all"}
+        if not sub:
+            continue
+        pinned = [f"{k} {v['g']:.4f}" for k, v in sorted(sub.items())
+                  if abs(v["g"] - R["grid"][0]) < 1e-9 or abs(v["g"] - R["grid"][1]) < 1e-9]
+        if pinned or len(sub) < 2:
+            L.append(f"[A20] {fo}: anisotropy split NOT MEASURABLE -- NOT QUOTED; cannot falsify, support or be read "
+                     f"({'; '.join(pinned) if pinned else 'an orientation fit is missing'} on the frozen grid edge)")
+        else:
+            L.append(f"[A20] {fo}: anisotropy split MEASURABLE (neither orientation fit on a grid edge) -- report the "
+                     f"pipeline's [aniso] line as registered (Amendments 2(f), 3(c), 8(f), 11(d2))")
     return L
 
 
@@ -100,7 +111,15 @@ def self_test():
     ok.append(any("canonical: raw gamma_hat = 1.0750" in l and "+0.05 sigma_fit" in l and "interval: 1.0725 - 1.157" in l for l in rep))
     ok.append(any("alt: raw gamma_hat = 1.1800" in l and "interval: >= 1.174" in l for l in rep))
     ok.append(any("GRID-EDGE" in l and "proj-PARALLEL" in l for l in rep))
-    ok.append(not any(re.search(r"\b(confirm|falsif|consistent|kill)", l, re.I) for l in rep))
+    ok.append(not any(re.search(r"\b(confirm|falsif|consistent|kill)", l, re.I) for l in rep if l.startswith("[A14]")))
+    # Amendment 20: canonical has a pinned PARALLEL fit -> not measurable; a clean pair -> measurable
+    ok.append(any(l.startswith("[A20] canonical: anisotropy split NOT MEASURABLE") and "proj-PARALLEL 0.9000" in l for l in rep))
+    clean = ("  catalog [a0 alt footing]           gamma_inf = 1.1800 +- 0.0500  (chi2)\n"
+             "  catalog [a0 alt footing] proj-PARALLEL gamma_inf = 1.1200 +- 0.0400  (chi2)\n"
+             "  catalog [a0 alt footing] proj-PERPENDICULAR gamma_inf = 1.2400 +- 0.0600  (chi2)\n")
+    if mut:
+        clean = clean.replace("1.2400", "1.5000")
+    ok.append(any(l.startswith("[A20] alt: anisotropy split MEASURABLE") for l in report(parse(clean), R)))
     for i, o in enumerate(ok, 1):
         print(f"  [{'PASS' if o else 'FAIL'}] S{i}")
     print(f"{sum(ok)}/{len(ok)} checks pass" + ("  [MUTATE=1: a failure is REQUIRED]" if mut else ""))
