@@ -1,0 +1,297 @@
+{
+ "slug": "CFG314_power_MUTATE",
+ "mutate": true,
+ "checks": [
+  {
+   "name": "P1a arithmetic: KiDS per-split sigma = S/4.4",
+   "ok": true,
+   "detail": "sigma_KiDS 0.0426 dex",
+   "load_bearing": true
+  },
+  {
+   "name": "P1b without HSC (public shear only) the worst cell with x1.58 covariance still separates B from the split at >= 2 sigma",
+   "ok": false,
+   "detail": "worst no-HSC cell 1.49 sigma; best all-3 cell 5.55 sigma",
+   "load_bearing": true
+  },
+  {
+   "name": "P1c [reported] the replication is statistically CRISPY in the median cell (>= 3 sigma B vs split, no inflation, all 3 surveys)",
+   "ok": true,
+   "detail": "4.36 sigma",
+   "load_bearing": false
+  },
+  {
+   "name": "P2a rival shift BGS->LRG in the deep amplitude lies in CFG255's 0.06-0.09 dex window",
+   "ok": false,
+   "detail": "-0.0719 dex",
+   "load_bearing": true
+  },
+  {
+   "name": "P2b the M*-drift requirement is tighter than the published SPS method-to-method systematic (0.2 dex) -> systematic-limited",
+   "ok": true,
+   "detail": "needs <= 0.048 dex across z; 0.2 dex method-to-method (Brouwer+21)",
+   "load_bearing": true
+  },
+  {
+   "name": "P2c [reported] the hot-gas difference can be as large as the whole signal",
+   "ok": true,
+   "detail": "0.150 vs 0.072",
+   "load_bearing": false
+  },
+  {
+   "name": "P3a rival lever across the whole PV range is < 0.02 dex in a0",
+   "ok": true,
+   "detail": "-0.0153 dex",
+   "load_bearing": true
+  },
+  {
+   "name": "P3b NOT POSSIBLE: the luminosity-evolution uncertainty alone matches or exceeds the signal between halves",
+   "ok": true,
+   "detail": "evolution 0.0143 mag vs signal 0.0114-0.0158 mag",
+   "load_bearing": true
+  },
+  {
+   "name": "P4a rival a0 ratio at z~4.2 is > 6",
+   "ok": false,
+   "detail": "0.15",
+   "load_bearing": true
+  },
+  {
+   "name": "P4b FLAT needs more baryons than the rival at the same dynamics (sep > 0)",
+   "ok": false,
+   "detail": "sep -0.040 dex",
+   "load_bearing": true
+  },
+  {
+   "name": "P4c NOT POSSIBLE with scaling-relation gas: required shared calibration is below the gas zero-point uncertainty",
+   "ok": true,
+   "detail": "needs <= 0.013 dex vs ~0.3 dex",
+   "load_bearing": true
+  },
+  {
+   "name": "P4d [reported] no CFG273 disc's 95% stars-only upper bound excludes the rival (per-disc errors span ~2 dex)",
+   "ok": true,
+   "detail": "central-below 0, 95%-below 0",
+   "load_bearing": false
+  },
+  {
+   "name": "P5a every DESI DR2 w0wa fit moves the predicted local a0 by < 0.05 dex (local a0 is known only to ~0.16 dex: CFG309 0.9-1.31e-10)",
+   "ok": true,
+   "detail": "max |shift| 0.0376 dex vs log10(1.31/0.9) = 0.163",
+   "load_bearing": true
+  },
+  {
+   "name": "P5b [reported] a0(2.5) under the CPL branch spans about +-0.1 dex (CFG6: -0.10..+0.14)",
+   "ok": true,
+   "detail": "cmb -0.141, desy5 -0.099, pantheonplus -0.085, union3 -0.111",
+   "load_bearing": false
+  },
+  {
+   "name": "P6 NOT POSSIBLE statistically: COSMOS-Web alone gives < 2 sigma on the rival at z~1",
+   "ok": true,
+   "detail": "0.45 sigma",
+   "load_bearing": true
+  },
+  {
+   "name": "P7 NOT POSSIBLE: DESI floor is >= half of the coldest UFD dispersions and no better than DEIMOS",
+   "ok": true,
+   "detail": "(0.5, 1.0)",
+   "load_bearing": true
+  },
+  {
+   "name": "MUTATE sentinel: the rival-dependent rows changed sign (P2a, P4a, P4b must fail)",
+   "ok": true,
+   "detail": "d_rival -0.0719",
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "P1": {
+   "S_split": 0.1875,
+   "sig_kids": 0.04261363636363636,
+   "B_pred": 0.035,
+   "rows": {
+    "nb500_f0.16_all3": {
+     "sigma": 0.04228826168962712,
+     "z_if_real": 4.4338545144311725,
+     "z_B_vs_split": 3.6062016717373533,
+     "z_B_vs_split_x158": 2.2824061213527553,
+     "N_lens": 115768.0
+    },
+    "nb500_f0.16_no_HSC": {
+     "sigma": 0.06493506874327096,
+     "z_if_real": 2.8874998306586086,
+     "z_B_vs_split": 2.3484998622690014,
+     "z_B_vs_split_x158": 1.4863923178917733,
+     "N_lens": 82704.0
+    },
+    "nb500_f0.16_DES_only": {
+     "sigma": 0.08810738130958043,
+     "z_if_real": 2.128085039109113,
+     "z_B_vs_split": 1.7308424984754118,
+     "z_B_vs_split_x158": 1.0954699357439317,
+     "N_lens": 47000.0
+    },
+    "nb500_f0.26_all3": {
+     "sigma": 0.03317364177712721,
+     "z_if_real": 5.652077672379003,
+     "z_B_vs_split": 4.5970231735349225,
+     "z_B_vs_split_x158": 2.9095083376803306,
+     "N_lens": 188123.0
+    },
+    "nb500_f0.26_no_HSC": {
+     "sigma": 0.050939258867450384,
+     "z_if_real": 3.680854495506027,
+     "z_B_vs_split": 2.993761656344902,
+     "z_B_vs_split_x158": 1.8947858584461403,
+     "N_lens": 134394.0
+    },
+    "nb500_f0.26_DES_only": {
+     "sigma": 0.06911711639832474,
+     "z_if_real": 2.712786785250558,
+     "z_B_vs_split": 2.2063999186704537,
+     "z_B_vs_split_x158": 1.3964556447281353,
+     "N_lens": 76375.0
+    },
+    "nb730_f0.16_all3": {
+     "sigma": 0.03499801439309332,
+     "z_if_real": 5.35744679381017,
+     "z_B_vs_split": 4.3573900589656045,
+     "z_B_vs_split_x158": 2.7578418094719015,
+     "N_lens": 169021.28
+    },
+    "nb730_f0.16_no_HSC": {
+     "sigma": 0.05374064526873061,
+     "z_if_real": 3.488979320259451,
+     "z_B_vs_split": 2.8377031804776864,
+     "z_B_vs_split_x158": 1.7960146711884093,
+     "N_lens": 120747.84
+    },
+    "nb730_f0.16_DES_only": {
+     "sigma": 0.07291818760114298,
+     "z_if_real": 2.5713749363274214,
+     "z_B_vs_split": 2.0913849482129696,
+     "z_B_vs_split_x158": 1.3236613596284617,
+     "N_lens": 68620.0
+    },
+    "nb730_f0.26_all3": {
+     "sigma": 0.027454701281135998,
+     "z_if_real": 6.8294314361682895,
+     "z_B_vs_split": 5.554604234750209,
+     "z_B_vs_split_x158": 3.5155723004748154,
+     "N_lens": 274659.58
+    },
+    "nb730_f0.26_no_HSC": {
+     "sigma": 0.042157630599742334,
+     "z_if_real": 4.447593409131157,
+     "z_B_vs_split": 3.6173759727600077,
+     "z_B_vs_split_x158": 2.289478463772157,
+     "N_lens": 196215.24000000002
+    },
+    "nb730_f0.26_DES_only": {
+     "sigma": 0.05720173253446885,
+     "z_if_real": 3.2778727442742315,
+     "z_B_vs_split": 2.6660031653430414,
+     "z_B_vs_split_x158": 1.6873437755335705,
+     "N_lens": 111507.5
+    }
+   }
+  },
+  "P2": {
+   "d_rival": -0.0719343036694877,
+   "req_total": 0.02397810122316257,
+   "req_Mdrift": 0.04795620244632514,
+   "DA_penalty": 3.6522466065287595,
+   "sig_stat": 0.1304036695881028,
+   "hot_gas_sys": [
+    0.05,
+    0.15
+   ]
+  },
+  "P3": {
+   "zlo": 0.06214138956675042,
+   "zhi": 0.09077092695732449,
+   "dla": -0.0063151039660355205,
+   "dM": [
+    -0.011398762658694115,
+    -0.015787759915088802
+   ],
+   "sig_stat": 0.009200255900451607,
+   "evo_unc": 0.014314768695287031
+  },
+  "P4": {
+   "z": 4.17,
+   "a0_ratio": 0.15038979839499583,
+   "y_star": 1.4759128628008487,
+   "f_flat": 3.9,
+   "f_rival": 4.276781474130232,
+   "sep_dex": -0.040052453142874804,
+   "req_cal": 0.0133508177142916,
+   "seps": {
+    "0.08": [
+     1.1292755796754699,
+     3.160468760404267,
+     -0.4469515651852459
+    ],
+    "0.3": [
+     2.5296466581399413,
+     4.013162024623507,
+     -0.20042683097339103
+    ],
+    "1.0": [
+     3.6950871693894682,
+     4.2437356954676,
+     -0.06012363960611638
+    ],
+    "3.0": [
+     4.122287426635396,
+     4.312861697306379,
+     -0.019627261933927272
+    ]
+   }
+  },
+  "P4d": {
+   "central_below": [],
+   "upper95_below": []
+  },
+  "P5": {
+   "cmb": {
+    "H0": 63.6,
+    "om": 0.353,
+    "w0": -0.42,
+    "wa": -1.75,
+    "dlog_a0_local": -0.03759592629876861,
+    "dlog_a0_z25": -0.14053726426613655
+   },
+   "desy5": {
+    "H0": 66.74,
+    "om": 0.3191,
+    "w0": -0.752,
+    "wa": -0.86,
+    "dlog_a0_local": -0.005577312873587239,
+    "dlog_a0_z25": -0.0992831206741281
+   },
+   "pantheonplus": {
+    "H0": 67.51,
+    "om": 0.3114,
+    "w0": -0.838,
+    "wa": -0.62,
+    "dlog_a0_local": 0.0018464348916149569,
+    "dlog_a0_z25": -0.08527912634719348
+   },
+   "union3": {
+    "H0": 65.91,
+    "om": 0.3275,
+    "w0": -0.667,
+    "wa": -1.09,
+    "dlog_a0_local": -0.013707726304137162,
+    "dlog_a0_z25": -0.11059535156558317
+   }
+  },
+  "P6": {
+   "N_lens": 1080.0,
+   "sigma": 0.28002250777214516,
+   "d_rival": -0.12645700846370908
+  }
+ }
+}

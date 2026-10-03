@@ -1,0 +1,64 @@
+
+== P1  DESI spec-z isolated lenses: the early/late split (B's one specific failure)
+  nb500_f0.16_all3         N_lens    115768  sigma_S 0.0423 dex  split-if-real 4.4 sig  B-vs-split 3.6 sig  (x1.58 cov: 2.3)
+  nb500_f0.16_no_HSC       N_lens     82704  sigma_S 0.0649 dex  split-if-real 2.9 sig  B-vs-split 2.3 sig  (x1.58 cov: 1.5)
+  nb500_f0.16_DES_only     N_lens     47000  sigma_S 0.0881 dex  split-if-real 2.1 sig  B-vs-split 1.7 sig  (x1.58 cov: 1.1)
+  nb500_f0.26_all3         N_lens    188123  sigma_S 0.0332 dex  split-if-real 5.7 sig  B-vs-split 4.6 sig  (x1.58 cov: 2.9)
+  nb500_f0.26_no_HSC       N_lens    134394  sigma_S 0.0509 dex  split-if-real 3.7 sig  B-vs-split 3.0 sig  (x1.58 cov: 1.9)
+  nb500_f0.26_DES_only     N_lens     76375  sigma_S 0.0691 dex  split-if-real 2.7 sig  B-vs-split 2.2 sig  (x1.58 cov: 1.4)
+  nb730_f0.16_all3         N_lens    169021  sigma_S 0.0350 dex  split-if-real 5.4 sig  B-vs-split 4.4 sig  (x1.58 cov: 2.8)
+  nb730_f0.16_no_HSC       N_lens    120748  sigma_S 0.0537 dex  split-if-real 3.5 sig  B-vs-split 2.8 sig  (x1.58 cov: 1.8)
+  nb730_f0.16_DES_only     N_lens     68620  sigma_S 0.0729 dex  split-if-real 2.6 sig  B-vs-split 2.1 sig  (x1.58 cov: 1.3)
+  nb730_f0.26_all3         N_lens    274660  sigma_S 0.0275 dex  split-if-real 6.8 sig  B-vs-split 5.6 sig  (x1.58 cov: 3.5)
+  nb730_f0.26_no_HSC       N_lens    196215  sigma_S 0.0422 dex  split-if-real 4.4 sig  B-vs-split 3.6 sig  (x1.58 cov: 2.3)
+  nb730_f0.26_DES_only     N_lens    111508  sigma_S 0.0572 dex  split-if-real 3.3 sig  B-vs-split 2.7 sig  (x1.58 cov: 1.7)
+PASS P1a arithmetic: KiDS per-split sigma = S/4.4 :: sigma_KiDS 0.0426 dex
+FAIL P1b without HSC (public shear only) the worst cell with x1.58 covariance still separates B from the split at >= 2 sigma :: worst no-HSC cell 1.49 sigma; best all-3 cell 5.55 sigma
+PASS P1c [reported] the replication is statistically CRISPY in the median cell (>= 3 sigma B vs split, no inflation, all 3 surveys) :: 4.36 sigma
+
+== P2  Lensing a0(z): BGS z 0.25 vs LRG z 0.8
+  rival deep-amplitude shift -0.0719 dex; needs total sigma <= 0.0240; M* drift <= 0.0480 dex
+  D_A penalty 3.65; stat sigma high-z leg 0.1269, low-z 0.0301, combined 0.1304 -> 0.6 sigma (stat only)
+  hot-gas baryon difference 0.1-0.3 dex -> 0.050-0.150 dex in amplitude (vs signal 0.072)
+FAIL P2a rival shift BGS->LRG in the deep amplitude lies in CFG255's 0.06-0.09 dex window :: -0.0719 dex
+PASS P2b the M*-drift requirement is tighter than the published SPS method-to-method systematic (0.2 dex) -> systematic-limited :: needs <= 0.048 dex across z; 0.2 dex method-to-method (Brouwer+21)
+PASS P2c [reported] the hot-gas difference can be as large as the whole signal :: 0.150 vs 0.072
+
+== P3  DESI DR1 PV Tully-Fisher zero point, 0.03 < z < 0.10
+  halves z 0.0621 / 0.0908; rival dlog a0 -0.0063 dex (full range -0.0153)
+  intercept shift -0.0114 (slope map) - -0.0158 (BTFR map) mag; stat sigma 0.0092 mag; evolution unc 0.0143 mag
+PASS P3a rival lever across the whole PV range is < 0.02 dex in a0 :: -0.0153 dex
+PASS P3b NOT POSSIBLE: the luminosity-evolution uncertainty alone matches or exceeds the signal between halves :: evolution 0.0143 mag vs signal 0.0114-0.0158 mag
+
+== P4  JWST z~4-6 grism discs: baryons needed by FLAT vs the rival at fixed dynamics
+  rival a0 ratio at z 4.17: 0.15 (-0.823 dex); y_* 1.476
+  M_b/M* needed: FLAT 3.90, rival 4.28; separation -0.040 dex in baryon mass
+   y_*=0.08: FLAT 1.13  rival 3.16  sep -0.447 dex
+   y_*=0.3: FLAT 2.53  rival 4.01  sep -0.200 dex
+   y_*=1.0: FLAT 3.70  rival 4.24  sep -0.060 dex
+   y_*=3.0: FLAT 4.12  rival 4.31  sep -0.020 dex
+  3 sigma needs a SHARED baryon calibration <= 0.013 dex; scaling-relation gas ~0.3 dex (f_gas ~0.77)
+FAIL P4a rival a0 ratio at z~4.2 is > 6 :: 0.15
+FAIL P4b FLAT needs more baryons than the rival at the same dynamics (sep > 0) :: sep -0.040 dex
+PASS P4c NOT POSSIBLE with scaling-relation gas: required shared calibration is below the gas zero-point uncertainty :: needs <= 0.013 dex vs ~0.3 dex
+  CFG273 rooted discs with central s* below the rival: 0 (0 are sigma0-limit rows); with 95% upper bound below: 0
+PASS P4d [reported] no CFG273 disc's 95% stars-only upper bound excludes the rival (per-disc errors span ~2 dex) :: central-below 0, 95%-below 0
+
+== P5  DESI DR2 w0wa fits: predicted local a0 and a0(z) under the sqrt(rho_DE) branch
+  cmb           H0  63.60 Om 0.3530 w0 -0.420 wa -1.75: local a0 shift -0.0376 dex; a0(2.5)/a0(0) -0.141 dex
+  desy5         H0  66.74 Om 0.3191 w0 -0.752 wa -0.86: local a0 shift -0.0056 dex; a0(2.5)/a0(0) -0.099 dex
+  pantheonplus  H0  67.51 Om 0.3114 w0 -0.838 wa -0.62: local a0 shift +0.0018 dex; a0(2.5)/a0(0) -0.085 dex
+  union3        H0  65.91 Om 0.3275 w0 -0.667 wa -1.09: local a0 shift -0.0137 dex; a0(2.5)/a0(0) -0.111 dex
+PASS P5a every DESI DR2 w0wa fit moves the predicted local a0 by < 0.05 dex (local a0 is known only to ~0.16 dex: CFG309 0.9-1.31e-10) :: max |shift| 0.0376 dex vs log10(1.31/0.9) = 0.163
+PASS P5b [reported] a0(2.5) under the CPL branch spans about +-0.1 dex (CFG6: -0.10..+0.14) :: cmb -0.141, desy5 -0.099, pantheonplus -0.085, union3 -0.111
+
+== P6  COSMOS-Web galaxy-galaxy lensing at z~1 (order of magnitude)
+  N_lens ~1080; sigma_A ~0.280 dex; rival deep shift at z=1 vs local -0.126 dex -> 0.45 sigma (stat only)
+PASS P6 NOT POSSIBLE statistically: COSMOS-Web alone gives < 2 sigma on the rival at z~1 :: 0.45 sigma
+
+== P7  DESI MWS RVs for ultra-faint dispersions
+  floor/sigma for a 2 km/s UFD: 0.50-1.00; Keck/DEIMOS floor 1.1 km/s already in the record's inputs (CFG257)
+PASS P7 NOT POSSIBLE: DESI floor is >= half of the coldest UFD dispersions and no better than DEIMOS :: (0.5, 1.0)
+PASS MUTATE sentinel: the rival-dependent rows changed sign (P2a, P4a, P4b must fail) :: d_rival -0.0719
+
+13/17 checks pass; load-bearing failures 4
