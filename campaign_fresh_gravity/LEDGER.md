@@ -288,3 +288,5 @@ both a₀ footings; κ = ½ fitted; nothing here says the theory is closed. Each
 | CFG307 | (orchestrator, owner "stress test it") ALESS 122.1: a declared grid over the pressure correction, gas tracer/calibration, M★, inclination and radius; plus the six class-M siblings. In progress. | — |
 | CFG308 | (orchestrator, owner "stress test cristal too") CRISTAL z ≈ 5 on native inputs: a declared grid over the [CII]/dust gas (limits treated as limits), M★, pressure correction, inclination, radius and beam smearing, plus leave-one-out. In progress. | — |
 | CFG309 | (orchestrator) Decide the MIGHTEE catalogue W50 frame (rest vs observed): paper text, example spectra, ALFALFA convention, busy-function cube widths; then CFG301 under the decided frame. In progress. | — |
+| CFG310 | (orchestrator) Second-round referee of MNRAS v3.2 and PAPER40 v1.1, both MINOR; fixes applied as MNRAS v3.3 / PAPER40 v1.2 (7c2105f12). Done. | ffccd1068 |
+| CFG311 | (orchestrator, extra crispy) Strong-field NS khronon sensitivities at α_c ≠ 0 (closes CFG291's condition): a derived slow-motion ODE on TOV backgrounds, two or more EOS, pulsars re-scored. In progress. | — |
