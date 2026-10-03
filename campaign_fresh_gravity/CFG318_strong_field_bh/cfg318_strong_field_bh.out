@@ -1,0 +1,136 @@
+CFG318 -- GATE G11 (STRONG FIELD: BLACK HOLES, NEUTRON-STAR STRUCTURE) FOR THE FILTERED C-H/K CHASSIS.
+Criteria frozen and committed first: campaign_fresh_gravity/CFG318_strong_field_bh/FROZEN_CRITERIA.md (1d3908e07).
+
+CHASSIS (L340; CFG291 map): I = I_CH + (c^3/16 pi G) Int sqrt(-g)[alpha_c a.a - c_2 K^2], beta = 0, so the BH/NS sees
+the BPS khronon with alpha = c14 = alpha_c, beta = c13 = 0, lambda = c2 = c_2 (the heat filter removes the C-H sector at
+these scales; section D5 quantifies it).
+
+DERIVED HERE (sympy): the static spherical reduced action in khronon-adapted ADM variables; its K = 0 multiplier form;
+the O(alpha) exterior metric e = 1 - 2M/r + alpha q(r), g^rr = e/(e + r e' + (alpha/2) r^2 U'^2); the observables;
+the static neutron-star equations with an aligned khronon.
+ADOPTED: Barausse-Jacobson-Sotiriou 2011 asymptotics and Berglund et al. 2012 c14 = 0 solution (controls); the
+eikonal light-ring correspondence (Cardoso et al. 2009); Iyer-Will 3rd-order WKB; Barausse 2019's dipole coefficient;
+CFG311's NS sensitivities; Read et al. 2009 piecewise polytropes (parameters recalled, as in CFG311).
+
+CFG318_MUTATE=1 scores alpha = 0.1 (outside the window): the window gate must flag it (rc = 1); outputs carry _MUTATE.
+Run from anywhere:  python3 campaign_fresh_gravity/CFG318_strong_field_bh/cfg318_strong_field_bh.py
+
+  inputs (real_research/g03_audit_2026/L340_filtered_khronon_completion_results.json): alpha_c in [9.624048e-14, 3.200e-09], c_2 in [7.288800e-03, 6.666667e-02]
+  CFG311 committed s/alpha (max over EOS): {'J1738+0333': 0.3721661566178912, 'J0348+0432': 0.46988259225824075, 'J0737-3039A': 0.3515469508910829, 'J0737-3039B': 0.33584578482060895}
+
+================================================================================================================
+D1  STATIC SPHERICAL REDUCED ACTION (khronon time T, areal r; N, V = N^r, A = gamma_rr); C1 and C2
+================================================================================================================
+    alpha = beta = 0, Schwarzschild + maximal slicing (N = U, A = 1/U^2, V = -C U/r^2), symbolic lambda, C, M: residuals [0, 0, 0]
+    Berglund c14 = 0 family (symbolic beta = c13, r0, r_ae): residuals [0, 0, 0];  g_TT = -(-beta*r_ae**4 + r**4 - r**3*r0)/r**4
+    regularity (double root of (u.chi)^2 r^4): r_UH/r0 and r_ae^4/r0^4 - 27/(256(1-c13)): {'0': (3/4, 0), '3/10': (3/4, 0)}
+  [PASS] C2 Berglund et al. 2012 c14 = 0 solution solves D1 exactly at beta != 0; regularity gives r_UH = 3 r0/4 and r_ae^4 = 27 r0^4/(256 (1 - c13)) at c13 = 0, 0.3
+         measured: residuals [0, 0, 0]; {'0': (3/4, 0), '3/10': (3/4, 0)}
+         reading:  published closed form reproduced by the lane's own field equations (an off-chassis beta tests the machinery)
+
+================================================================================================================
+D2  O(alpha) STATIC BH: K = 0 multiplier form (lambda K -> mu), exact in alpha; linearisation; Sigma(r)
+================================================================================================================
+    K = 0 holds identically on V = -Chat sqrt(B)/r^2: True;  mu' = 2*Chat*(-2*B(r)*Derivative(N(r), r) + N(r)*Derivative(B(r), r))/(r**3*sqrt(B(r))*N(r)**2)
+    B (= gamma^rr) from the A-equation: B = 2*r**4*N(r)**2/(6*Chat**2 + alpha*r**6*Derivative(N(r), r)**2 + 4*r**5*N(r)*Derivative(N(r), r) + 2*r**4*N(r)**2)
+    g^rr = B e/N^2 equals e/(e + r e' + (alpha/2) r^2 N'^2) identically: True
+    background residual 0; U^2 = 1 - 2/r + C^2/r^4 with the double root at r = 3/2: True
+    linear equation == k(r) [ (r^2 Q')' - alpha Sigma - 24 C c1/r^4 ],  Q = delta(N^2): residual 0
+    Sigma(r) = -(64*r**6 - 360*r**5 - 108*r**4 + 540*r**3 + 1944*r**2 + 1458*r + 729)/(2*r**4*(2*r - 3)*(4*r**2 + 4*r + 3)**2)
+    khronon-charge shift c1: Q_c1 = 2 C c1/r^4 solves its equation and cancels in e: True
+    Sigma ~ -5387*x**10/128 - 3317*x**9/128 - 1653*x**8/128 - 127*x**7/8 - 107*x**6/16 - 15*x**5/8 + 49*x**4/8 - x**3;  q ~ -5387*x**10/11520 - 3317*x**9/9216 - 1653*x**8/7168 - 127*x**7/336 - 107*x**6/480 - 3*x**5/32 + 49*x**4/96 - x**3/6
+    Sigma has a simple pole at the universal horizon r = 3/2 with residue -1 (= -1.000000): q ~ x ln x there
+    e series x^3 coefficient: -alphahat/6  (BJS: -alpha r0^3/48 = -alphahat/6)
+    EF B series at O(alpha): 2*x**3/3 + x**2/4*alpha  (BJS: alpha r0^2/16 x^2 + alpha r0^3/12 x^3 = 1/4 x^2 + 2/3 x^3)
+  [PASS] C3 the derived O(alpha) solution reproduces Barausse-Jacobson-Sotiriou 2011's published asymptotic coefficients (e: -c14 r0^3/48 x^3; EF B: +c14 r0^2/16 x^2, +c14 r0^3/12 x^3) exactly
+         measured: e3 = -alphahat/6; B_EF lin = 2*x**3/3 + x**2/4
+  [PASS] D2 linear O(alpha) equation reduces exactly to (r^2 Q')' = alpha Sigma + 24 C c1/r^4; c1 drops out of e; g^rr = e/(e + r e' + (alpha/2) r^2 N'^2) identically
+         measured: residual 0; c1 True; g^rr True
+
+================================================================================================================
+C5  q(r) NUMERICALLY: nested quadrature vs the closed-form inner integral vs an ODE integration
+================================================================================================================
+    q(2), q(3), q(6) = -1.0524804421e-03, -8.0208452726e-04, -3.9613181819e-04
+    nested vs closed-form inner: max rel diff 1.31e-28;  series O(x^10) at r = 50: 8.16e-14;  ODE inward to r = 3: 1.09e-13
+  [PASS] C5 q by nested quadrature and by the closed-form inner integral agree to 1e-12; the O(x^10) series matches at r = 50 to 1e-10
+         measured: 1.3e-28; 8.2e-14; ODE 1.1e-13
+
+================================================================================================================
+D3  OBSERVABLES: photon sphere / shadow, eikonal QNM (Omega_c, lambda_L), ISCO -- linear coefficients in alpha
+================================================================================================================
+    alpha = 0: r_ph = 3.0, b_c = 5.1961524227066, Omega_c = 0.19245008972988, lambda_L = 0.19245008972988, r_isco = 6.0, Omega_isco = 0.068041381743977, r_H = 2.0
+    fractional shift per unit alpha (d ln X/d alpha): r_ph +2.366420e-04, b_c +1.203127e-03, Omega_c -1.203127e-03, lambda_L -6.370313e-02, r_isco +2.786633e-03, Omega_isco -2.920892e-03, r_H +1.052480e-03
+    analytic check: d ln b_c/d alpha = -3 q(3)/2 = +1.203127e-03; d ln Omega_c/d alpha = +3 q(3)/2
+  [PASS] C1 alpha -> 0: the alpha = beta = 0 maximal-slicing family solves D1 for symbolic lambda, C; at alpha = 0 e = g^rr = 1 - 2M/r exactly; deviations linear in alpha (Sigma multiplies alpha)
+         measured: D1 residuals [0, 0, 0]; metric dev 0.0e+00
+  [PASS] C4 Schwarzschild numbers at alpha = 0: r_ph = 3M, b_c = 3 sqrt(3) M, r_ISCO = 6M, M Omega_c = M lambda_L = 1/(3 sqrt 3), r_H = 2M (1e-10); the shadow/Omega_c slopes equal -/+ 3 q(3)/2 (1e-6)
+         measured: {'r_ph': '3.0', 'b_c': '5.19615242271', 'Omega_c': '0.19245008973', 'lambda_L': '0.19245008973', 'r_isco': '6.0', 'Omega_isco': '0.068041381744', 'r_H': '2.0'}
+
+================================================================================================================
+WKB  l = 2 test scalar field, 3rd-order WKB (reading; the direct khronon coupling of finite-l tensors is NOT derived)
+================================================================================================================
+    Schwarzschild l = 2 scalar n = 0 (WKB3): M omega = (0.48321103 - 0.096804855j)  (recalled 0.4836 - 0.0968i)
+    d ln Re(omega)/d alpha = -1.788474e-03, d ln Im(omega)/d alpha = -6.457892e-02
+  [PASS] C4b WKB3 l = 2 scalar n = 0 at alpha = 0 within 1% of 0.4836 - 0.0968i
+         measured: (0.48321103 - 0.096804855j)
+
+================================================================================================================
+SCORES  shadow, eikonal QNM (f, tau), ISCO, WKB l = 2 reading -- over the scored alpha (lambda-independent at O(alpha))
+================================================================================================================
+    max |delta_shadow| = 3.850e-12 vs 0.1 -> margin 2.597e+10
+    max |delta f_eik|  = 3.850e-12, |delta tau_eik| = 2.039e-10 vs 0.01 -> margins 2.597e+09, 4.906e+07
+    ISCO: |delta Omega_isco| = 9.347e-12, |delta r_isco/r_isco| = 8.917e-12 (reading vs 1%: margin 1.070e+09)
+    WKB l = 2 scalar: max fractional shift 2.067e-10 (reading)
+    neglected O(alpha/lambda) relative correction: alpha/lambda <= 4.39e-07
+  [PASS] C6 injection: the scorer flags an injected 20% shadow deviation and a 5% QNM deviation
+         measured: True, True
+
+================================================================================================================
+DIPOLE  BBH: Delta s = 0 (non-spinning BH sensitivity is mass-independent); NS-BH: Delta s = s_NS, s_crit at B_dip = 1e-4
+================================================================================================================
+    c_S at XC1's corners 4.4385e+02 .. 7.9356e+05 (XC1 A9 committed 4.4385e+02 .. 7.9356e+05)
+    NS-BH with s_BH = 0: max B_dip = 2.176e-20 vs 0.0001 -> margin 4.595e+15
+    s_crit (|s_NS - s_BH| reaching B_dip = 1e-4): 1.019e-01 at the top-alpha / bottom-c_2 corner; min s_crit/alpha_c = 3.185e+07
+    reading: Ramos & Barausse's sigma ~ 1e-3 at alpha = 0.02 suggests |s_BH| ~ 0.05 alpha (if linear): 1.60e-10 << s_crit
+  [PASS] C7b the dipole coefficient's khronon speed reproduces XC1's committed UV speeds (4 s.f.)
+         measured: 4.4385e+02/7.9356e+05
+
+================================================================================================================
+D5  MOND / HEAT FILTER NEAR A BH (nu_mono reimplemented from the recipe/L340 definition)
+================================================================================================================
+  [PASS] C7 nu_mono reproduces L340's committed y_p and h_p to 1e-4
+         measured: y_p 2.539638 (2.539638), h_p 0.647610 (0.647610)
+    M87*    : r_ph = 2.880e+13 m, g(r_ph) = 1.802e+03 m/s^2, y = 1.92e+13; filter exponent -xi^2/(2 r_ph^2) = -5.518e+02; MOND force bound h_max a0/g = 8.24e-14 (alt 9.89e-14)
+    Sgr A*  : r_ph = 1.772e+10 m, g(r_ph) = 2.928e+06 m/s^2, y = 3.13e+16; filter exponent -xi^2/(2 r_ph^2) = -1.457e+09; MOND force bound h_max a0/g = 5.84e-17 (alt 7.01e-17)
+    10 Msun : r_ph = 4.430e+04 m, g(r_ph) = 1.171e+12 m/s^2, y = 1.25e+22; filter exponent -xi^2/(2 r_ph^2) = -2.331e+20; MOND force bound h_max a0/g = 1.79e-22 (alt 2.15e-22)
+    the filtered field near a galactic nucleus need not be high-y (it can vanish at a symmetric centre), so the bound used is the kernel's: |MOND force| <= max h_mono a0 for any filtered y; worst epsilon_MOND = 9.89e-14
+
+================================================================================================================
+D4  NEUTRON STARS: static star with an aligned khronon at O(alpha) (sympy-derived), SLy (Read et al. 2009, recalled)
+================================================================================================================
+    A-equation (y = N'/N): 16*pi*Av*P*r**2 + 2*Av - alpha*r**2*y**2 - 4*r*y - 2 = 0
+    N-equation: Apv*alpha*r**2*y + 2*Apv*r - 16*pi*Av**2*r**2*rho + 2*Av**2 - Av*alpha*r**2*y**2 - 2*Av*alpha*r**2*yp - 4*Av*alpha*r*y - 2*Av = 0
+    alpha = 0: y = (8*pi*Av*P*r**2 + Av - 1)/(2*r) (standard TOV Phi'): True
+    alpha = 0: M_max = 2.04845 Msun (CFG311 recalled SLy 2.049); centre y/r = 2.3321e-02 (finite: N'(0) = 0); min e^(2Phi - Lambda) inside = 1.0000e+00 > 0 (CFG311's F-equation has no singular point)
+  [PASS] C8 TOV with the aligned khronon at alpha = 0 reproduces the standard TOV equation and SLy M_max 2.049 within 2%; regular centre; CFG311's moving-star khronon coefficient e^(2Phi-Lambda) > 0 throughout
+         measured: M_max 2.0484
+    d ln M_max/d alpha = -0.9099 (alpha = +-1e-3);  |delta M_max/M_max| on the scored alpha: max 2.912e-09 (reading vs 1%: margin 3.434e+06)
+    alpha = 1e-3 star at the same rho_c: centre y/r = 2.3321e-02, min e^(2Phi-Lambda) = 1.0000e+00: regular
+  [PASS] (reading) NS regular at alpha != 0 (alpha = 1e-3 test point: finite y/r at the centre, positive F-equation coefficient); |delta M_max/M_max| reading
+         measured: slope -0.9099; max 2.91e-09
+
+================================================================================================================
+WINDOW GATE AND VERDICT (frozen rule, section 5)
+================================================================================================================
+    window gate: every scored alpha in L340 P1: True;  PPN |alpha2| ~ alpha/2 = 1.60e-09 vs |alpha-hat2| < 1.6e-9
+  [PASS] WINDOW the scored alpha lies inside L340's window (PPN |alpha2| <= 1.6e-9; the top corner sits on it by construction)
+         measured: alpha max 3.200e-09; |alpha2| 1.60e-09
+    controls ok: True; shadow True, ringdown True, dipole True
+    moving-BH regularity at alpha_c != 0 established: False; failure demonstrated in window: False
+    VERDICT (G11, stated scope): CONDITIONAL
+    condition: slowly moving (and rotating) BHs must be regular at the spin-0 horizon for alpha_c in the window. Ramos & Barausse 2019 find them singular for generic alpha != 0 (one numerical point outside the window plus a boundary-condition count); owner flag: if that count is read as a proof for every alpha > 0, G11 reads KILL for this chassis.
+
+  runtime 457.8 s;  load-bearing failures: none
+  results -> campaign_fresh_gravity/CFG318_strong_field_bh/cfg318_strong_field_bh_results.json
+
+13/13 checks pass

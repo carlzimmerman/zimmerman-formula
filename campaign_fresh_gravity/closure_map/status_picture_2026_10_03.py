@@ -20,6 +20,7 @@ groups = [
         ("Binary pulsars", "PASS", "margin 490,000x · CFG291/311"),
         ("Strong coupling", "COND", "bounded pass · XC1/XC3"),
         ("Solar-system PPN", "PASS", "alpha_1, alpha_2 in bounds · CFG291"),
+        ("Black holes (EHT, LIGO ringdown)", "COND", "margins >= 5e7; moving BHs open · CFG318"),
     ]),
     ("Galaxies and clusters", [
         ("Rotation curves (SPARC RAR)", "PASS", "0.10 dex · nu_mono"),

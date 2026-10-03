@@ -1,0 +1,238 @@
+{
+ "lane": "CFG318",
+ "mutate": true,
+ "frozen_criteria_commit": "1d3908e07",
+ "checks": {
+  "C2 Berglund et al. 2012 c14 = 0 solution solves D1 exactly at beta != 0; regularity gives r_UH = 3 r0/4 and r_ae^4 = 27 r0^4/(256 (1 - c13)) at c13 = 0, 0.3": {
+   "ok": true,
+   "measured": "residuals [0, 0, 0]; {'0': (3/4, 0), '3/10': (3/4, 0)}",
+   "load_bearing": true
+  },
+  "C3 the derived O(alpha) solution reproduces Barausse-Jacobson-Sotiriou 2011's published asymptotic coefficients (e: -c14 r0^3/48 x^3; EF B: +c14 r0^2/16 x^2, +c14 r0^3/12 x^3) exactly": {
+   "ok": true,
+   "measured": "e3 = -alphahat/6; B_EF lin = 2*x**3/3 + x**2/4",
+   "load_bearing": true
+  },
+  "D2 linear O(alpha) equation reduces exactly to (r^2 Q')' = alpha Sigma + 24 C c1/r^4; c1 drops out of e; g^rr = e/(e + r e' + (alpha/2) r^2 N'^2) identically": {
+   "ok": true,
+   "measured": "residual 0; c1 True; g^rr True",
+   "load_bearing": true
+  },
+  "C5 q by nested quadrature and by the closed-form inner integral agree to 1e-12; the O(x^10) series matches at r = 50 to 1e-10": {
+   "ok": true,
+   "measured": "1.3e-28; 8.2e-14; ODE 1.1e-13",
+   "load_bearing": true
+  },
+  "C1 alpha -> 0: the alpha = beta = 0 maximal-slicing family solves D1 for symbolic lambda, C; at alpha = 0 e = g^rr = 1 - 2M/r exactly; deviations linear in alpha (Sigma multiplies alpha)": {
+   "ok": true,
+   "measured": "D1 residuals [0, 0, 0]; metric dev 0.0e+00",
+   "load_bearing": true
+  },
+  "C4 Schwarzschild numbers at alpha = 0: r_ph = 3M, b_c = 3 sqrt(3) M, r_ISCO = 6M, M Omega_c = M lambda_L = 1/(3 sqrt 3), r_H = 2M (1e-10); the shadow/Omega_c slopes equal -/+ 3 q(3)/2 (1e-6)": {
+   "ok": true,
+   "measured": "{'r_ph': '3.0', 'b_c': '5.19615242271', 'Omega_c': '0.19245008973', 'lambda_L': '0.19245008973', 'r_isco': '6.0', 'Omega_isco': '0.068041381744', 'r_H': '2.0'}",
+   "load_bearing": true
+  },
+  "C4b WKB3 l = 2 scalar n = 0 at alpha = 0 within 1% of 0.4836 - 0.0968i": {
+   "ok": true,
+   "measured": "(0.48321103 - 0.096804855j)",
+   "load_bearing": true
+  },
+  "C6 injection: the scorer flags an injected 20% shadow deviation and a 5% QNM deviation": {
+   "ok": true,
+   "measured": "True, True",
+   "load_bearing": true
+  },
+  "C7b the dipole coefficient's khronon speed reproduces XC1's committed UV speeds (4 s.f.)": {
+   "ok": true,
+   "measured": "4.4385e+02/7.9356e+05",
+   "load_bearing": true
+  },
+  "C7 nu_mono reproduces L340's committed y_p and h_p to 1e-4": {
+   "ok": true,
+   "measured": "y_p 2.539638 (2.539638), h_p 0.647610 (0.647610)",
+   "load_bearing": true
+  },
+  "C8 TOV with the aligned khronon at alpha = 0 reproduces the standard TOV equation and SLy M_max 2.049 within 2%; regular centre; CFG311's moving-star khronon coefficient e^(2Phi-Lambda) > 0 throughout": {
+   "ok": true,
+   "measured": "M_max 2.0484",
+   "load_bearing": true
+  },
+  "NS regular at alpha != 0 (alpha = 1e-3 test point: finite y/r at the centre, positive F-equation coefficient); |delta M_max/M_max| reading": {
+   "ok": false,
+   "measured": "slope -0.9099; max 9.10e-02",
+   "load_bearing": false
+  },
+  "WINDOW the scored alpha lies inside L340's window (PPN |alpha2| <= 1.6e-9; the top corner sits on it by construction)": {
+   "ok": false,
+   "measured": "alpha max 1.000e-01; |alpha2| 5.00e-02",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "inputs": {
+   "alpha_c": [
+    9.624047966926507e-14,
+    3.2e-09
+   ],
+   "c2": [
+    0.007288800437803917,
+    0.06666666666666667
+   ],
+   "s_over_alpha_CFG311": {
+    "J1738+0333": 0.3721661566178912,
+    "J0348+0432": 0.46988259225824075,
+    "J0737-3039A": 0.3515469508910829,
+    "J0737-3039B": 0.33584578482060895
+   },
+   "sources": [
+    "real_research/g03_audit_2026/L340_filtered_khronon_completion_results.json",
+    "real_research/g03_audit_2026/L350_chk_cosmological_G_gate_results.json",
+    "real_research/extra_crispy_2026/XC1_strong_coupling_chk_results.json",
+    "campaign_fresh_gravity/CFG311_ns_sensitivity/cfg311_ns_sensitivity_results.json"
+   ]
+  },
+  "D2": {
+   "Sigma": "-(64*r**6 - 360*r**5 - 108*r**4 + 540*r**3 + 1944*r**2 + 1458*r + 729)/(2*r**4*(2*r - 3)*(4*r**2 + 4*r + 3)**2)",
+   "Sigma_series": "-5387*x**10/128 - 3317*x**9/128 - 1653*x**8/128 - 127*x**7/8 - 107*x**6/16 - 15*x**5/8 + 49*x**4/8 - x**3",
+   "q_series": "-5387*x**10/11520 - 3317*x**9/9216 - 1653*x**8/7168 - 127*x**7/336 - 107*x**6/480 - 3*x**5/32 + 49*x**4/96 - x**3/6",
+   "mu_prime": "2*Chat*(-2*B(r)*Derivative(N(r), r) + N(r)*Derivative(B(r), r))/(r**3*sqrt(B(r))*N(r)**2)",
+   "B": "2*r**4*N(r)**2/(6*Chat**2 + alpha*r**6*Derivative(N(r), r)**2 + 4*r**5*N(r)*Derivative(N(r), r) + 2*r**4*N(r)**2)",
+   "Sigma_pole_residue_at_rUH": "-1"
+  },
+  "q": {
+   "2": -0.0010524804421083215,
+   "2.5": -0.0004300659334450279,
+   "3": -0.0008020845272623491,
+   "4": -0.0007849087593906795,
+   "6": -0.0003961318181880535,
+   "10": -0.00011682593266495047,
+   "20": -1.7676314167791325e-05
+  },
+  "D3": {
+   "alpha0": {
+    "r_ph": 3.0,
+    "b_c": 5.196152422706632,
+    "Omega_c": 0.19245008972987526,
+    "lambda_L": 0.19245008972987526,
+    "r_isco": 6.0,
+    "Omega_isco": 0.06804138174397717,
+    "r_H": 2.0
+   },
+   "dlnX_dalpha": {
+    "r_ph": 0.00023664202349515974,
+    "b_c": 0.0012031267908935237,
+    "Omega_c": -0.0012031267908935237,
+    "lambda_L": -0.06370312679089353,
+    "r_isco": 0.0027866329353722664,
+    "Omega_isco": -0.0029208916630465097,
+    "r_H": 0.0010524804421083215
+   },
+   "second_order_reading": {
+    "r_ph": 3.234863482331048e-06,
+    "b_c": 4.17454388305045e-06,
+    "Omega_c": -1.2795157331276565e-06,
+    "lambda_L": 0.011093331020024478,
+    "r_isco": 2.645794522943587e-05,
+    "Omega_isco": -2.5652888033566564e-05,
+    "r_H": -3.605169594425068e-05
+   }
+  },
+  "WKB_l2_scalar": {
+   "omega0": [
+    0.48321103043688984,
+    -0.09680485486956142
+   ],
+   "dln_re": -0.0017884735164527426,
+   "dln_im": -0.06457892181293767
+  },
+  "scores": {
+   "alpha_scored": [
+    0.1
+   ],
+   "max_d_shadow": 0.00012031267908935237,
+   "max_d_f": 0.00012031267908935237,
+   "max_d_tau": 0.006370312679089354,
+   "max_d_isco_Omega": 0.000292089166304651,
+   "max_d_r_isco": 0.00027866329353722666,
+   "max_d_wkb": 0.006457892181293768,
+   "margin_shadow": 831.1675939468792,
+   "margin_f": 83.1167593946879,
+   "margin_tau": 1.5697816581005748,
+   "alpha_over_lambda_max": 13.71967868421015
+  },
+  "dipole": {
+   "max_Bdip_sBH0": 0.13505108129398677,
+   "margin": 0.0007404605653050226,
+   "s_crit_top_corner": 0.001278616554828506,
+   "min_scrit_over_alpha": 0.012786165548285053,
+   "s_NS_over_alpha_max": 0.46988259225824075
+  },
+  "D5": {
+   "filter": {
+    "M87*": {
+     "canonical": {
+      "filter_exponent": -551.7705765176268,
+      "y_ph_unfiltered": 19248584959426.758,
+      "h_mono_max": 1.5861220857048752,
+      "eps_MOND": 8.240200976062354e-14
+     },
+     "alt": {
+      "filter_exponent": -1162.6799349096714,
+      "y_ph_unfiltered": 15976888689747.082,
+      "h_mono_max": 1.580089779990968,
+      "eps_MOND": 9.88984658198793e-14
+     }
+    },
+    "Sgr A*": {
+     "canonical": {
+      "filter_exponent": -1457019178.616859,
+      "y_ph_unfiltered": 3.1278950559068492e+16,
+      "h_mono_max": 1.8255197292847472,
+      "eps_MOND": 5.836256321443261e-17
+     },
+     "alt": {
+      "filter_exponent": -3070201703.120851,
+      "y_ph_unfiltered": 2.596244412083902e+16,
+      "h_mono_max": 1.819487423570839,
+      "eps_MOND": 7.008151524957579e-17
+     }
+    },
+    "10 Msun": {
+     "canonical": {
+      "filter_exponent": -2.331230685786973e+20,
+      "y_ph_unfiltered": 1.2511580223627392e+22,
+      "h_mono_max": 2.2432030702944634,
+      "eps_MOND": 1.7929014802289357e-22
+     },
+     "alt": {
+      "filter_exponent": -4.912322724993362e+20,
+      "y_ph_unfiltered": 1.0384977648335605e+22,
+      "h_mono_max": 2.2371707645805556,
+      "eps_MOND": 2.1542374382857777e-22
+     }
+    }
+   },
+   "eps_MOND_max": 9.88984658198793e-14,
+   "y_p": 2.5396382826332706,
+   "h_p": 0.647610237891915
+  },
+  "NS": {
+   "M_max_alpha0": 2.0484463743907915,
+   "log_rho_c": 15.302444287540489,
+   "dlnMmax_dalpha": -0.9099076040462133,
+   "max_d_Mmax": 0.09099076040462134
+  },
+  "verdict_inputs": {
+   "controls_ok": true,
+   "shadow": true,
+   "ringdown": true,
+   "dipole": "False",
+   "moving_BH_established": false,
+   "failure_demonstrated_in_window": false
+  }
+ },
+ "verdict": "KILL",
+ "n_pass": 11,
+ "n_checks": 13
+}
