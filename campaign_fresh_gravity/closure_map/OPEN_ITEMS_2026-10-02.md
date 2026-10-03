@@ -38,3 +38,9 @@ The owner said (2026-10-02): **"consolidate everything into this chat please"**.
 - **The shared a₀(z) artifact:** https://claude.ai/artifact/4CmdAxm5XqZ9QWRXWQ2zjA (v21). It mirrors chart_a0z_one.py at 374d54a77. Its data are inline, so update it with Artifact read + republish using `url`. Its build sources were in the High-z chat's scratchpad and are not in the repo.
 - **The chart README** (CHART_a0z_rar_z0_5_2026-10-01/README.md) documents every lane's drawing choice.
 - **The fetch helper** data_assembly/fetch_range_logged.py (host allow-list + cumulative cap). The ADF22 arXiv PDFs are in `_external_data/arxiv_pdf/`.
+
+## Update 2026-10-02 (evening)
+- **DONE:** the MIGHTEE-HI catalogue table is in the repo (the owner's browser download; 19adffd49). The r1p0 cubes are complete (24.31 GB, checksummed, 4 files). Disk free is ~33 GiB.
+- **DONE:** MNRAS v3.1 is committed and tagged `mnras-v3.1` (51413cc1b) with both owner decisions: PAPER6 dropped; AI disclosure names Claude, OpenAI, DeepSeek, GLM, Qwen and Gemini.
+- **Running:** CFG301 (catalogue a₀ + direct BTFR) and CFG302 (raw cube widths).
+- **Still needs the owner:** a second referee pass on v3.1 before submission (recommended); optionally run `bash reproduce_all.sh` personally so the "author ran the scripts" wording can be restored.

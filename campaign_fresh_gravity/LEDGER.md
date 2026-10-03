@@ -278,3 +278,5 @@ both a₀ footings; κ = ½ fitted; nothing here says the theory is closed. Each
 | CFG291 | (orchestrator, 10-02, owner "extra crispy") khronon dipole radiation in binary pulsars over the filtered C-H/K chassis window (recipe G7/G11). In progress. | — |
 | CFG292 | (orchestrator, 10-02) strong hyperbolicity of GR + the BPS khronon; criterion-B cone compatibility (XC2 OPEN item). In progress. | — |
 | CFG293 | (orchestrator, 10-02) CFG288's wave field → solitonic cores → satellites (CFG286 harness). In progress. | — |
+| CFG301 | (orchestrator, adopted from the calc chat's draft 37d1d049a) MIGHTEE-HI catalogue width chain + direct BTFR a₀ (owner "raw and unfiltered"); local level and distance drift only (cannot separate FLAT from H(z) at z ≤ 0.093). In progress. | — |
+| CFG302 | (orchestrator, owner "keep going with the MIGHTEE cubes lane") raw widths/fluxes from the local r1p0 cubes vs the catalogue. In progress. | — |
