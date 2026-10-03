@@ -88,3 +88,4 @@ All are near-Newtonian (y 18–90), so these are statements of baryon excess, no
 - **CRISTAL:** the two orange squares are the native R_e (2.01) and R_out at the outermost data marker (1.95), replacing the fit-route points.
 - **MUSE-DARK:** routes (ii) and (iii) are CFG303's native versions (primary "noHI", reading bD), with no DC14 (1 − f_DM). Values below the floor-zone edge are drawn at 0.287 (×10⁻¹⁰); a no-root value is drawn as a hollow triangle. Route (i), the DC14 halo-fitted masses (a ΛCDM-model input), is drawn faint.
 - The subtitle states the change. 31/31 checks.
+- **Update after CFG309 (53f8fa937):** the MIGHTEE catalogue widths are rest-frame, so the filled green diamond is now CFG309's k = 0 re-run of CFG301's chain: a₀ = 1.311e-10 (68% 1.27–1.42e-10; recipe ±0.128 dex). The hollow diamond is the single-dish (Arecibo) HI scale applied to the gas only, with rest-frame widths (CFG306 P3): 1.07e-10, bar 0.97–1.13e-10.

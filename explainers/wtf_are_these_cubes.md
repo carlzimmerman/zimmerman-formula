@@ -40,10 +40,10 @@ The width gives V and the flux gives the gas mass. Nothing in that chain comes f
 
 | | |
 |---|---|
-| **CFG301** | The survey team's catalogue, built from these cubes: 47 clean galaxies, all deep in the MOND regime, 37 of them gas-dominated. Our chain passes all four calibration checks and gives **a₀ = 1.05 × 10⁻¹⁰ m/s²**. That sits between the framework's two footings (0.94 and 1.13 × 10⁻¹⁰) and within 0.06 dex of SPARC. |
+| **CFG301** | The survey team's catalogue, built from these cubes: 47 clean galaxies, all deep in the MOND regime, 37 of them gas-dominated. Our chain passes all four calibration checks and first gave a₀ = 1.05 × 10⁻¹⁰. A referee then caught that the catalogue's widths are already rest-frame (CFG309 confirmed it), so we had corrected them twice. Fixed, **a₀ = 1.31 × 10⁻¹⁰ m/s²**: inside the alt footing (1.13), just above the canonical one (0.94), and close to SPARC's 1.2. |
 | **CFG302** | We re-measured the widths ourselves from the raw cubes. They match the catalogue to about 5%, so the speed side is solid. |
 | **flux** | The raw cubes hold only about half the catalogue's hydrogen flux. The noise in these cubes looks filtered in a way that eats line flux. |
-| **CFG304** | The tie-breaker: 23 of these galaxies were also measured by Arecibo's ALFALFA survey, a single dish that can't lose flux that way. Arecibo sees **more** hydrogen than both: the catalogue holds 0.64 of Arecibo's flux and the raw cubes 0.49, with identical line widths. So the cube scale is ruled out. If Arecibo's scale applies to all 47 galaxies, the gas is heavier and a₀ comes out **lower**, about 0.7 × 10⁻¹⁰. The honest range is 0.6–1.05 × 10⁻¹⁰: below or at your canonical value, never above the alt one. |
+| **CFG304** | The tie-breaker: 23 of these galaxies were also measured by Arecibo's ALFALFA survey, a single dish that can't lose flux that way. Arecibo sees **more** hydrogen than both: the catalogue holds 0.64 of Arecibo's flux and the raw cubes 0.49, with identical line widths. So the cube scale is ruled out. With Arecibo's scale applied to the gas, a₀ comes out **lower**, about 1.07 × 10⁻¹⁰. The honest range is about 0.97–1.31 × 10⁻¹⁰. |
 
 ## What the cubes can't do
 

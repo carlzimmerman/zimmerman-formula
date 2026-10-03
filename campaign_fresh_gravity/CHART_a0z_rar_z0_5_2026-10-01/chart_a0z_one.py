@@ -307,16 +307,23 @@ ax.plot([f(mw, "z")] * 2, [f(mw, "stat95_lo") * U, f(mw, "stat95_hi") * U], colo
 ax.scatter([f(mw, "z")], [f(mw, "a0_1e-10_m_s2")], marker="o", s=60, color=MGC, edgecolor="white", lw=1.0, zorder=7)
 ax.text(0.03, 7.1, "● MIGHTEE-HI (published fit)", color=MGC, fontsize=9.5, ha="left")
 # CFG301 (6b10c01c0): OUR framework-native chain on the MIGHTEE-HI catalogue (47 deep discs, CALIBRATED); the bar is the
-# bootstrap 68 %, the box the recipe half-width.  The hollow marker is the stated flux systematic from CFG304 (34e40dac6): Arecibo
-# (ALFALFA) sees MORE HI than the catalogue (-0.195 dex) for the 15 code-1 overlaps, so with the single-dish scale applied to the
-# gas only, a0 falls to 7.0e-11 (bar 6.1-7.6e-11).  CFG302's lower cube scale is ruled out by the single dish (no longer drawn).
+# bootstrap 68 %, the box the recipe half-width; widths read as rest-frame (CFG309).  The hollow marker is the stated flux systematic:
+# Arecibo (ALFALFA, CFG304) sees MORE HI than the catalogue; with the matched-pair offset extrapolated to the 47 and applied to the gas
+# only (CFG306 P3, rest-frame widths), a0 = 1.07e-10 (bar 0.97-1.13e-10).  CFG302's lower cube scale is ruled out by the single dish.
 J301 = json.load(open(os.path.join(CFG, "CFG301_mightee_hi_catalogue_width_chain", "cfg301_stageB_results.json")))["numbers"]["results"]
 p301 = J301["pooled"]; z301 = float(np.median([J301[w]["z_med"] for w in ("W1", "W2", "W3")]))
-s301, q301, h301 = p301["s"], p301["q"], p301["recipe_half"]
-check("CFG301 MIGHTEE-HI (our chain): pooled s* 1.117 (a0 1.046e-10), 47 deep discs, recipe half-width 0.143 dex (6b10c01c0)",
-      abs(s301 - 1.1171) < 1e-3 and p301["n"] == 47 and abs(h301 - 0.1434) < 1e-3)
-J304 = json.load(open(os.path.join(CFG, "CFG304_mightee_flux_scale_alfalfa", "cfg304_flux_scale_alfalfa_results.json")))["numbers"]["cfg301"]["B"]
-check("CFG304 single-dish (ALFALFA) scale on the gas only: CFG301 a0 -> 7.00e-11 (6.08-7.60e-11) (34e40dac6)", abs(J304["central"]["a0"] - 6.999e-11) < 1e-13)
+# CFG309 (53f8fa937): the catalogue W50 are REST-FRAME, so CFG301's extra 1/(1+z) is removed: the k = 0 re-run of CFG301's committed chain
+F309 = json.load(open(os.path.join(CFG, "CFG309_mightee_width_frame", "cfg309_cfg301chain_FRAME_summary.json")))["frame"]
+s301, h301 = F309["s"], F309["recipe_half"]; qa = F309["q_a0"]
+q301 = [None, np.log10(qa[1] / A0), np.log10(qa[2] / A0), None]
+check("CFG309 MIGHTEE-HI rest-frame widths: pooled a0 1.311e-10 (68% 1.273-1.418), recipe half-width 0.128 dex (53f8fa937)",
+      abs(F309["a0"] - 1.3111e-10) < 1e-13 and abs(h301 - 0.1278) < 1e-3)
+P306 = json.load(open(os.path.join(CFG, "CFG306_paper40_referee", "cfg306_physics_checks_results.json")))["numbers"]["P3_flux_frame"]
+J304 = {"central": {"a0": P306["CFG306 S2: code-1 trend in SNR_3D extrapolated to the 47 | k=0"]["a0_gas"]},
+        "lo": {"a0": P306["CFG306 S2: code-1 trend in z extrapolated to the 47 | k=0"]["a0_gas"]},
+        "hi": {"a0": P306["CFG301-like 7 pairs (CFG304 PH2) | k=0"]["a0_gas"]}}
+check("CFG304/CFG306 single-dish (ALFALFA) HI scale, gas only, rest-frame widths: a0 1.07e-10 (0.97-1.13e-10) (45c41e887)",
+      abs(J304["central"]["a0"] - 1.0686e-10) < 1e-13)
 MKC = "#0b7a4b"
 ax.add_patch(plt.Rectangle((z301 - 0.035, s301 * 10 ** (-h301) * U), 0.07, s301 * (10 ** h301 - 10 ** (-h301)) * U, color=MKC, alpha=0.18, lw=0, zorder=6))
 ax.plot([z301] * 2, [10 ** q301[1] * U, 10 ** q301[2] * U], color=MKC, lw=2.2, zorder=7)
@@ -368,7 +375,7 @@ fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from
          "and a 0.05 dex baryon-mass error moves the implied $a_0$ ×1.5-1.8.  High-z points use framework-native inputs (no halo fits); faint = old halo-fit route.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG303 (native inputs), CFG301 + CFG304 (MeerKAT), CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280–285 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG303, CFG301/304/309, CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280–285 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
