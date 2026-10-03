@@ -82,3 +82,9 @@ All are near-Newtonian (y 18–90), so these are statements of baryon excess, no
 - **What is not drawn:** the per-window points (W1–W3, 15–16 galaxies each). The z lever across the sample is 0.009 dex, so the point is a local level, not a test of a₀(z).
 - **The orange dot** (MIGHTEE-HI published fit, CFG279) is the authors' own fit level and stays as it was.
 - **Update after CFG304 (34e40dac6):** the hollow green diamond now marks the Arecibo (ALFALFA) single-dish flux scale applied to the gas only: a₀ = 7.0e-11 (bar 6.1–7.6e-11), drawn at z + 0.05. The single dish sees more HI than the catalogue (−0.195 dex), so the earlier cube-scale marker (2.29e-10) is ruled out and is no longer drawn.
+
+## 2026-10-02: framework-native inputs (CFG303, 2d9bdc1b9), at the owner's direction ("use all the data using our framework not ΛCDM assumptions")
+- **RC100:** the four filled blue circles are now CFG303's native route B (SED M★ + scaling-relation gas through CFG223's estimator; no halo-fit f_DM or M_fit): s★ 1.48 / 1.01 / 0.84 at z 0.81 / 1.36 / 2.01. Q4 (z 2.26) has no root: the stars and gas exceed the rotation in 84% of resamples. It is drawn as an upper-limit arrow from its 95% upper bound (0.485). The old halo-fit-route values remain as small faint hollow circles.
+- **CRISTAL:** the two orange squares are the native R_e (2.01) and R_out at the outermost data marker (1.95), replacing the fit-route points.
+- **MUSE-DARK:** routes (ii) and (iii) are CFG303's native versions (primary "noHI", reading bD), with no DC14 (1 − f_DM). Values below the floor-zone edge are drawn at 0.287 (×10⁻¹⁰); a no-root value is drawn as a hollow triangle. Route (i), the DC14 halo-fitted masses (a ΛCDM-model input), is drawn faint.
+- The subtitle states the change. 31/31 checks.

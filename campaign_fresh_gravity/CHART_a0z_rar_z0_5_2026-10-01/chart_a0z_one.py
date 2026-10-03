@@ -137,15 +137,36 @@ def point(r, x, col, mk, size, hollow=False):
     ax.plot([x, x], [lo68 * U, min(hi68, YHI / U) * U], color=col, lw=4.6, zorder=4, solid_capstyle="butt")
     ax.scatter([x], [s * U], marker=mk, s=size, zorder=6, facecolor="white" if hollow else col,
                edgecolor=col if hollow else "white", linewidth=1.8 if hollow else 1.0)
+# CFG303 (2d9bdc1b9): FRAMEWORK-NATIVE inputs (owner: "use all the data using our framework not ACDM assumptions"):
+# RC100 route B = SED M* (Table 3 col 6) + scaling-relation gas, through CFG223's estimator; no halo-fit f_DM or M_fit enters.
+J303 = json.load(open(os.path.join(CFG, "CFG303_lcdm_free_inputs", "cfg303_rc100_cristal_LCDMFREE_results.json")))
+J303 = J303.get("numbers", J303)["points"]
+def npoint(r, x, col, mk, size):
+    s_, l68, h68, l95, h95 = r["s"], max(r["lo68"], YLO / U), r["hi68"], max(r["lo95"], YLO / U), r["hi95"]
+    ax.plot([x, x], [l95 * U, min(h95, YHI / U) * U], color=col, lw=1.2, zorder=4)
+    ax.plot([x, x], [l68 * U, min(h68, YHI / U) * U], color=col, lw=4.6, zorder=4, solid_capstyle="butt")
+    ax.scatter([x], [s_ * U], marker=mk, s=size, zorder=6, facecolor=col, edgecolor="white", linewidth=1.0)
 for q in ("Q1", "Q2", "Q3", "Q4"):
-    r = pts[f"RC100 corr {q}"]; point(r, f(r, "z"), COL["RC100"], "o", 95)
+    r = pts[f"RC100 corr {q}"]   # the old route through the halo fit's f_DM: faint hollow marker only
+    ax.scatter([f(r, "z")], [f(r, "s_star") * U], marker="o", s=34, facecolor="none", edgecolor=COL["RC100"], lw=0.9, alpha=0.45, zorder=5)
+    rn = J303["RC100"][f"B {q}"]
+    if rn["unbounded"]:   # no root: the stars + gas already exceed the rotation in most resamples
+        ax.annotate("", xy=(rn["z_med"], 0.31), xytext=(rn["z_med"], rn["hi95"] * U), arrowprops=dict(arrowstyle="-|>", color=COL["RC100"], lw=1.4))
+        ax.scatter([rn["z_med"]], [rn["hi95"] * U], marker="o", s=70, facecolor="white", edgecolor=COL["RC100"], lw=1.8, zorder=6)
+    else:
+        npoint(rn, rn["z_med"], COL["RC100"], "o", 95)
+check("CFG303 RC100 native route B quartiles: s* 1.483 / 1.014 / 0.842 / no root (16 of 27 discs D <= 1) (2d9bdc1b9)",
+      [round(J303["RC100"][f"B Q{i}"]["s"], 3) for i in (1, 2, 3)] == [1.483, 1.014, 0.842] and J303["RC100"]["B Q4"]["unbounded"])
 ax.text(1.38, 5.2, "RC100\n100 discs in 4 bins", color=COL["RC100"], fontsize=10, ha="center", fontweight="bold")
 r = pts["ALESS_122.1"]; point(r, 2.13, COL["M"], "*", 360)
 ax.annotate("ALESS 122.1\nbest gas data, 1 galaxy", xy=(2.08, f(r, "s_star") * U), xytext=(1.98, 14.5), fontsize=10, ha="right",
             color=COL["M"], fontweight="bold", va="center", arrowprops=dict(arrowstyle="-", color=COL["M"], lw=0.8))
 r = pts["ALPINE6 pooled"]; point(r, 4.58, COL["ALMA"], "s", 110, hollow=True)
 ax.text(4.46, 1.95, "6 ALMA rotators\n(pooled)", color=COL["ALMA"], fontsize=10, ha="right", va="center", fontweight="bold")
-point(pts["CR R_e ind"], 5.12, COL["CRISTAL"], "s", 95); point(pts["CR R_out ind"], 5.36, COL["CRISTAL"], "s", 95)
+npoint(J303["CRISTAL"]["R_e native, six"], 5.12, COL["CRISTAL"], "s", 95)
+npoint(J303["CRISTAL"]["R_out native, six, outermost data marker (primary)"], 5.36, COL["CRISTAL"], "s", 95)
+check("CFG303 CRISTAL native: R_e 2.01, R_out (outermost data marker) 1.95 (2d9bdc1b9)",
+      abs(J303["CRISTAL"]["R_e native, six"]["s"] - 2.0137) < 1e-3 and abs(J303["CRISTAL"]["R_out native, six, outermost data marker (primary)"]["s"] - 1.953) < 1e-3)
 ax.text(5.46, 2.0, "CRISTAL\n6 discs,\n2 radii", color=COL["CRISTAL"], fontsize=10, ha="left", va="center", fontweight="bold")
 # calculated, no solution
 NRX = {"SINS_BX610": 2.16, "ALPAKA15": 2.27, "ALPAKA18": 2.40, "ALPAKA19": 2.49, "ALPAKA20": 2.58, "ALPAKA22": 2.94,
@@ -228,19 +249,34 @@ ax.text(0.12, 0.222, f"calculated, but no $a_0$ fits ({N_NR} galaxies):\nthe sta
 # MUSE-DARK (CFG262, fb24a5922): implied a0 in z-thirds BY BARYON ROUTE, reading bD (projected + asymmetric drift, CFG236's
 # best-supported reading). Routes are separate series and are never pooled; all inputs are one DC14 fit plus an SED mass.
 COL_MD = "#b0548f"
-RSTY = {"i": dict(dx=-0.045, mk="^", ls="-", fc=COL_MD, lab="(i) fitted masses"),
-        "ii": dict(dx=0.0, mk="s", ls=(0, (4, 2)), fc="white", lab="(ii) SED + H$_2$  (H$_2$-limited)"),
-        "iii": dict(dx=0.045, mk="D", ls=(0, (1, 1.6)), fc="#e3b3d1", lab="(iii) SED stars")}
+RSTY = {"i": dict(dx=-0.045, mk="^", ls="-", fc=COL_MD, lab="(i) halo-fitted masses (ΛCDM model, faint)"),
+        "ii": dict(dx=0.0, mk="s", ls=(0, (4, 2)), fc="white", lab="(ii) SED + H$_2$, native"),
+        "iii": dict(dx=0.045, mk="D", ls=(0, (1, 1.6)), fc="#e3b3d1", lab="(iii) SED stars, native")}
+# CFG303: routes (ii) and (iii) re-derived WITHOUT the DC14 fit's (1 - f_DM) (native, primary 'noHI', reading bD); route (i) uses
+# the DC14 halo-fitted masses (a LCDM-model input) and is drawn faint.
+M303 = json.load(open(os.path.join(CFG, "CFG303_lcdm_free_inputs", "cfg303_musedark_LCDMFREE_results.json")))
+M303 = M303.get("numbers", M303)["rows"]
+check("CFG303 MUSE-DARK native route iii z-thirds 1.21 / 2.11 / 0.66 (2d9bdc1b9)",
+      [round(M303[f"noHI (primary)|z{i}-routeiii-bD"]["s"], 2) for i in (1, 2, 3)] == [1.21, 2.11, 0.66])
 for rt, st in RSTY.items():
+    if rt in ("ii", "iii"):
+        nrows = [M303[f"noHI (primary)|z{i}-route{rt}-bD"] for i in (1, 2, 3)]
+        xs = [r["z"] + st["dx"] for r in nrows]; ys = [max(r["s"], 0.287 / U) * U for r in nrows]
+        ax.plot(xs, ys, color=COL_MD, lw=1.1, ls=st["ls"], zorder=4, alpha=0.8)
+        for r, xx, yy in zip(nrows, xs, ys):
+            lo, hi = max(10 ** r["itv"]["lo68"], 0.287 / U), 10 ** r["itv"]["hi68"]
+            ax.plot([xx, xx], [lo * U, hi * U], color=COL_MD, lw=2.6, zorder=5, solid_capstyle="butt")
+            ax.scatter([xx], [yy], marker=st["mk"] if not r["no_root"] and r["s"] > 0.0011 else "v", s=46, facecolor=st["fc"], edgecolor=COL_MD, linewidth=1.4, zorder=6)
+        continue
     rows = sorted([r for r in M262 if r["route"] == rt], key=lambda r: f(r, "z"))
     xs = [f(r, "z") + st["dx"] for r in rows]; ys = [f(r, "s_star") * U for r in rows]
-    ax.plot(xs, ys, color=COL_MD, lw=1.1, ls=st["ls"], zorder=4, alpha=0.8)
+    ax.plot(xs, ys, color=COL_MD, lw=1.1, ls=st["ls"], zorder=4, alpha=0.30)
     for r, xx, yy in zip(rows, xs, ys):
         if rt == "ii":
             lo, hi = max(f(r, "outer_lo"), 0.30 / U), f(r, "outer_hi")   # clipped at the floor zone
             ax.add_patch(plt.Rectangle((xx - 0.02, lo * U), 0.04, (hi - lo) * U, color=COL_MD, alpha=0.10, lw=0, zorder=3))
-        ax.plot([xx, xx], [f(r, "stat68_lo") * U, f(r, "stat68_hi") * U], color=COL_MD, lw=2.6, zorder=5, solid_capstyle="butt")
-        ax.scatter([xx], [yy], marker=st["mk"], s=46, facecolor=st["fc"], edgecolor=COL_MD, linewidth=1.4, zorder=6)
+        ax.plot([xx, xx], [f(r, "stat68_lo") * U, f(r, "stat68_hi") * U], color=COL_MD, lw=2.6, zorder=5, solid_capstyle="butt", alpha=0.35)
+        ax.scatter([xx], [yy], marker=st["mk"], s=46, facecolor=st["fc"], edgecolor=COL_MD, linewidth=1.4, zorder=6, alpha=0.35)
 lx, ly = 2.72, 21.0
 ax.text(lx - 0.05, ly * 1.22, "MUSE-DARK, by baryon route", color=COL_MD, fontsize=9.5, fontweight="bold", ha="left")
 for k, (rt, st) in enumerate(RSTY.items()):
@@ -329,10 +365,10 @@ for x in range(7): ax.axvline(x, color="#e4e7eb", lw=0.7, zorder=0)
 fig.text(0.075, 0.955, "Is $a_0$ constant across 12 billion years?  Not decidable from today's data",
          fontsize=19, fontweight="bold", color=INK)
 fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from one that grows with $H(z)$: at z > 1 the gas masses are uncertain by 0.2-0.7 dex,\n"
-         "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  Triangles at the floor: calculated galaxies where no $a_0$ fits.",
+         "and a 0.05 dex baryon-mass error moves the implied $a_0$ ×1.5-1.8.  High-z points use framework-native inputs (no halo fits); faint = old halo-fit route.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280–285 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG303 (native inputs), CFG301 + CFG304 (MeerKAT), CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280–285 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
