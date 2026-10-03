@@ -1,0 +1,299 @@
+CFG317 -- does the cold component keep the collapse mass of the baryons a system ORIGINALLY had?  M_c = R M_b,now / f_b, R = M_b,init / M_b,now.
+
+Criteria frozen and committed before any new score: campaign_fresh_gravity/CFG317_baryon_loss_cold_mass/FROZEN_CRITERIA.md (c29d82477).
+  harness   CFG313's native-rule harness exec'd read-only (CFG45, CFG58 d2, CFG55, CFG111, CFG39 behind it); the ONLY change is the native hook:
+            M_c = R x M_b / f_b (f_b = 0.157126 unchanged, (1 - f_b) unchanged).  V1 = Dutton-Maccio NFW, V2 = isothermal truncated at the law's r_ta.
+  (A)       R_need per population / footing / profile from a global grid log R = 0..6 (0.05 dex), and per satellite object.
+  (B)       R_ind from the ONLY non-dynamical estimator on disk: a leaky-box effective yield from LVD / Collins+13 stellar [Fe/H] and HI
+            (log y_Fe/Z_Fe,sun = -0.2, bracket -0.5..+0.1; a LOWER bound where gas left unprocessed).  SFH quench epochs and every elliptical
+            estimator are NOT on disk (named in the criteria).
+  (C)       T1 sign test, T2 per-object Spearman (p < 0.01, permutation) with a positive population-level rho, T3 |median log R_need/R_ind| <= 0.3.
+  (D)       re-score with M_c = R_ind M_b / f_b (satellites; R = 1 where no estimator exists), V1/V2, both footings, three yields.
+CONTROLS  C1 R = 1 reproduces CFG313's native table; C2 identity at R = R_need; C3 the estimator; C4 synthetic positive control (+ shuffle).
+MUTATE=1: R_ind shuffled across satellite objects (seed 317) -- T2 must fail and T1' or T1 must fail.
+kappa = 1/2 is FITTED.  The cold mass is still required; no dark-matter particle.  Nothing here says the theory is closed.
+CHANGED AFTER THE FIRST MAIN RUN, BEFORE ANY INTERPRETATION (disclosed): C3's last clause was coded against the wrong test case (a yield 0.2507 dex above
+  solar, where the closed box sits exactly at [Fe/H] = 0, so floating point gave eta = 4e-5) instead of the frozen case (solar [Fe/H], no gas, y = Z_sun);
+  it now runs the frozen case.  No estimator value, test, threshold or verdict changed (the estimator code is untouched).
+
+  *** MUTATE=1: R_ind shuffled across satellite objects (seed 317) -- T2 must FAIL and T1'/T1 must FAIL ***
+
+======================================================================================================================
+(A)  THE R_need SCANS: one global R, log R = 0..6 in 0.05 dex, V1 and V2, both footings
+======================================================================================================================
+    V1: 121 grid points done (132 s)
+    V2: 121 grid points done (271 s)
+
+    log10 R_need,0 (statistic crosses zero; 0 = no extra mass needed) | onset (first grid R that moves the statistic) | 1-sigma interval | gate interval (both footings)
+  -- V1 canonical
+    P1    MW ultra-faints                s(R=1) +0.325 z +3.77 | log R_need,0  3.65 | onset  2.65 | 1sig [3.05, 4.65, True] | gate [2.45, 5.6, True] | monotone True
+    P2a   MW classical                   s(R=1) +0.027 z +0.32 | log R_need,0  2.27 | onset  2.20 | 1sig [0.0, 2.4, True] | gate [0.0, 2.75, True] | monotone True
+    P2b   M31 Collins+13                 s(R=1) +0.064 z +0.78 | log R_need,0  2.46 | onset  2.30 | 1sig [0.0, 2.8, True] | gate [0.0, 3.55, True] | monotone True
+    P2c   M31 LVD                        s(R=1) +0.044 z +0.60 | log R_need,0  2.33 | onset  2.15 | 1sig [0.0, 2.45, True] | gate [0.0, 2.6, True] | monotone True
+    P2d   LV field dwarfs                s(R=1) -0.044 z -0.60 | log R_need,0  0.00 | onset  2.10 | 1sig [0.0, 2.15, True] | gate [0.0, 2.45, True] | monotone True
+    P4a   UGC 2487                       s(R=1) +0.064 z +0.90 | log R_need,0  1.10 | onset  1.00 | 1sig [0.0, 1.3, True] | gate [0.0, 1.65, True] | monotone True
+    P4b   Di Teodoro four S0             s(R=1) +0.004 z +0.05 | log R_need,0  0.98 | onset  0.95 | 1sig [0.0, 1.15, True] | gate [0.0, 1.3, True] | monotone True
+    P4b'  Di Teodoro all 15 (reported)   s(R=1) -0.028 z -0.43 | log R_need,0  0.00 | onset  0.95 | 1sig [0.0, 1.1, True] | gate None | monotone True
+    P5    SLUGGS h50 masses              s(R=1) +0.080 z +3.28 | log R_need,0  1.24 | onset  0.95 | 1sig [1.2, 1.3, True] | gate [1.15, 1.35, True] | monotone True
+    P5J   SLUGGS JAM gamma 3             s(R=1) +0.097 z +3.99 | log R_need,0  1.41 | onset  0.95 | 1sig [1.35, 1.5, True] | gate [1.3, 1.6, True] | monotone True
+    P5S   SLUGGS SLUGGS masses           s(R=1) +0.077 z +2.75 | log R_need,0  1.24 | onset  0.95 | 1sig [1.2, 1.3, True] | gate [1.15, 1.35, True] | monotone True
+    P5L   SLUGGS JAM literature gamma    s(R=1) +0.082 z +3.60 | log R_need,0  1.32 | onset  0.95 | 1sig [1.25, 1.4, True] | gate [1.25, 1.5, True] | monotone True
+    P6    X-ray ellipticals              s(R=1) +0.280 z +1.70 | log R_need,0  1.60 | onset  1.00 | 1sig [1.25, 2.1, True] | gate [0.0, 2.95, True] | monotone True
+    P7    Ogle super spirals (reported)  s(R=1) +0.107 z +1.42 | log R_need,0  1.28 | onset  0.90 | 1sig [1.05, 1.55, True] | gate None | monotone True
+    SPARC control: both clauses hold up to log R_max = 1.05 (contiguous from 0: True)
+  -- V1 alt
+    P1    MW ultra-faints                s(R=1) +0.304 z +3.55 | log R_need,0  3.64 | onset  2.70 | 1sig [3.1, 4.65, True] | gate [2.45, 5.6, True] | monotone True
+    P2a   MW classical                   s(R=1) +0.008 z +0.09 | log R_need,0  2.26 | onset  2.25 | 1sig [0.0, 2.4, True] | gate [0.0, 2.75, True] | monotone True
+    P2b   M31 Collins+13                 s(R=1) +0.045 z +0.55 | log R_need,0  2.46 | onset  2.35 | 1sig [0.0, 2.8, True] | gate [0.0, 3.55, True] | monotone True
+    P2c   M31 LVD                        s(R=1) +0.031 z +0.42 | log R_need,0  2.37 | onset  1.65 | 1sig [0.0, 2.45, True] | gate [0.0, 2.6, True] | monotone True
+    P2d   LV field dwarfs                s(R=1) -0.062 z -0.85 | log R_need,0  0.00 | onset  2.15 | 1sig [0.0, 2.2, True] | gate [0.0, 2.45, True] | monotone True
+    P4a   UGC 2487                       s(R=1) +0.048 z +0.68 | log R_need,0  1.13 | onset  1.05 | 1sig [0.0, 1.3, True] | gate [0.0, 1.65, True] | monotone True
+    P4b   Di Teodoro four S0             s(R=1) -0.012 z -0.17 | log R_need,0  0.00 | onset  1.00 | 1sig [0.0, 1.15, True] | gate [0.0, 1.3, True] | monotone True
+    P4b'  Di Teodoro all 15 (reported)   s(R=1) -0.045 z -0.69 | log R_need,0  0.00 | onset  1.00 | 1sig [0.0, 1.1, True] | gate None | monotone True
+    P5    SLUGGS h50 masses              s(R=1) +0.065 z +2.67 | log R_need,0  1.25 | onset  1.05 | 1sig [1.2, 1.3, True] | gate [1.15, 1.35, True] | monotone True
+    P5J   SLUGGS JAM gamma 3             s(R=1) +0.088 z +3.65 | log R_need,0  1.44 | onset  1.00 | 1sig [1.4, 1.5, True] | gate [1.3, 1.6, True] | monotone True
+    P5S   SLUGGS SLUGGS masses           s(R=1) +0.062 z +2.23 | log R_need,0  1.25 | onset  1.05 | 1sig [1.2, 1.3, True] | gate [1.15, 1.35, True] | monotone True
+    P5L   SLUGGS JAM literature gamma    s(R=1) +0.073 z +3.22 | log R_need,0  1.35 | onset  1.00 | 1sig [1.3, 1.4, True] | gate [1.25, 1.5, True] | monotone True
+    P6    X-ray ellipticals              s(R=1) +0.254 z +1.58 | log R_need,0  1.60 | onset  1.05 | 1sig [1.25, 2.05, True] | gate [0.0, 2.95, True] | monotone True
+    P7    Ogle super spirals (reported)  s(R=1) +0.092 z +1.25 | log R_need,0  1.29 | onset  1.00 | 1sig [1.05, 1.55, True] | gate None | monotone True
+    SPARC control: both clauses hold up to log R_max = 1.05 (contiguous from 0: True)
+  -- V2 canonical
+    P1    MW ultra-faints                s(R=1) +0.325 z +3.77 | log R_need,0  3.72 | onset  2.70 | 1sig [3.1, 4.7, True] | gate [2.65, 5.75, True] | monotone True
+    P2a   MW classical                   s(R=1) +0.027 z +0.32 | log R_need,0  2.32 | onset  2.20 | 1sig [0.0, 2.65, True] | gate [0.0, 2.95, True] | monotone True
+    P2b   M31 Collins+13                 s(R=1) +0.064 z +0.78 | log R_need,0  2.55 | onset  2.30 | 1sig [0.0, 2.8, True] | gate [0.0, 3.05, True] | monotone True
+    P2c   M31 LVD                        s(R=1) +0.044 z +0.60 | log R_need,0  2.46 | onset  2.15 | 1sig [0.0, 2.7, True] | gate [0.0, 2.9, True] | monotone True
+    P2d   LV field dwarfs                s(R=1) -0.044 z -0.60 | log R_need,0  0.00 | onset  2.10 | 1sig [0.0, 2.25, True] | gate [0.0, 2.55, True] | monotone True
+    P4a   UGC 2487                       s(R=1) +0.064 z +0.90 | log R_need,0  1.29 | onset  1.00 | 1sig [0.0, 1.5, True] | gate [0.0, 1.75, True] | monotone True
+    P4b   Di Teodoro four S0             s(R=1) +0.004 z +0.05 | log R_need,0  1.01 | onset  0.95 | 1sig [0.0, 1.35, True] | gate [0.0, 1.6, True] | monotone True
+    P4b'  Di Teodoro all 15 (reported)   s(R=1) -0.028 z -0.43 | log R_need,0  0.00 | onset  0.95 | 1sig [0.0, 1.2, True] | gate None | monotone True
+    P5    SLUGGS h50 masses              s(R=1) +0.080 z +3.28 | log R_need,0  1.42 | onset  0.95 | 1sig [1.35, 1.45, True] | gate [1.25, 1.55, True] | monotone True
+    P5J   SLUGGS JAM gamma 3             s(R=1) +0.097 z +3.99 | log R_need,0    >6 | onset  0.95 | 1sig None | gate [2.55, 5.7, False] | monotone False
+    P5S   SLUGGS SLUGGS masses           s(R=1) +0.077 z +2.75 | log R_need,0  1.70 | onset  0.95 | 1sig [1.55, 1.85, True] | gate [1.3, 1.95, True] | monotone True
+    P5L   SLUGGS JAM literature gamma    s(R=1) +0.082 z +3.60 | log R_need,0    >6 | onset  0.95 | 1sig [3.2, 5.05, True] | gate [2.1, 5.7, True] | monotone False
+    P6    X-ray ellipticals              s(R=1) +0.280 z +1.70 | log R_need,0  1.63 | onset  1.00 | 1sig [1.3, 1.85, True] | gate [0.0, 2.05, True] | monotone True
+    P7    Ogle super spirals (reported)  s(R=1) +0.107 z +1.42 | log R_need,0  1.42 | onset  0.90 | 1sig [1.15, 1.6, True] | gate None | monotone True
+    SPARC control: both clauses hold up to log R_max = 1.15 (contiguous from 0: True)
+  -- V2 alt
+    P1    MW ultra-faints                s(R=1) +0.304 z +3.55 | log R_need,0  3.74 | onset  2.75 | 1sig [3.1, 4.75, True] | gate [2.65, 5.75, True] | monotone True
+    P2a   MW classical                   s(R=1) +0.008 z +0.09 | log R_need,0  2.29 | onset  2.25 | 1sig [0.0, 2.65, True] | gate [0.0, 2.95, True] | monotone True
+    P2b   M31 Collins+13                 s(R=1) +0.045 z +0.55 | log R_need,0  2.54 | onset  2.35 | 1sig [0.0, 2.8, True] | gate [0.0, 3.05, True] | monotone True
+    P2c   M31 LVD                        s(R=1) +0.031 z +0.42 | log R_need,0  2.45 | onset  1.65 | 1sig [0.0, 2.7, True] | gate [0.0, 2.9, True] | monotone True
+    P2d   LV field dwarfs                s(R=1) -0.062 z -0.85 | log R_need,0  0.00 | onset  2.15 | 1sig [0.0, 2.25, True] | gate [0.0, 2.55, True] | monotone True
+    P4a   UGC 2487                       s(R=1) +0.048 z +0.68 | log R_need,0  1.28 | onset  1.05 | 1sig [0.0, 1.55, True] | gate [0.0, 1.75, True] | monotone True
+    P4b   Di Teodoro four S0             s(R=1) -0.012 z -0.17 | log R_need,0  0.00 | onset  1.00 | 1sig [0.0, 1.35, True] | gate [0.0, 1.6, True] | monotone True
+    P4b'  Di Teodoro all 15 (reported)   s(R=1) -0.045 z -0.69 | log R_need,0  0.00 | onset  1.00 | 1sig [0.0, 1.2, True] | gate None | monotone True
+    P5    SLUGGS h50 masses              s(R=1) +0.065 z +2.67 | log R_need,0  1.42 | onset  1.05 | 1sig [1.35, 1.45, True] | gate [1.25, 1.55, True] | monotone True
+    P5J   SLUGGS JAM gamma 3             s(R=1) +0.088 z +3.65 | log R_need,0    >6 | onset  1.00 | 1sig None | gate [2.55, 5.7, False] | monotone False
+    P5S   SLUGGS SLUGGS masses           s(R=1) +0.062 z +2.23 | log R_need,0  1.67 | onset  1.05 | 1sig [1.5, 1.8, True] | gate [1.3, 1.95, True] | monotone True
+    P5L   SLUGGS JAM literature gamma    s(R=1) +0.073 z +3.22 | log R_need,0    >6 | onset  1.00 | 1sig [3.05, 5.05, True] | gate [2.1, 5.7, True] | monotone False
+    P6    X-ray ellipticals              s(R=1) +0.254 z +1.58 | log R_need,0  1.64 | onset  1.05 | 1sig [1.3, 1.85, True] | gate [0.0, 2.05, True] | monotone True
+    P7    Ogle super spirals (reported)  s(R=1) +0.092 z +1.25 | log R_need,0  1.43 | onset  1.00 | 1sig [1.15, 1.65, True] | gate None | monotone True
+    SPARC control: both clauses hold up to log R_max = 1.15 (contiguous from 0: True)
+
+    reported: median log R implied by the committed LCDM collapse masses (M_c,committed f_b / M_b): ufd 4.26; cls 2.71; col 2.66; m31 2.74; fld 2.24; P5 1.13; P6 1.35
+    reported: median per-object analytic log R_switch (canonical): ufd 2.86; cls 2.30; col 2.29; m31 2.33; fld 2.06
+
+======================================================================================================================
+(B)  R_ind: leaky-box effective yield from stellar [Fe/H] and HI (data on disk only)
+======================================================================================================================
+  [PASS] C3 CONTROL: the estimator -- E[log Z] at mu'=0 is log p - 0.2507 (1e-4 printed precision; -gamma exact); the closed form equals quadrature (1e-6); every root residual < 1e-8 dex; R_ind >= 1 for every object; a closed box at its own yield returns eta = 0, R = 1
+         E[ln x](inf) + gamma = 0.0e+00; quad vs closed form at X=2.3: 1.3e-15; X=60: 0.0e+00; max |residual| 3.8e-14 over 318 object-yield evaluations; min log R_ind 0.000; closed-box test eta 0.00e+00, R 1.000000000000
+    yield log y_Fe/Z_Fe,sun = -0.2 (bracket (-0.5, 0.1)); MDF-shape allowance 0.1 dex; Upsilon_V = 2.0; gas = 1.33 M_HI (LVD), 0 for Collins rows
+  -- P1 MW ultra-faints: median log R_ind 1.65 +- 0.12 (n = 39 of 40); at yield -0.5 / +0.1: 1.77 / 2.37
+       Aquarius II            [Fe/H] -2.57 +- 0.17 (LVD spectroscopic); M* 9.48e+03; M_gas 0.00e+00; eta    130.6; log R_ind 2.12 +- 0.20
+       Bootes I               [Fe/H] -2.43 +- 0.04 (LVD spectroscopic); M* 4.38e+04; M_gas 0.00e+00; eta     94.3; log R_ind 1.98 +- 0.11
+       Bootes II              [Fe/H] -2.51 +- 0.12 (LVD spectroscopic); M* 2.56e+03; M_gas 0.00e+00; eta    113.6; log R_ind 2.06 +- 0.16
+       Bootes III             [Fe/H] -2.34 +- 0.11 (LVD spectroscopic); M* 3.67e+04; M_gas 0.00e+00; eta     76.5; log R_ind 1.89 +- 0.15
+       Canes Venatici II      [Fe/H] -2.85 +- 0.08 (LVD spectroscopic); M* 2.00e+04; M_gas 0.00e+00; eta    249.8; log R_ind 2.40 +- 0.13
+       Carina II              [Fe/H] -2.44 +- 0.09 (LVD spectroscopic); M* 1.15e+04; M_gas 0.00e+00; eta     96.6; log R_ind 1.99 +- 0.13
+       Carina III             no [Fe/H] on disk
+       Centaurus I            [Fe/H] -2.57 +- 0.08 (LVD spectroscopic); M* 2.36e+04; M_gas 0.00e+00; eta    130.6; log R_ind 2.12 +- 0.13
+       Columba I              [Fe/H] -2.37 +- 0.34 (LVD spectroscopic); M* 8.19e+03; M_gas 0.00e+00; eta     82.0; log R_ind 1.92 +- 0.36
+       Coma Berenices         [Fe/H] -2.44 +- 0.07 (LVD spectroscopic); M* 8.89e+03; M_gas 0.00e+00; eta     96.6; log R_ind 1.99 +- 0.12
+       Eridanus II            [Fe/H] -2.38 +- 0.13 (LVD spectroscopic); M* 1.21e+05; M_gas 0.00e+00; eta     84.0; log R_ind 1.93 +- 0.16
+       Eridanus IV            [Fe/H] -2.87 +- 0.08 (LVD spectroscopic); M* 4.50e+03; M_gas 0.00e+00; eta    261.6; log R_ind 2.42 +- 0.12
+       Grus I                 [Fe/H] -2.62 +- 0.11 (LVD spectroscopic); M* 7.67e+03; M_gas 0.00e+00; eta    146.7; log R_ind 2.17 +- 0.15
+       Hercules               [Fe/H] -2.64 +- 0.05 (LVD spectroscopic); M* 3.61e+04; M_gas 0.00e+00; eta    153.6; log R_ind 2.19 +- 0.11
+       Horologium I           [Fe/H] -2.76 +- 0.10 (LVD spectroscopic); M* 3.85e+03; M_gas 0.00e+00; eta    202.9; log R_ind 2.31 +- 0.14
+       Hydrus I               [Fe/H] -2.52 +- 0.09 (LVD spectroscopic); M* 1.31e+04; M_gas 0.00e+00; eta    116.3; log R_ind 2.07 +- 0.13
+       Leo IV                 [Fe/H] -2.56 +- 0.08 (LVD spectroscopic); M* 1.63e+04; M_gas 0.00e+00; eta    127.6; log R_ind 2.11 +- 0.13
+       Leo V                  [Fe/H] -2.29 +- 0.16 (LVD spectroscopic); M* 9.84e+03; M_gas 0.00e+00; eta     68.1; log R_ind 1.84 +- 0.18
+       Leo VI                 [Fe/H] -2.39 +- 0.12 (LVD spectroscopic); M* 4.54e+03; M_gas 0.00e+00; eta     86.0; log R_ind 1.94 +- 0.15
+       Pegasus III            [Fe/H] -2.63 +- 0.10 (LVD spectroscopic); M* 7.96e+03; M_gas 0.00e+00; eta    150.1; log R_ind 2.18 +- 0.14
+       Pegasus IV             [Fe/H] -2.52 +- 0.13 (LVD spectroscopic); M* 8.57e+03; M_gas 0.00e+00; eta    116.3; log R_ind 2.07 +- 0.16
+       Pictor II              [Fe/H] -2.99 +- 0.06 (LVD spectroscopic); M* 1.96e+03; M_gas 0.00e+00; eta    345.2; log R_ind 2.54 +- 0.12
+       Pisces II              [Fe/H] -2.45 +- 0.07 (LVD spectroscopic); M* 8.81e+03; M_gas 0.00e+00; eta     98.8; log R_ind 2.00 +- 0.12
+       Reticulum II           [Fe/H] -2.65 +- 0.07 (LVD spectroscopic); M* 2.97e+03; M_gas 0.00e+00; eta    157.2; log R_ind 2.20 +- 0.12
+       Segue 1                [Fe/H] -2.52 +- 0.10 (LVD spectroscopic); M* 5.66e+02; M_gas 0.00e+00; eta    116.3; log R_ind 2.07 +- 0.14
+       Tucana II              [Fe/H] -2.77 +- 0.20 (LVD spectroscopic); M* 5.41e+03; M_gas 0.00e+00; eta    207.6; log R_ind 2.32 +- 0.22
+       Tucana IV              [Fe/H] -2.49 +- 0.15 (LVD spectroscopic); M* 2.71e+03; M_gas 0.00e+00; eta    108.5; log R_ind 2.04 +- 0.18
+       Tucana V               [Fe/H] -2.84 +- 0.31 (LVD spectroscopic); M* 4.71e+02; M_gas 0.00e+00; eta    244.1; log R_ind 2.39 +- 0.33
+       Ursa Major I           [Fe/H] -2.56 +- 0.07 (LVD spectroscopic); M* 1.95e+04; M_gas 0.00e+00; eta    127.6; log R_ind 2.11 +- 0.12
+       Ursa Major II          [Fe/H] -2.54 +- 0.07 (LVD spectroscopic); M* 1.00e+04; M_gas 0.00e+00; eta    121.8; log R_ind 2.09 +- 0.12
+       Willman 1              [Fe/H] -2.45 +- 0.12 (LVD spectroscopic); M* 1.76e+03; M_gas 0.00e+00; eta     98.8; log R_ind 2.00 +- 0.16
+       Aquarius III (limit)   [Fe/H] -2.51; log R_ind 2.06 +- 0.21
+       Draco II (limit)       [Fe/H] -2.94; log R_ind 2.49 +- 0.37
+       Grus II (limit)        [Fe/H] -2.51; log R_ind 2.06 +- 0.15
+       Hydra II (limit)       [Fe/H] -2.41; log R_ind 1.96 +- 0.20
+       Phoenix II (limit)     [Fe/H] -2.51; log R_ind 2.06 +- 0.21
+       Reticulum III (limit)  [Fe/H] -2.81; log R_ind 2.36 +- 0.31
+       Segue 2 (limit)        [Fe/H] -2.27; log R_ind 1.82 +- 0.17
+       Triangulum II (limit)  [Fe/H] -2.24; log R_ind 1.79 +- 0.11
+       Tucana III (limit)     [Fe/H] -2.42; log R_ind 1.97 +- 0.12
+  -- P2a MW classical: median log R_ind 1.53 +- 0.15 (n = 12 of 14); at yield -0.5 / +0.1: 1.18 / 1.78
+       Antlia II              [Fe/H] -1.90 +- 0.04 (LVD spectroscopic); M* 1.33e+06; M_gas 0.00e+00; eta     27.1; log R_ind 1.45 +- 0.11
+       Canes Venatici I       [Fe/H] -2.34 +- 0.02 (LVD spectroscopic); M* 5.31e+05; M_gas 0.00e+00; eta     76.5; log R_ind 1.89 +- 0.10
+       Carina                 [Fe/H] -1.80 +- 0.02 (LVD spectroscopic); M* 1.01e+06; M_gas 0.00e+00; eta     21.4; log R_ind 1.35 +- 0.10
+       Crater II              [Fe/H] -2.16 +- 0.04 (LVD spectroscopic); M* 3.20e+05; M_gas 0.00e+00; eta     50.2; log R_ind 1.71 +- 0.11
+       Draco                  [Fe/H] -2.20 +- 0.01 (LVD spectroscopic); M* 6.04e+05; M_gas 0.00e+00; eta     55.1; log R_ind 1.75 +- 0.10
+       Fornax                 [Fe/H] -1.07 +- 0.01 (LVD spectroscopic); M* 3.88e+07; M_gas 0.00e+00; eta      3.2; log R_ind 0.62 +- 0.10
+       Leo I                  [Fe/H] -1.58 +- 0.01 (LVD spectroscopic); M* 9.14e+06; M_gas 0.00e+00; eta     12.5; log R_ind 1.13 +- 0.10
+       Leo II                 [Fe/H] -1.97 +- 0.02 (LVD spectroscopic); M* 1.06e+06; M_gas 0.00e+00; eta     32.1; log R_ind 1.52 +- 0.10
+       LMC                    no [Fe/H] on disk
+       Sagittarius            [Fe/H] -0.53 +- 0.03 (LVD spectroscopic); M* 4.30e+07; M_gas 0.00e+00; eta      0.2; log R_ind 0.08 +- 0.09
+       Sculptor               [Fe/H] -1.73 +- 0.03 (LVD spectroscopic); M* 3.48e+06; M_gas 0.00e+00; eta     18.0; log R_ind 1.28 +- 0.10
+       Sextans                [Fe/H] -1.97 +- 0.04 (LVD spectroscopic); M* 5.26e+05; M_gas 0.00e+00; eta     32.1; log R_ind 1.52 +- 0.11
+       SMC                    no [Fe/H] on disk
+       Ursa Minor             [Fe/H] -2.23 +- 0.01 (LVD spectroscopic); M* 5.98e+05; M_gas 0.00e+00; eta     59.2; log R_ind 1.78 +- 0.10
+  -- P2b M31 Collins+13: median log R_ind 1.40 +- 0.16 (n = 14 of 14); at yield -0.5 / +0.1: 1.05 / 1.65
+       And V                  [Fe/H] -2.00 +- 0.10 (Collins+13); M* 2.06e+06; M_gas 0.00e+00; eta     34.4; log R_ind 1.55 +- 0.14
+       And VI                 [Fe/H] -1.50 +- 0.10 (Collins+13); M* 2.97e+06; M_gas 0.00e+00; eta     10.2; log R_ind 1.05 +- 0.14
+       And XI                 [Fe/H] -1.80 +- 0.10 (Collins+13); M* 9.84e+04; M_gas 0.00e+00; eta     21.4; log R_ind 1.35 +- 0.14
+       And XVII               [Fe/H] -1.70 +- 0.20 (Collins+13); M* 4.30e+05; M_gas 0.00e+00; eta     16.8; log R_ind 1.25 +- 0.22
+       And XIX                [Fe/H] -1.80 +- 0.30 (Collins+13); M* 1.18e+06; M_gas 0.00e+00; eta     21.4; log R_ind 1.35 +- 0.32
+       And XX                 [Fe/H] -2.20 +- 0.40 (Collins+13); M* 5.66e+04; M_gas 0.00e+00; eta     55.1; log R_ind 1.75 +- 0.41
+       And XXI                [Fe/H] -1.80 +- 0.10 (Collins+13); M* 1.42e+06; M_gas 0.00e+00; eta     21.4; log R_ind 1.35 +- 0.14
+       And XXII               [Fe/H] -1.80 +- 0.60 (Collins+13); M* 6.81e+04; M_gas 0.00e+00; eta     21.4; log R_ind 1.35 +- 0.61
+       And XXIII              [Fe/H] -2.20 +- 0.30 (Collins+13); M* 2.06e+06; M_gas 0.00e+00; eta     55.1; log R_ind 1.75 +- 0.32
+       And XXV                [Fe/H] -1.90 +- 0.10 (Collins+13); M* 1.30e+06; M_gas 0.00e+00; eta     27.1; log R_ind 1.45 +- 0.14
+       And XXVI               [Fe/H] -1.80 +- 0.52 (Collins+13); M* 1.18e+05; M_gas 0.00e+00; eta     21.4; log R_ind 1.35 +- 0.53
+       And XXVII              [Fe/H] -2.10 +- 0.50 (Collins+13); M* 2.47e+05; M_gas 0.00e+00; eta     43.6; log R_ind 1.65 +- 0.51
+       And XXVIII             [Fe/H] -2.10 +- 0.30 (Collins+13); M* 4.30e+05; M_gas 0.00e+00; eta     43.6; log R_ind 1.65 +- 0.32
+       And XXX                [Fe/H] -1.70 +- 0.40 (Collins+13); M* 2.71e+05; M_gas 0.00e+00; eta     16.8; log R_ind 1.25 +- 0.41
+  -- P2c M31 LVD: median log R_ind 1.75 +- 0.24 (n = 29 of 34); at yield -0.5 / +0.1: 1.05 / 1.65
+       Andromeda I            [Fe/H] -1.51 +- 0.02 (LVD spectroscopic); M* 5.93e+06; M_gas 0.00e+00; eta     10.5; log R_ind 1.06 +- 0.10
+       Andromeda II           [Fe/H] -1.47 +- 0.01 (LVD spectroscopic); M* 8.34e+06; M_gas 0.00e+00; eta      9.5; log R_ind 1.02 +- 0.10
+       Andromeda III          [Fe/H] -1.75 +- 0.03 (LVD spectroscopic); M* 1.07e+06; M_gas 0.00e+00; eta     18.9; log R_ind 1.30 +- 0.10
+       Andromeda V            [Fe/H] -1.84 +- 0.01 (LVD spectroscopic); M* 8.97e+05; M_gas 0.00e+00; eta     23.5; log R_ind 1.39 +- 0.10
+       Andromeda VI           [Fe/H] -1.50 +- 0.10 (Collins+13 (fallback)); M* 5.66e+06; M_gas 0.00e+00; eta     10.2; log R_ind 1.05 +- 0.14
+       Andromeda VII          [Fe/H] -1.37 +- 0.01 (LVD spectroscopic); M* 2.21e+07; M_gas 0.00e+00; eta      7.3; log R_ind 0.92 +- 0.10
+       Andromeda IX           [Fe/H] -2.03 +- 0.20 (LVD spectroscopic); M* 4.84e+05; M_gas 0.00e+00; eta     37.0; log R_ind 1.58 +- 0.22
+       Andromeda X            [Fe/H] -2.27 +- 0.03 (LVD spectroscopic); M* 1.42e+05; M_gas 0.00e+00; eta     65.0; log R_ind 1.82 +- 0.10
+       Andromeda XI           [Fe/H] -1.80 +- 0.10 (Collins+13 (fallback)); M* 6.10e+04; M_gas 0.00e+00; eta     21.4; log R_ind 1.35 +- 0.14
+       Andromeda XIII         [Fe/H] -1.70 +- 0.30 (Collins+13 (fallback)); M* 8.73e+04; M_gas 0.00e+00; eta     16.8; log R_ind 1.25 +- 0.32
+       Andromeda XIV          [Fe/H] -2.23 +- 0.01 (LVD spectroscopic); M* 4.89e+05; M_gas 0.00e+00; eta     59.2; log R_ind 1.78 +- 0.10
+       Andromeda XV           [Fe/H] -1.43 +- 0.42 (LVD spectroscopic); M* 3.81e+05; M_gas 0.00e+00; eta      8.5; log R_ind 0.98 +- 0.43
+       Andromeda XVI          [Fe/H] -2.17 +- 0.05 (LVD photometric); M* 1.66e+05; M_gas 0.00e+00; eta     51.4; log R_ind 1.72 +- 0.11
+       Andromeda XVII         [Fe/H] -1.70 +- 0.20 (Collins+13 (fallback)); M* 2.25e+05; M_gas 0.00e+00; eta     16.8; log R_ind 1.25 +- 0.22
+       Andromeda XVIII        [Fe/H] -1.53 +- 0.06 (LVD spectroscopic); M* 7.89e+05; M_gas 0.00e+00; eta     11.0; log R_ind 1.08 +- 0.12
+       Andromeda XIX          [Fe/H] -1.50 +- 0.02 (LVD spectroscopic); M* 1.79e+06; M_gas 0.00e+00; eta     10.2; log R_ind 1.05 +- 0.10
+       Andromeda XX           [Fe/H] -2.20 +- 0.40 (Collins+13 (fallback)); M* 5.93e+04; M_gas 0.00e+00; eta     55.1; log R_ind 1.75 +- 0.41
+       Andromeda XXI          [Fe/H] -1.70 +- 0.10 (LVD spectroscopic); M* 6.44e+05; M_gas 0.00e+00; eta     16.8; log R_ind 1.25 +- 0.14
+       Andromeda XXII         [Fe/H] -1.80 +- 0.60 (Collins+13 (fallback)); M* 6.15e+04; M_gas 0.00e+00; eta     21.4; log R_ind 1.35 +- 0.61
+       Andromeda XXIII        [Fe/H] -2.20 +- 0.30 (Collins+13 (fallback)); M* 1.37e+06; M_gas 0.00e+00; eta     55.1; log R_ind 1.75 +- 0.32
+       Andromeda XXV          [Fe/H] -1.90 +- 0.10 (LVD spectroscopic); M* 7.33e+05; M_gas 0.00e+00; eta     27.1; log R_ind 1.45 +- 0.14
+       Andromeda XXVI         [Fe/H] -1.80 +- 0.52 (Collins+13 (fallback)); M* 4.22e+04; M_gas 0.00e+00; eta     21.4; log R_ind 1.35 +- 0.53
+       Andromeda XXVII        [Fe/H] -2.10 +- 0.50 (Collins+13 (fallback)); M* 2.47e+05; M_gas 0.00e+00; eta     43.6; log R_ind 1.65 +- 0.51
+       Andromeda XXVIII       [Fe/H] -1.84 +- 0.15 (LVD spectroscopic); M* 4.34e+05; M_gas 0.00e+00; eta     23.5; log R_ind 1.39 +- 0.18
+       Andromeda XXIX         [Fe/H] -1.90 +- 0.12 (LVD spectroscopic); M* 3.17e+05; M_gas 0.00e+00; eta     27.1; log R_ind 1.45 +- 0.16
+       Cassiopeia II          [Fe/H] -1.70 +- 0.40 (Collins+13 (fallback)); M* 2.13e+05; M_gas 0.00e+00; eta     16.8; log R_ind 1.25 +- 0.41
+       Cassiopeia III         [Fe/H] -1.70 +- 0.10 (LVD spectroscopic); M* 1.56e+07; M_gas 0.00e+00; eta     16.8; log R_ind 1.25 +- 0.14
+       Lacerta I              [Fe/H] -2.00 +- 0.10 (LVD spectroscopic); M* 5.21e+06; M_gas 0.00e+00; eta     34.4; log R_ind 1.55 +- 0.14
+       LGS 3                  no [Fe/H] on disk
+       M 32                   no [Fe/H] on disk
+       NGC 147                no [Fe/H] on disk
+       NGC 185                no [Fe/H] on disk
+       NGC 205                no [Fe/H] on disk
+       Perseus I              [Fe/H] -2.00 +- 0.20 (LVD spectroscopic); M* 6.04e+05; M_gas 0.00e+00; eta     34.4; log R_ind 1.55 +- 0.22
+  -- P2d LV field: median log R_ind 1.78 +- 0.17 (n = 12 of 13); at yield -0.5 / +0.1: 0.44 / 1.09
+       Antlia B               no [Fe/H] on disk
+       Aquarius               [Fe/H] -1.44 +- 0.08 (LVD spectroscopic); M* 2.64e+06; M_gas 4.61e+06; eta      5.6; log R_ind 0.48 +- 0.14
+       Cetus                  [Fe/H] -1.74 +- 0.06 (LVD spectroscopic); M* 5.12e+06; M_gas 0.00e+00; eta     18.5; log R_ind 1.29 +- 0.12
+       IC 1613                [Fe/H] -1.19 +- 0.01 (LVD spectroscopic); M* 1.91e+08; M_gas 8.20e+07; eta      3.7; log R_ind 0.55 +- 0.11
+       Leo A                  [Fe/H] -1.60 +- 0.03 (LVD spectroscopic); M* 1.19e+07; M_gas 1.46e+07; eta     10.8; log R_ind 0.77 +- 0.11
+       Leo T                  [Fe/H] -1.74 +- 0.04 (LVD spectroscopic); M* 2.66e+05; M_gas 5.29e+05; eta     14.7; log R_ind 0.77 +- 0.12
+       NGC 6822               [Fe/H] -1.05 +- 0.01 (LVD spectroscopic); M* 3.20e+08; M_gas 2.65e+08; eta      1.5; log R_ind 0.26 +- 0.11
+       Pegasus dIrr           [Fe/H] -1.39 +- 0.01 (LVD spectroscopic); M* 1.23e+07; M_gas 7.31e+06; eta      6.5; log R_ind 0.71 +- 0.11
+       Phoenix                [Fe/H] -1.49 +- 0.04 (LVD spectroscopic); M* 1.52e+06; M_gas 1.56e+05; eta      9.7; log R_ind 0.99 +- 0.11
+       Sagittarius dIrr       [Fe/H] -1.85 +- 0.07 (LVD spectroscopic); M* 8.89e+06; M_gas 1.46e+07; eta     20.8; log R_ind 0.95 +- 0.13
+       Tucana                 [Fe/H] -1.58 +- 0.20 (LVD spectroscopic); M* 1.12e+06; M_gas 0.00e+00; eta     12.5; log R_ind 1.13 +- 0.22
+       UGC 4879               [Fe/H] -1.43 +- 0.02 (LVD spectroscopic); M* 1.33e+07; M_gas 1.01e+06; eta      8.4; log R_ind 0.94 +- 0.10
+       WLM                    [Fe/H] -1.28 +- 0.02 (LVD spectroscopic); M* 9.66e+07; M_gas 9.20e+07; eta      4.0; log R_ind 0.48 +- 0.11
+    no estimator on disk: SLUGGS (all routes), X-ray ellipticals, SPARC (and UGC 2487, Di Teodoro, Ogle): R = 1 in (D)
+
+======================================================================================================================
+(C)  THE TESTS: T1 sign, T2 correlation, T3 ratio; decision per footing x profile
+======================================================================================================================
+  -- V1 canonical: decision NOT SUPPORTED
+       sign rows: P1 [HIGH] need large / R_ind large -> ok; P5 [HIGH] need large / R_ind NONE -> X; P5J [HIGH] need large / R_ind NONE -> X; P5S [HIGH] need large / R_ind NONE -> X; P5L [HIGH] need large / R_ind NONE -> X; P6 [HIGH] need large / R_ind NONE -> X; P2b [LOW] need ~1 / R_ind large -> X; P2c [LOW] need ~1 / R_ind large -> X; P2d [LOW] need ~1 / R_ind large -> X; SPARC [LOW] need ~1 / R_ind NONE -> X
+       T1 False | T1' (populations with an R_ind) False | relative order (HIGH R_ind > every LOW) False
+       T2 per-object rho -0.223, p 0.9871 (n 97); within ultra-faints rho -0.291, p 0.9435 (n 30); population rho -0.500, exact p 0.825 -> T2 False
+       T3 log(R_need,0/R_ind) by population: P1 +2.00, P2a +0.73, P2b +1.06, P2c +0.58, P2d -1.78; median +0.73 (std 1.25); per object median +1.06 (std 1.97); fraction of objects with R_need >= R_ind 0.72 -> T3 False
+  -- V1 alt: decision NOT SUPPORTED
+       sign rows: P1 [HIGH] need large / R_ind large -> ok; P5 [HIGH] need large / R_ind NONE -> X; P5J [HIGH] need large / R_ind NONE -> X; P5S [HIGH] need large / R_ind NONE -> X; P5L [HIGH] need large / R_ind NONE -> X; P6 [HIGH] need large / R_ind NONE -> X; P2b [LOW] need ~1 / R_ind large -> X; P2c [LOW] need ~1 / R_ind large -> X; P2d [LOW] need ~1 / R_ind large -> X; SPARC [LOW] need ~1 / R_ind NONE -> X
+       T1 False | T1' (populations with an R_ind) False | relative order (HIGH R_ind > every LOW) False
+       T2 per-object rho -0.230, p 0.9896 (n 97); within ultra-faints rho -0.291, p 0.9435 (n 30); population rho -0.500, exact p 0.825 -> T2 False
+       T3 log(R_need,0/R_ind) by population: P1 +1.99, P2a +0.73, P2b +1.06, P2c +0.62, P2d -1.78; median +0.73 (std 1.25); per object median +1.10 (std 2.02); fraction of objects with R_need >= R_ind 0.70 -> T3 False
+  -- V2 canonical: decision NOT SUPPORTED
+       sign rows: P1 [HIGH] need large / R_ind large -> ok; P5 [HIGH] need large / R_ind NONE -> X; P5J [HIGH] need large / R_ind NONE -> X; P5S [HIGH] need large / R_ind NONE -> X; P5L [HIGH] need large / R_ind NONE -> X; P6 [HIGH] need large / R_ind NONE -> X; P2b [LOW] need ~1 / R_ind large -> X; P2c [LOW] need ~1 / R_ind large -> X; P2d [LOW] need ~1 / R_ind large -> X; SPARC [LOW] need ~1 / R_ind NONE -> X
+       T1 False | T1' (populations with an R_ind) False | relative order (HIGH R_ind > every LOW) False
+       T2 per-object rho -0.205, p 0.9798 (n 97); within ultra-faints rho -0.264, p 0.9208 (n 30); population rho -0.500, exact p 0.825 -> T2 False
+       T3 log(R_need,0/R_ind) by population: P1 +2.07, P2a +0.79, P2b +1.15, P2c +0.71, P2d -1.78; median +0.79 (std 1.28); per object median +1.22 (std 1.71); fraction of objects with R_need >= R_ind 0.72 -> T3 False
+  -- V2 alt: decision NOT SUPPORTED
+       sign rows: P1 [HIGH] need large / R_ind large -> ok; P5 [HIGH] need large / R_ind NONE -> X; P5J [HIGH] need large / R_ind NONE -> X; P5S [HIGH] need large / R_ind NONE -> X; P5L [HIGH] need large / R_ind NONE -> X; P6 [HIGH] need large / R_ind NONE -> X; P2b [LOW] need ~1 / R_ind large -> X; P2c [LOW] need ~1 / R_ind large -> X; P2d [LOW] need ~1 / R_ind large -> X; SPARC [LOW] need ~1 / R_ind NONE -> X
+       T1 False | T1' (populations with an R_ind) False | relative order (HIGH R_ind > every LOW) False
+       T2 per-object rho -0.213, p 0.9835 (n 97); within ultra-faints rho -0.264, p 0.9208 (n 30); population rho -0.500, exact p 0.825 -> T2 False
+       T3 log(R_need,0/R_ind) by population: P1 +2.09, P2a +0.75, P2b +1.14, P2c +0.70, P2d -1.78; median +0.75 (std 1.28); per object median +1.21 (std 1.78); fraction of objects with R_need >= R_ind 0.70 -> T3 False
+    reported, yield bracket ends: V1 canonical y-0.5: T3 median +1.28, NOT SUPPORTED; V1 canonical y+0.1: T3 median +0.68, NOT SUPPORTED; V1 alt y-0.5: T3 median +1.32, NOT SUPPORTED; V1 alt y+0.1: T3 median +0.72, NOT SUPPORTED; V2 canonical y-0.5: T3 median +1.41, NOT SUPPORTED; V2 canonical y+0.1: T3 median +0.81, NOT SUPPORTED; V2 alt y-0.5: T3 median +1.40, NOT SUPPORTED; V2 alt y+0.1: T3 median +0.80, NOT SUPPORTED
+  [FAIL] T1 THE SIGN TEST (V1 canonical, frozen): every labelled population's need class and R_ind class equal its label (a missing R_ind cannot pass)
+         P1: need large, R_ind large [HIGH]; P5: need large, R_ind NONE [HIGH]; P5J: need large, R_ind NONE [HIGH]; P5S: need large, R_ind NONE [HIGH]; P5L: need large, R_ind NONE [HIGH]; P6: need large, R_ind NONE [HIGH]; P2b: need ~1, R_ind large [LOW]; P2c: need ~1, R_ind large [LOW]; P2d: need ~1, R_ind large [LOW]; SPARC: need ~1, R_ind NONE [LOW] | T1' False | other combos T1: [False, False, False, False]
+  [FAIL] T2 THE CORRELATION (V1 canonical, frozen): per-object Spearman log R_need,0 vs log R_ind over the satellites, one-sided permutation p < 0.01, AND population rho > 0
+         rho -0.223, p 0.9871 (n 97); population rho -0.500; other combos p: V1 canonical 0.9871, V1 alt 0.9896, V2 canonical 0.9798, V2 alt 0.9835
+  [FAIL] T3 THE RATIO (V1 canonical, frozen): |median over populations of log(R_need,0 / R_ind)| <= 0.3 dex
+         median +0.73 dex (std 1.25); ultra-faints +2.00; other combos: V1 canonical +0.73, V1 alt +0.73, V2 canonical +0.79, V2 alt +0.75
+  [PASS] (reported) DECISION (reported; frozen rule, all four footing x profile combinations)
+         NOT SUPPORTED
+  [PASS] C4 CONTROL (synthetic): R_need,syn = R_ind x 10^N(0,0.15) gives T2 pass (p < 0.01) and T3 pass; the same values shuffled across objects give T2 FAIL
+         synthetic: rho +0.954, p 0.0001, pop rho +1.00, T3 median -0.056; shuffled: rho -0.014, p 0.550
+
+======================================================================================================================
+C1 / C2  CONTROLS: R = 1 reproduces CFG313; R = R_need,0 reproduces the data by construction
+======================================================================================================================
+  [PASS] C1 CONTROL: at R = 1 every population statistic and z (V1, V2, both footings), SPARC A3 fractions and rms reproduce CFG313's committed native table to 1e-9
+         62 comparisons; worst P1 V1 canonical: 0.0e+00
+  [FAIL] C2 CONTROL (identity): re-run at exactly R = R_need,0 (V1 canonical), every population with 1 < R_need,0 < 1e6 has |statistic| < 0.005 dex
+         P1 log R 3.65: -0.0000; P2a log R 2.27: +0.0060; P2b log R 2.46: -0.0001; P2c log R 2.33: -0.0012; P4a log R 1.10: -0.0001; P4b log R 0.98: +0.0015; P5 log R 1.24: -0.0000; P5J log R 1.41: -0.0001; P5S log R 1.24: +0.0000; P5L log R 1.32: -0.0001; P6 log R 1.60: +0.0001; P7 log R 1.28: -0.0001 | worst P2a +0.0060
+
+======================================================================================================================
+(D)  RE-SCORE with M_c = R_ind x M_b,now / f_b (satellites; R = 1 where no estimator exists), V1/V2, both footings, three yields
+======================================================================================================================
+    key collisions (two objects with the same committed M*): {-0.2: [('Triangulum II', 'ufd'), ('Tucana III', 'ufd'), ('And XXIII', 'col'), ('And XXVIII', 'col'), ('Andromeda XXVII', 'm31'), ('Perseus I', 'm31')], -0.5: [('Triangulum II', 'ufd'), ('Tucana III', 'ufd'), ('And XXIII', 'col'), ('And XXVIII', 'col'), ('Perseus I', 'm31')], 0.1: [('Triangulum II', 'ufd'), ('Tucana III', 'ufd'), ('And XXIII', 'col'), ('And XXVIII', 'col'), ('Perseus I', 'm31')]}
+    tile                                           R = 1 (CFG313)                   R_ind V1                   R_ind V2   gate R=1 / V1 / V2   [yield -0.5 | +0.1 V1]
+    P1 MW ultra-faints                       +0.325 (+3.77|+3.55)       +0.325 (+3.46|+3.52)       +0.325 (+3.77|+3.55)   F / F / F   [+0.325 (+3.77|+3.55) | +0.325 (+2.18|+2.25)]
+    P2a MW classical                         +0.027 (+0.32|+0.09)       +0.027 (+0.31|+0.09)       +0.027 (+0.31|+0.09)   P / P / P   [+0.027 (+0.32|+0.09) | +0.027 (+0.30|+0.09)]
+    P2b M31 Collins+13                       +0.064 (+0.78|+0.55)       +0.064 (+0.76|+0.54)       +0.064 (+0.77|+0.54)   P / P / P   [+0.064 (+0.78|+0.55) | +0.064 (+0.77|+0.54)]
+    P2c M31 LVD                              +0.044 (+0.60|+0.42)       +0.044 (+0.57|+0.41)       +0.044 (+0.59|+0.39)   P / P / P   [+0.044 (+0.60|+0.42) | +0.044 (+0.60|+0.42)]
+    P2d LV field dwarfs                      -0.044 (-0.60|-0.85)       -0.044 (-0.54|-0.78)       -0.044 (-0.56|-0.80)   P / P / P   [-0.044 (-0.60|-0.85) | -0.044 (-0.60|-0.85)]
+    P4a UGC 2487                             +0.064 (+0.90|+0.68)       +0.064 (+0.90|+0.68)       +0.064 (+0.90|+0.68)   P / P / P   [+0.064 (+0.90|+0.68) | +0.064 (+0.90|+0.68)]
+    P4b Di Teodoro four S0                   +0.004 (+0.05|-0.17)       +0.004 (+0.05|-0.17)       +0.004 (+0.05|-0.17)   P / P / P   [+0.004 (+0.05|-0.17) | +0.004 (+0.05|-0.17)]
+    P4b' Di Teodoro all 15 (reported)        -0.028 (-0.43|-0.69)       -0.028 (-0.43|-0.69)       -0.028 (-0.43|-0.69)   - / - / -   [-0.028 (-0.43|-0.69) | -0.028 (-0.43|-0.69)]
+    P5 SLUGGS h50 masses                     +0.080 (+3.28|+2.67)       +0.080 (+3.28|+2.67)       +0.080 (+3.28|+2.67)   F / F / F   [+0.080 (+3.28|+2.67) | +0.080 (+3.28|+2.67)]
+    P5J SLUGGS JAM gamma 3                   +0.097 (+3.99|+3.65)       +0.097 (+3.99|+3.65)       +0.097 (+3.99|+3.65)   F / F / F   [+0.097 (+3.99|+3.65) | +0.097 (+3.99|+3.65)]
+    P5S SLUGGS SLUGGS masses                 +0.077 (+2.75|+2.23)       +0.077 (+2.75|+2.23)       +0.077 (+2.75|+2.23)   F / F / F   [+0.077 (+2.75|+2.23) | +0.077 (+2.75|+2.23)]
+    P5L SLUGGS JAM literature gamma          +0.082 (+3.60|+3.22)       +0.082 (+3.60|+3.22)       +0.082 (+3.60|+3.22)   F / F / F   [+0.082 (+3.60|+3.22) | +0.082 (+3.60|+3.22)]
+    P6 X-ray ellipticals                     +0.280 (+1.70|+1.58)       +0.280 (+1.70|+1.58)       +0.280 (+1.70|+1.58)   P / P / P   [+0.280 (+1.70|+1.58) | +0.280 (+1.70|+1.58)]
+    P7 Ogle super spirals (reported)         +0.107 (+1.42|+1.25)       +0.107 (+1.42|+1.25)       +0.107 (+1.42|+1.25)   - / - / -   [+0.107 (+1.42|+1.25) | +0.107 (+1.42|+1.25)]
+    SPARC control V1: clauses hold True (R = 1 by construction: no estimator)
+    SPARC control V2: clauses hold True (R = 1 by construction: no estimator)
+  [PASS] (reported) D1 (reported) tile moves under R_ind against R = 1 (CFG313 native)
+         moves: none; largest statistic shift 2.55e-03 dex (nominal yield), 3.05e-04 (yield +0.1)
+  [PASS] PF1 [pre-flight prediction; can fail]: every satellite population's median R_ind lies below the R at which its statistic first moves (V1 canonical), so the (D) re-score moves no satellite tile
+         P1: log R_ind 1.65 vs onset 2.65; P2a: log R_ind 1.53 vs onset 2.20; P2b: log R_ind 1.40 vs onset 2.30; P2c: log R_ind 1.75 vs onset 2.15; P2d: log R_ind 1.78 vs onset 2.10; objects whose own R_ind exceeds their analytic R_switch: 10; satellite tile moves (V1/V2 nominal): []
+
+======================================================================================================================
+MUTATE CHECK: with R_ind shuffled across objects, T2 must fail and T1' or T1 must fail
+======================================================================================================================
+  [PASS] MUTATE CHECK (V1 canonical): T2 FAILS and (T1' or T1) FAILS under the shuffle
+         T2 False (p 0.987); T1 False; T1' False
+
+  7/11 checks pass; load-bearing failures: 4   (363 s)

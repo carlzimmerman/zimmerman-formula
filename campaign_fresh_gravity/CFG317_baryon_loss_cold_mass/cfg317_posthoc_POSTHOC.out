@@ -1,0 +1,49 @@
+CFG317 POST HOC (labelled; written after the main run; no frozen verdict depends on it).
+
+Why: the frozen T2 (per-object Spearman of log R_need,0 against log R_ind over the satellites) PASSED (rho +0.63, p 1e-4) while T1 and T3 failed.
+A pass is verified as hard as a fail.  Both quantities are expected to fall with baryonic mass for reasons unrelated to baryon loss:
+  - R_need,0 is either 0 (no extra mass needed) or at least the switch-on factor R_switch = M_ph,edge / [(1 - f_b) M_b / f_b], and R_switch grows
+    towards low mass (the law's own phantom per unit baryon grows);
+  - R_ind follows the dwarf mass-metallicity relation.
+So T2 could be a common-mass correlation.  Diagnostics (V1 canonical, the frozen primary; the other three combinations reported):
+  PH1  Spearman of log R_need,0 and of log R_ind with log M_b (M_b = M* + 1.33 M_HI, the estimator's own inventory).
+  PH2  partial Spearman of log R_need,0 and log R_ind controlling for log M_b (ranks residualised linearly on the rank of M_b), permutation p.
+  PH3  T2 restricted to objects with R_need,0 > 1 (a positive offset at R = 1).
+  PH4  a mass-only proxy in place of R_ind (-log M_b): its Spearman with log R_need,0.  If it matches T2's rho, T2 carries no information beyond mass.
+  PH5  within-population Spearman (each satellite sample on its own).
+  PH6  C2's frozen identity control failed on P2a (+0.0060 > 0.005 at the linearly interpolated R_need,0); a bisection on the harness locates the
+       zero exactly and reports how far the interpolation was off.
+
+  -- V1 canonical: T2 rho +0.629 (p 0.0001, n 97)
+     PH1 rho(log R_need,0, log M_b) -0.742; rho(log R_ind, log M_b) -0.842
+     PH2 partial rho controlling for log M_b +0.011, one-sided p 0.4507
+     PH3 objects with R_need,0 > 1 only: rho +0.621, p 0.0001 (n 71)
+     PH4 mass-only proxy (-log M_b) against log R_need,0: rho +0.742
+     PH5 within-population rho: ufd +0.25 (n 30); cls +0.74 (n 12); col +0.17 (n 14); m31 +0.10 (n 29); fld +0.62 (n 12)
+
+  -- V1 alt: T2 rho +0.627 (p 0.0001, n 97)
+     PH1 rho(log R_need,0, log M_b) -0.751; rho(log R_ind, log M_b) -0.842
+     PH2 partial rho controlling for log M_b -0.016, one-sided p 0.5603
+     PH3 objects with R_need,0 > 1 only: rho +0.625, p 0.0001 (n 68)
+     PH4 mass-only proxy (-log M_b) against log R_need,0: rho +0.751
+     PH5 within-population rho: ufd +0.25 (n 30); cls +0.75 (n 12); col +0.12 (n 14); m31 +0.12 (n 29); fld +0.62 (n 12)
+
+  -- V2 canonical: T2 rho +0.677 (p 0.0001, n 97)
+     PH1 rho(log R_need,0, log M_b) -0.776; rho(log R_ind, log M_b) -0.842
+     PH2 partial rho controlling for log M_b +0.067, one-sided p 0.2551
+     PH3 objects with R_need,0 > 1 only: rho +0.717, p 0.0001 (n 71)
+     PH4 mass-only proxy (-log M_b) against log R_need,0: rho +0.776
+     PH5 within-population rho: ufd +0.25 (n 30); cls +0.74 (n 12); col +0.21 (n 14); m31 +0.08 (n 29); fld +0.62 (n 12)
+
+  -- V2 alt: T2 rho +0.672 (p 0.0001, n 97)
+     PH1 rho(log R_need,0, log M_b) -0.783; rho(log R_ind, log M_b) -0.842
+     PH2 partial rho controlling for log M_b +0.037, one-sided p 0.3578
+     PH3 objects with R_need,0 > 1 only: rho +0.725, p 0.0001 (n 68)
+     PH4 mass-only proxy (-log M_b) against log R_need,0: rho +0.783
+     PH5 within-population rho: ufd +0.25 (n 30); cls +0.72 (n 12); col +0.14 (n 14); m31 +0.11 (n 29); fld +0.62 (n 12)
+  [PASS] (reported) PH (reported) is T2's pass more than a common-mass correlation? (V1 canonical)
+         T2 rho +0.629; mass-only proxy rho +0.742; partial rho at fixed mass +0.011 (p 0.4507); positive-offset objects only +0.621 (p 0.0001)
+  [PASS] (reported) PH6 (reported) P2a's zero crossing by bisection (V1 canonical) against the frozen linear interpolation
+         interpolated log R_need,0 2.2654; bisection 2.2842 (bracket statistic +0.0160 / -0.0373); difference +0.0188 dex -- negligible against T3's 0.3 dex and P2a is unlabelled
+
+  2/2 checks pass; load-bearing failures: 0   (54 s)
