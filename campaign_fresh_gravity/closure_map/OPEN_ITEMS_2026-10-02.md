@@ -44,3 +44,8 @@ The owner said (2026-10-02): **"consolidate everything into this chat please"**.
 - **DONE:** MNRAS v3.1 is committed and tagged `mnras-v3.1` (51413cc1b) with both owner decisions: PAPER6 dropped; AI disclosure names Claude, OpenAI, DeepSeek, GLM, Qwen and Gemini.
 - **Running:** CFG301 (catalogue a₀ + direct BTFR) and CFG302 (raw cube widths).
 - **Still needs the owner:** a second referee pass on v3.1 before submission (recommended); optionally run `bash reproduce_all.sh` personally so the "author ran the scripts" wording can be restored.
+
+## Update 2026-10-03
+- **Owner approved (in this chat):** the DESI DR1 lensing repo, the rest of the KiDS shear catalogue (~10.6 GB), the DESI BGS catalogue (~5.2 GB) and the CIGALE masses (~7.3 GB). CFG315 and CFG316 are running.
+- **Needs the owner:** an HSC account for the HSC Y3 shapes; a decision on the DES Y3 shapes once CFG316 reports their size.
+- **Needs the owner:** MNRAS v3.3 submission steps; PAPER40, PAPER39 and PAPER35 deposits.
