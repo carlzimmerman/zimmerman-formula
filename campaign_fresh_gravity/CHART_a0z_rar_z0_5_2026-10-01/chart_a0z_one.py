@@ -270,6 +270,23 @@ mw = M279["MIGHTEE-HI paper: whole sample, z-averaged"]
 ax.plot([f(mw, "z")] * 2, [f(mw, "stat95_lo") * U, f(mw, "stat95_hi") * U], color=MGC, lw=1.2, zorder=6)
 ax.scatter([f(mw, "z")], [f(mw, "a0_1e-10_m_s2")], marker="o", s=60, color=MGC, edgecolor="white", lw=1.0, zorder=7)
 ax.text(0.03, 7.1, "● MIGHTEE-HI (published fit)", color=MGC, fontsize=9.5, ha="left")
+# CFG301 (6b10c01c0): OUR framework-native chain on the MIGHTEE-HI catalogue (47 deep discs, CALIBRATED); the bar is the
+# bootstrap 68 %, the box the recipe half-width; the hollow marker is the same chain if every baryon mass were 0.30 dex lower,
+# which is what CFG302's cube fluxes (a89ba33b9, 0.50 of the catalogue, cause open) would imply -- a stated systematic.
+J301 = json.load(open(os.path.join(CFG, "CFG301_mightee_hi_catalogue_width_chain", "cfg301_stageB_results.json")))["numbers"]["results"]
+p301 = J301["pooled"]; z301 = float(np.median([J301[w]["z_med"] for w in ("W1", "W2", "W3")]))
+s301, q301, h301 = p301["s"], p301["q"], p301["recipe_half"]
+check("CFG301 MIGHTEE-HI (our chain): pooled s* 1.117 (a0 1.046e-10), 47 deep discs, recipe half-width 0.143 dex (6b10c01c0)",
+      abs(s301 - 1.1171) < 1e-3 and p301["n"] == 47 and abs(h301 - 0.1434) < 1e-3)
+check("CFG301 flux-systematic row: baryons -0.30 dex -> s* 2.44 (CFG302's cube fluxes, a89ba33b9)", abs(p301["bands"]["-0.30"] - 2.443) < 1e-2)
+MKC = "#0b7a4b"
+ax.add_patch(plt.Rectangle((z301 - 0.035, s301 * 10 ** (-h301) * U), 0.07, s301 * (10 ** h301 - 10 ** (-h301)) * U, color=MKC, alpha=0.18, lw=0, zorder=6))
+ax.plot([z301] * 2, [10 ** q301[1] * U, 10 ** q301[2] * U], color=MKC, lw=2.2, zorder=7)
+ax.scatter([z301], [s301 * U], marker="D", s=70, color=MKC, edgecolor="white", lw=1.0, zorder=8)
+ax.scatter([z301], [p301["bands"]["-0.30"] * U], marker="D", s=55, facecolor="none", edgecolor=MKC, lw=1.4, zorder=8)
+ax.plot([z301] * 2, [s301 * U * 1.07, p301["bands"]["-0.30"] * U * 0.94], color=MKC, lw=0.9, ls=(0, (2, 2)), zorder=7)
+ax.text(0.03, 5.75, "◆ MeerKAT (our chain)", color=MKC, fontsize=9.5, ha="left", fontweight="bold")
+ax.text(0.03, 4.85, "◇ if cube HI fluxes right", color=MKC, fontsize=9.0, ha="left")
 ax.set_ylabel(r"$a_0$ implied by the rotation   [$10^{-10}$ m s$^{-2}$]", fontsize=12)
 ax.set_yticks([0.3, 0.5, 1, 2, 3, 5, 10, 20]); ax.set_yticklabels(["0.3", "0.5", "1", "2", "3", "5", "10", "20"])
 ax.grid(True, which="major", axis="y", color="#e4e7eb", lw=0.7, zorder=0)
