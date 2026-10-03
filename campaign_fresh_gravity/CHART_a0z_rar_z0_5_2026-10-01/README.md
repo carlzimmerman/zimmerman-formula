@@ -81,3 +81,4 @@ All are near-Newtonian (y 18–90), so these are statements of baryon excess, no
 - **The hollow green diamond** (2.29e-10, dotted link) is the same chain with every baryon mass 0.30 dex lower, which is what CFG302's raw-cube fluxes would imply (0.50 of the catalogue; cause open). It is a stated systematic, not a second measurement.
 - **What is not drawn:** the per-window points (W1–W3, 15–16 galaxies each). The z lever across the sample is 0.009 dex, so the point is a local level, not a test of a₀(z).
 - **The orange dot** (MIGHTEE-HI published fit, CFG279) is the authors' own fit level and stays as it was.
+- **Update after CFG304 (34e40dac6):** the hollow green diamond now marks the Arecibo (ALFALFA) single-dish flux scale applied to the gas only: a₀ = 7.0e-11 (bar 6.1–7.6e-11), drawn at z + 0.05. The single dish sees more HI than the catalogue (−0.195 dex), so the earlier cube-scale marker (2.29e-10) is ruled out and is no longer drawn.

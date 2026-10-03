@@ -42,8 +42,8 @@ The width gives V and the flux gives the gas mass. Nothing in that chain comes f
 |---|---|
 | **CFG301** | The survey team's catalogue, built from these cubes: 47 clean galaxies, all deep in the MOND regime, 37 of them gas-dominated. Our chain passes all four calibration checks and gives **a₀ = 1.05 × 10⁻¹⁰ m/s²**. That sits between the framework's two footings (0.94 and 1.13 × 10⁻¹⁰) and within 0.06 dex of SPARC. |
 | **CFG302** | We re-measured the widths ourselves from the raw cubes. They match the catalogue to about 5%, so the speed side is solid. |
-| **open** | The raw cubes hold only about half the catalogue's hydrogen flux. Halve the gas mass and the implied a₀ roughly doubles, to 2.3 × 10⁻¹⁰. The noise in these cubes looks filtered in a way that would eat line flux, so the catalogue is probably right, but that is not yet proven. |
-| **CFG304** | The tie-breaker, running now: 23 of these galaxies were also measured by Arecibo's ALFALFA survey. Arecibo is a single dish and can't lose flux that way, so whichever flux scale matches it wins. |
+| **flux** | The raw cubes hold only about half the catalogue's hydrogen flux. The noise in these cubes looks filtered in a way that eats line flux. |
+| **CFG304** | The tie-breaker: 23 of these galaxies were also measured by Arecibo's ALFALFA survey, a single dish that can't lose flux that way. Arecibo sees **more** hydrogen than both: the catalogue holds 0.64 of Arecibo's flux and the raw cubes 0.49, with identical line widths. So the cube scale is ruled out. If Arecibo's scale applies to all 47 galaxies, the gas is heavier and a₀ comes out **lower**, about 0.7 × 10⁻¹⁰. The honest range is 0.6–1.05 × 10⁻¹⁰: below or at your canonical value, never above the alt one. |
 
 ## What the cubes can't do
 
