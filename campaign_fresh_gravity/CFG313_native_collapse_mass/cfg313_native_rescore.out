@@ -1,0 +1,71 @@
+CFG313 -- B's cold-mass rule with a FRAMEWORK-NATIVE collapse mass, M_c = M_b / f_b, re-scored on every population the rule has met.
+
+Criteria frozen and committed before any score: campaign_fresh_gravity/CFG313_native_collapse_mass/FROZEN_CRITERIA.md.
+
+  native mass  M_c = M_b / f_b, f_b = Omega_b/Omega_m = 0.02237/(0.02237 + 0.1200) (CFG35's FB); M_b = the lane's own baryon mass, the same one fed to
+               its edge phantom.  No feedback, no abundance matching.
+  profiles     V1 = h48's Dutton-Maccio NFW (200c) as committed (its c(M) is LCDM-derived); V2 = a singular isothermal truncated at the law's own
+               turnaround radius, M_cold(<r) = M_c min(r / r_ta, 1), r_ta = CFG7's r_ta_law (= r_e / 0.40), no parameter.
+  machinery    CFG45 (satellites, SPARC, UGC 2487, Di Teodoro, SLUGGS h50, X-ray, Ogle), CFG58 (d2) (LV field dwarfs, CFG45's estimator),
+               CFG55 (SLUGGS JAM), CFG111 (SLUGGS literature gamma), CFG39 (SPARC rms) -- each exec'd read-only with its own MUTATE off; where a
+               collapse mass enters, the call site is replaced by a hook whose 'committed' mode returns the lane's own function (C1 proves it).
+CONTROLS  C1 committed masses reproduce the committed numbers; C2 M_c -> 0 gives the law; C3 the native hook is M_b/f_b and V2 is the declared shape.
+CHECKS    H1 [prediction] f_ex = 0 everywhere under the native mass: every native rule row equals the law row (V1 and V2); H2/H3 reported tables.
+MUTATE=1: f_b x 0.5 wherever f_b enters the rule (native V1) -- the check 'every population shifts in the predicted direction' is predicted to FAIL.
+
+======================================================================================================================
+C1  CONTROL: with the committed Moster / Mandelbaum masses and NFW the hooked harness reproduces the committed numbers
+======================================================================================================================
+  [PASS] C1 CONTROL: committed masses reproduce CFG45 (UF/CL/UGC/DT23/SLUGGS/X-ray/Ogle/SPARC, 1e-6), CFG58 field dwarfs (1e-6), CFG55 and CFG111 means (1e-9), CFG39 rms (1e-9)
+         130 comparisons; worst ratio to tolerance 8.88e-10 (CFG58 field alt|S z: 8.9e-16); over tolerance: []
+
+======================================================================================================================
+C2  CONTROL: with M_c -> 0 every rule row equals the law row
+======================================================================================================================
+  [PASS] C2 CONTROL: M_c = 1e-30 Msun: every rule row equals the law row (offset and z) to 1e-9, both footings
+         31 comparisons; worst P1 canonical: 0.0e+00
+
+======================================================================================================================
+C3  CONTROL: the native hook returns M_b / f_b; V2 has the declared shape
+======================================================================================================================
+  [PASS] C3 CONTROL: over every native rule evaluation M_c f_b / M_b = 1 (1e-12); V2: M(<r_ta) = M_c, M(<r_ta/2) = M_c/2, flat beyond (1e-12)
+         13852 evaluations, 898 distinct M_b (1.79e+02-3.16e+13 Msun); max |ratio - 1| 2.2e-16; V2 max deviation 0.0e+00; f_b = 0.157126
+  [PASS] (reported) R0 (reported) the inertness margin k* = min M_ph,edge / [(1 - f_b) M_b / f_b] over every scored object's M_b (all variants; SLUGGS solver trial masses excluded) and both footings
+         721 M_b values (1.79e+02-9.50e+11); k* = 7.05 at M_b = 9.50e+11 (canonical); the native leftover switches on only if the cold share were 7.0x larger
+
+======================================================================================================================
+H1  THE PRE-FLIGHT PREDICTION: under the native mass f_ex = 0 everywhere, so every native rule row equals the law
+======================================================================================================================
+  [PASS] H1 [native_V1] every native rule row equals the law row to 1e-9 (f_ex = 0 for every object)
+         31 comparisons; worst P1 canonical: 0.0e+00; SPARC galaxies touched: []
+  [PASS] H1 [native_V2] every native rule row equals the law row to 1e-9 (f_ex = 0 for every object)
+         31 comparisons; worst P1 canonical: 0.0e+00; SPARC galaxies touched: []
+
+======================================================================================================================
+THE TABLE: offset [dex] and z, canonical | alt -- law alone (L), committed rule (Moster/Mandelbaum + NFW), native rule V1 (NFW), V2 (isothermal)
+======================================================================================================================
+    population                                            law alone           committed rule           native rule V1           native rule V2  gate
+    P1 MW ultra-faints (KM median)             +0.325 (+3.77|+3.55)     -0.059 (-0.41|-0.41)     +0.325 (+3.77|+3.55)     +0.325 (+3.77|+3.55)  A1: law F / comm P / V1 F / V2 F
+    P2a MW classical dSph                      +0.027 (+0.32|+0.09)     -0.118 (-1.78|-1.90)     +0.027 (+0.32|+0.09)     +0.027 (+0.32|+0.09)  A2: law P / comm P / V1 P / V2 P
+    P2b M31 Collins+13                         +0.064 (+0.78|+0.55)     -0.024 (-0.22|-0.15)     +0.064 (+0.78|+0.55)     +0.064 (+0.78|+0.55)  A2: law P / comm P / V1 P / V2 P
+    P2c M31 LVD                                +0.044 (+0.60|+0.42)     -0.107 (-2.67|-2.66)     +0.044 (+0.60|+0.42)     +0.044 (+0.60|+0.42)  A2: law P / comm F / V1 P / V2 P
+    P2d LV field dwarfs (CFG58 d2)             -0.044 (-0.60|-0.85)     -0.105 (-3.47|-2.70)     -0.044 (-0.60|-0.85)     -0.044 (-0.60|-0.85)  |z|<2: law P / comm F / V1 P / V2 P
+    P4a UGC 2487                               +0.064 (+0.90|+0.68)     -0.075 (-1.05|-1.02)     +0.064 (+0.90|+0.68)     +0.064 (+0.90|+0.68)  A6: law P / comm P / V1 P / V2 P
+    P4b Di Teodoro four S0/S0a                 +0.004 (+0.05|-0.17)     -0.105 (-0.80|-0.75)     +0.004 (+0.05|-0.17)     +0.004 (+0.05|-0.17)  A7 (canonical): law P / comm P / V1 P / V2 P
+    P4b' Di Teodoro all 15                     -0.028 (-0.43|-0.69)     -0.057 (-0.71|-0.85)     -0.028 (-0.43|-0.69)     -0.028 (-0.43|-0.69)  H2a (reported): law P / comm P / V1 P / V2 P
+    P5 SLUGGS h50 masses (19)                  +0.080 (+3.28|+2.67)     +0.007 (+0.39|+0.10)     +0.080 (+3.28|+2.67)     +0.080 (+3.28|+2.67)  A4: law F / comm P / V1 F / V2 F
+    P5J SLUGGS JAM, gamma 3 (CFG55)            +0.097 (+3.99|+3.65)     +0.046 (+2.58|+2.60)     +0.097 (+3.99|+3.65)     +0.097 (+3.99|+3.65)  CFG55 H2: law F / comm F / V1 F / V2 F
+    P5S SLUGGS SLUGGS masses (16)              +0.077 (+2.75|+2.23)     +0.007 (+0.36|+0.12)     +0.077 (+2.75|+2.23)     +0.077 (+2.75|+2.23)  CFG55 R1: law F / comm P / V1 F / V2 F
+    P5L SLUGGS JAM, literature gamma (CFG111)     +0.082 (+3.60|+3.22)     +0.028 (+1.55|+1.64)     +0.082 (+3.60|+3.22)     +0.082 (+3.60|+3.22)  CFG111 H2: law F / comm P / V1 F / V2 F
+    P6 X-ray ellipticals                       +0.280 (+1.70|+1.58)     +0.125 (+1.04|+1.03)     +0.280 (+1.70|+1.58)     +0.280 (+1.70|+1.58)  A5: law P / comm P / V1 P / V2 P
+    P7 Ogle super spirals                      +0.107 (+1.42|+1.25)     +0.107 (+1.42|+1.25)     +0.107 (+1.42|+1.25)     +0.107 (+1.42|+1.25)  reported: law P / comm P / V1 P / V2 P
+    P3 SPARC dwarfs, d log v < 0.03 (A3)   law 100% | committed 100% (max 0.000) | V1 100% (max 0.000) | V2 100% (max 0.000)
+    P3 SPARC log M* >= 10, d log v < 0.03 (A3) law 100% | committed 98% (max 0.139) | V1 100% (max 0.000) | V2 100% (max 0.000)
+    P8 SPARC rms (CFG39, canonical)        law 0.1003 | committed 0.1012 (+0.0009) | V1 0.1003 (+0.0000) | V2 0.1003 (+0.0000)
+    reported: P1 with the committed floor VALUES (1e8..1e10, not native) in the error: z +1.93|+1.90 (KM median +0.325 +- 0.168)
+  [PASS] (reported) H2 (reported) moves against the committed rule (gated rows)
+         V1: P1 MW ultra-faints (KM median): PASS -> FAIL; P2c M31 LVD: FAIL -> PASS; P2d LV field dwarfs (CFG58 d2): FAIL -> PASS; P5 SLUGGS h50 masses (19): PASS -> FAIL; P5S SLUGGS SLUGGS masses (16): PASS -> FAIL; P5L SLUGGS JAM, literature gamma (CFG111): PASS -> FAIL || V2: P1 MW ultra-faints (KM median): PASS -> FAIL; P2c M31 LVD: FAIL -> PASS; P2d LV field dwarfs (CFG58 d2): FAIL -> PASS; P5 SLUGGS h50 masses (19): PASS -> FAIL; P5S SLUGGS SLUGGS masses (16): PASS -> FAIL; P5L SLUGGS JAM, literature gamma (CFG111): PASS -> FAIL
+  [PASS] (reported) H3 (reported) gated rows passed (P3 and P8 separately: all pass under every column)
+         law: 7/12 (P2a, P2b, P2c, P2d, P4a, P4b, P6); committed: 9/12 (P1, P2a, P2b, P4a, P4b, P5, P5S, P5L, P6); V1: 7/12 (P2a, P2b, P2c, P2d, P4a, P4b, P6); V2: 7/12 (P2a, P2b, P2c, P2d, P4a, P4b, P6)
+
+  8/8 checks pass; load-bearing failures: 0   (10 s)

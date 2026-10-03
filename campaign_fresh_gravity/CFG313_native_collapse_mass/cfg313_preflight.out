@@ -1,0 +1,15 @@
+CFG313 PRE-FLIGHT -- reproduces the hand pre-flight of FROZEN_CRITERIA.md section 7 from the committed functions (no population is scored):
+M_c(native) = M_* / f_b against h48's Moster halo_mass and CFG36's Mandelbaum M_200c, and the law's edge phantom per unit baryon mass against the
+native cold share (Omega_c/Omega_b) = 5.364 (f_ex > 0 needs M_ph,edge / M_b < 5.364).
+P1  CONTROL  f_b = 0.02237/(0.02237 + 0.1200) as CFG35's FB.
+P2  the frozen ratios (two significant figures) reproduced.
+P3  f_ex(native) = 0 at every pre-flight mass, both footings; f_ex(Moster) > 0 for the ultra-faint and classical masses (the committed rule bites there).
+MUTATE=1: f_b x 0.5 -- P3 must still hold (the pre-flight's MUTATE prediction); P2 fails by design (the ratios double).
+  [PASS] P1 CONTROL: f_b = 0.02237 / (0.02237 + 0.1200) (CFG35's FB)
+         f_b = 0.157126; (1 - f_b)/f_b = 5.3643
+  [PASS] P2 the frozen native/Moster and native/Mandelbaum ratios reproduced (two significant figures)
+         1.0e+03: 6.4e-06; 1.0e+04: 6.4e-05; 1.0e+06: 0.0012; 1.0e+07: 0.0046; 1.0e+08: 0.017; 5.0e+10: 0.16; 3.2e+11: 0.01; 5.0e+10 blue: 0.32; 5.0e+10 red: 0.14; 3.2e+11 red: 0.039; max relative deviation 0
+  [PASS] P3 f_ex(native) = 0 at every pre-flight mass, both footings; f_ex(Moster) > 0 at M_* = 1e3-1e7
+         1e+03: M_ph,edge/M_b 6708; 1e+04: M_ph,edge/M_b 3772; 1e+06: M_ph,edge/M_b 1193; 1e+07: M_ph,edge/M_b 670; 1e+08: M_ph,edge/M_b 377; 1e+10: M_ph,edge/M_b 119; 5e+10: M_ph,edge/M_b 79; 3e+11: M_ph,edge/M_b 50; native cold share 5.36 M_b; max f_ex(native) 0.000; f_ex(Moster) at 1e3-1e7 0.34-0.99
+
+  3/3 checks pass; load-bearing failures: 0   (3 s)
