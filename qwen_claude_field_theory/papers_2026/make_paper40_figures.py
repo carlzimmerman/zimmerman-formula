@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-PAPER40 v1.1 figures (a width-chain estimate of the MOND acceleration scale from MIGHTEE-HI COSMOS).
+PAPER40 v1.2 figures (a width-chain estimate of the MOND acceleration scale from MIGHTEE-HI COSMOS).
 
 v1.1 change: the catalogue W50 are REST-FRAME (CFG309, criteria ec54de4ac, results 53f8fa937, confirming referee CFG306's C1), so the
 primary chain reads W50 without the (1+z) division (frame exponent k = 0).  CFG301's committed k = 1 numbers are kept as a disclosed variant.
@@ -28,7 +28,9 @@ If any reproduction fails the script exits 1 and writes nothing.
 POST HOC diagnostic rows, labelled as such in the paper (not frozen; all at k = 0 unless labelled): the flux scale (gas alone, R following
 the size relation; all baryons at fixed R), the inclination thickness q0, MIGHTEE's own size relation, the kernel, delta = 5 km/s, molecular
 gas, the SNR_3D threshold, per-galaxy residual correlations and a joint fit in z and log M_HI, the BTFR slope, and the join of the 47 discs
-with CFG302's cube table.  kappa = 1/2 is FITTED.  No verdict words.
+with CFG302's cube table.  v1.2 (CFG310): the statistical error two ways (the committed bootstrap, reproduced exactly, and the
+standard error of a median from the per-galaxy spread), every footing statement on the H0 = 70 and 67.4 distances, and the single-dish
+range with CFG304's frozen code-1 reading as its low end.  kappa = 1/2 is FITTED.  No verdict words.
 
 Usage:  python3 make_paper40_figures.py           (writes the two PDFs and the JSON next to this file)
         python3 make_paper40_figures.py --check   (reproduction gates only; writes nothing)
@@ -259,6 +261,48 @@ j = c302[c302.ID.isin(set(S.ID_catalogue))]
 jp = j[j.primary == 1]; jd = jp[jp.detected.astype(str) == "True"]
 post["cfg302_join"] = dict(n_in_table=int(len(j)), n_primary=int(len(jp)), n_detected=int(len(jd)), median_ratio_primary=float(np.median(jp.ratio_S)),
                            median_logratio_S_detected=float(np.median(jd.logratio_S)), median_logratio_W50_detected=float(np.median(jd.logratio_W50.dropna())))
+# (k) v1.2 (CFG310 #2, #3): the statistical error two ways, and every footing statement on both distance conventions.
+#     The committed pooled bootstrap (CFG301's boot_full: B = 4,000, SeedSequence([301, 10, 47])) is reproduced exactly here, and the SAME
+#     resampled galaxy sets are then evaluated with the distances on H0 = 67.4 (the convention of rho_Lambda).  The second error estimate is
+#     the asymptotic standard error of a median from the per-galaxy spread, sqrt(pi/2) x (robust SD of the per-galaxy log s*) / sqrt(N).
+I_boot = np.random.default_rng(np.random.SeedSequence([301, 10, N])).integers(0, N, size=(4000, N))
+lb70 = H.AI.implied(dd0["D"][I_boot], dd0["gb"][I_boot], NU, A0C)[0]
+dd674 = chain(a, W, dict(RECP, h0=67.4))
+lb674 = H.AI.implied(dd674["D"][I_boot], dd674["gb"][I_boot], NU, A0C)[0]
+g("[v1.2 k=0] pooled bootstrap SD reproduced (CFG309 committed)", float(np.std(lb70)), JF["pooled"]["sd"], tol=1e-12)
+g("[v1.2 k=0] pooled bootstrap 2.5% reproduced (CFG309 committed)", float(np.percentile(lb70, 2.5)), JF["pooled"]["q"][0], tol=1e-12)
+ps674 = np.array([est({"D": dd674["D"][[i]], "gb": dd674["gb"][[i]]})[0] for i in range(N)])
+rsd = lambda x: float(1.4826 * np.median(np.abs(x - np.median(x))))
+se_med = lambda x: math.sqrt(math.pi / 2) * rsd(x) / math.sqrt(len(x))
+rec_no_h0 = math.sqrt(sum(JF["recipe"]["pooled"]["rows"][k_]["half"] ** 2 for k_ in ("delta", "tau_ms", "rdex")))
+lcan, lalt = math.log10(A0C), math.log10(A0A)
+err = {}
+for conv, l0_, lb_, ps_, rh_ in (("H0=70", lP, lb70, ps, JF["pooled"]["recipe_half"]), ("H0=67.4", lh0, lb674, ps674, rec_no_h0)):
+    la0 = l0_ + lcan                                                     # log10 a0 of the pooled estimate
+    q_ = np.percentile(lb_, [2.5, 16, 84, 97.5]).tolist()
+    se_ = se_med(ps_)
+    e_ = dict(a0=10 ** la0, log_s=l0_, boot_sd=float(np.std(lb_)), boot_q=q_, boot95_a0=[10 ** v * A0C for v in (q_[0], q_[3])],
+              per_gal_robust_sd=rsd(ps_), se_median=se_, half95_se=1.96 * se_, se95_a0=[10 ** (la0 - 1.96 * se_), 10 ** (la0 + 1.96 * se_)],
+              recipe_half=rh_, recipe_half_with_h0=JF["pooled"]["recipe_half"], dex_canonical=la0 - lcan, dex_alt=la0 - lalt)
+    for foot, lf, a0f in (("canonical", lcan, A0C), ("alt", lalt, A0A)):
+        e_[f"{foot}_in_boot95"] = bool(10 ** q_[0] * A0C <= a0f <= 10 ** q_[3] * A0C)
+        e_[f"{foot}_in_se95"] = bool(abs(la0 - lf) <= 1.96 * se_)
+        e_[f"{foot}_in_recipe"] = bool(abs(la0 - lf) <= rh_)
+        e_[f"{foot}_in_recipe_with_h0"] = bool(abs(la0 - lf) <= JF["pooled"]["recipe_half"])
+        e_[f"kappa_{foot}"] = 0.5 * 10 ** la0 / a0f
+        e_[f"kappa_{foot}_se95"] = [0.5 * 10 ** (la0 - 1.96 * se_) / a0f, 0.5 * 10 ** (la0 + 1.96 * se_) / a0f]
+        e_[f"kappa_{foot}_boot95"] = [0.5 * 10 ** q_[0] * A0C / a0f, 0.5 * 10 ** q_[3] * A0C / a0f]
+    err[conv] = e_
+post["errors_and_conventions_k0"] = err
+if not all(r["ok"] for r in gate):
+    for r in gate[-2:]:
+        print(f"  [{'PASS' if r['ok'] else 'FAIL'}] {r['name']}: mine {r['mine']:.12g}, committed {r['committed']:.12g}, |dev| {r['dev']:.1e}")
+    sys.exit("v1.2 bootstrap reproduction gate FAILED -- nothing written")
+# (l) v1.2 (CFG310 #1): the single-dish range carries CFG304's frozen code-1 reading (0.90) as its lower end
+fk = [v["a0_gas"] for v in fluxk0.values()]
+post["single_dish_range"] = dict(lo=min(fk), hi=max(fk), frozen_c1=fluxk0["c1"]["a0_gas"], snr_extrap=fluxk0["snr_extrap"]["a0_gas"],
+                                 lo_vs_canonical=math.log10(min(fk) / A0C), lo_vs_alt=math.log10(min(fk) / A0A), hi_vs_canonical=math.log10(max(fk) / A0C),
+                                 hi_vs_alt=math.log10(max(fk) / A0A), kappa_c1=[0.5 * fluxk0["c1"]["a0_gas"] / A0C, 0.5 * fluxk0["c1"]["a0_gas"] / A0A])
 for k_, v_ in post.items():
     print(f"POST HOC {k_}: {v_}")
 
@@ -293,7 +337,7 @@ r = JF["pooled"]
 items.append((f"pooled\nz 0.03-0.09\nN {r['n']}", r["a0"], [10 ** v * A0C for v in r["q"]], r["recipe_half"], BLUE, "D", True))
 r1 = JB["pooled"]
 items.append(("pooled, $W_{50}$\nread as obs.-\nframe (v1.0)", r1["a0"], [10 ** v * A0C for v in r1["q"]], None, INK2, "D", False))
-fc, fl_, fh = fluxk0["snr_extrap"]["a0_gas"], fluxk0["pairs7"]["a0_gas"], fluxk0["z_extrap"]["a0_gas"]
+fc, fl_, fh = fluxk0["snr_extrap"]["a0_gas"], post["single_dish_range"]["lo"], post["single_dish_range"]["hi"]     # v1.2: bar 0.90-1.13 (the frozen code-1 reading is the low end)
 items.append(("single-dish\nflux scale\n(gas only)", fc, [fl_, fl_, fh, fh], None, ORANGE, "^", False))
 for key, lab in (("(i) all survivors", "BTFR, all\nN 47\n(+kernel)"), ("(ii) gas-dominated (M_gas > M*)", "BTFR, gas-\ndom., N 37\n(+kernel)")):
     b = JF["btfr"][key]
@@ -354,7 +398,7 @@ for sp in ("top", "right"):
 fig.tight_layout()
 f2 = os.path.join(HERE, "fig2_paper40_btfr.pdf"); fig.savefig(f2, metadata={"CreationDate": None}); plt.close(fig)
 
-out = dict(paper="PAPER40", version="1.1", primary_frame="k = 0 (catalogue W50 rest-frame; CFG309)",
+out = dict(paper="PAPER40", version="1.2", primary_frame="k = 0 (catalogue W50 rest-frame; CFG309)",
            inputs=dict(catalogue_sha256_prefix="bcf9e8558bc56448", cfg301_stageA="cfg301_stageA_results.json", cfg301_stageB="cfg301_stageB_results.json",
                        cfg309_frame="cfg309_cfg301chain_stageB_FRAME_results.json", cfg306="cfg306_physics_checks_results.json"),
            reproduction_gate=gate, reproduction_ok=bool(all(r["ok"] for r in gate)), post_hoc_rows=post, kappa=kap,

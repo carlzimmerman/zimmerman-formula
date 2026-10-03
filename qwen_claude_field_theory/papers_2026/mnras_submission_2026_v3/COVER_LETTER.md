@@ -10,8 +10,8 @@ ORCID from the git-ignored `author_private.tex`, and adds the e-mail.
 **Two items are owner decisions (SUBMISSION_CHECKLIST.md, section 0).** (1) The earlier-postings paragraph exists in
 two variants. `make_upload_bundle.py` keeps the one that matches the `\papersixfalse` / `\papersixtrue` line of the .tex
 and drops the other: [PAPER6-REMOVED] is the default (the manuscript does not cite Zenodo 10.5281/zenodo.22559892),
-[PAPER6-NOTE] keeps that citation with a note. (2) The AI-use paragraph names the tools as stated so far; it must be
-finalised by the author (TODO-AI-DISCLOSURE).
+[PAPER6-NOTE] keeps that citation with a note. (2) The AI-use paragraph was finalised from the author's statement of the
+models used on 2026-10-02 (SUBMISSION_CHECKLIST.md, section 0); it matches the Acknowledgements.
 
 ---
 
@@ -45,10 +45,10 @@ each script contains checks that can fail, and one command reproduces every numb
 Conflicts of interest: none. Funding: none.
 
 Data and code are public; the Data Availability statement gives the repository and its tagged release, and the sources
-of the public data used (SPARC; the published table of Nestor Shachar et al. 2023, checked against the journal and the
+of the public data used (SPARC; the published table of Nestor Shachar et al. 2023, compared with the journal and the
 arXiv versions; the MIGHTEE-HI radial acceleration points, digitised from the figure of Vărăşteanu et al. 2025, whose
 digitised values are in the repository; the tables of Price et al. 2021, Puglisi et al. 2023 and Lee et al. 2025; the
-public per-galaxy products of the MUSE-DARK survey; and the published fits of Vărăşteanu et al. 2026).
+ALESS 122.1 measurements of Amvrosiadis et al. 2025, Calistro Rivera et al. 2018 and Dunne et al. 2022; the public per-galaxy products of the MUSE-DARK survey; and the published fits of Vărăşteanu et al. 2026).
 
 I have no request to exclude particular editors or referees.
 

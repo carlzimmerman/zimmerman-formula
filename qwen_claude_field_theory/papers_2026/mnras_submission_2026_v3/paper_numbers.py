@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-paper_numbers.py -- every number quoted in the MNRAS manuscript `mnras_a0_lambda_v3.tex` (v3.2) that is not printed by
+paper_numbers.py -- every number quoted in the MNRAS manuscript `mnras_a0_lambda_v3.tex` (v3.3) that is not printed by
 one of the repository estimators (those are re-run here as subprocesses, or by reproduce_all.sh):
 
     real_research/reviews/mi_btfr_intercept_kappa_door_2026.py          -> estimator A on SPARC's tabulated distances, the floor
@@ -27,7 +27,8 @@ Sections (each ends in checks that CAN fail; exit code 1 if any does):
     S5  RC100 on the journal table (CFG305).  v3.2: the PRIMARY route is framework-native (CFG303 route B: SED stellar mass
         from the table plus scaling-relation gas in a thin disc, through the law; CFG303's committed functions exec'd read-only);
         the closed-form inversion of the tabulated (halo-model) dark fractions is the labelled COMPARISON, with its calibration
-        drift, RC100's own internally flagged rows and the prior-tracking of f_DM (CFG217 G2, read)
+        drift, RC100's own internally flagged rows and the prior-tracking of f_DM (CFG217 G2, read).  v3.3 (CFG310): the native route's
+        censoring by redshift (floor fraction, rank tests, a Tobit-type slope), and its column-6 stellar masses against the journal
     S6  the deep regime (g_bar < 0.2 a0) in SPARC and MIGHTEE-HI: slope, amplitude, the colour-group caveat, the pitfall
     S7  the high-redshift record, read from committed lane outputs (MUSE-DARK, KURVS, MIGHTEE-HI/LADUMA, z >= 4, the gas
         bracket, the source-table audit).  A check that only confirms that the text quotes a committed number, or that
@@ -528,6 +529,14 @@ def _rows3(label):
 check("S3j the candidate, convention and published-values tables in the manuscript are exactly the computed ones",
       _rows3("tab:cands") == CAND_ROWS and _rows3("tab:conv") == CONV_ROWS and _rows3("tab:pub") == PUB_ROWS,
       f"{len(_rows3('tab:cands'))}/{len(_rows3('tab:conv'))}/{len(_rows3('tab:pub'))} rows typeset", kind="identity")
+# v3.3 (CFG310 #6, #14): the abstract quotes kappa on both footings, and stays within 250 words on both counts used by make_upload_bundle.py
+_ab3 = _tex3[_tex3.index(r"\begin{abstract}") + len(r"\begin{abstract}"):_tex3.index(r"\end{abstract}")].strip()
+_crit_pulls = [(k_crit_half - m[1]) / m[2] for m in MEAS]
+AB_WORDS = (len(_ab3.split()), len(re.sub(r"\\[a-zA-Z]+", "", re.sub(r"\$[^$]*\$", " X ", _ab3)).split()))
+OUT["abstract_words"] = dict(plain=AB_WORDS[0], math_spans_as_words=AB_WORDS[1])
+check("S3k the abstract carries both footings (on the critical density 1/2 lies 2.1-2.2 sigma from estimators A and C, as Table 6 computes) and is at most 250 words by a plain count and with math spans as words",
+      f"{min(_crit_pulls[0], _crit_pulls[2]):.1f}--{max(_crit_pulls[0], _crit_pulls[2]):.1f}$\\sigma$ from two" in _ab3 and max(AB_WORDS) <= 250,
+      f"pulls A/C {_crit_pulls[0]:+.2f}/{_crit_pulls[2]:+.2f}; words {AB_WORDS[0]} / {AB_WORDS[1]}", kind="identity")
 
 
 # ================================================================================================================
@@ -774,6 +783,25 @@ for dcal in (0.0, 0.05, 0.10, 0.15, 0.20, 0.30):
     P(f"  delta_c {dcal:4.2f}  s_C {sc:5.3f}:  halo N={N_A} @0.20 {oA:9.1f}:1 (P(20:1) {pA:.2f});  halo N={N_B} @0.10 {oB:9.1f}:1;  H(z) N={N_A} @0.20 {min(oz, 1e30):10.3g}:1;  Delta/s_C {zh:.2f} / {zz_:.2f}")
 dc_need_halo = DELTA_GATE / math.sqrt(2 * ln20) / Aba; dc_need_Hz = L25["Hz"] / math.sqrt(2 * ln20) / Aba
 P(f"  20:1 from the sample means alone (any N; expected ln B -> Delta^2/(2 s_C^2)) needs delta_c <= {dc_need_halo:.3f} dex (gated halo law) and <= {dc_need_Hz:.3f} dex (H(z) law)")
+# v3.3 (CFG310 #5): the eight-disc design and the 0.06 dex limit are not jointly sufficient.  The N that reaches expected 20:1 against
+# the gated halo law at 0.20 dex, as a function of the shared calibration delta_c (and with sigma_sys = 0.10 on top), from the same KL
+# computation as Table 12; cross-checked against the CFG310 referee's independent re-implementation (cfg310_shared_calibration_N.out)
+NDC = {dc_: n_expected20(0.20, DELTA_GATE, s_c=Aba * dc_) for dc_ in (0.0, 0.02, 0.03, 0.04, 0.05, 0.06)}
+ODC8 = {dc_: odds_design(N_A, 0.20, DELTA_GATE, s_c=Aba * dc_) for dc_ in (0.04, 0.05, 0.06)}
+NDC_SYS = {dc_: n_expected20(0.20, DELTA_GATE, s_c=Aba * dc_, s_sys=0.10) for dc_ in (0.05,)}
+P(f"  N for expected 20:1 at 0.20 dex against the gated halo law vs the shared calibration: " + ", ".join(f"delta_c {k_:.2f} -> {v_}" for k_, v_ in NDC.items())
+  + f";  {N_A} discs give " + ", ".join(f"{v_:.1f}:1 at {k_:.2f}" for k_, v_ in ODC8.items()) + f";  delta_c 0.05 with sigma_sys 0.10: N = {NDC_SYS[0.05]}")
+_r310N = {float(m_.group(1)): int(m_.group(2)) for m_ in re.finditer(r"delta_c (0\.\d\d): odds at .*?smallest scanned N reaching 20:1: (\d+)",
+                                                                      open(os.path.join(CFG, "CFG310_second_referee", "cfg310_shared_calibration_N.out")).read())}
+OUT["S4"]["N20_vs_delta_c"] = {f"{k_:.2f}": v_ for k_, v_ in NDC.items()}; OUT["S4"]["odds_NA_vs_delta_c"] = {f"{k_:.2f}": v_ for k_, v_ in ODC8.items()}
+OUT["S4"]["N20_delta_c005_sys010"] = NDC_SYS[0.05]
+check("S4w AGAINST THE DESIGN (CFG310 #5): eight discs at 0.20 dex reach expected 20:1 only for an exact shared calibration; at delta_c = 0.05 and 0.06 dex about 20 and 34 discs are needed (the referee's independent re-implementation, with its inputs rounded to 0.09/0.13/1.52, agrees within 2 discs: 21 and 36)",
+      NDC[0.0] == N_A and ODC8[0.06] < 6 and 18 <= NDC[0.05] <= 23 and 30 <= NDC[0.06] <= 40 and all(abs(NDC[k_] - _r310N[k_]) <= 2 for k_ in NDC),
+      ", ".join(f"{k_:.2f}:{v_} (ref {_r310N.get(k_)})" for k_, v_ in NDC.items()), kind="model")
+_txd = open(os.path.join(HERE, "mnras_a0_lambda_v3.tex")).read()
+_qd = [f"eight galaxies at 0.20 dex give {ODC8[0.04]:.1f}:1 at $\\delta_c=0.04$ dex and {ODC8[0.06]:.1f}:1 at 0.06 dex", f"need {NDC[0.04]}, {NDC[0.05]} and {NDC[0.06]} galaxies at $\\delta_c=0.04$, 0.05 and 0.06 dex",
+       f"({NDC_SYS[0.05]} at 0.05 dex if the concentration", f"{NDC[0.05]} or {NDC[0.06]} if it is shared to 0.05 or 0.06 dex"]
+check("S4x the text (Section 4.4, the abstract) quotes the N for 20:1 against the shared calibration as computed", all(q_ in _txd for q_ in _qd), "; ".join(q_ for q_ in _qd if q_ not in _txd) or "all present", kind="identity")
 def _gas_to_bary(dgas, fg=0.5): return math.log10(1 - fg + fg * 10**dgas)
 GASB = {d: (_gas_to_bary(d), _gas_to_bary(-d)) for d in (0.2, 0.7)}
 P(f"  a gas-mass scale error of +/-0.2 and +/-0.7 dex at a gas fraction of 0.5 is " +
@@ -1128,7 +1156,7 @@ check("S5n MUTATE: raising every native baryonic mass by 0.2 dex removes galaxie
       f"N {R5N['N']} -> {R5Nm['N']}; median {R5N['median_a0']:.2e} -> {R5Nm['median_a0']:.2e}", kind="injection")
 check("S5o AGAINST INTEREST (for any reading that needs a discrepancy): on native baryons at least 30 of the 100 RC100 discs have g_obs <= g_bar,nat at R_e, and about 40 fall outside the inversion window",
       (DN <= 1).sum() >= 30 and 35 <= (DN <= 1 / 0.98).sum() <= 45, f"D <= 1: {int((DN <= 1).sum())}; f <= 0.02: {int((DN <= 1 / 0.98).sum())}")
-check("S5p the native RC100 slope is consistent with a constant a0 (within 2.5 sigma, also when controlled for g_obs and for y) and shows no rise (negative; both comparators positive), and it agrees with the f_DM comparison within 1 sigma",
+check("S5p the window-only native RC100 slope (the 59 discs off the floor; a censored sample, S5s) is consistent with a constant a0 (within 2.5 sigma, also when controlled for g_obs and for y) and shows no rise (negative; both comparators positive), and it agrees with the f_DM comparison within 1 sigma",
       abs(R5N["slope"]) < 2.5 * R5N["slope_err"] and R5N["slope"] < 0 < R5N["slope_halo_ols"] < R5N["slope_Hz_ols"] and abs(R5N["slope"] - R5["slope"]) < math.hypot(R5N["slope_err"], R5["slope_err"])
       and abs(R5N["slope_ctrl_gobs"]) < 2.5 * R5N["err_ctrl_gobs"] and abs(R5N["slope_ctrl_y"]) < 2.5 * R5N["err_ctrl_y"],
       f"native {R5N['slope']:+.3f} +/- {R5N['slope_err']:.3f} (| g_obs {R5N['slope_ctrl_gobs']:+.3f} +/- {R5N['err_ctrl_gobs']:.3f}; | y {R5N['slope_ctrl_y']:+.3f} +/- {R5N['err_ctrl_y']:.3f}); f_DM {R5['slope']:+.3f} +/- {R5['slope_err']:.3f}")
@@ -1137,6 +1165,77 @@ check("S5r the journal refit of row 87 leaves the native route unchanged (that d
       f"N {_R5Nc['N']} -> {R5N['N']}; slope {_R5Nc['slope']:+.4f} -> {R5N['slope']:+.4f}")
 check("S5q AGAINST INTEREST: the native slope is calibration-conditional too -- a drift of -0.05 dex per unit z puts it within 1 sigma of constancy",
       abs(_tbN[-0.05]["sig_const"]) < 1.0, f"beta -0.05: {_tbN[-0.05]['slope']:+.3f} +/- {_tbN[-0.05]['err']:.3f} ({_tbN[-0.05]['sig_const']:+.1f} sigma)")
+
+# ---- v3.3 (CFG310 #2): the native route is a CENSORED sample.  A disc outside the window (f <= 0.02: the native baryons supply
+#      >= 98 per cent of g_obs) has an implied a0 BELOW the value at the window edge, a0 < a0(f = 0.02) = 0.98 g_obs/[ln 50]^2 (y -> inf
+#      as f -> 0).  The floor fraction by redshift, a rank test of floor membership against z, a rank test of a0 against z with the
+#      floor discs ranked lowest (the censoring kept), and a Tobit-type censored-regression slope with those per-disc upper limits.
+#      Reproduces the CFG310 referee's M3 (computed there from CFG303's per-galaxy CSV, i.e. the arXiv-v1 table; here on the journal table).
+from scipy.stats import spearmanr as _spearmanr, norm as _norm
+_zN = np.array([g["z"] for g in GALN]); _goN = np.array([g["go"] for g in GALN]); _gbN = np.array([g["gbB"] for g in GALN])
+_fN = 1 - _gbN / _goN; _okN = (_fN > 0.02) & (_fN < 0.98); _flN = _fN <= 0.02
+_laN = np.where(_okN, np.log10(np.where(_okN, (1 - _fN) * _goN / np.log(1 / np.clip(_fN, 1e-9, None))**2, 1.0)), np.nan)
+_lcapN = np.log10(0.98 * _goN / math.log(50.0)**2)                 # the upper limit on log a0 of a floor disc
+FLOOR_BINS = []
+for lo_, hi_ in ((0.5, 1.0), (1.0, 1.5), (1.5, 2.0), (2.0, 2.6)):
+    m_ = (_zN >= lo_) & (_zN < hi_)
+    _lc = np.where(_okN[m_], _laN[m_], -99.0); _med = float(np.median(_lc))
+    FLOOR_BINS.append(dict(z=(lo_, hi_), n=int(m_.sum()), floor=int(_flN[m_].sum()), frac=float(_flN[m_].mean()),
+                           median_log_a0_censored=None if _med < -50 else _med, median_log_a0_inverted=float(np.nanmedian(_laN[m_]))))
+_sp_fl = _spearmanr(_zN, _flN.astype(int)); _sp_inv = _spearmanr(_zN[_okN], _laN[_okN]); _sp_cen = _spearmanr(_zN, np.where(_okN, _laN, -99.0))
+def _tobit(z_, y_, cap_, ok_):
+    zc_ = z_ - z_.mean()
+    def nll(p_):
+        a_, b_, ls_ = p_; s_ = math.exp(ls_); mu_ = a_ + b_ * zc_
+        return -(np.sum(_norm.logpdf(y_[ok_], mu_[ok_], s_)) + np.sum(_norm.logcdf((cap_[~ok_] - mu_[~ok_]) / s_)))
+    from scipy.optimize import minimize as _min
+    r_ = _min(nll, [float(np.nanmedian(y_)), 0.0, math.log(0.4)], method="Nelder-Mead", options=dict(xatol=1e-8, fatol=1e-10, maxiter=20000))
+    H_ = np.zeros((3, 3)); h_ = np.array([1e-4, 1e-4, 1e-4])            # numerical Hessian for the slope error
+    for i_ in range(3):
+        for j_ in range(3):
+            e_i = np.eye(3)[i_] * h_[i_]; e_j = np.eye(3)[j_] * h_[j_]
+            H_[i_, j_] = (nll(r_.x + e_i + e_j) - nll(r_.x + e_i - e_j) - nll(r_.x - e_i + e_j) + nll(r_.x - e_i - e_j)) / (4 * h_[i_] * h_[j_])
+    return float(r_.x[1]), float(math.sqrt(np.linalg.inv(H_)[1, 1])), float(math.exp(r_.x[2]))
+TOBIT = _tobit(_zN, np.where(_okN, _laN, 0.0), _lcapN, _okN)
+_inA = np.array([g["inA"] for g in GALN]); _dMp = np.array([g["lMs"] - g["lMs_price"] for g in GALN if g["inA"]])
+P("  v3.3 the native route as a censored sample (floor: f <= 0.02, an upper limit a0 < 0.98 g_obs/[ln 50]^2):")
+for b_ in FLOOR_BINS:
+    P(f"     z {b_['z'][0]:.1f}-{b_['z'][1]:.1f}: {b_['floor']:2d} of {b_['n']:2d} at the floor ({b_['frac']*100:.0f}%); median log a0 with the floor discs kept as the lowest values "
+      + ("at the floor" if b_["median_log_a0_censored"] is None else f"{b_['median_log_a0_censored']:+.3f}") + f"; inverted discs only {b_['median_log_a0_inverted']:+.3f}")
+P(f"     Spearman(z, at the floor) {_sp_fl.statistic:+.3f} (p {_sp_fl.pvalue:.3f}); Spearman(z, log a0) inverted only {_sp_inv.statistic:+.3f} (p {_sp_inv.pvalue:.3f});"
+  f" with the floor discs ranked lowest {_sp_cen.statistic:+.3f} (p {_sp_cen.pvalue:.4f})")
+P(f"     censored-regression (Tobit-type) slope with the per-disc upper limits: {TOBIT[0]:+.3f} +/- {TOBIT[1]:.3f} dex per unit z (scatter {TOBIT[2]:.2f} dex)")
+P(f"     floor discs among the {int(_inA.sum())} with Price et al. (2021) masses (RC41): {int((_flN & _inA).sum())}; CFG303 col-6 SED log M* minus Price+21 SED log M* over those {len(_dMp)}: median {np.median(_dMp):+.3f} dex")
+OUT["S5_native"]["censoring"] = dict(bins=[dict(b_, z=list(b_["z"])) for b_ in FLOOR_BINS], spearman_floor=[_sp_fl.statistic, _sp_fl.pvalue],
+                                     spearman_inverted=[_sp_inv.statistic, _sp_inv.pvalue], spearman_censored=[_sp_cen.statistic, _sp_cen.pvalue],
+                                     tobit=dict(slope=TOBIT[0], err=TOBIT[1], scatter=TOBIT[2]), n_floor_in_RC41=int((_flN & _inA).sum()), n_RC41=int(_inA.sum()),
+                                     mstar_minus_price_median=float(np.median(_dMp)))
+_r310 = json.load(open(os.path.join(CFG, "CFG310_second_referee", "cfg310_referee_checks_results.json")))["M3"]
+check("S5s AGAINST INTEREST (CFG310 #2): the native route is censored in a redshift-dependent way -- 41 floor discs, a floor fraction rising from about a quarter (z < 1) to about a half (z > 2) "
+      "with a rank test p < 0.05, and with the floor discs kept as the lowest values the implied a0 FALLS with z (p < 0.05), as the referee found (bin counts and both p identical to its M3)",
+      int(_flN.sum()) == 41 and _flN.sum() + _okN.sum() == 100 and FLOOR_BINS[0]["frac"] < 0.3 and FLOOR_BINS[-1]["frac"] > 0.5 and _sp_fl.statistic > 0 and _sp_fl.pvalue < 0.05
+      and _sp_cen.statistic < 0 and _sp_cen.pvalue < 0.05 and FLOOR_BINS[-1]["median_log_a0_censored"] is None
+      and [(b_["n"], b_["floor"]) for b_ in FLOOR_BINS] == [(r_["n"], r_["floor"]) for r_ in _r310["bins"]]
+      and abs(_sp_fl.pvalue - _r310["spearman_floor"][1]) < 1e-9 and abs(_sp_cen.pvalue - _r310["spearman_censored"][1]) < 1e-9,
+      ", ".join(f"{b_['floor']}/{b_['n']}" for b_ in FLOOR_BINS) + f"; floor rho {_sp_fl.statistic:+.3f} p {_sp_fl.pvalue:.3f}; censored rho {_sp_cen.statistic:+.3f} p {_sp_cen.pvalue:.4f}")
+check("S5u AGAINST INTEREST: with the floor discs carried as upper limits, the censored-regression slope of the native route is negative (the native baryons' calibration drifts with z; no law in Table 3 falls)",
+      TOBIT[0] < 0 and TOBIT[0] < R5N["slope"], f"Tobit {TOBIT[0]:+.3f} +/- {TOBIT[1]:.3f}; window-only {R5N['slope']:+.3f}")
+_txv = open(os.path.join(HERE, "mnras_a0_lambda_v3.tex")).read()
+_q5 = [f"{FLOOR_BINS[0]['floor']} of {FLOOR_BINS[0]['n']} discs ({FLOOR_BINS[0]['frac']*100:.0f} per cent)", f"{FLOOR_BINS[1]['floor']} of {FLOOR_BINS[1]['n']} and {FLOOR_BINS[2]['floor']} of {FLOOR_BINS[2]['n']}",
+       f"{FLOOR_BINS[3]['floor']} of {FLOOR_BINS[3]['n']} ({FLOOR_BINS[3]['frac']*100:.0f} per cent)", f"$p={_sp_fl.pvalue:.3f}$", f"$\\rho={_sp_cen.statistic:.2f}$, $p={_sp_cen.pvalue:.3f}$",
+       f"$d\\log_{{10}}\\hat a_0/dz={TOBIT[0]:.2f}\\pm{TOBIT[1]:.2f}$, with a scatter of {TOBIT[2]:.1f} dex", f"(41, of which {int((_flN & _inA).sum())} are among the floor discs above)"]
+check("S5v the text quotes the censoring numbers as computed (floor fractions by z, both rank tests, the censored slope and its scatter, the RC41 overlap)",
+      all(q_ in _txv for q_ in _q5), "; ".join(q_ for q_ in _q5 if q_ not in _txv) or "all present", kind="identity")
+# the stellar masses of the native route: CFG303's transcription of column 6 (arXiv v1 raster) against the journal's Table B1 column 6
+# (extract_rc100_journal_col6.py, run on the publisher's PDF, which is not in the repository), and against Price et al. (2021)
+RC100_J6 = os.path.join(ROOT, "real_research", "data", "rc100_nestorshachar2023_tableB1_logMstar_JOURNAL.csv")
+_j6 = {r["idx"]: r for r in csv.DictReader(open(RC100_J6, newline=""))}
+_j6_ms = [i_ for i_ in _j6 if abs(float(_j6[i_]["logMstar_journal"]) - float(_TR[i_]["logMstar"])) > 1e-9]
+_j6_mb = [r_["idx"] for r_ in csv.DictReader(open(RC100, newline="")) if abs(float(_j6[r_["idx"]]["logMbaryon_journal"]) - float(r_["logMbar_Msun"])) > 1e-9]
+P(f"  journal Table B1 column 6 (SED log M*), 100 rows: differs from CFG303's arXiv-v1 transcription in {len(_j6_ms)} rows {_j6_ms}; control: its log M_baryon column differs from the CFG305 journal table in {len(_j6_mb)} rows")
+OUT["S5_native"]["journal_col6"] = dict(n=len(_j6), mismatch_mstar=_j6_ms, mismatch_mbaryon_control=_j6_mb)
+check("S5t the SED stellar masses of the native route (CFG303's transcription of column 6) equal the journal's Table B1 column 6 in all 100 rows (the extraction's log M_baryon column equals CFG305's journal table, as a control), and agree with Price et al. (2021) to a median of 0.00 dex for the RC41 galaxies",
+      len(_j6) == 100 and not _j6_ms and not _j6_mb and abs(float(np.median(_dMp))) < 0.005, f"col 6 mismatches {_j6_ms}; control {_j6_mb}; median vs Price+21 {np.median(_dMp):+.3f}", kind="identity")
 
 # ================================================================================================================
 head("S6  THE DEEP REGIME IN TWO SURVEYS: SLOPE AND AMPLITUDE (SPARC and MIGHTEE-HI)")
@@ -1399,7 +1498,7 @@ check("S7a MUSE-DARK by route (CFG262, CFG236) as quoted: route rises +0.57 +/- 
       and round(MD["i"]["rival"], 2) == 0.18 and [round(z_, 2) for z_ in MDz] == [0.52, 0.88, 1.20]
       and [round(_m236["b"], 2), round(_m236["lo"], 2), round(_m236["hi"], 2)] == [-0.72, -0.97, -0.50] and [round(_t236["R198"], 1), round(_t236["R199a"], 1)] == [1.8, 2.2]
       and [round(x, 2) for x in _dM] == [-0.43, -0.72, -0.15], kind="identity")
-check("S7b the MUSE-DARK rise travels with the baryon route: the fitted-mass route rises >5 sigma above constancy and >3 sigma above H(z), while neither SED route excludes either law at 2 sigma",
+check("S7b the MUSE-DARK rise depends on the baryon route: the fitted-mass route rises >5 sigma above constancy and >3 sigma above H(z), while neither SED route excludes either law at 2 sigma",
       MD["i"]["d"] / MD["i"]["sd"] > 5 and (MD["i"]["d"] - MD["i"]["rival"]) / MD["i"]["sd"] > 3
       and all(abs(MD[r]["d"]) / MD[r]["sd"] < 2 and abs(MD[r]["d"] - MD[r]["rival"]) / MD[r]["sd"] < 2 for r in ("ii", "iii")),
       ", ".join(f"({r}) {MD[r]['d']/MD[r]['sd']:+.1f} / {(MD[r]['d']-MD[r]['rival'])/MD[r]['sd']:+.1f} sigma" for r in ("i", "ii", "iii")), kind="identity")
@@ -1423,6 +1522,15 @@ check("S7h no complete (stars + gas) pool at z >= 4 separates the two laws (P < 
       all(v["P_range"][1] < 2 for k_, v in _b269.items() if k_.endswith("COMPLETE"))
       and all(v["G4"] for k_, v in _b269.items() if k_.endswith("LOWER-LIMIT") and v["verdict"] == "SEPARATES"), kind="identity")
 check("S7i the gas-prescription bracket at z ~ 2.2 (CFG224b, quoted in PAPER38 as 0.2-0.7 dex) is 0.21-0.67 dex", (round(GAS[0], 2), round(GAS[1], 2)) == (0.21, 0.67), kind="identity")
+# v3.3 (CFG310 #10): the method of the bracket, as described in Appendix B (read from CFG224b's committed output)
+_txb = open(os.path.join(HERE, "mnras_a0_lambda_v3.tex")).read()
+GASM = dict(n=_ace["N"], mean=float(np.mean(_ace["Race"])), zlo=min(_ace["Zace"]), zhi=max(_ace["Zace"]), s82lo=_ace["s82"]["zmin"], s82hi=_ace["s82"]["zmax"],
+            slope=_ace["s82"]["b"], slope_se=_ace["posthoc"]["slope_se"], noslope=abs(_ace["posthoc"]["delta_noslope"]))
+_qb = [f"the {GASM['n']} ACE galaxies", f"mean ${GASM['mean']:.2f}$ dex", f"$12+\\log({{\\rm O/H}})={GASM['zlo']:.2f}$--{GASM['zhi']:.2f}", f"span only {GASM['s82lo']:.2f}--{GASM['s82hi']:.2f}",
+       f"(${GASM['slope']:.2f}\\pm{GASM['slope_se']:.2f}$ per dex of metallicity", f"lies {GAS[1]:.2f} dex below it; with no slope, {GASM['noslope']:.2f} dex", f"(post hoc), {GAS[0]:.2f} dex"]
+check("S7i2 Appendix B describes the bracket's method with CFG224b's committed numbers (ACE N, mean ratio, metallicity ranges, local slope, the three extrapolations)",
+      all(q_ in _txb for q_ in _qb), "; ".join(q_ for q_ in _qb if q_ not in _txb) or "all present", kind="identity")
+S7["gas_method"] = GASM
 check("S7j the source-table audit (CFG287) as quoted: 22 sources (KURVS not among them), 3703 sampled cells in 29 tables with no transcription mismatch; no erratum registered for any published source paper",
       AUD["cells"] == 3703 and AUD["tables"] == 29 and AUD["fails"] == 0 and AUD["passed"] and AUD["errata"] == 0 and AUD["registered"] == 0
       and AUD["sources"] == 22 and not AUD["kurvs_in"], kind="identity")
@@ -1474,6 +1582,21 @@ check("S7r CRISTAL on native inputs as quoted (CFG303, CFG308, read): no native 
 check("S7s ALESS 122.1 as quoted (CFG307, read): the 540-cell stress test is NOT ROBUST (no root in 44%, constancy inside the 95% interval in 29%), and over one axis at a time the implied a0 runs from no root to about 20 times the local value; its controls pass",
       A307["decision"]["decision"] == "NOT ROBUST" and A307["decision"]["N"] == 540 and round(A307["decision"]["f_noroot"] * 100) == 44 and round(A307["decision"]["f_FLAT_inside"] * 100) == 29
       and A307["oat_noroot"] >= 1 and 15 < 10**A307["oat"][-1] < 25 and all(A307["checks"]), kind="identity")
+# ---- v3.3 (CFG310 #1, #8, #9): the native rows reported against interest, symmetrically
+_ii = MDN["ii_rows"]
+P(f"  v3.3 MUSE-DARK route (ii) (SED M* + H2, native): s* " + " / ".join("no root" if r_["no_root"] else f"{r_['s']:.2f}" for r_ in _ii)
+  + "; FLAT inside the 95% interval: " + " / ".join(str(r_["flags95"]["FLAT"]) for r_ in _ii) + "; D < 1 in " + " / ".join(f"{r_['n_D_lt1']}/{r_['n']}" for r_ in _ii))
+check("S7u AGAINST INTEREST (CFG310 #1): with molecular gas (route ii) the native MUSE-DARK scale is about a quarter of the local value in the first two thirds (s* 0.22, 0.27) and has no root in the third, so constancy lies outside the 95% interval in 2 of 3 thirds; D < 1 in 13/37, 14/36 and 21/36 galaxies",
+      [round(r_["s"], 2) for r_ in _ii[:2]] == [0.22, 0.27] and _ii[2]["no_root"] and [r_["flags95"]["FLAT"] for r_ in _ii] == [True, False, False]
+      and [(r_["n_D_lt1"], r_["n"]) for r_ in _ii] == [(13, 37), (14, 36), (21, 36)], kind="identity")
+_kp = KN["P2"]["cell"]; _app0 = open(os.path.join(HERE, "mnras_a0_lambda_v3.tex")).read()
+P(f"  v3.3 KURVS native P2 cell: constancy under-predicts by {_kp['flat'][0]:+.3f} +/- {_kp['flat'][1]:.3f} dex ({_kp['flat'][0]/_kp['flat'][1]:.1f} sigma), the rival by {_kp['rival'][0]:+.3f} +/- {_kp['rival'][1]:.3f} ({_kp['rival'][0]/_kp['rival'][1]:.1f} sigma)")
+check("S7v AGAINST INTEREST (CFG310 #8): at the native P2 cell both laws under-predict the outer accelerations, constancy by +0.38 dex (6.8 sigma) and the rival by +0.23 dex (4.3 sigma), so the rival is closer; more analytic cells lean to the rival (7) than to constancy (4)",
+      (round(_kp["flat"][0], 2), round(_kp["rival"][0], 2)) == (0.38, 0.23) and round(_kp["flat"][0] / _kp["flat"][1], 1) == 6.8 and round(_kp["rival"][0] / _kp["rival"][1], 1) == 4.3
+      and KN["lean_rival"] > KN["lean_flat"] and all(f"$+{_kp[k_][0]:.2f}\\pm{_kp[k_][1]:.2f}$ dex (${_kp[k_][0]/_kp[k_][1]:.1f}\\sigma$)" in _app0 for k_ in ("flat", "rival")), kind="identity")
+_ad = A307["decision"]
+check("S7w ALESS 122.1 reported like CRISTAL (CFG310 #9): constancy excluded in 27% of the 540 cells, always from above, H(z) in 15%; the committed native s* is 8.8",
+      round(_ad["f_FLAT_excl"] * 100) == 27 and _ad["f_FLAT_below"] == 0.0 and round(_ad["f_Hz_excl"] * 100) == 15 and round(A307["s"], 1) == 8.8, kind="identity")
 check("S7t the Umehata+25 journal 870 um fit (CFG305, read) changes no status or resolution of the ADF22.5 rows (the text says so)", U305["same_resolution"] and U305["n"] >= 6, kind="identity")
 
 # ---- Appendix C quotes the number of checks of each kind; this last check (an identity) compares the text with the tally,
@@ -1483,7 +1606,7 @@ _words = {"Five": 5, "Six": 6, "Seven": 7, "Eleven": 11, "Twelve": 12, "Thirteen
 _mm = re.search(r"Of its (\d+) checks, (\d+) are identities.*?([\w-]+) evaluate published models.*?([\w-]+) can fail on the data\. ([\w-]+) are injection tests", _app, re.S)
 _txt = None
 if _mm:
-    def _num(w): return int(w) if w.isdigit() else _words.get(w, {"Thirty": 30, "Twenty-eight": 28, "Twenty-nine": 29, "Thirty-one": 31, "Thirty-two": 32, "Twenty-seven": 27}.get(w, -1))
+    def _num(w): return int(w) if w.isdigit() else _words.get(w, {"Thirty": 30, "Twenty-eight": 28, "Twenty-nine": 29, "Thirty-one": 31, "Thirty-two": 32, "Twenty-seven": 27, "Thirty-three": 33, "Thirty-four": 34, "Thirty-five": 35}.get(w, -1))
     _txt = (int(_mm.group(1)), int(_mm.group(2)), _num(_mm.group(3)), _num(_mm.group(4)), _num(_mm.group(5)))
 _tally = (NCHK[0] + 1, len(KINDS.get("identity", [])) + 1, len(KINDS.get("model", [])), len(KINDS.get("data", [])), len(KINDS.get("injection", [])))
 check("S7n Appendix C quotes the tally of checks by kind exactly (total, identity, model, data, injection; this check included)", _txt == _tally, f"text {_txt}, tally {_tally}", kind="identity")

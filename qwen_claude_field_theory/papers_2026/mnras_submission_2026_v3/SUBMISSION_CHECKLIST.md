@@ -1,7 +1,9 @@
-# MNRAS submission package, version 3.2 (prepared 2026-10-03: RC100 on the journal table and on framework-native inputs)
+# MNRAS submission package, version 3.3 (prepared 2026-10-03: the CFG310 second-referee fixes; v3.2: RC100 on the journal table and on halo-free inputs)
 
 Manuscript: *The galactic acceleration scale and the cosmological constant: the coefficient on SPARC, and what it takes
 to measure its redshift evolution* (retitled in v3.1; the v3 title named the H0 degeneracy, now one paragraph).
+**v3.3:** 17 pages, 6 figures, 12 tables, 66 references; abstract 233 words plain, 246 with every math span as one word, 237 in the
+ScholarOne paste text (limit 250); paper_numbers 111 checks (56/14/34/7), 0 FAIL; section 7g answers the CFG310 report.
 **v3.2:** 16 pages in `mnras.cls`, 6 figures, 12 tables, 63 references (64 if the PAPER6 citation is kept), 3 appendices;
 abstract 239 words by a plain whitespace count (249 with every math span counted as one word; limit 250). v3.2 revises
 v3.1 (tag `mnras-v3.1`, 51413cc1b) in place; section 7f lists every change. (v3.1: 15 pages, 62 references, abstract 234/245.)
@@ -458,6 +460,41 @@ are printed by the script and NOT quoted in the text. RC100 decides nothing.
   2018 kinematics); neither is in references.bib. **[author/orchestrator]** add them, or drop the name, before submission.
 - The Lee et al. (2025) entry was taken from `citations/REFERENCES.bib` (A&A 701, A260; doi 10.1051/0004-6361/202555362)
   and not re-checked against the journal page.
+
+## 7g. Version 3.3 (2026-10-03): the response to the CFG310 second-round report, finding by finding
+
+Report: `campaign_fresh_gravity/CFG310_second_referee/REFEREE_REPORT_MNRAS_v3.2.md` (ffccd1068; 0 CRITICAL, 5 MAJOR, 8 MINOR,
+4 NIT). Every new number is computed in `paper_numbers.py` (111 checks: 56 identity, 14 model, 34 data, 7 injection; 0 FAIL);
+`reproduce_all.sh` ends with ALL STEPS PASSED; the .bbl was regenerated with `tectonic --keep-intermediates` in scratch; the
+upload bundle was rebuilt (PDF 0.41 MB, 17 pages; abstract 233 / 246 / 237 words). Tag to create on commit: `mnras-v3.3`.
+
+| # | sev | finding | v3.3 |
+|---|---|---|---|
+| 1 | MAJ | MUSE-DARK "disappears" / "travels with the halo-fitted masses" | **Fixed.** Abstract: "not recovered with these masses, though which masses are biased is unknown". Section 4.3 reports route (ii) against interest: s* 0.22 and 0.27, no root in the third (D < 1 in 13/37, 14/36, 21/36), constancy outside the 95% interval in 2 of 3 thirds (S7u); g_obs is the DC14 model velocity on both native routes. Conclusion (vi) rewritten. |
+| 2 | MAJ | native RC100 route censored, called "no rise" | **Fixed.** paper_numbers S5s reproduces the referee's M3 on the journal table (7/26, 6/18, 7/15, 21/41 at the floor; Spearman floor vs z +0.25, p 0.013; censored a0 vs z -0.27, p 0.006; identical bin counts and p) and adds a Tobit-type slope with the floor discs as upper limits, -0.46 +/- 0.17 dex per unit z, scatter 1.0 dex (S5u). Section 4.3: the route diagnoses the baryon calibration, its window-only slope is not evidence for constancy, and the injection test models neither 0.2 dex baryon errors nor the censoring. Abstract, Fig. 6 caption and Conclusion (vi) changed. |
+| 3 | MAJ | ALESS 122.1 sources uncited | **Fixed.** Dunne+2022 (MNRAS 517, 962; 10.1093/mnras/stac2098; arXiv:2208.01622), Calistro Rivera+2018 (ApJ 863, 56; 10.3847/1538-4357/aacffa) and Amvrosiadis+2025 (MNRAS 536, 3757; 10.1093/mnras/stae2760; arXiv:2312.08959) added, each checked against its Crossref record and the arXiv API (no downloads); cited in Section 4.3, the Acknowledgements, the cover letter and the bundle's data line. |
+| 4 | MAJ | "checked cell by cell against the journal" | **Fixed by checking.** Column 6 (SED log M*) was read from the journal PDF in place (`extract_rc100_journal_col6.py`, path given on the command line; the PDF is not in the repository) into `real_research/data/rc100_nestorshachar2023_tableB1_logMstar_JOURNAL.csv`: CFG303's arXiv-v1 transcription equals the journal in all 100 rows; the extraction's log M_baryon column equals CFG305's table as a control (S5t). Text now names the compared columns (z, log M_baryon, R_e, f_DM, V_c, sigma0 by CFG305; column 6 separately) and says the other columns were not compared; the Price+21 cross-check (median 0.00 dex, RC41) is stated. |
+| 5 | MAJ | eight discs + 0.06 dex not jointly sufficient | **Fixed.** paper_numbers S4w computes N for expected 20:1 at 0.20 dex against the gated halo law from Table 12's own KL computation: 8, 9, 11, 14, 20, 34 at delta_c = 0, 0.02, 0.03, 0.04, 0.05, 0.06 dex; eight discs give 8.3:1 at 0.04 and 4.8:1 at 0.06; 64 at 0.05 with sigma_sys 0.10. The referee's re-implementation (inputs rounded to 0.09/0.13/1.52) gives 21 and 36; agreement within 2 discs is checked. Abstract ("20 or 34 if it is shared to 0.05 or 0.06 dex"), Section 4.4 and Conclusion (vii) reworded (S4x checks the quoted numbers). |
+| 6 | MIN | abstract quotes kappa on one footing | **Fixed.** "on the critical density it lies 2.1--2.2 sigma from two" (S3k checks it against Table 6). |
+| 7 | MIN | stale 1.8--2.2 dex/z | **Fixed by labelling.** It is now attributed to the earlier, halo-normalised SED routes ("would have needed"); "implausible" dropped. Not recomputed for route (iii). |
+| 8 | MIN | KURVS magnitudes against interest | **Fixed.** Native P2 cell: constancy +0.38 +/- 0.06 dex (6.8 sigma), rival +0.23 +/- 0.05 dex (4.3 sigma), the rival closer; with analytic corrections more cells lean to the rival than to constancy (S7v). Abstract: the lean "turns on unmeasured gas and pressure support" (no longer implies an artefact of the LCDM calibration). |
+| 9 | MIN | ALESS vs CRISTAL asymmetric | **Fixed.** ALESS: no root 44%, constancy excluded 27% (always from above), H(z) 15%, primary native s* 8.8 (S7w); the earlier analysis is named (the repository's implied-a0 compilation, CFG223/CFG229, listed in Appendix C). |
+| 10 | MIN | gas bracket self-sourced | **Fixed.** Appendix B paragraph "The gas-calibration bracket": ACE N 15, mean ratio -2.37 dex, 12+log(O/H) 8.29--8.61 vs Stripe82 8.65--8.86; slope -0.49 +/- 0.33 (frozen) gives 0.67, no slope 0.52, slope +1 (post hoc) 0.21 dex (S7i2). |
+| 11 | MIN | "framework-native" undefined | **Fixed.** "halo-free" in the text, Fig. 6 caption, Appendix C, make_figures.py docstring and the alt text; no occurrence left outside comments. |
+| 12 | MIN | two different "41"s | **Fixed.** The Price+21 set is now "the RC41 subsample" and the overlap is given (16 of the 41 floor discs are in RC41; S5v). |
+| 13 | MIN | scope (two papers) | **Not changed (editor's judgement).** The authors should expect the question; recorded here. |
+| 14 | NIT | abstract at the edge | **Fixed.** 233 plain / 246 math-as-word / 237 paste text, after the additions of findings 1, 2, 5 and 6 (the 9.5 per cent floor and the 90-per-cent N left the abstract; both stay in the body and the Conclusions). |
+| 15 | NIT | cover-letter preamble stale | **Fixed.** The TODO-AI-DISCLOSURE sentence now records the 10-02 decision. |
+| 16 | NIT | TODO-RUN | **Owner.** Unchanged; the reproducibility wording stays as in v3.2. |
+| 17 | NIT | Fig. 6 alt text | **Fixed** with finding 11; the alt text also says the panel is a censored sample. |
+
+Kept: kappa = 1/2 fitted; the cold mass still required; both footings; the six-provider AI disclosure; PAPER6 dropped.
+No e-mail or home path in a tracked file (the journal PDF's location is not written anywhere in the repository).
+
+**Not verified in v3.3.** The journal's column 6 was read from the PDF's text layer (pdftotext -layout) with a regex anchored on
+the log M_baryon / log M_bulge pairs; the control (log M_baryon equals CFG305's independently built table in all 100 rows)
+passes, but no page image was read by eye. The Tobit-type slope assumes Gaussian scatter about a straight line with per-disc
+upper limits at f = 0.02; it is a description of the censoring, not a measurement.
 
 ## 8. Not verified
 - **v3.1:** the MUSE-DARK, KURVS, MIGHTEE-mock and z ≥ 4 numbers are the committed outputs of the repository lanes; they

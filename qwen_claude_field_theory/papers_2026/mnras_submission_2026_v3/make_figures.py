@@ -9,7 +9,7 @@ paper_numbers.py (imported, so a figure cannot drift from a quoted number).  Vec
                             candidate coefficients, (c) the H0 lock
     fig3_laws.pdf           log10[a0(z)/a0(0)] for the constant, H(z) and halo-emergent laws, with the decision bar
     fig4_amplification.pdf  the error amplification of the kernel inversion against g_bar/a0
-    fig5_rc100.pdf          RC100 on the journal table: (a) the framework-native route (SED stellar mass + scaling-relation gas
+    fig5_rc100.pdf          RC100 on the journal table: (a) the halo-free route (SED stellar mass + scaling-relation gas
                             through the law; CFG303 route B), (b) the comparison inversion of the tabulated halo-model dark fractions
     fig_deep.pdf            the deep regime in SPARC and MIGHTEE-HI: (a) the per-galaxy slope against the kernel's own slope,
                             (b) the deep-regime kappa by survey and mass-to-light convention.  It is Figure 3 of the manuscript

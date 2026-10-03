@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# reproduce_all.sh -- re-runs every script behind mnras_a0_lambda_v3.tex (v3.2) and rebuilds the PDF.
+# reproduce_all.sh -- re-runs every script behind mnras_a0_lambda_v3.tex (v3.3) and rebuilds the PDF.
 # Usage (from anywhere):  bash reproduce_all.sh          Exit status is non-zero if any script or the build fails.
 # It rewrites only the paper's own products in this directory (paper_numbers.out/.json, the six figures, the PDF) and
 # writes logs to reproduce_outputs/ (git-ignored).  No file outside this directory is changed: the one lane that writes a
@@ -34,7 +34,7 @@ grep -h "4/5 checks pass" "$OUT/L332_kmos3d.out" | head -1
 cmp -s "$MIR0/real_research/dark_sector_2026/L332_kmos3d_trend_replication_results.json" real_research/dark_sector_2026/L332_kmos3d_trend_replication_results.json \
   && echo "   the mirror's results JSON is byte-identical to the committed one (which paper_numbers.py reads)" \
   || { echo "   FAIL: L332 does not reproduce its committed results JSON"; exit 1; }
-echo "[5/9] L332 again in scratch mirrors with the CORRECTED (arXiv v1) and the PUBLISHED (journal; v3.2's input) RC100 tables: the KMOS3D lines the paper uses must not move"
+echo "[5/9] L332 again in scratch mirrors with the CORRECTED (arXiv v1) and the PUBLISHED (journal; the input since v3.2) RC100 tables: the KMOS3D lines the paper uses must not move"
 for TAB in CORRECTED PUBLISHED; do
   MIR="$OUT/l332_rc100_${TAB}_mirror"; l332_mirror "$MIR" "real_research/data/rc100_nestorshachar2023_table3_${TAB}.csv"
   ( cd "$MIR" && python3 real_research/dark_sector_2026/L332_kmos3d_trend_replication.py > "$OUT/L332_kmos3d_RC100_${TAB}.out" 2>&1 )
