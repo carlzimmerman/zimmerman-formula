@@ -1,0 +1,207 @@
+CFG293 -- CFG288'S WAVE FIELD: SOLITONIC CORES AND THE SATELLITES.  ANALYTIC PRE-FLIGHT (generic systems only).
+
+CFG288's only one-field construction that passes the behaviour gates is a linear complex wave field, V = rho_Lambda + m^2 |Phi|^2,
+a classical field whose quanta would be light bosons, with m NOT derived (window 2e-20 to 37 eV).  A linear wave field forms a
+solitonic core (the Schrodinger-Poisson ground state) in every self-gravitating system.  CFG286 found that the satellites need a
+rule acting INSIDE ~r_half: UFDs keep their cold core, M31 LVD dwarfs lose cold mass there.  Question: at a declared m in the window,
+does the soliton move the cold mass inside r_ev = (4/3) r_half the way the satellites need, or the wrong way?
+
+Everything is frozen in FROZEN_CRITERIA.md (committed before this script existed; its sha256 is printed below).  In one line each:
+  SP       dimensionless ground state chi'' + 2chi'/x = 2(V - E)chi, V'' + 2V'/x = chi^2, shot on E; x_c (half density), I, T, J;
+           M r_c = (I x_c) hbar^2/(G m^2); rho0 r_c^4 = x_c^4 hbar^2/(4 pi G m^2); r_c = k hbar/(m sigma), k = x_c sqrt(J/(3I)).
+  F-H      Schive+14 eq. 7 at a = 1 with the record's collapse halo (h48 halo_mass, M_200c) converted to Schive's virial mass.
+  F-V      r_c = k hbar / (m sigma_obs) for the generic system's dispersion.
+  COMPOSITE rho_sol inside r_eps, the record's NFW outside; P-C: r_eps = outermost crossing (fallback 3 r_c); P-3: r_eps = 3 r_c.
+  q        [M_comp(<r_ev) - M_NFW(<r_ev)] / M_NFW(<r_ev); independent of f_ex, f_b and the footing.
+  RULE     WINDOW iff some decision row D1-D4 (2e-20, 1e-19, 1e-18, 1e-17 eV), form and prescription has a classical generic
+           system with q <= -0.116 AND the generic UFD with q >= -0.50.  NO WINDOW -> STOP (CFG286's harness is not run).
+MODES: MUTATE=0 main; MUTATE=1 uncored (soliton off: must reproduce the NFW = reading S's cold term, q = 0 to 1e-12);
+       MUTATE=2 m = 37 eV in every decision row (|q| < 1e-6, the no-core result).
+kappa = 1/2 FITTED.  No dark-matter species is added by hand: the cold component is CFG288's field, and the cold mass is still
+required.  Nothing here says the theory is closed or that the data favour the framework.
+
+  FROZEN_CRITERIA.md sha256 5e06bbce8a88d4c27de8503d4cf9c85c85f6bf693058eb1fdedeb553a80f0f73
+
+  constants: G 6.674e-11, Msun 1.989e+30, pc 3.0857e+16 m (hunt_lib, as h48/FG001); hbar 1.0545718176461565e-34, eV 1.602176634e-19, c 299792458.0 (CODATA via scipy); Omega_m 0.3153; rho_crit 1.260474e-07 Msun/pc^3
+
+======================================================================================================================
+3.1  THE SCHRODINGER-POISSON GROUND STATE (derived)
+======================================================================================================================
+  eigenvalue E = 0.649533985703851 (rtol 1e-13; bracket width 1.1e-16);  rtol 1e-11 gives 0.649533985703784
+  x_c (half density) = 1.299271;  I = 2.062237;  T = 0.951693;  J = 0.951693;  x_max = 14.571 (turn at 20.872)
+  M r_c = 2.67941 hbar^2/(G m^2);  rho0 r_c^4 = 0.22677 hbar^2/(G m^2);  k = x_c sqrt(J/3I) = 0.50959
+  half-mass radius = 1.4649 r_c;  M(<3 r_c)/M = 0.95678;  M(<r_c)/M = 0.23635
+  [PASS] C-SP1 shooting converged and nodeless
+         E(rtol 1e-11) vs E(rtol 1e-13): rel diff 1.03e-13 (<= 1e-8); sign changes of chi on [0, x_max]: 0
+  [PASS] C-SP2 virial 2K + W = 0
+         T/J - 1 = -1.19e-10 (|.| < 1e-3)
+  [FAIL] C-SP3 shape vs Schive+14 eq. 3
+         max |rho_SP/rho_fit - 1| over 0 <= x <= 3 x_c = 0.0629 (<= 0.03)
+  POST-HOC DIAGNOSTIC (not a check): eq. 3's fit vs the SP profile, in units of the peak density: max |diff| = 0.0043 over 0..3 x_c; relative: <= 0.0420 inside 2 x_c, peak 0.0629 at x = 2.68 x_c (the fit's tail is low).  The SP profile is the primary in every q; eq. 3 enters no decision number.
+  [PASS] C-SP4 normalisation vs eq. 3's 1.9
+         x_c^4 hbar^2/(4 pi G m^2) at m = 1e-23 eV = 1.9374 Msun pc^-3 kpc^4; /1.9 - 1 = +0.0197 (|.| <= 0.06)
+  [PASS] C-SP5 eq. 6 vs eq. 7 through the SP profile (m22 = 1, a = 1)
+         M_h 1e+09: SP M(<r_c) 3.382e+07 vs eq. 6 3.116e+07 (+0.085); M_h 1e+11: SP M(<r_c) 1.570e+08 vs eq. 6 1.446e+08 (+0.085)  (|.| <= 0.25)
+  [PASS] C-SP6 Schive's stated fractions
+         M(<3 r_c)/M = 0.9568 (in [0.93, 0.97]); half-mass / r_c = 1.4649 (in [1.40, 1.50])
+  [PASS] C-TAIL
+         chi(x_max)^2 = 1.00e-12 (<= 1e-12)
+
+======================================================================================================================
+4  GENERIC SYSTEMS (the record's SHMR and NFW; not the samples)
+======================================================================================================================
+  zeta(0) = 327.38 (Schive's formula at Omega_m = 0.3153);  generic UFD M_c = halo_mass(1e4) = 1.0000e+09
+  G-U                        M_c 1.000e+09  c 16.80  R200 21.16 kpc  M_vir/M_200c 1.121  r_ev 40.0 pc  M_NFW(<r_ev) 2.500e+05
+  G-C s10 rh200 M*1e+06      M_c 5.283e+09  c 14.20  R200 36.85 kpc  M_vir/M_200c 1.130  r_ev 266.7 pc  M_NFW(<r_ev) 1.369e+07
+  G-C s10 rh500 M*1e+06      M_c 5.283e+09  c 14.20  R200 36.85 kpc  M_vir/M_200c 1.130  r_ev 666.7 pc  M_NFW(<r_ev) 7.172e+07
+  G-C s10 rh1000 M*1e+06     M_c 5.283e+09  c 14.20  R200 36.85 kpc  M_vir/M_200c 1.130  r_ev 1333.3 pc  M_NFW(<r_ev) 2.224e+08
+  G-C s10 rh200 M*1e+07      M_c 1.393e+10  c 12.88  R200 50.91 kpc  M_vir/M_200c 1.135  r_ev 266.7 pc  M_NFW(<r_ev) 1.706e+07
+  G-C s10 rh500 M*1e+07      M_c 1.393e+10  c 12.88  R200 50.91 kpc  M_vir/M_200c 1.135  r_ev 666.7 pc  M_NFW(<r_ev) 9.439e+07
+  G-C s10 rh1000 M*1e+07     M_c 1.393e+10  c 12.88  R200 50.91 kpc  M_vir/M_200c 1.135  r_ev 1333.3 pc  M_NFW(<r_ev) 3.144e+08
+  [PASS] C-NFW analytic NFW = h48's nfw_enclosed at every generic r_ev
+         max rel diff 1.33e-15 (<= 1e-12)
+
+======================================================================================================================
+5  THE PRE-FLIGHT: q = dM(<r_ev)/M_NFW(<r_ev) per row, form and prescription (G-U: sigma 3, r_half 30 pc, M_c 1e9)
+======================================================================================================================
+  q > 0: the soliton ADDS cold mass inside r_ev; q < 0: it removes it.  Classical bite: q_C <= -0.116; UFD spared: q_U >= -0.50.
+
+  --- D1: m = 2e-20 eV
+  form presc | G-U r_c [pc]      rho_c      M_sol r_eps/r_c        q_U |      G-C r_c [pc]   r_eps/r_c    q_C min    q_C max | window
+  F-H  P-C   |        7.702        138   7.43e+05      3.05    +2.5050 |     3.19-4.41      3.66-4.00    +0.00551   +0.10222 | no   [U: crossing; C: crossing]
+  F-H  P-3   |        7.702        138   7.43e+05      3.00    +2.5043 |     3.19-4.41      3.00-3.00    +0.00539   +0.09931 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+  F-V  P-C   |        16.28       6.89   3.51e+05      1.84    +0.4006 |     4.07-6.11      3.14-3.77    +0.00258   +0.09801 | no   [U: crossing; C: crossing]
+  F-V  P-3   |        16.28       6.89   3.51e+05      3.00    +0.2400 |     4.07-6.11      3.00-3.00    +0.00257   +0.09585 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+
+  --- D2: m = 1e-19 eV
+  form presc | G-U r_c [pc]      rho_c      M_sol r_eps/r_c        q_U |      G-C r_c [pc]   r_eps/r_c    q_C min    q_C max | window
+  F-H  P-C   |         1.54   3.44e+03   1.49e+05      3.76    +0.5674 |    0.637-0.882     4.34-4.66    +0.00113   +0.02089 | no   [U: crossing; C: crossing]
+  F-H  P-3   |         1.54   3.44e+03   1.49e+05      3.00    +0.5549 |    0.637-0.882     3.00-3.00    +0.00109   +0.02009 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+  F-V  P-C   |        3.256        172   7.03e+04      2.74    +0.2099 |    0.814-1.22      3.85-4.44    +0.00057   +0.02028 | no   [U: crossing; C: crossing]
+  F-V  P-3   |        3.256        172   7.03e+04      3.00    +0.2075 |    0.814-1.22      3.00-3.00    +0.00056   +0.01955 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+
+  --- D3: m = 1e-18 eV
+  form presc | G-U r_c [pc]      rho_c      M_sol r_eps/r_c        q_U |      G-C r_c [pc]   r_eps/r_c    q_C min    q_C max | window
+  F-H  P-C   |        0.154   3.44e+05   1.49e+04      4.71    +0.0590 |   0.0637-0.0882    5.26-5.57    +0.00011   +0.00210 | no   [U: crossing; C: crossing]
+  F-H  P-3   |        0.154   3.44e+05   1.49e+04      3.00    +0.0567 |   0.0637-0.0882    3.00-3.00    +0.00011   +0.00201 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+  F-V  P-C   |       0.3256   1.72e+04   7.03e+03      3.78    +0.0269 |   0.0814-0.122     4.80-5.35    +0.00006   +0.00205 | no   [U: crossing; C: crossing]
+  F-V  P-3   |       0.3256   1.72e+04   7.03e+03      3.00    +0.0263 |   0.0814-0.122     3.00-3.00    +0.00006   +0.00196 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+
+  --- D4: m = 1e-17 eV
+  form presc | G-U r_c [pc]      rho_c      M_sol r_eps/r_c        q_U |      G-C r_c [pc]   r_eps/r_c    q_C min    q_C max | window
+  F-H  P-C   |       0.0154   3.44e+07   1.49e+03      5.62    +0.0059 |  0.00637-0.00882   6.15-6.45    +0.00001   +0.00021 | no   [U: crossing; C: crossing]
+  F-H  P-3   |       0.0154   3.44e+07   1.49e+03      3.00    +0.0057 |  0.00637-0.00882   3.00-3.00    +0.00001   +0.00020 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+  F-V  P-C   |      0.03256   1.72e+06        703      4.74    +0.0028 |  0.00814-0.0122    5.71-6.24    +0.00001   +0.00021 | no   [U: crossing; C: crossing]
+  F-V  P-3   |      0.03256   1.72e+06        703      3.00    +0.0027 |  0.00814-0.0122    3.00-3.00    +0.00001   +0.00020 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+
+  --- R-top: m = 4e+01 eV
+  form presc | G-U r_c [pc]      rho_c      M_sol r_eps/r_c        q_U |      G-C r_c [pc]   r_eps/r_c    q_C min    q_C max | window
+  F-H  P-C   |    4.163e-21   4.71e+44   4.02e-16     11.22    +0.0000 | 1.72e-21-2.38e-21 11.22-11.22   +0.00000   +0.00000 | no   [U: soliton above NFW at x_max; C: soliton above NFW at x_max]
+  F-H  P-3   |    4.163e-21   4.71e+44   4.02e-16      3.00    +0.0000 | 1.72e-21-2.38e-21  3.00-3.00    +0.00000   +0.00000 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+  F-V  P-C   |    8.801e-21   2.36e+43    1.9e-16     11.22    +0.0000 |  2.2e-21-3.3e-21  11.22-11.22   +0.00000   +0.00000 | no   [U: soliton above NFW at x_max; C: crossing, soliton above NFW at x_max]
+  F-V  P-3   |    8.801e-21   2.36e+43    1.9e-16      3.00    +0.0000 |  2.2e-21-3.3e-21   3.00-3.00    +0.00000   +0.00000 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+
+  --- R-out: m = 1e-22 eV  (OUTSIDE the window; reported / C-SIGN only)
+  form presc | G-U r_c [pc]      rho_c      M_sol r_eps/r_c        q_U |      G-C r_c [pc]   r_eps/r_c    q_C min    q_C max | window
+  F-H  P-C   |         1540    0.00344   1.49e+08      3.00    -0.9963 |      637-882       1.44-3.00    -0.82163   +0.02546 | no   [U: no crossing -> 3 r_c; C: crossing, no crossing -> 3 r_c]
+  F-H  P-3   |         1540    0.00344   1.49e+08      3.00    -0.9963 |      637-882       3.00-3.00    -0.82163   -0.00654 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+  F-V  P-C   |         3256   0.000172   7.03e+07      3.00    -0.9998 |      814-1.22e+03  3.00-3.00    -0.96027   -0.25085 | no   [U: no crossing -> 3 r_c; C: no crossing -> 3 r_c]
+  F-V  P-3   |         3256   0.000172   7.03e+07      3.00    -0.9998 |      814-1.22e+03  3.00-3.00    -0.96027   -0.25085 | no   [U: fixed 3 r_c; C: fixed 3 r_c]
+
+  scaling: (r_c/r_ev)_UFD / (r_c/r_ev)_classical, over the 18 G-C systems (independent of m):
+    F-H: 11.6 to 80.6
+    F-V: 17.8 to 133.3
+
+======================================================================================================================
+DECISION (frozen rule, section 5)
+======================================================================================================================
+  over the decision rows, all forms and prescriptions: q_C in [+0.00001, +0.10222];  q_U in [+0.0027, +2.5050]
+  right-sign combinations: NONE
+  => NO WINDOW.  STOP: CFG286's harness is NOT run and no satellite is scored with a core (frozen rule).
+  [FAIL] PRE-FLIGHT: a right-sign window exists in the decision rows (finding; NO -> rc 1)
+         0 of 16 (row, form, prescription) combinations have a classical bite (q_C <= -0.116) with the UFD spared (q_U >= -0.50)
+  [PASS] C-SIGN the instrument can see the right sign (R-out, 1e-22 eV, outside the window)
+         combinations with some G-C q <= -0.116 at R-out: [('F-H', 'P-C'), ('F-H', 'P-3'), ('F-V', 'P-C'), ('F-V', 'P-3')];  q_U there: F-H/P-C -0.9963, F-H/P-3 -0.9963, F-V/P-C -0.9998, F-V/P-3 -0.9998
+  [PASS] C-MASS composite enclosed mass by quadrature = closed form
+         max rel diff 4.46e-11 (<= 1e-5) over G-U and one G-C, D1, both forms, P-C
+
+======================================================================================================================
+REPORTED ROWS (never verdicts)
+======================================================================================================================
+  R-floor: G-U q at the record's collapse-mass floors (P-C | P-3)
+    M_c 1e+08: D1 F-H +0.966|+0.923  D1 F-V +1.039|+0.993  D2 F-H +0.355|+0.355  D2 F-V +0.368|+0.368  D3 F-H +0.043|+0.042  D3 F-V +0.044|+0.043  D4 F-H +0.004|+0.004  D4 F-V +0.004|+0.004
+    M_c 3e+08: D1 F-H +1.725|+1.664  D1 F-V +0.675|+0.578  D2 F-H +0.455|+0.452  D2 F-V +0.280|+0.279  D3 F-H +0.050|+0.048  D3 F-V +0.034|+0.034  D4 F-H +0.005|+0.005  D4 F-V +0.004|+0.003
+    M_c 1e+09: D1 F-H +2.505|+2.504  D1 F-V +0.401|+0.240  D2 F-H +0.567|+0.555  D2 F-V +0.210|+0.207  D3 F-H +0.059|+0.057  D3 F-V +0.027|+0.026  D4 F-H +0.006|+0.006  D4 F-V +0.003|+0.003
+    M_c 3e+09: D1 F-H +3.199|+3.161  D1 F-V +0.226|+0.003  D2 F-H +0.680|+0.658  D2 F-V +0.161|+0.157  D3 F-H +0.069|+0.066  D3 F-V +0.022|+0.021  D4 F-H +0.007|+0.007  D4 F-V +0.002|+0.002
+    M_c 1e+10: D1 F-H +3.990|+3.888  D1 F-V +0.095|-0.202  D2 F-H +0.820|+0.789  D2 F-V +0.119|+0.113  D3 F-H +0.083|+0.079  D3 F-V +0.017|+0.017  D4 F-H +0.008|+0.008  D4 F-V +0.002|+0.002
+
+  R-Mh: F-H with M_h = M_200c directly, and with M_vir/3 (q_U | q_C min..max), P-C and P-3
+    M_200c  D1 P-C: q_U +2.3720 | q_C +0.00526 .. +0.09767
+    M_200c  D1 P-3: q_U +2.3720 | q_C +0.00516 .. +0.09502
+    M_200c  D2 P-C: q_U +0.5438 | q_C +0.00109 .. +0.02001
+    M_200c  D2 P-3: q_U +0.5327 | q_C +0.00104 .. +0.01925
+    M_200c  D3 P-C: q_U +0.0568 | q_C +0.00011 .. +0.00202
+    M_200c  D3 P-3: q_U +0.0546 | q_C +0.00010 .. +0.00193
+    M_200c  D4 P-C: q_U +0.0057 | q_C +0.00001 .. +0.00020
+    M_200c  D4 P-3: q_U +0.0055 | q_C +0.00001 .. +0.00019
+    M_vir/3 D1 P-C: q_U +1.3472 | q_C +0.00352 .. +0.06789
+    M_vir/3 D1 P-3: q_U +1.2729 | q_C +0.00352 .. +0.06692
+    M_vir/3 D2 P-C: q_U +0.3677 | q_C +0.00078 .. +0.01432
+    M_vir/3 D2 P-3: q_U +0.3656 | q_C +0.00075 .. +0.01385
+    M_vir/3 D3 P-C: q_U +0.0405 | q_C +0.00008 .. +0.00146
+    M_vir/3 D3 P-3: q_U +0.0391 | q_C +0.00008 .. +0.00140
+    M_vir/3 D4 P-C: q_U +0.0041 | q_C +0.00001 .. +0.00015
+    M_vir/3 D4 P-3: q_U +0.0039 | q_C +0.00001 .. +0.00014
+
+  R-edge: the largest m in [1e-24, 2e-20] eV at which some G-C system reaches q <= -0.116 (bisection in log m where bracketed)
+    F-H P-C: m_edge = 2.448e-22 eV (G-C s8 rh200 M*1e+06), 1.91 decades below the floor; G-U q there = -0.9779
+    F-H P-3: m_edge = 4.026e-22 eV (G-C s8 rh500 M*1e+06), 1.70 decades below the floor; G-U q there = -0.9405
+    F-V P-C: m_edge = 7.103e-22 eV (G-C s8 rh500 M*1e+07), 1.45 decades below the floor; G-U q there = -0.9907
+    F-V P-3: m_edge = 1.548e-21 eV (G-C s8 rh200 M*1e+07), 1.11 decades below the floor; G-U q there = -0.9564
+
+  thresholds re-derived from CFG45's committed JSON: classical bite 0.1159 (canonical) / 0.1165 (alt); cold shares s_U 0.829 / 0.813, s_M31 0.500 / 0.474
+  [PASS] (reported) threshold derivation reproduces the frozen 0.116
+         0.1159 / 0.1165 (each within 0.001 of 0.116)
+  aggregate translation (APPROXIMATE, not a harness score): dKM_UFD ~ -0.5 log10(1 + s_U q_U); dmed_M31 ~ -0.5 log10(1 + s_M31 q_C)
+    D1 F-H P-C: UFD KM median -0.0586 -> -0.3026 (-0.2440; S error 0.1431 -> z ~ -2.11); M31 LVD median shift -0.0108 .. -0.0006 (from -0.1069)
+    D1 F-H P-3: UFD KM median -0.0586 -> -0.3025 (-0.2439; S error 0.1431 -> z ~ -2.11); M31 LVD median shift -0.0105 .. -0.0006 (from -0.1069)
+    D1 F-V P-C: UFD KM median -0.0586 -> -0.1208 (-0.0623; S error 0.1431 -> z ~ -0.84); M31 LVD median shift -0.0104 .. -0.0003 (from -0.1069)
+    D1 F-V P-3: UFD KM median -0.0586 -> -0.0980 (-0.0394; S error 0.1431 -> z ~ -0.68); M31 LVD median shift -0.0102 .. -0.0003 (from -0.1069)
+    D2 F-H P-C: UFD KM median -0.0586 -> -0.1423 (-0.0837; S error 0.1431 -> z ~ -0.99); M31 LVD median shift -0.0023 .. -0.0001 (from -0.1069)
+    D2 F-H P-3: UFD KM median -0.0586 -> -0.1407 (-0.0822; S error 0.1431 -> z ~ -0.98); M31 LVD median shift -0.0022 .. -0.0001 (from -0.1069)
+    D2 F-V P-C: UFD KM median -0.0586 -> -0.0934 (-0.0348; S error 0.1431 -> z ~ -0.65); M31 LVD median shift -0.0022 .. -0.0001 (from -0.1069)
+    D2 F-V P-3: UFD KM median -0.0586 -> -0.0930 (-0.0345; S error 0.1431 -> z ~ -0.65); M31 LVD median shift -0.0021 .. -0.0001 (from -0.1069)
+    D3 F-H P-C: UFD KM median -0.0586 -> -0.0689 (-0.0104; S error 0.1431 -> z ~ -0.48); M31 LVD median shift -0.0002 .. -0.0000 (from -0.1069)
+    D3 F-H P-3: UFD KM median -0.0586 -> -0.0685 (-0.0100; S error 0.1431 -> z ~ -0.48); M31 LVD median shift -0.0002 .. -0.0000 (from -0.1069)
+    D3 F-V P-C: UFD KM median -0.0586 -> -0.0634 (-0.0048; S error 0.1431 -> z ~ -0.44); M31 LVD median shift -0.0002 .. -0.0000 (from -0.1069)
+    D3 F-V P-3: UFD KM median -0.0586 -> -0.0633 (-0.0047; S error 0.1431 -> z ~ -0.44); M31 LVD median shift -0.0002 .. -0.0000 (from -0.1069)
+    D4 F-H P-C: UFD KM median -0.0586 -> -0.0596 (-0.0011; S error 0.1431 -> z ~ -0.42); M31 LVD median shift -0.0000 .. -0.0000 (from -0.1069)
+    D4 F-H P-3: UFD KM median -0.0586 -> -0.0596 (-0.0010; S error 0.1431 -> z ~ -0.42); M31 LVD median shift -0.0000 .. -0.0000 (from -0.1069)
+    D4 F-V P-C: UFD KM median -0.0586 -> -0.0591 (-0.0005; S error 0.1431 -> z ~ -0.41); M31 LVD median shift -0.0000 .. -0.0000 (from -0.1069)
+    D4 F-V P-3: UFD KM median -0.0586 -> -0.0591 (-0.0005; S error 0.1431 -> z ~ -0.41); M31 LVD median shift -0.0000 .. -0.0000 (from -0.1069)
+
+======================================================================================================================
+HAND PREDICTIONS (frozen section 8), scored -- reported
+======================================================================================================================
+  [PASS] (reported) HAND HE1: NO WINDOW
+         held
+  [PASS] (reported) HAND HE2a: q_C >= 0 at every decision row/form/prescription
+         held
+  [PASS] (reported) HAND HE2b: |q_C| <= 0.15 at every decision row
+         held
+  [PASS] (reported) HAND HE3a: q_U > 0 at D2-D4, both forms
+         held
+  [PASS] (reported) HAND HE3b: D1: F-H q_U in [1, 4], F-V q_U in [-0.2, 0.8]
+         held
+  [PASS] (reported) HAND HE4: C-SIGN passes and q_U(R-out) <= -0.9 in every combination
+         held
+  [PASS] (reported) HAND HE5: x_c in [1.2, 1.4] and k in [0.40, 0.60]
+         held
+  [PASS] (reported) HAND HE6: R-edge m_edge in [1e-22, 2e-21] eV with G-U q <= -0.5 there
+         held
+  [PASS] (reported) HAND HE7: D1 F-H: dKM_UFD in [-0.3, -0.2]; M31 shift in [-0.02, 0]
+         held
+
+  kappa = 1/2 FITTED.  The cold mass is still required (CFG288's amount is free).  Nothing here says the theory is closed.
+
+  19/21 checks pass; load-bearing failures: 2   (2 s)
