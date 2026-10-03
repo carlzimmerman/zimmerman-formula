@@ -287,3 +287,4 @@ both a₀ footings; κ = ½ fitted; nothing here says the theory is closed. Each
 | CFG306 | (orchestrator) Hostile referee of PAPER40 (MeerKAT a₀, 00d6c89ae). In progress. | — |
 | CFG307 | (orchestrator, owner "stress test it") ALESS 122.1: a declared grid over the pressure correction, gas tracer/calibration, M★, inclination and radius; plus the six class-M siblings. In progress. | — |
 | CFG308 | (orchestrator, owner "stress test cristal too") CRISTAL z ≈ 5 on native inputs: a declared grid over the [CII]/dust gas (limits treated as limits), M★, pressure correction, inclination, radius and beam smearing, plus leave-one-out. In progress. | — |
+| CFG309 | (orchestrator) Decide the MIGHTEE catalogue W50 frame (rest vs observed): paper text, example spectra, ALFALFA convention, busy-function cube widths; then CFG301 under the decided frame. In progress. | — |
