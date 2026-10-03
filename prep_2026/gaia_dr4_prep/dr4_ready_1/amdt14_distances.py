@@ -79,6 +79,8 @@ def report(fits, R):
                  f"to the row edge {k} = {(f['g'] - k) / R['sigma_tot']:+.2f} sigma_tot; Amendment 14(d) interval: {iv}"
                  + ("  [GRID-EDGE: boundary-pinned]" if on_edge else ""))
     L.append("[A14] distances only; no verdict word (Amendment 7(e)); the stability requirements of the >= row are not evaluated here")
+    L.append("[A14] the pipeline's [aniso] lines are NOT QUOTED (owner decision 2026-10-03, before the data: the proj-PARALLEL "
+             "fit is pinned on the frozen grid floor in the dry run, so the split is not a measurement)")
     return L
 
 
