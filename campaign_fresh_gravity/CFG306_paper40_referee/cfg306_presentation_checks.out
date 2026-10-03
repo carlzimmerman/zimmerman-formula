@@ -1,0 +1,22 @@
+CFG306 (PAPER40 referee): presentation checks.  Reads committed files at git HEAD (git show), never edits them.
+
+  T1  abstract length (words, after stripping TeX) in the tex and in the Zenodo description;
+  T2  e-mail addresses and home-directory paths in the paper's files and in the three lanes' committed files;
+  T3  the committed PDF against the tex: page count, fonts embedded, and a sample of numbers present in the PDF text;
+  T4  Zenodo metadata fields (creators, version, licence, title equals the tex title, description equals the abstract in substance);
+  T5  figures: files exist, page sizes, fonts embedded;
+  T6  the audit's substring matching: audit literals that occur more than once in their block (a pass can be satisfied by the wrong occurrence).
+Writes cfg306_presentation_checks.out and cfg306_presentation_checks_results.json.
+
+T1 abstract: 333 words in the tex (TeX math counted as one token each); Zenodo description 412 words
+T2 scanned 75 committed files; hits: 1
+   owner name  qwen_claude_field_theory/papers_2026/PAPER40_meerkat_a0_2026.zenodo.json: '    "name": "Zimmerman, Carl P.",'
+   PDF text: e-mail-like []; home paths []; owner name present: False
+T3 PDF: 7 pages; fonts not embedded: 0; 27 of 27 sampled tex numbers found in the PDF text; missing []
+   PDF CreationDate Fri Oct  2 21:49:07 2026 EDT; tex last commit 2026-10-02 21:49:08 -0400
+T4 Zenodo: title 'The MOND Acceleration Scale from MeerKAT: 47 Deep-Regime HI Discs in MIGHTEE-HI COSMOS'; tex title (detexed) 'The MOND Acceleration Scale from MeerKAT: 47 Deep-Regime H\\, i Discs in MIGHTEE-HI COSMOS'; version 2026-10-02-v1.0; licence cc-by-4.0; creators [{'name': 'Zimmerman, Carl P.', 'affiliation': 'Briar Creek Tech'}]
+   byline in the tex: 'The authors --- draft for review, 2026-10-02, version 1.0 --- AI-assisted research programme; not peer reviewed'
+   decimal numbers in the tex abstract but not in the Zenodo description, or vice versa: ['1.0']
+T5 fig1_paper40_levels.pdf: page size 496.8 x 237.6 pts; fonts not embedded 0
+T5 fig2_paper40_btfr.pdf: page size 360 x 259.2 pts; fonts not embedded 0
+T6 audit rows: 316; literals occurring more than once in their block: 0; literals of <= 4 characters: 7

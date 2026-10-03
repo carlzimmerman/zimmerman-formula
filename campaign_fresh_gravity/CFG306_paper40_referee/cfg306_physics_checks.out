@@ -1,0 +1,106 @@
+CFG306 (PAPER40 referee): independent physics checks of the CFG301 width chain as PAPER40 uses it.  Referee diagnostics, NOT frozen,
+NOT an a0 measurement; kappa = 1/2 is FITTED; no sentence here says the data favour any law.
+
+Reads committed inputs only (the MIGHTEE-HI COSMOS catalogue, CFG301's stage-A survivor IDs and stage-B JSON, CFG302's per-galaxy table,
+CFG304's results JSON, the SPARC master table, the ALFALFA alpha.100/Durbala CSV).  Writes cfg306_physics_checks.out and
+cfg306_physics_checks_results.json next to this file.
+
+Sections
+  P0  independent re-implementation of the chain and the median-residual estimator (own code, exponential kernel = nu_mono below y = 2.54);
+      must reproduce CFG301's pooled and window s* to 1e-3 dex, and to 1e-9 with hzq_core's nu_mono.
+  P1  velocity frame: k = 1 (PAPER40 primary: W50/(1+z)) against k = 0 (catalogue W50 already rest-frame).
+  P2  kernel dependence of s* at y ~ 0.03: nu_mono/exponential, 'simple' (alpha = 1), 'standard' (n = 2), the framework's closed form
+      sqrt(1 + 1/y), the delta-family at V26's delta = 4.1, and the pure deep limit; for MIGHTEE (k = 1 and k = 0) and for CC2's SPARC closure.
+  P3  flux scale combined with the frame: HI-only (gas) and all-baryon shifts at the CFG304 ratios (-0.195 C1, -0.159 CFG301-like pairs,
+      -0.137 z >= 0.02, -0.120 z >= 0.02 confusion-clean) for k = 1 and k = 0.
+  P4  selection: the 23 discs removed by SNR_3D >= 8 and the 70-disc set before that cut; Spearman correlations of the per-galaxy
+      residual with SNR_3D, W50, inclination, z, log M_b, gas fraction.
+  P5  BTFR slope of the 47 (forward, inverse, bisector) and the per-galaxy residual scatter / robust error of the median.
+  P7  molecular gas (M_H2 = 0.1 and 0.3 M_HI) and H0-consistent distances, for both frames.
+  P6  width side on SPARC: SPARC x ALFALFA (UGC/NGC/IC name match) -> W50/(2 sin i) against V_flat, and the CC2 closure with the width
+      velocity in place of V_flat on the same galaxies; SPARC M_HI against ALFALFA's (same distance) as a flux-scale transfer.
+
+P0 my cut: golden 202, base 78, +width 70, +SNR 47; IDs equal CFG301 stage A: True
+
+P0 REPRODUCTION (own estimator)
+  pooled: committed log s* +0.0480942475; own (exp kernel) +0.0480942510 (dev +3.51e-09); own (nu_mono) +0.0480942475 (dev +2.71e-16)
+  W1: committed log s* +0.0910359302; own (exp kernel) +0.0910359335 (dev +3.34e-09); own (nu_mono) +0.0910359302 (dev -1.39e-17)
+  W2: committed log s* +0.0370669401; own (exp kernel) +0.0370669437 (dev +3.63e-09); own (nu_mono) +0.0370669401 (dev -8.33e-17)
+  W3: committed log s* +0.0337919486; own (exp kernel) +0.0337919521 (dev +3.51e-09); own (nu_mono) +0.0337919486 (dev +6.25e-17)
+  reproduction PASS (exp within 1e-3 dex, nu_mono within 1e-9)
+
+P1 VELOCITY FRAME (k = 1: W50/(1+z), PAPER40 primary; k = 0: catalogue W50 read as rest-frame)
+  k=1: own bootstrap (B 2000) of the pooled a0: 68% 9.919e-11-1.145e-10; 95% 9.264e-11-1.311e-10; SD 0.034 dex
+  k=1: pooled a0 1.0456e-10 (canonical +0.048, alt -0.034, SPARC 1.20 -0.060 dex); kappa 0.559 / 0.462; windows 1.154e-10, 1.019e-10, 1.012e-10 (W3-W1 -0.057 dex); BTFR median 1.251e-10
+  k=0: own bootstrap (B 2000) of the pooled a0: 68% 1.273e-10-1.418e-10; 95% 1.235e-10-1.655e-10; SD 0.033 dex
+  k=0: pooled a0 1.3111e-10 (canonical +0.146, alt +0.064, SPARC 1.20 +0.038 dex); kappa 0.700 / 0.580; windows 1.348e-10, 1.305e-10, 1.416e-10 (W3-W1 +0.022 dex); BTFR median 1.530e-10
+  k=1: recipe knobs delta 0.106, M* 0.086, D_HI 0.026, H0 0.036 -> half-width 0.143 dex (CFG301 committed at k=1: 0.143)
+  k=0: recipe knobs delta 0.098, M* 0.069, D_HI 0.026, H0 0.036 -> half-width 0.128 dex (CFG301 committed at k=1: 0.143)
+
+P2 KERNEL DEPENDENCE at the 47 discs' y (quartiles 0.028, 0.033, 0.042)
+  CC2 re-run (own code): N 123, s* 1.3044 (committed 1.3044; dev +2.1e-16 dex)
+  SPARC CC2 sample y at R: quartiles 0.037, 0.056, 0.140 (MIGHTEE: 0.028, 0.033, 0.042)
+  exp (nu_mono, MLS16; PAPER40 primary)   : a0(k=1) 1.046e-10  a0(k=0) 1.311e-10  CC2-SPARC 1.221e-10  MIGHTEE-CC2 -0.067 (k=1) +0.031 (k=0) dex; median y nu^2 1.197
+  simple (alpha=1)                        : a0(k=1) 1.043e-10  a0(k=0) 1.308e-10  CC2-SPARC 1.214e-10  MIGHTEE-CC2 -0.066 (k=1) +0.032 (k=0) dex; median y nu^2 1.200
+  standard (n=2)                          : a0(k=1) 1.234e-10  a0(k=0) 1.514e-10  CC2-SPARC 1.481e-10  MIGHTEE-CC2 -0.080 (k=1) +0.009 (k=0) dex; median y nu^2 1.017
+  framework closed form sqrt(1+1/y)       : a0(k=1) 1.216e-10  a0(k=0) 1.498e-10  CC2-SPARC 1.460e-10  MIGHTEE-CC2 -0.079 (k=1) +0.011 (k=0) dex; median y nu^2 1.033
+  delta-family delta=4.1 (V26 best fit)   : a0(k=1) 1.251e-10  a0(k=0) 1.530e-10  CC2-SPARC 1.526e-10  MIGHTEE-CC2 -0.086 (k=1) +0.001 (k=0) dex; median y nu^2 1.000
+  pure deep limit y^-1/2                  : a0(k=1) 1.251e-10  a0(k=0) 1.530e-10  CC2-SPARC 1.526e-10  MIGHTEE-CC2 -0.086 (k=1) +0.001 (k=0) dex; median y nu^2 1.000
+  kernel spread of the k=1 a0 about the exp kernel (excluding the pure deep limit): -0.001 to +0.078 dex
+
+P3 FLUX SCALE x FRAME (exact chain re-runs; 'gas' = M_HI shifted, R follows the size relation; 'all' = every baryon shifted at fixed R)
+  CFG304 post hoc keys: ['PH1', 'PH2', 'PH3', 'PH4', 'PH5', 'PH6', 'PH7']
+  C1 code-1 (CFG304 primary)                 R -0.195  k=1: gas-only a0 7.502e-11 (kappa 0.401/0.332); all-baryon a0 6.057e-11
+  C1 code-1 (CFG304 primary)                 R -0.195  k=0: gas-only a0 9.013e-11 (kappa 0.481/0.398); all-baryon a0 7.626e-11
+  CFG301-like 7 pairs (CFG304 PH2)           R -0.159  k=1: gas-only a0 8.017e-11 (kappa 0.428/0.354); all-baryon a0 6.722e-11
+  CFG301-like 7 pairs (CFG304 PH2)           R -0.159  k=0: gas-only a0 9.681e-11 (kappa 0.517/0.428); all-baryon a0 8.434e-11
+  z >= 0.02, codes 1+2 (CFG304 PH1)          R -0.137  k=1: gas-only a0 8.347e-11 (kappa 0.446/0.369); all-baryon a0 7.159e-11
+  z >= 0.02, codes 1+2 (CFG304 PH1)          R -0.137  k=0: gas-only a0 1.017e-10 (kappa 0.543/0.450); all-baryon a0 8.980e-11
+  z >= 0.02, confusion-clean (CFG304 PH1)    R -0.120  k=1: gas-only a0 8.607e-11 (kappa 0.460/0.380); all-baryon a0 7.513e-11
+  z >= 0.02, confusion-clean (CFG304 PH1)    R -0.120  k=0: gas-only a0 1.057e-10 (kappa 0.564/0.467); all-baryon a0 9.425e-11
+  CFG306 S2: code-1 trend in SNR_3D extrapolated to the 47 R -0.115  k=1: gas-only a0 8.685e-11 (kappa 0.464/0.384); all-baryon a0 7.619e-11
+  CFG306 S2: code-1 trend in SNR_3D extrapolated to the 47 R -0.115  k=0: gas-only a0 1.069e-10 (kappa 0.571/0.472); all-baryon a0 9.559e-11
+  CFG306 S2: code-1 trend in z extrapolated to the 47 R -0.087  k=1: gas-only a0 9.118e-11 (kappa 0.487/0.403); all-baryon a0 8.240e-11
+  CFG306 S2: code-1 trend in z extrapolated to the 47 R -0.087  k=0: gas-only a0 1.132e-10 (kappa 0.605/0.500); all-baryon a0 1.034e-10
+
+P3b COMBINED GRID (illustration, not a measurement): frame k x width correction delta x HI-only flux shift
+  k=1 delta= 0.0 km/s: a0 at HI shift R = 0 / -0.087 / -0.137 / -0.195: 1.046e-10 / 9.118e-11 / 8.347e-11 / 7.495e-11
+  k=1 delta= 5.0 km/s: a0 at HI shift R = 0 / -0.087 / -0.137 / -0.195: 9.389e-11 / 8.164e-11 / 7.507e-11 / 6.763e-11
+  k=1 delta=11.0 km/s: a0 at HI shift R = 0 / -0.087 / -0.137 / -0.195: 8.194e-11 / 7.116e-11 / 6.541e-11 / 5.906e-11
+  k=0 delta= 0.0 km/s: a0 at HI shift R = 0 / -0.087 / -0.137 / -0.195: 1.311e-10 / 1.132e-10 / 1.017e-10 / 9.005e-11
+  k=0 delta= 5.0 km/s: a0 at HI shift R = 0 / -0.087 / -0.137 / -0.195: 1.185e-10 / 1.019e-10 / 9.116e-11 / 8.098e-11
+  k=0 delta=11.0 km/s: a0 at HI shift R = 0 / -0.087 / -0.137 / -0.195: 1.047e-10 / 8.902e-11 / 7.956e-11 / 7.100e-11
+  grid range 5.906e-11 - 1.311e-10
+
+P4 SELECTION (the SNR_3D >= 8 cut and residual correlations)
+  47 (PAPER40)                : N 47  a0 1.046e-10  BTFR median 1.251e-10  median log M_HI 9.73  median z 0.065  median W50 204
+  70 (before SNR cut)         : N 70  a0 1.227e-10  BTFR median 1.463e-10  median log M_HI 9.64  median z 0.071  median W50 205
+  23 removed by SNR_3D >= 8   : N 23  a0 1.724e-10  BTFR median 2.090e-10  median log M_HI 9.33  median z 0.073  median W50 215
+  Spearman(per-galaxy log s*, SNR_3D      ) rho -0.054  p 0.717
+  Spearman(per-galaxy log s*, W50         ) rho +0.596  p 0.000
+  Spearman(per-galaxy log s*, incl_deg    ) rho -0.064  p 0.671
+  Spearman(per-galaxy log s*, z_HI        ) rho -0.220  p 0.137
+  Spearman(per-galaxy log s*, log_Mb      ) rho +0.175  p 0.238
+  Spearman(per-galaxy log s*, gas_fraction) rho -0.445  p 0.002
+  Spearman(per-galaxy log s*, axis_ratio  ) rho +0.070  p 0.642
+  Spearman(per-galaxy log s*, log_Mstar   ) rho +0.335  p 0.021
+  log SNR_3D on log(flux proxy M_HI/D_L^2) and log W50 over the 70: coefficients +0.40 (flux), -0.50 (W50) [a negative W50 term = narrow lines favoured at fixed flux]
+
+P5 BTFR SLOPE AND THE ERROR OF THE MEDIAN
+  slope of log M_b on log V: forward 2.31, inverse 3.50 (68% 3.17-3.88), bisector 2.80; log M_b 9.46-10.87
+  per-galaxy log s*: SD 0.319, robust SD 0.199 dex -> sqrt(pi/2) sigma/sqrt(N) error of the median 0.036 dex; committed bootstrap 68% of the pooled log s*: -0.014 / +0.039 dex
+  location estimators of log s*: median-residual +0.048; median of per-galaxy +0.048; Hodges-Lehmann +0.046; 20% trimmed mean +0.053
+
+P6 SPARC x ALFALFA (UGC = AGC number; NGC/IC by ALFALFA's optical-counterpart name)
+  matched with a W50: 35; selected (Q<=2, i>=30, V_flat>0, ALFALFA code 1): 22
+  SPARC M_HI minus ALFALFA M_HI at the SPARC distance: median +0.053 dex (all 35), +0.061 (selected)
+  log10[W50/(2 sin i) / V_flat]: median +0.026 dex (bootstrap 68% +0.022 to +0.032)
+  CC2 recipe on these 22: s* with V_flat 1.218; with W50/(2 sin i) 1.859 (+0.184 dex); with (W50-11)/(2 sin i) 1.433 (+0.071 dex)
+
+P7 MOLECULAR GAS AND H0 (variants not in PAPER40's systematics table)
+  k=1: M_H2 = 0.1 M_HI added to M_b (R unchanged): a0 9.837e-11 (-0.027 dex)
+  k=1: M_H2 = 0.3 M_HI added to M_b (R unchanged): a0 8.901e-11 (-0.070 dex)
+  k=1: distances at H0 = 67.4 (the footing's H0): a0 9.624e-11; kappa 0.514 / 0.425
+  k=0: M_H2 = 0.1 M_HI added to M_b (R unchanged): a0 1.237e-10 (-0.025 dex)
+  k=0: M_H2 = 0.3 M_HI added to M_b (R unchanged): a0 1.108e-10 (-0.073 dex)
+  k=0: distances at H0 = 67.4 (the footing's H0): a0 1.208e-10; kappa 0.645 / 0.534

@@ -1,0 +1,97 @@
+CFG306 clean-mirror reproduction (git archive of commit 00d6c89ae: campaign_fresh_gravity, real_research/{data,derivation_chain_2026,cross_thread_review_2026_09_26}, data_assembly, qwen_claude_field_theory/papers_2026; re-initialised as a one-commit git repo in the session scratchpad)
+Cubes for CFG302 read in place from the external data folder via MIGHTEE_R1P0_DIR (24 GB, not in the repository).
+
+== final line of every re-run output ==
+campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageA.out: 5/5 checks pass; load-bearing failures: 0   (2 s)
+campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_SELFTEST.out: 3/3 checks pass; load-bearing failures: 0   (128 s)
+campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_CC2.out: 2/2 checks pass; load-bearing failures: 0   (4 s)
+campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageB.out: 7/7 checks pass; load-bearing failures: 0   (3 s)
+campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageB_MUTATE1.out: 3/3 checks pass; load-bearing failures: 0   (1 s)
+campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageB_MUTATE2.out: 3/3 checks pass; load-bearing failures: 0   (1 s)
+campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_M5.out: 3/3 checks pass; load-bearing failures: 0   (11 s)
+campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_raw_widths.out: 12/13 checks pass   (20 s)
+campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_raw_widths_MUTATE.out: 8/8 checks pass   (5 s)
+campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_posthoc_diagnostics.out: 1/1 checks pass (post hoc; not frozen)
+campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_flux_scale_alfalfa.out: 9/10 checks pass
+campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_flux_scale_alfalfa_MUTATE_a.out: 11/13 checks pass
+campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_flux_scale_alfalfa_MUTATE_b.out: 9/10 checks pass
+campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_flux_scale_alfalfa_MUTATE_c.out: 9/10 checks pass
+campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_posthoc.out: 2/2 checks pass
+
+== files that differ from the committed versions after the re-runs (git status in the mirror; err_*.txt are this lane's empty stderr captures) ==
+ M campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_CC2.out
+ M campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_M5.out
+ M campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_SELFTEST.out
+ M campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageA.out
+ M campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_raw_widths.out
+ M campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_raw_widths_MUTATE.out
+ M campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_raw_widths_MUTATE_results.json
+ M campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_raw_widths_results.json
+ M campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_flux_scale_alfalfa_MUTATE_c.out
+ M qwen_claude_field_theory/papers_2026/fig1_paper40_levels.pdf
+ M qwen_claude_field_theory/papers_2026/fig2_paper40_btfr.pdf
+
+== content of those differences (timing, peak memory, the cube-folder string set by MIGHTEE_R1P0_DIR, and one docstring line) ==
+   3 +  DRYRUN=1 STAGE=B [MUTATE=1|2]: the STAGE=B code on FABRICATED widths (the real widths not loaded), run once before the measurement as a code test (_DRYRUN outputs)
+   2 -cube folder: ../_external_data/mightee_hi_dr1 (relative to the repository root); catalogue: data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv
+   2 - "cube_folder": "../_external_data/mightee_hi_dr1",
+   2 +cube folder: ../..<external cube folder> (relative to the repository root); catalogue: data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv
+   2 + "cube_folder": "../..<external cube folder>",
+   1 -runtime 0.6 s
+   1 -per-galaxy CSV: cfg302_per_galaxy_MUTATE.csv (190 rows); peak resident memory 780 MB
+   1 -per-galaxy CSV: cfg302_per_galaxy.csv (190 rows); peak resident memory 763 MB
+   1 -3/3 checks pass; load-bearing failures: 0   (127 s)
+   1 -3/3 checks pass; load-bearing failures: 0   (12 s)
+   1 -12/13 checks pass   (16 s)
+   1 -  ... 75/190 measured (13 s)
+   1 -  ... 50/190 measured (12 s)
+   1 -  ... 25/190 measured (11 s)
+   1 -  ... 175/190 measured (4 s)
+   1 -  ... 175/190 measured (15 s)
+   1 -  ... 150/190 measured (15 s)
+   1 -  ... 125/190 measured (14 s)
+   1 -  ... 100/190 measured (13 s)
+   1 +runtime 0.5 s
+   1 +per-galaxy CSV: cfg302_per_galaxy_MUTATE.csv (190 rows); peak resident memory 761 MB
+   1 +per-galaxy CSV: cfg302_per_galaxy.csv (190 rows); peak resident memory 767 MB
+   1 +3/3 checks pass; load-bearing failures: 0   (128 s)
+   1 +3/3 checks pass; load-bearing failures: 0   (11 s)
+   1 +12/13 checks pass   (20 s)
+   1 +  ... 75/190 measured (14 s)
+   1 +  ... 50/190 measured (13 s)
+   1 +  ... 25/190 measured (13 s)
+   1 +  ... 175/190 measured (5 s)
+   1 +  ... 175/190 measured (18 s)
+   1 +  ... 150/190 measured (17 s)
+   1 +  ... 125/190 measured (16 s)
+   1 +  ... 100/190 measured (15 s)
+
+== JSON / CSV results files changed? ==
+ .../cfg302_raw_widths_MUTATE_results.json                               | 2 +-
+ .../CFG302_mightee_cube_raw_widths/cfg302_raw_widths_results.json       | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+(the two CFG302 JSON changes are the cube_folder string only; every other results JSON and CSV is byte-identical)
+
+== figures: committed vs regenerated, PDF bytes with CreationDate removed ==
+fig1_paper40_levels.pdf committed 022594be0cdf3e6afe5c8f6a4ad1ec5f regenerated 022594be0cdf3e6afe5c8f6a4ad1ec5f IDENTICAL
+fig2_paper40_btfr.pdf committed 29a72ac079c7054bed3b990ad9860786 regenerated 29a72ac079c7054bed3b990ad9860786 IDENTICAL
+
+== PAPER40_audit.py in the mirror (no git history: the seven commit-existence rows of B31 cannot pass) ==
+PAPER40 audit against committed files at HEAD dc2f822 (paper's own numbers: PAPER40_figures_numbers.json, working tree)
+  [BAD] [B31] src: 2555ab142                                         source gives None
+  [BAD] [B31] src: 6b10c01c0                                         source gives None
+  [BAD] [B31] src: 7d317dd4f                                         source gives None
+  [BAD] [B31] src: a89ba33b9                                         source gives None
+  [BAD] [B31] src: 336b36f8f                                         source gives None
+  [BAD] [B31] src: 34e40dac6                                         source gives None
+  [BAD] [B31] src: 19adffd49                                         source gives None
+  note: tex blocks with no audit rows: B32
+
+299 of 306 quoted values match their committed sources and their tex blocks
+10 of 10 literature values (LIT; from the arXiv abstracts read 2026-10-02, not in a committed file) are printed in their blocks
+
+== PAPER40_audit.py in the real repository at HEAD 00d6c89ae (read-only) ==
+
+306 of 306 quoted values match their committed sources and their tex blocks
+10 of 10 literature values (LIT; from the arXiv abstracts read 2026-10-02, not in a committed file) are printed in their blocks
+MUTATE modes in the mirror: --mutate exit 1, --mutate-tex exit 1 (both fail as required)

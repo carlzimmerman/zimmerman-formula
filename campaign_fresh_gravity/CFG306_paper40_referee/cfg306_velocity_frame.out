@@ -1,0 +1,28 @@
+CFG306 (PAPER40 referee): which velocity frame are the MIGHTEE-HI COSMOS catalogue W50 values in?  Referee diagnostic, not frozen.
+
+PAPER40 divides the catalogue W50 by (1 + z) (reads it as observed-frame) and lists "rest-frame" as a +0.098 dex systematic to be
+"confirmed with the catalogue's authors".  Three tests:
+
+  F1  the catalogue paper itself (Maksymowicz-Maciata et al. 2026, arXiv:2605.28731, Appendix D example spectra) prints each example's W50
+      both in km/s and in channels (26.126 kHz channels).  The km/s-per-channel factor tells the conversion:
+        rest-frame width:      dv = c * dnu / nu_obs              (= 5.514 (1+z) km/s per channel)
+        observed (cz) width:   dv = c * dnu * nu0 / nu_obs^2      (= 5.514 (1+z)^2 km/s per channel)
+      The five example values were transcribed from the local copy of the arXiv PDF (outside the repository; re-read here with pdftotext
+      when present) and matched to catalogue rows by position.
+  F2  CFG302's raw rest-frame widths (58 frozen detections): the slope of log10(W_ours/W_cat) on log10(1+z) is 0 if the catalogue is
+      rest-frame and -1 if it is observed-frame.
+  F3  CFG304's ALFALFA pairs: ALFALFA W50 is observed-frame (H18: no cosmological correction), so log10(W_cat/W_ALFALFA) on log10(1+z)
+      has slope -1 if the catalogue is rest-frame and 0 if observed-frame (weak: z <= 0.047).
+Writes cfg306_velocity_frame.out and cfg306_velocity_frame_results.json.
+
+F1 local PDF re-read (pdftotext): W50 km/s [237.858, 67.32, 84.858, 264.04, 420.287]; channels [40.5, 12.0, 14.1, 46.5, 74.0]; Table 2 channel width 26.126 kHz; transcription matches: True
+  MGTH_J100404.9+014303 (sep 1.5", z 0.064): W50 237.858 km/s = 40.5 ch -> 5.8730 km/s/ch; rest-frame predicts 5.8691 (+0.0007), observed-frame 6.2468 (-0.0598); channel rounding allows +-0.0012; catalogue W50 223
+  MGTH_J095548.1+020754 (sep 0.8", z 0.0167): W50 67.32 km/s = 12.0 ch -> 5.6100 km/s/ch; rest-frame predicts 5.6063 (+0.0007), observed-frame 5.6999 (-0.0158); channel rounding allows +-0.0042; catalogue W50 67
+  MGTH_J095741.3+023406 (sep 0.6", z 0.0907): W50 84.858 km/s = 14.1 ch -> 6.0183 km/s/ch; rest-frame predicts 6.0143 (+0.0007), observed-frame 6.5598 (-0.0825); channel rounding allows +-0.0035; catalogue W50 85
+  MGTH_J100008.1+024554 (sep 0.7", z 0.0291): W50 264.04 km/s = 46.5 ch -> 5.6783 km/s/ch; rest-frame predicts 5.6745 (+0.0007), observed-frame 5.8395 (-0.0276); channel rounding allows +-0.0011; catalogue W50 264
+  MGTH_J100057.2+030830 (sep 1.7", z 0.0293): W50 420.287 km/s = 74.0 ch -> 5.6796 km/s/ch; rest-frame predicts 5.6758 (+0.0007), observed-frame 5.8421 (-0.0278); channel rounding allows +-0.0007; catalogue W50 420
+F1 verdict data: max |dev| rest-frame 0.0007; observed-frame deviations [-0.0598, -0.0158, -0.0825, -0.0276, -0.0278] (z-dependent, up to 0.083)
+F2 CFG302 all 58 (n 58): Theil-Sen slope of log(W_ours_rest/W_cat) on log(1+z) -0.55 (68% -1.39 to +0.45; 95% -2.51 to +1.14); rest-frame catalogue predicts 0, observed-frame predicts -1
+F2 CFG302 3-sigma clipped (n 48): Theil-Sen slope of log(W_ours_rest/W_cat) on log(1+z) +0.29 (68% -0.51 to +0.85; 95% -1.05 to +1.42); rest-frame catalogue predicts 0, observed-frame predicts -1
+F3 CFG304 code 1 (n 15, median z 0.0279): median log(W_cat/W_ALFALFA) +0.0000; if the catalogue is rest-frame the expectation is -0.0120 (plus MIGHTEE's uncorrected 5.5 km/s channel broadening, positive), if observed-frame 0; slope +1.00 (68% -1.29 to +1.73)
+F3 CFG304 codes 1+2 (n 23, median z 0.0320): median log(W_cat/W_ALFALFA) +0.0000; if the catalogue is rest-frame the expectation is -0.0137 (plus MIGHTEE's uncorrected 5.5 km/s channel broadening, positive), if observed-frame 0; slope +1.71 (68% +0.26 to +5.47)

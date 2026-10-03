@@ -1,0 +1,39 @@
+CFG306 (PAPER40 referee): is CFG304's single-dish flux offset representative of CFG301's 47 discs?  Referee diagnostic, not frozen.
+
+  S1  property distributions of CFG304's matched pairs (23 all codes, 15 code 1) against CFG301's 47: z, log M_HI, SNR_3D, W50, HI angular
+      diameter (size relation at the catalogue distance), and the number of catalogued MIGHTEE neighbours in an Arecibo beam.
+  S2  R_cat (catalogue/ALFALFA log flux ratio) against those properties (Spearman, all 23 and code 1), and the linear extrapolation of R_cat
+      in log SNR_3D and in z to the 47's medians (bootstrap) -- an illustration of how far the 47 lie outside the calibrating pairs.
+  S3  an order-of-magnitude bound on ALFALFA confusion by HI sources below MIGHTEE's catalogue (mean cosmic HI density in an Arecibo
+      beam x velocity window, with an overdensity factor), against the HI mass the offset requires.
+Writes cfg306_flux_scale.out and cfg306_flux_scale_results.json.
+
+S1 PROPERTIES (median [16-84%])
+  z                                      47: 0.065 [0.041-0.081]   23 pairs: 0.032 [0.015-0.046]   15 code-1: 0.028 [0.006-0.043]
+  log M_HI                               47: 9.730 [9.444-10.069]   23 pairs: 9.650 [8.955-10.007]   15 code-1: 9.650 [8.744-10.052]
+  SNR_3D                                 47: 12.400 [8.908-17.412]   23 pairs: 17.800 [13.956-27.012]   15 code-1: 18.700 [13.872-38.640]
+  W50                                    47: 204.000 [165.360-286.480]   23 pairs: 196.000 [107.000-250.200]   15 code-1: 196.000 [107.480-227.400]
+  theta_HI arcsec                        47: 40.200 [26.469-55.185]   23 pairs: 56.001 [47.996-93.755]   15 code-1: 66.262 [55.227-101.093]
+  MIGHTEE neighbours in 3.5' x 400 km/s  47: 0.000 [0.000-1.000]   23 pairs: 0.000 [0.000-1.000]   15 code-1: 0.000 [0.000-1.000]
+  fraction of the 47 inside the pairs' range: z 0.30, SNR_3D 0.72, log M_HI 0.98
+  the 47 with an ALFALFA pair: 7
+
+S2 R_cat TRENDS AND EXTRAPOLATION
+  all 23       Spearman(R_cat, log SNR_3D) rho -0.30  p 0.16
+  all 23       Spearman(R_cat, z         ) rho +0.23  p 0.30
+  all 23       Spearman(R_cat, log M_HI  ) rho +0.46  p 0.03
+  all 23       Spearman(R_cat, theta_HI  ) rho +0.14  p 0.53
+  all 23       Spearman(R_cat, W50       ) rho +0.25  p 0.25
+  all 23       linear R_cat on log SNR_3D: slope -0.168; at the 47's median (1.093) R_cat -0.137 (bootstrap 16/50/84 -0.193 / -0.134 / -0.077)
+  all 23       linear R_cat on z: slope +2.426; at the 47's median (0.065) R_cat -0.087 (bootstrap 16/50/84 -0.162 / -0.087 / -0.023)
+  code 1 (15)  Spearman(R_cat, log SNR_3D) rho -0.62  p 0.01
+  code 1 (15)  Spearman(R_cat, z         ) rho +0.28  p 0.31
+  code 1 (15)  Spearman(R_cat, log M_HI  ) rho +0.46  p 0.09
+  code 1 (15)  Spearman(R_cat, theta_HI  ) rho +0.22  p 0.44
+  code 1 (15)  Spearman(R_cat, W50       ) rho +0.08  p 0.79
+  code 1 (15)  linear R_cat on log SNR_3D: slope -0.303; at the 47's median (1.093) R_cat -0.115 (bootstrap 16/50/84 -0.154 / -0.114 / -0.068)
+  code 1 (15)  linear R_cat on z: slope +2.715; at the 47's median (0.065) R_cat -0.080 (bootstrap 16/50/84 -0.146 / -0.087 / -0.019)
+
+S3 ALFALFA CONFUSION BY SUB-CATALOGUE HI (order of magnitude)
+  at z 0.028: beam radius 60 kpc, depth 8.6 Mpc, volume 0.098 Mpc^3; mean HI in it 5.22e+06 Msun (rho_HI 5.30e+07 Msun/Mpc^3)
+  HI the -0.195 dex offset needs per galaxy: 2.53e+09 Msun (median code-1 M_HI x (10^0.195 - 1)) -> overdensity 485 of HI that MIGHTEE did not catalogue
