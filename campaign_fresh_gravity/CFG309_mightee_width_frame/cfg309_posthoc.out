@@ -1,0 +1,37 @@
+CFG309 POST HOC diagnostics (NOT frozen; written after the main run; nothing here changes a frozen check, vote or the decision).
+They read the main run's per-galaxy fits (cfg309_per_galaxy.csv: the busy-function parameters of the frozen n = 2 fits) and the main JSON.
+kappa = 1/2 is FITTED.
+
+Why: the frozen T4 width is W50 at 50 % of the MAXIMUM of the fitted profile.  MM26 S4.5 defines its W50 at 50 % of the AVERAGE of the two peaks
+of the fitted profile.  For an asymmetric double horn, average < maximum, so the catalogue's definition gives a wider W50 than the frozen one, and
+that difference is a method offset of the same sign as the main run's T4 lean (m_R < 0).  The main run's in-script 'POSTHOC_avg_two_peaks' line is
+WRONG: it took the outermost local maxima of the fitted function over the whole grid, which include tiny numerical bumps in the far wings
+(median W50avg/W50max 1.95).  PH1 replaces it.
+
+Reading rules (fixed before the first run of this script):
+  PH1  catalogue-definition W50: local maxima of the fitted B(v) - b0 with height >= 0.2 P (P = the maximum); if >= 2 such maxima, the reference level is
+       the mean of the outermost two (left-most and right-most); if 1, P.  W50 = the outermost crossings of 0.5 x reference (outside in, linear
+       interpolation, 0.05 km/s grid).  Variant PH1b: the mean of the two HIGHEST such maxima.  Reported: m_R = median log(W50_PH1 / W50_cat) and
+       m_O = median(that + log(1+z)) with the frozen bootstrap (B 4000, seed 3094) on the frozen GOOD set, and how the frozen T4L/T4S readings WOULD read
+       on these widths.  This is a diagnostic of the method offset, not a vote.
+  PH2  the same on the frozen variants' sets (NBFLAG 0; 3-sigma clipped).
+  PH3  Delta (frozen and PH1) by z tercile of the GOOD set: median and n; REST predicts flat medians, OBS predicts medians falling as -log(1+z).
+  PH4  how much of the frozen m_R the PH1 definition removes: median(Delta_PH1 - Delta_frozen).
+Writes cfg309_posthoc.out and cfg309_posthoc_results.json.
+
+PH0 re-evaluation of the frozen width from the saved parameters: max |W_max_re / W50_busy - 1| = 5.50e-10 (n 54)
+profiles with >= 2 peaks (>= 0.2 P): 47 of 54; median W_ph1/W50_frozen 1.0072 (max 2.9918); PH1b median ratio 1.0072
+  frozen (50% of max): m_R -0.0168 (-0.0267..-0.0096); m_O +0.0028 (-0.0048..+0.0120); T4L would read UNDECIDED; slope 95% -2.13..+1.51, T4S would read UNDECIDED
+  PH1 (50% of mean of outermost two peaks): m_R -0.0095 (-0.0176..-0.0047); m_O +0.0118 (+0.0042..+0.0181); T4L would read UNDECIDED; slope 95% -1.39..+1.37, T4S would read UNDECIDED
+  PH1b (50% of mean of two highest peaks): m_R -0.0095 (-0.0176..-0.0047); m_O +0.0118 (+0.0042..+0.0181); T4L would read UNDECIDED; slope 95% -1.39..+1.37, T4S would read UNDECIDED
+
+PH2 frozen variant sets with the PH1 definition:
+  NBFLAG 0 (n 40): m_R -0.0117 (-0.0231..-0.0062); m_O +0.0090; T4L would read UNDECIDED
+  3-sigma clipped (n 47): m_R -0.0104 (-0.0207..-0.0068); m_O +0.0094; T4L would read UNDECIDED
+
+PH3 Delta by z tercile (GOOD set):
+  T1 (n 18, median z 0.0288): median Delta frozen -0.0082, PH1 -0.0053; OBS would predict -0.0123 + offset, REST a constant offset
+  T2 (n 18, median z 0.0454): median Delta frozen -0.0213, PH1 -0.0201; OBS would predict -0.0193 + offset, REST a constant offset
+  T3 (n 18, median z 0.0694): median Delta frozen -0.0176, PH1 -0.0114; OBS would predict -0.0291 + offset, REST a constant offset
+
+PH4 median(Delta_PH1 - Delta_frozen) = +0.0031 dex (the part of the frozen m_R that the catalogue's own peak definition accounts for)

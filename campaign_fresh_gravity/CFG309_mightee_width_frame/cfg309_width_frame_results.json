@@ -1,0 +1,1067 @@
+{
+ "lane": "CFG309",
+ "frozen": "ec54de4ac",
+ "script": "cfg309_width_frame.py",
+ "mutate": 0,
+ "checks": [
+  {
+   "name": "K0 input sha256 prefixes as frozen (catalogue bcf9e8558bc56448, CFG302 CSV e122665f, CFG304 pairs 297e4789, PDF db936cbc)",
+   "ok": true
+  },
+  {
+   "name": "T1-Q every recorded T1 quote occurs in the pdftotext output (whitespace-normalised)",
+   "ok": true
+  },
+  {
+   "name": "T1-K no frame-defining keyword occurs anywhere in the paper text (the basis of 'not EXPLICIT')",
+   "ok": true
+  },
+  {
+   "name": "T2-P the parser found 5 examples, each with W50 km/s, channels and a printed MGTH identifier that matches one catalogue row",
+   "ok": true
+  },
+  {
+   "name": "T3a-Q every recorded ALFALFA documentation quote occurs in its file",
+   "ok": true
+  },
+  {
+   "name": "R3 CFG304 reproduction: N = 15 code-1 pairs; log(W50_cat/w50_A) equals the committed logW50_cat_A to 1e-9; median = CFG304's +0.000 to 1e-9; W50_cat = catalogue",
+   "ok": true
+  },
+  {
+   "name": "C-SHUF the real robust scatter of d is below the 1st percentile of 2,000 shuffles of w50_A among the 15 pairs",
+   "ok": true
+  },
+  {
+   "name": "K1 the four r1p0 sub-cubes have the manifest's sizes (sha256 not recomputed; CFG302 C-INT)",
+   "ok": true
+  },
+  {
+   "name": "R0 the re-extraction reproduces CFG302's W50_rest_kms and sigma_ch to <= 1e-6 relative for all 58",
+   "ok": true
+  },
+  {
+   "name": "INJ-A |median log(W50_busy,rec / W50_true)| <= 0.005 dex over all GOOD injection fits",
+   "ok": true
+  },
+  {
+   "name": "INJ-B frame recovery: REST world -> REST in >= 16/20 and OBS <= 1/20; OBS world -> OBS in >= 16/20 and REST <= 1/20",
+   "ok": false
+  }
+ ],
+ "n_pass": 10,
+ "n_checks": 11,
+ "numbers": {
+  "T1": {
+   "verdict": "IMPLICIT-{REST,OBS}",
+   "note": "No sentence states the velocity frame or convention of W50: 'rest frame', 'observed frame', '(1+z)', 'convention' and 'cosmological broadening/stretch' never occur.  The one frame-related statement is that the channel velocity width used in the W50 error is 'calculated for the given redshift' (5.5 km/s at z = 0): that excludes RADIO (5.5 km/s per channel at every z) but is compatible with REST (5.5 (1+z)) and OBS (5.5 (1+z)^2).  The column description (S4.7, col. 13) and the data-assembly README/column file give no frame either.",
+   "quotes": {
+    "S4.5 W50 definition": [
+     "width W50 at 50% of the average peak flux density of the fitted",
+     "function, found by identifying the two peaks of the spectral profile and"
+    ],
+    "S4.5 channel velocity width (the only frame-related statement)": [
+     "with the velocity width of the channels (calculated for the given",
+     "redshift), equal to"
+    ],
+    "Table 2": [
+     "Channel width 26.126 kHz (5.5 km s"
+    ],
+    "S4.7 column 13 description (no frame stated)": [
+     "tection spectral profile velocity width (and its error) measured at 50%",
+     "Note that it is not inclination corrected."
+    ],
+    "S4.5 busy function source": [
+     "we fit a busy function (Equation 4"
+    ]
+   },
+   "quotes_found": {
+    "S4.5 W50 definition": true,
+    "S4.5 channel velocity width (the only frame-related statement)": true,
+    "Table 2": true,
+    "S4.7 column 13 description (no frame stated)": true,
+    "S4.5 busy function source": true
+   },
+   "sweep": {
+    "W ?_?50": {
+     "n": 23,
+     "lines": [
+      767,
+      777,
+      812,
+      818,
+      869,
+      881,
+      955,
+      1005,
+      1657,
+      1658,
+      1692,
+      1715,
+      1716,
+      1752,
+      1776,
+      1777,
+      1811,
+      1833,
+      1834,
+      1870,
+      1893,
+      1894,
+      1930
+     ]
+    },
+    "w50": {
+     "n": 22,
+     "lines": [
+      767,
+      777,
+      812,
+      818,
+      869,
+      881,
+      1005,
+      1657,
+      1658,
+      1692,
+      1715,
+      1716,
+      1752,
+      1776,
+      1777,
+      1811,
+      1833,
+      1834,
+      1870,
+      1893,
+      1894,
+      1930
+     ]
+    },
+    "line width": {
+     "n": 0,
+     "lines": []
+    },
+    "velocity width": {
+     "n": 6,
+     "lines": [
+      39,
+      779,
+      822,
+      830,
+      881,
+      957
+     ]
+    },
+    "width": {
+     "n": 38,
+     "lines": [
+      39,
+      194,
+      195,
+      201,
+      242,
+      247,
+      249,
+      259,
+      288,
+      292,
+      296,
+      362,
+      383,
+      516,
+      518,
+      695,
+      768,
+      770,
+      777,
+      778,
+      779,
+      784,
+      790,
+      794,
+      797,
+      812,
+      815,
+      816,
+      817,
+      819,
+      822,
+      830,
+      832,
+      881,
+      957,
+      1140,
+      1470,
+      1482
+     ]
+    },
+    "rest[- ]frame": {
+     "n": 0,
+     "lines": []
+    },
+    "observed[- ]frame": {
+     "n": 0,
+     "lines": []
+    },
+    "1 ?\\+ ?z": {
+     "n": 0,
+     "lines": []
+    },
+    "\\(1\\+z\\)": {
+     "n": 0,
+     "lines": []
+    },
+    "optical": {
+     "n": 38,
+     "lines": [
+      40,
+      69,
+      109,
+      150,
+      165,
+      168,
+      397,
+      707,
+      710,
+      713,
+      721,
+      740,
+      743,
+      746,
+      883,
+      889,
+      892,
+      895,
+      912,
+      922,
+      926,
+      963,
+      967,
+      982,
+      1033,
+      1054,
+      1057,
+      1124,
+      1125,
+      1140,
+      1665,
+      1723,
+      1784,
+      1821,
+      1822,
+      1841,
+      1901,
+      1943
+     ]
+    },
+    "radio": {
+     "n": 31,
+     "lines": [
+      22,
+      23,
+      27,
+      49,
+      54,
+      57,
+      66,
+      75,
+      111,
+      118,
+      120,
+      122,
+      124,
+      130,
+      190,
+      196,
+      398,
+      402,
+      713,
+      716,
+      717,
+      722,
+      895,
+      1166,
+      1256,
+      1643,
+      1665,
+      1723,
+      1784,
+      1841,
+      1901
+     ]
+    },
+    "convention": {
+     "n": 0,
+     "lines": []
+    },
+    "cosmolog": {
+     "n": 2,
+     "lines": [
+      175,
+      942
+     ]
+    },
+    "busy": {
+     "n": 13,
+     "lines": [
+      768,
+      771,
+      774,
+      783,
+      794,
+      837,
+      868,
+      881,
+      1685,
+      1745,
+      1804,
+      1863,
+      1923
+     ]
+    },
+    "channel": {
+     "n": 71,
+     "lines": [
+      97,
+      131,
+      141,
+      177,
+      193,
+      194,
+      200,
+      207,
+      232,
+      235,
+      246,
+      260,
+      290,
+      302,
+      331,
+      333,
+      334,
+      344,
+      353,
+      357,
+      358,
+      360,
+      362,
+      390,
+      391,
+      667,
+      695,
+      769,
+      777,
+      784,
+      797,
+      822,
+      870,
+      879,
+      880,
+      1168,
+      1376,
+      1398,
+      1417,
+      1446,
+      1447,
+      1453,
+      1454,
+      1458,
+      1469,
+      1476,
+      1477,
+      1479,
+      1480,
+      1481,
+      1482,
+      1657,
+      1658,
+      1660,
+      1661,
+      1715,
+      1716,
+      1718,
+      1719,
+      1776
+     ]
+    },
+    "km ?/ ?s|km s": {
+     "n": 28,
+     "lines": [
+      164,
+      176,
+      362,
+      695,
+      704,
+      767,
+      777,
+      824,
+      942,
+      959,
+      1006,
+      1471,
+      1483,
+      1657,
+      1659,
+      1661,
+      1715,
+      1717,
+      1719,
+      1776,
+      1778,
+      1780,
+      1833,
+      1835,
+      1837,
+      1893,
+      1895,
+      1897
+     ]
+    }
+   },
+   "frame_keywords": {
+    "rest[- ]frame": 0,
+    "observed[- ]frame": 0,
+    "1 ?\\+ ?z\\)?": 0,
+    "cosmolog\\w* (?:stretch|broaden)": 0,
+    "optical convention": 0,
+    "radio convention": 0,
+    "convention": 0
+   },
+   "data_assembly_col13": "13,W_50_km_s,km/s,HI spectral-profile width at 50% of the flux peak (busy-function fit); NOT inclination corrected"
+  },
+  "T2": {
+   "rows": [
+    {
+     "ID": "MGTH_J100404.9+014303",
+     "matched": true,
+     "z": 0.06435544095189139,
+     "freq_MHz": 1334.522,
+     "freq_panel_MHz": 1334.51,
+     "z_panel": 0.064,
+     "X_kms": 237.858,
+     "Y_ch": 40.5,
+     "k_kms_per_ch": 5.8730370370370375,
+     "rho": 0.0012366699957615545,
+     "dev": {
+      "REST": 0.0006791520017670472,
+      "OBS": -0.05982615064491659,
+      "RADIO": 0.06507830008020532
+     },
+     "dev_panel_freq": {
+      "REST": 0.0006701539111966248,
+      "OBS": -0.059843058624654666,
+      "RADIO": 0.06507830008020532
+     },
+     "consistent": {
+      "REST": true,
+      "OBS": false,
+      "RADIO": false
+     },
+     "W50_cat_compared": 223.0,
+     "link": {
+      "1": false,
+      "(1+z)": false,
+      "1/(1+z)": true
+     },
+     "k100": 5.8730331753554506,
+     "dev100_REST": 0.0006784940280080143,
+     "vchannel": 5.9,
+     "vch_pred": {
+      "REST": 5.869,
+      "OBS": 6.247,
+      "RADIO": 5.514
+     }
+    },
+    {
+     "ID": "MGTH_J095548.1+020754",
+     "matched": true,
+     "z": 0.016698257698036567,
+     "freq_MHz": 1397.077,
+     "freq_panel_MHz": 1397.08,
+     "z_panel": 0.016,
+     "X_kms": 67.32,
+     "Y_ch": 12.0,
+     "k_kms_per_ch": 5.609999999999999,
+     "rho": 0.004174093879976233,
+     "dev": {
+      "REST": 0.0006670020846297753,
+      "OBS": -0.0157679581842739,
+      "RADIO": 0.017376397555360912
+     },
+     "dev_panel_freq": {
+      "REST": 0.0006691508573934968,
+      "OBS": -0.01576373121711938,
+      "RADIO": 0.017376397555360912
+     },
+     "consistent": {
+      "REST": true,
+      "OBS": false,
+      "RADIO": false
+     },
+     "W50_cat_compared": 67.0,
+     "link": {
+      "1": true,
+      "(1+z)": false,
+      "1/(1+z)": false
+     },
+     "k100": 5.61,
+     "dev100_REST": 0.0006670020846299973,
+     "vchannel": 5.6,
+     "vch_pred": {
+      "REST": 5.606,
+      "OBS": 5.7,
+      "RADIO": 5.514
+     }
+    },
+    {
+     "ID": "MGTH_J095741.3+023406",
+     "matched": true,
+     "z": 0.09069431409166118,
+     "freq_MHz": 1302.295,
+     "freq_panel_MHz": 1302.29,
+     "z_panel": 0.09,
+     "X_kms": 84.858,
+     "Y_ch": 14.1,
+     "k_kms_per_ch": 6.018297872340426,
+     "rho": 0.003551991487155263,
+     "dev": {
+      "REST": 0.0006666519559066497,
+      "OBS": -0.0825416076462544,
+      "RADIO": 0.09142142758944671
+     },
+     "dev_panel_freq": {
+      "REST": 0.0006628100205081644,
+      "OBS": -0.08254865256795896,
+      "RADIO": 0.09142142758944671
+     },
+     "consistent": {
+      "REST": true,
+      "OBS": false,
+      "RADIO": false
+     },
+     "W50_cat_compared": 85.0,
+     "link": {
+      "1": true,
+      "(1+z)": false,
+      "1/(1+z)": false
+     },
+     "k100": 6.01829596412556,
+     "dev100_REST": 0.0006663346756685673,
+     "vchannel": 6.0,
+     "vch_pred": {
+      "REST": 6.014,
+      "OBS": 6.56,
+      "RADIO": 5.514
+     }
+    },
+    {
+     "ID": "MGTH_J100008.1+024554",
+     "matched": true,
+     "z": 0.029071478860433375,
+     "freq_MHz": 1380.279,
+     "freq_panel_MHz": 1380.28,
+     "z_panel": 0.029,
+     "X_kms": 264.04,
+     "Y_ch": 46.5,
+     "k_kms_per_ch": 5.6782795698924735,
+     "rho": 0.0010771624696811984,
+     "dev": {
+      "REST": 0.0006680332467960959,
+      "OBS": -0.027601042490353,
+      "RADIO": 0.029758932821641437
+     },
+     "dev_panel_freq": {
+      "REST": 0.0006687582219881971,
+      "OBS": -0.02759963350085204,
+      "RADIO": 0.029758932821641437
+     },
+     "consistent": {
+      "REST": true,
+      "OBS": false,
+      "RADIO": false
+     },
+     "W50_cat_compared": 264.0,
+     "link": {
+      "1": true,
+      "(1+z)": false,
+      "1/(1+z)": false
+     },
+     "k100": 5.678274706867671,
+     "dev100_REST": 0.0006671762489316446,
+     "vchannel": 5.7,
+     "vch_pred": {
+      "REST": 5.674,
+      "OBS": 5.839,
+      "RADIO": 5.514
+     }
+    },
+    {
+     "ID": "MGTH_J100057.2+030830",
+     "matched": true,
+     "z": 0.029305635845836564,
+     "freq_MHz": 1379.965,
+     "freq_panel_MHz": 1379.97,
+     "z_panel": 0.029,
+     "X_kms": 420.287,
+     "Y_ch": 74.0,
+     "k_kms_per_ch": 5.679554054054054,
+     "rho": 0.000676865338929595,
+     "dev": {
+      "REST": 0.000664938880096555,
+      "OBS": -0.02782526002804253,
+      "RADIO": 0.02999006118261316
+     },
+     "dev_panel_freq": {
+      "REST": 0.0006685645696571374,
+      "OBS": -0.027818215092111465,
+      "RADIO": 0.02999006118261316
+     },
+     "consistent": {
+      "REST": true,
+      "OBS": false,
+      "RADIO": false
+     },
+     "W50_cat_compared": 420.0,
+     "link": {
+      "1": true,
+      "(1+z)": false,
+      "1/(1+z)": false
+     },
+     "k100": 5.679560810810811,
+     "dev100_REST": 0.0006661293344039088,
+     "vchannel": 5.7,
+     "vch_pred": {
+      "REST": 5.676,
+      "OBS": 5.842,
+      "RADIO": 5.514
+     }
+    }
+   ],
+   "T2a": "REST",
+   "T2b": "1",
+   "link_counts": {
+    "1": 4,
+    "(1+z)": 0,
+    "1/(1+z)": 1
+   },
+   "need": 4,
+   "T2c": "EXACT",
+   "spread": 1.4213121670492157e-05,
+   "channel_width_Hz": 26126.0,
+   "table3": [
+    {
+     "ID": "MGTH_J100256.4+023440",
+     "W50_table3": 167.0,
+     "W50_csv": 167.0
+    },
+    {
+     "ID": "MGTH_J095642.7+022509",
+     "W50_table3": 191.0,
+     "W50_csv": 191.0
+    },
+    {
+     "ID": "MGTH_J095951.4+014224",
+     "W50_table3": 101.0,
+     "W50_csv": 101.0
+    },
+    {
+     "ID": "MGTH_J100006.8+022245",
+     "W50_table3": 40.0,
+     "W50_csv": 40.0
+    },
+    {
+     "ID": "MGTH_J095741.1+020149",
+     "W50_table3": 100.0,
+     "W50_csv": 100.0
+    },
+    {
+     "ID": "MGTH_J100156.7+030737",
+     "W50_table3": 280.0,
+     "W50_csv": 280.0
+    },
+    {
+     "ID": "MGTH_J095914.8+021131",
+     "W50_table3": 103.0,
+     "W50_csv": 103.0
+    },
+    {
+     "ID": "MGTH_J100357.1+022505",
+     "W50_table3": 392.0,
+     "W50_csv": 392.0
+    }
+   ],
+   "table3_identity": true
+  },
+  "T3": {
+   "T3a": "ALFA-OBS",
+   "quotes_found": {
+    "ReadMe_Haynes2018_J_ApJ_861_49": true,
+    "columns.md": true,
+    "README.md": true
+   },
+   "N": 15,
+   "median_x": 0.011952776526585059,
+   "median_rREST": 0.002498993737042705,
+   "ci_rREST": [
+    -0.02266056519593732,
+    0.02405270979907121
+   ],
+   "median_rOBS": 0.0,
+   "ci_rOBS": [
+    -0.03248575408148525,
+    0.004454341426249989
+   ],
+   "REST_excluded": false,
+   "OBS_excluded": false,
+   "vote": "UNDECIDED",
+   "admissible": true,
+   "theil_sen": 0.2926076696696907,
+   "cshuf": {
+    "real": 0.03733712532665577,
+    "p1": 0.09959085491669269,
+    "median": 0.33472200044952455,
+    "passed": true
+   },
+   "codes12": {
+    "N": 23,
+    "median_d": 0.0
+   }
+  },
+  "T4": {
+   "n_sample": 58,
+   "n_good": 54,
+   "primary": {
+    "n": 54,
+    "mR": -0.016805364859745386,
+    "ciR": [
+     -0.02668878141919511,
+     -0.009648223489870274
+    ],
+    "mO": 0.002838151830560992,
+    "ciO": [
+     -0.004766233516928194,
+     0.012018960152664614
+    ],
+    "REST_excl": false,
+    "OBS_excl": false,
+    "T4L": "UNDECIDED",
+    "beta": -0.22486456433938157,
+    "ciS": [
+     -2.13177515883793,
+     1.5121054158226932
+    ],
+    "T4S": "UNDECIDED",
+    "vote": "UNDECIDED"
+   },
+   "variants": {
+    "V1 NBFLAG 0": {
+     "n": 40,
+     "mR": -0.01821748023820384,
+     "ciR": [
+      -0.028324297344954313,
+      -0.01030078122035587
+     ],
+     "mO": 0.0020542215536930395,
+     "ciO": [
+      -0.011882793347563885,
+      0.012593625080352753
+     ],
+     "REST_excl": true,
+     "OBS_excl": false,
+     "T4L": "OBS",
+     "beta": 0.3402345900425608,
+     "ciS": [
+      -1.11472538218655,
+      2.0120331789496646
+     ],
+     "T4S": "UNDECIDED",
+     "vote": "OBS"
+    },
+    "V2 n = 4": {
+     "n": 57,
+     "mR": -0.02137968187040536,
+     "ciR": [
+      -0.029550523666495652,
+      -0.01275644348942426
+     ],
+     "mO": 0.00024171039244472864,
+     "ciO": [
+      -0.008975041756429032,
+      0.007732484803489124
+     ],
+     "REST_excl": true,
+     "OBS_excl": false,
+     "T4L": "OBS",
+     "beta": -0.48358352940558136,
+     "ciS": [
+      -2.6656167596811766,
+      1.137613151140334
+     ],
+     "T4S": "UNDECIDED",
+     "vote": "OBS"
+    },
+    "V3 catalogue window": {
+     "n": 54,
+     "mR": -0.015217267046866738,
+     "ciR": [
+      -0.024597784130235147,
+      -0.006910025424412434
+     ],
+     "mO": 0.0070345623995342514,
+     "ciO": [
+      -0.003963974521688975,
+      0.01352885861542
+     ],
+     "REST_excl": false,
+     "OBS_excl": false,
+     "T4L": "UNDECIDED",
+     "beta": -0.09002318882475316,
+     "ciS": [
+      -2.1789946949680505,
+      1.846444758760366
+     ],
+     "T4S": "UNDECIDED",
+     "vote": "UNDECIDED"
+    },
+    "V4 3-sigma clipped": {
+     "n": 47,
+     "mR": -0.01691696232875584,
+     "ciR": [
+      -0.025825400006136937,
+      -0.010044711354518353
+     ],
+     "mO": 0.0021368825818748882,
+     "ciO": [
+      -0.004289127276758604,
+      0.011444295224976475
+     ],
+     "REST_excl": true,
+     "OBS_excl": false,
+     "T4L": "OBS",
+     "beta": 0.2943635058861944,
+     "ciS": [
+      -0.8160852449189271,
+      1.842694035465776
+     ],
+     "T4S": "REST",
+     "vote": "UNDECIDED"
+    }
+   },
+   "guard_flip": false,
+   "vote_raw": "UNDECIDED",
+   "admissible": false,
+   "vote": "UNDECIDED",
+   "diagnostics": {
+    "spearman_z": -0.04078598792408217,
+    "spearman_fluxratio": 0.10912902611015818,
+    "spearman_logWcat": 0.09340271958420716,
+    "ols_beta_with_logWcat": [
+     -2.93988091421128,
+     2.71784764004259
+    ],
+    "method_shift_busy_minus_nonparam_median": 0.0036025461798390914,
+    "nonparam_median_same_galaxies": -0.017868712602640148,
+    "median_abs_pull_vs_cat_err": 1.1518369093321343,
+    "POSTHOC_avg_two_peaks": {
+     "n": 54,
+     "mR": 0.2698834319413267,
+     "mO": 0.2869431371578509,
+     "median_W50avg_over_W50max": 1.9477448136597806
+    }
+   },
+   "INJ": {
+    "bias": -0.003344579504090042,
+    "n_good": 1027,
+    "n_total": 1080,
+    "scatter": 0.018475320360574116,
+    "A": true,
+    "B": false,
+    "votes": {
+     "REST": {
+      "REST": 13,
+      "OBS": 1,
+      "UNDECIDED": 6
+     },
+     "OBS": {
+      "REST": 0,
+      "OBS": 20,
+      "UNDECIDED": 0
+     }
+    },
+    "T4L": {
+     "REST": {
+      "REST": 9,
+      "OBS": 0,
+      "UNDECIDED": 11
+     },
+     "OBS": {
+      "REST": 0,
+      "OBS": 20,
+      "UNDECIDED": 0
+     }
+    },
+    "T4S": {
+     "REST": {
+      "REST": 7,
+      "OBS": 1,
+      "UNDECIDED": 12
+     },
+     "OBS": {
+      "REST": 0,
+      "OBS": 11,
+      "UNDECIDED": 9
+     }
+    },
+    "per_galaxy_median": [
+     -0.002614793450365513,
+     -0.0048754002616725346,
+     -0.0013592293190614248,
+     0.006869146660815863,
+     -0.02899940211915186,
+     -0.0137977647481917,
+     0.001245397718764109,
+     -0.00016040362980043963,
+     0.0007432584151767264,
+     -0.014494019723616577,
+     0.024761504876778112,
+     2.0255138969958535e-05,
+     -0.014316669156541659,
+     -0.0024482978063498527,
+     -0.0010106781936308133,
+     -0.0001419596150807047,
+     0.008647179029995962,
+     -0.006760684926327774,
+     -0.0032943655611492803,
+     -0.005630603508821805,
+     -0.037059274822247634,
+     -0.02161215750259448,
+     -0.0010006969609068872,
+     -0.01082206902364699,
+     0.016361354168870024,
+     -0.1506482791539041,
+     -0.011863834792321474,
+     -3.522005828109705e-05,
+     -0.004368930288642377,
+     -0.033362570099655056,
+     -0.000441490253271398,
+     -0.007848167670258902,
+     -0.0015207622979321925,
+     -0.0038611692360691965,
+     -0.01306302470736206,
+     -0.009944140479796786,
+     0.0001596938458454419,
+     -0.01270261312482782,
+     -0.008874312898767842,
+     -0.0037802187243896153,
+     0.0019587355909609994,
+     -0.04974110094340555,
+     -0.00644766070391037,
+     -0.007559585579041816,
+     -0.002772508407795496,
+     -0.009677423990948442,
+     -0.003205866365217915,
+     -0.016744683983772105,
+     0.04459914898323329,
+     -0.005970040044008126,
+     -0.00976682546255811,
+     0.004425432372765046,
+     -0.0025039382084147705,
+     -0.0010724129966768966
+    ],
+    "idx": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     41,
+     42,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57
+    ]
+   },
+   "R0": {
+    "ok": true,
+    "max_rel_W50": 4.0032066550566014e-10,
+    "max_rel_sigma": 4.898519367912968e-10
+   },
+   "not_good": [
+    {
+     "ID": "MGTH_J095713.0+015456",
+     "reason": "w at bound"
+    },
+    {
+     "ID": "MGTH_J095806.0+013048",
+     "reason": "w at bound"
+    },
+    {
+     "ID": "MGTH_J100148.8+022629",
+     "reason": "w at bound"
+    },
+    {
+     "ID": "MGTH_J100049.0+025833",
+     "reason": "w at bound"
+    }
+   ]
+  },
+  "decision": {
+   "PF": "REST",
+   "grade": "NUMBERS-ONLY",
+   "DOC": "REST",
+   "DOC_STRONG": true,
+   "votes": {
+    "T3": "UNDECIDED",
+    "T4": "UNDECIDED"
+   },
+   "outcome": "REST-FRAME",
+   "path": "b",
+   "C1": "CONFIRMED"
+  }
+ }
+}

@@ -1,0 +1,114 @@
+CFG309 -- are the MIGHTEE-HI COSMOS catalogue W_50_km_s values REST-frame (c dnu / nu_obs) or OBSERVED-frame (optical, (1+z) W_rest)?
+Decides CFG306's CRITICAL finding C1.  Criteria frozen and committed before this script existed: FROZEN_CRITERIA.md (ec54de4ac).
+A convention check, not an a0 measurement; kappa = 1/2 is FITTED.  No downloads.
+
+  T1  the catalogue paper's text (MM26, arXiv:2605.28731; pdftotext -layout of the local PDF): keyword sweep + the classification recorded
+      below after reading; every quoted fragment is asserted to occur in the text.
+  T2  the paper's Appendix-D example spectra, re-parsed independently: T2a conversion (km/s per channel vs REST / OBS / RADIO), T2b link of the
+      printed km/s to our catalogue column, T2c exactness.
+  T3  ALFALFA alpha.100 as an external width scale: T3a frame from the documentation (asserted quotes), T3b CFG304's 15 code-1 pairs, C-SHUF.
+  T4  Westmeier+2014 busy-function fits (n = 2) to CFG302's re-extracted r1p0 aperture spectra (rest-frame axis by construction), level and
+      Theil-Sen slope tests, robustness guard V1-V4, INJ-A / INJ-B injection controls.
+  Decision: FROZEN_CRITERIA.md section 7.  MUTATE=1: catalogue W50 x (1+z) wherever it is compared (section 9); outputs get the _MUTATE suffix.
+
+Run:  python3 cfg309_width_frame.py ; MUTATE=1 python3 cfg309_width_frame.py
+Paths: the PDF from $CFG309_PDF (default ../_external_data/arxiv_pdf/2605.28731.pdf relative to the repository root); the cubes from
+$MIGHTEE_R1P0_DIR (default ../_external_data/mightee_hi_dr1), read through CFG302's own module.
+
+MUTATE=1   *** MUTATE: catalogue W50 x (1+z) wherever it is compared -- a reactivity test, not a measurement ***
+inputs: catalogue data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv sha256 bcf9e8558bc56448...; CFG302 per-galaxy e122665fcf000995...; CFG304 pairs 297e47894aec8284...; PDF present, sha256 db936cbc920038c6...
+  [PASS] K0 input sha256 prefixes as frozen (catalogue bcf9e8558bc56448, CFG302 CSV e122665f, CFG304 pairs 297e4789, PDF db936cbc)
+         
+
+== T1 the catalogue paper's text ==
+  pattern 'W ?_?50': 23 lines (first: [767, 777, 812, 818, 869, 881, 955, 1005, 1657, 1658, 1692, 1715])
+  pattern 'w50': 22 lines (first: [767, 777, 812, 818, 869, 881, 1005, 1657, 1658, 1692, 1715, 1716])
+  pattern 'line width': 0 lines
+  pattern 'velocity width': 6 lines (first: [39, 779, 822, 830, 881, 957])
+  pattern 'width': 38 lines (first: [39, 194, 195, 201, 242, 247, 249, 259, 288, 292, 296, 362])
+  pattern 'rest[- ]frame': 0 lines
+  pattern 'observed[- ]frame': 0 lines
+  pattern '1 ?\\+ ?z': 0 lines
+  pattern '\\(1\\+z\\)': 0 lines
+  pattern 'optical': 38 lines (first: [40, 69, 109, 150, 165, 168, 397, 707, 710, 713, 721, 740])
+  pattern 'radio': 31 lines (first: [22, 23, 27, 49, 54, 57, 66, 75, 111, 118, 120, 122])
+  pattern 'convention': 0 lines
+  pattern 'cosmolog': 2 lines (first: [175, 942])
+  pattern 'busy': 13 lines (first: [768, 771, 774, 783, 794, 837, 868, 881, 1685, 1745, 1804, 1863])
+  pattern 'channel': 71 lines (first: [97, 131, 141, 177, 193, 194, 200, 207, 232, 235, 246, 260])
+  pattern 'km ?/ ?s|km s': 28 lines (first: [164, 176, 362, 695, 704, 767, 777, 824, 942, 959, 1006, 1471])
+  frame-defining keywords anywhere in the text: {'rest[- ]frame': 0, 'observed[- ]frame': 0, '1 ?\\+ ?z\\)?': 0, 'cosmolog\\w* (?:stretch|broaden)': 0, 'optical convention': 0, 'radio convention': 0, 'convention': 0}
+  quote [S4.5 W50 definition]: 'width W50 at 50% of the average peak flux density of the fitted ... function, found by identifying the two peaks of the spectral profile and' -> found True
+  quote [S4.5 channel velocity width (the only frame-related statement)]: 'with the velocity width of the channels (calculated for the given ... redshift), equal to' -> found True
+  quote [Table 2]: 'Channel width 26.126 kHz (5.5 km s' -> found True
+  quote [S4.7 column 13 description (no frame stated)]: 'tection spectral profile velocity width (and its error) measured at 50% ... Note that it is not inclination corrected.' -> found True
+  quote [S4.5 busy function source]: 'we fit a busy function (Equation 4' -> found True
+  data-assembly column 13: '13,W_50_km_s,km/s,HI spectral-profile width at 50% of the flux peak (busy-function fit); NOT inclination corrected'; frame keywords in the column file / README: ['rest', 'observed']
+  [PASS] T1-Q every recorded T1 quote occurs in the pdftotext output (whitespace-normalised)
+         {'S4.5 W50 definition': True, 'S4.5 channel velocity width (the only frame-related statement)': True, 'Table 2': True, 'S4.7 column 13 description (no frame stated)': True, 'S4.5 busy function source': True}
+  [PASS] T1-K no frame-defining keyword occurs anywhere in the paper text (the basis of 'not EXPLICIT')
+         {'rest[- ]frame': 0, 'observed[- ]frame': 0, '1 ?\\+ ?z\\)?': 0, 'cosmolog\\w* (?:stretch|broaden)': 0, 'optical convention': 0, 'radio convention': 0, 'convention': 0}
+T1 VERDICT: IMPLICIT-{REST,OBS}.  No sentence states the velocity frame or convention of W50: 'rest frame', 'observed frame', '(1+z)', 'convention' and 'cosmological broadening/stretch' never occur.  The one frame-related statement is that the channel velocity width used in the W50 error is 'calculated for the given redshift' (5.5 km/s at z = 0): that excludes RADIO (5.5 km/s per channel at every z) but is compatible with REST (5.5 (1+z)) and OBS (5.5 (1+z)^2).  The column description (S4.7, col. 13) and the data-assembly README/column file give no frame either.
+
+== T2 the paper's example spectra (Appendix D), parsed independently ==
+  parsed 5 examples; Table 2 channel width 26.126 kHz (the S3 text says 26.125 kHz; T2 uses Table 2)
+  MGTH_J100404.9+014303 (matched True; z 0.06436; freq 1334.522 MHz, panel 1334.51): W50 237.858 km/s = 40.5 ch -> 5.87304 km/s/ch; dev REST +0.00068, OBS -0.05983, RADIO +0.06508 (allowance +-0.0032); catalogue W50 237.351; link 1/(1+z)/1/(1+z): True/False/False; W100 dev REST +0.00068; vchannel printed 5.9 (REST 5.869, OBS 6.247, RADIO 5.514)
+  MGTH_J095548.1+020754 (matched True; z 0.01670; freq 1397.077 MHz, panel 1397.08): W50 67.32 km/s = 12.0 ch -> 5.61000 km/s/ch; dev REST +0.00067, OBS -0.01577, RADIO +0.01738 (allowance +-0.0062); catalogue W50 68.1188; link 1/(1+z)/1/(1+z): False/True/False; W100 dev REST +0.00067; vchannel printed 5.6 (REST 5.606, OBS 5.700, RADIO 5.514)
+  MGTH_J095741.3+023406 (matched True; z 0.09069; freq 1302.295 MHz, panel 1302.29): W50 84.858 km/s = 14.1 ch -> 6.01830 km/s/ch; dev REST +0.00067, OBS -0.08254, RADIO +0.09142 (allowance +-0.0056); catalogue W50 92.709; link 1/(1+z)/1/(1+z): False/True/False; W100 dev REST +0.00067; vchannel printed 6.0 (REST 6.014, OBS 6.560, RADIO 5.514)
+  MGTH_J100008.1+024554 (matched True; z 0.02907; freq 1380.279 MHz, panel 1380.28): W50 264.04 km/s = 46.5 ch -> 5.67828 km/s/ch; dev REST +0.00067, OBS -0.02760, RADIO +0.02976 (allowance +-0.0031); catalogue W50 271.675; link 1/(1+z)/1/(1+z): False/True/False; W100 dev REST +0.00067; vchannel printed 5.7 (REST 5.674, OBS 5.839, RADIO 5.514)
+  MGTH_J100057.2+030830 (matched True; z 0.02931; freq 1379.965 MHz, panel 1379.97): W50 420.287 km/s = 74.0 ch -> 5.67955 km/s/ch; dev REST +0.00066, OBS -0.02783, RADIO +0.02999 (allowance +-0.0027); catalogue W50 432.308; link 1/(1+z)/1/(1+z): False/True/False; W100 dev REST +0.00067; vchannel printed 5.7 (REST 5.676, OBS 5.842, RADIO 5.514)
+T2a = REST; T2b link = (1+z) (counts {'1': 1, '(1+z)': 4, '1/(1+z)': 0}; need 4 of 5 matched); T2c = EXACT (spread of dev_REST 1.42e-05; limit 2e-4)
+  diagnostic (reported): the paper's Table 3 W50 equal our CSV's unmutated W_50_km_s for 8 of 8 rows: [('J100256.4+023440', 167.0, 167.0), ('J095642.7+022509', 191.0, 191.0), ('J095951.4+014224', 101.0, 101.0), ('J100006.8+022245', 40.0, 40.0), ('J095741.1+020149', 100.0, 100.0), ('J100156.7+030737', 280.0, 280.0), ('J095914.8+021131', 103.0, 103.0), ('J100357.1+022505', 392.0, 392.0)]
+  [PASS] T2-P the parser found 5 examples, each with W50 km/s, channels and a printed MGTH identifier that matches one catalogue row
+         5 parsed, 5 matched
+
+== T3 ALFALFA alpha.100 as an external width scale ==
+  ReadMe_Haynes2018_J_ApJ_861_49: ['W50      [9/885] Observed velocity width'] -> found True
+  columns.md: ['no correction for turbulence, disk inclination or cosmological stretch'] -> found True
+  README.md: ['not for (1+z) (negligible at z < 0.06)'] -> found True
+  [PASS] T3a-Q every recorded ALFALFA documentation quote occurs in its file
+         {'ReadMe_Haynes2018_J_ApJ_861_49': True, 'columns.md': True, 'README.md': True}
+T3a VERDICT: ALFA-OBS (the CDS ReadMe labels W50 'Observed velocity width'; the data-assembly documentation, from H18 Sect. 3.1 col. 6, says instrumental broadening only, no cosmological stretch; Vhel is optical-convention heliocentric).  No web look-up was needed.
+  [PASS] R3 CFG304 reproduction: N = 15 code-1 pairs; log(W50_cat/w50_A) equals the committed logW50_cat_A to 1e-9; median = CFG304's +0.000 to 1e-9; W50_cat = catalogue
+         N 15; median (unmutated) +0.000000; median z 0.0279; median x 0.0120 dex
+T3b (N 15): median r_REST = median(d + x) +0.0053 (95% -0.0201..+0.0437); median r_OBS = median(d) +0.0025 (95% -0.0227..+0.0241); tau_b 0.01; REST excluded False, OBS excluded False -> T3 vote UNDECIDED
+   reported: Theil-Sen slope of d on x +1.29 (REST predicts -1, OBS 0); predicted separation median x 0.0120 dex
+   reported, codes 1+2 (N 23): median d +0.0025, median d + x +0.0053
+  [PASS] C-SHUF the real robust scatter of d is below the 1st percentile of 2,000 shuffles of w50_A among the 15 pairs
+         real 0.0373 dex; shuffled 1st percentile 0.1016, median 0.3363
+T3: admissible True; vote UNDECIDED
+
+== T4 method-matched cube widths (busy function, n = 2) ==
+sample: 58 CFG302 rows with primary 1, detected True, W50_defined True (58 expected)
+  [PASS] K1 the four r1p0 sub-cubes have the manifest's sizes (sha256 not recomputed; CFG302 C-INT)
+         [6076831680, 6076831680, 6076831680, 6076831680]
+  [PASS] R0 the re-extraction reproduces CFG302's W50_rest_kms and sigma_ch to <= 1e-6 relative for all 58
+         max rel W50 4.00e-10, sigma 4.90e-10; n 58
+  extraction done (2 s)
+  real fits done (28 s)
+T4 primary (GOOD 54 of 58): m_R = median log(W_busy/W_cat) -0.0418 (95% -0.0460..-0.0302); m_O = median(Delta + x) -0.0168 (95% -0.0267..-0.0096); tau_m 0.01; REST excluded True, OBS excluded False -> T4L OBS
+   Theil-Sen slope beta -1.22 (95% -3.13..+0.51; REST 0, OBS -1) -> T4S UNDECIDED; T4 primary vote OBS
+   V1 NBFLAG 0 (n 40): m_R -0.0431 (-0.0495..-0.0328), m_O -0.0182 (-0.0283..-0.0103), T4L UNDECIDED; beta -0.66 (-2.11..+1.01), T4S UNDECIDED; vote UNDECIDED
+   V2 n = 4 (n 57): m_R -0.0450 (-0.0542..-0.0338), m_O -0.0214 (-0.0296..-0.0128), T4L UNDECIDED; beta -1.48 (-3.67..+0.14), T4S UNDECIDED; vote UNDECIDED
+   V3 catalogue window (n 54): m_R -0.0390 (-0.0451..-0.0261), m_O -0.0152 (-0.0246..-0.0069), T4L OBS; beta -1.09 (-3.18..+0.85), T4S UNDECIDED; vote OBS
+   V4 3-sigma clipped (n 47): m_R -0.0421 (-0.0464..-0.0312), m_O -0.0169 (-0.0258..-0.0100), T4L UNDECIDED; beta -0.71 (-1.82..+0.84), T4S UNDECIDED; vote UNDECIDED
+   robustness guard: a variant gives the opposite frame: False -> T4 vote (before admissibility) OBS
+   diagnostics: Spearman(Delta, z) -0.207; (Delta, log S_win/S_cat) +0.194; (Delta, log W_cat) +0.029; OLS beta with log W_cat covariate -3.78 +- 2.74; busy - non-parametric median shift +0.0036 dex (non-parametric m_R on the same galaxies -0.0425); median |pull| vs catalogue error 2.35
+   POST HOC (not frozen, no vote): W50 at 50% of the AVERAGE of the two fitted peaks (MM26 S4.5's definition): m_R +0.2532, m_O +0.2699 (n 54); median W50avg/W50max 1.9477
+  injections not re-run in MUTATE (FROZEN section 9): inherited INJ-A True, INJ-B False
+T4: admissible False (R0 True, INJ-A True, INJ-B False, GOOD 54 >= 45 True); vote entering the decision UNDECIDED (raw OBS)
+
+== Decision (FROZEN section 7) ==
+PF = REST (grade NUMBERS-ONLY); T2b link (1+z); DOC = OBS; DOC STRONG True (T2a REST, link (1+z), T2c EXACT, T1 IMPLICIT-{REST,OBS})
+data votes: T3 UNDECIDED (admissible True, raw UNDECIDED); T4 UNDECIDED (admissible False, raw OBS)
+OUTCOME: OBSERVED-FRAME   (path b)   -> CFG306 C1 REFUTED
+
+== MUTATE checks (FROZEN section 9) ==
+  [PASS] M-a the T2b link moves from the main run's link to that link times (1 + z)
+         main 1 -> MUTATE (1+z) (expected (1+z); a (1+z)^2 link is not testable and reads AMBIGUOUS)
+  [FAIL] M-b per-galaxy Delta_MUT - Delta_main = -log10(1+z) to <= 1e-12 (identical fits)
+         max |dev| 3.80e-11
+  [PASS] M-c the decision flips
+         main REST-FRAME -> MUTATE OBSERVED-FRAME (required OBSERVED-FRAME)
+
+11/12 checks pass   (29 s)
