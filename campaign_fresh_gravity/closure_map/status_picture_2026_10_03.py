@@ -14,12 +14,12 @@ LAB = {"PASS": "pass", "COND": "conditional", "OPEN": "open", "FAIL": "fails", "
 groups = [
     ("Relativistic theory (the chassis)", [
         ("Gravity waves at light speed", "PASS", "c_T = 1 exact · CFG292"),
-        ("Equations well-posed (high freq.)", "PASS", "strongly hyperbolic, causal · CFG292"),
+        ("Equations well-posed (high freq.)", "COND", "iff alpha_c > 0, beta = 0; open/cond. · CFG292"),
         ("Full nonlinear well-posedness", "COND", "local in time; A1-A5 assumed · CFG294"),
         ("Lapse condition, realistic matter", "PASS", "all but extreme GRB jets · CFG312"),
         ("Binary pulsars", "PASS", "margin 490,000x · CFG291/311"),
         ("Strong coupling", "COND", "bounded pass · XC1/XC3"),
-        ("Solar-system PPN", "PASS", "alpha_1, alpha_2 in bounds · CFG291"),
+        ("Solar-system PPN", "PASS", "gamma, beta, alpha_1-3 · FP2/KM3/CFG291"),
         ("Black holes (EHT, LIGO ringdown)", "COND", "margins >= 5e7; moving BHs open · CFG318"),
     ]),
     ("Galaxies and clusters", [
@@ -31,16 +31,18 @@ groups = [
         ("Milky Way ultra-faint dwarfs", "FAIL", "+3.8 sigma, native inputs · CFG313"),
         ("Massive ellipticals (SLUGGS)", "FAIL", "+4.0 sigma, native inputs · CFG313"),
     ]),
-    ("Does a0 change over cosmic time?", [
+    ("Cosmology and a0 over time", [
         ("Constant a0 vs a0 ~ H(z)", "UNDEC", "calibration wall · PAPER38"),
         ("High-z on halo-free inputs", "UNDEC", "RC100 on the flat line · CFG303"),
         ("CRISTAL z~5 / ALESS 122.1", "UNDEC", "stress tests: not robust · CFG307/308"),
         ("Gaia DR4 wide binaries", "OPEN", "decides 2 Dec 2026 · prereg"),
+        ("Linear cosmology, chassis alone", "FAIL", "sigma_8 18-27; zero-field ill-posed · L341/FP5"),
     ]),
     ("The deep 'why'", [
         ("Why kappa = 1/2 (the 32 pi)", "OPEN", "fitted, not derived · CFG263/264"),
         ("What sets the cold-mass amount", "OPEN", "free in every build · CFG288"),
         ("Ownership from an action", "OPEN", "scoped no-gos · CFG242-245"),
+        ("Radiative stability (G12)", "OPEN", "never run · recipe audit 10-03"),
     ]),
 ]
 
