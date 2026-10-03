@@ -1,0 +1,25 @@
+CFG303 Addendum 3 -- (A3.1) CFG90's pooled z >= 1.5 a0(z) offsets with RC100's joint-fit posterior log M_baryon (LCDM-MODEL) replaced by the
+native SED M* (RC100 Table 3 col 6) x (1 + mu_t18); (A3.2) CFG213's NOEMA3D Z1.4 bin with the joint-fit f_DM / M_fit replaced by SED M* + CO gas
+in CFG216's thin disc.  cfg90.py is run UNMODIFIED except for its hard-coded REPO line, pointed (as CFG289's supplement did) at a temporary
+symlink overlay of this repository in which only the RC100 CSV is replaced; its outputs stay in a temporary directory and are summarised here.
+Frozen criteria: FROZEN_CRITERIA.md (52976ec22) + ADDENDA 1-3, written before any native number was computed.
+kappa = 1/2 FITTED.  The cold mass is still required; no dark-matter particle is added.  No sentence here says the data favour a law.
+  FROZEN_CRITERIA.md: sha256 1a5e710a769b4224086cca29b48137c37fecc85d0c7b73af7be0852a625b267c
+  FROZEN_CRITERIA_ADDENDUM_1.md: sha256 7d46b26d0204e80286fccb387ca565bf006be76c37a971f41850c06db77194b0
+  FROZEN_CRITERIA_ADDENDUM_2.md: sha256 96cc8ee2611138cb42f1c736eb4ea208c95797e53c785047aa91e94b050703f6
+  FROZEN_CRITERIA_ADDENDUM_3.md: sha256 0c9686024a13d573596a813d3e2f4999255d564402d5eca13680a270893488ac
+
+A3.1 CFG90 (pooled z >= 1.5 offsets; counts RC100 below a0 / below 0.3 a0 / z>=1.5 below a0 / z>=1.5 below 0.3 a0)
+  [PASS] C-ii (reported: CFG289 found the committed cfg90 run read the live repo through its hard-coded path) the original file through the overlay against cfg90_results.json: pooled and RC100 counts: pooled max |diff| 0.0e+00; counts [26, 4, 9, 1] vs [26, 4, 9, 1]
+  [PASS] C-i the corrected file with log M_baryon left as the posterior reproduces CFG289's corrected-file CFG90 run (pooled flat, rival, sigma; N; RC100 counts): max |diff| 0.0e+00; N 13 vs 13; counts [23, 3, 7, 0] vs [23, 3, 7, 0]
+  committed (original file)                     : pooled N 15, flat +0.137 (+1.00 sigma), rival -0.034 (-0.25 sigma), sigma 0.137; RC100 counts [26, 4, 9, 1]; n1 (gaps > 1 sigma) 20, n2 0
+  corrected file, joint-fit posterior (CFG289)  : pooled N 13, flat +0.035 (+0.25 sigma), rival -0.131 (-0.94 sigma), sigma 0.139; RC100 counts [23, 3, 7, 0]; n1 (gaps > 1 sigma) 18, n2 0
+  corrected file, NATIVE SED M* (1 + mu_t18)    : pooled N 12, flat +0.040 (+0.28 sigma), rival -0.125 (-0.90 sigma), sigma 0.140; RC100 counts [19, 2, 6, 0]; n1 (gaps > 1 sigma) 18, n2 0
+
+A3.2 NOEMA3D (CFG213's Z1.4 bin) on native rows
+  [PASS] C-i the committed Z1.4 fit-route g_bar through the native geometry factor reproduces CFG213's committed cells (nu_mono canonical, alpha 3.36): max |diff| 0.0e+00
+  flat  nu_mono canonical alpha 3.36: committed fit route +0.033 [-0.034, +0.226] CONSISTENT; committed route +0.046 [-0.081, +0.205] CONSISTENT; NATIVE (n 10) -0.007 [-0.118, +0.125] CONSISTENT
+  rival nu_mono canonical alpha 3.36: committed fit route -0.002 [-0.090, +0.124] CONSISTENT; committed route -0.011 [-0.124, +0.149] CONSISTENT; NATIVE (n 10) -0.062 [-0.152, +0.092] CONSISTENT
+  robust verdicts: committed fit route flat CONSISTENT, rival CONSISTENT; NATIVE flat CONSISTENT, rival CONSISTENT
+
+3/3 checks pass   (4 s)

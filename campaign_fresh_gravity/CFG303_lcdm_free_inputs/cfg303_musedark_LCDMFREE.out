@@ -1,0 +1,44 @@
+CFG303 R3/R5 -- MUSE-DARK implied a0 in z-thirds (CFG262) with the halo-fit inputs removed from the baryon side.
+CFG262's routes (ii)/(iii) are built in CFG236's R199 construction: g_bar = (1 - f_DM) g_perp rho, rho normalised by the DC14 M_fit and the
+fitted Sigma_HI (LCDM-MODEL).  Here: g_bar,nat = CFG236's thin disc g_disc(M, R_e, R_e/1.678) with M = M*_SED (iii) or M*_SED (1 + mu_mol) (ii),
+no HI (primary; the fitted Sigma_HI is a joint-fit nuisance), and g_obs = CFG262's g_perp (the DC14 model slit velocity at R_e; MODEL-OTHER,
+halo_in_fit = yes; no measured MUSE-DARK velocity is on disk).  CFG262's own s_star / boot_s / pct / thirds, exec'd from its committed source.
+Frozen criteria: FROZEN_CRITERIA.md (52976ec22) + ADDENDUM_1 + ADDENDUM_2 (section A2.2), written before any native MUSE-DARK number was computed.
+kappa = 1/2 FITTED.  The cold mass is still required; no dark-matter particle is added.  No sentence here says the data favour a law.
+  FROZEN_CRITERIA.md: sha256 1a5e710a769b4224086cca29b48137c37fecc85d0c7b73af7be0852a625b267c
+  FROZEN_CRITERIA_ADDENDUM_1.md: sha256 7d46b26d0204e80286fccb387ca565bf006be76c37a971f41850c06db77194b0
+  FROZEN_CRITERIA_ADDENDUM_2.md: sha256 96cc8ee2611138cb42f1c736eb4ea208c95797e53c785047aa91e94b050703f6
+  CFG262 (sha b10721efbf0d) exec'd up to its stage-A block; S = 109 galaxies
+
+CONTROLS
+  [PASS] C-ii CFG262's exec'd machinery reproduces the committed stage-B s* and 95% edges of all 18 rows: max |diff| 0.0e+00 (log10)
+  [PASS] C-i the native formula D = g_perp / g_bar fed the committed (R199) g_bar reproduces the committed rows: max |diff| 6.1e-16
+
+NATIVE ROWS (g_bar = thin disc of M*_SED [route iii] or M*_SED (1 + mu_mol) [route ii]; g_obs = CFG262's g_perp)
+  reading bD:
+    committed route (i  ): 1.220 [0.86, 1.94] / 3.046 [1.61, 3.76] / 4.534 [3.79, 5.47];  z3 - z1 +0.570 +- 0.094
+    committed route (ii ): 0.464 [0.31, 1.61] / 1.017 [0.75, 1.36] / 0.356 [0.03, 0.75];  z3 - z1 -0.115 +- 0.489
+    committed route (iii): 1.579 [1.17, 3.37] / 3.317 [1.95, 4.91] / 1.715 [1.13, 2.94];  z3 - z1 +0.036 +- 0.138
+    NATIVE noHI (primary)                               route (ii ): 0.216 [0.00, 1.10] / 0.274 [0.00, 0.56] / NO ROOT [0.00, 0.13];  z3 - z1 not formed (a third has no root);  median D 1.85/1.46/0.69;  D<1 13/14/21
+    NATIVE noHI (primary)                               route (iii): 1.210 [0.59, 2.43] / 2.110 [0.85, 2.72] / 0.660 [0.28, 1.40];  z3 - z1 -0.263 +- 0.282 (H(z) expects +0.177; FLAT 0);  median D 4.98/3.85/2.26;  D<1 6/4/10
+    NATIVE HI Sigma 15 (prior ceiling)                  route (ii ): 0.068 [0.00, 0.48] / 0.127 [0.00, 0.35] / NO ROOT [0.00, 0.02];  z3 - z1 not formed (a third has no root);  median D 1.20/1.23/0.60;  D<1 15/16/23
+    NATIVE HI Sigma 15 (prior ceiling)                  route (iii): 0.407 [0.27, 0.68] / 0.862 [0.35, 1.54] / 0.341 [0.09, 0.80];  z3 - z1 -0.077 +- 0.348 (H(z) expects +0.177; FLAT 0);  median D 2.28/2.79/1.65;  D<1 7/6/10
+    NATIVE HI fitted (as committed; joint-fit nuisance) route (ii ): 0.157 [0.00, 0.85] / 0.176 [0.00, 0.44] / NO ROOT [0.00, 0.08];  z3 - z1 not formed (a third has no root);  median D 1.48/1.33/0.61;  D<1 15/15/21
+    NATIVE HI fitted (as committed; joint-fit nuisance) route (iii): 0.632 [0.39, 1.74] / 1.262 [0.51, 2.02] / 0.494 [0.16, 1.03];  z3 - z1 -0.107 +- 0.324 (H(z) expects +0.177; FLAT 0);  median D 2.96/3.11/1.81;  D<1 6/4/10
+  reading b:
+    committed route (i  ): 0.683 [0.38, 1.20] / 1.626 [0.83, 2.85] / 2.602 [1.49, 3.97];  z3 - z1 +0.581 +- 0.168
+    committed route (ii ): 0.332 [0.16, 1.28] / 0.589 [0.36, 0.92] / 0.158 [0.01, 0.62];  z3 - z1 -0.322 +- 0.540
+    committed route (iii): 1.052 [0.54, 2.01] / 1.972 [0.80, 2.76] / 0.722 [0.44, 1.87];  z3 - z1 -0.164 +- 0.208
+    NATIVE noHI (primary)                               route (ii ): 0.058 [0.00, 0.65] / NO ROOT [0.00, 0.15] / NO ROOT [0.00, 0.00];  z3 - z1 not formed (a third has no root);  median D 1.32/0.79/0.27;  D<1 18/19/27
+    NATIVE noHI (primary)                               route (iii): 0.449 [0.00, 1.30] / 0.366 [0.02, 1.04] / NO ROOT [0.00, 0.70];  z3 - z1 not formed (a third has no root);  median D 3.23/2.44/0.95;  D<1 13/10/18
+    NATIVE HI Sigma 15 (prior ceiling)                  route (ii ): NO ROOT [0.00, 0.18] / NO ROOT [0.00, 0.04] / NO ROOT [0.00, 0.00];  z3 - z1 not formed (a third has no root);  median D 0.78/0.60/0.24;  D<1 20/23/29
+    NATIVE HI Sigma 15 (prior ceiling)                  route (iii): 0.057 [0.00, 0.35] / 0.119 [0.00, 0.54] / NO ROOT [0.00, 0.33];  z3 - z1 not formed (a third has no root);  median D 1.39/1.38/0.62;  D<1 15/13/21
+    NATIVE HI fitted (as committed; joint-fit nuisance) route (ii ): NO ROOT [0.00, 0.33] / NO ROOT [0.00, 0.09] / NO ROOT [0.00, 0.00];  z3 - z1 not formed (a third has no root);  median D 1.00/0.66/0.25;  D<1 19/22/28
+    NATIVE HI fitted (as committed; joint-fit nuisance) route (iii): 0.202 [0.00, 0.72] / 0.201 [0.00, 0.73] / NO ROOT [0.00, 0.48];  z3 - z1 not formed (a third has no root);  median D 2.12/1.81/0.71;  D<1 14/13/21
+  primary native (no HI, reading bD): the law's expected s* inside the 95% interval in FLAT 4/6, H(z) 2/6, PROXY 4/6 rows (routes ii + iii x thirds)
+
+C-iii MUTATE: M*_SED x 10^0.2 (route iii, no HI, reading bD)
+  z1: log D -0.2 exact True; s* 1.210 [0.59, 2.43] -> 0.663 [0.22, 1.42]; z2: log D -0.2 exact True; s* 2.110 [0.85, 2.72] -> 1.066 [0.31, 1.42]; z3: log D -0.2 exact True; s* 0.660 [0.27, 1.40] -> 0.262 [0.07, 0.61]
+  [PASS] C-iii MUTATE: route (iii) log D moves by -0.2000 exactly and s* moves down or loses its root in every third: see line above
+
+3/3 checks pass   (225 s)

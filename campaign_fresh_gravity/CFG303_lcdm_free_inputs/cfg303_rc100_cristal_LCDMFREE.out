@@ -1,0 +1,105 @@
+CFG303 R1 + R2 -- RC100 and CRISTAL with the LCDM-MODEL inputs (f_DM and the joint-fit baryon masses) replaced by framework-native ones,
+re-run through each lane's OWN committed estimator (CFG223 implied-a0 points, CFG216 within-sample slopes, CFG213's Z5 bin, MNRAS v3.1 S5 inversion).
+Frozen criteria: FROZEN_CRITERIA.md (52976ec22) + FROZEN_CRITERIA_ADDENDUM_1.md, written before any replaced input was evaluated.
+kappa = 1/2 FITTED.  The cold mass is still required; no dark-matter particle is added.  No sentence here says the data favour a law.
+Native g_bar = M_bar,nat x disc_v2(1, R_e, R) / R  (CFG216's committed thin exponential disc, R_e = 1.678 R_d); g_obs kept (MODEL-OTHER, halo_in_fit = yes).
+
+Frozen files (sha256 at run time):
+  FROZEN_CRITERIA.md: 1a5e710a769b4224086cca29b48137c37fecc85d0c7b73af7be0852a625b267c
+  FROZEN_CRITERIA_ADDENDUM_1.md: 7d46b26d0204e80286fccb387ca565bf006be76c37a971f41850c06db77194b0
+  rc100_table3_cols5to8_transcribed.csv: fe34d41c45008443d728d3b012c10556ab4e1512d0d0aa4ef634efcfe7a79bc2
+
+LOADING THE COMMITTED ESTIMATORS (exec of committed source text up to fixed markers)
+  CFG223 (sha 704f2c02c108), CFG216 (sha f21b079a5355), CFG217 mu_t18 (sha f6b0979e2085), CFG213 (sha c4d02d32f101), paper_numbers.py (sha bc7e0a2b0133): loaded
+
+RC100 INPUTS
+  [PASS] T1 transcribed column 7 (log M_baryon), name and z equal the corrected table in all 100 rows: 100/100 rows agree; mismatches []
+  [PASS] T2 transcribed column 8 (log M_bulge) equals the committed CSV's mistaken log M_baryon in rows 58, 62, 63, 65, 77, 93, 95: 7/7 agree; mismatches []
+  corrected table: 100 galaxies; RC41 overlap by name (sample A): 41
+  [PASS] T3 (reported) transcribed SED log M* against Price+21 SED log M* on the RC41 overlap: median +0.000 dex, median |diff| 0.000 dex, range [+0.00, +0.09], |diff| <= 0.15 for 41/41
+  sample B native log M_bar - joint-fit posterior log M_baryon: median +0.071 dex (16-84% -0.118 to +0.270); gas fraction mu median 0.74
+  sample A native log M_bar - joint-fit posterior: median +0.097 dex (16-84% -0.137 to +0.321)
+  diagnostic only (uses f_DM, not an input): the fit's own baryon geometry relative to CFG216's thin disc, (1 - f_DM) g_obs / [M_fit xi]: median 0.953 (16-84% 0.771-1.149)
+
+C-ii(a): THE COMMITTED ESTIMATORS, RUN IN THIS PROCESS ON THEIR COMMITTED INPUTS, REPRODUCE THEIR COMMITTED NUMBERS
+  [PASS] C-ii(a) CFG216 (corrected input) primary block re-executed: every slope, CI, sd and median equals cfg216_rc100_corrected_results.json: max |diff| 0.0e+00
+  [PASS] C-ii(a) CFG213 BINS loop re-executed: every median, CI and verdict equals cfg213_two_sided_results.json: max |diff| 0.0e+00
+  [PASS] C-ii(a) MNRAS S5 rc100_run on the corrected CSV equals paper_numbers.json S5 (slope, slope_err, median_a0, median_y, weakest_excl_Hz; relative): max rel diff 0.0e+00; N 99 vs 99
+
+R1 / CFG223: RC100 IMPLIED-a0 POINTS (committed quartile edges 0.6100, 0.9725, 1.5300, 2.1900, 2.5200)
+  [PASS] C-i identity replacement: the committed g_bar passed through the native formula reproduces CFG223's four RC100 quartiles (s*, 68/95 edges, expected s*, pulls, bands): max |diff| 5.4e-15 (log10 / pull units)
+  [PASS] C-ii(b) swap-back: the LCDM-MODEL input ((1 - f_DM) g_obs, D = 1/(1 - f_DM)) put back into the same per-galaxy structure reproduces CFG223's four RC100 quartiles: max |diff| 0.0e+00
+  Q1 committed (f_DM): s* 1.838 95% [0.979, 2.451]; pulls flat +2.54 H(z) +0.58
+     native B : s* 1.483 (a0 1.39e-10) 68% [1.297, 2.260] 95% [0.877, 2.990] (no-root resamples 1%); n 25, z_med 0.81; y quartiles 0.55/1.45/3.61; D<=1: 7; pulls flat +0.50 proxy +0.30 H(z) -0.09; +-0.15 dex band 3.813 to 0.454
+     native A : s* 1.274 (a0 1.19e-10) 68% [0.001, 3.227] 95% [0.001, 3.978] (no-root resamples 17%); n 11, z_med 0.81; y quartiles 0.39/1.03/5.68; D<=1: 4; pulls flat +0.09 proxy +0.03 H(z) -0.08; +-0.15 dex band 2.114 to 0.622
+     native G2: s* 1.107 (a0 1.04e-10) 68% [0.001, 1.895] 95% [0.001, 3.096] (no-root resamples 17%); n 11, z_med 0.81; y quartiles 0.53/1.07/7.37; D<=1: 4; pulls flat +0.04 proxy -0.02 H(z) -0.14; +-0.15 dex band 1.876 to 0.552
+  Q2 committed (f_DM): s* 2.101 95% [0.890, 3.376]; pulls flat +2.04 H(z) -0.12
+     native B : s* 1.014 (a0 0.95e-10) 68% [0.612, 1.683] 95% [0.001, 3.511] (no-root resamples 3%); n 22, z_med 1.36; y quartiles 0.98/1.79/4.96; D<=1: 7; pulls flat +0.01 proxy -0.25 H(z) -0.61; +-0.15 dex band 3.125 to 0.001(nr)
+     native A : s* 0.001 (a0 0.00e-10) 68% [0.001, 3.364] 95% [0.001, 6.172] NO ROOT (no-root resamples 54%); n 10, z_med 1.21; y quartiles 1.64/3.52/7.01; D<=1: 5; pulls flat -1.83 proxy -1.90 H(z) -2.01; +-0.15 dex band 1.176 to 0.001(nr)
+     native G2: s* 0.001 (a0 0.00e-10) 68% [0.001, 1.947] 95% [0.001, 3.697] NO ROOT (no-root resamples 69%); n 10, z_med 1.21; y quartiles 2.03/4.45/9.64; D<=1: 6; pulls flat -2.02 proxy -2.10 H(z) -2.21; +-0.15 dex band 0.001(nr) to 0.001(nr)
+  Q3 committed (f_DM): s* 1.573 95% [0.996, 2.388]; pulls flat +1.86 H(z) -2.62
+     native B : s* 0.842 (a0 0.79e-10) 68% [0.001, 1.673] 95% [0.001, 2.238] (no-root resamples 23%); n 26, z_med 2.01; y quartiles 1.95/3.17/4.23; D<=1: 11; pulls flat -0.06 proxy -0.26 H(z) -0.44; +-0.15 dex band 2.596 to 0.001(nr)
+     native A : s* 1.658 (a0 1.55e-10) 68% [0.035, 1.981] 95% [0.001, 3.057] (no-root resamples 14%); n 8, z_med 2.09; y quartiles 1.39/2.24/3.68; D<=1: 3; pulls flat +0.19 proxy -0.04 H(z) -0.25; +-0.15 dex band 3.542 to 0.001(nr)
+     native G2: s* 0.523 (a0 0.49e-10) 68% [0.001, 1.105] 95% [0.001, 2.923] (no-root resamples 27%); n 8, z_med 2.09; y quartiles 1.62/2.77/4.46; D<=1: 3; pulls flat -0.22 proxy -0.43 H(z) -0.61; +-0.15 dex band 2.289 to 0.001(nr)
+  Q4 committed (f_DM): s* 0.994 95% [0.624, 1.378]; pulls flat -0.03 H(z) -5.66
+     native B : s* 0.001 (a0 0.00e-10) 68% [0.001, 0.001] 95% [0.001, 0.485] NO ROOT (no-root resamples 84%); n 27, z_med 2.26; y quartiles 2.06/3.66/5.76; D<=1: 16; pulls flat -3.51 proxy -3.85 H(z) -4.13; +-0.15 dex band 0.247 to 0.001(nr)
+     native A : s* 0.001 (a0 0.00e-10) 68% [0.001, 0.774] 95% [0.001, 0.800] NO ROOT (no-root resamples 81%); n 12, z_med 2.25; y quartiles 2.50/3.68/6.48; D<=1: 7; pulls flat -2.65 proxy -2.91 H(z) -3.12; +-0.15 dex band 0.038 to 0.001(nr)
+     native G2: s* 0.001 (a0 0.00e-10) 68% [0.001, 0.001] 95% [0.001, 0.001] NO ROOT (no-root resamples 98%); n 12, z_med 2.25; y quartiles 2.62/4.84/9.18; D<=1: 9; pulls flat -7.77 proxy -8.51 H(z) -9.13; +-0.15 dex band 0.001(nr) to 0.001(nr)
+  B pooled                    : s* 0.817 (a0 0.76e-10) 68% [0.399, 0.965] 95% [0.001, 1.297] (no-root resamples 3%); n 100, z_med 1.53; y quartiles 1.23/2.44/5.12; D<=1: 41; pulls flat -0.17 proxy -0.50 H(z) -0.92; +-0.15 dex band 2.176 to 0.001(nr)
+  B pooled, committed route   : s* 1.449 (a0 1.36e-10) 68% [1.234, 1.838] 95% [1.089, 2.056] (no-root resamples 0%); n 100, z_med 1.53; y quartiles 1.13/1.96/3.54; D<=1: 0; pulls flat +2.05 proxy -0.11 H(z) -2.60; +-0.15 dex band 3.903 to 0.001(nr)
+  A pooled                    : s* 0.780 (a0 0.73e-10) 68% [0.001, 1.069] 95% [0.001, 1.577] (no-root resamples 32%); n 41, z_med 1.50; y quartiles 1.07/2.78/6.14; D<=1: 19; pulls flat -0.08 proxy -0.20 H(z) -0.35; +-0.15 dex band 2.114 to 0.001(nr)
+  A pooled, committed route   : s* 1.838 (a0 1.72e-10) 68% [1.216, 2.056] 95% [1.008, 2.300] (no-root resamples 0%); n 41, z_med 1.50; y quartiles 1.15/1.98/3.86; D<=1: 0; pulls flat +2.40 proxy +0.84 H(z) -0.89; +-0.15 dex band 4.229 to 0.159
+  G2 pooled                   : s* 0.001 (a0 0.00e-10) 68% [0.001, 0.631] 95% [0.001, 1.105] NO ROOT (no-root resamples 68%); n 41, z_med 1.50; y quartiles 1.18/3.54/7.59; D<=1: 22; pulls flat -2.37 proxy -2.49 H(z) -2.65; +-0.15 dex band 1.229 to 0.001(nr)
+
+C-iii MUTATE: M_bar,nat x 10^0.2 for every galaxy (native RC100 points)
+  B Q1     : log D shift -0.2 exact True; median delta(s=1) shift -0.1529 (independent -0.1529); s* 1.483 -> 0.184; brentq re-solve 0.184
+  B Q2     : log D shift -0.2 exact True; median delta(s=1) shift -0.1691 (independent -0.1691); s* 1.014 -> no root; brentq re-solve none
+  B Q3     : log D shift -0.2 exact True; median delta(s=1) shift -0.1708 (independent -0.1708); s* 0.842 -> no root; brentq re-solve none
+  B Q4     : log D shift -0.2 exact True; median delta(s=1) shift -0.1692 (independent -0.1692); s* 0.001 (no root) -> no root; brentq re-solve none
+  B pooled : log D shift -0.2 exact True; median delta(s=1) shift -0.1664 (independent -0.1664); s* 0.817 -> no root; brentq re-solve none
+  A pooled : log D shift -0.2 exact True; median delta(s=1) shift -0.1789 (independent -0.1789); s* 0.780 -> no root; brentq re-solve none
+  [PASS] C-iii MUTATE (native RC100 points): every log D moves by -0.2000 and log g_bar by +0.2000 exactly, the median delta moves by the independently computed amount, s* moves down (or loses its root) and equals a scalar brentq re-solve to 1e-6: 6 points
+
+R1 / CFG216: WITHIN-SAMPLE SLOPES OF delta ON z (CFG216's primary and expected-slope blocks re-executed on replaced rows)
+  [PASS] C-i identity replacement (CFG216): the committed g_bar through the native formula reproduces every committed slope, CI, sd and median, and the outcome label: max |diff| 3.6e-16; outcome 'W-flat' vs 'W-flat'
+  [PASS] C-ii(b) swap-back (CFG216): the committed rows put back reproduce the committed numbers: max |diff| 0.0e+00
+  [PASS] C-iii MUTATE (CFG216 sample B): every log D moves by -0.2000 exactly (slope shifts reported, not graded): max |error| 1.1e-16; flat slope -0.1393 -> -0.1552, rival -0.1848 -> -0.1837
+  committed (f_DM, n 100): flat slope -0.030 [-0.073, +0.002], rival -0.091 [-0.129, -0.055]; outcome W-flat
+  B                   (n 100): flat median -0.020 [-0.092, +0.025] slope -0.139 [-0.219, -0.054] (z vs flat-true -3.36, rival-true -5.10); rival median -0.106 slope -0.185 [-0.252, -0.111] (z vs flat-true -3.53, rival-true -5.19); outcome W-mixed
+  A                   (n  41): flat median -0.011 [-0.224, +0.061] slope -0.041 [-0.197, +0.089] (z vs flat-true -0.58, rival-true -1.47); rival median -0.107 slope -0.104 [-0.235, +0.035] (z vs flat-true -0.79, rival-true -1.56); outcome W-none
+  G2                  (n  41): flat median -0.097 [-0.314, +0.010] slope -0.053 [-0.217, +0.098] (z vs flat-true -0.62, rival-true -1.38); rival median -0.212 slope -0.099 [-0.242, +0.047] (z vs flat-true -0.65, rival-true -1.35); outcome W-none
+  A, committed route  (n  41): flat median +0.041 [+0.001, +0.099] slope +0.009 [-0.055, +0.068] (z vs flat-true +0.29, rival-true -1.75); rival median -0.043 slope -0.051 [-0.118, +0.015] (z vs flat-true +0.02, rival-true -1.50); outcome W-none
+
+R1 / MNRAS v3.1 S5: a0 = g_bar / [ln(1/f)]^2 with f = 1 - g_bar/g_obs (the paper's rc100_run, unchanged, fed through a temporary table)
+  the paper's g_Re_ms2 column against V_c^2/R_e: max relative difference 3.9e-05 (4 significant figures in the CSV)
+  [FAIL] C-i identity replacement (S5): f = 1 - g_bar/g_obs with the committed g_bar reproduces paper_numbers.json S5 (relative): max rel diff 2.4e-01; N 100
+  committed (f_DM): N 99, d log a0/dz -0.111 +/- 0.063, median a0 1.386e-10, median y 1.45, weakest exclusion of H(z) 4.6 sigma
+  native B       : N 59 of 100 (the rest outside the paper's f window (0.02, 0.98)), d log a0/dz -0.122 +/- 0.098 (-1.2 sigma from 0), median a0 2.109e-10, median y 0.88, matched-comparator distances: H(z) 3.6 sigma, halo law 2.8 sigma; weakest exclusion of H(z) 2.2
+  native A       : N 22 of 41 (the rest outside the paper's f window (0.02, 0.98)), d log a0/dz -0.120 +/- 0.126 (-0.9 sigma from 0), median a0 2.940e-10, median y 0.37, matched-comparator distances: H(z) 2.7 sigma, halo law 2.2 sigma; weakest exclusion of H(z) 0.9
+  native G2      : N 19 of 41 (the rest outside the paper's f window (0.02, 0.98)), d log a0/dz -0.021 +/- 0.164 (-0.1 sigma from 0), median a0 2.736e-10, median y 0.39, matched-comparator distances: H(z) 1.5 sigma, halo law 1.1 sigma; weakest exclusion of H(z) 0.7
+  native B_MUTATE: N 32 of 100 (the rest outside the paper's f window (0.02, 0.98)), d log a0/dz +0.210 +/- 0.142 (+1.5 sigma from 0), median a0 1.821e-10, median y 0.84, matched-comparator distances: H(z) 0.1 sigma, halo law -0.4 sigma; weakest exclusion of H(z) 0.0
+
+R2 / CFG223: CRISTAL
+  [PASS] C-i identity replacement (CRISTAL): the committed g_bar through the native geometry factor reproduces CFG223's four CRISTAL points: max |diff| 4.4e-16
+  [PASS] C-ii(b) swap-back (CRISTAL): the committed (1 - f_DM)-based g_bar and D reproduce CFG223's four CRISTAL points: max |diff| 0.0e+00
+  committed CRISTAL R_e, fit route (12 discs): s* 1.867 95% [1.161, 5.650]; pulls flat +1.58 proxy -2.49 H(z) -3.55
+  committed CRISTAL R_out, fit route (6): s* 1.211 95% [0.258, 3.968]; pulls flat +0.33 proxy -2.64 H(z) -3.39
+  committed CRISTAL R_e, independent route (6 class-A): s* 2.905 95% [0.001, 18.923]; pulls flat +0.40 proxy -0.26 H(z) -0.41
+  committed CRISTAL R_out, independent route (6): s* 2.292 95% [0.042, 9.378]; pulls flat +0.59 proxy -0.65 H(z) -0.95
+  R_e native, six: ids ['02', '03', '07a', '11', '19', '20']
+     s* 2.014 (a0 1.88e-10) 68% [0.237, 7.272] 95% [0.001, 14.931] (no-root resamples 10%); n 6, z_med 5.26; y quartiles 1.86/3.18/6.62; D<=1: 2; pulls flat +0.26 proxy -0.39 H(z) -0.55; +-0.15 dex band 5.378 to 0.333
+  R_e native, twelve-disc set with SED+gas: ids ['02', '03', '07a', '08', '11', '12', '19', '20', '23b']
+     s* 0.674 (a0 0.63e-10) 68% [0.554, 3.612] 95% [0.001, 14.010] (no-root resamples 15%); n 9, z_med 5.23; y quartiles 1.85/2.50/7.33; D<=1: 3; pulls flat -0.14 proxy -0.75 H(z) -0.90; +-0.15 dex band 3.949 to 0.001(nr)
+  R_out native, six, outermost data marker (primary): ids ['02', '03', '07a', '11', '19', '20']
+     s* 1.953 (a0 1.83e-10) 68% [0.417, 5.054] 95% [0.001, 8.776] (no-root resamples 4%); n 6, z_med 5.26; y quartiles 1.28/1.47/1.93; D<=1: 1; pulls flat +0.35 proxy -0.56 H(z) -0.78; +-0.15 dex band 4.437 to 0.403
+  R_out native, six, table R_out (CFG223's radius; model curve at or beyond the last marker): ids ['02', '03', '07a', '11', '19', '20']
+     s* 1.902 (a0 1.78e-10) 68% [0.460, 4.778] 95% [0.001, 8.125] (no-root resamples 4%); n 6, z_med 5.26; y quartiles 1.14/1.30/1.59; D<=1: 1; pulls flat +0.36 proxy -0.62 H(z) -0.86; +-0.15 dex band 4.072 to 0.483
+  [PASS] C-iii MUTATE (CRISTAL native R_e six): log D -0.2 exact, s* moves down or loses its root, brentq agrees: s* 2.014 -> no root
+
+R2 / CFG213: THE Z5 BIN ON NATIVE ROWS (CFG213's deltas, med_ci, verdict and robust rule; its bootstrap state as committed)
+  native rows n = 9 (committed independent route n = 9; same n -> the same bootstrap index matrix: True)
+  flat  nu_mono canonical alpha 3.36: committed fit route +0.053 [+0.005, +0.234] DISFAVOURED-over; committed 'independent' route +0.043 [-0.076, +0.377] CONSISTENT; NATIVE -0.029 [-0.100, +0.342] CONSISTENT
+  rival nu_mono canonical alpha 3.36: committed fit route -0.161 [-0.207, -0.055] DISFAVOURED-under; committed 'independent' route -0.198 [-0.321, +0.107] CONSISTENT; NATIVE -0.210 [-0.369, +0.082] CONSISTENT
+  robust verdicts (alpha 3.36 and 1.68, both kernels, both footings): committed fit route: flat NOT robust (CONSISTENT, DISFAVOURED-over), rival DISFAVOURED-under; NATIVE: flat CONSISTENT, rival NOT robust (CONSISTENT, DISFAVOURED-under)
+
+15/16 checks pass   (316 s)
