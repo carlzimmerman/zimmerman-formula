@@ -113,9 +113,21 @@ for x0, x1, t in ((0.6, 2.6, "cosmic noon"), (4.0, 6.0, "first 1.5 billion years
     ax.text(1.05 if t == "cosmic noon" else (x0 + x1) / 2, 23, t, ha="center", color="#8a94a0", fontsize=10, style="italic")
 ax.axhspan(YLO, 0.30, color="#f6f2ea", zorder=0, lw=0)
 m = Zc <= XHI
-lo_b = np.minimum(np.array(cur["DESI DESY5"]), np.array(cur["DESI Union3"]))[m] * U
-hi_b = np.maximum(np.array(cur["DESI DESY5"]), np.array(cur["DESI Union3"]))[m] * U
-ax.fill_between(Zc[m], lo_b, hi_b, color=LAW["M-DEC"], alpha=0.13, lw=0, zorder=1)
+# band: 68% posterior of a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE0) from the DESI DR2 MCMC chains (p13c, 5c037358f),
+# envelope of the three SN-anchored fits (DESI+CMB+Pantheon+/Union3/DESY5); solid to z = 2.5, faint beyond (CPL extrapolation)
+P13C = list(csv.DictReader(open(os.path.join(ROOT, "sonnet55_push", "puzzle_32pi", "p13c_desi_dr2_chains_a0z.csv"))))
+SNF = ("DESI+CMB+Pantheon+", "DESI+CMB+Union3", "DESI+CMB+DESY5")
+zb = np.array(sorted({float(r["z"]) for r in P13C}))
+q = {(r["fit"], float(r["z"])): r for r in P13C}
+lo_b = np.array([min(float(q[(F, z)]["q16"]) for F in SNF) for z in zb]) * U
+hi_b = np.array([max(float(q[(F, z)]["q84"]) for F in SNF) for z in zb]) * U
+check("p13c DESI DR2 chain band: medians at z = 2.5 are 0.827 / 0.782 / 0.798 (Pantheon+ / Union3 / DESY5) and every 68% band is below 1 there (5c037358f)",
+      [round(float(q[(F, 2.5)]["q50"]), 3) for F in SNF] == [0.827, 0.782, 0.798] and all(float(q[(F, 2.5)]["q84"]) < 1 for F in SNF))
+check("the teal line (Pantheon+ central CPL) lies inside the chain band at z = 0.5, 1, 2, 2.5",
+      all(np.interp(z, zb, lo_b) <= np.interp(z, Zc, cur["M-DEC"]) * U <= np.interp(z, zb, hi_b) for z in (0.5, 1.0, 2.0, 2.5)))
+s1 = zb <= 2.5
+ax.fill_between(zb[s1], lo_b[s1], hi_b[s1], color=LAW["M-DEC"], alpha=0.22, lw=0, zorder=1)
+ax.fill_between(zb[zb >= 2.5], lo_b[zb >= 2.5], hi_b[zb >= 2.5], color=LAW["M-DEC"], alpha=0.08, lw=0, zorder=1)
 md = np.array(cur["M-DEC"])[m] * U; zz = Zc[m]
 ax.plot(zz[zz <= 2.5], md[zz <= 2.5], color=LAW["M-DEC"], lw=2.2, zorder=2)
 ax.plot(zz[zz >= 2.5], md[zz >= 2.5], color=LAW["M-DEC"], lw=2.2, ls=(0, (1.2, 2.2)), zorder=2)
@@ -375,7 +387,7 @@ fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from
          "and a 0.05 dex baryon-mass error moves the implied $a_0$ ×1.5-1.8.  High-z points use framework-native inputs (no halo fits); faint = old halo-fit route.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG303, CFG301/304/309, CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280–285 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = 68 % from DESI DR2 MCMC chains (3 SN fits, p13c).  Points nudged in z; plot only.\nSources: CFG303, CFG301/304/309, CFG223, CFG227 + CFG237, CFG228, CFG229, CFG270–278, CFG280–285 (calculated); CFG261 KiDS, CFG262 MUSE-DARK, CFG279 MIGHTEE (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
