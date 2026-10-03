@@ -42,7 +42,7 @@ groups = [
         ("Why kappa = 1/2 (the 32 pi)", "OPEN", "fitted, not derived · CFG263/264"),
         ("What sets the cold-mass amount", "OPEN", "free in every build · CFG288"),
         ("Ownership from an action", "OPEN", "scoped no-gos · CFG242-245"),
-        ("Radiative stability (G12)", "OPEN", "never run · recipe audit 10-03"),
+        ("Radiative stability (G12)", "COND", "needs UV new physics <~1e9 GeV · CFG320"),
     ]),
 ]
 

@@ -1,0 +1,117 @@
+CFG320 G12 radiative stability   *** MUTATE: c_2 = 0.5 ***
+  inputs (real_research/g03_audit_2026/L340_filtered_khronon_completion_results.json): alpha_c in [9.6240e-14, 3.200e-09], c_2 in [7.2888e-03, 6.6667e-02]; scored c_2 grid 0.5..0.5; M_P = 2.435e+18 GeV (reduced); bound |delta| <= 6e-20 (PROVISIONAL)
+
+==============================================================================================================
+K1  CONTROL: Collins, Perez, Sudarsky, Urrutia & Vucetich 2004 (Yukawa loop, LV regulator), reproduced
+==============================================================================================================
+    f = exp(-x^2) : xi/g^2 numeric = 3.368484e-02   Collins (g^2/6pi^2)(1 + 2 Int x f'^2) = 3.377373e-02   ratio 0.99737
+    f = 1/(1+x^4) : xi/g^2 numeric = 3.938482e-02   Collins (g^2/6pi^2)(1 + 2 Int x f'^2) = 3.940268e-02   ratio 0.99955
+    f = 1 with a 4D-ball cutoff (Lorentz-invariant regulator): xi/g^2 = 2.88e-15
+  [PASS] K1 Collins et al. 2004 eq. A.2 reproduced at m = 0.01 Lambda for two LV regulators (within 2%), and xi = 0 for a Lorentz-invariant regulator
+         measured: exp(-x^2): ratio 0.9974; 1/(1+x^4): ratio 0.9995; LI limit 2.9e-15
+         reading:  the generic LV-percolation mechanism (a LV cutoff leaks O(g^2/6pi^2) LV into a LI theory, independent of Lambda) is reproduced; it is the UV-sensitivity that part B3 models
+
+==============================================================================================================
+B1  THE CHASSIS GRAVITON PROPAGATOR, scalar sector, unitary gauge (sympy); tensor/vector = GR at beta = 0
+==============================================================================================================
+    W_chassis = -(2*alpha*k**8*lambda*sigma**2 - 4*alpha*k**4*omega**2*rho*sigma - alpha*k**2*omega**2*rho**2 - 3*alpha*omega**4*rho**2 + 4*k**6*lambda*rho*sigma + k**4*lambda*rho**2 + 3*k**2*lambda*omega**2*rho**2)/(4*k**4*(alpha*k**2*lambda + 3*alpha*lambda*omega**2 + 2*alpha*omega**2 - 2*k**2*lambda))
+    W_GR      = rho*(4*k**4*sigma + k**2*rho + 3*omega**2*rho)/(8*k**4)
+    W_GR / covariant [T.T - T^2/2]/(k^2 - omega^2) = 1/4
+  [PASS] K2 GR control: the derived GR scalar-sector amplitude equals the covariant amplitude for conserved scalar-type sources up to one constant
+         measured: ratio = 1/4
+    Delta W = W_chassis - W_GR = -alpha*lambda*(2*k**4*sigma + k**2*rho + 3*omega**2*rho)**2/(8*k**4*(alpha*k**2*lambda + 3*alpha*lambda*omega**2 + 2*alpha*omega**2 - 2*k**2*lambda))
+  [PASS] K3 zero-coupling limit: alpha_c, c_2 -> 0 (any ratio) gives W_chassis -> W_GR, and Delta W carries an overall alpha*lambda
+         measured: limit difference = 0; Delta W numerator has factor alpha*lambda: True
+  [PASS] K4 static limit (density source): W_chassis/W_GR = 1/(1 - alpha_c/2) (G_N, FP2 D1)
+         measured: -2/(alpha - 2)
+         reading:  with anisotropic stress the static amplitude also has an O(alpha) stress-stress term (in the LV measure)
+  [PASS] K5 the propagator pole is the khronon, omega^2 = c_s^2 k^2 with c_s^2 = c_2 (2 - alpha_c)/(alpha_c (2 + 3 c_2)) (L340/XC1)
+         measured: roots [k*sqrt(lambda)*sqrt((2 - alpha)/alpha)/sqrt(3*lambda + 2), -k*sqrt(lambda)*sqrt(-(alpha - 2)/alpha)/sqrt(3*lambda + 2)]
+    Euclidean LV measure Delta(theta) = Delta W_E / N_E, N_E = sum of squared Euclidean source components / (4 Q^2):
+      Delta = -alpha*lambda*(k**2 + omega_E**2)*(2*k**4*sigma + k**2*rho - 3*omega_E**2*rho)**2/(2*(alpha*k**2*lambda - 3*alpha*lambda*omega_E**2 - 2*alpha*omega_E**2 - 2*k**2*lambda)*(2*k**8*sigma**2 - 4*k**4*omega_E**2*rho*sigma + k**4*rho**2 + 2*k**2*omega_E**2*rho**2 + 3*omega_E**4*rho**2))
+
+==============================================================================================================
+A + B  OVER THE GRID (cutoff = each point's own Lambda_sc)
+==============================================================================================================
+      alpha_c       c_2     c_s/c  L_sc GeV    eps_LV   eps_max      da/a     d_EFT      d_UV
+     9.62e-14  5.00e-01  1.72e+06  5.75e+08  9.62e-14  2.14e-01  1.84e-08  2.01e-33  2.09e-20
+     1.75e-11  5.00e-01  1.28e+05  2.86e+10  1.76e-11  2.14e-01  2.48e-07  7.44e-28  4.24e-17
+     3.20e-09  5.00e-01  9.45e+03  1.42e+12  3.20e-09  2.14e-01  3.35e-06  2.63e-22  8.21e-14
+
+    Lambda_sc over the scored grid: 5.755e+08 .. 1.417e+12 GeV;  Pospelov-Shang hierarchy for |delta_UV| <= 6e-20: Lambda_HL <= 9.870e+08 GeV;  points with delta_UV <= bound: 1/9
+  [PASS] K7 eps_LV stable to 1% when the theta sampling is doubled
+         measured: max relative change 1.98e-10
+  [PASS] K3b zero-coupling limit, numerically: eps_LV -> 0 as alpha_c, c_2 -> 0 (alpha_c = c_2 = 1e-20)
+         measured: eps_LV = 5.00e-21, eps_max = 7.50e-21
+
+==============================================================================================================
+A  TECHNICAL NATURALNESS of alpha_c and c_2
+==============================================================================================================
+    A0: with alpha_c = c_2 = 0 the Stueckelberg-restored khronon terms alpha_c a.a - c_2 K^2 vanish identically, the
+        action is GR + minimally coupled matter, diffeomorphism invariant, and the khronon drops out: an enlarged
+        symmetry, so loop corrections to (alpha_c, c_2) are proportional to (alpha_c, c_2) themselves. Matter couples
+        to g only, so pure matter loops generate diffeomorphism-invariant functionals of g (G, the vacuum energy,
+        R^2 ...) and never alpha or c_2. Mixed loops: generic mixing assumed (c_2 may generate alpha).
+  [PASS] A0 the alpha_c = c_2 = 0 point is a symmetry point: the derived propagator LV Delta W vanishes when either coupling vanishes (overall alpha*lambda), and the khronon terms carry overall alpha_c, c_2
+         measured: Delta W numerator vanishes at alpha = 0 and at lambda = 0 (sympy)
+  [PASS] A1 one-loop naturalness at Lambda = Lambda_sc(point): |delta alpha| <= alpha_c and |delta c_2| <= c_2 at every grid point (N_g = 10, generic mixing delta ~ N_g max(alpha_c, c_2) Lambda^2/(16 pi^2 M_P^2))
+         measured: 9/9 points; max delta alpha/alpha_c = 3.35e-06, max delta c_2/c_2 = 2.14e-14; matter-LV feedback delta alpha <= 1.3e-32
+         reading:  at Lambda = Lambda_sc the correction is delta alpha/alpha ~ N_g sqrt(c_2 alpha_c)/(16 pi^2) (analytic): self-consistently small; with Lambda = M_P (no hierarchy) delta alpha/alpha would be 3.3e+11 (unnatural)
+  [PASS] (reading) A2 analytic form: delta alpha/alpha_c = N_g sqrt(c_2 alpha_c (2+3c_2)/(2-alpha_c))/(16 pi^2) at Lambda_sc
+         measured: max relative deviation from the closed form 6.7e-16
+
+==============================================================================================================
+B  LORENTZ-VIOLATION LEAKAGE INTO MATTER (photon/electron maximal-speed coefficients)
+==============================================================================================================
+  [FAIL] B0 the scored inputs lie in the committed window (alpha_c <= 3.2e-9; BBN 1.5 c_2 <= 0.1, L340 P1)
+         measured: c_2 scored 0.5..0.5; 1.5 c_2 max = 0.75
+  [PASS] B2 EFT leakage delta_EFT = eps_LV Lambda_sc^2/(12 pi^2 M_P^2) ln(M_P^2/Lambda_sc^2) <= 6e-20 at every point
+         measured: 9/9; max delta_EFT = 2.63e-22 (eps_max instead: 1.76e-14); eps_LV <= 3.20e-09, eps_max <= 2.14e-01
+         reading:  the propagator LV is O(alpha_c) over almost all of Euclidean phase space and O(c_2) only inside the khronon cone omega_E > c_s k, a 1/c_s^3 sliver
+  [FAIL] (reading) B3 worst-case UV leakage (O(1) LV entering at Lambda_HL = Lambda_sc): delta_UV <= 6e-20 at every point
+         measured: 1/9; delta_UV 2.09e-20 .. 8.21e-14; hierarchy needed Lambda_HL <= 9.87e+08 GeV
+         reading:  decides PASS vs CONDITIONAL under the frozen rule; not a control
+    reading vs KS08 lower side (9e-16): EFT ok at 9/9, worst-case UV ok at 6/9
+    reading vs PS12 'most stringent' (ref unread) (1e-23): EFT ok at 7/9, worst-case UV ok at 0/9
+    reading vs LEP/Tevatron (recalled) (1e-11): EFT ok at 9/9, worst-case UV ok at 9/9
+    reading: hierarchy needed for KS08 lower side (9e-16): Lambda_HL <= 1.38e+11 GeV
+    reading: hierarchy needed for PS12 'most stringent' (ref unread) (1e-23): Lambda_HL <= 1.16e+07 GeV
+    reading: hierarchy needed for LEP/Tevatron (recalled) (1e-11): Lambda_HL <= 1.72e+13 GeV
+    reading: scoring the EFT piece with eps_max (the khronon-cone sliver value, not phase-space weighted) passes at 2/9 points -- it would move the EFT piece onto the same sub-window/hierarchy condition as B3
+    worst-case-UV sub-window: 1 grid points pass; the condition is Lambda_sc(alpha_c, c_2) <= 9.87e+08 GeV, i.e. alpha_c^(3/4) c_2^(-1/4) <~ 4.05e-10
+
+==============================================================================================================
+R1  READING: the Pospelov-Shang threshold (eq. 59 coefficient) against their stated Lambda_HL <~ 1e10 GeV for 1e-20
+==============================================================================================================
+    reduced, with log     : Lambda_HL = 3.95e+08 GeV
+    reduced, no log       : Lambda_HL = 2.65e+09 GeV
+    M = 1.22e19, no log   : Lambda_HL = 1.33e+10 GeV
+  [PASS] (reading) R1 (reading) the PS 1e10 GeV figure is reproduced within a factor 3 only with M = 1.22e19 GeV and no log; the lane scores the stricter reduced-M_P-with-log form
+         measured: reduced, with log 3.9e+08; reduced, no log 2.6e+09; M = 1.22e19, no log 1.3e+10
+
+==============================================================================================================
+C  THE HEAT FILTER AND THE KERNEL UNDER LOOPS (power counting, both footings, both xi floors)
+==============================================================================================================
+    canonical xi = 0.031 pc: k_M = 8.704e-13 GeV; C-a filtered kernel loop <= 8.7e-41; C-b unfiltered (dU)^4 at 0.1 AU / Newton = 1.8e-105 (vs tree MOND quartic 4.5e-125); C-c delta xi/xi <= 2.1e-15
+    canonical xi = 0.045 pc: k_M = 8.704e-13 GeV; C-a filtered kernel loop <= 4.1e-41; C-b unfiltered (dU)^4 at 0.1 AU / Newton = 1.8e-105 (vs tree MOND quartic 4.5e-125); C-c delta xi/xi <= 2.1e-15
+    alt       xi = 0.031 pc: k_M = 9.554e-13 GeV; C-a filtered kernel loop <= 7.2e-41; C-b unfiltered (dU)^4 at 0.1 AU / Newton = 1.8e-105 (vs tree MOND quartic 6.5e-125); C-c delta xi/xi <= 2.1e-15
+    alt       xi = 0.045 pc: k_M = 9.554e-13 GeV; C-a filtered kernel loop <= 3.4e-41; C-b unfiltered (dU)^4 at 0.1 AU / Newton = 1.8e-105 (vs tree MOND quartic 6.5e-125); C-c delta xi/xi <= 2.1e-15
+    statement: every MOND vertex acts on S U, so each external MOND leg carries e^{-xi^2 k^2/2}; loops renormalise the
+    kernel coefficients (q's Taylor/shape coefficients, nu_mono's delta = 0.05, alpha_M = a0/c^2) multiplicatively by
+    <= g_max/(16 pi^2) and cannot remove the external-leg Gaussian. The only unfiltered U vertex is C-H's quadratic
+    2h(DU - a)^2 (U enters through the metric only), so unfiltered operators are graviton-loop generated and M_P-
+    suppressed: (dU)^4/(16 pi^2), Planck-small against the Newtonian term at every Solar-System field. The filter scale
+    is renormalised only through its metric dependence (Delta_h), relative Lambda^2/(16 pi^2 M_P^2) at most.
+  [PASS] C the Gaussian screening and the kernel coefficients are radiatively stable (C-a, C-c <= 1e-2; C-b <= 1e-10 of the Newtonian term at 0.1 AU), both footings, both xi floors
+         measured: max C-a 8.7e-41, max C-b 1.8e-105, max C-c 2.1e-15
+         reading:  stability is not a derivation: a0's value and the a0-Lambda relation are not touched (kappa = 1/2 FITTED); the vacuum-energy fine-tuning is GR's, inherited unchanged
+
+==============================================================================================================
+VERDICT (frozen rule, FROZEN_CRITERIA.md section 3)
+==============================================================================================================
+  G12 on the filtered C-H/K chassis: FAIL (MUTATE: inputs outside the committed window)
+
+  load-bearing failures: 1 ['B0 the scored inputs lie in the committed window (alpha_c <= 3.2e-9; BBN 1.5 c_2 <= 0.1, L340 P1)']
+  Time 14 s.
+
+  13/15 checks pass
