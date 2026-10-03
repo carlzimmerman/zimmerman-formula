@@ -280,3 +280,5 @@ both a₀ footings; κ = ½ fitted; nothing here says the theory is closed. Each
 | CFG293 | (orchestrator, 10-02) CFG288's wave field → solitonic cores → satellites (CFG286 harness). In progress. | — |
 | CFG301 | (orchestrator, adopted from the calc chat's draft 37d1d049a) MIGHTEE-HI catalogue width chain + direct BTFR a₀ (owner "raw and unfiltered"); local level and distance drift only (cannot separate FLAT from H(z) at z ≤ 0.093). In progress. | — |
 | CFG302 | (orchestrator, owner "keep going with the MIGHTEE cubes lane") raw widths/fluxes from the local r1p0 cubes vs the catalogue. In progress. | — |
+| CFG303 | (orchestrator, owner "use all the data using our framework not ΛCDM assumptions") inventory of every a₀-record input by RAW / MODEL-OTHER / LCDM-MODEL; framework-native re-derivations (_LCDMFREE). In progress. | — |
+| CFG294 | (orchestrator, owner "the derivation from first principles … one more piece") nonlinear local well-posedness of the chassis: constant multiplicity (c_S ≥ 443.8 > 1) → Kreiss symmetrizer → Kato quasilinear existence + elliptic lapse (Andersson–Moncrief structure). In progress. | — |
