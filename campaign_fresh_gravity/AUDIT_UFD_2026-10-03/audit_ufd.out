@@ -1,0 +1,116 @@
+AUDIT_UFD 2026-10-03 -- independent re-derivation of the MW ultra-faint offset (bare law, native inputs)
+==============================================================================================================
+1. RAW TABLE: lvd_dwarf_mw.csv (68 rows). Cut M_V > -7.7, r_half and distance present: 31 resolved + 9 upper limits
+   upper limits: Aquarius III, Draco II, Grus II, Hydra II, Phoenix II, Reticulum III, Segue 2, Triangulum II, Tucana III
+   HI present in any UFD: 0
+
+   Spot check (5 systems): raw LVD columns vs what the estimator uses
+   name                M_V       L_V      2L_V    LVD M*   r_maj     e r_maj*sqrt(1-e)   r_sph  sigma ref
+   Bootes I          -6.02 2.188e+04 4.376e+04 4.365e+04   192.2  0.30           160.8   160.9   4.00 Sandford2026ApJ...998...47S
+   Ursa Major I      -5.14 9.727e+03 1.945e+04 1.950e+04   234.5  0.59           150.2   150.1   7.16 Geha2026ApJ...999..140G
+   Segue 1           -1.30 2.831e+02 5.663e+02 5.623e+02    23.9  0.33            19.6    19.5   3.97 Geha2026ApJ...999..140G
+   Tucana II         -3.75 2.704e+03 5.408e+03 5.370e+03   208.7  0.39           163.0   161.7   3.80 Chiti2023AJ....165...55C
+   Coma Berenices    -4.29 4.446e+03 8.893e+03 8.913e+03    69.1  0.37            54.9    54.9   3.33 Geha2026ApJ...999..140G
+   max |log10(2 L_V) - LVD mass_stellar| over all 40: 0.005 dex (the LVD's own Upsilon_V = 2 stellar mass)
+
+   Cross-check against McConnachie 2012 (on disk; older values): sigma [km/s], M_V, R_half [pc]
+   Bootes I           LVD sigma  4.00  M12 sigma   2.4+-0.5  | M_V  -6.02 vs  -6.3 | r_maj  192.2 vs   242
+   Bootes II          LVD sigma  1.92  M12 sigma  10.5+-7.4  | M_V  -2.94 vs  -2.7 | r_maj   38.2 vs    51
+   Canes Venatici II  LVD sigma  5.28  M12 sigma   4.6+-1.0  | M_V  -5.17 vs  -4.9 | r_maj   70.3 vs    74
+   Coma Berenices     LVD sigma  3.33  M12 sigma   4.6+-0.8  | M_V  -4.29 vs  -4.1 | r_maj   69.1 vs    77
+   Hercules           LVD sigma  2.25  M12 sigma   3.7+-0.9  | M_V  -5.81 vs  -6.6 | r_maj  213.1 vs   330
+   Leo IV             LVD sigma  3.29  M12 sigma   3.3+-1.7  | M_V  -4.95 vs  -5.8 | r_maj  111.4 vs   206
+   Leo V              LVD sigma  3.37  M12 sigma   3.7+-1.4  | M_V  -4.40 vs  -5.2 | r_maj   48.7 vs   135
+   Segue 1            LVD sigma  3.97  M12 sigma   3.9+-0.8  | M_V  -1.30 vs  -1.5 | r_maj   23.9 vs    29
+   Ursa Major II      LVD sigma  6.30  M12 sigma   6.7+-1.4  | M_V  -4.42 vs  -4.2 | r_maj  138.8 vs   149
+   Willman 1          LVD sigma  4.70  M12 sigma   4.3+-1.3  | M_V  -2.53 vs  -2.7 | r_maj   27.4 vs    25
+   Segue 2            LVD sigma  2.06 (UL)  M12 sigma   3.4+-1.2  | M_V  -1.95 vs  -2.5 | r_maj   39.7 vs    35
+
+2. REPRODUCTION (record estimator: sigma^2 = g r / 3 at r = 4/3 r_half(circularised), M = 2 L_V, half mass inside r, isolated)
+   canonical: KM median +0.3245  boot 0.0383  Upsilon floor 0.0770  total 0.0860  z +3.77   (resolved median +0.3545, resolved mean +0.3873; n 31 + 9 UL)
+   alt      : KM median +0.3045  boot 0.0383  Upsilon floor 0.0768  total 0.0858  z +3.55   (resolved median +0.3345, resolved mean +0.3671; n 31 + 9 UL)
+   record (CFG45/CFG313 law row): canonical +0.3245 +- 0.0860 z +3.77 | alt +0.3045 +- 0.0858 z +3.55
+
+   kernel: UFD y = g_N/a0 spans 7.1e-05 .. 3.3e-03 (median 6.9e-04); max |nu_mono/nu_exp - 1| there = 4.8e-09
+   canonical: KM median with nu_mono +0.3245
+   alt      : KM median with nu_mono +0.3045
+
+3. VARIANTS (one input changed at a time; offset = KM median of 31 + 9; z uses the same error recipe)
+   deep-MOND isolated sigma^4 = (4/81) G M a0                 can +0.342 (z +4.06, d +0.018) | alt +0.322 (z +3.81)
+   major-axis r_half instead of circularised                  can +0.325 (z +3.77, d +0.000) | alt +0.304 (z +3.55)
+   Upsilon_V = 1.0                                            can +0.401 (z +4.67, d +0.077) | alt +0.381 (z +4.44)
+   Upsilon_V = 1.5 (old metal-poor, Chabrier/Kroupa-like)     can +0.356 (z +4.15, d +0.032) | alt +0.336 (z +3.92)
+   Upsilon_V = 3.0 (Salpeter-like, old)                       can +0.279 (z +3.25, d -0.045) | alt +0.259 (z +3.03)
+   EFE rival: MW 6e10 point mass at D_gc (record's a_int)     can +0.764 (z +4.58, d +0.440) | alt +0.748 (z +4.49)
+   EFE rival, LMC-hosted 7 feel the LMC (1.5e10) instead      can +0.764 (z +4.50, d +0.440) | alt +0.748 (z +4.41)
+
+   Upsilon_V the isolated law would need (mass_factor on 2 L_V; reported, not a fit):
+   canonical: Upsilon_V for z = 2 (error held) 7.8; for zero offset 34.7
+   alt      : Upsilon_V for z = 2 (error held) 6.6; for zero offset 29.4
+
+4. SAMPLE CUTS (reported; sample choice is the test of selection-neutrality)
+   resolved only (no limits), median                                        n 31+0: can +0.355 (z +nan) | alt +0.334 (z +nan)
+   drop recalled tidally disturbed (Tuc III, Boo III, Her, Wil 1, Seg 2, Tuc V) n 27+7: can +0.355 (z +3.85) | alt +0.334 (z +3.64)
+   D_gc > 80 kpc only                                                       n 14+4: can +0.325 (z +3.90) | alt +0.304 (z +3.66)
+   D_gc <= 80 kpc only                                                      n 17+5: can +0.322 (z +2.54) | alt +0.302 (z +2.38)
+   drop the 7 LMC-hosted                                                    n 25+8: can +0.322 (z +3.80) | alt +0.302 (z +3.57)
+   sigma error <= 25%                                                       n 13+0: can +0.432 (z +4.05) | alt +0.412 (z +3.87)
+
+5. STATISTIC CROSS-CHECKS (resolved 31)
+   canonical: inverse-variance mean +0.378 +- 0.017 (stat) ; with the Upsilon floor z +4.79; chi2/dof about zero offset 19.1; about the mean 3.3
+   canonical: with an SPS-range floor (Upsilon_V 1.5..3.0) instead of 1..4: total 0.054, z +5.98
+   alt      : inverse-variance mean +0.358 +- 0.017 (stat) ; with the Upsilon floor z +4.55; chi2/dof about zero offset 17.4; about the mean 3.3
+   alt      : with an SPS-range floor (Upsilon_V 1.5..3.0) instead of 1..4: total 0.054, z +5.62
+
+6. PER-OBJECT (canonical, isolated, Upsilon_V 2): name | host | D_gc | M* | r_sph | sigma_obs | sigma_pred | offset | EFE sigma_pred
+   Aquarius II        mw   105.1  9.48e+03  123.7  4.70    1.61 +0.466  0.50
+   Aquarius III       mw    85.8  1.71e+03   36.3  3.50UL  1.05 +0.524  0.36
+   Bootes I           mw    64.0  4.38e+04  160.9  4.00    2.36 +0.229  0.75
+   Bootes II          mw    39.5  2.56e+03   33.0  1.92    1.16 +0.218  0.33
+   Bootes III         mw    47.5  3.67e+04  466.6  1.69    2.25 -0.124  0.36
+   Canes Venatici II  mw   160.6  2.00e+04   54.0  5.28    1.95 +0.432  1.24
+   Carina II          lmc   38.3  1.15e+04   76.5  3.40    1.69 +0.303  0.45
+   Carina III         lmc   29.0  1.56e+03   19.5  5.60    1.03 +0.736  0.30
+   Centaurus I        mw   114.1  2.36e+04   71.0  4.20    2.03 +0.315  1.05
+   Columba I          mw   187.3  8.19e+03   97.3  5.96    1.55 +0.585  0.68
+   Coma Berenices     mw    43.5  8.89e+03   54.9  3.33    1.59 +0.322  0.49
+   Draco II           mw    23.9  3.57e+02   16.1  2.60UL  0.71 +0.564  0.15
+   Eridanus II        mw   371.6  1.21e+05  178.9  6.90    3.05 +0.355  2.27
+   Eridanus IV        mw    76.2  4.50e+03   56.2  6.10    1.34 +0.660  0.44
+   Grus I             mw   122.7  7.67e+03  113.4  2.50    1.52 +0.215  0.50
+   Grus II            mw    50.7  8.11e+03   94.2  2.00UL  1.55 +0.112  0.38
+   Hercules           mw   125.0  3.61e+04  118.5  2.25    2.25 -0.000  1.06
+   Horologium I       lmc   79.7  3.85e+03   31.7  4.90    1.29 +0.580  0.55
+   Hydra II           mw   148.5  1.88e+04   56.7  4.11UL  1.92 +0.330  1.15
+   Hydrus I           lmc   25.7  1.31e+04   52.4  2.70    1.75 +0.188  0.51
+   Leo IV             mw   151.9  1.63e+04  101.1  3.29    1.84 +0.251  0.85
+   Leo V              mw   169.8  9.84e+03   35.2  3.37    1.64 +0.313  1.09
+   Leo VI             mw   113.7  4.54e+03   86.9  2.85    1.34 +0.329  0.43
+   Pegasus III        mw   212.8  7.96e+03   82.1  2.76    1.54 +0.253  0.76
+   Pegasus IV         mw    89.1  8.57e+03   41.6  3.33    1.58 +0.325  0.75
+   Phoenix II         lmc   80.2  1.88e+03   26.9 21.20UL  1.08 +1.295  0.42
+   Pictor II          lmc   45.6  1.96e+03   31.9  3.50    1.09 +0.508  0.31
+   Pisces II          mw   181.9  8.81e+03   56.3  3.72    1.58 +0.371  0.88
+   Reticulum II       lmc   33.0  2.97e+03   36.5  3.60    1.21 +0.475  0.32
+   Reticulum III      mw    91.6  3.57e+03   62.2  8.30UL  1.26 +0.819  0.41
+   Segue 1            mw    27.8  5.66e+02   19.5  3.97    0.80 +0.698  0.18
+   Segue 2            mw    42.4  1.03e+03   35.0  2.06UL  0.92 +0.349  0.21
+   Triangulum II      mw    34.7  5.66e+02   17.2  3.50UL  0.80 +0.643  0.20
+   Tucana II          mw    52.5  5.41e+03  161.7  3.80    1.39 +0.436  0.24
+   Tucana III         mw    21.1  5.66e+02   30.0  1.50UL  0.79 +0.276  0.13
+   Tucana IV          mw    44.5  2.71e+03   98.1  4.30    1.17 +0.564  0.21
+   Tucana V           mw    51.8  4.71e+02   22.8  1.20    0.76 +0.199  0.19
+   Ursa Major I       mw   101.9  1.95e+04  150.1  7.16    1.92 +0.571  0.64
+   Ursa Major II      mw    40.8  1.00e+04   92.1  6.30    1.63 +0.587  0.40
+   Willman 1          mw    42.7  1.76e+03   20.0  4.70    1.06 +0.646  0.36
+
+7. REPORTED ESCAPE CHECK: isolated law on the INITIAL baryons, M_init = R_ind M_now, R_ind from CFG317's leaky box (nominal yield -0.2, and -0.5 / +0.1)
+   stellar-mass match to CFG317's per-object table: exact
+   yield -0.2: UFD KM median can -0.208 | alt -0.226   ;   MW classical (n 12, stars only) median can +0.100 -> -0.271
+   yield -0.5: UFD KM median can -0.123 | alt -0.141   ;   MW classical (n 12, stars only) median can +0.100 -> -0.182
+   yield  0.1: UFD KM median can -0.298 | alt -0.314   ;   MW classical (n 12, stars only) median can +0.100 -> -0.362
+
+CHECKS
+   [PASS] sample is 31 resolved + 9 limits
+   [PASS] independent KM median reproduces the record to 5e-4 dex on both footings
+   [PASS] independent z reproduces the record to 0.02 on both footings

@@ -28,7 +28,7 @@ groups = [
         ("Weak lensing (KiDS)", "PASS", "with bound-only switch"),
         ("Clusters, Bullet Cluster", "PASS", "needs the cold mass"),
         ("Andromeda + Local Volume dwarfs", "PASS", "law alone, native inputs · CFG313"),
-        ("Milky Way ultra-faint dwarfs", "FAIL", "+3.8 sigma, native inputs · CFG313"),
+        ("Milky Way ultra-faint dwarfs", "FAIL", "+0.32 dex, 3.8 sigma (lenient end) · audit"),
         ("Massive ellipticals (SLUGGS)", "FAIL", "+0.10 dex; 2.8-4.4 sigma by GC tracer · audit"),
     ]),
     ("Cosmology and a0 over time", [
