@@ -1,0 +1,87 @@
+CFG304 -- MIGHTEE-HI COSMOS flux scale vs ALFALFA alpha.100 (frozen criteria 336b36f8f); mode: MAIN
+A flux-calibration check, not an a0 measurement; kappa = 1/2 is FITTED; no knob scans; no downloads.
+  sha256 mightee: bcf9e8558bc5644805b9acb288372c17daffac76d8be6c89d7db9843af9fbf23
+  sha256 cfg302: e122665fcf000995b897ce289410af613af1c7c319b82c8c7aad75369768d928
+  sha256 alfalfa: c790a7ec68c45b66a86be1bc6317b9b29da6b8736baa013e97af21fb40599ed2
+  sha256 cfg301_json: faee1229ea98ddad34c8dcd1fa1fc88ad5a5bbec5279f0d297f3cf799538c9b2
+  inputs: data_assembly/mightee_hi_catalogue_2026-10-02/MIGHTEE_HI_COSMOS_catalogue.csv; campaign_fresh_gravity/CFG302_mightee_cube_raw_widths/cfg302_per_galaxy.csv; data_assembly/alfalfa_sdss_local_control/alfalfa_sdss.csv; campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageB_results.json; campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageA.out
+  rows: MIGHTEE 293; CFG302 190; ALFALFA 31503
+
+BOOKKEEPING CHECKS (raw, unmutated inputs)
+  [PASS] K1 input sha256 (ALFALFA exact; MIGHTEE prefix): ALFALFA c790a7ec68c45b66...; MIGHTEE bcf9e8558bc56448...
+  [FAIL] K2 catalogue z_HI = nu0/freq - 1 to <= 1e-5 (all rows): max |dz| 3.55e-04 over 293 rows
+  [PASS] K3 CFG302 S_cat equals the catalogue S_HI_Jy_Hz (relative <= 1e-6): 190 of 190 joined; max rel 0.00e+00
+  [PASS] K4 U1 log_M_HI vs log10(49.7 D_L^2 S_HI): median |delta| <= 0.03 dex: n 293; median |delta| 0.0027; signed median +0.0014; max |delta| 0.0095; residual / log(1+z) median +0.06 (information)
+
+MATCHING (ALFALFA HI centroid; theta <= 60 arcsec, |dcz| <= 300 km/s, one-to-one)
+  ALFALFA rows in the 1-degree-margin box around the catalogue: 125; candidate pairs 23; MIGHTEE sources with >= 1 candidate 23; pairs after M4 23; LOST 0 []
+
+CATALOGUE / ALFALFA  R_cat = log10(S_cat / S21)  [median; bootstrap 68 % / 95 % of the median; robust scatter; pull outliers > 3]
+  C1         N  15  OPT -0.195 (68 % -0.250..-0.156; 95 % -0.262..-0.137) scat 0.126 pulls>3 10 | REST -0.214 | RADIO -0.231
+  ALL        N  23  OPT -0.159 (68 % -0.195..-0.137; 95 % -0.250..-0.116) scat 0.137 pulls>3 12 | REST -0.178 | RADIO -0.197
+  C2         N   8  OPT -0.120 (68 % -0.159..-0.039; 95 % -0.276..+0.038) scat 0.216 pulls>3 2 | REST -0.139 | RADIO -0.158
+  CLEAN_C1   N  10  OPT -0.175 (68 % -0.225..-0.137; 95 % -0.262..-0.109) scat 0.113 pulls>3 6 | REST -0.191 | RADIO -0.206
+  CLEAN_ALL  N  16  OPT -0.146 (68 % -0.210..-0.120; 95 % -0.262..-0.094) scat 0.145 pulls>3 8 | REST -0.159 | RADIO -0.172
+  GOLDEN_C1  N  11  OPT -0.195 (68 % -0.262..-0.137; 95 % -0.286..-0.109) scat 0.126 pulls>3 7 | REST -0.214 | RADIO -0.231
+  MFLAG0_C1  N  13  OPT -0.195 (68 % -0.262..-0.156; 95 % -0.286..-0.137) scat 0.126 pulls>3 8 | REST -0.214 | RADIO -0.231
+
+CUBE / ALFALFA  R_cube = log10(S_win / S21) on CFG302 frozen detections (S/N_L >= 5, primary, S_win > 0) that match
+  C1         N   7  OPT -0.308 (68 % -0.383..-0.292; 95 % -0.412..-0.221) scat 0.129 pulls>3 6 | REST -0.328 | same galaxies R_cat -0.192; paired R_cube - R_cat -0.117 (68 % -0.217..-0.060)
+  ALL        N  13  OPT -0.314 (68 % -0.385..-0.292; 95 % -0.412..-0.242) scat 0.122 pulls>3 12 | REST -0.333 | same galaxies R_cat -0.123; paired R_cube - R_cat -0.197 (68 % -0.273..-0.109)
+  CLEAN_C1   N   3  OPT -0.383 (68 % -0.412..-0.127; 95 % -0.412..-0.127) scat 0.043 pulls>3 2 | REST -0.394 | same galaxies R_cat -0.109; paired R_cube - R_cat -0.217 (68 % -0.273..-0.060)
+  CLEAN_ALL  N   7  OPT -0.383 (68 % -0.385..-0.314; 95 % -0.412..-0.242) scat 0.102 pulls>3 6 | REST -0.394 | same galaxies R_cat -0.116; paired R_cube - R_cat -0.217 (68 % -0.273..-0.197)
+  PH2_C1     N   8  OPT -0.346 (68 % -0.412..-0.292; 95 % -0.522..-0.221) scat 0.141 pulls>3 7 | REST -0.361 | same galaxies R_cat -0.164; paired R_cube - R_cat -0.167 (68 % -0.273..-0.060)
+  all CFG302-primary C1 matches (non-detections included), median linear S_win/S21: 0.453 (N 8)
+
+WIDTHS  log10(W50_cat / W50_ALFALFA) [catalogue as published]; log10(W50_cube,obs / W50_ALFALFA) [cube sets, width-defined]
+  C1         catalogue N  15 median +0.0000 (68 % -0.0252..+0.0000) scat 0.037 | cube N   7 median -0.0248 scat 0.063
+  ALL        catalogue N  23 median +0.0000 (68 % -0.0252..+0.0000) scat 0.043 | cube N  13 median -0.0248 scat 0.067
+  CLEAN_C1   catalogue N  10 median -0.0126 (68 % -0.0525..+0.0000) scat 0.054 | cube N   3 median -0.0523 scat 0.052
+
+BEAM-SUMMED VARIANT  R_sum = log10(sum of MIGHTEE S_HI within 210" of the ALFALFA centroid and its window / S21)
+  C1         N  15 median -0.137 scat 0.187; pairs with > 1 source summed: 5
+  ALL        N  23 median -0.116 scat 0.217; pairs with > 1 source summed: 7
+  Spearman on C1: R_cat vs ALFALFA S/N rho -0.60 (p 0.018); R_cat vs z rho +0.28 (p 0.31)
+  match quality C1: median |dcz| 11.8 km/s, median separation 14.6 arcsec; CONF flagged 5 of 15 (ALL 7 of 23)
+
+DECISIONS (frozen rule: catalogue confirmed iff |R_cat| <= 0.10 & R_cube <= -0.15; cube confirmed iff |R_cube| <= 0.10 & R_cat >= +0.15; neither iff both |R| > 0.10)
+  C1_OPT         neither                          [firm]  R_cat -0.195 (N 15), R_cube -0.308 (N 7)   <- PRIMARY
+  CLEAN_C1_OPT   neither                          [firm]  R_cat -0.175 (N 10), R_cube -0.383 (N 3)   (votes)
+  C1_REST        neither                          [firm]  R_cat -0.214 (N 15), R_cube -0.328 (N 7)   (votes)
+  ALL_OPT        neither                          [firm]  R_cat -0.159 (N 23), R_cube -0.314 (N 13)   (reported)
+  CLEAN_ALL_OPT  neither                          [firm]  R_cat -0.146 (N 16), R_cube -0.383 (N 7)   (reported)
+  C1_RADIO       neither                          [firm]  R_cat -0.231 (N 15), R_cube -0.347 (N 7)   (reported)
+  HEADLINE: neither
+
+M6 VARIANT (ALFALFA optical-counterpart positions): pairs 25 (C1 15); C1-OPT R_cat -0.195 (N 15), R_cube -0.308 (N 7): neither
+
+SHUFFLED-POSITION CONTROL: 200 shuffles, every source moved 10 arcmin at a random position angle: mean pairs 0.275, max 3, zero in 152 of 200; histogram {0: 152, 1: 42, 2: 5, 3: 1}
+
+CONSEQUENCE FOR CFG301 (reported; CFG301 not re-run): pooled baryon-band rows interpolated in log s* at tau = -median R_cat (C1, OPT)
+  pooled s* 1.1171 (a0 1.0456e-10); nodes tau [-0.3, -0.15, 0.0, 0.15, 0.3] -> s* [2.443, 1.6561, 1.1171, 0.7369, 0.4534]; f_gas 0.70
+  (A) total-baryon reading: a0 5.972e-11 (s* 0.638, tau +0.195); 68 % of R_cat -> 6.758e-11 (s* 0.722, tau +0.156) .. 4.985e-11 (s* 0.533, tau +0.250)
+  (B) gas-only reading (tau_eff +0.1447): a0 6.999e-11 (s* 0.748, tau +0.145); 68 % -> 7.600e-11 (s* 0.812, tau +0.115) .. 6.077e-11 (s* 0.649, tau +0.189)
+  chart note: the cube-scale hollow diamond at tau = -0.30: (A) 2.287e-10 (s* 2.443, tau -0.300); (B, tau_eff -0.1865) 1.704e-10 (s* 1.821, tau -0.187)
+
+CHECKS
+  [PASS] K5 match quality on C1: median |dcz| <= 50 km/s and median theta <= 40 arcsec: 11.8 km/s, 14.6 arcsec
+  [PASS] K6 MIGHTEE sources with >= 1 candidate within 2 of the orchestrator's 23: 23
+  [PASS] C-W50 (control i) |median log(W50_cat / W50_ALFALFA)| <= 0.05 dex on C1: +0.0000 dex (N 15, scatter 0.037)
+  [PASS] C-W50cube (sanity) |median log(W50_cube,obs / W50_ALFALFA)| <= 0.07 dex on the C1 cube set: -0.0248 dex (N 7)
+  [PASS] C-SHUF (control ii) shuffled mean pairs <= 1.0 and max <= 3: mean 0.275, max 3
+  [PASS] D-MIN primary set size: N_cat >= 8 and N_cube >= 5: N_cat 15, N_cube 7
+
+HAND ESTIMATES (frozen section 9; information, not checks)
+  HE7 (MUTATE outcomes) is scored in the MUTATE outputs
+  HE1: hit -- N ALL 23, C1 15, CLEAN-C1 10, C1 cube 7
+  HE2: MISS -- R_cat -0.195 in [-0.12, +0.05]
+  HE3: hit -- R_cube -0.308 in [-0.45, -0.20]
+  HE4: MISS -- decision 'neither' (headline 'neither')
+  HE5: hit -- W50 cat +0.000, cube -0.025
+  HE6: hit -- shuffled mean 0.275
+  HE8: MISS -- (A) 5.972e-11 (s* 0.638, tau +0.195); (B) 6.999e-11 (s* 0.748, tau +0.145)
+  HE9: hit -- (B) at tau -0.30: 1.704e-10 (s* 1.821, tau -0.187)
+  HE10: hit -- U1 median |delta| 0.0027
+
+9/10 checks pass
+runtime 0.4 s

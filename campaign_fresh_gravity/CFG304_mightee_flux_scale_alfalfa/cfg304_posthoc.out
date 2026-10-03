@@ -1,0 +1,46 @@
+CFG304 post hoc diagnostics (NOT frozen; reading rules in the docstring, fixed before the first run)
+
+PH0 reproduction of the main run
+  [PASS] PH0 C1/ALL R_cat and C1 R_cube medians reproduced from the pairs CSV (to 1e-9; the CSV has 10 significant figures): max deviation 2.6e-11
+
+PH1 R_cat (OPT) by redshift
+  C1         z < 0.02: -0.274 (N 4);  z >= 0.02: -0.156 (N 11)
+  ALL        z < 0.02: -0.274 (N 4);  z >= 0.02: -0.137 (N 19)
+  C1_clean   z < 0.02: -0.274 (N 4);  z >= 0.02: -0.123 (N 6)
+  ALL_clean  z < 0.02: -0.274 (N 4);  z >= 0.02: -0.120 (N 12)
+  reading (ALL-clean, z >= 0.02): the deficit persists at z >= 0.02 (-0.120)
+
+PH2 CFG301's frozen cut applied to the matched pairs
+  any_code  N 7: median R_cat -0.159; cube detections among them N 6, median R_cube -0.384; IDs ['MGTH_J095654.6+013159', 'MGTH_J100055.2+022343', 'MGTH_J100048.1+011413', 'MGTH_J100009.2+024247', 'MGTH_J100140.0+031207', 'MGTH_J100143.2+024109', 'MGTH_J100236.5+014835']
+  C1        N 4: median R_cat -0.164; cube detections among them N 3, median R_cube -0.383; IDs ['MGTH_J095654.6+013159', 'MGTH_J100048.1+011413', 'MGTH_J100140.0+031207', 'MGTH_J100143.2+024109']
+  CFG301-like offset (any code, N 7): R_cat -0.159 (68 % -0.192..-0.137) -> (A) 6.708e-11 (s* 0.717, tau +0.159) [68 % 7.157e-11 (s* 0.765, tau +0.137) .. 6.026e-11 (s* 0.644, tau +0.192)]; (B) 7.563e-11 (s* 0.808, tau +0.117) [68 % 7.924e-11 (s* 0.847, tau +0.100) .. 7.042e-11 (s* 0.752, tau +0.143)]
+
+PH3 trends of R_cat (OPT, ALL)
+  R_cat vs theta_HI : rho +0.12 (p 0.58), N 23
+  R_cat vs W50_cat  : rho +0.25 (p 0.25), N 23
+  R_cat vs SNR_3D   : rho -0.30 (p 0.16), N 23
+  R_cat vs z        : rho +0.23 (p 0.3), N 23
+  theta_HI range 25-111 arcsec (catalogue beam ~15.5 arcsec; ALFALFA ~210 arcsec)
+  reading: not resolved by these pairs
+
+PH4 HI masses through the published values
+  C1   median log M_HI(MIGHTEE) - logmhi(ALFALFA) -0.220 (N 15); distance term -0.039; residual after R_cat and distance +0.0021
+  ALL  median log M_HI(MIGHTEE) - logmhi(ALFALFA) -0.190 (N 23); distance term -0.036; residual after R_cat and distance +0.0018
+  [PASS] PH4 |median residual| <= 0.02 dex on ALL (published masses agree with the flux comparison): +0.0018
+
+PH5 the frozen K2 failure (catalogue z_HI vs freq_MHz)
+  rows with |dz| > 1e-5: 232 of 293; |dz| median among them 2.86e-05, max 3.55e-04
+  matched pairs among them: 17 ['MGTH_J095654.6+013159', 'MGTH_J095720.5+015506', 'MGTH_J095828.9+014140', 'MGTH_J095846.8+022053', 'MGTH_J100031.6+031220', 'MGTH_J100035.1+011432', 'MGTH_J100048.1+011413', 'MGTH_J100050.4+012007', 'MGTH_J100055.2+022343', 'MGTH_J100140.0+031207', 'MGTH_J100206.8+011542', 'MGTH_J100207.0+030327', 'MGTH_J100236.5+014835', 'MGTH_J100313.5+015343', 'MGTH_J100315.4+020544', 'MGTH_J100349.3+021616', 'MGTH_J100357.1+022505']; largest |delta log10 S_V,OPT| on the pairs if nu came from z_HI: 4.2e-05 dex
+  the five largest: [('MGTH_J100404.9+014303', 0.064, 1334.522, '-3.6e-04'), ('MGTH_J095834.8+030004', 0.0416, 1363.611, '-5.0e-05'), ('MGTH_J100332.2+014928', 0.0623, 1337.041, '-5.0e-05'), ('MGTH_J095916.0+022530', 0.0805, 1314.521, '-5.0e-05'), ('MGTH_J100118.5+015750', 0.0431, 1361.651, '-5.0e-05')]
+
+PH6 the reach of the frozen rule on these pairs
+  paired R_cube - R_cat on the C1 cube set: -0.117 (N 7); CFG302 over its 58 detections: -0.30
+  arbiter moved onto the catalogue median: R_cat +0.000, R_cube -0.114 -> 'undecided'
+  arbiter moved onto the cube median:      R_cat +0.114, R_cube +0.000 -> 'undecided'
+
+PH7 without width-mismatched pairs (|log W50_cat/W50_ALFALFA| > 0.15)
+  width-mismatched: ['MGTH_J100259.0+022034', 'MGTH_J100206.8+011542', 'MGTH_J100055.2+022343', 'MGTH_J100009.2+024247', 'MGTH_J095635.7+012543'] (W50 cat/ALFALFA [(279, 397), (29, 45), (271, 93), (215, 369), (107, 393)])
+  C1   median R_cat without them -0.210 (N 14)
+  ALL  median R_cat without them -0.175 (N 18)
+
+2/2 checks pass
