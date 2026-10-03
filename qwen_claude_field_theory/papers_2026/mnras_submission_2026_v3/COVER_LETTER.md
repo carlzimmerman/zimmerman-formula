@@ -45,10 +45,10 @@ each script contains checks that can fail, and one command reproduces every numb
 Conflicts of interest: none. Funding: none.
 
 Data and code are public; the Data Availability statement gives the repository and its tagged release, and the sources
-of the public data used (SPARC; Nestor Shachar et al. 2023, in a transcription checked against the arXiv version of
-their table; the MIGHTEE-HI radial acceleration points, digitised from the figure of Vărăşteanu et al. 2025, whose
-digitised values are in the repository; the tables of Price et al. 2021 and Puglisi et al. 2023; the public per-galaxy
-products of the MUSE-DARK survey; and the published fits of Vărăşteanu et al. 2026).
+of the public data used (SPARC; the published table of Nestor Shachar et al. 2023, checked against the journal and the
+arXiv versions; the MIGHTEE-HI radial acceleration points, digitised from the figure of Vărăşteanu et al. 2025, whose
+digitised values are in the repository; the tables of Price et al. 2021, Puglisi et al. 2023 and Lee et al. 2025; the
+public per-galaxy products of the MUSE-DARK survey; and the published fits of Vărăşteanu et al. 2026).
 
 I have no request to exclude particular editors or referees.
 

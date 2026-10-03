@@ -9,7 +9,8 @@ paper_numbers.py (imported, so a figure cannot drift from a quoted number).  Vec
                             candidate coefficients, (c) the H0 lock
     fig3_laws.pdf           log10[a0(z)/a0(0)] for the constant, H(z) and halo-emergent laws, with the decision bar
     fig4_amplification.pdf  the error amplification of the kernel inversion against g_bar/a0
-    fig5_rc100.pdf          the closed-form inversion of the RC100 dark-matter fractions
+    fig5_rc100.pdf          RC100 on the journal table: (a) the framework-native route (SED stellar mass + scaling-relation gas
+                            through the law; CFG303 route B), (b) the comparison inversion of the tabulated halo-model dark fractions
     fig_deep.pdf            the deep regime in SPARC and MIGHTEE-HI: (a) the per-galaxy slope against the kernel's own slope,
                             (b) the deep-regime kappa by survey and mass-to-light convention.  It is Figure 3 of the manuscript
                             (it sits in Section 3); the older files keep their names, so fig3_laws.pdf is Figure 4, and so on.
@@ -140,7 +141,7 @@ fig, ax = plt.subplots(figsize=(W1, 2.6))
 ax.plot(yy, 1 / np.abs(nn), color=VERM, label=r"$A_{\rm obs}=1/|n|$  (kinematics)")
 ax.plot(yy, np.abs(1 + 1 / nn), color=BLUE, ls="--", label=r"$A_{\rm bar}=|1+1/n|$  (baryonic mass)")
 ax.axhline(2, color=VERM, lw=0.5, ls=":"); ax.axhline(1, color=BLUE, lw=0.5, ls=":")
-ylo, yhi = np.percentile(pn.yy, [16, 84])
+ylo, yhi = np.percentile(pn.YNAT, [16, 84])          # v3.2: RC100's y on native baryons (SED M* + scaling-relation gas), all 100 galaxies
 ax.axvspan(ylo, yhi, color=GREY, alpha=0.25, lw=0); ax.text(math.sqrt(ylo * yhi), 11.3, "RC100\n$0.6<z<2.5$\n(16-84%)", ha="center", va="top", fontsize=7)
 ax.axvspan(yy[0], 0.3, color=GREEN, alpha=0.13, lw=0); ax.text(0.04, 11.3, "gate:\n$g_{\\rm bar}<0.3\\,a_0$", ha="center", va="top", fontsize=7)
 ax.set_xscale("log"); ax.set_xlim(yy[0], yy[-1]); ax.set_ylim(0, 12); ax.set_xlabel(r"$y=g_{\rm bar}/a_0$"); ax.set_ylabel("error amplification")
@@ -149,19 +150,24 @@ fig.savefig(os.path.join(HERE, "fig4_amplification.pdf")); plt.close(fig)
 done("fig4: the deep limits are 2 and 1", abs(1 / abs(pn.n_slope(1e-9)) - 2) < 1e-3 and abs(abs(1 + 1 / pn.n_slope(1e-9)) - 1) < 1e-3)
 
 # ---------------------------------------------------------------------------------------------------------------- fig 5
-zz, la, yv_ = pn.zz, pn.la, pn.yy
-fig, ax = plt.subplots(figsize=(W1, 2.75))
-sc = ax.scatter(zz, la, c=np.log10(yv_), cmap="cividis", s=9, linewidths=0.2, edgecolors="k", vmin=-0.7, vmax=1.0)
-cb = fig.colorbar(sc, ax=ax, pad=0.02, aspect=30); cb.set_label(r"$\log_{10}(g_{\rm bar}/a_0)$", fontsize=7.5); cb.ax.tick_params(labelsize=7)
-zl = np.linspace(0.55, 2.6, 50); zbar = zz.mean(); lbar = pn.icpt + pn.slope * zbar
-ax.fill_between(zl, lbar + (pn.slope - pn.bs.std()) * (zl - zbar), lbar + (pn.slope + pn.bs.std()) * (zl - zbar), color=VERM, alpha=0.2, lw=0)
-ax.plot(zl, lbar + pn.slope * (zl - zbar), color=VERM, label=rf"fit: ${pn.slope:+.2f}\pm{pn.bs.std():.2f}$ dex per unit $z$")
-ax.plot(zl, lbar + np.log10(pn.ratio_halo(zl)) - np.log10(pn.ratio_halo(zbar)), color=BLACK, ls="-", lw=0.9, label=r"$\Lambda$CDM halo-emergent ($10^{12}\,{\rm M_\odot}$)")
-ax.plot(zl, lbar + np.log10(pn.E(zl)) - np.log10(pn.E(zbar)), color=BLUE, ls="--", lw=0.9, label=r"$a_0\propto H(z)$")
-ax.set_xlabel("redshift $z$"); ax.set_ylabel(r"$\log_{10}\hat a_0$ [m s$^{-2}$]"); ax.set_xlim(0.55, 2.6); ax.set_ylim(-11.4, -8.6)
-ax.legend(loc="lower left", frameon=False, handlelength=2.2)
+fig, axs = plt.subplots(2, 1, figsize=(W1, 4.9), sharex=True, gridspec_kw=dict(hspace=0.08))
+NPANEL = []
+for ax, R_, tag in ((axs[0], pn.R5N, "(a) native baryons: SED $M_*$ + gas"), (axs[1], pn.R5, r"(b) comparison: tabulated $f_{\rm DM}$ (halo model)")):
+    A_ = R_["_arrays"]; zz, la, yv_, ic, sl, se = A_["zz"], A_["la"], A_["yy"], A_["icpt"], R_["slope"], A_["bs"].std()
+    sc = ax.scatter(zz, la, c=np.log10(yv_), cmap="cividis", s=9, linewidths=0.2, edgecolors="k", vmin=-1.0, vmax=1.0)
+    zl = np.linspace(0.55, 2.6, 50); zbar = zz.mean(); lbar = ic + sl * zbar
+    ax.fill_between(zl, lbar + (sl - se) * (zl - zbar), lbar + (sl + se) * (zl - zbar), color=VERM, alpha=0.2, lw=0)
+    ax.plot(zl, lbar + sl * (zl - zbar), color=VERM, label=rf"fit: ${sl:+.2f}\pm{se:.2f}$ dex per unit $z$ (N = {len(zz)})")
+    ax.plot(zl, lbar + np.log10(pn.ratio_halo(zl)) - np.log10(pn.ratio_halo(zbar)), color=BLACK, ls="-", lw=0.9, label=r"$\Lambda$CDM halo-emergent ($10^{12}\,{\rm M_\odot}$)")
+    ax.plot(zl, lbar + np.log10(pn.E(zl)) - np.log10(pn.E(zbar)), color=BLUE, ls="--", lw=0.9, label=r"$a_0\propto H(z)$")
+    ax.set_ylabel(r"$\log_{10}\hat a_0$ [m s$^{-2}$]"); ax.set_xlim(0.55, 2.6); ax.set_ylim(-12.1, -8.2)
+    ax.text(0.03, 0.95, tag, transform=ax.transAxes, fontsize=7.5, va="top")
+    ax.legend(loc="lower left", frameon=False, handlelength=2.2, fontsize=6.5)
+    NPANEL.append(len(zz))
+cb = fig.colorbar(sc, ax=axs, pad=0.02, aspect=40); cb.set_label(r"$\log_{10}(g_{\rm bar}/\hat a_0)$", fontsize=7.5); cb.ax.tick_params(labelsize=7)
+axs[1].set_xlabel("redshift $z$")
 fig.savefig(os.path.join(HERE, "fig5_rc100.pdf")); plt.close(fig)
-done("fig5: uses the same 99 inversions as paper_numbers.py", len(zz) == 99, f"N = {len(zz)}")
+done("fig5: (a) the native route's 59 inversions and (b) the comparison's 99, as in paper_numbers.py", NPANEL == [pn.R5N["N"], pn.R5["N"]] == [59, 99], f"N = {NPANEL}")
 
 # ---------------------------------------------------------------------------------------------------------------- fig deep
 S6 = pn.S6

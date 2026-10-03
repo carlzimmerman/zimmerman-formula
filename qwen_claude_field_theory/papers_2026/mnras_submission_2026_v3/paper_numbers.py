@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-paper_numbers.py -- every number quoted in the MNRAS manuscript `mnras_a0_lambda_v3.tex` (v3.1) that is not printed by
+paper_numbers.py -- every number quoted in the MNRAS manuscript `mnras_a0_lambda_v3.tex` (v3.2) that is not printed by
 one of the repository estimators (those are re-run here as subprocesses, or by reproduce_all.sh):
 
     real_research/reviews/mi_btfr_intercept_kappa_door_2026.py          -> estimator A on SPARC's tabulated distances, the floor
@@ -24,8 +24,10 @@ Sections (each ends in checks that CAN fail; exit code 1 if any does):
         LambdaCDM rise for that halo mass, not for 1e12 Msun); the design: expected log-odds, the probability of reaching
         20:1 and of misleading evidence (Monte Carlo), the concentration-mass relation as a shared model systematic, the
         common-mode baryonic-mass calibration, and the Fisher conditioning with the mass scale free (CFG240)
-    S5  the closed-form inversion of the RC100 dark-matter fractions (corrected transcription, CFG289), its calibration
-        drift, RC100's own internally flagged rows, and the prior-tracking of f_DM (CFG217 G2, read)
+    S5  RC100 on the journal table (CFG305).  v3.2: the PRIMARY route is framework-native (CFG303 route B: SED stellar mass
+        from the table plus scaling-relation gas in a thin disc, through the law; CFG303's committed functions exec'd read-only);
+        the closed-form inversion of the tabulated (halo-model) dark fractions is the labelled COMPARISON, with its calibration
+        drift, RC100's own internally flagged rows and the prior-tracking of f_DM (CFG217 G2, read)
     S6  the deep regime (g_bar < 0.2 a0) in SPARC and MIGHTEE-HI: slope, amplitude, the colour-group caveat, the pitfall
     S7  the high-redshift record, read from committed lane outputs (MUSE-DARK, KURVS, MIGHTEE-HI/LADUMA, z >= 4, the gas
         bracket, the source-table audit).  A check that only confirms that the text quotes a committed number, or that
@@ -42,9 +44,11 @@ from scipy.optimize import minimize_scalar, brentq
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
 SPARC = os.path.join(ROOT, "real_research", "data", "sparc_data")
-RC100 = os.path.join(ROOT, "real_research", "data", "rc100_nestorshachar2023_table3_CORRECTED.csv")   # CFG289 (51c70923f)
-RC100_ORIG = os.path.join(ROOT, "real_research", "data", "rc100_nestorshachar2023_table3.csv")      # the earlier transcription (17 wrong cells)
-RC100_SHA256 = "a1778d75476ede17da690e09fc1176b68455f22778e5de8ef39b66a0cb19398f"
+RC100 = os.path.join(ROOT, "real_research", "data", "rc100_nestorshachar2023_table3_PUBLISHED.csv")   # v3.2: the journal table (ApJ 944:78, Table B1), CFG305 (6c907be69)
+RC100_CORR = os.path.join(ROOT, "real_research", "data", "rc100_nestorshachar2023_table3_CORRECTED.csv")   # CFG289 (51c70923f): arXiv v1, as used by v3/v3.1
+RC100_ORIG = os.path.join(ROOT, "real_research", "data", "rc100_nestorshachar2023_table3.csv")      # the earliest transcription (17 wrong cells)
+RC100_SHA256 = "8a7ed57a99be67995890c5f1293ecf7ac19d84dea60533b1d0d2c8901aa930e7"                 # PUBLISHED (CFG305)
+RC100_CORR_SHA256 = "a1778d75476ede17da690e09fc1176b68455f22778e5de8ef39b66a0cb19398f"            # CORRECTED (CFG289)
 CFG = os.path.join(ROOT, "campaign_fresh_gravity")
 
 OUT, FAILS, NCHK = {}, [], [0]
@@ -961,7 +965,8 @@ def rc100_run(path, verbose=True):
     return R
 
 R5 = rc100_run(RC100)                          # the corrected transcription: every number in the text
-R5o = rc100_run(RC100_ORIG, verbose=False)     # the earlier transcription, run by the same code, for the old -> new table
+R5c = rc100_run(RC100_CORR, verbose=False)     # v3.1's input (arXiv v1, CFG289), run by the same code, for the old -> new table
+R5o = rc100_run(RC100_ORIG, verbose=False)     # the earliest transcription (kept for the CFG289 record)
 _A = R5["_arrays"]
 zz, la, yy, icpt, bs = _A["zz"], _A["la"], _A["yy"], _A["icpt"], _A["bs"]
 sg, eg, sy, ey, slope_edge, t1, k1m = _A["sg"], _A["eg"], _A["sy"], _A["ey"], _A["slope_edge"], _A["t1"], _A["k1m"]
@@ -969,38 +974,46 @@ slope, tilt, injR, weak_H = R5["slope"], R5["tilt"], R5["injection"], R5["weakes
 s_halo, s_Hz, beta_halo2, beta_const2 = R5["slope_halo"], R5["slope_Hz"], R5["beta_halo_within_2sigma"], R5["beta_const_2sigma_off"]
 OUT["S5"] = {k_: v for k_, v in R5.items() if k_ != "_arrays"}
 OUT["S5_original_transcription"] = {k_: v for k_, v in R5o.items() if k_ != "_arrays"}
-# ---- the transcription correction itself (CFG289): which cells changed, and what that does to every quoted RC100 number
+OUT["S5_corrected_arxiv_v1"] = {k_: v for k_, v in R5c.items() if k_ != "_arrays"}
+# ---- the journal table against v3.1's arXiv-v1 transcription (CFG305), and the earlier CFG289 correction, cell by cell
 import hashlib
 _sha = hashlib.sha256(open(RC100, "rb").read()).hexdigest()
-_rf, _ro = list(csv.DictReader(open(RC100))), list(csv.DictReader(open(RC100_ORIG)))
+_sha_c = hashlib.sha256(open(RC100_CORR, "rb").read()).hexdigest()
+_rf, _rc, _ro = list(csv.DictReader(open(RC100))), list(csv.DictReader(open(RC100_CORR))), list(csv.DictReader(open(RC100_ORIG)))
 _prim = ("name", "z", "logMbar_Msun", "Re_kpc", "fDM_within_Re", "Vc_Re_kms", "sigma0_kms")
-_chg = {f: [int(a["idx"]) for a, b in zip(_rf, _ro) if a[f] != b[f]] for f in _prim}
-_flip = [int(a["idx"]) for a, b in zip(_rf, _ro) if a["deepMOND_g_lt_a0"] != b["deepMOND_g_lt_a0"]]
-P(f"  RC100 transcription correction (CFG289): corrected file sha256 {_sha[:16]}...; changed primary cells by column: " +
-  ", ".join(f"{f} {len(v)}" for f, v in _chg.items() if v) + f"; total {sum(len(v) for v in _chg.values())}; deep-regime flag flips in row(s) {_flip}")
-_inv_rows = sorted(set(_chg["fDM_within_Re"]) | set(_chg["Vc_Re_kms"]))
-P(f"  cells that enter the inversion (f_DM, and V_c through g = V_c^2/R_e): rows {_inv_rows}")
+_chg = {f: [int(a["idx"]) for a, b in zip(_rf, _rc) if a[f] != b[f]] for f in _prim}            # PUBLISHED vs CORRECTED (CFG305)
+_chg289 = {f: [int(a["idx"]) for a, b in zip(_rc, _ro) if a[f] != b[f]] for f in _prim}         # CORRECTED vs ORIGINAL (CFG289)
+_flip289 = [int(a["idx"]) for a, b in zip(_rc, _ro) if a["deepMOND_g_lt_a0"] != b["deepMOND_g_lt_a0"]]
+_flip = [int(a["idx"]) for a, b in zip(_rf, _rc) if a["deepMOND_g_lt_a0"] != b["deepMOND_g_lt_a0"]]
+P(f"  RC100 journal table (CFG305): sha256 {_sha[:16]}...; against v3.1's arXiv-v1 transcription (sha256 {_sha_c[:16]}...): changed primary cells " +
+  ", ".join(f"{f} {v}" for f, v in _chg.items() if v) + f"; total {sum(len(v) for v in _chg.values())}; deep-regime flag flips {_flip}")
+P(f"  (the earlier CFG289 correction, arXiv v1 against the first transcription: " + ", ".join(f"{f} {len(v)}" for f, v in _chg289.items() if v) +
+  f"; total {sum(len(v) for v in _chg289.values())}; deep-regime flag flips {_flip289})")
+_inv_rows = sorted(set(_chg["fDM_within_Re"]) | set(_chg["Vc_Re_kms"]) | set(_chg["Re_kpc"]))
+P(f"  cells that enter the inversion (f_DM, and V_c, R_e through g = V_c^2/R_e): rows {_inv_rows}")
 RC100_MOVES = []
-for lab, kk, fmt in (("slope d log a0/dz", "slope", "+.3f"), ("its bootstrap error", "slope_err", ".3f"), ("median a0 [m s^-2]", "median_a0", ".3e"),
-                     ("scatter about the fit [dex]", "scatter", ".3f"), ("slope | log g_obs", "slope_ctrl_gobs", "+.3f"), ("slope | log y", "slope_ctrl_y", "+.3f"),
+P("  the f_DM inversion, arXiv-v1 transcription (v3.1) -> journal table (v3.2):")
+for lab, kk, fmt in (("N", "N", "d"), ("slope d log a0/dz", "slope", "+.3f"), ("its bootstrap error", "slope_err", ".3f"), ("median a0 [m s^-2]", "median_a0", ".3e"),
+                     ("median y", "median_y", ".2f"), ("scatter about the fit [dex]", "scatter", ".3f"), ("slope | log g_obs", "slope_ctrl_gobs", "+.3f"), ("slope | log y", "slope_ctrl_y", "+.3f"),
                      ("weakest exclusion of the halo slope [sigma]", "weakest_excl_halo", ".2f"), ("weakest exclusion of the H(z) slope [sigma]", "weakest_excl_Hz", ".2f"),
                      ("slope with the f_DM = 0.02 edge galaxy", "slope_with_edge_galaxy", "+.3f"), ("corr(log a0, log y)", "scatter_corr_la_y", "+.2f"),
                      ("16th percentile of a0 [m s^-2]", None, ".3e")):
-    old = R5o[kk] if kk else R5o["a0_16_84"][0]; new = R5[kk] if kk else R5["a0_16_84"][0]
+    old = R5c[kk] if kk else R5c["a0_16_84"][0]; new = R5[kk] if kk else R5["a0_16_84"][0]
     RC100_MOVES.append(dict(quantity=lab, old=float(old), new=float(new)))
     P(f"     {lab:46s} {format(old, fmt):>11s} -> {format(new, fmt):>11s}")
-for t_o, t_n in zip(R5o["tilt"], R5["tilt"]):
+for t_o, t_n in zip(R5c["tilt"], R5["tilt"]):
     RC100_MOVES.append(dict(quantity=f"drift beta {t_o['beta']:+.3f}: slope", old=t_o["slope"], new=t_n["slope"]))
-    P(f"     drift beta {t_o['beta']:+.3f}: slope {t_o['slope']:+.3f} -> {t_n['slope']:+.3f} (constant {t_o['sig_const']:+.1f} -> {t_n['sig_const']:+.1f} sigma; halo {t_o['sig_halo']:+.1f} -> {t_n['sig_halo']:+.1f} sigma)")
-OUT["S5_correction"] = dict(sha256=_sha, changed=_chg, deep_flag_flips=_flip, inversion_rows=_inv_rows, moves=RC100_MOVES)
+    P(f"     drift beta {t_o['beta']:+.3f}: slope {t_o['slope']:+.3f} -> {t_n['slope']:+.3f} (constant {t_o['sig_const']:+.1f} -> {t_n['sig_const']:+.1f} sigma; halo matched {t_o['sig_halo_ols']:+.1f} -> {t_n['sig_halo_ols']:+.1f} sigma; H(z) matched {t_o['sig_Hz_ols']:+.1f} -> {t_n['sig_Hz_ols']:+.1f})")
+OUT["S5_correction"] = dict(sha256=_sha, sha256_corrected=_sha_c, changed_vs_arxiv_v1=_chg, changed_cfg289=_chg289, deep_flag_flips=_flip, deep_flag_flips_cfg289=_flip289,
+                            inversion_rows=_inv_rows, moves=RC100_MOVES)
 check("S5a the inversion is exact: nu(y) (1 - f_DM) = 1 at y = [ln(1/f_DM)]^2", abs(nu(math.log(1/0.37)**2) * (1 - 0.37) - 1) < 1e-12)
-_g217 = json.load(open(os.path.join(CFG, "CFG217_rc100_attack", "cfg217_attack_corrected_results.json")))["numbers"]["G2"]
-P(f"  CFG217 G2 (corrected table; RC41 overlap with SED stellar and gas masses): Spearman rho(constant-a0 residual, log M_bar,fit - log(M* + M_gas)) = {_g217['rho']:+.2f}, p = {_g217['p']:.3f}, n = {_g217['n']}")
+_g217 = json.load(open(os.path.join(CFG, "CFG305_published_tables", "C_cfg217_attack_corrected_results_PUBFIX.json")))["numbers"]["G2"]   # CFG217 re-run on the journal table (CFG305)
+P(f"  CFG217 G2 (journal table, CFG305 re-run; RC41 overlap with SED stellar and gas masses): Spearman rho(constant-a0 residual, log M_bar,fit - log(M* + M_gas)) = {_g217['rho']:+.2f}, p = {_g217['p']:.3f}, n = {_g217['n']}")
 OUT["S5"]["cfg217_G2"] = _g217
 FLAG = R5["flags"]; beta_halo2_ols, beta_Hz1 = R5["beta_halo_within_2sigma_matched"], R5["beta_Hz_within_1sigma"]
 _tb = {t["beta"]: t for t in tilt}
-check("S5e AGAINST INTEREST: the slope is calibration-conditional -- a baryonic-mass drift of -0.05 dex per unit z puts it within 0.5 sigma of constancy and about 2 sigma (< 2.2) of the halo law fitted the same way, -0.075 brings the halo law to about 1 sigma (< 1.1), and -0.10 brings the H(z) law to about 1 sigma (< 1.1); tolerances set after seeing the table (post hoc wording check)",
-      abs(_tb[-0.05]["sig_const"]) < 0.5 and _tb[-0.05]["sig_halo_ols"] < 2.2 and _tb[-0.075]["sig_halo_ols"] < 1.1 and _tb[-0.10]["sig_Hz_ols"] < 1.1,
+check("S5e AGAINST INTEREST: the slope is calibration-conditional -- a baryonic-mass drift of -0.05 dex per unit z puts it within 1 sigma of constancy and within 2 sigma of the halo law fitted the same way, -0.075 brings the halo law within 1 sigma, and -0.10 brings the H(z) law within 1 sigma (v3.2 wording, set after seeing the journal-table run: post hoc wording check)",
+      abs(_tb[-0.05]["sig_const"]) < 1.0 and _tb[-0.05]["sig_halo_ols"] < 2.0 and _tb[-0.075]["sig_halo_ols"] < 1.0 and _tb[-0.10]["sig_Hz_ols"] < 1.0,
       f"-0.05: const {_tb[-0.05]['sig_const']:+.1f}, halo {_tb[-0.05]['sig_halo_ols']:+.1f}; -0.075: halo {_tb[-0.075]['sig_halo_ols']:+.1f}; -0.10: H(z) {_tb[-0.10]['sig_Hz_ols']:+.1f}")
 check("S5f AGAINST INTEREST: the independent KMOS3D replication (L332) failed, and a third to a half of its z > 1.9 galaxies rotate below their own Newtonian baryons (read from the committed lane)",
       (not t1["ok"]) and "0.27-0.54" in k1m, k1m[:80], kind="identity")
@@ -1022,15 +1035,108 @@ def _rc100_verdicts(R):
     b_ = abs(R["slope"] / se) < 2.5 and R["slope"] < 0 < R["slope_halo_ols"] < R["slope_Hz_ols"]
     c_ = abs(R["slope"]) < 2.5 * se and abs(A_["sg"]) < 2.5 * A_["eg"] and abs(A_["sy"]) < 2.5 * A_["ey"]
     tb_ = {t["beta"]: t for t in R["tilt"]}
-    e_ = abs(tb_[-0.05]["sig_const"]) < 0.5 and tb_[-0.05]["sig_halo_ols"] < 2.2 and tb_[-0.075]["sig_halo_ols"] < 1.1 and tb_[-0.10]["sig_Hz_ols"] < 1.1
+    e_ = abs(tb_[-0.05]["sig_const"]) < 1.0 and tb_[-0.05]["sig_halo_ols"] < 2.0 and tb_[-0.075]["sig_halo_ols"] < 1.0 and tb_[-0.10]["sig_Hz_ols"] < 1.0
     return (b_, c_, e_)
-check("S5h the corrected RC100 transcription is the CFG289 file (sha256) and differs from the earlier one in exactly 17 primary cells: 5 names, 9 baryonic masses, 1 dark-matter fraction, 2 circular velocities; three of them enter the inversion; one deep-regime flag flips (row 44)",
-      _sha == RC100_SHA256 and [len(_chg[f]) for f in ("name", "logMbar_Msun", "fDM_within_Re", "Vc_Re_kms")] == [5, 9, 1, 2] and sum(len(v) for v in _chg.values()) == 17 and _flip == [44]
-      and len(_inv_rows) == 3,
-      ", ".join(f"{f} {len(v)}" for f, v in _chg.items() if v), kind="identity")
-check("S5i the correction changes no RC100 statement of the text (S5b, S5c, S5e evaluate the same on both transcriptions) and moves the slope by less than 0.001 dex per unit z (< 0.1 sigma)",
-      _rc100_verdicts(R5) == _rc100_verdicts(R5o) and abs(R5["slope"] - R5o["slope"]) < min(0.1 * R5["slope_err"], 0.001) and R5["N"] == R5o["N"] == 99,
-      f"slope {R5o['slope']:+.4f} -> {R5['slope']:+.4f}; verdicts {_rc100_verdicts(R5o)} -> {_rc100_verdicts(R5)}")
+check("S5h the RC100 input is the journal table built by CFG305 (sha256), and it differs from v3.1's arXiv-v1 transcription (itself the CFG289 file, sha256) in exactly 6 primary cells: row 87 (J0901+1814, refit between arXiv v1 and the journal: log M_baryon, R_e, f_DM, V_c, sigma0) and row 78 (sigma0, our transcription slip); only row 87 enters the inversion; no deep-regime flag flips",
+      _sha == RC100_SHA256 and _sha_c == RC100_CORR_SHA256 and sum(len(v) for v in _chg.values()) == 6
+      and all(_chg[f] == [87] for f in ("logMbar_Msun", "Re_kpc", "fDM_within_Re", "Vc_Re_kms")) and _chg["sigma0_kms"] == [78, 87] and _inv_rows == [87] and not _flip
+      and sum(len(v) for v in _chg289.values()) == 17 and _flip289 == [44],
+      ", ".join(f"{f} {v}" for f, v in _chg.items() if v), kind="identity")
+def _s5e_v31(R):
+    """v3.1's S5e wording (tolerances 0.5 / 2.2 / 1.1 / 1.1), kept to record the verdict move"""
+    tb_ = {t["beta"]: t for t in R["tilt"]}
+    return abs(tb_[-0.05]["sig_const"]) < 0.5 and tb_[-0.05]["sig_halo_ols"] < 2.2 and tb_[-0.075]["sig_halo_ols"] < 1.1 and tb_[-0.10]["sig_Hz_ols"] < 1.1
+check("S5i AGAINST INTEREST: the journal table moves the f_DM slope by less than 0.5 sigma (towards zero) and leaves S5b and S5c unchanged, but v3.1's calibration wording (-0.05 within 0.5 sigma of constancy) holds on the arXiv-v1 table and FAILS on the journal table; v3.2 rewords it (S5e)",
+      _rc100_verdicts(R5)[:2] == _rc100_verdicts(R5c)[:2] and abs(R5["slope"] - R5c["slope"]) < 0.5 * R5["slope_err"] and R5["N"] == R5c["N"] == 99
+      and _s5e_v31(R5c) and not _s5e_v31(R5) and _rc100_verdicts(R5)[2],
+      f"slope {R5c['slope']:+.4f} -> {R5['slope']:+.4f} ({(R5['slope'] - R5c['slope']) / R5['slope_err']:+.2f} sigma); v3.1 S5e wording {_s5e_v31(R5c)} -> {_s5e_v31(R5)}; v3.2 wording on the journal table {_rc100_verdicts(R5)[2]}")
+
+# ---- v3.2: the FRAMEWORK-NATIVE route (CFG303 route B), the paper's primary RC100 statement.  No halo-fit quantity enters g_bar:
+#      g_bar = M_bar,nat x [CFG216's thin exponential disc at R_e] with M_bar,nat = M*_SED (table column 6, CFG303's transcription)
+#      x (1 + mu_t18) (CFG217's Tacconi-type gas fraction); g_obs = V_c(R_e)^2/R_e, the authors' circular velocity (MODEL-OTHER: it is an
+#      output of their disc + halo fit).  The same inversion, a0 = g_bar/[ln(1/f)]^2 with f = 1 - g_bar/g_obs, in the same window.
+#      CFG303's committed code is exec'd read-only (helpers, xi, the per-galaxy loop, s5_table) and CFG216/CFG217's committed headers
+#      supply disc_v2 and mu_t18, exactly as CFG303 loads them.
+P("")
+P("  RC100, FRAMEWORK-NATIVE ROUTE (CFG303 route B) on the journal table: g_bar from the SED stellar mass + scaling-relation gas (no f_DM, no fitted baryonic mass)")
+import tempfile
+F303 = os.path.join(CFG, "CFG303_lcdm_free_inputs", "cfg303_rc100_cristal_LCDMFREE.py")
+_src303 = open(F303).read()
+def _blk303(a, b):
+    assert _src303.count(a) == 1 and _src303.count(b) == 1, (a, b)
+    return _src303[_src303.index(a):_src303.index(b)]
+_ns303 = {"__file__": F303, "__name__": "paper_numbers_exec303", "REPO": ROOT, "CFG": CFG, "LANE": os.path.dirname(F303)}
+exec(compile("import os, sys, io, csv, json, math, contextlib, tempfile, time, hashlib\nimport numpy as np\n" + _blk303("def exec_upto(", "def run_block("),
+             "cfg303[helpers]", "exec"), _ns303)
+_ns216, _ = _ns303["exec_upto"](os.path.join(CFG, "CFG216_rc100_within_sample", "cfg216_rc100.py"),
+                                 "# ------------------------------------------------------------------------------------------------ data\n")
+_ns217, _ = _ns303["exec_upto"](os.path.join(CFG, "CFG217_rc100_attack", "cfg217_attack.py"),
+                                 "# ------------------------------------------------------------------------------------------------ data (CFG216's sample)")
+_ns303.update(G2SI=_ns216["G2SI"], G_KPC=_ns216["G_KPC"], disc_v2=_ns216["disc_v2"], mu_t18=_ns217["mu_t18"], TMP=tempfile.mkdtemp(prefix="pn_s5n_"))
+exec(compile(_blk303("def xi(Re, R):", "def point(label"), "cfg303[xi]", "exec"), _ns303)
+exec(compile(_blk303("def s5_table(name, gbcol, sel=None):", "gobsPN = {"), "cfg303[s5_table]", "exec"), _ns303)
+_code_gal = _blk303("gal = []\nfor r in rc:", "A = [g for g in gal if g[\"inA\"]]")
+_TR = {r["idx"]: r for r in csv.DictReader(open(os.path.join(CFG, "CFG303_lcdm_free_inputs", "rc100_table3_cols5to8_transcribed.csv"), newline=""))}
+_RC41 = {r["id"].replace("_", " "): r for r in csv.DictReader(open(os.path.join(ROOT, "data_assembly", "price2021_rc41", "price2021_rc41.csv"), newline=""))}
+def native_gal(table):
+    """CFG303's per-galaxy loop on one RC100 table; returns its `gal` list (s5_table then reads g_obs, V_c, sigma0 from the same table)"""
+    _ns303.update(rc=list(csv.DictReader(open(table, newline=""))), tr=_TR, rc41=_RC41, nsPN={"RC100": table})
+    exec(compile(_code_gal, "cfg303[per-galaxy loop]", "exec"), _ns303)
+    return _ns303["gal"]
+# control: on v3.1's arXiv-v1 table the exec'd route reproduces CFG303's committed S5 numbers (route B and A)
+_J303 = json.load(open(os.path.join(CFG, "CFG303_lcdm_free_inputs", "cfg303_rc100_cristal_LCDMFREE_results.json")))["s5"]
+_galc = native_gal(RC100_CORR)
+_R5Nc = rc100_run(_ns303["s5_table"]("Bc", [g["gbB"] for g in _galc]), verbose=False)
+_R5Ac = rc100_run(_ns303["s5_table"]("Ac", [g["gbA"] for g in _galc], lambda g: g["inA"]), verbose=False)
+_d303 = max(max(abs(R_[k] - _J303[s_][k]) / max(abs(_J303[s_][k]), 1e-30) for k in ("slope", "slope_err", "median_a0", "median_y", "weakest_excl_Hz"))
+            for R_, s_ in ((_R5Nc, "B"), (_R5Ac, "A")))
+# the journal table
+GALN = native_gal(RC100)
+P(f"  native route B ({len(GALN)} galaxies; SED log M* from CFG303's transcription of column 6, gas mu_t18, thin disc at R_e):")
+R5N = rc100_run(_ns303["s5_table"]("B", [g["gbB"] for g in GALN]), verbose=True)
+R5A = rc100_run(_ns303["s5_table"]("A", [g["gbA"] for g in GALN], lambda g: g["inA"]), verbose=False)
+R5Nm = rc100_run(_ns303["s5_table"]("Bmut", [g["gbB"] * 10**0.2 for g in GALN]), verbose=False)          # MUTATE: native baryons x 10^0.2
+_gid = [(1 - g["fd"]) * float(r_["g_Re_ms2"]) for g, r_ in zip(GALN, csv.DictReader(open(RC100)))]
+R5Nid = rc100_run(_ns303["s5_table"]("id", _gid), verbose=False)                                          # identity: f_DM's g_bar through the native path
+DN = np.array([g["go"] / g["gbB"] for g in GALN])
+YNAT = np.array([g["gbB"] for g in GALN]) / a0_L                                                       # native y = g_bar,nat / a0 (eq. a0value), all 100
+_tbN = {t["beta"]: t for t in R5N["tilt"]}
+_t1 = [g["idx"] for g in GALN if abs(float(_TR[g["idx"]]["logMbaryon"]) - g["lMfit"]) > 1e-9]
+P(f"  native: N {R5N['N']} of 100 in the window; {int((DN <= 1).sum())} galaxies have D = g_obs/g_bar,nat <= 1 and {int((DN <= 1 / 0.98).sum())} have f = 1 - 1/D <= 0.02 (outside the window: their native baryons reach >= 98% of the dynamics)")
+P(f"  native: slope {R5N['slope']:+.3f} +/- {R5N['slope_err']:.3f}, median a0 {R5N['median_a0']:.3e} (biased high: the window drops the discs at the Newtonian floor), comparators (OLS at the same z) halo {R5N['slope_halo_ols']:+.3f}, H(z) {R5N['slope_Hz_ols']:+.3f}")
+P(f"  native drift beta -0.05: slope {_tbN[-0.05]['slope']:+.3f} +/- {_tbN[-0.05]['err']:.3f} (constant {_tbN[-0.05]['sig_const']:+.1f} sigma); beta -0.10: {_tbN[-0.10]['slope']:+.3f} +/- {_tbN[-0.10]['err']:.3f} (H(z) matched {_tbN[-0.10]['sig_Hz_ols']:+.1f} sigma)")
+P(f"  native sample A (RC41 overlap, Price+21 SED M* + gas): N {R5A['N']}, slope {R5A['slope']:+.3f} +/- {R5A['slope_err']:.3f}")
+P(f"  native y = g_bar,nat/a0 (a0 = {a0_L:.3e}), all 100: median {np.median(YNAT):.2f}, 16-84% {np.percentile(YNAT, 16):.2f}-{np.percentile(YNAT, 84):.2f}, {int((YNAT < 0.3).sum())} below 0.3;"
+  f" A_obs at the median {1 / abs(float(n_slope(np.median(YNAT)))):.2f}, A_bar {abs(1 + 1 / float(n_slope(np.median(YNAT)))):.2f} -> 0.2 dex of baryonic mass becomes {0.2 * abs(1 + 1 / float(n_slope(np.median(YNAT)))):.2f} dex in a0")
+P(f"  MUTATE (native g_bar x 10^0.2): N {R5N['N']} -> {R5Nm['N']}, median a0 {R5N['median_a0']:.3e} -> {R5Nm['median_a0']:.3e}")
+P(f"  control: on the arXiv-v1 table the exec'd route reproduces CFG303's committed S5 (B: N {_R5Nc['N']}, slope {_R5Nc['slope']:+.3f} +/- {_R5Nc['slope_err']:.3f}; A: N {_R5Ac['N']}): max relative difference {_d303:.1e}")
+P(f"  native route, arXiv-v1 (CFG303) -> journal: N {_R5Nc['N']} -> {R5N['N']}; slope {_R5Nc['slope']:+.3f} +/- {_R5Nc['slope_err']:.3f} -> {R5N['slope']:+.3f} +/- {R5N['slope_err']:.3f};"
+  f" median a0 {_R5Nc['median_a0']:.3e} -> {R5N['median_a0']:.3e}; weakest H(z) exclusion {_R5Nc['weakest_excl_Hz']:.1f} -> {R5N['weakest_excl_Hz']:.1f} sigma")
+OUT["S5_native"] = dict(B={k_: v for k_, v in R5N.items() if k_ != "_arrays"}, A={k_: v for k_, v in R5A.items() if k_ != "_arrays"},
+                        B_arxiv_v1={k_: v for k_, v in _R5Nc.items() if k_ != "_arrays"}, n_D_le_1=int((DN <= 1).sum()), n_f_le_002=int((DN <= 1 / 0.98).sum()),
+                        y_native=dict(median=float(np.median(YNAT)), p16=float(np.percentile(YNAT, 16)), p84=float(np.percentile(YNAT, 84)), n_below_03=int((YNAT < 0.3).sum())),
+                        mutate=dict(N=R5Nm["N"], median_a0=R5Nm["median_a0"]), transcription_col7_mismatch=_t1)
+check("S5k the native route is CFG303's committed code: on v3.1's arXiv-v1 table it reproduces CFG303's committed S5 numbers for routes B and A (relative 1e-12)", _d303 <= 1e-12 and _R5Nc["N"] == _J303["B"]["N"] and _R5Ac["N"] == _J303["A"]["N"],
+      f"max rel diff {_d303:.1e}; N {_R5Nc['N']}/{_R5Ac['N']}", kind="identity")
+check("S5l identity replacement: the f_DM route's own g_bar = (1 - f_DM) g_obs sent through the native path reproduces the f_DM inversion with its edge galaxy admitted (floating point puts f_DM = 0.02 inside the open window): N 100 and the same slope",
+      R5Nid["N"] == 100 and abs(R5Nid["slope"] - R5["slope_with_edge_galaxy"]) < 1e-9, f"N {R5Nid['N']}; slope {R5Nid['slope']:+.6f} vs {R5['slope_with_edge_galaxy']:+.6f}", kind="identity")
+check("S5m the transcription behind the native route (CFG303, arXiv v1 column 7) equals the journal table's log M_baryon except in row 87 (the refit; its SED log M*, column 6, is unchanged at 10.96 in the journal, CFG305)",
+      _t1 == ["87"] and abs(float(_TR["87"]["logMstar"]) - 10.96) < 1e-9, f"mismatches {_t1}", kind="identity")
+check("I5n on the native baryons the inversion recovers injected trends (0, halo law, H(z)) to 0.02 dex per unit z when the dark fraction obeys the kernel", all(abs(a - b) < 0.02 for a, b, _ in R5N["injection"]),
+      ", ".join(f"{a:+.3f}->{b:+.3f}" for a, b, _ in R5N["injection"]), kind="injection")
+check("S5n MUTATE: raising every native baryonic mass by 0.2 dex removes galaxies from the window (more reach the Newtonian floor) and lowers the median a0", R5Nm["N"] < R5N["N"] and R5Nm["median_a0"] < R5N["median_a0"],
+      f"N {R5N['N']} -> {R5Nm['N']}; median {R5N['median_a0']:.2e} -> {R5Nm['median_a0']:.2e}", kind="injection")
+check("S5o AGAINST INTEREST (for any reading that needs a discrepancy): on native baryons at least 30 of the 100 RC100 discs have g_obs <= g_bar,nat at R_e, and about 40 fall outside the inversion window",
+      (DN <= 1).sum() >= 30 and 35 <= (DN <= 1 / 0.98).sum() <= 45, f"D <= 1: {int((DN <= 1).sum())}; f <= 0.02: {int((DN <= 1 / 0.98).sum())}")
+check("S5p the native RC100 slope is consistent with a constant a0 (within 2.5 sigma, also when controlled for g_obs and for y) and shows no rise (negative; both comparators positive), and it agrees with the f_DM comparison within 1 sigma",
+      abs(R5N["slope"]) < 2.5 * R5N["slope_err"] and R5N["slope"] < 0 < R5N["slope_halo_ols"] < R5N["slope_Hz_ols"] and abs(R5N["slope"] - R5["slope"]) < math.hypot(R5N["slope_err"], R5["slope_err"])
+      and abs(R5N["slope_ctrl_gobs"]) < 2.5 * R5N["err_ctrl_gobs"] and abs(R5N["slope_ctrl_y"]) < 2.5 * R5N["err_ctrl_y"],
+      f"native {R5N['slope']:+.3f} +/- {R5N['slope_err']:.3f} (| g_obs {R5N['slope_ctrl_gobs']:+.3f} +/- {R5N['err_ctrl_gobs']:.3f}; | y {R5N['slope_ctrl_y']:+.3f} +/- {R5N['err_ctrl_y']:.3f}); f_DM {R5['slope']:+.3f} +/- {R5['slope_err']:.3f}")
+check("S5r the journal refit of row 87 leaves the native route unchanged (that disc is at the Newtonian floor on both tables): same N, slope and median a0 as on the arXiv-v1 table",
+      R5N["N"] == _R5Nc["N"] and abs(R5N["slope"] - _R5Nc["slope"]) < 1e-12 and abs(R5N["median_a0"] / _R5Nc["median_a0"] - 1) < 1e-12,
+      f"N {_R5Nc['N']} -> {R5N['N']}; slope {_R5Nc['slope']:+.4f} -> {R5N['slope']:+.4f}")
+check("S5q AGAINST INTEREST: the native slope is calibration-conditional too -- a drift of -0.05 dex per unit z puts it within 1 sigma of constancy",
+      abs(_tbN[-0.05]["sig_const"]) < 1.0, f"beta -0.05: {_tbN[-0.05]['slope']:+.3f} +/- {_tbN[-0.05]['err']:.3f} ({_tbN[-0.05]['sig_const']:+.1f} sigma)")
 
 # ================================================================================================================
 head("S6  THE DEEP REGIME IN TWO SURVEYS: SLOPE AND AMPLITUDE (SPARC and MIGHTEE-HI)")
@@ -1320,6 +1426,55 @@ check("S7i the gas-prescription bracket at z ~ 2.2 (CFG224b, quoted in PAPER38 a
 check("S7j the source-table audit (CFG287) as quoted: 22 sources (KURVS not among them), 3703 sampled cells in 29 tables with no transcription mismatch; no erratum registered for any published source paper",
       AUD["cells"] == 3703 and AUD["tables"] == 29 and AUD["fails"] == 0 and AUD["passed"] and AUD["errata"] == 0 and AUD["registered"] == 0
       and AUD["sources"] == 22 and not AUD["kurvs_in"], kind="identity")
+
+# ---- v3.2: the high-redshift record on FRAMEWORK-NATIVE inputs (no halo-fit quantity on the baryon side), read from committed lanes:
+#      CFG303 (MUSE-DARK, KURVS, CRISTAL), CFG308 (CRISTAL stress test), CFG307 (ALESS 122.1 stress test), CFG305 (Umehata+25 journal fit)
+_n303m = _J("CFG303_lcdm_free_inputs", "cfg303_musedark_LCDMFREE_results.json")
+MDN = dict(iii=_n303m["diff"]["noHI (primary)|bD|iii"], ii_rows=[_n303m["rows"][f"noHI (primary)|z{k}-routeii-bD"] for k in (1, 2, 3)],
+           iii_rows=[_n303m["rows"][f"noHI (primary)|z{k}-routeiii-bD"] for k in (1, 2, 3)], flags=_n303m["flags_primary"], checks=_n303m["checks"])
+P(f"  MUSE-DARK native (CFG303; thin disc of the SED stellar mass, no H I, no f_DM or fitted mass): route (iii) z3 - z1 = {MDN['iii']['d']:+.3f} +/- {MDN['iii']['sd']:.3f} (H(z) {MDN['iii']['rival']:+.3f});"
+  f" route (ii) s* " + " / ".join("NO ROOT" if r_["no_root"] else f"{r_['s']:.2f}" for r_ in MDN["ii_rows"]) + f" (third 3: D < 1 in {MDN['ii_rows'][2]['n_D_lt1']} of {MDN['ii_rows'][2]['n']});"
+  f" flat inside 95% in {MDN['flags']['FLAT']}/6 rows, H(z) in {MDN['flags']['H(z)']}/6")
+_n303k = _J("CFG303_lcdm_free_inputs", "cfg303_kurvs_LCDMFREE_results.json")
+_kc = [c_ for m_ in _n303k["classes_free"].values() for c_ in m_.values()]
+KN = dict(primary=_n303k["classes_free"]["primary"], n=len(_kc), lean_flat=_kc.count("lean flat"), lean_rival=_kc.count("lean rival"), neither=_kc.count("neither"),
+          P2=_n303k["cells"]["primary"]["P2"], checks=_n303k["checks"])
+P(f"  KURVS native (CFG303; measured markers, the record's analytic pressure models P0-P3 instead of the simulation-calibrated correction): primary classes {KN['primary']};"
+  f" over {KN['n']} (marker set x prescription) cells: lean flat {KN['lean_flat']}, lean rival {KN['lean_rival']}, neither {KN['neither']}; P2 flat {KN['P2']['cell']['flat'][0]:+.3f}, rival {KN['P2']['cell']['rival'][0]:+.3f} dex")
+_n303c = _J("CFG303_lcdm_free_inputs", "cfg303_rc100_cristal_LCDMFREE_results.json")["points"]["CRISTAL"]
+CRN = {k_: dict(s=v["s"], flat_in=v["flags"]["FLAT"]["in95"], Hz_in=v["flags"]["H(z)"]["in95"]) for k_, v in _n303c.items()}
+_c308 = _J("CFG308_cristal_stress_test", "cfg308_cristal_stress_results.json")
+C308 = dict(decision=_c308["decision"], n=_c308["fractions"]["n"], H_excl=_c308["fractions"]["frac_H_excl"], F_excl=_c308["fractions"]["frac_F_excl"],
+            noroot=_c308["fractions"]["n_point_no_root"], loo_stable=_c308["loo_stable"], checks=_c308["checks"])
+P(f"  CRISTAL native (CFG303): " + "; ".join(f"{k_[:40]} s* {v['s']:.2f} flat {'in' if v['flat_in'] else 'OUT'} H(z) {'in' if v['Hz_in'] else 'OUT'}" for k_, v in CRN.items()))
+P(f"  CRISTAL stress test (CFG308): {C308['decision']} over {C308['n']} cells: H(z) excluded at 95% in {C308['H_excl']*100:.1f}%, flat in {C308['F_excl']*100:.1f}%; no root in {C308['noroot']}; leave-one-out stable {C308['loo_stable']}; checks {C308['checks']}")
+_c307 = _J("CFG307_aless122_stress_test", "cfg307_stress_results.json")
+A307 = dict(z=_c307["z"], s=_c307["committed"]["cell"]["s"], decision=_c307["decision"]["primary"], checks=_c307["checks"],
+            oat=sorted(v["ls"] for ax in _c307["oat"].values() for v in ax.values() if v.get("state") == "root"),
+            oat_noroot=sum(1 for ax in _c307["oat"].values() for v in ax.values() if v.get("state") != "root"))
+P(f"  ALESS 122.1 stress test (CFG307): z {A307['z']:.2f}; committed s* {A307['s']:.2f}; {A307['decision']['decision']} over {A307['decision']['N']} cells: no root {A307['decision']['f_noroot']*100:.1f}%,"
+  f" flat inside 95% {A307['decision']['f_FLAT_inside']*100:.1f}%, flat excluded {A307['decision']['f_FLAT_excl']*100:.1f}%, H(z) excluded {A307['decision']['f_Hz_excl']*100:.1f}%;"
+  f" one-axis s* range {10**A307['oat'][0]:.2f}-{10**A307['oat'][-1]:.1f} with {A307['oat_noroot']} no-root level(s)")
+_u305 = _J("CFG305_published_tables", "cfg305_adf22_geometry_results.json")
+U305 = dict(same_resolution=all(v["resolution"][0] == v["resolution"][1] and v["status"][0] == v["status"][1] for v in _u305["posthoc_rows"].values()),
+            n=len(_u305["posthoc_rows"]), checks=_u305["checks"])
+P(f"  Umehata+25 journal 870 um fit (CFG305): statuses and resolutions of the {U305['n']} ADF22.5 rows unchanged: {U305['same_resolution']}")
+S7["native"] = dict(musedark=MDN, kurvs=KN, cristal=CRN, cristal_stress=C308, aless122=A307, umehata_journal=U305)
+check("S7o MUSE-DARK on native baryons as quoted (CFG303, read): with SED stellar masses alone the implied a0 changes by -0.26 +/- 0.28 dex between the outer thirds (H(z) +0.18); with molecular gas added the highest third has no root (baryons exceed the model dynamics in 21 of its 36 galaxies); the lane's controls pass",
+      (round(MDN["iii"]["d"], 2), round(MDN["iii"]["sd"], 2), round(MDN["iii"]["rival"], 2)) == (-0.26, 0.28, 0.18) and MDN["ii_rows"][2]["no_root"]
+      and (MDN["ii_rows"][2]["n_D_lt1"], MDN["ii_rows"][2]["n"]) == (21, 36) and MDN["checks"]["passed"] == MDN["checks"]["n"], kind="identity")
+check("S7p no MUSE-DARK native route shows a rise: route (iii) falls (z3 - z1 < 0) and route (ii) has no root in the highest third (read from CFG303)",
+      MDN["iii"]["d"] < 0 and MDN["ii_rows"][2]["no_root"], f"{MDN['iii']['d']:+.3f}", kind="identity")
+check("S7q KURVS without the simulation-calibrated pressure correction as quoted (CFG303, read): the primary analytic model (P2) reads 'neither' (both laws under-predict), and over the 24 marker-set x prescription cells 4 lean to constancy, 7 to the rival and 13 to neither; the lane's controls pass",
+      KN["primary"]["P2"] == "neither" and (KN["n"], KN["lean_flat"], KN["lean_rival"], KN["neither"]) == (24, 4, 7, 13) and KN["P2"]["cell"]["flat"][0] > 0 and KN["P2"]["cell"]["rival"][0] > 0
+      and KN["checks"]["passed"] == KN["checks"]["n"], kind="identity")
+check("S7r CRISTAL on native inputs as quoted (CFG303, CFG308, read): no native CRISTAL point excludes a constant a0 at 95%, and the 1008-cell stress test is NOT DISCRIMINATING (H(z) excluded in 59%, constancy in 24% of cells), stable under leave-one-out; its controls pass",
+      all(v["flat_in"] for v in CRN.values()) and C308["decision"] == "NOT DISCRIMINATING" and C308["n"] == 1008 and round(C308["H_excl"] * 100) == 59 and round(C308["F_excl"] * 100) == 24
+      and C308["loo_stable"] and C308["checks"]["passed"] == C308["checks"]["n"], kind="identity")
+check("S7s ALESS 122.1 as quoted (CFG307, read): the 540-cell stress test is NOT ROBUST (no root in 44%, constancy inside the 95% interval in 29%), and over one axis at a time the implied a0 runs from no root to about 20 times the local value; its controls pass",
+      A307["decision"]["decision"] == "NOT ROBUST" and A307["decision"]["N"] == 540 and round(A307["decision"]["f_noroot"] * 100) == 44 and round(A307["decision"]["f_FLAT_inside"] * 100) == 29
+      and A307["oat_noroot"] >= 1 and 15 < 10**A307["oat"][-1] < 25 and all(A307["checks"]), kind="identity")
+check("S7t the Umehata+25 journal 870 um fit (CFG305, read) changes no status or resolution of the ADF22.5 rows (the text says so)", U305["same_resolution"] and U305["n"] >= 6, kind="identity")
 
 # ---- Appendix C quotes the number of checks of each kind; this last check (an identity) compares the text with the tally,
 #      counting itself

@@ -1,10 +1,11 @@
-# MNRAS submission package, version 3.1 (prepared 2026-10-02, after the CFG290 referee report)
+# MNRAS submission package, version 3.2 (prepared 2026-10-03: RC100 on the journal table and on framework-native inputs)
 
 Manuscript: *The galactic acceleration scale and the cosmological constant: the coefficient on SPARC, and what it takes
 to measure its redshift evolution* (retitled in v3.1; the v3 title named the H0 degeneracy, now one paragraph).
-15 pages in `mnras.cls`, 6 figures, 12 tables, 62 references (63 if the PAPER6 citation is kept), 3 appendices;
-abstract 234 words by a plain whitespace count (245 with every math span counted as one word; limit 250).
-This package revises v3 (commit 32f9a609c) in place, answering the hostile referee report
+**v3.2:** 16 pages in `mnras.cls`, 6 figures, 12 tables, 63 references (64 if the PAPER6 citation is kept), 3 appendices;
+abstract 239 words by a plain whitespace count (249 with every math span counted as one word; limit 250). v3.2 revises
+v3.1 (tag `mnras-v3.1`, 51413cc1b) in place; section 7f lists every change. (v3.1: 15 pages, 62 references, abstract 234/245.)
+v3.1 revised v3 (commit 32f9a609c) in place, answering the hostile referee report
 `campaign_fresh_gravity/CFG290_mnras_v3_referee/REFEREE_REPORT.md` (c1851ae6d; 1 CRITICAL, 10 MAJOR, 20 MINOR, 8 NIT);
 section 7e answers every finding. It supersedes `../mnras_submission_2026_v2/` and, through it, `../mnras_submission_2026/`.
 Journal rules below were checked on 2026-09-21 and not re-checked for v3 or v3.1. Items marked **[author]** need the author.
@@ -50,8 +51,9 @@ Journal rules below were checked on 2026-09-21 and not re-checked for v3 or v3.1
   was replaced by statements that are true without it ("produced by a public script whose checks can fail"; "one command
   reproduces every number and figure"). If the owner runs `bash reproduce_all.sh` personally (about 2 minutes) before
   submitting, the stronger wording may be restored.
-- [ ] **TODO-TAG [orchestrator] (finding 27).** Data Availability names the tagged release `mnras-v3.1`. After committing
-  v3.1, create that git tag (`git tag mnras-v3.1 <commit>` and push it), or replace the phrase with the commit hash. A Zenodo
+- [ ] **TODO-TAG [orchestrator] (finding 27).** Data Availability now names the tagged release **`mnras-v3.2`**. After committing
+  v3.2, create that git tag (`git tag mnras-v3.2 <commit>` and push it), or replace the phrase with the commit hash
+  (`mnras-v3.1` exists at 51413cc1b). A Zenodo
   snapshot DOI of the reproduction package is not minted (no deposits in this revision); it can be added on acceptance.
 - [ ] **[author] Title.** v3.1 retitles the paper (finding 11). Revert in the .tex and COVER_LETTER.md if not wanted.
 
@@ -62,7 +64,7 @@ Journal rules below were checked on 2026-09-21 and not re-checked for v3 or v3.1
 | `mnras_a0_lambda_v3.tex`, `references.bib`, `mnras_a0_lambda_v3.bbl` | manuscript source (class `mnras`, options `fleqn,usenatbib`; style `mnras.bst`) |
 | `mnras_a0_lambda_v3.pdf` | compiled manuscript with a placeholder in place of the e-mail address |
 | `fig1_rar.pdf`, `fig2_kappa.pdf`, `fig_deep.pdf`, `fig3_laws.pdf`, `fig4_amplification.pdf`, `fig5_rc100.pdf` | Figures 1–6 in that order (the older files keep their names; the bundle renames them fig1–fig6), vector PDF |
-| `paper_numbers.py` → `paper_numbers.out`, `paper_numbers.json` | every number in the text that is not printed by a repository estimator; **85 checks: 39 identity, 13 model, 28 data, 5 injection** (Appendix C's tally is itself checked, S7n); about 30 s |
+| `paper_numbers.py` → `paper_numbers.out`, `paper_numbers.json` | every number in the text that is not printed by a repository estimator; **v3.2: 100 checks: 48 identity, 13 model, 32 data, 7 injection** (Appendix C's tally is itself checked, S7n); about 35 s |
 | `make_figures.py` | builds the figures from the same functions (6 checks) |
 | `reproduce_all.sh` | re-runs the repository estimators, the H0 audit, L332 (in scratch mirrors only), the earlier profile likelihood, the two scripts above and the LaTeX build; stops on any failure; ends with "ALL STEPS PASSED" |
 | `make_upload_bundle.py` | writes the git-ignored `upload_bundle/` (section 4); gated on the checks, on both abstract counts and on the PAPER6 switch |
@@ -72,7 +74,8 @@ Journal rules below were checked on 2026-09-21 and not re-checked for v3 or v3.1
 Rebuild everything: `bash reproduce_all.sh`. Build the upload files: `python3 make_upload_bundle.py`.
 **The .bbl:** plain `tectonic` does not refresh it. After any bibliography change: copy the .tex, .bib and figures to a
 scratch directory, run `tectonic --keep-intermediates --keep-logs mnras_a0_lambda_v3.tex` there, check the log for
-undefined references, and copy the .bbl back (done for v3.1: 62 entries, no warnings, no overfull boxes).
+undefined references, and copy the .bbl back (done for v3.2: 63 entries, Lee et al. 2025 added; no undefined references;
+v3.1: 62 entries).
 
 ## 2. Before uploading **[author]**
 
@@ -383,6 +386,79 @@ Umehata 2026 (ApJ 997, 79; arXiv:2502.01868); Zenodo 22563139/22833314/23108862/
 Limbach+08, Milgrom 2017, Mayer+23, Desmond 2023, Vărăşteanu+25/26 (from `cfg290_abstract_reads.out` and the arXiv API).
 Ciocan+26 eqs 2 and 4 from the arXiv HTML (265 kB page read).
 
+## 7f. Version 3.2 (2026-10-03): RC100 on the journal table and on framework-native inputs
+
+**Owner direction:** "we need to use all the data using our framework not ACDM assumptions!" Sources: CFG305 (journal
+tables, 6c907be69), CFG303 (inputs tagged by origin; LCDM-free re-derivations, 2d9bdc1b9), CFG307 (ALESS 122.1 stress test),
+CFG308 (CRISTAL stress test). kappa = 1/2 is FITTED; the cold mass is still required. Not deposited, not submitted.
+
+**Scripts.**
+- `paper_numbers.py`: input switched to `real_research/data/rc100_nestorshachar2023_table3_PUBLISHED.csv` (sha256 8a7ed57a…;
+  the journal's Table B1, CFG305); the arXiv-v1 CORRECTED file and the first transcription are still run, for old -> new.
+  New: the **framework-native route** (CFG303 route B) is computed inside the script by exec'ing CFG303's committed code
+  read-only (its helpers, `xi`, the per-galaxy loop, `s5_table`) with CFG216's `disc_v2` and CFG217's `mu_t18`, exactly as
+  CFG303 loads them; on the arXiv-v1 table it reproduces CFG303's committed S5 numbers to 0 (check S5k). New S7 reads of
+  CFG303 (MUSE-DARK, KURVS, CRISTAL), CFG308, CFG307 and CFG305's Umehata geometry. CFG217 G2 now read from CFG305's
+  journal-table re-run (unchanged: rho +0.33, p 0.036, n 41).
+- Checks 85 -> 100 (identity 39 -> 48, model 13, data 28 -> 32, injection 5 -> 7). New: S5k-S5r, I5n, S7o-S7t. Reworded:
+  S5e (v3.1's tolerance "-0.05 within 0.5 sigma of constancy" FAILS on the journal table, +0.6 sigma; v3.2's wording is
+  "within 1 sigma", post hoc, labelled), S5h (journal vs arXiv-v1: 6 primary cells, rows 78 and 87; only row 87 enters
+  the inversion), S5i (records the S5e verdict move against interest: v3.1 wording true on arXiv v1, false on the journal).
+- `make_figures.py`: Fig. 6 (file fig5_rc100.pdf) now has two panels, (a) native (N 59), (b) the f_DM comparison (N 99);
+  Fig. 5's RC100 band uses the native y (16-84%: 0.91-7.20).
+- `reproduce_all.sh`: step 5 runs L332 with both the CORRECTED and the PUBLISHED tables (T1, K1 and the overlap count unchanged).
+- `make_upload_bundle.py`: data statement (journal table, tag mnras-v3.2, CRISTAL) and the alt text of Figs 5-6.
+
+**RC100 numbers (old -> new).**
+| quantity | v3.1 (arXiv v1, f_DM) | v3.2 native route B (primary) | v3.2 f_DM comparison |
+|---|---|---|---|
+| N in the window | 99 | 59 (41 have g_bar,nat >= g_obs) | 99 |
+| d log a0/dz | -0.111 +- 0.063 | -0.122 +- 0.098 | -0.092 +- 0.064 |
+| median a0 | 1.39e-10 | 2.11e-10 (biased high: floor discs dropped) | 1.49e-10 |
+| comparators (halo / H(z), OLS) | +0.15 / +0.22 | +0.15 / +0.23 | +0.15 / +0.22 |
+| drift -0.05 | +0.02 +- 0.06 | +0.02 +- 0.09 (0.2 sigma) | +0.04 +- 0.06 (0.6 sigma) |
+| flagged rows dropped | -0.09 / -0.10 | -0.14 +- 0.11 | -0.07 +- 0.06 |
+The native route is identical on the arXiv-v1 and journal tables (row 87 is a Newtonian-floor disc on both). The
+journal refit moves the f_DM slope by +0.30 sigma. The weakest formal H(z) exclusions (comparison 4.4, native 2.2 sigma)
+are printed by the script and NOT quoted in the text. RC100 decides nothing.
+
+**Text changes.**
+- Header comment: version 3.2.
+- Abstract: the RC100/MUSE/KURVS sentence now states the native-input results (no rise; 41 at the Newtonian limit; drift
+  erases any trend; MUSE-DARK rise disappears; KURVS lean needs a simulation-calibrated correction). 239/249 words.
+- Section 4 (amplification): RC100's y on native baryons (median 2.4, 0.9-7.2, 2 of 100 below 0.3; 0.2 dex -> 0.8 dex);
+  Fig. 5 caption says so.
+- Section 4.3, RC100: rewritten. Native route primary (SED M* + Tacconi gas, thin disc, eq. rc100 with f = 1 - g_bar/g_obs);
+  41 floor discs; N 59, -0.12 +- 0.10; the f_DM inversion labelled as the comparison ("the authors' halo-model dark
+  fraction"), -0.09 +- 0.06; the journal table used and checked (arXiv-v1 caveat dropped); the five reasons now give both
+  routes (flags, selection controls, drift); KMOS3D's below-baryons fraction tied to RC100's 41 native floor discs.
+- Section 4.3, MUSE-DARK: the SED routes' numbers replaced by CFG303's native ones (-0.26 +- 0.28 dex; with H2 the highest
+  third has no root, 21 of 36); the earlier SED-route numbers kept in parentheses as the halo-normalised comparison.
+- Section 4.3, KURVS: one added passage: the lean needs the Kretschmer (LCDM-simulation) calibration; with the measured
+  points and analytic corrections, P2 reads 'neither' and the 24 cells split 4 / 7 / 13.
+- Section 4.3: new paragraph "Native inputs at z ~ 2-5": CRISTAL (no native point excludes constancy; CFG308 NOT
+  DISCRIMINATING, 59% / 24% of 1008 cells) and ALESS 122.1 (CFG307 NOT ROBUST; no root in 44% of 540 cells; one-axis range
+  no root to about 20x). Lee et al. (2025) cited (new reference).
+- Fig. 6 caption: two panels.
+- Conclusions 5 ("factors of 5 and 4", native y) and 6 (rewritten on the native record).
+- Acknowledgements: Lee et al. (2025) table added. AI disclosure unchanged (six providers).
+- Data Availability: tag `mnras-v3.2`; the journal table (Table B1) used and checked against journal and arXiv v1; the J0901+1814
+  refit and the row-78 slip described; Umehata+26 now checked against the journal (its 870 um fit differs, no status change);
+  FS+18 still arXiv v1 only.
+- Appendix B: MUSE-DARK routes (ii)/(iii) redefined without halo-fit normalisation; new "Native inputs" paragraph.
+- Appendix C: tally 100 / 48 / 13 / 32 / 7; paper_numbers bullet; CFG305, CFG303, CFG307, CFG308 listed.
+- Kept: PAPER6 dropped (`\papersixfalse`); kappa = 1/2 fitted; the cold mass required; no MeerKAT (PAPER40) sentence added.
+
+**Not verified in v3.2.**
+- CFG303's transcription of RC100 column 6 (SED M*) is one reader's, from the arXiv-v1 raster; T3 matches Price+21 for the
+  41 RC41 galaxies (median 0.000 dex). CFG305 states the journal's row-87 log M* is unchanged (10.96); the other 99 rows of
+  column 6 were not compared with the journal.
+- The native gas is CFG217's mu_t18 without the delta_MS term (disclosed in Appendix B).
+- ALESS 122.1 is named without a citation of its data sources (CFG229 uses Dunne et al. 2022 gas and Calistro Rivera et al.
+  2018 kinematics); neither is in references.bib. **[author/orchestrator]** add them, or drop the name, before submission.
+- The Lee et al. (2025) entry was taken from `citations/REFERENCES.bib` (A&A 701, A260; doi 10.1051/0004-6361/202555362)
+  and not re-checked against the journal page.
+
 ## 8. Not verified
 - **v3.1:** the MUSE-DARK, KURVS, MIGHTEE-mock and z ≥ 4 numbers are the committed outputs of the repository lanes; they
   were not re-run here (Appendix B describes their methods; `paper_numbers.py` checks only that the text quotes them).
@@ -395,8 +471,8 @@ Ciocan+26 eqs 2 and 4 from the arXiv HTML (265 kB page read).
 - **v3.1:** body-level statements carried over from v2/v3 and not re-read: Jeanneau+26's 70 per cent gas share, Übler+17's
   −0.44/−0.27 dex, Vărăşteanu+25 Table 3 and the K_s median 0.35, Marasco+25's 0.72, the OLAS M0717-02064 parameters.
 - **v3.1:** the MNRAS rules in sections 3–4 and the current keyword list were not re-checked.
-- **v3:** whether the published RC100 Table 3 (ApJ 944, 78) equals the arXiv v1 copy that both transcriptions were checked
-  against (CFG287 lists it as OPEN), and likewise for FS+18 and Umehata+26. The Data Availability statement says so.
+- **v3 (resolved in v3.2 by CFG305):** the published RC100 table differs from arXiv v1 in row 87 (refit) and our row-78 sigma0
+  was a slip; Umehata+26's journal 870 um fit differs from v1 (no status change). FS+18 is still checked against arXiv v1 only.
 - **v3:** the KURVS tables were not in the CFG287 audit (stated in the Data Availability statement).
 - **v3:** CFG289's commit message and `data_assembly/rc100_provenance/README.md` say "10 rows" of log M_baryon; the files differ
   in 9 such cells (7 bulge + 2 typos; 9 + 2 + 1 + 5 = 17). The paper uses the count from the files (check S5h).

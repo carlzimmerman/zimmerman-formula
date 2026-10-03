@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# reproduce_all.sh -- re-runs every script behind mnras_a0_lambda_v3.tex (v3.1) and rebuilds the PDF.
+# reproduce_all.sh -- re-runs every script behind mnras_a0_lambda_v3.tex (v3.2) and rebuilds the PDF.
 # Usage (from anywhere):  bash reproduce_all.sh          Exit status is non-zero if any script or the build fails.
 # It rewrites only the paper's own products in this directory (paper_numbers.out/.json, the six figures, the PDF) and
 # writes logs to reproduce_outputs/ (git-ignored).  No file outside this directory is changed: the one lane that writes a
@@ -34,13 +34,16 @@ grep -h "4/5 checks pass" "$OUT/L332_kmos3d.out" | head -1
 cmp -s "$MIR0/real_research/dark_sector_2026/L332_kmos3d_trend_replication_results.json" real_research/dark_sector_2026/L332_kmos3d_trend_replication_results.json \
   && echo "   the mirror's results JSON is byte-identical to the committed one (which paper_numbers.py reads)" \
   || { echo "   FAIL: L332 does not reproduce its committed results JSON"; exit 1; }
-echo "[5/9] L332 again in a scratch mirror with the CORRECTED RC100 transcription: the KMOS3D lines the paper uses must not move"
-MIR="$OUT/l332_rc100fix_mirror"; l332_mirror "$MIR" real_research/data/rc100_nestorshachar2023_table3_CORRECTED.csv
-( cd "$MIR" && python3 real_research/dark_sector_2026/L332_kmos3d_trend_replication.py > "$OUT/L332_kmos3d_RC100FIX.out" 2>&1 )
-diff <(grep -E "\[(PASS|FAIL)\] (T1|K1)|not in RC100" "$OUT/L332_kmos3d.out") <(grep -E "\[(PASS|FAIL)\] (T1|K1)|not in RC100" "$OUT/L332_kmos3d_RC100FIX.out") \
-  && echo "   T1, K1 and the RC100 overlap count are identical with the corrected transcription" \
-  || { echo "   FAIL: the KMOS3D lines move with the corrected RC100 transcription"; exit 1; }
-rm -rf "$MIR" "$MIR0"
+echo "[5/9] L332 again in scratch mirrors with the CORRECTED (arXiv v1) and the PUBLISHED (journal; v3.2's input) RC100 tables: the KMOS3D lines the paper uses must not move"
+for TAB in CORRECTED PUBLISHED; do
+  MIR="$OUT/l332_rc100_${TAB}_mirror"; l332_mirror "$MIR" "real_research/data/rc100_nestorshachar2023_table3_${TAB}.csv"
+  ( cd "$MIR" && python3 real_research/dark_sector_2026/L332_kmos3d_trend_replication.py > "$OUT/L332_kmos3d_RC100_${TAB}.out" 2>&1 )
+  diff <(grep -E "\[(PASS|FAIL)\] (T1|K1)|not in RC100" "$OUT/L332_kmos3d.out") <(grep -E "\[(PASS|FAIL)\] (T1|K1)|not in RC100" "$OUT/L332_kmos3d_RC100_${TAB}.out") \
+    && echo "   T1, K1 and the RC100 overlap count are identical with the ${TAB} table" \
+    || { echo "   FAIL: the KMOS3D lines move with the ${TAB} RC100 table"; exit 1; }
+  rm -rf "$MIR"
+done
+rm -rf "$MIR0"
 echo "[6/9] the earlier profile likelihood (Section 3.6; paper_numbers.py replicates its committed table with estimator C's code)"
 python3 real_research/reviews/mi_a0_profile_likelihood_milgrom_footing_2026.py > "$OUT/profile_likelihood_footing.out" 2>&1
 diff <(grep -A6 "THE THREE-HYPOTHESIS COMPARISON" "$OUT/profile_likelihood_footing.out") \
