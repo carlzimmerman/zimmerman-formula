@@ -1,0 +1,58 @@
+CFG310 clean-mirror reproduction (2026-10-03). Mirror: git archive 24fcc8250 (contains the MNRAS directory unchanged since tag mnras-v3.2 = d96f177fe) extracted into a fresh scratch directory (no symlinks into the repo).
+
+=== MNRAS v3.2: bash reproduce_all.sh in the mirror (exit 0) ===
+[1/9] estimator A (Tully-Fisher intercept, Table 3)
+  on the adopted kernel: kappa_hat = 0.465 +- 0.076 against kappa = 0.500 (framework) and 0.461 (Milgrom 2020 rescaled to the same footing)
+[2/9] earlier form of estimator B (fixed bulge mass-to-light ratio), as a check
+   TOTAL 7.77%   ->   kappa = 0.551 +/- 0.043   (canonical footing)
+[3/9] H0-convention audit (paper_numbers.py also runs it, for estimator A's Hubble-flow weight)
+    because kappa genuinely depends on H0.  R1 is designated OPERATIVE because the framework's REGISTERED
+  [ok] C4  every self-consistent choice LOWERS the BTFR kappa, so the committed 0.465 IS biased high -- the mixed convention is the MAXIMUM of the 2x2 (h_num, h_den) box because a0 and the denominator both increase with h.  OPERATIVE (R1) value: kappa = 0.450 +/- 0.074, a -3.2% shift = 0.20 sigma
+[4/9] KMOS3D replication of the RC100 pattern (L332; read by paper_numbers.py), run in a scratch mirror so that its
+      results JSON outside this directory is not rewritten; the mirror's JSON must equal the committed one
+  4/5 checks pass; load-bearing failures: 0; wrote L332_kmos3d_trend_replication_results.json
+   the mirror's results JSON is byte-identical to the committed one (which paper_numbers.py reads)
+[5/9] L332 again in scratch mirrors with the CORRECTED (arXiv v1) and the PUBLISHED (journal; v3.2's input) RC100 tables: the KMOS3D lines the paper uses must not move
+   T1, K1 and the RC100 overlap count are identical with the CORRECTED table
+   T1, K1 and the RC100 overlap count are identical with the PUBLISHED table
+[6/9] the earlier profile likelihood (Section 3.6; paper_numbers.py replicates its committed table with estimator C's code)
+   the hypothesis table reproduces the committed output
+[7/9] paper_numbers.py
+RESULT: 100 checks, 0 FAIL
+   48 identity  -- algebra or arithmetic on stated inputs: certifies the arithmetic, can fail only by a coding error, carries NO evidence
+   13 model     -- evaluates a published model or relation at stated inputs: can fail if the model is mis-implemented, carries no evidence
+   32 data      -- can fail on the data
+    7 injection -- feeds an estimator synthetic data with a KNOWN a0 (or trend) built on the real baryons: proves the estimator measures, not echoes
+[8/9] make_figures.py
+FIGURES: 6/6 checks passed
+[9/9] LaTeX build
+built mnras_a0_lambda_v3.pdf
+ALL STEPS PASSED
+
+real	2m16.424s
+user	2m9.948s
+sys	0m5.721s
+
+Comparison with the committed products:
+  paper_numbers.out, paper_numbers.json: byte-identical
+  fig1_rar, fig2_kappa, fig3_laws, fig4_amplification, fig5_rc100, fig_deep (.pdf): bytes differ only in the creation date; rendered pages (pdftoppm 60 dpi) identical by sha1
+  mnras_a0_lambda_v3.pdf: pdftotext output identical; 16 pages; 402450 bytes
+
+=== PAPER40 v1.1: python3 make_paper40_figures.py in the mirror (exit 0) ===
+
+real	0m1.251s
+user	0m1.127s
+sys	0m0.097s
+  PAPER40_figures_numbers.json, fig1_paper40_levels.pdf, fig2_paper40_btfr.pdf: byte-identical to the committed files
+
+=== PAPER40 v1.1: PAPER40_audit.py run from the mirror's tex/PDF/JSON with PAPER40_REPO = the live repository (it reads committed sources with git show HEAD:, read-only; HEAD = 24fcc8250) ===
+--- main (exit 0):
+  note: tex blocks with no audit rows: B37
+
+375 of 375 quoted values match their committed sources and their tex blocks
+19 of 19 literature values (LIT; arXiv abstracts and the V26 e-print, not in a committed file) are printed in their blocks
+236 of 236 plain-number rows are present in the text of the built PDF
+--- --mutate (exit 1, as required):
+MUTATE run: FAILED as required (exit 1)
+--- --mutate-tex (exit 1, as required):
+MUTATE run: FAILED as required (exit 1)

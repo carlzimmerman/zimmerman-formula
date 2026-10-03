@@ -1,0 +1,99 @@
+== M1 MNRAS compliance ==
+abstract: {'words_outside_math': 207, 'math_spans': 31, 'math_as_one_word': 238, 'raw_whitespace_tokens': 239, 'pdftotext_words': 281, 'scholarone_paste_text_words': 243} (limit 250)
+keywords: 6 ['gravitation', 'galaxies: kinematics and dynamics', 'galaxies: high-redshift', 'cosmological parameters', 'dark energy', 'dark matter']
+AI disclosure present: True | providers named: ['Claude', 'OpenAI', 'DeepSeek', 'GLM', 'Qwen', 'Gemini']
+Data Availability present: True | names tag mnras-v3.2: True
+tag mnras-v3.2 -> d96f177fe
+alt text (git-ignored bundle): figures with alt text: 6
+PDF: 402450 bytes, 16 pages (limit 10 MB)
+cover letter still says 'must be finalised by the author (TODO-AI-DISCLOSURE)': True
+'framework-native' occurrences in the manuscript (term never defined for a journal reader): 3
+
+== M2 MNRAS bibliography ==
+bib entries: 64
+  'Dunne' in references.bib: False   in tex: False
+  'Calistro' in references.bib: False   in tex: False
+  'Amvrosiadis' in references.bib: False   in tex: False
+  'ALESS 122.1' named in the tex: 5 times
+  Lee2025 vs Crossref (A&A 701, A260, first author Lee, DOI, title 'The ALMA-CRISTAL survey ...'): MATCH
+
+== M3 RC100 native route: Newtonian-floor fraction vs z (CFG303 per-galaxy CSV) ==
+N inverted 59 | floor (f <= 0.02) 41
+   {'z': '0.5-1.0', 'n': 26, 'floor': 7, 'frac': 0.27, 'median_log_a0_censored': -9.797, 'median_log_a0_inverted_only': -9.578}
+   {'z': '1.0-1.5', 'n': 18, 'floor': 6, 'frac': 0.33, 'median_log_a0_censored': -9.984, 'median_log_a0_inverted_only': -9.658}
+   {'z': '1.5-2.0', 'n': 15, 'floor': 7, 'frac': 0.47, 'median_log_a0_censored': -10.122, 'median_log_a0_inverted_only': -9.684}
+   {'z': '2.0-2.6', 'n': 41, 'floor': 21, 'frac': 0.51, 'median_log_a0_censored': None, 'median_log_a0_inverted_only': -9.732}
+Spearman(z, floor) = +0.249 (p 0.013);  Spearman(z, log a0) inverted only = -0.158 (p 0.231);  with the floor discs ranked lowest = -0.274 (p 0.0057)
+Reading: the floor fraction rises with z (27% -> 51%); excluding floor discs removes the low-a0 tail preferentially at high z. With the censoring kept, the native implied a0 FALLS with z -- inconsistent with all three laws, i.e. a z-dependent bias of the native baryons, which the paper's own decision rule ('inconsistent with all of them counts against all of them') would read as a calibration failure.
+
+== M4 MUSE-DARK native rows (paper_numbers.json S7.native.musedark) ==
+  route  ii z 0.52: s* 0.216 (no root False), 95% log s [-3.00, +0.04], D<1 13/37, FLAT inside 95%: True, H(z) inside: False
+  route  ii z 0.88: s* 0.274 (no root False), 95% log s [-3.00, -0.25], D<1 14/36, FLAT inside 95%: False, H(z) inside: False
+  route  ii z 1.20: s* 0.001 (no root True), 95% log s [-3.00, -0.89], D<1 21/36, FLAT inside 95%: False, H(z) inside: False
+  route iii z 0.52: s* 1.210 (no root False), 95% log s [-0.23, +0.39], D<1 6/37, FLAT inside 95%: True, H(z) inside: True
+  route iii z 0.88: s* 2.110 (no root False), 95% log s [-0.07, +0.44], D<1 4/36, FLAT inside 95%: True, H(z) inside: True
+  route iii z 1.20: s* 0.660 (no root False), 95% log s [-0.56, +0.14], D<1 10/36, FLAT inside 95%: True, H(z) inside: False
+  totals (rows where the law's s* is inside the 95% interval, of 6): {'FLAT': 4, 'H(z)': 2, 'PROXY': 4}
+  route iii z3 - z1 = -0.263 +- 0.282 (the number the text quotes)
+Reading: with molecular gas (route ii) the implied scale is 0.22 / 0.27 x canonical and FLAT lies outside the 95% interval in 2 of 3 thirds (z 0.88 excluded, z 1.20 no root). The abstract's 'the MUSE-DARK rise ... disappears' and Conclusion (vi) 'on SED masses no route rises' omit that the gas-inclusive native route is inconsistent with constancy too.
+
+== M5 KURVS native P2 cell, ALESS 122.1 fractions ==
+  KURVS native P2 cell: FLAT residual [0.375, 0.055]  rival residual [0.228, 0.054]  class: neither | cells lean flat/rival/neither: 4 7 13
+  both laws under-predict: FLAT 6.8 sigma, rival 4.3 sigma (the text gives no magnitudes)
+  ALESS 122.1: N 540  FLAT excluded 0.27  H(z) excluded 0.146  FLAT below 0.0  no root 0.437  native s* 8.82
+  the text quotes only the no-root fraction (44%) and the range; it omits FLAT excluded in 27% (always from above) vs H(z) 15%
+
+== M6 the RC100 PUBLISHED table ==
+  columns: ['idx', 'name', 'z', 'logMbar_Msun', 'Re_kpc', 'fDM_within_Re', 'Vc_Re_kms', 'sigma0_kms', 'g_Re_ms2', 'a0_Vc4_over_GMbar_ms2', 'a0_over_1.2e-10', 'deepMOND_g_lt_a0']
+  carries an SED stellar-mass column: False -> the native route's M* (CFG303 transcription of arXiv-v1 column 6) is not part of the journal-checked table; only row 87's M* was compared with the journal (CFG305 README)
+
+== P1 PAPER40 abstract ==
+abstract: {'words_outside_math': 184, 'math_spans': 24, 'math_as_one_word': 208, 'raw_whitespace_tokens': 206} (MNRAS limit 250 if ever submitted; Zenodo has no limit)
+
+== P2 PAPER40 single-dish flux readings (PAPER40_figures_numbers.json flux_k0) ==
+             c1: R -0.195  a0_gas 0.901e-10  vs canonical -0.016 dex, alt -0.099 dex  (C1 code-1 (CFG304 primary))
+         pairs7: R -0.159  a0_gas 0.968e-10  vs canonical +0.015 dex, alt -0.068 dex  (CFG301-like 7 pairs (CFG304 PH2))
+         zge002: R -0.137  a0_gas 1.017e-10  vs canonical +0.036 dex, alt -0.046 dex  (z >= 0.02, codes 1+2 (CFG304 PH1))
+   zge002_clean: R -0.120  a0_gas 1.057e-10  vs canonical +0.053 dex, alt -0.030 dex  (z >= 0.02, confusion-clean (CFG304 PH1))
+     snr_extrap: R -0.115  a0_gas 1.069e-10  vs canonical +0.058 dex, alt -0.025 dex  (CFG306 S2: code-1 trend in SNR_3D extrapolated to the 47)
+       z_extrap: R -0.087  a0_gas 1.132e-10  vs canonical +0.083 dex, alt +0.000 dex  (CFG306 S2: code-1 trend in z extrapolated to the 47)
+  quoted: 1.07 (0.97-1.13); CFG304's frozen primary (15 code-1 pairs, R -0.195) gives 0.90, OUTSIDE the quoted range;
+  CFG306 recommended 0.90-1.06 (or 0.90-1.13); STANDING (CFG309 entry) records 0.90-1.06 and 'about 0.9-1.31e-10 between flux scales';
+  the paper's 'honest range is about 1.0 to 1.31' also drops 0.90.  The central 1.07 is a linear extrapolation in SNR_3D of 15 pairs (post hoc).
+
+== P3 PAPER40 H0 like-for-like ==
+  headline a0 1.3111e-10, recipe 0.1278; 95% stat lower 1.206
+  H0 = 67.4 ('like-for-like' in the paper): a0 1.2078e-10;  canonical +0.1107 dex, alt +0.0285 dex;  95% stat lower 1.111e-10 (alt footing 1.131 INSIDE)
+  recipe without the H0 knob (once the H0 shift is applied, it is a correction, not a systematic): 0.1227 dex -> canonical INSIDE ; with the H0 knob kept (0.1278) also INSIDE
+Reading: on the value the paper itself calls like-for-like, the canonical footing is INSIDE the recipe width and the alternative footing is inside the 95% statistical interval; the abstract's 'canonical footing just outside the recipe width' and 'both footings outside the 95% statistical interval' hold only on the catalogue's H0 = 70 distances.
+
+== P4 PAPER40 statistical error ==
+  committed bootstrap SD 0.0336 dex;  per-galaxy robust SD (paper's own JSON) 0.2606 -> asymptotic SE of a median 0.0476 dex
+  with SE 0.048: 95% half-width 0.093 dex; alt footing is 0.064 dex below -> inside
+  exec'd chain: pooled log s* 0.146335 (committed 0.146335; MATCH)
+   seed 1: bootstrap SD 0.0358, 68% [-0.0127, +0.0342], 95% [-0.0361, +0.1049]
+   seed 2: bootstrap SD 0.0331, 68% [-0.0127, +0.0342], 95% [-0.0258, +0.1049]
+   seed 3: bootstrap SD 0.0336, 68% [-0.0127, +0.0342], 95% [-0.0361, +0.1013]
+   seed 4: bootstrap SD 0.0336, 68% [-0.0146, +0.0342], 95% [-0.0361, +0.1014]
+   seed 5: bootstrap SD 0.0314, 68% [-0.0146, +0.0342], 95% [-0.0258, +0.1013]
+  per-galaxy log s* around the median: [0.132, 0.134, 0.137, 0.142, 0.146, 0.167, 0.18, 0.181, 0.186] (gaps [0.002, 0.003, 0.005, 0.004, 0.02, 0.013, 0.001, 0.005])
+Reading: the bootstrap SD is stable across seeds but is ~30% below the median's asymptotic error implied by the per-galaxy spread; the sample is peaked near its median. 'Both footings outside the 95% statistical interval' rests on the narrower figure; quote both.
+
+== P5 PAPER40 joint fit and selection ==
+  b_z -2.59, 68% [-5.18, -0.47] (excludes 0; not printed), 95% [-7.98, +1.51] (printed)
+  no SNR cut: a0 1.59e-10 (+0.084); removed 23: 2.23e-10 (+0.230); the abstract lists flux, width and kernel systematics but not selection
+
+== P6 PAPER40 Zenodo metadata and PDF metadata ==
+  title matches tex: True | version: 2026-10-03-v1.1 | license: cc-by-4.0 | keywords: 13
+  creators: 1 entry, with affiliation: True (a personal name; tex byline: 'The authors'; name not printed here)
+  related_identifiers present: False | communities: False | notes: False
+   description carries '1.31e-10': True
+   description carries '0.034 dex': True
+   description carries '0.128 dex': True
+   description carries '0.70 or 0.58': True
+   description carries '1.07 (0.97-1.13)': True
+   description carries '0.06-0.07 dex': True
+   description carries '0.009 dex': True
+   description carries '375 of 375': True
+  description refers to 'Version 1.0' (never deposited) and to internal lane labels CFG306/CFG309: True True
+  PAPER40 PDF Title/Author metadata: False False | pages 9
