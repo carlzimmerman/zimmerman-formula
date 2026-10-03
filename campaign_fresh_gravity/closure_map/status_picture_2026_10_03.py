@@ -26,8 +26,9 @@ groups = [
         ("Local a0 from MeerKAT", "PASS", "0.9-1.4e-10, matches SPARC · CFG301/309"),
         ("Weak lensing (KiDS)", "PASS", "with bound-only switch"),
         ("Clusters, Bullet Cluster", "PASS", "needs the cold mass"),
-        ("Milky Way ultra-faint dwarfs", "FAIL", "3.5-3.9 sigma · CFG259/286"),
-        ("Massive ellipticals (SLUGGS)", "FAIL", "4.0 sigma · CFG55"),
+        ("Andromeda + Local Volume dwarfs", "PASS", "law alone, native inputs · CFG313"),
+        ("Milky Way ultra-faint dwarfs", "FAIL", "+3.8 sigma, native inputs · CFG313"),
+        ("Massive ellipticals (SLUGGS)", "FAIL", "+4.0 sigma, native inputs · CFG313"),
     ]),
     ("Does a0 change over cosmic time?", [
         ("Constant a0 vs a0 ~ H(z)", "UNDEC", "calibration wall · PAPER38"),
