@@ -294,3 +294,4 @@ both a₀ footings; κ = ½ fitted; nothing here says the theory is closed. Each
 | CFG314 | (orchestrator) DES/DESI/JWST scoping: crispiest = the KiDS early/late split re-test with DESI spectroscopic lenses; a₀(z) NOT POSSIBLE on all three. Done. | ef469ca30 |
 | CFG315 | (orchestrator, owner "yeah do both") DESI DR1 lensing measurements (Heydenreich+25): cross-survey small-scale consistency, the galaxy-scale RAR, the law. In progress. | — |
 | CFG316 | (orchestrator, owner "yeah do both") Downloads (KiDS shear resume, DESI BGS, CIGALE masses) + a DRAFT of the DESI-lens early/late split lane. In progress. | — |
+| CFG317 | (orchestrator, owner "figure this out") Collisionless retention: the cold mass is set by ORIGINAL baryons, and baryon loss (reionization for UFDs, AGN for ellipticals) is measured independently (metallicity yields, hot-gas deficits) → does it predict the needed cold mass? In progress. | — |

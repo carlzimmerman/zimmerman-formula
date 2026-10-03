@@ -45,3 +45,7 @@
   - Every earlier failure becomes a gate: GC amount free; DBI P(k) 18–300×; L374 shell crossing; the μ-pincer; CFG243/245.
   - A Boltzmann (CAMB) row scores the owner's question directly: dark energy converting to cold dust at z_seed = 1100 (recombination) versus earlier seedings.
   - Criteria frozen first.
+- **Owner-directed (2026-10-03): "figure this out" (the two red tiles and the cold-mass amount).** This launched CFG317.
+  - **The hypothesis:** collisionless cold mass keeps its collapse mass, which is set by the system's original baryons. The law sees only today's baryons.
+  - **The test:** the needed retention factor against independent, non-dynamical baryon-loss measures (metallicity yields for dwarfs; hot-gas deficits for ellipticals); sign, correlation and re-score frozen first.
+  - **κ = ½:** no new route; the CFG263/264 standing applies.
