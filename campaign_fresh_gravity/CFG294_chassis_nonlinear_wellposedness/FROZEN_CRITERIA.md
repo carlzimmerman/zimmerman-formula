@@ -332,3 +332,41 @@ cross on W_rec, uniformly in (N > 0, N^i, gamma > 0) and in the direction of k.
 - Literature quotations came through summarised abstract pages and are PROVISIONAL. The results here do not depend on
   their wording; every algebraic statement is computed.
 - No personal names or home paths in any file. The orchestrator re-runs and commits the lane.
+
+---
+
+## Appended 2026-10-02, after the run (the frozen text above is unchanged)
+
+Eight disclosures. None of them changes a test or the decision rule.
+
+1. **S1c item 4.** det P_red(lambda) was certified through the companion linearisation, det P_red = det(A) det(lambda - M).
+   - det A != 0 was checked exactly.
+   - det(lambda - M) was compared exactly with [(lambda - nu)^2 - rho]^8 [(lambda - nu)^2 - c_S^2 rho].
+   - The identity is equivalent to the frozen one, and avoids a 9 x 9 polynomial determinant per case.
+2. **S2c.** The denominators of H(khat = z) are alpha, 2 alpha - 1, alpha - 2, c_2 and 2 + 3 c_2.
+   - The factor 2 + 3 c_2 was not among the S1d loci. Its zero, c_2 = -2/3, is the pole of c_S^2, and it misses W_rec.
+   - No (c_S^2 - 1) factor survives. This is a finding, reported as found.
+3. **The crossing (MUTATE and the normal-run preview).** Approaching c_S = 1:
+   - the family projectors stay bounded (||P_j||_G ≈ 1.30) and converge;
+   - the four-projector H has a finite limit that still symmetrises M at the crossing (residual 9e-9 at distance 1e-8);
+   - that limit differs from the merged-eigenvalue construction by 1.54 in relative norm. The frozen text asked for this
+     jump to be reported, and it is.
+
+   The S2 flag is the vanishing projector denominator, as frozen. Reading as found: the crossing defeats Kreiss's
+   constant-multiplicity hypothesis and the Lagrange formula, not the existence of a continuous symmetriser.
+4. **K4a.** M_1 and M_2 come from the closed-form maximiser t^2 = (m + sqrt(m^2 + 16))/4, cross-checked on a grid. This
+   replaced mpmath's findroot, which failed to converge in the first debug run.
+5. **S4e under MUTATE.** AM6 cannot be certified once S1 fails, so the S4e check fails in the MUTATE run as well. This is
+   an expected consequence of the crossing, not a separate defect.
+6. **S4c (Ham), item (c).** "Null space exactly 1-dimensional" was implemented as follows: the smallest |eigenvalue| of
+   L - lambda_1 is below 1e-8, and the second smallest exceeds 1e3 times it. The spectral gaps found (0.13 to 15.7) are
+   resolved with a wide margin.
+7. **S1b wording.** The printout labels the corner value as "c_S - 1 at the minimising corner". It is the minimum gap
+   when positive; under MUTATE it is negative, because the box then contains c_S < 1.
+8. **Debug runs.** Three debug runs, writing to a scratch directory, preceded the recorded runs. They corrected:
+   - a min/max slip in the S1d "nearest point" printout;
+   - the K4a root-finder;
+   - an S4e polynomial root-finder (now roots factor by factor);
+   - the crossing reading text and its convergence test (relative, geometric), together with item 3 above.
+
+   No criterion, threshold or decision rule was changed.

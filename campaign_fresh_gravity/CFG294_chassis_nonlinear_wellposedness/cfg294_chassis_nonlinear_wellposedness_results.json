@@ -1,0 +1,3284 @@
+{
+ "lane": "CFG294",
+ "mutate": false,
+ "frozen_criteria_commit": "2821be492",
+ "checks": {
+  "S1a constant multiplicity, symbolic: every helicity block of the lapse-reduced F2a symbol has char. polynomial (lambda^2-1)^m (lambda^2-c_S^2)^n and satisfies its minimal-polynomial identity identically in (alpha, c_2) at beta = 0 (semisimple wherever defined and c_S^2 != 0, 1; families {+-1} mult 8 and {+-c_S} mult 1 in the full system)": {
+   "ok": true,
+   "measured": "blocks ['scalar', 'vector1', 'vector2', 'tensor+', 'tensorx']; all identities True; off-block entries none",
+   "load_bearing": true
+  },
+  "S1b the families never cross on W_P1 or W_rec: the rigorous interval lower bound of c_S^2 exceeds 1": {
+   "ok": true,
+   "measured": "W_rec: c_S^2 >= 196988 (c_S - 1 at the minimising corner = 442.833); W_P1: c_S^2 >= 2.25312e+06 (c_S - 1 there = 1500.04)",
+   "load_bearing": true
+  },
+  "S1c constant multiplicity, exact uniformity: at 18 points x 24 directions (aligned) and 6 general frozen backgrounds x 3 corners x 4 k, the lapse elimination is valid (P_00,00 lambda-free = (2 alpha-1) sqrt(gamma)|k|^2_gamma/(4N^3), P_0r linear in lambda, det A != 0), det P_red = const [(lambda-nu)^2-rho]^8 [(lambda-nu)^2-c_S^2 rho] and ((M-nu)^2-rho)((M-nu)^2-c_S^2 rho) = 0 exactly with c_S^2 != 0, 1": {
+   "ok": true,
+   "measured": "set 1: 18/18 points; set 2: 72/72 cases",
+   "load_bearing": true
+  },
+  "S2a the explicit symmetriser H = Sum_j P_j^T G P_j: exact H = H^T, H M symmetric (exactly), H positive definite (exact LDL pivots > 0), lambda_min(H) >= 1/4 in the Frobenius metric, kappa(H) <= 4 Sum||P_j||^2, at every S1c case": {
+   "ok": true,
+   "measured": "set 1 18/18 points, set 2 72/72; lambda_min >= 0.4181; kappa(H) 3.2454e+05 .. 1.9650e+12",
+   "load_bearing": true
+  },
+  "S1d every degeneracy locus misses W_rec (alpha = 0, alpha = 1/2, c_S = 1, c_S = 0)": {
+   "ok": true,
+   "measured": "{'alpha = 0 (det A = 0, minimal Horava)': 9.62405e-14, 'alpha = 1/2 (F2a lapse coefficient (2 alpha - 1)/4 = 0, gauge artefact)': 0.4999999968, 'c_S^2 = 1 (alpha = c_2/(1 + 2 c_2))': 0.0006301585900149151, 'c_S^2 = 0 (c_2 = 0)': 0.000630957, 'c_S^2 = 0 (alpha = 2)': 1.9999999968}",
+   "load_bearing": true
+  },
+  "S2b dense directions: at every point, 500 random unit directions give H symmetric, positive definite and H M symmetric (relative 1e-25) with a direction-independent kappa(H) (relative 1e-20)": {
+   "ok": true,
+   "measured": "18/18 points",
+   "load_bearing": true
+  },
+  "S2c the symmetriser is a rational, hence real-analytic, function of (alpha, c_2, background, khat): at khat = z its denominators factor into polynomials with no zero on W_rec, and H M is symmetric identically": {
+   "ok": true,
+   "measured": "5 factors, all non-vanishing on W_rec: True; identities True",
+   "load_bearing": true
+  },
+  "S2d (finding) the canonical Lagrangian energy is definite (A definite, C of the opposite definiteness), i.e. HKM's positive-energy hypothesis holds directly": {
+   "ok": false,
+   "measured": "[((6, 3), (3, 6))]",
+   "load_bearing": false
+  },
+  "S3/K1 the F2a principal coefficients are rational in (g, N, sqrt det gamma) with denominators only powers of N and det gamma (smooth on O = {N > 0, gamma > 0}); the lapse coefficient is (2 alpha - 1) sqrt(gamma) |k|^2_gamma / (4 N^3) symbolically": {
+   "ok": true,
+   "measured": "denominators ['N', 'g11*g22 - g12**2']; P_00,00 formula True",
+   "load_bearing": true
+  },
+  "S3/K4a the MOND/filter block is a bounded lower-order operator wherever the filtered field is non-zero, with the explicit bound ||T u||_{H^{r+m}} <= C_max(y_min) M_m(xi) ||u||_{H^r}: M_0 = 1/(e xi^2) (sympy), M_1, M_2 finite; C_max(y_min) = C_T(y_min) ~ y_min^(-1/2) diverges only at zero field": {
+   "ok": true,
+   "measured": "M_0 = exp(-1)/xi**2; M_1 = 0.5374/xi^3-scaling, M_2 = 0.8400; C_max sqrt(y_min) -> 0.9995",
+   "load_bearing": true
+  },
+  "S3/K4b the C-H lapse derivative on the U-equation shell is H_CH = 2|D chi|^2 + 2 alpha_M^2 q_b - lambda_0 (chi = U - ln N, D.(N D chi) = -N lambda_0/4): no second derivative of N survives, so the C-H sector enters the lapse equation at lower order": {
+   "ok": true,
+   "measured": "product rule True; shell identity True",
+   "load_bearing": true
+  },
+  "S3/K4c nu_mono's splice at y* is C^{1,1} and not C^2 (C_T, C_L continuous; dC_L/dy jumps), so C_T(y(x)) is H^{5/2-eps} (Fourier envelope ~ k^-3) and the C-H stress P_ij ~ C_T w w is in H^{s-1} only for s < 7/2: admissible s in (5/2, 7/2)": {
+   "ok": true,
+   "measured": "dC_L/dy -0.0361 -> -0.0014; slope nu_mono -2.983 vs nu_RAR control -0.206",
+   "load_bearing": true
+  },
+  "S3/K4d (disclosure) on a closed leaf the zero-field set Z_0 = {D S U = 0} is non-empty for single-valued U, so 'data away from zero-field regions' needs U with non-trivial periods (D U closed, not exact) or the isolated-zero regularity (ASSUMED)": {
+   "ok": true,
+   "measured": "critical point found: |D S U| = 6.4e-18 vs scale 1.5e-02",
+   "load_bearing": false
+  },
+  "S4a the nonlinear lapse equation is derived from the chassis action: the alpha-term variation, the w = sqrt N substitution, the kinetic variation, the FLRW reduction (G_cos/G = 1/(1 + 3c_2/2), L340's 1.5 c_2), and the linearisation reproduces CFG292's lapse coefficients alpha/2 and (2 alpha - 1)/4": {
+   "ok": true,
+   "measured": "(i) True (ii) True (iii) True (iv) True/True/True (v) True/True/True; K4b shell True",
+   "load_bearing": true
+  },
+  "S4b the lapse operators are uniformly elliptic on W_rec: physical 4 alpha_c |k|^2_gamma (alpha_c >= alpha_min > 0), F2a (2 alpha_c - 1) sqrt(gamma)|k|^2_gamma/(4 N^3) (alpha_c != 1/2; S1c/K1 on general backgrounds), joint (N, chi) system": {
+   "ok": true,
+   "measured": "4 alpha_c >= 3.850e-13; |2 alpha_c - 1|/4 >= 0.250000",
+   "load_bearing": true
+  },
+  "S4c(Ham) in Hamiltonian variables the lapse operator -4 alpha Delta + V has, for every sign-indefinite V tried, a simple lowest eigenvalue with a one-signed ground state, a 1-dim null space after the global shift, and a unique solution once <w> is fixed: kernel = the tau-relabelling mode, no sign condition; solvability = the global constraint lambda_1 = 0": {
+   "ok": true,
+   "measured": "9/9 cases",
+   "load_bearing": true
+  },
+  "S4c(Lag) the F2a lapse operator (velocities fixed) on Bianchi-I flat leaves is (alpha_c - 1/2)|k|^2_gamma + W with W = -2 Lambda - 16 pi G V(phi) - 8 pi G rho_rest (2 - 3u^2)/(1-u^2)^(3/2): the sign condition W <= 0 (W != 0) holds for FLRW + Lambda + comoving dust at every record c_2, so the kernel is trivial there; vacuum gives W = 0 (relabelling mode)": {
+   "ok": true,
+   "measured": "W derived and matched True; coefficients F2a alpha - 1/2, physical alpha; FLRW W < 0 at all points True",
+   "load_bearing": true
+  },
+  "S4d on solutions of the reduced F2a system the gauge vector obeys (g^{mu nu} xi_mu xi_nu) C_i = 0 at the symbol level, a strongly hyperbolic (light-cone, complete) constraint subsystem; spatial diffeomorphisms annihilate the EH + khronon symbol": {
+   "ok": true,
+   "measured": "[('aligned', True), ('background 0', True), ('background 1', True)]",
+   "load_bearing": true
+  },
+  "C-GRa GR in full harmonic gauge passes S1 and S2 (one family, multiplicity 10; explicit H PD, H M symmetric)": {
+   "ok": true,
+   "measured": "6/6 directions",
+   "load_bearing": true
+  },
+  "C-GRb GR in CMC + spatial harmonic gauge (Andersson-Moncrief) passes S1, S2, the lapse kernel (potential >= tau^2/3 > 0) and AM5 (no R in the lapse source after the Hamiltonian constraint); its maximal k = 0 sub-probe fails the trivial-kernel check": {
+   "ok": true,
+   "measured": "S1/S2 [True, True, True]; kernel True; sub-probe fails True; AM5 True",
+   "load_bearing": true
+  },
+  "C-H0 minimal Horava (alpha_c = 0) FAILS S1 and S2 (singular leading matrix, an eigenvalue at infinity) and the physical lapse ellipticity": {
+   "ok": true,
+   "measured": "det A = 0; companion False",
+   "load_bearing": true
+  },
+  "(preview) at the crossing c_S = 1 the constant-multiplicity family split fails (mult(+1) = 9 instead of 8) and the projector symmetriser is flagged (its denominator 1 - c_S^2 vanishes); the jump of H across the crossing is reported": {
+   "ok": true,
+   "measured": "mult(+1) 9; family split holds False; S2 note 'projector denominator 1 - c_S^2 = 0: the two families merge, the Lagrange projectors are undefined'; ||H(c_S -> 1) - H_merged||/||H_merged|| = 1.538e+00; projector-norm growth 9.994e-01",
+   "load_bearing": false
+  },
+  "S4e the AM5 decision is computed: with the lapse frozen at principal order the characteristic polynomial differs from the lapse-eliminated one, so the khronon lapse is coupled at principal order and AM's elliptic-lower-order structure fails; the replacement (symbol-level elimination) is the system S1/S2 certified": {
+   "ok": true,
+   "measured": "AM5 fails True; frozen-lapse scalar roots ['0-0.01775i', '0+0.01775i']",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "inputs": {
+   "points": [
+    [
+     "192481/2000000000000000000",
+     "630957/1000000000"
+    ],
+    [
+     "192481/2000000000000000000",
+     "99291/125000000"
+    ],
+    [
+     "192481/2000000000000000000",
+     "14699/10000000"
+    ],
+    [
+     "192481/2000000000000000000",
+     "158489/100000000"
+    ],
+    [
+     "192481/2000000000000000000",
+     "234153/100000000"
+    ],
+    [
+     "192481/2000000000000000000",
+     "29463/10000000"
+    ],
+    [
+     "192481/2000000000000000000",
+     "9111/1250000"
+    ],
+    [
+     "192481/2000000000000000000",
+     "666667/10000000"
+    ],
+    [
+     "192481/2000000000000000000",
+     "1/10"
+    ],
+    [
+     "1/312500000",
+     "630957/1000000000"
+    ],
+    [
+     "1/312500000",
+     "99291/125000000"
+    ],
+    [
+     "1/312500000",
+     "14699/10000000"
+    ],
+    [
+     "1/312500000",
+     "158489/100000000"
+    ],
+    [
+     "1/312500000",
+     "234153/100000000"
+    ],
+    [
+     "1/312500000",
+     "29463/10000000"
+    ],
+    [
+     "1/312500000",
+     "9111/1250000"
+    ],
+    [
+     "1/312500000",
+     "666667/10000000"
+    ],
+    [
+     "1/312500000",
+     "1/10"
+    ]
+   ],
+   "W_rec": [
+    "192481/2000000000000000000",
+    "1/312500000",
+    "630957/1000000000",
+    "1/10"
+   ],
+   "W_P1": [
+    "192481/2000000000000000000",
+    "1/312500000",
+    "9111/1250000",
+    "666667/10000000"
+   ]
+  },
+  "S1a": {
+   "scalar": {
+    "charpoly": "(lambda - 1)**2*(lambda + 1)**2*(3*alpha*c_2*lambda**2 + alpha*c_2 + 2*alpha*lambda**2 - 2*c_2)/(alpha*(3*c_2 + 2))",
+    "charpoly_ok": true,
+    "minpoly_ok": true,
+    "deg_le_2": true,
+    "M_denominators": [
+     "2*alpha - 1",
+     "3*c_2 + 2",
+     "alpha"
+    ]
+   },
+   "vector1": {
+    "charpoly": "(lambda - 1)**2*(lambda + 1)**2",
+    "charpoly_ok": true,
+    "minpoly_ok": true,
+    "deg_le_2": true,
+    "M_denominators": []
+   },
+   "vector2": {
+    "charpoly": "(lambda - 1)**2*(lambda + 1)**2",
+    "charpoly_ok": true,
+    "minpoly_ok": true,
+    "deg_le_2": true,
+    "M_denominators": []
+   },
+   "tensor+": {
+    "charpoly": "(lambda - 1)*(lambda + 1)",
+    "charpoly_ok": true,
+    "minpoly_ok": true,
+    "deg_le_2": true,
+    "M_denominators": []
+   },
+   "tensorx": {
+    "charpoly": "(lambda - 1)*(lambda + 1)",
+    "charpoly_ok": true,
+    "minpoly_ok": true,
+    "deg_le_2": true,
+    "M_denominators": []
+   }
+  },
+  "S1b": {
+   "W_P1": {
+    "cs2_interval_lower": 2253116.2260331344,
+    "cs2_interval_upper": 629735798902.3936,
+    "corner_cs2_exact": "5694374990889/2527333",
+    "cS_min": 1501.038382598238,
+    "gap_min": 1500.038382598238,
+    "eig_separation_min_units_sqrt_rho": 2.0,
+    "monotone": true
+   },
+   "W_rec": {
+    "cs2_interval_lower": 196987.62610211773,
+    "cs2_interval_upper": 903533561641.162,
+    "corner_cs2_exact": "394348124369043/2001892871",
+    "cS_min": 443.8328808257875,
+    "gap_min": 442.8328808257875,
+    "eig_separation_min_units_sqrt_rho": 2.0,
+    "monotone": true
+   }
+  },
+  "S1c_set1": [
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "630957/1000000000",
+    "cS": 80931.11568744745,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.41808072285137315,
+    "proj_resid": 3.528884656293602e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 10791089360.417871,
+    "kappa_max": 10791089360.417871,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "99291/125000000",
+    "cS": 90795.1029346339,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.4180807228411389,
+    "proj_resid": 3.676356537270369e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 13588506007.877924,
+    "kappa_max": 13588506007.877924,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "14699/10000000",
+    "cS": 123448.75364055888,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.4180807228229727,
+    "proj_resid": 2.6727647100926514e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 25170913585.61728,
+    "kappa_max": 25170913585.61728,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "158489/100000000",
+    "cS": 128175.49644240714,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.418080722821423,
+    "proj_resid": 2.839812504472958e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 27144700361.138973,
+    "kappa_max": 27144700361.138973,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "234153/100000000",
+    "cS": 155707.51689857594,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.41808072281502173,
+    "proj_resid": 2.6727647100921956e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 40149220041.22262,
+    "kappa_max": 40149220041.22262,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "29463/10000000",
+    "cS": 174583.0154846617,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.41808072281226955,
+    "proj_resid": 2.6727647100921956e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 50564622398.39506,
+    "kappa_max": 50564622398.39506,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "9111/1250000",
+    "cS": 273708.22722131846,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.41808072280592157,
+    "proj_resid": 2.6727647100921956e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 125902160202.30214,
+    "kappa_max": 125902160202.30214,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "666667/10000000",
+    "cS": 793558.9448190938,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.4180807228020951,
+    "proj_resid": 3.591527579186388e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 1253015235493.7158,
+    "kappa_max": 1253015235493.7158,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "1/10",
+    "cS": 950543.824156026,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.4180807228019431,
+    "proj_resid": 4.0091470651382935e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 1964954638411.8972,
+    "kappa_max": 1964954638411.8972,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "630957/1000000000",
+    "cS": 443.8328808257875,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.4180823775330942,
+    "proj_resid": 2.756288607282577e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 324544.96427695337,
+    "kappa_max": 324544.96427695337,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "99291/125000000",
+    "cS": 497.92779647300415,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.41808203724409854,
+    "proj_resid": 3.00686029885372e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 408677.7089815917,
+    "kappa_max": 408677.7089815917,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "14699/10000000",
+    "cS": 677.0030969823921,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.41808143321871,
+    "proj_resid": 3.675051476376769e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 757020.4346582539,
+    "kappa_max": 757020.4346582539,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "158489/100000000",
+    "cS": 702.9249424536544,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.41808138169090786,
+    "proj_resid": 3.6776615981639684e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 816382.3817051577,
+    "kappa_max": 816382.3817051577,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "234153/100000000",
+    "cS": 853.9128023171901,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.41808116884983565,
+    "proj_resid": 2.756288607282577e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 1207495.3520683188,
+    "kappa_max": 1207495.3520683188,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "29463/10000000",
+    "cS": 957.4275857638848,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.418081077339439,
+    "proj_resid": 2.672764717559814e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 1520740.2126092103,
+    "kappa_max": 1520740.2126092103,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "9111/1250000",
+    "cS": 1501.038382598238,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.41808086626941543,
+    "proj_resid": 3.675051476376769e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 3786528.4862303915,
+    "kappa_max": 3786528.4862303915,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "666667/10000000",
+    "cS": 4351.942384488325,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.4180807390379038,
+    "proj_resid": 3.5184441691448044e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 37684631.17616208,
+    "kappa_max": 37684631.17616208,
+    "kappa_spread": 0.0
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "1/10",
+    "cS": 5212.860347256581,
+    "all_mult_8811": true,
+    "all_lapse_ok": true,
+    "all_A_inv": true,
+    "all_H_ok": true,
+    "H_notes": [],
+    "lam_min_min": 0.41808073398326717,
+    "proj_resid": 3.675051476376769e-51,
+    "mult_plus1": [
+     8
+    ],
+    "rank_D2_minus_rho": [],
+    "kappa_min": 59096320.52756558,
+    "kappa_max": 59096320.52756558,
+    "kappa_spread": 0.0
+   }
+  ],
+  "S1c_set2": [
+   {
+    "bg": 0,
+    "point": 8,
+    "k": [
+     "3/7",
+     "0",
+     "3/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-23666666666662111283/27479200000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.4600926935845025,
+    "kappa": 546384428670.35077,
+    "bound": 1005549934095.0289,
+    "proj_sum_resid": 3.503274244185936e-46
+   },
+   {
+    "bg": 0,
+    "point": 8,
+    "k": [
+     "0",
+     "6/7",
+     "-5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-162333333333302087251/46371150000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.4129622172979149,
+    "kappa": 1466195139408.3018,
+    "bound": 2421932783060.249,
+    "proj_sum_resid": 3.503256495124046e-46
+   },
+   {
+    "bg": 0,
+    "point": 8,
+    "k": [
+     "-1/7",
+     "-5/7",
+     "-3/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-2663666666666153961443/1483876800000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.43057094308025473,
+    "kappa": 845586687059.8734,
+    "bound": 1456340229228.8,
+    "proj_sum_resid": 7.006494184442388e-46
+   },
+   {
+    "bg": 0,
+    "point": 8,
+    "k": [
+     "-5/7",
+     "-1/7",
+     "-1"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-5423666666665622713883/1483876800000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.4197647929098769,
+    "kappa": 1574313892193.202,
+    "bound": 2643366179739.403,
+    "proj_sum_resid": 7.006522278441806e-46
+   },
+   {
+    "bg": 0,
+    "point": 9,
+    "k": [
+     "-2/7",
+     "6/7",
+     "-6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-5248842559/1288087500",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.41271198094896105,
+    "kappa": 277211.5607177771,
+    "bound": 457648.07580348133,
+    "proj_sum_resid": 2.1485408327811976e-49
+   },
+   {
+    "bg": 0,
+    "point": 9,
+    "k": [
+     "-4/7",
+     "-2/7",
+     "-6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-17771990627/6440437500",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.4279656011763088,
+    "kappa": 203716.2415860297,
+    "bound": 348748.0947280986,
+    "proj_sum_resid": 1.3218061311999562e-49
+   },
+   {
+    "bg": 0,
+    "point": 9,
+    "k": [
+     "-2/7",
+     "-3/7",
+     "-5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-16278935081/8587250000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.43789900973614426,
+    "kappa": 149212.2984835609,
+    "bound": 261374.6242603975,
+    "proj_sum_resid": 3.424496967894979e-49
+   },
+   {
+    "bg": 0,
+    "point": 9,
+    "k": [
+     "-2/7",
+     "-3/7",
+     "1"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-6255786997/1717450000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.41307136195513283,
+    "kappa": 259205.3877039859,
+    "bound": 428295.97601684264,
+    "proj_sum_resid": 1.5164464188684397e-49
+   },
+   {
+    "bg": 0,
+    "point": 16,
+    "k": [
+     "-1/7",
+     "5/7",
+     "-1/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-36290509027/25761750000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.4331496800284433,
+    "kappa": 13412671.082857773,
+    "bound": 23238792.61574305,
+    "proj_sum_resid": 1.3703780901792412e-48
+   },
+   {
+    "bg": 0,
+    "point": 16,
+    "k": [
+     "-4/7",
+     "-6/7",
+     "-4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-1105324067/306687500",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.4130155810914577,
+    "kappa": 29161212.29609157,
+    "bound": 48176154.61103166,
+    "proj_sum_resid": 2.7372561727234067e-48
+   },
+   {
+    "bg": 0,
+    "point": 16,
+    "k": [
+     "5/7",
+     "4/7",
+     "-6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-30445601657/6440437500",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.40479085169594986,
+    "kappa": 37885747.961062275,
+    "bound": 61343231.30108069,
+    "proj_sum_resid": 1.7111764688227283e-48
+   },
+   {
+    "bg": 0,
+    "point": 16,
+    "k": [
+     "5/7",
+     "-6/7",
+     "-6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-29751157217/6440437500",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.4200827124287348,
+    "kappa": 34360314.189267166,
+    "bound": 57736708.17764843,
+    "proj_sum_resid": 4.105775285226021e-48
+   },
+   {
+    "bg": 1,
+    "point": 8,
+    "k": [
+     "2/7",
+     "-3/7",
+     "3/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-333333333333269173/8661452800000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.402640624697978,
+    "kappa": 2159200519836.1343,
+    "bound": 3477527384633.4517,
+    "proj_sum_resid": 1.0509768465084141e-45
+   },
+   {
+    "bg": 1,
+    "point": 8,
+    "k": [
+     "-5/7",
+     "2/7",
+     "-2/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-22999999999995572937/384859475000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.38791246402978735,
+    "kappa": 2953429539045.325,
+    "bound": 4582688519332.694,
+    "proj_sum_resid": 7.006532017055697e-46
+   },
+   {
+    "bg": 1,
+    "point": 8,
+    "k": [
+     "-4/7",
+     "4/7",
+     "-1"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-3000999999999422364519/19704805120000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.36605549055266773,
+    "kappa": 6332036120134.109,
+    "bound": 9271506352633.643,
+    "proj_sum_resid": 2.802597036626188e-45
+   },
+   {
+    "bg": 1,
+    "point": 8,
+    "k": [
+     "-5/7",
+     "-5/7",
+     "-4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-763666666666519675343/6157751600000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3654664326295674,
+    "kappa": 5582406678449.076,
+    "bound": 8160729017060.774,
+    "proj_sum_resid": 1.0509761994814278e-45
+   },
+   {
+    "bg": 1,
+    "point": 9,
+    "k": [
+     "6/7",
+     "1/7",
+     "6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-36249999768/240537171875",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3673666359635971,
+    "kappa": 1030145.9718107503,
+    "bound": 1513785.9499877696,
+    "proj_sum_resid": 3.664856723057854e-49
+   },
+   {
+    "bg": 1,
+    "point": 9,
+    "k": [
+     "-6/7",
+     "-6/7",
+     "-2/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-491197913523/3848594750000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.36035328425091057,
+    "kappa": 990885.1320741411,
+    "bound": 1428295.6523235235,
+    "proj_sum_resid": 6.848976518117821e-49
+   },
+   {
+    "bg": 1,
+    "point": 9,
+    "k": [
+     "0",
+     "5/7",
+     "-1/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-53177082993/1399489000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3983238912191832,
+    "kappa": 382986.1988805616,
+    "bound": 610224.0367174585,
+    "proj_sum_resid": 1.9279158049609836e-49
+   },
+   {
+    "bg": 1,
+    "point": 9,
+    "k": [
+     "4/7",
+     "4/7",
+     "1/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-33281249787/615775160000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3846487475983413,
+    "kappa": 494389.28811928583,
+    "bound": 760680.4550121276,
+    "proj_sum_resid": 2.186638640906856e-49
+   },
+   {
+    "bg": 1,
+    "point": 16,
+    "k": [
+     "-4/7",
+     "-1/7",
+     "6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-18541666548/240537171875",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3732124883414417,
+    "kappa": 75012900.99730591,
+    "bound": 111983023.3213856,
+    "proj_sum_resid": 4.448158887181073e-48
+   },
+   {
+    "bg": 1,
+    "point": 16,
+    "k": [
+     "-1/7",
+     "-6/7",
+     "5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-126093749193/1399489000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3723943873313413,
+    "kappa": 81554819.87921588,
+    "bound": 121482247.07530633,
+    "proj_sum_resid": 4.1086833614002675e-48
+   },
+   {
+    "bg": 1,
+    "point": 16,
+    "k": [
+     "-1/7",
+     "-4/7",
+     "6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-78697916163/962148687500",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.37462782267026534,
+    "kappa": 76014181.84950627,
+    "bound": 113908127.21828447,
+    "proj_sum_resid": 2.738513080183664e-48
+   },
+   {
+    "bg": 1,
+    "point": 16,
+    "k": [
+     "-1/7",
+     "-1",
+     "-6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-606197912787/3848594750000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.36121161798394485,
+    "kappa": 131004847.83685032,
+    "bound": 189281914.33741435,
+    "proj_sum_resid": 4.448917687372752e-48
+   },
+   {
+    "bg": 2,
+    "point": 8,
+    "k": [
+     "-6/7",
+     "1/7",
+     "-3/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-21190999999995921135129/274715120960000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3488406667055992,
+    "kappa": 7144443962521.1045,
+    "bound": 9969090380528.71,
+    "proj_sum_resid": 1.5764613558381893e-45
+   },
+   {
+    "bg": 2,
+    "point": 8,
+    "k": [
+     "-2/7",
+     "-1",
+     "6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-6416999999998764849423/68678780240000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.34003255948940253,
+    "kappa": 9936376149618.787,
+    "bound": 13514765656843.826,
+    "proj_sum_resid": 1.401299848284444e-45
+   },
+   {
+    "bg": 2,
+    "point": 8,
+    "k": [
+     "2/7",
+     "6/7",
+     "-6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-1090999999999790003229/13735756048000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.34472145085123923,
+    "kappa": 8609225213119.411,
+    "bound": 11871138424711.111,
+    "proj_sum_resid": 1.0509758973512282e-45
+   },
+   {
+    "bg": 2,
+    "point": 8,
+    "k": [
+     "-3/7",
+     "2/7",
+     "-5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-13246999999997450204193/274715120960000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3603422411348259,
+    "kappa": 5745674759968.522,
+    "bound": 8281637279376.522,
+    "proj_sum_resid": 1.2261368516124636e-45
+   },
+   {
+    "bg": 2,
+    "point": 9,
+    "k": [
+     "1",
+     "1",
+     "-4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-1249999992/7821471875",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3290090907995616,
+    "kappa": 2288577.880861978,
+    "bound": 3011887.2068275516,
+    "proj_sum_resid": 3.4244810250276785e-49
+   },
+   {
+    "bg": 2,
+    "point": 9,
+    "k": [
+     "3/7",
+     "-4/7",
+     "-5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-2992343730849/42924237650000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3542819336115663,
+    "kappa": 953234.8712560097,
+    "bound": 1350877.8222180163,
+    "proj_sum_resid": 6.842279604594336e-49
+   },
+   {
+    "bg": 2,
+    "point": 9,
+    "k": [
+     "5/7",
+     "-4/7",
+     "4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-1642656239487/21462118825000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.34533650301213814,
+    "kappa": 1406275.8956002016,
+    "bound": 1942577.2466056552,
+    "proj_sum_resid": 6.848961496455918e-49
+   },
+   {
+    "bg": 2,
+    "point": 9,
+    "k": [
+     "5/7",
+     "4/7",
+     "3/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-3756093725961/42924237650000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3512047661210803,
+    "kappa": 1137304.3158372135,
+    "bound": 1597729.7096307077,
+    "proj_sum_resid": 6.848965859934662e-49
+   },
+   {
+    "bg": 2,
+    "point": 16,
+    "k": [
+     "-6/7",
+     "1",
+     "0"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-179843748849/1533008487500",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3341628203042652,
+    "kappa": 215951632.62294668,
+    "bound": 288652054.86731356,
+    "proj_sum_resid": 1.094775344369446e-47
+   },
+   {
+    "bg": 2,
+    "point": 16,
+    "k": [
+     "-2/7",
+     "4/7",
+     "1/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-242031248451/8584847530000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3833079787146998,
+    "kappa": 62664606.63356294,
+    "bound": 96079391.58073583,
+    "proj_sum_resid": 4.1091186549665e-48
+   },
+   {
+    "bg": 2,
+    "point": 16,
+    "k": [
+     "5/7",
+     "-1",
+     "-4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-680781245643/5365529706250",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.33680892306746457,
+    "kappa": 199071181.87151673,
+    "bound": 268195832.30047488,
+    "proj_sum_resid": 5.475002943835977e-48
+   },
+   {
+    "bg": 2,
+    "point": 16,
+    "k": [
+     "0",
+     "-3/7",
+     "-6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-23906249847/383252121875",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3575297299055519,
+    "kappa": 101907426.62377335,
+    "bound": 145739759.97762358,
+    "proj_sum_resid": 1.37183681259382e-48
+   },
+   {
+    "bg": 3,
+    "point": 8,
+    "k": [
+     "-3/7",
+     "6/7",
+     "-2/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-19630999999996221405489/11868431120000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.41061941463665164,
+    "kappa": 1612271342748.4158,
+    "bound": 2648119659992.5225,
+    "proj_sum_resid": 3.503254280634239e-46
+   },
+   {
+    "bg": 3,
+    "point": 8,
+    "k": [
+     "-1",
+     "-5/7",
+     "-1/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-3908999999999247591771/2967107780000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.41629761047816893,
+    "kappa": 1672007901067.9229,
+    "bound": 2784211575673.529,
+    "proj_sum_resid": 7.444429726401652e-46
+   },
+   {
+    "bg": 3,
+    "point": 8,
+    "k": [
+     "1/7",
+     "-1/7",
+     "4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-836999999999838893403/1695490160000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.446410165429392,
+    "kappa": 766232761320.9076,
+    "bound": 1368216374969.9634,
+    "proj_sum_resid": 4.379074927818849e-46
+   },
+   {
+    "bg": 3,
+    "point": 8,
+    "k": [
+     "-1",
+     "2/7",
+     "6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-29222999999994375127737/11868431120000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3968129229315096,
+    "kappa": 2642583819886.5513,
+    "bound": 4194445638656.414,
+    "proj_sum_resid": 1.1385558239278907e-45
+   },
+   {
+    "bg": 3,
+    "point": 9,
+    "k": [
+     "2/7",
+     "1",
+     "5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-3082968730269/1854442362500",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.4039127073602427,
+    "kappa": 331467.9939833278,
+    "bound": 535550.9641373937,
+    "proj_sum_resid": 3.429504622912389e-49
+   },
+   {
+    "bg": 3,
+    "point": 9,
+    "k": [
+     "-4/7",
+     "-3/7",
+     "6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-782187494994/463610590625",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.413193565401213,
+    "kappa": 300941.59083530895,
+    "bound": 497401.5068594169,
+    "proj_sum_resid": 1.075838127957949e-49
+   },
+   {
+    "bg": 3,
+    "point": 9,
+    "k": [
+     "2/7",
+     "-5/7",
+     "1/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-19218749877/19117962500",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.419726572818536,
+    "kappa": 178435.42286929258,
+    "bound": 299590.80784616945,
+    "proj_sum_resid": 8.589985294651022e-50
+   },
+   {
+    "bg": 3,
+    "point": 9,
+    "k": [
+     "1",
+     "6/7",
+     "1"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-1054843743249/463610590625",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.39624312457882,
+    "kappa": 444159.86731897196,
+    "bound": 703995.1330886617,
+    "proj_sum_resid": 3.4211588700142525e-49
+   },
+   {
+    "bg": 3,
+    "point": 16,
+    "k": [
+     "3/7",
+     "0",
+     "-3/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-44999999712/92722118125",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.44903757069372213,
+    "kappa": 14490639.78629478,
+    "bound": 26027381.930503756,
+    "proj_sum_resid": 2.741108138968225e-48
+   },
+   {
+    "bg": 3,
+    "point": 16,
+    "k": [
+     "0",
+     "-2/7",
+     "4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-278749998216/463610590625",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.4420775200133834,
+    "kappa": 15376382.578089543,
+    "bound": 27190226.56535275,
+    "proj_sum_resid": 1.3695717575414465e-48
+   },
+   {
+    "bg": 3,
+    "point": 16,
+    "k": [
+     "-5/7",
+     "5/7",
+     "-5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-43124999724/18544423625",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.39959467322867015,
+    "kappa": 45275445.84762513,
+    "bound": 72367321.71967302,
+    "proj_sum_resid": 4.1068574203078385e-48
+   },
+   {
+    "bg": 3,
+    "point": 16,
+    "k": [
+     "5/7",
+     "-3/7",
+     "1/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-478749996936/463610590625",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.4160940256117759,
+    "kappa": 23755284.60878422,
+    "bound": 39537742.787423655,
+    "proj_sum_resid": 2.0527250592994014e-48
+   },
+   {
+    "bg": 4,
+    "point": 8,
+    "k": [
+     "5/7",
+     "4/7",
+     "2/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-52999999999989798507/860518400000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3371152046597748,
+    "kappa": 9397411337300.832,
+    "bound": 12672040985017.193,
+    "proj_sum_resid": 1.4012993972740103e-45
+   },
+   {
+    "bg": 4,
+    "point": 8,
+    "k": [
+     "-1",
+     "-3/7",
+     "-4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-92999999999982099267/860518400000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3221961378448753,
+    "kappa": 14085821900275.488,
+    "bound": 18153589658597.94,
+    "proj_sum_resid": 1.0509771112232272e-45
+   },
+   {
+    "bg": 4,
+    "point": 8,
+    "k": [
+     "-6/7",
+     "-6/7",
+     "0"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-476999999999908186563/5378240000000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.32156016759149875,
+    "kappa": 12295186793327.305,
+    "bound": 15814569303366.734,
+    "proj_sum_resid": 7.006502756814701e-46
+   },
+   {
+    "bg": 4,
+    "point": 8,
+    "k": [
+     "5/7",
+     "-5/7",
+     "4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-15218999999997070631661/150590720000000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3222650169404178,
+    "kappa": 12441504477268.783,
+    "bound": 16037846604564.072,
+    "proj_sum_resid": 1.4013023836226335e-45
+   },
+   {
+    "bg": 4,
+    "point": 9,
+    "k": [
+     "4/7",
+     "4/7",
+     "5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-35781249771/367653125000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3271947297454476,
+    "kappa": 1951337.9214786827,
+    "bound": 2553905.900357671,
+    "proj_sum_resid": 6.86418131509633e-49
+   },
+   {
+    "bg": 4,
+    "point": 9,
+    "k": [
+     "2/7",
+     "2/7",
+     "1"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-95781249387/840350000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3275421483653811,
+    "kappa": 1928675.5247109893,
+    "bound": 2526926.202751384,
+    "proj_sum_resid": 6.847143272778634e-49
+   },
+   {
+    "bg": 4,
+    "point": 9,
+    "k": [
+     "0",
+     "-2/7",
+     "3/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-6406249959/367653125000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3890078905313758,
+    "kappa": 722698.1770984221,
+    "bound": 1124561.2062924355,
+    "proj_sum_resid": 6.876863979541802e-49
+   },
+   {
+    "bg": 4,
+    "point": 9,
+    "k": [
+     "4/7",
+     "-5/7",
+     "0"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-20468749869/235298000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3329758851612462,
+    "kappa": 1511346.275659636,
+    "bound": 2012998.3180639236,
+    "proj_sum_resid": 3.429653254404968e-49
+   },
+   {
+    "bg": 4,
+    "point": 16,
+    "k": [
+     "-1/7",
+     "5/7",
+     "-5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-59218749621/941192000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.33314771105609026,
+    "kappa": 168170791.1745441,
+    "bound": 224102891.32526386,
+    "proj_sum_resid": 3.0793940351532725e-48
+   },
+   {
+    "bg": 4,
+    "point": 16,
+    "k": [
+     "1",
+     "1",
+     "-1/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-2826718731909/23529800000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.31275774752597774,
+    "kappa": 291195193.44200957,
+    "bound": 364294263.49574697,
+    "proj_sum_resid": 5.476843569093788e-48
+   },
+   {
+    "bg": 4,
+    "point": 16,
+    "k": [
+     "3/7",
+     "3/7",
+     "5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-1840468738221/23529800000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3353713844745431,
+    "kappa": 180475202.3323622,
+    "bound": 242104904.97840717,
+    "proj_sum_resid": 5.475958934714088e-48
+   },
+   {
+    "bg": 4,
+    "point": 16,
+    "k": [
+     "-6/7",
+     "2/7",
+     "-1/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-459218747061/5882450000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.335471137956369,
+    "kappa": 174186095.51811552,
+    "bound": 233737659.91441017,
+    "proj_sum_resid": 4.10652288884913e-48
+   },
+   {
+    "bg": 5,
+    "point": 8,
+    "k": [
+     "5/7",
+     "-5/7",
+     "3/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-46333333333324415047/200874520000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.37754197645246185,
+    "kappa": 3961336689052.774,
+    "bound": 5982283531931.355,
+    "proj_sum_resid": 1.0509738909800856e-45
+   },
+   {
+    "bg": 5,
+    "point": 8,
+    "k": [
+     "-3/7",
+     "5/7",
+     "2/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-999999999999807519/5739272000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.39106521387290477,
+    "kappa": 2927974874620.999,
+    "bound": 4580116482247.26,
+    "proj_sum_resid": 5.25488683343891e-46
+   },
+   {
+    "bg": 5,
+    "point": 8,
+    "k": [
+     "3/7",
+     "2/7",
+     "4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-79666666666651332347/602623560000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.39647072480033035,
+    "kappa": 2438239772939.183,
+    "bound": 3866762760070.7476,
+    "proj_sum_resid": 1.0509749727824302e-45
+   },
+   {
+    "bg": 5,
+    "point": 8,
+    "k": [
+     "1",
+     "1",
+     "5/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-22333333333329034591/40174904000000000000",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3599772642533982,
+    "kappa": 8393412095086.955,
+    "bound": 12085750094988.0,
+    "proj_sum_resid": 7.006507943036155e-46
+   },
+   {
+    "bg": 5,
+    "point": 9,
+    "k": [
+     "-1",
+     "-1/7",
+     "1"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-12656249919/31386643750",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3725043017924723,
+    "kappa": 955996.2852750669,
+    "bound": 1424472.443442859,
+    "proj_sum_resid": 3.422004074572606e-49
+   },
+   {
+    "bg": 5,
+    "point": 9,
+    "k": [
+     "3/7",
+     "6/7",
+     "2/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-642361107/2853331250",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.38146407496586765,
+    "kappa": 609259.2793821399,
+    "bound": 929658.1967115008,
+    "proj_sum_resid": 6.84730006647762e-49
+   },
+   {
+    "bg": 5,
+    "point": 9,
+    "k": [
+     "0",
+     "0",
+     "-6/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-2499999984/15693321875",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3918191115489524,
+    "kappa": 458494.76298376906,
+    "bound": 718602.5388115977,
+    "proj_sum_resid": 3.452757296264354e-49
+   },
+   {
+    "bg": 5,
+    "point": 9,
+    "k": [
+     "4/7",
+     "-5/7",
+     "-1"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-6718749957/15693321875",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3723184201086035,
+    "kappa": 1014548.6373607394,
+    "bound": 1510961.7574410338,
+    "proj_sum_resid": 8.562891234817448e-49
+   },
+   {
+    "bg": 5,
+    "point": 16,
+    "k": [
+     "-4/7",
+     "-5/7",
+     "4/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-138888888/627732875",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.38099150859834224,
+    "kappa": 69907468.75560822,
+    "bound": 106536624.52474692,
+    "proj_sum_resid": 5.475921560140616e-48
+   },
+   {
+    "bg": 5,
+    "point": 16,
+    "k": [
+     "0",
+     "6/7",
+     "-1"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-5173611078/15693321875",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3683288898819084,
+    "kappa": 101210562.17512752,
+    "bound": 149115115.94530845,
+    "proj_sum_resid": 8.212779524884389e-48
+   },
+   {
+    "bg": 5,
+    "point": 16,
+    "k": [
+     "-1",
+     "-3/7",
+     "1/7"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-7239583287/31386643750",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.38095521764700224,
+    "kappa": 71896461.36159311,
+    "bound": 109557344.98295167,
+    "proj_sum_resid": 3.0796931372037324e-48
+   },
+   {
+    "bg": 5,
+    "point": 16,
+    "k": [
+     "-1/7",
+     "3/7",
+     "-1"
+    ],
+    "lapse_lambda_free": true,
+    "P0r_linear": true,
+    "p00": "-677083329/2853331250",
+    "p00_formula": true,
+    "A_invertible": true,
+    "charpoly": true,
+    "minpoly": true,
+    "families_distinct": true,
+    "mult_8811": true,
+    "mult_plus1": 8,
+    "H_note": "",
+    "H_sym": true,
+    "HD_sym": true,
+    "H_pd": true,
+    "lam_min": 0.3772824912892048,
+    "kappa": 76443351.87046663,
+    "bound": 115362969.90776795,
+    "proj_sum_resid": 4.45062426987716e-48
+   }
+  ],
+  "S2a": {
+   "kappa_min": 324544.96427695337,
+   "kappa_max": 1964954638411.8972
+  },
+  "S1d": {
+   "loci_distance": {
+    "alpha = 0 (det A = 0, minimal Horava)": 9.62405e-14,
+    "alpha = 1/2 (F2a lapse coefficient (2 alpha - 1)/4 = 0, gauge artefact)": 0.4999999968,
+    "c_S^2 = 1 (alpha = c_2/(1 + 2 c_2))": 0.0006301585900149151,
+    "c_S^2 = 0 (c_2 = 0)": 0.000630957,
+    "c_S^2 = 0 (alpha = 2)": 1.9999999968
+   },
+   "nearest_crossing_ratio": 5.07806098482147e-06
+  },
+  "S2b": {
+   "0": {
+    "sym_max": 0.0,
+    "hm_max": 1.70204801202903e-28,
+    "lam_min": 0.41808072285137315,
+    "kappa": 10791089360.417871,
+    "kappa_spread": 5.2919468493362825e-28,
+    "minpoly_resid_max": 9.883285197822764e-29,
+    "n": 500
+   },
+   "1": {
+    "sym_max": 0.0,
+    "hm_max": 1.6755811756090678e-28,
+    "lam_min": 0.4180807228411389,
+    "kappa": 13588506007.877924,
+    "kappa_spread": 5.437004353612071e-28,
+    "minpoly_resid_max": 9.263466083856249e-29,
+    "n": 500
+   },
+   "2": {
+    "sym_max": 0.0,
+    "hm_max": 1.884459299297449e-28,
+    "lam_min": 0.4180807228229727,
+    "kappa": 25170913585.61728,
+    "kappa_spread": 6.458248623410127e-28,
+    "minpoly_resid_max": 1.0517261393090831e-28,
+    "n": 500
+   },
+   "3": {
+    "sym_max": 0.0,
+    "hm_max": 2.0975014756455704e-28,
+    "lam_min": 0.418080722821423,
+    "kappa": 27144700361.138973,
+    "kappa_spread": 4.500666416667614e-28,
+    "minpoly_resid_max": 1.247781767103942e-28,
+    "n": 500
+   },
+   "4": {
+    "sym_max": 0.0,
+    "hm_max": 1.6897786165979956e-28,
+    "lam_min": 0.41808072281502173,
+    "kappa": 40149220041.22262,
+    "kappa_spread": 4.163612311767641e-28,
+    "minpoly_resid_max": 1.0501072595291355e-28,
+    "n": 500
+   },
+   "5": {
+    "sym_max": 0.0,
+    "hm_max": 1.9963380363441805e-28,
+    "lam_min": 0.41808072281226955,
+    "kappa": 50564622398.39506,
+    "kappa_spread": 4.281115503098177e-28,
+    "minpoly_resid_max": 1.0488625966643112e-28,
+    "n": 500
+   },
+   "6": {
+    "sym_max": 0.0,
+    "hm_max": 1.6544657480754712e-28,
+    "lam_min": 0.41808072280592157,
+    "kappa": 125902160202.30214,
+    "kappa_spread": 7.495509251777203e-28,
+    "minpoly_resid_max": 9.623020291338467e-29,
+    "n": 500
+   },
+   "7": {
+    "sym_max": 0.0,
+    "hm_max": 1.782061365281511e-28,
+    "lam_min": 0.4180807228020951,
+    "kappa": 1253015235493.7158,
+    "kappa_spread": 4.15806533979553e-28,
+    "minpoly_resid_max": 7.678356964131812e-29,
+    "n": 500
+   },
+   "8": {
+    "sym_max": 0.0,
+    "hm_max": 1.632264640431129e-28,
+    "lam_min": 0.4180807228019431,
+    "kappa": 1964954638411.8972,
+    "kappa_spread": 5.305774753776921e-28,
+    "minpoly_resid_max": 7.446893516237751e-29,
+    "n": 500
+   },
+   "9": {
+    "sym_max": 0.0,
+    "hm_max": 5.31389571080802e-33,
+    "lam_min": 0.4180823775330942,
+    "kappa": 324544.96427695337,
+    "kappa_spread": 1.7363297516780436e-32,
+    "minpoly_resid_max": 3.097097279797492e-33,
+    "n": 500
+   },
+   "10": {
+    "sym_max": 0.0,
+    "hm_max": 4.480810751223743e-33,
+    "lam_min": 0.41808203724409854,
+    "kappa": 408677.7089815917,
+    "kappa_spread": 1.0683259749709966e-32,
+    "minpoly_resid_max": 2.6203139842071747e-33,
+    "n": 500
+   },
+   "11": {
+    "sym_max": 0.0,
+    "hm_max": 5.502307112346928e-33,
+    "lam_min": 0.41808143321871,
+    "kappa": 757020.4346582539,
+    "kappa_spread": 1.733868346863481e-32,
+    "minpoly_resid_max": 2.900723012538992e-33,
+    "n": 500
+   },
+   "12": {
+    "sym_max": 0.0,
+    "hm_max": 5.213358770942128e-33,
+    "lam_min": 0.41808138169090786,
+    "kappa": 816382.3817051577,
+    "kappa_spread": 1.325044593485019e-32,
+    "minpoly_resid_max": 2.9536936896733696e-33,
+    "n": 500
+   },
+   "13": {
+    "sym_max": 0.0,
+    "hm_max": 5.1367394347169e-33,
+    "lam_min": 0.41808116884983565,
+    "kappa": 1207495.3520683188,
+    "kappa_spread": 1.282033095624257e-32,
+    "minpoly_resid_max": 3.0570142344442927e-33,
+    "n": 500
+   },
+   "14": {
+    "sym_max": 0.0,
+    "hm_max": 4.247879661426912e-33,
+    "lam_min": 0.418081077339439,
+    "kappa": 1520740.2126092103,
+    "kappa_spread": 1.2424446109103843e-32,
+    "minpoly_resid_max": 2.405984278688879e-33,
+    "n": 500
+   },
+   "15": {
+    "sym_max": 0.0,
+    "hm_max": 5.531977678224265e-33,
+    "lam_min": 0.41808086626941543,
+    "kappa": 3786528.4862303915,
+    "kappa_spread": 1.503645505326406e-32,
+    "minpoly_resid_max": 3.231951017528833e-33,
+    "n": 500
+   },
+   "16": {
+    "sym_max": 0.0,
+    "hm_max": 5.3473604905989365e-33,
+    "lam_min": 0.4180807390379038,
+    "kappa": 37684631.17616208,
+    "kappa_spread": 1.9164018922746993e-32,
+    "minpoly_resid_max": 2.0949720264814942e-33,
+    "n": 500
+   },
+   "17": {
+    "sym_max": 0.0,
+    "hm_max": 4.9567127196103156e-33,
+    "lam_min": 0.41808073398326717,
+    "kappa": 59096320.52756558,
+    "kappa_spread": 1.6244937942606059e-32,
+    "minpoly_resid_max": 1.884750022965427e-33,
+    "n": 500
+   }
+  },
+  "S2c": {
+   "denominators": {
+    "2*alpha - 1": true,
+    "3*c_2 + 2": true,
+    "alpha": true,
+    "alpha - 2": true,
+    "c_2": true
+   },
+   "identities": true
+  },
+  "S2d": [
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "630957/1000000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "99291/125000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "14699/10000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "158489/100000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "234153/100000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "29463/10000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "9111/1250000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "666667/10000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "192481/2000000000000000000",
+    "c2": "1/10",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "630957/1000000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "99291/125000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "14699/10000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "158489/100000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "234153/100000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "29463/10000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "9111/1250000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "666667/10000000",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   },
+   {
+    "alpha": "1/312500000",
+    "c2": "1/10",
+    "A_inertia(+,-)": [
+     6,
+     3
+    ],
+    "C_inertia(+,-)": [
+     3,
+     6
+    ]
+   }
+  ],
+  "K1": {
+   "denominators": [
+    "N",
+    "g11*g22 - g12**2"
+   ],
+   "p00_symbolic": true
+  },
+  "K4a": {
+   "M0": "exp(-1)/xi**2",
+   "M1": 0.5373788241732822,
+   "M2": 0.8399620946571751,
+   "Cmax": {
+    "0.1": {
+     "Cmax": 2.6885861577919585,
+     "Cmax_sqrt_ymin": 0.8502055944223448,
+     "argmax_is_ymin": true
+    },
+    "0.01": {
+     "Cmax": 9.50833194477505,
+     "Cmax_sqrt_ymin": 0.9508331944775049,
+     "argmax_is_ymin": true
+    },
+    "0.0001": {
+     "Cmax": 99.50083333194445,
+     "Cmax_sqrt_ymin": 0.9950083333194445,
+     "argmax_is_ymin": true
+    },
+    "1e-06": {
+     "Cmax": 999.500083333332,
+     "Cmax_sqrt_ymin": 0.999500083333332,
+     "argmax_is_ymin": true
+    }
+   },
+   "y_p": 2.5396382821881653,
+   "y_star": 2.3374124052663294
+  },
+  "K4c": {
+   "dCL_dy_left_right": [
+    -0.03610606159853314,
+    -0.0013613480436970372
+   ],
+   "d2CT_jump": 0.014864605611125447,
+   "spectral_slopes": {
+    "nu_mono": {
+     "slope": -2.982616718358692,
+     "tail_max": 3.1040667119058632e-12
+    },
+    "nu_RAR (control, no splice)": {
+     "slope": -0.2059312188150193,
+     "tail_max": 1.9938058581084367e-18
+    }
+   },
+   "s_range": [
+    2.5,
+    3.5
+   ]
+  },
+  "K4d": {
+   "grad_at_critical_point": 6.430699126994519e-18,
+   "field_scale": 0.015176039767850327
+  },
+  "S4a": {
+   "variational": true,
+   "w_sub": true,
+   "kinetic": true,
+   "Gcos": "2/(3*c_2 + 2)",
+   "C_i": true,
+   "CFG292_coeffs": [
+    "alpha/2",
+    "(2*alpha - 1)/4"
+   ]
+  },
+  "S4c_ham": {
+   "rows": [
+    {
+     "V": 0,
+     "alpha_eff": 0.1,
+     "lambda1": -0.0030578583247464763,
+     "gap": 15.645810483192383,
+     "one_sign": true,
+     "null_dim1": true,
+     "unique_with_mean": true,
+     "ln_wmax_wmin": 0.05543928974218427
+    },
+    {
+     "V": 0,
+     "alpha_eff": 0.01,
+     "lambda1": -0.031065561302509703,
+     "gap": 1.468962657504079,
+     "one_sign": true,
+     "null_dim1": true,
+     "unique_with_mean": true,
+     "ln_wmax_wmin": 0.5637586702181778
+    },
+    {
+     "V": 0,
+     "alpha_eff": 0.001,
+     "lambda1": -0.3107084374735509,
+     "gap": 0.23011697522641605,
+     "one_sign": true,
+     "null_dim1": true,
+     "unique_with_mean": true,
+     "ln_wmax_wmin": 5.711980070337694
+    },
+    {
+     "V": 1,
+     "alpha_eff": 0.1,
+     "lambda1": -0.002873691300148584,
+     "gap": 15.590304186216926,
+     "one_sign": true,
+     "null_dim1": true,
+     "unique_with_mean": true,
+     "ln_wmax_wmin": 0.04423757555007679
+    },
+    {
+     "V": 1,
+     "alpha_eff": 0.01,
+     "lambda1": -0.028443544782014385,
+     "gap": 1.4127301118749656,
+     "one_sign": true,
+     "null_dim1": true,
+     "unique_with_mean": true,
+     "ln_wmax_wmin": 0.4409813211086082
+    },
+    {
+     "V": 1,
+     "alpha_eff": 0.001,
+     "lambda1": -0.24763458559290186,
+     "gap": 0.13440016025988544,
+     "one_sign": true,
+     "null_dim1": true,
+     "unique_with_mean": true,
+     "ln_wmax_wmin": 4.6785132389349116
+    },
+    {
+     "V": 2,
+     "alpha_eff": 0.1,
+     "lambda1": -0.003814124957834064,
+     "gap": 15.51816480707954,
+     "one_sign": true,
+     "null_dim1": true,
+     "unique_with_mean": true,
+     "ln_wmax_wmin": 0.05880164239569032
+    },
+    {
+     "V": 2,
+     "alpha_eff": 0.01,
+     "lambda1": -0.04382138034079963,
+     "gap": 1.3594296899413756,
+     "one_sign": true,
+     "null_dim1": true,
+     "unique_with_mean": true,
+     "ln_wmax_wmin": 0.6113699009928161
+    },
+    {
+     "V": 2,
+     "alpha_eff": 0.001,
+     "lambda1": -0.4635465792871658,
+     "gap": 0.3508817043782435,
+     "one_sign": true,
+     "null_dim1": true,
+     "unique_with_mean": true,
+     "ln_wmax_wmin": 5.8435739724195255
+    }
+   ],
+   "agmon_slope": 0.19722812683175042,
+   "lnN_ratio_at_alpha_max_unit_violation": 6973.06729617256,
+   "dV_L2_for_ratio_10": 1.0903945303241553e-07
+  },
+  "S4c_lag": {
+   "W": "-16*pi*G*V0 - 8*pi*G*mu*(2 - 3*u**2)/(a1*a2*a3*(1 - u**2)**(3/2)) - 2*Lambda",
+   "W_matches_prediction": true,
+   "coef_k_F2a": "alpha - 1/2",
+   "coef_k_phys": "alpha",
+   "flrw_W": [
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0,
+    -4.0
+   ],
+   "kstar_over_H": [
+    43321.75627283017,
+    8467312.921832383
+   ],
+   "vacuum_W": "0"
+  },
+  "crossing": {
+   "alpha_x": "666667/11333334",
+   "c2": "666667/10000000",
+   "mult_plus1": 9,
+   "semisimple": true,
+   "H_continuous_through_crossing": true,
+   "H_jump": [
+    1.5479442471290032,
+    1.5376045048529041,
+    1.5375013337759456,
+    1.5375003020877684
+   ],
+   "projector_norms": [
+    1.3048387164724045,
+    1.3040084959881373,
+    1.3040004093390059,
+    1.3040003284942339
+   ],
+   "note": "projector denominator 1 - c_S^2 = 0: the two families merge, the Lagrange projectors are undefined",
+   "limit_symmetrises_M_residual": 9.169529363704373e-09
+  }
+ },
+ "am_table": [
+  {
+   "item": "AM1",
+   "hypothesis": "closed Cauchy surface; H^s x H^(s-1) data, s > n/2 + 1",
+   "status": "VERIFIED (restricted)",
+   "evidence": "ACTION.md closed leaves (T^3); admissible s in (2.5, 3.5) for nu_mono as defined (K4c)"
+  },
+  {
+   "item": "AM2",
+   "hypothesis": "CMC slicing (lapse from preserving tr k = t)",
+   "status": "FAILED (replaced)",
+   "evidence": "the slicing is forced to the khronon leaves (CFG292 T7); the lapse equation is the khronon's own E_N (S4a)"
+  },
+  {
+   "item": "AM3",
+   "hypothesis": "spatial harmonic coordinates with an elliptic shift",
+   "status": "FAILED (replaced)",
+   "evidence": "F2a's shift is hyperbolic (evolved): it is part of the strongly hyperbolic system certified in S1/S2"
+  },
+  {
+   "item": "AM4",
+   "hypothesis": "lapse equation uniformly elliptic with trivial kernel",
+   "status": "VERIFIED (ellipticity) / CONDITION (kernel)",
+   "evidence": "uniformly elliptic on W_rec (S4b); kernel: Hamiltonian form = the relabelling mode only (S4c Ham; quotient + global constraint), F2a velocity form trivial iff W <= 0, W != 0 (S4c Lag: holds on FLRW + Lambda + comoving dust; open condition in general)"
+  },
+  {
+   "item": "AM5",
+   "hypothesis": "elliptic variables lower order (lapse source free of d^2 g; N in H^(s+1))",
+   "status": "FAILED",
+   "evidence": "the lapse source contains R^(3) with weight 1/(4 alpha_c) and no constraint can remove it (the scalar constraint IS the lapse equation); eliminating the lapse changes the principal symbol (it creates the c_S mode) -> replacement: eliminate the lapse at the symbol level, a quasilinear pseudo-differential hyperbolic system"
+  },
+  {
+   "item": "AM6",
+   "hypothesis": "strong/symmetric hyperbolicity of the reduced evolution",
+   "status": "VERIFIED",
+   "evidence": "S1 (constant multiplicity) + S2 (explicit smooth symmetriser) for the lapse-reduced symbol"
+  },
+  {
+   "item": "AM7",
+   "hypothesis": "coefficients smooth in the fields",
+   "status": "VERIFIED (restricted)",
+   "evidence": "gravity: rational in g on O (K1); MOND/filter: smooth off Z_0, C^{1,1} at the splice (K4a, K4c)"
+  },
+  {
+   "item": "AM8",
+   "hypothesis": "gauge and constraint propagation",
+   "status": "VERIFIED (linear) / ASSUMED (nonlinear)",
+   "evidence": "symbol-level: (g^{mu nu} xi xi) C_i = 0 (S4d); nonlinear: A2, A3"
+  },
+  {
+   "item": "AM9",
+   "hypothesis": "the elliptic-hyperbolic iteration theorem",
+   "status": "FAILED (replaced)",
+   "evidence": "AM's iteration uses AM5; replacement = Kato's abstract theorem (LNM 448) on the lapse-reduced pseudo-differential system with the S2 symmetriser; inputs verified: K1-K4 (restricted); inputs assumed: A1, A4 (+A5)"
+  }
+ ],
+ "verdict": "CONDITIONAL",
+ "conditions": [
+  "C1 beta = 0, 0 < alpha_c < 1/2 (alpha_c != 1/2 is the F2a gauge artefact), c_2 > 0: the whole of W_rec (S1b, S1d)",
+  "C2 Sobolev index s in (2.5, 3.5) for nu_mono with its C^(1,1) splice (any s > 5/2 with a C-infinity splice) (K4c)",
+  "C3 the filtered field D S U has no zeros on the leaf (requires U with non-trivial periods on closed leaves), or A5 (K4d)",
+  "C4 an invertible lapse operator at the data: F2a velocity form W <= 0, W != 0 (holds on FLRW + Lambda + comoving dust; open near it), or the Hamiltonian form with the relabelling mode quotiented and the global constraint imposed (S4c)",
+  "C5 for a uniform N_min > 0 independent of alpha_c: data obeying the GR-like Hamiltonian constraint to O(alpha_c) (S4c Ham, disclosed)"
+ ],
+ "assumptions": [
+  "A1 the pseudo-differential (paradifferential) form of Kato's quasilinear theorem for the lapse-reduced system: commutator/paraproduct estimates for the nonlocal lapse solve with H^s coefficients (standard for symbols smooth in xi, H^s in x, s > n/2 + 1; not verified here)",
+  "A2 nonlinear propagation of the gauge constraint C_i = 0 (foliation-preserving-diffeomorphism Noether identity + uniqueness for the linear constraint system; the symbol-level statement is S4d)",
+  "A3 propagation of the global (relabelling) constraint lambda_1 = 0 (first-class global part, Donnelly & Jacobson 2011)",
+  "A4 continuous dependence in the top norm across nu_mono's splice level set {|D S U| = y* a0} (needs it to be null)",
+  "A5 for single-valued U on a closed leaf (Z_0 non-empty, K4d): that isolated zeros of the filtered field do not obstruct the H^s estimates (XC2 B7 integrated Lipschitz property); avoided only by U with non-trivial periods"
+ ],
+ "summary": {
+  "S1": true,
+  "S2": true,
+  "S3": true,
+  "S4a": true,
+  "S4b": true,
+  "S4c": true,
+  "AM": true,
+  "controls": true,
+  "min_gap_W_rec": 442.8328808257875,
+  "min_gap_W_P1": 1500.038382598238,
+  "kappa_H_range": [
+   324544.96427695337,
+   1964954638411.8972
+  ],
+  "s_range": [
+   2.5,
+   3.5
+  ]
+ },
+ "n_checks": 23,
+ "n_pass": 22,
+ "n_fail_load_bearing": 0
+}

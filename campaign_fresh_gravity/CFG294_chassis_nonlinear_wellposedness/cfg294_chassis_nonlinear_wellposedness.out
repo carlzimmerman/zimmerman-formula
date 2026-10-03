@@ -1,0 +1,298 @@
+CFG294 -- NONLINEAR LOCAL WELL-POSEDNESS OF THE RELATIVISTIC CHASSIS (C-H/K) ON THE KHRONON'S LEAVES, DERIVED STEP BY STEP.
+Criteria frozen first: FROZEN_CRITERIA.md (commit 2821be492).  CFG292 showed that F2a (t = tau, spatial de Donder with the
+4-D trace, lapse eliminated elliptically) is strongly hyperbolic at the 18 record points.  This lane carries that to the
+quasilinear statement: constant multiplicity -> an explicit Kreiss symmetriser -> Kato's quasilinear theorem for the
+hyperbolic part -> the elliptic lapse and the mixed elliptic-hyperbolic system, with Andersson & Moncrief (2003) mapped
+hypothesis by hypothesis.
+
+THE SYSTEM.  L340's C-H/K, I_CH + c^3/(16 pi G) Int sqrt(-g)[alpha_c a.a - c_2 K^2], beta = 0, lambda_K = 1 + c_2; its
+principal symbol is GR + the BPS khronon (CFG292 R0); F2a is built with cfg292_lib (imported read-only from the CFG292 lane).
+c_S^2 = c_2 (2 - alpha_c) / (alpha_c (2 + 3 c_2)).
+
+======================================================================================================================
+INPUTS: record values (committed files) and the CFG292 numbers this lane builds on
+======================================================================================================================
+    L340 P1 window: alpha_c in (9.6240e-14, 3.20e-09), c_2 in (7.2888e-03, 0.0667)
+    L350 G2 ceilings: 6.310e-04, 7.943e-04, 1.470e-03, 1.585e-03, 2.342e-03, 2.946e-03;  recipe edge c_2 = 0.1
+    record points: 18;  W_rec box = alpha [9.6241e-14, 3.2000e-09] x c_2 [6.3096e-04, 1.0000e-01]
+    CFG292: F2a strongly hyperbolic True; eigenvector-matrix condition numbers kappa(T) 8.168e+02 .. 2.010e+06;  C5 (c_S = 1) [['1', 3, 3], ['-1', 3, 3]]
+
+======================================================================================================================
+S1a  CONSTANT MULTIPLICITY, SYMBOLIC in (alpha, c_2) at beta = 0: characteristic and minimal polynomials per helicity block
+======================================================================================================================
+    scalar  : det(lambda - M) = (lambda - 1)**2*(lambda + 1)**2*(3*alpha*c_2*lambda**2 + alpha*c_2 + 2*alpha*lambda**2 - 2*c_2)/(alpha*(3*c_2 + 2));  expected match True;  minimal-polynomial identity (M^2-1)(M^2-c_S^2) = 0: True;  denominators of M: ['2*alpha - 1', '3*c_2 + 2', 'alpha']
+    vector1 : det(lambda - M) = (lambda - 1)**2*(lambda + 1)**2;  expected match True;  minimal-polynomial identity (M^2-1) = 0: True;  denominators of M: []
+    vector2 : det(lambda - M) = (lambda - 1)**2*(lambda + 1)**2;  expected match True;  minimal-polynomial identity (M^2-1) = 0: True;  denominators of M: []
+    tensor+ : det(lambda - M) = (lambda - 1)*(lambda + 1);  expected match True;  minimal-polynomial identity (M^2-1) = 0: True;  denominators of M: []
+    tensorx : det(lambda - M) = (lambda - 1)*(lambda + 1);  expected match True;  minimal-polynomial identity (M^2-1) = 0: True;  denominators of M: []
+  [PASS] S1a constant multiplicity, symbolic: every helicity block of the lapse-reduced F2a symbol has char. polynomial (lambda^2-1)^m (lambda^2-c_S^2)^n and satisfies its minimal-polynomial identity identically in (alpha, c_2) at beta = 0 (semisimple wherever defined and c_S^2 != 0, 1; families {+-1} mult 8 and {+-c_S} mult 1 in the full system)
+         measured: blocks ['scalar', 'vector1', 'vector2', 'tensor+', 'tensorx']; all identities True; off-block entries none
+         reading:  identities of rational functions, so they hold at every parameter point where the denominators listed are non-zero
+
+======================================================================================================================
+S1b  THE GAP |c_S - 1| ON THE WINDOWS: rigorous interval arithmetic (mpmath.iv) + exact monotone corner
+======================================================================================================================
+    W_P1: c_S^2 in [2253116.2, 6.297358e+11] (interval, outward rounded);  monotone (dc_S^2/dalpha < 0, dc_S^2/dc_2 > 0 on the box): True;  exact minimum at (alpha_max, c2_low): c_S = 1501.0384,  c_S - 1 there (the minimum gap if positive) = 1500.0384;  min separation of distinct eigenvalues = 2 sqrt(rho)
+    W_rec: c_S^2 in [196987.63, 9.0353356e+11] (interval, outward rounded);  monotone (dc_S^2/dalpha < 0, dc_S^2/dc_2 > 0 on the box): True;  exact minimum at (alpha_max, c2_low): c_S = 443.83288,  c_S - 1 there (the minimum gap if positive) = 442.83288;  min separation of distinct eigenvalues = 2 sqrt(rho)
+    derivatives: {'dcs2_dalpha': '-2*c_2/(alpha**2*(3*c_2 + 2))', 'dcs2_dc2': '-2*(alpha - 2)/(alpha*(3*c_2 + 2)**2)'}
+  [PASS] S1b the families never cross on W_P1 or W_rec: the rigorous interval lower bound of c_S^2 exceeds 1
+         measured: W_rec: c_S^2 >= 196988 (c_S - 1 at the minimising corner = 442.833); W_P1: c_S^2 >= 2.25312e+06 (c_S - 1 there = 1500.04)
+         reading:  the minimum sits at the corner (alpha_max, lowest c_2), exactly as the monotonicity says
+
+======================================================================================================================
+S1c + S2a  EXACT UNIFORMITY: 18 points x 24 rational unit directions (aligned background); symmetriser at each
+======================================================================================================================
+    directions exact unit vectors: True;  18 x 24 = 432 exact cases in 44 s
+    alpha 9.6241e-14, c_2 6.3096e-04: c_S = 80931.1; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 1.0791e+10 (spread 0.0e+00); bound 4 Sum||P_j||^2 1.8046e+10
+    alpha 9.6241e-14, c_2 7.9433e-04: c_S = 90795.1; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 1.3589e+10 (spread 0.0e+00); bound 4 Sum||P_j||^2 2.2724e+10
+    alpha 9.6241e-14, c_2 1.4699e-03: c_S = 123449; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 2.5171e+10 (spread 0.0e+00); bound 4 Sum||P_j||^2 4.2094e+10
+    alpha 9.6241e-14, c_2 1.5849e-03: c_S = 128175; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 2.7145e+10 (spread 0.0e+00); bound 4 Sum||P_j||^2 4.5395e+10
+    alpha 9.6241e-14, c_2 2.3415e-03: c_S = 155708; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 4.0149e+10 (spread 0.0e+00); bound 4 Sum||P_j||^2 6.7142e+10
+    alpha 9.6241e-14, c_2 2.9463e-03: c_S = 174583; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 5.0565e+10 (spread 0.0e+00); bound 4 Sum||P_j||^2 8.4560e+10
+    alpha 9.6241e-14, c_2 7.2888e-03: c_S = 273708; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 1.2590e+11 (spread 0.0e+00); bound 4 Sum||P_j||^2 2.1055e+11
+    alpha 9.6241e-14, c_2 6.6667e-02: c_S = 793559; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 1.2530e+12 (spread 0.0e+00); bound 4 Sum||P_j||^2 2.0954e+12
+    alpha 9.6241e-14, c_2 1.0000e-01: c_S = 950544; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 1.9650e+12 (spread 0.0e+00); bound 4 Sum||P_j||^2 3.2860e+12
+    alpha 3.2000e-09, c_2 6.3096e-04: c_S = 443.833; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 3.2454e+05 (spread 0.0e+00); bound 4 Sum||P_j||^2 5.4276e+05
+    alpha 3.2000e-09, c_2 7.9433e-04: c_S = 497.928; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 4.0868e+05 (spread 0.0e+00); bound 4 Sum||P_j||^2 6.8346e+05
+    alpha 3.2000e-09, c_2 1.4699e-03: c_S = 677.003; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 7.5702e+05 (spread 0.0e+00); bound 4 Sum||P_j||^2 1.2660e+06
+    alpha 3.2000e-09, c_2 1.5849e-03: c_S = 702.925; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 8.1638e+05 (spread 0.0e+00); bound 4 Sum||P_j||^2 1.3653e+06
+    alpha 3.2000e-09, c_2 2.3415e-03: c_S = 853.913; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 1.2075e+06 (spread 0.0e+00); bound 4 Sum||P_j||^2 2.0193e+06
+    alpha 3.2000e-09, c_2 2.9463e-03: c_S = 957.428; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 1.5207e+06 (spread 0.0e+00); bound 4 Sum||P_j||^2 2.5432e+06
+    alpha 3.2000e-09, c_2 7.2888e-03: c_S = 1501.04; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 3.7865e+06 (spread 0.0e+00); bound 4 Sum||P_j||^2 6.3323e+06
+    alpha 3.2000e-09, c_2 6.6667e-02: c_S = 4351.94; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 3.7685e+07 (spread 0.0e+00); bound 4 Sum||P_j||^2 6.3021e+07
+    alpha 3.2000e-09, c_2 1.0000e-01: c_S = 5212.86; lapse elimination ok True; A inv True; multiplicities (8,8,1,1) semisimple True; H sym/HM sym/PD True; lambda_min(H) 0.4181; kappa(H) 5.9096e+07 (spread 0.0e+00); bound 4 Sum||P_j||^2 9.8828e+07
+
+======================================================================================================================
+S1c + S2a  GENERAL FROZEN BACKGROUNDS: 6 random rational (lapse, shift, non-diagonal gamma) x 3 corner points x 4 k
+======================================================================================================================
+    72 exact cases in 50 s (backgrounds: lapse ['3/5', '13/10', '7/5', '7/10', '7/5', '11/10'])
+    background 0: N = 3/5, shift = [-3/10, -1/2, 1/10]: P_00,00 = (2 alpha - 1) |k|^2_gamma/(4 N^4) (after / sqrt(-g)) True; P_0r linear in lambda True; roots nu +- sqrt(rho) (8, 8) and nu +- c_S sqrt(rho) (1, 1), semisimple True; H sym/HM sym/PD True; kappa(H) 1.492e+05 .. 1.574e+12
+    background 1: N = 13/10, shift = [-1/10, -3/10, -1/5]: P_00,00 = (2 alpha - 1) |k|^2_gamma/(4 N^4) (after / sqrt(-g)) True; P_0r linear in lambda True; roots nu +- sqrt(rho) (8, 8) and nu +- c_S sqrt(rho) (1, 1), semisimple True; H sym/HM sym/PD True; kappa(H) 3.830e+05 .. 6.332e+12
+    background 2: N = 7/5, shift = [-3/10, 2/5, -2/5]: P_00,00 = (2 alpha - 1) |k|^2_gamma/(4 N^4) (after / sqrt(-g)) True; P_0r linear in lambda True; roots nu +- sqrt(rho) (8, 8) and nu +- c_S sqrt(rho) (1, 1), semisimple True; H sym/HM sym/PD True; kappa(H) 9.532e+05 .. 9.936e+12
+    background 3: N = 7/10, shift = [1/5, -1/2, 0]: P_00,00 = (2 alpha - 1) |k|^2_gamma/(4 N^4) (after / sqrt(-g)) True; P_0r linear in lambda True; roots nu +- sqrt(rho) (8, 8) and nu +- c_S sqrt(rho) (1, 1), semisimple True; H sym/HM sym/PD True; kappa(H) 1.784e+05 .. 2.643e+12
+    background 4: N = 7/5, shift = [3/10, 1/5, 1/2]: P_00,00 = (2 alpha - 1) |k|^2_gamma/(4 N^4) (after / sqrt(-g)) True; P_0r linear in lambda True; roots nu +- sqrt(rho) (8, 8) and nu +- c_S sqrt(rho) (1, 1), semisimple True; H sym/HM sym/PD True; kappa(H) 7.227e+05 .. 1.409e+13
+    background 5: N = 11/10, shift = [3/10, 0, 1/5]: P_00,00 = (2 alpha - 1) |k|^2_gamma/(4 N^4) (after / sqrt(-g)) True; P_0r linear in lambda True; roots nu +- sqrt(rho) (8, 8) and nu +- c_S sqrt(rho) (1, 1), semisimple True; H sym/HM sym/PD True; kappa(H) 4.585e+05 .. 8.393e+12
+  [PASS] S1c constant multiplicity, exact uniformity: at 18 points x 24 directions (aligned) and 6 general frozen backgrounds x 3 corners x 4 k, the lapse elimination is valid (P_00,00 lambda-free = (2 alpha-1) sqrt(gamma)|k|^2_gamma/(4N^3), P_0r linear in lambda, det A != 0), det P_red = const [(lambda-nu)^2-rho]^8 [(lambda-nu)^2-c_S^2 rho] and ((M-nu)^2-rho)((M-nu)^2-c_S^2 rho) = 0 exactly with c_S^2 != 0, 1
+         measured: set 1: 18/18 points; set 2: 72/72 cases
+         reading:  frame covariance (leaf-preserving linear frame changes act covariantly on the gauge term and the action density) is the analytic reason; set 2 confirms it on backgrounds with lapse, shift and non-diagonal gamma
+  [PASS] S2a the explicit symmetriser H = Sum_j P_j^T G P_j: exact H = H^T, H M symmetric (exactly), H positive definite (exact LDL pivots > 0), lambda_min(H) >= 1/4 in the Frobenius metric, kappa(H) <= 4 Sum||P_j||^2, at every S1c case
+         measured: set 1 18/18 points, set 2 72/72; lambda_min >= 0.4181; kappa(H) 3.2454e+05 .. 1.9650e+12
+         reading:  Sum_j P_j = I gives v^T H v >= |v|^2/4; kappa(H) ~ kappa(T)^2 of CFG292 (it grows with c_S)
+
+======================================================================================================================
+S1d  DEGENERACY LOCI and their distance from W_rec (gauge artefact alpha = 1/2; crossing; minimal Horava)
+======================================================================================================================
+    alpha = 0 (det A = 0, minimal Horava): distance from W_rec in alpha (or c_2) = 9.6241e-14
+    alpha = 1/2 (F2a lapse coefficient (2 alpha - 1)/4 = 0, gauge artefact): distance from W_rec in alpha (or c_2) = 5.0000e-01
+    c_S^2 = 1 (alpha = c_2/(1 + 2 c_2)): distance from W_rec in alpha (or c_2) = 6.3016e-04
+    c_S^2 = 0 (c_2 = 0): distance from W_rec in alpha (or c_2) = 6.3096e-04
+    c_S^2 = 0 (alpha = 2): distance from W_rec in alpha (or c_2) = 2.0000e+00
+    record point closest to the crossing (largest alpha/alpha_cross): alpha = 3.2000e-09, c_2 = 6.3096e-04, alpha/alpha_cross = 5.078e-06
+  [PASS] S1d every degeneracy locus misses W_rec (alpha = 0, alpha = 1/2, c_S = 1, c_S = 0)
+         measured: {'alpha = 0 (det A = 0, minimal Horava)': 9.62405e-14, 'alpha = 1/2 (F2a lapse coefficient (2 alpha - 1)/4 = 0, gauge artefact)': 0.4999999968, 'c_S^2 = 1 (alpha = c_2/(1 + 2 c_2))': 0.0006301585900149151, 'c_S^2 = 0 (c_2 = 0)': 0.000630957, 'c_S^2 = 0 (alpha = 2)': 1.9999999968}
+         reading:  alpha = 1/2 is an F2a gauge artefact (the physical lapse coefficient alpha_c/2 does not vanish there); it lies 0.5 away
+
+======================================================================================================================
+S2b  DENSE DIRECTIONS: 500 random unit directions per point, mpmath 40 digits (H symmetric, PD, H M symmetric, kappa(H))
+======================================================================================================================
+    18 points x 500 directions in 56 s
+    point 0: max rel. asymmetry H 0.0e+00, H M 1.7e-28; lambda_min(H) 0.4181; kappa(H) 1.079109e+10 (direction spread 5.3e-28); minimal-poly residual 9.9e-29
+    point 1: max rel. asymmetry H 0.0e+00, H M 1.7e-28; lambda_min(H) 0.4181; kappa(H) 1.358851e+10 (direction spread 5.4e-28); minimal-poly residual 9.3e-29
+    point 2: max rel. asymmetry H 0.0e+00, H M 1.9e-28; lambda_min(H) 0.4181; kappa(H) 2.517091e+10 (direction spread 6.5e-28); minimal-poly residual 1.1e-28
+    point 3: max rel. asymmetry H 0.0e+00, H M 2.1e-28; lambda_min(H) 0.4181; kappa(H) 2.714470e+10 (direction spread 4.5e-28); minimal-poly residual 1.2e-28
+    point 4: max rel. asymmetry H 0.0e+00, H M 1.7e-28; lambda_min(H) 0.4181; kappa(H) 4.014922e+10 (direction spread 4.2e-28); minimal-poly residual 1.1e-28
+    point 5: max rel. asymmetry H 0.0e+00, H M 2.0e-28; lambda_min(H) 0.4181; kappa(H) 5.056462e+10 (direction spread 4.3e-28); minimal-poly residual 1.0e-28
+    point 6: max rel. asymmetry H 0.0e+00, H M 1.7e-28; lambda_min(H) 0.4181; kappa(H) 1.259022e+11 (direction spread 7.5e-28); minimal-poly residual 9.6e-29
+    point 7: max rel. asymmetry H 0.0e+00, H M 1.8e-28; lambda_min(H) 0.4181; kappa(H) 1.253015e+12 (direction spread 4.2e-28); minimal-poly residual 7.7e-29
+    point 8: max rel. asymmetry H 0.0e+00, H M 1.6e-28; lambda_min(H) 0.4181; kappa(H) 1.964955e+12 (direction spread 5.3e-28); minimal-poly residual 7.4e-29
+    point 9: max rel. asymmetry H 0.0e+00, H M 5.3e-33; lambda_min(H) 0.4181; kappa(H) 3.245450e+05 (direction spread 1.7e-32); minimal-poly residual 3.1e-33
+    point 10: max rel. asymmetry H 0.0e+00, H M 4.5e-33; lambda_min(H) 0.4181; kappa(H) 4.086777e+05 (direction spread 1.1e-32); minimal-poly residual 2.6e-33
+    point 11: max rel. asymmetry H 0.0e+00, H M 5.5e-33; lambda_min(H) 0.4181; kappa(H) 7.570204e+05 (direction spread 1.7e-32); minimal-poly residual 2.9e-33
+    point 12: max rel. asymmetry H 0.0e+00, H M 5.2e-33; lambda_min(H) 0.4181; kappa(H) 8.163824e+05 (direction spread 1.3e-32); minimal-poly residual 3.0e-33
+    point 13: max rel. asymmetry H 0.0e+00, H M 5.1e-33; lambda_min(H) 0.4181; kappa(H) 1.207495e+06 (direction spread 1.3e-32); minimal-poly residual 3.1e-33
+    point 14: max rel. asymmetry H 0.0e+00, H M 4.2e-33; lambda_min(H) 0.4181; kappa(H) 1.520740e+06 (direction spread 1.2e-32); minimal-poly residual 2.4e-33
+    point 15: max rel. asymmetry H 0.0e+00, H M 5.5e-33; lambda_min(H) 0.4181; kappa(H) 3.786528e+06 (direction spread 1.5e-32); minimal-poly residual 3.2e-33
+    point 16: max rel. asymmetry H 0.0e+00, H M 5.3e-33; lambda_min(H) 0.4181; kappa(H) 3.768463e+07 (direction spread 1.9e-32); minimal-poly residual 2.1e-33
+    point 17: max rel. asymmetry H 0.0e+00, H M 5.0e-33; lambda_min(H) 0.4181; kappa(H) 5.909632e+07 (direction spread 1.6e-32); minimal-poly residual 1.9e-33
+  [PASS] S2b dense directions: at every point, 500 random unit directions give H symmetric, positive definite and H M symmetric (relative 1e-25) with a direction-independent kappa(H) (relative 1e-20)
+         measured: 18/18 points
+         reading:  rotation covariance about the aether: the Frobenius metric is rotation invariant, so kappa(H) depends on (alpha, c_2) only
+
+======================================================================================================================
+S2c  SMOOTHNESS: H at khat = z symbolic in (alpha, c_2); denominators and their zero sets vs W_rec
+======================================================================================================================
+    symbolic H (18 x 18) in 0 s;  H = H^T and H M symmetric identically: True
+    irreducible denominator factors of H(khat = z): {'2*alpha - 1': True, '3*c_2 + 2': True, 'alpha': True, 'alpha - 2': True, 'c_2': True}  (True = no zero on W_rec, interval arithmetic)
+  [PASS] S2c the symmetriser is a rational, hence real-analytic, function of (alpha, c_2, background, khat): at khat = z its denominators factor into polynomials with no zero on W_rec, and H M is symmetric identically
+         measured: 5 factors, all non-vanishing on W_rec: True; identities True
+         reading:  with S1c (rational M with non-vanishing denominators on every frozen background) this is the smooth symmetriser that Kreiss's theorem asserts, built explicitly
+
+======================================================================================================================
+S2d  FINDING: does the Lagrangian (canonical) energy symmetrise the system? inertia of A and C (Hughes-Kato-Marsden)
+======================================================================================================================
+    inertia at the points (A, C): [((6, 3), (3, 6))]
+  [FAIL] (finding, not load-bearing) S2d (finding) the canonical Lagrangian energy is definite (A definite, C of the opposite definiteness), i.e. HKM's positive-energy hypothesis holds directly
+         measured: [((6, 3), (3, 6))]
+         reading:  if it fails, the Kreiss symmetriser of S2 is what carries the energy estimate (expected: the gauge-fixed GR part already has an indefinite canonical energy, as in harmonic gauge)
+
+======================================================================================================================
+S3/K1  COEFFICIENT SMOOTHNESS: the F2a symbol on a symbolic frozen background (N, a shift component, a 2x2 block of gamma)
+======================================================================================================================
+    symbol on the symbolic background in 14 s; irreducible denominators: ['N', 'g11*g22 - g12**2']  (allowed: powers of N and det gamma = g11*g22 - g12**2)
+    P_00,00 = (2 alpha - 1) sqrt(det gamma) gamma^ij k_i k_j / (4 N^3) symbolically: True
+  [PASS] S3/K1 the F2a principal coefficients are rational in (g, N, sqrt det gamma) with denominators only powers of N and det gamma (smooth on O = {N > 0, gamma > 0}); the lapse coefficient is (2 alpha - 1) sqrt(gamma) |k|^2_gamma / (4 N^3) symbolically
+         measured: denominators ['N', 'g11*g22 - g12**2']; P_00,00 formula True
+         reading:  the Lagrangian is a quadratic form in the first jets with g-dependent coefficients, so the principal part depends on g only and the lower-order part is quadratic in dg: the quasilinear structure Kato's theorem needs
+
+======================================================================================================================
+S3/K4  LOWER-ORDER TERMS: the explicit MOND bound, the C-H lapse terms, nu_mono's splice (Sobolev range), the zero-field set
+======================================================================================================================
+    nu_mono rebuilt: y_p = 2.539638282 (L340 match True), h_p = 0.64761024, y* = 2.337412405; floor binds above y*: True
+    M_0(xi) = sup_k k^2 e^(-xi^2 k^2) = exp(-1)/xi**2  (= 1/(e xi^2): True);  at xi = 1: M_1 = 0.5374, M_2 = 0.8400
+    y_min = 1e-01: C_max = max(C_T, C_L) on y >= y_min = 2.6886 (at y_min: True);  C_max sqrt(y_min) = 0.8502
+    y_min = 1e-02: C_max = max(C_T, C_L) on y >= y_min = 9.5083 (at y_min: True);  C_max sqrt(y_min) = 0.9508
+    y_min = 1e-04: C_max = max(C_T, C_L) on y >= y_min = 99.501 (at y_min: True);  C_max sqrt(y_min) = 0.9950
+    y_min = 1e-06: C_max = max(C_T, C_L) on y >= y_min = 999.5 (at y_min: True);  C_max sqrt(y_min) = 0.9995
+  [PASS] S3/K4a the MOND/filter block is a bounded lower-order operator wherever the filtered field is non-zero, with the explicit bound ||T u||_{H^{r+m}} <= C_max(y_min) M_m(xi) ||u||_{H^r}: M_0 = 1/(e xi^2) (sympy), M_1, M_2 finite; C_max(y_min) = C_T(y_min) ~ y_min^(-1/2) diverges only at zero field
+         measured: M_0 = exp(-1)/xi**2; M_1 = 0.5374/xi^3-scaling, M_2 = 0.8400; C_max sqrt(y_min) -> 0.9995
+         reading:  same bound for the U-elimination Schur complement 2CE/(1+CE)k^2 <= 2 C_max k^2 e^(-xi^2 k^2); excluded set Z_0 = {D S U = 0}
+    K4b: N^-1 D_i(N V^i) = D_i V^i + a_i V^i: True;  H = 2V^2 + 4 V.a + 4 D.V + 2 alpha_M^2 q_b -> on the U-shell 2*V2 + 2*aM2qb - lambda0: True
+  [PASS] S3/K4b the C-H lapse derivative on the U-equation shell is H_CH = 2|D chi|^2 + 2 alpha_M^2 q_b - lambda_0 (chi = U - ln N, D.(N D chi) = -N lambda_0/4): no second derivative of N survives, so the C-H sector enters the lapse equation at lower order
+         measured: product rule True; shell identity True
+         reading:  with lambda_0 = S^dagger_N L_b (heat-smoothed) chi gains two derivatives over lambda_0 (elliptic regularity)
+    K4c: at y* C_T, C_L continuous (True); dC_L/dy jumps -0.0361 -> -0.0014 (XC4 S5: -0.0361 -> -0.0014); d^2 C_T/dy^2 jumps by 0.01486
+    K4c: Fourier envelope of C_T(y* + 0.5 cos 2 pi x): {'nu_mono': {'slope': -2.982616718358692, 'tail_max': 3.1040667119058632e-12}, 'nu_RAR (control, no splice)': {'slope': -0.2059312188150193, 'tail_max': 1.9938058581084367e-18}}  (k^-3 <=> H^(5/2-eps))
+  [PASS] S3/K4c nu_mono's splice at y* is C^{1,1} and not C^2 (C_T, C_L continuous; dC_L/dy jumps), so C_T(y(x)) is H^{5/2-eps} (Fourier envelope ~ k^-3) and the C-H stress P_ij ~ C_T w w is in H^{s-1} only for s < 7/2: admissible s in (5/2, 7/2)
+         measured: dC_L/dy -0.0361 -> -0.0014; slope nu_mono -2.983 vs nu_RAR control -0.206
+         reading:  a C-infinity splice (the recipe's open 'smooth max' variant) would remove the upper end; continuous dependence in the top norm across the splice level set is ASSUMED (it needs the level set {|DSU| = y* a0} to be null)
+    K4d: random smooth periodic S U on T^3: Newton from the grid maximum -> |D S U| = 6.43e-18 (field scale 1.52e-02): a zero of the filtered field exists (extreme-value theorem; Lusternik-Schnirelmann: >= 4 critical points on T^3)
+  [PASS] (finding, not load-bearing) S3/K4d (disclosure) on a closed leaf the zero-field set Z_0 = {D S U = 0} is non-empty for single-valued U, so 'data away from zero-field regions' needs U with non-trivial periods (D U closed, not exact) or the isolated-zero regularity (ASSUMED)
+         measured: critical point found: |D S U| = 6.4e-18 vs scale 1.5e-02
+         reading:  XC2 B7: zeros are generically isolated after filtering and Lipschitz in the integrated sense; that this suffices for the H^s estimates is not proved here
+
+======================================================================================================================
+S4a  THE NONLINEAR LAPSE EQUATION FROM THE ACTION (unitary gauge t = tau, beta = 0, lambda = 1 + c_2)
+======================================================================================================================
+    (i)   delta/delta N of alpha sqrt(gamma)|DN|^2/N = sqrt(gamma)[alpha a^2 - 2 alpha Delta N/N] (euler_equations, conformally flat leaf): True
+    (ii)  N = w^2: 2 Delta N/N - |DN|^2/N^2 = 4 Delta w/w: True
+    (iii) d/dN [N sqrt(gamma)(K.K - lambda K^2)] = -sqrt(gamma)(K.K - lambda K^2) at fixed velocities: True
+    (iv)  FLRW: K.K - lambda K^2 = H**2*(-9*c_2 - 6)/N**2  ->  G_cos/G = 2/(3*c_2 + 2) = 1/(1 + 3c_2/2): True; first order 1 - 1.5 c_2: True; L340 P1 states '1.5 c_2': True
+    (v)   C_i = -d_i ln N exactly for g = diag(-N^2,1,1,1): True;  linearised lapse coefficients alpha/2 (physical) and (2 alpha - 1)/4 (F2a) = CFG292's committed 'alpha/2', '(2*alpha - 1)/4': True
+    RESULT  E_N = R^(3) - (K_ij K^ij - lambda K^2) + alpha_c a^2 - 2 alpha_c Delta N/N - 2 Lambda - 16 pi G rho_N + H_CH = 0;  with N = w^2:
+            4 alpha_c Delta w = w [R^(3) - 2 Lambda - 16 pi G rho + H_CH] - N^2(K.K - lambda K^2) w^-3     (velocities fixed: Lichnerowicz-type)
+            -4 alpha_c Delta w + V w = 0,  V = R^(3) - (K.K - lambda K^2)[pi] - 2 Lambda - 16 pi G rho + H_CH  (momenta fixed: linear in sqrt N)
+  [PASS] S4a the nonlinear lapse equation is derived from the chassis action: the alpha-term variation, the w = sqrt N substitution, the kinetic variation, the FLRW reduction (G_cos/G = 1/(1 + 3c_2/2), L340's 1.5 c_2), and the linearisation reproduces CFG292's lapse coefficients alpha/2 and (2 alpha - 1)/4
+         measured: (i) True (ii) True (iii) True (iv) True/True/True (v) True/True/True; K4b shell True
+         reading:  in Hamiltonian variables the equation is linear in w = sqrt N (Donnelly & Jacobson 2011: 'linear in the square root of the lapse'; quoted provisionally)
+
+======================================================================================================================
+S4b  UNIFORM ELLIPTICITY OF THE LAPSE OPERATORS ON THE WINDOW
+======================================================================================================================
+    physical (w-form) principal coefficient 4 alpha_c >= 3.8496e-13 > 0 on W_rec;  F2a (h_00) coefficient |2 alpha_c - 1|/4 >= 0.2499999984;  joint (N, chi) leaf system: det of the triangular principal symbol = 4*N*alpha*k**4 (elliptic iff alpha_c != 0)
+  [PASS] S4b the lapse operators are uniformly elliptic on W_rec: physical 4 alpha_c |k|^2_gamma (alpha_c >= alpha_min > 0), F2a (2 alpha_c - 1) sqrt(gamma)|k|^2_gamma/(4 N^3) (alpha_c != 1/2; S1c/K1 on general backgrounds), joint (N, chi) system
+         measured: 4 alpha_c >= 3.850e-13; |2 alpha_c - 1|/4 >= 0.250000
+         reading:  uniform on O x W_rec with constant >= alpha_min lambda_min(gamma^-1) (physical) and ~1/4 lambda_min(gamma^-1)/N^3 (F2a)
+
+======================================================================================================================
+S4c(Ham)  KERNEL IN HAMILTONIAN FORM: -4 alpha Delta + V on periodic 2-D leaves (random sign-indefinite V)
+======================================================================================================================
+    V#0 alpha_eff 1e-01: lambda_1 = -0.00306, gap 1.565e+01, ground state one sign True, null space of (L - lambda_1) 1-dim True, unique with <w> fixed True, ln(w_max/w_min) 0.055
+    V#0 alpha_eff 1e-02: lambda_1 = -0.03107, gap 1.469e+00, ground state one sign True, null space of (L - lambda_1) 1-dim True, unique with <w> fixed True, ln(w_max/w_min) 0.564
+    V#0 alpha_eff 1e-03: lambda_1 = -0.31071, gap 2.301e-01, ground state one sign True, null space of (L - lambda_1) 1-dim True, unique with <w> fixed True, ln(w_max/w_min) 5.712
+    V#1 alpha_eff 1e-01: lambda_1 = -0.00287, gap 1.559e+01, ground state one sign True, null space of (L - lambda_1) 1-dim True, unique with <w> fixed True, ln(w_max/w_min) 0.044
+    V#1 alpha_eff 1e-02: lambda_1 = -0.02844, gap 1.413e+00, ground state one sign True, null space of (L - lambda_1) 1-dim True, unique with <w> fixed True, ln(w_max/w_min) 0.441
+    V#1 alpha_eff 1e-03: lambda_1 = -0.24763, gap 1.344e-01, ground state one sign True, null space of (L - lambda_1) 1-dim True, unique with <w> fixed True, ln(w_max/w_min) 4.679
+    V#2 alpha_eff 1e-01: lambda_1 = -0.00381, gap 1.552e+01, ground state one sign True, null space of (L - lambda_1) 1-dim True, unique with <w> fixed True, ln(w_max/w_min) 0.059
+    V#2 alpha_eff 1e-02: lambda_1 = -0.04382, gap 1.359e+00, ground state one sign True, null space of (L - lambda_1) 1-dim True, unique with <w> fixed True, ln(w_max/w_min) 0.611
+    V#2 alpha_eff 1e-03: lambda_1 = -0.46355, gap 3.509e-01, ground state one sign True, null space of (L - lambda_1) 1-dim True, unique with <w> fixed True, ln(w_max/w_min) 5.844
+    Agmon slope d ln(w_max/w_min)/d alpha^-1/2 = [0.20824797018170416, 0.17083290234879217, 0.21260350796475494] (mean 0.1972).  With a constraint violation of amplitude dV ~ 1/L^2 and alpha_c = 3.2e-09: ln(N_max/N_min) ~ 6.973e+03; N_max/N_min <= 10 needs dV L^2 <= 1.09e-07
+  [PASS] S4c(Ham) in Hamiltonian variables the lapse operator -4 alpha Delta + V has, for every sign-indefinite V tried, a simple lowest eigenvalue with a one-signed ground state, a 1-dim null space after the global shift, and a unique solution once <w> is fixed: kernel = the tau-relabelling mode, no sign condition; solvability = the global constraint lambda_1 = 0
+         measured: 9/9 cases
+         reading:  a trivial kernel is impossible here by symmetry (tau -> f(tau)); disclosed: as alpha_c -> 0 the ground state localises (Agmon), so a uniform lower bound on N needs data obeying the GR-like Hamiltonian constraint to O(alpha_c)
+
+======================================================================================================================
+S4c(Lag)  THE OPERATOR F2a INVERTS (velocities fixed): exact lapse Hessian on Bianchi-I flat-leaf backgrounds
+======================================================================================================================
+    C_1 from the 4-metric diag(-N(t,x)^2, a_i(t)^2) = -d_x N/N: True
+    h_F2a(k) = (sqrt(gamma)/(8 pi G N0)) [ (alpha - 1/2) |k|^2_gamma + W ],   h_phys(k) = (...) [ (alpha) |k|^2_gamma + W ]
+    W (background lapse equation used) = -16*pi*G*V0 - 8*pi*G*mu*(2 - 3*u**2)/(a1*a2*a3*(1 - u**2)**(3/2)) - 2*Lambda
+    = -2 Lambda - 16 pi G V(phi) - 8 pi G rho_rest (2 - 3u^2)/(1 - u^2)^(3/2) (u = khronon-frame dust speed): True;  the scalar field's kinetic energy cancels exactly
+    FLRW + Lambda + comoving dust: W = -(2 Lambda + 16 pi G rho) at every c_2 of the points: ['-4.0000', '-4.0000', '-4.0000']... all < 0: True
+    vacuum (Kasner-type, Lambda = rho = V = 0): W = 0 -> the k = 0 mode is the relabelling zero mode (quotient by it)
+    physical (velocity-fixed) form: alpha_c |k|^2 + W vanishes at (k_*/a)/(H/N0) = sqrt((6 + 9 c_2)/alpha_c) in [4.332e+04, 8.467e+06] -- a resonance; the F2a operator (alpha_c - 1/2)|k|^2 + W has none when W < 0
+  [PASS] S4c(Lag) the F2a lapse operator (velocities fixed) on Bianchi-I flat leaves is (alpha_c - 1/2)|k|^2_gamma + W with W = -2 Lambda - 16 pi G V(phi) - 8 pi G rho_rest (2 - 3u^2)/(1-u^2)^(3/2): the sign condition W <= 0 (W != 0) holds for FLRW + Lambda + comoving dust at every record c_2, so the kernel is trivial there; vacuum gives W = 0 (relabelling mode)
+         measured: W derived and matched True; coefficients F2a alpha - 1/2, physical alpha; FLRW W < 0 at all points True
+         reading:  the condition is on the data, not on (alpha_c, c_2): Lambda + 8 pi G V + dust terms >= 0, dust slower than sqrt(2/3) in the khronon frame; on general inhomogeneous data W has no definite sign and invertibility is an open condition near these
+
+======================================================================================================================
+S4d  LINEARISED CONSTRAINT PROPAGATION of the spatial de Donder vector C_i (aligned + the set-2 backgrounds)
+======================================================================================================================
+    aligned: Z^T P_(EH+khronon) = 0 True;  M_C Z = (g^{mu nu} xi_mu xi_nu) gamma_ij True;  Z^T P_gf = -sqrt(-g) (M_C Z)^T gamma^-1 M_C True
+    background 0: Z^T P_(EH+khronon) = 0 True;  M_C Z = (g^{mu nu} xi_mu xi_nu) gamma_ij True;  Z^T P_gf = -sqrt(-g) (M_C Z)^T gamma^-1 M_C True
+    background 1: Z^T P_(EH+khronon) = 0 True;  M_C Z = (g^{mu nu} xi_mu xi_nu) gamma_ij True;  Z^T P_gf = -sqrt(-g) (M_C Z)^T gamma^-1 M_C True
+  [PASS] S4d on solutions of the reduced F2a system the gauge vector obeys (g^{mu nu} xi_mu xi_nu) C_i = 0 at the symbol level, a strongly hyperbolic (light-cone, complete) constraint subsystem; spatial diffeomorphisms annihilate the EH + khronon symbol
+         measured: [('aligned', True), ('background 0', True), ('background 1', True)]
+         reading:  C = 0 initially is a choice of the initial shift velocity, d_t C = 0 initially is the momentum constraint; the nonlinear propagation and the global constraint's propagation are ASSUMED (Noether identities), not computed
+
+======================================================================================================================
+CONTROLS: GR full harmonic (C-GRa); GR CMC + spatial harmonic, the Andersson-Moncrief case (C-GRb); minimal Horava (C-H0)
+======================================================================================================================
+    C-GRa: one family +-1 (multiplicity 10), (M^2 - 1) = 0 exactly, H = (G + M^T G M)/2 PD with H M symmetric, 6 directions: [True, True, True, True, True, True]
+    C-GRb: hyperbolic part S1/S2 on 3 general backgrounds [True, True, True];  CMC lapse -Delta + |k|^2 (tau = -0.7): lambda_min = 1.3643 >= tau^2/3 = 0.1633: True (trivial kernel);  sub-probe maximal k = 0: lambda_min = 3.05e-13 -> kernel = constants, the trivial-kernel check FAILS as pre-registered: True;  AM5: lapse source contains R before the Hamiltonian constraint True, after False -> lower order: True
+    C-H0 (alpha_c = 0, c_2 = 0.0667): det A = 0 -> companion exists: False; S1 fails True, S2 fails True; physical lapse coefficient 4 alpha_c = 0 (not elliptic); F2a lapse coefficient -1/4 (the gauge term alone)
+  [PASS] C-GRa GR in full harmonic gauge passes S1 and S2 (one family, multiplicity 10; explicit H PD, H M symmetric)
+         measured: 6/6 directions
+  [PASS] C-GRb GR in CMC + spatial harmonic gauge (Andersson-Moncrief) passes S1, S2, the lapse kernel (potential >= tau^2/3 > 0) and AM5 (no R in the lapse source after the Hamiltonian constraint); its maximal k = 0 sub-probe fails the trivial-kernel check
+         measured: S1/S2 [True, True, True]; kernel True; sub-probe fails True; AM5 True
+  [PASS] C-H0 minimal Horava (alpha_c = 0) FAILS S1 and S2 (singular leading matrix, an eigenvalue at infinity) and the physical lapse ellipticity
+         measured: det A = 0; companion False
+
+======================================================================================================================
+PREVIEW (non-load-bearing): the crossing c_S = 1 -- what S1 and S2 see there
+======================================================================================================================
+    at alpha = c_2/(1 + 2c_2) = 666667/11333334 (c_2 = 666667/10000000): c_S^2 = 1; multiplicity of +1 = 9 (rank(D^2 - 1) = 0, semisimple True); family split (8,8,1,1) holds: False; S2 construction: 'projector denominator 1 - c_S^2 = 0: the two families merge, the Lagrange projectors are undefined'
+    approaching the crossing (alpha = alpha_x (1 + 10^-j), j = 2, 4, 6, 8): ||H(c_S) - H_merged|| / ||H_merged|| = ['1.5479', '1.5376', '1.5375', '1.5375'];  max ||P_j||_G = ['1.305e+00', '1.304e+00', '1.304e+00', '1.304e+00']
+  [PASS] (finding, not load-bearing) (preview) at the crossing c_S = 1 the constant-multiplicity family split fails (mult(+1) = 9 instead of 8) and the projector symmetriser is flagged (its denominator 1 - c_S^2 vanishes); the jump of H across the crossing is reported
+         measured: mult(+1) 9; family split holds False; S2 note 'projector denominator 1 - c_S^2 = 0: the two families merge, the Lagrange projectors are undefined'; ||H(c_S -> 1) - H_merged||/||H_merged|| = 1.538e+00; projector-norm growth 9.994e-01
+         reading:  disclosed: the merged eigenvalue is semisimple at exactly c_S = 1 (CFG292 C5), so strong hyperbolicity survives there; the family projectors stay bounded (max ||P_j||_G = 1.304) and converge; the four-projector H has a finite limit (no (c_S^2 - 1) factor survives, S2c) that still symmetrises M at the crossing (residual 9.2e-09 at distance 1e-8) and differs from the merged-eigenvalue construction by 1.538 (relative): the Lagrange formula is 0/0 there and Kreiss's constant-multiplicity hypothesis fails, but a continuous symmetriser exists through the crossing in this system
+
+======================================================================================================================
+S4e  ANDERSSON & MONCRIEF (2003) HYPOTHESES, ITEM BY ITEM, FOR C-H/K IN F2a
+======================================================================================================================
+    AM5 test at (alpha_max, lowest c_2): det(lambda - M) with the lapse FROZEN = (lambda - 1)**8*(lambda + 1)**8*(2001892871*lambda**2 + 630957)/2001892871
+                                         with the lapse ELIMINATED = (lambda - 1)**8*(lambda + 1)**8*(2001892871*lambda**2 - 394348124369043)/2001892871
+    -> frozen-lapse scalar roots ['0-0.01775i', '0+0.01775i'] vs c_S = 443.8: the lapse is coupled at principal order (AM5 fails): True
+    AM1 closed Cauchy surface; H^s x H^(s-1) data, s > n/2 + 1: VERIFIED (restricted) -- ACTION.md closed leaves (T^3); admissible s in (2.5, 3.5) for nu_mono as defined (K4c)
+    AM2 CMC slicing (lapse from preserving tr k = t): FAILED (replaced) -- the slicing is forced to the khronon leaves (CFG292 T7); the lapse equation is the khronon's own E_N (S4a)
+    AM3 spatial harmonic coordinates with an elliptic shift: FAILED (replaced) -- F2a's shift is hyperbolic (evolved): it is part of the strongly hyperbolic system certified in S1/S2
+    AM4 lapse equation uniformly elliptic with trivial kernel: VERIFIED (ellipticity) / CONDITION (kernel) -- uniformly elliptic on W_rec (S4b); kernel: Hamiltonian form = the relabelling mode only (S4c Ham; quotient + global constraint), F2a velocity form trivial iff W <= 0, W != 0 (S4c Lag: holds on FLRW + Lambda + comoving dust; open condition in general)
+    AM5 elliptic variables lower order (lapse source free of d^2 g; N in H^(s+1)): FAILED -- the lapse source contains R^(3) with weight 1/(4 alpha_c) and no constraint can remove it (the scalar constraint IS the lapse equation); eliminating the lapse changes the principal symbol (it creates the c_S mode) -> replacement: eliminate the lapse at the symbol level, a quasilinear pseudo-differential hyperbolic system
+    AM6 strong/symmetric hyperbolicity of the reduced evolution: VERIFIED -- S1 (constant multiplicity) + S2 (explicit smooth symmetriser) for the lapse-reduced symbol
+    AM7 coefficients smooth in the fields: VERIFIED (restricted) -- gravity: rational in g on O (K1); MOND/filter: smooth off Z_0, C^{1,1} at the splice (K4a, K4c)
+    AM8 gauge and constraint propagation: VERIFIED (linear) / ASSUMED (nonlinear) -- symbol-level: (g^{mu nu} xi xi) C_i = 0 (S4d); nonlinear: A2, A3
+    AM9 the elliptic-hyperbolic iteration theorem: FAILED (replaced) -- AM's iteration uses AM5; replacement = Kato's abstract theorem (LNM 448) on the lapse-reduced pseudo-differential system with the S2 symmetriser; inputs verified: K1-K4 (restricted); inputs assumed: A1, A4 (+A5)
+  [PASS] S4e the AM5 decision is computed: with the lapse frozen at principal order the characteristic polynomial differs from the lapse-eliminated one, so the khronon lapse is coupled at principal order and AM's elliptic-lower-order structure fails; the replacement (symbol-level elimination) is the system S1/S2 certified
+         measured: AM5 fails True; frozen-lapse scalar roots ['0-0.01775i', '0+0.01775i']
+         reading:  AM is therefore not applicable verbatim; no item is left FAILED without a replacement whose remaining inputs are named
+
+======================================================================================================================
+VERDICT (frozen decision rule, FROZEN_CRITERIA.md sec. 4)
+======================================================================================================================
+  S1 constant multiplicity True;  S2 symmetriser True;  S3 Kato hypotheses True;  S4a lapse equation True;  S4b ellipticity True;  S4c kernel True;  AM mapping True;  controls True
+  VERDICT: CONDITIONAL
+  Scope: local in time; beta = 0; F2a (t = tau, spatial de Donder with 4-D trace, lapse eliminated) on the khronon's leaves; data
+  away from zero-field regions (K4d).  Conditions:
+    C1 beta = 0, 0 < alpha_c < 1/2 (alpha_c != 1/2 is the F2a gauge artefact), c_2 > 0: the whole of W_rec (S1b, S1d)
+    C2 Sobolev index s in (2.5, 3.5) for nu_mono with its C^(1,1) splice (any s > 5/2 with a C-infinity splice) (K4c)
+    C3 the filtered field D S U has no zeros on the leaf (requires U with non-trivial periods on closed leaves), or A5 (K4d)
+    C4 an invertible lapse operator at the data: F2a velocity form W <= 0, W != 0 (holds on FLRW + Lambda + comoving dust; open near it), or the Hamiltonian form with the relabelling mode quotiented and the global constraint imposed (S4c)
+    C5 for a uniform N_min > 0 independent of alpha_c: data obeying the GR-like Hamiltonian constraint to O(alpha_c) (S4c Ham, disclosed)
+  Assumed (named, not computed here):
+    A1 the pseudo-differential (paradifferential) form of Kato's quasilinear theorem for the lapse-reduced system: commutator/paraproduct estimates for the nonlocal lapse solve with H^s coefficients (standard for symbols smooth in xi, H^s in x, s > n/2 + 1; not verified here)
+    A2 nonlinear propagation of the gauge constraint C_i = 0 (foliation-preserving-diffeomorphism Noether identity + uniqueness for the linear constraint system; the symbol-level statement is S4d)
+    A3 propagation of the global (relabelling) constraint lambda_1 = 0 (first-class global part, Donnelly & Jacobson 2011)
+    A4 continuous dependence in the top norm across nu_mono's splice level set {|D S U| = y* a0} (needs it to be null)
+    A5 for single-valued U on a closed leaf (Z_0 non-empty, K4d): that isolated zeros of the filtered field do not obstruct the H^s estimates (XC2 B7 integrated Lipschitz property); avoided only by U with non-trivial periods
+  Time 176 s.
+
+  22/23 checks pass; load-bearing failures: 0; wrote cfg294_chassis_nonlinear_wellposedness_results.json
