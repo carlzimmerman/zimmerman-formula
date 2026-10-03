@@ -1,0 +1,1318 @@
+{
+ "lane": "CFG321",
+ "gate": "recipe G5/G10",
+ "mutate": false,
+ "frozen": "cb089fb29",
+ "checks": {
+  "C-SYM the scalar block rebuilt from the action reduces (momentum constraint for n_z, the elliptic lapse equation phi = (2u - hs)/(2 + alpha)) to K hs_tt = -(alpha/(2(2+alpha))) Lap hs - (2/(2+alpha)) Lap u with U per leaf; its dispersion equals FP5 B3 exactly (C -> 0: the healthy c_S^2 of CFG294; C -> oo: FP5 C3's -c_2 alpha/((2+alpha)(2+3c_2))); the dimensionless map (x = C/C*, eps = alpha^2/(4 - alpha^2), slow time) is exact, the field map constant (a/b = alpha(Lambda - 1)), and the energy functional reproduces V_k = k^2 psi^2((1+eps)/(x+eps) - 1)": {
+   "ok": true,
+   "measured": "lapse True; reduced block True; B3 True; ends True (c_S^2 = c_2*(2 - alpha)/(alpha*(3*c_2 + 2)), zero field -alpha*c_2/(3*alpha*c_2 + 2*alpha + 6*c_2 + 4)); map True; field map True (-alpha + 4/alpha); energy True",
+   "load_bearing": true
+  },
+  "C-FP5 FP5 C4's three rows (k_max xi = sqrt(ln(C/C*)), max growth, e-fold at the fastest corner) and y*_T are reproduced from this lane's kernel; the lane's dimensionless rate at the physical eps equals FP5's formula": {
+   "ok": true,
+   "measured": "y* ratio 1.000000; rows (k_max, growth, e-fold ratios, lane/FP5): 1e2: 1.00000, 1.00000, 1.00000, 1.00000007; 1e10: 1.00000, 1.00000, 1.00000, 1.00000004; 1e40: 1.00000, 1.00000, 1.00000, 0.99999999",
+   "load_bearing": true
+  },
+  "C-LIN the nonlinear code, linearised about yhat_b = 1e-4, reproduces omega^2 = k^2((1+eps)/(C sigma^2 + eps) - 1) to 1% (1-D: k || G, C_L; 2-D: k perp G, C_T, and k || G), on both sides of the band edge k xi = sqrt(ln C)": {
+   "ok": false,
+   "measured": "1D L k=0.393 g -6.4e-06; 1D L k=1.178 g -1.5e-06; 1D L k=1.963 g -6.6e-08; 1D L k=2.356 f +3.9e-05; 1D L k=3.142 f +1.5e-03; 2D T k=0.785 g -2.0e-08; 2D T k=1.571 g -5.7e-06; 2D T k=2.356 f +3.3e-05; 2D L k=1.571 g -8.5e-06; 2D L k=2.356 f +9.0e-05",
+   "load_bearing": true
+  },
+  "C-GR with the MOND sector off the reduced system is the healthy khronon wave equation: error vs the exact solution converges with order >= 1.8, energy drift <= 1e-3, pair separation bounded (max D/delta <= 10) and linear in delta": {
+   "ok": false,
+   "measured": "order 2.000 (errors 3.79e-02, 9.81e-03, 2.45e-03); drifts ['3.2e-03', '7.6e-04', '1.9e-04']; max D/delta [2.505, 2.436, 2.418]; ratios [100.0, 100.0, 100.0]",
+   "load_bearing": true
+  },
+  "R1 [1-D eps 1e-02] every run regular and bounded: no blow-up, leaf solved (<= 1e-8) with zero indefinite Hessians, energy drift <= 1e-3 max E_kin, finest grid-top-third <= 1e-6, leaf unique at 4 probe times": {
+   "ok": true,
+   "measured": "all runs ok: True; top 3.2e-24; probes ok True",
+   "load_bearing": true
+  },
+  "R2a [1-D eps 1e-02] growth phase converges pointwise: at tau_s = 5.75 the two finest grids differ by <= 1e-3 (relative L2 of w on common modes) with observed order >= 1.5 (fitted against dt)": {
+   "ok": false,
+   "measured": "d12 = 1.726e-02, d23 = 7.204e-03, dt = ['7.812e-03', '3.968e-03', '1.984e-03'], p = 1.311",
+   "load_bearing": true
+  },
+  "R2b [1-D eps 1e-02] the saturated state (window [T/2, T]) is resolution independent: <rms>, <median>, <p90> of yhat, <E_kin>/Vol, <f_pin> agree between the two finest grids within max(10%, 2 sigma)": {
+   "ok": true,
+   "measured": "rms: 0.5677/0.5966/0.5867 ok; median: 0.4521/0.5052/0.5222 ok; p90: 0.9167/0.9338/0.9063 ok; Ekin: 0.06734/0.07783/0.07894 ok; fpin: 0.8595/0.8349/0.8325 ok",
+   "load_bearing": true
+  },
+  "R3 [1-D eps 1e-02] continuous dependence: separation linear in delta at tau_s (ratio in [30, 300] at every grid), amplification and Lyapunov exponent not growing with resolution (finest/next in [0.5, 2] and [0.8, 1.25])": {
+   "ok": false,
+   "measured": "ratios [99.56, 98.77, 100.18]; A ['2.59', '2.68', '2.56'] (finest/next 0.956); lambda [0.0618, 0.0422, 0.0244] (finest/next 0.577)",
+   "load_bearing": true
+  },
+  "R1 [1-D eps 1e-03] every run regular and bounded: no blow-up, leaf solved (<= 1e-8) with zero indefinite Hessians, energy drift <= 1e-3 max E_kin, finest grid-top-third <= 1e-6, leaf unique at 4 probe times": {
+   "ok": true,
+   "measured": "all runs ok: True; top 1.4e-23; probes ok True",
+   "load_bearing": true
+  },
+  "R2a [1-D eps 1e-03] growth phase converges pointwise: at tau_s = 5.75 the two finest grids differ by <= 1e-3 (relative L2 of w on common modes) with observed order >= 1.5 (fitted against dt)": {
+   "ok": false,
+   "measured": "d12 = 1.737e-02, d23 = 7.759e-03, dt = ['2.551e-03', '1.263e-03', '6.297e-04'], p = 1.136",
+   "load_bearing": true
+  },
+  "R2b [1-D eps 1e-03] the saturated state (window [T/2, T]) is resolution independent: <rms>, <median>, <p90> of yhat, <E_kin>/Vol, <f_pin> agree between the two finest grids within max(10%, 2 sigma)": {
+   "ok": true,
+   "measured": "rms: 0.6036/0.5979/0.5725 ok; median: 0.4696/0.4959/0.4723 ok; p90: 0.9816/0.9534/0.9019 ok; Ekin: 0.07519/0.07816/0.06826 ok; fpin: 0.8548/0.8355/0.8452 ok",
+   "load_bearing": true
+  },
+  "R3 [1-D eps 1e-03] continuous dependence: separation linear in delta at tau_s (ratio in [30, 300] at every grid), amplification and Lyapunov exponent not growing with resolution (finest/next in [0.5, 2] and [0.8, 1.25])": {
+   "ok": false,
+   "measured": "ratios [99.48, 99.13, 100.99]; A ['2.62', '2.7', '2.43'] (finest/next 0.900); lambda [0.0124, 0.0414, 0.0663] (finest/next 1.604)",
+   "load_bearing": true
+  },
+  "R1 [2-D eps 1e-02] every run regular and bounded: no blow-up, leaf solved (<= 1e-8) with zero indefinite Hessians, energy drift <= 1e-3 max E_kin, finest grid-top-third <= 1e-6, leaf unique at 4 probe times": {
+   "ok": true,
+   "measured": "all runs ok: True; top 7.7e-27; probes ok True",
+   "load_bearing": true
+  },
+  "R2a [2-D eps 1e-02] growth phase converges pointwise: at tau_s = 6.00 the two finest grids differ by <= 1e-3 (relative L2 of w on common modes) with observed order >= 1.5 (fitted against dt)": {
+   "ok": false,
+   "measured": "d12 = 8.049e-03, d23 = 7.113e-03, dt = ['1.190e-02', '8.333e-03', '6.098e-03'], p = nan",
+   "load_bearing": true
+  },
+  "R2b [2-D eps 1e-02] the saturated state (window [T/2, T]) is resolution independent: <rms>, <median>, <p90> of yhat, <E_kin>/Vol, <f_pin> agree between the two finest grids within max(10%, 2 sigma)": {
+   "ok": true,
+   "measured": "rms: 0.2772/0.277/0.2762 ok; median: 0.2552/0.2561/0.256 ok; p90: 0.3989/0.3966/0.3957 ok; Ekin: 0.0252/0.02578/0.02596 ok; fpin: 1/1/1 ok",
+   "load_bearing": true
+  },
+  "R3 [2-D eps 1e-02] continuous dependence: separation linear in delta at tau_s (ratio in [30, 300] at every grid), amplification and Lyapunov exponent not growing with resolution (finest/next in [0.5, 2] and [0.8, 1.25])": {
+   "ok": true,
+   "measured": "ratios [100.03, 100.0, 100.04]; A ['2.1', '2.12', '2.07'] (finest/next 0.977); lambda [0.0604, 0.038, 0.034] (finest/next 0.895)",
+   "load_bearing": true
+  },
+  "R1 [eps-ladder runs: 1-D eps 1e-4, 2-D eps 1e-3] regular and bounded (same criteria)": {
+   "ok": true,
+   "measured": "2-D n 15 eps 1e-03: ok, res 1.0e-10, indef 0, drift 7.8e-06; 2-D n 21 eps 1e-03: ok, res 1.0e-10, indef 0, drift 3.1e-06; 1-D n 63 eps 1e-04: ok, res 1.0e-10, indef 0, drift 4.6e-06; 1-D n 127 eps 1e-04: ok, res 1.0e-10, indef 0, drift 4.8e-07; 2-D n 29 eps 1e-3 top 2.6e-26 probes [(15, '1.2e-10', True), (30, '1.3e-10', True), (45, '9.4e-11', True), (60, '8.1e-11', True)]; 2-D n 29 eps 1e-03: ok, res 1.0e-10, indef 0, drift 1.4e-06",
+   "load_bearing": true
+  },
+  "R4 [1-D N 127] eps ladder 1e-04 vs 1e-03: saturated statistics within max(15%, 2 sigma), tau_s within 10%": {
+   "ok": true,
+   "measured": "rms 0.5999 vs 0.5979 (ok, tol 0.308); median 0.5002 vs 0.4959 (ok, tol 0.281); p90 0.9608 vs 0.9534 (ok, tol 0.473); Ekin 0.07738 vs 0.07816 (ok, tol 0.0256); tau_s 5.75 vs 5.75",
+   "load_bearing": true
+  },
+  "R4 [2-D N 29] eps ladder 1e-03 vs 1e-02: saturated statistics within max(15%, 2 sigma), tau_s within 10%": {
+   "ok": true,
+   "measured": "rms 0.2738 vs 0.2762 (ok, tol 0.0604); median 0.253 vs 0.256 (ok, tol 0.0608); p90 0.395 vs 0.3957 (ok, tol 0.0789); Ekin 0.02549 vs 0.02596 (ok, tol 0.00382); tau_s 6.0 vs 6.0",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "A": {
+   "phi": "(-hs_ + 2*u_)/(alpha + 2)",
+   "n_z": "hs_*omega*(-c_2 - 1)/(c_2*k)",
+   "Mred": "Matrix([[(alpha*c_2*k**2 + 3*alpha*c_2*omega**2 + 2*alpha*omega**2 + 6*c_2*omega**2 + 4*omega**2)/(2*c_2*(alpha + 2)), 2*k**2/(alpha + 2)], [2*k**2/(alpha + 2), 2*k**2*((C + 1)*(alpha + 2) - 2)/(alpha + 2)]])",
+   "omega2": "[c_2*k**2*(-C*alpha - alpha + 2)/(3*C*alpha*c_2 + 2*C*alpha + 6*C*c_2 + 4*C + 3*alpha*c_2 + 2*alpha)]",
+   "cS2": "c_2*(2 - alpha)/(alpha*(3*c_2 + 2))",
+   "zero_field": "-alpha*c_2/(3*alpha*c_2 + 2*alpha + 6*c_2 + 4)",
+   "a_over_b": "-alpha + 4/alpha"
+  },
+  "units": {
+   "eps_phys": 2.5600000000000002e-18,
+   "tau_unit_yr": 21140.52319038876
+  },
+  "B": {
+   "ystar": 2.560000004096e-18,
+   "rows": [
+    [
+     2,
+     1.51742712962239,
+     1.5174271296223898,
+     6.353342269369821e-06,
+     6.35334226936982e-06,
+     23169.491355490252,
+     23169.491355490252,
+     6.3533427395797855e-06
+    ],
+    [
+     10,
+     3.393070212325442,
+     3.393070212325442,
+     2.004739665944843e-05,
+     2.004739665944843e-05,
+     7342.7842671660355,
+     7342.7842671660355,
+     2.0047397451932497e-05
+    ],
+    [
+     40,
+     6.7861404244740555,
+     6.7861404244740555,
+     4.475084802590832e-05,
+     4.475084802590832e-05,
+     3289.4060175890277,
+     3289.4060175890277,
+     4.475084777302577e-05
+    ]
+   ]
+  },
+  "BKG": {
+   "H_xi_over_c": 1.0140847517643185e-11,
+   "W_over_k2": 6.169668770285593e-22,
+   "tau_unit_H0": 1.456368347517368e-06
+  },
+  "C_LIN": [
+   [
+    1,
+    0,
+    0.39269908169872414,
+    "growth",
+    0.38804250000000007,
+    0.38804499164705025,
+    "inside"
+   ],
+   [
+    1,
+    0,
+    1.1780972450961724,
+    "growth",
+    1.1294575,
+    1.1294591593193015,
+    "inside"
+   ],
+   [
+    1,
+    0,
+    1.9634954084936207,
+    "growth",
+    0.458865,
+    0.45886503046193944,
+    "inside"
+   ],
+   [
+    1,
+    0,
+    2.356194490192345,
+    "frequency",
+    4.682861666666668,
+    4.682678172370119,
+    "outside"
+   ],
+   [
+    1,
+    0,
+    3.141592653589793,
+    "frequency",
+    28.007353333333338,
+    27.966682732906335,
+    "outside"
+   ],
+   [
+    2,
+    1,
+    0.7853981633974483,
+    "growth",
+    0.7780150000000001,
+    0.7780150155141653,
+    "inside"
+   ],
+   [
+    2,
+    1,
+    1.5707963267948966,
+    "growth",
+    1.4744025,
+    1.4744109514634236,
+    "inside"
+   ],
+   [
+    2,
+    1,
+    2.356194490192345,
+    "frequency",
+    2.921231666666667,
+    2.921136131482062,
+    "outside"
+   ],
+   [
+    2,
+    0,
+    1.5707963267948966,
+    "growth",
+    1.3715074999999999,
+    1.3715191529061452,
+    "inside"
+   ],
+   [
+    2,
+    0,
+    2.356194490192345,
+    "frequency",
+    4.683101666666668,
+    4.682678172370119,
+    "outside"
+   ]
+  ],
+  "C_GR": {
+   "rows": [
+    {
+     "n": 63,
+     "dt": 0.0078125,
+     "err_T": 0.0379252060769717,
+     "drift": 0.0031908350275244063,
+     "maxD5": 2.5049364280954927,
+     "ratio": 99.99999999295768,
+     "status": "ok"
+    },
+    {
+     "n": 127,
+     "dt": 0.003968253968253968,
+     "err_T": 0.009812290824979811,
+     "drift": 0.0007635353483207299,
+     "maxD5": 2.4357768288507504,
+     "ratio": 99.99999999939318,
+     "status": "ok"
+    },
+    {
+     "n": 255,
+     "dt": 0.001984126984126984,
+     "err_T": 0.00245261670175902,
+     "drift": 0.00018618588135497493,
+     "maxD5": 2.417766316628977,
+     "ratio": 99.99999998932029,
+     "status": "ok"
+    }
+   ],
+   "order": 2.00026820915784
+  },
+  "saturated": {
+   "1D": {
+    "percentiles": [
+     0.004191568083842673,
+     0.04654020456705428,
+     0.33521483431854643,
+     1.2288227604539776,
+     1.9609341693785847,
+     2.278657935835743
+    ],
+    "f_lt_1e-3": 0.0033613445378151263,
+    "f_lt_1e-2": 0.02340762391913287,
+    "Ekin_per_vol": [
+     0.06825632491002329,
+     0.009507276687411432
+    ],
+    "E_per_vol": -4.337162964050156e-05,
+    "e_phys_J_m3": 1.4585572165167316e-39,
+    "over_rhoL": 2.7810128701690887e-30,
+    "g_median_SI": 8.027795436021729e-29,
+    "t_growth_yr": 121558.00834473537,
+    "dust_disp_m": 0.6688449570266297,
+    "metric_pert": 1.188663273151352e-20
+   },
+   "2D": {
+    "percentiles": [
+     0.02312561922479607,
+     0.07548747319252343,
+     0.219894080811625,
+     0.49837558597369314,
+     0.7107546073380304,
+     0.8276773868289532
+    ],
+    "f_lt_1e-3": 0.0,
+    "f_lt_1e-2": 0.001788504436866776,
+    "Ekin_per_vol": [
+     0.025960818177120103,
+     0.001217822708971892
+    ],
+    "E_per_vol": -1.8724698217189336e-05,
+    "e_phys_J_m3": 5.5475208706053304e-40,
+    "over_rhoL": 1.0577388918296216e-30,
+    "g_median_SI": 5.266069748781668e-29,
+    "t_growth_yr": 126843.13914233257,
+    "dust_disp_m": 0.13636554518328092,
+    "metric_pert": 4.4437019616029565e-21
+   }
+  },
+  "sets": {
+   "1D_eps1e-02": {
+    "tau_s": 5.75,
+    "d12": 0.017257414234687903,
+    "d23": 0.007203894602522754,
+    "p": 1.3106114113013831,
+    "ws": {
+     "63": {
+      "rms": [
+       0.5676987627961221,
+       0.11058062069898858
+      ],
+      "median": [
+       0.4521385505936042,
+       0.09923250272662001
+      ],
+      "p90": [
+       0.9167382221941176,
+       0.17353792125940484
+      ],
+      "Ekin": [
+       0.06734123642373133,
+       0.009893883125821446
+      ],
+      "fpin": [
+       0.8595090209997043,
+       0.060941516589670494
+      ]
+     },
+     "127": {
+      "rms": [
+       0.5966458853213155,
+       0.11150549925949634
+      ],
+      "median": [
+       0.5051922509908389,
+       0.10868359768680849
+      ],
+      "p90": [
+       0.9337641029886566,
+       0.1627641440554797
+      ],
+      "Ekin": [
+       0.07782910087132346,
+       0.009076122785299819
+      ],
+      "fpin": [
+       0.8348902039418987,
+       0.06557250389715923
+      ]
+     },
+     "255": {
+      "rms": [
+       0.5867195630609332,
+       0.11442161239100133
+      ],
+      "median": [
+       0.5221591829145412,
+       0.11288573665534664
+      ],
+      "p90": [
+       0.9063373531798367,
+       0.1687362741200879
+      ],
+      "Ekin": [
+       0.07894492122725599,
+       0.009560415191769717
+      ],
+      "fpin": [
+       0.8325173547679942,
+       0.06509970444671016
+      ]
+     }
+    },
+    "ratio": {
+     "63": 99.55734737985493,
+     "127": 98.77050518417597,
+     "255": 100.17979965428688
+    },
+    "A": {
+     "63": 2.589539641261673,
+     "127": 2.6760577988026775,
+     "255": 2.5577152301445154
+    },
+    "lambda": {
+     "63": 0.06183467437768753,
+     "127": 0.042223126402644966,
+     "255": 0.024380614157436982
+    }
+   },
+   "1D_eps1e-03": {
+    "tau_s": 5.75,
+    "d12": 0.017371945208161505,
+    "d23": 0.007758999406835548,
+    "p": 1.1358747937528106,
+    "ws": {
+     "63": {
+      "rms": [
+       0.6035775813229919,
+       0.09619471574990668
+      ],
+      "median": [
+       0.4696210836770562,
+       0.08218384731754892
+      ],
+      "p90": [
+       0.9816319816330317,
+       0.15471131241995079
+      ],
+      "Ekin": [
+       0.07519111185893969,
+       0.0087140666272463
+      ],
+      "fpin": [
+       0.85477669328601,
+       0.05034203607115273
+      ]
+     },
+     "127": {
+      "rms": [
+       0.5979230569367582,
+       0.10999447916335088
+      ],
+      "median": [
+       0.4958607709340067,
+       0.09962153708384297
+      ],
+      "p90": [
+       0.9534300090954224,
+       0.1673583398574038
+      ],
+      "Ekin": [
+       0.07816072816175902,
+       0.008912768678913191
+      ],
+      "fpin": [
+       0.8354770871032425,
+       0.06579166742160551
+      ]
+     },
+     "255": {
+      "rms": [
+       0.5725142713096062,
+       0.11494391943860365
+      ],
+      "median": [
+       0.47228026657543726,
+       0.1069824549732886
+      ],
+      "p90": [
+       0.9019399423548512,
+       0.1734523635787725
+      ],
+      "Ekin": [
+       0.06825632491002329,
+       0.009507276687411432
+      ],
+      "fpin": [
+       0.8452320058458165,
+       0.06850515600496145
+      ]
+     }
+    },
+    "ratio": {
+     "63": 99.48039014202655,
+     "127": 99.13080709553975,
+     "255": 100.98889302742685
+    },
+    "A": {
+     "63": 2.6179066732131027,
+     "127": 2.702980262015523,
+     "255": 2.431442393973993
+    },
+    "lambda": {
+     "63": 0.012357962784437872,
+     "127": 0.04136990504835989,
+     "255": 0.06633851700256886
+    }
+   },
+   "2D_eps1e-02": {
+    "tau_s": 6.0,
+    "d12": 0.008049446807207098,
+    "d23": 0.00711293803620845,
+    "p": NaN,
+    "ws": {
+     "15": {
+      "rms": [
+       0.2771817320330229,
+       0.03288769049299164
+      ],
+      "median": [
+       0.2551528221409267,
+       0.03175529277771657
+      ],
+      "p90": [
+       0.39891319146004767,
+       0.045176363302867624
+      ],
+      "Ekin": [
+       0.025196833251108386,
+       0.0017638482495562894
+      ],
+      "fpin": [
+       1.0,
+       0.0
+      ]
+     },
+     "21": {
+      "rms": [
+       0.2769741765181788,
+       0.027131910267508823
+      ],
+      "median": [
+       0.2561309877643209,
+       0.027153646727068183
+      ],
+      "p90": [
+       0.3966218871218404,
+       0.03598161439065431
+      ],
+      "Ekin": [
+       0.02577841580502532,
+       0.0012185865155530055
+      ],
+      "fpin": [
+       1.0,
+       0.0
+      ]
+     },
+     "29": {
+      "rms": [
+       0.27621790211587527,
+       0.023122067298698548
+      ],
+      "median": [
+       0.25602554008352324,
+       0.02331330502276293
+      ],
+      "p90": [
+       0.395671141859317,
+       0.03035900862063002
+      ],
+      "Ekin": [
+       0.025960818177120103,
+       0.001217822708971892
+      ],
+      "fpin": [
+       1.0,
+       0.0
+      ]
+     }
+    },
+    "ratio": {
+     "15": 100.03458687831098,
+     "21": 100.00048993792534,
+     "29": 100.0426296580661
+    },
+    "A": {
+     "15": 2.1035727223334377,
+     "21": 2.1169692183966546,
+     "29": 2.0674375489925776
+    },
+    "lambda": {
+     "15": 0.06043622651823448,
+     "21": 0.03800252305593619,
+     "29": 0.03400762731800482
+    }
+   }
+  }
+ },
+ "verdict": "FAIL",
+ "R": {
+  "R1": true,
+  "R2": false,
+  "R3": false,
+  "R4": true
+ },
+ "fail_signatures": [
+  "1-D eps 1e-03: Lyapunov exponent grows with resolution at both steps"
+ ],
+ "runs": [
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 15,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 52.47778296470642,
+   "dt": 0.011904761904761904,
+   "n_refac": 96,
+   "max_res": 9.996391440791691e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 15,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 56.95150089263916,
+   "dt": 0.011904761904761904,
+   "n_refac": 83,
+   "max_res": 9.998510460717911e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 15,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 58.75760078430176,
+   "dt": 0.011904761904761904,
+   "n_refac": 80,
+   "max_res": 9.995256791837464e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 21,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 97.30772709846497,
+   "dt": 0.008333333333333333,
+   "n_refac": 75,
+   "max_res": 9.999363463485989e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 21,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 101.16545104980469,
+   "dt": 0.008333333333333333,
+   "n_refac": 69,
+   "max_res": 9.999730286638433e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 21,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 101.32182598114014,
+   "dt": 0.008333333333333333,
+   "n_refac": 69,
+   "max_res": 9.999687128281674e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 15,
+    "eps": 0.001,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 127.48618817329407,
+   "dt": 0.003787878787878788,
+   "n_refac": 146,
+   "max_res": 9.999358105298436e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 21,
+    "eps": 0.001,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 257.546089887619,
+   "dt": 0.002688172043010753,
+   "n_refac": 120,
+   "max_res": 9.999870819017626e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 255,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": true
+   },
+   "status": "ok",
+   "wall_s": 175.7718780040741,
+   "dt": 0.001984126984126984,
+   "n_refac": 3619,
+   "max_res": 9.99983695663553e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 63,
+    "eps": 0.0001,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 261.93772292137146,
+   "dt": 0.0008064516129032258,
+   "n_refac": 8535,
+   "max_res": 9.999776917263173e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 127,
+    "eps": 0.001,
+    "delta": 1e-05,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 278.4118740558624,
+   "dt": 0.0012626262626262627,
+   "n_refac": 5115,
+   "max_res": 9.999586180319049e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 127,
+    "eps": 0.001,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 283.6495921611786,
+   "dt": 0.0012626262626262627,
+   "n_refac": 5114,
+   "max_res": 9.999848520614432e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 29,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 385.40943121910095,
+   "dt": 0.006097560975609756,
+   "n_refac": 60,
+   "max_res": 9.998903096594602e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 29,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": true
+   },
+   "status": "ok",
+   "wall_s": 387.1788589954376,
+   "dt": 0.006097560975609756,
+   "n_refac": 61,
+   "max_res": 9.999312752229034e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 127,
+    "eps": 0.001,
+    "delta": 0.001,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 288.04900884628296,
+   "dt": 0.0012626262626262627,
+   "n_refac": 5126,
+   "max_res": 9.999585005327254e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 29,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 398.01691913604736,
+   "dt": 0.006097560975609756,
+   "n_refac": 62,
+   "max_res": 9.999521729501448e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 63,
+    "eps": 0.001,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 88.91822528839111,
+   "dt": 0.002551020408163265,
+   "n_refac": 4952,
+   "max_res": 9.999997500267452e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 255,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 162.5112590789795,
+   "dt": 0.001984126984126984,
+   "n_refac": 3454,
+   "max_res": 9.999769735303615e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 63,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 29.839640855789185,
+   "dt": 0.0078125,
+   "n_refac": 1991,
+   "max_res": 9.997551312975982e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 63,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 31.118599891662598,
+   "dt": 0.0078125,
+   "n_refac": 2082,
+   "max_res": 9.997199358803026e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "lin",
+    "dim": 1,
+    "n": 63,
+    "L": 16.0,
+    "eps": 0.01
+   },
+   "status": "ok",
+   "wall_s": 14.668998003005981,
+   "dt": null,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "gr",
+    "n": 63,
+    "eps": 0.01,
+    "delta": 0.0
+   },
+   "status": "ok",
+   "wall_s": 0.26160717010498047,
+   "dt": 0.0078125,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "gr",
+    "n": 63,
+    "eps": 0.01,
+    "delta": 0.001
+   },
+   "status": "ok",
+   "wall_s": 0.23557019233703613,
+   "dt": 0.0078125,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "gr",
+    "n": 63,
+    "eps": 0.01,
+    "delta": 1e-05
+   },
+   "status": "ok",
+   "wall_s": 0.22538280487060547,
+   "dt": 0.0078125,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "gr",
+    "n": 127,
+    "eps": 0.01,
+    "delta": 0.0
+   },
+   "status": "ok",
+   "wall_s": 0.7682390213012695,
+   "dt": 0.003968253968253968,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "gr",
+    "n": 127,
+    "eps": 0.01,
+    "delta": 0.001
+   },
+   "status": "ok",
+   "wall_s": 0.6949629783630371,
+   "dt": 0.003968253968253968,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "gr",
+    "n": 127,
+    "eps": 0.01,
+    "delta": 1e-05
+   },
+   "status": "ok",
+   "wall_s": 0.695120096206665,
+   "dt": 0.003968253968253968,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "gr",
+    "n": 255,
+    "eps": 0.01,
+    "delta": 0.0
+   },
+   "status": "ok",
+   "wall_s": 1.434946060180664,
+   "dt": 0.001984126984126984,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "gr",
+    "n": 255,
+    "eps": 0.01,
+    "delta": 0.001
+   },
+   "status": "ok",
+   "wall_s": 1.490501880645752,
+   "dt": 0.001984126984126984,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "gr",
+    "n": 255,
+    "eps": 0.01,
+    "delta": 1e-05
+   },
+   "status": "ok",
+   "wall_s": 1.445530891418457,
+   "dt": 0.001984126984126984,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 63,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 31.44103693962097,
+   "dt": 0.0078125,
+   "n_refac": 1996,
+   "max_res": 9.99904143147977e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 63,
+    "eps": 0.001,
+    "delta": 0.001,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 82.87950205802917,
+   "dt": 0.002551020408163265,
+   "n_refac": 4881,
+   "max_res": 9.9996331650793e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 255,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 160.1841049194336,
+   "dt": 0.001984126984126984,
+   "n_refac": 3644,
+   "max_res": 9.999677122919647e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 63,
+    "eps": 0.001,
+    "delta": 1e-05,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 84.09298133850098,
+   "dt": 0.002551020408163265,
+   "n_refac": 4942,
+   "max_res": 9.99920408397255e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 127,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 86.05353999137878,
+   "dt": 0.003968253968253968,
+   "n_refac": 2632,
+   "max_res": 9.999459576513432e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 127,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 88.0040590763092,
+   "dt": 0.003968253968253968,
+   "n_refac": 2569,
+   "max_res": 9.999918757695678e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 127,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 86.20832180976868,
+   "dt": 0.003968253968253968,
+   "n_refac": 2537,
+   "max_res": 9.999489036068557e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 255,
+    "eps": 0.001,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": true
+   },
+   "status": "ok",
+   "wall_s": 478.7409670352936,
+   "dt": 0.0006297229219143577,
+   "n_refac": 8953,
+   "max_res": 9.999982723577059e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 255,
+    "eps": 0.001,
+    "delta": 0.001,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 468.9835331439972,
+   "dt": 0.0006297229219143577,
+   "n_refac": 8810,
+   "max_res": 9.999968205495269e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 255,
+    "eps": 0.001,
+    "delta": 1e-05,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 467.33682203292847,
+   "dt": 0.0006297229219143577,
+   "n_refac": 9035,
+   "max_res": 9.999989026041599e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "lin",
+    "dim": 2,
+    "n": 15,
+    "L": 8.0,
+    "eps": 0.01
+   },
+   "status": "ok",
+   "wall_s": 132.2170970439911,
+   "dt": null,
+   "n_refac": null,
+   "max_res": null,
+   "n_indef": null
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 127,
+    "eps": 0.0001,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 665.213880777359,
+   "dt": 0.00040064102564102563,
+   "n_refac": 9655,
+   "max_res": 9.999823981639413e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 29,
+    "eps": 0.001,
+    "delta": 0.0,
+    "kern": "nu_mono",
+    "probe": true
+   },
+   "status": "ok",
+   "wall_s": 788.1664490699768,
+   "dt": 0.001953125,
+   "n_refac": 101,
+   "max_res": 9.999157500288163e-11,
+   "n_indef": 0
+  }
+ ],
+ "summary": {
+  "pass": 12,
+  "total": 19,
+  "lb_pass": 12,
+  "lb_total": 19,
+  "wall_s": 791.7407131195068
+ }
+}

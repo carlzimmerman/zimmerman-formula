@@ -1,0 +1,227 @@
+CFG321 -- RECIPE G5/G10 ON THE UNGATED CHASSIS: does the nonlinear system regularise the Hadamard instability of its own
+zero-field (FRW) background?
+
+THE QUESTION.  FP5 G-2f (a26136bc4) C3: at an open zero-field region (grad U ~ 0 -- the ungated C-H/K chassis's own FRW
+background) the linearisation is BPS khronometric gravity with alpha_eff = 2 + alpha_c > 2: omega^2 < 0 at every k,
+growth proportional to k, Hadamard ill-posed.  C4 (reported only) said the band is bounded below y* and saturates at
+y ~ y*.  CFG294 proved conditional local well-posedness only AWAY from zero-field regions (its C3/A5).  Does the
+nonlinear system reach a regular saturated state that depends continuously on the data, or do solutions branch, blow up
+or depend discontinuously on the data?  Criteria frozen first: FROZEN_CRITERIA.md (commit cb089fb29).
+
+  inputs: alpha_c window [9.6240e-14, 3.2000e-09] (L340 P1), c_2 corner 0.0667, xi = 0.04513 pc (L340 S1); a0 = 9.3548e-11 (canonical) / 1.1305e-10 (alt) m/s^2; kappa = 1/2 FITTED (plays no role)
+
+================================================================================================================
+PART A  C-SYM: the reduced system from the action (FP5 scalar block, shift + lapse eliminated, U per leaf)
+================================================================================================================
+  building the second-order ADM Lagrangian from the action (FP5's adm_L2, copied verbatim above) ...
+  scalar block (hs, phi, n_z, u), chassis values: Matrix([[(-2*c_2*omega**2 + k**2 - omega**2)/2, k**2, -k*omega*(c_2 + 1), 0], [k**2, k**2*(alpha + 2), 0, -2*k**2], [-k*omega*(c_2 + 1), 0, -c_2*k**2, 0], [0, -2*k**2, 0, 2*k**2*(C + 1)]])
+  lapse equation -> phi = -(hs_ - 2*u_)/(alpha + 2);  momentum constraint -> n_z = -hs_*omega*(c_2 + 1)/(c_2*k)
+  reduced (hs, u) block = Matrix([[(alpha*c_2*k**2 + 3*alpha*c_2*omega**2 + 2*alpha*omega**2 + 6*c_2*omega**2 + 4*omega**2)/(2*c_2*(alpha + 2)), 2*k**2/(alpha + 2)], [2*k**2/(alpha + 2), 2*k**2*(C*alpha + 2*C + alpha)/(alpha + 2)]])
+  i.e.  K hs_tt = -(alpha/(2(2+alpha))) Lap hs - (2/(2+alpha)) Lap u,   u = argmin of the leaf functional,  K = (2+3c_2)/(2c_2)
+  [PASS] C-SYM the scalar block rebuilt from the action reduces (momentum constraint for n_z, the elliptic lapse equation phi = (2u - hs)/(2 + alpha)) to K hs_tt = -(alpha/(2(2+alpha))) Lap hs - (2/(2+alpha)) Lap u with U per leaf; its dispersion equals FP5 B3 exactly (C -> 0: the healthy c_S^2 of CFG294; C -> oo: FP5 C3's -c_2 alpha/((2+alpha)(2+3c_2))); the dimensionless map (x = C/C*, eps = alpha^2/(4 - alpha^2), slow time) is exact, the field map constant (a/b = alpha(Lambda - 1)), and the energy functional reproduces V_k = k^2 psi^2((1+eps)/(x+eps) - 1)
+         measured: lapse True; reduced block True; B3 True; ends True (c_S^2 = c_2*(2 - alpha)/(alpha*(3*c_2 + 2)), zero field -alpha*c_2/(3*alpha*c_2 + 2*alpha + 6*c_2 + 4)); map True; field map True (-alpha + 4/alpha); energy True
+  physical eps = 2.5600e-18 (alpha_max) / 2.316e-27 (alpha_min); slow-time unit = 6.671e+11 s = 2.114e+04 yr (c_2 = 0.0667, xi = 0.0451 pc)
+
+================================================================================================================
+PART B  C-FP5: FP5 C4's band and rates from this lane's kernel; C-BKG (reported): FRW + Lambda + dust
+================================================================================================================
+  y*_T (this lane, closed form log1p(1/C*)^2) = 2.560000e-18; FP5 C1 = 2.560000e-18
+    y = y*/1e2 : k_max xi = 1.5174 (FP5 1.5174); max growth 6.3533e-06 c/xi (FP5 6.3533e-06; lane form 6.3533e-06); e-fold 2.3169e+04 yr (FP5 2.3169e+04)
+    y = y*/1e10: k_max xi = 3.3931 (FP5 3.3931); max growth 2.0047e-05 c/xi (FP5 2.0047e-05; lane form 2.0047e-05); e-fold 7.3428e+03 yr (FP5 7.3428e+03)
+    y = y*/1e40: k_max xi = 6.7861 (FP5 6.7861); max growth 4.4751e-05 c/xi (FP5 4.4751e-05; lane form 4.4751e-05); e-fold 3.2894e+03 yr (FP5 3.2894e+03)
+  [PASS] C-FP5 FP5 C4's three rows (k_max xi = sqrt(ln(C/C*)), max growth, e-fold at the fastest corner) and y*_T are reproduced from this lane's kernel; the lane's dimensionless rate at the physical eps equals FP5's formula
+         measured: y* ratio 1.000000; rows (k_max, growth, e-fold ratios, lane/FP5): 1e2: 1.00000, 1.00000, 1.00000, 1.00000007; 1e10: 1.00000, 1.00000, 1.00000, 1.00000004; 1e40: 1.00000, 1.00000, 1.00000, 0.99999999
+  H0 xi/c = 1.014e-11; |W_FRW|/k^2 at k = 1/xi: 6.170e-22 (CFG312's W = -3.181e-52 m^-2); slow-time unit / Hubble time = 1.456e-06
+
+================================================================================================================
+PARTS C-E  43 runs on 14 processes (controls C-LIN, C-GR; the nonlinear runs)
+================================================================================================================
+  done: main dim=2, n=15, eps=0.01, delta=0.001, kern=nu_mono  status=ok  wall=52 s  (elapsed 55 s)
+  done: main dim=2, n=15, eps=0.01, delta=0.0, kern=nu_mono  status=ok  wall=57 s  (elapsed 59 s)
+  done: main dim=2, n=15, eps=0.01, delta=1e-05, kern=nu_mono  status=ok  wall=59 s  (elapsed 61 s)
+  done: main dim=2, n=21, eps=0.01, delta=0.001, kern=nu_mono  status=ok  wall=97 s  (elapsed 100 s)
+  done: main dim=2, n=21, eps=0.01, delta=1e-05, kern=nu_mono  status=ok  wall=101 s  (elapsed 104 s)
+  done: main dim=2, n=21, eps=0.01, delta=0.0, kern=nu_mono  status=ok  wall=101 s  (elapsed 104 s)
+  done: main dim=2, n=15, eps=0.001, delta=0.0, kern=nu_mono  status=ok  wall=127 s  (elapsed 130 s)
+  done: main dim=2, n=21, eps=0.001, delta=0.0, kern=nu_mono  status=ok  wall=258 s  (elapsed 260 s)
+  done: main dim=1, n=255, eps=0.01, delta=0.0, kern=nu_mono  status=ok  wall=176 s  (elapsed 306 s)
+  done: main dim=1, n=63, eps=0.0001, delta=0.0, kern=nu_mono  status=ok  wall=262 s  (elapsed 323 s)
+  done: main dim=1, n=127, eps=0.001, delta=1e-05, kern=nu_mono  status=ok  wall=278 s  (elapsed 382 s)
+  done: main dim=1, n=127, eps=0.001, delta=0.0, kern=nu_mono  status=ok  wall=284 s  (elapsed 383 s)
+  done: main dim=2, n=29, eps=0.01, delta=0.001, kern=nu_mono  status=ok  wall=385 s  (elapsed 388 s)
+  done: main dim=2, n=29, eps=0.01, delta=0.0, kern=nu_mono  status=ok  wall=387 s  (elapsed 390 s)
+  done: main dim=1, n=127, eps=0.001, delta=0.001, kern=nu_mono  status=ok  wall=288 s  (elapsed 392 s)
+  done: main dim=2, n=29, eps=0.01, delta=1e-05, kern=nu_mono  status=ok  wall=398 s  (elapsed 400 s)
+  done: main dim=1, n=63, eps=0.001, delta=0.0, kern=nu_mono  status=ok  wall=89 s  (elapsed 412 s)
+  done: main dim=1, n=255, eps=0.01, delta=0.001, kern=nu_mono  status=ok  wall=163 s  (elapsed 422 s)
+  done: main dim=1, n=63, eps=0.01, delta=0.0, kern=nu_mono  status=ok  wall=30 s  (elapsed 430 s)
+  done: main dim=1, n=63, eps=0.01, delta=0.001, kern=nu_mono  status=ok  wall=31 s  (elapsed 443 s)
+  done: lin  dim=1, n=63, L=16.0, eps=0.01  status=ok  wall=15 s  (elapsed 445 s)
+  done: gr   n=63, eps=0.01, delta=0.0  status=ok  wall=0 s  (elapsed 445 s)
+  done: gr   n=63, eps=0.01, delta=0.001  status=ok  wall=0 s  (elapsed 445 s)
+  done: gr   n=63, eps=0.01, delta=1e-05  status=ok  wall=0 s  (elapsed 446 s)
+  done: gr   n=127, eps=0.01, delta=0.0  status=ok  wall=1 s  (elapsed 446 s)
+  done: gr   n=127, eps=0.01, delta=0.001  status=ok  wall=1 s  (elapsed 447 s)
+  done: gr   n=127, eps=0.01, delta=1e-05  status=ok  wall=1 s  (elapsed 448 s)
+  done: gr   n=255, eps=0.01, delta=0.0  status=ok  wall=1 s  (elapsed 449 s)
+  done: gr   n=255, eps=0.01, delta=0.001  status=ok  wall=1 s  (elapsed 451 s)
+  done: gr   n=255, eps=0.01, delta=1e-05  status=ok  wall=1 s  (elapsed 452 s)
+  done: main dim=1, n=63, eps=0.01, delta=1e-05, kern=nu_mono  status=ok  wall=31 s  (elapsed 454 s)
+  done: main dim=1, n=63, eps=0.001, delta=0.001, kern=nu_mono  status=ok  wall=83 s  (elapsed 465 s)
+  done: main dim=1, n=255, eps=0.01, delta=1e-05, kern=nu_mono  status=ok  wall=160 s  (elapsed 466 s)
+  done: main dim=1, n=63, eps=0.001, delta=1e-05, kern=nu_mono  status=ok  wall=84 s  (elapsed 467 s)
+  done: main dim=1, n=127, eps=0.01, delta=0.001, kern=nu_mono  status=ok  wall=86 s  (elapsed 476 s)
+  done: main dim=1, n=127, eps=0.01, delta=0.0, kern=nu_mono  status=ok  wall=88 s  (elapsed 476 s)
+  done: main dim=1, n=127, eps=0.01, delta=1e-05, kern=nu_mono  status=ok  wall=86 s  (elapsed 478 s)
+  done: main dim=1, n=255, eps=0.001, delta=0.0, kern=nu_mono  status=ok  wall=479 s  (elapsed 481 s)
+  done: main dim=1, n=255, eps=0.001, delta=0.001, kern=nu_mono  status=ok  wall=469 s  (elapsed 524 s)
+  done: main dim=1, n=255, eps=0.001, delta=1e-05, kern=nu_mono  status=ok  wall=467 s  (elapsed 527 s)
+  done: lin  dim=2, n=15, L=8.0, eps=0.01  status=ok  wall=132 s  (elapsed 575 s)
+  done: main dim=1, n=127, eps=0.0001, delta=0.0, kern=nu_mono  status=ok  wall=665 s  (elapsed 668 s)
+  done: main dim=2, n=29, eps=0.001, delta=0.0, kern=nu_mono  status=ok  wall=788 s  (elapsed 791 s)
+
+================================================================================================================
+PART C  C-LIN: the nonlinear code linearised about a uniform field yhat_b = 1e-4
+================================================================================================================
+    1-D k || G, k xi = 0.3927 (inside the band edge 1.9779): growth measured 0.38804, predicted 0.38804  (rel -6.42e-06); status ok
+    1-D k || G, k xi = 1.1781 (inside the band edge 1.9779): growth measured 1.12946, predicted 1.12946  (rel -1.47e-06); status ok
+    1-D k || G, k xi = 1.9635 (inside the band edge 1.9779): growth measured 0.45887, predicted 0.45887  (rel -6.64e-08); status ok
+    1-D k || G, k xi = 2.3562 (outside the band edge 1.9779): frequency measured 4.68286, predicted 4.68268  (rel +3.92e-05); status leaf-fail: leaf solve stalled: residual 3.195e-08
+    1-D k || G, k xi = 3.1416 (outside the band edge 1.9779): frequency measured 28.00735, predicted 27.96668  (rel +1.45e-03); status leaf-fail: leaf solve stalled: residual 6.589e-08
+    2-D k perp G, k xi = 0.7854 (inside the band edge 2.1460): growth measured 0.77802, predicted 0.77802  (rel -1.99e-08); status ok
+    2-D k perp G, k xi = 1.5708 (inside the band edge 2.1460): growth measured 1.47440, predicted 1.47441  (rel -5.73e-06); status ok
+    2-D k perp G, k xi = 2.3562 (outside the band edge 2.1460): frequency measured 2.92123, predicted 2.92114  (rel +3.27e-05); status leaf-fail: leaf solve stalled: residual 1.283e-08
+    2-D k || G, k xi = 1.5708 (inside the band edge 1.9779): growth measured 1.37151, predicted 1.37152  (rel -8.50e-06); status ok
+    2-D k || G, k xi = 2.3562 (outside the band edge 1.9779): frequency measured 4.68310, predicted 4.68268  (rel +9.04e-05); status leaf-fail: leaf solve stalled: residual 4.058e-08
+  [FAIL] C-LIN the nonlinear code, linearised about yhat_b = 1e-4, reproduces omega^2 = k^2((1+eps)/(C sigma^2 + eps) - 1) to 1% (1-D: k || G, C_L; 2-D: k perp G, C_T, and k || G), on both sides of the band edge k xi = sqrt(ln C)
+         measured: 1D L k=0.393 g -6.4e-06; 1D L k=1.178 g -1.5e-06; 1D L k=1.963 g -6.6e-08; 1D L k=2.356 f +3.9e-05; 1D L k=3.142 f +1.5e-03; 2D T k=0.785 g -2.0e-08; 2D T k=1.571 g -5.7e-06; 2D T k=2.356 f +3.3e-05; 2D L k=1.571 g -8.5e-06; 2D L k=2.356 f +9.0e-05
+
+================================================================================================================
+PART D  C-GR: the MOND sector off (C -> 0): GR + the healthy BPS khronon, 1-D, eps = 1e-2, T = 10
+================================================================================================================
+    N = 63: dt 7.812e-03; error vs exact at T = 10: 3.793e-02; energy drift 3.19e-03; max D/delta 2.505; D(1e-3)/D(1e-5) at T = 100.000
+    N = 127: dt 3.968e-03; error vs exact at T = 10: 9.812e-03; energy drift 7.64e-04; max D/delta 2.436; D(1e-3)/D(1e-5) at T = 100.000
+    N = 255: dt 1.984e-03; error vs exact at T = 10: 2.453e-03; energy drift 1.86e-04; max D/delta 2.418; D(1e-3)/D(1e-5) at T = 100.000
+  [FAIL] C-GR with the MOND sector off the reduced system is the healthy khronon wave equation: error vs the exact solution converges with order >= 1.8, energy drift <= 1e-3, pair separation bounded (max D/delta <= 10) and linear in delta
+         measured: order 2.000 (errors 3.79e-02, 9.81e-03, 2.45e-03); drifts ['3.2e-03', '7.6e-04', '1.9e-04']; max D/delta [2.505, 2.436, 2.418]; ratios [100.0, 100.0, 100.0]
+
+================================================================================================================
+PART F  the nonlinear runs: R1 regular/bounded, R2 resolution, R3 continuous dependence, R4 eps ladder
+================================================================================================================
+
+  --- set: 1-D, eps = 1e-02, kernel nu_mono ---
+    N63/base: ok, res 1.0e-10, indef 0, drift 1.1e-04, max yhat 2.585
+    N63/d1e-3: ok, res 1.0e-10, indef 0, drift 9.8e-05, max yhat 2.628
+    N63/d1e-5: ok, res 1.0e-10, indef 0, drift 1.1e-04, max yhat 2.585
+    N127/base: ok, res 1.0e-10, indef 0, drift 1.5e-05, max yhat 2.600
+    N127/d1e-3: ok, res 1.0e-10, indef 0, drift 8.8e-06, max yhat 2.550
+    N127/d1e-5: ok, res 1.0e-10, indef 0, drift 1.0e-05, max yhat 2.599
+    N255/base: ok, res 1.0e-10, indef 0, drift 4.4e-06, max yhat 2.619
+    N255/d1e-3: ok, res 1.0e-10, indef 0, drift 5.3e-06, max yhat 2.633
+    N255/d1e-5: ok, res 1.0e-10, indef 0, drift 3.7e-06, max yhat 2.619
+    finest: top-third khronon gradient energy max 3.16e-24; leaf probes (t, two-start diff, PD): (20, 1.1e-11, True), (40, 1.4e-10, True), (60, 7.9e-11, True), (80, 3.7e-11, True)
+  [PASS] R1 [1-D eps 1e-02] every run regular and bounded: no blow-up, leaf solved (<= 1e-8) with zero indefinite Hessians, energy drift <= 1e-3 max E_kin, finest grid-top-third <= 1e-6, leaf unique at 4 probe times
+         measured: all runs ok: True; top 3.2e-24; probes ok True
+  [FAIL] R2a [1-D eps 1e-02] growth phase converges pointwise: at tau_s = 5.75 the two finest grids differ by <= 1e-3 (relative L2 of w on common modes) with observed order >= 1.5 (fitted against dt)
+         measured: d12 = 1.726e-02, d23 = 7.204e-03, dt = ['7.812e-03', '3.968e-03', '1.984e-03'], p = 1.311
+    rms: 0.5677/0.5966/0.5867 (+-0.11; |diff| 0.00993 vs tol 0.32) ok
+    median: 0.4521/0.5052/0.5222 (+-0.11; |diff| 0.017 vs tol 0.313) ok
+    p90: 0.9167/0.9338/0.9063 (+-0.17; |diff| 0.0274 vs tol 0.469) ok
+    Ekin: 0.06734/0.07783/0.07894 (+-0.0096; |diff| 0.00112 vs tol 0.0264) ok
+    fpin: 0.8595/0.8349/0.8325 (+-0.065; |diff| 0.00237 vs tol 0.185) ok
+  [PASS] R2b [1-D eps 1e-02] the saturated state (window [T/2, T]) is resolution independent: <rms>, <median>, <p90> of yhat, <E_kin>/Vol, <f_pin> agree between the two finest grids within max(10%, 2 sigma)
+         measured: rms: 0.5677/0.5966/0.5867 ok; median: 0.4521/0.5052/0.5222 ok; p90: 0.9167/0.9338/0.9063 ok; Ekin: 0.06734/0.07783/0.07894 ok; fpin: 0.8595/0.8349/0.8325 ok
+    N = 63: D(1e-3)/D(1e-5) at tau_s = 99.56; amplification A = 2.59; Lyapunov lambda = 0.0618; D_1e-5 at T = 1.03e-03
+    N = 127: D(1e-3)/D(1e-5) at tau_s = 98.77; amplification A = 2.68; Lyapunov lambda = 0.0422; D_1e-5 at T = 1.31e-03
+    N = 255: D(1e-3)/D(1e-5) at tau_s = 100.18; amplification A = 2.56; Lyapunov lambda = 0.0244; D_1e-5 at T = 1.20e-03
+  [FAIL] R3 [1-D eps 1e-02] continuous dependence: separation linear in delta at tau_s (ratio in [30, 300] at every grid), amplification and Lyapunov exponent not growing with resolution (finest/next in [0.5, 2] and [0.8, 1.25])
+         measured: ratios [99.56, 98.77, 100.18]; A ['2.59', '2.68', '2.56'] (finest/next 0.956); lambda [0.0618, 0.0422, 0.0244] (finest/next 0.577)
+
+  --- set: 1-D, eps = 1e-03, kernel nu_mono ---
+    N63/base: ok, res 1.0e-10, indef 0, drift 3.6e-05, max yhat 2.697
+    N63/d1e-3: ok, res 1.0e-10, indef 0, drift 5.0e-05, max yhat 2.714
+    N63/d1e-5: ok, res 1.0e-10, indef 0, drift 3.8e-05, max yhat 2.697
+    N127/base: ok, res 1.0e-10, indef 0, drift 1.6e-06, max yhat 2.506
+    N127/d1e-3: ok, res 1.0e-10, indef 0, drift 1.3e-06, max yhat 2.463
+    N127/d1e-5: ok, res 1.0e-10, indef 0, drift 1.6e-06, max yhat 2.508
+    N255/base: ok, res 1.0e-10, indef 0, drift 5.4e-07, max yhat 2.563
+    N255/d1e-3: ok, res 1.0e-10, indef 0, drift 6.6e-07, max yhat 2.702
+    N255/d1e-5: ok, res 1.0e-10, indef 0, drift 6.5e-07, max yhat 2.569
+    finest: top-third khronon gradient energy max 1.38e-23; leaf probes (t, two-start diff, PD): (20, 4.0e-11, True), (40, 8.1e-11, True), (60, 8.2e-11, True), (80, 4.6e-11, True)
+  [PASS] R1 [1-D eps 1e-03] every run regular and bounded: no blow-up, leaf solved (<= 1e-8) with zero indefinite Hessians, energy drift <= 1e-3 max E_kin, finest grid-top-third <= 1e-6, leaf unique at 4 probe times
+         measured: all runs ok: True; top 1.4e-23; probes ok True
+  [FAIL] R2a [1-D eps 1e-03] growth phase converges pointwise: at tau_s = 5.75 the two finest grids differ by <= 1e-3 (relative L2 of w on common modes) with observed order >= 1.5 (fitted against dt)
+         measured: d12 = 1.737e-02, d23 = 7.759e-03, dt = ['2.551e-03', '1.263e-03', '6.297e-04'], p = 1.136
+    rms: 0.6036/0.5979/0.5725 (+-0.11; |diff| 0.0254 vs tol 0.318) ok
+    median: 0.4696/0.4959/0.4723 (+-0.11; |diff| 0.0236 vs tol 0.292) ok
+    p90: 0.9816/0.9534/0.9019 (+-0.17; |diff| 0.0515 vs tol 0.482) ok
+    Ekin: 0.07519/0.07816/0.06826 (+-0.0095; |diff| 0.0099 vs tol 0.0261) ok
+    fpin: 0.8548/0.8355/0.8452 (+-0.069; |diff| 0.00975 vs tol 0.19) ok
+  [PASS] R2b [1-D eps 1e-03] the saturated state (window [T/2, T]) is resolution independent: <rms>, <median>, <p90> of yhat, <E_kin>/Vol, <f_pin> agree between the two finest grids within max(10%, 2 sigma)
+         measured: rms: 0.6036/0.5979/0.5725 ok; median: 0.4696/0.4959/0.4723 ok; p90: 0.9816/0.9534/0.9019 ok; Ekin: 0.07519/0.07816/0.06826 ok; fpin: 0.8548/0.8355/0.8452 ok
+    N = 63: D(1e-3)/D(1e-5) at tau_s = 99.48; amplification A = 2.62; Lyapunov lambda = 0.0124; D_1e-5 at T = 2.94e-04
+    N = 127: D(1e-3)/D(1e-5) at tau_s = 99.13; amplification A = 2.7; Lyapunov lambda = 0.0414; D_1e-5 at T = 3.39e-03
+    N = 255: D(1e-3)/D(1e-5) at tau_s = 100.99; amplification A = 2.43; Lyapunov lambda = 0.0663; D_1e-5 at T = 9.20e-03
+  [FAIL] R3 [1-D eps 1e-03] continuous dependence: separation linear in delta at tau_s (ratio in [30, 300] at every grid), amplification and Lyapunov exponent not growing with resolution (finest/next in [0.5, 2] and [0.8, 1.25])
+         measured: ratios [99.48, 99.13, 100.99]; A ['2.62', '2.7', '2.43'] (finest/next 0.900); lambda [0.0124, 0.0414, 0.0663] (finest/next 1.604)
+
+  --- set: 2-D, eps = 1e-02, kernel nu_mono ---
+    N15/base: ok, res 1.0e-10, indef 0, drift 5.3e-05, max yhat 0.947
+    N15/d1e-3: ok, res 1.0e-10, indef 0, drift 4.1e-05, max yhat 0.947
+    N15/d1e-5: ok, res 1.0e-10, indef 0, drift 5.4e-05, max yhat 0.947
+    N21/base: ok, res 1.0e-10, indef 0, drift 2.8e-05, max yhat 0.953
+    N21/d1e-3: ok, res 1.0e-10, indef 0, drift 3.1e-05, max yhat 0.954
+    N21/d1e-5: ok, res 1.0e-10, indef 0, drift 2.8e-05, max yhat 0.953
+    N29/base: ok, res 1.0e-10, indef 0, drift 1.1e-05, max yhat 0.958
+    N29/d1e-3: ok, res 1.0e-10, indef 0, drift 1.0e-05, max yhat 0.958
+    N29/d1e-5: ok, res 1.0e-10, indef 0, drift 1.1e-05, max yhat 0.958
+    finest: top-third khronon gradient energy max 7.66e-27; leaf probes (t, two-start diff, PD): (15, 1.1e-10, True), (30, 1.1e-10, True), (45, 9.8e-11, True), (60, 1.7e-10, True)
+  [PASS] R1 [2-D eps 1e-02] every run regular and bounded: no blow-up, leaf solved (<= 1e-8) with zero indefinite Hessians, energy drift <= 1e-3 max E_kin, finest grid-top-third <= 1e-6, leaf unique at 4 probe times
+         measured: all runs ok: True; top 7.7e-27; probes ok True
+  [FAIL] R2a [2-D eps 1e-02] growth phase converges pointwise: at tau_s = 6.00 the two finest grids differ by <= 1e-3 (relative L2 of w on common modes) with observed order >= 1.5 (fitted against dt)
+         measured: d12 = 8.049e-03, d23 = 7.113e-03, dt = ['1.190e-02', '8.333e-03', '6.098e-03'], p = nan
+    rms: 0.2772/0.277/0.2762 (+-0.023; |diff| 0.000756 vs tol 0.0713) ok
+    median: 0.2552/0.2561/0.256 (+-0.023; |diff| 0.000105 vs tol 0.0716) ok
+    p90: 0.3989/0.3966/0.3957 (+-0.03; |diff| 0.000951 vs tol 0.0942) ok
+    Ekin: 0.0252/0.02578/0.02596 (+-0.0012; |diff| 0.000182 vs tol 0.00345) ok
+    fpin: 1/1/1 (+-0; |diff| 0 vs tol 0.1) ok
+  [PASS] R2b [2-D eps 1e-02] the saturated state (window [T/2, T]) is resolution independent: <rms>, <median>, <p90> of yhat, <E_kin>/Vol, <f_pin> agree between the two finest grids within max(10%, 2 sigma)
+         measured: rms: 0.2772/0.277/0.2762 ok; median: 0.2552/0.2561/0.256 ok; p90: 0.3989/0.3966/0.3957 ok; Ekin: 0.0252/0.02578/0.02596 ok; fpin: 1/1/1 ok
+    N = 15: D(1e-3)/D(1e-5) at tau_s = 100.03; amplification A = 2.1; Lyapunov lambda = 0.0604; D_1e-5 at T = 9.26e-04
+    N = 21: D(1e-3)/D(1e-5) at tau_s = 100.00; amplification A = 2.12; Lyapunov lambda = 0.038; D_1e-5 at T = 4.56e-04
+    N = 29: D(1e-3)/D(1e-5) at tau_s = 100.04; amplification A = 2.07; Lyapunov lambda = 0.034; D_1e-5 at T = 4.25e-04
+  [PASS] R3 [2-D eps 1e-02] continuous dependence: separation linear in delta at tau_s (ratio in [30, 300] at every grid), amplification and Lyapunov exponent not growing with resolution (finest/next in [0.5, 2] and [0.8, 1.25])
+         measured: ratios [100.03, 100.0, 100.04]; A ['2.1', '2.12', '2.07'] (finest/next 0.977); lambda [0.0604, 0.038, 0.034] (finest/next 0.895)
+    2-D n 15 eps 1e-03: ok, res 1.0e-10, indef 0, drift 7.8e-06
+    2-D n 21 eps 1e-03: ok, res 1.0e-10, indef 0, drift 3.1e-06
+    1-D n 63 eps 1e-04: ok, res 1.0e-10, indef 0, drift 4.6e-06
+    1-D n 127 eps 1e-04: ok, res 1.0e-10, indef 0, drift 4.8e-07
+    2-D n 29 eps 1e-3 top 2.6e-26 probes [(15, '1.2e-10', True), (30, '1.3e-10', True), (45, '9.4e-11', True), (60, '8.1e-11', True)]
+    2-D n 29 eps 1e-03: ok, res 1.0e-10, indef 0, drift 1.4e-06
+  [PASS] R1 [eps-ladder runs: 1-D eps 1e-4, 2-D eps 1e-3] regular and bounded (same criteria)
+         measured: 2-D n 15 eps 1e-03: ok, res 1.0e-10, indef 0, drift 7.8e-06; 2-D n 21 eps 1e-03: ok, res 1.0e-10, indef 0, drift 3.1e-06; 1-D n 63 eps 1e-04: ok, res 1.0e-10, indef 0, drift 4.6e-06; 1-D n 127 eps 1e-04: ok, res 1.0e-10, indef 0, drift 4.8e-07; 2-D n 29 eps 1e-3 top 2.6e-26 probes [(15, '1.2e-10', True), (30, '1.3e-10', True), (45, '9.4e-11', True), (60, '8.1e-11', True)]; 2-D n 29 eps 1e-03: ok, res 1.0e-10, indef 0, drift 1.4e-06
+
+  --- R4: the eps ladder ---
+    1-D N = 127: eps 1e-04: <rms yhat> 0.5999, tau_s 5.75; eps 1e-03: <rms yhat> 0.5979, tau_s 5.75; eps 1e-02: <rms yhat> 0.5966, tau_s 5.75
+  [PASS] R4 [1-D N 127] eps ladder 1e-04 vs 1e-03: saturated statistics within max(15%, 2 sigma), tau_s within 10%
+         measured: rms 0.5999 vs 0.5979 (ok, tol 0.308); median 0.5002 vs 0.4959 (ok, tol 0.281); p90 0.9608 vs 0.9534 (ok, tol 0.473); Ekin 0.07738 vs 0.07816 (ok, tol 0.0256); tau_s 5.75 vs 5.75
+    2-D N = 29: eps 1e-03: <rms yhat> 0.2738, tau_s 6.0; eps 1e-02: <rms yhat> 0.2762, tau_s 6.0
+  [PASS] R4 [2-D N 29] eps ladder 1e-03 vs 1e-02: saturated statistics within max(15%, 2 sigma), tau_s within 10%
+         measured: rms 0.2738 vs 0.2762 (ok, tol 0.0604); median 0.253 vs 0.256 (ok, tol 0.0608); p90 0.395 vs 0.3957 (ok, tol 0.0789); Ekin 0.02549 vs 0.02596 (ok, tol 0.00382); tau_s 6.0 vs 6.0
+
+================================================================================================================
+THE SATURATED STATE (reported, not graded)
+================================================================================================================
+  1-D N = 255, eps = 1e-03: yhat percentiles (1, 10, 50, 90, 99, 99.9) = 0.00419, 0.0465, 0.335, 1.23, 1.96, 2.28; fraction yhat < 1e-3: 0.0034, < 1e-2: 0.0234
+     median field = 0.335 y* = 8.03e-29 m/s^2; growth phase 1.22e+05 yr (1/H0 = 1.45e+10 yr); <E_kin>/Vol = 0.0683 +- 0.0095 (lane units) -> 1.46e-39 J/m^3 = 2.8e-30 rho_Lambda c^2; dust displacement over T: 6.7e-01 m (xi = 1.39e+15 m); metric perturbation <~ 1.2e-20
+  2-D N = 29, eps = 1e-02: yhat percentiles (1, 10, 50, 90, 99, 99.9) = 0.0231, 0.0755, 0.22, 0.498, 0.711, 0.828; fraction yhat < 1e-3: 0.0000, < 1e-2: 0.0018
+     median field = 0.220 y* = 5.27e-29 m/s^2; growth phase 1.27e+05 yr (1/H0 = 1.45e+10 yr); <E_kin>/Vol = 0.0260 +- 0.0012 (lane units) -> 5.55e-40 J/m^3 = 1.1e-30 rho_Lambda c^2; dust displacement over T: 1.4e-01 m (xi = 1.39e+15 m); metric perturbation <~ 4.4e-21
+
+================================================================================================================
+VERDICT (frozen rule)
+================================================================================================================
+  R1 True, R2 False, R3 False, R4 True; controls False; FAIL signatures: ['1-D eps 1e-03: Lyapunov exponent grows with resolution at both steps']
+  VERDICT: FAIL
+  Scope: says NOTHING about growth or sigma_8 -- L341's failure (sigma_8 = 18-27) and FP2's failed linear cosmology stand.
+
+  12/19 checks pass (12/19 load-bearing); verdict FAIL; wall 792 s

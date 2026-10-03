@@ -143,3 +143,22 @@ cosmology):
 - Reported, not graded: the post-saturation yhat distribution (percentiles, the fraction with yhat < 1e-3, i.e. whether
   open zero-field regions survive, the XC5 E6 sqrt(eps)-Osgood reading), and the saturated energy density in physical
   units against rho_Lambda c^2.
+
+## Implementation disclosures (appended 2026-10-03, after the runs; the frozen text above is unchanged)
+
+- **Leaf solver changed after a first main launch was stopped.** The first full launch hit a leaf-solve stall in the
+  1-D N = 255, eps = 1e-2 base run (relative residual 8.1e-7 after 400 iterations, at tau ≈ 16). Diagnosis in scratch: a
+  grid point where the minimiser's field is exactly zero (the |w|^(1/2) kink); damped Newton approaches it
+  sublinearly. Since F is strictly convex with a unique minimiser, this is a solver defect, not branching. The fix is
+  over-relaxed trial steps (s = 4, 2, 1, 1/2, ...) in the residual-merit line search. With it, the stalled state
+  converges to 9e-12 in 10 iterations, and seven full-length 1-D stress runs reach residual <= 1e-10 throughout. The
+  launch was stopped and everything re-run with the fixed solver. The tolerances and the FAIL signature were not
+  changed.
+- **C-LIN.** The perturbation amplitude was raised from 1e-6 to 1e-5 and T from 4 to 3, to lift the precision floor
+  (a background 1e5x larger than the perturbation). The five stable-mode runs still end with "leaf solve stalled" at
+  residuals of 1.3e-8 to 6.6e-8. Their fitted frequencies match to <= 1.5e-3. The C-LIN row requires status "ok" and
+  therefore FAILS as computed. That is reported, not overridden.
+- **R1.** R1 was added for the ladder-only runs (1-D eps 1e-4; 2-D eps 1e-3), as §5 R1 says "every run of §4". A key
+  clash in the work-array save was also fixed. Neither change touches a threshold.
+- **C-GR energy drift.** The drift row was implemented as max|E − E0|/max|E| at every N. It fails at N = 63 (3.2e-3),
+  while converging at second order (7.6e-4, 1.9e-4). Reported as computed.

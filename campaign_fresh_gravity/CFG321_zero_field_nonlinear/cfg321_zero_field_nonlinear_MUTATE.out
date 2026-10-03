@@ -1,0 +1,121 @@
+CFG321 -- RECIPE G5/G10 ON THE UNGATED CHASSIS: does the nonlinear system regularise the Hadamard instability of its own
+zero-field (FRW) background?
+
+THE QUESTION.  FP5 G-2f (a26136bc4) C3: at an open zero-field region (grad U ~ 0 -- the ungated C-H/K chassis's own FRW
+background) the linearisation is BPS khronometric gravity with alpha_eff = 2 + alpha_c > 2: omega^2 < 0 at every k,
+growth proportional to k, Hadamard ill-posed.  C4 (reported only) said the band is bounded below y* and saturates at
+y ~ y*.  CFG294 proved conditional local well-posedness only AWAY from zero-field regions (its C3/A5).  Does the
+nonlinear system reach a regular saturated state that depends continuously on the data, or do solutions branch, blow up
+or depend discontinuously on the data?  Criteria frozen first: FROZEN_CRITERIA.md (commit cb089fb29).
+
+  *** MUTATE=1: kernel -> mu_exp (a0 -> y* a0); the verdict must NOT be CONDITIONAL ***
+
+  inputs: alpha_c window [9.6240e-14, 3.2000e-09] (L340 P1), c_2 corner 0.0667, xi = 0.04513 pc (L340 S1); a0 = 9.3548e-11 (canonical) / 1.1305e-10 (alt) m/s^2; kappa = 1/2 FITTED (plays no role)
+
+================================================================================================================
+PART A  C-SYM: the reduced system from the action (FP5 scalar block, shift + lapse eliminated, U per leaf)
+================================================================================================================
+  building the second-order ADM Lagrangian from the action (FP5's adm_L2, copied verbatim above) ...
+  scalar block (hs, phi, n_z, u), chassis values: Matrix([[(-2*c_2*omega**2 + k**2 - omega**2)/2, k**2, -k*omega*(c_2 + 1), 0], [k**2, k**2*(alpha + 2), 0, -2*k**2], [-k*omega*(c_2 + 1), 0, -c_2*k**2, 0], [0, -2*k**2, 0, 2*k**2*(C + 1)]])
+  lapse equation -> phi = -(hs_ - 2*u_)/(alpha + 2);  momentum constraint -> n_z = -hs_*omega*(c_2 + 1)/(c_2*k)
+  reduced (hs, u) block = Matrix([[(alpha*c_2*k**2 + 3*alpha*c_2*omega**2 + 2*alpha*omega**2 + 6*c_2*omega**2 + 4*omega**2)/(2*c_2*(alpha + 2)), 2*k**2/(alpha + 2)], [2*k**2/(alpha + 2), 2*k**2*(C*alpha + 2*C + alpha)/(alpha + 2)]])
+  i.e.  K hs_tt = -(alpha/(2(2+alpha))) Lap hs - (2/(2+alpha)) Lap u,   u = argmin of the leaf functional,  K = (2+3c_2)/(2c_2)
+  [PASS] C-SYM the scalar block rebuilt from the action reduces (momentum constraint for n_z, the elliptic lapse equation phi = (2u - hs)/(2 + alpha)) to K hs_tt = -(alpha/(2(2+alpha))) Lap hs - (2/(2+alpha)) Lap u with U per leaf; its dispersion equals FP5 B3 exactly (C -> 0: the healthy c_S^2 of CFG294; C -> oo: FP5 C3's -c_2 alpha/((2+alpha)(2+3c_2))); the dimensionless map (x = C/C*, eps = alpha^2/(4 - alpha^2), slow time) is exact, the field map constant (a/b = alpha(Lambda - 1)), and the energy functional reproduces V_k = k^2 psi^2((1+eps)/(x+eps) - 1)
+         measured: lapse True; reduced block True; B3 True; ends True (c_S^2 = c_2*(2 - alpha)/(alpha*(3*c_2 + 2)), zero field -alpha*c_2/(3*alpha*c_2 + 2*alpha + 6*c_2 + 4)); map True; field map True (-alpha + 4/alpha); energy True
+  physical eps = 2.5600e-18 (alpha_max) / 2.316e-27 (alpha_min); slow-time unit = 6.671e+11 s = 2.114e+04 yr (c_2 = 0.0667, xi = 0.0451 pc)
+
+================================================================================================================
+PART B  C-FP5: FP5 C4's band and rates from this lane's kernel; C-BKG (reported): FRW + Lambda + dust
+================================================================================================================
+  y*_T (this lane, closed form log1p(1/C*)^2) = 2.560000e-18; FP5 C1 = 2.560000e-18
+    y = y*/1e2 : k_max xi = 1.5174 (FP5 1.5174); max growth 6.3533e-06 c/xi (FP5 6.3533e-06; lane form 6.3533e-06); e-fold 2.3169e+04 yr (FP5 2.3169e+04)
+    y = y*/1e10: k_max xi = 3.3931 (FP5 3.3931); max growth 2.0047e-05 c/xi (FP5 2.0047e-05; lane form 2.0047e-05); e-fold 7.3428e+03 yr (FP5 7.3428e+03)
+    y = y*/1e40: k_max xi = 6.7861 (FP5 6.7861); max growth 4.4751e-05 c/xi (FP5 4.4751e-05; lane form 4.4751e-05); e-fold 3.2894e+03 yr (FP5 3.2894e+03)
+  [PASS] C-FP5 FP5 C4's three rows (k_max xi = sqrt(ln(C/C*)), max growth, e-fold at the fastest corner) and y*_T are reproduced from this lane's kernel; the lane's dimensionless rate at the physical eps equals FP5's formula
+         measured: y* ratio 1.000000; rows (k_max, growth, e-fold ratios, lane/FP5): 1e2: 1.00000, 1.00000, 1.00000, 1.00000007; 1e10: 1.00000, 1.00000, 1.00000, 1.00000004; 1e40: 1.00000, 1.00000, 1.00000, 0.99999999
+  H0 xi/c = 1.014e-11; |W_FRW|/k^2 at k = 1/xi: 6.170e-22 (CFG312's W = -3.181e-52 m^-2); slow-time unit / Hubble time = 1.456e-06
+
+================================================================================================================
+PARTS C-E  18 runs on 14 processes (controls C-LIN, C-GR; the nonlinear runs)
+================================================================================================================
+  done: main dim=1, n=127, eps=0.01, delta=0.0, kern=mu_exp  status=leaf-fail: leaf solve did not converge: residual 7.308e-06  wall=67 s  (elapsed 69 s)
+  done: main dim=2, n=15, eps=0.01, delta=1e-05, kern=mu_exp  status=ok  wall=91 s  (elapsed 94 s)
+  done: main dim=2, n=15, eps=0.01, delta=0.0, kern=mu_exp  status=ok  wall=92 s  (elapsed 94 s)
+  done: main dim=2, n=15, eps=0.01, delta=0.001, kern=mu_exp  status=ok  wall=96 s  (elapsed 98 s)
+  done: main dim=1, n=63, eps=0.01, delta=0.001, kern=mu_exp  status=leaf-fail: leaf solve did not converge: residual 1.015e-01  wall=13 s  (elapsed 107 s)
+  done: main dim=1, n=63, eps=0.01, delta=0.0, kern=mu_exp  status=leaf-fail: leaf solve did not converge: residual 4.353e-03  wall=15 s  (elapsed 108 s)
+  done: main dim=1, n=63, eps=0.01, delta=1e-05, kern=mu_exp  status=leaf-fail: leaf solve did not converge: residual 3.621e-03  wall=14 s  (elapsed 112 s)
+  done: main dim=1, n=127, eps=0.01, delta=1e-05, kern=mu_exp  status=leaf-fail: leaf solve did not converge: residual 1.423e-02  wall=58 s  (elapsed 127 s)
+  done: main dim=2, n=21, eps=0.01, delta=0.001, kern=mu_exp  status=ok  wall=151 s  (elapsed 154 s)
+  done: main dim=2, n=21, eps=0.01, delta=0.0, kern=mu_exp  status=ok  wall=154 s  (elapsed 157 s)
+  done: main dim=2, n=21, eps=0.01, delta=1e-05, kern=mu_exp  status=ok  wall=155 s  (elapsed 157 s)
+  done: main dim=1, n=127, eps=0.01, delta=0.001, kern=mu_exp  status=leaf-fail: leaf solve did not converge: residual 4.231e-04  wall=224 s  (elapsed 227 s)
+  done: main dim=2, n=29, eps=0.01, delta=0.001, kern=mu_exp  status=ok  wall=354 s  (elapsed 357 s)
+  done: main dim=2, n=29, eps=0.01, delta=0.0, kern=mu_exp  status=ok  wall=357 s  (elapsed 359 s)
+  done: main dim=2, n=29, eps=0.01, delta=1e-05, kern=mu_exp  status=ok  wall=358 s  (elapsed 360 s)
+  done: main dim=1, n=255, eps=0.01, delta=0.001, kern=mu_exp  status=leaf-fail: leaf solve did not converge: residual 7.564e-05  wall=538 s  (elapsed 540 s)
+  done: main dim=1, n=255, eps=0.01, delta=1e-05, kern=mu_exp  status=leaf-fail: leaf solve did not converge: residual 2.748e-03  wall=683 s  (elapsed 686 s)
+  done: main dim=1, n=255, eps=0.01, delta=0.0, kern=mu_exp  status=leaf-fail: leaf solve did not converge: residual 3.462e-04  wall=752 s  (elapsed 755 s)
+
+================================================================================================================
+PART F  the nonlinear runs: R1 regular/bounded, R2 resolution, R3 continuous dependence, R4 eps ladder
+================================================================================================================
+
+  --- set: 1-D, eps = 1e-02, kernel mu_exp ---
+    N63/base: leaf-fail: leaf solve did not converge: residual 4.353e-03, res 1.0e-10, indef 1250, drift 1.3e+00, max yhat 28.793
+    N63/d1e-3: leaf-fail: leaf solve did not converge: residual 1.015e-01, res 1.0e-10, indef 906, drift 1.6e+00, max yhat 28.782
+    N63/d1e-5: leaf-fail: leaf solve did not converge: residual 3.621e-03, res 9.9e-11, indef 829, drift 1.2e+00, max yhat 28.150
+    N127/base: leaf-fail: leaf solve did not converge: residual 7.308e-06, res 1.0e-10, indef 2149, drift 1.0e+00, max yhat 56.802
+    N127/d1e-3: leaf-fail: leaf solve did not converge: residual 4.231e-04, res 1.5e-09, indef 11804, drift 1.0e+00, max yhat 97.087
+    N127/d1e-5: leaf-fail: leaf solve did not converge: residual 1.423e-02, res 1.0e-10, indef 2785, drift 1.1e+00, max yhat 44.280
+    N255/base: leaf-fail: leaf solve did not converge: residual 3.462e-04, res 1.0e-10, indef 22413, drift 1.1e+00, max yhat 135.819
+    N255/d1e-3: leaf-fail: leaf solve did not converge: residual 7.564e-05, res 1.0e-10, indef 15400, drift 1.1e+00, max yhat 130.250
+    N255/d1e-5: leaf-fail: leaf solve did not converge: residual 2.748e-03, res 1.0e-10, indef 22404, drift 1.1e+00, max yhat 121.716
+    finest: top-third khronon gradient energy max 1.52e-23; leaf probes (t, two-start diff, PD): (20, 9.9e-13, True), (40, 2.8e-14, True), (60, 6.4e-13, True)
+  [FAIL] R1 [1-D eps 1e-02] every run regular and bounded: no blow-up, leaf solved (<= 1e-8) with zero indefinite Hessians, energy drift <= 1e-3 max E_kin, finest grid-top-third <= 1e-6, leaf unique at 4 probe times
+         measured: all runs ok: False; top 1.5e-23; probes ok False
+
+  --- set: 2-D, eps = 1e-02, kernel mu_exp ---
+    N15/base: ok, res 1.0e-10, indef 0, drift 3.1e-04, max yhat 0.684
+    N15/d1e-3: ok, res 1.0e-10, indef 0, drift 2.1e-04, max yhat 0.684
+    N15/d1e-5: ok, res 1.0e-10, indef 0, drift 3.0e-04, max yhat 0.684
+    N21/base: ok, res 1.0e-10, indef 0, drift 2.5e-04, max yhat 0.680
+    N21/d1e-3: ok, res 1.0e-10, indef 0, drift 2.0e-04, max yhat 0.680
+    N21/d1e-5: ok, res 1.0e-10, indef 0, drift 2.5e-04, max yhat 0.680
+    N29/base: ok, res 1.0e-10, indef 0, drift 8.4e-05, max yhat 0.685
+    N29/d1e-3: ok, res 1.0e-10, indef 0, drift 6.2e-05, max yhat 0.684
+    N29/d1e-5: ok, res 1.0e-10, indef 0, drift 8.6e-05, max yhat 0.685
+    finest: top-third khronon gradient energy max 8.87e-27; leaf probes (t, two-start diff, PD): (15, 1.0e+02, True), (30, 5.7e+01, True), (45, 8.6e+01, True), (60, 1.7e-10, True)
+  [FAIL] R1 [2-D eps 1e-02] every run regular and bounded: no blow-up, leaf solved (<= 1e-8) with zero indefinite Hessians, energy drift <= 1e-3 max E_kin, finest grid-top-third <= 1e-6, leaf unique at 4 probe times
+         measured: all runs ok: False; top 8.9e-27; probes ok False
+  [FAIL] R2a [2-D eps 1e-02] growth phase converges pointwise: at tau_s = 5.75 the two finest grids differ by <= 1e-3 (relative L2 of w on common modes) with observed order >= 1.5 (fitted against dt)
+         measured: d12 = 1.114e-02, d23 = 7.292e-03, dt = ['1.190e-02', '8.333e-03', '6.098e-03'], p = 0.867
+    rms: 0.1562/0.1561/0.1547 (+-0.0092; |diff| 0.00138 vs tol 0.0263) ok
+    median: 0.1436/0.1428/0.1416 (+-0.0091; |diff| 0.0012 vs tol 0.0265) ok
+    p90: 0.2267/0.227/0.2246 (+-0.012; |diff| 0.00235 vs tol 0.0346) ok
+    Ekin: 0.009891/0.009891/0.009837 (+-0.00045; |diff| 5.32e-05 vs tol 0.00143) ok
+    fpin: 0.9781/0.9782/0.9792 (+-0.0058; |diff| 0.000982 vs tol 0.0979) ok
+  [PASS] R2b [2-D eps 1e-02] the saturated state (window [T/2, T]) is resolution independent: <rms>, <median>, <p90> of yhat, <E_kin>/Vol, <f_pin> agree between the two finest grids within max(10%, 2 sigma)
+         measured: rms: 0.1562/0.1561/0.1547 ok; median: 0.1436/0.1428/0.1416 ok; p90: 0.2267/0.227/0.2246 ok; Ekin: 0.009891/0.009891/0.009837 ok; fpin: 0.9781/0.9782/0.9792 ok
+    N = 15: D(1e-3)/D(1e-5) at tau_s = 100.06; amplification A = 2.1; Lyapunov lambda = 0.0563; D_1e-5 at T = 3.51e-03
+    N = 21: D(1e-3)/D(1e-5) at tau_s = 100.01; amplification A = 2.17; Lyapunov lambda = 0.0575; D_1e-5 at T = 4.11e-03
+    N = 29: D(1e-3)/D(1e-5) at tau_s = 100.06; amplification A = 2.1; Lyapunov lambda = 0.0366; D_1e-5 at T = 3.09e-03
+  [FAIL] R3 [2-D eps 1e-02] continuous dependence: separation linear in delta at tau_s (ratio in [30, 300] at every grid), amplification and Lyapunov exponent not growing with resolution (finest/next in [0.5, 2] and [0.8, 1.25])
+         measured: ratios [100.06, 100.01, 100.06]; A ['2.1', '2.17', '2.1'] (finest/next 0.968); lambda [0.0563, 0.0575, 0.0366] (finest/next 0.638)
+
+================================================================================================================
+THE SATURATED STATE (reported, not graded)
+================================================================================================================
+  2-D N = 29, eps = 1e-02: yhat percentiles (1, 10, 50, 90, 99, 99.9) = 0.0112, 0.0413, 0.13, 0.255, 0.386, 0.505; fraction yhat < 1e-3: 0.0001, < 1e-2: 0.0081
+     median field = 0.130 y* = 3.12e-29 m/s^2; growth phase 1.22e+05 yr (1/H0 = 1.45e+10 yr); <E_kin>/Vol = 0.0098 +- 0.0004 (lane units) -> 2.10e-40 J/m^3 = 4.0e-31 rho_Lambda c^2; dust displacement over T: 7.4e-02 m (xi = 1.39e+15 m); metric perturbation <~ 3.2e-21
+
+================================================================================================================
+VERDICT (frozen rule)
+================================================================================================================
+  R1 False, R2 False, R3 False, R4 None; controls True; FAIL signatures: ['1-D eps 1e-02 N 63 base: leaf-fail: leaf solve did not converge: residual 4.353e-03', '1-D eps 1e-02 N 63 base: 1250 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 63 d1e-3: leaf-fail: leaf solve did not converge: residual 1.015e-01', '1-D eps 1e-02 N 63 d1e-3: 906 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 63 d1e-5: leaf-fail: leaf solve did not converge: residual 3.621e-03', '1-D eps 1e-02 N 63 d1e-5: 829 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 127 base: leaf-fail: leaf solve did not converge: residual 7.308e-06', '1-D eps 1e-02 N 127 base: 2149 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 127 d1e-3: leaf-fail: leaf solve did not converge: residual 4.231e-04', '1-D eps 1e-02 N 127 d1e-3: 11804 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 127 d1e-5: leaf-fail: leaf solve did not converge: residual 1.423e-02', '1-D eps 1e-02 N 127 d1e-5: 2785 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 255 base: leaf-fail: leaf solve did not converge: residual 3.462e-04', '1-D eps 1e-02 N 255 base: 22413 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 255 d1e-3: leaf-fail: leaf solve did not converge: residual 7.564e-05', '1-D eps 1e-02 N 255 d1e-3: 15400 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 255 d1e-5: leaf-fail: leaf solve did not converge: residual 2.748e-03', '1-D eps 1e-02 N 255 d1e-5: 22404 indefinite leaf Hessians (non-convex leaf: branching)', '2-D eps 1e-02: leaf-uniqueness probe failed [(15.0, 103.00703234072134, True), (30.0, 56.85514331920152, True), (45.0, 86.11140161368466, True), (60.0, 1.680052347781585e-10, True)]']
+  VERDICT: FAIL (MUTATE run: must NOT be CONDITIONAL)
+  Scope: says NOTHING about growth or sigma_8 -- L341's failure (sigma_8 = 18-27) and FP2's failed linear cosmology stand.
+  [PASS] MUTATE the turning kernel mu_exp (a0 -> y* a0) does NOT return CONDITIONAL
+         measured: verdict FAIL; ['1-D eps 1e-02 N 63 base: leaf-fail: leaf solve did not converge: residual 4.353e-03', '1-D eps 1e-02 N 63 base: 1250 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 63 d1e-3: leaf-fail: leaf solve did not converge: residual 1.015e-01', '1-D eps 1e-02 N 63 d1e-3: 906 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 63 d1e-5: leaf-fail: leaf solve did not converge: residual 3.621e-03', '1-D eps 1e-02 N 63 d1e-5: 829 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 127 base: leaf-fail: leaf solve did not converge: residual 7.308e-06', '1-D eps 1e-02 N 127 base: 2149 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 127 d1e-3: leaf-fail: leaf solve did not converge: residual 4.231e-04', '1-D eps 1e-02 N 127 d1e-3: 11804 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 127 d1e-5: leaf-fail: leaf solve did not converge: residual 1.423e-02', '1-D eps 1e-02 N 127 d1e-5: 2785 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 255 base: leaf-fail: leaf solve did not converge: residual 3.462e-04', '1-D eps 1e-02 N 255 base: 22413 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 255 d1e-3: leaf-fail: leaf solve did not converge: residual 7.564e-05', '1-D eps 1e-02 N 255 d1e-3: 15400 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 255 d1e-5: leaf-fail: leaf solve did not converge: residual 2.748e-03', '1-D eps 1e-02 N 255 d1e-5: 22404 indefinite leaf Hessians (non-convex leaf: branching)', '2-D eps 1e-02: leaf-uniqueness probe failed [(15.0, 103.00703234072134, True), (30.0, 56.85514331920152, True), (45.0, 86.11140161368466, True), (60.0, 1.680052347781585e-10, True)]']
+
+  4/8 checks pass (4/8 load-bearing); verdict FAIL; wall 755 s

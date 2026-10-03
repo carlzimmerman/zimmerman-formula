@@ -1,0 +1,565 @@
+{
+ "lane": "CFG321",
+ "gate": "recipe G5/G10",
+ "mutate": true,
+ "frozen": "cb089fb29",
+ "checks": {
+  "C-SYM the scalar block rebuilt from the action reduces (momentum constraint for n_z, the elliptic lapse equation phi = (2u - hs)/(2 + alpha)) to K hs_tt = -(alpha/(2(2+alpha))) Lap hs - (2/(2+alpha)) Lap u with U per leaf; its dispersion equals FP5 B3 exactly (C -> 0: the healthy c_S^2 of CFG294; C -> oo: FP5 C3's -c_2 alpha/((2+alpha)(2+3c_2))); the dimensionless map (x = C/C*, eps = alpha^2/(4 - alpha^2), slow time) is exact, the field map constant (a/b = alpha(Lambda - 1)), and the energy functional reproduces V_k = k^2 psi^2((1+eps)/(x+eps) - 1)": {
+   "ok": true,
+   "measured": "lapse True; reduced block True; B3 True; ends True (c_S^2 = c_2*(2 - alpha)/(alpha*(3*c_2 + 2)), zero field -alpha*c_2/(3*alpha*c_2 + 2*alpha + 6*c_2 + 4)); map True; field map True (-alpha + 4/alpha); energy True",
+   "load_bearing": true
+  },
+  "C-FP5 FP5 C4's three rows (k_max xi = sqrt(ln(C/C*)), max growth, e-fold at the fastest corner) and y*_T are reproduced from this lane's kernel; the lane's dimensionless rate at the physical eps equals FP5's formula": {
+   "ok": true,
+   "measured": "y* ratio 1.000000; rows (k_max, growth, e-fold ratios, lane/FP5): 1e2: 1.00000, 1.00000, 1.00000, 1.00000007; 1e10: 1.00000, 1.00000, 1.00000, 1.00000004; 1e40: 1.00000, 1.00000, 1.00000, 0.99999999",
+   "load_bearing": true
+  },
+  "R1 [1-D eps 1e-02] every run regular and bounded: no blow-up, leaf solved (<= 1e-8) with zero indefinite Hessians, energy drift <= 1e-3 max E_kin, finest grid-top-third <= 1e-6, leaf unique at 4 probe times": {
+   "ok": false,
+   "measured": "all runs ok: False; top 1.5e-23; probes ok False",
+   "load_bearing": true
+  },
+  "R1 [2-D eps 1e-02] every run regular and bounded: no blow-up, leaf solved (<= 1e-8) with zero indefinite Hessians, energy drift <= 1e-3 max E_kin, finest grid-top-third <= 1e-6, leaf unique at 4 probe times": {
+   "ok": false,
+   "measured": "all runs ok: False; top 8.9e-27; probes ok False",
+   "load_bearing": true
+  },
+  "R2a [2-D eps 1e-02] growth phase converges pointwise: at tau_s = 5.75 the two finest grids differ by <= 1e-3 (relative L2 of w on common modes) with observed order >= 1.5 (fitted against dt)": {
+   "ok": false,
+   "measured": "d12 = 1.114e-02, d23 = 7.292e-03, dt = ['1.190e-02', '8.333e-03', '6.098e-03'], p = 0.867",
+   "load_bearing": true
+  },
+  "R2b [2-D eps 1e-02] the saturated state (window [T/2, T]) is resolution independent: <rms>, <median>, <p90> of yhat, <E_kin>/Vol, <f_pin> agree between the two finest grids within max(10%, 2 sigma)": {
+   "ok": true,
+   "measured": "rms: 0.1562/0.1561/0.1547 ok; median: 0.1436/0.1428/0.1416 ok; p90: 0.2267/0.227/0.2246 ok; Ekin: 0.009891/0.009891/0.009837 ok; fpin: 0.9781/0.9782/0.9792 ok",
+   "load_bearing": true
+  },
+  "R3 [2-D eps 1e-02] continuous dependence: separation linear in delta at tau_s (ratio in [30, 300] at every grid), amplification and Lyapunov exponent not growing with resolution (finest/next in [0.5, 2] and [0.8, 1.25])": {
+   "ok": false,
+   "measured": "ratios [100.06, 100.01, 100.06]; A ['2.1', '2.17', '2.1'] (finest/next 0.968); lambda [0.0563, 0.0575, 0.0366] (finest/next 0.638)",
+   "load_bearing": true
+  },
+  "MUTATE the turning kernel mu_exp (a0 -> y* a0) does NOT return CONDITIONAL": {
+   "ok": true,
+   "measured": "verdict FAIL; ['1-D eps 1e-02 N 63 base: leaf-fail: leaf solve did not converge: residual 4.353e-03', '1-D eps 1e-02 N 63 base: 1250 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 63 d1e-3: leaf-fail: leaf solve did not converge: residual 1.015e-01', '1-D eps 1e-02 N 63 d1e-3: 906 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 63 d1e-5: leaf-fail: leaf solve did not converge: residual 3.621e-03', '1-D eps 1e-02 N 63 d1e-5: 829 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 127 base: leaf-fail: leaf solve did not converge: residual 7.308e-06', '1-D eps 1e-02 N 127 base: 2149 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 127 d1e-3: leaf-fail: leaf solve did not converge: residual 4.231e-04', '1-D eps 1e-02 N 127 d1e-3: 11804 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 127 d1e-5: leaf-fail: leaf solve did not converge: residual 1.423e-02', '1-D eps 1e-02 N 127 d1e-5: 2785 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 255 base: leaf-fail: leaf solve did not converge: residual 3.462e-04', '1-D eps 1e-02 N 255 base: 22413 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 255 d1e-3: leaf-fail: leaf solve did not converge: residual 7.564e-05', '1-D eps 1e-02 N 255 d1e-3: 15400 indefinite leaf Hessians (non-convex leaf: branching)', '1-D eps 1e-02 N 255 d1e-5: leaf-fail: leaf solve did not converge: residual 2.748e-03', '1-D eps 1e-02 N 255 d1e-5: 22404 indefinite leaf Hessians (non-convex leaf: branching)', '2-D eps 1e-02: leaf-uniqueness probe failed [(15.0, 103.00703234072134, True), (30.0, 56.85514331920152, True), (45.0, 86.11140161368466, True), (60.0, 1.680052347781585e-10, True)]']",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "A": {
+   "phi": "(-hs_ + 2*u_)/(alpha + 2)",
+   "n_z": "hs_*omega*(-c_2 - 1)/(c_2*k)",
+   "Mred": "Matrix([[(alpha*c_2*k**2 + 3*alpha*c_2*omega**2 + 2*alpha*omega**2 + 6*c_2*omega**2 + 4*omega**2)/(2*c_2*(alpha + 2)), 2*k**2/(alpha + 2)], [2*k**2/(alpha + 2), 2*k**2*((C + 1)*(alpha + 2) - 2)/(alpha + 2)]])",
+   "omega2": "[c_2*k**2*(-C*alpha - alpha + 2)/(3*C*alpha*c_2 + 2*C*alpha + 6*C*c_2 + 4*C + 3*alpha*c_2 + 2*alpha)]",
+   "cS2": "c_2*(2 - alpha)/(alpha*(3*c_2 + 2))",
+   "zero_field": "-alpha*c_2/(3*alpha*c_2 + 2*alpha + 6*c_2 + 4)",
+   "a_over_b": "-alpha + 4/alpha"
+  },
+  "units": {
+   "eps_phys": 2.5600000000000002e-18,
+   "tau_unit_yr": 21140.52319038876
+  },
+  "B": {
+   "ystar": 2.560000004096e-18,
+   "rows": [
+    [
+     2,
+     1.51742712962239,
+     1.5174271296223898,
+     6.353342269369821e-06,
+     6.35334226936982e-06,
+     23169.491355490252,
+     23169.491355490252,
+     6.3533427395797855e-06
+    ],
+    [
+     10,
+     3.393070212325442,
+     3.393070212325442,
+     2.004739665944843e-05,
+     2.004739665944843e-05,
+     7342.7842671660355,
+     7342.7842671660355,
+     2.0047397451932497e-05
+    ],
+    [
+     40,
+     6.7861404244740555,
+     6.7861404244740555,
+     4.475084802590832e-05,
+     4.475084802590832e-05,
+     3289.4060175890277,
+     3289.4060175890277,
+     4.475084777302577e-05
+    ]
+   ]
+  },
+  "BKG": {
+   "H_xi_over_c": 1.0140847517643185e-11,
+   "W_over_k2": 6.169668770285593e-22,
+   "tau_unit_H0": 1.456368347517368e-06
+  },
+  "saturated": {
+   "2D": {
+    "percentiles": [
+     0.01117635089683227,
+     0.0412651376055026,
+     0.130212467711586,
+     0.2549072075415798,
+     0.3864059232921043,
+     0.5047856823630663
+    ],
+    "f_lt_1e-3": 0.00011792336946374348,
+    "f_lt_1e-2": 0.008097404703177052,
+    "Ekin_per_vol": [
+     0.009837379261322447,
+     0.00044553648704404974
+    ],
+    "E_per_vol": -1.845909697413957e-05,
+    "e_phys_J_m3": 2.1021320049282145e-40,
+    "over_rhoL": 4.008108899876437e-31,
+    "g_median_SI": 3.1183555946538326e-29,
+    "t_growth_yr": 121558.00834473537,
+    "dust_disp_m": 0.07413593080898122,
+    "metric_pert": 3.175222303555364e-21
+   }
+  },
+  "sets": {
+   "1D_eps1e-02": {
+    "broken": true
+   },
+   "2D_eps1e-02": {
+    "tau_s": 5.75,
+    "d12": 0.011138300988215747,
+    "d23": 0.007292375329566899,
+    "p": 0.8669373256185869,
+    "ws": {
+     "15": {
+      "rms": [
+       0.15618922403524446,
+       0.010063239099114529
+      ],
+      "median": [
+       0.14361253719774905,
+       0.010141823819031446
+      ],
+      "p90": [
+       0.2267411120364003,
+       0.013483375608606669
+      ],
+      "Ekin": [
+       0.009891437280046048,
+       0.0005514062024906106
+      ],
+      "fpin": [
+       0.9781083562901745,
+       0.006877829156527411
+      ]
+     },
+     "21": {
+      "rms": [
+       0.15606265714311213,
+       0.009392908977896111
+      ],
+      "median": [
+       0.14283216971764318,
+       0.009633890255822293
+      ],
+      "p90": [
+       0.2269589867079176,
+       0.012113243400927586
+      ],
+      "Ekin": [
+       0.00989062581413349,
+       0.0005579756989936007
+      ],
+      "fpin": [
+       0.9782237964056146,
+       0.006435370781461281
+      ]
+     },
+     "29": {
+      "rms": [
+       0.15468314524621835,
+       0.00921229332497399
+      ],
+      "median": [
+       0.14163127315515925,
+       0.009124892363732323
+      ],
+      "p90": [
+       0.22460900302340123,
+       0.012333648685177537
+      ],
+      "Ekin": [
+       0.009837379261322447,
+       0.00044553648704404974
+      ],
+      "fpin": [
+       0.97920617918456,
+       0.005819476041324247
+      ]
+     }
+    },
+    "ratio": {
+     "15": 100.06141935266547,
+     "21": 100.00721400323901,
+     "29": 100.05961779600699
+    },
+    "A": {
+     "15": 2.104403394697432,
+     "21": 2.171454637528077,
+     "29": 2.102790932696005
+    },
+    "lambda": {
+     "15": 0.056336625267755944,
+     "21": 0.05746118218437401,
+     "29": 0.03664542904991424
+    }
+   }
+  }
+ },
+ "verdict": "FAIL",
+ "R": {
+  "R1": false,
+  "R2": false,
+  "R3": false,
+  "R4": null
+ },
+ "fail_signatures": [
+  "1-D eps 1e-02 N 63 base: leaf-fail: leaf solve did not converge: residual 4.353e-03",
+  "1-D eps 1e-02 N 63 base: 1250 indefinite leaf Hessians (non-convex leaf: branching)",
+  "1-D eps 1e-02 N 63 d1e-3: leaf-fail: leaf solve did not converge: residual 1.015e-01",
+  "1-D eps 1e-02 N 63 d1e-3: 906 indefinite leaf Hessians (non-convex leaf: branching)",
+  "1-D eps 1e-02 N 63 d1e-5: leaf-fail: leaf solve did not converge: residual 3.621e-03",
+  "1-D eps 1e-02 N 63 d1e-5: 829 indefinite leaf Hessians (non-convex leaf: branching)",
+  "1-D eps 1e-02 N 127 base: leaf-fail: leaf solve did not converge: residual 7.308e-06",
+  "1-D eps 1e-02 N 127 base: 2149 indefinite leaf Hessians (non-convex leaf: branching)",
+  "1-D eps 1e-02 N 127 d1e-3: leaf-fail: leaf solve did not converge: residual 4.231e-04",
+  "1-D eps 1e-02 N 127 d1e-3: 11804 indefinite leaf Hessians (non-convex leaf: branching)",
+  "1-D eps 1e-02 N 127 d1e-5: leaf-fail: leaf solve did not converge: residual 1.423e-02",
+  "1-D eps 1e-02 N 127 d1e-5: 2785 indefinite leaf Hessians (non-convex leaf: branching)",
+  "1-D eps 1e-02 N 255 base: leaf-fail: leaf solve did not converge: residual 3.462e-04",
+  "1-D eps 1e-02 N 255 base: 22413 indefinite leaf Hessians (non-convex leaf: branching)",
+  "1-D eps 1e-02 N 255 d1e-3: leaf-fail: leaf solve did not converge: residual 7.564e-05",
+  "1-D eps 1e-02 N 255 d1e-3: 15400 indefinite leaf Hessians (non-convex leaf: branching)",
+  "1-D eps 1e-02 N 255 d1e-5: leaf-fail: leaf solve did not converge: residual 2.748e-03",
+  "1-D eps 1e-02 N 255 d1e-5: 22404 indefinite leaf Hessians (non-convex leaf: branching)",
+  "2-D eps 1e-02: leaf-uniqueness probe failed [(15.0, 103.00703234072134, True), (30.0, 56.85514331920152, True), (45.0, 86.11140161368466, True), (60.0, 1.680052347781585e-10, True)]"
+ ],
+ "runs": [
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 127,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "leaf-fail: leaf solve did not converge: residual 7.308e-06",
+   "wall_s": 66.6903030872345,
+   "dt": 0.003968253968253968,
+   "n_refac": 5536,
+   "max_res": 9.995262287999099e-11,
+   "n_indef": 2149
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 15,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 91.15963196754456,
+   "dt": 0.011904761904761904,
+   "n_refac": 296,
+   "max_res": 9.9970671558562e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 15,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 91.78576683998108,
+   "dt": 0.011904761904761904,
+   "n_refac": 294,
+   "max_res": 9.99818997684809e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 15,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 95.71557307243347,
+   "dt": 0.011904761904761904,
+   "n_refac": 276,
+   "max_res": 9.992476239781137e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 63,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "leaf-fail: leaf solve did not converge: residual 1.015e-01",
+   "wall_s": 12.623660802841187,
+   "dt": 0.0078125,
+   "n_refac": 1198,
+   "max_res": 9.987029021416743e-11,
+   "n_indef": 906
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 63,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "leaf-fail: leaf solve did not converge: residual 4.353e-03",
+   "wall_s": 14.700974702835083,
+   "dt": 0.0078125,
+   "n_refac": 1695,
+   "max_res": 9.987166417825666e-11,
+   "n_indef": 1250
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 63,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "leaf-fail: leaf solve did not converge: residual 3.621e-03",
+   "wall_s": 13.83791184425354,
+   "dt": 0.0078125,
+   "n_refac": 1455,
+   "max_res": 9.877906991391088e-11,
+   "n_indef": 829
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 127,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "leaf-fail: leaf solve did not converge: residual 1.423e-02",
+   "wall_s": 58.096999168395996,
+   "dt": 0.003968253968253968,
+   "n_refac": 5902,
+   "max_res": 9.996094742415747e-11,
+   "n_indef": 2785
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 21,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 151.28236389160156,
+   "dt": 0.008333333333333333,
+   "n_refac": 252,
+   "max_res": 9.999108234003566e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 21,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 154.4108738899231,
+   "dt": 0.008333333333333333,
+   "n_refac": 249,
+   "max_res": 9.999022742239322e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 21,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 154.50831007957458,
+   "dt": 0.008333333333333333,
+   "n_refac": 248,
+   "max_res": 9.99377939263576e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 127,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "leaf-fail: leaf solve did not converge: residual 4.231e-04",
+   "wall_s": 224.28085899353027,
+   "dt": 0.003968253968253968,
+   "n_refac": 29288,
+   "max_res": 1.5021236283423665e-09,
+   "n_indef": 11804
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 29,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 354.1509373188019,
+   "dt": 0.006097560975609756,
+   "n_refac": 238,
+   "max_res": 9.99977213902539e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 29,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "mu_exp",
+    "probe": true
+   },
+   "status": "ok",
+   "wall_s": 356.6919569969177,
+   "dt": 0.006097560975609756,
+   "n_refac": 231,
+   "max_res": 9.999655888973986e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 2,
+    "n": 29,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "ok",
+   "wall_s": 358.0866696834564,
+   "dt": 0.006097560975609756,
+   "n_refac": 229,
+   "max_res": 9.999807837539562e-11,
+   "n_indef": 0
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 255,
+    "eps": 0.01,
+    "delta": 0.001,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "leaf-fail: leaf solve did not converge: residual 7.564e-05",
+   "wall_s": 537.8262839317322,
+   "dt": 0.001984126984126984,
+   "n_refac": 52740,
+   "max_res": 9.999864824435632e-11,
+   "n_indef": 15400
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 255,
+    "eps": 0.01,
+    "delta": 1e-05,
+    "kern": "mu_exp",
+    "probe": false
+   },
+   "status": "leaf-fail: leaf solve did not converge: residual 2.748e-03",
+   "wall_s": 683.3862018585205,
+   "dt": 0.001984126984126984,
+   "n_refac": 76479,
+   "max_res": 9.999266239931826e-11,
+   "n_indef": 22404
+  },
+  {
+   "spec": {
+    "kind": "main",
+    "dim": 1,
+    "n": 255,
+    "eps": 0.01,
+    "delta": 0.0,
+    "kern": "mu_exp",
+    "probe": true
+   },
+   "status": "leaf-fail: leaf solve did not converge: residual 3.462e-04",
+   "wall_s": 752.1592669487,
+   "dt": 0.001984126984126984,
+   "n_refac": 93063,
+   "max_res": 9.999919436570575e-11,
+   "n_indef": 22413
+  }
+ ],
+ "summary": {
+  "pass": 4,
+  "total": 8,
+  "lb_pass": 4,
+  "lb_total": 8,
+  "wall_s": 754.8602681159973
+ }
+}
