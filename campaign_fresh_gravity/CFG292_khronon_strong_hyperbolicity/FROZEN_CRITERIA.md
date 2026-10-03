@@ -147,3 +147,31 @@ Never "theory closed", "well-posed theory", "data favour the framework" or "kapp
 and is not used here. Per recipe §11: "no ill-posedness in the tested sector and scope", never "well-posed".
 Literature look-ups were made through a summarising web fetch of arXiv abstract / HTML pages and are PROVISIONAL
 as quotations (the speed formulas are additionally checked by C3's exact algebra).
+
+---
+
+## Appended 2026-10-02, after the run (the frozen text above is unchanged)
+
+Five disclosures. None of them changes a test or the decision rule.
+
+1. **T5 implementation.** The frozen T5 named mpmath eigenvalues at random khat. In the first run `mpmath.eig` failed to
+   converge (QR iteration) on the defective F1 companion matrices. T5 was therefore run with exact arithmetic instead:
+   the unsplit pencils at z and at 5 random rational unit vectors (rational parametrisation of the sphere, exactly unit),
+   with exact roots, multiplicities and nullities. The condition number of the eigenvector matrix is still computed in
+   mpmath at 60 digits, from eigenspace-orthonormal bases built at the exact roots. The comparison is now exact, which is
+   stronger than the frozen 1e-20 tolerance; the condition-number tolerance is unchanged.
+2. **T6 implementation.** The bivariate determinant in (xi_0, s) was too slow. It is replaced by univariate determinants
+   at s = 1 and s = 2: the cone division is exact at both, and the left-over factor is xi_0-free with q(2)/q(1) = 4,
+   i.e. proportional to s^2 gamma^{ij} k_i k_j. The overall factor sqrt(-gbar) is divided out first.
+3. **C5 outcome.** At c_S^2 = 1 the merged eigenvalue of F2a stays semisimple (multiplicity 3, nullity 3). So, unlike
+   the Einstein-aether tetrad formulation of Sarbach, Barausse & Preciado-Lopez, c_S != 1 is NOT a condition in F2a.
+4. **Speed range.** Over the 18 points the scalar speed is 443.8 .. 9.505e5 c. The top value comes from the recipe edge
+   c_2 = 0.10 at alpha_min, a point XC1 A9 did not include (XC1's range is 443.8 .. 7.936e5 c).
+5. **A gap in the sec. 6 decision rule.** Sec. 2 designates F2 as the formulation that carries the verdict, but the
+   sec. 6 CONDITIONAL clause also requires F1 to be strongly hyperbolic.
+   - The run found F2a strongly hyperbolic at all 18 points. F1 and F2b are only weakly hyperbolic: there is a Jordan
+     block at the gauge speed 1, in the gauge/constraint sector only, and the physical speeds are simple and identical.
+   - So the CONDITIONAL clause is not met, as written. Nor is the KILL clause (no gauge-invariant failure). Nor is the
+     OPEN clause's first branch, because a pre-registered formulation IS strongly hyperbolic.
+   - The script therefore reports the frozen-rule result as an OPEN fall-through and states that a post-hoc reading
+     would be CONDITIONAL. Which reading stands is for the owner to decide. The rule is not re-written here.

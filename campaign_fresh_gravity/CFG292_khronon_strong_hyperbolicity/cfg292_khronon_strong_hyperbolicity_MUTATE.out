@@ -1,0 +1,186 @@
+CFG292 -- STRONG HYPERBOLICITY OF GR + THE BPS KHRONON (the C-H/K principal symbol) AND CRITERION-B CONE COMPATIBILITY.
+XC2 left this OPEN ("strong hyperbolicity of GR + the BPS khronon on arbitrary nonlinear backgrounds").  The criteria,
+formulations, tests, controls and decision rule were frozen first: FROZEN_CRITERIA.md (commit 6eaa9ea60).
+
+THE SYSTEM.  L340's C-H/K: I_CH + c^3/(16 pi G) Int sqrt(-g)[alpha_c a.a - c_2 K^2], beta = 0, lambda_K = 1 + c_2.  Its
+principal symbol is claimed (XC2 B5, XC1 A3, XC6) to be that of sqrt(-g)[R - beta K_mn K^mn - c_2 K^2 + alpha a.a]; R0
+re-verifies that claim in-lane before it is used.  beta is kept symbolic only to state conditions.
+
+FORMULATIONS (frozen).  F1: covariant, full de Donder gauge, khronon pi retained, leaf-elliptic factor removed by the
+order reduction pi~ = |grad| pi; hyperbolicity w.r.t. d tau.  F2 (carries the verdict): unitary time gauge t = tau, the
+spatial diffeomorphisms fixed by the spatial components of a de Donder vector -- F2a with the 4-D trace (the spatial
+harmonic coordinate condition), F2b with the spatial trace -- and the lapse eliminated through its leaf-elliptic equation.
+
+  *** MUTATE=1: alpha_c -> -alpha_c at every record point; the verdict formulation must FAIL (C4) ***
+
+==============================================================================================================
+INPUTS: the record values (committed files)
+==============================================================================================================
+    L340 P1 window: alpha_c in (9.6240e-14, 3.20e-09), c_2 in (7.2888e-03, 0.0667)
+    L350 G2 Planck-era c_2 ceilings: 6.310e-04, 7.943e-04, 1.470e-03, 1.585e-03, 2.342e-03, 2.946e-03
+    recipe sec. 9 lambda_K edge '1<lambda_K<=1.10' present: True -> c_2 = 0.1
+    XC1 A9 UV khronon speed range: 443.8 .. 7.936e+05 c
+    18 evaluation points (alpha_c x c_2), exact rationals at 6 significant digits; alpha_c sign FLIPPED (MUTATE)
+
+==============================================================================================================
+R0  RE-VERIFICATION: the MOND sector is lower order (XC2 B5), U = ln N kills C-H (XC1 A3), delta S (XC6)
+==============================================================================================================
+    XC2 B5 committed: ok = True; ratios 2/xi: 5.11e-01, 3/xi: 3.62e-03, 4/xi: 1.61e-06; rule re-applied: True;  XC6 D3, D4 ok: True;  XC1 A3 ok: True
+    symbol of S^T D^T C D S: k**2*(C_L*c**2 + C_T*(1 - c**2))*exp(-k**2*xi**2);  / k^2 = (C_L*c**2 - C_T*(c**2 - 1))*exp(-k**2*xi**2);  k^n e^(-xi^2 k^2) -> 0 for every n > 0: True
+    U-elimination: Schur complement = 2*C*E*k**2*v**2/(C*E + 1)  (= 2k^2 v^2 C E/(1 + C E): True); x k^n -> 0: True
+    numerical B5 (zero-free     ): K = 2/xi: ratio 1.59e-02, prefactor 0.87; K = 3/xi: ratio 9.52e-05, prefactor 0.77; K = 4/xi: ratio 7.31e-08, prefactor 0.65;  min y = 3.61e-01, max C_T = 1.2
+    numerical B5 (isolated zeros): K = 2/xi: ratio 9.88e-03, prefactor 0.54; K = 3/xi: ratio 5.59e-05, prefactor 0.45; K = 4/xi: ratio 5.04e-08, prefactor 0.45;  min y = 1.93e-02, max C_T = 6.7
+    nu_mono rebuilt: y_p match True; min C_T = 8.94e-05, min C_L = +3.24e-06 (y in 1e-3..1e4); C_T at small y: {'1e-02': 9.508331977654803, '1e-04': 99.50083366060674, '1e-06': 999.5000866171748, '1e-08': 9999.500040865554}  (~ y^(-1/2): unbounded at zero field)
+  [PASS] R0 the MOND sector is order -infinity where the filtered field is non-zero: XC2 B5 (committed, rule re-applied), the frozen symbol e^{-xi^2 k^2} k^T C k (sympy), the U-elimination Schur complement 2k^2 C E/(1+CE) (sympy, positive), an independent power iteration on a zero-free background, and XC6 D3/D4 (delta S) all agree
+         measured: XC2 B5 True/rule True; symbol limit True; Schur True/True; numeric zero-free ratios 1.6e-02, 9.5e-05, 7.3e-08 (prefactors 0.9, 0.8, 0.6); XC6 True; XC1 A3 True
+         reading:  so the principal symbol of C-H/K is GR + the BPS khronon; disclosed: C_T = nu - 1 ~ y^(-1/2) is unbounded where the filtered field vanishes (the 'isolated zeros' row has a larger prefactor), so open zero-field regions are outside scope
+
+==============================================================================================================
+M  MACHINERY: Einstein-Hilbert normalisation, the gauge-fixing constant, khronon linearisation, gauge invariance
+==============================================================================================================
+    TT wave h_12 = f(t,z): L = (fd - fz)*(fd + fz)/2   (positive kinetic term);  static Newtonian: L - (2|grad psi|^2 - 4 grad phi.grad psi) = 0  (ACTION.md's weak static form)
+    gauge-fixing constant fixed by C1: c_gf = 1/2;  GR + gauge term = (xi.xi) x constant invertible matrix: True
+    khronon on the aligned flat background: delta ln N = -dp0 - h00/2;  K^(1) = -ddp11 - ddp22 - ddp33 + dh0_11/2 + dh0_22/2 + dh0_33/2 - dh1_01 - dh2_02 - dh3_03
+    a^(1)_i = [-ddp01 - dh1_00/2, -ddp02 - dh2_00/2, -ddp03 - dh3_00/2];  Pi-Pi symbol = 2*(xi1**2 + xi2**2 + xi3**2)*(alpha*xi0**2 - beta*xi1**2 - beta*xi2**2 - beta*xi3**2 - c_2*xi1**2 - c_2*xi2**2 - c_2*xi3**2)  (decoupling limit alpha xi_0^2 k^2 - (beta + c_2) k^4)
+    EH + khronon symbol annihilates every pure-gauge vector (delta h = -L_z g, delta pi = -z.d tau): True
+  [PASS] M the quadratic EH Lagrangian has the right sign and normalisation (TT kinetic +1/2, ACTION.md's static 2|grad psi|^2 - 4 grad phi.grad psi); c_gf makes GR's symbol (xi.xi) x const; the khronon linearisation reproduces delta ln N = -pi_t - h_00/2, K = h_kk,t/2 - d_i h_0i - Lap pi; the symbol is diffeomorphism invariant
+         measured: TT (fd - fz)*(fd + fz)/2; Newtonian residual 0; c_gf 1/2; gauge residual zero True
+
+==============================================================================================================
+C1  CONTROL: GR alone (no khronon) in harmonic gauge
+==============================================================================================================
+    scalar  : A invertible True, roots 1 (mult 4, null 4), -1 (mult 4, null 4)
+    vector1 : A invertible True, roots 1 (mult 2, null 2), -1 (mult 2, null 2)
+    vector2 : A invertible True, roots 1 (mult 2, null 2), -1 (mult 2, null 2)
+    tensor+ : A invertible True, roots 1 (mult 1, null 1), -1 (mult 1, null 1)
+    tensorx : A invertible True, roots 1 (mult 1, null 1), -1 (mult 1, null 1)
+  [PASS] C1 GR in harmonic gauge is strongly hyperbolic: every helicity block has an invertible leading matrix, real roots +-1 and complete eigenvectors (nullity = multiplicity)
+         measured: speeds [1.0]; strong in every block: True
+
+==============================================================================================================
+T1  CHARACTERISTIC DETERMINANTS, symbolic in (alpha, beta, c_2), khat = z, u aligned
+==============================================================================================================
+    F1: off-block entries none
+      scalar  ['H00', 'H03', 'H33', 'a', 'Pi']: det = 1/4 * k^2 (k^2 - lambda^2)^4 [alpha(1-beta)(2+beta+3c_2) lambda^2 - (beta+c_2)(2-alpha) k^2]
+      vector  ['H01', 'H13'] (x2): det = 1 * (beta - 1)(k^2 - lambda^2)^2   -- gauge/constraint only, no physical vector mode
+      tensor  (x2): det = 1 * [(1 - beta) lambda^2 - k^2]
+    F2a: off-block entries none
+      scalar  ['H00', 'H03', 'H33', 'a']: det = 1/4 * k^2 (k^2 - lambda^2)^2 [alpha(1-beta)(2+beta+3c_2) lambda^2 - (beta+c_2)(2-alpha) k^2]
+      vector  ['H01', 'H13'] (x2): det = 1 * (beta - 1)(k^2 - lambda^2)^2   -- gauge/constraint only, no physical vector mode
+      tensor  (x2): det = 1 * [(1 - beta) lambda^2 - k^2]
+    F2b: off-block entries none
+      scalar  ['H00', 'H03', 'H33', 'a']: det = 1/4 * k^2 (k^2 - lambda^2)^2 [alpha(1-beta)(2+beta+3c_2) lambda^2 - (beta+c_2)(2-alpha) k^2]
+      vector  ['H01', 'H13'] (x2): det = 1 * (beta - 1)(k^2 - lambda^2)^2   -- gauge/constraint only, no physical vector mode
+      tensor  (x2): det = 1 * [(1 - beta) lambda^2 - k^2]
+  [PASS] T1 every determinant factors exactly: tensor (1-beta) lambda^2 = k^2 (c_T^2 = 1/(1-beta)); vector blocks carry only the gauge speed 1 (no vector mode: hypersurface orthogonality); scalar = k^2 (leaf-elliptic, instantaneous) x (k^2 - lambda^2)^m (gauge/constraint) x the khronon factor, c_S^2 = (beta+c_2)(2-alpha)/(alpha(1-beta)(2+beta+3c_2)); identical in F1, F2a, F2b; block-diagonality verified
+         measured: all identities hold: True
+         reading:  the leaf-elliptic k^2 (the lapse/instantaneous mode) is a factor in every formulation; F1's pi~ = |grad| pi reduction removes it, F2's lapse elimination removes it
+
+==============================================================================================================
+C3  CONTROL: Einstein-aether wave speeds (Jacobson & Mattingly 2004; Jacobson 2008 eqs 11-13), exact at a test point
+==============================================================================================================
+    test point (c1, c2, c3, c4) = (1/10, 1/5, 1/20, 1/30); off-block entries: none
+    tensor: found s^2 = [20/17]  literature 1/(1-c13) = 20/17
+    vector: found s^2 = [231/272]  literature (2c1 - c1^2 + c3^2)/(2 c14 (1-c13)) = 231/272
+    scalar: found s^2 = [392/187]  literature c123(2-c14)/(c14(1-c13)(2+c13+3c2)) = 392/187 (HTML-render form: 392/187)
+  [PASS] C3 the machinery reproduces all three Einstein-aether speeds exactly at the test point, the two published forms of s_0^2 agree, and the khronometric scalar factor of T1 equals s_0^2 under (c14, c13, c2) -> (alpha, beta, c_2) (Guemruekcueoglu+18 eq. 4, used by XC1)
+         measured: found {'tensor+': [20/17], 'vector1': [231/272], 'scalar': [392/187]}; map identity True; form identity True
+
+==============================================================================================================
+SH  STRONG HYPERBOLICITY AT THE 18 RECORD POINTS (T2 leading matrix, T3 real roots, T4 complete eigenvectors; exact)
+==============================================================================================================
+    F1 : strongly hyperbolic at 0/18 points;  e.g. alpha_c = -9.624e-14, c_2 = 6.310e-04: A invertible True, roots real False, deficient eigenvalues [('scalar', '1', 'mult 4 null 3'), ('scalar', '-1', 'mult 4 null 3')], non-real roots e.g. [-80931.11568745134j, 80931.11568745134j]
+    F2a: strongly hyperbolic at 0/18 points;  e.g. alpha_c = -9.624e-14, c_2 = 6.310e-04: A invertible True, roots real False, deficient eigenvalues none, non-real roots e.g. [-80931.11568745134j, 80931.11568745134j]
+    F2b: strongly hyperbolic at 0/18 points;  e.g. alpha_c = -9.624e-14, c_2 = 6.310e-04: A invertible True, roots real False, deficient eigenvalues [('scalar', '1', 'mult 2 null 1'), ('scalar', '-1', 'mult 2 null 1')], non-real roots e.g. [-80931.11568745134j, 80931.11568745134j]
+  [FAIL] SH-F2a (the leaf-sliced formulation that carries the verdict: t = tau, spatial harmonic coordinates, lapse elliptic) is strongly hyperbolic at all 18 record points (T2-T4 exact, every helicity block)
+         measured: 0/18
+         reading:  T5 (uniformity in khat) is tested below on the unsplit matrices
+  [FAIL] (finding, not load-bearing) SH-F2b (spatial-trace variant) is strongly hyperbolic at all 18 points
+         measured: 0/18; deficiency e.g. [('scalar', '1', 2, 1), ('scalar', '-1', 2, 1)]
+         reading:  reported whatever the outcome (frozen); a Jordan block at the gauge speed is a property of this gauge choice
+  [FAIL] (finding, not load-bearing) SH-F1 (covariant full de Donder + khronon) is strongly hyperbolic at all 18 points
+         measured: 0/18; deficiency e.g. [('scalar', '1', 4, 3), ('scalar', '-1', 4, 3)]; physical speeds equal to F2a's: False
+         reading:  reported whatever the outcome (frozen); a gauge-sector Jordan block: pi shifts under the residual harmonic gauge modes, which share speed 1 with the constraint modes
+
+==============================================================================================================
+T5  UNIFORMITY IN khat: unsplit matrices at z and 5 random rational unit directions (exact spectra and nullities; eigenvector-matrix condition number in mpmath, 60 digits, Frobenius-orthonormal field basis)
+==============================================================================================================
+    directions (exact unit vectors: True): (0, 0, 1); (10/51, 50/51, -1/51); (8/21, -4/105, -97/105); (-360/449, -100/449, -249/449); (56/201, 4/201, -193/201); (72/409, 324/409, 239/409)
+    F1 : same exact spectrum (roots, multiplicities, nullities) in all 6 directions at 18/18 points; strongly hyperbolic in every direction at 0/18; condition number equal across khat at 0/18
+         point 1 spectrum at z (re, im, mult, nullity): [(-1.0, 0.0, 10, 9), (0.0, -80931.115687451, 1, None), (0.0, 80931.115687451, 1, None), (1.0, 0.0, 10, 9)];  condition number None
+    F2a: same exact spectrum (roots, multiplicities, nullities) in all 6 directions at 18/18 points; strongly hyperbolic in every direction at 0/18; condition number equal across khat at 0/18
+         point 1 spectrum at z (re, im, mult, nullity): [(-1.0, 0.0, 8, 8), (0.0, -80931.115687451, 1, None), (0.0, 80931.115687451, 1, None), (1.0, 0.0, 8, 8)];  condition number None
+    F2b: same exact spectrum (roots, multiplicities, nullities) in all 6 directions at 18/18 points; strongly hyperbolic in every direction at 0/18; condition number equal across khat at 0/18
+         point 1 spectrum at z (re, im, mult, nullity): [(-1.0, 0.0, 8, 7), (0.0, -80931.115687451, 1, None), (0.0, 80931.115687451, 1, None), (1.0, 0.0, 8, 7)];  condition number None
+  [FAIL] T5 F2a is uniformly diagonalisable in khat: at every point the 6 directions give the same exact real roots, complete eigenvectors and the same eigenvector-matrix condition number (eigenspace-orthonormal bases, relative spread < 1e-20)
+         measured: 0/18; condition numbers n/a
+         reading:  rotation covariance about the aether: the bound is direction-independent; it grows with c_S as alpha_c -> 0
+
+==============================================================================================================
+COND  THE CONDITIONS (symbolic), and C5 the c_S = 1 probe
+==============================================================================================================
+    F1 : lapse coefficient None;  det A (scalar block) = -alpha*(beta - 1)*(beta + 3*c_2 + 2)/4
+         at the gauge speed lambda = 1: scalar nullity 2 (beta generic) / 3 (beta = 0) vs multiplicity 4;  vector nullity 1 / 2 vs 2
+    F2a: lapse coefficient (2*alpha - 1)/4;  det A (scalar block, after lapse elimination) = -alpha*(beta - 1)*(beta + 3*c_2 + 2)/(2*alpha - 1)
+         at the gauge speed lambda = 1: scalar nullity 1 (beta generic) / 2 (beta = 0) vs multiplicity 2;  vector nullity 1 / 2 vs 2
+    F2b: lapse coefficient alpha/2;  det A (scalar block, after lapse elimination) = -(beta - 1)*(beta + 3*c_2 + 2)/2
+         at the gauge speed lambda = 1: scalar nullity 1 (beta generic) / 1 (beta = 0) vs multiplicity 2;  vector nullity 1 / 2 vs 2
+    C5 probe (F2a): alpha = 1/17, c_2 = 1/15, beta = 0 -> c_S^2 = 1;  scalar roots (root, mult, nullity): [('1', 3, 3), ('-1', 3, 3)];  strong: True
+  [PASS] COND F2a's conditions, derived: lapse elliptic iff alpha != 1/2 (gauge term); leading matrix invertible iff alpha (1-beta)(2+beta+3c_2) != 0 (det A); complete eigenvectors at the gauge speed iff beta = 0 (scalar and vector blocks); C5: at c_S^2 = 1 the merged eigenvalue stays semisimple, so c_S = 1 is NOT an extra condition in F2a
+         measured: F2a: {'lapse_coeff': '(2*alpha - 1)/4', 'detA_scalar': '-alpha*(beta - 1)*(beta + 3*c_2 + 2)/(2*alpha - 1)', 'scalar_null_at_1_generic': 1, 'scalar_null_at_1_beta0': 2, 'scalar_mult_at_1': 2, 'vector_null_at_1_generic': 1, 'vector_null_at_1_beta0': 2, 'vector_mult_at_1': 2}; C5 (alpha = 1/17, c_2 = 1/15): roots [('1', 3, 3), ('-1', 3, 3)], strong = True
+         reading:  beta = 0 is the chassis value (c_T = 1 exactly, L340), so the condition is met; for beta != 0 this gauge degenerates (tensor speed != gauge speed) and another gauge would be needed
+
+==============================================================================================================
+C2  CONTROL: minimal Horava gravity (alpha = 0, beta = 0, c_2 = c2_max)
+==============================================================================================================
+    F1: scalar block leading matrix invertible False (det degree 8 vs 2n = 10); strongly hyperbolic: False
+    F2a: scalar block leading matrix invertible False (det degree 4 vs 2n = 6); strongly hyperbolic: False
+  [PASS] C2 minimal Horava (alpha = 0) is NOT strongly hyperbolic in F1 or F2a, for the predicted reason: the scalar's xi_0^2 coefficient vanishes (singular leading matrix; the mode obeys an equation first order in time -- Jacobson & Pulakkat 2025)
+         measured: {'F1': {'strong': False, 'A_inv_scalar': False, 'degree': 8, 'n': 5, 'lapse': None}, 'F2a': {'strong': False, 'A_inv_scalar': False, 'degree': 4, 'n': 3, 'lapse': '-1/4'}}
+
+==============================================================================================================
+T6  A GENERAL FROZEN BACKGROUND: lapse 13/10, shift (1/5, -1/10, 1/7), non-diagonal gamma_ij, tau = t
+==============================================================================================================
+    F1: det P = [cone_1]^10 [cone_S] x q(s), remainders zero at s = 1, 2: True;  q lambda-free with q(2)/q(1) = 4 (leaf-elliptic, ~ s^2 gamma^ij k_i k_j): True
+         at s = 1 (A invertible; reduced A invertible True): roots N^i k_i +- N s_A |k|_gamma (value, multiplicity, nullity) [];  real False, complete False
+    F2a: det P = [cone_1]^8 [cone_S] x q(s), remainders zero at s = 1, 2: True;  q lambda-free with q(2)/q(1) = 4 (leaf-elliptic, ~ s^2 gamma^ij k_i k_j): True
+         at s = 1 (ker A dim 1, its block lambda-free True, invertible True; reduced A invertible True): roots N^i k_i +- N s_A |k|_gamma (value, multiplicity, nullity) [];  real False, complete False
+  [PASS] T6 on a general frozen background (lapse, shift, non-diagonal gamma) every characteristic factor is a cone (xi_0 - N^i k_i)^2 = N^2 s_A^2 gamma^{ij} k_i k_j with s_A in {1, c_S}, the left-over factor is the leaf-elliptic gamma^{ij} k_i k_j; the roots are real; F2a's eigenvectors are complete there too (F1 keeps its gauge-sector Jordan block, see SH-F1)
+         measured: F1: exact True, elliptic True, real False, complete False; F2a: exact True, elliptic True, real False, complete False
+         reading:  the principal symbol at any point depends only on (g, d tau) there: the aligned computation is the general frozen one
+
+==============================================================================================================
+T7  A SLICING THAT IS NOT THE KHRONON'S: aether boosted v = 3/5 relative to coordinate time (F1, flat metric)
+==============================================================================================================
+    k perpendicular to v: det P divisible by h(xi, xi) = (gamma^2 - 1) lambda^2 + 1: True;  its roots [-1.33333333333333*I, 1.33333333333333*I] (non-real);  the remaining 22 roots (exact factorisation, Sturm count) all real: False
+    remaining factors (degree, multiplicity, all roots real): [(1, 10, True), (1, 10, True), (2, 1, False)]
+    Q_A(dt) = (u.dt)^2 - s_A^2 h(dt, dt) for the coordinate time: light cone (s = 1): 1, scalar cone (s = c_S): 1.065e+07  -> dt lies outside the superluminal scalar cone's dual: t = const is not spacelike for that mode either
+  [PASS] T7 relative to a time function other than tau the leaf-elliptic factor h^{mu nu} xi_mu xi_nu has non-real roots (k perpendicular to the boost): the evolution must be posed on tau-leaves, i.e. the preferred time of criterion B is forced
+         measured: divisible True; h roots [-1.33333333333333*I, 1.33333333333333*I]
+         reading:  found too: the light-cone factors stay real-rooted (Q(dt) = 1 > 0), but the superluminal scalar cone also gives non-real roots in this slicing, since Q_S(dt) = gamma^2 - c_S^2 (gamma^2 - 1) < 0; a Cauchy slice must lie inside every cone's dual, which for c_S ~ 1e3-1e6 forces slices within ~1/c_S of the leaves
+
+==============================================================================================================
+CB  CRITERION B: one preferred time compatible with every characteristic cone
+==============================================================================================================
+    Q_A(d tau) = 1 > 0 for every finite s_A: every leaf is spacelike for every finite cone, however superluminal
+    h^{mu nu}: eigenvalues {0: 1, 1: 3}, kernel = span(d tau) (only the leaf itself is characteristic for the elliptic factor): True
+    ray d tau(xdot) = -2*e0;  on the cone (d tau(xdot))^2 = 4 s_A^2 |k|^2 > 0 for k != 0: True -> no characteristic ray is tangent to a leaf; each cone's two sheets lie on opposite sides; parametrised forward they move forward in tau
+    characteristic speeds found (F2a, all 18 points, aether frame): gauge/tensor 1, scalar n/a .. 1.0 c; all real, positive, finite: False
+  [FAIL] CB criterion B holds on the tested scope: every cone is (u.xi)^2 = s_A^2 h(xi,xi) with the common axis u and 0 < s_A^2 < inf (tensor/gauge 1, scalar speeds as measured at the 18 points), so every leaf is spacelike for every cone and no ray points backward in tau; the leaf-elliptic factor's only characteristic conormal is d tau (instantaneous propagation within a leaf, allowed)
+         measured: Q(d tau) = 1; kernel True; transversality True; speeds finite and positive False (scalar nan .. 1 c)
+         reading:  no closed causal curves follows once tau is a global time function (X > 0 everywhere), which C-H/K assumes by construction
+
+==============================================================================================================
+VERDICT (frozen decision rule, FROZEN_CRITERIA.md sec. 6)
+==============================================================================================================
+  F2a strongly hyperbolic (T2-T5): False;  F2b: False;  F1: False;  same physical speeds F1/F2a: False
+  controls C1/C2/C3: True/True/True;  R0: True;  T6: False;  physical speeds real: False
+  VERDICT: MUTATE RUN (C4): the verdict formulation FAILS, as required
+  Scope: linearised, frozen-coefficient, high-frequency principal symbol; F2a = khronon time t = tau, spatial harmonic
+  coordinates (spatial components of the de Donder condition), lapse from its leaf-elliptic equation; backgrounds whose
+  filtered MOND field does not vanish.  Conditions found: alpha_c != 0 (with c_S^2 > 0: alpha_c > 0 for c_2 > 0), beta = 0
+  in this gauge (c_T = 1), c_S^2 = c_2(2 - alpha_c)/(alpha_c(2 + 3 c_2)) finite and positive, alpha_c != 1/2 (a gauge artefact);
+  c_S = 1 is not an extra condition (C5).
+  Time 19 s.
+
+  9/14 checks pass; load-bearing failures: 3; wrote cfg292_khronon_strong_hyperbolicity_results_MUTATE.json
