@@ -1,0 +1,25 @@
+CFG305 build: CORRECTED real_research/data/rc100_nestorshachar2023_table3_CORRECTED.csv sha256 a1778d75476ede17; confirm results sha256 53b9eaa321406e85; FROZEN_CRITERIA.md sha256 cac9836140630bea
+  confirmed cells to apply: [('87', 'logMbar_Msun', '10.72'), ('87', 'Re_kpc', '3.85'), ('87', 'fDM_within_Re', '0.44'), ('87', 'Vc_Re_kms', '250'), ('87', 'sigma0_kms', '37'), ('78', 'sigma0_kms', '77')]
+  [PASS] B1 the frozen constants reproduce the derived columns of every row whose derived cells are not recomputed (<= 5e-5 relative)
+         worst relative deviation 3.73e-05 over 99 rows
+  [PASS] B2 header and every untouched row byte-identical to the CORRECTED CSV
+         98 untouched rows, touched rows ['78', '87']
+  [PASS] B3 exactly the confirmed primary cells differ from the CORRECTED CSV, plus only derived cells of rows with a changed V_c/R_e/log M_baryon
+         primary [('78', 'sigma0_kms'), ('87', 'Re_kpc'), ('87', 'Vc_Re_kms'), ('87', 'fDM_within_Re'), ('87', 'logMbar_Msun'), ('87', 'sigma0_kms')]; derived [('87', 'a0_Vc4_over_GMbar_ms2'), ('87', 'a0_over_1.2e-10'), ('87', 'g_Re_ms2')]
+  [PASS] B4 the PUBLISHED CSV's six numeric primary fields equal the published Table B1 parse in all 100 rows
+         mismatches []
+
+CHANGED CELLS (CORRECTED -> PUBLISHED) and the derived consequences
+  row  78 BX610        sigma0_kms           75 -> 77
+  row  87 J0901+1814   logMbar_Msun      11.09 -> 10.72
+  row  87 J0901+1814   Re_kpc             4.33 -> 3.85
+  row  87 J0901+1814   fDM_within_Re      0.06 -> 0.44
+  row  87 J0901+1814   Vc_Re_kms           209 -> 250
+  row  87 J0901+1814   sigma0_kms           55 -> 37
+  row  78 BX610        g_Re 5.8290e-10 -> 5.8290e-10; a0_Vc4/GMbar 6.1028e-10 -> 6.1028e-10 (a0/1.2e-10 5.086 -> 5.086); deepMOND 0 -> 0  [sigma0-only change: derived cells kept]
+  row  87 J0901+1814   g_Re 3.2693e-10 -> 5.2610e-10; a0_Vc4/GMbar 1.1683e-10 -> 5.6071e-10 (a0/1.2e-10 0.974 -> 4.673); deepMOND 0 -> 0
+  (row 78 for information: recomputing its derived cells with the frozen constants would give g_Re 5.8290e-10, a0 6.1028e-10; kept: 5.8290e-10, 6.1028e-10)
+  deepMOND flag flips: none
+
+wrote real_research/data/rc100_nestorshachar2023_table3_PUBLISHED.csv sha256 8a7ed57a99be67995890c5f1293ecf7ac19d84dea60533b1d0d2c8901aa930e7
+4/4 checks pass

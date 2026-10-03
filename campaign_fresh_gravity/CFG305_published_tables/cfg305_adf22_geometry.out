@@ -1,0 +1,94 @@
+CFG305 ADF22.5 geometry: substitutions (PUBLISHED mirror only) adf22_pdf_direct_reads_A7.csv {'umehata25_870um_masked_n': ('1.42', '0.36'), 'umehata25_870um_masked_Re': ('1.58', '0.15'), 'umehata25_870um_masked_ba': ('0.435', '0.05'), 'umehata25_870um_masked_PA': ('17.9', '2.6'), 'umehata25_870um_unmasked_n': ('1.7', '0.37')}; adf22_5_literature_values.csv {'alma870_sersic_n': ('1.42', '0.36'), 'alma870_Re': ('1.58', '0.15'), 'alma870_axis_ratio': ('0.435', '0.05'), 'alma870_PA': ('17.9', '2.6')}
+
+[CTRL] cfg285_posthoc_expfit_geometry.py rc 0
+[CTRL] STAGE=B cfg284_adf22_5_stars.py rc 0
+[CTRL] STAGE=B cfg285_adf22_5_gas.py rc 0
+  [PASS] CTRL: no run wrote through a read-through link into the repo (targets changed by the parallel CFG294 session listed, not counted)
+         48943 links checked; changed: []
+  PUBLISHED mirror: edited rows [('umehata25_870um_masked_n', ('1.01', '0.17', '0.17'), ('1.42', '0.36', '0.36')), ('umehata25_870um_masked_Re', ('1.53', '0.15', '0.15'), ('1.58', '0.15', '0.15')), ('umehata25_870um_masked_ba', ('0.58', '0.06', '0.06'), ('0.435', '0.05', '0.05')), ('umehata25_870um_masked_PA', ('17.4', '2.5', '2.5'), ('17.9', '2.6', '2.6')), ('umehata25_870um_unmasked_n', ('1.7', '0.22', '0.22'), ('1.7', '0.37', '0.37')), ('alma870_sersic_n', ('1.01', '0.17', '0.17'), ('1.42', '0.36', '0.36')), ('alma870_Re', ('1.53', '0.15', '0.15'), ('1.58', '0.15', '0.15')), ('alma870_axis_ratio', ('0.58', '0.06', '0.06'), ('0.435', '0.05', '0.05')), ('alma870_PA', ('17.4', '2.5', '2.5'), ('17.9', '2.6', '2.6'))]
+  label patch in the mirror copy of cfg285_posthoc_expfit_geometry.py: ['("870 um masked, b/a 0.435", ', 'gas proxy {RE_G_EXP} kpc (870 um masked, n = 1.42)']
+
+[PUBLISHED] cfg285_posthoc_expfit_geometry.py rc 0
+[PUBLISHED] STAGE=B cfg284_adf22_5_stars.py rc 0
+[PUBLISHED] STAGE=B cfg285_adf22_5_gas.py rc 0
+  [PASS] PUBLISHED: no run wrote through a read-through link into the repo (targets changed by the parallel CFG294 session listed, not counted)
+         48943 links checked; changed: []
+  [PASS] CTRL: the post-hoc reproduces its committed .out and _results.json exactly
+         .out identical True; JSON equal True
+  [PASS] CTRL: STAGE=B cfg284 reproduces its committed stage-B .out / _results.json / points CSV
+         .out True; JSON True; CSV True
+  [PASS] CTRL: STAGE=B cfg285 reproduces its committed stage-B .out / _results.json / points CSV
+         .out True; JSON True; CSV True
+
+cfg284 STAGE=B, PUBLISHED vs CTRL: 22 differing .out lines
+   -sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038, adf22_5_literature_values.csv 3e6596df5bbdb484; vel
+   -row: ID 24 ADF22.5 z 3.094  L' 3.000e+10 +- 4.00e+09  R_ext 3.551 kpc (7.757 kpc/arcsec)  i_ALMA 75 +- 6  | M* 4.400e+10 (+2.60e+10 -2.50e+10; log 10.64345 +0.20165 -0.36470)  F444W R_e 2.24 +- 0.25 kpc n 3.21 b/a 0.54 (thin-disc i 57.3 deg)  870um R_e 1.53 k
+   +sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038, adf22_5_literature_values.csv de733991928f298a; vel
+   +row: ID 24 ADF22.5 z 3.094  L' 3.000e+10 +- 4.00e+09  R_ext 3.551 kpc (7.757 kpc/arcsec)  i_ALMA 75 +- 6  | M* 4.400e+10 (+2.60e+10 -2.50e+10; log 10.64345 +0.20165 -0.36470)  F444W R_e 2.24 +- 0.25 kpc n 3.21 b/a 0.54 (thin-disc i 57.3 deg)  870um R_e 1.58 k
+   -      Delta_floor +0.237 dex; baryon shift for s* = 1: +0.203 dex; alpha_CO at D = 1: 1.0631; alpha_CO for FLAT 0.8730, PROXY 0.5642, H(z) 0.2490; lever (noiseless) -9.36 (conditioned); variants with a root 19/20 (to a floor 1); recipe half-width 0.754
+   -      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.317 [root; +0.173]; R_e /1.5 (stars and gas) -0.185 [root; -0.076]; stars R_e +1 sigma +0.075 [root; +0.036]; stars R_e -1 sigma -0.07
+   -      knob groups (max |Delta log10 s*|): geometry 0.317, pressure 0.039, inclination 0.425, radius 0.040, kernel 0.172, stellar mass 0.505, gas conversion 0.000
+   +      Delta_floor +0.237 dex; baryon shift for s* = 1: +0.203 dex; alpha_CO at D = 1: 1.0631; alpha_CO for FLAT 0.8730, PROXY 0.5642, H(z) 0.2490; lever (noiseless) -9.36 (conditioned); variants with a root 19/20 (to a floor 1); recipe half-width 0.714
+   +      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.317 [root; +0.173]; R_e /1.5 (stars and gas) -0.185 [root; -0.076]; stars R_e +1 sigma +0.075 [root; +0.036]; stars R_e -1 sigma -0.07
+   +      knob groups (max |Delta log10 s*|): geometry 0.317, pressure 0.039, inclination 0.349, radius 0.040, kernel 0.172, stellar mass 0.505, gas conversion 0.000
+   -      Delta_floor +0.048 dex; baryon shift for s* = 1: +0.013 dex; alpha_CO at D = 1: 1.0631; alpha_CO for FLAT 0.8730, PROXY 0.5642, H(z) 0.2490; lever (noiseless) -18.93 ILL-CONDITIONED; variants with a root 16/20 (to a floor 4); recipe half-width 1.202
+   -      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.657 [root; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma +0.166 [root; +0.023]; stars R_e -1 sigma -0.254 [
+   -      knob groups (max |Delta log10 s*|): geometry 0.657, pressure 0.109, inclination 0.745, radius 0.060, kernel 0.148, stellar mass 0.648
+   +      Delta_floor +0.048 dex; baryon shift for s* = 1: +0.013 dex; alpha_CO at D = 1: 1.0631; alpha_CO for FLAT 0.8730, PROXY 0.5642, H(z) 0.2490; lever (noiseless) -18.93 ILL-CONDITIONED; variants with a root 16/20 (to a floor 4); recipe half-width 1.141
+   +      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.657 [root; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma +0.166 [root; +0.023]; stars R_e -1 sigma -0.254 [
+   +      knob groups (max |Delta log10 s*|): geometry 0.657, pressure 0.109, inclination 0.643, radius 0.060, kernel 0.148, stellar mass 0.648
+   -      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [floor; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.009]; stars R_e -1 sigma -- [floor; -0.
+   +      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [floor; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.009]; stars R_e -1 sigma -- [floor; -0.
+   -    HE6 (B1 knobs: thin-disc inclinations +0.5..+0.8; M* -0.30 +0.4..+0.8; floors for M* +0.30, r_31, helium, R_e/1.5; R_e x1.5 and spherical +0.4..+0.7; half-width 0.8-1.4; 12-18 roots): hit  (half 1.202; roots 16; groups {'geometry': 0.6567373375841647, 'pr
+   -    HE7 (B0 recipe half-width 0.5-1.0 and M* +0.30 -> floor): hit  (half 0.754)
+   +    HE6 (B1 knobs: thin-disc inclinations +0.5..+0.8; M* -0.30 +0.4..+0.8; floors for M* +0.30, r_31, helium, R_e/1.5; R_e x1.5 and spherical +0.4..+0.7; half-width 0.8-1.4; 12-18 roots): MISS (kept as it falls)  (half 1.141; roots 16; groups {'geometry': 0.6
+   +    HE7 (B0 recipe half-width 0.5-1.0 and M* +0.30 -> floor): hit  (half 0.714)
+
+cfg285 STAGE=B, PUBLISHED vs CTRL: 28 differing .out lines
+   -sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038, adf22_5_literature_values.csv 3e6596df5bbdb484, adf
+   +sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038, adf22_5_literature_values.csv de733991928f298a, adf
+   -      Delta_floor +0.237 dex; baryon shift for s* = 1: +0.203 dex; alpha_CO (x L'(1-0)) at D = 1: 0.6978; for FLAT 0.5730, PROXY 0.3703, H(z) 0.1635; lever (noiseless) -9.36 (conditioned); variants with a root 19/20 (to a floor 1); recipe half-width 0.946
+   -      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.317 [root; +0.173]; R_e /1.5 (stars and gas) -0.185 [root; -0.076]; stars R_e +1 sigma +0.075 [root; +0.036]; stars R_e -1 sigma -0.07
+   -      knob groups (max |Delta log10 s*|): geometry 0.317, pressure 0.039, inclination 0.425, radius 0.040, kernel 0.172, stellar mass 0.763, gas conversion 0.000
+   +      Delta_floor +0.237 dex; baryon shift for s* = 1: +0.203 dex; alpha_CO (x L'(1-0)) at D = 1: 0.6978; for FLAT 0.5730, PROXY 0.3703, H(z) 0.1635; lever (noiseless) -9.36 (conditioned); variants with a root 19/20 (to a floor 1); recipe half-width 0.915
+   +      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.317 [root; +0.173]; R_e /1.5 (stars and gas) -0.185 [root; -0.076]; stars R_e +1 sigma +0.075 [root; +0.036]; stars R_e -1 sigma -0.07
+   +      knob groups (max |Delta log10 s*|): geometry 0.317, pressure 0.039, inclination 0.349, radius 0.040, kernel 0.172, stellar mass 0.763, gas conversion 0.000
+   -      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [root; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.019]; stars R_e -1 sigma -- [floor; -0.0
+   +      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [root; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.019]; stars R_e -1 sigma -- [floor; -0.0
+   -      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [floor; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.007]; stars R_e -1 sigma -- [floor; -0.
+   +      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [floor; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.007]; stars R_e -1 sigma -- [floor; -0.
+   -      Delta_floor +0.317 dex; baryon shift for s* = 1: +0.283 dex; alpha_CO (x L'(1-0)) at D = 1: 1.6604; for FLAT 1.5356, PROXY 1.3329, H(z) 1.1261; lever (noiseless) -7.48 (conditioned); variants with a root 20/20 (to a floor 0); recipe half-width 0.582
+   -      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.279 [root; +0.173]; R_e /1.5 (stars and gas) -0.149 [root; -0.076]; stars R_e +1 sigma +0.000 [root; +0.000]; stars R_e -1 sigma +0.00
+   -      knob groups (max |Delta log10 s*|): geometry 0.279, pressure 0.035, inclination 0.390, radius 0.044, kernel 0.155, stellar mass 0.000, gas conversion 0.285
+   +      Delta_floor +0.317 dex; baryon shift for s* = 1: +0.283 dex; alpha_CO (x L'(1-0)) at D = 1: 1.6604; for FLAT 1.5356, PROXY 1.3329, H(z) 1.1261; lever (noiseless) -7.48 (conditioned); variants with a root 20/20 (to a floor 0); recipe half-width 0.537
+   +      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.279 [root; +0.173]; R_e /1.5 (stars and gas) -0.149 [root; -0.076]; stars R_e +1 sigma +0.000 [root; +0.000]; stars R_e -1 sigma +0.00
+   +      knob groups (max |Delta log10 s*|): geometry 0.279, pressure 0.035, inclination 0.319, radius 0.044, kernel 0.155, stellar mass 0.000, gas conversion 0.285
+   -      Delta_floor +0.087 dex; baryon shift for s* = 1: +0.052 dex; alpha_CO (x L'(1-0)) at D = 1: 1.6604; for FLAT 1.5356, PROXY 1.3329, H(z) 1.1261; lever (noiseless) -15.66 ILL-CONDITIONED; variants with a root 19/20 (to a floor 1); recipe half-width 1.079
+   -      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.492 [root; +0.173]; R_e /1.5 (stars and gas) -0.889 [root; -0.076]; stars R_e +1 sigma +0.000 [root; +0.000]; stars R_e -1 sigma +0.00
+   -      knob groups (max |Delta log10 s*|): geometry 0.889, pressure 0.066, inclination 0.587, radius 0.005, kernel 0.160, stellar mass 0.000
+   +      Delta_floor +0.087 dex; baryon shift for s* = 1: +0.052 dex; alpha_CO (x L'(1-0)) at D = 1: 1.6604; for FLAT 1.5356, PROXY 1.3329, H(z) 1.1261; lever (noiseless) -15.66 ILL-CONDITIONED; variants with a root 19/20 (to a floor 1); recipe half-width 1.031
+   +      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) +0.492 [root; +0.173]; R_e /1.5 (stars and gas) -0.889 [root; -0.076]; stars R_e +1 sigma +0.000 [root; +0.000]; stars R_e -1 sigma +0.00
+   +      knob groups (max |Delta log10 s*|): geometry 0.889, pressure 0.066, inclination 0.493, radius 0.005, kernel 0.160, stellar mass 0.000
+   -      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [floor; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.000]; stars R_e -1 sigma -- [floor; +0.
+   +      knobs (Delta log10 s*; -- = the base or the variant has no root; [status; Delta log10 D]): R_e x1.5 (stars and gas) -- [floor; +0.173]; R_e /1.5 (stars and gas) -- [floor; -0.076]; stars R_e +1 sigma -- [floor; +0.000]; stars R_e -1 sigma -- [floor; +0.
+   -    HE6 (G1 knobs: half-width 0.35-0.75; thin-disc inclinations +0.25..+0.45; R_e x1.5 +0.2..+0.4; helium -0.2..-0.4): hit  (half 0.582; groups {'geometry': 0.2788251209931296, 'pressure': 0.034504610415479586, 'inclination': 0.3900267437326401, 'radius': 0.0
+   +    HE6 (G1 knobs: half-width 0.35-0.75; thin-disc inclinations +0.25..+0.45; R_e x1.5 +0.2..+0.4; helium -0.2..-0.4): MISS (kept as it falls)  (half 0.537; groups {'geometry': 0.2788251209931296, 'pressure': 0.034504610415479586, 'inclination': 0.31885217397
+
+CFG285 POST-HOC (exponential-matched geometry), CTRL -> PUBLISHED
+  S0: D 1.459 -> 1.459; root -> root; s* 4.59 -> 4.59; no-root 0.212 -> 0.212; UNRESOLVED -> UNRESOLVED; rooted 68% [2.35, 27.2] -> 68% [2.35, 27.2]
+  S1: D 0.796 -> 0.798; floor -> floor; s* - -> -; no-root 0.702 -> 0.699; UNRESOLVED -> UNRESOLVED; rooted 68% [0.762, 4.91] -> 68% [0.763, 4.95]
+  S2: D 0.307 -> 0.309; floor -> floor; s* - -> -; no-root 1.000 -> 1.000; RESOLVED-FLOOR -> RESOLVED-FLOOR; rooted - -> -
+  G1: D 1.751 -> 1.763; root -> root; s* 7.14 -> 7.24; no-root 0.000 -> 0.000; RESOLVED-ROOT -> RESOLVED-ROOT; rooted 68% [4.72, 10.9] -> 68% [4.8, 11]
+  G2: D 1.030 -> 1.037; root -> root; s* 0.375 -> 0.462; no-root 0.388 -> 0.369; UNRESOLVED -> UNRESOLVED; rooted 68% [0.455, 3.26] -> 68% [0.469, 3.31]
+  G3: D 0.389 -> 0.392; floor -> floor; s* - -> -; no-root 1.000 -> 1.000; RESOLVED-FLOOR -> RESOLVED-FLOOR; rooted - -> -
+  conversion equivalents (floor boundary / FLAT / PROXY / H(z)):
+    stars + gas : 0.441 -> 0.444 / 0.336 -> 0.338 / 0.165 -> 0.166 / nan -> nan
+    gas only    : 1.401 -> 1.411 / 1.296 -> 1.305 / 1.125 -> 1.132 / 0.950 -> 0.957
+  inclination rows (S0 stars only / G1 gas only at 0.8):
+    kinematic 75 (frozen)        -> kinematic 75 (frozen)        i 75.0 -> 75.0 deg: S0 s* <= 4.59 -> s* <= 4.59 | G1 s* <= 7.14 -> s* <= 7.24
+    F444W free n, b/a 0.54       -> F444W free n, b/a 0.54       i 57.3 -> 57.3 deg: S0 s* <= 11.4 -> s* <= 11.4 | G1 s* <= 15.8 -> s* <= 16
+    F444W n = 1, b/a 0.57        -> F444W n = 1, b/a 0.57        i 55.2 -> 55.2 deg: S0 s* <= 13.1 -> s* <= 13.1 | G1 s* <= 18 -> s* <= 18.2
+    870 um masked, b/a 0.58      -> 870 um masked, b/a 0.435     i 54.5 -> 64.2 deg: S0 s* <= 13.7 -> s* <= 7.49 | G1 s* <= 18.8 -> s* <= 11
+    870 um unmasked, b/a 0.40    -> 870 um unmasked, b/a 0.40    i 66.4 -> 66.4 deg: S0 s* <= 6.66 -> s* <= 6.66 | G1 s* <= 9.81 -> s* <= 9.94
+
+5/5 checks pass

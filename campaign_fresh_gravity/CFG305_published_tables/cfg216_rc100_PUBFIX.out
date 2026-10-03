@@ -1,0 +1,55 @@
+CFG216 -- RC100 (Nestor Shachar+2023, 100 massive discs at z 0.61-2.52): a WITHIN-SAMPLE delta(z) test with velocities.
+D = 1/(1 - f_DM(R_e)), g_obs = V_c^2 / R_e, g_bar = (1 - f_DM) g_obs from the table (no geometry assumption).  delta_L = log10(D_obs / nu(g_bar / a0_L)).
+Frozen criteria: FROZEN_CRITERIA.md here (96d384dba), committed before any number.  kappa = 1/2 FITTED, NOT DERIVED.
+Author decompositions, not a direct a0 measurement.  No sentence says the data favour the framework.
+  RC100: 100 rows; analysed 100; excluded {'non-finite': 0, 'fDM outside (0, 1)': 0}; z 0.61-2.52 (median 1.53)
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 a synthetic galaxy placed exactly on each law returns delta = 0
+         max 0.0e+00
+  [PASS] C3 an injected slope 0.2 (z - z_med) shifts the Theil-Sen slope by 0.2 to 1e-9
+         shift 0.200000000000
+  [PASS] (reported) C2 CFG215's RC41 geometry cross-check: for the RC41 galaxies found in RC100 by name, median [delta_flat(RC100 V_c, f_DM) - delta_flat(CFG215 geometry)] within 0.05 dex
+         41 galaxies matched; median -0.043 dex, range [-0.353, +0.025]
+
+======================================================================================================================
+PRIMARY: within-sample slope of delta on z (Theil-Sen, 95% bootstrap CI)
+======================================================================================================================
+  flat  (nu_mono, canonical): median delta +0.035 [+0.009, +0.078] DISFAVOURED-over; slope -0.025 [-0.068, +0.010] per unit z (sigma 0.019)
+  rival (nu_mono, canonical): median delta -0.044 [-0.071, -0.018] DISFAVOURED-under; slope -0.086 [-0.125, -0.050] per unit z (sigma 0.019)
+  (nu_mono, alt): flat slope -0.024 [-0.066, +0.011]; rival slope -0.088 [-0.126, -0.052]
+  (P2, canonical): flat slope -0.029 [-0.072, +0.008]; rival slope -0.081 [-0.121, -0.045]
+  (P2, alt): flat slope -0.028 [-0.071, +0.010]; rival slope -0.085 [-0.123, -0.049]
+
+  outcome per cell: nu_mono/canonical: W-flat; nu_mono/alt: W-flat; P2/canonical: W-flat; P2/alt: W-flat
+  -> PRIMARY (nu_mono, canonical): W-flat (delta_flat flat in z; the rival's negative drift is in the data)
+
+======================================================================================================================
+EXPECTED SLOPES if each hypothesis were exactly true (g_obs and z held at the sample's own values; baryons from that law's inversion)
+======================================================================================================================
+  if flat were exactly true: slope of delta_flat +0.000, slope of delta_rival -0.058
+  if rival were exactly true: slope of delta_flat +0.072, slope of delta_rival +0.000
+  observed slope of delta_flat -0.025: z-score vs 'flat true' -1.28, vs 'rival true' -4.97 (bootstrap sigma 0.019)
+  observed slope of delta_rival -0.086: z-score vs 'flat true' -1.45, vs 'rival true' -4.47 (bootstrap sigma 0.019)
+
+======================================================================================================================
+LEVEL in the two z-halves (nu_mono, canonical)
+======================================================================================================================
+  z <= median  n =  51 median z 0.99  flat : +0.061 [+0.014, +0.099] DISFAVOURED-over
+  z <= median  n =  51 median z 0.99  rival: +0.003 [-0.046, +0.049] CONSISTENT
+  z > median   n =  49 median z 2.19  flat : +0.013 [-0.003, +0.071] CONSISTENT
+  z > median   n =  49 median z 2.19  rival: -0.083 [-0.131, -0.043] DISFAVOURED-under
+
+======================================================================================================================
+SENSITIVITIES (reported beside the primary)
+======================================================================================================================
+  (a) the RC41 subset (n = 41): flat: median +0.041 [+0.001, +0.099], slope +0.009 [-0.056, +0.068]; rival: median -0.043 [-0.080, +0.012], slope -0.051 [-0.118, +0.015]
+  (b) the other galaxies (n = 59): flat: median +0.035 [+0.004, +0.091], slope -0.053 [-0.106, -0.005]; rival: median -0.046 [-0.096, -0.011], slope -0.109 [-0.155, -0.060]
+  (c) g_bar < 3 a0 (n = 67): flat: median +0.052 [+0.004, +0.096], slope -0.036 [-0.094, +0.020]; rival: median -0.057 [-0.102, -0.021], slope -0.105 [-0.160, -0.052]
+  (d) g_bar from the table's M_bar and R_e (thin exponential disc), D_ind = g_obs/g_bar,geom (n = 100): flat: median +0.028 [-0.007, +0.061], slope -0.046 [-0.104, +0.004]; rival: median -0.062 [-0.095, -0.039], slope -0.102 [-0.160, -0.057]
+
+  route- or selection-dependent label for the primary slope of delta_flat (variant (d) or a half disagreeing in sign): no (variant (d) has the same sign)
+
+  3/3 checks pass; load-bearing failures: 0   (9 s)

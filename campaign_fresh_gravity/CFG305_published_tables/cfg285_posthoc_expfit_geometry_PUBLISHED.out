@@ -1,0 +1,34 @@
+VARIANT _PUBLISHED (CFG305, FROZEN_CRITERIA.md 82dfcc1b3): the 870 um masked-fit values are the journal's (Umehata+25, ApJ 997:79, Table 3, row ADF22.A7: n 1.42 +- 0.36, R_e 1.58 +- 0.15 kpc, b/a 0.435 +- 0.05, PA 17.9), substituted in a scratch mirror; arXiv v1 had n 1.01, R_e 1.53, b/a 0.58, PA 17.4.
+The docstring text printed below (its 'Why' paragraph and hand estimates) is CFG285's and still quotes the arXiv values; the numbers in the tables use the journal's.
+
+CFG285 POST-HOC addendum (written AFTER CFG284 and CFG285 were committed and verified; NOT a frozen item; no frozen result is changed): the exponential-disc-matched geometry.
+
+Why: reading the two ADF22 PDFs directly (arXiv:2502.01868 Table 4, arXiv:2502.01868 Table 3; data_assembly/adf22_5_literature_2026-10-02/adf22_pdf_direct_reads_A7.csv) shows that the frozen headline radius, R_e = 2.24 kpc, is the semi-major-axis
+R_e of the FREE-n F444W fit (Sersic n = 3.21), not the scale of an exponential disc.  The same table lists the n = 1 fit: R_e = 1.55 kpc (b/a 0.57), and the 870 um masked fit (n = 1.01) gives 1.53 kpc: stars and dust agree on ~1.5 kpc when
+both are described as exponentials, the profile the Freeman disc assumes.  This script recomputes the six CFG285 rows with R_e,* = 1.55 kpc (stars) and R_e,gas = 1.53 kpc (the 870 um dust size as the gas proxy), everything else as CFG285 (real velocities,
+the same Monte Carlo design with new seeds, the same estimator).  It also tabulates the stars-only and gas-only bounds for the thin-disc inclinations of the two PDFs (including the unmasked 870 um fit, b/a 0.40 = 66.4 deg).
+Hand estimates written BEFORE the first run (arithmetic only): the Freeman factor at R/R_d = 3.84 is about 1.17, so g_bar rises by about +0.07 dex: S0 s* about 4.7 (+-0.7); G1 about 7.3 (+-1.2); S1 D about 0.80 (FLOOR, borderline resolution);
+G2 D about 1.04 (near the floor, s* below 1); S2 and G3 FLOORS.
+
+radii: frozen 2.24 kpc (free-n F444W, n = 3.21); exponential-matched: stars 1.55 kpc (F444W n = 1 fit), gas proxy 1.58 kpc (870 um masked, n = 1.42); R_ext 3.551 kpc; g_obs 8.3788e-10
+CONTROL: with the frozen radii this script reproduces CFG285's committed nominal D of all six rows to 0.0e+00 relative: PASS
+
+SIX ROWS: frozen geometry (CFG285, committed) against the exponential-matched geometry (post hoc)
+row  frozen: D / status / s* / no-root / resolution                 | exp-fit: D / status / s* / no-root / resolution                | rooted 68 % / 95 % (exp-fit)
+S0   D 1.725 root  s*   6.91 nr 0.126 RESOLVED-ROOT  | D 1.459 root  s*   4.59 nr 0.212 UNRESOLVED     | [2.35, 27.2] / [0.404, 74.3]
+S1   D 0.942 floor s*      - nr 0.538 UNRESOLVED     | D 0.798 floor s*      - nr 0.699 UNRESOLVED     | [0.763, 4.95] / [0.118, 8.76]
+S2   D 0.364 floor s*      - nr 1.000 RESOLVED-FLOOR | D 0.309 floor s*      - nr 1.000 RESOLVED-FLOOR | -
+G1   D 2.075 root  s*   9.98 nr 0.000 RESOLVED-ROOT  | D 1.763 root  s*   7.24 nr 0.000 RESOLVED-ROOT  | [4.8, 11] / [2.79, 15.7]
+G2   D 1.221 root  s*   2.49 nr 0.073 RESOLVED-ROOT  | D 1.037 root  s*  0.462 nr 0.369 UNRESOLVED     | [0.469, 3.31] / [0.0674, 5.6]
+G3   D 0.461 floor s*      - nr 1.000 RESOLVED-FLOOR | D 0.392 floor s*      - nr 1.000 RESOLVED-FLOOR | -
+
+CONVERSION EQUIVALENTS (alpha_CO x the measured L'(1-0); exponential-matched geometry): floor boundary / FLAT / PROXY / H(z)
+  stars + gas : 0.444 / 0.338 / 0.166 / nan   (frozen geometry: 0.698 / 0.573 / 0.370 / 0.163)
+  gas only    : 1.411 / 1.305 / 1.132 / 0.957   (frozen geometry: 1.660 / 1.536 / 1.333 / 1.126)
+
+THIN-DISC INCLINATIONS (nominal s* under the exponential-matched radii; the kinematic inclination is 75 deg): S0 stars only / G1 gas only at 0.8
+  kinematic 75 (frozen)        i =  75.0 deg: S0 root  s* <= 4.59     | G1 root  s* <= 7.24
+  F444W free n, b/a 0.54       i =  57.3 deg: S0 root  s* <= 11.4     | G1 root  s* <= 16
+  F444W n = 1, b/a 0.57        i =  55.2 deg: S0 root  s* <= 13.1     | G1 root  s* <= 18.2
+  870 um masked, b/a 0.435     i =  64.2 deg: S0 root  s* <= 7.49     | G1 root  s* <= 11
+  870 um unmasked, b/a 0.40    i =  66.4 deg: S0 root  s* <= 6.66     | G1 root  s* <= 9.94

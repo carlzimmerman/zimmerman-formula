@@ -1,0 +1,143 @@
+<repo> = <repo> | <scratch> = <scratch> | MUTATE = none
+
+== C3 Freeman disc ==
+PASS  C3 Freeman peak V^2 = 0.3872 GM/R_d to 0.003 :: peak=0.38705 at y=1.075
+   far field r=50 R_d: g/(GM/r^2) = 1.001814
+   far field r=500 R_d: g/(GM/r^2) = 1.000018
+PASS  C3 far field 500 R_d to 1e-4 :: 1.800e-05
+FAIL* C3 far field 50 R_d to 1e-3 (the frozen-in-CFG227 clause; expected FAIL, kept) :: 1.814e-03
+
+== C4p laws ==
+   proxy F: [1.232 1.771 2.157 4.525 6.205] target 1.23 1.77 2.16 4.52 6.20
+PASS  C4p proxy F(z) within 1% of CFG222 README values
+   M-DEC: [0.9889 0.8739 0.775 ] target 0.9889 0.8739 0.7750
+PASS  C4p M-DEC within 0.002 of CFG223 README values
+   [shared] max rel diff nu_mono vs CFG4_common = 3.29e-09; a0 match True
+PASS  C5k nu_mono equals CFG4_common (shared object, labelled) :: 3.29e-09
+
+== S1 Amvrosiadis (class S), nine sources 2<=z<=5 ==
+ids: ['007.1', '022.1', '041.1', '049.1', '065.1', '066.1', '071.1', '075.1', '122.1'] | z: [2.692 2.263 2.547 2.945 4.445 2.553 3.709 2.552 2.024]
+PASS  C1 S1 N = 9 and ids
+   r_e (kpc): [4.96 3.71 2.39 1.51 1.43 3.54 3.52 2.63 5.31]
+   g_obs/a0: [ 5.56  5.2  11.6  14.08 16.71  5.79  7.14  9.95  9.25]
+   g_bar/a0: [15.6  16.73 52.82 21.52 29.58 11.15 75.09  6.05  4.14]
+   D       : [0.357 0.311 0.22  0.654 0.565 0.519 0.095 1.644 2.233]
+   gas share of g_bar: [0.18 0.14 0.05 0.67 0.79 0.2  0.07 0.7  0.72]
+   delta_FLAT : -0.310 [-0.664, +0.171] n=9   (seed 238: [-0.664, +0.171])
+   delta_PROXY: -0.338 [-0.671, +0.124] n=9   (seed 238: [-0.671, +0.124])
+   delta_Hz   : -0.373 [-0.680, +0.070] n=9   (seed 238: [-0.680, +0.070])
+   delta_MDEC : -0.306 [-0.663, +0.178] n=9   (seed 238: [-0.663, +0.178])
+   median D = 0.519; n(D<1) = 7 of 9
+   per-galaxy delta_FLAT: [-0.467 -0.525 -0.664 -0.198 -0.258 -0.31  -1.026  0.171  0.285]
+   [alt,mono] delta_FLAT: -0.315 [-0.665, +0.162] n=9
+   [alt,mono] delta_Hz: -0.389 [-0.684, +0.049] n=9
+   [alt,p2] delta_FLAT: -0.307 [-0.663, +0.176] n=9
+   [alt,p2] delta_Hz: -0.360 [-0.677, +0.092] n=9
+   [canonical,p2] delta_FLAT: -0.303 [-0.662, +0.183] n=9
+   [canonical,p2] delta_Hz: -0.349 [-0.674, +0.109] n=9
+PASS  S1 target delta_FLAT median :: mine -0.3104 vs CFG227 README -0.310 (diff -0.0004)
+PASS  S1 target delta_PROXY median :: mine -0.3380 vs CFG227 README -0.338 (diff -0.0000)
+PASS  S1 target delta_Hz median :: mine -0.3727 vs CFG227 README -0.373 (diff +0.0003)
+PASS  S1 target delta_MDEC median :: mine -0.3060 vs CFG227 README -0.306 (diff +0.0000)
+PASS  S1 target median D :: mine +0.5192 vs CFG227 README +0.520 (diff -0.0008)
+PASS  S1 n(D<1) = 7 of 9 :: mine 7
+   FLAT CI edges vs README [-0.664, +0.171]: mine -0.310 [-0.664, +0.171] n=9 | adjacent order stats? lo: True  hi: True
+
+-- S1 sensitivities (beside, never substituted) --
+   V_c^2 = V^2 + 3.36 sigma^2: delta_FLAT -0.241 [-0.642, +0.271] n=9  median D 0.588
+   V_c^2 = V^2 + 3.36 sigma^2: delta_Hz -0.295 [-0.657, +0.170] n=9  median D 0.588
+   stars at R_e,* = 2 R_e,CO: delta_FLAT -0.216 [-0.428, +0.228] n=9  median D 0.624
+   stars at R_e,* = 2 R_e,CO: delta_Hz -0.275 [-0.453, +0.117] n=9  median D 0.624
+PASS  S1 target pressure variant delta_FLAT :: mine -0.2408 vs CFG227 README -0.241 (diff +0.0002)
+PASS  S1 target pressure variant delta_Hz :: mine -0.2948 vs CFG227 README -0.295 (diff +0.0002)
+PASS  S1 target stars at 2 R_e delta_FLAT :: mine -0.2159 vs CFG227 README -0.216 (diff +0.0001)
+PASS  S1 target stars at 2 R_e median D :: mine +0.6244 vs CFG227 README +0.620 (diff +0.0044)
+
+-- S1 gas-shift (band) medians, all four laws --
+   tau -0.671: FLAT -0.239  PROXY -0.271  Hz -0.311  MDEC -0.234  median D 0.619
+   tau -0.213: FLAT -0.277  PROXY -0.306  Hz -0.343  MDEC -0.272  median D 0.564
+   tau +0.000: FLAT -0.310  PROXY -0.338  Hz -0.373  MDEC -0.306  median D 0.519
+   tau +0.213: FLAT -0.431  PROXY -0.452  Hz -0.468  MDEC -0.429  median D 0.377
+   tau +0.671: FLAT -0.702  PROXY -0.713  Hz -0.728  MDEC -0.700  median D 0.204
+PASS  S1 target outer band flat median at +0.671 (README: -0.70) :: mine -0.7022 vs CFG227 README -0.700 (diff -0.0022)
+PASS  S1 target outer band flat median at -0.671 (README: -0.24) :: mine -0.2388 vs CFG227 README -0.240 (diff +0.0012)
+
+-- controls on S1 --
+PASS  C2 placement: delta = 0 to 1e-9 under the true law; FLAT/Hz differ under the other
+PASS  C4 band direction: tau>0 lowers delta at every S1 point
+PASS  M8-style shift: g_obs x1.5 shifts every delta by +0.17609 to 1e-9
+PASS  M8-style shift on RC100, ALPAKA and CRISTAL L rows: g_obs x1.5 shifts every delta by +0.17609 to 1e-9
+
+== CRISTAL class L (independent route, six dust-detected discs) and class D (fit route) ==
+   L R_e   FLAT : +0.117 [-0.060, +0.384] n=6
+   L R_e   PROXY: -0.085 [-0.253, +0.207] n=6
+   L R_e   Hz   : -0.144 [-0.319, +0.141] n=6
+   L R_e   MDEC : +0.166 [-0.044, +0.414] n=6
+   L R_e: rho = [1.11 1.15 1.11 0.45 0.34 1.22]  D_ind = [0.97 0.96 2.38 2.5  3.58 1.44] ids ['02', '03', '07a', '11', '19', '20']
+      tau -0.671: FLAT +0.255  PROXY -0.013  Hz -0.075  MDEC +0.313
+      tau -0.213: FLAT +0.179  PROXY -0.052  Hz -0.113  MDEC +0.231
+      tau +0.213: FLAT +0.035  PROXY -0.131  Hz -0.188  MDEC +0.077
+      tau +0.671: FLAT -0.195  PROXY -0.285  Hz -0.336  MDEC -0.190
+   L R_out FLAT : +0.106 [-0.138, +0.343] n=6
+   L R_out PROXY: -0.136 [-0.402, +0.107] n=6
+   L R_out Hz   : -0.203 [-0.477, +0.029] n=6
+   L R_out MDEC : +0.161 [-0.096, +0.392] n=6
+   L R_out: rho = [1.11 1.15 1.11 0.45 0.34 1.22]  D_ind = [1.03 1.01 2.62 3.21 3.39 1.48] ids ['02', '03', '07a', '11', '19', '20']
+      tau -0.671: FLAT +0.238  PROXY -0.051  Hz -0.129  MDEC +0.302
+      tau -0.213: FLAT +0.165  PROXY -0.105  Hz -0.173  MDEC +0.224
+      tau +0.213: FLAT +0.036  PROXY -0.179  Hz -0.245  MDEC +0.077
+      tau +0.671: FLAT -0.157  PROXY -0.328  Hz -0.387  MDEC -0.142
+PASS  S1 target CRISTAL L R_e flat :: mine +0.1175 vs CFG227 README +0.117 (diff +0.0005)
+PASS  S1 target CRISTAL L R_e proxy :: mine -0.0853 vs CFG227 README -0.085 (diff -0.0003)
+PASS  S1 target CRISTAL L R_e Hz :: mine -0.1443 vs CFG227 README -0.144 (diff -0.0003)
+PASS  S1 target CRISTAL L R_out flat :: mine +0.1058 vs CFG227 README +0.106 (diff -0.0002)
+PASS  S1 target CRISTAL L R_out proxy :: mine -0.1359 vs CFG227 README -0.136 (diff +0.0001)
+PASS  S1 target CRISTAL L R_out Hz :: mine -0.2030 vs CFG227 README -0.203 (diff -0.0000)
+PASS  S1 target CRISTAL L R_e band +0.671 flat (README +0.26 .. -0.20: lower end -0.20) :: mine -0.1953 vs CFG227 README -0.200 (diff +0.0047)
+PASS  S1 target CRISTAL L R_e band -0.671 flat (+0.26) :: mine +0.2554 vs CFG227 README +0.260 (diff -0.0046)
+PASS  S1 target CRISTAL L R_out band +0.671 flat (-0.16) :: mine -0.1570 vs CFG227 README -0.160 (diff +0.0030)
+PASS  S1 target CRISTAL L R_out band -0.671 flat (+0.24) :: mine +0.2384 vs CFG227 README +0.240 (diff -0.0016)
+   -- class D: fit route (rho = 1), R_e twelve discs (09, 15 excluded) and R_out six discs --
+   D R_e (12) FLAT: +0.053 [+0.005, +0.234] n=12
+   D R_e (12) PROXY: -0.110 [-0.148, +0.020] n=12
+   D R_e (12) Hz: -0.161 [-0.207, -0.055] n=12
+   D R_out (same six, fit) FLAT: +0.019 [-0.109, +0.172] n=6
+   D R_out (same six, fit) PROXY: -0.220 [-0.364, -0.037] n=6
+   D R_out (same six, fit) Hz: -0.283 [-0.440, -0.109] n=6
+PASS  C1 CRISTAL: 14 modelled, 12 fit-route R_e rows, 6 class-A
+
+== RC100 z>=2 (class D, flagged) ==
+   [corrected] N(z>=2) = 41
+     FLAT: +0.009 [-0.007, +0.106] n=41
+     PROXY: -0.036 [-0.073, +0.008] n=41
+     Hz: -0.102 [-0.138, -0.043] n=41
+PASS  C1 RC100 corrected z>=2 N = 41 :: 41
+PASS  S1 target RC100 z>=2 flat :: mine +0.0085 vs CFG227 README +0.008 (diff +0.0005)
+PASS  S1 target RC100 z>=2 Hz :: mine -0.1018 vs CFG227 README -0.105 (diff +0.0032)
+   [committed] N(z>=2) = 41
+     FLAT: +0.009 [-0.007, +0.106] n=41
+     PROXY: -0.036 [-0.073, +0.008] n=41
+     Hz: -0.102 [-0.138, -0.043] n=41
+   corrected-table changed rows among z>=2: [62, 63, 65, 77, 90, 93, 95, 96]
+
+== ALPAKA ten discs (stars-only; g_bar lower limit; delta upper bound) ==
+   ids: [13, 15, 18, 19, 20, 22, 23, 24, 25, 28]  with M*: 9
+PASS  C1 ALPAKA ten discs, nine with M*
+   median R_ext/R_e of the galaxies with both (all z): 1.230 (n=7); frozen uses 1.2
+   alpha=0.0: delta_FLAT upper bound median -0.081, range -0.595 to +0.220; n=9
+     per-disc: {13: -0.38, 15: -0.59, 18: 0.22, 19: -0.08, 20: -0.49, 22: -0.0, 23: -0.09, 25: 0.07, 28: -0.01}
+   alpha=1.68: delta_FLAT upper bound median -0.065, range -0.546 to +0.223; n=9
+   alpha=3.36: delta_FLAT upper bound median -0.050, range -0.503 to +0.226; n=9
+PASS  S1 target ALPAKA median delta_FLAT upper bound :: mine -0.0812 vs CFG227 README -0.080 (diff -0.0012)
+   range vs README (-0.59 to +0.22): mine -0.595 to +0.220
+
+== C5 bootstrap coverage of the 95% CI on flat-truth mocks (sigma = 0.15) ==
+   n=6: coverage 0.933
+PASS  C5 coverage n=6 in [0.88, 0.98] :: 0.933
+   n=9: coverage 0.918
+PASS  C5 coverage n=9 in [0.88, 0.98] :: 0.918
+   n=41: coverage 0.922
+PASS  C5 coverage n=41 in [0.88, 0.98] :: 0.922
+
+SUMMARY: 42 lines, 0 FAIL
+   FAILED (expected, kept): C3 far field 50 R_d to 1e-3 (the frozen-in-CFG227 clause; expected FAIL, kept) :: 1.814e-03

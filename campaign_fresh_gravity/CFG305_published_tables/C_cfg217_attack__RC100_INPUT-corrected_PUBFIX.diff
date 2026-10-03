@@ -1,0 +1,547 @@
+--- ORIG/campaign_fresh_gravity/CFG217_rc100_attack/cfg217_attack_corrected.out
++++ FIX/campaign_fresh_gravity/CFG217_rc100_attack/cfg217_attack_corrected.out
+@@ -12,2 +12,2 @@
+-  [PASS] C2 the baseline slopes, CIs, sigmas and medians reproduce CFG216's committed values to 1e-9
+-         max |difference| 1.1e-16
++  [FAIL] C2 the baseline slopes, CIs, sigmas and medians reproduce CFG216's committed values to 1e-9
++         max |difference| 7.4e-03
+@@ -42,2 +42,2 @@
+-  alpha = 3.36 (n = 100)             flat: slope -0.030 [-0.073, +0.002] (z: flat-true -1.6, rival-true -5.3); rival: slope -0.091 [-0.129, -0.055] (z: flat-true -1.7, rival-true -4.8)
+-  alpha = 1.68 (n = 100)             flat: slope -0.069 [-0.115, -0.029] (z: flat-true -3.2, rival-true -6.9); rival: slope -0.124 [-0.166, -0.083] (z: flat-true -2.9, rival-true -6.0)
++  alpha = 3.36 (n = 100)             flat: slope -0.025 [-0.068, +0.010] (z: flat-true -1.3, rival-true -5.0); rival: slope -0.086 [-0.125, -0.050] (z: flat-true -1.4, rival-true -4.5)
++  alpha = 1.68 (n = 100)             flat: slope -0.063 [-0.110, -0.023] (z: flat-true -2.9, rival-true -6.4); rival: slope -0.118 [-0.160, -0.076] (z: flat-true -2.6, rival-true -5.6)
+@@ -45 +45 @@
+-  alpha = 0.0 (n = 98)               flat: slope -0.099 [-0.140, -0.053] (z: flat-true -4.4, rival-true -8.0); rival: slope -0.149 [-0.194, -0.105] (z: flat-true -3.5, rival-true -6.4)
++  alpha = 0.0 (n = 98)               flat: slope -0.093 [-0.135, -0.044] (z: flat-true -3.9, rival-true -7.3); rival: slope -0.141 [-0.189, -0.097] (z: flat-true -3.2, rival-true -5.9)
+@@ -52 +52 @@
+-  pressure alpha = 1.68                            delta_flat slope -0.100 [-0.154, -0.054]
++  pressure alpha = 1.68                            delta_flat slope -0.093 [-0.148, -0.041]
+@@ -54 +54 @@
+-  pressure alpha = 0.0                             delta_flat slope -0.135 [-0.197, -0.082]
++  pressure alpha = 0.0                             delta_flat slope -0.128 [-0.190, -0.066]
+@@ -61,4 +61,4 @@
+-         +0.00e+00, -0.059099 vs -0.059099
+-  M1 (flat truth): the mis-scaling that reproduces the observed delta_flat slope -0.030: beta = +0.225 -> differential dlog M_bar (z 0.6 -> 2.5) = +0.076 dex; the rival's slope there -0.087 (observed -0.091)
+-  M2 (rival truth): best beta = +0.762 (dlog M_bar = +0.259 dex) with chi2 = 0.01 (slopes -0.032, -0.090 vs observed -0.030, -0.091); within the plausible range |dlog M_bar| <= 0.2 dex (|beta| <= 0.59): best chi2 = 3.02 at beta = +0.58; at beta = 0: chi2 = 51.3
+-  -> M2 produces the pattern at a plausible mis-scaling (chi2 < 2 with |dlog M_bar| <= 0.2 dex): no; the stress variant V1 (gas fraction fixed with z) corresponds to about -0.18 dex of differential M_bar
++         +0.00e+00, -0.058452 vs -0.058452
++  M1 (flat truth): the mis-scaling that reproduces the observed delta_flat slope -0.025: beta = +0.184 -> differential dlog M_bar (z 0.6 -> 2.5) = +0.062 dex; the rival's slope there -0.081 (observed -0.086)
++  M2 (rival truth): best beta = +0.719 (dlog M_bar = +0.244 dex) with chi2 = 0.02 (slopes -0.027, -0.085 vs observed -0.025, -0.086); within the plausible range |dlog M_bar| <= 0.2 dex (|beta| <= 0.59): best chi2 = 1.68 at beta = +0.58; at beta = 0: chi2 = 44.7
++  -> M2 produces the pattern at a plausible mis-scaling (chi2 < 2 with |dlog M_bar| <= 0.2 dex): YES; the stress variant V1 (gas fraction fixed with z) corresponds to about -0.18 dex of differential M_bar
+@@ -69,2 +69,2 @@
+-  flat : slope on log g_bar -0.051 [-0.112, +0.022]; residual z-slope -0.028 [-0.062, +0.007] (expected if flat true +0.000, if rival true +0.073; z: -1.6 / -5.7)
+-  rival: slope on log g_bar +0.006 [-0.071, +0.090]; residual z-slope -0.091 [-0.127, -0.055] (expected if flat true -0.067, if rival true +0.000; z: -1.3 / -5.0)
++  flat : slope on log g_bar -0.049 [-0.111, +0.024]; residual z-slope -0.023 [-0.058, +0.012] (expected if flat true +0.000, if rival true +0.072; z: -1.3 / -5.3)
++  rival: slope on log g_bar +0.008 [-0.067, +0.093]; residual z-slope -0.087 [-0.123, -0.050] (expected if flat true -0.067, if rival true +0.000; z: -1.1 / -4.7)
+@@ -89,9 +89,9 @@
+-  V0 baseline                        flat: slope -0.030 [-0.073, +0.002] (z: flat-true -1.6, rival-true -5.3); rival: slope -0.091 [-0.129, -0.055] (z: flat-true -1.7, rival-true -4.8)
+-  V1 gas fraction fixed with z (mu_T18 at z = 1.5) flat: slope +0.064 [+0.023, +0.101] (z: flat-true +3.3, rival-true -0.4); rival: slope -0.004 [-0.041, +0.032] (z: flat-true +3.0, rival-true -0.2)
+-  V2 0.5 mu                          flat: slope +0.010 [-0.030, +0.046] (z: flat-true +0.5, rival-true -3.2); rival: slope -0.059 [-0.095, -0.019] (z: flat-true -0.0, rival-true -3.1)
+-  V3 2 mu                            flat: slope -0.080 [-0.122, -0.046] (z: flat-true -4.1, rival-true -7.8); rival: slope -0.130 [-0.166, -0.092] (z: flat-true -3.7, rival-true -6.9)
+-  V4 0.18 mu (alpha_CO 0.8)          flat: slope +0.046 [+0.008, +0.091] (z: flat-true +2.1, rival-true -1.2); rival: slope -0.024 [-0.066, +0.015] (z: flat-true +1.7, rival-true -1.2)
+-  V5 1.49 mu (alpha_CO 6.5)          flat: slope -0.061 [-0.100, -0.025] (z: flat-true -3.2, rival-true -7.0); rival: slope -0.113 [-0.149, -0.077] (z: flat-true -2.9, rival-true -6.1)
+-      the rival's deficit survives: V0 YES; V1 NO; V2 YES; V3 YES; V4 NO; V5 YES; median baryon-mass factor low-z / high-z: V0 1.00/1.00; V1 1.20/0.85; V2 0.84/0.73; V3 1.33/1.54; V4 0.73/0.56; V5 1.16/1.26
+-  (B) data side: g_bar x 10^(beta log10((1 + z)/2.5)) makes the rival's slope exactly 0 at beta = -0.736, i.e. a differential dlog M_bar (z 0.6 -> 2.5) of -0.250 dex; the flat slope there +0.070 (rival-true expectation +0.072)
+-      and makes the flat slope exactly 0 at beta = -0.223 (dlog M_bar = -0.076 dex; the rival's slope there -0.064)
++  V0 baseline                        flat: slope -0.025 [-0.068, +0.010] (z: flat-true -1.3, rival-true -5.0); rival: slope -0.086 [-0.125, -0.050] (z: flat-true -1.4, rival-true -4.5)
++  V1 gas fraction fixed with z (mu_T18 at z = 1.5) flat: slope +0.069 [+0.028, +0.105] (z: flat-true +3.6, rival-true -0.1); rival: slope +0.000 [-0.036, +0.036] (z: flat-true +3.1, rival-true +0.0)
++  V2 0.5 mu                          flat: slope +0.014 [-0.025, +0.053] (z: flat-true +0.7, rival-true -2.9); rival: slope -0.053 [-0.090, -0.014] (z: flat-true +0.3, rival-true -2.7)
++  V3 2 mu                            flat: slope -0.076 [-0.118, -0.040] (z: flat-true -3.8, rival-true -7.5); rival: slope -0.125 [-0.162, -0.087] (z: flat-true -3.5, rival-true -6.5)
++  V4 0.18 mu (alpha_CO 0.8)          flat: slope +0.054 [+0.013, +0.098] (z: flat-true +2.4, rival-true -0.8); rival: slope -0.019 [-0.060, +0.023] (z: flat-true +1.9, rival-true -0.9)
++  V5 1.49 mu (alpha_CO 6.5)          flat: slope -0.054 [-0.096, -0.019] (z: flat-true -2.8, rival-true -6.5); rival: slope -0.109 [-0.145, -0.070] (z: flat-true -2.7, rival-true -5.8)
++      the rival's deficit survives: V0 YES; V1 NO; V2 NO; V3 YES; V4 NO; V5 YES; median baryon-mass factor low-z / high-z: V0 1.00/1.00; V1 1.20/0.85; V2 0.84/0.73; V3 1.33/1.54; V4 0.73/0.56; V5 1.16/1.26
++  (B) data side: g_bar x 10^(beta log10((1 + z)/2.5)) makes the rival's slope exactly 0 at beta = -0.697, i.e. a differential dlog M_bar (z 0.6 -> 2.5) of -0.237 dex; the flat slope there +0.069 (rival-true expectation +0.072)
++      and makes the flat slope exactly 0 at beta = -0.184 (dlog M_bar = -0.063 dex; the rival's slope there -0.064)
+--- ORIG/campaign_fresh_gravity/CFG217_rc100_attack/cfg217_attack_corrected_results.json
++++ FIX/campaign_fresh_gravity/CFG217_rc100_attack/cfg217_attack_corrected_results.json
+@@ -10 +10 @@
+-   "detail": "max |difference| 1.1e-16",
++   "detail": "max |difference| 7.4e-03",
+@@ -13 +13 @@
+-   "ok": true
++   "ok": false
+@@ -22 +22 @@
+-   "detail": "+0.00e+00, -0.059099 vs -0.059099",
++   "detail": "+0.00e+00, -0.058452 vs -0.058452",
+@@ -197,18 +197,18 @@
+-     "hi": -0.052999579712342794,
+-     "lo": -0.1397015230456691,
+-     "med": -0.03623714465935825,
+-     "sd": 0.02242425165807286,
+-     "slope": -0.09890900796637805,
+-     "z_vs_flat_true": -4.410805295737494,
+-     "z_vs_rival_true": -7.970946731855876,
+-     "z_vs_zero": 4.410805295737494
+-    },
+-    "rival": {
+-     "hi": -0.10535777141136216,
+-     "lo": -0.19436967260116084,
+-     "med": -0.11300590908850928,
+-     "sd": 0.023324843200680973,
+-     "slope": -0.14873826989062594,
+-     "z_vs_flat_true": -3.5031247403749948,
+-     "z_vs_rival_true": -6.376817567900456,
+-     "z_vs_zero": 6.376817567900456
++     "hi": -0.04427622892286372,
++     "lo": -0.1348914271811819,
++     "med": -0.03390363734472866,
++     "sd": 0.02365702155861421,
++     "slope": -0.09273525771872618,
++     "z_vs_flat_true": -3.919988722543078,
++     "z_vs_rival_true": -7.257322561967054,
++     "z_vs_zero": 3.919988722543078
++    },
++    "rival": {
++     "hi": -0.09662528679754684,
++     "lo": -0.18928622386604263,
++     "med": -0.11101430557590083,
++     "sd": 0.02389199294824968,
++     "slope": -0.1412977513828847,
++     "z_vs_flat_true": -3.160262259321698,
++     "z_vs_rival_true": -5.914021140427138,
++     "z_vs_zero": 5.9140211404271374
+@@ -219,18 +219,18 @@
+-     "hi": -0.028652434770323813,
+-     "lo": -0.11545989260862323,
+-     "med": -0.0022190079504233757,
+-     "sd": 0.021370200426783285,
+-     "slope": -0.06889003040345437,
+-     "z_vs_flat_true": -3.2236492418252873,
+-     "z_vs_rival_true": -6.85491438340183,
+-     "z_vs_zero": 3.2236492418252873
+-    },
+-    "rival": {
+-     "hi": -0.08323195150022905,
+-     "lo": -0.1655130441325419,
+-     "med": -0.07933720903014854,
+-     "sd": 0.020575758068927013,
+-     "slope": -0.12388501980197161,
+-     "z_vs_flat_true": -2.889223622617268,
+-     "z_vs_rival_true": -6.020921289362341,
+-     "z_vs_zero": 6.020921289362341
++     "hi": -0.022994940714100236,
++     "lo": -0.11020014369238898,
++     "med": 0.0010994149279061145,
++     "sd": 0.0220076020225806,
++     "slope": -0.06299442398127364,
++     "z_vs_flat_true": -2.8623938181288024,
++     "z_vs_rival_true": -6.358614240616705,
++     "z_vs_zero": 2.8623938181288024
++    },
++    "rival": {
++     "hi": -0.07606852629545678,
++     "lo": -0.16021356248150959,
++     "med": -0.07611829060716345,
++     "sd": 0.021107556480619346,
++     "slope": -0.11846820675192582,
++     "z_vs_flat_true": -2.6074546165119865,
++     "z_vs_rival_true": -5.612596932321447,
++     "z_vs_zero": 5.612596932321447
+@@ -241,18 +241,18 @@
+-     "hi": 0.002290797163873128,
+-     "lo": -0.073425977674319,
+-     "med": 0.03138968453655995,
+-     "sd": 0.0194377465894204,
+-     "slope": -0.030424081658334094,
+-     "z_vs_flat_true": -1.5652062093912342,
+-     "z_vs_rival_true": -5.293421459543889,
+-     "z_vs_zero": 1.5652062093912342
+-    },
+-    "rival": {
+-     "hi": -0.05534287923698882,
+-     "lo": -0.12908516300897033,
+-     "med": -0.04854337015245409,
+-     "sd": 0.018972021424540245,
+-     "slope": -0.09149601892867633,
+-     "z_vs_flat_true": -1.7076132762797291,
+-     "z_vs_rival_true": -4.8226816152719785,
+-     "z_vs_zero": 4.8226816152719785
++     "hi": 0.009729210250084384,
++     "lo": -0.06786733169556419,
++     "med": 0.03541099869868215,
++     "sd": 0.01942842616721153,
++     "slope": -0.024935232834944178,
++     "z_vs_flat_true": -1.2834406976838006,
++     "z_vs_rival_true": -4.969922145932343,
++     "z_vs_zero": 1.2834406976838006
++    },
++    "rival": {
++     "hi": -0.04975124794604164,
++     "lo": -0.1254272038796666,
++     "med": -0.044495183972119684,
++     "sd": 0.01932394054099161,
++     "slope": -0.08638738244851574,
++     "z_vs_flat_true": -1.4456361835041944,
++     "z_vs_rival_true": -4.4704847991673,
++     "z_vs_zero": 4.4704847991673
+@@ -264,5 +264,5 @@
+-    "hi": -0.08151279336855997,
+-    "lo": -0.19711474804335966,
+-    "med": -0.04900548789686308,
+-    "sd": 0.028543034728847727,
+-    "slope": -0.13491039675229616
++    "hi": -0.0663459442176609,
++    "lo": -0.18979440216074303,
++    "med": -0.046276114537601706,
++    "sd": 0.030718985482886305,
++    "slope": -0.12824758037912085
+@@ -271,5 +271,5 @@
+-    "hi": -0.05382191220157692,
+-    "lo": -0.15389023234454968,
+-    "med": -0.01249133157107009,
+-    "sd": 0.02624819888195757,
+-    "slope": -0.09984674763244417
++    "hi": -0.041022233138251936,
++    "lo": -0.1479732734221558,
++    "med": -0.003515847288295813,
++    "sd": 0.027626041077300968,
++    "slope": -0.09281724663351534
+@@ -279,2 +279,2 @@
+-   "beta_M1": 0.224540738476464,
+-   "beta_M2": 0.7624529922843232,
++   "beta_M1": 0.1836124604122553,
++   "beta_M2": 0.7185980705872129,
+@@ -282,4 +282,4 @@
+-   "chi2_M2": 0.014594775440729763,
+-   "chi2_plausible": 3.015952161574119,
+-   "dlogM_M2": 0.2591944168601135,
+-   "produces": false
++   "chi2_M2": 0.015913298203367468,
++   "chi2_plausible": 1.6795719104611366,
++   "dlogM_M2": 0.24428602123342336,
++   "produces": true
+@@ -291,4 +291,4 @@
+-     "rival": -0.06693476174725241
+-    },
+-    "rival": {
+-     "flat": 0.07250747074297721,
++     "rival": -0.06665385704792672
++    },
++    "rival": {
++     "flat": 0.07239815663647407,
+@@ -300,16 +300,16 @@
+-     "b_g": -0.05066741669992687,
+-     "bg_hi": 0.021998611699440753,
+-     "bg_lo": -0.11241154990403968,
+-     "hi": 0.006887669783637664,
+-     "lo": -0.06187497559199194,
+-     "sd": 0.017531366788771596,
+-     "slope": -0.027809168589391337
+-    },
+-    "rival": {
+-     "b_g": 0.006379036267861669,
+-     "bg_hi": 0.08951547512143797,
+-     "bg_lo": -0.0713394130150107,
+-     "hi": -0.05521335436524041,
+-     "lo": -0.12723333700298378,
+-     "sd": 0.01814818407855522,
+-     "slope": -0.09124331435018507
++     "b_g": -0.04881198351560627,
++     "bg_hi": 0.023534793115504115,
++     "bg_lo": -0.11065699979237986,
++     "hi": 0.012157643016535312,
++     "lo": -0.057734606695321745,
++     "sd": 0.017886006525190134,
++     "slope": -0.02267983256950201
++    },
++    "rival": {
++     "b_g": 0.007987733481194168,
++     "bg_hi": 0.09266966834092502,
++     "bg_lo": -0.06686152131876077,
++     "hi": -0.05049475995806661,
++     "lo": -0.12331872546098577,
++     "sd": 0.018540874853553328,
++     "slope": -0.08708417244118577
+@@ -324,18 +324,18 @@
+-      "hi": 0.002290797163873128,
+-      "lo": -0.073425977674319,
+-      "med": 0.03138968453655995,
+-      "sd": 0.0194377465894204,
+-      "slope": -0.030424081658334094,
+-      "z_vs_flat_true": -1.5652062093912342,
+-      "z_vs_rival_true": -5.293421459543889,
+-      "z_vs_zero": 1.5652062093912342
+-     },
+-     "rival": {
+-      "hi": -0.05534287923698882,
+-      "lo": -0.12908516300897033,
+-      "med": -0.04854337015245409,
+-      "sd": 0.018972021424540245,
+-      "slope": -0.09149601892867633,
+-      "z_vs_flat_true": -1.7076132762797291,
+-      "z_vs_rival_true": -4.8226816152719785,
+-      "z_vs_zero": 4.8226816152719785
++      "hi": 0.009729210250084384,
++      "lo": -0.06786733169556419,
++      "med": 0.03541099869868215,
++      "sd": 0.01942842616721153,
++      "slope": -0.024935232834944178,
++      "z_vs_flat_true": -1.2834406976838006,
++      "z_vs_rival_true": -4.969922145932343,
++      "z_vs_zero": 1.2834406976838006
++     },
++     "rival": {
++      "hi": -0.04975124794604164,
++      "lo": -0.1254272038796666,
++      "med": -0.044495183972119684,
++      "sd": 0.01932394054099161,
++      "slope": -0.08638738244851574,
++      "z_vs_flat_true": -1.4456361835041944,
++      "z_vs_rival_true": -4.4704847991673,
++      "z_vs_zero": 4.4704847991673
+@@ -346,18 +346,18 @@
+-      "hi": 0.1005867222447199,
+-      "lo": 0.02323384083743922,
+-      "med": 0.05091589517624504,
+-      "sd": 0.019207609938707813,
+-      "slope": 0.06427521224008338,
+-      "z_vs_flat_true": 3.346340978663558,
+-      "z_vs_rival_true": -0.42654401298966,
+-      "z_vs_zero": -3.346340978663558
+-     },
+-     "rival": {
+-      "hi": 0.03249005877944011,
+-      "lo": -0.04134960647489053,
+-      "med": -0.05013418039549192,
+-      "sd": 0.018587177274611743,
+-      "slope": -0.003766606051536397,
+-      "z_vs_flat_true": 2.976919862399459,
+-      "z_vs_rival_true": -0.20264540418846766,
+-      "z_vs_zero": 0.20264540418846766
++      "hi": 0.105373467382747,
++      "lo": 0.02839414044535889,
++      "med": 0.05169438628242488,
++      "sd": 0.019423055447434785,
++      "slope": 0.06900410173617035,
++      "z_vs_flat_true": 3.5526903541473316,
++      "z_vs_rival_true": -0.1348104527121303,
++      "z_vs_zero": -3.5526903541473316
++     },
++     "rival": {
++      "hi": 0.036277198408121006,
++      "lo": -0.036069301396469765,
++      "med": -0.03961428515231146,
++      "sd": 0.019050326127395035,
++      "slope": 0.00039535261026666594,
++      "z_vs_flat_true": 3.0890467182195254,
++      "z_vs_rival_true": 0.020753062578710138,
++      "z_vs_zero": -0.020753062578710138
+@@ -368,18 +368,18 @@
+-      "hi": 0.04607756206127849,
+-      "lo": -0.030447601536671576,
+-      "med": 0.12096355224494233,
+-      "sd": 0.019603877905546626,
+-      "slope": 0.009623403073362171,
+-      "z_vs_flat_true": 0.49089282843571336,
+-      "z_vs_rival_true": -3.2057279938545604,
+-      "z_vs_zero": -0.49089282843571336
+-     },
+-     "rival": {
+-      "hi": -0.01879230700101153,
+-      "lo": -0.09452174180034051,
+-      "med": 0.02510640642062493,
+-      "sd": 0.01937912236945306,
+-      "slope": -0.05937036951787385,
+-      "z_vs_flat_true": -0.013995796426438327,
+-      "z_vs_rival_true": -3.063625296646985,
+-      "z_vs_zero": 3.063625296646985
++      "hi": 0.05267545576791912,
++      "lo": -0.024898646114620032,
++      "med": 0.12207479083984246,
++      "sd": 0.019894359867811632,
++      "slope": 0.014312970811443159,
++      "z_vs_flat_true": 0.7194486732192392,
++      "z_vs_rival_true": -2.880693935539666,
++      "z_vs_zero": -0.7194486732192392
++     },
++     "rival": {
++      "hi": -0.014433018166266659,
++      "lo": -0.08981326802969006,
++      "med": 0.03372822149779997,
++      "sd": 0.01978705623133474,
++      "slope": -0.052699408287318415,
++      "z_vs_flat_true": 0.2907247263060005,
++      "z_vs_rival_true": -2.66332736265558,
++      "z_vs_zero": 2.66332736265558
+@@ -390,18 +390,18 @@
+-      "hi": -0.04614204131215172,
+-      "lo": -0.12176915186605575,
+-      "med": -0.09300476550947134,
+-      "sd": 0.01964271220047746,
+-      "slope": -0.07997544667804393,
+-      "z_vs_flat_true": -4.071507328611165,
+-      "z_vs_rival_true": -7.76081980866259,
+-      "z_vs_zero": 4.071507328611165
+-     },
+-     "rival": {
+-      "hi": -0.09216626503806924,
+-      "lo": -0.16640136191579752,
+-      "med": -0.15550299504250487,
+-      "sd": 0.018882179552990156,
+-      "slope": -0.12976133129730805,
+-      "z_vs_flat_true": -3.7422686206715015,
+-      "z_vs_rival_true": -6.872158530912774,
+-      "z_vs_zero": 6.872158530912774
++      "hi": -0.04031042490089073,
++      "lo": -0.11757462164141314,
++      "med": -0.09144167544576487,
++      "sd": 0.01975864345724783,
++      "slope": -0.07603644308179663,
++      "z_vs_flat_true": -3.8482623185300247,
++      "z_vs_rival_true": -7.4731332662275705,
++      "z_vs_zero": 3.8482623185300247
++     },
++     "rival": {
++      "hi": -0.08744968892749923,
++      "lo": -0.16183892787806295,
++      "med": -0.1525162927528821,
++      "sd": 0.019221267941514738,
++      "slope": -0.12493028923397444,
++      "z_vs_flat_true": -3.458580081276415,
++      "z_vs_rival_true": -6.499586271525086,
++      "z_vs_zero": 6.499586271525086
+@@ -412,18 +412,18 @@
+-      "hi": 0.09099757529303391,
+-      "lo": 0.007830232046999955,
+-      "med": 0.18303262163955247,
+-      "sd": 0.021519474893315342,
+-      "slope": 0.045799876871069414,
+-      "z_vs_flat_true": 2.1282989988429675,
+-      "z_vs_rival_true": -1.2392600899613264,
+-      "z_vs_zero": -2.1282989988429675
+-     },
+-     "rival": {
+-      "hi": 0.015359232233305334,
+-      "lo": -0.06552733642677716,
+-      "med": 0.0803087485409232,
+-      "sd": 0.02064780900403255,
+-      "slope": -0.024279037758043985,
+-      "z_vs_flat_true": 1.6863825842937397,
+-      "z_vs_rival_true": -1.1758650883152904,
+-      "z_vs_zero": 1.1758650883152904
++      "hi": 0.0984000909472714,
++      "lo": 0.012979316916954925,
++      "med": 0.18793709568458034,
++      "sd": 0.022117298618210983,
++      "slope": 0.05409592382504526,
++      "z_vs_flat_true": 2.445864875220505,
++      "z_vs_rival_true": -0.7924389461656717,
++      "z_vs_zero": -2.445864875220505
++     },
++     "rival": {
++      "hi": 0.02295477467093569,
++      "lo": -0.060112769206829245,
++      "med": 0.0830375817930763,
++      "sd": 0.020884437621344492,
++      "slope": -0.01859445285680988,
++      "z_vs_flat_true": 1.9084804992320799,
++      "z_vs_rival_true": -0.8903497041168023,
++      "z_vs_zero": 0.8903497041168023
+@@ -434,18 +434,18 @@
+-      "hi": -0.025244236312747595,
+-      "lo": -0.10004424874849616,
+-      "med": -0.03492496385362731,
+-      "sd": 0.019177717716432504,
+-      "slope": -0.06082472577718063,
+-      "z_vs_flat_true": -3.1716352632024987,
+-      "z_vs_rival_true": -6.950401033708408,
+-      "z_vs_zero": 3.1716352632024987
+-     },
+-     "rival": {
+-      "hi": -0.07681709224213727,
+-      "lo": -0.14891013685909182,
+-      "med": -0.10624622303959325,
+-      "sd": 0.01843205723853908,
+-      "slope": -0.1125599848218705,
+-      "z_vs_flat_true": -2.9004272753571296,
+-      "z_vs_rival_true": -6.106751046026591,
+-      "z_vs_zero": 6.106751046026591
++      "hi": -0.01861510860183204,
++      "lo": -0.09611991647026845,
++      "med": -0.03363053905194862,
++      "sd": 0.019344144950440477,
++      "slope": -0.054490662762367324,
++      "z_vs_flat_true": -2.8169072813490543,
++      "z_vs_rival_true": -6.519450496238527,
++      "z_vs_zero": 2.8169072813490543
++     },
++     "rival": {
++      "hi": -0.07037771043624405,
++      "lo": -0.1450695264763585,
++      "med": -0.10460754846231576,
++      "sd": 0.01879694740617821,
++      "slope": -0.10865995539050284,
++      "z_vs_flat_true": -2.6710699089058343,
++      "z_vs_rival_true": -5.780723488899496,
++      "z_vs_zero": 5.780723488899496
+@@ -456,4 +456,4 @@
+-    "beta_flat_zero": -0.22336285938599615,
+-    "beta_rival_zero": -0.7360567345130925,
+-    "dlogM_flat_zero": -0.07593177110277724,
+-    "dlogM_rival_zero": -0.2502210601947992
++    "beta_flat_zero": -0.18429064455587912,
++    "beta_rival_zero": -0.696818676462285,
++    "dlogM_flat_zero": -0.06264924740517369,
++    "dlogM_rival_zero": -0.23688215841577678
+@@ -470,0 +471 @@
++   "C2 the baseline slopes, CIs, sigmas and medians reproduce CFG216's committed values to 1e-",
+@@ -473 +474 @@
+-  "load_bearing_failures": 0,
++  "load_bearing_failures": 1,
+@@ -475 +476 @@
+-  "n_pass": 3
++  "n_pass": 2
+--- ORIG/stdout:cfg217_attack__RC100_INPUT-corrected
++++ FIX/stdout:cfg217_attack__RC100_INPUT-corrected
+@@ -12,2 +12,2 @@
+-  [PASS] C2 the baseline slopes, CIs, sigmas and medians reproduce CFG216's committed values to 1e-9
+-         max |difference| 1.1e-16
++  [FAIL] C2 the baseline slopes, CIs, sigmas and medians reproduce CFG216's committed values to 1e-9
++         max |difference| 7.4e-03
+@@ -42,2 +42,2 @@
+-  alpha = 3.36 (n = 100)             flat: slope -0.030 [-0.073, +0.002] (z: flat-true -1.6, rival-true -5.3); rival: slope -0.091 [-0.129, -0.055] (z: flat-true -1.7, rival-true -4.8)
+-  alpha = 1.68 (n = 100)             flat: slope -0.069 [-0.115, -0.029] (z: flat-true -3.2, rival-true -6.9); rival: slope -0.124 [-0.166, -0.083] (z: flat-true -2.9, rival-true -6.0)
++  alpha = 3.36 (n = 100)             flat: slope -0.025 [-0.068, +0.010] (z: flat-true -1.3, rival-true -5.0); rival: slope -0.086 [-0.125, -0.050] (z: flat-true -1.4, rival-true -4.5)
++  alpha = 1.68 (n = 100)             flat: slope -0.063 [-0.110, -0.023] (z: flat-true -2.9, rival-true -6.4); rival: slope -0.118 [-0.160, -0.076] (z: flat-true -2.6, rival-true -5.6)
+@@ -45 +45 @@
+-  alpha = 0.0 (n = 98)               flat: slope -0.099 [-0.140, -0.053] (z: flat-true -4.4, rival-true -8.0); rival: slope -0.149 [-0.194, -0.105] (z: flat-true -3.5, rival-true -6.4)
++  alpha = 0.0 (n = 98)               flat: slope -0.093 [-0.135, -0.044] (z: flat-true -3.9, rival-true -7.3); rival: slope -0.141 [-0.189, -0.097] (z: flat-true -3.2, rival-true -5.9)
+@@ -52 +52 @@
+-  pressure alpha = 1.68                            delta_flat slope -0.100 [-0.154, -0.054]
++  pressure alpha = 1.68                            delta_flat slope -0.093 [-0.148, -0.041]
+@@ -54 +54 @@
+-  pressure alpha = 0.0                             delta_flat slope -0.135 [-0.197, -0.082]
++  pressure alpha = 0.0                             delta_flat slope -0.128 [-0.190, -0.066]
+@@ -61,4 +61,4 @@
+-         +0.00e+00, -0.059099 vs -0.059099
+-  M1 (flat truth): the mis-scaling that reproduces the observed delta_flat slope -0.030: beta = +0.225 -> differential dlog M_bar (z 0.6 -> 2.5) = +0.076 dex; the rival's slope there -0.087 (observed -0.091)
+-  M2 (rival truth): best beta = +0.762 (dlog M_bar = +0.259 dex) with chi2 = 0.01 (slopes -0.032, -0.090 vs observed -0.030, -0.091); within the plausible range |dlog M_bar| <= 0.2 dex (|beta| <= 0.59): best chi2 = 3.02 at beta = +0.58; at beta = 0: chi2 = 51.3
+-  -> M2 produces the pattern at a plausible mis-scaling (chi2 < 2 with |dlog M_bar| <= 0.2 dex): no; the stress variant V1 (gas fraction fixed with z) corresponds to about -0.18 dex of differential M_bar
++         +0.00e+00, -0.058452 vs -0.058452
++  M1 (flat truth): the mis-scaling that reproduces the observed delta_flat slope -0.025: beta = +0.184 -> differential dlog M_bar (z 0.6 -> 2.5) = +0.062 dex; the rival's slope there -0.081 (observed -0.086)
++  M2 (rival truth): best beta = +0.719 (dlog M_bar = +0.244 dex) with chi2 = 0.02 (slopes -0.027, -0.085 vs observed -0.025, -0.086); within the plausible range |dlog M_bar| <= 0.2 dex (|beta| <= 0.59): best chi2 = 1.68 at beta = +0.58; at beta = 0: chi2 = 44.7
++  -> M2 produces the pattern at a plausible mis-scaling (chi2 < 2 with |dlog M_bar| <= 0.2 dex): YES; the stress variant V1 (gas fraction fixed with z) corresponds to about -0.18 dex of differential M_bar
+@@ -69,2 +69,2 @@
+-  flat : slope on log g_bar -0.051 [-0.112, +0.022]; residual z-slope -0.028 [-0.062, +0.007] (expected if flat true +0.000, if rival true +0.073; z: -1.6 / -5.7)
+-  rival: slope on log g_bar +0.006 [-0.071, +0.090]; residual z-slope -0.091 [-0.127, -0.055] (expected if flat true -0.067, if rival true +0.000; z: -1.3 / -5.0)
++  flat : slope on log g_bar -0.049 [-0.111, +0.024]; residual z-slope -0.023 [-0.058, +0.012] (expected if flat true +0.000, if rival true +0.072; z: -1.3 / -5.3)
++  rival: slope on log g_bar +0.008 [-0.067, +0.093]; residual z-slope -0.087 [-0.123, -0.050] (expected if flat true -0.067, if rival true +0.000; z: -1.1 / -4.7)
+@@ -89,9 +89,9 @@
+-  V0 baseline                        flat: slope -0.030 [-0.073, +0.002] (z: flat-true -1.6, rival-true -5.3); rival: slope -0.091 [-0.129, -0.055] (z: flat-true -1.7, rival-true -4.8)
+-  V1 gas fraction fixed with z (mu_T18 at z = 1.5) flat: slope +0.064 [+0.023, +0.101] (z: flat-true +3.3, rival-true -0.4); rival: slope -0.004 [-0.041, +0.032] (z: flat-true +3.0, rival-true -0.2)
+-  V2 0.5 mu                          flat: slope +0.010 [-0.030, +0.046] (z: flat-true +0.5, rival-true -3.2); rival: slope -0.059 [-0.095, -0.019] (z: flat-true -0.0, rival-true -3.1)
+-  V3 2 mu                            flat: slope -0.080 [-0.122, -0.046] (z: flat-true -4.1, rival-true -7.8); rival: slope -0.130 [-0.166, -0.092] (z: flat-true -3.7, rival-true -6.9)
+-  V4 0.18 mu (alpha_CO 0.8)          flat: slope +0.046 [+0.008, +0.091] (z: flat-true +2.1, rival-true -1.2); rival: slope -0.024 [-0.066, +0.015] (z: flat-true +1.7, rival-true -1.2)
+-  V5 1.49 mu (alpha_CO 6.5)          flat: slope -0.061 [-0.100, -0.025] (z: flat-true -3.2, rival-true -7.0); rival: slope -0.113 [-0.149, -0.077] (z: flat-true -2.9, rival-true -6.1)
+-      the rival's deficit survives: V0 YES; V1 NO; V2 YES; V3 YES; V4 NO; V5 YES; median baryon-mass factor low-z / high-z: V0 1.00/1.00; V1 1.20/0.85; V2 0.84/0.73; V3 1.33/1.54; V4 0.73/0.56; V5 1.16/1.26
+-  (B) data side: g_bar x 10^(beta log10((1 + z)/2.5)) makes the rival's slope exactly 0 at beta = -0.736, i.e. a differential dlog M_bar (z 0.6 -> 2.5) of -0.250 dex; the flat slope there +0.070 (rival-true expectation +0.072)
+-      and makes the flat slope exactly 0 at beta = -0.223 (dlog M_bar = -0.076 dex; the rival's slope there -0.064)
++  V0 baseline                        flat: slope -0.025 [-0.068, +0.010] (z: flat-true -1.3, rival-true -5.0); rival: slope -0.086 [-0.125, -0.050] (z: flat-true -1.4, rival-true -4.5)
++  V1 gas fraction fixed with z (mu_T18 at z = 1.5) flat: slope +0.069 [+0.028, +0.105] (z: flat-true +3.6, rival-true -0.1); rival: slope +0.000 [-0.036, +0.036] (z: flat-true +3.1, rival-true +0.0)
++  V2 0.5 mu                          flat: slope +0.014 [-0.025, +0.053] (z: flat-true +0.7, rival-true -2.9); rival: slope -0.053 [-0.090, -0.014] (z: flat-true +0.3, rival-true -2.7)
++  V3 2 mu                            flat: slope -0.076 [-0.118, -0.040] (z: flat-true -3.8, rival-true -7.5); rival: slope -0.125 [-0.162, -0.087] (z: flat-true -3.5, rival-true -6.5)
++  V4 0.18 mu (alpha_CO 0.8)          flat: slope +0.054 [+0.013, +0.098] (z: flat-true +2.4, rival-true -0.8); rival: slope -0.019 [-0.060, +0.023] (z: flat-true +1.9, rival-true -0.9)
++  V5 1.49 mu (alpha_CO 6.5)          flat: slope -0.054 [-0.096, -0.019] (z: flat-true -2.8, rival-true -6.5); rival: slope -0.109 [-0.145, -0.070] (z: flat-true -2.7, rival-true -5.8)
++      the rival's deficit survives: V0 YES; V1 NO; V2 NO; V3 YES; V4 NO; V5 YES; median baryon-mass factor low-z / high-z: V0 1.00/1.00; V1 1.20/0.85; V2 0.84/0.73; V3 1.33/1.54; V4 0.73/0.56; V5 1.16/1.26
++  (B) data side: g_bar x 10^(beta log10((1 + z)/2.5)) makes the rival's slope exactly 0 at beta = -0.697, i.e. a differential dlog M_bar (z 0.6 -> 2.5) of -0.237 dex; the flat slope there +0.069 (rival-true expectation +0.072)
++      and makes the flat slope exactly 0 at beta = -0.184 (dlog M_bar = -0.063 dex; the rival's slope there -0.064)

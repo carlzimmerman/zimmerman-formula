@@ -1,0 +1,58 @@
+CFG305 confirm: FROZEN_CRITERIA.md sha256 cac9836140630bea; pdftotext -layout on the journal PDFs (<journal> = the data-release chat's scratch copy)
+  rc100_apj944_78.pdf: sha256 25be02d39d50b998... (SHA256.txt 25be02d39d50b998...)
+  fs18_apjs238_21.pdf: sha256 b3b1390447c1e1c3... (SHA256.txt b3b1390447c1e1c3...)
+  umehata25_apj997_79.pdf: sha256 c17bf645d8ef3cc7... (SHA256.txt c17bf645d8ef3cc7...)
+  [PASS] J0 each journal PDF's sha256 equals the data-release chat's SHA256.txt
+  [PASS] J1 all 100 RC100 Table B1 rows parse, in order, with all six numeric fields
+         rows parsed 100; R_e/f_DM recovered from a separate page-break line for rows ['24', '47', '70', '93']
+
+RC100: published Table B1 vs the CORRECTED CSV, 600 numeric cells: 6 differ
+  row  78 BX610          sigma0_kms     published      77  CORRECTED      75
+  row  87 J0901+1814     logMbar_Msun   published   10.72  CORRECTED   11.09
+  row  87 J0901+1814     Re_kpc         published    3.85  CORRECTED    4.33
+  row  87 J0901+1814     fDM_within_Re  published    0.44  CORRECTED    0.06
+  row  87 J0901+1814     Vc_Re_kms      published     250  CORRECTED     209
+  row  87 J0901+1814     sigma0_kms     published      37  CORRECTED      55
+  [PASS] J2 (positive) the 12 value cells CFG289 corrected equal the CORRECTED CSV in the published table
+         12 cells (rows ['24', '36', '43', '44', '58', '62', '63', '65', '77', '90', '93', '95']); mismatches []
+  [PASS] J3 (negative) against the ORIGINAL CSV the comparison reports all 12 of those cells as differences
+         original CSV: 18 differing cells in all; of the 12, not seen: []
+
+RC100 decision per reported cell (CONFIRMED = published equals the reported value and differs from the CORRECTED CSV)
+  row  87 J0901+1814     logMbar_Msun   reported  10.72  published  10.72  CORRECTED  11.09  -> CONFIRMED
+  row  87 J0901+1814     Re_kpc         reported   3.85  published   3.85  CORRECTED   4.33  -> CONFIRMED
+  row  87 J0901+1814     fDM_within_Re  reported   0.44  published   0.44  CORRECTED   0.06  -> CONFIRMED
+  row  87 J0901+1814     Vc_Re_kms      reported    250  published    250  CORRECTED    209  -> CONFIRMED
+  row  87 J0901+1814     sigma0_kms     reported     37  published     37  CORRECTED     55  -> CONFIRMED
+  row  78 BX610          sigma0_kms     reported     77  published     77  CORRECTED     75  -> CONFIRMED
+  NEW published != CORRECTED cells not in the chat's report: 0
+  printed row lines (for the page-image read): row 78 at text line 1213, row 87 at text line 1231
+
+Umehata+25 (ApJ 997:79) row ADF22.A7, extracted:
+  Table 3 (ALMA 870 um) masked n/R_e/b-a/PA: [(1.42, 0.36), (1.58, 0.15), (0.435, 0.05), (17.9, 2.6)]; unmasked: [(1.7, 0.37), (1.45, 0.15), (0.4, 0.04), (18.4, 2.4)]
+  Table 4 (F444W) free n: [(3.21, 0.37), (2.24, 0.25), (0.54, 0.06), (10.6, 1.2)]; fixed n = 1 (n printed 1.00): [(1.55, 0.17), (0.57, 0.07), (10.5, 1.2)]
+  Table C1 (870 um, n = 1): [(1.3, 0.15), (0.42, 0.05), (18.5, 2.4)]
+  Table 2: position ['22:17:32.20', '00:17:35.68']; first flux pairs [(4.64, 0.12), (4.17, 0.1), (2.03, 0.04)]
+  [PASS] J1b the Umehata+25 Table 3 (8 pairs), Table 4 (4 + 3 pairs) and Table C1 (3 pairs) A7 rows parse
+         pairs 8, 7, 3
+
+Umehata+25 Table 3 masked A7: published vs repo (adf22_pdf_direct_reads_A7.csv = the arXiv v1 PDF read; adf22_5_literature_values.csv alma870_*)
+  n   reported 1.42   published 1.42 +- 0.36   repo 1.01 +- 0.17 (literature CSV 1.01 +- 0.17)  -> CONFIRMED; error bar also differs (0.17 -> 0.36)
+  Re  reported 1.58   published 1.58 +- 0.15   repo 1.53 +- 0.15 (literature CSV 1.53 +- 0.15)  -> CONFIRMED
+  ba  reported 0.435  published 0.435 +- 0.05   repo 0.58 +- 0.06 (literature CSV 0.58 +- 0.06)  -> CONFIRMED; error bar also differs (0.06 -> 0.05)
+  PA  reported 17.9   published 17.9 +- 2.6   repo 17.4 +- 2.5 (literature CSV 17.4 +- 2.5)  -> CONFIRMED; error bar also differs (2.5 -> 2.6)
+  unmasked fit (context; not a reported cell):
+    n   published 1.7 +- 0.37   repo 1.7 +- 0.22   ERROR BAR DIFFERS
+    Re  published 1.45 +- 0.15   repo 1.45 +- 0.15   same
+    ba  published 0.4 +- 0.04   repo 0.4 +- 0.04   same
+    PA  published 18.4 +- 2.4   repo 18.4 +- 2.4   same
+  thin-disc inclination arccos(b/a), masked fit: published 64.21 deg vs repo 54.55 deg
+  [PASS] J4 Umehata+25 Table 4 A7 (free n and n = 1) and Table 2 A7 (position, S_1.1mm 2.03 +- 0.04) equal the repo's values
+         mismatches []
+
+CONTEXT: the arXiv PDF on disk (<external-data>/arxiv_pdf/2502.01868.pdf, sha256 6acb9323ea3e62a6..., stamp ['arXiv:2502.01868v1']) Table 3 A7: [(1.01, 0.17), (1.53, 0.15), (0.58, 0.06), (17.4, 2.5), (1.7, 0.22), (1.45, 0.15), (0.4, 0.04), (18.4, 2.4)]
+  masked fit in arXiv v1 vs the journal: n 1.01+-0.17 -> 1.42+-0.36; Re 1.53+-0.15 -> 1.58+-0.15; b/a 0.58+-0.06 -> 0.435+-0.05; PA 17.4+-2.5 -> 17.9+-2.6
+  the repo's values equal arXiv v1: True
+
+SUMMARY: RC100 6/6 reported cells CONFIRMED; Umehata+25 4/4 CONFIRMED; NEW RC100 differences 0; other Umehata cells that differ from the repo: [('umehata25_870um_unmasked_n', 'ERROR BAR DIFFERS'), ('umehata25_870um_masked_n', 'ERROR BAR DIFFERS'), ('umehata25_870um_masked_ba', 'ERROR BAR DIFFERS'), ('umehata25_870um_masked_PA', 'ERROR BAR DIFFERS')]
+6/6 checks pass

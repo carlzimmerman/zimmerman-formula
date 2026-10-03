@@ -1,0 +1,75 @@
+{
+ "corrected_sha256": "a1778d75476ede17da690e09fc1176b68455f22778e5de8ef39b66a0cb19398f",
+ "published_sha256": "8a7ed57a99be67995890c5f1293ecf7ac19d84dea60533b1d0d2c8901aa930e7",
+ "confirm_results_sha256": "53b9eaa321406e85a21770aeab1f8e0d9537fa09fb7e92cd588d4b0ed608d7d5",
+ "changed": [
+  {
+   "idx": "78",
+   "name": "BX610",
+   "field": "sigma0_kms",
+   "corrected": "75",
+   "published": "77"
+  },
+  {
+   "idx": "87",
+   "name": "J0901+1814",
+   "field": "logMbar_Msun",
+   "corrected": "11.09",
+   "published": "10.72"
+  },
+  {
+   "idx": "87",
+   "name": "J0901+1814",
+   "field": "Re_kpc",
+   "corrected": "4.33",
+   "published": "3.85"
+  },
+  {
+   "idx": "87",
+   "name": "J0901+1814",
+   "field": "fDM_within_Re",
+   "corrected": "0.06",
+   "published": "0.44"
+  },
+  {
+   "idx": "87",
+   "name": "J0901+1814",
+   "field": "Vc_Re_kms",
+   "corrected": "209",
+   "published": "250"
+  },
+  {
+   "idx": "87",
+   "name": "J0901+1814",
+   "field": "sigma0_kms",
+   "corrected": "55",
+   "published": "37"
+  }
+ ],
+ "derived_recomputed_rows": [
+  "87"
+ ],
+ "deepMOND_flips": [],
+ "checks": [
+  {
+   "check": "B1 the frozen constants reproduce the derived columns of every row whose derived cells are not recomputed (<= 5e-5 relative)",
+   "ok": true,
+   "detail": "worst relative deviation 3.73e-05 over 99 rows"
+  },
+  {
+   "check": "B2 header and every untouched row byte-identical to the CORRECTED CSV",
+   "ok": true,
+   "detail": "98 untouched rows, touched rows ['78', '87']"
+  },
+  {
+   "check": "B3 exactly the confirmed primary cells differ from the CORRECTED CSV, plus only derived cells of rows with a changed V_c/R_e/log M_baryon",
+   "ok": true,
+   "detail": "primary [('78', 'sigma0_kms'), ('87', 'Re_kpc'), ('87', 'Vc_Re_kms'), ('87', 'fDM_within_Re'), ('87', 'logMbar_Msun'), ('87', 'sigma0_kms')]; derived [('87', 'a0_Vc4_over_GMbar_ms2'), ('87', 'a0_over_1.2e-10'), ('87', 'g_Re_ms2')]"
+  },
+  {
+   "check": "B4 the PUBLISHED CSV's six numeric primary fields equal the published Table B1 parse in all 100 rows",
+   "ok": true,
+   "detail": "mismatches []"
+  }
+ ]
+}
