@@ -1,0 +1,77 @@
+CFG322 -- RESOLUTION DECIDER FOR CFG321's FAIL (recipe G5/G10, zero-field nonlinear dependence of the ungated chassis).
+
+THE QUESTION.  CFG321 (frozen cb089fb29, results 6cb69cdc1) found the nonlinear chassis evolution about an open zero-field
+region saturated and regular, but in the 1-D eps = 1e-3 set the pair-separation (Lyapunov) exponent rose with resolution
+(0.0124 / 0.0414 / 0.0663 at N = 63/127/255; max amplification 95 / 339 / 1052) -- its frozen FAIL signature.  Does
+lambda(N) saturate at a finite value as N -> infinity (continuous dependence with a finite Lyapunov time), or keep
+growing (CFG321's FAIL confirmed)?  Criteria frozen first: FROZEN_CRITERIA.md (commit 16139a770).
+
+METHOD.  CFG321's engine copied byte-for-byte (hash verified below), nu_mono kernel unchanged, data class D unchanged
+(seeds 321/322, rms yhat 1e-4, L = 16, T = 80).  1-D N = 63/127/255/511 at eps = 1e-3 and 1e-4, base + pairs
+delta = 1e-3/1e-5.  N = 1023 is not run (2-8 h per run > budget; disclosed in the frozen file).
+CONTROLS  C1 the N <= 255 eps = 1e-3 rows reproduce CFG321's printed lambda and max amplification; C2 GR (MOND off)
+converges up to N = 511; C3 MUTATE (CFG322_MUTATE=1): the mu_exp kernel must branch or fail (rc = 1 when it does).
+
+  engine sha256 bde2fbb6abb12fad4e8392917b792374016fd8127da2a02dcaa8338ff8952174 == CFG321's cfg321_engine.py (6cb69cdc1): verified
+
+  *** MUTATE=1: kernel -> mu_exp (a0 -> y* a0), as CFG321's MUTATE; it must branch or fail ***
+  alpha_c = 3.2000e-09 (L340 P1 maximum, as CFG321); kappa = 1/2 FITTED (plays no role)
+
+================================================================================================================
+RUNS  12 runs on 4 processes (kernel mu_exp; 1-D; N = (63, 127, 255, 511); eps = (0.001,))
+================================================================================================================
+  done: main n= 255 eps=1e-03 delta=0e+00  status=leaf-fail: leaf solve did not converge: residual 8.934e-01  indef=963  max_res=1.0e-10  wall=139 s  (elapsed 139 s)
+  done: main n= 255 eps=1e-03 delta=1e-03  status=leaf-fail: leaf solve did not converge: residual 8.581e-01  indef=740  max_res=1.0e-10  wall=147 s  (elapsed 286 s)
+  done: main n= 511 eps=1e-03 delta=1e-03  status=leaf-fail: leaf solve did not converge: residual 3.674e-02  indef=754  max_res=1.0e-10  wall=363 s  (elapsed 363 s)
+  done: main n= 511 eps=1e-03 delta=1e-05  status=leaf-fail: leaf solve did not converge: residual 5.940e-04  indef=679  max_res=1.0e-10  wall=368 s  (elapsed 368 s)
+  done: main n= 511 eps=1e-03 delta=0e+00  status=leaf-fail: leaf solve did not converge: residual 4.088e-03  indef=274  max_res=1.0e-10  wall=382 s  (elapsed 382 s)
+  done: main n= 127 eps=1e-03 delta=1e-03  status=leaf-fail: leaf solve did not converge: residual 7.674e-01  indef=507  max_res=1.0e-10  wall=52 s  (elapsed 420 s)
+  done: main n= 127 eps=1e-03 delta=0e+00  status=leaf-fail: leaf solve did not converge: residual 1.139e+00  indef=780  max_res=1.0e-10  wall=58 s  (elapsed 422 s)
+  done: main n= 255 eps=1e-03 delta=1e-05  status=leaf-fail: leaf solve did not converge: residual 2.640e-01  indef=760  max_res=1.0e-10  wall=136 s  (elapsed 422 s)
+  done: main n= 127 eps=1e-03 delta=1e-05  status=leaf-fail: leaf solve did not converge: residual 1.572e-02  indef=535  max_res=1.0e-10  wall=51 s  (elapsed 433 s)
+  done: main n=  63 eps=1e-03 delta=0e+00  status=leaf-fail: leaf solve did not converge: residual 7.683e-02  indef=454  max_res=1.0e-10  wall=19 s  (elapsed 439 s)
+  done: main n=  63 eps=1e-03 delta=1e-05  status=leaf-fail: leaf solve did not converge: residual 3.489e-03  indef=378  max_res=1.0e-10  wall=17 s  (elapsed 440 s)
+  done: main n=  63 eps=1e-03 delta=1e-03  status=leaf-fail: leaf solve did not converge: residual 4.259e-02  indef=380  max_res=1.0e-10  wall=19 s  (elapsed 440 s)
+
+================================================================================================================
+MAIN  lambda(N) and max amplification vs N (kernel mu_exp)
+================================================================================================================
+
+  --- 1-D, eps = 1e-03 ---
+    N =   63: lambda not reached; alt D<=1e-2 None; window [T/2,T] None; Amax 3.3; A(tau_s) 2.416; D(1e-3)/D(1e-5) over run [98.8, 100.3]; <rms yhat>[T/2,T] None
+    N =  127: lambda not reached; alt D<=1e-2 None; window [T/2,T] None; Amax 3.7; A(tau_s) 2.582; D(1e-3)/D(1e-5) over run [98.2, 100.0]; <rms yhat>[T/2,T] None
+    N =  255: lambda not reached; alt D<=1e-2 None; window [T/2,T] None; Amax 3.7; A(tau_s) 2.493; D(1e-3)/D(1e-5) over run [99.6, 104.3]; <rms yhat>[T/2,T] None
+    N =  511: lambda not reached; alt D<=1e-2 None; window [T/2,T] None; Amax 3.6; A(tau_s) 2.483; D(1e-3)/D(1e-5) over run [97.6, 102.8]; <rms yhat>[T/2,T] None
+    increments Delta = None, None, None; ratios r2 = None, r3 = None; lambda_inf = None
+    Amax per step x1.12, x0.99, x1.00; lambda per step [None, None, None]; CFG321 FAIL signatures on the last three grids: amplification False, Lyapunov False
+    tau_s (finest N = 511) = 5.25; tau_s (N = 255, CFG321's) = 5.25; A(tau_s, CFG321 def) [2.416, 2.582, 2.493, 2.483]
+  [FAIL] [eps 1e-03] lambda(N) increments shrink geometrically: |r2| <= 0.6 and |r3| <= 0.6 with finite lambda_inf (RESOLVED-CONVERGENT condition for this set)
+         measured: lambda [None, None, None, None]; r2 None, r3 None; lambda_inf None
+  [PASS] [eps 1e-03] NOT the confirmed-fail pattern (lambda still rising at the last step with r3 >= 0.9)
+         measured: Delta_3 None, r3 None
+    eps 1e-03 N 63 base: leaf-fail: leaf solve did not converge: residual 7.683e-02, indef 454, res 1.0e-10, drift 6.2e-06, t_end 6.0
+    eps 1e-03 N 63 d1e-3: leaf-fail: leaf solve did not converge: residual 4.259e-02, indef 380, res 1.0e-10, drift 6.2e-06, t_end 6.0
+    eps 1e-03 N 63 d1e-5: leaf-fail: leaf solve did not converge: residual 3.489e-03, indef 378, res 1.0e-10, drift 6.2e-06, t_end 6.0
+    eps 1e-03 N 127 base: leaf-fail: leaf solve did not converge: residual 1.139e+00, indef 780, res 1.0e-10, drift 1.6e-06, t_end 6.0
+    eps 1e-03 N 127 d1e-3: leaf-fail: leaf solve did not converge: residual 7.674e-01, indef 507, res 1.0e-10, drift 1.6e-06, t_end 6.0
+    eps 1e-03 N 127 d1e-5: leaf-fail: leaf solve did not converge: residual 1.572e-02, indef 535, res 1.0e-10, drift 1.6e-06, t_end 6.0
+    eps 1e-03 N 255 base: leaf-fail: leaf solve did not converge: residual 8.934e-01, indef 963, res 1.0e-10, drift 3.8e-07, t_end 6.0
+    eps 1e-03 N 255 d1e-3: leaf-fail: leaf solve did not converge: residual 8.581e-01, indef 740, res 1.0e-10, drift 3.8e-07, t_end 6.0
+    eps 1e-03 N 255 d1e-5: leaf-fail: leaf solve did not converge: residual 2.640e-01, indef 760, res 1.0e-10, drift 3.8e-07, t_end 6.0
+    eps 1e-03 N 511 base: leaf-fail: leaf solve did not converge: residual 4.088e-03, indef 274, res 1.0e-10, drift 9.9e-08, t_end 6.0
+    eps 1e-03 N 511 d1e-3: leaf-fail: leaf solve did not converge: residual 3.674e-02, indef 754, res 1.0e-10, drift 9.8e-08, t_end 6.0
+    eps 1e-03 N 511 d1e-5: leaf-fail: leaf solve did not converge: residual 5.940e-04, indef 679, res 1.0e-10, drift 9.9e-08, t_end 6.0
+  [FAIL] every mu_exp main run regular: status ok, zero indefinite leaf Hessians, leaf residual <= 1e-8
+         measured: 0/12 runs ok and convex
+
+================================================================================================================
+VERDICT (frozen rule)
+================================================================================================================
+  per set: eps 1e-03: convergent False, fail-pattern False, reached False
+  N = 511 run branched/failed: True; any run branched/failed: True; controls ok: True
+  VERDICT: CONFIRMED-FAIL (MUTATE: must branch or fail, and not be RESOLVED-CONVERGENT)
+  Scope: 1-D only; says NOTHING about growth or sigma_8 -- L341's failure (sigma_8 = 18-27) and FP2's failed linear cosmology stand.
+  [PASS] C3 MUTATE the mu_exp kernel branches or fails (indefinite leaf Hessian, leaf failure or blow-up in at least one run) and does not return RESOLVED-CONVERGENT
+         measured: verdict CONFIRMED-FAIL; runs: N63/d0e+00: leaf-fail: leaf solve did not converge: , indef 454; N63/d1e-05: leaf-fail: leaf solve did not converge: , indef 378; N63/d1e-03: leaf-fail: leaf solve did not converge: , indef 380; N127/d0e+00: leaf-fail: leaf solve did not converge: , indef 780; N127/d1e-05: leaf-fail: leaf solve did not converge: , indef 535; N127/d1e-03: leaf-fail: leaf solve did not converge: , indef 507; N255/d0e+00: leaf-fail: leaf solve did not converge: , indef 963; N255/d1e-05: leaf-fail: leaf solve did not converge: , indef 760; N255/d1e-03: leaf-fail: leaf solve did not converge: , indef 740; N511/d0e+00: leaf-fail: leaf solve did not converge: , indef 274; N511/d1e-05: leaf-fail: leaf solve did not converge: , indef 679; N511/d1e-03: leaf-fail: leaf solve did not converge: , indef 754
+
+  2/4 checks pass; verdict CONFIRMED-FAIL; wall 440 s

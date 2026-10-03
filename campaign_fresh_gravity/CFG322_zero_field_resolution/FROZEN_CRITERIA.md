@@ -110,3 +110,19 @@ than relaxing them. The eps = 1e-4 set is new and unconstrained.
   the reduced model and the eps continuation. It would not be well-posedness of the full chassis and not a pass for
   candidate B, whose action does not exist.
 - CFG321's frozen verdict (FAIL) is not re-read here; CFG322 is a new lane that rules on the open question it named.
+
+## Implementation disclosures (appended 2026-10-03, after the runs; the frozen text above is unchanged)
+
+- **Wall time.** Main run 4504 s (75 min) on 14 processes, set by the three N = 511, eps = 1e-4 runs (~4480 s each);
+  N = 511, eps = 1e-3 took ~1830 s. The machine was shared with a concurrent lane (load 20–30 at times). MUTATE 440 s on
+  4 processes, started while the main run was in progress; every μ_exp run ended by leaf failure well before the
+  2400 s wall cap.
+- **Smoke mode.** The script has a development switch CFG322_SMOKE=1 (T = 4, separate outputs, deleted after use). It
+  was run once before the main launch to test the pipeline; no number from it enters the results.
+- **Resume switch.** CFG322_REUSE=1 loads finished work arrays instead of recomputing. It was NOT used for the committed
+  outputs (results JSON field "reuse": false).
+- **MUTATE regularity row.** The MUTATE script inherits the "every run regular" row and the two per-set rows; they fail
+  there by construction (μ_exp runs end in leaf failure at t ≈ 6, so lambda is "not reached"). The MUTATE verdict is
+  CONFIRMED-FAIL via the branching/leaf-failure clause; C3 passes; rc = 1.
+- **max_res in failed runs.** The engine updates its maximum leaf residual only on accepted solves, so failed μ_exp runs
+  print max_res 1e-10 next to the residual of the failed solve in their status string. Reported as computed.

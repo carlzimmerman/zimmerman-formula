@@ -1,0 +1,142 @@
+CFG322 -- RESOLUTION DECIDER FOR CFG321's FAIL (recipe G5/G10, zero-field nonlinear dependence of the ungated chassis).
+
+THE QUESTION.  CFG321 (frozen cb089fb29, results 6cb69cdc1) found the nonlinear chassis evolution about an open zero-field
+region saturated and regular, but in the 1-D eps = 1e-3 set the pair-separation (Lyapunov) exponent rose with resolution
+(0.0124 / 0.0414 / 0.0663 at N = 63/127/255; max amplification 95 / 339 / 1052) -- its frozen FAIL signature.  Does
+lambda(N) saturate at a finite value as N -> infinity (continuous dependence with a finite Lyapunov time), or keep
+growing (CFG321's FAIL confirmed)?  Criteria frozen first: FROZEN_CRITERIA.md (commit 16139a770).
+
+METHOD.  CFG321's engine copied byte-for-byte (hash verified below), nu_mono kernel unchanged, data class D unchanged
+(seeds 321/322, rms yhat 1e-4, L = 16, T = 80).  1-D N = 63/127/255/511 at eps = 1e-3 and 1e-4, base + pairs
+delta = 1e-3/1e-5.  N = 1023 is not run (2-8 h per run > budget; disclosed in the frozen file).
+CONTROLS  C1 the N <= 255 eps = 1e-3 rows reproduce CFG321's printed lambda and max amplification; C2 GR (MOND off)
+converges up to N = 511; C3 MUTATE (CFG322_MUTATE=1): the mu_exp kernel must branch or fail (rc = 1 when it does).
+
+  engine sha256 bde2fbb6abb12fad4e8392917b792374016fd8127da2a02dcaa8338ff8952174 == CFG321's cfg321_engine.py (6cb69cdc1): verified
+  alpha_c = 3.2000e-09 (L340 P1 maximum, as CFG321); kappa = 1/2 FITTED (plays no role)
+
+================================================================================================================
+RUNS  36 runs on 14 processes (kernel nu_mono; 1-D; N = (63, 127, 255, 511); eps = (0.001, 0.0001))
+================================================================================================================
+  done: main n= 255 eps=1e-03 delta=0e+00  status=ok  indef=0  max_res=1.0e-10  wall=498 s  (elapsed 498 s)
+  done: main n= 255 eps=1e-03 delta=1e-03  status=ok  indef=0  max_res=1.0e-10  wall=506 s  (elapsed 506 s)
+  done: main n= 127 eps=1e-04 delta=1e-03  status=ok  indef=0  max_res=1.0e-10  wall=740 s  (elapsed 740 s)
+  done: main n= 127 eps=1e-04 delta=0e+00  status=ok  indef=0  max_res=1.0e-10  wall=751 s  (elapsed 751 s)
+  done: main n=  63 eps=1e-04 delta=0e+00  status=ok  indef=0  max_res=1.0e-10  wall=245 s  (elapsed 752 s)
+  done: main n= 127 eps=1e-04 delta=1e-05  status=ok  indef=0  max_res=1.0e-10  wall=754 s  (elapsed 754 s)
+  done: main n= 255 eps=1e-03 delta=1e-05  status=ok  indef=0  max_res=1.0e-10  wall=513 s  (elapsed 1011 s)
+  done: main n=  63 eps=1e-04 delta=1e-03  status=ok  indef=0  max_res=1.0e-10  wall=286 s  (elapsed 1026 s)
+  done: main n=  63 eps=1e-04 delta=1e-05  status=ok  indef=0  max_res=1.0e-10  wall=288 s  (elapsed 1039 s)
+  done: main n= 127 eps=1e-03 delta=0e+00  status=ok  indef=0  max_res=1.0e-10  wall=317 s  (elapsed 1068 s)
+  done: main n= 127 eps=1e-03 delta=1e-03  status=ok  indef=0  max_res=1.0e-10  wall=322 s  (elapsed 1076 s)
+  done: gr   n= 511 eps=1e-02 delta=0e+00  status=ok  indef=0  max_res=1.2e-12  wall=8 s  (elapsed 1084 s)
+  done: gr   n= 511 eps=1e-02 delta=1e-03  status=ok  indef=0  max_res=1.3e-12  wall=8 s  (elapsed 1093 s)
+  done: gr   n= 511 eps=1e-02 delta=1e-05  status=ok  indef=0  max_res=1.3e-12  wall=8 s  (elapsed 1101 s)
+  done: gr   n= 255 eps=1e-02 delta=0e+00  status=ok  indef=0  max_res=3.6e-13  wall=2 s  (elapsed 1103 s)
+  done: gr   n= 255 eps=1e-02 delta=1e-03  status=ok  indef=0  max_res=3.4e-13  wall=2 s  (elapsed 1105 s)
+  done: gr   n= 255 eps=1e-02 delta=1e-05  status=ok  indef=0  max_res=3.8e-13  wall=2 s  (elapsed 1107 s)
+  done: gr   n= 127 eps=1e-02 delta=0e+00  status=ok  indef=0  max_res=1.3e-13  wall=1 s  (elapsed 1108 s)
+  done: gr   n= 127 eps=1e-02 delta=1e-03  status=ok  indef=0  max_res=1.5e-13  wall=1 s  (elapsed 1109 s)
+  done: gr   n= 127 eps=1e-02 delta=1e-05  status=ok  indef=0  max_res=1.3e-13  wall=1 s  (elapsed 1110 s)
+  done: gr   n=  63 eps=1e-02 delta=0e+00  status=ok  indef=0  max_res=2.3e-14  wall=0 s  (elapsed 1111 s)
+  done: gr   n=  63 eps=1e-02 delta=1e-03  status=ok  indef=0  max_res=2.2e-14  wall=0 s  (elapsed 1111 s)
+  done: gr   n=  63 eps=1e-02 delta=1e-05  status=ok  indef=0  max_res=2.5e-14  wall=0 s  (elapsed 1111 s)
+  done: main n=  63 eps=1e-03 delta=0e+00  status=ok  indef=0  max_res=1.0e-10  wall=107 s  (elapsed 1133 s)
+  done: main n=  63 eps=1e-03 delta=1e-03  status=ok  indef=0  max_res=1.0e-10  wall=105 s  (elapsed 1144 s)
+  done: main n=  63 eps=1e-03 delta=1e-05  status=ok  indef=0  max_res=1.0e-10  wall=103 s  (elapsed 1171 s)
+  done: main n= 127 eps=1e-03 delta=1e-05  status=ok  indef=0  max_res=1.0e-10  wall=263 s  (elapsed 1274 s)
+  done: main n= 255 eps=1e-04 delta=1e-03  status=ok  indef=0  max_res=1.0e-10  wall=1345 s  (elapsed 1345 s)
+  done: main n= 255 eps=1e-04 delta=0e+00  status=ok  indef=0  max_res=1.0e-10  wall=1362 s  (elapsed 1362 s)
+  done: main n= 255 eps=1e-04 delta=1e-05  status=ok  indef=0  max_res=1.0e-10  wall=1369 s  (elapsed 1369 s)
+  done: main n= 511 eps=1e-03 delta=1e-03  status=ok  indef=0  max_res=1.0e-10  wall=1815 s  (elapsed 1815 s)
+  done: main n= 511 eps=1e-03 delta=1e-05  status=ok  indef=0  max_res=1.0e-10  wall=1817 s  (elapsed 1817 s)
+  done: main n= 511 eps=1e-03 delta=0e+00  status=ok  indef=0  max_res=1.0e-10  wall=1841 s  (elapsed 1841 s)
+  done: main n= 511 eps=1e-04 delta=1e-03  status=ok  indef=0  max_res=1.0e-10  wall=4463 s  (elapsed 4463 s)
+  done: main n= 511 eps=1e-04 delta=0e+00  status=ok  indef=0  max_res=1.0e-10  wall=4476 s  (elapsed 4476 s)
+  done: main n= 511 eps=1e-04 delta=1e-05  status=ok  indef=0  max_res=1.0e-10  wall=4504 s  (elapsed 4504 s)
+
+================================================================================================================
+C2  GR control: MOND off (GR + the healthy BPS khronon), 1-D, eps = 1e-2, T = 10 (CFG321 Part D extended to N = 511)
+================================================================================================================
+    N = 63: dt 7.812e-03; error vs exact at T = 10: 3.793e-02; energy drift 3.19e-03; max D/delta 2.505; D(1e-3)/D(1e-5) at T 100.000; status ok
+    N = 127: dt 3.968e-03; error vs exact at T = 10: 9.812e-03; energy drift 7.64e-04; max D/delta 2.436; D(1e-3)/D(1e-5) at T 100.000; status ok
+    N = 255: dt 1.984e-03; error vs exact at T = 10: 2.453e-03; energy drift 1.86e-04; max D/delta 2.418; D(1e-3)/D(1e-5) at T 100.000; status ok
+    N = 511: dt 9.881e-04; error vs exact at T = 10: 6.083e-04; energy drift 4.59e-05; max D/delta 2.413; D(1e-3)/D(1e-5) at T 100.000; status ok
+  [PASS] C2 GR control converges: error vs exact order >= 1.8 at 127->255 and 255->511, energy drift falls with order >= 1.8 and is <= 1e-3 at N = 511, pairs bounded (max D/delta <= 10) and linear (100 +- 1%) at every N
+         measured: error orders [2.0, 2.0] (errors ['3.79e-02', '9.81e-03', '2.45e-03', '6.08e-04']); drift orders [2.036, 2.009] (drifts ['3.2e-03', '7.6e-04', '1.9e-04', '4.6e-05']); max D/delta [2.505, 2.436, 2.418, 2.413]; ratios [100.0, 100.0, 100.0, 100.0]
+
+================================================================================================================
+MAIN  lambda(N) and max amplification vs N (kernel nu_mono)
+================================================================================================================
+
+  --- 1-D, eps = 1e-03 ---
+    N =   63: lambda 0.0124 +- 0.0032 (R^2 0.08, 185 pts); alt D<=1e-2 0.0124; window [T/2,T] 0.0012; Amax 95.1; A(tau_s) 2.618; D(1e-3)/D(1e-5) over run [66.8, 189.9]; <rms yhat>[T/2,T] 0.6036
+    N =  127: lambda 0.0414 +- 0.0024 (R^2 0.58, 221 pts); alt D<=1e-2 0.0414; window [T/2,T] 0.0079; Amax 338.7; A(tau_s) 2.703; D(1e-3)/D(1e-5) over run [42.9, 128.6]; <rms yhat>[T/2,T] 0.5979
+    N =  255: lambda 0.0663 +- 0.0027 (R^2 0.75, 204 pts); alt D<=1e-2 0.0662; window [T/2,T] 0.0377; Amax 1051.9; A(tau_s) 2.431; D(1e-3)/D(1e-5) over run [23.5, 157.0]; <rms yhat>[T/2,T] 0.5725
+    N =  511: lambda 0.0721 +- 0.0031 (R^2 0.72, 209 pts); alt D<=1e-2 0.0753; window [T/2,T] 0.0345; Amax 1827.5; A(tau_s) 2.513; D(1e-3)/D(1e-5) over run [27.7, 159.8]; <rms yhat>[T/2,T] 0.5548
+    increments Delta = 0.029, 0.025, 0.006; ratios r2 = 0.861, r3 = 0.229; lambda_inf = 0.074 (order p = 2.12)
+    Amax per step x3.56, x3.11, x1.74; lambda per step [3.348, 1.604, 1.086]; CFG321 FAIL signatures on the last three grids: amplification False, Lyapunov False
+    tau_s (finest N = 511) = 5.75; tau_s (N = 255, CFG321's) = 5.75; A(tau_s, CFG321 def) [2.618, 2.703, 2.431, 2.513]
+  [FAIL] [eps 1e-03] lambda(N) increments shrink geometrically: |r2| <= 0.6 and |r3| <= 0.6 with finite lambda_inf (RESOLVED-CONVERGENT condition for this set)
+         measured: lambda [0.0124, 0.0414, 0.0663, 0.0721]; r2 0.861, r3 0.229; lambda_inf 0.074
+  [PASS] [eps 1e-03] NOT the confirmed-fail pattern (lambda still rising at the last step with r3 >= 0.9)
+         measured: Delta_3 0.006, r3 0.229
+
+  --- 1-D, eps = 1e-04 ---
+    N =   63: lambda 0.0372 +- 0.0019 (R^2 0.68, 180 pts); alt D<=1e-2 0.0372; window [T/2,T] 0.0308; Amax 160.2; A(tau_s) 2.654; D(1e-3)/D(1e-5) over run [61.2, 149.5]; <rms yhat>[T/2,T] 0.6001
+    N =  127: lambda 0.0569 +- 0.0023 (R^2 0.73, 229 pts); alt D<=1e-2 0.0569; window [T/2,T] 0.022; Amax 897.2; A(tau_s) 2.712; D(1e-3)/D(1e-5) over run [22.1, 118.2]; <rms yhat>[T/2,T] 0.5999
+    N =  255: lambda 0.0762 +- 0.0028 (R^2 0.78, 209 pts); alt D<=1e-2 0.0757; window [T/2,T] 0.0454; Amax 1733.9; A(tau_s) 2.436; D(1e-3)/D(1e-5) over run [45.4, 128.5]; <rms yhat>[T/2,T] 0.5069
+    N =  511: lambda 0.0916 +- 0.0025 (R^2 0.86, 217 pts); alt D<=1e-2 0.0878; window [T/2,T] 0.069; Amax 7434.4; A(tau_s) 2.456; D(1e-3)/D(1e-5) over run [15.2, 150.9]; <rms yhat>[T/2,T] 0.4525
+    increments Delta = 0.020, 0.019, 0.015; ratios r2 = 0.983, r3 = 0.796; lambda_inf = 0.152 (order p = 0.33)
+    Amax per step x5.60, x1.93, x4.29; lambda per step [1.53, 1.341, 1.202]; CFG321 FAIL signatures on the last three grids: amplification False, Lyapunov False
+    tau_s (finest N = 511) = 5.75; tau_s (N = 255, CFG321's) = 5.75; A(tau_s, CFG321 def) [2.654, 2.712, 2.436, 2.456]
+  [FAIL] [eps 1e-04] lambda(N) increments shrink geometrically: |r2| <= 0.6 and |r3| <= 0.6 with finite lambda_inf (RESOLVED-CONVERGENT condition for this set)
+         measured: lambda [0.0372, 0.0569, 0.0762, 0.0916]; r2 0.983, r3 0.796; lambda_inf 0.152
+  [PASS] [eps 1e-04] NOT the confirmed-fail pattern (lambda still rising at the last step with r3 >= 0.9)
+         measured: Delta_3 0.015, r3 0.796
+    eps 1e-03 N 63 base: ok, indef 0, res 1.0e-10, drift 3.6e-05, t_end 80.0
+    eps 1e-03 N 63 d1e-3: ok, indef 0, res 1.0e-10, drift 5.0e-05, t_end 80.0
+    eps 1e-03 N 63 d1e-5: ok, indef 0, res 1.0e-10, drift 3.8e-05, t_end 80.0
+    eps 1e-03 N 127 base: ok, indef 0, res 1.0e-10, drift 1.6e-06, t_end 80.0
+    eps 1e-03 N 127 d1e-3: ok, indef 0, res 1.0e-10, drift 1.3e-06, t_end 80.0
+    eps 1e-03 N 127 d1e-5: ok, indef 0, res 1.0e-10, drift 1.6e-06, t_end 80.0
+    eps 1e-03 N 255 base: ok, indef 0, res 1.0e-10, drift 5.4e-07, t_end 80.0
+    eps 1e-03 N 255 d1e-3: ok, indef 0, res 1.0e-10, drift 6.6e-07, t_end 80.0
+    eps 1e-03 N 255 d1e-5: ok, indef 0, res 1.0e-10, drift 6.5e-07, t_end 80.0
+    eps 1e-03 N 511 base: ok, indef 0, res 1.0e-10, drift 2.2e-07, t_end 80.0
+    eps 1e-03 N 511 d1e-3: ok, indef 0, res 1.0e-10, drift 1.1e-07, t_end 80.0
+    eps 1e-03 N 511 d1e-5: ok, indef 0, res 1.0e-10, drift 2.6e-07, t_end 80.0
+    eps 1e-04 N 63 base: ok, indef 0, res 1.0e-10, drift 4.6e-06, t_end 80.0
+    eps 1e-04 N 63 d1e-3: ok, indef 0, res 1.0e-10, drift 1.4e-05, t_end 80.0
+    eps 1e-04 N 63 d1e-5: ok, indef 0, res 1.0e-10, drift 5.1e-06, t_end 80.0
+    eps 1e-04 N 127 base: ok, indef 0, res 1.0e-10, drift 4.8e-07, t_end 80.0
+    eps 1e-04 N 127 d1e-3: ok, indef 0, res 1.0e-10, drift 8.1e-07, t_end 80.0
+    eps 1e-04 N 127 d1e-5: ok, indef 0, res 1.0e-10, drift 4.9e-07, t_end 80.0
+    eps 1e-04 N 255 base: ok, indef 0, res 1.0e-10, drift 1.1e-07, t_end 80.0
+    eps 1e-04 N 255 d1e-3: ok, indef 0, res 1.0e-10, drift 8.8e-08, t_end 80.0
+    eps 1e-04 N 255 d1e-5: ok, indef 0, res 1.0e-10, drift 6.7e-08, t_end 80.0
+    eps 1e-04 N 511 base: ok, indef 0, res 1.0e-10, drift 7.6e-09, t_end 80.0
+    eps 1e-04 N 511 d1e-3: ok, indef 0, res 1.0e-10, drift 1.4e-08, t_end 80.0
+    eps 1e-04 N 511 d1e-5: ok, indef 0, res 1.0e-10, drift 1.6e-08, t_end 80.0
+  [PASS] every nu_mono main run regular: status ok, zero indefinite leaf Hessians, leaf residual <= 1e-8
+         measured: 24/24 runs ok and convex
+
+================================================================================================================
+C1  reproduction of CFG321's printed eps = 1e-3 rows at N = 63, 127, 255
+================================================================================================================
+    N = 63: lambda 0.0124 vs CFG321 0.0124; Amax 95.1 vs CFG321 95.1
+    N = 127: lambda 0.0414 vs CFG321 0.0414; Amax 338.7 vs CFG321 338.7
+    N = 255: lambda 0.0663 vs CFG321 0.0663; Amax 1051.9 vs CFG321 1051.9
+  [PASS] C1 the N <= 255 eps = 1e-3 rows reproduce CFG321's printed lambda (4 decimals) and max amplification (1 decimal)
+         measured: N63: 0.0124/0.0124, 95.1/95.1; N127: 0.0414/0.0414, 338.7/338.7; N255: 0.0663/0.0663, 1051.9/1051.9
+
+================================================================================================================
+VERDICT (frozen rule)
+================================================================================================================
+  per set: eps 1e-03: convergent False, fail-pattern False, reached True; eps 1e-04: convergent False, fail-pattern False, reached True
+  N = 511 run branched/failed: False; any run branched/failed: False; controls ok: True
+  VERDICT: OPEN
+  G5/G10 nonlinear dependence: stays as CFG321 recorded it (FAIL); the decider is not settled
+  Scope: 1-D only; says NOTHING about growth or sigma_8 -- L341's failure (sigma_8 = 18-27) and FP2's failed linear cosmology stand.
+
+  5/7 checks pass; verdict OPEN; wall 4504 s
