@@ -1,0 +1,178 @@
+CFG291 -- KHRONON DIPOLE RADIATION IN BINARY PULSARS OVER THE FILTERED C-H/K WINDOW (recipe G7 / G11-G12).
+Criteria frozen and committed first: campaign_fresh_gravity/CFG291_khronon_binary_pulsar/FROZEN_CRITERIA.md (9b2bc6fe0).
+
+THE CHASSIS (L340; XC1): I_CHK = I_CH + c^3/(16 pi G) Int sqrt(-g)[alpha_c a.a - c_2 K^2], beta = 0, with C-H's heat
+filter S = exp((xi^2/2) Delta) on the MOND kernel nu_mono.  Above k ~ 1/xi the filter removes the C-H sector and the
+khronon IS the BPS khronon with alpha = alpha_c, lambda = c_2, beta = 0 (XC1 A3).  Neutron stars and orbits sit far
+above 1/xi; the khronon's radiated wavelength at orbital frequencies does not (section N/WZ below).
+
+ADOPTED: Barausse 2019 (PRD 100 084053) flux and coefficients; Yagi et al. 2014 (PRL 112 161101) Pb-dot form; Foster
+2007 (PRD 76 084033) eq. 70 weak-field sensitivity; the khronometric PPN alpha1, alpha2; Peters-Mathews.
+DERIVED HERE: the wave-zone factor R_l for the khronon's MOND-regime clock inertia (decoupling limit, XC1 A1/A3/A5).
+
+MUTATE=1 scores lambda_K = 2 (c_2 = 1): the window gate must flag it (rc = 1).  Outputs carry _MUTATE.
+Run from anywhere:  python3 campaign_fresh_gravity/CFG291_khronon_binary_pulsar/cfg291_khronon_binary_pulsar.py
+
+  *** MUTATE=1: the scored window is lambda_K = 2 (c_2 = 1); the window gate must FAIL (rc = 1) ***
+
+  inputs (real_research/g03_audit_2026/L340_filtered_khronon_completion_results.json): alpha_c in [9.624048e-14, 3.200e-09], c_2 in [7.288800e-03, 6.666667e-02]
+  xi floors (recipe I5 + L340 S1) [pc]: [0.031, 0.03115, 0.03282, 0.045, 0.04513, 0.04892];  L350 Planck-era c_2 ceilings: ['6.31e-04', '7.94e-04', '1.47e-03', '1.58e-03', '2.34e-03', '2.95e-03']
+  XC1 A9 committed UV khronon speeds: 4.4385e+02 c .. 7.9356e+05 c
+  J1738+0333     P_b = 0.3547907398724 d, e = 3.4e-07, m = 1.46/0.181 Msun (NS-WD): allowed delta in [-0.3394, +0.1877]   [Freire+2012 MNRAS 423 3328 (Table 1; abstract)]
+  J0348+0432     P_b = 0.102424062722 d, e = 2e-06, m = 2.01/0.172 Msun (NS-WD): allowed delta in [-0.31, +0.41]   [Antoniadis+2013 Science 340 6131 (Table 1)]
+  J0737-3039A/B  P_b = 0.10225 d, e = 0.0878, m = 1.338185/1.248868 Msun (NS-NS): allowed delta in [-0.00013, +0.00013]   [Kramer+2021 PRX 11 041050 (abstract: 1.3e-4 at 95%)]
+
+================================================================================================================
+C9  THE KERNEL nu_mono, reimplemented from the recipe/L340 definition, against L340's committed A1 numbers
+================================================================================================================
+    y_p = 2.539638 (L340 2.539638), h_p = 0.647610 (L340 0.647610), y* = 2.33741
+    min C_T = 8.938959e-05 (L340 8.938959e-05), min C_L = 3.237223e-06 (L340 3.237223e-06)
+    closed-form tail above y* vs the grid integral at y = 2e10: relative difference 5.3e-09
+  [PASS] C9 nu_mono reproduces L340's y_p, h_p, min C_T, min C_L to 1e-4 and y* = 2.3374
+         measured: y* = 2.33741; ratios 1.0000000, 1.0000000, 1.000000, 1.000000
+
+================================================================================================================
+FORMULAS  Barausse 2019 eqs. 15-22, khronometric PPN; C2 the published alpha, beta -> 0 limit; C3, C4
+================================================================================================================
+    beta = 0:  alpha1 = -4*alpha;  alpha2 = -alpha*(2*alpha*lambda + alpha - lambda)/(lambda*(alpha - 2));  Z - 1 = -alpha*(3*lambda + 2)/(3*lambda*(alpha - 2));  c0^2 = -lambda*(alpha - 2)/(alpha*(3*lambda + 2));  c_T = 1
+    alpha -> 0 limits of (A1, A2, A3, B, C): {'beta=0': [1, 0, 0, 0, 0], 'beta=alpha/3': [1, 0, 0, 0, 0]}
+  [PASS] C2 Barausse 2019's stated limit: as alpha, beta -> 0 (lambda != 0) A1 -> 1 and A2, A3, B, C -> 0; c_T = 1 at beta = 0
+         measured: {'beta=0': [1, 0, 0, 0, 0], 'beta=alpha/3': [1, 0, 0, 0, 0]}
+         reading:  in that limit the khronon's speed diverges and every non-GR radiative coefficient vanishes
+    c0 at XC1's corners: 4.4385e+02 .. 7.9356e+05 c  (XC1 A9 committed: 4.4385e+02 .. 7.9356e+05)
+    alpha1 at beta = 0: -4*alpha ;  max |alpha2/(-alpha_c/2) - 1| over W1 = 4.44e-07
+  [PASS] C3 F1's c0 reproduces XC1's committed UV speeds (4 s.f.); alpha1 = -4 alpha_c exactly and alpha2 -> -alpha_c/2 within 1e-6 over W1 (L340 P1's formulas)
+         measured: 4.4385e+02/7.9356e+05 c; alpha2 dev 4.4e-07
+    F1 c0^2 / (c_2/alpha) at alpha = 1e-12, c_2 = 1e-06: lambda=c_2: 0.999999, lambda=c_2/2: 0.500000, lambda=2c_2: 1.999994
+  [PASS] C4 the map alpha = alpha_c, beta = 0, lambda = c_2: F1's speed matches XC1's decoupling-limit c_2/alpha to O(alpha, lambda); the wrong maps lambda = c_2/2 and 2 c_2 fail
+         measured: {'lambda=c_2': 0.999999, 'lambda=c_2/2': 0.5, 'lambda=2c_2': 1.999994}
+         reading:  L340's action alpha_c a.a - c_2 K^2 is the BPS covariant alpha- and lambda-term term by term (mostly-plus signature)
+
+================================================================================================================
+C1  GR Pb-dot (Peters-Mathews) from each paper's own masses, against the published GR predictions
+================================================================================================================
+    J1738+0333    : computed -2.7461e-14 s/s; published -2.770e-14 (+1.5e-15/-1.9e-15); ratio 0.99137
+    J0348+0432    : computed -2.5909e-13 s/s; published -2.580e-13 (+8.0e-15/-1.1e-14); ratio 1.00421
+    J0737-3039A/B : computed -1.24784e-12 s/s (reading: no GR value read from the source; masses from a secondary page)
+  [PASS] C1 Peters-Mathews with the papers' masses reproduces J1738+0333's -27.7 fs/s and J0348+0432's -0.258 ps/s inside their quoted intervals and within 1%
+         measured: J1738+0333: -2.7461e-14; J0348+0432: -2.5909e-13; J0737-3039A/B: -1.2478e-12
+
+================================================================================================================
+N  THE NEAR ZONE: y at the orbit, the filter exponents, the filtered binary source (both footings)
+================================================================================================================
+    J1738+0333     a = 1.731e+09 m, v^2/c^2 = 1.400e-06; y_orb = 7.77e+11 (canon) / 6.45e+11 (alt); unfiltered nu_mono - 1 = 1.9e-12
+                   filter exponent at the orbit -(xi/a)^2 = -3.05e+11, at a NS -(xi/R)^2 = -6.4e+21, tensor GW -(xi k_GW)^2 = -1.71e+06; time-varying filtered source / static = (mu/m)(a/xi)^2 = 3.2e-13
+    J0348+0432     a = 8.313e+08 m, v^2/c^2 = 3.876e-06; y_orb = 4.48e+12 (canon) / 3.72e+12 (alt); unfiltered nu_mono - 1 = 3.4e-13
+                   filter exponent at the orbit -(xi/a)^2 = -1.32e+12, at a NS -(xi/R)^2 = -6.4e+21, tensor GW -(xi k_GW)^2 = -2.05e+07; time-varying filtered source / static = (mu/m)(a/xi)^2 = 5.5e-14
+    J0737-3039A/B  a = 8.788e+08 m, v^2/c^2 = 4.347e-06; y_orb = 4.75e+12 (canon) / 3.94e+12 (alt); unfiltered nu_mono - 1 = 3.2e-13
+                   filter exponent at the orbit -(xi/a)^2 = -1.18e+12, at a NS -(xi/R)^2 = -6.4e+21, tensor GW -(xi k_GW)^2 = -2.06e+07; time-varying filtered source / static = (mu/m)(a/xi)^2 = 2.1e-13
+  [PASS] (reading) N the near zone and the tensor waves are screened: the MOND kernel never sees the orbit (filter exponent < -1e9), the tensor-GW wavenumber (< -1e5), or more than 1e-10 of the binary's time-varying source
+         measured: J1738+0333: -3.1e+11 / -1.7e+06 / 3e-13; J0348+0432: -1.3e+12 / -2.1e+07 / 5e-14; J0737-3039A/B: -1.2e+12 / -2.1e+07 / 2e-13
+         reading:  even unfiltered, nu_mono - 1 at the orbit is ~1e-12 (y ~ 1e12): the near zone is GR + the BPS khronon
+
+================================================================================================================
+WZ  THE WAVE ZONE: the khronon's radiated wavenumber vs 1/xi, and the factor R_l (derived, decoupling limit)
+================================================================================================================
+    Galactic-background constitutive coefficients C_0: C_T y_N=1.840 (canonical): 0.3470, C_L y_N=1.840 (canonical): 0.0300, C_T y_N=1.436 (alt): 0.4319, C_L y_N=1.436 (alt): 0.0613, C_T y=2.3 (XC1 row): 0.2812, C_L y=2.3 (XC1 row): 0.0080
+    R_1 with C_0 = 0: 1.0;  Barausse exponents: C: dlnC/dlnalpha = +0.5000, C: dlnC/dlnlambda = -1.5000, A3: dlnA3/dlnalpha = +1.5000, A3: dlnA3/dlnlambda = -2.5000
+    model exponents (k^l source): l=1 alpha = +0.5000, l=1 lambda = -1.5000, l=2 alpha = +1.5000, l=2 lambda = -2.5000
+  [PASS] C5 the wave-zone model: R = 1 exactly at C_0 = 0; a k^1 source reproduces the exponents of Barausse's C (+1/2 in alpha, -3/2 in lambda) and a k^2 source those of A3 (+3/2, -5/2)
+         measured: {'C: dlnC/dlnalpha': 0.5000000000019985, 'C: dlnC/dlnlambda': -1.4999997749993164, 'A3: dlnA3/dlnalpha': 1.5000000000059956, 'A3: dlnA3/dlnlambda': -2.4999996250033014} vs {'l=1 alpha': 0.5000000000019985, 'l=1 lambda': -1.4999997749948755, 'l=2 alpha': 1.5000000000237592, 'l=2 lambda': -2.4999996249677743}
+         reading:  a time-derivative coupling would give 1/(alpha c0) instead: the sensitivity couples through u_i ~ d_i pi
+    J1738+0333 alpha_c=9.62e-14 c2=7.289e-03: k_UV xi = 0.00, k* xi = 3.37 (wavelength 0.058 pc), e^-(xi k*)^2 = 1.2e-05, alpha_eff/alpha_c = 1.99e+06, R_1 = 114 (universal bound 4.56e+06)  [C_L y=2.3 (XC1 row), xi 0.031 pc]
+    J1738+0333 alpha_c=3.20e-09 c2=7.289e-03: k_UV xi = 0.44, k* xi = 3.37 (wavelength 0.058 pc), e^-(xi k*)^2 = 1.2e-05, alpha_eff/alpha_c = 5.98e+01, R_1 = 0.636 (universal bound 2.50e+04)  [C_L y=2.3 (XC1 row), xi 0.031 pc]
+    J1738+0333 alpha_c=9.62e-14 c2=6.667e-02: k_UV xi = 0.00, k* xi = 3.07 (wavelength 0.064 pc), e^-(xi k*)^2 = 8.3e-05, alpha_eff/alpha_c = 1.38e+07, R_1 = 358 (universal bound 4.56e+06)  [C_L y=2.3 (XC1 row), xi 0.031 pc]
+    J1738+0333 alpha_c=3.20e-09 c2=6.667e-02: k_UV xi = 0.15, k* xi = 3.07 (wavelength 0.064 pc), e^-(xi k*)^2 = 8.3e-05, alpha_eff/alpha_c = 4.16e+02, R_1 = 1.97 (universal bound 2.50e+04)  [C_L y=2.3 (XC1 row), xi 0.031 pc]
+    R_1 vs xi (0.031, 0.045, 0.1, 1 pc) at alpha_max, c2_min, J1738, C_0 max: ['0.561', '0.384', '0.181', '1'] (decreasing: False)
+  [FAIL] (reading) WZ the khronon's radiated wavelength at orbital frequencies is comparable to xi (k* xi ~ 3-5), so the heat filter does NOT screen the wave zone: the MOND clock inertia raises alpha_eff at k* above alpha_c; R_1 decreases with xi
+         measured: J1738 corners alpha_eff/alpha_c 5.98e+01..1.38e+07; R_1 0.196..358; R_1(xi) decreasing False
+         reading:  contrary to the expectation that the filter screens everything: it screens the near zone, not the khronon's pc-scale wave zone
+    POST HOC: over xi 0.031-100 pc and C_0 1e-4-10 at the W1 corners: max R_1 = 437; max R_1 / universal bound = 9.610e-05
+  [PASS] (reading) POST HOC R_1 never exceeds its universal bound sqrt(1 + 2/alpha_c) on extended xi and C_0 grids, so scoring with the universal factor covers every environment and every xi >= floor
+         measured: max R_1/universal 9.61e-05; max R_1 437
+         reading:  the frozen primary (max over the committed floors) is not the max over xi >= floor; the universal row is
+
+================================================================================================================
+MUTATE  lambda_K = 2 (c_2 = 1): 25 x 1 points x 3 systems x 4 brackets x (computed, universal) wave-zone factor
+================================================================================================================
+    window gate: all points inside L340 P1: False; max plain-branch |G_cos/G_N - 1| = 0.6000 (BBN 0.1)
+  [FAIL] WINDOW the scored points lie in the frozen chassis window and satisfy its plain-branch BBN condition |G_cos/G_N - 1| = |(2 - alpha_c)/(2 + 3 c_2) - 1| <= 0.1 (L340 P1, L350 G1)
+         measured: inside: False; max |G_cos/G_N - 1| = 0.6000
+         reading:  lambda_K = 2 is outside the window and fails BBN in the plain branch
+    B0 computed :   25/25 points pass all three systems; max delta/limit = 0.000e+00 (alpha_c 9.62e-14, c_2 1.000e+00, J1738+0333; delta_dip 0.00e+00, delta_quad +0.00e+00);  per system J1738+0333 25, J0348+0432 25, J0737-3039A/B 25
+    B0 universal:   25/25 points pass all three systems; max delta/limit = 0.000e+00 (alpha_c 9.62e-14, c_2 1.000e+00, J1738+0333; delta_dip 0.00e+00, delta_quad +0.00e+00);  per system J1738+0333 25, J0348+0432 25, J0737-3039A/B 25
+    B1 computed :   25/25 points pass all three systems; max delta/limit = 1.805e-05 (alpha_c 3.20e-09, c_2 1.000e+00, J0737-3039A/B; delta_dip 9.21e-17, delta_quad -2.35e-09);  per system J1738+0333 25, J0348+0432 25, J0737-3039A/B 25
+    B1 universal:   25/25 points pass all three systems; max delta/limit = 1.806e-05 (alpha_c 3.20e-09, c_2 1.000e+00, J0737-3039A/B; delta_dip 1.62e-12, delta_quad -2.35e-09);  per system J1738+0333 25, J0348+0432 25, J0737-3039A/B 25
+    B2 computed :   25/25 points pass all three systems; max delta/limit = 5.415e-05 (alpha_c 3.20e-09, c_2 1.000e+00, J0737-3039A/B; delta_dip 8.29e-16, delta_quad -7.04e-09);  per system J1738+0333 25, J0348+0432 25, J0737-3039A/B 25
+    B2 universal:   25/25 points pass all three systems; max delta/limit = 5.427e-05 (alpha_c 3.20e-09, c_2 1.000e+00, J0737-3039A/B; delta_dip 1.45e-11, delta_quad -7.04e-09);  per system J1738+0333 25, J0348+0432 25, J0737-3039A/B 25
+    B3 computed :    0/25 points pass all three systems; max delta/limit = 6.773e+03 (alpha_c 3.20e-09, c_2 1.000e+00, J0737-3039A/B; delta_dip 6.69e-01, delta_quad -2.12e-01);  per system J1738+0333 0, J0348+0432 0, J0737-3039A/B 0
+    B3 universal:    0/25 points pass all three systems; max delta/limit = 9.028e+07 (alpha_c 3.20e-09, c_2 1.000e+00, J0737-3039A/B; delta_dip 1.17e+04, delta_quad +4.49e-01);  per system J1738+0333 0, J0348+0432 0, J0737-3039A/B 0
+    B3d computed :    0/25 points pass all three systems; max delta/limit = 5.145e+03 (alpha_c 3.20e-09, c_2 1.000e+00, J0737-3039A/B; delta_dip 6.69e-01, delta_quad +4.62e-11);  per system J1738+0333 0, J0348+0432 0, J0737-3039A/B 0
+    B3d universal:    0/25 points pass all three systems; max delta/limit = 9.028e+07 (alpha_c 3.20e-09, c_2 1.000e+00, J0737-3039A/B; delta_dip 1.17e+04, delta_quad +8.39e-01);  per system J1738+0333 0, J0348+0432 0, J0737-3039A/B 0
+    B2 margin in sensitivity, min over the window and systems: s_crit / s_B2 >= 3.961e+05
+    largest dipole delta, B1 computed : 1.124e-15 (alpha_c 3.20e-09, c_2 1.000e+00, J1738+0333)
+    largest dipole delta, B1 universal: 5.154e-12 (alpha_c 3.20e-09, c_2 1.000e+00, J1738+0333)
+    largest dipole delta, B2 computed : 1.012e-14 (alpha_c 3.20e-09, c_2 1.000e+00, J1738+0333)
+    largest dipole delta, B2 universal: 4.638e-11 (alpha_c 3.20e-09, c_2 1.000e+00, J1738+0333)
+    B3 computed, J1738+0333: smallest failing c_2 on the grid = 1.0000e+00
+    B3 computed, J0348+0432: smallest failing c_2 on the grid = 1.0000e+00
+    B3 computed, J0737-3039A/B: smallest failing c_2 on the grid = 1.0000e+00
+    B3d computed, J1738+0333: smallest failing c_2 on the grid = 1.0000e+00
+    B3d computed, J0348+0432: smallest failing c_2 on the grid = 1.0000e+00
+    B3d computed, J0737-3039A/B: smallest failing c_2 on the grid = 1.0000e+00
+    s_crit J1738+0333 alpha_c=9.62e-14 c2=1.000e+00: 4.550e-02   (s_B1 1.06e-13, s_B2 3.18e-13, s_B3 3.00e-01); B2 dipole delta 9.15e-24
+    s_crit J1738+0333 alpha_c=3.20e-09 c2=1.000e+00: 4.549e-02   (s_B1 3.52e-09, s_B2 1.06e-08, s_B3 3.00e-01); B2 dipole delta 1.01e-14
+    s_crit J0348+0432 alpha_c=9.62e-14 c2=1.000e+00: 2.190e-01   (s_B1 1.06e-13, s_B2 3.18e-13, s_B3 3.00e-01); B2 dipole delta 8.62e-25
+    s_crit J0348+0432 alpha_c=3.20e-09 c2=1.000e+00: 2.186e-01   (s_B1 3.52e-09, s_B2 1.06e-08, s_B3 3.00e-01); B2 dipole delta 9.57e-16
+    s_crit J0737-3039A/B alpha_c=9.62e-14 c2=1.000e+00: 4.190e-03   (s_B1 1.06e-13, s_B2 3.18e-13, s_B3 3.00e-01); B2 dipole delta 7.47e-25
+    s_crit J0737-3039A/B alpha_c=3.20e-09 c2=1.000e+00: 4.182e-03   (s_B1 3.52e-09, s_B2 1.06e-08, s_B3 3.00e-01); B2 dipole delta 8.29e-16
+
+================================================================================================================
+C6  alpha_c -> 0 at fixed lambda: the flux vanishes and the khronon becomes strongly coupled (XC1, recipe P7)
+================================================================================================================
+    lambda 7.289e-03 B1 computed : delta_dip 4.83e-23 -> 5.21e-77 as alpha_c 9.6e-14 -> 1e-40; monotone True
+    lambda 7.289e-03 B1 universal: delta_dip 1.94e-18 -> 2.09e-72 as alpha_c 9.6e-14 -> 1e-40; monotone True
+    lambda 7.289e-03 B2 computed : delta_dip 4.34e-22 -> 4.69e-76 as alpha_c 9.6e-14 -> 1e-40; monotone True
+    lambda 7.289e-03 B2 universal: delta_dip 1.74e-17 -> 1.88e-71 as alpha_c 9.6e-14 -> 1e-40; monotone True
+    lambda 7.289e-03: XC1 strong-coupling momentum 1.44e+09 GeV -> 8.36e-12 GeV; below 1e3 x LHC once alpha_c < 9.7e-17
+    (reading) B3 with the universal factor: delta_dip 8.27e+02 -> 8.27e+02 (does not vanish: only strong coupling stops it)
+    lambda 6.667e-02 B1 computed : delta_dip 6.20e-24 -> 6.70e-78 as alpha_c 9.6e-14 -> 1e-40; monotone True
+    lambda 6.667e-02 B1 universal: delta_dip 7.91e-20 -> 8.54e-74 as alpha_c 9.6e-14 -> 1e-40; monotone True
+    lambda 6.667e-02 B2 computed : delta_dip 5.58e-23 -> 6.03e-77 as alpha_c 9.6e-14 -> 1e-40; monotone True
+    lambda 6.667e-02 B2 universal: delta_dip 7.12e-19 -> 7.68e-73 as alpha_c 9.6e-14 -> 1e-40; monotone True
+    lambda 6.667e-02: XC1 strong-coupling momentum 8.48e+08 GeV -> 4.91e-12 GeV; below 1e3 x LHC once alpha_c < 9.7e-17
+    (reading) B3 with the universal factor: delta_dip 2.82e+03 -> 2.82e+03 (does not vanish: only strong coupling stops it)
+  [PASS] C6 as alpha_c -> 0 the B1/B2 khronon flux vanishes monotonically (computed and universal wave-zone factor) and XC1's strong-coupling momentum falls below 1e3 x the LHC: alpha_c > 0 is load-bearing a fourth time
+         measured: lambda=7.289e-03 k_sc: {'k_sc_first_GeV': 1443889305.5296664, 'k_sc_last_GeV': 8.356329676127327e-12, 'alpha_where_below_1e3_LHC': 9.665112523901069e-17}; lambda=6.667e-02 k_sc: {'k_sc_first_GeV': 847985225.8709925, 'k_sc_last_GeV': 4.907608970248529e-12, 'alpha_where_below_1e3_LHC': 9.665112523901069e-17}
+         reading:  flux ~ alpha_c^(5/2) (UV) and <= alpha_c^2 (universal) under the published brackets; the theory is strongly coupled first
+
+================================================================================================================
+C8  INJECTION: |s1 - s2| = 1.01 / 0.99 s_crit at alpha_c max, c_2 min of the scored grid
+================================================================================================================
+    J1738+0333    : s_crit = 4.5492e-02;  1.01 s_crit -> delta 1.9150e-01 pass=False;  0.99 s_crit -> delta 1.8399e-01 pass=True
+    J0348+0432    : s_crit = 2.1861e-01;  1.01 s_crit -> delta 4.1824e-01 pass=False;  0.99 s_crit -> delta 4.0184e-01 pass=True
+    J0737-3039A/B : s_crit = 4.1824e-03;  1.01 s_crit -> delta 1.3261e-04 pass=False;  0.99 s_crit -> delta 1.2741e-04 pass=True
+  [PASS] C8 the scorer flags an injected dipole just above s_crit and passes one just below, for every system
+         measured: {'J1738+0333': (False, True), 'J0348+0432': (False, True), 'J0737-3039A/B': (False, True)}
+
+================================================================================================================
+PPN  alpha1, alpha2 over the scored grid against the record's bounds (data_assembly/DOOR11_LITERATURE_2026-09-29.md)
+================================================================================================================
+    alpha_c 9.624e-14, c_2 1.0000e+00: alpha1 = -3.8496e-13, alpha2 = -4.812024e-14
+    alpha_c 9.624e-14, c_2 1.0000e+00: alpha1 = -3.8496e-13, alpha2 = -4.812024e-14
+    alpha_c 3.200e-09, c_2 1.0000e+00: alpha1 = -1.2800e-08, alpha2 = -1.600000e-09
+    alpha_c 3.200e-09, c_2 1.0000e+00: alpha1 = -1.2800e-08, alpha2 = -1.600000e-09
+    bounds: |alpha-hat1| < 2.1e-5 (Liu+2020), -3.5e-5 < alpha-hat1 < 3.3e-5 (Shao & Wex 2012), alpha1 (LLR) = (-0.7 +/- 1.8)e-4; |alpha-hat2| < 1.6e-9 (Shao+2013), |alpha2| < 2.4e-7 (secondary)
+  [PASS] (reading) PPN (reading) over the scored grid |alpha1| <= 1.3e-8 << 2.1e-5 and |alpha2| <= 1.6e-9 (the window's top edge is set by alpha-hat2 itself, so the top corner sits on the bound by construction; strong-field alpha-hat = alpha (1 + O(s)))
+         measured: max |alpha1| 1.280e-08, max |alpha2| 1.600000e-09
+
+================================================================================================================
+VERDICT (frozen rule, FROZEN_CRITERIA sec. 7)
+================================================================================================================
+  failed load-bearing controls: none
+  W1 under B0/B1/B2 with the computed wave-zone factor: 25/25/25 of 25 pass
+  W1 under B3 (counterfactual) computed: 0/25 (dipole-only B3d: 0/25);  B1/B2 universal: 25/25/25
+  VERDICT: MUTATE (window gate test; no chassis verdict)
+  Time 1 s.
+
+  11/13 checks pass; load-bearing failures: 1; wrote cfg291_khronon_binary_pulsar_results_MUTATE.json
