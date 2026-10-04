@@ -94,3 +94,39 @@ trajectory can cross `D = 0`.
   action or principle that would have produced a DIFFERENT number if kappa were different; it must be dimensionally
   consistent in general d before d = 4 is set; and it must predict something besides a0. None of the six passes the
   first test. **`kappa = 1/2` stays FITTED.**
+
+## EXT03 -- external 32pi handoff, phases 05-10 ("Euler dynamics and the quantum anomaly", 2026-10-04)
+
+- Source: a ZIP handed to the owner on 2026-10-04 (`32pi_new_files_agent_handoff_2026-10-04.zip`,
+  sha256 `d1ec538411f16cf59db338b688e6c9c37af12b989a5c7835d64f49ea1eb60ae9`, 97 files). **Not copied here**
+  (it carries personal names); only the hash, this summary and our check are filed. Its own verdict on every
+  page: **the target `a0 = c^2 sqrt(Lambda/(32 pi))` is NOT_DERIVED.**
+- Bundle integrity: its `verify_bundle.py` passes (97 hashes); `REPRODUCE.py --phase all-continuations` reruns
+  all six phases cleanly in a scratch copy (phase 10: 42 exact checks). Integrity is not correctness.
+
+### What it claims (phase 10, the new work) and what `ext03_check.py` re-derives (17/17; `MUTATE=1` 14/17, exit 1)
+
+| Claim | Ours |
+|---|---|
+| scalar-Euler action, constant-roll dS: `q = 8 alpha H^3`, `Lambda_b = 3H^2 + 160 alpha^2 H^6` | 1b, 1c from a lapse-kept minisuperspace; 1e: the a-equation is consistent. So `Lambda_b > 0` is required (1d): no self-supported dS. |
+| regular star: `phi' = 16 alpha M^2/(r^5(1-2M/r))`, no monopole | 2a, 2b: falls as r^-5, not MOND's r^-1 |
+| two-horizon roll `q = 8 alpha (kappa_b+kappa_c)/(r_b^2+r_c^2)` | 3a (numeric SdS, M=0.1, Lambda=0.2); 3b it is not the cosmological roll |
+| anomaly dS: `rho = 3 a_E H^4/(8 pi^2)`, `H^2 = pi/(G a_E)`, `A/4G = a_E`, `Lambda A = 12 pi` | 4a-4d (bare vacuum set to zero, as the bundle says) |
+| target restated: `a0^2 = 3/(32 G a_E)` | 4e: a restatement, not a prediction |
+| same a_E, different c_E (11 scalars vs 1 Dirac) | 5a, 5b |
+
+Extra check (ours, 5c): for the observed Lambda the anomaly branch needs `a_E ~ 3e122`, i.e. ~1e122 free conformal
+fields; the route explains Lambda's size only by putting that number into field content.
+
+Mutation: the Gauss-Bonnet boundary factor 8 -> 7 breaks 1b, 1c, 1e, as required.
+
+### Not checked
+Phases 05-09 (gauge vacuum, clock regulator, critical boundary, geometric bridge) beyond the bundle's own rerun;
+phase 05-06 overlap EXT01. The P(X) extension, tensor diagnostic and Horndeski cross-check of phase 10 are taken as stated.
+
+### Reading (ours)
+Every equation we re-derived is right, and the bundle is honest about scope. None of it produces a0: the classical
+route gives a scalar profile with the wrong fall-off (r^-5), the quantum route fixes H but not a galactic force law,
+and `a0^2 = 3/(32 G a_E)` is the target in new variables. On the screen (EXT02): (1) no principle here would give a
+different number if kappa differed -- FAILS; (2) dimensional consistency -- passes; (3) predicts something besides a0
+-- only Lambda, and only with a_E ~ 1e122 set by hand. **`kappa = 1/2` stays FITTED.**
