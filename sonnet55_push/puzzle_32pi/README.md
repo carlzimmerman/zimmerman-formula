@@ -213,3 +213,13 @@ its three real horizons (Planck 2018) against 32 pi^2. Needed radius: sqrt(8 pi/
 - But it is not a law of Lambda: R_p grows with time, so this a0 changes with redshift: a0(2.5)/a0(0) = 6.0, steeper than the a0 ~ H(z) rival (3.75),
   and the opposite of FLAT. It is an epoch coincidence (we live when R_p ~ 2.7 R_dS). As a hypothesis it is falsifiable by the same a0(z) data;
   the framework's FLAT law and this one cannot both hold. **kappa = 1/2 stays FITTED.**
+
+## 20. The particle-horizon reading against the a0(z) record (`p15`, 5/5; MUTATE 2/5, exit 1) -- 2026-10-04, POST-HOC
+Law PH: a0(z) = c^2/(2 R_p(z)), no free parameter (s* 1.10 today, 2.5 at z 0.8, 6.0 at z 2.3, 16 at z 5.3; always above a0 ~ H(z)).
+- **Native (LCDM-free, CFG303) points: PH inside the 95% interval for 1 of 5 (RC100 Q1 only); FLAT 4 of 5, H(z) 2 of 5.**
+  RC100 Q2 needs baryons 0.19 dex lower to reach PH; Q3 and CRISTAL need more than 0.30 dex; Q4 has no root (baryons alone suffice).
+- Committed chart points (LCDM-halo inputs where the record says so): PH 6 of 15, FLAT 11, H(z) 11.
+- KiDS lens-z halves cannot separate anything (PH +0.7 sigma, FLAT +1.6 sigma). PH sits above the KMOS3D PT1 bound (5.9 vs <= 2.44).
+- **Reading:** on the record's own calibration-limited data the particle-horizon law does worse than both FLAT and H(z); it survives only if
+  every high-z baryon mass is overestimated by >= 0.2-0.3 dex in the same direction. Not a kill (post-hoc, calibration-limited), but the
+  p14 match is best read as an epoch coincidence. The 32 pi^2 remains the fitted kappa = 1/2.
