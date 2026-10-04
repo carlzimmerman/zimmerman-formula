@@ -1,0 +1,134 @@
+========================================================================================================================
+CFG323 -- SLUGGS law-only offset with MEASURED tracers (density profiles, beta where tabulated, hot gas)
+frozen criteria: FROZEN_CRITERIA.md (commit b2e7ec16d); kernel nu_mono, kappa = 1/2 fixed, footings canonical 9.36e-11, alt 1.13e-10
+========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------
+1. TRANSCRIPTION (parsed by script)
+------------------------------------------------------------------------------------------------------------------------
+  K14           : {720: {'Re_am': (1.97, 0.34, 0.34), 'n': (4.16, 1.21, 1.21), 'bg': (0.98, 0.06, 0.06), 'ext_am': (9.8, 0.8, 0.8)}, 1023: {'Re_am': (1.0, 0.35, 0.35), 'n': (3.15, 2.85, 2.85), 'bg': (1.27, 0.12, 0.12), 'ext_am': (6.2, 0.5, 0.5)}, 2768: {'Re_am': (1.66, 0.23, 0.23), 'n': (3.09, 0.68, 0.68), 'bg': (0.61, 0.04, 0.04), 'ext_am': (9.9, 0.5, 0.5)}}
+  K16           : {'SB': {'Re_am': (2.45, 0.54, 0.54), 'n': (2.74, 1.76, 1.76), 'bg': (1.7, 0.15, 0.15), 'ext_am': (9.4, 0.6, 0.6)}, 'MA': {'Re_am': (1.99, 0.29, 0.29), 'n': (1.97, 1.19, 1.19), 'bg': (1.68, 0.08, 0.08), 'ext_am': (9.6, 0.5, 0.5)}}
+  A14_n         : [(2.25, 1.45, 0.45), (4.0, 1.1, 1.8), (4.68, 0.9, 1.1)]
+  A14_Re_as     : [(2300.0, 700.0, 700.0), (1750.0, 650.0, 650.0), (72.0, 128.0, 22.0)]
+  A14_Sib       : (20.0, 10.0, 7.0)
+  A14_Srb       : (2480.0, 3120.0, 1060.0)
+  Z14           : {'bn_log10': 2.21, 'R0_as': (510.24, 45.31), 'n': (2.71, 0.17)}
+  Z14_beta_text : {'b0': -0.2, 'bmax': 0.2, 'rmax': 40.0, 'r0': 120.0}
+  C08           : {'ne0': 0.22, 'beta': 0.33, 'rc_am': 0.2, 'rc_kpc': 0.93, 'rmin_am': 0.5, 'rmax_am': 10.0, 'D': 16.0}
+  U11           : {'slope': -1.21, 'err': 0.12, 'rmax_kpc': 1200.0, 'D': 16.1}
+  F17 Table 6 rows: 27;  VizieR J/AJ/153/114 record counts: {'table1': 27, 'table2': 865, 'table3': 21, 'table4': 33, 'table5': 3573}
+
+------------------------------------------------------------------------------------------------------------------------
+2. CONTROLS
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] C3 Abel deprojection: Plummer Sigma ~ (1+R^2)^-2 -> rho ~ (1+r^2)^-5/2, log-slope within 0.01 over 0.1-30 a
+         max |slope_num - slope_exact| = 5.72e-06; normalisation ratio (exact 4/(3)/... const) median 0.750000
+  [PASS] C1 audit baseline reproduced (nu_mono, gamma 3, beta 0, 16): canonical +0.0977, alt +0.0885 within 0.001 dex
+         canonical +0.0977 +- 0.0243 (4.02 sigma); alt +0.0885 +- 0.0241 (3.67 sigma)
+  [PASS] C2 general-profile Jeans (rho ~ r^-3, beta 0, no gas) reproduces the audit per-galaxy offsets within 0.001 dex
+         max |diff| over 16 x 2 footings = 1.56e-14 dex
+  [PASS] C6 gas-zero (explicit zero gas array) with gamma 3 reproduces C2 exactly (<= 1e-9 dex)
+         max |diff| = 0.00e+00
+  C4 detail (no published power-law index for the same profiles: Kartha+14/16 quote alpha only as a symbol of the azimuthal fit) -> Prugniel-Simien fallback
+     NGC1023 K14        R_e    3.23 kpc  n  3.15  b  5.970  gamma(3 R_e) numerical  3.506  Prugniel-Simien  3.498  diff +0.008
+     NGC2768 K14        R_e   10.53 kpc  n  3.09  b  5.850  gamma(3 R_e) numerical  3.518  Prugniel-Simien  3.510  diff +0.008
+     NGC3607 K16 MA     R_e   12.85 kpc  n  1.97  b  3.611  gamma(3 R_e) numerical  3.923  Prugniel-Simien  3.906  diff +0.016
+     NGC3607 K16 SB     R_e   15.82 kpc  n  2.74  b  5.151  gamma(3 R_e) numerical  3.602  Prugniel-Simien  3.592  diff +0.010
+     M87 A14 pop b      R_e  186.22 kpc  n  2.25  b  4.171  gamma(3 R_e) numerical  3.774  Prugniel-Simien  3.761  diff +0.013
+     M87 A14 pop i      R_e  141.69 kpc  n  4.00  b  7.669  gamma(3 R_e) numerical  3.379  Prugniel-Simien  3.374  diff +0.005
+     M87 A14 pop r      R_e    5.83 kpc  n  4.68  b  9.029  gamma(3 R_e) numerical  3.316  Prugniel-Simien  3.312  diff +0.004
+     M87 Z14/Peng08     R_e   41.31 kpc  n  2.71  b  5.089  gamma(3 R_e) numerical  3.609  Prugniel-Simien  3.599  diff +0.010
+     Zhu+14 b_n = 2.21 read as log10: ln-equivalent 5.089 vs Ciotti-Bertin b(2.71) = 5.091 (supports the log10 reading)
+  [PASS] C4 measured slopes internally consistent with the published Sersic fits (numerical gamma(3 R_e,GC) vs Prugniel-Simien within 0.15)
+         max |diff| = 0.016 over 8 profiles
+  [PASS] C5 transcription by script: Kartha+14 table 3 rows, Kartha+16 table 2 rows, Agnello+14 3 n + 3 R_e + 2 ratios, Forbes+17 Table 6 27 rows
+         spot values: K14 NGC 2768 R_e (1.66, 0.23, 0.23) arcmin, n (3.09, 0.68, 0.68); K16 MA R_e (1.99, 0.29, 0.29); A14 R_e,b (2300.0, 700.0, 700.0) arcsec, Sigma_r/b (2480.0, 3120.0, 1060.0); Churazov ne0 0.22 beta 0.33 rc 0.93 kpc
+
+  ROW GAP: galaxy-table N (VizieR ReadMe: 'Number of galaxy data in tables 2-5') sums to 4492; VizieR records table2 contaminants 865 + table3 neighbour galaxies 21 + table4 UCDs 33 + table5 GCs 3573 (erratum, AJ 154, 80) = 4492
+  on-disk velocity file: 3573 data rows, 3573 parsed GC rows keyed to the 27 galaxies; per-galaxy vs Forbes+17 Table 6 N_GC: 26/27 equal; differences {4365: (244, 245)}
+  [PASS] P1 (post-freeze, provenance) the 4,492 is N over Tables 2-5 (contaminants + neighbours + UCDs + GCs), not a GC count
+         N sum 4492 == 4492; GCs alone 3573
+
+------------------------------------------------------------------------------------------------------------------------
+3. PER GALAXY (primary: measured profiles where available, gamma 3 elsewhere, isotropic, measured gas where covered)
+------------------------------------------------------------------------------------------------------------------------
+   NGC1023  MEAS      base +0.104  g3+gas +0.104  meas,nogas +0.153  PRIMARY +0.153   gamma at outer bins [2.98, 3.39, 4.05]  gas: -
+            GC-system extent (published) 20.0 kpc; outermost bin 17.2 kpc
+   NGC2768  MEAS      base -0.004  g3+gas -0.004  meas,nogas +0.019  PRIMARY +0.019   gamma at outer bins [2.59, 2.95, 3.44]  gas: -
+            GC-system extent (published) 62.8 kpc; outermost bin 29.0 kpc
+   NGC3377  g=3       base +0.064  g3+gas +0.064  meas,nogas +0.064  PRIMARY +0.064   gamma at outer bins [3.00, 3.00, 3.00, 3.00]  gas: -
+   NGC3607  MEAS      base +0.028  g3+gas +0.026  meas,nogas +0.033  PRIMARY +0.032   gamma at outer bins [2.10, 2.96]  gas: Fukazawa+06 beta-model
+            GC-system extent (published) 62.0 kpc; outermost bin 19.2 kpc
+   NGC4278  g=3       base +0.131  g3+gas +0.131  meas,nogas +0.131  PRIMARY +0.131   gamma at outer bins [3.00, 3.00, 3.00, 3.00, 3.00, 3.00]  gas: -
+   NGC4365  g=3  CENT base +0.205  g3+gas +0.202  meas,nogas +0.205  PRIMARY +0.202   gamma at outer bins [3.00, 3.00, 3.00, 3.00, 3.00]  gas: Fukazawa+06 beta-model
+   NGC4374  g=3  CENT base +0.201  g3+gas +0.199  meas,nogas +0.201  PRIMARY +0.199   gamma at outer bins [3.00]  gas: Lakhchaura+18 (D1)
+   NGC4459  g=3       base -0.024  g3+gas -0.024  meas,nogas -0.024  PRIMARY -0.024   gamma at outer bins [3.00]  gas: -
+   NGC4473  g=3       base +0.063  g3+gas +0.063  meas,nogas +0.063  PRIMARY +0.063   gamma at outer bins [3.00, 3.00, 3.00, 3.00]  gas: -
+   NGC4486  MEAS CENT base +0.275  g3+gas +0.199  meas,nogas +0.218  PRIMARY +0.131   gamma at outer bins [1.93, 1.88, 1.87, 1.90, 2.06, 2.34]  gas: Lakhchaura+18 (D1)
+            M87 gas: Churazov+08 beta-model from 28.0 kpc (measured to 48.6 kpc; continued beyond = EXTRAPOLATED); Lakhchaura last point 28.0 kpc
+   NGC4494  g=3       base -0.103  g3+gas -0.103  meas,nogas -0.103  PRIMARY -0.103   gamma at outer bins [3.00, 3.00, 3.00]  gas: -
+   NGC4526  g=3       base +0.078  g3+gas +0.078  meas,nogas +0.078  PRIMARY +0.078   gamma at outer bins [3.00, 3.00, 3.00, 3.00]  gas: -
+   NGC4649  g=3       base +0.126  g3+gas +0.125  meas,nogas +0.126  PRIMARY +0.125   gamma at outer bins [3.00, 3.00, 3.00, 3.00, 3.00]  gas: Lakhchaura+18 (D1)
+   NGC4697  g=3       base +0.095  g3+gas +0.093  meas,nogas +0.095  PRIMARY +0.093   gamma at outer bins [3.00, 3.00]  gas: Fukazawa+06 beta-model
+   NGC5846  g=3  CENT base +0.213  g3+gas +0.195  meas,nogas +0.213  PRIMARY +0.195   gamma at outer bins [3.00, 3.00, 3.00, 3.00, 3.00]  gas: Lakhchaura+18 (D1)
+   NGC7457  g=3       base +0.112  g3+gas +0.112  meas,nogas +0.112  PRIMARY +0.112   gamma at outer bins [3.00]  gas: -
+
+------------------------------------------------------------------------------------------------------------------------
+4. STATISTICS (mean over galaxies; Z_stat = galaxy SEM; Z_sys adds shared gamma(unmeasured) +-0.5, beta +-0.5, fit errors)
+------------------------------------------------------------------------------------------------------------------------
+  canonical ALL          N=16: +0.0920  stat +-0.0209 (Z_stat +4.41, FAIL CONFIRMED)  | s_gamma 0.0262 s_beta 0.0033 s_meas 0.0289 -> tot +-0.0444 (Z_sys +2.07, WEAKENED)
+  canonical MEASURED     N= 4: +0.0839  stat +-0.0341 (Z_stat +2.46, WEAKENED)  | s_gamma 0.0000 s_beta 0.0058 s_meas 0.1158 -> tot +-0.1208 (Z_sys +0.69, NOT SIGNIFICANT)
+  canonical UNMEASURED   N=12: +0.0947  stat +-0.0261 (Z_stat +3.62, FAIL CONFIRMED)  | s_gamma 0.0350 s_beta 0.0025 s_meas 0.0000 -> tot +-0.0437 (Z_sys +2.16, WEAKENED)
+  canonical NO-CENTRALS  N=12: +0.0620  stat +-0.0210 (Z_stat +2.96, WEAKENED)  | s_gamma 0.0251 s_beta 0.0093 s_meas 0.0385 -> tot +-0.0514 (Z_sys +1.21, NOT SIGNIFICANT)
+  canonical CENTRALS     N= 4: +0.1817  stat +-0.0169 (Z_stat +10.78, FAIL CONFIRMED)  | s_gamma 0.0296 s_beta 0.0145 s_meas 0.0073 -> tot +-0.0377 (Z_sys +4.82, FAIL CONFIRMED)
+  alt       ALL          N=16: +0.0826  stat +-0.0206 (Z_stat +4.01, FAIL CONFIRMED)  | s_gamma 0.0267 s_beta 0.0026 s_meas 0.0290 -> tot +-0.0446 (Z_sys +1.85, NOT SIGNIFICANT)
+  alt       MEASURED     N= 4: +0.0741  stat +-0.0325 (Z_stat +2.28, WEAKENED)  | s_gamma 0.0000 s_beta 0.0051 s_meas 0.1162 -> tot +-0.1207 (Z_sys +0.61, NOT SIGNIFICANT)
+  alt       UNMEASURED   N=12: +0.0854  stat +-0.0259 (Z_stat +3.29, FAIL CONFIRMED)  | s_gamma 0.0355 s_beta 0.0018 s_meas 0.0000 -> tot +-0.0440 (Z_sys +1.94, NOT SIGNIFICANT)
+  alt       NO-CENTRALS  N=12: +0.0532  stat +-0.0208 (Z_stat +2.56, WEAKENED)  | s_gamma 0.0255 s_beta 0.0086 s_meas 0.0386 -> tot +-0.0515 (Z_sys +1.03, NOT SIGNIFICANT)
+  alt       CENTRALS     N= 4: +0.1707  stat +-0.0175 (Z_stat +9.74, FAIL CONFIRMED)  | s_gamma 0.0301 s_beta 0.0154 s_meas 0.0074 -> tot +-0.0388 (Z_sys +4.40, FAIL CONFIRMED)
+  canonical REPORTED (not a decision row) ALL Z_sys without s_meas: +2.73 (WEAKENED)
+  canonical REPORTED (not a decision row) ALL Z_sys with s_meas excluding NGC 1023 (n = 3.15 +- 2.85 -> n-1s = 0.30): +2.73 (WEAKENED)
+  canonical REPORTED (not a decision row) ALL Z_sys without s_gamma: +2.57 (WEAKENED)
+  alt       REPORTED (not a decision row) ALL Z_sys without s_meas: +2.44 (WEAKENED)
+  alt       REPORTED (not a decision row) ALL Z_sys with s_meas excluding NGC 1023 (n = 3.15 +- 2.85 -> n-1s = 0.30): +2.44 (WEAKENED)
+  alt       REPORTED (not a decision row) ALL Z_sys without s_gamma: +2.31 (WEAKENED)
+  canonical measured-galaxy fit-error deltas (dex): NGC1023 max 0.4619; NGC2768 max 0.0065; NGC3607 max 0.0099; NGC4486 max 0.0291
+  alt       measured-galaxy fit-error deltas (dex): NGC1023 max 0.4636; NGC2768 max 0.0066; NGC3607 max 0.0100; NGC4486 max 0.0297
+
+------------------------------------------------------------------------------------------------------------------------
+5. SECONDARY (pre-stated) AND REPORTED ROWS
+------------------------------------------------------------------------------------------------------------------------
+  canonical S1 (local power law at each bin radius): +0.0740  Z_stat +3.16  Z_sys +1.62  (NOT SIGNIFICANT)
+  canonical S2 (rho truncated at the published GC-system extent): +0.0974  Z_stat +4.40  Z_sys +2.16  (WEAKENED)
+  alt       S1 (local power law at each bin radius): +0.0643  Z_stat +2.74  Z_sys +1.40  (NOT SIGNIFICANT)
+  alt       S2 (rho truncated at the published GC-system extent): +0.0881  Z_stat +4.03  Z_sys +1.95  (NOT SIGNIFICANT)
+  canonical Lakhchaura upturned last shell KEPT (CFG57 mechanical rule; unbounded gas)    : ALL -0.4023 Z_stat -1.56  per: NGC4374 -2.17, NGC4486 -2.90, NGC4649 +0.12, NGC5846 -2.31
+  canonical NGC3607 Kartha+16 SB instead of MA                                            : NGC3607 +0.021 (primary +0.032) -> ALL +0.0913 Z_stat +4.35
+  canonical M87 Zhu+14/Peng+08 total Sersic (PROVISIONAL text)                            : NGC4486 +0.210 (primary +0.131) -> ALL +0.0969 Z_stat +4.40
+  canonical M87 Agnello+14 mixture, text beta (b 0, i +0.3, r 0) PROVISIONAL              : NGC4486 +0.121 (primary +0.131) -> ALL +0.0913 Z_stat +4.39
+  canonical M87 Zhu+14 text beta(r) -0.2 -> +0.2 @40 kpc -> 0 @120 kpc (PROVISIONAL, linear): NGC4486 +0.124 (primary +0.131) -> ALL +0.0915 Z_stat +4.40
+  canonical M87 gas outer = cfg57                                                         : NGC4486 +0.171 (primary +0.131) -> ALL +0.0944 Z_stat +4.43
+  canonical M87 gas outer = urban_trunc                                                   : NGC4486 +0.141 (primary +0.131) -> ALL +0.0926 Z_stat +4.42
+  canonical M87 no gas                                                                    : NGC4486 +0.218 (primary +0.131) -> ALL +0.0974 Z_stat +4.39
+  canonical all galaxies without gas (measured slopes only)                               : ALL +0.0991 Z_stat +4.37
+  canonical gamma 3 everywhere, measured gas only                                         : ALL +0.0913 Z_stat +4.16
+  alt       Lakhchaura upturned last shell KEPT (CFG57 mechanical rule; unbounded gas)    : ALL -0.4095 Z_stat -1.59  per: NGC4374 -2.17, NGC4486 -2.90, NGC4649 +0.11, NGC5846 -2.31
+  alt       NGC3607 Kartha+16 SB instead of MA                                            : NGC3607 +0.013 (primary +0.024) -> ALL +0.0819 Z_stat +3.95
+  alt       M87 Zhu+14/Peng+08 total Sersic (PROVISIONAL text)                            : NGC4486 +0.199 (primary +0.118) -> ALL +0.0876 Z_stat +4.02
+  alt       M87 Agnello+14 mixture, text beta (b 0, i +0.3, r 0) PROVISIONAL              : NGC4486 +0.108 (primary +0.118) -> ALL +0.0819 Z_stat +3.99
+  alt       M87 Zhu+14 text beta(r) -0.2 -> +0.2 @40 kpc -> 0 @120 kpc (PROVISIONAL, linear): NGC4486 +0.111 (primary +0.118) -> ALL +0.0821 Z_stat +3.99
+  alt       M87 gas outer = cfg57                                                         : NGC4486 +0.158 (primary +0.118) -> ALL +0.0851 Z_stat +4.04
+  alt       M87 gas outer = urban_trunc                                                   : NGC4486 +0.128 (primary +0.118) -> ALL +0.0832 Z_stat +4.02
+  alt       M87 no gas                                                                    : NGC4486 +0.206 (primary +0.118) -> ALL +0.0881 Z_stat +4.01
+  alt       all galaxies without gas (measured slopes only)                               : ALL +0.0898 Z_stat +4.01
+  alt       gamma 3 everywhere, measured gas only                                         : ALL +0.0819 Z_stat +3.77
+
+------------------------------------------------------------------------------------------------------------------------
+6. VERDICT (decision rule (e) on Z_sys of ALL; headline = the weaker class over the two footings)
+------------------------------------------------------------------------------------------------------------------------
+  canonical: WEAKENED (Z_sys +2.07); alt: NOT SIGNIFICANT (Z_sys +1.85)
+  VERDICT: NOT SIGNIFICANT  [measured-tracer coverage 4/16]
+  PRIMARY/S1 DISAGREE (canonical): primary WEAKENED vs S1 NOT SIGNIFICANT
+  centrals split (not the headline): NO-CENTRALS canonical +0.0620 Z_sys +1.21 (NOT SIGNIFICANT), alt Z_sys +1.03 (NOT SIGNIFICANT); CENTRALS canonical +0.1817 Z_stat +10.78
+
+  7/7 checks pass
