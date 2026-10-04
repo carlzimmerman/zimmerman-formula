@@ -1,0 +1,133 @@
+========================================================================================================================
+CFG326 -- CFG323 extended with Alabi+16 GC density slopes
+frozen criteria: FROZEN_CRITERIA.md (commit c4aff2ac5); base CFG323 (b2e7ec16d / 9ee283199); kernel nu_mono, kappa = 1/2 fixed
+========================================================================================================================
+
+------------------------------------------------------------------------------------------------------------------------
+1. ALABI+16 TRANSCRIPTION (parsed by script from arXiv 1605.06101 LaTeX)
+------------------------------------------------------------------------------------------------------------------------
+  eq:fit_gamma: gamma = (-0.63 +- 0.17) log M* + (9.81 +- 1.94); rms scatter 0.29 +- 0.04
+  tab:summary rows: 23; Fig. 1 caption galaxies: 23; in the CFG55 16 but absent from Alabi: [4459]
+  [PASS] K3 transcription: tab:summary has 23 galaxy rows equal (as a set) to the Fig. 1 caption's 23; eq:fit_gamma gives 2 coefficients + rms
+         rows 23, caption 23, set equal True; spot NGC 4486: log M* 11.53, gamma 2.54
+
+------------------------------------------------------------------------------------------------------------------------
+2. T0 -- is each Alabi gamma the gamma-logM* relation's output? (frozen 1(b); a classification, not a pass/fail)
+------------------------------------------------------------------------------------------------------------------------
+   NGC720           log M* 11.35  gamma 2.66  relation 2.6595  r +0.0005  |r|<=delta 0.0699?  -> RELATION
+   NGC821           log M* 10.97  gamma 2.90  relation 2.8989  r +0.0011  |r|<=delta 0.0680?  -> RELATION
+   NGC1023  (in 16) log M* 10.98  gamma 2.89  relation 2.8926  r -0.0026  |r|<=delta 0.0680?  -> RELATION
+   NGC1400          log M* 11.12  gamma 2.80  relation 2.8044  r -0.0044  |r|<=delta 0.0687?  -> RELATION
+   NGC1407          log M* 11.60  gamma 2.60  relation 2.5020  r +0.0980  |r|<=delta 0.0712?  -> UNATTRIBUTED
+   NGC2768  (in 16) log M* 11.28  gamma 2.70  relation 2.7036  r -0.0036  |r|<=delta 0.0696?  -> RELATION
+   NGC3115          log M* 10.97  gamma 2.89  relation 2.8989  r -0.0089  |r|<=delta 0.0680?  -> RELATION
+   NGC3377  (in 16) log M* 10.44  gamma 3.23  relation 3.2328  r -0.0028  |r|<=delta 0.0653?  -> RELATION
+   NGC3607  (in 16) log M* 11.29  gamma 2.69  relation 2.6973  r -0.0073  |r|<=delta 0.0696?  -> RELATION
+   NGC3608          log M* 10.82  gamma 2.99  relation 2.9934  r -0.0034  |r|<=delta 0.0673?  -> RELATION
+   NGC4278  (in 16) log M* 10.88  gamma 2.95  relation 2.9556  r -0.0056  |r|<=delta 0.0675?  -> RELATION
+   NGC4365  (in 16) log M* 11.48  gamma 2.57  relation 2.5776  r -0.0076  |r|<=delta 0.0706?  -> RELATION
+   NGC4374  (in 16) log M* 11.46  gamma 2.59  relation 2.5902  r -0.0002  |r|<=delta 0.0704?  -> RELATION
+   NGC4473  (in 16) log M* 10.87  gamma 2.96  relation 2.9619  r -0.0019  |r|<=delta 0.0675?  -> RELATION
+   NGC4486  (in 16) log M* 11.53  gamma 2.54  relation 2.5461  r -0.0061  |r|<=delta 0.0708?  -> RELATION
+   NGC4494  (in 16) log M* 11.02  gamma 2.86  relation 2.8674  r -0.0074  |r|<=delta 0.0682?  -> RELATION
+   NGC4526  (in 16) log M* 11.23  gamma 2.73  relation 2.7351  r -0.0051  |r|<=delta 0.0693?  -> RELATION
+   NGC4564          log M* 10.58  gamma 3.14  relation 3.1446  r -0.0046  |r|<=delta 0.0660?  -> RELATION
+   NGC4649  (in 16) log M* 11.56  gamma 2.53  relation 2.5272  r +0.0028  |r|<=delta 0.0710?  -> RELATION
+   NGC4697  (in 16) log M* 11.03  gamma 2.86  relation 2.8611  r -0.0011  |r|<=delta 0.0683?  -> RELATION
+   NGC5846  (in 16) log M* 11.40  gamma 2.62  relation 2.6280  r -0.0080  |r|<=delta 0.0702?  -> RELATION
+   NGC5866          log M* 10.97  gamma 2.89  relation 2.8989  r -0.0089  |r|<=delta 0.0680?  -> RELATION
+   NGC7457  (in 16) log M* 10.28  gamma 3.33  relation 3.3336  r -0.0036  |r|<=delta 0.0645?  -> RELATION
+  T0 summary over all 23: {'RELATION': 22, 'MEASURED': 0, 'UNATTRIBUTED': 1}; max |r| 0.0980
+
+------------------------------------------------------------------------------------------------------------------------
+3. CONTROLS (Alabi OFF)
+------------------------------------------------------------------------------------------------------------------------
+  [PASS] K1 Alabi OFF reproduces CFG323's committed stats (mean, Z_stat, Z_sys; every subset, both footings) within 1e-9 and its verdict class
+         max |diff| re-run namespace 0.0e+00, this lane's scorer 0.0e+00; class NOT SIGNIFICANT vs CFG323 NOT SIGNIFICANT; ALL canonical +0.0920 Z_sys 2.07, alt +0.0826 Z_sys 1.85
+  [PASS] K4 inherited CFG323 check rows (C1-C6, P1) pass again in the re-run namespace
+         7/7: C3; C1; C2; C6; C4; C5; P1
+
+------------------------------------------------------------------------------------------------------------------------
+4. K2 OVERLAP (Alabi gamma vs CFG323's deprojected slope at the outer-bin radii)
+------------------------------------------------------------------------------------------------------------------------
+   NGC1023  Alabi 2.89 (RELATION)  CFG323 <gamma>_outer 3.473 (sigma_323 84.892)  diff -0.583  limit +-169.785  agree
+   NGC2768  Alabi 2.70 (RELATION)  CFG323 <gamma>_outer 2.996 (sigma_323 0.109)  diff -0.296  limit +-0.620  agree
+   NGC3607  Alabi 2.69 (RELATION)  CFG323 <gamma>_outer 2.529 (sigma_323 0.498)  diff +0.161  limit +-1.153  agree
+   NGC4486  Alabi 2.54 (RELATION)  CFG323 <gamma>_outer 1.997 (sigma_323 0.464)  diff +0.543  limit +-1.094  agree
+  [PASS] K2 Alabi vs CFG323 slopes agree on the overlap within 2 sqrt(sigma_A^2 + sigma_323^2)
+         NGC1023 -0.58 vs +-169.78; NGC2768 -0.30 vs +-0.62; NGC3607 +0.16 vs +-1.15; NGC4486 +0.54 vs +-1.09
+
+------------------------------------------------------------------------------------------------------------------------
+5. PRIMARY (frozen: CFG323 profiles where they exist; Alabi gamma only where T0 says MEASURED; gamma 3 elsewhere)
+------------------------------------------------------------------------------------------------------------------------
+  Alabi values classed MEASURED for galaxies without a CFG323 profile: none; UNATTRIBUTED: none
+  PRIMARY    canonical ALL           N=16: +0.0920  stat +-0.0209 (Z_stat +4.41)  | s_gamma 0.0262 s_beta 0.0033 s_meas 0.0289 -> Z_sys +2.07 (WEAKENED)
+  PRIMARY    canonical NO-CENTRALS   N=12: +0.0620  stat +-0.0210 (Z_stat +2.96)  | s_gamma 0.0251 s_beta 0.0093 s_meas 0.0385 -> Z_sys +1.21 (NOT SIGNIFICANT)
+  PRIMARY    canonical CENTRALS      N= 4: +0.1817  stat +-0.0169 (Z_stat +10.78)  | s_gamma 0.0296 s_beta 0.0145 s_meas 0.0073 -> Z_sys +4.82 (FAIL CONFIRMED)
+  PRIMARY    canonical MEASURED      N= 4: +0.0839  stat +-0.0341 (Z_stat +2.46)  | s_gamma 0.0000 s_beta 0.0058 s_meas 0.1158 -> Z_sys +0.69 (NOT SIGNIFICANT)
+  PRIMARY    canonical UNMEASURED    N=12: +0.0947  stat +-0.0261 (Z_stat +3.62)  | s_gamma 0.0350 s_beta 0.0025 s_meas 0.0000 -> Z_sys +2.16 (WEAKENED)
+  PRIMARY    canonical ALABI-COVERED N=11: +0.1054  stat +-0.0261 (Z_stat +4.04)  | s_gamma 0.0351 s_beta 0.0024 s_meas 0.0000 -> Z_sys +2.41 (WEAKENED)
+  PRIMARY    alt       ALL           N=16: +0.0826  stat +-0.0206 (Z_stat +4.01)  | s_gamma 0.0267 s_beta 0.0026 s_meas 0.0290 -> Z_sys +1.85 (NOT SIGNIFICANT)
+  PRIMARY    alt       NO-CENTRALS   N=12: +0.0532  stat +-0.0208 (Z_stat +2.56)  | s_gamma 0.0255 s_beta 0.0086 s_meas 0.0386 -> Z_sys +1.03 (NOT SIGNIFICANT)
+  PRIMARY    alt       CENTRALS      N= 4: +0.1707  stat +-0.0175 (Z_stat +9.74)  | s_gamma 0.0301 s_beta 0.0154 s_meas 0.0074 -> Z_sys +4.40 (FAIL CONFIRMED)
+  PRIMARY    alt       MEASURED      N= 4: +0.0741  stat +-0.0325 (Z_stat +2.28)  | s_gamma 0.0000 s_beta 0.0051 s_meas 0.1162 -> Z_sys +0.61 (NOT SIGNIFICANT)
+  PRIMARY    alt       UNMEASURED    N=12: +0.0854  stat +-0.0259 (Z_stat +3.29)  | s_gamma 0.0355 s_beta 0.0018 s_meas 0.0000 -> Z_sys +1.94 (NOT SIGNIFICANT)
+  PRIMARY    alt       ALABI-COVERED N=11: +0.0961  stat +-0.0259 (Z_stat +3.71)  | s_gamma 0.0356 s_beta 0.0017 s_meas 0.0000 -> Z_sys +2.18 (WEAKENED)
+
+------------------------------------------------------------------------------------------------------------------------
+6. REPORTED ROWS (never decision rows)
+------------------------------------------------------------------------------------------------------------------------
+  R-A16      canonical ALL           N=16: +0.0831  stat +-0.0193 (Z_stat +4.31)  | s_gamma 0.0291 s_beta 0.0028 s_meas 0.0289 -> Z_sys +1.83 (NOT SIGNIFICANT)
+  R-A16      canonical NO-CENTRALS   N=12: +0.0589  stat +-0.0213 (Z_stat +2.76)  | s_gamma 0.0257 s_beta 0.0069 s_meas 0.0385 -> Z_sys +1.15 (NOT SIGNIFICANT)
+  R-A16      canonical CENTRALS      N= 4: +0.1558  stat +-0.0085 (Z_stat +18.35)  | s_gamma 0.0396 s_beta 0.0321 s_meas 0.0073 -> Z_sys +2.99 (WEAKENED)
+  R-A16      canonical MEASURED      N= 4: +0.0839  stat +-0.0341 (Z_stat +2.46)  | s_gamma 0.0000 s_beta 0.0058 s_meas 0.1158 -> Z_sys +0.69 (NOT SIGNIFICANT)
+  R-A16      canonical UNMEASURED    N=12: +0.0828  stat +-0.0239 (Z_stat +3.47)  | s_gamma 0.0388 s_beta 0.0057 s_meas 0.0000 -> Z_sys +1.80 (NOT SIGNIFICANT)
+  R-A16      canonical ALABI-COVERED N=11: +0.0925  stat +-0.0239 (Z_stat +3.87)  | s_gamma 0.0393 s_beta 0.0065 s_meas 0.0000 -> Z_sys +1.99 (NOT SIGNIFICANT)
+  R-A16      alt       ALL           N=16: +0.0736  stat +-0.0190 (Z_stat +3.87)  | s_gamma 0.0297 s_beta 0.0036 s_meas 0.0290 -> Z_sys +1.61 (NOT SIGNIFICANT)
+  R-A16      alt       NO-CENTRALS   N=12: +0.0500  stat +-0.0212 (Z_stat +2.36)  | s_gamma 0.0261 s_beta 0.0063 s_meas 0.0386 -> Z_sys +0.97 (NOT SIGNIFICANT)
+  R-A16      alt       CENTRALS      N= 4: +0.1443  stat +-0.0090 (Z_stat +15.97)  | s_gamma 0.0404 s_beta 0.0332 s_meas 0.0074 -> Z_sys +2.69 (WEAKENED)
+  R-A16      alt       MEASURED      N= 4: +0.0741  stat +-0.0325 (Z_stat +2.28)  | s_gamma 0.0000 s_beta 0.0051 s_meas 0.1162 -> Z_sys +0.61 (NOT SIGNIFICANT)
+  R-A16      alt       UNMEASURED    N=12: +0.0734  stat +-0.0237 (Z_stat +3.10)  | s_gamma 0.0395 s_beta 0.0065 s_meas 0.0000 -> Z_sys +1.58 (NOT SIGNIFICANT)
+  R-A16      alt       ALABI-COVERED N=11: +0.0830  stat +-0.0237 (Z_stat +3.50)  | s_gamma 0.0400 s_beta 0.0074 s_meas 0.0000 -> Z_sys +1.76 (NOT SIGNIFICANT)
+  R-A16rms   canonical ALL           N=16: +0.0831  stat +-0.0193 (Z_stat +4.31)  | s_gamma 0.0165 s_beta 0.0028 s_meas 0.0289 -> Z_sys +2.15 (WEAKENED)
+  R-A16rms   canonical NO-CENTRALS   N=12: +0.0589  stat +-0.0213 (Z_stat +2.76)  | s_gamma 0.0148 s_beta 0.0069 s_meas 0.0385 -> Z_sys +1.25 (NOT SIGNIFICANT)
+  R-A16rms   canonical CENTRALS      N= 4: +0.1558  stat +-0.0085 (Z_stat +18.35)  | s_gamma 0.0216 s_beta 0.0321 s_meas 0.0073 -> Z_sys +3.86 (FAIL CONFIRMED)
+  R-A16rms   alt       ALL           N=16: +0.0736  stat +-0.0190 (Z_stat +3.87)  | s_gamma 0.0168 s_beta 0.0036 s_meas 0.0290 -> Z_sys +1.90 (NOT SIGNIFICANT)
+  R-A16rms   alt       NO-CENTRALS   N=12: +0.0500  stat +-0.0212 (Z_stat +2.36)  | s_gamma 0.0150 s_beta 0.0063 s_meas 0.0386 -> Z_sys +1.06 (NOT SIGNIFICANT)
+  R-A16rms   alt       CENTRALS      N= 4: +0.1443  stat +-0.0090 (Z_stat +15.97)  | s_gamma 0.0221 s_beta 0.0332 s_meas 0.0074 -> Z_sys +3.48 (FAIL CONFIRMED)
+  R-A16all   canonical ALL           N=16: +0.0750  stat +-0.0198 (Z_stat +3.78)  | s_gamma 0.0435 s_beta 0.0099 s_meas 0.0000 -> Z_sys +1.54 (NOT SIGNIFICANT)
+  R-A16all   canonical NO-CENTRALS   N=12: +0.0481  stat +-0.0211 (Z_stat +2.28)  | s_gamma 0.0349 s_beta 0.0009 s_meas 0.0000 -> Z_sys +1.18 (NOT SIGNIFICANT)
+  R-A16all   canonical CENTRALS      N= 4: +0.1555  stat +-0.0088 (Z_stat +17.76)  | s_gamma 0.0694 s_beta 0.0370 s_meas 0.0000 -> Z_sys +1.97 (NOT SIGNIFICANT)
+  R-A16all   alt       ALL           N=16: +0.0653  stat +-0.0196 (Z_stat +3.33)  | s_gamma 0.0443 s_beta 0.0108 s_meas 0.0000 -> Z_sys +1.32 (NOT SIGNIFICANT)
+  R-A16all   alt       NO-CENTRALS   N=12: +0.0390  stat +-0.0210 (Z_stat +1.86)  | s_gamma 0.0355 s_beta 0.0017 s_meas 0.0000 -> Z_sys +0.95 (NOT SIGNIFICANT)
+  R-A16all   alt       CENTRALS      N= 4: +0.1441  stat +-0.0092 (Z_stat +15.64)  | s_gamma 0.0706 s_beta 0.0381 s_meas 0.0000 -> Z_sys +1.78 (NOT SIGNIFICANT)
+  S-A: no UNATTRIBUTED candidates -> row empty
+
+  per galaxy (canonical): primary | R-A16 (Alabi gamma where no CFG323 profile)
+   NGC1023       primary +0.153   R-A16 +0.153   (CFG323 profile)
+   NGC2768       primary +0.019   R-A16 +0.019   (CFG323 profile)
+   NGC3377       primary +0.064   R-A16 +0.080   (Alabi gamma 3.23)
+   NGC3607       primary +0.032   R-A16 +0.032   (CFG323 profile)
+   NGC4278       primary +0.131   R-A16 +0.128   (Alabi gamma 2.95)
+   NGC4365  CENT primary +0.202   R-A16 +0.168   (Alabi gamma 2.57)
+   NGC4374  CENT primary +0.199   R-A16 +0.167   (Alabi gamma 2.59)
+   NGC4459       primary -0.024   R-A16 -0.024   (absent from Alabi -> gamma 3)
+   NGC4473       primary +0.063   R-A16 +0.060   (Alabi gamma 2.96)
+   NGC4486  CENT primary +0.131   R-A16 +0.131   (CFG323 profile)
+   NGC4494       primary -0.103   R-A16 -0.113   (Alabi gamma 2.86)
+   NGC4526       primary +0.078   R-A16 +0.061   (Alabi gamma 2.73)
+   NGC4649       primary +0.125   R-A16 +0.092   (Alabi gamma 2.53)
+   NGC4697       primary +0.093   R-A16 +0.083   (Alabi gamma 2.86)
+   NGC5846  CENT primary +0.195   R-A16 +0.157   (Alabi gamma 2.62)
+   NGC7457       primary +0.112   R-A16 +0.134   (Alabi gamma 3.33)
+
+------------------------------------------------------------------------------------------------------------------------
+7. VERDICT (rule (e) on Z_sys of ALL; the weaker class over the two footings)
+------------------------------------------------------------------------------------------------------------------------
+  canonical: mean +0.0920  Z_stat +4.41  Z_sys +2.07  (WEAKENED)
+  alt      : mean +0.0826  Z_stat +4.01  Z_sys +1.85  (NOT SIGNIFICANT)
+  VERDICT: NOT SIGNIFICANT  [measured-tracer coverage 4/16]  NO NEW MEASURED COVERAGE (Alabi+16 slopes are relation values)
+  splits (not the headline): NO-CENTRALS canonical +0.0620 Z_sys +1.21, alt +0.0532 Z_sys +1.03; CENTRALS canonical +0.1817 Z_sys +4.82, alt +0.1707 Z_sys +4.40
+  reported R-A16 (relation slopes): ALL canonical +0.0831 Z_sys +1.83, alt +0.0736 Z_sys +1.61 (NOT SIGNIFICANT, weaker footing)
+
+  4/4 checks pass
