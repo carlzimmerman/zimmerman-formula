@@ -1,0 +1,171 @@
+CFG319 -- THE SLOWLY MOVING BLACK HOLE (gate G11's named condition) FOR THE FILTERED C-H/K CHASSIS.
+Criteria frozen and committed first: campaign_fresh_gravity/CFG319_moving_black_hole/FROZEN_CRITERIA.md (5c8f4d640).
+
+Chassis (CFG291/CFG318 map): alpha = c14 = alpha_c, beta = c13 = 0, lambda = c2 = c_2; window L340 P1.
+Scope: TEST-KHRONON LIMIT -- the khronon on fixed Schwarzschild (ingoing EF, M = 1). The metric response (O(alpha)
+outside the boundary layer of width ~0.61 M/c_S around the universal horizon, O(lambda) mixing inside it) is not
+included. Stationary O(v) l = 1 perturbation: T = v + H(r) + v F(r) cos(theta), F -> -r (khronon moving at -v).
+
+DERIVED HERE (sympy): the angle-integrated quadratic Lagrangian L2 = sum S_ij F^(i) F^(j) from
+sqrt(-g)[-lambda K^2 - beta K_mn K^mn + alpha a.a] (covariant, with beta) and, separately, without the beta term (C8);
+the linear operators dK and d(a.a); the static background equations from the reduced Lagrangian.
+NUMERICS (cfg319_lib.py): truncated-power-series local-Taylor marching at 30+ digits; Frobenius series at the spin-0
+horizon r_S and at the universal horizon r_UH; matching of the r_S-regular space with the no-r^3 space; UH options.
+
+CFG319_MUTATE=1: the UH boundary condition is set WRONG (the s+ mode is declared admissible). The independent gradient
+check on the marched solution must catch it (rc = 1). Outputs carry _MUTATE.
+Run from anywhere:  python3 campaign_fresh_gravity/CFG319_moving_black_hole/cfg319_moving_bh.py
+
+  *** MUTATE=1: the s+ mode at the universal horizon is DECLARED ADMISSIBLE (wrong boundary condition); the independent gradient check must catch it (rc = 1) ***
+
+  inputs (real_research/g03_audit_2026/L340_filtered_khronon_completion_results.json): alpha_c in [9.624048e-14, 3.200e-09], c_2 in [7.288800e-03, 6.666667e-02]
+  CFG318 dipole: min s_crit/alpha_c = 3.1853e+07
+
+================================================================================================================
+D1  SYMBOLIC: angle-integrated quadratic Lagrangian (covariant, with beta), dK and d(a.a) operators, static equations
+================================================================================================================
+      [derive beta] geometry built 0s
+      [derive beta] second-order pieces 11s
+      [derive beta] M(0, 0) 146s
+      [derive beta] M(0, 1) 187s
+      [derive beta] M(0, 2) 187s
+      [derive beta] M(1, 1) 393s
+      [derive beta] M(1, 2) 466s
+      [derive beta] M(2, 2) 468s
+    covariant derivation with beta: 469 s
+    S22 = M(2,2) = 8*Y**4*(W**2*alpha - Y**2*beta - Y**2*lambda)/(3*(W**2 - Y**2 + 1)**2)
+      [derive no-beta] geometry built 0s
+      [derive no-beta] second-order pieces 2s
+      [derive no-beta] M(0, 0) 12s
+      [derive no-beta] M(0, 1) 14s
+      [derive no-beta] M(0, 2) 14s
+      [derive no-beta] M(1, 1) 35s
+      [derive no-beta] M(1, 2) 44s
+      [derive no-beta] M(2, 2) 44s
+    beta-free derivation: 513 s total
+    static Y-form: A = -2*r**2*(Y**2*r - r + 2)*(Y**2*alpha*r - Y**2*beta*r - Y**2*lambda*r - alpha*r + 2*alpha)
+  [PASS] C8 beta = 0 reduction: the covariant S_ij at beta = 0 equal the beta-free derivation (4 random points); the static K, K_mn K^mn, a.a match the reduced forms K = -2W/r - W', K.K = W'^2 + 2W^2/r^2, a.a = Y'^2
+         measured: max rel dev 0.0; static 4.93e-31
+    dK = k0 F + k1 F' + k2 F'': k0 = Y*(W**2 - Y**2 + 1)**2/2, k2 = -Y**3
+
+================================================================================================================
+RUNS  W5 window points, alpha ladder (lambda = 0.05), RB2019 control point (beta = 0.01), C5 refinement
+================================================================================================================
+    5 runs on 5 processes
+    finished: W5 corner a_max l_min (575.4 s)
+    finished: W5 corner a_max l_max (588.3 s)
+    finished: W5 centre (1208.9 s)
+    finished: W5 corner a_min l_min (1247.9 s)
+    finished: W5 corner a_min l_max (1269.0 s)
+  [PASS] RUNS all point runs completed
+         measured: 0 failed: []
+
+    -- W5 corner a_max l_min: alpha=3.2000e-09 lambda=7.2888e-03 beta=0.0 c_S(test)=1509.221699 (575.4 s)
+       r_S = 1.50040520889046, r_UH = 1.4999994774345, (r_S - r_UH) c_S = 0.6123387173, C = 1.29903824127506
+       exponents r_S ['0.0', '0.9999999831', '1.000000017', '2.0'] (dev 1.69e-8); UH ['-1.6181952174365', '-1.0', '0.0', '0.61819521743645'] (closed-form dev 4.3e-17)
+       bg resid 2.52e-27, bg match 2.9e-24, bg UH check 3.36e-27, Omega dev 2.37e-17, static r_S exponent 0.0, steps [89, 13, 123]
+       sv[R|I] ['2.3441', '0.71083', '0.00024833', '1.8542e-7']
+       option C  (r_S regular, s- removed): c[s-, -1, 0, s+] = ['0.0', '2.75423882102e-6', '-0.0215736575435', '-5.976089724']   singular/regular at r~dS: 2.21678
+       option C' (r_S regular, s+ removed): c[s-, -1, 0, s+] = ['1.68717005671e-8', '-3.08882457709e-7', '0.0051009018664', '0.0']   singular/regular at r~dS: 1.01869
+       UH mode s =   -1.61819521744: dK ~ x^-0.618195, grad dK ~ x^-1.6182, d(a.a) ~ x^-1.6182, grad d(a.a) ~ x^-2.6182, xF smooth False, log-free True -> strongly singular
+       UH mode s =             -1.0: dK ~ x^-5.22363e-9, grad dK ~ x^0.0110682, d(a.a) ~ x^0.00971724, grad d(a.a) ~ x^-7.46034e-5, xF smooth True, log-free True -> regular
+       UH mode s =              0.0: dK ~ x^1.0, grad dK ~ x^8.91522e-9, d(a.a) ~ x^1.00132, grad d(a.a) ~ x^0.00263041, xF smooth True, log-free True -> regular
+       UH mode s =   0.618195217436: dK ~ x^1.6182, grad dK ~ x^0.618195, d(a.a) ~ x^0.618195, grad d(a.a) ~ x^-0.381805, xF smooth False, log-free True -> weakly singular
+       marched option-C solution toward the UH: |grad d(a.a)| grows x2.4782949 per decade (s+ amplitude -5.976089724 -> -5.976089724)
+       exterior r = 6M: F_C = -5.479283582279, F_C' = -5.4792835822774 (rel diff 3.03632e-13); r^2 dK_C = -2.764576694e-8
+
+    -- W5 corner a_max l_max: alpha=3.2000e-09 lambda=6.6667e-02 beta=0.0 c_S(test)=4564.354646 (588.3 s)
+       r_S = 1.50013409564401, r_UH = 1.49999993401537, (r_S - r_UH) c_S = 0.612361253, C = 1.29903812050942
+       exponents r_S ['0.0', '(1.0 - 1.110447718e-8j)', '(1.0 + 1.110447718e-8j)', '2.0'] (dev 1.11e-8); UH ['-1.618087314655', '-1.0', '0.0', '0.61808731465495'] (closed-form dev 8.36e-17)
+       bg resid 6.61e-28, bg match 3.29e-24, bg UH check 1.28e-27, Omega dev 5.28e-16, static r_S exponent -1.97215e-31, steps [99, 13, 123]
+       sv[R|I] ['2.3442', '0.71034', '0.00075318', '1.696e-6']
+       option C  (r_S regular, s- removed): c[s-, -1, 0, s+] = ['0.0', '5.76849551998e-7', '-0.0136364466474', '-7.48296590133']   singular/regular at r~dS: 2.21773
+       option C' (r_S regular, s+ removed): c[s-, -1, 0, s+] = ['1.78040655418e-9', '-6.39449722035e-8', '0.00321090972496', '0.0']   singular/regular at r~dS: 1.02265
+       UH mode s =   -1.61808731465: dK ~ x^-0.618087, grad dK ~ x^-1.61809, d(a.a) ~ x^-1.61809, grad d(a.a) ~ x^-2.61809, xF smooth False, log-free True -> strongly singular
+       UH mode s =             -1.0: dK ~ x^-1.81814e-9, grad dK ~ x^0.0318369, d(a.a) ~ x^0.0281099, grad d(a.a) ~ x^-0.000145123, xF smooth True, log-free True -> regular
+       UH mode s =              0.0: dK ~ x^1.0, grad dK ~ x^3.07443e-9, d(a.a) ~ x^1.00397, grad d(a.a) ~ x^0.00786227, xF smooth True, log-free True -> regular
+       UH mode s =   0.618087314655: dK ~ x^1.61809, grad dK ~ x^0.618087, d(a.a) ~ x^0.618087, grad d(a.a) ~ x^-0.381913, xF smooth False, log-free True -> weakly singular
+       marched option-C solution toward the UH: |grad d(a.a)| grows x2.4788458 per decade (s+ amplitude -7.482965901 -> -7.482965901)
+       exterior r = 6M: F_C = -5.4792835692328, F_C' = -5.4792835692327 (rel diff 1.31202e-14); r^2 dK_C = -3.022564817e-9
+
+    -- W5 centre: alpha=1.7549e-11 lambda=2.2044e-02 beta=0.0 c_S(test)=35441.6768 (1208.9 s)
+       r_S = 1.5000172769074, r_UH = 1.49999999863367, (r_S - r_UH) c_S = 0.6123709932, C = 1.29903810592272
+       exponents r_S ['0.0', '0.9999999873', '1.000000013', '2.0'] (dev 1.27e-8); UH ['-1.6180408571574', '-1.0', '0.0', '0.61804085715739'] (closed-form dev 2.95e-17)
+       bg resid 5.94e-38, bg match 1.11e-34, bg UH check 2.91e-30, Omega dev 3.09e-24, static r_S exponent 0.0, steps [264, 31, 297]
+       sv[R|I] ['2.3443', '0.71013', '3.2128e-5', '5.6059e-7']
+       option C  (r_S regular, s- removed): c[s-, -1, 0, s+] = ['0.0', '3.18132367356e-8', '-0.00583314943418', '-11.359443328']   singular/regular at r~dS: 2.21837
+       option C' (r_S regular, s+ removed): c[s-, -1, 0, s+] = ['2.76461164574e-11', '-3.50545605644e-9', '0.00137181025338', '0.0']   singular/regular at r~dS: 1.0239
+       UH mode s =   -1.61804085716: dK ~ x^-0.618041, grad dK ~ x^-1.61804, d(a.a) ~ x^-1.61804, grad d(a.a) ~ x^-2.61804, xF smooth False, log-free True -> strongly singular
+       UH mode s =             -1.0: dK ~ x^-3.52381e-10, grad dK ~ x^0.172471, d(a.a) ~ x^0.157232, grad d(a.a) ~ x^-5.12044e-5, xF smooth True, log-free True -> regular
+       UH mode s =              0.0: dK ~ x^1.0, grad dK ~ x^5.61425e-10, d(a.a) ~ x^1.02903, grad d(a.a) ~ x^0.0545612, xF smooth True, log-free True -> regular
+       UH mode s =   0.618040857157: dK ~ x^1.61804, grad dK ~ x^0.618041, d(a.a) ~ x^0.618041, grad d(a.a) ~ x^-0.381959, xF smooth False, log-free True -> weakly singular
+       marched option-C solution toward the UH: |grad d(a.a)| grows x2.4790899 per decade (s+ amplitude -11.35944333 -> -11.35944333)
+       exterior r = 6M: F_C = -5.4792835676583, F_C' = -5.4792835676583 (rel diff 3.96273e-17); r^2 dK_C = -5.013093569e-11
+
+    -- W5 corner a_min l_min: alpha=9.6240e-14 lambda=7.2888e-03 beta=0.0 c_S(test)=275200.4504 (1247.9 s)
+       r_S = 1.50000222515905, r_UH = 1.49999999997283, (r_S - r_UH) c_S = 0.6123722499, C = 1.29903810568074
+       exponents r_S ['0.0', '(1.0 - 1.44592951e-8j)', '(1.0 + 1.44592951e-8j)', '2.0'] (dev 1.45e-8); UH ['-1.6180348733113', '-1.0', '0.0', '0.61803487331126'] (closed-form dev 6.65e-17)
+       bg resid 8.53e-38, bg match 1.62e-34, bg UH check 4.83e-32, Omega dev 9.52e-22, static r_S exponent 1.14794e-41, steps [306, 31, 297]
+       sv[R|I] ['2.3443', '0.7101', '1.3964e-6', '1.8164e-7']
+       option C  (r_S regular, s- removed): c[s-, -1, 0, s+] = ['0.0', '1.75318428106e-9', '-0.00249562337168', '-17.2489846229']   singular/regular at r~dS: 2.2185
+       option C' (r_S regular, s+ removed): c[s-, -1, 0, s+] = ['4.2921933137e-13', '-1.9299491933e-10', '0.000586878331832', '0.0']   singular/regular at r~dS: 1.02398
+       UH mode s =   -1.61803487331: dK ~ x^-0.618035, grad dK ~ x^-1.61803, d(a.a) ~ x^-1.61803, grad d(a.a) ~ x^-2.61803, xF smooth False, log-free True -> strongly singular
+       UH mode s =             -1.0: dK ~ x^-1.63608e-10, grad dK ~ x^0.493313, d(a.a) ~ x^0.469612, grad d(a.a) ~ x^-0.000115408, xF smooth True, log-free True -> regular
+       UH mode s =              0.0: dK ~ x^1.0, grad dK ~ x^2.3782e-10, d(a.a) ~ x^1.1611, grad d(a.a) ~ x^0.250915, xF smooth True, log-free True -> regular
+       UH mode s =   0.618034873311: dK ~ x^1.61803, grad dK ~ x^0.618035, d(a.a) ~ x^0.618035, grad d(a.a) ~ x^-0.381965, xF smooth False, log-free True -> weakly singular
+       marched option-C solution toward the UH: |grad d(a.a)| grows x2.4791227 per decade (s+ amplitude -17.24898462 -> -17.24898462)
+       exterior r = 6M: F_C = -5.4792835676322, F_C' = -5.4792835676322 (rel diff 1.20227e-19); r^2 dK_C = -8.314498328e-13
+
+    -- W5 corner a_min l_max: alpha=9.6240e-14 lambda=6.6667e-02 beta=0.0 c_S(test)=832291.5416 (1269.0 s)
+       r_S = 1.50000073576343, r_UH = 1.49999999999676, (r_S - r_UH) c_S = 0.6123723742, C = 1.2990381056771
+       exponents r_S ['0.0', '0.9999999767', '1.000000023', '2.0'] (dev 2.33e-8); UH ['-1.618034281234', '-1.0', '0.0', '0.61803428123402'] (closed-form dev 4.65e-18)
+       bg resid 1.7e-38, bg match 2.03e-34, bg UH check 5.28e-33, Omega dev 2.22e-20, static r_S exponent 0.0, steps [329, 31, 297]
+       sv[R|I] ['2.3443', '0.7101', '4.9442e-6', '1.4191e-6']
+       option C  (r_S regular, s- removed): c[s-, -1, 0, s+] = ['0.0', '3.66544081116e-10', '-0.00157795551791', '-21.6133794662']   singular/regular at r~dS: 2.21852
+       option C' (r_S regular, s+ removed): c[s-, -1, 0, s+] = ['4.52824805073e-14', '-4.03455828184e-11', '0.000371078454833', '0.0']   singular/regular at r~dS: 1.02397
+       UH mode s =   -1.61803428123: dK ~ x^-0.618034, grad dK ~ x^-1.61803, d(a.a) ~ x^-1.61803, grad d(a.a) ~ x^-2.61803, xF smooth False, log-free True -> strongly singular
+       UH mode s =             -1.0: dK ~ x^-1.4493e-10, grad dK ~ x^0.683956, d(a.a) ~ x^0.662197, grad d(a.a) ~ x^-8.07873e-6, xF smooth True, log-free True -> regular
+       UH mode s =              0.0: dK ~ x^1.0, grad dK ~ x^2.05802e-10, d(a.a) ~ x^1.31436, grad d(a.a) ~ x^0.431649, xF smooth True, log-free True -> regular
+       UH mode s =   0.618034281234: dK ~ x^1.61803, grad dK ~ x^0.618034, d(a.a) ~ x^0.618034, grad d(a.a) ~ x^-0.381966, xF smooth False, log-free True -> weakly singular
+       marched option-C solution toward the UH: |grad d(a.a)| grows x2.4791261 per decade (s+ amplitude -21.61337947 -> -21.61337947)
+       exterior r = 6M: F_C = -5.4792835676318, F_C' = -5.4792835676318 (rel diff 5.25474e-21); r^2 dK_C = -9.090407857e-14
+
+================================================================================================================
+CONTROLS
+================================================================================================================
+  [PASS] C4 Frobenius: the leading coefficient vanishes to order 1 at r_S and 4 at the UH; UH exponents equal the closed form s(s+1)(2 y1^2 s^2 + 2 y1^2 s - (W0^2+1)^2) = 0 to 1e-10; r_S exponents {0, 1, 1, 2} to 1e-6; the static r_S exponent is 0 (all runs)
+         measured: max UH dev (beta = 0 runs) 8.4e-17; max r_S dev 2.3e-08; max |static exp| 2.0e-31; zero orders (1 at r_S, 4 at UH) confirmed: dropped <= 6.9e-31
+         reading:  the UH closed form is the beta = 0 one; the beta = 0.01 control run is exempt from that comparison only
+  [PASS] C6 Hamiltonian structure: symplectic products of the marched r_S-regular solutions constant to 1e-12 relative (all runs)
+         measured: max dev 5.3e-16
+  [PASS] C7 background: two-sided matching residual < 1e-15; inward march vs UH series < 1e-14; r_m match of the O(v) marches < 1e-14 (all runs)
+         measured: max resid 2.5e-27, UH 3.4e-27, r_m 3.3e-24
+
+================================================================================================================
+VERDICT INPUTS  (frozen rule, section 5)
+================================================================================================================
+    W5 corner a_max l_min: UH kinds [s-, -1, 0, s+] = ['strongly singular', 'regular', 'regular', 'regular']; option C singular/regular ratio 2.21678 -> fully regular: True; option C admissible: True
+    W5 corner a_max l_max: UH kinds [s-, -1, 0, s+] = ['strongly singular', 'regular', 'regular', 'regular']; option C singular/regular ratio 2.21773 -> fully regular: True; option C admissible: True
+    W5 corner a_min l_min: UH kinds [s-, -1, 0, s+] = ['strongly singular', 'regular', 'regular', 'regular']; option C singular/regular ratio 2.2185 -> fully regular: True; option C admissible: True
+    W5 corner a_min l_max: UH kinds [s-, -1, 0, s+] = ['strongly singular', 'regular', 'regular', 'regular']; option C singular/regular ratio 2.21852 -> fully regular: True; option C admissible: True
+    W5 centre: UH kinds [s-, -1, 0, s+] = ['strongly singular', 'regular', 'regular', 'regular']; option C singular/regular ratio 2.21837 -> fully regular: True; option C admissible: True
+  [FAIL] MUTATE: the bookkeeping (s+ declared admissible) claims a fully regular moving BH, but the independent check on the marched option-C solution finds grad d(a.a) diverging toward the UH -> contradiction flagged
+         measured: bookkeeping regular [True, True, True, True, True]; marched divergence [True, True, True, True, True]
+         reading:  required to FAIL in MUTATE (rc = 1)
+    dipole W5 corner a_max l_min: |r^2 dK| proxy = 2.765e-08, x10 = 2.765e-07 vs s_crit = 1.019e-01 -> pass (proxy: the test-khronon limit has no metric response)
+    dipole W5 corner a_max l_max: |r^2 dK| proxy = 3.023e-09, x10 = 3.023e-08 vs s_crit = 5.032e-01 -> pass (proxy: the test-khronon limit has no metric response)
+    dipole W5 corner a_min l_min: |r^2 dK| proxy = 8.314e-13, x10 = 8.314e-12 vs s_crit = 1.376e+00 -> pass (proxy: the test-khronon limit has no metric response)
+    dipole W5 corner a_min l_max: |r^2 dK| proxy = 9.090e-14, x10 = 9.090e-13 vs s_crit = 6.795e+00 -> pass (proxy: the test-khronon limit has no metric response)
+    dipole W5 centre: |r^2 dK| proxy = 5.013e-11, x10 = 5.013e-10 vs s_crit = 8.452e-01 -> pass (proxy: the test-khronon limit has no metric response)
+    W5 corner a_max l_min: r_UH = 1.499999477 M, r_S - r_UH = 4.057e-04 M (inside r = 2M); for 10 Msun, v = 1e-3: khronon gradient order-one at x < 4.08e-08 M (6.02e-04 m); curvature order-one (alpha v amplitude) at x < 2.20e-29 M (3.25e-25 m)
+    W5 corner a_max l_max: r_UH = 1.499999934 M, r_S - r_UH = 1.342e-04 M (inside r = 2M); for 10 Msun, v = 1e-3: khronon gradient order-one at x < 7.37e-08 M (1.09e-03 m); curvature order-one (alpha v amplitude) at x < 4.04e-29 M (5.96e-25 m)
+    W5 corner a_min l_min: r_UH = 1.500000000 M, r_S - r_UH = 2.225e-06 M (inside r = 2M); for 10 Msun, v = 1e-3: khronon gradient order-one at x < 6.58e-07 M (9.71e-03 m); curvature order-one (alpha v amplitude) at x < 5.26e-40 M (7.77e-36 m)
+    W5 corner a_min l_max: r_UH = 1.500000000 M, r_S - r_UH = 7.358e-07 M (inside r = 2M); for 10 Msun, v = 1e-3: khronon gradient order-one at x < 1.19e-06 M (1.75e-02 m); curvature order-one (alpha v amplitude) at x < 9.50e-40 M (1.40e-35 m)
+    W5 centre: r_UH = 1.499999999 M, r_S - r_UH = 1.728e-05 M (inside r = 2M); for 10 Msun, v = 1e-3: khronon gradient order-one at x < 2.20e-07 M (3.25e-03 m); curvature order-one (alpha v amplitude) at x < 1.46e-34 M (2.16e-30 m)
+
+================================================================================================================
+VERDICT (frozen rule): PASS
+================================================================================================================
+
+5/6 checks pass
+rc=1
