@@ -204,3 +204,12 @@ Scripts re-run by me (exit 0). Nothing derived; κ = ½ stays FITTED.
 | B3 modified horizon equations | f(R), Horndeski stealth, Rastall, Lovelock, 4D EGB | nothing new + one structural no-go | any theory with an SdS-form static vacuum has exactly 1 − 2κr_h = Λ_e r_h², so (κr_h, Λr_h²) = (½, 8π) is excluded for every coupling; only 4D Glavan-Lin/EGB with α = −(8π/3)r_h² reaches it, with G_eff < 0, a solution ending at 1.24 r_h, and the coupling tied to a₀ by hand (re-inserts the coefficient); the factor 4 is rigid (8π/2π from the first law); Einstein-aether, Horava, AeST, TeVeS, BIMOND and the record's CA5/V0 not computed |
 | B4 MOND-sector object | phantom-density radius, zero-force, hydrostatic cap, wall/slab | sharp no-go | every object leaves one free scale; 0/18 phantom roots, 0/18 zero-force roots, 0/3 energy roots within 1% of 1/√(32π) (decoy rate 2.6%); masses with r* = r_M or r_a0/2 are defined by a₀ (tautological); stress cap gives P_c = 3P_Λ for every ρ so ρ_Λ/P_Λ = 32π cannot be an equilibrium output; a φ⁴ kink gives R*/δ = Z² but δ is free |
 **Net.** After p12 the 'physical bridge' options are closed as far as the declared principles reach: a local one is impossible (p12), a global one gives only algebraic coincidences (B1), a modified horizon equation re-inserts the coefficient (B3), and a MOND-sector object leaves a free scale (B4).
+
+## 19. Is the "actual" horizon the wrong one? Real LambdaCDM horizons (`p14`, 4/4; MUTATE 3/4, exit 1) -- 2026-10-04
+Pure de Sitter gives Lambda A = 12 pi exactly; that is a metric identity, not an error. But our universe is not pure de Sitter, so `p14` puts
+its three real horizons (Planck 2018) against 32 pi^2. Needed radius: sqrt(8 pi/Lambda) = 50.4 Gly.
+- Hubble (14.4 Gly) and event (16.6 Gly) horizons miss by a factor 9-12.
+- **The particle horizon (46.2 Gly) gets within 16%: ratio 0.84, implied a0 = c^2/(2 R_p) = 1.03e-10, between the two footings.**
+- But it is not a law of Lambda: R_p grows with time, so this a0 changes with redshift: a0(2.5)/a0(0) = 6.0, steeper than the a0 ~ H(z) rival (3.75),
+  and the opposite of FLAT. It is an epoch coincidence (we live when R_p ~ 2.7 R_dS). As a hypothesis it is falsifiable by the same a0(z) data;
+  the framework's FLAT law and this one cannot both hold. **kappa = 1/2 stays FITTED.**
