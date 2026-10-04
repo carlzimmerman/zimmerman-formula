@@ -36,6 +36,7 @@ groups = [
         ("High-z on halo-free inputs", "UNDEC", "RC100 on the flat line · CFG303"),
         ("CRISTAL z~5 / ALESS 122.1", "UNDEC", "stress tests: not robust · CFG307/308"),
         ("Gaia DR4 wide binaries", "OPEN", "decides 2 Dec 2026 · prereg"),
+        ("Structure growth, candidate B", "PASS", "as declared = LCDM growth; acc. door fails · CFG324"),
         ("Structure growth, chassis alone", "FAIL", "~7x too fast by z~6; CMB lensing excludes · L341/audit"),
     ]),
     ("The deep 'why'", [

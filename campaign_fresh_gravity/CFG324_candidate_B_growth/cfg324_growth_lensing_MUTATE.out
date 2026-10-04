@@ -1,0 +1,108 @@
+CFG324 part 1 -- CANDIDATE B'S LARGE-SCALE GROWTH, derived per reading of B's declared rule, scored on Planck 2018 CMB lensing.
+
+Frozen criteria: FROZEN_CRITERIA.md in this folder (committed alone, 197ee7c08).  kappa = 1/2 FITTED and fixed; both footings
+(9.3603e-11 / 1.1312e-10 m/s^2); nu_mono.  The cold component (Omega_c h^2 = 0.1200) is kept in every reading: the mass is
+still required and it is not a particle species.  Nothing here says the theory is closed.
+
+READINGS (never pooled; FROZEN_CRITERIA section 1):
+  R1  bound-only switch (T3, Delta(<r) >= Delta_ta) + identity bookkeeping (T5) + FG001  -- B as declared
+  R2  bound-only switch + ADDITIVE bookkeeping (the bound regions' phantom adds; CFG4_switch H6 / S5), variants est and min
+  R3  acceleration door (ON where y_b > y_th <= 2.1e-5; CFG4 H3 field-strength row, 09-26 'all doors', MS1): baryon-sourced
+      nu_mono boost on the whole linear web from z = 100
+CONTROLS: C1 LCDM (XR26 chi^2, Limber vs CLASS, ODE vs CLASS D); C2 the chassis 'all matter feels nu_mono' (audit harness);
+C4 R3's premise (delta_b/delta_cdm at z = 100); C5 the harness's nu_mono = FP1's.  MUTATE (CFG324_MUTATE=1): R1's growth
+boosted x2 in amplitude for z <= 10; its lensing row must FAIL (rc = 1).
+
+Run from the repository root:  python3 campaign_fresh_gravity/CFG324_candidate_B_growth/cfg324_growth_lensing.py
+
+  *** MUTATE=1: R1's growth is boosted x2 in amplitude for z <= 10 (P x 4, f sigma_8 x 2); R1's lensing row must FAIL ***
+
+  inputs: XR26 Planck 2018 (h = 0.67332); lensing gate 1.011 +- 0.028 (8-400, 9 MV bins); CFG4_switch D1 turnaround table z = 0-3; CFG4_target phantom budget at x_e = 0.4: canonical Omega_ph(z=0) 0.2303, (z=0.25) 0.1897; alt Omega_ph(z=0) 0.2656, (z=0.25) 0.2188
+
+==============================================================================================================
+C1  CONTROLS: CLASS at XR26's parameters (lensing chi^2, amplitude), this lane's Limber vs CLASS, the growth ODE vs CLASS D(z)
+==============================================================================================================
+    LCDM: chi^2 10.1456 (XR26 committed 10.1456); amplitude 1.0000, pull -0.39 sigma; sigma_8 0.8116 (5 s)
+  [PASS] C1a CONTROL: CLASS at XR26's parameters reproduces XR26's LCDM lensing chi^2 (to 1e-3) and lies within 2 sigma of Planck's 1.011 +- 0.028
+         measured: chi^2 10.14561 vs 10.14561; pull -0.39
+    Limber (halofit, z <= 50) / CLASS C_L^pp averaged over 8-400: 1.0015
+  [PASS] C1b CONTROL: this lane's Limber integral on CLASS's halofit P(k, z) agrees with CLASS's C_L^pp to <= 1% averaged over 8-400
+         measured: ratio 1.0015
+    D(z)/D(0): ODE z=0: 1.0000, z=0.5: 0.7693, z=1: 0.6074, z=2: 0.4180, z=3: 0.3163, z=5: 0.2121 | CLASS 1.0000, 0.7693, 0.6074, 0.4180, 0.3164, 0.2121
+  [PASS] C1c CONTROL: the R1 growth ODE on CLASS's background matches CLASS's D(z)/D(0) to <= 0.5% for z <= 5
+         measured: max |dev| 2.27e-05
+
+==============================================================================================================
+C2  CONTROL: the chassis 'all matter feels nu_mono' in the audit's harness (L341's machinery) reproduces sigma_8 and its lensing exclusion
+==============================================================================================================
+  [PASS] C5 CONTROL: the harness's nu_mono (L341) equals FP1's committed nu_mono (CFG4_common) on y = 1e-6..1e3
+         measured: max relative difference 0.00e+00
+    chassis canonical: sigma_8 23.321; growth ratio at z = 0/1/2/5: 28.79/17.96/12.98/7.48; lensing amplitude 223.47 (linear base, pull +7945) / 227.30 (halofit)
+    chassis alt      : sigma_8 27.483; growth ratio at z = 0/1/2/5: 33.93/21.02/15.12/8.60; lensing amplitude 305.69 (linear base, pull +10881) / 311.02 (halofit)
+  [PASS] C2a CONTROL: the harness reproduces the audit's chassis sigma_8 = 23.32 / 27.48 (canonical / alt) to 1%
+         measured: 23.321 / 27.483
+  [PASS] C2b CONTROL: the chassis's CMB-lensing amplitude is > 2 sigma above Planck on the linear base on both footings (the audit / FP22 L22j exclusion)
+         measured: canonical: 223.5 (+7945 sigma); alt: 305.7 (+10881 sigma)
+
+==============================================================================================================
+C4  R3's PREMISE: baryons have caught up with the cold component by z = 100 (CLASS transfer functions)
+==============================================================================================================
+    delta_b / delta_cdm at z = 100, k = 0.1 h/Mpc: 0.6383
+    (reported, context) the same ratio at k = 0.02: 0.860, 0.05: 0.644, 0.2: 0.748, 0.5: 0.709, 1: 0.710 h/Mpc
+  [FAIL] C4 CONTROL (R3 premise): CLASS delta_b/delta_cdm >= 0.9 at z = 100 for k = 0.1 h/Mpc
+         measured: 0.6383
+
+==============================================================================================================
+H1  IS THE LARGE-SCALE WEB 'BOUND' BY B'S DEFINITION?  Press-Schechter turned-around mass fraction f_ta(R, z) with the record's delta_lin,ta(z)
+==============================================================================================================
+    R =    8 Mpc/h: sigma(R, 0) = 0.812; f_ta at z = 0/1/2 = 1.16e-01/2.22e-02/1.44e-03
+    R =   20 Mpc/h: sigma(R, 0) = 0.394; f_ta at z = 0/1/2 = 1.22e-03/2.53e-06/5.45e-11
+    R =   50 Mpc/h: sigma(R, 0) = 0.155; f_ta at z = 0/1/2 = 2.03e-16/5.73e-33/2.11e-62
+  [PASS] H1 R1/R2 PREMISE: the large-scale web is unbound by T3 (f_ta(R >= 20 Mpc/h, z = 0) < 0.05): the switch is off on every linear mode
+         measured: f_ta(20) = 1.22e-03, f_ta(50) = 2.03e-16; at 8 Mpc/h 0.116
+
+==============================================================================================================
+H2  R1 (B as declared): bound-only switch + identity -> D'' + (2 + dlnH/dN) D' = 1.5 Omega_cb D, exactly LCDM on every linear mode
+==============================================================================================================
+    [MUTATE] R1's amplitude x2 for z <= 10 (P x 4)
+    lensing: linear base 3.8093 (pull +99.94, chi^2 12162.81); halofit base 3.8114 (pull +100.02, chi^2 12181.44)
+    in-halo redistribution envelope (reported): a fully linear C_L^pp gives 0.9925, so |dA| <= 0.0075 (0.27 sigma)
+    f sigma_8(z = 0) = 0.8544; RSD chi^2 761.32 vs LCDM 7.29 (d +754.03)
+  [FAIL] H2 R1 CMB LENSING: within 2 sigma of Planck 2018 (8-400) on the linear and halofit bases (pre-declared EXPECT TRUE, P 0.9)
+         measured: verdict FAIL: linear 3.8093 (+99.94), halofit 3.8114 (+100.02); envelope 0.0075
+  [FAIL] (reported) H2b (reported) R1 RSD: Delta chi^2 vs LCDM <= 4 over the 8 typed f sigma_8 points (gate 3.03)
+         measured: +754.03
+
+==============================================================================================================
+H3  R2: bound-only + ADDITIVE phantom: D'' + (2 + dlnH/dN) D' = 1.5 Omega_cb [1 + Omega_ph(z)/Omega_m] D; lensing source x [1 + Omega_ph/Omega_m]
+==============================================================================================================
+    canonical R2-est: Omega_ph/Omega_m at z = 0/0.25/0.5/1/2 = 0.730/0.602/0.496/0.323/0.147; growth ratio z = 0/1 1.130/1.035; lensing 1.575 (lin, +20.1) / 1.589 (NL, +20.6) -> FAIL; f sigma_8(0) 0.612; RSD d chi^2 +49.9
+    canonical R2-min: Omega_ph/Omega_m at z = 0/0.25/0.5/1/2 = 0.730/0.602/0.000/0.000/0.000; growth ratio z = 0/1 1.008/1.000; lensing 1.038 (lin, +1.0) / 1.047 (NL, +1.3) -> PASS; f sigma_8(0) 0.484; RSD d chi^2 +1.1
+    alt       R2-est: Omega_ph/Omega_m at z = 0/0.25/0.5/1/2 = 0.842/0.694/0.573/0.372/0.169; growth ratio z = 0/1 1.151/1.041; lensing 1.687 (lin, +24.2) / 1.705 (NL, +24.8) -> FAIL; f sigma_8(0) 0.642; RSD d chi^2 +66.3
+    alt       R2-min: Omega_ph/Omega_m at z = 0/0.25/0.5/1/2 = 0.842/0.694/0.000/0.000/0.000; growth ratio z = 0/1 1.010/1.000; lensing 1.045 (lin, +1.2) / 1.056 (NL, +1.6) -> PASS; f sigma_8(0) 0.493; RSD d chi^2 +1.3
+  [FAIL] (reported) H3a (reported) R2-est CMB LENSING within 2 sigma on both bases, both footings (pre-declared: est EXPECT FALSE P 0.7; min UNCERTAIN)
+         measured: canonical: 1.575/1.589 FAIL; alt: 1.687/1.705 FAIL
+  [PASS] (reported) H3b (reported) R2-min CMB LENSING within 2 sigma on both bases, both footings (pre-declared: est EXPECT FALSE P 0.7; min UNCERTAIN)
+         measured: canonical: 1.038/1.047 PASS; alt: 1.045/1.056 PASS
+
+==============================================================================================================
+H4  R3: the acceleration door: the whole web ON (y_b > y_th), baryon-sourced boost 1 - f_b + f_b nu_mono(y_b), from z = 100
+==============================================================================================================
+    canonical: y_b at z = 100/10/2/0 = 7.26e-02/1.66e-02/9.67e-03/4.97e-03 (y_th <= 2.1e-5: ON throughout); nu_mono(y_b) = 4.2/8.3/10.7/14.7; sigma_8 7.25; growth ratio z = 0/1/2/5 8.95/6.04/4.64/3.00; lensing 25.99 (lin, +892) / 26.34 -> FAIL; f sigma_8(0) 7.152
+    alt      : y_b at z = 100/10/2/0 = 6.00e-02/1.46e-02/8.88e-03/4.67e-03 (y_th <= 2.1e-5: ON throughout); nu_mono(y_b) = 4.6/8.8/11.1/15.1; sigma_8 8.23; growth ratio z = 0/1/2/5 10.16/6.77/5.15/3.26; lensing 32.46 (lin, +1123) / 32.92 -> FAIL; f sigma_8(0) 8.233
+  [PASS] (reported) H4a (reported) R3's switch is ON across the whole linear web (y_b > 2.1e-5 at every z <= 100, both footings)
+         measured: canonical: min y_b 4.97e-03; alt: min y_b 4.67e-03
+  [FAIL] (reported) H4b (reported) R3 CMB LENSING within 2 sigma on both bases, both footings (pre-declared EXPECT FALSE, P 0.9)
+         measured: canonical: 25.99 FAIL; alt: 32.46 FAIL
+
+==============================================================================================================
+SUMMARY: lensing per reading (the weaker footing decides; velocities in cfg324_velocities.py)
+==============================================================================================================
+    R1     : lensing FAIL
+    R2-est : lensing FAIL
+    R2-min : lensing PASS
+    R3     : lensing FAIL
+    R2     : lensing NOT DETERMINED
+
+  9/14 checks pass; load-bearing failures: 2; wrote cfg324_growth_lensing_MUTATE_results.json (364 s)
+rc = 1

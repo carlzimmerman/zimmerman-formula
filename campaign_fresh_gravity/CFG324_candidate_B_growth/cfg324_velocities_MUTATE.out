@@ -1,0 +1,78 @@
+CFG324 part 2 -- PECULIAR VELOCITIES: 6dFGSv fundamental-plane distances against the 2M++ density cube -> f sigma_8 at z ~ 0.04,
+compared with each reading's prediction from part 1 (cfg324_growth_lensing_results.json).
+
+Frozen criteria: FROZEN_CRITERIA.md (197ee7c08), section 3.2 and 4.  Data on disk only: real_research/data/fp_6dfgs_campbell2014.tsv
+(J band, Js = 1) and real_research/data/twompp_density.npy.  No downloads.  kappa = 1/2 fixed; the readings' a0 dependence enters
+only through part 1's predictions.
+
+Model: log R_e,i = a log sigma_0 + b log I_e + c + eta_i,  eta_i = -log10(1 - v_i/cz_i),  v_i = beta u_i + V_ext . rhat_i,
+u_i = the radial beta = 1 velocity from the cube (v(k) = i 100 delta(k) kvec/k^2 km/s), least squares in log R_e.
+f sigma_8,obs = beta_corrected x sigma_8,g,lin (the cube's own top-hat 8 Mpc/h rms, smoothing and nonlinear corrections).
+MUTATE (CFG324_MUTATE=1): R1's prediction x 2 (growth amplitude x2); R1's velocity row must FAIL (rc = 1).
+
+Run from the repository root (after part 1):  python3 campaign_fresh_gravity/CFG324_candidate_B_growth/cfg324_velocities.py
+
+  *** MUTATE=1: R1's predicted f sigma_8 is doubled (growth x2); R1's velocity row must FAIL ***
+
+==============================================================================================================
+D  DATA: 6dFGSv J-band fundamental-plane sample (Campbell et al. 2014, VizieR J/MNRAS/443/1231) and the 2M++ cube
+==============================================================================================================
+    J-band sample: 8896 galaxies (Js = 1); cz 762-16118 km/s (group cz where given: 2666); median z = 0.0386; log sigma_0 >= 2.050; J_tot <= 13.649
+  [PASS] C3a CONTROL: the catalogue's log R_e (kpc/h) is reproduced from its angular radius and cz (group cz where given) to rms <= 0.005 dex
+         measured: rms 0.0012 dex about a median offset +0.0038 dex
+    beta = 1 velocity at the Local Group: FFT 1373 km/s toward (l, b) = (267.0, 41.1); direct sum (3-200 Mpc/h) 1357 km/s toward (267.5, 40.3); angle 0.9 deg
+  [PASS] C3b CONTROL: the FFT velocity at the origin points within 15 deg of the direct-sum apex (h85's definition)
+         measured: 0.9 deg
+    radial beta = 1 velocities at the galaxies: rms 385 km/s, range -1173 to 1280
+
+==============================================================================================================
+F  THE FIT: FP (a, b, c) + beta + V_ext, least squares in log R_e with the exact eta; bootstrap; mocks for the estimator bias
+==============================================================================================================
+    data: a = 0.724, b = -0.707, c = 0.942; beta = 0.424; V_ext = (-333, -514, 885) km/s (|V_ext| = 1076); FP scatter 0.0938 dex
+  [PASS] C3c CONTROL: the FP scatter in log R_e lies in 0.07-0.15 dex
+         measured: 0.0938
+    bootstrap (500): sigma_beta = 0.0783 (8 s)
+  [PASS] C3d CONTROL: with the predicted velocities shuffled among galaxies the fitted beta is consistent with 0 within 3 sigma
+         measured: beta_shuffled = +0.026 (+0.33 sigma)
+    mocks (50, beta_true = 0.424, the catalogue's J_tot <= 13.65 re-applied): mean bias +0.1387, spread 0.0709; beta_corrected = 0.285 +- 0.106
+
+==============================================================================================================
+S  sigma_8,g OF THE CUBE: top-hat 8 Mpc/h rms inside r < 100 Mpc/h, octant jackknife; presmoothing and nonlinear corrections (CLASS)
+==============================================================================================================
+    cube: sigma_8 = 0.7076 (about zero) / 0.7047 (about the sample mean); jackknife +- 0.0455
+    corrections (CLASS LCDM, z = 0): presmoothing (4 Mpc/h Gaussian) x 1.3880; nonlinear -> linear x 0.8900; sigma_8,g,lin = 0.8741 +- 0.0455 (jk) +- 0.2056 (sys = full size of the corrections)
+    f sigma_8,obs (z = 0.039) = 0.285 x 0.874 = 0.2492 +- 0.1102
+
+==============================================================================================================
+V  EACH READING'S f sigma_8(z_eff) AGAINST THE MEASUREMENT (|z| <= 2 PASS, > 3 FAIL, else NOT DETERMINED)
+==============================================================================================================
+    R1                : predicted   0.8739   z =    +5.67   FAIL
+    R2-est|canonical  : predicted   0.6177   z =    +3.34   FAIL
+    R2-min|canonical  : predicted   0.4858   z =    +2.15   NOT DETERMINED
+    R3|canonical      : predicted   7.1473   z =   +62.61   FAIL
+    chassis|canonical : predicted  24.9521   z =  +224.22   FAIL
+    R2-est|alt        : predicted   0.6475   z =    +3.61   FAIL
+    R2-min|alt        : predicted   0.4933   z =    +2.22   NOT DETERMINED
+    R3|alt            : predicted   8.2236   z =   +72.38   FAIL
+    chassis|alt       : predicted  29.5771   z =  +266.20   FAIL
+  [FAIL] V1 R1 (B as declared) VELOCITIES: not FAIL (|z| <= 3; pre-declared PASS or ND, P 0.7)
+         measured: predicted 0.8739 vs 0.2492 +- 0.1102: z = +5.67 (FAIL)
+  [PASS] (reported) V2 (reported) the chassis 'all matter feels nu_mono' FAILS the velocities on both footings (|z| > 3)
+         measured: canonical: z = +224.2; alt: z = +266.2
+  [FAIL] (reported) V3 (reported) R2-est VELOCITIES PASS on both footings (|z| <= 2)
+         measured: canonical: z = +3.34 FAIL; alt: z = +3.61 FAIL
+  [FAIL] (reported) V3 (reported) R2-min VELOCITIES PASS on both footings (|z| <= 2)
+         measured: canonical: z = +2.15 NOT DETERMINED; alt: z = +2.22 NOT DETERMINED
+  [FAIL] (reported) V3 (reported) R3 VELOCITIES PASS on both footings (|z| <= 2)
+         measured: canonical: z = +62.61 FAIL; alt: z = +72.38 FAIL
+
+==============================================================================================================
+VERDICT PER READING (lensing from part 1, velocities here; the weaker footing decides; R2 = ND if its variants disagree)
+==============================================================================================================
+    R1: lensing (part 1 MUTATE run decides lensing); velocities FAIL  ->  FAIL
+    R2: lensing NOT DETERMINED; velocities NOT DETERMINED  ->  NOT DETERMINED
+    R3: lensing FAIL; velocities FAIL  ->  FAIL
+    B's growth is TESTED: yes (R1, B as declared, gets FAIL)
+
+  5/9 checks pass; load-bearing failures: 1; wrote cfg324_velocities_MUTATE_results.json (12 s)
+rc = 1
