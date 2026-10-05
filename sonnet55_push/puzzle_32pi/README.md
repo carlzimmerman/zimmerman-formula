@@ -389,3 +389,13 @@ Model energy-V: g^2 = g_N^2 + a g_N (3 + s), s = dln g_N/dln r (spherical-equiva
 - Framework residuals vs log10(3 + s): r = -0.13 (energy-V predicts a positive trend).
 **Verdict: SPARC rules out the local-density term; field-energy-additive Verlinde FAILS inside galaxies.** The framework's purely local law g(g_N) is strongly preferred.
 The p33 mechanism survives only as an exterior statement. kappa = 1/2 stays FITTED.
+
+## 41. The kernel-tail fix (`p35`, 4/4; MUTATE k = 0 = the exact law, fails P, V, W) -- 2026-10-05
+nu_fix(y) = 1 + (sqrt(1+1/y) - 1)/(1 + (y/y_t)^2): the framework law below y_t, nu - 1 ~ y^-3 above.
+- **SPARC:** indistinguishable from the exact law for y_t >= 100 (|Delta chi2| <= 1.06 on ~3000 points, both Upsilon treatments).
+- **Planets (record's bare bounds, no EFE credit):** all pass for y_t <= 7.7e5 (Mars binds; Earth 1.8e6); at y_t = 128 the worst planet is 2.8e-8 of its bound.
+  The 1279x Earth liability of the exact law is gone.
+- **Vacuum:** QUMOND/BIMOND's vacuum integral becomes finite: Lambda/a0^2 = 77.9 / 99.8 / 784 at y_t = 100 / 128 / 1000 (leading order (pi/4) y_t).
+- **If** the a0 sector's vacuum is the dark energy (an input, lane K), 32 pi needs y_t = 128.9 (1.21e-8 m/s^2) for this k = 2 shape -- inside both windows; k = 3, 4 give
+  167.5, 182.4. So the turn-off scale is shape-dependent; y_t is a free parameter in [~100, 7.7e5] unless that input is adopted.
+Verdict: the tail is FIXED (planets pass, vacuum finite, galaxies unchanged) at the cost of one new constant y_t. It does not derive kappa = 1/2.
