@@ -408,3 +408,14 @@ Profile over (a0, y_t) for nu_fix (k = 2). The offset reading's signature is tin
   detection of a strong-field turn-off; it vanishes at fixed Upsilon.
 **Verdict: SPARC bounds y_t from below (>= 2-20 by treatment) and cannot see the offset reading's y_t ~ 94-129. Allowed, not detected.** Testing it needs data at
 10 <~ y <~ 1e3 with ~0.001 dex precision on g -- not available. kappa = 1/2 stays FITTED.
+
+## 43. The transition shape on SPARC (`p37`, `p37b`, `p37c`) -- 2026-10-05
+- **p37 (pre-written checks FAILED, 1/4, kept):** in nu_n = (1 + y^-n)^(1/(2n)) (n = 1 the framework kernel) the data do NOT want a sharper transition; at Upsilon 0.5
+  they want n ~ 0.7 (a LARGER boost at y ~ 1: nu(1) = 2^(1/(2n)), RAR-like), Delta chi2 -61 (Upsilon free) / -121 (fixed 0.5); gas-dominated galaxies barely care (-1.5).
+  RAR beats n = 1 by 168 / 141 / 11.
+- **p37b (post hoc, 2/2):** the preference is mostly the stellar mass-to-light zero point: RAR's advantage falls 141 -> 51 -> 12 for Upsilon_disk 0.5 -> 0.6 -> 0.7, and the
+  best n moves 0.7 -> 1.0 -> 1.25.
+- **p37c (fine scan, 1/3; pre-written K and G FAILED, kept):** chi2 is minimal at Upsilon_disk = 0.56 (4499.9; 0.58: 4504.1), where a0(n = 1) = 1.248e-10, the best n = 0.85,
+  RAR is still better by 80 (~4 after crude x18 deflation), and the gas/star split stays open (1.43 +- 0.04). The framework kernel is the best family member only at
+  Upsilon 0.58-0.60 (a0 1.20-1.15e-10). The kernel shape and Upsilon are degenerate; SPARC alone does not separate them.
+Reading: the transition-shape signal is largely Upsilon, not a clean verdict on the kernel; at the data's preferred Upsilon the RAR shape still edges the framework's. kappa = 1/2 stays FITTED.
