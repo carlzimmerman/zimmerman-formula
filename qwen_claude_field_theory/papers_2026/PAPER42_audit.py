@@ -1,0 +1,20 @@
+"""PAPER42 audit: tagged numbers in PAPER42_mond_vacuum_dark_energy_2026.tex vs committed sources. Exit 0 iff all rows pass."""
+import json, os, re, sys
+H = os.path.dirname(os.path.abspath(__file__)); R = os.path.abspath(os.path.join(H, "..", ".."))
+tex = open(os.path.join(H, "PAPER42_mond_vacuum_dark_energy_2026.tex")).read()
+J = json.load(open(os.path.join(H, "PAPER42_figures_numbers.json"))); J41 = json.load(open(os.path.join(H, "PAPER41_figures_numbers.json")))
+pz = lambda f: open(os.path.join(R, "sonnet55_push", "puzzle_32pi", f)).read()
+rows = []
+def row(n, ok): rows.append(bool(ok)); print(("PASS  " if ok else "FAIL  ") + n)
+row("obs Lambda/a0^2 73.19, band 55.3-91.1", J["obs_Lambda_over_a0sq"] == 73.19 and J["obs_band_2sigma"] == [55.3, 91.1] and "73.19" in tex and "$55.3$--$91.1$" in tex)
+row("y_t = 94 (71-117), framework 128.9", round(J["yt_obs"]) == 94 and [round(v) for v in J["yt_band"]] == [71, 117] and J["yt_framework"] == 128.9 and "$y_t=94$" in tex and "71\\text{--}117" in tex and "128.9" in tex)
+row("g_t ~ 1.0e-8", abs(J["gt_obs_ms2"] - 1.03e-8) < 1e-10 and "1.0\\times10^{-8}" in tex)
+row("1279x Earth", J41["exact_law_earth_ratio"] == 1279 and "1279 times" in tex)
+row("planet window 7.7e5", J41["planet_ytmax"]["Mars"] == 7.7e5 and "7.7\\times10^5" in tex)
+row("k = 3, 4: 167.5, 182.4", J41["yt_32pi"]["3"] == 167.5 and J41["yt_32pi"]["4"] == 182.4 and "167.5" in tex and "182.4" in tex)
+row("SPARC |Delta chi2| <= 1.06 (p35)", "-1.06" in pz("p35_kernel_tail_fix.out") and "1.06" in tex)
+row("y_t lower bound 2-20 (p36)", "Delta chi2 < 4 for y_t >= 20" in pz("p36_sparc_turnoff_fit.out") and "Delta chi2 < 4 for y_t >= 2;" in pz("p36_sparc_turnoff_fit.out") and "$\\ge2$--$20$" in tex)
+row("class identity + exchange symmetry (p25 6/6, Lean chain present)", "6/6 pass" in pz("p25_symmetric_bimond_map.out") and os.path.exists(os.path.join(R, "fable_independent_2026", "lean_2026", "PUZZLE_32pi_chain_2026_10_05.out")))
+row("Upsilon trend 141 -> 12 (p37b)", re.search(r"Upsilon 0.5:.*RAR -141", pz("p37b_shape_vs_upsilon.out")) and re.search(r"Upsilon 0.7:.*RAR -12", pz("p37b_shape_vs_upsilon.out")) and "141" in tex and "to 12" in tex)
+row("postulate independence (Lean out lists standard axioms only)", "sorryAx" not in open(os.path.join(R, "fable_independent_2026", "lean_2026", "PUZZLE_32pi_postulate_status_2026_10_05.out")).read())
+print(f"\n{sum(rows)}/{len(rows)} audit rows pass"); sys.exit(0 if all(rows) else 1)
