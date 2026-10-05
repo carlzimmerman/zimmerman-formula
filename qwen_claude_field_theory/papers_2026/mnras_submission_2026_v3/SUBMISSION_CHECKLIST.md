@@ -551,3 +551,6 @@ TODO-RUN wording (section 0) is unchanged; OUP's 2026-09-10 AI policy page still
 - OUP announced an updated AI-disclosure policy on 2026-09-10; the policy page would not load during the check. Read
   it before submitting and adjust the Acknowledgements sentence if it asks for more detail (section 0).
 - The charge in USD or EUR (only the GBP figure is on the journal's pages).
+
+## SUBMITTED 2026-10-05
+Submitted to MNRAS as **MN-26-3158-P** (Paper, Main Journal), from tag `mnras-v3.4`. Sole author. No waiver requested. Five suggested referees; Bunker/Liddle recommended as editors.
