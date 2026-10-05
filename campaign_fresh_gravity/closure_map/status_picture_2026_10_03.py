@@ -31,7 +31,7 @@ groups = [
         ("Clusters, Bullet Cluster", "PASS", "needs the cold mass"),
         ("Andromeda + Local Volume dwarfs", "PASS", "law alone, native inputs · CFG313"),
         ("Milky Way ultra-faint dwarfs", "FAIL", "+0.32 dex, 3.8 sigma (lenient end) · audit"),
-        ("Massive ellipticals (SLUGGS)", "UNDEC", "+0.09 dex, not significant; centrals fail · CFG323"),
+        ("Massive ellipticals (SLUGGS)", "UNDEC", "not significant; 4 centrals fail · CFG323/330/331"),
     ]),
     ("Cosmology and a0 over time", [
         ("Constant a0 vs a0 ~ H(z)", "UNDEC", "calibration wall · PAPER38"),
