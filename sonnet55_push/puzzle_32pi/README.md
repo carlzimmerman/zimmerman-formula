@@ -446,3 +446,13 @@ No known kernel does. kappa = 1/2 stays FITTED.
 (L(y_t) ~ 0.78 y_t never meets y_t/s), one tiny solution (L = 3.2) at s = 1.4. The principle does not fix L. 
 (N) If y_t is a pure number N: of 20 declared simple numbers in [30, 400], FIVE (8 pi^2, 25 pi, 100, 32 pi, 36 pi) predict a0 within 1 sigma of the measured ensemble
 (1.097e-10 +- 12%); y_t = 32 pi gives a0 = 1.061e-10 (pull -0.27). A one-in-four menu hit rate: no single 'nice' turn-off is evidence. kappa = 1/2 stays FITTED.
+
+## 48. Pinning the mass-to-light ratio (`p41`, `p41b`; pre-written checks FAILED in both, kept) -- 2026-10-05
+- **p41 (0/2):** galaxy-level 'gas-dominated' samples (last-point gas fraction > 0.6) are NOT Upsilon-insensitive (a0 spread 63% over Upsilon 0.3-0.7): their inner regions
+  are star-dominated and a0 ~ g_obs^2/g_bar in the MOND regime. Calibrated Upsilon* = 0.65 (0.56-0.72), a0(all) = 1.055e-10 +- 16%: too loose to decide anything.
+- **p41b (0/2; MUTATE fcut = 0 spread 138%, fails G):** calibrating on POINTS where gas supplies > 80% of g_bar (124 points, 19 galaxies): spread 11.2% over Upsilon 0.3-0.7
+  (> 0.9: 5.7%, only 5 galaxies; > 0.7: 17%). **Upsilon-insensitive a0 = 9.00e-11 +- 11% (stat), framework kernel**: -3.9% from the kappa = 1/2 footing 9.36e-11,
+  -20.5% from the alt footing, -15.2% from p40's 32 pi turn-off value 1.061e-10. RAR kernel: 7.60e-11 (kernel systematic 15.6%). Matching the star-dominated points
+  needs Upsilon* = 0.73 (0.66-0.77), ABOVE the 3.6 um population prior (0.40-0.63) -- the star/gas tension persists as either a heavier M/L or a kernel effect.
+Reading: the cleanest Upsilon-free measurement in SPARC sits on the kappa = 1/2 footing (as the July population-split note found, 9.8e-11 there), but at 11% stat +
+16% kernel it cannot decide between footings or 'nice' turn-off numbers. kappa = 1/2 stays FITTED.
