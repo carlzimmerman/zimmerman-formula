@@ -290,3 +290,10 @@ and behaves as ~1/(a(a-2)) near the edge (checked: (a* - 2) 64 pi a* = 1.002).
 - Every steep (ephemeris-comfortable) tail gives Lambda/a0^2 ~ 0.2-5, i.e. 20-500x short; RAR's exponential tail gives 13 (p21).
 Verdict: minimal BIMOND makes 32 pi a near-divergent fine tuning of an unmeasured tail. Not a derivation. kappa = 1/2 stays FITTED.
 (Numerics: nu - 1 computed with expm1/log1p after floating-point cancellation zeroed the 1e6-1e7 decade in the first brute-force check; the first MUTATE could not fail; both replaced.)
+
+## 28. Horizons of BIMOND's auxiliary metric g-hat (the a0 sector's own metric) (`p23`, 3/3; MUTATE removes the sector sign difference, fails A) -- 2026-10-04
+From Milgrom 2009 eq (24): Lambda = -(1/2)(1 + f'(1)) a0^2 M(0), Lambdahat = -(1/2)(f'(1) - 1) a0^2 M(0). A g-hat horizon with kappa r = 1/2 needs Lambdahat = 0, i.e. f'(1) = 1.
+- One structural gain: then g-hat is Lambda-free, so the puzzle's Schwarzschild hole (kappa = a0, A = pi/a0^2) EXISTS there as an exact solution, unlike in our de Sitter
+  metric where it is 8 pi past the Nariai bound (p06, p19).
+- But nothing selects that hole: requiring kappa = a0 and Lambda r^2 = 8 pi on one hole IS Lambda = 32 pi a0^2 (restatement), and with f'(1) = 1, Lambda = a0^2 I_nu,
+  so 32 pi needs I_nu = 32 pi -- the p22 tail tuning. Not a derivation. kappa = 1/2 stays FITTED.
