@@ -274,3 +274,10 @@ and B (khronon universal horizon). Pass needs kappa = a0 AND Lambda A = 32 pi^2,
   B at ANY khronon speed: a universal horizon needs d_t spacelike (f < 0); on the black-hole side Lambda r^2 <= 0.997 < 1 for every SdS mass, and beyond r_c a khronon
   matched to cosmic time has u.chi = -1. Lambda r^2 = 8 pi is unreachable whatever the speed.
 **Branch verdicts (p20): A1 FAIL, A2 INSERTION, B FAIL (CMC and any finite speed).** No effective-metric horizon of the a0 sector gives the puzzle. kappa = 1/2 stays FITTED.
+
+## 26. BIMOND (Milgrom 2009, arXiv:0912.0790v2, PDF read; sha256 067e8560...) (`p21`, 3/3; MUTATE halves the RAR integrand, fails B) -- 2026-10-04
+Vacuum term eq (24) at kappa = 1: Lambda = -(1/2)(1 + f'(1)) a0^2 M(0); NR limit eq (3): M'(z) = nu(sqrt z) - 1. With M(inf) = 0, M(0) = -int 2y(nu - 1)dy < 0, so
+BIMOND gives Lambda > 0 and rho_DE proportional to a0^2 automatically -- the framework's STRUCTURE (a0 ~ sqrt(rho_DE)). The coefficient:
+- framework kernel nu = sqrt(1 + 1/y): the integral DIVERGES linearly; 32 pi needs a strong-field cutoff at g_N = 203 a0 (free).
+- RAR kernel: finite, 25.976 (= lane K's AQUAL c), so Lambda = 12.99 a0^2 with the minimal f = 1: 7.74x short; 32 pi needs f'(1) = 6.74 (f is free beyond f(1) = 1).
+Verdict: BIMOND reproduces the form rho_DE ~ a0^2 with the right sign but INSERTS the coefficient. kappa = 1/2 stays FITTED.
