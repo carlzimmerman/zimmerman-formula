@@ -456,3 +456,9 @@ No known kernel does. kappa = 1/2 stays FITTED.
   needs Upsilon* = 0.73 (0.66-0.77), ABOVE the 3.6 um population prior (0.40-0.63) -- the star/gas tension persists as either a heavier M/L or a kernel effect.
 Reading: the cleanest Upsilon-free measurement in SPARC sits on the kappa = 1/2 footing (as the July population-split note found, 9.8e-11 there), but at 11% stat +
 16% kernel it cannot decide between footings or 'nice' turn-off numbers. kappa = 1/2 stays FITTED.
+
+## 49. Kernel preference on the Upsilon-free gas points (`p42`, 2/2; MUTATE fcut 0 fails both) -- 2026-10-05
+The 124 gas-dominated points (19 galaxies) are all deep-MOND (y = 0.015-0.066), so they test the kernel's next-order term, Upsilon-independently (same verdict at 0.3/0.5/0.7).
+RAR is disfavoured by Delta chi2 = +5.0 to +5.4 vs the framework kernel; within nu_n the allowed range is n = 0.9-1.6 (best 1.6, -1.9: not significant); n = 1 inside.
+a0 across the allowed kernels: 8.82 (n 0.9), 9.00 (n 1), 9.24 (1.3), 9.31e-11 (1.6) -> **a0 = (9.0 +- 0.25 kernel) e-11, +- 11% stat**, i.e. the kernel systematic on
+the gas points shrinks from 16% (RAR included) to ~3% once RAR's next-order term is disfavoured. Still 19 galaxies; clustering not deflated. kappa = 1/2 stays FITTED.
