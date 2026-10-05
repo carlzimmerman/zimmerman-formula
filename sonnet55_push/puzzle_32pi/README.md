@@ -255,3 +255,10 @@ Units relabel; they cannot derive. In these units the open question reads: why a
 - Newtonian Gauss flux and the Smarr formula reduce to point conditions (3/(16 pi)), as p17.
 Reading: the flux form gives the cleanest statement yet -- the vacuum "fills" the horizon's Euler number with coupling G, not 8 pi G -- but supplies no reason for
 the coupling G. kappa = 1/2 stays FITTED. (Check B first failed on a 1e-2 tolerance near Nariai, where r_b approaches as sqrt(eps); fixed with the exact Nariai point.)
+
+## 25. Acoustic horizon of the a0 sector (`p20_acoustic_horizon/`, SETUP.md = frozen criteria) -- 2026-10-04, in progress
+Setup: QUMOND's auxiliary fields are constrained (FP4/FP5), so they have NO acoustic horizon; branches A (k-essence form of the kernel on a rolling background)
+and B (khronon universal horizon). Pass needs kappa = a0 AND Lambda A = 32 pi^2, no tuned parameter, mass-independent radius, subluminal.
+- `p20a` (5/5; MUTATE drops the 2 in c_s^2, fails M2/M3): machinery verified (canonical, X^n, DBI). **A1, the cosmological sound horizon, FAILS:** r_h = c_s/H,
+  so Lambda r_h^2 = 8 pi needs c_s = sqrt(8 pi/3) = 2.894 c (superluminal), and kappa r_h = c_s or 1 (by normalisation), never 1/2.
+- Open: A2 (sonic horizon around a mass: radius scales with M, so criterion 3 is the hurdle), B (khronon universal horizon). kappa = 1/2 stays FITTED.
