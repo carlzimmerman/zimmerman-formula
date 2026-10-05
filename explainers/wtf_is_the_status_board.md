@@ -1,0 +1,79 @@
+# wtf is the status board?
+
+*Where the theory stands, as of 5 October 2026, in one picture.*
+
+The theory makes one claim: the acceleration scale where galaxies stop obeying Newton, a₀, is set by the density of dark energy.
+
+```
+a₀ = κ · c · √(G ρ_Λ),   κ = ½   →   a₀ = 9.36 × 10⁻¹¹ m/s²
+```
+
+The ½ is **fitted** to galaxy rotation curves, not derived. A cold component with the amount of mass usually attributed to dark matter (Ω_c h² ≈ 0.12) is still required; no dark-matter particle is added.
+
+![Status board: every test of the theory as a coloured tile](img/status_board.png)
+
+## How to read it
+
+Each tile is one test. The colour restates a verdict recorded in [`campaign_fresh_gravity/STANDING_2026-09-29.md`](../campaign_fresh_gravity/STANDING_2026-09-29.md), and the lane IDs on each tile point to the scripts that produced it. Every verdict comes from a committed script with pass/fail rules frozen *before* the data were read, plus a control that is deliberately broken and must fail.
+
+| colour | meaning |
+|---|---|
+| 🟩 **pass** | the theory meets the test within the stated errors |
+| 🟨 **conditional** | passes, but only under a stated assumption that is not yet proved |
+| 🟦 **not decidable yet** | today's data cannot tell the theory from its rival |
+| 🟥 **fails** | the theory misses the test, and audits from the raw data confirm the miss |
+| ⬜ **open** | not yet answered, or waiting on data |
+
+## Column 1 · The relativistic theory (the "chassis")
+
+This is the full field theory underneath the law: general relativity plus a preferred time direction (a "khronon"). It has to behave like Einstein's gravity wherever Einstein's gravity has been tested.
+
+- **Passes:**
+  - gravitational waves travel at exactly light speed;
+  - realistic matter keeps the equations well behaved;
+  - binary pulsars, with a 490,000× margin;
+  - solar-system tests;
+  - matter is exactly conserved (G9).
+- **Conditional:**
+  - well-posedness, in two forms (high-frequency and full nonlinear);
+  - strong coupling;
+  - structural order (G0): no runaway "ghost" mode, but solvability in the strongly nonlinear regime is unproved;
+  - **black holes.** EHT shadows and LIGO ringdowns are matched to better than one part in 10⁹. A *moving* black hole keeps a hidden, Planck-scale defect on its innermost horizon. A 2019 paper's standard would count that as fatal; the owner's reading of it is still pending.
+
+## Column 2 · Galaxies and clusters
+
+- **Passes:**
+  - rotation curves (SPARC, 0.10 dex scatter);
+  - a₀ measured locally with MeerKAT, 0.9–1.3 × 10⁻¹⁰ (PAPER40);
+  - weak lensing (KiDS);
+  - clusters, including the Bullet Cluster, which needs the cold mass;
+  - Andromeda's and the Local Volume's dwarfs.
+- **Fails: the Milky Way's ultra-faint dwarfs.** They move about 2× faster than the law predicts, at 3.8σ, which is the generous end of the estimate. Every data-side explanation has been tested and fails: binary stars, stellar masses, the Milky Way's pull, and tides. Fixing them needs new theory.
+- **Not decidable yet: the massive ellipticals.** They are about 20% too fast, but once measured tracers are used the gap is not significant. The four galaxies at the centres of groups and clusters still disagree.
+
+## Column 3 · Cosmology, and does a₀ change over cosmic time?
+
+The theory's sharpest prediction is that **a₀ stays constant**. Its main rival has a₀ growing with the expansion rate, H(z).
+
+![a₀ against redshift: flat line versus the a₀ ∝ H(z) rival](img/a0z_chart.png)
+
+- **Not decidable yet: a₀ over time.** The two lines separate at redshift 2–5. At those redshifts, though, the uncertainty in how much gas each galaxy holds is larger than the gap between the lines (the "calibration wall", PAPER38). No public data set can settle this today.
+- **Open: Gaia DR4 wide binaries** (data release 2 December 2026). This test is pre-registered and frozen: PAPER35 predicts exactly Newtonian behaviour.
+- **Pass: structure growth, candidate B.** The cosmic web is not gravitationally bound, so B's switch stays off there. Large-scale growth therefore matches ΛCDM's, and Planck's CMB lensing is reproduced. This also means the test cannot tell B apart from ΛCDM.
+- **Fails: structure growth, chassis alone.** Without B's switch, all matter feels the MOND boost and structure grows about 7× too fast, which CMB lensing rules out. This variant is dead; candidate B is the live one.
+
+## Column 4 · The deep "why"
+
+- **Open:**
+  - why κ = ½ (twelve derivation attempts, none successful);
+  - what sets the amount of cold mass;
+  - how "ownership" (which system carries the extra pull) arises from an action.
+- **Conditional: quantum stability (G12).** It needs new physics below about 10⁹ GeV, as every theory of this family does.
+
+## The bottom line
+
+The law wins where it is cleanest: rotation curves, MeerKAT, lensing, and every local test of gravity. It has one hard failure, the Milky Way's ultra-faint dwarfs. The two tests that could change the picture are **Gaia DR4** (2 December 2026) and **a₀ at redshift ~2.5**, which still needs better gas measurements.
+
+---
+
+κ = ½ is fitted, not derived. The cold mass is still required; no dark-matter particle is added. The board is generated by [`campaign_fresh_gravity/closure_map/status_picture_2026_10_03.py`](../campaign_fresh_gravity/closure_map/status_picture_2026_10_03.py), and the a₀ chart by [`chart_a0z_one.py`](../campaign_fresh_gravity/CHART_a0z_rar_z0_5_2026-10-01/chart_a0z_one.py).
