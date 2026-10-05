@@ -1,0 +1,107 @@
+======================================================================================================================
+AUDIT_SLUGGS -- independent recompute of the law-alone SLUGGS row from the raw files
+======================================================================================================================
+galaxies with >= 30 clean GCs and >= 2 bins: 21  -> ['NGC720', 'NGC821', 'NGC1023', 'NGC1400', 'NGC1407', 'NGC2768', 'NGC3115', 'NGC3377', 'NGC3607', 'NGC4278', 'NGC4365', 'NGC4374', 'NGC4459', 'NGC4473', 'NGC4486', 'NGC4494', 'NGC4526', 'NGC4649', 'NGC4697', 'NGC5846', 'NGC7457']
+with ATLAS3D JAM (qual >= 1): 17 -> ['NGC821', 'NGC1023', 'NGC2768', 'NGC3377', 'NGC3607', 'NGC4278', 'NGC4365', 'NGC4374', 'NGC4459', 'NGC4473', 'NGC4486', 'NGC4494', 'NGC4526', 'NGC4649', 'NGC4697', 'NGC5846', 'NGC7457']
+CFG55's 16 all present: True; extra here: [821] (h50's key bug dropped NGC 720/821)
+
+----------------------------------------------------------------------------------------------------------------------
+1. HEADLINE: JAM-calibrated law, gamma = 3, isotropic, outer bins
+----------------------------------------------------------------------------------------------------------------------
+  nu_mono canonical: 16 (CFG55 sample) +0.1096 +- 0.0229 (+4.78 sigma) | 17 (key fixed) +0.1087 +- 0.0216 (+5.04 sigma)
+  nu_mono alt      : 16 (CFG55 sample) +0.1004 +- 0.0227 (+4.41 sigma) | 17 (key fixed) +0.0995 +- 0.0214 (+4.65 sigma)
+  nu_RAR  canonical: 16 (CFG55 sample) +0.1087 +- 0.0229 (+4.75 sigma) | 17 (key fixed) +0.1078 +- 0.0215 (+5.01 sigma)
+  nu_RAR  alt      : 16 (CFG55 sample) +0.0998 +- 0.0227 (+4.39 sigma) | 17 (key fixed) +0.0989 +- 0.0214 (+4.63 sigma)
+  committed CFG55 (nu_RAR): canonical +0.0970 +- 0.0243; alt +0.0880 +- 0.0241
+
+  per galaxy (canonical, nu_mono): log M* SLUGGS | JAM-law | Salpeter-pop ; outer offset ; CFG55 offset ; diff ; inner excess of Salpeter / SLUGGS mass
+   NGC821    11.00 |  10.98 |  11.05 ; +0.094 ; +nan ; +nan ; Salp +0.050 dex, SLUGGS +0.014 dex ; nbins 2, N_GC 68
+   NGC1023   10.99 |  10.79 |  11.11 ; +0.106 ; +0.101 ; +0.0056 ; Salp +0.312 dex, SLUGGS +0.193 dex ; nbins 4, N_GC 113
+   NGC2768   11.21 |  11.41 |  11.37 ; +0.016 ; -0.005 ; +0.0207 ; Salp -0.027 dex, SLUGGS -0.148 dex ; nbins 4, N_GC 107
+   NGC3377   10.50 |  10.33 |  10.62 ; +0.072 ; +0.064 ; +0.0074 ; Salp +0.230 dex, SLUGGS +0.133 dex ; nbins 4, N_GC 124
+   NGC3607   11.39 |  11.26 |  11.46 ; +0.048 ; +0.027 ; +0.0208 ; Salp +0.169 dex, SLUGGS +0.107 dex ; nbins 2, N_GC 39
+   NGC4278   10.95 |  11.03 |  11.09 ; +0.136 ; +0.129 ; +0.0068 ; Salp +0.055 dex, SLUGGS -0.074 dex ; nbins 6, N_GC 267
+   NGC4365   11.51 |  11.40 |  11.64 ; +0.210 ; +0.207 ; +0.0034 ; Salp +0.195 dex, SLUGGS +0.090 dex ; nbins 6, N_GC 244
+   NGC4374   11.51 |  11.52 |  11.62 ; +0.221 ; +0.200 ; +0.0215 ; Salp +0.081 dex, SLUGGS -0.011 dex ; nbins 2, N_GC 41
+   NGC4459   10.98 |  10.83 |  10.99 ; -0.003 ; -0.024 ; +0.0204 ; Salp +0.136 dex, SLUGGS +0.128 dex ; nbins 2, N_GC 36
+   NGC4473   10.96 |  10.87 |  10.99 ; +0.067 ; +0.061 ; +0.0059 ; Salp +0.104 dex, SLUGGS +0.079 dex ; nbins 4, N_GC 105
+   NGC4486   11.62 |  11.65 |  11.73 ; +0.260 ; +0.273 ; -0.0132 ; Salp +0.066 dex, SLUGGS -0.026 dex ; nbins 6, N_GC 648
+   NGC4494   11.02 |  10.87 |  11.09 ; -0.083 ; -0.103 ; +0.0202 ; Salp +0.177 dex, SLUGGS +0.116 dex ; nbins 4, N_GC 105
+   NGC4526   11.26 |  11.20 |  11.27 ; +0.098 ; +0.076 ; +0.0224 ; Salp +0.065 dex, SLUGGS +0.056 dex ; nbins 4, N_GC 107
+   NGC4649   11.60 |  11.65 |  11.71 ; +0.134 ; +0.123 ; +0.0107 ; Salp +0.056 dex, SLUGGS -0.044 dex ; nbins 6, N_GC 422
+   NGC4697   11.15 |  10.99 |  11.24 ; +0.115 ; +0.095 ; +0.0202 ; Salp +0.206 dex, SLUGGS +0.127 dex ; nbins 3, N_GC 90
+   NGC5846   11.46 |  11.47 |  11.52 ; +0.226 ; +0.213 ; +0.0123 ; Salp +0.042 dex, SLUGGS -0.004 dex ; nbins 6, N_GC 210
+   NGC7457   10.13 |   9.94 |  10.19 ; +0.132 ; +0.115 ; +0.0175 ; Salp +0.173 dex, SLUGGS +0.130 dex ; nbins 2, N_GC 40
+  max |independent - CFG55| per galaxy (nu_mono vs CFG55's nu_RAR): 0.0224 dex
+  max |independent - CFG55| per galaxy, same kernel nu_RAR: 0.0207 dex (differences = own clip/ML/projection code)
+
+----------------------------------------------------------------------------------------------------------------------
+2. STELLAR MASS / IMF: is any IMF heavier than the JAM ceiling allowed by the galaxy's own inner kinematics?
+----------------------------------------------------------------------------------------------------------------------
+  Salpeter population mass (ATLAS3D XX, r band): law over-predicts the JAM mass inside r12 by median +0.120 dex (mean +0.128); 15/16 galaxies over-predicted
+  SLUGGS mass (K-band, ~Kroupa/Chabrier-like): inner excess median +0.084 dex; 10/16 over-predicted
+  canonical: outer offset with Salpeter masses +0.0609 (+2.36 sigma); with SLUGGS masses +0.0891 (+3.33 sigma)
+  alt      : outer offset with Salpeter masses +0.0465 (+1.81 sigma); with SLUGGS masses +0.0743 (+2.78 sigma)
+  stellar mass that nulls each outer offset, relative to the JAM-law ceiling: median +0.337 dex (range -0.28..+0.74); it would over-predict the inner JAM mass by median +0.298 dex
+  -> an IMF heavier than the JAM ceiling is excluded by each galaxy's own inner kinematics under the law; an IMF gradient that is bottom-heavy only in the core (the measured sense) lowers the outer stellar mass and enlarges the deficit.
+
+----------------------------------------------------------------------------------------------------------------------
+3. SENSITIVITY TO THE FIXED PHYSICS INPUTS (gamma, beta, Hernquist scale, bin choice), JAM-calibrated, nu_mono
+----------------------------------------------------------------------------------------------------------------------
+  canonical gamma 3, beta 0 (CFG55)                       : +0.1096 +- 0.0229 (+4.78 sigma)
+  canonical gamma = Alabi+17 relation (CFG111)            : +0.0947 +- 0.0214 (+4.43 sigma)
+  canonical gamma 3, beta +0.5                            : +0.1144 +- 0.0228 (+5.01 sigma)
+  canonical gamma 3, beta -0.5                            : +0.1069 +- 0.0230 (+4.65 sigma)
+  canonical Alabi gamma, beta +0.5                        : +0.0864 +- 0.0204 (+4.23 sigma)
+  canonical Hernquist a from ATLAS3D r12 (a = r12/2.414)  : +0.1069 +- 0.0223 (+4.79 sigma)
+  canonical all bins (inner + outer)                      : +0.1126 +- 0.0228 (+4.94 sigma)
+  canonical without the 4 group/cluster centrals (N=12)   : +0.0698 +- 0.0192 (+3.64 sigma)
+  alt       gamma 3, beta 0 (CFG55)                       : +0.1004 +- 0.0227 (+4.41 sigma)
+  alt       gamma = Alabi+17 relation (CFG111)            : +0.0852 +- 0.0212 (+4.02 sigma)
+  alt       gamma 3, beta +0.5                            : +0.1043 +- 0.0226 (+4.61 sigma)
+  alt       gamma 3, beta -0.5                            : +0.0982 +- 0.0228 (+4.30 sigma)
+  alt       Alabi gamma, beta +0.5                        : +0.0759 +- 0.0203 (+3.73 sigma)
+  alt       Hernquist a from ATLAS3D r12 (a = r12/2.414)  : +0.0977 +- 0.0222 (+4.41 sigma)
+  alt       all bins (inner + outer)                      : +0.1048 +- 0.0225 (+4.66 sigma)
+  alt       without the 4 group/cluster centrals (N=12)   : +0.0608 +- 0.0190 (+3.20 sigma)
+  shared shift of gamma (from 3) that brings the canonical z to 2.0: -0.83 (gamma = 2.17)
+
+----------------------------------------------------------------------------------------------------------------------
+4. INTERNAL FIELD AT THE OUTERMOST BIN (canonical; EFE matters only where g_ext is comparable)
+----------------------------------------------------------------------------------------------------------------------
+   NGC1023  env G  R_out   17.2 kpc  g_int/a0 0.653
+   NGC2768  env G  R_out   29.0 kpc  g_int/a0 0.799
+   NGC3377  env G  R_out   18.8 kpc  g_int/a0 0.321
+   NGC3607  env G  R_out   19.2 kpc  g_int/a0 1.069
+   NGC4278  env G  R_out   27.4 kpc  g_int/a0 0.549
+   NGC4365  env G  R_out   50.0 kpc  g_int/a0 0.416
+   NGC4374  env C  R_out   22.1 kpc  g_int/a0 1.102
+   NGC4459  env C  R_out    8.5 kpc  g_int/a0 1.473
+   NGC4473  env C  R_out   21.6 kpc  g_int/a0 0.577
+   NGC4486  env C  R_out  108.7 kpc  g_int/a0 0.257
+   NGC4494  env G  R_out   20.4 kpc  g_int/a0 0.581
+   NGC4526  env C  R_out   23.5 kpc  g_int/a0 0.825
+   NGC4649  env C  R_out   39.8 kpc  g_int/a0 0.791
+   NGC4697  env G  R_out   14.8 kpc  g_int/a0 0.924
+   NGC5846  env G  R_out   53.6 kpc  g_int/a0 0.416
+   NGC7457  env F  R_out    5.8 kpc  g_int/a0 0.663
+  EFE (any g_ext > 0) can only LOWER the law's prediction -> it can only ENLARGE the deficit; with g_ext <~ 0.05 a0 for these
+  environments and g_int/a0 >~ 0.1 at the outer bins its size is small; no external-field table is on disk to quantify it.
+
+----------------------------------------------------------------------------------------------------------------------
+CHECKS
+----------------------------------------------------------------------------------------------------------------------
+  [FAIL] A1 independent code (same kernel nu_RAR) reproduces CFG55's canonical law mean within 0.01 dex
+         +0.1087 vs +0.0970
+  [PASS] A2 nu_mono vs nu_RAR differ by < 0.005 dex in the mean (CFG76: ~0.001)
+         +0.1096 vs +0.1087
+
+----------------------------------------------------------------------------------------------------------------------
+CFG330 SUMMARY (mode K25)
+----------------------------------------------------------------------------------------------------------------------
+  canonical centrals +0.2293 +- 0.0108 (+21.25 sigma) | others +0.0698 +- 0.0192 (+3.64) | all 16 +0.1096 (+4.78)
+     NGC4486 +0.260  NGC4365 +0.210  NGC4374 +0.221  NGC5846 +0.226
+  alt       centrals +0.2190 +- 0.0106 (+20.73 sigma) | others +0.0608 +- 0.0190 (+3.20) | all 16 +0.1004 (+4.41)
+     NGC4486 +0.250  NGC4365 +0.202  NGC4374 +0.209  NGC5846 +0.216
+
+  1/2 checks pass
