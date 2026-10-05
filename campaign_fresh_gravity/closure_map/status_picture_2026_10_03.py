@@ -31,7 +31,7 @@ groups = [
         ("Clusters, Bullet Cluster", "PASS", "needs the cold mass"),
         ("Andromeda + Local Volume dwarfs", "PASS", "law alone, native inputs · CFG313"),
         ("Globulars + ownership rule", "COND", "Newton ~1.6 sigma; 3 of 4 pops · CFG332/333"),
-        ("Milky Way ultra-faint dwarfs", "FAIL", "+0.32 dex, 3.8 sigma (lenient end) · audit"),
+        ("Milky Way ultra-faint dwarfs", "FAIL", "3.8 sigma; candidate fix robust 8/9 · CFG339"),
         ("Massive ellipticals (SLUGGS)", "UNDEC", "not significant; 4 centrals fail · CFG323/330/331"),
     ]),
     ("Cosmology and a0 over time", [
