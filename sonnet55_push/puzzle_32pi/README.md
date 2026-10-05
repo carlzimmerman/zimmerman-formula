@@ -373,3 +373,11 @@ heaviside_form; flux_form (Lambda A = 32 pi^2 <-> the horizon Gauss-Bonnet balan
 bimond_vacuum_condition ((1 + f'(1)) I = 64 pi); exchange_symmetry_pins_fprime (f(k) = f(1/k) -> f'(1) = 0, via HasDerivAt); symmetric_map; class_identity_integrand.
 MUTATE copy (Lambda r^2 = 0 in place of 8 pi, 32 pi in place of 64 pi, a wrong map): exit 1, 5 errors, as required.
 Certifies premises => conclusions only. The open premise is unchanged: kappa = 1/2 stays FITTED.
+
+## 39. Field-energy-additive Verlinde gives the framework law outside matter (`p33`, 3/3; MUTATE uses Verlinde's mass additivity, fails P and X) -- 2026-10-05
+Verlinde's elastic response (1611.02269, CFG117 form) M_D^2 = (a_V r^2/G) d(M_B r)/dr gives exactly g_D^2 = a_V (g_N + 4 pi G rho_B r). Verlinde ADDS MASSES (g = g_N + g_D: wrong shape).
+**Adding FIELD ENERGIES instead (g^2 = g_N^2 + g_D^2) gives g^2 = g_N^2 + a_V g_N -- the framework law -- exactly for a point mass at every radius, and to 2.5e-4 beyond
+15 scale lengths of exponential spheres**, with a_V = c H_Lambda/6 = 0.965 x the framework's a0 (Z = 6 vs 5.789; ratio 1.036, inside the 12% a0 systematic).
+Inside the matter the local term 4 pi G rho_B r raises g by up to x2 at x = 0.1 (x1.2-2.0 by mass): a prediction that differs from the framework's local law and is testable on
+SPARC (the RAR's tightness, 0.1 dex, is the obvious threat). This is a MECHANISM for the shape (quadrature = energy additivity of an elastic dark field) with Verlinde's
+coefficient, not a derivation of kappa = 1/2: it gives a0 = c H/6, so Lambda A = 108 pi (not 32 pi^2). kappa = 1/2 stays FITTED.
