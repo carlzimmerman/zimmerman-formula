@@ -1,5 +1,10 @@
 name: Publish Release
 
+# Publishes a GitHub release when a v* tag is pushed.
+# The release text comes ONLY from RELEASE_NOTES_<tag>.md committed at that tag (e.g. RELEASE_NOTES_v9.0.0.md).
+# If that file is missing, the release is created as a DRAFT with a placeholder, so nothing unreviewed is published.
+# (The previous version published a fixed body with claims that were retracted in June 2026.)
+
 on:
   push:
     tags:
@@ -17,36 +22,23 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Find release notes
+      id: notes
+      run: |
+        f="RELEASE_NOTES_${GITHUB_REF_NAME}.md"
+        if [ -f "$f" ]; then
+          echo "path=$f" >> "$GITHUB_OUTPUT"
+          echo "draft=false" >> "$GITHUB_OUTPUT"
+        else
+          printf 'Draft: no RELEASE_NOTES_%s.md was committed at this tag. Add the notes and publish manually.\n' "$GITHUB_REF_NAME" > /tmp/placeholder.md
+          echo "path=/tmp/placeholder.md" >> "$GITHUB_OUTPUT"
+          echo "draft=true" >> "$GITHUB_OUTPUT"
+        fi
+
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
         name: Zimmerman Framework ${{ github.ref_name }}
-        body: |
-          ## First-Principles Derivation of Z = 2√(8π/3)
-
-          ### The Core Result
-          ```
-          Z = 2√(8π/3) = 5.7888
-
-          Derived from:
-          - √(8π/3) from Friedmann equation
-          - Factor 2 from horizon mass
-          ```
-
-          ### Derived Constants
-          | Constant | Formula | Accuracy |
-          |----------|---------|----------|
-          | α | 1/(4Z² + 3) | 0.004% |
-          | a₀ | cH₀/Z | 2% |
-          | Ω_Λ | √(3π/2)/(1+√(3π/2)) | 0.06% |
-
-          ### Testable Prediction
-          a₀(z) = a₀(0) × E(z) — observable with JWST
-
-          ---
-          Full derivation: HORIZON_CALCULATION.md
-        files: |
-          HORIZON_CALCULATION.md
-          README.md
-        draft: false
+        body_path: ${{ steps.notes.outputs.path }}
+        draft: ${{ steps.notes.outputs.draft }}
         prerelease: false
