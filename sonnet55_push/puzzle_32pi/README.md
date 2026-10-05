@@ -350,3 +350,7 @@ on the framework footing (K2 hits to 0.002%); the transition shape moves it by 0
 'is Lambda/a0^2 ~ 100?', and measured a0 values say ~60-80. (The 'alt footing within 0.25%' line in check A compares against 32 pi, which is not the observed ratio there;
 the honest comparison is check D, added after the first run.) Rough look-elsewhere for the amplitude: ~50% given the choices (cutoff, normalisation, 14 nice numbers).
 Verdict: a striking-looking post-hoc match on the self-defined footing; 1-3 sigma high against measured a0; not significant. kappa = 1/2 stays FITTED.
+
+## 36. Amplitude 1/sqrt 2 with the GUT cutoff (`p31`, 2/2; MUTATE uses Planck, fails A) -- 2026-10-05, POST-HOC
+a_cut = (2e16 GeV) c/hbar = 9.1e48 m/s^2. Framework footing: Lambda/a0^2 = 95.9-96.0 (K1-K3), 4.5% short of 32 pi (ln(a_GUT/a_P) = -6.4, x 1/sqrt 2).
+Against measured a0: predicted ~95.9 vs observed 76 +- 8 (+2.4 sigma), 73 +- 18 (+1.3), 80 +- 19 (+0.8). Closer to the data than Planck, still high, not a match. kappa = 1/2 stays FITTED.
