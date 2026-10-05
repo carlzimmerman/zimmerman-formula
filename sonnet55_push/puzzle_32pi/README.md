@@ -262,3 +262,8 @@ and B (khronon universal horizon). Pass needs kappa = a0 AND Lambda A = 32 pi^2,
 - `p20a` (5/5; MUTATE drops the 2 in c_s^2, fails M2/M3): machinery verified (canonical, X^n, DBI). **A1, the cosmological sound horizon, FAILS:** r_h = c_s/H,
   so Lambda r_h^2 = 8 pi needs c_s = sqrt(8 pi/3) = 2.894 c (superluminal), and kappa r_h = c_s or 1 (by normalisation), never 1/2.
 - Open: A2 (sonic horizon around a mass: radius scales with M, so criterion 3 is the hurdle), B (khronon universal horizon). kappa = 1/2 stays FITTED.
+- `p20b` (5/5; MUTATE u^r = 2Hr fails S1, S3): **branch B, the khronon universal horizon, FAILS.** Test khronon on SdS (core: beta = 0, alpha_c <= 3.2e-9),
+  infinite-speed (CMC, K = 3H) foliation matched to cosmic time. Exact: F = f + (u^r)^2 = 1 - 2(M - HC)/r + C^2/r^4 -- Lambda cancels, the foliation sees a
+  Schwarzschild hole of mass M_eff. Schwarzschild limit reproduces r_UH = 3M/2, kappa_UH = sqrt(2/27)/M (kappa r = 1/sqrt 6 = 0.408). Over the SdS family up to
+  Nariai: kappa_UH r_UH in [0.013, 0.408] (never 1/2), Lambda r_UH^2 <= 0.94 (the UH lies inside r_b), so Lambda r^2 = 8 pi is unreachable.
+  Not covered: finite khronon speed (the CMC limit is the framework's small-alpha regime only in that limit), branch A2. kappa = 1/2 stays FITTED.
