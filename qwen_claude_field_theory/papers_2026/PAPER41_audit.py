@@ -21,4 +21,6 @@ row("offset table", [off[k]["yt_k2"] for k in ("framework footing 9.3603e-11", "
 dchi = re.findall(r"y_t =\s+(\d+): ([+-]\d+\.\d+)", P35)
 row("SPARC Delta chi2 rows match p35.out", [v for _, v in dchi] == ["+0.07", "+0.04", "+0.00", "-1.06", "-0.67", "-0.01"] and intex("$+0.07$, $+0.04$, $0.00$") and intex("$-1.06$, $-0.67$, $-0.01$"))
 row("p35 passed 4/4", "4/4 pass" in P35)
+P36 = open(os.path.join(R, "sonnet55_push", "puzzle_32pi", "p36_sparc_turnoff_fit.out")).read()
+row("p36 lower bounds 20 / 2", "Delta chi2 < 4 for y_t >= 20" in P36 and "Delta chi2 < 4 for y_t >= 2;" in P36 and "y_t\\ge20$" in tex and "$\\ge2$ with" in tex)
 print(f"\n{sum(rows)}/{len(rows)} audit rows pass"); sys.exit(0 if all(rows) else 1)
