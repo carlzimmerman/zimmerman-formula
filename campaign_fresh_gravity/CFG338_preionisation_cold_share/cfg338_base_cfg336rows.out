@@ -1,0 +1,50 @@
+CFG336 -- formation-epoch density of the native cold mass vs the ultra-faint shortfall.  Criteria frozen first: FROZEN_CRITERIA.md (18a68e0ad).
+
+  mass      M_c = M_b / f_b (CFG35 / CFG313 native; f_b = 0.157126); M_b = CFG45 sigma_read's own inventory.
+  density   top-hat collapse at z_f: r_f = [3 M_c / (4 pi 18 pi^2 rho_m0 (1+z_f)^3)]^(1/3), rho_m0 = 2.7754e11 (w_b + w_c) Msun/Mpc^3 (h-free).
+  profiles  P1 SIS truncated at r_f (CFG313 V2 shape, primary); P2 NFW r_s = r_f/4 (reported); PB all of M_c inside r (bound).
+  readings  S = B's committed rule (CFG35, CFG45 S: f_ex switch); M = CFG4 T5 max bookkeeping written locally (CFG45 M); A = additive (diagnostic, NOT B).
+  z_f       a-priori class split: M_V > -7.7 -> 8 (6..10); classical satellites and LV field dwarfs -> 3 (2..4).  Never tuned.
+  machinery CFG45's satellite harness exec'd read-only (READ reduced to L), its sigma_read replaced by this lane's; LV field dwarfs via CFG313's d2 recipe.
+CONTROLS  C1 z_f = 0 reproduces CFG313 native rows; C2 AUDIT_UFD baseline; C3 r_f scaling and profile normalisation.
+MUTATE    CFG336_MUTATE=1: z_f permuted across all scored dwarfs (seed 336); outputs *_MUTATE.
+
+  z_f classes: MW ufd 31+9 limits (z_f 8); MW cls 14 (3); M31 Collins 4/14 ufd-class; M31 LVD 7/34 ufd-class; LV field 13 (3)
+
+# C1-C3 controls
+  [PASS] C2 AUDIT_UFD baseline reproduced (law row)  max |d km| = 0.00e+00; z +3.77 | +3.55
+  C1 detail: max dev reading S 0.00e+00, reading M 2.09e-03; rows moved off the law at z_f = 0: {'M|M31lvd|alt': -0.0020893819500387156}
+  [FAIL] C1 z_f = 0 (S and M, P1) reproduces CFG313 native rows (inert)  max dev 2.09e-03
+  [PASS] C3 r_f scaling M^(1/3)/(1+z) and profiles enclose M_c at r_f  scale 4.4e-16, norm 0.0e+00
+
+# Main scoring (offset dex, z) -- canonical | alt
+  row                           UFD                    CLS                 M31col                 M31lvd                  LVfld
+  law           +0.325(+3.77)|+3.55    +0.027(+0.32)|+0.09    +0.064(+0.78)|+0.55    +0.044(+0.60)|+0.42    -0.044(-0.60)|-0.85
+  S|P1          +0.325(+3.77)|+3.55    +0.027(+0.32)|+0.09    +0.064(+0.78)|+0.55    +0.044(+0.60)|+0.42    -0.044(-0.60)|-0.85
+  S|P2          +0.325(+3.77)|+3.55    +0.027(+0.32)|+0.09    +0.064(+0.78)|+0.55    +0.044(+0.60)|+0.42    -0.044(-0.60)|-0.85
+  S|PB          +0.325(+3.77)|+3.55    +0.027(+0.32)|+0.09    +0.064(+0.78)|+0.55    +0.044(+0.60)|+0.42    -0.044(-0.60)|-0.85
+  M|P1          +0.325(+3.77)|+3.55    +0.027(+0.32)|+0.09    +0.064(+0.78)|+0.55    +0.044(+0.60)|+0.32    -0.044(-0.60)|-0.85
+  M|P2          +0.325(+3.77)|+3.55    +0.027(+0.32)|+0.09    +0.064(+0.78)|+0.55    +0.044(+0.60)|+0.41    -0.044(-0.60)|-0.85
+  M|PB          +0.325(+3.77)|+3.55    -0.067(-0.49)|-0.53    +0.015(+0.16)|+0.03    +0.036(+0.38)|+0.26    -0.186(-1.92)|-1.92
+  A|P1          +0.286(+3.16)|+2.99    -0.008(-0.09)|-0.28    +0.001(+0.01)|-0.14    +0.008(+0.11)|-0.10    -0.096(-1.23)|-1.43
+  A|P2          +0.284(+3.17)|+3.00    -0.002(-0.02)|-0.21    +0.003(+0.03)|-0.13    +0.007(+0.09)|-0.13    -0.080(-1.04)|-1.24
+  A|PB          +0.253(+2.39)|+2.28    -0.143(-1.16)|-1.23    -0.073(-0.80)|-0.93    -0.076(-0.80)|-0.93    -0.267(-3.04)|-3.14
+
+  verdicts: S|P1 NOT; S|P2 NOT; S|PB NOT; M|P1 NOT; M|P2 NOT; M|PB NOT; A|P1 NOT; A|P2 NOT; A|PB NOT
+  DECISIVE (P1): S -> NOT, M -> NOT   (A is a diagnostic, not B)
+
+# Per-object bound: whole native cold share (1-f_b) M_c vs the law's phantom inside (4/3) r_half
+  canonical: phantom/cold_total over 40 UFDs: min 1.57, median 3.51, max 11.04; all > 1: True
+  alt      : phantom/cold_total over 40 UFDs: min 1.73, median 3.86, max 12.14; all > 1: True
+  CLS     canonical phantom/cold_total: min 0.09, median 0.78 (n 14)
+  M31col  canonical phantom/cold_total: min 0.44, median 1.67 (n 14)
+  M31lvd  canonical phantom/cold_total: min 0.00, median 1.06 (n 34)
+  LVfld   canonical phantom/cold_total: min 0.20, median 0.50 (n 13)
+
+# Screen: multiplier k on M_c needed for the UFD KM median to reach 2 x (law error) and 0 (canonical), reading M
+  PB|2sig: k = 5.9; PB|zero: k = 13.2; P1|2sig: k = 31.5; P1|zero: k = 104.8   (target 2 x law err = 0.172 dex)
+  P1 at fixed z_f: M_cold(<r) = M_c r / r_f  proportional to  M_c^(2/3) (1+z_f) r  -> slope 2/3 in M_b at fixed r, not 0.52; z_f is one value per class, so the within-class scatter it predicts is 0 (CFG335 needs 0.6 dex).
+
+# Checks
+  [PASS] H1 [pre-flight] whole cold share below the phantom for every UFD, both footings  
+  [PASS] H2 [prediction] readings S and M leave the UFD row at the law value for every profile  max shift 0.0e+00
