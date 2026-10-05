@@ -329,3 +329,9 @@ Exact: int_0^Y 2y(sqrt(1+1/y) - 1) dy = [2Y^(5/2) + 3Y^(3/2) + sqrt Y - sqrt(Y+1
 Cut at the Planck acceleration: Lambda = (1/2) a0 a_P/c^4, the geometric mean of a0 and the Planck acceleration: **3e59 x too large** (both footings). The slow alpha = 1 tail
 makes the vacuum term track the cutoff linearly, so the framework kernel turns BIMOND's vacuum into the cosmological-constant problem (softened from 1e122 to 1e59).
 kappa = 1/2 stays FITTED.
+
+## 33. Planck cutoff with the steeper-tail families (`p28`, 4/4; MUTATE doubles F1's tail coefficient, fails T, B) -- 2026-10-05
+Cut at a_P (ln(a_P/a0) = 142.2): at tail exponent exactly 2, Lambda/a0^2 = 35.7 (F1, the family containing the framework kernel) and 71.2 (F2 = standard mu).
+**32 pi needs F1 a* = 1.98735, F2 n* = 1.99543** (alt footing 1.98732 / 1.99540): a tail falling slightly SLOWER than 1/y^2, different per family, invisible to planets
+(4.7e-19 m/s^2 at the Earth) and to SPARC. Not a natural value; a fit. (POST-HOC: check A's band was pre-written as 1.99 < a* < 2; F1 gave 1.98735; widened to 1.98.)
+kappa = 1/2 stays FITTED.
