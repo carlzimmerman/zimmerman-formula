@@ -39,6 +39,13 @@ So **the law over-predicts the outer globulars' speeds by about 1.8×**, at 4.6�
 
 **It is not yet decisive.** A 0.3 dex uncertainty in the stars' M/L spans the whole gap. Palomar 3 even sits comfortably on the law. Also, the cluster with the most data (NGC 2419) has the smallest boost, while the one with the biggest boost (Palomar 14) has only 16 stars. That is why the published literature never settled it.
 
+> **Update (deep audit, 5 Oct 2026):**
+> - **The tension is smaller than first quoted.** Scored with the published measurement errors, the over-prediction is about **3.2–3.5σ**, not 4.6σ. Most of it comes from Palomar 4.
+> - **Palomar 14's input is unsettled:** 0.71 km/s is used, against the 0.38 km/s in Jordi et al. (2009).
+> - **Palomar 3:** unresolved binary stars *could* explain its high speed spread, but only marginally once outlier clipping is included. The source of its measurement isn't named in the data on disk.
+> - **What would settle all of it:** individual-star, repeat-epoch velocities.
+> - Details: `campaign_fresh_gravity/AUDIT_GLOBULARS_2026-10-05/`.
+
 ## Why this matters next to the ultra-faint dwarfs
 
 | system | dark matter? | what the law predicts | what is measured |
