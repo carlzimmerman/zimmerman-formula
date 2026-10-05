@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-paper_numbers.py -- every number quoted in the MNRAS manuscript `mnras_a0_lambda_v3.tex` (v3.3) that is not printed by
+paper_numbers.py -- every number quoted in the MNRAS manuscript `mnras_a0_lambda_v3.tex` (v3.4) that is not printed by
 one of the repository estimators (those are re-run here as subprocesses, or by reproduce_all.sh):
 
     real_research/reviews/mi_btfr_intercept_kappa_door_2026.py          -> estimator A on SPARC's tabulated distances, the floor
@@ -1598,6 +1598,17 @@ _ad = A307["decision"]
 check("S7w ALESS 122.1 reported like CRISTAL (CFG310 #9): constancy excluded in 27% of the 540 cells, always from above, H(z) in 15%; the committed native s* is 8.8",
       round(_ad["f_FLAT_excl"] * 100) == 27 and _ad["f_FLAT_below"] == 0.0 and round(_ad["f_Hz_excl"] * 100) == 15 and round(A307["s"], 1) == 8.8, kind="identity")
 check("S7t the Umehata+25 journal 870 um fit (CFG305, read) changes no status or resolution of the ADF22.5 rows (the text says so)", U305["same_resolution"] and U305["n"] >= 6, kind="identity")
+
+# ---- v3.4 (2026-10-05): the MIGHTEE-HI width-chain note (PAPER40, Zenodo 10.5281/zenodo.23142559) quoted in Section 3.8, read from
+#      its committed outputs: the pooled a0 of the primary (rest-frame) chain (CFG309, 47 discs) and the low end of the single-dish
+#      flux range (PAPER40_figures_numbers.json).  Such a check carries no evidence; it certifies the quotation.
+_f309 = json.load(open(os.path.join(ROOT, "campaign_fresh_gravity/CFG309_mightee_width_frame/cfg309_cfg301chain_stageB_FRAME_results.json")))["numbers"]["pooled"]
+_p40 = json.load(open(os.path.join(ROOT, "qwen_claude_field_theory/papers_2026/PAPER40_figures_numbers.json")))["post_hoc_rows"]["single_dish_range"]
+_mtxt = f"$a_0={_p40['lo']/1e-10:.2f}$--${_f309['a0']/1e-10:.2f}\\times10^{{-10}}$ m s$^{{-2}}$ for {_f309['n']} mostly gas-dominated discs"
+P(f"  v3.4 PAPER40 (MIGHTEE-HI width chain) as quoted: a0 {_p40['lo']/1e-10:.3f}--{_f309['a0']/1e-10:.3f} e-10, n = {_f309['n']}, deep-regime y quantiles {_f309['y_q']}")
+check("S7x the MIGHTEE-HI width-chain note as quoted (PAPER40, read): a0 = 0.90--1.31e-10 m s^-2 (single-dish low end to the catalogue-flux pooled value) for 47 discs, all in the deep regime (upper y quartile < 0.2), and the text prints exactly these values",
+      _f309["n"] == 47 and round(_f309["a0"] / 1e-10, 2) == 1.31 and round(_p40["lo"] / 1e-10, 2) == 0.90 and _f309["y_q"][-1] < 0.2
+      and _mtxt in open(os.path.join(HERE, "mnras_a0_lambda_v3.tex")).read(), _mtxt, kind="identity")
 
 # ---- Appendix C quotes the number of checks of each kind; this last check (an identity) compares the text with the tally,
 #      counting itself

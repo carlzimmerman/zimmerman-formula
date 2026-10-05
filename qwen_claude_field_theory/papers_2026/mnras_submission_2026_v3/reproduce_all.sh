@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# reproduce_all.sh -- re-runs every script behind mnras_a0_lambda_v3.tex (v3.3) and rebuilds the PDF.
+# reproduce_all.sh -- re-runs every script behind mnras_a0_lambda_v3.tex (v3.4) and rebuilds the PDF.
 # Usage (from anywhere):  bash reproduce_all.sh          Exit status is non-zero if any script or the build fails.
 # It rewrites only the paper's own products in this directory (paper_numbers.out/.json, the six figures, the PDF) and
 # writes logs to reproduce_outputs/ (git-ignored).  No file outside this directory is changed: the one lane that writes a

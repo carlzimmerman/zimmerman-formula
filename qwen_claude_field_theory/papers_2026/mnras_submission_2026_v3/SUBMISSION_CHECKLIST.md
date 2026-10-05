@@ -1,7 +1,9 @@
-# MNRAS submission package, version 3.3 (prepared 2026-10-03: the CFG310 second-referee fixes; v3.2: RC100 on the journal table and on halo-free inputs)
+# MNRAS submission package, version 3.4 (prepared 2026-10-05: final editorial review, ten-model AI disclosure; v3.3: the CFG310 second-referee fixes; v3.2: RC100 on the journal table and on halo-free inputs)
 
 Manuscript: *The galactic acceleration scale and the cosmological constant: the coefficient on SPARC, and what it takes
 to measure its redshift evolution* (retitled in v3.1; the v3 title named the H0 degeneracy, now one paragraph).
+**v3.4:** 17 pages, 6 figures, 12 tables, 69 references; abstract 236 words plain, 249 with every math span as one word (limit 250);
+paper_numbers 112 checks (57/14/34/7), 0 FAIL; section 7h lists the changes.
 **v3.3:** 17 pages, 6 figures, 12 tables, 66 references; abstract 233 words plain, 246 with every math span as one word, 237 in the
 ScholarOne paste text (limit 250); paper_numbers 111 checks (56/14/34/7), 0 FAIL; section 7g answers the CFG310 report.
 **v3.2:** 16 pages in `mnras.cls`, 6 figures, 12 tables, 63 references (64 if the PAPER6 citation is kept), 3 appendices;
@@ -27,7 +29,7 @@ Journal rules below were checked on 2026-09-21 and not re-checked for v3 or v3.1
     `reproduce_all.sh`, then `make_upload_bundle.py` (it reads the switch, picks the cover-letter variant, and refuses to run if
     the built bibliography disagrees with the switch). A third route the referee lists, depositing a PAPER6 v2/erratum
     first, is not prepared (no deposits in this revision).
-- [x] **AI disclosure — DECIDED 2026-10-02 by the author: Claude, OpenAI, DeepSeek, GLM, Qwen and Gemini models were used; the Acknowledgements and cover letter now name all six, and the two model-produced inputs (MIGHTEE digitisation: DeepSeek; rotation-curve corpus: GLM) are named in the Acknowledgements.** Former TODO-AI-DISCLOSURE: The Acknowledgements and the cover letter still name only "Anthropic's Claude, through
+- [x] **AI disclosure — EXTENDED 2026-10-05 by the author to ten model families (Claude, OpenAI models, DeepSeek, GLM, Qwen, Gemini, Hunyuan, Kimi, Grok, Gemma); no version numbers are given (section 7h).** Earlier: **DECIDED 2026-10-02 by the author: Claude, OpenAI, DeepSeek, GLM, Qwen and Gemini models were used; the Acknowledgements and cover letter now name all six, and the two model-produced inputs (MIGHTEE digitisation: DeepSeek; rotation-curve corpus: GLM) are named in the Acknowledgements.** Former TODO-AI-DISCLOSURE: The Acknowledgements and the cover letter still name only "Anthropic's Claude, through
   Claude Code" and unspecified "models from OpenAI". The referee (finding 10) asks whether other models produced inputs.
   Inputs of this paper that live in, or were committed from, model-named repository folders (traced through the paper's
   scripts, the four repository estimators it runs, and every lane cited in Appendix C with its common modules):
@@ -53,7 +55,7 @@ Journal rules below were checked on 2026-09-21 and not re-checked for v3 or v3.1
   was replaced by statements that are true without it ("produced by a public script whose checks can fail"; "one command
   reproduces every number and figure"). If the owner runs `bash reproduce_all.sh` personally (about 2 minutes) before
   submitting, the stronger wording may be restored.
-- [ ] **TODO-TAG [orchestrator] (finding 27).** Data Availability now names the tagged release **`mnras-v3.2`**. After committing
+- [ ] **TODO-TAG [orchestrator] (finding 27).** v3.4: Data Availability and the bundle's data line name **`mnras-v3.4`**; create that tag on the v3.4 commit. (Earlier:) Data Availability named the tagged release **`mnras-v3.2`**. After committing
   v3.2, create that git tag (`git tag mnras-v3.2 <commit>` and push it), or replace the phrase with the commit hash
   (`mnras-v3.1` exists at 51413cc1b). A Zenodo
   snapshot DOI of the reproduction package is not minted (no deposits in this revision); it can be added on acceptance.
@@ -495,6 +497,36 @@ No e-mail or home path in a tracked file (the journal PDF's location is not writ
 the log M_baryon / log M_bulge pairs; the control (log M_baryon equals CFG305's independently built table in all 100 rows)
 passes, but no page image was read by eye. The Tobit-type slope assumes Gaussian scatter about a straight line with per-disc
 upper limits at f = 0.02; it is a description of the censoring, not a measurement.
+
+## 7h. Version 3.4 (2026-10-05): final editorial review and the ten-model AI disclosure
+
+A hostile-referee/editor pass over v3.3 (scope, abstract, claim discipline against STANDING_2026-09-29, the standard literature,
+every Zenodo DOI). `paper_numbers.py` 112 checks (57 identity, 14 model, 34 data, 7 injection), 0 FAIL; `reproduce_all.sh` ALL STEPS
+PASSED; .bbl regenerated in scratch with `tectonic --keep-intermediates` (69 entries, no undefined references); upload bundle rebuilt.
+Tag to create on commit: **`mnras-v3.4`**.
+
+1. **AI disclosure (owner decision 2026-10-05).** Acknowledgements and cover letter name all ten: Anthropic's Claude, OpenAI models,
+   DeepSeek, Zhipu AI's GLM, Alibaba's Qwen, Google's Gemini and Gemma, Tencent's Hunyuan, Moonshot AI's Kimi, xAI's Grok. Role:
+   code and analysis scripts, literature checks, transcription/digitisation, text drafting; "the author checked every result; every
+   quantitative statement is produced by a public script". The two model-produced inputs (MIGHTEE digitisation: DeepSeek; the
+   rotation-curve/M-L corpus: GLM) stay named. "Derivations" dropped from the role list. No version numbers.
+2. **Standard literature: weak-lensing RAR.** One Introduction sentence citing Brouwer et al. 2021 (A&A 650, A113; KiDS-1000;
+   10.1051/0004-6361/202040108; arXiv:2106.11677) and Mistele et al. 2024 (JCAP 2024(04) 020; 10.1088/1475-7516/2024/04/020;
+   arXiv:2310.15248); both checked against Crossref and the arXiv API (metadata only, no downloads).
+3. **PAPER40 folded in (Section 3.8, one sentence).** The MIGHTEE-HI catalogue width chain (Zenodo 10.5281/zenodo.23142559, v1.0):
+   a0 = 0.90--1.31e-10 for 47 mostly gas-dominated deep-regime discs, H0 = 70 distances, range set by the HI flux scale, "does not
+   separate the two footings". New check S7x reads CFG309's pooled a0/n and PAPER40_figures_numbers.json's single-dish low end and
+   requires the exact printed string. Cover letter: one line declaring the note. Appendix C tally 111/56 -> 112/57.
+4. **PAPER39 (10.5281/zenodo.23142561, closure map) and PAPER35 (10.5281/zenodo.23142564, wide-binary prediction) NOT cited:** both
+   are theory notes outside this paper's empirical scope (the Gaia DR4 arm was removed from scope in section 7, item 1).
+5. **Abstract style.** Two sentences no longer start with a symbol ("The value 1/2 is consistent...", "The coefficient is fitted...").
+6. **DOIs checked (Zenodo API, provisional):** 22833314 = the pre-registered z~2.5 design (v3), 23108862 = the baryon-calibration
+   wall (v1.3), 22559892 = PAPER6 (v1; not cited in the default build), 23142559 = PAPER40 (v1.0); each title matches its entry.
+7. Version strings: reproduce_all.sh and paper_numbers.py headers (v3.4); make_upload_bundle.py data line (`mnras-v3.4`).
+
+Remaining referee risks, not changed: two-papers-in-one scope (CFG310 #13, editor's call); several self-cited unrefereed Zenodo notes
+(each is cited only for what it reports, and the cover letter declares them); the abstract stays near the 250-word limit; the
+TODO-RUN wording (section 0) is unchanged; OUP's 2026-09-10 AI policy page still not read (section 8).
 
 ## 8. Not verified
 - **v3.1:** the MUSE-DARK, KURVS, MIGHTEE-mock and z ≥ 4 numbers are the committed outputs of the repository lanes; they
