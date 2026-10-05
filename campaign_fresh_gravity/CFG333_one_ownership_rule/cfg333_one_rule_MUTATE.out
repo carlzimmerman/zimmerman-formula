@@ -1,0 +1,44 @@
+CFG333 one ownership rule -- MUTATE (class labels permuted)
+==============================================================================================================
+units: 1 WB + 4 GC + 14 CL + 31+9 UFD;  kernel nu_mono;  owned dwarfs Newton on M_b/f_b (f_b 0.157126)
+
+class counts (top-level / all):
+   R0|canonical   {'WB': '1/1 top', 'GC': '4/4 top', 'CL': '14/14 top', 'UFD': '40/40 top'}
+   R0|alt         {'WB': '1/1 top', 'GC': '4/4 top', 'CL': '14/14 top', 'UFD': '40/40 top'}
+   R1|canonical   {'WB': '1/1 top', 'GC': '4/4 top', 'CL': '13/14 top', 'UFD': '40/40 top'}
+   R1|alt         {'WB': '1/1 top', 'GC': '4/4 top', 'CL': '13/14 top', 'UFD': '40/40 top'}
+   R2|canonical   {'WB': '0/1 top', 'GC': '0/4 top', 'CL': '14/14 top', 'UFD': '40/40 top'}
+   R2|alt         {'WB': '0/1 top', 'GC': '0/4 top', 'CL': '14/14 top', 'UFD': '40/40 top'}
+   R3|canonical   {'WB': '0/1 top', 'GC': '3/4 top', 'CL': '7/14 top', 'UFD': '2/40 top'}
+   R3|alt         {'WB': '0/1 top', 'GC': '3/4 top', 'CL': '7/14 top', 'UFD': '2/40 top'}
+   GC labels R1/R3 canonical: NGC 2419 top/top; Pal 3 top/top; Pal 4 top/top; Pal 14 top/own
+
+4 x 3 MATRIX (+ R0 control row): PASS/FAIL within 2 sigma on both footings; tensions canonical | alt
+   rule | WB                           | GC (joint-Ups t, L sigma)                    | CL                     | UFD                    | passes
+   R0   | F -8.45 | -9.03              | F joint -4.43, L 5.49 | joint -5.12, L 5.82  | P +0.64 | +0.45        | F +3.77 | +3.55        | 1/4
+   R1   | F -8.45 | -9.03              | F joint -4.43, L 5.49 | joint -5.12, L 5.82  | P +0.64 | +0.45        | F +3.77 | +3.55        | 1/4
+   R2   | F -8.45 | -9.03              | F joint -4.43, L 5.49 | joint -5.12, L 5.82  | P +0.64 | +0.45        | F +3.88 | +3.66        | 1/4
+   R3   | P +1.36 | +1.51              | P joint +0.00, L -1.11 | joint +0.00, L -1.11 | P +1.02 | +1.01        | F +4.21 | +4.16        | 3/4
+
+detail (offsets in dex for dwarfs; gamma for WB; Upsilon for GC):
+   R0 canonical: WB gamma_pred 1.5399 | GC Ups 0.68+-0.14 L 5.49 (T 5.07 reported) | CL +0.067+-0.104 | UFD +0.3245+-0.0860
+   R0 alt      : WB gamma_pred 1.5399 | GC Ups 0.64+-0.13 L 5.82 (T 5.41 reported) | CL +0.047+-0.104 | UFD +0.3045+-0.0858
+   R1 canonical: WB gamma_pred 1.5399 | GC Ups 0.68+-0.14 L 5.49 (T 5.07 reported) | CL +0.067+-0.104 | UFD +0.3245+-0.0860
+   R1 alt      : WB gamma_pred 1.5399 | GC Ups 0.64+-0.13 L 5.82 (T 5.41 reported) | CL +0.047+-0.104 | UFD +0.3045+-0.0858
+   R2 canonical: WB gamma_pred 1.5399 | GC Ups 0.68+-0.14 L 5.49 (T 5.07 reported) | CL +0.067+-0.104 | UFD +0.3708+-0.0956
+   R2 alt      : WB gamma_pred 1.5399 | GC Ups 0.64+-0.13 L 5.82 (T 5.41 reported) | CL +0.047+-0.104 | UFD +0.3507+-0.0959
+   R3 canonical: WB gamma_pred 1.0000 | GC Ups 2.14+-0.44 L -1.11 (T 2.83 reported) | CL +0.214+-0.211 | UFD +0.6545+-0.1556
+   R3 alt      : WB gamma_pred 1.0000 | GC Ups 2.14+-0.44 L -1.11 (T 2.83 reported) | CL +0.214+-0.213 | UFD +0.6545+-0.1572
+
+reported: owned dwarfs with stars-only Newton (no cold share), canonical | alt
+   R1 CL : +0.100 (z +0.93) | +0.081 (z +0.75)
+   R1 UFD: +0.325 (z +3.77) | +0.304 (z +3.55)
+   R3 CL : +0.355 (z +1.34) | +0.345 (z +1.27)
+   R3 UFD: +1.078 (z +6.76) | +1.078 (z +6.76)
+
+CONTROLS
+   h93 EFE law: L 4.57 | 4.90; joint Ups 0.756 | Newton 2.144
+   [PASS] MUTATE seed 333: best rule R2 pass count drops (3 -> 1)  (3 -> 1)
+   [PASS] MUTATE 50 permutations: mean pass count of R2 below unmutated 3  (mean 1.08, max 2)
+
+2/2 checks pass
