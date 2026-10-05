@@ -1,0 +1,74 @@
+==============================================================================================================
+CFG332 outer-halo globulars, three routes
+==============================================================================================================
+  NGC 2419  sigma_obs 4.771+-0.481 N= 62  L_V 5.021e+05  r_h,l 19.76 pc  R_GC 95.9  MF slope -1.57+-0.21 [0.47,0.78]
+  Pal 3     sigma_obs 1.700+-0.340 N= 22  L_V 1.293e+04  r_h,l 20.16 pc  R_GC 98.2  MF slope -1.14+-0.25 [0.58,0.84]
+  Pal 4     sigma_obs 0.880+-0.185 N= 23  L_V 1.838e+04  r_h,l 15.88 pc  R_GC 104.0  MF slope -0.34+-0.27 [0.59,0.82]
+  Pal 14    sigma_obs 0.710+-0.160 N= 16  L_V 1.156e+04  r_h,l 27.63 pc  R_GC 68.5  MF slope -1.26+-0.24 [0.54,0.81]
+
+--- C1  h93 reproduction (law + algebraic EFE, Upsilon ~ logN(1.6, 0.15 dex)) ---
+  canonical: L 4.57 sigma, T 4.13 sigma; joint Ups framework 0.76, Newton 2.14; Ups_req(F) [1.01, 1.34, 0.26, 0.35]
+  alt      : L 4.90 sigma, T 4.46 sigma; joint Ups framework 0.71, Newton 2.14; Ups_req(F) [0.95, 1.23, 0.24, 0.32]
+  [PASS] C1 h93 L statistic reproduced (4.6 / 4.9 sigma, +-0.1)  (4.57 / 4.90)
+  [PASS] C1 h93 joint Ups reproduced (0.76 framework canonical, 2.14 Newton, +-0.01)  (0.756, 2.144)
+  [PASS] C1 h93 Ups_req(F) per cluster reproduced (+-0.01)  ([1.01, 1.34, 0.26, 0.35] / [0.95, 1.23, 0.24, 0.32])
+
+--- ROUTE 1  ownership ---
+  Record's rule (FG001, campaign_fresh_gravity/CFG7_hierarchy_fg001.py header; PAPER35 Sec. 'Hierarchical ownership'):
+   'E  formed embedded, without a cold component (tidal dwarfs, globular clusters, collision debris ..., wide binaries,
+    the Solar System): NEWTONIAN from their baryons.'   'A  accreted (formed top-level, later embedded: satellites, ...):
+    ... the ISOLATED law of their infall baryons, with NO external-field effect.'
+  -> the record DOES decide globulars: class E (Newtonian) by explicit enumeration; satellites (incl. UFDs) class A.
+  canonical a_newton     : T   2.83 sigma  L  -1.11  | no Pal 3 T   0.27 | published-alt T   3.13  per-cluster pT 3.1e-01, 1.4e-04, 4.1e-01, 3.4e-01
+  canonical b_EFE_h93    : T   4.13 sigma  L   4.57  | no Pal 3 T   4.42 | published-alt T   5.49  per-cluster pT 1.2e-01, 5.5e-01, 4.3e-05, 5.5e-03
+  canonical b_B_isolated : T   5.07 sigma  L   5.49  | no Pal 3 T   5.30 | published-alt T   6.40  per-cluster pT 1.2e-01, 4.0e-01, 1.5e-05, 1.2e-04
+  canonical (a) Newton predicted/observed at Ups 1.6: NGC 2419 0.980, Pal 3 0.437, Pal 4 1.134, Pal 14 0.845
+  alt       a_newton     : T   2.83 sigma  L  -1.11  | no Pal 3 T   0.27 | published-alt T   3.13  per-cluster pT 3.1e-01, 1.4e-04, 4.1e-01, 3.4e-01
+  alt       b_EFE_h93    : T   4.46 sigma  L   4.90  | no Pal 3 T   4.72 | published-alt T   5.78  per-cluster pT 8.3e-02, 4.8e-01, 2.0e-05, 3.5e-03
+  alt       b_B_isolated : T   5.41 sigma  L   5.82  | no Pal 3 T   5.59 | published-alt T   6.69  per-cluster pT 8.0e-02, 2.9e-01, 6.8e-06, 6.7e-05
+  alt       (a) Newton predicted/observed at Ups 1.6: NGC 2419 0.980, Pal 3 0.437, Pal 4 1.134, Pal 14 0.845
+
+  CONSISTENCY MATRIX (globulars T sigma | UFDs offset dex, z) -- canonical / alt
+   (a) rule as written: GC=E Newtonian, UFD=A isolated       : GC 2.83 / 2.83  | UFD +0.325 (3.77) / +0.304 (3.55)
+   (b-B) GC top-level, B's own isolated law; UFD=A isolated  : GC 5.07 / 5.41  | UFD +0.325 (3.77) / +0.304 (3.55) [contradicts the written class E]
+   (b-EFE) rival: every system law + host EFE (h93)          : GC 4.13 / 4.46  | UFD +0.764 (4.58) / +0.748 (4.49) [not B's rule]
+   (c) UFDs also owned/Newtonian would need a criterion not in the record (NEW POSTULATE) and is worse for them (not scored).
+
+--- ROUTE 2  MF-slope stellar M/L (CONDITIONAL: slopes from Newtonian N-body fits to star counts) ---
+  [PASS] C5 Kroupa input (alpha -2.3, branch K) returns Ups_MF = 1.6  (1.600000000)
+  branch S: Ups_MF NGC 2419 1.34 (width 0.165 dex), Pal 3 1.01 (width 0.164 dex), Pal 4 0.67 (width 0.158 dex), Pal 14 1.09 (width 0.164 dex)
+   canonical law(h93 EFE) T   2.55  L   2.90  no-Pal3 T   2.80 | Newton T   4.10
+   alt       law(h93 EFE) T   2.84  L   3.24  no-Pal3 T   3.12 | Newton T   4.10
+  branch K: Ups_MF NGC 2419 1.02 (width 0.158 dex), Pal 3 0.83 (width 0.158 dex), Pal 4 0.60 (width 0.155 dex), Pal 14 0.87 (width 0.158 dex)
+   canonical law(h93 EFE) T   2.17  L   2.35  no-Pal3 T   2.33 | Newton T   5.09
+   alt       law(h93 EFE) T   2.40  L   2.69  no-Pal3 T   2.63 | Newton T   5.09
+
+--- ROUTE 3  full QUMOND external field ---
+  [PASS] C2 flux method, deep-MOND isolated: sigma_los^4 = (4/81) G M a0 (a0u=1)  (ratio 1.00000)
+  [PASS] C2 flux method, deep-MOND isolated: sigma_los^4 = (4/81) G M a0 (a0u=100)  (ratio 1.00000)
+  [PASS] C3 EFE-dominated limit -> nu_e(1+L/3) (y_e=0.01)  (8.84305 vs 8.84305)
+  [PASS] C3 EFE-dominated limit -> nu_e(1+L/3) (y_e=0.05)  (4.24850 vs 4.24850)
+  [PASS] C3 y_ext >> 1 -> Newton  (boost 0.999970)
+  [PASS] C2 grid solve, deep-MOND isolated: orientation-averaged sigma_los^4 = (4/81) G M a0 (1%)  (ratio 0.9977)
+  canonical NGC 2419  boost: num 1.642 | alg(h93) 1.648 | iso 1.653  sigma_num/sigma_alg 0.998 (same-Plummer 1.002)  LOS par/perp vs avg 0.999/1.001; grid g_r(r12) 0.4720 vs flux 0.4728
+  canonical Pal 3     boost: num 7.029 | alg(h93) 6.232 | iso 7.360  sigma_num/sigma_alg 1.062 (same-Plummer 1.066)  LOS par/perp vs avg 0.969/1.015; grid g_r(r12) 2.0210 vs flux 2.0244
+  canonical Pal 4     boost: num 4.964 | alg(h93) 4.704 | iso 5.042  sigma_num/sigma_alg 1.027 (same-Plummer 1.032)  LOS par/perp vs avg 0.983/1.008; grid g_r(r12) 1.4275 vs flux 1.4297
+  canonical Pal 14    boost: num 6.509 | alg(h93) 6.369 | iso 10.433  sigma_num/sigma_alg 1.011 (same-Plummer 1.013)  LOS par/perp vs avg 0.933/1.032; grid g_r(r12) 1.8718 vs flux 1.8747
+  canonical RESCORED (exact QUMOND monopole): T   4.28  L   4.73  no-Pal3 T   4.54  published-alt T   5.59
+  alt       NGC 2419  boost: num 1.740 | alg(h93) 1.747 | iso 1.753  sigma_num/sigma_alg 0.998 (same-Plummer 1.002)
+  alt       Pal 3     boost: num 7.671 | alg(h93) 6.795 | iso 8.036  sigma_num/sigma_alg 1.063 (same-Plummer 1.067)  LOS par/perp vs avg 0.969/1.015; grid g_r(r12) 2.2057 vs flux 2.2094
+  alt       Pal 4     boost: num 5.402 | alg(h93) 5.116 | iso 5.488  sigma_num/sigma_alg 1.028 (same-Plummer 1.032)  LOS par/perp vs avg 0.983/1.008; grid g_r(r12) 1.5532 vs flux 1.5556
+  alt       Pal 14    boost: num 7.100 | alg(h93) 6.946 | iso 11.412  sigma_num/sigma_alg 1.011 (same-Plummer 1.013)  LOS par/perp vs avg 0.932/1.032; grid g_r(r12) 2.0417 vs flux 2.0448
+  alt       RESCORED (exact QUMOND monopole): T   4.62  L   5.07  no-Pal3 T   4.83  published-alt T   5.89
+  [PASS] C4 grid sphere-averaged g_r(r12) matches the exact flux (2%)  (max dev 0.0017)
+  [PASS] C4 domain doubling moves LOS sigma by < 2% (Pal 14)  (0.0006)
+
+--- VERDICTS (T, two-sided marginalised Fisher; canonical / alt) ---
+  route1_a_owned        :   2.83 /   2.83  -> NOT
+  route1_b_EFE_h93      :   4.13 /   4.46  -> NOT
+  route1_b_B_isolated   :   5.07 /   5.41  -> NOT
+  route2_S              :   2.55 /   2.84  -> NOT
+  route2_K              :   2.17 /   2.40  -> NOT
+  route3_qumond         :   4.28 /   4.62  -> NOT
+
+12/12 checks pass
