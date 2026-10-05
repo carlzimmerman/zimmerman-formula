@@ -1,0 +1,101 @@
+====================================================================================================
+1. PROVENANCE -- the same four rows in every on-disk copy
+====================================================================================================
+  TSV vs combined_table vs bhv4 csv (8 + 3 columns x 4 clusters): worst relative difference 0.0e+00
+  NOTE: all three are the SAME 2023 web table (same retrieval generation) -- agreement is transcription, not independent confirmation.
+
+  version drift: Baumgardt & Hilker 2018 (CDS table2) vs the 2023 web table -- model outputs move, inputs barely do
+  cluster    N_RV 18->23        D 18->23           M_dyn 18->23         M/L_dyn 18->23    rh_l 18->23 MF note 18
+  NGC 2419    195->183     83.20->88.47    9.81e+05->7.83e+05    2.23+-0.32->1.61   18.29->19.76       d
+  Pal 3        14->22      92.50->94.84    6.15e+04->1.85e+04    2.85+-1.69->1.45   19.69->20.16       d
+  Pal 4        23->23     103.00->101.39   2.98e+04->1.53e+04    1.64+-0.71->0.81   17.87->15.88       c
+  Pal 14       17->16      71.00->73.58    2.27e+04->1.91e+04    3.40+-1.82->1.70   23.60->27.63       c
+  MF note: c = slope from observed mass functions; d = slope ESTIMATED from relaxation time (a Newtonian-dynamics prior).
+
+  Baumgardt's N-body central sigma_0 (MODEL) vs his own innermost measured RV bin (DATA):
+   NGC 2419  sigma_0(model) 5.10  bin 5.51 +0.57/-0.49 at  16.4 pc (N=62)   bin/model 1.08  (+0.8 sigma)
+   Pal 3     sigma_0(model) 0.80  bin 1.70 +0.38/-0.30 at  11.1 pc (N=22)   bin/model 2.12  (+3.0 sigma)
+   Pal 4     sigma_0(model) 0.80  bin 0.88 +0.20/-0.17 at  13.1 pc (N=23)   bin/model 1.10  (+0.5 sigma)
+   Pal 14    sigma_0(model) 0.70  bin 0.71 +0.18/-0.14 at  27.5 pc (N=16)   bin/model 1.01  (+0.1 sigma)
+  -> Pal 3 is the only cluster where Baumgardt's own Newtonian model sits ~3 sigma BELOW his own data: his Pal 3 mass/M/L is
+     NOT a dynamical measurement from those 22 stars (set by the light profile / priors), so M/L_dyn = 1.45 must not be read as one.
+
+====================================================================================================
+2. MEASURED INPUTS (V, E(B-V), distance, r_h,l, RV bins) -> L_V, Newton and law predictions
+====================================================================================================
+  NGC 2419  M_V  -9.422  L_V 5.021e+05  (M_dyn/L_V)/(M/L_V quoted) = 0.969   r_h,l 19.76 pc  r_t  735.0 pc (r_t/r_h 37.2)  sigma_obs 4.771 at 19.8 pc
+  Pal 3     M_V  -5.449  L_V 1.293e+04  (M_dyn/L_V)/(M/L_V quoted) = 0.987   r_h,l 20.16 pc  r_t  229.7 pc (r_t/r_h 11.4)  sigma_obs 1.700 at 11.1 pc
+  Pal 4     M_V  -5.831  L_V 1.838e+04  (M_dyn/L_V)/(M/L_V quoted) = 1.028   r_h,l 15.88 pc  r_t  207.5 pc (r_t/r_h 13.1)  sigma_obs 0.880 at 13.1 pc
+  Pal 14    M_V  -5.328  L_V 1.156e+04  (M_dyn/L_V)/(M/L_V quoted) = 0.972   r_h,l 27.63 pc  r_t   45.8 pc (r_t/r_h 1.7)  sigma_obs 0.710 at 27.5 pc
+  NGC 2419 global sigma: interpolated-at-r_h 4.77 (used by h93/CFG332) vs light-weighted over its 3 bins 4.65 km/s
+  Pal 14: r_t/r_h = 1.7 -- the model's tidal radius (computed in a MW potential WITH a dark halo; not used by any test) is
+          barely outside r_h: Pal 14 is tidally extended, so equilibrium is in doubt in either gravity.
+
+  kernel check: nu_mono (frozen, peak y = 2.54) vs exp-RAR nu_s at every cluster's y:
+    max |nu_mono/nu_s - 1| = 4.1e-09  -> the h93/CFG332 use of nu_s is the record's kernel here
+
+  footing canonical (a0 = 9.360e-11)   [Upsilon_V = 1.6 SPS; MW baryons 6e10 point mass]
+   cluster     y_int   y_ext  sigObs  N_Wolf  N_Plum  law_alg  law_iso deepMOND  EFEdom  obs/N obs/law Ups_req N Ups_req F
+   NGC 2419   0.8619  0.0097   4.771   4.676   5.075    6.002    6.012    4.712  14.001  1.020   0.795      1.67      0.81
+   Pal 3      0.0213  0.0093   1.700   0.743   0.806    1.854    2.015    1.888   2.249  2.289   0.917      8.38      1.24
+   Pal 4      0.0489  0.0083   0.880   0.998   1.083    2.165    2.241    2.061   3.105  0.882   0.407      1.24      0.13
+   Pal 14     0.0102  0.0190   0.710   0.600   0.651    1.514    1.938    1.836   1.537  1.183   0.469      2.24      0.30
+  footing alt (a0 = 1.130e-10)   [Upsilon_V = 1.6 SPS; MW baryons 6e10 point mass]
+   cluster     y_int   y_ext  sigObs  N_Wolf  N_Plum  law_alg  law_iso deepMOND  EFEdom  obs/N obs/law Ups_req N Ups_req F
+   NGC 2419   0.7139  0.0080   4.771   4.676   5.075    6.180    6.191    4.939  14.637  1.020   0.772      1.67      0.73
+   Pal 3      0.0177  0.0077   1.700   0.743   0.806    1.936    2.106    1.979   2.351  2.289   0.878      8.38      1.10
+   Pal 4      0.0405  0.0068   0.880   0.998   1.083    2.257    2.338    2.160   3.247  0.882   0.390      1.24      0.12
+   Pal 14     0.0084  0.0158   0.710   0.600   0.651    1.582    2.027    1.924   1.605  1.183   0.449      2.24      0.28
+
+  r_h,l sensitivity (+10%):  d ln sigma / Newton vs law (canonical)
+   NGC 2419  Newton  -4.7%   law  -1.8%
+   Pal 3     Newton  -4.7%   law  -1.8%
+   Pal 4     Newton  -4.7%   law  -1.2%
+   Pal 14    Newton  -4.7%   law  -3.3%
+  -> h93's caveat ('moves BOTH gravity laws equally') is wrong for the three deep-MOND clusters: the law is nearly r-independent
+     there.  Size of the slip: a 10% r_h error shifts the Newton-vs-law differential by ~4%.  Immaterial to every verdict.
+
+====================================================================================================
+3. TENSION, using each bin's PUBLISHED asymmetric error (log-normal) + 0.075 dex in sigma for Upsilon
+====================================================================================================
+  error check: published fractional error vs the chi^2_(N-1) width used by h93/CFG332's p_low:
+   NGC 2419  published 0.101   chi^2_(N-1) 0.091   ratio 1.11
+   Pal 3     published 0.200   chi^2_(N-1) 0.154   ratio 1.30
+   Pal 4     published 0.210   chi^2_(N-1) 0.151   ratio 1.39
+   Pal 14    published 0.225   chi^2_(N-1) 0.183   ratio 1.23
+  -> the chi^2_(N-1) statistic ignores per-star velocity errors and is 20-45% tighter than the published errors in the sparse clusters
+  canonical Newton (class E)      z: NGC 2419 +0.10  Pal 3 +3.15  Pal 4 -0.46  Pal 14 +0.60  | T4  1.58  noPal3 -1.26  pub-alt  1.89  noPal3+Jordi -0.42
+  canonical law + alg EFE (h93)   z: NGC 2419 -1.15  Pal 3 -0.33  Pal 4 -3.31  Pal 14 -2.69  | T4  3.22  noPal3  3.58  pub-alt  4.02  noPal3+Jordi  4.35
+  canonical law isolated (B)      z: NGC 2419 -1.16  Pal 3 -0.65  Pal 4 -3.44  Pal 14 -3.56  | T4  4.02  noPal3  4.31  pub-alt  4.71  noPal3+Jordi  4.96
+  alt       Newton (class E)      z: NGC 2419 +0.10  Pal 3 +3.15  Pal 4 -0.46  Pal 14 +0.60  | T4  1.58  noPal3 -1.26  pub-alt  1.89  noPal3+Jordi -0.42
+  alt       law + alg EFE (h93)   z: NGC 2419 -1.29  Pal 3 -0.50  Pal 4 -3.47  Pal 14 -2.84  | T4  3.54  noPal3  3.86  pub-alt  4.30  noPal3+Jordi  4.59
+  alt       law isolated (B)      z: NGC 2419 -1.30  Pal 3 -0.81  Pal 4 -3.60  Pal 14 -3.72  | T4  4.35  noPal3  4.58  pub-alt  4.99  noPal3+Jordi  5.21
+
+  canonical law leave-one-out T: drop NGC 2419 3.33  drop Pal 3 3.58  drop Pal 4 1.76  drop Pal 14 2.40
+  alt       law leave-one-out T: drop NGC 2419 3.61  drop Pal 3 3.86  drop Pal 4 2.05  drop Pal 14 2.68
+
+====================================================================================================
+4. BINARIES -- the CFG334 model (DM91 periods, flat q, thermal e, M1 0.8, periastron >= 30 Rsun), re-implemented
+====================================================================================================
+  no clip   e 1.0 f 0.0:  P(Pal3 >= 1.70) 0.000 (med 0.66) | P(Pal4 <= 0.88) 0.446 (med 0.92) | P(Pal14 <= 0.71) 0.722 (med 0.47) | Fisher p 0.002
+  no clip   e 1.0 f 0.1:  P(Pal3 >= 1.70) 0.086 (med 0.81) | P(Pal4 <= 0.88) 0.320 (med 1.05) | P(Pal14 <= 0.71) 0.570 (med 0.63) | Fisher p 0.216
+  no clip   e 1.0 f 0.3:  P(Pal3 >= 1.70) 0.262 (med 1.15) | P(Pal4 <= 0.88) 0.159 (med 1.35) | P(Pal14 <= 0.71) 0.341 (med 0.96) | Fisher p 0.203
+  no clip   e 1.0 f 0.5:  P(Pal3 >= 1.70) 0.433 (med 1.54) | P(Pal4 <= 0.88) 0.079 (med 1.70) | P(Pal14 <= 0.71) 0.205 (med 1.32) | Fisher p 0.129
+  no clip   e 0.5 f 0.0:  P(Pal3 >= 1.70) 0.000 (med 0.70) | P(Pal4 <= 0.88) 0.349 (med 0.95) | P(Pal14 <= 0.71) 0.817 (med 0.55) | Fisher p 0.000
+  no clip   e 0.5 f 0.1:  P(Pal3 >= 1.70) 0.084 (med 0.81) | P(Pal4 <= 0.88) 0.234 (med 1.05) | P(Pal14 <= 0.71) 0.601 (med 0.64) | Fisher p 0.181
+  no clip   e 0.5 f 0.3:  P(Pal3 >= 1.70) 0.255 (med 1.13) | P(Pal4 <= 0.88) 0.092 (med 1.33) | P(Pal14 <= 0.71) 0.301 (med 0.95) | Fisher p 0.129
+  no clip   e 0.5 f 0.5:  P(Pal3 >= 1.70) 0.432 (med 1.53) | P(Pal4 <= 0.88) 0.037 (med 1.69) | P(Pal14 <= 0.71) 0.150 (med 1.33) | Fisher p 0.060
+  3-sig clip e 1.0 f 0.0:  P(Pal3 >= 1.70) 0.000 (med 0.65) | P(Pal4 <= 0.88) 0.454 (med 0.92) | P(Pal14 <= 0.71) 0.719 (med 0.46) | Fisher p 0.000
+  3-sig clip e 1.0 f 0.1:  P(Pal3 >= 1.70) 0.005 (med 0.72) | P(Pal4 <= 0.88) 0.392 (med 0.97) | P(Pal14 <= 0.71) 0.633 (med 0.56) | Fisher p 0.038
+  3-sig clip e 1.0 f 0.3:  P(Pal3 >= 1.70) 0.045 (med 0.87) | P(Pal4 <= 0.88) 0.283 (med 1.10) | P(Pal14 <= 0.71) 0.465 (med 0.75) | Fisher p 0.115
+  3-sig clip e 1.0 f 0.5:  P(Pal3 >= 1.70) 0.126 (med 1.04) | P(Pal4 <= 0.88) 0.188 (med 1.26) | P(Pal14 <= 0.71) 0.332 (med 0.96) | Fisher p 0.138
+  3-sig clip e 0.5 f 0.0:  P(Pal3 >= 1.70) 0.000 (med 0.70) | P(Pal4 <= 0.88) 0.363 (med 0.95) | P(Pal14 <= 0.71) 0.821 (med 0.54) | Fisher p 0.000
+  3-sig clip e 0.5 f 0.1:  P(Pal3 >= 1.70) 0.002 (med 0.74) | P(Pal4 <= 0.88) 0.306 (med 0.99) | P(Pal14 <= 0.71) 0.711 (med 0.59) | Fisher p 0.014
+  3-sig clip e 0.5 f 0.3:  P(Pal3 >= 1.70) 0.023 (med 0.84) | P(Pal4 <= 0.88) 0.202 (med 1.09) | P(Pal14 <= 0.71) 0.503 (med 0.71) | Fisher p 0.060
+  3-sig clip e 0.5 f 0.5:  P(Pal3 >= 1.70) 0.083 (med 0.98) | P(Pal4 <= 0.88) 0.123 (med 1.22) | P(Pal14 <= 0.71) 0.318 (med 0.89) | Fisher p 0.075
+  intrinsic sigma = Newton (Wolf, Upsilon 1.6): Pal 3 0.74, Pal 4 1.00, Pal 14 0.60 km/s
+  CFG334 frozen rule: EXPLAIN if P(Pal 3) >= 0.05 at (0.75, e 1.0, f 0.3); PLAUSIBLE if only at f 0.5 / e 1.5.
+  -> unclipped (as CFG334 ran it) the primary P reproduces (~0.26). With a standard 3-sigma clip the primary falls to ~0.045:
+     the verdict would read PLAUSIBLE, not EXPLAIN.  Whether Baumgardt's 1.70 was clipped/membership-filtered is NOT on disk.
+  -> joint test (same binary population in all three sparse clusters, Newton intrinsic): Fisher p >= ~0.1 at f 0.3 --
+     a binary population big enough for Pal 3 leaves Pal 4 / Pal 14 low-ish but not inconsistent.  Not a refutation.
