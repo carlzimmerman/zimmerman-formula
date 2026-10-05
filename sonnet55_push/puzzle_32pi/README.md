@@ -323,3 +323,9 @@ alpha* = 2.00249. A class-independent, kernel-only statement of the coefficient 
   1.41x short of 32 pi; the 10^61 of the cosmological-constant problem enters only as a logarithm, so the ORDER is natural. Reaching 32 pi needs y_max = 1.7e87, 3e25 x past Planck.
   This is a menu result (kernel and cutoff chosen) and it puts hbar into a0 logarithmically, against lane A. The ratio 0.708 is not read as 1/sqrt 2 (post-hoc menu).
 Verdict: nothing pins the tail; the closest natural construction (standard tail + Planck cutoff) gives the right order but not 32 pi. kappa = 1/2 stays FITTED.
+
+## 32. Planck cutoff with the framework kernel (`p27`, 2/2; MUTATE uses an alpha = 2 kernel, fails both) -- 2026-10-05
+Exact: int_0^Y 2y(sqrt(1+1/y) - 1) dy = [2Y^(5/2) + 3Y^(3/2) + sqrt Y - sqrt(Y+1)(2Y^2 + asinh sqrt Y)]/(2 sqrt(Y+1)) ~ Y (evaluated at 200 digits: the closed form cancels Y^2 terms).
+Cut at the Planck acceleration: Lambda = (1/2) a0 a_P/c^4, the geometric mean of a0 and the Planck acceleration: **3e59 x too large** (both footings). The slow alpha = 1 tail
+makes the vacuum term track the cutoff linearly, so the framework kernel turns BIMOND's vacuum into the cosmological-constant problem (softened from 1e122 to 1e59).
+kappa = 1/2 stays FITTED.
