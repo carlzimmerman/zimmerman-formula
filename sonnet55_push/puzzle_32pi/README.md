@@ -354,3 +354,14 @@ Verdict: a striking-looking post-hoc match on the self-defined footing; 1-3 sigm
 ## 36. Amplitude 1/sqrt 2 with the GUT cutoff (`p31`, 2/2; MUTATE uses Planck, fails A) -- 2026-10-05, POST-HOC
 a_cut = (2e16 GeV) c/hbar = 9.1e48 m/s^2. Framework footing: Lambda/a0^2 = 95.9-96.0 (K1-K3), 4.5% short of 32 pi (ln(a_GUT/a_P) = -6.4, x 1/sqrt 2).
 Against measured a0: predicted ~95.9 vs observed 76 +- 8 (+2.4 sigma), 73 +- 18 (+1.3), 80 +- 19 (+0.8). Closer to the data than Planck, still high, not a match. kappa = 1/2 stays FITTED.
+
+## 37. Amplitude 1/sqrt 2, all five cutoffs (`p32`, 2/2; MUTATE amplitude 1/2, fails A) -- 2026-10-05, POST-HOC SWEEP
+| cutoff | framework footing (vs 32 pi) | vs measured a0: SPARC record / lane V ensemble / MIGHTEE (pull) |
+|---|---|---|
+| electron | 64.1 (-36%) | -1.45 / -0.52 / -0.83 |
+| proton | 69.4 (-31%) | -0.81 / -0.22 / -0.55 |
+| electroweak | 73.4 (-27%) | -0.33 / +0.00 / -0.35 |
+| GUT | 96.0 (-4.5%) | +2.41 / +1.27 / +0.84 |
+| Planck | 100.5 (-0.0%) | +2.96 / +1.52 / +1.07 |
+The framework footing (a0 defined from Lambda) prefers Planck; measured a0 prefer electron-to-electroweak (the electroweak row's 0.00 against the ensemble is a sweep pick).
+Three of five cutoffs fit the measured ratios within 1.5 sigma: the data cannot choose a cutoff, and a sweep that finds a match is a menu pick. kappa = 1/2 stays FITTED.
