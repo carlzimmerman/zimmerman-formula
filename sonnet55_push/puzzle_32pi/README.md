@@ -267,3 +267,10 @@ and B (khronon universal horizon). Pass needs kappa = a0 AND Lambda A = 32 pi^2,
   Schwarzschild hole of mass M_eff. Schwarzschild limit reproduces r_UH = 3M/2, kappa_UH = sqrt(2/27)/M (kappa r = 1/sqrt 6 = 0.408). Over the SdS family up to
   Nariai: kappa_UH r_UH in [0.013, 0.408] (never 1/2), Lambda r_UH^2 <= 0.94 (the UH lies inside r_b), so Lambda r^2 = 8 pi is unreachable.
   Not covered: finite khronon speed (the CMC limit is the framework's small-alpha regime only in that limit), branch A2. kappa = 1/2 stays FITTED.
+- `p20c` (6/6; MUTATE drops P_XX in G^rr and flips f, fails 3): **A2 and finite-speed B both FAIL.**
+  A2 (sonic horizon around a mass, P = s^n on a rolling background): horizon where the a0-field flow equals c_s; kappa r_h = p sqrt(2n-1)/(2(n-1)) (p = profile slope),
+  independent of M; kappa r_h = 1/2 in deep MOND needs a tuned exponent n = 2 + sqrt 2, and Lambda r_h^2 = 8 pi needs the one mass M a0 = 8 pi c_s^2 q^2/Lambda
+  (radius ~ sqrt M; q free): INSERTION on both halves. (POST-HOC: the pre-written A2-1 guessed kappa r_h = 1/2 for all n; the run refuted it; replaced by the formula.)
+  B at ANY khronon speed: a universal horizon needs d_t spacelike (f < 0); on the black-hole side Lambda r^2 <= 0.997 < 1 for every SdS mass, and beyond r_c a khronon
+  matched to cosmic time has u.chi = -1. Lambda r^2 = 8 pi is unreachable whatever the speed.
+**Branch verdicts (p20): A1 FAIL, A2 INSERTION, B FAIL (CMC and any finite speed).** No effective-metric horizon of the a0 sector gives the puzzle. kappa = 1/2 stays FITTED.
