@@ -314,3 +314,12 @@ For alpha = beta = 1: **M'(z) = (nu - 1)/(2nu - 1) at z = [y(2nu - 1)]^2** (main
 **Exact identity:** J - I_nu = int d[2 y^2 (nu - 1)^2], a boundary term that vanishes, so the vacuum integral is the SAME in both classes. Lambda/a0^2 = (1/2) int (nu-1) d(y^2)
 depends on the force law nu alone, not on how BIMOND is set up. Consequences: framework kernel diverges in both; RAR gives 12.99 a0^2 (x7.74 short); 32 pi needs the same tail
 alpha* = 2.00249. A class-independent, kernel-only statement of the coefficient -- still not a derivation. kappa = 1/2 stays FITTED.
+
+## 31. What could pin the strong-field tail of nu (`p26`, 5/5; MUTATE corrupts the Planck acceleration, fails C1) -- 2026-10-05
+- **Data:** no. The tuned tail (alpha* = 2.0025) gives 3.5e-19 m/s^2 at the Earth, 3e4 below ephemeris sensitivity; SPARC stops at y ~ 1e2. Worse, the tuned value is collected
+  out to y ~ e^400 ~ 5e173 (accelerations 1e164 m/s^2), far beyond the Planck acceleration (y_P ~ 6e61): unphysical as stated.
+- **Theory:** Milgrom 1999 (the framework's kernel) is the one derivation that fixes the tail, and its integral diverges; 64 pi needs a cutoff at 203 a0, a scale with no marker.
+- **A physical cutoff:** with the 'standard' mu tail (nu - 1 ~ 1/(2y^2)), I_nu = ln y_max + 0.193. Cut at the Planck acceleration: Lambda/a0^2 = 71.2 (both footings),
+  1.41x short of 32 pi; the 10^61 of the cosmological-constant problem enters only as a logarithm, so the ORDER is natural. Reaching 32 pi needs y_max = 1.7e87, 3e25 x past Planck.
+  This is a menu result (kernel and cutoff chosen) and it puts hbar into a0 logarithmically, against lane A. The ratio 0.708 is not read as 1/sqrt 2 (post-hoc menu).
+Verdict: nothing pins the tail; the closest natural construction (standard tail + Planck cutoff) gives the right order but not 32 pi. kappa = 1/2 stays FITTED.
