@@ -381,3 +381,11 @@ Verlinde's elastic response (1611.02269, CFG117 form) M_D^2 = (a_V r^2/G) d(M_B 
 Inside the matter the local term 4 pi G rho_B r raises g by up to x2 at x = 0.1 (x1.2-2.0 by mass): a prediction that differs from the framework's local law and is testable on
 SPARC (the RAR's tightness, 0.1 dex, is the obvious threat). This is a MECHANISM for the shape (quadrature = energy additivity of an elastic dark field) with Verlinde's
 coefficient, not a derivation of kappa = 1/2: it gives a0 = c H/6, so Lambda A = 108 pi (not 32 pi^2). kappa = 1/2 stays FITTED.
+
+## 40. SPARC test of field-energy-additive Verlinde (`p34`, 2/2; MUTATE sets s = -2, models coincide, verdict check fails) -- 2026-10-05
+Model energy-V: g^2 = g_N^2 + a g_N (3 + s), s = dln g_N/dln r (spherical-equivalent local term; = framework where s = -2). Lane V machinery.
+- Upsilon fixed 0.5, MLS16 cuts (153 galaxies): chi2 framework 4597.0 vs energy-V 5985.6, **Delta chi2 = +1389** (~+77 after lane V's crude x18 clustering deflation).
+- Upsilon free (175): 3140.4 vs 5356.7, **Delta chi2 = +2216** (~+123). Energy-V's best a drops to 0.6-0.8e-10 to compensate.
+- Framework residuals vs log10(3 + s): r = -0.13 (energy-V predicts a positive trend).
+**Verdict: SPARC rules out the local-density term; field-energy-additive Verlinde FAILS inside galaxies.** The framework's purely local law g(g_N) is strongly preferred.
+The p33 mechanism survives only as an exterior statement. kappa = 1/2 stays FITTED.
