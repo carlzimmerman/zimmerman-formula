@@ -419,3 +419,9 @@ Profile over (a0, y_t) for nu_fix (k = 2). The offset reading's signature is tin
   RAR is still better by 80 (~4 after crude x18 deflation), and the gas/star split stays open (1.43 +- 0.04). The framework kernel is the best family member only at
   Upsilon 0.58-0.60 (a0 1.20-1.15e-10). The kernel shape and Upsilon are degenerate; SPARC alone does not separate them.
 Reading: the transition-shape signal is largely Upsilon, not a clean verdict on the kernel; at the data's preferred Upsilon the RAR shape still edges the framework's. kappa = 1/2 stays FITTED.
+
+## 44. Lean: the leftover postulate r* = c/sqrt(G rho_Lambda) is INDEPENDENT of the ingredients (`fable_independent_2026/lean_2026/PUZZLE_32pi_postulate_status_2026_10_05.lean`)
+Premises as a structure: Lambda = 8 pi G rho/c^2; a0 = c^2/(2r) (Schwarzschild surface gravity); BIMOND vacuum Lambda = (1/2)(1+f'(1)) a0^2 I/c^4 (any fp > -1, I > 0).
+Proved (standard axioms only): postulate_iff_kappa_half (P <-> a0^2 = G rho c^2/4); a model with all premises AND P; a model with all premises and NOT P; hence
+**postulate_independent**: P is neither implied nor excluded; scale_family: every kappa > 0 has a model. The premises carry a free modulus kappa; only a NEW premise that
+breaks the kappa-family (fixes I, f'(1) or the tail) can derive P. MUTATE (the not-P model's radius changed so the horizon premise fails): exit 1.
