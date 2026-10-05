@@ -341,3 +341,12 @@ nu - 1 ~ A/y^2 makes the vacuum log-divergent: Lambda/a0^2 = A ln(a_cut/a0) + co
 electron 22.9 / 45.5, proton 24.8 / 49.2, electroweak 26.1 / 52.0, GUT 34.1 / 68.0, Planck 35.8 / 71.2 (F1 a=2 / standard), target 100.5.
 No physical cutoff reaches 32 pi: the standard kernel needs a_cut = 1.6e77 m/s^2 (2.9e25 x Planck), F1 needs 3.5e112 x Planck. At the Planck cutoff exponent 2 needs tail
 amplitude A = 0.706 (standard 1/2, F1 1/4). The log makes the order natural (20-70 for any cutoff from the electron to Planck) but never 100.5. kappa = 1/2 stays FITTED.
+
+## 35. Tail amplitude 1/sqrt 2 (exponent 2) with the Planck cutoff (`p30`, 5/5; MUTATE amplitude 1/2, fails A) -- 2026-10-05, POST-HOC
+The amplitude was suggested by p29's SOLVED value 0.706. Three kernels with the deep-MOND limit and tail (1/sqrt 2)/y^2: Lambda/a0^2 = 100.41 / 100.53 / 100.47 vs 32 pi = 100.53
+on the framework footing (K2 hits to 0.002%); the transition shape moves it by 0.3%.
+**But this matches only where a0 is DEFINED from Lambda.** Against measured a0 (the observed ratio is 32 pi (9.36e-11/a0)^2): predicted ~100.4 vs observed 76 +- 8 (record SPARC,
++3.0 sigma), 73 +- 18 (lane V ensemble, +1.5), 61 +- 25 (MLS16, +1.6), 80 +- 19 (MIGHTEE, +1.1). The log makes the prediction insensitive to a0, so the test is really
+'is Lambda/a0^2 ~ 100?', and measured a0 values say ~60-80. (The 'alt footing within 0.25%' line in check A compares against 32 pi, which is not the observed ratio there;
+the honest comparison is check D, added after the first run.) Rough look-elsewhere for the amplitude: ~50% given the choices (cutoff, normalisation, 14 nice numbers).
+Verdict: a striking-looking post-hoc match on the self-defined footing; 1-3 sigma high against measured a0; not significant. kappa = 1/2 stays FITTED.
