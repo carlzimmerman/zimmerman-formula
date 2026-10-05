@@ -399,3 +399,12 @@ nu_fix(y) = 1 + (sqrt(1+1/y) - 1)/(1 + (y/y_t)^2): the framework law below y_t, 
 - **If** the a0 sector's vacuum is the dark energy (an input, lane K), 32 pi needs y_t = 128.9 (1.21e-8 m/s^2) for this k = 2 shape -- inside both windows; k = 3, 4 give
   167.5, 182.4. So the turn-off scale is shape-dependent; y_t is a free parameter in [~100, 7.7e5] unless that input is adopted.
 Verdict: the tail is FIXED (planets pass, vacuum finite, galaxies unchanged) at the cost of one new constant y_t. It does not derive kappa = 1/2.
+
+## 42. SPARC fit of the turn-off y_t (`p36`, 3/3; MUTATE puts the turn-off in the deep regime, fails A-C) -- 2026-10-05
+Profile over (a0, y_t) for nu_fix (k = 2). The offset reading's signature is tiny: y_t = 100 changes log g by -0.0002 / -0.0006 / -0.0011 dex at y = 10 / 30 / 100.
+- MLS16 cuts, Upsilon 0.5 (153): no preference; Delta chi2 < 4 for y_t >= 20; y_t = 94 / 128: +0.08 / +0.04.
+- Upsilon free (175): best y_t = 5, Delta chi2 = -53 (~ -3 after lane V's crude x18 deflation); y_t = 94 / 128: -1.19 / -0.67. Bulge-bearing (32): best 5, -14.4.
+  Reading: the y_t ~ 5 preference is the known preference for a SHARPER TRANSITION than the alpha = 1 kernel (lane V: RAR shape preferred by d chi2 168), not a
+  detection of a strong-field turn-off; it vanishes at fixed Upsilon.
+**Verdict: SPARC bounds y_t from below (>= 2-20 by treatment) and cannot see the offset reading's y_t ~ 94-129. Allowed, not detected.** Testing it needs data at
+10 <~ y <~ 1e3 with ~0.001 dex precision on g -- not available. kappa = 1/2 stays FITTED.
