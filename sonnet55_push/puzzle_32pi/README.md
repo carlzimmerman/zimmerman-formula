@@ -440,3 +440,9 @@ Catalog: framework, simple, standard: infinite; RAR 25.98 (Lambda c^4/a0^2 = 13.
 vacuum term falls short by x5.6-7.7 or more.** The requirement is equivalent to the framework kernel's 1/(2y) tail persisting unchanged to y_t = 94-129 and then stopping;
 RAR's tail behaves like a cut at y ~ 17. So a completion that predicts Lambda must explain why the quadrature law's slow tail survives to ~100 a0 and no further.
 No known kernel does. kappa = 1/2 stays FITTED.
+
+## 47. Capacity principle and 'nice' turn-off numbers (`p40`, 2/2; MUTATE a0 error 1%, fails N) -- 2026-10-05
+(S) 'The MOND field's extra energy a0 g_N/(8 pi G) saturates at the vacuum energy' (y_t = s L) combined with the vacuum condition: no solution for s = 1, 1.2, 4/pi, 2
+(L(y_t) ~ 0.78 y_t never meets y_t/s), one tiny solution (L = 3.2) at s = 1.4. The principle does not fix L. 
+(N) If y_t is a pure number N: of 20 declared simple numbers in [30, 400], FIVE (8 pi^2, 25 pi, 100, 32 pi, 36 pi) predict a0 within 1 sigma of the measured ensemble
+(1.097e-10 +- 12%); y_t = 32 pi gives a0 = 1.061e-10 (pull -0.27). A one-in-four menu hit rate: no single 'nice' turn-off is evidence. kappa = 1/2 stays FITTED.
