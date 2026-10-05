@@ -66,8 +66,12 @@ for gobs, gb, fac, sig in pre:
     pred = np.sqrt(gb[0][ok]**2 + aF * gb[0][ok])
     R += list(np.log10(gobs[ok]) - np.log10(pred)); X += list(np.log10(fac[0][ok]))
 R, X = np.array(R), np.array(X)
-rho = np.corrcoef(X, R)[0, 1]
-slope = np.polyfit(X, R, 1)[0]
+m_ = np.isfinite(X) & np.isfinite(R)
+X, R = X[m_], R[m_]
+if np.std(X) > 0:
+    rho = np.corrcoef(X, R)[0, 1]; slope = np.polyfit(X, R, 1)[0]
+else:
+    rho = slope = float('nan')   # MUTATE: no local term, nothing to regress
 print(f"   framework residuals vs log10(3 + s): Pearson r = {rho:+.3f}, slope {slope:+.3f} (energy-V predicts a positive slope ~ +0.5 in the deep regime, less where Newtonian)")
 if MUTATE:
     check("M with s = -2 everywhere energy-V must equal the framework exactly", all(abs(v[1]) < 1e-9 for v in out.values()))
