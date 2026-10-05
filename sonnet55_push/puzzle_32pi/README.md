@@ -297,3 +297,13 @@ From Milgrom 2009 eq (24): Lambda = -(1/2)(1 + f'(1)) a0^2 M(0), Lambdahat = -(1
   metric where it is 8 pi past the Nariai bound (p06, p19).
 - But nothing selects that hole: requiring kappa = a0 and Lambda r^2 = 8 pi on one hole IS Lambda = 32 pi a0^2 (restatement), and with f'(1) = 1, Lambda = a0^2 I_nu,
   so 32 pi needs I_nu = 32 pi -- the p22 tail tuning. Not a derivation. kappa = 1/2 stays FITTED.
+
+## 29. What pins f'(1) in BIMOND? (`p24`, 3/3; MUTATE drops lambda^-2 in qhat, fails 2) -- 2026-10-04
+Milgrom eqs (84)-(85): with g-hat = lambda g the vacuum must satisfy both field equations, q/beta = qhat/alpha.
+1. Milgrom's main class (alpha + beta = 0, the clean QUMOND limit): a g-hat = g de Sitter vacuum is inconsistent for EVERY f'(1) unless M(0) = 0 -- the a0^2 vacuum
+   term needs lambda != 1 or twin matter. Nothing pinned.
+2. Ghost-free (determinant-only) potential f = A kappa + B/kappa: the vacuum gives f'(1) = (lambda+1)/(lambda-1), Lambda = lambda/(lambda-1) a0^2 I_nu: f'(1) traded for
+   the free cosmological scale ratio lambda.
+3. alpha = beta with g <-> g-hat exchange symmetry: f(kappa) = f(1/kappa) PINS f'(1) = 0, and the g-hat = g vacuum is consistent, Lambda = (1/2) a0^2 I_nu. So symmetry does pin
+   f'(1) -- but then 32 pi needs I_nu = 64 pi, the p22 tail tuning; and this class lacks Milgrom's clean NR limit (its nu <-> M' map not derived here).
+Verdict: f'(1) can be pinned (exchange symmetry), but pinning it moves the whole coefficient into the unmeasured kernel tail. kappa = 1/2 stays FITTED.
