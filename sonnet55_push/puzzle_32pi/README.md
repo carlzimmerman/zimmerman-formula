@@ -223,3 +223,12 @@ Law PH: a0(z) = c^2/(2 R_p(z)), no free parameter (s* 1.10 today, 2.5 at z 0.8, 
 - **Reading:** on the record's own calibration-limited data the particle-horizon law does worse than both FLAT and H(z); it survives only if
   every high-z baryon mass is overestimated by >= 0.2-0.3 dex in the same direction. Not a kill (post-hoc, calibration-limited), but the
   p14 match is best read as an epoch coincidence. The 32 pi^2 remains the fitted kappa = 1/2.
+
+## 21. Why gas- and star-dominated SPARC galaxies want different a0 (`p16`, 3/3; MUTATE shuffles labels, fails A) -- 2026-10-04, diagnostic
+Baseline (lane V's cleanest: RAR, Upsilon 0.5/0.7, Q<=2, i>=30): late types 0.856, early types 1.247 (e-10), ratio 1.46 +- 0.05.
+- Not distances (TRGB/Cepheid only: 1.63), not inclination (i>=50: 1.53), not inner beam smearing (outer half: 1.47).
+- Pressure support helps but does not close it (sigma_HI 10 km/s: 1.23). A gas-mass rescaling would need x0.6 (implausible).
+- **A star-class Upsilon_disk of 0.6 (instead of 0.5) closes it (ratio 1.05)**: the one plausible single cause. The common a0 is then ~0.86-0.90e-10.
+- At matched acceleration the split survives in the low window (g_bar < 2e-11: 1.37) and closes in the mid window (1.06, only 10 gas galaxies).
+Reading: the split is most simply a stellar mass-to-light zero point (0.6 vs 0.5 at 3.6 um, within SPS uncertainty); with it, a0 ~ 0.86-0.90e-10,
+8% below the framework's 9.36e-11. Independent-point errors understate the true error. Not a derivation; kappa = 1/2 stays FITTED.

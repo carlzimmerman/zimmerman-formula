@@ -1,0 +1,41 @@
+sample: 153 galaxies (Q<=2, i>=30); gas class T>=8: 63; star class T<=5: 58   *** MUTATE: labels shuffled ***
+
+D0 baseline
+  Hubble type (T>=8 vs T<=5)                     gas  1.113 (n  63)  star  1.245 (n  58)  ratio  1.12 +- 0.03  stays
+  gas fraction at last point (>0.5 vs <0.3)      gas  0.969 (n  70)  star  1.291 (n  53)  ratio  1.33 +- 0.04  stays
+
+D1 matched acceleration window (only points with g_bar inside it, Upsilon 0.5)
+  low  g_bar 1e-12..2e-11                        gas  1.062 (n  53)  star  1.183 (n  50)  ratio  1.11 +- 0.04  stays
+  mid  g_bar 2e-11..1e-10                        gas  1.242 (n  36)  star  1.290 (n  33)  ratio  1.04 +- 0.06  CLOSES
+
+D2 pressure support (asymmetric drift), all galaxies corrected
+  sigma_HI = 6 km/s                              gas  1.145 (n  63)  star  1.277 (n  58)  ratio  1.12 +- 0.03  stays
+  sigma_HI = 8 km/s                              gas  1.171 (n  63)  star  1.303 (n  58)  ratio  1.11 +- 0.03  stays
+  sigma_HI = 10 km/s                             gas  1.203 (n  63)  star  1.337 (n  58)  ratio  1.11 +- 0.03  stays
+
+D3-D5 data-quality cuts
+  TRGB/Cepheid distances only (f_D 2,3)          gas  1.029 (n  18)  star  1.632 (n  15)  ratio  1.59 +- 0.09  stays
+  inclination >= 50 deg                          gas  1.118 (n  50)  star  1.210 (n  45)  ratio  1.08 +- 0.04  stays
+  outer half of each curve                       gas  1.103 (n  63)  star  1.275 (n  58)  ratio  1.16 +- 0.04  stays
+
+D6 Upsilon the star class would need (gas class fixed at 0.5)
+  star Upsilon_disk = 0.5                        gas  1.113 (n  63)  star  1.245 (n  58)  ratio  1.12 +- 0.03  stays
+  star Upsilon_disk = 0.6                        gas  1.113 (n  63)  star  0.979 (n  58)  ratio  0.88 +- 0.03  stays
+  star Upsilon_disk = 0.7                        gas  1.113 (n  63)  star  0.797 (n  58)  ratio  0.72 +- 0.02  stays
+  star Upsilon_disk = 0.8                        gas  1.113 (n  63)  star  0.666 (n  58)  ratio  0.60 +- 0.02  stays
+  star Upsilon_disk = 0.9                        gas  1.113 (n  63)  star  0.568 (n  58)  ratio  0.51 +- 0.02  stays
+
+D7 gas mass the gas class would need (star class at Upsilon 0.5)
+  gas mass x 0.6                                 gas  1.308 (n  63)  star  1.245 (n  58)  ratio  0.95 +- 0.03  CLOSES
+  gas mass x 0.8                                 gas  1.202 (n  63)  star  1.245 (n  58)  ratio  1.04 +- 0.03  CLOSES
+  gas mass x 1.0                                 gas  1.113 (n  63)  star  1.245 (n  58)  ratio  1.12 +- 0.03  stays
+  gas mass x 1.2                                 gas  1.036 (n  63)  star  1.245 (n  58)  ratio  1.20 +- 0.04  stays
+  gas mass x 1.4                                 gas  0.970 (n  63)  star  1.245 (n  58)  ratio  1.28 +- 0.04  stays
+
+PASS  A the split is real in this sample: star/gas a0 ratio 1.12, more than 2 sigma from 1 (both class definitions)
+   single-cause diagnostics that close it: ['D1 mid']
+   Upsilon_disk values (star class) that close it: []; gas scales (gas class) that close it: [0.6, 0.8]
+FAIL  B the record's 'Upsilon uplift' reading: some star-class Upsilon in 0.6-0.9 closes the split
+FAIL  C a gas-mass rescaling alone needs > 20% (no factor in 0.8-1.2 except 1.0 closes it)
+
+1/3 pass  (MUTATE)
