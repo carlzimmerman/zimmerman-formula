@@ -365,3 +365,11 @@ Against measured a0: predicted ~95.9 vs observed 76 +- 8 (+2.4 sigma), 73 +- 18 
 | Planck | 100.5 (-0.0%) | +2.96 / +1.52 / +1.07 |
 The framework footing (a0 defined from Lambda) prefers Planck; measured a0 prefer electron-to-electroweak (the electroweak row's 0.00 against the ensemble is a sweep pick).
 Three of five cutoffs fit the measured ratios within 1.5 sigma: the data cannot choose a cutoff, and a sweep that finds a match is a menu pick. kappa = 1/2 stays FITTED.
+
+## 38. Lean certification of the 2026-10-04/05 chain (`fable_independent_2026/lean_2026/PUZZLE_32pi_chain_2026_10_05.lean`) -- 2026-10-05
+Ten theorems, repo Mathlib pin, `#print axioms` = [propext, Classical.choice, Quot.sound] for each; no `axiom` declarations; premises are named hypotheses.
+sds_horizon_identity + no_sds_horizon_is_puzzle (no f-normalised SdS-type horizon has kappa r = 1/2 and Lambda r^2 = 8 pi); escape_condition_value (3/(8 pi) < 1);
+heaviside_form; flux_form (Lambda A = 32 pi^2 <-> the horizon Gauss-Bonnet balance with G rho); acoustic_ds_superluminal (c_s^2 = 8 pi/3 > 1);
+bimond_vacuum_condition ((1 + f'(1)) I = 64 pi); exchange_symmetry_pins_fprime (f(k) = f(1/k) -> f'(1) = 0, via HasDerivAt); symmetric_map; class_identity_integrand.
+MUTATE copy (Lambda r^2 = 0 in place of 8 pi, 32 pi in place of 64 pi, a wrong map): exit 1, 5 errors, as required.
+Certifies premises => conclusions only. The open premise is unchanged: kappa = 1/2 stays FITTED.
