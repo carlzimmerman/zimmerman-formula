@@ -281,3 +281,12 @@ BIMOND gives Lambda > 0 and rho_DE proportional to a0^2 automatically -- the fra
 - framework kernel nu = sqrt(1 + 1/y): the integral DIVERGES linearly; 32 pi needs a strong-field cutoff at g_N = 203 a0 (free).
 - RAR kernel: finite, 25.976 (= lane K's AQUAL c), so Lambda = 12.99 a0^2 with the minimal f = 1: 7.74x short; 32 pi needs f'(1) = 6.74 (f is free beyond f(1) = 1).
 Verdict: BIMOND reproduces the form rho_DE ~ a0^2 with the right sign but INSERTS the coefficient. kappa = 1/2 stays FITTED.
+
+## 27. Minimal BIMOND (f = 1) with a sharpened tail: which tail gives 32 pi? (`p22`, 5/5; MUTATE doubles the tail coefficient, fails T) -- 2026-10-04
+The record keeps nu = sqrt(1+1/y) exactly (alpha = 1, planets handled by the spatial filter, FP1/FP7); the exact law forces that tail. A one-parameter family that
+contains it, nu_a = (1 + y^-a)^(1/(2a)), and Milgrom's nu_n were scanned (SPARC cannot tell tails apart: <= 0.0084 dex). I_nu is finite only for tail exponent > 2,
+and behaves as ~1/(a(a-2)) near the edge (checked: (a* - 2) 64 pi a* = 1.002).
+- **Lambda = 32 pi a0^2 needs alpha* = 2.0025 (F1) or n* = 2.0050 (F2): a tail tuned to within 0.25-0.5% of the divergence, and a different exponent per family.**
+- Every steep (ephemeris-comfortable) tail gives Lambda/a0^2 ~ 0.2-5, i.e. 20-500x short; RAR's exponential tail gives 13 (p21).
+Verdict: minimal BIMOND makes 32 pi a near-divergent fine tuning of an unmeasured tail. Not a derivation. kappa = 1/2 stays FITTED.
+(Numerics: nu - 1 computed with expm1/log1p after floating-point cancellation zeroed the 1e6-1e7 decade in the first brute-force check; the first MUTATE could not fail; both replaced.)
