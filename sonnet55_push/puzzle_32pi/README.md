@@ -425,3 +425,10 @@ Premises as a structure: Lambda = 8 pi G rho/c^2; a0 = c^2/(2r) (Schwarzschild s
 Proved (standard axioms only): postulate_iff_kappa_half (P <-> a0^2 = G rho c^2/4); a model with all premises AND P; a model with all premises and NOT P; hence
 **postulate_independent**: P is neither implied nor excluded; scale_family: every kappa > 0 has a model. The premises carry a free modulus kappa; only a NEW premise that
 breaks the kappa-family (fixes I, f'(1) or the tail) can derive P. MUTATE (the not-P model's radius changed so the horizon premise fails): exit 1.
+
+## 45. Can high-acceleration data see PAPER42's turn-off? (`p38`, 2/2; MUTATE y_t = 1 flips both) -- 2026-10-05
+ATLAS3D early types (187 with JAM quality >= 1; y = g_N(r_1/2)/a0: median 4.2, 90th percentile 9.8, max 38): the turn-off at y_t = 94 (71-117) shifts the predicted
+dynamical mass by a median -0.00009 dex (max 0.0008); the sample mean -0.0001 dex is 60x below its statistical reach (0.007) and ~900x below the 0.10 dex IMF floor.
+SLACS lenses (y ~ 5-20 at the Einstein radius): -0.0001 to -0.0005 dex. **Undetectable.** Structural reason: at y ~ y_t the MOND boost itself is nu - 1 ~ 1/(2 y_t) ~ 0.5%,
+so no galaxy-scale probe can see more than ~0.002 dex of it; the Solar System (y ~ 1e7-1e8) sees only that SOME turn-off exists (y_t <= 7.7e5). The 'measure g_t,
+predict Lambda' route is closed for foreseeable data. kappa = 1/2 stays FITTED.
