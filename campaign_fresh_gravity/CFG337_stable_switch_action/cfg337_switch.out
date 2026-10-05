@@ -1,0 +1,111 @@
+CFG337 -- IS THERE A STABLE ACTION FOR CANDIDATE B'S BOUND-ONLY SWITCH?   (criteria: FROZEN_CRITERIA.md, committed first)
+
+THE CANDIDATE (screen winner, Part 3).  A leaf-normalised, saturating, INVERTED symmetron: one canonical real scalar
+sigma, minimally coupled (c_T = 1 and the beta = 0 chassis untouched), Z2-symmetric, whose mass term is triggered by a
+baryon reading U >= 0 normalised by a leaf average (CFG329: diffeomorphism-safe):
+
+    S_sw = Int sqrt(-g) [ -(eps_K/2) (d sigma)^2 - V(sigma; U) ],   V = -(1/2) mu0^2 T(U) sigma^2 + (lambda/4) sigma^4,
+    T(U) = 1 - 1/U   (T < 0: symmetric phase, OFF;  T > 0: broken phase, ON;  T -> 1 deep inside: saturates),
+    the chassis' MOND sector is multiplied by f(sigma) = sigma^2 / v^2,   v^2 = mu0^2 / lambda,
+    E_c = mu0^2 v^2 = lambda v^4 (condensation energy density), R = E_c / B (B = the MOND-sector energy coefficient
+    that f switches, DE7/DE12: B = a0^2 q(y^2) / 8 pi G).
+
+Two doors (readers), both baryon-only (MS1):
+    C1  the MOND-sector door (MS2/CV3; what M*/V0 use): U = DE12's contrast form, dU/drho_b = Umax A (the phantom's
+        amplification A = nu + y nu' cos^2 theta);
+    C2  the baryon-density door (B's T3(ii)-like density edge): U = rho_b / (Delta_e <rho_b>_leaf), A = 1, Delta_e set
+        per system so the onset sits at the same edge radius as DE12's gate ("same edge", as DE12 G3).
+
+Static energy density per unit volume at fixed background B (the -B f piece included):
+    E(rho, sigma) = -(1/2) mu0^2 T(U(rho)) sigma^2 + (lambda/4) sigma^4 - B sigma^2 / v^2.
+Broken phase: sigma_bar^2 = v^2 (T + 2/R), so f_bar = T + 2/R (law overshoot 2/R inside: nu_mono fidelity needs R >> 1).
+Quadratic action (quasi-static Newtonian limit on the leaves; fluid displacement xi, delta rho = -i rho k xi; sigma
+fluctuation s):  kinetic K = diag(rho, eps_K);  potential
+    Q(k) = [[rho (c_s^2 + rho E_dir) k^2 - rho Gamma_g^2,  rho k g_x], [rho k g_x,  eps_K (k^2 + M^2)]],
+    E_dir = d2E/drho2 |_sigma,  g_x = d2E/drho dsigma,  M^2 = d2E/dsigma2,  Gamma_g^2 = 4 pi G rho_m.
+
+CONTROLS (frozen): R1 the record's prescribed gate (DE12, w = 0.25) as the slaved limit returns its failure (c_gate,
+Gamma/H, Hadamard unboundedness, W'' > 0 somewhere); R2 the GR limit is healthy; MUTATE (CFG337_MUTATE=1): eps_K -> -1
+must be flagged as a ghost (exit 1).
+
+Run from the repository root:  python3 campaign_fresh_gravity/CFG337_stable_switch_action/cfg337_switch.py
+                               CFG337_MUTATE=1 python3 campaign_fresh_gravity/CFG337_stable_switch_action/cfg337_switch.py
+
+  DE12's transition() loaded read-only; gas sound speeds 1e5 K 37 km/s, 1e6 K 117 km/s
+
+==============================================================================================================
+PART 2  SCREEN OF SWITCH CLASSES (cheap symbolic checks; the reasoning is in the README table)
+==============================================================================================================
+  S1: d(1/K')/dX = -Derivative(Kp(X), X)/Kp(X)**2  (< 0 when K'' > 0: screened at large X)
+  S2: standard broken branch phi^2 = [] (exists only for rho < mu^2 M^2: OFF in dense)
+      inverted broken branch phi^2 = [] (exists only for rho > mu^2 M^2: ON in dense) -> carried to Part 3
+  S3: discriminant 4*c*s + 1; c<0 branch has no real root for s > -1/(4*c); Z = 2*c*x + 1 -> 0 at x = -1/(2*c) (s = -1/(4*c)): strong coupling at the threshold; c>0 branch: x ~ sqrt(s/c), suppression (Vainshtein, wrong direction)
+  S4: d2(-B W(P/rho))/dP^2 = -B*Subs(Derivative(W(_xi_1), (_xi_1, 2)), _xi_1, p/rho)/rho**2  (sign of -W'': negative where W''>0 -> negative thermal stiffness, N14)
+  S5: d/dx_i <rho_b>_leaf(tau) = 0  (cannot localise)
+
+==============================================================================================================
+PART 3  THE CANDIDATE: QUADRATIC ACTIONS (sympy)
+==============================================================================================================
+  broken phase: sigma_bar^2 = 2*B/mu0**2 + mu0**2/lambda - mu0**2/(lambda*Ufun(rho))   (= v^2 (T + 2/R), R = E_c/B, E_c = mu0^2 v^2)
+  M^2 (broken) = 4*B*lambda/mu0**2 + 2*mu0**2 - 2*mu0**2/Ufun(rho)  -> 2 lambda sigma_bar^2 > 0 wherever the broken phase exists
+  M^2 (symmetric, sigma = 0) = -2*B*lambda/mu0**2 - mu0**2 + mu0**2/Ufun(rho)  -> > 0 iff T < -2/R (OFF side)
+  FRW / OFF side: g_x = 0, E_dir = 0, df/dsigma = 0, f = 0
+
+==============================================================================================================
+(a) FRW WITH LINEAR PERTURBATIONS (symmetric phase, sigma_bar = 0)
+==============================================================================================================
+  H1 True  H2 True speeds^2 [1e-06, 1.0]  H3 True
+  linear-order switch contribution to the matter growth equation: 0 -> delta'' + 2H delta' = 4 pi G rho_m delta (LCDM)
+  leaf-normalised threshold: C2 U = (1 + delta)/Delta_e < 1 for delta < Delta_e - 1 at every z (T < 0, M^2 = mu0^2 (1/U - 1) > 0);
+  B (MOND-sector energy) is O(delta^3) on FRW (q ~ y^3 deep), so it does not enter the quadratic action there.
+  [PASS] FRW_H (a) FRW: no ghost, speeds^2 in (0,1], Hadamard-bounded, switch OFF at linear order (LCDM growth)
+         measured: H1 True H2 True H3 True OFF True
+
+==============================================================================================================
+R1  CONTROL: the record's prescribed gate (DE12 MOND-sector gate, w = 0.25) is the slaved limit and fails
+==============================================================================================================
+  [PASS] R1 CONTROL: DE12's gate returns its failure (min c_gate, min Gamma/H at z = 0.25 within 1% of 1526 km/s, 2.0e4; slaved omega^2 -> -inf as k -> inf; W'' of both signs)
+         measured: min c_gate 1526.2 km/s; min Gamma/H 1.982e+04; slaved limit -oo; W'' range [-9.84, 9.84]
+         reading:  the known failure is a Hadamard (k-linear, unbounded) gradient instability of the transition gas
+
+==============================================================================================================
+R2  CONTROL: the GR limit (switch decoupled, MOND sector off) is healthy
+==============================================================================================================
+  [PASS] R2 CONTROL: GR limit has K > 0, speeds^2 (c_s^2, 1), bounded growth = Jeans (omega^2 >= -4 pi G rho)
+         measured: H1 True H2 True [0.0001, 1.0] H3 True; min omega^2 -1.000 (>= -1)
+
+==============================================================================================================
+(b) STATIC VIRIALISED BARYONIC BACKGROUND (deep broken phase), both doors
+==============================================================================================================
+  C1: r = 30 kpc, U = 2.5e+03; K>0 True; speeds^2 [1.53e-07, 1] (c=1 units); max growth / Gamma_g 1.0000; bounded True; c_g 0.04 km/s vs direct stiffness 3.13 km/s
+  C2: r = 30 kpc, U = 8.39e+03; K>0 True; speeds^2 [1.53e-07, 1] (c=1 units); max growth / Gamma_g 1.0000; bounded True; c_g 0.03 km/s vs direct stiffness 5.00 km/s
+  [PASS] BOUND_H (b) static bound background: H1-H3 for both doors
+         measured: {'C1': True, 'C2': True}
+         reading:  the broken phase is a positive-mass minimum; the trigger's direct term is a POSITIVE stiffness (T concave)
+
+==============================================================================================================
+(c) THE TRANSITION REGION on the record's transitions (z, M_b, footing): H1-H3 symbolic + H4 numeric
+==============================================================================================================
+  C1 R = 4 E_c local    : worst extra-growth / Gamma_g at 100 kpc, 1e6 K gas = 28.7 (0.25/1e+12/alt, r 3034 kpc); max c_g 1641.6 km/s; ell_min 2.87e+03 kpc | 1e5 K: ratio 29, ell_min 2.9e+03 kpc
+  C1 R = 4 E_c universal: worst extra-growth / Gamma_g at 100 kpc, 1e6 K gas = 2.93e+03 (0.25/1e+10/alt, r 778 kpc); max c_g 243089.5 km/s; ell_min 2.93e+05 kpc | 1e5 K: ratio 2.93e+03, ell_min 2.93e+05 kpc
+  C1 R = 40 E_c local    : worst extra-growth / Gamma_g at 100 kpc, 1e6 K gas = 39.6 (0.25/1e+12/alt, r 2545 kpc); max c_g 3124.6 km/s; ell_min 3.96e+03 kpc | 1e5 K: ratio 39.7, ell_min 3.97e+03 kpc
+  C1 R = 40 E_c universal: worst extra-growth / Gamma_g at 100 kpc, 1e6 K gas = 9.28e+03 (0.25/1e+10/alt, r 778 kpc); max c_g 768716.4 km/s; ell_min 9.28e+05 kpc | 1e5 K: ratio 9.28e+03, ell_min 9.28e+05 kpc
+  C2 R = 4 E_c local    : worst extra-growth / Gamma_g at 100 kpc, 1e6 K gas = 1.83 (0.25/1e+12/canonical, r 3126 kpc); max c_g 356.5 km/s; ell_min 183 kpc | 1e5 K: ratio 3.78, ell_min 378 kpc
+  C2 R = 4 E_c universal: worst extra-growth / Gamma_g at 100 kpc, 1e6 K gas = 291 (0.25/1e+10/alt, r 734 kpc); max c_g 23959.3 km/s; ell_min 2.91e+04 kpc | 1e5 K: ratio 291, ell_min 2.91e+04 kpc
+  C2 R = 40 E_c local    : worst extra-growth / Gamma_g at 100 kpc, 1e6 K gas = 6.74 (0.25/1e+12/alt, r 2521 kpc); max c_g 826.4 km/s; ell_min 674 kpc | 1e5 K: ratio 7.38, ell_min 738 kpc
+  C2 R = 40 E_c universal: worst extra-growth / Gamma_g at 100 kpc, 1e6 K gas = 919 (0.25/1e+10/alt, r 734 kpc); max c_g 75766.0 km/s; ell_min 9.19e+04 kpc | 1e5 K: ratio 919, ell_min 9.19e+04 kpc
+  [PASS] TRANS_H123 (c) transition: K = diag(rho, eps_K) > 0; high-k speeds^2 c_s^2 + rho E_dir (> 0, E_dir >= 0) and 1; omega^2 >= -(Gamma_g^2 + rho g_x^2) bounded
+         measured: eps_K = 1
+  [FAIL] TRANS_H4_C1 (c) C1 MOND-sector door: extra growth <= Gamma_g at ell <= 100 kpc (lenient: local E_c, R = 4, 1e6 K)
+         measured: worst ratio 28.7; ell_min 2.87e+03 kpc
+  [FAIL] TRANS_H4_C2 (c) C2 baryon-density door: extra growth <= Gamma_g at ell <= 100 kpc (conservative: universal E_c, R = 4, 1e6 K)
+         measured: worst ratio 291; strict (R 4 and 40, 1e5 and 1e6 K) False
+
+==============================================================================================================
+VERDICT (frozen rule)
+==============================================================================================================
+  C1: FRW True, bound True, transition False -> PARTIAL
+  C2: FRW True, bound True, transition False -> PARTIAL
+  note: Both doors are healthy on FRW (exactly OFF at linear order by Z2) and in the bound interior; both fail H4 in the transition: the bounded (well-posed) growth of transition gas outruns gravity unless the switch length exceeds the ell_min above. C2 is closest but reads a pure baryon-density edge: the record's matter-only door fails KiDS (L392 +118/+128) and the flagship (DE4/DE6 need >= 30% CGM) in the M* model, and CFG21's universal-edge tension (KiDS vs LG 5.1-5.3 sigma) applies; it encodes neither turnaround nor top-level ownership; it adds declared constants (mu0 or ell, E_c or R, Delta_e)
+
+  wrote campaign_fresh_gravity/CFG337_stable_switch_action/cfg337_switch_results.json; 5/7 checks pass; elapsed 1.3 s
