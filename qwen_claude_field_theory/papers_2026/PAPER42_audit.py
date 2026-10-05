@@ -17,4 +17,6 @@ row("y_t lower bound 2-20 (p36)", "Delta chi2 < 4 for y_t >= 20" in pz("p36_spar
 row("class identity + exchange symmetry (p25 6/6, Lean chain present)", "6/6 pass" in pz("p25_symmetric_bimond_map.out") and os.path.exists(os.path.join(R, "fable_independent_2026", "lean_2026", "PUZZLE_32pi_chain_2026_10_05.out")))
 row("Upsilon trend 141 -> 12 (p37b)", re.search(r"Upsilon 0.5:.*RAR -141", pz("p37b_shape_vs_upsilon.out")) and re.search(r"Upsilon 0.7:.*RAR -12", pz("p37b_shape_vs_upsilon.out")) and "141" in tex and "to 12" in tex)
 row("postulate independence (Lean out lists standard axioms only)", "sorryAx" not in open(os.path.join(R, "fable_independent_2026", "lean_2026", "PUZZLE_32pi_postulate_status_2026_10_05.out")).read())
+P38 = pz("p38_high_accel_turnoff.out")
+row("p38: ATLAS3D 187, y <= 38, ~1e-4 dex, 60x / ~900x", "N = 187" in P38 and "max 38.1" in P38 and "sample mean -0.00011" in P38 and "187 ATLAS3D" in tex and "60 times" in tex and "900 times" in tex)
 print(f"\n{sum(rows)}/{len(rows)} audit rows pass"); sys.exit(0 if all(rows) else 1)
