@@ -1,0 +1,29 @@
+CFG340 -- the pre-reionisation cold-share candidate (CFG338/CFG339) on the big systems.  Criteria frozen first: FROZEN_CRITERIA.md (a1e50f7fc).
+
+  candidate  M_c = R M_b,now / f_b (f_b = 0.157126); max bookkeeping g = g_N + max(g_law - g_N, g_cold), g_cold = (1 - f_b) G M_cold(<r)/r^2;
+             P1: M_cold(<r) = M_c min(r/r_f, 1), r_f = top-hat at z_f (CFG336 formula); z_f = 3 decision, 2 and 4 reported; kernel nu_mono.
+  harnesses  CFG45 prefix (SPARC P3 rows, X-ray ellipticals P6, SLUGGS h50), CFG4_galaxy_law prefix (SPARC rotmod RAR rms as CFG39),
+             CFG4_switch K3 (FP1 E KiDS machinery, FP20 exact projector), CFG4_clusters prefix (X-COP rows) -- all exec'd read-only.
+  method     R applied to one population at a time; R_max = largest R with the committed criterion holding on [1, R], both footings
+             (bisection in log R on [0, 3] dex to 0.005 dex, contiguity checked on a 0.1-dex grid below R_max).
+  decision   PASS: R_max >= 2 R_plaus(upper) for S1, S2, X1, K1, C1; MARGINAL: >= R_plaus but < 2x for one; FAIL: < R_plaus for any.
+MUTATE    CFG340_MUTATE=1: R = 30 on all SPARC galaxies must be flagged failing; outputs *_MUTATE.
+
+  *** MUTATE: R = 30 on all SPARC galaxies -- must be flagged failing ***
+
+  CFG45 prefix exec'd (4 s)
+  CFG4_galaxy_law prefix exec'd (0 s): 175 galaxies, rms0 0.100329
+  KiDS machinery exec'd (0 s): law chi^2 nu_mono 162.6053 / 154.7582
+  CFG4_clusters prefix exec'd (0 s): 12 clusters; COSMIC 5.36433 vs (1-f_b)/f_b 5.36432
+
+# C0 controls: the law / identity reproduce B's committed numbers
+  [PASS] C0a SPARC law rms reproduces CFG39 rms0  0.100328994 vs 0.100328994
+  [PASS] C0b KiDS law chi^2 (nu_mono) reproduces CFG4_switch K3  max |d| 0.00e+00
+  [PASS] C0c X-ray law z reproduces CFG45 XRAY |L  max |d z| 0.0e+00
+  [PASS] C0d X-COP identity reading reproduces CFG4_clusters H2 (0.9457)  max |d| 0.0e+00
+
+# MUTATE: R = 30 on all SPARC galaxies (z_f = 3)
+  A3 fractions dwarf [0.0, 0.0], spiral [0.0, 0.0]; drms +0.7254
+  [PASS] MUTATE: R = 30 on SPARC is flagged failing  
+
+5/5 checks pass  (4 s)

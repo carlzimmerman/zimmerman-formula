@@ -1,0 +1,61 @@
+CFG340 -- the pre-reionisation cold-share candidate (CFG338/CFG339) on the big systems.  Criteria frozen first: FROZEN_CRITERIA.md (a1e50f7fc).
+
+  candidate  M_c = R M_b,now / f_b (f_b = 0.157126); max bookkeeping g = g_N + max(g_law - g_N, g_cold), g_cold = (1 - f_b) G M_cold(<r)/r^2;
+             P1: M_cold(<r) = M_c min(r/r_f, 1), r_f = top-hat at z_f (CFG336 formula); z_f = 3 decision, 2 and 4 reported; kernel nu_mono.
+  harnesses  CFG45 prefix (SPARC P3 rows, X-ray ellipticals P6, SLUGGS h50), CFG4_galaxy_law prefix (SPARC rotmod RAR rms as CFG39),
+             CFG4_switch K3 (FP1 E KiDS machinery, FP20 exact projector), CFG4_clusters prefix (X-COP rows) -- all exec'd read-only.
+  method     R applied to one population at a time; R_max = largest R with the committed criterion holding on [1, R], both footings
+             (bisection in log R on [0, 3] dex to 0.005 dex, contiguity checked on a 0.1-dex grid below R_max).
+  decision   PASS: R_max >= 2 R_plaus(upper) for S1, S2, X1, K1, C1; MARGINAL: >= R_plaus but < 2x for one; FAIL: < R_plaus for any.
+MUTATE    CFG340_MUTATE=1: R = 30 on all SPARC galaxies must be flagged failing; outputs *_MUTATE.
+
+  CFG45 prefix exec'd (4 s)
+  CFG4_galaxy_law prefix exec'd (0 s): 175 galaxies, rms0 0.100329
+  KiDS machinery exec'd (0 s): law chi^2 nu_mono 162.6053 / 154.7582
+  CFG4_clusters prefix exec'd (0 s): 12 clusters; COSMIC 5.36433 vs (1-f_b)/f_b 5.36432
+
+# C0 controls: the law / identity reproduce B's committed numbers
+  [PASS] C0a SPARC law rms reproduces CFG39 rms0  0.100328994 vs 0.100328994
+  [PASS] C0b KiDS law chi^2 (nu_mono) reproduces CFG4_switch K3  max |d| 0.00e+00
+  [PASS] C0c X-ray law z reproduces CFG45 XRAY |L  max |d z| 0.0e+00
+  [PASS] C0d X-COP identity reading reproduces CFG4_clusters H2 (0.9457)  max |d| 0.0e+00
+
+# R = 1 rows (z_f = 3) next to B's baseline
+  S1 SPARC log M* >= 10     R=1: FAIL  {"frac": [0.7213114754098361, 0.8852459016393442], "max": [0.057118369138181344, 0.041443894592472504], "n": 61, "drms": 0.04291560962453511}   | B: CFG45 S 98% < 0.03; CFG39 drms +0.0009
+  S2 SPARC dwarfs           R=1: FAIL  {"frac": [1.0, 1.0], "max": [0.0, 0.0], "n": 110, "drms": 0.007549098191642761}   | B: CFG45 S 100% < 0.03; CFG39 drms +0.0009
+  X1 X-ray ellipticals      R=1: pass  {"canonical": {"mean": 0.14783640929935968, "tot": 0.18909555107994935, "z": 0.7818079719752615}, "alt": {"mean": 0.14783640929935973, "tot": 0.1890955510799494, "z": 0.7818079719752616}}   | B: CFG45 S z +1.04 / +1.03
+  K1 KiDS isolated lenses   R=1: FAIL  {"canonical": 29.132696989992866, "alt": 6.721973778201232}   | B: law chi^2 162.61 / 154.76 (B's switch off in the lens bins)
+  C1 X-COP clusters         R=1: pass  {"canonical": 0.9457238621317576, "alt": 0.9457238621317576}   | B: identity 0.9457 +- 0.080
+  X-COP: outermost radius beyond r_f(z_f = 3) for 12/12 clusters; |R=1 - identity| = 1.21e-06
+  [FAIL] R = 1: every population passes its committed criterion (the bisection is meaningful)  
+
+# R_max (contiguous from R = 1; both footings)
+  z_f 3  S1 SPARC log M* >= 10     R_max = fails at R=1  R_plaus(upper) 3.00  ratio -  holes []  at R_max: null  (4 s)
+  z_f 3  S2 SPARC dwarfs           R_max = fails at R=1  R_plaus(upper) 12.30  ratio -  holes []  at R_max: null  (4 s)
+  z_f 3  X1 X-ray ellipticals      R_max =        9.453  R_plaus(upper) 3.00  ratio 3.15  holes []  at R_max: {"canonical": {"mean": -0.3231219691301485, "tot": 0.1616252390528868, "z": -1.9992048953716748}, "alt": {"mean": -0.3231219691301485, "tot": 0.1616252390528868, "z": -1.9992048953716748}}  (4 s)
+  z_f 3  K1 KiDS isolated lenses   R_max = fails at R=1  R_plaus(upper) 3.00  ratio -  holes []  at R_max: null  (4 s)
+  z_f 3  C1 X-COP clusters         R_max =        1.319  R_plaus(upper) 1.20  ratio 1.10  holes []  at R_max: {"canonical": 1.1996981850351376, "alt": 1.1996981850351376}  (4 s)
+  z_f 2  S1 SPARC log M* >= 10     R_max = fails at R=1  R_plaus(upper) 3.00  ratio -  holes []  at R_max: null  (4 s)
+  z_f 2  S2 SPARC dwarfs           R_max =        1.152  R_plaus(upper) 12.30  ratio 0.09  holes []  at R_max: {"frac": [1.0, 1.0], "max": [0.0, 0.0], "n": 110, "drms": 0.0049843420701422}  (4 s)
+  z_f 2  X1 X-ray ellipticals      R_max =       14.557  R_plaus(upper) 3.00  ratio 4.85  holes []  at R_max: {"canonical": {"mean": -0.32317343333465703, "tot": 0.1616234557289038, "z": -1.9995453746313048}, "alt": {"mean": -0.32317343333465703, "tot": 0.1616234557289038, "z": -1.9995453746313048}}  (4 s)
+  z_f 2  K1 KiDS isolated lenses   R_max =        1.275  R_plaus(upper) 3.00  ratio 0.42  holes []  at R_max: {"canonical": 8.85530406249191, "alt": 0.0}  (5 s)
+  z_f 2  C1 X-COP clusters         R_max =        1.319  R_plaus(upper) 1.20  ratio 1.10  holes []  at R_max: {"canonical": 1.1996981850351376, "alt": 1.1996981850351376}  (5 s)
+  z_f 4  S1 SPARC log M* >= 10     R_max = fails at R=1  R_plaus(upper) 3.00  ratio -  holes []  at R_max: null  (5 s)
+  z_f 4  S2 SPARC dwarfs           R_max = fails at R=1  R_plaus(upper) 12.30  ratio -  holes []  at R_max: null  (5 s)
+  z_f 4  X1 X-ray ellipticals      R_max =        6.747  R_plaus(upper) 3.00  ratio 2.25  holes []  at R_max: {"canonical": {"mean": -0.32249518468017024, "tot": 0.161646975896107, "z": -1.9950585706437396}, "alt": {"mean": -0.32249518468017024, "tot": 0.161646975896107, "z": -1.9950585706437396}}  (5 s)
+  z_f 4  K1 KiDS isolated lenses   R_max = fails at R=1  R_plaus(upper) 3.00  ratio -  holes []  at R_max: null  (5 s)
+  z_f 4  C1 X-COP clusters         R_max =        1.319  R_plaus(upper) 1.20  ratio 1.10  holes []  at R_max: {"canonical": 1.1996981850351376, "alt": 1.1996981850351376}  (5 s)
+  [PASS] R_max contiguous below the bisection edge (0.1-dex grid) for every population at z_f = 3  
+
+# Decision (z_f = 3): S1 R_max/R_plaus 0.00; S2 R_max/R_plaus 0.00; X1 R_max/R_plaus 3.15; K1 R_max/R_plaus 0.00; C1 R_max/R_plaus 1.10  ->  VERDICT FAIL
+  (reported) z_f 2: S1 0.00; S2 0.09; X1 4.85; K1 0.42; C1 1.10 -> FAIL
+  (reported) z_f 4: S1 0.00; S2 0.00; X1 2.25; K1 0.00; C1 1.10 -> FAIL
+
+# POST HOC (added after the main run; no verdict depends on it): for populations failing at R = 1, the largest R <= 1 that passes (bisection in log R on [-3, 0] dex), z_f 3; and which clause fails at R = 1
+  S1 SPARC log M* >= 10     passes only for R <= 0.236  (cold mass <= 0.236 x the cosmic share); at R = 1: {"frac": [0.7213114754098361, 0.8852459016393442], "max": [0.057118369138181344, 0.041443894592472504], "n": 61, "drms": 0.04291560962453511}
+  S2 SPARC dwarfs           passes only for R <= 0.748  (cold mass <= 0.748 x the cosmic share); at R = 1: {"frac": [1.0, 1.0], "max": [0.0, 0.0], "n": 110, "drms": 0.007549098191642761}
+  K1 KiDS isolated lenses   passes only for R <= 0.828  (cold mass <= 0.828 x the cosmic share); at R = 1: {"canonical": 29.132696989992866, "alt": 6.721973778201232}
+
+# Reported only: SLUGGS h50 (B red, z +3.3) under the candidate at z_f 3: R 1: can +0.027 (z +1.19), alt +0.025 (z +1.10); R 3: can -0.087 (z -3.93), alt -0.087 (z -3.94); R 10: can -0.236 (z -11.07), alt -0.236 (z -11.07)
+
+5/6 checks pass  (5 s)
