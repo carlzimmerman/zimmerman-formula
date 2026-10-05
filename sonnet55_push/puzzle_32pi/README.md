@@ -245,3 +245,13 @@ With G_H = 4 pi G (Poisson lap Phi = G_H rho), the p17 conditions become pi-free
 and the puzzle becomes G_H rho_Lambda r_s^2 = 4 pi c^2: the pi moves to the target. The physical gap target/natural = 8 pi/3 is unit-invariant.
 Units relabel; they cannot derive. In these units the open question reads: why a full solid angle 4 pi in place of 3/2. kappa = 1/2 stays FITTED.
 (First MUTATE choice changed G_H/G, which cancels in check B by construction and could not fail; replaced.)
+
+## 24. Flux through the horizon (`p19`, 5/5; MUTATE K = 2/r^2 fails A, B, C) -- 2026-10-04
+- Gauss-Bonnet on the horizon sphere: oint K dA = 4 pi for every radius (computed from the metric). This is the natural source of a full 4 pi.
+- GR's own horizon flux balance (the Hawking-Gibbons-Woolgar area bound): oint Lambda dA <= oint K dA, i.e. Lambda A <= 4 pi, equality exactly at Nariai
+  (checked: f = f' = 0 at r = 1/sqrt(Lambda); SdS scan never exceeds 4 pi).
+- **The puzzle is the same balance with the vacuum entering as G rho instead of 8 pi G rho:** A Lambda = 32 pi^2 <=> oint G rho_Lambda dA = oint K dA <=> rho r^2 = 1.
+  So 32 pi^2 = 8 pi (Einstein) x 4 pi (Gauss-Bonnet of the horizon), and the puzzle's horizon lies 8 pi beyond GR's maximum: no GR horizon satisfies it.
+- Newtonian Gauss flux and the Smarr formula reduce to point conditions (3/(16 pi)), as p17.
+Reading: the flux form gives the cleanest statement yet -- the vacuum "fills" the horizon's Euler number with coupling G, not 8 pi G -- but supplies no reason for
+the coupling G. kappa = 1/2 stays FITTED. (Check B first failed on a 1e-2 tolerance near Nariai, where r_b approaches as sqrt(eps); fixed with the exact Nariai point.)
