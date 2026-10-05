@@ -20,7 +20,9 @@ groups = [
         ("Binary pulsars", "PASS", "margin 490,000x · CFG291/311"),
         ("Strong coupling", "COND", "bounded pass · XC1/XC3"),
         ("Solar-system PPN", "PASS", "gamma, beta, alpha_1-3 · FP2/KM3/CFG291"),
-        ("Black holes (EHT, LIGO ringdown)", "COND", "moving BH: hidden mild defect on inner horizon · CFG318/319"),
+        ("Matter conservation (G9)", "PASS", "Bianchi identity holds; grad T = 0 · CFG329"),
+        ("Structural order (G0)", "COND", "no ghost; elliptic solvability open · CFG329"),
+        ("Black holes (EHT, LIGO ringdown)", "COND", "hidden mild inner-horizon defect · CFG318/319"),
     ]),
     ("Galaxies and clusters", [
         ("Rotation curves (SPARC RAR)", "PASS", "0.10 dex · nu_mono"),
@@ -29,15 +31,15 @@ groups = [
         ("Clusters, Bullet Cluster", "PASS", "needs the cold mass"),
         ("Andromeda + Local Volume dwarfs", "PASS", "law alone, native inputs · CFG313"),
         ("Milky Way ultra-faint dwarfs", "FAIL", "+0.32 dex, 3.8 sigma (lenient end) · audit"),
-        ("Massive ellipticals (SLUGGS)", "UNDEC", "+0.09 dex, not signif. w/ systematics; centrals fail · CFG323"),
+        ("Massive ellipticals (SLUGGS)", "UNDEC", "+0.09 dex, not significant; centrals fail · CFG323"),
     ]),
     ("Cosmology and a0 over time", [
         ("Constant a0 vs a0 ~ H(z)", "UNDEC", "calibration wall · PAPER38"),
         ("High-z on halo-free inputs", "UNDEC", "RC100 on the flat line · CFG303"),
         ("CRISTAL z~5 / ALESS 122.1", "UNDEC", "stress tests: not robust · CFG307/308"),
         ("Gaia DR4 wide binaries", "OPEN", "decides 2 Dec 2026 · prereg"),
-        ("Structure growth, candidate B", "PASS", "as declared = LCDM growth; acc. door fails · CFG324"),
-        ("Structure growth, chassis alone", "FAIL", "~7x too fast by z~6; CMB lensing excludes · L341/audit"),
+        ("Structure growth, candidate B", "PASS", "as declared = LCDM growth · CFG324"),
+        ("Structure growth, chassis alone", "FAIL", "~7x too fast; CMB lensing excludes · L341"),
     ]),
     ("The deep 'why'", [
         ("Why kappa = 1/2 (the 32 pi)", "OPEN", "fitted, not derived · CFG263/264"),
@@ -56,13 +58,14 @@ fig.text(0.03, 0.918, "a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 fitted.  Eac
 for gi, (title, items) in enumerate(groups):
     x0 = gi
     ax.text(x0 + 0.03, 7.95, title, fontsize=13, fontweight="bold", color="#16201d", va="center")
+    st_ = min(1.0, 7.9 / len(items))          # vertical step shrinks for long columns
     for k, (name, st, note) in enumerate(items):
-        y = 7.45 - k * 1.0
-        ax.add_patch(FancyBboxPatch((x0 + 0.03, y - 0.42), 0.92, 0.84, boxstyle="round,pad=0.0,rounding_size=0.06",
+        y = 7.45 - k * st_
+        ax.add_patch(FancyBboxPatch((x0 + 0.03, y - 0.42 * st_), 0.92, 0.84 * st_, boxstyle="round,pad=0.0,rounding_size=0.06",
                                     facecolor=COL[st], edgecolor="none", alpha=0.92))
-        ax.text(x0 + 0.07, y + 0.2, name, fontsize=10.6, fontweight="bold", color="white", va="center")
-        ax.text(x0 + 0.07, y - 0.05, LAB[st].upper(), fontsize=8.6, color="white", va="center", alpha=0.95)
-        ax.text(x0 + 0.07, y - 0.27, note, fontsize=8.6, color="white", va="center", alpha=0.95)
+        ax.text(x0 + 0.07, y + 0.2 * st_, name, fontsize=10.6, fontweight="bold", color="white", va="center")
+        ax.text(x0 + 0.07, y - 0.05 * st_, LAB[st].upper(), fontsize=8.6, color="white", va="center", alpha=0.95)
+        ax.text(x0 + 0.07, y - 0.27 * st_, note, fontsize=8.6, color="white", va="center", alpha=0.95)
 # legend
 lx = 0.03
 for st in ("PASS", "COND", "UNDEC", "FAIL", "OPEN"):
