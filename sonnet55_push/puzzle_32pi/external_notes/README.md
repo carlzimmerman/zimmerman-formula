@@ -130,3 +130,15 @@ route gives a scalar profile with the wrong fall-off (r^-5), the quantum route f
 and `a0^2 = 3/(32 G a_E)` is the target in new variables. On the screen (EXT02): (1) no principle here would give a
 different number if kappa differed -- FAILS; (2) dimensional consistency -- passes; (3) predicts something besides a0
 -- only Lambda, and only with a_E ~ 1e122 set by hand. **`kappa = 1/2` stays FITTED.**
+
+## EXT04 -- "A two-potential, flat-rotation trace solution" (external, 2026-10-05)
+
+- Source: ZIP handed to the owner (`32pi_two_potential_2026-10-05.zip`, sha256 `0493dfc32c721b8a5552170244c0aad7defcdd78acb78f3269d064804ad95be0`). Not vendored (its manifest
+  carries personal names). Its `checks.py` reruns: 31 exact identities + 4 numerical rows. Its own verdict: TRACE_ONLY, target NOT_DERIVED.
+- Claim: the metric -(r/r0)^(2p) dt^2 + dr^2/F + r^2 dOmega^2 (flat rotation, v_c^2 = p; the Lambda = 0 case of Harko & Cheng astro-ph/0509576) with F0 = 1/(1+p+p^2) is
+  scalar-flat and solves the conformal-anomaly TRACE equation exactly iff c_E/a_E = (2/3)(1 - p^2).
+- `ext04_check.py` (own Riemann tensor in sympy; 8/8; MUTATE q -> (2/3)(1-p) fails 2): R, E4, C^2 as stated; the trace condition; v_c^2 = p; the traceless stress
+  (p(1+p), p(1-p), p^2)/(D r^2); the Hofman et al. bound 18/31 <= q gives p <= 2/sqrt 31.
+- Reading (ours): correct as a trace solution, and the note is honest about scope. Physically: v_c^4 = 1 - (3/2) q is fixed by the QFT's anomaly ratio, so ONE speed for every
+  galaxy and no baryonic-mass dependence -- the opposite of the BTFR (v^4 = G M a0). A galaxy at v ~ 7e-4 c would need q within ~1e-12 of 2/3, a different q for each galaxy.
+  It touches neither a0 nor the 32 pi. **kappa = 1/2 stays FITTED.**
