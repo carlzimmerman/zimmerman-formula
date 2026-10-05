@@ -1,0 +1,24 @@
+  [PASS] C0 dD/dz|0 matches -Omega_m^0.55 within 2%: -0.5235 vs -0.5261
+  [PASS] C2 Correa+15 dM/dt(1e12 Msun, z=0) within x1.5 of Fakhouri+10 mean 46.1 Msun/yr (PROVISIONAL): 35.0 Msun/yr (z_1/2 = 1.20)
+
+CFG344 MUTATE (z_inf = z_f): Correa+15 MAH, colossus planck18, dD/dz|0 = -0.5235
+  z_f  8.0: M_cool 3.833e+07 -> M0 1.279e+09 (alpha 0.141, beta -0.477); M(z=3,2,1) = 3.716e+08, 5.751e+08, 8.752e+08; M(z_re 6/7/8) = 9.61e+07/6.08e+07/3.83e+07
+  [PASS] C3 inversion M(z_f) = M_cool to 1e-8 and M(z) monotone over 0..z_f: max rel err 3.5e-13; monotone True
+
+  R = 1 baseline done (6 s)
+  [PASS] C1 R = 1 reproduces CFG317's baseline (P1, P2a-d; V1/V2; both footings) to 1e-6: max |diff| 0.0e+00
+  e_law(R=1) [UFD, from s/z]: nfw canonical 0.0860 (2e 0.1720); nfw alt 0.0858 (2e 0.1717); sis canonical 0.0860 (2e 0.1720); sis alt 0.0858 (2e 0.1717)
+  fossils (M_V > -7.7) per population: ufd 40/40; cls 0/14; col 4/14; m31 7/34; fld 0/13  (fld: reported, NOT grown -- non-fossil by class)
+
+  z_f 8, z_inf 8: M_c(fossil) = 3.833e+07 Msun; UFD median log R_acc 2.887 (R = 770; 16-84% 2.49-3.58); cap violations (M(z_re) > 1e9) z_re 6/7/8: 0/0/0 of 40; fld collisions 0  (8 s)
+    nfw canonical: UFD +0.255 (z +1.55; base +0.325; 2e 0.172)  | P2a +0.027(z+0.32) P2b +0.064(z+0.78) P2c +0.044(z+0.60) P2d -0.044(z-0.60)
+    nfw alt      : UFD +0.277 (z +1.79; base +0.304; 2e 0.172)  | P2a +0.008(z+0.09) P2b +0.045(z+0.55) P2c +0.031(z+0.42) P2d -0.062(z-0.85)
+    sis canonical: UFD +0.315 (z +1.60; base +0.325; 2e 0.172)  | P2a +0.027(z+0.32) P2b +0.064(z+0.78) P2c +0.044(z+0.60) P2d -0.044(z-0.60)
+    sis alt      : UFD +0.295 (z +1.58; base +0.304; 2e 0.172)  | P2a +0.008(z+0.09) P2b +0.045(z+0.55) P2c +0.031(z+0.42) P2d -0.062(z-0.85)
+
+  bracket verdicts (reported): zf8_zinf8 NOT
+  [FAIL] MUTATE: z_inf = z_f gives NOT and V1 canonical UFD offset within 0.05 dex of CFG343's +0.322: NOT; +0.255
+
+MUTATE (z_inf = z_f) VERDICT (primary zf8_zinf8): NOT
+
+4/5 checks pass (8 s)
