@@ -232,3 +232,10 @@ Baseline (lane V's cleanest: RAR, Upsilon 0.5/0.7, Q<=2, i>=30): late types 0.85
 - At matched acceleration the split survives in the low window (g_bar < 2e-11: 1.37) and closes in the mid window (1.06, only 10 gas galaxies).
 Reading: the split is most simply a stellar mass-to-light zero point (0.6 vs 0.5 at 3.6 um, within SPS uncertainty); with it, a0 ~ 0.86-0.90e-10,
 8% below the framework's 9.36e-11. Independent-point errors understate the true error. Not a derivation; kappa = 1/2 stays FITTED.
+
+## 22. Try to derive G rho_Lambda r_s^2 = c^2 from standard black-hole/vacuum conditions (`p17`, 2/2; MUTATE fails A) -- 2026-10-04, post-hoc menu
+Thirteen conditions solved by sympy for rho r^2 (target 1). **None hits.** Seven independent ones (escape speed, energy inside r, potential, Hubble radius,
+equal horizon areas/entropies, tidal fields, BH mean density) all give the SAME value 3/(8 pi) = 0.119, i.e. r_s = c/H_Lambda; the others give 3/(16 pi), 1/(16 pi),
+1/(32 pi), 1/(8 pi), 3 pi/32. Every row carries one net power of pi (G enters as 4 pi G / 8 pi G), so none can be the pi-free 1.
+Reading: the natural condition is r_s = c/H_Lambda (a0 = cH_Lambda/2, Z = 2, excluded by the data); the puzzle is that condition with H = sqrt(8 pi G rho/3)
+replaced by the bare sqrt(G rho), a factor sqrt(8 pi/3) = 2.894 that no standard condition supplies. kappa = 1/2 stays FITTED.
