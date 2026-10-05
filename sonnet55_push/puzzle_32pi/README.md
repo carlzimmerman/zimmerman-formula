@@ -432,3 +432,11 @@ dynamical mass by a median -0.00009 dex (max 0.0008); the sample mean -0.0001 de
 SLACS lenses (y ~ 5-20 at the Einstein radius): -0.0001 to -0.0005 dex. **Undetectable.** Structural reason: at y ~ y_t the MOND boost itself is nu - 1 ~ 1/(2 y_t) ~ 0.5%,
 so no galaxy-scale probe can see more than ~0.002 dex of it; the Solar System (y ~ 1e7-1e8) sees only that SOME turn-off exists (y_t <= 7.7e5). The 'measure g_t,
 predict Lambda' route is closed for foreseeable data. kappa = 1/2 stays FITTED.
+
+## 46. Classical UV completion of the MOND field (`p39`, 2/2; MUTATE halves the requirement, fails R) -- 2026-10-05
+Dimensional fact: G, c, a0 form no dimensionless number, so a classical parameter-free completion can only fix Lambda c^4/a0^2 = I/2 as a pure number set by its kernel
+(with hbar, a0/a_Planck ~ 1e-62 enters and gives the log / 1e59 results of p26-p29). Required I = 146.4 (measured a0) to 201.1 (kappa = 1/2 footing).
+Catalog: framework, simple, standard: infinite; RAR 25.98 (Lambda c^4/a0^2 = 13.0); Milgrom nu_n n = 2.5/3/4/6: 1.90/1.00/0.60/0.43. **Every principled kernel with a finite
+vacuum term falls short by x5.6-7.7 or more.** The requirement is equivalent to the framework kernel's 1/(2y) tail persisting unchanged to y_t = 94-129 and then stopping;
+RAR's tail behaves like a cut at y ~ 17. So a completion that predicts Lambda must explain why the quadrature law's slow tail survives to ~100 a0 and no further.
+No known kernel does. kappa = 1/2 stays FITTED.
