@@ -202,7 +202,7 @@ Sorted by robustness, not by ambition. Everything below is either a published th
 
 ![Status board: every test of the theory as a coloured tile](explainers/img/status_board.png)
 
-**Plain-language guide: [explainers/wtf_is_the_status_board.md](explainers/wtf_is_the_status_board.md).** Green tiles pass, yellow are conditional, blue cannot be decided with today's data, red fail, and grey are open. Every tile restates a verdict recorded in STANDING, and the lane IDs on each tile point to the scripts behind it.
+**The Crispy Fried Chicken Status Board, explained: [explainers/crispy_fried_chicken_status_board.md](explainers/crispy_fried_chicken_status_board.md).** Green tiles pass, yellow are conditional, blue cannot be decided with today's data, red fail, and grey are open. Every tile restates a verdict recorded in STANDING, and the lane IDs on each tile point to the scripts behind it.
 
 ![a0 against redshift: flat line versus the a0 proportional to H(z) rival](explainers/img/a0z_chart.png)
 
@@ -214,7 +214,7 @@ Sorted by robustness, not by ambition. Everything below is either a published th
 
 | document | what it is |
 |---|---|
-| **[explainers/wtf_is_the_status_board.md](explainers/wtf_is_the_status_board.md)** | **The status board explained (2026-10-05):** every test as a tile, in plain language, with the a₀(z) chart. |
+| **[explainers/crispy_fried_chicken_status_board.md](explainers/crispy_fried_chicken_status_board.md)** | **The Crispy Fried Chicken Status Board (2026-10-05):** every test as a tile, in plain language, with the a₀(z) chart. |
 | **[campaign_fresh_gravity/STANDING_2026-09-28.md](campaign_fresh_gravity/STANDING_2026-09-28.md)** | **The bottom line (2026-09-28):** what is established, what failed, and the two measurements that decide the rest. |
 | [FAILURES_EXECUTIVE_SUMMARY_2026-09-28.md](FAILURES_EXECUTIVE_SUMMARY_2026-09-28.md) | The framework's largest-sigma failures, ranked and sorted by what they hit. |
 | [STANDING.md](STANDING.md) | The running log of checkpoints, newest first. Claim · earned · postulated · live fronts · closed doors · open liabilities · retractions in force. |

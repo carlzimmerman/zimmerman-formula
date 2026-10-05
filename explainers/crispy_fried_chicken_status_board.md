@@ -1,4 +1,4 @@
-# wtf is the status board?
+# The Crispy Fried Chicken Status Board
 
 *Where the theory stands, as of 5 October 2026, in one picture.*
 

@@ -52,7 +52,7 @@ groups = [
 fig = plt.figure(figsize=(15, 10.5), dpi=160)
 fig.patch.set_facecolor("#f6f7f5")
 ax = fig.add_axes([0.02, 0.06, 0.96, 0.84]); ax.set_xlim(0, 4); ax.set_ylim(0, 8.2); ax.axis("off")
-fig.text(0.03, 0.955, "Where the theory stands", fontsize=24, fontweight="bold", color="#16201d")
+fig.text(0.03, 0.955, "The Crispy Fried Chicken Status Board", fontsize=24, fontweight="bold", color="#16201d")
 fig.text(0.03, 0.918, "a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 fitted.  Each tile restates a verdict recorded in STANDING (lane ids on the tiles).",
          fontsize=11.5, color="#4d5a56")
 for gi, (title, items) in enumerate(groups):
