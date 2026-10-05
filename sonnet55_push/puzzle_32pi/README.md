@@ -335,3 +335,9 @@ Cut at a_P (ln(a_P/a0) = 142.2): at tail exponent exactly 2, Lambda/a0^2 = 35.7 
 **32 pi needs F1 a* = 1.98735, F2 n* = 1.99543** (alt footing 1.98732 / 1.99540): a tail falling slightly SLOWER than 1/y^2, different per family, invisible to planets
 (4.7e-19 m/s^2 at the Earth) and to SPARC. Not a natural value; a fit. (POST-HOC: check A's band was pre-written as 1.99 < a* < 2; F1 gave 1.98735; widened to 1.98.)
 kappa = 1/2 stays FITTED.
+
+## 34. Tail exponent exactly 2 with different cutoffs (`p29`, 3/3; MUTATE halves the standard amplitude, fails C) -- 2026-10-05
+nu - 1 ~ A/y^2 makes the vacuum log-divergent: Lambda/a0^2 = A ln(a_cut/a0) + const. Cutoffs a_cut = E c/hbar:
+electron 22.9 / 45.5, proton 24.8 / 49.2, electroweak 26.1 / 52.0, GUT 34.1 / 68.0, Planck 35.8 / 71.2 (F1 a=2 / standard), target 100.5.
+No physical cutoff reaches 32 pi: the standard kernel needs a_cut = 1.6e77 m/s^2 (2.9e25 x Planck), F1 needs 3.5e112 x Planck. At the Planck cutoff exponent 2 needs tail
+amplitude A = 0.706 (standard 1/2, F1 1/4). The log makes the order natural (20-70 for any cutoff from the electron to Planck) but never 100.5. kappa = 1/2 stays FITTED.
