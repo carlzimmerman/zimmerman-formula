@@ -307,3 +307,10 @@ Milgrom eqs (84)-(85): with g-hat = lambda g the vacuum must satisfy both field 
 3. alpha = beta with g <-> g-hat exchange symmetry: f(kappa) = f(1/kappa) PINS f'(1) = 0, and the g-hat = g vacuum is consistent, Lambda = (1/2) a0^2 I_nu. So symmetry does pin
    f'(1) -- but then 32 pi needs I_nu = 64 pi, the p22 tail tuning; and this class lacks Milgrom's clean NR limit (its nu <-> M' map not derived here).
 Verdict: f'(1) can be pinned (exchange symmetry), but pinning it moves the whole coefficient into the unmeasured kernel tail. kappa = 1/2 stays FITTED.
+
+## 30. The nu <-> M' map for exchange-symmetric BIMOND (alpha = beta = 1) and its vacuum (`p25`, 6/6; MUTATE uses the main-class map, fails ID) -- 2026-10-05
+Derived by varying Milgrom's NR Lagrangian (eq 1) with sympy: alpha phihat' = -M' phi*', mu* = beta - (alpha+beta)M'/alpha, g = (1 - M'/alpha) g* (his eq 2).
+For alpha = beta = 1: **M'(z) = (nu - 1)/(2nu - 1) at z = [y(2nu - 1)]^2** (main class: M' = nu - 1 at z = y^2).
+**Exact identity:** J - I_nu = int d[2 y^2 (nu - 1)^2], a boundary term that vanishes, so the vacuum integral is the SAME in both classes. Lambda/a0^2 = (1/2) int (nu-1) d(y^2)
+depends on the force law nu alone, not on how BIMOND is set up. Consequences: framework kernel diverges in both; RAR gives 12.99 a0^2 (x7.74 short); 32 pi needs the same tail
+alpha* = 2.00249. A class-independent, kernel-only statement of the coefficient -- still not a derivation. kappa = 1/2 stays FITTED.
