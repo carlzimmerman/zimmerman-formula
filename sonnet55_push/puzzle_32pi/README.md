@@ -239,3 +239,9 @@ equal horizon areas/entropies, tidal fields, BH mean density) all give the SAME 
 1/(32 pi), 1/(8 pi), 3 pi/32. Every row carries one net power of pi (G enters as 4 pi G / 8 pi G), so none can be the pi-free 1.
 Reading: the natural condition is r_s = c/H_Lambda (a0 = cH_Lambda/2, Z = 2, excluded by the data); the puzzle is that condition with H = sqrt(8 pi G rho/3)
 replaced by the bare sqrt(G rho), a factor sqrt(8 pi/3) = 2.894 that no standard condition supplies. kappa = 1/2 stays FITTED.
+
+## 23. The same conditions in Heaviside-Lorentz gravity units (`p18`, 2/2; MUTATE corrupts a p17 value, fails B) -- 2026-10-04
+With G_H = 4 pi G (Poisson lap Phi = G_H rho), the p17 conditions become pi-free rationals (seven rows: G_H rho r_s^2 = 3/2 c^2; others 3/4, 1/4, 1/8, 1/2)
+and the puzzle becomes G_H rho_Lambda r_s^2 = 4 pi c^2: the pi moves to the target. The physical gap target/natural = 8 pi/3 is unit-invariant.
+Units relabel; they cannot derive. In these units the open question reads: why a full solid angle 4 pi in place of 3/2. kappa = 1/2 stays FITTED.
+(First MUTATE choice changed G_H/G, which cancels in check B by construction and could not fail; replaced.)
