@@ -215,3 +215,10 @@ The binding problem is the phantom's growth (consistent with CFG359 T1 ~1.6x), n
 - cm13 and cm15 do not use the cooling function.
 
 **What survives.** CFG370 (the other chat) used measured Milky Way hot-halo gas with the corrected unit. It reproduces the galaxy floor of about 0.1 (e^-2) with no fit. Groups and clusters are NOT explained by cooling.
+
+## cm13: the satellite test (stripping vs ownership) -- NOT SHOWN, low power
+`cm13_satellite_stripping.py` (1/1; MUTATE shuffled env fails). Non-central ETGs only, retained f at 5 Re (cm08), Alabi env labels:
+field (N 5) median 0.28 (scatter -0.13..1.07); group (N 13) 0.13; cluster satellites (N 5) 0.13 (tight: 0.09-0.31). One-sided p (satellites lower):
+C vs F 0.42, G+C vs F 0.37, mass-detrended 0.29 -> no stripping signal; consistent with ownership but the field sample is 5 galaxies with huge scatter, and
+LCDM stripping at 5 Re (well inside a satellite's tidal radius) may be small anyway. Weak discriminator. The strong version is satellite WEAK LENSING
+(subhalo masses out to the tidal radius in clusters, e.g. KiDS/GAMA satellite lensing) -- the next data test.
