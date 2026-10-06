@@ -13,11 +13,17 @@ Sections
 * B. nu_mono's tail: the phantom slope max(h_RAR', delta h_p/(y+y_p)) is > 0, so the phantom is strictly
      increasing (C_L > 0), the L340 monotonicity condition.
 * C. a0 -> 0: the kernel term 2 alpha^2 qt(p/alpha) vanishes under the deep bound qt(s) <= M s sqrt s.
-* D. the switch potential (CFG337 inverted symmetron): OFF state stable for 0 < U < 1, broken minimum
-     stable for U > 1, f = 0 at sigma = 0; trigger concavity.
+* D. SUPERSEDED (kept compiling): the CFG337 inverted-symmetron switch potential: OFF state stable for
+     0 < U < 1, broken minimum stable for U > 1, f = 0 at sigma = 0; trigger concavity. The record's best
+     switch is now CFG354's T1 (section H).
 * E. reductions of the total scalar density: switch OFF + FRW (a^2 = 0, K = <K>) gives R - 2 Lambda + L_m.
 * F. kinetic / principal coefficients: L340 tracking speed, CFG292 c_S^2 at beta = 0, CFG329 lapse coefficient,
      CFG337 switch kinetic matrix, L340 P1 window as rational inequalities.
+* H. the T1 switch (CFG354), f = H_eps(l2 - tau), psi = Phi_d/(4 pi G rho_bar), tau = (Delta_ta - 1)/3:
+     sphere identity l_t = (4 pi G/3) rho_enc and, in scaled units, l_t = (Delta_enc - 1)/3; l2 = l_t for every
+     sphere, so T1 is ON on a sphere iff Delta_enc >= Delta_ta; tau > 0 for Delta_ta > 1 (EdS tau > 1);
+     FRW (t = 0) OFF and the OFF reduction to R - 2 Lambda + L_m; eps_min = 0.077 > 0; and the obstruction:
+     a monotone eigenvalue rule ON at a host edge fires inside a dense filament (adapted from CFG354 S8).
 * G. kappa = 1/2 with rho_Lambda = Lambda c^2/(8 pi G) gives a0 = c^2 sqrt(Lambda/(32 pi)) (algebraic identity).
 -/
 
@@ -167,7 +173,7 @@ theorem kernel_term_vanishes (qt : ℝ → ℝ) (M p : ℝ) (hp : 0 ≤ p)
 theorem rar_branch_slope_bound {y : ℝ} (hy : 0 < y) : 0 < nuRAR y - 1 ∧ nuRAR y - 1 ≤ 1 / Real.sqrt y :=
   ⟨by linarith [nuRAR_gt_one hy], nuRAR_sub_one_le hy⟩
 
-/-! ## D. the switch potential (CFG337) -/
+/-! ## D. the switch potential (CFG337) -- SUPERSEDED by section H (CFG354 T1); kept compiling -/
 
 /-- Trigger T(U) = 1 - 1/U. -/
 noncomputable def T (U : ℝ) : ℝ := 1 - 1 / U
@@ -331,6 +337,82 @@ theorem a0_identity_sq (c G ρ a0 : ℝ) (hc : 0 < c) (h : a0 = (1 / 2) * c * Re
   rw [h]; field_simp
   rw [Real.sq_sqrt hρ]; ring
 
+/-! ## H. the T1 switch (CFG354): f = H_eps(l2 - tau) -/
+
+/-- middle of three numbers (T1 reads the middle tidal eigenvalue l2). -/
+noncomputable def med3 (a b c : ℝ) : ℝ := max (min a b) (min (max a b) c)
+
+/-- turnaround threshold tau = (Delta_ta - 1)/3 (Delta_ta derived, CFG4 / CFG354 K4). -/
+noncomputable def tauTA (Δta : ℝ) : ℝ := (Δta - 1) / 3
+
+/-- sharp step used for the OFF statements (H_eps at eps -> 0). -/
+noncomputable def Hs (x : ℝ) : ℝ := if 0 ≤ x then 1 else 0
+
+/-- H1: sphere tangential eigenvalue g/r = GM/r^3 = (4 pi G/3) rho_enc. -/
+theorem t1_sphere_tangential (G M r : ℝ) (hr : 0 < r) :
+    (G * M / r ^ 2) / r = G * M / r ^ 3 ∧
+      G * M / r ^ 3 = (4 * π * G / 3) * (3 * M / (4 * π * r ^ 3)) := by
+  have hp := Real.pi_pos
+  constructor <;> field_simp
+
+/-- H2: scaled units psi = Phi_d/(4 pi G rho_bar): the overdensity tangential eigenvalue
+(4 pi G/3)(rho_enc - rho_bar) becomes (Delta_enc - 1)/3, Delta_enc = rho_enc/rho_bar. -/
+theorem t1_scaled_tangential (G ρenc ρbar : ℝ) (hG : 0 < G) (hb : 0 < ρbar) :
+    (4 * π * G / 3) * (ρenc - ρbar) / (4 * π * G * ρbar) = (ρenc / ρbar - 1) / 3 := by
+  have hp := Real.pi_pos
+  field_simp
+
+/-- H3: for every sphere triple (t, t, r) the middle eigenvalue is the tangential one: l2 = l_t. -/
+theorem t1_sphere_med (t r : ℝ) : med3 t t r = t := by
+  unfold med3; simp [min_self, max_self]
+
+/-- H4: on a sphere T1 is ON (l2 >= tau) iff Delta_enc >= Delta_ta: the isolated-host edge is r_ta. -/
+theorem t1_sphere_on_iff (Δenc Δta r : ℝ) :
+    tauTA Δta ≤ med3 ((Δenc - 1) / 3) ((Δenc - 1) / 3) r ↔ Δta ≤ Δenc := by
+  rw [t1_sphere_med]; unfold tauTA; constructor <;> intro h <;> linarith
+
+/-- H5: the threshold is positive whenever Delta_ta > 1. -/
+theorem tau_pos (Δta : ℝ) (h : 1 < Δta) : 0 < tauTA Δta := by unfold tauTA; linarith
+
+/-- H6: EdS Delta_ta = 9 pi^2/16 gives tau > 1 (so 2 tau > 2; CFG354 S9 gives 2 tau > 3). -/
+theorem tau_EdS_gt_one : 1 < tauTA (9 * π ^ 2 / 16) := by
+  unfold tauTA; have h := Real.pi_gt_d2; nlinarith
+
+/-- H7: the record's derived Delta_ta at z = 0 (11.806 canonical, 8.893 alt; CFG354 K4) give tau > 0. -/
+theorem tau_record_pos : 0 < tauTA (11806 / 1000) ∧ 0 < tauTA (8893 / 1000) := by
+  unfold tauTA; constructor <;> norm_num
+
+/-- H8: FRW has t = 0, so l2 = 0 < tau and the sharp switch is OFF. -/
+theorem t1_frw_off (Δta : ℝ) (h : 1 < Δta) : Hs (med3 0 0 0 - tauTA Δta) = 0 := by
+  have ht := tau_pos Δta h
+  unfold Hs med3; simp only [min_self, max_self]
+  split_ifs with h0
+  · linarith
+  · rfl
+
+/-- H9: switch OFF reduction: with f = Hs(l2 - tau) on FRW (a^2 = 0, K = <K>), the density is GR + Lambda + matter. -/
+theorem t1_off_reduction (Δta R Λ Lmond αc c2 K Lm : ℝ) (h : 1 < Δta) :
+    Ltot R Λ (Hs (med3 0 0 0 - tauTA Δta)) Lmond αc 0 c2 K K Lm = R - 2 * Λ + Lm := by
+  rw [t1_frw_off Δta h]; unfold Ltot; ring
+
+/-- H10: f = 0 anywhere (OFF) removes the MOND sector from the density. -/
+theorem t1_f_zero (R Λ Lmond αc a2 c2 K Kb Lm : ℝ) :
+    Ltot R Λ 0 Lmond αc a2 c2 K Kb Lm = R - 2 * Λ + αc * a2 - c2 * (K - Kb) ^ 2 + Lm := by
+  unfold Ltot; ring
+
+/-- H11: the one declared width constant, eps_min = 0.077, is positive. -/
+theorem eps_min_pos : (0 : ℝ) < 77 / 1000 := by norm_num
+
+/-- H12: uniform cylinder interior (c, c, 0): l2 = c, so T1 fires in a filament once c >= tau. -/
+theorem t1_cyl_in (c : ℝ) : med3 c c 0 = c := t1_sphere_med c 0
+
+/-- H13 (obstruction, adapted from CFG354 S8): any rule monotone in each eigenvalue that is ON at a host edge
+(tau, tau, l), l <= 0, is ON inside every filament (c, c, 0) with c >= tau. -/
+theorem monotone_rule_fires_in_filament (F : ℝ → ℝ → ℝ → ℝ)
+    (hmono : ∀ a b c a' b' c', a ≤ a' → b ≤ b' → c ≤ c' → F a b c ≤ F a' b' c')
+    (tau l c : ℝ) (hl : l ≤ 0) (hc : tau ≤ c) (hedge : tau ≤ F tau tau l) : tau ≤ F c c 0 :=
+  le_trans hedge (hmono _ _ _ _ _ _ hc hc hl)
+
 end MasterLagrangian
 
 #print axioms MasterLagrangian.nuRAR_tendsto_one
@@ -342,3 +424,10 @@ end MasterLagrangian
 #print axioms MasterLagrangian.P1_window
 #print axioms MasterLagrangian.a0_identity
 #print axioms MasterLagrangian.a0_identity_sq
+#print axioms MasterLagrangian.t1_sphere_tangential
+#print axioms MasterLagrangian.t1_scaled_tangential
+#print axioms MasterLagrangian.t1_sphere_on_iff
+#print axioms MasterLagrangian.tau_EdS_gt_one
+#print axioms MasterLagrangian.t1_off_reduction
+#print axioms MasterLagrangian.eps_min_pos
+#print axioms MasterLagrangian.monotone_rule_fires_in_filament
