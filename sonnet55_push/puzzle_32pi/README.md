@@ -491,3 +491,11 @@ fetch versions -- v1 ADQL DISTANCE() error, v2 invalid column ba_2mass, both sil
 Reading: WALLABY confirms the gas-point a0 is low (7-9e-11, below the alt footing) but cannot pin it: its Hubble-flow distances move a0 by ~33% for a ~10% distance
 change (a0 ~ D^-3 to -4 in the deep regime with gas-dominated baryons), the dominant systematic exactly as p44 predicted. A precise a0 from WALLABY needs redshift-independent
 distances. kappa = 1/2 stays FITTED.
+
+## 53. Gas points by distance method (`p46`, 2/2; MUTATE TRGB distances x1.1 -> a0 drops, check D fails) -- 2026-10-05 -- REVISES the p41b/p44 reading
+SPARC's Upsilon-free gas points split by f_D: **TRGB/Cepheid (8 galaxies: D631-7, DDO154, ESO444-G084, NGC3109, NGC3741, UGC04483, UGCA442, UGCA444; e_D/D median 5%):
+a0 = 1.158e-10 +- 20%**; Hubble flow (11 galaxies): 6.97e-11 +- 18%; all (19): 9.00e-11. The 9.0e-11 of p41b/p44 was an average of a high redshift-independent set
+and a low Hubble-flow set (ratio 1.66, ~2 sigma).
+On the TRGB/Cepheid set: alt footing (rho_crit, the ORIGINAL a0 = c sqrt(G rho_c)/2) +2.4% (0.1 sigma); 32 pi turn-off +9%; kappa = 1/2 rho_Lambda +24% (1.1 sigma);
+Verlinde 6 rho_L +28%; Milgrom 2pi rho_L +34% (1.5 sigma). **p44's 'data favour the rho_Lambda footing' rested on the mixed sample; the best-distance subset leans the
+other way.** 8 galaxies at 20% cannot decide; WALLABY (p43, all Hubble flow) is in the low group, consistent with a Hubble-flow distance bias. kappa = 1/2 stays FITTED.
