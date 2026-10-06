@@ -4,6 +4,12 @@ Work requested by Carl on 2026-09-29: review the recent Claude research, identif
 
 The original goal remains OPEN. A new partial result is not a completed theory.
 
+- [Building on the latest Claude work](CLAUDE_FOLLOWUPS_2026-10-06.md): reconciles cold-stream/turnaround readers, tidal and lapse-action limits, and the high-force cutoff with the dynamical clock bridge.
+
+- [New Claude CFG353 follow-ups](main_theory/claude_cfg353_2026_10_06/LAPSE_AUXILIARY_AUDIT.md): variable-lapse auxiliary action audit, [tidal/ownership discrimination](cold_component/claude_cfg353_2026_10_06/REPORT.md), and a phase-information no-go for density-only turnaround readers.
+
+- [Cancellation-safe exterior continuation](puzzle_32pi/flowing_clock_matching_2026_10_06/REPORT.md): a finite exact-ODE exterior reaches near-cosmological flow after repairing cancellation; source and normalized boundary matching remain open.
+
 - [Flowing-clock investigation](puzzle_32pi/flowing_clock_2026_10_06/README.md): coupled leading MOND balance with nonzero clock flow, exact stationary constraints, nonlinear geodesic obstruction and accelerated-aether matching theorem. Global source/cosmological matching and the coefficient remain open.
 
 - [Dynamical-sector investigation](puzzle_32pi/dynamical_sector_2026_10_06/README.md): an exact classical vacuum-rescaling map, a fully varied P2 repair, sourced clock/metric controls, and coupled aether branch exclusions. The nonlinear MOND bridge and 32pi selector remain open.
