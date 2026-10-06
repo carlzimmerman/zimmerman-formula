@@ -19,7 +19,7 @@ groups = [
         ("Lapse condition, realistic matter", "PASS", "all but extreme GRB jets · CFG312"),
         ("Binary pulsars", "PASS", "margin 490,000x · CFG291/311"),
         ("Strong coupling", "COND", "bounded pass · XC1/XC3"),
-        ("Solar-system PPN", "PASS", "gamma, beta, alpha_1-3 · FP2/KM3/CFG291"),
+        ("Solar system (PPN + Cassini Q2)", "PASS", "filter evades Q2 tension at kappa 1/2 · CFG291/357"),
         ("Matter conservation (G9)", "PASS", "Bianchi identity holds; grad T = 0 · CFG329"),
         ("Structural order (G0)", "COND", "no ghost; elliptic solvability open · CFG329"),
         ("Black holes (EHT, LIGO ringdown)", "COND", "hidden mild inner-horizon defect · CFG318/319"),
