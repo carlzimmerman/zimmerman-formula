@@ -1,0 +1,166 @@
+CFG354 -- a turnaround switch on the tidal eigenvalues of the leaf overdensity potential.  Criteria: FROZEN_CRITERIA.md (bd5ab6223).
+
+  psi = Phi_d / (4 pi G rho_bar), lap psi = delta (leaf constraint, total matter: MS1 relaxed by the owner 10-06).
+  t_ij = d_i d_j psi (no zero point), l1 >= l2 >= l3; sphere: l_t = dbar_enc/3 (double), l_r = delta - 2 l_t.
+  threshold tau = (Delta_ta - 1)/3.  f = H_strict(R - tau).
+  T1: R = l2.  T2: R = l3.  T3 (PRIMARY): R = min_{e perp grad psi} e.t.e  (l3 if grad psi = 0).
+MUTATE: CFG354_MUTATE=1 -> potential reader (CFG353 E0) instead of t; must reproduce CFG353's failure; outputs *_MUTATE; exit 1.
+Run: python3 campaign_fresh_gravity/CFG354_tidal_turnaround_switch/cfg354_tidal_switch.py
+
+====================================================================================================
+K4  Delta_ta(z) vs CFG4_switch
+====================================================================================================
+  [PASS] K4 Delta_ta LCDM vs CFG4 (1%): 11.806/8.893 vs 11.806/8.893; z 1/2.5/4: 6.412/5.715/5.608
+
+====================================================================================================
+K1-K3  sphere / cylinder / plane / FRW controls (sympy Hessians, G = 1)
+====================================================================================================
+  point      eig [-0.04206, 0.02103, 0.02103]  T1 +0.02103  T2 -0.04206  T3 +0.02103
+  sphere_in  eig [0.29167, 0.29167, 0.29167]  T1 +0.29167  T2 +0.29167  T3 +0.29167
+  cyl_in     eig [0.0, 3.76991, 3.76991]  T1 +3.76991  T2 +0.00000  T3 +0.00000
+  cyl_out    eig [-0.10519, 0.0, 0.10519]  T1 +0.00000  T2 -0.10519  T3 +0.00000
+  plane_in   eig [0.0, 0.0, 7.53982]  T1 +0.00000  T2 +0.00000  T3 +0.00000
+  plane_out  eig [0.0, 0.0, 0.0]  T1 +0.00000  T2 +0.00000  T3 +0.00000
+  [PASS] K1 point mass + uniform sphere: T1 = T3 = l_t = (4 pi G/3) rho_enc: max rel err 4.4e-16
+  [PASS] K2 cylinder (in (2piGrho,2piGrho,0), out (a,0,-a)) and plane ((4piGrho,0,0)/(0,0,0)): rule responses analytic: max abs err 1.7e-16; FD Hessian check 1.2e-08
+  responses: cylinder inside T1 = 2 pi G rho (fires iff delta_f >= 2 tau), T2 = T3 = 0; outside T1 = T3 = 0; plane all 0.
+  [PASS] K3 FRW (t = 0) OFF under strict H (tau > 0): min tau 1.517
+
+====================================================================================================
+(a) FRW / LINEAR: ON fraction of the Gaussian tidal field (t independent of grad psi at a point)
+====================================================================================================
+  unit-sigma tensor check: Var(trace) = 1.0033 (1); ordering l3 <= T3 <= l2 holds on all samples: True
+  R  8 z      0: sigma 4.562e-01 tau 3.60 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 1.1e-77
+  R  8 z      1: sigma 2.770e-01 tau 1.80 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 4.5e-52
+  R  8 z      3: sigma 1.440e-01 tau 1.52 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 1.4e-140
+  R  8 z     10: sigma 5.268e-02 tau 1.52 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R  8 z   1000: sigma 5.790e-04 tau 1.52 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R 20 z      0: sigma 1.878e-01 tau 3.60 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R 20 z      1: sigma 1.140e-01 tau 1.80 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R 20 z      3: sigma 5.928e-02 tau 1.52 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R 20 z     10: sigma 2.168e-02 tau 1.52 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R 20 z   1000: sigma 2.383e-04 tau 1.52 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R 50 z      0: sigma 6.096e-02 tau 3.60 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R 50 z      1: sigma 3.701e-02 tau 1.80 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R 50 z      3: sigma 1.924e-02 tau 1.52 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R 50 z     10: sigma 7.039e-03 tau 1.52 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  R 50 z   1000: sigma 7.738e-05 tau 1.52 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | chi2 bound 0.0e+00
+  UNSMOOTHED (k <= 50/Mpc) z   1000: sigma 9.080e-03 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | bound 0.0e+00 | P(delta_lin >= 1.062) 0.00e+00  [scored]
+  UNSMOOTHED (k <= 50/Mpc) z     10: sigma 8.261e-01 | ON T1 0.00e+00 T2 0.00e+00 T3 0.00e+00 | bound 2.5e-03 | P(delta_lin >= 1.062) 9.93e-02  [reported: nonlinear at the cutoff]
+  UNSMOOTHED (k <= 50/Mpc) z      3: sigma 2.258e+00 | ON T1 3.31e-02 T2 6.09e-04 T3 6.06e-03 | bound 8.4e-01 | P(delta_lin >= 1.062) 3.19e-01  [reported: nonlinear at the cutoff]
+  UNSMOOTHED (k <= 50/Mpc) z      0: sigma 7.154e+00 | ON T1 8.41e-02 T2 2.83e-03 T3 1.88e-02 | bound 9.6e-01 | P(delta_lin >= 1.062) 4.41e-01  [reported: nonlinear at the cutoff]
+  [PASS] (a) T1 FRW OFF + linear ON < 1e-6 (R 8/20/50, all z; unsmoothed z 1000): max ON 0.00e+00
+  [PASS] (a) T2 FRW OFF + linear ON < 1e-6 (R 8/20/50, all z; unsmoothed z 1000): max ON 0.00e+00
+  [PASS] (a) T3 FRW OFF + linear ON < 1e-6 (R 8/20/50, all z; unsmoothed z 1000): max ON 0.00e+00
+
+====================================================================================================
+(a') COMPENSATED SHEETS AND FILAMENTS (CFG353 cells), EdS threshold scored, z = 0 reported
+====================================================================================================
+  EdS plane delta  0.5 x 5: T1 ON 0.0000 max R/tau 0.00 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS plane delta    1 x 5: T1 ON 0.0000 max R/tau 0.00 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS plane delta    2 x 5: T1 ON 0.0000 max R/tau 0.00 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS plane delta    3 x 5: T1 ON 0.0000 max R/tau 0.00 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS cyl   delta    1 x 5: T1 ON 0.0000 max R/tau 0.33 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS cyl   delta    1 x10: T1 ON 0.0000 max R/tau 0.33 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS cyl   delta    2 x 5: T1 ON 0.0000 max R/tau 0.66 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS cyl   delta    2 x10: T1 ON 0.0000 max R/tau 0.66 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS cyl   delta    5 x 5: T1 ON 0.0400 max R/tau 1.65 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS cyl   delta    5 x10: T1 ON 0.0100 max R/tau 1.65 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS cyl   delta   10 x 5: T1 ON 0.0400 max R/tau 3.30 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  EdS cyl   delta   10 x10: T1 ON 0.0100 max R/tau 3.30 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  plane delta  0.5 x 5: T1 ON 0.0000 max R/tau 0.00 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  plane delta    1 x 5: T1 ON 0.0000 max R/tau 0.00 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  plane delta    2 x 5: T1 ON 0.0000 max R/tau 0.00 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  plane delta    3 x 5: T1 ON 0.0000 max R/tau 0.00 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  cyl   delta    1 x 5: T1 ON 0.0000 max R/tau 0.14 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  cyl   delta    1 x10: T1 ON 0.0000 max R/tau 0.14 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  cyl   delta    2 x 5: T1 ON 0.0000 max R/tau 0.28 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  cyl   delta    2 x10: T1 ON 0.0000 max R/tau 0.28 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  cyl   delta    5 x 5: T1 ON 0.0000 max R/tau 0.69 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  cyl   delta    5 x10: T1 ON 0.0000 max R/tau 0.69 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  cyl   delta   10 x 5: T1 ON 0.0400 max R/tau 1.39 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  z0  cyl   delta   10 x10: T1 ON 0.0100 max R/tau 1.39 | T2 ON 0.0000 max R/tau 0.00 | T3 ON 0.0000 max R/tau 0.00
+  T1 fires inside a uniform filament iff delta_f >= 2 tau = 3.034 (EdS) / 7.204 (z = 0)
+  [FAIL] (a') T1 no false ON in compensated sheets/filaments (EdS): max ON frac 0.1111
+  [PASS] (a') T2 no false ON in compensated sheets/filaments (EdS): max ON frac 0.0000
+  [PASS] (a') T3 no false ON in compensated sheets/filaments (EdS): max ON frac 0.0000
+  [reported] uniform prolate aspect  5 delta  5 (A [0.944, 0.944, 0.112]): ON vol frac T1 1.000 T2 0.000 T3 0.1013
+  [reported] uniform prolate aspect  5 delta 10 (A [0.944, 0.944, 0.112]): ON vol frac T1 1.000 T2 0.000 T3 0.3209
+  [reported] uniform prolate aspect 10 delta  5 (A [0.98, 0.98, 0.041]): ON vol frac T1 1.000 T2 0.000 T3 0.0518
+  [reported] uniform prolate aspect 10 delta 10 (A [0.98, 0.98, 0.041]): ON vol frac T1 1.000 T2 0.000 T3 0.1672
+  [reported] uniform oblate aspect  5 delta  5 (A [0.25, 0.25, 1.501]): ON vol frac T1 0.000 T2 0.000 T3 0.0000
+  [reported] uniform oblate aspect  5 delta 10 (A [0.25, 0.25, 1.501]): ON vol frac T1 0.000 T2 0.000 T3 0.0000
+  [reported] uniform oblate aspect 10 delta  5 (A [0.139, 0.139, 1.722]): ON vol frac T1 0.000 T2 0.000 T3 0.0000
+  [reported] uniform oblate aspect 10 delta 10 (A [0.139, 0.139, 1.722]): ON vol frac T1 0.000 T2 0.000 T3 0.0000
+
+====================================================================================================
+(b) BOUND HOSTS + (c) EDGE: 24 DE12 hosts, isolated sphere + linear LSS tide/gradient at the host
+====================================================================================================
+  0.25/1e+10/canonical r_ta   551 kpc tau 2.63 | |t_ext|/tau 0.150 g_ext/g_h(r_ta) 6.84 | T1 P30 1.00 edge 0.956 (  24 kpc) c_d 7.7e-03 | T2 P30 0.00 edge 0.000 ( 551 kpc) c_d nan | T3 P30 1.00 edge 0.315 ( 378 kpc) c_d 7.1e-01
+      0.25/1e+10/alt r_ta   551 kpc tau 2.63 | |t_ext|/tau 0.150 g_ext/g_h(r_ta) 6.84 | T1 P30 1.00 edge 0.959 (  23 kpc) c_d 7.0e-03 | T2 P30 0.00 edge 0.000 ( 551 kpc) c_d nan | T3 P30 1.00 edge 0.313 ( 378 kpc) c_d 7.3e-01
+  0.25/1e+11/canonical r_ta  1214 kpc tau 2.63 | |t_ext|/tau 0.091 g_ext/g_h(r_ta) 2.89 | T1 P30 1.00 edge 0.972 (  34 kpc) c_d 1.5e-03 | T2 P30 0.00 edge 0.000 (1214 kpc) c_d nan | T3 P30 1.00 edge 0.515 ( 589 kpc) c_d 4.8e-01
+      0.25/1e+11/alt r_ta  1214 kpc tau 2.63 | |t_ext|/tau 0.091 g_ext/g_h(r_ta) 2.89 | T1 P30 1.00 edge 0.972 (  33 kpc) c_d 4.0e-03 | T2 P30 0.00 edge 0.000 (1214 kpc) c_d nan | T3 P30 1.00 edge 0.501 ( 606 kpc) c_d 5.7e-01
+  0.25/1e+12/canonical r_ta  2684 kpc tau 2.63 | |t_ext|/tau 0.048 g_ext/g_h(r_ta) 1.13 | T1 P30 1.00 edge 0.984 (  44 kpc) c_d 1.1e-03 | T2 P30 0.00 edge 0.000 (2684 kpc) c_d nan | T3 P30 1.00 edge 0.746 ( 682 kpc) c_d 2.4e-01
+      0.25/1e+12/alt r_ta  2684 kpc tau 2.63 | |t_ext|/tau 0.048 g_ext/g_h(r_ta) 1.13 | T1 P30 1.00 edge 0.984 (  43 kpc) c_d 3.9e-04 | T2 P30 0.00 edge 0.000 (2684 kpc) c_d nan | T3 P30 1.00 edge 0.754 ( 660 kpc) c_d 3.1e-01
+  1.0/1e+10/canonical r_ta   397 kpc tau 1.80 | |t_ext|/tau 0.148 g_ext/g_h(r_ta) 5.98 | T1 P30 1.00 edge 0.954 (  18 kpc) c_d 5.3e-03 | T2 P30 0.00 edge 0.000 ( 397 kpc) c_d nan | T3 P30 1.00 edge 0.341 ( 262 kpc) c_d 8.4e-01
+       1.0/1e+10/alt r_ta   397 kpc tau 1.80 | |t_ext|/tau 0.148 g_ext/g_h(r_ta) 5.98 | T1 P30 1.00 edge 0.955 (  18 kpc) c_d 5.3e-03 | T2 P30 0.00 edge 0.000 ( 397 kpc) c_d nan | T3 P30 1.00 edge 0.333 ( 265 kpc) c_d 7.4e-01
+  1.0/1e+11/canonical r_ta   878 kpc tau 1.80 | |t_ext|/tau 0.089 g_ext/g_h(r_ta) 2.51 | T1 P30 1.00 edge 0.971 (  26 kpc) c_d 2.5e-03 | T2 P30 0.00 edge 0.000 ( 878 kpc) c_d nan | T3 P30 1.00 edge 0.531 ( 412 kpc) c_d 4.9e-01
+       1.0/1e+11/alt r_ta   878 kpc tau 1.80 | |t_ext|/tau 0.089 g_ext/g_h(r_ta) 2.51 | T1 P30 1.00 edge 0.972 (  25 kpc) c_d 2.3e-03 | T2 P30 0.00 edge 0.000 ( 878 kpc) c_d nan | T3 P30 1.00 edge 0.547 ( 397 kpc) c_d 5.5e-01
+  1.0/1e+12/canonical r_ta  1946 kpc tau 1.80 | |t_ext|/tau 0.047 g_ext/g_h(r_ta) 0.98 | T1 P30 1.00 edge 0.985 (  29 kpc) c_d 6.0e-04 | T2 P30 0.00 edge 0.000 (1946 kpc) c_d nan | T3 P30 1.00 edge 0.781 ( 426 kpc) c_d 3.2e-01
+       1.0/1e+12/alt r_ta  1946 kpc tau 1.80 | |t_ext|/tau 0.047 g_ext/g_h(r_ta) 0.98 | T1 P30 1.00 edge 0.984 (  30 kpc) c_d 6.6e-04 | T2 P30 0.00 edge 0.000 (1946 kpc) c_d nan | T3 P30 1.00 edge 0.783 ( 422 kpc) c_d 2.3e-01
+  2.5/1e+10/canonical r_ta   244 kpc tau 1.57 | |t_ext|/tau 0.099 g_ext/g_h(r_ta) 3.77 | T1 P30 1.00 edge 0.968 (   8 kpc) c_d 3.9e-03 | T2 P30 0.00 edge 0.000 ( 244 kpc) c_d nan | T3 P30 1.00 edge 0.437 ( 138 kpc) c_d 7.7e-01
+       2.5/1e+10/alt r_ta   244 kpc tau 1.57 | |t_ext|/tau 0.099 g_ext/g_h(r_ta) 3.77 | T1 P30 1.00 edge 0.970 (   7 kpc) c_d 2.5e-03 | T2 P30 0.00 edge 0.000 ( 244 kpc) c_d nan | T3 P30 1.00 edge 0.432 ( 139 kpc) c_d 6.2e-01
+  2.5/1e+11/canonical r_ta   542 kpc tau 1.57 | |t_ext|/tau 0.059 g_ext/g_h(r_ta) 1.57 | T1 P30 1.00 edge 0.981 (  11 kpc) c_d 1.2e-03 | T2 P30 0.00 edge 0.000 ( 542 kpc) c_d nan | T3 P30 1.00 edge 0.672 ( 178 kpc) c_d 4.2e-01
+       2.5/1e+11/alt r_ta   542 kpc tau 1.57 | |t_ext|/tau 0.059 g_ext/g_h(r_ta) 1.57 | T1 P30 1.00 edge 0.982 (  10 kpc) c_d 8.2e-04 | T2 P30 0.00 edge 0.000 ( 542 kpc) c_d nan | T3 P30 1.00 edge 0.657 ( 186 kpc) c_d 3.6e-01
+  2.5/1e+12/canonical r_ta  1208 kpc tau 1.57 | |t_ext|/tau 0.031 g_ext/g_h(r_ta) 0.61 | T1 P30 1.00 edge 0.990 (  13 kpc) c_d 2.5e-04 | T2 P30 0.00 edge 0.000 (1208 kpc) c_d nan | T3 P30 1.00 edge 0.880 ( 146 kpc) c_d 1.3e-01
+       2.5/1e+12/alt r_ta  1208 kpc tau 1.57 | |t_ext|/tau 0.031 g_ext/g_h(r_ta) 0.61 | T1 P30 1.00 edge 0.989 (  13 kpc) c_d 3.7e-04 | T2 P30 0.00 edge 0.000 (1208 kpc) c_d nan | T3 P30 1.00 edge 0.879 ( 146 kpc) c_d 1.4e-01
+  4.0/1e+10/canonical r_ta   176 kpc tau 1.54 | |t_ext|/tau 0.070 g_ext/g_h(r_ta) 2.63 | T1 P30 1.00 edge 0.976 (   4 kpc) c_d 1.9e-03 | T2 P30 0.00 edge 0.000 ( 176 kpc) c_d nan | T3 P30 1.00 edge 0.515 (  85 kpc) c_d 4.7e-01
+       4.0/1e+10/alt r_ta   176 kpc tau 1.54 | |t_ext|/tau 0.070 g_ext/g_h(r_ta) 2.63 | T1 P30 1.00 edge 0.979 (   4 kpc) c_d 8.1e-04 | T2 P30 0.00 edge 0.000 ( 176 kpc) c_d nan | T3 P30 1.00 edge 0.532 (  82 kpc) c_d 5.9e-01
+  4.0/1e+11/canonical r_ta   392 kpc tau 1.54 | |t_ext|/tau 0.042 g_ext/g_h(r_ta) 1.09 | T1 P30 1.00 edge 0.986 (   6 kpc) c_d 6.2e-04 | T2 P30 0.00 edge 0.000 ( 392 kpc) c_d nan | T3 P30 1.00 edge 0.758 (  95 kpc) c_d 3.0e-01
+       4.0/1e+11/alt r_ta   392 kpc tau 1.54 | |t_ext|/tau 0.042 g_ext/g_h(r_ta) 1.09 | T1 P30 1.00 edge 0.986 (   6 kpc) c_d 5.2e-04 | T2 P30 0.00 edge 0.000 ( 392 kpc) c_d nan | T3 P30 1.00 edge 0.757 (  95 kpc) c_d 2.8e-01
+  4.0/1e+12/canonical r_ta   876 kpc tau 1.54 | |t_ext|/tau 0.022 g_ext/g_h(r_ta) 0.42 | T1 P30 1.00 edge 0.993 (   6 kpc) c_d 1.5e-04 | T2 P30 0.00 edge 0.000 ( 876 kpc) c_d nan | T3 P30 1.00 edge 0.935 (  57 kpc) c_d 4.2e-02
+       4.0/1e+12/alt r_ta   876 kpc tau 1.54 | |t_ext|/tau 0.022 g_ext/g_h(r_ta) 0.42 | T1 P30 1.00 edge 0.993 (   6 kpc) c_d 1.1e-04 | T2 P30 0.00 edge 0.000 ( 876 kpc) c_d nan | T3 P30 1.00 edge 0.934 (  58 kpc) c_d 7.3e-02
+  isolated spheres (no LSS), T1 = T3 edge: [0.99988, 0.99988, 0.99985, 0.99985, 0.99981, 0.99981] r_ta (exact by construction: l_t = tau <=> dbar = Delta - 1)
+  [PASS] (b) T1 ON at 30 kpc w.p. >= 0.99 on 24/24 + fidelity: min P(ON30) 1.000; max d ln m (10% gas) 0.060 vs min ln margin 4.20
+  [FAIL] (c) T1 edge within 100 kpc on 24/24 + sharp-H well-posed (c_d = 0): edge 24/24; median edges 0.954-0.993 r_ta; c_d max 1.07e-01 (median over hosts 1.16e-03)
+  [FAIL] (b) T2 ON at 30 kpc w.p. >= 0.99 on 24/24 + fidelity: min P(ON30) 0.000; max d ln m (10% gas) 0.060 vs min ln margin 4.20
+  [FAIL] (c) T2 edge within 100 kpc on 24/24 + sharp-H well-posed (c_d = 0): edge 0/24; median edges 0.000-0.000 r_ta; c_d max 0.00e+00 (median over hosts 0.00e+00)
+  [PASS] (b) T3 ON at 30 kpc w.p. >= 0.99 on 24/24 + fidelity: min P(ON30) 1.000; max d ln m (10% gas) 0.060 vs min ln margin 4.20
+  [FAIL] (c) T3 edge within 100 kpc on 24/24 + sharp-H well-posed (c_d = 0): edge 6/24; median edges 0.313-0.935 r_ta; c_d max 1.00e+00 (median over hosts 4.45e-01)
+  T1: width needed for V_b <= V_c^2 (g_ph/g <= 1): eps_min = 7.68e-02 (units 4 pi G rho_bar) -> edge smearing <= 1.58e-02 r_ta
+  T2: width needed for V_b <= V_c^2 (g_ph/g <= 1): eps_min = 0.00e+00 (units 4 pi G rho_bar) -> edge smearing <= 0.00e+00 r_ta
+  T3: width needed for V_b <= V_c^2 (g_ph/g <= 1): eps_min = 1.48e+00 (units 4 pi G rho_bar) -> edge smearing <= 3.04e-01 r_ta
+
+====================================================================================================
+(d) inputs: KiDS-like lens bins (z = 0.25, isothermal law mass) with the same LSS field
+====================================================================================================
+  canonical log M_b 10.0: r_ta   950 kpc | T1 median edge 0.963 | T2 median edge 0.000 | T3 median edge 0.362
+  canonical log M_b 10.5: r_ta  1266 kpc | T1 median edge 0.968 | T2 median edge 0.000 | T3 median edge 0.453
+  canonical log M_b 11.0: r_ta  1689 kpc | T1 median edge 0.974 | T2 median edge 0.000 | T3 median edge 0.549
+  canonical log M_b 11.5: r_ta  2252 kpc | T1 median edge 0.979 | T2 median edge 0.000 | T3 median edge 0.656
+  alt       log M_b 10.0: r_ta   995 kpc | T1 median edge 0.963 | T2 median edge 0.000 | T3 median edge 0.373
+  alt       log M_b 10.5: r_ta  1327 kpc | T1 median edge 0.969 | T2 median edge 0.000 | T3 median edge 0.473
+  alt       log M_b 11.0: r_ta  1769 kpc | T1 median edge 0.975 | T2 median edge 0.000 | T3 median edge 0.567
+  alt       log M_b 11.5: r_ta  2359 kpc | T1 median edge 0.979 | T2 median edge 0.000 | T3 median edge 0.687
+
+====================================================================================================
+LEGALITY + WELL-POSEDNESS
+====================================================================================================
+  L1 EOM (psi): nu + L_M(x)*Derivative(psi(x), (x, 3))**2*Subs(Derivative(F(_xi_1), (_xi_1, 3)), _xi_1, -c + Derivative(psi(x), (x, 2))) + L_M(x)*Derivative(psi(x), (x, 4))*Subs(Derivative(F(_xi_1), (_xi_1, 2)), _xi_1, -c + Derivative(psi(x), (x, 2))) + 2*Derivative(L_M(x), x)*Derivative(psi(x), (x, 3))*Subs(Derivative(F(_xi_1), (_xi_1, 2)), _xi_1, -c + Derivative(psi(x), (x, 2))) + Derivative(L_M(x), (x, 2))*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, -c + Derivative(psi(x), (x, 2))) + Derivative(mu(x), (x, 2)) = 0
+  L1 EOM (mu):  rhobar - rho(x) + Derivative(psi(x), (x, 2)) = 0
+  [PASS] L1 EOM derivable (sympy): Euler-Lagrange for psi, mu
+  [PASS] L2 leaf scalar densities: eigenvalues of h^ik D_k D_j Phi_d and |D Phi_d|_h, mu lap_h Phi_d, nu Phi_d, <rho> as CFG329's <K>
+  [PASS] L3 no momenta; t = d d lap^-1 delta is order 0 (|k_i k_j/k^2| <= 1): max symbol 1.000000; no d_t of Phi_d, mu, nu -> no Ostrogradsky DOF; t is algebraic in delta_hat in Fourier space
+  [PASS] L4 momentum (adjoint 1e-5, Noether 1e-8): 2.4e-08 / 2.4e-16
+  1D leaf (P = n n): sup |dE/drho| local layer vs width: w 0.1: 2.796e-01, w 0.03: 8.449e-01, w 0.01: 2.504e+00, w 0.003: 8.333e+00  -> x29.8 for w/33 (∝ 1/w)
+  sphere layer (unit surface density at r = 1): sup|potential| w 0.05: tang 1.003, radial 7.06; w 0.02: tang 1.000, radial 18.98; w 0.005: tang 1.000, radial 78.80
+  sympy identity d_i d_j (F n_i n_j) = (r^2 F)''/r^2: residual 0
+  [PASS] WP spherical layer: tangential reader finite jump, radial reader ∝ 1/w; 1D layer ∝ 1/w: tang ratio 1.00, radial ratio 11.2
+
+====================================================================================================
+VERDICT pre-(d) per rule (primary T3); (d) scored by cfg354_edge_harness.py
+====================================================================================================
+  T1: failures before (d): ["a'", 'c']; edge 24/24; sharp-H well-posed False
+  T2: failures before (d): ['b', 'c']; edge 0/24; sharp-H well-posed False
+  T3 (PRIMARY): failures before (d): ['c']; edge 6/24; sharp-H well-posed False
+  runtime 21 s

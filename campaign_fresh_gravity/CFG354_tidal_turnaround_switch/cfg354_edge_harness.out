@@ -1,0 +1,31 @@
+CFG346 -- CFG337's stable (smeared) switch edge against the data.  Criteria frozen first: FROZEN_CRITERIA.md (188df575b).
+
+  object     inverted triggered symmetron (CFG337); f = f_in phi^2, phi = screened-Poisson smoothing (range lam = ell/sqrt(2 f_in))
+             of B's sharp edge Theta(r_ta - r); f_in = 1 + 2/R (AS-DECLARED, the verdict level) or 1 (UNIT, reported).
+             The phantom DENSITY is multiplied by f: M(r) = M_b + Int_0^r f dM_ph.
+  configs    each CFG337 reader / E_c mode / R at ell_min (max over 1e5/1e6 K) and 1.5 ell_min.
+  scores     K: KiDS isolated lenses (FP1 slice + FP20 projector, CFG4_switch K3 logic), d chi^2 <= +9 vs law, both footings.
+             S: SPARC A3 at R_HI (CFG45 P3 rows) >= 90% with |d log v| < 0.03, spirals and dwarfs; rotmod RAR d rms < 0.005; both footings.
+             G: f = 0 on linear FRW (delta << 1) for every ell; tail f(20 h^-1 Mpc comoving) <= 1.2e-3 for every system.
+MUTATE    CFG346_MUTATE=1: ell = 10 ell_min (over-smeared) must fail K or S for the best configuration; outputs *_MUTATE.
+CFG354 copy of CFG353/CFG352 (unchanged scoring). Rows = CFG354 per-rule median edge fractions (KiDS-like lens bins, min/max) from cfg354_tidal_switch_results.json.
+
+  KiDS machinery exec'd (0 s): law chi^2 162.6053 / 154.7582
+  KiDS-like lenses r_ta (Mpc, log M_b 10/10.5/11/11.5): can [0.95, 1.268, 1.692, 2.257], alt [0.996, 1.329, 1.773, 2.366]
+  SPARC harnesses exec'd (0 s): 171 P3 rows, 175 rotmod galaxies; rms0 0.100329 / 0.101268
+  SPARC r_ta (z = 0, point-mass law mass): median 990 / 1038 kpc
+
+CFG354 control_1.0 (EDGE_FRAC 1.0000): KiDS dchi2 -9.18 / -9.30 (pass); SPARC A3 {'spiral|canonical': 1.0, 'spiral|alt': 1.0, 'dwarf|canonical': 1.0, 'dwarf|alt': 1.0} drms {'canonical': 0.0, 'alt': 0.0} (pass); growth pass
+
+CFG354 T3_min (EDGE_FRAC 0.3623): KiDS dchi2 +66.97 / +63.53 (FAIL); SPARC A3 {'spiral|canonical': 1.0, 'spiral|alt': 1.0, 'dwarf|canonical': 1.0, 'dwarf|alt': 1.0} drms {'canonical': 0.0, 'alt': 0.0} (pass); growth pass
+
+CFG354 T3_max (EDGE_FRAC 0.6869): KiDS dchi2 -18.23 / -17.65 (pass); SPARC A3 {'spiral|canonical': 1.0, 'spiral|alt': 1.0, 'dwarf|canonical': 1.0, 'dwarf|alt': 1.0} drms {'canonical': 0.0, 'alt': 0.0} (pass); growth pass
+
+CFG354 T1_min (EDGE_FRAC 0.9629): KiDS dchi2 -10.48 / -11.15 (pass); SPARC A3 {'spiral|canonical': 1.0, 'spiral|alt': 1.0, 'dwarf|canonical': 1.0, 'dwarf|alt': 1.0} drms {'canonical': 0.0, 'alt': 0.0} (pass); growth pass
+
+CFG354 T1_max (EDGE_FRAC 0.9793): KiDS dchi2 -9.78 / -10.40 (pass); SPARC A3 {'spiral|canonical': 1.0, 'spiral|alt': 1.0, 'dwarf|canonical': 1.0, 'dwarf|alt': 1.0} drms {'canonical': 0.0, 'alt': 0.0} (pass); growth pass
+
+CFG354 T2_max (EDGE_FRAC 0.0010): KiDS dchi2 +1067.79 / +1075.67 (FAIL); SPARC A3 {'spiral|canonical': 0.0, 'spiral|alt': 0.0, 'dwarf|canonical': 0.0, 'dwarf|alt': 0.0} drms {'canonical': 0.2796573149225377, 'alt': 0.2749507542502939} (FAIL); growth pass
+CFG354 (d) T1: PASS (rows ['T1_min', 'T1_max'])
+CFG354 (d) T2: FAIL (rows ['T2_max'])
+CFG354 (d) T3: FAIL (rows ['T3_min', 'T3_max'])
