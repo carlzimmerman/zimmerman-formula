@@ -492,7 +492,7 @@ Reading: WALLABY confirms the gas-point a0 is low (7-9e-11, below the alt footin
 change (a0 ~ D^-3 to -4 in the deep regime with gas-dominated baryons), the dominant systematic exactly as p44 predicted. A precise a0 from WALLABY needs redshift-independent
 distances. kappa = 1/2 stays FITTED.
 
-## 53. Gas points by distance method (`p46`, 2/2; MUTATE TRGB distances x1.1 -> a0 drops, check D fails) -- 2026-10-05 -- REVISES the p41b/p44 reading
+## 53. Gas points by distance method (`p46`, 2/2; MUTATE TRGB distances x0.8 -> a0 rises, check D fails; a first x1.1 control could not fail and was replaced) -- 2026-10-05 -- REVISES the p41b/p44 reading
 SPARC's Upsilon-free gas points split by f_D: **TRGB/Cepheid (8 galaxies: D631-7, DDO154, ESO444-G084, NGC3109, NGC3741, UGC04483, UGCA442, UGCA444; e_D/D median 5%):
 a0 = 1.158e-10 +- 20%**; Hubble flow (11 galaxies): 6.97e-11 +- 18%; all (19): 9.00e-11. The 9.0e-11 of p41b/p44 was an average of a high redshift-independent set
 and a low Hubble-flow set (ratio 1.66, ~2 sigma).

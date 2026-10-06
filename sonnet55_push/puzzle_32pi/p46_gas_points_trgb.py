@@ -2,7 +2,7 @@
 4 UMa cluster, 5 SN). Framework kernel, sigma_int 0.11, galaxy bootstrap. The redshift-independent subset (f_D 2, 3) removes the Hubble-flow distance systematic that
 binds p43/p44. Compared with the kappa = 1/2 footing 9.3603e-11, the alt footing 1.1312e-10, and the rho_Lambda rivals (Verlinde 6: 9.03e-11, Milgrom 2pi: 8.63e-11).
 Also: the SPARC distance errors of the TRGB/Cepheid gas galaxies (their e_D/D).
-Run: python3 p46_gas_points_trgb.py [NBOOT]  |  MUTATE=1: distances of the TRGB/Cepheid set scaled x1.1 (a0 must drop ~25-35%: check D fails)
+Run: python3 p46_gas_points_trgb.py [NBOOT]  |  MUTATE=1: distances of the TRGB/Cepheid set scaled x0.8 (a0 must rise ~50%+: check D fails). (A first x1.1 control moved a0 TOWARD 9.0e-11 and could not fail; replaced.)
 """
 import os, sys, math
 import numpy as np
@@ -33,7 +33,7 @@ sets = {"TRGB/Cepheid (f_D 2,3)": [g for g in gals if g["fD"] in (2, 3)], "Hubbl
 out = {}
 for k, sel in sets.items():
     S = gaspts(sel)
-    if MUTATE and k.startswith("TRGB"): S = [V.transform(g, dist_scale=1.1) for g in S]
+    if MUTATE and k.startswith("TRGB"): S = [V.transform(g, dist_scale=0.8) for g in S]
     a = fit(S); B = boot(S, NB if k.startswith("TRGB") else NB // 3, 46)
     lo, hi = np.percentile(B, [16, 84]); e = (hi - lo) / 2 / a
     sens = [fit(S, u) for u in (0.3, 0.7)]
