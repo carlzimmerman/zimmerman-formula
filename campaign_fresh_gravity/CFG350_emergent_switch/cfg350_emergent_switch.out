@@ -1,0 +1,102 @@
+CFG350 -- an EMERGENT switch from the coarse-grained phase-space state (criteria: FROZEN_CRITERIA.md, e3e17f0fc).
+
+State variable: sigma_ij = P_ij/rho, the second moment of the DF (10-moment / Gaussian closure, Q = 0).
+Scored (MS-allowed, baryons): R-b0 f = H(sigma_b^2); R-b1 f = S(sigma_b^2/sigma_ref^2 - 1); R-s f = H(s_b - s_IGM).
+Reported only: R-c (cold sigma, MS-forbidden), R-q (shock label), R-* (stellar sigma).
+Tests (a) FRW/linear, (b) bound + fidelity + no flicker, (c) hyperbolicity + stress + edge, (d) conservation.
+Controls K1 (FRW closure), K2 (isothermal sphere), MUTATE (CFG350_MUTATE=1: instantaneous theta_b reader).
+DE12's transition() and L341's growth harness are exec'd read-only.
+
+  DE12 loaded read-only (24 hosts); f_b = 0.1571; host gas sigma(1e6 K, DE12 mu 0.6) = 117.3 km/s; max S' = 2.000
+
+==============================================================================================================
+ROUTES and the FRW thermal history of the baryons
+==============================================================================================================
+  sigma_IGM: z=1100 4.51, z=150 1.669, z=20 0.232, z=8 0.099, post-reion 11.83 km/s (lenient T0 5e3 K: 8.36); min over z <= 1100: 0.096 km/s > 0
+  R-b1 sigma_ref (minimum passing (a), incl. delta = 0.1 parcels on gamma = 1.6): 12.17 km/s  [1 constant]
+
+==============================================================================================================
+(a) FRW + LINEAR
+==============================================================================================================
+  A1 R-b0: ON on FRW/linear -- sigma_IGM >= 0.096 km/s > 0 at every z <= 1100: f = 1 on FRW (gas is never cold)
+  A1 R-b1: OFF on FRW/linear -- max sigma (mean + delta 0.1) = 12.17 <= sigma_ref 12.17 km/s (OFF by construction)
+  A1 R-s: ON on FRW/linear -- post-reion s - s_IGM = -0.10 ln Delta: a delta = -0.1 parcel has +0.0105 > 0 (ON) for every gamma < 5/3
+  D*A = 0.9 (before crossing): max streams 1, max sigma 0.000e+00 (exactly 0)
+  D*A = 1.5 (after):  multi-stream zone |x - x_c| <= 0.260, max sigma 0.726 (in units of the velocity amplitude)
+  L341 growth: f = 0 -> canonical D 1.00000000 s8 0.8101; alt D 1.00000000 s8 0.8101 | f = 1 -> canonical D 28.79 s8 23.32; alt D 33.93 s8 27.48
+  [FAIL] A-R-b0 (a) FRW/linear: f OFF on the mean IGM and linear parcels; single-stream sigma = 0; growth = LCDM
+         measured: A1 False, A2 True, A3 False (D ratio 28.7877)
+  [PASS] A-R-b1 (a) FRW/linear: f OFF on the mean IGM and linear parcels; single-stream sigma = 0; growth = LCDM
+         measured: A1 True, A2 True, A3 True (D ratio 1)
+  [FAIL] A-R-s (a) FRW/linear: f OFF on the mean IGM and linear parcels; single-stream sigma = 0; growth = LCDM
+         measured: A1 False, A2 True, A3 True (D ratio 1)
+
+==============================================================================================================
+(b) BOUND: ON at 30 kpc + local gas disc, fidelity, no flicker (closure ODE under compression cycles)
+==============================================================================================================
+  [PASS] B-R-b0 (b) ON 24/24 hosts at 30 kpc and in a local gas disc; fidelity dev <= 0.1; no flicker
+         measured: hosts f 1.000-1.000 (24/24); disc f 1.000; dev max 0.00e+00; max drop 0.00e+00, flips 0; sigma^2 response 0.0656 (= 1.1^(2/3) - 1 = 0.0656), adiabat err 5.5e-14
+  [FAIL] B-R-b1 (b) ON 24/24 hosts at 30 kpc and in a local gas disc; fidelity dev <= 0.1; no flicker
+         measured: hosts f 1.000-1.000 (24/24); disc f 0.000; dev max 0.00e+00; max drop 0.00e+00, flips 0; sigma^2 response 0.0656 (= 1.1^(2/3) - 1 = 0.0656), adiabat err 5.5e-14
+  [FAIL] B-R-s (b) ON 24/24 hosts at 30 kpc and in a local gas disc; fidelity dev <= 0.1; no flicker
+         measured: hosts f 0.000-1.000 (8/24); disc f 0.000; dev max 0.00e+00; max drop 0.00e+00, flips 0; sigma^2 response 0.0656 (= 1.1^(2/3) - 1 = 0.0656), adiabat err 5.5e-14
+  R-s numbers: host s - s_IGM at 30 kpc -3.80..+2.39; local disc -16.04
+  dSph reference (reported): sigma [6.6, 6.6, 7.9, 9.1, 9.2, 11.7] km/s vs R-b1 sigma_ref 12.17: 0/6 above
+  R-b1 window: max OFF (IGM post-reion, delta 0.1) 12.17 km/s vs min ON (local HI disc) 10.0 km/s -> EMPTY: no constant sigma_ref passes (a) and (b)
+
+==============================================================================================================
+(c) TRANSITION: 10-moment hyperbolicity, the switch stress, the edge
+==============================================================================================================
+  [PASS] C1 (c) 10-moment system strongly hyperbolic for sigma > 0 (1000 random states): real speeds u, u+-sqrt(s_xx) (x2), u+-sqrt(3 s_xx); 10 eigenvectors
+         measured: non-diagonalisable 0/1000; max |Im| 3.5e-16; speed error 1.2e-14; min rank 10; dust limit sigma = 0: rank 6/10 (dust's own Jordan block)
+  [FAIL] C-R-b0 (c) hyperbolic + switch stress keeps P > 0 + edge confined to bound region
+         measured: C1 True; C2 x delta(x) = 0: the sharp zero threshold adds no stress; C3 ON on the mean IGM (sigma_th > 0 everywhere): no edge
+  [FAIL] C-R-b1 (c) hyperbolic + switch stress keeps P > 0 + edge confined to bound region
+         measured: C1 True; C2 chi(30 kpc) max 0.00e+00; chi(edge, S' max) 4.13e+02-9.72e+03; C3 WHIM sigma 37-374 km/s > sigma_ref: ON in 6/6 unbound filament states
+  [FAIL] C-R-s (c) hyperbolic + switch stress keeps P > 0 + edge confined to bound region
+         measured: C1 True; C2 sharp threshold on s: s delta(s - s_IGM) stress lives on the edge surface only; bulk 0; C3 ON in voids (a) and in 5/6 WHIM states; s - s_IGM range -1.2..+8.1
+  host r_ta 177-3312 kpc; first caustic 0.364 r_ta = 64-1206 kpc (Bertschinger 1985, quoted); gas shock 0.347 r_ta: both outside 30 kpc
+
+==============================================================================================================
+(d) CONSERVATION and monotonicity
+==============================================================================================================
+  sympy: momentum residual 0; energy residual 0; 1D adiabat D(p/rho^3)/Dt = 0
+  parcel energy E = M*Derivative(V(t), t)**2/2 - L_M(V(t))*f(V0**(2/3)*s0**2*(1/V(t))**(2/3)) + U(V(t));  dE/dt - Vdot*EOM = 0  (no multiplier anywhere; contrast CFG349 L-ord: E linear in lambda)
+  D3: RH entropy jump min 1.25e-12 (M -> 1+) .. 10.69 (M = 100), all >= 0; Zel'dovich crossing raises sigma from 0 to 0.726;
+      isobaric radiative cooling 1e6 -> 1e4 K changes s by -11.51: collisional baryons are NOT monotone (cooling erases the record)
+  [PASS] D (d) conservation: conservative 10-moment momentum + energy identities; state-function switch has an ordinary parcel action (energy conserved, no multiplier)
+         measured: D1 True; D2 True; D3 RH min ds 1.2e-12 >= 0, cooling -11.51
+
+==============================================================================================================
+REPORTED (not scored): R-c, R-q, R-*; OWNERSHIP
+==============================================================================================================
+  R-c: sigma_c: exactly 0 on FRW single stream (a PASS), >0 inside the first caustic 0.364 r_ta (b PASS at 30 kpc, saturated, no flicker: x delta(x) = 0), strongly hyperbolic for sigma > 0, but ON in every shell-crossed sheet/filament (Zel'dovich sheet delta_lin = 1, unbound) -> C3 FAIL; MS1 matter/carrier door; B's S_cold is dust (no sigma) -> would add a collisionless-DF assumption. Equivalent tier: PARTIAL, not admissible.
+  R-q: shock/caustic label q (0 -> 1 at an entropy jump, advected): OFF on FRW and linear, ON in DE12's 1e6 K (shocked) gas, no flicker; legal as a Brown-type advected scalar; but after radiative cooling the local state carries no record (D3), so q is a MEMORY FIELD, not a coarse-grained state (CFG349's class); ON in shocked WHIM filaments; cold-mode (unshocked) streams at z >= 2 leave CGM gas OFF.
+  R-*: stellar sigma: 0 where no stars (FRW, web, star-free outer HI discs and CGM); stars are born with sigma ~ gas sigma, so 'sigma_* > 0' = 'stars present'; needs a coarse-graining scale L (1 constant); edge = stellar extent, far inside 0.3 r_ta; GC stars ON.
+  GC (class E): mass-weighted local sigma_b = 7.00 km/s (own dominates, rho_own/rho_host ~ 1e6): R-b0 ON, R-b1 OFF, R-c ON (host halo)
+  dSph (class A): sigma 6.6-11.7 km/s, same range as GCs -> no sigma threshold separates E (GC) from A (dSph)
+  wide binary (class E): internal 0.3 km/s, but at any L > a the local DF is the field's (~30 km/s, 0.1 Msun/pc^3) -> R-b0/R-b1/R-c ON (inherit)
+  verdict on ownership: a local sigma reads 'own' only where the subsystem dominates the local density (GC cores), and then by amplitude it
+  cannot separate GCs (E, Newtonian) from dSphs (A, ON); binaries inherit the host. FG001's E/A classes are NOT reproduced.
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] K1 single-stream closure on FRW (L = H I): sigma_0 = 0 stays 0; sigma_0 > 0 gives sigma ∝ a^-2
+         measured: max |sigma| (zero IC) 0.0e+00; a^-2 err 2.9e-12
+  [PASS] K2 singular isothermal sphere: Jeans integral sigma = v_c/sqrt2
+         measured: sigma = [0.7071067811865476, 0.7071067811865476, 0.7071067811865475] vs 0.70710678
+
+==============================================================================================================
+VERDICT (frozen rule, per scored route; best route wins)
+==============================================================================================================
+  R-b0: a False  b True  c False  d True  -> 2/4, constants 0: NO-GO
+  R-b1: a True  b False  c False  d True  -> 2/4, constants 1: NO-GO
+  R-s: a False  b False  c False  d True  -> 1/4, constants 0: NO-GO
+
+  VERDICT: NO-GO. Obstruction: collisional baryons are never cold on FRW (sigma_IGM > 0 at every z) and lose their record by cooling;
+  the post-reionisation IGM (12.2 km/s) is hotter than the local gas discs B must switch ON (10 km/s), so no
+  constant threshold exists; the variable that has the right properties (cold sigma_c) is MS-forbidden and ON in unbound sheets.
+  Conservation is NOT the obstruction: a state-function switch has an ordinary action (D2). Scoped result, not a closure.
+
+  runtime 7.5 s

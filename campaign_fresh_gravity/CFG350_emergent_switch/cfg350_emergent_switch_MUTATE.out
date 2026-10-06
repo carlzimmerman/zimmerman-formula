@@ -1,0 +1,49 @@
+CFG350 -- an EMERGENT switch from the coarse-grained phase-space state (criteria: FROZEN_CRITERIA.md, e3e17f0fc).
+
+State variable: sigma_ij = P_ij/rho, the second moment of the DF (10-moment / Gaussian closure, Q = 0).
+Scored (MS-allowed, baryons): R-b0 f = H(sigma_b^2); R-b1 f = S(sigma_b^2/sigma_ref^2 - 1); R-s f = H(s_b - s_IGM).
+Reported only: R-c (cold sigma, MS-forbidden), R-q (shock label), R-* (stellar sigma).
+Tests (a) FRW/linear, (b) bound + fidelity + no flicker, (c) hyperbolicity + stress + edge, (d) conservation.
+Controls K1 (FRW closure), K2 (isothermal sphere), MUTATE (CFG350_MUTATE=1: instantaneous theta_b reader).
+DE12's transition() and L341's growth harness are exec'd read-only.
+
+  *** CFG350_MUTATE=1: the sigma reader is REPLACED by the instantaneous theta_b reader f = H(-theta_b) (CFG347 R1) ***
+
+  DE12 loaded read-only (24 hosts); f_b = 0.1571; host gas sigma(1e6 K, DE12 mu 0.6) = 117.3 km/s; max S' = 2.000
+
+==============================================================================================================
+ROUTES and the FRW thermal history of the baryons
+==============================================================================================================
+  sigma_IGM: z=1100 4.51, z=150 1.669, z=20 0.232, z=8 0.099, post-reion 11.83 km/s (lenient T0 5e3 K: 8.36); min over z <= 1100: 0.096 km/s > 0
+  R-b1 sigma_ref (minimum passing (a), incl. delta = 0.1 parcels on gamma = 1.6): 12.17 km/s  [1 constant]
+
+==============================================================================================================
+(a) FRW + LINEAR
+==============================================================================================================
+  A1 R-b0: ON on FRW/linear -- sigma_IGM >= 0.096 km/s > 0 at every z <= 1100: f = 1 on FRW (gas is never cold)
+  A1 R-b1: OFF on FRW/linear -- max sigma (mean + delta 0.1) = 12.17 <= sigma_ref 12.17 km/s (OFF by construction)
+  A1 R-s: ON on FRW/linear -- post-reion s - s_IGM = -0.10 ln Delta: a delta = -0.1 parcel has +0.0105 > 0 (ON) for every gamma < 5/3
+  D*A = 0.9 (before crossing): max streams 1, max sigma 0.000e+00 (exactly 0)
+  D*A = 1.5 (after):  multi-stream zone |x - x_c| <= 0.260, max sigma 0.726 (in units of the velocity amplitude)
+  L341 growth: f = 0 -> canonical D 1.00000000 s8 0.8101; alt D 1.00000000 s8 0.8101 | f = 1 -> canonical D 28.79 s8 23.32; alt D 33.93 s8 27.48
+  [FAIL] A-R-b0 (a) FRW/linear: f OFF on the mean IGM and linear parcels; single-stream sigma = 0; growth = LCDM
+         measured: A1 False, A2 True, A3 False (D ratio 28.7877)
+  [PASS] A-R-b1 (a) FRW/linear: f OFF on the mean IGM and linear parcels; single-stream sigma = 0; growth = LCDM
+         measured: A1 True, A2 True, A3 True (D ratio 1)
+  [FAIL] A-R-s (a) FRW/linear: f OFF on the mean IGM and linear parcels; single-stream sigma = 0; growth = LCDM
+         measured: A1 False, A2 True, A3 True (D ratio 1)
+
+==============================================================================================================
+(b) BOUND: ON at 30 kpc + local gas disc, fidelity, no flicker (closure ODE under compression cycles)
+==============================================================================================================
+  [FAIL] B-R-b0 (b) ON 24/24 hosts at 30 kpc and in a local gas disc; fidelity dev <= 0.1; no flicker
+         measured: hosts f 1.000-1.000 (24/24); disc f nan; dev max 0.00e+00; max drop 1.00e+00, flips 19; sigma^2 response 0.0656 (= 1.1^(2/3) - 1 = 0.0656), adiabat err 5.5e-14
+  [FAIL] B-R-b1 (b) ON 24/24 hosts at 30 kpc and in a local gas disc; fidelity dev <= 0.1; no flicker
+         measured: hosts f 1.000-1.000 (24/24); disc f nan; dev max 0.00e+00; max drop 1.00e+00, flips 19; sigma^2 response 0.0656 (= 1.1^(2/3) - 1 = 0.0656), adiabat err 5.5e-14
+  [FAIL] B-R-s (b) ON 24/24 hosts at 30 kpc and in a local gas disc; fidelity dev <= 0.1; no flicker
+         measured: hosts f 1.000-1.000 (24/24); disc f nan; dev max 0.00e+00; max drop 1.00e+00, flips 19; sigma^2 response 0.0656 (= 1.1^(2/3) - 1 = 0.0656), adiabat err 5.5e-14
+  R-s numbers: host s - s_IGM at 30 kpc -3.80..+2.39; local disc -16.04
+  dSph reference (reported): sigma [6.6, 6.6, 7.9, 9.1, 9.2, 11.7] km/s vs R-b1 sigma_ref 12.17: 0/6 above
+  R-b1 window: max OFF (IGM post-reion, delta 0.1) 12.17 km/s vs min ON (local HI disc) 10.0 km/s -> EMPTY: no constant sigma_ref passes (a) and (b)
+
+  MUTATE: theta_b reader flips 19 times in 10 cycles -> flicker reproduced
