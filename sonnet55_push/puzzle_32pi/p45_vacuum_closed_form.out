@@ -1,0 +1,12 @@
+PASS  H int_0^Y h dy - (1/4) ln(4Y) -> -1/8 (= -1/8) as Y -> oo (sympy, exact)
+   T =       30: numeric    23.022903  closed form    23.026008  diff -3.11e-03  (diff x T/ln T = -0.027)
+   T =      100: numeric    77.852421  closed form    77.853383  diff -9.62e-04  (diff x T/ln T = -0.021)
+   T =      128: numeric    99.812920  closed form    99.813674  diff -7.54e-04  (diff x T/ln T = -0.020)
+   T =     1000: numeric   784.423809  closed form   784.423907  diff -9.79e-05  (diff x T/ln T = -0.014)
+   T =    10000: numeric  7852.719545  closed form  7852.719555  diff -9.81e-06  (diff x T/ln T = -0.011)
+PASS  N the closed form matches the exact integral to < 0.01 for T >= 100 and the residual falls like ln T / T
+PASS  P matches p35's committed values 77.85 / 99.81 / 784.4 at T = 100 / 128 / 1000
+   32 pi footing: T = 128 + (ln 4T - 1/2)/(2 pi) = 128.9144  (numeric root of the exact integral: 128.9154)
+PASS  R the corollary T = 128 + (ln 4T - 1/2)/(2 pi) reproduces the numeric root 128.9 to 0.01
+
+4/4 pass

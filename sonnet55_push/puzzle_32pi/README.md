@@ -472,3 +472,10 @@ separable at any N; everything closer needs distances better than ~5%.**
 Milgrom 2pi rho_tot -1.03 (BF 1.6), 32 pi turn-off -1.16 (1.9), Verlinde 6 rho_tot -1.36 (2.4), kappa = 1/2 rho_tot (alt) -1.61 (BF 3.5).
 **The Upsilon-free data favour the rho_Lambda FOOTING (a0 tied to dark energy, not total density) by BF ~2-3.5, but cannot tell kappa = 1/2 from Verlinde's 6 or Milgrom's 2pi
 on that footing.** kappa = 1/2 stays FITTED.
+
+## 51. Closed form for the MOND field's vacuum term (`p45`, 4/4; MUTATE constant 1/16 -> 1/8 fails N, P, R) -- 2026-10-05
+For the framework kernel with the k = 2 turn-off: **Lambda c^4/a0^2 = (pi/4) y_t - (1/8) ln(4 y_t) + 1/16 + O(1/y_t)**.
+Derivation: 2y(sqrt(1+1/y) - 1) = 1 - h, int_0^Y h dy = (1/4) ln(4Y) - 1/8 exactly at large Y (sympy); the Lorentzian gives pi y_t/2 and converts ln Y to ln y_t.
+Matches the exact integral to 1e-3 at y_t = 100-128 and 1e-5 at 1e4; reproduces p35's 77.85 / 99.81 / 784.4. Each term has a source: pi/4 from the turn-off's shape,
+-(1/8) ln(4 y_t) from the exact law's a0/2 tail (h ~ 1/(4y)), +1/16 from the kernel's interior. Corollary on the kappa = 1/2 footing:
+**y_t = 128 + (ln(4 y_t) - 1/2)/(2 pi) = 128.91** (numeric root 128.92): '128 = 4 x 32' plus a logarithmic correction from the law's own tail. kappa = 1/2 stays FITTED.
