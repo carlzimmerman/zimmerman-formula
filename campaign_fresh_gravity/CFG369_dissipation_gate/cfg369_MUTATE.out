@@ -1,0 +1,32 @@
+CFG369 dissipation-gated settling  (MUTATE: cooling x100)
+==============================================================================
+Controls
+  [PASS] C1 copied cm12 ratio() reproduces cm12's committed crossing (canonical R1 fhot1) to 0.01 dex: nan vs 11.623 (MUTATE: cooling x100 moves it; not scored)
+
+S1 ENERGY: epsilon_min = q (1/2) / ln(r_in/R_d), SPARC Q <= 2 with Rdisk > 0
+  canonical: median eps_min  r_M: q0.49 0.626 q9.5 12.138 | 10 r_M: q0.49 0.091 q9.5 1.763
+  alt: median eps_min  r_M: q0.49 0.826 q9.5 16.013 | 10 r_M: q0.49 0.094 q9.5 1.827
+  S1 verdict: canonical MARGINAL, alt MARGINAL
+
+S2 RATE PINCER and S3 LEVELS (Gamma = 1/t_cool, H_Lambda units; e = exp(-Gamma tau), tau = 10.3 Gyr, epsilon = 1)
+  canonical|R1|fhot1.0    : Gamma/H_L  MW 4.37e+05  group 1.04e+03  cluster 7.04e+01 | e MW 0.000 group 0.000 cluster 0.000 | S2 fail S3 fail
+  canonical|R1|fhot0.5    : Gamma/H_L  MW 2.19e+05  group 5.20e+02  cluster 3.52e+01 | e MW 0.000 group 0.000 cluster 0.000 | S2 fail S3 fail
+  canonical|R2|fhot1.0    : Gamma/H_L  MW 3.21e+01  group 6.96e-01  cluster 2.11e-01 | e MW 0.000 group 0.664 cluster 0.884 | S2 PASS S3 fail
+  canonical|R2|fhot0.5    : Gamma/H_L  MW 1.60e+01  group 3.48e-01  cluster 1.05e-01 | e MW 0.000 group 0.815 cluster 0.940 | S2 PASS S3 fail
+  alt|R1|fhot1.0          : Gamma/H_L  MW 4.61e+05  group 1.26e+03  cluster 8.77e+01 | e MW 0.000 group 0.000 cluster 0.000 | S2 fail S3 fail
+  alt|R1|fhot0.5          : Gamma/H_L  MW 2.30e+05  group 6.32e+02  cluster 4.38e+01 | e MW 0.000 group 0.000 cluster 0.000 | S2 fail S3 fail
+  alt|R2|fhot1.0          : Gamma/H_L  MW 2.54e+01  group 6.36e-01  cluster 1.97e-01 | e MW 0.000 group 0.688 cluster 0.890 | S2 PASS S3 fail
+  alt|R2|fhot0.5          : Gamma/H_L  MW 1.27e+01  group 3.18e-01  cluster 9.87e-02 | e MW 0.001 group 0.830 cluster 0.944 | S2 PASS S3 fail
+  S2: canonical PASS, alt PASS;  S3: canonical FAIL, alt FAIL
+
+S4 SHAPE: Blumenthal contraction of a mixed truncated SIS onto the SPARC baryons vs the law phantom (Q <= 2)
+  [PASS] C2 Blumenthal identity (M_b,f = M_b,i -> M_c,f = M_c,i) and mass bound: max rel dev 2.2e-16
+  canonical R_i = 1 r_M: N 3269 points, median log(M_c,f/M_ph) +0.841, rms 1.045 dex, slope vs log g_bar +0.525 -> FAIL
+  canonical R_i = 10 r_M: N 3269 points, median log(M_c,f/M_ph) +0.117, rms 0.475 dex, slope vs log g_bar +0.396 -> FAIL
+  alt R_i = 1 r_M: N 3269 points, median log(M_c,f/M_ph) +0.786, rms 1.014 dex, slope vs log g_bar +0.524 -> FAIL
+  alt R_i = 10 r_M: N 3269 points, median log(M_c,f/M_ph) +0.093, rms 0.454 dex, slope vs log g_bar +0.377 -> FAIL
+
+LANE VERDICT: canonical PARTIAL (alt PARTIAL); class: NON-adiabatic (S4 fails)
+  [FAIL] T-MUT main-run sanity (MUTATE must move S3's e(MW) by > 0.1; recorded in the MUTATE JSON): e(MW) canonical cells ['0.000', '0.000', '0.000', '0.000']
+
+2/3 pass  (MUTATE)
