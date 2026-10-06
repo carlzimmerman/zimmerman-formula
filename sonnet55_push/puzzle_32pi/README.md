@@ -569,3 +569,13 @@ the vacuum conditions force f'(1) = (1-alpha)/(1+alpha), so **Lambda c^4/a0^2 = 
 Verdict: alpha is a real "own coupling of the MOND sector", but it is degenerate with the kernel's vacuum integral I_nu (i.e. with the turn-off y_t, p35/p45):
 any alpha can be matched by a y_t. No value of alpha is forced (alpha = 8 pi - 1 needs I_nu = 256 pi^2; the exponential RAR's finite I = 25.98 needs alpha = -0.742).
 alpha = -1 (Milgrom's main class) has no consistent vacuum solution of this form. So PREMISE A is EXPRESSIBLE in BIMOND but NOT derived: it relabels kappa as (alpha, y_t).
+
+## 63. p54: what fixes alpha and y_t
+`p54_what_fixes_alpha_yt.py` (4/4; MUTATE alpha = 1/3 fails A). v1 output kept as `p54_what_fixes_alpha_yt_v1criteria.out` (2/4): checks B and D were mis-specified
+(B demanded exact agreement from an asymptotic form, off by 7.5e-6 relative; D tested "any integer" and 1/(1-p) = 29.3 sat 0.9% from 29); both restated in the open.
+- **alpha is FIXED:** p53 gives f'(1) = (1-alpha)/(1+alpha); the g <-> ghat exchange symmetry (f'(1) = 0) forces alpha = 1 uniquely, ghost-free.
+- **Crisp form (alpha = 1):** Lambda c^4 = int_0^inf (g - g_N) dg_N -- the cosmological constant is the phantom acceleration integrated over all field strengths.
+  The exact law's plateau a0/2 diverges; a turn-off at g_t gives Lambda c^4 ~ (pi/4) a0 g_t, i.e. g_t = (4/pi) Lambda c^4/a0 = 128.9 a0 = 1.21e-8 m/s^2 on the kappa = 1/2 footing.
+- **y_t is NOT fixed:** without hbar a0 is the only acceleration, so y_t must be a pure number of the UV kernel (and depends on its shape k); with hbar, g_t = a0^p a_P^(1-p) needs 1-p = 1/29.3 (unnatural); sqrt(a0 a_P) breaks the planets.
+- **y_t is dynamically ~invisible:** at y = y_t the kernels differ by 0.19% in g/g_N (the Sun's field at 701 AU; a 1 M_sun binary at 700 AU separation).
+Net: the puzzle is now exactly ONE pure number -- why int_0^inf (g - g_N) dg_N = 32 pi a0^2.
