@@ -14,3 +14,12 @@ on X-COP first: A = cold_req/((Omega_c/Omega_b) M_b) gives the ledger's 0.576 ex
 0.549 (16-84%: 0.30-0.90); C003 (L191, interpolated log-linearly in M_b between its group 1e12 = 0.168 and cluster 1.4e14 = 0.664 anchors) predicts 0.302.
 Median difference +0.219 +- 0.397 -> +0.55 sigma: CONSISTENT under the pre-declared rule, but the error is dominated by the 20% hydrostatic-bias allowance
 (0.372); without it the lean is +1.55 sigma toward groups needing MORE cold mass than C003 keeps. Non-diagnostic until group masses are lensing-based.
+
+## cm03: the same test with weak-lensing-calibrated group mass bias -- C003's group prediction FAILS at 2.7 sigma
+`cm03_c003_groups_wl_bias.py` (MUTATE C003 = 0.9 flips the verdict to CONSISTENT). The 20% hydrostatic allowance replaced by a T-dependent bias
+b(T) = b1 (kT/keV)^-0.86, b1 = 0.4 (0.3-0.5), from Kettula+2013 (COSMOS groups, WL: 30-50% at 1 keV; PROVISIONAL, read via search summary) -- groups here are
+0.85-2.8 keV. Required retained fraction (definition A, calibrated on X-COP): 0.549 (b = 0), 0.749 (b = 0.1 flat, FLAMINGO), 1.09 / 1.38 / 1.69 (b1 = 0.3/0.4/0.5)
+vs C003's 0.30: median difference +1.04 +- 0.38 -> +2.73 sigma, FAILS (groups need MORE cold mass than C003 keeps). Lensing makes groups heavier, not lighter.
+Caveats: definition A is relative to TODAY's baryons and groups have lost baryons (f_b ~ 0.10; CFG34's rho = -0.96), so A > 1 partly measures that loss;
+definition B (relative to the LCDM-like dark mass, bounded by 1) gives 0.37 (b = 0) and 0.60 (b1 = 0.4) -- the same direction, still twice C003's 0.30.
+R500 and M_gas are not re-evaluated at the corrected mass. Reading: C003's "groups largely emptied" signature is disfavoured; groups behave closer to clusters.
