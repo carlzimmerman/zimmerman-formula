@@ -51,3 +51,13 @@ blue/late s* = 1.69 (+1.9 sigma above the law; its two thirds disagree, 2.0 vs 0
 Reading for the hot-halo hypothesis: at matched mass red lenses carry far more extra mass than blue -- the predicted direction; blue is closer to the law
 but NOT shown to be exactly at it (1.9 sigma, internally inconsistent thirds). NOT unique: in LCDM red centrals also sit in ~2x heavier halos at fixed M*
 (CFG67: a colour-blind Moster halo fits CFG61's split at 6.9/7), and both classes' M* are SED-based. So this is consistent, not discriminating.
+
+## cm07: 30 SLUGGS early types (Alabi+2017 GC masses within 5 Re) x O'Sullivan L_X -- passes the rule, but it is the group/cluster centrals
+`cm07_alabi32_hot_halo.py` (1/1; MUTATE shuffled L_X fails). Fetch: data_assembly/alabi2017/. First run parsed only 16 Table-2 rows (continued table missed);
+kept as `cm07_alabi32_hot_halo_v1_16rows.out` and fixed before any reading. Excess = log(M_tot(<5Re)/M_law), M* inside 5 Re from Alabi's f_DM.
+- Every early type needs extra mass at 5 Re: median excess +0.29 dex (x1.9) canonical, +0.26 alt.
+- rho(excess, L_X/L_B) = +0.42 (p = 0.011, N = 30); partial given M* = +0.32 (p = 0.046) -> SUPPORTED under the cm05 rule (alt: +0.40, partial +0.30, p 0.054).
+- BUT without the 9 group/cluster-dominant galaxies (M87, NGC 4472, 1399, 1316, 4374, 4649, 5846, 1407, 4636; list fixed in the script before the run,
+  reported, no verdict) rho = +0.06 (N = 21). The hot-gas trend is carried by being a group/cluster central; among the other 21 there is no trend.
+Reading: what the data support is "group/cluster centrals carry more extra mass" (the cm03 step: groups ~ clusters >> galaxies), not a hot-gas effect at
+galaxy scale. LCDM predicts the same (central galaxies sit in group halos). The hot-halo hypothesis is NOT distinguished from environment.
