@@ -1,0 +1,15 @@
+# Root independent both-lapse review
+
+Reviewed2026-10-06 at HEAD79792399cb53dbe8c0557cd50b0641f1f66c16f2. REPORT SHA256 `708d3754307a9ff8f37ec75489cc02b772556c335d6cd4d928c1fe2347bd662b`, checks SHA256 `4c11d9b5675fe002cfb9f9cd04988074115f336ee05bb36df0832759283b5c96`. Accepted as an exact velocity-Hessian and lapse-dependence diagnostic of the declared regular linear continuation and volume, not a Dirac reduction.
+
+Root independently derives the homogeneous C components A=dotN/N−dotL/L, B=a dota/N²−b dotb/L², D=dota/a−dotb/b. Raw contraction gives S1=−(A²+nD²)/N²+2nBD/a²; S2=(−A/N²+nB/a²)(A+nD); S3=−N²(−A/N²+nB/a²)²; S4=−(A+nD)²/N²; S5=−A²/N²−2nD²/N²−nN²B²/a⁴. Averaging with the other metric retains both lapses and the independent invisible S3 coupling.
+
+At coincident positions the reduced action and all stated ranks follow. In an independent n3 SymPy reconstruction of the original kinetic action, the coincident determinant is144K³(eta+xi)(2m−1), matching the general-n expression. Root separately reconstructs the exact identity partial_u(J−S3−4Upsilon)=0. Tuning eta=−xi removes the lapse square but generic mixing persists unless xi=m/2. It is essential not to infer momentum absence from the missing square.
+
+For the geometric-mean-volume witness N=L=a1,b=r, root derives the exact reduced determinant and its leading r→1 coefficient216K³(1−2m)(m−2xi)²(r−1)². Thus regular subcritical positive-slope tensor-repair choices either have rank3 already at coincidence or acquire it arbitrarily nearby off shell. Literal globally lapse-independent action requires xi=m/2, below the tensor mass threshold mn/(n+1). This is a scoped incompatibility, not a physical ghost count or a proof that secondary constraints cannot help.
+
+For a nonlinear regular continuation the moving-background Mzz term must remain. At zero-velocity jets the same quadratic Hessian can instead be justified by a genuine two-sided regular derivative Mz→m: Upsilon is quadratic in velocities, and the composed action's gradient equals its linear representative plus o(|velocity|). That establishes the Hessian at zero without interpreting an undefined0-times-infinite product. The original nonsmooth auxiliary model has not supplied the required Lorentzian extension, so no result is exported to it automatically.
+
+Root validates all four current b manifests against the frozen inputs: main36/36 and three intended extra-proposition failures36/37. Historical a contract/range metadata is honestly superseded and preserved; its unchanged scientific script does not retroactively validate that metadata. The two-lapse and auxiliary null directions are retained. Negative metric-scale kinetic signs before constraints are not sufficient to identify ghosts.
+
+The original target remains open: this representative has free lambda and offset, and neither the Hessian nor tensor inequalities select them. Full constraint admission, on-shell branch persistence, negative-invariant completion and the actual auxiliary order of limits are still required. An independently derived critical-slope extension is being checked separately and is not asserted by this frozen report.

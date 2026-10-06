@@ -1,0 +1,38 @@
+# Independent raw both-lapse Hessian audit
+
+Verdict: accepted for the declared regular constant-coefficient linear continuation and its explicitly off-shell homogeneous rank diagnostic. The common S3 tuning, arbitrarily nearby rank witness and incompatibility of literal lapse independence with the positive-subcritical tensor cone are correct. They do not establish a full Dirac constraint count, physical ghost, admitted cosmological branch or health of the actual nonsmooth auxiliary source kernel. No result from the separate live critical supplement was assumed or needed.
+
+Inspected actual HEAD `d2a25bd8195c19522a6afdebe2f9d22ac982c665`. Frozen REPORT SHA-256 `708d3754307a9ff8f37ec75489cc02b772556c335d6cd4d928c1fe2347bd662b`; checks.py `4c11d9b5675fe002cfb9f9cd04988074115f336ee05bb36df0832759283b5c96`; contract `119d67d1c60dcfd473bb676e300f5519621abca28594e10969eff3c7bd3a4b55`; SOURCES.md `e1876912d41c7d1328fa933a9844ca830bafec565ad3b4e995094f0b7c1e54f0`; provenance `9fc446d22830ea34dc91619080c875801be8f712c853dd1c6b52df64ea7a877e`. The parent tensor and NR-invisible reports and their invariant definitions were also read. No author input, supplemental child or git state was changed.
+
+## Raw reconstruction before lapse fixing
+For metrics diag(−N^2,a^2,...), diag(−L^2,b^2,...), the only Christoffel differences are C^0_00=u=Ndot/N−Ldot/L, C^0_ij=vC delta_ij with vC=a^2 h1/N^2−b^2 h2/L^2, and C^i_0j=C^i_j0=w delta^i_j with w=h1−h2. These follow directly from the two Christoffel definitions; setting the lapse velocities equal before variation would remove an actual direction.
+
+The one-metric contraction has trace C_0=u+nw and contracted trace barC^0=−u/N^2+n vC/a^2. They immediately give S2=barC^0 C_0, S3=−N^2(barC^0)^2 and S4=−C_0^2/N^2. For S1 the temporal contraction contributes −(u^2+nw^2)/N^2 and the spatial contraction 2n vC w/a^2. For S5 the three connection types contribute −u^2/N^2, −nN^2 vC^2/a^4 and −2nw^2/N^2. This independently reconstructs all five general-n expressions, not just their finite-dimension checks. The hatted contraction replaces the contracting metric factors while keeping the same difference connection. Averaging is essential for this actual exchange-symmetric action.
+
+Subtracting S2 from S1 gives Upsilon=n[(uw−w^2)/N^2−vC(u+(n−2)w)/a^2]. Its u-square cancels, but its mixed derivative need not vanish. The EH term follows from KijKij−K^2=−n(n−1)(h1/N)^2 and the coordinate volume Na^n, with the analogous hatted term. This checks the factor K, lapse denominator and geometric-mean interaction volume rather than importing an unsymmetrized published action.
+
+## Common five-coordinate Hessian and free S3
+At coincident positions vC=a^2w/N^2 even with independent velocities. Direct substitution gives Upsilon=−n(n−1)w^2/N^2 and J=S3=−(u−nw)^2/N^2. For hc=(h1+h2)/2 and sigma=xi+eta, the common quadratic Lagrangian is exactly
+
+−2Kn(n−1)hc^2−Kn(n−1)(1/2−m)w^2−Ksigma(u−nw)^2/2.
+
+The hc Hessian entry is −4Kn(n−1). The w/u block has entries K n(n−1)(2m−1)−Ksigma n^2, Ksigma n and −Ksigma. Its determinant is −K^2sigma n(n−1)(2m−1); multiplication by the hc entry gives the reported 4K^3n^2(n−1)^2sigma(2m−1). The four stated ranks follow without inferring physical degrees of freedom.
+
+The map from (Ndot,Ldot,adot,bdot,Tdot) to (hc,w,u) is surjective at positive positions. Hence H5=Jmap^T Hred Jmap has the same rank. Its common-lapse-rate vector (N,L,0,0,0) and auxiliary-rate vector (0,0,0,0,1) are explicit nulls. These velocity nulls are not by themselves a classification of first-/second-class constraints; the potential and the remaining field equations also matter. Negative scale-factor kinetic directions already exist in ordinary gravity, so a sign or rank alone is not a physical ghost proof.
+
+S3 must remain free: barC vanishes on the leading NR scalar and coincident TT branches, so it has zero quadratic TT contribution and zero leading NR first variation there. Choosing eta=−xi cancels the common u-square without changing the preceding tensor repair. Omitting eta would discard a legitimate direction in the specified invisible-invariant space.
+
+## Literal lapse-free condition and independent nearby witness
+From the raw expressions, partial_u(J−S3)=4partial_u Upsilon and both second u derivatives are −(1/N^2+1/L^2). Thus a literal absence of u on every homogeneous configuration first requires eta=−xi and then (2xi−m)partial_u Upsilon=0. The displayed partial_u Upsilon is generically nonzero, requiring xi=m/2. Its accidental zero on conformally related positions La=Nb does not make it zero throughout configuration space.
+
+I independently reconstructed the n3,N=L=a=1,b=1+epsilon determinant by its block expansion. At epsilon=0 the h1/h2 block is 12K[[m−1,−m],[−m,m−1]], while the u/scale coupling at first order is 3K(2xi−m)epsilon(1,1) and Huu=0. The determinant identity det[[A,b],[b^T,0]]=−b^T adj(A)b gives 216K^3(1−2m)(m−2xi)^2epsilon^2. For 0<m<1/2 and xi not m/2, the nonzero leading analytic coefficient proves rank3 at all sufficiently small nonzero epsilon. This is an off-shell statement, not an integrated solution or a constraint-admission certificate.
+
+A separate read-only in-memory symbolic reconstruction at m=xi=1/4,eta=−1/4,b=2 gives 243(96−59sqrt(2))/128, matching the report exactly. That finite example is not itself the small-epsilon theorem. For nonlinear regular M, zero-velocity jets have C=0 and eliminate the M_zz gradient outer product; the displayed Hessian then uses only m. On moving nearby jets that term can matter. Constant-metric zero-velocity jets with the retained vacuum potential are not asserted on-shell de Sitter backgrounds. I did not extend the witness to such a branch.
+
+## Tensor-cone comparison and remaining implication
+For TT, both connection traces vanish, S3=0 and J=2H tr(d d_dot)−H^2 tr(d^2). Integrating the first term with a^n gives −[(n+1)H^2+Hdot]tr(d^2). Consequently the regular de Sitter relative tensor action retains kinetic K(1−2m)/8 and curvature coefficient K[mn−xi(n+1)]H^2/2. For 0<m<1/2, nonnegative tensor mass requires xi>=mn/(n+1). This strictly exceeds m/2 by m(n−1)/[2(n+1)]. At the literal lapse-free choice the curvature numerator is m(n−1)/2>0 and the future zero-momentum tensor equation has negative mass-squared and a growing root. The scoped incompatibility is therefore correct.
+
+This does not exclude other degenerate-Hessian/secondary-constraint mechanisms, other invariants, singular continuations or on-shell rank surfaces. Absence of lapse velocity would itself not prove a healthy Hamiltonian constraint. At m=1/2 the TT kinetic coefficient vanishes and the regular subcritical cone interpretation no longer supplies a propagating tensor health statement. The actual auxiliary minimizer has a nonsmooth joint origin and lacks an admitted two-sided continuation; the linear representative with T=0 is not that source kernel. Its no-Tdot auxiliary row and vacuum offset are independent of the source's unknown elimination/constraint structure.
+
+## Current evidence
+Independently validated all four current b manifests against actual frozen inputs: main36/36 and three controls36/37, each with its intended extra failed assertion. Historical a metadata is superseded and not current evidence. checks.py's raw arrays, Hessians and meaningful controls corroborate the analytic reconstruction above; no success count supplies the general-n or near-state argument. The original published unsymmetrized lapse critique is contextual, not a substituted theorem about this averaged action. No full ghost count, on-shell branch, vacuum coefficient selector, material cold identity or critical supplemental result is claimed.
