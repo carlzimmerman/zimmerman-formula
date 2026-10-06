@@ -507,3 +507,10 @@ AUTHORS' stellar M/L (not Upsilon-free); distances Hunter+2012 (mostly TRGB, not
 Overlap with SPARC (DDO 154, DDO 168, NGC 2366): per-galaxy a0 LITTLE THINGS / SPARC = 1.58, 2.42, 1.60 (median 1.60) -- the two pipelines (different baryon
 decompositions, inclinations, distances) disagree by ~60% on the SAME galaxies. Reading: per-galaxy baryon modelling, not just distances, moves a0 by tens of percent;
 LITTLE THINGS adds no precision. Across p41b/p43/p46/p47 the cleanest estimates span 0.70-1.16e-10 by method. kappa = 1/2 stays FITTED.
+
+## 55. Random-effects meta-analysis of the Upsilon-robust a0 estimates (`p48`, 1/2; pre-written P FAILED, kept; MUTATE TRGB 2e-10 fails H) -- 2026-10-05
+Inputs (independent sets): SPARC gas TRGB/Cepheid 1.158e-10 (20%), SPARC gas Hubble flow 6.97e-11 (18%), WALLABY gas 7.28e-11 (23%), LITTLE THINGS 7.80e-11 (41%).
+Q = 3.97 (3 dof), I^2 = 24%, tau = 0.13. **Pooled a0 = 8.32e-11 +- 13%** (7.28-9.51e-11). Pulls: Milgrom 2pi rho_L +0.27, Verlinde 6 rho_L +0.62, kappa = 1/2 rho_L +0.88,
+Milgrom 2pi rho_tot +1.69, 32 pi turn-off +1.82, alt rho_tot (original c sqrt(G rho_c)/2) +2.30, conventional 1.2e-10 +2.74. The pre-written 'every candidate within 2 sigma'
+FAILED: the alt footing and 1.2e-10 sit beyond 2 sigma. CAVEAT, load-bearing: three of four inputs rest on Hubble-flow distances or the authors' baryon models, which p46
+and p47 show bias a0 low; the TRGB-only value (1.16e-10) alone favours the alt footing. The pooled verdict is distance-conditional. kappa = 1/2 stays FITTED.
