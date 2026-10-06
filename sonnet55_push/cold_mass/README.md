@@ -91,3 +91,17 @@ non-central) dominates its own Virgo W' subgroup, so it is arguably a central to
 - **Anisotropies:** the primary CMB (z ~ 1100) cannot be affected -- the cold mass must be >= 0.988 clustered then (L129) and the sorting must be late (z <~ 2,
   forest). The late diffuse 75-81% would show in the SECONDARY anisotropies: CMB lensing power and the late ISW/tSZ, and in small-scale cosmic shear (S8).
   Those are the tests that can kill the two-level picture; not computed here.
+
+## cm11: CMB-lensing and S8 shift of the two-level picture (halo model, matter only -> UPPER BOUND on the suppression)
+`cm11_cmb_lensing_s8.py` (1/1; MUTATE r = 1 gives ratios exactly 1 and fails). Two-level retention switched on between z = 2.5 and 1.5; removed cold mass smooth
+below R_s; MOND phantom lensing NOT included (it would add lensing inside galaxy halos, so the true suppression is smaller).
+| case | CMB-lensing C_L ratio L = 100 / 400 / 1500 | shear C_l ratio 100 / 400 / 1500 | S8_eff/S8 |
+|---|---|---|---|
+| step 1e12.5, R_s 1 Mpc/h | 0.960 / 0.935 / 0.791 | 0.949 / 0.667 / 0.451 | 0.860 (-14.0%) |
+| step 1e12 / 1e13 | 0.969-0.944 at L 100 | similar | -13.8% / -14.4% |
+| R_s 0.3 / 3 Mpc/h | | | -12.3% / -18.7% |
+Against data (literature values from memory, PROVISIONAL): KiDS/DES S8 is ~7% (+-3%) below Planck -- the picture's -12 to -19% points the SAME way but about
+twice as far (~ -2 to -3 sigma from KiDS if the phantom adds nothing); CMB-lensing amplitudes (ACT DR6 ~1.01 +- 0.02 of Planck LCDM at L ~ 40-760) leave
+little room for the predicted -4 to -7% at L 100-400 (~ -3 sigma if the phantom adds nothing). Reading: the two-level picture is in TENSION with CMB lensing
+and overshoots the S8 deficit unless the framework's phantom supplies ~half of the missing small-scale lensing -- the next calculation (cosmological phantom
+lensing), not done here. Not excluded yet; not supported either.
