@@ -462,3 +462,13 @@ The 124 gas-dominated points (19 galaxies) are all deep-MOND (y = 0.015-0.066), 
 RAR is disfavoured by Delta chi2 = +5.0 to +5.4 vs the framework kernel; within nu_n the allowed range is n = 0.9-1.6 (best 1.6, -1.9: not significant); n = 1 inside.
 a0 across the allowed kernels: 8.82 (n 0.9), 9.00 (n 1), 9.24 (1.3), 9.31e-11 (1.6) -> **a0 = (9.0 +- 0.25 kernel) e-11, +- 11% stat**, i.e. the kernel systematic on
 the gas points shrinks from 16% (RAR included) to ~3% once RAR's next-order term is disfavoured. Still 19 galaxies; clustering not deflated. kappa = 1/2 stays FITTED.
+
+## 50. Sample-size theorem and Bayes factors from the Upsilon-free gas points (`p44`, 3/4; pre-written N check FAILED, kept; MUTATE data 1.13e-10 fails B) -- 2026-10-05
+(1) Per-galaxy a0 on SPARC's gas points (19 galaxies): scatter s = 0.60 in ln a0 (robust 0.51); N = (z s/Delta)^2. vs the kappa = 1/2 rho_Lambda value: alt footing N = 41 (2 sigma)
+/ 92 (3 sigma); 32 pi turn-off 93 / 210; Milgrom 2pi (rho_total) 127 / 286, (rho_Lambda) 217 / 489; Verlinde 6 (rho_Lambda) 1137 / 2558. The pre-written check 'every
+rival needs > 100 at 3 sigma' FAILED (alt needs 92). **The binding limit is the shared systematic floor (kernel 3% + distance 8.5% = 9%): at 2 sigma only the alt footing is
+separable at any N; everything closer needs distances better than ~5%.**
+(3) Data a0 = 9.00e-11, sigma_ln 0.142 (stat 0.11 + floor 0.09). Pulls: Verlinde 6 rho_L -0.03, kappa = 1/2 rho_L -0.28, Milgrom 2pi rho_L +0.30 (BF ~1 among them);
+Milgrom 2pi rho_tot -1.03 (BF 1.6), 32 pi turn-off -1.16 (1.9), Verlinde 6 rho_tot -1.36 (2.4), kappa = 1/2 rho_tot (alt) -1.61 (BF 3.5).
+**The Upsilon-free data favour the rho_Lambda FOOTING (a0 tied to dark energy, not total density) by BF ~2-3.5, but cannot tell kappa = 1/2 from Verlinde's 6 or Milgrom's 2pi
+on that footing.** kappa = 1/2 stays FITTED.
