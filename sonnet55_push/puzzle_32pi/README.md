@@ -537,3 +537,11 @@ distance effect (galaxy-to-galaxy scatter, s ~ 0.6 in ln a0, is large). The coef
 Premise: the a0 horizon (r = c^2/2a0, T = hbar a0/2 pi c k) is in equilibrium, N_sur = A/l_P^2 = N_bulk = 2|E_Komar|/kT with E_Komar = 2 rho c^2 V for vacuum.
 hbar cancels (a classical relation, as a0 requires) -- the first horizon-thermodynamic premise in the record with that property -- but it gives G rho r^2 = 3/(16 pi) c^2
 (standard), 3/(8 pi) (no Komar factor), 3/(64 pi) (entropy normalisation): p17's one-pi values again, never 1. Not the missing premise. kappa = 1/2 stays FITTED.
+
+## 59. The one-pi obstruction, certified (`fable_independent_2026/lean_2026/PUZZLE_32pi_one_pi_obstruction_2026_10_05.lean`) -- 2026-10-05
+Why ~60 horizon/vacuum principles (p17, p19, p51 and the agent lanes) never give G rho r*^2 = c^2: each yields q * pi^(+-1) with q rational (G enters as 4 pi G / 8 pi G,
+geometry adds rational volume factors). Lean (standard axioms; Mathlib `irrational_pi`): `one_pi_obstruction` q pi != 1 and q/pi != 1 for every rational q;
+`p17_values_never_one` for the seven computed values; `gauss_shape_is_pi_free`: a whole-sphere flux balance g (4 pi r^2) = 4 pi G S cancels its pis exactly.
+Consequence -- the SHAPE of the missing principle: a Gauss-law-type balance (flux of some field over the full horizon sphere = 4 pi G x a pi-free source) in which the
+source is NOT a volume integral of rho (that re-introduces 4 pi/3). Not proved: the general net-pi statement (needs pi transcendental; not in Mathlib). MUTATE
+(a pi-cancelling value inserted as '!= 1'): fails. kappa = 1/2 stays FITTED.
