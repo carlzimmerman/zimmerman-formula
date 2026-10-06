@@ -1,0 +1,21 @@
+# Independent atomic/background audit
+
+Accepted as a bounded hydrogen laboratory on the admitted homogeneous branch, not as a precision RECFAST implementation, cold-source derivation or vacuum selector. Independently inspected at HEAD c1449c08768f6ea7553ea0ecbc7c6653f4651bb8.
+
+Inspected frozen SHA256: REPORT `7dcf67f2ad52a7bcf44b109e1aeb7d75e027d22e6dc5386bcf73fb2bb1560ca7`; checks `836be53bebd4bae20938cc006741e4a2962f83ba78223dc85c4df59429a979b2`; provenance `c57abdcea1084cdb1f7848ff23ca7cd6b1cd4adfda0a38ab9978efb165a4938f`. Parent FRW REPORT `0cff571d65b153894d7b27688feff25d3e1aaef230ebc0236d2bc3c4cf5afd37` was read directly, as was cached Seager 1999 primary text equations/rate discussion (text SHA `566118221e4be06d3ff9b26434135c9d200be712c23ed68c1a1035f8256541ea`).
+
+## Raw reconstruction
+
+The independently varied homogeneous interaction is −M Lambda0 Q g_mu_nu. Own-matter conservation and the metric Bianchi identity force Q constant when Lambda0 is nonzero. Thus ordinary baryons/radiation, rather than the relative vacuum mode, contribute the a^-3/a^-4 terms. With rho_b0=3 H100² omega_b/(8 pi G), photon temperature T0/a, and the separately declared massless-neutrino radiation normalization, the n=3 visible Friedmann equation is exactly H²=H100²(omega_r a^-4+omega_m a^-3+omega_lambda). Keeping vacuum and baryons fixed when removing ordinary cold reference mass changes H0; it does not change hydrogen number density nH=(1−Yp)rho_b0/(mH a³). The second-metric reconstruction in the parent is independent of these atomic-rate functions.
+
+Photon-baryon sound speed in the tightly coupled background-fluid approximation is c/sqrt[3(1+Rb)], Rb=3rho_b c²/(4rho_gamma)=Rb0 a. Since dt=da/(aH), comoving acoustic distance is integral c_s da/(a²H). Substituting Friedmann cancels a² and gives the reported sound-horizon integrand, including its finite radiation endpoint. It is not a perturbation-spectrum calculation; neutrino anisotropic stress and photon diffusion are absent.
+
+At fixed Q,a0,ordinary densities and coordinate redshift, omega_lambda is proportional to A. Therefore d ln H/d ln A=omega_lambda/[2(omega_r a^-4+omega_b a^-3+omega_lambda)]. Positive ordinary densities make this increase with a; z=800 is the exact maximum on the declared interval. This statement uses the vacuum variation at fixed Q, not a derivative along a fitted H0 constraint. Inferring A from an inserted vacuum density and acceleration scale is not an equation selecting A.
+
+The Saha root follows x²/(1−x)=S, with the numerically stable positive root 2/(1+sqrt[1+4/S]). The kinetic redshift equation has the correct sign because dt/dz=−1/[H(1+z)]. The escape rate is 1/[K nH(1−x)] with K=lambda_Lyalpha³/(8pi H); combining it with two-photon decay gives C=(Lambda+escape)/(Lambda+escape+beta). The thermal equation has the correct expansion and Compton signs. Conformal visibility is a n_e sigma c exp(−tau), distinct from visibility as a density in z; the solver labels both. Optical depth below z=50 is excluded; its reported upper bound assumes residual ionization does not increase there without reionization.
+
+## Evidence and limits
+
+Independently validated all three current manifests: main_a 8/8, cold_is_hydrogen 7/8 and stale_H 7/8, with their declared single failures. The tolerance comparison and vacuum-doubling histories are bounded solver evidence, not universal rate-error bounds. Sound-horizon and visibility numbers refer to the stated reduced model and finite redshift grid.
+
+A primary-source convention limit is explicit in the audit: the cached 1999 RECFAST prescription discusses beta evaluated using matter temperature and its 1.14 fit correction, whereas this port evaluates detailed-balance beta at photon temperature and defaults the correction to one. The implemented laboratory is therefore not byte-for-byte RECFAST or its advertised precision calibration. This does not invalidate the reported same-rate comparison or analytic expansion sensitivity. Helium electrons, multilevel corrections, nonthermal photons, reionization, actual relative-sector perturbations and full CMB transfer remain uncomputed. Successful neutralization does not identify cold particles or prove the complete projected action healthy.

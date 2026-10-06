@@ -1,0 +1,8 @@
+# Exact action source pins
+
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/REPORT.md SHA256 6c385dfd264e9721d56acc53a825f210a4a329daa508209782a5d42ac53d26b6
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/scalar_constraint_probe/REPORT.md SHA256 46a248a9296e5715809644173685d63d419b264b97ee632b4fa719264196870b
+- sol61_push/main_theory/projected_acceleration_homogeneous_2026_10_06/REPORT.md SHA256 666790069c45c844ebdb2e966879a474f7a5e3888e631512f7d4720dde7c213b
+- sol61_push/cold_component/projected_local_clock_compatibility_2026_10_06/REPORT.md SHA256 8ecabb7f09ba071686aecf8bd900f79ee5faab0f7ac3287197ef9ac309edbd85
+
+No external classification theorem used. Raw ADMvector and weakperiodic weightedcondition are derived explicitly. Root proposed maxpoint candidate; independently checked actualvectorconstraint and developed weightedtwo-shell diagnostic.
