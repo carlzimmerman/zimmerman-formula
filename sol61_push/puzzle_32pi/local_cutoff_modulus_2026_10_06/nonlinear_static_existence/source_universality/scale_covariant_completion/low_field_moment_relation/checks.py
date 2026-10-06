@@ -1,0 +1,20 @@
+import argparse,json,pathlib,sys
+import sympy as s
+ap=argparse.ArgumentParser();ap.add_argument('--output',required=True);ap.add_argument('--mutation',choices=['none','constant_limit','drop_rational','constant_deep'],default='none');args=ap.parse_args();checks=[]
+def ck(name,cond):checks.append({'name':name,'passed':bool(cond)})
+z=s.symbols('z',positive=True);J=s.atan(z)-z/(1+z*z)
+ck('limiting_stationarity_integral',s.simplify(2*s.integrate(z*z/(1+z*z)**2,z)-J)==0)
+ck('J_derivative',s.simplify(s.diff(J,z)-2*z*z/(1+z*z)**2)==0)
+ck('scaled_integral_split',s.simplify((J+z*s.diff(J,z))/(2*(1+z*z))-(s.atan(z)/(2*(1+z*z))-z/(2*(1+z*z)**2)+z**3/(1+z*z)**3))==0)
+a=s.integrate(s.atan(z)/(2*(1+z*z)),(z,0,s.oo));b=s.integrate(z/(2*(1+z*z)**2),(z,0,s.oo));c=s.integrate(z**3/(1+z*z)**3,(z,0,s.oo))
+ck('angular_contribution',a==s.pi**2/16);ck('negative_rational_contribution',b==s.Rational(1,4));ck('positive_rational_contribution',c==s.Rational(1,4))
+value=a+c if args.mutation=='drop_rational' else (s.pi**2/8 if args.mutation=='constant_limit' else a-b+c)
+ck('actual_scaled_moment_coefficient',s.simplify(value-s.pi**2/16)==0)
+lam=s.symbols('lambda',positive=True);K=(s.Rational(8,7)/lam)**s.Rational(1,4);A=s.sqrt(7*lam/8)
+ck('deep_amplitude',s.simplify(K**-2-A)==0)
+exponent=s.Integer(2) if args.mutation=='constant_deep' else 2-2*s.Rational(7,8)
+ck('actual_deep_deficit_power',exponent==s.Rational(1,4));ck('eliminated_moment_bound',s.simplify(s.pi**2/16*A*A/lam-7*s.pi**2/128)==0)
+n=s.symbols('n',integer=True,positive=True);L,M,a0,G=s.symbols('L M a0 G',positive=True)
+ck('general_dimension_G_dictionary',s.simplify(((G*M/L**(n-1))/a0).subs(G,L**n/(M*s.Symbol('t')**2)).subs(a0,L/s.Symbol('t')**2))==1)
+ck('integrable_scaled_majorant',s.integrate(s.Rational(1,2)/(1+(2*z/s.pi)**2),(z,0,s.oo))==s.pi**2/8)
+o={'checks':checks,'passed':sum(c['passed'] for c in checks),'total':len(checks),'mutation':args.mutation,'coefficient':str(value),'scope':'exact algebra and improper integrals; proof supplies root convergence and domination'};p=pathlib.Path(args.output);p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(o,indent=2));print(json.dumps(o));sys.exit(o['passed']!=o['total'])
