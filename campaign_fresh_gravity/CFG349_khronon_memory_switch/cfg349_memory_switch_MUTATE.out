@@ -1,0 +1,119 @@
+CFG349 -- a causal MEMORY switch on the khronon clock: a ratchet along the baryon flow.  (criteria: FROZEN_CRITERIA.md)
+
+Ratchet R:  u_b.dm = (u_b.dT) Gamma_b H(-theta_b) (1 - m),  Gamma_b = sqrt(4 pi G rho_b),  H(0) = 1,  MOND sector x f(m) = m.
+Tests (a) FRW-off, (b) bound ON + fidelity + no flicker, (c) transition health; legality of the L-ord and L-CTP actions;
+ownership classes; controls K1 (CFG242 latch), K2 (Gamma = 0), MUTATE (reversible memory, CFG349_MUTATE=1).
+DE12's transition() and L341's growth harness are exec'd read-only (no file of theirs is written).
+
+  *** CFG349_MUTATE=1: REVERSIBLE memory -- u.dm = Gamma_b [H(-theta)(1 - m) - (1 - H(-theta)) m] ***
+
+  DE12 transition() loaded read-only (24 hosts); f_b = 0.1571; c_s(1e6 K) = 117 km/s
+
+==============================================================================================================
+L  LEGALITY: the two actions (sympy on the parcel reduction V(t), m(t), lambda(t))
+==============================================================================================================
+  L-ord: delta lambda -> the ratchet: Gamma*(m(t) - 1)*S(-Derivative(V(t), t)/(w*V(t))) + Derivative(m(t), t) = 0
+  L-ord: delta m      -> lambda' = Gamma*S(-Derivative(V(t), t)/(w*V(t)))*lam(t) + L_M(V(t))*Derivative(f(m(t)), m(t))
+  L-ord: d/dt[lambda (1 - m)] = (1 - m(t))*L_M(V(t))*Derivative(f(m(t)), m(t))   (unsourced: lambda = const/(1 - m) -> diverges as m -> 1)
+  L-ord: parcel inertia d2L/dVdot2 = (Gamma*(m(t) - 1)*lam(t)*Subs(Derivative(S(_xi_1), (_xi_1, 2)), _xi_1, -Derivative(V(t), t)/(w*V(t))) + M*w**2*V(t)**2)/(w**2*V(t)**2)
+  L-ord: energy function E = (w*(-M*Derivative(V(t), t)**2 - 2*(Gamma*(m(t) - 1)*S(-Derivative(V(t), t)/(w*V(t))) + Derivative(m(t), t))*lam(t) - 2*L_M(V(t))*f(m(t)) + 2*lam(t)*Derivative(m(t), t))*V(t)/2 - (Gamma*(m(t) - 1)*lam(t)*Subs(Derivative(S(_xi_1), _xi_1), _xi_1, -Derivative(V(t), t)/(w*V(t))) - M*w*V(t)*Derivative(V(t), t))*Derivative(V(t), t))/(w*V(t))
+  L-CTP (physical limit, static): dT_field/dx - Phi' (field eq) = F(Derivative(Phi(x), x)**2)*Derivative(fx(x), x) - rho(x)*Derivative(Phi(x), x)
+          = (force on baryons) + (-f' F): the extra -f'(x) F term is a non-conserved momentum where m varies (Bianchi residual)
+          residual after the baryon force: F(Derivative(Phi(x), x)**2)*Derivative(fx(x), x)
+  L2 diff-safety: every term (u_b.dm, u_b.dT, theta_b = nabla.u_b, rho_b, f(m) L_M) is a spacetime scalar on the leaves -> diff-safe (CFG329's method: no leaf-dependent non-scalar enters).
+
+==============================================================================================================
+(a) FRW + LINEAR PERTURBATIONS
+==============================================================================================================
+  [PASS] A1 (a) m = 0 EXACTLY along FRW parcels with theta = 3H(1 + d), d in {-0.99..0.5} (finite OFF neighbourhood |d| < 1)
+         measured: d=-0.99: m=0.0; d=-0.9: m=0.0; d=-0.5: m=0.0; d=0.0: m=0.0; d=0.5: m=0.0
+  sympy: top-hat theta = 0 at eta = 3.141593 (pi = 3.141593); delta_lin,ta = (3/20)(6 pi)^(2/3) = 1.0624
+  Zel'dovich sheet thresholds delta_lin = 3/(3+f): z=0: 0.850, z=1: 0.774, z=4: 0.752, z=100: 0.750
+  linear parcels delta_lin <= 0.1: min theta_b/3H = 0.9667 > 0 -> never triggered
+  [PASS] A2 (a) linear parcels (delta <= 0.1) have theta_b > 0; turnaround needs delta_lin = 1.062 (sphere) / 3/(3+f) (sheet) >= 0.5
+         measured: min theta/3H 0.9667; sphere 1.0624; sheet min 0.750
+  [PASS] A3 (a) L341 growth with f = m_FRW: D/D_LCDM = 1 within 1e-6
+         measured: canonical: D ratio 1.00000000, sigma_8 0.8101; alt: D ratio 1.00000000, sigma_8 0.8101
+
+==============================================================================================================
+(b) BOUND SYSTEMS: ON at 30 kpc (conservative exponent), fidelity, no flicker
+==============================================================================================================
+  0.25/1e+10/canonical   z_ta(cons)   6.24  E   4.25  m_cons 0.9858  m_len 1.0000  dev 5.92e-03
+  0.25/1e+10/alt         z_ta(cons)   6.24  E   4.25  m_cons 0.9858  m_len 1.0000  dev 6.60e-03
+  0.25/1e+11/canonical   z_ta(cons)  10.07  E   8.37  m_cons 0.9998  m_len 1.0000  dev 7.63e-04
+  0.25/1e+11/alt         z_ta(cons)  10.07  E   8.37  m_cons 0.9998  m_len 1.0000  dev 9.39e-04
+  0.25/1e+12/canonical   z_ta(cons)  14.08  E  13.53  m_cons 1.0000  m_len 1.0000  dev 2.54e-06
+  0.25/1e+12/alt         z_ta(cons)  14.08  E  13.53  m_cons 1.0000  m_len 1.0000  dev 2.70e-06
+  1.0/1e+10/canonical    z_ta(cons)   6.76  E   2.41  m_cons 0.9106  m_len 1.0000  dev 3.80e-02
+  1.0/1e+10/alt          z_ta(cons)   6.76  E   2.41  m_cons 0.9106  m_len 1.0000  dev 4.24e-02
+  1.0/1e+11/canonical    z_ta(cons)  11.01  E   5.00  m_cons 0.9933  m_len 1.0000  dev 3.51e-02
+  1.0/1e+11/alt          z_ta(cons)  11.01  E   5.00  m_cons 0.9933  m_len 1.0000  dev 4.60e-02
+  1.0/1e+12/canonical    z_ta(cons)  15.55  E   8.33  m_cons 0.9998  m_len 1.0000  dev 3.36e-04
+  1.0/1e+12/alt          z_ta(cons)  15.55  E   8.33  m_cons 0.9998  m_len 1.0000  dev 3.65e-04
+  2.5/1e+10/canonical    z_ta(cons)   7.83  E   1.14  m_cons 0.6786  m_len 0.9996  dev 1.43e-01
+  2.5/1e+10/alt          z_ta(cons)   7.83  E   1.14  m_cons 0.6786  m_len 0.9996  dev 1.60e-01
+  2.5/1e+11/canonical    z_ta(cons)  13.13  E   2.69  m_cons 0.9318  m_len 1.0000  dev 7.00e-01
+  2.5/1e+11/alt          z_ta(cons)  13.13  E   2.69  m_cons 0.9318  m_len 1.0000  dev 6.01e-01
+  2.5/1e+12/canonical    z_ta(cons)  19.08  E   4.81  m_cons 0.9919  m_len 1.0000  dev 6.19e-03
+  2.5/1e+12/alt          z_ta(cons)  19.08  E   4.81  m_cons 0.9919  m_len 1.0000  dev 6.92e-03
+  4.0/1e+10/canonical    z_ta(cons)   8.69  E   0.64  m_cons 0.4749  m_len 0.9935  dev 2.45e-01
+  4.0/1e+10/alt          z_ta(cons)   8.69  E   0.64  m_cons 0.4749  m_len 0.9935  dev 2.73e-01
+  4.0/1e+11/canonical    z_ta(cons)  14.88  E   1.77  m_cons 0.8296  m_len 1.0000  dev 4.41e-01
+  4.0/1e+11/alt          z_ta(cons)  14.88  E   1.77  m_cons 0.8296  m_len 1.0000  dev 4.56e-01
+  4.0/1e+12/canonical    z_ta(cons)  22.11  E   3.40  m_cons 0.9665  m_len 1.0000  dev 1.69e-02
+  4.0/1e+12/alt          z_ta(cons)  22.11  E   3.40  m_cons 0.9665  m_len 1.0000  dev 1.91e-02
+  [FAIL] B1 (b) ON: f = m >= 0.9 at 30 kpc on all 24 hosts (conservative exponent: 44.4 rho-bar, duty 1/2, Gamma at turnaround density)
+         measured: 18/24 ON; m_cons 0.4749-0.999999; lenient m 0.9935-1.000000
+  [FAIL] B2 (b) fidelity: gas compressive mode changes <= 10% (delta f <= 1 - m, worst case) at k = 1/kpc, 1/10 kpc on all 24 hosts
+         measured: dev 2.54e-06-7.00e-01; passing 16/24
+  flicker test: max drop 8.885e-01; late peak-to-peak 5.12e-01-8.12e-01; late mean m 0.4980-0.5072
+  probe shell, ratchet: m(t_ff) = 0.8895; first m >= 0.99 at t = inf t_dyn (inf t_ff); max drop 8.43e-01; m(120) = 0.185264
+  [FAIL] B3 (b) no flicker: m non-decreasing under 10 compression cycles on all 24 hosts and on CFG242's probe shell (drop <= 1e-12)
+         measured: hosts max drop 8.89e-01; probe shell drop 8.43e-01
+         reading:  a ratchet has no decay term, so a compression can only raise m (Lean R1)
+  B3-posthoc (labelled, not scored): probe shell with the exact step update: max drop 8.8e-01; m(t_ff) = 0.8815; the drop is real (reversible memory)
+  sensitivity (not scored): Gamma = H    : m(30 kpc) 0.190-0.337; ON (>= 0.9) 0/24
+  sensitivity (not scored): Gamma = a0/c : m(30 kpc) 0.005-0.060; ON (>= 0.9) 0/24
+
+==============================================================================================================
+(c) TRANSITION: ghost, characteristics, strong hyperbolicity, Hadamard, edge sharpness
+==============================================================================================================
+  principal symbol eigenvalues/k: [-c_s, 0, 0, 0, c_s]; independent eigenvectors 5/5
+  dust limit (c_s = 0): eigenvectors 4/5 (Jordan block); dust ALONE without m: 1/2 -> the same block (the ratchet adds none)
+  contrast: a smoothed trigger (principal m-v entry a k) -> eigenvectors 5/5 for c_s > 0 (still diagonalizable: eigenvalue 0 of m is distinct from +-c_s k)
+  [PASS] C1 (c) no ghost: baryon kinetic coefficient in the physical limit = rho (f(m) has no velocity dependence)
+         measured: d2L/dv2 = rho0
+  [PASS] C2 (c) characteristics: real speeds {0 (m, along u_b), 0, 0, +-c_s}
+         measured: [-c_s, 0, 0, 0, c_s]
+  [PASS] C3 (c) strongly hyperbolic for c_s > 0 (5 independent eigenvectors; CFG242's BIMOND failure was weak hyperbolicity)
+         measured: 5/5; dust 4/5 = dust alone 1/2 + 3 (inherited, not added)
+  [PASS] C4 (c) Hadamard: max linear growth rate over k in [1e-3, 1e3]/kpc <= Gamma_Jeans + Gamma_b on all 24 hosts
+         measured: max ratio 0.7870
+  edge (top-hat, ratchet exponent with Gamma_b): m = 0.1 / 0.5 / 0.9 at R/R_ta = 0.988 / 0.624 / 0.034; t/t_ff = 0.137 / 0.729 / 0.997
+  m at virialisation (R = R_ta/2, first infall only) = 0.5751; radial edge width (m 0.5 -> 0.9) = 104-1953 kpc (r_ta 177-3312 kpc): the edge sits at the turnaround shell, outside 30 kpc
+  L-CTP Bianchi residual |L_M grad f|/(rho_b g) at 30 kpc: today 3.91e-07-7.95e-01; during switch-on (|grad f| ~ 1/r) 8.83e-02-3.07e+00
+
+==============================================================================================================
+OWNERSHIP (reported): FG001 classes from the ratchet
+==============================================================================================================
+  class A (accreted top-level): keeps its own ON state (m non-decreasing: 0.95 -> 0.982)
+  class E (formed embedded): inherits the host gas's m (>= 0.475 where the host is ON) -> ON, not Newtonian; the ratchet carries one number per parcel and both classes have the same history bit -> FG001's class E is NOT reproduced (this is CFG251's (iii-a) 'inherit' reading)
+  field baryons that never turned around (voids, filaments at delta_lin < 0.75): m = 0 exactly; ejected gas keeps m (ratchet)
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] K1 CONTROL: CFG242's frozen latch E3 on its probe shell: n(t_ff) = 0.791, min n (t >= t_ff) = 0.143, within 1%
+         measured: n(t_ff) = 0.7910; min after = 0.1429; static decay time 2.05 = sqrt(4 pi/3) = 2.047
+  [PASS] K2 CONTROL: Gamma = 0 -> m = 0 for all time -> f = 0: Newtonian (exact)
+         measured: max |m| = 0.0
+  MUTATE (reversible): host late mean m 0.4980-0.5072, late peak-to-peak 8.124e-01; probe shell min m after t_ff 0.0780
+
+==============================================================================================================
+VERDICT (frozen rule)
+==============================================================================================================
+  (a) PASS  (b) FAIL  (c) PASS; new constants 0
+  VERDICT: PARTIAL, LEGALITY FAIL (L-ord: energy linear in lambda (unbounded), lambda = const/(1-m) diverges as m -> 1, and the parcel inertia gets lambda Gamma (1-m) S''/(w^2 V^2) (indefinite sign; a delta at theta_b = 0 for the sharp H); L-CTP: causal and ghost-free but non-conservative (Bianchi residual -f' F where m varies))
+
+  elapsed 4.0 s
+  checks: A1 PASS, A2 PASS, A3 PASS, B1 FAIL, B2 FAIL, B3 FAIL, C1 PASS, C2 PASS, C3 PASS, C4 PASS, K1 PASS, K2 PASS
