@@ -1,0 +1,40 @@
+CFG351: a switch that reads the cold component's three-axis shell crossing, f = F(rank / det sigma_c).
+
+Owner decision 2026-10-06 (verbatim in FROZEN_CRITERIA.md): the switch may read the cold component (MS1 relaxed for
+this exploration only; an "under original MS1" column is kept: NOT ADMISSIBLE there).
+B extension: the cold component is a cold collisionless phase-space sheet (Vlasov); sigma_c is its fine-grained
+stream-sum second moment. No DM particle is added; the cold MASS is still required. kappa = 1/2 fixed (fitted).
+Routes: R-3 f = H(det sigma_c); R-3s f = 27 det/(tr)^3; MUTATE (CFG351_MUTATE=1): f = H(tr sigma_c).
+Tests (a) (a') (b) (c) (d) per FROZEN_CRITERIA.md. DE12's transition()/host() and L341's growth harness exec'd read-only.
+
+  *** CFG351_MUTATE=1: the full-rank reader is REPLACED by f = H(tr sigma_c) (any crossing) ***
+
+==============================================================================================================
+(a) FRW + LINEAR
+==============================================================================================================
+  K1: sigma0 = 0 -> sigma(z=0) = 0.0 (exactly 0); sigma0 > 0 follows a^-2 to 2.9e-12
+  A4 (reported) primordial isotropic dispersion eps I, eps = 1e-30, 1e-12, 1e-3: f = {'R-3': [1.0, 1.0, 1.0], 'R-3s': [1.0, 1.0, 1.0]} -> f jumps to its ON value for ANY eps > 0
+  A2: 1D Zel'dovich D A = 0.9: max streams 1, max sigma 0.0 (exactly 0)
+  [PASS] A-R-3 (a) FRW/linear: sigma_c = 0 exactly -> f = 0; single stream before crossing; L341 growth = LCDM
+         measured: A1 True (f_FRW 0.0), A2 True, growth canonical D 1.00000000 s8 0.8101; alt D 1.00000000 s8 0.8101
+  [PASS] A-R-3s (a) FRW/linear: sigma_c = 0 exactly -> f = 0; single stream before crossing; L341 growth = LCDM
+         measured: A1 True (f_FRW 0.0), A2 True, growth canonical D 1.00000000 s8 0.8101; alt D 1.00000000 s8 0.8101
+
+==============================================================================================================
+(a') UNBOUND SHEETS AND FILAMENTS: separable 3-axis Zel'dovich, stream-sum sigma
+==============================================================================================================
+  sheet    D=1.3: axes crossed 1; max rank 1; rank == #multistream axes at all 343 points: True; f_R3 max 1, f_R3s max 1.000e+00, det max 0.000e+00, full-rank points 0
+  filament D=1.8: axes crossed 2; max rank 2; rank == #multistream axes at all 343 points: True; f_R3 max 1, f_R3s max 1.000e+00, det max 1.153e-33, full-rank points 0
+  knot     D=2.6: axes crossed 3; max rank 3; rank == #multistream axes at all 343 points: True; f_R3 max 1, f_R3s max 1.000e+00, det max 6.887e-03, full-rank points 49
+  A'2: ZA (EdS) axis turnaround at lambda D = 1/2, crossing at 1 -> third-axis crossing lags third-axis turnaround by x2.0 in D (x2.83 in time); spherical top-hat: turnaround delta_lin 1.062, collapse 1.686 (x1.59 in D, x2 in time).
+        Third-axis crossing implies all three axes turned around (sufficient for 'bound'), but it is LATE: turned-around, infalling,
+        not-yet-crossed matter is bound and OFF. An axis with lambda_3 <= 0 never crosses in ZA (unbound direction) -> OFF.
+  [FAIL] A'-R-3 (a') OFF in Zel'dovich sheets (rank 1) and filaments (rank 2); ON only after third-axis crossing
+         measured: sheet f 1, filament f 1, knot f max 1; A'2 True
+  [FAIL] A'-R-3s (a') OFF in Zel'dovich sheets (rank 1) and filaments (rank 2); ON only after third-axis crossing
+         measured: sheet f 1, filament f 1, knot f max 1; A'2 True
+  A'3 (reported): with CDM-like small-scale structure, sheets/filaments contain collapsed sub-clumps; inside each the stream sum is full
+        rank (ON locally, a bound system), while the diffuse sheet stream stays rank <= 2 (OFF). R-3s in a mixed coarse cell scales as
+        ~27 (sigma_int/sigma_stream)^4 (e.g. 1 km/s vs 100 km/s: ~3e-7); R-3 at any cell containing a sub-clump is ON (pointwise reading needed).
+
+  MUTATE: H(tr sigma_c) is ON in the unbound Zel'dovich sheet -> CFG350 R-c failure REPRODUCED
