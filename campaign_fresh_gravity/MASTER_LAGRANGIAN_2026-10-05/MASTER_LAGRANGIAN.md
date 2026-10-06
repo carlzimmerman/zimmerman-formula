@@ -36,7 +36,7 @@ a_mu = D_mu ln N, K = nabla_mu n^mu (the clock tau is varied).
   (the total matter; owner decision 2026-10-06, relaxing MS1). mu and nu are the multiplier fields, as for the
   record's U, L and lambda_0 (CFG353/354 action form);
 - psi = Phi_d/(4 pi G rho_bar), t_ij = D_i D_j psi, and l_1 >= l_2 >= l_3 are its eigenvalues; T1 reads the middle one;
-- tau_ta = (Delta_ta - 1)/3, with Delta_ta the derived turnaround contrast (11.806 canonical / 8.893 alt at z = 0;
+- tau_ta = (Delta_ta - 1)/3, with Delta_ta the derived turnaround contrast (11.806 at z = 0 and 8.893 at z = 0.25 (footing-independent);
   CFG354 K4 = CFG4);
 - H_eps is a step of width eps, one declared constant, eps >= eps_min = 0.077 (edge smearing <= 1.6% r_ta). The
   sharp step is ill-posed under the external tide (surface-delta layer, c_d != 0), so eps is required.
@@ -107,7 +107,7 @@ m >= 2.29e-20 eV. It is not part of B.
 | Omega_c h^2 | 0.120 | input (CMB) | CFG4, CFG345 |
 | max rule (T5) | max(M_ph, (Omega_c/Omega_b) M_b) | DECLARED, no constant | CFG4 T5 |
 | switch width eps (T1) | eps >= eps_min = 0.077 (edge smearing <= 1.6% r_ta) | **DECLARED, 1 new constant; not derivable from framework scales (CFG355)** | CFG354, CFG355 |
-| Delta_ta (T1 threshold tau_ta = (Delta_ta - 1)/3) | 11.806 canonical / 8.893 alt at z = 0; EdS 9 pi^2/16 | DERIVED (depends on Omega_m, Lambda and z); 0 fitted | CFG4, CFG354 K4 |
+| Delta_ta (T1 threshold tau_ta = (Delta_ta - 1)/3) | 11.806 at z = 0 and 8.893 at z = 0.25 (footing-independent); EdS 9 pi^2/16 | DERIVED (depends on Omega_m, Lambda and z); 0 fitted | CFG4, CFG354 K4 |
 | MS1 relaxation (switch reads total matter) | rho = cold + baryons in Phi_d | OWNER DECISION 2026-10-06, not a result; under the original MS1 T1 is NOT ADMISSIBLE | CFG351, CFG354 |
 | superseded CFG337 constants: mu0 (or ell), lambda (or E_c, R), Delta_e | single-E_c version needs ell >= 29 Mpc; lenient C2 ell_min 183-378 kpc | DECLARED (no longer in the action) | CFG337, CFG346 |
 
@@ -202,7 +202,7 @@ only. The output is in `MasterLagrangian.out`. The sections are:
 - G: kappa = 1/2 with rho_Lambda = Lambda c^2/(8 pi G) giving a0 = c^2 sqrt(Lambda/(32 pi)), and G rho_Lambda = 4 a0^2/c^2;
 - H: the T1 switch (13): the sphere identity g/r = GM/r^3 = (4 pi G/3) rho_enc; in scaled units l_t = (Delta_enc - 1)/3;
   l_2 = l_t for every sphere, so T1 is ON on a sphere iff Delta_enc >= Delta_ta; tau_ta > 0 for Delta_ta > 1 (EdS
-  tau > 1; record values 11.806 / 8.893 positive); FRW OFF and the OFF reduction to R - 2 Lambda + L_m; f = 0
+  tau > 1; record values 11.806 (z = 0) / 8.893 (z = 0.25) positive); FRW OFF and the OFF reduction to R - 2 Lambda + L_m; f = 0
   removes the MOND sector; eps_min = 0.077 > 0; filament core l_2 = c; and the monotone-rule filament obstruction.
 
 Compile: `cd fable_independent_2026/lean_2026 && lake env lean <abs path>/MasterLagrangian.lean`.
