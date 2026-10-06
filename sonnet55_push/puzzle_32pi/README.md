@@ -514,3 +514,10 @@ Q = 3.97 (3 dof), I^2 = 24%, tau = 0.13. **Pooled a0 = 8.32e-11 +- 13%** (7.28-9
 Milgrom 2pi rho_tot +1.69, 32 pi turn-off +1.82, alt rho_tot (original c sqrt(G rho_c)/2) +2.30, conventional 1.2e-10 +2.74. The pre-written 'every candidate within 2 sigma'
 FAILED: the alt footing and 1.2e-10 sit beyond 2 sigma. CAVEAT, load-bearing: three of four inputs rest on Hubble-flow distances or the authors' baryon models, which p46
 and p47 show bias a0 low; the TRGB-only value (1.16e-10) alone favours the alt footing. The pooled verdict is distance-conditional. kappa = 1/2 stays FITTED.
+
+## 56. Independent check of Sol's orbital sum rule (`p49`, 3/3; MUTATE wrong kappa^2/Omega^2 fails S, N) -- 2026-10-05
+Sol (sol61_push/*/breakthrough_2026_10_05/, read-only) found Lambda c^4/a0^2 = (1/4) int y nu [kappa^2/Omega^2 - 1] dy for an isolated point mass. Own derivation:
+kappa^2/Omega^2 = 3 + dln g/dln r (sympy from the definition), = 1 - 2y nu'/nu outside a point mass; integration by parts gives int y(nu - 1) dy - (1/2)[y^2(nu - 1)]_0^inf,
+i.e. our p21/p25 vacuum integral when the boundary term vanishes. Numerically identical for nu_fix (y_t = 128): 99.812920 both sides; RAR: 12.987879 both sides.
+For the exact framework kernel the boundary term grows like y/2 (the a0/2 tail): the rule needs PAPER41's turn-off. Correct and physical (the coefficient as an orbital
+observable) but an identity, not a principle; the integrand is dominated by high y where kappa^2/Omega^2 - 1 is tiny, so data give only a lower bound. kappa = 1/2 stays FITTED.
