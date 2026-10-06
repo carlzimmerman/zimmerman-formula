@@ -553,3 +553,11 @@ acceleration of light circling at r*; the vacuum's own field (8 pi G/3) rho r; t
 the vacuum's gravitational rate equals the angular frequency of light circling at r*. The hole's own field with the same source gives 1/2 (i.e. Lambda = 16 pi a0^2); ball-volume
 sources give 3/(8 pi), 3/(4 pi). Neither ingredient is physical as it stands: light cannot orbit at a Schwarzschild horizon (the photon sphere is 1.5 r_s), and rho r^3 is the
 vacuum energy of a cube, not a sphere. The puzzle's exact content is now 'light frequency on the a0 horizon = vacuum free-fall rate'; no known field supplies it. kappa = 1/2 stays FITTED.
+
+## 61. PREMISE A and the conditional theorem (`fable_independent_2026/lean_2026/PUZZLE_32pi_premise_A_2026_10_05.lean`) -- 2026-10-05
+PREMISE A (a hypothesis, new physics): the a0 horizon (r = c^2/2a0) obeys GR's horizon balance (vacuum source over the horizon = Gauss-Bonnet total 4 pi), with the MOND
+sector coupling to the vacuum through G instead of 8 pi G: G rho (4 pi r^2) = 4 pi. Lean (standard axioms): `premise_A_implies_32pi` -- A + Lambda = 8 pi G rho + r = 1/2a0
+=> Lambda = 32 pi a0^2; `premise_A_is_not_the_target` -- with coupling kG it gives Lambda = (32 pi/k) a0^2 (a different sector coupling gives a different number: screen 1 passes);
+`gr_coupling_gives_nariai_side` -- GR's 8 pi G in the same balance gives Lambda = 4 a0^2. MUTATE (claims 16 pi): fails.
+Status: a CONDITIONAL derivation with one clearly labelled new assumption. Its support must come from (i) a theory with a separately coupled MOND sector (the bimetric
+auxiliary sector is the natural home) and (ii) its second prediction, a0 ~ sqrt(rho_DE) over cosmic time (PAPER42). kappa = 1/2 is DERIVED FROM PREMISE A; without A it stays FITTED.
