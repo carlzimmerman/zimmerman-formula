@@ -377,3 +377,4 @@ At 120 BPM, four players lock to BEKENSTEIN rhythm. At 450 seconds (doubled live
 - Perpetual Groove, "Teakwood Betz" (2003), *Sweet Oblivious Antidote*
 - Live performances extend 15+ minutes with improvised variations
 - The Z² Framework: https://abeautifullygeometricuniverse.web.app
+
