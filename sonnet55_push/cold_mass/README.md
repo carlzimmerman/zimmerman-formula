@@ -61,3 +61,13 @@ kept as `cm07_alabi32_hot_halo_v1_16rows.out` and fixed before any reading. Exce
   reported, no verdict) rho = +0.06 (N = 21). The hot-gas trend is carried by being a group/cluster central; among the other 21 there is no trend.
 Reading: what the data support is "group/cluster centrals carry more extra mass" (the cm03 step: groups ~ clusters >> galaxies), not a hot-gas effect at
 galaxy scale. LCDM predicts the same (central galaxies sit in group halos). The hot-halo hypothesis is NOT distinguished from environment.
+
+## cm08: why ellipticals need ~1.9x -- the SAME two retention levels as the ledger
+`cm08_etg_retained_fraction.py` (1/1; MUTATE no-phantom fails R; v1's check could not fail and was replaced before writing up). The cm07 excess as a retained
+cold fraction f = (M_tot - M_law)/((Omega_c/Omega_b) M_b) at 5 Re (definition A, calibrated on X-COP 0.576):
+- all 32: median 0.30 (canonical) / 0.28 (alt);
+- the 9 group/cluster centrals: **0.64 / 0.59** -- the group (0.60, cm03 def B) and X-COP (0.576) level;
+- the other 23 early types: **0.13 / 0.12** -- the galaxy level of the ledger (Milky Way 0.14, spirals <= 0.105) and C003's universal galaxy floor e^-n = 0.135 (L191).
+Reading: the "1.9x" is not an elliptical-specific number. It is a mixture of two universal levels -- ~0.13 of the cosmic cold share in ANY galaxy
+(spiral or elliptical) and ~0.6 in anything that is (or sits at the centre of) a group or cluster -- with the step between galaxy and group scale.
+C003 gets the galaxy level right and the group level wrong (cm03). Nothing derives either number; 0.6 and 0.13 are measured, the mechanism is open.
