@@ -1,0 +1,523 @@
+{
+ "slug": "cfg360_cold_fluid_from_de_MUTATE",
+ "frozen_sha256": "05d9c576d18da0de30a22e030a1e55ed3456de7bb5c8ee1ab33be45f53aa5b78",
+ "checks": [
+  {
+   "name": "K1 plain LambdaCDM (Gamma = 0): omega_c returned as input; CPL projection (-1, 0)",
+   "detail": "Omega_c(today)/Omega_c(input) - 1 = -6.02e-09; (w0, wa) = (-0.94650, +2.23095)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "chains on disk (all four DESI DR2 combinations)",
+   "detail": "found ['cmb', 'desy5', 'pantheonplus', 'union3']",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "K2 a transfer violating the DESI bound (Gamma = 1 H0) is flagged by G-EXPANSION",
+   "detail": "flagged: True",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C2 numerics: residual amplitude matches the adiabatic formula (pi mT/2)/sinh(pi mT/2)",
+   "detail": "{0.3: 1.0, 1.0: 1.0, 3.0: 1.0, 6.0: 1.0}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G-TIMING of the cold-fluid model itself (pressureless, in place, adiabatic) [MUTATE c_s^2=1/3: must FAIL]",
+   "detail": "w = 0.333, k_J(z=3000) = 0.0146 Mpc^-1 (need >= 1)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "null: planted target 3.00 gives a comparable chance rate (within x3 of 5.36's)",
+   "detail": "118 vs 53",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "null: no mechanism-declared closed form exists to score (amount FREE or FAIL in every class)",
+   "detail": "nothing to test",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "OL": 0.6865082020621825,
+  "a0": 9.372676365099647e-11,
+  "R_cmb": 5.364327223960661,
+  "chains": {
+   "cmb": {
+    "mu": [
+     -0.4177632834718969,
+     -1.751489678594809
+    ],
+    "cov": [
+     [
+      0.042050595651017396,
+      -0.11620253750367722
+     ],
+     [
+      -0.1162025375036772,
+      0.3359477505080587
+     ]
+    ],
+    "chi2_LCDM": 9.431344744667623
+   },
+   "pantheonplus": {
+    "mu": [
+     -0.8379669735933118,
+     -0.6165883622459394
+    ],
+    "cov": [
+     [
+      0.0030434554351421637,
+      -0.010236688547529064
+     ],
+     [
+      -0.010236688547529064,
+      0.04308082322614794
+     ]
+    ],
+    "chi2_LCDM": 9.219116527748408
+   },
+   "union3": {
+    "mu": [
+     -0.6668729291848666,
+     -1.0852710298213986
+    ],
+    "cov": [
+     [
+      0.007829484012767417,
+      -0.02421647100912179
+     ],
+     [
+      -0.02421647100912179,
+      0.08602546473645264
+     ]
+    ],
+    "chi2_LCDM": 14.44489319145827
+   },
+   "desy5": {
+    "mu": [
+     -0.7520679982018754,
+     -0.8611043418200024
+    ],
+    "cov": [
+     [
+      0.0032726810460111345,
+      -0.011459091556747016
+     ],
+     [
+      -0.011459091556747016,
+      0.04896641427958521
+     ]
+    ],
+    "chi2_LCDM": 18.78841384118115
+   }
+  },
+  "expansion_scan": [
+   {
+    "gamma": 0.0,
+    "w0": -0.9465041305659647,
+    "wa": 2.2309544699180206,
+    "chi2": {
+     "cmb": 435.19907148989444,
+     "pantheonplus": 716.3509626725829,
+     "union3": 550.1578136140274,
+     "desy5": 669.0286189336041
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.0,
+    "rde_min": 0.6865082036512998,
+    "max_abs_dlnE": 0.02122645229713571
+   },
+   {
+    "gamma": 0.005,
+    "w0": -0.9469940737884898,
+    "wa": 2.232068186342821,
+    "chi2": {
+     "cmb": 435.1297510266719,
+     "pantheonplus": 716.0793781231977,
+     "union3": 550.0158329134994,
+     "desy5": 668.7587698855284
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.0035368550699626,
+    "rde_min": 0.6858126847771079,
+    "max_abs_dlnE": 0.021176318375543346
+   },
+   {
+    "gamma": 0.01,
+    "w0": -0.9474837867064652,
+    "wa": 2.233181376839599,
+    "chi2": {
+     "cmb": 435.06048151110355,
+     "pantheonplus": 715.8081434269604,
+     "union3": 549.8740081520057,
+     "desy5": 668.4892748103769
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.0070853163032667,
+    "rde_min": 0.6851176036576373,
+    "max_abs_dlnE": 0.02112619342906319
+   },
+   {
+    "gamma": 0.015,
+    "w0": -0.9479732653861973,
+    "wa": 2.234294031993793,
+    "chi2": {
+     "cmb": 434.99126331191303,
+     "pantheonplus": 715.5372601742961,
+     "union3": 549.7323401326752,
+     "desy5": 668.2201352913377
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.0106454183183895,
+    "rde_min": 0.6844229604273995,
+    "max_abs_dlnE": 0.021076077241641844
+   },
+   {
+    "gamma": 0.02,
+    "w0": -0.9484625068889203,
+    "wa": 2.235406144913066,
+    "chi2": {
+     "cmb": 434.92209674520467,
+     "pantheonplus": 715.2667295483767,
+     "union3": 549.590829483033,
+     "desy5": 667.9513525002908
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.0142171958258757,
+    "rde_min": 0.68372875522026,
+    "max_abs_dlnE": 0.02102596971410242
+   },
+   {
+    "gamma": 0.025,
+    "w0": -0.948951509651664,
+    "wa": 2.2365177124809748,
+    "chi2": {
+     "cmb": 434.8529821525948,
+     "pantheonplus": 714.9965523393101,
+     "union3": 549.4494767165813,
+     "desy5": 667.6829272022546
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.0178006836285576,
+    "rde_min": 0.6830349881694447,
+    "max_abs_dlnE": 0.020975871069274232
+   },
+   {
+    "gamma": 0.03,
+    "w0": -0.9494402724960155,
+    "wa": 2.2376287326042306,
+    "chi2": {
+     "cmb": 434.7839198717073,
+     "pantheonplus": 714.726729207511,
+     "union3": 549.3082823001594,
+     "desy5": 667.4148600295717
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.021395916621774,
+    "rde_min": 0.6823416594075309,
+    "max_abs_dlnE": 0.02092578160068803
+   },
+   {
+    "gamma": 0.035,
+    "w0": -0.9499287906976555,
+    "wa": 2.238739193422103,
+    "chi2": {
+     "cmb": 434.714910160806,
+     "pantheonplus": 714.4572617877832,
+     "union3": 549.1672469714979,
+     "desy5": 667.1471526252006
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.0250029297935908,
+    "rde_min": 0.6816487690664588,
+    "max_abs_dlnE": 0.02087570075266676
+   },
+   {
+    "gamma": 0.04,
+    "w0": -0.9504170644358058,
+    "wa": 2.2398490967477898,
+    "chi2": {
+     "cmb": 434.6459534437487,
+     "pantheonplus": 714.188150453951,
+     "union3": 549.026371163432,
+     "desy5": 666.8798053160185
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.028621758225015,
+    "rde_min": 0.6809563172775182,
+    "max_abs_dlnE": 0.020825629235782905
+   },
+   {
+    "gamma": 0.05,
+    "w0": -0.9513928645953111,
+    "wa": 2.2420671974739244,
+    "chi2": {
+     "cmb": 434.50820023395363,
+     "pantheonplus": 713.6510013446599,
+     "union3": 548.7451007946161,
+     "desy5": 666.3461962560733
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.0358950016567856,
+    "rde_min": 0.6795727298779669,
+    "max_abs_dlnE": 0.020725513328085476
+   },
+   {
+    "gamma": 0.1,
+    "w0": -0.9562563565581765,
+    "wa": 2.253122350800918,
+    "chi2": {
+     "cmb": 433.8227262125189,
+     "pantheonplus": 710.9869725310975,
+     "union3": 547.3485199723427,
+     "desy5": 663.7001023365713
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.072982186976698,
+    "rde_min": 0.6726811497858011,
+    "max_abs_dlnE": 0.020225500457938583
+   },
+   {
+    "gamma": 0.15,
+    "w0": -0.9610922799321038,
+    "wa": 2.2641147670128974,
+    "chi2": {
+     "cmb": 433.14298925965045,
+     "pantheonplus": 708.3598638734571,
+     "union3": 545.9686497353002,
+     "desy5": 661.0913048499456
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.1112974387372336,
+    "rde_min": 0.6658335891755635,
+    "max_abs_dlnE": 0.019726479030413913
+   },
+   {
+    "gamma": 0.2,
+    "w0": -0.9658982369103749,
+    "wa": 2.2750391258912837,
+    "chi2": {
+     "cmb": 432.46933719198637,
+     "pantheonplus": 705.770663381591,
+     "union3": 544.6060743929263,
+     "desy5": 658.5207704896428
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.1508776005734314,
+    "rde_min": 0.6590301673704629,
+    "max_abs_dlnE": 0.019228513860426233
+   },
+   {
+    "gamma": 0.3,
+    "w0": -0.9754102883591013,
+    "wa": 2.2966615635362095,
+    "chi2": {
+     "cmb": 431.14171888265435,
+     "pantheonplus": 700.7099404358406,
+     "union3": 541.935174085711,
+     "desy5": 653.4983526200115
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.2339849717660767,
+    "rde_min": 0.6455561849684878,
+    "max_abs_dlnE": 0.018236005963101265
+   },
+   {
+    "gamma": 0.5,
+    "w0": -0.9939608929061036,
+    "wa": 2.3388369983255255,
+    "chi2": {
+     "cmb": 428.57570681228646,
+     "pantheonplus": 691.086888354106,
+     "union3": 536.827261466128,
+     "desy5": 643.9550782132851
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.4171119009616397,
+    "rde_min": 0.619142413376578,
+    "max_abs_dlnE": 0.016266394344450097
+   },
+   {
+    "gamma": 0.7,
+    "w0": -1.0117273678970833,
+    "wa": 2.379247388491044,
+    "chi2": {
+     "cmb": 426.14988225233924,
+     "pantheonplus": 682.1810974522373,
+     "union3": 532.0642477678199,
+     "desy5": 635.1316943739771
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.6250895483915104,
+    "rde_min": 0.5934451770985482,
+    "max_abs_dlnE": 0.014320405627986643
+   },
+   {
+    "gamma": 1.0,
+    "w0": -1.03645872423776,
+    "wa": 2.4355588238193113,
+    "chi2": {
+     "cmb": 422.83478094767355,
+     "pantheonplus": 670.3061075141312,
+     "union3": 525.6568590871601,
+     "desy5": 623.3802069700583
+    },
+    "ok": false,
+    "rhoL_z5_over_today": 1.990354693314485,
+    "rde_min": 0.5562504180224235,
+    "max_abs_dlnE": 0.013045337855505518
+   }
+  ],
+  "frozen_rule_allowed_window_H0": null,
+  "Gamma_max_fallback_H0": 1.0,
+  "lookback_z5_H0": 0.871276736363406,
+  "Gamma_max_flat_a0_H0": 0.02819961425259327,
+  "Gamma_bound_used_H0": 0.02819961425259327,
+  "C1_fraction_of_omega_c_made_before_z3000_at_bound": 1.3412536278485932e-19,
+  "C1_drained_a0_ratio_z3000": 101978.08550853533,
+  "H_z3000_eV": 1.8148012479035475e-28,
+  "C4_Gamma_H0": 0.1431309543508099,
+  "C4_w0": -0.9604296369996255,
+  "C4_wa": 2.262608529327123,
+  "C4_chi2": {
+   "cmb": 433.23601948880986,
+   "pantheonplus": 708.7185545694614,
+   "union3": 546.1572060056367,
+   "desy5": 661.4474584176403
+  },
+  "C4_frac_before_3000": 7.2318371925987275e-19,
+  "C4_rhoL_z5_ratio": 1.105959541736642,
+  "GH_density_over_rho_crit": 2.4523061916446855e-125,
+  "Tstar_eV": 0.0022415974898479817,
+  "z_star": 8.544178569863174,
+  "classes": {
+   "C1": {
+    "name": "interacting vacuum Q = Gamma rho_L",
+    "amount": "FAIL (made-before-z3000 = 1.3e-19 of omega_c at Gamma_bound; draining a larger early vacuum needs a second scale / breaks a0~sqrt(rho_L))",
+    "timing": false,
+    "timing_detail": {
+     "w": 0.3333333333333333,
+     "kJ_Mpc": 0.01462607493633523,
+     "frac_in_place": 1.3412536278485932e-19,
+     "z_prod": 0.0,
+     "adiabatic": false,
+     "i": false,
+     "ii": false,
+     "iii": false
+    },
+    "expansion": "PASS for Gamma <= 0.0282 H0",
+    "new_constants": "Gamma (1)",
+    "sorting": "no (homogeneous source)",
+    "verdict": "NO-GO"
+   },
+   "C2": {
+    "name": "field with minimum shifted by the khronon clock",
+    "amount": "FREE (m, dv, T; height >= ~1e10 rho_L at z_eq: CFG288 A1)",
+    "timing": false,
+    "timing_detail": {
+     "w": 0.3333333333333333,
+     "kJ_Mpc": 0.01462607493633523,
+     "frac_in_place": 1.0,
+     "z_prod": 100000.0,
+     "adiabatic": true,
+     "i": false,
+     "ii": true,
+     "iii": true
+    },
+    "expansion": "PASS (no late transfer)",
+    "new_constants": "m, dv (>=2)",
+    "sorting": "no",
+    "verdict": "PARTIAL (amount free)"
+   },
+   "C3": {
+    "name": "condensate fraction of the vacuum sector (FL1)",
+    "amount": "NO-GO as a fraction (scaling theorem); FL1 dust branch FREE",
+    "timing": false,
+    "timing_detail": {
+     "w": 0.3333333333333333,
+     "kJ_Mpc": 0.01462607493633523,
+     "frac_in_place": 1.0,
+     "z_prod": 100000.0,
+     "adiabatic": true,
+     "i": false,
+     "ii": true,
+     "iii": true
+    },
+    "expansion": "PASS (no late transfer)",
+    "new_constants": "f(a) or amplitude",
+    "sorting": "no",
+    "verdict": "NO-GO (fraction) / reduces to CFG288"
+   },
+   "C4": {
+    "name": "a0/horizon production (Gamma = a0/c; GH reservoir)",
+    "amount": "FAIL (7.2e-19 of omega_c before z=3000; GH 2e-125 rho_crit)",
+    "timing": false,
+    "timing_detail": {
+     "w": 0.3333333333333333,
+     "kJ_Mpc": 0.01462607493633523,
+     "frac_in_place": 7.2318371925987275e-19,
+     "z_prod": 0.0,
+     "adiabatic": false,
+     "i": false,
+     "ii": false,
+     "iii": false
+    },
+    "expansion": "FAIL vs DESI; flat-a0 law FAIL (a0 drift 5.2%)",
+    "new_constants": "0",
+    "sorting": "no",
+    "verdict": "NO-GO"
+   },
+   "C5": {
+    "name": "phase transition of the vacuum sector",
+    "amount": "FAIL tied (z*=8.5); FREE untied (T*, efficiency)",
+    "timing": false,
+    "timing_detail": {
+     "w": 0.3333333333333333,
+     "kJ_Mpc": 0.01462607493633523,
+     "frac_in_place": 0.0,
+     "z_prod": 8.544178569863174,
+     "adiabatic": false,
+     "i": false,
+     "ii": false,
+     "iii": false
+    },
+    "expansion": "PASS (early, no late transfer)",
+    "new_constants": "0 tied / 2 untied",
+    "sorting": "no",
+    "verdict": "NO-GO tied / PARTIAL untied"
+   }
+  },
+  "null_N_forms": 18480,
+  "null_N_unique": 7799,
+  "null_hits_536": 53,
+  "null_hits_unique_536": 20,
+  "null_p_536": 0.002867965367965368,
+  "null_p_unique_536": 0.0025644313373509426,
+  "null_hits_300": 118,
+  "null_hits_unique_300": 29,
+  "null_examples_536": [
+   "1*pi^0.5*3^1",
+   "1*pi^0.5*sqrt3^2",
+   "1*3^1*Om^-0.5",
+   "1*Ob^-0.5*sqrt2^0.5",
+   "1*Om^-0.5*sqrt3^2",
+   "2*Om^-1*sqrt2^-0.5",
+   "3*pi^0.5",
+   "3*Om^-0.5",
+   "3*pi^-0.5*Om^-1",
+   "3*pi^1*Om^0.5",
+   "3*OL^-2*sqrt2^-0.5",
+   "4*pi^2*e^-2"
+  ],
+  "verdict": "PARTIAL"
+ },
+ "load_bearing_failures": 1
+}
