@@ -1,0 +1,11 @@
+# Source-asymptotic handoff
+
+REPORT.md gives the exact stationary Euler equations, proper-metric/clock distinction and a new formal nonzero-flow P2 source branch. The leading branch has a=√[(m/r²)(m/r²+A)] and V=−ηH*r[1+m/(Ar²)]. In its controlled deep region it has the MOND mass/radius exponents. These are necessary leading exterior balances, **not** an exact matched sourced solution. The nonzero subleading scalar-current residual is explicitly retained as an outstanding equation, not called zero.
+
+`runs/main_b`: completed30 checks. Three negative controls (`control_zero_flow_b`, `control_transition_b`, `control_clock_metric_b`) each fail the intended false assertion. Allfour current b manifests validate. Earlier a runs are historical, with their exact changed input copies preserved under historical_a/. `preflight.json` is exploratory only.
+
+Exact inputs and actual concurrent checkout HEAD are pinned by standard manifests and provenance.json. Primary source text is reused from the authenticated kinetic_braiding cache; its complete files are ignored locally and must be restored with matching source-registry hashes before source-audit reruns. The report/checks are internal derivations, not claims of new primary-source results.
+
+To rerun, invoke the standard computation-audit run_experiment.py with this contract.json, every execution_artifact as an --input, a fresh output directory below runs/, and `/usr/bin/python3 checks.py --output <fresh-output>/results.json`. Use --control zero_flow, wrong_transition_flow or clock_equals_metric for the intentional failures. Limits used:60s wall,45s CPU,200000 log bytes, one numerical thread. Mathematical execution Python3.9.6/SymPy1.14.0; runner Python3.13. Do not rewrite historical manifests or execution inputs to disguise a revision.
+
+The exact offshell identity now proves zero radial scalar charge follows from the three exact stationary vacuum Euler equations. First next step: solve those equations with angular/Bianchi consistency, regular conserved interior, and cosmological outer flow. Until this is achieved, the source mass identification, global branch existence, physical Newton calibration and finite-gradient health remain open. A/H* remains an action input; no value was chosen from32π.

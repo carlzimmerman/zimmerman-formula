@@ -4,6 +4,8 @@ Work requested by Carl on 2026-09-29: review the recent Claude research, identif
 
 The original goal remains OPEN. A new partial result is not a completed theory.
 
+- [Flowing-clock investigation](puzzle_32pi/flowing_clock_2026_10_06/README.md): coupled leading MOND balance with nonzero clock flow, exact stationary constraints, nonlinear geodesic obstruction and accelerated-aether matching theorem. Global source/cosmological matching and the coefficient remain open.
+
 - [Dynamical-sector investigation](puzzle_32pi/dynamical_sector_2026_10_06/README.md): an exact classical vacuum-rescaling map, a fully varied P2 repair, sourced clock/metric controls, and coupled aether branch exclusions. The nonlinear MOND bridge and 32pi selector remain open.
 
 - [Vacuum coupling investigation](puzzle_32pi/vacuum_coupling_2026_10_06/README.md): exact algebraic-source conservation classification, volume/scale reaction, and retarded-curvature late coupling theorem. Three sharper scoped exclusions; 32pi remains open.
