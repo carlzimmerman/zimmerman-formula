@@ -222,3 +222,14 @@ field (N 5) median 0.28 (scatter -0.13..1.07); group (N 13) 0.13; cluster satell
 C vs F 0.42, G+C vs F 0.37, mass-detrended 0.29 -> no stripping signal; consistent with ownership but the field sample is 5 galaxies with huge scatter, and
 LCDM stripping at 5 Re (well inside a satellite's tidal radius) may be small anyway. Weak discriminator. The strong version is satellite WEAK LENSING
 (subhalo masses out to the tidal radius in clusters, e.g. KiDS/GAMA satellite lensing) -- the next data test.
+
+## cm14: satellite weak-lensing masses vs the framework -- candidate B's ownership rule fails by x5 (PROVISIONAL inputs)
+`cm14_satellite_lensing.py` (1/1; MUTATE a0 -> 0 fails A). Inputs from search summaries of Sifon+2018 / Sifon+2015 / Dvornik+2020 (NOT read off the tables):
+satellites log M* ~ 10.5 [h^-2] have log M_sub ~ 11.7-12.2 [h^-1] -> 7.2e11-2.3e12 Msun, 11-35x M*. Framework readings at r_t = 30-150 kpc, + retained 13% cold:
+- A full MOND boost (satellite owns its phantom): 2.8e11-1.1e12 -> CONSISTENT (needs r_t >~ 100 kpc).
+- B boost reduced by the host's external field (g_ext 0.05-0.2 a0, 1-D approx): 2.1e11-3.9e11 -> EXCLUDED by x1.8.
+- C candidate B's hierarchical ownership (a bound satellite owns NO phantom): 1.3e11 -> EXCLUDED by x5.4.
+Reading: if the published satellite masses hold, galaxy satellites carry a full phantom (or equivalent mass) -- the ownership rule as applied to
+satellite galaxies is in strong tension, and so is a strong EFE. Consistent with the record's UFD-satellite failure of B (3.5-3.8 sigma, CFG28-29).
+MUST be confirmed by reading Sifon+2018's tables (mass definitions: fitted truncated-NFW total M_sub vs mass inside r_t) before it is cited.
+This bears on the Gaia DR4 Arm C reading (exactly Newtonian wide binaries under ownership) -- flag to the orchestrator; no pre-registration edits here.
