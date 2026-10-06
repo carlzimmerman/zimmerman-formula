@@ -1,0 +1,1 @@
+This is an internally derived fixed-source action test. Scientific action and established Green/tail lemmas are read from the frozen parent REPORT.md, hashes recorded in provenance.json. No external source-dependent classification or novelty claim is used. No primary-source cache is needed for this child.
