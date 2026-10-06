@@ -1,0 +1,1 @@
+Superseded aether_cone_main_a/control_a inputs. The old vacuum root used the four-dimensional −2K/α factor while declaring general n. Current b runs add the minisup lapse check and use −(n−1)K/α. Integral obstruction and scalar cone formulas are unchanged. Historical manifests no longer validate against current paths; these copies retain exact original bytes.

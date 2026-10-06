@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_REGULAR_COUPLED_SOURCE_SCREEN",
+  "repository": {
+    "commit": "81af81ba8a7207bca2bc4f13375c757feee7afcd",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/regular_response_checks.py",
+    "--mutation",
+    "drop_linear",
+    "--output",
+    "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/runs/regular_control_a/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Radial finite-stiffness crossover and susceptibility/tolerance conversion; uniform proof remains separate",
+    "coefficient_domain": "Exact SymPy",
+    "conventions": "ε,a0,b>0; smooth source shape; general-d radial flux uses Ω force normalization",
+    "inputs": [
+      "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/regular_response_checks.py",
+      "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/REGULAR_RESPONSE_SCREEN.md"
+    ],
+    "bounds": {
+      "tolerances": [
+        "1/100",
+        "1/20",
+        "1/10"
+      ],
+      "mutations": [
+        "drop_linear"
+      ]
+    },
+    "non_claims": [
+      "Does not prove static inverse for any specific gravity model",
+      "No coefficient selector",
+      "No empirical fit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-06T02:17:35.987510+00:00",
+    "runtime_seconds": 0.334829,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/regular_response_checks.py",
+    "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/REGULAR_RESPONSE_SCREEN.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/regular_response_checks.py",
+      "sha256": "b72bad163ea675bbc02da452250f5c7586fe86bbf1bb23ddc2ed21c33764fc19",
+      "sha256_after": "b72bad163ea675bbc02da452250f5c7586fe86bbf1bb23ddc2ed21c33764fc19"
+    },
+    {
+      "path": "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/REGULAR_RESPONSE_SCREEN.md",
+      "sha256": "32940b281759ec1bba2404f00ec02777e76c57362d8586427b958ab6f8836a52",
+      "sha256_after": "32940b281759ec1bba2404f00ec02777e76c57362d8586427b958ab6f8836a52"
+    }
+  ],
+  "output_directory": "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/runs/regular_control_a",
+  "declared_results": [
+    "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/runs/regular_control_a/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/runs/regular_control_a/stdout.txt",
+      "sha256": "43495f2705173dde5f0723b0a5b2ae4de36eb8433a45993ac331442a2cf4f387",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/runs/regular_control_a/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/puzzle_32pi/dynamical_sector_2026_10_06/runs/regular_control_a/results.json",
+      "sha256": "b73ac3441886105d73ce45e876ff596053678cd5b62089cd5fc5b2d0c1c13e8b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

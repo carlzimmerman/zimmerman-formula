@@ -1,0 +1,11 @@
+# Independent review: regular coupled response screen
+
+Reviewed read-only REGULAR_RESPONSE_SCREEN.md SHA256 32940b281759ec1bba2404f00ec02777e76c57362d8586427b958ab6f8836a52 and regular_response_checks.py SHA256 b72bad163ea675bbc02da452250f5c7586fe86bbf1bb23ddc2ed21c33764fc19. No peer script executed and no peer input edited.
+
+**Verdict:** the conditional Banach-space result and stated finite-window inequalities are correct. It does not establish that a particular gravity model satisfies its hypotheses.
+
+Reconstruction: for a C¹ equation E:U×R→V and boundedly invertible A=D_uE(u0,0), the implicit-function derivative is u′(0)=−A^{-1}E_M. Composing a C¹ source-induced observable with B(u0,0)=0 gives B′(0)=B_M−B_u A^{-1}E_M and B=M B′(0)+o(M). Hence bounded O(M) excludes a nonzero √M leading term at fixed radius and fixed prescribed boundary/domain. If B′(0)=0 the stronger o(M) statement is valid. The contraction proof can choose a sufficiently large radius c|M| because R(0,M)=O(M) and its h derivative is uniformly small. Evaluating the acceleration must indeed be bounded in the chosen observable norm; a point-source singularity or moving outer boundary cannot be silently imported.
+
+Independently varying the static action gives div[(ε+g/a0)∇Φ]=Ω G_N ρ. Radial integration with the stated flux boundary prescription gives εg+g²/a0=b. Its positive root, expansion g=b/ε−b²/(a0 ε³)+O(b³), logarithmic derivative (ε+g/a0)/(ε+2g/a0), and equal-flux crossover b=2ε²a0 all agree. Writing x=g/(εa0) gives g/√(a0b)=√[x/(1+x)]; squaring the positive tolerance inequality gives the stated x_min and upper bound on ε. The script checks these same restricted identities without claiming an elliptic inverse for a relativistic theory.
+
+Physical scope matters: the implicit branch is a source-amplitude limit at fixed nonzero ε, not the nonlinear ε→0 limit. Positive time kinetic energy alone does not imply the required static inverse, and removing a propagating degree of freedom alone does not remove it. In the cuscuton response examined here, the static MOND stiffness goes to zero at g=0, so that particular source-free inverse cannot be assumed from positivity at g>0. Full metric/auxiliary reduction remains required. I found no mathematical correction needed at the pinned revision.
