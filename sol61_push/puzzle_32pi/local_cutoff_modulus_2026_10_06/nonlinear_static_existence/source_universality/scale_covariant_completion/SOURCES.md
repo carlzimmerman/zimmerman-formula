@@ -1,0 +1,1 @@
+Internally derived NR diagnostic. Frozen parent action and q-bounds are pinned in provenance.json. No new external theorem, symmetry classification or novelty claim is invoked. Parent SOURCE_REVIEW authenticates the underlying QUMOND action; this child algebraic potential is explicitly a diagnostic addition, not borrowed microscopic physics.
