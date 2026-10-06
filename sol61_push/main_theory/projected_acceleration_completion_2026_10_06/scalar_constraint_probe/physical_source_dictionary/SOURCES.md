@@ -1,0 +1,8 @@
+# Inspected repository sources
+
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/REPORT.md — SHA256 6c385dfd264e9721d56acc53a825f210a4a329daa508209782a5d42ac53d26b6
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/scalar_constraint_probe/REPORT.md — SHA256 46a248a9296e5715809644173685d63d419b264b97ee632b4fa719264196870b
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/scalar_constraint_probe/checks.py — SHA256 9525f7aa5caa4080bd108f19f3bba52bab3cec3e0e254e0c6decd731b7d2fb92
+- sol61_push/main_theory/projected_acceleration_homogeneous_2026_10_06/REPORT.md — SHA256 666790069c45c844ebdb2e966879a474f7a5e3888e631512f7d4720dde7c213b
+
+No external theorem or novelty claim is used. Action, parent constraints and homogeneous branch are reconstructed with conventions stated in REPORT.md.
