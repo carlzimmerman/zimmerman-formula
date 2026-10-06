@@ -4,6 +4,9 @@ Work requested by Carl on 2026-09-29: review the recent Claude research, identif
 
 The original goal remains OPEN. A new partial result is not a completed theory.
 
+- [Resumed joint audit and closure order, 2026-10-05](CLOSURE_ROADMAP_2026-10-05.md): reviews post-stop Claude-associated work and records new switch-stress, transition-health, coefficient-identifiability and systematic-floor checks.
+- [Main theory](main_theory/README.md) and [32pi puzzle](puzzle_32pi/README.md): separate continuation folders with exact remaining obligations and bounded-run evidence. Neither goal is closed.
+
 - [Review](REVIEW_2026-09-29.md): assessment of the September 26–29 work and recommended priorities.
 - [Review scope](review_scope.json): pinned Git checkpoint, commit counts, and changed-file coverage. This is an inventory, not a certificate that every file was audited.
 - [Research contract](RESEARCH_CONTRACT.md): exact targets and discriminating checks for the new investigation.
