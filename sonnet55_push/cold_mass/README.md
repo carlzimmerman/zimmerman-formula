@@ -79,3 +79,15 @@ high-sigma central 0.82 (N 6). Partial rho(f, sigma | central) = -0.04; partial 
 Reading: the galaxy's own dispersion adds nothing once central status is known. If the cooling threshold is the cause, the relevant temperature is the HOST
 halo's (group/cluster), not the galaxy's -- which makes the reading equivalent to "sits at the centre of a group-scale halo". NGC 4365 (the only high-sigma
 non-central) dominates its own Virgo W' subgroup, so it is arguably a central too. LCDM predicts this step as well (centrals sit in group halos).
+
+## cm10: the conservation budget and the step scale
+`cm10_budget_and_scale.py` (1/1; MUTATE r = 1 fails B; v1's 1e-6 margin was defeated by the grid split and replaced). LCDM halo mass function
+(colossus planck18, Tinker+08, M200m, z = 0): 0.589 of matter sits in halos > 1e9 Msun (0.367 > 1e12, 0.244 > 1e13, 0.100 > 1e14).
+- **Budget:** with r_gal = 0.13 below the step and r_grp = 0.60 above, the halos hold only 0.19-0.25 of ALL cold mass (step 1e12-1e13), i.e. 0.32-0.42 of what
+  LCDM halos hold; **75-81% of the cosmic cold mass must be diffuse (outside the measured apertures of any halo) today.** Conservation forces this; it is the
+  two-level rule's sharpest consequence. Retentions are aperture values applied to whole halos (an approximation).
+- **Scale:** the step lies between the Milky Way (1e12, galaxy level) and the lowest group-level hosts (~1e13): M200m 1e12-1e13 Msun, R200m 311-671 kpc,
+  V200 118-253 km/s, T_vir 0.5-2.3e6 K -- the bracket of the classic cooling mass (Rees-Ostriker/Silk, ~1e12 Msun, ~1e6 K).
+- **Anisotropies:** the primary CMB (z ~ 1100) cannot be affected -- the cold mass must be >= 0.988 clustered then (L129) and the sorting must be late (z <~ 2,
+  forest). The late diffuse 75-81% would show in the SECONDARY anisotropies: CMB lensing power and the late ISW/tSZ, and in small-scale cosmic shear (S8).
+  Those are the tests that can kill the two-level picture; not computed here.
