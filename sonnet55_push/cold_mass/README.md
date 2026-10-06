@@ -44,3 +44,10 @@ A decisive version needs X-ray luminosities for all 16-17 (e.g. Kim & Fabbiano 2
 Caveats: N = 16; upper limits at face value; L_X of centrals includes group/cluster gas (that is a hot atmosphere too); intracluster GCs may inflate the
 centrals' offsets (the trend survives without M87); offsets carry shared tracer-slope/anisotropy systematics (they move the level, not the ranking).
 Not a mechanism: nothing in the record couples collisionless mass to hot gas. Next: blue spirals at matched mass (should show none) -- KiDS colour split, M/L-robust.
+
+## cm06: blue vs red KiDS lenses at MATCHED stellar mass (CFG261's MM rows, 10.3 <= log M* < 10.9)
+`cm06_kids_blue_red_matched.py` (1/1; MUTATE swapped labels fails D). Implied a0 scale s* (1 = law alone), two z-thirds combined by inverse variance:
+blue/late s* = 1.69 (+1.9 sigma above the law; its two thirds disagree, 2.0 vs 0.37); red/early s* = 3.78 (+15 sigma). Red - blue = +0.35 +- 0.13 dex (+2.7 sigma).
+Reading for the hot-halo hypothesis: at matched mass red lenses carry far more extra mass than blue -- the predicted direction; blue is closer to the law
+but NOT shown to be exactly at it (1.9 sigma, internally inconsistent thirds). NOT unique: in LCDM red centrals also sit in ~2x heavier halos at fixed M*
+(CFG67: a colour-blind Moster halo fits CFG61's split at 6.9/7), and both classes' M* are SED-based. So this is consistent, not discriminating.
