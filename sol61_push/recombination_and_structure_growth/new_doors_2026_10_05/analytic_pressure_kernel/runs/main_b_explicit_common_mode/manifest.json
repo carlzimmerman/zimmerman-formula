@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_EDS_BORN_PRESSURE_KERNEL",
+  "repository": {
+    "commit": "2b166352b1c7603592194e1af34feedf55832aa2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/checks.py",
+    "--output",
+    "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/runs/main_b_explicit_common_mode/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Integrated U and Delta formulas and mixed gas/wave two-epoch two-wavenumber identification in the declared EdS Born domain",
+    "coefficient_domain": "binary64 deterministic quadrature",
+    "conventions": "comoving SI k, dimensionless a, U=a^2 dot Delta; common gravity, no drag; Q=hbar^2/(4m^2)",
+    "inputs": [
+      "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/checks.py",
+      "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/REPORT.md"
+    ],
+    "bounds": {
+      "a_d": 0.02,
+      "a_quadrature": [
+        0.03,
+        0.1,
+        0.5
+      ],
+      "dimensionless_k": [
+        2,
+        5
+      ],
+      "benchmark_k_per_Mpc": [
+        0.1,
+        1,
+        100,
+        1000
+      ],
+      "quadrature_epsabs": 1e-12
+    },
+    "non_claims": [
+      "Not complete cosmological transfer evolution",
+      "Not particle identity or mass inference",
+      "Born approximation not valid for arbitrary k"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-06T01:37:18.277361+00:00",
+    "runtime_seconds": 0.232977,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/checks.py",
+    "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/REPORT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/checks.py",
+      "sha256": "26f0e8824d94fdcc648c88de3babbfbc4ae8cb9306345ea59644b3a2a67d803e",
+      "sha256_after": "26f0e8824d94fdcc648c88de3babbfbc4ae8cb9306345ea59644b3a2a67d803e"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/REPORT.md",
+      "sha256": "522739b5441d73b46bd51733c7be29f122eccec521b482945f968f417199d93c",
+      "sha256_after": "522739b5441d73b46bd51733c7be29f122eccec521b482945f968f417199d93c"
+    }
+  ],
+  "output_directory": "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/runs/main_b_explicit_common_mode",
+  "declared_results": [
+    "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/runs/main_b_explicit_common_mode/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/runs/main_b_explicit_common_mode/stdout.txt",
+      "sha256": "e24d5b2e349fe00da1c19d4a081f0f5e7cf5803938505e209749ad057c160718",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/runs/main_b_explicit_common_mode/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/analytic_pressure_kernel/runs/main_b_explicit_common_mode/results.json",
+      "sha256": "20f796a196d7be7256267a38bd0f9b58f2e516673b1a8d6986cfe47799812003",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

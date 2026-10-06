@@ -1,0 +1,11 @@
+# Actual-transfer null test
+
+Read [REPORT.md](REPORT.md) for claims, limits and source equations. [REVIEW_ROOT_KERNEL.md](REVIEW_ROOT_KERNEL.md) independently reviews the sibling EdS kernel. The runner evidence is `runs/fine`, `runs/coarse`, `runs/tighter`; `runs/default_precision_negative` intentionally failed. All four standard manifests validate. `convergence.json` compares epoch quadrature and solver tolerance separately.
+
+`transfer_checks.py` imports the existing content-pinned local CLASS extension with its MOND force disabled, obtains actual density+velocity transfers, and writes `results.json` and `transfers.npz`. Binary Python/CLASS inputs and primary-reference URLs, exact versions and hashes are in `sources.json`. The full-paper source cache and local CLASS binary may be excluded from Git. Reproduction therefore requires restoring those exact cached inputs, plus the Python executable with its recorded hash. Moving upstream master is not a substitute for the used local build.
+
+From the repository root, `python3 sol61_push/recombination_and_structure_growth/new_doors_2026_10_05/transfer_null_test/rerun.py fresh_name` checks the registry hashes and executes the standard computation-audit runner into a new directory. Add `--coarse`, `--tighter`, or `--default-precision` for controls. The latter is expected to fail the null bound while still producing a valid failed-run provenance record. Validate with the mathbox `computation-audit/scripts/validate_manifest.py` and `--root` pointing to this repository. The absolute skill installation path is in `rerun.py`; another installation may change that orchestration path without changing the scientific child script.
+
+`make_contract.py` is a pre-run recording helper. Do not refresh old contract/source hashes and then claim old manifests are fresh; create a separate evidence revision if inputs change. External dynamic libraries are not fully pinned, and this is not a fresh upstream build reproducibility claim.
+
+The usable advance is a conditional sourced-velocity discriminator and a numerical-precision requirement. It does not make the cold transfer directly observed, establish survey sensitivity, or connect its mass coefficient to32pi without the same gravitational action.

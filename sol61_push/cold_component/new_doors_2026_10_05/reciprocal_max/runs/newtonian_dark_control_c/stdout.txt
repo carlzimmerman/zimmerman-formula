@@ -1,0 +1,24 @@
+PASS nonlinear_Legendre_stress_identity: exact 3D quartic flux energy: corrected trace leaves only constitutive curls; H trace fails
+PASS threshold_inverse: 0<d<a0/2, positive roots =>p(bt)=d
+PASS threshold_derivative: b_t prime positive
+PASS active_baryon_gradient: g_b=b+p, exactly independent of d
+PASS active_dark_gradient: g_d=kappa*d+b_t, moving-boundary terms cancel
+PASS primitive_energy_gradient: closed P primitive independent finite differences, max error=7.8e-10
+FAIL active_force_integrability: partial_d g_b=0 must equal partial_b g_d; Newtonian dark response fails
+PASS inactive_reciprocity: both sources react from one energy
+PASS interface_force_continuity: p(b_t)=d, no force jump; Hessian has one-sided limits
+PASS inactive_scalar_eigenvalues: kappa>1 gives mu>0; kappa=1 leaves radial flux-split null mode
+PASS cold_tracer_force_vanishes: any fixed b>0, galaxy-active branch lacks baryon capture of dilute cold tracer
+PASS full_norm_vector_Hessian_matches_variation: 8 six-vector cases, max derivative error=1.336e-06
+PASS strong_convex_kappa2_full_vector: min eigenvalue=0.381966011, global analytical bound=0.381966011
+PASS Newton_vector_preserving_extension_refuted: dark-only transverse Hessian=-8.875, two-species transverse eigenvalues=[-8.97221547  1.41142903]
+PASS global_Newton_OFF_convex_extension_obstruction: Newton OFF endpoints share sum; required H(midpoint)=0.845709719 > endpoint mean=0.605
+PASS active_cold_orbit_stiffness: r*kappa_r²=kappa*d-d²(a0+2d)/(a0-2d)²
+PASS stable_ratio_threshold: eta>= [1+sqrt(1+16kappa)]/(2kappa) protects entire active branch
+PASS compact_instability_kappa1: b=1,d=.3,r=a0=1: r*kappa_r²=-0.5999999999999999
+PASS compact_instability_kappa2: b=1,d=.3,r=a0=1: r*kappa_r²=-0.2999999999999998
+PASS finite_profile_radial_stability_kappa1: 801 radial points, active=419, shell min=5.356e-06, tracer min=5.358e-06
+PASS finite_profile_radial_stability_kappa2: 801 radial points, active=419, shell min=1.072e-05, tracer min=1.072e-05
+PASS nonlinear_orbit_0.1: max displacement=1e-05, energy drift=3.47e-17, active=True
+PASS nonlinear_orbit_0.3: max displacement=0.00011099, energy drift=1.11e-16, active=True
+22/23 checks pass; 1 failures

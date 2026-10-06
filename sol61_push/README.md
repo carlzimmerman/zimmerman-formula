@@ -4,6 +4,8 @@ Work requested by Carl on 2026-09-29: review the recent Claude research, identif
 
 The original goal remains OPEN. A new partial result is not a completed theory.
 
+- [New doors and decisive tests](NEW_DOORS_2026-10-05.md): reciprocal max action and vector obstruction, fully constrained gate modes with a gradient completion, and actual CLASS transfer source accounting. Includes [root mathematical review](NEW_DOORS_ROOT_AUDIT_2026-10-05.md).
+
 - [Recombination and structure growth](recombination_and_structure_growth/README.md): fourth research lane connecting atomic neutralization, acoustic memory, relative baryon/cold growth and late vacuum geometry, with derived clues and explicit identity limits.
 
 - [Three-agent breakthrough campaign](BREAKTHROUGH_CAMPAIGN_2026-10-05.md): new internal-state transition theorem, action-level coefficient counterfamily and orbital sum rule, and a positive-material-density obstruction to radial T5 matching. Includes separate peer audits and the common action requirement.
