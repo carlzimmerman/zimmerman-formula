@@ -71,3 +71,11 @@ cold fraction f = (M_tot - M_law)/((Omega_c/Omega_b) M_b) at 5 Re (definition A,
 Reading: the "1.9x" is not an elliptical-specific number. It is a mixture of two universal levels -- ~0.13 of the cosmic cold share in ANY galaxy
 (spiral or elliptical) and ~0.6 in anything that is (or sits at the centre of) a group or cluster -- with the step between galaxy and group scale.
 C003 gets the galaxy level right and the group level wrong (cm03). Nothing derives either number; 0.6 and 0.13 are measured, the mechanism is open.
+
+## cm09 (POST HOC): the step follows HOST status, not the galaxy's own sigma
+`cm09_sigma_split.py` (1/1; MUTATE shuffled sigma fails). Threshold sigma = 250 km/s declared in chat before the run.
+2x2 medians (canonical): low-sigma non-central 0.13 (N 22); low-sigma CENTRAL 0.63 (NGC 1316, 4636, 5846 at sigma 198-231); high-sigma non-central 0.66 (N 1, NGC 4365);
+high-sigma central 0.82 (N 6). Partial rho(f, sigma | central) = -0.04; partial rho(f, central | sigma) = +0.58 (alt the same).
+Reading: the galaxy's own dispersion adds nothing once central status is known. If the cooling threshold is the cause, the relevant temperature is the HOST
+halo's (group/cluster), not the galaxy's -- which makes the reading equivalent to "sits at the centre of a group-scale halo". NGC 4365 (the only high-sigma
+non-central) dominates its own Virgo W' subgroup, so it is arguably a central too. LCDM predicts this step as well (centrals sit in group halos).
