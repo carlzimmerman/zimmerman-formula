@@ -599,3 +599,23 @@ The turn-off lives in the extreme-TNO / inner-Oort region (300-1500 AU) -- the o
   n = 20 kills the boost at y ~ 1; our turn-off keeps it alive to y ~ 129 (700 AU), i.e. it is FAR more active in the region they test.
 Inference (not yet a committed simulation): the y_t ~ 100-130 needed for Lambda = 32 pi a0^2 (offset reading + kernel fix, PAPER41/42) is likely excluded by the
 detached-TNO population unless the framework screens MOND on small scales/masses (VNT24's stated loophole). A proper test = their N-body setup with nu_fix (QUMOND/BIMOND, EFE included).
+
+## 66. p57: secular N-particle test of the detached-disk lift with OUR kernel (QUMOND field equation)
+`p57_etno_secular_nbody.py` + solver `qumond_efe_multipole.py` (4/4; MUTATE -- EFE kept in the radial control -- fails C2 by 345 AU).
+Model: orbit-averaged (Milankovitch) dynamics of 150 particles, q U(30,36), a log-U(150,2000) AU, 4.5 Gyr; giant-planet quadrupole + Galactic vertical tide +
+the QUMOND anomaly solved from the field equation by Legendre multipoles (l <= 8) in the Galactic external field; q < 25 AU = lost to Neptune. Neptune scattering itself NOT modelled.
+**Withdrawn first:** an algebraic-QUMOND version (`p57a_ALGEBRAIC_MODEL_WITHDRAWN.py`) gave a spurious ~0.8 a0 differential field; the "q swings by hundreds of AU in 1-2 Myr"
+seen in its quick runs is that artefact. Amendments (i)-(vii) are listed in the script docstring, incl. a MUTATE flag bug found after the full run (first mutant identical to control).
+**Q2 (Cassini):** ours 2.195e-26 s^-2 (exact law) / 2.199e-26 (turn-off) vs (3 +- 3)e-27 (Hees+ 2014) -- the KNOWN 3-15 sigma tension in STANDING, reproduced by an
+independent solver; the turn-off does not touch it (Q2 is sourced near r_M ~ 8000 AU, y ~ 1). mu_20 (a0 1.2e-10): 9.3e-28.
+| kernel | final q>38 | ever q>38 | lost | detached occupancy (added metric) |
+|---|---|---|---|---|
+| K0 Newton | 0.047 | 0.120 | 0.187 | 0.067 |
+| K1 exact law | 0.107 | 0.167 | 0.573 | 0.195 |
+| K2 OURS turn-off y_t = 128.9 | 0.107 | 0.180 | 0.847 | 0.694 |
+| K3 mu_20 (VNT24 still-excluded case) | 0.120 | 0.353 | 0.533 | 0.284 |
+**Pre-registered verdict: INCONCLUSIVE** (f38(K2) = 0.107 < f38(K3) = 0.120, but > Newton + 0.02).
+Added metric (declared after the quick run, before the full run): survivors under the turn-off kernel sit detached 69% of the time, vs 28% for mu_20 and 7% for Newton --
+i.e. on the steady-state-like measure the turn-off is WORSE than the case VNT24 found to overpopulate the detached disk; the exact law (0.20) is milder because its
+strong monopole precession quenches the quadrupole cycles. Small-number caveat: K2 keeps only 23 of 150 survivors. Net: the TNO objection to y_t ~ 129 is NOT lifted;
+the decisive version needs Neptune scattering (a full N-body source population), out of scope here.
