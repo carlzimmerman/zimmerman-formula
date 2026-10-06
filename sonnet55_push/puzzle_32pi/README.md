@@ -640,3 +640,10 @@ the dS radius and 1/sqrt(Lambda); c^2/R, c^2/2R, dS repulsion) x 3 principle for
 8 give exactly 1/2, all reducing to (i) the definition a0 = c^2/2r* at r* = 1/sqrt(G rho) or (ii) the identity "the dS horizon is the Schwarzschild radius of the
 enclosed vacuum ball" (G M_ball/r_H = c^2/2) divided by a pi-carrying Gauss field. Base rate: among simple-rational outputs, 1 occurs 15x, 1/4 10x, 1/2 8x (15%).
 So a grammar of standard balances "explains" kappa = 1 or 1/4 as easily as 1/2: a hit is a coincidence at the base rate, not a principle.
+
+## 70. p61: the quadrature law is a unit hyperbola (rapidity / mass-shell form)
+`p61_quadrature_hyperbola.py` (4/4; MUTATE a_L = a0 fails M). (2y+1)^2 - (2x)^2 = 1: g_N = a0 sinh^2(theta/2), g = (a0/2) sinh theta, nu = coth(theta/2),
+phantom p = (1 - e^-theta)/2. Equivalently g_N = sqrt(g^2 + a_L^2) - a_L with a_L = a0/2 -- a relativistic "kinetic energy" with momentum g and rest mass a_L:
+deep MOND g = sqrt(a0 g_N) is p = sqrt(2 m T) (the 1/2 of 1/2 m v^2), the strong-field plateau a0/2 is the rest mass. This is exactly Milgrom's 1999 dS-Unruh form.
+kappa = 1/2 then reads: the MOND sector's de Sitter rate is H_M = a_L/c = sqrt(G rho_Lambda)/4, H_M^2 = G rho_Lambda/16 (pi-free) vs Friedmann (8 pi/3) G rho_Lambda.
+Already in the record (not new): r_M^2 = r_s r* (agent F05), r* = c x vacuum dynamical time (README sec. 1). The hyperbola is new; it relocates, not derives, the 1/16.
