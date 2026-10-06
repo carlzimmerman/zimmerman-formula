@@ -1,0 +1,3 @@
+# Source boundary
+
+Claude sources and hashes are in provenance.json. CFG345 supplies only the conditional desired mass and unspecified cold abundance; its fits are not newly authenticated here. p54/p57/CFG355 are read-only source definitions, not execution dependencies imported by checks.py. The curvature-only action and all metric variations are derived explicitly in REPORT.md; no named external theorem or global novelty assertion is used. No observational dataset was run. Natural units and the complex normalization are stated in the report. The illustrative H=1.8e−18 s−1 and ℏ=6.582119569e−16 eV s are declared numerical inputs, not a fitted inference.

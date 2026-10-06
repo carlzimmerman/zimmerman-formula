@@ -1,0 +1,23 @@
+# Clock repair checkpoint, continuing Claude's work
+
+The theory and 32pi coefficient goal remain open. Base checkpoint: 36b9957612c8b422e900874fb053c6baa22456e4. Claude's latest checked commits remain p57 (6988a2ecb) and CFG355 (be5eee875); no newer Claude commit was found at this checkpoint. These results extend their cutoff/clock and cold-carrier questions through the conserved radiation background and actual matter equations. They do not authenticate Claude's astrophysical likelihood or Lean runs.
+
+## Executed repairs
+
+[A covariant history-dependent square](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/radiation_extension/covariant_stealth_completion/REPORT.md) exactly preserves the selected FRW background and replaces the vanishing clock kinetic coefficient with a positive finite-time floor. Independent review accepts that result. Its functions encode a chosen trajectory, break clock shift symmetry and fail the specified original vacuum-rescaling map within this squared ansatz. Its source response changes, and full gradient health is still unproved. This is a constructive repair of the crossing, not a completed physical theory.
+
+[A shift-symmetric dust-density square](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/radiation_extension/shift_symmetric_matter_completion/REPORT.md) instead preserves particle number and clock shift symmetry. The exact constrained principal characteristic has a dust branch with omega²/p² tending to -rho_d Z(B')². Independent review reconstructs the sign and coefficient. The dust stress and force law change away from the chosen history. This excludes this pure positive square as a universally healthy short-wavelength repair; no mode below an unspecified EFT cutoff is guaranteed.
+
+[The radiation-density capacity bound](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/radiation_extension/radiation_schur_bound/REPORT.md) treats a different possible repair. Its clock Schur gain saturates at d² C_r/b_r². The exact condition for sufficient capacity at an upper-branch epoch is 4r>(h-1-eta)b_r². Sufficiently small radiation fractions fail this condition at intermediate epochs even though the early-radiation and fold limits pass. The current root evidence is main_c; earlier runs retain documented corrected dictionary errors. The full radiation-square characteristic and its remaining slow branches are being investigated in a separate sibling folder.
+
+## Physical closure still required
+
+The cold component needs a specified covariant action, conserved degrees of freedom, abundance and transfer evolution. A small pressure fraction of a clock perturbation does not supply these. The existing minimally coupled dust control is an input source, not a derived cold particle identity. Changing an interaction to repair the clock requires varying the matter action too.
+
+Recombination requires atomic rates, photon transport and their gravitationally coupled evolution on a viable background. The irrotational P(Y)=lambda Y² radiation used in these proofs is a perfect-fluid mathematical control; it has not implemented those processes. None of these repairs establishes observed acoustic driving, structure growth or dark-energy microphysics.
+
+For 32pi, Claude p57's field-equation EFE supplied the next observational functional, and its Sol61 continuation now determines the vacuum moment from an ideal complete external-field continuum. That determines a kernel or moment if such data are supplied; it does not force its value. A physically motivated selector, the relativistic vacuum dictionary, nonlinear source completion and an additional prediction remain required.
+
+The [Claude carrier-scale continuation](main_theory/claude_continuation_2026_10_06/REPORT.md) has now executed the minimal curvature-only mass replacement. Full action variation gives zero stress for the circular oscillating EdS branch despite a nonzero conserved charge; the admitted power-law and de Sitter analogues also cancel. Exact radiation controls give radiation-like or stiff stress. This rejects that declared shortcut to the mass/abundance missing from CFG345, not all mass-generation mechanisms. Root independently reconstructed the full stress and corrected a real-field normalization ambiguity before acceptance.
+
+The next discriminating work is the full radiation-square slow-mode stability test and a covariant cold-carrier mass mechanism that survives full stress variation. A successful scoped repair must then meet source matching and the original coefficient-selection requirements; neither is waived by this checkpoint.
