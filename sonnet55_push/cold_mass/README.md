@@ -121,3 +121,27 @@ lensing), not done here. Not excluded yet; not supported either.
 - R1 puts all the hot gas inside 17–25 kpc. That is the classical maximum-density assumption.
 
 **What this does and does not show.** It places the step but gives no mechanism linking cooling to cold-fluid retention, and it does not explain the levels 0.13 and 0.6. The cold fluid is still required. κ = ½ is fitted.
+
+## cm13: can feedback, coupled only through gravity, empty galaxies of 87% of their cold share? NEEDS-CEILING (in effect, no)
+`cm13_feedback_energetics.py`; criteria `cm13_FROZEN_CRITERIA.md` (e4b7303f1). 2/2 checks. MUTATE (cold share × 0.1) passes its frozen test: M_crit rises from ≤ 1e9 to 10^10.16 and the verdict flips to PARTIAL. It writes separate outputs.
+
+**Result.** The critical mass is in the bracket in 0 of 16 cells at a coupling of 0.01, 0 of 16 at 0.1, and 6 of 16 at 1.0 (the absolute energy ceiling).
+- Emptying the Milky Way needs a coupling of ε_need = 0.38–2.5 of all supernova plus black-hole energy. In 8 of 16 cells that is more than 100%.
+- The 6 cells inside the bracket all put the cold fluid out at 10 r_M and use ε = 1.
+
+**Reading.**
+- The ratio E_fb/E_bind does fall with mass (slope about −0.5), so feedback would naturally produce a step.
+- But with the cold fluid's own weight (5.36 M_b), feedback has too little energy by a factor of 4–250 for any coupling a potential-fluctuation mechanism plausibly achieves (a few % to 10%).
+- Black holes help only modestly; the M–σ scaling does not rescue it.
+- So "galaxies blew their cold fluid out" is energetically excluded, unless the cold fluid was never as concentrated as the baryons, or never there in full.
+- That points to the other branch: galaxies never collected their full cold share, rather than collected it and lost it.
+
+**Code fixes before commit, disclosed.**
+- A vacuous C1 identity check was replaced with a real one, and C2 (SN energy normalisation) was added.
+- The MUTATE comparison mishandled a "no crossing on the grid" cell (M_crit below the 1e9 floor). It now reads that cell as ≤ 1e9, as the frozen wording intends.
+- Neither fix changes any verdict number.
+
+**Caveats.**
+- The binding uses an isothermal/log potential with an external-field cutoff, and T5's max applied to the potential.
+- This is a necessary condition only: passing it would not have supplied a mechanism.
+- The cold fluid is still required. κ = ½ is fitted.
