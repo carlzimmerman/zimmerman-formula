@@ -1,0 +1,70 @@
+{
+ "lane": "CFG373",
+ "mutate": true,
+ "verdict": "VIABLE CHANNEL (not a derivation: Q1 fails)",
+ "G1": true,
+ "G3": {
+  "CFG370-corrected MW cooling (3.21 H_L)": {
+   "f_req": 1.7529553346096567e-34,
+   "R_alpha": [
+    15.721079511502127,
+    522946.51181711856
+   ],
+   "R_c2_bracket": [
+    243.0876846883662,
+    2224.1356061336114
+   ]
+  },
+  "CFG245 needed (5.4 H_L)": {
+   "f_req": 2.9488968245769925e-34,
+   "R_alpha": [
+    9.345308376281821,
+    310862.64869128715
+   ],
+   "R_c2_bracket": [
+    408.9325536813638,
+    3741.5365336827117
+   ]
+  }
+ },
+ "G3v": "PASS",
+ "G4": {
+  "E1 x 19, V 200 km/s": 3.044156186416616e-08,
+  "CFG70 x 318, V 200 km/s": 5.094956143581494e-07,
+  "CFG70 x 318, V 1000 km/s (clusters)": 1.2737390358953736e-05
+ },
+ "G4v": true,
+ "rho_c_MW_10kpc": 2.484711002535546e-22,
+ "checks": [
+  {
+   "name": "C1 mass-shell inverse g_N = sqrt(g^2 + a_L^2) - a_L reproduces P2 (1e-3 <= y <= 1e3)",
+   "pass": true,
+   "value": "max rel 6.9e-14"
+  },
+  {
+   "name": "G1(i) local target rho_target[g] (via the mass-shell inverse) reproduces CFG44's exact point-mass target M(sqrt(1+x^2)-1)",
+   "pass": true,
+   "value": "identity g^2+a_L^2-(g_N+a_L)^2 = 0; difference = 0; numeric check True"
+  },
+  {
+   "name": "G1(ii) AQUAL identity: the flux of sqrt(g^2+a_L^2)-a_L equals 4 pi G M_b, i.e. the law, with zero new constants",
+   "pass": true,
+   "value": "symbolic"
+  },
+  {
+   "name": "C2 dimensional check: rho*Gamma*w and g^2/(G r) are both force densities (kg m^-2 s^-2)",
+   "pass": true,
+   "value": "kg/(m**2*s**2)"
+  },
+  {
+   "name": "T-MUT main-run marker (MUTATE alpha_c x1e12 must flip G3 to PASS)",
+   "pass": true,
+   "value": "PASS"
+  },
+  {
+   "name": "MUTATE forces rc 1",
+   "pass": false,
+   "value": "PASS"
+  }
+ ]
+}

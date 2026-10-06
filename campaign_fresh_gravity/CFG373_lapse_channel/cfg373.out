@@ -1,0 +1,35 @@
+CFG373 lapse channel
+==============================================================================
+  [PASS] C1 mass-shell inverse g_N = sqrt(g^2 + a_L^2) - a_L reproduces P2 (1e-3 <= y <= 1e3): max rel 6.9e-14
+
+G1 carrier (symbolic)
+  [PASS] G1(i) local target rho_target[g] (via the mass-shell inverse) reproduces CFG44's exact point-mass target M(sqrt(1+x^2)-1): identity g^2+a_L^2-(g_N+a_L)^2 = 0; difference = 0; numeric check True
+  [PASS] G1(ii) AQUAL identity: the flux of sqrt(g^2+a_L^2)-a_L equals 4 pi G M_b, i.e. the law, with zero new constants: symbolic
+  Carrier: in the chassis' weak-field limit the lapse gradient c^2 grad ln N is the total acceleration g (G renormalised by the alpha_c term,
+  G_N = G/(1 - alpha_c/2); alpha_c <= 3.2e-9 so the factor is 1 to 1.6e-9). The lapse is set by the leaf-elliptic (instantaneous) equation
+  (CFG292), so a fluid element reads its target LOCALLY from the time field: the nonlocality CFG60 requires is supplied by gravity's elliptic solve.
+
+G2 relaxation toward rho_target: CITED STATUS (CFG245 = this construction): Gate T rate FAIL; T-RAR precision FAIL; Gate C pincer
+  (no declared rate); E1 energy FAIL; A0 knife-edge; no ownership. New: CFG369/370 cooling-keyed rate sits in the pincer only in R2/fhot1 cells.
+
+G3 reaction sink (MW-like: V = 200 km/s, r = 10 kpc, M_b = 6e10 Msun)
+  CFG370-corrected MW cooling (3.21 H_L): f_req = 1.75e-34 N/m^3 | alpha channel R = 1.6e-11 .. 5.2e-07 | c_2 / K~Gamma bracket R = 2.4e+02 .. 2.2e+03
+  CFG245 needed (5.4 H_L): f_req = 2.95e-34 N/m^3 | alpha channel R = 9.3e-12 .. 3.1e-07 | c_2 / K~Gamma bracket R = 4.1e+02 .. 3.7e+03
+  G3: CONDITIONAL  (alpha_c channel misses 1; the c_2 channel needs a relaxation-induced congruence expansion K ~ Gamma/c,
+   i.e. a local expansion-rate perturbation of order the cooling rate, which is an ASSUMED upper bracket, not derived)
+  [PASS] C2 dimensional check: rho*Gamma*w and g^2/(G r) are both force densities (kg m^-2 s^-2): kg/(m**2*s**2)
+
+G4 energy into the vacuum
+  E1 x 19, V 200 km/s: exchange energy / (rho_Lambda c^2) = 3.0e-08
+  CFG70 x 318, V 200 km/s: exchange energy / (rho_Lambda c^2) = 5.1e-07
+  CFG70 x 318, V 1000 km/s (clusters): exchange energy / (rho_Lambda c^2) = 1.3e-05
+  G4: PASS (all <= 1e-3)
+
+G5 criterion B: PASS by citation (CFG292: the lapse's leaf-elliptic factor propagates instantaneously within a leaf; cones centred on the leaf normal).
+G6 local tests: by citation of the L340 window; the alpha channel's G3 needs alpha_c ~ 1e7-1e11 x the window ceiling (outside it).
+Screen Q1: FAIL as expected (a0, hence kappa, is an input; the construction does not fix it).
+
+LANE VERDICT: CONDITIONAL
+  [PASS] T-MUT main-run marker (MUTATE alpha_c x1e12 must flip G3 to PASS): CONDITIONAL
+
+5/5 pass
