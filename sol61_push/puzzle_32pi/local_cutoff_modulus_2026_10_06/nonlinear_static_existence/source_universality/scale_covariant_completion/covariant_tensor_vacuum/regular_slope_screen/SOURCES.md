@@ -1,0 +1,1 @@
+The raw covariant action/signs and primary arXiv:0912.0790v2 cache are inherited from the pinned parent REPORT and SOURCES. The evolving-mode argument here is derived by substitution, a convergent power series and elementary reduction of order, not an imported stability theorem. SciPy Bessel functions are a bounded orthogonal computational check, not proof of general-n growth.
