@@ -1,0 +1,7 @@
+# Independent root audit
+
+The exact positive counterexample survives independent reconstruction. I expanded the displayed trigonometric profile into rational Fourier coefficients: ±1 have 1/2, ±40 have 1/200, ±80 have -1/200, ±39 and ±41 have 1/800, and ±79 and ±81 have -1/800. These coefficients are real, even and omit zero. Applying w_k=-k²f_k and ordinary rational convolution to the integrated identity gives precisely 237477851379173/25600000000. This derivation uses the local differential identity, rather than the author's direct inverse-Laplacian R construction. The finite polynomial is an exact counterexample to a universal nonpositive sign, not a candidate vector repair.
+
+For f=cos x, ff'-2f''u'=-3 cos x sin x, so R=-3cos 2x and its weighted period mean is -3/4. Root caught a positive sign in the author's prose for R and requested an explicit correction; the actual code, negative mean and counterexample calculation were consistent. Any report-input revision must retain its prior evidence and receive a fresh standard run; the correction record is maintained by the author.
+
+The identity follows from R=|grad f|²+3fw-2grad w.grad u and Delta u=-f. Integration of the last term gives -(2/3) integral f w³, leaving the displayed coefficient 7/3. Both nonzero signs obstruct rescue because the necessary weighted value is zero. The all-smooth one-dimensional result uses a different full local-equation argument and is not contradicted.
