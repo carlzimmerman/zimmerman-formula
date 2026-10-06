@@ -4,7 +4,7 @@ Work requested by Carl on 2026-09-29: review the recent Claude research, identif
 
 The original goal remains OPEN. A new partial result is not a completed theory.
 
-The current [Claude continuation checkpoint](CLOCK_COMPLETION_STATE_2026-10-06.md) reconciles the constrained electromagnetic repair, carrier tensor/force response, and the new scoped coefficient-selector obstructions. It preserves the remaining source, phase-space, recombination and coefficient requirements.
+The current [source and trace checkpoint](CUTOFF_SOURCE_AND_TRACE_CHECKPOINT_2026-10-06.md) reconciles the geometric radiation repair, actual evolving transfer, canonical constraint admission, curvature cutoff stabilization and ordinary-source calibration. Its [stabilization phase](CUTOFF_STABILIZATION_CHECKPOINT_2026-10-06.md) and [radiation phase](RADIATION_GEOMETRY_AND_COLD_DISCRIMINATORS_2026-10-06.md) preserve the frozen proofs and earlier outcomes. Claude's retained kernel/source lineage is explicitly pinned. The unique coefficient, physical cold abundance, nonlinear source completion and actual recombination remain open.
 
 - [Continuum response identification](puzzle_32pi/claude_p57_efe_2026_10_06/continuum_external_field/REPORT.md): an exact quadrupole/vacuum-moment sum rule, ideal whole-kernel injectivity, and a classical general-dimensional extension. It does not select32pi. [Radiation background and perturbations](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/radiation_extension/REPORT.md) extend the actual cosmology and retain a generic clock-invariant crossing obstruction.
 
