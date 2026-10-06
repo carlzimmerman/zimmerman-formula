@@ -1,0 +1,5 @@
+# Current run evidence
+
+main_a passes36checks. Three controls each pass35 and fail exactly one intended assertion: one_percent→one_decade_floor; opposite_better→opposite_cannot_improve; finite_tail→tail_not_integrable. All4 standard manifests validate against current scientific inputs.
+
+Use `/usr/bin/python3 checks.py --output <new results path>` from this directory for an algebra rerun. For audited reruns, use installed mathbox computation-audit run_experiment.py with contract.json, repeat each contract.execution_artifacts path as --input, use a NEW runs directory and declared result, and caps timeout60/CPU45/max-output200000/threads1. The exact recorded argv and actual Python/software/input hashes are in each manifest. Parent SOURCE_REVIEW.md and sources.json are read-only pinned inputs; full literature refresh requires opening its exact arXiv v2 URL. No new literature theorem is used in this child. Numeric grids corroborate exact minimax proof and are not universal evidence by themselves.
