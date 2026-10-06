@@ -1,0 +1,37 @@
+CFG360 baryon tie  (MUTATE: planted target R = 3.00)
+==============================================================================
+T0 controls
+  [FAIL] T0a R_CMB = omega_c/omega_b reproduces 5.364 +- 0.065 and is the scored target: R_CMB = 5.3643 +- 0.0646; scored target = 3.000 +- 0.065
+  [PASS] T0b wave-field window: lower edge read from CFG288 output; upper edge derived (occupation = 1 in the g04a cluster core): m in [2.0e-20, 2.78] eV (upper edge at rho = 3.6e-22 kg/m^3, sigma = 886 km/s; N >> 1 needs lighter, so this edge is generous)
+  [PASS] T0c CFG288 A1 reproduced: dust before z_eq needs a potential >= 1.5e10 rho_Lambda: 0.386 (1+z_eq)^3 = 1.522e+10 rho_Lambda
+
+T1 minimal tie (equal charges, r = 1)
+  [PASS] T1 equal-charge tie needs m = R m_p, far above the wave-field window (a particle, not a fluid): expected FAIL of the tie, confirmed: m = 2.815 GeV = 1.0e+09 x the upper edge; occupation in the cluster core 9.6e-37
+
+T2 required charge per baryon
+  [PASS] T2 r_req band computed from the T0b window: r_req in [1.01e+09, 1.41e+29] charge units per baryon
+
+T3/T4 mechanism classes
+  [PASS] [ARG, not computed] a1 gravitational-only, minimal coupling: J_B is conserved by S_m alone and Q_c by S_Phi alone, so n_c/n_b is a ratio of two free integration constants (CFG288 A2); gravity cannot create B (needs B, C, CP violation): NO-GO: no relation between n_c and n_b is enforced
+  [PASS] a2 non-minimal d_mu(R) J^mu couplings: breaks G9 by construction (matter current couples to curvature, not via g alone); 1 - 3w = 0 in the radiation era so R vanishes; R_ratio = ratio of two new scales: NO-GO under T3 (G9) whatever the ratio
+  [PASS] b1 thermal shared current: r = k/2 (k <= 4), so m = 2 R m_p / k >= 1.41 GeV, above the window; Boltzmann suppression at m > T_d only lowers r: k=1: r=0.5, m=5.63 GeV; k=2: r=1.0, m=2.81 GeV; k=3: r=1.5, m=1.88 GeV; k=4: r=2.0, m=1.41 GeV -> NO-GO (a particle)
+    b2: n_B/s = 0.0142 mu_B/T -> mu_B/T >= 6.11e-09; T_d <= m/(k 6.11e-09)
+  [PASS] b2 condensed shared current, frozen tests: T4 (T_d >= 1 MeV) leaves m >= 6.1 meV (k=1) inside the window, BUT the condensate holds X_tot/k of the conserved charge X_tot (a free initial number): R = (m/m_p)(X_tot/k)/n_B is NOT fixed: surviving m band [6.1 meV, 2.78 eV]; the free number moves from the amount to X_tot (plus new k, T_d): relocated, not reduced -> NO-GO for the tie
+  [PASS] b2 POST-FREEZE (labelled): the transfer operator <Phi> qqql/Lambda^3 must stay in equilibrium to T_d yet keep tau_p > 2.4e34 yr today; smallest conflict over the surviving band (cosmic-mean <Phi>, rate x1e3): T_d,min/T_d,max >= 2.7e+03 at m = 2.78 eV (T_d,min 1.24e+03 GeV vs washout ceiling 4.56e-01 GeV; Leff_min = 3.0e+16 GeV)
+  [PASS] [ARG, not computed] b3 derivative coupling (d theta) J_B / f: sets mu_B = m/f (with sphaleron freeze-out ~130 GeV needs f <= 3.5e-03 GeV) but n_c = phi^2 theta_dot = rho_c/m carries the free amplitude phi; R not fixed; non-minimal coupling also breaks G9: NO-GO: the tie fixes eta_B given (m, f), not R
+
+T5 look-elsewhere base rate (pure-number grammar: 2^a 3^b pi^c (8pi/3)^(d/2), a..d in -3..3)
+    1681 distinct values; hits within 1 sigma: R = 5.364 -> 4, planted R = 3.00 -> 4
+    Z = 2 sqrt(8pi/3) = 5.7888: +6.6 sigma from R_CMB, +0.09 sigma from R_cl (coincidence, never pooled)
+  [PASS] T5 the grammar is not discriminating at this target: chance hit rate per form >= 1e-3, and the real and planted targets get comparable counts (within x3): chance rate 2.4e-03 per distinct form (threshold 1e-3); any numeric match would be NUMEROLOGY
+
+VERDICT
+    a1: NO-GO (no tie)
+    a2: NO-GO (breaks G9; inert in radiation era; ratio = ratio of two new couplings)
+    b1: NO-GO (particle: m >= GeV)
+    b2: NO-GO (does not fix R: R ~ X_tot, the free total asymmetry)
+    b2_postfreeze: EXCLUDED by proton decay (post-freeze, labelled)
+    b3: NO-GO (no charge transfer: n_c = phi^2 m keeps the free amplitude)
+  CFG360 lane verdict: NO-GO. The cold amount stays a free number (Gap 2 open); the cold MASS is still required.
+
+11/12 pass  (MUTATE)
