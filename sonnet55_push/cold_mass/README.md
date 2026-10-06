@@ -31,3 +31,16 @@ The sharper test, offset vs MEASURED hot gas (CFG57: 7 galaxies, M_gas < 20 kpc)
 without M87 -0.09 (p = 0.61). The raw-gas trend is carried by the cluster/group centrals (M87, NGC 5846) and vanishes without M87. NGC 4365 (little gas) shows
 +0.205. Reading: the ellipticals' excess is real-ish but is not shown to track hot gas; with N = 7 this neither supports nor refutes the hypothesis.
 A decisive version needs X-ray luminosities for all 16-17 (e.g. Kim & Fabbiano 2015 / O'Sullivan catalogues) -- a fetch.
+
+## cm05 + cm05b: all 16 SLUGGS ellipticals with O'Sullivan+2001 L_X -- the excess TRACKS HOT GAS, beyond mass
+`cm05_sluggs_lx_all.py` (1/1; MUTATE shuffled L_X fails) and `cm05b_mass_control.py` (1/1; MUTATE L_X := mass fails). Fetch: data_assembly/osullivan2001_lx/.
+16 of 17 matched (NGC 1023 absent); hot-gas indicator log(L_X/L_B), 4 upper limits used at their value.
+- rho(outer-GC law offset, log L_X/L_B) = +0.64, one-sided p = 0.005 (both footings) -> SUPPORTED under the pre-declared rule.
+  Without M87 +0.56 (p = 0.016); detections only +0.60 (p = 0.023, N = 12).
+- Confounder (declared after cm05, before cm05b): rho(offset, mass) +0.55, rho(L_X/L_B, mass) +0.59; PARTIAL rho(offset, L_X/L_B | mass) = +0.47 (p = 0.036).
+  Hot gas carries information beyond mass.
+- The excess is NOT the gas's own mass: CFG57's measured gas moves the law by 0.010 dex and would need 20-100x more to close it. It is extra mass that comes
+  WITH a hot atmosphere -- consistent with the hot-halo hypothesis (cold mass retained where a hot atmosphere exists), and with KiDS red-vs-blue (h111).
+Caveats: N = 16; upper limits at face value; L_X of centrals includes group/cluster gas (that is a hot atmosphere too); intracluster GCs may inflate the
+centrals' offsets (the trend survives without M87); offsets carry shared tracer-slope/anisotropy systematics (they move the level, not the ranking).
+Not a mechanism: nothing in the record couples collisionless mass to hot gas. Next: blue spirals at matched mass (should show none) -- KiDS colour split, M/L-robust.
