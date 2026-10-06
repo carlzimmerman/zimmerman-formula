@@ -1,0 +1,30 @@
+CFG371 cool-core test
+==============================================================================
+  [PASS] C1 corrected TN bremsstrahlung term matches free-free at 1 keV to 1%: ok
+  [PASS] C2 the finite-difference gas density integrates back to M_gas (0.03-1 R500) within 5%, every cluster: max dev 0.000
+
+Per cluster (t_c at 0.03 R500; X_in at 0.1 R500; e_pred = exp(-10.3 Gyr / t_cool(0.1 R500)))
+  A1644    s  kT 4.4 keV  t_c    7.30 Gyr  t_cool(0.1R500)    19.7  X_in +1.774 (alt +1.698)  e_pred 0.593
+  A1795    P  kT 5.4 keV  t_c    1.94 Gyr  t_cool(0.1R500)     7.7  X_in +1.140 (alt +1.107)  e_pred 0.261
+  A2029    P  kT 8.4 keV  t_c    2.66 Gyr  t_cool(0.1R500)     9.0  X_in +0.991 (alt +0.963)  e_pred 0.317
+  A2142    P  kT 8.5 keV  t_c    3.90 Gyr  t_cool(0.1R500)     9.8  X_in +0.977 (alt +0.944)  e_pred 0.351
+  A2255    s  kT 5.9 keV  t_c   16.52 Gyr  t_cool(0.1R500)    24.1  X_in +1.996 (alt +1.919)  e_pred 0.652
+  A2319    P  kT 7.3 keV  t_c    6.03 Gyr  t_cool(0.1R500)    10.7  X_in +1.347 (alt +1.310)  e_pred 0.383
+  A3158    s  kT 5.1 keV  t_c    7.30 Gyr  t_cool(0.1R500)    12.1  X_in +2.748 (alt +2.691)  e_pred 0.427
+  A3266    s  kT 8.3 keV  t_c   10.18 Gyr  t_cool(0.1R500)    23.0  X_in +2.672 (alt +2.615)  e_pred 0.639
+  A644     P  kT 6.2 keV  t_c    4.16 Gyr  t_cool(0.1R500)     9.1  X_in +1.278 (alt +1.242)  e_pred 0.322
+  A85      P  kT 6.2 keV  t_c    3.10 Gyr  t_cool(0.1R500)     9.8  X_in +1.259 (alt +1.220)  e_pred 0.349
+  RXC1825  s  kT 5.0 keV  t_c   10.42 Gyr  t_cool(0.1R500)    18.5  X_in +6.275 (alt +6.203)  e_pred 0.572
+  ZW1215   P  kT 7.6 keV  t_c   12.10 Gyr  t_cool(0.1R500)    18.5  X_in +1.441 (alt +1.392)  e_pred 0.573
+
+Tests
+  PRIMARY [canonical] N 7: Spearman rho(t_c, X_in) = +0.75 (one-sided p 0.031); COOLING median X_in 1.199 (N 6) vs NON-COOLING 1.441 (N 1) -> SUPPORTED
+  PRIMARY [alt] N 7: Spearman rho(t_c, X_in) = +0.75 (one-sided p 0.031); COOLING median X_in 1.163 (N 6) vs NON-COOLING 1.392 (N 1) -> SUPPORTED
+  SECONDARY (12) [canonical] N 12: Spearman rho(t_c, X_in) = +0.81 (one-sided p 0.001); COOLING median X_in 1.268 (N 8) vs NON-COOLING 2.334 (N 4) -> SUPPORTED
+  T3 (reported): median e_pred / X_in (primary, canonical, X_in > 0) = 0.28
+
+VERDICT (primary, canonical): SUPPORTED   (alt SUPPORTED; secondary SUPPORTED)
+N = 7 has low power; isothermal kT; ranking only.
+  [PASS] T-MUT main-run marker (MUTATE must not be SUPPORTED): SUPPORTED
+
+3/3 pass
