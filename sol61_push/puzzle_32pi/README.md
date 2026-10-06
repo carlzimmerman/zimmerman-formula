@@ -156,3 +156,28 @@ The finite checks are in [closure_checks.py](closure_checks.py); the current
 run is [checkpoint_b](runs/checkpoint_b/manifest.json), with raw stdout and
 provenance. No coefficient-selection proof or full galaxy-likelihood rerun
 is claimed. The puzzle remains OPEN.
+
+## Concurrent-result addendum: p46, verified at 35b89edfd
+
+While this checkpoint was being saved, p46 split the gas-point sample by
+distance method. Its recorded output reports TRGB/Cepheid distances: 8 galaxies,
+70 points, a0=1.158e-10 with 20.2% statistical uncertainty; Hubble-flow distances:
+11 galaxies, 54 points, a0=6.970e-11 with 18.3%. The mixed fit remains 8.999e-11.
+These are **reported results with code inspected**, not a fresh bootstrap rerun.
+The higher value is closer to the total-density footing; accordingly the
+mixed-sample p44 preference for the vacuum footing is not robust and should
+not be carried as current positive evidence for that footing.
+
+The groups contain different galaxies, so this comparison alone does not
+identify distance bias as the cause. Under a rough independent-log-error
+comparison their separation is about 1.9 sigma, not a decisive contradiction.
+The script's printed median e_D/D uses the broader eligible TRGB/Cepheid
+sample before the gas-point selection; it is not necessarily the error median
+of the eight fitted galaxies. Precision, selection and calibration remain
+open. The 445-galaxy correction above still follows from p44's stated toy
+scatter and floor; it is not a new forecast for the eight-object subset.
+
+This update strengthens the priority of a distance-method-aware hierarchical
+fit with shared calibration uncertainties and galaxy-level scatter. It neither
+selects the alternative footing nor derives 32pi. Source files and hashes are
+recorded in [the addendum scope](../RESUME_ADDENDUM_2026-10-05.json).

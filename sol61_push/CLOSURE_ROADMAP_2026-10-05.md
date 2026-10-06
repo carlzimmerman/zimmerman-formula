@@ -108,3 +108,19 @@ rounding-benchmark failure is retained and explained; no failed control erased.
 These are symbolic identities and bounded computations, not full-action,
 simulation or likelihood certificates. Review is self-review, not a fresh
 independent-agent endorsement. No original theory goal is marked achieved.
+
+## Evidence arriving during save
+
+Remote checkpoint `35b89edfdc32815cfc519087bc7023ce4191dfbf` contains this audit
+commit `8d13a5570` and p46's distance-method split. Its independently distanced
+gas subset reports a0=1.158e-10 versus 6.970e-11 for the Hubble-flow subset.
+The [puzzle addendum](puzzle_32pi/README.md) qualifies the mixed-sample p44
+footing preference: it is not robust evidence for the vacuum footing. The
+subsets differ in galaxies and remain statistically small. No new bootstrap
+reproduction or decisive coefficient discrimination is claimed.
+
+CFG348's energy-reading switch criteria also appeared during this work. Its
+new architecture changes the trigger class; it should receive the full stress,
+conservation and transition checks above, not inherit CFG347's trigger-only
+health result. Its outcome is not audited here. These late inputs are separated
+from the original review base in [addendum scope](RESUME_ADDENDUM_2026-10-05.json).
