@@ -95,3 +95,6 @@
   - (i) "a₀(0.87)/a₀(0) = 2.38" is a ratio to III's own fitted a₀(0) = 1.0. The paper's 2.38 is an absolute a₀ at "z∼1" (against SPARC's 1.2 it is ×1.98).
   - (ii) III's own App. C gives a z-dependent reconciling mass shift (+0.2 → +0.45 dex) and an unpropagated ~0.2 dex H₂ systematic of the same order.
   - (iii) In III's MOND refit, fixed a₀ = 1.2 gives M★ +0.28 dex above DC14.
+
+## Addendum: the A&A typeset version (2026-10-06)
+The owner supplied the published A&A PDF (A&A 709, L16; it is not stored in the repo). A full-text numeric diff against arXiv:2604.22613v1 finds only typesetting differences: the DOI and arXiv identifiers, licence text, one error bar printed +0.11 in the abstract, and 0.2 vs 0.200 formatting. Every headline number matches: 2.38, a1 = 1.59, the 79 galaxies, 0.33 < z < 1.44, 2.61, 2.19, +0.28 dex, the +0.45 dex reconciling shift, and the "negligible" M* systematics sentence. The verdict above is unchanged.
