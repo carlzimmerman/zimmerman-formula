@@ -195,3 +195,23 @@ Limits: 0.5 Mpc/h cells dilute galaxy halos, so the mesh moves only 7-18% of the
 **Reading:** even with B's switch the phantom makes the universe ~1.8x too clumpy in matter and ~4.7x in lensing; spreading cold mass changes this by ~1%.
 The "phantom rescues the lensing deficit of cm11" idea FAILS in this setup: the deficit is a few to 14%, the phantom excess is +80% to +370%.
 The binding problem is the phantom's growth (consistent with CFG359 T1 ~1.6x), not the cold-mass bookkeeping. Recorded as a negative result.
+
+## FORWARD FIX (10-06): cm12's cooling function was 10× too weak, and this changes cm12 and cm14
+**The bug.**
+- `cm12_cooling_step.py` and the cm12 frozen text used Tozzi & Norman's fit in units of 1e-23. Their unit is 1e-22 erg cm³ s⁻¹. With 1e-22 the T^0.5 term equals free-free emission at 1 keV, which confirms the unit.
+- Found by another session (CFG370 POST-FREEZE 1, 1f8da8ba4).
+- The original run is kept and reproduces exactly with CM12_ORIGINAL=1. The default is now the corrected unit, with outputs `cm12_cooling_step_CORRECTED*`.
+
+**Corrected cm12: PARTIAL, 2 of 8 cells** (was 4 of 8).
+- R1, the MOND radius: M_b* = 10^12.32–12.34 for f_hot 0.5, just inside the bracket's upper edge (10^12.34), and 10^12.70–12.73 for f_hot 1, which is out.
+- R2: 10^9.9–10.3, out (too low).
+- MUTATE passes.
+- The step at the MOND radius moves up by about 1 dex, to V ≈ 400–530 km/s and T ≈ 6–10e6 K, i.e. the group scale, not the Milky Way-to-groups midpoint.
+- The "4/4 inside at R1" statement is withdrawn.
+
+**Consequence for cm14.**
+- cm14 took its step (10^11.36–11.62) from the wrong-unit cm12. With the corrected R1 step (≥ 10^12.32), no SPARC disc lies above it, so the within-disc test has N_hot = 0 and is untestable.
+- In cm14's population table, super spirals (~10^11.7, +0.164 dex extra) would now sit BELOW the step, on the side that predicts no excess. That counts against the pattern.
+- cm13 and cm15 do not use the cooling function.
+
+**What survives.** CFG370 (the other chat) used measured Milky Way hot-halo gas with the corrected unit. It reproduces the galaxy floor of about 0.1 (e^-2) with no fit. Groups and clusters are NOT explained by cooling.

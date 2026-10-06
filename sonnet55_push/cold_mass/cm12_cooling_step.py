@@ -4,7 +4,12 @@ Run: python3 cm12_cooling_step.py | MUTATE=1 multiplies Lambda by 100 (separate 
 """
 import os, json, math, numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
-MUTATE = os.environ.get("MUTATE") == "1"; SLUG = "cm12_cooling_step" + ("_MUTATE" if MUTATE else "")
+MUTATE = os.environ.get("MUTATE") == "1"
+# POST-FREEZE CORRECTION (10-06): the frozen text and the first run used 1e-23; Tozzi & Norman (2001) give 1e-22 erg cm^3 s^-1
+# (their T^0.5 term then equals free-free emission at 1 keV).  Bug found by another session (CFG370 1f8da8ba4).
+# Default = corrected unit, outputs suffixed _CORRECTED; CM12_ORIGINAL=1 reproduces the committed (wrong-unit) run.
+ORIGINAL = os.environ.get("CM12_ORIGINAL") == "1"; LUNIT = 1e-23 if ORIGINAL else 1e-22
+SLUG = "cm12_cooling_step" + ("" if ORIGINAL else "_CORRECTED") + ("_MUTATE" if MUTATE else "")
 G, MSUN, MP, KB, KPC, KEV = 6.674e-8, 1.989e33, 1.6726e-24, 1.380649e-16, 3.0857e21, 1.602177e-9   # cgs
 A0 = {"canonical": 9.3603e-9, "alt": 1.1312e-8}       # cm s^-2
 MU = 0.6; NE_NH, N_NH = 1.17, 2.3
@@ -23,7 +28,7 @@ def check(n, ok):
 
 def lam(T):                    # Tozzi & Norman 2001, Z = 0.3 Zsun; erg cm^3 s^-1
     kT = KB * T / KEV
-    return (8.6e-3 * kT**-1.7 + 5.8e-2 * kT**0.5 + 6.3e-2) * 1e-23 * (100.0 if MUTATE else 1.0), (0.01 <= kT <= 20)
+    return (8.6e-3 * kT**-1.7 + 5.8e-2 * kT**0.5 + 6.3e-2) * LUNIT * (100.0 if MUTATE else 1.0), (0.01 <= kT <= 20)
 
 
 def ratio(Mb, a0, rad, fhot):
@@ -63,7 +68,7 @@ verdict = "PREDICTS" if inside == 8 else ("PARTIAL" if inside > 0 else "FAILS")
 OUT["n_inside"] = int(inside); OUT["verdict"] = verdict
 P(f"\n{'MUTATE ' if MUTATE else ''}VERDICT: {verdict} ({inside} of 8 cells inside the bracket)")
 if MUTATE:
-    real = json.load(open(os.path.join(HERE, "cm12_cooling_step_results.json")))
+    real = json.load(open(os.path.join(HERE, "cm12_cooling_step" + ("" if ORIGINAL else "_CORRECTED") + "_results.json")))
     a = real["cells"]["canonical|R1|fhot1.0"].get("logMb_star"); b = OUT["cells"]["canonical|R1|fhot1.0"].get("logMb_star")
     check(f"MUTATE: canonical R1 f_hot 1 step moves > 0.3 dex ({a} -> {b})", a is None or b is None or abs(a - b) > 0.3)
 P(f"\n{sum(res)}/{len(res)} pass")
