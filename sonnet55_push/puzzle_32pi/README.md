@@ -545,3 +545,11 @@ geometry adds rational volume factors). Lean (standard axioms; Mathlib `irration
 Consequence -- the SHAPE of the missing principle: a Gauss-law-type balance (flux of some field over the full horizon sphere = 4 pi G x a pi-free source) in which the
 source is NOT a volume integral of rho (that re-introduces 4 pi/3). Not proved: the general net-pi statement (needs pi transcendental; not in Mathlib). MUTATE
 (a pi-cancelling value inserted as '!= 1'): fails. kappa = 1/2 stays FITTED.
+
+## 60. Which field has the flux? (`p52`, 2/2; MUTATE target c^2/2 fails U) -- 2026-10-05
+Gauss balance g (4 pi r*^2) = 4 pi G S over the a0 horizon, for natural fields (kappa = c^2/2r* = the hole's own Newtonian field; 2 kappa = c^2/r*, the centripetal
+acceleration of light circling at r*; the vacuum's own field (8 pi G/3) rho r; the hole's deep-MOND field) and sources (rho r^3, rho x ball volume, the hole mass).
+**Exactly one of twelve combinations gives G rho r*^2 = c^2: field c^2/r* with the source rho_Lambda r*^3** -- equivalently **G rho_Lambda = (c/r*)^2 = Omega_light^2 = 2 Omega_Kepler^2(r*)**:
+the vacuum's gravitational rate equals the angular frequency of light circling at r*. The hole's own field with the same source gives 1/2 (i.e. Lambda = 16 pi a0^2); ball-volume
+sources give 3/(8 pi), 3/(4 pi). Neither ingredient is physical as it stands: light cannot orbit at a Schwarzschild horizon (the photon sphere is 1.5 r_s), and rho r^3 is the
+vacuum energy of a cube, not a sphere. The puzzle's exact content is now 'light frequency on the a0 horizon = vacuum free-fall rate'; no known field supplies it. kappa = 1/2 stays FITTED.
