@@ -180,3 +180,18 @@ Two caveats on that table:
 - **Also against the pattern.** COLD classicals sit 0.22 dex below COLD UFDs (4σ), so native T does not sort the dwarfs into two levels.
 - **Reading.** The cold edge of the cooling window is not established. A proper test would have to fit a step on top of a smooth trend; that is not frozen and not run.
 - The cold fluid is still required. κ = ½ is fitted.
+
+## cm12: JOINT particle-mesh test (CFG359 engine read-only, 64 Mpc/h, 128^3) -- the phantom over-builds structure; retention cannot rescue it
+`cm12_joint_pm.py` (report: `cm12_joint_pm.out`; controls K, C pass). sigma8 ratios at z = 0 to the S0 control (no phantom, full cold):
+| run | matter | lensing | cold mass removed |
+|---|---|---|---|
+| R / R_d50 (retention only) | 0.992 / 0.991 | same | 7% / 11% |
+| P (phantom ON everywhere, bare chassis) | 5.43 | 11.5 | 0 |
+| P_T1 (phantom with candidate B's T1 switch) | 1.80 | 4.68 | 0 |
+| PR_T1 / PR_T1_d50 (both) | 1.78 / 1.78 | 4.66 / 4.65 | 14% / 18% |
+Amendment recorded in the script: the bare-phantom PR runs were stopped after P (the known L178 overshoot) and replaced by T1-switch runs.
+Limits: 0.5 Mpc/h cells dilute galaxy halos, so the mesh moves only 7-18% of the cold mass where the rule implies ~35-40% (x2-4 under-resolved); small box
+(ratios only); lensing field = matter + phantom density from the total potential.
+**Reading:** even with B's switch the phantom makes the universe ~1.8x too clumpy in matter and ~4.7x in lensing; spreading cold mass changes this by ~1%.
+The "phantom rescues the lensing deficit of cm11" idea FAILS in this setup: the deficit is a few to 14%, the phantom excess is +80% to +370%.
+The binding problem is the phantom's growth (consistent with CFG359 T1 ~1.6x), not the cold-mass bookkeeping. Recorded as a negative result.
