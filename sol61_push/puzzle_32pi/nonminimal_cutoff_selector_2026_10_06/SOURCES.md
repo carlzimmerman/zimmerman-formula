@@ -1,0 +1,5 @@
+# Bounded source authentication
+
+The actual kernel, canonical two-metric normalization and UV subtraction are inherited from the pinned dynamical_cutoff_vacuum_2026_10_06/REPORT.md. The sibling cutoff_log_slope_2026_10_06/REPORT.md is pinned in its final b revision (8e3435d1b7a7f809eb795bc53cd2336b47767bed17573b3b0b5fc6aa6d3d3899); it supplies an independently reconstructed self-contained strict covariance slope and bound. No external named theorem is needed for the new action's equations.
+
+For the limited motivation that a canonical scalar-squared nonminimal curvature coupling is conventional, independently opened [Hertzberg, On Inflation with Non-minimal Coupling, arXiv:1002.2995v4](https://arxiv.org/abs/1002.2995v4). The versioned abstract lists a scalar kinetic term and ξφ²R among additions to Einstein gravity. This authenticates that operator class only. Its quantum/inflation claims are not transplanted to the new two-metric action, the multiplication of the MOND interaction, or its health/selection. No PDF byte hash or full PDF authentication is claimed. The Einstein-frame formulae in REPORT are derived here, not attributed to this abstract.
