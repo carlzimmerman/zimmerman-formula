@@ -479,3 +479,15 @@ Derivation: 2y(sqrt(1+1/y) - 1) = 1 - h, int_0^Y h dy = (1/4) ln(4Y) - 1/8 exact
 Matches the exact integral to 1e-3 at y_t = 100-128 and 1e-5 at 1e4; reproduces p35's 77.85 / 99.81 / 784.4. Each term has a source: pi/4 from the turn-off's shape,
 -(1/8) ln(4 y_t) from the exact law's a0/2 tail (h ~ 1/(4y)), +1/16 from the kernel's interior. Corollary on the kappa = 1/2 footing:
 **y_t = 128 + (ln(4 y_t) - 1/2)/(2 pi) = 128.91** (numeric root 128.92): '128 = 4 x 32' plus a logarithmic correction from the law's own tail. kappa = 1/2 stays FITTED.
+
+## 52. WALLABY DR2 gas points (`p43`, 3/3; MUTATE gas x2 fails W) -- 2026-10-05
+Data: WALLABY DR2 kinematic models (CADC, 303 models / 236 galaxies; fetch log data_assembly/wallaby_dr2/), AllWISE W1 (IRSA; 229/236 matched after two failed
+fetch versions -- v1 ADQL DISTANCE() error, v2 invalid column ba_2mass, both silently empty; v3 now aborts on < 50% matches). Thin-disc gas by ring summation
+(Freeman control 0.9%); stars: W1, Upsilon_W1 0.6, exponential disc. QFlag 0, i >= 30, flux scale corrected to log_m_hi_corr. Gas points (> 80% of g_bar): 218 in 46 galaxies, y ~ 0.04.
+- **a0 = 7.28e-11 +- 23% (stat)** (H0 73 Hubble distances): -19% from SPARC's gas points (9.00e-11; agrees within the combined 26%), -22% from the kappa = 1/2 footing.
+- Upsilon 0.3/0.9: 7.59 / 7.00 (8% spread: Upsilon-free as intended). R_d x0.5 / x2: 8.13 / 6.79.
+- **Data-collector assumptions:** framework EFE cubic with per-galaxy g_ext: +1% (noclu) / +8.5% (maxclu); flux scale uncorrected: 8.35 (+15%); asymmetric drift 8 km/s:
+  7.68 (+5%); **CMB-frame distances (median 9% larger, up to 21%): 4.88e-11 (-33%)**; near a cluster/group (< 15 Mpc 3D, 27 galaxies) 8.91 vs field (19) 5.63.
+Reading: WALLABY confirms the gas-point a0 is low (7-9e-11, below the alt footing) but cannot pin it: its Hubble-flow distances move a0 by ~33% for a ~10% distance
+change (a0 ~ D^-3 to -4 in the deep regime with gas-dominated baryons), the dominant systematic exactly as p44 predicted. A precise a0 from WALLABY needs redshift-independent
+distances. kappa = 1/2 stays FITTED.

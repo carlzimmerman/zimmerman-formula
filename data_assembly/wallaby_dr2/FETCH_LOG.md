@@ -11,3 +11,8 @@ Service: CADC TAP (https://ws-uv.canfar.net/youcat/sync), ADQL `SELECT * FROM <t
 Kinematic columns: Rad, Vrot_model (+e, +e_inc), Rad_SD, SD_model, SD_FO_model (face-on HI surface density), Inc/PA/Vsys model, QFlag_model, team_release_kin.
 No stellar masses are included; stellar photometry (e.g. AllWISE W1/W2) is a separate fetch that needs its own approval.
 Sources: wallaby-survey.org/data/data-pilot-survey-dr2/ ; Murugeshan et al. 2024 (arXiv:2409.13130); Deg et al. 2022 (PASA, DR1 kinematic models).
+
+## AllWISE W1/W2 (IRSA TAP allwise_p3as_psd), approved by the owner in chat, 2026-10-05
+`allwise_wallaby_dr2.csv`: 15-arcsec cone per kinematic centre; the source with w1gmag and largest r_2mass, else the brightest w1mpro. 229 of 236 matched
+(145 with w1gmag, 174 with r_2mass; median separation 4.7"). Versions: v1 used ADQL DISTANCE() (IRSA ORA-01722) and v2 requested the non-existent column ba_2mass --
+both returned 0 matches silently; v3 computes separations locally, drops ba_2mass, and aborts if fewer than half match. Manifest + sha256 in the external folder.
