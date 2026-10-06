@@ -32,6 +32,14 @@ The NR QUMOND moment-to-vacuum dictionary remains additional relativistic physic
 
 ## Evidence and next discriminating work
 
+### Coupled perturbation checkpoint after the background calculation
+
+The [full clock–dust quadratic action](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/fold_health/REPORT.md) now retains the variable-clock boundary term, matter tadpoles, lapse/shift reactions and the actual evolving background. It establishes an instantaneous infrared kinetic band without importing a vacuum coefficient or assuming that its sign alone proves a fatal instability. A fixed comoving mode is positive in the asymptotic early and late limits; affected modes instead encounter an intermediate interval.
+
+The [simple-crossing theorem](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/fold_health/canonical_crossing/REPORT.md) gives a stronger local obstruction: the exact first-order mode equations have a nonzero rank-one nilpotent residue. Generic solutions acquire a logarithmic clock curvature and a pole in the gauge-invariant perturbation of X on constant-clock surfaces. Regular amplitudes form a codimension-one subspace per affected mode. This is a conditional linear breakdown at analytic simple zeros, not a quantum decay claim, a nonlinear exclusion of every completion, or a calculation of recombination.
+
+Thus the background route cannot be called a generic regular cold-sector cosmology on its smooth Friedmann history alone. The next repair must either avoid the relevant zeros, provide a principled regular-amplitude selection, or demonstrate a nonlinear continuation with the physical invariants controlled. Varying the MOND scale A does not alter these quadratic equations and cannot repair this obstruction within the retained action.
+
 Root revalidated26 current manifests across the horizon, source extension, original-equation residual audit, linear boundary projection, p57 functional, free-clock stress and homogeneous-current calculations. Expected failed controls are retained. The failed negative-argument invocation and historical p57 endpoint-cancellation run are not physical failures or current scientific evidence. Written derivations provide the universal claims; finite checks and valid manifests do not prove the requested full theory.
 
 Next: execute the nonlinear source boundary conditions rather than treating a finite zero as closure; derive matter/radiation perturbations on the actual homogeneous history; and evaluate additional response observables or a principled action restriction against the exact EFE-null family. The original goal, general-dimensional screen, classical scale and independent prediction requirements remain unchanged.
