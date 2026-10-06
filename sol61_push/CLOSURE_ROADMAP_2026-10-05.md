@@ -1,6 +1,9 @@
 # Sol61 resumed: closure order for both fronts
 
 **Neither the complete gravity theory nor the 32pi derivation is closed.**
+The third lane, [cold_component](cold_component/README.md), makes explicit the
+real dark-matter mass retained by candidate B, its separate wave-field proposal
+and the still unproved identification with the MOND effective density.
 The new folders are [main_theory](main_theory/README.md) and
 [puzzle_32pi](puzzle_32pi/README.md). They preserve the original September 30
 work and treat peer-session files as read-only evidence.

@@ -1,0 +1,111 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_COLD_IDENTITY_A",
+  "repository": {
+    "commit": "8d407875387a0cb091b56d953b8a878da8ef160a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_component/identity_checks.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Vacuum-offset independence, harmonic amplitude freedom, zero local averaged pressure and conserved-charge scaling.",
+    "coefficient_domain": "Exact Sympy expressions over real canonical scalar parameters",
+    "conventions": "c=hbar=1; canonical real oscillator in fixed geometry; charge/scale^3 is a toy conserved-density family",
+    "inputs": [
+      "sol61_push/cold_component/identity_checks.py"
+    ],
+    "bounds": {
+      "family": "Positive mass/amplitude, one exact harmonic period, two mass-bookkeeping values",
+      "wall_seconds": 30
+    },
+    "non_claims": [
+      "No FRW abundance prediction",
+      "No physical identity selection",
+      "No full FL1 action or halo construction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-06T00:52:50.999446+00:00",
+    "runtime_seconds": 0.307404,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_component/identity_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_component/identity_checks.py",
+      "sha256": "5181a46472c91a60d3c02730a3cc795d4ce90b4924f6818aede4d8423fb46f22",
+      "sha256_after": "5181a46472c91a60d3c02730a3cc795d4ce90b4924f6818aede4d8423fb46f22"
+    }
+  ],
+  "output_directory": "sol61_push/cold_component/runs/identity_a",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_component/runs/identity_a/stdout.txt",
+      "sha256": "c4ee62862230108448dfdd0f2e3419180ee3ebc2c83b9871556857b6f8e8ef62",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_component/runs/identity_a/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
