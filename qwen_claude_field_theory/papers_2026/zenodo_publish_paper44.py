@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Publish PAPER44 (no external-field effect: satellites, Cassini, outer Solar System) to Zenodo (production).
-Reads ZENODO_ACCESS_TOKEN from /Users/carlzimmerman/new_physics/.env -- NEVER printed.
+Reads ZENODO_ACCESS_TOKEN from the .env one level above the repository -- NEVER printed.
 Uploads the PDF + the .md source, attaches the .zenodo.json metadata, and publishes (irreversible).
 Usage: python zenodo_publish_paper44.py            # create + publish
        python zenodo_publish_paper44.py <dep_id>   # reuse an existing draft id
