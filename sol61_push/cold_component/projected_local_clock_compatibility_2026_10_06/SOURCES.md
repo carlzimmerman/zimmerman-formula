@@ -1,0 +1,8 @@
+# Exact action input pins
+
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/REPORT.md SHA256 6c385dfd264e9721d56acc53a825f210a4a329daa508209782a5d42ac53d26b6
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/scalar_constraint_probe/REPORT.md SHA256 46a248a9296e5715809644173685d63d419b264b97ee632b4fa719264196870b
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/scalar_constraint_probe/physical_source_dictionary/REPORT.md SHA256 1e00e37969773c17795ae8ca4035b9d4d8fbe3829118425689d21341ff83111e
+- sol61_push/cold_component/projected_mode_mean_geometry_2026_10_06/REPORT.md SHA256 bb60a2bb28979e755778ed5704f504294bd0e5dfb94ff4cef17a17250b5c0eef
+
+No external theorem used. Clock acceleration identity independently derived from normalized hypersurface normal; torus proof uses direct integration by parts. Root proposed candidate; independently reconstructed before adoption. Main independent temporal-Noether reconstruction reported separately; no peer code imported.
