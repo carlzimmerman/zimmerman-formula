@@ -1,0 +1,17 @@
+# Independent review of the sibling positive-Laplace route
+
+I read the actual `../positive_laplace/REPORT.md` and `checks.py` after correcting the abandoned power-law D expression during live coordination. The current P2 baseline uses a different, correctly differentiated response; the earlier erroneous expression is not used in its evidence.
+
+Verdict: accepted as a **conditional NR nonselection theorem**, with physical passivity, covariant health and additive-vacuum selection explicitly unproved. The following reconstruction is independent of the author's test verdict.
+
+For a(y)=sqrt(1+1/y)−1, integrating1/[2sqrt(y)sqrt(y+s)] froms0 to1 recovers a exactly. Both inverse square roots and the quadratic cutoff have positive Gamma-integral Laplace densities; convolution is nonnegative, establishing complete monotonicity. With x=y/T, direct differentiation gives D=1+(s−2+1/s)/(1+x)²−4x a/(1+x)³, s=sqrt(1+1/y). The positive middle numerator is(s−1)²/s; a<=1/(2y) gives D>=1−2/T. Therefore T>2 supplies the nonzero-field full NR Hessian guarantee, and both deep and UV endpoint conditions hold.
+
+For delta e=A/(1+y/Y)^4, the Gamma density normalization is AY⁴ t³ exp(−Yt)/6. Independently substitutingy=Yv in integral y delta e dy gives AY² Beta(2,2)=AY²/6. Differentiation gives delta D=2A(1−3x)/(1+x)^5, and its magnitude is at most2A. The n-th derivative magnitude is(4)_n A/Y^n/(1+y/Y)^(4+n), so the stated uniform finite-jet bound is exact. The additional response is bounded atzero and falls asy^-4, preserving deep amplitude1 and the original y^-3 coefficientT²/2. SettingA=6Delta/Y² establishes the arbitrary positive moment shift while every fixed finite derivative norm tends tozero. The full source map remains invertible under the stated strict margin.
+
+The independent quadrature forms also match: rationalizingy a gives1/(sqrt(1+1/y)+1), then s=sqrt(1+1/y) produces the stated second integral2sT²/[(s+1)(T(s²−1)+1)²]. Strict positive-integrand monotonicity and domination prove the scalar C(T) fit is unique. The numerical root is a fitted control, not a selector.
+
+Minor range distinction: every C>0 has a fitted T>0, but the sufficient static-admissibility bound is established only forT>2. Thus the statement does not guarantee an admissible baseline for every arbitrarily small C. The target32pi control hasT≈202.37 and lies safely inside the proved range. This precision does not affect the arbitrary upward shifts from that baseline.
+
+The proof establishes discontinuity of the vacuum moment under the stated unweighted finite-derivative norms on this mathematical response class. It supplies no physical-time passive susceptibility or Källén–Lehmann acceleration dictionary, and neither action is claimed to be a verified covariant completion. The smallest missing implication remains a microscopic nonlinear action and weighted-tail/vacuum normalization constraint. An exact equality on an open interval would trigger analytic uniqueness; the finite-precision construction does not assert that equality.
+
+Accepted correction: the coordinator clarified the report's fitted-T versus sufficient-admissibility range. The revised report SHA256 is`72b6ccb7491a470ada901cbd45529f88247f46ca470ace0b6bc8dca35e5ff4c6`; script unchanged. The coordinator's fresh`main_b_range_precision`pins that revision. The old source registry/review hash and scientific manifests remain historical records; they were not rewritten. This clarification resolves the minor range point and leaves the mathematical verdict unchanged.
