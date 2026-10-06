@@ -1,0 +1,98 @@
+CFG355 -- tidal rule T1 with a cold-rank veto: f = H(l2 - tau) * V, V = 1 - [rank sigma_c == 2].  Criteria: FROZEN_CRITERIA.md (3f59dab1b).
+
+  T1 (CFG354): l2 of t = Hessian psi >= tau = (Delta_ta - 1)/3.  rank (CFG351): rank of the stream-sum dispersion sigma_c.
+  Generic host rank model (CFG351 self-similar caustics): r < lam2 rank 3; lam2 < r < lam1 rank 2 (3 streams); r > lam1 rank 0.
+MUTATE: CFG355_MUTATE=1 -> veto rank == 3 instead; must switch OFF host interiors and fail (b) or (d); outputs *_MUTATE; exit 1.
+Run: python3 campaign_fresh_gravity/CFG355_tidal_plus_rank_switch/cfg355_tidal_rank_switch.py
+
+  *** CFG355_MUTATE=1: the veto reads rank == 3 (host interiors) instead of rank == 2 ***
+
+====================================================================================================
+K0  CFG354 re-run without the veto (V = 1): T1 numbers must be identical
+====================================================================================================
+  [PASS] K0 CFG354 T1 reproduced without the veto (1e-12): max |diff| per block {'a_linear': 0.0, 'a_prime_T1': 0.0, 'hosts_T1': 0.0, 'width_T1': 0.0, 'lens_T1': 0.0}
+  CFG351 caustics: lam1 0.3589 r_ta (3 streams inside), lam2 0.2321 r_ta (>= 5 streams inside)
+
+====================================================================================================
+LEGALITY: T1 part (CFG354 L1-L4) + rank-part state-function stress
+====================================================================================================
+  [PASS] L legality: CFG354 L1-L4 (T1 part) + rank part zero stress (tr(s)s - s^2 = 0 on rank 1, e2 = 0 on rank 1, sigma adj sigma = det I): CFG354 L True; rank-1 identity 2.6e-16; e2(rank 1) 3.1e-16; adj identity on 3-stream states 2.1e-17; V = 1 - H(e2)(1 - H(det)) is a state function (CFG351 conservation applies)
+
+====================================================================================================
+(a) LINEAR: ON(f) subset ON(T1); FRW rank 0
+====================================================================================================
+  [PASS] (a) combined OFF on FRW + linear field (inherits T1 ON = 0; V <= 1): T1 linear max ON 0.0; FRW sigma_c = 0 -> rank 0
+
+====================================================================================================
+(a') A1  CFG353 compensated cells, rank map: cylinder core rank 2, plane core rank 1, outside rank 0
+====================================================================================================
+  cyl  delta   1 x 5: T1 ON 0.0000 -> combined 0.0000 (T1 ON outside the core: False)
+  cyl  delta   1 x10: T1 ON 0.0000 -> combined 0.0000 (T1 ON outside the core: False)
+  cyl  delta   2 x 5: T1 ON 0.0000 -> combined 0.0000 (T1 ON outside the core: False)
+  cyl  delta   2 x10: T1 ON 0.0000 -> combined 0.0000 (T1 ON outside the core: False)
+  cyl  delta   5 x 5: T1 ON 0.0400 -> combined 0.0400 (T1 ON outside the core: False)
+  cyl  delta   5 x10: T1 ON 0.0100 -> combined 0.0100 (T1 ON outside the core: False)
+  cyl  delta  10 x 5: T1 ON 0.0400 -> combined 0.0400 (T1 ON outside the core: False)
+  cyl  delta  10 x10: T1 ON 0.0100 -> combined 0.0100 (T1 ON outside the core: False)
+  planes: T1 = 0 in all cells (middle eigenvalue 0) -> combined 0
+
+====================================================================================================
+(a') A2  separable Zel'dovich A = (1, 0.7, 0.45): T1 from the FFT tidal tensor, rank = # multistream axes, truth = TA3
+====================================================================================================
+  D 1.0 (0 axes crossed; max delta    66.1): T1 ON 0.0094 | combined ON 0.0094 | false ON T1 0.0094 -> combined 0.0094 (by rank {0: 0.009412977430555556, 1: 0.0, 2: 0.0, 3: 0.0}) | TA3 0.0000 | vetoed TA3 0.0000
+  D 1.1 (1 axes crossed; max delta   122.1): T1 ON 0.0108 | combined ON 0.0108 | false ON T1 0.0108 -> combined 0.0108 (by rank {0: 0.010814525462962963, 1: 0.0, 2: 0.0, 3: 0.0}) | TA3 0.0000 | vetoed TA3 0.0000
+  D 1.2 (1 axes crossed; max delta   144.2): T1 ON 0.0147 | combined ON 0.0147 | false ON T1 0.0146 -> combined 0.0146 (by rank {0: 0.011402271412037037, 1: 0.00316478587962963, 2: 0.0, 3: 0.0}) | TA3 0.0001 | vetoed TA3 0.0000
+  D 1.3 (1 axes crossed; max delta   195.7): T1 ON 0.0181 | combined ON 0.0181 | false ON T1 0.0179 -> combined 0.0179 (by rank {0: 0.011899594907407407, 1: 0.006031177662037037, 2: 0.0, 3: 0.0}) | TA3 0.0002 | vetoed TA3 0.0000
+  D 1.4 (1 axes crossed; max delta   255.2): T1 ON 0.0207 | combined ON 0.0207 | false ON T1 0.0204 -> combined 0.0204 (by rank {0: 0.011646412037037037, 1: 0.008770978009259259, 2: 0.0, 3: 0.0}) | TA3 0.0003 | vetoed TA3 0.0000
+  D 1.5 (2 axes crossed; max delta   301.7): T1 ON 0.0229 | combined ON 0.0229 | false ON T1 0.0227 -> combined 0.0227 (by rank {0: 0.011112919560185185, 1: 0.011546947337962963, 2: 0.0, 3: 0.0}) | TA3 0.0003 | vetoed TA3 0.0000
+  D 1.6 (2 axes crossed; max delta   376.6): T1 ON 0.0252 | combined ON 0.0252 | false ON T1 0.0249 -> combined 0.0249 (by rank {0: 0.008725766782407407, 1: 0.014142071759259259, 2: 0.0019892939814814816, 3: 0.0}) | TA3 0.0004 | vetoed TA3 0.0002
+  D 1.7 (2 axes crossed; max delta   432.1): T1 ON 0.0305 | combined ON 0.0305 | false ON T1 0.0303 -> combined 0.0303 (by rank {0: 0.007279007523148148, 1: 0.02020037615740741, 2: 0.002785011574074074, 3: 0.0}) | TA3 0.0003 | vetoed TA3 0.0003
+  D 1.8 (2 axes crossed; max delta   546.8): T1 ON 0.0318 | combined ON 0.0318 | false ON T1 0.0312 -> combined 0.0312 (by rank {0: 0.005859375, 1: 0.019323278356481483, 2: 0.006013093171296296, 3: 0.0}) | TA3 0.0006 | vetoed TA3 0.0006
+  D 1.9 (2 axes crossed; max delta   335.2): T1 ON 0.0374 | combined ON 0.0374 | false ON T1 0.0368 -> combined 0.0368 (by rank {0: 0.00758644386574074, 1: 0.02302155671296296, 2: 0.006175853587962963, 3: 0.0}) | TA3 0.0007 | vetoed TA3 0.0006
+  D 2.0 (2 axes crossed; max delta   416.2): T1 ON 0.0406 | combined ON 0.0406 | false ON T1 0.0396 -> combined 0.0396 (by rank {0: 0.006772641782407407, 1: 0.023799189814814815, 2: 0.00902416087962963, 3: 0.0}) | TA3 0.0011 | vetoed TA3 0.0010
+  D 2.1 (2 axes crossed; max delta   772.7): T1 ON 0.0392 | combined ON 0.0392 | false ON T1 0.0380 -> combined 0.0380 (by rank {0: 0.004195601851851852, 1: 0.02068865740740741, 2: 0.013111255787037037, 3: 0.0}) | TA3 0.0013 | vetoed TA3 0.0012
+  D 2.2 (2 axes crossed; max delta   590.9): T1 ON 0.0425 | combined ON 0.0425 | false ON T1 0.0409 -> combined 0.0409 (by rank {0: 0.004358362268518518, 1: 0.021891276041666668, 2: 0.01468460648148148, 3: 0.0}) | TA3 0.0018 | vetoed TA3 0.0016
+
+====================================================================================================
+(a') A3 (reported)  cylindrical top-hat, EdS: pre-crossing window with delta >= 2 tau (rank 0)
+====================================================================================================
+  2D turnaround at delta_lin 0.832 (delta_nl 2.50); delta_nl = 2 tau = 3.034 at delta_lin 0.888; crossing at delta_lin 1.467
+  pre-crossing T1-ON window (rank 0, not vetoed): d ln a = 0.502 (52.9% of the age at crossing)
+
+  A4 (reported) uniform Ferrers ellipsoids are homogeneous -> one rank for the whole body: crossed in 2 axes (rank 2) -> combined 0; pre-crossing (rank 0) -> T1 values (prolate 1.000); oblate 0 either way.
+  A5 host volume vetoed (generic shell lam2-lam1): 3.37% of the r_ta volume, 12.7% of the isothermal phantom mass inside r_ta
+     + 3 feeding filaments, core beta = 0.1 r_ta (lam1 < r < r_ta): volume 1.44%, phantom mass 1.3%
+     + 3 feeding filaments, core beta = 0.2 r_ta (lam1 < r < r_ta): volume 5.77%, phantom mass 5.4%
+     + 3 feeding filaments, core beta = 0.3 r_ta (lam1 < r < r_ta): volume 12.98%, phantom mass 12.1%
+  [PASS] (a') A1 (cells, virialised rank map) false ON 0 AND A2 (Zel'dovich sheet/filament stages) false ON 0: A1 max combined 0.1111; A2 max false ON combined 0.0409 (T1 alone 0.0409)
+
+====================================================================================================
+(b) HOSTS: T1 ON at 30 kpc (CFG354) and rank 3 at 30 kpc (30 kpc < lam2 r_ta), no flicker
+====================================================================================================
+  [FAIL] (b) combined ON at 30 kpc on 24/24 (T1 P >= 0.99, fidelity) + rank at 30 kpc not vetoed + no flicker: T1 True; 30 kpc / (lam2 r_ta) max 0.734; rank at 30 kpc [3]; ON 0/24; gas compression leaves r_ta (and the caustics) fixed; rank invariant under congruence -> 0 flips
+
+====================================================================================================
+(c) EDGE + WELL-POSEDNESS
+====================================================================================================
+  generic rank model: continuously ON from 30 kpc up to 0.000-0.000 r_ta (OFF shell 0.232-0.359, ON again 0.359 -> T1 edge); offsets 176-2684 kpc; 0/24 within 100 kpc
+  reported: outermost ON radius = T1 edge 0.954-0.993 r_ta (24/24 within 100 kpc); R1 radial orbits (rank 1) and R2 phase-mixed (rank 3) -> no hole, edge = T1 edge
+  W0 eps = l1 - l2 at 960 sampled edge points: min eps/(c_d Delta/6) 0.732, median 153, violations 1
+  W0 direction scan on one edge sphere: min (l1 - l2)/|t_ext| = 1.21e-03 at 4 near-degenerate points (Poincare-Hopf: a line field on S^2 must have singularities -> exact l1 = l2 points exist on every tidally perturbed edge); there the in-plane bound on c_d is 3.76e-03 > 0 while eps_self -> 0
+  W0 does NOT count as a derived width -> constants n = 1 (eps_min = 7.681e-02, smearing <= 1.577e-02 r_ta)
+  framework scales: a0 gives per-system lengths (no dimensionless tidal width); xi has no fixed value in the record -> not used
+  c2: T1 with width eps_min -> V_b/V_c^2 <= 1; the rank part has zero switch stress at caustics (L); front impulse |L_M|/(rho_c sigma_c^2) at caustics 0.061-9.8 (CFG351, reported)
+  [FAIL] (c) c1 generic edge (continuously ON from 30 kpc) within 100 kpc on 24/24 AND c2 well-posed (with width): 0/24; generic edge 0.000-0.000 r_ta; outer ON edge 24/24 (reported)
+
+====================================================================================================
+CONTROLS
+====================================================================================================
+  [PASS] K1 ideal filament (uniform cylinder core, rank 2) vetoed: cylinder cores combined ON 0, T1 never ON outside the core: False
+  [PASS] K2 isothermal halo (isotropic sigma, rank 3 everywhere) ON to its edge: isolated T1 edges [0.9998789925736847, 0.9998789925736847, 0.9998474761551097, 0.9998474761551097, 0.9998129294540755, 0.9998129294540755]
+  [PASS] K3 plane OFF regardless of rank (middle eigenvalue 0): all plane cells T1 = 0
+
+====================================================================================================
+VERDICT pre-(d); (d) scored by cfg355_edge_harness.py
+====================================================================================================
+  failures before (d): ['b', 'c']; constants n = 1
+  runtime 31 s
+  MUTATE detected (b fails: host interiors OFF): True
