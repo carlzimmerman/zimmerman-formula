@@ -1,0 +1,59 @@
+CFG361 analysis: CFG359's nonlinear PM growth test redone with B's bookkeeping.  Criteria: FROZEN_CRITERIA.md (6373544c3).
+Reads the run JSONs written by cfg361_pm.py (via cfg361_run_all.py) in ../_external_data/cfg361_work/; S0 at 256^3 and
+CFG359's additive T1 A0-FLAT JSONs are read READ-ONLY from ../_external_data/cfg359_work/ (fallback: this lane's own S0).
+Scores T5 (primary; A0-FLAT = lane verdict, A0-CRIT separate, A0-DE reported), S (own verdicts), T5F / S1T5 reported;
+controls K1-K6.  Never pooled across footings or branches.  Writes cfg361_pm_growth_T5.out / _results.json here.
+Run from the repository root:  python3 campaign_fresh_gravity/CFG361_pm_growth_T5_bookkeeping/cfg361_pm_growth_T5.py
+
+====================================================================================================
+MODEL: CFG359 engine copy; only the ON-cell source changes (T5 / S / T5F / ADD); kappa = 1/2 fixed; nu_mono
+====================================================================================================
+  ** The ONLY LCDM input: the linear EH no-wiggle spectrum for the Zel'dovich ICs at z_i = 49 (CFG324). **
+  S0 = Newtonian control (not 'LCDM'). Box 200 Mpc/h, 256^3 on 256^3, seed 359, 150 KDK steps. No dark-matter particle.
+
+====================================================================================================
+K6  Delta_ta(z) vs CFG354 K4 (11.806 at z = 0, 6.412 at z = 1)
+====================================================================================================
+  [PASS] K6 Delta_ta reproduces CFG354 K4 (1%): 11.806 / 6.412
+  S0 256^3 source: CFG359 (read-only); sigma8 z0 0.9064
+
+====================================================================================================
+RATIOS TO S0 at z = 0 (sigma8 ratio; max |P ratio - 1| for k <= 1 h/Mpc; P ratio at k = 0.1/0.3/1), plus ON diagnostics
+====================================================================================================
+  T5_FLAT_canonical_N256     s8 1.2049  Pdev 0.7496  P@0.1/0.3/1 1.359 / 1.549 / 1.602 | z0.5 1.1142 z1 1.0573 | ON vol 0.0280 <f>_mass 0.5227 | phantom-dominated share of ON mass 0.958
+  T5_FLAT_alt_N256           s8 1.2573  Pdev 0.9716  P@0.1/0.3/1 1.460 / 1.707 / 1.782 | z0.5 1.1477 z1 1.0763 | ON vol 0.0290 <f>_mass 0.5369 | phantom-dominated share of ON mass 0.970
+  T5_CRIT_canonical_N256     s8 1.5025  Pdev 1.9977  P@0.1/0.3/1 1.989 / 2.546 / 2.356 | z0.5 1.3870 z1 1.2641 | ON vol 0.0315 <f>_mass 0.5704 | phantom-dominated share of ON mass 0.936
+  T5_CRIT_alt_N256           s8 1.5929  Pdev 2.3335  P@0.1/0.3/1 2.209 / 2.885 / 2.411 | z0.5 1.4590 z1 1.3146 | ON vol 0.0324 <f>_mass 0.5863 | phantom-dominated share of ON mass 0.951
+  T5_DE_canonical_N256       s8 1.1903  Pdev 0.6872  P@0.1/0.3/1 1.332 / 1.505 / 1.554 | z0.5 1.0982 z1 1.0440 | ON vol 0.0278 <f>_mass 0.5205 | phantom-dominated share of ON mass 0.960
+  T5_DE_alt_N256             s8 1.2388  Pdev 0.8884  P@0.1/0.3/1 1.425 / 1.650 / 1.713 | z0.5 1.1278 z1 1.0596 | ON vol 0.0287 <f>_mass 0.5343 | phantom-dominated share of ON mass 0.972
+  S_FLAT_canonical_N256      s8 1.1938  Pdev 0.6931  P@0.1/0.3/1 1.343 / 1.512 / 1.564 | z0.5 1.1077 z1 1.0537 | ON vol 0.0279 <f>_mass 0.5217 | phantom-dominated share of ON mass 0.960 | S: 12251 regions, <f_ex>_mass 0.000
+  S_FLAT_alt_N256            s8 1.2489  Pdev 0.9273  P@0.1/0.3/1 1.446 / 1.678 / 1.752 | z0.5 1.1428 z1 1.0737 | ON vol 0.0289 <f>_mass 0.5363 | phantom-dominated share of ON mass 0.972 | S: 11451 regions, <f_ex>_mass 0.000
+  S_CRIT_canonical_N256      s8 1.4905  Pdev 1.8861  P@0.1/0.3/1 1.972 / 2.496 / 2.213 | z0.5 1.3825 z1 1.2625 | ON vol 0.0314 <f>_mass 0.5698 | phantom-dominated share of ON mass 0.941 | S: 9264 regions, <f_ex>_mass 0.000
+  S_CRIT_alt_N256            s8 1.5834  Pdev 2.2499  P@0.1/0.3/1 2.192 / 2.844 / 2.333 | z0.5 1.4550 z1 1.3131 | ON vol 0.0324 <f>_mass 0.5858 | phantom-dominated share of ON mass 0.955 | S: 8685 regions, <f_ex>_mass 0.000
+  T5F_FLAT_canonical_N256    s8 1.0995  Pdev 0.3978  P@0.1/0.3/1 1.167 / 1.258 / 1.364 | z0.5 1.0505 z1 1.0236 | ON vol 0.0236 <f>_mass 0.4268 | phantom-dominated share of ON mass 0.956
+  T5F_FLAT_alt_N256          s8 1.1198  Pdev 0.4891  P@0.1/0.3/1 1.201 / 1.316 / 1.425 | z0.5 1.0623 z1 1.0296 | ON vol 0.0236 <f>_mass 0.4238 | phantom-dominated share of ON mass 0.970
+  ADD_FLAT_canonical_N256    s8 1.5815  Pdev 2.5660  P@0.1/0.3/1 2.141 / 2.869 / 2.834 | z0.5 1.3781 z1 1.2140 | ON vol 0.0325 <f>_mass 0.5866 | phantom-dominated share of ON mass 0.893
+  ADD_FLAT_alt_N256          s8 1.6452  Pdev 2.8448  P@0.1/0.3/1 2.296 / 3.118 / 2.930 | z0.5 1.4220 z1 1.2396 | ON vol 0.0332 <f>_mass 0.5979 | phantom-dominated share of ON mass 0.921
+  S1T5_FLAT_canonical_N256   s8 1.3165  Pdev 1.0961  P@0.1/0.3/1 1.590 / 1.854 / 1.870 | z0.5 1.2005 z1 1.1182 | ON vol 0.0304 <f>_mass 0.5670 | phantom-dominated share of ON mass 0.955
+  S1T5_FLAT_alt_N256         s8 1.3973  Pdev 1.3896  P@0.1/0.3/1 1.762 / 2.097 / 2.125 | z0.5 1.2613 z1 1.1604 | ON vol 0.0316 <f>_mass 0.5877 | phantom-dominated share of ON mass 0.967
+
+====================================================================================================
+DECISION (frozen; per branch; both footings; never pooled)
+====================================================================================================
+  T5   A0-FLAT: FAIL      (max |sigma8 ratio - 1| 0.2573; max |P ratio - 1| k<=1 0.9716)  [LANE VERDICT]
+  T5   A0-CRIT: FAIL      (max |sigma8 ratio - 1| 0.5929; max |P ratio - 1| k<=1 2.3335)  [separate branch]
+  T5   A0-DE  : FAIL      (max |sigma8 ratio - 1| 0.2388; max |P ratio - 1| k<=1 0.8884)  [reported only]
+  S    A0-FLAT: FAIL      (max |sigma8 ratio - 1| 0.2489; max |P ratio - 1| k<=1 0.9273)  [S reading, own verdict]
+  S    A0-CRIT: FAIL      (max |sigma8 ratio - 1| 0.5834; max |P ratio - 1| k<=1 2.2499)  [S reading, own verdict]
+  T5F  A0-FLAT: TENSION   (max |sigma8 ratio - 1| 0.1198; max |P ratio - 1| k<=1 0.4891)  [reported only]
+  S1T5 A0-FLAT: FAIL      (max |sigma8 ratio - 1| 0.3973; max |P ratio - 1| k<=1 1.3896)  [reported only]
+  ADD  A0-FLAT: FAIL      (max |sigma8 ratio - 1| 0.6452; max |P ratio - 1| k<=1 2.8448)  [control = CFG359 T1]
+
+====================================================================================================
+CONTROLS K1-K5
+====================================================================================================
+  [PASS] K1 ADD reproduces CFG359 T1 A0-FLAT sigma8 ratio (|d| <= 0.01, both footings): canonical: 1.5815 vs 1.5815 | alt: 1.6452 vs 1.6452
+  [PASS] K2 T5 linear (amp 0.01) matches D(a) to 1% (k <= 0.1): {"z1": 0.00179, "z0.5": 0.00188, "z0": 0.00194}; ON vol z0 0.00e+00
+  [PASS] K3 MUTATE (s_c := 0 in the max) sigma8 ratio exceeds T5's by > 0.01 (both footings): canonical: MUTATE 1.5833 vs T5 1.2049 | alt: MUTATE 1.6473 vs T5 1.2573
+  [FAIL] K4 resolution: T5 A0-FLAT canonical verdict unchanged 128^3 -> 256^3: 1.1510 (128^3, TENSION) vs 1.2049 (256^3, FAIL)
+  [PASS] K5 monotonicity (reported): sigma8(T5) <= sigma8(ADD) and <= sigma8(S1T5), both footings: canonical: T5 1.2049, ADD 1.5815, S1T5 1.3165 | alt: T5 1.2573, ADD 1.6452, S1T5 1.3973
