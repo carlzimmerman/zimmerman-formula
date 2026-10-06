@@ -145,3 +145,26 @@ lensing), not done here. Not excluded yet; not supported either.
 - The binding uses an isothermal/log potential with an external-field cutoff, and T5's max applied to the potential.
 - This is a necessary condition only: passing it would not have supplied a mechanism.
 - The cold fluid is still required. κ = ½ is fitted.
+
+## cm14: the cooling-window pattern (cold fluid only where gas cannot cool): INCONCLUSIVE, underpowered
+`cm14_cooling_window.py`; criteria `cm14_FROZEN_CRITERIA.md` (8c5d1ada2). 1/1 checks.
+
+**MUTATE FAILS and is kept.** A +0.10 dex injection into the HOT galaxies is recovered at only 1.9σ, so it does not reach SUPPORTED. With 5 HOT discs the SPARC test cannot see a 0.1 dex jump.
+
+**Scored result: SPARC within discs.**
+- Only 5 of 163 discs are above the cm12 step (M_b > 10^11.36): NGC 801, NGC 6195, UGC 2487, UGC 2885, UGC 11455. None are above 10^11.62.
+- Outer-residual jump D = +0.046 ± 0.076 (canonical, 0.60σ) and +0.048 ± 0.074 (alt, 0.65σ).
+- So it is neither supported nor contradicted: the 2σ upper bound of 0.20 lies above 0.05.
+
+**Population table (reported, not scored).** All 9 rows fall on the side the hypothesis expects:
+- ultra-faints are COLD and need extra;
+- classical dSphs, spirals, the Milky Way, non-central ETGs and massive HI discs are MID and low;
+- super spirals (+0.164 dex, 2.34σ), groups and clusters are HOT and high.
+
+Two caveats on that table:
+- The step itself was located in cm12 against the MW-to-groups bracket, so the table is not independent of it.
+- The typical M_b values for the massive HI discs (2e11) and super spirals (5e11) are rough, not measured per galaxy. The massive HI discs sit just under the step (T 1.8e6 K).
+
+**Bug fix (disclosed).** The first run double-converted radii, because load_sparc already returns metres. That run's output was garbage (every disc HOT) and was discarded. The fix happened before any scored number existed.
+
+**What would decide it.** Rotation curves of discs with M_b > 2.5e11, either super spirals with resolved curves or a larger sample. There is no mechanism, and the cold fluid is still required.
