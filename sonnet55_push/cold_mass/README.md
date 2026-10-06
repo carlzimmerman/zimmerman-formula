@@ -233,3 +233,18 @@ Reading: if the published satellite masses hold, galaxy satellites carry a full 
 satellite galaxies is in strong tension, and so is a strong EFE. Consistent with the record's UFD-satellite failure of B (3.5-3.8 sigma, CFG28-29).
 MUST be confirmed by reading Sifon+2018's tables (mass definitions: fitted truncated-NFW total M_sub vs mass inside r_t) before it is cited.
 This bears on the Gaia DR4 Arm C reading (exactly Newtonian wide binaries under ownership) -- flag to the orchestrator; no pre-registration edits here.
+
+## cm14b: cm14 on Sifon+2018's ACTUAL table -- cluster satellites carry their FULL phantom; no external-field suppression, no ownership
+`cm14b_sifon_table.py` (1/1; MUTATE a0 -> 0 fails A). Supersedes cm14's summary-based numbers. Fetch: data_assembly/sifon2018/.
+MENeaCS cluster satellites (host ~10^15.5, <R_sat> 0.66-0.93 Mpc), five M* bins (log 9.51-11.01), m_bg 4.4e10-1.4e12 Msun inside r_bg (estimated 36-149 kpc
+by matching an isothermal subhalo to the NFW host's local density -- approximation). The host field at the satellites is strong: g_ext 0.59-0.81 a0.
+| reading | chi2 / 5 bins | mean offset (data - model) |
+|---|---|---|
+| A full MOND boost (+ 13% retained cold) | **0.7** (p 0.98) | **+0.01 dex** |
+| B boost suppressed by the host's external field (1-D) | 99.7 (p 6e-20) | +0.81 dex |
+| C candidate B's ownership (no phantom in bound satellites) | 131.6 (p 1e-26) | +0.93 dex |
+Reading: cluster satellites lens as if they keep their FULL phantom -- no sign of the external-field effect (which at 0.6-0.8 a0 should cut the boost
+several-fold) and no sign of the ownership rule. LCDM also fits these data (it is the paper's own model), so this does not discriminate against LCDM;
+it discriminates AMONG the framework's readings: it favours a metric MOND sector whose switch does NOT respond to a uniform external field (the SEP-respecting
+class discussed 10-05/06, which also passes Cassini Q2 and the TNOs) and disfavours candidate B's ownership rule for satellite galaxies.
+Caveats: r_bg estimated, not tabulated; 1-D EFE approximation (a full QUMOND EFE is anisotropic; at g_ext ~ a0 it still suppresses strongly); M_b = 1.2 M*.
