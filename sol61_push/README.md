@@ -4,6 +4,8 @@ Work requested by Carl on 2026-09-29: review the recent Claude research, identif
 
 The original goal remains OPEN. A new partial result is not a completed theory.
 
+The current [Claude continuation checkpoint](CLOCK_COMPLETION_STATE_2026-10-06.md) reconciles the constrained electromagnetic repair, carrier tensor/force response, and the new scoped coefficient-selector obstructions. It preserves the remaining source, phase-space, recombination and coefficient requirements.
+
 - [Continuum response identification](puzzle_32pi/claude_p57_efe_2026_10_06/continuum_external_field/REPORT.md): an exact quadrupole/vacuum-moment sum rule, ideal whole-kernel injectivity, and a classical general-dimensional extension. It does not select32pi. [Radiation background and perturbations](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/radiation_extension/REPORT.md) extend the actual cosmology and retain a generic clock-invariant crossing obstruction.
 
 - [Boundary conditions and cold-state meaning](BOUNDARY_AND_COLD_STATE_2026-10-06.md): exact source-mode separation, a local horizon no-selection theorem, free-clock stress versus dust, a homogeneous charge-fold condition, and Claude p57's quadrupole/vacuum-moment independence. The latest [coupled perturbation audit](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/fold_health/REPORT.md) and [simple-crossing theorem](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/fold_health/canonical_crossing/REPORT.md) identify generic linear clock-invariant divergence at affected mode crossings.
