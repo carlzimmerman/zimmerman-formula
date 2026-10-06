@@ -22,3 +22,6 @@ The phantom-OFF rows (cm10's literal question, matter only): CMB lensing passes 
 **Scope.** This is a halo-model scaffold on a LCDM halo population (colossus planck18). The phantom is spherical, sourced by point-mass baryons and truncated at r_sw or the EFE radius. It is not the framework-native PM calculation (CFG359/CFG361). Controls 4/4. MUTATE (moved mass dropped) fails T0c, rc 1.
 
 Run: `python3 cfg363_lensing_kill.py` (~6 s).
+
+## Scope correction (appended after the run; no number changed)
+The frozen model sources lensing **additively** (baryons + cold + phantom). The record calls that the additive reading, "NOT B" (CFG338 reading A; CFG361 criteria). So CFG363 kills the **additive reading** at the lensing level, in parallel with CFG359's additive growth FAIL. It does **not** test candidate B's T5 max / identity bookkeeping (dark mass = max(M_ph, (Omega_c/Omega_b) M_b)) or reading S. The sentence "phantom + conserved cosmic cold mass over-lenses" holds for additive bookkeeping only.
