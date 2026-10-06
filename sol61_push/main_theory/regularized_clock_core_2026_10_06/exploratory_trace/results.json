@@ -1,0 +1,57 @@
+{
+  "checks": [
+    {
+      "name": "high_density_regular_center",
+      "passed": true,
+      "detail": "actual center polynomial with fluidrho6e6,p4; positive physical force"
+    },
+    {
+      "name": "bounded_conserved_fluid_surface",
+      "passed": false,
+      "detail": "p0 event from exact fluid pressure; exterior same metric/clock state, no independent mass/charge input"
+    },
+    {
+      "name": "bounded_source_tolerance_agreement",
+      "passed": false,
+      "detail": "source target not reached within declared bounds"
+    }
+  ],
+  "center": {
+    "x": -0.16835016905728112,
+    "pole": -0.16835016835016836,
+    "n2": 50000030.625843205,
+    "b2": 100000060.70917374,
+    "f2": 100000061.22334462,
+    "density": 6000012.0,
+    "epsilon": 0.01,
+    "trace_relative_residual": 2.9362715699374405e-16
+  },
+  "runs": [
+    {
+      "tol": 1e-07,
+      "success": false,
+      "message": "math range error",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/main_theory/regularized_clock_core_2026_10_06/core.py\", line 63, in <module>\n    fluid=solve_ivp(rhs,(math.log(r0),math.log(rupper)),y0,method='Radau',rtol=tol,atol=np.array([tol*1e-7,tol*1e-7,tol*1e-2,tol*1e-7]),max_step=.06,events=surface,dense_output=True)\n  File \"/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_ivp/ivp.py\", line 568, in solve_ivp\n    solver = method(fun, t0, y0, tf, vectorized=vectorized, **options)\n  File \"/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_ivp/radau.py\", line 307, in __init__\n    self.h_abs = select_initial_step(\n  File \"/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_ivp/common.py\", line 113, in select_initial_step\n    f1 = fun(t0 + h0 * direction, y1)\n  File \"/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_ivp/base.py\", line 154, in fun\n    return self.fun_single(t, y)\n  File \"/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_ivp/base.py\", line 23, in fun_wrapped\n    return np.asarray(fun(t, y), dtype=dtype)\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/main_theory/regularized_clock_core_2026_10_06/core.py\", line 58, in rhs\n    return rhsraw(t,y,inside)\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/main_theory/regularized_clock_core_2026_10_06/core.py\", line 39, in rhsraw\n    r=math.exp(t);lnN,lnB,w,k=map(float,y)\nOverflowError: math range error\n",
+      "nfev": 2,
+      "elapsed": 0.003987000000000018
+    },
+    {
+      "tol": 3e-08,
+      "success": false,
+      "message": "math range error",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/main_theory/regularized_clock_core_2026_10_06/core.py\", line 63, in <module>\n    fluid=solve_ivp(rhs,(math.log(r0),math.log(rupper)),y0,method='Radau',rtol=tol,atol=np.array([tol*1e-7,tol*1e-7,tol*1e-2,tol*1e-7]),max_step=.06,events=surface,dense_output=True)\n  File \"/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_ivp/ivp.py\", line 568, in solve_ivp\n    solver = method(fun, t0, y0, tf, vectorized=vectorized, **options)\n  File \"/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_ivp/radau.py\", line 307, in __init__\n    self.h_abs = select_initial_step(\n  File \"/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_ivp/common.py\", line 113, in select_initial_step\n    f1 = fun(t0 + h0 * direction, y1)\n  File \"/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_ivp/base.py\", line 154, in fun\n    return self.fun_single(t, y)\n  File \"/Users/carlzimmerman/Library/Python/3.9/lib/python/site-packages/scipy/integrate/_ivp/base.py\", line 23, in fun_wrapped\n    return np.asarray(fun(t, y), dtype=dtype)\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/main_theory/regularized_clock_core_2026_10_06/core.py\", line 58, in rhs\n    return rhsraw(t,y,inside)\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/sol61_push/main_theory/regularized_clock_core_2026_10_06/core.py\", line 39, in rhsraw\n    r=math.exp(t);lnN,lnB,w,k=map(float,y)\nOverflowError: math range error\n",
+      "nfev": 2,
+      "elapsed": 0.00015700000000001824
+    }
+  ],
+  "control": false,
+  "software": {
+    "numpy": "1.26.2"
+  },
+  "non_claims": [
+    "No cosmological normalized boundary condition",
+    "No full finitegradient stability",
+    "No epsilon selector",
+    "Numerical solution not certified globalexistence"
+  ]
+}

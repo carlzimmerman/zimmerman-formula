@@ -1,0 +1,1 @@
+Pre-200k implementation snapshot. exploratory_phases records the finite interior success and per-phase20000-evaluation exterior cap. Those exploratory records were not outer-runner authenticated; retained for honest route history. Larger case was explicitly requested by root from the radial-frequency estimate.
