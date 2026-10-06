@@ -19,3 +19,10 @@ Criteria: `FROZEN_CRITERIA.md`, committed alone first in 9e7ae79a1. cm12's cooli
 Controls C1, C2 PASS. MUTATE (cooling x100) moves e(MW) from 0.83 to 0.00 in the R2 cells and flips S2's passing cells, rc 1.
 
 Run: `python3 cfg369_dissipation.py` (seconds).
+
+## Forward fix (appended after CFG370; no frozen number edited)
+The copied cm12 cooling function is 10x too low: its unit is 1e-22, not 1e-23 (bremsstrahlung floor check, CFG370 POST-FREEZE 1). With the corrected cooling (CFG370 POST-FREEZE 2):
+- S2 passes only in the R2 / f_hot 1 cells (MW 3.2 H_L canonical / 2.5 alt; cluster 0.02 H_L).
+- The R1 cells now FAIL (clusters too fast, 3.5-8.8 H_L).
+- S3 still FAILS: MW 0.15 / 0.23, groups 0.96 against 0.60.
+The headline "the cooling-keyed rate resolves the pincer" holds only in the R2 cells.

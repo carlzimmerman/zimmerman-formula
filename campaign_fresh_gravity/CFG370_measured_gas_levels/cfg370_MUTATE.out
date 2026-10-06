@@ -1,0 +1,36 @@
+CFG370 measured-gas retention levels  (MUTATE: cooling x100)
+==============================================================================
+Controls
+  [PASS] C1 copied cooling reproduces cm12's crossing (canonical R1 fhot1): nan vs 11.623
+  [PASS] C2 isothermal local-density rule rho(R) = M/(4 pi R^3) for an r^-2 profile: exact
+
+Milky Way 30 kpc: rho 5.29e-28 g/cm^3 (n_H 2.29e-04); t_cool 0.44 Gyr at 2e6 K [0.23, 0.68]
+Groups (Lovisari, N 20): t_cool(R500) median 33.2 Gyr (16-84%: 23.6-48.6)
+Clusters (X-COP, N 12): t_cool(R500) median 41.9 Gyr (16-84%: 39.7-55.9)
+
+Predicted unsettled fraction e = exp(-tau/t_cool) vs measured (bands +-0.05 / +-0.15 / +-0.15)
+  tau z2 (primary)  10.3 Gyr: MW 0.000 [0.000-0.000] (n 23.58) | groups 0.733 (n 0.31) | clusters 0.782 (n 0.25)  -> FAIL
+  tau z1             7.7 Gyr: MW 0.000 [0.000-0.000] (n 17.63) | groups 0.793 (n 0.23) | clusters 0.832 (n 0.18)  -> FAIL
+  tau z4            12.2 Gyr: MW 0.000 [0.000-0.000] (n 27.93) | groups 0.693 (n 0.37) | clusters 0.747 (n 0.29)  -> FAIL
+
+POST-FREEZE 1: the cooling normalisation inherited from cm12 (x1e-23) checked against the bremsstrahlung floor
+  free-free at 1 keV: 5.80e-24;  TN C2 term with 1e-23: 5.80e-25 (x10.0 BELOW the physical floor); with 1e-22: 5.80e-24 (ratio 1.00)
+  -> the TN normalisation is 1e-22; cm12 (and CFG369, which copied it) under-cool by x10. Corrected below.
+  corrected, LOCAL at the anchor radius (the frozen reading): MW 0.000 | groups 0.045 | clusters 0.086 -> FAIL [False, False, False]
+  corrected, ENCLOSED average within the anchor radius: MW 0.000 | groups 0.005 | clusters 0.012 -> FAIL [False, False, False]
+  corrected MW t_cool(30 kpc) = 0.04 Gyr (T bracket 0.02-0.07); n = tau/t_cool = 235.81 (e^-n floor)
+
+POST-FREEZE 2: CFG369's S2/S3 with the corrected cooling (x10 faster)
+  canonical|R1|fhot1.0: Gamma/H_L MW 4.37e+06 grp 1.04e+04 cl 7.04e+02 | e MW 0.000 grp 0.000 cl 0.000 | S2 fail S3 fail
+  canonical|R1|fhot0.5: Gamma/H_L MW 2.19e+06 grp 5.20e+03 cl 3.52e+02 | e MW 0.000 grp 0.000 cl 0.000 | S2 fail S3 fail
+  canonical|R2|fhot1.0: Gamma/H_L MW 3.21e+02 grp 6.96e+00 cl 2.11e+00 | e MW 0.000 grp 0.017 cl 0.290 | S2 fail S3 fail
+  canonical|R2|fhot0.5: Gamma/H_L MW 1.60e+02 grp 3.48e+00 cl 1.05e+00 | e MW 0.000 grp 0.129 cl 0.538 | S2 PASS S3 fail
+  alt|R1|fhot1.0: Gamma/H_L MW 4.61e+06 grp 1.26e+04 cl 8.77e+02 | e MW 0.000 grp 0.000 cl 0.000 | S2 fail S3 fail
+  alt|R1|fhot0.5: Gamma/H_L MW 2.30e+06 grp 6.32e+03 cl 4.38e+02 | e MW 0.000 grp 0.000 cl 0.000 | S2 fail S3 fail
+  alt|R2|fhot1.0: Gamma/H_L MW 2.54e+02 grp 6.36e+00 cl 1.97e+00 | e MW 0.000 grp 0.024 cl 0.313 | S2 fail S3 fail
+  alt|R2|fhot0.5: Gamma/H_L MW 1.27e+02 grp 3.18e+00 cl 9.87e-01 | e MW 0.000 grp 0.154 cl 0.560 | S2 PASS S3 fail
+
+VERDICT (tau since z = 2): FAIL
+  [FAIL] T-MUT main-run marker (MUTATE must change the verdict): FAIL
+
+2/3 pass  (MUTATE)
