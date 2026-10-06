@@ -619,3 +619,11 @@ Added metric (declared after the quick run, before the full run): survivors unde
 i.e. on the steady-state-like measure the turn-off is WORSE than the case VNT24 found to overpopulate the detached disk; the exact law (0.20) is milder because its
 strong monopole precession quenches the quadrupole cycles. Small-number caveat: K2 keeps only 23 of 150 survivors. Net: the TNO objection to y_t ~ 129 is NOT lifted;
 the decisive version needs Neptune scattering (a full N-body source population), out of scope here.
+
+## 67. p58: Cassini bounds kappa for our kernel in QUMOND -- the 32 pi route's own theory class fails
+`p58_cassini_kappa_bound.py` (2/2; MUTATE external field x0.1 fails both). Q2(a0) for nu = sqrt(1+1/y), observed Galactic field fixed, field-equation solver.
+Cassini (Hees+ 2014, (3 +- 3)e-27 s^-2): kappa < 0.110 (1 sigma), < 0.171 (2 sigma), < 0.236 (3 sigma). kappa = 1/2 sits at +6.3 sigma; the gas-point value 0.44 at +5.7.
+Galaxies need kappa 0.44-0.60 -> this is the KNOWN RAR-vs-Q2 tension (STANDING, Desmond-Hees-Famaey 2024) expressed as a bound on kappa.
+Consequence for the puzzle: every vacuum route so far (BIMOND/QUMOND vacuum = Lambda, p21-p57) lives in the modified-POTENTIAL class that Cassini rejects at kappa = 1/2.
+A derivation of kappa = 1/2 must come from a theory OUTSIDE that class (modified inertia, or a field theory that screens the external-field quadrupole) -- and in such a
+theory the vacuum integral Lambda c^4 = int (g - g_N) dg_N does not exist in this form. The 32 pi puzzle and the Cassini tension are the same open problem.
