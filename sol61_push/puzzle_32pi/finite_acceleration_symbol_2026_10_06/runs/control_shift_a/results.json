@@ -1,0 +1,204 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "name": "EH_trace_from_three_eigenvalues",
+      "passed": true
+    },
+    {
+      "name": "exact_shift_at_v_zero",
+      "passed": true
+    },
+    {
+      "name": "planar_shift_square_zero",
+      "passed": true
+    },
+    {
+      "name": "planar_shift_derivative_square_zero",
+      "passed": true
+    },
+    {
+      "name": "linear_shift_momentum",
+      "passed": true
+    },
+    {
+      "name": "solved_shift_constraint",
+      "passed": false
+    },
+    {
+      "name": "generic_auxiliary_block_reduction",
+      "passed": true
+    },
+    {
+      "name": "planar_highk_kinetic",
+      "passed": true
+    },
+    {
+      "name": "Hamiltonian_lapse_ODE",
+      "passed": true
+    },
+    {
+      "name": "momentum_h_gradient",
+      "passed": true
+    },
+    {
+      "name": "transverse_shift_Schur",
+      "passed": true
+    },
+    {
+      "name": "inverse_regular_(1.0, 0.0)",
+      "passed": true
+    },
+    {
+      "name": "inverse_regular_(1.0, 0.01)",
+      "passed": true
+    },
+    {
+      "name": "inverse_regular_(10.0, 0.0)",
+      "passed": true
+    },
+    {
+      "name": "inverse_regular_(10.0, 0.01)",
+      "passed": true
+    },
+    {
+      "name": "inverse_regular_(100.0, 0.0)",
+      "passed": true
+    },
+    {
+      "name": "inverse_regular_(100.0, 0.01)",
+      "passed": true
+    },
+    {
+      "name": "inverse_regular_(1000.0, 0.0)",
+      "passed": true
+    },
+    {
+      "name": "inverse_regular_(1000.0, 0.01)",
+      "passed": true
+    },
+    {
+      "name": "cutoff_negative_longitudinal",
+      "passed": true
+    },
+    {
+      "name": "epsilon_highclock_negative_0.001",
+      "passed": true
+    },
+    {
+      "name": "epsilon_highclock_negative_0.01",
+      "passed": true
+    },
+    {
+      "name": "epsilon_highclock_negative_0.1",
+      "passed": true
+    }
+  ],
+  "response_examples": [
+    {
+      "kernel": "cutoff",
+      "y": 1.0,
+      "epsilon": 0.0,
+      "clock_a_over_A": 1.414188640035207,
+      "CL": 0.057143408047765964,
+      "CT": 0.2928807574249045,
+      "planar_highk_sign": "positive"
+    },
+    {
+      "kernel": "cutoff",
+      "y": 1.0,
+      "epsilon": 0.01,
+      "clock_a_over_A": 1.414188640035207,
+      "CL": 0.047143408047765956,
+      "CT": 0.2828807574249045,
+      "planar_highk_sign": "positive"
+    },
+    {
+      "kernel": "cutoff",
+      "y": 10.0,
+      "epsilon": 0.0,
+      "clock_a_over_A": 10.485169147788119,
+      "CL": 0.0005482504686439293,
+      "CT": 0.04627194286994085,
+      "planar_highk_sign": "positive"
+    },
+    {
+      "kernel": "cutoff",
+      "y": 10.0,
+      "epsilon": 0.01,
+      "clock_a_over_A": 10.485169147788119,
+      "CL": -0.00945174953135608,
+      "CT": 0.03627194286994084,
+      "planar_highk_sign": "negative"
+    },
+    {
+      "kernel": "cutoff",
+      "y": 100.0,
+      "epsilon": 0.0,
+      "clock_a_over_A": 100.31138892715221,
+      "CL": -0.0023373072449730525,
+      "CT": 0.003104223064624767,
+      "planar_highk_sign": "negative"
+    },
+    {
+      "kernel": "cutoff",
+      "y": 100.0,
+      "epsilon": 0.01,
+      "clock_a_over_A": 100.31138892715221,
+      "CL": -0.012337307244973061,
+      "CT": -0.006895776935375242,
+      "planar_highk_sign": "negative"
+    },
+    {
+      "kernel": "cutoff",
+      "y": 1000.0,
+      "epsilon": 0.0,
+      "clock_a_over_A": 1000.0081717030974,
+      "CL": -1.607444949791592e-05,
+      "CT": 8.171636321274711e-06,
+      "planar_highk_sign": "negative"
+    },
+    {
+      "kernel": "cutoff",
+      "y": 1000.0,
+      "epsilon": 0.01,
+      "clock_a_over_A": 1000.0081717030974,
+      "CL": -0.010016074449497925,
+      "CT": -0.009991828363678734,
+      "planar_highk_sign": "negative"
+    },
+    {
+      "kernel": "uncut",
+      "epsilon": 0.001,
+      "clock_a_over_A": 22.34390577008709,
+      "exact_threshold_a_over_A": 11.171952885043545,
+      "CL": -0.0007497184919896815
+    },
+    {
+      "kernel": "uncut",
+      "epsilon": 0.01,
+      "clock_a_over_A": 7.017923929582525,
+      "exact_threshold_a_over_A": 3.5089619647912627,
+      "CL": -0.0074716151977172185
+    },
+    {
+      "kernel": "uncut",
+      "epsilon": 0.1,
+      "clock_a_over_A": 2.064741604835056,
+      "exact_threshold_a_over_A": 1.032370802417528,
+      "CL": -0.0719086448808699
+    }
+  ],
+  "formulae": {
+    "planar_momentum": "d_x[zdot/N0-(h-b/(2K))*nu]=0",
+    "planar_kinetic": "K*Qaa*k^2/[2*N0*(h-b/(2K))^2]",
+    "generic_template_kinetic": "K*C*k^2/[D^2-S*C/2]"
+  },
+  "control": "shift",
+  "non_claims": [
+    "No full on-shell time-evolution existence",
+    "No every-orientation finite-jet symbol proof",
+    "No all-galaxy branch ghost result",
+    "No UV EFT completion supplied"
+  ]
+}

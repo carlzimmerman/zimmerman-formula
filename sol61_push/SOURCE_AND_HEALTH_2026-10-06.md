@@ -1,0 +1,43 @@
+# Source regularity and constrained clock health
+
+The full theory and 32pi goal remain OPEN. Building on Claude's CFG353–354 tidal-switch and p35/p54/p56 turnoff investigations now gives a sharper separation between a successful exterior integration, an actual source, and a healthy dynamical completion. CFG355's cold-rank veto is the next live input; its independent continuation is not included as a completed result here.
+
+## What the new source calculation establishes
+
+[The conserved-fluid interior derivation](main_theory/flowing_clock_interior_2026_10_06/REPORT.md) varies the actual matter lapse, radial metric and shift sources. With a regular clock and physical center, the critical quadratic acceleration response removes the center coefficient needed to balance a dense static fluid. In four dimensions its necessary condition is
+
+`rho0+3p0 <= (3 K_E/2)[(eta+2)^2 H^2-8 eta H^2 ln N0]`.
+
+A weakly normalized, high-density source fails this condition. A high-force cutoff leaves this low-gradient obstruction intact. The nonanalytic MOND cusp has a curvature cost, and the proposed flow cancellation also fails the exact momentum equation under the stated regular-metric/finite-fluid assumptions. These are scoped source obstructions, not a no-go for every MOND action or nonstationary source.
+
+[The independent source audit](main_theory/claude_cfg353_2026_10_06/CENTRAL_SOURCE_PEER_AUDIT.md) reconstructs the coefficients. [The general-dimensional extension](main_theory/center_dimension_2026_10_06/REPORT.md) uses the actual critical coefficient `(n-1)/[2(n-2)]`, rather than copying the four-dimensional normalization. The adjustable center term cancels for all n>=3 in the displayed analytic derivation; exact finite action checks cover n=3..8.
+
+The previously accepted [finite exterior continuation](puzzle_32pi/flowing_clock_matching_2026_10_06/REPORT.md) remains an exterior result. [Its source-gate assessment](puzzle_32pi/flowing_clock_matching_2026_10_06/SOURCE_GATE_STATUS.md) records why that numerical success does not supply a regular physical source for the unchanged critical action.
+
+## What the dynamical calculation establishes
+
+[The finite-acceleration symbol](puzzle_32pi/finite_acceleration_symbol_2026_10_06/REPORT.md) now eliminates both lapse and longitudinal shift in a planar vacuum sector. Its leading scalar kinetic coefficient is
+
+`K_E Q_aa k^2 / [2 N0 (h-b/(2K_E))^2]`.
+
+Negative response curvature gives a physical negative kinetic direction in this sector, rather than merely an auxiliary lapse sign. Constraint-compatible initial slices with those coefficients exist locally. A full evolving background realizing them remains the exact missing implication; it is being pursued separately. The [independent raw-action review](puzzle_32pi/claude_cutoff_clock_2026_10_06/freefall_escape/FINITE_SYMBOL_PEER_AUDIT.md) confirms both auxiliary eliminations and this scope.
+
+A positive force excess that returns to zero must decrease somewhere. Under the monotone inverse clock dictionary, that decrease produces negative Q_aa. Thus the unchanged action cannot satisfy the report's health requirement on every admitted planar jet across the full turnoff range, subject to the explicitly stated dynamical-background admission premise. This does not diagnose every galaxy or exclude every different MOND theory.
+
+Detuning the quadratic response by a positive epsilon can restore the missing center freedom, but introduces another parameter and a high-clock negative-curvature region. For uncut P2, epsilon=.01 crosses that sign at clock acceleration `3.508961965 A`. The live conserved-fluid detuned-core experiment is testing whether its actual solution can remain below this threshold while matching an exterior. No completed match is claimed here.
+
+## The low-clock escape remains substantive
+
+[The freefall-clock calculation](puzzle_32pi/claude_cutoff_clock_2026_10_06/freefall_escape/REPORT.md) constructs a leading weak branch with large physical metric force but small clock acceleration. Solar metric acceleration therefore cannot be inserted directly into Q_aa without solving the clock. Its [isolated sign-crossing calculation](puzzle_32pi/claude_cutoff_clock_2026_10_06/freefall_escape/sign_crossing/REPORT.md) also supplies local vacuum crossing data and a short two-sided integration. At a single clock zero, the derivative of the response remains in the lapse equation; an entire geodesic interval is a different condition. Neither local result supplies the global source-to-cosmology connection.
+
+## Why these clues still do not select 32pi
+
+[The scale-identifiability lemma](main_theory/center_dimension_2026_10_06/SCALE_IDENTIFIABILITY_LEMMA.md) displays an exact family with identical vacuum symmetry, homogeneous vacuum, quadratic cosmology and leading regular-center equations, but different nonlinear response scale A. Consequently no condition using only those inputs fixes A/H. A nonlinear boundary/health condition or a new physical coupling could provide new information; it must be derived. The BIMOND kernel-vacuum dictionary cannot be transplanted into this KGB action by naming the same interpolating function.
+
+The [recombination and growth lane](recombination_and_structure_growth/README.md) remains another necessary constraint on such a completion: it needs cold perturbation support, the right pressure and density/velocity transfer, and conserved same-action sources. The exact constant-pressure dust/vacuum stress decomposition leaves an independent cold initial amplitude. None of the source or clock results here identifies that cold component or removes its abundance freedom.
+
+## Verification and next calculations
+
+Current authoritative source b-runs, general-dimensional main/control runs, independent center runs, freefall and crossing runs, and finite-symbol main/controls were revalidated by root. Sixteen current manifests validate. The two historical interior a-runs intentionally retain the old extraction code hashes; they do not validate against the changed current script and are not counted as current evidence. Their original source/contract and explanation are preserved under historical_a. Failed mutation runs are expected controls, not successful science runs.
+
+The next discriminating work is: the conserved-fluid detuned core and exterior; actual planar time evolution or a finite-symbol audit on a sourced clock; and Claude CFG354/355's improved orientation/rank reader with its full variational transition stress. These are live investigations. No coefficient, complete stable galaxy, cold identity, or cosmological closure is asserted.

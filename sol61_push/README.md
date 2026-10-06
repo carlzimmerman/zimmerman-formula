@@ -4,6 +4,8 @@ Work requested by Carl on 2026-09-29: review the recent Claude research, identif
 
 The original goal remains OPEN. A new partial result is not a completed theory.
 
+- [Source regularity and constrained clock health](SOURCE_AND_HEALTH_2026-10-06.md): a regular-source obstruction with correct general-dimensional normalization, a physical planar kinetic-sign test after constraints, and a remaining low-clock escape. The global source match and coefficient remain open.
+
 - [Building on the latest Claude work](CLAUDE_FOLLOWUPS_2026-10-06.md): reconciles cold-stream/turnaround readers, tidal and lapse-action limits, and the high-force cutoff with the dynamical clock bridge.
 
 - [New Claude CFG353 follow-ups](main_theory/claude_cfg353_2026_10_06/LAPSE_AUXILIARY_AUDIT.md): variable-lapse auxiliary action audit, [tidal/ownership discrimination](cold_component/claude_cfg353_2026_10_06/REPORT.md), and a phase-information no-go for density-only turnaround readers.

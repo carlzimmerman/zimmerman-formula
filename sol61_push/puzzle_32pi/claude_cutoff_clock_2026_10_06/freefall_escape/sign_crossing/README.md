@@ -1,0 +1,7 @@
+# Isolated-zero local branch connection
+
+`REPORT.md` derives the exact crossing conditions and their physical-force dictionary. `checks.py` implements the signed cutoff response and integrates the actual stationary vacuum equations over r0±1e−6. `runs/main_a` is the load-bearing bounded run; the three control runs must fail. `contract.json` lists tested ranges and explicit non-claims; `provenance.json` records actual concurrent-session HEAD, input hashes, interpreter and package versions.
+
+At an isolated clock-gradient zero, the response current contains U_a′=2a′. Dropping it incorrectly enforces expansion3H*. This differs from a geodesic interval a≡0. A locally admissible sign change exists, but mass-dominated crossing data must have substantially less radial inflow than the inner freefall profile. Global MOND/freefall/cosmological matching and a conserved interior are unresolved.
+
+To reproduce, use the computation-audit standard runner with this contract, every `execution_artifacts` entry as `--input`, a fresh output directory, and `/usr/bin/python3 checks.py --output <new-run>/results.json`; cap wall60s, CPU45s and numerical threads1. The negative controls are `--control omit_Uprime`, `freefall_orientation`, and `pressure_sign`. Validate all generated manifests. No primary-source download is needed for these local checks; the prior action/source authentication registry documents cached source restoration separately.
