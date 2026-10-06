@@ -499,3 +499,11 @@ and a low Hubble-flow set (ratio 1.66, ~2 sigma).
 On the TRGB/Cepheid set: alt footing (rho_crit, the ORIGINAL a0 = c sqrt(G rho_c)/2) +2.4% (0.1 sigma); 32 pi turn-off +9%; kappa = 1/2 rho_Lambda +24% (1.1 sigma);
 Verlinde 6 rho_L +28%; Milgrom 2pi rho_L +34% (1.5 sigma). **p44's 'data favour the rho_Lambda footing' rested on the mixed sample; the best-distance subset leans the
 other way.** 8 galaxies at 20% cannot decide; WALLABY (p43, all Hubble flow) is in the low group, consistent with a Hubble-flow distance bias. kappa = 1/2 stays FITTED.
+
+## 54. LITTLE THINGS (Oh+2015) a0 (`p47`, 1/2; pre-written overlap check FAILED, kept; MUTATE no DM subtraction fails A) -- 2026-10-05
+VizieR J/AJ/149/180 (fetch: first attempt saved 404 pages for un-gzipped names, discarded; .gz versions match the ReadMe row counts). Baryons = V_tot^2 - V_DM^2 with the
+AUTHORS' stellar M/L (not Upsilon-free); distances Hunter+2012 (mostly TRGB, not re-verified). 22 galaxies, 720 points, y ~ 0.03.
+**a0 = 7.80e-11 +- 41% (stat)**; outer half 6.95e-11. vs kappa = 1/2 rho_L -17% (0.45 sigma), alt -31%, SPARC TRGB gas points -33%.
+Overlap with SPARC (DDO 154, DDO 168, NGC 2366): per-galaxy a0 LITTLE THINGS / SPARC = 1.58, 2.42, 1.60 (median 1.60) -- the two pipelines (different baryon
+decompositions, inclinations, distances) disagree by ~60% on the SAME galaxies. Reading: per-galaxy baryon modelling, not just distances, moves a0 by tens of percent;
+LITTLE THINGS adds no precision. Across p41b/p43/p46/p47 the cleanest estimates span 0.70-1.16e-10 by method. kappa = 1/2 stays FITTED.
