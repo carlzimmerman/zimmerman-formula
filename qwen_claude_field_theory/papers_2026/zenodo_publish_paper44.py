@@ -7,7 +7,7 @@ Usage: python zenodo_publish_paper44.py            # create + publish
 """
 import json, os, sys, urllib.request, urllib.error
 
-ENV   = "/Users/carlzimmerman/new_physics/.env"
+ENV   = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".env")
 FILES = ["PAPER44_efe_blind_mond_2026.pdf", "PAPER44_efe_blind_mond_2026.tex", "fig1_paper44_satellites.pdf", "fig2_paper44_widebinaries.pdf"]
 META  = "PAPER44_efe_blind_mond_2026.zenodo.json"
 BASE  = "https://zenodo.org/api"
