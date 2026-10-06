@@ -1,0 +1,112 @@
+CFG348 -- a switch that reads the baryonic specific ENERGY eps_b = |v_b|^2/2 + U instead of the expansion theta_b?
+(criteria: FROZEN_CRITERIA.md, committed alone first)
+
+MS check of the chassis's U; routes E1 (baryonic potential, MS1 door d), E2 (MOND-sector potential, door c), E3 (CFG347's
+dynamical structure with an eps trigger).  Tests (a) FRW-off, (b) bound ON + fidelity, (c) transition health.
+Controls: C1 (CFG347's theta_b failure), C2 (GR limit), MUTATE (threshold sign flipped).
+DE12's transition(), L341's growth harness and L340's output are read/exec'd read-only (no file of theirs is written).
+
+  *** CFG348_MUTATE=1: threshold sign flipped -- W = 1 - S(eps/eps_on), ON at eps <= 0 ***
+
+  DE12 transition() loaded read-only (24 hosts); |S'|max = 2.000, |S''|max = 9.841
+  r_ta 177-3312 kpc; zero-constant eps_on = a0 c/H0 = canonical 0.143 c^2, alt 0.172 c^2
+
+==============================================================================================================
+MS  IS THE CHASSIS'S U BARYONIC?  (record: L340 H1, C-H's scalar block)
+==============================================================================================================
+  L340 (record): omega -> 0:  psi/psi_N = -2*(C + 1)/(C*alpha_c + alpha_c - 2),  phi/psi_N = -2*(C + 1)/(C*alpha_c + alpha_c - 2),  U/psi_N = -2/(C*alpha_c + alpha_c - 2),  beta = 0
+  alpha_c -> 0: U/psi_N = 1; psi_N = -R/(4k^2) is sourced by the TOTAL matter R coupling to g (CFG329 G9: matter couples to g only), i.e. baryons + the cold carrier
+  [PASS] MS1 the chassis's auxiliary U is the Newtonian potential of ALL matter (carrier included): MS1's curvature/matter door, which leaks 0.06-2300x the carrier's gravity at region edges once the gate is varied -> NOT admissible as the reader
+         measured: U/psi_N = 1 (alpha_c -> 0)
+         reading:  the proposal's U violates the record rule; E1 (baryonic U_b, door d) and E2 (lap(Phi - v), door c) are the admissible replacements
+
+==============================================================================================================
+S  SYMBOLIC: FRW shell identity; velocity-reading inertia; baryonic escape theorem
+==============================================================================================================
+  shell energy H^2 r^2/2 - GM(<r)/r - Lambda r^2/6 with Friedmann H^2 = 8piG rho/3 + Lambda/3 - k/a^2: -k*r**2/(2*a**2)  -> 0 for flat FRW: the Hubble flow sits EXACTLY at eps = 0 (marginally bound), whatever Lambda
+  L = rho v^2/2 + B W(v^2/2 + U) about v = v_c e_1 (W1 = W', W2 = W'' at eps_0): inertia matrix [[B*W1 + B*W2*v_c**2 + rho, 0], [0, B*W1 + rho]]  -> m_par = rho + B (W' + W'' v_c^2), m_perp = rho + B W'
+  baryonic energy of a steady circular MOND orbit (point mass): eps_b = g_N*r*(nu - 2)/2  (> 0 iff nu > 2); flat curve: eps_b = v_f^2/2 - GM/r > 0 beyond r* = 2*sqrt(G)*sqrt(M)/sqrt(a0) = 2 r_M
+  [PASS] S1 symbolic: flat-FRW shell energy = -k r^2/(2a^2) = 0 exactly; velocity-reading gate inertia m_par = rho + B(W' + W'' v^2), m_perp = rho + B W'; baryonic eps_b = g_N r (nu/2 - 1), positive beyond 2 r_M on a flat curve
+         measured: shell = -k*r**2/(2*a**2); m_par = B*W1 + B*W2*v_c**2 + rho; r* = 2*sqrt(G)*sqrt(M)/sqrt(a0)
+
+==============================================================================================================
+C1  CONTROL: CFG347's theta_b failure in (b), exact settings
+==============================================================================================================
+  [PASS] C1 CONTROL: theta_b gate x = 0.1 Omega(30 kpc)/theta_* reproduces CFG347's 0.29-6.6 (3H) and 33-154 (a0/c) within 2%
+         measured: R2 3H: 0.285-6.6; R1 a0/c: 32.7-154
+
+==============================================================================================================
+C2  CONTROL: GR limit (B = 0)
+==============================================================================================================
+  [PASS] C2 CONTROL: B = 0 -> inertia rho (no ghost), the gate drops out, gas + Jeans
+         measured: [[rho, 0], [0, rho]]
+
+==============================================================================================================
+HOSTS  eps at 30 kpc (E1 baryonic, E2 MOND-sector), layer v_B, the theory's minimum width eps_on,min
+==============================================================================================================
+  E1 eps_b(30 kpc)/v_c^2: -0.224..0.389; positive (unbound by the baryons' own Newtonian well) on 16/24
+  E2 eps_ms(30 kpc)/v_c^2: -3.762..-2.165 (|eps| = 160-820 km/s squared)
+  layer v_B median 28-176 km/s; eps_on,min per host 103-469 km/s squared; universal = 2.196e+11 m^2/s^2 = 2.44e-06 c^2
+  DEVIATION (sensitivity, not scored): exact no-ghost minimum per host 105-484 km/s squared (frozen closed form gave 469); universal 2.60e-06 c^2
+
+==============================================================================================================
+(a) FRW: background eps = 0; neighbourhood; L341 growth with the mean gate over the linear (Phi, v) field
+==============================================================================================================
+  linear field z = 0: sigma_Phi = 7.66e-06 c^2 (829 km/s squared), sigma_v = 445 km/s
+  zero-constant a0c/H0     canonical: W(FRW) = 1; W(eps = -1e-3 eps_on) = 1 (no finite OFF neighbourhood iff > 0); <W>(z=0) = 1; growth D/D_LCDM = 28.787723; sigma_8 = 23.3205
+  zero-constant a0c/H0     alt      : W(FRW) = 1; W(eps = -1e-3 eps_on) = 1 (no finite OFF neighbourhood iff > 0); <W>(z=0) = 1; growth D/D_LCDM = 33.925991; sigma_8 = 27.4830
+  eps_on,min (1 constant)  canonical: W(FRW) = 1; W(eps = -1e-3 eps_on) = 1 (no finite OFF neighbourhood iff > 0); <W>(z=0) = 0.506; growth D/D_LCDM = 12.367954; sigma_8 = 10.0191
+  eps_on,min (1 constant)  alt      : W(FRW) = 1; W(eps = -1e-3 eps_on) = 1 (no finite OFF neighbourhood iff > 0); <W>(z=0) = 0.506; growth D/D_LCDM = 14.309752; sigma_8 = 11.5921
+  [FAIL] A1 (a) FRW: W = 0 on the background AND in a finite neighbourhood, growth = LCDM within 1e-6
+         measured: zero-constant a0c/H0/canonical: W_nbhd 1, growth 28.787723; zero-constant a0c/H0/alt: W_nbhd 1, growth 33.925991; eps_on,min (1 constant)/canonical: W_nbhd 1, growth 12.367954; eps_on,min (1 constant)/alt: W_nbhd 1, growth 14.309752
+         reading:  flat FRW is marginally bound (eps = 0 exactly), so a zero threshold puts the Hubble flow ON the gate's edge: every overdensity (delta Phi < 0) leans ON; the linear wells are as deep as galactic ones
+  [PASS] MUTATE growth: the sign-flipped gate is ON on FRW and gives chassis-like fast growth (ratio >= 3)
+         measured: min growth 12.37; sigma_8 23.32, 27.48, 10.02, 11.59
+
+==============================================================================================================
+(b) BOUND: static ON at 30 kpc; fidelity under a 10% compression at Omega(30 kpc)
+==============================================================================================================
+  E1 zero-constant           : static W(30 kpc) = 1 on 24/24 (min W 1); |dW| max 0; gas-mode change max 0
+  E1 eps_on,min              : static W(30 kpc) = 1 on 16/24 (min W 1); |dW| max 7.65e-09; gas-mode change max 1.99e-05
+  E1 exact (sens.)           : static W(30 kpc) = 1 on 16/24 (min W 1); |dW| max 2.09e-09; gas-mode change max 5.86e-06
+  E1 per-host exact (lenient): static W(30 kpc) = 1 on 8/24 (min W 0.621); |dW| max 0.104; gas-mode change max inf
+  E2 zero-constant           : static W(30 kpc) = 1 on 24/24 (min W 1); |dW| max 0; gas-mode change max 0
+  E2 eps_on,min              : static W(30 kpc) = 1 on 24/24 (min W 1); |dW| max 0; gas-mode change max 0
+  E2 exact (sens.)           : static W(30 kpc) = 1 on 24/24 (min W 1); |dW| max 0; gas-mode change max 0
+  E2 per-host exact (lenient): static W(30 kpc) = 1 on 24/24 (min W 1); |dW| max 0; gas-mode change max 0
+  [PASS] B1 (b) E1 baryonic potential: ON at 30 kpc on all 24 hosts, |dW| <= 0.1 and gas mode <= 10%
+         measured: zero-constant True, eps_on,min False; eps_b > 0 on 16/24
+         reading:  MOND-supported orbits outside ~2 r_M exceed the baryons' Newtonian escape speed: a purely baryonic energy calls them unbound
+  [PASS] B2 (b) E2 MOND-sector potential: ON at 30 kpc on all 24 hosts, |dW| <= 0.1 and gas mode <= 10%
+         measured: zero-constant True, eps_on,min True
+         reading:  eps is conserved along steady orbits; in the saturated interior W' = W'' = 0, so a compression changes neither W nor the gas mode
+  [FAIL] B3 (b3) E3 zero-constant dynamical (c_sigma = c, framework mass): reach ell <= r_ta/3.89 and timing on all hosts
+         measured: M = a0/c: min ell/r_ta 7.8e+03; M = H(z): min ell/r_ta 800; M = 3H(z): min ell/r_ta 267
+         reading:  CFG347 T7 is reader-independent: a luminal switch with a Hubble-scale mass averages ANY source over >> r_ta
+
+==============================================================================================================
+(c) TRANSITION: inertia (ghost), gradient, Hadamard; the width the theory picks
+==============================================================================================================
+  zero-constant: min over layers and gate values of m/rho_b = 1.0000 (ghost iff <= 0)
+  eps_on,min   : min over layers and gate values of m/rho_b = -0.1266 (ghost iff <= 0)
+  exact (sens.): min over layers and gate values of m/rho_b = -0.0000 (ghost iff <= 0)
+  note: velocity-reading gate -> its own width is forced from below by the inertia (no-ghost) condition; the frozen closed form undershoots it (ghost at the frozen eps_on,min), the exact minimum is ghost-free by construction
+  [PASS] C3 (c) [frozen eps_on,min scored; zero-constant also] H1 no ghost on the layers for every gate value; H2 the U-dependence enters through the elliptic constraint (~k^-2), principal speeds = the gas's; H3 growth bounded uniformly in k
+         measured: zero-constant: min m/rho 1; eps_on,min: min m/rho -0.127; exact (sens.): min m/rho -9.53e-16
+  E2 width at eps_on,min: ell_eps = eps_on/|d eps/dr| = 181-4.02e+03 kpc at the crossing r = 32-2234 kpc (16/24 cross inside r_ta); tolerance 100 kpc; CFG337 ell_min 183-378 kpc (C2) / 2.9 Mpc (C1)
+  nested wells: sigma_Phi,lin(z=0) = 6.880e+11 m^2/s^2 vs the shallowest host |eps_ms(30 kpc)| = 2.572e+10 and eps_on,min = 2.196e+11
+
+==============================================================================================================
+VERDICT (frozen rule)
+==============================================================================================================
+  E1 baryonic U_b, zero-constant        : (a) F (b) P (c) P; new constants 0 -> PARTIAL
+  E1 baryonic U_b, eps_on,min           : (a) F (b) F (c) F; new constants 1 -> NO-GO
+  E2 MOND-sector U_ms, zero-constant    : (a) F (b) P (c) P; new constants 0 -> PARTIAL
+  E2 MOND-sector U_ms, eps_on,min       : (a) F (b) P (c) F; new constants 1 -> NO-GO
+  E3 dynamical, zero-constant           : (a) F (b) F (c) P; new constants 0 -> NO-GO
+  sensitivity (not scored) E2 at the exact no-ghost eps_on: (a) F (b) P (c) F -> NO-GO; per-host exact (lenient, n = 24) (b) P
+
+  OVERALL: PARTIAL (best: E1 baryonic U_b, zero-constant; E2 MOND-sector U_ms, zero-constant); chassis U excluded (MS-illegal)
+
+  elapsed 9.7 s
+  checks: MS1 PASS, S1 PASS, C1 PASS, C2 PASS, A1 FAIL, MUTATE PASS, B1 PASS, B2 PASS, B3 FAIL, C3 PASS
