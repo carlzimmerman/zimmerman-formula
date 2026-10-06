@@ -1,0 +1,3 @@
+# Dependencies and source scope
+
+Actual action and exact raw contractions: ../REPORT.md and ../CRITICAL_SUPPLEMENT.md, pinned in provenance.json. NR-invisible covariant interaction: ../../NR_invisible_tensor_completion/REPORT.md. The accepted published lapse critique2004.00888v1 applies to a different unsymmetrized action; its exact scope is recorded in ../../literature_check/REPORT.md. No external ghost theorem is imported. The finite-dimensional canonical and local ODE proof is reconstructed here. No claim concerning the original nonsmooth auxiliary kernel or a full spatial constraint algebra.
