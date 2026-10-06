@@ -21,3 +21,8 @@ Criteria 822a6f3ff. Script `cfg367_superradiance.py`, run as 2/2 checks plus MUT
 - The rates are Detweiler's approximation with the factor-2 correction, for l = 1–3. They are approximate at α ~ 0.3–0.5.
 - The stellar masses are a bracket, not per-system values.
 - The cold-fluid amount stays free. κ = ½ is fitted.
+
+**Follow-up (10-06, read only, nothing computed or claimed).** I checked Capellupo et al. 2016 (MNRAS 460, 212; arXiv 1604.05310; Table 3, 37 quasars with thin-disc SED spins) as a way to close the light edge. It cannot, for two reasons:
+- **The spins depend on the fit.** For the same quasar, the X-shooter-only and X-shooter+GALEX fits disagree. For example, J1152+0702 gives 0.98 (+0.05/−0.12) vs 0.15 (+0.63/−0.70). The conservative lower edge is therefore ≲ 0.2 for almost every object.
+- **The well-measured holes are too heavy.** The cleanest high spins are at log M ≈ 9.3–9.5. At m = 2–4.4e-20 eV that gives α ≈ 0.4–1.0, outside superradiance for any spin. The light edge needs spins at M ≈ 0.5–1e9 Msun known to better than about ±0.2.
+- The light edge stays open. Deciding it needs reflection-method or reverberation-calibrated spins near 1e9 Msun, which are not in hand.
