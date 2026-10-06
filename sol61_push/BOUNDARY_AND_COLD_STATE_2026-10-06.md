@@ -30,6 +30,8 @@ The sharper theorem is functional: compact high-y perturbations can preserve exa
 
 The NR QUMOND moment-to-vacuum dictionary remains additional relativistic physics, and cannot be transplanted into the distinct KGB clock action. A new selector must constrain the full action or enough independent nonlinear response information to remove the demonstrated freedom, without inserting32pi.
 
+The [higher-multipole continuation](puzzle_32pi/claude_p57_efe_2026_10_06/higher_multipole_identifiability/REPORT.md) derives the next inner multipole and shows that it does distinguish the earlier quadrupole-null family. A three-bump family nevertheless preserves both multipoles and changes the vacuum moment. More generally, any finite collection of inner even multipoles at finitely many external fields leaves such freedom in the unrestricted smooth-kernel class: their weights decay at high acceleration, whereas the vacuum weight grows. This does not preserve Claude's nonlinear orbital statistics or establish a healthy covariant action. It narrows the required selector to additional physical restrictions rather than another finite inner-multipole constraint alone.
+
 ## Evidence and next discriminating work
 
 ### Coupled perturbation checkpoint after the background calculation
@@ -37,6 +39,8 @@ The NR QUMOND moment-to-vacuum dictionary remains additional relativistic physic
 The [full clock–dust quadratic action](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/fold_health/REPORT.md) now retains the variable-clock boundary term, matter tadpoles, lapse/shift reactions and the actual evolving background. It establishes an instantaneous infrared kinetic band without importing a vacuum coefficient or assuming that its sign alone proves a fatal instability. A fixed comoving mode is positive in the asymptotic early and late limits; affected modes instead encounter an intermediate interval.
 
 The [simple-crossing theorem](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/fold_health/canonical_crossing/REPORT.md) gives a stronger local obstruction: the exact first-order mode equations have a nonzero rank-one nilpotent residue. Generic solutions acquire a logarithmic clock curvature and a pole in the gauge-invariant perturbation of X on constant-clock surfaces. Regular amplitudes form a codimension-one subspace per affected mode. This is a conditional linear breakdown at analytic simple zeros, not a quantum decay claim, a nonlinear exclusion of every completion, or a calculation of recombination.
+
+The [certified comoving link](recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/fold_health/comoving_crossings/SIMPLE_ZERO_LINK.md) locates two actual zeros with exact rational enclosures and certifies their nonzero physical-time slopes. Positive finite clock and constraint data verify the local theorem's hypotheses. Thus the crossing obstruction is realized by an explicit mode on the tuned background, rather than only a possible conditional event.
 
 Thus the background route cannot be called a generic regular cold-sector cosmology on its smooth Friedmann history alone. The next repair must either avoid the relevant zeros, provide a principled regular-amplitude selection, or demonstrate a nonlinear continuation with the physical invariants controlled. Varying the MOND scale A does not alter these quadratic equations and cannot repair this obstruction within the retained action.
 
