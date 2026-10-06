@@ -23,3 +23,11 @@ vs C003's 0.30: median difference +1.04 +- 0.38 -> +2.73 sigma, FAILS (groups ne
 Caveats: definition A is relative to TODAY's baryons and groups have lost baryons (f_b ~ 0.10; CFG34's rho = -0.96), so A > 1 partly measures that loss;
 definition B (relative to the LCDM-like dark mass, bounded by 1) gives 0.37 (b = 0) and 0.60 (b1 = 0.4) -- the same direction, still twice C003's 0.30.
 R500 and M_gas are not re-evaluated at the corrected mass. Reading: C003's "groups largely emptied" signature is disfavoured; groups behave closer to clusters.
+
+## cm04: hot-halo hypothesis on the SLUGGS ellipticals with measured hot gas -- NOT SHOWN (N = 7)
+`cm04_sluggs_hot_halo.py` (1/1; MUTATE shuffles gas, fails R). Already in the record: massive early types FAIL the bare law in their outer GCs
+(+0.098 dex in sigma, 4.0 sigma stat; 2.8 sigma without the 4 group/cluster centrals; AUDIT_SLUGGS 10-03) -- the direction the hot-halo idea needs.
+The sharper test, offset vs MEASURED hot gas (CFG57: 7 galaxies, M_gas < 20 kpc): rho(offset, gas/M*) = +0.32 (p = 0.25); rho(offset, M_gas) = +0.68 (p = 0.054);
+without M87 -0.09 (p = 0.61). The raw-gas trend is carried by the cluster/group centrals (M87, NGC 5846) and vanishes without M87. NGC 4365 (little gas) shows
++0.205. Reading: the ellipticals' excess is real-ish but is not shown to track hot gas; with N = 7 this neither supports nor refutes the hypothesis.
+A decisive version needs X-ray luminosities for all 16-17 (e.g. Kim & Fabbiano 2015 / O'Sullivan catalogues) -- a fetch.
