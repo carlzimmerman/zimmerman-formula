@@ -105,3 +105,19 @@ twice as far (~ -2 to -3 sigma from KiDS if the phantom adds nothing); CMB-lensi
 little room for the predicted -4 to -7% at L 100-400 (~ -3 sigma if the phantom adds nothing). Reading: the two-level picture is in TENSION with CMB lensing
 and overshoots the S8 deficit unless the framework's phantom supplies ~half of the missing small-scale lensing -- the next calculation (cosmological phantom
 lensing), not done here. Not excluded yet; not supported either.
+
+## cm12: the step mass from the cooling criterion with V^4 = G M_b a0: PARTIAL (4 of 8)
+`cm12_cooling_step.py`; criteria `cm12_FROZEN_CRITERIA.md` (d39a20280). 1/1 checks. MUTATE (Λ × 100) moves the step off the grid and writes separate outputs.
+
+**Method.** I set t_cool = t_dyn for hot gas at T = μ m_p V²/2k, with V taken from the framework's virial relation; no ΛCDM halo mass is used.
+
+**Result.**
+- **R1, the MOND radius √(G M_b/a₀)**, the framework's own scale: M_b* = 10^11.36–10^11.62 Msun, V 234–280 km/s, T 2.0–2.9e6 K. This is inside the bracket [6e10, 2.2e12] in all 4 cells, both footings and both f_hot.
+- **R2, gas at 200 × the cosmic baryon density** (the conventional collapse radius): M_b* ≈ 10^9.1–10^9.5. That is too low, outside in all 4 cells.
+- t_cool/t_dyn rises with mass in every cell (slope +1.1 to +1.3), so a cooling step exists.
+
+**Caveats.**
+- The bracket spans 1.56 dex. A random point on the 5-dex grid would land inside it about 31% of the time, so the R1 hit is suggestive, not decisive.
+- R1 puts all the hot gas inside 17–25 kpc. That is the classical maximum-density assumption.
+
+**What this does and does not show.** It places the step but gives no mechanism linking cooling to cold-fluid retention, and it does not explain the levels 0.13 and 0.6. The cold fluid is still required. κ = ½ is fitted.
