@@ -633,3 +633,10 @@ theory the vacuum integral Lambda c^4 = int (g - g_N) dg_N does not exist in thi
 a0(z)/a0(0) = sqrt(rho_DE ratio): z = 2.5 -> 0.80 (DESY5), 0.82 (Pantheon+), 0.78 (Union3); 16-84% bands ~0.6-1.0 (no covariance -> conservative). z = 5 -> 0.51-0.63.
 Low z: a slight RISE first (1.03-1.09 at z = 0.5), then the fall. Rival a0 ~ H(z): 3.74 at z = 2.5. Separation at z = 2.5: tracking -0.10 dex, flat 0, rival +0.57 dex.
 DESI w0, wa values quoted from memory (arXiv:2503.14738) -- PROVISIONAL until checked against the table.
+
+## 69. p60: systematic principle search with a look-elsewhere base rate -- 1/2 is NOT special
+`p60_principle_grammar_search.py` (1/1; MUTATE target 1/3 fails H). 24 standard accelerations (vacuum Gauss masses ball/active/cube/half-S^3/BH at r1 = 1/sqrt(G rho),
+the dS radius and 1/sqrt(Lambda); c^2/R, c^2/2R, dS repulsion) x 3 principle forms (a0 = A, A^2/B deep-MOND matching, sqrt(AB)) = 852 forms; 61 give a rational a0.
+8 give exactly 1/2, all reducing to (i) the definition a0 = c^2/2r* at r* = 1/sqrt(G rho) or (ii) the identity "the dS horizon is the Schwarzschild radius of the
+enclosed vacuum ball" (G M_ball/r_H = c^2/2) divided by a pi-carrying Gauss field. Base rate: among simple-rational outputs, 1 occurs 15x, 1/4 10x, 1/2 8x (15%).
+So a grammar of standard balances "explains" kappa = 1 or 1/4 as easily as 1/2: a hit is a coincidence at the base rate, not a principle.
