@@ -532,3 +532,8 @@ CF4 (Tully+2023, VizieR J/ApJ/944/94, 55,877 galaxies; 446 with TRGB) + CDS Sesa
 - WALLABY: 9 kinematic galaxies have a CF4 rotation-free distance; only 1 has gas points. No usable upgrade.
 Reading: the existing catalogues cannot grow the rotation-free gas-point sample; and the two new TRGB dwarfs sit low, so the TRGB-vs-Hubble-flow split is not purely a
 distance effect (galaxy-to-galaxy scatter, s ~ 0.6 in ln a0, is large). The coefficient question stays open at the 15-20% level. kappa = 1/2 stays FITTED.
+
+## 58. Holographic equipartition (Padmanabhan) as the missing premise (`p51`, 2/2; MUTATE drops hbar from T, fails H, T) -- 2026-10-05
+Premise: the a0 horizon (r = c^2/2a0, T = hbar a0/2 pi c k) is in equilibrium, N_sur = A/l_P^2 = N_bulk = 2|E_Komar|/kT with E_Komar = 2 rho c^2 V for vacuum.
+hbar cancels (a classical relation, as a0 requires) -- the first horizon-thermodynamic premise in the record with that property -- but it gives G rho r^2 = 3/(16 pi) c^2
+(standard), 3/(8 pi) (no Komar factor), 3/(64 pi) (entropy normalisation): p17's one-pi values again, never 1. Not the missing premise. kappa = 1/2 stays FITTED.
