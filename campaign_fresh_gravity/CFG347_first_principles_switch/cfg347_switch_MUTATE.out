@@ -1,0 +1,101 @@
+CFG347 -- a first-principles bound-only switch from the framework's own structure?  (criteria: FROZEN_CRITERIA.md)
+
+Routes: R1 slaved theta_b gate B W(theta_b/theta_*); R2 the leaf comparison theta_* = <K>_h = 3H; R3 a dynamical switch
+sigma with its own kinetic term, sourced by theta_b through C sigma nabla.u_b (a gyroscopic, velocity-linear coupling).
+Tests (a) FRW-off, (b) bound ON + fidelity/reach/timing, (c) transition health; controls C1 (XR36), C2 (GR), MUTATE.
+DE12's transition() and L341's growth harness are exec'd read-only (no file of theirs is written).
+
+  *** CFG347_MUTATE=1: threshold sign flipped -- the switch is ON where theta_b >= theta_on (expanding regions) ***
+
+  DE12 transition() loaded read-only (24 hosts); W''max of the C-inf step = 9.841; c_s(1e6 K) = 117 km/s
+  r_ta range 177-3312 kpc
+
+==============================================================================================================
+S  SYMBOLIC: the slaved gate's kinetic symbol and K-dot force (R1/R2), theta_b of steady flows, R3's dispersion
+==============================================================================================================
+  slaved gate, W1 (first-variation) part of the EL equation: -W1*Derivative(Bf(x), x)*Derivative(thetastar(t), t)/thetastar(t)**2
+  static background (xi = 0): force density = -W1*Derivative(Bf(x), x)*Derivative(thetastar(t), t)/thetastar(t)**2  (zero iff d(1/theta_*)/dt = 0 or W'(0) = 0)
+  compressive kinetic coefficient m(k) = B*W2*k**2/ths**2 + rho  (XR36's H2; a pole/ghost wherever W2 < 0)
+  steady axisymmetric rotation u = v(R,z) e_phi: theta_b = 0; pressure-supported (u = 0): theta_b = 0
+  R3 dispersion (w = omega^2): A*Z*b*rho - A*Z*rho*w - C**2*k**2*w - Z*b*rho*w + Z*rho*w**2 = 0, i.e. (A - w)(b - w) = G w with G = C^2 k^2/(rho Z)
+  discriminant = A**2 + 2*A*G - 2*A*b + G**2 + 2*G*b + b**2  = (A + b + G)^2 - 4 A b > 0 for A, b, G > 0 (real roots); product A b, sum A + b + G
+  principal symbol (k -> oo): (-C**2*v + Z*c_s2*c_sig2*rho - Z*c_s2*rho*v - Z*c_sig2*rho*v + Z*rho*v**2)/(Z*rho) = 0 -> (c_s^2 - v)(c_sig^2 - v) = (C^2/(rho Z)) v: the gyroscopic term is PRINCIPAL (same order); speeds^2 real and positive (product c_s^2 c_sig^2 > 0, discriminant > 0), the larger one >= c_sig^2 + C^2/(rho Z) - c_s^2
+  [PASS] S1 symbolic: slaved m(k) = rho + B W'' k^2/theta_*^2; static force vanishes for constant theta_* (needs d theta_*/dt or W'(0) != 0); steady flows have theta_b = 0; R3 dispersion (A-w)(b-w) = G w, principal (c_s^2-v)(c_sig^2-v) = (C^2/rho Z) v
+         measured: force(static, const theta_*) = 0; theta_b(rotation) = 0; disc identity; principal = (c_s2 - v)(c_sig2 - v) - C^2 v/(rho Z)
+
+==============================================================================================================
+C1  CONTROL: XR36's theta gate (DE12 step, Delta_x = 1, <K>_h = 3H) returns its recorded ghost
+==============================================================================================================
+  [PASS] C1 CONTROL: XR36's 1/k_g range 132-1756 kpc within 1%, ghost at 1/kpc on 24/24
+         measured: 1/k_g 132.2-1756.0 kpc; ghost 24/24
+
+==============================================================================================================
+C2  CONTROL: GR limit (B = 0)
+==============================================================================================================
+  [PASS] C2 CONTROL: with B = 0 (so C = 0 and W-terms vanish) the symbols reduce to gas + Jeans: m(k) = rho > 0, w = A = c_s^2 k^2 - Gamma^2 (growth <= Gamma) and the decoupled sigma (w = b > 0)
+         measured: m = rho; (-A + w)*(-b + w) = 0
+
+==============================================================================================================
+(a) FRW + LINEAR PERTURBATIONS
+==============================================================================================================
+  canonical: sigma_FRW = 3H c/a0 >= 20.97 (f = 0 for sigma >= 1); f_bar(z=0) = 1.0; f constant for |delta theta/theta| <= 0.9: True; growth D/D_LCDM(z=0) = 28.78772264; sigma_8 = 23.3205
+  alt: sigma_FRW = 3H c/a0 >= 17.41 (f = 0 for sigma >= 1); f_bar(z=0) = 1.0; f constant for |delta theta/theta| <= 0.9: True; growth D/D_LCDM(z=0) = 33.92599149; sigma_8 = 27.4830
+  [FAIL] A1 (a) FRW: f = 0 on the background and in a finite neighbourhood (MOND term absent from the quadratic action); growth = LCDM within 1e-6 (all theta_b routes with threshold theta_on = a0/c, and R2 at x = theta/3H >= 1)
+         measured: canonical: f 1.0, D ratio 28.8, sigma_8 23.321; alt: f 1.0, D ratio 33.9, sigma_8 27.483
+  [PASS] MUTATE growth: the sign-flipped switch is ON on FRW and gives chassis-like fast growth (ratio >= 3)
+         measured: min growth ratio 28.79; sigma_8 23.32, 27.48
+
+==============================================================================================================
+(b) STATIC VIRIALISED SYSTEM: ON, fidelity at r = 30 kpc, R3 reach and timing
+==============================================================================================================
+  [FAIL] B1 (b1) static bound: theta_b = 0 => f = 1 (nu_mono) for every theta_b route
+         measured: f(theta_b = 0) = 0.0
+  R2 3H: x = 0.1 Omega/theta_* = 0.285-6.6; saturated W 0-0.892 (need >= 0.9); ramp |W - 1| up to 6.6
+  R1 a0/c: x = 0.1 Omega/theta_* = 32.7-154; saturated W 0-0 (need >= 0.9); ramp |W - 1| up to 154
+  [FAIL] B2 (b2) R1/R2 slaved fidelity: a 10% compression at Omega(30 kpc) keeps W >= 0.9 (saturated) and |W - 1| <= 0.1 (ramp)
+         measured: R2 3H: x min 0.285; R1 a0/c: x min 32.7
+         reading:  theta_* <= 3H while Omega_dyn >> H: any compression flips (saturated) or overshoots (ramp) a slaved theta gate
+  R2 ramp: K-dot force / (rho_b g) at 30 kpc = 0.356-1.03 (saturated step: 0, since W'(0) = 0)
+  R3 zero-constant M = a0/c: ell = c/M = 2.58e+04-3.11e+04 Mpc; ell/r_ta 7.8e+03-1.76e+05 (need <= 0.257); timing M >= sqrt3 H on 0/24
+  R3 zero-constant M = H(z): ell = c/M = 705-3.9e+03 Mpc; ell/r_ta 800-5.87e+03 (need <= 0.257); timing M >= sqrt3 H on 0/24
+  R3 zero-constant M = 3H(z): ell = c/M = 235-1.3e+03 Mpc; ell/r_ta 267-1.96e+03 (need <= 0.257); timing M >= sqrt3 H on 24/24
+  [FAIL] B3 (b3) R3 zero-constant (c_sigma = c, framework mass): reach ell <= r_ta/3.89 and timing M >= sqrt3 H on all hosts
+         measured: a0/c: min ell/r_ta 7.8e+03; H(z): min ell/r_ta 800; 3H(z): min ell/r_ta 267
+         reading:  a luminal switch with a Hubble-scale mass averages theta_b over Gpc: it cannot be ON inside a ~Mpc bound region
+  R3 costed lenient point: M = sqrt3 H(4) = 2.389e-17 1/s (10.94 H0); ell = min r_ta/3.89 = 45.5 kpc; c_sigma = 33.54 km/s; B_edge,max = 4.146e-13 J/m^3 (R = 1)
+  R3 costed, theta_on = a0/c, universal: F_b dev (1e6 K) 1-1; passing (<= 0.1) 0/48
+  R3 costed, theta_on = a0/c, lenient  : F_b dev (1e6 K) 0.0044-1; passing (<= 0.1) 12/48
+  R3 costed, theta_on = 3H0 , universal: F_b dev (1e6 K) 0.73-1; passing (<= 0.1) 0/48
+  R3 costed, theta_on = 3H0 , lenient  : F_b dev (1e6 K) 1.45e-05-0.986; passing (<= 0.1) 26/48
+  [FAIL] B4 (b2) R3 costed (scored: theta_on = a0/c, universal constants at their most lenient point, R = 1): gas compressive mode changed <= 10% at r = 30 kpc, k = 1/kpc and 1/10 kpc, on all 24 hosts (1e6 K)
+         measured: dev 1-1; passing 0/48
+         reading:  the trigger coupling C = Z M^2/theta_on must be large because theta_on <= 3H; its gyroscopic mixing with the bound gas is G/b ~ R B_edge k^2/(rho theta_on^2 (1 + k^2 ell^2))
+
+==============================================================================================================
+(c) TRANSITION: ghost / gradient / Hadamard; the switch width the theory picks
+==============================================================================================================
+  [PASS] C3 (c) R3 H1-H3: kinetic matrix diag(rho, Z) > 0 (no ghost); principal speeds^2 real > 0; every root w is real and w >= min(A, 0) >= -Gamma^2, so growth never exceeds Jeans (uniform in k: Hadamard well posed) -- 20000 random cases
+         measured: violations 0/20000
+  [FAIL] C4 (c) R1 saturated slaved gate H1: m(k) > 0 on the layers
+         measured: ghost on 24/24 (C1)
+         reading:  XR36's mirror lemma: a gate saturated at theta <= 0 has W'' < 0 just above 0 -> pole at k_g, ghost beyond
+  [PASS] C5 (c) R1 ramp H1: W = 1 - x on x < 1 (unsaturated) has W'' = 0, and its only kink, at x = 1, is convex (W' jumps from -1 to 0), so m(k) = rho + B W'' k^2/theta_*^2 >= rho > 0 (no pole)
+         measured: W'' = 0; kink +1
+  R3 costed universal point: principal C^2/(rho Z) on the layers = 0.00261-26.9 c^2 -> the fast characteristic speed is 0.0511-5.19 c
+  R3 zero-constant (c_sig = c): p(c^2) = (c_s^2 - c^2)(c^2 - c^2) - g c^2 = -g c^2 < 0 for ANY coupling g > 0, so one characteristic is strictly superluminal (Lean T6); allowed by criterion B only relative to the khronon foliation
+  T5 ratio G/(b/9 + A/10) on the scored configuration (F_b needs <= 1): min 9.82e+03, max 8.26e+05 over 36 rows
+  ell_theta (R1 slaved pole 1/k_g): 132-1756 kpc; (R3 costed universal, sqrt(B_edge/rho)/theta_on): 1.58e+04-2.11e+06 kpc; CFG337 ell_min 183-378 kpc (C2 lenient) / 2.9 Mpc (C1); tolerance 100 (500) kpc
+
+==============================================================================================================
+VERDICT (frozen rule)
+==============================================================================================================
+  R1 saturated (theta_* = a0/c)                       : (a) F (b) F (c) F; new constants 0 -> NO-GO
+  R1 ramp (theta_* = a0/c)                            : (a) F (b) F (c) P; new constants 0 -> NO-GO
+  R2 leaf (theta_* = 3H), saturated                   : (a) F (b) F (c) F; new constants 0 -> NO-GO
+  R3 zero-constant (c_sigma = c, M framework rate)    : (a) F (b) F (c) P; new constants 0 -> NO-GO
+  R3 costed (c_sigma, M, Z)                           : (a) F (b) F (c) P; new constants 3 -> NO-GO
+
+  OVERALL: NO-GO (best routes: R1 saturated (theta_* = a0/c); R1 ramp (theta_* = a0/c); R2 leaf (theta_* = 3H), saturated; R3 zero-constant (c_sigma = c, M framework rate))
+
+  elapsed 1.2 s
+  checks: S1 PASS, C1 PASS, C2 PASS, A1 FAIL, MUTATE PASS, B1 FAIL, B2 FAIL, B3 FAIL, B4 FAIL, C3 PASS, C4 FAIL, C5 PASS
