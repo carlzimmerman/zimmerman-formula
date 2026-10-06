@@ -554,3 +554,7 @@ TODO-RUN wording (section 0) is unchanged; OUP's 2026-09-10 AI policy page still
 
 ## SUBMITTED 2026-10-05
 Submitted to MNRAS as **MN-26-3158-P** (Paper, Main Journal), from tag `mnras-v3.4`. Sole author. No waiver requested. Five suggested referees; Bunker/Liddle recommended as editors.
+
+## Preprint posted (2026-10-06)
+- Author's original version (tag mnras-v3.4, byte-identical PDF, no e-mail) deposited on Zenodo as a preprint under OUP's self-archiving policy: DOI 10.5281/zenodo.23192441. Script: zenodo_publish_mnras_preprint.py (gates: PDF hash vs the tag, paper_numbers.py).
+- On acceptance: note the acceptance on the record and add the journal DOI (new version via --newversion 23192441). Do not post a refereed revision before acceptance.
