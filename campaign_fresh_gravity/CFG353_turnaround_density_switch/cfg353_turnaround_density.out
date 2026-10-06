@@ -1,0 +1,162 @@
+CFG353 -- a turnaround-density reader from a leaf-elliptic auxiliary potential.  Criteria: FROZEN_CRITERIA.md (c9d9a1d7b).
+
+  Phi_d on each leaf: lap Phi_d = 4 pi G (rho - <rho>_leaf)  (total matter; MS1 relaxed by the owner's 10-06 decision).
+  Estimator: rho_est = 3 |grad Phi_d|^2 / (4 pi G |Phi_d|)  (estimates the enclosed mean OVERDENSITY).
+  Switch:    f = H_strict(3 |grad Phi_d|^2 - (Delta_ta - 1) 4 pi G rho_bar |Phi_d|),  Delta_ta(z) from spherical collapse.
+  Units:     phi = Phi_d / (4 pi G rho_bar), lap phi = delta, rho_est / rho_bar = 3 |grad phi|^2 / |phi|.
+  Routes:    E0 <phi> = 0 (scored), E1 phi - sup phi (scored second), Einf zero at the host's local infinity (reported).
+MUTATE: CFG353_MUTATE=1 -> threshold Delta = 1 (any overdensity); must fail (a'); outputs *_MUTATE; exit 1.
+Run: python3 campaign_fresh_gravity/CFG353_turnaround_density_switch/cfg353_turnaround_density.py
+
+  background: H0 = 67.36 km/s/Mpc, Omega_m = 0.3138
+
+====================================================================================================
+K4  Delta_ta(z) (Lambda-CDM shell ODE) vs CFG4_switch
+====================================================================================================
+  z = 0.0: Delta_ta = 11.8056  (CFG4_switch 11.8056)
+  z = 0.25: Delta_ta = 8.8929  (CFG4_switch 8.8929)
+  z = 1/2.5/4: 6.412 / 5.715 / 5.608  (EdS 9 pi^2/16 = 5.5517)
+  [PASS] K4 Delta_ta LCDM vs CFG4 (1%) and EdS 9pi^2/16: 11.806/8.893 vs 11.806/8.893
+
+====================================================================================================
+K1-K3  estimator controls
+====================================================================================================
+  [PASS] K1 point mass rho_est = 3M/(4 pi r^3): max rel err 2.2e-16
+  [PASS] K2 uniform sphere: outside exact, inside 2r^2/(3R^2-r^2): 2.2e-16 / 1.1e-16
+  [PASS] K3 FRW (phi = grad phi = 0) OFF under strict H: 3*0 > thr*0 is False
+
+====================================================================================================
+EXACT FORM: rho_est = (rho_enc - rho_bar) eta(r), eta = -dln|phi|/dln r; exterior = EdS pre-turnaround shells
+====================================================================================================
+  delta_lin(ta) = 1.0624; delta M(r_ta) = 4.552, delta M(inf) = 5.898 [(4pi/3) rho_bar r_ta^3]
+  I(r_ta) = Int_1^inf m/x^2 dx = 5.3344 -> eta(r_ta) = 0.8533: the infall overdensity beyond r_ta deepens phi
+  Einf, isothermal interior, Delta 11.806 (z=0.0): eta(r_ta) = 0.8533, edge at 0.9000 r_ta
+  Einf, isothermal interior, Delta 8.893 (z=0.25): eta(r_ta) = 0.8533, edge at 0.9070 r_ta
+
+====================================================================================================
+LINEAR LCDM FIELD (Eisenstein-Hu no-wiggle, sigma_8 = 0.81): phi = Phi/(4 pi G rho_bar), lap phi = delta
+====================================================================================================
+
+====================================================================================================
+(a) FRW / LINEAR: ON volume fraction in the linear Gaussian field
+====================================================================================================
+  R  8 h^-1Mpc  kmin H0/c      z      0: sigma_delta 4.56e-01  <3|grad phi|^2>/sigma_phi 7.85e-02  ON E0 1.74e-02  E1(nu 4.5) 0.00e+00
+  R  8 h^-1Mpc  kmin H0/c      z      1: sigma_delta 2.77e-01  <3|grad phi|^2>/sigma_phi 4.77e-02  ON E0 2.11e-02  E1(nu 4.5) 0.00e+00
+  R  8 h^-1Mpc  kmin H0/c      z      3: sigma_delta 1.44e-01  <3|grad phi|^2>/sigma_phi 2.48e-02  ON E0 1.30e-02  E1(nu 4.5) 0.00e+00
+  R  8 h^-1Mpc  kmin H0/c      z     10: sigma_delta 5.27e-02  <3|grad phi|^2>/sigma_phi 9.06e-03  ON E0 4.77e-03  E1(nu 4.5) 0.00e+00
+  R  8 h^-1Mpc  kmin H0/c      z   1000: sigma_delta 5.79e-04  <3|grad phi|^2>/sigma_phi 9.96e-05  ON E0 5.24e-05  E1(nu 4.5) 0.00e+00
+  R  8 h^-1Mpc  kmin 2pi/1Gpc  z      0: sigma_delta 4.56e-01  <3|grad phi|^2>/sigma_phi 1.86e-01  ON E0 4.12e-02  E1(nu 4.5) 0.00e+00
+  R 20 h^-1Mpc  kmin H0/c      z      0: sigma_delta 1.88e-01  <3|grad phi|^2>/sigma_phi 4.69e-02  ON E0 1.04e-02  E1(nu 4.5) 0.00e+00
+  R 20 h^-1Mpc  kmin H0/c      z      1: sigma_delta 1.14e-01  <3|grad phi|^2>/sigma_phi 2.85e-02  ON E0 1.26e-02  E1(nu 4.5) 0.00e+00
+  R 20 h^-1Mpc  kmin H0/c      z      3: sigma_delta 5.93e-02  <3|grad phi|^2>/sigma_phi 1.48e-02  ON E0 7.79e-03  E1(nu 4.5) 0.00e+00
+  R 20 h^-1Mpc  kmin H0/c      z     10: sigma_delta 2.17e-02  <3|grad phi|^2>/sigma_phi 5.41e-03  ON E0 2.85e-03  E1(nu 4.5) 0.00e+00
+  R 20 h^-1Mpc  kmin H0/c      z   1000: sigma_delta 2.38e-04  <3|grad phi|^2>/sigma_phi 5.95e-05  ON E0 3.13e-05  E1(nu 4.5) 0.00e+00
+  R 20 h^-1Mpc  kmin 2pi/1Gpc  z      0: sigma_delta 1.87e-01  <3|grad phi|^2>/sigma_phi 1.11e-01  ON E0 2.45e-02  E1(nu 4.5) 0.00e+00
+  R 50 h^-1Mpc  kmin H0/c      z      0: sigma_delta 6.10e-02  <3|grad phi|^2>/sigma_phi 2.01e-02  ON E0 4.45e-03  E1(nu 4.5) 0.00e+00
+  R 50 h^-1Mpc  kmin H0/c      z      1: sigma_delta 3.70e-02  <3|grad phi|^2>/sigma_phi 1.22e-02  ON E0 5.39e-03  E1(nu 4.5) 0.00e+00
+  R 50 h^-1Mpc  kmin H0/c      z      3: sigma_delta 1.92e-02  <3|grad phi|^2>/sigma_phi 6.34e-03  ON E0 3.33e-03  E1(nu 4.5) 0.00e+00
+  R 50 h^-1Mpc  kmin H0/c      z     10: sigma_delta 7.04e-03  <3|grad phi|^2>/sigma_phi 2.32e-03  ON E0 1.22e-03  E1(nu 4.5) 0.00e+00
+  R 50 h^-1Mpc  kmin H0/c      z   1000: sigma_delta 7.74e-05  <3|grad phi|^2>/sigma_phi 2.55e-05  ON E0 1.34e-05  E1(nu 4.5) 0.00e+00
+  R 50 h^-1Mpc  kmin 2pi/1Gpc  z      0: sigma_delta 5.92e-02  <3|grad phi|^2>/sigma_phi 4.70e-02  ON E0 1.04e-02  E1(nu 4.5) 0.00e+00
+  E0: phi has a nodal surface (<phi> = 0) through the linear field; rho_est -> inf on it (Lean: e0_unbounded).
+  The ON fraction scales as the amplitude D(z): nonzero for every delta > 0.
+  [FAIL] (a) E0 FRW OFF and linear ON fraction < 1e-6: max ON fraction 5.00e-02
+  (a) E1: max ON fraction 0.00e+00 -> PASS
+
+====================================================================================================
+(a') UNBOUND SHEETS AND FILAMENTS (compensated cells), threshold Delta = 9pi^2/16 (EdS) and Delta_ta(z=0)
+====================================================================================================
+  EdS dv -0.12 plane delta  0.5 cell x 5: E0 ON frac 0.095 (overdense part 0.000, max est 1.50) | E1 ON frac 0.000 (overdense 0.000, max est 0.75, void median est 0.75)
+  EdS dv -0.25 plane delta    1 cell x 5: E0 ON frac 0.200 (overdense part 0.000, max est 3.00) | E1 ON frac 0.000 (overdense 0.000, max est 1.50, void median est 1.50)
+  EdS dv -0.50 plane delta    2 cell x 5: E0 ON frac 0.379 (overdense part 0.018, max est 6.00) | E1 ON frac 0.000 (overdense 0.000, max est 3.00, void median est 3.00)
+  EdS dv -0.75 plane delta    3 cell x 5: E0 ON frac 0.443 (overdense part 0.044, max est 9.00) | E1 ON frac 0.000 (overdense 0.000, max est 4.50, void median est 4.50)
+  EdS dv -0.33 plane delta    3 cell x10: E0 ON frac 0.288 (overdense part 0.000, max est 3.37) | E1 ON frac 0.000 (overdense 0.000, max est 2.00, void median est 2.00)
+  EdS dv -0.04 cyl   delta    1 cell x 5: E0 ON frac 0.038 (overdense part 0.000, max est 1.62) | E1 ON frac 0.000 (overdense 0.000, max est 1.27, void median est 0.37)
+  EdS dv -0.08 cyl   delta    2 cell x 5: E0 ON frac 0.078 (overdense part 0.000, max est 3.24) | E1 ON frac 0.000 (overdense 0.000, max est 2.55, void median est 0.75)
+  EdS dv -0.21 cyl   delta    5 cell x 5: E0 ON frac 0.356 (overdense part 0.013, max est 8.09) | E1 ON frac 0.037 (overdense 0.009, max est 6.37, void median est 1.86)
+  EdS dv -0.42 cyl   delta   10 cell x 5: E0 ON frac 0.416 (overdense part 0.025, max est 16.18) | E1 ON frac 0.218 (overdense 0.022, max est 12.75, void median est 3.73)
+  EdS dv -0.10 cyl   delta   10 cell x10: E0 ON frac 0.124 (overdense part 0.005, max est 9.51) | E1 ON frac 0.016 (overdense 0.004, max est 8.21, void median est 0.98)
+  z0  dv -0.12 plane delta  0.5 cell x 5: E0 ON frac 0.039 (overdense part 0.000, max est 1.50) | E1 ON frac 0.000 (overdense 0.000, max est 0.75, void median est 0.75)
+  z0  dv -0.25 plane delta    1 cell x 5: E0 ON frac 0.080 (overdense part 0.000, max est 3.00) | E1 ON frac 0.000 (overdense 0.000, max est 1.50, void median est 1.50)
+  z0  dv -0.50 plane delta    2 cell x 5: E0 ON frac 0.165 (overdense part 0.000, max est 6.00) | E1 ON frac 0.000 (overdense 0.000, max est 3.00, void median est 3.00)
+  z0  dv -0.75 plane delta    3 cell x 5: E0 ON frac 0.265 (overdense part 0.000, max est 9.00) | E1 ON frac 0.000 (overdense 0.000, max est 4.50, void median est 4.50)
+  z0  dv -0.33 plane delta    3 cell x10: E0 ON frac 0.109 (overdense part 0.000, max est 3.37) | E1 ON frac 0.000 (overdense 0.000, max est 2.00, void median est 2.00)
+  z0  dv -0.04 cyl   delta    1 cell x 5: E0 ON frac 0.016 (overdense part 0.000, max est 1.62) | E1 ON frac 0.000 (overdense 0.000, max est 1.27, void median est 0.37)
+  z0  dv -0.08 cyl   delta    2 cell x 5: E0 ON frac 0.032 (overdense part 0.000, max est 3.24) | E1 ON frac 0.000 (overdense 0.000, max est 2.55, void median est 0.75)
+  z0  dv -0.21 cyl   delta    5 cell x 5: E0 ON frac 0.083 (overdense part 0.000, max est 8.09) | E1 ON frac 0.000 (overdense 0.000, max est 6.37, void median est 1.86)
+  z0  dv -0.42 cyl   delta   10 cell x 5: E0 ON frac 0.288 (overdense part 0.010, max est 16.18) | E1 ON frac 0.016 (overdense 0.004, max est 12.75, void median est 3.73)
+  z0  dv -0.10 cyl   delta   10 cell x10: E0 ON frac 0.039 (overdense part 0.000, max est 9.51) | E1 ON frac 0.000 (overdense 0.000, max est 8.21, void median est 0.98)
+  near the E1 zero (a nondegenerate max of phi, local underdensity delta_v, d flat directions): rho_est -> 6|delta_v|/d rho_bar
+  planar void (d = 1) fires when |delta_v| > (Delta-1)/6 = 0.759 (EdS); 3D void (d = 3) never (2|delta_v| <= 2).
+  [FAIL] (a') E0 no false ON in sheets/filaments (EdS threshold): false ON present: True
+  (a') E1: false ON present: True -> FAIL
+
+====================================================================================================
+(b) BOUND HOSTS + (c) EDGE: 24 DE12 hosts; Einf ideal, E0 / E1 with the host's linear LSS potential
+====================================================================================================
+  0.25/1e+10/canonical r_ta    551 kpc  Phi_h(r_ta) 4.3e-08 c^2 vs sigma_Phi 4.7e-05 c^2 | Einf eta 0.853 edge 0.937 r_ta (  34 kpc), margin30 4.6e+02 | E0 P(ON30) 0.99 edge med 0.106 | E1 P(ON30) 0.05 edge med 0.000 | jump/Vc^2 3.95
+      0.25/1e+10/alt r_ta    551 kpc  Phi_h(r_ta) 4.3e-08 c^2 vs sigma_Phi 4.7e-05 c^2 | Einf eta 0.853 edge 0.937 r_ta (  34 kpc), margin30 4.6e+02 | E0 P(ON30) 0.99 edge med 0.103 | E1 P(ON30) 0.06 edge med 0.000 | jump/Vc^2 4.76
+  0.25/1e+11/canonical r_ta   1214 kpc  Phi_h(r_ta) 2.1e-07 c^2 vs sigma_Phi 4.7e-05 c^2 | Einf eta 0.853 edge 0.936 r_ta (  77 kpc), margin30 1.0e+03 | E0 P(ON30) 1.00 edge med 0.181 | E1 P(ON30) 1.00 edge med 0.083 | jump/Vc^2 1.71
+      0.25/1e+11/alt r_ta   1214 kpc  Phi_h(r_ta) 2.1e-07 c^2 vs sigma_Phi 4.7e-05 c^2 | Einf eta 0.853 edge 0.936 r_ta (  77 kpc), margin30 1.0e+03 | E0 P(ON30) 1.00 edge med 0.182 | E1 P(ON30) 1.00 edge med 0.082 | jump/Vc^2 2.07
+  0.25/1e+12/canonical r_ta   2684 kpc  Phi_h(r_ta) 1.0e-06 c^2 vs sigma_Phi 4.6e-05 c^2 | Einf eta 0.853 edge 0.935 r_ta ( 174 kpc), margin30 1.2e+03 | E0 P(ON30) 1.00 edge med 0.311 | E1 P(ON30) 1.00 edge med 0.149 | jump/Vc^2 0.73
+      0.25/1e+12/alt r_ta   2684 kpc  Phi_h(r_ta) 1.0e-06 c^2 vs sigma_Phi 4.6e-05 c^2 | Einf eta 0.853 edge 0.935 r_ta ( 174 kpc), margin30 1.2e+03 | E0 P(ON30) 1.00 edge med 0.310 | E1 P(ON30) 1.00 edge med 0.150 | jump/Vc^2 0.88
+  1.0/1e+10/canonical r_ta    397 kpc  Phi_h(r_ta) 6.3e-08 c^2 vs sigma_Phi 5.2e-05 c^2 | Einf eta 0.853 edge 0.936 r_ta (  25 kpc), margin30 2.1e+02 | E0 P(ON30) 0.82 edge med 0.107 | E1 P(ON30) 0.00 edge med 0.000 | jump/Vc^2 1.91
+       1.0/1e+10/alt r_ta    397 kpc  Phi_h(r_ta) 6.3e-08 c^2 vs sigma_Phi 5.2e-05 c^2 | Einf eta 0.853 edge 0.936 r_ta (  25 kpc), margin30 2.1e+02 | E0 P(ON30) 0.83 edge med 0.107 | E1 P(ON30) 0.00 edge med 0.000 | jump/Vc^2 2.31
+  1.0/1e+11/canonical r_ta    878 kpc  Phi_h(r_ta) 3.1e-07 c^2 vs sigma_Phi 5.2e-05 c^2 | Einf eta 0.853 edge 0.935 r_ta (  57 kpc), margin30 4.8e+02 | E0 P(ON30) 1.00 edge med 0.188 | E1 P(ON30) 1.00 edge med 0.081 | jump/Vc^2 0.82
+       1.0/1e+11/alt r_ta    878 kpc  Phi_h(r_ta) 3.1e-07 c^2 vs sigma_Phi 5.2e-05 c^2 | Einf eta 0.853 edge 0.935 r_ta (  57 kpc), margin30 4.8e+02 | E0 P(ON30) 1.00 edge med 0.191 | E1 P(ON30) 1.00 edge med 0.081 | jump/Vc^2 0.99
+  1.0/1e+12/canonical r_ta   1946 kpc  Phi_h(r_ta) 1.5e-06 c^2 vs sigma_Phi 5.1e-05 c^2 | Einf eta 0.853 edge 0.933 r_ta ( 130 kpc), margin30 6.2e+02 | E0 P(ON30) 1.00 edge med 0.329 | E1 P(ON30) 1.00 edge med 0.153 | jump/Vc^2 0.35
+       1.0/1e+12/alt r_ta   1946 kpc  Phi_h(r_ta) 1.5e-06 c^2 vs sigma_Phi 5.1e-05 c^2 | Einf eta 0.853 edge 0.933 r_ta ( 130 kpc), margin30 6.2e+02 | E0 P(ON30) 1.00 edge med 0.338 | E1 P(ON30) 1.00 edge med 0.154 | jump/Vc^2 0.42
+  2.5/1e+10/canonical r_ta    244 kpc  Phi_h(r_ta) 1.1e-07 c^2 vs sigma_Phi 5.4e-05 c^2 | Einf eta 0.853 edge 0.934 r_ta (  16 kpc), margin30 7.3e+01 | E0 P(ON30) 0.48 edge med 0.000 | E1 P(ON30) 0.00 edge med 0.000 | jump/Vc^2 0.63
+       2.5/1e+10/alt r_ta    244 kpc  Phi_h(r_ta) 1.1e-07 c^2 vs sigma_Phi 5.4e-05 c^2 | Einf eta 0.853 edge 0.934 r_ta (  16 kpc), margin30 7.3e+01 | E0 P(ON30) 0.47 edge med 0.000 | E1 P(ON30) 0.00 edge med 0.000 | jump/Vc^2 0.76
+  2.5/1e+11/canonical r_ta    542 kpc  Phi_h(r_ta) 5.5e-07 c^2 vs sigma_Phi 5.4e-05 c^2 | Einf eta 0.853 edge 0.933 r_ta (  36 kpc), margin30 1.9e+02 | E0 P(ON30) 1.00 edge med 0.217 | E1 P(ON30) 1.00 edge med 0.091 | jump/Vc^2 0.26
+       2.5/1e+11/alt r_ta    542 kpc  Phi_h(r_ta) 5.5e-07 c^2 vs sigma_Phi 5.4e-05 c^2 | Einf eta 0.853 edge 0.933 r_ta (  36 kpc), margin30 1.9e+02 | E0 P(ON30) 1.00 edge med 0.219 | E1 P(ON30) 1.00 edge med 0.090 | jump/Vc^2 0.32
+  2.5/1e+12/canonical r_ta   1208 kpc  Phi_h(r_ta) 2.7e-06 c^2 vs sigma_Phi 5.3e-05 c^2 | Einf eta 0.853 edge 0.931 r_ta (  83 kpc), margin30 2.8e+02 | E0 P(ON30) 1.00 edge med 0.394 | E1 P(ON30) 1.00 edge med 0.177 | jump/Vc^2 0.11
+       2.5/1e+12/alt r_ta   1208 kpc  Phi_h(r_ta) 2.7e-06 c^2 vs sigma_Phi 5.3e-05 c^2 | Einf eta 0.853 edge 0.931 r_ta (  83 kpc), margin30 2.8e+02 | E0 P(ON30) 1.00 edge med 0.393 | E1 P(ON30) 1.00 edge med 0.177 | jump/Vc^2 0.13
+  4.0/1e+10/canonical r_ta    176 kpc  Phi_h(r_ta) 1.7e-07 c^2 vs sigma_Phi 5.4e-05 c^2 | Einf eta 0.853 edge 0.933 r_ta (  12 kpc), margin30 3.6e+01 | E0 P(ON30) 0.30 edge med 0.000 | E1 P(ON30) 0.00 edge med 0.000 | jump/Vc^2 0.29
+       4.0/1e+10/alt r_ta    176 kpc  Phi_h(r_ta) 1.7e-07 c^2 vs sigma_Phi 5.4e-05 c^2 | Einf eta 0.853 edge 0.933 r_ta (  12 kpc), margin30 3.6e+01 | E0 P(ON30) 0.29 edge med 0.000 | E1 P(ON30) 0.00 edge med 0.000 | jump/Vc^2 0.35
+  4.0/1e+11/canonical r_ta    392 kpc  Phi_h(r_ta) 8.2e-07 c^2 vs sigma_Phi 5.4e-05 c^2 | Einf eta 0.853 edge 0.931 r_ta (  27 kpc), margin30 1.0e+02 | E0 P(ON30) 1.00 edge med 0.246 | E1 P(ON30) 0.99 edge med 0.101 | jump/Vc^2 0.12
+       4.0/1e+11/alt r_ta    392 kpc  Phi_h(r_ta) 8.2e-07 c^2 vs sigma_Phi 5.4e-05 c^2 | Einf eta 0.853 edge 0.931 r_ta (  27 kpc), margin30 1.0e+02 | E0 P(ON30) 1.00 edge med 0.247 | E1 P(ON30) 0.99 edge med 0.100 | jump/Vc^2 0.15
+  4.0/1e+12/canonical r_ta    876 kpc  Phi_h(r_ta) 4.1e-06 c^2 vs sigma_Phi 5.4e-05 c^2 | Einf eta 0.853 edge 0.929 r_ta (  62 kpc), margin30 1.7e+02 | E0 P(ON30) 1.00 edge med 0.442 | E1 P(ON30) 1.00 edge med 0.199 | jump/Vc^2 0.05
+       4.0/1e+12/alt r_ta    876 kpc  Phi_h(r_ta) 4.1e-06 c^2 vs sigma_Phi 5.4e-05 c^2 | Einf eta 0.853 edge 0.929 r_ta (  62 kpc), margin30 1.7e+02 | E0 P(ON30) 1.00 edge med 0.449 | E1 P(ON30) 1.00 edge med 0.199 | jump/Vc^2 0.06
+  [FAIL] (b) E0 ON at 30 kpc w.p. >= 0.99 on 24/24 + fidelity: min P(ON30) 0.290; fidelity flips 0; max d ln est 0.119
+  (b) E1: min P(ON30) 0.000 -> FAIL; Einf: PASS (margin30 >= 3.6e+01)
+  (c) edge within 100 kpc of r_ta: Einf 20/24, E0 (median) 0/24, E1 (median) 0/24
+  (c) sharp-H multiplier potential jump / V_c^2 at the Einf edge: 0.05-4.76 (finite, O(1) impulse)
+  (c) Phi_d, mu, nu are elliptic on the leaf (no characteristics, no momenta); f is a state function of them; the
+      matter/MOND principal part is B's times f in {0,1}; the edge is a level set of a smooth field (zero width for sharp H).
+  [FAIL] (c) E0 edge within 100 kpc on 24/24 + bounded stress: 0/24
+
+====================================================================================================
+(d) inputs: KiDS-like lens bins (z = 0.25, isothermal law mass), edge fraction under Einf / E0 / E1
+====================================================================================================
+  canonical log M_b 10.0: r_ta   950 kpc  edge Einf 0.907  E0 median 0.068 (p16 0.046)  E1 median 0.026
+  canonical log M_b 10.5: r_ta  1266 kpc  edge Einf 0.907  E0 median 0.091 (p16 0.062)  E1 median 0.035
+  canonical log M_b 11.0: r_ta  1689 kpc  edge Einf 0.907  E0 median 0.119 (p16 0.082)  E1 median 0.046
+  canonical log M_b 11.5: r_ta  2252 kpc  edge Einf 0.907  E0 median 0.160 (p16 0.111)  E1 median 0.061
+  alt       log M_b 10.0: r_ta   995 kpc  edge Einf 0.907  E0 median 0.070 (p16 0.048)  E1 median 0.027
+  alt       log M_b 10.5: r_ta  1327 kpc  edge Einf 0.907  E0 median 0.095 (p16 0.065)  E1 median 0.036
+  alt       log M_b 11.0: r_ta  1769 kpc  edge Einf 0.907  E0 median 0.126 (p16 0.086)  E1 median 0.048
+  alt       log M_b 11.5: r_ta  2359 kpc  edge Einf 0.907  E0 median 0.164 (p16 0.113)  E1 median 0.064
+
+====================================================================================================
+LEGALITY
+====================================================================================================
+  L1 EOM (phi):  -c*L_M(x)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, -c*phi(x) + 3*Derivative(phi(x), x)**2) + nu + 6*(c - 6*Derivative(phi(x), (x, 2)))*L_M(x)*Derivative(phi(x), x)**2*Subs(Derivative(F(_xi_1), (_xi_1, 2)), _xi_1, -c*phi(x) + 3*Derivative(phi(x), x)**2) - 6*L_M(x)*Derivative(phi(x), (x, 2))*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, -c*phi(x) + 3*Derivative(phi(x), x)**2) - 6*Derivative(L_M(x), x)*Derivative(phi(x), x)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, -c*phi(x) + 3*Derivative(phi(x), x)**2) + Derivative(mu(x), (x, 2)) = 0
+  L1 EOM (mu):   rhobar - rho(x) + Derivative(phi(x), (x, 2)) = 0
+  [PASS] L1 EOM derivable: Euler-Lagrange for phi, mu (sympy)
+  [PASS] L2 leaf scalar densities (CFG329 method): mu lap_h Phi_d, nu Phi_d, |D Phi_d|_h^2, <rho>_Sigma (as CFG329's <K>): scalars under leaf diffeos; H(s) of a scalar
+  L3: no d_t of Phi_d, mu, nu appears -> no momenta; mu solved by an elliptic adjoint, nu by one global equation.
+      On shell the constraint term vanishes; no conjugate grows (contrast CFG349's lambda = C/(1-m)).
+  L4 adjoint vs finite difference: max rel err 2.3e-08; translation Noether sum (rel) 5.4e-12
+  [PASS] L4 momentum (adjoint 1e-5, Noether 1e-8): 2.3e-08 / 5.4e-12
+  Sharp H: d f/d grad Phi is a surface delta -> mu has a finite jump (double layer) -> a finite potential jump for
+  matter crossing the edge (bounded; size in (c)). The |Phi_d| kink at the E0 nodal set is where (a) fails.
+
+====================================================================================================
+VERDICT (route E0, frozen rule) + edges handed to the data harness
+====================================================================================================
+  Einf isothermal edge 0.9070 (z 0.25) / 0.9000 (z 0) r_ta; E0 host median edges 0.000-0.449 r_ta
+  (d) is scored by cfg353_edge_harness.py (CFG352 copy) at these edge fractions; see its .out.
+  E0 failures (before d): ['a', "a'", 'b', 'c'] -> NO-GO
+  E1 failures: ["a'", 'b', 'c']
+  runtime 9 s
