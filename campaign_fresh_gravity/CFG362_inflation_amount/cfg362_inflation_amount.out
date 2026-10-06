@@ -1,0 +1,36 @@
+CFG362 inflation fixes the amount?
+==============================================================================
+T0 controls
+  [PASS] T0a moment equation integrated: <phi^2>_eq = 3H^4/(8 pi^2 m^2) and N_rel = 3H^2/(2m^2) reproduced to 1%: eq -6.14e-06, N_rel (1-1/e point) -6.68e-13
+  [PASS] T0b rho_c0/s0 from the inputs: 4.374e-10 GeV per unit entropy
+  [PASS] T0c mass window read from CFG360's committed JSON: [2.0e-20, 2.78] eV
+
+T1 relation H_I(m) over the window
+    m = 2.00e-20 eV: H_I = 1.941e-06 GeV, T_osc = 8.958e-06 GeV
+    m = 2.17e-15 eV: H_I = 1.555e-04 GeV, T_osc = 2.208e-03 GeV
+    m = 2.36e-10 eV: H_I = 1.341e-02 GeV, T_osc = 4.700e-01 GeV
+    m = 2.56e-05 eV: H_I = 1.059e+00 GeV, T_osc = 1.425e+02 GeV
+    m = 2.78e+00 eV: H_I = 8.305e+01 GeV, T_osc = 4.452e+04 GeV
+  [PASS] T1 relation solved over the whole window: H_I from 1.94e-06 to 8.30e+01 GeV; slope d ln H_I/d ln m = 0.379; g* x2 moves H_I by x1.044
+
+T2 equilibration e-folds
+  [PASS] T2 PRIMARY: N_rel <= S_dS (de Sitter entropy) somewhere in the window: 41/41 grid masses pass; S_dS/N_rel from 8.80e+03 to 5.09e+13 (N_rel 1.4e+46 .. 1.3e+21 e-folds)
+    REPORTED ONLY (TCC conjecture): N_rel <= ln(M_Pl/H_I) ~ 57: violated by x2.5e+44 .. x3.4e+19
+
+T3 consistency
+  [PASS] T3a field light during inflation (m < H_I/10), whole window: max m/H_I = 3.4e-11
+  [PASS] T3b inflation can reheat above 5 MeV, whole window: V^(1/4) from 2.86e+06 to 1.87e+10 GeV
+  [PASS] T3c fluid in place before z = 1e5 (T_osc > 1e5 T0 = 2.3e-08 GeV), whole window: min T_osc = 8.96e-06 GeV
+    T3d minimal coupling during inflation: DECLARED, not tested
+
+T4 isocurvature
+  [PASS] T4 uncorrelated isocurvature P_S < 0.04 P_zeta, whole window: max S = 5.5e-11, P_S = 3.0e-21 vs limit 8.4e-11
+
+T5 prediction and falsifier
+  [PASS] T5 a B-mode detection at r = 1e-3 lies above every H_I in the window (a detection excludes the route for every mass): r predicted 6.1e-41 .. 1.1e-25; r = 1e-3 needs H_I = 7.84e+12 GeV vs window max 8.30e+01
+
+T6 draw scatter: local amount / mean in [0.051, 3.00] (5-95%) -> the amount is fixed only to a factor ~58 (5-95% span); H_I inherits a 1/4-power: x[2.10, 0.76]
+
+VERDICT: CONDITIONAL-TESTABLE. The amount is fixed by H_I (one new constant, from outside the framework) up to the T6 draw; relocated, not reduced. Falsifier: any primordial B-mode detection. The cold MASS is still required.
+
+10/10 pass
