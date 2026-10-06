@@ -7,6 +7,8 @@ budget. The most concrete construction adds a complex scalar wave field;
 its mass and abundance remain inputs. This folder exposes that unresolved
 piece rather than hiding it behind the phrase “cold component.”
 
+The [new clock-state calculation](../recombination_and_structure_growth/clock_scalar_clustering_2026_10_06/REPORT.md) tests a different proposed realization: its free vacuum scalar mode has small short-wavelength pressure but leading momentum transport, and is not exactly dust. The [homogeneous shift-charge route](../recombination_and_structure_growth/homogeneous_clock_current_2026_10_06/REPORT.md) requires boundary tuning and does not supply an independent early cold mass. These are scoped tests of the retained clock action, rather than a replacement of candidate B's explicit material cold source.
+
 Assessment: 2026-10-05. Base `6e0f6469ff5419cbad5395c230199045c8c475bb`.
 This is a targeted repository audit and self-review. Physical identity and
 the original theory closure remain OPEN.

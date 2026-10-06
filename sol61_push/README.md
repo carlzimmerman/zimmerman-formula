@@ -4,6 +4,10 @@ Work requested by Carl on 2026-09-29: review the recent Claude research, identif
 
 The original goal remains OPEN. A new partial result is not a completed theory.
 
+- [Boundary conditions and cold-state meaning](BOUNDARY_AND_COLD_STATE_2026-10-06.md): exact source-mode separation, a local horizon no-selection theorem, free-clock stress versus dust, a homogeneous charge-fold condition, and Claude p57's quadrupole/vacuum-moment independence.
+
+- [Source-generated outer normalization modes](main_theory/regularized_clock_core_2026_10_06/global_matching/REPORT.md): three conserved source solutions reach beyond the mass/cosmology transition, but a finite lapse zero differs from the declared vacuum-mode condition. [Local horizon regularity](puzzle_32pi/clock_horizon_regular_2026_10_06/REPORT.md) leaves A/H free in the actual clock equations; it supplies no additional local eigenvalue condition.
+
 - [Source regularity and constrained clock health](SOURCE_AND_HEALTH_2026-10-06.md): a regular-source obstruction with correct general-dimensional normalization, a physical planar kinetic-sign test after constraints, and a remaining low-clock escape. The global source match and coefficient remain open.
 
 - [Building on the latest Claude work](CLAUDE_FOLLOWUPS_2026-10-06.md): reconciles cold-stream/turnaround readers, tidal and lapse-action limits, and the high-force cutoff with the dynamical clock bridge.

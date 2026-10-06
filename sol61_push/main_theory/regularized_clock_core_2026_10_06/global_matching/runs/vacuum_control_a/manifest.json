@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "DETUNED_CONSTANT_CLOCK_VACUUM_ENDPOINT_20261006",
+  "repository": {
+    "commit": "be5eee875ba98ad4246ee3e854094fd5050cfd5b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/main_theory/regularized_clock_core_2026_10_06/global_matching/vacuum_checks.py",
+    "--output-dir",
+    "sol61_push/main_theory/regularized_clock_core_2026_10_06/global_matching/runs/vacuum_control_a",
+    "--mutate-log-offset"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact vacuum Euler equations for constant N,B,V=Nxr; unique normalized exact deSitter member",
+    "coefficient_domain": "Exact Sympy identities",
+    "conventions": "Relative lapse coordinate ell=lnN-lnN0; material conservation referenced to actual N0; exact U uses absolute lnN; physicalsource rho6e6 p04; M=H=A1 eta.5 epsilon.01",
+    "inputs": [
+      "sol61_push/main_theory/regularized_clock_core_2026_10_06/global_matching/vacuum_checks.py"
+    ],
+    "bounds": {
+      "lnN0": [
+        0.0,
+        -4e-06,
+        4e-06
+      ],
+      "radii": [
+        3e-05,
+        0.0003,
+        0.003
+      ],
+      "phase_evals": 200000,
+      "phase_seconds": 30,
+      "rtol": [
+        1e-07,
+        3e-08
+      ]
+    },
+    "non_claims": [
+      "No infinite-radius boundary theorem",
+      "No lapse shooting root until finite residual assessed",
+      "No full health or a0/H selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "none",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-06T03:36:21.005663+00:00",
+    "runtime_seconds": 0.532061,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/main_theory/regularized_clock_core_2026_10_06/global_matching/vacuum_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/main_theory/regularized_clock_core_2026_10_06/global_matching/vacuum_checks.py",
+      "sha256": "10cd153527469e3872bf71918af40be09ebd39917745ad2037084f91f44e783f",
+      "sha256_after": "10cd153527469e3872bf71918af40be09ebd39917745ad2037084f91f44e783f"
+    }
+  ],
+  "output_directory": "sol61_push/main_theory/regularized_clock_core_2026_10_06/global_matching/runs/vacuum_control_a",
+  "declared_results": [
+    "sol61_push/main_theory/regularized_clock_core_2026_10_06/global_matching/runs/vacuum_control_a/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/main_theory/regularized_clock_core_2026_10_06/global_matching/runs/vacuum_control_a/stdout.txt",
+      "sha256": "73a39df259ec0b398a36ef1d18030db4989e6ad5670d09959afa1871ec28936d",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/main_theory/regularized_clock_core_2026_10_06/global_matching/runs/vacuum_control_a/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/main_theory/regularized_clock_core_2026_10_06/global_matching/runs/vacuum_control_a/results.json",
+      "sha256": "bd4ad501ba2e29154c2aae8905a137245d1854959742a1011f00e0563cec86d6",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

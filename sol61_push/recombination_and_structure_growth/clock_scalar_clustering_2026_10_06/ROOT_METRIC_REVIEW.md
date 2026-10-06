@@ -1,0 +1,13 @@
+# Root review of the free-clock physical stress theorem
+
+Independently checked the metric transfer, exact potential equation and pressureless exclusion against the inherited constrained quadratic action. This review accepts the displayed four-dimensional source-free deSitter result, not a claim about the matter/radiation era or all cold-field realizations.
+
+Let `Rbar=g0/x+d`, with x_N=-2x, so `Phi=f zeta+Rbar zeta_N`. Then Rbar_N=2g0/x, Rbar gamma=3g0/x+d, and Rbar omega_z^2=f. Differentiating gives exactly `Phi_N+Phi=f zeta_N`. Differentiating again gives `Phi_NN+gamma Phi_N+(gamma+omega_z^2-1)Phi=0`; the last coefficient is `(2g0+f x)/(g0+d x)`. This independently reproduces the report's observable equation and zero-slip transfer. The proper clock lapse perturbation remains different from the metric test potential.
+
+With the stated mixed-tensor momentum convention, the Einstein density, momentum and trace formulas give both conservation identities. The leading density derivative plus3H density contains `-2M p^2(Phi_dot+H Phi)=p^2 Qmom`; deleting momentum therefore violates conservation even when the pressure fraction tends to zero. This explains the failed-control effect physically rather than treating a small pressure ratio as dust.
+
+Exactly zero pressure requires the two potentials a^-1 and a^-3. Their residuals in the actual potential equation are respectively `f x/(g0+d x)` and `[2g0+(6d+f)x]/(g0+d x)`. For a combination over a nonzero interval, the independent a^-3 and a^-5 coefficients force both constants to zero on0<eta<1,kappa>0,k!=0. The reported no-hidden-clock implication also follows: Phi0 gives zeta_N0 through the transfer identity and then zeta0 because f>0. This is an exact pressureless exclusion within this free vacuum sector.
+
+The comparison to the sourced dust control has the correct scope. A material source changes the scalar/metric equations; a harmonic exterior mass mode also carries source/boundary data and need not be an everywhere source-free Fourier clock mode. Background scalar enthalpy is zero, so a velocity formed by dividing Qmom by rho+p is undefined; no conserved particle mass can be inferred from the Noether shift charge alone.
+
+The radial-to-temporal exponent bridge is accepted with its stated homogeneous-gauge and subhorizon restrictions. The Fourier momentum equation constrains spatial derivatives, and cannot supply an extra equation for the homogeneous clock convention. The C0 power-law bridge avoids that ambiguity. Numerical transfer controls support the implementation, not cosmological spectral amplitudes, nonlinear admission, recombination or a cold-abundance calculation.

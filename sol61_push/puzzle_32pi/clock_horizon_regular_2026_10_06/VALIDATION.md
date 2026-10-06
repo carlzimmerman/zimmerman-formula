@@ -1,0 +1,7 @@
+# Verification of the local horizon calculation
+
+The authoritative main_a run passes22 assertions. The horizon-factor and response-rank mutation runs each fail the intended determinant/rank assertion. All three manifests validate with unchanged actual inputs. Limits:45s wall,30s CPU per process, one cooperative numerical-library thread and the runner's bounded logs. The three independent executions have separate output directories.
+
+The general-dimensional symbolic calculation varies the boundary-reduced radial action, derives the triangular coefficient structure and determinant for arbitrary symbolic n with the stated n>=3 interpretation. Its polynomial response prototype tests the dependence on Q_gg; the REPORT's chain-rule derivation establishes that coefficient for arbitrary smooth Q on the declared chart. Five actual P2 values A=.25,.5,1,2,4 satisfy the original horizon shift/radial equations at50 decimal digits and the simple-horizon inequalities. The all-positive-A implication follows from the written Legendre bound, rather than these five samples.
+
+An independent raw-action peer reconstructed the determinant and actual lapse derivative in PEER_REVIEW.md. The remaining lapse equation gives `N''=P^2/2+[J/2-2Q_g]/Q_gg` for the explicit family, finite for each positive A. No source-to-horizon integration was performed in this folder, and no uniform positive neighborhood size as A tends to0 is claimed. Passing local rank and field-equation checks does not establish global matching or full physical stability.

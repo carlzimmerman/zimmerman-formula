@@ -7,6 +7,8 @@ and complete action of this program's dark sector remain OPEN.** This folder
 separates what the early universe requires from what those requirements cannot
 uniquely identify. It contains executed calculations, source checks and audits.
 
+The [free-clock stress investigation](clock_scalar_clustering_2026_10_06/REPORT.md) now derives physical metric/density/current transfers and a scoped exact-pressureless exclusion. The [homogeneous-current investigation](homogeneous_clock_current_2026_10_06/REPORT.md) constructs a tuned dust-only GR-to-vacuum history and predicts its limited late background enhancement. Neither calculation yet supplies radiation-era acoustic support or derives the material cold abundance. Both retain the response-scale freedom.
+
 ## Why recombination worked
 
 Cooling alone is insufficient as an explanation. A dilute electron/proton

@@ -7,6 +7,8 @@ The target is C=Lambda c⁴/a0²=32pi on the vacuum-density footing, equivalentl
 a0=(c/2)sqrt(G rho_Lambda). The total-density footing is a different hypothesis.
 See the [joint closure order](../CLOSURE_ROADMAP_2026-10-05.md).
 
+Latest: [Claude p57's field-theory EFE follow-up](claude_p57_efe_2026_10_06/REPORT.md) exhibits exact quadrupole-preserving changes of the proposed vacuum moment. [Actual clock-horizon regularity](clock_horizon_regular_2026_10_06/REPORT.md) also leaves its scale free. The [joint boundary/cold-state synthesis](../BOUNDARY_AND_COLD_STATE_2026-10-06.md) records the resulting narrower selector requirements.
+
 ## Advances since the Sol61 stop
 
 Claude's `sonnet55_push/puzzle_32pi/` now contains p13–p45 and external-note
