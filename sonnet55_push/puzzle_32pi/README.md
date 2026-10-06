@@ -579,3 +579,12 @@ alpha = -1 (Milgrom's main class) has no consistent vacuum solution of this form
 - **y_t is NOT fixed:** without hbar a0 is the only acceleration, so y_t must be a pure number of the UV kernel (and depends on its shape k); with hbar, g_t = a0^p a_P^(1-p) needs 1-p = 1/29.3 (unnatural); sqrt(a0 a_P) breaks the planets.
 - **y_t is dynamically ~invisible:** at y = y_t the kernels differ by 0.19% in g/g_N (the Sun's field at 701 AU; a 1 M_sun binary at 700 AU separation).
 Net: the puzzle is now exactly ONE pure number -- why int_0^inf (g - g_N) dg_N = 32 pi a0^2.
+
+## 64. p55: natural principles for the turn-off -- all fail
+`p55_turnoff_principles.py` (2/2; MUTATE wrong slope fails both). Leading slope L(y_t) ~ c_k y_t, c_k = (pi/2k)/sin(pi/k) (pi/4 at k = 2), checked numerically.
+- P1 self-reflection (turn-off energy = vacuum energy, y_t = L(y_t)): needs c_k >= 1, i.e. k < 1.657 -- no root for any planet-safe smooth shape tried.
+- P2 Unruh wavelength = dS radius / a0 horizon: y_t = 5.8 / 2 -> kappa 2.4 / 4.3, and both break SPARC (y_t >= 20).
+- P3 the self-consistent version: y_t = 0.14, kappa = 21. Fails.
+No principle built from a0, c, Lambda fixes y_t; the needed number (~129 = 32 pi / (pi/4) + log) still has to come from a UV theory of the strong-field end.
+Forecast if a turn-off exists: the Sun's anomalous acceleration is 2e-14 at 100 AU, 1.5e-12 at 300 AU, 2.3e-11 at 700 AU, 4.5e-11 at 1500 AU (exact law: 4.7e-11 everywhere).
+The turn-off lives in the extreme-TNO / inner-Oort region (300-1500 AU) -- the one place it is not invisible.
