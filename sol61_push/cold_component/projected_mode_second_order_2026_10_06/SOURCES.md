@@ -1,0 +1,8 @@
+# Exact action inputs
+
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/REPORT.md SHA256 6c385dfd264e9721d56acc53a825f210a4a329daa508209782a5d42ac53d26b6
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/scalar_constraint_probe/REPORT.md SHA256 46a248a9296e5715809644173685d63d419b264b97ee632b4fa719264196870b
+- sol61_push/main_theory/projected_acceleration_completion_2026_10_06/scalar_constraint_probe/physical_source_dictionary/REPORT.md SHA256 1e00e37969773c17795ae8ca4035b9d4d8fbe3829118425689d21341ff83111e
+- sol61_push/main_theory/projected_acceleration_homogeneous_2026_10_06/REPORT.md SHA256 666790069c45c844ebdb2e966879a474f7a5e3888e631512f7d4720dde7c213b
+
+No external theorem or novelty claim. Parent raw action, constraints and physical stress reconstructed, rather than importing code functions.
