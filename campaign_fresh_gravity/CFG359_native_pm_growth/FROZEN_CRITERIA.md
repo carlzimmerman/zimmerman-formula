@@ -122,3 +122,19 @@ Lean 4 + Mathlib, no sorry. The certificates:
 - Scripts and *.out / *_results.json go in this folder.
 - Particle snapshots and work arrays go to ../_external_data/cfg359_work/ (outside the repo).
 - No downloads. colossus is installed locally but is NOT used; the EH transfer is coded by hand.
+
+## Amendment 1 (2026-10-06, before any scored run; the frozen text above is unchanged)
+Debug runs on 32^3-64^3 test boxes (not scored) found an engine defect in the frozen setup: a force mesh of 2 Np^3
+puts the particle lattice into a density pattern with contrast 7 / -1. It drives a spurious lattice force, and the
+amplitude x 0.01 linear test missed D(a) by 13-50%. With mesh = Np^3, the 64^3 linear test sits 0.5-3.4% low at
+k <= 0.1, and the miss scales as cell^2. The following changes are made before computing:
+- **Mesh = particle lattice:**
+  - primary run: **256^3 particles on a 256^3 mesh** (cell 0.78 Mpc/h, the same switch/force cell as frozen);
+  - C3 resolution run: **128^3 particles on a 128^3 mesh** (a different particle count, as frozen).
+  - Every primary run is at 256^3; per-step cost was measured at about 8 s for T1.
+- **IC seed grid 256^3** (seed 359 unchanged). Lower-resolution runs take the same Fourier modes, so the runs stay paired.
+- **P(k):** no shot-noise subtraction (lattice ICs are sub-Poisson). P(k) is measured on the run's own mesh. The
+  effect cancels in ratios.
+- **Halo mass function proxy:** FoF b = 0.2 on the Lagrangian 128^3 sub-lattice of each 256^3 run (every second
+  particle per axis; particle mass 3.3e11 Msun/h), with at least 20 members. The treatment is identical across runs.
+- C1 is scored on the 256^3 S0 amplitude x 0.01 run.
