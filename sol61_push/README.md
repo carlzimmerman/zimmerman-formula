@@ -4,6 +4,8 @@ Work requested by Carl on 2026-09-29: review the recent Claude research, identif
 
 The original goal remains OPEN. A new partial result is not a completed theory.
 
+- [Vacuum coupling investigation](puzzle_32pi/vacuum_coupling_2026_10_06/README.md): exact algebraic-source conservation classification, volume/scale reaction, and retarded-curvature late coupling theorem. Three sharper scoped exclusions; 32pi remains open.
+
 - [32pi selector investigation](puzzle_32pi/selection_2026_10_06/README.md): vacuum sequestering, one-scalar clock/source tests, analytic positive-kernel freedom, and an ellipticity-derived minimum-tail bound with an exact P2 threshold. The coefficient remains open.
 
 - [New doors and decisive tests](NEW_DOORS_2026-10-05.md): reciprocal max action and vector obstruction, fully constrained gate modes with a gradient completion, and actual CLASS transfer source accounting. Includes [root mathematical review](NEW_DOORS_ROOT_AUDIT_2026-10-05.md).
