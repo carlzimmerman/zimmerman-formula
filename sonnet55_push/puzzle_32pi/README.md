@@ -561,3 +561,11 @@ sector coupling to the vacuum through G instead of 8 pi G: G rho (4 pi r^2) = 4 
 `gr_coupling_gives_nariai_side` -- GR's 8 pi G in the same balance gives Lambda = 4 a0^2. MUTATE (claims 16 pi): fails.
 Status: a CONDITIONAL derivation with one clearly labelled new assumption. Its support must come from (i) a theory with a separately coupled MOND sector (the bimetric
 auxiliary sector is the natural home) and (ii) its second prediction, a0 ~ sqrt(rho_DE) over cosmic time (PAPER42). kappa = 1/2 is DERIVED FROM PREMISE A; without A it stays FITTED.
+
+## 62. p53: BIMOND with a general auxiliary coupling alpha (the natural home of PREMISE A)
+`p53_bimond_general_alpha.py` (3/3; MUTATE q = 1/(2+alpha) fails F). Weighting the auxiliary metric's Einstein-Hilbert term by alpha (beta = 1):
+the map is m = (nu-1)/(nu + (nu-1)/alpha); class independence holds for EVERY alpha (J - I_nu = d[(1+alpha)/alpha · y^2 (nu-1)^2], boundary term 0);
+the vacuum conditions force f'(1) = (1-alpha)/(1+alpha), so **Lambda c^4/a0^2 = I_nu/(1+alpha)**. 32 pi needs I_nu = 32 pi (1+alpha).
+Verdict: alpha is a real "own coupling of the MOND sector", but it is degenerate with the kernel's vacuum integral I_nu (i.e. with the turn-off y_t, p35/p45):
+any alpha can be matched by a y_t. No value of alpha is forced (alpha = 8 pi - 1 needs I_nu = 256 pi^2; the exponential RAR's finite I = 25.98 needs alpha = -0.742).
+alpha = -1 (Milgrom's main class) has no consistent vacuum solution of this form. So PREMISE A is EXPRESSIBLE in BIMOND but NOT derived: it relabels kappa as (alpha, y_t).
