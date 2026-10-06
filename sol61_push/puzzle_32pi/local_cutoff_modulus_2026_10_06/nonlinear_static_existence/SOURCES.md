@@ -1,0 +1,5 @@
+# Source and theorem scope
+
+Parent REPORT.md and ROOT_FORCE_TAIL.md specify the actual NR action and prior large-stiffness source-tail result. The QUMOND normalization is already authenticated against Milgrom arXiv0911.5464v2 in ../../claude_variational_selector_2026_10_06/SOURCE_REVIEW.md; exactPDFhttps://arxiv.org/pdf/0911.5464v2 . No originalPDFbytes or sourcehash are invented here. Restore/reopenexactv2 for a new sourceaudit.
+
+This child derives its Gaussian Greenrepresentation, norm, contraction construction and tail directly. It does not import a broad PDEexistence theorem or claim hyperbolicwellposedness. The elementary integral/iteration arguments are in REPORT. Relativeenergy subtraction avoids using the parent's divergent isolatedMONDenergy as a finite functional. Source smoothness and positivity, m>0 and strict contraction inequality are explicit. Computations corroborate algebra/boundedradialiteration only; they do not certify between-nodePDE residuals or arbitrarily small stiffness.
