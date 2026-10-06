@@ -1,0 +1,267 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61-ATOMIC-RECOMBINATION-RATE-LAB",
+  "repository": {
+    "commit": "ba115c5c6189e1cb4db3f4ed8798ec232d3b73e1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/atomic_checks.py",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/runs/atomic_lab"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "child Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Saha entropy and exact blackbody tail; hydrogen-only Peebles ODE channel/expansion controls; epoch separation, common-clock invariance, local rate sensitivities and numerical convergence",
+    "coefficient_domain": "binary64 scipy Radau/quadrature/root solves; analytic identities in report",
+    "conventions": "Hydrogen-only x_e=n_e/n_H; RECFAST beta_rec=4 beta_B and R_escape=3 R_Lya; fixed atomic energies, matter-temperature evolution; no reionization or external energy deposition",
+    "inputs": [
+      "fable_independent_2026/L37_RECOMBINATION.md",
+      "fable_independent_2026/L182_recombination_kernel_solver.py",
+      "fable_independent_2026/L183_class_kernel_recombination.py",
+      "real_research/reviews/mi_recombination_why_2026.py",
+      "real_research/reviews/cmb_inertia_recombination.py",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/camb_results_snapshot.f90",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/cosmorec_2011_v3.pdf",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/cosmorec_2011_v3.txt",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/hyrec_2011_v2.pdf",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/hyrec_2011_v2.txt",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/peebles_1968.pdf",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/peebles_1968.txt",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/planck_2018_v4.pdf",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/planck_2018_v4.txt",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/seager_1999.pdf",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/seager_1999.txt",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/atomic_checks.py",
+      "sol61_push/recombination_and_structure_growth/atomic_recombination/sources.json"
+    ],
+    "bounds": {
+      "z_ode": [
+        50,
+        2200
+      ],
+      "z_output_spacing": 0.25,
+      "ode_method": "Radau",
+      "rtol": 2e-08,
+      "convergence_rtol": 2e-10,
+      "max_step_z": 5,
+      "H_rescalings": [
+        0.9,
+        1,
+        1.1
+      ],
+      "common_clock_rescaling": 1.1,
+      "F_recombination": [
+        1,
+        1.14
+      ],
+      "two_photon_and_escape_controls": [
+        0,
+        1
+      ],
+      "tail_integration": "theta to infinity; Saha half root T2500..6000K"
+    },
+    "non_claims": [
+      "Not a multilevel recombination computation",
+      "No Planck precision likelihood or CMB/structure growth fit",
+      "Clock scaling is phenomenological independent-rate invariance, not shown achievable by fundamental-constant variation",
+      "Approximate .06eV neutrino density transition and absent helium electrons",
+      "No microscopic dark energy/cold identification"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-06T01:14:56.562729+00:00",
+    "runtime_seconds": 0.837896,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fable_independent_2026/L37_RECOMBINATION.md",
+    "fable_independent_2026/L182_recombination_kernel_solver.py",
+    "fable_independent_2026/L183_class_kernel_recombination.py",
+    "real_research/reviews/mi_recombination_why_2026.py",
+    "real_research/reviews/cmb_inertia_recombination.py",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/camb_results_snapshot.f90",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/cosmorec_2011_v3.pdf",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/cosmorec_2011_v3.txt",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/hyrec_2011_v2.pdf",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/hyrec_2011_v2.txt",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/peebles_1968.pdf",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/peebles_1968.txt",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/planck_2018_v4.pdf",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/planck_2018_v4.txt",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/seager_1999.pdf",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/seager_1999.txt",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/atomic_checks.py",
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/sources.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fable_independent_2026/L37_RECOMBINATION.md",
+      "sha256": "417a302cb751d3118fbf8fb57ca2b5afc5ffb1a551fa282142cc54c9fe4d9f42",
+      "sha256_after": "417a302cb751d3118fbf8fb57ca2b5afc5ffb1a551fa282142cc54c9fe4d9f42"
+    },
+    {
+      "path": "fable_independent_2026/L182_recombination_kernel_solver.py",
+      "sha256": "b8798280af9211ace1017597753d155b632c2516226c612e7dd4c2b178fa5272",
+      "sha256_after": "b8798280af9211ace1017597753d155b632c2516226c612e7dd4c2b178fa5272"
+    },
+    {
+      "path": "fable_independent_2026/L183_class_kernel_recombination.py",
+      "sha256": "24e08a2864b0967ff566091748acd47c1ba01604a53f43fd0c814a67b83c5991",
+      "sha256_after": "24e08a2864b0967ff566091748acd47c1ba01604a53f43fd0c814a67b83c5991"
+    },
+    {
+      "path": "real_research/reviews/mi_recombination_why_2026.py",
+      "sha256": "f3febac74ee27f592bf1cce4db6982eb77b6d67e9cd2cb5133ad9883286f5f85",
+      "sha256_after": "f3febac74ee27f592bf1cce4db6982eb77b6d67e9cd2cb5133ad9883286f5f85"
+    },
+    {
+      "path": "real_research/reviews/cmb_inertia_recombination.py",
+      "sha256": "eccfff681b46f52ad846a8cc660870bd2824b98b6962c237b1e90a64884bbf0d",
+      "sha256_after": "eccfff681b46f52ad846a8cc660870bd2824b98b6962c237b1e90a64884bbf0d"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/camb_results_snapshot.f90",
+      "sha256": "884a2942ee946b03982cc0be7e809f4acde62e7a69ce4906a94934ffc29abb33",
+      "sha256_after": "884a2942ee946b03982cc0be7e809f4acde62e7a69ce4906a94934ffc29abb33"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/cosmorec_2011_v3.pdf",
+      "sha256": "c33db20f5afeb12276d35fa3f87c06580da5da161fbfe7cf72f11c8ba47dbb35",
+      "sha256_after": "c33db20f5afeb12276d35fa3f87c06580da5da161fbfe7cf72f11c8ba47dbb35"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/cosmorec_2011_v3.txt",
+      "sha256": "af7d8924cdf3c199c52a4e60b06b60c3d2028643f8a2f709ea5b36890a0e0866",
+      "sha256_after": "af7d8924cdf3c199c52a4e60b06b60c3d2028643f8a2f709ea5b36890a0e0866"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/hyrec_2011_v2.pdf",
+      "sha256": "08ea55366e40f49e02e2a84732ef40618e455bc35eaf037f324b56dd9aee8640",
+      "sha256_after": "08ea55366e40f49e02e2a84732ef40618e455bc35eaf037f324b56dd9aee8640"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/hyrec_2011_v2.txt",
+      "sha256": "bea5ccb6c567e2b0f358992cab1ca41237aba7f200cad667526e1d3b463d4455",
+      "sha256_after": "bea5ccb6c567e2b0f358992cab1ca41237aba7f200cad667526e1d3b463d4455"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/peebles_1968.pdf",
+      "sha256": "f0584bb91f974d2ad06da38ab1349a7a1fdb6ded2458b3476bc0eb56d40d7c94",
+      "sha256_after": "f0584bb91f974d2ad06da38ab1349a7a1fdb6ded2458b3476bc0eb56d40d7c94"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/peebles_1968.txt",
+      "sha256": "1accc5e63e3ef0f340714247fa6f8e5dcf0598814077ae35b646ba0570501bbb",
+      "sha256_after": "1accc5e63e3ef0f340714247fa6f8e5dcf0598814077ae35b646ba0570501bbb"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/planck_2018_v4.pdf",
+      "sha256": "8e172730faf07c9f4ff3fdcc7043f76ed67df6f76066d47df30d693025b6ce77",
+      "sha256_after": "8e172730faf07c9f4ff3fdcc7043f76ed67df6f76066d47df30d693025b6ce77"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/planck_2018_v4.txt",
+      "sha256": "75476bdbcfeb893c3be2274cb796becf55a9a174c40b4c265a9fcc9870fa0a4d",
+      "sha256_after": "75476bdbcfeb893c3be2274cb796becf55a9a174c40b4c265a9fcc9870fa0a4d"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/seager_1999.pdf",
+      "sha256": "fe4232be14d12ccad7ad46f795dd21c4fa1f66d6aba18c6e512c4341cc70bc07",
+      "sha256_after": "fe4232be14d12ccad7ad46f795dd21c4fa1f66d6aba18c6e512c4341cc70bc07"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources/seager_1999.txt",
+      "sha256": "566118221e4be06d3ff9b26434135c9d200be712c23ed68c1a1035f8256541ea",
+      "sha256_after": "566118221e4be06d3ff9b26434135c9d200be712c23ed68c1a1035f8256541ea"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/atomic_checks.py",
+      "sha256": "113f06aa3f7564ca8b6607695b713c5072435388d0a5b8c5afc87b294bc4295f",
+      "sha256_after": "113f06aa3f7564ca8b6607695b713c5072435388d0a5b8c5afc87b294bc4295f"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/sources.json",
+      "sha256": "64504b7d21dba48ef89950dd6c9ead38cddb135b882e7132106fda2ba1e90d42",
+      "sha256_after": "64504b7d21dba48ef89950dd6c9ead38cddb135b882e7132106fda2ba1e90d42"
+    }
+  ],
+  "output_directory": "sol61_push/recombination_and_structure_growth/atomic_recombination/runs/atomic_lab",
+  "declared_results": [
+    "sol61_push/recombination_and_structure_growth/atomic_recombination/runs/atomic_lab/atomic_results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/runs/atomic_lab/stdout.txt",
+      "sha256": "6e07da6872fc952ecbbba41315d38d1ad1b98978fc5839cb541b119628396049",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/runs/atomic_lab/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/recombination_and_structure_growth/atomic_recombination/runs/atomic_lab/atomic_results.json",
+      "sha256": "8ee00de6d750f8a1b19ae9225c69b1c95656a307224369ad839c19f3c7678723",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
