@@ -588,3 +588,14 @@ Net: the puzzle is now exactly ONE pure number -- why int_0^inf (g - g_N) dg_N =
 No principle built from a0, c, Lambda fixes y_t; the needed number (~129 = 32 pi / (pi/4) + log) still has to come from a UV theory of the strong-field end.
 Forecast if a turn-off exists: the Sun's anomalous acceleration is 2e-14 at 100 AU, 1.5e-12 at 300 AU, 2.3e-11 at 700 AU, 4.5e-11 at 1500 AU (exact law: 4.7e-11 everywhere).
 The turn-off lives in the extreme-TNO / inner-Oort region (300-1500 AU) -- the one place it is not invisible.
+
+## 65. p56: extreme-TNO orbits vs the turn-off -- a likely PROBLEM for y_t ~ 129
+`p56_etno_turnoff.py` (3/3; MUTATE exact law fails C2). Data: JPL SBDB, 90 objects with a > 150 AU, q > 30 AU (data_assembly/etno_sbdb/FETCH_LOG.md).
+- Astrometry cannot see the turn-off: largest signal/precision = 0.001 (Sedna, now at 83 AU). The exact law would be visible (ratio 7, MUTATE).
+- Secular dynamics is DOMINATED by it: with y_t = 128.9, 43/90 objects (all with a >~ 500 AU) precess faster from the MOND anomaly than from the giant planets;
+  Sedna's apse turns in 0.02 Gyr (retrograde) versus 1.6 Gyr from the planets. Every y_t in 100-1000 gives 40-90/90. (Galactic EFE neglected; orbit-averaged Gauss equations.)
+- Literature: Vokrouhlicky, Nesvorny & Tremaine 2024 (ApJ 968; arXiv:2403.09555) simulated AQUAL MOND with mu_n = x/(1+x^n)^(1/n), n = 1-20, with the Galactic EFE,
+  and found MOND overpopulates the detached disk (q > 38 AU) versus observations, even for n = 20, robust to the transition function (WebFetch summary, PROVISIONAL).
+  n = 20 kills the boost at y ~ 1; our turn-off keeps it alive to y ~ 129 (700 AU), i.e. it is FAR more active in the region they test.
+Inference (not yet a committed simulation): the y_t ~ 100-130 needed for Lambda = 32 pi a0^2 (offset reading + kernel fix, PAPER41/42) is likely excluded by the
+detached-TNO population unless the framework screens MOND on small scales/masses (VNT24's stated loophole). A proper test = their N-body setup with nu_fix (QUMOND/BIMOND, EFE included).
