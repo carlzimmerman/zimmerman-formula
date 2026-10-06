@@ -1,0 +1,7 @@
+# Relation to earlier atomic work
+
+This is a new conditional atomic stress and frame dictionary for the nonminimal scalar action, not the first atomic calculation in this campaign. The earlier [projected atomic transport](../projected_atomic_transport_2026_10_06/REPORT.md) already ran a hydrogen three-level model on a constant-Q, constant-Planck projected background, separating baryon-only neutralization from a freely inserted ordinary cold reference. Its finite visibility and sound-horizon calculations remain useful evidence within that older action and matter model.
+
+The new trace route asks a different question: whether recombination directly switches the nonminimal scalar source, and whether a universal Einstein-frame mass rescaling changes local equilibrium. It derives the small ionization-dependent trace change and exact local frame cancellation. The previously implemented atomic transport is not automatically a cosmological solution of the new dynamical nonminimal action; ordinary baryon trace generally forces the cutoff away from the radiation vacuum. A shared background/transport derivation is still required before reusing that old visibility result in this action.
+
+The report’s “no transport simulation” statements concern this route and the new scalar completion. They do not erase the earlier executed atomic laboratory. No claim of new standard atomic physics is made.
