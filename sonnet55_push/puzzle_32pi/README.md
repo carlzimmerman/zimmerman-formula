@@ -627,3 +627,9 @@ Galaxies need kappa 0.44-0.60 -> this is the KNOWN RAR-vs-Q2 tension (STANDING, 
 Consequence for the puzzle: every vacuum route so far (BIMOND/QUMOND vacuum = Lambda, p21-p57) lives in the modified-POTENTIAL class that Cassini rejects at kappa = 1/2.
 A derivation of kappa = 1/2 must come from a theory OUTSIDE that class (modified inertia, or a field theory that screens the external-field quadrupole) -- and in such a
 theory the vacuum integral Lambda c^4 = int (g - g_N) dg_N does not exist in this form. The 32 pi puzzle and the Cassini tension are the same open problem.
+
+## 68. p59: a0(z) drift if a0 tracks dark energy, under DESI DR2 w0-wa -- backs PAPER42's sentence
+`p59_a0z_drift_desi.py` (2/2; MUTATE drops the CPL exponential, fails P). PAPER42 stated "about 0.8x at z = 2.5, rival 3.7x" with no committed script; this is it.
+a0(z)/a0(0) = sqrt(rho_DE ratio): z = 2.5 -> 0.80 (DESY5), 0.82 (Pantheon+), 0.78 (Union3); 16-84% bands ~0.6-1.0 (no covariance -> conservative). z = 5 -> 0.51-0.63.
+Low z: a slight RISE first (1.03-1.09 at z = 0.5), then the fall. Rival a0 ~ H(z): 3.74 at z = 2.5. Separation at z = 2.5: tracking -0.10 dex, flat 0, rival +0.57 dex.
+DESI w0, wa values quoted from memory (arXiv:2503.14738) -- PROVISIONAL until checked against the table.
