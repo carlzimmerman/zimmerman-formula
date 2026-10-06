@@ -248,3 +248,14 @@ several-fold) and no sign of the ownership rule. LCDM also fits these data (it i
 it discriminates AMONG the framework's readings: it favours a metric MOND sector whose switch does NOT respond to a uniform external field (the SEP-respecting
 class discussed 10-05/06, which also passes Cassini Q2 and the TNOs) and disfavours candidate B's ownership rule for satellite galaxies.
 Caveats: r_bg estimated, not tabulated; 1-D EFE approximation (a full QUMOND EFE is anisotropic; at g_ext ~ a0 it still suppresses strongly); M_b = 1.2 M*.
+
+## cm15: THE CONFLICT, resolved -- it is not about l; satellites reject ANY magnitude EFE, which SW01/SW05 keep by design
+`cm15_sw01_rule_vs_satellites.py` (1/1; MUTATE eta = 0 fails X). SW05's l < 2 kpc came from a DESIGN choice: the direction-blind class (SW01/SW05) keeps the
+external field's MAGNITUDE, g = nu(sqrt(x^2 + eta^2)) g_own, so the Sun still reads the Galactic eta (wide binaries ~1.09-1.12, MW outer decline).
+On Sifon's cluster satellites the internal x at r_bg is 0.004-0.008 and the host eta 0.59-0.81, so any magnitude EFE caps nu at ~1.5 instead of 11-15:
+no EFE chi2 0.7/5; SW01 quadrature rule chi2 99.5/5 (p 7e-20); linear rule 99.7/5. A single l cannot rescue it: in that structure "environment" = sources
+beyond l, and both the Galaxy (8 kpc, eta 1.85) for the Sun and the cluster (0.7 Mpc, eta ~0.7) for its satellites are beyond any l in the window.
+**Resolution: the data ask for NO external-field effect at all** -- the MOND boost of a bound system computed from its OWN field (satellites keep their full
+phantom; Cassini Q2 and the TNO pumping vanish). What that costs, on the record: the Milky Way's Gaia DR3 outer decline (isolated kernel 2.5 sigma shallower,
+L172; disequilibrium/LMC unmodelled) and Chae's EFE signal (1.7-3.0 sigma; WALLABY -1.7 sigma against). What it predicts: wide binaries boosted as ISOLATED
+MOND systems (no EFE), i.e. stronger than the registered Arm A band in the deep regime -- Gaia DR4 decides. Caveat: cm14b's r_bg estimate and 1-D treatment.
