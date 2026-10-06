@@ -521,3 +521,14 @@ kappa^2/Omega^2 = 3 + dln g/dln r (sympy from the definition), = 1 - 2y nu'/nu o
 i.e. our p21/p25 vacuum integral when the boundary term vanishes. Numerically identical for nu_fix (y_t = 128): 99.812920 both sides; RAR: 12.987879 both sides.
 For the exact framework kernel the boundary term grows like y/2 (the a0/2 tail): the rule needs PAPER41's turn-off. Correct and physical (the coefficient as an orbital
 observable) but an identity, not a principle; the integrand is dominated by high y where kappa^2/Omega^2 - 1 is tiny, so data give only a lower bound. kappa = 1/2 stays FITTED.
+
+## 57. Cosmicflows-4 rotation-free distances for the gas-point galaxies (`p50`, 1/2; pre-written G FAILED, kept; MUTATE CF4 x1.2 fails C) -- 2026-10-05
+CF4 (Tully+2023, VizieR J/ApJ/944/94, 55,877 galaxies; 446 with TRGB) + CDS Sesame positions for all 175 SPARC names (175/175 resolved). Rotation-free distances only
+(TRGB > Cepheid > SBF > SN Ia > SN II); Tully-Fisher, FP and the combined DM excluded (TF is built from rotation: circular for a0). Match within 60".
+- **Control:** 32 SPARC TRGB/Cepheid galaxies: D_CF4/D_SPARC median 0.980 (16-84%: 0.976-0.986). Pass.
+- 17 more SPARC galaxies gain a rotation-free distance, but **none has >= 2 points above the strict 80% gas cut**: the rotation-free gas-point set stays at 8 (pre-written
+  'grows beyond 8' FAILED). POST-HOC at a 70% cut (17% Upsilon-sensitive, less clean): original 10 galaxies 1.20e-10 (+-17%); the 2 upgraded (UGC 8550, UGC 12632, TRGB) give
+  7.08e-11 -- LOW even with TRGB distances; union 12 galaxies 1.175e-10 (+-16%).
+- WALLABY: 9 kinematic galaxies have a CF4 rotation-free distance; only 1 has gas points. No usable upgrade.
+Reading: the existing catalogues cannot grow the rotation-free gas-point sample; and the two new TRGB dwarfs sit low, so the TRGB-vs-Hubble-flow split is not purely a
+distance effect (galaxy-to-galaxy scatter, s ~ 0.6 in ln a0, is large). The coefficient question stays open at the 15-20% level. kappa = 1/2 stays FITTED.
