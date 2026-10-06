@@ -168,3 +168,15 @@ Two caveats on that table:
 **Bug fix (disclosed).** The first run double-converted radii, because load_sparc already returns metres. That run's output was garbage (every disc HOT) and was discarded. The fix happened before any scored number existed.
 
 **What would decide it.** Rotation curves of discs with M_b > 2.5e11, either super spirals with resolved curves or a larger sample. There is no mechanism, and the cold fluid is still required.
+
+## cm15: the cold edge of the cooling window: SUPPORTED by the frozen rule, but NOT DIAGNOSTIC
+`cm15_cold_edge.py`; criteria `cm15_FROZEN_CRITERIA.md` (e914f3617).
+- **Frozen result.** 92 resolved LVD dwarfs. COLD minus MID = +0.314 ± 0.039 (8σ, canonical) and +0.317 (alt). COLD classicals sit at +0.117 (5σ) / +0.099 (3.2σ), COLD UFDs at +0.34, MID at −0.06.
+- **MUTATE FAILS and is kept.** Shuffling σ moves the COLD-classical median by only 0.018 dex.
+- **Why the result is not diagnostic.** The shuffled-σ run gives an even larger COLD−MID split, +0.73.
+  - Observed σ barely varies across dwarfs (most are 5–12 km/s), while the law's σ scales as M_b^{1/4}.
+  - So ANY low-mass cut puts the low-mass dwarfs above the law. The split measures the known offset-vs-mass trend (CFG335), not a step at 1e4 K.
+  - The real data show less trend than the shuffled data.
+- **Also against the pattern.** COLD classicals sit 0.22 dex below COLD UFDs (4σ), so native T does not sort the dwarfs into two levels.
+- **Reading.** The cold edge of the cooling window is not established. A proper test would have to fit a step on top of a smooth trend; that is not frozen and not run.
+- The cold fluid is still required. κ = ½ is fitted.
