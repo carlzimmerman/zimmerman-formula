@@ -1,0 +1,231 @@
+{
+ "slug": "cfg446_host_split",
+ "summary": {
+  "n_checks": 9,
+  "n_pass": 7,
+  "load_bearing_failures": 0,
+  "failed": [
+   "G (E1) informativeness: mean X(rich) - mean X(poor) >= 0.5",
+   "M1 (load-bearing in MUTATE only): the poor/rich contrast is present, |dA_matched|/s >= 1, "
+  ],
+  "seconds": 39.7
+ },
+ "checks": [
+  {
+   "name": "C2 CONTROL: all lenses match the bright sample by exact position; u - r > 2 reproduces typ; log M* = MASS_MED + 0.15; all in the pool",
+   "detail": "181,477 lenses; IDs aligned True; exact match True; typ True; logM True; z True; in pool True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: random-position background -- at independent random positions the mean X is 0 within 3 standard errors (E1, E2)",
+   "detail": "E1: mean X_random -0.0004 +- 0.0005 (-0.74 SE); E2: mean X_random +0.0008 +- 0.0016 (+0.46 SE)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1 CONTROL: D_full equals CFG88's K1 D (1e-6 rel) and the zero-model Hartlap chi2 equals CFG88's 35.0418 (1e-6 rel)",
+   "detail": "max rel dev of D 5.3e-14; chi2 35.0418/7 vs 35.0418 (p 1.10e-05); D = [3.26, 7.14, 5.6, 5.33, 11.92, 21.48, 33.28]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 CONTROL (E1): the terciles partition each class exactly",
+   "detail": "early [29359, 29360, 29360], late [31132, 31133, 31133]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G (E1) informativeness: mean X(rich) - mean X(poor) >= 0.5",
+   "detail": "0.309",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "C5 CONTROL: null calibration -- std of dA/s_dA over 100 random equal thirds (matched) in [0.7, 1.3]",
+   "detail": "std 0.806, mean -0.072, fraction |z| >= 1: 0.21",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 CONTROL (E2): the terciles partition each class exactly",
+   "detail": "early [29359, 29360, 29360], late [31132, 31133, 31133]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G (E2) informativeness: mean X(rich) - mean X(poor) >= 0.5",
+   "detail": "1.906",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "M1 (load-bearing in MUTATE only): the poor/rich contrast is present, |dA_matched|/s >= 1, E1 and E2",
+   "detail": "E1: 0.26 s; E2: 0.35 s",
+   "ok": false,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "C5": {
+   "std": 0.8057748309267928,
+   "mean": -0.0722248289103104
+  },
+  "RES": {
+   "E1": {
+    "unmatched": {
+     "A": [
+      0.8997234931191634,
+      1.1231554172417453,
+      1.0036998813100348
+     ],
+     "s": [
+      0.16212201838544502,
+      0.19720841262853567,
+      0.1706336848375283
+     ],
+     "chi2": [
+      16.19387690551347,
+      28.917252192060268,
+      18.468510744662527
+     ],
+     "dA": 0.1039763881908714,
+     "sdA": 0.2897932366778728,
+     "verdict": "NON-DISCRIMINATING (gate G failed: measure carries too few companions)"
+    },
+    "matched": {
+     "A": [
+      1.0599595811436362,
+      0.7667116729870603,
+      0.9845678072553822
+     ],
+     "s": [
+      0.15233065601778406,
+      0.5736439707064376,
+      0.17674729653666593
+     ],
+     "chi2": [
+      22.06881730207468,
+      12.719067571777687,
+      17.64799705598427
+     ],
+     "dA": -0.07539177388825402,
+     "sdA": 0.284953041031576,
+     "verdict": "NON-DISCRIMINATING (gate G failed: measure carries too few companions)"
+    },
+    "gate": 0.309493510895331,
+    "late_dA": {
+     "unmatched": [
+      0.49349224203320796,
+      0.3963387664765647
+     ],
+     "matched": [
+      0.5555674846037313,
+      0.39761055952287067
+     ]
+    },
+    "trace_outer": [
+     -0.036464989417843756,
+     0.04381834180552527
+    ],
+    "power": {
+     "inv_s_poor": 6.564666798804133,
+     "inv_s_rich": 5.657795166290148,
+     "underpowered_to_fail": false
+    }
+   },
+   "E2": {
+    "unmatched": {
+     "A": [
+      0.8792432795908369,
+      1.2481078860986752,
+      0.9234710818687667
+     ],
+     "s": [
+      0.1743519144342087,
+      0.19492621255261447,
+      0.1174580538500066
+     ],
+     "chi2": [
+      14.463158902882528,
+      40.823672642305766,
+      30.186756996661188
+     ],
+     "dA": 0.04422780227792977,
+     "sdA": 0.25270911918034217,
+     "verdict": "FAILS"
+    },
+    "matched": {
+     "A": [
+      0.9521625504592804,
+      1.339892261112265,
+      1.049681394922259
+     ],
+     "s": [
+      0.19570838098390347,
+      0.23674038493672778,
+      0.12951080170974041
+     ],
+     "chi2": [
+      16.459020274862304,
+      39.89196613370172,
+      44.977119007306776
+     ],
+     "dA": 0.09751884446297854,
+     "sdA": 0.282286489925506,
+     "verdict": "FAILS"
+    },
+    "gate": 1.9057682931339588,
+    "late_dA": {
+     "unmatched": [
+      0.18519563109594328,
+      0.42450358178300873
+     ],
+     "matched": [
+      -0.13530737982139576,
+      0.46384864153603295
+     ]
+    },
+    "trace_outer": [
+     0.4922312047849518,
+     0.06359038041073244
+    ],
+    "power": {
+     "inv_s_poor": 5.10964320982374,
+     "inv_s_rich": 7.721363676222157,
+     "underpowered_to_fail": false
+    }
+   }
+  },
+  "headline": {
+   "measure": "E2",
+   "verdict": "FAILS"
+  },
+  "C1": {
+   "D": [
+    3.2591816642606286,
+    7.140644664799376,
+    5.60486419102415,
+    5.331865040200476,
+    11.923795834245386,
+    21.47783886844847,
+    33.277287320790734
+   ],
+   "chi2": 35.04180264867236
+  },
+  "C3": {
+   "E1": [
+    -0.0003510086677650616,
+    0.0004759845616435423
+   ],
+   "E2": [
+    0.0007642841792623809,
+    0.0016476197548299812
+   ]
+  },
+  "AB_law": {
+   "canonical": 0.00023426280960705485,
+   "alt": 0.00022088088226835133
+  }
+ }
+}

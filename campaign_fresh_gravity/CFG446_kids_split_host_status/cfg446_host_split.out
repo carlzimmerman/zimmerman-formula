@@ -1,0 +1,93 @@
+CFG446 -- IS THE KiDS EARLY/LATE SPLIT CARRIED BY EARLY TYPES THAT ARE GROUP CENTRALS?  The two-regime reading (cold_mass cm08-cm10,
+CFG399: retained cold mass steps at host status) predicts that the early-minus-late 1-halo excess sits in early types with many faint
+companions and that companion-poor early types sit at the late level.  LCDM also predicts richer centrals lens more: SUPPORTED would
+not discriminate the framework from LCDM; FAILS would remove the two-regime explanation of B's failure.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG446_kids_split_host_status/FROZEN_CRITERIA.md (f0232a4c1).
+  data     cfg110_perlens.npz (per-lens WG, WW per g_bar bin), lr_lenses.npz, lr_esd_jackknife.npz (June patches), KiDS DR4 bright sample.
+  env      E1: pool companions with log M* < log M*_lens - 1 (the task's measure); E2 (departure): log M* < log M*_lens; R < 0.5 Mpc
+           physical, |dz| < 2 x 0.018 (1+z_l); X = N_raw - N_bg, N_bg = mean over 10 random positions per lens (HEALPix-512 occupancy).
+  split    terciles of X within each class (seeded tie-break).
+  stat     A_S = (D_full^T C^-1 D_S) / (D_full^T C^-1 D_full), D_S = ESD(early S) - ESD(all late) on K1; jackknife (50 patches).
+           Headline: (log M*, z)-matched poor and rich subsamples.  Verdicts: SUPPORTED |A_poor|/s < 2 and A_rich/s > 3;
+           FAILS A_poor/s > 3 and A_poor >= 0.70; else NON-DISCRIMINATING.  Gate G: mean X(rich) - mean X(poor) >= 0.5.
+  law      B's law predicts a negligible early-minus-late difference in K1 under both footings (CFG61's committed stacks; projected below).
+MUTATE=1: X shuffled among early types (seed 446); M1 (|dA_matched|/s >= 1, E1 and E2) must FAIL -> rc 1.
+  a0 footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2 (kappa = 1/2 FITTED); B's K1 prediction is the zero difference under both.
+
+======================================================================================================================
+C2  CONTROL: lenses in the bright sample
+======================================================================================================================
+  [PASS] C2 CONTROL: all lenses match the bright sample by exact position; u - r > 2 reproduces typ; log M* = MASS_MED + 0.15; all in the pool
+         181,477 lenses; IDs aligned True; exact match True; typ True; logM True; z True; in pool True
+
+======================================================================================================================
+ENVIRONMENT: E1 (< 10% lens mass) and E2 (< lens mass) companions, random-position background
+======================================================================================================================
+  occupied HEALPix-512 pixels: 73,523 (964 deg^2)
+  E1 early: mean N_raw 0.077, mean N_bg 0.060, mean X +0.017 +- 0.001; fraction N_raw >= 1: 0.063
+  E1 late : mean N_raw 0.013, mean N_bg 0.010, mean X +0.003 +- 0.000; fraction N_raw >= 1: 0.012
+  E2 early: mean N_raw 0.674, mean N_bg 0.430, mean X +0.244 +- 0.004; fraction N_raw >= 1: 0.403
+  E2 late : mean N_raw 0.254, mean N_bg 0.204, mean X +0.050 +- 0.002; fraction N_raw >= 1: 0.192
+  [PASS] C3 CONTROL: random-position background -- at independent random positions the mean X is 0 within 3 standard errors (E1, E2)
+         E1: mean X_random -0.0004 +- 0.0005 (-0.74 SE); E2: mean X_random +0.0008 +- 0.0016 (+0.46 SE)
+
+======================================================================================================================
+C1  CONTROL: CFG88's split from the per-lens sums
+======================================================================================================================
+  [PASS] C1 CONTROL: D_full equals CFG88's K1 D (1e-6 rel) and the zero-model Hartlap chi2 equals CFG88's 35.0418 (1e-6 rel)
+         max rel dev of D 5.3e-14; chi2 35.0418/7 vs 35.0418 (p 1.10e-05); D = [3.26, 7.14, 5.6, 5.33, 11.92, 21.48, 33.28]
+  B's law, early-minus-late in amplitude units (CFG61 stacks): canonical +0.0002, alt +0.0002 -- the zero model
+  matching cells: 200; lenses outside log M* 8.5-11.0 clipped to edge bins: 46
+
+======================================================================================================================
+E1: EARLY TYPES SPLIT BY COMPANION EXCESS X (< 10% lens mass)
+======================================================================================================================
+  [PASS] C4 CONTROL (E1): the terciles partition each class exactly
+         early [29359, 29360, 29360], late [31132, 31133, 31133]
+  early poor: N 29,359; mean X -0.129; frac N_raw>=1 0.003; median log M* 10.70; median z 0.274
+  early mid : N 29,360; mean X +0.000; frac N_raw>=1 0.001; median log M* 10.75; median z 0.333
+  early rich: N 29,360; mean X +0.180; frac N_raw>=1 0.185; median log M* 10.75; median z 0.318
+  [FAIL] (reported) G (E1) informativeness: mean X(rich) - mean X(poor) >= 0.5
+         0.309
+  [unmatched] A_poor +0.900 +- 0.162 (+5.55 s; chi2 16.2/7 p 2.3e-02) | A_mid +1.123 +- 0.197 (+5.70 s) | A_rich +1.004 +- 0.171 (+5.88 s; chi2 18.5/7 p 1.0e-02)
+  [unmatched] dA = A_rich - A_poor = +0.104 +- 0.290 (+0.36 s); verdict: NON-DISCRIMINATING (gate G failed: measure carries too few companions)
+  matched: all-early fraction dropped in empty cells: poor 0.0002, mid 0.0042, rich 0.0001
+  [matched] A_poor +1.060 +- 0.152 (+6.96 s; chi2 22.1/7 p 2.5e-03) | A_mid +0.767 +- 0.574 (+1.34 s) | A_rich +0.985 +- 0.177 (+5.57 s; chi2 17.6/7 p 1.4e-02)
+  [matched] dA = A_rich - A_poor = -0.075 +- 0.285 (-0.26 s); verdict: NON-DISCRIMINATING (gate G failed: measure carries too few companions)
+  late-type check (reported): A(late rich) - A(late poor) = unmatched +0.493 +- 0.396, matched +0.556 +- 0.398
+  R-TRACE (post hoc, reported): outer bins 0-7, matched, log10 ESD(rich)/ESD(poor) = -0.036 +- 0.044 dex (-0.83 s)
+  R0 power (matched): 1/s_A(poor) = 6.56, 1/s_A(rich) = 5.66; P(FAIL | A_poor = 1) ~ 1.00; P(|z_poor| < 2 | A_poor = 0) ~ 0.95
+  [PASS] C5 CONTROL: null calibration -- std of dA/s_dA over 100 random equal thirds (matched) in [0.7, 1.3]
+         std 0.806, mean -0.072, fraction |z| >= 1: 0.21
+
+======================================================================================================================
+E2: EARLY TYPES SPLIT BY COMPANION EXCESS X (< lens mass, departure)
+======================================================================================================================
+  [PASS] C4 CONTROL (E2): the terciles partition each class exactly
+         early [29359, 29360, 29360], late [31132, 31133, 31133]
+  early poor: N 29,359; mean X -0.557; frac N_raw>=1 0.049; median log M* 10.70; median z 0.290
+  early mid : N 29,360; mean X -0.058; frac N_raw>=1 0.159; median log M* 10.76; median z 0.353
+  early rich: N 29,360; mean X +1.349; frac N_raw>=1 1.000; median log M* 10.73; median z 0.292
+  [PASS] (reported) G (E2) informativeness: mean X(rich) - mean X(poor) >= 0.5
+         1.906
+  [unmatched] A_poor +0.879 +- 0.174 (+5.04 s; chi2 14.5/7 p 4.4e-02) | A_mid +1.248 +- 0.195 (+6.40 s) | A_rich +0.923 +- 0.117 (+7.86 s; chi2 30.2/7 p 8.8e-05)
+  [unmatched] dA = A_rich - A_poor = +0.044 +- 0.253 (+0.18 s); verdict: FAILS
+  matched: all-early fraction dropped in empty cells: poor 0.0013, mid 0.0004, rich 0.0001
+  [matched] A_poor +0.952 +- 0.196 (+4.87 s; chi2 16.5/7 p 2.1e-02) | A_mid +1.340 +- 0.237 (+5.66 s) | A_rich +1.050 +- 0.130 (+8.10 s; chi2 45.0/7 p 1.4e-07)
+  [matched] dA = A_rich - A_poor = +0.098 +- 0.282 (+0.35 s); verdict: FAILS
+  late-type check (reported): A(late rich) - A(late poor) = unmatched +0.185 +- 0.425, matched -0.135 +- 0.464
+  R-TRACE (post hoc, reported): outer bins 0-7, matched, log10 ESD(rich)/ESD(poor) = +0.492 +- 0.064 dex (+7.74 s)
+  R0 power (matched): 1/s_A(poor) = 5.11, 1/s_A(rich) = 7.72; P(FAIL | A_poor = 1) ~ 0.98; P(|z_poor| < 2 | A_poor = 0) ~ 0.95
+
+======================================================================================================================
+M1 / VERDICTS
+======================================================================================================================
+  [FAIL] (reported) M1 (load-bearing in MUTATE only): the poor/rich contrast is present, |dA_matched|/s >= 1, E1 and E2
+         E1: 0.26 s; E2: 0.35 s
+  E1 verdict (matched): NON-DISCRIMINATING (gate G failed: measure carries too few companions)   [unmatched: NON-DISCRIMINATING (gate G failed: measure carries too few companions)]
+  E2 verdict (matched): FAILS   [unmatched: FAILS]
+  HEADLINE (frozen rule: E1 if it passes gate G, else E2): E2 -> FAILS
+  LCDM also predicts richer centrals lens more: SUPPORTED would not discriminate the framework from LCDM.
+
+  7/9 checks pass; load-bearing failures: 0   (40 s)
