@@ -16,25 +16,25 @@
   "C1_Mph_vs_supply": {
    "value": {
     "canonical": {
-     "M_ph_over_Mb": -66.53388713475324,
-     "M_ph_kg": -1.323006385508428e+43,
+     "M_ph_over_Mb": 66.53388713475324,
+     "M_ph_kg": 1.323006385508428e+43,
      "M_supply_Mb": 5.36,
      "supply_fraction_realisable": 0.08056045168598398,
      "grid_rel_err": 1.702051832808138e-10,
-     "rho_ph_negative_everywhere": true
+     "rho_ph_positive_everywhere": true
     },
     "alt": {
-     "M_ph_over_Mb": -73.19157323376578,
-     "M_ph_kg": -1.4553924762814626e+43,
+     "M_ph_over_Mb": 73.19157323376578,
+     "M_ph_kg": 1.4553924762814626e+43,
      "M_supply_Mb": 5.36,
      "supply_fraction_realisable": 0.07323247422050559,
      "grid_rel_err": 1.5482815030054553e-10,
-     "rho_ph_negative_everywhere": true
+     "rho_ph_positive_everywhere": true
     }
    },
-   "threshold": "M_ph != +5.36 M_b: the unconstrained KL target is not normalised to the supply (sign AND magnitude); supply limit binds",
+   "threshold": "M_ph = +66.5 M_b != 5.36 M_b: the unconstrained KL target is not normalised to the supply (magnitude); supply limit binds (CORRECTED 10-07: positive, was mis-signed)",
    "pass": true,
-   "extra": "rho_ph < 0 on (r_in, r_out) for the point mass -> log rho_ph not real; declared proxy rho_bar = |rho_ph| for the flow tests"
+   "extra": "rho_ph > 0 on (r_in, r_out) for the point mass -> log rho_ph real, KL well-defined without any proxy (CORRECTED 10-07)"
   },
   "C2_constrained_minimiser": {
    "value": {
@@ -148,8 +148,8 @@
  "jko_scheme": "rho_{k+1} = argmin_rho (1/(2 tau)) W2^2(rho, rho_k) + F(rho);  E-L: T_k = id - tau grad w_k with grad w_k = grad(dF/drho)(rho_{k+1}) = grad log(rho_{k+1}/rho_ph) (Kantorovich potential w_k)",
  "numbers": {
   "Mph_over_Mb": {
-   "canonical": -66.53388713475324,
-   "alt": -73.19157323376578
+   "canonical": 66.53388713475324,
+   "alt": 73.19157323376578
   },
   "supply_fraction_realisable": {
    "canonical": 0.08056045168598398,

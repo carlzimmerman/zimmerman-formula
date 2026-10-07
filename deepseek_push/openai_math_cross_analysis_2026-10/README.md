@@ -1,0 +1,104 @@
+# openai/math cross-analysis — README
+
+Focused follow-up on the OpenAI math release (github.com/openai/math; local
+read-only copy `../_external_data/openai_math/`, 372 families / 722
+manuscripts) against the Zimmerman framework. Criteria frozen first
+(`FROZEN_CRITERIA.md`, committed alone in a354de4a7). All scripts have
+PASS/FAIL checks, `<LANE> COMPLETE` lines, results JSON, and MUTATE controls
+with separate outputs, re-verified by the parent after each lane landed.
+
+**κ = ½ is FITTED throughout and stays fitted. Nothing here is theory-closed.
+No dark-matter particle. The cold fluid's mass is still required. Both
+footings (a₀ = 9.3603e-11 and 1.1312e-10 m/s²) are always reported separately.**
+
+## Ranked table
+
+| # | Family / exact theorem | Open piece | Verdict | Screen (Q1–Q3) |
+|---|---|---|---|---|
+| 374 | Sharp one-third stability of Brenier maps: ‖Tμ−Tν‖_{L2(ρ)} ≤ C(K,Y) W₂^{1/3}, uniform source on a compact convex body; exponent 1/3 sharp (three-atom cube example) | P2 (settling stability) | **TOOL** | Q1 no (a₀ absent); Q2 n/a; Q3 n/a. Base-rate 1%-window 0.00224 (record 0.002–0.003) |
+| — | Same family, MW application: 0.1-dex baryon error | P2 | **TOOL, quantitative** | W₂ = 0.4073 / 0.3719 kpc; ‖ΔT‖ = W₂ exactly (exponent 1, not 1/3) for radial monotone maps; worst-case C\*W₂^{1/3} = 9.5e4 kpc is vacuous ×58 vs 2L, and ×2.3e5 above the true map change (ratio 4.3e-6 / 4.0e-6). M_ph elasticity d ln M_ph/d ln M_b = 0.4960 / 0.4964 (deep-MOND √M_b law). Truncation cost M_ph(<r_in)/M_ph = 3.8e-13. No change-of-variables extension; the uniform-source hypothesis is essential (band counterexample diverges); known literature extension (bounded densities) lowers the exponent to 1/6 in W₁ |
+| 360 | Weak-MTW → convex injectivity + uniform bi-Hölder transport (2 papers + Lean) | P2 | **DOES NOT APPLY** | Q1 no; Q2 none (Hölder exponent non-explicit); Q3 n/a. Euclidean cost has quartic MTW tensor ≡ 0: weak-MTW is vacuous in flat space; annulus density bounds hold (ρ_min at r_in; dynamic range 8.8e4–2.5e9), but the regularity is classical Caffarelli; true centre failure mode is "density → 0", map continuous but not α-Hölder for any α > 0. No scale for a₀ or κ |
+| — | JKO reframing of the settling (T3): F[ρ] = KL(ρ‖ρ_ph), Wasserstein gradient flow | P2, P8, G9 | **TOOL, well-posed; G9 REJECTED** | PDE ∂ₜρ = Δρ − ∇·(ρ∇log ρ_ph); mass conserved (sympy FTC + numeric drift 1.7e-13); unique minimiser = ρ_ph (strict convexity); constrained minimiser = (M_supply/M_ph)·ρ_ph with M_ph = +66.53 / +73.19 M_b → only 8.06% / 7.32% of the target is realisable (the supply limit, CFG375's reading). Effective force v = −∇(log ρ − log ρ_ph); linearised settling rate κ₁·D/r_out² with κ₁ = 9.87 → Γ = 9.87/t_dyn, ×353 above CFG382's λ = 0.028 (λ is the damping, not the engine) and ×9.9–99 above CFG378's g bracket. G9: the force field −∇log ρ_ph is NOT a multiple of any baryonic field (deep-MOND log-gradient is ~1/r, baryonic is 1/r²; harmonicity violated where ρ_b = 0; best c sits at the 0.1 window edge with residual ~4e9 of field scale on both footings) → the settling force requires the CFG382 fluid-lapse coupling λ (CONDITIONAL per the record) or the fluid's own superfluid pressure (FL1). **Correction 10-07:** the original lane's claim ρ_ph < 0 (proxy |ρ_ph|, M_ph = −66.5) was a sign error (−div vs +div); ρ_ph > 0 on the annulus, KL needs no proxy, all numerics stand (see t3_analysis.md CORRECTION) |
+| 096 | Gaussian propeller: sharp constant 9/(8π), extremiser = three 120° sectors, each with exactly 1/3 of the Gaussian mass | P1, T4b | DOES NOT APPLY | Q2 chosen (extremal problem is the structure; no physical functional in the a₀ sector); 9/(8π) is 259% off T; T4b: **no partition forces the ~1/2 settled/unsettled cluster split** (a 1/2 split postulates 2 cells — free choice) |
+| 087 | Mahler (symmetric 4ⁿ/n!, n = 3 ⇒ 32/3; general-body 64/9 flagged) | P1 | DOES NOT APPLY | pi-free; √(32/3) is 18.3% off; Q1/Q2 fail |
+| 090 | Triangular-lattice universal optimality: ζ_A(6) = 4.1413, W(E_△) = −0.2011, NN² = 2/√3 | P1 | DOES NOT APPLY | ζ_A(6) is 3.5% off 4 with p_base 0.011 → coincidence-level, no derivation chain; Q1/Q2 fail |
+| — | Deep-MOND field-energy extremal at fixed Λ (new, T4) | P1 | DOES NOT APPLY | E_field(R) = (1/3)·M·√(GMa₀)·ln(R/r_in) (sympy-exact); ρ_ph = √(GMa₀)/(4πGr²); M_ph(<r) = r√(GMa₀)/G (full-kernel agreement 1.1% at 100 r_t). Every dimensionless ratio at fixed Λ carries free M, R, r_in or a ln; no 4 or 1/(32π) emerges; emerged constants (1/3, 2/3, (32π)^{±1/4}) miss both targets by ≥21%. Q1 accepts a₀ (it enters the Lagrangian); κ stays fitted |
+| 215, 221, 263, 267, 269, 270 | Extra-hard deep reads (T6): O(3)/O(4) lattice continuum limit (mass-gap amplitude 32·e^{π/4−1/2}), Mézard–Parisi diluted spin glasses, ionization conjectures (TF density constant k = 2^{3/2}/(3π²) = 0.09552), BEC exact depletion 8/(3√π)·√(ρa³), Laughlin gap ≥ 1/25 at filling 1/3, BFSS matrix model | P1–P8 | all DOES NOT APPLY / analogy-only | Closest constant in the entire release: TF k at 4.2% miss of T with p_base 0.0045 → NUMEROLOGY (derived in TF kinematics, but Q1 fails: no Λ, no G, no acceleration chain). 1/25 sits within 0.53% of the F-member 1/(8π); 1/(8√(2π)) = T/2 exactly (trivial algebra, no derivation). 1/3 filling ↔ 374's 1/3 exponent noted as observation only. No candidate within 1% of T anywhere; none FORCED |
+| 29 other score-1 + 374 + 377 | T5 sweep, 31 families at full-manuscript level (46 extracts), incl. 260 Penrose, 264 Kerr SCC, 348 Einstein 4-manifolds, 267 BEC, 282 scale→conformal, 362–364 kinetic | P3, P5, P6, P7 | all CONFIRMED ≤ 1; **3 downgrades: 264, 260, 348 → 0** | No promotions. P3: no mass ratio anywhere (BEC condensate fraction is liminf > 0 only). P5: no p = 3-with-source result in the corpus (370 semilinear Δ, 377 p = ∞ homogeneous). P6: vocabulary only (186/213/214/228/375 tanh). P7: nothing (362–364 repulsive/collisional) |
+
+## Screen summary (applied to every candidate constant)
+
+- **Q1** derives a₀? — No candidate derives a₀; every exact constant from the
+  release is a host-theory quantity (Q1 fails), including the closest hits.
+- **Q2** forced or chosen? — The only "exact hits" (T, 4, 1/4) are the fitted
+  restatements of the law itself (calibration, not derivation); all others miss
+  by ≥ 3.5% and would require a free reading.
+- **Q3** base-rate null — family F of 889 distinct simple forms
+  {(p/q)πⁿ, √((p/q)πⁿ): p,q ≤ 12, n ∈ −2..2}; 1%-window shares recomputed at
+  0.0022–0.0025 vs T (record 0.2–0.3% confirmed) and 0.0045 vs 4; q = 32 ∉ F
+  so the null is not trivially satisfied. Every candidate's p_base is either
+  ≥ 0.011 or derived-without-chain (TF k: p_base 0.0045, Q1 fails).
+
+## Honest bottom line
+
+The release does **not** contain a route that forces κ = ½, the rational 4, or
+32π — that is now a robust, manuscript-level negative, not an abstract-level
+guess: 31 families fully re-read (T5), 12 more deep-read to the constant level
+(T6), the three score-1 analogies re-derived exactly (T4), and the two
+transport theorems (374, 360) read to the proof level (T1, T2). P1, P3, P5, P6,
+P7 stay open exactly as before, and every numerical coincidence in the
+physics-native families lands inside the base-rate null.
+
+What the release DID supply is four tools with real teeth:
+
+1. **374 → a quantitative stability guarantee for the settled profile**
+   (TOOL): an 0.1-dex baryon error moves the profile by only 0.41 kpc out of
+   818 — with the exponent-1 (not 1/3) response of radial maps, 2×10⁵× below
+   the adversarial bound. Any future settling implementation inherits this
+   robustness.
+2. **JKO reframing of P2 is well-posed but constrained** (TOOL + negative):
+   the settling is a Wasserstein gradient flow of KL(ρ‖ρ_ph) with a unique
+   minimiser and exact mass conservation, but the force −∇log(ρ/ρ_ph) cannot
+   be gravity-only (G9 rejected); the undamped flow settles ×353 too fast
+   (κ₁ = 9.87 vs CFG382 λ = 0.028), and the supply limit caps realisable
+   target mass at 8.1% / 7.3% (MW). The mechanism must be the CFG382 lapse
+   coupling or FL1 superfluid pressure, with λ acting as damping.
+3. **Corpus-level negative for the switch**: nothing in 372 families models
+   P6 beyond vocabulary (e.g. 375's tanh as an interpolant template).
+4. **New exact deep-MOND closed forms** (Lean-certified): E_field =
+   (1/3)M√(GMa₀)ln(R/r_in), M_ph(<r) = r√(GMa₀)/G, ρ_ph = √(GMa₀)/(4πGr²).
+
+The settled-profile robustness has a falsifiable face for the record: the
+*sharp* RAR scatter imposes log|ΔT|/d log M_b ≈ 0.5 (the measured elasticity
+0.4960/0.4964), i.e. the phantom mass tracks √M_b, not M_b — a statement the
+SPARC record can be re-audited against at fixed M_b errors.
+
+## Follow-up lanes worth running
+
+- **L1 (recommended): damped-JKO closure** — CFG378's PM engine with the
+  T3-derived exact reduction (μ = r²ρ ⇒ pure Neumann heat flow) and λ = 0.028:
+  decide whether JKO + λ is a complete P2 mechanism (predicts galaxies/groups,
+  fails clusters at 0.43 by CFG382's own saturation f = 1−e^{−Γt}) or only a
+  galaxy-floor mechanism. Falsifier: X-COP completeness at R500 = 0.43 ± 0.15.
+- **L2 (recommended): the force-law constraint** — any gravity-only candidate
+  must reproduce |∇log ρ_ph| = (2/√(GMa₀))·g_ph in the deep regime (1/r
+  susceptibility to the phantom field); test whether FL1's superfluid pressure
+  term produces exactly this in the annulus. This is the natural P2/G9
+  continuation and the only positive law candidate this campaign generated.
+- **L3 (not recommended): further corpus reading** — the screen is saturated;
+  no family outside the ones above deserves a second look for P1–P8.
+
+## House-keeping notes
+
+- First commit (a354de4a7) accidentally carried CFG378's staged
+  FROZEN_CRITERIA.md from the shared git index (parallel-session collision,
+  same as CFG375's note). History was not rewritten; all later commits staged
+  explicit paths only.
+- Lean certificates (`lean_certs/`): cert374_cube_sharpness.lean (W₂² = a³/4,
+  ‖ΔT‖² = a(1+a²)/4, the a = 2/5 specialisations 2/125 and 29/250, sharpness
+  ratio (1+a²)/a², amplification ‖ΔT‖ ≥ W₂/a) and cert_deep_phantom_algebra.lean
+  (M_ph(<r) = r√(GMa₀)/G, 4πGr²ρ_ph = √(GMa₀), the 4π/(12πGa₀) prefactor
+  collapse to (1/3)M√(GMa₀)). Both compile clean in the house build with zero
+  sorry and axioms = {propext, Classical.choice, Quot.sound}. They certify the
+  arithmetic only, per house practice; the physics mapping lives in the lane
+  scripts.

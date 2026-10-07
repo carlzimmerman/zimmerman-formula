@@ -98,3 +98,23 @@ G9 forces the CFG382 lapse coupling (CONDITIONAL) or FL1 superfluid pressure. Th
 (κ₁ = 9.87/t_dyn ≈ 0.35 Gyr⁻¹) exceeds the record's Γ bracket by 1–2 orders; the record's λ = 0.028
 supplies the needed suppression. Follow-up if any: an analytic derivation of λ = 0.028 from the lapse
 coupling — none found in this lane (no scan performed; declared, not derived).
+---
+
+## CORRECTION 2026-10-07 (referee pass by the parent lane)
+
+The original lane claimed rho_ph < 0 on the whole MW annulus, M_ph = -66.5/-73.2 M_b,
+and justified a positive proxy |rho_ph| for the KL target. Independent recomputation
+(t3 sign-fix commit; also cross-checked against T2's density table, rho_min at r_in to
+4 digits) shows a sign error: a -div vs +div convention collision in the lane's
+rho_ph_pt_np (leading minus). Corrected facts, with the record convention
+rho_ph = +div[(nu-1) g_N]/(4 pi G):
+
+- rho_ph > 0 everywhere on [0.5, 818] kpc (density floor at r_in = 2.6e-27 kg/m^3
+  canonical, peak ~3.2 kpc, then the 1/r^2 deep tail). M_ph = +66.53/+73.19 M_b.
+- log rho_ph is real; the KL functional needs no proxy. The |rho_ph| used by the
+  flow tests and the G9 grid equals the true density, so ALL numerics stand
+  unchanged: mass conservation (drift 1.7e-13), the PDE, kappa_1 = 9.87,
+  the C5 G9 rejection, the 8.06%/7.32% supply-realisable bound.
+- The "sign flip at ~3 kpc" in the G9 discussion is real but benign: it is the
+  crossing of the density PEAK (d log rho_ph/dr changes sign there), not a
+  negative-density region.

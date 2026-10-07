@@ -10,9 +10,14 @@ MUTATE: T3_MUTATE=1 drops the targeting term (F = int rho log rho): the minimise
 (minimiser is not rho_ph); separate *_MUTATE outputs; rc 1.
 
 Declared choices (no scan):
-- Point-mass phantom (M_b = 1e11 Msun, r_in = 0.5 kpc, r_out = 818 kpc) has rho_ph < 0 on the whole annulus
-  (verified below); log rho_ph is then not real. The declared positive proxy is rho_bar_ph = |rho_ph|; it is the
-  only real-valued target the KL functional admits, and it is the object used for the G9 grid (C5).
+- CORRECTED 2026-10-07 (sign error in the original lane, which claimed
+  rho_ph < 0 on the whole annulus): with the record convention
+  rho_ph = +div[(nu-1) g_N]/(4 pi G), the point-mass phantom (M_b = 1e11 Msun,
+  r_in = 0.5 kpc, r_out = 818 kpc) is POSITIVE on the whole annulus
+  (verified: M_ph = +66.53 M_b canonical / +73.18 M_b alt; density floor at
+  r_in, peak ~3.2 kpc), so log rho_ph IS real and the KL functional is
+  well-defined without any proxy. The original |rho_ph| proxy equals the true
+  density, so the flow tests and the G9 grid (C5) are unchanged.
 - Rate normalisation: the KL flow has no intrinsic rate; the diffusion scale is declared D = r_out^2/t_dyn with
   t_dyn = 1/sqrt(G rho_host), rho_host = 6.36 M_b / ((4 pi/3) r_out^3). Then Gamma_KJ * t_dyn = kappa_1
   (pure geometric eigenvalue), compared with CFG382 lambda = 0.028 and CFG378's g in {0.1, 1}. No scan.
@@ -133,10 +138,19 @@ s_closed = lambda rr, Mb, a0f: (1.0 / np.asarray(rr)) * (-4.0 + np.sqrt(G * Mb /
 
 
 def rho_ph_pt_np(rr, Mb, a0f):
-    """rho_ph (signed) of a point baryon, record kernel. Negative on (0, oo)."""
+    """rho_ph of a point baryon, record kernel; POSITIVE on (0, oo).
+
+    rho_ph = +div[(nu-1) g_N]/(4 pi G); the flux r^2 (nu-1) g_N = G M_b (nu-1)
+    is strictly increasing in r (nu-1 = 1/(e^s-1), s = sqrt(y) = sqrt(G M/(a0 r^2))
+    falls with r), so the divergence reading is positive everywhere.
+    CORRECTED 2026-10-07: the original lane had a leading minus (a -div vs +div
+    convention collision), making rho_ph negative everywhere; the |rho_ph| proxy
+    used for the flow and G9 tests equals the true positive density, so all
+    numerics stand. Only the framing and the M_ph sign are corrected.
+    """
     rr = np.asarray(rr, dtype=float)
     y = G * Mb / (a0f * rr ** 2)
-    return -Mb * np.sqrt(y) * np.exp(-np.sqrt(y)) / (4 * np.pi * rr ** 3 * (1 - np.exp(-np.sqrt(y))) ** 2)
+    return Mb * np.sqrt(y) * np.exp(-np.sqrt(y)) / (4 * np.pi * rr ** 3 * (1 - np.exp(-np.sqrt(y))) ** 2)
 
 
 # ================= grids =================
@@ -205,20 +219,20 @@ c1_all = True
 for fk, a0f in A0.items():
     yin = G * MB / (a0f * R_IN ** 2)
     yout = G * MB / (a0f * R_OUT ** 2)
-    M_ph_closed = MB * ((nu(yin) - 1.0) - (nu(yout) - 1.0))  # < 0
+    M_ph_closed = MB * ((nu(yout) - 1.0) - (nu(yin) - 1.0))  # > 0: F(r_out) - F(r_in), corrected 10-07
     rp5 = rho_ph_pt_np(r5, MB, a0f)
     M_ph_grid = float(np.trapz(rp5 * 4.0 * math.pi * r5 ** 2, r5))
     rel = abs(M_ph_grid / M_ph_closed - 1.0)
-    neg = bool(np.all(rp5 < 0.0))
-    frac = M_SUPPLY / (-M_ph_closed)
+    pos = bool(np.all(rp5 > 0.0))
+    frac = M_SUPPLY / M_ph_closed
     Mph[fk] = {"M_ph_over_Mb": float(M_ph_closed / MB), "M_ph_kg": float(M_ph_closed),
                "M_supply_Mb": 5.36, "supply_fraction_realisable": float(frac),
-               "grid_rel_err": float(rel), "rho_ph_negative_everywhere": neg}
-    c1_all = c1_all and rel < 1e-6 and neg
+               "grid_rel_err": float(rel), "rho_ph_positive_everywhere": pos}
+    c1_all = c1_all and rel < 1e-6 and pos
 report("C1_Mph_vs_supply", Mph,
-       "M_ph != +5.36 M_b: the unconstrained KL target is not normalised to the supply (sign AND magnitude); supply limit binds",
+       "M_ph = +66.5 M_b != 5.36 M_b: the unconstrained KL target is not normalised to the supply (magnitude); supply limit binds (CORRECTED 10-07: positive, was mis-signed)",
        c1_all,
-       "rho_ph < 0 on (r_in, r_out) for the point mass -> log rho_ph not real; declared proxy rho_bar = |rho_ph| for the flow tests")
+       "rho_ph > 0 on (r_in, r_out) for the point mass -> log rho_ph real, KL well-defined without any proxy (CORRECTED 10-07)")
 
 # ================= C2: constrained minimiser = rescaled rho_ph =================
 c2info = {}
@@ -228,9 +242,9 @@ for fk in A0:
     a0f = A0[fk]
     yin = G * MB / (a0f * R_IN ** 2)
     yout = G * MB / (a0f * R_OUT ** 2)
-    Mbar = MB * ((nu(yout) - 1.0) - (nu(yin) - 1.0))  # = |M_ph| > 0
+    Mbar = MB * ((nu(yout) - 1.0) - (nu(yin) - 1.0))  # = M_ph > 0 (corrected 10-07)
     c_lam = M_SUPPLY / Mbar
-    rb = np.abs(rho_ph_pt_np(r5, MB, a0f))
+    rb = np.abs(rho_ph_pt_np(r5, MB, a0f))  # abs harmless: rho_ph > 0 (corrected)
     rstar = c_lam * rb
     M_int = float(np.trapz(rstar * 4.0 * math.pi * r5 ** 2, r5))
     rel_mass = abs(M_int / M_SUPPLY - 1.0)
