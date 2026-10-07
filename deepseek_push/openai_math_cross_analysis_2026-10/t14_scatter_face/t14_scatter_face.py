@@ -117,7 +117,7 @@ lines = [
 print("\n".join(lines))
 with open(os.path.join(here, f"t14_results{tag}.json"), "w") as fh:
     json.dump(dict(mutate=MUT, sig_ln_t=dict(clusters=sc, groups=sg), ratio=ratio,
-                   t_range_Gyr=[t_lo_c, t_hi_c], shape=dict(c=shape_c, g=shape_g),
+                   t_range_Gyr=[t_lo_c, t_hi_c], feps_ratio=r_feps,
                    lit=lit, checks={k: bool(v) for k, v in checks.items()}), fh, indent=1)
 ok = all(bool(v) for k, v in checks.items() if k != "C7_literature")
 if ok:

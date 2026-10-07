@@ -69,3 +69,26 @@ killable. And the absolute scale passes a three-clock audit: the same
 λ that the MW floor was fixed by is independently recovered by the
 cluster and group clocks at the R500 convention. One coupling, three
 clocks, all agreeing.
+## Addendum — sibling audit 983addaac ACCEPTED (2026-10-07)
+
+The audit's two corrections are accepted:
+
+1. **Mixed-definition circularity.** T12's λ universality
+   (0.0291–0.0656 at f = 0.60/0.43) chose per-clock epoch anchors
+   (b = 0.05 Mpc groups, b = 0.03 Mpc clusters) — the agreement was
+   conditional on those definitions. One-definition re-run (b = 0 both):
+   groups λ = 0.0616 vs clusters λ = 0.0260 — **factor 2.37 divergence**;
+   and f ≥ 1.0 for b ≥ 0.1 Mpc, i.e. the epoch screen breaks some
+   definitions. **The absolute λ claim is downgraded: λ is
+   convention-dependent, not forced by the record.** κ = ½ (the
+   a₀-scale) remains untouched — it was never part of the λ fit.
+2. **Epoch sensitivity.** The t(Δ) mapping depends on the assembly-level
+   definition (z50 vs z14 ...); the absolute epochs in T12's table are
+   definition-bound.
+
+What SURVIVES the audit (unchanged content, for the record):
+- the **clock-ratio** statement (T11, Lean-certified) — t_c/t_g is
+  λ- and b-independent by cancellation;
+- the **elasticity face** ε(f) (T12 cert): a function of f alone;
+- T14's scatter readings σ(ln t) = (σ(f)/f)/ε(f): inputs are only f
+  and the published scatter — no λ, no b.
