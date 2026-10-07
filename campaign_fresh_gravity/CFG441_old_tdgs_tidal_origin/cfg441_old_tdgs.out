@@ -1,0 +1,88 @@
+CFG441 -- OLD TIDAL DWARF GALAXIES SELECTED BY TIDAL ORIGIN: Newtonian (settling) or boosted (the law)?
+
+Frozen rules: FROZEN_CRITERIA.md (committed alone first, 6f2023e4c). kappa = 1/2 FITTED; both a0 footings; no dark-matter
+particle (the framework's cold-fluid mass is still required wherever the law needs it).
+
+  Tier A (verdict sample): S0 tidal origin + S1 age >= 1 Gyr + S2 kinematic quality + S3 >= 1 orbit at the measured radius.
+  Tier B (reported): S0 + S2 but fails S1 or S3 (the CFG7 young six; Arp 72c).
+  Tier C (reported): collision debris (DF2/DF4), quoted from the committed CFG7 FG001 record only.
+  Statistic: chi^2 of V_obs vs Newton and vs the law (nu_mono, 1-D EFE form of CFG7 / FM12 eq. 60, nominal host mass;
+  isolated if no host); Delta chi^2 = chi^2_law - chi^2_N.  SETTLING SUPPORTED if Delta > +9 on both footings; LAW
+  SUPPORTED if Delta < -9 on both; else NON-DISCRIMINATING (also if N_A < 3).
+  C1: CFG7's young-TDG Newton chi^2 1.09 (6) within 0.01, and its nu_mono most-favourable-host chi^2_EFE (10.55 / 13.08)
+      within 0.05.   C2: the nu_mono import.
+  MUTATE=1: V_obs := V_N on the analysis set (Tier A if N_A >= 3, else Tier A + B); must return SETTLING SUPPORTED on both
+  footings -> exit 1.
+  F1 (forecast, not a measurement): NGC 5557-E1, the oldest secure TDG (4 Gyr), has no usable kinematics; the velocity
+  that Newton and the law predict for it, bracketing its untabulated gas mass, and the velocity precision needed.
+
+==============================================================================================================
+C2  CONTROL: the committed nu_mono and the two footings
+==============================================================================================================
+    nu_mono(1) = 1.581976710071; nu_mono(1e-4) * sqrt(1e-4) = 1.00501; a0 = 9.36032e-11 / 1.13120e-10 m/s^2
+  [PASS] C2 CONTROL: nu_mono imported from CFG4_common (deep limit nu sqrt(y) within 2% of 1 at y = 1e-4); footings 9.3603e-11 / 1.1312e-10
+         deep-limit ratio 1.0050
+
+==============================================================================================================
+SELECTION  (frozen S0-S3; every candidate and its reason in data/candidates.csv)
+==============================================================================================================
+    NGC 5557-E1                                  tier excluded  | S0 PASS S1 PASS S2 FAIL S3 not  | the oldest secure TDG has no usable kinematics; forecast F1 
+    NGC 5557-E2                                  tier excluded  | S0 PART S1 PASS S2 FAIL S3 not  | no kinematics
+    NGC 5557-E3                                  tier excluded  | S0 PART S1 unkn S2 FAIL S3 not  | not bound per authors; no kinematics
+    AGC 229398                                   tier excluded  | S0 FAIL S1 trav S2 WSRT S3 not  | S0 fails; using DM deficiency as origin evidence would be ci
+    AGC 333576                                   tier excluded  | S0 FAIL S1 trav S2 WSRT S3 not  | S0 fails (circular origin evidence)
+    AGC 219369; AGC 123216                       tier excluded  | S0 FAIL S1 trav S2 WSRT S3 not  | S0 fails
+    AGC 208457                                   tier excluded  | S0 PASS S1 FAIL S2 not  S3 --   | young by its own authors
+    Arp 72a                                      tier excluded  | S0 PASS S1 FAIL S2 no k S3 --   | young; no model
+    Arp 72b                                      tier excluded  | S0 PART S1 FAIL S2 FAIL S3 --   | S1 and S2 fail
+    Arp 72c                                      tier B         | S0 PASS S1 FAIL S2 PASS S3 FAIL | reported only
+    Arp 72d                                      tier excluded  | S0 FAIL S1 FAIL S2 no k S3 --   | 
+    NGC 5291N/S/SW; NGC 7252E/NW; VCC 2062       tier B         | S0 PASS S1 FAIL S2 PASS S3 FAIL | the CFG7 control six
+    NGC 1052-DF2; DF4                            tier C         | S0 stra S1 old  S2 sigm S3 yes  | reported from the committed CFG7 FG001 record only (never in
+    MATLAS-1824/1322/1830/1180/947               tier excluded  | S0 PART S1 no a S2 sing S3 --   | no age; no resolved kinematics
+    HCG 16-LSB1                                  tier excluded  | S0 PASS S1 FAIL S2 dyna S3 --   | young
+    Kaviraj+2012 Stripe 82 candidates (405)      tier excluded  | S0 phot S1 phot S2 none S3 --   | no kinematics
+    S3 audit NGC 5291N  : t_form 0.35 Gyr, t_orb 0.70 Gyr -> 0.50 orbits
+    S3 audit NGC 5291S  : t_form 0.44 Gyr, t_orb 2.20 Gyr -> 0.20 orbits
+    S3 audit NGC 5291SW : t_form 0.39 Gyr, t_orb 1.30 Gyr -> 0.30 orbits
+    S3 audit NGC 7252E  : t_form 0.75 Gyr, t_orb 2.50 Gyr -> 0.30 orbits
+    S3 audit NGC 7252NW : t_form 0.60 Gyr, t_orb 3.00 Gyr -> 0.20 orbits
+    S3 audit VCC 2062   : t_form 0.72 Gyr, t_orb 1.20 Gyr -> 0.60 orbits
+    S3 audit Arp 72c    : t_form 0.32 Gyr, t_orb 1.32 Gyr -> 0.24 orbits
+
+    Tier A (verdict sample): N_A = 0.  Tier B (reported): 7 (NGC 5291N, NGC 5291S, NGC 5291SW, NGC 7252E, NGC 7252NW, VCC 2062, Arp 72c).
+    Tier C (reported, from the committed CFG7 FG001 record): NGC 1052-DF2 Newton 0.0 sigma, law+EFE 3.0 sigma; DF4 0.8 / 1.5 sigma.
+  [PASS] (reported) S3 audit: every Tier B object has turned < 1 orbit (so none could be promoted to Tier A by S3)
+         NGC 5291N 0.50, NGC 5291S 0.20, NGC 5291SW 0.30, NGC 7252E 0.30, NGC 7252NW 0.20, VCC 2062 0.60, Arp 72c 0.24
+
+==============================================================================================================
+C1  CONTROL: CFG7 FG041's young-TDG chi^2 with this lane's code
+==============================================================================================================
+    Newton chi^2 = 1.0950 (CFG7 1.0950); nu_mono+EFE most favourable host: canonical 10.547 (CFG7 10.547), alt 13.075 (CFG7 13.075)
+  [PASS] C1 CONTROL: CFG7 Newton chi^2 1.09 (6 TDGs) within 0.01 and nu_mono+EFE (canonical 10.55 / alt 13.08) within 0.05
+         Newton 1.0950; EFE 10.547 / 13.075
+
+==============================================================================================================
+VERDICT ON TIER A (old TDGs by tidal origin)
+==============================================================================================================
+    N_A = 0 < 3: NON-DISCRIMINATING by the frozen rule, on both footings (no Tier A chi^2 exists).
+
+==============================================================================================================
+REPORTED (never a verdict): Tier B -- tidal origin + kinematics, but young / < 1 orbit
+==============================================================================================================
+    TierB canonical: chi^2 Newton    1.10 | law+EFE (nominal host)   34.02 | law isolated  146.12 | Delta (law+EFE - N)  +32.91; host x0.5 +44.55, x2 +24.27; 10% sys +29.98
+        per object (V_obs / Newton / law): NGC 5291N 45/37/58; NGC 5291S 35/31/50; NGC 5291SW 28/25/43; NGC 7252E 18/19/30; NGC 7252NW 21/21/39; VCC 2062 16/15/26; Arp 72c 21/20/50
+    TierB alt      : chi^2 Newton    1.10 | law+EFE (nominal host)   40.29 | law isolated  169.00 | Delta (law+EFE - N)  +39.19; host x0.5 +52.60, x2 +29.12; 10% sys +35.67
+        per object (V_obs / Newton / law): NGC 5291N 45/37/60; NGC 5291S 35/31/52; NGC 5291SW 28/25/45; NGC 7252E 18/19/31; NGC 7252NW 21/21/40; VCC 2062 16/15/27; Arp 72c 21/20/52
+    Tier B would read 'SETTLING SUPPORTED' under the Tier A thresholds -- reported only (it fails S1/S3 by construction).
+
+==============================================================================================================
+F1  FORECAST (not a measurement): NGC 5557-E1, 4 Gyr old, no usable kinematics -- what would decide it
+==============================================================================================================
+    E1-host projected distance 68.9 kpc (366 arcsec at 38.8 Mpc); host M_K -24.87 -> L_K 1.820e+11, M_host = 0.6 L_K = 1.092e+11 Msun; E1 M_* = 1.2e8, R_e = 2.3 kpc, evaluated at R = 2 R_e = 4.6 kpc
+    M_HI = 1 x M_* -> M_bar 2.88e+08: V_Newton  16.4 km/s; law+EFE  28.0 /  29.1; law isolated  45.0 /  47.1 km/s (canonical / alt)
+    M_HI = 3 x M_* -> M_bar 6.24e+08: V_Newton  24.2 km/s; law+EFE  39.6 /  41.1; law isolated  55.6 /  58.0 km/s (canonical / alt)
+    smallest Newton-to-law+EFE gap 11.6 km/s: a 3-sigma split for this one object needs a total velocity error <= 3.9 km/s (V_circ incl. asymmetric drift, inclination and baryonic-mass errors) -- resolved HI (VLA/MeerKAT-class, ~5 km/s channels) or IFU H-alpha kinematics, plus a measured HI mass.
+
+  3/3 checks pass; load-bearing failures: 0
+  VERDICT (Tier A, both footings): NON-DISCRIMINATING / NON-DISCRIMINATING  (N_A = 0)
