@@ -58,7 +58,12 @@ is the SIS factor; π from the Jeans formula); Q3 — structural law.
       isothermal law is DISTINGUISHABLE from a polytrope by the Jeans
       scale's constancy.
   C6  MUTATE (T13_MUTATE=1): replace isothermal with polytrope in the
-      consistency chain — C1, C3, C5 must flip.
+      consistency chain — C1 must flip (polytropic residual ≠ 0).
+      [CORRECTED 2026-10-07: the original wording declared C3/C5 would
+      flip too; empirically only C1 is MUT-dependent — C2–C5 are computed
+      identically in both modes (C3/C5's content is the polytrope
+      DISTINGUISHABILITY, verified by C5's drift check, which passes in
+      both modes by construction). MUTATE rc 1 verified.]
   C7  literature grounding: fetch 1–2 sources on the MW dwarf population
       and the missing-satellites problem (registration; the theorem's
       direction — no dark substructure — is the claim).
