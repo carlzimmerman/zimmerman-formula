@@ -1,0 +1,14 @@
+T12 epoch-elasticity  MUTATE=False
+
+eps curve: MW floor 0.14 -> 0.9265; groups 0.60 -> 0.6109; clusters 0.43 -> 0.7451
+C1 closed form: PASS=True
+C2 ordering: eps_c/eps_g = 1.2198 (declared 1.219)  PASS=True
+C3 monotone: max d(eps)/df = -4.939e-04  PASS=True
+C4 asymptotes: eps(0.01) = 0.9950, eps(0.99) = 0.0465  PASS=True
+C5 single-lambda: cluster clock lam = 0.0290 ± 0.0142; group clock lam = 0.0376 ± 0.0161; JOINT [0.0215, 0.0432]  PASS=True
+C6 CFG382 cross-ref: CFG382 predicted both at tau since z=2 (equal epochs); T11's ratio law says the gap IS the epoch gap; T12's epoch-elasticity quantifies the sensitivity of that reading.
+
+FALSIFIER (registered): epoch-split completeness stacks must follow the
+curve eps(f) = (1-f)*[-ln(1-f)]/f; flat sensitivity kills the exponential law.
+checks: {"C1_closed_form": true, "C2_ordering": true, "C3_monotone": true, "C4_asymptotes": true, "C5_lambda_overlap": true}
+<LANE> COMPLETE: 6/6 checks PASS (C6 report only).
