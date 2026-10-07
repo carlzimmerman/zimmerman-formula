@@ -1,6 +1,6 @@
 # Session 3 calcs: results (2026-10-06)
 
-Criteria: `FROZEN_CRITERIA.md`. T, B and B2 were each frozen before their scripts ran. κ = ½ fitted; both footings. No dark-matter particle; the cold mass is still required. Promoted into committed lane CFG390 (scripts and outputs byte-identical to the exploratory run).
+Criteria: `FROZEN_CRITERIA.md`. T, B and B2 were each frozen before their scripts ran. κ = ½ fitted; both footings. No dark-matter particle; the cold mass is still required. Promoted into committed lane CFG440 (scripts and outputs byte-identical to the exploratory run).
 
 | test | script | verdict | key numbers |
 |---|---|---|---|

@@ -2,7 +2,7 @@
 
 Criteria cca28095f (committed before the script). Script `cfg399_step_key.py`. κ = ½ fitted; both footings.
 
-cm08–cm10 placed the retained-cold-fraction step (0.13 → 0.60) at host T_vir 0.5–2.3e6 K. A temperature-keyed (phase-change) step predicts any system hotter than 2.3e6 K sits at the upper level. The 23 Ogle+2019 super spirals are isolated discs that were not used to place the step (CFG390 session02 per-object f, enclosed baryons).
+cm08–cm10 placed the retained-cold-fraction step (0.13 → 0.60) at host T_vir 0.5–2.3e6 K. A temperature-keyed (phase-change) step predicts any system hotter than 2.3e6 K sits at the upper level. The 23 Ogle+2019 super spirals are isolated discs that were not used to place the step (CFG440 session02 per-object f, enclosed baryons).
 
 | footing | sample | N | measured median f | predicted | difference | verdict |
 |---|---|---|---|---|---|---|

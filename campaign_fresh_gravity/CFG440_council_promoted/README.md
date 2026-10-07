@@ -1,4 +1,6 @@
-# CFG390: promoted dwarf/cluster calculations (exploratory runs of 10-06, now committed)
+# CFG440: promoted dwarf/cluster calculations (exploratory runs of 10-06, now committed)
+
+> **Renumbered 2026-10-06** from CFG390_council_promoted (commit 95fb07853), which collided with an earlier CFG390 reservation by the orchestrating session. Contents unchanged. FROZEN_CRITERIA files that cite "CFG390" mean this lane.
 
 These calculations were first run in a git-ignored exploratory folder on 2026-10-06. Each `FROZEN_CRITERIA.md` section there was written before its script. The scripts are copied here unchanged, apart from attribution labels removed from the criteria headings and one disclosed bug fix (session05). Rerun from this location, all 26 outputs are **byte-identical** to the exploratory runs. Caveat: the freeze-before-run order was kept in the git-ignored folder, so git cannot prove it for these lanes. Commit timestamps prove it only for CFG391–CFG399.
 

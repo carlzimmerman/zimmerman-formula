@@ -1,6 +1,6 @@
 # Session 6 calcs: results (2026-10-06)
 
-Criteria: `FROZEN_CRITERIA.md` (P and F frozen before their scripts). κ = ½ fitted; both footings. Promoted into committed lane CFG390 (scripts and outputs byte-identical to the exploratory run).
+Criteria: `FROZEN_CRITERIA.md` (P and F frozen before their scripts). κ = ½ fitted; both footings. Promoted into committed lane CFG440 (scripts and outputs byte-identical to the exploratory run).
 
 | test | script | frozen verdict | key numbers |
 |---|---|---|---|

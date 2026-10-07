@@ -15,3 +15,7 @@ If the law's phantom must be filled by real cold fluid (the settling working mod
 - **Reading.** The low-mass lenses bind. A supply-limited phantom reaches KiDS's minimum only if those galaxies kept ≤ ~7% of their original baryons, the lower edge of the census. At the census central value (~0.10) it falls short (x ≈ 0.2–0.3 at log M_b 10–10.5). This is the lensing counterpart of CFG365's galaxy-level VIABLE: viable inside discs, tight at lensing radii.
 - **Caveats.** Point-mass baryons and the deep phantom; all of the supply bound to the lens and filling the target from the centre out (the most favourable case). r_ta interpolated log-linearly between CFG4's two quoted values. CFG4's window comes from a joint fit, not per-bin limits.
 - **Controls.** K1 (exact root vs deep estimate, within 1%) and K2 (monotone) pass. **MUTATE** (supply ×100) makes every cell CONSISTENT-STRICT: detected, exit 1.
+
+**Close priors (added 10-06 after the orchestrating session pointed them out; the verdict is unchanged).**
+- BSX3 (`real_research/bs_khronon_2026/`; PAPER33 v2, DOI 10.5281/zenodo.22967954): the conserved phantom runs out at 0.13–0.67 Mpc with Moster masses, inside KiDS's clean radius in 6 of 8 cases. That is the same tension from a different supply recipe. CFG398 adds the census-retention (CFG365) parameterisation and the largest f_ret per mass.
+- CFG377 (a8360bf1b): KiDS reaches ~2.2 Mpc, while Brouwer+21 trust isolated lenses only to ~0.3 Mpc/h. So the 0.30 / 0.47 r_ta requirement taken from CFG4's joint fit may be stricter than the trusted radius supports.

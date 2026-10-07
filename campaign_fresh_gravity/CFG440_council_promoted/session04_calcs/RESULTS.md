@@ -1,6 +1,6 @@
 # Session 4 calcs: results (2026-10-06) — trying to break Session 3
 
-Criteria: `FROZEN_CRITERIA.md` (C, S and U each frozen before their scripts ran). κ = ½ fitted; both footings. Promoted into committed lane CFG390 (scripts and outputs byte-identical to the exploratory run). All MUTATE runs were detected (exit 1).
+Criteria: `FROZEN_CRITERIA.md` (C, S and U each frozen before their scripts ran). κ = ½ fitted; both footings. Promoted into committed lane CFG440 (scripts and outputs byte-identical to the exploratory run). All MUTATE runs were detected (exit 1).
 
 | test | script | frozen verdict | key numbers |
 |---|---|---|---|
