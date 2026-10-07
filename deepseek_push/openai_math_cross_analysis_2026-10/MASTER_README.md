@@ -62,11 +62,22 @@ The chains they weld into:
 
 1. Any measured σ_ph ≠ (GMa₀)^{1/4}/√2 (MW satellites: ~110–125 vs
    132.8/139.2 km/s — live near-boundary test).
-2. Any pure-dark substructure observation.
+2. ~~Any pure-dark substructure observation.~~ **WITHDRAWN (2026-10-07):
+   CFG344 requires the cold fluid to clump like CDM — dark subhalos are
+   expected (cold-fluid structure); a detection constrains the cold
+   fluid, not the phantom. The phantom-only statement stands.**
 3. Any completeness sample whose σ(f)/[f·ε(f)] leaves 0.4–0.5 by >2σ,
    or whose σ(0.60)/σ(0.43) breaks the 1.146 fork (vs 1.0 null).
 4. A flat-level galaxy whose v⁴ ≠ GMa₀ outside the systematics
-   (the mass-law face).
+   (the mass-law face). [T13's sound-speed item is NOT
+   framework-distinguishing: c = (GM_b a₀)^{1/4}/√2 is the textbook-SIS
+   value at the TF normalization — audit accepted.]
+5. A λ measurement at one fixed assembly definition that forces a
+   common λ across clocks — currently open, correctly so.
+6. (falsifier of the BOOKKEEPING, not the framework) a completeness
+   sample whose σ(f)/[f·ε(f)] leaves 0.4–0.5 by >2σ — same content
+   as #3; numerics provisional until the level bias of the 0.43/0.60
+   floor values is resolved.
 5. A λ measurement at one fixed assembly definition that forces a
    common λ across clocks — currently open, correctly so.
 

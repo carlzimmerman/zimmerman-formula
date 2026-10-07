@@ -92,3 +92,20 @@ What SURVIVES the audit (unchanged content, for the record):
 - the **elasticity face** ε(f) (T12 cert): a function of f alone;
 - T14's scatter readings σ(ln t) = (σ(f)/f)/ε(f): inputs are only f
   and the published scatter — no λ, no b.
+
+## Extension — the survivors are bookkeeping too (2026-10-07)
+
+Following the second audit pass (re-verified in-lane), the residual
+claims of T12/T14 are relabeled honestly:
+
+- The clock ratio t_c/t_g = ln(1−f_c)/ln(1−f_g) and the elasticity
+  ε(f) = (1−f)[−ln(1−f)]/f are the exact consistency relations of ANY
+  single-mode exponential settling f = 1 − e^{−Γt} — they constrain
+  nothing beyond the law itself. Bookkeeping-grade (like T9).
+- **T14's numeric readings inherit the level bias:** σ(ln t_c) =
+  0.468/σ(ln t_g) = 0.409 are computed from f = 0.43 ± 0.15 and
+  0.60 ± 0.15, and those levels shift ~2× under the mass correction.
+  The absolute values are provisional. What survives is only the
+  f-only FORK shape (σ(0.60)/σ(0.43) = 1.1462 vs 1.0 under the null),
+  which is independent of the level bias to first order — and it too
+  is a property of the exponential law, not of the framework.

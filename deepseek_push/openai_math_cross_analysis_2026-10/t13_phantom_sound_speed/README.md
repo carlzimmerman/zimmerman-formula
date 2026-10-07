@@ -75,3 +75,30 @@ fragment, so the CDM substructure catastrophe is structurally absent.
 This is the first structural (not dynamical) argument the framework
 offers for the observed dwarf population, and it is falsifiable in both
 directions.
+## Correction — sibling audit 983addaac (locally re-verified 2026-10-07)
+
+The audit's two findings reproduce exactly (check script in-lane,
+`t13_sis_equivalence.py`; ρ_ph/ρ_SIS = 1.000000000000):
+
+1. **T13 is the textbook singular isothermal sphere — accepted.** The
+   settled phantom satisfies the SIS identities by construction:
+   ρ = σ²/(2πGr²) with σ² = v²/2, c_ph = (GM_b a₀)^{1/4}/√2 is the
+   Tully–Fisher normalization restated, and λ_J = √2·π·r holds for ANY
+   isothermal fluid with ρ ∝ r⁻² — the corollary is not
+   framework-specific. The framework's residual content:
+   - the *derivation* of the SIS state from the kernel + hydrostatics
+     (the dispersion is NOT inserted; σ² = √(GMa₀)/2 follows from
+     v⁴ = GMa₀, itself from μ-constancy) — a certified
+     known-object derivation, bookkeeping-grade like T9;
+   - the Lean certificate of that derivation chain.
+   Nothing in T13 constrains the cold fluid.
+
+2. **Falsifier #1 RESCOPED (dated):** "any pure-dark subhalo observation
+   kills the no-substructure corollary" is withdrawn as a falsifier of
+   the FRAMEWORK. CFG344 requires the cold fluid to clump like CDM on
+   small scales — dark subhalos are therefore EXPECTED (cold-fluid
+   structure), and their detection constrains the cold fluid's
+   clumping, not the phantom. The framework's statement is narrowly:
+   the PHANTOM cannot fragment. The phantom-only discrimination is a
+   detection of dark mass in excess of the cold-fluid share tracing the
+   phantom shape — registered as that, not as "no dark subhalos".
