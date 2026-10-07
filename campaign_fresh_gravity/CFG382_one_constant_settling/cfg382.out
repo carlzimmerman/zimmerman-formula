@@ -1,0 +1,20 @@
+CFG382 one-constant settling
+==============================================================================
+  [PASS] C2 isothermal local-density rule rho(R) = M/(4 pi R^3) for rho = V^2/(4 pi G r^2) with M = V^2 R/G: exact
+  tau z2 (primary)  V 180: lambda 0.031 | e MW 0.140 groups 0.696 clusters 0.688 UFD 1.36e-33 | Gamma MW 3.35 cl 0.64 H_L | P1 Y P2 n (vs .576 Y) P3 Y P4 n -> PARTIAL
+  tau z2 (primary)  V 200: lambda 0.028 | e MW 0.140 groups 0.722 clusters 0.714 UFD 2.64e-30 | Gamma MW 3.35 cl 0.57 H_L | P1 Y P2 n (vs .576 Y) P3 Y P4 n -> PARTIAL
+  tau z2 (primary)  V 230: lambda 0.024 | e MW 0.140 groups 0.753 clusters 0.747 UFD 1.90e-26 | Gamma MW 3.35 cl 0.50 H_L | P1 n P2 n (vs .576 n) P3 Y P4 n -> FAILS
+  tau z1            V 180: lambda 0.042 | e MW 0.140 groups 0.696 clusters 0.688 UFD 1.36e-33 | Gamma MW 4.48 cl 0.85 H_L | P1 Y P2 n (vs .576 Y) P3 Y P4 n -> PARTIAL
+  tau z1            V 200: lambda 0.037 | e MW 0.140 groups 0.722 clusters 0.714 UFD 2.64e-30 | Gamma MW 4.48 cl 0.77 H_L | P1 Y P2 n (vs .576 Y) P3 Y P4 n -> PARTIAL
+  tau z1            V 230: lambda 0.033 | e MW 0.140 groups 0.753 clusters 0.747 UFD 1.90e-26 | Gamma MW 4.48 cl 0.67 H_L | P1 n P2 n (vs .576 n) P3 Y P4 n -> FAILS
+  tau z4            V 180: lambda 0.026 | e MW 0.140 groups 0.696 clusters 0.688 UFD 1.36e-33 | Gamma MW 2.83 cl 0.54 H_L | P1 Y P2 n (vs .576 Y) P3 Y P4 n -> PARTIAL
+  tau z4            V 200: lambda 0.024 | e MW 0.140 groups 0.722 clusters 0.714 UFD 2.64e-30 | Gamma MW 2.83 cl 0.48 H_L | P1 Y P2 n (vs .576 Y) P3 Y P4 n -> PARTIAL
+  tau z4            V 230: lambda 0.021 | e MW 0.140 groups 0.753 clusters 0.747 UFD 1.90e-26 | Gamma MW 2.83 cl 0.42 H_L | P1 n P2 n (vs .576 n) P3 Y P4 n -> FAILS
+  [PASS] C1 calibration reproduces e_MW = 0.14 (primary): 0.140000
+
+VERDICT (primary): PARTIAL; UFD direction P4 FAIL (conflict: UFDs settle fully under this rate)
+  densities: MW(30 kpc) 5.57e-23, groups(R500) median 1.53e-24, clusters(R500) median 1.63e-24, UFD 6.68e-20 kg/m^3
+  Groups and clusters share almost the same local density at R500 (R500 is defined by mean density), so P1 and P2 test one number.
+  [PASS] T-MUT main-run marker (MUTATE lambda x3 must move P1/P2 e by > 0.2): PARTIAL
+
+3/3 pass

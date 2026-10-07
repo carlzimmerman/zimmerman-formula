@@ -1,0 +1,20 @@
+CFG382 one-constant settling  (MUTATE: lambda x 3)
+==============================================================================
+  [PASS] C2 isothermal local-density rule rho(R) = M/(4 pi R^3) for rho = V^2/(4 pi G r^2) with M = V^2 R/G: exact
+  tau z2 (primary)  V 180: lambda 0.093 | e MW 0.003 groups 0.337 clusters 0.326 UFD 2.53e-99 | Gamma MW 10.04 cl 1.91 H_L | P1 n P2 Y (vs .576 n) P3 Y P4 n -> PARTIAL
+  tau z2 (primary)  V 200: lambda 0.084 | e MW 0.003 groups 0.376 clusters 0.365 UFD 1.83e-89 | Gamma MW 10.04 cl 1.72 H_L | P1 n P2 Y (vs .576 n) P3 Y P4 n -> PARTIAL
+  tau z2 (primary)  V 230: lambda 0.073 | e MW 0.003 groups 0.427 clusters 0.416 UFD 6.88e-78 | Gamma MW 10.04 cl 1.49 H_L | P1 n P2 Y (vs .576 n) P3 Y P4 n -> PARTIAL
+  tau z1            V 180: lambda 0.125 | e MW 0.003 groups 0.337 clusters 0.326 UFD 2.53e-99 | Gamma MW 13.43 cl 2.55 H_L | P1 n P2 Y (vs .576 n) P3 n P4 n -> FAILS
+  tau z1            V 200: lambda 0.112 | e MW 0.003 groups 0.376 clusters 0.365 UFD 1.83e-89 | Gamma MW 13.43 cl 2.30 H_L | P1 n P2 Y (vs .576 n) P3 n P4 n -> FAILS
+  tau z1            V 230: lambda 0.098 | e MW 0.003 groups 0.427 clusters 0.416 UFD 6.88e-78 | Gamma MW 13.43 cl 2.00 H_L | P1 n P2 Y (vs .576 n) P3 n P4 n -> FAILS
+  tau z4            V 180: lambda 0.079 | e MW 0.003 groups 0.337 clusters 0.326 UFD 2.53e-99 | Gamma MW 8.48 cl 1.61 H_L | P1 n P2 Y (vs .576 n) P3 Y P4 n -> PARTIAL
+  tau z4            V 200: lambda 0.071 | e MW 0.003 groups 0.376 clusters 0.365 UFD 1.83e-89 | Gamma MW 8.48 cl 1.45 H_L | P1 n P2 Y (vs .576 n) P3 Y P4 n -> PARTIAL
+  tau z4            V 230: lambda 0.062 | e MW 0.003 groups 0.427 clusters 0.416 UFD 6.88e-78 | Gamma MW 8.48 cl 1.26 H_L | P1 n P2 Y (vs .576 n) P3 Y P4 n -> PARTIAL
+  [PASS] C1 calibration reproduces e_MW = 0.14 (primary): 0.002744
+
+VERDICT (primary): PARTIAL; UFD direction P4 FAIL (conflict: UFDs settle fully under this rate)
+  densities: MW(30 kpc) 5.57e-23, groups(R500) median 1.53e-24, clusters(R500) median 1.63e-24, UFD 6.68e-20 kg/m^3
+  Groups and clusters share almost the same local density at R500 (R500 is defined by mean density), so P1 and P2 test one number.
+  [FAIL] T-MUT main-run marker (MUTATE lambda x3 must move P1/P2 e by > 0.2): PARTIAL
+
+2/4 pass  (MUTATE)
