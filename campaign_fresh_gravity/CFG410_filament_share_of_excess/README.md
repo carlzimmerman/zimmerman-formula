@@ -20,3 +20,13 @@ Criteria (frozen, committed first); engine `cfg410_pm.py`; analysis `cfg410_anal
 - **The target is now sharp:** a switch that is OFF in filament cores but ON in host shells. The record's theorem says no reader of tidal eigenvalues alone can do this. The switch needs non-eigenvalue information, for example a multi-stream / shell-crossing count or a density-and-velocity-divergence condition.
 
 **Scope.** Bookkeeping reservoir; 256³; MIX-A z ≈ 0 phase fractions at all z. κ = ½ is fitted.
+
+**FORWARD CORRECTION (10-07, from CFG412, a2c962e94): "FILAMENT-DOMINATED" overstates it.**
+- At the 0.78 Mpc/h mesh, l3 < 0 mostly marks host outskirts and interiors, not true filament cores.
+- Of T1's ON mass in l3 < 0 cells:
+  - 80% lies inside a resolved host's turnaround sphere;
+  - about 75% is already above Δ_ta in density;
+  - only 12–13% is outside every peak's turnaround sphere.
+- So the residual growth excess sits largely in the region KiDS needs ON (out to r_ta).
+- A KiDS-safe switch can remove at most about 13–19% of it (CFG412's ceiling, one snapshot, z = 0).
+- **On this snapshot the growth excess and the KiDS edge are in direct conflict.**
