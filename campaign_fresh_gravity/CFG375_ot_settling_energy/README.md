@@ -57,3 +57,5 @@ Here epsilon = E / (rho_Lambda c^2 V_catch). The ALLOWED cut is 0.1, because loc
 - The OpenAI-math results 360 (regular OT) and 374 (Brenier W2^{1/3} stability) are cited as context only. The radial monotone map is exact here by uniqueness and symmetry, and C2 checks its optimality numerically.
 
 Files: `cfg375.out`, `cfg375_results.json` (main), `*_MUTATE`, `*_ANALYTIC` (post-freeze sensitivity), `CFG375_budget.lean(.out)`.
+
+**Commit note.** The results files landed in b964576dc (the CFG379 commit), because a parallel session committed while these files were staged in the shared git index. The content is identical to this lane's run. History is not rewritten; this note is the forward fix.
