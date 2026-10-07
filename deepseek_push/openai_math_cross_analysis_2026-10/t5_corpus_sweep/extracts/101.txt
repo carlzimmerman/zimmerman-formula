@@ -1,0 +1,1159 @@
+# A sharp entropy bound and the simplex inequality for isotropic constants
+
+OpenAI
+
+### October 5, 2026
+
+**Abstract** We prove the strong isotropic constant conjecture: in each dimension, simplices are the unique maximizers of the isotropic constant among convex bodies. We also prove the sharp entropy bound *h*(*f*) *≥m* + <u>1</u> 2 log det Cov(*f*)for every log-concave probability density on R *m*, with equality precisely for invertible affine images of products of one-sided exponential laws.
+
+## 1 Introduction
+
+The isotropic constant compares the covariance of a uniform distribution with the volume of its support. For a convex body *K⊂*R *n*, meaning a compact convex set with nonempty interior, write *−*1 ∫ *|K|*for its Lebesgue volume,*bK*=*|K|* *K* *x*d*x*for its centroid, and ∫ <u>1</u>T Σ*K*= (*x−bK*)(*x−bK*) d*x.* *|K|K*
+
+Its isotropic constant is ()1*/*(2*n*) <u>det ΣK</u> *LK* = 2
+
+*.*(1.1)
+*|K|* This quantity is unchanged by invertible affine maps. The slicing problem, arising in Bourgain’s work on convex bodies [2], asks whether it admits an upper bound independent of dimension. Klartag proved an *O*(*n¹* */*4 )bound [17]. Subsequent progress used stochastic localization, introduced by Eldan [12], leading through subpolynomial and polylogarithmic estimates [7, 19, 20] to Klartag and Lehec’s dimension-independent bound using Guan’s covariance estimate [15, 21]. The sharp form, also called the strong isotropic constant conjecture, asks, in each dimension, whether a simplex maximizes *LK*. The distinction is substantial: a universal bound does not identify the extremal value or an extremizing body. In the plane, Campi, Colesanti, and Gronchi proved the simplex bound, and Saroglou established uniqueness of the maximizing body [6, 28]. In higher dimensions, geometric variation arguments have imposed restrictions on possible maximizers. Rademacher proved that a simplicial polytope maximizing the isotropic constant among all convex bodies must be a simplex [27]. More recent restrictions on local maximizers in terms of decomposability appear in [16]. We prove the sharp inequality for arbitrary convex bodies and classify all equality cases.
+
+**Theorem 1.1**(The simplex inequality)**.***For every integer n≥* 1*, every convex body K⊂*R *n* *satisfies the following bound, with equality if and only ifKis a simplex:*
+
+<u>(n!)</u> 1*/n* *LK ≤* (*n*+1)*/*(2*n*) *√.*(1.2) (*n*+ 1) *n*+ 2
+
+The theorem also has a volume-product consequence. For a convex body *K* with0in its interior, define its polar by *K* *◦* = *{y∈*R *n* : *⟨x,y⟩≤* 1 for every*x∈K}*. Using exponential measures on convex cones, Klartag proved that the sharp simplex bound implies
+
+*◦*<u>(n+ 1)</u> *n*+1 *|K||K |≥* 2 *,*(1.3) (*n*!)
+
+the nonsymmetric Mahler inequality [18, Corollary 1.2]. Thus Theorem1.1also gives this inequality in every dimension. The proof proceeds through differential entropy. For a probability density *f* on R *m*, define, when the integrals are finite, ∫ ∫ ∫ *h*(*f*) =*− f*(*x*) log*f*(*x*) d*x,*Cov(*f*) = (*x−*¯*x*)(*x−*¯*x*) T *f*(*x*) d*x,*¯*x*= *xf*(*x*) d*x.* R*m*R*m*R*m*
+
+All logarithms are natural, and0 log 0 = 0. A log-concave density can be represented, up to a null set, as *f* = *e* *−V* for a proper lower semicontinuous convex function *V* : R *m* *→* (*−∞,*+*∞*]. The value +*∞* permits a density to vanish. Such a probability density has finite entropy and moments, and its covariance is positive definite; the needed tail bound is proved in Lemma5.1.
+
+**Theorem 1.2**(The sharp entropy bound)**.***Let m≥* 1*and let f be a log-concave probability density* *on*R *m* *. Then* <u>1</u> *h*(*f*)*≥m*+ log det Cov(*f*)*.*(1.4) 2 *Equality holds if and only if f is, almost everywhere, the density of M*(*E₁,...,Em*) T + *b, where* *M is an invertible real m×m matrix, b∈*R *m* *, and the Eiare independent random variables with* *densitye* *−u* **1***{u≥*0*}.*
+
+Sharpness follows from a product of *m* independent exponential variables of mean one: its entropy is *m* and its covariance is the identity. Both sides of (1.4) increase by log*|*det*A|* under an invertible affine change *x7→Ax* + *b*. Thus the theorem asserts that a log-concave density with identity covariance has entropy at least*m*. Bobkov and Madiman developed the relation between entropy bounds for log-concave measures and the slicing problem [1]. Fradelizi and Marín Sola formulated the sharp entropy statement (1.4) and proved its equivalence, across dimensions, with the simplex bound [13, Conjecture 3(iii) and Proposition 5.2]. In dimension one, Melbourne, Nayar, and Roberto proved the sharp bound, attained by a one-sided exponential distribution [23, Theorem 1.1]. Theorem1.2establishes the inequality and identifies all equality cases in every dimension. The cone reduction used here follows the preceding geometric and entropic work; we include it both to derive the dimensional constant and to transfer the equality classification to convex bodies.
+
+### 1.1 Ideas of the proof
+
+We first assume that *f* = *e* *−V* is smooth and that the Hessian of *V* is bounded above and below by positive multiples of the identity. Let *∇ϕ* transport standard Gaussian measure to *f*, and put *J* = *D²ϕ*. Brenier’s theorem and Caffarelli’s regularity and contraction theory supply this positive definite matrix field and its uniform bounds [3, 5, 9, 22]. The scalar model is the transport from a Gaussian variable to a mean-one exponential variable,
+
+*t*(*a*) =*−*log Φ(*−a*)*, q*(*a*) =*t* *′*
+
+(*a*)*,*
+
+whereΦis the standard Gaussian distribution function. Since *q* is an increasing bijection onto (0*,∞*), spectral calculus defines the symmetric matrix field*A*=*q* *−*1
+
+(*J*).
+Two features of this parametrization drive the proof. First, an affine change of the target can be chosen so that E*A* = 0, where expectation is Gaussian. This nonlinear normalization is proved by a homotopy and a compactness argument; ordinary covariance normalization does not give the required identity. Second, differentiating the transport equation and using convexity of *V* gives an energy estimate for *A*. The estimate retains a nonnegative term involving pairs of distinct eigenvalues of *A*. Discarding that term would lose the control needed for matrix functions whose derivatives do not commute. The zero mean permits an orthogonal decomposition
+
+∑ *m* *A*(*x*) = *xrXr*+*Y*(*x*)*, Xr*=E[*xrA*(*x*)]*,* *r*=1
+
+where *Y* has Gaussian chaos degrees at least two. The first term lies in the equality space of the Gaussian Poincaré inequality and hence has no energy surplus. We instead use its constant matrices *Xr*to choose a supporting plane for the covariance log determinant. The higher-degree part supplies a strict spectral gap. A covariance identity involving the resolvent of the Ornstein–Uhlenbeck operator then expresses the signed deficit*m*+ <u>1</u> 2 log det Cov(*f*)*−h*(*f*)in terms of these two parts. The resulting estimate has both noncommuting matrix terms and scalar divided differences. A commutator square controls the former. One scalar inequality absorbs the cost of the supporting plane and the terms without derivatives. A second controls the divided differences, charging their off-diagonal error to the eigenvalue-separation term retained earlier. After this cancellation, the entropy deficit is bounded above by a quadratic expression that is nonpositive on every chaos of ∑ 2 degree at least two. Retaining strict slack also controls *Y* and forces*rXr*towards the identity when the entropy gap tends to zero. All numerical constants in the scalar inequalities are exact rationals. Their verification uses polynomial bounds on a compact interval and separate analytic estimates on both tails. For equality, it is essential that this remainder applies to nearly sharp densities. The expected extremizers have restricted support and affine potentials, so equality cannot be studied solely within the smooth, uniformly convex class. We approximate an arbitrary equality density while preserving entropy and covariance. The remainder then forces the reparametrized Jacobians to converge in 2 ∑ ∑ 2 Gaussian *L* to a linear field *A*(*x*) =*rxrXr*, with*rXr*= *I*. Since *q* is Lipschitz in Frobenius norm, the original Jacobians converge to *q*(*A*), and Gaussian Poincaré gives convergence of the centered maps. The local compatibility of this limiting Jacobian is decisive. The const... [truncated]
+
+(0)and *q* *′′*
+(0)is needed for the commutation argument, isolating a potentially
+reusable algebraic step. No uniform Hessian bounds on the smooth approximants are required. Their affine normalizations are controlled only after the limiting law and its covariance have been identified. Section2constructs the normalization and proves the transport energy estimate. Section3 decomposes the entropy deficit and proves the smooth case using two scalar propositions. Section4 proves those propositions; AppendixAsupplies the quantitative one-variable bounds. Section5 removes the smoothness assumptions. Section6classifies equality in the entropy bound. Section7 applies that classification to the exponential density on the cone over *K*, completing Theorem1.1.
+
+## 2 Gaussian transport and a matrix surplus
+
+We first work with a probability density*e* *−V* onR *m* satisfying
+
+*V∈C* *∞* (R *m*
+
+)*,*0*< c−I≤D²V≤c*+*I <∞.*(2.1)
+The constants *c−,c*+may depend on the density. Write *C* = Cov(*µ*), where *dµ* = *e* *−V* *dy*, and let *γm*be standard Gaussian measure. Throughout this section,Edenotes integration against*γm*. There are two objectives. We choose affine coordinates in which a reparametrization of the transport Jacobian has mean zero. We then use convexity of *V* to control derivatives of that reparametrization. The resulting estimate contains an additional nonnegative term measuring separation between eigenvalues; retaining this term is essential in the matrix argument that follows.
+
+### 2.1 The Gaussian parametrization
+
+LetΦand *φ* denote the distribution function and density of a standard one-dimensional Gaussian. Define, for*a∈*R,
+
+*′*<u>φ(a)</u> *t*(*a*) =*−*log Φ(*−a*)*, q*(*a*) =*t* (*a*) =*, d*(*a*) =*q*(*a*)*−a,* Φ(*−a*) (2.2) <u>t(a)</u>*′ ′* *k*(*a*) =*, b*(*a*) =*k* (*a*)*, l*(*a*) =*b* (*a*)*.* *q*(*a*)
+
+The map *t* transports a standard Gaussian to the exponential law of mean one:Φ(*−G*)is uniform on(0*,*1)when *G* is standard Gaussian. Thus *q* is the derivative of the scalar transport associated with the entropy benchmark*h*= 1,Var = 1. The identities *q* *′* =*qd, b*= 1*−kd, l*=*k−q*+*ab*(2.3)
+
+follow by differentiation. In particular, *q−k* = *ab−l*. We record the elementary properties that permit us to use*q*as a change of variable.
+
+**Lemma 2.1.***The functionqis a smooth increasing bijection from*R*to*(0*,∞*)*. Moreover,*
+
+*d >*0*,*0*< q* *′* *<*1*, q* *′′* *≥*0*,*0*<*1*−qd≤d².*
+
+*Proof.* Let *Xa*have the conditional law of *G−a* given *G > a*, and write E*a*for expectation under this law. Gaussian integration by parts gives
+
+### EaXa=d(a),Var(Xa) = 1−q(a)d(a).
+
+Since *Xa>* 0almost surely, *d >* 0and hence *q* *′* = *qd >* 0. Its strictly positive variance gives *q* *′* *<* 1. For completeness, this variance is at most the square of its mean. The survival function
+
+<u>Φ(−a−u)</u> *Sa*(*u*) =*, u≥*0*,* Φ(*−a*)
+
+satisfies *Sa*(*u* + *v*) *≤Sa*(*u*)*Sa*(*v*), since its hazard rate *q*(*a* + *u*)is increasing. Integrating over *u,v≥* 0 yields ∫ *∞* (∫ *∞*
+
+)2
+<u>1</u>2 2 E*aXa*= *uSa*(*u*)*du≤ Sa*(*u*)*du* =*d*(*a*)*.* 20 0 Consequently1 *−qd* = Var(*Xa*) *≤d²*. Differentiating *q* *′* = *qd* now gives *q* *′′* = *q*(*d²* + *qd−* 1) *≥* <u>0</u>. Finally,*q*(*a*)*→*0as*a→−∞*, whereas*q*(*a*)*> a*for*a >*0. These limits prove surjectivity.
+
+We shall also need two positivity bounds and a quantitative growth estimate. Their proof, including the rational bounds on the compact interval and estimates on both tails, is given in AppendixA. Put <u>1</u>2 2 *D₀*(*a*) =*, M*(*a*) =*D₀*(*a*) (1*−b*(*a*))*.*(2.4) *d*(*a*) A lower bound for the growth of *M* in log*q* will let us compare uniform averages in *q* with uniform averages in log*q* in the surplus estimate. Define a nondecreasing step function *m₀* by the following table. At a finite endpoint we take the value in the interval to its right.
+
+*O P₁ R₁ U₁ V₁ T₁* *a* (*−∞,−*3) [*−*3*,−*2) [*−*2*,−*1) [*−*1*,* 2 <u>1</u> ) [ <u>1</u> 2 *,*4) [4*,∞*) (2.5) *m₀*(*a*) 0*.*19*.*38*.*68*.*68*.*68
+
+All terminating decimals in this paper denote exact rational numbers.
+
+**Lemma 2.2**(Scalar bounds)**.***The functions in*(2.2)*satisfy, on*R*,*
+
+1 *d*log*M M* *′* 0*< b <, l >*0*,* := *≥m₀.*(2.6) 2 *d*log*q Md*
+
+For a real symmetric matrix, scalar functions will always be interpreted by spectral functional calculus. If*f*is differentiable, its divided difference is { (*f*(*u*)*−f*(*v*))*/*(*u−v*)*, u̸*=*v,* *f*[*u,v*] = *′* (2.7) *f* (*u*)*, u*=*v.*
+
+The classical Daleckii–Krein formula [10] states that, in an eigenbasis of a symmetric matrix *A*, the derivative of *f* (*A*)in a symmetric direction *Z* has entries *f* [*ai,aj*]*Zij*; see also [25, Section 2.4]. This formula will allow us to keep the off-diagonal entries of matrix derivatives.
+
+### 2.2 Transport and the choice of coordinates
+
+Brenier’s theorem gives a convex potential *ϕ* such that(*∇ϕ*)#*γm*= *µ*; its gradient is unique up to null sets [3, 22]. For *m≥* 2we use the full-space regularity theorem of Cordero-Erausquin and Figalli [9, Theorem 1.1], which extends Caffarelli’s interior theory [4] to the unbounded domains considered here. It applies with both domains equal to R *m*, because both densities are smooth and locally bounded away from zero. For *m* = 1, the same smoothness follows directly by expressing monotone transport through the two distribution functions. Thus *ϕ* is smooth in every dimension. Caffarelli’s contraction theorem [5] and its inverse bound then imply that the Jacobian
+
+*J*=*D²ϕ*(2.8)
+
+satisfies *−*1*/*2 *−*1*/*2 *c* +*I≤J≤c−I.*(2.9) For the lower bound, apply the contraction theorem to the inverse transport. We use its quantitative form: a source potential with Hessian at most √ <u>aI</u> and a target potential with Hessian at least *bI* give a transport Lipschitz constant at most *a/b*; see also [8, Theorem 1]. Define the symmetric matrix field *A*=*q* *−*1
+
+(*J*)*.*(2.10)
+The bounds (2.9) place the spectrum of *A* in a compact interval. Our preferred coordinates are characterized byE*A*= 0. They need not be the usual isotropic coordinates.
+
+**Proposition 2.3**(Affine normalization)**.***Let µ* = *e* *−V* *dy satisfy* (2.1)*. There exists a positive* *definite symmetric matrix P such that the Brenier map from γmto P*#*µ has Jacobian JP satisfying*
+
+E*q* *−*1 (*JP*) = 0*.*
+
+*The transformed density again satisfies*(2.1)*, with possibly different positive constants.*
+
+*Proof.*We use a homotopy from the Gaussian and show that its zeros stay in a compact subset of the positive definite cone. For0*≤θ≤*1, define
+
+*Wθ*(*y*) = (1*−θ*)*|y|* 2 */*2 +*θV*(*y*)*, dµθ*=*Z* *θ−* 1 *e* *−Wθ*(*y*) *dy,*
+
+where *Zθ*is the normalizing integral. There are constants *a−,a*+*>* 0, independent of *θ*, with *a−I≤D²Wθ≤a*+*I*. These densities have uniformly Gaussian tails. Their covariance matrices *Cθ* depend continuously on*θ*, are positive definite, and therefore satisfy
+
+*c₀I≤Cθ≤C₀I*(2.11)
+
+for fixed*c₀,C₀ >*0. For a positive definite symmetric *P*, let *Jθ,P*be the Jacobian of the transport to *P*#*µθ*. Define a map with values in the vector space of symmetric matrices by
+
+*F*(*θ,P*) =E*q* *−*1 (*Jθ,P*)*.*
+
+### Contraction in both directions gives
+
+<u>λmin(P) ∥P∥op</u> *√ I≤Jθ,P≤ √ I.*(2.12) *a*+*a−*
+
+We first verify continuity of *F*. Restrict *P* to any compact subset of the positive definite cone. The transports have common Lipschitz constants by (2.12); their values at zero are bounded because their means and second moments are bounded. Every convergent sequence(*θj,Pj*)thus has locally uniformly convergent subsequences of transport maps. Their limits push forward *γm*to the limiting target and remain gradients of convex functions, so Brenier uniqueness identifies the limit. Write *Jj,J* for the corresponding Jacobians. They converge weak-* locally and obey common positive spectral bounds. The change-of-variables equation expresses log det*Jj*in terms of the target potential composed with its transport map. It therefore converges locally uniformly to log det*J*. On a fixed compact spectral interval, strict concavity oflog detgives a constant*c >*0such that ( *−*1 ) 2 log det*Jj≤*log det*J*+ tr *J* (*Jj−J*) *−c|Jj−J|*F*.*
+
+Integration on any ball, followed by weak-* convergence, proves *Jj→J* in local *L²*. Functional calculus then gives local *L²* convergence of *q* *−*1 (*Jj*). Their common spectral bounds control the Gaussian tails, proving continuity of*F*. We next bound all zeros, uniformly in *θ*. Suppose E*A* = 0, where *A* = *q* *−*1 (*Jθ,P*). Convexity of *q* and Jensen’s inequality on the expected spectral measure of each unit vector give
+
+E*Jθ,P≥q*(0)*I.*
+
+Gaussian integration by parts gives E(*xr∂iϕ*) = (E*Jθ,P*)*ir*. Orthogonal projection of the centered components of*∇ϕ*onto the span of*x₁,...,xm*consequently yields
+
+### PCθP≥(EJθ,P) ≥q(0) I.
+
+Together with (2.11), this bounds *P* *−*1 uniformly. The lower estimate in (2.12) now gives a uniform lower bound*A≥a∗I*, where we may take*a∗≤*0. Since*q* *′* *≤*1, () *q*(*a*)*≤q*(*a∗*) +*a−a∗*(*a≥a∗*)*,*Etr*Jθ,P≤m q*(*a∗*)*−a∗.*
+
+On the other hand, Gaussian Poincaré and (2.12) imply
+
+2 2<u>∥P∥op</u> *c₀∥P∥*op*≤*tr(*PCθP*)*≤*Etr*Jθ,P≤ √* Etr*Jθ,P.* *a−*
+
+This also bounds*P*uniformly. Choose a bounded open set in the space of symmetric matrices whose closure lies in the positive definite cone and whose interior contains every zero just bounded. The map *F* (*θ,·*)has no zeros on its boundary. At *θ* = 0, the target is *N*(0*,P²*), so *J₀,P*= *P* and *F*(0*,P*) = *q* *−*1
+
+(*P*). Its unique zero
+is *q*(0)*I*; its derivative there is multiplication by the positive scalar1*/q* *′*
+
+(0). Its Brouwer degree is
+therefore nonzero. Homotopy invariance of degree gives a zero at*θ*= 1, as required.
+
+### The quantity m +
+
+<u>1</u> 2 log det Cov(*µ*) *−h*(*µ*)is unchanged by an invertible affine transformation. Indeed, a linear map *P* adds log*|*det*P|* to entropy and2 log*|*det*P|* to the covariance log determinant. We may therefore impose the normalization from Proposition2.3. From now on*V,J,A,C*refer to this transformed density and transport, and
+
+### EA= 0.(2.13)
+
+### 2.3 The transport equation and its energy
+
+We shall differentiate the Jacobian and integrate the resulting equation. The twice-differentiated change-of-variables equation is part of Caffarelli’s transport method [5, Section 5]. The next lemma establishes the finite energy needed to do this without additional decay assumptions on higher derivatives of*V*. For a matrix field*F*, set
+
+∑ *m* *|F|* 2 F= tr(*F* T
+
+*F*)*,∥F∥*
+2 =E*|F|* 2 F*,∥∂F∥* 2 = *∥∂rF∥* 2 *.* *r*=1
+
+The same convention sums over any displayed derivative index of a collection of matrix fields.
+
+**Lemma 2.4**(Jacobian equation and finite energy)**.***Under*(2.1)*, putJr*=*∂rJand*
+
+*Lu*= tr(*J* *−*1 *D²u*)*−∇V*(*∇ϕ*)*·∇u.*
+
+*Then* *LJij*=*−δij*+ (*JD²V*(*∇ϕ*)*J*)*ij*+ tr(*J* *−*1 *JiJ* *−*1 *Jj*)*.*(2.14)
+
+*Moreover ∥∂J∥<∞. The matrix fields A and k*(*A*)*belong to Gaussian H¹, and the integrations by* *parts below with smooth matrix functions ofJare justified by compact cutoffs.*
+
+*Proof.*The density equation is
+
+log det*J*=*V*(*∇ϕ*)*−|x|* 2 */*2*−*(*m/*2) log(2*π*)*.*(2.15)
+
+Differentiating twice gives (2.14). The divergence of the cofactor matrix of a Hessian vanishes. Applying this identity to*J*, and then differentiating (2.15) once, shows that
+
+*|x| /*2 ( *−|x| /*2 *−*1 ) *Lu*=*e* div *e J ∇u .*
+
+Thus, for smooth*u*and compactly supported smooth*v*,
+
+E(*vLu*) =*−*E*⟨∇v,J* *−*1 *∇u⟩.*(2.16)
+
+Choose0 *< λ≤* Λ *<∞* such that *λI≤J≤* Λ*I*. Taking the trace in (2.14), and using *D²V≥* 0, gives ∑ *L*(tr*J*)*≥−m*+ Λ *−*2 *|Jr|* 2
+
+F*.*
+*r* *√* For a compactly supported cutoff0*≤χ≤*1, integration by parts and*|∇*tr*J|≤ m|∂J|*imply
+
+*−*2 2 2 *−*1 *√* () Λ E*χ |∂J| ≤m*+ 2*λ m*E *χ|∇χ||∂J|*
+
+*≤m*+ <u>1</u> 2 Λ *−*2 E*χ²|∂J|* 2 + 2*m*Λ²*λ* *−*2 E*|∇χ|* 2 *.*
+
+Let *χ* tend to one through standard radial cutoffs with gradients bounded by a constant divided by their radii. Fatou’s lemma proves*∥∂J∥<∞*. All eigenvalues of *J* lie in[*λ,* Λ]. The Fréchet derivatives of *q* *−*1 and of *k◦q* *−*1 are bounded on that spectral interval, so *A,k*(*A*) *∈H¹*(*γm*). The same applies to any smooth scalar function on this interval. For such a matrix multiplier, insert a cutoff into (2.16) and let it tend to one. The terms containing its gradient vanish by Cauchy–Schwarz and the energy bound; the remaining differentiated terms are bounded by a constant times1+*|∂J|* 2. This justifies the asserted integrations by parts.
+
+### 2.4 Keeping the eigenvalue separation
+
+Set *Zr*= *∂rA*. At each point diagonalize *A*, and write *ai*for its eigenvalues and *λi*= *q*(*ai*)for those of*J*. For real*a,b*, define
+
+*δ*(*a,b*) =*|*log*q*(*a*)*−*log*q*(*b*)*|, m∗*(*a,b*) =*m₀*(min(*a,b*))*,* () 1 +*m∗*(*a,b*) *δ*(*a,b*) 2 *δ*(*a,b*) 4(2.17) *r*(*a,b*) = 1 + +*.* 16 30 1680
+
+We use the abbreviations*δij*=*δ*(*ai,aj*)and*rij*=*r*(*ai,aj*). The quantity ∑ *C*=E *rijδij* 2 (*Zr*) 2 *ij*(2.18) *i,j,r*
+
+is independent of the choice of orthonormal basis within repeated eigenspaces. In particular, the factor*δij* 2 vanishes when*ai*=*aj*.
+
+**Proposition 2.5**(Matrix surplus)**.***For the transport satisfying*(2.1)*, with the notation above,*
+
+Etr*k*(*A*) 2 *≥∥∂A∥* 2 *−∥∂k*(*A*)*∥* 2 +*C.*(2.19)
+
+*Proof.* The proof has two parts. Symmetry of the third derivatives of *ϕ* first replaces the transport equation by averages of the scalar function *M*. Comparing arithmetic and logarithmic averages then produces the term*C*. The identity *qk* = *t* will match the entropy term in the covariance completion of Section3; we first estimate the derivative cost of *k*(*A*). Put *F* (*λ*) = *k*(*q* *−*1
+
+(*λ*)) 2. Multiply (2.14) by *F* (*J*)in trace
+and integrate by parts. Lemma2.4justifies this operation. At a fixed point choose an orthonormal
+
+eigenbasis of *J* and rotate all three indices of the symmetric tensorΘ*ijr*= *∂rJij*= *∂i∂j∂rϕ* into that basis. The quadratic term on the right of the Jacobian equation has trace contraction
+
+∑ ∑ <u>F(λ</u> <u>i</u> <u>)</u> *F*(*λi*) tr(*J* *−*1 *JiJ* *−*1 *Ji*) = Θ²*ijr,* *i i,j,r* *λjλr*
+
+where we used the symmetry ofΘ. The term obtained by integration by parts is
+
+∑ () ∑ <u>F[λ</u> <u>i</u> <u>,λj]</u> *λ* *−* *r* 1 tr (*∂rF*(*J*))*Jr*= Θ²*ijr.* *r i,j,r* *λr*
+
+The remaining term istr(*F*(*J*)*JD²VJ*)*≥*0. Discarding it gives () ∑ <u>F(λ</u> <u>i</u> <u>) F[λi,λj]</u> Etr*k*(*A*) 2 *≥*E Θ²*ijr*+*.*(2.20) *i,j,r* *λjλrλr*
+
+Only pointwise changes of basis are made here; no eigenvectors are differentiated. Regard*M*as a function of*λ*=*q*(*a*). The identities (2.3) give
+
+*d*22*kb* 1*−b²* (*λF*(*λ*)) =*k* + = 2 =*M.*(2.21) *dλ d d*
+
+For two positive numbers *u,v*, let *Muv* ar be the uniform average of *M* on the interval between *u* and *v*, with its continuous interpretation when *u* = *v*. With the weightΘ²*ijr/*(*λiλjλr*), symmetrization in*i,j*changes the coefficient in (2.20) to
+
+<u>λi+λj</u> ar *Mλ* *i* *λ* *j* *.* 2
+
+In the full sum we can replace this coefficient by *λrM* *λ* ar *i* *λ* *j*, decreasing its value. To see this, order three eigenvalues as*u≤v≤w*. Lemma2.2makes*M*increasing, so
+
+*Muv* ar *≤Muw* ar *≤Mvw* ar *.*
+
+The ordered coefficients *u* + *v−* 2*w*, *u* + *w−* 2*v*, and *v* + *w−* 2*u* sum to zero. Their scalar product with these three ordered averages is nonnegative, by the rearrangement inequality. Full symmetry ofΘpermits precisely this averaging over permutations of the three indices. We have proved
+
+∑ <u>Θ²</u> <u>ijr</u> Etr*k*(*A*) 2 *≥*E *λrMλ* ar *i* *λ* *j*
+
+*.*(2.22)
+*i,j,r* *λiλjλr*
+
+We now fix a pair of eigenvalues. Bars in the rest of the proof denote uniform averages in log*λ* over their interval. Set <u>x</u> *x*=*δij/*2*, w₀* =*, m∗*=*m∗*(*ai,aj*)*,* sinh*x*
+
+with *w₀* = 1at *x* = 0. Since *da/d*log*λ* = *D₀*, the divided-difference formula shows that the coefficients of(*Zr*) 2 *ij*and(*∂rk*(*A*)) 2 *ij*, respectively, when written with the same weight as in (2.22), are *λrw₀₂D₀, λrw₀₂bD₀.*(2.23)
+
+Both *D₀*(1 + *b*)and *D₀*(1 *−b*) = *k* are increasing: *d* *′* = *qd−* 1 *<* 0, and *b* *′* = *l >* 0, *k* *′* = *b >* 0. The covariance inequality for two increasing functions on an interval therefore yields
+
+2 2 <u>3</u> 2 *M≥M₁* := *D₀ − bD₀ ≥* 4 *D₀.*(2.24)
+
+We also need a quantitative comparison of the two averaging measures. On the logarithmic interval, (2.6) says that *M* (*λ*)*λ* *−m∗* is increasing. Exponential weighting and the same covariance inequality give *M* *λ* ar *i* *λ* *j*shc((1 +*m∗*)*x*) sinh*x*
+
+|, shc(x) =) x s (e M m s ∗ e gives the displayed ratio. x²|) A₀|
+|---|---|
+|≥ 2 2 sinh x /x² is nonincreasing for sinh(2 x) + x² − cosh(2 m A₀ (x) + A₀ (m x) ∗ ∗ 1 + m ∗ m (1 −w₀₂). ∗ = 0or x = 0. Combining (2.24)–(2.26), the amount by which the coefficient in (2.22) exceeds the difference of −w₀₂) M₁. (4 6 δ δ m ∗ ij ij 2|x|
+
+*≥.*(2.25) *M* shc(*x*) shc(*m∗x*
+
+Indeed, after centering the logarithmic interval, the left side is E₀ */*[E₀*e* *s* E₀*M*], where E₀ is its uniform average. Under the measure proportional to, the increasing factor *Me* *−m∗s* can only increase the mean of*e* *s*. Taking*M*=*e* *m∗s* Here is a convenient explicit lower bound for this ratio. Define (*x*) = *x*coth*x−* 1, with *A₀*(0) = 0. The identity
+
+*x*coth*x*+
+
+implies both *A₀*(*x*) *≥* 1 *−w₀₂* and that *A₀*(*x*) *x >* 0. To verify the identity, clear the denominator and expand <u>x</u> 2
+
+) + 1in powers of *x*; the
+coefficients vanish through degree four and are nonnegative thereafter. Since0 *≤m∗≤* 1, we obtain *A₀*(*m∗x*)*≥m²∗A₀*(*x*). The addition formula forsinhnow gives
+
+<u>shc((1 +m∗)x)</u> = 1 + shc(*x*) shc(*m∗x*) *≥*1 + (2.26)
+
+### Every formula here extends continuously tom∗
+
+the two coefficients in (2.23) is at least
+
+*λr*(1 +*m∗*)(1
+
+Relative to the coefficient of(*Zr*) 2 *ij*, this is at least ) 3*−*21 + (1 +*m∗*)(*w₀ −*1)*≥ δij*+ +*.* 4 16 30 1680
+
+### The last inequality is the Taylor expansion of(sinhx/x)
+
+2, whose omitted coefficients are positive. Substituting in (2.22) and summing proves (2.19).
+
+We have obtained two inputs for the entropy argument: the matrix field *A* has no constant Gaussian component, and convexity supplies (2.19). The next section combines these facts with a Gaussian covariance identity and separates the first chaos of*A*from its higher chaoses.
+
+## 3 Gaussian decomposition of the entropy deficit
+
+The transport estimate of Proposition2.5controls the Gaussian energy of the reparametrized Jacobian. Its degree-one part, however, has no Poincaré surplus. We use that part to choose a
+
+matrix supporting plane for the log determinant. The remaining Gaussian chaoses then supply the coercivity needed to prove the entropy bound. We retain a strict remainder that will also identify the equality cases. Throughout this section, E denotes integration against the standard Gaussian measure*γm*. Define a scalar weight on[0*,∞*)by
+
+2() {} 3(*λ−*1) 3 49 37 13 32 *ω*(*λ*) = + min*, √,*(3.1) 37 + 3*λ* 20 100 37 + 3*λ* 100 25 *λ*
+
+where the minimum is13 *√/* 100at *λ* = 0. This weight is continuous and nonnegative, vanishes only at1, and satisfies*ω*(*λ*)*/ λ→*24*/*125as*λ→∞*.
+
+**Theorem 3.1**(The smooth entropy bound with a remainder)**.***Let m≥* 1*be an integer and let* *µ* = *e* *−V* d*y be a probability measure on* R *m* *, where V∈C* *∞* (R *m* )*and c−I≤D²V≤c*+*I for* *constants*0 *< c−≤c*+*<∞. Choose the affine normalization of Proposition2.3, and let A* = *q* *−*1
+
+(*J*)
+*be the resulting Gaussian transport matrix field, so*E*A*= 0*. Set*
+
+∑ *m*∑*m* *Xr*=E(*xrA*)*, Y*=*A− xrXr, B*= *Xr* 2 *.* *r*=1 *r*=1
+
+### Ifλ₁,...,λmare the eigenvalues ofB, then
+
+∑ *m* <u>1</u>2<u>1</u> 2*h*(*µ*)*−*2*m−*log det Cov(*µ*)*≥* Etr(*Y*) + *ω*(*λi*)*.*(3.2) 500 1000 *i*=1
+
+*In particular,* <u>1</u> *h*(*µ*)*≥m*+ log det Cov(*µ*)*.* 2 We use the affine normalization of Proposition2.3: the Brenier Jacobian*J*and the symmetric matrix field *A* = *q* *−*1
+
+(*J*)satisfy E*A* = 0. This normalization does not change *h*(*µ*) *−*
+<u>1</u> 2 log det Cov(*µ*). For the proof, we replace *µ* by this affine image and retain the notation *µ*. Scalar functions of *A* are interpreted by spectral calculus; when their arguments are omitted, *q,k,t,b,l* and the functions introduced below are evaluated at*A*. For a matrix field*F*, put
+
+*τ*(*F*) =Etr*F,∥F∥* 2 =Etr(*F* *t*
+
+*F*)*,∥F∥*
+2 *S*=Etr(*F* *t* *SF*)
+
+when *S* is a constant positive definite matrix. For a family indexed by *r*, these squared norms include summation over*r*. Lemma2.4provides the Sobolev regularity used below. Write*C*= Cov(*µ*)and let *D*= 2*m*+ log det*C−*2*h*(*µ*)
+
+be the negative of twice the entropy gap. The transport change of variables and log*q*(*a*) = *−a²/*2*−* 2 <u>1</u> log(2*π*) +*t*(*a*)give
+
+### D=τ(A² −2t) + log detC+m.(3.3)
+
+### 3.1 Covariance and the first Gaussian chaos
+
+Let *N* = *−*∆ + *x·∇* be the nonnegative Ornstein–Uhlenbeck operator and let *R* = (*I* + *N*) *−*1. The degree-*d* Gaussian chaos is the span of coordinatewise products of one-dimensional Hermite polynomials whose degrees sum to *d*. These spaces give an orthogonal decomposition of *L²*(*γm*); on
+
+the degree-*d* space, *N* and *R* act by *d* and(1 + *d*) *−*1, respectively. We write *∂* = (*∂*1*,...,∂m*)and *∗* ∑ *∗* 2 2 2 *∂ v* =*r*(*xrvr−∂rvr*), so *N* = *∂ ∂*. The usual Gaussian Sobolev norm is *∥F∥* *H*1 = *∥F∥* + *∥∂F∥*; its dual norm is ∑ <u>∥F</u> <u>d</u> <u>∥</u> 2 *∥F∥* 2 *−*1=*,* *d≥*0 1 +*d*
+
+initially for square-integrable fields, and then by completion. Here *Fd*denotes the degree-*d* chaos component. These spectral conventions are standard; see [26, Section 2]. We use the Gaussian Helffer–Sjöstrand covariance representation; see [11, Proposition 4.1(ii)]. We include a direct chaos proof below. The term *−*2*τ* (*t*)in (3.3) determines its completion. Since *qk* = *t*, subtracting(*I* + *N*)*k* from *q* in the covariance quadratic form produces exactly the cross term*−*2*t*.
+
+**Lemma 3.2**(Covariance completion)**.***Define the symmetricH* *−*1 *matrix field*
+
+*U*=*q*(*A*)*−*(*I*+*N*)*k*(*A*)
+
+*and letWbe the Gram matrix of its rows inH* *−*1 *:*
+
+∑ *m* *Wij*= *⟨Uiℓ,Ujℓ⟩−*1*.* *ℓ*=1
+
+*Then* () [] 2 ∑ 2 *C*=E *J*(*RJ*) =*W*+E 2*t−k − Kr, Kr*=*∂rk*(*A*)*.*(3.4) *r* *Moreover, if U* = *u−∂* *∗* *v with u and the family v* = (*vr*)*rsquare-integrable, then for every constant* *S >*0*,* tr(*SW*)*≤∥u∥* 2 *S*+*∥v∥* 2
+
+*S.*(3.5)
+*Proof.*Put*F*=*∇ϕ*. For two degree-*d*components of*F*, Gaussian integration by parts gives ∑ E[(*∂ℓFi,d*)(*∂ℓFj,d*)] =*d*E[*Fi,dFj,d*]*.* *ℓ*
+
+Differentiation lowers the degree by one, and *R* therefore cancels the factor *d*. Summing over *d≥* 1 ∑ proves *Cij*=*ℓ*E[*JiℓRJjℓ*]. Symmetry of *J* gives the first matrix identity in (3.4). Expanding the row Gram matrix of*q−*(*I*+*N*)*k*gives cross terms*−*2E(*qk*) =*−*2E*t*. The remaining term is () [] 2 ∑ 2 E *k*(*I*+*N*)*k* =E *k* + *Kr,* *r*
+
+by entrywise integration by parts. This proves the second identity. The calculation is valid by the *H¹*–*H* *−*1 pairing, even if*Nk*is not square-integrable. For a test field *F*, the pairing with *u−∂* *∗* *v* is *⟨u,F⟩−⟨v,∂F⟩*. Cauchy–Schwarz bounds it by (*∥u∥* 2 + *∥v∥* 2 ) 1*/*2 *∥F∥H₁*. Taking the dual norm proves (3.5) for *S* = *I*, and applying this argument to*S¹* */*2 *U*proves the general case.
+
+### Separate the degree-one part ofAby writing
+
+∑ *m*∑ *A*= *xrXr*+*Y, Xr*=E(*xrA*)*, B*= *Xr.*(3.6) *r*=1 *r*
+
+The matrices *Xr*are constant and symmetric; *Y* contains only chaoses of degree at least two. We shall use
+
+*Zr*=*∂rA*=*Xr*+*Gr, Gr*=*∂rY, gr*=*∂rN* *−*1 *Y, V₀* =*∥G∥* 2 *−∥Y∥* 2
+
+*.*(3.7)
+Thus*∂* *∗* *g*=*Y*. All three derivative fields are symmetric. For comparison, the coordinatewise Gaussian-to-exponential transport satisfies
+
+### A(x) = diag(x₁,...,xm), B=I.
+
+We therefore choose the supporting plane for log det*C* as a regularized inverse of *B* centered at this value. Fix <u>3 1</u> *α*=*, s*=*,*(3.8) 40 1*−α* and set *S*= (*I/s*+*αB*) *−*1 *, T*=*S−I, H*=*−T*(*B−I*)*.*(3.9)
+
+These constant matrices commute with one another, though generally not with functions of *A*. Directly from their definition,
+
+0*< S≤sI, T*=*−αS*(*B−I*)*, H*=*αS*(*B−I*) 2 *≥*0*, T²* =*αHS.*(3.10)
+
+In particular, *S* = *I* when *B* = *I*. Deviations of the first chaos from this value produce the nonnegative matrix*H*. Concavity of the log determinant yields log det*C* + *m≤*tr(*SC*) *−*log det*S*. Combining this with Lemma3.2and Proposition2.5, and using*∥A∥* 2 *−∥Z∥* 2 =*−V₀*, gives [ ()] ∑ *D≤−V₀ −C*+ tr(*T−*log*S*) + tr(*SW*) +*τ T* 2*t−k² −I− Kr* 2
+
+*.*(3.11)
+*r*
+
+Here *C* is the eigenvalue-separation surplus in Proposition2.5. The remaining task is to estimate the last two terms while retaining the negative contribution involving*H*.
+
+### 3.2 An exact expansion with noncommuting factors
+
+Recall the divided differences from Section2, with *v*[*a,a*] = *v* *′*
+
+(*a*). For a smooth scalar function *v*,
+define its secant increment at the second endpoint by
+
+∆*vij*=*v*[*ai,aj*]*−v* *′* (*aj*)*.*
+
+We use the matrix derivative formula in [25, Section 2.4]. At a fixed point, choose an orthonormal eigenbasis of*A*. Entrywise multiplication is denoted by*◦*. Define the derivative residuals
+
+### Dr=Kr−Xrb=Grb+Zr◦∆k, Lr=∂rb−Xrl=Grl+Zr◦∆b.(3.12)
+
+These matrices need not be symmetric. The distinction between *Dr*and *Drt*will be essential below. The scalar identity*q−k*=*ab−l*implies ∑ *U*=*Yb*+ *XrLr*+ (*B−I*)*l−∂* *∗*
+
+*D.*(3.13)
+*r* *∗* ∑ Indeed, *∂* (*Xb*) = (*A−Y*)*b−Bl−rXrLr*. To divide the higher-chaos terms between the two squares, fix *c* *β*=*, c*=*, γ*=*.*(3.14)
+
+Using*∂* *∗* *g*=*Y*in (3.5), we obtain ∥ ∥2 ∥ ∑ ∥ ∥ ∥2 tr(*SW*)*≤* ∥*Y*(*b−β*) + *XrLr*+ (*B−I*)*l*∥ +*∥D−βg∥S.*(3.15) ∥ *r* ∥ *S*
+
+We group the expansion according to its *H* term and its derivative residuals. In the remaining *Y* coefficient, we split off *ck*: the identity *∂* *∗* *g* = *Y* will transfer *cτ*(*TYk*)to derivatives, where completing the square produces*D−γg*. Introduce the scalar functions
+
+<u>2(b−β)l</u> *f*=*k*(1 +*b*)*, h₀* =*f−ck−,* *α* 2 2 (3.16) *′* 2<u>l</u>*′* 2<u>2l</u> *p*=*f −b −, e*=*f −*2*b −.* *α α*
+
+The identity *af−f* *′* = 2*t−k² −b² −*1
+
+follows from*q−k*=*ab−l*and*b*= 1*−k*(*q−a*). For each pair of eigenvalues of*A*, put
+
+<u>2lj</u> *ψij*= ∆*fij−*2*bj*∆*kij−* ∆*bij, bj*=*b*(*aj*)*, lj*=*l*(*aj*)*,* *α*
+
+and define *Mr*=*Gre*+*Zr◦ψ*+*cgrb, wr*=*Dr−γgr.*(3.17)
+
+Finally, write *PT* =*τ*(*TbBb−TBb²*)*.*(3.18)
+
+**Lemma 3.3**(Matrix expansion)**.***The sum of the last two terms in*(3.11)*is at most* [ ()] ∑ *−τ*(*Hp*) +*τ T Yh₀* + *XrMr*(3.19) *r* ∥ ∥2 () ∥ ∑ ∥ ∑ ∥ ∥2 2 2 + ∥*Y*(*b−β*) + *XrLr*∥ +*∥D−βg∥S*+*γ τ T gr* ∥ *r* ∥ *r* ( *S* ) () ∑ ∑ *−PT −*2*τ* [*T,b*] *Xrwr−τ T wrtwr.* *r r*
+
+*Except for the use of*(3.15)*, this expansion is exact.* ∑ *Proof.*Let*F₀* =*Y*(*b−β*) +*rXrLr*. The relations (3.10) give
+
+2 2<u>1</u>2<u>2</u> *∥F₀* + (*B−I*)*l∥S*=*∥F₀∥S*+ *τ*(*Hl*)*− τ*(*TF₀l*)*.* *α α*
+
+For the cross term, the order of the factors follows from tr(*F₀* *t* *Tl*) = tr(*TF₀l*), by transposition and cyclicity. Integration by parts on the linear part of*A*yields [ ()] ∑ *τ*(*TAf*) =*τ T Yf*+ *Xr∂rf, ∂rf*=*Xrf* *′* +*Grf* *′* +*Zr◦*∆*f.* *r*
+
+Together with*af−f* *′* = 2*t−k² −b² −*1, this accounts for the terms involving*f* *′* and*f*.
+
+To expand the energy term, use both versions of*Kr*=*Xrb*+*Dr*=*bXr*+*Drt*: () () () ∑ ∑ ∑ *τ T Kr* 2 =*τ*(*TbBb*) + 2*τ Tb XrDr*+*τ T DrtDr.*(3.20) *r r r*
+
+The two cross terms agree under transposition inside the trace. Moving *b* past *T*, rather than past *Xr*, gives *τ*(*TbXrDr*) =*τ*(*TXrDrb*) +*τ*([*T,b*]*XrDr*)*.*
+
+The terms containing*B−I*now combine as
+
+( *′* ) 2<u>1</u>2 *τ T*(*B−I*)*f* +*τ*(*Tb −TbBb*) + *τ*(*Hl*) =*−τ*(*Hp*)*−PT.* *α*
+
+In the other terms, substituting (3.12) produces *Gre* + *Zr◦ψ* and the *Y* multiplier *f−*2(*b−β*)*l/α* = *h₀* +*ck*. It remains to handle*cτ*(*TYk*). Since*∂* *∗* *g*=*Y*, ∑ *τ*(*TYk*) = *τ*(*TKrgr*)*.* *r*
+
+Here integration by parts first gives *τ* (*TgrKr*); transposition makes the two expressions equal. Substituting *Kr*= *bXr*+ *Drt*and moving *b* past *T* introduces *cgrb* in *Mr*and replaces *Dr*by *Dr−γgr*in the commutator term. The remaining square is completed by
+
+*−τ*(*TDrtDr*) +*cτ*(*TDrtgr*) =*−τ*(*Twrtwr*) +*γ²τ*(*Tgr* 2 )*.*
+
+### This proves (3.19).
+
+### 3.3 The commutator and the weighted squares
+
+The commutator in Lemma3.3has a compensating quadratic term *PT*. Keeping that term is what permits a dimension-free estimate without assuming that the Jacobian and the first-chaos matrix commute.
+
+**Lemma 3.4**(Commutator estimate)**.***For the matrices Xr,B,S,T in* (3.6) *and* (3.9)*, any square-* *integrable symmetric matrix fieldb, and arbitrary square-integrable matrix fieldswr,* () () () ∑ ∑ <u>s</u> *−PT −*2*τ* [*T,b*] *Xrwr−τ T wrtwr≤* 1 + *∥w∥* 2
+
+*.*(3.21)
+*r r* 8
+
+*Proof.*Work pointwise and diagonalize*S*. The relation*B*=*α* *−*1 (*S* *−*1 *−I/s*)gives
+
+<u>1</u> ∥ ∥*−*1*/*2 *−*1*/*2 ∥2 ∥ *PT* = *S* [*T,b*]*S.*(3.22) 2*α*
+
+Indeed, the contribution of *b²ij*for *i < j* on either side is(*Si−Sj*) 2 */*(*αSiSj*). The norm in (3.22) ∑ *t* includes expectation. Set *F* =*rXrwr*and let skew*M* = (*M−M*)*/*2. Completing the square in the skew-symmetric matrix*S* *−*1*/*2 [*T,b*]*S* *−*1*/*2 bounds the first two terms on the left of (3.21) by ∥ 1*/*2 1*/*2 ∥2 2*α*∥skew(*S FS*)∥*.*
+
+For completeness, we estimate this square together with the last term. Write *Si*= *sui*, where 0 *< ui≤* 1, so *αSiBi*= 1*−ui*. The rows of the block matrix *X* = (*X₁,...,Xm*)are orthogonal, since
+
+*XX* *t* = *B* is diagonal. For column *j* of the vertically stacked matrix(*wr*)*r*, let *zij*be its component along the normalized *i*th row of *X*. Zero rows can be completed to orthonormal directions, and cause *√* no contribution to *F*. Then *Fij*= *Bizij*and the remaining column components are orthogonal to these directions. For*i < j*, the quadratic form in(*zij,zji*)has matrix  √  <u>1−su ui j</u>*−s u ui j*(1*−ui*)(1*−uj*)  √ *.* *−s uiuj*(1*−ui*)(1*−uj*) 1*−suiuj*
+
+2*√* Its largest eigenvalue is at most1 + *s*(*z−* 2*z*) *≤* 1 + *s/*8, where *z* = *uiuj*; here(1 *−ui*)(1 *−uj*) *≤* (1 *−z*) 2. Diagonal and orthogonal column components have coefficient at most1. Summation and expectation prove (3.21).
+
+We also use a block version of Cauchy–Schwarz. If *X* = (*X₁,...,Xm*)and *S* *−*1 = *I/s* + *αXX* *t*, then ∥ ∥ ∥ ∑ ∥2 <u>1</u> ∥ ∥2 2 ∥*a*+ *XrLr*∥ *≤s∥a∥* + *∥L∥ .*(3.23) ∥ *r* ∥ *α* *S* 1*/*2 *√ √* This follows column by column because the block operator *S* (*I/ s, αX*)has product with its transpose equal to*I*. The scalar estimates in Lemma4.1give *p*(*a*) *>* 0for every real *a*. To reserve part of the negative *H*term for the cost oflog det*S*, fix
+
+<u>3 49</u> *ϵ*=*, κ*=*,*(3.24) 20 100
+
+and put *ρ*=*ϵI*+*κS/s.*
+
+Then*I−ρ >*0. A weighted completion of the square gives [ ()] ∑ () <u>∥Mp</u>*−*1*/*2<u>∥</u>2<u>αs∥Yh₀p</u>*−*1*/*2<u>∥</u>2 *τ T Yh₀* + *XrMr≤τ H*(*I−ρ*)*p* + +*.*(3.25) *r* 4(1*−ϵ*) 4(1*−ϵ−κ*) ∑ To verify that the order of the weights is valid, write *Q₀* = *H*(*I−ρ*)and *F* = *Yh₀* +*rXrMr*. 2 <u>1</u> 2 1*/*2 1*/*2 *−*1*/*2 *−*1*/*2 Apply *⟨a,b⟩≤∥a∥* + 4 *∥b∥* to *Q₀ p* and *Q₀ TFp*. The resulting second square has left weight bounded above by *T²Q* *−* 0 1*≤αS*(*I−ρ*) *−*1 *,*
+
+with equality on the range of *H*. Here inverses are interpreted as pseudoinverses on the common nullspace of*Q₀* and*T*. Since
+
+*−*1<u>1−ϵ−κ</u>*t* (*I−ρ*)*S* = *I*+ (1*−ϵ*)*αXX,* *s*
+
+the same block argument as in (3.23) proves (3.25). Thus this step does not require *p* to commute with*S*.
+
+### 3.4 Two scalar estimates and the final chaos bound
+
+The following estimate combines the cost tr(*T−*log*S*)with the negative *H* term left by (3.25) and the terms quadratic in *Y*. A second estimate will control the derivative residuals, including their dependence on *Z*, by *C* and the higher-chaos energy. The proof of the first estimate is given in Section4.1. Its strict remainder controls the eigenvalues of*B*through the weight (3.1).
+
+**Proposition 3.5**(Absorption with a first-chaos remainder)**.***Let A∈L²*(*γm*; Sym*m*)*satisfy* E*A* = 0*,* *and define Xr,Y,B by* (3.6) *and S,T,H by* (3.9)*. With the constants* (3.8)*,* (3.14)*, and* (3.24)*, the* *functions*(3.16)*, andρ*=*ϵI*+*κS/s, one has* [ ()] 2 2<u>αh²0</u> tr(*T−*log*S*)*−τ*(*Hρp*) +*sτ Y* (*b−β*) + 4(1*−ϵ−κ*)*p* ∑ *m* (3.26) <u>69</u>2<u>1</u> *≤ ∥Y∥ − ω*(*λi*)*,* 500 1000 *i*=1 *where λ₁,...,λmare the eigenvalues of B. All scalar factors in the expected traces are evaluated at*
+
+*A.* The remaining derivative terms are compared entrywise in an eigenbasis of *A*. This comparison retains a multiple of the eigenvalue-separation surplus*C*rather than discarding it. **Proposition 3.6**(Two-eigenvalue estimate)**.***Letai,aj∈*R*andG,g,Z∈*R*. Set*
+() ∣ ∣ 1 +*m₀*(min(*ai,aj*)) *δ² δ⁴* *δ*= ∣log(*q*(*ai*)*/q*(*aj*))∣*, rij*= 1 + +*,* 16 30 1680
+
+*wherem₀ is the six-interval lower bound in*(2.5)*. Define the endpoint residuals*
+
+*Dj*=*Gbj*+*Z*∆*kij, Lj*=*Glj*+*Z*∆*bij, Mj*=*Gej*+*Zψij*+*cgbj,* *Di*=*Gbi*+*Z*∆*kji, Li*=*Gli*+*Z*∆*bji, Mi*=*Gei*+*Zψji*+*cgbi.*
+
+*LetQ*(*u,v*) = 100 43 *u²* + 100 26 *uv*+ 68 25 *v². Then* [ ()] 2*s*2 2 2*L²vMv* 2 avg*v*=*i,js*(*Dv−βg*) + 1 + (*Dv−γg*) +*γ* (*s−*1)*g* + + 8 *α* 4(1*−ϵ*)*pv*
+
+### ≤Q(G,g−G/2) +rijδ²Z².(3.27)
+
+*Here* avg*v*=*i,jis the arithmetic mean of the two endpoint expressions, counting both also when i* = *j.* *Moreoverpv*=*p*(*av*)*>*0*, and all divided differences extend continuously toai*=*aj.*
+
+The proof of Proposition3.6occupies Section4.2. We now show that these two scalar estimates close the matrix argument.
+
+*Proof of Theorem3.1.* Apply Lemma3.3in (3.11). Bound its last line by Lemma3.4, its first square by (3.23), and its linear *T* term by (3.25). The *H* terms combine to *−τ*(*Hρp*). Since *Y* = *Y* *t* and *h₀,p,b* are commuting functions of *A*, the two terms quadratic in *Y* have exactly the form appearing ∑ *m* in (3.26), by cyclicity of the trace; no commutation with *Y* is required. SetΩ*B*=*i*=1*ω*(*λi*). Consequently, () 692Ω*B* 2*s*212 *D≤ −V₀ −C*+ *∥Y∥ −* +*∥D−βg∥S*+ 1 + *∥D−γg∥* + *∥L∥* 500 1000 8 *α* () ∑ <u>∥Mp</u>*− /*<u>∥</u> +*γ²τ T gr*+*.*(3.28) *r* 4(1*−ϵ*)
+
+Use *S≤sI* and *T≤* (*s−* 1)*I*. In an eigenbasis of *A*, the entries of *Gr,gr,Zr*are symmetric in *i,j*. Pairing the entries(*i,j*)and(*j,i*)therefore gives precisely the endpoint average in (3.27); right multiplication by *p* *−*1*/*2 gives the denominator *pj*for entry(*i,j*). Proposition3.6now bounds the last five terms of (3.28) by ∑ () E *Q* (*Gr*)*ij,*(*gr*)*ij−*(*Gr*)*ij/*2 +*C.* *i,j,r*
+
+The separation surplus is the same *C* as in Proposition2.5: its coefficient at(*i,j*)is independent of the derivative index *r*, so summing over *r* is unchanged by rotating that index. All changes of eigenbasis are pointwise; no eigenvectors are differentiated. The separation surplus cancels. Because *Q* has constant coefficients, its summed quadratic form is invariant under orthonormal changes of basis. We may therefore return to fixed coordinates and apply the Gaussian chaos decomposition. For a degree-*d* component of *Y*, where *d≥* 2, the associated components of *g* and *G* satisfy *g* = *G/d*, and *∥G∥* 2 = *d∥Y∥* 2. Different degrees remain orthogonal after differentiation. The required bound follows, degree by degree, from
+
+<u>7 1</u> *Q*(1*,u−*1*/*2) + *u≤*1*−u,*0*≤u≤.*(3.29) 50 2
+
+Indeed, the right side minus the left side factors as 50 <u>1</u> (1 *−* 2*u*)(1 + 68*u*) *≥* 0. Set *u* = 1*/d*, multiply by *∥G∥* 2, and sum over the chaoses; the sums converge because *Y∈H¹*(*γm*). The summed *Q* term is at most*V₀ −* 50 <u>7</u> *∥Y∥* 2. Substitution into (3.28) therefore gives
+
+<u>1</u>2<u>ΩB</u> *D≤− ∥Y∥ −,* 500 1000
+
+### which is (3.2).
+
+## 4 The two scalar estimates
+
+The matrix argument has reduced the entropy inequality to two estimates. Proposition3.5controls the part depending on the first Gaussian chaos; Proposition3.6controls the remaining quadratic form, one pair of eigenvalues at a time. We prove them here. The functions *q,d,k,b,l* and the six intervals *O,P₁,R₁,U₁,V₁,T₁* are those of the transport section, and the constants *α,s,β,c,γ,ϵ,κ* and functions *p,e,h₀* are those of the matrix section. All finite decimals below denote exact rational numbers. We first state the one-variable bounds used in both proofs. Their verification is given in AppendixA; in particular, none of the bounds in this section is inferred from numerical sampling. For the quadratic form in Proposition3.6, set
+
+1 *D∗l l²* *D∗*=*,*D=*,*L=*,*E=*e*+*γb*=*p*+*b*(*.*75*−b*)*−,* 4(1*−ϵ*) *p α α* (4.1) *K₀* =DE*, J₀* =D*cb,*
+
+*A∗*=*s*+ 1 +*s/*8*, η∗*=*sβ*+ (1 +*s/*8)*γ, ν∗*=*sβ²* + (9*s/*8)*γ².*
+
+The symbolsD*,* L*,*Edenote scalar functions, to be distinguished from the matrix residuals *Dr,Lr,Mr* of the preceding section.
+
+**Lemma 4.1**(One-variable bounds)**.***For everya∈*R*,* √ *p*(*a*)*>*0*,|h₀*(*a*)*|≤.*67 *p*(*a*)*,* { (7 +*a²*) *−*1 *, a≤*0*,* (4.2) *p*(*a*)*≥ p*(*a*)*≥.*46 (*a≥*4)*.*
+
+*.*25*, a≥*0*,*
+### The following interval bounds hold:
+
+<u>bL≤D≤K₀ J₀ ≤ℓ₁</u> *O* [0*,.*09]*.*60*.*295(7 +*a²*) [*.*37*,.*56]*.*72*.*13 *P₁* [*.*083*,.*15] 1*.*01 4*.*3 [*.*29*,.*46]*.*72*.*13 *R₁* [*.*14*,.*23] 1*.*19 3*.*00 [*.*29*,.*371]*.*68*.*13 (4.3) *U₁* [*.*22*,.*342] 1*.*19 1*.*72 [*.*29*,.*398]*.*61*.*123 *V₁* [*.*337*,.*45]*.*83*.*87 [*.*31*,.*4]*.*50*.*060 *T₁* [*.*445*,.*5]*.*20*.*640 [*.*32*,.*4]*.*48*.*022
+
+*Hereℓ₁ is the positive number in the last column, and* () () () *A∗b² −η∗b*+*ν∗/*4 +*l²/α ν∗/*2*−η∗b* E () *ℓ₁* 0 *Q− −*D E*cb ⪰.*(4.4) *ν∗/*2*−η∗b ν∗cb* 0*.*75
+
+*HereQ*= (
+
+*..*43 13 2
+*..*13 72 )*, as in Proposition3.6. Finally, writing*
+<u>l</u> *′* <u>l</u> *z*=*, h∗*= 1 + 3*b*+*kz, χ*=*,*(4.5) *l d*
+
+*we have* *z h∗χ≤* *a≤−*1 [*−.*08*,.*70] [*.*8*,*1*.*77]*.*070 (4.6) *a≥−*1 [*−.*475*,*0] [*.*8*,*1*.*77]*.*097
+
+*At an endpoint shared by two intervals, either applicable row may be used.*
+
+The first line of the lemma supplies a lower bound for the mean of *p* from only a second moment. The matrix surplus in (4.4) then provides room to absorb the secant errors in the second proposition. We treat these two uses separately.
+
+### 4.1 Absorption using a second moment
+
+*Proof of Proposition3.5.*By0*< b <*1*/*2and (4.2), () () 2<u>αh²0</u> 2<u>.075·.67</u> 2 *s* (*b−β*) + *≤s.*28 + *< .*111*.*(4.7) 4(1*−ϵ−κ*)*p* 4*·.*36
+
+It remains to bound the terms involving *T−*log*S* while retaining a negative multiple of the weight *ω*in (3.1). Fix a unit eigenvector *v* of *B* with eigenvalue *λ≥* 0. The corresponding eigenvalues of *S,T,H,ρ* are *S*= (1*/s*+*αλ*) *−* *, T*=*S−*1*, H*=*αS*(*λ−*1)*, ρ*=*ϵ*+*κS/s.*
+
+Let *νv*be the probability measure obtained by averaging the spectral measure of *A* at *v*. The decomposition of*A*into its first chaos and*Y*gives ∫ ∫ *adνv*(*a*) = 0*, a² dνv*(*a*) =*λ*+*r, r*=*v* T E(*Y* 2
+
+)*v≥*0*.*(4.8)
+Indeed, orthogonality of the Gaussian chaoses gives E*A²* = *B* + E*Y* 2, including the vanishing of both matrix cross terms. For0*< u≤.*13, define <u>u³</u> */*2 <u>u³</u> *nu*=*, du*=*.* 2 16(*.*46*−u*)
+
+### We claim the following quadratic minorant:
+
+*p*(*a*)*≥u*+*nua−dua²* (*a∈*R)*.*(4.9) *√* For*a≤*0, put*x*=*− ua*. If*x≥*2, the right side is nonpositive. If0*≤x≤*2, it is enough to use *p*(*a*)*≥u/*(*x²* + 7*u*)and
+
+2<u>x(x−1)</u> 2 1*−*(1*−x/*2)(*x* + 7*u*)*≥* +*.*045(2*−x*)*≥*0*.* 2
+
+For0 *≤a≤* 4, the right side of (4.9) is at most*.*13 + 2(*.*13) 3*/*2 *< .*25. For *a≥* 4, its maximum over all real*a*is*u*+*n²u/*(4*du*) =*.*46. Thus (4.9) follows from (4.2) in all three ranges. Choose *√* *u*= min(*.*13*,*1*.*28*/ λ*)*,*
+
+with*u*=*.*13when*λ*= 0. Since*λu² ≤*1*.*28 2, integration of the minorant against (4.8) yields ∫ *pdνv≥u−du*(*λ*+*r*)*≥.*689*u−dur.*(4.10)
+
+The second inequality uses1*−*1*.*28 2 */*[16(*.*46*−.*13)]*> .*689. We also have
+
+*Hρdu≤.*027*.*(4.11)
+
+To check this, note that *ρ≤.*64and that *H≤λ* for *λ≥* 1, whereas *H≤αs* for *λ≤* 1. In the former case,
+
+<u>.64·1.28</u> 2 <u>·.13</u>
+*Hρdu≤ < .*02582; 16(*.*46*−.*13)
+
+in the latter,*αs·.*64*·.*13 3 */*[16(*.*46*−.*13)]*< .*027. For completeness, we next verify the elementary logarithmic bound needed to compare *T−*log*S* with the positive term in (4.10). Set
+
+<u>S(S−1−logS)</u> <u>1</u> *F₀*(*S*) = 2 *, F₀*(1) = 2 *.* (1*−S*)
+
+### For0< S≤sandλ= (1/S−1/s)/α, we claim
+
+<u>αF₀(S)</u> *√* *≤*min(*.*089*,.*88*/ λ*)*≤.*688*u,*(4.12) *ϵ*+*κS/s*
+
+where the second bound in the minimum is interpreted as+*∞*at*λ*= 0. First, ∫ 1 <u>Sx</u> *F₀*(*S*) = *dx* 01*−x*+*xS* is concave. Its tangent at *S* =*.*28has intercept below*.*16and slope below*.*52, so *F₀*(*S*) *≤.*16 +*.*52*S*. These two strict inequalities can, for example, be checked from ∑ *∞* <u>(9/16)</u> 2*j*+1 *−*log(*.*28) = 2*,* *j*=0 2*j*+ 1
+
+using twelve terms and the geometric bound for the remainder. Coefficient comparison now gives
+
+*.*075(*.*16 +*.*52*S*)*< .*089(*.*15 +*.*45325*S*)*,*
+which proves the first bound in the minimum. For the second bound we use <u>F₀(S)</u> *√ ≤.*478 + 1*.*4*S*(*S >*0)*.*(4.13) *S* Here is a direct verification, including the point*S*= 1by continuity. For*x >*0, let
+
+<u>(.478 + 1.4x²)(1−x²)</u> 2 2 *J*(*x*) = *−*(*x −*1*−*2 log*x*)*.* *x* Then *x²J* *′*
+
+(*x*) =*P*(*x*) :=*−.*478 + 2*x*+*.*444*x² −*2*x³ −*6*.*966*x⁴* + 7*x⁶.*
+Descartes’ rule of signs gives at most three positive roots of *P*, counting multiplicity. The signs at*.*24*,.*26*,.*6, together with *P*(1) = 0and *P* *′*
+
+(1) *>* 0, give exactly three: one in(*.*24*,.*26), one in
+(*.*26*,.*6), and1. Thus the only local minima of *J* occur at the first root and at1. We have *J*(1) = 0 and *J*(*.*25) *> .*14; the latter follows already from log 2 *< .*694. On[*.*24*,.*26], *|P*(*.*25)*|< .*01and *|P* *′* *|<* 4, hence *|J* *′* *|<* 2. The first minimum is therefore positive. Also *J*(*x*) *→* +*∞* at both ends of (0*,∞*). This proves*J≥*0, which is equivalent to (4.13) away from*x*= 1. Using*αλ*= 1*/S−*1*/s*, inequality (4.13) gives *√* √ *√* *αF₀*(*S*) *λ √.*478 + 1*.*4*S.*075*·.*478 *≤ α* 1*−S/s ≤ < .*88*.* *ρ.*15 +*.*45325*S.*15 The last ratio decreases in *S* because1*.*4 *·.*15 *< .*478 *·.*45325. Finally,*.*089 *< .*688 *·.*13and
+
+*.*88*< .*688*·*1*.*28prove the last inequality in (4.12). For*λ̸*= 1we have
+<u>T−logS αF₀(S)</u> =*.* *Hρ ρ* Combining (4.10)–(4.12), and treating*λ*= 1by continuity, gives ∫ *T−*log*S−Hρ pdνv≤−.*001*Hρu*+*.*027*r.*
+
+The definitions give *Hρu* = *ω*(*λ*). Sum over an orthonormal eigenbasis of the matrix *B*, and add (4.7). This summation evaluates *τ* (*Hρp*(*A*))without requiring *p*(*A*)to commute with *B*. Likewise, (4.7) may be integrated against the positive semidefinite matrix *Y* 2 without a commutation assumption. ∑ 2 Since*vr*=*∥Y∥*, the result is ∑ <u>69 1</u> ∑ (*.*027 +*.*111)*∥Y∥* 2 *−.*001 *ω*(*λi*) = *∥Y∥* 2 *− ω*(*λi*)*,* *i i* as asserted.
+
+### 4.2 A quadratic estimate for two endpoints
+
+### Proof of Proposition3.6.Fix two endpointsa−≤a+and write
+
+### δ= logq(a+)−logq(a−), m∗=m₀(a−).
+
+When the endpoints coincide, all secant increments vanish, and (4.4) immediately proves the assertion. We henceforth suppose*δ >*0. We first isolate the cost of the secant increments at one endpoint *aj*. Use coordinates(*G,h*) with *h* = *g−G/*2. With *Z* = 0, the left side of the endpoint quadratic form in Proposition3.6is exactly the two matrices subtracted from*Q*in (4.4). For an increment vector(*x,y,w*), define
+
+*Nj*(*x,y,w*) 2 =*A∗x²* +*y²/α*+D*jw²* <u>((A∗bj−η∗/2)x+Ljy+K₀jw)</u> 2 <u>(−η∗x+J₀jw)</u> 2 + +*.*(4.14) *ℓ₁j.*75
+
+Completing squares against the surplus *ℓ₁jG²* +*.*75*h²* in (4.4) shows that the full endpoint form is bounded above by *Q*(*G,h*) +*Z²Nj*(∆*k,*∆*b,ψj*) 2
+
+*.*(4.15)
+Indeed, the two coefficients of2*GZ* and2*hZ* are precisely the numerators of the two squared terms in (4.14). The first line of that formula is the coefficient of*Z²* before completion of squares. The next step estimates these increment norms by integrating derivatives between the endpoints. Recall that a secant slope is the uniform average of the derivative over[*a−,a*+]. With *ξ* = log*q*(*a*), differentiation therefore gives the vector
+
+*vj*(*a*) =*χ*(*a*)(1*,z*(*a*)*,Wj*(*a*))*, Wj*(*a*) =*h∗*(*a*)*−*2*bj−*2L*jz*(*a*)*.*(4.16) ∫ log*q*(*a*) *−*1 *ξ* More explicitly,(∆*k,*∆*b,ψj*)is the uniform average in *a* of log*q*(*a*) *vj*(*q* (*e*)) *dξ*. This follows from *j* *b* *′* =*l*,*l* *′* =*zl*,*d*(log*q*)*/da*=*d*, and*f* *′′* =*l*(1 + 3*b*+*kz*) =*lh∗*. Put
+
+*Fj*(*a*) =*Nj*(*vj*(*a*)) 2 *.*
+
+We record the bounds furnished by Lemma4.1. If the endpoint *aj*belongs to *R₁,U₁,V₁,T₁*, respectively, then *Fj*(*a*)*≤.*295*,.*23*,.*23*,.*39for all*a.*(4.17)
+
+For *a≤−*1, the *R₁* bound improves to*.*20. For *aj∈P₁*, the bounds are*.*42 2 when *a≤−*1and*.*61 2 when*a≥−*1. If*aj∈O*, write*tj*=*−aj*; then { <u>Fj(a)</u> 20 + 1*.*04(7 +*t²j*)*, a≤−*1*,* 2 *≤* 2 (4.18) *χ*(*a*) 12 + 1*.*63(7 +*t* *j* )*, a≥−*1*.*
+
+For clarity, the complete finite arithmetic behind these bounds is given by the following table. Its three entries bound, in order,
+
+### |Wj|,|A∗bj−η∗/2 +Ljz+K₀jWj|,|−η∗+J₀jWj|.
+
+<u>a≤−1a≥−1</u> *O* (1*.*867*,.*52*,*1*.*314) (2*.*34*,.*55*,*1*.*155) *P₁* (1*.*766*,.*49*,*1*.*813) (2*.*564*,.*433*,*1*.*155) *R₁* (1*.*681*,.*664*,*2*.*057) (2*.*621*,.*420*,*1*.*155) (4.19) *U₁* (1*.*55*,.*847*,*2*.*101) (2*.*461*,.*615*,*1*.*155) *V₁* (1*.*263*,.*912*,*1*.*787) (1*.*885*,.*770*,*1*.*205) *T₁* (*.*913*,.*869*,*1*.*386) (1*.*071*,.*840*,*1*.*251)
+
+To verify it, substitute the intervals in (4.3) and (4.6); each expression is affine in each of its variables separately, so its extrema occur at corners of the corresponding box. For the middle expression, first write it as (*A∗−*2*K₀j*)*bj−η∗/*2 +*K₀jh∗*+ (1*−*2*K₀j*)L*jz.*
+
+Substituting these three bounds into (4.14), together with the bounds forD*j,ℓ₁j,z,χ*, proves (4.17)– (4.18). All these are finite rational comparisons; the exact verifier accompanying AppendixAalso checks them. It remains to compare the integrated derivative cost with the logarithmic separation surplus. Let*u−*be the mean of(log*q*(*a*)*−*log*q*(*a−*))*/δ*under the uniform probability measure on[*a−,a*+], and put *u*+= 1 *−u−*. In the *ξ* coordinate this measure has density proportional to *D₀* = 1*/d*. The excess-variance bound in Lemma2.1gives
+
+<u>dlogD₀ 1−qd</u> 0*≤* = 2 *≤*1*.* *dξ d*
+
+The density *D₀* is increasing, whereas *D₀e* *−ξ* is decreasing. The covariance of an increasing function with an increasing function is nonnegative, and with a decreasing function is nonpositive. Applying this observation to the coordinate *ξ* compares its mean first with constant density and then with density proportional to*e* *ξ*. The latter comparison gives*u−≤* <u>1</u> 2 + 2 <u>1</u> coth(*δ/*2)*−*1*/δ*, and hence 1 *≤u ≤* 1 +*δ/*12*, u²* +*u² ≤* 1 (1 +*δ²/*36)*.*(4.20) 2 *−* 2 *−* + 2
+
+For the upper bound one uses coth*x−* 1*/x≤x/*3, obtained by comparing the power series of *x*cosh*x*and(1 +*x²/*3) sinh*x*. Suppose *P−*and *P*+have the following property: on every partial *ξ*-interval starting at the √ indicated endpoint, the mean of *Nj*(*vj*)is at most *Pj*. Pointwise bounds for *Fj*are one way to ensure this property. Minkowski’s inequality, followed by the uniform average in*a*, gives √ √ *N−*(∆*k,*∆*b,ψ−*)*≤ P−δu−,N*+(∆*k,*∆*b,ψ*+)*≤ P*+*δu*+*.*
+
+Since*u−≥u*+*≥*0, () 2 2<u>P−+P+</u> 2 2 *P−u−*+*P*+*u*+*≤*max *P−,* (*u−*+*u*+)*.* 2 Averaging (4.15) and applying (4.20) therefore proves the desired estimate whenever ()2 4 <u>P−+P+1 +m∗1 +δ /30 +δ /1680</u> max *P−, ≤*Θ*m∗*(*δ*) := 2
+
+*.*(4.21)
+2 4 1 +*δ /*36
+
+Indeed, the resulting coefficient of*Z²* is at most*δ²*(1 +*δ²/*36)Θ*m∗*(*δ*)*/*4 =*r−*+*δ²*. We verify (4.21) for all endpoint positions. The functionΘ*m*increases in*δ≥*0: differentiation with respect to *y* = *δ²* leaves a positive numerator1*/*180 + 2*y/*1680 + *y²/*(1680 *·* 36). We will also use the following observation about partial intervals: if a smaller bound holds on an initial segment of logarithmic length *L*, then its fraction in a partial interval of length *h≤δ* is at least min(1*,L/h*) *≥L/δ*, provided *δ≥L*. If *a−∈R₁*, take *P−≤.*295and *P*+*≤.*39; then (*P−*+ *P*+)*/*2 *≤.*3425 *<* Θ*.*38(0) =*.*345. For *a−∈U₁* or *V₁*, use *P−≤.*23, *P*+*≤.*39and Θ*.*68(0) =*.*42. For*a−∈T₁*, both bounds are*.*39*< .*42. Now suppose *a−∈P₁*. If *a*+*≤−*1, both endpoint costs are at most*.*20 *<* Θ*.*19(0), using the *R₁* row at *a*+= *−*1. Otherwise, the part of the logarithmic interval below *−*1has length at least1*.*62. Hence every partial interval from the lower endpoint has mean norm at most
+
+<u>(.61−.42)1.62</u> *. −, P−*= (*.*61*−.*3078*/δ*)*.* *δ*
+
+The length assertion follows from *q*(*−*1) *> .*287, *q*(*−*2) *< .*056. If the upper endpoint lies in *T₁*, then *δ >* 4because *q*(4) *>* 4. For *δ≤* 4, therefore, *P*+*≤.*23and *P−≤.*284143 *<* Θ*.*19(0) =*.*2975. For 4*≤δ≤*5, use*P−< .*300787,*P*+*≤.*39, and
+
+### max(.300787,(.300787 +.39)/2)< .345394<Θ.19(4).
+
+For*δ≥*5, use*P−≤.*61 2 =*.*3721and
+
+### max(.3721,(.3721 +.39)/2) =.38105<Θ.19(5).
+
+This covers*P₁*. Finally suppose *a−∈O*. For any endpoint *aj∈O* and any argument *a≤−*1between the endpoints, *t²* *j≤a²* + 2*δ,|a|χ*(*a*)*≤.*09*.* The first follows by integrating *d≥ −a* on the negative half-line; the second follows from *l≤*
+
+*.*075*·*1*.*19*< .*09and*d≥|a|*. Using*χ≤.*07in (4.18) gives
+### Fj(a)≤.144 +.011δ.(4.22)
+
+If the whole interval lies at or below *−*1, take *P−*=*.*144 +*.*011*δ* and *P*+*≤*max(*P−,.*20); the latter bound also covers upper endpoints in *P₁* and *R₁*. For0 *≤δ≤* 4, both are below*.*25. For *δ≥* 4, use
+
+### Θ₀(δ)≥.25 +.00260δ².(4.23)
+
+This follows on clearing denominators and using *δ² ≥* 16. The quadratic*.*106 *−.*011*δ* +*.*00260*δ²* is strictly positive, so (4.21) follows in this case too. If *a*+*>−*1, the first part of the logarithmic interval has length at least4, since *q*(*−*3) *< .*005 and *q*(*−*1) *> .*287. For *a≥−*1, the same integration gives *t²−≤* 1 + 2*δ*; using *χ≤.*097in (4.18) yields *F−*(*a*) *≤.*236 +*.*031*δ*. On every partial interval from the lower endpoint, Jensen’s inequality therefore permits the uniform bound
+
+<u>4</u> *P−*=*.*236 +*.*031*δ−* (*.*092 +*.*020*δ*) =*.*156 +*.*031*δ−.*368*/δ.* *δ*
+
+For partial intervals contained below *−*1, the same bound follows from (4.22), because *δ≥* 4. By (4.23), Θ₀(*δ*)*−P−≥.*094*−.*031*δ*+*.*00260*δ²* +*.*368*/δ >*0;
+
+the quadratic has negative discriminant and positive leading coefficient. If *a*+*/∈T₁*, then *P*+*≤.*23 *<* Θ₀(*δ*). If *a*+*∈T₁*, then *δ >* 6*.*5from *q*(4) *>* 4and *q*(*−*3) *< .*005, and *P*+*≤.*39 *<* Θ₀(6*.*5) *<* Θ₀(*δ*<u>)</u>. This proves (4.21) in every case and completes the proof.
+
+## 5 Approximation of log-concave densities
+
+The smooth estimate of Theorem3.1requires a potential with positive, bounded Hessian. We remove those restrictions while preserving the entropy, covariance, and first moments. The same approximation will let us study equality by applying the strict remainder estimate to smooth densities whose entropy gaps tend to zero.
+
+### 5.1 Convex approximation with entropy convergence
+
+We use extended-valued convex potentials: *V* : R *m* *→* (*−∞,*+*∞*]is proper if it is finite somewhere and never takes the value *−∞*. The convention *e* *−∞* = 0allows bounded supports. The elementary tail estimate below supplies a common integrable bound for the approximation, including its entropy integrand.
+
+**Lemma 5.1.***LetV*:R *m* *→*(*−∞,*+*∞*]*be proper, lower semicontinuous, and convex, with* ∫ 0*< e* *−V*(*x*) d*x <∞.* R*m*
+
+*Then there area >*0*andb≥*0*such that*
+
+*V*(*x*)*≥a|x|−b*(*x∈*R *m*
+
+)*.*(5.1)
+*−V* ∫ *−V −V* *In particular, e has moments of every order, and |V|e <∞, where |V|e is interpreted as* *zero whenV*= +*∞.*
+
+*Proof.* The convex set *{V <∞}* has positive measure and hence nonempty interior: otherwise its affine hull would be a proper affine subspace. Choose a simplex with all vertices in this set and with nonempty interior. Convexity bounds *V* above by the largest of its values at the vertices throughout the simplex. Consequently, some ball*B*(*x₀,r*)lies in a sublevel set*{V≤M}*, where*M≥V*(*x₀*). The closed convex set*A*=*{V≤M*+ 1*}*has finite volume, since ∫ *|A|≤e* *M*+1 *e* *−V* *.*
+
+It is bounded. Indeed, the convex hull of *B*(*x₀,r*)and a point *z∈A* contains a cone with base an (*m−* 1)-dimensional disk of radius *r* through *x₀*, perpendicular to *z−x₀*, and height *|z−x₀|*. Its volume tends to infinity with *|z−x₀|*. In dimension one the same assertion follows from the length of the interval joining*x₀* to*z*. Choose *R > r* so large that *A⊂B*(*x₀,R*). If *d* = *|x−x₀| ≥R* and *V* (*x*) *<∞*, put *y*=*x₀* + (*R/d*)(*x−x₀*). Then*y /∈A*, and convexity gives () <u>R R</u> *M*+ 1*< V*(*y*)*≤* 1*− V*(*x₀*) + *V*(*x*)*.* *d d*
+
+Thus *V* (*x*) *> V* (*x₀*) + *d/R*. The inequality is automatic if *V* (*x*) = +*∞*. On the compact ball *B*(*x₀,R*), lower semicontinuity and properness give a finite lower bound: a sequence with values tending to *−∞* would have a convergent subsequence and violate lower semicontinuity. Combining these two bounds proves (5.1), after enlarging*b*. The moment assertion follows from *e* *−V*(*x*) *≤e* *b* *e* *−a|x|*. For the entropy assertion, the elementary bound *|u|e* *−u* *≤Cbe* *−u/*2 (*u≥−b*)(5.2)
+
+holds because*|u|e* *−u/*2 is bounded on[*−b,∞*). Substitute*u*=*V*(*x*)and use (5.1).
+
+**Lemma 5.2.***Let f* = *e* *−V* *be a log-concave probability density on* R *m* *, represented by a proper lower* *semicontinuous convex potential V. There are smooth convex potentials Vjand probability densities* ∫ *fj*=*Z* *j−* 1 *e* *−Vj* *, Zj*= *e* *−Vj* *,* R*m*
+
+*such that* () <u>2</u>2<u>2</u> *I⪯D Vj⪯ j*+ *I*(*j≥*1)*,*(5.3) *j j* *and* *Zj−→*1*,∥fj−f∥L*1 *−→*0*, h*(*fj*)*−→h*(*f*)*,*Cov(*fj*)*−→*Cov(*f*)*.*(5.4)
+
+*The covariance limit is entrywise, the means of fjconverge to the mean of f, and all these quantities* *are finite.*
+
+*Proof.* Fix *a,b* from Lemma5.1. For each positive integer *j*, define the Moreau envelope [24, Section 7] {} <u>j</u>2 *Qj*(*x*) = inf *m* *V*(*y*) + *|x−y|.*(5.5) *y∈*R 2 The expression in braces is lower semicontinuous, strictly convex on its effective domain, and tends to infinity as *|y|→∞*. It therefore has a unique minimizer *pj*(*x*), and *Qj*is finite everywhere. Moreover, <u>a²</u> *Qj*(*x*)*≥a|x|−b−.*(5.6) 2*j*
+
+Indeed,*V*(*y*)*≥a|x|−a|x−y|−b*, and minimizing*jr²/*2*−ar*over*r≥*0proves the bound. For completeness, the needed regularity of *Qj*follows directly from the minimization. The optimality condition is *j*(*x−pj*(*x*)) *∈∂V* (*pj*(*x*)), where *∂V* denotes the convex subdifferential. To obtain it, compare the minimum at *p* = *pj*(*x*)with *p*+*s*(*z−p*), use convexity to bound *V* (*p*+*s*(*z−p*)) above, divide by *s >* 0, and let *s↓* 0. The resulting inequality is *V* (*z*) *≥V* (*p*) + *j⟨x−p,z−p⟩*. Adding the two subgradient inequalities at*pj*(*x*)and*pj*(*x* *′* )gives
+
+*⟨x−x* *′* *,pj*(*x*)*−pj*(*x* *′* )*⟩≥|pj*(*x*)*−pj*(*x* *′* )*|* 2 *.*
+
+Consequently both *pj*and *x7→x−pj*(*x*)are1-Lipschitz. Evaluating the infimum at *pj*(*x*)and, in the reverse direction, at*pj*(*x*+*h*)shows that
+
+### ∇Qj(x) =j(x−pj(x)).
+
+For example, the first comparison gives an upper error *j|h|* 2 */*2after subtracting *j⟨x−pj*(*x*)*,h⟩*, and the second gives a lower error of order *j|h|* 2 by the Lipschitz estimate just proved. Thus *Qj*is continuously differentiable with *j*-Lipschitz gradient. It is convex, since the function minimized in (5.5) is jointly convex in(*x,y*). We next check convergence before smoothing. The functions *Qj*increase with *j*, and *Qj*(*x*) *≤V* (*x*) when *V* (*x*)is finite. If *Qj*(*x*)stays bounded above as *j→∞*, the identity at the minimizer and *V≥−b*imply 2<u>2(Qj(x) +b)</u> *|x−pj*(*x*)*| ≤ −→*0*.* *j* Lower semicontinuity then gives*V*(*x*)*≤*lim inf*jV*(*pj*(*x*))*≤*lim*jQj*(*x*). This proves
+
+### Qj(x)−→V(x)for everyx,(5.7)
+
+including the value+*∞*. Choose a nonnegative even smooth function *η* supported in the unit ball with integral one, and set*ηε*(*x*) =*ε* *−m* *η*(*x/ε*). Define <u>|x|</u> *Vj*=*Qj∗η₁/j*+*.*(5.8) *j*
+
+Convolution preserves convexity and the Lipschitz bound on the gradient; hence (5.3) holds. Evenness ∫ gives *zη*(*z*) d*z*= 0, so Jensen’s inequality and (5.6) yield the common bound
+
+<u>a²</u> *Vj*(*x*)*≥Qj*(*x*)*≥a|x|−B, B*=*b*+*.*(5.9) 2
+
+Smoothing at this scale does not affect the limit. The*j*-Lipschitz bound on the gradient gives
+
+<u>j</u>2 *Qj*(*x−z*)*≤Qj*(*x*)*−⟨∇Qj*(*x*)*,z⟩*+ *|z|.* 2
+
+### Integrating againstη₁/jcancels the linear term, so
+
+<u>1</u>*m* 0*≤*(*Qj∗η₁/j*)(*x*)*−Qj*(*x*)*≤* (*x∈*R)*.* 2*j*
+
+Together with (5.7), this proves*Vj*(*x*)*→V*(*x*)everywhere. Now (5.9) dominates(1 + *|x|* 2 )*e* *−Vj*(*x*) by an integrable function independent of *j*. Applying (5.2) with*B*in place of*b*also gives
+
+*|Vj*(*x*)*|e* *−Vj*(*x*) *≤Ce* *−a|x|/*2 *.*
+
+At points where *V* = +*∞*, both *e* *−Vj* and *Vje* *−Vj* tend to zero. Dominated convergence therefore proves convergence of the normalizing constants, first moments, second moments, and the integrals ∫ *−V* *Vjej*. Finally, ∫ <u>1</u>*−V* *j* *h*(*fj*) = *Vje* + log*Zj,* *Zj*
+
+### which proves all of (5.4).
+
+*Proof of the inequality in Theorem1.2.* Apply Theorem3.1to the normalized potentials *Vj*+ log*Zj* of Lemma5.2. Their Hessians satisfy (5.3), so
+
+<u>1</u> *h*(*fj*)*≥m*+ log det Cov(*fj*)*.* 2
+
+The covariance of *f* is positive definite: zero variance in a nonzero direction would concentrate this Lebesgue density on an affine hyperplane. Thus (5.4) permits passage to the limit in both sides and proves the inequality.
+
+## 6 From vanishing slack to exponential products
+
+Write *δ*(*f*) = *h*(*f*) *−m−* <u>1</u> 2 log det Cov(*f*)for the nonnegative entropy gap. Theorem3.1controls the nonlinear part of the normalized matrix field and the sum of squares of its linear coefficients. We now show that this control determines every equality case. The structural step is local: the first two nonconstant terms of *q*(*A*(*x*))force the coefficients of a linear symmetric matrix field *A* to commute whenever*q*(*A*)is a Jacobian.
+
+### 6.1 Compatibility of a nonlinear Jacobian
+
+**Lemma 6.1**(Rigidity of a linear matrix field)**.***Let m≥* 1*, and let X₁,...,Xmbe real symmetric* *m×mmatrices satisfying* ∑ *m*∑*m* *Xr* 2 =*I, A*(*x*) = *xrXr.* *r*=1 *r*=1 1*,*2 *m m* *Suppose F∈W* loc (R; R)*has weak Jacobian DF* = *q*(*A*)*almost everywhere. Then there are an* *orthogonal matrixU, signsσ₁,...,σm∈{−*1*,*1*}, andw∈*R *m* *such that*
+
+T ()*m* *m* *U F*(*Uy*) = *σit*(*σiyi*) *i*=1 +*wfor almost everyy∈*R*.*(6.1)
+
+*In particular, F*#*γmis an affine image of the product of m mean-one exponential laws, and its* *covariance matrix isI.*
+
+*Proof.* Write *e₁,...,em*for the standard basis and *J* = *q*(*A*). Commutation of distributional derivatives of*F*gives (*∂rJ*)*es*= (*∂sJ*)*er*(1*≤r,s≤m*)*.*(6.2)
+
+The scalar function *q* is real analytic near zero. Since *A*(0) = 0, its convergent power series, interpreted by matrix multiplication, gives
+
+*J*(*x*) =*q*(0)*I*+*q* *′*
+
+(0)*A*(*x*) +
+<u>1</u> 2 *q* *′′*
+
+(0)*A*(*x*) 2 +*O*(*|x|*
+3 )
+
+near zero; the differentiated remainder is*O*(*|x|* 2 ). The identity*q* *′*
+
+(*a*) =*q*(*a*)(*q*(*a*)*−a*)yields
+√ √ () 2*′*2*′′*2 4 *q*(0) =*, q* (0) = *>*0*, q* (0) = *−*1 *>*0*.* *π π π π*
+
+Thus (6.2), which is a pointwise identity between analytic functions near zero, has constant term
+
+*Xres*=*Xser.*(6.3)
+
+Equivalently, *A*(*x*)*z* = *A*(*z*)*x* for all *x,z∈*R *m*; in particular, *A*(*x*)*es*= *Xsx*. Its degree-one term is
+
+### (XrA(x) +A(x)Xr)es= (XsA(x) +A(x)Xs)er.
+
+The terms with leftmost factor *A*(*x*)cancel by (6.3). The remaining equality is(*XrXs−XsXr*)*x* = 0 near zero, and hence *XrXs*=*XsXr*(1*≤r,s≤m*)*.*(6.4)
+
+Commuting real symmetric matrices admit a common orthonormal eigenbasis. Choose the orthogonal matrix *U* with those basis vectors as columns, and rotate both the input and the output. Then () ∑ *m*∑*m* *A* ˜(
+
+*y*) =*U* T *A*(*Uy*)*U*= *yiX*
+˜ *i* *, X* ˜ *i*=*U* T *UriXrU* *i*=1 *r*=1 ∑ ˜ 2 has diagonal coefficients. Orthogonality of *U* gives*iXi*= *I*, and the identity *A*(*x*)*z* = *A*(*z*)*x* gives *X* ˜ *i* *ej*= *X* ˜ *j* *ei*. If *i̸*= *j*, these two vectors are multiples of different basis vectors, so both are zero. Consequently, only the *i*th diagonal entry of *X* ˜ *i*can be nonzero. The sum-of-squares identity makes that entry a sign:
+
+*X* ˜ *i*=*σieie* T *i, A* ˜(
+
+*y*) = diag(*σ₁y₁,...,σmym*)*.*
+
+It follows that ( T ) () *DyU F*(*Uy*) = diag *q*(*σ₁y₁*)*,...,q*(*σmym*)*.*
+
+### Since t
+
+*′* = *q* and *σi* 2 = 1, the right side is also the Jacobian of *y7→* (*σit*(*σiyi*)) *m* *i*=1. Their difference has zero weak gradient on the connected set R *m* and is therefore almost everywhere constant. This proves (6.1). For independent standard Gaussian coordinates *Gi*, the variables *t*(*σiGi*)are independent mean- one exponentials. Their variances are one, and the signs and the orthogonal matrix preserve covariance*I*. This proves the final assertion.
+
+### 6.2 Compactness and the proof of the equality classification
+
+We first record the functional-calculus estimate that turns convergence of the normalized fields into convergence of transport Jacobians. The Frobenius norm is essential to this elementary argument.
+
+**Lemma 6.2.***For real symmetric matricesM,N∈*R *m×m* *,*
+
+*|q*(*M*)*−q*(*N*)*|*F*≤|M−N|*F*.*(6.5)
+
+*Proof.* Let(*ui*)and(*vk*)be orthonormal eigenbases of *M* and *N*, with eigenvalues *λi*and *µk*. Then
+
+*u* T *i*(*q*(*M*)*−q*(*N*))*vk*= (*q*(*λi*)*−q*(*µk*))*u* T *ivk,*
+
+whereas the corresponding entry of *M−N* is(*λi−µk*)*u* T *ivk*. The scalar bound0 *< q* *′* *<* 1therefore bounds the absolute value of each former entry by the absolute value of the latter. Squaring and summing over *i,k* proves (6.5), because the Frobenius norm is unchanged by orthogonal changes of the row and column bases separately.
+
+*Proof of the equality statement in Theorem1.2.*Let*f*be a log-concave probability density onR *m* with *δ*(*f*) = 0. Choose the approximating densities *fj*from Lemma5.2. Write *aj,a* for their means and the mean of*f*, and*Cj,C*for their covariance matrices. That lemma gives
+
+### ∥fj−f∥L1(Rm)−→0, aj−→a, Cj−→C, δ(fj)−→0.(6.6)
+
+Here *C* is positive definite, as recalled in the introduction, so the covariance convergence also implies convergence of the log determinants. For each *j*, apply Proposition2.3to *fj*. Let *Pj*be its positive definite normalizing matrix and let*Fj*transport*γm*to(*Pj*)#(*fj*(*x*) d*x*). In the notation of Theorem3.1, put
+
+*Jj*=*DFj, Aj*=*q* *−*1 (*Jj*)*, Xj,r*=E[*xrAj*(*x*)]*,* ∑ *m*∑*m* *Aj*(*x*) = *xrXj,r*+*Yj*(*x*)*, Bj*= *Xj,r* 2 *.* *r*=1 *r*=1
+
+The entropy gap is affine invariant. Theorem3.1and (6.6) therefore imply
+
+∑ *m* *∥Yj∥L*2(*γ*
+
+*m*) *−→*0*, ω*(*λi*(*Bj*))*−→*0*.*(6.7)
+*i*=1
+
+The function *ω* is continuous and nonnegative on[0*,∞*), vanishes only at1, and tends to infinity at infinity. For every *ε >* 0, it consequently has a positive infimum on *{λ≥* 0 : *|λ−* 1*|≥ε}*. Thus every eigenvalue of*Bj*tends to1, and*Bj→I*in operator norm.
+
+∑ 2 Since*r|Xj,r|* F = tr*Bj*, the coefficients form a bounded sequence in a finite-dimensional space. Pass to a subsequence such that *Xj,r→Xr*for every *r*. Each *Xr*is symmetric, and Gaussian orthogonality together with (6.7) gives
+
+∑ *m*∑*m* *Xr* 2 =*I, Aj−→A*(*x*) := *xrXr*in*L²*(*γm*)*.*(6.8) *r*=1 *r*=1
+
+Lemma6.2now gives *Jj*=*q*(*Aj*)*−→J*:=*q*(*A*)in*L²*(*γm*)*.*(6.9)
+
+To obtain a limiting map, remove the irrelevant translations: *F* ̂ *j*= *Fj−*E*Fj*. Each *F* ̂ *j*lies in *H¹*(*γm*; R *m* ): its law has finite second moments and, for this fixed *j*, its Jacobian has the bounds (2.9) applied to the transformed target. Gaussian Poincaré, applied componentwise to the centered difference, gives *∥F* ̂ *j− F* ̂ *k∥* 2 *L*2(*γm*) *≤∥Jj−Jk∥* 2 *L*2(*γm*)
+
+*.*(6.10)
+Consequently *F* ̂ *j*converges strongly in Gaussian *H¹* to a centered map *F* ̂ with weak Jacobian *DF* ̂ =
+
+*J*. Indeed, (6.10) and (6.9) give convergence of both maps and first derivatives; passage to
+weak derivatives is also valid on every bounded set, where the Gaussian density has a positive lower ̂1*,*2 *m m* ̂# bound. In particular, *F∈W* loc (R; R). Lemma6.1applies to (6.8) and shows that *F γm*is an affine exponential product with covariance*I*. It remains to return from the normalized laws to *f*. By Cauchy–Schwarz, the strong *L²*(*γm*) convergence of the centered maps gives
+
+*Dj*:= Cov((*F* ̂ *j* ) #*γm*) =*PjCjPj* T *−→I.*(6.11)
+
+We can now bound the normalizing matrices uniformly, without any uniform Hessian bounds on the approximating potentials. Choose positive constants *c,C₀,d,D* such that, for all sufficiently large *j*,
+
+*cI≤Cj≤C₀I, dI≤Dj≤DI.*
+
+Congruence by*Pj*then yields <u>d</u>T<u>D</u> *I≤PjPj≤ I.*(6.12) *C₀ c*
+
+### Hence Pjand P
+
+*j−* 1 are bounded. Pass to a further subsequence with *Pj→P*; the lower bound in (6.12) makes*P*invertible. The law of *F* ̂ *j*is the image of *fj*(*x*) d*x* under *x7→Pj*(*x−aj*). For a bounded continuous function *ψ*, ∣∫ ∫ ∣ ∣ ∣ ∣ *ψ*(*P* *j* (*x−aj*))*fj*(*x*) d*x− ψ*(*P*(*x−a*))*f*(*x*) d*x*∣ ∣ ∣ ∫ *≤∥ψ∥∞∥fj−f∥L*1 + *|ψ*(*Pj*(*x−aj*))*−ψ*(*P*(*x−a*))*|f*(*x*) d*x−→*0*.*
+
+The first term tends to zero by (6.6); the second does so by dominated convergence. Strong convergence of *F* ̂ *j*also identifies the weak limit of these laws as *F* ̂# *γm*. It follows that the image of *f* (*x*) d*x* under *x7→P*(*x−a*)is the affine exponential product already determined above. Since *P* is invertible,*f*itself has the form asserted in Theorem1.2, up to equality almost everywhere. Conversely, the density of a product of *m* independent mean-one exponentials is log-concave, has entropy *m*, and has covariance *I*. Every invertible affine image remains log-concave and has the same entropy gap by affine invariance. Thus every density in the stated class satisfies*δ*= 0.
+
+## 7 The simplex inequality and its equality cases
+
+We transfer Theorem1.2to convex bodies using the exponential density on a cone. This construction appears in [14, Proposition 2(b)]; its entropy reduction is [13, Lemma 5.2 and Proposition 5.2]. The moment formulas also appear in [18, Lemma 2.5]. The calculation identifies equality in the body inequality with entropy equality in one higher dimension. The support of the resulting exponential product then determines the body.
+
+*Proof of Theorem1.1.* Let *K⊂*R *n* be a convex body. Translation preserves both *LK* and the property of being a simplex, so assume that *K* has centroid zero. WriteΣ*K*= Cov(*X*)for *X* uniform on*K*, and define *CK* =*{*(*tx,t*) : *x∈K, t≥*0*}⊂*R *n*+1
+
+*.*(7.1)
+Convexity of *K* makes *CK* convex. It is closed because *K* is compact: a convergent sequence(*tjxj,tj*) with *tj→* 0has *tjxj→* 0, and when the limiting height is positive one can divide by that height. The cone has nonempty interior, and its only point at height zero is the origin. Define the log-concave density
+
+<u>e</u> *−t* *fK*(*y,t*) = **1***CK*(*y,t*)*.*(7.2) *n*!*|K|*
+
+The change of variables*y*=*tx*, with Jacobian*t* *n* for*t >*0, gives ∫ ∫ *∞* *e* *−t* d*y*d*t*=*|K| t* *n* *e* *−t* d*t*=*n*!*|K|,* *CK* 0
+
+so *fK*is a probability density. The same change of variables shows that it is the density of(*TX,T*), where *T* is independent of *X* and has density *t* *n* *e* *−t* */n*!on(0*,∞*). Integration by parts therefore gives E*T*=*n*+ 1*,*E*T²* = (*n*+ 1)(*n*+ 2)*,*Var(*T*) =*n*+ 1*.*
+
+SinceE*X*= 0, independence makes the cross-covariance of*TX*and*T*vanish. Hence
+
+*h*(*fK*) =*n*+ 1 + log(*n*!*|K|*)*,*(7.3) () (*n*+ 1)(*n*+ 2)Σ*K*0 Cov(*fK*) =*,*(7.4) 0*n*+ 1
+
+det Cov(*fK*) = (*n*+ 1) *n*+1 (*n*+ 2) *n* det Σ*K.*(7.5)
+
+Applying the entropy inequality of Theorem1.2in dimension*n*+ 1yields
+
+(*n*!) 2 *|K|* 2 *≥*(*n*+ 1) *n*+1 (*n*+ 2) *n* det Σ*K.*(7.6)
+
+This is precisely <u>(n!)</u> 1*/n* *LK ≤* (*n*+1)*/*(2*n*) *√.* (*n*+ 1) *n*+ 2
+
+Every step from the entropy inequality to (7.6) is reversible. Thus equality in this bound holds if and only if*fK*has equality in Theorem1.2. Suppose equality holds. By that theorem, the law with density *fK*is an invertible affine image of the product of *n* + 1mean-one exponential laws. The closed support of *fK*is exactly *CK*: it has
+
+*w₀ p₂ t*= 1 *t*=*a₀ >*1 *K×{*1*}* *p₀ p₁*
+
+*pi*=*wi/ai* *ai*=height of*wi>*0
+
+Figure 1: The height-one section of a cone generated by three independent rays. Dividing each
+
+generator *wi*by its positive height *ai*produces the vertices *pi*of the section; one generator above the section is shown explicitly. Formula (7.8) gives the same correspondence in every dimension.
+
+positive density on the interior of the cone, and this interior is dense in the cone. Taking closed supports gives *CK* =*b*+*M*[0*,∞*) *n*+1 (7.7)
+
+for an invertible matrix*M*and a vector*b*. The origin is the unique extreme point of *CK*. Indeed, every nonzero *z∈CK* is the midpoint of0 and2*z*, whereas0 = (*u* + *v*)*/*2with *u,v∈CK* forces the nonnegative heights of *u* and *v* to vanish, and hence *u* = *v* = 0. The orthant also has the origin as its unique extreme point. Invertible affine maps preserve extreme points, so (7.7) forces*b*= 0. Choose positive multiples *w₀,...,wn*of the respective columns of *M*, and let *ai*be the last coordinate of *wi*. Each *wi*is a nonzero point of *CK*, so *ai>* 0. Put *pi*= *wi/ai*. The section at height one is {} ∑ *n*∑*n* *K×{*1*}*= *ciwi*: *ci≥*0*, ciai*= 1 = conv*{p₀,...,pn}.*(7.8) *i*=0 *i*=0 The vectors *pi*are linearly independent, since the vectors *wi*are. They are consequently affinely independent in the height-one hyperplane. Thus *K* is a simplex. Figure1illustrates the normalization of the generating rays in this step. Conversely, let *K* = conv*{v₀,...,vn}* be a simplex, and let *M* have columns(*vi,*1). These columns are linearly independent and
+
+*M*[0*,∞*) *n*+1 =*CK,|*det*M|*=*n*!*|K|.*
+
+For the determinant identity, subtract the first column from the others and expand along the last row; the remaining determinant is *n*!times the volume of *K*, up to sign. If *E₀,...,En*are independent mean-one exponential variables, the density of*M*(*E₀,...,En*) T at(*y,t*)*∈CK* is ( *n* ) <u>1</u> ∑*−*1<u>e</u> *−t* exp *−* (*M* (*y,t*))*i*=*,* *|*det*M|* *i*=0 *n*!*|K|*
+
+because the last row of *M* consists of ones. This is exactly *fK*, up to immaterial boundary values. Theorem1.2therefore gives equality in (7.6). *√* For *n* = 1, every convex body is an interval, hence a simplex, and the constant is1*/* 12. Indeed, an interval of length*ℓ*has variance*ℓ²/*12, in agreement with the formula above.
+
+## A Verification of the scalar estimates
+
+This appendix proves the Gaussian estimates used in the transport and scalar arguments. All terminating decimals in this appendix denote exact rational numbers. The finite certificates below concern entire intervals: their validity follows from coefficient bounds and polynomial positivity, with no sampling assumption. In the negative tail, *k* and its first three derivatives are small and can be approximated by Gaussian excess moments. In the positive tail, *k∼a/*2, so we subtract this leading term and control derivatives of the remaining logarithmic correction. On the compact interval, we propagate the differential equations in their stable directions—backward from *q*(10) and forward from*k*(*−*6)—and then certify polynomial positivity by exact arithmetic.
+
+*Proof of Lemma4.1and Lemma2.2.* We use the definitions of *q,k,d,b,l* from the transport section and of *p,h₀,* D*,* L*,* E*,K₀,J₀,A∗,η∗,ν∗*from the scalar section. The differential identities needed below are *q* *′* =*qd, k* *′* =*b*= 1*−kd, l*=*k−q*+*ab, l* *′* = 2*b−qd*+*al.*(A.1)
+
+In particular,
+
+*p*=*b*+*kl−l²/α,*
+
+E=*p*+*b*(*.*75*−b*)*−l²/α,* *h₀* =*k*(*b−.*5)*−*2(*b−.*28)*l/α,* (A.2) *d*log*M* 2(1*−qd*) 2*bl−*2 2 = 2 *−* 2 *, M*=*d* (1*−b*)*.* *d*log*q d d*(1*−b*)
+
+We verify the estimates separately on *a≤−*6, *a≥* 10, and[*−*6*,*10]. The central calculation is also specified inverification/verify_scalar.py; it uses rational arithmetic only.
+
+### The negative tail
+
+Put*r*=*−a≥*6,*u*=*r* *−*2, and ∫ *∞* *j −rv−v*2*/*2 *I* *j*
+
+(*r*) = *v e dv*(*j≥*0)*.* 0
+Writing *φ* for the standard Gaussian density, the lower Gaussian tail is *P* = Φ(*−r*) = *φ*(*r*)*I₀*(*r*). Thus <u>φ(r) (1−P)(−log(1−P))</u> *q*=*, k*=*.* 1*−P φ*(*r*) Integration by parts gives
+
+*I₁* = 1*−rI₀, I₂* =*I₀ −rI₁, I₃* = 2*I₁ −rI₂.*
+
+The inequality0 *≤* 1 *−* (1 *−P*)(*−*log(1 *−P*))*/P≤* 2*P* gives *|k−I₀|≤* 2*P/r*. Since *P≤φ*(*r*)*/r* and *φ*(6)*<*7*·*10 *−*9, we have*q≤*1*.*01*φ*(*r*). Applying (A.1) successively therefore gives
+
+*|b−I₁|≤*4*φ*(*r*)*/r,|l−I₂|≤*6*φ*(*r*)*,|l* *′* *−I₃|≤*9*rφ*(*r*)*.*
+
+Each Gaussian error decreases faster than its required inverse power for *r≥* 6: indeed *r* *N* *φ*(*r*)is decreasing there for*N≤*7. Checking at*r*= 6yields, with*g₀* =*k,g₁* =*b,g₂* =*l,g₃* =*l* *′*,
+
+<u>j!</u> *|gj−Ij|≤.*01*u* *j*+1 (0*≤j≤*3)*.*(A.3) *r*
+
+2 *−v*2*/*2 The elementary bounds1*−v /*2*≤e ≤*1also give
+
+<u>(j+ 1)(j+ 2) Ij</u> 1*− u≤* *j*+1 *≤*1*.*(A.4) 2 *j*!*/r*
+
+For*ζ*= 1 +*.*01*u*, consequences we shall use are
+
+0*< k≤ζ/r, u*(1*−*3*.*01*u*)*≤b≤uζ < .*028*,* 2*r* *−*3 (1*−*6*.*01*u*)*≤l≤*2*ζr* *−*3 *,*0*< l* *′* *≤*6*ζr* *−*4 *.*
+
+In particular0*< b <*1*/*2and*l >*0. Moreover,
+
+2 3<u>1</u> *p≥u*(1*−*3*.*01*u*)*−*4*ζ u /α≥u*(1*−*4*.*54*u*)*≥* 2 *.* 7 +*r*
+
+The last two inequalities follow by inserting *u≤* 1*/*36; after dividing by positive factors they reduce to3*.*01 + 4*ζ²u/α <* 4*.*54and(1 *−* 4*.*54*u*)(1 + 7*u*) *≥* 1. The two summands of *h₀* in (A.2) have opposite signs and magnitudes at most*.*501*/r*and*.*43*/r*. Hence
+
+*h²*0*≤.*501 2 *u < .*67 2 *u*(1*−*4*.*54*u*)*≤.*67 2
+
+*p.*
+This establishes the required bounds on*p,h₀* in this tail. For clarity, the remaining substitutions can be made with the following ratios, avoiding cancella- tion in*p*: *kl* 2*uζ² l²* 4*u²ζ² b* *≤, ≤,.*93*< <*1*.*05*.*(A.5) *b* 1*−*3*.*01*u αb α*(1*−*3*.*01*u*) *p*
+
+They imply the *O* row of the coefficient table in Lemma4.1. For example,D *≤D∗*(7 + *r²*) *<*
+
+*.*295(7 +*r²*),L*≤*2*ζ/*(*αr³*)*< .*60,
+() *b l² b b*
+
+*.*37*< K₀* =*D∗*1 + (*.*75*−b*) *− < .*56*, J₀* =*D∗c < .*72*.*
+*p αb p p*
+
+The bounds for*z*=*l* *′* */l*,*h∗*= 1 + 3*b*+*kz*, and*χ*=*l/d*follow from
+
+<u>3ζ</u>2 0*< z≤ < .*61*,*1*< h∗<*1 + 3(*.*028) +*ζ*(*.*61)*/*6*<*1*.*77*, χ≤*2*ζu < .*070*,* *r*(1*−*6*.*01*u*)
+
+where *d* = *r* +*q≥r*. Since *d* *′* *<* 0, both *d* *−*1 (1 +*b*)and *d* *−*1 (1 *−b*) = *k* are increasing. Their product is*M*, proving the required logarithmic slope bound*m₀* = 0. It remains to check the matrix inequality in this tail. Write *N* for the matrix subtracted from *Q* in that inequality, so that () () *A∗b² −η∗b*+*ν∗/*4 +*l²/α ν∗/*2*−η∗b* E () *N*= +D E*cb.*(A.6) *ν∗/*2*−η∗b ν∗ cb*
+
+Equations (A.5) giveE*< .*05072. Using*b < .*028,*K₀ < .*56, and*J₀ < .*72in (A.6) gives
+
+*N₁₁ < .*224*, N₂₂ < .*802*,.*34*< N₁₂ < .*386*.*
+
+Since *Q₁₁* =*.*43, *Q₁₂* =*.*13, and *Q₂₂* = 2*.*72, the leading minor of *Q−N−*diag(*.*13*,.*75)is positive, and its determinant is at least
+
+### (.43−.224−.13)(2.72−.802−.75)−(.13−.386) =.023232>0.
+
+This proves the local matrix bound on*a≤−*6.
+
+### The positive tail
+
+*−*2 *√* For*r*=*a≥*10put*u*=*r* and*θ*= log(*r* 2*π*). Gaussian tail integration gives ∫ *∞* *−v−uv*2*/*2*φ*(*r*) *r C*(*u,θ*) *F*(*u*) = *e dv,*Φ(*−r*) = *F*(*u*)*, k*= +*,* 0*r* 2 *r*
+
+where <u>F−1</u> *C*=*Fθ*+*G, G*= *−F*log*F.*(A.7) 2*u* Let*U*=*u∂u*, with*θ*held fixed, and let*D*=*rd/dr*=*∂θ−*2*U*. Define
+
+### B= (1−D)C, J= (2−D)B, R= (3−D)J.
+
+Here*B,J,R*are auxiliary scalar functions used only in this appendix. Differentiating*k*gives
+
+*b*=*.*5*−uB, l*=*J/r³, l* *′* =*−R/r⁴.*(A.8)
+
+We first establish uniform bounds for these three derivatives:
+
+### |B−(θ−1.5)|< .04,|J−(2θ−4)|< .13,|R−(6θ−14)|< .75.(A.9)
+
+Differentiation under the integral gives, for0*≤u≤.*01,
+
+1*−u≤F≤*1*,|F* *′* *|≤*1*,|F* *′′* *|≤*6*,|F* *′′′* *|≤*90*,|F*
+
+(4) *|≤*2520*.*
+Indeed the *j*th derivative is bounded in absolute value by(2*j*)!*/*2 *j*. To control the apparent quotient ∫ 1 *′* in *G*, use(*F* (*u*) *−*1)*/u* = 0 *F* (*tu*)*dt*. Since *F≥.*99and *|*1 + log*F|≤* 1, differentiating (A.7) yields
+
+*|G* *′′* *|≤*15 + 6 + 1*/.*99*<*23*,|G* *′′′* *|≤*315 + 90 + 18*/.*99 + 1*/.*99 2 *<*435*.*
+
+The values*F*(0) = 1,*F* *′*
+
+(0) =*−*1,*G*(0) =*−*1*/*2, and*G*
+*′*
+
+(0) = 5*/*2therefore give
+*C*=*θ−.*5 + (2*.*5*−θ*)*u*+*R₀, g*= 11*.*5 + 3*θ, c₀* = 435 + 90*θ,*
+
+with *|U* *j* *R₀|≤*2 *j* *gu²* +*c₀u³***1***{j*=3*}*(0*≤j≤*3)*.*(A.10)
+
+The same bounds apply to *∂θR₀* with *g* = 3*,c₀* = 90; all higher *θ* derivatives vanish. For example, *U²R₀* = *uR₀* *′* + *u²R₀* *′′* and *U³R₀* = *uR₀* *′* + 3*u²R₀* *′′* + *u³R₀* *′′′*, so these statements follow directly from Taylor’s theorem and the derivative bounds just given. Expanding the three operators in (A.8), the linear-in-*u*errors are respectively
+
+(8*.*5*−*3*θ*)*u,*(37*−*12*θ*)*u,*(197*−*60*θ*)*u.*
+
+The errors contributed by*R₀* are bounded respectively by
+
+### (5g+ 3)u²,(30g+ 33)u²,(210g+ 321 + 8c₀u)u².(A.11)
+
+For example the second operator is2 *−* 3*D* + *D²* and the third is6 *−* 11*D* + 6*D² −D³*; substituting *D*=*∂θ−*2*U*into (A.10) gives exactly the displayed constants. Here is a rational way to check uniformity on the unbounded interval. Write *x* = log(*r/*10) *≥* 0, so *u* =*.*01*e* *−*2*x* and *θ* = *θ₀* + *x*, where3*.*221 *< θ₀ <* 3*.*222. The terms in (A.11) decrease with *x*. For
+
+the linear-in-*u* terms, maximize a linear function times *e* *−*2*x* at its endpoint or stationary point, using*e* *−t* *≤*1*/*(1 +*t*)for*t≥*0. More explicitly, set
+
+*g*+= 11*.*5 + 3(3*.*222)*, c*+= 435 + 90(3*.*222)*,* *aB*= 3(3*.*222)*−*8*.*5*, aJ*= 12(3*.*222)*−*37*,* *aR*= 197*−*60(3*.*222)*.*
+
+Upper bounds for the total errors are
+
+<u>rational upper bound</u> <u>a larger rational</u>
+
+<u>.015 5g++ 3</u>
+*B* + 4
+
+*.*024
+2*−*2*aB/*3 10
+
+<u>.06 30g++ 33</u>
+*J* + 4
+
+*.*102
+2*−a* { *J/*6 10} 197*−*60(3*.*221)*.*3 210*g*++ 321 8*c*+ *R* max*,* + 4 + 6
+
+*.*624
+100 2 +*aR/*30 10 10
+
+These prove (A.9). The bound on*θ₀* itself can be checked with the logarithm series
+
+∑ *N* *z²* *j*+1 *y−*1 2*|z|* 2*N*+3 log*y*= 2 +*RN, z*=*,|RN |≤* 2 *,* *j*=0 2*j*+ 1 *y*+ 1 (2*N*+ 3)(1*−z*)
+
+applied to *θ₀* = <u>1</u> 2 log(200*π*). For a completely specified enclosure, use Machin’s identity *π* = 16 arctan(1*/*5) *−* 4 arctan(1*/*239)and the alternating arctangent sums through degrees47and49. In the logarithm series first divide the argument by a power of two to place it in[1*,*2), and take *N* = 35for that argument and for log 2. These rational operations give3*.*221523626198 *< θ₀ <*
+
+3*.*221523626199. Combining (A.9) with the preceding Taylor bounds on *C* gives the following estimates needed in the lemmas:
+1*.*7*< R/J≤*3*,.*482*< b < .*5*,*0*< l < .*0026*,.*5*< k/r < .*528*,.*493*< p < .*5*.*(A.12)
+To see the ratio bounds directly, *J >* 2*θ−*4*.*13 *>* 0, *R−*1*.*7*J >* 2*.*6*θ−*8*.*171 *>* 0, and3*J−R > .*86. For the bounds involving *k* and *p*, we have *C≥.*99*θ−.*5 *>* 0by (A.7), whereas its Taylor expansion gives *C−*(*θ−.*5)*≤u{*2*.*5*−θ*+*.*01(11*.*5 + 3*θ*)*}<*0*.*
+
+Thus0*< C < θ−.*5*< θ−.*475, and0*< uCJ < .*075. In particular,
+
+*p*=*.*5 +*u{−B*+ (*.*5 +*uC*)*J}−l²/α,−.*605*<−B*+*.*5*J <−.*395*,*
+
+which proves*.*493 *< p < .*5. The inverse-power majorants used for these consequences take their maxima at *r* = 10, as follows by differentiating the linear or quadratic polynomials in log(*r/*10) times the indicated inverse power of *r*. For example, *u*(*θ−.*475)(2*θ−* 3*.*87)decreases because 1*/*(*θ−.*475) + 2*/*(2*θ−*3*.*87) *<* 2at *θ* = 3*.*221and hence for every larger *θ*. Similarly *B/r < .*18, and consequently *√* *|h₀|≤.*528(*.*18) + 2(*.*22)(*.*0026)*/α < .*14*< .*67 *p.*
+
+These bounds prove the claimed estimates on *p,h₀* and the *T₁* row of the coefficient table; for example
+
+*.*367*< K₀ < .*4*,*D*< D∗/.*493*< .*640*, J₀ < D∗c*(*.*5)*/.*493*< .*48*,*L*< .*0026*/α < .*20*.*
+
+### They also give−.3< z <0and
+
+*.*8*<*1 + 3(*.*482)*−*3(*.*528)*≤h∗≤*1 + 3(*.*5)*−*1*.*7(*.*5)*<*1*.*77*.*
+*−*1 *−v−uv*2*/*2 To check the remaining estimates involving *d*, let *V* have density *F* (*u*) *e* on *v >* 0. The Gaussian excess above*r*is*V/r*, so
+
+*rd*=E*V,*1*−qd*=*r* *−*2 Var*V.*
+
+Taylor’s lower bound in the numerator and *F≤* 1give E*V≥* 1 *−* 3*u* and E*V* 2 *≥* 2(1*−* 6*u*). Monotone weighting of the exponential density givesE*V≤*1. Hence*d≥.*97*/r*,Var*V≥.*88, and
+
+<u>J</u> *χ≤* 2 *< .*027*< .*097*.*
+
+*.*97*r*
+Equation (A.2) now implies <u>dlogM.027</u> *≥*2(*.*88)*−* 2 *> .*68*.* *d*log*q* 1*−.*5 This verifies the logarithmic slope required by Lemma2.2. For the matrix inequality, useE *≤p* +*.*482(*.*75 *−.*482)in (A.6). The first part of *N₁₁* increases with*b*on[*.*482*,.*5], and(*p*+*v*) 2 */p*increases with*p*when0*< v < p*. Therefore
+
+2<u>(.5 +.482(.75−.482))</u> 2 *N₁₁ ≤A∗/*4*−η∗/*2 +*ν∗/*4 +*.*0026 */α*+*D∗< .*403*,*
+
+*.*5
+<u>(c/2)</u> 2 *N₂₂ ≤ν∗*+*D∗<*1*.*12*,.*080*< N₁₂ < .*13*.*
+
+*.*493
+For the off-diagonal estimate use *N₁₂* = *ν∗/*2 + *b*(*cK₀ −η∗*)and*.*367 *< K₀ < .*4. Thus *Q−N−* diag(*.*022*,.*75)has positive leading minor and determinant at least
+
+(*.*43*−.*403*−.*022)(2*.*72*−*1*.*12*−.*75)*−.*05 2 =*.*00175*>*0*.*
+
+### This finishes the positive tail.
+
+### Polynomial enclosures on the central interval
+
+We next provide all data and rules for the finite certificate on[*−*6*,*10]. On each row of Table1, write *a* = *w* +*rx*, *−*1 *≤x≤* 1. The corresponding closed intervals are consecutive and cover[*−*6*,*10]. The tabulated constants are rational seeds; we do not assume that they are Gaussian function values. The differential residuals and the two analytic anchors *q*(10)and *k*(*−*6)will certify the entire piecewise polynomial family, including all its initial coefficients. Construct polynomials *P, k* ̂ of degree14from their tabulated constant terms by the recurrences <u>r</u> ̂ <u>r</u> ̂ *D*=*P−a, Pi*+1= (*PD*)*i, ki*+1= (1*− kD*)*i*(0*≤i <*14)*.*(A.13) *i*+ 1 *i*+ 1
+
+The subscript denotes a coefficient, so the constant1contributes only when *i* = 0. At each step only coefficients already computed occur on the right. The letters *P, k,D* ̂ denote polynomial approximations to*q,k,d*, respectively, throughout this central calculation. For a polynomial *A*, let[*A*]denote the sum of the absolute values of its coefficients. Direct use of (A.13) gives { 2*·*10 *−* *, w*=*−*3*.*75*,* ̂*−* *r*[(*PD*)deg*≥*14]*<* *−* *r*[(*kD*)deg*≥*14]*<*2*·*10*.*(A.14) 7*·*10*,*otherwise*,*
+
+<u>Table 1: Rational input data for the central polynomial certificate.</u>
+
+*w r P₀ k* ̂0 *−*5*.*25*.*75*.*0000004128471303*.*1842076703035094 *−*3*.*75*.*75*.*0003526268606772*.*2507500253088710 *−*2*.*5*.*5*.*0176378254869167*.*3531628936050266 *−*1*.*5*.*5*.*1387897504588508*.*4981884857033017 *−.*5*.*5*.*5091604338370335*.*7246172144765372
+
+*.*25*.*25*.*9635539794164037*.*9475979387933716
+1*.*25*.*75 1*.*7288166273310539 1*.*3000948982566192 3 1 3*.*2830986549304364 2*.*0126493036044195 5 1 5*.*1865039671258417 2*.*9046537878842420 7 1 7*.*1375456132265036 3*.*8366560415481663 9 1 9*.*1085231050028685 4*.*7898159350739631
+For each adjacent pair, the values of both *P* and *k* ̂ at their common endpoint differ by less than 2*·*10 *−*10. Also { ̂] 2*, w≤.*25*,* *D > .*09*,*[*k <* (A.15)
+
+5*.*6*, w > .*25*,*
+and the first-row value *k* ̂( *−*1)differs from*.*16237766by less than3 *·* 10 *−*9, while the last-row value *P*(1)differs from10*.*098093234by less than2 *·* 10 *−*10. These are rational coefficient checks. For example the first residual is bounded by ∣ ∣ ∑ 28∣∣∑14∣∣ *r* ∣∣ *PjDi−j*∣∣*,* *i*=14∣*j*=0∣
+
+with missing coefficients taken as zero. The bound on *D* follows from the quartic lower-bound rule (A.21) below, after charging discarded coefficients to the remainder. Here are analytic anchors for those coefficient checks. For any *r >* 0, Taylor’s formula under the integral gives alternating upper and lower bounds for*I₀*(*r*)by
+
+∑ *N* <u>(−1) (2</u> *i* <u>i−1)!!</u> *SN*(*r*) = 2*i*+1 *, S₂j*+1(*r*)*≤I₀*(*r*)*≤S₂j*(*r*)*,*(A.16) *i*=0 *r*
+
+where(*−*1)!! = 1. At *r* = 10, use *S₁₁,S₁₂* and *q*(10) = 1*/I₀*(10); at *r* = 6, use *S₁₃,S₁₄* and *|k*(*−*6)*−I₀*(6)*|≤*2*φ*(6)*/*36. Exact substitution gives
+
+*|q*(10)*−*10*.*098093234*|<*4*·*10 *−*10 *,|k*(*−*6)*−.*16237766*|<*4*·*10 *−*8 *.*
+
+*−*9 *√* 18 The rough bound *φ*(6) *<* 7 *·* 10 used here follows, for example, from 2*π >* 12*/*5and *e >* ∑59 *i* ∑59 *i −*9 *i*=018 */i*!: division gives(5*/*12)*/i*=018 */i*!*<*7*·*10. These anchors and residuals imply the following uniform, rather than just endpoint, errors:
+
+*|q−P|≤eq*= 10 *−*8 *,|k− k* ̂ *|≤ek*= 8*·*10 *−*7
+
+*.*(A.17)
+Indeed the equation for *q−P* has multiplier *r*(*q* + *P−a*) *>* 0, so backward integration from *a* = 10 is stable. Its absolute error increases by at most twice each bound in (A.14) and by each joining error. The resulting bound is
+
+*·* *−* + 2(2*·*10 *−* + 10*·*7*·*10 *−*
+
+) + 10*·*2*·*10
+*−* = 8*·*10 *−* *< eq.*
+
+The equation for *k− k* ̂ has multiplier *−rd <* 0, so forward integration from *a* = *−*6is stable. The additional forcing is bounded by *r*[*k* ̂] *eq*. The portions with[*k* ̂] *<* 2and[*k* ̂] *<* 5*.*6have total lengths
+
+6*.*5and9*.*5, respectively. Thus an upper bound for its accumulated error is
+4*.*3*·*10 *−*8 + 22*·*10
+*−*10 *·*2 + 20*·*10 *−*10 + 10 *−*8 (6*.*5*·*2 + 9*.*5*·*5*.*6) = 7*.*114*·*10 *−*7 *< ek.*
+
+Construct the following*full*polynomials before truncating any of them:
+
+*B*= 1*− kD,* ̂ *J*= *k* ̂ *−P*+*aB, Y*= 2*B−PD*+*aJ.*(A.18)
+
+They approximate*b,l,l* *′*. Their error bounds, obtained directly from (A.1) and (A.17), are
+
+*Eb*= [*k* ̂] *eq*+*ek*(*eq*+ [*D*])*,* *El*=*eq*+*ek*+ [*a*]*Eb,* (A.19) *El′* = 2*Eb*+ ([*P*] + [*D*] +*eq*)*eq*+ [*a*]*El.*
+
+The order in (A.18) matters for the strength of the certificate: form *B,J,Y* with the full degree-14 inputs, and only then apply the quartic arithmetic described next.
+
+### The rational positivity certificate
+
+An enclosure(*A,e*)means that the function in question differs from *A*(*x*)by at most *e* on[*−*1*,*1]. Replace a polynomial by its terms of degree at most four and add the sum of the absolute values of all discarded coefficients to *e*. Addition and subtraction add error bounds. For a product use the coefficient convolution and the error
+
+### [A]eB+ [B]eA+eAeB,(A.20)
+
+then truncate and charge the discarded coefficients as before. Scalar multiplication scales the error by the absolute value of the scalar. Initialize this arithmetic with

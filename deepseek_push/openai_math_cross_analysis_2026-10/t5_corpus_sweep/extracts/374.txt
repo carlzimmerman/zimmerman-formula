@@ -1,0 +1,400 @@
+## SHARP ONE-THIRD STABILITY OF BRENIER MAPS
+
+OPENAI
+
+Abstract.For the uniform probability measure*ρ*on a compact convex body inR *d* ,*d≥*2, quadratic optimal transport maps are one-third Hölder continuous in*L²*(*ρ*)with respect to the target’s2-Wasserstein distance. The constant is uniform over all targets supported in a fixed compact set, and the exponent is optimal. A three-atom family on a fixed cube disproves Letrouit’s conjectured uniform square-root estimate.
+
+Contents
+
+1. Introduction 1
+1.1. History and significance2
+1.2. Sharpness and the finite-cell argument2
+1.3. Conventions3
+2. Sharpness on a fixed cube3
+3. Finite affine potentials and prescribed cell masses6
+4. A uniform estimate for cell moments9
+5. Moving sites with fixed masses12
+6. From potentials to maps14 References 17
+1.Introduction
+Fix an integer*d≥*2, a compact convex set*K⊂*R *d* with nonempty interior, and the uniform probability measure <u>1K</u> *ρ*= *dx.* *|K|* For a nonempty compact set*Y⊂*R *d*, letProb(*Y*)denote the Borel probability measures sup- ported on*Y*. The quadratic optimal transport map from*ρ*to*µ∈*Prob(*Y*)is denoted by*Tµ*. It minimizes ∫ *|x−T*(*x*)*|* 2 *dρ*(*x*)subject to*T*#*ρ*=*µ* *K* and is unique up to a*ρ*-null set. Such maps are gradients of convex potentials, as in Brenier’s theorem [2]. We give direct existence and uniqueness arguments for the maps used here. For probability measures*µ,ν*with compact support, write
+
+(∫)1*/*2
+*W₂*(*µ,ν*) = inf *|y−z|* 2 *dπ*(*y,z*)*,* *π∈*Π(*µ,ν*) R*d×*R*d* ∫ whereΠ(*µ,ν*)is the set of probability couplings. We use*W₁*(*µ,ν*) = inf*π∈*Π(*µ,ν*)*|y−z|dπ*only when comparing earlier bounds. Our result is the following uniform estimate.
+
+*Date*: September 25, 2026.
+
+OPENAI
+
+**Theorem 1.1.***For everyK,Yas above there is a finite constantC*(*K,Y*)*such that* 1*/*3 () *∥Tµ−Tν∥L*2(*ρ*)*≤C*(*K,Y*)*W₂*(*µ,ν*) *µ,ν∈*Prob(*Y*)*.*
+
+*The targets may be atomic, singular, or absolutely continuous. The exponent*1*/*3*cannot be* *replaced by any larger exponent in general, even forK*=*Y*= [*−*1*,*1] *d* *and targets with exactly* *three atoms.*
+
+The constant is independent of atom count, positive atom masses, site separation, and density bounds. Neither smoothness nor strict convexity of*K*is required, and*Y*need not be convex. An explicit admissible constant is obtained inTheorem 6.2.
+
+1.1.**History and significance.**Quantitative stability asks how strongly the representation of a target measure by its optimal map depends on the target. Earlier contributions include Ambrosio’s local one-half Hölder estimate along target curves near regular data, reported by Gigli [9, Corollary 3.4], and Berman’s estimates for varying sources against a fixed target whose density is bounded below on a convex domain [1]. Mérigot, Delalande, and Chazal used dualization to obtain target-uniform bounds from Berman’s work, with dimension-dependent exponents, and
+2*/*15 then proved a dimension-independent*W₁* bound for a uniform convex source [17, Corollary 2.4 and Theorem 3.1]. Potential estimates followed by convex-gradient interpolation became central to the target- 2 1*/*6 uniform problem. Delalande and Mérigot proved an*L*-map bound of order*W₁* for source densities bounded above and below on a convex domain and targets in a fixed compact set [7, Theorem 4.2]. Their interpolation inequality [7, Proposition 4.1] is the antecedent of our last step; the improvement here is the linear*W₂* estimate for potential differences. Letrouit and Mérigot extended potential stability to John domains by local-to-global variance arguments, and obtained the corresponding map estimate when the boundary is rectifiable with finite(*d−*1)- dimensional measure [14, Theorem 1.7]. 1*/*3 Divol, Niles-Weed, and Pooladian obtained a*W₂*-map estimate for regular source densities and nondegenerate finite targets [8, Theorem 4.3]. Its constant depends on the number of atoms, a positive lower bound for their masses, and separation and angular geometry, whereas Theorem 1.1has one constant for all Borel targets, including degenerating atomic measures. At the other end of the regularity scale, Lipschitz*L²* stability in*W₂* holds for uniformly positive Hölder-continuous densities on suitably regular uniformly convex domains [3, Theorem 1.1]. Its constants depend on nondegeneracy and regularity conditions that exclude our atomic targets. 1*/*5 Cazelles, Pauwels, and Portales obtained a*W₁* map bound for bounded source densities and compactly supported marginals in their analysis of Monge-map estimation [5, Corollary 4.9]. 1*/*4 Han and Zhu [10, Proposition 2.7] report a sharp*W₁* estimate of Mérigot [16]; see also [6, Section 2.3]. Since*W₁ ≤W₂*, a quarter-power estimate in*W₁* gives at most a quarter-power estimate in*W₂* by that comparison alone. In the fixed-cube family ofTheorem 2.2,*W₁* and*W₂* 1*/*3 1*/*4 have different scaling, so its*W₂* obstructi... [truncated]
+
+1.2.**Sharpness and the finite-cell argument.**We begin inSection 2with the obstruction. A maximum of three affine functions has a thin central cell between two outer cells. Tilting the
+
+SHARP STABILITY OF BRENIER MAPS
+
+middle affine function preserves its cell mass but switches source points between slopes at order- one separation. The resulting three-atom targets give the sharpness assertion. The remaining sections prove the matching upper bound.
+For distinct sites*y₁,...,yN*and intercepts*c*= (*c₁,...,cN*), set
+
+*uc*(*x*) = max*{x·yi*+*ci}, Pi*(*c*) =*{x∈K*: *uc*(*x*) =*x·yi*+*ci}.* *i* The cells partition*K*up to null sets, and ∫ *∇uc*=*yi*almost everywhere on cell*i*. Write*Mi*(*c*) = *ρ*(*Pi*(*c*))and*Bi*(*c*) = *Pi*(*c*) *xdρ*(*x*)for its mass and first moment.Section 3establishes the cell calculus and shows that the intercepts realizing prescribed positive masses depend differentiably on the sites. At a configuration with all*Mi>*0, fix*q∈*R *N* and let dots denote derivatives along*c*+*sq*at*s*= 0, with the sites fixed. The central estimate, proved inSection 4, is ∑ <u>|B˙</u> <u>i</u> <u>|</u> 2∑ <u>|M˙i|</u> 2 *≤C₀R², K⊂B*(0*,R*)*,* *i* *Mi* *i* *Mi*
+
+with an absolute constant*C₀*. Couple the uniform laws on the cells at*c−sq*and*c*+*sq*. Their midpoint law, multiplied by the geometric mean of their masses, can be dominated by the source measure on the cell at*c*. We prove this density bound by Knothe’s triangular rearrangement [12]; it is also a consequence of displacement concavity [15, Theorem 2.3]. Testing with*R² −|x|* 2
+
+and summing over the partitions controls displacement by mass changes. This produces the moment estimate with a constant that remains uniform as masses or faces become small. InSection 5, we move the sites of two finite targets along an optimal target coupling while keeping the coupling masses fixed. The derivative of the cell-mass constraint is a graph-Laplacian equation, familiar from semi-discrete transport [11]. We test it against an intercept direction whose mass derivative is the weighted intercept velocity. The moment inequality then bounds that velocity directly in its weighted*L²* norm. This avoids any quantitative bound on the inverse Laplacian and yields an*L²*(*ρ*)potential difference of order*W₂*(*µ,ν*). Finally,Section 6uses coordinate slices to bound the squared gradient difference by a constant times *h* *−*2 *∥u₀ −u₁∥* 2 *L*2(*ρ*) +*h.*
+
+The potential estimate and the choice*h*=*W₂*(*µ,ν*) 2*/*3 give the one-third exponent. Finite approximation and supporting inequalities then extend the estimate to all Borel targets. The source’s convexity enters through its convex cells and interval slices; no smoothness of its bound- ary is used.
+
+1.3.**Conventions.**Lebesgue volume is denoted by*|·|*, and surface measure on an affine hyper- plane by*dS*. All source masses and moments are normalized by*|K|*. We choose fixed*R,L≥*1 such that*K⊂B*(0*,R*)and*Y⊂B*(0*,L*). A finite maximum of affine functions with slopes in*B*(0*,L*)is convex and*L*-Lipschitz. Ties between distinct slopes occur on a finite union of hyperplanes and therefore have zero source measure.
+2.Sharpness on a fixed cube
+We first prove that the exponent inTheorem 1.1cannot be improved. The example uses three affine functions, with a small change in one slope reassigning source points between the central and outer cells. The following observation identifies the resulting gradients as optimal maps. It applies to the general source body*K*of the introduction.
+
+**Lemma 2.1**(Optimality of a finite affine maximum)**.***Let* () *u*(*x*) = max *x·yi*+*ci.* 1*≤i≤N*
+
+OPENAI
+
+*Forρ-almost everyx, all maximizing indices have the same slope. DefineT*(*x*) =*yifor the* *smallest maximizing indexi, and putλ*=*T*#*ρ. ThenTis Borel,T*=*∇ualmost everywhere,* *and the transport plan*(id*,T*)#*ρis the unique quadratic-cost optimal plan fromρtoλ.*
+
+*Proof.*The first-index choice is Borel because its level sets are given by finitely many strict and non-strict affine inequalities. Merge repeated slopes, retaining the largest intercept for each slope, and write the resulting intercept as*c*(*y*). Ties between distinct slopes lie in a finite union of hyperplanes. Outside this null set, the maximizing affine function remains strictly maximal in a neighborhood, so its slope is the gradient of*u*. For every transport plan*π*from*ρ*to*λ*, the inequality*x·y*+*c*(*y*)*≤u*(*x*)gives ∫ ∫ ∫ *x·ydπ*(*x,y*)*≤ udρ− c*(*y*)*dλ*(*y*)*.* *K*
+
+The graph plan of*T*attains equality. Since the two marginals fix the integrals of*|x|* 2 and*|y|* 2, maximizing the displayed scalar product is equivalent to minimizing quadratic cost. Equality for any optimal plan requires it to be concentrated on pairs(*x,y*)with*x·y*+*c*(*y*) =*u*(*x*). The maximizing slope is unique for*ρ*-almost every*x*, so the plan is concentrated on the graph of*T*. This proves uniqueness of the plan.□
+
+We now specialize to the cube. The two targets below have the same atom masses, but their optimal maps differ on a much larger part of the source than their target displacement alone might suggest.
+
+**Proposition 2.2**(Optimality of the exponent)**.***For every fixedd≥*2*, letK*=*Y*= [*−*1*,*1] *d*
+
+*andρ*= 2 *−d* 1*Kdx. For everyα >*1*/*3*,*
+
+<u>∥Tµ−Tν∥L</u>2<u>(ρ)</u> sup *α* = +*∞.* *µ,ν∈*Prob(*Y*)*W₂*(*µ,ν*) *µ̸*=*ν*
+
+*The supremum remains infinite when both targets are required to have exactly three atoms.*
+
+## Proof.For0< a <1/2, putb=a/2and define
+
+## (2.1)ua(x) = max{−x₁,x₁,a}, u˜a(x) = max{−x₁,x₁,a+bx₂}.
+
+Let*µa*= (*∇ua*)#*ρ*and*νa*= (*∇u*˜*a*)#*ρ*, with any fixed first-index selection on the null tie sets. Their slopes are, respectively,*−e₁,e₁,*0and*−e₁,e₁,be₂*, all in the fixed set*Y*. ByTheorem 2.1, these gradients are the unique optimal maps to their laws. Since*a/*2*≤a*+*bx₂ ≤*3*a/*2*<*1, the central cells are, up to null boundaries,
+
+## Aa={x∈K:|x₁|< a}, Ba={x∈K:|x₁|< a+bx₂}.
+
+Tilting the central strip preserves its mass but changes which points receive a central or an outer slope.Figure 1shows the symmetric difference where this reassignment occurs. On*Aa*, the first map is zero; on its complement it issign(*x₁*)*e₁*. The second map equals*be₂* on*Ba*andsign(*x₁*)*e₁* on its complement. Under*ρ*, the coordinates are independent and uniform on[*−*1*,*1]. On the slice*x₂* =*t*, the second central interval has probability*a*+*bt*, and each outer interval has probability(1*−a−bt*)*/*2. Averaging over*t*gives
+
+<u>1−a 1−a</u> (2.2)*µa*= (*δ−e*1+*δe*1) +*aδ₀, νa*= (*δ−e*1+*δe*1) +*aδbe*2*.*
+
+Both targets have three distinct atoms of positive mass.
+
+*x₂*
+
+0*→be₂* *−e₁ e₁* *x₁*
+
+*−*1 1 *Ba\AaAa\Ba*
+
+Figure 1.A source-coordinate section of the cube example, drawn with*a*= 2*/*5
+
+and*b*=*a/*2. Dashed lines bound*Aa*; solid blue lines bound*Ba*. The two shaded sets have equal area, so the central mass stays fixed. On their union, source points switch between central and outer slopes. The labels show map values on the unchanged outer regions and the common central region; they are not target points plotted in the source plane. The remaining coordinates integrate out.
+
+The coupling that fixes the outer atoms and moves the central atom from0to*be₂* has squared cost*ab²*. Conversely, every point in the support of*µa*has second coordinate zero. Every coupling *π*of the two targets therefore satisfies ∫ ∫ *|y−z|* 2 *dπ*(*y,z*)*≥ |y₂ −z₂|* 2 *dπ*(*y,z*) =*ab².*
+
+Consequently,
+
+(2.3)*W₂*(*µa,νa*) 2 =*ab².* ∫ The same matching coupling costs*ab*for*W₁*, while every coupling has cost at least *|y₂−z₂|dπ*= *ab*. Thus <u>a²</u> (2.4)*W₁*(*µa,νa*) =*ab*=*.* 2 The two central intervals on the slice*x₂* =*t*are nested, and their symmetric difference has conditional probability*b|t|*. Thus ∫ 1 <u>1 b</u> *ρ*(*Aa△Ba*) = *b|t|dt*=*.* 2*−*12
+
+The first coordinate of the map difference contributes the indicator of that symmetric difference, and its second coordinate contributes*b²* on*Ba*. Orthogonality gives the pointwise identity
+
+*|Tµa−Tνa|* 2 = 1*Aa△Ba*+*b²*1*Baρ*-almost everywhere*.*
+
+## Sinceρ(Ba) =a, this proves
+
+2<u>b</u>2 (2.5)*∥Tµa−Tνa∥* *L*2(*ρ*) = +*ab.* 2 The remaining*d−*2coordinates integrate out, so all computations hold in every fixed dimension *d≥*2.
+
+OPENAI
+
+## Substitutingb=a/2into (2.3) and (2.5) gives
+
+3*/*2 *√* √ <u>a a</u> 2 *W₂*(*µa,νa*) =*,∥Tµa−Tνa∥L*2(*ρ*)= 1 +*a.* 2 2 For every*α >*1*/*3, their ratio is
+
+<u>∥Tµa−Tνa∥L</u>2<u>(ρ)</u> *α−*1 √ (1*−*3*α*)*/*2 *α* = 2 1 +*a² a −→*+*∞*(*a↓*0)*.* *W₂*(*µa,νa*)
+
+The source, target container, and number of atoms stay fixed, proving the proposition.□
+
+3.Finite affine potentials and prescribed cell masses
+We return to an arbitrary compact convex body*K⊂*R *d* and its uniform probability measure *ρ*=**1***Kdx/|K|*. To compare targets by moving their sites, we need intercepts that keep pre- scribed cell masses fixed and depend differentiably on the sites. We first compute the derivatives of cell masses and moments, then use them to construct these intercepts.
+Assume that the sites*y₁,...,yN*are distinct. For intercepts*c*= (*c₁,...,cN*), set
+⋂ *Pi*=*K∩ {x*: *x·*(*yi−yj*) +*ci−cj≥*0*},* *j̸*=*i* ∫ *Mi*=*ρ*(*Pi*)*, Bi*= *xdρ*(*x*)*.* *Pi*
+
+These closed convex cells partition*K*up to the null tie set. Denote the equality plane and the common face by
+
+## Hij={x: x·(yi−yj) +ci−cj= 0}, Fij=Pi∩Pj.
+
+All integrals over*Fij*use the(*d−*1)-dimensional measure*dS*of*Hij*, so an empty or lower- dimensional face contributes zero. Define the symmetric coefficients ∫ ∫ <u>1 1</u> (3.1)*gij*= 1*dS, bij*= *xdS.* *|K||yi−yj|Fij|K||yi−yj|Fij*
+
+These cells are often called Laguerre cells. Their fixed-site mass derivative has the standard face-integral and weighted graph-Laplacian form [11, Theorem 1.3 and Section 5.3]. We include the calculation for the joint site and moment variations needed here.
+
+**Proposition 3.1**(Cell differentials and connectivity)**.***On the open set of configurations with* *distinct sites andMi>*0*for everyi, the mapsMiandBiare jointlyC¹ in the intercepts and* *sites. For an intercept directionr*= (*ri*)*and a site directionv*= (*vi*)*,* ∑[] *DMi*[*r,v*] = *gij*(*ri−rj*) +*bij·*(*vi−vj*)*,*(3.2) *j̸*=*i* ∑ <u>1</u> ∑ <u>1</u> ∫ () (3.3) *DBi*[*r,v*] = *bij*(*ri−rj*) + *x x·*(*vi−vj*) *dS*(*x*)*.* *j̸*=*i* *|K|* *j̸*=*i* *|yi−yj|Fij*
+
+*The graph on{*1*,...,N}with edgesgij>*0*is connected. Consequently, the symmetric operator* ∑ (3.4)(*Gq*)*i*=*DMi*[*q,*0] = *gij*(*qi−qj*) *j̸*=*i* *N* ∑ *has kernel consisting of the constant vectors and range{z∈*R :*izi*= 0*}.*
+
+*Proof.*We first record the geometric facts that permit differentiation for an arbitrary convex body. The boundary of a full-dimensional compact convex set has zero volume: contractions toward an interior point lie in the interior and their volumes tend to the full volume. The same argument applies within an affine subspace. Moreover, if a hyperplane*H*meetsint*K*, then
+
+## relint(K∩H) = intK∩H.
+
+Indeed, choose*p∈*int*K∩H*. A relative interior point*z̸*=*p*of the section lies strictly between *p*and a point of the section beyond*z*. A strict convex combination with the ambient interior point*p*lies inint*K*. The reverse inclusion is immediate. It follows that*∂K∩H*has zero (*d−*1)-dimensional measure. Since*Mi>*0, cell*i*contains an interior point of*K*at which its affine function is strictly maximal: remove the boundary of*K*and the finite union of tie planes from the positive-volume cell. Strictly active points for*i*and*j*give opposite signs of their affine difference, so*Hij*meets int*K*. Also,*Hij*and*Hik*cannot coincide for three distinct indices. Coincidence would make their affine differences proportional. The three affine functions would then lie on one affine line, with one a strict convex combination of the other two; that function could never be strictly maximal. Hence the intersections*Hij∩Hik*are empty or have dimension at most*d−*2. We next prove the differential formulas. For a continuous function*f*:R *d* *→*R, write ∫ ∏ *f*<u>1</u> *I* *i* = *f*(*x*) **1***{ℓ* *ij*(*x*)*≥*0*}* *dx, ℓij*(*x*) =*x·*(*yi−yj*) +*ci−cj.* *|K|K* *j̸*=*i*
+
+Only*f*= 1and*f*(*x*) =*xk*will be needed. Perturb(*c,y*)by*h*(*r,v*), with*h↓*0, and telescope the difference of the products of indicators one factor at a time. On bounded*K*, the term in which the*j*-th factor changes is supported in*|ℓij*(*x*)*|≤Ch*, with*C*fixed for the configuration and direction. Put*nij*= (*yi−yj*)*/|yi−yj|*and use coordinates
+
+*x*=*z*+*htnij, z∈Hij.*
+
+Both*z*and*t*can be restricted to fixed bounded sets. The factor*h*in the volume element cancels the difference quotient. Outside ⋃ (*∂K∩Hij*)*∪* (*Hik∩Hij*)*,* *k̸*=*i,j*
+
+a surface-null set by the preceding geometric observations, all remaining indicators converge to their values at*z*. The changed factor converges for almost every(*z,t*)to
+
+**1***{|y* *i* *−yj|t*+*ri−rj*+*z·*(*vi−vj*)*≥*0*}−***1***{t≥*0*}.*
+
+Its integral in*t*is(*ri−rj*+*z·*(*vi−vj*))*/|yi−yj|*. Dominated convergence therefore gives ∑ ∫ *f*<u>1 1</u> () (3.5)*DI* *i* [*r,v*] = *f*(*z*) *ri−rj*+*z·*(*vi−vj*) *dS*(*z*)*.* *|K|* *j̸*=*i* *|yi−yj|Fij*
+
+Applying the same argument in the opposite direction supplies the two-sided derivative. Taking *f*= 1*,x₁,...,xd*gives (3.2) and (3.3). For completeness, these derivatives are continuous under joint changes of sites and intercepts. Identify a nearby equality plane with the fixed*Hij*as an affine graph in the normal direction *nij*. The graph maps and their surface Jacobians converge uniformly on a common bounded integration region. The face-defining indicators converge outside the same surface-null sets used above. The remaining integrands and the positive denominators*|yi−yj|*converge as well. Dominated convergence proves continuity of each coefficient of the differential, including those containing*zkzl*. Thus all coordinate partial derivatives exist and are continuous, which yields
+
+OPENAI
+
+joint*C¹* regularity. The admissible parameter set is open: the masses themselves are continuous by dominated convergence away from the original tie hyperplanes. To prove connectivity, fix strictly active interior points in any two cells. They may be chosen so that the first point*p*avoids all equality planes and the second point*q*avoids all equality planes and the affine spans of*p*with every triple equality set. These are finitely many proper affine subsets, so they cannot cover a strictly active open region. The segment[*p,q*]lies inint*K* and meets no triple equality set. At any change of active index along it, precisely two affine functions are maximal. The other inequalities are strict, so a small relatively open disk in their equality plane belongs to the common face. That face has positive area and gives an edge of the graph. The successive active indices therefore give a graph path between the chosen cells. Finally, symmetry of the face coefficients gives ∑ *q·Gq*= *gij*(*qi−qj*) 2 *.* *i<j* Connectivity identifies the kernel as the constant vectors. Symmetry then identifies the range as their orthogonal complement, as claimed.□ ∑ **Proposition 3.2**(Prescribed cell masses)**.***Fix positive weightsm₁,...,mNwithimi*= 1*.* *For every configuration of distinct sites, there is a unique vector of interceptscsatisfying* ∑ (3.6)*Mi*=*mi*(1*≤i≤N*)*, mici*= 0*.* *i* *With the weights fixed, this normalized vector is aC¹ function of the sites on the open set of* *distinct-site configurations.*
+
+*Proof.*The case*N*= 1has*c₁* = 0, so assume*N≥*2. On the normalization space*Hm*=*{c∈* *N* ∑ R :*imici*= 0*}*, minimize the convex function ∫ ∑ *Fy*(*c*) = max(*x·yi*+*ci*)*dρ*(*x*)*− mici.* *K i* *i* Choose*R*with*|x|≤R*on*K*, and set*S*= max*i|yi|*. On*Hm*,
+
+*Fy*(*c*)*≥*max*ci−RS.* *i* Positivity of all the weights implies thatmax*ici*tends to infinity as*|c|→∞*within*Hm*: an upper bound on all coordinates and the weighted mean-zero identity also bound every coordinate below. Hence*Fy*is coercive on*Hm*and attains its minimum. Distinct sites give an almost-everywhere unique maximizing index for every*c*. Differentiation of the maximum under the integral, justified by bounded difference quotients, shows
+
+*∇cFy*= (*Mi−mi*) *N* *i*=1*.* At a minimum on*Hm*, this gradient lies inspan*{m}*. Its coordinate sum is zero because the ∑ masses and weights each sum to one. Since*imi*= 1, the gradient must vanish. Thus a normalized solution of (3.6) exists. Conversely, every such solution is a minimizer by convexity. At any solution all cells have positive mass, soTheorem 3.1applies. The intercept derivative of the mass residual is the restriction *N* ∑ *G*: *Hm−→H₀, H₀* =*{z∈*R :*izi*= 0*}.*
+
+It is an isomorphism: both spaces have dimension*N−*1, and the only constant vector in*Hm* is zero. The finite-dimensional implicit function theorem therefore gives a locally unique*C¹* solution as the sites vary. In particular, each solution is locally isolated for its fixed sites. If two normalized solutions existed, their segment would consist of minimizers of the convex objective,
+
+contradicting this local isolation. Global uniqueness follows, and the local*C¹* solution branches agree wherever they overlap. This proves the claimed*C¹* dependence on the sites. Only the invertibility of the restricted Laplacian is used here; no quantitative bound on its inverse is needed. □
+
+4.A uniform estimate for cell moments
+We compare changes in the first moments and masses of cells when their intercepts vary and their sites remain fixed. The estimate is uniform over all configurations with positive cell masses.
+
+**Lemma 4.1**(Stationary-site moment estimate)**.***Fix distinct sitesy₁,...,yNand intercepts* *c₁,...,cNwhose cells have positive massesMi. IfK⊂ {x*:*|x| ≤R}, then every intercept* *directionq∈*R *N* *satisfies*
+
+∑ *N* <u>|DBi[q,0]|</u> 2∑*N* <u>|DMi[q,0]|</u> 2 *≤C R², C* = 162*.* 0 0 *i*=1 *Mi* *i*=1 *Mi*
+
+The proof couples uniform laws on two opposite perturbations of each cell. Their midpoint lies in the original cell; the following lemma controls its density.
+
+**Lemma 4.2**(Midpoint coupling)**.***LetU,V⊂*R *d* *be compact convex sets of positive volume.* *There is a coupling*(*X,Z*)*of the uniform probability measures onUandVsuch that* () <u>X+Z dx</u> Law *≤* √*.* 2 *|U||V|*
+
+*The inequality is an inequality of measures on*R *d* *.*
+
+This density bound also follows from McCann’s displacement-concavity inequality [15, Theo- rem 2.3]. We give a direct proof by the conditional-quantile construction underlying Knothe’s triangular rearrangement [12,4]. The subsequent application to cell moments is developed here.
+
+*Proof.*We parameterize the two uniform laws by successive one-dimensional quantiles on the same cube. Their diagonal derivatives have constant products. Averaging the two maps and substituting coordinates successively will give the density bound. We need the boundary observation from the proof ofTheorem 3.1for arbitrary positive- dimensional affine slices, not only hyperplanes. The same segment-extension argument shows that a relative interior point of a slice of*U*meetingint*U*is an ambient interior point: unless it equals a chosen ambient interior point in the slice, it lies strictly between that point and a farther point of the section. The contraction argument for convex boundaries, applied within the slice, then shows that its intersection with*∂U*has zero slice volume. For0*≤k < d*, let ∫ *pk*(*ξ*) = 1int*U*(*ξ,η*)*dη, pd*= 1int*U.* R*d−k* Thus*p₀* =*|U|*. Write*Dk*for the projection ofint*U*onto its first*k*coordinates. Each*pk*is positive and continuous on*Dk*. For*k < d*, continuity follows by dominated convergence: at a prefix in*Dk*, the preceding boundary property makes the indicators of the fibers converge almost everywhere as the prefix varies, and boundedness of*U*provides a common integrable bound. For*k*=*d*the assertion is immediate. The fiber integrals are Borel functions on their full domains. Given*s*= (*s₁,...,sd*)*∈*(0*,*1) *d*, construct*X*(*s*)recursively. For a previously constructed prefix*ξ*= (*X₁,...,Xk−*1)*∈Dk−*1, let*Xk*be the quantile at level*sk*of the density <u>pk(ξ,t)</u> *t7−→.* *pk−*1(*ξ*)
+
+OPENAI
+
+Fubini’s theorem shows that this density integrates to one. It is positive and continuous on the bounded open interval*{t*: (*ξ,t*)*∈Dk}*, and vanishes outside that interval. Its cumulative distribution function is therefore strictly increasing from zero to one there. This defines the quantile uniquely, keeps the new prefix in*Dk*, and gives
+
+<u>pk−1(X₁,...,Xk−1)</u> *∂s* *k* *Xk*= *>*0*.* *pk*(*X₁,...,Xk*)
+
+For each fixed earlier parameter prefix,*Xk*is*C¹* in*sk*. The conditional cumulative distribu- tion functions are Borel in their arguments, so comparison at rational points shows that their quantiles are Borel. Thus the whole construction is measurable. With*s*uniform on the cube, successive conditioning gives the uniform law on*U*. The diagonal derivatives telescope to
+
+∏ *d* *∂s* *k* *Xk*=*|U|.* *k*=1
+
+Construct*Z*(*s*)in the same way for*V*, using the same parameters. For*H*= (*X*+*Z*)*/*2, the arithmetic–geometric mean inequality yields √ )( ∏) ∏ *d*√( ∏*d d* √ √ *∂s* *k* *Hk≥* √ *∂s* *k* *Xk∂s* *k* *Zk*= *|U||V|.* *k*=1 *k*=1 *k*=1
+
+We justify substitution using only the stated regularity in each coordinate. For a nonnegative Borel function*g*onR *d*, fix*a*= (*s₁,...,sd−*1). One-dimensional substitution in the strictly increasing*C¹* function*sd7→Hd*(*a,sd*), followed by enlargement of its image interval toR, gives ∫ 1 ∫ () () *g H₁*(*a*)*,...,Hd−*1(*a*)*,Hd*(*a,t*) *∂s* *d* *Hd*(*a,t*)*dt≤ g H₁*(*a*)*,...,Hd−*1(*a*)*,z dz.* 0 R
+
+Here each*Hk*(*a*)uses only the first*k*entries of*a*. The integral of*g*in its last variable is again a nonnegative Borel function. The earlier derivative factors depend only on earlier parame- ters. Tonelli’s theorem therefore permits multiplication by their product and integration in*a*. Repeating this argument backwards gives ∫ ∏ *d*∫ *g*(*H*(*s*)) *∂s* *k* *Hk*(*s*)*ds≤ g*(*x*)*dx.* (0*,*1)*d* *k*=1 R*d*
+
+All derivative factors are Borel, as also follows from their explicit formulas above. No differen- tiability in earlier parameters or boundedness of the derivatives near the boundary of the cube is required. Combining the last two inequalities proves () ∫ <u>X+Z 1</u> E*g ≤* √ *g*(*x*)*dx,* 2 *|U||V|* R*d*
+
+## which is the asserted measure domination.□
+
+*Proof ofTheorem 4.1.*Fix the intercept direction*q*and hold the sites fixed. For sufficiently small*s >*0, let*P* *i−* and*P* *i* + be the cells at*c−sq*and*c*+*sq*, respectively, and write
+
++ √ *αi*=*ρ*(*P* *i−* )*, βi*=*ρ*(*P* *i* )*, γi*= *αiβi.*
+
+These masses are positive by continuity fromTheorem 3.1. The perturbed cells are compact convex sets of positive volume. Couple their uniform probability measures byTheorem 4.2,
+
+writing*Xi∈P* *i−* ,*Zi∈P* *i* +, and*Di*=E*|Xi−Zi|* 2. For each competing index*j*, the defining inequalities give
+
+*Xi·*(*yi−yj*) +*ci−cj−s*(*qi−qj*)*≥*0*,* *Zi·*(*yi−yj*) +*ci−cj*+*s*(*qi−qj*)*≥*0*.*
+
+Averaging shows that(*Xi*+*Zi*)*/*2satisfies the*i*-cell inequalities at*c*; convexity also places it in
+
+*K*. Its law is supported on*Pi*. Since*|P*
+*i−* *|*=*|K|αi*and*|P* *i* + *|*=*|K|βi*, the midpoint bound has exactly the normalization () <u>Xi+Zi1Pidx</u> *γi*Law *≤* =*ρ|Pi.* 2 *|K|*
+
+Use the nonnegative functionΦ(*x*) =*R²−|x|* 2 on*K*, and set*A* *−* *i* =EΦ(*Xi*)and*A* + *i* =EΦ(*Zi*). The identity ()2 *Xi*+*Zi*Φ(*Xi*) + Φ(*Zi*) *|Xi−Zi|* Φ = + 2 2 4 and the cellwise measure domination imply () ∫ ∑ *A−*+*A*+*D* *i*1 ∑ *γi* *i i* + *≤* Φ*dρ*= (*αiA* *−* *i* +*βiA* + *i* )*.* *i* 2 4*K*2 *i* The last equality uses the partitions at the two perturbed intercepts; all three partitions have null overlaps because the sites are distinct. Put*δi*=*αi−βi*and ∑ ∑ <u>δ²</u> *A*= *γiDi,B*= <u>i</u> *.* *i i* *γi*
+
+Subtracting the averaged endpoint terms in the preceding inequality gives [()] *A* ∑ *αi*+*βiA* *−* *i* +*A* + *i* *δ* *i −* + *≤ −γi*+ (*A* *i* *−A* *i* )*.* 4 *i* 2 2 4
+
+Here0*≤A* *±* *i* *≤R²*, and *αi*+*βiδi* 2 *δ* *i* 2 *−γi*= *√ √* 2 *≤.* 2 2( *αi*+ *βi*) 8*γi* Moreover, since*|Xi|,|Zi|≤R*, *−* + √ *|A* *i* *−A* *i* *|≤*2*R*E*|Xi−Zi|≤*2*R Di.*
+
+## Cauchy–Schwarz therefore yields
+
+*A R²B R √* *≤* + *AB.* 4 8 2 <u>R</u> *√* Using 2 *AB≤A/*8 +*R²B/*2and rearranging, we obtain
+
+*A≤*5*R²B.*
+
+This argument includes the cases where either quantity vanishes. The cell-moment difference is
+
+∆*Bi*:=*Bi*(*c−sq*)*−Bi*(*c*+*sq*) =*αi*E*Xi−βi*E*Zi,*
+
+where the notation suppresses the fixed sites. Consequently, √ *|*∆*Bi|≤R|δi|*+*αiDi.*
+
+OPENAI
+
+For this fixed finite configuration and fixed direction*q*, continuity allows*s*to be chosen small ∑ 2 enough that every*αi,βi,γi*lies between*Mi/*2and2*Mi*. Set*E*=*iδi/Mi*. These comparisons give*αi* 2 */Mi≤*8*γi*and*B≤*2*E*. It follows that ∑ <u>|∆B</u> <u>i</u> <u>|</u> 2∑ <u>α²</u> *≤*2*R²E*+ 2 <u>i</u> *Di* *i* *Mi* *i* *Mi*
+
+## ≤2R²E+ 16A
+
+*≤*162*R²E.*
+
+Divide by(2*s*) 2 and let*s*decrease to zero. ByTheorem 3.1,∆*Bi/*(2*s*)*→ − DBi*[*q,*0]and *δ* *i* */*(2*s*)*→−DMi*[*q,*0], which proves the claim. The permitted threshold for*s*may depend on the direction and the finite configuration, includ- ing its smallest mass. Only the uniform constant162remains after taking the derivative limit. Thus the estimate has no dependence on the number of cells, their masses, or the separation of the sites. □
+
+5.Moving sites with fixed masses
+We now use the moment estimate to control transport potentials along an optimal coupling of two finite targets. Intermediate sites need only remain in the enclosing ball*B*(0*,L*); they need not belong to*Y*.
+
+**Proposition 5.1.***Letµ,νbe finitely supported probabilities inB*(0*,L*)*. There are convexL-* *Lipschitz finite maximau₀,u₁ of affine functions such that*
+
+*∇u₀* =*Tµ,∇u₁* =*Tνρ-almost everywhere,*
+
+*and* √ (5.1)*∥u₀ −u₁∥L*2(*ρ*)*≤*(1 + *C₀*)*RW₂*(*µ,ν*)*, C₀* = 162*.*
+
+*Proof.*Choose an optimal finite coupling of the targets. After deleting zero weights and com- bining identical pairs, write it as
+
+∑ *N*∑ *π*= *miδ*(*y*0*,y*1)*, mi>*0*, mi*= 1*.* *i i* *i*=1 *i* Finite-dimensional compactness gives existence of such a coupling. Set
+
+*vi*=*yi* 1 *−yi* 0 *, yi*(*t*) = (1*−t*)*yi* 0 +*tyi* 1 *, w*=*W₂*(*µ,ν*)*.*
+
+Then ∑ (5.2) *mi|vi|* 2 =*w².* *i* Optimality implies
+
+(5.3)(*yi* 0 *−yj* 0 )*·*(*yi* 1 *−yj* 1
+
+)*≥*0*.*
+Indeed, a negative scalar product would permit swapping equal positive portions of the masses at these two coupling pairs, decreasing their quadratic cost. For*a*=*yi* 0 *−yj* 0 and*b*=*yi* 1 *−yj* 1,
+
+*|yi*(*t*)*−yj*(*t*)*|* 2 = (1*−t*) 2 *|a|* 2 +*t²|b|* 2 + 2*t*(1*−t*)*a·b >*0 (0*< t <*1)*.*
+
+The last inequality holds because the endpoint pairs are distinct. Thus the sites are distinct at every interior time, even if some endpoint sites coincide.
+
+ByTheorem 3.2, for0*< t <*1there are unique intercepts*ci*(*t*), normalized by ∑ *mici*(*t*) = 0*,* *i* whose cells have masses*Mi*(*t*) =*mi*. These intercepts are*C¹* in*t*. Let*ri*=*c* *′i*
+
+(*t*). In particular,
+∑ (5.4) *miri*= 0*.* *i* All derivatives in the next calculation are taken at this fixed interior configuration. Differentiate the fixed-mass constraints usingTheorem 3.1. For every intercept direction*q*, symmetry of the mass and moment face coefficients gives ∑ ∑ (5.5) *riDMi*[*q,*0] =*− vi·DBi*[*q,*0]*.* *i i* ∑ ∑ To see the symmetry directly, the mass part of*iqiDMi*[*r,v*]is*i<jgij*(*qi−qj*)(*ri−rj*). Its ∑ ∑ site part is*i<j*(*qi−qj*)*bij·*(*vi−vj*), which equals*ivi·DBi*[*q,*0]. The range statement inTheorem 3.1, together with (5.4), permits a choice of*q*satisfying
+
+*DMi*[*q,*0] =*miri*(1*≤i≤N*)*.* ∑ 2 No bound on this*q*is needed. Put*Er*=*imiri*. Using (5.5), weighted Cauchy–Schwarz, (5.2), andTheorem 4.1, we obtain ()1*/*2()1*/*2 ∑ ∑ <u>|DB</u> <u>i</u> <u>[q,0]|</u> 2 *Er≤ mi|vi|* 2 *i i* *mi* ()1*/*2 √ ∑ <u>|m</u> <u>i</u> <u>r</u> <u>i</u> <u>|</u> 2√ √ *≤ C₀Rw* = *C₀Rw Er.* *i* *mi*
+
+Consequently ()1*/*2 ∑ √ (5.6) *mi|ri|* 2 *≤ C₀Rw.* *i* This includes*Er*= 0. If*N*= 1, the normalization gives*r₁* = 0, and the same conclusion is immediate. Define *ut*(*x*) = max*{x·yi*(*t*) +*ci*(*t*)*}.* *i* On compact time intervals inside(0*,*1), this function is uniformly Lipschitz in time for*x∈K*. At a strict maximum its time derivative is*x·vi*+*ri*. For each fixed time, the exceptional tie set has zero source measure. Fubini therefore identifies this derivative for almost every(*t,x*). Since its active cells have masses*mi*, ()1*/*2()1*/*2 ∑ ∑ √ *∥∂tut∥L*2(*ρ*)*≤R mi|vi|* 2 + *mi|ri|* 2 *≤*(1 + *C₀*)*Rw.* *i i* The fundamental theorem of calculus and Minkowski’s inequality imply √ *′ ′* (5.7)*∥ut−ut′ ∥L*2(*ρ*)*≤*(1 + *C₀*)*Rw|t−t |*(0*< t,t <*1)*.*
+
+It remains to justify the endpoint maps without imposing separation of their sites. For each fixed*i*, (5.6) gives *√* *′i*<u>C₀Rw</u> *|c* (*t*)*|≤ √.* *mi*
+
+OPENAI
+
+Hence*ci*(*t*)has finite limits at0and1. This individual estimate is used only for endpoint existence; its mass dependence does not enter (5.7). The finite maxima converge uniformly on *K*to their endpoint maxima*u₀,u₁*, so that inequality extends to the endpoints. At either endpoint, merge repeated slopes by retaining their largest intercept. Outside a finite union of hyperplanes there is a unique maximizing slope. For any such*x*, all maximizing slopes at approaching interior times converge to this endpoint slope. Otherwise a subsequence with a fixed maximizing index would contradict the strict gap at the endpoint. The interior slope law ∑ is*imiδy* *i*
+
+(*t*), and all slopes are bounded by*L*. Bounded convergence against continuous tests
+shows that the endpoint slope laws are*µ*and*ν*. ByTheorem 2.1, these slopes are the unique optimal maps to their laws. Taking*t*= 0*,t* *′* = 1in (5.7) proves the proposition.□
+
+*Remark*5.2 (The potential estimate on the cube example)*.*Return to*K*=*Y*= [*−*1*,*1] *d* and the potentials*ua, u*˜*a*in (2.1), where0*< a <*1*/*2and*b*=*a/*2. Both potentials have weighted intercept mean*a²*, so subtracting*a²* realizes the normalization inTheorem 5.1without changing their difference. The intermediate maximummax*{−x₁,x₁,a*+*sbx₂}*has the same three cell masses for every*s∈*[0*,*1], so the same constant normalizes the entire path. For an exact calculation, put*f*= *u*˜*a−ua*and*q*=*b|t|*. Integrating its square over the*x₁* slice gives { 2*aq²* +*q³/*3*, t≥*0*,* E[*f |x₂* =*t*] = 2 3 *aq −*2*q /*3*, t <*0*.*
+
+For*t≥*0, this is the contribution*aq²* of the old central interval plus the integral of the squared linear ramp on the added portion. For*t <*0, the overlap contributes(*a−q*)*q²* and the removed portion contributes*q³/*3. Averaging over*t*yields
+
+2*ab² b³* 5*a³* 52 *∥ua− u*˜*a∥* *L*2(*ρ*) = *−* = = *W₂*(*µa,νa*)*.* 3 24 64 16 Thus the normalized potential distance is proportional to*W₂*, whereas (2.5) has map distance 1*/*3 of order*W₂*. The next section recovers this exponent from a general interpolation inequality for convex gradients.
+
+6.From potentials to maps
+We first recover gradient control from the potential estimate. The argument is a coordinate- slice version of the convex-function interpolation inequality of Delalande and Mérigot [7, Propo- sition 4.1]. Their inequality already applies to every convex body considered here. We give a coordinate proof with explicit constants, using only convexity and the volumes of coordinate projections.
+
+**Lemma 6.1**(Gradient interpolation)**.***Letu₀,u₁ be convex,L-Lipschitz functions onK, and* *putf*=*u₀ −u₁. For the coordinate vectorsej, set*
+
+∣ ∣ ∑ *d* *Aj*= ∣proj *e* *⊥ K* ∣ *d−*1 *, PK* = *Aj.* *j* *j*=1
+
+*For everyh >*0*,*
+
+2<u>12d</u>2<u>28L²PK</u> (6.1)*∥∇u₀ −∇u₁∥* *L*2(*ρ*) *≤* 2 *∥f∥* *L*2(*ρ*) + *h.* *h |K|*
+
+*Only the almost everywhere coordinate derivatives are needed in this inequality.*
+
+*Proof.*Fix*j*and write <u>u(x+hej)−u(x)</u> *Kj,h*=*{x∈K*: *x*+*hej∈K}, Dj,hu*(*x*) = (*x∈Kj,h*)*.* *h* Almost every nonempty coordinate slice of*K*is an interval[*α,β*]on which the restriction of each*ui*is convex and*L*-Lipschitz. Its derivative exists almost everywhere, is monotone, and has absolute value at most*L*. Fubini therefore gives all coordinate derivatives almost everywhere in
+
+*K*. For either function*u*, convexity gives, at points where both derivatives exist,
+0*≤δu*(*x*) :=*Dj,hu*(*x*)*−∂ju*(*x*)*≤∂ju*(*x*+*hej*)*−∂ju*(*x*)*≤*2*L.*
+
+If*β−α≥h*, cancellation of translated integrals gives ∫ *β−h*() *∂ju*(*t*+*h*)*−∂ju*(*t*) *dt* *α* ∫ *β* ∫ *α*+*h* = *∂ju*(*t*)*dt− ∂ju*(*t*)*dt≤*2*Lh.* *β−h α* The coordinates transverse to the slice have been suppressed here. If the slice length is less than *h*, its allowed portion is empty. Thus, in all cases, integrating*δu* 2 *≤*2*Lδu*over slices and then over the orthogonal projection yields ∫2 2<u>4L hAj</u> (6.2) *δudρ≤.* *Kj,h|K|* The excluded portion of any slice has length at most*h*, so <u>hAj</u> *ρ*(*K\Kj,h*)*≤.* *|K|*
+
+There we use*|∂jf|≤*2*L*. On the allowed set, both*x*and*x*+*hej*belong to*K*. Translation invariance of Lebesgue measure and(*a−b*) 2 *≤*2*a²* + 2*b²* give ∫ 2<u>4</u>2 *|Dj,hf| dρ≤* 2 *∥f∥* *L*2(*ρ*) *.* *Kj,hh*
+
+Since*∂jf*=*Dj,hf−δu*0+*δu*1, the inequality(*a*+*b*+*c*) 2 *≤*3(*a²* +*b²* +*c²*)and (6.2) imply ∫2 2<u>12</u>2<u>(24 + 4)L hAj</u> *|∂jf| dρ≤* 2 *∥f∥* *L*2(*ρ*) +*.* *Kh |K|* Summing over*j*proves (6.1). All projection measures are finite because*K*is compact. The slice argument applies to every*h >*0, including values larger than some or all slice lengths. The coordinate derivatives form the full gradient almost everywhere. Indeed, at an interior point*x*where all partials of a convex function*u*exist, set*pj*=*∂ju*(*x*)and*q*=*∥v∥*1for a small nonzero vector*v*. The point*x*+*v*is the convex combination of*x*+ sign(*vj*)*qej*with weights *|vj|/q*, omitting zero weights. The finitely many coordinate derivative limits and convexity give *u*(*x*+*v*)*−u*(*x*)*≤p·v*+*o*(*q*). Apply this bound to *√* *−v*and use midpoint convexity to obtain the reverse bound. Since*q≤ d|v|*, the function is differentiable at*x*with gradient*p*. The boundary of*K*has zero volume, as proved inTheorem 3.1, so this applies almost everywhere to both*ui*. □
+
+**Corollary 6.2**(Finite target stability)**.***SetC₀* = 162*and* ()1*/*2 √ <u>28L²PK</u> (6.3)*C∗*= 12*dR* (1 + *C₀*) +*.* *|K|*
+
+OPENAI
+
+*For any two finitely supported probabilitiesµ,νonY,*
+
+*∥Tµ−Tν∥L*2(*ρ*)*≤C∗W₂*(*µ,ν*) 1*/*3 *.*
+
+*Proof.*Write*w*=*W₂*(*µ,ν*). ByTheorem 5.1, the maps have convex,*L*-Lipschitz maximum potentials*u₀,u₁* satisfying √ *∥u₀ −u₁∥L*2(*ρ*)*≤*(1 + *C₀*)*Rw.*
+
+If*w >*0, applyTheorem 6.1with*h*=*w²* */*3. The resulting bound on the squared map norm is*C∗* 2 *w²* */*3. Taking its square root proves the claim. If*w*= 0, the potential difference has zero *L²*(*ρ*)norm, and sending*h*to zero in (6.1) gives the same conclusion.□
+
+**Proposition 6.3**(Approximation and optimal maps)**.***For everyλ∈*Prob(*Y*)*there exists a* *unique quadratic optimal mapTλfromρtoλ, up to aρ-null set. IfFn⊂Yare finiteϵn-nets* *withϵn→*0*, andQn*: *Y→Fnare Borel nearest-point selections, then*
+
+*T*(*Q*
+
+*n*)#*λ* *−→TλinL²*(*ρ*)*.*
+*Proof.*Compactness of*Y*gives the finite nets. Enumerating each net and choosing the first closest point gives a Borel selection with*|Qn*(*y*)*−y|≤ϵn*. Put*λn*= (*Qn*)#*λ*, discard any zero- mass sites, and let*Tn*=*Tλn*. These finite maps exist byTheorems 2.1and3.2. The coupling induced by*y7→*(*Qn*(*y*)*,Qm*(*y*))gives
+
+*W₂*(*λn,λm*)*≤ϵn*+*ϵm.*
+
+ByTheorem 6.2,(*Tn*)is Cauchy in*L²*(*ρ*). Let*S*be its limit and choose a subsequence converging almost everywhere. Its limit lies in*Y*almost everywhere because*Y*is closed. Modifying*S*on a null set gives a Borel map with values in*Y*. For any continuous*ϕ*: *Y→*R, bounded convergence and uniform continuity give ∫ ∫ ∫ *ϕ*(*S*(*x*))*dρ*(*x*) = lim *ϕ*(*Qn*(*y*))*dλ*(*y*) = *ϕ*(*y*)*dλ*(*y*)*.* *K n Y Y* Here and below a limit along the chosen subsequence is understood where needed. It follows that*S*#*ρ*=*λ*. To prove optimality directly, choose finite maximum potentials*un*for*Tn*and subtract a constant so that*un*(*x∗*) = 0at a fixed*x∗∈K*. Their slopes lie in*Y*, so they are*L*-Lipschitz and*|un|≤L*diam(*K*)on*K*. Arzelà–Ascoli gives a further subsequence converging uniformly on*K*to a convex,*L*-Lipschitz function*u*. Intersect the full-measure sets on which each of the countably many finite-map supporting inequalities holds with the set on which the selected subsequence of*Tn*converges. On this common set,
+
+## un(z)≥un(x) +Tn(x)·(z−x) (z∈K).
+
+Passing to the limit gives, simultaneously for every*z∈K*,
+
+## (6.4)u(z)≥u(x) +S(x)·(z−x)forρ-almost everyx.
+
+Define the restricted convex conjugate *∗* () *u* (*y*) = max *z·y−u*(*z*)*.* *z∈K* It is finite and continuous, and hence bounded on*Y*. The defining inequality and (6.4) give
+
+(6.5)*x·y≤u*(*x*)+*u* *∗*
+
+(*y*) (*x∈K, y∈Y*)*, x·S*(*x*) =*u*(*x*)+*u*
+*∗* (*S*(*x*))*ρ*-almost everywhere*.*
+
+For any competing map*V*with*V*#*ρ*= ∫ *λ*, the integral of*u*(*x*)+*u* *∗* (*V*(*x*))is fixed by the marginals. Thus (6.5) shows that*S*maximizes *K* *x·V*(*x*)*dρ*(*x*). The identity ∫ ∫ ∫ ∫ *|x−V*(*x*)*| dρ*(*x*) = *|x| dρ*(*x*) + *|y| dλ*(*y*)*−*2 *x·V*(*x*)*dρ*(*x*) *K K Y K*
+
+proves quadratic optimality. If*V*has the same optimal cost, its nonnegative Fenchel gap*u*(*x*) +*u* *∗* (*V*(*x*))*−x·V*(*x*)has integral zero. Equality and the definition of*u* *∗* imply*u*(*z*)*≥u*(*x*) +*V*(*x*)*·*(*z−x*)for every *z∈K*at almost every*x*. On almost every interior point of*K*, all coordinate partials of*u*exist: on each coordinate interval the one-sided derivatives of a convex function are monotone, and Fubini applies. At such a point*x*, a supporting slope*p*must satisfy
+
+<u>u(x+tej)−u(x) u(x+tej)−u(x)</u> *pj≤*lim*, pj≥*lim*.* *t↓*0 *t t↑*0 *t*
+
+Both limits equal*∂ju*(*x*), so the supporting slope is unique. The differentiability argument in the proof ofTheorem 6.1identifies it with*∇u*(*x*). The boundary of*K*has zero volume by Theorem 3.1; hence*V*=*S*almost everywhere. The same integrated inequality also proves optimality among arbitrary transport plans. Equality forces their target coordinate to be this unique supporting slope over almost every source point, so the optimal plan is the one induced by*S*. We have identified the*L²* limit as the unique map*Tλ*. The original sequence was Cauchy, so the asserted convergence holds for the full sequence.□
+
+*Proof ofTheorem 1.1.*Use the same finite nets and selections for*µ*and*ν*, and set*µn*= (*Qn*)#*µ*, *νn*= (*Qn*)#*ν*. For any coupling*π*of*µ,ν*, its image under(*Qn,Qn*)is a coupling of*µn,νn*. The triangle inequality in*L²*(*π*)gives
+
+(∫)1*/*2
+*W₂*(*µn,νn*)*≤ |y−z|* 2 *dπ*(*y,z*) + 2*ϵn.* *Y×Y* Taking the infimum over*π*yields*W₂*(*µn,νn*)*≤W₂*(*µ,ν*) + 2*ϵn*. ApplyTheorem 6.2and then use the strong*L²*(*ρ*)convergence fromTheorem 6.3to conclude
+
+*∥Tµ−Tν∥L*2(*ρ*)*≤C∗W₂*(*µ,ν*) 1*/*3 *.*
+
+The constant in (6.3) depends only on*K*and an enclosing radius for*Y*. In particular it is independent of atom counts, masses, site separations, or target densities. No convexity of*Y*is required: the site interpolation used earlier stays in the ball of radius*L*, and the discretizations take their values in*Y*. The argument includes a singleton*Y*, for which all target maps coincide. The sharpness assertion was proved inTheorem 2.2.□
+
+References
+
+[1]Robert J. Berman. Convergence rates for discretized Monge–Ampère equations and quantitative stability of optimal transport.*Foundations of Computational Mathematics*, 21:1099–1140, 2021.[https://doi.org/10](https://doi.org/10). 1007/s10208-020-09480-x. [2]Yann Brenier. Polar factorization and monotone rearrangement of vector-valued functions.*Communications* *on Pure and Applied Mathematics*, 44(4):375–417, 1991.[https://doi.org/10.1002/cpa.3160440402](https://doi.org/10.1002/cpa.3160440402). [3]F.-U. Caja-Lopez, Matias G. Delgadino, and Jun Kitagawa. Stability of optimal transport maps and second variation of the 2-Monge–Kantorovich distance.arXiv:2605.24232v1, 2026. [4]Guillaume Carlier, Alfred Galichon, and Filippo Santambrogio. From Knothe’s transport to Brenier’s map and a continuation method for optimal transport.*SIAM Journal on Mathematical Analysis*, 41(6):2554–2576,
+
+2010.[https://doi.org/10.1137/080740647.Accepted](https://doi.org/10.1137/080740647.Accepted) author manuscript, 4 November 2009.
+[5]Elsa Cazelles, Edouard Pauwels, and Léo Portales. Statistical estimation of Monge transport maps via Brenier potentials. arXiv:2604.22366v2, 2026. Version 2, 2 September 2026.[https://arxiv.org/abs/2604.22366v2](https://arxiv.org/abs/2604.22366v2). [6]Sinho Chewi, Katharina Eichinger, and Aram-Alexandre Pooladian. Near-Lipschitz stability of the Kim– Milman flow map.arXiv:2606.23383v1, 2026. [7]Alex Delalande and Quentin Mérigot. Quantitative stability of optimal transport maps under variations of the target measure.*Duke Mathematical Journal*, 172(17):3321–3357, 2023.[https://doi.org/10.1215/](https://doi.org/10.1215/)
+
+OPENAI
+
+00127094-2022-0106. Statement locators follow the author manuscript, version 2, 8 March 2023:https: //arxiv.org/abs/2103.05934v2. [8]Vincent Divol, Jonathan Niles-Weed, and Aram-Alexandre Pooladian. Tight stability bounds for entropic Brenier maps.*International Mathematics Research Notices*, 2025(7):rnaf078, 2025.[https://doi.org/10](https://doi.org/10). 1093/imrn/rnaf078. Statement locators follow the author manuscript, version 1, 3 April 2024:https: //arxiv.org/abs/2404.02855v1. [9]Nicola Gigli. On Hölder continuity-in-time of the optimal transport map towards measures along a curve.*Proceedings of the Edinburgh Mathematical Society*, 54(2):401–409, 2011.[https://doi.org/10.1017/](https://doi.org/10.1017/) S001309150800117X. [10]Bang-Xian Han and Zhuo-Nan Zhu. Two-mode stability for multi-marginal optimal transport maps. arXiv:2606.23037v1, 2026.[https://arxiv.org/abs/2606.23037v1](https://arxiv.org/abs/2606.23037v1). [11]Jun Kitagawa, Quentin Mérigot, and Boris Thibert. Convergence of a Newton algorithm for semi-discrete optimal transport.*Journal of the European Mathematical Society*, 21(9):2603–2651, 2019.[https://doi.org/](https://doi.org/)
+
+10.4171/JEMS/889. Statement locators follow the author manuscript, version 2, 7 March 2017:https:// arxiv.org/abs/1603.05579v2.
+[12]Herbert Knothe. Contributions to the theory of convex bodies.*Michigan Mathematical Journal*, 4(1):39–52,
+
+1957.[https://doi.org/10.1307/mmj/1028990175](https://doi.org/10.1307/mmj/1028990175).
+[13]Cyril Letrouit. Unstable optimal transport maps.*Comptes Rendus. Mathématique*, 364:333–344, 2026.https: //doi.org/10.5802/crmath.834. [14]Cyril Letrouit and Quentin Mérigot. Gluing methods for quantitative stability of optimal transport maps. arXiv:2411.04908v3, 2024. First circulated 2024; cited version 3, 16 July 2026. To appear in Annales scien- tifiques de l’École normale supérieure.[https://arxiv.org/abs/2411.04908v3](https://arxiv.org/abs/2411.04908v3). [15]Robert J. McCann. A convexity principle for interacting gases.*Advances in Mathematics*, 128(1):153–179,
+
+1997.[https://doi.org/10.1006/aima.1997.1634.Published](https://doi.org/10.1006/aima.1997.1634.Published) text.
+[16]Quentin Mérigot. Sharp stability of Brenier maps via quantitative regularity of potentials. HAL preprint hal-05616391, 2026.[https://hal.science/hal-05616391](https://hal.science/hal-05616391). [17]Quentin Mérigot, Alex Delalande, and Frédéric Chazal. Quantitative stability of optimal transport maps and linearization of the 2-Wasserstein space. In*Proceedings of the Twenty Third International Conference* *on Artificial Intelligence and Statistics*, volume 108 of*Proceedings of Machine Learning Research*, pages 3186–3196. PMLR, 2020.[https://proceedings.mlr.press/v108/merigot20a.html](https://proceedings.mlr.press/v108/merigot20a.html).

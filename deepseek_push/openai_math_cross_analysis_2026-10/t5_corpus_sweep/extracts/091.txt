@@ -1,0 +1,606 @@
+# The logarithmic Brunn–Minkowski conjecture
+
+OpenAI
+
+### September 23, 2026
+
+**Abstract** We prove the logarithmic Brunn–Minkowski conjecture for arbitrary origin-symmetric convex bodies in every dimension. The theorem also gives the symmetric *Lp*Brunn–Minkowski inequality for every 0 *< p <* 1. Combined with Saroglou’s transfer theorem and a support- subspace reduction, it yields the logarithmic inequality for every even log-concave Radon measure and the scalar-dilation (*B*)-conjecture.
+
+## Contents
+
+**1 Introduction 1**
+
+**2 From a variance bound to volume 4**
+
+**3 Moment coordinates on the whole space 6**
+
+**4 Adjoints in moment coordinates 9**
+
+**5 Density of the even tests 10**
+
+**6 A tensor estimate for the divergence tests 12**
+
+**7 The variance inequality 15**
+
+**8 Volume and measure consequences 16**
+
+8.1 The symmetric *Lp*volume inequality......................... .16
+8.2 Even log-concave measures and the (*B*)-conjecture................. .16
+**1 Introduction**
+
+*n* A convex body in R is a compact convex set with nonempty interior. If *K* = *−K*, then 0 lies in its interior. Its support function is
+
+*n−*1 *hK*(*u*) = max*⟨x,u⟩, u ∈ S.* *x∈K*
+
+For an origin-symmetric body this function is strictly positive. For a positive continuous function *f* on the unit sphere, its *Wulff body* is ⋂ *n* *W*[*f*] = *{x ∈* R : *⟨x,u⟩≤ f*(*u*)*}.* *u∈Sn−*1
+
+It is a convex body: it contains the ball of radius min*f >* 0 and is contained in the ball of radius max*f*. Write *|K|* for *n*-dimensional Lebesgue measure. Our main result is the following.
+
+**Theorem 1.1** (Even logarithmic Brunn–Minkowski inequality)**.** *Let n ≥* 1 *and let K,L ⊂* R *n* *be* *convex bodies satisfying K* = *−K and L* = *−L. For every* 0 *≤ λ ≤* 1*,* ∣ ∣ ∣1*−λ λ*∣1*−λ λ* ∣*W*[*h* *K* *hL*]∣ *≥|K| |L| .* (1.1)
+
+The interpolation in (1.1) takes the geometric mean of the support bounds before intersecting the half-spaces. This gives a strengthening, in the symmetric setting, of the multiplicative form of the classical Brunn–Minkowski inequality: the arithmetic–geometric mean inequality gives
+
+*W*[*h¹* *K−λ* *h* *λ* *L*] *⊂* (1 *− λ*)*K* + *λL.*
+
+In general *h¹* *K−λ* *h* *λ* *L* need not itself be a support function. The intersection defining *W* is essential throughout the argument. For 0 *< p <* 1, the *Lp*interpolation replaces the geometric mean of the support bounds by the *p p* 1*/p* weighted power mean ((1 *− λ*)*h* *K* +*λh* *L* ), still taking the Wulff body. The logarithmic endpoint implies the full symmetric volume inequality in this intermediate range. Böröczky, Lutwak, Yang and Zhang record this monotone implication [6, equation (1.10) and the following paragraph,
+
+p. 1977]. The additive volume-power form below follows by normalizing the bodies and reweighting the interpolation parameter. **Corollary 1.2** (Symmetric *Lp*Brunn–Minkowski inequality)**.** *Let n ≥* 1*, let K,L ⊂* R
+*n* *be* *full-dimensional origin-symmetric convex bodies, and let* 0 *< p <* 1*. For every* 0 *≤ λ ≤* 1*,* ∣ [( )]∣*p/n* ∣ *p p* 1*/p* ∣*p/n p/n* ∣*W* (1 *− λ*)*h* *K* + *λh* *L* ∣ *≥* (1 *− λ*)*|K|* + *λ|L|.* (1.2)
+
+The proof of Corollary 1.2 is given in Section 8.1. The logarithmic volume theorem has a separate measure-theoretic consequence. An even log- concave density has the form *e* *−V*, where *V* is an even convex function with values in R*∪{*+*∞}*; no probability normalization is required. Saroglou proved that the Lebesgue inequality in dimension *n* implies the same Wulff inequality for every such density in that same dimension [29, Theorem 3.1]. Taking two scalar dilates of a single body then gives the (*B*)-conjecture: for the measure *dµ* = *e* *−V* (*x*) *dx* and every origin-symmetric convex body *K*, the function *t 7→ µ*(*e* *t*
+
+*K*) is log-concave on
+R [29, Corollary 3.2]. Section 8.2 applies this transfer and also treats even log-concave Radon measures supported on proper subspaces.
+
+### Context and prior work
+
+Theorem 1.1 resolves the origin-symmetric logarithmic Brunn–Minkowski conjecture of Böröczky, Lutwak, Yang and Zhang [6, Problem 1.1]. Stancu [30, Theorem 2, p. 3264] announced the all- dimensional logarithmic Minkowski inequality and explicitly concluded the equivalent logarithmic Brunn–Minkowski inequality; the report deferred details of the flow asymptotics. The conjecture belongs to the *Lp*Brunn–Minkowski theory initiated by Firey’s *p*-means of convex bodies [17] and developed by Lutwak through *Lp*mixed volumes and the *Lp*Minkowski problem [24]. For *p >* 0, the support bounds are interpolated by the weighted power mean appearing in Corollary 1.2; the geometric mean is its limit as *p ↓* 0. This endpoint has a particularly close connection with cone- volume measures and the logarithmic Minkowski problem. The cone-volume measure records the
+
+volumes of cones from the origin to boundary patches, indexed by their outer normals. Böröczky, Lutwak, Yang and Zhang established the equivalence between the corresponding logarithmic volume and mixed-volume inequalities [6, Lemma 3.2]; their subsequent work characterized which even measures arise as cone-volume measures [7, Theorem 1.1]. The latter is an existence result, separate from the volume inequality proved here. Several important classes were established in earlier work. Böröczky, Lutwak, Yang and Zhang proved the planar case [6, Theorem 1.3]. Saroglou established the inequality and studied its equality cases for bodies unconditional with respect to the same orthonormal basis, meaning that both bodies are invariant under every coordinate sign change in that basis [28, Theorem 1.2]. The underlying volume inequality for coordinatewise products has antecedents in Uhrin, Bollobás– Leader, and Cordero-Erausquin–Fradelizi–Maurey [31, 3, 11]; Saroglou connected this product to the logarithmic combination. This argument uses the multiplicative form of the Prékopa–Leindler inequality. Böröczky and Kalantzopoulos extended the symmetry method to bodies invariant under the same *n* linear reflections whose fixed hyperplanes intersect only at the origin [5, Theorem 2]. For unit balls of complex norms, Rotem derived the inequality from Cordero-Erausquin’s volume inequality for complex interpolation [27, 12]. A complementary approach studies the second variation of volume. Colesanti, Livshyts and Marsiglietti established a local result near Euclidean balls and developed infinitesimal formulations [10]. Kolesnikov and Milman expressed the local *Lp*inequality as a lower bound for the first nonconstant even eigenvalue of the Hilbert–Brunn–Minkowski operator, and proved it for *p ≥* 1*− cn* *−*3*/*2 with a universal *c >* 0 [22]. Their spectral formulation explains why symmetry matters: the translation eigenmodes are odd and hence disappear in the even subspace. Chen, Huang... [truncated]
+
+### Proof strategy
+
+For finitely many spanning unit vectors *pi*and positive numbers *hi*, the constraints *|⟨pi,x⟩|≤ hi* define a symmetric polytope. Replace its indicator by the smooth weight ( () *q* ) <u>ε</u>2∑ <u>⟨pi,x⟩</u> exp *− |x| −, ε >* 0*, q ≥* 2 even*.* 2 *i* *hi*
+
+As *q* tends to infinity, this weight becomes the Gaussian weight restricted to the polytope. Letting *ε* tend to zero recovers its volume. Thus it suffices to prove that the integral of the smooth weight
+
+is log-concave when each *hi*varies geometrically. Section 2 makes this reduction precise, including the passage from finitely many directions to all directions. Geometric changes of slab widths are also related to the (*B*)-property, which asks for log- concavity of measure under exponential dilations. Saroglou showed that the diagonal (*B*)-property for uniform measures on cubes in every dimension is equivalent to the logarithmic Brunn–Minkowski conjecture in every dimension [28, Theorem 1.5]. This relates the geometric reduction to an earlier measure-theoretic formulation. The diagonal statement here is restricted to uniform measures on cubes; the consequence for general even log-concave measures concerns scalar dilations. The summandwise variance estimate below supplies the required concavity directly. The second derivative of the logarithm of that integral is a variance minus an expected second derivative. The analytic task is therefore a variance bound for sums of even powers of linear forms (Proposition 2.1). We prove it in moment coordinates: the probability with density proportional to the displayed weight is the image of *e* *−φ*(*z*) *dz* under *x* = *∇φ*(*z*). Section 3 constructs these coordinates with a bounded, everywhere positive Hessian, starting from the compact moment theorem of Berman and Berndtsson [2] and Klartag’s Hessian estimate [19]. The general moment-measure theory is due to Cordero-Erausquin and Klartag [13]. Two steps complete the analytic argument. First, a differential operator associated with the moment Hessian produces a dense class of centered even test functions (Sections 4 and 5). The only obstructions to density are affine functions: centering removes constants, and evenness removes linear functions. Second, a tensor calculation for these tests has a remainder that is the sum of explicit squares (Section 6). This supplies the variance bound by two Cauchy–Schwarz inequalities (Section 7). The analytic setting belongs to the tradi... [truncated]
+
+## 2 From a variance bound to volume
+
+We first deduce Theorem 1.1 from the variance bound below. For a probability measure *µ*, write ∫ 2 E*µf* = *f dµ* and Var*µ*(*f*) = E*µ*(*f −* E*µf*).
+
+**Proposition 2.1** (Variance bound)**.** *Let n ≥* 2*,N≥* 1*, q ≥* 2 *be an even integer, and ε >* 0*. Let* *p₁,...,pN∈* R *n* *\{*0*} and h₁,...,hN>* 0*. Set*
+
+()*q* ∑ *N* <u>⟨pi,x⟩ ε</u>2 *−*1 *−V* (*x*) *ψi*(*x*) =*, V* (*x*) = *|x|* + *ψi*(*x*)*, dµ* = *Z e dx,* (2.1) *hi*2 *i*=1
+
+∫ *−V* (*x*) *where Z* = R*n* *e dx. For all real b₁,...,bN,* ( *N* ) *N* ∑ ∑ Var*µbiψi≤ b²i*E*µψi.* (2.2) *i*=1 *i*=1
+
+Here the Gaussian term makes *Z* finite, even if the vectors *pi*do not span R *n*. All polynomial moments are finite. The proof of Proposition 2.1 occupies Sections 3–7. The proof will establish the dual estimate
+
+∑ *N* <u>(Eµuψi)</u> 2 *≤* E *u²* for every centered even *u ∈ L²*(*µ*)*.* *µ* *i*=1 E*µψi*
+
+Here centered means E*µu* = 0, and the denominators are positive because each *pi*= 0 *̸* and *µ* has a ∑ ∑ positive density. Applied to *u* =*ibiψi−* E*µ ibiψi*, this gives (2.2) by Cauchy–Schwarz. We first prove the dual estimate on a class of smooth compactly supported tests, then use density to reach every such *u*. This explains the roles of the density and tensor lemmas in the analytic proof.
+
+*Proof of Theorem 1.1 from Proposition 2.1.* Suppose first that *n ≥* 2. Fix nonzero spanning vectors *p₁,...,pN*and positive endpoint widths *h⁰i,h¹i*. For *t ∈* [0*,*1], define
+
+*hi*(*t*) = (*h⁰i*) 1*−t* (*h¹i*) *t* *, P* (*t*) = *{x* : *|⟨pi,x⟩|≤ hi*(*t*) for all *i}.*
+
+The spanning condition makes each *P* (*t*) bounded; positivity of the widths gives nonempty interior. Use these widths in (2.1) and denote the resulting integral by *Zq,ε*(*t*). For fixed *q,ε*, its first two derivatives may be taken under the integral: on a compact interval of *t*, the differentiated *−ε|x|*2*/*2 1 0 integrands are bounded by a polynomial times *e*. With *bi*= *−q* log(*hi/hi*) one has ∑ ∑ *V* ˙ = *b* *i* *ψi, V*¨ = *b²iψi,* *i i*
+
+and hence <u>d²</u> ˙ ¨ 2 log*Zq,ε*(*t*) = Var*µt*(*V*) *−* E*µtV ≤* 0 *dt* by Proposition 2.1. Therefore
+
+*Zq,ε*(*λ*) *≥ Zq,ε*(0) 1*−λ* *Zq,ε*(1) *λ*
+
+*.* (2.3)
+Keep *ε >* 0 fixed and let *q* tend to infinity through even integers. For each fixed *t*, the *−ε|x|*2*/*2 integrands converge almost everywhere to *e* **1***P* (*t*). The exceptional set lies in the finitely *−ε|x|*2*/*2 many hyperplanes *⟨pi,x⟩* = *±hi*(*t*) and has measure zero. The common integrable bound *e* gives ∫ *−ε|x|*2*/*2 *Zq,ε*(*t*) *−→ e dx.* *P* (*t*) Apply this at *t* = 0*,λ,*1 in (2.3), then let *ε ↓* 0. Monotone convergence gives
+
+*|P*(*λ*)*|≥|P*(0)*|* 1*−λ* *|P*(1)*|* *λ*
+
+*.* (2.4)
+Figure 1 illustrates how additional slab directions refine an outer approximation. To pass to
+
+all directions, let *K,L* be as in Theorem 1.1. Choose nested finite sets *Dm⊂ S* *n−*1 that contain the coordinate vectors and whose union is dense in the sphere. Define ⋂ *Pm*(*t*) = *{x* : *|⟨p,x⟩|≤ hK*(*p*) 1*−t* *hL*(*p*) *t* *}.* *p∈Dm*
+
+*E E*
+
+*P₂ P₄* Two slab directions Four slab directions
+
+Figure 1: Finite outer approximations of an ellipse *E*. Adding slab directions gives *P₂ ⊃ P₄ ⊃ E*;
+
+the subscripts here count slab directions. Using nested finite spanning direction sets with dense union, the same construction recovers *W*[*f*] from any positive continuous even function *f* on the sphere; *f* need not be a support function.
+
+The bodies *Pm*(*t*) decrease with *m* and are all contained in the bounded body *P₁*(*t*). By continuity of the support functions and their evenness, ⋂ *Pm*(*t*) = *W*[*h¹* *K−t* *h* *tL*]*.* *m*
+
+Indeed any point satisfying the dense set of inequalities satisfies all of them by continuity in the direction. Conversely, the Wulff inequalities imply the absolute-value constraints by evenness. At *t* = 0*,*1 these intersections are *K,L*, respectively, by the supporting-half-space characterization of a convex body. Continuity of measure from above, applied at 0*,λ,*1 in (2.4), proves (1.1). Finally, in dimension one write *K* = [*−a,a*] and *L* = [*−b,b*] with *a,b >* 0. Their Wulff interpolation is the interval with radius *a¹* *−λ* *b* *λ*, whose length is (2*a*) 1*−λ* (2*b*) *λ*. Thus (1.1) <u>is</u> equality. The endpoints *λ* = 0*,*1 are equality in every dimension.
+
+## 3 Moment coordinates on the whole space
+
+The variance argument uses a change of variables whose Jacobian is a positive Hessian. The following lemma supplies this change of variables and the uniform upper bound needed for the later cutoff arguments.
+
+**Lemma 3.1** (Moment coordinates)**.** *Let n ≥* 2*, ε >* 0*, and let V ∈ C* *∞* (R *n* ) *be even with* *D²V ≥ εI. Set* ∫ *Z* = *e* *−V* (*x*) *dx, dµ*(*x*) = *Z* *−*1 *e* *−V* (*x*) *dx.* R*n* *There is an even φ ∈ C* *∞* (R *n* ) *such that dν*(*z*) = *e* *−φ*(*z*) *dz is a probability measure, ∇φ is a* *diffeomorphism of* R *n* *onto* R *n* *, and*
+
+2<u>4</u>2 (*∇φ*)#*ν* = *µ,* 0 *< D φ ≤ I,* log det*D φ* = *V* (*∇φ*) + log *Z − φ.* (3.1) *ε*
+
+*Moreover, φ*(*z*) *≥ c|z|− b for some c >* 0 *and b < ∞. The lower Hessian bound in* (3.1) *means* *positive definiteness at every point; it need not be uniform on* R *n* *.*
+
+*Proof.* Evenness and uniform convexity give *V* (*x*) *≥ V* (0) + *ε|x|* 2 */*2, so 0 *< Z < ∞*. For *R ≥* 2, write *BR* = *{x* : *|x| < R}* and set ∫ *ZR* = *e* *−V* (*x*) *dx, dµR*= *ZR* *−* **1***BRe* *−V* (*x*) *dx.* *BR*
+
+We first use two compact-support results. The moment theorem of Berman–Berndtsson [2, Theorem 1.1], applied to the body *BR* and the positive smooth density *e* *−V* */ZR*, gives a smooth convex potential *φR*, unique up to translation, for which *∇φR*: R *n* *→ BR* is a diffeomorphism and
+
+det *D²φR*= *ZR* exp*{V* (*∇φR*) *− φR}.* (3.2)
+
+The centering hypothesis holds by evenness. Integrating the equation through this diffeomor- phism shows that *dνR*= *e* *−φR* *dz* is a probability and (*∇φR*)#*νR*= *µR*. Klartag’s estimate [19, Proposition 3.1 and Remark 3.5] gives
+
+0 *< D²φR≤ CI, C* = 4*/ε.*
+
+Indeed, the ball has smooth positively curved boundary, and *ρR*= *V* + log *ZR* is convex and smooth, with itself and all its derivatives bounded on *BR*, and *D²ρR≥ εI*. The constant *C* is independent of *R*. Translate the unique preimage of 0 to 0. It is the unique minimum of *φR*. Reflection gives a second potential for the same target with its minimum at 0; uniqueness up to translation therefore makes *φR*even. For each fixed *R*, take the preimages of the slopes *±*(*R/*2)*ei*. Their supporting planes give <u>R</u> *φR*(*z*) *≥* <s>√</s> *|z|− bR* 2 *n* with a finite, possibly *R*-dependent constant *bR*. Thus *νR*has an exponential tail. In particular, since *|∇φR|≤ R*, integration of div(*ze* *−φR* ) with expanding compact cutoffs is justified and yields
+
+### EνRz ·∇φR(z) = n. (3.3)
+
+We now obtain bounds independent of *R*. Put *mR*= *φR*(0) and *gR*= *φR− mR≥* 0. The Hessian bound implies *gR*(*y*) *≤ C|y|* 2 */*2 and *|∇φR*(*y*)*|≤ C|y|*. For arbitrary *y,z*, set *x* = *∇φR*(*z*). Supporting planes at *z* and *−z* give the single pointwise inequality
+
+*gR*(*y*) *≥ gR*(*z*) + *|x · y|− x · z.*
+
+Integrate with respect to *νR*, discard the nonnegative E*νRgR*, and use (3.3): ∫ *gR*(*y*) *≥ |x · y| dµR*(*x*) *− n.*
+
+On *B₁* the density of *µR*is at least *d₀* = *Z* *−*1 exp(*−*max *B*1
+
+*V*) *>* 0. Rotational symmetry of the ∫
+ball therefore bounds the integral below by *c|y|*, where *c* = *d₀* *B*1 *|x₁| dx >* 0. Hence
+
+()*n/*2∫ ∫ <u>C</u>2<u>2π</u>*m* *R−gR*(*y*) *n −c|y|* *c|y|− n ≤ gR*(*y*) *≤ |y|, ≤ e* = *e dy ≤ e e dy.* (3.4) 2 *C*
+
+This bounds *mR*on both sides and gives one integrable exponential majorant for all the densities *e* *−φR*. It remains to obtain a smooth limit and to verify that its gradient reaches every point. On each fixed ball, the preceding estimates bound *φR*and *∇φR*uniformly. Since *Z₂ ≤ ZR ≤ Z*, equation (3.2) bounds det *D²φR*below by a positive constant there. Together with *D²φR≤ CI*, this gives a uniform local bound *δI ≤ D²φR≤ CI*: if the determinant is at least *d >* 0, every eigenvalue is at least *d/C* *n−*1. The right-hand sides
+
+*fR*= *V* (*∇φR*) + log *ZR − φR*
+
+of the logarithmic equations are uniformly Lipschitz on that ball, because *∇fR*= *D²φR∇V* (*∇φR*)*−* *∇φR*is uniformly bounded. To apply an interior uniformly elliptic estimate, choose a smooth concave scalar function *s* equal to log on a slightly larger interval than [*δ,C*], with *s* *′* bounded above and bounded below by positive constants on R. Such an extension is obtained by smoothly continuing the decreasing derivative 1*/t* to positive constant tails. For symmetric matrices *Q*, the spectral function *F* (*Q*) = tr*s*(*Q*) is smooth, concave and uniformly elliptic: its derivative has eigenvalues *s* *′* (*λi*(*Q*)), and its second variation has coefficients *s* *′′* (*λi*) and the nonpositive divided differences of *s* *′*. It agrees with log det on the Hessians under consideration. The nonhomogeneous Evans–Krylov estimate [33, Corollary 2.3] applied to *F* (*D²φR*) = *fR*gives uniform interior *C²* *,α* bounds for some *α >* 0. Each *φR*is already smooth. Its derivative *wR,k*= *∂kφR*satisfies
+
+(*D²φR*) *−*1 : *D²wR,k*= *∇V* (*∇φR*) *·∇wR,k− wR,k,*
+
+where *Q* : *N* = tr(*QT N*). The principal coefficients and the right-hand side are uniformly *C* *α* on smaller balls. Interior Schauder estimates [16, Theorem 2.20 and Corollary 2.21] give uniform *C³* *,α* bounds for *φR*, and iteration gives bounds for every derivative on compact sets. A diagonal subsequence, still indexed by *R*, converges locally smoothly to an even *φ* with positive definite Hessian, the same upper cap, and the logarithmic equation in (3.1). The bound *φR*(*z*) *≥ c|z|− b*, with *b* independent of *R*, also passes to *φ*. ∫ *−φ* The common exponential majorant from (3.4) proves *e* = 1 by dominated convergence. For each bounded continuous *h*, it also gives ∫ ∫ ∫ ∫ *h*(*∇φ*)*e* *−φ* = lim *h*(*∇φR*)*e* *−φR* = lim *hdµR*= *hdµ.* *R→∞ R→∞*
+
+Thus (*∇φ*)#*ν* = *µ*. Positive definite Hessian makes the gradient locally invertible and injective, since for *z ̸*= *w*, ∫ 1 (*∇φ*(*z*) *−∇φ*(*w*)) *·* (*z − w*) = *D²φ*(*w* + *t*(*z − w*))[*z − w,z − w*]*dt >* 0*.* 0
+
+Its image is dense: an open ball missed by the image would have zero pushforward mass, contrary to the everywhere positive density of *µ*. Fix *x₀ ∈* R *n*. Density permits finitely many image points *yj*= *∇φ*(*zj*) whose convex hull contains a ball *Br*(*x₀*) with *r >* 0; one may take small perturbations of the points *x₀ ± ei*. Their supporting planes imply
+
+*φ*(*z*) *− x₀ · z ≥* max*{*(*yj− x₀*) *· z* + *φ*(*zj*) *− yj· zj}≥ r|z|− bx*0*.* *j*
+
+This function attains a minimum, at which *∇φ* = *x₀*. The gradient is therefore onto, and its local smooth inverses combine to a global smooth inverse.
+
+We will write *x* = *∇φ*(*z*) and *τ* = *Dz* 2 *φ*, evaluating *τ* at the corresponding point when using *x* coordinates. Thus *τ* (*x*) = *Dz* 2 *φ*((*∇φ*) *−*1
+
+(*x*)) is smooth, even, positive definite and bounded above
+by (4*/ε*)*I*. The gradient is odd, as is its inverse. Finally, a compactly supported smooth function of *x* is compactly supported after composition with *∇φ*: its support lies in the image of a compact set under the continuous inverse map. Consequently the compact integrations by parts below are valid in either coordinate system.
+
+## 4 Adjoints in moment coordinates
+
+### We retain the probability measures
+
+*dµ*(*x*) = *Z* *−*1 *e* *−V* (*x*) *dx, dν*(*z*) = *e* *−φ*(*z*) *dz, x* = *∇φ*(*z*)*,*
+
+and the smooth diffeomorphism constructed above. Put
+
+*τ* = *Dz* 2 *φ, M* = *τ* *−*1 *.*
+
+In target coordinates, these symbols denote the same matrix fields evaluated at *z* = (*∇φ*) *−*1
+
+(*x*).
+Expectation under either measure, with functions identified by this map, is denoted by E. Through- out the coordinate calculations, repeated indices are summed from 1 to *n*, and *Q* : *L* = tr(*QT L*) denotes matrix contraction. We first construct the compact test functions used in the variance argument and establish an identity that will also identify the obstruction to their density. Write
+
+*∂k*= *∂z* *k* *, ∂k∗*= *xk− ∂k.*
+
+The latter is the adjoint of *∂k*in *L²*(*ν*) because *∂kφ* = *xk*. In target coordinates, write *δµ*for negative weighted divergence: ∑() *δ* *µW* = *VxjWj− ∂xjWj.* *j*
+
+On a matrix, *δµ*acts on each row, producing a vector. For a smooth row field *Pak*and a compact test *g*, the chain rule and adjunction give
+
+### Eg∂k∗Pak= E(∂kg)Pak= EgxiτikPak.
+
+Consequently *∂k∗Pak*= (*δµ*(*Pτ*))*a.* (4.1)
+
+Taking *P* to be the identity matrix also gives *δµτ* = *x*. This is Fathi’s moment-map construction of a Stein kernel [15, Theorem 2.3 of the cited arXiv version]: the matrix field *τ* expresses integration by parts against *x* through E*xjg* = E*τjkgx* *k*. Thus the differential operator
+
+*Af* = *δµ*(*τ ∇xf*) = *∂k∗fx* *k* = *x ·∇xf − τ* : *Dx* 2 *f* (4.2)
+
+is formally symmetric, with E*gAf* = E*∇xg · τ ∇xf* (4.3)
+
+for compact smooth tests. These formulas involve no operator-domain assertion. This is the negative of the moment-Hessian diffusion generator studied by Klartag [19, Section 6]; for our sign convention, *Axj*= *xj*. For *f ∈ Cc∞*(R *n*
+
+*x*), define
+*h* = *Dx* 2 *f, P* = *τh, B* = *τhτ, Wa*= *∂k∗Pak, u* = *δµW.* (4.4)
+
+All these fields have compact support in both coordinates: the inverse image of a compact target set is its compact image under the continuous inverse diffeomorphism. By (4.1), *W* = *δµB*. For every smooth function *F* in target coordinates, two adjunctions give
+
+E*uF* = E*W ·∇xF* = E*B* : *DxF.* (4.5)
+
+The fields are compactly supported, so *F* need not be. Thus the same pairing can be estimated through either the first or the second derivatives of *F*. To identify the range of these tests, we also use the gradient identity [] *W* = *∇z*((*A −* 1)*f*)(*x*(*z*)) = *τ ∇x*(*A −* 1)*f, u* = *A*(*A −* 1)*f.* (4.6)
+
+To check it directly, put *Cijk*= *∂zi∂zj∂z* *k* *φ*. This tensor is fully symmetric, and expansion gives
+
+*Wa*= *xkτaifxix* *k* *− Caikfxix* *k* *− τaiτjkfxix* *k* *x* *j* *.*
+
+Differentiating (*A −* 1)*f* in *za*gives exactly these terms: the first-gradient terms from *x ·∇xf* and *−f* cancel. The formula for *u* follows from (4.2). In particular, *DzW* is symmetric. The following identity is the moment-coordinate specialization of the transport-Hessian Bochner formula of Kolesnikov, Livshyts and Rotem [20, Proposition 4.8]. We give its direct derivation in the present notation. Two compact integrations by parts give
+
+E(*Af*)(*A −* 1)*f* = E*∇xf · τ ∇x*(*A −* 1)*f* = E*∇xf · W* ∥ 1*/*2 2 1*/*2 ∥2 (4.7) = E*h* : *B* = E∥*τ Dxf τ* ∥HS*.*
+
+Here *∥Q∥* 2 HS = tr(*QT Q*). The differential expression *A* satisfies *A*1 = 0 and *Axj*= *xj*, so *A*(*A −* 1) annihilates every affine function. Section 5 uses (4.7) to prove that these are the only *L²* obstructions to density. Centering removes constants, and evenness removes linear functions.
+
+## 5 Density of the even tests
+
+The Hessian identity identifies affine functions as the possible obstructions to density. We now show that these are the only obstructions, using cutoffs in the *x* coordinates.
+
+**Lemma 5.1** (Density of even tests)**.** *Let dµ* = *ρ*(*x*)*dx be a probability measure on* R *n* *with* *a smooth, strictly positive, even density. Let τ be a smooth even symmetric matrix field with* 0 *< τ*(*x*) *≤* Λ*I for some finite* Λ*, and set*
+
+*Af* = *x ·∇f − τ* : *D²f.*
+
+*Suppose that A has the integration formula*
+
+E[*hAf*] = E[*∇h · τ ∇f*] (*f,h ∈ Cc∞*(R *n* ))
+
+*and satisfies the compact Hessian identity* (4.7)*. Then*
+
+*n* *L*2(*µ*) 2 *{A*(*A −* 1)*f* : *f ∈ Cc∞*(R)*, f even}* = *{g ∈ L* (*µ*) : *g even,* E*g* = 0*}.*
+
+*Proof.* Write Γ(*f,h*) = *∇f · τ ∇h* and Γ(*f*) = Γ(*f,f*). The integration formula also holds when one factor is smooth and the other has compact support, by inserting a cutoff around that support. In particular E*Ak* = 0 for compactly supported smooth *k*. Since *A* preserves parity, the displayed range consists of centered even functions. Let *g* be a centered even *L²*(*µ*) function orthogonal to this range. It also annihilates *A*(*A −* 1)*f* for odd *f*, because that image is odd. Formal symmetry therefore gives
+
+*P g* = 0 in distributions*, P* = *A*(*A −* 1)*.*
+
+Indeed, if *P* *t* denotes the transpose with respect to Lebesgue measure and *dµ* = *ρdx*, weighted formal symmetry gives *P* *t* (*ρg*) = *ρP g* in distributions. Orthogonality makes the left side zero, and smooth positivity of *ρ* gives the displayed equation. The principal symbol of *P* is (*ξ · τ*(*x*)*ξ*) 2, which is positive for every *ξ* = 0 *̸*. Interior elliptic regularity consequently gives *g ∈ C* *∞* [14, Theorem 14.2]. Only positivity on compact sets is needed here. *Splitting the equation in L².* Choose 0 *≤ ηr≤* 1 smooth, equal to one on *Br*, zero outside *B₂r*, with *|∇ηr|≤ C/r* and *|D²ηr|≤ C/r²*, where *r ≥* 1. The upper bound on *τ* gives constants *B,K*, independent of *r*, such that Γ(*ηr*) 1*/*2 *≤ B/r, |Aηr|≤ K.* (5.1)
+
+For the second estimate, use *|x|≤* 2*r* on the support of the cutoff derivatives. Those derivatives, including *Aηr*, vanish outside *B₂r\ Br*. Put *v* = *Ag*, initially just a smooth function, and write
+
+*G* = *∥g∥*2*, Xr*= *∥ηr* 2 *v∥*2*, Yr* 2 = E[*ηr* 2 Γ(*g*)]*.*
+
+Here *G* is finite by hypothesis, while *Xr,Yr*are finite by compact support. Testing *P g* = 0 against *ηr* 4 *g* gives E[*v*(*A −* 1)(*ηr* 4
+
+*g*)] = 0. The product rule *A*(*ab*) = *aAb* + *bAa −* 2Γ(*a,b*) yields the exact
+expansion
+
+4 4 ( 3 2 4 ) (*A −* 1)(*ηrg*) = *ηrv* + *g* 4*ηrAηr−* 12*ηr*Γ(*ηr*) *− ηr*
+
+*−* 8*ηr* 3 Γ(*ηr,g*)*.*
+
+### Thus Cauchy–Schwarz and (5.1) imply
+
+<u>8B</u>2<u>2B</u>2 *Xr≤ aG* + *Yr, Yr≤ GXr*+ *GYr, a* = 1 + 4*K* + 12*B.* (5.2) *r r*
+
+The first inequality is immediate if *Xr*= 0; otherwise divide the resulting estimate for *Xr* 2 by *Xr*. For the second, integrate by parts in E[*ηr* 2 *gAg*]:
+
+*Yr* 2 = E[*ηr* 2 *gv*] *−* 2E[*ηrg*Γ(*ηr,g*)]*.*
+
+Combining (5.2) gives *Yr* 2 *≤ aG²* + 10*BGYr*, so both *Yr*and *Xr*are bounded uniformly in *r*. Exhaustion by balls proves *v* = *Ag ∈ L²*(*µ*). We may now set
+
+*w* = *g − v ∈ L²*(*µ*)*, Aw* = 0*, Av* = *v.*
+
+*The harmonic part is constant.* Testing *Aw* = 0 with *ηr* 2 *w* and using (5.1) gives
+
+( 2
+
+)1*/*2<u>2B</u>
+E[*ηr*Γ(*w*)] *≤ ∥w∥*2*.* *r*
+
+On any fixed ball, let *r →∞*. Then Γ(*w*) = 0 there; strict positivity of *τ* shows that *w* is constant. *The eigenvalue-one part is linear.* The analogous test of *Av* = *v* gives, with *Zr* 2 = E[*ηr* 2 Γ(*v*)],
+
+2 2<u>2B</u> *Zr≤∥v∥*2+ *∥v∥*2*Zr.* *r*
+
+Hence EΓ(*v*) *< ∞*. For *fr*= *ηrv ∈ Cc∞*, the product rule now proves directly that
+
+*fr−→ v, Afr−→ v* in *L²*(*µ*)*.* (5.3)
+
+Indeed, *Afr*= *ηrv* + *vAηr−* 2Γ(*ηr,v*)*.*
+
+The middle term has norm at most *K∥v***1***B* 2*r\Br* *∥*2*→* 0. For the last term, use
+
+<u>B</u>1*/*2 *∥*Γ(*ηr,v*)*∥*2*≤* (EΓ(*v*)) *−→* 0*.* *r*
+
+Apply (4.7) to these compactly supported functions: [ 1*/*2 2 1*/*2 2] 2 E *∥τ D frτ ∥*HS= *∥Afr∥*2*−* E[*frAfr*] *−→* 0*.*
+
+On each fixed ball, *fr*= *v* for all sufficiently large *r*. Positivity of the density and of *τ* therefore forces *D²v* = 0 on that ball. Thus *v* is affine, and *Av* = *v* removes its constant term. We have proved that every *L²* distributional solution of *P g* = 0 is affine. Our *g* = *w* + *v* is even, so it is constant, and its mean is zero. Hence *g* = 0. Taking the orthogonal complement in the centered even subspace proves the lemma.
+
+## 6 A tensor estimate for the divergence tests
+
+The gradient and Hessian pairings in (4.5) will be estimated using two quadratic energies, one for *W* and one for *B*. The following lemma bounds their sum by E*u²*. Its proof uses weighted integration by parts and the moment equation; homogeneity enters only when the lemma is applied to the summands *ψi*in Section 7.
+
+**Lemma 6.1** (Moment-coordinate tensor estimate)**.** *Let dµ* = *Z* *−*1 *e* *−V* *dx and dν* = *e* *−φ* *dz be* *smooth probability measures on* R *n* *. Suppose Dz* 2 *φ is positive definite and x* = *∇φ*(*z*) *is a smooth* *diffeomorphism pushing ν to µ. For a real f ∈ Cc∞*(R *n*
+
+*x*)*, put*
+*τ* = *Dz* 2 *φ, M* = *τ* *−*1 *, H* = *Dx* 2 *V, B* = *τ* (*Dx* 2
+
+*f*)*τ, W* = *δµB, u* = *δµW.*
+*View source fields in target coordinates by the inverse moment map. Then* ( 2 ) E tr (*DxW*) *≥* E tr(*MBHB*)*,* (6.1)
+
+*and* E*u² ≥* E tr(*MBHB*) + E*WT HW.* (6.2)
+
+*Here* (*DxW*)*ij*= *∂xjWi, and the square in* (6.1) *is a matrix square.*
+
+*Proof.* All test fields used in the integrations by parts below have compact support. Weighted Bochner calculations underlie many variance estimates; see Bakry–Émery [1, Proposition 3] and the transport-Hessian formulas in [20, Section 4.3]. Here the required identity is for a vector field, so we derive it explicitly and retain the matrix trace tr((*DxW*) 2 ). First, for any such vector field *W* and *u* = *δµW*, *∂xiu* = *HijWj*+ (*Vxj− ∂xj*)*∂xiWj.*
+
+Pairing with *Wi*and using adjunction gives the weighted identity
+
+2 ( 2 ) E*u* = E*Wi∂xiu* = E*WT HW* + E(*∂xjWi*)(*∂xiWj*) = E*WT HW* + E tr (*DxW*)*.* (6.3)
+
+Thus it remains to prove (6.1). Its proof compares two expansions, integrates their derivative terms by parts, and writes the resulting difference as a sum of squares.
+
+### Recall h = Dx
+
+2 *f* and *P* = *τh* from (4.4), and let (*Ci*)*kl*= *Cikl*, where *C* = *Dz* 3 *φ*. The moment equation (3.1) reads *V* (*x*(*z*)) = *φ*(*z*) + log det*τ* (*z*) *−* log *Z.*
+
+Its first derivative gives *τ* *ikVxk*= *xi*+ *ci, ci*= tr(*MCi*)*.*
+
+Since *∂jM* = *−MCjM*, differentiating once more gives
+
+(*τHτ*)*ij*= *τij*+ *Mklφklij−* tr(*MCiMCj*) *− CijkVx* *k* *.*
+
+To combine the fourth-derivative term and the term involving *∇xV* into a weighted divergence, note that *∂dMdk*= *−MdaCabdMbk*= *−cbMbk, ∂dMdk− xdMdk*= *−Vx* *k* *.*
+
+Full symmetry of *Dz* 4 *φ* therefore yields
+
+(*τHτ − τ*)*ij*= (*∂d− xd*)(*MdkCijk*) *−* tr(*MCiMCj*)*.* (6.4)
+
+For the other expansion, the commutator [*∂l,∂* *k∗*] = *τkl*gives
+
+*DzW* = *B* + *R, Ral*= *∂k∗∂lPak.*
+
+Both *DzW* and *B* are symmetric, so *R* is symmetric. Since *DxW* = (*B* + *R*)*M* and *MBM* = *h*, expansion followed by one integration by parts gives ( 2 ) E tr (*DxW*) = E tr(*MBMB*) + 2E(*∂khal*)(*∂lPak*) + E tr(*MRMR*)*.* (6.5)
+
+The last term is nonnegative: tr(*MRMR*) = *∥M¹* */*2 *RM¹* */*2 *∥* 2 HS. On the right side of (6.1), the coefficient of *τHτ* in the trace contraction is
+
+### Q = MBMBM = hτh.
+
+Substituting (6.4) and integrating its divergence term by parts gives
+
+E tr(*MBHB*) = E tr(*MBMB*) *−* E(*∂dQij*)*MdkCijk−* E*Qij*tr(*MCiMCj*)*.* (6.6)
+
+The common first term cancels. We now evaluate the three remaining contracted terms in coordinates where *τ* = *I* at the point under consideration. This normalization uses a constant dual change of coordinates. For an invertible constant matrix *T*, set *z* = *Tz* *′* *, x* *′* = *TT x, f* *′* (*x* *′* ) = *f* (*T* *−T* *x* *′* )*.*
+
+The corresponding normalized potentials and partition function are
+
+*φ* *′* (*z* *′* ) = *φ*(*Tz* *′* ) *−* log*|*det *T |, V* *′* (*x* *′* ) = *V* (*T* *−T* *x* *′* )*, Z* *′* = *|*det *T |Z.*
+
+They preserve both probability measures by change of variables, *x* *′* = *∇z′ φ* *′*, and the moment equation. The chain rule gives
+
+*τ* *′* = *TT τT, B* *′* = *TT BT, R* *′* = *TT RT,* *M* *′* = *T* *−* *MT* *−T* *, h* *′* = *T* *−* *hT* *−T* *, H* *′* = *T* *−* *HT* *−T* *,* *Q* *′* = *T* *−* *QT* *−T* *, P* *′* = *TT PT* *−T* *, W* *′* = *TT W.*
+
+Each *z*-derivative index, including all three indices of *C*, transforms covariantly with *T*; the same law holds for *∂* *k∗*. Also *Dx′ W* *′* = *TT*(*DxW*)*T* *−T*. It follows that every contracted scalar in (6.5) and (6.6) is invariant. For example, in (*∂khal*)(*∂lPak*) each index pairs one covariant and one contravariant factor. At a fixed point we may therefore take *T* = *τ* *−*1*/*2, using the value of *τ* at that point. All derivatives are computed under this constant transformation. No moving frame is differentiated; the integrations by parts have already been completed. In these normalized coordinates, put
+
+*Sijk*= *fxixjx* *k* *, Jijk*= *hiaCajk.*
+
+(12) The tensor *S* is fully symmetric, and *J* is symmetric in its last two indices. Write *J* *ijk* = *Jjik*, and use the Euclidean tensor norm and inner product in this frame. The three contractions are
+
+2(*∂khal*)(*∂lPak*) = 2*∥S∥* 2 + 2*⟨S,J ⟩,* (6.7)
+
+(*∂dQij*)*Cijd*= 2*⟨S,J ⟩* + *⟨J,J* (12) *⟩,* (6.8)
+
+*Qij*tr(*CiCj*) = *∥J ∥* 2
+
+*.* (6.9)
+For (6.7), use *∂khal*= *Salk*and *∂lPak*= *Cailhik*+ *Sakl*. For (6.8), differentiating the two factors *h* in *Q* = *hτh* gives the two copies of *⟨S,J ⟩*. Differentiating its middle factor gives ∑ ∑ *hiaCabdhbjCijd*= tr(*hCdhCd*) = *⟨J,J* (12) *⟩.* *iabjd d*
+
+Finally, (6.9) follows by expanding *Q* = *h²* and the trace, using the full symmetry of *C*. Thus, apart from the nonnegative *R* term, the integrand of (6.5) minus (6.6) is
+
+2*∥S∥* 2 + 4*⟨S,J ⟩* + *∥J ∥* 2 + *⟨J,J* (12) *⟩.*
+
+Full symmetrization of *J* is <u>Jijk+ Jjik+ Jkij</u> (Sym*J*)*ijk*=*.* 3 Its norm satisfies
+
+2<u>∥J ∥</u> 2 <u>+ 2⟨J,J</u> (12) <u>⟩</u> *∥*Sym *J ∥* =*, ⟨S,* Sym *J ⟩* = *⟨S,J ⟩.* 3
+
+Consequently the preceding integrand equals
+
+2<u>1</u>(12) 2 2*∥S* + Sym *J ∥* + *∥J − J ∥ ≥* 0*.* (6.10) 6
+
+This pointwise calculation proves (6.1); combining it with (6.3) proves (6.2).
+
+For the soft slab potentials, *H* is the sum of a positive quadratic part and the positive semidefinite Hessians of the homogeneous summands. Lemma 6.1 will control each summand through the two terms on the right side of (6.2).
+
+## 7 The variance inequality
+
+We now apply the moment-coordinate estimates to the potential (2.1). In this section all expecta- tions are with respect to its probability *µ*.
+
+*Proof of Proposition 2.1.* The potential is smooth and even, and *D²V ≥ εI*. Lemma 3.1 therefore supplies the moment coordinates, with 0 *< τ ≤* (4*/ε*)*I*. Put
+
+*Hi*= *Dx* 2 *ψi, ai*= E*ψi.*
+
+Each *Hi*is positive semidefinite, and *ai>* 0 since *pi*= 0 *̸* and *µ* has positive density everywhere. Homogeneity gives *x ·∇ψi*= *qψi, Hix* = (*q −* 1)*∇ψi.* (7.1)
+
+The adjunction identity of Section 4 also gives
+
+*mi*:= E tr(*τHi*) = E*x ·∇ψi*= *qai.* (7.2)
+
+To justify it for these noncompact functions, apply E*xjk* = E*τjk∂x* *k* *k* to *k* = *ηR∂xjψi*and sum in *j*, where *ηR*is a smooth cutoff equal to one on *BR* and zero outside *B₂R*. The extra term is bounded in absolute value by *CR* *−*1 E[*|∇ψi|***1***{|x|≥R}*], which tends to zero. The other terms converge because *τ* is bounded and all polynomial moments are finite. Take an even *f ∈ Cc∞*(R *n* ) and use
+
+*B* = *τDx* 2 *f τ, W* = *δµB, u* = *δµW* = *A*(*A −* 1)*f, M* = *τ* *−*1 *.*
+
+Applying (4.5) to *F* = *ψi*gives, for each *i*,
+
+*di*:= E*uψi*= E*W ·∇ψi*= E tr(*BHi*)*.* (7.3)
+
+Two Cauchy–Schwarz estimates will give complementary bounds for these same numbers *di*. First apply the Hilbert–Schmidt Cauchy–Schwarz inequality, including integration, to the 1*/*2 1*/*2 1*/*2 *−*1*/*2 matrix fields *H* *i* *τ* and *H* *i* *Bτ*. Their pairing is tr(*HiB*), so
+
+### d²i≤ miE tr(MBHiB). (7.4)
+
+This does not require *B* to be positive semidefinite. Second, (7.1)–(7.3) give
+
+E*x* *T* *Hix* = (*q −* 1)*mi,* E*x* *T* *HiW* = (*q −* 1)*di.*
+
+Cauchy–Schwarz for the positive semidefinite form (*X,Y*) *7→* E*XT HiY* therefore yields
+
+<u>d²i</u> E*WT HiW ≥* (*q −* 1)*.* (7.5) *mi*
+
+2 ∑ Since *H* = *D V* = *εI* +*iHi*, Lemma 6.1 and the weighted Bochner identity (6.3) imply
+
+E*u² ≥* E tr(*MBHB*) + E*WT HW* ∑ () ∑ <u>qd²</u> ∑ <u>d²</u> *≥* E tr(*MBHiB*) + E*WT HiW ≥* <u>i</u> = <u>i</u>
+
+*.* (7.6)
+*i i* *mi* *i* *ai*
+
+The discarded terms are nonnegative, since *M* is positive definite and *B* is symmetric. This is the required estimate on the dense class of double divergences. By Lemma 5.1, such *u* are dense in the centered even subspace of *L²*(*µ*). Each *ψi∈ L²*(*µ*), so all pairings *u 7→* E*uψi*are continuous. Thus (7.6) holds for every centered even *u ∈ L²*(*µ*). For ∑ *F* =*ibiψi*, choose *u* = *F −* E*F*. Then ()1*/*2()1*/*2()1*/*2 ∑ ∑ ∑ ∑ *∥u∥* 2 2= *bidi≤ b²iaid²i/ai≤ b²iai∥u∥*2*.* *i i i i*
+
+If *∥u∥*2= 0, the conclusion is immediate; otherwise division and squaring prove (2.2). This completes the analytic assertion and, by Section 2, Theorem 1.1.
+
+## 8 Volume and measure consequences
+
+With Theorem 1.1 proved, we derive the additive volume inequality stated in the introduction and then apply Saroglou’s transfer theorem to even log-concave measures.
+
+### 8.1 The symmetric Lpvolume inequality
+
+*Proof of Corollary 1.2.* At *λ* = 0*,*1, the assertion follows from *W*[*hK*] = *K* and *W*[*hL*] = *L*. Suppose 0 *< λ <* 1. Set
+
+*a* = *|K|* 1*/n* *>* 0*, b* = *|L|* 1*/n* *>* 0*, K₀* = *a* *−*1 *K, L₀* = *b* *−*1 *L,*
+
+so that *|K₀|* = *|L₀|* = 1. Define
+
+( *p p*
+
+)1*/p*<u>λb</u>
+*p* *c* = (1 *− λ*)*a* + *λb >* 0*, θ* = *p* *∈* (0*,*1)*.* *c*
+
+Then 1 *− θ* = (1 *− λ*)*a* *p* */c* *p*. For every *u ∈ S* *n−*1, the support identities *hK*= *ahK*0and *hL*= *bhL*0, followed by the weighted arithmetic–geometric mean inequality, give ( *p p*
+
+)1*/p*(
+*p p*
+
+)1*/p*
+(1 *− λ*)*hK*(*u*) + *λhL*(*u*) = *c* (1 *− θ*)*hK*0(*u*) + *θhL*0(*u*)
+
+*≥ chK*0(*u*) 1*−θ* *hL*0(*u*) *θ* *.*
+
+All support values here are positive. The Wulff definition is monotone in its support bound and satisfies *W*[*cf*] = *cW*[*f*] for *c >* 0. Hence [()] 1 *θ θL p p* 1*/p* *cW*[*h* *K−*0 *h* 0] *⊂W* (1 *− λ*)*h* *K* + *λh* *L* *.*
+
+By Theorem 1.1, the unscaled body on the left has volume at least 1, because *K₀,L₀* are origin- symmetric and have unit volume. The body on the right therefore has volume at least *c* *n*. Raising this bound to the positive power *p/n* gives (1.2), since *c* *p* = (1 *− λ*)*|K|* *p/n* + *λ|L|* *p/n*.
+
+### 8.2 Even log-concave measures and the (B)-conjecture
+
+We now pass from volume to integration against even log-concave measures. A nonnegative Radon measure *µ* on R *n* is *log-concave* if
+
+*µ*((1 *− θ*)*A* + *θB*) *≥ µ*(*A*) 1*−θ* *µ*(*B*) *θ* (0 *< θ <* 1)
+
+for all compact sets *A,B ⊂* R *n*; it is *even* if *µ*(*A*) = *µ*(*−A*) for every Borel set *A*. Radon measures are finite on compact sets, but their total mass need not be finite. We use the analogous multiplicative definition of log-concavity for nonnegative functions, so the identically zero function is included. Endpoint products in an interpolation inequality are understood as the corresponding endpoint values. Saroglou’s transfer theorem states that the logarithmic Brunn–Minkowski inequality for Lebesgue measure in a dimension *d* implies the same inequality in dimension *d* for every even log-concave density [29, Theorem 3.1]. The density may vanish and need not be normalized. This theorem is stated for densities with respect to *d*-dimensional Lebesgue measure. The reduction be- low makes explicit how it also gives the measure statement when the measure has lower-dimensional support.
+
+**Corollary 8.1** (Measure inequality and scalar (*B*)-conjecture)**.** *Let n ≥* 1*, let µ be an even* *log-concave Radon measure on* R *n* *, and let K,L ⊂* R *n* *be origin-symmetric convex bodies. Then,* *for every* 0 *≤ λ ≤* 1*,* ( 1 *λ* ) 1*−λ λ* *µ W*[*h* *K−λ* *hL*] *≥ µ*(*K*) *µ*(*L*)*.* (8.1)
+
+*Consequently, for every origin-symmetric convex body K ⊂* R *n* *, the function*
+
+R *∋ t 7−→ µ*(*e* *t*
+
+*K*) (8.2)
+*is log-concave.*
+
+*Proof.* Fix 0 *< λ <* 1 and write *D* = *W*[*h¹* *K−λ* *h* *λ* *L*]. The assertion is immediate when *µ* is the zero measure. Otherwise, choose a closed ball *C* centered at the origin large enough that *K ∪L∪D ⊂ C* and 0 *< µ*(*C*) *< ∞*. This is possible because the three bodies are compact and *µ* is a nonzero Radon measure. The probability measure
+
+<u>µ(A∩C)</u> *ν*(*A*) = *µ*(*C*)
+
+is even and log-concave: for compact *A,B*, convexity of *C* gives
+
+(1 *− θ*)(*A∩C*) + *θ*(*B∩C*) *⊂* ((1 *− θ*)*A* + *θB*) *∩ C,*
+
+and the defining inequality for *µ* applies. Since *K,L,D ⊂ C*, the common factor *µ*(*C*) cancels from (8.1). It therefore suffices to prove that inequality for *ν*. Let *E* be the affine hull of supp*ν*. Evenness gives *E* = *−E*, so *E* is a linear subspace. If dim*E* = 0, then *ν* = *δ₀*; all three bodies contain 0, and equality holds. Suppose *d* = dim *E ≥* 1 and identify *E* isometrically with R *d*. By inner regularity, the compact-set definition of log-concavity for *ν* is equivalent to the Borel-set formulation using inner measure. Borell’s characterization [4, Theorem 1.1, with *s* = 0], applied to *ν* on *E*, represents it as an affine image of a log-concave density in a dimension *k ≤ d*. Since its support spans *E*, the affine map has rank *d*. Thus *k* = *d*, the map is invertible, and *ν* has a log-concave density *f* with respect to Lebesgue measure on √
+
+*E*.
+Evenness of *ν* gives *f* (*x*) = *f* (*−x*) almost everywhere; replacing *f* (*x*) by *f* (*x*)*f* (*−x*) gives an even log-concave representative of the same density. Set *KE* = *K∩E* and *LE* = *L∩E*. These are origin-symmetric convex bodies in *E*, since *K* and *L* contain neighborhoods of 0. Define their relative support functions for every *v ∈ E* by
+
+*h* *E* *KE*(*v*) = max *⟨y,v⟩, h* *E* *LE*(*v*) = max*⟨y,v⟩.* *y∈KE y∈LE*
+
+The relative Wulff body in *E* is ⋂ {} *DE* = *x ∈ E* : *⟨x,v⟩≤ h* *E* *KE*(*v*) 1*−λ* *h* *E* *LE*(*v*) *λ* *.* *v∈E*
+
+Using all *v ∈ E* rather than only unit vectors gives the same body by homogeneity. Let *PE* be the orthogonal projection onto *E*. For *x ∈ DE* and *u ∈ S* *n−*1,
+
+### ⟨x,u⟩ = ⟨x,PE u⟩
+
+*≤ h* *E* *KE*(*PE u*) 1*−λ* *h* *E* *LE*(*PE u*) *λ*
+
+*≤ hK*(*u*) 1*−λ* *hL*(*u*) *λ* *.*
+
+Indeed, *h* *E* *KE* (*PE u*) = max*y∈K∩E⟨y,u⟩≤ hK*(*u*), and likewise for *L*; if *PE u* = 0, the middle product is 0. Thus *DE ⊂ D ∩ E.* (8.3)
+
+Theorem 1.1 in dimension *d*, followed by Saroglou’s transfer theorem [29, Theorem 3.1] in that same dimension, gives *ν*(*DE*) *≥ ν*(*KE*) 1*−λ* *ν*(*LE*) *λ* *.*
+
+Since *ν* is supported on *E*, inclusion (8.3) yields
+
+*ν*(*D*) = *ν*(*D∩E*) *≥ ν*(*DE*) *≥ ν*(*K*) 1*−λ* *ν*(*L*) *λ* *,*
+
+as required. At *λ* = 0*,*1, the Wulff bodies are *K,L*, respectively, and the endpoint convention gives equality. Finally, for *s,t ∈* R, the support identity *hesK*= *e* *s* *hK*gives [] [] *W h¹* *e* *s* *−Kλ* *h* *λ* *e* *t* *K* = *W e* (1*−λ*)*s*+*λt* *hK*= *e* (1*−λ*)*s*+*λt*
+
+*K.*
+Applying (8.1) to *e* *s* *K* and *e* *t* *K* proves ( (1*−λ*)*s*+*λt* ) *s* 1*−λ t λ* *µ e K ≥ µ*(*e K*) *µ*(*e K*)*.*
+
+This is exactly the log-concavity in (8.2), and is the scalar-dilation argument of Saroglou [29, Corollary 3.2].
+
+## References
+
+[1] Dominique Bakry and Michel Émery. Diffusions hypercontractives. In *Séminaire de probabilités,* *XIX, 1983/84*, volume 1123 of *Lecture Notes in Mathematics*, pages 177–206. Springer, Berlin,
+
+1985.
+[2] Robert J. Berman and Bo Berndtsson. Real Monge–Ampère equations and Kähler–Ricci solitons on toric log Fano varieties. *Annales de la Faculté des Sciences de Toulouse. Mathé-* *matiques*, 22(4):649–711, 2013.
+
+[3] Béla Bollobás and Imre Leader. Products of unconditional bodies. In J. Lindenstrauss and V. Milman, editors, *Geometric Aspects of Functional Analysis: Israel Seminar (GAFA)* *1992–94*, volume 77 of *Operator Theory: Advances and Applications*, pages 13–24. Birkhäuser, Basel, 1995.
+
+[4] Christer Borell. Convex measures on locally convex spaces. *Arkiv för Matematik*, 12:239–252,
+
+1974. https://doi.org/10.1007/BF02384761.
+[5] Károly J. Böröczky and Pavlos Kalantzopoulos. Log-Brunn–Minkowski inequality under symmetry. *Transactions of the American Mathematical Society*, 375(8):5987–6013, 2022.
+
+[6] Károly J. Böröczky, Erwin Lutwak, Deane Yang, and Gaoyong Zhang. The log-Brunn– Minkowski inequality. *Advances in Mathematics*, 231(3–4):1974–1997, 2012.
+
+[7] Károly J. Böröczky, Erwin Lutwak, Deane Yang, and Gaoyong Zhang. The logarithmic Minkowski problem. *Journal of the American Mathematical Society*, 26(3):831–852, 2013.
+
+[8] Herm Jan Brascamp and Elliott H. Lieb. On extensions of the Brunn–Minkowski and Prékopa– Leindler theorems, including inequalities for log concave functions, and with an application to the diffusion equation. *Journal of Functional Analysis*, 22(4):366–389, 1976.
+
+[9] Shibing Chen, Yong Huang, Qi-Rui Li, and Jiakun Liu. The *Lp*-Brunn–Minkowski inequality for *p <* 1. *Advances in Mathematics*, 368:107166, 2020.
+
+[10]Andrea Colesanti, Galyna V. Livshyts, and Arnaud Marsiglietti. On the stability of Brunn– Minkowski type inequalities. *Journal of Functional Analysis*, 273(3):1120–1139, 2017.
+
+[11] D. Cordero-Erausquin, M. Fradelizi, and B. Maurey. The (*B*)-conjecture for the Gaussian measure of dilates of symmetric convex sets and related problems. *Journal of Functional* *Analysis*, 214:410–427, 2004.
+
+[12] Dario Cordero-Erausquin. Santaló’s inequality on C *n* by complex interpolation. *Comptes* *Rendus Mathématique*, 334(9):767–772, 2002.
+
+[13] Dario Cordero-Erausquin and Bo’az Klartag. Moment measures. *Journal of Functional* *Analysis*, 268(12):3834–3866, 2015.
+
+[14] Semyon Dyatlov. Lecture notes for 18.155: distributions, elliptic regularity, and applications to PDEs, 2026. September 28, 2026 version; accessed October 1, 2026. https://math.mit. edu/~dyatlov/18.155/155-notes.pdf.
+
+[15] Max Fathi. Stein kernels and moment maps. *The Annals of Probability*, 47(4):2172–2185,
+
+2019. Theorem numbering follows arXiv:1804.04699v3, June 7, 2023. https://arxiv.org/ abs/1804.04699v3.
+[16] Xavier Fernández-Real and Xavier Ros-Oton. Regularity theory for elliptic PDE, 2023. https://arxiv.org/abs/2301.01564v1. Public draft of the book published by EMS Press,
+
+2022.
+[17]William J. Firey. *p*-means of convex bodies. *Mathematica Scandinavica*, 10:17–24, 1962.
+
+[18] Luca Iffland. The local logarithmic Brunn–Minkowski inequality for bodies of revolution,
+
+2026. March 25, 2026. https://arxiv.org/abs/2602.17912v2.
+[19] Bo’az Klartag. Logarithmically-concave moment measures I, 2013. https://arxiv.org/abs/
+
+1309.2767v1, September 11, 2013.
+
+[20] Alexander Kolesnikov, Galyna Livshyts, and Liran Rotem. On *p*-Brunn–Minkowski and Brascamp–Lieb inequalities, 2026. https://arxiv.org/abs/2507.12099v3, August 26, 2026; first posted in 2025.
+
+[21] Alexander V. Kolesnikov. Hessian metrics, *CD*(*K,N*)-spaces, and optimal transportation of log-concave measures. *Discrete and Continuous Dynamical Systems*, 34(4):1511–1532, 2014.
+
+[22]Alexander V. Kolesnikov and Emanuel Milman. Local *L* *p* -Brunn–Minkowski inequalities for *p <* 1. *Memoirs of the American Mathematical Society*, 277(1360), 2022.
+
+[23] XiaoRui Lu. Logarithmic Brunn–Minkowski inequality under *n −* 2 reflection symmetries,
+
+2026. August 27, 2026. https://arxiv.org/abs/2608.20730v2.
+[24] Erwin Lutwak. The Brunn–Minkowski–Firey theory. I. mixed volumes and the Minkowski problem. *Journal of Differential Geometry*, 38(1):131–150, 1993.
+
+[25] Emanuel Milman. Centro-affine differential geometry and the log-Minkowski problem. *Journal* *of the European Mathematical Society*, 27(2):709–772, 2025.
+
+[26] Eli Putterman. Equivalence of the local and global versions of the *L* *p* -Brunn–Minkowski inequality. *Journal of Functional Analysis*, 280(9):108956, 2021.
+
+[27] Liran Rotem. A letter: The log-Brunn–Minkowski inequality for complex bodies, 2014. https://arxiv.org/abs/1412.5321v1.
+
+[28] Christos Saroglou. Remarks on the conjectured log-Brunn–Minkowski inequality. *Geometriae* *Dedicata*, 177:353–365, 2015. Theorem numbering follows arXiv:1311.4954v4, July 30, 2014. https://arxiv.org/abs/1311.4954v4.
+
+[29] Christos Saroglou. More on logarithmic sums of convex bodies. *Mathematika*, 62(3):818–841,
+
+2016. Theorem numbering follows arXiv:1409.4346v2, November 6, 2014. https://arxiv. org/abs/1409.4346v2.
+[30] Alina Stancu. A PDE approach to geometric inequalities. In *Convex Geometry and its* *Applications*, volume 15 of *Oberwolfach Reports*, pages 3262–3264. EMS Press, 2018. No. 4, Report 54/2018. https://doi.org/10.4171/OWR/2018/54.
+
+[31] B. Uhrin. Curvilinear extensions of the Brunn–Minkowski–Lusternik inequality. *Advances in* *Mathematics*, 109(2):288–312, 1994.
+
+[32] Ramon van Handel. The local logarithmic Brunn–Minkowski inequality for zonoids. In Ronen Eldan, Bo’az Klartag, Alexander Litvak, and Emanuel Milman, editors, *Geometric* *Aspects of Functional Analysis: Israel Seminar (GAFA) 2020–2022*, volume 2327 of *Lecture* *Notes in Mathematics*, pages 355–379. Springer, Cham, 2023. Theorem numbering follows arXiv:2202.09429v2, November 21, 2022. https://arxiv.org/abs/2202.09429v2.
+
+[33] Yu Wang. On the *C²* *,α* -regularity of the complex Monge–Ampère equation. *Mathematical* *Research Letters*, 19(4):939–946, 2012.
+
+[34] Dongmeng Xi. A very short unified proof of Dar’s conjecture and Log-Brunn–Minkowski in the plane, 2026. September 8, 2026. https://arxiv.org/abs/2609.08495v1.

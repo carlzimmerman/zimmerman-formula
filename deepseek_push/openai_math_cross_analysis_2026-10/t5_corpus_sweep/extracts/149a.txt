@@ -1,0 +1,325 @@
+# Uniform Permanence in Weakly Reversible Mass-Action Systems
+
+OpenAI
+
+### October 5, 2026
+
+**Abstract**
+
+We prove the permanence conjecture for finite weakly reversible mass-action systems with fixed positive reaction rates. Every positive stoichiometric compatibility class admits one compact convex forward-invariant set that every positive trajectory in that class enters in finite time, even when the class is unbounded. The set depends only on the network, the rates, and the class; the entry time may depend on the initial state. Thus, after its entry time, every concentration satisfies the same positive lower and finite upper bounds throughout that class.
+
+## 1 Introduction
+
+Weak reversibility requires every reaction in a chemical reaction network to have a directed return path. It is natural to ask whether this graph condition alone prevents concentrations from approaching zero or infinity. Permanence asks for more: after a transient, all trajectories allowed by the same conservation laws must satisfy the same positive lower and finite upper bounds. We prove this conclusion for arbitrary finite weakly reversible networks with fixed positive reaction rates.
+
+### 1.1 The problem and main result
+
+Let *d≥* 1. A finite reaction network consists of a set of*complexes C⊂*Z *d* *≥*0and a set of directed *reactions R⊂C×C*. We write *y→y* *′* for(*y,y* *′* ) *∈R*. The network is*weakly reversible*if for every *y→y* *′* *∈R* there is a directed path from *y* *′* to *y*. A*linkage class*is a connected component of the underlying undirected graph. Assign a positive constant *ky→y′* to each reaction. The mass-action equation is
+
+∑︂ ∏︂*d* *y* ˙*x*=*f*(*x*) := *ky→y′ x* *y* (*y* *′* *−y*)*, x* *y* := *x* *i* *i*
+
+*.*(1.1)
+*y→y′∈R i*=1
+
+The*stoichiometric subspace*and the*positive stoichiometric class*of*c∈*R *d* *>*0are
+
+*S*:= spanR*{y* *′* *−y*: *y→y* *′* *∈R}, P*:= (*c*+*S*)*∩*R *d* *>*0*.*
+
+Since *f* (*x*) *∈S*, any positive solution starting in *P* remains in *P* for as long as it exists. The class*P*need not be bounded.
+
+A global positive trajectory is*persistent*if lim inf*t→∞xi*(*t*) *>* 0for every *i*. These lower bounds may depend on the trajectory. We call the system*permanent on P* if every solution starting in *P* is global and positive, and there is one compact set *K⊂P* that eventually contains each such solution. The entry time may depend on the initial point, but *K* may not. This is the classwise uniformity in the permanence question [2, Definition 4.1].
+
+**Theorem 1.1.***Let C⊂*Z *d* *≥*0*be finite, let R⊂C×C be weakly reversible, and fix positive rate* *constants in* (1.1)*. For every positive stoichiometric class P there is a nonempty compact convex* *set KP ⊂P with the following properties. Every initial point x⁰ ∈P gives a unique global positive* *solution, and there is a finiteT*(*x⁰*)*≥*0*such that*
+
+*x*(*t*)*∈KP* (*t≥T*(*x⁰*))*.*
+
+*Moreover, KP is forward invariant. In particular, there is εP∈* (0*,*1)*, depending only on the* *network, the fixed rates, andP, such that every such solution satisfies*
+
+*εP≤xi*(*t*)*≤ε* *−* *P* 1 (1*≤i≤d, t≥T*(*x⁰*))*.*(1.2)
+
+Thus the fixed-positive-rate, weakly reversible formulation of the permanence conjecture holds, including on unbounded classes. The uniformity in (1.2) is within each fixed class and rate choice; the transient time is allowed to depend on*x⁰*.
+
+### 1.2 Historical context and the contribution
+
+The structural theory of mass-action systems begins with the work of Horn and Jackson and of Feinberg [8, 5]. A system is*complex-balanced*if it has a positive state at which the total incoming and outgoing reaction fluxes agree at each complex. For a complex-balanced system, the classical theory gives a unique positive equilibrium in each positive stoichiometric class and an entropy-type Lyapunov function. Complex balance imposes conditions on the rates as well as the graph; weak reversibility by itself does not impose these balance identities. Feinberg’s discussion of weakly reversible systems [6, Remark 6.1.E] raised the question of excluding limiting states with a zero concentration. Persistence excludes approach to the boundary even along subsequences, and permanence adds upper bounds and uniformity over initial points. Important partial results developed both the dynamical picture and the geometric methods. Anderson proved that every positive trajectory of a complex-balanced system with one linkage class converges to its class’s positive equilibrium [1, Corollary 4.11]. Craciun, Nazarov, and Pantea proved permanence for two-species weakly reversible systems, as part of their more general theorem for endotactic networks [4, Theorem 6.4]. Their endotactic condition expresses an inward-pointing property of the reactions seen in every direction. Pantea proved persistence of bounded weakly reversible trajectories when dim*S* = 2, with no restriction to two species [10, Theorem 5.1]. Gopalkrishnan, Miller, and Shiu proved permanence under the geometric condition of strong endotacticity, which includes every weakly reversible network with one linkage class [7, Theorems 1.1 and 1.3]. Boros and Hofbauer later gave another proof of the single-linkage permanence theorem, producing a compact forward-invariant absorbing set [2, Theorem 4.2]. These permanence results also permit rates varying in time within fixed positive bounds. Craciun’s toric-differential-inclusion appro... [truncated]
+
+above and away from zero; its complex-balanced application establishes global convergence [3, Section 8, final remark]. The general weakly reversible persistence statement there assumes boundedness of the trajectory. Our theorem treats fixed rates and supplies one eventual bound for every trajectory in a class. The immediate input to the present argument is the affine approximation lemma and trapping construction of [9]. That paper proves that every prescribed positive initial point belongs to a compact convex forward-invariant set contained in the positive orthant. Such sets give boundedness and persistence, but may depend on the initial point. We reproduce the affine lemma and its proof in Section 2, and adapt the trapping construction in Section 3. The additional arguments establish strict increase away from a trapping set and connect trapping sets at different scales. They turn bounds for individual trajectories into permanence on a fixed class. Monomial comparisons and invariant regions have the earlier antecedents just described; the affine approximation lemma is credited to [9, Lemma 2.1 and Corollary 2.2].
+
+### 1.3 Proof overview
+
+Fix one representative *c∈P*. For0 *< h <* 1, set *Bh*= [*h,h* *−*1] *d*. Every *x∈Bh*has a unique representation *x* = (*h* *p* 1 *,...,h* *p* *d* )with *p∈* [*−*1*,*1] *d*. The affine lemma constructs a finite concave minimum
+
+(︁)︁
+*Fh*(*x*) = min *rλ·x*+*bλ*(*h*)*,* *λ∈*Λ
+
+whose slopes *rλ∈* [*−*1*,*1] *d* are independent of *h*. A label *λ* is*active*at *x* when it attains this minimum. For any prescribed tolerance *E* : [*−*1*,*1] *d* *→* (0*,∞*), the construction ensures *∥rλ−p∥* *∞* *< E*(*rλ*)for every active label, uniformly for small *h*. We choose the tolerance so that every nonzero comparison *rλ·v*, where *v* is a coordinate vector or a difference of distinct complexes, has the same sign as *p·v*. To preserve these signs, our tolerance shrinks near a hyperplane *r·v* = 0; on the hyperplane, the zero comparison imposes no restriction. This is why the affine lemma allows a discontinuous tolerance. When *rλ·v̸*= 0, finiteness of the slope family also gives a uniform positive lower bound for*|p·v|*. At sufficiently small scales, the labels active at *c* have zero slope, so *Fh*(*c*)is the global maximum of*Fh*. Its plateau
+
+*Kh*:=*{x∈*R *d* : *Fh*(*x*) =*Fh*(*c*)*}*
+
+is compact and convex, contains *c*, and satisfies *Kh⊂*int*B* *√h* (Proposition 3.1). The restriction to *P* now supplies the decisive strictness condition. A member of the affine family whose slope lies in *S* *⊥* is constant on *c* + *S*, so its value on *P* is at least *Fh*(*c*). Such a label cannot be active at a point of*P\Kh*. For any active label *λ*, order the complexes by the levels *rλ·y*, and separate consecutive levels by cuts. If a downward reaction crosses a cut, its directed return path contains an upward crossing. Monomials at lower source levels dominate those at higher levels, so one upward flux exceeds the entire downward flux for sufficiently small *h*. The net upward flux across each cut is therefore nonnegative, and is positive whenever a reaction crosses it. Summing these fluxes times the gaps between levels gives *rλ·f*(*x*) *≥* 0, with strict inequality when *rλ/∈S* *⊥*. Compactness at each fixed scale makes the strict inequality uniform over all active labels to which it applies (Proposition 3.2). Thus *Fh*is nondecreasing along solution segments in *Bh*and increases at a fixed positive rate on *Bh∩* (*P\Kh*). A trajectory in *P* that stays in *Bh*for all later times must reach*Kh*in finite time and remain there.
+
+Every initial point in *P* belongs to some *Kh*, giving global existence first. The inclusion *Kh⊂B* *√h* then permits passage to a larger scale. Repeated square roots, capped at a scale *hP* fixed by the class, reach *hP*after finitely many steps. Section 4 carries out this iteration and obtains*KP* =*Kh* *P* *∩*(*c*+*S*), with*hP*chosen independently of the initial point.
+
+## 2 Affine minima with arbitrary tolerance
+
+The proof will use a finite minimum of affine functions on the positive orthant. Its essential property is that an active slope approximates the exponent vector of the point where it is active. The allowed error will depend on the slope and may be discontinuous. We prove the construction and its uniform consequence from [9, Lemma 2.1 and Corollary 2.2] in full. For*m≥*1,*u∈*R *m*, and0*< h <*1, put
+
+*Xh*(*u*) = (*h* *u* 1 *,...,h* *u* *m* )*.*
+
+A*label λ* = (*rλ,bλ*)consists of a slope *rλ∈*R *m*, independent of *h*, and an offset *bλ*(*h*)defined for all sufficiently small positive*h*. For a finite nonempty familyΛof labels, write
+
+(︁)︁
+*Fh*(*x*) = min *rλ·x*+*bλ*(*h*)*.* *λ∈*Λ
+
+A label is*active at x* if its affine value equals *Fh*(*x*). Every minimizing label is active when there is a tie. All offsets in a finite family are understood to be restricted to a common interval on which they are defined.
+
+**Lemma 2.1**(Affine approximation with arbitrary tolerance)**.***Let m≥* 1*be an integer, let a < b* *be real numbers, and let E* : [*a,b*] *m* *→* (0*,∞*)*be any function. There is a finite nonempty family* Λ*of labels with* *r* *λ∈*[*a,b*] *m* *, bλ*(*h*) =*o*(*h* *a* ) (*h→*0+)*,*
+
+*such that the following implication holds. If hν→* 0+*, p* *ν* *∈*R *m* *converges to p∈* [*a,b*] *m* *, and a* *fixed labelλ∈*Λ*is active atXhν*(*p* *ν* )*for everyν, then*
+
+*∥p−rλ∥* *∞* *< E*(*rλ*)*.*
+
+*The slopes and the family are independent of h. No regularity is assumed of E, and the approxi-* *mating vectorsp* *ν* *need not lie in*[*a,b*] *m* *.*
+
+*Proof.* We induct on *m*. Write *µ*(*u*) = min*iui*and**1**= (1*,...,*1). Since the largest coordinate of *Xh*(*u*)is *h* *µ*(*u*), we first construct a family for each fixed value *t* of the smallest exponent. We then extend its guarantee to a neighborhood of *t* and combine finitely many such families by shifting their offsets. The fixed-minimum construction is a singleton when *m* = 1; the extension and combination therefore also prove the base case. Throughout the proof, asymptotic comparisons along *hν→* 0+and *p* *ν* *→p* use fixed gaps between limiting exponents. In particular, if *pi> q*, then eventually *p* *ν* *i≥q* + *δ* for some *δ >* 0, *p* *ν* *i qν p* *ν* *i qν* so *hν*= *o*(*h*); if *pi< q*, the ratio *hν/h* tends to infinity. We shall use these comparisons only with strict limiting gaps.
+
+*A family for a fixed minimum.*Fix *t∈* [*a,b*]. We construct a finite familyΛ*t*containing(*t***1***,*0), with *µ*(*r*) = *t* for every slope, such that the conclusion of the lemma holds for activity withinΛ*t* whenever*µ*(*p*) =*t*.
+
+If *m* = 1or *t* = *b*, the family *{*(*t***1***,*0)*}* suffices: a point *p∈* [*a,b*] *m* with *µ*(*p*) = *t* then equals *t***1**. Otherwise *m >* 1and *t < b*. Say a label has*type k* if exactly *k* entries of its slope exceed *t*, the remaining entries being *t*. Start with the type0label(*t***1***,*0), and construct types *k* = 1*,...,m−*1 successively. After type*k−*1has been constructed, choose*βk*satisfying
+
+*t < βk< b, βk< βk−*1if*k >*1*,* *βk−t < E*(*r*)for every slope*r*of type*k−*1.
+
+These conditions use only finitely many positive values of *E*, so such a choice is possible. The new type *k* labels will force every limiting exponent on a coordinate left at *t* by a type *k−* 1 label that stays active to be at most *βk*. The last inequality will then bound the error by that label’s tolerance. For each *k*-element coordinate set *U⊂{*1*,...,m}* and *s∈* [*βk,b*] *U*, let *r*(*s*)equal *s* on *U* and *t* off *U*. Apply the induction hypothesis in dimension *k* to this cube with tolerance *s↦→E*(*r*(*s*)), identifying *U* with its naturally ordered coordinates. For every resulting label(*s,d*), add toΛ*t* the type*k*label *r*=*r*(*s*)*, c*(*h*) =*−h* *β* *k* +*d*(*h*)*, d*(*h*) =*o*(*h* *β* *k*
+
+)*.*(2.1)
+Here and below *c* denotes a local offset. The resulting family is finite, and all its offsets are *o*(*h* *t* ). The negative offset favors raising slope entries on coordinates where *Xh*(*p*)is small; the decreasing*βk*make that preference stronger with each successive type. To verify the guarantee, let *p* *ν* *→p∈* [*a,b*] *m* with *µ*(*p*) = *t*, and suppose a type *k* label(*r,c*) stays active withinΛ*t*along *hν→* 0+. Let *U* be its raised coordinate set, and abbreviate *h* = *hν*. For*k >*0, comparison with(*t***1***,*0)gives ∑︂*ν* (*ri−t*)*h* *p* *i≤hβk−d*(*h*) = (1 +*o*(1))*hβk.* *i∈U*
+
+Every coefficient on the left is at least *βk−t >* 0. A limiting exponent *pi< βk*would make the corresponding term divided by*h* *β* *k*tend to infinity. Therefore
+
+*pi≥βk*(*i∈U*)*.*(2.2)
+
+Among labels made from this same *U*, all contributions off *U* and the term *−h* *β* *k*are common. Thus(*s,d*)is active in the family furnished by induction. Its limiting exponent vector lies in [*βk,b*] *U*, so max *|pi−ri|< E*(*r*)*.* *i∈U* The approximating vectors*p* *ν* *U* may approach a face of that cube from outside. This is why the induction statement allows them outside the cube, including when*pi*=*βk*or*pi*=*b*. It remains to bound the coordinates off *U*. This argument also includes type0, for which *U*=∅. If*k < m−*1, we claim that
+
+*pi≤βk*+1(*i /∈U*)*.*
+
+Otherwise choose *j /∈U* with *pj> βk*+1and any type *k* + 1label raised on *U∪{j}*. Every limiting exponent on this set exceeds *βk*+1, by (2.2) and *βk> βk*+1when *k >* 0. The competitor’s affine value minus that of(*t***1***,*0)is therefore
+
+*−h* *β* *k*+1 +*o*(*h* *β* *k*+1 )*.*
+
+For the supposed active label, the same difference is zero if *k* = 0, and is bounded below by *−h* *β* *k*+ *o*(*hβk*)if *k >* 0. Since *hβk*= *o*(*hβk*+1), the competitor is strictly smaller for all sufficiently small*h*along the sequence, a contradiction. Consequently, off*U*,
+
+### |pi−ri|≤βk+1−t < E(r).
+
+If *k* = *m−* 1, there is just one coordinate off *U*. Its limiting exponent is *t*, since *µ*(*p*) = *t* and all coordinates on *U* have limiting exponents greater than *t*. Its error is zero. This proves the required strict bound for every active label at the fixed minimum.
+
+*Extension to nearby minima.*For a fixed label *λ* = (*r,c*) *∈* Λ*t*, let *Aλ⊂* [*a,b*] *m* consist of the limits of all sequences *p* *ν* *∈*R *m* for which *hν→* 0+and *λ* is active withinΛ*t*at *Xhν*(*p* *ν* ). This set is closed. Indeed, if *zn∈Aλ*and *zn→z*, choose from a sequence realizing *zn*a parameter 0 *< hn<* 1*/n* and a vector *un*with *∥un−zn∥* *∞* *<* 1*/n* such that *λ* is active at *Xhn*(*un*). Then *un→z*, so this selected sequence realizes *z∈Aλ*. This argument uses actual active points and requires no continuity of the offsets in*h*. The set of limits violating the desired estimate, ⋃︂ *Bt*= *{p∈Aλ*:*∥p−r∥* *∞* *≥E*(*r*)*},* *λ*=(*r,c*)*∈*Λ*t*
+
+is compact: the union is finite and each *E*(*r*)here is a fixed number. The preceding argument shows that *Bt*contains no point with *µ*(*p*) = *t*. Continuity of *µ* and compactness therefore give *ρt>*0such that*Bt*contains no point with
+
+*µ*(*p*)*∈It*:= (*t−ρt,t*+*ρt*)*.*
+
+If *Bt*is empty any positive radius initially suffices; otherwise take *ρt<*min*p∈Bt|µ*(*p*)*−t|*. Thus Λ*t*has the asserted limiting activity property whenever*µ*(*p*)*∈It*. Shrink*ρt*further, if necessary, so that every local offset obeys
+
+*c*(*h*) =*o*(*h* *t*+*ρt*
+
+)*.*(2.3)
+For a nonsingleton family, choose *t* + *ρt<*min*kβk*and use (2.1); for a singleton the offset is zero. We have obtained a family valid near each possible minimum exponent. The remaining task is to ensure that a globally active label comes from a family valid at its own limiting point.
+
+*Combining the families.*Take a finite subcover of[*a,b*]from the intervals *It*. Discard intervals contained in others, keeping just one if two coincide, and order the remaining centers as *t₁ <···< tN*. Write *Itj*= (*Lj,Rj*). Noncontainment forces both endpoints to have the same strict order; since*tj*= (*Lj*+*Rj*)*/*2, it is the order of the centers. Hence
+
+### L₁ <···< LN, R₁ <···< RN.
+
+Consecutive intervals overlap. If *Rj≤Lj*+1, a point of[*Rj,Lj*+1] *⊂* (*tj,tj*+1) *⊂* [*a,b*]would be uncovered. The first interval contains*a*and the last contains*b*. For1*≤j < N*, choose a cut
+
+(︁)︁
+*q* *j∈* max*{tj,Lj*+1*},*min*{tj*+1*,Rj} .*
+
+*I* *t* 1 *I* *t* 2 *I* *t* 3
+
+*µ*(*p*) *a*=*q₀ t₁ q₁ t₂ q₂ t₃ b*=*q₃*
+
+Figure 1: Combining three local families, schematically. Each thick closed interval[*qj−*1*,qj*]lies
+
+inside the open neighborhood *Itj*where its family is valid. The shifts in (2.5) force the limiting minimum exponent of an active label into this closed interval. At a cut, either neighboring family remains valid.
+
+The interval displayed is nonempty because consecutive intervals overlap and each contains its own center. With*q₀* =*a*and*qN*=*b*, we have
+
+*t* *j< qj< tj*+1(1*≤j < N*)*,*[*qj−*1*,qj*]*⊂Itj*(1*≤j≤N*)*.*(2.4)
+
+For *N* = 1, the sole interval contains[*a,b*]and no interior cuts are needed. The closed intervals in (2.4) are the ranges of minimum exponents assigned to the respective families; see Figure 1. Combine the selected families, replacing every local offset*c*(*h*)inΛ*tj*by
+
+*j* ∑︂ *−*1 *c*˜︁(*h*) =*c*(*h*)*− h* *q* *ℓ*
+
+*.*(2.5)
+*ℓ*=1
+
+These offsets are *o*(*h* *a*
+
+): (2.3) has *tj*+ *ρtj> a*, and each shift exponent satisfies *qℓ> tℓ≥a*. A
+common shift preserves activity within each family. Between consecutive families, the new term *−h* *q* *j*will force any limiting minimum exponent to the correct side of the cut. Suppose a fixed label fromΛ*tj*is active in the combined family along *hν→* 0+and *p* *ν* *→p∈* [*a,b*] *m*. Write*c*(*h*)for its original local offset and*h*=*hν*. We claim
+
+*q* *j−*1*≤µ*(*p*)*≤qj.* *p* *νq* *jqj* If *j < N* and *µ*(*p*) *> qj*, each coordinate *hi*is *o*(*h*). Also *c*(*h*) = *o*(*h*), by (2.3) and *q* *j< Rj*= *tj*+ *ρtj*. Subtracting the value of the shifted label(*tj*+1**1***,*0)from the active label’s value gives (*r−tj*+1**1**)*·Xh*(*p* *ν* ) +*c*(*h*) +*h* *q* *j* =*h* *q* *j* +*o*(*h* *q* *j*
+
+)*>*0*,*
+a contradiction. If *j >* 1and *µ*(*p*) *< qj−*1, compare instead with the shifted label(*tj−*1**1***,*0). The difference is
+
+(*r−tj−*1**1**)*·Xh*(*p* *ν* ) +*c*(*h*)*−h* *q* *j−*1 *.*
+
+Every coefficient in the scalar product is at least *tj−tj−*1*>* 0. Some coordinate has *pi< qj−*1, so its exponential divided by *h* *q* *j−*1tends to infinity. Meanwhile, *c*(*h*) = *o*(*hqj−*1)because *q* *j−*1*< tj< tj*+ *ρtj*. Thus the displayed difference divided by *h* *q* *j−*1tends to+*∞*, again contradicting activity. The outer bounds for*j*= 1or*j*=*N*follow from*µ*(*p*)*∈*[*a,b*]. By (2.4), the claimed bounds place *µ*(*p*)inside *Itj*, including when it equals a cut. The label is active within its original local family, so the guarantee on *Itj*gives *∥p−r∥* *∞* *< E*(*r*). This completes the induction.
+
+The sequential formulation yields the uniform statement needed below. Its order of choices is important: the family, and hence its finite set of slopes, is fixed before the upper bound on *h* is chosen.
+
+**Corollary 2.2**(Uniform activity bound)**.***Let m≥* 1*, a < b, and E* : [*a,b*] *m* *→* (0*,∞*)*be as in* *Lemma 2.1. Fix a family*Λ*supplied by that lemma. There is h₀ ∈* (0*,*1)*such that, for every* 0*< h < h₀ and everyp∈*[*a,b*] *m* *, each labelλ∈*Λ*active atXh*(*p*)*satisfies*
+
+*∥p−rλ∥* *∞* *< E*(*rλ*)*.*
+
+*Proof.* Otherwise there are *hν→* 0+, points *p* *ν* *∈* [*a,b*] *m*, and active labels *λν*such that *∥p* *ν* *−rλν∥* *∞* *≥E*(*rλν*). By finiteness and compactness, pass to a subsequence on which *λν*= *λ* is fixed and *p* *ν* *→p∈* [*a,b*] *m*. The inequality passes to the limit and contradicts Lemma 2.1. No continuity of*E*is needed because its argument*rλ*is fixed on this subsequence.
+
+## 3 Compact plateaux and strict increase
+
+We now apply Corollary 2.2 to the reaction network. For each sufficiently small scale we will construct a compact set in the positive orthant that is forward invariant. For a fixed positive stoichiometric class, we will also prove that a trajectory in that class remaining in the scale’s box reaches this set in finite time. The affine minimum and sign argument adapt the trapping construction of [9, Section 3]; the strict increase away from a plateau is the additional property needed for finite entry within a fixed class. Use*Xh*from Section 2 with*m*=*d*, and for0*< h <*1put
+
+*Bh*= [*h,h* *−*1] *d* *.*
+
+Every *x∈Bh*is uniquely *Xh*(*p*)for *p∈* [*−*1*,*1] *d*, with *p* = log*x/*log*h*, where the logarithm of a vector is taken coordinatewise. We first choose the tolerance in Corollary 2.2 so that active slopes determine both coordinate signs and the ordering of monomials. Let
+
+### D={ei: 1≤i≤d}∪{z−y: y,z∈C, z̸=y},(3.1)
+
+where *ei*is the *i*th coordinate vector. This is a finite set of nonzero vectors. We include all pairs of complexes because the flux estimate will compare sources of different reactions, possibly in different components of the reaction graph. Define, for*r∈*[*−*1*,*1] *d*, (︄{︃}︃ {︄}︄)︄ <u>1 |r·v|</u> *E*(*r*) = min *∪* : *v∈D, r·v̸*= 0*.*(3.2) 2 2*∥v∥* 1
+
+Zero scalar products impose no sign restriction and are omitted. Thus *E* is positive at every point, including on the comparison hyperplanes; no continuity is needed. Fix the finite nonempty family supplied by Corollary 2.2 for this*E*, and write its affine functions as
+
+*Lλ,h*(*x*) =*rλ·x*+*bλ*(*h*)*, Fh*(*x*) = min*Lλ,h*(*x*)*.* *λ∈*Λ
+
+The slopes *rλ∈* [*−*1*,*1] *d* and the index setΛare fixed independently of *h*. A label *λ* is active at *x* if *Lλ,h*(*x*) = *Fh*(*x*); denote the set of these labels by *Ah*(*x*). For every sufficiently small *h*, the activity estimate is
+
+*x*=*Xh*(*p*)*∈Bh, λ∈Ah*(*x*) =*⇒ ∥ p−rλ∥* *∞* *< E*(*rλ*)*.*(3.3)
+
+Because the family of slopes is fixed and finite, the number (︃ {︃}︃)︃ <u>|rλ·v|</u> *H*= min *{*1*}∪* : *λ∈*Λ*, v∈D, rλ·v̸*= 0 (3.4) 2
+
+### is positive. Ifx=Xh(p)∈Bh,λ∈Ah(x), andr=rλ, then
+
+<u>|r·v|</u> *|*(*p−r*)*·v|≤∥p−r∥* *∞* *∥v∥* 1 *< E*(*r*)*∥v∥* 1 *≤* (*v∈D, r·v̸*= 0)*.* 2
+
+Consequently,
+
+### r·v̸= 0 =⇒sgn(p·v) = sgn(r·v),|p·v|≥H(v∈D).(3.5)
+
+Fix a positive stoichiometric class *P*, and choose one representative *c∈P* once for this class. Choose *hP∈* (0*,*1)so small that the affine functions are defined and (3.3) holds for every 0*< h≤hP*, and also ⃦ ⃦ ∑︂ ⃦<u>logc</u> ⃦ *H* ⃦ ⃦ *< H, h k* *e<*min*ke*(0*< h≤hP*)*.*(3.6) ⃦ log *h* ⃦ *e∈R* *∞ e∈R*
+
+The second inequality is imposed only when *R̸*= ∅. Such a choice exists because *H >* 0, all the rates are positive, and both1*/|*log*h|* and *h* *H* tend to zero as *h* tends to zero. In particular, *c∈*int*Bh*for these scales. All the remaining statements of this section concern0*< h≤hP*.
+
+### Proposition 3.1(The compact plateau).For0< h≤hP, let
+
+*Mh*=*Fh*(*c*)*, Kh*=*{x∈*R *d* : *Fh*(*x*) =*Mh}.*
+
+*There is a constant label with value Mh, and Fh≤Mhon* R *d* *. The set Khis nonempty, compact,* *and convex, and* *Kh⊂*int*B* *√h*
+
+*.*(3.7)
+*Proof.* Write *pc*= log*c/*log*h*. If a label active at *c* had a nonzero coordinate *rλ,i*, (3.5) with *v* = *ei*would give *|pc,i|≥H*, contrary to (3.6). Thus every label active at *c* has zero slope. At least one label is active there, so one of the affine functions is the constant *Mh*. It follows that *Fh≤Mh*everywhere, and that*Mh*is the least value of any constant label. Hence ⋂︂ *Kh*= *{x∈*R *d* : *Lλ,h*(*x*)*≥Mh}* *λ∈*Λ
+
+is closed and convex, and contains*c*. If *x* = *Xh*(*p*) *∈Kh∩Bh*, the constant label with value *Mh*is active at *x*. Applying (3.3) to its zero slope gives
+
+<u>1</u> *√h* *∥p∥* *∞* *< E*(0) =*,*and thus*x∈*int*B.* 2
+
+In particular, *Kh*misses the boundary of *Bh*. If some point of *Kh*lay outside *Bh*, the segment joining it to *c∈*int*Bh*would meet that boundary at a point of *Kh*, by convexity. This is impossible. Thus *Kh⊂Bh*, and the preceding argument proves (3.7) for every point of *K*<u>h</u>. Closedness and boundedness give compactness.
+
+The plateau is now a compact candidate for a trapping set. A slope in *S* *⊥* gives an affine function that is constant on *P*. We first exclude such slopes below the plateau, then compare reaction fluxes to prove strict increase for every remaining active label.
+
+**Proposition 3.2**(Increase of active affine functions)**.***Fix*0 *< h≤hP. For every x∈Bhand* *everyλ∈Ah*(*x*)*,* *r* *λ·f*(*x*)*≥*0*, rλ·f*(*x*)*>*0*ifrλ/∈S* *⊥*
+
+*.*(3.8)
+*Moreover, there is a numberδh>*0*such that*
+
+*r* *λ·f*(*x*)*≥δhwheneverx∈Bh, λ∈Ah*(*x*)*, rλ/∈S* *⊥*
+
+*.*(3.9)
+*At every point of P\Kh, all active slopes lie outside S* *⊥* *. In particular,* (3.9) *applies to every* *active label at eachx∈Bh∩*(*P\Kh*)*.*
+
+*Proof.*First, let*x∈P\Kh*. If*rλ∈S* *⊥*, then*x−c∈S*implies
+
+### Lλ,h(x) =Lλ,h(c)≥Fh(c) =Mh.
+
+But*Fh*(*x*)*< Mh*by Proposition 3.1. Such a label cannot be active at*x*. If *R* is empty, then *f* = 0and *S* = *{*0*}*, so (3.8) holds and (3.9) is vacuous. For the flux comparison, assume *R̸*= ∅ and fix *x* = *Xh*(*p*) *∈Bh*and an active slope *r*. Whenever *y,z∈C* satisfy*r·y < r·z*, (3.5) applied to*z−y*gives
+
+<u>x</u> *z* *p·*(*z−y*) *H* *y* =*h ≤h.*(3.10) *x*
+
+List the distinct values of *r·y*, for *y∈C*, as *a₁ <···< am*. For1 *≤j < m*, define the net upward flux across the cut at*aj*by ∑︂ ∑︂ *Qj*(*x*) = *ku→u′ x* *u* *− ku→u′ x* *u* *.* *u→u′∈R*: *u→u′∈R*: *r·u≤aj<r·u′r·u′≤aj<r·u*
+
+An edge crossing the cut in the first sum is called upward, and an edge in the second sum is called downward. If there is a downward edge *u→u* *′*, weak reversibility supplies a directed path from *u* *′* back to *u*. This path starts below the cut and ends above it, so it contains an upward edge, say *w→w* *′*. Every source*u*of a downward edge has*r·u > r·w*. By (3.10) and (3.6), ∑︂ ∑︂ *ku→u′ x* *u* *≤h* *H* *x* *w* *ke< kw→w′ x* *w* *.* *u→u′∈R*: *e∈R* *r·u′≤aj<r·u*
+
+Thus one upward edge already contributes more than the entire downward sum, and *Qj*(*x*) *>* 0. If there is no downward edge, then *Qj*(*x*) *≥* 0, with strict inequality whenever there is an upward edge. In all cases*Qj*(*x*)is nonnegative, and it is positive if any reaction crosses the cut. The contribution of an edge to *r·f*(*x*)is its flux multiplied by the difference between the levels of its target and source. Writing this difference as the signed sum of the intervening gaps gives *m* ∑︂*−*1 *r·f*(*x*) = (*aj*+1*−aj*)*Qj*(*x*)*.*(3.11) *j*=1
+
+Every term is nonnegative. If *r /∈S* *⊥*, some reaction *y→y* *′* satisfies *r·*(*y* *′* *−y*) *̸*= 0and therefore crosses at least one cut; the corresponding term is positive. This proves (3.8). When *m* = 1, the sum is empty and every reaction has zero scalar product with *r*, as required. Self-loops never cross a cut and contribute zero to the vector field. For the uniform bound, the active set of a fixed label,
+
+*Tλ,h*=*{x∈Bh*: *Lλ,h*(*x*) =*Fh*(*x*)*},*
+
+is compact. If *rλ/∈S* *⊥* and *Tλ,h*is nonempty, the continuous function *rλ·f* is strictly positive on this set and has a positive minimum there. Take the minimum of these positive numbers over the finitely many eligible labels. If there are none, choose any *δh>* 0. This proves (3.9), including the case*R*=∅.
+
+The strict inequality in Proposition 3.2 is uniform at a fixed scale even near the plateau. Together with the finite nature of the affine minimum, this gives a direct finite-time trapping statement.
+
+**Lemma 3.3**(Trapping and finite entry)**.***Fix*0 *< h≤hP. Along any solution segment contained* *in Bh, the function t↦→Fh*(*x*(*t*))*is nondecreasing. If the segment x*([*s,t*])*is contained in* *Bh∩*(*P\Kh*)*, then* *Fh*(*x*(*t*))*−Fh*(*x*(*s*))*≥δh*(*t−s*)*.*(3.12)
+
+*Every solution starting in Khexists for all nonnegative time and remains in Kh. In particular,* *solutions starting in Kh∩P remain in Kh∩P. Finally, any global solution in P that stays in* *Bhfrom some time onward entersKhin finite time and then remains there.*
+
+*Proof.* For a solution *x*(*t*)and each fixed time *t* before its maximal existence time, the right derivative of its affine minimum is
+
+<u>d</u> + *Fh*(*x*(*t*)) = min *rλ·f*(*x*(*t*))*.*(3.13) *dt λ∈Ah*(*x*(*t*))
+
+Indeed, all inactive labels have a positive gap above the minimum at time *t*. There are finitely many of them, so continuity excludes them from the minimum for a sufficiently short time to the right. For each active label, differentiability of the solution gives
+
+### Lλ,h(x(t+s)) =Fh(x(t)) +srλ·f(x(t)) +o(s) (s↓0).
+
+Taking the minimum of these finitely many expansions proves (3.13). We use the elementary fact that a continuous function *g* on[*a,b*]with right derivative at least *q* at every point of[*a,b*)satisfies *g*(*b*) *−g*(*a*) *≥q*(*b−a*). For completeness, for any *η >* 0 the function *g*(*u*) *−qu* + *ηu* has positive right derivative before *b*. Its maximum on the compact interval therefore cannot occur before *b*. Comparing its values at *a* and *b* and then letting *η↓* 0 proves the assertion. Formula (3.13) and Proposition 3.2 now give monotonicity in *Bh*, and give (3.12) when the segment lies in*P\Kh*. Suppose next that *x*(0) *∈Kh*, and consider the maximal solution of the polynomial vector field *f*. Since *Kh⊂*int*Bh*, the solution initially stays in *Bh*. On any interval on which it does so, monotonicity and the global upper bound *Fh≤Mh*force *Fh*(*x*(*t*)) = *Mh*. Hence it remains in *Kh*. It cannot have a first exit from int*Bh*within its interval of existence: continuity would place the exit point in both *Kh*and the boundary of *Bh*, contradicting Proposition 3.1. Thus the
+
+solution stays in the compact set *Kh*throughout its maximal interval. A solution of a smooth vector field that remains in a compact subset of its domain extends past any finite endpoint of its interval of existence. To see the relevant point here, *f* is bounded on a neighborhood of *Kh*, so a finite endpoint would give a limit of *x*(*t*)in *Kh*, at which local existence continues the solution. The solution is therefore global. It remains positive by (3.7); moreover, *f* (*x*) *∈S* implies*x*(*t*)*−x*(0)*∈S*, so a solution starting in*P*stays in*P*. Finally, let a global solution in *P* remain in *Bh*for all *t≥t₀*. If it never enters *Kh*after *t₀*, then (3.12) gives *Fh*(*x*(*t*))*≥Fh*(*x*(*t₀*)) +*δh*(*t−t₀*) (*t≥t₀*)*,*
+
+contradicting *Fh≤Mh*for sufficiently large *t*. It must enter *Kh*at a finite time, and the forward invariance just proved keeps it there.
+
+## 4 A common absorbing set for each class
+
+Fix a positive stoichiometric class *P* and its representative *c*, and retain the scale *hP*and the functions *Fh*from Section 3. Lemma 3.3 gives invariance at each scale and finite-time entry whenever a trajectory stays in the corresponding box. Proposition 3.1 connects these two properties through *Kh⊂*int*B* *√h* (0*< h≤hP*)*.*(4.1)
+
+We now use this relation to replace an initial-point-dependent trapping set by one fixed set for *P*.
+
+*Proof of Theorem 1.1.* Let *x⁰ ∈P*. Since *x⁰* is positive, we may choose0 *< h₀ ≤hP*so small that ⃦ ⃦ ⃦ <u>logx⁰</u> ⃦ ⃦ ⃦ ⃦ ⃦ *< H,* ⃦ log*h₀*⃦ *∞* where the logarithm is componentwise and *H >* 0is the fixed separation constant from Section 3. In particular,*x⁰ ∈Bh*0. The coordinate sign comparisons force every label active at*x⁰* to have slope zero, just as they did at *c*. An active constant label must have the least value among all constant labels, namely*Mh*0=*Fh*0(*c*). Hence
+
+*x⁰ ∈Kh*0*.*
+
+Lemma 3.3 implies that the solution through *x⁰* is global, stays positive, and remains in *Kh*0. Since*f*(*x*)*∈S*, it also remains in*P*. Starting at*h₀*, define √︂ *hj*+1= min*{ hj,hP}.*(4.2)
+
+We claim that for every *j* there is a finite time *Tj*such that *x*(*t*) *∈Khj*for all *t≥Tj*. The √︁ case *j* = 0holds with *T₀* = 0. Suppose it holds at *j*. Because *hj*+1*≤ hj*, the boxes satisfy *B√* *h* *⊂Bhj*+1. Thus (4.1) yields *j*
+
+*x*(*t*)*∈Bhj*+1(*t≥Tj*)*.*
+
+The finite-entry assertion of Lemma 3.3, followed by its invariance assertion, supplies a finite *Tj*+1*≥Tj*with *x*(*t*) *∈Khj*+1for all *t≥Tj*+1. This proves the claim. The argument uses containment in successive boxes; no nesting of the sets*Kh*is assumed.
+
+Repeated square roots of *h₀ ∈* (0*,*1)tend to1. Since *hP<* 1, the capped sequence (4.2) therefore reaches *hP*after finitely many steps. We conclude that every solution through a point of*P*enters*Kh* *P* in finite time and stays there. Finally set *KP* =*Kh* *P* *∩*(*c*+*S*)*.*
+
+This is nonempty because it contains *c*, and it is compact and convex as the intersection of the compact convex set *Kh* *P* with a closed affine subspace. Since *Kh* *P* lies in the positive orthant, *KP ⊂P*. Both *Kh* *P* and the affine subspace *c* + *S* are forward invariant, so *KP* is forward invariant. The preceding argument proves its absorbing property. Moreover, *KP ⊂Bh* *P*, and therefore*εP*=*hP∈*(0*,*1)gives
+
+*εP≤xi*(*t*)*≤ε* *−* *P* 1 (1*≤i≤d*)
+
+for all sufficiently large *t*, with the entry time allowed to depend on *x⁰*. The scale *hP*, and hence these bounds, was fixed before choosing the initial point.
+
+## References
+
+[1] David F. Anderson,*A proof of the global attractor conjecture in the single linkage class case*, SIAM Journal on Applied Mathematics**71**(2011), no. 4, 1487–1508.
+
+[2] Balázs Boros and Josef Hofbauer,*Permanence of weakly reversible mass-action systems with a single* *linkage class*, SIAM Journal on Applied Dynamical Systems**19**(2020), no. 1, 352–365.
+
+[3] Gheorghe Craciun,*Toric differential inclusions and a proof of the global attractor conjecture*, 2026, arXiv:1501.02860v3, September 23, 2026; first version 2015.
+
+[4] Gheorghe Craciun, Fedor Nazarov, and Casian Pantea,*Persistence and permanence of mass-action* *and power-law dynamical systems*, SIAM Journal on Applied Mathematics**73**(2013), no. 1, 305–329.
+
+[5] Martin Feinberg,*Complex balancing in general kinetic systems*, Archive for Rational Mechanics and Analysis**49**(1972), 187–194.
+
+[6],*Chemical reaction network structure and the stability of complex isothermal reactors—I.* *The deficiency zero and deficiency one theorems*, Chemical Engineering Science**42**(1987), no. 10, 2229–2268.
+
+[7] Manoj Gopalkrishnan, Ezra Miller, and Anne Shiu,*A geometric approach to the global attractor* *conjecture*, SIAM Journal on Applied Dynamical Systems**13**(2014), no. 2, 758–797.
+
+[8] F. Horn and R. Jackson,*General mass action kinetics*, Archive for Rational Mechanics and Analysis **47**(1972), 81–116.
+
+[9] OpenAI,*Boundedness and persistence of weakly reversible mass-action systems*, OpenAI Math Release preprint OAI:Boundedness-and-persistence-of-weakly-reversible-mass-action-systems-September-25- 2026, 2026.
+
+[10] Casian Pantea,*On the persistence and global stability of mass-action systems*, SIAM Journal on Mathematical Analysis**44**(2012), no. 3, 1636–1673.

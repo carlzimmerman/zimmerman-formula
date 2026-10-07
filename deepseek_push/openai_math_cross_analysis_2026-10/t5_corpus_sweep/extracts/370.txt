@@ -1,0 +1,512 @@
+# The Subcritical Hénon–Lane–Emden Conjecture
+
+OpenAI
+
+### September 24, 2026
+
+**Abstract**
+
+We prove the subcritical Hénon–Lane–Emden conjecture: for every dimension *n ≥* 2, positive powers *p,q*, and real weights *A,B*, the system has no strictly positive entire solution when (*n* + *A*)*/*(*p*+ 1) + (*n* + *B*)*/*(*q*+ 1) *> n −*2. Solutions need only be continuous at the origin and classical elsewhere, without a condition at infinity. For *n ≥* 3 and *A,B > −*2, combining this result with the radial existence theorem of Bidaut-Véron and Giacomini proves Phan’s Conjecture C in full: a positive radial entire solution exists whenever the strict inequality fails.
+
+## Contents
+
+**1 Introduction 1**
+
+**2 Reductions and Newton potentials 3**
+
+**3 A localized virial identity 8**
+
+**4 An interval-pair inequality 10**
+
+**5 Pressure from weighted source layers 12**
+
+5.1 Angular localization................................. .13
+5.2 Measurable intervals and their loss......................... .14
+5.3 Weighted endpoints and nonnegative integration................. .15
+5.4 Recovery of the cutoff pressure........................... .17
+**6 The energy bound and the scaling contradiction 17**
+
+**1 Introduction**
+
+The Hénon–Lane–Emden system is
+
+*−*Δ*u* = *|x|* *A* *v* *p* *, −*Δ*v* = *|x|* *B* *u* *q* in ℝ *n* *\{*0*}.* (1.1)
+
+Its subcritical nonexistence conjecture asks whether the weighted hyperbola alone rules out positive solutions, without symmetry or conditions at infinity. The unweighted case *A* = *B* = 0 is the classical Lane–Emden system. The scalar subcritical Liouville theorem of Gidas and Spruck is a starting point for this question [5]. For systems, Mitidieri developed a Rellich identity and early nonexistence regions [11, 12]. Serrin and Zou proved the unweighted three-dimensional assertion under a growth condition;
+
+Poláčik, Quittner, and Souplet removed that condition, and Souplet settled dimension four [14–16]. Li, Li, and Wei obtained a further unweighted nonexistence region for *p,q ≥* 1 in every dimension *n ≥* 5 [9, Theorem 1.1]. Liouville theorems also serve as inputs to rescaling arguments for a priori bounds and singularity estimates [6,14]. For the weighted system, Bidaut-Véron and Giacomini identified the critical hyperbola in the regular radial theory under admissible weights [1]. Phan formulated the unrestricted weighted question for *A,B > −*2 as Conjecture C and established bounded, low-dimensional, and conditional cases [13]. Fazly and Ghoussoub obtained bounded and stability-based results for nonnegative weights [4]; Li and Zhang subsequently proved the weighted conjecture in dimension three without a boundedness assumption [10]. Results in restricted exponent ranges extend to dimensions four and five [8]. More recently, Huang and Zou stated the all-real-weight, origin-continuous assertion as Conjecture B and proved cases with stability, decay, or energy hypotheses [7]. Xu and Luo obtained a higher-order weighted theorem over the full exponent range for radial solutions subject to regularity and growth conditions [17]. The full nonradial question in higher dimensions is the subject of this paper.
+
+**Theorem 1.1.** *Let n ≥* 2 *be an integer, let p,q >* 0*, and let A,B ∈* ℝ*. Suppose that*
+
+<u>n + A n + B</u> + *> n −* 2*.* (1.2) *p* + 1 *q* + 1
+
+### There are no functions
+
+*u,v ∈ C²*(ℝ *n* *\{*0*}*) *∩ C*(ℝ *n* )*, u*(*x*) *>* 0*, v*(*x*) *>* 0 (*x ∈* ℝ *n* )*,*
+
+*satisfying Equation* (1.1) *at every x ̸*= 0*.*
+
+**Corollary 1.2** (Unweighted Lane–Emden conjecture)**.** *For every integer n ≥* 3 *and p,q >* 0 *satisfying* 1 1 *n −* 2 + *>,* *p* + 1 *q* + 1 *n*
+
+*there is no strictly positive C²*(ℝ *n* ) *solution of*
+
+*−*Δ*u* = *v* *p* *, −*Δ*v* = *u* *q* *in* ℝ *n* *.*
+
+In particular, positivity at the origin is part of the hypothesis, but differentiability there is not. No radial symmetry, boundedness, integrability, finite energy, stability, or growth or decay condition at infinity is required. Theorem 1.1 resolves Huang and Zou’s Conjecture B positively and yields Corollary 1.2 by setting *A* = *B* = 0. For *n ≥* 3 and *A,B > −*2, its nonexistence conclusion joins the radial existence theorem of Bidaut-Véron and Giacomini [1, Theorem 1.4(i)] to prove Phan’s Conjecture C in full, including existence on the critical hyperbola. Corollary 6.2 records this derived classification. The weak regularity at the origin is genuine: positivity and continuity, rather than a prescribed order of vanishing or smoothness there, are all that is assumed. The weighted assertion cannot be inferred merely by applying the unweighted assertion at the same exponents. For instance, *n* = 5, *p* = *q* = 4, *A* = *B* = 3 satisfies Equation (1.2), whereas 1*/*(*p* + 1) + 1*/*(*q* + 1) = 2*/*5 *<* 3*/*5. Likewise, the unweighted input in Phan’s transfer argument must remain within its actual scope; weighted subcriticality does not imply that input [13].
+
+**The weighted argument.** Rellich–Pohozaev identities and spherical estimates have long been central to system Liouville proofs [11,13,16]. Chen and Li used Newtonian integral representations with moving planes under integrability hypotheses [2]; Cheng and Huang later formulated an energy-estimate criterion for the unweighted conjecture [3]. The passage from a uniform local weighted-energy bound to nonexistence by origin-centered dilation also appears in Li [8, Section 2]. Here a localized potential-kernel virial identity and an energy-relative interval-pressure estimate supply that bound throughout the subcritical range. There are two difficulties in passing from unweighted source layers to Equation (1.1). Trans- lations do not preserve the equation, and an endpoint of a layer *{|x|* *B* *u*(*x*) *q* *> t}* has value (*t/|x|* *B* ) 1*/q*, not the constant *t¹* */q*. We address both directly. First, origin-centered dilations give uniform source masses and truncated-potential bounds on a fixed ball. A compactly supported virial identity then retains the exact spatial-weight coefficients. Second, the interval comparison is applied with directions in a small cap around the radial direction and with weights constant on each retained interval. Retained intervals are short enough that their endpoint weight variation is small. The discarded intervals are controlled by polar integration of source masses and a high/low layer decomposition. All errors are arbitrarily small relative to a fixed localized energy, up to a universal additive constant. No bound on that energy is assumed in obtaining the error estimates. The weighted subcritical gap then supplies such a bound, and dilation gives a contradiction. This combination of spatially varying directional cutoffs, intervalwise infima, and energy-relative layer errors is the part of the method that may be useful for other weighted potential systems. The elementary interval comparison itself is reproved below.
+
+**Organization.** Section 2 treats the origin, the low-exponent cases, and the potential estimates. Section 3 proves the localized virial identity and compares the two localized interaction marginals. Section 4 gives the geometric interval inequality. Section 5 proves its weighted pressure consequence, including the needed layer-error bounds. Section 6 completes the proof by scaling and derives the existence–nonexistence classification from the radial theorem.
+
+## 2 Reductions and Newton potentials
+
+We begin with consequences of positivity that do not require the subcritical inequality. Throughout this section, a solution means a pair
+
+*u,v ∈ C²*(ℝ *n* *\{*0*}*) *∩ C*(ℝ *n* )*, u,v >* 0 on ℝ *n* *,*
+
+where *n ≥* 2, *p,q >* 0, and *A,B ∈* ℝ, satisfying
+
+*−*Δ*u* = *|x|* *A* *v* *p* *, −*Δ*v* = *|x|* *B* *u* *q* on ℝ *n* *\{*0*}.*
+
+We write *BR*(*z*) = *{x* : *|x − z| < R}* and *BR* = *BR*(0).
+
+**Lemma 2.1** (Origin reductions)**.** *The existence of a solution implies n ≥* 3 *and A,B > −*2*.*
+
+*Proof.* For a function *h* continuous on each sphere about the origin, write ∫ *h*(*r*) = *n−*1 *h*(*rθ*) d*θ.* *|*𝕊 *|*𝕊*n−*1
+
+Integration of the equations on annuli gives, for *r >* 0, ( *n−*1 *′* ) *′ n−*1+*A* *r u* (*r*) = *−r v* *p*
+
+(*r*)*,*
+( *n−*1 *′* ) *′ n−*1+*B* (2.1) *r v* (*r*) = *−r u* *q*
+
+(*r*)*.*
+In particular, each flux on the left is strictly decreasing. Its extended limit as *r ↓* 0 exists. If that limit were nonzero or infinite, the flux would have a fixed sign and absolute value bounded ∫ 1 1*−n* below by a positive constant for all sufficiently small *r*. Since 0 *r* d*r* = *∞*, integration would contradict boundedness of the corresponding spherical mean at zero. Thus both limits are zero, and both fluxes are strictly negative for every *r >* 0. If *n* = 2, then *ru* *′*
+
+(*r*) *≤ u* *′*
+(1) *<* 0 for *r ≥* 1. Consequently *u*(*r*) *≤ u*(1) + *u*
+*′*
+
+(1) log*r*,
+contradicting positivity for large *r*. Continuity and *v*(0) *>* 0 give *v* *p* *≥ c >* 0 near zero. Integrating the first equation in (2.1) over [*r/*2*,r*] and using the negative flux at *r/*2, we obtain ∫ *r* *−u* *′*
+
+(*r*) *≥ cr¹* *−n*
+*s* *n−*1+*A* d*s* = *cAr* 1+*A* *, cA>* 0*.* *r/*2 The equality remains valid when *n* + *A* = 0, with the corresponding constant containing log 2. If *A ≤−*2, integrating this inequality towards zero contradicts continuity of *u* there. Interchanging the two equations proves *B > −*2.
+
+Henceforth assume *n ≥* 3 and *A,B > −*2. Define, off zero,
+
+*f* (*x*) = *|x|* *B* *u*(*x*) *q* *, g*(*x*) = *|x|* *A* *v*(*x*) *p* *,*
+
+2*−n*<u>1</u> (2.2) *K*(*x*) = *cn|x|, cn*= *n−*1 *.* (*n −* 2)*|*𝕊 *|* We set *f*(0) = *g*(0) = 0, which has no effect on any integral. All unspecified integrals below are Lebesgue integrals. A constant called *universal* may depend on *n,p,q,A,B* and on explicitly indicated auxiliary parameters, but not on the particular solution. In contrast, constants denoted by *Cu,v*are allowed to depend on the solution.
+
+**Lemma 2.2** (Distributional extension and potentials)**.** *For every solution with n ≥* 3 *and* *A,B > −*2*, the sources f,g belong to L¹* loc (ℝ *n* ) *and*
+
+*−*Δ*u* = *g, −*Δ*v* = *f in distributions on* ℝ *n* *.*
+
+*The Newton potentials are finite everywhere and satisfy*
+
+*K ∗ g ≤ u, K ∗ f ≤ v on* ℝ *n*
+
+*.* (2.3)
+*There are constants cu,cv≥* 0 *such that*
+
+*u* = *cu*+ *K ∗ g, v* = *cv*+ *K ∗ f* (2.4)
+
+*almost everywhere on* ℝ *n* *and pointwise on* ℝ *n* *\{*0*}. On the latter set the potentials are continuously* *differentiable, and* ∫ *∇u*(*x*) = *∇K*(*x − y*)*g*(*y*) d*y,* ∫ℝ *n*
+
+*∇v*(*x*) = *∇K*(*x − y*)*f* (*y*) d*y,* (2.5) ℝ*n* <u>z</u> *∇K*(*z*) = *−*(*n −* 2) *K*(*z*)*.* *|z|* *Both gradient integrals converge absolutely at every x ̸*= 0*.*
+
+*Proof.* Local boundedness of *u,v* gives *g*(*x*) *≤ Cu,v|x|* *A* and *f* (*x*) *≤ Cu,v|x|* *B* near zero. Since *n* + *A,n* + *B >* 0, both sources are locally integrable. Let *φ ∈ Cc∞*(ℝ *n* ) and choose *ξ ∈ Cc∞*(ℝ *n* ) equal to one near zero. Test the equation for *u* away from zero against *φ*(*x*)(1 *− ξ*(*x/ρ*)). After expanding its Laplacian, the terms involving first and second derivatives of *ξ*(*x/ρ*) have absolute values bounded respectively by *Cu,v,φ,ξρ* *n−*1 and *Cu,v,φ,ξρ* *n−*2. They tend to zero. The remaining terms pass to the limit by local integrability, proving the first distributional equation. The second follows in the same way. Let *ζρ*be a nonnegative, compactly supported smooth approximate identity, and put *uρ*= *u∗ζρ* and *gρ*= *g ∗ ζρ*. Then *uρ>* 0 and *−*Δ*uρ*= *gρ≥* 0 on all of ℝ *n*. Two integrations of the spherical flux formula, now about an arbitrary point *x*, give ∫ ∫ <u>1</u> (2*−n* 2*−n*) *uρ*(*x*) *−* *n−*1 *uρ*(*x* + *Rθ*) d*θ* = *cn|x − y| − R gρ*(*y*) d*y.* *|*𝕊 *|*𝕊*n−*1*|x−y|<R*
+
+The spherical average is positive. Monotone convergence as *R →∞* therefore yields *K ∗ gρ≤ uρ*. As *ρ ↓* 0, *uρ*(*x*) *→ u*(*x*) for every *x*, while *gρ→ g* almost everywhere. Fatou’s Lemma proves *K ∗ g*(*x*) *≤ u*(*x*) at every point. The same argument proves *K ∗ f ≤ v*. ∫ The normalization of *K* gives *−*Δ*K* = *δ₀* in distributions: *K* is harmonic off zero, *−* *∂Br* *∂rK* = ∫ 1, and *∂Br* *K* = *O*(*r*), so integration by parts outside *Br*and passage to *r* = 0 gives the assertion. To apply this to *K ∗ g*, note that for every compactly supported smooth *φ*, ∫ ∫ ∫ ∫ *g*(*y*) *K*(*x − y*)*|*Δ*φ*(*x*)*|* d*x* d*y* = (*K ∗ g*)(*x*)*|*Δ*φ*(*x*)*|* d*x ≤ u*(*x*)*|*Δ*φ*(*x*)*|* d*x < ∞.* ℝ*n*ℝ*n*ℝ*n*ℝ*n*
+
+Fubini’s Theorem thus gives *−*Δ(*K ∗ g*) = *g*. The difference *h* = *u − K ∗ g* is a nonnegative locally integrable harmonic distribution. Every *h ∗ ζρ*is a nonnegative entire harmonic function. Such a function *H* is constant: for *b* = *|x − z|*, the mean-value property and *BR*(*x*) *⊂ BR*+*b*(*z*) imply ()*n* <u>R + b</u> *H*(*x*) *≤ H*(*z*)*.* *R*
+
+Letting *R →∞* and then interchanging *x,z* proves equality. Passing back to distributions shows that *h* itself is a nonnegative constant. The argument for *v − K ∗ f* is identical. Fix *x₀ ̸*= 0. The sources are locally *C¹* near *x₀*, because *u,v* are strictly positive there and *p,q >* 0. Split *g* by a smooth cutoff supported near *x₀* and equal to one on a smaller neighborhood. For the compactly supported part, local integrability of *K* and *∇K* gives a continuously differentiable convolution with the asserted derivative. For the other part, *|x − y|* stays bounded away from zero as *x* varies in a sufficiently small neighborhood of *x₀*. There both *K*(*x − y*) and *|∇K*(*x − y*)*|* are bounded by a fixed multiple of *K*(*x₀ − y*). The latter is integrable against *g* by (2.3). Dominated convergence proves continuity and differentiation of this part as well. The almost-everywhere identity in (2.4) is therefore pointwise off zero, and (2.5) follows. The proof for *f* is the same.
+
+For *x,y ∈ BR*, the kernel satisfies *K*(*x − y*) *≥ cR²* *−n*. Thus Lemma 2.2 gives the centered lower bounds ∫ ∫ *u*(*x*) *≥ cR²* *−n* *g, v*(*x*) *≥ cR²* *−n* *f* (*x ∈ BR*)*,* (2.6) *BR BR* where *c >* 0 depends only on *n*.
+
+**Lemma 2.3** (Exclusion of small products)**.** *A solution with n ≥* 3 *and A,B > −*2 *necessarily* *has pq >* 1*.*
+
+*Proof.* Set *mu*(*R*) = inf*BRu* and *mv*(*R*) = inf*BRv*. Both are positive by positivity and continuity on *BR*. Integrating the weights in (2.6) yields
+
+2+*A p* 2+*B q* *mu*(*R*) *≥ cR mv*(*R*)*, mv*(*R*) *≥ cR mu*(*R*)*.*
+
+*pq* Combining them and dividing by *mu*(*R*) *>* 0 gives
+
+1*−pq* 2+*A*+*p*(2+*B*) *mu*(*R*) *≥ cR.*
+
+1*−pq* The exponent on the right is positive. If *pq <* 1, the left side is at most *u*(0), and if *pq* = 1, it is one. Either case contradicts the inequality as *R →∞*.
+
+We may consequently assume *n ≥* 3, *A,B > −*2, and *pq >* 1. Introduce
+
+<u>2 + A + p(2 + B) 2 + B + q(2 + A)</u> *α* =*, β* =*,* *pq −* 1 *pq −* 1 (2.7) <u>1 1</u> *a* =*, b* =*.* *q* + 1 *p* + 1
+
+Both *α* and *β* are positive, and
+
+*pβ* = *α* + 2 + *A, qα* = *β* + 2 + *B.*
+
+For every *R >* 0, the pair
+
+*α β* *uR*(*x*) = *R u*(*Rx*)*, vR*(*x*) = *R v*(*Rx*)*,* *B q β*+2 *fR*(*x*) = *|x| uR*(*x*) = *R f* (*Rx*)*,* (2.8) *A p α*+2 *gR*(*x*) = *|x| vR*(*x*) = *R g*(*Rx*)
+
+again solves the same system, with the same parameters and regularity. These are dilations about the origin, where the weights are centered.
+
+**Proposition 2.4** (Universal centered estimates)**.** *Fix n ≥* 3*, p,q >* 0*, A,B > −*2*, and pq >* 1*.* *There is a universal constant C such that every solution satisfies, for all R >* 0*,* ∫ ∫ *n−*2*−β n−*2*−α* *f ≤ CR, g ≤ CR.* (2.9) *BR BR*
+
+*The constants in* (2.4) *vanish, so that*
+
+*n* *u* = *K ∗ g, v* = *K ∗ f on* ℝ *\{*0*}.* (2.10)
+
+*Moreover,* ∫ (*f* + *g* + *u* + *v*) *≤ C,* *B*4 ∫ (2.11) *−n* *K*(*x − y*)(*f* (*y*) + *g*(*y*)) d*y ≤ Cℓ²* (*x ∈ B₂,* 0 *< ℓ ≤* 1)*.* *|x−y|≥ℓ*
+
+∫ ∫ *Proof.* Write *Mf*= *B*1 *f* and *Mg*= *B*1
+
+*g*. The lower bounds (2.6), followed by integration of
+*|x|* *B* and *|x|* *A* on *B₁*, give *p* *Mf≥ cfMgq, Mg≥ cgM* *f* *,* *qg pq* where *cf,cg>* 0 are universal. In particular, *Mf≥ cfc M* *f*, and *Mf>* 0 and *pq >* 1 give a universal upper bound for *Mf*. The interchanged argument bounds *Mg*. Apply these bounds to the scaled pair (2.8); changing variables proves (2.9). The argument uses only positive powers, and requires neither *p ≥* 1 nor *q ≥* 1. If *cu>* 0 in (2.4), then *u ≥ cu*almost everywhere and ∫ ∫*n−*1 *qu B qu*<u>|𝕊 |</u>*n*+*B* *f ≥ c |x|* d*x* = *c R.* *BR BRn* + *B*
+
+This contradicts (2.9) as *R →∞*, since *n* + *B −* (*n −* 2 *− β*) = *B* + 2 + *β* = *qα >* 0. Likewise *c* *v*= 0, proving (2.10). For *x ∈ B₄* and *j ≥* 3, the annulus 2 *j* *≤|y| <* 2 *j*+1 has *|x − y|≥* 2 *j−*1. Its contribution to the *f* potential is at most ∫ *C*2 *j*(2*−n*) *f ≤ C*2 *−jβ* *,* *B* 2 *j*+1 and its contribution to the *g* potential is at most *C*2 *−jα*. The two series converge because *α,β >* 0. Thus the potentials of the sources restricted to ℝ *n* *\ B₈* are uniformly bounded on *B₄*. On the other hand, ∫ ∫ sup *K*(*x − y*) d*x ≤ K*(*z*) d*z < ∞.* *y∈B*8*B*4*B*12 ∫ Tonelli’s Theorem, the source bounds on *B₈*, and (2.10) now bound *B*4 (*u* + *v*). The source part of the first estimate in (2.11) follows directly from (2.9). Finally, on *|x − y|≥ ℓ* the kernel is at most *cnℓ²* *−n*. This bounds the contribution from *y ∈ B₈* by *Cℓ²* *−n*. The contribution from *y /∈ B₈* has already been bounded by *C*; since 0 *< ℓ ≤* 1 and *n ≥* 3, this proves the second estimate in (2.11).
+
+The bounds (2.9) are centered at the origin. For example, when a later argument uses a ball *Bℓ*(*x*) *⊂ B₄*, its source mass is bounded by the mass of *B₄* in (2.11). No translation of the weighted equation or source estimate is needed. Also, local energy is finite for each solution:
+
+*fu* = *|x|* *B* *u* *q*+1 *, gv* = *|x|* *A* *v* *p*+1 belong to *L¹*loc(ℝ *n* )*.*
+
+This statement follows from local boundedness and *A,B > −*2; it is not yet a bound uniform over solutions. We assume no finiteness of either energy integral on all of ℝ *n*. To connect the centered dilation with the subcritical hypothesis, define
+
+*γ* := *a*(*n* + *B*) + *b*(*n* + *A*) *−* (*n −* 2) = (1 *− a − b*)(*α* + *β* + 2 *− n*)*,* (2.12) <u>pq − 1</u> 1 *− a − b* = *>* 0*.* (*p* + 1)(*q* + 1)
+
+Indeed, the numerator of *α* + *β* is (*q*+ 1)(2 +*A*) + (*p*+ 1)(2 +*B*), and substitution gives the identity. The strict inequality in Theorem 1.1 is precisely *γ >* 0, and hence implies *α* + *β* + 2 *− n >* 0. Finally, changing variables in (2.8) gives the local energy identity ∫ ∫ (*fRuR*+ *gRvR*) = *R* *α*+*β*+2*−n* (*fu* + *gv*)*.* (2.13) *B*1*BR*
+
+We shall obtain a universal upper bound for the left side, valid for every scaled solution. Positivity of the exponent in (2.13) will then yield the final contradiction.
+
+## 3 A localized virial identity
+
+System Rellich–Pohozaev identities have a long history [11,16]; Phan gave a weighted version [13]. We use a potential-kernel form that retains the spatial weights in a compactly supported interaction identity. We retain the parameters and exact potentials of the preceding section. Define the nonnegative interaction measure by
+
+d*π*(*x,y*) = *f* (*x*)*g*(*y*)*K*(*x − y*) d*x* d*y,* *n n* (3.1) *π*( d*x,*ℝ) = *f* (*x*)*u*(*x*) d*x, π*(ℝ*,* d*y*) = *g*(*y*)*v*(*y*) d*y.*
+
+The marginal identities follow from Tonelli’s Theorem and (2.10). This measure is locally finite: on each compact set the sources are integrable and the potentials are bounded. Its total mass is not assumed finite. Values of the density or of the quotients below on the diagonal may be set to zero. For a unit vector *e ∈* 𝕊 *n−*1, put
+
+<u>((x − y) · e)</u> 2 <u>x</u> *De*(*x,y*) = 2 *, ωx*=*, D*(*x,y*) = *Dωx*(*x,y*)*.* *|x − y| |x|* Choose any unit vector as *ω₀*; this convention does not affect any integral. The cutoff will vanish to a sufficiently high order at its outer boundary. Writing *t*+= max*{t,*0*}*, fix *d*(*x*) = min*{*1*,*(2 *−|x|*)+*}, m* = *n* + 3*, k* = *n*(*m* + 1)*, N* = *k* + *n* + 2*,* [( 3
+
+)]*N*(3.2)
+*η*(*x*) = 1 *−* (*|x|−* 1)+ + *, w*(*x*) = *−x ·∇η*(*x*)*, X*(*x*) = *xη*(*x*)*.*
+
+Thus *η ∈ Cc* 2 (ℝ *n* ) equals one on *B₁*, and *w ≥* 0 vanishes unless 1 *< |x| <* 2. The cubic term makes the first two derivatives match at radius one, and the power *N* makes them vanish at radius two. On the intervening annulus, with *s* = *|x|−* 1, 1 *− s³* = *d*(*x*)(1 + *s* + *s²*). Differentiation therefore gives *d* *N* *≤ η ≤ Cd* *N* *, |∇η|* + *w ≤ Cd* *N −*1 *,* 2 2 *N −*2 (3.3) *|∇ η|* + *|∇w|* + *|∇ X|≤ Cd, dw ≤ Cη.* Set ∫ ∫ *Ef*= *ηfu*d*x, Eg*= *ηgv* d*x, E* = *Ef*+ *Eg,* ℝ*n* ∫ ℝ*n* ∫ *Wf*= *wfu*d*x, Wg*= *wgv* d*x.* ℝ*n*ℝ*n* All these quantities are finite for each solution: *u,v* are bounded on *B₂*, and *|x|* *A* *, |x|* *B* are integrable there because *A,B > −*2 and *n ≥* 3. This asserts finiteness only; a bound independent of the solution remains to be proved.
+
+**Lemma 3.1** (Localized virial identity)**.** *The following identity holds, with an absolutely convergent* *integral:* ∫ *a*(*n* + *B*)*Ef*+ *b*(*n* + *A*)*Eg− aWf− bWg*= (*n −* 2) Φ(*x,y*) d*π*(*x,y*)*,* ℝ2*n* (3.4) <u>(X(x) − X(y)) · (x − y)</u> Φ(*x,y*) =*.* *|x − y|*
+
+*Proof.* We first justify absolute convergence of the separate kernel-gradient integrals, before combining them. For *r* = *|x|* sufficiently small, local boundedness of *v* gives *g*(*y*) *≤ Cu,vr* *A* when *|x − y|≤ r/*2. Hence ∫ ∫ *r/*2 *|X*(*x*)*| |x − y|* 1*−n* *g*(*y*) d*y ≤ Cu,vrr* *A* d*s ≤ Cu,vr* 2+*A* *.* *|x−y|≤r/*2 0
+
+On the complementary region, *|X*(*x*)*|≤ r ≤* 2*|x − y|*, so the same expression with that region in place of the ball is at most *C*(*K ∗ g*)(*x*) = *Cu*(*x*). Both bounds remain bounded as *x →* 0. On compact subsets away from zero, the nearby source is bounded and *|∇K|* is locally integrable; the remaining part is bounded by a constant times the finite potential. Since *X* is supported in *B₂* and *f* is locally integrable, this proves ∫ ∫ *f* (*x*)*|X*(*x*)*| |∇K*(*x − y*)*|g*(*y*) d*y* d*x < ∞.* ℝ*n*ℝ*n*
+
+Interchanging (*f,u,B*) and (*g,v,A*) proves the other assertion. In particular, *fX ·∇u* and *gX ·∇v* are absolutely integrable. Since *a* = 1*/*(*q* + 1), integration by parts outside *Bρ*, with 0 *< ρ <* 1, gives ∫ ∫ *B q*+1 () *− fX ·∇u*d*x* = *a |x| u* (*n* + *B*)*η − w* d*x* *|x|>ρ |x|>ρ* ∫ + *aρ* *B*+1 *u* *q*+1 d*S.* *∂Bρ*
+
+### Here div(|x|
+
+*B*
+
+*X*) = *|x|* *B* ((*n* + *B*)*η − w*), and the boundary term has the displayed positive sign
+because the outward normal of the punctured domain on *∂Bρ*is *−ωx*. Its magnitude is *Ou,v*(*ρ* *n*+*B* ), which tends to zero. The corresponding term for *gX ·∇v* is positive and *Ou,v*(*ρ* *n*+*A* ), and also tends to zero. There is no outer boundary term because *X* is compactly supported. Consequently, ∫ ∫ *− fX ·∇u*d*x − gX ·∇v* d*x* = *a*(*n* + *B*)*Ef*+ *b*(*n* + *A*)*Eg− aWf− bWg.*
+
+Finally substitute the differentiated potential identities and *∇K*(*z*) = *−*(*n −* 2)*zK*(*z*)*/|z|* 2. Absolute convergence permits Fubini’s Theorem and interchanging the variables in the second integral; their sum is exactly the right side of (3.4).
+
+**Lemma 3.2** (Localization)**.** *For every ε >* 0*, there is a constant Cε, independent of the solution,* *such that* ∫ *|Ef− Eg|* + *|*Φ(*x,y*) *− η*(*x*) + *w*(*x*)*D*(*x,y*)*|* d*π*(*x,y*) *≤ εE* + *Cε.* (3.5) ℝ2*n*
+
+*Proof.* Fix 0 *< δ <* 1*/*4, and write *ℓ*(*z*) = *δd*(*z*) *m* whenever *d*(*z*) *>* 0. Call a pair (*x,y*) close if *|x − y|≤ ℓ*(*z*) for at least one endpoint *z ∈{x,y}* with *d*(*z*) *>* 0, and far otherwise. Since *d* is 1-Lipschitz, for a close pair every point *ξ* of the segment [*x,y*] satisfies
+
+(1 *− δ*)*d*(*z*) *≤ d*(*ξ*) *≤* (1 + *δ*)*d*(*z*)*.*
+
+In particular, the entire segment is inside *B₂*. The derivative matrix of *X* is
+
+*∇X*(*x*) = *η*(*x*) Id *−w*(*x*)*ωx⊗ ωx,*
+
+with its second term zero on *B₁*. Taylor’s formula and (3.3) give, on close pairs with *x ̸*= *y*,
+
+*|*Φ *− η*(*x*) + *w*(*x*)*D|≤ Cδd*(*z*) *N −*2+*m* = *Cδd*(*z*) *N* +*n*+1 *,*
+
+*|η*(*x*) *− η*(*y*)*|≤ Cδd*(*z*) *N −*1+*m* = *Cδd*(*z*) *N* +*n*+2 *.*
+
+Both are at most *Cδd*(*z*) *N*. Since *d*(*z*) *N* *≤ η*(*z*) *≤ η*(*x*) + *η*(*y*), the marginal identities in (3.1) bound the integral of their sum over close pairs by *CδE*. For a far pair, every endpoint *z* in *B₂* satisfies *|x−y| > ℓ*(*z*). Using *|*Φ*|≤* (*|X*(*x*)*|*+*|X*(*y*)*|*)*/|x−* *y|* and 0 *≤D≤* 1, we obtain () ∑ <u>d(z)</u>*N* *|*Φ *− η*(*x*) + *w*(*x*)*D|* + *|η*(*x*) *− η*(*y*)*|≤ C d*(*z*) *N −*1 +*.* *ℓ*(*z*) *z∈{x,y}* *d*(*z*)*>*0
+
+Pairs with both endpoints outside *B₂* contribute zero. For the terms associated with *x*, the tail estimate in Proposition 2.4, (2.11), bounds the integral by ∫ ( *N* ) *N −*1<u>d(x)</u>2*−n* *C f* (*x*) *d*(*x*) + *ℓ*(*x*) d*x* *B*2*ℓ*(*x*) ∫ () *≤ C f* (*x*) *δ²* *−n* *d*(*x*) 4*n*+7 + *δ¹* *−n* *d*(*x*) 3*n*+5 d*x ≤ Cδ.* *B*2
+
+Indeed the two exponents are
+
+*N −* 1 *− m*(*n −* 2) = 4*n* + 7 *>* 0*, N − m*(*n −* 1) = 3*n* + 5 *>* 0*,* ∫ and *B*2 *f ≤ C* by (2.11). The terms associated with *y* satisfy the same bound with *g*. All these constants are independent of the solution. Finally, both cutoff marginals are finite, so ⏐∫ ⏐ ∫ ⏐ ⏐ *|Ef− Eg|* = ⏐⏐ (*η*(*x*) *− η*(*y*)) d*π*(*x,y*)⏐⏐ *≤ |η*(*x*) *− η*(*y*)*|* d*π*(*x,y*)*.* ℝ2*n*ℝ2*n*
+
+The preceding estimates bound the left side of (3.5) by *CδE* + *Cδ*. Choosing *δ* sufficiently small proves the result.
+
+To obtain a uniform bound for *E*, it remains to prove that, for every *ε >* 0, ∫ *aWf*+ *bWg−* (*n −* 2) *w*(*x*)*D*(*x,y*) d*π*(*x,y*) *≤ εE* + *Cε.*
+
+The next two sections establish this comparison from source-layer intervals. In Section 6, it will combine with the marginal estimate above and the positive subcritical gap *γ* to give the energy bound.
+
+## 4 An interval-pair inequality
+
+We first isolate the geometric comparison used in the pressure estimate. It is a statement about two parallel lines and does not involve the equations. The self-contained midpoint argument below gives the comparison; its nonnegative formulation also permits unbounded intervals of weight zero.
+
+Fix a unit vector *e* and distinct *z,z* *′* *∈ e* *⊥*. Write
+
+*x* = *z* + *se, y* = *z* *′* + *s* *′* *e, λ* = *|z − z* *′* *| >* 0*, h* = *s − s* *′* *.*
+
+The restricted Newton kernel and its directional factor are
+
+<u>(λ² + h²)</u> (2*−n*)*/*2 *′*<u>h²</u>
+
+|′) = (s ,s − +|n − 2)), let ′|, n− 1 | 𝕊 | ′ 𝒦 (s ,s) + −|𝒟 (𝒦 (s +|
+|---|---|---|---|
+|𝒦I (′− ′ = (s ,s + m ,m I J|s) =), define d|2 𝒦J (s for their midpoints and = m − m 0 I J||
+|||m I J||
+|y||m J||
+
+*𝒦*(*s,s s,s*) = 2 2 *.* *λ* + *h*
+
+For a bounded interval *I* = (
+
+<u>,s</u> *′* <u>)</u> *.*
+
+For a bounded interval *J*) by averaging in the second variable. When *I* and *J* are bounded, write *d₀* = *mI− mJ*for their midpoint separation.
+
+<u>x</u> *I* *e*
+
+*λ*
+
+*e*
+
+*h* = *s − s* *′*
+
+Figure 1: The transverse separation is *λ*, whereas the kernel depends on the longitudinal difference
+
+*h*. The distribution of *h* over *I×J* is symmetric about the midpoint separation *d₀*, which need not be zero. **Lemma 4.1** (Weighted interval comparison)**.** *Let n ≥* 3*, λ >* 0*, and let I,J ⊂* ℝ *be nonempty* *open intervals, possibly unbounded. Let cI,cJ≥* 0*, with I bounded whenever cI>* 0 *and J bounded* *whenever cJ>* 0*. Then* ∫ ∫ [
+(*cI*+ *cJ*)*𝒦* d*s* d*s* *′* *≤ cI𝒦I* + *cJ𝒦J* *I×J I×J* (4.1) ()] *′* + (*n −* 2) min(*cI,cJ*)*𝒟* + *|cI− cJ| 𝒦* d*s* d*s.*
+
+*Every term is nonnegative and the inequality is understood for extended integrals. An endpoint* *term with coefficient zero is defined to be zero, without evaluating the endpoint average.*
+
+*Proof.* If at most one coefficient is positive, then *|cI− cJ|* = *cI*+ *cJ*, so the inequality holds pointwise before integration. Suppose now that both coefficients are positive. Both intervals are bounded and *λ >* 0, so all integrals in the following calculation are finite. Integration by parts in the first variable gives ∫ ∫ (*𝒦− 𝒦I*) d*s* = *−* (*s − mI*)*∂s𝒦* d*s.* *I I*
+
+The corresponding identity in the second variable, together with
+
+<u>h h</u> *∂s𝒦* = *−*(*n −* 2) 2 2 *𝒦, ∂s′ 𝒦* = (*n −* 2) 2 2 *𝒦,* *λ* + *h λ* + *h*
+
+yields ∫ ∫2 *′*<u>h − d₀h</u>*′* (2*𝒦− 𝒦I − 𝒦J*) d*s* d*s* = (*n −* 2) 2 2 *𝒦* d*s* d*s.* (4.2) *I×J I×Jλ* + *h* The sign of the midpoint term follows directly from interval overlap. If *L* = *|I|* and *M* = *|J |*, the pushforward of d*s* d*s* *′* under (*s,s* *′* ) *|→ h* = *s − s* *′* has density { {}} <u>L + M</u> *ρ*(*h*) = *F* (*|h − d₀|*)*, F* (*r*) = max 0*,*min *L,M, − r* (*r ≥* 0)*.* 2
+
+Indeed, *ρ*(*h*) = *|I ∩* (*J* + *h*)*|*, the overlap length of two intervals whose centers are separated by *|h − d₀|*. The function *F* is nonincreasing. If *d₀ ≥* 0 and *h >* 0, then *|h − d₀|≤|h* + *d₀|*, hence *ρ*(*h*) *≥ ρ*(*−h*); for *d₀ ≤* 0 the inequality is reversed. Pairing positive and negative *h* against the odd function *h𝒦*(*h*)*/*(*λ²* + *h²*) therefore proves ∫ <u>h</u>*′* *d₀* 2 2 *𝒦* d*s* d*s ≥* 0*.* *I×Jλ* + *h* ∫ Consequently the left side of (4.2) is at most (*n −* 2) *I×J* *𝒟𝒦*. Multiply this last estimate by *c* = min(*cI,cJ*). Each individual endpoint defect is bounded ∫ above by *I×J* *𝒦*, because its subtracted endpoint average is nonnegative. The remaining coeffi- cients are *cI− c* and *cJ− c*, whose sum is *|cI− cJ|*. Adding these estimates and moving the finite endpoint terms to the right proves (4.1).
+
+The nonnegative formulation is essential when *n* = 3: even for *λ >* 0, an integral of *𝒦* over an unbounded partner interval can diverge. Lemma 4.1 makes no subtraction on such an interval.
+
+## 5 Pressure from weighted source layers
+
+We retain the sources, potentials, interaction measure, and cutoffs defined above. In particular, *n ≥* 3, *A,B > −*2, *p,q >* 0, and *pq >* 1. All constants in this section are uniform over admissible solution pairs. A subscript records permitted dependence on the auxiliary parameters; constants are always independent of the direction *e*.
+
+**Proposition 5.1** (Localized pressure)**.** *Let* (*u,v*) *be a positive solution pair as in Theorem 1.1,* *with n ≥* 3*, A,B > −*2*, and pq >* 1*. For every ε >* 0 *there is a constant Cε, depending only on* *the equation parameters and ε, such that* ∫ *aWf*+ *bWg≤* (*n −* 2) *w*(*x*)*D*(*x,y*) d*π*(*x,y*) + *εE* + *Cε.* (5.1) ℝ*n×*ℝ*n*
+
+The proof must accommodate the spatial factors at source-layer endpoints. We localize to short intervals, where those factors vary by at most *Cδd*(*x*), and use caps of angular radius proportional to *d*(*x*). The factor *d* converts both errors into multiples of *E*, by *dw ≤ Cη* from (3.3).
+
+### 5.1 Angular localization
+
+Write 𝔼*e*and ℙ*e*for expectation and probability under normalized surface measure on 𝕊 *n−*1. Fix 0 *< κ <* 1 and 0 *< δ <* 1*/*4, and put
+
+*ℓ*(*x*) = *δd*(*x*) *m* (*d*(*x*) *>* 0)*.*
+
+Choose a fixed nonnegative smooth function *ψ* on [0*, ∞*), equal to one near zero, supported in [0*,*1], and bounded by one. For 0 *< l ≤* 1 and any *θ ∈* 𝕊 *n−*1, set
+
+### Z(l) = 𝔼eψ(|e − θ|/l).
+
+Rotational invariance makes this independent of *θ*. Chordal polar coordinates give *n−*2∫1 <u>|𝕊 |</u>*n−*1 *n−*2 2 2 (*n−*3)*/*2 *Z*(*l*) = *n−*1 *l ψ*(*t*)*t* (1 *− l t /*4) d*t* *|*𝕊 *|*0
+
+and therefore *cl* *n−*1 *≤ Z*(*l*) *≤ Cl* *n−*1 and *|Z* *′*
+
+(*l*)*|≤ Cl* *n−*2
+. Define the cap weight by
+
+<u>ψ(|e − ωx|/(κd(x)))</u> *he*(*x*) = *w*(*x*) (1 *< |x| <* 2)*, he*(*x*) = 0 otherwise*.* (5.2) *Z*(*κd*(*x*))
+
+Its exact normalization is 𝔼*ehe*(*x*) = *w*(*x*). Differentiation, using (3.3), gives
+
+0 *≤ he*(*x*) *≤ Cκd*(*x*) *N −n* *, |∇he*(*x*)*|≤ Cκd*(*x*) *N −n−*1 (1 *< |x| <* 2)*.* (5.3)
+
+To check the second estimate, derivatives of the cap profile cost at most *Cκ/d*, and differentiation of *Z*(*κd*) *−*1 costs the same relative factor. The profile is constant near its center, so the norm *|e − ωx|* causes no differentiability problem there. The weight extends continuously by zero across both boundary spheres: *w* vanishes quadratically at *|x|* = 1, and *N − n >* 1 at *|x|* = 2. As in Lemma 3.2, call a pair close if *|x − y|≤ ℓ*(*z*) for at least one endpoint *z ∈{x,y}* with *d*(*z*) *>* 0. On its segment, *d* is comparable to *d*(*z*) because *d* is 1-Lipschitz and *ℓ*(*z*) *≤ δd*(*z*). Integrating the derivative bound across the pieces of this segment proves
+
+*|he*(*x*) *− he*(*y*)*|≤ Cκδd*(*z*) *N −n−*1+*m* *≤ Cκδd*(*z*) *N* *,* (5.4)
+
+where *N − n −* 1 + *m* = *N* + 2. The interaction marginals bound the integral over close pairs by *CκδE*. On the complementary pairs, (5.3) and the tail bound (2.11) give, for example, the bound ∫ *Cκf* (*x*)*d*(*x*) *N −n* *ℓ*(*x*) 2*−n* d*x ≤ Cκ,δ,* *B*2
+
+since *N − n − m*(*n −* 2) = 3*n* + 8 *>* 0; the other endpoint is identical with *g* in place of *f*. We have proved ∫ *|he*(*x*) *− he*(*y*)*|* d*π*(*x,y*) *≤ CκδE* + *Cκ,δ.* (5.5)
+
+Moreover, on the support of *he*(*x*),
+
+*|De*(*x,y*) *− D*(*x,y*)*|≤* 2*|e − ωx|≤* 2*κd*(*x*)*.*
+
+Averaging and using *dw ≤ Cη* gives ∫ ∫ 𝔼*ehe*(*x*)*De*(*x,y*) d*π*(*x,y*) *≤ w*(*x*)*D*(*x,y*) d*π*(*x,y*) + *CκE.* (5.6)
+
+Here the constant *C* is independent of *κ,δ*.
+
+### 5.2 Measurable intervals and their loss
+
+For 0 *< t < f*(*x*), let *I* be the connected component containing *x* of the source layer *{f > t}* on the line *x* + ℝ*e*. Assign it the weight ⎧ ⎨inf *h* *e* *, I* bounded and *|I|≤* 2*δ* inf*Id,* *χI*=*I*(5.7) ⎩0 *,* otherwise*.*
+
+Set *χf*(*e,x,t*) = *χI*. Define *χg*(*e,y,t* *′* ) = *χJ*in the same way from *{g > t* *′* *}*. In particular, 0 *≤ χf*(*e,x,t*) *≤ he*(*x*) and 0 *≤ χg*(*e,y,t* *′* ) *≤ he*(*y*). All these functions, as well as finite endpoints, are jointly measurable. Indeed, with the convention *f*(0) = 0, the set *{*(*x,t*) : *x ̸*= 0*,* 0 *< t < f*(*x*)*}* is open. The forward exit distance of its line component exceeds *r ≥* 0 exactly when the compact segment *{x* + *se* : 0 *≤ s ≤ r}* is contained in the layer. This is an open condition in (*e,x,t*); the backward exit distance is treated in the same way. Their sum, including the value +*∞*, is the measurable component length. The infima in (5.7) can be taken over rational offsets between these two exits, since *d* and *he*are continuous. This proves the assertion, including measurability in *e*, without a choice of coordinates on the varying spaces *e* *⊥*. For each direction define the nonnegative losses ∫ ∫ *f* (*x*) *Lf*(*e*) = *u*(*x*) (*he*(*x*) *− χf*(*e,x,t*)) d*t* d*x,* ℝ*n*0 ∫ ∫ *g*(*y*) *Lg*(*e*) = *v*(*y*) (*he*(*y*) *− χg*(*e,y,t* *′* )) d*t* *′* d*y.* ℝ*n*0
+
+They are finite for each fixed solution and direction, since *he*is bounded and supported on the compact annulus 1 *≤|x|≤* 2. This finiteness does not assert a uniform bound on those marginals.
+
+**Lemma 5.2** (Averaged layer loss)**.** *For the cap weights* (5.2) *and component weights* (5.7)*, under* *the hypotheses of Proposition 5.1, every P ≥* 1 *satisfies* () ( *−*1 ) 𝔼*eLf*(*e*) + *Lg*(*e*) *≤ Cκδ* + *Cκ,δP E* + *CP.* (5.8)
+
+*The constants in the relative coefficient are independent of P, and the last constant is independent* *of κ,δ,P.*
+
+*Proof.* We prove the assertion for *f,u*; the same argument applies to *g,v*. Only 1 *< |x| <* 2 contributes. Fix such an *x* and write *d* = *d*(*x*) and *ℓ* = *δd* *m*. If the component *I* at level *t* has *|I|≤ ℓ*, then inf *d ≥ d − ℓ ≥* (1 *− δ*)*d, |I|≤ δd ≤* 2*δ* inf *d.* *I I* It therefore passes the length condition in (5.7). Estimate (5.4) shows that its entire loss of weight is at most *Cκδd* *N*. If *|I| > ℓ*, at least one of its two portions from *x* contains a segment of length *ℓ/*2. Let *F* be the set of directions whose forward segment of that length lies in *{f > t}*. Polar integration centered at *x* gives ∫*n−*1 <u>|𝕊 |</u>*n* *f ≥ t*(*ℓ/*2) ℙ*e*(*F*)*.* *Bℓ/*2(*x*)*n*
+
+The long-interval event is contained in *F ∪* (*−F*). Antipodal symmetry, followed by the source bound in (2.11), yields ∫ <u>C C</u> ℙ*e{|I| > ℓ}≤* *n* *f ≤* *n*
+
+*.* (5.9)
+*tℓBℓ*(*x*)*tℓ*
+
+Here *Bℓ*(*x*) *⊂ B₄*; only its containment in a fixed centered ball is used. For *t ≥ Pd* *−k*, the expected loss on long intervals is bounded using the supremum of *he*(*x*) times the probability in (5.9). No independence is needed. The result is
+
+*Cκd* *N −n* *Cδ* *−n* *P* *−*1 *d* *k−mn* = *Cκ,δP* *−*1 *d* *N* *,*
+
+because *k* = *n*(*m* + 1). Integrating the short- and long-interval estimates over these high levels, ( *−*1 ) and then against *u*(*x*) d*x*, gives at most *Cκδ* + *Cκ,δP Ef*. For the remaining levels use the exact cap normalization:
+
+∫ min *{f*(*x*)*,Pd−k}* 𝔼*e*(*he*(*x*) *− χf*(*e,x,t*)) d*t ≤ Pd* *−k* *w*(*x*) *≤ CPd* *N −*1*−k* *≤ CP.* 0
+
+The last exponent equals *n* + 1. Integration against *u* is bounded by *CP* by (2.11). Repeating the proof for *g,v* proves (5.8).
+
+### 5.3 Weighted endpoints and nonnegative integration
+
+Suppose *χI>* 0 for an *f*-layer at level *t*. Then *I* is bounded and *he≥ χI>* 0 on it. Continuity gives the same inequality at its two endpoints *x−,x*+, so they lie in the annulus 1 *< |x| <* 2. Continuity of *f* there and maximality of the component imply
+
+*f* (*x−*) = *f* (*x*+) = *t, u*(*x±*) = *t¹* */q* *|x±|* *−B/q* *.*
+
+For any *x ∈ I*, (5.7) gives *|x±− x|≤* 2*δd*(*x*). The positive radial function *|x|* *−B/q* has a bounded relative Lipschitz constant on 1 *≤|x|≤* 2. Thus, with *uI*= (*u*(*x−*) + *u*(*x*+))*/*2, we have ⏐ ⏐ ⏐*B* 1*/q*⏐*B* 1*/q* ⏐*uI−* (*t/|x|*) ⏐ *≤ Cδd*(*x*)(*t/|x|*) *≤ Cδd*(*x*)*u*(*x*)*.* (5.10)
+
+The same statement holds for a positive-weight *g*-component *J*, with endpoint average *vJ*and ideal value (*t* *′* */|y|* *A* ) 1*/p*. When a component weight is zero, every product involving its endpoint average is defined as zero without selecting or evaluating endpoints. Fix a direction *e* and levels *t,t* *′* *>* 0. On two distinct parallel lines *x* = *z* +*se* and *y* = *z* *′* + *s* *′* *e*, apply Lemma 4.1 to each pair of layer components *I,J* with *cI*= *χI*and *cJ*= *χJ*. Since min(*χI,χJ*) *≤ he*(*x*), it gives ∫ ∫ [ (*χI*+ *χJ*)*𝒦≤ χI𝒦I* + *χJ𝒦J* *I×J I×J* (5.11) ()] + (*n −* 2)*he*(*x*)*De*(*x,y*) + *|χI− χJ|𝒦,*
+
+where the measures are d*s* d*s* *′*. At this stage all terms are nonnegative extended integrals. Each open line layer has at most countably many components. Sum (5.11) over the two sets of components, and integrate in *z,z* *′* *∈ e* *⊥* and *t,t* *′* *>* 0. The summed functions are the jointly measurable functions described above; hence Tonelli’s Theorem applies. The coincident-line set
+
+*z* = *z* *′* is null and may be omitted. By the potential identities (2.10), the two terms on the left become ∫ ∫ *f* (*x*) *Uf*(*e*) = *χf*(*e,x,t*)*u*(*x*) d*t* d*x,* 0 ∫ ∫ *g*(*y*) *Ug*(*e*) = *χg*(*e,y,t* *′* )*v*(*y*) d*t* *′* d*y.* 0
+
+Similarly, the endpoint terms become ∫ ∫ *f* (*x*) *Vf*(*e*) = *χf*(*e,x,t*)*uI*d*t* d*x,* 0 ∫ ∫ *g*(*y*) *Vg*(*e*) = *χg*(*e,y,t* *′* )*vJ*d*t* *′* d*y.* 0
+
+For example, integrating *𝒦I* over all (*y,t* *′* ) layers recovers the average of *K ∗ g* at *x−,x*+. For each selected endpoint the omitted *y*-points comprise one affine line, which is Lebesgue null in ℝ *n*, so the recovered potential is exactly *uI*. We now verify finiteness before any subtraction. Set ∫ ∫ *Hf*(*e*) = *he*(*x*)*f* (*x*)*u*(*x*) d*x, Hg*(*e*) = *he*(*y*)*g*(*y*)*v*(*y*) d*y.*
+
+Both are finite for every fixed solution and direction because the cap weights are bounded and supported on a compact annulus. We have *Uf≤ Hf*, *Ug≤ Hg*, while (5.10) gives *Vf≤ CHf*and *Vg≤ CHg*. The integrated pressure term is at most (*n −* 2)*Hf*. Finally,
+
+*|χf*(*e,x,t*) *− χg*(*e,y,t* *′* )*|≤ he*(*x*) + *he*(*y*)*,*
+
+so its integrated contribution is at most *Hf*+ *Hg*, again by Tonelli and the two potential marginals. All the integrated terms are therefore finite, even when *n* = 3. In particular, we have never subtracted the possibly infinite integrals over an unbounded line component. It is now legitimate to subtract *Vf*+ *Vg*. The sharper mismatch bound
+
+*|χf*(*e,x,t*) *− χg*(*e,y,t* *′* )*|≤|he*(*x*) *− he*(*y*)*|* + (*he*(*x*) *− χf*(*e,x,t*)) + (*he*(*y*) *− χg*(*e,y,t* *′* ))
+
+shows that the resulting finite quantity ∫ ∫ *f* (*x*) *Se*= *χf*(*e,x,t*)(*u*(*x*) *− uI*) d*t* d*x* 0 ∫ ∫ *g*(*y*) + *χg*(*e,y,t* *′* )(*v*(*y*) *− vJ*) d*t* *′* d*y* 0
+
+satisfies ∫ ∫ *Se≤* (*n −* 2) *he*(*x*)*De*(*x,y*) d*π*(*x,y*) + *|he*(*x*) *− he*(*y*)*|* d*π*(*x,y*) + *Lf*(*e*) + *Lg*(*e*)*.* (5.12)
+
+The quantity *Se*need not be nonnegative; only the preceding unsubtracted expressions were treated with Tonelli’s Theorem.
+
+### 5.4 Recovery of the cutoff pressure
+
+The exact weighted layer identity is ∫ *f* (*x*) [] *B* 1*/q*<u>f (x)u(x)</u> *u*(*x*) *−* (*t/|x|*) d*t* = = *af*(*x*)*u*(*x*) (*x ̸*= 0)*.* (5.13) 0*q* + 1
+
+Indeed, the integral of (*t/|x|* *B* ) 1*/q* equals *qf*(*x*)*u*(*x*)*/*(*q* + 1). The analogous identity for *g* has coefficient *b* = 1*/*(*p* + 1). To compare (5.13) with *Se*, set *τ* = (*t/|x|* *B* ) 1*/q*. Since 0 *≤ τ ≤ u*(*x*),
+
+*he*(*x*)(*u*(*x*) *− τ*) *− χf*(*e,x,t*)(*u*(*x*) *− uI*) = (*he*(*x*) *− χf*(*e,x,t*))(*u*(*x*) *− τ*) + *χf*(*e,x,t*)(*uI− τ*) *≤* (*he*(*x*) *− χf*(*e,x,t*))*u*(*x*) + *Cδd*(*x*)*he*(*x*)*u*(*x*)*,*
+
+by (5.10); the zero-weight case has the same bound under the convention already stated. Inte- grating and treating the *g*-layer in the same way gives
+
+*aHf*(*e*) + *bHg*(*e*) *≤ Se*+ *Lf*(*e*) + *Lg*(*e*) ∫ + *Cδ d*(*x*)*he*(*x*)*f* (*x*)*u*(*x*) d*x* (5.14) ∫ + *Cδ d*(*y*)*he*(*y*)*g*(*y*)*v*(*y*) d*y.*
+
+*Proof of Proposition 5.1.* Combine (5.12) and (5.14), and average over *e*. This incurs two copies of *Lf*+ *Lg*. The identities 𝔼*ehe*= *w* and *dw ≤ Cη*, together with (5.5), (5.6), and Lemma 5.2, give ∫ *aWf*+ *bWg≤* (*n −* 2) *w*(*x*)*D*(*x,y*) d*π*(*x,y*) ( *−*1 ) + *Cκ* + *Cκδ* + *Cκ,δP E* + *Cκ,δ,P.*
+
+The constant multiplying *κ* is independent of all three auxiliary parameters; the one multiplying *δ* is independent of *δ,P*; and the one multiplying *P* *−*1 is independent of *P*. First choose *κ* sufficiently small, next *δ* sufficiently small, and finally *P* sufficiently large, so that the relative coefficient is at most *ε*. The remaining additive constant is finite and uniform over the solution pair. This proves (5.1).
+
+## 6 The energy bound and the scaling contradiction
+
+We now close the argument. Throughout this section the reductions of Section 2 have been made, so *n ≥* 3, *A,B > −*2, *pq >* 1, and the gap *γ* in Equation (2.12) is positive.
+
+**Proposition 6.1** (Uniform local energy bound)**.** *For the fixed equation parameters there is a* *constant C, independent of the solution pair, such that* ∫ ( *B q*+1 *A p*+1 ) *|x| u* + *|x| v* d*x ≤ E ≤ C.* (6.1) *B*1
+
+*Proof.* Write ∫ ∫ () *T* = *w*(*x*)*D*(*x,y*) d*π*(*x,y*)*, Q* = Φ(*x,y*) *− η*(*x*) + *w*(*x*)*D*(*x,y*) d*π*(*x,y*)*.*
+
+Lemma 3.2 gives, for every *ε >* 0,
+
+*|Q|* + *|Ef− Eg|≤ εE* + *Cε.* (6.2)
+
+The virial identity, Equation (3.4), is therefore exactly
+
+*c₁Ef*+ *c₂Eg*= *aWf*+ *bWg−* (*n −* 2)*T* + (*n −* 2)*Q,* (6.3) *c₁* = *a*(*n* + *B*) *−* (*n −* 2)*, c₂* = *b*(*n* + *A*)*.*
+
+Proposition 5.1 bounds the first three terms on the right from above by *εE* + *Cε*. Consequently
+
+*c₁Ef*+ *c₂Eg≤* (*n −* 1)*εE* + *Cε.*
+
+Here and below the additive constant may change, but remains independent of the solution. Since *c₁* + *c₂* = *γ*, <u>γ c₁ − c₂</u> *c₁Ef*+ *c₂Eg*= *E* + (*Ef− Eg*)*.* 2 2 Using Equation (6.2), we obtain () <u>γ |c₁ − c₂|</u> *E ≤ n −* 1 + *εE* + *Cε.* 2 2
+
+Choose *ε* so that the coefficient of *E* on the right is at most *γ/*4. This proves the universal bound on *E*. The first inequality in Equation (6.1) follows from *η* = 1 on *B₁* and the nonnegativity of the energy densities.
+
+*Proof of Theorem 1.1.* The elementary reductions in Section 2 already exclude *n* = 2, weights at most *−*2, and *pq ≤* 1. Suppose a solution exists in the remaining range. For every *R >* 0, the pair
+
+*uR*(*x*) = *R* *α* *u*(*Rx*)*, vR*(*x*) = *R* *β* *v*(*Rx*)
+
+is an admissible solution with the same equation parameters. Proposition 6.1 applies to every such pair with the same constant. Both energy terms have the same dilation exponent: ∫ ( *B q*+1 *A p*+1 ) *|x| uR*(*x*) + *|x| vR*(*x*) d*x* *B*1 ∫ *α*+*β*+2*−n* ( *B q*+1 *A p*+1 ) = *R |x| u*(*x*) + *|x| v*(*x*) d*x.* *BR*
+
+For *R ≥* 1, the last integral is at least its fixed, strictly positive value on *B₁*. It is finite on every bounded ball. Equation (2.12) and 1 *− a − b >* 0 give *α* + *β* + 2 *− n >* 0, so the displayed expression tends to infinity as *R →∞*. This contradicts the uniform bound.
+
+**Corollary 6.2** (Hénon–Lane–Emden classification; Phan’s Conjecture C)**.** *Let n ≥* 3 *be an* *integer, let p,q >* 0*, and let A,B > −*2*. There is no pair*
+
+*u,v ∈ C²*(ℝ *n* *\{*0*}*) *∩ C*(ℝ *n* )*, u*(*x*) *>* 0*, v*(*x*) *>* 0 (*x ∈* ℝ *n* )*,*
+
+*satisfying Equation* (1.1) *at every x ̸*= 0 *if and only if*
+
+<u>n + A n + B</u> + *> n −* 2*.* *p* + 1 *q* + 1
+
+*When the reverse weak inequality holds, such a pair exists and can be chosen radial.*
+
+*Proof.* The strict inequality gives nonexistence by Theorem 1.1. Suppose instead that
+
+<u>n + A n + B</u> + *≤ n −* 2*.* *p* + 1 *q* + 1
+
+Since *n* + *A,n* + *B > n −* 2 *>* 0, () 1 1 1 *n* + *A n* + *B* + *<* + *≤* 1*.* *p* + 1 *q* + 1 *n −* 2 *p* + 1 *q* + 1
+
+Thus *pq >* 1, because 1 *−* 1*/*(*p* + 1) *−* 1*/*(*q* + 1) = (*pq −* 1)*/*((*p* + 1)(*q* + 1)). We now apply Proposition B of Phan [13], which states the radial ground-state theorem of Bidaut-Véron and Giacomini [1, Theorem 1.4(i)] for the same equation and solution class, with *n ≥* 3, *A,B > −*2, and *p,q >* 0. Its radial existence region is exactly the displayed reverse weak inequality, including equality on the critical hyperbola. In the original Hamiltonian notation, the substitution is *N* = *n*, *a* = *A*, *b* = *B*, *δ* = *p*, and *μ* = *q*, with both differential-operator exponents equal to 2; the preceding calculation verifies the standing superlinearity condition *D* = *δμ −*1 *>* 0. The original ground states have positive radial profiles *U,V* on (0*, ∞*), classical there and continuous at zero. This origin regularity gives the strict positivity at zero required here: the radial equation makes *r* *n−*1 *U* *′*
+
+(*r*) strictly decreasing. Its limit as *r ↓* 0 must be zero: a nonzero
+or infinite limit would contradict continuity of *U* at zero after integration against *r¹* *−n*. Hence *U* *′*
+
+(*r*) *<* 0, and *U*(0) *≥ U*(*r*) *>* 0 for every *r >* 0. The same argument applies to *V*. Thus
+*u*(*x*) = *U* (*|x|*) and *v*(*x*) = *V* (*|x|*) belong to the stated solution class and are strictly positive on all of ℝ *n*. Radial existence in this class rules out unrestricted nonexistence under the reverse weak inequality, completing the equivalence.
+
+This classification is a consequence of Theorem 1.1 joined to the cited radial existence theorem, rather than a new construction of ground states. The complementary existence assertion is restricted to *n ≥* 3 and *A,B > −*2; the broader nonexistence statement of Theorem 1.1 is unchanged.
+
+## References
+
+[1] Marie-Françoise Bidaut-Véron and Hector Giacomini. A new dynamical approach of Emden– Fowler equations and systems. *Adv. Differential Equations*, 15(11–12):1033–1082, 2010. doi:10.57262/ade/1355854434. Author version: arXiv:1001.0562v2 (23 February 2010); theo- rem locators refer to this version.
+
+[2] Wenxiong Chen and Congming Li. An integral system and the Lane–Emden conjecture. *Discrete Contin. Dyn. Syst.*, 24(4):1167–1184, 2009. doi:10.3934/dcds.2009.24.1167.
+
+[3] Ze Cheng and Genggeng Huang. A Liouville theorem for the subcritical Lane–Emden system. *Discrete Contin. Dyn. Syst.*, 39(3):1359–1377, 2019. doi:10.3934/dcds.2019058.
+
+[4] Mostafa Fazly and Nassif Ghoussoub. On the Hénon–Lane–Emden conjecture. *Discrete* *Contin. Dyn. Syst.*, 34(6):2513–2533, 2014. doi:10.3934/dcds.2014.34.2513.
+
+[5] Basilis Gidas and Joel Spruck. Global and local behavior of positive solutions of nonlinear el- liptic equations. *Comm. Pure Appl. Math.*, 34(4):525–598, 1981. doi:10.1002/cpa.3160340406.
+
+[6] Basilis Gidas and Joel Spruck. A priori bounds for positive solutions of nonlin- ear elliptic equations. *Comm. Partial Differential Equations*, 6(8):883–901, 1981. doi:10.1080/03605308108820196.
+
+[7] Long-Han Huang and Wenming Zou. Liouville-type theorems for stable solutions of the Hénon– Lane–Emden system. *J. London Math. Soc.*, 113(1):e70412, 2026. doi:10.1112/jlms.70412.
+
+[8] Hang Li. A Liouville theorem for the Hénon–Lane–Emden system in four and five dimensions. *Adv. Nonlinear Stud.*, 22(1):517–533, 2022. doi:10.1515/ans-2022-0027.
+
+[9] Kui Li, Mingxiang Li, and Juncheng Wei. On a new region for the Lane–Emden conjecture in higher dimensions, 2025. 8 October 2025, arXiv:2510.06613v1.
+
+[10] Kui Li and Zhitao Zhang. Proof of the Hénon–Lane–Emden conjecture in ℝ³. *J. Differential* *Equations*, 266(1):202–226, 2019. doi:10.1016/j.jde.2018.07.036.
+
+[11] Enzo Mitidieri. A Rellich type identity and applications. *Comm. Partial Differential* *Equations*, 18(1–2):125–151, 1993. doi:10.1080/03605309308820923.
+
+[12] Enzo Mitidieri. Nonexistence of positive solutions of semilinear elliptic systems in ℝ *N*. *Differential Integral Equations*, 9(3):465–479, 1996. doi:10.57262/die/1367969966.
+
+[13] Quoc Hung Phan. Liouville-type theorems and bounds of solutions for Hardy-Hénon elliptic systems. *Adv. Differential Equations*, 17(7–8):605–634, 2012. doi:10.57262/ade/1355702970. Author version: arXiv:1108.1312v1 (5 August 2011); result locators refer to this version.
+
+[14] Peter Poláčik, Pavol Quittner, and Philippe Souplet. Singularity and decay estimates in superlinear problems via Liouville-type theorems, I: Elliptic equations and systems. *Duke* *Math. J.*, 139(3):555–579, 2007. doi:10.1215/S0012-7094-07-13935-8.
+
+[15] James Serrin and Henghui Zou. Non-existence of positive solutions of Lane–Emden systems. *Differential Integral Equations*, 9(4):635–653, 1996. doi:10.57262/die/1367969879.
+
+[16] Philippe Souplet. The proof of the Lane–Emden conjecture in four space dimensions. *Adv.* *Math.*, 221(5):1409–1427, 2009. doi:10.1016/j.aim.2009.02.014.
+
+[17] Yating Xu and Huxiao Luo. Liouville type theorems for higher order elliptic systems. *J.* *Differential Equations*, 453:113823, 2026. doi:10.1016/j.jde.2025.113823.

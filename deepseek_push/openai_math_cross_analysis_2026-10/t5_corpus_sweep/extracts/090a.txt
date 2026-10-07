@@ -1,0 +1,907 @@
+# An atomic certificate for triangular-lattice universal optimality
+
+OpenAI
+
+### September 26, 2026
+
+**Abstract**
+
+We prove that the density-one triangular lattice minimizes the lower energy per particle for every nonnegative completely monotone function of squared distance, among all locally finite planar configurations of centered disk density one. The comparison includes infinite energies. The proof constructs sharp Gaussian Fourier minorants using an atomic interpolation certificate.
+
+## 1 Introduction
+
+Universal optimality asks for one configuration that minimizes energy for an entire family of repulsive interactions. For the triangular lattice, the difficulty is not only to compare different lattices. A competing planar set may have no periods, arbitrarily close pairs, and arbitrarily large counts in small translated disks. We begin by isolating a Fourier comparison that uses only the asymptotic number of points in centered disks, and then construct functions that make this comparison sharp. *√* Put*b*= 3*/*2and let
+
+*A*=*b* *−*1*/*2 *{m*(1*,*0) +*n*(1*/*2*,b*) : *m,n∈*Z*}*
+
+be the triangular lattice of covolume one. Write *BR* for the closed disk of radius *R* centered at the origin. A locally finite set *C ⊂*R² has*centered disk density one*if *NR/*(*πR²*) *→* 1, where *NR* = #(*C∩BR*). A smooth function*g*: (0*,∞*)*→*[0*,∞*)is*completely monotone*if
+
+(*−*1) *j* *g*
+
+(*j*)
+(*t*)*≥*0 (*j*= 0*,*1*,*2*,..., t >*0)*.*
+For such a function, define its lower energy per particle by
+
+<u>1</u> ∑︂2 *Eg*(*C*) = lim inf *g*(*|x−y|*)*.* *R→∞ NR* *x,y∈C∩BR* *x̸*=*y*
+
+The sum counts ordered pairs. Density one makes *NR >* 0for all sufficiently large *R*. Each finite-disk sum is finite, although the lower energy and the lattice series below may be infinite.
+
+**Theorem 1.1**(Universal energy minimum)**.***For every smooth nonnegative completely monotone* *functiongon*(0*,∞*)*and every locally finite planar setCof centered disk density one,* ∑︂ *Eg*(*C*)*≥ g*(*|a|* 2 ) =*Eg*(*A*)*.* *a∈A\{*0*}*
+
+*The comparison and the equality are in the extended nonnegative reals.*
+
+For example, the theorem applies to *g*(*t*) = *t* *−p* for every *p >* 0, including the parameters for which the lattice series diverges. A singularity of *g* at zero causes no ambiguity in a finite sum, because only distinct points occur. The conclusion identifies the minimum; it does not classify the minimizing configurations. Our Fourier convention is ∫︂ *f* ˆ︁( *ξ*) = *f*(*x*)*e* *−*2*πix·ξ* *dx,* R2 *∗* 2 *−πα|x|*2 and the dual lattice is *A* = *{ξ∈*R : *ξ·a∈*Zfor every*a∈A}*. Write *kα*(*x*) = *e* for *α >* 0. The analytic statement that supplies the energy comparison concerns each Gaussian separately.
+
+**Theorem 1.2**(Sharp Gaussian minorants)**.***For every α >* 0*there is a real radial Schwartz function* *fα*:R² *→*R*such that* *fα*(*x*)*≤kα*(*x*)*, f* ˆ︁ *α*(*ξ*)*≥*0 (*x,ξ∈*R²)*,*
+
+*and* *fα*(*a*) =*kα*(*a*) (*a∈A\{*0*}*)*, f* ˆ︁ *α*(*w*) = 0 (*w∈A* *∗* *\{*0*}*)*.*
+
+*For α≥* 1*, the construction uses two finite*20*-by-*20*interpolation blocks and an absolutely summable* *infinite correction.*
+
+The two theorems have different content. The functions *fα*give sharp analytic certificates for individual Gaussians. Positive mixtures of the resulting*energy inequalities*, rather than mixtures of the auxiliary functions, give Theorem1.1. Taking the *α≥* 1construction as input, Section2proves the reciprocal-parameter extension and the complete energy deduction. The later construction and sign sections establish that input within this paper, thereby completing both theorems.
+
+### 1.1 Historical context
+
+Classical work on the lattice-restricted problem proceeds through the binary Epstein zeta function. Rankin and Cassels studied its minimization, with corrections and refinements by Ennola and Diananda [20, 3, 4, 12, 10]. This line of work establishes the triangular minimum for convergent inverse-power lattice sums. Montgomery’s theta theorem gives the Gaussian minimum among planar lattices of fixed covolume for every positive parameter [16, Theorem 1]. These lattice results do not by themselves compare the triangular lattice with a nonperiodic set. The Fourier bounds of Cohn and Elkies for sphere packing [6] provided a framework in which pointwise inequalities for a function and its transform control a geometric optimization problem. Cohn and Kumar developed the corresponding energy bounds and formulated the Euclidean universal-optimality program [7, Proposition 9.3 and Conjecture 9.4]. In dimensions eight and twenty-four, Cohn, Kumar, Miller, Radchenko, and Viazovska proved the *E₈* and Leech lattice cases using sharp Gaussian auxiliaries and simultaneous Fourier interpolation formulas [8, Theorems 1.4,
+
+1.7, and 1.9]. Other planar comparisons retain restrictions on the competitors or the allowed perturbations. Faulhuber, Shafkulovska, and Zlotnikov compare the triangular lattice with the honeycomb and further periodic classes [13, Theorems 1.1–1.2 and Corollary 1.3]. Hardin and Tenpas treat four-point and six-point configurations on a fixed triangular torus and a fixed rectangular torus, respectively, with the extension from periodized Gaussians to completely monotone interactions subject to their rapid-decay hypothesis [14, Theorem 1]. For interactions of finite triangular-lattice energy, Leblé proves local optimality under sufficiently small bounded displacements, including nonperiodic displacements, with the allowed size depending on the interaction [15, Theorems 1–2 and Remark 1.1]. Theorem1.1imposes no assumption that the competitor is a bounded perturbation of a lattice.
+
+A separate companion develops a modulo-12interpolation construction for the same energy endpoint [18]. Its finite part uses168positive-node coordinates in each block, frequency quadrature, and Gaussian-parameter intervals [18, Section 3, especially Proposition 3.3]. The construction here uses modulo-36nodes and twenty positive-node coordinates in each block. The undamped finite columns are trigonometric polynomials in squared radius, so their spectral measures are finite sums of atoms, and one containing polytope controls the Gaussian data. The auxiliary statements of the two methods are not identical, even though their energy consequences agree. The smaller finite system does not enlarge the competitor class, and it does not eliminate the infinite correction or the estimates between nodes. The interpolation mechanism has several precedents. Cardinal formulas built from squared sine or cosine factors and value-and-derivative data occur in Cohn and Kumar’s one-dimensional energy bound [7, Proposition 9.6] and in the Gaussian extremal approximations of Carneiro, Littmann, and Vaaler [2, formulas (1.2)–(1.3)]. Radchenko and Viazovska developed simultaneous interpolation of an even real Schwartz function and its Fourier transform on the line [19, Theorem 1]. Sardari’s planar construction uses periodic supersets of triangular quadratic-form values and shows that the values and first radial derivatives of a function and its Fourier transform at the triangular shells do not determine the function uniquely in the full radial Schwartz class [21, Section 6.1 and Theorem 1.7]. The uniqueness established below is only for the specified summable coefficient problem. The sharp packing companion develops Gaussian cardinal functions, Fourier kernels, finite-block and infinite-tail inversion, and Bernstein sign certification that we adapt here [17, Sections 2–4]. All parameter-dependent identities and estimates required for the present Gaussian functions are proved in this paper. Fo... [truncated]
+
+### 1.2 Proof overview
+
+Section2first explains why the Gaussian functions have exactly the properties needed for energy. ∑︁ 2*πix·ξ* For*CR* =*C∩BR*, define*MR*(*ξ*) =*x∈CRe*. Fourier inversion gives the finite identity ∑︂ ∫︂ *fα*(*x−y*) = *f* ˆ︁ *α*(*ξ*)*|MR*(*ξ*)*|* 2 *dξ.* R2 *x,y∈CR*
+
+A smooth cutoff of the disk and the density assumption show that, for every fixed*ε >*0, ∫︂ <u>1</u>2 lim inf *|MR*(*ξ*)*| dξ≥*1*.* *R→∞ NR|ξ|≤ε*
+
+Nonnegativity and continuity of *f* ˆ︁ *α*therefore give the off-diagonal lower bound *f* ˆ︁ *α*(0) *−fα*(0), after removing the*NR* diagonal terms. This step uses no count in a translated smaller disk.
+
+The contact conditions identify that lower bound. The dual lattice is a quarter turn of *A*, and Poisson summation with unit covolume gives ∑︂ *f* ˆ︁ *α*(0)*−fα*(0) = *kα*(*a*)*.* *a∈A\{*0*}*
+
+The same duality turns a minorant for *k₁/α*into one for *kα*when0 *< α <* 1, so only the construction for *α≥* 1remains. Finally a positive Laplace representation expresses *g* as a mixture of Gaussian kernels. Fatou’s lemma is applied to their nonnegative energy sums along an arbitrary sequence of radii; this permits both an atom at the constant kernel and infinite total representing mass. These arguments prove the energy theorem from the later local construction, without requiring a sharp auxiliary for the mixed potential. For *α≥* 1, Section3works in the scalar coordinate *s* = *b|x|* 2. The interpolation nodes are the positive integers whose residues modulo36are represented by *m²* + *mn* + *n²* for integers *m,n*; they contain every coordinate *b|a|* 2 for *a∈A\{*0*}* and may include additional nodes. A product of squared sine factors, one for each residue, has a double zero at every node. Multiplying it by suitable double- and simple-pole factors produces columns that prescribe a value and a derivative. Periodic pole columns handle ten positive nodes, together with fixed data at zero; rational columns with one pole location handle the remaining positive nodes. The periodic columns use stronger Gaussian damping. Before damping they are trigonometric polynomials, so their spectral measures consist of finitely many atoms. They also contribute value- and-derivative data at later nodes in their residue classes modulo36; the stronger damping makes these repeated contributions summably small. The rational columns have absolutely continuous spectral measures with total variation bounded uniformly in their node. These representations prove that arbitrary absolutely summable tail coefficients give radial Schwartz functions, with all needed differentiations justified. Two real input functions *U₁,U₂* are formed from the damped columns, together with opposite fixed multiples of the damped sine product. Define
+
+*F₁* =*U₁* + *U* ˆ︁2 *, F₂* =*U₂* + *U* ˆ︁1 *.*
+
+Fourier inversion and radiality give *F* ˆ︁1 = *F₂*. Section4constructs a finite approximation to the simultaneous value-and-slope equations. There are twenty unknown coordinates on each side; taking sums and differences separates the forty coupled coordinates into two blocks of order twenty. A single containing polytope encloses the Gaussian data. Outward-rational interval arithmetic certifies the fixed inverse bounds and coefficient bounds on that polytope. For the polynomial inequalities, every Bernstein coefficient is bounded on the whole polytope, with no mesh of parameter or spatial values. AppendixAgives the exact evaluation recipes and proves that their interval arithmetic encloses the required quantities. Section5then proves uniform bounds for the maps between the finite lists and the full unweighted *ℓ¹* tail space. These analytic bounds include the repeated jets of the periodic columns. Together with the finite inverse bounds, they permit a Schur elimination and a Neumann series on the full tail space. The resulting functions satisfy the interpolation equations*exactly*at every node, including those beyond the finite block. The same argument bounds their difference from the finite approximation. Thus finite arithmetic supplies quantitative inputs, while the full-space argument supplies the exact infinite interpolation. Section6proves the remaining pointwise inequalities on the entire half-line. Near a node, subtract the exact value and linear term before dividing by the squared displacement. The finite polynomial tests, correction bounds, and Gaussian comparison then control the exact functions on whole half-cells; a separate cubic argument handles the first right half-cell. Farther out, signed
+
+sine-product terms dominate the remaining curvature on every gap. Positive normalization gives the*α≥*1minorant and closes the input to the energy reduction.
+
+## 2 Energy from Gaussian minorants
+
+We first isolate what the Gaussian construction must accomplish. Assuming the half-range statement
+
+(1) below, this section extends it to every positive Gaussian parameter and derives Theorem1.1. Sections3–6will then establish the assumed statement. This order separates the configuration-level argument from the interpolation certificate. The competitor needs only a centered disk density; no estimate on the number of points in a smaller translated disk will be used. The corresponding density-only linear programming statement is [5, Definition 1.1 and Proposition 2.2]. We give the needed Schwartz-function case by concentrating a Fourier test near zero. For every*α≥*1, the construction will supply a real radial Schwartz function*fα*such that
+*fα≤kα, f* ˆ︁ *α≥*0*,*
+
+(1)
+*fα*(*a*) =*kα*(*a*) (*a∈A\{*0*}*)*, f* ˆ︁ *α*(*w*) = 0 (*w∈A* *∗* *\{*0*}*)*.*
+
+We first extend this statement to all positive Gaussian parameters and identify the exact lower bound it supplies.
+
+### 2.1 Duality and the lattice normalization
+
+The following lattice calculation is independent of the input (1). Let *M* have columns *b* *−*1*/*2 (1*,*0) *−*1*/*2 2 (︁ 0*−* )︁ and *b* (1*/*2*,b*), so that *A* = *M*Z and det*M* = 1. If *J* = 1 01, the two-dimensional identity *M* *−*T =*JMJ* *−*1 gives *A* *∗* =*M* *−*T Z² =*JA,*
+
+because *J* *−*1 Z² = Z². Thus *A* and *A* *∗* have identical sets of radii, and the covolume in Poisson summation is exactly one.
+
+**Lemma 2.1**(Reciprocal Gaussian parameters)**.***If* (1) *holds for every α≥* 1*, it holds for every* *α >*0*. For each of these functions,* ∑︂2 *f* ˆ︁ *α*(0)*−fα*(0) = *e* *−πα|a|*
+
+*.*(2)
+*a∈A\{*0*}*
+
+*Proof.* The Fourier complement follows the unnumbered duality calculation after Conjecture 6.1 in [9, Section 6, p. 19]. For0*< α <*1, set*β*= 1*/α*and define
+
+*fα*=*kα−α* *−*1 *f* ˆ︁ *β.*
+
+The planar Gaussian transform is *k* ˆ︁ *α*= *α* *−*1 *k₁/α*; the real case of the Gaussian integral proved in (17) gives this formula in our Fourier convention. Fourier inversion reflects the argument, and *fβ*is even; hence *kα−fα*=*α* *−*1 *f* ˆ︁ *β≥*0*, f* ˆ︁ *α*=*α* *−*1 (*kβ−fβ*)*≥*0*.*
+
+Both functions remain real radial Schwartz functions. Radiality and *A* *∗* = *JA* imply *f* ˆ︁ *β*(*a*) = 0for *a∈A\{*0*}* and *fβ*(*w*) = *kβ*(*w*)for *w∈A* *∗* *\{*0*}*. These are exactly the two equalities required for *fα*.
+
+∑︁ For completeness, periodize *fα*over *A*. Schwartz decay makes*a∈Afα*(*x* + *a*)converge uniformly on compact sets with every derivative. Its Fourier coefficient at *w∈A* *∗*, obtained by integration over a unit-area fundamental cell, is *f* ˆ︁ *α*(*w*). These coefficients are absolutely summable, again by Schwartz decay. Evaluation of the Fourier series at zero gives ∑︂ ∑︂ *fα*(*a*) = *f* ˆ︁ *α*(*w*)*.* *a∈A w∈A∗*
+
+Substitute the two interpolation conditions in (1) and isolate the terms at zero to obtain (2).
+
+### 2.2 A Fourier comparison using only centered density
+
+Let *C ⊂*R² be locally finite, put *CR* = *C∩BR* and *NR* = #*CR*, and assume *NR/*(*πR²*) *→* 1. In particular,*NR >*0for all sufficiently large*R*.
+
+**Lemma 2.2**(Fourier mass near zero)**.***For every fixed ε >* 0*, the exponential sum MR*(*ξ*) = ∑︁ 2*πix·ξ* *x∈CRe satisfies* ∫︂ <u>1</u>2 lim inf *|MR*(*ξ*)*| dξ≥*1*.*(3) *R→∞ NR|ξ|≤ε*
+
+*Proof.* Fix *d >* 0and choose a smooth compactly supported function *ϕ* with0 *≤ϕ≤* 1, equal to one on*B₁*, and supported in*B*1+*d*. Fourier inversion gives ∫︂ ∑︂ *MR*(*ξ*)*R²ϕ* ˆ︁( *Rξ*)*dξ*= *ϕ*(*x/R*) =*NR.* R2 *x∈CR*
+
+The integral is absolutely convergent, since the sum is finite and *ϕ* ˆ︁ is Schwartz. The elementary bound*|MR|≤NR* shows that the integral omitted on restricting to*|ξ|≤ε*has modulus at most ∫︂ *NR |ϕ* ˆ︁(
+
+*u*)*|du*=*NRδR, δR−→*0*.*
+*|u|>εR*
+
+Cauchy–Schwarz and Plancherel therefore give, for all sufficiently large*R*, (︄∫︂)︄ (︃∫︂)︃ *NR* 2 (1*−δR*) 2 *≤ |MR*(*ξ*)*|* 2 *dξ |R²ϕ* ˆ︁( *Rξ*)*|* 2 *dξ* *|ξ|≤ε* R2 ∫︂ =*R²∥ϕ∥* 2 2*|MR*(*ξ*)*|* 2 *dξ.* *|ξ|≤ε*
+
+Since *∥ϕ∥* 2 2*≤π*(1 + *d*) 2, division by *NR* and passage to the lower limit yield the lower bound (1 + *d*) *−*2. Let *d↓* 0. This argument uses only the number *NR* and the fact that every point being summed lies in*BR*.
+
+**Proposition 2.3**(Density-only linear programming)**.***Let f be a real even Schwartz function on* R² *with f* ˆ︁ *≥*0*, and letCbe locally finite withNR/*(*πR²*)*→*1*. Then*
+
+<u>1</u> ∑︂ ˆ︁(0) lim inf *f*(*x−y*)*≥ f −f*(0)*.*(4) *R→∞ NR* *x,y∈CR* *x̸*=*y*
+
+*The same lower bound holds if the summands are replaced by*Φ(*x−y*)*, where*Φ(*z*) *≥f*(*z*)*for every* *z̸*= 0*.*
+
+*Proof.*Fourier inversion and the finiteness of*CR* give the exact identity
+
+∑︂ ∫︂ *f*(*x−y*) = *f* ˆ︁( *ξ*)*|MR*(*ξ*)*|* 2 *dξ.* R2 *x,y∈CR*
+
+Write *a* = *f* ˆ︁(0) *≥* 0. If *a* = 0, the right side is already nonnegative. If *a >* 0, fix0 *< δ < a* and choose *ε >* 0so that *f* ˆ︁( *ξ*) *≥a−δ* whenever *|ξ|≤ε*. Nonnegativity on the complement and Lemma2.2imply that the lower limit of the displayed expression divided by *NR* is at least *a−δ*. Letting *δ↓* 0proves the diagonal-included bound *a*. There are exactly *NR* diagonal terms, each equal to *f*(0). Their removal proves (4); the assertion forΦfollows by termwise comparison of finite sums.
+
+### Under the input (1), Lemma2.1and Proposition2.3give
+
+<u>1</u> ∑︂*−πα|x−y|*2∑︂*−πα|a|*2 lim inf *e ≥ e* (*α >*0)*.*(5) *R→∞ NR* *x,y∈CR a∈A\{*0*}* *x̸*=*y*
+
+Only nonnegative kernels will be mixed in the remaining argument; there is no need to integrate the auxiliary functions themselves.
+
+### 2.3 Positive mixtures without a boundedness assumption at zero
+
+The next lemma is the classical Bernstein representation of completely monotone functions; see [23, Theorem 8]. For a related construction using Taylor coefficients and step functions, see [11, Sections I–II]. We give the details here on the open half-line for a locally finite measure that may have infinite total mass and an atom at zero.
+
+**Lemma 2.4**(Positive Laplace representation)**.***Suppose g* : (0*,∞*) *→* [0*,∞*)*is smooth and* (*−*1) *j* *g*
+
+(*j*)
+(*s*) *≥* 0*for every integer j≥* 0*and every s >* 0*. There is a positive locally finite*
+*Borel measureνon*[0*,∞*)*such that* ∫︂ *g*(*s*) = *e* *−st* *dν*(*t*) (*s >*0)*.*(6) [0*,∞*)
+
+*The integral is finite for everys >*0*; the massν*([0*,∞*))*need not be finite.*
+
+*Proof.* Fix *l >* 0and put *q*(*x*) = *g*(*l−x*)for0 *≤x < l*. Every derivative of *q* is nonnegative. Taylor’s theorem gives ∑︂ *m* <u>(−1)</u> *j* <u>g</u>
+
+(*j*)
+<u>(l)</u>
+*q*(*x*) = *bj*(*l*)*x* *j* +*Rm*(*x*)*, bj*(*l*) = *≥*0*,* *j*=0 *j*!
+
+where ∫︂ *x* <u>1</u>(*m*+1) *m* *Rm*(*x*) = *q* (*u*)(*x−u*) *du≥*0*.* *m*!0 For0 *< x < y < l* and0 *≤u≤x*,(*x−u*)*/*(*y−u*) *≤x/y*. Comparing the nonnegative remainder integrals therefore yields
+
+0*≤Rm*(*x*)*≤*(*x/y*) *m* *Rm*(*y*)*≤*(*x/y*) *m* *g*(*l−y*)*.* ∑︁ *j* The right side tends to zero. Thus*g*(*l−x*) =*j≥*0*bj*(*l*)*x* for every0*≤x < l*.
+
+For positive integers*l*, define the locally finite positive measure ∑︂ *νl*= *bj*(*l*)*l* *j* *δ* *j/l.* *j≥*0
+
+The identity just proved, evaluated at*x*=*le* *−s/l* *< l*, gives ∫︂ *−st* (︁ *−s/l* )︁ *Ll*(*s*) := *e dνl*(*t*) =*g l*(1*−e*) *−→g*(*s*) (*s >*0)*.*(7)
+
+For each *T >* 0, *νl*([0*,T*]) *≤e* *T* *Ll*(1)is uniformly bounded in *l*. We record explicitly the elementary measure compactness being used. Extend the cumulative functions *Hl*(*t*) = *νl*([0*,t*])by zero to *t <* 0. A diagonal subsequence makes *Hl*(*q*)converge to *a*(*q*)for every rational *q*; the values at each fixed rational are bounded. The right-continuous nondecreasing function
+
+*H*(*t*) = inf *a*(*q*) *q>t* *q∈*Q
+
+is zero for *t <* 0and defines a locally finite Stieltjes measure *ν* supported on[0*,∞*). Rational bracketing gives *Hl*(*t*) *→H*(*t*)at every continuity point of *H*. Step approximation on compact intervals, choosing their endpoints at continuity points, then gives ∫︂ ∫︂
+
+(︁)︁
+*ψdνl−→ ψdν ψ∈Cc*([0*,∞*))
+
+along this one subsequence. For intervals meeting zero the same argument starts at a negative endpoint; it therefore retains any atom at zero. It remains to pass from compactly supported tests to Laplace transforms. Fix *s >* 0and put *Cs*= sup*lLl*(*s/*2) *<∞*. Compactly supported nonnegative cutoffs and the preceding convergence ∫︁ *−st/*2 imply *e dν*(*t*)*≤Cs*. For either*µ*=*νl*or*µ*=*ν*we consequently have ∫︂ *e* *−st* *dµ*(*t*)*≤Cse* *−sT/*2 *.* *t>T*
+
+Apply compact-test convergence to a continuous cutoff of *e* *−st* that equals it on[0*,T*], then let ∫︁ *−st* *T→∞*. It follows that *Ll*(*s*) *→ e dν*(*t*)along the chosen subsequence. Combining this with (<u>7</u>) proves (6) for every*s >*0. The subsequence was chosen independently of*s*.
+
+### 2.4 Lower limits, singular interactions, and attainment
+
+We now prove the energy theorem under the single input (1). Once Sections3–6establish that input, Lemma2.1also completes the all-parameter Gaussian theorem.
+
+*Proof of Theorem1.1from*(1)*.* Let *ν* be supplied by Lemma2.4. Choose any sequence *Rn→∞*, discarding finitely many terms so that*NRn>*0, and put
+
+<u>1</u> ∑︂*−t|x−y|*2∑︂*−t|a|*2 *An*(*t*) = *e, L*(*t*) = *e.* *NRn* *x,y∈CRn a∈A\{*0*}* *x̸*=*y*
+
+These are nonnegative Borel functions of *t≥* 0. For every *t >* 0, (5) with *α* = *t/π* gives lim inf*nAn*(*t*) *≥L*(*t*). This also holds at *t* = 0, because *An*(0) = *NRn−* 1 *→∞* = *L*(0). The identity
+
+for*g*, followed by Fatou’s lemma and Tonelli’s theorem, now gives
+
+<u>1</u> ∑︂2 lim inf *g*(*|x−y|*) *nNR* *nx,y∈CR* *n* *x̸*=*y* ∫︂ ∫︂ ∫︂ ∑︂ = lim inf *An*(*t*)*dν*(*t*)*≥* lim inf *An*(*t*)*dν*(*t*)*≥ L*(*t*)*dν*(*t*) = *g*(*|a|* 2 )*.* *n n* *a∈A\{*0*}*
+
+Every step is valid in the extended nonnegative reals. Local finiteness makes each disk sum finite, and its distinct-point distances are positive, so the possible singularity of *g* at zero does not enter a finite sum. No common minimizing sequence in the Gaussian parameter was selected: its lower bound holds along every sequence of radii. Since the sequence *Rn*was arbitrary, the full radius lower-limit inequality follows. Finally, choose a bounded fundamental cell of *A* with zero in its closure; its area is one. Comparing its translates with disks whose radii differ by its diameter proves#(*A∩BR*)*/*(*πR²*) *→* 1. For any fixed*v∈A\{*0*}*, the number*NR*(*v*)of*x∈A∩BR* for which*x*+*v∈BR* satisfies
+
+#(*A∩BR−|v|*)*≤NR*(*v*)*≤*#(*A∩BR*)*,*
+
+for *R >|v|*. Hence *NR*(*v*)*/*#(*A∩BR*) *→* 1. For any finite set *D⊂A\{*0*}*, retaining the ordered ∑︁ 2 displacements in *D* gives a lower limit at least*v∈Dg*(*|v|*). Taking the supremum over *D* gives the full lattice sum, even when it diverges. Conversely, for each *x∈A∩BR*, its finite neighbor sum is at most the full nonnegative lattice sum. When that sum is finite, averaging gives the matching upper bound. These observations prove the assertion about the lattice limit.
+
+## 3 The Gaussian interpolation construction
+
+It remains to establish (1) for *α≥* 1. We construct a Fourier pair by prescribing values and derivatives at a periodic set of squared radii. The finite part uses trigonometric columns; stronger Gaussian damping makes their value-and-derivative contributions at later nodes in their residue classes modulo36summably small. The infinite part uses columns with one removable pole each. Their spectral formulas will supply bounds uniform in the column index, which is the input needed to solve all interpolation equations at once. *√* Keep the Fourier convention,*b*= 3*/*2, and the lattice*A*from the introduction. Set
+
+*−*24 17 27 12 *B*=*b* =*, h*=*, H*=*, η*=*H−h*=*, s*=*b|x|.* 3 50 50 5
+
+The same coordinate *s* = *b|ξ|* 2 is used for frequency-space radial functions. A prime denotes differentiation in this scalar coordinate. The covolume-one and quarter-turn duality calculation in Section2shows that *A* and *A* *∗* have the same radii. For the displayed basis of *A*, the squared-radius coordinates are precisely the nonnegative values of*m²* +*mn*+*n²*. Define
+
+*I*=*{*0*,*1*,*3*,*4*,*7*,*9*,*12*,*13*,*16*,*19*,*21*,*25*,*27*,*28*,*31*},* *N*= (36Z+*I*)*∩*(0*,∞*)*,* *f*=*{*1*,*3*,*4*,*7*,*9*,*12*,*13*,*16*,*19*,*21*}, T*=*N\f, L*=*{*0*}∪f.*
+
+Every nonzero lattice squared-radius coordinate belongs to *N*. Indeed, modulo3the quadratic form equals(*m−n*). If *m−n* is not divisible by3, its residue modulo9is one of1*,*4*,*7; if *m* = *n* + 3*j*,
+
+the form is3*n²* modulo9, hence is0or3. Modulo4its possible values, checked by the parities and residues of *m,n*, are0*,*1*,*3. Combining these two lists by the Chinese remainder theorem gives exactly the displayed residue set *I*. We impose interpolation at this superset, without needing it to consist entirely of actual lattice shells. Set ∏︂ ∑︂15 *κ*=*π/*36*, tj*=*j/*18*, P*(*s*) = (2 sin*κ*(*s−a*)) 2 = *Pje* *iπtjs* *.* *a∈I j*=*−*15 The zeros are precisely36Z+*I*, each of order two. For a zero*n*define*Qn>*0and*Dn∈*Rby
+
+### P(n+u) =Qnu²(1 +Dnu+O(u²)).(8)
+
+Both *Qn*and *Dn*are periodic with period36. The rational tail columns and their Gaussian spectral treatment below adapt [17, Lemma 2.1 and Proposition 2.2] and [18, Lemmas 2.2 and 2.4]. The paired double and simple poles also occur in the one-dimensional constructions of [7, Proposition 9.6] and [2, formulas (1.2)–(1.3)]. For each side*i*= 1*,*2introduce an input radial function*Ui*by ∑︂ (︂)︂ *Ui*(*s*) =*e* *−πHs* *P*(*s*) *ci,nκ²* csc² *κ*(*s−n*) +*di,nκ*cot*κ*(*s−n*) +*Cie* *−πhs* *P*(*s*) *n∈L* ∑︂ (︃ <u>c</u> <u>i,ndi,n</u> )︃ +*e* *−πhs* *P*(*s*) 2 +*.*(9) *n∈T* (*s−n*) *s−n*
+
+Every apparent pole is removed by continuity. The tail coefficient lists will lie in *ℓ¹*(*T*; R²)with ∑︁ norm*n∈T*(*|ci,n|*+*|di,n|*). Fix
+
+11 3 3 *c₁,*0=*c₂,*0=*, d₁,*0=*d₂,*0= 0*, C₁* =*−, C₂* =*.* 25 500 500
+
+The notation *Ui*(*s*)denotes the same function as *x↦→Ui*(*b|x|* 2 ); Fourier transforms always refer to the latter function onR². Define
+
+*F₁* =*U₁* + *U* ˆ︁2 *, F₂* =*U₂* + *U* ˆ︁1 *, Ji*(*s*) =*e* *πhs* *Fi*(*s*)*.*
+
+The spectral argument proves that *Ui*and *Fi*are real radial Schwartz functions and that *F₂* = *F* ˆ︁1 for every summable coefficient list. The divided functions*Ji*need not be Schwartz. For*α≥*1, put <u>1</u>(1*−s*)*/z* *z*= *>*0*, Gz*(*s*) =*Q₁ze.* *π*(*α/b−h*)
+
+Our interpolation equations are
+
+*J₁*(*n*) =*Gz*(*n*)*, J₁* *′*
+
+(*n*) =*G* *′z*
+(*n*)*,*
+*J₂*(*n*) = 0*, J₂* *′*
+
+(*n*) = 0 (*n∈N*)*.*(10)
+The sign argument will additionally establish *J₁*(*s*) *≤Gz*(*s*)and *J₂*(*s*) *≥* 0for *s≥* 0. Then *F₁/*(*Q₁ze¹* */z* )is the required Gaussian minorant, because
+
+*−πhs* 1*/z −*(*πh*+1*/z*)*s −πα|x|*2 *e Gz*(*s*)*/*(*Q₁ze*) =*e* =*e.*
+
+The infinite system below establishes all the jets exactly, before any estimates between nodes are invoked.
+
+### 3.1 Spectral measures for the interpolation columns
+
+We establish exact spectral formulas for the columns and prove that summable coefficient lists define Schwartz functions. These facts justify the infinite interpolation system and termwise differentiation. A finite complex measure *µ* on[*−*5*/*6*,*5*/*6]will be called conjugate symmetric if reflection takes ∫︁ *iπts* it to its complex conjugate. Then *e dµ*(*t*)is real for real*s*. Its folded measure is ∫︂ ∫︂ *µ*+=*µ*(*{*0*}*)*δ₀* + 2*µ|*(0*,*5*/*6]*, e* *iπts* *dµ*(*t*) = Re *e* *iπts* *dµ*+(*t*)*.* [0*,*5*/*6]
+
+The atom at zero is not doubled. The total variations of these two measures agree, because the atom at zero is real and the positive and negative parts have equal total variation. For*n∈L*consider the entire, real-valued columns obtained by removing their apparent poles:
+
+*An*(*s*) =*κ²P*(*s*) csc² *κ*(*s−n*)*, Bn*(*s*) =*κP*(*s*) cot*κ*(*s−n*)*.*
+
+Set *bj*= 2 *−* **1***j*=0. Their folded spectral measures are atomic at *tj*,0 *≤j≤* 15, with respective masses
+
+∑︂ 15 *Mj*;*c,n*=*−*4*κ²bj*(*l−j*)*Ple* *iπ*(*tl−tj*)*n* *,*(11) *l*=*j*+1 ⎛ ⎞ ∑︂ 15 *Mj*;*d,n*=*iκbj*⎝*Pj*+ 2 *Ple* *iπ*(*tl−tj*)*n*⎠
+
+*.*(12)
+*l*=*j*+1
+
+The folded masses for the column*P*(*s*)itself are*Vj*=*bjPj*. To prove these identities, put *u* = *s−n*, *Y* = *e²* *iκu*, and *al*= *Ple* *iπtln*. The Laurent polynomial ∑︁ *l* 2 *P*(*n*+*u*) =*lalY* has a factor(*Y−*1). Moreover,
+
+(︃)︃
+2<u>4Y 2</u> csc *κu*=*−* 2 *,*cot*κu*=*i* 1 +*.* (*Y−*1) *Y−*1
+
+The products are therefore Laurent polynomials. Expanding at infinity,
+
+<u>Y</u> ∑︂*−r*<u>1</u> ∑︂*−r* 2 = *rY,* = *Y,* (*Y−*1) *r≥*1 *Y−*1 *r≥*1
+
+*j* 2 ∑︁ ∑︁ shows that the coefficients of *Y*, *j≥* 0, in these products are *−*4*κl>j*(*l−j*)*al*and *iκ*(*aj*+2*l>jal*). Changing back from *Y* *j* to *e* *iπtjs* gives (11)–(12) after folding. The negative coefficients are conjugates of the positive coefficients. For completeness,*P*(*n*) =*P* *′*
+
+(*n*) = 0give
+∑︂ ∑︂ *P₀* + 2 Re *al*= 0*,*Im *lal*= 0*.* *l>*0 *l>*0
+
+Thus both displayed zero-frequency masses are real, as folding requires. For*n∈T*the other two undamped columns are
+
+<u>P(s)</u>col<u>P(s)</u> *Cn*(*s*) = 2 *, Dn*(*s*) =*,* (*s−n*) *s−n*
+
+again with removable values. Their folded spectral measures are absolutely continuous. On *t∈*(*tj−*1*,tj*),1*≤j≤*15, their densities are
+
+∑︂ 15 *ρc,n*(*t*) =*−*2*π²* (*tl−t*)*Ple* *iπ*(*tl−t*)*n* *,*(13) *l*=*j* ∑︂ 15 *ρd,n*(*t*) = 2*iπ Ple* *iπ*(*tl−t*)*n*
+
+*.*(14)
+*l*=*j*
+
+### Indeed, for realathe oriented integral identities
+
+*iπau*∫︂*a* <u>e −1</u>*iπtu* =*iπ e dt,* *u*0 *iπau*∫︂*a* <u>e −1−iπau</u>2 *iπtu* 2 =*−π* (*a−t*)*e dt* *u*0
+
+hold first for *u̸*= 0and then by continuity for *u* = 0. They are valid also when *a <* 0, with the usual ∑︁ ∑︁ orientation of the integral. Since*lal*=*ltlal*= 0, summing these identities with *a* = *tl*and coefficient *al*gives the asserted columns. Replacing *u* by *s−n* yields the phase in (13)–(14). The negative-frequency densities are the conjugates of their reflected positive-frequency densities. The measures are absolutely continuous even at zero; endpoint values of their densities are immaterial. In particular, no zero-frequency atom is to be inserted when folding. The phases depending on *n* have modulus one. Consequently the variation of either folded measure on[*tj−*1*,tj*]is bounded by the corresponding entry of ⎛ ⎞ ∑︂ 15∑︂15 *Wj,∗*= ⎝2(*π/*18) 2 (*l−j*+ <u>1</u> 2 )*|Pl|,*(2*π/*18) *|Pl|*⎠*,* *l*=*j l*=*j* (15)
+
+### W₀,∗= (0,0).
+
+For the first entry, integrate *tl−t* on this interval to obtain(*l−j* + 1*/*2)*/*18 2; for the second, the interval length is1*/*18. These bounds hold uniformly for every positive tail node *n*, however large it is.
+
+### 3.2 Schwartz convergence and the Fourier waves
+
+### Fork >0and|t|≤5/6put
+
+*−πb*(*k−it*)*|x|*22 Φ*k,t*(*x*) =*e, x∈*R*.*
+
+For each pair of multi-indices*β,γ*there is a finite constant*Cβ,γ,k*, independent of*t*, such that
+
+sup *|x* *β* *∂x* *γ* Φ*k,t*(*x*)*|≤Cβ,γ,k.*(16) *x∈*R2
+
+To see this directly, differentiating the Gaussian gives a polynomial in *x* with coefficients polynomial in *b*(*k−it*), times the same Gaussian. Those coefficients are uniformly bounded on the compact *−πbk|x|*2 frequency interval, and the absolute value of the Gaussian is *e*. Every polynomial times this fixed decaying Gaussian is bounded.
+
+Thus integration ofΦ*k,t*against a finite measure defines a Schwartz function, and its(*β,γ*) seminorm is at most *Cβ,γ,k*times the measure’s total variation. Differentiation under the integral follows from the same bounds. In particular, define
+
+∑︂ 15∑︂15 *wc*= *Wj,c, wd*= *Wj,d.* *j*=1 *j*=1 ∑︁ For any real lists satisfying*n∈T*(*|cn|* + *|dn|*) *<∞*, the series of tail measures converges in total variation and has total variation at most ∑︂ ∑︂ *wc|cn|*+*wd|dn|.* *n∈T n∈T*
+
+The corresponding series of functions therefore converges in every Schwartz seminorm. This proves the claimed convergence for arbitrary summable coefficients; no moment condition such as ∑︁ *r* *n |cn|<∞* is needed. It also justifies taking removable values and derivatives at every node. Equivalently, before damping, the *r*th *s*-derivative of each integral is bounded on the real axis by (5*π/*6) *r* times its total variation, uniformly in *n*. The finitely many atomic columns cause no further convergence issue. With Fourier kernel*e* *−*2*πix·ξ* the Gaussian integral in dimension two is
+
+(︄)︄
+1 <u>π|ξ|</u> 2 Φ ˆ︁ *k,t*(*ξ*) = exp *−.*(17) *b*(*k−it*) *b*(*k−it*)
+
+ˆ︂ *−πax*2*−*1*/*2 *−πξ* 2 */a* For a positive real parameter *a*, the one-dimensional identity *e* (*ξ*) = *a e* follows by ∫︁ *−πax² −*1*/*2 differentiating the Fourier integral in *ξ*, integrating by parts, and using *e dx* = *a* at *ξ* = 0. Taking the product of two such integrals gives the two-dimensional formula. Both sides of that formula are holomorphic in *a* on Re*a >* 0: compact subsets have a common integrable Gaussian bound for every parameter derivative. The identity theorem extends the formula to that half-plane and gives (17) with *a* = *b*(*k−it*). This argument fixes both the Fourier normalization and the complex prefactor without any square-root branch ambiguity in dimension two. Write*s*=*b|ξ|* 2 ,*B*=*b* *−*2, and set
+
+<u>B</u> *k*+*it* (︁)︁ *Xk*(*t*) = 2 2 *, λk*(*t*) = 2 2 *, ζk,v*(*t*) =*−tXk*(*t*) +*i kXk*(*t*)*−v .*(18) *k* +*t b*(*k* +*t*)
+
+After division by *e* *−πvs*, the right side of (17) is exactly *λk*(*t*)*e* *iπζk,v*(*t*)*s*. The Fourier transform ∫︁ commutes with the above measure integrals by Fubini, since *|*Φ*k,t*(*x*)*|dx* = 1*/*(*bk*)uniformly in
+
+*t*. It also commutes with summation of the tail columns, either by the same domination or by convergence in the Schwartz space. At opposite frequencies the transformed waves are conjugates, so the same folded measures may be used, followed by taking the real part. For *k,v∈ {h,H}* the additional decay exponent is positive. Indeed *kXk*(*t*)decreases as *t²* increases; its smallest difference from *v* is attained at *|t|* = 5*/*6. With *h* = 17*/*50and *H* = 27*/*50, the four endpoint differences, for(*k,v*) = (*h,h*)*,*(*h,H*)*,*(*H,h*)*,*(*H,H*), are respectively
+100079 8949 216419 105489 *,,,.* 455650 455650 554650 554650
+
+In particular each is positive. The undivided transformed waves also have uniform Schwartz bounds: their Gaussian parameters1*/*(*b*(*k−it*))form a compact subset of the open right half-plane. All
+
+input functions and their transforms are consequently real radial Schwartz functions. If *U₁,U₂* denote the two complete input sums, then
+
+*F₁* =*U₁* + *U* ˆ︁2 *, F₂* =*U₂* + *U* ˆ︁1 =*⇒ F* ˆ︁1 = *F₂,* ˆ︂ ˆ︁2( because Fourier inversion gives *U x*) =*U₂*(*−x*)and*U₂* is radial.
+
+### 3.3 Jets and repeated nodes
+
+At a positive node *n* let *v* = *H* on *f* and *v* = *h* on *T*. After division of the input centered at *n* by *e* *−πvs*, its value and first derivative at*n*are
+
+(︁)︁
+*Qncn,dn*+*Dncn.*(19)
+
+For the rational columns this follows immediately from (8). For the trigonometric columns use
+
+*κ²* csc² *κu*=*u* *−*2 +*O*(1)*, κ*cot*κu*=*u* *−*1 +*O*(*u*)*.*
+
+Every other direct column has zero value and first derivative at *n*, except for a trigonometric column with the same residue modulo36. The direct constant column*P*always has a double zero there. For any additional divided contribution *Z*(*s*), cancelling its jets requires the coefficient correction *−*1 (︁ *′* )︁ *Qn−Z*(*n*)*,DnZ*(*n*)*−Z* (*n*)*.*
+
+Applying this to one Fourier wave from (18) yields exactly *−*1 *iπζ* (*t*)*n*
+
+(︁)︁
+*Qnλk*(*t*)*e* *k,v* *−*1*,Dn−iπζk,v*(*t*)*.*(20)
+
+Integration against the folded measures, followed by taking real parts, gives the full transformed contribution to the coefficient equations. There is one additional direct contribution on the tail. For *n∈L* its positive repeated poles are precisely *m* = *n* + 36*l*, *l≥* 1. All belong to *T* because0 *≤n≤* 21. At such *m*, divide by *e* *−πhs*. The original damping*H*leaves*e* *−πηs*, so the jets of this repeated column are *−πηm*
+
+(︁)︁
+*Qme cn,dn*+ (*Dm−πη*)*cn.*
+
+In the tail coefficient coordinates of (19), this is *e* *−πηm* (*cn,dn−πηcn*). It must therefore be *subtracted*from the desired coefficients at *m*. This includes the column centered at0; no division by an uncontrolled quotient *Qm/Qn*appears. There are no other direct cross-terms: distinct residues have no pole at *m*, and a rational column has only its own possible pole. The induced map from the finite lists to the summable tail lists has norm at most ∑︂ <u>1 +πη</u> (1 +*πη*) *e* *−*36*πηl* = 36*πη* *,*(21) *l≥*1 *e −*1
+
+since*e* *−πηn* *≤*1for*n∈L*. Finally let *G*(*s*) = *Q₁ze* (1*−s*)*/z*, with *z >* 0as defined for the Gaussian parameter, so the desired divided target at a node using damping *v* is *e* *π*(*v−h*)*s* *G*(*s*)on side1and zero on side2. Applying the inverse of (19) to that target gives <u>Q₁</u>*π*(*v−h*)*n*+(1*−n*)*/z*(︁)︁ *e z,−*1 + (*π*(*v−h*)*−Dn*)*z .*(22) *Qn*
+
+Equations (20) and (22), together with subtraction of the repeated column contribution, therefore impose exactly the desired value and first derivative at every positive node. All operations used to derive these equations are justified for arbitrary summable tail coefficients by the spectral variation and Schwartz bounds above.
+
+## 4 A finite atomic certificate
+
+The infinite interpolation problem will be solved by perturbing a finite system. Its unknowns are the value and derivative coefficients at
+
+*f*=*{*1*,*3*,*4*,*7*,*9*,*12*,*13*,*16*,*19*,*21*}.*
+
+Thus each side has twenty unknown coordinates. This section constructs the finite solution, certifies bounds needed to control the infinite correction, and verifies the polynomial inequalities used between the first few nodes. The analytic passage from these finite bounds to the whole half-line is made separately. All vector norms in this section are sums of absolute values. Matrix norms are the induced norms, namely maximum absolute column sums. An absolute value around a matrix or vector, without a norm sign, is entrywise. The notation[*g,S*] = max(*g|S|*)denotes the largest entry of the row obtained by multiplying the nonnegative row*g*by*|S|*.
+
+### 4.1 Atoms, jets, and the finite system
+
+Use the folded matrices *M,V* of (11)–(12), with columns *cn,dn*for *n∈L* and the separate constant column *V*. The Fourier waves *Xk,λk,ζk,v*are those in (18). For a folded atom column *S*, its opposite-side contribution to the change of the two coefficients at*n*is
+
+∑︂ 15
+
+(︄)︄
+<u>1</u>*iπζ* *k,v*(*tj*)*n* *−*1
+
+||k j iπζ|(t)n|j|
+|---|---|---|---|
+|j=0|||j|
+
+*Rk,v*(*n*)*S*= Re *λk*(*tj*)*e Sj.*(23) *QnDn−iπζk,v*(*t*)
+
+Indeed the direct coefficients supply jets *Qn*(*cn,dn*+ *Dncn*)after removing their own damping. Subtracting an opposite-side value *u* and derivative *u* *′* changes the coefficients by *Q* *−* *n* 1 (*−u,Dnu−u* *′* ), which is exactly (23). For the finite equations use *v* = *H*, *k* = *H* on *M*, and *k* = *h* on *V*. After putting the fixed columns *c₀,d₀,C* first, denote the resulting twenty-row matrix by(*R₀ R*), where *R* is20by20. The fixed coefficients are*c₁,*0=*c₂,*0= 0*.*44,*d₁,*0=*d₂,*0= 0, and*C₁* =*−*0*.*006,*C₂* = 0*.*006. The finite columns use damping *H*, whereas the prescribed functions *Ji*use damping *h*. To obtain a finite coefficient pair, we therefore first multiply the target *Gz*(*s*)by *e* *πηs* and then invert the direct jet map (19). Formula (22) gives the result. Its dependence on the Gaussian parameter enters through the two quantities*ze* (1*−n*)*/z* and*e* (1*−n*)*/z* at each node*n*. For the finite approximation we retain the targets at *n* = 1*,*3*,*4*,*7. Their exponential factors are 1*,w,u,p*, respectively, where
+
+*w*=*e* *−*2*/z* *, u*=*e* *−*3*/z* *, p*=*e* *−*6*/z* *.*
+
+Thus the retained target pairs depend linearly on the eight coordinates
+
+*e*= (*z,*1*,zw,w,zu,u,zp,p*) T *.*
+
+At the six remaining finite nodes9*,*12*,*13*,*16*,*19*,*21, this approximation replaces the target pairs by zero. The exact interpolation conditions are not changed: the omitted target pairs are a small residual, bounded in Lemma4.1and restored by the infinite correction in Section5. We enclose these Gaussian data in a single polytope. Put
+
+*Z*= 0*.*391*, W∗*= 0*.*0061*,*∆*∗*= 0*.*00018*, U∗*= 0*.*00048*, P∗*= 0*.*0000003*,*
+
+and define
+
+*E*=*{*(*z,*1*,Zw−*∆*,w,a,u,r,p*) T : 0*≤z≤Z,*0*≤w≤W∗,*0*≤*∆*≤*∆*∗,* (24) 0*≤u≤U∗,*0*≤a≤Zu,*0*≤r,p≤P∗}.*
+
+For *α≥* 1and *z* = 1*/*(*π*(*α/b−h*)), the actual vector *e* belongs to *E*. The finite checks below give1*/*(*π*(1*/b−h*)) *< Z* and(*e* *−*2*/Z* *,e* *−*3*/Z* *,e* *−*6*/Z* ) *<* (*W∗* *√* *,U*<u>∗,P∗)</u>coordinatewise. The remaining coordinate is∆ = (*Z−z*)*e* *−*2*/z*; its maximum occurs at *z* = 1 + 2*Z−*1and is less than0*.*00015 *<* ∆*∗*. Also*zp≤p≤P∗*because*Z <*1. Let *γie* = (0*.*44*,*0*,Ci*) T *e₂*. Define the20-by-8target matrix *Yf*by zero row pairs except at the first four nodes*n∈f*. At the node in position*j∈{*1*,*2*,*3*,*4*}*its row pair is
+
+(︄)︄
+<u>Q₁e</u> *πηn* *e₂j−*1 (*Yfe*)*n*=*.* *Qn−e₂j*+ (*πη−Dn*)*e₂j−*1
+
+Let *Ai*have twenty-three rows, ordered as *cn,dn*on *L*, followed by *C*. Fix its three prescribed rows by*γi*and solve
+
+### (A₁)f=R(A₂)f+R₀γ₂ +Yf,(A₂)f=R(A₁)f+R₀γ₁.(25)
+
+The inverse bounds below prove unique solvability. Explicitly, put
+
+*−*1
+
+(︁)︁
+*U±*= (*I∓R*) *Yf*+*R₀*(*γ₂ ±γ₁*)*.*
+
+Then(*A₁*)*f*= (*U*++ *U−*)*/*2and(*A₂*)*f*= (*U*+*−U−*)*/*2. Recall that *Ji*= *e* *πhs* *Fi*. The finite function *J* ˜︁ *i*is formed by the same rule, using coefficients*Aie*and no tail columns.
+
+### 4.2 The finite inequalities
+
+The coefficient bounds will control the infinite correction. For the sign bounds, it is important to compare curvature after removing the prescribed value and derivative at each node. For a twice continuously differentiable function *φ* on an interval containing *m* and *m* + *v*, define the second-order divided remainder ⎧ *′* ⎪ ⎨ <u>φ(m+v)−φ(m)−vφ (m)</u> ∫︂ 1 2 *, v̸*= 0*,* *′′* *Um*[*φ*](*v*) = *v Um*[*φ*](*v*) = (1*−t*)*φ* (*m*+*tv*)*dt.*(26) ⎪ ⎩ *′′* 0 *φ* (*m*)*/*2*, v*= 0*.*
+
+The integral identity follows by integrating twice and holds for either sign of *v*. It shows that a bound for *|φ* *′′* *|/*2on the joining segment also bounds *|Um*[*φ*](*v*)*|*. If two functions have matching value and derivative at *m*, their difference at *m* + *v* is *v²* times the difference of their divided remainders. We will use this identity for the exact interpolants; here we prepare polynomial estimates for the divided remainders of the finite approximations. For *m∈{*1*,*3*,*4*,*7*,*9*,*12*,*13*}*, let *y* be each displacement from *m* to the endpoints of its nearest- positive-node interval on[0*,∞*). At *m* = 1the two values are *−*1and1; elsewhere they are half the signed gaps to the neighboring positive nodes. The degree-twenty Taylor polynomial of *Um*[*J* ˜︁ *i*](*yτ*) is ∑︂ 20 <u>J</u> ˜︁(*ℓ*+2)
+
+<u>(m)y</u> *ℓ*
+*Ti*(*τ*;*e*) = <u>i</u> *τ* *ℓ*
+
+*.*(27)
+*ℓ*=0 (*ℓ*+ 2)!
+
+Its coefficients are linear in *e*. In the exceptional case *m* = *y* = 1, write *A*(*τ*)and *D*(*τ*)for *−T₁* at *z* = 0and *z* = *Z*, fixing *w,*∆*,r,p* and a chosen allowed pair(*a,u*)in (24). Only *z* varies along this segment. These scalar polynomial names are distinct from the coefficient matrices*Ai*. The matrix *W* in (15) has columns ordered(*c,d*). Its row *j* bounds the integrated folded variation on[*tj−*1*,tj*]of one tail column, uniformly in its node. Set*T₀* =*{n∈T*: 25*≤n <*61*}*. We use three kinds of envelopes. Jet envelopes bound the coefficient maps of the interpolation system. Curvature envelopes, after weighting by the relevant coefficient bounds, bound half the absolute second derivative of the pole-column and transformed-constant contributions to *Ji*. Taylor envelopes bound the degree-twenty truncation error in the divided Taylor expansion of the finite approximation *J* ˜︁ *i*. For input damping *k∈{h,H}*, divide the direct wave by *e* *−πhs* and its Fourier transform by *e* *−πvs*, where *v∈{h,H}*. At frequency *tj*, let *ℓ* = *|λk*(*tj*)*|* be the transformed-wave amplitude. Let *da,db*be the absolute derivative multipliers of the divided direct and transformed waves, and*Ea,Eb*their decay rates. Explicitly, put √︁ √︂ *ℓ*= *Xk, da*=*π t²* *j* + (*k−h*) 2 *, Ea*=*π*(*k−h*)*,* √︂ *db*=*π v²* + (*B−*2*kv*)*Xk, Eb*=*π*(*kXk−v*)*.*
+
+The row for the jet envelope at*n*is ⎡ ⎤ <u>(1 +|Dn|+db)ℓe</u> *−Ebn*∑︂ *ψj*(*n*) =*,*Ψ*f,k,H*(*S*) = ⎣ *ψ*(*n*)*,S*⎦*.* *Qn* *n∈f*
+
+ForΨ*T,k,h*(*S*), sum over *T₀* and divide its *j*th entry by1 *−e* *−*36*Eb*(*tj*). Periodicity makes this the exact geometric sum of the node envelope over*T*. The missing-target envelopes are
+
+∑︂ <u>1 +Z+Z|πη−D</u> <u>n|</u> *Q₁ e* *πηn*+(1*−n*)*/Z* *Qn* *n∈f∩*[9*,*21]
+
+and the sum over*T₀* of*Q₁*(1 +*Z*+*Z|Dn|*)*e* (1*−n*)*/Z* */Qn*, divided by1*−e* *−*36*/Z*. The raw*L*curvature expression is
+
+<u>1</u> [*d²e* *−sEa* *,M*] + <u>1</u> [*d²ℓe* *−sEb* *,M*] (*k*=*H, v*=*h*)*.* 2 *a* 2 *b*
+
+For the transformed constant it is <u>1</u> 2 [*d²* *b* *ℓe* *−sEb* *,V*], with*k*=*v*=*h*. For*T*, use (︁ 2 2 *−sE* (*t∗*) )︁ 60 *da*(5*/*6) +*db*(*t∗*) *ℓ*(*t∗*)*e* *b* *, k*=*v*=*h,*
+
+where *t∗*= 0at *s* = 0and *t∗*= 5*/*6at the other listed values. The factor60bounds one half of *∥W∥*. The frequency-extremum justification and the passage to uniform curvature bounds are given in Lemma6.1. For the Taylor remainder, define
+
+<u>d²(|y|d)</u> 21 <u>e</u> *−mE* *gm,y*(*d,E*) =*,Em,y*(*k,S*) = [*gm,y*(*da,Ea*)*,S*] + [*ℓgm,y*(*db,Eb*)*,S*]*,* 23! 1*−|y|d/*24
+
+using *v* = *h*. Every denominator is positive. The tested envelope is3*Em,y*(*H,M*) + 0*.*006*Em,y*(*h,V*). The geometric majorant of the exponential Taylor series explains precisely this remainder: after the degree-twenty divided polynomial, the first term has derivative order23, and subsequent absolute-term ratios are at most*|y|d/*24*<*1.
+
+**Lemma 4.1**(Finite certificate)**.***The following strict inequalities hold for the constants and matrices* *defined above.*
+
+*1. The pivots of diagonal-order Gauss–Jordan elimination on I−R and I* + *R have absolute* *values between*0*.*12*and*1*.*74*. Moreover,*
+*∥*(*I−R*) *−*1 *∥<*16*.*16*<*17*,∥*(*I*+*R*) *−*1 *∥<*3*.*89*<*5*,* sup *∥A₁e∥<*2*.*58*,*sup *∥A₂e∥<*2*.*80*.* *e∈E e∈E*
+
+*2. The node quantities satisfy*0*.*157 *< Qn<* 40*and |Dn|<* 2*.*83*for every residue node, and* min*n*=16*,*19*,*21*Qn>* 16*. For successive gaps of one period, starting with*(0*,*1)*, the midpoint* *values ofP*(*s*)*/*(*s−m*)
+2 *, withmeither endpoint, exceed respectively*
+
+0*.*165*,*0*.*120*,*0*.*054*,*0*.*482*,*0*.*656*,*1*.*11*,*0*.*337*,*
+3*.*13*,*9*.*26*,*8*.*19*,*19*.*08*,*2*.*34*,*0*.*706*,*6*.*80*,*14*.*1*.*
+*3. For the jet envelope sums*Ψ*N,k,v*(*S*)*just defined, including geometric summation over all tail* *periods, the bounds are*
+<u>N S k v upper bound</u> *f W h H* 335 *T M H h* 7*·*10 *−*15 *T W h h* 2*.*3*·*10 *−*8 *T V h h* 1*.*27*·*10 *−*7
+
+*Here∥W∥<*119*, and the repetition bound is* <u>1 +πη</u>*−*10 36*πη* *<*2*.*5*·*10*.* *e −*1 *The omitted target envelope sums over f∩* [9*,*21]*and T are less than*8*.*1 *·* 10 *−*8 *and*9*.*2 *·* 10 *−*29 *respectively.*
+
+*4.The raw curvature envelope sums defined above have upper bounds*
+*s* 0 1 2 14*.*5 23 *L* 1498 45*.*1 13*.*8 0*.*00458 0*.*000022 *transformed constant* 13530 151 31 0*.*00122 0*.*000004 *T* 26500 1160 800 800 800
+
+*The divided Taylor remainder envelope is less than*0*.*00161*when m* = 1*and less than*0*.*0000075 *at every other listedm, for both listed displacementsy.*
+
+*5. For every e∈E and*0 *≤τ≤* 1*, the following polynomials have the stated strict lower bounds:*
+
+|m,y|polynomial|lower bound|
+|---|---|---|
+|1,−1|T₂|0.174|
+|1,−1|Q₁/(2Z)−T₁|0.057|
+|1,1|T₂|0.011|
+|3,either|0.8Q₁w−T₁|0.00055|
+|3,either|T₂|0.00097|
+|4,either|−T₁|0.00047|
+|4,either|T₂|0.00097|
+|7,either|−T₁, T₂|0.0028|
+|9,either|−T₁, T₂|0.0039|
+|12,13,either|−T₁, T₂|0.0020|
+
+(28)
+
+*Form*=*y*= 1*, putv*=*τandB₀* =*v²,B₁* =*v²* + 2*Zv,B₂* =*v²* + 4*Zv*+ 6*Z². Then*
+
+<u>polynomial lower bound</u> *Q₁* +*vA* 0*.*046 *Q₁*(*v*+*Z*) + (2*B₁A*+*B₀D*)*/*3 0*.*056 (29) *Q₁*(*v*+ 2*Z*) + (*B₂A*+ 2*B₁D*)*/*3 0*.*024 *Q₁*(*v*+ 3*Z*) +*B₂D* 0*.*027
+
+*This last table holds uniformly for all allowed w,*∆*,r,p and all pairs*(*a,u*)*with*0 *≤u≤U∗* *and*0*≤a≤Zu.*
+
+*Proof.* All quantities in the lemma are finite expressions in the constants, matrices, and polynomials defined above. AppendixAproves the stated inequalities by giving their exact evaluation recipes and a rigorous outward-rounded enclosure calculation. In particular, its Bernstein row bounds hold throughout the parameter polytope, not only at sampled points.
+
+The lemma is the finite computational input, not the conclusion of the construction. The next section proves the uniform frequency and all-node operator bounds and solves the infinite system. Section6then transfers the finite polynomial inequalities to the exact functions and proves their signs at every real radius.
+
+## 5 The full infinite correction
+
+The finite interpolant does not yet satisfy the equations at all positive nodes. We now control its interactions with the tail and correct its residual on the full summable coefficient space. The result needed for the sign argument is the following exact interpolation and approximation statement.
+
+**Proposition 5.1**(Exact interpolation and approximation)**.***For every α≥* 1*, let z and e be its* *Gaussian parameter and data vector defined in Sections3and4. Retain the fixed coefficients* *c* *i,*0*,di,*0*,Ciin*(9)*. There are unique real coefficient lists*
+
+*ui∈*R²⁰*, wi∈ℓ¹*(*T*;R²) (*i*= 1*,*2)*,*
+
+*indexed respectively by the pairs*(*ci,n,di,n*)*on f and T, for which the functions Ji*= *e* *πhs* *Fifrom* *that construction satisfy*
+
+*J₁*(*n*) =*Gz*(*n*)*, J₁* *′*
+
+(*n*) =*G* *′z*
+(*n*)*, J₂*(*n*) =*J₂*
+*′*
+
+(*n*) = 0 (*n∈N*)*.*
+*Relative to the finite coefficient listsAie, they obey*
+
+*∥wi∥*1*<*3*·*10 *−*9 *,∥ui−*(*Aie*)*f∥*1*<*10 *−*5 (*i*= 1*,*2)*.*(30)
+
+*The resulting Fiare real radial Schwartz functions with F* ˆ︁1 = *F₂. Uniqueness concerns these* *coefficient lists with the prescribed fixed columns, not all radial Schwartz functions with the same* *interpolation data.*
+
+We first bound the maps coupling the finite and tail lists, including the direct repetitions of the periodic columns. We then solve the full system by eliminating the finite variables and applying a Neumann series on the tail. Applying the same inverse to the finite interpolant’s residual will give the quantitative bounds (30).
+
+### 5.1 Bounds for the infinite coefficient maps
+
+We use the sum of absolute values on every coefficient list. For a matrix between such lists, the operator norm is the supremum of its absolute column sums. The same characterization holds for infinite matrices acting on *ℓ¹*: a uniform finite bound on all column sums gives absolute convergence of all matrix sums by Tonelli’s theorem, and a bounded operator follows first on finite lists and then by density. We explain why the finite wave estimates control every tail node. For *k,v∈ {h,H}* and 0*≤t≤*5*/*6, let *√* √︂ *X*=*Xk*(*t*)*, ℓ*= *X, db*=*π v²* + (*B−*2*kv*)*X, Eb*=*π*(*kX−v*)*.*
+
+Equation (18) gives *|λk|* = *ℓ* and *|iπζk,v|* = *db*. The sum of the absolute values of the two entries in the jet correction (20) is therefore at most
+
+<u>(1 +|Dn|+db)ℓ</u>*−E* *b* *n* *ψk,v,n*(*t*) = *e.*(31) *Qn*
+
+Its use with atomic columns requires only summation over their atoms. For a tail column its value at the right endpoint *tj*bounds the whole frequency interval[*tj−*1*,tj*]. Here is the monotonicity needed for that assertion. Since *√* *B−* 2*kv >* 0, the logarithmic derivative in *X* of the increasing factor(1 + *|Dn|* + *db*) *X* is at most1*/X*. The logarithmic derivative of the exponential contributes *−πkn*. For*n≥*1, <u>1 k² + 25/36</u> *≤ <*3*k < πkn*(*k*=*h,H*)*.* *X B* The middle inequalities are direct rational inequalities at *k* = 17*/*50*,*27*/*50. Thus (31) decreases in *X* and increases in *t* on the nonnegative frequency interval. Multiplication by the interval variation bounds*Wj,∗*of the finite certificate therefore gives a valid bound without quadrature or sampling. The real numbers *Qn,Dn*are periodic with period36. If *T₀* = *N∩* [25*,*61), then every element of *T* is uniquely *n* + 36*l* with *n∈T₀* and *l≥* 0. Consequently for each frequency entry the full tail sum is exactly bounded by the finite-period sum using ∑︁ ∑︂ <u>n∈Tψk,h,n(t)</u> *ψk,h,m*(*t*) = <u>0</u> *−*36*E*
+
+*.*(32)
+1*−eb* *m∈T*
+
+The denominator is positive by the decay established above. Together with the repeated-node norm (21), these formulas are the analytic justification of the finite-to-tail, tail-to-finite and tail-to-tail bounds in Lemma4.1. To express these estimates as operator bounds, measure coefficient corrections after removing the local damping and inverting the direct jet map (19). Finite lists lie in R²⁰, indexed by the coefficient pairs on *f*, and tail lists lie in *ℓ¹*(*T*; R²). The map *B* takes opposite-side tail lists to finite corrections; *C* takes opposite-side finite trigonometric lists to tail corrections; and *D* takes opposite-side tail lists to tail corrections. The map *A* takes own-side finite trigonometric lists to direct repeated-node contributions on the tail. The equations below subtract these direct contributions. Finally, *KT,V* takes a scalar constant-column coefficient to its transformed tail correction. Integrating the row of (31) against the entrywise absolute atomic matrix *|M|*, the constant column*|V|*, or the tail variation matrix*W*, and adding the direct repetition bound, gives
+
+*∥B∥<*340*,∥D∥<*3*·*10 *−* *,*
+
+*∥C∥*+*∥A∥< β*:= 3*·*10 *−* *,∥KT,V ∥<*1*.*3*·*10 *−*
+
+*.*(33)
+
+The stated bound for *C* and *A* remains valid when the fixed trigonometric columns at zero are included. It follows from the stricter bounds7 *·* 10 *−*15 for the transformed columns and2*.*5 *·* 10 *−*10 for the repetitions. There is no direct repetition map on the tail: each rational column has only one possible pole.
+
+### 5.2 Solving every interpolation equation
+
+We adapt the finite-block and summable-tail elimination in [17, Lemma 3.3 and Proposition 3.4] and [18, Proposition 4.1, proof], now including the own-side repetition map of the periodic finite columns. With the coefficient lists *ui,wi*of Proposition5.1and the finite opposite-side coefficient-correction matrix*R*, the finite equations are
+
+*u₁* =*Ru₂* +*Bw₂* +*r₁, u₂* =*Ru₁* +*Bw₁* +*r₂.*
+
+Here *ri*collect the target data in finite coefficient coordinates and the coefficient corrections from the opposite-side transformed fixed columns. The tail equations have the form
+
+*w₁* =*Cu₂* +*Dw₂ −Au₁* +*s₁, w₂* =*Cu₁* +*Dw₁ −Au₂* +*s₂.*
+
+Each *si*is the sum of the target data in tail coefficient coordinates and the corrections from transformed fixed columns, minus the repeated-node contribution from the fixed trigonometric columns at zero. It is summable: the fixed-column contributions are summable by (33), and the targets decay geometrically by (22) with*v*=*h*on*T*and*z >*0. For *ε∈{*1*,−*1*}* define *uε*= *u₁* + *εu₂* and *wε*= *w₁* + *εw₂*, and define *rε,sε*in the same manner. The two sides then separate exactly as
+
+(*I−εR*)*uε−εBwε*=*rε,* (*I−εD*)*wε−*(*εC−A*)*uε*=*sε.*(34)
+
+The own-side repeated-node map has the same minus sign for both *ε*; it does not exchange sides when the lists are subtracted. Lemma4.1establishes
+
+*∥*(*I−R*) *−*1 *∥< N*+:= 17*,∥*(*I*+*R*) *−*1 *∥< N−*:= 5*.*
+
+Write*Lε*= (*I−εR*) *−*1. Eliminating the finite variables from (34) yields the tail equation
+
+[*I−εD−*(*εC−A*)*LεεB*]*wε* =*sε*+ (*εC−A*)*Lεrε.*(35)
+
+The operator subtracted from the identity has norm less than
+
+*δ*+ 340*βNε, δ*= 3*·*10 *−*8 *,*
+
+which is less than one for both values of *ε*. The Neumann series therefore inverts this operator on the full Banach space*ℓ¹*(*T*;R²)with norm at most
+
+(1*−δ−*340*βNε*) *−*1
+
+*.*(36)
+Recover *uε*= *Lε*(*rε*+ *εBwε*)and then take half-sums and half-differences. These reversible steps give the unique finite and summable tail lists. The spectral convergence in Section3makes their inputs and Fourier pair Schwartz functions, and (20)–(22) identify the solved equations with all positive-node jets. It remains to bound the correction to the finite interpolant.
+
+### 5.3 Error relative to the finite interpolant
+
+Let*Aie*be the finite coefficient lists from the arithmetic construction, with no tail columns. They contain the same fixed coefficients as the exact lists, satisfy the finite equations with the truncated target *Yfe*, and obey *∥Aie∥*1*<* 3for actual parameter data. Their omitted target residual has norm less than *d*= 8*.*2*·*10 *−*8 on*f,*10 *−*26 on*T.*
+
+Because the target appears only on side one, the same bound *d* applies to each of the sum and difference residuals. The sum of the norms of the two finite trigonometric lists is less than six, so their total tail effect is less than6*β*. The constant columns cancel in the sum because *C₁* + *C₂* = 0; in the difference their absolute coefficient is *|C₁ −C₂|* = 0*.*012. Thus valid tail residual bounds are
+
+*d* *′* += 10 *−*26 + 6*β, d* *′−* = 10 *−*26 + 6*β*+ 0*.*012(1*.*3*·*10 *−*7 )*.*
+
+Apply the same Schur elimination to the difference between the exact solution and this finite interpolant. From (35)–(36), its sum and difference errors are bounded on the tail by
+
+*′ε*<u>d</u> *′* <u>ε+βNεd</u> *e* =*,*(37) 1*−δ−*340*βNε*
+
+and on the finite unknowns by *eε*=*Nε*(*d*+ 340*e* *′ε*
+
+)*.*(38)
+All constants here are rational. Direct rational evaluation gives
+
+<u>e</u> *′* <u>εeε</u> *ε*= 1 *<*1*.*800004*·*10 *−*9 *<*1*.*179803*·*10 *−*5 *ε*=*−*1 *<*3*.*360002*·*10 *−*9 *<*6*.*122004*·*10 *−*6 *.*
+
+Taking half the sum of the two bounds gives the individual estimates (30), completing the proof of Proposition5.1. It is not necessary that either sum/difference finite bound be below10 *−*5 separately; the individual side is controlled by their average. The same observation applies to the difference tail bound. These are the uniform error bounds used by the global sign argument.
+
+## 6 Signs between the interpolation nodes
+
+We now pass from exact interpolation to the required signs on the entire half-line. The common mechanism is to remove the value and derivative at a positive interpolation node, so that each desired inequality becomes a comparison of second-order remainders. On the first seven positive-node cells, finite polynomial tests and a Gaussian comparison control these remainders. Farther out, the fixed terms *C₁P* = *−.*006*P* and *C₂P* =*.*006*P* dominate the curvature of all remaining terms, including the infinite correction. Figure1shows these two ranges and the stronger intermediate sine-product bound needed to join them. The comparison by deleted interpolation jets and Bernstein polynomial tests follows the sign- certification method of [17, Section 4, especially Section 4.2] and [18, Sections 3.4–3.6 and 5.1–5.3], with the parameter and error bounds established here. We use the functions *Ji*= *e* *πhs* *Fi*constructed above and their finite approximations *J* ˜︁ *i*. Proposi- tion5.1gives
+
+*J₁*(*m*) =*G*(*m*)*, J₁* *′*
+
+(*m*) =*G* *′*
+(*m*)*, J₂*(*m*) =*J₂*
+*′*
+
+(*m*) = 0 (*m∈N*)*,*
+(1*−s*)*/z* (39) *G*(*s*) =*Q₁ze,*0*< z≤Z*=*.*391*.*
+
+Recall the deleted-jet remainder*Um*from (26). The exact jets give 2
+
+(︁)︁
+*G*(*m*+*v*)*−J₁*(*m*+*v*) =*v Um*[*G*](*v*)*−Um*[*J₁*](*v*)*,* 2 (40) *J₂*(*m*+*v*) =*v Um*[*J₂*](*v*)*.*
+
+Thus, away from the node, it is enough to prove *Um*[*J₁*] *≤Um*[*G*]and *Um*[*J₂*] *≥* 0. The integral formula in (26) also shows that a bound for *|φ* *′′* *|/*2along the segment from *m* to *m* + *v* bounds *|Um*[*φ*](*v*)*|* by the same number. This is why curvature bounds control the errors without losing the exact contact at a node. On each side, the coefficient correction has*ℓ¹* norm less than10 *−*5 on*f*and3*·*10 *−*9 on*T*; the fixed coefficients at zero and the constant coefficient do not change. Each input list in the finite approximation has norm less than3. The finite norm bounds the Taylor truncation error, and the correction norms control the difference between the exact and finite deleted jets. Adding the finite and correction bounds will also control the remaining curvature in the unbounded range.
+
+14*.*5 23
+<u>Finite tests + errors Larger sine bound Uniform sine bound</u>
+
+*s* 1 4 7 9 13 16 19 21 25 28 31
+
+Figure 1: On the first seven positive-node cells, the finite tests combine with analytic error and
+
+Gaussian estimates to prove the signs on[0*,*14*.*5]. Beyond them, the direct sine-product term dominates the curvature of the remaining terms. The larger quadratic lower bound for *P* on[14*.*5*,*23] joins a uniform bound obtained by periodicity of *P*; the full interpolation functions need not be periodic.
+
+### 6.1 Curvature and Taylor remainders
+
+For a direct wave after division by *e* *−πhs*, write its exponent as *wa*= *iπt−π*(*k−h*). For a transformed wave write*wb*=*iπζk,h*, with amplitude*λk*. Set
+
+*da*=*|wa|, Ea*=*−*Re*wa*=*π*(*k−h*)*,* *db*=*|wb|, Eb*=*−*Re*wb*=*π*(*kXk−h*)*,* √︁ <u>B</u> *ℓ*=*|λk|*= *Xk, Xk*= 2 2 *.* *k* +*t* √︁ √︁ Thus *da*= *π t²* + (*k−h*) 2 and *db*= *π h²* + (*B−*2*kh*)*Xk*. The decay rates *Eb*are strictly positive, and *Ea≥* 0. For a nonnegative row *g* and a matrix *S* of folded spectral coefficients, abbreviate ∑︁ [*g,S*] = max*c jgj|Sjc|*.
+
+**Lemma 6.1**(Curvature envelopes)**.***Suppose that on each side the finite pole coefficients, indexed* *by L, have norm at most aL, and the tail coefficients have norm at most aT. The contribution of* *these coefficients to either Jihas half its absolute second derivative bounded by aLL*(*s₀*) + *aTT* (*s₀*) *for everys≥s₀, where*
+
+*s₀* 0 1 2 14*.*5 23 *L*(*s₀*) 1510 46 14*.*00465*.*000023 (41) *T*(*s₀*) 26500 1160 800 800 800
+
+*The transformed constant column has half its absolute second derivative at most .*002*per unit* *coefficient ons≥*14*.*5*.*
+
+*Proof.* Twice differentiating a wave gives modulus at most *d²ae* *−sEa* on the direct side and *d²* *b* *ℓe* *−sEb* on the transformed side. The finite pole columns therefore contribute at most
+
+<u>aL</u>(︁2 *−s* 0 *Ea* 2 *−s*0*Eb* )︁ [*d ea,M*] + [*d ℓeb,M*]*, k*=*H.* 2
+
+The two terms account for the two input lists, each of norm at most *aL*; there is no additional factor of two. The corresponding bound for the transformed constant column is[*d²* *b* *ℓe* *−s*0*Eb* *,V*]*/*2, with *k* = *h*. Lemma4.1bounds these finite sums. Increasing *s* can only decrease their nonnegative exponential factors. For a tail column, the folded total variation is less than119, uniformly in its node. Since *k* = *h*, the direct derivative factor *π²t²* is largest at *t* = 5*/*6. The transformed factor, apart from a positive constant, is *√* (*h²* + (*B−*2*h²*)*X*) *Xe* *−π*(*hX−h*)*s* *.*
+
+At *s* = 0it is increasing in *X*, so its maximum occurs at *t* = 0. For *s≥* 1, its logarithmic derivative is at most <u>3</u> *−πhs <*0*.* 2*X* Indeed *X≥B/*(*h²* + 25*/*36)and3(*h²* + 25*/*36)*/*(2*B*) *< πh*. Consequently its maximum for *s≥* 1 occurs at *t* = 5*/*6. Half the sum of the direct and transformed bounds is less than60times the sum of these two maxima. The finite endpoint evaluations in Lemma4.1give the second row of (41). Uniform variation bounds justify differentiation and summation of the tail, so this estimate applies to its whole*ℓ¹* coefficient list.
+
+We first apply these curvature bounds to the difference between the exact and finite deleted jets. The cells of the first seven*positive*interpolation nodes, and their signed half-gap lengths, are
+
+|m|cell|two values ofy|
+|---|---|---|
+|1|[0,2]|−1,1|
+|3|[2,3.5]|−1, .5|
+|4|[3.5,5.5]|−.5,1.5|
+|7|[5.5,8]|−1.5,1|
+|9|[8,10.5]|−1,1.5|
+|12|[10.5,12.5]|−1.5, .5|
+|13|[12.5,14.5]|−.5,1.5|
+
+(42)
+
+Each half-cell is *s* = *m* + *yτ*,0 *≤τ≤* 1. The first cell includes *s* = 0: its definition uses positive interpolation nodes, although*P*itself also vanishes at zero.
+
+**Lemma 6.2**(Accuracy after deleting the jets)**.***Let Ti*(*τ*)*be the degree-*20*Taylor polynomial* (27) *forUm*[*J* ˜︁ *i*](*yτ*)*. Uniformly for the cells in*(42)*and*0*≤τ≤*1*,* ⎧ ⎪ ⎪*.*018*, m*= 1*, y*=*−*1*,* ⎨ *|Um*[*Ji*](*yτ*)*−Ti*(*τ*)*|<.*003*, m*= 1*, y*= 1*,* (43) ⎪ ⎪ ⎩
+
+*.*00016*, m≥*3*.*
+*Proof.*For a wave*e* *ws* ,Re*w*=*−E*and*|w|*=*d*, the deleted-jet expansion is
+
+∑︂ <u>(wv)</u>*j* *Um*[*e* *w·*](*v*) =*e* *wm* *w².* *j≥*0 (*j*+ 2)!
+
+The first term omitted at degree20has denominator23!. For *|v|≤|y|*, the remaining successive ratios are at most*|y|d/*24. Hence the remainder is bounded by
+
+<u>d²(|y|d)</u> 21 <u>e</u> *−mE* *g*(*d,E*) =*.* 23! 1*−|y|d/*24
+
+Here *da<* 3and *db≤π*(*B/h−h*) *<* 12: for *db*, use *B−* 2*kh >* 0and maximize *Xk*at *t* = 0. Since *|y|≤*1*.*5, the denominator is positive. Summing the wave bounds gives
+
+(︁)︁ (︁)︁
+3 [*g*(*da,Ea*)*,M*] + [*ℓg*(*db,Eb*)*,M*] +*.*006 [*g*(*da,Ea*)*,V*] + [*ℓg*(*db,Eb*)*,V*]*,*
+
+where *k* = *H* for *M* and *k* = *h* for *V*. By Lemma4.1, this is less than*.*002at *m* = 1and*.*00001at the other nodes. The fixed coefficients cancel in *Ji− J* ˜︁ *i*. Lemma6.1, the two correction norms, and (26) bound its deleted-jet contribution. The whole left half-cell at1lies in *s≥* 0, the right half-cell lies in *s≥* 1, and every later cell lies in*s≥*2. Adding the Taylor remainder gives, respectively,
+
+1510*·*10 *−*5 + 26500*·*3*·*10 *−*9 +*.*002 =*.*0171795*< .*018*,*
+
+46*·*10 *−*5 + 1160*·*3*·*10 *−*9 +*.*002 =*.*00246348*< .*003*,*
+
+14*·*10 *−*5 + 800*·*3*·*10 *−*9 +*.*00001 =*.*0001524*< .*00016*.*
+
+### 6.2 The Gaussian comparison near the first nodes
+
+**Lemma 6.3.***ForG*(*s*) =*Q₁ze* (1*−s*)*/z* *,z >*0*, and everym,v,* ⎧ ⎪ ⎨(2*z*) *−*1 *, v≤*0*,* *Um*[*G*](*v*)*≥Q₁e* (1*−m*)*/z* <u>3z+v</u> (44) ⎪ ⎩*, v≥*0*.* 6*z²* + 4*zv*+*v²*
+
+*Both bounds have their continuous meaning atv*= 0*.*
+
+*Proof.* We have *G* *′′*
+
+(*s*) = *Q₁z* *−*1
+*e* (1*−s*)*/z*. If *v≤* 0, insert *G* *′′* (*m* + *tv*) *≥G* *′′*
+
+(*m*)into (26). For *v≥* 0,
+put*x*=*v/z*. The function *q*(*x*) =*e* *−x* (6 + 4*x*+*x²*)*−*6 + 2*x*
+
+satisfies*q*(0) =*q* *′*
+
+(0) = 0and*q*
+*′′*
+
+(*x*) =*x²e* *−x*
+*≥*0, and therefore is nonnegative. Since
+
+(*e* *−x* *−*1 +*x*)(6 + 4*x*+*x²*)*−x²*(3 +*x*) =*q*(*x*)*,*
+
+division by*x²*(6 + 4*x*+*x²*)and continuity at zero prove the claim.
+
+**Proposition 6.4**(Global signs)**.***The exact interpolation functions satisfy*
+
+### J₁(s)≤G(s), J₂(s)≥0 (s≥0).
+
+*Proof on*0*≤s≤*14*.*5*.* At an interpolation node the assertion follows from (39). Off the node, (40) reduces the assertion to the two deleted-jet comparisons. On the left half-cell at1, the polynomial tests (28) give *T₂ > .*05and *Q₁/*(2*Z*)*−T₁ > .*05. Since *z≤Z*, Lemmas6.2and6.3leave a margin greater than*.*05 *−.*018 =*.*032for each comparison. On the right half-cell at1, the side-two margin is greater than*.*01*−.*003 =*.*007.
+
+At *m* = 3the displacement satisfies *v≤.*5. For *v≥* 0the rational function *r*(*z,v*) = (3*z* + *v*)*/*(6*z²* + 4*zv* + *v²*)decreases in both variables: the numerators of its partial derivatives are respectively*−*18*z² −*12*zv−v²* and*−*6*z² −*6*zv−v²*. Consequently
+
+<u>836500</u> *r*(*z,v*)*≥r*(*Z,.*5) = *> .*8*.* 974643
+
+For *v≤* 0,(2*z*) *−*1 *≥* (2*Z*) *−*1 *> .*8. Thus *U₃*[*G*](*v*) *≥.*8*Q₁w*, with *w* = *e* *−*2*/z*. The tests at3, followed by (43), give a margin greater than*.*0004 *−.*00016 =*.*00024for both signs. At each of the remaining nodes in (42), use *Um*[*G*] *≥* 0, which follows from convexity, and the tests *T₂ > .*0004, *−T₁ > .*0004. The same margin applies. It remains to compare side one on the right half-cell at1. Here the Gaussian lower bound is rational in *z*, whereas *−T₁* is affine in *z* on each segment of the containing polytope. Multiplying their comparison by the positive quadratic denominator produces a cubic polynomial. Its four Bernstein coefficients are the reason for the four exceptional tests in (29). Write *v* = *τ∈* [0*,*1]. Fix any allowed *w,*∆*,r,p* and any pair(*a,u*)with0 *≤u≤U∗*and 0 *≤a≤Zu*. Let *A*(*v*)*,D*(*v*)denote *−T₁*(*v*)at the two endpoints *z* = 0*,Z*. Only the first component of*e*= (*z,*1*,Zw−*∆*,w,a,u,r,p*) T changes when*z*varies in this segment, so
+
+### −T₁(v) = (1−z/Z)A(v) + (z/Z)D(v).
+
+This affine interpolation concerns the finite test polynomial on the containing polytope; it does not interpolate the physical exponential data as functions of*z*. Put *B*(*z*) = *v²* + 4*zv* + 6*z²* and *B₀* = *v²*, *B₁* = *v²* + 2*Zv*, *B₂* = *v²* + 4*Zv* + 6*Z²*. By Lemmas6.2 and6.3, the desired comparison follows if
+
+(︁)︁
+*Q₁*(*v*+ 3*z*) +*B*(*z*) (1*−z/Z*)(*A−.*003) + (*z/Z*)(*D−.*003) *≥*0*.*
+
+Before the decrease by*.*003, the four degree-three Bernstein coefficients in*z/Z*are
+
+*v*(*Q₁* +*vA*)*,* *Q₁*(*v*+*Z*) + (2*B₁A*+*B₀D*)*/*3*,* *Q₁*(*v*+ 2*Z*) + (*B₂A*+ 2*B₁D*)*/*3*,* *Q₁*(*v*+ 3*Z*) +*B₂D.*
+
+These follow by multiplying the quadratic Bernstein coefficients(*B₀,B₁,B₂*)by the linear coefficients (*A,D*)and elevating the linear term *Q₁*(*v* + 3*z*)to degree three. They are exactly the expressions in (29), with the first expression multiplied by *v*. On0 *≤v≤* 1we have0 *≤B₀ ≤B₁ ≤B₂ ≤*
+
+3*.*481286 *<* 3*.*5. After decreasing *A,D* by*.*003, the first coefficient is nonnegative, and is greater than*.*017*v* if *v >* 0; each of the other three remains greater than*.*02 *−.*003 *·* 3*.*5 =*.*0095. The Bernstein basis is nonnegative on[0*,*1], proving the claim. At *v* = 0its first coefficient vanishes, but the actual *z >* 0gives a positive weight to at least one of the other coefficients. Also *B*(*z*) *>* 0for the actual *z >* 0, so division by *B*(*z*)is legitimate. This completes the comparison on the exceptional half-cell. Equation (40) and the cell coverage prove the assertion through*s*= 14*.*5.
+### 6.3 The sine product and the unbounded range
+
+We next turn the finite midpoint bounds into a lower bound for *P* between every pair of consecutive zeros.
+
+**Lemma 6.5**(Sine-product lower bound)**.***Ifmis a nearest zero ofPtosands̸*=*m, then*
+
+*P*(*s*)*> .*054(*s−m*) 2 *.*
+
+*For*14*.*5*≤s≤*23*, choose a nearest node from{*16*,*19*,*21*}; ifs̸*=*m, thenP*(*s*)*>*3(*s−m*) 2 *.*
+
+*Proof.* The residues in *I* are distinct modulo36, so every zero *m* is double, and *P* (*s*)*/*(*s−m*) 2 has positive removable value *Qm*at *m*. On each half-gap from *m* to an adjacent gap midpoint, this quotient is positive and log-concave. Indeed, the logarithmic second derivative of each ordinary sine-square factor is*−*2*κ²* csc²(*κ*(*s−a*)). The factor whose zero is divided out contributes (︁ *−*2 2 2 )︁ 2 (*s−m*) *−κ* csc (*κ*(*s−m*)) *≤*0*,*
+
+using *|*sin*x|≤|x|*. Continuity gives the log-concave extension at *m*. Concavity of the logarithm now bounds the quotient below by the smaller of its two endpoint values. Lemma4.1gives *Qm> .*157, uniformly by periodicity. The lower bounds at the consecutive midpoints in one period are as follows; the quotient uses either adjacent node.
+
+midpoint bound midpoint bound midpoint bound
+
+*.*5*.*165 10*.*5 1*.*11 23 19*.*08
+2*.*120 12*.*5*.*337 26 2*.*34
+3*.*5*.*054 14*.*5 3*.*13 27*.*5*.*706
+5*.*5*.*482 17*.*5 9*.*26 29*.*5 6*.*80
+8*.*656 20 8*.*19 33*.*5 14*.*1
+Every entry exceeds or equals*.*054, with a strict inequality for the actual quotient, proving the global bound. For the specified part of the period, the relevant midpoints are14*.*5*,*17*.*5*,*20*,*23, whose bounds all exceed3; the node values *Q₁₆,Q₁₉,Q₂₁* exceed16. The same half-gap argument therefore gives the stronger bound.
+
+*Completion of the proof of Proposition6.4.* Write *Ji*= *CiP* + *Ji* 0. Removing the direct constant column does not change the positive-node jets, since *P* (*m*) = *P* *′*
+
+(*m*) = 0. For14*.*5 *≤s≤* 23choose
+a nearest node as follows: *m* = 16on[14*.*5*,*17*.*5], *m* = 19on[17*.*5*,*20], and *m* = 21on[20*,*23]. Either choice works at an internal tie; at the external endpoints choose16at14*.*5and21at23. The entire segment joining *s* to *m* then stays in[14*.*5*,*23]. If *s >* 23, every nearest node has *m≥* 25, and the joining segment stays strictly above23. The finite pole lists have norm less than3 + 10 *−*5 *<* 3*.*01on each side, and the tail lists have norm less than3 *·* 10 *−*9. The transformed constant column remains in *Ji* 0, with coefficient of magnitude
+
+*.*006. Lemma6.1therefore bounds*|*(*Ji*
+0 ) *′′* *|/*2throughout the appropriate segment by {︄ *−*9
+
+*.*00465*,*14*.*5*≤s≤*23*,*
+*K*= 3*.*01*q*+ 800*·*3*·*10 +*.*006*·.*002*, q*=
+
+*.*000023*, s >*23*.*
+The exact numerical comparisons with the sine-product barrier are
+
+range *K.*006*P*(*s*)*/*(*s−m*) 2 exceeds remaining margin [14*.*5*,*23]*.*0140109*.*018*.*0039891 (23*,∞*)*.*00008363*.*000324*.*00024037
+
+for*s̸*=*m*, by Lemma6.5. On side two, the zero jets and (26) imply
+
+### J₂(s) =.006P(s) + (s−m) Um[J₂₀](s−m)≥.006P(s)−K(s−m) ≥0.
+
+On side one, convexity of*G*and the matching jets give
+
+*J₁*(*s*) =*−.*006*P*(*s*) +*G*(*m*) + (*s−m*)*G* *′*
+
+(*m*) + (*s−m*)
+2 *Um*[*J₁₀*](*s−m*)
+
+*≤G*(*s*)*−.*006*P*(*s*) +*K*(*s−m*) 2 *≤G*(*s*)*.*
+
+At a node the inequalities are the exact interpolation identities. The preceding argument treats every later gap, including all nodes outside the finite system, and completes the proof on[0*,∞*).
+
+### 6.4 Normalization and completion of the theorems
+
+Finally*Q₁ze¹* */z* *>*0and, because*s*=*b|x|* 2 and*z* *−*1 =*π*(*α/b−h*),
+
+<u>e</u> *−πhs* <u>G(s)</u>*−πα|x|*2 1*/z* =*e.* *Q₁ze*
+
+Thus *fα*= *F₁/*(*Q₁ze¹* */z* )is the claimed Gaussian minorant for *α≥* 1. Its Fourier transform is *F₂/*(*Q₁ze¹* */z*
+
+) *≥* 0, and its contact and Fourier-zero conditions follow from the exact positive-node
+jets. Every nonzero squared-radius coordinate of *A* or *A* *∗* belongs to *N*; the exact positive-node jets therefore supply every contact required by (1). This proves that input for every *α≥* 1. Lemma2.1 completes Theorem1.2for all*α >*0, and the deduction in Section2completes Theorem1.1.
+
+## A Exact evaluation of the finite certificate
+
+This appendix supplies the arithmetic proof of Lemma4.1. All its quantities retain the definitions in Section4; the continuous operator and sign arguments remain in Sections5and6.
+
+*Proof of Lemma4.1.* We give the finite recipes and justify the enclosure arithmetic. They provide a reproducible certificate for every inequality in the lemma; the accompanying Python checker, verification/check_certificate.py, implements exactly these recipes using integers and asser- tions. No floating-point arithmetic, spatial mesh, Gaussian-parameter subdivision, or frequency quadrature is used. First form the Laurent coefficients from ∏︂ (︁)︁ 2*−e* *−iπa/*18 *X−e* *iπa/*18 *X* *−*1 *.* *a∈I*
+
+Ordinary convolution stores degrees *−*15*,...,*15; the entries at array indices15*,...,*30are *P₀,...,P₁₅*.
+For*pj*=*Pje* *iπtjn*, compute
+
+∑︂ 15 <u>Rej=0pj(iπtj)</u> 3 ∑︁15 *Qn*= Re *pj*(*iπtj*) 2 *, Dn*=*.* *j*=0 3*Qn*
+
+The missing factor two from folding cancels the factors2and6in *P* *′′*
+
+(*n*) = 2*Qn*and *P*
+*′′′*
+
+(*n*) = 6*QnDn*,
+respectively. All node quantities repeat with period36. Equations (11)–(12) give *M,V*. At a gap *′* ∑︁ *iπtjs ′* 2 midpoint*s*= (*a*+*a*)*/*2, the required ratio is evaluated as4 Re*jVje /*(*a −a*). Construct *R₀,R* by (23). On each augmented matrix(*I∓R|I*), use diagonal-order Gauss– Jordan elimination. All pivot intervals exclude zero and meet the stated bounds. The right half encloses the inverse, so its maximum absolute column sum certifies the inverse-norm bounds. Form *Ai*by (25). For the bound on *∥Aie∥*, the first two columns are combined before taking absolute
+
+values: their norm is a convex function of *z*, so its maximum on[0*,Z*]occurs at0or *Z*. Bound the other column contributions separately using
+
+(*|e₃|,|e₄|,|e₅|,|e₆|,|e₇|,|e₈|*)*≤*(0*.*0024*,W∗,ZU∗,U∗,P∗,P∗*)*.*
+
+Here*|Zw−*∆*|≤*max(*ZW∗,*∆*∗*)*<*0*.*0024. For explicit polynomial rows, put *wa*= *iπ*(*tj*+ *i*(*k−h*))and *wb*= *iπζk,h*(*tj*). For each (*k,S*) = (*H,M*)*,*(*h,V*)start with
+
+*a₀* =*wa* 2 *e* *mwa* */*2*, b₀* =*wb* 2 *e* *mwb* *λk/*2*, ar*+1=*ywaar/*(*r*+ 3)*, br*+1=*ywbbr/*(*r*+ 3)*.*
+
+If *ASi*denotes the rows belonging to *S*, the degree-*r* row acting on *e* in *Ti*is the sum over these two matrices and the frequencies of
+
+(︁)︁
+Re *ar*(*SASi*)*j*+*br*(*SAS*3*−i*)*j.*
+
+Constants in the tests are added to column2, and a multiple of *w* to column4. To produce the exceptional polynomials, substitute *z* = 0*,Z* in the negative side-one rows by adding column1times the chosen endpoint to column2, then zeroing column1. Multiplication by *τ* or *τ²* shifts the power rows. We use the standard power-to-Bernstein conversion and coefficient range enclosure; see [22, Section 3, equations (9)–(10)]. For a degree-*N*power-row array*t₀,...,tN*, the Bernstein rows are
+
+∑︂*i* *i*
+
+(︁)︁
+*b* *i*= <s>(︁</s>*N* <u>r</u> <s>)︁</s>*tr,*0*≤i≤N.*(45) *r*=0 *r*
+
+*r* ∑︁ *N* (︁ )︁(︁ *N* )︁ *−*1(︁*N*)︁ *i N−i* This follows from *τ* =*i*=*r* *ri r i* *τ* (1 *−τ*). Use *N* = 20for (28) and *N* = 22for (29), padding with zero rows when necessary. For any scalar row(*b,c,l,d,k,j,n,r*), its exact minimum on*E*is *c*+*Z*min(*b,*0) +*W∗*min(*d*+*Zl,*0) + ∆*∗*min(*−l,*0)
+
+(︁)︁ (46)
++*U∗*min(0*,j,j*+*Zk*) +*P∗*min(*n,*0) + min(*r,*0)*.*
+
+Indeed the free *z,w,*∆*,r,p* coordinates minimize independently, and the triangle0 *≤u≤U∗*, 0 *≤a≤Zu* has vertices(*a,u*) = (0*,*0)*,*(0*,U∗*)*,* (*ZU∗,U∗*). Applying (46) to every Bernstein row gives the displayed tables, since the Bernstein basis is nonnegative and sums to one on[0*,*1]. The ordinary table comprises27degree-20polynomial tests on the14signed half-cells: side two on every half-cell and side one on all but the right half-cell at1. There are21Bernstein rows per test. The four exceptional tests have degree at most22and use23rows each. Thus the sign tables require27 *·* 21 + 4 *·* 23 = 659row minima, each over the full stated polytope, not values at sampled parameter points. We finally justify rigorous evaluation of these finite expressions. Represent each real interval by two integers divided by10 60. After addition, multiplication, division, and integer powers, round the lower endpoint downward and the upper endpoint upward. Multiplication takes the minimum and maximum of all four endpoint products. Reciprocal endpoints are reversed, and reciprocation is performed only when zero is excluded. Square roots are enclosed by integer square roots of the scaled endpoints; a negative lower endpoint is clipped to zero only when the quantity being square-rooted is known nonnegative. Complex intervals are rectangles with these real component intervals. For minima and maxima, apply the operation separately to lower and upper endpoints. These operations enclose their exact real or complex results, regardless of dependencies among arguments.
+
+### The interval forπis
+
+3*.*14159265358979323846264338327950288419716939937510 + [0*,*10
+*−*50]*.*
+
+It is checked using16 arctan(1*/*5) *−* 4 arctan(1*/*239)and the alternating series through power81. The total omitted absolute error is less than16*/*(83 *·* 5 83
+
+) + 4*/*(83 *·* 239
+83
+
+) *<* 10 *−*58; the Machin
+identity follows directly from the tangent addition formula and the angles’ location in(0*,π/*2). To enclose *e* *w*, divide *w* by1024, checking *|w/*1024*|≤* 1. Sum its Taylor terms through degree60, add [*−*10 *−*60 *,*10 *−*60]to each real component used, then square ten times. The omitted complex-modulus error is at most2*/*61! *<* 10 *−*60, so this process encloses *e* *w*. Integer phase arguments for *e* *iπn/*18 are reduced modulo36. Interval Gauss–Jordan elimination is sound by induction: each exact pivot lies in its computed interval, each allowed division preserves inclusion, and each subsequent row operation does likewise. Entries known algebraically to be zero or one after an elimination step may be set to those exact values. Thus no approximate inverse is silently treated as exact. Each threshold comparison made by the checker’s lt helper compares the upper endpoint of the smaller quantity with the lower endpoint of the larger; separate assertions enforce the interval, type, pivot, and range preconditions. Every asserted strict comparison succeeds with this fixed precision. This certifies the finite inequalities in the lemma.
+
+## References
+
+[1] Serge Bernstein. Sur les fonctions absolument monotones.*Acta Mathematica*, 52:1–66, 1929. doi:10.1007/BF02592679.
+
+[2] Emanuel Carneiro, Friedrich Littmann, and Jeffrey D. Vaaler. Gaussian subordination for the Beurling–Selberg extremal problem.*Transactions of the American Mathematical Society*, 365(7):3493–3534, 2013.doi:10.1090/S0002-9947-2013-05716-9.
+
+[3] J. W. S. Cassels. On a problem of Rankin about the Epstein zeta-function.*Proceedings of the* *Glasgow Mathematical Association*, 4(2):73–80, 1959. See corrigendum, volume 6 (1963), page 116, and the 1964 corrections by Ennola and Diananda.doi:10.1017/S2040618500033906.
+
+[4] J. W. S. Cassels. Corrigendum.*Proceedings of the Glasgow Mathematical Association*, 6(2):116, 1963. Corrigendum to “On a problem of Rankin about the Epstein zeta-function”. doi:10.1017/S2040618500034833.
+
+[5] Henry Cohn and Matthew de Courcy-Ireland. The Gaussian core model in high dimensions. *Duke Mathematical Journal*, 167(13):2417–2455, 2018.doi:10.1215/00127094-2018-0018.
+
+[6] Henry Cohn and Noam Elkies. New upper bounds on sphere packings I.*Annals of Mathematics*, 157(2):689–714, 2003.doi:10.4007/annals.2003.157.689.
+
+[7] Henry Cohn and Abhinav Kumar. Universally optimal distribution of points on spheres.*Journal* *of the American Mathematical Society*, 20(1):99–148, 2007.doi:10.1090/S0894-0347-06-00546-7.
+
+[8] Henry Cohn, Abhinav Kumar, Stephen D. Miller, Danylo Radchenko, and Maryna Viazovska. Universal optimality of the *E₈* and Leech lattices and interpolation formulas.*Annals of* *Mathematics*, 196(3):983–1082, 2022.doi:10.4007/annals.2022.196.3.3.
+
+[9] Henry Cohn and Stephen D. Miller. Some properties of optimal functions for sphere packing in dimensions8and24, 2016. Version 1, March 15, 2016. https://arxiv.org/abs/1603.04759 v1.
+
+[10] P. H. Diananda. Notes on two lemmas concerning the Epstein zeta-function.*Proceedings of the* *Glasgow Mathematical Association*, 6(4):202–204, 1964.doi:10.1017/S2040618500035036.
+
+[11] M. J. Dubourdieu. Sur un théorème de M. S. Bernstein relatif à la transformation de Laplace- Stieltjes.*Compositio Mathematica*, 7:96–111, 1940. https://www.numdam.org/item/CM_194 0__7__96_0/.
+
+[12] Veikko Ennola. A lemma about the Epstein zeta-function.*Proceedings of the Glasgow* *Mathematical Association*, 6(4):198–201, 1964.doi:10.1017/S2040618500035024.
+
+[13] Markus Faulhuber, Irina Shafkulovska, and Ilia Zlotnikov. A note on energy minimization in dimension 2.*Proceedings of the American Mathematical Society, Series B*, 11:664–679, 2024. doi:10.1090/bproc/247.
+
+[14] Douglas P. Hardin and Nathaniel J. Tenpas. Universally optimal periodic configurations in the plane.*Discrete Analysis*, 2025. Paper No. 26, 63 pp.doi:10.19086/da.144978.
+
+[15] Thomas Leblé. The hexagonal lattice is universally locally optimal, 2025. Version 1, submitted November 5, 2025.https://arxiv.org/abs/2511.03353v1.
+
+[16] Hugh L. Montgomery. Minimal theta functions.*Glasgow Mathematical Journal*, 30(1):75–85,
+
+1988.doi:10.1017/S0017089500007047.
+[17] OpenAI. A sharp Fourier certificate for planar circle packing. OpenAI Math Release preprint OAI:A-sharp-Fourier-certificate-for-planar-circle-packing-September-23-2026, 2026.
+
+[18] OpenAI. Universal optimality of the triangular lattice. OpenAI Math Release preprint OAI:Universal-optimality-of-the-triangular-lattice-September-23-2026, 2026.
+
+[19] Danylo Radchenko and Maryna Viazovska. Fourier interpolation on the real line.*Publications* *Mathématiques de l’IHÉS*, 129:51–81, 2019.doi:10.1007/s10240-018-0101-z.
+
+[20] R. A. Rankin. A minimum problem for the Epstein zeta-function.*Proceedings of the Glasgow* *Mathematical Association*, 1(4):149–158, 1953.doi:10.1017/S2040618500035668.
+
+[21] Naser Talebizadeh Sardari. Higher Fourier interpolation on the plane, 2021. Version 2, May 4,
+
+2021.https://arxiv.org/abs/2102.08753v2.
+[22] Jihad Titi and Jürgen Garloff. Matrix methods for the tensorial Bernstein form.*Applied* *Mathematics and Computation*, 346:254–271, 2019.doi:10.1016/j.amc.2018.08.049.
+
+[23] D. V. Widder. Necessary and sufficient conditions for the representation of a function as a Laplace integral.*Transactions of the American Mathematical Society*, 33(4):851–892, 1931. doi:10.1090/S0002-9947-1931-1501621-6.

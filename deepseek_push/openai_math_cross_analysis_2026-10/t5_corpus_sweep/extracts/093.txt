@@ -1,0 +1,807 @@
+# A dimension-free logarithmic Sobolev inequality for subgaussian log-concave measures
+
+OpenAI
+
+### September 23, 2026
+
+**Abstract**
+
+We prove that every centered log-concave probability measure with a Lebesgue density ∫ on R *n* and linear subgaussian parameter *a* satisfies Ent*µ*(*f²*) *≤ Ca² |Df |* 2 *dµ* for compactly supported smooth *f*, with one universal constant *C*. This resolves positively the dimension-free logarithmic Sobolev conjecture for subgaussian log-concave measures.
+
+## 1 Introduction
+
+A logarithmic Sobolev inequality controls the entropy of a function by its Dirichlet energy. Besides implying a Poincaré inequality, it gives Gaussian concentration for Lipschitz functions. For a log-concave measure, a natural question is whether Gaussian tails of all *linear* functions already force this stronger conclusion. We prove that they do, with a constant independent of dimension. For a probability measure *ν* and a nonnegative integrable function *g*, write ∫ (∫) (∫) Ent*ν*(*g*) = *g* log *gdν − gdν* log *gdν,*
+
+with 0 log 0 = 0. A Lebesgue density *ρ* on R *n* is log-concave if its positive set is convex and log*ρ* is concave there. We call a centered random vector *X linearly a-subgaussian* if () <u>⟨X,θ⟩</u> 2 sup E exp 2 *≤* 2*.* (1.1) *|θ|*=1*a*
+
+This definition concerns only linear functions of *X*. We write *D* for the Euclidean gradient.
+
+**Theorem 1.1.** *There is an absolute constant C < ∞ with the following property. For every n ≥* 1*,* *every centered log-concave probability measure µ with a Lebesgue density on* R *n* *, and every a >* 0 *satisfying* (1.1) *for X ∼ µ,* ∫ Ent*µ*(*f²*) *≤ Ca² |Df |* 2 *dµ for every f ∈ Cc∞*(R *n* )*.* R*n*
+
+*The same constant works in every dimension.*
+
+No smoothness of the density or positive lower curvature bound is required. In particular, the theorem includes uniform measures on convex bodies. The proof will use smooth positive densities only after a reduction that preserves any hypothetical sequence of counterexamples.
+
+The Otto–Villani implication from logarithmic Sobolev to quadratic transport–entropy inequal- ities [17, Theorem 1] gives the following standard consequence, with the same constant. Write *P₂*(R *n* ) for the Borel probabilities with finite second moment. For *α,β ∈P₂*(R *n* ), set ∫ *W₂*(*α,β*) 2 = inf *|x − y|* 2 *dπ*(*x,y*)*,* *π∈*Π(*α,β*) ∫ where Π(*α,β*) is the set of their couplings. Relative entropy is *H*(*α | β*) = *f* log *f dβ* if *α* = *fβ*, with its possible value +*∞*, and is +*∞* if *α ̸≪ β*.
+
+**Corollary 1.2** (Quadratic transport–entropy inequality)**.** *Under the assumptions of Theorem1.1,* *every ν ∈P₂*(R *n* ) *satisfies* *W₂*(*ν,µ*) 2 *≤ Ca²H*(*ν | µ*)*,*
+
+*with the same absolute constant C as in that theorem.*
+
+The proof in Section2.1gives the approximation argument for nonsmooth log-concave densities.
+
+### 1.1 History and significance
+
+Gross’s work on logarithmic Sobolev inequalities connected the Gaussian inequality with hypercon- tractivity and established a framework in which the constants remain independent of dimension [8]. The diffusion approach of Bakry and Émery [2] gives the inequality for a density *e* *−V* when *D²V ≥ κ*Id with *κ >* 0: in the convention used below, its constant is at most *κ* *−*1. Log-concavity alone asserts only *D²V ≥* 0 when the potential is smooth. The question addressed here is whether a global assumption on the tails of linear functions can supply the logarithmic Sobolev bound without positive curvature. A logarithmic Sobolev inequality implies Gaussian concentration for all Lipschitz functions through Herbst’s exponential-moment argument; see [14, Section 2.3]. Under log-concavity, Gaussian concentration for all Lipschitz functions also gives Gaussian isoperimetry by Milman’s theorem [16, Theorem 1.1], and hence a logarithmic Sobolev inequality [5, Lemma 3.3], with dimension-independent bounds. The question here asks whether control of linear functions suffices. Uniformly subgaussian linear marginals are necessary, up to universal constants, by the same Herbst argument. Bizeul formulated their sufficiency within the log-concave class in 2023 [4, Conjecture 2]. Theorem1.1resolves this conjecture for centered log-concave laws with a Lebesgue density, under the precise marginal condition (1.1). Bobkov’s norm-based criterion [5, Theorem 1.3] bounds the entropy coefficient by a univer- sal multiple of the squared subgaussian norm of *|X|*. Under (1.1), Hölder’s inequality gives E exp(*|X|* 2 */*(*na²*)) *≤* 2, so that criterion yields a coefficient of order *na²*. Bizeul’s improvement [4, 1*/*4 2 2 ∫ 2 Theorem 4] has dimension dependence *n* in the parameter *ρ*LSdefined by Ent(*f*) *≤* 2*ρ* LS *|Df |*. *√* 2 Thus for linear subgaussian scale *a* it gives an entropy coefficient of order *na*. Bizeul also obtained the dimension-free conclusion for rotationally invari... [truncated]
+
+gives the Gaussian prediction identity used here. We prove its conditional integrated version with our variance and diffusion-time conventions. The entropy-loss comparison in Lemma4.2requires an additional argument: repeated observations of independent copies make the cost of discarding conditional-mean directions negligible. That comparison links Gaussian prediction to the tensor near-equalities described next.
+
+### 1.2 Proof strategy
+
+Write *R*(*ν*) for the best constant in the convention ∫ Ent*ν*(*f²*) *≤* 2*R*(*ν*) *|Df |* 2 *dν.* (1.2)
+
+Failure of Theorem1.1would give, after truncation, a weak quadratic tilt, and dilation, a sequence of compactly supported log-concave laws *µ* such that *R*(*µ*) = 1 while their linear subgaussian parameters tend to zero. The argument derives incompatible descriptions of fluctuations associated with these normalized laws.
+
+**From an extremal function to a predictable vector field.** For a fixed *s >* 0, let *G* be a *√* standard Gaussian independent of *X ∼ µ*. An extremizer for the entropy inequality of *X* + *sG* yields a second probability law *η* and a vector field
+
+<u>dη</u> *√* *w* = *D*log*, µs*= Law(*X* + *sG*)*.* *dµs*
+
+An exact change-of-reference identity shows that *η* itself satisfies a logarithmic Sobolev inequality. The Euler equation and translation tests make *w* an approximate first eigenfunction of the diffusion associated with *η*. If the entropy constant instead coincides with the Poincaré constant, take *η* = *µs*and *w* = *Dφ*, where *φ* is a gap eigenfunction. Both cases are treated directly. The crucial extra information concerns prediction of *w*(*Y*) from a noisy observation of *Y ∼ η*. With *I* = E*η|w|* 2 and a fresh independent standard Gaussian *G*, we prove the limiting identity | *√* |2 <u>E</u>|<u>E[w(Y) | Y + rG]</u>| *−r* *−→ e* *I*
+
+on a fixed positive interval of noise variances. It follows by matching entropy contraction with an entropy-loss comparison proved using repeated Gaussian observations. At each observation, we discard at most one direction: the difference between the conditional means under two competing priors. Independent copies make the accumulated cost of discarding these directions negligible.
+
+**From prediction to tensor near-equalities.** Gaussian polynomial orthogonality turns the exact prediction curve into nearly sharp derivative estimates. Starting with *T₀* = *w*, we construct symmetric tensor fields *Tl*whose derivatives approximate *Tl*+1, all with asymptotically the same squared norm and all concentrated near the first nonzero spectral value of the diffusion. The tensor estimates also control curvature and exclude concentration in the relevant small-dimensional subspaces. For each tensor *Tl*, regard one index as a row and all remaining indices as a column, and form the positive matrix *TlT* *l∗*. Averaging *I* *−*1 *TlT* *l∗* over a long band of levels gives a positive matrix field *ρ* of asymptotic mean trace one. Its square root is nearly an equality case in Hilbert–Schmidt Poincaré. Symmetry in the many tensor indices forces the infinitesimal matrix coefficients to
+
+commute asymptotically in a weighted Hilbert–Schmidt norm. Gaussian linear combinations of these matrices, frozen at the initial diffusion point, consequently have scalar Gaussian moments under the weighted trace. A Hermite expansion along the stationary diffusion then gives covariance fluctuations with the lognormal factor *√* exp( 8*tZ −* 4*t*)*, Z∼N*(0*,*1)*,*
+
+### whose mean is one.
+
+**An information contradiction.** Conditionally on the stationary point, observe a centered Gaussian vector whose covariance is a bounded increasing function of *Tρ*, where *T >* 0 is a scale and the covariance cap is adjustable. Its marginal law is a mixture of these Gaussian laws. Together with the square-root energy estimates, the logarithmic Sobolev inequality of *η* gives a universal asymptotic upper bound on the mutual information, integrated against *dT/T²*. The matrix fluctuation law gives a lower bound by a one-dimensional Gaussian mixture with the lognormal variance above. After taking the sequence limit at fixed diffusion time and covariance cap, that lower bound becomes arbitrarily large as these two parameters increase together. The scale integral is essential. In a spectral block where *ρ* has size *β²*, the substitution *x* = *Tβ²* gives <u>dT</u>2<u>dx</u> 2 = *β* 2 *.* *T x* This is exactly the coefficient multiplying the unnormalized trace on that block. Consequently the information lower bound retains all of the matrix mass even when the spectrum is arbitrarily diffuse. Figure1records the two constructions of the critical law and the main dependencies of the information comparison.
+
+### 1.3 Components of the argument
+
+Two ingredients have formulations beyond the final contradiction. The entropy-loss comparison of Lemma4.2relates relative entropy under common Gaussian convolution to conditional prediction of the original relative score. Its proof separates the convexity input from the finite-copy observation argument. The matrix reduction in Section6converts symmetric tensor near-equalities into a weighted scalar fluctuation law, without requiring simultaneous diagonalization in varying dimensions. Section7then tests that law through bounded covariance observations and integrates over scale. For orientation, Section2records the analytic conventions and approximation facts. Section3 constructs the critical laws and vector fields. Section4proves the prediction identity, and Section5 constructs the tensor hierarchy. Sections6and7turn that hierarchy into the contradiction.
+
+|Strict entropy branch|Gap branch|
+|---|---|
+|Entropy optimizer|Gap eigenfunction|
+|Lemma3.7(i)|Lemma3.7(ii)|
+
+Common critical law and vector field Proposition3.9
+
+Prediction curve Symmetric Matrix estimates and posterior estimates tensor hierarchy and frozen law Prop.4.3, Lemma4.4 Proposition5.1 Proposition6.8
+
+<u>matrix bounds</u>
+
+Integrated information contradiction <u>entropy bound</u> Propositions7.2and7.9, Lemma7.10
+
+Figure 1: Main stages of the contradiction argument. At the regularized law, the strict entropy
+
+branch means that the logarithmic Sobolev constant exceeds the Poincaré constant; in the gap branch the two constants coincide. The logarithmic Sobolev inequality of the common critical law, together with the square-root energy estimates of Section6, supplies the information upper bound. The frozen matrix law supplies the scalar lower bound. After the sequence limit at fixed parameters, its scale integral becomes arbitrarily large as the diffusion time and covariance cap grow together.
+
+## 2 Curvature, diffusion, and entropy calculus
+
+We first establish the analytic facts used to construct and study the probability measures in the proof. Two time conventions will be kept distinct: convolution with a Gaussian of variance *√* *r* has generator ∆*/*2, whereas a stationary diffusion has generator *−A* and noise coefficient 2. These conventions determine every entropy dissipation factor below. For probabilities *p,π* with *p ≪ π*, define their relative entropy by ∫ <u>dp</u> *H*(*p | π*) = log *dp.* *dπ*
+
+Set *H*(*p | π*) = +*∞* when absolute continuity fails. Write *γ* for standard Gaussian measure in the relevant dimension, and set | √ | ∫ | |2 | <u>dp</u>| *I*(*p | π*) = 4 ||*D* || *dπ.* | *dπ*|
+
+The value is +*∞* unless the density exists and its square root belongs to the weighted Sobolev ∫ 2 space. When the densities are positive and smooth this is *|D* log(*dp/dπ*)*| dp*. Our convention is ∫ Ent*π*(*f²*) *≤* 2*R*(*π*) *|Df |* 2 *dπ,* 2*H*(*p | π*) *≤ R*(*π*)*I*(*p | π*)*.*
+
+The Poincaré constant *RP*(*π*) uses the convention ∫ (∫)2 ∫ Var*π*(*f*) = *f²dπ − f dπ ≤ RP*(*π*) *|Df | dπ.*
+
+Linearization of the entropy inequality gives *RP*(*π*) *≤ R*(*π*). For smooth positive densities the Sobolev space is the completion of *Cc∞*in the squared norm ∫ 2 2 (*f* + *|Df |*)*dπ*. Cutoffs, truncation of the values, and smoothing on compact sets show that it also consists of the functions with a weak gradient in this norm. The same approximation and lower semicontinuity of entropy extend a compact-test logarithmic Sobolev inequality to this space. One convenient proof of the latter lower semicontinuity is the formula {∫ ∫} *H*(*p | π*) = sup *gdp −* log *e* *g* *dπ.* (2.1) *g* bounded
+
+Jensen’s inequality proves the upper bound; bounded truncations of log(*dp/dπ*) give equality. The same formula implies data processing under a measurable map or a Markov kernel, by conditional Jensen. Conditional entropy identities below are always averaged over the conditioning variable. In particular, disintegrating a joint density and splitting its logarithm gives the chain rule
+
+*H*(*PU,Z | QU ⊗ ν*) = *H*(*PU | QU*) + E*PUH*(*PZ|U| ν*)*.*
+
+It holds in the extended nonnegative sense by truncation. Mutual information is I(*U*; *Z*) = *H*(*PU,Z | PU ⊗ PZ*). Taking *g*(*z*) = *v · z* in Equation (2.1) and optimizing over *v* also gives *H*(*p | γ*) *≥|*E*pZ|* 2 */*2 when the mean exists. The following is the anisotropic Bakry–Émery curvature criterion [2]. We include its semigroup proof and the convex approximation needed for Gaussian posteriors with nonsmooth support.
+
+**Lemma 2.1** (Positive curvature)**.** *Let S be a positive definite matrix on* R *n* *, and let U be a proper* *lower semicontinuous convex function, possibly taking the value* +*∞. Suppose*
+
+*dπ*(*x*) = *Z* *−*1 exp*{−* <u>1</u> 2 *⟨x,Sx⟩− U*(*x*)*} dx*
+
+*is a probability with a full dimensional support. Then*
+
+Ent*π*(*f²*) *≤* 2E*π⟨Df,S* *−*1 *Df ⟩,* Var*π*(*f*) *≤* E*π⟨Df,S* *−*1 *Df ⟩.*
+
+*The inequalities hold first for compact smooth tests, and then for functions obtained by finite-energy* *approximation.*
+
+*Proof.* A linear change of variables reduces the assertion to *S* = Id. First suppose *V* (*x*) = *|x|* 2 */*2 +*U* (*x*) is smooth with bounded Hessian. The diffusion with generator *L* = ∆ *− DV · D* has globally Lipschitz drift and invariant law *π*. If *Jt*is the derivative of its trajectory with respect to the starting point, then *J*˙*t*= *−D²V* (*Xt*)*Jt*, whence *∥Jt∥*op*≤ e* *−t*. For smooth bounded positive *q*, bounded away from zero, weighted Cauchy–Schwarz gives () <u>|DPtq|</u> 2 *−*2*t*<u>|Dq|</u> 2 *≤ e Pt.* *Ptq q*
+
+Integration by parts yields ∫ ∫2 <u>d |DPtq|</u> (*Ptq*) log(*Ptq*)*dπ* = *− dπ.* *dt Ptq*
+
+Couple a trajectory started at *x* to an independent stationary initial point with the same driving Brownian motion. Their distance is at most *e* *−t* times their initial distance. Since *π* has Gaussian
+
+tails, this proves convergence of *Ptq* to E*πq* for bounded Lipschitz *q*, and hence convergence of <u>1</u> ∫ 2 its entropy to zero. Integrating the preceding two displays gives Ent*π*(*q*) *≤* 2 *|Dq| /qdπ*. Apply this to *q* = *f²* + *ε* and let *ε ↓* 0. For general *U*, take its quadratic infimal convolutions
+
+*Uj*(*x*) = inf*{U*(*z*) + *j|x − z|* 2 *}.* *z*
+
+The minimizer is unique, and monotonicity of the subgradient of *U* shows that *DUj*is Lipschitz. The functions *Uj*are convex and increase to *U*. A fixed affine minorant *U* (*z*) *≥ ℓ · z* + *c* gives *Uj*(*x*) *≥ ℓ · x*+*c −|ℓ|* 2 */*(4*j*). Mollify *Uj*with a smooth compactly supported kernel at radii tending to zero. The resulting functions are smooth, convex, and have bounded Hessian; the affine lower bound persists with a uniform additive error. Consequently their normalized densities converge almost everywhere and in *L¹*, dominated by an integrable Gaussian times an exponential of a linear function. The compact-test inequality passes to the limit. Boundary values of *U* do not matter, since the boundary of a full dimensional convex support has Lebesgue measure zero. Finally, insert *f* = 1 + *εg*, using finite-energy cutoffs of the constant, and compare the coefficients of *ε²* to obtain the variance inequality.
+
+We shall also use two immediate consequences with their constants. If independent laws satisfy inequalities with quadratic energy forms *Q₁,Q₂*, their product satisfies the inequality with energy *Q₁* +*Q₂*. Indeed, decompose entropy into conditional entropy and the entropy of the fiber integral, and use | | | (∫)1*/*2|2 ∫ |2|2 |*Dxf* (*x,y*) *dπ₂*(*y*) | *≤ |Dxf* (*x,y*)*| dπ₂*(*y*)*.* | |
+
+Approximation removes zeros of the fiber norm. The variance version uses conditional variance and differentiation of the fiber mean. In particular, independent addition gives
+
+*R*(Law(*X* + *Z*)) *≤ R*(Law(*X*)) + *R*(Law(*Z*))*.* (2.2)
+
+Second, Herbst’s argument (see [14, Section 2.3]) shows that, if *R*(*π*) *≤ R*, every integrable 1-Lipschitz function *u* satisfies log E*πe* *t*(*u−*E*π u*) *≤ Rt²/*2*.* (2.3)
+
+For a bounded smooth *u*, applying the inequality to *e* *tu/*2, and writing *ψ*(*t*) = log E*e* *tu*, gives *tψ* *′*
+
+(*t*)*− ψ*(*t*) *≤ Rt²/*2. Integrate the derivative of *ψ*(*t*)*/t* from zero. Bounded Lipschitz truncations
+and Fatou’s lemma prove the assertion in general. In particular the conclusion applies to linear forms whenever their first moments are finite.
+
+**Lemma 2.2** (Dirichlet operator and stationary diffusion)**.** *Let π be a smooth, strictly positive* *probability density on* R *n* *. On Cc∞*(R *n* ) *define*
+
+*Aπ*= *−*∆ *− D* log *π · D.*
+
+*This nonnegative symmetric operator is essentially self-adjoint in L²*(*π*)*, and Cc∞is a core for its* *closure. In particular, if f ∈ L²*(*π*) *and the distribution Aπf belongs to L²*(*π*)*, then f ∈* Dom(*Aπ*)*.* *Its semigroup Pu*= *e* *−uAπ* *preserves constants and is realized by the stationary diffusion* *√* *dYu*= 2*dBu*+ *D*log*π*(*Yu*)*du, Y₀ ∼ π.* (2.4)
+
+*For* *√* *f ∈* Dom(*Aπ*) *the stationary Itô formula holds in L², with drift −Aπf and martingale integrand* 2*Df.*
+
+∫ 2 *Proof.* Integration by parts gives *⟨f,Aπg⟩* = *Df ·Dgdπ*. If *v ∈ L* (*π*) is orthogonal to (1+*Aπ*)*Cc∞*, *√* then (1 + *Aπ*)*v* = 0 distributionally. Conjugating by *π* reduces this to a Poisson equation with a smooth local potential. The local Newtonian potential estimates and bootstrap make *v* smooth; see [20, Lecture 24, p. 2; Lecture 16, p. 2]. Take a compact cutoff *χR*, equal to one on the ball of radius *R*, with *|DχR|≤ C/R*. Testing by *χ²* *R* *v* and using 2*ab ≤ a²/*2 + 2*b²* gives ∫ ∫ ∫ *χ²Rv²dπ* + <u>1</u> 2 *χ²R|Dv|* 2 *dπ ≤* 2 *|DχR|* 2 *v²dπ.*
+
+Thus *v* = 0. The range of 1 + *Aπ*is dense. Nonnegativity gives *∥*(1 + *Aπ*)*f ∥*2*≥∥f ∥*2, so the range of the closure is also closed and therefore equals *L²*. The closure is self-adjoint: for *g* in its adjoint domain, solve (1 + *A*)*h* = (1 + *A* *∗* )*g*; then *g − h* is in the orthogonal complement of the range of 1 + *A*, hence vanishes. This also proves the asserted maximal distributional domain characterization. The cutoffs *χR*converge to 1 in the form norm with energy tending to zero. Hence 1 belongs to the nullspace of the closed form and *Pu*1 = 1. To identify the diffusion, solve the stochastic equation locally and kill it on exiting each ball. Its kernels are symmetric and sub-Markov, as follows either from the Dirichlet heat equation or integration by parts. Increasing the balls gives the minimal sub-Markov semigroup. The stopped Itô formula on compact tests identifies its generator as an extension of *−Aπ*. Essential self-adjointness identifies it with *Pu*, which loses no mass. Started in *π*, the resulting diffusion is stationary and nonexplosive. Finally approximate *f* in graph norm by compact smooth functions. Their gradients converge in *L²*(*π*) since *∥Dg∥* 2 2= *⟨g,Ag⟩*. Stationarity and the Itô isometry pass every term of their formulas to the limit.
+
+**Lemma 2.3** (Entropy dissipation)**.** *For the semigroup of Lemma2.2, if p₀* = *q₀π has finite relative* *entropy and pu*= (*Puq₀*)*π, then, for* 0 *≤ a ≤ b,* ∫ *b* *H*(*pa| π*) *− H*(*pb| π*) *≥ I*(*pu| π*)*du.* (2.5) *a*
+
+*If instead both probability measures evolve by Gaussian convolution, pr*= *p₀ ∗ γrand qr*= *q₀ ∗ γr,* *then* ∫ <u>1</u> *b* *H*(*pa| qa*) *− H*(*pb| qb*) *≥ I*(*pr| qr*)*dr* (2.6) 2*a* *whenever the entropy on the left at time a is finite. Here γris the centered Gaussian with* *covariance r*Id*, and time zero is allowed. For the standard Gaussian Ornstein–Uhlenbeck semigroup,* *Equation* (2.5) *is an equality, including time zero when the initial entropy is finite. Each assertion* *also holds after integration over conditioning labels whose noises are independent conditional on* *those labels.*
+
+*Proof.* For a bounded density *q* bounded away from zero, the form chain rule, first for smooth functions and then by form approximation, gives ∫ ∫2 <u>d |DPuq|</u> (*Puq*) log(*Puq*)*dπ* = *− dπ.* *du Puq*
+
+Spectral smoothing puts *Puq* in the operator domain for *u >* 0; the bounded range permits 1 + log(*Puq*) as a form test. Approximate an arbitrary finite-entropy density by truncating it above and below and normalizing. The initial entropies converge. The semigroup contracts *L¹*, ∫ *√* so densities converge at every later time. Lower semicontinuity of entropy and of 4 *|D q| dπ*,
+
+followed by Fatou’s lemma in time, gives Equation (2.5) from time zero. Restarting the argument gives arbitrary *a*. For simultaneous heat evolution put *z* = *pr/qr*. Direct differentiation, using *∂rpr*= ∆*pr/*2 and the same equation for *qr*, gives
+
+(*∂r−* 2 <u>1</u> ∆)*{qr*Φ(*z*)*}* = *−* <u>1</u> 2 *q* *r* Φ *′′*
+
+(*z*)*|Dz|* 2
+*.* (2.7)
+Here use smooth convex Φ*k*with Φ*k*(1) = Φ *′k*
+
+(1) = 0, with second derivatives increasing to 1*/z*, and
+with second derivatives supported in compact subsets of (0*, ∞*). Such functions have at most linear growth and increase to *z* log *z − z* + 1. Integrate Equation (2.7) against *χR*with *|*∆*χR|≤ C/R²*. At each fixed *k* the cutoff error vanishes because *qr*Φ*k*(*pr/qr*) *≤ Ck*(*pr*+ *qr*). Let *R →∞* and then *k →∞*. Monotone convergence gives the entropy and information terms, and in particular the stated inequality on positive time intervals. Data processing gives *H*(*pε| qε*) *≤ H*(*p₀ | q₀*); let *ε ↓* 0 to include the initial time. For Ornstein–Uhlenbeck evolution relative to *γ*, apply the same convex truncations to the ratio. Its generator is ∆ *− x · D*. Expanding radial cutoffs have bounded generator, tending pointwise to zero, so the error vanishes by domination at fixed *k*. This gives equality on positive time intervals. At time zero, relative entropy is continuous: data processing gives its upper bound and lower semicontinuity under weak convergence gives its lower bound. Monotone convergence of the nonnegative time integral includes zero. Tonelli’s theorem proves all conditional versions.
+
+We use the relative-entropy form of the Gaussian-channel identity of Guo, Shamai, and Verdú [9, Theorem 5, Equation (66)]. The proof records explicitly its conditional integrated form.
+
+**Lemma 2.4** (Gaussian signals)**.** *Let S be an* R *d* *-valued random vector with finite second moment,* *let U √be any side information, and let G be standard Gaussian independent of* (*S,U*)*. Write* *Zt*= *tS* + *G and* *d*(*t*) = E*UH*(Law(*Zt| U*) *| γ*)*.*
+
+*Then d*(0) = 0*, d*(*t*) *≤ t*E*|S|* 2 */*2*, and* ∫ *t* <u>1</u>2 *d*(*t*) = E *|*E[*S|Zv,U*]*| dv.* (2.8) 20
+
+*The integrand is nondecreasing in v. The formula without side information is obtained by taking* *U constant.* *√* 2 *Proof.* Conditional convexity of relative entropy and *H*(*γ*(*·− ts*) *| γ*) = *t|s| /*2 give the upper bound. Gaussian kernel differentiation gives
+
+<u>dLaw(Zt| U)</u> *√* *Dz*log (*z*) = *t*E[*S|Zt*= *z,U*]*.* *dγ*
+
+The differentiation is justified at each positive *t* by the Gaussian kernel and the finite second moment, or by truncating *S* and passing locally and in the conditional squared norm. Applying Ornstein–Uhlenbeck evolution for time *u* replaces *t* by *te* *−*2*u*. Its entropy dissipation identity and *dt/du* = *−*2*t* give *d* *′*
+
+(*t*) = <u>1</u> 2 E*|*E[*S|Zt,U*]*|*
+2 almost everywhere on (0*, ∞*). The upper bound implies *d*(*t*) *→* 0 at zero, proving the integrated identity. For √ 0 *< v < t*, the channel at *v* is obtained from the channel at *t* by multiplying its output by *v/t* and adding fresh Gaussian noise of covariance (1 *− v/t*)Id. Conditional Jensen then proves monotonicity of prediction energy.
+
+### 2.1 The transport–entropy consequence
+
+∫ 2 2 *Proof of Corollary1.2.* Jensen’s inequality in each coordinate gives *|x| dµ ≤ na* log 2, so *µ ∈* *P₂*(R *n* ). Only the case *H*(*ν | µ*) *< ∞* needs proof. For *s >* 0, put *γs*= *N*(0*,s*Id), *µs*= *µ ∗ γs*, and *νs*= *ν ∗ γs*. The density of *µs*is smooth and strictly positive. For *X ∼ µ* and an independent standard Gaussian *G*, its potential *Vs*satisfies
+
+2 *−*1 *−*2 *√* *D Vs*(*y*) = *s* Id *− s* Cov(*X|X* + *sG* = *y*) *≥* 0*.*
+
+Indeed, the posterior has the original convex potential plus *|x − y|* 2 */*(2*s*), so Lemma2.1bounds its covariance by *s*Id. Gaussian differentiation is valid without compact support. Thus *µs*is centered and log-concave, with a smooth convex potential. √ Set *βs*= 8*s/*3 and *as*= *a* + *βs*. For a scalar standard Gaussian *Z*, E exp(*sZ²/βs* 2
+
+) = 2. The
+inequality (*u* + *t*) 2 *a u² βst²* 2 *≤* 2 + 2 (*a* + *βs*) *a* + *βsa a* + *βsβs*
+
+and Hölder’s inequality show that *µs*satisfies (1.1) with parameter *as*. Theorem1.1, with the Sobolev extension in Section2, gives entropy coefficient *Ca²s*. In the conventions of [17, Definitions 1– 2 ∫ 2 2], Ent(*f*) *≤ L |Df |* is LSI(2*/L*), whose transport conclusion is *W₂₂ ≤ LH*. Their Theorem 1 applies to the smooth convex potential of *µs*, and hence
+
+*W₂*(*νs,µs*) 2 *≤ Ca²sH*(*νs| µs*) *≤ Ca²sH*(*ν | µ*)*.*
+
+The last inequality is data processing for the common Gaussian kernel, as in Section2. Coupling *√* a vector with itself plus independent Gaussian noise gives *W₂*(*µs,µ*)*,W₂*(*νs,ν*) *≤ ns*. Letting *s ↓* 0 at fixed *n*, with *as→ a*, proves the claim.
+
+## 3 Critical laws after Gaussian regularization
+
+Suppose that the conclusion of Theorem1.1is false. This section constructs, from a sequence of counterexamples, smooth probabilities *η* satisfying a logarithmic Sobolev inequality and vector fields *w* that nearly satisfy *Aηw* = *w*. There are two possible constructions. An attained nonlinear entropy quotient gives a score *w*; equality of the logarithmic Sobolev and Poincaré constants gives the gradient of a gap eigenfunction. We shall retain both alternatives throughout.
+
+### 3.1 Normalization and Gaussian regularization
+
+**Lemma 3.1** (Normalized counterexamples)**.** *Failure of Theorem1.1produces a sequence of* *centered, compactly supported, full dimensional log-concave probabilities µ such that*
+
+*⟨X,θ⟩*2*/a*2 *R*(*µ*) = 1*,* sup E*µe ≤* 2*, a −→* 0*.* (3.1) *|θ|*=1
+
+*For an absolute constant C, they also satisfy*
+
+log E*µe* *v·X* *≤ Ca²|v|* 2 *,* Cov*µ*(*X*) *≤ Ca²*Id*.* (3.2)
+
+*Proof.* Choose laws and compact smooth tests for which the entropy-to-energy ratio divided by the squared marginal parameter tends to infinity. The tests may be chosen with positive energy: a smooth test of zero energy is constant on the connected interior of the convex support, and its
+
+entropy vanishes. Restriction of the law to a sufficiently large ball preserves each test quotient *−ε|x|*2*/*2 arbitrarily closely. Multiply the restricted density by *e* and normalize, with *ε >* 0 sufficiently small to preserve that quotient again. Both operations preserve log-concavity, their combined density relative to the original law can be bounded by 2, and Lemma2.1gives a finite logarithmic Sobolev constant for the resulting compact law. A bounded density increase changes the exponential-square expectation by at most that *Z*2*/A*2*Z*2*/*(2*A*2) factor. If E*e ≤* 4, Jensen gives E*e ≤* 2. Centering costs only another absolute factor: E*Z² ≤ A²* log 4, while (*Z −* E*Z*) 2 *≤* 2*Z²* + 2(E*Z*) 2; increase the denominator first to make the resulting exponential expectation bounded by an absolute constant, and once more by Jensen to make it at most 2. These arguments apply separately to every unit linear form with the same constants. Translation preserves the test quotient. Thus the centered compact laws still have *R/A² →∞* with 0 *< R < ∞*. Dilation by *R* *−*1*/*2 gives Equation (3.1). *Z*2*/a*2*k k* For completeness, if a centered scalar *Z* obeys E*e ≤* 2, then E*|Z| ≤* 2*a* Γ(*k/*2 + 1), by integrating its tail. Expansion of *e* *tZ*, with the linear term absent, therefore gives log E*e* *tZ* *≤ Ca²t²* for *a|t|≤ c*. For *a|t|≥ c*, use *tZ ≤ Z²/a²* + *a²t²/*4 and absorb log 2 into *Ca²t²*. Apply this to *Z* = *X · θ*. The second moment bound follows either from the exponential-square bound or by differentiating the centered moment generating function at zero.
+
+We suppress the counterexample index, but all limits in this section refer to this sequence. Let *G* be a fresh standard Gaussian and set *√ √* *µs*= Law(*X* + *sG*)*, Rs*= *R*(*µs*)*, bs*(*y*) = E[*X|X* + *sG* = *y*]*, Vs*= *−*log*µs.*
+
+Here and below *µs*also denotes its strictly positive density. Gaussian differentiation and posterior covariance give
+
+*y − bs*(*y*) Cov(*X | y*)2Id *− Ms*(*y*) *DVs*(*y*) =*, Ms*(*y*) = *Dbs*(*y*) =*, Ks*(*y*) = *D Vs*(*y*) =*.* *s s s* (3.3) The posterior of *X* has a convex potential plus *|x − y|* 2 */*(2*s*). Lemma2.1, applied to its linear forms, therefore implies 0 *≤ Ms≤* Id*,* 0 *≤ Ks≤ s* *−*1 Id*.* (3.4)
+
+All these functions are smooth. Compact support of *X* also gives *|bs|≤* supsupp*µ|x|*. The monotonicity below follows from the heat-flow contraction of Klartag and Putterman [13, Theorem 1.2 and Section 3], which uses the transport construction of Kim and Milman [11]. We recall the argument for our regularized laws.
+
+**Lemma 3.2** (Bounds for the regularized constants)**.** *The function s |→ Rsis nondecreasing and* 1*-Lipschitz on* (0*, ∞*)*, and* 1 *≤ Rs≤* 1 + *s.* (3.5)
+
+*Proof.* The heat equation for *µs*is the continuity equation with velocity *DVs/*2. On a compact positive-time interval this velocity is globally Lipschitz and grows at most linearly, so its smooth flow is a diffeomorphism carrying *µs*to *µt*. Its Jacobian satisfies *J*˙ = *KtJ/*2. By positivity of *Kt*, the flow expands distances and its inverse is 1-Lipschitz when *t ≥ s*. Transport a test by that inverse. Its entropy is unchanged and its Dirichlet energy cannot increase, proving *Rt≥ Rs*. Equation (2.2) gives *Rs*+*h≤ Rs*+ *h* and *Rs≤* 1 + *s*. For every compact smooth test, its entropy and energy converge to those under *µ* as *s ↓* 0. Taking the supremum of its quotient gives lim inf*s↓*0*Rs≥ R*(*µ*) = 1. Monotonicity now proves the remaining bound.
+
+### 3.2 Attainment above the Gaussian and Poincaré thresholds
+
+On compact manifolds, Rothaus obtains nonconstant positive solutions of the logarithmic Euler equation when the sharp logarithmic Sobolev constant exceeds the Poincaré constant [18, p. 358]. The proof below must also control loss of entropy in the Gaussian tails. The next two lemmas establish this control and attainment. Their constants may depend on a single fixed law and its dimension. Uniform estimates along the counterexample sequence begin with the translation argument.
+
+**Lemma 3.3** (Compactness and the Gaussian entropy defect)**.** *Fix s >* 0 *and a compactly supported* *probability µ on* R *n* *, and put ν* = *µ ∗ γs. Its form domain embeds compactly into L²*(*ν*)*. For every* *ε >* 0 *there is a finite Cε, depending on this fixed law, such that*
+
+Ent*ν*(*u²*) *≤* 2(*s* + *ε*)*∥Du∥* 2 2+ *Cε∥u∥* 2 2
+
+*.* (3.6)
+*If uj→ u in L²*(*ν*)*, ∥uj∥*2= 1*, and ∥Duj∥* 2 2*→ E∗< ∞, then*
+
+lim sup Ent*ν*(*u²j*) *≤* Ent*ν*(*u²*) + 2*s*(*E∗−∥Du∥* 2 2
+
+)*.* (3.7)
+*j*
+
+*Proof.* Write *r* = *dν/dγs*. The Gaussian kernel formula gives *D*log*r* = *bs/s*, which is bounded, *√* and hence *|*log*r*(*y*)*|≤ C*(1 + *|y|*). For *v* = *u r*, ∫ 2 2 2 *√* <u>1</u> Ent*ν*(*u*) = Ent*γs*(*v*) *− v* log *rdγs, Dv* = *r* (*Du* + 2 *uD* log*r*)*.*
+
+Gaussian integration by parts followed by Cauchy–Schwarz gives ∫ ∫ *|y|* 2 *v²dγs*= *sn∥v∥* 2 2+ 2*s vy · Dvdγs≤* 2*sn∥v∥* 2 2+ 4*s²∥Dv∥* 2 2 *.*
+
+Initially this calculation is for compact tests, and cutoffs extend it by lower semicontinuity. The linear-growth entropy correction is consequently bounded by *δ∥Dv∥* 2 2+ *Cδ∥v∥* 2 2for every *δ >* 0. Gaussian logarithmic Sobolev and the displayed derivative formula, with another arbitrarily small Cauchy–Schwarz parameter, prove Equation (3.6). The same moment estimate shows tightness of the *L²*(*ν*) mass of any bounded form sequence. On a fixed ball, the smooth density is bounded above and away from zero, so the ordinary local Rellich theorem gives *L²* precompactness. A diagonal extraction and tightness prove compactness globally. We give the tail argument for the sharp coefficient 2*s* in Equation (3.7). Put *vj,L*= (*|uj|− L*)+ and *mj,L*= *∥vj,L∥* 2 2. Strong *L²* convergence implies lim*L→∞*sup*jmj,L*= 0. The energies of *vj,L* and *|uj|∧ L* sum to *∥Duj∥* 2 2. Lower semicontinuity for the clipped functions therefore gives
+
+lim lim sup *∥Dvj,L∥* 2 2*≤ E∗−∥Du∥* 2 2
+
+*.* (3.8)
+*L→∞ j*
+
+For a nonnegative *v* of squared norm *m ≤* 1, the negative part of *v²* log *v²* has integral at most *√ √* *C m* (use *−z* log *z ≤ C z* on 0 *≤ z ≤* 1). Since *m*log *m ≤* 0, Equation (3.6) thus gives ∫ 2 2 2 *√* *v* log+*v dν ≤* 2(*s* + *ε*)*∥Dv∥*2+ *Cεm* + *C m.*
+
+If *|uj| > ML*, where *M >* 1 is fixed, then *|uj|≤ cMvj,L*with *cM*= *M/*(*M −* 1). Consequently
+
+### u²jlog+u²j≤ c²Mvj,Llog+vj,L+ c²Mlog(c²M)vj,L.
+
+The integrals of bounded truncations of *z²* log *z²* pass to the limit by strong *L²* convergence; its negative part does as well, being bounded and continuous. The last two bounds and Equation (3.8), with limits in the order *j*, *L*, *M*, *ε*, show that the lost positive entropy is at most 2*s*(*E∗−∥Du∥* 2 2 <u>)</u>. The normalization terms are zero because *∥u∥*2= *∥uj∥*2= 1.
+
+The threshold *s* in the entropy-defect estimate controls escape into the Gaussian tails. The Poincaré constant controls maximizing sequences that converge to constants. The next lemma proves attainment when the logarithmic Sobolev constant exceeds both thresholds.
+
+**Lemma 3.4** (Existence and positivity of an optimizer)**.** *Let ν* = *µ ∗ γs, where s >* 0 *and µ* *is compactly supported. Suppose its logarithmic Sobolev and Poincaré constants R* = *R*(*ν*) *and* *P* = *RP*(*ν*) *satisfy ∞ > R >* max(*P,s*)*. Then there is a smooth strictly positive nonconstant f* *with* ∫ ∫ *f²dν* = 1*,* Ent*ν*(*f²*) = 2*R |Df |* 2 *dν, Aνf* = *λf* log *f, λ* = *R* *−*1
+
+*.* (3.9)
+*The last equation is initially distributional and then classical.*
+
+*Proof.* Take nonnegative unit-norm maximizing tests *fj*. Replacing a test by its absolute value preserves entropy and energy, so this choice loses nothing. Equation (3.6), with *s* +*ε < R*, bounds their energies. We first exclude energies tending to zero; this is the only place the strict inequality *R > P* is required. Suppose *ε²j*= *∥Dfj∥* 2 2*→* 0, and write *cj*= E*νfj*and *hj*= (*fj− cj*)*/εj*. Poincaré gives *∥hj∥* 2 2*≤ P*, while *∥Dhj∥* 2 2= 1 and 1 *− c²j*= *ε²j∥hj∥* 2 2. Thus *cj→* 1. By compactness, after extraction, *hj→ h* in *L²*, where
+
+E*h* = 0*, ∥Dh∥* 2 2*≤* 1*, ∥h∥* 2 2*≤ P ∥Dh∥* 2 2 *.*
+
+For *c >* 0, *ε >* 0 and *z ≥−c/ε* define [] *−*2 2<u>(c + εz)</u> 2 2 2 *Qc,ε*(*z*) = *ε* (*c* + *εz*) log 2 *−* (*c* + *εz*) + *c.* *c*
+
+Normalization and *−*log *c²j−* 1 + *c²j≥* 0 give ∫ *ε* *−* *j* 2 Ent(*fj* 2 ) *≤ Qcj,εj*(*hj*)*dν.* (3.10)
+
+Here is the scalar estimate needed to control unbounded *hj*. For 1*/*2 *≤ c ≤* 1 and 0 *< ε ≤* 1*/*2,
+
+0 *≤ Qc,ε*(*z*) *≤* (2 + 2 log 2)*z²* + *z²* log+*z², Qc,ε*(*z*) *−→* 2*z²* (3.11)
+
+uniformly on bounded *z*-intervals as *c →* 1 and *ε →* 0. To verify the bound, put *t* = *εz/c*. Then *Q* = *z²B*(*t*), where Taylor’s integral formula gives ∫ 1 *B*(*t*) = 2 + 4 (1 *− r*) log(1 + *rt*)*dr, −*1 *≤ t < ∞.* 0
+
+For *t ≤* 0, *B*(*t*) *≤* 2. For *t ≥* 0, use *t ≤ z* to obtain *B*(*t*) *≤* 2 + 2 log(1 + *z*) *≤* 2 + 2 log 2 + log+*z²*. Continuity at *t* = 0 proves the compact convergence. The tail proof in Lemma3.3did not use unit norm until its last sentence. In particular, for any bounded form sequence *uj→ u* in *L²* with energies tending to *E∗*, it proves ∫ lim lim sup *u²j*log+*u²jdν ≤* 2*s*(*E∗−∥Du∥*2)*.* (3.12) *K→∞ j |uj|>K*
+
+Apply the compact convergence in Equation (3.11) on *|hj| ≤ K* and its upper bound on the complement. Strong *L²* convergence removes the quadratic tail as *K → ∞*; Equation (3.12) controls the entropy tail. Equation (3.10) consequently gives
+
+lim sup*ε* *−* *j* 2 Ent(*fj* 2
+
+) *≤* 2*∥h∥* 2 2+ 2*s*(1 *−∥Dh∥*
+2 2
+
+) *≤* 2 max(*P,s*) *<* 2*R.*
+*j*
+
+This contradicts the maximizing property. We may therefore extract *fj→ f* strongly in *L²* with *∥Dfj∥* 2 2*→ E∗>* 0. Put *E* = *∥Df ∥* 2 2. The entropy defect and the sharp inequality give
+
+2*RE∗≤* Ent(*f²*) + 2*s*(*E∗− E*) *≤* 2*RE* + 2*s*(*E∗− E*)*.*
+
+Since *R > s* and *E≤E∗*, equality forces *E* = *E∗>* 0. Thus *f* is a nonnegative, nonconstant optimizer. The homogeneous functional Ent(*g²*) *−* 2*R∥Dg∥* 2 2is nonpositive and is zero at *f*. Its derivative along every compact smooth variation *ζ* is ∫ ∫ 4 *f* log *f ζdν −* 4*R Df · Dζdν* = 0*.*
+
+The entropy normalization term cancels the additional linear term. Differentiation is legitimate also at zeros because *z²* log *z²* has derivative zero at zero. This proves the Euler equation in Equation (3.9). We have obtained a nonnegative optimizer with positive energy. To use its logarithmic derivative, we still need local regularity and strict positivity. We spell out the weak-solution regularity step, using the interior Newtonian-potential *L* *p* and Schauder estimates; see [20, Lecture 24, p. 2; Lecture 10, Proposition 1]. Write *ν* = *e* *−V* and set *v* = *e* *−V/*2 *f ≥* 0. The function *V* is smooth, and direct differentiation of the weak equation gives () *λV |DV |* 2 ∆*V* *−*∆*v* = *λv* log*v* + *−* + *v.* 2 4 2
+
+The conjugating factor and its reciprocal are bounded on each fixed ball. Since *|z* log *z| ≤* 1+*δ p q* *Cδ*(1+*z*) for *z ≥* 0, local *L* integrability of *v* puts the right side in *L* loc, where *q* = *p/*(1+*δ*) *>* 1. Localize that right side on a larger ball and take its Newtonian potential with the sign solving *q* 2*,q* *−*∆*u* = *F*. The cited *L* estimate gives *u ∈ W* loc; the difference *v − u* is distributionally harmonic and hence smooth by Weyl’s lemma [20, Lecture 3, Theorem 2]. This proves the required *W²* *,q* gain directly for the weak solution. For *n ≥* 2, start with *p* = 2 and choose 0 *< δ <* min(1*,*2*/n*). Before boundedness is reached, Sobolev embedding improves reciprocal integrability from 1*/p* to (1 + *δ*)*/p −* 2*/n*, a decrease greater than 1*/n* because *p ≥* 2. At a critical exponent use any sufficiently large finite integrability exponent and continue once more. After finitely many steps *q > n/*2, so *v*, and thus *f*, is locally bounded and Hölder continuous. In dimension one the same conclusion follows by twice integrating the local Poisson equation. The function *z* log*z* is locally Hölder of every exponent below one 2*,α* on [0*, ∞*); reducing the exponent if necessary, the Schauder estimate therefore gives *f ∈ C* loc for some *α >* 0. All constants in this paragraph concern one fixed law and dimension; none enters a uniform estimate along the counterexample sequence. If *f* (*x₀*) = 0, choose a ball *B* about *x₀* with 0 *≤ f ≤ b <* 1 on its closure. Start the *ν*-diffusion at *x₀* and stop at its exit time *τ* from *B*. For *Zt*= *f* (*Yt∧τ*), *m*(*t*) = E*Zt*, and *g*(*z*) = *−λz* log*z*, the stopped Itô formula gives, for almost every *t*,
+
+*m* *′*
+
+(*t*) = E[**1***t<τg*(*Zt*)] *≤* E*g*(*Zt*) *≤ g*(*m*(*t*))*, m*(0) = 0*.*
+
+Indeed *g* is nonnegative and concave on [0*,b*]; the first inequality adds its nonnegative stopped boundary contribution. Also *m* *′* *≥* 0. If *m*(*t₁*) *>* 0, let *ta*be the first time at which *m* = *a*, for 0 *< a < m*(*t₁*). Integration gives ∫ *m*(*t₁*) <u>dz</u> *≤ t₁ − ta≤ t₁,* *a−λz* log*z*
+
+contradicting divergence as *a ↓* 0. Hence *m* = 0. The killed nondegenerate diffusion has positive probability of reaching each open subset of *B* while staying in *B*: one can follow a smooth interior path by requiring Brownian motion to remain in a small tube about its corresponding driving path, and use local Lipschitz continuity of the drift. Brownian tube probabilities are positive by its finite increment densities and bridge continuity. Consequently *f* vanishes throughout *B*. Its zero set is both open and closed, impossible in connected R *n* for a unit-norm function. Thus *f >* <u>0</u>, and smooth elliptic bootstrap makes *f* smooth everywhere.
+
+An optimizer supplies a second probability with its own logarithmic Sobolev inequality. The next identity explains why no convexity assumption on this second probability is needed.
+
+**Lemma 3.5** (Change of reference at an optimizer)**.** *Under Lemma3.4, suppose in addition that* *ν* = *e* *−V* *is log-concave with bounded K* = *D²V. Define*
+
+*η* = *f²ν, h* = log *f², w* = *Dh, I* = E*η|w|* 2 *.*
+
+*Then I* = 2*λH*(*η | ν*) *>* 0*, R*(*η*) *≤* 1*/λ, each component of w belongs to* Dom(*Aη*)*, and*
+
+*Aνh* = *λh* + <u>1</u> 2 *|w|* 2 *, Aηw* = (*λ*Id *− K*)*w.* (3.13)
+
+*Moreover,* E*η⟨w,Kw⟩≤ λ|*E*ηw|* 2
+
+*.* (3.14)
+*Proof.* Since *w* = 2*Df/f*, *I* = 4*∥Df ∥* 2 *L*2(*ν*); optimizer equality gives *I* = 2*λH*(*η | ν*) *>* 0. The chain rule applied to its Euler equation gives the first identity in Equation (3.13). Commuting one derivative with *Aν*gives
+
+*Aνw* = *D*(*Aνh*) *− Kw* = *λw* + (*Dw*)*w − Kw.*
+
+Since *Aη*= *Aν− w · D* and *Dw* is symmetric, the second identity follows distributionally. Its right side is in *L²*(*η*), since *K* is bounded and *w ∈ L²*(*η*). Lemma2.2therefore puts *w* in the operator domain; no unproved integrability of higher derivatives has been used. Let *p* = *g²η* have unit mass, where *g* is compactly supported and smooth. Direct expansion and compactly supported integration by parts give ∫ ∫ *I*(*p | ν*) = *I*(*p | η*) + *g²|w|* 2 *dη* + 2 *D*(*g²*) *· wdη* ∫ = *I*(*p | η*) + *g²{|w|* 2 + 2*Aηh} dη* ∫ = *I*(*p | η*) + 2*λ hdp.*
+
+These formulas may be read in square-root form at zeros of *g*. On the other hand *H*(*p | ν*) = ∫ *H*(*p | η*) + *hdp*. Thus
+
+*I*(*p | ν*) *−* 2*λH*(*p | ν*) = *I*(*p | η*) *−* 2*λH*(*p | η*)*.* (3.15)
+
+Apply the inequality for *ν* to the compact smooth function *gf*. Its deficit is nonnegative, so the right side is nonnegative. Homogeneity and the Sobolev approximation of Section2prove *R*(*η*) *≤* 1*/λ*. Finally the domain identity gives
+
+E*η|Dw|* 2 = *λI −* E*η⟨w,Kw⟩,*
+
+while Poincaré for *η* gives the lower bound *λ*(*I −|*E*ηw|* 2 ). Subtract to obtain Equation (3.14).
+
+### 3.3 Uniform estimates in the two alternatives
+
+**Lemma 3.6** (Translation gain)**.** *Let µ satisfy Equation* (3.1)*, with a ≤* 1*. Fix a compact interval* *J ⊂* (0*,*1*/*2)*. There is a constant CJ, independent of the dimension and of the support radius of µ,* *with the following property. For s ∈ J, put λ* = *Rs−* 1 *. If σ is any probability with*
+
+*D₀* = *H*(*σ | µs*) *< ∞, F₀* = *I*(*σ | µs*) *< ∞, p* = E*σY,*
+
+*then* *−*2 2 *√* *F₀ −* 2*λD₀ ≥* (*s − λ/s*)*|p| − CJ a* (*F₀* + *D₀*)*.* (3.16)
+
+*Proof.* The centered linear moment generating functions under *µs*obey
+
+log E*µse* *v·Y* *≤ CJ |v|* 2 *,* log E*µse* *v·bs*(*Y*) *≤ Ca²|v|* 2 *.*
+
+The first follows by independent Gaussian addition and Equation (3.2); the second follows by conditional Jensen from that equation. Entropy duality, optimized over the scalar multiple of each unit vector, gives √ √ *|p|≤ CJ D₀, |*E*σbs*(*Y*)*|≤ Ca D₀.* (3.17) *c|Y |*2 All expectations exist. More explicitly, compact support of *X* makes E*µse < ∞* for some *c >* 0; entropy duality then implies E*σ|Y |* 2 *< ∞*. The latter fact is used only for integrability, not for a uniform bound in dimension. Let *σu*be the translate of *σ* by *−up*, 0 *≤ u ≤* 1, and let *Du*= *H*(*σu| µs*). Change of variables in entropy and the Hessian bound give
+
+*Du*= *D₀* + E*σ*[*Vs*(*Y − up*) *− Vs*(*Y*)]
+
+*≤ D₀ − u|p|* 2 */s* + *up ·* E*σbs*(*Y*)*/s* + *u²|p|* 2 */*(2*s*) *≤ CJ D₀.* *√* Thus Equation (3.17), applied to *σu*, implies *|*E*σbs*(*Y − up*)*|≤ CJ a D₀* uniformly in *u*. Differen- tiating the exact entropy expression, and then integrating, gives
+
+<u>|p|</u> 2 *D₁* = *D₀ −* + *OJ*(*aD₀*)*.* (3.18) 2*s*
+
+Indeed its derivative is *−*(1 *− u*)*|p|* 2 */s* + *p ·* E*σbs*(*Y − up*)*/s*. Write *r*(*Y*) = *D*log(*dσ/dµs*)(*Y*) in the weak square-root sense. Its mean is
+
+E*σr* = E*σDVs*= (*p −* E*σbs*)*/s.* (3.19)
+
+To justify this for finite Fisher information, the Lebesgue density *q* of *σ* has weak derivative *Dq* = *q*(*r − DVs*) *∈ L¹*: *r* is square integrable and *DVs*has linear growth. Integrating against ∫ expanding cutoffs gives *Dq* = 0 and hence Equation (3.19).
+
+In the moving coordinates *Y*, the score of *σ₁* relative to *µs*is
+
+*r*(*Y*) *− p/s* + *d*(*Y*)*/s, d*(*Y*) = *bs*(*Y*) *− bs*(*Y − p*)*.*
+
+Since 0 *≤ Dbs≤* Id, integration along the segment gives |∫ 1 |2 ∫ 1 2 | | 2 *|d*(*Y*)*|* = || *Ms*(*Y − up*)*pdu*|| *≤ |Ms*(*Y − up*)*p| du ≤ p · d*(*Y*)*.* 0 0
+
+The mean estimates at the two endpoints therefore imply
+
+E*σ|d|* 2 *≤ CJ aD₀.* (3.20)
+
+Expanding the score square and using Equation (3.19),
+
+E*σ|r − p/s|* 2 = *F₀ −|p|* 2 */s²* + 2*p ·* E*σbs/s².* *√ √ √* The remaining cross term is bounded by *CJ aD₀* ( *F₀* + *D₀*), and the *d*-square term by *CJ aD₀*. Consequently the translated information is finite and satisfies
+
+2 2 *√* *F₁* = *F₀ −|p| /s* + *OJ*( *a* (*F₀* + *D₀*))*.* (3.21)
+
+These calculations require only the weak derivatives already justified, so they apply also when the density of *σ* vanishes. Apply logarithmic Sobolev to *σ₁*, namely *F₁ ≥* 2*λD₁*, and combine Equations (3.18) and (3.21). Since 2*/*3 *≤ λ ≤* 1 on the time interval in question, this proves Equation (3.16).
+
+We can now obtain estimates that are uniform along the counterexample sequence. Write *RsP* for the optimal Poincaré constant of *µs*. By linearization *RsP≤ Rs*. Since *Rs≥* 1 *> s* on (0*,*1*/*2), the strict alternative *Rs> RsP*meets all the hypotheses of Lemma3.4.
+
+**Lemma 3.7** (Critical fields in both alternatives)**.** *Fix J ⊂* (0*,*1*/*2) *compact and s ∈ J, and* *put λ* = 1*/Rs. There are a smooth positive probability η and a smooth vector field w, with* 0 *< I* := E*η|w|* 2 *< ∞, such that*
+
+*R*(*η*) *≤ λ* *−*1 *, w ∈* Dom(*Aη*) *n* *, Aηw* = (*λ*Id *− Ks*)*w.* (3.22)
+
+### They can be chosen as follows.
+
+(i) *If Rs> RsP, take the optimizer f of Lemma3.4and set*
+*η* = *f²µs, w* = *D*log *f², I* = 2*λH*(*η | µs*)*.*
+
+(ii) *If Rs*= *RsP, there is a centered nonconstant gap eigenfunction φ satisfying Aµsφ* = *λφ. Take*
+
+*η* = *µs, w* = *Dφ, I* = *λ*E*µsφ².*
+
+*In either alternative,*
+
+2 2 *√* 2 *|*E*ηw|* + E*η|Ksw| ≤ CJ aI,* E*η⟨w,Ksw⟩≤ λ|*E*ηw|.* (3.23) *√* *In alternative* (ii) *the factor a can be replaced by a. Coordinates belong to* Dom(*Aη*) *in both* *alternatives.*
+
+*Proof.* In the first alternative the identities and the last inequality are Lemma3.5. Apply Lemma3.6to *σ* = *η*, where *F₀* = *I* and *D₀* = *I/*(2*λ*), so the deficit vanishes. The coefficient *s* *−*2 *− λ/s* is bounded below by a positive constant on *J*. Thus, with *p* = E*ηY*,
+
+2 *√ √* *|p| ≤ CJ aI, |*E*ηbs|≤ CJ a I.*
+
+2 *√* 2 *−*1 Equation (3.19) applied to *η* now gives *|*E*ηw| ≤ CJ aI*. Since *Ks≤ s Ks*, the curvature-mean inequality gives the asserted estimate for *Ksw*. In the second alternative, compact form embedding supplies a minimizer of the Rayleigh quotient among mean-zero functions of unit norm. Its positive eigenvalue is 1*/RsP*= *λ*. The nullspace consists of constants, since zero weak gradient on R *n* implies constancy. Compactness therefore makes this a positive gap, and interior elliptic regularity makes its eigenfunction *φ* smooth. Commuting a derivative gives *AµsDφ* = (*λ*Id *− Ks*)*Dφ*. Its right side is in *L²*, so Lemma2.2gives the operator-domain assertion. Taking the energy pairing and then Poincaré gives, exactly as before, E*⟨w,Ksw⟩≤ λ|*E*w|* 2 *.*
+
+Coordinates belong to the operator domain because both *Y* and *AµsY* = (*Y − bs*)*/s* belong to *L²*(*µs*). Integration by parts, or self-adjointness with these coordinate tests, yields
+
+<u>E[φY] − E[φbs]</u> E*w* = *λ*E[*φY*] =*,* (1 *− λs*)E[*φY*] = E[*φbs*]*.* *s* Conditional Jensen gives E*µsbsb* *∗* *s≤* E*µXX* *∗* *≤ Ca²*Id*.*
+
+For every unit vector *v*, Cauchy–Schwarz thus bounds *|*E[*φv · bs*]*|* by *Ca∥φ∥*2. Taking the supremum over *v√*introduces no dimension factor. Since 1 *− λs ≥* 1*/*2 and *I* = *λ∥φ∥* 2 2, it follows that *|*E*w|≤ CJ a I*. The bound for *Ksw* follows from *Ks* 2 *≤ s* *−*1 *Ks*once again. It remains to justify the coordinate assertion for the first alternative. Finite *H*(*η | µs*) and the Gaussian tails of *µs*imply E*η|Y |* 2 *< ∞*, by the entropy argument in the proof of Lemma3.6. The distributional identity *AηY* = (*Y − bs*)*/s − w* (3.24)
+
+has an *L²*(*η*) right side, because *bs*is bounded for the fixed law and *w ∈ L²*(*η*). The maximal- domain assertion of Lemma2.2applies.
+
+**Proposition 3.8** (Limit of the regularized constants)**.** *For the sequence in Lemma3.1,*
+
+*Rs−→* 1 *for every* 0 *< s <* 1*/*2*.* (3.25)
+
+*At every differentiability point of Rs, the fields of Lemma3.7satisfy the contact identity*
+
+<u>Eη⟨w,Ksw⟩</u> *Rs′*= *Rs.* (3.26) *I* *√* *In particular* 0 *≤ Rs′≤ CJ a almost everywhere on each fixed compact J ⊂* (0*,*1*/*2)*.*
+
+*Proof.* Fix *s*, and let Φ*s,t*be the heat continuity flow from Lemma3.2, for *t* on either side of *s*. Transport a form-domain test *g* by *gt*= *g ◦* Φ *−* *s,t* 1. Its distribution under *µt*is fixed, so both its entropy and its variance are constant. The Jacobian equation *∂tD*Φ*s,t*= *KtD*Φ*s,t/*2 gives | ∫ ∫ <u>d</u> || | *|Dgt| dµt*= *− ⟨Dg,KsDg⟩dµs.* (3.27) *dtt*=*s*
+
+For compact smooth *g* this follows by differentiating the inverse-transpose Jacobian in the gradient. For a form-domain *g*, the change-of-variables formula still holds by Sobolev approximation. The flow derivatives and their time derivatives are uniformly bounded on a compact time interval, so the derivative of the integrand is dominated by *C|Dg|* 2. Dominated convergence proves Equation (3.27) without a smoothness or compact-support restriction on *g*. 2 ∫ 2 In the strict alternative take *g* = *f* and set *Q*(*t*) = Ent*µt*(*ft*)*/*(2 *|Dft| dµt*). The denominator is positive near *s*, and *Q*(*t*) *≤ Rt*for both signs of *t − s*, with *Q*(*s*) = *Rs*. At a differentiability point of *Rs*, this two-sided contact implies *Q* *′*
+
+(*s*) = *Rs′*. Equation (3.27) and *w* = 2*Df/f* give
+∫ 2 Equation (3.26). In the gap alternative take *g* = *φ* and instead use *Q*(*t*) = Var*µt*(*φt*)*/ |Dφt| dµt*. Now *Q*(*t*) *≤ RtP≤ Rt*and *Q*(*s*) = *RsP*= *Rs*. The same contact argument gives the identical derivative formula, with *w* = *Dφ*. *√* Equation (3.23) bounds this derivative by *CJ a* in either alternative, with constants indepen- dent of which alternative holds at each time. Lipschitz continuity makes *Rs*absolutely continuous. For fixed 0 *< δ < s <* 1*/*2, integration on [*δ,s*] gives *√ √* 1 *≤ Rs≤ Rδ*+ *C*[*δ,s*]*a* (*s − δ*) *≤* 1 + *δ* + *C*[*δ,s*]*a* (*s − δ*)*.*
+
+First take the counterexample-sequence limit and then let *δ ↓* 0. This proves Equation (3.25).
+
+We finish by fixing the Gaussian time and collecting precisely the objects used in the following sections. The fixed time will not be sent to zero.
+
+**Proposition 3.9** (The critical sequence)**.** *If Theorem1.1fails, there is a sequence of dimensions* *and centered compactly supported log-concave laws µ satisfying Equation* (3.1)*. Fix s* = 1*/*8*, form* *µs,bs,Ms,Ksas in Equation* (3.3)*, and put λ* = *Rs−* 1 *. After passage to a subsequence there are* *smooth positive probabilities η and smooth vector fields w such that, with A* = *Aηand I* = E*η|w|* 2 *,*
+
+*λ −→* 1*, R*(*η*) *≤ λ* *−*1 *,* 0 *< I < ∞, w ∈* Dom(*A*) *n* *,* (3.28) *√* *Aw* = (*λ*Id *− Ks*)*w, ∥*(*A −* 1)*w∥L*2(*η*)+ *|*E*ηw|* = *o*( *I*)*,* (3.29)
+
+E*η|Ksw|* 2 = *o*(*I*)*,* E*η|Dw|* 2 = (1 + *o*(1))*I.* (3.30)
+
+*The spectral gap of A is at least λ. Each coordinate function belongs to* Dom(*A*)*. Exactly one of* *the following constructions can be used throughout the subsequence:*
+
+(i) *Rs> RsP, η* = *f²µsfor the positive unit-norm optimizer, w* = *D*log *f², and I* = 2*λH*(*η | µs*)*.* *The exact deficit identity in Equation* (3.15) *holds for compact square-root tests relative to η,* *and AY* = (*Y − bs*)*/s − w.* (ii) *Rs*= *RsP, η* = *µs, Aφ* = *λφ,* E*ηφ* = 0*, w* = *Dφ, and I* = *λ*E*ηφ². One may rescale φ so that* *I →* 0*.*
+*All o-terms refer to the counterexample sequence with fixed finite parameters. In particular no* *relation between dimension, I, and the rate of convergence is asserted or needed here.*
+
+*Proof.* Choose an infinite subsequence with the same alternative at *s* = 1*/*8. Lemma3.7gives all structural identities and the curvature and mean bounds. Proposition3.8gives *λ →* 1. Consequently *√* (*A −* 1)*w* = (*λ −* 1)*w − Ksw* = *oL*2 ( *I*)*.*
+
+The energy pairing yields E*|Dw|* 2 = *λI −* E*⟨w,Ksw⟩* = (1 + *o*(1))*I*. Poincaré with constant *λ* *−*1 is the asserted spectral gap. The coordinate and branch-specific identities have already been proved. In the gap alternative all estimates are homogeneous in *φ*, so multiplying it by positive scalars can enforce *I →* 0 without changing any normalized assertion.
+
+## 4 Efficient probes and the prediction curve
+
+Fix *s* = 1*/*8 and take one of the two subsequences supplied by Proposition3.9. We continue to suppress the counterexample index. Thus *λ →* 1, *η* satisfies the logarithmic Sobolev inequality with constant at most 1*/λ*, and, with *A* = *Aη*, *w* belongs coefficientwise to Dom(*A*) and satisfies *√* *I* = E*η|w|* 2 *>* 0*, ∥*(*A −* 1)*w∥L*2(*η*)+ *|*E*ηw|* = *o*( *I*)*.* (4.1)
+
+In the strict case, *η* = *f²µs*, *w* = *D*log *f²*, and 2*H*(*η | µs*) = *I/λ*. In the gap case, *η* = *µs*, *w* = *Dφ*, and *Aµsφ* = *λφ*, where E*µsφ* = 0 and *I* = *λ*E*µsφ²*. All limits in this section are along the selected subsequence, with the displayed auxiliary parameters fixed unless a different order is specified. *√* Our objective is to determine how much of *w*(*Y₀*) can be predicted from *Y₀* + *rG*. The strict case first requires an entropy estimate for an additional Gaussian observation of *w*. We then prove an entropy-loss comparison for arbitrary smooth alternatives to a log-concave law. These two estimates determine the prediction curve; linearization of the same comparison handles the gap case.
+
+**Lemma 4.1** (Efficient Gaussian probes)**.** *In the strict case, let Y₀ ∼ η and let G* *′* *be an independent* *standard Gaussian vector in the same Euclidean space. For T ≥* 0 *define* *√* *LT* = *T w*(*Y₀*) + *G* *′* *, d*(*T*) = *H*(Law(*LT*) *| γ*)*,*
+
+*where γ is standard Gaussian measure. For every finite M,*
+
+sup *d*(*T*) = *o*(*I*)*.* (4.2) 0*≤T ≤M*
+
+*Proof.* Run the stationary diffusion with law *η*, using Brownian noise independent of *G* *′*, and write *Pu*= *e* *−uA*. Proposition3.9puts each coordinate in Dom(*A*) and gives the identity
+
+*−Ay* = *−y/s* + *w* + *bs/s.* (4.3)
+
+In particular, E*η|Y₀|* 2 *< ∞*. The logarithmic Sobolev inequality for *η* then gives
+
+*v·*(*Y*0*−*E*Y*0) *|v|*2*/*(2*λ*) E*ηe ≤ e.*
+
+*c |Y* *′* 0 *|* 2*′* Integrating this inequality over a Gaussian *v* proves E*ηe < ∞* for a sufficiently small *c >* 0. Here the choice of *c* *′* may depend on the individual law and dimension. This exponential-square moment will also permit application of the entropy-loss comparison below. For a fixed *T ≤ M*, set
+
+*Ju*= I(*LT*; *Yu*)*, Fu*= E*I*(Law(*Yu| LT*) *| η*)*, Qu*= E*|*E[*Yu| LT*]*|* 2 *.*
+
+The Gaussian observation identity gives *J₀* = *TI/*2 *− d*(*T*). Entropy dissipation, including its ∫ 1 conditional version, gives *−dJu≥ Fudu*, and in particular 0 *Fudu ≤ J₀*. If *σu,l*= Law(*Yu| LT* =
+
+*l*), then the entropy chain rule and the strict-case normalization give
+<u>I</u> E*H*(*σu,LT| µs*) = *Ju*+*,* E*I*(*σu,LT| µs*) = *Fu*+ *I.* (4.4) 2*λ*
+
+For the second equality, write the conditional relative score with respect to *µs*as the sum of *w* and the conditional relative score with respect to *η*. The latter scores have conditional average
+
+zero at each *Yu*, since the conditional likelihoods average to one. This cancels the cross term. At the almost every time where *Fu< ∞*, the assertion also follows weakly by differentiating that marginal identity: Cauchy–Schwarz gives locally integrable averaged derivatives. Apply Lemma3.6to *σu,l*and average over *l*. Since *s* *−*2 *− λ/s* stays positive, Equations (4.4) give, on [0*,*1], *−dJu≥* (2*λJu*+ *csQu*)*du − dEu, E*([0*,*1]) = *oM*(*I*)*,* (4.5)
+
+where *cs>* 0 is fixed and *E* is a nonnegative error measure. Indeed the error in that lemma is bounded by a number tending to zero times *Fu*+ *I* + *Ju*+ *I/*(2*λ*), whose integral is *OM*(*I*). The measure formulation avoids imposing differentiability on *Ju*. The spectral theorem and Equation (4.1) imply *√* sup *∥Puw − e* *−u* *w∥*2*≤∥*(*A −* 1)*w∥*2= *o*( *I*)*.* (4.6) 0*≤u≤*1 *√* Reversibility gives E[*LT | Yu*] = *TPuw*(*Yu*). Relative entropy with respect to a standard Gaussian is at least half the square of the mean, by testing its variational formula with linear functions. Consequently
+
+<u>T</u>2<u>TI</u>*−*2*u* *Ju*+ *d*(*T*) = E*H*(Law(*LT | Yu*) *| γ*) *≥ ∥Puw∥*2= *e* + *oM*(*I*)*.* 2 2
+
+Integrating Equation (4.5) with factor *e²* *λu* and comparing at *u* = 1 yields ∫ 1 *Qudu ≤ Csd*(*T*) + *oM*(*I*)*.* (4.7) 0
+
+Here the difference between *e* *−*2*λ* and *e* *−*2 contributes only *oM*(*I*). It remains to turn control of the predicted position into control of the predicted score. The pushforward of *µs*by *bs*has the centered linear moment bound
+
+log E*µse* *v·bs* *≤ Ca²|v|* 2 *,*
+
+by conditional Jensen and the corresponding bound for the original signal *X*. The entropy variational formula, optimized over *v*, thus gives
+
+2 2 () E*|*E[*bs*(*Yv*) *| LT*]*| ≤ Ca Jv*+ *I/*(2*λ*) = *oM*(*I*)*.*
+
+Condition Equation (4.3) on *LT* and use variation of constants. By Equation (4.6) and the contraction property of conditional expectation,
+
+*−u/s*<u>e</u> *−u* <u>− e</u> *−u/s√* E[*Yu| LT*] = *e* E[*Y₀ | LT*] + E[*w*(*Y₀*) *| LT*] + *oL*2*,M*( *I*)*,* (4.8) 1*/s −* 1
+
+uniformly for 0 *≤ u ≤* 1. The two scalar functions multiplying the conditional means are linearly independent on [0*,*1]: the first is nonzero at zero, whereas the second vanishes there and is nonzero for *u >* 0. Their 2 *×* 2 Gram matrix is therefore positive definite. Applying its smallest-eigenvalue bound to each coordinate and then averaging, Equations (4.7) and (4.8) show that
+
+E*|*E[*w*(*Y₀*) *| LT*]*|* 2 *≤ Csd*(*T*) + *oM*(*I*)*.*
+
+By Lemma2.4, the left side is 2*d* *′*
+
+(*T*) for almost every *T*. The error is uniform for *T ∈* [0*,M*], and
+*d*(0) = 0. Integrating this differential inequality proves Equation (4.2). No lower bound on *I* <u>is</u> used.
+
+The next comparison relates the entropy lost under heat flow to the conditional mean of the initial relative score. The conditional mean need not equal the relative score at positive heat time, so entropy dissipation alone does not give this comparison. The choice of observation directions is related to function-preserving stochastic localization. Eldan–Koehler–Zeitouni [7, Section 2, Lemma 2] use controls approximating projection orthogonal to the covariance of the signal with a selected function. Chen and Eldan [6, Sections 2.4.2 and 3.2.3, Equation (27)] express the entropy drift through the difference of means under a measure and its normalized likelihood tilt, in a continuous-time setup with positive definite controls. Below we prove the cancellation and its error directly for finite Gaussian observations with singular projections, and use independent copies to control the discarded directions.
+
+**Lemma 4.2** (Entropy loss under a Gaussian observation)**.** *Let p and q be smooth strictly positive* *probability densities on* R *d* *, with q log-concave. Suppose*
+
+2 *c|Y |*2 *H₀* = *H*(*p | q*) *< ∞, w* = *D*log(*p/q*)*, I* = E*p|w| < ∞,* E*pe < ∞*
+
+*for some c >* 0*, where Y ∼ p. Let G be a standard Gaussian vector independent of Y. For* *√* *r >* 0*, let Ur*= *Y* + *rG, let prand qrbe the Gaussian convolutions of p and q, and put* *w*¯*r*(*Ur*) = E*p*[*w*(*Y*) *| Ur*] *and Hr*= *H*(*pr| qr*)*. Then, for every z >* 0*,* ∫ *z* 2(*H₀ − Hz*) *≤* E*p|w*¯*r*(*Ur*)*|* 2 *dr.* (4.9) 0
+
+*Proof.* The proof adds weak observations that increase the curvature of the base posterior while losing asymptotically no relative entropy. At each step we remove the direction in which the two posterior means differ. The retained output means then agree, and we will show that its relative entropy, averaged over the retained history, is *O*(*δ²*) for observation strength *δ*. Independent copies make the cost of removing these directions vanish after division by the number of copies. That last comparison concerns the score residuals after full observations, whose conditional independence will be essential. We keep the one-copy problem fixed. The three successive limits will be refinement of a finite observation mesh, increase of the number of independent copies, and increase of the total additional precision. Set *b* = 1*/z* and take *N* independent copies. Write *Y* = (*Y₁,...,YN*) and *W* = (*w*(*Y₁*)*,...,w*(*YN*)); the two possible priors are *p* *⊗N* and *q* *⊗N*. Expectations in the proof use *p* *⊗N*. *√* *Additional observations and their entropy cost.* First observe *Z₀* = *bY* + *G₀*. The chain rule says that the remaining posterior relative entropy, averaged over this observation, is *N* (*H₀ − Hz*). Fix *u >* 0 and an integer *m*, and put *δ* = *u/m*. For *i* = 0*,...,m −* 1, let *Hi*be the retained history before step *i*. Compute the difference of the two posterior means given this history and let *Pi*be the orthogonal projection onto its span; set *Pi*= 0 when the difference vanishes. Retain only *√* (1 *− Pi*)*Zi*+1*, Zi*+1= *δY* + *Gi*+1*,*
+
+where all Gaussian noises are independent. The same measurable rule is used under both priors. One may choose versions of the posterior means by their integral formulas; the positive densities make the rule well defined on all histories of positive probability. For each realized retained history the likelihood, as a function of *Y*, is a Gaussian quadratic factor of precision *m* ∑*−*1 *B* = *b*Id + *δ* (1 *− Pi*) *⪰ b*Id*.* (4.10) *i*=0
+
+There is no extra likelihood factor from the choices of *Pi*: each choice was already determined by the retained past. The factor is the same for both priors. Thus the posterior base has curvature at least *B*, and the posterior relative score is still *W*. We next bound the relative entropy lost in the additional observations. Condition on a retained history at one step and put *Q* = 1 *− Pi*. The projected posterior means agree. After subtracting their common mean, let *Xc*denote either centered projected signal in ran*Q*, whose dimension is at most *Nd*. The base posterior has curvature at least *b*Id. Its centered linear moment bound and integration over a Gaussian vector give
+
+*κ|Xc|*2*−Nd/*2 E*q*[*e |Hi*] *≤* (1 *−* 2*κ/b*)*,* 0 *<* 2*κ < b.*
+
+For the alternative, write *ai*= E*p*[*Y |Hi*]. For any sufficiently small *κ >* 0, conditional Jensen gives
+
+*κ|Q*(*Y −ai*)*|*22*κ|ai|*22*κ|Y |*2 E*p*[*e |Hi*] *≤ e* E*p*[*e |Hi*] ( 2*κ|Y |*2
+
+)2
+*≤* E*p*[*e |Hi*]*.*
+
+Squaring and applying conditional Jensen once more shows that its square, averaged over *Hi*, is 8*κ|Y |*2 bounded by E*pe < ∞*. These bounds hold for every history sigma-field, so their constants do not depend on the mesh or on the adaptive choices. *√* Let *hp,hq*be the output densities of *δXc*+ *G* in ran*Q* and let *ϕ* be standard Gaussian density there. Centering and Jensen give the pointwise bound
+
+<u>hq(x)</u> *√δx·X* *c* *−δ|Xc|*2*/*2 *−δNd/*(2*b*) = E*qe ≥ e.* *ϕ*(*x*)
+
+For either conditional signal, using a conditionally independent copy *Xc′*and integrating the Gaussian kernel gives ∥ ∥2 ∥ <u>h</u> ∥ *δX ·X′* ∥ *−* 1∥ = E[*ec c|H* *i*] *−* 1*.* ∥ *ϕ* ∥ *L*2
+
+(*ϕ*)
+The linear term vanishes because *Xc*is centered. The bound *|e* *t* *−* 1 *− t| ≤ t²e* *|t|* */*2, followed by *|Xc· Xc′|≤* (*|Xc|* 2 + *|Xc′|* 2
+
+)*/*2, bounds the last expression by *Cδ²* times the square of a small
+conditional exponential-square moment. The preceding moment bounds therefore give () 2 *δNd/*(2*b*) 2 2 2 E*H*(*hp| hq*) *≤* E*χ* (*hp| hq*) *≤* 2*e* E *∥hp/ϕ −* 1*∥* 2 + *∥hq/ϕ −* 1*∥* 2 *≤ CN,b,pδ.*
+
+This statement includes the zero-dimensional observed subspace, for which the loss is zero. Summing the *m* steps loses *ON,b,p*(*uδ*) entropy. Apply the anisotropic curvature inequality, Lemma2.1, to the final posterior pair. For fixed *N* and *u* we obtain
+
+2*N* (*H₀ − Hz*) *− oδ↓*0(1) *≤* E*W* *∗* *B* *−*1
+
+*W.* (4.11)
+*Comparison with full observations.* We now estimate the effect of the rank-one exclusions. Work in the Hilbert space of square-integrable vector fields on the signal and all the full observations *Z₀,...,Zm*. In particular, *∥W ∥* 2 2= *NI*. Completing the square pointwise gives { *m−*1 } ∑ *b∥W ∥*2*− b²*E*W* *∗* *B* *−* *W* = min *b∥W − v∥*2+ *δ ∥*(1 *− Pi*)*v∥*2*.* (4.12) *v* *i*=0
+
+Its minimizer is *v∗*= *bB* *−*1 *W*, so *∥v∗∥*2*≤∥W ∥*2. Let *Fi*= *σ*(*Z₀,...,Zi*) and let *ei*be conditional expectation onto *Fi*. The sigma-fields are nested, and *Pi*is *Fi*-measurable because the retained history is a function of this full history. We compare the original minimum with one that penalizes the part of *v* left unpredicted by the full observations: replace 1 *− Pi*by 1 *− ei*, and denote the resulting minimum by *M₀*. The nested projections make this new minimum explicitly computable in terms of Gaussian prediction. We first find its minimizer, then use its residuals in a dual test to bound the original minimum below in terms of *M₀*. Its minimizer is ( *m−*1
+
+)*−*1
+∑ *v₀* = *b b* + *δ* (1 *− ei*) *W.* *i*=0
+
+Here is its explicit form. Set *αk*= *b/*(*b* + *kδ*) for 0 *≤ k ≤ m*. On ran*e₀* the multiplier is one; on ran(*ek− ek−*1) it is *αk*; on ran(1 *− em−*1) it is *αm*. Consequently
+
+*m* ∑*−*1 *v₀* = *αmW* + (*αk− αk*+1)*ekW.* (4.13) *k*=0
+
+All coefficients are nonnegative and sum to one. Put *gi*= (1 *− ei*)*v₀*. Equation (4.13) gives
+
+*m* ∑*−*1 *gi*= *αm*(*W − eiW*) + (*αk− αk*+1)(*ekW − eiW*)*.* (4.14) *k*=*i*+1
+
+The weights in this formula sum to *αi*+1*≤* 1. We need a bound uniform over every subdivision. The retained histories need not factor across copies. We use independence only for the full observation arrays: those belonging to different copies are independent under *p* *⊗N*. Conditioning on *Fi*conditions each such array on its own past. Thus *ekWj*depends only on copy *j*’s observations through step *k*. Conditional on *Fi*, the blocks *gi,j*are independent and centered, even though they involve future full observations. To see this directly, factor the joint law into the independent copy arrays and condition each factor on its own past; the resulting conditional kernel remains a product. By conditional Jensen applied to Equation (4.14),
+
+*Zi,j*:= tr Cov(*gi,j|Fi*) *≤* E[*|Wj− eiWj|* 2 *|Fi*] *≤* E[*|Wj|* 2 *|Fi*]*.* (4.15)
+
+For example, every term with *k > i* is bounded in conditional squared mean by E[*|Wj− eiWj|* 2 *|Fi*] by the tower property; the nonnegative weights of total at most one preserve this bound. The right sides in Equation (4.15) are uniformly integrable over all these sigma-fields. Explicitly, if *Z ≥* 0 is integrable and *M* = E[*Z |F*], then
+
+### E[M 1{M>K}] ≤ 2E[Z1{Z>K/2}]. (4.16)
+
+Indeed *M ≤ K/*2 + E[*Z***1***{Z>K/*2*}|F*], and on *{M > K}* the last conditional expectation is at least *M/*2. The conditional covariance of *gi*is block diagonal. Since *Pi*is measurable in *Fi*and has rank at most one, E*|Pigi|* 2 *≤* E max *Zi,j.* 1*≤j≤N* ∑ The maximum is at most *K* +*jZi,j***1***{Z* *i,j>K}*. Equations (4.15) and (4.16) show that, uniformly in *i,m*, and *δ*, {} <u>K</u> E*|Pigi| ≤ NqN, qN*:= inf + 2E*p*[*|w*(*Y*)*|* **1***{|w*(*Y*)*|*2*>K/*2*}*] *−→* 0*.* (4.17) *K>*0 *N*
+
+No moment of the score beyond its second moment is required. In particular this bound permits *Pi*to depend adaptively on all copies. For completeness, the comparison of the two minima follows from a dual test. For every *v*,
+
+*∥*(1 *− Pi*)*v∥* 2 2*≥* 2*⟨v,* (1 *− Pi*)*gi⟩−∥gi∥* 2 2 *.* ∑ The normal equation for *v₀* is *b*(*W − v₀*) = *δigi*. Therefore the minimum over *v* of ∑ ∑ *b∥W − v∥* 2 2+ 2*δ ⟨v,gi⟩− δ ∥gi∥* 2 2 *i i* is attained at *v₀* and equals *M₀*. Use the displayed linear bound at *v∗*in Equation (4.12). By Equation (4.17), the true minimum is at least ∑ √ *M₀ −* 2*δ ∥v∗∥*2*∥Pigi∥*2*≥ M₀ −* 2*uN IqN.* (4.18) *i* *The prediction integral.* It remains to compute *M₀* and take the limits. The same orthogonal decomposition into nested projection increments gives *m−* ∑1 2 () <u>M₀</u> *b δ*2 = *I −∥eiW₁∥*2*.* (4.19) *N* *i*=0 (*b* + *iδ*)(*b* + (*i* + 1)*δ*)
+
+Indeed a component first seen after *j* increments has penalty *bjδ/*(*b* + *jδ*), and *j−* ∑ 1 2 <u>bjδ b δ</u> =*.* *b* + *jδ* *i*=0 (*b* + *iδ*)(*b* + (*i* + 1)*δ*)
+
+Full observations through step *i* have the sufficient Gaussian statistic of precision *b*+*iδ*. Completing the likelihood square proves sufficiency directly. Hence
+
+*∥eiW₁∥* 2 2= E*p|w*¯1*/*(*b*+*iδ*)(*U₁/*(*b*+*iδ*))*|* 2 *.*
+
+This squared prediction norm is nondecreasing with precision, since a weaker observation can be obtained by adding independent Gaussian noise. It is bounded by *I*, so Equation (4.19) converges as *m →∞* to ∫ *u*<u>I − E</u> <u>p</u> <u>|w¯1/(b+t)(U₁/(b+t))|</u> 2 *b²* 2 *dt.* 0(*b* + *t*) First take this mesh limit at fixed *N,u*. It removes the entropy error in Equation (4.11), while Equation (4.18) remains uniform in the mesh. Divide by *N*, then let *N →∞*, using *qN→* 0. Equations (4.11) and (4.12) give ∫ *u* 2 ∫ 1*/b* *I I −* E*p|w*¯1*/*(*b*+*t*)(*U₁/*(*b*+*t*))*| I*2 2(*H₀ − Hz*) *≤ −* 2 *dt* = + E*p|w*¯*r*(*Ur*)*| dr.* *b*0(*b* + *t*) *b* + *u*1*/*(*b*+*u*)
+
+Finally let *u →∞*. Since 1*/b* = *z* and the integrand is bounded by *I*, this proves Equation (4.9) in the claimed order of limits.
+
+We return to the critical sequence. For *Y₀ ∼ η* and independent Gaussian noise, define *√* *−*1 2 *Ur*= *Y₀* + *rG, w*¯*r*(*Ur*) = E[*w*(*Y₀*) *| Ur*]*, m*(*r*) = *I* E*|w*¯*r*(*Ur*)*|.*
+
+In the strict case we also use the label *LT* of Lemma4.1, constructed with fresh Gaussian noise independent of (*Y₀,G*). Thus *LT* and *Ur*are conditionally independent given *Y₀*. Set
+
+*pT*(*r*) = *I* *−* E*|*E[*w*(*Y₀*) *| Ur,LT*]*|, p₀*(*r*) = *m*(*r*)*.*
+
+**Proposition 4.3** (The prediction curve)**.** *For the strict and gap critical sequences, for every fixed* 0 *< r <* 1*/*4*,* *m*(*r*) *−→ e* *−r*
+
+*.* (4.20)
+*In the strict case, for every fixed finite T ≥* 0 *one also has pT*(*r*) *→ e* *−r* *. In the gap case the* *eigenfunction may be rescaled so that I →* 0*, without changing Equation* (4.20) *or Equation* (4.1)*.*
+
+*Proof.* For 0 *≤ r <* 1*/*4 put ( ∫) *r* <u>dt</u> *θ*(*r*) = exp *−.* 0*Rs*+*t* Proposition3.8gives *θ*(*r*) = *e* *−r* + *o*(1), uniformly on compact intervals under consideration. The common heat flow dissipates relative entropy at one half the relative Fisher information. Thus its entropy relative to *µs*+*r*is at most *θ*(*r*) times its initial entropy, by the logarithmic Sobolev inequality at the contemporaneous base law. This assertion applies to conditional laws after averaging as well. In the strict case write *Hr*= *H*(Law(*Ur*) *| µs*+*r*) and *H₀* = *I/*(2*λ*). The entropy of *Ur*given *LT*, relative to *µs*+*r*and averaged over the label, is at most *θ*(*r*)(*H₀* + *TI/*2), since initially it is *H₀* + I(*Y₀*;*LT*). The chain rule gives ∫ *T* <u>I</u> *pv*(*r*)*dv* = E*H*(Law(*LT | Ur*) *| γ*) 20 = E*H*(Law(*Ur| LT*) *| µs*+*r*) + *d*(*T*) *− Hr* <u>I</u> *≤ θ*(*r*)(1*/λ* + *T*) + *d*(*T*)*.* 2
+
+The first equality is Lemma2.4, conditionally on *Ur*. Fix *v ≥* 0 and then *T > v*. Since *pt*(*r*) is nondecreasing in signal strength *t*, Lemma4.1yields
+
+(*T − v*) lim sup*pv*(*r*) *≤ e* *−r* (1 + *T*)*.*
+
+The sequence limit is taken with *T* fixed. Allowing this fixed *T* to be arbitrarily large proves
+
+lim sup*pv*(*r*) *≤ e* *−r*
+
+*.* (4.21)
+Lemma4.2applies to *p* = *η* and *q* = *µs*; the exponential-square moment was proved in the proof of Lemma4.1. Since *Hz≤ θ*(*z*)*H₀*, it gives ∫ *z* <u>1 − θ(z)</u> *m*(*r*)*dr ≥* (0 *< z <* 1*/*4)*.* 0*λ*
+
+The reverse limiting inequality follows from Equation (4.21), 0 *≤ m ≤* 1, and reverse Fatou. Hence ∫ *z* *m*(*r*)*dr −→* 1 *− e* *−z*
+
+*.* (4.22)
+0
+
+The function *m* is nonincreasing in *r*. For 0 *< h < r* with *r* + *h <* 1*/*4, its value at *r* is bounded below and above by its averages on [*r,r*+ *h*] and [*r − h,r*], respectively. Equation (4.22) determines the limits of both averages; letting *h ↓* 0 gives Equation (4.20). Finally *m*(*r*) *≤ pT*(*r*) and Equation (4.21) give the assertion for every fixed *T*. We now prove the gap assertion without using additional probes. First linearize Lemma4.2. Let *q* be a bounded smooth centered test under *µs*, with bounded gradient, and let
+
+### dηε= (1 + εq)dµs, |ε|∥q∥∞< 1.
+
+This alternative has a finite exponential-square moment. Write *q*¯*r*= E*µs*[*q*(*Y₀*) *| Ur*] and *Dqr*= E*µs*[*Dq*(*Y₀*) *| Ur*]. The output density ratio is 1 + *εq*¯*r*, while the predicted initial relative score is exactly <u>εDqr</u> E*ηε*[*D*log(1 + *εq*)(*Y₀*) *| Ur*] =*.* 1 + *εq*¯*r*
+
+Consequently its squared norm averaged under the alternative output is *ε²*E*µs*+*r*[*|Dqr|* 2 */*(1 + *εq*¯*r*)]. The entropy expansion *H*((1 + *εq*)*µs| µs*) = *ε²∥q∥* 2 2 */*2 + *o*(*ε²*), and its output version, now give ∫ *z* *∥q∥* 2 2*−∥q*¯*z∥* 2 2*≤ ∥Dqr∥* 2 2*dr.* (4.23) 0
+
+Indeed the denominator is bounded away from zero uniformly in *r*, and conditional Jensen bounds the integrand by a constant times *∥Dq∥* 2 2, justifying the limit. Approximation in the form norm extends Equation (4.23) to *q* = *φ*: centered compact smooth approximants have the required boundedness, and all conditional expectation maps are *L²* contractions. To retain compact support while centering, subtract the approximant’s mean times one fixed compact smooth function of mean one; this correction tends to zero in the form norm. For clarity, we also give the heat variance identity used here. For a centered scalar or finite- dimensional vector field *g ∈ L²*(*µs*), let *gr*= E[*g*(*Y₀*) *| Ur*] under the base law. Then
+
+<u>d</u>2 2 E*µs*+*r|gr|* = *−*E*µs*+*r|Dgr| .* (4.24) *dr*
+
+For bounded *g*, both the numerator density *grµs*+*r*and the denominator density *µs*+*r*solve the heat equation, and the quotient calculation with the square function gives (*∂r−* ∆*/*2)(*µs*+*r|gr|* 2 ) = *−µs*+*r|Dgr|* 2. Integrate against expanding cutoffs, whose Laplacians tend uniformly to zero. The bound *|gr|≤∥g∥∞*removes the cutoff terms and gives the integrated identity on positive time intervals. Its initial endpoint follows from *∥gr*(*Ur*) *− g*(*Y₀*)*∥*2*→* 0: for a bounded continuous test *√* use *g*(*Ur*) as a predictor and dominated convergence under the coupling *Ur*= *Y₀* + *rG*, and then approximate in *L²*(*µs*) and use conditional contraction. Approximate a general *L²* field by bounded ones. Applying the same identity to their differences shows that their gradients are Cauchy in the space-time energy norm, while conditional contraction gives convergence of both endpoint norms. This proves the integrated version of Equation (4.24) in full generality. Poincaré at *µs*+*r*and preservation of the mean therefore imply
+
+E*µs*+*r|gr|* 2 *≤ θ*(*r*)E*µs|g|* 2 *.*
+
+Apply this first to *φ*, and then to *w −* E*w*. The latter application and Equation (4.1) give 2 ∫ *z* *m*(*r*) *≤ θ*(*r*) + *o*(1). The former and *∥φ∥*2= *I/λ*, inserted into Equation (4.23), give 0 *m*(*r*)*dr ≥* (1 *− θ*(*z*))*/λ*. The same integral squeeze and monotonicity argument prove Equation (4.20). Multiplying *φ* by any positive scalar multiplies every squared quantity by its square, so we may finally choose these scalars to arrange *I →* 0.
+
+The hierarchy construction will use the following consequences of the prediction curve. The estimates distinguish conditional covariance tails, which are needed only in the strict case, from bounds on deterministic subspaces, which hold in both cases.
+
+**Lemma 4.4** (Posterior covariance and outlier subspaces)**.** *Use the critical sequence and notation* *of Proposition4.3, with I →* 0 *in the gap case. The following assertions hold.*
+
+(i) *For every fixed c < ∞, uniformly over deterministic orthogonal projections* Π *with* rank Π *≤* *cI,*
+E*|*Π*w|* 2 = *o*(*I*)*.* (4.25)
+
+(ii) *For every ϵ >* 0*, for all sufficiently far members of the sequence there is a deterministic* *subspace Vϵof dimension at most CϵI such that, for every v ⊥ Vϵ,*
+
+*v* *∗* (E*ww* *∗* )*v ≤ ϵ|v|* 2 *, v* *∗* (E*bsb* *∗* *s* )*v ≤ ϵ|v|* 2 *, v* *∗* (E*Ms*)*v ≤ ϵ|v|* 2
+
+*.* (4.26)
+*In the gap case Vϵmay be taken to be zero, and ∥*E*bsb* *∗* *s* *∥*op+ *∥*E*Ms∥*op= *o*(1)*.*
+
+(iii) *In the strict case, for every fixed r ∈* (0*,*1*/*4) *and ϵ >* 0*, the conditional covariance Cr*= Cov(*w*(*Y₀*) *| Ur*) *satisfies* () E tr *Cr***1***{C* *r* *>ϵ*Id*}*= *o*(*I*)*.* (4.27)
+
+*The indicator denotes the spectral projection. No assertion about additional Gaussian probes* *or Equation* (4.27) *is needed for the gap case.*
+
+*Proof.* We first prove the strict-case spectral estimates. If a random vector *S* has covariance *C* and mean *a*, the affine estimator
+
+*a* + *C*(Id + *C*) *−*1 (*S* + *G − a*)
+
+of *S* from *S* +*G* is its least-squares affine predictor. Its mean squared norm is *|a|* 2 +tr(*C²*(Id+*C*) *−*1 ), by direct expansion of the covariances. Conditional expectation has at least this squared norm, because it is the orthogonal projection onto all functions of the observation. The same calculation holds conditionally on any side information, using fresh independent Gaussian noise. By the Gaussian signal derivative formula and its monotonicity,
+
+2 () E*|*E[*w | L₁*]*| ≤* 2 *d*(2) *− d*(1) *≤* 2*d*(2) = *o*(*I*)*.*
+
+Apply the affine prediction bound to *S* = *w* and *C* = Cov*ηw*. For every fixed *ϵ >* 0, () tr *C***1***{C>ϵ*Id*}*= *o*(*I*)*,* (4.28)
+
+since *t²/*(1 + *t*) *≥ ϵt/*(1 + *ϵ*) for *t > ϵ*. For every projection of rank at most *cI*,
+
+2 () 2 E*|*Π*w| ≤ ϵcI* + tr *C***1***{C>ϵ*Id*}*+ *|*E*w|.*
+
+First take the sequence limit, then *ϵ ↓* 0. Equation (4.1) proves Equation (4.25) uniformly in Π. In the gap case a projection of rank at most *cI* is eventually zero, which proves the same assertion. Conditionally on *Ur*, the additional observation *L₁* has signal *w* and covariance *Cr*. Or- thogonality of successive conditional expectations and the conditional affine prediction bound yield () ( 2 *−*1 ) *I p₁*(*r*) *− m*(*r*) *≥* E tr *Cr*(Id + *Cr*)*.*
+
+Proposition4.3makes the left side *o*(*I*). The same scalar eigenvalue inequality proves Equa- tion (4.27). We finally bound the dimensions of the deterministic outlier spaces. Let
+
+*∗* *√* *D* = E*η*E[*XX | X* + *sG* = *Y₀*]*,*
+
+where the inner posterior kernel always refers to the original prior *µ*. Conditional Jensen and the definition of *Ms*imply E*ηbsb* *∗* *s⪯ D,* E*ηMs⪯ D/s.* (4.29) For each deterministic projection *Q* of rank *l ≥* 1, the original subgaussian assumption gives () <u>|QX|</u> 2 log E*µ*exp 2 *≤ Cl.* (4.30) *Ca*
+
+Indeed choose a 1*/*2-net of the unit sphere in ran*Q* with at most 5 *l* points. The norm *|QX|* is at most twice the largest absolute linear form over this net, and bounding the exponential of a maximum by the sum proves the claim. In the strict case, form the joint law by first drawing *Y₀* from *η* and then drawing *X* from the *√* original posterior kernel. Its entropy relative to the original joint law of (*X,X* + *sG*) is exactly *H₀* = *I/*(2*λ*). Data processing therefore bounds the entropy of its *X*-marginal relative to *µ* by *H₀*. Applying the entropy variational inequality to Equation (4.30) gives
+
+### tr(QD) ≤ Ca²(H₀ + l). (4.31)
+
+If the spectral subspace of *D* above *τ >* 0 has dimension *l*, then *τl ≤ Ca²*(*H₀* + *l*). For sufficiently small *a* this implies *l ≤* 2*Ca²H₀/τ* = *Oτ*(*I*); the assertion is trivial when *l* = 0. The spectral subspace of E*ww* *∗* above *ϵ* has dimension at most *I/ϵ*, since its trace is *I*. Take *Vϵ*to be the span of this subspace and the spectral subspace of *D* above *sϵ*. Its dimension is at most *CϵI*, and Equation (4.29) gives all three bounds in Equation (4.26). In the gap case, averaging the original posterior under *η* = *µs*gives *D* = E*µXX* *∗* *⪯ Ca²*Id. Thus Equation (4.29) gives the two claimed operator bounds directly. Also *∥*E*ww* *∗* *∥*op*≤I→* 0, so *Vϵ*= *{*0*}* suffices eventually. This completes all assertions.
+
+## 5 A symmetric hierarchy of nearly first eigenfunctions
+
+The prediction curve from Section4determines much more than the norm of a conditional mean. Its Gaussian Bessel inequality is asymptotically saturated at every fixed derivative order. We use this saturation to construct symmetric tensors whose derivatives remain nearly first eigenfunctions. We then show that every tensor has negligible energy in the curvature directions of *µs*. Throughout this section, coefficient norms are unnormalized Euclidean norms, including for tensors of high order. For a tensor field with *d* slots, differentiation appends a last slot. A matrix subscript, such as *K₁*, specifies the slot on which it acts. Write *∥F ∥* 2 2= E*η|F |* 2 and *⟨F,G⟩*2= E*η⟨F,G⟩*. Every occurrence of *A* on a tensor means its componentwise action. The following formulation records precisely the inputs used in the construction; the dimension and *I* may vary along the sequence.
+
+**Proposition 5.1** (Symmetric tensor hierarchy)**.** *Consider a sequence of smooth positive probability* *densities η on finite-dimensional Euclidean spaces, with finite second moments. Let A* = *−*∆ *−* *D*log *η · D, and suppose that η satisfies Poincaré with constant at most λ* *−*1 *, where λ →* 1*. Fix* *s* = 1*/*8*. Suppose smooth vector fields b,w and a symmetric matrix field K satisfy*
+
+<u>y − b(y)</u>*−* *D*log*η* = *−* + *ω*(*y*)*, Db* = Id *− sK,* 0 *≤ K ≤ s* Id*,* *s*
+
+*where either ω* = *w throughout the sequence or ω* = 0 *throughout the sequence. Assume b,w ∈ L²*(*η*)*,* *w is a gradient, and, with I* = *∥w∥* 2 2*>* 0*,* *√ √* *w ∈* Dom *A, ∥*(*A −* 1)*w∥*2= *o*( *I*)*, |*E*ηw|* = *o*( *I*)*, ⟨w,Kw⟩*2= *o*(*I*)*.* (5.1)
+
+*Assume also the following prediction and projection properties.*
+
+(i) *For Y ∼ η and an independent standard Gaussian G, set*
+*√* *−*1 2 *Ur*= *Y* + *rG, hr*(*u*) = E[*w*(*Y*) *| Ur*= *u*]*, m*(*r*) = *I* E*|hr*(*Ur*)*|.*
+
+*For every fixed* 0 *< r <* 1*/*4*, one has m*(*r*) *→ e* *−r* *.*
+
+(ii) *For every fixed c < ∞,* sup *∥*Π*w∥* 2 2= *o*(*I*)*.* (5.2) Π2=Π=Π*∗*deterministic rank Π*≤cI* *For every ϵ >* 0 *there is a deterministic projection* Π*ϵof rank at most CϵI such that*
+
+*∥*E[(1 *−* Π*ϵ*)*bb* *∗* (1 *−* Π*ϵ*)]*∥* op + *∥*E[(1 *−* Π*ϵ*)*ωω* *∗* (1 *−* Π*ϵ*)]*∥* op *≤ ϵ* (5.3)
+
+### eventually along the sequence.
+
+(iii) *If ω* = *w, the conditional covariance Cr*= Cov(*w*(*Y*) *| Ur*) *satisfies, for every fixed r ∈* (0*,*1*/*4) *and a >* 0*,* () E tr *Cr***1***{C* *r* *>a}*= *o*(*I*)*.* (5.4)
+
+*No conditional covariance-tail assumption is made when ω* = 0*.*
+
+*Then there are totally symmetric tensor fields Tlof order l* + 1*, for every fixed integer l ≥* 0*, with* *T₀* = *w, such that* *√* *∥Tl∥* 2 2= (1 + *o*(1))*I, ∥*(*A −* 1)*Tl∥*2= *o*( *I*)*,* *√* (5.5) *∥DTl− Tl*+1*∥*2= *o*( *I*)*.*
+
+### ⟨Tl,K₁Tl⟩2= o(I). (5.6)
+
+sup *∥*Π₁*Tl∥* 2 2= *o*(*I*) *for every fixed c < ∞.* (5.7) Π2=Π=Π*∗*deterministic rank Π*≤cI* ⋂ *p* *Every Tlbelongs componentwise to* Dom *A. For l ≥* 1 *it can be chosen inp≥*1Dom*A. By* *symmetry, the specified slot in Equations* (5.6) *and* (5.7) *may be any slot. All assertions can be* *made simultaneous for any fixed finite collection of levels and parameters.*
+
+In the application, take *b* = *bs*and *K* = *Ks*. Proposition3.9supplies the drift, Poincaré, and initial estimates; Proposition4.3and Lemma4.4supply the remaining inputs. In the gap branch, *ω* = 0 and *∥*E*bb* *∗* *∥*op= *o*(1), so one may take Π*ϵ*= 0 in Equation (5.3). The normalization *I →* 0 makes Equation (5.2) automatic: eventually the only projection of rank at most *cI* is zero. Thus no strict-branch probe estimate has been added to the gap-branch hypotheses. We prove the proposition in three steps. First we construct the eigenfunction and derivative hierarchy. Second we expand its evolution along stationary diffusion and, in the strict branch, deduce operator-norm tail estimates. Finally those estimates justify a curvature integration by parts.
+
+### 5.1 Gaussian Bessel saturation and the induction
+
+We use the classical correspondence between Hermite polynomials and multiple Wiener integrals [10, Sections 3–5], with the ordered-index normalization recorded below. The saturation argument will come from the prediction curve, in addition to this orthogonality. For a standard Gaussian vector *G ∈* R *n*, define its symmetric Hermite tensors h*j*(*G*) by
+
+*ξ·G−|ξ|*2*/*2 ∑ <u>1</u> *⊗j* *e* = h*j*(*G*) : *ξ.* (5.8) *j≥*0 *j*!
+
+Here a colon contracts all indicated slots and h₀ = 1. Comparing coefficients in the expectation of the product of two such exponentials gives, for symmetric order-*j* and order-*k* tensors *a,b*,
+
+E[(*a* : h*j*(*G*))(*b* : h*k*(*G*))] = **1***{j*=*k}j*!*⟨a,b⟩.* (5.9)
+
+This identity uses ordered coefficient indices; it explains all factorials below.
+
+**Lemma 5.2** (Bessel inequality for the prediction)**.** *For the data of Proposition5.1, define* *√* *gr*(*y*) = E*Ghr*(*y* + *rG*)*. For each r >* 0*,*
+
+∑ <u>r</u>*j* *⟨w,gr⟩*2= *m*(*r*)*I, ∥D* *j* *gr∥* 2 2*≤ m*(*r*)*I.* (5.10) *j≥*0 *j*!
+
+*In particular, every fixed derivative appearing here is in the form domain of A.*
+
+*Proof.* The first equality is conditional expectation:
+
+E*⟨w*(*Y*)*,hr*(*Ur*)*⟩* = E*|hr*(*Ur*)*|* 2 *.* *√* For fixed *y*, Gaussian integration by parts identifies the order-*j* Hermite coefficient of *hr*(*y* + *rG*) as *r* *j/*2 *D* *j* *gr*(*y*). Its orthogonal projection onto that chaos is
+
+<u>r</u> *j/*2 *j* *D gr*(*y*) : h*j*(*G*)*,* *j*!
+
+where the vector output slot is not contracted. By Equation (5.9), the squared norm of this projection is *r* *j* *|D* *j* *gr*(*y*)*|* 2 */j*!. Bessel’s inequality, integrated in *y ∼ η*, proves the asserted sum. *√* 2 These calculations require only E*|hr*(*Y* + *rG*)*| < ∞*. To justify the derivatives, on a compact set of starting points use positivity of *η* on a slightly larger compact set. Integrating translated Gaussian kernels over that larger set bounds each fixed differentiated kernel by a constant times the mixture density of *Ur*. The enlargement absorbs the polynomial factors from differentiation. Thus the kernel integrals are classically smooth locally; alternatively all identities first hold distributionally. The Bessel bounds for orders *j* and *j* + 1 put *D* *j* *gr*and its weak derivative in *L²*(*η*), hence in the form domain by cutoff and local smoothing. The local constants need not be uniform in the dimension: only the exact integrated Bessel inequality is used quantitatively.
+
+Two elementary Hilbert-space facts will prevent dimension factors and unjustified differentia- tions in the induction.
+
+**Lemma 5.3** (Cross-covariance and spectral smoothing)**.** *If F is a square-integrable random* *variable with values in a finite-dimensional Hilbert space and Z is a centered Euclidean random* *vector with* Cov *Z ≤ c*Id*, then* *|*E(*F ⊗ Z*)*|* 2 HS*≤ c*E*|F |* 2
+
+*.* (5.11)
+*Next, let A be a sequence of nonnegative Dirichlet operators with kernel the constants and spectral* *gap at least λ →* 1*. If fields S in their form domains satisfy*
+
+*|*E*S|* 2 = *o*(*I*)*, ∥S∥* 2 2= (1 + *o*(1))*I, ∥DS∥* 2 2*≤* (1 + *o*(1))*I,*
+
+*then S* ̃ = *e¹* *−A* *S satisfies* *√ √* *∥S* ̃ *− S∥*2+ *∥D*(*S* ̃ *− S*)*∥*2= *o*( *I*)*, ∥*(*A −* 1)*S* ̃ *∥*2= *o*( *I*)*.* (5.12)
+
+2 *√* *Proof.* The map *u |→ u · Z* from Euclidean space to scalar *L* has operator norm at most *c*. Apply its adjoint to each scalar coefficient of *F* and sum the squared bounds. This proves Equation (5.11) without a factor equal to the number of coordinates of either variable. For the second assertion, sum the coefficient spectral measures of *S −*E*S* and call the resulting measure *ν*. Then ∫ (*x − λ*)*dν*(*x*) = *∥DS∥* 2 2*− λ∥S −* E*S∥* 2 2= *o*(*I*)*,*
+
+where the left side is nonnegative. For every fixed *δ >* 0, the spectral mass and the spectral energy outside [1 *− δ,*1 + *δ*] are *o*(*I*): the part below 1 *− δ* is absent eventually, and on *x ≥* 1 + *δ* both 1 and *x* are bounded by a *δ*-dependent constant times *x − λ*. The constant component has squared norm *o*(*I*) as well. On the remaining interval the multipliers *e¹* *−x* *−* 1 and (*x −* 1)*e¹* *−x* tend uniformly to zero as *δ ↓* 0. Outside it, (1 + *x*)*|e¹* *−x* *−* 1*|* 2 *≤ C*(1 + *x*) and (*x −* 1) 2 *e²* *−*2*x* *≤ C*. Integrate these inequalities against the spectral measure, first take the sequence limit and then let *δ ↓* 0. This gives Equation (5.12). The same functional calculus shows that *e¹* *−A* *S* belongs to every Dom*A* *p*.
+
+**Lemma 5.4** (Construction before the curvature estimate)**.** *Under the hypotheses of Proposition5.1,* *there exist totally symmetric fields* *√* *Tlsatisfying Equations* (5.5) *and* (5.7)*, with the stated operator* *domains. Moreover |*E*Tl|* = *o*( *I*) *for every fixed l.*
+
+*Proof.* Start with *T₀* = *w*. Suppose the assertions have been constructed through level *l*, and put *L* = *l* + 1 and *V* = *DTl*. Self-adjointness gives
+
+*∥V ∥* 2 2= *⟨Tl,ATl⟩*2= (1 + *o*(1))*I.* (5.13)
+
+If Π is an admissible deterministic projection acting on an existing tensor slot, it commutes with *A* and differentiation. Consequently
+
+*∥*Π₁*V ∥* 2 2= *⟨*Π₁*Tl,A*Π₁*Tl⟩*2*≤∥*Π₁*Tl∥* 2 2+ *∥*Π₁*Tl∥*2*∥*(*A −* 1)*Tl∥*2= *o*(*I*)*.*
+
+The error is uniform over projections of rank at most *cI* for fixed *c*. Fix 0 *< r <* 1*/*4. Set *Vj*= *Tj*for 0 *≤ j ≤ l* and *VL* = *V*. Successive form integration by parts gives *I* *−*1 *⟨D* *j* *gr,Vj⟩*2*−→ e* *−r* (0 *≤ j ≤ L*)*.* (5.14)
+
+Indeed the assertion at *j* = 0 is Equation (5.10). For *j ≤ l*,
+
+*⟨D* *j*+1 *gr,DTj⟩*2= *⟨D* *j* *gr,ATj⟩*2= *⟨D* *j* *gr,Tj⟩*2+ *o*(*I*)*.*
+
+Replacing *DTj*by *Tj*+1when *j < l* costs *o*(*I*). All test derivatives and their form energies are finite by Lemma5.2; its bound controls every error for fixed *r* and *j*. No uniform estimate as *r ↓* 0 has been used. Here is the precise Bessel budget. Equation (5.14) and *∥Vj∥* 2 2 */I →* 1 imply
+
+lim inf *I* *−*1 *e²* *r* *∥D* *j* *gr∥* 2 2*≥* 1 (0 *≤ j ≤ L*)*.*
+
+Multiply Equation (5.10) by *e²* *r* */I* and subtract these minimum contributions. The resulting bounds are ⎛ ⎞ *r* 2∑*L j* *∥e DLgr−V∥*2*L*!*rr* lim sup *≤* *L* ⎝*e −* ⎠ = *OL*(*r*)*,* (5.15) *I r* *j*=0 *j*! ⎛ ⎞ 2*r* +1 2∑*L j* *e ∥DL gr∥*2(*L* + 1)!*rr* lim sup *≤* *L*+1 ⎝*e −* ⎠ = 1 + *OL*(*r*)*.* (5.16) *I r* *j*=0 *j*!
+
+For the first line, expand the squared difference and use the correlation at order *L*; its normalized limit subtracts exactly one from the normalized squared derivative norm. Thus the exponential- series tail accounts for the entire excess, rather than merely bounding the norms. Choose *r ↓* 0 sufficiently slowly along the sequence in these two estimates. The field *S₀* = *e* *r* *DLgr* then satisfies *√* *∥S₀ −V∥*2= *o*( *I*)*, ∥DS₀∥* 2 2*≤* (1 + *o*(1))*I.* It is symmetric in its last *L* slots; *V* is symmetric in its first *L* slots. For *L ≥* 2, the permutations of those two sets of slots generate every permutation of the *L* + 1 slots. Indeed their adjacent transpositions together are all the adjacent transpositions. If a permutation fixes *S₀*, its action changes *V* by at most 2*∥S₀ − V ∥*2; a permutation fixing *√* *V* costs zero. Expressing each permutation as a fixed finite word therefore shows that *V* is *o*( *I*) from its full symmetrization. For *L* = 1, *V* = *Dw* is already symmetric because *w* is a gradient. Let *S* be the full symmetrization of *S₀*. Averaging coefficient permutations is an orthogonal contraction and commutes with differentiation, so *√* *∥S − V ∥*2= *o*( *I*)*, ∥S∥* 2 2= (1 + *o*(1))*I, ∥DS∥* 2 2*≤* (1 + *o*(1))*I.* (5.17) The preceding projection estimate for *V* now holds on its last slot too, since a coefficient-slot *√* permutation moves it to an old slot with an *o*( *I*) error uniform over projections. To apply Poincaré sharply we still need to center *V*. Write *Cy*= Cov(*Tl,y*), *Cb*= Cov(*Tl,b*), and *Cω*= Cov(*Tl,ω*), with the vector variable occupying the last slot. Testing the equation for *ATl*against centered coordinates gives *√* E*V* = *Cy*+ *El, |El|* = *o*( *I*)*,* E*V* = *s* *−*1 (*Cy− Cb*) *− Cω.* (5.18)
+
+For clarity, the first exact identity before the error is E*V* = E[(*ATl*) *⊗* (*y −* E*y*)]. Poincaré gives Cov*ηy ≤ λ* *−*1 Id, and Equation (5.11) bounds its error by *λ* *−*1*/*2 *∥*(*A −* 1)*Tl∥*2. This is the needed dimension-free estimate. The second identity follows by integration by parts using *Ay* = (*y − b*)*/s − ω*. These coordinate tests are legitimate in the form domain; their distributional *A*-images are in *L²* by the stated second-moment assumptions, hence they are also in Dom*A*. Project the last slot onto *√* 1 *−* Π*ϵ*. The two covariance terms involving *b* and *ω* have norm at most *C ϵI* by Equations (5.3) and (5.11). Subtracting the two identities in Equation *√ √* (5.18), and using *s ̸*= 1, therefore bounds this part of E*V* by *CsϵI* + *o*( *I*). On the Π*ϵ*part, *√* *|*(Π*ϵ*)*L*+1E*V |≤∥*(Π*ϵ*)*L*+1*V ∥*2= *o*( *I*)
+
+### by the projected-energy estimate and
+
+*√* rank Π*ϵ≤ CϵI√*. First take the sequence limit and then let *ϵ ↓* 0. This proves *|*E*V |* = *o*( *I*), and thus *|*E*S|* = *o*( *I*). Lemma5.3applies to *S*. Define *Tl*+1= *e¹* *−A*
+
+*S.* *√*
+It is symmetric, lies in every operator-power domain, is *√* *o*( *I*) from *V*, and satisfies the strong near-eigenfunction estimate. Its mean is *e*E*S* = *o*( *I*). Finally, coefficient projections commute *√* with the semigroup, and *∥e¹* *−A* *∥*2*→*2*≤ e*. Together with *S−V* = *oL*2 ( *I*), this preserves the uniform projected-energy estimates. The induction is complete. Each step used only a finite collection of limits; diagonal choices give the assertion for all fixed levels.
+
+### 5.2 Expansion along stationary diffusion
+
+The fields just constructed retain the same norm under repeated differentiation. This makes their stochastic Taylor expansion summable with a factorial remainder. We use the ordered-integral form of the Wiener–Itô correspondence [10, Section 5]. Let *Yt*be the stationary diffusion with invariant density *η*, *√* *dYt*= 2*dBt*+ *D*log*η*(*Yt*)*dt, Y₀ ∼ η,*
+
+where *Y₀* is independent of the driving Brownian motion.
+
+**Lemma 5.5** (Hermite expansion of the stationary evolution)**.** *Let symmetric fields* *√* *Tlsatisfy* *Equation* (5.5)*. For fixed integers l,m ≥* 0 *and fixed t >* 0*, set N* = *Bt/ t. Then*
+
+∑ *m* <u>(2t)</u> *j/*2 *Tl*(*Yt*) = *e* *−t* *Tl*+*j*(*Y₀*) : h*j*(*N*) + *El,m,t,* (5.19) *j*=0 *j*!
+
+*where the colon contracts the last j tensor slots and*
+
+<u>∥El,m,t∥2(2t)</u> (*m*+1)*/*2 lim sup *√ ≤* √*.* (5.20) *I* (*m* + 1)!

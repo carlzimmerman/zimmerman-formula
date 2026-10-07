@@ -1,0 +1,233 @@
+# A uniform influence bound for hypergraph properties
+
+OpenAI
+
+### October 5, 2026
+
+**Abstract** For every fixed integer *r≥* 3, we prove that every relabeling-invariant Boolean property of simple *r*-uniform hypergraphs on *n* vertices satisfies Var*p*(*f*) *≤CrIp*(*f*)*/*(log*n*) *r/*(*r−*1). The constant depends only on *r*, and the bound holds uniformly for all0 *< p <* 1without a monotonicity assumption. For increasing properties, it gives the corresponding threshold-width bound with exponent *r/*(*r−* 1), proving the hypergraph threshold-width conjecture of Friedgut and Kalai.
+
+## 1 Introduction
+
+( [*n*] ) Let *r≥* 3and *n≥r* be integers, write[*n*] = *{*1*,...,n}*, and put *En,r*= *r*. An element of *{*0*,*1*}* *En,r* represents a simple *r*-uniform hypergraph. A*hypergraph property*is a Boolean function on this space that is invariant under every permutation of[*n*]. For0 *< p <* 1, give the coordinates the independent Bernoulli(*p*)law, and denote expectation and variance byE*p*andVar*p*. For an edge *e*, let *xe←b*be *x* with its *e*-coordinate set to *b*. Define the*pivotal influence*of *e* and the*total influence*of*f*by () ∑ *I* *e,p*(*f*) = Pr *f*(*xe←*1)*̸*=*f*(*xe←*0)*, Ip*(*f*) = *Ie,p*(*f*)*.* *p* *e∈En,r*
+
+The probability in the first expression is over the other coordinates; it does not include an additional factor of*p*(1*−p*). All logarithms are natural, and*n*always counts vertices.
+
+**Theorem 1.1.***For every integer r≥* 3*there is a finite constant Crsuch that, for every integer* *n≥r, every*0*< p <*1*, and every hypergraph propertyf*:*{*0*,*1*}* *En,r* *→{*0*,*1*},*
+
+<u>Cr</u> Var*p*(*f*)*≤* *r/*(*r−*1) *I* *p*
+
+(*f*)*.*(1.1)
+(log*n*)
+
+### No monotonicity assumption is required.
+
+The theorem measures how vertex symmetry forces sensitivity to edge changes. If the probability of a property stays bounded away from zero and one, its total influence must grow at least as (log*n*) *r/*(*r−*1). A property is*increasing*if changing coordinates from0to1cannot decrease its value, and *nontrivial*if it is not constant. For a nontrivial increasing property, put *q*(*p*) = E*pf* and define *pa*= inf*{p∈* [0*,*1] : *q*(*p*) *≥a}* for0 *< a <* 1. For fixed0 *< ε <* 1*/*2, its*threshold width*is *p₁−ε−pε*. Friedgut and Kalai conjectured that this width is at most *Or,ε*((log*n*) *−r/*(*r−*1) )for every increasing *r*-uniform hypergraph property [5, Section 5, p. 2999]. Their formulation counts edge coordinates ( *n* ) rather than vertices; for fixed *r*, log *r* *∼r*log*n* as *n→∞*. Corollary4.1proves this conjectured bound by integrating (1.1), with an explicit dependence on*ε*.
+
+**Context and attribution.**Kahn, Kalai, and Linial [6] established a fundamental link between Fourier analysis and the influences of Boolean functions. For a function invariant under a transitive group on *M* coordinates, their theorem gives a total-influence lower bound of order Var₁*/*2(*f*) log*M* at the uniform measure. Bourgain, Kahn, Kalai, Katznelson, and Linial [3] extended the influence method to product spaces. Friedgut and Kalai [5] used influence inequalities to prove sharp thresholds for increasing families with transitive symmetry. For hypergraph properties, the induced ( *n* ) action on the *r* edge coordinates is transitive. The richer structure of vertex permutations, however, contains more information than this single transitivity statement. Bourgain and Kalai [4, Corollary 4.1] studied how group actions on sets of coordinates improve influence estimates. For fixed *r* and every *η >* 0, their result gives a lower bound of order Var₁*/*2(*f*)(log*n*) *r/*(*r−*1)*−η* for the total influence of a hypergraph property at the uniform measure. Their influence results already allow nonmonotone functions. Kelman, Kindler, Lifshitz, Minzer, and Safra obtained further estimates for group-invariant functions [7]. For graph properties, these give *I₁/*2(*f*) *≥c*Var₁*/*2(*f*)(log*n*) 2 */*(log log*n*) 2 for sufficiently large *n*; see the arXiv version cited in [7, Section 7.4]. The present proof uses vertex symmetry through restrictions: all edges touching a vertex block remain free, and only edges wholly outside the block are fixed. This is the method of the companion manuscript*A Sharp Threshold Bound for Monotone Graph* *Properties*[9, Theorem 1.2 and Sections 2–3], which establishes the corresponding variance bound with denominator(log*n*) 2 for graph properties, uniformly in *p* and without monotonicity. We reproduce its Fourier estimate and restriction argument in full. The additional combinatorial step replaces the graph degree estimate by its *r*-uni... [truncated]
+
+√ **Proof strategy.**Put *σ* = *p*(1*−p*) and *α* = *r/*(*r−* 1). The Fourier expansion for the Bernoulli product measure is indexed by sets *S* of hyperedges. Its squared nonconstant coefficients sum to the variance; weighting them by *|S|* gives *σ²Ip*(*f*). Thus the influence controls high degrees. The task is to bound the remaining mass using symmetry. *√* For large *n*, choose a uniformly random block *B* of *m* vertices, with *m* about *n*, and leave free all edges meeting *B*. Every permutation within *B* survives an assignment to the other coordinates, and every free-edge orbit has at least *m* elements. Section2bounds the restricted Fourier mass up to a degree *k* proportional to *σ*log*m* by *m* *−*1*/*4 times the restricted total influence. Its linear dependence on influence allows averaging over the assigned coordinates. Regard a nonempty Fourier index *S* as an *r*-uniform hypergraph with *s* edges. It has a vertex of positive degree at most *rs* (*r−*1)*/r*. For *s≤L* = (*k/r*) *α*, this degree is at most *k*. The event that *B* meets the union of these edges only at that vertex has probability comparable to *m/n* and leaves between one and *k* support edges free. After averaging over the assignments and *B*, the restricted total influence is at most(*rm/n*)*Ip*(*f*), so the two factors of *m/n* cancel. Section3 thereby controls the original Fourier mass up to degree*L*. Since *L* is of order(*σ*log*n*) *α*, the remaining mass is at most *σ²Ip*(*f*)*/L*, with coefficient of order *σ²* *−α* (log*n*) *−α*. The positive exponent2 *−α* makes this bound uniform in *p*. Section4completes the estimate and derives the threshold consequence.
+
+## 2 A Fourier estimate for small individual influences
+
+We first work on an arbitrary finite coordinate set *J*. Our objective is to control low-degree Fourier mass when every individual influence is small relative to the total. We follow the elementary argument in [9, Lemma 2.1]; its analytic ingredient is a two-to-four norm estimate of the type
+
+underlying the classical hypercontractive inequalities [2, 1]. The proof below includes the dependence on the bias. √ Fix0*< p <*1and put*σ*= *p*(1*−p*). For*i∈J*and*A⊆J*, define
+
+<u>xi−p</u> ∏ *χi*(*x*) =*, χA*(*x*) = *χi*(*x*)*, χ*∅= 1*.* *σ* *i∈A*
+
+Independence, zero means, and unit second moments show that the *χA*form an orthonormal basis. Write *h* ̂(
+
+*A*) = E*p*[*hχA*]. Throughout this section, norms and expectations use this product law,
+and*Ii*(*h*)and*I*(*h*)denote pivotal and total influence on*J*. For Boolean *h*, let∆*ih* be the function on the other coordinates obtained by subtracting the section at*xi*= 0from the section at*xi*= 1. Direct expectation in coordinate*i*gives
+
+*h* ̂( *A∪{i}*) =*σ*∆ ̂ *i* *h*(*A*) (*A⊆J\{i}*)*.*
+
+Because∆*ih∈{−*1*,*0*,*1*}*, Parseval’s identity yields ∑ ∑ *|S|h* ̂(
+
+*S*) 2 =*σ²I*(*h*)*,*Var*p*(*h*) = *h*
+̂(
+
+*S*) 2
+*.*(2.1)
+*S⊆J* ∅*̸*=*S⊆J*
+
+In particular, this identity uses no sign condition on∆*ih*.
+
+**Lemma 2.1**(Low-degree mass)**.***Let m≥* 2*be real and let h* : *{*0*,*1*}* *J* *→{*0*,*1*} satisfy Ii*(*h*) *≤* *I*(*h*)*/mfor everyi∈J. Withk*=*σ*log*m/*64*, one has* ∑ *h* ̂(
+
+*S*) 2 *≤m* *−*1*/*4
+*I*(*h*)*.*(2.2) 1*≤|S|≤k*
+
+### The sum is empty whenk <1.
+
+*Proof.* We will use a two-to-four norm estimate to bound low-degree projections of the differences ∆*ih*. Set*ρ*=*σ/*4and define the linear operator*T*by*TχA*=*ρ* *|A|* *χA*. We first prove
+
+*∥Tg∥*4*≤∥g∥*2(2.3)
+
+for every real-valued function *g* on the product space. For one coordinate, *|χi|≤* 1*/σ* and E*χ²i*= 1 imply*|*E*χ³i|≤*1*/σ*andE*χ⁴i≤*1*/σ²*. For real*a,b*, expansion and2*|ab³|≤a²b²* +*b⁴* give
+
+4 4 2 2 2<u>2ρ³</u>2 2 4<u>ρ⁴</u>4 E(*a*+*ρbχi*) *≤a* + 6*ρ a b* + (*a b* +*b*) + 2 *b* *σ σ* 4<u>13σ²</u>2 2<u>9σ²</u>4 2 2 2 =*a* + *a b* + *b ≤*(*a* +*b*)*,* 32 256
+
+where the last inequality uses*σ≤*1*/*2. To extend this estimate to the product, induct on *|J|*, starting with the constant functions when *J* is empty. Write *g* = *a* + *bχi*, where *a,b* depend on the remaining coordinates, and use *T* for the operator on those coordinates as well. The one-coordinate estimate, applied pointwise, followed by the*L²* triangle inequality gives
+
+*∥Tg∥* 2 4*≤∥*(*Ta*) 2 + (*Tb*) 2 *∥*2*≤∥Ta∥* 2 4+*∥Tb∥* 2 4*≤∥a∥* 2 2+*∥b∥* 2 2=*∥g∥* 2 2 *.*
+
+### This proves (2.3).
+
+Let *P≤k*be the orthogonal projection onto the span of *χA*with *|A|≤k*. For every *u* in this span, *∥u∥*4*≤∥T* *−*1 *u∥*2*≤ρ* *−k* *∥u∥*2*.*
+
+Taking the supremum of *|*E[*gu*]*|* over unit *L²* vectors in this span, and applying Hölder’s inequality, therefore gives *∥P≤kg∥*2*≤ρ* *−k* *∥g∥*4*/*3*.*(2.4)
+
+These inequalities are valid for real*k≥*0, with no rounding required. Each nonempty Fourier support is counted at least once when summed over its coordinates. Using the difference identity and enlarging the resulting degree cutoff from*k−*1to*k*, we obtain ∑ ∑ *h* ̂(
+
+*S*) 2 *≤σ² ∥P≤k*∆*ih∥*
+2 2 1*≤|S|≤k i∈J* ∑ *≤σ²ρ* *−*2*k* *I* *i*
+
+(*h*) 3*/*2
+*.*(2.5)
+*i∈J*
+
+Here each projection acts on the coordinates other than *i*, and *∥*∆*ih∥* 2 4*/*3 = *Ii*(*h*) 3*/*2 because *|*∆*ih|* is an indicator. The function *σ*log(4*/σ*)is increasing on(0*,*1*/*2]and is at most2. Hence *ρ* *−*2*k* *≤m¹* */*16. If *I*(*h*) *≤m¹* */*4, then *Ii*(*h*) 1*/*2 *≤m* *−*3*/*8, so (2.5) is at most *σ²m* *−*5*/*16 *I*(*h*) *≤m* *−*1*/*4 *I*(*h*). If *I*(*h*) *> m¹* */*4, the right side of (2.2) exceeds1, whereas its left side is at mostVar*p*(*h*)*≤*1*/*4.
+
+## 3 Restriction to a vertex block
+
+√ Return to a hypergraph property *f* on *E* = *En,r*and fix the bias *p*, with *σ* = *p*(1*−p*). Its Fourier coefficients use the basis of Section2, with *J* = *E*. The restriction method of [9, Lemma 3.1 and Proposition 3.2] preserves a large permutation group after conditioning. We first obtain an averaged estimate for restricted Fourier degrees, and then relate those degrees to the sizes of the original supports. For a vertex set*B⊆*[*n*], write
+
+### FB ={e∈E: e∩B̸=∅}
+
+for the edge coordinates that remain free.
+
+**Lemma 3.1**(Averaged restriction estimate)**.***Let r*+ 1 *≤m≤n be integers and set k* = *σ*log*m/*64*.* *ForBchosen uniformly among them-subsets of*[*n*]*,* ∑ <u>rm</u> Pr(1*≤|S∩FB |≤k*)*f* ̂(
+
+*S*) 2 *≤m* *−*1*/*4
+*I* *p*
+
+(*f*)*.*(3.1)
+*B n* *S⊆E*
+
+*Proof.* Fix *B* and an assignment *y* to the coordinates in *E\FB*. Denote the resulting Boolean function on *FB* by *fy*. Every permutation supported on *B* fixes each edge outside *FB* individually, and consequently fixes *y*. Thus *fy*is invariant under all these permutations, regardless of the assignment. ( *m* ) An edge with *j* vertices in *B* has an orbit of size *j* : its outside part is fixed and its inside part can be any *j*-subset of *B*. Since1 *≤j≤r < m*, this size is at least *m*. The free product measure is invariant under the same permutations, so influences are equal within each orbit. It follows that
+
+*I* *e* (*fy*)*≤I*(*fy*)*/m*(*e∈FB*)*.*
+
+Lemma2.1therefore applies to every*fy*. Average its conclusion over the product law of *y*. For *A⊆FB*, the Fourier expansion of *f* gives ∑ *f* ̂ *y*
+
+(*A*) = *f*
+̂( *A∪D*)*χD*(*y*)*.* *D⊆E\FB*
+
+Orthonormality in the assigned coordinates yields [ 2] ∑ 2 E*yf* ̂ *y*
+
+(*A*) = *f*
+̂( *A∪D*)*.* *D⊆E\FB*
+
+AlsoE*yIe*(*fy*) =*Ie,p*(*f*)for every*e∈FB*, by conditioning the disagreement event. Consequently ∑ ∑ *f* ̂(
+
+*S*) 2 *≤m* *−*1*/*4
+*I* *e,p*(*f*)*.* *S*: 1*≤|S∩FB |≤k e∈FB*
+
+Finally average over *B*. For each fixed edge *e*, a union bound on its *r* vertices gives Pr*B*(*e∈FB*) *≤* *rm/n*, proving (3.1).
+
+The next lemma extends the graph capture argument of [9, Lemma 3.3] to identify the hypergraph supports detected by this estimate. Here a support *S* is itself a set of distinct *r*-edges; its vertex union contains no isolated vertices.
+
+**Lemma 3.2**(Capturing a support at one vertex)**.***Let n≥r≥* 3*and*1 *≤m≤n be integers, let* *k >*0*, and put* <u>r</u>*α* *α*=*, L*= (*k/r*)*.* *r−*1 *Suppose* <u>m−1 1</u> *rL ≤.*(3.2) *n−*1 2 *For a uniformm-subsetBof*[*n*]*and everyS⊆En,rwith*1*≤|S|≤L,*
+
+<u>m</u> Pr(1*≤|S∩FB |≤k*)*≥.*(3.3) *B* 2*n* ⋃ ( )*vr* *r* *Proof.* Fix such an *S*, write *s* = *|S|*, and let *V* =*e∈Se* and *v* = *|V|*. Because *s≤ ≤v*, the average degree of the hypergraph with edge set*S*is at most
+
+<u>rs</u>(*r−*1)*/r* *≤rs ≤k.* *v*
+
+Choose a vertex *u∈V* of degree *dS*(*u*)between1and *k*. This choice depends only on *S*, before *B* is sampled. Conditional on *u∈B*, each other vertex lies in *B* with probability(*m−* 1)*/*(*n−* 1). The union bound and*v≤rs≤rL*therefore give () <u>m m−1</u> Pr(*B∩V*=*{u}*)*≥* 1*−*(*v−*1) *B n n−*1 <u>m</u> *≥.* 2*n*
+
+On this event, the edges of *S* meeting *B* are exactly those containing *u*. Thus *|S∩FB |* = *dS*(*u*) *∈* [1*,k*].
+
+The captured set need not consist of a single edge: the block meets one support vertex, and retains every support edge incident with it. Also the vertex *u* may vary with *S*, since (3.3) is a separate probability bound for each nonnegative summand in (3.1). Combining Lemmas3.1and3.2gives, whenever their hypotheses hold, ∑ *f* ̂(
+
+*S*) 2 *≤*2*rm*
+*−*1*/*4 *I* *p*
+
+(*f*)*.*(3.4)
+1*≤|S|≤L*
+
+If *L <* 1, this conclusion holds because the sum is empty. Otherwise, restrict the nonnegative sum in (3.1) to1 *≤|S|≤L* and divide by the lower bound *m/*(2*n*). This completes the transfer from restricted degree*k*to original degree(*k/r*) *r/*(*r−*1).
+
+## 4 The uniform bound and its threshold consequence
+
+We now choose the block size so that (3.4) controls the low-degree part of the variance. The weighted Parseval identity will control the remaining degrees.
+
+*Proof of Theorem1.1.* Fix *r≥* 3and write *α* = *r/*(*r−* 1). Choose an integer *Nr> r* such that, *√* for every*n≥Nr*and*m*=*⌊ n⌋*,
+
+*m≥r*+ 1*,*log*m≥* <u>1</u> 3 log*n,* *α −*1*/*2 <u>1</u> *−*1*/*4 *α* (4.1) *r*(log*n*) *n ≤* 2 *, m* (log*n*) *≤*1*.* *√* Such an *Nr*exists: *m* is asymptotic to *n*, and any fixed power of log*n* grows more slowly than a positive power of*n*. In particular, the choice is independent of*p*and*f*. Assume first that*n≥Nr*, and set √ <u>σlogm</u> *σ*= *p*(1*−p*)*, k*=*, L*= (*k/r*) *α* *.* 64
+
+Both cutoffs are positive. Since*k/r≤*log*n*and *√* *m−*1 *n−*1 1*−*1*/*2 *≤* = *√ ≤n,* *n−*1 *n−*1 *n*+ 1
+
+the third condition in (4.1) implies (3.2). Thus (3.4) and the fourth condition in (4.1) give
+
+∑ 2*r* *f* ̂(
+
+*S*) 2 *≤*
+*α* *I* *p*
+
+(*f*)*.*(4.2)
+(log*n*) 1*≤|S|≤L*
+
+### For the remaining degrees, (2.1) gives
+
+∑ <u>1</u> ∑ <u>σ²</u> *f* ̂(
+
+*S*) 2 *≤ |S|f*
+̂(
+
+*S*) 2 = *Ip*(*f*)*.*
+*L* *S* *L* *|S|>L*
+
+The decisive bias dependence is
+
+*σ²* (64*r*) *α* *σ²* *−α* (192*r*) *α* = *α* *≤* *α*
+
+*.*(4.3)
+*L* (log*m*) (log*n*)
+
+Indeed2 *−α* = (*r−* 2)*/*(*r−* 1) *>* 0, *σ≤* 1, and log*m≥* (log*n*)*/*3. This estimate remains valid at arbitrarily small positive *σ*. If *L <* 1, the low-degree sum is empty and the same tail estimate bounds the whole variance. Adding the two parts proves (1.1) for *n≥Nr*with constant2*r* + (192*r*) *α*. For *r≤n < Nr*, (2.1) givesVar*p*(*f*)*≤σ²Ip*(*f*)*≤Ip*(*f*)*/*4. Therefore a valid choice for all*n*and*p*is {*α*} *α*<u>(logNr)</u> *Cr*= max 2*r*+ (192*r*)*,.* 4
+
+We finish with the threshold consequence stated in the introduction. Recall that *q*(*p*) = E*pf* and*pa*= inf*{p∈*[0*,*1] : *q*(*p*)*≥a}*.
+
+**Corollary 4.1.***For a nontrivial increasing property of r-uniform hypergraphs on n≥r vertices,* *wherer≥*3*, and every*0*< ε <*1*/*2*,*
+
+<u>2Cr1−ε</u> *p₁−ε−pε≤* *r/*(*r−*1) log*.* (log*n*) *ε*
+
+*Proof.* The Margulis–Russo identity relates pivotal influences to the probability derivative; see [8], [10, Lemma 3], and [5, Lemma 2.2]. Here it follows directly by giving each coordinate its own bias: the expectation is affine in each bias separately, and its partial derivative in coordinate*e*is E*p*[*f* (*xe←*1)*−f*(*xe←*0)]. Monotonicity identifies this with *Ie,p*(*f*). Differentiating along the common bias gives*q* *′*
+
+(*p*) =*Ip*(*f*).
+Nontrivial monotonicity gives *q*(0) = 0and *q*(1) = 1. Some pair of configurations differing in one coordinate has different values, so its pivotal event has positive probability for every0 *< p <* 1. Hence*q* *′*
+
+(*p*)*>*0there, and the stated quantiles exist uniquely. Theorem1.1implies
+<u>q</u> *′*
+
+<u>(p) (logn)</u>
+*r/*(*r−*1) *≥.* *q*(*p*)(1*−q*(*p*)) *Cr*
+
+Integrating from*pε*to*p₁−ε*, using the antiderivativelog(*q/*(1*−q*)), proves the claim.
+
+## References
+
+[1]W. Beckner, Inequalities in Fourier analysis,*Annals of Mathematics***102**(1975), 159–182.
+
+[2] A. Bonami, Étude des coefficients de Fourier des fonctions de *L* *p*
+
+(*G*),*Annales de l’Institut*
+*Fourier***20**(1970), no. 2, 335–402.
+
+[3] J. Bourgain, J. Kahn, G. Kalai, Y. Katznelson, and N. Linial, The influence of variables in product spaces,*Israel Journal of Mathematics***77**(1992), 55–64.
+
+[4] J. Bourgain and G. Kalai, Influences of variables and threshold intervals under group symme- tries,*Geometric and Functional Analysis***7**(1997), 438–461.
+
+[5] E. Friedgut and G. Kalai, Every monotone graph property has a sharp threshold,*Proceedings* *of the American Mathematical Society***124**(1996), 2993–3002.
+
+[6] J. Kahn, G. Kalai, and N. Linial, The influence of variables on Boolean functions, in*Proceedings* *of the 29th Annual Symposium on Foundations of Computer Science*, IEEE, 1988, 68–80.
+
+[7] E. Kelman, G. Kindler, N. Lifshitz, D. Minzer, and M. Safra, Towards a proof of the Fourier- Entropy Conjecture?,*Geometric and Functional Analysis***30**(2020), 1097–1138. See also arXiv:1911.10579v2, May 7, 2020.
+
+[8] G. A. Margulis, Probabilistic characteristics of graphs with large connectivity,*Problems of* *Information Transmission***10**(1974), 174–179.
+
+[9] OpenAI,*A Sharp Threshold Bound for Monotone Graph Properties*, OpenAI Math Release preprintOAI:A-Sharp-Threshold-Bound-for-Monotone-Graph-Properties-September-25-2026,
+
+2026.
+[10] L. Russo, On the critical percolation probabilities,*Zeitschrift für Wahrscheinlichkeitstheorie* *und verwandte Gebiete***56**(1981), 229–237.

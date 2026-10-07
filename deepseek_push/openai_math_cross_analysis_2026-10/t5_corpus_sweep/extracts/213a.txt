@@ -1,0 +1,497 @@
+# Critical bond and site percolation on the cubic lattice
+
+OpenAI
+
+### September 24, 2026
+
+**Abstract**
+
+We prove that nearest-neighbor Bernoulli bond and site percolation on Z³ have no infinite cluster at their respective critical parameters. The proof combines a finite connection inequality for independent hyperedges with a finite-scale extension estimate and an adaptive exploration.
+
+## 1 Introduction
+
+In Bernoulli bond percolation on the nearest-neighbor cubic lattice Z³, each edge is independently open with probability *p*. In Bernoulli site percolation, the independent open bits instead belong to the vertices, and an open path must have every vertex open, including its endpoints. Write P*p*for the law of the model under consideration and define its critical parameter by
+
+*pc*= inf*{p∈*[0*,*1] :P*p*(0belongs to an infinite open cluster)*>*0*}.*
+
+By translation invariance and a countable union over vertices, the same threshold is obtained by asking for the existence of any infinite cluster. The bond and site thresholds are defined separately throughout.
+
+**Theorem 1.1.***For nearest-neighbor Bernoulli bond percolation on* Z³*, there is almost surely no* *infinite open cluster at the bond critical parameter. The same assertion holds for nearest-neighbor* *Bernoulli site percolation at the site critical parameter.*
+
+Write *θ*(*p*) = P*p*(0 belongs to an infinite open cluster). The theorem gives continuity at the transition: *θ*(*p*)tends to zero as *p↓pc*. To see this consequence directly, for *n≥* 1let *En*be the event that the origin reaches the boundary of the box[*−n,n*] 3 *∩*Z³ by an open path inside that box. Then P*p*(*En*) *↓θ*(*p*)as *n→∞*. At *pc*, the theorem makes this limit zero. Given *ε >* 0, first choose *n* with P*pc*(*En*) *< ε*; since *En*depends on finitely many bits, the same strict inequality holds for *p* sufficiently close to *pc*. Thus *θ*(*p*) *≤*P*p*(*En*) *< ε* there. The proof below establishes critical extinction for both models without using an external criticality theorem.
+
+**History and the three-dimensional obstacle.**Broadbent and Hammersley introduced per- colation to study transport through a random medium [2]. In two dimensions, Harris’s critical nonpercolation theorem and Kesten’s identification of the square bond threshold established the bond result [9, 11]. Russo proved critical nonpercolation for nearest-neighbor site percolation on the square lattice [14, Theorem 2(b)]. These planar results use geometry that is unavailable for paths in three dimensions. In sufficiently high dimensions, Hara and Slade established mean-field critical behavior through the lace expansion [8]. Fitzner and van der Hofstad obtained the nearest-neighbor bond range
+
+*d≥* 11[6]. Hara and Slade also noted that their method applies to site percolation [8, p. 335]. Heydenreich and Matzke later gave a detailed site lace-expansion treatment, proving the triangle condition in sufficiently high dimensions and its critical nonpercolation consequence [10, Theorem 1.1 and Section 1.3]. The explicit bond dimension bound is not a site bound. Benjamini and Schramm formulated the broader criticality question for quasi-transitive graphs with *pc<* 1[1, Conjecture 4]. Grimmett and Marstrand proved convergence of slab thresholds to the full-lattice threshold and developed a dynamic renormalization argument using open seeds and sequentially controlled exploration [7]. Duminil-Copin, Sidoravicius, and Tassion subsequently proved critical nonpercolation for bond percolation on slabs [5]. As their discussion explains, extinction at every fixed slab threshold, together with convergence of those thresholds, does not by itself give critical extinction in the full cubic lattice. The proof here obtains the required connections between finite regions from a finite comparison, and fixes all scales before decreasing the percolation parameter. Leder’s public account of a Lean formalization reports critical bond nonpercolation on every nearest-neighbor lattice Z *d*, *d≥* 2[13]. Its first-contact comparison [13, Section 3.4, (GEN)] already implies the finite joint connection inequality for bonds: take the increasing cluster functional to indicate meeting the target set. The subsequent public Kozma–Nitzan exposition explicitly records this consequence and reports stronger finite comparisons [4, “Conjecture 1 from the Lean proof of Conjecture 3”]. The related public site exposition reports the independent labelled-hyperedge comparison, a conditioned-covariance hierarchy, and critical site nonpercolation on Z *d* for every *d≥* 3[3, “One inequality for both models”, “Conditional covariance inequalities”, and “From (1) to the lattice”]. These two public expositio... [truncated]
+
+**Finite comparison and the proof method.**Our main finite ingredient is a connection inequality for independent, possibly nonuniform hyperedges. For a node *o* and nonempty node set *A*, it asserts that P(*o↔A, o↔T*)*≥*P(*o↔A*) min P(*a↔T*)*.*(1.1) *a∈A* Here an open hyperedge joins all of its nodes. The inequality implies that if every possible relay in *A* reaches a target *T* with probability at least1 *−b*, then the probability of reaching *A* but missing *T* is at most *b*. This failure bound also holds for sites, and after any set of bits has been fixed while the remaining bits retain their product law. Thus it remains available during an exploration. Taking *T* to be a singleton in (1.1) and enlarging the event on the left gives the multiplicative gluing inequality of Kozma and Nitzan [12, Conjecture 1]. They also record that van den Berg and Engelenburg independently considered this inequality. Section 4 of Kozma and Nitzan connects finite comparisons to criticality through renormalization. The proof of (1.1) uses increasing functions of clusters, a nonnegative cone of conditional connection columns, and alternating conditional cluster resampling. Conditional resampling has precedents in percolation correlation inequalities [15, Section 2.1]. We prove the required comparison and every lattice relay estimate locally. The general bond criticality theorem does not imply the site assertion: independent site bits become independent hyperedges, and their endpoint convention must be preserved. The finite hyperedge comparison and its stability under fixed bits are useful independently of the lattice application.
+
+**Proof overview.**Assume that an infinite cluster exists at *pc*. Large seed boxes then connect with high probability to each of the 24 quarter-faces of a surrounding cube. Only finitely many radii are needed, so these estimates persist at one parameter*q < pc*.
+
+The finite comparison lets us extend a connection through a fresh region. The seed and sequential-exploration architecture is related to the dynamic renormalization method of Grimmett and Marstrand [7, Sections 3–4]. Here many well-separated entrance points provide independent chances for an open seed, while relay quality is defined using the interior bits alone. A sequence of thirteen elementary geometric moves transfers a connection from the inner box of one coarse cube to that of its neighbor. Finally, we explore cubes indexed by Z², retaining a high conditional connection probability for each pending cube. Each processed cube has a uniformly small conditional chance of failure. A planar boundary count then gives a positive chance of infinitely many successful cubes, and hence an infinite open cluster at *q < pc*, a contradiction. Neither uniqueness of the infinite cluster nor independence of the successful coarse cubes is assumed. Section2proves the finite comparison. Section3gives the planar count and fixes the scales. Sections4and5prove the extension and neighboring-box estimates. Section6constructs the exploration and completes the proof.
+
+**Connection conventions.**For a vertex *x* and vertex set *T*, the notation *x↔T* means that an open path in the specified graph joins *x* to some vertex of *T*. For two sets, at least one pair of their vertices must be so joined. We permit paths of zero edges. Such a path always gives a self-connection for bonds and hyperedges, but for sites its single vertex must be open. All graphs and hypergraphs in the finite comparison are undirected.
+
+## 2 A finite connection comparison
+
+The lattice argument will need to pass from a connection to a set of possible relays to a connection to a target. We prove the finite inequality that makes this passage possible, allowing different probabilities for the independent bits so that the result remains available after some bits have been fixed. A finite hypergraph has a finite node set and a finite labelled family of nonempty subsets called hyperedges; distinct labels may represent the same subset. Each hyperedge is independently open with its own probability; an open hyperedge joins all its nodes. The cluster *C*(*x*)always ⋃ contains *x*, and *C*(*S*) =*x∈SC*(*x*). All connections in this section are in finite undirected graphs or hypergraphs.
+
+**Proposition 2.1**(Joint connection comparison)**.***In independent percolation on a finite hypergraph,* *with arbitrary hyperedge probabilities in*[0*,*1]*, let o be a node and let A,T be node sets with A̸*= ∅*.* *Then* P(*o↔A, o↔T*)*≥*P(*o↔A*) min P(*a↔T*)*.*(2.1) *a∈A*
+
+For bonds, subtraction immediately turns this inequality into the failure bound needed later. Sites require an additional check because a hypergraph node is always connected to itself, whereas a site self-connection requires an open vertex. We give that check at the end of the section. The proof of Proposition2.1assigns each cluster meeting an ordered list to its first node in that list. Conditional connection probabilities form the columns of a triangular matrix. The positivity property below will bound the source’s joint connection probability from below by a nonnegative weighted sum of relay-to-target probabilities. The weights will total the probability of reaching the relay set, giving the proposition. Deleting a node set *w* means deleting its nodes and every hyperedge meeting it; write *G\w* for the resulting hypergraph. On an exact-cluster event *C*(*S*) = *w* of positive probability, the hyperedges of *G\w* retain their independent original laws. Indeed, the event asks that every node
+
+of *w* connect to *S* within *w*, and that all hyperedges crossing from *w* to its complement be closed. It tests no hyperedge disjoint from*w*. The same observation applies after an earlier deletion.
+
+**Lemma 2.2**(Cluster columns)**.***Let G be a finite hypergraph whose hyperedges have independent* *open probabilities strictly less than one. Choose any ordered list of distinct nodes x₁,...,xn; the list* *need not contain every node. Define*
+
+*Sk*=*{xi*: *i < k}, Ek*=*{C*(*xk*)*∩Sk*=∅*}, dk*=P(*Ek*)*>*0*,*
+
+*and letµkbe the conditional law ofC*(*xk*)*givenEk, regarded as a measure on*
+
+### Dk={U: xk∈U, U∩Sk=∅}.
+
+### For a functionFonDk, let
+
+*vk* *F*
+
+(*i*) =E*µ* *k* [**1***{x*
+*i* *∈U}F*(*U*)]*, hk*=*vk* 1 *, H*= (*h₁ ···hn*)*.*
+
+*IfFis nonnegative and increasing under inclusion, then*
+
+*vk* *F* *−µk*(*F*)*hk∈*cone*{hj*: *k < j≤n}.*(2.2)
+
+*Here the cone consists of all nonnegative linear combinations, including zero. In particular, H* *−*1 *v* *k* *F* *is coordinatewise nonnegative.*
+
+*Proof.* Closing every hyperedge incident to *xk*proves *dk>* 0. The matrix *H* is unit lower triangular: its *k*th column vanishes above row *k* and has entry one in row *k*. We prove (2.2) by descending induction on *k*. For *k* = *n*, both *vn* *F* and *µn*(*F*)*hn*equal *µn*(*F*)*en*, where *en*is the *n*th coordinate vector. Fix *k < n* and assume the assertion for every later column. Write *s* = *xk*, *S* = *Sk*, and *W* = *C*(*S*). For a set*w⊇S*avoiding*s*, put [ *\w*] *c*(*w*) =E *F*(*CG* (*s*))*,*
+
+where the expectation uses the original product law on the undeleted hyperedges. Restriction of the same configuration shows that*c*(*w*)is nonincreasing in*w*.
+
+**A first-listed-node decomposition.**Fix a row *i*. For *j > k*, let *Lij*be the event that the first listed node of *C*(*xi*)is *xj*. Condition on an exact value *W* = *w* avoiding *s*. Then the mean of *F* (*C*(*s*))is *c*(*w*). If *xi/∈w*, its cluster contains the listed node *xi*and avoids all listed nodes preceding *s*, which belong to *w*. Its first listed node is therefore *s* precisely when *xi∈C*(*s*); otherwise exactly one of the events *Lij*occurs. On *Lij*, condition further on *C*(*xj*) = *U*. The set *U* avoids *s*, and the specification of *Lij*adds only membership and avoidance conditions on *U*. Exact-cluster conditioning therefore leaves the mean of *F* (*C*(*s*))equal to *c*(*w∪U*). Partitioning the expectation *c*(*w*)and subtracting*c*(*w*)times the corresponding partition of total probability gives
+
+E[**1***{x* *i* *∈C*(*s*)*}F*(*C*(*s*))*|W*=*w*] ∑ [] =*c*(*w*)P(*xi∈C*(*s*)*|W*=*w*) + E **1***Lij{c*(*w*)*−c*(*w∪C*(*xj*))*}|W*=*w .*(2.3) *j>k*
+
+The expressions involving *c*(*w∪C*(*xj*))are evaluated only on *Lij*. If *xi∈w*, all *Lij*are empty under the conditioning, and both sides vanish.
+
+For*U*disjoint from*S*, let*WU* =*CG* *\U*
+
+(*S*). Define, for*U∈Dk*,
+(*PF*)(*U*) =E[*c*(*WU*)]*,*
+
+and, for*U*disjoint from*S∪{s}*, define [] *RF*(*U*) =E **1***{s/∈WU}{c*(*WU*)*−c*(*WU ∪U*)*} ,*(2.4)
+
+with zero integrand when *s∈WU*. The operator *P* preserves nonnegativity and monotonicity: enlarging*U*shrinks*WU*, whereas*c*is nonincreasing. We now average (2.3) conditional on *Ek*. Given *C*(*s*) = *U* avoiding *S*, the conditional law of *W* is that of*WU*. Thus the first term on the right averages to
+
+E*µ* *k* [**1***{x* *i* *∈U}*(*PF*)(*U*)] =*vk* *PF*
+
+(*i*)*.*
+For a residual term, the exact event identity is
+
+*Ek∩Lij*=*Ek∩Ej∩{xi∈C*(*xj*)*}.*
+
+Indeed, a cluster avoiding the earlier listed nodes also avoids their entire clusters. Given *C*(*xj*) = *U* under *Ej*, the conditional law of *W* is again that of *WU*, and the remaining restriction *Ek*is *s /∈WU*. Consequently the unnormalized residual expectation is [] E **1***E* *k* *∩Lij{c*(*W*)*−c*(*W∪C*(*xj*))*}* =*dj*E*µj*[**1***{xi∈U}RF*(*U*)]*,*
+
+where the expression on the left is evaluated only when its indicator is one. Dividing by *dk*and summing over*j > k*proves the column identity ∑ <u>d</u> <u>j</u> *R* *vk* *F* =*vk* *PF* + *v* *j* *F*
+
+*.*(2.5)
+*j>k* *dk*
+
+Here and below *RF* is restricted to *Dj*in the *j*th column. To complete the induction, we show that *RF* is nonnegative and increasing and that*P* *t* *F*converges uniformly to*µk*(*F*).
+
+**The residual is increasing.**Sample all hyperedge bits once, and use their restrictions after every deletion. For deterministic *U* disjoint from *S∪{s}*, the event *WU* = *w* tests only bits of hyperedges disjoint from *U* and meeting *w*. Every full-graph hyperedge disjoint from *w* therefore retains its independent original law after this conditioning, including hyperedges that meet *U*. When *s /∈w*, the two clusters in the following difference consequently have the marginal laws defining *c*(*w*)and *c*(*w∪U*). Hence*RF*(*U*) =E[*DU*], where {} *DU* =**1***{s/∈WU}F*(*CG* *\WU*
+
+(*s*))*−F*(*CG*
+*\*(*WU ∪U*)
+
+(*s*))*,*(2.6)
+again interpreted as zero on the excluded event. All clusters at which *F* is evaluated contain *s* and avoid*S*. The first cluster contains the second, so *DU ≥* 0. To compare two sets *U⊆U* *′*, first note that *WU′ ⊆WU*. On *{s /∈WU}*, deleting the smaller set *WU′* makes the first cluster larger. The second cluster has a different monotonicity:
+
+*CG* *\*(*WU ∪U*)
+
+(*s*) =*CG* *\U*
+(*s*)*.*
+Indeed, in *G\U* the source cluster is disjoint from the union *WU* of the *S*-clusters, so deleting *WU* removes none of its open connections. The same equality holds for *U* *′*, because *s /∈WU′*. Thus the second cluster becomes smaller when *U* is replaced by *U* *′*. Both changes increase the difference of the two values of *F*, giving *DU′ ≥DU*. On *{s∈WU}*, this inequality follows instead from *DU* = 0 and*DU′ ≥*0. Taking expectations proves that*RF* is nonnegative and increasing.
+
+**Conditional resampling and the limit.**The operator *P* is a Markov transition: from *U*, first sample *WU*, then independently sample *CG* *\WU*
+
+(*s*). Under the joint law of(*C*(*s*)*,W*)conditional on
+*Ek*, these are the successive conditional laws of *W* given *C*(*s*)and of *C*(*s*)given *W*. Hence *µk*is stationary for *P*. Alternating conditional cluster resampling under a separation condition is the method used by van den Berg, Häggström, and Kahn [15, Section 2.1, proof of Theorem 2.1]; the cone conclusion here is proved by the following iteration. Every transition assigns probability at least ∏ *a*= (1*−pe*)*>*0 *e*: *s∈e*
+
+to the singleton *{s}*, since closing every incident hyperedge suffices to isolate *s* in any deletion graph. Thus, for every real function*g*on the finite state space*Dk*, subtracting this common mass gives
+
+max*Pg−*min*Pg≤*(1*−a*)(max*g−*min*g*)*.*
+
+Iteration makes the oscillation of *P* *t* *F* tend to zero. Its *µk*-mean remains *µk*(*F*)by stationarity, so
+
+sup *|*(*P* *t*
+
+*F*)(*U*)*−µk*(*F*)*|≤*(1*−a*)
+*t* (max*F−*min*F*)*−→*0*.* *U∈Dk*
+
+This proves the required uniform convergence, including at states of*Dk*with zero*µk*-mass. *RF* By the induction hypothesis, each *v* *j* is a nonnegative combination of *hj,...,hn*. Equation (2.5) therefore puts *v* *k* *F* *−v* *k* *PF* in the cone on the right of (2.2). All iterates *P* *t* *F* remain nonnegative *F PtF* increasing, so iteration puts *v* *k* *−v* *k* in that cone as well. The cone is closed, because its generators belong to the basis given by the columns of *H*. Taking the uniform limit proves (2.2). Finally, adding *µk*(*F*)*hk*expresses *v* *k* *F* as a nonnegative combination of columns of *H*, proving the last assertion.
+
+*Proof of Proposition2.1.* First suppose all probabilities are below one. Use the notation of Lemma2.2. For *F* (*U*) =**1***{x* *j* *∈U*for some*j>k}*, isolation of *xk*gives *µk*(*F*) *<* 1, and direct inspection of the rows gives *vk* *F* *−µk*(*F*)*hk*= (1*−µk*(*F*))(*hk−ek*)*,*
+
+where*ek*is the*k*th coordinate vector. Lemma2.2yields nonnegative coefficientsΓ*jk*such that ∑ *hk*=*ek*+ Γ*jkhj.* *j>k*
+
+WithΓzero on and above the diagonal, these column identities say *H* = *I* + *H*Γ, or *H* *−*1 = *I−* Γ. Also, for*d*= (*d₁,...,dn*) T, *Hd*=**1***,*(*I−*Γ)**1**=*d.*(2.7)
+
+Indeed, the cluster of *xi*has first listed node *xk*with probability *dkhk*(*i*), and these events partition the sample space. If *o∈A*, (2.1) is immediate. Otherwise take the list to consist exactly of the nodes of *A*, in any order, followed by*xn*=*o*. Set
+
+*F*(*U*) =**1***{U∩A̸*=∅*, U∩T̸*=∅*}, yi*=E[*F*(*C*(*xi*))]*.* ∑ *F* Partitioning by the first listed node gives *y* =*kdkv* *k*, where *F* is restricted to *Dk*in each summand. Every restriction is nonnegative increasing, so Lemma2.2gives(*I−* Γ)*y≥* 0coordinatewise. In the last row, ∑ *yn≥* Γ*niyi.* *i<n*
+
+For *i < n*, *yi*= P(*xi↔T*), while *yn*= P(*o↔A, o↔T*). By (2.7), the nonnegative weights in this row sum to ∑ Γ*ni*= 1*−dn*=P(*o↔A*)*.* *i<n* This proves (2.1). Finally, finite event probabilities are polynomials in the hyperedge parameters, and the minimum in (2.1) is finite. Continuity therefore allows probabilities equal to one as well.
+
+**Corollary 2.3**(Failure comparison)**.***Consider independent bond or site percolation on a finite* *undirected graph, with arbitrary individual probabilities in*[0*,*1]*. For a vertex o, vertex sets A,T,* *andb∈*[0*,*1]*, if* P(*a↔T*)*≥*1*−b*(*a∈A*)*,*
+
+*then* P(*o↔A, o̸↔T*)*≤b.*(2.8)
+
+*The assertion therefore applies after any deterministic collection of bits has been fixed.*
+
+*Proof.* The empty-set case *A* = ∅ is immediate. For bonds, Proposition2.1and subtraction give the stronger upper bound*b*P(*o↔A*)*≤b*. For sites, use the incidence construction described in [3, “One inequality for both models”]. Create a node *x* *∗* for every graph vertex *x* and a connector node for every graph edge. For each site *x*, form a hyperedge consisting of *x* *∗* and all connector nodes corresponding to edges incident to *x*; its independent open bit is the bit of site *x*. For distinct vertices *x,z*, connection of *x* *∗* to *z* *∗* is equivalent to an open site path from *x* to *z*. Hypergraph self-connection, however, always holds. Writing*A* *∗* *,T* *∗* for the starred images, we consequently have
+
+Phyp(*a* *∗* *↔T* *∗* )*≥*Psite(*a↔T*)*≥*1*−b.*
+
+On the site event in (2.8), the origin *o* is open. Its hypergraph connections to starred vertices therefore agree with its site connections, including a possible zero-edge path to itself. This gives the event inclusion *{o↔A, o̸↔T}*site*⊆{o* *∗* *↔A* *∗* *, o* *∗* *̸↔T* *∗* *}*hyp*.*
+
+Applying Proposition2.1and subtraction to the hypergraph bounds the latter event by *b*, proving the site assertion. Fixed bits are exactly parameters equal to zero or one, already allowed in the statement.
+
+## 3 Planar boundaries and finite scales
+
+We now fix either the bond or the site model. This section supplies a planar boundary count and chooses all the finite scales needed to lower the parameter. The boundary count will be used first to show*pc<*1, and then to prove that the adaptive exploration survives.
+
+### 3.1 A deterministic boundary count
+
+An edge of the dual square lattice Z² + (1*/*2*,*1*/*2)crosses exactly one primal edge of Z². For a finite set *X⊂*Z², its dual edge boundary consists of the dual edges crossing primal edges with exactly one endpoint in*X*.
+
+**Lemma 3.1**(Boundary cycles)**.***There are deterministic families Cnof simple dual cycles of length* *n, with |Cn|≤* 2*n*3 *n* *, such that the dual edge boundary of every finite X⊂*Z² *containing*0*includes* ⋃ *a cycle inn≥*1*Cn. For each cycle in Cn, one can fix at least n/*7*of its crossed primal edges with* *pairwise disjoint endpoints.*
+
+*Proof.* At a dual vertex, the boundary degree counts the membership changes around a primal square, and is therefore even. The finite dual boundary consequently decomposes into edge-disjoint simple cycles: extract a simple cycle whenever an edge remains, and remove its edges, preserving even degrees. Along the positive horizontal ray from0, the total number of boundary crossings is odd, since membership in *X* starts at one and eventually becomes zero. At least one cycle in the decomposition has an odd number of positive-ray crossings. The total number of crossings of a closed dual cycle with the whole horizontal line is even, by counting changes of the sign of the height. The selected cycle therefore also crosses the negative ray. If its length is *n*, a positive crossing has horizontal coordinate *t*+ 1*/*2for some integer0 *≤t < n*: the horizontal distance to a negative crossing is less than *n*. Define *Cn*to be all simple length-*n* cycles having such an anchored crossing and an odd number of positive-ray crossings. There are at most *n* choices for the anchored edge, two orientations, and at most3 *n* nonbacktracking continuations. This proves the asserted overcount. Finally, greedily select crossed primal edges in a fixed order, discarding all edges incident to either endpoint of each selection. Each selection discards at most seven edges, including itself, because the primal degree is four. The selected edges have disjoint endpoints and number at least*n/*7.
+
+### Lemma 3.2.For both models onZ³,pc<1.
+
+*Proof.* It suffices to percolate on a coordinate copy of Z². In the bond model, if the origin cluster there is finite, all primal edges crossed by its dual boundary are closed. Lemma3.1and a union bound give ∑ P*p*(0has a finite planar cluster)*≤* 2*n*3 *n* (1*−p*) *n* *<*1 *n≥*1 for*p <*1sufficiently close to one. For sites, first separate the event that0is closed. If its open planar cluster is finite, each edge crossed by the boundary cycle has a closed endpoint. For a fixed candidate cycle, select *k≥n/*7 edges with disjoint endpoints as in Lemma3.1. The union over choices of one closed endpoint of each edge has probability at most[2(1*−p*)] *k*. For*p*close to one,2(1*−p*)*<*1, so ∑ P*p*(0is not in an infinite planar open cluster)*≤*(1*−p*) + 2*n*3 *n* [2(1*−p*)] *n/*7 *<*1*.* *n≥*1
+
+Indeed both displayed series are convergent geometric-power series tending to zero as *p↑* 1. This proves the lemma.
+
+### 3.2 Seed boxes and quarter-faces
+
+### Foru∈Z³ and a nonnegative integerb, write
+
+Λ*b*(*u*) =*u*+ ([*−b,b*] 3 *∩*Z³)*,*Λ*b*= Λ*b*(0)*.*
+
+A*quarter-face*ofΛ*b*(*u*)is obtained by setting one coordinate relative to *u* equal to *b* or *−b*, and restricting each remaining coordinate to either[0*,b*]or[*−b,*0]. There are 24 such quarter-faces;
+
+*F*1+*,*+ *,*+
+
+*x₃*
+
+*x₂ x₁*
+
+Figure 1: Quarter-faces ofΛ*b*(*u*), shown schematically for *b >* 0. Each of the three visible faces
+
+is divided into four quarter-faces; the three opposite faces are divided in the same way. Thus3 normal axes *×*2normal signs *×*4transverse sign pairs give24quarter-faces. Boundary overlaps are +*,*+ permitted. The shaded example*F₁,*+has*x₁ −u₁* =*b*and0*≤x₂ −u₂,x₃ −u₃ ≤b*.
+
+overlaps on their boundaries do not matter. More explicitly, for a normal index *i∈{*1*,*2*,*3*}*, a sign *σ∈{−*1*,*+1*}*, and signs*εj∈{−*1*,*+1*}*for the two indices*j̸*=*i*, set
+
+(*εj*)*j̸*=*i* *F* *i,σ* (*u,b*) =*{u*+*x*: *xi*=*σb,*0*≤εjxj≤b*(*j̸*=*i*)*}.*(3.1)
+
+The six choices of(*i,σ*)and the four choices of the transverse sign pair enumerate all 24 faces. Figure1illustrates this indexing. A bit is*internal*to a vertex set if it is a site in that set, or, for bonds, an edge with both endpoints in that set. Suppose, towards a contradiction, that at *p* = *pc*an infinite cluster exists with positive probability. Then0 *< p <* 1by Lemma3.2and the absence of percolation at zero. In fact an infinite cluster exists almost surely. To see this without a uniqueness assumption, the existence event is invariant under changing finitely many bits. Deleting finitely many edges, or finitely many vertices in a locally finite graph, splits an infinite connected component into only finitely many components, at least one of which is infinite. The event is measurable by countably many finite-path tests, and is determined by the bits outside any finite set. Thus it is independent of every finite cylinder event. Finite cylinder events approximate all events in this countable product space in probability, so the existence event is independent of itself and has probability zero or one. It follows that
+
+### Pp(Λmmeets an infinite cluster)−→1 (m−→∞).(3.2)
+
+We also use Harris’s positive-association inequality [9] for increasing events under a finite product of independent bits, and of decreasing events. Here is an elementary proof. For two increasing functions, condition on the last bit. Induction bounds the conditional covariance below by zero. The conditional means are increasing functions of this last bit, whose covariance is nonnegative. The covariance decomposition proves the assertion by induction on the number of bits. The same argument works for decreasing functions, and iteration gives the intersection bound for any finite family of events. The use of symmetric quarter-face estimates follows the renormalization framework of Kozma and Nitzan [12, Section 4, Lemmas 8–9]. The next lemma fixes the geometry before decreasing *p*. Its tolerance *f* is reserved for the planar contour sum, while *γ* bounds the probability of missing one quarter-face. The intermediate tolerances distribute errors in the extension and exploration arguments. Once all scales have been chosen at *p*, finite-event continuity will supply one *q < p* for the three required radii.
+
+**Lemma 3.3**(Choice of scales)**.***Under the preceding contradiction assumption, there are numbers* *f,δ,η,τ,γ∈* (0*,*1)*, positive integers m,K,R,r, and q∈* (*p/*2*,p*)*with the following properties. First,* *f <*1*/*2*and* ∑ 2*n*3 *n* (2*f*) *n/*7 *<*1*.*(3.3) *n≥*1 *The error parameters satisfy*
+
+52*η η* 2*γ η* *δ*+ *< f, τ <, γ < δ, <.*(3.4) *δ* 4 *τ* 4
+
+*Let M be the number of internal bits of*Λ*m, and set ρ₀* = (*p/*2) *M*+1 *. With L* = *K*(8*m* + 5) 3 *and* *α*= (1*−p*) *L* *, we have*
+
+4 *η* 1 *η* *<, R > m, <, r >*100(*R*+ 1)*.*(3.5) *Kρ₀* 4 *α*(*R−m*) 4
+
+*For every ℓ∈ {*2*r,*2*r* + 1*,*10*r}, u∈*Z³*, and quarter-face F of*Λ*ℓ*(*u*)*, independent parameter-q* *percolation satisfies* () P*q*Λ*m*(*u*)*↔Fwithin*Λ*ℓ*(*u*) *>*1*−γ.*(3.6)
+
+*Proof.* The series in (3.3) tends to zero as *f↓* 0, so choose *f* first. Choose *δ < f*, then *η* sufficiently small for the first inequality of (3.4), then *τ*, and finally *γ*, in that order. By (3.2), choose *m≥* 1so that the probability thatΛ*m*meets no infinite cluster at parameter*p*is less than(*γ/*2) 24. For every integer *ℓ > m*, any infinite cluster meetingΛ*m*gives an open path fromΛ*m*to the vertex boundary ofΛ*ℓ*inside that cube. Thus the probability of missing the whole boundary is less than(*γ/*2) 24. By signed coordinate symmetry, all 24 quarter-face miss events have the same probability, say*aℓ*. They are decreasing events of a finite product, so positive association gives
+
+*a²⁴ℓ≤*P*p*(Λ*m*misses every quarter-face withinΛ*ℓ*)*<*(*γ/*2) 24 *.*
+
+Consequently*aℓ< γ/*2for every*ℓ > m*. Now *M* and *ρ₀* are fixed and positive. Choose *K*, define *L* and *α >* 0, and choose *R* and then *r* to satisfy (3.5). All these choices precede the choice of *q*. At each of the three radii2*r,*2*r* + 1*,*10*r*, a quarter-face connection event uses finitely many bits, so its probability is a polynomial in the parameter. The strict estimate at *p*, with margin *γ/*2, therefore persists with margin *γ* at some single *q∈* (*p/*2*,p*), simultaneously for all 24 faces and all three radii. Translation invariance gives the same estimates for every center*u*. This proves (3.6).
+
+Fix these choices for the rest of the proof. Every later connection estimate uses parameter *q* on the indicated unrevealed region. Bits outside that region may already have been fixed, a possibility allowed by Corollary2.3.
+
+## 4 Extending a connection through a fresh region
+
+The construction adapts the shell, separated-seed, and conditional-target strategy of Kozma and Nitzan [12, Section 4, Lemma 10]. We use the hyperedge failure comparison for both models and define relay quality using the interior bits alone. We retain the parameters chosen in Lemma3.3. A rectangle is a nonempty set of the form
+
+∏ *B*= ([*ah,bh*]*∩*Z)*, ah,bh∈*Z*,* *h*=1
+
+and *B*
+
+(*j*) denotes its expansion by *j* in every coordinate direction. Bits internal to a vertex set mean
+sites in that set, or bonds with both endpoints in it, according to the model.
+
+**Lemma 4.1**(Extension estimate)**.***Let G be a finite subgraph of* Z³ *containing a rectangle D and* *every lattice edge internal to D. Give its bits independent laws, with parameter q on all bits internal* *to D and arbitrary parameters, including*0*and*1*, elsewhere. Let o∈V* (*G*)*and T⊆V* (*G*)*. Suppose* *that a rectangleBsatisfies* *B*
+
+(*R*) *⊆D, o /∈B*
+(*R*) *,*
+*and that for every u∈B*
+
+(*R*) *there is a radius ℓ∈{*2*r,*2*r* + 1*,*10*r} such that*Λ*ℓ*(*u*) *⊆D and some*
+*quarter-face of this cube is contained inT. Then, for connections inG,*
+
+### P(o↔B, o̸↔T)< η.(4.1)
+
+*Proof.* We first choose a deterministic layer at which a connection to *B* usually supplies many possible entry points. We then try disjoint open seed boxes at those points, and use Corollary2.3 to pass from a successful seed to*T*. *Choosing a layer.*The disjoint closure events used here also appear in Grimmett and Marstrand [7, Section 3, Lemma 3]. For *m≤j < R*, expose only the bits internal to the induced graph outside *B*
+
+(*j*). Let *Yj*be the exterior neighbors of *B*
+(*j*) reachable from *o* by an open path in this outside
+graph, and set *Nj*= *|Yj|*. Every exterior neighbor *y* of a rectangle has a unique neighbor *zy*inside it. Both endpoints and their edge lie in *B* (*j*+1) *⊆D*. Since *o* is outside *B*
+
+(*R*), any path from *o* to *B*
+has a first entry into*B*
+
+(*j*), and hence*Nj≥*1.
+On1 *≤Nj< L*, consider the event that all bonds *{y,zy}*, *y∈Yj*, are closed in the bond model, or that all corresponding sites *zy*are closed in the site model. Given the outside bits, these are unexposed parameter-*q* bits. There are at most *Nj*distinct bits; repeated sites *zy*can only increase the closure probability. Thus its conditional probability is at least
+
+(1*−q*) *Nj* *≥*(1*−p*) *L* =*α.*
+
+Such a closure prevents every first entry into *B*
+
+(*j*). In particular, *Ni*= 0for all *i < j*, because every
+exterior neighbor of *B*
+
+(*i*) belongs to *B*
+(*j*). The events consisting of1 *≤Nj< L* and this closure are
+therefore pairwise disjoint as*j*varies. It follows that
+
+*R* ∑ *−*1 *R*∑*−*1 P(*o↔B, Nj< L*)*≤* P(1*≤Nj< L*)*≤α* *−*1 *.* *j*=*m j*=*m*
+
+### Fix a deterministicj∈{m,...,R−1}for which
+
+<u>1</u> P(*o↔B, Nj< L*)*≤.*(4.2) *α*(*R−m*)
+
+Write *C* = *B*
+
+(*j*). Let *ξ* be the configuration of bits internal to *C*, and let *ζ* be the configuration of
+bits internal to the induced graph outside *C*. Thus *Yj*is determined by *ζ*. For bonds, the remaining bits are the bonds crossing between *C* and its complement. The configurations *ξ*, *ζ*, and these crossing bits are independent. All bits of *ξ* and all crossing bits have parameter *q*, since they lie in *B* (*j*+1) *⊆D*. For sites,*ξ*and*ζ*already partition the bits. We will use these two configurations for different purposes. The exterior *ζ* selects entrances that *o* has reached, whereas *ξ* determines which relay centers have high conditional probability of reaching *T*. We first estimate relay quality for each fixed entrance, then use independence to apply that estimate to the entrances selected by*ζ*.
+
+*Defining good relays fromξ.*For every exterior neighbor*y*of*C*, choose*vy*so that
+
+### Uy= Λm(vy)⊆C, zy∈Uy,∥vy−y∥∞≤m+ 1.
+
+Explicitly, clamp each coordinate of *zy*to the corresponding coordinate interval of *C* shrunk by *m* at both ends. Those shrunken intervals are nonempty because *j≥m*. Let *Oy*be the event that every internal bit of*Uy*is open. Then*Oy*is determined by*ξ*andP(*Oy*) =*q* *M*. Define
+
+*gy*=P(*vy↔T|ξ*)*, Aξ*=*{vy*: *y*is an exterior neighbor of*C, gy>*1*−τ}.*
+
+In this definition the exterior configuration and the crossing bits are still averaged over according to their original product law. In particular,*Aξ*is determined by*ξ*alone. For a fixed *y*, apply the geometric hypothesis at *u* = *vy*. The quarter-face estimate (3.6) supplies an increasing event of probability greater than1 *−γ* connecting *Uy*to *T* inside the specified cube. On its intersection with*Oy*, the center*vy*also connects to*T*. Positive association gives
+
+P(*Oy, vy̸↔T*)*≤q* *M* *γ.*
+
+Since*Oy*is determined by*ξ*, it follows that [] *τ*P(*Oy, gy≤*1*−τ*)*≤*E **1***Oy*(1*−gy*) *M* (4.3) =P(*Oy, vy̸↔T*)*≤q γ.*
+
+This bounds the chance that a fixed seed is open but its center fails the defining condition for*Aξ*. *Selecting reachable entrances using ζ.*Condition now on *ζ*. Whenever *Nj≥L*, choose determin- istically *K* members of *Yj*at pairwise sup distances greater than4*m* + 2. This is possible by greedy selection: each chosen vertex excludes at most(8*m* + 5) 3 candidates, while *L* = *K*(8*m* + 5) 3. The corresponding centers have pairwise distances greater than2*m*, so their boxes *Uy*are vertex-disjoint. Call a selected entrance successful if *Oy*holds and, for bonds, the crossing bond *{y,zy}* is open. For sites, *y* is already open because it is reachable in the outside graph, and the open seed contains *zy*. In either model a success therefore gives an actual open path from*o*to*vy*. Given*ζ*, these successes are independent Bernoulli trials with common parameter { *q* *M*+1 *,*for bonds*,* *c*= *M* *c≥ρ₀.* *q,*for sites*.*
+
+Indeed, the boxes use disjoint sets of bits of *ξ*, and the selected crossing bonds are distinct and independent of *ξ* and *ζ*. If *S* counts successes, its conditional variance is at most *Kc*. Chebyshev’s inequality gives ( ∣) *Kc* ∣ ∣∣ 4 4 P *S < ζ ≤ ≤.*(4.4) 2 *Kc Kρ₀* Let *Z* count successful entrances whose centers satisfy *gy≤* 1 *−τ*. For each selected *y*, (4.3) gives <u>q</u> *M* <u>γ</u> P(*Oy, gy≤*1*−τ|ζ*)*≤.* *τ* Indeed, after fixing *ζ* the selected vertices are fixed, and *Oy∩{gy≤* 1 *−τ}* is an event of *ξ*, whose law has not changed. For bonds the additional crossing bit is independent and contributes a factor
+
+*q*. Summing these bounds gives
+( ∣) *Kcγ Kc* ∣ ∣∣ 2*γ* E[*Z|ζ*]*≤,*P *Z≥ ζ ≤.* *τ τ*
+
+If *S≥Kc/*2and *Z < Kc/*2, some successful entrance has its center in *Aξ*. Thus *o* reaches *Aξ*. Integrating over*ζ*and including the low-entry event from (4.2), we conclude that
+
+1 4 2*γ* P(*o↔B, o̸↔Aξ*)*≤* + +*.*(4.5) *α*(*R−m*) *Kρ₀ τ*
+
+*Passing from the relay to the target.*The estimate (4.5) is now under the original law. To control the remaining failure event, condition on *ξ* alone. Then *Aξ*is a deterministic set, the remaining bits have their product law, and the conditional target probability of each *vy∈Aξ*is the number *gy>*1*−τ*used in its definition. Corollary2.3therefore gives
+
+P(*o↔Aξ, o̸↔T|ξ*)*≤τ,*
+
+including the trivial case *Aξ*= ∅. Integrating this bound, and splitting the desired failure event according to whether*o*reaches*Aξ*, yields
+
+1 4 2*γ* P(*o↔B, o̸↔T*)*≤* + + +*τ < η.* *α*(*R−m*) *Kρ₀ τ*
+
+Each of the four terms is less than*η/*4by (3.4) and (3.5).
+
+## 5 Relaying between neighboring cubes
+
+The contraction and translation strategy adapts the quarter-face targets of Kozma and Nitzan [12, Section 4, Lemmas 11–12]. We specify thirteen moves that turn the extension estimate into a connection estimate between the present neighboring coarse boxes. The scales *R,r* and the parameter *q*are those of Lemma3.3; in particular,
+
+### r >100(R+ 1).(5.1)
+
+### Forv= (v₁,v₂)∈Z², set
+
+*c* *v*= (20*r*+ 1)(*v₁,v₂,*0)*, Qv*= Λ₁₀*r*(*cv*)*, Bv*= Λ₄*r*(*cv*)*.*(5.2)
+
+The cubes *Qv*have disjoint vertex sets. If *v,x* are nearest neighbors in Z², let *Ivx*be the set of lattice edges with one endpoint in *Qv*and the other in *Qx*. Their union *D* = *Qv∪Qx*is a rectangular lattice prism: all edges internal to *D* are precisely the edges internal to the two cubes together with *I* *vx*.
+
+**Lemma 5.1**(Neighboring-box relay)**.***Let v,x∈*Z² *be nearest neighbors. Let G be a finite lattice* *subgraph containing D* = *Qv∪Qxand all lattice edges internal to D. Consider independent bond or* *site percolation on G, with parameter q on all bits internal to D and arbitrary parameters elsewhere.* *Ifo∈V*(*G*)*lies outsideD, then* () P *o↔Bv, o̸↔Bx≤*13*η.*(5.3)
+
+*All connections in this statement are taken inG.*
+
+*Proof.* By translation and a signed permutation of coordinates, we may suppose that *cv*= 0and *c* *x*= (20*r*+ 1*,*0*,*0). Thus () *D*= [*−*10*r,*30*r*+ 1]*×*[*−*10*r,*10*r*] *∩*Z*.*(5.4)
+
+*I* *vx* *QvQx* *P₀* =*BvBx* ten translations
+
+*P₃ P₁₃* three contractions *c* *vcxx₁*
+
+Figure 2: A schematic cross-section of the neighboring-box relay, not to scale. The three contraction
+
+steps take *P₀* to *P₃*; the marked centers then make ten translations to *P₁₃ ⊂Bx*. Intermediate rectangles are omitted. The last translation has length2*r* + 1, rather than2*r*, to match the coarse spacing20*r* + 1. The narrow gap represents the interface edges between disjoint lattice cubes, not a missing layer of lattice vertices.
+
+Indeed, the first-coordinate intervals of the two cubes are[*−*10*r,*10*r*] *∩*Z and[10*r* + 1*,*30*r* + 1] *∩*Z, whose union has no missing lattice vertices. We construct rectangles *P₀,...,P₁₃*, starting with *P₀* = *Bv*and ending with *P₁₃ ⊆Bx*, such that Lemma4.1applies with *B* = *Pi*and *T* = *Pi*+1for every0 *≤i <* 13. At each translation, the required *R*-expansion of the starting rectangle is accommodated by increasing every half-width by
+
+*R*. We first shorten the rectangle in each of its three coordinate directions, leaving room for ten such increases before the final rectangle must fit inside *Bx*. Figure2shows these two stages, and Table1records the thirteen target rectangles and the radii and orientations used to choose the quarter-faces. **Three contraction steps.**For *t* = 1*,*2*,*3, let *Pt*be centered at zero with coordinate half-widths
+{ 2*r*+*tR, h≤t,* *at,h*= *h∈{*1*,*2*,*3*}.*(5.5) 4*r*+*tR, h > t,*
+
+(*R*)
+Fix *u∈Pt−*1. Its coordinate bounds are2*r* + *tR* in directions *h < t* and4*r* + *tR* in directions *h≥t*. In the cubeΛ₂*r*(*u*), choose a quarter-face normal to coordinate *t*, with its normal sign and both transverse signs directed toward coordinate zero. At a zero coordinate, either sign may be used. In the normal direction, the face coordinate has absolute value at most
+
+max*{*2*r,*(4*r*+*tR*)*−*2*r}*= 2*r*+*tR.*
+
+In a transverse direction, the face coordinate ranges between a number *a* and *a−* 2*r*sign(*a*), with either sign allowed when *a* = 0. Its absolute value is therefore at most max*{|a|,*2*r}*, which fits the corresponding half-width in (5.5). The chosen quarter-face is consequently contained in*Pt*. The full cubeΛ₂*r*(*u*)has all coordinate absolute values at most6*r* + 3*R <* 10*r*, by (5.1), and so
+
+(*R*)
+lies in *D*. In particular *Pt−*1*⊆D*. Since *o /∈D*, the remaining geometric hypothesis of Lemma4.1is also satisfied. This proves its applicability to all three contraction steps. The resulting rectangle is
+
+### P₃ = Λ₂r+3R(0).(5.6)
+
+|Target|Center’s first coordinate|Coordinate half-widths|Radius|Normal|
+|---|---|---|---|---|
+|P₁|0|(2 r + R, 4 r + R,|4 r + R ) 2 r 1, inward||
+|P₂|0|(2 r + 2 R, 2 r + 2 R,|4 r + 2 R ) 2 r 2, inward||
+|P₃|0|(2 r + 3 R, 2 r + 3 R,|2 r + 3 R ) 2 r 3, inward||
+|P₄|2 r (2|r + 4 R|) 1 2 r 1, forward||
+|P₅|4 r (2|r + 5 R|) 1 2 r 1, forward||
+|P₆|6 r (2|r + 6 R|) 1 2 r 1, forward||
+|P₇|8 r (2|r + 7 R|) 1 2 r 1, forward||
+|P₈|10 r (2|r + 8 R|) 1 2 r 1, forward||
+|P₉|12 r (2|r + 9 R|) 1 2 r 1, forward||
+|P₁₀|14 r (2|r + 10 R|) 1 2 r 1, forward||
+|P₁₁|16 r (2|r + 11 R|) 1 2 r 1, forward||
+|P₁₂|18 r (2|r + 12 R|) 1 2 r 1, forward||
+|P₁₃|20 r + 1|(2 r + 13 R|) 1 2 r + 1|1, forward|
+
+Table 1: The thirteen interfaces *Pj−*1*→Pj*in the relay. All centers have second and third coordinates
+
+(*R*)
+zero, and**1**= (1*,*1*,*1). Each listed radius is used about every point of *P* *j−*1. “Inward” means toward zero in that normal coordinate; “forward” means the positive first direction. All transverse signs point toward zero. The proof verifies both target-face and full-cube containment.
+
+**Ten translation steps.**Define the step lengths and centers by { 2*r,*1*≤i≤*9*,* *si*= *z₀* = 0*, zi*= (*s₁* +*···*+*si,*0*,*0)*.*(5.7) 2*r*+ 1*, i*= 10*,*
+
+For1*≤i≤*10, set *wi*= 2*r*+ (3 +*i*)*R, P*3+*i*= Λ*wi*(*zi*)*.*(5.8)
+
+(*R*)
+The *R*-expansion of the preceding rectangle, *P* 2+*i*, is centered at *zi−*1and has half-width *wi*. Fix *u* in that expansion. InΛ*si*(*u*)choose the quarter-face with forward normal in coordinate1, and with both transverse signs directed toward zero. The normal coordinate on this face is *u₁* + *si*. Relative to the new center *zi*, its offset is exactly *u₁ −* (*zi−*1)1, of absolute value at most *wi*. Transverse absolute coordinates are at most max*{wi,si}* = *wi*. The equality also holds for the last step, because 13*R≥*1. Hence this quarter-face is contained in*P*3+*i*. To check containment of the full radius-*si*cube, note that0 *≤* (*zi−*1)1*≤* 18*r*, *wi≤* 2*r* + 13*R*, and*si≤*2*r*+ 1. Its first coordinate is therefore between
+
+### −4r−13R−1and22r+ 13R+ 1,(5.9)
+
+and its transverse absolute coordinates are at most4*r*+ 13*R*+ 1. Condition (5.1) gives13*R*+ 1 *<* 6*r* and13*R <* 8*r*, so these bounds lie inside the prism (5.4). It follows again that the preceding expanded rectangle lies in *D* and avoids *o*. The radii used are2*r* and2*r* + 1, both allowed by Lemma4.1. Thus all ten translation steps satisfy that Lemma’s hypotheses. The final center is *z₁₀* = (9(2*r*)+(2*r*+1)*,*0*,*0) = *cx*, and the final half-width is *w₁₀* = 2*r*+13*R <* 4*r*. Consequently *P₁₃ ⊆Bx*. If *o* is connected to *P₀* but not to *P₁₃*, then for at least one *i∈{*0*,...,*12*}* it is connected to *Pi*but not to *Pi*+1. A union bound and thirteen applications of Lemma4.1now give () () P *o↔Bv, o̸↔Bx≤*P *o↔P₀, o̸↔P₁₃* ∑ 12 () *≤* P *o↔Pi, o̸↔Pi*+1*≤*13*η.* *i*=0 No independence between these thirteen connection events is required.
+
+## 6 Adaptive exploration and the final contradiction
+
+We use the scales from Lemma3.3to construct an infinite open cluster at the parameter *q < pc*. Recall the coarse cubes and their inner boxes:
+
+*c* *v*= (20*r*+ 1)(*v₁,v₂,*0)*, Qv*= Λ₁₀*r*(*cv*)*, Bv*= Λ₄*r*(*cv*)*, v∈*Z²*.*
+
+For adjacent coarse vertices *v,x*, the interface *Ivx*consists of the lattice edges between *Qv*and *Qx*. Different cubes have disjoint vertex sets. We keep the source*o*= (0*,*0*,*0)in the root cube*Q₀*.
+
+### 6.1 The exploration and its conditional promise
+
+Retaining conditional connection predictions during adaptive exploration is the method used in Kozma and Nitzan’s proof of Theorem 6 [12, Section 4, equations (30)–(32)]. Here each pending cube’s unknown bits are reserved until that cube is processed. Let *I* be the event that all bits internal to *Q₀* are open and, for bonds, that all bits on its four interfaces are open. This event has positive probability because it prescribes finitely many bits and *q >*0. Write P*I*(*·*) =P*q*(*·|I*)*.*
+
+Under this law, all bits not prescribed by*I*are still independent Bernoulli(*q*). Declare the coarse root good and put its four neighbors in a queue, each with parent the root. A coarse vertex is*visited*once it has been put in the queue; the root is also visited. A queued vertex is*pending*until it is processed. Use a fixed ordering of neighbors whenever vertices are added to the queue, and always process the first pending vertex. No vertex is assigned a parent or queued more than once. For each pending vertex we will retain a high conditional probability of connection from *o*. The graph used for this prediction follows its parent chain, so that the only bits still needed to decide the connection will be in the pending cube and its incoming interface. Specifically, for a pending vertex *v*, let *G*(*v*)consist of the cubes on its parent chain back to the root, all edges internal to those cubes, and the interfaces between successive cubes of the chain. We include no other edges, even when nonsuccessive cubes are adjacent. Set
+
+*Hv*=*{o↔Bv*in*G*(*v*)*}.*
+
+### The construction will maintain the promise
+
+### PI(Hv|revealed history)>1−δfor every pendingv.(6.1)
+
+A cube will acquire children only after its own connection is verified and those children satisfy the same promise. The invariant holds initially. For a root neighbor *v*, choose a quarter-face of *Qv*facing *Q₀*. Every vertex of that quarter-face has a neighbor in *Q₀*. By (3.6), the probability thatΛ*m*(*cv*)connects to this quarter-face inside *Qv*is greater than1 *−γ*. HereΛ*m*(*cv*) *⊆Bv*. Such a connection joins *Bv*to *o*: the root cube and the intervening edge are open in the bond model, while both endpoints of the intervening edge are open in the site model. Since*γ < δ*, this proves (6.1) for the initial queue. To process a pending vertex *v*, reveal the bits internal to *Qv*and, for bonds, its incoming parent interface, except for bits already known. The ancestor cubes and the interfaces joining them have been revealed at earlier steps, so this determines *Hv*. For each unvisited neighbor *x* of *v*, extend *G*(*v*)by*Qx*, its internal edges, and*Ivx*, obtaining a graph*G* *′*, and compute ( *′* ) *b* *x*=P*Io↔Bx*in*G |*history after this reveal*.*(6.2)
+
+The number *bx*is calculated from the revealed values and the product law of the remaining bits; its computation reveals no bits. Declare *v* good if *Hv*holds and *bx>* 1 *−δ* for every such neighbor. In this case, give each unvisited neighbor parent *v* and add it to the back of the queue. Otherwise declare *v* bad and add no vertices. Remove *v* from the queue in either case, and continue until the queue is empty, if this ever occurs.
+
+**Lemma 6.1**(Freshness and persistence)**.***Conditional on any positive-probability finite revealed* *history, all unrevealed bits are independent Bernoulli(q). Moreover,* (6.1) *holds at every step of the* *exploration.*
+
+*Proof.* The initialization fixes finitely many bits and leaves the others independent with parameter
+
+*q*. At every later step, the preceding revealed values determine which finite set of bits is exposed. Conditioning on the values of this selected set again leaves the remaining bits with their product law. The classifications, queue, parent assignments, and numbers *bx*are all functions of revealed values. They therefore add no conditions on the remaining bits. Induction proves the first assertion. When *x* is assigned parent *v*, its graph *G*(*x*)is precisely the graph *G*
+*′* used to compute *bx*. The rule for declaring *v* good therefore establishes (6.1) for *x* at that time. To prove persistence, it suffices to verify that processing other vertices cannot expose any of the unknown bits of*Hx*. All ancestor cubes and their connecting interfaces have already been revealed. Thus the unknown bits of *Hx*lie in *Qx*or, for bonds, on *Ivx*. The cubes are vertex-disjoint, so another vertex’s processing does not reveal an internal bit of *Qx*. Each step also reveals only the processed vertex’s incoming parent interface. Distinct parent links use distinct interfaces. Moreover, a pending vertex has no children, since only processed good vertices acquire them. Hence *Ivx*cannot be revealed by another step while *x* is pending. If this interface was prescribed at initialization because *v* is the root, its fixed values simply remain part of the history. Consequently, until *x* is processed, the known bits of *Hx*stay fixed and its unknown bits retain the same product law. Its conditional connection probability is unchanged. Together with the initial verification, this proves (6.1) at every step.
+
+### 6.2 A uniform bound on bad vertices
+
+**Lemma 6.2.***Immediately before any pending vertex is processed, its conditional probability of being* *declared bad is less thanf.*
+
+*Proof.* Condition on a positive-probability history immediately before processing *v*. Let *F* denote this history and *F* + the history after the prescribed reveal at *v*. The unvisited neighbors to be tested are already determined by*F*. Fix one such neighbor *x* and the corresponding graph *G* *′*. Under the conditioning on *F*, every bit internal to the prism *D* = *Qv∪Qx*has its fresh parameter-*q* law. To check this carefully, neither cube has been processed: *v* is pending and *x* is unvisited. Their interface has not been revealed as a parent link, since that would require *x* to have been visited or *v* to have been processed. Neither vertex is the root, so their interface is not one prescribed by initialization. Although an initialized root interface may meet*Qv*, it is external to*D*. Lemma6.1gives the required independence. The graph *G* *′* contains every edge internal to this prism, and *o* lies outside it in the disjoint root cube. All exterior bits have independent laws, with probabilities0or1for known bits and *q* for unknown bits. Thus Lemma5.1applies. If*Cx*=*{o↔Bx*in*G* *′* *}*, it gives
+
+P*I*(*Hv∩Cx* c *|F*)*≤*13*η,*
+
+because *Hv*implies a connection to *Bv*in the larger graph *G* *′*. Notice that the relay estimate is applied*before*revealing*Qv*, not after conditioning on*Hv*.
+
+The event *Hv*is determined by *F* +, and *bx*= P*I*(*Cx|F* + ). The tower property therefore yields
+
+E*I*[**1***Hv*(1*−bx*)*|F*]*≤*13*η.*
+
+### OnHv∩{bx≤1−δ}the integrand is at leastδ, so
+
+<u>13η</u> P*I*(*Hv∩{bx≤*1*−δ}|F*)*≤.* *δ*
+
+There are at most four tests. The promise and a union bound now give
+
+<u>52η</u> P*I*(*v*is declared bad*|F*)*≤δ*+ *< f,* *δ*
+
+where the last inequality is (3.4). No independence between the tests is needed.
+
+**Lemma 6.3.***For every deterministic set of k distinct coarse vertices, the probability under* P*Ithat* *all are processed and declared bad is at mostf* *k* *.*
+
+*Proof.* The assertion is immediate if the set contains the root, which is declared good. Otherwise, fix such a set *S*. For1 *≤j≤k*, let *Tj*be the processing time of the *j*th member of *S* to be processed, and set *Tj*= *∞* if fewer than *j* members are ever processed. Let *Ej*be the event that *Tj<∞* and these first*j*members are all declared bad; put*E₀* equal to the whole sample space. For each finite time*t*, the event *{Tj*=*t}∩Ej−*1
+
+is determined before the reveal at time *t*. Indeed, at that moment one knows the next vertex, how many members of *S* have already been processed, and whether all of those members were bad. On *{Tj*= *t}* there are exactly *j−* 1such previous members, so these observations determine *Ej−*1there. After termination we keep the history constant; events specifying a later processing time are empty. Applying Lemma6.2at time*t*and summing gives ∑ P*I*(*Ej*)*≤f* P*I*(*Tj*=*t, Ej−*1) *t≥*1 *≤f*P*I*(*Ej−*1)*.*
+
+Iteration yields P*I*(*Ek*) *≤f* *k*. Since no vertex is processed twice, *Ek*is exactly the event in the statement. The proof does not assume that every member of*S*is eventually processed.
+
+### 6.3 Contours and completion of the proof
+
+Let *X* be the set of good coarse vertices, including the root. If *X* is finite, only finitely many vertices can ever enter the queue: new entries arise only from good vertices, with at most four per vertex. The queue must therefore empty after finitely many steps. Every vertex outside *X* adjacent to *X* has then been processed and declared bad. Indeed, the root’s neighbors were all queued at initialization. When any nonroot good vertex was processed, each of its neighbors was either already visited or assigned at that step. Thus every outside neighbor of *X* is processed before termination and is not good, so it is bad. Apply Lemma3.1to this finite set *X*, which contains the origin of the coarse lattice. Its boundary contains a cycle of some length *n* in the deterministic family of at most2*n*3 *n* candidates. For each candidate, fix the matching of crossed primal edges supplied by that Lemma. It has *k≥n/*7edges
+
+with pairwise disjoint endpoints. If the candidate occurs as a boundary cycle of *X*, every one of these edges has a bad endpoint outside*X*. For a fixed candidate there are2 *k* ways to choose one endpoint from each matching edge. Each choice is a deterministic set of *k* distinct vertices, so Lemma6.3bounds the probability that all chosen vertices are processed bad by*f* *k*. Hence the candidate’s probability is at most
+
+2 *k* *f* *k* = (2*f*) *k* *≤*(2*f*) *n/*7 *,*
+
+using2*f <* 1. We have not conditioned on the random set *X* or on the occurrence of a cycle. Taking the union bound over the deterministic candidate families and using the choice of *f* in Lemma3.3 gives ∑ P*I*(*|X|<∞*)*≤* 2*n*3 *n* (2*f*) *n/*7 *<*1*.*(6.3) *n≥*1 Thus, with positive probability under P*I*, infinitely many coarse vertices are good. Every good nonroot vertex *v* satisfies the actual connection event *Hv*. The boxes *Bv*are pairwise disjoint, so these connections put infinitely many lattice vertices in the open cluster of*o*. Therefore
+
+### Pq(obelongs to an infinite open cluster)≥Pq(I)PI(|X|=∞)>0.
+
+This contradicts *q < pc*. The assumption of critical percolation was therefore false. The construction and all its estimates apply to both bond and site percolation with their respective critical parameters, proving Theorem1.1. The finite computations are not formal proof certificates.
+
+## References
+
+[1] Itai Benjamini and Oded Schramm. Percolation beyond Z *d*, many questions and a few answers. *Electronic Communications in Probability***1**(1996), 71–82.doi:10.1214/ECP.v1-978.
+
+[2]S. R. Broadbent and J. M. Hammersley. Percolation processes. I. Crystals and mazes. *Proceedings of the Cambridge Philosophical Society***53**(1957), no. 3, 629–641. doi:10.1017/S0305004100032680.
+
+[3]ChatGPT 5.6, prompted by Ahmed Bou-Rabee; exposition and formalization support by Claude Opus 5 and GLM 5.3.*Percolation at criticality*. Public research exposition, updated September 5, 2026.Public exposition.
+
+[4]ChatGPT 5.6 Sol and Claude Fable 5.1, prompted by Ahmed Bou-Rabee.*Kozma–Nitzan* *inequalities: proofs and counterexamples*. Public research exposition, updated September 5,
+
+2026.Public exposition.
+[5] Hugo Duminil-Copin, Vladas Sidoravicius, and Vincent Tassion. Absence of infinite cluster for critical Bernoulli percolation on slabs.*Communications on Pure and Applied Mathematics***69** (2016), no. 7, 1397–1411.doi:10.1002/cpa.21641.
+
+[6]Robert Fitzner and Remco van der Hofstad. Mean-field behavior for nearest-neighbor percolation in*d >*10.*Electronic Journal of Probability***22**(2017), paper no. 43, 1–65. doi:10.1214/17-EJP56.
+
+[7]G. R. Grimmett and J. M. Marstrand. The supercritical phase of percolation is well behaved. *Proceedings of the Royal Society of London. Series A***430**(1990), no. 1879, 439–457. doi:10.1098/rspa.1990.0100.
+
+[8]Takashi Hara and Gordon Slade. Mean-field critical behaviour for percolation in high dimensions.*Communications in Mathematical Physics***128**(1990), no. 2, 333–391. doi:10.1007/BF02108785.
+
+[9] Theodore E. Harris. A lower bound for the critical probability in a certain percolation process. *Proceedings of the Cambridge Philosophical Society***56**(1960), no. 1, 13–20. doi:10.1017/S0305004100034241.
+
+[10] Markus Heydenreich and Kilian Matzke. Critical site percolation in high dimension.*Journal of* *Statistical Physics***181**(2020), 816–853.doi:10.1007/s10955-020-02607-y.
+
+[11]Harry Kesten. The critical probability of bond percolation on the square lattice equals1*/*2. *Communications in Mathematical Physics***74**(1980), 41–59.doi:10.1007/BF01197577.
+
+[12]Gady Kozma and Shahaf Nitzan. A reduction of the*θ*(*pc*) = 0problem to a conjectured inequality. Preprint, 2024.arXiv:2401.12397v1.
+
+[13] Justin Leder. *θ*(*pc*) = 0*for Bernoulli bond percolation on* Z *d* *in all dimensions d≥* 2*: a guide* *to the Lean formalization*. Public research announcement, August 2026.Pinned repository version, commit795efb86f191.
+
+[14] Lucio Russo. On the critical percolation probabilities.*Zeitschrift für Wahrscheinlichkeitstheorie* *und verwandte Gebiete***56**(1981), no. 2, 229–237.doi:10.1007/BF00535742.
+
+[15]J. van den Berg, O. Häggström, and J. Kahn. Some conditional correlation inequalities for percolation and related processes.*Random Structures & Algorithms***29**(2006), no. 4, 417–435. doi:10.1002/rsa.20102.

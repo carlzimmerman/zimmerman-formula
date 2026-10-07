@@ -1,0 +1,900 @@
+# Pure-Point Spectrum for the Two-Dimensional Anderson Model at Every Positive Disorder
+
+OpenAI
+
+#### September 23, 2026
+
+**Abstract**
+
+For each fixed positive disorder strength, we prove that the nearest-neighbor Anderson operator on the square lattice with independent uniform site potentials almost surely has pure- point spectral type throughout its spectrum. This resolves the pure-point assertion of the two-dimensional Anderson localization conjecture for the uniform single-site law.
+
+### 1 Introduction
+
+Let *h >* 0 and let (*vx*)*x∈*Z2 be independent random variables, each uniform on [*−h,h*]. We consider the bounded self-adjoint operator ∑ (*Hvu*)(*x*) = *u*(*y*) + *vxu*(*x*) on *ℓ²*(Z²)*.* (1.1) *|y−x|*1=1
+
+Thus *vx*= *hωx*in the usual notation with *ωx*uniform on [*−*1*,*1]. Pure-point spectral type means that the closed span of the eigenvectors is the entire Hilbert space; it does not mean that every point of the spectrum is an eigenvalue. The planar spectral localization problem asks whether this pure-point conclusion holds throughout the spectrum for every nonzero width of the uniform distribution [14, Example 2.1 and Problem 2]. We prove that it does.
+
+**Theorem 1.1.** *For each fixed h >* 0*, almost surely Hvhas pure-point spectral type, admits a* *complete orthonormal eigenbasis, and has spectrum*
+
+*σ*(*Hv*) = [*−*4 *− h,*4 + *h*]*.*
+
+*Its eigenvalues are dense in this interval. The probability-one event in this statement is allowed to* *depend on h.*
+
+The conclusion includes arbitrarily weak nonzero disorder and the entire spectrum. It resolves the pure-point assertion of the two-dimensional Anderson localization conjecture for a uniform single-site distribution, as formulated in [14, Problem 2]. An arbitrary nondegenerate uniform interval reduces to the centered interval above by subtracting its midpoint from the operator. We do not assert one probability-one event for all disorder strengths, a bound uniform in energy, or a dynamical-localization theorem.
+
+#### Context and scope
+
+Anderson introduced random site energies as a mechanism for suppressing quantum transport, motivated by spin diffusion and impurity conduction [5]. His discussion includes a flat single-site distribution and nearest-neighbor hopping, although the original physical argument is not a modern proof of the spectral assertion considered here. The conductance-scaling theory of Abrahams, Anderson, Licciardello and Ramakrishnan predicts the absence of true metallic behavior in two dimensions [1]. That physical prediction is distinct from an almost-sure spectral-type theorem. Simon’s formulation isolates the latter question; his diffusion problem is listed separately [14]. Rigorous multidimensional localization theory developed several complementary mechanisms. Fröhlich and Spencer’s multiscale analysis gave Green-function decay and vanishing Kubo diffusion in large-disorder or appropriate extreme-energy regimes [12]. Their 1983 conclusions were explicitly distinguished from a complete pure-point decomposition. Fröhlich, Martinelli, Scoppola and Spencer subsequently established pure-point spectrum with exponentially decaying eigenfunctions for independent identically distributed diagonal potentials with a bounded density in sufficiently large-disorder and suitable tail-energy regimes [11]. Delyon, Lévy and Souillard also obtained multidimensional spectral localization in large-disorder or large-energy regimes [9]. The passage from fixed-energy Green-function information to a complete spectral decomposition is a substantive step, not an automatic consequence of decay outside an exceptional set of energies. Aizenman and Molchanov developed the fractional-moment approach, obtaining localization at large disorder and at extreme energies under suitable hypotheses on the conditional single-site distributions, including absolute continuity and regularity [3]. This method supplies important ancestry for our use of fractional Green-function moments, but its established regimes do not ... [truncated]
+
+#### The proof mechanism
+
+Fix *h >* 0 and an interior real energy *E*. InSection 3, we introduce absorbing diagonal terms in finite tori and their associated input and output channels, called ports. Squared scattering amplitudes define a Dirichlet energy on port data: if *Sja*is the scattering amplitude from port *a* to port *j* and
+
+*f* is real data on the ports, the energy is
+
+<u>1</u> ∑2 2 *QS*(*f*) = *|Sja| |fj− fa|.* 2 *a,j*
+
+A Cauchy-distributed real closing value would remove a port with a favorable averaged energy comparison. The bounded physical distribution requires a truncated version and a relative estimate for its error. The first main ingredient is a family of rare resonant cells (Sections 4to6). Their conditional law is embedded in the original product measure by an acceptance likelihood; the true potentials remain independent uniforms before conditioning. The construction gives a weighted boundary impedance estimate uniform in arbitrary passive exterior data, including weakly coupled missing boundary directions. It also gives a transmission lower bound strong enough to make the closing error small relative to the transmission itself. These estimates, together with an upper envelope over adaptive interior configurations, are useful beyond a single prescribed environment. The second ingredient is a comparison along a hierarchy of increasingly sparse ports (Section 7). A parent-cell alternative controls the apparent singularity at the end of each thinning interpolation. Local generic observation, followed by path estimates, supplies screening at every fixed starting stage (Section 8). For a fixed starting level *n*, let *dn*be the infinite-volume limit of the expected sum of squared port-to-port distances, weighted by *|Sja|* 2 and divided by twice the torus area. These quantities measure the scattering energy of affine coordinate data. The torus side tends to infinity with *n* fixed to define *dn*; only afterwards does the thinning comparison give a finite limit *d* as *n* tends to infinity. The dimension enters decisively in forcing *d* = 0 (Section 9). An adaptive modification of affine data first makes a local affine first-variation trace small in expectation. Separately, a logarithmic voltage profile separates retained interior ports from an annulus of very weak probes at arbitrarily small two-dimensional capacity cost. If *d >* 0, an analytic test of the scattering matrix h... [truncated]
+
+### 2 Finite volumes and conventions
+
+Throughout the local and multiscale arguments, fix
+
+*h >* 0*, −*4 *− h < E <* 4 + *h.* (2.1)
+
+All constants and auxiliary choices may depend on this pair. Their dependence on the varying geometric scales, exterior data and masks is specified in each assertion. Uniformity in *E* is neither assumed nor needed forTheorem 1.1.
+
+For integer *l ≥* 0, put *bl*= 3 *l*. The global finite volume is the square torus
+
+T²*N*= (Z*/bN*Z) 2 *,*
+
+with the periodic nearest-neighbor adjacency and independent uniform potentials on its sites. Its area is *b²* *N*. Distances are shortest coordinate distances on this torus, using the maximum norm unless a different norm is displayed. We write
+
+Λ*r*(*x*) = *{y* : *|y − x|* *∞* *≤ r}.*
+
+All local constructions are used with the torus sufficiently large to contain the required neighborhoods without ambiguity. Dirichlet restrictions mean deletion of the hopping bonds leaving the indicated physical site set. The physical disorder is always the product law of the true variables *vx*. Auxiliary selectors, acceptance uniforms, offsets and thinning marks will be introduced explicitly. Conditioning on a rare event can change the law within one cell; it never changes this unconditional physical law. An expectation refers to the sampling and conditioning specified in its statement. Site and port spaces are complexified finite-dimensional Euclidean spaces. A superscript *⊤* denotes transpose, not adjoint; a superscript *∗* denotes adjoint. Bases used for coordinate projections and their subspaces are real orthonormal bases. We use
+
+<u>D−D</u> *∗* <u>D + D</u> *∗* Im*D* =*,* Re*D* =*.* 2*i* 2 Unless otherwise indicated, a norm is the Euclidean or induced operator norm. Hilbert–Schmidt and trace norms carry subscripts HS and 1. Coordinate projections may be identified with their ranges. Symbols used for local blocks are reset when the local matrix is defined. A real reference potential may replace a true potential only at a site carrying an open cell port. Closing that port restores the true value. The matrix *H* # denotes the real symmetric operator with the current reference values. Artificial probes, introduced in the next section, do not alter real reference values. Several ports may share a physical site; their columns are kept distinct. In bounds for a cell of size *L*, the notation poly(*L*) means a quantity bounded by *C*(1 + *L*) *C* for fixed constants. The constants may depend on the previously fixed cell-design parameters, including the corner-box width exponent, but not on the exterior matrix, exterior volume, exterior source, or allowed probe mask. The ordering of design parameters is part of each construction. Expressions exp(*LO*
+
+(1) ) have the corresponding interpretation. A statement requiring sufficiently large *L* is
+applied only after its fixed design parameters have been chosen. We will repeatedly distinguish the following orders of choice. The disorder and energy are fixed first. Local design constants are fixed before the cell scale is enlarged. For global limits a starting level *n* is fixed before observation and approximation constants are chosen; a later level *m* can then be increased to exceed all those thresholds, and the torus level *N* is increased last. No rate uniform in *n* is implicit in this convention.
+
+### 3 Scattering matrices and analytic estimates
+
+All matrices in this section are finite dimensional. A port at a physical site *x*, of strength *σ >* 0, is *√* represented by the column *σex*. In the matrix *Y* of these columns, rows index physical sites and columns index ports; several distinct ports may be attached to the same site. For a real symmetric matrix *H* # and a real energy *E*, set
+
+*L* = *H* # *−E− iYY* *⊤* *, G* = *L* *−* *, S* = **1** + 2*iY* *⊤* *GY.* (3.1)
+
+The entry *Sja*is the scattering amplitude from input port *a* to output port *j*. The physical matrix *H* # may differ from the true Hamiltonian by real diagonal changes at sites carrying ports. We call these changes *reference potentials*. They may depend on the true potentials. Absorption bounds the response between ports even when the full inverse *G* is large. Closing ports removes their absorptions and changes real diagonal values; we express this operation as a rational family of scattering matrices and compare its energies after averaging the closing values.
+
+#### 3.1 Invertibility, absorption, and Schur complements
+
+The inverses inEquation (3.1)exist almost surely under any absolutely continuous joint law of the true site potentials. Indeed, if *L u* = 0, taking the imaginary part of *u* *∗* *L u* gives *Y* *⊤* *u* = 0. Thus *u* vanishes at every port site, so restoring the true diagonal entries leaves its equation unchanged: (*H−E*)*u* = 0. For a fixed finite site set, det(*H−E*) is a polynomial in its true diagonal variables whose coefficient of their full product is one. It is not identically zero. A nonzero polynomial has a Lebesgue-null zero set, as follows by induction on the number of variables and one-variable slicing. This proves the assertion even when the port set and reference potentials depend on those variables. The same argument applies to deterministic restrictions to physical sites. We always discard the resulting null exceptional sets when forming such inverses. A matrix *D* is *passive* if Im *D ≤* 0, with the Hermitian imaginary part fixed inSection 2. The absorption identities below apply to any real rectangular *Y*, including real coordinate or subspace inclusions.
+
+**Lemma 3.1** (Absorption identities)**.** *Suppose L is invertible and W* = *−*Im *L ≥ YY* *⊤* *. Then*
+
+Im*G* = *G* *∗* *WG* = *GWG* *∗* *,* (3.2) ∥ ∥2 ∥ ∥ ∥*⊤*∥*∗ ⊤*∥*⊤*∥ ∥*Y GYa*∥ *≤* Im(*a Y GYa*)*,* ∥*Y GY* ∥ *≤* 1*.* (3.3)
+
+*For the physical system inEquation* (3.1)*, S is symmetric and unitary. If L is complex symmetric* *and passive, each defined Schur complement is complex symmetric and passive. An absorption lower* *bound supported on retained coordinates persists in the Schur complement.*
+
+#### Proof. The inverse difference identities give
+
+*G−G* *∗* = *G* *∗* (*L* *∗* *− L*)*G* = *G*(*L* *∗* *− L*)*G* *∗* *,*
+
+which provesEquation (3.2). Consequently, with *K* = *Y* *⊤* *GY*,
+
+2 *∗ ⊤ ∗ ∗* *∥Ka∥ ≤ a Y G WGYa* = Im(*a Ka*) *≤∥a∥∥Ka∥.*
+
+This provesEquation (3.3). In the physical case *W* = *YY* *⊤*, we have Im*K* = *K* *∗* *K* and hence
+
+(**1** + 2*iK*) *∗* (**1** + 2*iK*) = **1** *−* 4 Im*K* + 4*K* *∗* *K* = **1***.*
+
+Since the matrix is square, it is unitary. Symmetry follows from *L* *⊤* = *L* and the fact that *Y* is real. For the Schur assertion, write a symmetric matrix in blocks as () *D₁₁ C− ⊤* *D* =*⊤, D*eff= *D₁₁ − CD₂₂ C.* *C D₂₂*
+
+For a vector *v* on the retained coordinates, extend it to *v*˜ = (*v, −D₂₂* *−*1 *C* *⊤*
+
+*v*). Then
+*Dv*˜ = (*D*eff*v,*0)*, v*˜ *∗* *Dv*˜ = *v* *∗* *D*eff*v.*
+
+Taking imaginary parts proves passivity. If *−*Im*D ≥* diag(*W₀,*0), the same identity gives *−*Im*D*eff*≥ W₀*. Symmetry is immediate from the displayed Schur formula.
+
+We will also use the elementary kernel consequence of passivity: if *Du* = 0 and *D* is passive, then Im *Du* = Re *Du* = 0. Indeed, the nonnegative matrix *−*Im*D* has zero quadratic form on *u*, so it annihilates *u*; the assertion about the real part follows from *Du* = 0.
+
+#### 3.2 Closing ports and comparing energies
+
+2 Symmetry and unitarity make *|Sja|* symmetric nonnegative weights with unit row sums. For real scalar or real Euclidean-vector data *f* on the ports, their Dirichlet energy and its single-port contribution are
+
+<u>1</u> ∑2 2∑2 2 *QS*(*f*) = *|Sja| |fj− fa|, Ma*(*f*) = *|Sja| |fj− fa|.* (3.4) 2 *a,j j*
+
+For scalar data, writing *F* = diag(*f*), unitarity gives
+
+*QS*(*f*) = tr(*F² − FSFS* *∗*
+
+)*.* (3.5)
+For vector data, one sums this identity over real components.
+
+**Lemma 3.2** (Common-phase closure)**.** *Partition the ports into retained ports and a set C to be* *closed, and write* () *A T* *S* =*⊤.* *T B*
+
+*Close every port in C and add the real shift wσjto the physical diagonal for each closed port j of* *strength σj. Where the resulting inverse exists, its scattering matrix on the retained ports is*
+
+*−*1 *⊤*<u>w + i</u> *Sz*= *A* + *Tz*(**1** *− zB*) *T, z* =*.* (3.6) *w − i*
+
+*The right-hand side is analytic for |z| <* 1*.*
+
+*Proof.* If *YC* consists of the closed port columns, the site matrix becomes *Lw*= *L* + (*w* + *i*)*YC YC* *⊤*. Woodbury inversion and *YC* *⊤* *GYC* = (*B −* **1**)*/*(2*i*) give the result, using
+
+*z w* + *i⊤***1** *− zB* = *−,* **1** + (*w* + *i*)*YCGYC* =*.* 1 *− z* 2*i* 1 *− z*
+
+These are rational identities, so the formulas extend across any removable singularities. The determinant of *Lw*is a polynomial in *w* which is nonzero at *w* = *−i*; hence only finitely many closing values can make the site matrix singular. Finally *B* is a compression of a unitary matrix and is therefore contractive, which makes **1** *− zB* invertible in the open disk.
+
+**Lemma 3.3** (Conditional single-port comparison)**.** *Consider closing a single port a. Set*
+
+<u>z</u> *u* = *S* ̂*a,a* *, b* = *Saa, γ* =*,* 1 *− zb*
+
+*where a*̂ *means that port a is omitted. Let F contain the open system and the real data f, before the* *closing value is sampled. Assume that its conditional law assigns no mass to the finite exceptional* *set inLemma 3.2. If |b| <* 1*, put µ* = E[*γ |F*]*. Then*
+
+E[*QSz*(*f* ̂*a* ) *|F*] *≤QS*(*f*) + 2 *|µ|Ma*(*f*)*.* (3.7)
+
+*If |b|* = 1*, the same assertion holds with zero error, and we use the convention µ* = 0*.*
+
+*Proof.* First take scalar data and subtract *fa*from every datum. This does not change either energy, and it makes the removed datum zero. Let *F* = diag(*f* ̂*a* ) after this subtraction and *A* = *S* ̂*a,*̂*a*. By Equation (3.5), expansion of *Sz*= *A* + *γuu* *⊤* yields the exact identity ( *⊤ ∗* ) 2 *∗* 2 *QSz*(*f* ̂*a* ) *−QS*(*f*) = *−*2 Re *γu FA Fu −|γ|* (*u Fu*)*.*
+
+The last square is real and nonnegative. Moreover, ∣ ∣ ∣*⊤ ∗*∣ 2 ∣*u FA Fu*∣ *≤∥Fu∥* = *Ma*(*f*)*,*
+
+because *A* is contractive. Conditional expectation therefore provesEquation (3.7). For vector data the same argument is applied componentwise. If *|b|* = 1, unitarity gives *u* = 0, so closing the port leaves the scattering matrix on the other ports unchanged.
+
+The use of the conditional mean *µ*, rather than E[*|γ||F*], is important. In later applications the open system and the data must remain measurable without exposing the hidden true value at the port to be closed. A standard Cauchy law for *w* makes this conditional mean vanish. To restore a potential within a bounded interval, we truncate that law and estimate the resulting error.
+
+**Lemma 3.4** (A cutoff-Cauchy closing law)**.** *Fix a smooth function χ* : R *→* [0*,*1] *equal to one near* *zero and supported in a fixed sufficiently small interval about zero. For a port of strength σ, give its* *hidden real shift δ the law* ∫ 1 *σ* d*δ σ* d*δ* *χ*(*δ*) 2 2 *, Zσ*= *χ*(*δ*) 2 2
+
+*.* (3.8)
+*Zσπ*(*δ* + *σ*)R*π*(*δ* + *σ*)
+
+*Use w* = *δ/σ inLemma 3.2. Conditional on the open system, let g* = *σGxx, where x is the site of* *the port. For all sufficiently small σ, the mean inLemma 3.3satisfies* *√ √* *|µ|≤ C, |µ|≤ C σ if |g| > σ.* (3.9)
+
+*The constants depend on χ, not on the exterior system.*
+
+*Proof.* The case *|Saa|* = 1 uses the zero-error convention. Otherwise put *b* = *Saa*= 1 + 2*ig*, so *|b| <* 1. Under the uncut Cauchy law,
+
+<u>δ + iσ</u>*it* *z* = = *e, δ* = *σ* cot(*t/*2)*,* *δ − iσ*
+
+∑ *k k*+1 is Haar distributed on the circle. Its mean of *z/*(1 *− bz*) =*k≥*0*b z* is zero. Define the deleted angular density () *dσ*(*t*) = 1 *− χ σ* cot(*t/*2)*.*
+
+It is bounded by one, supported on an arc of length *O*(*σ*) about *t* = 0, and Lipschitz with constant *O*(*σ* *−*1 ). To see the last claim, derivatives can occur only when *δ* lies in a fixed compact set separated from zero; there *|t|* is comparable to *σ* and *|* d*δ/*d*t|* = *O*(*σ* *−*1 ). Near *t* = 0 the function is constant. Thus *Zσ*= 1 *− O*(*σ*) and ∫*it* *−*1<u>e</u> *µ* = *−Zσdσ*(*t*) *it* d*m*T(*t*)*,* (3.10) T1 *− be* where d*m*T(*t*) = d*t/*(2*π*). On the support of *dσ*, ∣ ∣ ∣ ∣ ∣*it*∣ ∣*it*∣ ∣1 *− be* ∣ *≥|*1 *− b|−|b|* ∣1 *− e* ∣ *≥* 2*|g|− Cσ.*
+
+*√* If *|g| > σ*, this is at least *|g|* for small enough *σ*. The integral inEquation (3.10)is then bounded *√* by *Cσ/ |g|≤ C σ*. For the uniform bound, *|b|≤* 1*/*2 is immediate. If 1*/*2 *< |b| <* 1, use () <u>z</u>*−*1<u>1</u> = *b −* 1*.* 1 *− bz* 1 *− bz*
+
+Write *b* = *ρe* *iβ* and use <u>1 1</u> () *it* = 1 + *Pρ*(*t*) + *iQρ*(*t*)*,* 1 *− ρe* 2 where <u>1 − ρ² 2ρsint</u> *Pρ*(*t*) = 2 *, Qρ*(*t*) = 2 *.* 1 *−* 2*ρ*cos*t* + *ρ* 1 *−* 2*ρ*cos*t* + *ρ* The Poisson contribution is bounded since *Pρ≥* 0 has integral one. For the conjugate contribution, if the singular center *−β* is farther than a sufficiently large multiple of *σ* from the support arc, use *|Qρ*(*t*)*|≤ C/ |t|* in angular distance to bound the integral absolutely. Otherwise, after recentering at *−β*, the density is supported in *|t|≤ C* *′* *σ* and has Lipschitz constant *C/σ*. Oddness gives ∣∫ ∣ ∫ *C′σ* ∣ ∣ <u>1 t</u> ∣ *Q* *ρ*
+
+(*t*)*dσ*(*t − β*) d*m*T(*t*)∣ *≤ C* d*t ≤ C.*
+∣ ∣ *t σ* 0
+
+The constant part and normalization inEquation (3.10)are harmless. This proves both bounds.
+
+#### 3.3 Dimension-independent analytic bounds
+
+The common-phase closure formula contains the resolvent (**1** *− zB*) *−*1. We need weak-*L¹* bounds for its sandwiched and trace expressions, with no dimensional factor beyond the displayed norms. For a nonnegative random variable *X* on the circle, write
+
+*∥X∥L₁,∞* = sup*tm*T*{X > t}.* *t>*0
+
+The Hilbert–Schmidt estimate below has the same dimension-independent scale as the dissipative- resolvent bound in [2, Lemma 3.1 and Appendix C]. We prove the disk estimates directly using a Hilbert-space-valued Calderón–Zygmund decomposition [6, Theorem 1].
+
+**Lemma 3.5** (Weak-*L¹* resolvent estimate)**.** *Let B be a contraction and let U,V be compatible* *deterministic matrices. At the almost-everywhere boundary values of the rational function in question,* ∥∥ ∥ ∥ ∥∥*−*1∥ ∥ ∥∥*U* (**1** *− zB*) *V* ∥ ∥ 1*,∞* *≤ C ∥U ∥* HS *∥V ∥* HS
+
+*.* (3.11)
+HS *L*
+
+*For any compatible square matrix D,* ∥∣ ()∣∥ ∥∣*−*1∣∥ ∥∣tr *D*(**1** *− zB*) ∣∥ 1*,∞* *≤ C ∥D∥* 1
+
+*.* (3.12)
+*L*
+
+*Here and below ∥D∥* 1 *denotes the trace norm. In particular, every moment of order* 0 *< p <* 1 *is* *bounded by Cptimes the corresponding right-hand scale to the power p.*
+
+*Proof.* We first prove a weak estimate for the conjugate Poisson kernel and then represent the matrix resolvent by a positive matrix-valued measure. Let *ν* be a finite measure with values in a Hilbert space, and let *m₀* be its total variation. Uniformly in 0 *≤ ρ <* 1, ∫ *∥∥Qρ∗ ν∥∥* *L*1*,∞* *≤ Cm₀, ∥Pρ∗ ν∥* d*m*T*≤ m₀.* (3.13) T
+
+The Poisson assertion follows from positivity and Fubini. If *m₀* = 0, both assertions are immediate. Otherwise, for the conjugate assertion, identify the circle with a normalized interval of length one and fix a level *t ≥* 2*m₀*. Choose maximal dyadic intervals *I* for which *|ν|*(*I*) *> t |I|*, where *|ν|* denotes total variation. They are disjoint and have total length at most *m₀/t*. Their dyadic parents are not selected, so *|ν|*(*I*) *≤* 2*t |I|*. Replace *ν* on each selected interval by its vector average. The resulting good measure has a density *g* with 2 *∥g∥* *L∞* *≤* 2*t, ∥g∥* *L*1 *≤ m₀, ∥g∥* *L*2 *≤* 2*tm₀.*
+
+These assertions include a possibly singular original measure. The variation measure restricted to the complement of the selected intervals is bounded by *t |J |* on every dyadic interval *J*: if *J* lies inside a selected interval the restriction vanishes there, and otherwise *J* cannot have variation greater than *t |J |*. Dyadic coverings extend this domination to Borel sets, proving absolute continuity and the density bound. The Fourier multipliers of *Qρ*have modulus at most one, and Hilbert-space 2 Parseval therefore gives *∥Qρ∗ g∥* *L*2 *≤* 2*tm₀*. The bad pieces <u>ν(I)</u> *νI*= *ν|I−* **1***I*d*m*T *|I|* have zero total mass and total variations summing to at most 2*m₀*. Interpret a concentric triple interval of length at least one as the whole circle. Outside the triple interval 3*I*, cancellation and the uniform kernel derivative bound ∣ ∣ <u>C</u> ∣*′*∣ ∣*Qρ*(*u*)∣ *≤* 2 dist(*u,*0)
+
+give ∫ *∥Qρ∗ νI∥* d*m*T*≤ C |νI|* (*I*)*.* T*\*3*I*
+
+Indeed, subtract the kernel evaluated at the center of *I*, bound its difference by *C |I | /* dist(*u,I*) 2, and integrate away from 3*I*. For completeness, in angular coordinates and *ρ >* 0, ∣ ∣ 2*ρ C* ∣*′*∣ ∣*Qρ*(*u*)∣ *≤* 2 *≤ ≤*; *|*1 *− ρe* *iu* *|* 2 sin (*u/*2) dist(*u,*2*π*Z)
+
+the case *ρ* = 0 is trivial. Rescaling the circle only changes the absolute constant, so the bound is uniform as *ρ* tends to one. The union of the triple intervals has length at most 3*m₀/t*. Chebyshev applied to the good *L²* bound and the bad *L¹* bound outside this union gives *m*T*{∥Qρ∗ ν∥ > Ct}≤* *Cm₀/t*. Levels below 2*m₀* are trivial. This provesEquation (3.13). Now define the analytic matrix function
+
+*F₁*(*z*) = 2(**1** *− zB*) *−*1 *−* **1***.*
+
+It satisfies *F₁*(0) = **1** and *∗ −*1 2 *∗ −*1 Re *F₁*(*z*) = (**1** *− zB* ¯) (**1** *−|z| B B*)(**1** *− zB*) *≥* 0*.*
+
+For *r < r* *′* *<* 1, the positive matrix-valued measure
+
+d*Mr′* (*t*) = Re *F₁*(*r* *′* *e* *it* ) d*m*T(*t*)
+
+has total mass **1**. Fourier series show that on the circle of radius *r*, *F₁* is its Poisson integral plus *i* times its conjugate Poisson integral, with kernel radius *r/r* *′*. There is no additional constant imaginary part because *F₁*(0) = **1**. The measure *UMr′ V*, considered in the Hilbert space of matrices with Hilbert–Schmidt norm, has variation at most *∥U ∥* HS *∥V ∥* HS. To verify this for a finite measurable partition, write *Mj*for its positive matrix masses. Then ∑ ∑ ∥ ∥ 1*/*2 ∥ ∥ ∥ ∥ 1*/*2 ∥ ∥ *∥UMjV ∥* HS *≤* ∥*UM* *j*∥ ∥ *M* *j* *V* ∥ HS HS *j j*  1*/*2 1*/*2 ∑ ∥ ∥ 1*/*2 ∥ ∥2 ∑ ∥ ∥ 1*/*2 ∥ ∥2 *≤*  ∥*UM* *j*∥   ∥*M* *j* *V* ∥  = *∥U ∥* HS *∥V ∥* HS *.* HS HS *j j* Taking the supremum over partitions proves the claim. ApplyingEquation (3.13)proves the required weak estimate for *UF₁V*. The added constant *UV* in *U* (**1** *− zB*) *−*1 *V* = (*UF₁*(*z*)*V* + *UV*)*/*2 obeys the same scale bound. For the trace assertion, factor *D* = *XY* by singular values so that *∥X∥* HS *∥Y ∥* HS = *∥D∥* 1. For any positive partition masses *Mj*of total mass **1**, ∑ ∑ ∥ ∥ 1*/*2 ∥ ∥ ∥ ∥ 1*/*2 ∥ ∥ *|*tr(*DMj*)*|≤* ∥*YM* *j*∥ ∥ *M* *j* *X*∥ *≤∥D∥* 1 *.* HS HS *j j* Thus the scalar measure tr(*DMr′*) has variation at most the trace norm of *D*, and the same argument applies. All estimates are uniform on inner circles. Rationality gives radial limits outside finitely many boundary points. Applying Fatou to level sets, first at a slightly smaller level and then increasing it, givesEquations (3.11)and(3.12)on the boundary. Finally, a tail bound P*{X > t}≤* min(1*,A/t*) gives ∫ *∞* E*X* *p* = *p t* *p−*1 P*{X > t}* d*t ≤ CpA* *p* *,* 0 *< p <* 1*.* 0
+
+We record a useful extension of the same proof. If a rational analytic *d × d* matrix function *F* has nonnegative Hermitian real part in the disk, its representing positive measures have total mass Re*F*(0). Their Hilbert–Schmidt variation is at most tr(Re*F*(0)) *≤ d ∥F*(0)*∥*. Restoring the constant *i*Im*F*(0), the preceding argument gives ∥∥ ∥∥ ∥∥*it*∥∥ ∥∥*F* (*e*)∥∥ 1*,∞* *≤ Cd ∥F*(0)*∥.* (3.14) *L* We need only the resulting polynomial dependence on dimension and the norm at the center.
+
+#### 3.4 Determinant phases and artificial absorptions
+
+To average inverse traces over a real diagonal shift, we integrate the phase of the determinant. The estimate must also allow artificial absorptions that vary with that shift.
+
+**Lemma 3.6** (Phase integration)**.** *Let D*(*s*) *be a continuously differentiable d × d matrix on a* *bounded real interval, with −* Im*D*(*s*) *>* 0*. Its determinant has a continuous phase* Φ *such that*
+
+*′* ( *′ −*1 ) *−dπ <* Φ(*s*) *<* 0*,* Φ (*s*) = Im tr *D* (*s*)*D*(*s*)*.* (3.15)
+
+*Suppose, in particular, that*
+
+*′ ′i* ∣ *′i* ∣2 *D* (*s*) = *PJ − iτ* diag*J*(*a* (*s*))*,* 0 *≤ τ ≤* 1*,* ∣*a* (*s*)∣ *≤ Cai*(*s*)*,*
+
+*where PJ is the coordinate projection onto J, and that −* Im*D*(*s*) *≥ τ* diag*J*(*ai*(*s*))*. With G* = *D* *−*1 *,*
+
+Φ *′*
+
+(*s*) *≥* <u>1</u> 2 tr*J*Im*G*(*s*) *− C*
+*′*
+
+*d.* (3.16)
+*Consequently, on an interval* [*a,b*]*,* ∫ *b* tr*J*Im*D*(*s*) *−*1 d*s ≤ C* *′′* *d*(1 + *b − a*)*.* (3.17) *a*
+
+*The integral bound remains valid for passive matrices at their almost-everywhere existing inverses,* *by strict regularization.*
+
+*Proof.* Every eigenvalue of a strictly passive matrix lies in the open lower half-plane: test the imaginary part of the quadratic form on an eigenvector. Use the branch of the logarithm whose arguments there lie in (*−π,*0). The sum of the eigenvalue arguments, counted with algebraic multiplicity, defines a continuous phase of the determinant in (*−dπ,*0). The logarithmic derivative of the determinant givesEquation (3.15); no differentiability of individual eigenvalues is needed. The absorption identity gives, for every *i ∈ J*,
+
+2 (Im*G*)*ii≥ τai|Gii|.*
+
+Thus the derivative contribution of an artificial diagonal satisfies ∣ *′i* ∣ 1*/*2 *√* √ *τ* ∣*a Gii*∣ *≤ C τ* (Im*G*)*ii.*
+
+This is also valid when *ai*= 0, since then *a* *′i* = 0. Taking imaginary parts of the trace derivative and applying Young’s inequality yields ∑ *√* ∑ √ Φ *′* *≥* (Im*G*)*ii− C¹* */*2 *τ* (Im*G*)*ii≥* <u>1</u> 2 tr*J*Im *G−C* *′*
+
+*d.*
+*i∈J i∈J*
+
+Integration, followed by Φ(*b*) *−* Φ(*a*) *≤ dπ*, provesEquation (3.17). For merely passive *D*, apply the same argument to *D − iζ***1**, *ζ >* 0. The bounds are independent of *ζ*; where *D* *−*1 exists, the inverses converge as *ζ* tends to zero, and Fatou proves the stated extension.
+
+Two variants will be used without changing this argument. If the real derivative is a Hermitian matrix *K*(*s*) *≥ cPJ* for a fixed *c >* 0, its contribution is tr(*K* Im*G*) *≥ c*tr*J*Im*G*. ThusEqua- tion (3.17)holds with constants also depending on *c*. Additional real diagonal derivatives can instead be retained explicitly inEquation (3.15)and estimated using available absorption bounds. This is how the calibrated root derivative will be handled.
+
+#### 3.5 The artificial probe profile
+
+Separate from the cell ports, we allow at most one artificial probe at each site. A prescribed *mask* chooses among absence, strength *τ*, and strength *τϑ*(*vi*), where *vi*is always the true site potential, including when the real reference value differs from it. Masks do not depend on the potentials. They may be fixed after conditioning on spatial offsets or other independent prescriptions. Zero strength means absence. Here *ϑ* : [*−h,h*] *→* [0*,*1] is fixed, of class *C¹* *,*1, polynomial on finitely many pieces, positive on (*−h,h*), and identically one on a plateau containing [*−h/*2*,h/*2] and the compact interior potential settings of the cell construction. Such a profile can be chosen after those compact settings are fixed and before the later scale and width parameters are selected. To construct it, choose *a < h* large enough that the required compact set lies in [*−a,a*], and use 3*t² −* 2*t³* on each endpoint transition, with *t* = (*v* + *h*)*/*(*h − a*) on [*−h, −a*] and *t* = (*h − v*)*/*(*h − a*) on [*a,h*]; put *ϑ* = 1 on [*−a,a*]. The endpoint values are zero, the derivatives match at the joins, and ∣ *′* ∣2 2 ∣ *ϑ* (*v*)∣ *≤ Cϑ*(*v*)*, ϑ*(*v*) *≍* dist(*v, {−h,h}*) near the endpoints*.* (3.18)
+
+Constants may depend on the fixed profile. In particular, *ϑ* *−q* is integrable on [*−h,h*] for every *q <* 1*/*2. For estimates at a single cell of size *L*, artificial strengths will obey 0 *≤ τ ≤ e* *−c∗L* with a sufficiently large fixed *c∗>* 0. The screening estimates will also allow 0 *≤ τ ≤* 1. All spatial masks remain arbitrary subject to the independence convention above.
+
+### 4 The resonant cell law
+
+Throughout this section, *h >* 0 and *E ∈* (*−*4 *− h,*4 + *h*) are fixed. All choices may depend on these two parameters. A polynomial bound in *L* means *C*(1 + *L*) *C*, with constants independent of the exterior system, its dimension, and the artificial-probe mask. The construction below specifies an auxiliary law on one cell. Its incorporation into the true product law is deferred toProposition 7.1.
+
+#### 4.1 Clipping the corners
+
+Fix an integer margin *b ≥* 3. In a tile of odd side *bl*= 3 *l*, use coordinates centered at its central site and put <u>b</u> <u>l− 1</u>2 *L* = *− b, V* = *{−L,...,L} \{*(*±L, ±L*)*}, J* = *V \{*0*}.* (4.1) 2 Only sufficiently large *l* are used. Let
+
+*B* = *{x /∈ V* : dist₁(*x,V*) = 1*}, px*= **1***{|x|* 1 =1*}*(*x ∈ J*)*.*
+
+Thus *p* is the adjacency column from the root 0 to *J*. Let *M* : R *B* *−→* R *J* be the adjacency matrix from *B* to *J*; when used on *V*, it has an additional zero row at the root. Define
+
+*Z* = *{x ∈ J* : *Mx,·̸*= 0*}, Z* + = *{x ∈ J* : dist₁(*x,Z*) *≤* 1*}, P* = proj(ker*M*)*⊥.* (4.2)
+
+We identify a projection with its range when specifying a matrix domain. The cell and its corner coupling are shown inFigure 1.
+
+**Lemma 4.1** (The clipped boundary)**.** *The set Z consists of the four sides of the square with* *their corners removed. Every site of Z has an inward nearest neighbor in* *√* *J \ Z. The restriction* *M* : *P −→* R *Z* *is an isomorphism whose singular values lie in* [1*,* 3]*. In particular,* *√* *∥M ∥≤* 3*, ∥Mw∥≥∥w∥* (*w ∈ P*)*.*
+
+*There is an orthogonal decomposition P* = *P₀* + *Q: P₀ is the coordinate projection onto the single* *side sites of B, and Q is the direct sum of four two-dimensional corner planes.*
+
+*Proof.* At the positive corner the relevant sites of *B*, in their fixed order, are
+
+*e₁* = (*L* + 1*,L −* 1)*, e₂* = (*L −* 1*,L* + 1)*, e₃* = (*L,L*)*.*
+
+Here and below the same symbols also denote the corresponding coordinate vectors. The two rows indexed by (*L,L −* 1) and (*L −* 1*,L*) give the block () 1 0 1
+
+*.* (4.3)
+0 1 1
+
+Its row space is span*{e₁* + *e₃,e₂* + *e₃}*. We use the orthonormal basis
+
+(*−*1*, −*1*,*1) (1*, −*1*,*0) (1*,*1*,*2) *n* = *√, r₁* = *√, r₂* = *√.* (4.4) 3 2 6
+
+Here *√n* spans the kernel, and *r₁,r₂* span the corner plane. The two nonzero singular values are 1 and 3. Use the reflected geometric configuration and the same ordered basis coefficients at the other three corners. Every remaining nonzero row of *M* contains one entry, equal to 1, in a distinct single side coordinate. This proves the asserted decomposition and singular-value bounds. In fact *|B|* = 8*L*, *|Z|* = 8*L −* 4, and dim *P₀* = 8*L −* 12. For example, an inward neighbor of (*L,y*) *∈ Z* is (*L −* 1*,y*), which is not in *Z*; the other sides follow by reflection. These choices remain valid next to a clipped corner. All connections from *V* <u>to</u> its complement pass through *B*, and *V ∪ B* lies inside the tile because of the fixed margin *b*.
+
+#### 4.2 Calibrating the root with a decaying profile
+
+We choose the root reference value so that the Dirichlet cell has a mode at energy *E*. For arbitrary real values *v|J*, write *A* = Adj*J*+ diag*J*(*v − E*)*.*
+
+Whenever *A* is invertible, define *c*(*v*) = *E* + *p* *⊤* *A* *−*1
+
+*p.* (4.5)
+The Dirichlet matrix on *V*, with root potential *c*(*v*), then satisfies ()() *c*(*v*) *− E p* *⊤* 1 *−*1= 0*.* (4.6) *p A −A p*
+
+Thus invertibility of the punctured matrix *A* permits resonance of the full Dirichlet cell. We must choose the interior law so that *A* *−*1 is controlled, *c*(*v*) stays inside the physical potential interval, and this root-normalized mode is small at the boundary. The transmission estimates will later control how it couples to an arbitrary passive exterior.
+
+cell inside its tile
+
+*e₂* *e₃* *V* (*L −* <u>1,L)</u> clipped corner
+
+0 *e₁* *Z* (*L,L −* 1)
+
+*Q* : span*{e₁* + *e₃,e₂* + *e₃}* ker*M* : span*{*(*−*1*, −*1*,*1)*}*
+
+filled boundary sites: *Z*; open sites: *B*
+
+Figure 1: The clipped cell and a magnified positive corner. The two boundary rows couple to a
+
+triple of exterior coordinates, leaving exactly one missing direction. The inward arrows reach a site outside *Z*; this geometric fact is used in the transmission argument.
+
+We first construct a comparison profile *ψ*, normalized by *ψ₀* = 1, and potentials *v⁰* satisfying its local equation. The profile is defined also on *B*, where it is small but nonzero, so it need not be a Dirichlet eigenvector. A deformation of this profile will give a polynomial inverse bound for the punctured matrix at *v⁰*. These two properties will control the exact calibrated mode after the interior values are randomly perturbed. Choose a rational multiple *θ* of *π* and a real phase *ϕ* such that
+
+*|E −* 4 cos*θ| < h, mθ*:= min*|*cos(*θk* + *ϕ*)*| >* 0*.* (4.7) *k∈*Z
+
+The first choice is possible because the energy is in (*−*4 *− h,*4 + *h*) and rational multiples of *π* are dense. The sequence of cosine values is periodic, so the second condition excludes only finitely many phases modulo 2*π*. Put <u>h −|E − 4 cosθ|</u> *d* = *>* 0*.* 8 Define the real sequence *f* on all integers by
+
+*f₀* = 0*,* () (4.8) *fk*+ *fk*+1= sign cos(*θk* + *ϕ*) cos(*θ*(*k* + 1) + *ϕ*)*.*
+
+Recursion in either direction gives *|fk|≤|k|*. For small fixed *ν,cu>* 0, and *|u|≤ cu/L*, set
+
+*−ν|x|∞*<u>cos(θ(x₁ + x₂) + ϕ)</u>*ufx x* *ψx*(*u*) = *e e*1 + 2(*x ∈ V ∪ B*)*,* cos*ϕ* ∑ <u>ψ</u> <u>y</u>
+
+<u>(u)</u>
+(4.9) *vx* 0
+
+(*u*) = *E −* (*x ∈ V*)*.*
+*y∼x* *ψx*(*u*)
+
+Every neighbor in the last sum belongs to *V ∪ B* and *ψ₀* = 1. Uniformly over the allowed parameters,
+
+*ce* *−ν|x|∞* *≤|ψx*(*u*)*|≤ Ce* *−ν|x|∞*
+
+*.* (4.10)
+
+Indeed *|ufx*1+*x*2*|* is bounded by a fixed multiple of *cu*and the periodic carrier is bounded away from zero. For neighbors *x,y* the additional ratio factors differ from 1 by *O*(*ν* + *cu*): their radial exponents differ by at most *ν*, and *|u*(*fy*1+*y*2*− fx*1+*x*2)*|≤ Ccu*. At *ν* = *u* = 0, the cosine addition formula gives *vx* 0 = *E −* 4 cos*θ*. We therefore fix *ν,cu*small enough, once and for all, that
+
+*|vx* 0
+
+(*u*) *−* (*E −* 4 cos*θ*)*|≤ d, |vx*
+0
+
+(*u*)*|≤ h −* 7*d.* (4.11)
+**Lemma 4.2** (Choice of the profile parameter)**.** *There is a fixed exponent C₂ such that, for every* *sufficiently large L, a deterministic uL∈* [*−cu/L,cu/L*] *can be chosen for which the real symmetric* *Dirichlet matrix* *A⁰* = Adj*J*+ diag*J*(*v⁰ − E*) ∥ 0 *−*1 ∥ *satisfies* ∥(*A*) ∥ *≤ LC². The bounds inEquations* (4.10) *and* (4.11) *hold for this choice, with* *constants independent of L.*
+
+*Proof.* During the proof retain *u* as a variable. Let Ψ(*u*) = diag(*ψx*(*u*) : *x ∈ J*), *W* (*u*) = Ψ(*u*) 2, and *Q*(*u*) = *−*Ψ(*u*)*A⁰*(*u*)Ψ(*u*). Extend a test vector *α* by zero at 0 and on *B*. Counting each unoriented edge meeting *J* once gives ∑ *α* *∗* *Q*(*u*)*α* = *ψx*(*u*)*ψy*(*u*)*|αx− αy|* 2
+
+*.* (4.12)
+*{x,y}*:*{x,y}∩J ̸*=∅
+
+The sum here contains only edges with the other endpoint in *J ∪{*0*}∪ B*. Its weights may have either sign. Nevertheless,Equation (4.8)gives the exact identity
+
+<u>d</u> () *ψx*(*u*)*ψy*(*u*) = *|ψx*(*u*)*ψy*(*u*)*|* (*x ∼ y*)*.* d*u*
+
+Thus *Q* *′*
+
+(*u*) is a positive weighted Dirichlet form.
+For each *x ∈ J*, choose a nearest-neighbor path to 0 by decreasing coordinates in absolute value. It lies in *V*, has at most 2*L* edges, and its max radius never exceeds *|x|∞*. Every edge on the path has weight *|ψyψz|≥ c|ψx|* 2, byEquation (4.10). Weighted Cauchy–Schwarz along the path gives ∑ *|ψx|* 2 *|αx|* 2 *≤ CL |ψyψz||αy− αz|* 2 *≤ CLα* *∗* *Q* *′*
+
+(*u*)*α.*
+*{y,z}* on the path
+
+Summing over at most *CL²* sites shows
+
+*Q* *′*
+
+(*u*) *≥ cL* *−*3
+*W* (*u*) *≥ L* *−C*1 *W* (*u*) (4.13)
+
+for some fixed *C₁*, after increasing the lower size threshold. One may take *C₁* = 4. Moreover, all *W* (*u*) in the allowed interval are comparable as quadratic forms, with a fixed comparison constant, and *−CLW*(*u*) *≤ W* *′*
+
+(*u*) *≤ CLW*(*u*)*.*
+Choose *C₂ > C₁* + 3 and put *t* = *L* *−C*2. For sufficiently large *L*,
+
+(*Q ± tW*) *′* *≥* 2 <u>1</u> *L* *−C*1
+
+*W.*
+More explicitly, form comparability andEquation (4.13)give, whenever *u₂ − u₁ > C* *′* *tLC¹* with a sufficiently large fixed *C* *′*, *Q*(*u₂*) *− tW*(*u₂*) *> Q*(*u₁*) + *tW*(*u₁*)*.* (4.14)
+
+Let *λk*(*u*) be the *k*th eigenvalue, in increasing order, of *−A⁰*(*u*). Congruence by the invertible real diagonal matrix Ψ(*u*) preserves the numbers of negative, zero, and positive eigenvalues. Consequently, if *λk*(*u₁*) *≥ −t*, the *k*th eigenvalue of *Q*(*u₁*) + *tW*(*u₁*) is nonnegative. The strict inequality in Equation (4.14)then makes the *k*th eigenvalue of *Q*(*u₂*) *− tW*(*u₂*) positive, so *λk*(*u₂*) *> t*. It follows that each set *{u* : *|λk*(*u*)*|≤ t}* has diameter at most *C* *′* *tLC¹*. No monotonicity assertion about the individual *λk*(*u*) is needed. The union of these sets, over *|J |* = *O*(*L²*) indices, has length at most *CLC¹* +2*−C*2 = *o*(*L* *−*1 ), whereas the available interval has length 2*cu/L*. Choose *uL*outside this union. For definiteness, one may choose the first rational point in a fixed enumeration that belongs to the open complement. Then dist(0*,*spec *A⁰*) *> L* *−C*2, proving the inverse bound.
+
+From now on *u* = *uL*is fixed and suppressed in the notation. Set
+
+*ϵ* = *e* *−νL* *, σ* = *ϵ².* (4.15)
+
+In particular, *|ψx|* is comparable to *ϵ* on *B* and on *Z* +, with constants independent of *L*. We have chosen the port strength *σ* as the square of this designed boundary-profile scale. The exact calibrated mode will satisfy the polynomially lossy comparison inEquation (4.23).
+
+#### 4.3 The branch sampler
+
+We first describe the boundary conditionings used by the sampler. For each corner triple use the fixed basis inEquation (4.4)and put () <u>(rj)i</u> D*j*= diag : 1 *≤ i ≤* 3 (*j* = 1*,*2)*.* (4.16) *ni*
+
+These matrices satisfy D*jn* = *rj,* tr D*j*= 0*, n* *⊤* D*jn* = 0*.*
+
+Thus a common shift changes the real diagonal in the missing direction *n*, while a shift along D*j* changes its coupling to *rj*without changing that diagonal. The three diagonal directions *I,* D₁*,*D₂ are linearly independent: multiplying a vanishing linear combination by *n* gives a vanishing linear combination of the orthonormal vectors *n,r₁,r₂*. Thus centered coordinates (*s,t₁,t₂*) specify physical potentials by diag(*v*) = diag(¯*v*) + *sI* + *t₁*D₁ + *t₂*D₂*.* (4.17)
+
+The map has a fixed nonzero Jacobian. In fact its three columns, as vectors of diagonal entries, *√* are orthogonal and have length 3. Use this same coordinate convention at all levels, including at exactly coincident triples. A prescribed corner box is the image underEquation (4.17)of a product of three centered intervals. Fix an exponent *κ*. The boxes allowed below have all three side lengths at least *c*(1 +*L*) *−κ* and at most *C*, lie at distance at least *c*(1 + *L*) *−κ* from the boundary of (*−h,h*) 3, and keep each physical coordinate in a single polynomial piece of the fixed artificial profile *ϑ*. Constants may depend on *κ*; in the hierarchy this exponent is fixed by *K₀*. Uniform measure in these box coordinates is also uniform measure in the physical parallelepiped. Because *ϑ* is positive in the interior and comparable to squared distance from the support endpoints, every nonzero artificial profile *ai∈{*1*,ϑ}* on a permitted box obeys *ai*(*vi*) *≥ c*(1 + *L*) *−*2*κ*
+
+*.* (4.18)
+Increasing the exponent absorbs any fixed comparison constants.
+
+Choose *D₁ > C₂* + 2. A shell-depth parameter *D₂* will be fixed after the polynomial thresholds in the boundary and zero-jitter transmission estimates have been fixed. Finally choose *D₃* sufficiently large depending on *D₁,D₂* and these thresholds. On *J* sample
+
+*vx*= *vx* 0 + *r***1***Z*+ (*x*) + *ζx, r ∼* Unif[*−L* *−D*1 *,L* *−D*1]*,* (4.19)
+
+where the *ζx*are independent centered uniforms of half-width { *L* *−D*3 *, L −|x|∞≤ D₂* log*L* + 5*,* *wx*= *−D* (4.20) *ϵL*3*, L −|x|∞> D₂* log*L* + 5*.*
+
+They are independent of *r* and all boundary sampling. For these interior draws, use the matrix *A* and the calibrated value *c*(*v*) fromEquation (4.5). At the root, put an open cell port *a* of strength *σ*, and use *c*(*v*) as its real reference potential. To define the hidden true potential, fix a smooth cutoff *χ* : R *→* [0*,*1] with *χ* = 1 on [*−d,d*] and supp*χ ⊂* [*−*2*d,*2*d*], and sample
+
+<u>1 σ</u> *v₀* = *c*(*v*) + *δ,* P(*δ ∈* d*t | v|J*) = *χ*(*t*) 2 2 d*t,* *Zσπ*(*t* + *σ*) ∫ (4.21) <u>σ</u> *Zσ*= *χ*(*t*) 2 2 d*t.* R*π*(*t* + *σ*)
+
+This is exactly the cutoff Cauchy law used inLemma 3.4. The open reference *c*(*v*) does not depend on the hidden draw *δ*. The boundary law is as follows. On each corner triple sample uniformly in its prescribed box, independently between the four triples. On every single side site *x* sample
+
+*vx*= *ξx*+ *s₀, ξx∼* Unif[*−h/*4*,h/*4]*, s₀ ∼* Unif[*−h/*4*,h/*4]*,* (4.22)
+
+using independent *ξx*and one common *s₀*. These draws are independent of the triples and the interior draws. Sites of the tile outside *V ∪ B* retain their independent uniform [*−h,h*] laws, independently of all draws just described. Apart from the common shifts *r,s₀* and the dependence of the root center *c*(*v*) on *v|J*, all sampling is independent.
+
+**Proposition 4.3** (Properties of the branch law)**.** *For sufficiently large L, the above choices have* *the following properties, uniformly over permitted corner boxes:*
+
+*(i)Every interior draw has*
+∥ ∥ ∥ ∥ ∥*−*1∥*C₂*∥*−*1∥*C₂*+1 ∥*A* ∥ *≤* 2*L,* ∥*−A p − ψ|J*∥ *≤ CL ϵ.* (4.23)
+
+*The exponents in these bounds are independent of D₂, provided D₃ is subsequently chosen* *sufficiently large.*
+
+*(ii) All true potentials on V lie in a fixed compact subinterval of* (*−h,h*)*. The root center satisfies*
+
+*|c*(*v*) *− v₀₀|≤ CLC²* +1 *ϵ.* (4.24)
+
+*The plateau of ϑ can therefore be fixed to contain every true value on V and every single side* *value in B, for all the cells used. The artificial absorptions on these sites are constant as r,* *the jitters, the common side shift, and the hidden root draw vary.*
+
+*(iii) Relative to the true product law on the tile conditioned on these same four corner boxes, the* *branch has a density L satisfying* ∫ ( 3 2 ) 0 *≤L≤* exp *CL* + *CL* log *L, L* dPtrue*,*boxes= 1*.* (4.25)
+
+*The corner-box conditional laws and the laws outside V ∪ B are unchanged.*
+
+*Artificial probes may have any prescribed mask of absent, constant, or profile-dependent strengths,* *as inSection 3.5. For subsequent cell estimates their common scale is restricted to* 0 *≤ τ ≤ e* *−c∗L* *,* *with a fixed c∗>* 2*ν.*
+
+*Proof.* The perturbation from *A⁰* is diagonal and has norm at most *L* *−D*1 + *L* *−D*3. Taking *D₃ > D₁*, Lemma 4.2and a Neumann series give the first bound inEquation (4.23). The profile equation on *J* gives the exact residual identity
+
+*A⁰ψ|J*+ *p* = *−Mψ|B.* *√* The right-hand side has norm at most *C Lϵ*. On *Z* +, *|ψx|≤ Cϵ*, so the additional common-shift residual has norm at most *CLϵL* *−D*1. On the jitter shell,
+
+*|ψx|≤ CϵL* *νD*2 *,*
+
+where the extra depth 5 has been absorbed in *C*. Its jitter residual is bounded by *CLϵL* *νD*2*−D*3. Off that shell, the half-width already has a factor *ϵ*, and *|ψx|≤ C*, giving an upper bound *CLϵL* *−D*3. Thus *D₃ > νD₂* + 2 ensures *∥Aψ|J*+ *p∥≤ CLϵ.*
+
+Multiplication by *A* *−*1 proves the second bound inEquation (4.23). Notice that the resulting exponent *C₂* + 1 was fixed before *D₂*. Since *ψ₀* = 1, the profile equation at 0 reads *v₀₀* = *E − p* *⊤* *ψ|J*. Subtracting this from the definition of *c*(*v*) provesEquation (4.24). Increase the minimum cell size so that all interior perturbations and the last calibration error are at most *d*. ByEquation (4.11), *|vx|≤ h −* 6*d* on *J*, *|c*(*v*)*|≤ h −* 6*d*, and *|v₀|≤ h −* 4*d* after the hidden draw. The side values lie in [*−h/*2*,h/*2]. Choose the plateau to contain these compact intervals. This choice uses only the original design margin *d*, and is therefore available before the large width and shell exponents are fixed. Each present artificial profile on these sites is then identically 1, proving the constancy assertion, also at the root. For the density estimate, first condition on *r* and *s₀*. Each jitter has density at most (2*wx*) *−*1 in its physical coordinate, hence likelihood at most *h/wx*relative to a uniform [*−h,h*] coordinate. For small *σ*, *Zσ≥* 1*/*2, so the conditional root density is at most *C/σ*. Its likelihood relative to the true uniform coordinate is at most *Ch/σ*. Each single side coordinate has likelihood at most 4. Multiplying these bounds before averaging the common shifts gives
+
+log *L≤ C|J |* + *D₃|J |* log*L* + *νL*#*{x ∈ J* : *wx*= *ϵL* *−D*3 *}* + 2*νL* + *C|B|≤ CL³* + *CL²* log *L.*
+
+An upper bound of this form also holds when some individual displayed logarithms are negative. The four corner factors cancel against the identical box conditionings in the reference law. The outside factors cancel as well. All sampler laws are normalized, so integration gives the last assertion inEquation (4.25).
+
+We record explicitly the order of choices used later. The carrier, *d,ν,cu,C₁,C₂*, the compact cutoff and plateau, and the corner-box exponent are fixed first. Next fix *D₁*. The polynomial threshold inProposition 5.1and the regular inverse thresholds in the zero-jitter part ofProposition 6.1 can then be fixed without *D₂,D₃*. At depth *L −|x|∞*= *⌊D₂* log *L⌋*,Equation (4.10)gives
+
+<u>|ψx|</u>*νD* 2 *≥ cL.* *ϵ*
+
+Choose *D₂* large enough that this dominates the already fixed polynomial errors and reflected-field bounds in that argument. Finally choose *D₃* to satisfy both the residual requirements above and the inverse and path-entry stability requirements ofProposition 6.1. Enlarging *D₃* changes neither the exponents inEquation (4.23)nor the earlier zero-jitter bounds. All parameters are now fixed; only after that do we increase the lower cell-size threshold. This order prevents the depth choice from depending on a polynomial exponent that itself grows with the depth.
+
+### 5 A weighted projected impedance estimate
+
+We retain the boundary geometry and the conditional boundary law ofLemma 4.1andProposition 4.3. In this section the interior of the cell does not enter the calculation. Its only relevant feature is that it couples to the boundary space through the projection *P*. We write
+
+*P* = *P₀* + *Q, Q* = *Q₁* + *Q₂* + *Q₃* + *Q₄,*
+
+where *P₀* projects onto the single side sites and *Qa*projects onto the two-dimensional plane of the *a*th corner triple. The four complementary directions in the triples are denoted by *√* *na*. In the prescribed ordering of each triple, *na*= (*−*1*, −*1*,*1)*/* 3. Thus rank*Q* = 8, whereas the dimension of the whole boundary space is *O*(*L*). All norms below use the fixed real orthonormal bases of these spaces. Constants may depend on the fixed disorder, profile, and corner-box parameters. They will not depend on the exterior matrices, their norms, the source vector, or the artificial-probe mask. Until an exponent *H* is selected below, every expression denoted by poly(*L*) means a bound *C*(1 +*L*) *C* whose constants are independent of *H*. A final polynomial bound is allowed to depend on that selected, fixed exponent.
+
+**Proposition 5.1** (Weighted projected impedance)**.** *Let T be any fixed complex symmetric matrix* *on the boundary space with −* Im *T ≥* 0*, and let k be any fixed vector there. For each boundary site* *prescribe aito be one of* 0*,* 1*, and ϑ, with the prescription independent of the boundary variables.* *Set* ∥ ∥ () ∥ *−*1∥2 *T* = *T* + diag*Bvi− iτai*(*vi*)*, ρ* = ∥*P* (*T − iP*) *k*∥*.* (5.1)
+
+*Fix c∗>* 0 *and suppose* 0 *≤ τ ≤ e* *−c∗L* *. There are constants c >* 0*, C < ∞, and a sufficiently large* *lower threshold for L such that* [] E*Bρ* **1***{∥P T−*1*P ∥≤C*(1+*L*)*C}≥ c*E*Bρ.* (5.2)
+
+*Here the expectation uses the boundary law conditional on its four corner boxes. The constants are* *uniform in all the exterior data just described. Moreover, changing only the single side variables to* *any other bounded allowed settings, including their artificial absorptions, changes ρ by at most fixed* *multiplicative factors, pointwise wherever the inverses exist.*
+
+The weight inEquation (5.1)matters: a small unweighted exceptional set could contain nearly all the response of a weakly coupled exterior mode. We first control the inverse on the corner planes *Q* while leaving unit absorption on the single side coordinates *P₀*. The corner estimates must retain a fixed fraction of the response weight. We then average the common real side shift to bound the whole projected inverse *P T* *−*1 *P* with the auxiliary *P₀* absorption removed.
+
+#### 5.1 Elementary reductions and polynomial estimates
+
+We first record the comparison that permits bounded changes of the absorbed coordinates.
+
+**Lemma 5.2** (Comparison of absorbed responses)**.** *Suppose D₁,D₂ are invertible matrices with* *−*Im*Dj≥ P. If D₂ − D₁* = *P* ∆*P and ∥*∆*∥≤ K, then, for every k,* ∥ ∥ ∥ ∥ ∥ ∥ *−*1∥*−*1∥ ∥*−*1∥ ∥*−*1∥ (1 + *K*) ∥*PD₁ k*∥ *≤* ∥*PD₂ k*∥ *≤* (1 + *K*) ∥*PD₁ k*∥*.*
+
+#### Proof. The inverse difference identity gives
+
+*PD₂* *−*1 *k* = *PD₁* *−*1 *k − PD₂* *−*1 *P* ∆*PD₁* *−*1
+
+*k.*
+∥ ∥ ∥*−*1∥ ByLemma 3.1, ∥*PD₂ P* ∥ *≤* 1. This proves the upper bound; interchanging the indices proves the lower bound.
+
+The inverses used in this section exist almost everywhere in the stated boundary law. To see this without any nonsingularity assumption on *T*, recall that a kernel vector of a passive matrix is annihilated by both its Hermitian real and imaginary parts. Absorption on *P* restricts such a vector to the four missing directions. On that space the Hermitian real part has the form of a fixed real symmetric matrix plus the independent common corner shifts on its diagonal. Its determinant is a nonzero polynomial, with the product of those shifts as its leading monomial. The same reasoning applies after one missing direction is deleted or after bounded changes in plane blocks. With absorption only on *P₀*, a possible kernel lies on the full corner triples. The four common shifts act there as scalar shifts on their respective three-dimensional blocks; the determinant again has a nonzero leading monomial. Finally, *T* itself has physical real diagonal variables with a joint density, so its Hermitian real part is nonsingular almost everywhere. These observations also justify almost-everywhere slicing below. The response weights are integrable. For example, writing *G* = (*T − iP*) *−*1, the Ward identity implies 2 *∗* 2 *∥PGk∥ ≤ k* (Im*G*)*k ≤∥k∥* tr Im *G.*
+
+The joint law of the physical boundary diagonals has a bounded density on a compact set; the bound here may depend on *L*. Slice that set along a common real shift of all the physical diagonals. The phase estimateLemma 3.6, including its artificial-diagonal derivative term, bounds the integral of tr Im*G* along each slice. Integration over the transverse coordinates proves finiteness. One may add *−iζ***1** first and pass to the limit by Fatou. In particular, after some boundary variables are frozen, all integrals below are finite for almost every such choice. We shall use two elementary facts about polynomials. Their degree bounds are fixed throughout this section.
+
+**Lemma 5.3** (Polynomial norms and products)**.** *On a rectangular box in a fixed number of real* *variables, let p be a polynomial of degree at most d with values in a finite-dimensional Hilbert space.* *There is a constant depending only on d and the number of variables such that*
+
+sup *∥p∥ ≤ C* avg *∥p∥.* (5.3)
+
+*If the length of a coordinate interval is at least ℓ, then*
+
+sup *∥∂jp∥≤ Cℓ* *−*1 sup *∥p∥.* (5.4)
+
+*If q is a scalar polynomial of degree at most d, then*
+
+sup *∥pq∥≥ c* sup *∥p∥* sup *|q|.* (5.5)
+
+*The constants do not depend on the dimension of the target Hilbert space or the side lengths of the* *box.*
+
+*Proof.* Affinely rescale the box to a unit cube. For scalar polynomials of bounded degree, the asserted norm comparisons and derivative estimate follow from equivalence of norms on a fixed finite-dimensional vector space. ForEquation (5.3), choose a point where *∥p∥* is maximal and a unit linear functional attaining that norm at that point; apply the scalar estimate to its composition with *p*. The derivative estimate follows in the same way by projecting at a maximizing derivative. For the scalar product estimate, normalize the two supremum norms to one. The two unit spheres of bounded-degree scalar polynomials are compact. The supremum norm of their product has a positive minimum: otherwise two nonzero limiting polynomials would have identically zero product. Projecting the vector polynomial at one of its maximizing points reducesEquation (5.5) to this scalar result.
+
+The following one-dimensional observation will prevent an extremely narrow response peak from defeating a short-exception estimate.
+
+**Lemma 5.4** (Resolution of a weighted slice)**.** *Let I be an interval of length at least ℓ, let N be* *a Hilbert-space-valued polynomial of fixed degree on I, and let z be a continuously differentiable* *complex function satisfying* ∣ *′* ∣ *|z*(*s*)*|≥ c₀a,* ∣*z* (*s*)∣ *≤ C₀, a >* 0*.*
+
+*Then* ∫ 2 2 *∥N*(*s*)*∥ C ∥N*(*s*)*∥* sup 2 *≤* 2 d*s.* *s∈I |z*(*s*)*|* min(*ℓ,a*)*I |z*(*s*)*|* *Here C depends only on c₀,C₀ and the degree bound.*
+
+*Proof.* Take a maximizing point *s₀* and an interval *I₀ ⊂ I* containing it, of length a sufficiently small fixed multiple of min(*ℓ,a*). The derivative bound gives *|z*(*s*)*|≤* 2*|z*(*s₀*)*|* on *I₀*. Applying Equation (5.3)on *I₀* yields ∫2 2 <u>∥N(s)∥ c |I₀|∥N(s₀)∥</u> 2 d*s ≥* 2 *.* *I* 0*|z*(*s*)*| |z*(*s₀*)*|* This proves the claim, including when *s₀* is an endpoint.
+
+#### 5.2 Eight corner tests
+
+Remove the common shift from the single side variables and omit their artificial absorptions. Denote the resulting boundary matrix by *T₀*, and set ∥ ∥2 ∥*−*∥ *w₀* = ∥*P* (*T₀ − iP*) *k*∥*.*
+
+The independent single side uniforms are still present. ByLemma 5.2, *w₀* and *ρ* are pointwise comparable by fixed factors. We now hold those independent side uniforms fixed. Choose an exponent *H*, to be fixed after the polynomial losses below, and put
+
+*η* = *L* *−H* *, Gη*= (*T₀ − iP₀ − iηQ*) *−*1 *.*
+
+For each vector *b* *′* in the eight prescribed real orthonormal corner-plane bases, define {} *′⊤ ′*<u>1</u> *Eb′* = *η* Im(*b Gηb*) *≥.* (5.6) 40
+
+Outside their union, ∥ ∥ ∥*−*1∥*−*1 ∥*Q*(*T₀ − iP₀*) *Q*∥ *≤ η.* (5.7)
+
+Indeed, if *∥QGηQ∥ <* (2*η*) *−*1, inverse difference and a Neumann series give the bound inEqua- tion (5.7). Hence failure of that bound forces *∥QGηQ∥≥* (2*η*) *−*1. Ward on *Q* then gives
+
+2 2<u>1</u> *η* tr(*Q*Im*GηQ*) *≥ η ∥QGηQ∥* HS *≥.* 4
+
+If all eight tests fail to occur, the left side is less than 8*/*40 *<* 1*/*4, a contradiction. Fix one test and condition on all boundary variables outside its corner triple. Use centered box coordinates (*s,t₁,t₂*) there, where *s* is the common shift and *tj*is the shift whose diagonal matrix maps the missing direction *n* to the plane basis vector *rj*. In particular, the *tj*shift has zero *n,n* entry. Write *t* = (*t₁,t₂*). Every side length of the box is at least *ℓ ≥* (1 + *L*) *−C* and at most a fixed constant. All probabilities and averages on this box are normalized uniform ones. There is first an unweighted bound
+
+#### Ps,t(Eb′) ≤ poly(L)η. (5.8)
+
+For fixed *t*, applyLemma 3.6while varying *s*. Its real derivative is the identity on the tested triple. The artificial derivatives satisfy the profile condition and are controlled by their actual absorption, so the integral of the triple partial trace of Im*Gη*is polynomially bounded. Since *b* *′* is a unit vector in that triple, its quadratic form is bounded by this trace. Divide by the interval length, then average over *t*, to obtainEquation (5.8). Neither the phase range nor this polynomial loss depends on *H* or on the exterior norm. We must strengthenEquation (5.8)to a bound for *w₀*-mass.
+
+#### 5.3 A fixed remainder at one corner
+
+The exceptional test still uses the actual inverse *Gη*. To measure its weight, we replace *w₀* by a comparable response whose remainder after deleting the tested missing direction *n* is fixed. In *T₀ − iP*, freeze the real variations of the tested triple within its plane-plane block at the box center. Replace the artificial absorption in that plane-plane block by *τ* times the plane identity. Retain every fixed term from *T* and retain all actual mixed terms and the missing-direction diagonal. Call this modified matrix *D* ˜. The modification is bounded and supported on the tested plane. It also preserves absorption at least *P* plus the original artificial absorption of the tested triple. In fact the change of artificial absorption is () *τQa***1** *−* diag(*ai*(*vi*)) *Qa≥* 0*,*
+
+because 0 *≤ ai≤* 1. Consequently ∥ ∥2 *−*1∥ ˜*−*1∥ *C w₀ ≤ W* := ∥*P D k*∥ *≤ Cw₀.* (5.9)
+
+The constant is fixed byLemma 5.2. Delete the tested missing direction *n*, and denote the inverse of the remaining block of *D* ˜ by *G*a. This inverse is independent of (*s,t*). The off-diagonal column from *n* and its Schur denominator have the form ∑ *p₁*(*s,t*) = *p₁₀* + *t₁r₁* + *t₂r₂ − iτ ai*(*vi*)*niQei,* (5.10) *i* in the triple ∑ *s − e*(*s,t*) = *s − e*fix*− p* *⊤* 1*G*a*p₁ − iτ ai*(*vi*)*n²i.* (5.11) *i* in the triple
+
+The fixed vector *p₁₀* may have components outside the tested triple; no bound on it is assumed. All variable parts of *p₁* lie in the tested plane. The constants inEquation (5.11)include the fixed diagonal at *n*; there is no real *t*-dependent contribution to that diagonal. Write *k* ̂*n* for *k* with its *n* coordinate deleted, and set
+
+*a* = *PG*a*k* ̂*n* *, d₁* = *PG*a*p₁, β* = *p* *⊤* 1*G*a*k*̂*n− kn.* (5.12)
+
+The block inverse formula yields ∥ ∥22 ∥ <u>d₁β</u> ∥ <u>∥N₁∥</u> *W* = ∥ ∥ *a* + ∥ ∥ = 2 *, N₁* = *a*(*s − e*) + *d₁β.* (5.13) *s − e |s − e|*
+
+The norm of *d₁* measures the response on the absorbed coordinates induced by unit amplitude in the missing direction. The scalar Schur denominator *s − e* controls how sharply *W* can concentrate. It need not agree with the corresponding denominator in the actual test *Gη*. Each profile lies on one fixed polynomial piece throughout the corner box. Hence *p₁,d₁,β,e,N₁* are polynomials in (*s,t*) of bounded degree, independently of all exterior data. Their coefficients need not be bounded.
+
+**Lemma 5.5** (Corner Schur estimates)**.** *Uniformly throughout the box,*
+
+2 Im*e ≥∥d₁∥, |∂se|≤ Cτ*(1 + *∥d₁∥*)*,* (5.14) *∥∂sd₁∥≤ Cτ, |∂sβ|≤ Cτ ∥a∥,* (5.15) ∥ ∥ ∣ ∣ ∥ ∥ ∣ ∣ ∥*∂tjd₁*∥ *≤ C,* ∣*∂tje*∣ *≤ C*(1 + *∥d₁∥*)*.* (5.16)
+
+*If at least one artificial probe is present in the tested triple and τ >* 0*, then also*
+
+<u>τ</u> Im*e ≥.* (5.17) poly(*L*)
+
+*For every fixed t,* ∫2∫ <u>∥d₁(s,t)∥ 1</u> 2 d*s ≤* Im *s − e*(*s,t*) d*s ≤* poly(*L*)*.* (5.18) *|s − e*(*s,t*)*|*
+
+*Proof.* Apply absorption to the Schur extension (*−G*a*p₁,*1) at *n*. Its quadratic form under *D* ˜ is the scalar *s − e*, and its absorbed *P*-coordinates have norm *∥d₁∥*. This proves the first inequality. Every derivative of *p₁* is supported in the tested plane. Its *s* derivative has size *O*(*τ*), whereas its *t* *j*derivative is *rj*+ *O*(*τ*). Since *∥PG*a*P ∥≤* 1, these facts give the bounds on *d₁*. Differentiating
+
+Equations (5.11)and(5.12), using transpose symmetry, gives the other derivative bounds: for example, ∑ *∂se* = 2(*∂sp₁*) *⊤* *G*a*p₁* + *iτ ∂s*(*ai*(*vi*))*n²i.* *i* The projection of *G*a*p₁* onto the support of *∂sp₁* is controlled by *d₁*. Thus arbitrarily large fixed components of *p₁₀* cause no loss. ForEquation (5.17), an active profile in the triple is at least an inverse polynomial, by the box *√* clearance from the support endpoints. If *∥d₁∥≥* 1*/*(2 3), the first bound already supplies a fixed positive lower bound. Otherwise the corresponding physical coordinate of *√ √* (*−G*a*p₁,*1) has modulus at least 1*/*(2 3), since *|ni|* = 1*/* 3. Its artificial absorption supplies *τ/* poly(*L*). *−*1 2 For the integral bound, let *y* = Im*e* and *V* = Im(*s − e*) = *y/ |s − e|*. The first inequality of 2 Equation (5.18)follows from *y ≥∥d₁∥*. If *e* is independent of *s*, ordinary scalar shift integration ∫ gives *V ≤ π*; real poles are null sets. Otherwise *τ >* 0 and a probe is present. Combining Equations (5.14)and(5.17), () <u>|∂se| 1</u> *√ ≤ Cτ* <s>√</s> + 1 *≤* poly(*L*)*.* *y y*
+
+The argument of *s − e* lies in (*−π,*0), and its derivative is
+
+<u>s</u>
+
+|d arg(s − e) = V − Im|∂ e.|
+|---|---|
+|ds √ V. Young’s inequality absorbs half the integral of V; the remaining|s − e|
+
+The error is bounded by poly(*L*) constant and the phase variation are polynomially bounded on the bounded interval. This proves Equation (5.18).
+
+#### 5.4 Weighted exceptions when the coupling is appreciable
+
+Put <u>1</u> *D* = max *∥d₁*(*s,t*)*∥, α₀* =*.* *s,t* 100 All maxima are taken over the closed box, which does not affect its conditional law. The bound 2 *α*0 Im*e ≥∥d₁∥* ties the width of the response to this coupling. When *D ≥ η*, we can isolate the few transverse parameters where the coupling becomes small and use the unweighted test bound elsewhere. The case where *D* is small throughout the box will instead require comparing the length of each exceptional slice with its response width. We first treat *D ≥ η* *α*0. Suppose initially that *|s − e|≥* 1 throughout the box. The maximum and minimum of this denominator are then comparable by a fixed factor. Indeed,Equations (5.15)and(5.16)show that *d₁* varies by at most a fixed constant. If *D* is large, then Im*e ≥ cD²* throughout, whereas the variation of *s − e* is at most *C*(1 + *D*). If *D* is bounded, the same variation bound and the assumed lower bound one suffice. ByEquations (5.3)and(5.8),
+
+E*s,t*[*W* **1***E* *b′*] *≤* poly(*L*)*η* E*s,tW.* (5.19)
+
+It remains to consider the case where *|s − e| <* 1 somewhere. At that point *∥d₁∥ <* 1; the derivative bounds then imply that *D* is bounded throughout the box. Since *s* is bounded, the same argument shows that *e* and *s − e* are bounded as well. Set
+
+*M₁* = max *∥N₁∥, B₁* = max *|β|.*
+
+#### The bounded denominator andEquation (5.3)give
+
+#### Es,tW ≥ cM₁₂. (5.20)
+
+Furthermore, *∥a∥* + *DB₁ ≤* poly(*L*)*M₁.* (5.21)
+
+Here is the required quantitative argument. By the product estimate,
+
+*DB₁ ≤ C* max *∥d₁β∥≤ C*(*M₁* + *∥a∥*)*.*
+
+Differentiate *N₁* = *a*(*s − e*) + *d₁β* in *s* and useEquations (5.4),(5.14)and(5.15). As *D* is bounded, this gives *∥a∥≤ Cℓ* *−*1 *M₁* + *Cτ*(*∥a∥* + *B₁*)*.*
+
+Substitute the preceding estimate for *B₁*. Since *D ≥ η* *α*0, the coefficient *Cτ*(1 + *D* *−*1 ) is less than one half for sufficiently large *L* after *H* is fixed. Absorption provesEquation (5.21). Its polynomial exponent is independent of *H*. Choose ∆ = *η¹* */*8 and let *A* = *{t* : min *∥d₁*(*s,t*)*∥ <* ∆*}.* *s* Then <u>∆</u> P*t*(*A*) *≤ C.* (5.22) *D* To prove this,Equation (5.10)and Ward show that *d₁*(*s,t*) is within *Cτ* of an affine function of *t*, uniformly in *s*. Rescale the two *t* intervals to unit intervals. If *A* is nonempty, the affine function has a value of norm at most ∆ + *Cτ*, and its maximum norm is at least *D − Cτ*. Project it by a real unit linear functional attaining that latter norm. Because ∆*/D →* 0 and *τ ≪* ∆, one of the two scalar slopes has magnitude at least *cD*. Slicing in that coordinate bounds the fraction where the scalar magnitude is at most ∆ + *Cτ* by *C*∆*/D*. This includes *A*. For each *t ∈A*,Equations (5.13)and(5.18)gives
+
+2 *−*2 E*sW ≤* poly(*L*)(*∥a∥* + *B₁₂*) *≤* poly(*L*)(1 + *D*)*M₁₂.*
+
+2 2 *−*4 On the complement of *A*, absorption gives *|s − e| ≥ ∥d₁∥ ≥* ∆, so *W ≤* ∆ *M₁₂*. Using Equation (5.8)there andEquation (5.22)on *A*, we obtain () <u>∆ η</u> E*s,t*[*W* **1***E* *b′*] *≤* poly(*L*) 3 + 4 E*s,tW.* (5.23) *D* ∆
+
+We used the boundedness of *D* andEquation (5.20)in the last step. If *M₁* = 0, all the weighted integrals vanish and the inequality holds directly. In particular, this argument never divides by a possibly zero expected weight. The powers inEquation (5.23)satisfy
+
+∆1*/*8*−*3*α* 0 *η*1*/*21 3 *≤ η,* 4 = *η, −* 3*α₀ >* 0*.* *D* ∆ 8
+
+#### 5.5 Weighted exceptions when the coupling is small
+
+We now assume *D < η* *α*0 and write *b* *′* = *rj*for the tested basis vector. Vary *tj*between two points separated by at least half its interval length. FromEquations (5.10)and(5.12),
+
+*ab′* := *PG*a*b* *′* *, ∥ab′∥≤ Cℓ* *−* (*D* + *τ*)*.* (5.24)
+
+This can be made as small as a prescribed fixed constant by choosing *H* sufficiently large, then *L* sufficiently large. The inference uses variation over the whole *tj*interval; it does not assume that the exterior has a lower bound on its coupling. Next delete *n* in the actual matrix *G* *−* *η* 1, without freezing its plane block. Let *Gη,*remdenote the remaining inverse, put *d₁,η*= *PGη,*rem*p₁,*
+
+and write *s − eη*for its Schur denominator at *n*. Its off-diagonal column is exactly the same *p₁* as before. The remaining matrices for *G*aand *Gη,*remdiffer by a bounded matrix supported on *Q*. Moreover, *∥QGη,*rem*Q∥≤ η* *−*1 by Ward. Inverse difference and symmetry therefore give ∣ ∣ ∣*′⊤ ′*∣ *η* ∣*b Gη,*rem*b* ∣ *≤ C ∥ab′∥,* (5.25) ∣ ∣ ∣ ∣ ∣*′⊤*∣ ∣*′⊤*∣ ∣*b d₁,η*∣ *≤* ∣*b d₁*∣ + *C ∥ab′∥∥Qd₁,η∥.* (5.26)
+
+For clarity, the inverse identity used in both estimates is *Gη,*rem= *G*a+*G*a∆*Gη,*rem, where ∆ = *Q*∆*Q* has bounded norm. The first left factor is thus controlled by *PG*a*b* *′*, regardless of the exterior norm. Take the bound inEquation (5.24)small enough that the first term in the Schur inverse formula cannot by itself cause *Eb′*. On that exception, ∣ ∣2 ∣*′⊤*∣ <u>η</u> ∣<u>b d₁</u>*,η*∣ *≥ c.* (5.27) *|s − eη|*
+
+On the other hand, absorption on the actual Schur extension yields
+
+2 Im*eη≥ η ∥Qd₁,η∥.* ∣ ∣ ∣*′⊤*∣ Together withEquation (5.27), this implies *∥Qd₁,η∥≤ C* ∣*b d₁,η*∣. InsertEquation (5.26)and absorb its small last coefficient. We conclude that, on the exception,
+
+2 *∥Qd₁,η∥≤ C ∥d₁∥, |s − eη|≤ Cη ∥d₁∥.* (5.28)
+
+The exceptional set is short on every almost-everywhere *s* slice. To establish this rigorously, let *Dt*= max*s∥d₁*(*s,t*)*∥*. Differentiating the actual Schur formula shows that, on the exception,
+
+2 2<u>1</u> *|∂seη|≤ C ∥Qd₁,η∥* + *Cτ*(1 + *∥Qd₁,η∥*) *≤ CD* + *Cτ*(1 + *D*) *<.* 2
+
+The first term comes from the real derivative of the tested plane block. Its artificial derivative is absorbed in the same bound; the mixed and missing-direction derivatives give the terms containing *τ*. Thus Re(*s − eη*) has derivative at least one half on the exception. There are only boundedly many components of that exceptional slice away from poles. Indeed, with all other variables fixed, the matrix varies polynomially only on the three coordinates of the tested triple. In a basis containing those coordinates, expansion of the determinant uses variable factors from at most three rows. Its degree, and the degrees of the relevant cofactors, are bounded by a constant depending only on the profile degree, not on the dimension or norm of the exterior. The same assertion holds after deleting *n*. Clearing the squared absolute value of a denominator convertsEquation (5.6)into a real polynomial inequality of bounded degree. Such a set has a bounded number of intervals and isolated points, except for poles, which also have bounded number on an almost-everywhere slice.
+
+On each interval component,Equation (5.28)confines Re(*s − eη*) to an interval of length *CηDt* 2, while its derivative is at least one half. Summing over the bounded number of components gives
+
+*|{s* : (*s,t*) *∈Eb′}|≤ CηDt* 2
+
+*.* (5.29)
+If *Dt*= 0,Equation (5.28)and the Schur formula rule out the exception off its null set of poles. For *Dt>* 0, the denominator of the modified weight has a matching minimum scale:
+
+Im*e*(*s,t*) *≥ cDt* 2 throughout the slice*, |∂s*(*s − e*)*|≤ C.* (5.30)
+
+Here is the point requiring the artificial-absorption floor. ByEquation (5.15), the oscillation of *d₁* on the slice is *O*(*τ*). If its norm is everywhere at least *Dt/*2, absorption proves the first bound immediately. Otherwise *Dt≤ Cτ*. In this latter case an artificial term must be present, since without one *d₁* is independent of *s*. NowEquation (5.17)gives Im*e ≥ τ/* poly(*L*) *≥ cDt* 2 for sufficiently large
+
+*L*. The derivative bound follows fromEquation (5.14)and *D < η*
+*α*0. The exceptional length *O*(*ηDt* 2 ) must be compared with the resolution min(*ℓ,Dt* 2 ) supplied by the modified denominator. The real parts of the two Schur denominators need not vanish at the same point. ApplyLemma 5.4to *N₁* and *s − e*, usingEquation (5.30). It gives ∫ <u>C</u> max*W* (*s,t*) *≤* 2 *W* (*s,t*) d*s.* *s*min(*ℓ,D*
+
+*t*)
+Combining withEquation (5.29), ∫2∫ ∫ <u>CηDt</u> *W* (*s,t*)**1***E* *b′* d*s ≤* 2 *W* (*s,t*) d*s ≤* poly(*L*)*η W* (*s,t*) d*s.* min(*ℓ,Dt*)
+
+The last inequality uses *Dt≤ D <* 1 and the inverse-polynomial lower bound on *ℓ*. Averaging over *t* proves E*s,t*[*W* **1***E* *b′*] *≤* poly(*L*)*η* E*s,tW* (5.31)
+
+in the small-coupling case. This estimate remains uniform as the coupling vanishes; no positive lower bound for *D* was used here.
+
+#### 5.6 Restoring the side shift
+
+We now choose the parameters. All polynomial losses inEquations (5.19),(5.23)and(5.31), and the box width exponent, have been fixed independently of *H*. Choose *H* large enough that their products with *η¹* */*8*−*3*α*0 *, η¹* */*2 *, η*
+
+tend to zero, and thatEquation (5.24)is uniformly small in its case. With this *H* fixed, take *L* sufficiently large that *τ ≪* ∆, *τ/η* *α*0 *≪* 1, and all preceding absorptions are valid. The assumption *τ ≤ e* *−c∗L* ensures every one of these requirements for any fixed *c∗>* 0. For each of the eight tests, condition on the other corner variables, apply the appropriate estimate, and compare *W* with the same weight *w₀* byEquation (5.9). Integration and summation give <u>3</u> ⋂ E[*w₀***1***G*] *≥* E*w₀, G* = *Ebc′,* (5.32) 4*′* *b* for sufficiently large *L*. This is still conditional on the independent side uniforms. The threshold can be chosen uniformly in those frozen values and in all exterior data. Zero conditional weights cause no difficulty, since every estimate was an inequality between integrals.
+
+Fix data in *G*, before restoring the common side shift. On the space *P* consider the rational matrix function *F* (*z*) = *P* (*T₀* + *zP₀*) *−*1 *P,* Im*z <* 0*.*
+
+It is analytic there and has nonnegative imaginary part. To check analyticity, a kernel at one point of the lower half-plane would be annihilated by *P₀* and by *T₀*, hence would also be a kernel at *z* = *−i*, where the inverse exists. On *G*,Equation (5.7)bounds the *Q,Q* block of *F* (*−i*) by *η* *−*1. Ward gives a bound one on the *P₀,P₀* block and ∥ ∥2 ∥ ∥ ∥*−*1∥ ∥*−*1∥*−*1 ∥*P₀*(*T₀ − iP₀*) *Q*∥ *≤* ∥*Q*Im(*T₀ − iP₀*) *Q*∥ *≤ η.*
+
+Transpose symmetry gives the same bound on the other mixed block. Thus
+
+*∥F*(*−i*)*∥≤ Cη* *−*1
+
+*.* (5.33)
+For completeness, map the unit disk to the lower half-plane by *z* = *−i*(1 + *w*)*/*(1 *− w*). Then *−iF*(*z*(*w*)) has positive semidefinite Hermitian real part, and its value at zero obeysEquation (5.33). The positive-real-part weak estimateEquation (3.14)gives a boundary weak-*L¹* bound at most *C*(rank*P*)*η* *−*1. One can obtain this bound directly from the positive matrix measure in its Herglotz representation: its total trace mass is at most (rank*P*)*∥F*(*−i*)*∥*, while the constant imaginary part has the same polynomial bound. The boundary change of variable sends Haar measure to d*x/*(*π*(1 + *x²*)). The Cauchy density has a positive lower bound on the fixed interval [*−h/*4*,h/*4]. Therefore there is a polynomial *RL* = *C*(1 + *L*) *C*, now allowed to depend on *H*, such that for at least half the common side shifts *x* in their prescribed uniform law, ∥ ∥ ∥*−*1∥ ∥*P* (*T₀* + *xP₀*) *P* ∥ *≤ RL.* (5.34)
+
+This conclusion uses only the norm at *−i*, not the norm of *T*. Restore the artificial absorptions at the single side sites. Their change has norm at most *τ* and is supported on *P₀*. For a shift satisfyingEquation (5.34), the inverse difference identity on *P* and a Neumann series give ∥ ∥ ∥*−*1∥ ∥*P T P* ∥ *≤* 2*RL*
+
+as soon as *τRL ≤* 1*/*2. This holds for sufficiently large *L*. Throughout the common-shift average, with or without these side absorptions,Lemma 5.2compares the weight to *w₀* by fixed factors. Hence at least a fixed fraction of the *ρ*-weight survives the good shifts for every corner setting in *G*. Integrate this statement, useEquation (5.32), and finally average over the initially frozen independent side uniforms. Since E*ρ* and E*w₀* are comparable, this provesEquation (5.2). The pointwise comparison assertion inProposition 5.1is already contained inLemma 5.2. □
+
+#### 5.7 The Schur form used by the interior
+
+The following formulation makes the interface with the transmission calculation explicit.
+
+**Corollary 5.6** (Eliminating the missing directions)**.** *Let N* = **1***− P on the boundary space. Almost* *everywhere in the boundary law, the N,N block of T is invertible. Define its Schur matrix and* *transformed source by*
+
+*T* ̂ = *PT P − PT N*(*N T N*) *−* *N T P,*
+
+*k* ̂ = *Pk − P T N*(*N T N*) *−* *Nk.*
+
+*Then T* ̂ *is complex symmetric and passive, and*
+
+*T* ̂*−*1 = *P T* *−*1 *P,*
+
+*k* ̂ = *TP* ̂ *T* *−*1 *k,*
+
+*P* (*T − iP*) *−*1 *k* = (*T* ̂ *− i***1***P*) *−*1
+
+*k.* ̂
+∥ ∥2 ∥ ̂ *−*1̂∥∥ ̂*−*1 *In particular ρ* = ∥(*T − i***1***P*) *k, andEquation* (5.2) *controls T on a set carrying a fixed* *fraction of this weight.*
+
+*Proof.* On the four-dimensional space *N*, the Hermitian real part is a fixed real symmetric matrix plus the four common corner shifts on its diagonal; the traceless box directions have zero diagonal entry there. Its determinant is a nonzero polynomial, so the block is invertible almost everywhere by passivity and the density of those shifts. The identities are the block inverse and source elimination formulas. Symmetry and passivity persist under Schur elimination byLemma 3.1.
+
+### 6 Transmission through a cell
+
+Throughout this section, the geometry and branch parameters are those ofLemmas 4.1and4.2 andProposition 4.3. Constants may depend on the fixed energy, disorder, profile, corner-box exponents, and parameters already chosen, but not on exterior matrices or source vectors. A polynomial bound means *C*(1 + *L*) *C* with this convention; different occurrences may have different exponents. All assertions concern sufficiently large *L* after the parameters have been fixed.
+
+#### 6.1 Exterior data and the two branch estimates
+
+Suppose that the root is the only cell port in *V ∪ B*, and that the source port lies outside this set. Artificial probes with a prescribed mask may be present. Eliminate the exterior physical sites. Its effect on *B* is a fixed complex-symmetric passive matrix *T*, and the source gives a fixed vector *k*, including its input multiplier. The remaining boundary matrix is () *T* = *T* + diag*Bvi− iτai*(*vi*)*.*
+
+The exterior is held fixed throughout the cell integration, as are the four corner boxes. In particular, no bound on *∥T ∥* or *∥k∥* is assumed. Let *P* also denote its range, equipped with a real orthonormal basis. Eliminating the four missing boundary directions gives
+
+*T* ̂ = ( *P T* *−*1
+
+*P*) *−*1 *, k*
+̂ = *TP* ̂ *T* *−*1 *k, k∗*= (*T* ̂ *− iIP*) *−*1 *k,* ̂ *ρ* = *∥k∗∥.* (6.1) 2
+
+These formulas are used at their almost-everywhere inverses. The missing-direction block is generically invertible byCorollary 5.6. Schur complementation preserves symmetry and passivity, and gives the identity *k∗*= *P* (*T − iP*) *−*1
+
+*k.*
+Thus *ρ* is exactly the weight inProposition 5.1, and ∥ ∥ ∥ ̂*−*1∥ ∥(*T − iIP*) ∥ *≤* 1*.* (6.2)
+
+Hereafter *M* is restricted to *P*, and is extended by a zero row at the root when it is regarded as a map into *V*.
+
+Let *G* be the inverse on *V ⊕ P* with the root open, reference potential *c*(*v*), and root strength *σ* = *ϵ²*. Its internal artificial absorptions are constant during the branch integration: the true values lie on the plateau specified inProposition 4.3. Set *√* *⊤* *u* = *σGe₀, g* = *σG₀₀, t* = *k* ̂ *uP.* (6.3)
+
+Since *k* includes the source input multiplier, the root-to-source scattering amplitude satisfies 2 2 *|S*source*,a|* = 4 *|t|*. The sign convention for the source does not affect this identity. The inverse exists almost everywhere even though *c*(*v*) depends on other potentials. Indeed, absorption forces a kernel vector to vanish at the root. Restoring its true real diagonal therefore preserves that vector. After eliminating the fixed boundary data, the real part is a fixed matrix plus the true real diagonals on *V*; their absolutely continuous joint law makes its determinant nonzero almost everywhere. This also justifies the almost-everywhere slices used below.
+
+**Proposition 6.1** (Branch transmission)**.** *Choose the branch parameters in the order described below* *and fix c∗>* 2*ν. For* 0 *≤ τ ≤ e* *−c∗L* *, uniformly in the fixed exterior data and allowed corner boxes,*
+
+2 *−C*(log*L*)2 E*|t| ≥ e* E*Bρ,* (6.4) [ 2] *−cL* 2 E *|µ||t| ≤ e* E*|t|.* (6.5)
+
+*Here µ is the conditional single-root closure coefficient ofLemmas 3.2and3.4. The expectation is* *the branch expectation, and* E*Baverages its boundary law. The hidden root value has already been* *averaged in µ; averaging it again does not change any other quantity in these formulas.*
+
+#### 6.2 The cutoff error and the small-response region
+
+We first deriveEquation (6.5)assumingEquation (6.4). Fix the boundary data and all jitters, and vary the common real shift *r* on *Z* +. Write *P*+for the coordinate projection onto *Z* +, extended by zero on the root and on *P*. Since *c*(*v*) = *E* + *p* *⊤* *A* *−*1 *p* and *A* *′* = *P*+on *J*, differentiation gives ∥ ∥2 *′*∥*−*1∥*′ ⊤ −*1 *′* 2 *c* = *−* ∥*P*+*A p*∥*, g* = *−u P*+*u − σ c g.* (6.6)
+
+The profile estimate inEquation (4.23), together with *|ψi|≤ Cϵ* on *Z* +, implies *|c* *′* *| /σ ≤ C*(1 +*L*) *C*. Root absorption andLemma 3.1imply
+
+2 *|g| ≤* Im*g ≤* 1*.* (6.7)
+
+Let *Ir*= [*−L* *−D*1 *,L* *−D*1]. The derivative of a continuous determinant phase of *G* *−*1 is
+
+*′*<u>c</u> *′* Φ (*r*) = tr(*P*+Im *GP*+) + Im*g.* *σ*
+
+The phase has range at most *π* dim(*V ⊕ P*) after strict regularization. Integrating, usingEqua- tion (6.7), and then removing the regularization as inLemma 3.6gives ∫ tr(*P*+Im *GP*+) d*r ≤ C*(1 + *L*) *C*
+
+*.* (6.8)
+*I* *r*
+
+In particular, Ward and symmetry bound the integral of *∥P*+*u∥* by the same polynomial. We need an additional factor when *g* is small.
+
+Put *D* = *−*Im*G* *−*1. Complex symmetry makes *D* real symmetric and gives
+
+*u − u* = 2*iG* *∗* *Du, u* *∗* *Du* = Im*g.*
+
+For each coordinate, Cauchy–Schwarz in the form *D* bounds the square of the corresponding entry of *G* *∗* *Du* by (Im*G*)*ii*Im*g*. Consequently, with entrywise imaginary part on vectors,
+
+2 *∥P*+Im*u∥ ≤* (Im*g*) tr(*P*+Im *GP*+)*.* (6.9) *√* Take *q* = *σ* = *ϵ*, and set Ω*q*= *{r ∈ Ir*: *|g*(*r*)*|≤ q}*, excluding null singular sets.Equations (6.8) and(6.9)give ∫ 2 *C* *∥P*+Im*u∥* d*r ≤ C*(1 + *L*) *q.* Ω*q* There are only polynomially many component intervals of Ω*q*. To see this, *A* is affine in *r*, *c* is a rational function obtained by inverting *A*, and *G* is a further matrix inverse in cell dimension *O*(*L²*). Thus numerator and denominator degrees of *g* are bounded by a fixed polynomial in *L*. The 2 2 inequality *|g| ≤ q* becomes a real polynomial inequality after clearing the squared denominator. Its intervals and the poles are therefore polynomially many; the values of the exterior coefficients do not affect this degree bound. Integrate the real part ofEquation (6.6)on these intervals, first truncating away from any endpoints where necessary. Every endpoint value of Re*g* has modulus at most *q*. Hence ∫ Re(*u* *⊤* *P*+*u*) d*r ≤ C*(1 + *L*) *C* *q* + *C*(1 + *L*) *C* *q² |Ir|.* Ω*q* 2 *⊤* 2 Using *∥P*+*u∥* = Re(*u P*+*u*) + 2 *∥P*+Im*u∥*, we obtain ∫ 2 *C* *∥P*+*u∥* d*r ≤ C*(1 + *L*) *q.* (6.10) Ω*q*
+
+Normalized uniform integration in *r* only introduces the polynomial factor (2*L* *−D*1 ) *−*1. *−*1 *√* The *Z* rows of the equation *G u* = *σe₀* involve only *uP*and *P*+*u*. Their coefficients are uniformly bounded, and *M* is bounded below on *P*. The *P* rows then give, respectively, ∥ ∥ ̂*⊤*∥ ̂ ∥ *∥uP∥≤ C ∥P*+*u∥, TuP*= *−M uJ,* ∥*TuP*∥ *≤ C ∥P*+*u∥.*
+
+It follows from symmetry andEquation (6.1)that ∣ ∣ *√* ∣ ̂ ∣ *|t|* = ∣*k∗⊤*(*T − iIP*)*uP*∣ *≤ C ρ ∥P*+*u∥.* (6.11)
+
+The cutoff bounds inLemma 3.4now yield [ 2] 2 *C* E *|µ||t| ≤ Cq*E*|t|* + *C*(1 + *L*) *q*E*Bρ.* (6.12)
+
+The first term treats *|g| > q*; the second follows fromEquations (6.10)and(6.11)on Ω*q*. Since *−νL C*(log*L*)2 *q* = *e*, substitution ofEquation (6.4)absorbs the factor *e* and provesEquation (6.5)for some fixed *c >* 0.
+
+#### 6.3 Regular boundary and shift data
+
+We turn toEquation (6.4). ByProposition 5.1, it is enough to work on boundary data satisfying ∥ ∥ ∥ ̂*−*1∥*C* ∥*T* ∥ *≤ C*(1 + *L*)*,* (6.13)
+
+since this event carries a fixed positive fraction of E*Bρ*. Fix such data, assume *ρ >* 0, and initially set every jitter to zero. Define the boundary Schur matrix
+
+*B* = *T* ̂ *− M* *⊤* *A* *−*1
+
+*M.*
+We claim that at least half of the uniform *r*-interval satisfies ∥ ∥ ∥*−*1∥*C* ∥*B* ∥ *≤ C*(1 + *L*)*.* (6.14)
+
+All exponents in this assertion can be fixed before *D₂,D₃*. Indeed, *B* *′* = *M* *⊤* *A* *−*1 *P*+*A* *−*1 *M ≥ cIP.*
+
+For the last inequality, put *w* = *A* *−*1 *Mx*. The *Z* rows of *Aw* = *Mx* have bounded coefficients, use only *P*+*w*, and give *∥Mx∥≤ C ∥P*+*w∥*. The lower singular-value bound for ∥ ∥ *M* gives *∥P*+*w∥≥ c ∥x∥*, which proves the assertion. For *ξ >* 0 let *Kξ*= (*B− iξIP*) *−*1. If ∥*B* *−*1∥ *> ξ* *−*1, inverse difference implies *∥Kξ∥≥* (2*ξ*) *−*1. Ward then implies
+
+<u>1</u> *ξ* tr Im*Kξ≥.* (6.15) 4
+
+The same conclusion follows at a singular matrix from a null vector. The determinant phase derivative of *B− iξIP* is at least *c*tr Im*Kξ*. Thus phase integration bounds the Lebesgue measure of the failed event inEquation (6.14)by *Cξ* dim*P*. Dividing by 2*L* *−D*1 and choosing *ξ* to be a sufficiently small inverse polynomial proves the claim. The only dependence on the exterior here is through coefficients of a passive matrix; its norm never enters. For regular zero-jitter data, omit both the root and artificial absorption in *J*, and write ()*−*1 *A M* ̂ *R₀* = *⊤* ̂ *,* Γ = (*R₀*)*JJ, z₀* = (*R₀*)*JPk, U₀* = Γ*p/ϵ.* (6.16) *M T*
+
+The subscript 0 denotes the absence of internal artificial absorption; the boundary matrix *T* ̂ is unchanged. These definitions will also be used after the jitters have been varied. The field *z₀* is the response in *J* to the exterior source. Define its normalized coupling to the root by
+
+*F₀* = *p* *⊤* *z₀/ϵ.*
+
+If we adjoin the calibrated open root, still omitting the artificial absorptions on *V*, block inversion gives the analogue of *t* for this auxiliary system:
+
+<u>F₀</u> *−* *⊤* *.* (*c*(*v*) *−E− iσ − p* Γ*p*)*/σ*
+
+The prescribed internal absorptions will be restored below. We first obtain a lower bound for this numerator using the shell jitters, then control the denominator. A diagonal change at a site *j* changes *F₀* through the product (*U₀*)*j*(*z₀*)*j*. We will find a source component near the boundary
+
+and a large component of *U₀* at logarithmic depth, and use the jitters to propagate the source component to that deeper site. Block inversion through *A* and *B* gives polynomial bounds on *R₀* and Γ. Moreover,
+
+Γ *−*1 = *A − M T* ̂*−*1 *M* *⊤* (6.17)
+
+has polynomial norm byEquation (6.13). The source normalization requires some care because *k* ̂ and *T* ̂ need not be bounded. Put *C*ext= *T* ̂ *− iIP*, ∆ = *B− C*ext= *iIP − M* *⊤* *A* *−*1 *M*, and *b₀* = *B* *−*1 *k* ̂. The identities
+
+*b₀* = (*IP −B* *−*1 ∆)*k∗, k∗*= (*IP* + *C*ext *−*1 ∆)*b₀* (6.18)
+
+use only polynomially bounded ∆*, B* *−*1 and the norm boundEquation (6.2). Consequently,
+
+*−C√C√C√* (1 + *L*) *ρ ≤∥b₀∥≤ C*(1 + *L*) *ρ, ∥z₀∥≤ C*(1 + *L*) *ρ.* (6.19)
+
+Since *Az₀* = *−Mb₀*, the sparse *Z* rows also imply *∥P*+*z₀∥≥ c ∥b₀∥*. There is therefore a site *j₀ ∈ Z* + with *−C√* *|*(*z₀*)*j*0*|≥* (1 + *L*) *ρ.* (6.20)
+
+#### The other field has the representation
+
+<u>A</u> *−*1 <u>p</u>*−*1 *−*1<u>M</u> *⊤* <u>A</u> *−*1 <u>p</u> *U₀* = + *A M B.* (6.21) *ϵ ϵ* ∥ ∥ ∥*⊤ −*1∥*C* The profile estimate and *|ψi|≤ Cϵ* on *Z* show ∥*M A p*∥ *≤ C*(1 + *L*) *ϵ*. Thus the reflected term inEquation (6.21)has polynomial norm, with exponent fixed independently of *D₂*. At depth *d* = *⌊D₂* log *L⌋*, the profile has <u>|ψi|</u>*νd ′ νD* 2 *≥ ce ≥ c L.* *ϵ* Choose *D₂* large enough that this exceeds both the reflected term and the profile error in units of *ϵ*, with fixed slack. Every site *i* at that depth then satisfies
+
+#### |(U₀)i|≥ 2. (6.22)
+
+#### 6.4 A path of resolvent entries
+
+Join *j₀* to a site at depth *d* by a physical nearest-neighbor path of length *O*(1 + log*L*) in *J*, moving inward by decreasing absolute coordinates. The corner clipping guarantees that the path can avoid *Z* after its first vertex. For each successive pair *y,j*, with *j /∈ Z*,Equation (6.17)gives
+
+(Γ *−*1 ) *yj*= 1*.*
+
+We next replace this physical edge by a uniformly bounded number of large entries of Γ. This replacement is needed because Γ need not be spatially local. Write *B*Γ= Γ *−*1, *nJ*= *|J |*, and *K*Γ= max(1*, ∥B*Γ*∥*). Let
+
+*Sy*= supp(*B*Γ*ey*)*, Sj*= supp(*B*Γ*ej*)*, δ*Γ= (2*nJK*Γ 2 ) *−*1 *.*
+
+Form the undirected graph on *Sy∪ Sj*with an edge between *a ∈ Sy*and *b ∈ Sj*whenever *|*Γ*ab|≥ δ*Γ. The endpoints *y,j* belong to this vertex set because (*B*Γ)*yj*= 1. If they were not connected, let *F*
+
+be the diagonal indicator of the component of *y*, extended by zero outside the graph. The inverse commutator identity would give
+
+#### 1 = |[F,BΓ]yj| = |(BΓ[F, Γ]BΓ)yj|
+
+2<u>1</u> *≤ δ*Γ*∥*(*B*Γ)*y,*:*∥* 1 *∥*(*B*Γ):*,j∥* 1 *≤ δ*Γ*nJK*Γ=*.* 2
+
+Indeed every nonzero summand with *Faa*=*̸ Fbb*must cross components, so its Γ entry is below threshold. This contradiction proves connectivity. Every graph edge meets *Sj*, which consists of *j* and at most its four physical neighbors: *j /∈ Z* makes the nonlocal term inEquation (6.17)vanish in its column. Thus *Sj*is a vertex cover of size at most five. A simple connecting path has at most ten edges, since a simple path with no two successive vertices outside a set of size five has at most eleven vertices. The other support *Sy*lies in the physical star of *y* together with *Z*. All these vertices lie in the shell *L −|i|* *∞* *≤ D₂* log*L*+ 5; the fixed buffer accommodates the physical stars. Concatenate the paths for the physical edges and erase loops. We obtain distinct sites ∣ ∣ *−C* *j₀,j₁,...,js, s ≤ C*(1 + log*L*)*,* ∣Γ*jaja*+1∣ *≥* (1 + *L*)*,* (6.23)
+
+all carrying shell jitters, with *js*at depth *d*. Fixed tie rules make all choices measurable functions of the regular zero-jitter data alone.
+
+#### 6.5 Propagation by the independent jitters
+
+Choose *D₃* sufficiently large after *D₂*. For every allowed simultaneous jitter perturbation, its diagonal operator norm is at most *L* *−D*3. Inverse difference applied to *R₀* therefore preserves its polynomial norm, the bounds for Γ *−*1, and the path-edge lower bounds, with constant-factor slack. In particular, if superscripts denote perturbed and zero-jitter values, then
+
+*z*0new*− z*0old= *−*Γ new ∆*Jz*0old*,*
+
+where ∆*J*is the jitter diagonal.Equations (6.19)and(6.20)show that the norm and starting- component bounds also retain constant-factor slack. The terminal bound retains, say, *|*(*U₀*)*js|≥* 1 throughout these perturbations. For this last assertion useEquation (6.21)and the uniform profile estimate again: the large total size of *U₀* is not controlled by an additive small-perturbation argument. Condition on all nonpath jitters. Expose the path jitters successively, setting unexposed ones to zero only in the intermediate calculations. Let *w* = *L* *−D*3 be their common half-width. At step *a < s*, changing the diagonal at *ja*by *ζ ∈* [*−w,w*] gives the exact rank-one formula
+
+<u>Γja+1ja(z₀)jaζ</u> (*z*0new)*ja*+1= (*z₀*)*ja*+1*−.* (6.24) 1 + Γ*jajaζ*
+
+Values on the right refer to the state just before this update. The denominator has modulus between 1*/*2 and 3*/*2 after increasing *D₃* if necessary. For *ζ ∈* [*−w, −w/*2] and *ζ* *′* *∈* [*w/*2*,w*], the two values on the right differ by
+
+∣ ∣ <u>|ζ − ζ</u>*′*<u>|</u> *−C* ∣Γ *j j*(*z₀*)*j* ∣ *≥ cw*(1 + *L*) *|*(*z₀*) *j|.* *a*+1 *a a* *|*1 + Γ *ζ||*1 + Γ *ζ* *′* *|* *a* *j* *a* *j* *a jaja*
+
+If one of the two intervals contains a value below one quarter of this separation in modulus, every value in the other interval is above that threshold. If it contains no such value, that interval itself is successful. Hence the conditional success probability is at least 1*/*4, and success gives ∣ new ∣ *−C* ∣(*z*) *j* ∣ *≥* (1 + *L*) *|*(*z₀*) *j|.* (6.25) 0 *a*+1 *a*
+
+Constants and the exponent here include the fixed *D₃*. Finally expose the jitter at *js*. Applied to the scalar *F₀*, the update is
+
+<u>(U₀)js(z₀)jsζ</u> *F*0new= *F₀ −.* 1 + Γ*jsjsζ*
+
+Since *|*(*U₀*)*js|≥* 1, the same two-interval argument gives a final success of probability at least 1*/*4 and size at least (1 + *L*) *−C* *|*(*z₀*)*js|*. Only the current component is used at each step; later jitters need not preserve previously propagated components. There are *O*(1 + log*L*) updates, all at distinct sites and hence using independent uniforms. CombiningEquations (6.20)and(6.25), we conclude that {∣ ∣} ∣*⊤*∣*−C*(log*L*)2 *√−C*(1+log*L*) Pjitters∣*p z₀/ϵ*∣ *≥ e ρ ≥ e.* (6.26)
+
+This holds conditionally on every regular zero-jitter boundary and *r* datum, and uniformly after conditioning on nonpath jitters.
+
+#### 6.6 Restoring absorption and the root
+
+Reinsert the prescribed artificial absorptions in *J*. If their diagonal is *τA*art, with 0 *≤ A*art*≤ IJ*, the rootless inverse becomes ( ())*−*1 *−*1*A*art0 *Rτ*= *R₀ − iτ.* 0 0
+
+Write Γ*τ*= (*Rτ*)*JJ*and *zτ*= (*Rτ*)*JPk* ̂. Inverse difference and the polynomial bounds already established give *C C√* *∥*Γ*τ−* Γ*∥≤ τC*(1 + *L*)*, ∥zτ− z₀∥≤ τC*(1 + *L*) *ρ.* (6.27) *⊤ −*1 *C√* Thus the error in *p z₀/ϵ* is at most *ϵ τC*(1 + *L*) *ρ*. Now restore the open root. Its scalar Schur denominator is
+
+*d* = *c*(*v*) *−E− iσ − iτa₀ − p* *⊤* Γ*τp.*
+
+For the auxiliary system with internal artificial absorptions omitted, the calibration and block formula for Γ give
+
+<u>c(v) −E− iσ − p</u> *⊤* <u>Γp p</u> *⊤* <u>A</u> *−*1 <u>M B</u> *−*1 <u>M</u> *⊤* <u>A</u> *−*1 <u>p</u> = *−i −.* (6.28) *σ σ* ∥ ∥ ∥*⊤ −*1∥*C* The boundary profile estimate gives ∥*M A p*∥ *≤ C*(1 + *L*) *ϵ*, and hence the second term is polynomially bounded. Reinstating absorption changes the normalized denominator by at most *σ* *−*1 *τC*(1 + *L*) *C*, including the absorption at the root. Because *c∗>* 2*ν*, this is small for large *L*. We have therefore proved, uniformly on all the data being used,
+
+*|d/σ|≤ C*(1 + *L*) *C* *.*
+
+Passivity and the open root also give *−*Im*d ≥ σ*, so this denominator is nonzero.
+
+Block inversion now identifies the amplitude, with an irrelevant sign, as
+
+<u>p</u> *⊤* <u>zτ/ϵ</u> *t* = *−.* (6.29) *d/σ*
+
+The numerator error inEquation (6.27)is exponentially smaller than the successful lower bound inEquation (6.26). The polynomial denominator and the success probability can therefore be *−C*(log*L*)2 incorporated into *e*. For each good boundary datum, integration over the regular *r* event, of probability at least 1*/*2, and then all jitters gives
+
+2 *−C*(log*L*)2 E*r,*jitters*|t| ≥ e ρ.*
+
+When *ρ* = 0, invertibility inEquation (6.1)gives *k* ̂ = 0, and the inequality is immediate. Finally integrate over the weighted good boundary event fromProposition 5.1. This provesEquation (6.4) and completes the proof ofProposition 6.1. For clarity, the choices above have no circular dependence. First fix the profile and its plateau, the box-width exponents, and *D₁* as inProposition 4.3. The polynomial inProposition 5.1, the regular zero-jitter inverse thresholds, and the exponents for the profile residual and reflected field can then be fixed without *D₂,D₃*. Choose *D₂* to obtain the profile height inEquation (6.22). Choose *D₃* afterwards to guarantee the profile estimates and all the perturbation margins used above. The constants inEquation (6.26)may depend on this last choice. Any fixed *c∗>* 2*ν* then makes the absorption errors small for sufficiently large *L*; no polynomial threshold is chosen by using the norm of an exterior matrix.
+
+#### 6.7 An envelope for arbitrary interior choices
+
+For comparison between different interior laws we need a bound that does not require the branch on
+
+*V*. Keep the same geometry, boundary data, exterior source, and prescribed artificial mask. Allow any set *D⊂V* of internal cell ports, at most one per site, with strengths *sd∈* [*e*
+*−C*0*L* *,*1] and real reference potentials bounded in modulus by a fixed *C₀*. All other internal real diagonals are their true values, and there are no cell ports on *B*. The set *D*, strengths, and references may depend arbitrarily on the true interior potentials and on auxiliary choices.
