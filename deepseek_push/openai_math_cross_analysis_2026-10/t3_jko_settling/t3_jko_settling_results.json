@@ -1,0 +1,174 @@
+{
+ "lane": "T3-JKO-settling",
+ "mutate": false,
+ "controls": {
+  "C0_KL_minimiser": {
+   "value": {
+    "h_min_at_1": 0.0,
+    "h_convex": "True",
+    "ident": true,
+    "gibbs_min_rel": 0.03556339665496998,
+    "sym": true,
+    "num": true
+   },
+   "threshold": "F >= 0, F = 0 iff rho = rho_ph a.e.; unique minimiser over the mass-1 simplex is exactly rho_ph",
+   "pass": true,
+   "extra": ""
+  },
+  "C1_Mph_vs_supply": {
+   "value": {
+    "canonical": {
+     "M_ph_over_Mb": -66.53388713475324,
+     "M_ph_kg": -1.323006385508428e+43,
+     "M_supply_Mb": 5.36,
+     "supply_fraction_realisable": 0.08056045168598398,
+     "grid_rel_err": 1.702051832808138e-10,
+     "rho_ph_negative_everywhere": true
+    },
+    "alt": {
+     "M_ph_over_Mb": -73.19157323376578,
+     "M_ph_kg": -1.4553924762814626e+43,
+     "M_supply_Mb": 5.36,
+     "supply_fraction_realisable": 0.07323247422050559,
+     "grid_rel_err": 1.5482815030054553e-10,
+     "rho_ph_negative_everywhere": true
+    }
+   },
+   "threshold": "M_ph != +5.36 M_b: the unconstrained KL target is not normalised to the supply (sign AND magnitude); supply limit binds",
+   "pass": true,
+   "extra": "rho_ph < 0 on (r_in, r_out) for the point mass -> log rho_ph not real; declared proxy rho_bar = |rho_ph| for the flow tests"
+  },
+  "C2_constrained_minimiser": {
+   "value": {
+    "canonical": {
+     "c_lagrange": 0.08056045168598398,
+     "supply_fraction": 0.08056045168598398,
+     "int_rho_star_rel_err": 1.7020496123620887e-10,
+     "dF_spread": 4.440892098500626e-16,
+     "penalty_cstar_beta1e2": 0.9900994983749459,
+     "penalty_cstar_beta1e6": 0.999999000001
+    },
+    "alt": {
+     "c_lagrange": 0.07323247422050559,
+     "supply_fraction": 0.07323247422050559,
+     "int_rho_star_rel_err": 1.5482837234515046e-10,
+     "dF_spread": 4.440892098500626e-16,
+     "penalty_cstar_beta1e2": 0.9900994983749459,
+     "penalty_cstar_beta1e6": 0.999999000001
+    }
+   },
+   "threshold": "mass-constrained / penalised minimiser = (M_supply/M_ph) rho_ph (Lagrange) ; F_gen stationary points are all rescalings of rho_ph",
+   "pass": true,
+   "extra": "sympy: dF_gen/drho position-independent once rho = c rho_ph (dFgen_r_independent = 0)"
+  },
+  "C3_extra_potential": {
+   "value": {
+    "V(x)": "-log rho_ph",
+    "div_grad_logrho_ph_times_r2": {
+     "canonical": [
+      -3.9999999699054594,
+      -2.000037104960845
+     ],
+     "alt": [
+      -3.9999997742392948,
+      -2.0000307031436177
+     ]
+    },
+    "div_c_grad_Phi_b_in_annulus": 0.0,
+    "sympy_denial": true
+   },
+   "threshold": "yes, an extra potential IS needed: V = -log rho_ph, external (the entire baryon-and-a0 content of the law lives in it); not a gravitational potential",
+   "pass": true,
+   "extra": "grad log rho_ph has non-vanishing divergence where rho_b = 0, so it cannot be any multiple of a baryonic field"
+  },
+  "C4_mass_conservation": {
+   "value": {
+    "sympy_conservation_form": true,
+    "sympy_full_space": true,
+    "numeric_rel_mass_drift_max": 1.7497114868092467e-13,
+    "target": "C/r^2",
+    "bc": "no-flux",
+    "final_vs_c_rho_ph_rel": 0.0004617720787595495,
+    "form": "mass-reweighted mu = v^2 rho: d_t mu = mu'' (drift cancels exactly), CN + iterative refinement"
+   },
+   "threshold": "d/dt int rho dV = 0 (sympy IBP: dM/dt = 4 pi [r^2 J_r], no-flux -> 0); numeric drift < 1e-10 (FROZEN C4)",
+   "pass": true,
+   "extra": "flow converges to c rho_ph with c fixed by the initial mass (supply-limited rescaling)"
+  },
+  "C5_gravity_only_grid": {
+   "value": {
+    "canonical": {
+     "best_c": 0.1,
+     "best_c_on_window_edge": true,
+     "max_residual_abs": 5.575498044427985e-09,
+     "rel_residual_of_scale": 4215469243.7801304,
+     "pointwise_rel_worst": 256090121280836.22,
+     "s_over_gb_at_r_in": -2.3722151495060922e-11,
+     "s_over_gb_at_r_out": 3.80365416581138e-09
+    },
+    "alt": {
+     "best_c": 0.1,
+     "best_c_on_window_edge": true,
+     "max_residual_abs": 5.575498044285064e-09,
+     "rel_residual_of_scale": 4726171280.929804,
+     "pointwise_rel_worst": 94125450422981.05,
+     "s_over_gb_at_r_in": -2.1158776116443513e-11,
+     "s_over_gb_at_r_out": 3.803666336799922e-09
+    }
+   },
+   "threshold": "max_r |grad log rho_ph - c grad Phi_b| stays > 10% of scale for ALL c in [0.1, 10] (both footings)",
+   "pass": true,
+   "extra": "r-dependence 1/r vs 1/r^2 and the sign flip of s at ~3 kpc: no c fit; G9 gravity-only REJECTED"
+  },
+  "C6_settling_rate": {
+   "value": {
+    "kappa1 (leading nonzero eigenvalue, units D/r_out^2)": 9.871799762870893,
+    "kappa1_theory (pi/(1 - r_in/r_out))^2": 9.881681003693316,
+    "zero_mode_lambda0": 7.578234543253504e-11,
+    "Gamma_KJ * t_dyn = kappa1 (declared D = r_out^2/t_dyn)": 9.871799762870893,
+    "Gamma_KJ [1/Gyr]": 0.34873149210469717,
+    "vs CFG382 lambda = 0.028": 352.564277245389,
+    "vs CFG378 g = 1": 9.871799762870893,
+    "vs CFG378 g = 0.1": 98.71799762870893,
+    "spectrum": "footing-independent (pure C/r^2 geometry, d^2/dv^2 reduction)"
+   },
+   "threshold": "kappa1 ~ (pi/(1 - v_in))^2 ~ 9.9; the untuned KL flow settles ~2 orders faster than CFG382 lambda = 0.028",
+   "pass": true,
+   "extra": "the record's small lambda = 0.028 is exactly the suppression that brings the rate into the observed window (CFG382 PARTIAL)"
+  },
+  "C7_stationary_solutions": {
+   "value": {
+    "sympy_J_c_rho_ph": true,
+    "sympy_dF_const_iff": true,
+    "numeric_flow_endstate_vs_c_rho_ph_rel": 0.0004617720787595495
+   },
+   "threshold": "PDE stationary solutions satisfy dF/drho = const, i.e. rho = c rho_ph (sympy); the integrated flow reaches c rho_ph",
+   "pass": true,
+   "extra": ""
+  }
+ },
+ "all_controls_pass": true,
+ "g9_verdict": "gravity-only REJECTED: grad log rho_ph is not a multiple of any baryonic field (not harmonic in the annulus; 1/r vs 1/r^2; sign flip at ~3 kpc). Required: the one fluid-time-field (lapse) coupling lambda of CFG382 (CONDITIONAL per the record) or the fluid's own superfluid pressure (FL1); CFG378 declares the mechanism without deriving it.",
+ "pde": "d_t rho = div(rho grad dF/drho) = Laplace(rho) - div(rho grad log rho_ph);  radial 1D (target C/r^2): d_t rho = rho'' + (4/r) rho' + (2/r^2) rho",
+ "effective_force": "v = -grad(dF/drho) = -grad log(rho/rho_ph) (drift velocity of the continuity equation); zero at rho = rho_ph",
+ "extra_potential": "V(x) = -log rho_ph(x): the entire baryon-and-a0 content of the law sits in an EXTERNAL field (yes, an extra potential is needed)",
+ "jko_scheme": "rho_{k+1} = argmin_rho (1/(2 tau)) W2^2(rho, rho_k) + F(rho);  E-L: T_k = id - tau grad w_k with grad w_k = grad(dF/drho)(rho_{k+1}) = grad log(rho_{k+1}/rho_ph) (Kantorovich potential w_k)",
+ "numbers": {
+  "Mph_over_Mb": {
+   "canonical": -66.53388713475324,
+   "alt": -73.19157323376578
+  },
+  "supply_fraction_realisable": {
+   "canonical": 0.08056045168598398,
+   "alt": 0.07323247422050559
+  },
+  "kappa1": 9.871799762870893,
+  "Gamma_KJ_t_dyn": 9.871799762870893,
+  "Gamma_KJ_per_Gyr": 0.34873149210469717,
+  "CFG382_lambda": 0.028,
+  "CFG378_g_bracket": [
+   0.1,
+   1.0
+  ]
+ }
+}
