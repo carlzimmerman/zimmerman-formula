@@ -1,0 +1,203 @@
+{
+ "lane": "CFG445",
+ "mutate": true,
+ "verdicts": {
+  "canonical": "NON-DISCRIMINATING",
+  "alt": "NON-DISCRIMINATING"
+ },
+ "reported": "NON-DISCRIMINATING",
+ "numbers": {
+  "canonical": {
+   "primary": {
+    "label": "primary",
+    "nGC": 25,
+    "nGC_used": 18,
+    "nF": 123,
+    "Delta_LM": 0.10301320012143414,
+    "sigma": 0.06422476572180938,
+    "S": 1.603948242764131,
+    "dBIC": 0.6833329745882111,
+    "step_jump": 0.1463442016165864,
+    "slope": 0.06100686892380924,
+    "raw_Delta": 0.1310917689620664,
+    "per_source": {
+     "SPARC": {
+      "nGC": 15,
+      "nGC_used": 10,
+      "nF": 91,
+      "Delta_LM": 0.07240722417587954
+     },
+     "WALLABY": {
+      "nGC": 10,
+      "nGC_used": 8,
+      "nF": 32,
+      "Delta_LM": 0.18231702655281407
+     }
+    },
+    "verdict": "NON-DISCRIMINATING"
+   },
+   "perm_p": 0.01,
+   "unmutated": {
+    "label": "unmutated",
+    "nGC": 25,
+    "nGC_used": 18,
+    "nF": 123,
+    "Delta_LM": 0.003013200121434141,
+    "sigma": 0.06422476572180938,
+    "S": 0.04691648287960857,
+    "dBIC": -3.3029642349016513,
+    "step_jump": 0.046344201616586395,
+    "slope": 0.03315290096415324,
+    "raw_Delta": 0.031091768962066405,
+    "per_source": {
+     "SPARC": {
+      "nGC": 15,
+      "nGC_used": 10,
+      "nF": 91,
+      "Delta_LM": -0.027592775824120466
+     },
+     "WALLABY": {
+      "nGC": 10,
+      "nGC_used": 8,
+      "nF": 32,
+      "Delta_LM": 0.08231702655281406
+     }
+    },
+    "verdict": "NON-DISCRIMINATING"
+   }
+  },
+  "alt": {
+   "primary": {
+    "label": "primary",
+    "nGC": 25,
+    "nGC_used": 18,
+    "nF": 123,
+    "Delta_LM": 0.10427631650127173,
+    "sigma": 0.06418379707077689,
+    "S": 1.624651723024176,
+    "dBIC": 0.4452818779195695,
+    "step_jump": 0.14795717759584626,
+    "slope": 0.062123493740231406,
+    "raw_Delta": 0.13176051468652134,
+    "per_source": {
+     "SPARC": {
+      "nGC": 15,
+      "nGC_used": 10,
+      "nF": 91,
+      "Delta_LM": 0.07336789187936603
+     },
+     "WALLABY": {
+      "nGC": 10,
+      "nGC_used": 8,
+      "nF": 32,
+      "Delta_LM": 0.18267886754293733
+     }
+    },
+    "verdict": "NON-DISCRIMINATING"
+   },
+   "perm_p": 0.008,
+   "unmutated": {
+    "label": "unmutated",
+    "nGC": 25,
+    "nGC_used": 18,
+    "nF": 123,
+    "Delta_LM": 0.004276316501271735,
+    "sigma": 0.06418379707077689,
+    "S": 0.06662610653209168,
+    "dBIC": -3.5160412769700997,
+    "step_jump": 0.04795717759584627,
+    "slope": 0.034269525780575405,
+    "raw_Delta": 0.03176051468652133,
+    "per_source": {
+     "SPARC": {
+      "nGC": 15,
+      "nGC_used": 10,
+      "nF": 91,
+      "Delta_LM": -0.026632108120633977
+     },
+     "WALLABY": {
+      "nGC": 10,
+      "nGC_used": 8,
+      "nF": 32,
+      "Delta_LM": 0.08267886754293732
+     }
+    },
+    "verdict": "NON-DISCRIMINATING"
+   }
+  }
+ },
+ "checks": [
+  {
+   "name": "C-thin ring-sum vs Freeman within 2% at 2-6 R_d (test disc R_d 3 kpc, 5e10 Msun, frozen softening 0.1 kpc)",
+   "ok": false,
+   "load_bearing": true,
+   "measured": "max |ratio-1| = 0.0231 (at 2 R_d 0.9769)"
+  },
+  {
+   "name": "C1 load_sparc: 175 galaxies, 163 with Q <= 2",
+   "ok": true,
+   "load_bearing": true,
+   "measured": "175 / 163"
+  },
+  {
+   "name": "C-HI WALLABY: 2 pi int SD_FO R dR vs source-catalogue log M_HI, median |diff| <= 0.15 dex",
+   "ok": true,
+   "load_bearing": true,
+   "measured": "N 67, median diff -0.021, median |diff| 0.021"
+  },
+  {
+   "name": "C-SPARC: SPARC GC/F equal CFG393's (15 GC / 91 F)",
+   "ok": true,
+   "load_bearing": true,
+   "measured": "15 GC / 91 F"
+  },
+  {
+   "name": "C5 [canonical] within-source label-permutation p for |Delta_LM|",
+   "ok": true,
+   "load_bearing": false,
+   "measured": "p = 0.0100"
+  },
+  {
+   "name": "C3 [canonical] every R_g used equals R_g recomputed from source (<= 1e-9 dex)",
+   "ok": false,
+   "load_bearing": true,
+   "measured": "max |diff| = 1.000e-01"
+  },
+  {
+   "name": "MUT [canonical] Delta_LM rises by 0.100 +- 0.005; verdict reaches SUPPORTED?",
+   "ok": true,
+   "load_bearing": false,
+   "measured": "shift +0.1000; NON-DISCRIMINATING -> NON-DISCRIMINATING; S +1.60, dBIC +0.68"
+  },
+  {
+   "name": "MUT [canonical] injected +0.1 dex is DETECTED (verdict TWO-REGIME SUPPORTED)",
+   "ok": false,
+   "load_bearing": false,
+   "measured": "NON-DISCRIMINATING"
+  },
+  {
+   "name": "C5 [alt] within-source label-permutation p for |Delta_LM|",
+   "ok": true,
+   "load_bearing": false,
+   "measured": "p = 0.0080"
+  },
+  {
+   "name": "C3 [alt] every R_g used equals R_g recomputed from source (<= 1e-9 dex)",
+   "ok": false,
+   "load_bearing": true,
+   "measured": "max |diff| = 1.000e-01"
+  },
+  {
+   "name": "MUT [alt] Delta_LM rises by 0.100 +- 0.005; verdict reaches SUPPORTED?",
+   "ok": true,
+   "load_bearing": false,
+   "measured": "shift +0.1000; NON-DISCRIMINATING -> NON-DISCRIMINATING; S +1.62, dBIC +0.45"
+  },
+  {
+   "name": "MUT [alt] injected +0.1 dex is DETECTED (verdict TWO-REGIME SUPPORTED)",
+   "ok": false,
+   "load_bearing": false,
+   "measured": "NON-DISCRIMINATING"
+  }
+ ]
+}
