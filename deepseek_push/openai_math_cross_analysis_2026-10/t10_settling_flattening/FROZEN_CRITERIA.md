@@ -52,12 +52,18 @@ functional/equational, not a constant search — n/a.
   C5  S3 cancellation: v² = 4πGμ_ph ⇒ v⁴ − GMa₀ ≡ 0 symbolically.
   C6  S5: heat-bump relaxation timescale exponent ∈ [1.9, 2.1] (fitted
       τ vs ℓ over bumps of width 1,2,4 kpc at fixed amplitude).
-  C7  S6: r_supply/r_t = 5.848 ± 0.002 computed from ln(1 + 1/5.36);
+  C7  S6: r_supply/r_t = 5.8457 ± 0.002 computed from ln(1 + 1/5.36);
+      [CORRECTED 2026-10-07: frozen 5.8480 was a hand-arithmetic slip;
+      the exact 1/ln(1 + 1/5.36) = 5.8457.]
       MW r_supply = 71.4 ± 0.5 kpc canonical, 65.0 ± 0.5 alt.
   C8  MUTATE (T10_MUTATE=1: drift coefficient halved in the PDE — the
       substitution no longer cancels): C1 must FAIL (residual ≫ 1e-12),
-      C2 must FAIL, C5 must still pass (pure algebra), C6 must FAIL
-      (exponent ≠ 2), C3/C4/C7 unchanged (pure identities/corollaries).
+      C2 must FAIL, C5 must still pass (pure algebra), C3/C4/C6/C7
+      unchanged (C6 is a pure-heat bump experiment and never sees the
+      drift).  [CORRECTED 2026-10-07: the original wording declared C6
+      would fail under MUTATE — wrong: the bump relaxation is pure heat
+      by construction; the drift enters only C1/C2. Verified empirically:
+      MUTATE flips exactly C1+C2 as corrected above.]
 
 **Deliverables:** this freeze (committed ALONE); t10_settling_flattening.py
 + .out ×2 + results ×2; README (the theorem, the falsifier, the P3-radius
