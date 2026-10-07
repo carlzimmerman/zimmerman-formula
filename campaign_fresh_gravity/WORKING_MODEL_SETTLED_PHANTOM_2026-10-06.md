@@ -51,3 +51,30 @@
 - **The 3 Mpc KiDS lensing dip is not a near-term test (CFG377).**
 - **Structure growth with the measured gas mix is TENSION (CFG374),** not GROWTH OK.
 - **CRITICAL (audit 5819dd616): CFG372's growth pass is WITHDRAWN** (gas-filter k_J time-dependence bug). The growth row is "TENSION (excess small-scale power at least 10–16%)" pending a corrected re-run. The CFG361 CRIT row does not discriminate either, since FLAT also fails under the same bookkeeping.
+
+## SYNTHESIS (10-06 night): where the dark sector is being pushed, and the fork it leaves
+**1. Convergence.**
+- Tonight's independent results point the cold fluid toward one class:
+  - an eV-mass Bose field (CFG383: m ≈ 0.6–0.8 eV, calibrated on clusters);
+  - with a self-interaction at the Bullet limit (CFG384, σ/m ≈ 1 cm²/g);
+  - condensed in galaxies and partly normal in clusters (CFG383);
+  - viscous only where it is collisional (CFG390: Navier–Stokes valid in the Milky Way, Knudsen number 51 in clusters).
+- That is the parameter space of Berezhiani–Khoury-type superfluid dark matter.
+
+**2. The fork.**
+- Superfluid models make the MOND force on baryons a phonon force: a DIRECT dark-field–baryon coupling. That violates the record's G9 rule (the fluid couples only through gravity).
+- The working model keeps G9. The settled fluid's real mass supplies the extra gravity, and the khronon lapse is the messenger that carries the target with zero constants (CFG373 G1). The price is a fluid–khronon coupling for the settling force (CFG381, +1 constant). And no settling functional tried so far fills the target from the inside out without over-building small-scale structure (CFG378 DEV, CFG390).
+- So the decision is: (a) allow a direct dark–baryon phonon coupling, with its own fifth-force and equivalence-principle tests; or (b) keep G9 and find an inside-out settling dynamics. Nothing on the record does (b) yet.
+
+**3. Settling reduces to the BTFR.**
+- In the deep-MOND regime the phantom profile is exactly a singular isothermal sphere with σ² = V²/2. Pressure plus self-gravity holds it at rest, with no settling force needed: σ² d ln ρ/dr = −V²/r holds for ρ ∝ r⁻².
+- So the only non-trivial content of "settling into the law" is the AMPLITUDE: V⁴ = G M_b a₀, the baryonic Tully–Fisher relation set by the baryons.
+- The rest-state failure in CFG390 came from its relative-entropy settling term, not from any obstruction in gravity.
+
+**4. Dark energy.** No mechanism sets ρ_Λ.
+- CFG288 ties the cold fluid and dark energy to one field, with V_min = ρ_Λ put in by hand.
+- The khronon class ties a₀ and ρ_Λ to one scale, with κ = 2√(8π)/(3β); κ = ½ ⟺ β = 6.684, where β is not derived.
+- OpenAI's math release offers only templates: zero vacuum energy (270), dimensional transmutation (215). No mechanism.
+- The testable content remains that a₀ tracks ρ_DE(z).
+
+**Decisive tests.** a₀ at z ≈ 2.5 from self-calibrating discs (CFG385; it needs new AO plus deep data, since none is on disk, CFG386), and Gaia DR4 (2 December).
