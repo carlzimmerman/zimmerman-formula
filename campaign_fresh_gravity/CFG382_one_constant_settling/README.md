@@ -20,3 +20,17 @@ The brackets (V 180-230, tau since z = 1/2/4) give the same picture: PARTIAL, or
 **Reading.** One dimensionless constant does three things right: the galaxy floor (by construction), groups (no freedom), and CFG245's pincer, the galaxy/cluster rate window that sank the vacuum-rate lane. It cannot do clusters at R500 or UFDs. Those need something beyond a local rate (history, or a reservoir inside R500, as CFG379 found).
 
 Controls: C1 calibration and C2 pass. MUTATE (lambda x 3) moves groups 0.72 -> 0.38, rc 1. The growth / sigma8 consequence was not run (it needs the PM engine).
+
+## Post-run target audit (labelled; `cfg382_target_audit.py`; the frozen PARTIAL stands)
+The targets above mixed definitions: the group 0.60 is cm03's definition B with a weak-lensing bias, while the cluster 0.430 is definition A with no bias. Here both are on definition A with the SAME hydrostatic bias b (groups: stars := 0.10 M_gas placeholder, which leans high, disclosed):
+
+| b | groups (Lovisari 20) | clusters (X-COP 7) |
+|---|---|---|
+| 0.0 | 0.79 [0.53-1.40] | 0.41 [0.36-0.50] |
+| 0.1 | 1.04 [0.75-1.72] | 0.54 [0.48-0.63] |
+| 0.2 | 1.35 [1.02-2.11] | 0.70 [0.63-0.79] |
+| 0.3 | 1.76 [1.38-2.61] | 0.91 [0.83-0.99] |
+
+**Reading.**
+- (1) The levels move by about x2 across plausible hydrostatic bias, which is more than the differences any mechanism test here is trying to resolve. **Retention-level fitting cannot discriminate mechanisms until group and cluster masses are lensing-calibrated on one footing.**
+- (2) The ordering that survives every b: groups need about TWICE the excess-per-present-baryon of clusters. A local-density-keyed rate predicts equality (CFG382). The ordering instead follows BARYON DEPLETION (groups are gas-poorer), as the original-baryon reservoir reading expects (CFG365).
