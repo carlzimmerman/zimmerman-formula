@@ -86,3 +86,15 @@ The lane verdict is set by g = 1. g = 0.1 gets its own verdict.
 - t_dyn uses the mesh-smoothed density (cell 0.78 Mpc/h at 256³), so Γ is underestimated in unresolved cores.
 - Whole-box reservoir: there is no causal limit on supply distance beyond the 1-cell-per-step cap.
 - The cold fluid is still required. κ = ½ is fitted.
+
+## Amendment 1 (before ANY development or frozen PM run; only a 64³ smoke test existed)
+
+**Source.** Referee audit 5819dd616 (campaign_fresh_gravity/AUDIT_2026-10-06/README.md).
+
+**The bug.** The MIX-A filter as copied from CFG374 uses the comoving Jeans wavenumber k_J = √(1.5 Ω_m a) · 100 / c_s. The correct comoving value is:
+- k_J = √(1.5 Ω_m / a) · 100 / c_s [h/Mpc], with c_s in km/s;
+- that is, ∝ a^(−1/2) (Gnedin & Hui).
+
+**The fix.** CFG378 adopts the corrected k_J in the target's MIX-A filter. Everything else in these criteria is unchanged: the weights 0.28 / 0.54 / 0.18, the temperatures 1e4 K and 1e6 K, the cuts, the runs and the controls. At a = 1 the two forms agree, so the filter is unchanged at z = 0 and less aggressive at earlier times.
+
+**Consequence for comparisons.** The CFG374 numbers that this README quotes for comparison were made with the buggy filter. They are labelled as such.
