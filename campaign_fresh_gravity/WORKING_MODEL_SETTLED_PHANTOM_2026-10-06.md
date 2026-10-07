@@ -44,3 +44,9 @@
 **CFG372** (criteria 733d27623, runs launched): CFG366's reservoir rule with the phantom sourced by pressure-smoothed gas, at T = 1e6 K (primary) and 1e4 K.
 - Passing CFG361's cuts on both footings would show numerically that "extra gravity must be earned by real, smooth matter" closes large-scale growth.
 - Failing would leave the small-scale excess open.
+
+## FORWARD NOTES (10-06 night)
+- **Piece 4 of the equations (the supply limit / cap) FAILS in clusters and groups (CFG379).** The measured mass beyond the baryons exceeds the phantom target in every X-COP cluster and Lovisari group. Clusters hold about their full cosmic cold share, about half of it unsettled beyond the target. A working version needs cold fluid that sits inside R500 without settling, or a cap other than M_ph.
+- **Settling energy is not a constraint (CFG375).** The settling force needs one direct fluid–khronon coupling constant (CFG373 + CFG381).
+- **The 3 Mpc KiDS lensing dip is not a near-term test (CFG377).**
+- **Structure growth with the measured gas mix is TENSION (CFG374),** not GROWTH OK.

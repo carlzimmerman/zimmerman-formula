@@ -39,3 +39,9 @@ Criteria 733d27623. Engine `cfg372_pm.py` (CFG366 copy plus a one-line filter), 
 - The reservoir is bookkeeping: the cold fluid is not moved as particles. The overdraw, reported in CFG366, is not recomputed here.
 - The settling force is CONDITIONAL (CFG373).
 - The cold fluid is still required. κ = ½ is fitted.
+
+**FORWARD FIX (10-06, from CFG377, a8360bf1b): the KiDS "sharp prediction" was overstated.**
+- In the lensing observable ΔΣ, the −6.5% enclosed-mass change at 3 Mpc is only about −2%. It is −0.4% at 2 Mpc and −0.03% at 1 Mpc, because a 4.45 Mpc Gaussian deficit acts almost like a uniform sheet.
+- KiDS-1000 reaches about 2.2 Mpc and has no power (Δχ² +0.33 / +0.37, power 0.046).
+- An expected 2σ detection needs about 1e4 times KiDS-1000's pairs, plus a two-halo model good to about 0.2%.
+- So it is NOT a near-term KiDS-Legacy / Euclid test.
