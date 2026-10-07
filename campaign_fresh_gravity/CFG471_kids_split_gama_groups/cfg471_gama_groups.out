@@ -1,0 +1,88 @@
+CFG471 -- KiDS EARLY/LATE SPLIT BY SPECTROSCOPIC HOST STATUS (GAMA DR4 G3C GROUPS).  CFG446 found with a photo-z companion count
+that companion-poor early types carry the full KiDS 1-halo split (two-regime explanation FAILS); its caveat was the +-250 Mpc
+photo-z window.  Here host status is a G3C label: class C = early lens that is the IterCen of a big group (N_fof >= 3, or N_fof >= 2
+with MassAfunc/h >= 10^12.5 Msun); class F = early lens GAMA sees (r < 19.8) in no group.  LCDM also predicts group centrals lens
+more: SUPPORTED would not discriminate the framework from LCDM; FAILS removes the two-regime explanation again.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG471_kids_split_gama_groups/FROZEN_CRITERIA.md (0ce400d28).
+  data     cfg110_perlens.npz, lr_lenses.npz, lr_esd_jackknife.npz (June patches); G3CGalv10 + G3CFoFGroupv10 (GAMA DR4, Data Central).
+  match    nearest G3CGal galaxy within 1.5 arcsec, lenses inside the G09/G12/G15 boxes.
+  stat     A_S = (D_full^T C^-1 D_S)/(D_full^T C^-1 D_full), D_S = ESD(early S) - ESD(footprint late) on K1; D_full, C^-1 fixed (CFG88);
+           jackknife over the June patches touching the footprint.  Headline: (log M*, z)-matched.  SUPPORTED |A_F|/s < 2 and
+           A_C/s > 3; FAILS A_F/s > 3 and A_F >= 0.70; else NON-DISCRIMINATING.
+  law      B's law predicts a negligible early-minus-late difference in K1 under both footings (CFG61 stacks; projected below).
+MUTATE=1: class labels shuffled among matched early lenses (20 shuffles, seeds 471-490); M1 (median |dA|/s >= 1) must FAIL -> rc 1.
+  a0 footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2 (kappa = 1/2 FITTED); B's K1 prediction is the zero difference under both.
+
+======================================================================================================================
+C5  CONTROL: G3C files are the logged fetch
+======================================================================================================================
+  [PASS] C5 CONTROL: sha256 of both G3C files equals FETCH_LOG.md
+         G3CGalv10.csv: ok; G3CFoFGroupv10.csv: ok
+  G3CGal rows 204,110 (grouped 83,093); G3CFoFGroup rows 26,194; max Rpetro 19.800
+
+======================================================================================================================
+FOOTPRINT, CROSS-MATCH AND CLASSES
+======================================================================================================================
+  match radius 1.0": footprint early matched 11,085, late 9,419
+  match radius 1.5": footprint early matched 11,101, late 9,441
+  match radius 2.0": footprint early matched 11,118, late 9,450
+  [PASS] C2 CONTROL: chance-match rate (positions shifted +60" in Dec) < 2% of the real match rate
+         0.141%
+  spec - photo z (matched): median +0.0003, robust scatter 0.0250; |dz| > 0.1: 0.8%
+  [PASS] C3 CONTROL: classes C, F, S, P disjoint and covering the matched early lenses
+         N: C 808, F 7,207, S 2,847, P 239; matched early 11,101; BCG variant 780
+  class C: median log M* 10.80, median z 0.280
+  class F: median log M* 10.73, median z 0.294
+  class S: median log M* 10.70, median z 0.290
+  class P: median log M* 10.75, median z 0.269
+  G3C non-IterCen members among matched early 'isolated' lenses: 25.6% (finding, not a test)
+  footprint: 34,872 lenses, early 17,430, late reference 17,442
+  June patches touching the footprint: 12 [0, 1, 2, 3, 8, 9, 10, 11, 18, 19, 20, 21]; sub-patches 36
+
+======================================================================================================================
+C0  CONTROL: CFG88's split from the per-lens sums
+======================================================================================================================
+  [PASS] C0 CONTROL: D_full equals CFG88's K1 D (1e-6 rel) and the zero-model Hartlap chi2 equals CFG88's 35.0418 (1e-6 rel)
+         max rel dev 5.3e-14; chi2 35.0418/7 vs 35.0418
+  B's law, early-minus-late in amplitude units (CFG61 stacks): canonical +0.0002, alt +0.0002 -- the zero model
+
+======================================================================================================================
+C1  CONTROL: CFG446's full-sample amplitude inside the GAMA footprint
+======================================================================================================================
+  [PASS] C1 CONTROL: all footprint early vs footprint late, unmatched: |A_box - 1| < 2 sigma
+         A_box +0.870 +- 0.415 (-0.31 s from 1; +2.09 s from 0)
+  reported: all matched early (r < 19.8) A +1.092 +- 0.437
+
+======================================================================================================================
+HEADLINE: EARLY TYPES BY G3C HOST STATUS (C = big-group IterCen, F = in no group; S, P reported)
+======================================================================================================================
+  [unmatched] A_C +1.577 +- 1.486 (+1.06 s) | A_F +0.891 +- 0.423 (+2.10 s) | A_S +1.323 +- 0.821 (+1.61 s) | A_P +2.130 +- 2.606 (+0.82 s)
+  [unmatched] dA = A_C - A_F = +0.686 +- 1.565 (+0.44 s); verdict: NON-DISCRIMINATING
+  [matched] A_C +1.341 +- 1.821 (+0.74 s) | A_F +0.893 +- 0.420 (+2.12 s) | A_S +1.416 +- 0.833 (+1.70 s) | A_P +1.393 +- 2.966 (+0.47 s)
+  [matched] dropped all-matched-early fraction in empty cells: C 0.013, F 0.000, S 0.000, P 0.033
+  [matched] dA = A_C - A_F = +0.448 +- 1.905 (+0.24 s); verdict: NON-DISCRIMINATING
+  power (measured, matched): 1/s_F = 2.38 (declared ~2.9), s_C = 1.821 (declared ~0.89); P(FAIL | A_F = 1) ~ 0.27  -> UNDERPOWERED to FAIL
+
+======================================================================================================================
+REPORTED VARIANTS: BCG centrals; 36 sub-patch jackknife; group-hosted (C+S+P) vs field
+======================================================================================================================
+  BCG centrals (matched): A_C +1.700 +- 1.920; verdict NON-DISCRIMINATING
+  36 sub-patch jackknife (matched): A_C +1.341 +- 1.334, A_F +0.893 +- 0.391; verdict NON-DISCRIMINATING
+  group-hosted (C+S+P, N 3,894) matched A +1.410 +- 0.601; minus field +0.517 +- 0.493
+
+======================================================================================================================
+C4  CONTROL: null calibration of dA/s with random disjoint subsets of C and F sizes
+======================================================================================================================
+  [PASS] C4 CONTROL: std of dA/s_dA over 100 random disjoint C/F-sized subsets (matched) in [0.7, 1.4]
+         std 1.088, mean +0.050, fraction |z| >= 1: 0.35
+
+======================================================================================================================
+M1 / VERDICT
+======================================================================================================================
+  [FAIL] (reported) M1 (load-bearing in MUTATE only): the C/F contrast is present, real |dA_matched|/s >= 1
+         0.24 s
+  VERDICT (matched, frozen rule): NON-DISCRIMINATING  [UNDERPOWERED to FAIL]   [unmatched: NON-DISCRIMINATING]
+  LCDM also predicts group centrals lens more: SUPPORTED would not discriminate the framework from LCDM.
+
+  6/7 checks pass; load-bearing failures: 0   (13 s)
