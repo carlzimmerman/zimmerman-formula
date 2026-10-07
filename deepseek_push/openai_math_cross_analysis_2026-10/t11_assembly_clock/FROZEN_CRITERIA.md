@@ -54,8 +54,12 @@ ratio is forced; Q3 — functional law, not a constant search.
       prediction is one-sided: the band is the law's).
 
 **MUTATE (T11_MUTATE=1):** completeness pair swapped (f_c = 0.60,
-f_g = 0.43) — C1 must fail (ratio 1.63 ≠ 0.6135), C2 must fail, C3 must
-still pass (window is pair-agnostic), C5 must pass (cosmology unchanged).
+f_g = 0.43) — C1 must fail (ratio 1.63 ≠ 0.6135), C2 must fail, C4/C5
+must pass (density/cosmology unchanged).  [CORRECTED 2026-10-07: the
+original wording declared C3 pair-agnostic; empirically the second-mode
+window IS pair-dependent (swapped pair gives [1.619, 1.619], off the
+declared window) — C3 is declared to flip with the pair. Verified:
+main C3 [0.5577, 0.5926] ⊂ [0.55, 0.66]; MUTATE C3 fails as corrected.]
 
 **Deliverables:** freeze committed ALONE; t11_assembly_clock.py + .out ×2
 + results ×2; README with the ratio table, the kill condition, the
