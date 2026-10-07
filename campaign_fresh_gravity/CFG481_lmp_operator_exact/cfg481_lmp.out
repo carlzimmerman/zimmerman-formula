@@ -1,0 +1,25 @@
+==============================================================================
+CFG481: exact LMP/Kac operator for the first-order switch (door B)
+==============================================================================
+[kernel] phi(r) = B(1-r/sigma)^+ - A(r/sigma)^{-(3+1/32)} (r>=R0)
+[kernel] bounded range check: True   tail exponent check: True
+[kernel] stability check: min E/N over 3000 configs = 8.5844 (bounded below: True)
+[kernel] hypotheses of #228 (bounded, continuous, stable, |phi|<=C r^-3-1/32): PASS
+
+core: U=0.0 J=0.02 a=4.0   (Kac attraction scale)
+  beta  beta*a      h_c    rho_g    rho_l    gamma
+ 0.540   2.160   -2.253   0.7911   3.2089    4.056
+ 0.640   2.560   -3.197   0.1852   3.8148   20.603
+ 0.740   2.960   -4.301   0.0467   3.9533   84.629
+ 0.840   3.360   -5.565   0.0096   3.9904  414.983
+ 0.940   3.760   -6.989   0.0014   3.9986 2823.628
+ 1.040   4.160   -8.573   0.0001   3.9999 29700.869
+ 1.140   4.560  -10.317   0.0000   4.0000 514569.030
+
+first beta with two-valued density (phantom switch T): beta* = 0.5400   (beta*a = 2.160, h_c = -2.253)
+CFG480 modal ratio 6.25 +/- 0.18 -> gamma(match) = 6.06 at beta*a = 2.240 (beta = 0.560, h_c = -2.429)
+(|gamma(band) - 6.25| = 0.19 ~ 1.1 sigma)
+
+VERDICT: exact LMP operator exhibits the first-order switch at negative coexistence field h_c < 0; density-gap curve gamma(beta*a) produced; cross-check constant beta*a* = 2.240
+KILL: decisive test = s_ph - s_c dump at intermediate snapshot;
+if a rerun shows no two-valued SED response, beta*a* is dead.
