@@ -27,3 +27,8 @@ Criteria in FROZEN_CRITERIA.md. Script `cfg383_bec_split.py`: 2/2 checks; MUTATE
 - The condensate/normal split is a natural, nearly parameter-free way to get settled galaxies and partly unsettled clusters, if the cold fluid is a ~eV Bose field with a relaxation channel.
 - The next step is a lane with an explicit self-interaction. It must re-check CFG288's gates and Bullet-cluster-type limits on self-interaction, and keep the coupling inside the dark sector (G9).
 - The cold fluid is still required, and its amount is not derived. κ = ½ is fitted.
+
+**FORWARD NOTE (10-06): two caveats from the CFG382 target audit (f982f4a34).**
+1. m = 0.81 eV is a CALIBRATION that inherits the cluster level's swing with hydrostatic bias (0.41 → 0.91 for b = 0 → 0.3). It is not a test.
+2. The predictions run against the bias-robust ordering. Data have groups at about 2× clusters' excess per present baryon, and UFDs high; CFG383 gives groups 3% and UFDs about 0.
+- Follow-up: CFG384 (self-interaction relaxation) is MARGINAL. It sits at the Bullet limit, σ/m ≈ 1 cm²/g.
