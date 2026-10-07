@@ -1,0 +1,45 @@
+{
+ "lane": "CFG381",
+ "mutate": true,
+ "verdict": "DOES NOT PRODUCE",
+ "R": {
+  "CFG370 cooling 3.21 H_L": {
+   "K_need": 1.9352174162011164e-26,
+   "R_min": 1.3344456676366356e-05,
+   "R_max": 0.00012209537178513525
+  },
+  "CFG245 needed 5.4 H_L": {
+   "K_need": 3.2555059337962704e-26,
+   "R_min": 1.3344456676366356e-05,
+   "R_max": 0.00012209537178513525
+  }
+ },
+ "relation": "K = -(alpha/c2) d_t(chi-dot + Phi)",
+ "checks": [
+  {
+   "name": "C1 linear kinematics: chi = 0, B = 0 gives a = grad Phi and K = 3 Psi-dot",
+   "pass": true,
+   "value": "ok"
+  },
+  {
+   "name": "Derived chi equation = +-2 [alpha d_t lap(chi-dot + Phi) + c2 lap K]  =>  lap[c2 K + alpha d_t(chi-dot + Phi)] = 0",
+   "pass": true,
+   "value": "sympy Euler-Lagrange"
+  },
+  {
+   "name": "C2 alpha_c = 0 decouples chi from Phi (equation -> lap K = 0, no Phi)",
+   "pass": true,
+   "value": "Phi present: False"
+  },
+  {
+   "name": "T-MUT main-run marker (MUTATE alpha_c -> 1 must move R_K by > 1e6)",
+   "pass": false,
+   "value": "max R_K 1.2e-04"
+  },
+  {
+   "name": "MUTATE forces rc 1",
+   "pass": false,
+   "value": 0.00012209537178513525
+  }
+ ]
+}

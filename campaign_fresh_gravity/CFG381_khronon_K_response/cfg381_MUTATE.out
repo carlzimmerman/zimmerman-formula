@@ -1,0 +1,18 @@
+CFG381 khronon K response  (MUTATE: alpha_c -> 1)
+==============================================================================
+  [PASS] C1 linear kinematics: chi = 0, B = 0 gives a = grad Phi and K = 3 Psi-dot: ok
+  [PASS] Derived chi equation = +-2 [alpha d_t lap(chi-dot + Phi) + c2 lap K]  =>  lap[c2 K + alpha d_t(chi-dot + Phi)] = 0: sympy Euler-Lagrange
+  With decaying boundary conditions: K = -(alpha/c2) d_t(chi-dot + Phi). The khronon's expansion is driven ONLY through alpha_c,
+  by the time-change of the lapse potential.
+  [PASS] C2 alpha_c = 0 decouples chi from Phi (equation -> lap K = 0, no Phi): Phi present: False
+
+Induced K for settling: Phi-dot ~ Gamma Phi (chi-ddot taken <= the same order: an upper bracket x2)
+  CFG370 cooling 3.21 H_L: K_needed = 1.94e-26 /m;  R_K = K_induced/K_needed = 1.3e-05 .. 1.2e-04  [= 2 (alpha/c2)(V/c)^2]
+  CFG245 needed 5.4 H_L: K_needed = 3.26e-26 /m;  R_K = K_induced/K_needed = 1.3e-05 .. 1.2e-04  [= 2 (alpha/c2)(V/c)^2]
+
+VERDICT: DOES NOT PRODUCE  (max R_K = 1.2e-04; the induced expansion is suppressed by (alpha_c/c_2)(V/c)^2)
+Direct alternative: a fluid-khronon coupling lambda_x (rho_c - rho_target) K would source K directly. Matching K ~ Gamma/c fixes
+lambda_x to one NEW dark-sector constant (it does not touch baryons, so G9 is intact). The sink then exists by construction: CONDITIONAL with +1 constant.
+  [FAIL] T-MUT main-run marker (MUTATE alpha_c -> 1 must move R_K by > 1e6): max R_K 1.2e-04
+
+3/5 pass  (MUTATE)
