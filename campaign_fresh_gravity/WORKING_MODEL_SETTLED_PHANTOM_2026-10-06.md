@@ -50,3 +50,4 @@
 - **Settling energy is not a constraint (CFG375).** The settling force needs one direct fluid–khronon coupling constant (CFG373 + CFG381).
 - **The 3 Mpc KiDS lensing dip is not a near-term test (CFG377).**
 - **Structure growth with the measured gas mix is TENSION (CFG374),** not GROWTH OK.
+- **CRITICAL (audit 5819dd616): CFG372's growth pass is WITHDRAWN** (gas-filter k_J time-dependence bug). The growth row is "TENSION (excess small-scale power at least 10–16%)" pending a corrected re-run. The CFG361 CRIT row does not discriminate either, since FLAT also fails under the same bookkeeping.

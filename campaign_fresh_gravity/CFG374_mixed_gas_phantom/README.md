@@ -25,3 +25,17 @@ Criteria 396ed0c5a. Engine `cfg374_pm.py` (CFG372 copy plus a phase-weighted fil
 - The collapsed phase is unfiltered, though real halo gas is hot and pressured; that would push toward CFG372.
 - The reservoir is bookkeeping, and the settling force is conditional (CFG373).
 - The cold fluid is still required. κ = ½ is fitted.
+
+**KNOWN BUG, CRITICAL (referee audit 5819dd616, 10-06): the gas-filter Jeans wavenumber has the wrong time dependence.**
+- The engine uses comoving k_J = √(1.5 Ω_m a) · 100/c_s (∝ a^(+1/2)). The correct value is √(1.5 Ω_m / a) · 100/c_s (∝ a^(−1/2)), from Gnedin & Hui: k_J = (a/c_s)√(4πGρ̄), with ρ̄ ∝ a⁻³.
+- It is correct only at z = 0. The phantom was over-filtered at earlier epochs, near k ≈ 1 by ×1.7 at z = 0.5, ×2.5 at z = 1 and ×4.3 at z = 2.
+- The controls used the same formula and could not catch it. The error is the orchestrator's (frozen in the criteria).
+- Consequences:
+  - CFG372's "GROWTH OK at 1e6 K" is **WITHDRAWN**. The audit's estimate is max|P−1| of about 10–15%, likely TENSION.
+  - The small-scale excesses reported here are lower limits.
+- A corrected re-run (a criteria amendment committed first) is the fix.
+- Also from the audit:
+  - the runs are at an unconverged 256³, where the excess grows with resolution (CFG361 K4);
+  - constant T and z ≈ 0 phase fractions are used at all z;
+  - CFG372's overdraw was computed but read with the wrong key: 3.5% / 4.2% at 1e6 K, 18.8% / 21.3% at 1e4 K. CFG374 MIX-A is 9.8% / 11.9% and MIX-B 15.3% / 17.7%.
+  - CFG374's "pure WHIM keeps 50% at k = 1" is wrong. It keeps W = 0.17; MIX-A keeps 3.2× more.
