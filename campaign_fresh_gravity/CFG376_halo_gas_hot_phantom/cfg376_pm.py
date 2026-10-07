@@ -1,0 +1,392 @@
+#!/usr/bin/env python3
+"""CFG376 engine: CFG374's engine (copied, not imported) with the collapsed phase split: W = f_cool W(1e4) + f_hot W(1e6) + f_halo W(T_halo) + f_sc
+(FROZEN_CRITERIA.md 2f4c18600).  Usage: python3 cfg376_pm.py RES BRANCH FOOT NP RC MIX   (MIX = HALOA | HALOB | MIXALIM (T_halo = 0, control))
+CFG374 engine: CFG372's engine (copied) with a phase-weighted filter W = f_cool W(1e4) + f_hot W(1e6) + f_coll (FROZEN_CRITERIA.md 396ed0c5a).
+Usage: python3 cfg374_pm.py RES BRANCH FOOT NP RC MIX   (MIX = MIXA | MIXB | HOT1 (f_hot = 1, control))
+CFG372 engine: CFG366's engine (copied, not imported) + the phantom sourced by a pressure-filtered baryon field,
+W(k) = 1/(1 + k^2/k_J^2), k_J = sqrt(1.5 Om a) * 100 / c_s [h/Mpc], c_s = sqrt(5 kT/(3 mu m_p)), mu = 0.6 (FROZEN_CRITERIA.md 733d27623).
+Usage: python3 cfg372_pm.py RES BRANCH FOOT NP RC TGAS
+
+CFG366 engine: CFG361's engine (cfg361_pm.py, copied not imported; itself CFG359's) with ONE added switch "RES":
+the reservoir rule, extra = e - W_Rc * e with e = f max(s_ph - s_c, 0) (T5's ON excess) and W_Rc a Gaussian catchment.
+Criteria: FROZEN_CRITERIA.md (5f3a22464).  Original CFG361 header follows.
+CFG361: CFG359's PM engine with B's dark-mass bookkeeping in switched-ON cells.  Everything is CFG359's (background GR + Lambda, nu_mono, phantom from
+baryons only, T1 switch eps = 0.077, EH ICs at z_i = 49 = the ONLY LCDM input, seed 359) except the ON-cell source.
+Sources (code units s = 1.5 Om rho/rho_bar_m / a; s_ph = -div[(nu - 1) g_Nb]; s_c = 1.5 Om (1 - f_b)(1 + delta)/a):
+  T5   extra = f max(s_ph - s_c, 0)           (CFG4 T5 / CFG336-338 reading M; PRIMARY)
+  S    extra = f (s_ph - (1 - f_ex,R) s_c),  f_ex,R = max(0, 1 - sum_R s_ph / sum_R s_c) on connected f > 0 regions
+  T5F  accel += a f f_b max(nu - 1/f_b, 0) g_N   (force analogue, reported only)
+  ADD  extra = f s_ph                          (CFG359 T1, reproduction control)
+  S1T5 = T5 with f = 1 everywhere;  S0 = Newtonian control.
+Usage: python3 cfg366_pm.py RES BRANCH FOOT NP RC   (RC = catchment width, comoving Mpc/h; CFG374_MUTATE=1 only affects the C1 check)
+"""
+import os, sys
+NTH = int(os.environ.get("CFG376_THREADS", "2"))
+for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "VECLIB_MAXIMUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[_v] = str(NTH)
+import json, math, time
+import numpy as np
+from scipy import fft as sfft
+from scipy.integrate import quad, solve_ivp
+from scipy.optimize import brentq
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.abspath(os.path.join(HERE, "..", ".."))
+WORK = os.path.abspath(os.path.join(REPO, "..", "_external_data", "cfg376_work"))
+RC = 1.0
+TGAS = 0.0
+MIX = "HALOA"
+MIXES = {"HALOA": (0.28, 0.54, 0.10, 0.08, 10 ** 6.5), "HALOB": (0.28, 0.54, 0.10, 0.08, 1e6), "MIXALIM": (0.28, 0.54, 0.10, 0.08, 0.0)}
+MUTATE = os.environ.get("CFG376_MUTATE", "0") == "1"
+
+# ---------------------------------------------------------------- constants (L352 values)
+h = 0.6736; om_b, om_c = 0.02237, 0.1200
+Om = (om_b + om_c) / h ** 2; OL = 1.0 - Om; FB = om_b / (om_b + om_c)
+NS, SIG8 = 0.965, 0.811
+MPC = 3.0856775814913673e22
+ACC_UNIT = 1e10 * h / MPC                       # H0^2 (Mpc/h) in m/s^2
+A0 = {"canonical": 9.3603e-11, "alt": 1.1312e-10}
+W0, WA = -0.838, -0.62                          # DESI DR2 CPL (chart_a0z_one.py), A0-DE only
+L = 200.0; ZI = 49.0; AI = 1.0 / (1 + ZI); SEED = 359; NSEED = 256
+EPS = 0.077
+E = lambda a: math.sqrt(Om / a ** 3 + OL)
+
+def a0_code(a, branch, foot):
+    base = A0[foot] / ACC_UNIT
+    if branch == "FLAT":
+        return base
+    if branch == "CRIT":
+        return base * E(a)
+    if branch == "DE":
+        return base * math.sqrt(a ** (-3 * (1 + W0 + WA)) * math.exp(-3 * WA * (1 - a)))
+    raise ValueError(branch)
+
+# ---------------------------------------------------------------- nu_mono (copied from L340 lines 104-118)
+def h_rar(y):
+    y = np.asarray(y, float)
+    with np.errstate(over="ignore"):
+        return np.where(y < 1e4, y / np.expm1(np.sqrt(np.minimum(y, 1e4))), 0.0)
+def dh_rar(y, e=1e-6):
+    return (h_rar(y * (1 + e)) - h_rar(y * (1 - e))) / (2 * y * e)
+Y_P = brentq(lambda y: float(dh_rar(y)), 1.0, 5.0); H_P = float(h_rar(Y_P)); DELTA = 0.05
+LYG = np.linspace(-12, 12, 240001); YG = 10**LYG
+DH_MONO = np.maximum(dh_rar(YG), DELTA * H_P / (YG + Y_P))
+H_MONO = float(h_rar(YG[0])) + np.concatenate([[0.0], np.cumsum(0.5 * (DH_MONO[1:] + DH_MONO[:-1]) * np.diff(YG))])
+def nu_mono(y):
+    y = np.maximum(np.asarray(y, float), 1e-12); return 1.0 + np.interp(np.log10(y), LYG, H_MONO) / y
+
+# ---------------------------------------------------------------- linear theory (EH no-wiggle, CFG354's T_eh)
+def T_eh(k):
+    OB = om_b / h ** 2; omh2, fb = Om * h * h, OB / Om
+    s = 44.5 * math.log(9.83 / omh2) / math.sqrt(1 + 10 * (OB * h * h) ** 0.75)
+    ag = 1 - 0.328 * math.log(431 * omh2) * fb + 0.38 * math.log(22.3 * omh2) * fb ** 2
+    gam = Om * h * (ag + (1 - ag) / (1 + (0.43 * k * s) ** 4))
+    q = k * (2.7255 / 2.7) ** 2 / (gam * h)
+    L0 = np.log(2 * math.e + 1.8 * q); C0 = 14.2 + 731 / (1 + 62.5 * q)
+    return L0 / (L0 + C0 * q * q)
+_KG = np.geomspace(1e-5, 100, 40000)            # h/Mpc; T_eh takes 1/Mpc
+_PK = _KG ** NS * T_eh(_KG * h) ** 2
+_W8 = lambda x: 3 * (np.sin(x) - x * np.cos(x)) / x ** 3
+_PK *= SIG8 ** 2 / (np.trapz(_PK * _W8(_KG * 8.0) ** 2 * _KG ** 2, _KG) / (2 * math.pi ** 2))
+def P_lin0(k):
+    return np.interp(np.log(np.maximum(k, 1e-5)), np.log(_KG), _PK, left=0, right=0)
+def Dgrow(a):
+    g = lambda x: quad(lambda u: 1.0 / (u * E(u)) ** 3, 0, x)[0] * E(x)
+    return g(a) / g(1.0)
+def fgrow(a, e=1e-4):
+    return (math.log(Dgrow(a * (1 + e))) - math.log(Dgrow(a * (1 - e)))) / (2 * e)
+
+# ---------------------------------------------------------------- Delta_ta(z): CFG353/354 LCDM shell ODE, unchanged
+def delta_ta(z):
+    ai = 1e-3
+    def run(di):
+        Ri = ai * (1 - di / 3.0)
+        GM = 0.5 * Om * (1 + di) * Ri ** 3 / ai ** 3
+        Hi = math.sqrt(Om / ai ** 3 + OL)
+        def rhs(t, y):
+            a, R, V = y
+            return [a * math.sqrt(Om / a ** 3 + OL), V, -GM / R ** 2 + OL * R]
+        ev = lambda t, y: y[2]; ev.terminal = True; ev.direction = -1
+        s = solve_ivp(rhs, [0, 50], [ai, Ri, Hi * Ri * (1 - di / 3.0)], events=ev, rtol=1e-10, atol=1e-13)
+        if not s.t_events[0].size:
+            return None
+        a, R, _ = s.y_events[0][0]
+        return a, (1 + di) * (Ri / ai) ** 3 * a ** 3 / R ** 3
+    at = 1 / (1 + z); lo, hi = 1e-4, 0.05
+    for _ in range(80):
+        mid = math.sqrt(lo * hi); r = run(mid)
+        if r is None or r[0] > at:
+            lo = mid
+        else:
+            hi = mid
+    return run(hi)[1]
+DTA_FILE = os.path.join(WORK, "cfg361_delta_ta_table.json")
+def dta_table():
+    if os.path.exists(DTA_FILE):
+        return json.load(open(DTA_FILE))
+    zs = [0.0, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0, 9.0, 14.0, 20.0, 30.0, 49.0]
+    tab = {"z": zs, "D": [delta_ta(z) for z in zs]}
+    json.dump(tab, open(DTA_FILE, "w"))
+    return tab
+
+# ---------------------------------------------------------------- mesh helpers
+class Mesh:
+    def __init__(self, M):
+        self.M = M; self.dx = L / M
+        k1 = 2 * np.pi * sfft.fftfreq(M, d=self.dx); kz = 2 * np.pi * sfft.rfftfreq(M, d=self.dx)
+        self.kx = k1[:, None, None].astype(np.float32); self.ky = k1[None, :, None].astype(np.float32)
+        self.kz = kz[None, None, :].astype(np.float32)
+        k2 = self.kx ** 2 + self.ky ** 2 + self.kz ** 2; k2[0, 0, 0] = 1.0
+        self.ik2 = (1.0 / k2).astype(np.float32); self.ik2[0, 0, 0] = 0.0
+        self.kvec = (self.kx, self.ky, self.kz)
+    def fwd(self, x): return sfft.rfftn(x, workers=NTH)
+    def inv(self, xk): return sfft.irfftn(xk, s=(self.M,) * 3, workers=NTH).astype(np.float32)
+    def cic_idx(self, pos):
+        u = pos / self.dx; i0 = np.floor(u).astype(np.int64); w = (u - i0).astype(np.float32)
+        return i0 % self.M, (i0 + 1) % self.M, w
+    def deposit(self, pos):
+        M = self.M; i0, i1, w = self.cic_idx(pos); rho = np.zeros(M ** 3, np.float64)
+        for cx in (0, 1):
+            ix = i1[:, 0] if cx else i0[:, 0]; wx = w[:, 0] if cx else 1 - w[:, 0]
+            for cy in (0, 1):
+                iy = i1[:, 1] if cy else i0[:, 1]; wy = w[:, 1] if cy else 1 - w[:, 1]
+                for cz in (0, 1):
+                    iz = i1[:, 2] if cz else i0[:, 2]; wz = w[:, 2] if cz else 1 - w[:, 2]
+                    rho += np.bincount((ix * M + iy) * M + iz, weights=wx * wy * wz, minlength=M ** 3)
+        rho = rho.reshape((M,) * 3); return (rho / rho.mean() - 1.0).astype(np.float32)
+    def interp(self, grids, pos):
+        M = self.M; i0, i1, w = self.cic_idx(pos); out = np.zeros((pos.shape[0], len(grids)), np.float32)
+        flats = [g.ravel() for g in grids]
+        for cx in (0, 1):
+            ix = i1[:, 0] if cx else i0[:, 0]; wx = w[:, 0] if cx else 1 - w[:, 0]
+            for cy in (0, 1):
+                iy = i1[:, 1] if cy else i0[:, 1]; wy = w[:, 1] if cy else 1 - w[:, 1]
+                for cz in (0, 1):
+                    iz = i1[:, 2] if cz else i0[:, 2]; wz = w[:, 2] if cz else 1 - w[:, 2]
+                    idx = (ix * M + iy) * M + iz; ww = wx * wy * wz
+                    for c, g in enumerate(flats):
+                        out[:, c] += ww * g[idx]
+        return out
+
+def eig3(t):
+    """closed-form eigenvalues of symmetric 3x3 fields (t = [xx, yy, zz, xy, xz, yz]); returns l1 >= l2 >= l3."""
+    a11, a22, a33, a12, a13, a23 = [x.astype(np.float64) for x in t]
+    p1 = a12 ** 2 + a13 ** 2 + a23 ** 2; q = (a11 + a22 + a33) / 3
+    p2 = (a11 - q) ** 2 + (a22 - q) ** 2 + (a33 - q) ** 2 + 2 * p1; p = np.sqrt(p2 / 6); ps = np.where(p > 0, p, 1.0)
+    b11, b22, b33 = (a11 - q) / ps, (a22 - q) / ps, (a33 - q) / ps; b12, b13, b23 = a12 / ps, a13 / ps, a23 / ps
+    r = 0.5 * (b11 * (b22 * b33 - b23 ** 2) - b12 * (b12 * b33 - b23 * b13) + b13 * (b12 * b23 - b22 * b13))
+    ph = np.arccos(np.clip(r, -1, 1)) / 3
+    l1 = q + 2 * p * np.cos(ph); l3 = q + 2 * p * np.cos(ph + 2 * np.pi / 3); l2 = 3 * q - l1 - l3
+    return l1.astype(np.float32), l2.astype(np.float32), l3.astype(np.float32)
+
+def measure_pk(mesh, delta, npart):
+    M = mesh.M; dk = mesh.fwd(delta)
+    W = 1.0
+    for kv in mesh.kvec:
+        W = W * np.sinc(kv * mesh.dx / (2 * np.pi)) ** 2
+    pk3 = (np.abs(dk) ** 2) * L ** 3 / M ** 6 / W ** 2      # no shot-noise subtraction: lattice ICs are sub-Poisson; cancels in ratios
+    kk = np.sqrt(mesh.kx ** 2 + mesh.ky ** 2 + mesh.kz ** 2)
+    wt = np.full(dk.shape, 2.0, np.float32); wt[..., 0] = 1.0
+    if M % 2 == 0: wt[..., -1] = 1.0
+    wt[0, 0, 0] = 0.0
+    kf = 2 * np.pi / L; edges = np.arange(0.5, M // 2 + 1, 1.0) * kf
+    ib = np.digitize(kk.ravel(), edges); wv = wt.ravel()
+    nb = np.bincount(ib, weights=wv, minlength=len(edges) + 1)
+    sk = np.bincount(ib, weights=wv * kk.ravel(), minlength=len(edges) + 1)
+    sp = np.bincount(ib, weights=wv * pk3.ravel(), minlength=len(edges) + 1)
+    ok = nb[1:len(edges)] > 0
+    kb = (sk[1:len(edges)] / np.maximum(nb[1:len(edges)], 1))[ok]; pb = (sp[1:len(edges)] / np.maximum(nb[1:len(edges)], 1))[ok]
+    x = (kk * 8.0).astype(np.float64); x = np.where(x > 0, x, 1e-3)
+    s8 = math.sqrt(float(np.sum(wt * pk3 * (3 * (np.sin(x) - x * np.cos(x)) / x ** 3) ** 2)) / L ** 3)
+    return kb.tolist(), pb.tolist(), s8
+
+# ---------------------------------------------------------------- initial conditions (the ONLY LCDM input)
+def initial_conditions(npg, amp=1.0):
+    rng = np.random.default_rng(SEED)
+    wk = sfft.rfftn(rng.standard_normal((NSEED,) * 3), workers=NTH) / NSEED ** 1.5
+    ix = np.concatenate([np.arange(0, npg // 2), np.arange(NSEED - npg // 2, NSEED)])
+    wk = wk[ix][:, ix][:, :, :npg // 2 + 1].copy()
+    m = Mesh(npg)
+    kk = np.sqrt(m.kx ** 2 + m.ky ** 2 + m.kz ** 2).astype(np.float64)
+    dk = wk * np.sqrt(P_lin0(kk) / (L / npg) ** 3) * npg ** 1.5 * amp
+    dk[npg // 2, :, :] = 0; dk[:, npg // 2, :] = 0; dk[:, :, -1] = 0; dk[0, 0, 0] = 0
+    psi = [sfft.irfftn(1j * kv * dk * m.ik2, s=(npg,) * 3, workers=NTH) for kv in m.kvec]
+    psi = np.stack([p.ravel() for p in psi], 1)
+    q = (np.indices((npg,) * 3).reshape(3, -1).T + 0.5) * (L / npg)
+    Di = Dgrow(AI)
+    pos = (q + Di * psi) % L
+    mom = AI ** 2 * E(AI) * fgrow(AI) * Di * psi       # p = a^2 dx/dt = a^3 H dD/da Psi
+    return pos.astype(np.float64), mom.astype(np.float64)
+
+def step_grid():
+    seg = [(AI, 0.5, 123), (0.5, 2 / 3, 11), (2 / 3, 1.0, 16)]
+    a = [AI]
+    for lo, hi, n in seg:
+        a += list(np.exp(np.linspace(math.log(lo), math.log(hi), n + 1))[1:])
+    a[-1] = 1.0
+    return np.array(a)
+
+def fex_regions(fsw, s_ph, s_c, info=None):
+    """S reading: f_ex,R = max(0, 1 - sum_R s_ph / sum_R s_c) on periodic 6-connected components of f > 0."""
+    from scipy import ndimage
+    from scipy.sparse import coo_matrix
+    from scipy.sparse.csgraph import connected_components
+    m = fsw > 0; lab, n = ndimage.label(m)
+    out = np.zeros(fsw.shape, np.float32)
+    if n == 0:
+        if info is not None: info.update(S_nreg=0, S_fex_mass=0.0)
+        return out
+    pa, pb = [], []
+    for ax in range(3):
+        l0 = np.take(lab, 0, axis=ax).ravel(); l1 = np.take(lab, -1, axis=ax).ravel(); k = (l0 > 0) & (l1 > 0)
+        pa.append(l0[k]); pb.append(l1[k])
+    pa = np.concatenate(pa); pb = np.concatenate(pb)
+    g = coo_matrix((np.ones(len(pa), np.int8), (pa, pb)), shape=(n + 1, n + 1))
+    nc, root = connected_components(g, directed=False)
+    L2 = root[lab].ravel(); mm = m.ravel()
+    sph = np.bincount(L2[mm], weights=s_ph.ravel()[mm].astype(np.float64), minlength=nc)
+    scs = np.bincount(L2[mm], weights=s_c.ravel()[mm].astype(np.float64), minlength=nc)
+    fex = np.maximum(0.0, 1.0 - sph / np.maximum(scs, 1e-30))
+    out.ravel()[mm] = fex[L2[mm]]
+    if info is not None:
+        w = s_c.ravel()[mm]
+        info.update(S_nreg=int(len(np.unique(L2[mm]))), S_fex_mass=float(np.sum(w * out.ravel()[mm]) / np.sum(w)),
+                    S_fex0_mass=float(np.sum(w * (out.ravel()[mm] == 0)) / np.sum(w)))
+    return out
+
+# ---------------------------------------------------------------- forces
+def forces(mesh, delta, a, switch, branch, foot, dta, diag=False):
+    """returns (accel grids of -grad phi_tilde, phi_tilde = a phi), diag dict."""
+    dk = mesh.fwd(delta)
+    phik = (-1.5 * Om / a) * dk * mesh.ik2                      # lap phi_N = 1.5 Om delta / a
+    info = {}
+    need_t = switch in ("T1", "T1V", "T5", "S", "T5F", "ADD", "RES") or diag
+    if need_t:
+        tk = [(0, 0), (1, 1), (2, 2), (0, 1), (0, 2), (1, 2)]
+        t = [mesh.inv(mesh.kvec[i] * mesh.kvec[j] * dk * mesh.ik2) for i, j in tk]
+        l1, l2, l3 = eig3(t); del t
+        D = math.exp(np.interp(math.log(1 / a), np.log1p(dta["z"]), np.log(dta["D"])))
+        tau = (D - 1.0) / 3.0
+        fsw = np.clip(0.5 + (l2 - tau) / (2 * EPS), 0, 1).astype(np.float32)
+        if switch == "T1V":
+            fsw[l3 < 0] = 0.0
+        info.update(tau=tau, Delta_ta=D)
+        if diag:
+            rho = 1.0 + delta; on = fsw > 0.5
+            info.update(vol_f=float(fsw.mean()), mass_f=float((fsw * rho).mean()), vol_on=float(on.mean()),
+                        vol_on_knot=float((on & (l3 >= 0)).mean()), vol_on_fil=float((on & (l3 < 0)).mean()),
+                        mass_on_knot=float((rho * (on & (l3 >= 0))).mean()), mass_on_fil=float((rho * (on & (l3 < 0))).mean()))
+            info["_grids"] = (fsw, l3)
+    extra_acc = None
+    if switch != "S0":
+        gN = [-mesh.inv(1j * kv * phik) for kv in mesh.kvec]
+        if True:                                                # CFG374: phase-weighted pressure filter
+            fc, fh, fha, fs, Th = MIXES[MIX]; kk = mesh.kx ** 2 + mesh.ky ** 2 + mesh.kz ** 2      # CFG376: + hot halo gas at T_halo
+            kJ = lambda T: math.sqrt(1.5 * Om * a) * 100.0 / (math.sqrt(5 * 1.380649e-23 * T / (3 * 0.6 * 1.67262192e-27)) / 1e3)
+            Whalo = fha / (1.0 + kk / kJ(Th) ** 2) if Th > 0 else fha
+            Wk = (fc / (1.0 + kk / kJ(1e4) ** 2) + fh / (1.0 + kk / kJ(1e6) ** 2) + Whalo + fs).astype(np.float32); del kk, Whalo
+            gb = [FB * (-mesh.inv(1j * kv * phik * Wk)) for kv in mesh.kvec]; del Wk
+        else:
+            gb = [FB * g for g in gN]
+        y = np.sqrt(gb[0] ** 2 + gb[1] ** 2 + gb[2] ** 2) / (a * a0_code(a, branch, foot))
+        nu = nu_mono(y).astype(np.float32); w = nu - 1.0
+        if diag:
+            info["y_median"] = float(np.median(y)); info["nu_median"] = float(np.median(nu))
+        del y
+        if switch == "T5F":
+            fac = (fsw * FB * np.maximum(nu - 1.0 / FB, 0.0)).astype(np.float32)
+            extra_acc = [a * fac * g for g in gN]
+        del gN
+        divk = sum(1j * kv * mesh.fwd(w * g) for kv, g in zip(mesh.kvec, gb)); del gb, w, nu
+        s_ph = -mesh.inv(divk); del divk                        # phantom source, units of 1.5 Om delta / a
+        s_c = (1.5 * Om * (1.0 - FB) / a) * (1.0 + delta)        # cosmic cold share in the same units
+        if switch in ("S1", "ADD"):
+            extra = s_ph if switch == "S1" else fsw * s_ph
+        elif switch in ("T5", "S1T5"):
+            sc_in = 0.0 if MUTATE else s_c
+            extra = np.maximum(s_ph - sc_in, 0.0)
+            if switch == "T5":
+                extra = fsw * extra
+        elif switch == "S":
+            extra = fsw * (s_ph - (1.0 - fex_regions(fsw, s_ph, s_c, info if diag else None)) * s_c)
+        elif switch == "T5F":
+            extra = None
+        elif switch == "RES":
+            e = fsw * np.maximum(s_ph - s_c, 0.0)
+            ek = mesh.fwd(e.astype(np.float32))
+            k2 = mesh.kx ** 2 + mesh.ky ** 2 + mesh.kz ** 2
+            Wk = np.exp(-0.5 * k2 * RC ** 2).astype(np.float32)
+            xk = ek * (1.0 - Wk)                                 # the reservoir-compensated extra (k = 0 exactly zero)
+            if diag:
+                band = (k2 > 0) & (k2 < (0.1 / RC) ** 2)
+                chk = ek if MUTATE else xk                       # MUTATE disables the compensation in the C1 check only
+                num = float(np.abs(chk[band]).mean()) if band.any() else 0.0
+                den = float(np.abs(ek[band]).mean()) if band.any() else 1.0
+                info["C1_band_ratio"] = num / max(den, 1e-30); info["C1_k0"] = float(abs(chk[0, 0, 0]))
+                info["C1_k0_e"] = float(abs(ek[0, 0, 0]))
+                comp = mesh.inv(ek * Wk)
+                info["overdraw_mass"] = float(((1.0 + delta) * (s_c - comp < 0)).mean())
+                info["e_mean"] = float(e.mean())
+                del comp
+            phik = phik - xk * mesh.ik2
+            extra = None; del e, ek, xk, Wk, k2
+        else:                                                   # T1 / T1V as CFG359
+            extra = fsw * s_ph
+        if diag and switch not in ("S0",):
+            rho = 1.0 + delta; on = (fsw > 0.5) if need_t else np.ones(delta.shape, bool)
+            pd = on & (s_ph > s_c); info["mass_on_phantom_dom"] = float((rho * pd).mean())
+            info["mass_on"] = float((rho * on).mean())
+        if extra is not None:
+            phik = phik - mesh.fwd(extra.astype(np.float32)) * mesh.ik2   # lap phi_extra = extra (k = 0 dropped by ik2)
+        del s_ph, s_c
+    acc = [-a * mesh.inv(1j * kv * phik) for kv in mesh.kvec]   # -grad (a phi)
+    if extra_acc is not None:
+        acc = [x + e for x, e in zip(acc, extra_acc)]
+    return acc, info
+
+# ---------------------------------------------------------------- run
+def run(switch, branch, foot, npg, amp=1.0):
+    try:
+        os.nice(10)
+    except OSError:
+        pass
+    os.makedirs(WORK, exist_ok=True)
+    tag = f"{switch}_Rc{RC:g}_{MIX}_{branch}_{foot}_N{npg}" + ("_MUTATE" if MUTATE else "")
+    mesh = Mesh(npg); pmesh = mesh; dta = dta_table(); t0 = time.time()
+    pos, mom = initial_conditions(npg, amp)
+    aa = step_grid(); snaps = {0.5: "z1", 2 / 3: "z0.5", 1.0: "z0"}
+    res = {"tag": tag, "switch": switch, "branch": branch, "foot": foot, "np": npg, "mesh": npg, "amp": amp,
+           "mutate": MUTATE, "L": L, "z_i": ZI, "nsteps": len(aa) - 1, "snap": {}}
+    def snapshot(name, a):
+        kb, pb, s8 = measure_pk(pmesh, pmesh.deposit(pos), npg ** 3)   # P(k) on the particle-lattice mesh (no lattice aliasing)
+        delta = mesh.deposit(pos)
+        _, info = forces(mesh, delta, a, switch if switch != "S0" else "S0", branch, foot, dta, diag=True)
+        grids = info.pop("_grids")
+        res["snap"][name] = dict(a=a, D=Dgrow(a), k=kb, P=pb, sigma8=s8, **info, t=time.time() - t0)
+        if name == "z0":
+            np.savez_compressed(os.path.join(WORK, f"cfg376_{tag}_z0.npz"), pos=pos.astype(np.float32),
+                                f=grids[0].astype(np.float16), l3=grids[1].astype(np.float16))
+        print(f"  [{tag}] {name} a={a:.4f} sigma8={s8:.4f} t={time.time() - t0:.0f}s", flush=True)
+    snapshot("zi", AI)
+    delta = mesh.deposit(pos); acc, _ = forces(mesh, delta, AI, switch, branch, foot, dta)
+    accp = mesh.interp(acc, pos); del acc
+    for n in range(len(aa) - 1):
+        a0, a1 = aa[n], aa[n + 1]; am = math.sqrt(a0 * a1)
+        mom += quad(lambda x: 1 / (x * x * E(x)), a0, am)[0] * accp
+        pos = (pos + quad(lambda x: 1 / (x ** 3 * E(x)), a0, a1)[0] * mom) % L
+        delta = mesh.deposit(pos); acc, _ = forces(mesh, delta, a1, switch, branch, foot, dta)
+        accp = mesh.interp(acc, pos); del acc
+        mom += quad(lambda x: 1 / (x * x * E(x)), am, a1)[0] * accp
+        for asn, nm in snaps.items():
+            if abs(a1 - asn) < 1e-9:
+                snapshot(nm, a1)
+    res["runtime_s"] = time.time() - t0
+    res["Rc"] = RC; res["MIX"] = MIX
+    json.dump(res, open(os.path.join(WORK, f"cfg376_{tag}.json"), "w"))
+    return res
+
+if __name__ == "__main__":
+    sw, br, ft, npg = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4])
+    RC = float(sys.argv[5]) if len(sys.argv) > 5 else 1.0
+    MIX = sys.argv[6] if len(sys.argv) > 6 else "HALOA"
+    run(sw, br, ft, npg, 1.0)
