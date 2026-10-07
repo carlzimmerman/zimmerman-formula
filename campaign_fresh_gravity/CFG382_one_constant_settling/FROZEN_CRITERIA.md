@@ -38,3 +38,7 @@ V = 200 km/s (isothermal; bracket 180-230 km/s reported). Solve for lambda.
 - MUTATE: lambda x 3. The predictions must move: P1/P2 e changes by > 0.2. rc 1.
 
 Local compute only. No downloads.
+
+## Amendment 1 (committed BEFORE any script; orchestrator input from CFG379 b964576dc)
+- **Aperture fix for P2.** The ledger's 0.576 is CFG4's value at 1 Mpc, not at R500. The like-for-like X-COP "beyond-law" level at R500 is **0.430** (CFG379). P2 is SCORED against 0.430 +- 0.15 at R500. The frozen-text comparison (0.576 +- 0.15) is also reported, not scored.
+- Context, reported only: CFG379 found clusters hold r_tot of about 0.96 of their cosmic share at R500, about half beyond the phantom target. A pure settling rate may also need an unsettled reservoir inside R500. Reported, not a gate here.
