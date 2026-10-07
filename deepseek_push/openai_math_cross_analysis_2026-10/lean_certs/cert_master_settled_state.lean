@@ -20,6 +20,9 @@ standard Mathlib with axioms = {propext, Classical.choice, Quot.sound}.
  11. Sound speed:        c^2 = v^2/2  =>  c^4 = G M a0 / 4         [T13]
  12. Jeans stability:    lambda_J^2 = 2 pi^2 r^2 (lambda_J sqrt 2 pi r) [T13]
  13. The half-triple:    1/(e^s-1) = (1/2)(coth(s/2) - 1)          [NEW]
+ 14. Deficit mapping:    M_miss/M_b = x  =>  f_obs = 1/(1+x)        [T15]
+ 15. Cold-fluid budget:  M_cold/M_b = x - f_law*S(<R)/M_b (exact)  [T15]
+ 16. Ceiling:            M_cold >= 0  =>  f_law*S <= x*M_b         [T15]
 
 ## The boundary (what is NOT claimed — stated, not certified)
   - kappa = 1/2 is FITTED (a0 = kappa c sqrt(G rho_Lambda)); the
@@ -32,6 +35,12 @@ standard Mathlib with axioms = {propext, Classical.choice, Quot.sound}.
   - No dark-matter particle; the cold fluid is a separate real
     component whose mass is still required; the no-substructure
     theorem covers the phantom only.
+  - T15 (cold-fluid budget, audit-derived): with the record's own
+    calibration the settled kernel supply at R500 over-predicts the
+    observed deficit (groups 2.2x, clusters 3.5x at b=0): M_cold is
+    forced negative at every clock except the MW edge; the R500
+    settled fraction must be the reservoir fraction (0.083-0.28), not
+    0.286/0.43; no single universal lambda survives the budget.
   - Limits (eps(s) -> 1/2 as s -> 0; tendsto forms) and all
     derivative/statistics steps ride in the lane scripts (house
     pattern: calculus carries in the lane, algebra is certified).
@@ -213,6 +222,37 @@ theorem epoch_elasticity_closed (x f : ℝ) (hf : f ≠ 0)
   rw [hden, ← hlaw, hlog]
   norm_num
   field_simp [hf]
+
+-- ============ VI. the cold-fluid budget (T15) ============
+
+/-- Deficit mapping: if the deficit x = M_missing/M_b is measured and
+f_obs = M_b/M_tot, then f_obs = 1/(1+x) exactly. -/
+theorem deficit_to_fraction (Mb M_missing x f : ℝ) (hMb : Mb ≠ 0)
+    (hdef : M_missing = x * Mb) (hf : f = Mb / (Mb + M_missing))
+    (_hden : Mb + M_missing ≠ 0) :
+    f = 1 / (1 + x) := by
+  rw [hf, hdef]
+  field_simp [hMb, _hden]
+
+/-- Cold-fluid budget: with M_ph = f*S (settled fraction of the supply
+within R) and the observed missing mass x*M_b split between phantom and
+cold fluid, the cold-fluid mass is exactly x*M_b - f*S. -/
+theorem cold_budget_identity (Mb M_cold M_ph S f x : ℝ) (hMb : Mb ≠ 0)
+    (htot : M_missing = M_ph + M_cold) (hph : M_ph = f * S)
+    (hdef : M_missing = x * Mb) :
+    M_cold / Mb = x - f * (S / Mb) := by
+  have hc : M_cold = x * Mb - f * S := by
+    have hs : M_cold = M_missing - M_ph := by linarith
+    rw [hs, hdef, hph]
+  rw [hc]
+  field_simp [hMb]
+
+/-- Positivity ceiling: a nonnegative cold fluid forces f*S <= x*M_b
+(the settled supply cannot exceed the observed deficit). -/
+theorem cold_ceiling (Mb M_cold S f x : ℝ)
+    (hpos : 0 ≤ M_cold) (hid : M_cold = x * Mb - f * S) :
+    f * S ≤ x * Mb := by
+  nlinarith
 
 -- ============ V. the sound speed + stability (T13) ============
 

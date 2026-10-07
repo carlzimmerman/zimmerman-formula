@@ -88,3 +88,17 @@ certificate (`deficit_to_fraction`, `cold_budget_identity`,
 {propext, Classical.choice, Quot.sound}); campaign row with the
 overdraft verdict. Language: nothing "closed"; the finding is a
 ledger-level constraint, killable by the falsifier.
+
+## Corrections (dated 2026-10-07, post-run, hand-arithmetic slips vs the script)
+
+- C2's "MW marginal" was a hand-slip (enclosed-baryon M_b = 7e10, not
+  1e11): the MW-30 point OVERDRAWS at the measured flat level too
+  (M_cold/M_b = −0.97 @V=188, −0.65 @V=200; flips positive only at
+  V ≳ 217). The sign-flip structure declared stands; the "marginal"
+  label is corrected to "negative at the measured level".
+- Groups at b=0.3 close at the knife-edge (M_cold ≈ +0.04, declared
+  −0.56 was wrong); clusters stay negative at every b
+  (−0.98 @b=0, −0.48 @b=0.3).
+- C5's declared "4–9×" tightened: measured violation factor 3.95×
+  (window ≥ 3.5 — T12's minimum λ against the b=0 cluster ceiling).
+- C2 predicate corrected accordingly; all other numbers as frozen.

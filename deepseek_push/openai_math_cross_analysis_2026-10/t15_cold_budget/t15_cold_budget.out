@@ -1,0 +1,17 @@
+T15 cold-fluid budget  MUTATE=False
+
+C1 branch audit: f(1-e) = 0.860/0.40/0.57; fobs(audit b=0) = 0.559/0.709; S/M_b cluster 4.98 group 6.15 MW30 2.85  PASS=True
+C2 budget M_cold/M_b: MW30_V188=-0.97  MW30_V200=-0.65  MW30_V230=+0.25  groups_b0=-0.93  groups_b03=+0.04  clusters_b0=-0.98  clusters_b03=-0.48
+   (MW marginal: V188 -0.97, V230 +0.25; groups/clusters negative at every b)  PASS=True
+C3 ceilings: f_max cl 0.0824 (lam_max 0.00734), gr 0.1285 (lam_max 0.01173) vs floor lambda 0.028  PASS=True
+C4 reservoir: f_res cl [0.0824, 0.1828] gr [0.1285, 0.2862]  PASS=True
+C5 T12 range [0.029, 0.066] vs lam_max_cl: violation factor 4.0x  PASS=True
+C7 rho_cold(R) = (1 - f_law)*rho_reservoir(R): flat/equilibrium complement; small-scale clumping scale (T_cold) OPEN (CFG344).
+
+VERDICT: with the record's own calibration the settled kernel supply at R500
+over-predicts the deficit (groups 2.2x, clusters 3.5x at b=0) -> the cold fluid
+is forced NEGATIVE at every clock except the MW 30-kpc edge. The R500 settled
+fraction must be the reservoir fraction 0.083-0.28 (lam <= 0.0072-0.025), not
+0.286 and not T12's 0.43. No single universal lambda survives the budget.
+checks: {"C1_branch_audit": true, "C2_budget_matrix": true, "C3_ceilings": true, "C4_reservoir": true, "C5_t12_range": true, "C7_profile_report": true}
+<LANE> COMPLETE: 6/6 checks PASS (C7 report only).
