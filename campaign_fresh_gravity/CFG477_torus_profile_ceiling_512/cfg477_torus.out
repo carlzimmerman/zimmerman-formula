@@ -1,0 +1,36 @@
+========================================================================
+CFG477: T^3 isoperimetric ceiling on the confined-switch covers
+========================================================================
+
+[T1] Phase classification (ball phase: V <= 4pi/81 = 0.1551)
+   r= 6.60 Mpc/h   V/L^3 = 1.080e-05   phase = BALL   I_unit = 0.000038 (perimeter in box units)
+   r= 3.30 Mpc/h   V/L^3 = 1.350e-06   phase = BALL   I_unit = 0.000005 (perimeter in box units)
+   r= 2.64 Mpc/h   V/L^3 = 6.914e-07   phase = BALL   I_unit = 0.000002 (perimeter in box units)
+   r= 1.98 Mpc/h   V/L^3 = 2.917e-07   phase = BALL   I_unit = 0.000001 (perimeter in box units)
+   r= 7.97 Mpc/h   V/L^3 = 1.902e-05   phase = BALL   I_unit = 0.000067 (perimeter in box units)
+
+   BALL phase holds until r = L/3 = 160.4 Mpc/h (volume fraction 4pi/81 = 0.1551)
+   All covers (r <= 7.97 Mpc/h << 160) are isoperimetric balls: PASS
+
+[T2] C2 cover bias: analytic surface 4pi*6.60^2 = 547, measured 4pi*7.97^2 = 798
+     surface waste of the FFT cover = +45.8%  (radius excess +20.8%)
+     N_eff covers to carry F_COV=0.805 of box mass:  measured r: 42318,  analytic r: 74519  (ball-optimal, disjoint)
+     UL: single-region cap 0.1551 << 0.805 -> 0.805 REQUIRES many regions (resolved hosts): consistent, mass concentrated: CHECK
+
+     Kepler disjointness cap: total cover volume <= pi/(3 sqrt 2) = 0.7405 of box -> N <= 38926 at r=7.97
+
+[T3] Siegel-Yao: k peak-covers of radius x*r_ta inside one host turnaround R
+     k_max = floor((R/(x*r_ta))^3) with 2*x*r_ta < R required
+     x=0.23:  R=1.0r_ta: 82*  R=1.5r_ta:277*  R=2.0r_ta:657*  R=3.0r_ta:2219*
+     x=0.30:  R=1.0r_ta: 37*  R=1.5r_ta:125*  R=2.0r_ta:296*  R=3.0r_ta:1000*
+     x=0.40:  R=1.0r_ta: 15*  R=1.5r_ta: 52*  R=2.0r_ta:124*  R=3.0r_ta:421*
+     x=0.50:  R=1.0r_ta:  0  R=1.5r_ta: 26*  R=2.0r_ta: 64*  R=3.0r_ta:215*
+     x=1.00:  R=1.0r_ta:  0  R=1.5r_ta:  0  R=2.0r_ta:  0  R=3.0r_ta: 26*
+     * = pairwise condition 2xr_ta < R satisfied
+
+     FALSIFIER: any host turnaround sphere containing > k_max resolved peaks
+     at cover radius x*r_ta violates disjoint embeddability -> the confined-
+     switch picture needs merged covers (read the x-window differently).
+========================================================================
+RESULT: T1 PASS (all covers ball-phase), T2 quantified (+45.9% surface waste,
+classed grid artifact), T3 k_max(x) table ready for the peak catalog.
