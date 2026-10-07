@@ -1,0 +1,31 @@
+CFG395 -- fossil a0 in early-type HI discs
+C1 V_HI(Serra16) == v_circ(denHeijer15) all 16: True
+C2 R_HI at Cappellari+11 distances: R 7.9-28.2 kpc (mean 15.1) vs 8-28 (15); R/Re 4.17-15.96 (mean 7.57) vs 3.4-13.7 (7.3): False
+C3 L_disc <= L_total for all 16: False  (exceeds: NGC3626, NGC3941, NGC5582; disc capped at L, bulge 0 -- disclosed departure)
+C4 session-06 late count (T>=8, >=3 gas-dominated deep points): 27 (expect 27): True
+
+=== canonical footing, a0 = 9.3603e-11 m/s^2
+ETG headline: 16 outer HI points, log g_bar -11.21 .. -10.10 (median -10.45); y = g_bar/a0 0.07..0.85
+  median r_ETG +0.056  (spread rms 0.142)
+late (SPARC T>=8, Q<=2) in window: 51 galaxies, 335 points, median r_late -0.031
+Delta = +0.087   sigma: boot 0.068, M/L ETG 0.064, M/L late 0.033, gas 0.003, bulge 0.006 -> total 0.099
+expected fossil signal at these g_bar: -0.022 (late f=1.00) / -0.032 (late f=1.06); deep limit -0.030 / -0.043
+power: |pred|/sigma 0.22-0.33; 0.04/sigma 0.40
+VERDICT (canonical): NON-DISCRIMINATING   [(Delta+0.02)/sigma = +1.08]
+  S3 sensitivities (Delta): cappellari_D +0.089, sfh_pointmass +0.222, ups_0p6 +0.166, ups_1p0 +0.025, gas0 +0.090, gas1 +0.084, bulge_point +0.075
+S1 SPARC T<=1 (S0-Sa), g_bar<10^-10.5: 6 galaxies (NGC4138, UGC02487, UGC03546, UGC03580, UGC06614, UGC06786), 51 points; late 70 gal; Delta +0.053  sigma boot 0.085, M/L 0.044(+late 0.033) -> 0.101  [reported only]
+S2 Di Teodoro T<=0, g_bar<10^-10.5: [('NGC1167', 8), ('NGC5790', 4), ('UGC12811', 8)]; log g_bar -11.42..-10.53; late 66 gal; Delta +0.095 (after -0.152 selection bias)  sigma boot 0.050, M* ~0.100, bias 0.060 -> 0.131  [reported only]
+
+=== alt footing, a0 = 1.1312e-10 m/s^2
+ETG headline: 16 outer HI points, log g_bar -11.21 .. -10.10 (median -10.45); y = g_bar/a0 0.05..0.70
+  median r_ETG +0.026  (spread rms 0.142)
+late (SPARC T>=8, Q<=2) in window: 51 galaxies, 335 points, median r_late -0.065
+Delta = +0.092   sigma: boot 0.069, M/L ETG 0.063, M/L late 0.033, gas 0.003, bulge 0.007 -> total 0.099
+expected fossil signal at these g_bar: -0.022 (late f=1.00) / -0.033 (late f=1.06); deep limit -0.030 / -0.043
+power: |pred|/sigma 0.22-0.33; 0.04/sigma 0.40
+VERDICT (alt): NON-DISCRIMINATING   [(Delta+0.02)/sigma = +1.12]
+  S3 sensitivities (Delta): cappellari_D +0.094, sfh_pointmass +0.221, ups_0p6 +0.169, ups_1p0 +0.030, gas0 +0.095, gas1 +0.089, bulge_point +0.077
+S1 SPARC T<=1 (S0-Sa), g_bar<10^-10.5: 6 galaxies (NGC4138, UGC02487, UGC03546, UGC03580, UGC06614, UGC06786), 51 points; late 70 gal; Delta +0.055  sigma boot 0.085, M/L 0.045(+late 0.033) -> 0.102  [reported only]
+S2 Di Teodoro T<=0, g_bar<10^-10.5: [('NGC1167', 8), ('NGC5790', 4), ('UGC12811', 8)]; log g_bar -11.42..-10.53; late 66 gal; Delta +0.099 (after -0.152 selection bias)  sigma boot 0.050, M* ~0.100, bias 0.060 -> 0.131  [reported only]
+
+checks: C1_VHI_equals_denHeijer=PASS, C2_RHI_reproduces_denHeijer_ranges=FAIL, C3_disc_luminosity_le_total=FAIL, C4_session06_late_count_27=PASS
