@@ -1,0 +1,64 @@
+{
+ "lane": "CFG390",
+ "part": "A",
+ "mutate": false,
+ "results": {
+  "A1": true,
+  "A1b_proposed_C_antirelaxes": true,
+  "A2a": true,
+  "A2": true,
+  "sink_required": true,
+  "A3": true,
+  "A4": true,
+  "A4b_relaxation_time_C_violates_H": true,
+  "A4c_extra": "kappa_s - kappa_s*rs(x, t)/rph(x, t)",
+  "A5": false
+ },
+ "checks": [
+  {
+   "name": "A1 total cold mass d_t(rho_s + rho_n) is a pure flux",
+   "pass": true,
+   "value": "max|EL| = 0.0e+00"
+  },
+  {
+   "name": "A1b proposed C = (rho_n - rho_n_eq)/tau with d_t rho_n = +C ANTI-relaxes (d C/d rho_n > 0): declared R1 fixes the sign",
+   "pass": true,
+   "value": "dC/drho_n = 1/tau"
+  },
+  {
+   "name": "A2a exchange terms equal and opposite (d(d_t P)/dC = 0)",
+   "pass": true,
+   "value": "0"
+  },
+  {
+   "name": "A2 momentum conserved up to the declared sink (R6): flux after removing kappa_s rho_s grad ln rho_ph",
+   "pass": true,
+   "value": "3.7e-16"
+  },
+  {
+   "name": "A3 Galilean invariance (all four evolution equations; target co-moving with baryons)",
+   "pass": true,
+   "value": "max residual 2.2e-16"
+  },
+  {
+   "name": "A4 H-theorem identity: d_t e + div J = -(4/3) eta v_x^2 - L (mu_s - mu_n)^2 + C (1/2 - theta)(v_s - v_n)^2 (Onsager C, static target)",
+   "pass": true,
+   "value": "max|EL| = 2.1e-15"
+  },
+  {
+   "name": "A4neg sensitivity: dropping the viscous term from the identity must break it",
+   "pass": true,
+   "value": "max|EL| = 1.44e+00"
+  },
+  {
+   "name": "A5a at rho_s = rho_ph, v = 0 the condensate acceleration is exactly -grad(Phi + h + Q)",
+   "pass": true,
+   "value": "H_q*Derivative(Rph(X), (X, 3))/(4*Rph(X)) - H_q*Derivative(Rph(X), X)*Derivative(Rph(X), ("
+  },
+  {
+   "name": "A5 rest state rho_s = rho_ph, v = 0 stationary in a gravitating host",
+   "pass": false,
+   "value": "NO: stationary only if Phi + h + Q is uniform; true rest state kappa_s ln(rho_s/rho_ph) + h + Q = mu - Phi"
+  }
+ ]
+}

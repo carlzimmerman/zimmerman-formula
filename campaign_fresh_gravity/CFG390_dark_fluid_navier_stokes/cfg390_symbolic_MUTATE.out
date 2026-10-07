@@ -1,0 +1,19 @@
+CFG390 part A: symbolic consistency  (MUTATE: kappa_s = 0)
+==============================================================================
+  [PASS] A1 total cold mass d_t(rho_s + rho_n) is a pure flux: max|EL| = 0.0e+00
+  [PASS] A1b proposed C = (rho_n - rho_n_eq)/tau with d_t rho_n = +C ANTI-relaxes (d C/d rho_n > 0): declared R1 fixes the sign: dC/drho_n = 1/tau
+  A2: total momentum incl. baryon reaction: pure flux? True (max|EL| 5.27e-16); after removing the settling target force kappa_s rho_s grad ln rho_ph: True (max|EL| 2.5e-16)
+  [PASS] A2a exchange terms equal and opposite (d(d_t P)/dC = 0): 0
+  [PASS] A2 momentum conserved up to the declared sink (R6): flux after removing kappa_s rho_s grad ln rho_ph: 2.5e-16
+  A2 sink required (settling term not a flux): False
+  [PASS] T-MUT A2 sink_required flips to FALSE with kappa_s = 0: False
+  [PASS] A3 Galilean invariance (all four evolution equations; target co-moving with baryons): max residual 2.2e-16
+  [PASS] A4 H-theorem identity: d_t e + div J = -(4/3) eta v_x^2 - L (mu_s - mu_n)^2 + C (1/2 - theta)(v_s - v_n)^2 (Onsager C, static target): max|EL| = 1.4e-15
+      each term <= 0 for eta >= 0, L >= 0 and the donor rule (theta = 1 if C > 0, 0 if C < 0); gravity's Phi_t part is a pure flux
+  [PASS] A4neg sensitivity: dropping the viscous term from the identity must break it: max|EL| = 1.44e+00
+  A4b relaxation-time C (sign-corrected, Bose rho_n_eq) at rho_s = 0.1 rho_ph, rho_n = 0.9 rho_crit, kappa_s = sigma_n^2: dF/dt contribution = -0.011 (rho_crit sigma^2/tau units) -> F decreases
+  A4c with a moving target, d_t F gains  0 * d_t rho_ph  (energy exchanged with the sink; sign-indefinite)
+  [PASS] A5a at rho_s = rho_ph, v = 0 the condensate acceleration is exactly -grad(Phi + h + Q): H_q*Derivative(Rph(X), (X, 3))/(4*Rph(X)) - H_q*Derivative(Rph(X), X)*Derivative(Rph(X), (
+  [FAIL] A5 rest state rho_s = rho_ph, v = 0 stationary in a gravitating host: NO: stationary only if Phi + h + Q is uniform; true rest state kappa_s ln(rho_s/rho_ph) + h + Q = mu - Phi
+
+Part A: 9/10 checks pass  (MUTATE)
