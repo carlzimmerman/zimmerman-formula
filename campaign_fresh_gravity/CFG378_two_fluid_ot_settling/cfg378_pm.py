@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """CFG378 engine: two species (baryons f_b, cold fluid 1 - f_b) from the same ICs, NEWTONIAN gravity from both, and the cold
-particles settled toward the law's target in T1-ON cells by a DECLARED linearised Monge-Ampere (JKO) step (FROZEN_CRITERIA.md 18bfc1a98).
+particles settled toward the law's target in T1-ON cells by a DECLARED linearised Monge-Ampere (JKO) step (FROZEN_CRITERIA.md 18bfc1a98; Amendment 1 a354de4a7/7192de6c9: corrected k_J).
 The settling scheme is declared, not derived (candidate mechanism: CFG373's khronon lapse channel, CONDITIONAL).
 Pieces copied (not imported) from CFG374's engine cfg374_pm.py: constants, nu_mono, EH ICs, Delta_ta, Mesh/CIC, eig3, P(k), step grid,
 the T1 switch and the MIX-A phase-weighted pressure filter of the phantom's baryon source.
@@ -240,7 +240,8 @@ def target_field(mesh, d_b, a, foot):
     """rho_t / rho_bar_m = max(TMULT * s_ph / (1.5 Om / a), F); s_ph from the MIX-A-filtered BARYON species (CFG374 algebra)."""
     dkb = mesh.fwd(d_b); phik_b = (-1.5 * Om / a) * dkb * mesh.ik2; del dkb
     fc, fh, fs = MIXA; kk = mesh.kx ** 2 + mesh.ky ** 2 + mesh.kz ** 2
-    kJ = lambda T: math.sqrt(1.5 * Om * a) * 100.0 / (math.sqrt(5 * 1.380649e-23 * T / (3 * 0.6 * 1.67262192e-27)) / 1e3)
+    # Amendment 1 (audit 5819dd616): comoving k_J = sqrt(1.5 Om / a) * 100 / c_s, prop. a^-1/2 (CFG374's sqrt(1.5 Om a) was wrong)
+    kJ = lambda T: math.sqrt(1.5 * Om / a) * 100.0 / (math.sqrt(5 * 1.380649e-23 * T / (3 * 0.6 * 1.67262192e-27)) / 1e3)
     Wk = (fc / (1.0 + kk / kJ(1e4) ** 2) + fh / (1.0 + kk / kJ(1e6) ** 2) + fs).astype(np.float32); del kk
     gb = [FB * (-mesh.inv(1j * kv * phik_b * Wk)) for kv in mesh.kvec]; del Wk, phik_b
     y = np.sqrt(gb[0] ** 2 + gb[1] ** 2 + gb[2] ** 2) / (a * a0_code(a, "FLAT", foot))
@@ -336,7 +337,7 @@ def run(mode, foot, npg, g):
     else:
         pos_b = mom_b = None; pos_c, mom_c = pos, mom
     aa = step_grid(); snaps = {0.5: "z1", 2 / 3: "z0.5", 1.0: "z0"}
-    res = {"lane": "CFG378", "frozen": "18bfc1a98", "tag": tag, "mode": mode, "foot": foot, "np": npg, "g": g, "mutate": MUTATE,
+    res = {"lane": "CFG378", "frozen": "18bfc1a98+Amdt1", "kJ": "sqrt(1.5 Om / a) (corrected)", "tag": tag, "mode": mode, "foot": foot, "np": npg, "g": g, "mutate": MUTATE,
            "target_mult": TMULT, "L": L, "z_i": ZI, "nsteps": len(aa) - 1, "snap": {}, "settle_log": []}
     def snapshot(name, a):
         d = st.diag(a, pos_b, pos_c); res["snap"][name] = dict(a=a, D=Dgrow(a), t=time.time() - t0, **d)
