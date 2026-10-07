@@ -19,4 +19,4 @@ Criteria 4ee7c651d (committed before the script). Script `cfg447_efe_blind.py` (
 - Master size 1e6 (the pipeline uses 3e6; the machine is shared).
 - The velocity-scaling boost shortcut is the pipeline's own.
 
-**MUTATE (Newton injected): NOT YET RUN.** It was deferred because the owner asked for no CPU jobs overnight (relayed by the orchestrating session, 10-06). It will run as `python3 cfg447_efe_blind.py --mutate` and must recover 1.00 ± 0.03 (exit 1). Given K1's +0.04 noise bias, that MUTATE may fail its ±0.03 tolerance. That would say the DR3-noise/DR4-model mismatch matters, not that the exclusion is wrong.
+**MUTATE (Newton injected): run 10-07, DETECTED (exit 1).** Newton recovers γ̂ = 1.016–1.020 (spread ~0.046) on both kernels and footings, within the frozen ±0.03 of 1.00. (It was deferred overnight at the owner's no-CPU request.) An aside, reported only: DR3's measured 1.075 sits ~1σ above what pure Newton returns through this pipeline at DR3 noise, consistent with Newton, Arm B and Amendment 21's settling prediction.
