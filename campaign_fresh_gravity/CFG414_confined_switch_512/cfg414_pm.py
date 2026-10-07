@@ -54,7 +54,7 @@ MPC = 3.0856775814913673e22
 ACC_UNIT = 1e10 * h / MPC                       # H0^2 (Mpc/h) in m/s^2
 A0 = {"canonical": 9.3603e-11, "alt": 1.1312e-10}
 W0, WA = -0.838, -0.62                          # DESI DR2 CPL (chart_a0z_one.py), A0-DE only
-L = 200.0; ZI = 49.0; AI = 1.0 / (1 + ZI); SEED = 359; NSEED = int(os.environ.get('CFG414_NSEED', '256'))
+L = 200.0; ZI = 49.0; AI = 1.0 / (1 + ZI); SEED = int(os.environ.get('CFG414_SEED', '359')); NSEED = int(os.environ.get('CFG414_NSEED', '256'))
 EPS = 0.077
 E = lambda a: math.sqrt(Om / a ** 3 + OL)
 
@@ -404,7 +404,7 @@ def run(switch, branch, foot, npg, amp=1.0):
     except OSError:
         pass
     os.makedirs(WORK, exist_ok=True)
-    tag = f"{switch}_Rc{RC:g}_{MIX}_X{XIN:g}_{branch}_{foot}_N{npg}" + ("_MUTATE" if MUTATE else "")
+    tag = f"{switch}_Rc{RC:g}_{MIX}_X{XIN:g}_{branch}_{foot}_N{npg}" + (f"_seed{SEED}" if SEED != 359 else "") + ("_MUTATE" if MUTATE else "")
     mesh = Mesh(npg); pmesh = mesh; dta = dta_table(); t0 = time.time()
     pos, mom = initial_conditions(npg, amp)
     aa = step_grid(); snaps = {0.5: "z1", 2 / 3: "z0.5", 1.0: "z0"}

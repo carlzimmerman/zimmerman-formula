@@ -1,0 +1,19 @@
+T14 scatter face  MUTATE=False
+
+C1 transport identity (finite diff vs eps(f), 40 pts): PASS=True
+C2 cluster reading: sigma(ln t_c) = 0.4682 (declared 0.468); t_c in [4.2, 10.7] Gyr  PASS=True
+C3 group reading: sigma(ln t_g) = 0.4093 (declared 0.409)  PASS=True
+C4 universality: ratio 1.1439 (window [1.0, 1.3]); ranges [0.16, 0.78] vs [0.14, 0.68] overlap=True  PASS=True
+C5 falsifiable fork: sigma(0.60)/sigma(0.43) = 1.1439 (law 1.1462 vs null 1.0)  PASS=True
+C7 literature: [('https://arxiv.org/html/2603.19521v1', 295154), ('https://arxiv.org/abs/1409.4820', 43008)]
+
+READINGS: the completeness scatter IS formation-time scatter:
+sigma(ln t) = 0.468 (clusters) / 0.409 (groups), joint ~ 0.4-0.5.
+FALSIFIABLE SHAPE: sigma(f)/[f*eps(f)] = sigma(ln t) is sample-
+independent; a slope outside 0.4-0.5 by >2sigma kills the variance face.
+checks: {"C1_transport": true, "C2_cluster_reading": true, "C3_group_reading": true, "C4_universality": true, "C5_shape": true, "C7_literature": true}
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/openai_math_cross_analysis_2026-10/t14_scatter_face/t14_scatter_face.py", line 120, in <module>
+    t_range_Gyr=[t_lo_c, t_hi_c], shape=dict(c=shape_c, g=shape_g),
+                                               ^^^^^^^
+NameError: name 'shape_c' is not defined

@@ -44,13 +44,16 @@ are measured inputs; Q3 — functional/variance law.
   C3  group reading: |σ(ln t_g) − 0.409| < 0.005.
   C4  universality: σ(ln t_c)/σ(ln t_g) ∈ [1.0, 1.3] AND the propagated
       ranges overlap (σ(f) ∈ [0.05, 0.25] on both).
-  C5  shape: σ(f)/[f·ε(f)] identical at f = 0.43 and 0.60 by
-      construction; the CHECK is the sample-independence statement with
-      the MW floor EXCLUDED (its scatter is unpublished — registered
-      limitation).
+  C5  shape: the falsifiable fork — under the law, absolute scatter
+      GROWS with completeness: σ(f) = σ(ln t)·f·ε(f), so
+      σ(0.60)/σ(0.43) = [f·ε(f)]|₀.₆₀/[f·ε(f)]|₀.₄₃ = 1.1462, vs 1.0
+      for the constant-absolute-scatter null interpretation.
+      [CORRECTED 2026-10-07: the original wording tested a construction
+      tautology; the fork above is the operational statement.]
   C6  MUTATE (T14_MUTATE=1: linear-branch ε ≡ 1 replaces the exact
-      closed form): C1 must fail; C2–C5 must fail (0.349/0.25 values,
-      ratio 1.40 > 1.3).
+      closed form): C1–C5 must fail — verified (1.3953 fork ratio and
+      0.349/0.250 readings fail the declared windows; mode-independent
+      predicates).
   C7  literature grounding: halo-formation-time scatter from the
       cluster-formation catalog literature (2603.19521 percentile
       ranges and/or 1–2 more sources): report the measured σ(ln t_f)
