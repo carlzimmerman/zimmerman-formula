@@ -1,0 +1,121 @@
+CFG448 -- ARCHIVAL RESOLVED KINEMATICS OF THE NGC 5557 TIDAL DWARFS (E1/E2/E3): can CFG441's F1 fork be scored now?
+
+Frozen rules: FROZEN_CRITERIA.md (committed alone first, bc9b42594). kappa = 1/2 FITTED; both a0 footings; no dark-matter
+particle (the framework's cold-fluid mass is still required wherever the law needs it).
+
+  Archive census (from the committed query results in fetched/ + FETCH_LOG.md).
+  The one HI cube that exists (ATLAS3D WSRT, Serra+2012) is tested against U1-U5; its measured HI flux updates F1's gas
+  bracket (U5, reported).  Kinematic score only if U1-U5 all pass: Delta = chi2(law+EFE) - chi2(Newton) > +9 on both
+  footings -> SETTLING; < -9 -> LAW; else NON-DISCRIMINATING; none usable -> DATA NOT AVAILABLE + observation spec.
+  C1: reproduce CFG441 F1 within 0.1 km/s.  C2: nu_mono import + footings.
+  MUTATE=1: synthetic V_c := V_Newton (4 km/s error) must read SETTLING on both footings -> exit 1; V_c := V_law+EFE must
+  read LAW (reported, same control).
+
+  *** MUTATE=1: synthetic V_c := V_Newton -- the rule must return SETTLING (exit 1) ***
+
+==============================================================================================================
+C2  CONTROL: the committed nu_mono and the two footings
+==============================================================================================================
+  [PASS] C2: nu_mono from CFG4_common (deep limit within 2%); footings 9.3603e-11 / 1.1312e-10
+         deep-limit ratio 1.0050
+
+==============================================================================================================
+C1  CONTROL: reproduce CFG441's F1 forecast with this lane's code
+==============================================================================================================
+    M_HI = 1 M_*: V_N 16.41; law+EFE 28.02 / 29.13; iso 45.05 / 47.08 km/s (CFG441: (16.4, 28.0, 29.1, 45.0, 47.1))
+    M_HI = 3 M_*: V_N 24.15; law+EFE 39.56 / 41.08; iso 55.55 / 57.98 km/s (CFG441: (24.2, 39.6, 41.1, 55.6, 58.0))
+    E1 projected distance 68.91 kpc; M_host 1.0918e+11 Msun
+  [PASS] C1: CFG441 F1 reproduced within 0.1 km/s (all 10 numbers; CFG441 printed 1 decimal)
+         max |dev| = 0.048 km/s
+
+==============================================================================================================
+ARCHIVES  what exists for NGC 5557-E1/E2/E3 (query results committed in fetched/; log in FETCH_LOG.md)
+==============================================================================================================
+    NRAO (VLA/EVLA, TAP obscore, 0.3 deg): 67 rows; 4 cover the HI line at 1405.16 MHz, of which 0 have channels <= 50 kHz (spectral-line). Covering rows: AC308 VLA-D 30.0 s, 70 MHz band, line-capable=False; AC308 VLA-D 30.0 s, 70 MHz band, line-capable=False; AB628 VLA-B 170.0 s, 70 MHz band, line-capable=False; AB628 VLA-B 170.0 s, 70 MHz band, line-capable=False
+    ESO raw (MUSE/any, box 0.65x0.5 deg): 0 rows; ESO ObsCore products (0.25 deg): 0 rows
+    Keck KOA KCWI (0.25 deg): 0 rows
+    Apertif DR1 spectral cubes: nearest compound-beam centre 1.94 deg from E1 (beam FWHM ~0.5 deg) -> not covered; Apertif DR2: no cube in the 210-220 deg x 34-39 deg box
+    FASHI (FAST, ~2.9' beam = 33 kpc): E1 = J141854.57+362849.6 (18" off), cz 3277, W50 28.7+-2.3, W20 61.3 km/s, S 0.765+-0.079 Jy km/s (single dish: unresolved, U1 FAIL by construction)
+    FASHI (FAST, ~2.9' beam = 33 kpc): E2 = J141927.23+362948.7 (37" off), cz 3228, W50 23.0+-1.6, W20 44.8 km/s, S 0.445+-0.041 Jy km/s (single dish: unresolved, U1 FAIL by construction)
+    FASHI (FAST, ~2.9' beam = 33 kpc): E3 = J141957.15+363156.7 (12" off), cz 3189, W50 22.6+-1.0, W20 38.5 km/s, S 0.600+-0.036 Jy km/s (single dish: unresolved, U1 FAIL by construction)
+    Gemini archive: anonymous access refused (login required) -- not searched; Duc+2014's GMOS long-slit data are the known product (+-30 km/s). CADC (CFHT/SITELLE): TAP endpoints unreachable from this host -- not searched. Literature 2014-2026 (arXiv API, Semantic Scholar citations of Duc+2014 [77], web search): no new kinematics of the NGC 5557 dwarfs found.
+
+==============================================================================================================
+WSRT CUBE  ATLAS3D HI (Serra+2012): U1-U5 for E1, E2, E3
+==============================================================================================================
+    cube (448, 360, 360), pixel 10.0", beam 39.2" x 35.9" (PA 24) = 7.4 x 6.8 kpc, channel 8.25 km/s, header RMS 0.55 mJy/beam
+    measured rms (line-free channels, 80x80 px corner) = 0.477 mJy/beam
+
+    E1: mom0 component 4 (61 px); S(mom0) 0.403 Jy km/s, S(cube, mask, +-60 km/s) 0.405 (noise 0.029) -> M_HI 1.429e+08 Msun at 38.8 Mpc
+        mom1 gradient 0.209 km/s/arcsec toward PA 189 deg -> 16.8 km/s across the detected extent
+        extent along PA (mask edge) 81" = 2.07 beams (beam along PA 39.0"); intensity FWHM 36.6" observed, 0.0" = 0.0 kpc beam-deconvolved
+        detection (>= 3 sigma in >= 3 consecutive channels) at offsets along PA [beams]: +1x0.5:Y(4), +1x1.0:n(0), +1x1.5:n(0), +1x2.0:n(0), -1x0.5:Y(4), -1x1.0:n(0), -1x1.5:n(0), -1x2.0:n(0)
+        U1 >= 2 beams: PASS;  U2 channel <= 10 km/s: PASS (8.25);  U3 >= 2 independent detected positions per side: FAIL;  U4 inclination: FAIL (none);  U5 M_HI: PASS (measured)
+
+    E2: mom0 component 5 (33 px); S(mom0) 0.230 Jy km/s, S(cube, mask, +-60 km/s) 0.213 (noise 0.022) -> M_HI 8.170e+07 Msun at 38.8 Mpc
+        mom1 gradient 0.042 km/s/arcsec toward PA 69 deg -> 2.8 km/s across the detected extent
+        extent along PA (mask edge) 67" = 1.80 beams (beam along PA 37.4"); intensity FWHM 30.4" observed, 0.0" = 0.0 kpc beam-deconvolved
+        detection (>= 3 sigma in >= 3 consecutive channels) at offsets along PA [beams]: +1x0.5:Y(3), +1x1.0:n(0), +1x1.5:n(0), +1x2.0:n(0), -1x0.5:Y(3), -1x1.0:n(0), -1x1.5:n(0), -1x2.0:n(0)
+        U1 >= 2 beams: FAIL;  U2 channel <= 10 km/s: PASS (8.25);  U3 >= 2 independent detected positions per side: FAIL;  U4 inclination: FAIL (none);  U5 M_HI: PASS (measured)
+
+    E3: mom0 component 6 (38 px); S(mom0) 0.339 Jy km/s, S(cube, mask, +-60 km/s) 0.231 (noise 0.024) -> M_HI 1.203e+08 Msun at 38.8 Mpc
+        mom1 gradient 0.117 km/s/arcsec toward PA 64 deg -> 11.7 km/s across the detected extent
+        extent along PA (mask edge) 99" = 2.64 beams (beam along PA 37.7"); intensity FWHM 48.6" observed, 30.6" = 5.8 kpc beam-deconvolved
+        detection (>= 3 sigma in >= 3 consecutive channels) at offsets along PA [beams]: +1x0.5:Y(3), +1x1.0:n(1), +1x1.5:n(0), +1x2.0:n(0), -1x0.5:Y(3), -1x1.0:n(2), -1x1.5:n(1), -1x2.0:n(0)
+        U1 >= 2 beams: PASS;  U2 channel <= 10 km/s: PASS (8.25);  U3 >= 2 independent detected positions per side: FAIL;  U4 inclination: FAIL (none);  U5 M_HI: PASS (measured)
+  [PASS] (reported) flux cross-check: WSRT mom0 vs cube-in-mask flux for E1 within 25%
+         0.403 vs 0.405 Jy km/s
+  [PASS] (reported) WSRT vs FASHI flux for E1 (FAST beam also contains surrounding tail gas; FAST >= WSRT expected)
+         WSRT 0.403 vs FASHI 0.765 Jy km/s (ratio 1.90)
+
+==============================================================================================================
+F1-UPDATE (reported): E1's predictions with the MEASURED HI mass (U5) instead of the 1-3 x M_* bracket
+==============================================================================================================
+    WSRT: M_HI 1.429e+08 (1.19 x M_*), M_bar 3.201e+08 +- 7.28e+07: at R = 4.6 kpc V_N 17.3+-2.1; law+EFE 29.4+-3.3 / 30.6+-3.4; iso 46.3 / 48.4 km/s (canonical / alt)
+    FASHI (upper: FAST beam incl. tail gas): M_HI 2.714e+08 (2.26 x M_*), M_bar 5.000e+08 +- 7.96e+07: at R = 4.6 kpc V_N 21.6+-2.0; law+EFE 35.9+-2.9 / 37.3+-3.0; iso 52.3 / 54.6 km/s (canonical / alt)
+    smallest Newton to law+EFE gap 12.1 km/s -> 3-sigma split needs a total error <= 4.0 km/s (CFG441: 11.6 / 3.9)
+    NOTE: the prediction errors are dominated by M_* (Duc+2014: 1.2 +- 0.7 e8) -- a 3-sigma split also needs a better M_*.
+
+==============================================================================================================
+INDICATIVE ONLY (U1-U4 fail; never a verdict): what the unresolved data say about E1's velocity scale
+==============================================================================================================
+    WSRT mom1 half-amplitude across the detected extent: 8.4 km/s (beam-smeared, may be tail streaming per Duc+2014)
+    FASHI W50/2 = 14.4 km/s (integrated, incl. turbulence and any tail gas in a 33-kpc beam)
+    canonical: sin(i) needed for V_rot sin i = 8.4 to equal  V_N: 0.49   law+EFE: 0.29   iso law: 0.18  -- all < 1, so NO model is excluded without an inclination
+    alt: sin(i) needed for V_rot sin i = 8.4 to equal  V_N: 0.49   law+EFE: 0.28   iso law: 0.17  -- all < 1, so NO model is excluded without an inclination
+
+==============================================================================================================
+DECISION (frozen rule)
+==============================================================================================================
+    usable kinematic product for E1/E2/E3: NO -> verdict: DATA NOT AVAILABLE
+
+==============================================================================================================
+OBSERVATION SPECIFICATION (planning numbers; instrument values are approximate and must be checked with the official exposure calculators)
+==============================================================================================================
+    target radius R_out = 2 R_e = 4.6 kpc = 24.5"; beam needed <= 12.2" (R_out >= 2 beams); channel <= 5 km/s (23.4 kHz)
+    E1 mean N_HI if its WSRT flux fills R_out uniformly: 2.68e+20 cm^-2; assumed outer column N_mean/2 = 1.34e+20
+    peak line brightness at the outer points (12" beam, sigma_v 8 km/s): 0.906 mJy/beam -> rms needed (peak S/N 5 per channel) 181 microJy/beam per 5 km/s channel
+    VLA C-config (L band, robust ~13"): on-source time ~91 h
+    uGMRT band 5 (tapered to ~12"): on-source time ~80 h
+    Also required: optical axis ratio / kinematic inclination (deep g/r imaging exists: CFHT MegaCam, Duc+2011/2014; Legacy Surveys), and a better M_* (SED with NIR). IFU H-alpha alternative: CFHT/SITELLE SN3 (R ~ 5000, 11' field, ~1" seeing) or Keck/KCWI red arm -- E1's H-alpha is weak (SFR 5-10e-3 Msun/yr) and patchy, so HI is the primary tracer. MUSE: Dec +36.5 culminates at ~29 deg elevation from Paranal (airmass ~2) -- poor; MeerKAT similarly low (~23 deg).
+    Sample note: CFG441's frozen rule needs N_A >= 3 old tidal TDGs; E1 alone is a single-object reading.
+
+==============================================================================================================
+RULE TEST (MUTATE: synthetic V_c = V_Newton must give SETTLING)
+==============================================================================================================
+    bracket 1xM*                               V_c := V_N  -> NON-DISCRIMINATING (Delta +8.4 / +10.1);  V_c := V_law+EFE(canonical) -> NON-DISCRIMINATING (Delta -8.4 / -8.3)
+    bracket 3xM*                               V_c := V_N  -> SETTLING           (Delta +14.8 / +17.9);  V_c := V_law+EFE(canonical) -> LAW                (Delta -14.8 / -14.7)
+    WSRT                                       V_c := V_N  -> SETTLING           (Delta +9.2 / +11.0);  V_c := V_law+EFE(canonical) -> LAW                (Delta -9.2 / -9.1)
+    FASHI (upper: FAST beam incl. tail gas)    V_c := V_N  -> SETTLING           (Delta +12.8 / +15.4);  V_c := V_law+EFE(canonical) -> LAW                (Delta -12.8 / -12.6)
+    with today's M_* error (WSRT): V_c := V_N -> NON-DISCRIMINATING (Delta +5.5 / +6.4)
+    with today's M_* error (FASHI): V_c := V_N -> NON-DISCRIMINATING (Delta +8.4 / +9.9)
+    (reported variant, 3 km/s error) bracket 1xM*                               V_c := V_N -> SETTLING (Delta +15.0 / +18.0)
+    (reported variant, 3 km/s error) bracket 3xM*                               V_c := V_N -> SETTLING (Delta +26.4 / +31.8)
+    (reported variant, 3 km/s error) WSRT                                       V_c := V_N -> SETTLING (Delta +16.3 / +19.5)
+    (reported variant, 3 km/s error) FASHI (upper: FAST beam incl. tail gas)    V_c := V_N -> SETTLING (Delta +22.7 / +27.3)
+    MUTATE NOT DETECTED (control FAILS, kept as it fell) at: bracket 1xM*
+  [PASS] MUTATE: synthetic V_c := V_Newton (4 km/s) read as SETTLING on both footings at every mass (expected; exit 1 when detected)
+         all SETTLING = False; law input all LAW = False
+
+  5/5 checks pass; load-bearing failures: 0
+  VERDICT: DATA NOT AVAILABLE
