@@ -1,0 +1,113 @@
+{
+ "lane": "CFG396",
+ "frozen": "e66c7ca1d",
+ "mutate": false,
+ "G0": "identical (term-for-term max(0, s_ph - s_c) * f)",
+ "G1": {
+  "canonical": {
+   "max_force_diff": 1.52587890625e-05,
+   "t5_extra_force_scale": 26.522232055664062,
+   "rel": 5.753206981401608e-07,
+   "phantom_regime_share_of_on_mass": 0.98418430402224,
+   "mass_on": 0.4325789735902728,
+   "mass_on_phantom_regime": 0.42573743605759756,
+   "mass_on_cold_regime": 0.006841537532675246,
+   "vol_on": 0.024933338165283203
+  },
+  "alt": {
+   "max_force_diff": 1.52587890625e-05,
+   "t5_extra_force_scale": 31.97811508178711,
+   "rel": 4.771634920780721e-07,
+   "phantom_regime_share_of_on_mass": 0.9959723878961259,
+   "mass_on": 0.4325789735902728,
+   "mass_on_phantom_regime": 0.43083671328035916,
+   "mass_on_cold_regime": 0.0017422603099136458,
+   "vol_on": 0.024933338165283203
+  }
+ },
+ "identical_to_T5": true,
+ "checks": {
+  "G1 two-regime force == engine T5 force (canonical; rel <= 1e-5; non-vacuous)": {
+   "pass": true,
+   "measured": "rel 5.75e-07, phantom-regime ON mass 0.4257"
+  },
+  "G1 two-regime force == engine T5 force (alt; rel <= 1e-5; non-vacuous)": {
+   "pass": true,
+   "measured": "rel 4.77e-07, phantom-regime ON mass 0.4308"
+  },
+  "C1 re-derived ratios (T5/ADD/S1T5 FLAT, both footings) match CFG361's committed _results.json to 1e-6": {
+   "pass": true,
+   "measured": "max |diff| 0.0e+00"
+  },
+  "C2 regime gate forced open (ADD) over-builds more than the gated rule (sigma8 ratio, both footings)": {
+   "pass": true,
+   "measured": "canonical: ADD 1.5815 vs gated 1.2049 | alt: ADD 1.6452 vs gated 1.2573"
+  }
+ },
+ "inherited_ratios": {
+  "T5_FLAT_canonical_N256": {
+   "sig8": 1.2049352070896433,
+   "pk_maxdev": 0.7495703901221515,
+   "pk_at": {
+    "0.1": 1.3594267620541471,
+    "0.3": 1.5487046388726302,
+    "1.0": 1.6018197665938199
+   }
+  },
+  "T5_FLAT_alt_N256": {
+   "sig8": 1.2573340839410767,
+   "pk_maxdev": 0.9716126942912064,
+   "pk_at": {
+    "0.1": 1.4601882460132949,
+    "0.3": 1.706994570624966,
+    "1.0": 1.7816125364924416
+   }
+  },
+  "ADD_FLAT_canonical_N256": {
+   "sig8": 1.5815246147845956,
+   "pk_maxdev": 2.565976549441619,
+   "pk_at": {
+    "0.1": 2.1408459431377436,
+    "0.3": 2.8694868927690833,
+    "1.0": 2.834118079617331
+   }
+  },
+  "ADD_FLAT_alt_N256": {
+   "sig8": 1.6452370301114243,
+   "pk_maxdev": 2.8448364133469575,
+   "pk_at": {
+    "0.1": 2.2957297710570206,
+    "0.3": 3.1184609467307536,
+    "1.0": 2.9303466697873857
+   }
+  },
+  "S1T5_FLAT_canonical_N256": {
+   "sig8": 1.3165300804835993,
+   "pk_maxdev": 1.0960859634399425,
+   "pk_at": {
+    "0.1": 1.5902298919352547,
+    "0.3": 1.854476724277426,
+    "1.0": 1.8702495177516405
+   }
+  },
+  "S1T5_FLAT_alt_N256": {
+   "sig8": 1.397303069067665,
+   "pk_maxdev": 1.3896492435559655,
+   "pk_at": {
+    "0.1": 1.7615356381002303,
+    "0.3": 2.09709080441574,
+    "1.0": 2.124790515545155
+   }
+  }
+ },
+ "lane_verdict": "FAIL",
+ "per_footing": {
+  "T5_FLAT_canonical_N256": "FAIL",
+  "T5_FLAT_alt_N256": "FAIL",
+  "ADD_FLAT_canonical_N256": "FAIL",
+  "ADD_FLAT_alt_N256": "FAIL",
+  "S1T5_FLAT_canonical_N256": "FAIL",
+  "S1T5_FLAT_alt_N256": "FAIL"
+ },
+ "runtime_s": 6.933466196060181
+}

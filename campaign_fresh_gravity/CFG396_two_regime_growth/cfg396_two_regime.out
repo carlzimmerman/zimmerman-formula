@@ -1,0 +1,43 @@
+CFG396: the "two-regime" rule (phantom acts only where rho_cold < rho_ph, capped at rho_ph - rho_cold) vs CFG361's T5.
+Criteria: FROZEN_CRITERIA.md (e66c7ca1d).  Step 0 identity gate (G0 algebra, G1 field level), then, because the rule is
+identical to T5, the verdict is INHERITED from CFG361's committed numbers (no PM rerun), with controls C1 (reproduction from
+the run JSONs) and C2 (gate forced open -> larger over-build).
+Run: python3 cfg396_two_regime.py            -> cfg396_two_regime.out / cfg396_two_regime_results.json
+     CFG396_MUTATE=1 python3 cfg396_two_regime.py -> regime gate disabled in the independent implementation; G1 must FAIL (rc 1),
+                                                     outputs *_MUTATE.out / *_MUTATE_results.json
+Reads (read-only): CFG372's engine (imported, TGAS = 0 = no gas filter), CFG361's T5 FLAT canonical z = 0 snapshot and run
+JSONs, CFG359's S0 256^3 JSON, CFG361's committed _results.json.
+
+G0 (algebra). Engine T5 (cfg361_pm.py / cfg366_pm.py / cfg372_pm.py):  extra = fsw * max(s_ph - s_c, 0).
+   Two-regime rule: extra = 0 where s_c >= s_ph (cold regime: ordinary cold matter, phantom adds nothing);
+                    extra = s_ph - s_c where s_c < s_ph (phantom regime, capped at rho_ph - rho_cold); times the bound switch f.
+   => piecewise definition of max(0, s_ph - s_c) times f: term-for-term the same expression, same s_c (engine's CIC cell
+      density x (1 - f_b)), same s_ph (baryon-only, unfiltered), same f. G0: IDENTICAL.
+   CFG366's 'literal local min rule' (dark <= cold present, added on top of the Newtonian cold) adds 0 = S0: NOT this rule.
+   CFG366/372 RES = this rule's e minus its catchment average: this rule is RES's R_c -> infinity limit (CFG366 C2a).
+
+G1 canonical: max|F_two-regime - F_T5| = 1.526e-05, T5 extra-force scale 2.652e+01, rel 5.75e-07; ON mass 0.4326: phantom regime 0.4257 (98.4%), cold regime 0.0068
+PASS  G1 two-regime force == engine T5 force (canonical; rel <= 1e-5; non-vacuous): rel 5.75e-07, phantom-regime ON mass 0.4257
+G1 alt      : max|F_two-regime - F_T5| = 1.526e-05, T5 extra-force scale 3.198e+01, rel 4.77e-07; ON mass 0.4326: phantom regime 0.4308 (99.6%), cold regime 0.0017
+PASS  G1 two-regime force == engine T5 force (alt; rel <= 1e-5; non-vacuous): rel 4.77e-07, phantom-regime ON mass 0.4308
+
+Step 0 decision: IDENTICAL to CFG361 T5 -> STOP, no PM rerun; verdict inherited
+
+PASS  C1 re-derived ratios (T5/ADD/S1T5 FLAT, both footings) match CFG361's committed _results.json to 1e-6: max |diff| 0.0e+00
+
+INHERITED VERDICT (two-regime == T5; CFG361 256^3, ratios to CFG359 S0 at z = 0; CFG361's cuts):
+  run                        sigma8 ratio  max|P-1| k<=1   P@0.1/0.3/1        per-footing verdict
+  T5_FLAT_canonical_N256           1.2049          0.750   1.359 / 1.549 / 1.602   FAIL
+  T5_FLAT_alt_N256                 1.2573          0.972   1.460 / 1.707 / 1.782   FAIL
+  ADD_FLAT_canonical_N256          1.5815          2.566   2.141 / 2.869 / 2.834   FAIL
+  ADD_FLAT_alt_N256                1.6452          2.845   2.296 / 3.118 / 2.930   FAIL
+  S1T5_FLAT_canonical_N256         1.3165          1.096   1.590 / 1.854 / 1.870   FAIL
+  S1T5_FLAT_alt_N256               1.3973          1.390   1.762 / 2.097 / 2.125   FAIL
+
+LANE VERDICT (two-regime = T5 A0-FLAT, both footings): FAIL
+PASS  C2 regime gate forced open (ADD) over-builds more than the gated rule (sigma8 ratio, both footings): canonical: ADD 1.5815 vs gated 1.2049 | alt: ADD 1.6452 vs gated 1.2573
+  (spatial gate forced open, f = 1 everywhere = CFG361 S1T5: canonical 1.3165 | alt 1.3973)
+
+CFG372 comparator (its README): T = 1e6 K sigma8 1.0089 / 1.0105 (GROWTH OK, WITHDRAWN by the 10-06 k_J audit); the two-regime rule is CFG372's T = 0 / R_c -> infinity limit and gives 1.205 / 1.257.
+runtime 7 s
+4/4 checks pass
