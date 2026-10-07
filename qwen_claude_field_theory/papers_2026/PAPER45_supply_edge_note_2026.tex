@@ -1,0 +1,64 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={The Supply Edge: Where a Vacuum-Tied MOND Law Must Stop for Structure Growth and Galaxy Lensing to Agree (Working Note)}, pdfauthor={The authors}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries The Supply Edge: Where a Vacuum-Tied MOND Law\\ Must Stop for Structure Growth and Galaxy Lensing to Agree}\\[4pt]
+{\large Working note}\\[6pt]
+{\small The authors --- 2026-10-07, version 1.0 --- AI-assisted research programme; not peer reviewed. Confirming simulations are running; results will be added in a new version.}
+\end{center}
+
+\begin{abstract}
+\noindent We work with the law $a_0=\kappa c\sqrt{G\rho_\Lambda}$, $\kappa=\tfrac12$ fitted, with the exponential kernel $\nu(y)=1/(1-e^{-\sqrt y})$, and a conserved cold fluid whose amount ($\Omega_c/\Omega_b=5.364$) is an input. In particle-mesh simulations the law's phantom over-builds small-scale structure: with the corrected pressure-filtered baryon source and a mass-conserving reservoir rule, the excess at $k\le1\,h$/Mpc is $+15.3\%$/$+19.3\%$ (canonical/alternative footing) at $256^3$ and grows to $+17.4\%$ at $512^3$. About 81\% of the switch-ON mass behind it lies inside host turnaround spheres. Re-fitting KiDS-1000 isolated-lens lensing with a free two-halo amplitude shows the law need only extend to $x\simeq0.3$--$0.5$ of the turnaround radius (best $x=0.48$/$0.53$). We note that this is where a host's real cold supply runs out: the phantom mass $M_{\rm ph}(<r)=M_b/(e^{s}-1)$, $s=r_t/r$, equals the supply $5.364\,M_b/f_{\rm ret}$ at $r_{\rm supply}=r_t/\ln(1+f_{\rm ret}/5.364)$, which for census retention $f_{\rm ret}=0.07$--$0.10$ sits at $0.24$--$0.54\,r_{\rm ta}$ for KiDS lenses and $\simeq0.24$--$0.33\,r_{\rm ta}$ for the groups and clusters that drive the excess. Inverting the relation gives a lensing-based cold-to-baryon ratio of $4.6$--$13.0$ (canonical; $6.0$--$16.5$ alternative), bracketing the CMB's $5.364$ on the canonical footing. We record this supply-edge hypothesis, its inputs and caveats (above all, the free two-halo term) and the pre-registered simulations that will test it.
+\end{abstract}
+% Every number is checked against committed outputs by PAPER45_audit.py.
+
+\section{Framework and status}
+The acceleration scale is $a_0=\kappa c\sqrt{G\rho_\Lambda}$ with $\kappa=\tfrac12$ \emph{fitted} (two footings: $9.3603\times10^{-11}$ and $1.1312\times10^{-10}$\,m\,s$^{-2}$, never pooled). The baryon-sourced phantom is $\rho_{\rm ph}=\nabla\!\cdot[(\nu-1)g_b]/4\pi G$. A cold fluid of fixed cosmic amount is required; no particle species is added and the amount is not derived. In the working model the phantom is a target that real cold fluid must fill, and a host can fill it only as far as its supply allows.
+
+\section{The growth problem and where it lives}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+rule (particle mesh, $z=0$, ratio to the Newtonian control) & $\sigma_8$ ratio & max $|P-1|$, $k\le1$\\
+\midrule
+phantom as extra gravity, max bookkeeping ($256^3$) & 1.2049 / 1.2573 & \\
+reservoir rule + corrected gas filter ($256^3$) & 1.0193 / 1.0243 & 0.153 / 0.193\\
+the same, $512^3$ (canonical) & 1.0226 & 0.174\\
+\bottomrule
+\end{tabular}
+\end{center}
+All are \textsc{tension} or worse against $|\sigma_8-1|\le5\%$ and $|P-1|\le10\%$. In the $256^3$ snapshots 0.805 of the switch-ON mass in filament-like cells lies inside resolved hosts' turnaround spheres; a switch that stays ON out to $r_{\rm ta}$ removes at most 13--19\% of the excess.
+
+\section{How far must the law extend for lensing?}
+An earlier fit required the law ON to $r_{\rm ta}$ because the two-halo amplitude was fixed at zero. With it free, KiDS-1000 isolated lenses prefer truncation at $x=0.48$ (canonical) and $0.53$ (alternative); $x=0.3$ passes with any single bin dropped. In the nine bins the survey trusts, all $x$ fit equally; the preference comes from outer bins where the free template carries much of the model. At $x=0.4$, 0.83 of the excess source lies beyond the truncation in the simulations (an estimate, not a simulation result).
+
+\section{The supply edge}
+For a point mass with this kernel, $M_{\rm ph}(<r)=M_b/(e^{s}-1)$ with $s=r_t/r$, $r_t=\sqrt{GM_b/a_0}$. Setting it equal to the supply $5.364\,M_b/f_{\rm ret}$ gives
+\[ r_{\rm supply}=\frac{r_t}{\ln(1+f_{\rm ret}/5.364)}\;\approx\;\frac{5.364}{f_{\rm ret}}\,r_t , \]
+equal to $5.850\,r_t$ for $f_{\rm ret}=1$. With census retention, KiDS lenses ($\log M_b=10.5$--$11.3$) have $x_{\rm edge}=0.24$--$0.54$ (canonical footing, small-$f_{\rm ret}$ form; about 10\% lower on the alternative footing), and the simulations' resolved groups and clusters, with group/cluster retention, $x_{\rm edge}=0.24$--$0.33$. Both overlap the window that lensing allows and growth needs. If confirmed, the truncation radius is not a new constant but the point where the host's cold supply runs out.
+
+\section{A lensing estimate of the cold fluid's amount}
+Inverting, $R_c=x\,r_{\rm ta}f_{\rm ret}/r_M$ with KiDS's preferred $x$ gives $4.6$--$13.0$ on the canonical footing (containing $5.364$) and $6.0$--$16.5$ on the alternative footing. This is a consistency test of the supply-edge picture, not a derivation of the amount.
+
+\section{Pre-registered tests (running)}
+(i) The switch confined to $0.4\,r_{\rm ta}$ around resolved peaks at $512^3$; (ii) the switch confined to each host's own supply edge with a declared retention-mass relation, at $512^3$; (iii) the same with $a_0$ tracking DESI's evolving dark energy. Pass: $|\sigma_8-1|\le5\%$ and $|P-1|\le10\%$ on both footings.
+
+\section{Caveats}
+The lensing window rests on a free two-halo amplitude with no external prior. Retention $f_{\rm ret}$ varies (7--18\% in the census). The reservoir is gravity-level bookkeeping, the simulations do not model baryon depletion, the confinement's legality is conditional, and a separate consequence test of a Tolman reading of the factor 4 ($\kappa=1/|1+3w_0|$) is not yet decisive with current DESI precision. $\kappa=\tfrac12$ remains fitted; the cold fluid's amount and $\rho_\Lambda$ are not derived.
+
+\section*{Data and code}
+All scripts, frozen criteria and outputs are in the project repository (\url{https://github.com/carlzimmerman/zimmerman-formula}, folders \texttt{campaign\_fresh\_gravity/CFG361}--\texttt{CFG419} and \texttt{deepseek\_push/openai\_math\_cross\_analysis\_2026-10}). AI assistance: Anthropic's Claude and DeepSeek wrote and ran code and drafted text; the author is responsible for the content.
+\end{document}
