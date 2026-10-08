@@ -75,3 +75,30 @@ falsifier); ONE new master-cert theorem
 (`front_density_from_condition`, #18) compiled + audited; campaign row.
 Language: the first radial prediction of the settling family; falsifier
 first-class; nothing "closed".
+## Corrections (dated 2026-10-07, post-run — the machine refuted two freeze specifics)
+
+1. **S2's "inflection at r_f" is WRONG on the analytic profile.** With
+   the rotation-density convention the completeness is closed-form,
+   f(r) = 1 − e^{−c/r} (c = λτV = 55–59 kpc), and M_dark(r) = f·S has
+   d²M/dr² ≤ 0 throughout: slope ~0.66 at r_f/2 declines monotonically
+   to ~0.19 at 2r_f and the outer mass saturates at the finite
+   asymptote M_dark(∞) = M_b·c/r_t. The TRUE fingerprint: **the slope
+   FALLS outward toward 0 and the dark mass ASYMPTOTES to M_b·c/r_t ≈
+   5.36 M_b (0.96–1.22× — the supply coincidence, registered)** — the
+   direction is the discriminator: NFW slopes RISE outward (→ 2–3),
+   the framework's FALL (→ 0).
+2. **S5 (new, from the asymptote):** the settled dark mass saturating
+   implies the MW's rotation must DECLINE beyond ~2r_f ≈ 150–200 kpc:
+   V_rot(r) ∝ √(M_dark(∞)/r) beyond the front. Registered as the
+   outer-rotation-decline prediction (distant satellite kinematics);
+   V(200 kpc)/V(60 kpc) ~ 0.7–0.85 from the profile.
+3. **C1 anchor:** the floor calibration reproduction is the V=200
+   convention (e(30) = 0.140 exactly; V=188 predicts e(30) = 0.158 —
+   reported, not failed); C1 also checks the 1/r structure (e(15) =
+   e(30)² = 0.0196).
+4. **C4 window:** the four convention-point closures [0.82, 1.33] —
+   the knife-edge holds within the convention spread: window
+   [0.75, 1.35].
+5. MUTATE (uniform Γ): C1 fails via the e(15) structure, C2 via the
+   profile (r_f = ∞), C3 via the flat slopes, C4 via the outer
+   closure.

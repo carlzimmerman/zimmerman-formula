@@ -23,6 +23,11 @@ standard Mathlib with axioms = {propext, Classical.choice, Quot.sound}.
  14. Deficit mapping:    M_miss/M_b = x  =>  f_obs = 1/(1+x)        [T15]
  15. Cold-fluid budget:  M_cold/M_b = x - f_law*S(<R)/M_b (exact)  [T15]
  16. Ceiling:            M_cold >= 0  =>  f_law*S <= x*M_b         [T15]
+ 17. Front density:      sqrt(4 pi G rho_f)*lambda*tau = ln 2
+                         => 4 pi G rho_f (lambda tau)^2 = (ln 2)^2
+                         (division form rho_f = (ln 2)^2/(4 pi G
+                          (lambda tau)^2) rides the lane — house
+                          pattern)                                       [T17]
 
 ## The boundary (what is NOT claimed — stated, not certified)
   - kappa = 1/2 is FITTED (a0 = kappa c sqrt(G rho_Lambda)); the
@@ -222,6 +227,25 @@ theorem epoch_elasticity_closed (x f : ℝ) (hf : f ≠ 0)
   rw [hden, ← hlaw, hlog]
   norm_num
   field_simp [hf]
+
+-- ============ VII. the settling front (T17) ============
+
+/-- Front density (squared form): the e = 1/2 contour of the
+completeness profile f(r) = 1 - exp(-lambda tau sqrt(4 pi G rho(r)))
+sits where 4 pi G rho_f (lambda tau)^2 = (ln 2)^2; the division form
+rho_f = (ln 2)^2/(4 pi G (lambda tau)^2) follows by the sound-speed
+division pattern (lane-carried, house rule). -/
+theorem front_density_squared (G rho_f lam tau : ℝ)
+    (h : sqrt (4 * π * G * rho_f) * lam * tau = Real.log 2)
+    (hr : 0 ≤ 4 * π * G * rho_f) :
+    4 * π * G * rho_f * (lam * tau) ^ 2 = (Real.log 2) ^ 2 := by
+  have hsq0 : (sqrt (4 * π * G * rho_f) * lam * tau) ^ 2 = (Real.log 2) ^ 2 := by
+    rw [h]
+  have h1 : (sqrt (4 * π * G * rho_f) * lam * tau) ^ 2 =
+            (sqrt (4 * π * G * rho_f)) ^ 2 * (lam * tau) ^ 2 := by
+    ring
+  rw [h1, sq_sqrt hr] at hsq0
+  exact hsq0
 
 -- ============ VI. the cold-fluid budget (T15) ============
 
