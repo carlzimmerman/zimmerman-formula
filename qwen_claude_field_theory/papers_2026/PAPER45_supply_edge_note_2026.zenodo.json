@@ -3,15 +3,15 @@
   "upload_type": "publication",
   "publication_type": "workingpaper",
   "language": "eng",
-  "title": "The Supply Edge: Where a Vacuum-Tied MOND Law Must Stop for Structure Growth and Galaxy Lensing to Agree (Working Note)",
-  "version": "1.0",
+  "title": "The Supply Edge: A Mass-Conserving Rule Without Tuned Radii Fixes Structure Growth Under a Vacuum-Tied MOND Law (Working Note)",
+  "version": "2.0",
   "creators": [
    {
     "name": "Zimmerman, Carl P.",
     "affiliation": "Briar Creek Tech"
    }
   ],
-  "description": "<p><b>Working note, version 1.0 (2026-10-07). AI-assisted research programme; not peer reviewed. Confirming simulations are running; results will be added in a new version.</b></p><p>We work with the law a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 fitted, the exponential kernel nu(y) = 1/(1 - exp(-sqrt y)), and a conserved cold fluid whose amount (Omega_c/Omega_b = 5.364) is an input. In particle-mesh simulations the law's phantom over-builds small-scale structure: with a corrected pressure-filtered baryon source and a mass-conserving reservoir rule the excess at k <= 1 h/Mpc is +15.3% / +19.3% (two footings) at 256^3 and +17.4% at 512^3; about 81% of the switch-ON mass behind it lies inside host turnaround spheres. Re-fitting KiDS-1000 isolated-lens lensing with a free two-halo amplitude shows the law need only extend to x ~ 0.3-0.5 of the turnaround radius (best 0.48 / 0.53). We note that this is where a host's real cold supply runs out: the phantom mass M_ph(<r) = M_b/(e^s - 1), s = r_t/r, equals the supply 5.364 M_b/f_ret at r_supply = r_t / ln(1 + f_ret/5.364), which for census retention f_ret = 0.07-0.10 lies at 0.24-0.54 r_ta for KiDS lenses and ~0.24-0.33 r_ta for the groups and clusters that drive the excess. Inverting gives a lensing-based cold-to-baryon ratio of 4.6-13.0 (canonical; 6.0-16.5 alternative), bracketing the CMB's 5.364 on the canonical footing. We record this supply-edge hypothesis, its inputs and caveats (above all the free two-halo term) and the pre-registered simulations that test it.</p><p>Every number is checked against committed outputs by PAPER45_audit.py (11/11). kappa = 1/2 remains fitted; the cold fluid's amount and rho_Lambda are not derived; no dark-matter particle is added. AI assistance: Anthropic's Claude and DeepSeek.</p>",
+  "description": "<p><b>Working note, version 2.0 (2026-10-08). AI-assisted research programme; not peer reviewed. Version 1.0 (2026-10-07) stated the supply-edge hypothesis; this version adds the simulations that test it.</b></p><p>We study the law a0 = kappa c sqrt(G rho_Lambda) (kappa = 1/2, fitted) with the kernel nu(y) = 1/(1 - exp(-sqrt y)) and a cold fluid of fixed cosmic amount. In particle-mesh simulations, letting the law act wherever matter has collapsed makes small-scale structure too clumpy: the excess in the matter power spectrum at k &lt;= 1 h/Mpc is +15.3% / +19.3% on the two footings at 256^3 and +17.4% at 512^3, against an allowed 10%. We test one rule with no tuned radius. The law's extra (phantom) mass is the cold fluid itself, so a halo can build the phantom only until its own cold fluid is used up (for an undepleted halo at r_edge = r_M / ln[1/(1 - f_b)] = 5.85 r_M), and the cold fluid used is drawn from the same halo's turnaround sphere, so mass is conserved halo by halo. With this rule the excess is 2.7% at 256^3 and 3.3% at 512^3, with sigma_8 within 0.6% of the Newtonian control: 15 of 15 runs pass, across three random realisations, both footings, a0 tracking dark energy, and variations of the two settings inherited from earlier work. Turning the mass conservation off restores the excess (15.4%). Earlier rules that set the edge by hand, or from measured baryon censuses, sit at the 10% limit at 512^3.</p><p>The rule's only inputs are kappa and the cosmic baryon fraction. The cold fluid is handled as bookkeeping, not as simulated particles; its settling is imposed, not derived from an action; one realisation was run at 512^3; and kappa, the cold fluid's amount and rho_Lambda remain undetermined. No dark-matter particle is identified. Every number is checked against committed outputs by PAPER45_audit.py (19/19). AI assistance: Anthropic's Claude and DeepSeek.</p>",
   "keywords": [
    "MOND",
    "acceleration scale",
@@ -22,17 +22,19 @@
    "cold fluid",
    "phantom dark matter",
    "supply edge",
-   "particle mesh"
+   "particle mesh",
+   "mass conservation",
+   "zero free parameters"
   ],
   "license": "cc-by-4.0",
   "related_identifiers": [
    {
-    "identifier": "https://github.com/carlzimmerman/zimmerman-formula/tree/ded9ea0209e6ff32ed7815b6f7040095f4f4f239",
+    "identifier": "https://github.com/carlzimmerman/zimmerman-formula/tree/01cfd38f6d1cdfe8934dd11562ab1e8dfb1beefe",
     "relation": "isSupplementedBy",
     "resource_type": "software",
     "scheme": "url"
    }
   ],
-  "notes": "The PDF byline is 'The authors'; the creator field names the depositor. The repository link points to the commit at which every lane the note cites (CFG361-CFG419, the DeepSeek cross-analysis) is committed; the confirming runs CFG414/416/419 are pre-registered there and still running."
+  "notes": "The PDF byline is 'The authors'; the creator field names the depositor. The repository link points to the commit at which every lane the note cites (CFG361-CFG439) and the audit are committed. Each test's pass rule was committed before its run."
  }
 }
