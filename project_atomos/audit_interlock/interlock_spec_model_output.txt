@@ -1,0 +1,102 @@
+
+========================================================================================================
+M1  PER-CORE REACH lambda_c -- why homogeneous window-multiplication fails, MEASURED
+========================================================================================================
+  estimator band = 13 targets with >=20 hits; total window measure SUM W_i = 0.2563 ln-units
+  targets: r_tau_e, alpha_em_inv_MZ, sin2_thetaW_MZ, koide_Q_up, higgs_lambda, ckm_lambda, koide_Q_down, r_b_tau, r_t_b, alpha_s_MZ, pmns_sin2_13, pmns_sin2_12, pmns_sin2_23
+
+  cores: 29,438 total, 2,910 with >=1 hit in the band
+  per-core reach lambda (values per unit ln|v| in the O(1) decade):
+    mean 10.951   sd 56.331   max 1498.4   median 0.000
+    percentiles: p50=0.00  p90=0.00  p99=261.44  p99.9=704.58
+
+  consistency: N_cores * E[lambda] = 322,364 per unit ln vs the DIRECTLY measured median local density rho_10 = 328,665  (ratio 0.981)
+   [PASS] the reach estimator reproduces the directly measured local density to within 15%
+
+  REACH-MOMENT INFLATION  M_k = E[lambda^k]/E[lambda]^k   (=1 iff cores are homogeneous)
+    k           M_k   log2 M_k [bits]
+  ------------------------------------
+    1         1.000              0.00
+    2        27.105              4.76
+    3      1378.143             10.43
+    4    102166.306             16.64
+    5   9295385.855             23.15
+    6 947300326.263             29.82
+    7103166283186.688             36.59
+    811708980449277.027             43.41
+   [PASS] M_1 == 1 exactly by construction (1.000000)
+   [PASS] reach heterogeneity is large and POSITIVE: M_2 = 27.11, M_4 = 102166.3, M_6 = 947300326 -> a k-target interlock's chance rate is UNDER-stated by 16.6 bits at k=4 if cores are treated as homogeneous
+
+========================================================================================================
+M2  OUT-OF-SAMPLE VALIDATION -- estimate reach on half the windows, predict the other half
+========================================================================================================
+  trial 1: reach estimated from 6 windows, predicting 7 held-out windows
+    k   observed   reach model  obs/model   homogeneous   obs/homo
+  ------------------------------------------------------------------
+    2      2,131       2,029.2       1.05      15,089.0       0.14
+    3      1,565       1,722.3       0.91       3,590.6       0.44
+    4      1,060       1,308.7       0.81         369.9       2.87
+    5        518         795.2       0.65          16.5      31.47
+    6        186         308.5       0.60           0.3     737.43
+    7          5          14.8       0.34           0.0   22170.04
+
+  over 12 random splits, obs/model for all k with model>3:
+    REACH model:       median 0.82   [0.00, 1.08]  (n=66)
+    HOMOGENEOUS model: median 1.59   [0.10, 124.09]  (n=43)
+   [PASS] the reach model is calibrated out-of-sample (median obs/model 0.82, within 2x)
+   [PASS] the homogeneous model is not (median obs/model 1.59, max 124.1x)
+
+========================================================================================================
+M3  DEPTH SCALING of rho_i, n_cores and M_k -- measured at depths 8, 9, 10
+========================================================================================================
+  depth 8: 5,566 retained records, 1,480 cores, 178 with band hits, mean lambda 14.662
+  depth 9: 22,141 retained records, 6,730 cores, 618 with band hits, mean lambda 12.829
+
+    k     M_k(d8)     M_k(d9)    M_k(d10)   trend/depth
+  ------------------------------------------------------
+    2       22.11       30.10       27.11         1.107
+    3      902.96     1702.87     1378.14         1.235
+    4    52500.49   138597.50   102166.31         1.395
+    5  3663438.36 13857977.30  9295385.85         1.593
+    6279662130.901558856716.00947300326.26         1.840
+    722292680072.51187742332530.44103166283186.69         2.151
+   [PASS] the RETAINED-RECORD M_k estimate is depth-UNSTABLE and rises with k (per-depth trend 1.11-1.84) -- it is SATURATION-CONTAMINATED (the loose targets used to build it have per-core hit probabilities up to 0.17). It must NOT be extrapolated as-is; interlock_spec_validate.py supersedes it with an unsaturated, exact, set-specific measurement M(T) plus a concentration growth G1 fitted on k=2 and validated on k=3
+
+  rho_i growth per depth      B_rho  = 3.847  (1.944 bits/depth)   [S4, median over 20 targets]
+  core-count growth per depth B_core = 4.460  (2.157 bits/depth)   [n_skel(b_s) layer counts]
+  n_cores: D8:1,480, D9:6,730, D10:29,438, D11:29,438
+  NOTE the depth budget is a CONVOLUTION (raw(D)=sum_b n_skel(b)*n_rec(D-1-b)), so both
+  layers grow with D; b_s can rise to D-4, and n_skel is the fastest-growing layer.
+
+========================================================================================================
+M4  THE INTERLOCK BITS FORMULA, THE THRESHOLD, AND THE SINGLE-TARGET CEILING
+========================================================================================================
+  single-target ceiling: depth where rho_i(D)*W_i = E* (per-target, no interlock)
+  E*_single = 0.05/19 = 2.632e-03
+  target                   rho10*W    D_max
+  ------------------------------------------
+  a_e                    5.864e-05    12.82
+  alpha_em_inv_0         8.547e-05    12.54
+  r_p_e                  2.131e-04    11.87
+  r_n_p                  4.344e-04    11.34
+  r_mu_e                 1.188e-02     8.88
+  a_mu                   9.878e-02     7.31
+  r_tau_e                3.299e+01     3.00
+  alpha_em_inv_MZ        3.938e+01     2.86
+  sin2_thetaW_MZ         8.553e+01     2.29
+  koide_Q_up             9.026e+02     0.54
+  higgs_lambda           1.132e+03     0.37
+  ckm_lambda             1.987e+03    -0.05
+  koide_Q_down           2.051e+03    -0.07
+  r_b_tau                4.761e+03    -0.69
+  r_t_b                  4.362e+03    -0.63
+  alpha_s_MZ             4.898e+03    -0.72
+  pmns_sin2_13           1.519e+04    -1.56
+  pmns_sin2_23           2.092e+04    -1.79
+  pmns_sin2_12           2.613e+04    -1.96
+
+  => the BEST single target (a_e) is informative only to depth 12.8; the depth-10 exhaustive null is therefore already AT the single-target ceiling, which is exactly why an interlock is the only route deeper.
+
+========================================================================================================
+CHECKS 6/6 PASS
+========================================================================================================

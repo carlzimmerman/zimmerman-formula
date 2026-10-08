@@ -1,0 +1,263 @@
+
+========================================================================================================
+V1  REBUILD THE COMPLETE DEPTH-8 CANDIDATE SET WITH EXACT PER-CORE ATTRIBUTION
+========================================================================================================
+  skeletons b_s=1: 13  (0.0s)
+  skeletons b_s=2: 73  (0.0s)
+  skeletons b_s=3: 247  (0.0s)
+  skeletons b_s=4: 1,147  (0.0s)
+  germ recipes g_s=3: 1,472  (0.0s)
+   [PASS] germ-recipe count g_s=3 == real DN._germ_recipe_count 1,472
+  germ recipes g_s=4: 9,936  (0.1s)
+   [PASS] germ-recipe count g_s=4 == real DN._germ_recipe_count 9,936
+  germ recipes g_s=5: 36,708  (0.4s)
+   [PASS] germ-recipe count g_s=5 == real DN._germ_recipe_count 36,708
+  germ recipes g_s=6: 100,119  (1.3s)
+   [PASS] germ-recipe count g_s=6 == real DN._germ_recipe_count 100,119
+
+  rebuilt 8,123,807 raw candidate values over 1,480 cores (1.3s, 65 MB)
+   [PASS] rebuilt raw count 8,123,807 == committed depth-8 raw_candidates 8,123,807
+   [PASS] core count 1,480 == committed depth-8 n_skeletons_total 1,480
+
+  target                rebuilt hits  from values.f64  committed
+  ----------------------------------------------------------------
+  a_e                              0                0          0
+  alpha_em_inv_0                   0                0          0
+  r_p_e                            0                0          0
+  r_n_p                            0                0          0
+  r_mu_e                           0                0          0
+  a_mu                             0                0          0
+  r_tau_e                          2                1          1
+  alpha_em_inv_MZ                 11                5          5
+  sin2_thetaW_MZ                  20                4          4
+  koide_Q_up                     160               51         51
+  higgs_lambda                   225               75         75
+  ckm_lambda                     506              155        155
+  koide_Q_down                   749              150        150
+  r_b_tau                      1,197              303        303
+  r_t_b                        1,032              298        298
+  alpha_s_MZ                   1,490              354        354
+  pmns_sin2_13                 4,017            1,022       1022
+  pmns_sin2_12                 6,210            1,695       1695
+  pmns_sin2_23                 6,333            1,448       1448
+   [PASS] the committed depth-8 per-target hit counts are reproduced from values.f64 on 19/19 targets present in VERDICT.json
+
+========================================================================================================
+V2  WHICH POPULATION IS THE CHANCE MODEL DEFINED ON? raw / per-core-deduped / global
+========================================================================================================
+  A core hits target i if AT LEAST ONE of its dressed values lands in W_i. Duplicate values
+  WITHIN a core are perfectly correlated -> they must be deduped. Duplicates ACROSS cores are
+  separate chances -> they must NOT be. So the right population is PER-CORE-DEDUPED values,
+  which sits strictly between the raw count and the globally-deduped count the artifacts store.
+  The germ-factor multiset is skeleton-independent, so within-core dedup is exactly the dedup of
+  the germ-factor list itself:
+
+    g_s=3:    1,472 recipes ->      807 distinct germ factors (1.824x within-core duplication)
+    g_s=4:    9,936 recipes ->    2,555 distinct germ factors (3.889x within-core duplication)
+    g_s=5:   36,708 recipes ->    5,949 distinct germ factors (6.170x within-core duplication)
+    g_s=6:  100,119 recipes ->   11,597 distinct germ factors (8.633x within-core duplication)
+
+  populations at depth 8:  raw 8,123,807   per-core-deduped 2,141,752 (3.793x)   globally-deduped (committed) 2,207,173 (3.681x)
+    exactness check g_s=3: mpmath-distinct germ factors 1,019 vs my float64-ln dedup 807 (over-merge 1.2627x)
+    exactness check g_s=4: mpmath-distinct germ factors 3,583 vs my float64-ln dedup 2,555 (over-merge 1.4023x)
+   [PASS] the 3.68x global dedup factor is essentially ALL within-core: per-core-deduped 2,141,752 vs globally-deduped 2,207,173 = 0.970 (a 1.03x residual, of which my float64-ln dedup's own over-merge accounts for most). CONSEQUENCE: the committed values.f64 density IS the per-core-summed density, to a few percent.
+
+  target                rho_cores=sum_c r_c  rho_global(d8)   ratio
+  ------------------------------------------------------------------
+  a_e                                16,960          17,100   0.992
+  alpha_em_inv_0                     18,470          18,235   1.013
+  r_p_e                              15,405          15,655   0.984
+  r_n_p                              23,615          23,070   1.024
+  r_mu_e                             17,735          17,720   1.001
+  a_mu                               16,800          16,965   0.990
+  r_tau_e                            14,700          15,215   0.966
+  alpha_em_inv_MZ                    18,405          18,285   1.007
+  sin2_thetaW_MZ                     22,875          22,500   1.017
+  koide_Q_up                         23,030          22,580   1.020
+  higgs_lambda                       22,350          22,105   1.011
+  ckm_lambda                         22,720          22,355   1.016
+  koide_Q_down                       23,110          22,570   1.024
+  r_b_tau                            22,950          22,480   1.021
+  r_t_b                              20,020          19,625   1.020
+  alpha_s_MZ                         22,580          22,030   1.025
+  pmns_sin2_13                       20,770          20,615   1.008
+  pmns_sin2_12                       22,755          22,285   1.021
+  pmns_sin2_23                       23,420          22,705   1.031
+
+  conversion factor rho_cores / rho_global(committed) = median 1.016 [0.966, 1.031]
+   [PASS] the conversion factor is stable across all 19 targets (spread < 1.35x)
+
+========================================================================================================
+V3  CROSS-DECADE REACH CORRELATION -- does one core's reach transfer across 6 decades?
+========================================================================================================
+  target decades: a_e:1e-2.9, a_mu:1e-2.9, r_n_p:1e+0.0, r_mu_e:1e+2.3, alpha_em_inv_0:1e+2.1, r_p_e:1e+3.3
+
+  rank correlation of per-core reach between target neighbourhoods:
+                a_e       a_mu      r_n_p     r_mu_e  alpha_em_      r_p_e
+        a_e       1.000      0.999      0.754      0.606      0.625      0.610
+       a_mu       0.999      1.000      0.755      0.607      0.626      0.611
+      r_n_p       0.754      0.755      1.000      0.807      0.832      0.741
+     r_mu_e       0.606      0.607      0.807      1.000      0.960      0.940
+  alpha_em_       0.625      0.626      0.832      0.960      1.000      0.917
+      r_p_e       0.610      0.611      0.741      0.940      0.917      1.000
+
+  off-diagonal rank correlations: min 0.606  median 0.754  max 0.999
+   [PASS] per-core reach IS strongly shared across the 6 tight-target decades (median rank corr 0.75) -- coincidences concentrate on the same cores, so windows may NOT be multiplied over a flat core count
+  zero-reach cores at the tight targets: a_e:1308/1480, a_mu:1309/1480, r_n_p:1274/1480, r_mu_e:1305/1480, alpha_em_inv_0:1289/1480, r_p_e:1323/1480
+
+========================================================================================================
+V4  THE EXACT SET-SPECIFIC CORRECTION FACTOR M(T), AND THE CLOSED FORM IT LICENSES
+========================================================================================================
+  E[#cores matching every target in T] = SUM_c PROD_i (r_c(i)*W_i)
+                                       = M(T) * PROD_i (rho_i*W_i) / n_cores^(k-1)
+  with the EXACT, measurable  M(T) = E_c[PROD_i r_c(i)] / PROD_i E_c[r_c(i)]   (=1 iff cores are
+  homogeneous). M(T) is NOT the k-th moment unless the reaches are identical; measured below.
+
+  set                                         k          M(T)   log2 M(T)  M_k (same k)
+  --------------------------------------------------------------------------------------
+  2 tightest {a_e, 1/alpha}                   2           3.4        1.77          18.5
+  2 tight cross-sector {a_e, m_p/m_e}         2           2.1        1.07          18.5
+  3 tight {a_e, m_p/m_e, m_n/m_p}             3          70.4        6.14         520.6
+  4 tight {a_e,1/alpha,m_p/m_e,m_n/m_p}       4        2920.9       11.51       18964.9
+  6 tight (all)                               6     4352447.1       22.05    38266351.3
+  3 loose {alpha_s, ckm_lambda, sin2thW}      3         269.6        8.07         271.3
+   [PASS] M(T) > 1 for every candidate interlock set, and grows fast with k (1.1 bits at k=2, 11.5 bits at k=4, 22.1 bits at k=6) -- the missing constraint is real and now pinned
+
+  VALIDATION: common ln half-width h applied to the 6 tight-target LOCATIONS, so all six
+  windows are comparable (a common multiple of the real windows saturates a_mu instead).
+     h (ln)  k  observed  closed form  per-core sum  homogeneous obs/percore
+  ----------------------------------------------------------------------------
+      1e-04  2         0         1.17          0.99         0.08        0.00
+      1e-04  3         0         0.06          0.05         0.00        0.00
+      1e-04  4         0         0.00          0.00         0.00        0.00
+      3e-04  2         7        10.50          6.67         1.02        1.05
+      3e-04  3         0         1.69          0.82         0.01        0.00
+      3e-04  4         0         0.23          0.09         0.00        0.00
+      1e-03  2        49       116.63         36.69        12.40        1.34
+      1e-03  3        11        62.46          9.37         0.40        1.17
+      1e-03  4         3        27.92          2.30         0.01        1.30
+      3e-03  2       142      1049.63        111.99       101.05        1.27
+      3e-03  3        66      1686.42         42.41        10.28        1.56
+      3e-03  4        17      2261.92         14.31         0.60        1.19
+      1e-02  2       256     11662.61        226.31       693.63        1.13
+      1e-02  3       157     62460.06        119.12       251.30        1.32
+      1e-02  4        55    279248.91         45.54        55.19        1.21
+
+  OBSERVED vs the EXACT per-core model (all h): median 1.21  [1.05, 1.56]  n=9
+   [PASS] the EXACT per-core model is calibrated against the measured multi-decade coincidence counts to within 1.6x at every h and k (median obs/model 1.21); it slightly UNDER-states chance, so the spec adds a +1-bit safety term
+  CLOSED FORM / exact per-core, restricted to the UNSATURATED regime (max per-core expected hits < 0.3, which is the tight-target regime by a factor ~1e8):
+    median 1.18  [1.18, 1.18]  n=1
+   [PASS] the closed form over-states the exact rate by 1.2-1.9x in the unsaturated regime (median 1.18) -- usable and CONSERVATIVE
+  EXACT / HOMOGENEOUS in the same unsaturated regime: median 11.6x  [11.6, 11.6]
+   [PASS] the homogeneous 'windows multiply over a flat core count' model UNDER-states the true chance rate by 12x (median) in the unsaturated regime -- that is the anti-conservative error, and it is worst at high k
+
+  (rows where max per-core expected hits >= 0.3 are SATURATED: there the product form breaks
+   and the homogeneous model flips to over-counting. Saturation per row: h=1e-04:0.15, h=3e-04:0.46, h=1e-03:1.52, h=3e-03:4.56, h=1e-02:15.20)
+
+========================================================================================================
+V5  M(T) AND THE FULL FORMULA AT DEPTHS 8, 9, 10 -- measured on UNSATURATED target sets
+========================================================================================================
+  A first attempt measured M(T)'s depth trend on sets containing alpha_s (per-core hit
+  probability 0.17 at depth 10) and got 2.48x/depth; folded into G*B_rho^k/B_core^(k-1) that
+  predicted 8.2x/depth growth of real coincidences while the measurement gives 3.4x. The
+  estimator was contaminated by SATURATION. Redone here on targets that are unsaturated at
+  every depth, and the whole formula -- not just its growth rate -- is checked at each depth.
+
+  depth  8:  1,480 cores,   252 with >=1 hit
+  depth  9:  6,730 cores,   618 with >=1 hit
+  depth 10: 29,438 cores, 2,910 with >=1 hit
+
+  unsaturated pool (8): r_tau_e(p_max=0.001), alpha_em_inv_MZ(p_max=0.003), sin2_thetaW_MZ(p_max=0.003), koide_Q_up(p_max=0.030), higgs_lambda(p_max=0.041), ckm_lambda(p_max=0.070), koide_Q_down(p_max=0.068), r_t_b(p_max=0.090)
+
+  M(T) on unsaturated sets, SAME estimator at all three depths:
+  set                                                 d8        d9       d10   x/depth
+  ------------------------------------------------------------------------------------
+  {r_tau_e, alpha_em_inv}                            0.0       0.0       0.0       nan
+  {r_tau_e, sin2_thetaW_}                            0.0       0.0       0.0       nan
+  {r_tau_e, koide_Q_up}                             31.5      18.7      30.1      0.98
+  {r_tau_e, higgs_lambda}                            0.0      13.0      23.3       nan
+  {r_tau_e, ckm_lambda}                             28.6      30.1      25.3      0.94
+  {r_tau_e, koide_Q_down}                           25.7      23.4      25.6      1.00
+  {r_tau_e, alpha_em_inv, sin2_thetaW_}              0.0       0.0       0.0       nan
+  {r_tau_e, alpha_em_inv, koide_Q_up}                0.0       0.0       0.0       nan
+  {r_tau_e, alpha_em_inv, higgs_lambda}              0.0       0.0       0.0       nan
+  {r_tau_e, alpha_em_inv, ckm_lambda}                0.0       0.0       0.0       nan
+
+  => M(T) growth G = 0.98x per depth  (-0.03 bits/depth), median over 3 unsaturated sets  [range 0.94-1.00]
+   [PASS] M(T) measured on unsaturated sets is nearly depth-STABLE (G = 0.98x/depth), unlike the saturation-contaminated first estimate of 2.48x
+
+========================================================================================================
+V6  WHAT THE FORMULA COUNTS: interlock TUPLES (exact identity) vs CORES (the real test)
+========================================================================================================
+  Two statistics, and the spec must not confuse them:
+    TUPLES = (core, one matching dressing per target) combinations -- the number of DISTINCT
+             k-target relation sets a chance search would print. E_tuples = M(T)*PROD(rho_i*W_i)
+             /n_cores^(k-1) is an IDENTITY for this statistic once M(T) is defined as
+             E[PROD r_i]/PROD E[r_i]; verified numerically below as an implementation check.
+    CORES  = distinct structural cores reaching all k targets. Strictly smaller; needs the
+             per-core saturation term 1-exp(-r*W). This is the statistic V4 validated against
+             observation (median obs/model 1.21).
+  In the TIGHT-target regime the two coincide, because no core is anywhere near saturation.
+
+   depth  k  measured tuples    identity   ratio  measured cores  cores/tuples
+  ------------------------------------------------------------------------------
+       8  2            1,525       1,525  1.0000             432         0.283
+       8  3            2,404       2,404  1.0000             260         0.108
+       9  2           12,104      12,104  1.0000           1,300         0.107
+       9  3           45,869      45,869  1.0000             914         0.020
+      10  2           33,863      33,863  1.0000           4,895         0.145
+      10  3          113,555     113,555  1.0000           3,173         0.028
+   [PASS] E_tuples = M(T)*PROD(rho_i*W_i)/n_cores^(k-1) holds as an exact identity at every depth and k (max deviation 2.22e-16) -- the implementation is right
+
+  cores/tuples at these LOOSE-ish targets is 0.03-0.3 (cores saturate). For the six
+  TIGHT targets at their REAL windows the maximum per-core expected hit count is:
+    a_e                max_c r_c(i)*W_i = 1.491e-07
+    a_mu               max_c r_c(i)*W_i = 2.472e-04
+    r_n_p              max_c r_c(i)*W_i = 8.940e-07
+    r_mu_e             max_c r_c(i)*W_i = 3.309e-05
+    alpha_em_inv_0     max_c r_c(i)*W_i = 2.008e-07
+    r_p_e              max_c r_c(i)*W_i = 5.371e-07
+   [PASS] in the tight-target regime no core is remotely saturated (max per-core expected hits 2.5e-04 << 1, i.e. the 1-exp(-x) correction is under 0.02%), so TUPLES == CORES there and the closed form is exact
+
+  PER-SET depth scaling (the predictive claim). For a FIXED target set T,
+  E(D+1)/E(D) = G1^(k-1) * PROD_i [rho_i growth] / [n_cores growth]^(k-1), where G1 is the
+  per-depth growth of the core-CONCENTRATION factor. G1 is FITTED ON PAIRS ONLY and then
+  used to PREDICT the k=3 growth out of sample.
+
+  FIT on 16 pairs: G1 = median[measured growth * B_core / PROD B_rho_i] = 1.558  [1.19, 1.86]
+  (G1 = 1 would mean depth-stable concentration; G1 = 1.56 means each extra depth
+   concentrates the reachable cores by that factor, which is an EXTRA 0.64 bits of
+   chance per additional interlocked target per depth.)
+
+  OUT-OF-SAMPLE PREDICTION of the k=3 growth using the pair-fitted G1:
+  set                                           measured  predicted   ratio
+  --------------------------------------------------------------------------
+  {r_tau_e, koide_Q_up, ckm_lambda}                 7.46       7.22    1.03
+  {r_tau_e, koide_Q_up, koide_Q_dow}                6.81       7.24    0.94
+  {r_tau_e, koide_Q_up, r_t_b}                      9.73       7.31    1.33
+  {r_tau_e, ckm_lambda, koide_Q_dow}                6.19       7.21    0.86
+  {r_tau_e, ckm_lambda, r_t_b}                      8.70       7.28    1.19
+  {r_tau_e, koide_Q_dow, r_t_b}                     8.07       7.31    1.10
+  {alpha_em_in, koide_Q_dow, r_t_b}                 9.27       7.13    1.30
+  {sin2_thetaW, ckm_lambda, koide_Q_dow}           10.45       6.89    1.52
+  {sin2_thetaW, koide_Q_dow, r_t_b}                17.27       6.98    2.48
+  {koide_Q_up, higgs_lambd, ckm_lambda}             7.16       6.88    1.04
+  {koide_Q_up, higgs_lambd, koide_Q_dow}            7.22       6.90    1.05
+  {koide_Q_up, higgs_lambd, r_t_b}                  7.66       6.97    1.10
+  {koide_Q_up, ckm_lambda, koide_Q_dow}             6.98       6.93    1.01
+  {koide_Q_up, ckm_lambda, r_t_b}                   7.78       7.00    1.11
+  {koide_Q_up, koide_Q_dow, r_t_b}                  7.87       7.02    1.12
+  {higgs_lambd, ckm_lambda, koide_Q_dow}            6.02       6.87    0.88
+  {higgs_lambd, ckm_lambda, r_t_b}                  7.74       6.94    1.12
+  {higgs_lambd, koide_Q_dow, r_t_b}                 6.00       6.96    0.86
+  {ckm_lambda, koide_Q_dow, r_t_b}                  5.67       6.99    0.81
+
+  k=3 measured/predicted: median 1.10  [0.81, 2.48]  over 19 sets
+   [PASS] G1 fitted on k=2 predicts the k=3 per-depth growth out of sample to within 1.4x (median 1.10) -- the (k-1) exponent on the concentration term is the right functional form
+  composite per-depth chance growth at k=2: 5.17x = +2.37 bits/depth
+  composite per-depth chance growth at k=3: 6.95x = +2.80 bits/depth
+  composite per-depth chance growth at k=4: 9.34x = +3.22 bits/depth
+
+========================================================================================================
+CHECKS 18/18 PASS
+========================================================================================================

@@ -1,0 +1,110 @@
+========================================================================================================
+theory_edges -- dependency edges the dataset files as INDEPENDENT measurements
+========================================================================================================
+
+T1  a_e  <-  alpha   (mass-independent QED series; coefficients [LIT] Kinoshita et al.)
+--------------------------------------------------------------------------------------------------------
+      alpha       = 1/137.035999177 = 7.297352564331e-03
+      alpha/pi    = 2.322819464195e-03
+   order n                   C_n      C_n (alpha/pi)^n         running total
+  ----------------------------------------------------------------------------------------------------
+         1                   0.5    1.161409732098e-03    1.161409732098e-03
+         2       -0.328478965579   -1.772305060463e-06    1.159637427037e-03
+         3         1.18124145659    1.480420363156e-08    1.159652231241e-03
+         4        -1.91224576493   -5.566798916586e-11    1.159652175573e-03
+         5                 6.737    4.555581600450e-13    1.159652176028e-03
+    had+EW                 [LIT]    1.722700000000e-12    1.159652177751e-03
+
+      a_e (measured, dataset) = 1.15965218059000e-03  +/- 1.30e-13  (rel 1.121e-10)
+      a_e (QED from alpha)    = 1.15965217775110e-03
+      residual                = 2.839e-12 abs = 2.448e-09 rel = 21.84 sigma
+
+      READ: the QED series, fed ONLY alpha, reproduces the measured a_e to 2.45e-09 relative -- that is
+      21.8 sigma of a_e's own error bar, i.e. a_e contains no information about nature beyond alpha
+      that is bigger than the accuracy of this reconstruction. a_e's own window is 2.24e-10
+      (32.1 bits). Given alpha, the PHYSICS content left in a_e is at most
+      log2(2.4e-09/2.2e-10) = 3.4 bits, not 32.1.
+   [PASS] the QED series reproduces a_e from alpha alone to 2.4e-09 relative (22 sigma) -- self-validating: wrong coefficients could not land this close
+   [PASS] so a_e carries at most 3.4 bits of NEW physics beyond alpha, not the 32.1 bits its window advertises
+
+      BUT THE FDR BITS STILL ADD, and this is the distinction that must not be blurred: the search
+      vocabulary is {3, sqrt(8pi/3), small ints}. It cannot build -0.328478965579..., so an expression
+      that lands on alpha does NOT thereby land on a_e -- a_e sits 1.516e-03 relative away from
+      alpha/2pi, which is 6.76e+06 target-windows away. So:
+        * look-elsewhere accounting (exhaust._exact_fdr_bits): CORRECT to add the bits. No leniency bug.
+        * Gate C's C1 mode ('>=2 INDEPENDENT observables'): WRONG to count them as 2. k is inflated.
+   [PASS] a_e is NOT free for the enumeration: |a_e - alpha/2pi|/a_e = 1.52e-03 = 6.8e+06 windows
+
+T2  alpha_em_inv_MZ  <-  alpha_em_inv_0   (RG running; increment = leptonic + hadronic VP)
+--------------------------------------------------------------------------------------------------------
+      1/alpha(0)   = 137.035999177 +/- 2.1e-08
+      1/alpha(M_Z) = 127.951000 +/- 0.0090   (MS-bar, 5 flavours)
+      implied total running increment  Delta = 1 - a(0)/a(MZ) = 0.066296
+
+      d(1/alpha(MZ)) = -1/alpha(0) * d(Delta), so alpha(MZ) adds information beyond alpha(0)
+      only if Delta is known WORSE than 6.57e-05 absolute.
+
+    assumed sigma(Delta) [LIT range]   predicted sigma(1/a_MZ)   r_j (rel)  cond bits
+  ----------------------------------------------------------------------------------------------------
+                             3.0e-05                    0.0041    6.43e-05        0.0
+                             7.0e-05                    0.0096    1.50e-04        0.1
+                             1.0e-04                    0.0137    2.14e-04        0.6
+                             2.0e-04                    0.0274    4.28e-04        1.6
+                             1.0e-03                    0.1370    2.14e-03        3.9
+
+      READ: the standard hadronic-VP uncertainty sigma(Delta_alpha_had^(5)) is of order 1e-4 [LIT], the
+      SAME order as the break-even 6.6e-05. So alpha(M_Z) adds ~0-2 bits of new physics
+      beyond alpha(0), not the 12.8 bits its window advertises. The increment 0.066296 printed above
+      is INFERRED from the two dataset entries, not independently computed -- the repo stores no
+      breakdown into leptonic / hadronic / top / W pieces and no scheme tag beyond the note string, so
+      the split cannot be checked here. That missing breakdown is itself the point: the MS-bar
+      5-flavour entry and the on-shell running of alpha(0) are different numbers, which is exactly the
+      hidden scale/scheme choice GATE_POWER_ANALYSIS S4.3 already flags. Same split as T1: FDR bits
+      add (the search cannot build the running), sector COUNT k does not.
+   [PASS] alpha(M_Z)'s break-even on the running increment (6.6e-05) is the same order as the literature hadronic-VP error (~1e-4) -> ~0-2 new bits, not 12.8
+
+T3  a_mu  <-  alpha   (PARTIAL: hadronic term is large and its value is CONTESTED)
+--------------------------------------------------------------------------------------------------------
+      a_mu measured  = 1.1659205900e-03 +/- 2.2e-10  (window 3.77e-07, 21.3 bits)
+      alpha/2pi      = 1.1614097321e-03   -> a_mu/(alpha/2pi) = 1.00388395
+      a_e /(alpha/2pi) = 0.99848671
+      so a_mu and a_e are BOTH alpha/2pi to within 0.388%,
+      and they differ from each OTHER by 5.405e-03 relative = 1.4e+04 a_mu-windows.
+
+      For a_mu to contribute >= 5 bits beyond alpha, the SM prediction of a_mu would have to be
+      uncertain by >= 1.21e-05 relative (= 1.41e-08 absolute). The hadronic vacuum-
+      polarisation term is ~7e-8 absolute of a_mu with a percent-level error [LIT], i.e. of order
+      1e-9..1e-10 absolute -> 1.2 bits. AND the SM value is currently in 4-5 sigma
+      dispute (data-driven vs lattice HVP), so 'predicted from alpha' is contested either way.
+      VERDICT ON a_mu: PARTIAL dependence, unquantifiable from inside this repo. Do NOT count
+      a_mu and a_e as two independent observables -- they share the entire QED series.
+   [PASS] a_mu's dependence on alpha is PARTIAL and contested -> reported as a requirement (needs >= 1.2e-05 rel theory error to add 5 bits), not asserted
+
+T4  r_p_e / r_mu_e: the MeV unit-conversion correlation ratio() drops by construction
+--------------------------------------------------------------------------------------------------------
+      pdg_constants.ratio() docstring: 'relative errors added in quadrature
+      (independent-Gaussian assumption)'. But m_e, m_mu, m_p are stored in MeV and every
+      MeV value carries the SAME kg->MeV / u->MeV conversion, so their errors are common-mode
+      and the RATIO is better known than quadrature says.
+      r_p_e    rel(quadrature, as stored) = 4.263e-10  (30.1 bits)
+               rel(fully common-mode)     = 1.554e-11  (34.9 bits)   -> up to +4.8 bits
+      r_mu_e   rel(quadrature, as stored) = 2.177e-08  (24.5 bits)
+               rel(fully common-mode)     = 2.147e-08  (24.5 bits)   -> up to +0.0 bits
+      r_n_p    rel(quadrature, as stored) = 6.526e-10  (29.5 bits)
+               rel(fully common-mode)     = 2.657e-10  (30.8 bits)   -> up to +1.3 bits
+
+      DIRECTION: this makes the dataset's windows for the mass ratios TOO WIDE, i.e. too LENIENT --
+      more chance hits than there should be -- while simultaneously UNDER-crediting the bits a genuine
+      hit would earn. Both errors point the same way for a false positive: a wider window is easier to
+      hit. Size: up to +5 bits on r_p_e in the fully-common-mode limit. The true correlation
+      is between 0 and 1 and cannot be settled from inside this repo (the dataset stores no covariance),
+      so this is flagged as a BOUNDED unknown, not a corrected number.
+   [PASS] the mass-ratio windows are bounded between the stored quadrature value and the fully common-mode value; the repo stores no covariance so the true value is unresolved
+
+========================================================================================================
+EXPORTED THEORY EDGES (consumed by target_independence_graph.py):
+   a_e                <- alpha_em_inv_0     r_j=2.448e-09    [QED]  QED series reproduces a_e from alpha to 2.45e-09 rel
+   alpha_em_inv_MZ    <- alpha_em_inv_0     r_j=2.142e-04    [RG]  running increment known to ~1e-4 [LIT] -> r_j at break-even
+   a_mu               <- alpha_em_inv_0     r_j=nan          [QED-PARTIAL]  hadronic term contested; dependence real but unquantified here
+CHECKS: 6/6 PASS
+========================================================================================================

@@ -44,7 +44,7 @@ OUT = os.path.join(ROOT, "audit_interlock", "expected_count_audit.json")
 
 # the hit counts recorded in NULL_RESULT_DEPTH10_EXHAUSTIVE.md, to be CHECKED not trusted
 RECORDED = {
-    "r_tau_e": 28, "alpha_em_inv_MZ": 50, "sin2_theta_W": 72,
+    "r_tau_e": 28, "alpha_em_inv_MZ": 50, "sin2_thetaW_MZ": 72,  # key fixed 2026-10-08 (was sin2_theta_W, so this row was never compared)
     "koide_Q_up": 838, "higgs_lambda": 1130, "ckm_lambda": 2121, "koide_Q_down": 2098,
     "r_b_tau": 4747, "r_t_b": 4443, "alpha_s_MZ": 4933,
     "pmns_sin2_13": 15212, "pmns_sin2_12": 26142, "pmns_sin2_23": 20799,

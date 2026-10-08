@@ -1,0 +1,236 @@
+
+========================================================================================================
+S1  WINDOW / SIGMA CONVENTION -- what the search's hit predicate IS
+========================================================================================================
+  grind.sweep_target_streamed: tol = measurement_tol(target); a value is a HIT iff
+  score_value(v, target).rel_error <= tol, with rel_error = |v-tv|/|tv| and tol = sigma/|tv|.
+  => half-width = 1.000 sigma; FULL relative window W = 2*tol. All bits below use W.
+
+  target                tol=rel_prec     W=2*tol  bits=log2(1/W)  sigma@edge  clamped
+  ------------------------------------------------------------------------------------------
+  a_e                     1.1210e-10  2.2421e-10           32.05    1.000000         
+   [PASS] a_e: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  alpha_em_inv_0          1.5324e-10  3.0649e-10           31.60    1.000000         
+   [PASS] alpha_em_inv_0: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  r_p_e                   4.2626e-10  8.5252e-10           30.13    1.000000         
+   [PASS] r_p_e: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  r_n_p                   6.5257e-10  1.3051e-09           29.51    1.000000         
+   [PASS] r_n_p: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  r_mu_e                  2.1770e-08  4.3540e-08           24.45    1.000000         
+   [PASS] r_mu_e: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  a_mu                    1.8869e-07  3.7738e-07           21.34    1.000000         
+   [PASS] a_mu: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  r_tau_e                 6.7535e-05  1.3507e-04           12.85    1.000000         
+   [PASS] r_tau_e: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  alpha_em_inv_MZ         7.0339e-05  1.4068e-04           12.80    1.000000         
+   [PASS] alpha_em_inv_MZ: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  sin2_thetaW_MZ          1.2975e-04  2.5949e-04           11.91    1.000000         
+   [PASS] sin2_thetaW_MZ: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  koide_Q_up              1.3492e-03  2.6984e-03            8.53    1.000000         
+   [PASS] koide_Q_up: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  higgs_lambda            1.7572e-03  3.5144e-03            8.15    1.000000         
+   [PASS] higgs_lambda: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  ckm_lambda              3.0221e-03  6.0442e-03            7.37    1.000000         
+   [PASS] ckm_lambda: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  koide_Q_down            3.0719e-03  6.1439e-03            7.35    1.000000         
+   [PASS] koide_Q_down: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  r_b_tau                 7.1774e-03  1.4355e-02            6.12    1.000000         
+   [PASS] r_b_tau: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  r_t_b                   7.3711e-03  1.4742e-02            6.08    1.000000         
+   [PASS] r_t_b: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  alpha_s_MZ              7.6271e-03  1.5254e-02            6.03    1.000000         
+   [PASS] alpha_s_MZ: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  koide_Q_lep             1.0162e-05  2.0325e-05           15.59    1.000000         
+   [PASS] koide_Q_lep: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  pmns_sin2_13            2.5420e-02  5.0840e-02            4.30    1.000000         
+   [PASS] pmns_sin2_13: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  pmns_sin2_12            3.9604e-02  7.9208e-02            3.66    1.000000         
+   [PASS] pmns_sin2_12: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+  pmns_sin2_23            3.1469e-02  6.2937e-02            3.99    1.000000         
+   [PASS] pmns_sin2_23: hit at 0.999*tol, miss at 1.001*tol, edge == 1.0000 sigma
+   [PASS] min_tol=1e-10 / max_tol=0.2 clamps bind on 0 of 20 targets
+
+  Gate A's own per-target cap (_bit_cap = n_digits*log2(10)) vs window bits log2(1/W):
+  target                    cap  window bits   excess
+  ------------------------------------------------------
+  a_e                     33.05        32.05    1.000
+  alpha_em_inv_0          32.60        31.60    1.000
+  r_p_e                   31.13        30.13    1.000
+  r_n_p                   30.51        29.51    1.000
+  r_mu_e                  25.45        24.45    1.000
+  a_mu                    22.34        21.34    1.000
+  r_tau_e                 13.85        12.85    1.000
+  alpha_em_inv_MZ         13.80        12.80    1.000
+  sin2_thetaW_MZ          12.91        11.91    1.000
+  koide_Q_up               9.53         8.53    1.000
+  higgs_lambda             9.15         8.15    1.000
+  ckm_lambda               8.37         7.37    1.000
+  koide_Q_down             8.35         7.35    1.000
+  r_b_tau                  7.12         6.12    1.000
+  r_t_b                    7.08         6.08    1.000
+  alpha_s_MZ               7.03         6.03    1.000
+  koide_Q_lep             16.59        15.59    1.000
+  pmns_sin2_13             5.30         4.30    1.000
+  pmns_sin2_12             4.66         3.66    1.000
+  pmns_sin2_23             4.99         3.99    1.000
+   [PASS] cap exceeds window bits by exactly +1.000 bit on every target (min 1.000000, max 1.000000) -- n_digits = -log10(rel) so cap = log2(1/rel) = log2(1/W)+1
+
+========================================================================================================
+S2  RESOLVING THE m_p/m_e WINDOW CONTRADICTION (two prior audits disagree by 1000x)
+========================================================================================================
+  key                      CODATA direct        sigma        rel  stored rel    ratio    bits
+  --------------------------------------------------------------------------------------------
+  r_p_e                    1836.15267343    3.200e-08 1.7428e-11  4.2626e-10    24.46    4.61
+  r_mu_e                     206.7682827    4.600e-06 2.2247e-08  2.1770e-08     0.98   -0.03
+  r_n_p                    1.00137841946    4.500e-10 4.4938e-10  6.5257e-10     1.45    0.54
+  alpha_em_inv_0           137.035999177    2.100e-08 1.5324e-10  1.5324e-10     1.00    0.00
+  a_e                   0.00115965218059    1.300e-13 1.1210e-10  1.1210e-10     1.00    0.00
+   [PASS] repo's stored alpha^-1 sigma == CODATA-2022 exactly (source cross-check)
+   [PASS] repo's stored a_e sigma == CODATA-2022 exactly (source cross-check)
+
+  ARITHMETIC: '1836.152673426(32)' = 1836.152673426 +/- 3.2e-8  ->  rel = 1.7428e-11.
+  GATE_POWER_ANALYSIS.py:41 writes '3.2e-11/1836.15' = 1.743e-14 and BITS_RULE.py:14
+  writes 3.49e-14: BOTH are ~1000x too tight (they divided an already-relative 3.2e-11 by the
+  value a second time, or mistook 3.2e-8 for 3.2e-11).
+  The 'windows' audit repeated GPA's 3.2e-11 as if it were the absolute sigma -> its
+  '24,459x / 14.6 bits' figure is wrong. The 'ceiling_math' audit is CORRECT.
+  TRUE picture: stored (propagated) rel = 4.2626e-10; direct CODATA rel =
+  1.7428e-11; the search's window is 24.5x too WIDE
+  = 4.61 bits left on the table (not 14.6).
+   [PASS] m_p/m_e: the direct-ratio rel uncertainty is ~1.7e-11, NOT 1.7e-14 (GPA/BITS_RULE and the 'windows' audit are wrong; 'ceiling_math' is right)
+  in-repo proof: stored central r_p_e differs from the CODATA direct ratio by 4.04e-13 rel = 0.02 direct-sigma -> the CENTRAL value is the direct measurement while the SIGMA is propagated from two MeV masses.
+   [PASS] stored r_p_e central == CODATA direct ratio to better than its own propagated window
+
+========================================================================================================
+S3  THE LOOK-ELSEWHERE COUNT: raw vs distinct vs float64-distinguishable, per layer
+========================================================================================================
+  depth  6: raw      236,624  distinct      107,719  R=raw/distinct 2.197  n_skel_total None
+  depth  7: raw    1,566,116  distinct      498,848  R=raw/distinct 3.139  n_skel_total None
+  depth  8: raw    8,123,807  distinct    2,207,173  R=raw/distinct 3.681  n_skel_total 1480
+  depth  9: raw   38,450,388  distinct    9,830,707  R=raw/distinct 3.911  n_skel_total 6730
+  depth 10: raw  174,890,804  distinct   42,534,139  R=raw/distinct 4.112  n_skel_total 29438
+
+  germ layer (real DN._germ_recipe_count, n_free=23):
+   g_s: 3:1,472  4:9,936  5:36,708  6:100,119  7:226,941  8:453,882  9:829,058
+   ratios: 6.75  3.69  2.73  2.27  2.00  1.83
+
+  skeleton layer measured directly: n_skel(1)=13, n_skel(2)=73 (0.1s)
+   [PASS] raw(6) identity from the two directly-measured skeleton layers reproduces the committed replay ground truth 236,624 exactly
+   [PASS] n_skel(3) solves EXACTLY from committed raw(D=7): 247 (remainder 0)
+   [PASS] n_skel(4) solves EXACTLY from committed raw(D=8): 1,147 (remainder 0)
+   [PASS] n_skel(5) solves EXACTLY from committed raw(D=9): 5,250 (remainder 0)
+   [PASS] n_skel(6) solves EXACTLY from committed raw(D=10): 22,708 (remainder 0)
+   [PASS] sum n_skel(1..4) = 1,480 == committed depth-8 n_skeletons_total 1,480 (independent route to the same layer counts)
+   [PASS] sum n_skel(1..5) = 6,730 == committed depth-9 n_skeletons_total 6,730 (independent route to the same layer counts)
+   [PASS] sum n_skel(1..6) = 29,438 == committed depth-10 n_skeletons_total 29,438 (independent route to the same layer counts)
+  n_skel(b_s) = 1:13, 2:73, 3:247, 4:1,147, 5:5,250, 6:22,708
+   [PASS] sum n_skel(1..6) = 29,438 == committed depth-10 n_skeletons_total 29,438
+   [PASS] raw(6) identity reproduces committed exactly: 236,624 vs 236,624
+   [PASS] raw(7) identity reproduces committed exactly: 1,566,116 vs 1,566,116
+   [PASS] raw(8) identity reproduces committed exactly: 8,123,807 vs 8,123,807
+   [PASS] raw(9) identity reproduces committed exactly: 38,450,388 vs 38,450,388
+   [PASS] raw(10) identity reproduces committed exactly: 174,890,804 vs 174,890,804
+
+  DISTINCT-value growth ratios (D6->10): 4.631, 4.425, 4.454, 4.327   -> last 4.327 = 2.113 bits/depth
+  published model 30^(D-4): at D=10 gives 7.290e+08 vs real distinct 42,534,139 = 17.1x over-count; at D=18 4.783e+20
+   [PASS] depth-8 values.f64 length 2,207,173 == committed distinct 2,207,173
+   [PASS] depth-9 values.f64 length 9,830,707 == committed distinct 9,830,707
+   [PASS] depth-10 values.f64 length 42,534,139 == committed distinct 42,534,139
+
+  depth-10: 42,534,139 mpmath-distinct keys -> 33,309,840 distinct float64 (1.277x, 0.353 bits)
+           finite&positive float64: 40,304,591 (inf/overflow 1,144,060, <=0/underflow 1,085,488)
+
+========================================================================================================
+S4  LOCAL DENSITY rho_i (per unit ln|v|) AT EACH TARGET -- the correct chance model
+========================================================================================================
+  depth 8: 2,168,385 finite positive values, ln span -673.2 .. 673.2 (585 decades)
+  depth 9: 9,523,143 finite positive values, ln span -741.0 .. 709.8 (630 decades)
+  depth 10: 40,304,591 finite positive values, ln span -744.4 .. 709.8 (632 decades)
+
+  target                   rho(d8)     rho(d9)    rho(d10)   B_rho  H_pred=rho*W   H_meas   ratio
+  ------------------------------------------------------------------------------------------------
+  a_e                       17,100      64,190     261,565   3.911           0.0        0    0.00
+  alpha_em_inv_0            18,235      68,505     278,860   3.911           0.0        0    0.00
+  r_p_e                     15,655      60,185     250,000   3.996           0.0        0    0.00
+  r_n_p                     23,070      90,440     332,810   3.798           0.0        0    0.00
+  r_mu_e                    17,720      66,860     272,935   3.925           0.0        0    0.00
+  a_mu                      16,965      64,210     261,750   3.928           0.1        0    0.00
+  r_tau_e                   15,215      58,725     244,280   4.007          33.0       28    0.85
+  alpha_em_inv_MZ           18,285      68,780     279,930   3.913          39.4       50    1.27
+  sin2_thetaW_MZ            22,500      88,765     329,595   3.827          85.5       72    0.84
+  koide_Q_up                22,580      90,775     334,500   3.849         902.6      838    0.93
+  higgs_lambda              22,105      87,155     322,165   3.818       1,132.2    1,130    1.00
+  ckm_lambda                22,355      88,715     328,665   3.834       1,986.5    2,121    1.07
+  koide_Q_down              22,570      90,935     333,865   3.846       2,051.2    2,098    1.02
+  r_b_tau                   22,480      89,375     331,680   3.841       4,761.2    4,747    1.00
+  r_t_b                     19,625      75,430     295,860   3.883       4,361.7    4,443    1.02
+  alpha_s_MZ                22,030      86,520     321,080   3.818       4,897.8    4,933    1.01
+  koide_Q_lep               22,615      90,940     333,715   3.841           6.8       11    1.62
+  pmns_sin2_13              20,615      76,575     298,750   3.807      15,188.4   15,212    1.00
+  pmns_sin2_12              22,285      89,605     329,885   3.847      26,129.5   26,142    1.00
+  pmns_sin2_23              22,705      90,860     332,360   3.826      20,917.8   20,799    0.99
+   [PASS] my recount of depth-10 in-window hits over the 19 searched targets = 82,613 == committed VERDICT.json n_hits 82,613
+
+  H_meas / (rho*W) over the 14 targets with H_pred>5: min 0.842  median 1.001  max 1.622
+   [PASS] the LOCAL model H = rho*W is unbiased (median within 10% of 1.0)
+  GLOBAL model N*W over-states measured hits by median 130x  (min 79x, max 205x) -> = 7.02 bits, the 632-decade dynamic range.
+  rho growth per depth (sqrt of d8->d10), median over 20 targets: 3.847 = 1.944 bits/depth
+
+========================================================================================================
+S5  CORE / DRESSING DECOMPOSITION + INTERLOCK CHANCE MODEL, calibrated on depth 10
+========================================================================================================
+  retained records: 82,624
+   [PASS] target-assignment over retained records = 82,613 == 82,613 committed hits (19 searched targets)
+
+  L1 (skeleton only): 2,910 cores carry >=1 hit; distinct-targets-per-core histogram
+    1:512  2:283  3:196  4:273  5:304  6:343  7:348  8:318  9:191  10:110  11:32
+    max distinct targets on ONE core = 11
+
+  L2 (skeleton+free-germ key+forced nets): 80,447 cores carry >=1 hit; distinct-targets-per-core histogram
+    1:78,307  2:2,116  3:22  4:2
+    max distinct targets on ONE core = 4
+
+  DENOMINATORS at depth 10:  n_cores(L1) = 29,438   n_cores(L2) = 32,686,128
+  dressings per core: L1 = raw/n_cores = 5,941   L2 = 6.3 (mean |net_exps| of the free germ's step share)
+
+  MODEL CALIBRATION (L1 cores, independence across targets):
+    k  observed cores >=k   model (indep)  obs/model
+  ----------------------------------------------------
+    1               2,910        29,216.0      0.100
+    2               2,398        26,506.1      0.090
+    3               2,115        17,730.2      0.119
+    4               1,919         7,179.8      0.267
+    5               1,646         1,714.7      0.960
+    6               1,342           244.3      5.493
+    7                 999            20.7     48.167
+    8                 651             1.0    636.930
+    9                 333             0.0  12189.223
+   10                 142             0.0 418238.758
+   11                  32             0.024700686.548
+   [PASS] HOMOGENEOUS-core independence (every core equally likely to reach a target) is BADLY ANTI-CONSERVATIVE at high k: obs/model = 5.5x at k=6 and 637x at k=8. Interlock bits may NOT be computed by multiplying windows over a flat core count.
+   [PASS] the same model is CONSERVATIVE at low k (obs/model 0.09 at k=2), so the failure is a REACH-HETEROGENEITY (heavy-tailed) effect, not a uniform offset
+
+  ROOT CAUSE: only 2,910 of 29,438 cores (9.9%) place ANY dressed value inside ANY target window, although the mean is 2.81 hits per core -- the per-core REACH into the O(1) decade is heavy-tailed, so coincidences concentrate. Quantified in interlock_spec_model.py.
+
+  PERMUTATION NULL (200 shuffles of hit->core assignment, marginals preserved):
+    k    observed   null mean   null sd        z  obs/null
+  ----------------------------------------------------------
+    2       2,398     2,557.9       6.9   -23.05     0.937
+    3       2,115     2,290.3       8.3   -21.16     0.923
+    4       1,919     2,069.6       9.5   -15.90     0.927
+    5       1,646     1,842.2      11.2   -17.55     0.894
+    6       1,342     1,580.9      12.8   -18.62     0.849
+    7         999     1,247.8      14.5   -17.15     0.801
+    8         651       846.1      15.2   -12.82     0.769
+    9         333       469.0      13.4   -10.15     0.710
+   10         142       193.4      10.0    -5.16     0.734
+   11          32        31.8       4.5     0.04     1.005
+   [PASS] no ANTI-conservative core-level clustering: observed coincidences are at or BELOW the permutation null at every k=2..9 (max z -10.15)
+
+  => the interlock chance model is
+       E[cores matching all of T] = n_cores * PROD_i min(1, rho_i*W_i / n_cores)
+     with rho_i measured LOCALLY (S4) and n_cores the CORE count at the chosen strictness level.
+
+========================================================================================================
+CHECKS 49/49 PASS
+========================================================================================================

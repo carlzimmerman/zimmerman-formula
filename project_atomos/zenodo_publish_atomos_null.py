@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 """Publish PAPER_ATOMOS_NULL.pdf to Zenodo (production).
 Reads ZENODO_ACCESS_TOKEN from /Users/carlzimmerman/new_physics/.env -- NEVER printed.
-Usage: python zenodo_publish_atomos_null.py
+Usage: python zenodo_publish_atomos_null.py                      new record (v1/v2 flow)
+       python zenodo_publish_atomos_null.py DRAFT_ID             resume an existing draft
+       python zenodo_publish_atomos_null.py --newversion REC_ID [--meta FILE]
+           new VERSION of published record REC_ID under the same concept DOI: the inherited
+           files are removed from the draft before the new PDF is uploaded.
 """
 import json, os, sys, time, urllib.request, urllib.error
 
 ENV = "/Users/carlzimmerman/new_physics/.env"
 PDF = "pdf/PAPER_ATOMOS_NULL.pdf"
 META = "PAPER_ATOMOS_NULL.zenodo.json"
+if "--meta" in sys.argv:
+    META = sys.argv[sys.argv.index("--meta") + 1]
 BASE = "https://zenodo.org/api"
 
 def token():
@@ -51,8 +57,24 @@ def main():
     tok = token()
     meta = json.load(open(META))
 
-    # 1) create deposition (or reuse an existing DRAFT id passed as argv[1])
-    if len(sys.argv) > 1:
+    # 1) create deposition, a new version of a published record, or reuse a DRAFT id
+    if "--newversion" in sys.argv:
+        rec = sys.argv[sys.argv.index("--newversion") + 1]
+        st, nv = req("POST", f"{BASE}/deposit/depositions/{rec}/actions/newversion", tok, tries=1)
+        if st not in (200, 201):
+            sys.exit(f"newversion failed [{st}]: {nv}")
+        draft_url = nv["links"]["latest_draft"]
+        st, dep = req("GET", draft_url, tok, tries=6)
+        if st != 200:
+            sys.exit(f"cannot fetch new-version draft [{st}]: {dep}")
+        print(f"new-version draft {dep['id']} of record {rec} -- rerun with this id if anything below fails")
+        for f in dep.get("files", []):   # the inherited previous-version files
+            dst, _ = req("DELETE", f"{BASE}/deposit/depositions/{dep['id']}/files/{f['id']}", tok, tries=4)
+            print(f"  removed inherited file {f.get('filename')!r} [{dst}]")
+        st, dep = req("GET", f"{BASE}/deposit/depositions/{dep['id']}", tok, tries=6)
+        if st != 200 or dep.get("files"):
+            sys.exit(f"inherited files remain ({[f.get('filename') for f in dep.get('files', [])]}) -- refusing to continue")
+    elif len(sys.argv) > 1 and not sys.argv[1].startswith("--"):
         st, dep = req("GET", f"{BASE}/deposit/depositions/{sys.argv[1]}", tok)
         if st != 200:
             sys.exit(f"reuse fetch failed [{st}]: {dep}")

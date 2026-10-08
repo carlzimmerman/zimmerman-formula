@@ -3,12 +3,9 @@
 **C. P. Zimmerman**
 *Briar Creek Tech · Charlotte, NC*
 
-*v3, 2026-10-08. Supersedes v2 (2026-07-29, Zenodo DOI 10.5281/zenodo.21654272). v3 is a
-correction release: an independent claim-by-claim audit traced every number in v2 to the outputs
-the scripts write (§11). The headline null and every conclusion stand. Twelve statements
-carried wrong numbers, six overstated what the outputs show, and seven numbers had no saved output.
-Those scripts were re-run and their outputs are now saved. All are corrected below. v2 itself superseded
-the unpublished v1 draft, of which five load-bearing claims were corrected and two were false.*
+*Draft v2, 2026-07-29. Supersedes the v1 draft of 2026-07-28, which was never published; five of
+its load-bearing claims are corrected here and two were outright false. All numbers are printed by
+committed scripts in this repository; script names are given per section.*
 
 ---
 
@@ -25,10 +22,8 @@ acceleration scale is tied to the cosmological constant, `a0 = cH_Lambda/Z` with
 <= 10 from the framework's two germs — the generation count `3` and the kernel germ `sqrt(8pi/3)`
 — and confront all of them with 19 measured SM targets through three gates. Result:
 **174,890,804 raw candidates, 42,534,139 distinct values, 82,613 in-window hits, ZERO surviving
-the gate.** Depths 6–9 are exhaustive clean nulls under the same engine. Depths 3 and 5 are clean
-nulls under the earlier forced-exhaustion engines (21 targets). Depth 4 is empty there by a
-depth-budget theorem (§2). Depth 10 extends the proven-empty range and is the first depth past 9
-where the word *exhaustive* applies rather than *sampled*.
+the gate.** Depths 3–9 were already exhaustive clean nulls; depth 10 extends the proven-empty
+range and is the first depth past 9 where the word *exhaustive* applies rather than *sampled*.
 This result is untouched by every correction below, because the operative gate never used the
 quantity we got wrong (§7).
 
@@ -40,7 +35,7 @@ informative at a computable depth, and our sampling campaign at depths 10–18 w
 empty. But the ceiling formula we published to express this,
 `D_max = D0 + ln(1/w)/ln(B)` with `B = 30`, `D0 = 4`, is wrong in both parameters: **`B = 30` is
 the step-menu *length*, not a branching factor — the realized factor is 4.41**, and `D0 = 4` is
-unfoundable because depth 4 cannot be built in this engine. The corrected ceiling for `1/alpha` is
+unfoundable because depth 4 cannot be built at all. The corrected ceiling for `1/alpha` is
 **D = 11.0** (we published 10.4); the level survived only by cancellation of four errors, while
 the slope was wrong by 2.5x.
 
@@ -58,8 +53,8 @@ cost is incurred `k` times, not once:
 
 Adding a target buys its bits **and** another full recipe search. With the missing term restored,
 `k_min = 4` at depth 18 rather than the 2 or 3 the two readings of the old rule gave. A
-label-permutation null on the real records is harsher still: chance alone puts a skeleton on **~11
-of the 18 independent targets simultaneously**, real multiplicities sit *below* chance at every `k`
+label-permutation null on the real records is harsher still: chance alone puts a skeleton on **10
+of 19 targets simultaneously**, real multiplicities sit *below* chance at every `k`
 (z = −15.3 to −0.1), and no `k` up to 12 is rare enough to clear a family-wise threshold. An
 apparent 11-target interlock in this search would be noise.
 
@@ -83,8 +78,7 @@ The framework supplies exactly two germs and one free O(1) coefficient:
 | `3` | the generation count |
 | `sqrt(8pi/3)` | the kernel germ, half of `Z = sqrt(32pi/3)` |
 
-Expressions are built by constructive enumeration: a base leaf followed by up to `D-4` skeleton
-steps (at D = 10 the skeleton takes b_s = 1–6 steps, the rest of the budget going to germ recipes) from a
+Expressions are built by constructive enumeration: a base leaf followed by `D-4` steps from a
 fixed 30-entry menu (leaf append with MUL/DIV, five power exponents, three unaries), decorated by
 canonical germ recipes. Value-identical expressions are deduplicated at mpmath precision, so the
 object counted is *distinct values*, not distinct formulas.
@@ -96,14 +90,10 @@ Without that requirement the space is unbounded and no null means anything."* Tw
 
 1. **On the enumerated path Gate B is a constructive tautology, not a filter.** The germ layer
    emits both forced germs plus exactly one free germ *by construction*, so no enumerated
-   candidate can fail the germ-content test. Against germ *absence* in the
-   candidates the enumerator can produce, the gate behaves as intended: 9/9 unit probes pass
-   (no-germ FAIL, only-`3` FAIL, only-`sqrt(8pi/3)` FAIL, both+1free PASS;
-   `gate_b_germ_enforcement_output.txt`, Q1). It never binds on the path the search takes. It is not
-   airtight, though. Hand-fed candidates that *self-declare* forced appearances can clear it without
-   the `sqrt(8pi/3)` germ, or with zero forced factors (probes PA–PD, Q2). These holes are
-   unreachable from the enumerator (Q3), so the null is unaffected, but "the code is right" would
-   overstate it.
+   candidate can fail the germ-content test. The gate does behave correctly against germ
+   *absence* when probed directly — 9/9 unit probes as intended (no-germ FAIL, only-`3` FAIL,
+   only-`sqrt(8pi/3)` FAIL, both+1free PASS) — so the code is right; it simply never binds on the
+   path the search takes.
 2. **A germ is credited by syntactic presence, not by being load-bearing.** A germ whose net
    signed exponent is zero — multiplied then divided, i.e. algebraically cancelled — still counts
    as present.
@@ -113,8 +103,8 @@ by construction. That bounds the space, which is what makes the null finite and 
 does not additionally certify that any surviving expression would have used the germs
 essentially.
 
-**Targets.** 19 measured dimensionless SM quantities, with relative half-widths from 1.1e-10
-to 4.0e-2: about 8.5 orders of magnitude. Two further targets were nominally held back; §6 withdraws that.
+**Targets.** 19 measured dimensionless SM quantities, spanning eleven orders of magnitude in
+relative precision. Two further targets were nominally held back; §6 withdraws that.
 
 ## 2. The exhaustive null at depth <= 10 — unchanged
 
@@ -129,54 +119,36 @@ CERTIFIED (gate-passing)  :           0
 RE-LABELED                :           0
 ```
 
-Depths 6–9 are exhaustive clean nulls under the same engine (`grind.py`; committed per-depth
-verdicts). The depth sets are **nested**: depths 8 and 9 lie 100% inside depth 10, and
-|union(D8, D9, D10)| = |D10| = 33,309,840 (`effective_N_audit_output.txt`; `ceiling_math_audit_output.txt`
-counts 33,309,838 float64-distinct, a 2-value disagreement between the two audit scripts that
-moves nothing). So `distinct(D)` is a
-fair total with no union inflation. Depths 3 and 5 were exhausted earlier by the forced-exhaustion
-engines over 21 targets with a 25-germ FDR. Those are different machinery: depth-5 raw is 918,528
-there against 19,136 under `grind.py`. In the forced engine, depth 4 admits no dimensionless
-expression at all, by a depth-budget theorem: a Gate-B-passable candidate needs three germ leaves,
-which leaves room for exactly one dimensionful scale leaf. Re-run on 2026-10-08 over the current 19 targets: 777,216 Gate-B-passable trees per target,
-0 dimensionally valid values, 0 hits (`results_exhaust_depth4/sweep_output.txt`). `VERDICT_depth4_forced.md` records a July run over
-21 targets, but that run's output was not saved. In `grind.py`, depth 4 cannot be built
-(`budget_splits(4)` is empty). An exact identity reproduces every committed raw count,
+Depths 3–9 are exhaustive clean nulls under the same machinery, and the depth sets are **nested**
+(depths 8 and 9 lie 100% inside depth 10), so `distinct(D)` is a fair total with no union
+inflation. An exact identity reproduces every committed raw count,
 `raw(D) = SUM_splits n_skel(b_s) * n_recipes(g_s)` with `n_skel = {13, 73, 247, 1147, 5250, 22708}`.
 
 ## 3. The hit distribution is the result, not the null — confirmed at higher precision
 
-| target | rel. half-width `w` | hits |
+| target | rel. window | hits |
 |---|---|---|
 | `m_p/m_e`, `a_e`, `1/alpha`, `m_n/m_p` | 1.1e-10 – 6.5e-10 | **0** |
-| `m_mu/m_e`, `a_mu` | 2.2e-8 – 1.9e-7 | **0** |
-| `r_tau_e`, `1/alpha(M_Z)`, `sin^2 theta_W` | 6.8e-5 – 1.3e-4 | 28 / 50 / 72 |
-| `koide_Q_up`, `higgs_lambda`, `ckm_lambda`, `koide_Q_down` | 1.3e-3 – 3.1e-3 | 838 / 1130 / 2121 / 2098 |
-| `r_b_tau`, `r_t_b`, `alpha_s(M_Z)` | 7.2e-3 – 7.6e-3 | 4747 / 4443 / 4933 |
-| `pmns_sin2_13/12/23` | 2.5e-2 – 4.0e-2 | 15212 / 26142 / 20799 |
-
-(Half-widths `w` and hits from `audit_interlock/expected_count_audit.json`. v2 printed a mix of
-half- and full-width figures in this column; the hit counts were right.)
+| `m_mu/m_e`, `a_mu` | 2.2e-8 – 4.0e-7 | **0** |
+| `r_tau_e`, `1/alpha(M_Z)`, `sin^2 theta_W` | 7e-5 – 1.7e-4 | 28 / 50 / 72 |
+| `koide_Q_up`, `higgs_lambda`, `ckm_lambda`, `koide_Q_down` | 2e-3 – 5e-3 | 838 / 1130 / 2121 / 2098 |
+| `r_b_tau`, `r_t_b`, `alpha_s(M_Z)` | 7.6e-3 – 1.1e-2 | 4747 / 4443 / 4933 |
+| `pmns_sin2_13/12/23` | 3.5e-2 – 6e-2 | 15212 / 26142 / 20799 |
 
 Every one of the 82,613 died in the false-discovery gate. Re-measured directly off the committed
-value arrays, `hits/2w` is **flat at rho = 2.1e5–3.6e5 across the 13 targets that have hits**,
-whose windows span ~2.8 decades. For the six tight targets, rho·2w predicts well under one hit,
-and they show zero. Hit count tracks window width and nothing else.
+value arrays, `hits/2w` is **flat at rho ~ 3e5 across five decades of window width** over all 19
+targets — hit count is a monotone function of window width and of nothing else, which is a
+stronger statement than v1 made.
 
 **A correction to v1's diagnosis, with the number intact.** The naive expected-count model
 `N*2w` overpredicts observed hits by a factor of **125** (naive 10,328,960 vs observed 82,613;
-median 124.6x over the 13 swept targets with hits, or 123x if the held-back `koide_Q_lep` is
-included. Every recorded per-target count reproduces exactly, 13/13. That holds only after fixing
-a key mismatch in `expected_count_audit.py`: in the copy committed with v2
-(zimmerman-formula `cfb6007f`), the `sin^2 theta_W` row has `recorded = null`, so v2's check
-skipped it.) v1
+median 123x per target, and every recorded per-target count reproduces exactly, 13/13). v1
 attributed this to *clustering*. That is wrong: the factor is **dynamic range** — the value set
-spans 632 decades in `|v|` (1454 natural-log units), so almost all values are nowhere near any target. At window scale
+spans 632 decades of `ln|v|`, so almost all values are nowhere near any target. At window scale
 the distribution is locally smooth. Two consequences, both measured
 (`audit_interlock/clustering_local_density.py`): the effect makes the threshold
-**conservative, not anti-conservative**, so no penalty is needed (net worst-clump bits +6.71).
-The measured targets are not on density spikes: the median enrichment over the 20 targets is
-1.00x (47th percentile), and the largest is `r_mu_e` at 1.73x (98th).
+**conservative, not anti-conservative** — no penalty is needed — and the measured targets sit only
+mildly enriched in local density (~1.2x, 81st percentile), not on spikes.
 
 ## 4. The depth ceiling: the claim survives, the formula does not
 
@@ -186,8 +158,7 @@ The qualitative result is unchanged and was re-tested adversarially against the 
 it reverses: **single-target matching dies by ~D11–13 and depth 18 is statistically empty.** With
 the corrected multiplicity, the expected chance count at depth 18 is 3.87 for `1/alpha`, 10.6 for
 `m_p/m_e` and 3.02 for `a_e` — all far above any sane threshold. Our own depths 10–18 sampling
-campaign (1,191 distinct passes over depths 10–18, 18,332 in-window hits, every one FDR-DEAD;
-`results_grind/SAMPLE_LEDGER.jsonl`, where one resumed pass is logged twice) was incapable of establishing a
+campaign (1,059 passes, ~29,000 in-window hits, zero survivors) was incapable of establishing a
 single-target result *by construction*, which we did not appreciate until after running it.
 
 **But four things about the published formula were wrong.**
@@ -219,14 +190,11 @@ correction at a time: 10.44 → 11.28 (real multiplicity level) → 12.93 (real 
 cancellation; the *slope* was wrong by 2.5x, so every claim that depended on the slope is void —
 including "each additional depth costs 4.9 bits."
 
-**Two window data errors.** `GATE_POWER_ANALYSIS.py:40` writes `3.2e-11/1836.15` for `m_p/m_e`.
-That is the absolute uncertainty entered 1000x too small: CODATA's is 3.2e-8. The window used
-was therefore **1000x too tight**. Correcting only that turns v1's "44.7 bits for `m_p/m_e`" into
-**34.7** on the CODATA ratio (log2(1/(2 x 1.743e-11))). On the full window the search itself propagates (2w = 8.5e-10, about
-24x looser again), it is **30.1**. `m_mu/m_e` carries a separate factor-10 error (4.6e-7 for 4.6e-6, `GATE_POWER_ANALYSIS.py:41`; this is a source
-line, not an output). Consequently v1's
-headline "the two most precisely measured numbers in physics supply 76.3 bits" is really **61.7**
-on the search's own windows.
+**Two window data errors.** `GATE_POWER_ANALYSIS.py:41` writes `3.2e-11/1836.15` for `m_p/m_e`,
+dividing a relative uncertainty by the value a second time; CODATA's absolute uncertainty is
+3.2e-8. The window used was **1000x too tight**, so v1's "44.7 bits for `m_p/m_e`" is really
+**30.1**. `m_mu/m_e` carries a separate factor-10 error (4.6e-7 for 4.6e-6). Consequently v1's
+headline "the two most precisely measured numbers in physics supply 76.3 bits" is really **61.7**.
 Both errors are in *advertised thresholds only* — the running gate reads windows from the dataset,
 so no committed verdict is affected.
 
@@ -271,10 +239,8 @@ multiplicity and the lopsided per-target marginal:
 | 11 | 0 | 2.6 | −1.8 |
 | 12 | 0 | 0.07 | −0.3 |
 
-Chance alone puts a skeleton on **~11 of the 18 independent targets at once** (mean chance maximum
-11.03; `results_interlock/interlock_depth10.log`). The real maximum is 10. "Independent" is the
-script's label: its 18-target set still holds both `a_e` and `1/alpha`, which are effectively one
-observable (below). Neither target has any hits, so the null does not move. Real multiplicities are *below* the null at every `k`. No `k` up to 12 is
+Chance alone puts a skeleton on **10 of 19 targets at once**; the real maximum is 10 against a
+chance maximum of 11.0. Real multiplicities are *below* the null at every `k`. No `k` up to 12 is
 rare enough to clear `E* = 3.3e-4`. So in a search of this shape an apparent 11-target interlock
 is not a discovery — and any future interlock claim must be calibrated against this null, not
 against analytic bits.
@@ -297,12 +263,9 @@ reported as an 85-bit discovery.
 observable: the mass-independent QED series from `alpha` alone reproduces measured `a_e` to
 2.4e-9. They sit in *different* `sector` fields, so a sector count cannot catch it. Worked false
 positive: `k=3` on `{a_e, 1/alpha, m_p/m_e}` advertises 93.8 bits, clears v1's depth-18 threshold
-of 78.7, and has true independent content 65.2 — below (`target_independence_graph_output.txt`,
-which also gives the 2.4e-9). Across the registry's algebraic families, 35 member targets carry
-17 independent degrees of freedom, so 18 are exactly redundant. Within the 19-target fittable pool,
-the worst correlation is `rho(r_b_tau, r_t_b) = −0.974` through the shared `m_b`. The interlock null
-is run on 18 targets with `r_t_b` dropped. This is conservative: the pair is functionally independent
-(Jacobian rank 2; `interlock_spec_sets_output.txt` T4), so dropping it costs power, never validity.
+of 78.7, and has true independent content 65.2 — below. The registry holds 9 exactly-redundant
+pairs; within the 19-target fittable pool the worst correlation is
+`rho(r_b_tau, r_t_b) = −0.974` through shared `m_b`, so the maximal independent set is 18/19.
 One distinction must not be blurred: for *theory*-linked pairs the look-elsewhere bits **do**
 legitimately add, because the enumeration cannot build the QED series or RG running. `a_e`/`alpha`
 is a `k`-count error, not a bits-arithmetic error. Only *algebraic* edges make a hit free.
@@ -319,9 +282,8 @@ v1 §6 claimed two targets were excluded from every search pool so that a surviv
 
 Both are exact functions of targets the search **is** allowed to fit. Measured: full-pool span
 residuals 1.686e-10 and 3.300e-10 (spanned); fitted exponents (−1.0000, +1.0000); **transfer gain
-1.000329 sigma per input sigma** (1.0 to three decimals); conditional information **0.0000 bits**
-(`target_independence_graph_output.txt`). The repo's own `score_holdout` passes `r_tau_mu` at
-0.03 sigma for 16.8170, which is the pool quotient `r_tau_e/r_mu_e` (`holdout_airtight_output.txt`). There is no slack anywhere
+exactly 1.000000 sigma per input sigma**; conditional information **0.0000 bits**. The repo's own
+`score_holdout` returns `passes_2sigma=True` from a pool prediction. There is no slack anywhere
 for the holdout to test.
 
 The name-based guard is intact and irrelevant — this survives a perfect name guard. Worse, the
@@ -361,8 +323,8 @@ Established separately; each would stand without the search.
 2. **Period ring.** Half-integer versus integer weight, with the weight-1 slot empty: the rings
    are disjoint exactly where a bridge would live.
 3. **Dictionary/category.** `u = a0/g` is an acceleration *ratio*; a renormalisation scale is an
-   *energy*. The only dimensional bridge, `a0/2c` with hbar and c, lands 39.7 orders below the
-   electron (`rg_flow_correspondence_log.json`; that log's verdict string, which says "~24", is wrong).
+   *energy*. The only dimensional bridge, `a0/2c` with hbar and c, lands ~38 orders below the
+   electron.
 4. **Varying constants — the one experimental closure.** If any SM constant tracked the
    dark-energy density as strongly as `a0` does, atomic clocks would have seen it; the coupling is
    bounded to `|p| <= 6e-8`.
@@ -387,12 +349,12 @@ a guard to satisfy a methodological rule is its own failure mode.
 ## 10. What this does and does not establish
 
 **Does.** No expression built from these two germs at depth <= 10 matches any of 19 SM targets
-with surplus information over chance, exhaustively. Depths 6–10 are proven empty under one
-engine. Depths 3–5 are empty under the earlier forced engines (depth 4 structurally). Single-target matching in searches of this form is uninformative past a computable
+with surplus information over chance, exhaustively, with the range 3–10 proven empty rather than
+unexamined. Single-target matching in searches of this form is uninformative past a computable
 depth (~11–13 here), so most such searches cannot conclude anything even in principle. And the
 natural remedy — simultaneous multi-target matching scored in bits — **must be calibrated against
 a permutation null**, because the analytic rule prices an impossible object and because chance
-alone reaches ~11 of 18 independent targets in this vocabulary.
+alone reaches 10-of-19 targets in this vocabulary.
 
 **Does not.** Say anything about depth 11+ or other germ vocabularies. Constitute new statistics.
 Provide a validated holdout (§6). Bear on the framework whose germs were used: its acceleration
@@ -403,27 +365,6 @@ search neither supports nor damages them.
 engineering cost, in a search whose prior was low and remains low. Its value is that it *closes*
 rather than leaves ajar — and, unexpectedly, that the stopping rule we proposed for searches of
 this kind turned out to be wrong in a way worth publishing.
-
-## 11. v3 audit: what changed and how it was checked
-
-Every sentence of v2 containing a number (108 claims) was checked by independent reviewers
-against the files the scripts wrote; 26 of them carried only context digits (dates, labels). The coordinating session re-checked each flag against those files.
-`CLAIM_MATCH.py` enforces the result: every claim needs a passing review tied to the hash of the
-source file it cites, so editing a claim or regenerating an output forces a re-review. The details
-are in `ERRATA_v2_CLAIM_MATCH_2026-10-08.md`. Six audit scripts whose outputs had never been saved
-were re-run and their outputs kept, and the depth-4 sweep was re-run. Against
-the copy committed with v2 (zimmerman-formula `cfb6007f`), the regenerated
-`expected_count_audit.json` differs only in the `sin^2 theta_W` row's recorded count, which is now
-compared (72 = 72). `holdout_airtight.py` reports 23/26 and labels its last failure FATAL. Two of
-the failures restate the known `r_tau_mu` omission (§6). The third finds the held-back names
-inside two scripts, which the audit classes as campaign code: `calibration/charged_lepton_search.py`, a June
-calibration, and `kappa_rerun/regression_published.py`. Nothing in the repo stops either one from
-being run as a search on a held-back target. Neither is invoked by `grind.py`, `run_atomos.py`,
-`VERIFY_ALL.sh` or the campaign shell scripts, and the holdout is withdrawn anyway (§6). The same
-audit shows that the reported depth-8 and depth-9 runs, which predate the holdout fix, did sweep both
-holdout keys: `koide_Q_lep` 4 and 6 hits, `r_tau_mu` 1 and 8, none certified. Their clean nulls
-therefore include the holdouts, while the depth-10 headline excludes them. None of the corrections touches the
-null, the gate, or any committed verdict.
 
 ---
 

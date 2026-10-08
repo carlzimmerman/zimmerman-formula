@@ -1,0 +1,304 @@
+
+========================================================================================================
+T1  MONOMIAL DEPENDENCE -- the only kind that is FREE in this enumeration's vocabulary
+========================================================================================================
+  The enumerator's step menu is MUL / DIV / POW(2,3,1/2,-1,2/3) / SQRT / CBRT / INV over leaves
+  and germs: there is NO ADD anywhere (exhaust_depthN_forced._skeleton_value_nodes step_menu, and
+  the germ layer is pure multiplicative net-exponent bookkeeping). Consequences, both ways:
+    * if target j is a MONOMIAL in targets already matched, a candidate that matches those gets j
+      for one extra MUL/DIV/POW step -> j contributes ~0 bits and MUST be excluded from a set;
+    * an ADDITIVE relation (Koide, the QED series) is NOT reachable, so it does not make a hit
+      free -- but it can still make the target's VALUE already determined (T2/T3).
+
+  exponent lattice [-3.0, -2.0, -1.0, -0.5, -0.3333333333333333, 0.3333333333333333, 0.5, 1.0, 2.0, 3.0], subsets of size 1-2 over all 21 targets (pool + both holdouts): 262 relations land inside the
+  dependent target's own window. Sorted by that window's width, the split is decisive:
+
+  dependent target    its window W  #monomials in W  example
+  --------------------------------------------------------------------------------------------
+  a_e                    2.242e-10                0  
+  alpha_em_inv_0         3.065e-10                0  
+  r_p_e                  8.525e-10                0  
+  r_n_p                  1.305e-09                0  
+  r_mu_e                 4.354e-08                1  r_tau_e^+1 * r_tau_mu^-1  (dev 1.4e-16)
+  a_mu                   3.774e-07                0  
+  koide_Q_lep            2.032e-05                0  
+  r_tau_e                1.351e-04                1  r_mu_e^+1 * r_tau_mu^+1  (dev 1.4e-16)
+  r_tau_mu               1.351e-04                2  r_mu_e^-1 * r_tau_e^+1  (dev 1.4e-16)
+  alpha_em_inv_MZ        1.407e-04                0  
+  sin2_thetaW_MZ         2.595e-04                0  
+  koide_Q_up             2.698e-03                0  
+  higgs_lambda           3.514e-03                6  alpha_em_inv_0^-0.3333 * koide_Q_lep^+1  (de
+  ckm_lambda             6.044e-03                5  alpha_em_inv_0^+1 * alpha_s_MZ^+3  (dev 6.4e
+  koide_Q_down           6.144e-03               11  a_e^-0.3333 * r_b_tau^-3  (dev 1.4e-04)
+  r_b_tau                1.435e-02                8  r_mu_e^+1 * ckm_lambda^+3  (dev 1.3e-03)
+  r_t_b                  1.474e-02                9  a_e^-0.3333 * sin2_thetaW_MZ^-1  (dev 2.9e-0
+  alpha_s_MZ             1.525e-02               17  a_e^-0.3333 * sin2_thetaW_MZ^+3  (dev 2.9e-0
+  pmns_sin2_13           5.084e-02               29  a_e^+2 * alpha_em_inv_MZ^+2  (dev 6.3e-04)
+  pmns_sin2_23           6.294e-02               73  a_e^+0.3333 * r_b_tau^+2  (dev 1.6e-02)
+  pmns_sin2_12           7.921e-02              100  koide_Q_lep^+3  (dev 2.2e-02)
+
+  (the single relation shown for r_mu_e/r_tau_e uses the HOLDOUT r_tau_mu as an input, which
+   is never matched by the search; restricted to POOL inputs only:)
+   [PASS] NO monomial of other POOL targets lands inside any of the SIX TIGHT targets' windows (0 found) -- the tight targets are algebraically independent of each other and of everything else the search can match
+   [PASS] by contrast 259 monomials land inside the 13 LOOSE pool targets' windows (windows 1.3e-4 to 7.9e-2 wide) -- a loose target is nearly FREE given two others, which is an independent reason (beyond its low bit content) not to build an interlock on it
+   [PASS] the HOLDOUT r_tau_mu IS an exact monomial of two searched pool targets (r_tau_e/r_mu_e), rel dev 1.42e-16 -> it can NEVER be an out-of-sample test
+
+  exact: r_tau_e/r_mu_e - r_tau_mu = 1.423e-16 relative (= 0 to mpmath dps=40, both are built from the same m_e,m_mu,m_tau registry entries)
+   [PASS] r_tau_e/r_mu_e == r_tau_mu to float64 round-off (the registry builds all three from the same m_e,m_mu,m_tau entries via float division, so 1e-16 IS exact here)
+
+========================================================================================================
+T2  EXACT FUNCTIONAL (non-monomial) DEPENDENCE -- Koide Q from two charged-lepton ratios
+========================================================================================================
+  Q(r_mu_e, r_tau_e) = (1+A+B)/(1+sqrtA+sqrtB)^2 = 0.666660511477386
+  registry koide_Q_lep                            = 0.666660511477385
+  relative difference 1.022e-16  (window 1.016e-05)
+   [PASS] koide_Q_lep is an EXACT function of two searched pool targets (agreement 1e-16 or better)
+
+  conditional window: moving the two inputs over their OWN 1-sigma windows moves Q by at most 1.017e-05 relative -> conditional FULL width 2.033e-05 vs Q's own full window 2.032e-05
+  => conditional bits of koide_Q_lep given {r_mu_e, r_tau_e} = max(0, log2(2.03e-05/2.03e-05)) = 0.00 bits  (own window bits 15.59)
+   [PASS] koide_Q_lep given the two lepton ratios carries 0.0 of its 15.6 nominal bits -- it is nearly determined, so it is NOT a free extra interlock target
+
+========================================================================================================
+T3  THEORY DEPENDENCE -- a_e, a_mu and alpha(M_Z) given alpha(0)
+========================================================================================================
+  a_e from alpha alone: QED series + had/weak = 1.15965217794615e-03
+  measured a_e                              = 1.15965218059000e-03
+  residual 2.280e-09 relative = 20.3 sigma of a_e's own window
+  the prediction's OWN floor from alpha's uncertainty is d(a_e)/a_e ~ d(alpha)/alpha = 1.53e-10
+    conditional bits of a_e given alpha, residual-based (conservative for the searcher) = 4.35 (nominal 32.05)
+    conditional bits of a_e given alpha, alpha-propagation floor (literature-level QED) = 0.45 (nominal 32.05)
+   [PASS] a_e given alpha carries at most 4.3 of its 32.1 nominal bits -- {a_e, 1/alpha} is ONE observable, not two, and is therefore an ILLEGITIMATE interlock pair
+
+  a_mu: QED-only prediction from alpha is 6.30e-05 relative from the measurement = 334 sigma
+        -> conditional bits given alpha ALONE = 8.38 (nominal 21.34)
+        with the SM's external hadronic input (~4e-10 absolute) the prediction band is 3.43e-07
+        -> conditional bits = 0.86
+   [PASS] a_mu's independence from alpha is AMBIGUOUS by ~8 bits (8.4 given alpha alone, ~1 once the SM's external hadronic input is allowed) -> the spec puts a_mu in a CONDITIONAL tier rather than crediting or banning it
+
+  alpha^-1(M_Z) from alpha^-1(0) by RG running: the hadronic VP term limits the prediction to ~0.01 absolute
+        = 7.82e-05 relative vs the target's own 1-sigma 7.03e-05 -> conditional bits 0.15 (nominal 12.80)
+   [PASS] alpha^-1(M_Z) is essentially determined by alpha^-1(0) + external hadronic data, so {alpha(0), alpha(M_Z)} is not an independent pair either
+
+========================================================================================================
+T4  SHARED-PARENT CORRELATION -- computed, and the correct verdict on it
+========================================================================================================
+  construction identities (verified before any correlation is quoted):
+    r_mu_e     = m_mu^1*m_e^-1   rel dev 1.4e-16
+   [PASS] r_mu_e construction identity reproduces the registry value to float64 round-off
+    r_tau_e    = m_tau^1*m_e^-1   rel dev 9.1e-17
+   [PASS] r_tau_e construction identity reproduces the registry value to float64 round-off
+    r_p_e      = m_p^1*m_e^-1   rel dev 5.1e-17
+   [PASS] r_p_e construction identity reproduces the registry value to float64 round-off
+    r_n_p      = m_n^1*m_p^-1   rel dev 9.6e-17
+   [PASS] r_n_p construction identity reproduces the registry value to float64 round-off
+    r_t_b      = m_t^1*m_b^-1   rel dev 2.4e-17
+   [PASS] r_t_b construction identity reproduces the registry value to float64 round-off
+    r_b_tau    = m_b^1*m_tau^-1   rel dev 2.6e-17
+   [PASS] r_b_tau construction identity reproduces the registry value to float64 round-off
+    r_tau_mu   = m_tau^1*m_mu^-1   rel dev 2.0e-16
+   [PASS] r_tau_mu construction identity reproduces the registry value to float64 round-off
+
+  pool pairs with |rho| >= 0.2 (correlated MEASUREMENT ERRORS through a shared parent):
+    r_p_e        r_n_p        rho = -0.343   shared parent(s) ['m_p']   bonus if tested jointly: 0.09 bits
+    koide_Q_down r_b_tau      rho = +0.308   shared parent(s) ['m_b']   bonus if tested jointly: 0.07 bits
+    koide_Q_down r_t_b        rho = -0.300   shared parent(s) ['m_b']   bonus if tested jointly: 0.07 bits
+    r_b_tau      r_t_b        rho = -0.974   shared parent(s) ['m_b']   bonus if tested jointly: 2.13 bits
+
+  VERDICT (this is where a prior audit went too far). A high rho does NOT make a pair
+  illegitimate: r_b_tau = m_b/m_tau and r_t_b = m_t/m_b are two INDEPENDENT functions of THREE
+  measured masses (Jacobian rank 2 -- checked below), so they are two separate facts about
+  nature. What rho means is that the measurement errors are correlated, so the true pair lies in
+  a thin ELLIPSE inside the gate's acceptance BOX. The gate charges box bits and accepts the box,
+  which is the correct FALSE-POSITIVE accounting; the ellipse is a BONUS test a survivor must
+  also pass, worth up to 2.13 extra bits. Dropping such a
+  target from the pool (as 'target_independence_graph.py' did for r_t_b) throws away real
+  information and is over-strict.
+    Jacobian rank for {r_b_tau, r_t_b} over parents ['m_b', 'm_t', 'm_tau']: 2 (need 2)
+   [PASS] {r_b_tau, r_t_b} are functionally INDEPENDENT (Jacobian rank 2) despite rho=-0.974
+    Jacobian rank for {r_p_e, r_n_p} over parents ['m_e', 'm_n', 'm_p']: 2 (need 2)
+   [PASS] {r_p_e, r_n_p} are functionally INDEPENDENT (Jacobian rank 2) despite rho=-0.343
+    Jacobian rank for {r_mu_e, r_tau_e} over parents ['m_e', 'm_mu', 'm_tau']: 2 (need 2)
+   [PASS] {r_mu_e, r_tau_e} are functionally INDEPENDENT (Jacobian rank 2) despite rho=+0.000
+
+========================================================================================================
+T5  LEGITIMATE SETS AND THEIR TRUE COMBINED BITS
+========================================================================================================
+  BANNED pairs (one observable counted twice; the second member's conditional bits are
+  below 6 of its nominal bits, computed in T3):
+    {a_e, alpha_em_inv_0}
+    {alpha_em_inv_0, alpha_em_inv_MZ}
+  CONDITIONAL (do not use with alpha or a_e present): a_mu
+  BANNED as targets entirely: both HOLDOUT keys -- koide_Q_lep is an exact function of two
+  pool targets (T2) and r_tau_mu is an exact monomial of two pool targets (T1).
+
+  window correction: r_p_e 2*4.263e-10 -> 2*1.743e-11 (direct CODATA ratio, +4.61 bits)
+  window correction: r_n_p 2*6.526e-10 -> 2*4.494e-10 (direct CODATA ratio, +0.54 bits)
+
+  PER-TARGET INTERLOCK VALUE at depth 10 (n_cores = 29,438):
+  target                   H=rho*W  log2(1/H)  +log2 nc  net bits
+  ----------------------------------------------------------------
+  r_p_e                  8.714e-06      16.81     14.85     31.65
+  a_e                    5.864e-05      14.06     14.85     28.90
+  alpha_em_inv_0         8.547e-05      13.51     14.85     28.36
+  r_n_p                  0.0002991      11.71     14.85     26.55
+  r_mu_e                   0.01188       6.39     14.85     21.24
+  a_mu                     0.09878       3.34     14.85     18.19
+  r_tau_e                    32.99      -5.04     14.85      9.80
+  alpha_em_inv_MZ            39.38      -5.30     14.85      9.55
+  sin2_thetaW_MZ             85.53      -6.42     14.85      8.43
+  koide_Q_up                 902.6      -9.82     14.85      5.03
+  higgs_lambda                1132     -10.14     14.85      4.70
+  ckm_lambda                  1987     -10.96     14.85      3.89
+  koide_Q_down                2051     -11.00     14.85      3.84
+  r_t_b                       4362     -12.09     14.85      2.75
+  r_b_tau                     4761     -12.22     14.85      2.63
+  alpha_s_MZ                  4898     -12.26     14.85      2.59
+  pmns_sin2_13           1.519e+04     -13.89     14.85      0.95
+  pmns_sin2_23           2.092e+04     -14.35     14.85      0.49
+  pmns_sin2_12           2.613e+04     -14.67     14.85      0.17
+   [PASS] every one of the 19 pool targets has POSITIVE net interlock value at depth 10 (H_i < n_cores), so none is useless as an interlock member -- but they differ by 29 bits
+
+  measured M(T) on tight sets (depth 8, exact): k=2:3.42, k=2:2.09, k=3:70.4, k=4:2.92e+03, k=6:4.35e+06
+  fit  log2 M(T) = 5.16*(k-1) -3.88  -> the concentration penalty is ~5.2 bits per extra interlocked target
+
+========================================================================================================
+T6  THE THRESHOLD AND THE DEPTHS WORTH SEARCHING
+========================================================================================================
+  legitimate k-subsets of the 19-target pool: k=2:167, k=3:905, k=4:3,395, k=5:9,373
+  depths in the campaign's look-elsewhere family: 9 (D=3..11)
+  threshold: require E_family <= 0.05  <=>  bits >= log2(20) = 4.32
+
+  best legitimate k=2 set: {a_e, r_p_e}
+  best legitimate k=3 set: {a_e, r_p_e, r_n_p}
+  best legitimate k=4 set: {a_e, r_p_e, r_n_p, r_mu_e}
+
+  set                                                D=10     D=12     D=14     D=16     D=18
+  --------------------------------------------------------------------------------------------
+  {a_e, r_p_e}                                       31.6     26.9     22.1     17.4     12.6
+  {a_e, r_p_e, r_n_p}                                49.3     43.7     38.1     32.5     26.9
+  {a_e, r_p_e, r_n_p, r_mu_e}                        62.2     55.7     49.3     42.8     36.4
+
+  set                                              D_max (bits = 4.32)
+  ----------------------------------------------------------------------
+  {a_e, r_p_e}                                                    21.5
+   [PASS] k=2 interlock stays informative well past the single-target ceiling (D_max 21.5 vs single-target 12.8)
+  {a_e, r_p_e, r_n_p}                                             26.1
+   [PASS] k=3 interlock stays informative well past the single-target ceiling (D_max 26.1 vs single-target 12.8)
+  {a_e, r_p_e, r_n_p, r_mu_e}                                     27.9
+   [PASS] k=4 interlock stays informative well past the single-target ceiling (D_max 27.9 vs single-target 12.8)
+
+========================================================================================================
+T7  TRAPS -- each verified numerically
+========================================================================================================
+  (a) Gate B credits a CANCELLED forced germ. The committed depth-6 'tightest hit' is
+      (((((c / c) / 3) * sqrt(8pi/3)) / sqrt(8pi/3)) * 2)
+      rebuilt value = 0.6666666666666666666666667  (exactly 2/3: True)
+      REAL Gate B: passed=True forced_factors=[(3.0, 'Ngen_3', ['Ngen_3']), (2.8944050182330705, 'a0_kernel_8pi3', ['a0_kernel_8pi3'])] n_free_params=1
+   [PASS] Gate B PASSES an expression whose kernel germ has net exponent 0 and whose measured-leaf skeleton is c/c=1 -- syntactic presence, not load-bearing use. An interlock spec must require NET EXPONENT != 0 on both forced germs.
+
+  (b) two different windows in the two drivers: grind.sweep_target_streamed hits at rel_error <= tol (1.000 sigma, verified in part 1), while run_atomos.py has
+      run_atomos.py:1149  if not (card.within_2sigma or card.rel_error < measurement_tol(target) * 3):
+   [PASS] the 1-sigma vs 3-sigma driver mismatch is real and must be fixed to ONE convention before an interlock campaign (a 3-sigma predicate costs 1.58 bits per target)
+
+  (c) sm_target_keys(include_holdout=True) = 20 keys, missing ['r_tau_mu']
+   [PASS] r_tau_mu is absent even from the retention list, so no depth-10 record exists near it -- but T1 shows it could never have been a valid holdout anyway, so the fix is to REPLACE the holdout, not to restore its retention
+
+  (d) counting targets vs bits: a k=3 interlock on ['pmns_sin2_12', 'pmns_sin2_23', 'pmns_sin2_13']
+      is worth -22.2 bits, while the k=2 ['a_e', 'r_p_e'] is worth 43.2 bits.
+   [PASS] three loose targets are worth far less than two tight ones -- k is the wrong statistic
+
+  REACHABLE TODAY vs AFTER lowering min_tol. The table above uses the DIRECT CODATA
+  window for r_p_e; engine/scoring.measurement_tol's min_tol=1e-10 floor clamps it (quantified in T9).
+  variant                                 {a_e,r_p_e} @D10   D_max   {a_e,r_p_e,r_n_p} @D10   D_max
+  --------------------------------------------------------------------------------------------------
+  as committed today (propagated sigma)               27.0    19.6                  44.1    24.2
+  direct CODATA, min_tol=1e-10 clamp                  29.1    20.4                  46.7    25.2
+  direct CODATA, min_tol lowered to 1e-11              31.6    21.5                  49.3    26.1
+
+========================================================================================================
+T8  A VALID REPLACEMENT HOLDOUT -- both current ones are void, so find one that is not
+========================================================================================================
+  A holdout is only out-of-sample if the rest of the searchable set cannot determine it.
+  FIRST FINDING: there is no spare candidate OUTSIDE the pool. sm_target_keys is built as
+  precise_targets(1e-2) INTERSECT dimensionless(), so every dimensionless registry target measured
+  better than 1% is ALREADY in the pool -- the only two dimensionless sub-1% targets outside it are
+  the two void holdouts themselves. A valid holdout must therefore be CARVED OUT of the pool.
+  Criteria for carving out target h (evaluated against POOL \ {h}):
+    (i)   h's measured PARENTS are disjoint from the remaining pool's parents;
+    (ii)  no small monomial of the remaining pool lands inside h's window;
+    (iii) h is not determined by the remaining pool through known theory (T3);
+    (iv)  h's window is narrow enough to be a test (window bits > 5).
+
+  pool target          window bits                           parents  disjoint  #mono in W   verdict
+  ----------------------------------------------------------------------------------------------------
+  a_e                        32.05                           ['a_e']       yes           0         -
+  alpha_em_inv_0             31.60                ['alpha_em_inv_0']       yes           0     VALID
+  r_p_e                      30.13                    ['m_e', 'm_p']        no           0         -
+  r_n_p                      29.51                    ['m_n', 'm_p']        no           0         -
+  r_mu_e                     24.45                   ['m_e', 'm_mu']        no           0         -
+  a_mu                       21.34                          ['a_mu']       yes           0         -
+  r_tau_e                    12.85                  ['m_e', 'm_tau']        no           0         -
+  alpha_em_inv_MZ            12.80               ['alpha_em_inv_MZ']       yes           0         -
+  sin2_thetaW_MZ             11.91                ['sin2_thetaW_MZ']       yes           0     VALID
+  koide_Q_up                  8.53             ['m_c', 'm_t', 'm_u']        no           0         -
+  higgs_lambda                8.15                ['m_H', 'v_higgs']       yes           5         -
+  ckm_lambda                  7.37                    ['ckm_lambda']       yes           3         -
+  koide_Q_down                7.35             ['m_b', 'm_d', 'm_s']        no           8         -
+  r_b_tau                     6.12                  ['m_b', 'm_tau']        no           6         -
+  r_t_b                       6.08                    ['m_b', 'm_t']        no           7         -
+  alpha_s_MZ                  6.03                    ['alpha_s_MZ']       yes          14         -
+  pmns_sin2_13                4.30                  ['pmns_sin2_13']       yes          26         -
+  pmns_sin2_12                3.66                  ['pmns_sin2_12']       yes          74         -
+  pmns_sin2_23                3.99                  ['pmns_sin2_23']       yes          52         -
+
+  VALID carve-out holdouts: ['alpha_em_inv_0', 'sin2_thetaW_MZ']
+    alpha_em_inv_0       window bits 31.60, parents ['alpha_em_inv_0'], 0 monomials of the other 18 land in its window
+    sin2_thetaW_MZ       window bits 11.91, parents ['sin2_thetaW_MZ'], 0 monomials of the other 18 land in its window
+  disqualified by theory determination: alpha_em_inv_MZ (RG-running from alpha(0) (T3: 0.15 cond bits)), a_mu (QED+hadronic from alpha (T3: 0.9-8.4 cond bits)), a_e (QED from alpha (T3: 0.5-4.4 cond bits))
+   [PASS] at least one VALID carve-out holdout exists (2 found: ['alpha_em_inv_0', 'sin2_thetaW_MZ']), so the spec can restore a real out-of-sample test instead of the two void ones
+   [PASS] neither current holdout would qualify: koide_Q_lep and r_tau_mu both have parents INSIDE the remaining pool's parent set
+
+  CAVEAT stated in the spec: 'disjoint from the POOL' is not 'disjoint from all of physics'.
+  sin2_thetaW_MZ is fixed by the global electroweak fit (M_W, M_Z, G_F) and alpha_s(M_Z) by many
+  QCD observables -- none of which are pool targets, so they are out-of-sample with respect to
+  THIS search, and a survivor's prediction for them is a real test of THIS search's output; but a
+  survivor must also be checked against those external determinations before any claim.
+
+========================================================================================================
+T9  THE ENGINE'S min_tol=1e-10 CLAMP -- how much of the window correction is reachable
+========================================================================================================
+  target               direct rel  mt() returns  clamped?   reachable W  bits now  bits max
+  ------------------------------------------------------------------------------------------
+  r_p_e                 1.743e-11     1.000e-10       YES     2.000e-10     30.13     32.22
+  r_mu_e                2.225e-08     2.225e-08               4.449e-08     24.45     24.42
+  r_n_p                 4.494e-10     4.494e-10               8.988e-10     29.51     30.05
+  alpha_em_inv_0        1.532e-10     1.532e-10               3.065e-10     31.60     31.60
+  a_e                   1.121e-10     1.121e-10               2.242e-10     32.05     32.05
+
+  r_p_e: the direct CODATA window is 34.74 window-bits, but measurement_tol's min_tol=1e-10 floor
+  clamps it to 32.22 bits. So 2.09 of the 4.61 available bits are reachable TODAY; the rest needs min_tol lowered
+  to <=1e-11. float64 resolution at 1836.15 is 1.2e-16 relative, so 1e-11 is safe by 8e+04x.
+   [PASS] the min_tol=1e-10 clamp is what limits the r_p_e correction to +2.09 bits instead of +4.61; float64 has ~8e+04x headroom so lowering it is safe
+
+========================================================================================================
+T10  CROSS-CHECK OF EVERY DERIVED FIGURE QUOTED IN INTERLOCK_SPEC.md
+========================================================================================================
+  k=2 ['a_e', 'r_p_e']: window-bits sum 66.79; interlock bits before look-elsewhere 43.15; after (x167 sets x9 depths, -1 bit) 31.60
+  k=3 ['a_e', 'r_p_e', 'r_n_p']: window-bits sum 96.85; interlock bits before look-elsewhere 63.26; after (x905 sets x9 depths, -1 bit) 49.27
+  k=4 ['a_e', 'r_p_e', 'r_n_p', 'r_mu_e']: window-bits sum 121.30; interlock bits before look-elsewhere 78.06; after (x3395 sets x9 depths, -1 bit) 62.16
+
+  (ii) 10 of 19 pool targets have Gate-A cap < PASS_BITS=10: ['koide_Q_up', 'higgs_lambda', 'ckm_lambda', 'koide_Q_down', 'r_b_tau', 'r_t_b', 'alpha_s_MZ', 'pmns_sin2_13', 'pmns_sin2_12', 'pmns_sin2_23']
+       they carry 82,463 of 82,613 depth-10 hits = 99.82%
+   [PASS] exactly 10 pool targets can never certify and they carry 99.82% of the hits
+
+  (iii) L2/L1 core ratio 32,686,128/29,438 = 1,110.3 -> requiring the stricter core gains (k-1)*10.12 bits
+  (iv) cores with >=1 hit 2,910/29,438 = 9.89%; mean hits/core 2.806; ln span 631.6 decades
+  (v) lowering min_tol to 1e-11: +2.52 bits at D=10 and +1.06 depths of D_max on {a_e, r_p_e}
+  (vi) k=2 buys 8.7 depths past the single-target ceiling 12.8
+  (vi) k=3 buys 13.2 depths past the single-target ceiling 12.8
+  (vi) k=4 buys 15.1 depths past the single-target ceiling 12.8
+   [PASS] every derived figure quoted in the spec is reproduced here
+
+========================================================================================================
+CHECKS 32/32 PASS
+========================================================================================================

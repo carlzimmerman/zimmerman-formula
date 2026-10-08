@@ -1,0 +1,66 @@
+========================================================================================================
+EXPECTED-COUNT MODEL AUDIT (clustering lens, step 1): is N*2w really ~100x high, and why?
+========================================================================================================
+
+  loaded 42,534,139 float64 from project_atomos/results_grind/depth_10/values_merged.f64
+  non-finite dropped 1,144,060; exact zeros dropped 1,085,488; negatives present 0
+  swept array (|v|, sorted): 40,304,591   min=4.940656e-324  max=1.796362e+308  (2.8s)
+  natural-log span: ln|v| in [-744.4, 709.8]  -> 632 decades of dynamic range
+  ln|v| quantiles 0.5%/25%/50%/75%/99.5%: -644.49 / -61.02 / -0.53 / 59.88 / 627.27   (central-99% ln width L99 = 1271.8)
+
+  target                     value     w=tol  naive N*2w coarse env obs hits    rec naive/obs obs/coarse
+  ------------------------------------------------------------------------------------------------------
+  a_e                   0.00115965  1.12e-10     0.00904   5.88e-05        0      -        >0       0.00
+  alpha_em_inv_0           137.036  1.53e-10      0.0124   8.55e-05        0      -        >0       0.00
+  r_p_e                    1836.15  4.26e-10      0.0344   0.000213        0      -        >0       0.00
+  r_n_p                    1.00138  6.53e-10      0.0526   0.000436        0      -        >0       0.00
+  r_mu_e                   206.768  2.18e-08        1.75     0.0119        0      -        >2       0.00
+  a_mu                  0.00116592  1.89e-07        15.2     0.0989        0      -       >15       0.00
+  r_tau_e                  3477.23  6.75e-05    5.44e+03       32.9       28     28     194.4       0.85
+  alpha_em_inv_MZ          127.951  7.03e-05    5.67e+03       39.3       50     50     113.4       1.27
+  sin2_thetaW_MZ           0.23122  1.30e-04    1.05e+04       85.2       72     72     145.3       0.84
+  koide_Q_up              0.848937  1.35e-03    1.09e+05        900      838    838     129.8       0.93
+  higgs_lambda            0.129281  1.76e-03    1.42e+05   1.13e+03     1130   1130     125.4       1.00
+  ckm_lambda               0.22501  3.02e-03    2.44e+05   1.98e+03     2121   2121     114.9       1.07
+  koide_Q_down            0.731218  3.07e-03    2.48e+05   2.05e+03     2098   2098     118.0       1.02
+  r_b_tau                  2.35246  7.18e-03    5.79e+05   4.76e+03     4747   4747     121.9       1.00
+  r_t_b                    41.2847  7.37e-03    5.94e+05   4.37e+03     4443   4443     133.7       1.02
+  alpha_s_MZ                 0.118  7.63e-03    6.15e+05   4.91e+03     4933   4933     124.6       1.00
+  koide_Q_lep             0.666661  1.02e-05         819       6.77       11      -      74.5       1.62
+  pmns_sin2_13             0.02203  2.54e-02    2.05e+06   1.52e+04    15212  15212     134.7       1.00
+  pmns_sin2_12               0.303  3.96e-02    3.19e+06   2.62e+04    26142  26142     122.1       1.00
+  pmns_sin2_23               0.572  3.15e-02    2.54e+06    2.1e+04    20799  20799     122.0       0.99
+
+  19 swept (non-holdout) targets: observed hits = 82,613  vs VERDICT.json n_hits = 82,613  -> MATCH
+  per-target recorded-table check: 0 mismatch(es) 
+
+  AGGREGATE over the 19 swept targets:
+    naive  sum N*2w                = 10,328,960
+    coarse-envelope sum            = 82,595
+    observed                       = 82,613
+    naive / observed               = 125.0x   <-- the '~100x' claim
+    naive / coarse   (dynamic range only) = 125.1x
+    coarse / observed (fine clustering)   = 1.00x
+
+  the md's quoted example pmns_sin2_12: naive 3.19e+06 (md said 5.1e6), observed 26,142 (md said 26,142) -> ratio 122.1x
+
+  per-target naive/observed over the 13 targets with >=1 hit: min 113.4x  median 124.6x  max 194.4x
+  per-target observed/coarse (FINE-CLUSTERING factor, >1 means the target sits on a
+    LOCAL EXCESS relative to its own log-envelope): min 0.84  median 1.00  max 1.27
+    targets with fine factor > 1: 6/13
+
+  ROBUSTNESS of the coarse-envelope band width (aggregate over the 19 swept targets):
+       band (ln)   coarse sum  observed  obs/coarse  naive/coarse
+    -------------------------------------------------------------
+            0.05       82,382    82,613       1.003         125.4
+            0.10       82,487    82,613       1.002         125.2
+            0.25       82,553    82,613       1.001         125.1
+            0.50       82,595    82,613       1.000         125.1
+            1.00       82,439    82,613       1.002         125.3
+            2.00       81,923    82,613       1.008         126.1
+    -> the 'locally log-uniform at window scale' result is band-independent; the 125x
+       is dynamic range, NOT clumping.
+
+  wrote project_atomos/audit_interlock/expected_count_audit.json
+  wall 3.2s
+========================================================================================================

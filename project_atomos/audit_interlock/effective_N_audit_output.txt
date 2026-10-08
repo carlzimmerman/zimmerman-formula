@@ -1,0 +1,308 @@
+====================================================================================================
+S1  FIRST PRINCIPLES: what is ONE independent chance to hit a fixed window?
+====================================================================================================
+
+  The look-elsewhere factor answers: how many INDEPENDENT trials did the search take against this
+  window? A "trial" is an event that can independently land inside or outside [t(1-w), t(1+w)].
+
+  Two expressions with the SAME VALUE are not two trials. They land together with probability 1 --
+  perfectly correlated, correlation coefficient exactly 1, zero added variance and zero added chance
+  of a hit. Formally, the count the search actually reports is
+
+      H(W) = sum over DISTINCT values v of 1[v in W]                      (the sweep's own statistic)
+      E[H] = sum over DISTINCT v of P(v in W) = N_distinct * pbar_W
+
+  The raw count enters nowhere in E[H]: multiplicity m(v) multiplies neither the indicator nor its
+  expectation. Using N_raw computes E for a DIFFERENT statistic -- sum over raw candidates of the
+  indicator = sum_v m(v)*1[v in W] -- which is not what any gate consumes and is not what any depth's
+  hit count reports. So the correct multiplicity is N_DISTINCT, and using N_raw inflates the
+  look-elsewhere cost by exactly log2(raw/distinct) bits.
+
+  Sharper still: even N_distinct is an over-count for a SPECIFIC target, because the values are not
+  uniform -- the honest multiplicity is the number of distinct values whose neighbourhood contains the
+  target, i.e. the LOCAL density (S6). Both corrections push the SAME way: the published ceiling is
+  too LOW (too strict / too pessimistic), never too high, from the dedup axis.
+
+   [PASS] dedup direction: replacing raw by distinct can only LOWER N, hence RAISE D_max
+====================================================================================================
+S2  COMMITTED raw / distinct COUNTS PER DEPTH (read from artifacts, not typed in)
+====================================================================================================
+
+    D    raw candidates   distinct values  raw ratio dist ratio  dedup R   provenance
+  ------------------------------------------------------------------------------------------------
+    6           236,624           107,719        nan        nan    2.197   results_grind/REPLAY_LEDGER.jsonl
+    7         1,566,116           498,848      6.619      4.631    3.139   results_grind/REPLAY_LEDGER.jsonl
+    8         8,123,807         2,207,173      5.187      4.425    3.681   results_grind/depth_8/build_meta.json
+    9        38,450,388         9,830,707      4.733      4.454    3.911   results_grind/depth_9/build_meta.json
+   10       174,890,804        42,534,139      4.548      4.327    4.112   results_grind/depth_10/build_meta.json
+
+  MEASURED per-depth growth: raw x4.55-6.62, distinct
+  x4.33-4.63, both DECLINING toward ~4.33.
+  The published model asserts x30 per depth. GRIND_README.md line 53 already records
+  "the ~4.7x raw growth" -- the repo's own docs disagree with the repo's own ceiling model.
+   [PASS] measured growth base is ~4.3, NOT the published 30
+
+====================================================================================================
+S3  WHAT IS B=30? -- reconstruct raw(D) EXACTLY from the committed enumerator
+====================================================================================================
+
+  germ-recipe counts G(g_s) = 23 free keys x sum_compositions prod|net_exps| (EXACT):
+   G(3)=1,472, G(4)=9,936, G(5)=36,708, G(6)=100,119, G(7)=226,941, G(8)=453,882, G(9)=829,058
+  G ratios: 6.75, 3.69, 2.73, 2.27, 2.00, 1.83, 1.70, 1.61, 1.55  -> POLYNOMIAL in g_s, not exponential
+
+  skeleton-layer sizes n_skel(b_s) (cached / recomputed / identity):
+   n(1)=13, n(2)=73, n(3)=247, n(4)=1,147, n(5)=5,250, n(6)=22,708
+  n_skel ratios: 5.62, 3.38, 4.64, 4.58, 4.33
+
+    D  raw(D) reconstructed    raw(D) committed   match   published 30^(D-4)  pub/real
+  ------------------------------------------------------------------------------------------------
+    6               236,624             236,624   EXACT            9.000e+02  0.003804
+    7             1,566,116           1,566,116   EXACT            2.700e+04   0.01724
+    8             8,123,807           8,123,807   EXACT            8.100e+05   0.09971
+    9            38,450,388          38,450,388   EXACT            2.430e+07     0.632
+   10           174,890,804         174,890,804   EXACT            7.290e+08     4.168
+   [PASS] raw(D) = sum_splits n_skel(b_s)*G(g_s) reproduces every committed raw count EXACTLY
+
+  SO: B=30 is the SKELETON STEP-MENU size (11 leaves x {MUL,DIV} + 5 pow + 3 unary = 30). 30^(D-4)
+  counts left-fold STEP SEQUENCES in the largest split -- the enumerator's WORK, and the size of the
+  completeness brute (fast_completeness.py line 26: "|menu|^b_s x |leaves| = 30^(D-4) x 11"). It is
+  NOT a candidate count: after the dimensionless/finite/positive validity filter the layer collapses
+  from 11*30^b_s sequences to n_skel(b_s) skeletons (b_s=6: 8.019e9 -> 22,708, a factor
+  3.531e+05), and the germ layer multiplies back by a POLYNOMIAL G(g_s).
+  Net effect: the true per-depth branching is the skeleton branching ~4.33, not 30.
+  30^(D-4) happens to cross the true raw count near D~8.6 -- it UNDERSTATES the count below that and
+  OVERSTATES it (badly) above.
+   [PASS] published N(D) understates the real raw count at D=6 and overstates it at D=10
+
+====================================================================================================
+S4  THE DEDUP RATIO R(D) = raw/distinct, MEASURED AND FITTED
+====================================================================================================
+
+     D    R = raw/distinct   bits log2(R)       fit    resid
+  ------------------------------------------------------------
+     6              2.1967          1.135     2.478   -0.282
+     7              3.1395          1.651     2.872    0.267
+     8              3.6806          1.880     3.328    0.353
+     9              3.9113          1.968     3.856    0.055
+    10              4.1118          2.040     4.469   -0.357
+
+  FIT  R(D) = 1.0237 * exp(0.1474 D)   -> R grows by x1.159 per depth
+  (0.213 bits per depth). R = 4.11 at D=10 (2.04 bits),
+  extrapolating to R(14) = 8.06 (3.01 bits) and
+  R(18) = 14.53 (3.86 bits).
+  So the raw-vs-distinct question is worth 2.0 bits at depth 10 and
+  ~3.9 bits at depth 18 -- REAL but SMALL next to the base error in S3.
+   [PASS] dedup ratio grows slowly and monotonically (2.20 -> 4.11 over D6->D10)
+
+====================================================================================================
+S5  EMPIRICAL: does the pipeline COUNT distinct values? (raw hits vs distinct hits)
+====================================================================================================
+  grind.sweep_target_streamed does  idxs = nonzero(|values - tv| <= |tv|*tol)  over the DEDUPED
+  values array (grind.py:470, _load_values reads values.f64 = the distinct set). So every committed
+  hit count is a DISTINCT-value count. Verified below by re-enumerating depth 6 WITH multiplicity.
+
+  re-enumerated depth 6: raw evaluated = 236,624 (committed raw 236,624), distinct kept = 107,719 (committed distinct 107,719) in 8.5s
+  raw candidates KEPT by the dimensionless/finite/positive filter = 236,624 (100.00% of raw); dropped = 0
+  mean duplicate multiplicity over kept = 2.197; max = 33; committed R(6) = raw/distinct = 2.197
+
+  in-window counts at depth 6, DISTINCT vs RAW (sum of multiplicities), 21 targets:
+  target                    tol  distinct hits   raw hits  raw/distinct
+  --------------------------------------------------------------------------
+  koide_Q_up            0.00135              2          2          1.00
+  higgs_lambda          0.00176              2          2          1.00
+  ckm_lambda            0.00302              8         13          1.62
+  koide_Q_down          0.00307             10         33          3.30
+  r_b_tau               0.00718             11         37          3.36
+  r_t_b                 0.00737             14         23          1.64
+  alpha_s_MZ            0.00763             22         41          1.86
+  koide_Q_lep          1.02e-05              1         13         13.00
+  pmns_sin2_13           0.0254             65        129          1.98
+  pmns_sin2_12           0.0396             55        142          2.58
+  pmns_sin2_23           0.0315             69        208          3.01
+  --------------------------------------------------------------------------
+  TOTAL                                    259        643          2.48   (committed depth-6 in-window hits: 259)
+   [PASS] depth-6 re-enumeration reproduces the committed distinct count (107,719 == 107,719)
+   [PASS] depth-6 re-enumeration reproduces the committed in-window hit count (259 == 259) -- so the reported statistic IS the distinct-value count
+   [PASS] the mean duplicate multiplicity 2.197 is > 1, i.e. R(D) really is duplicate inflation and not a filter artefact (kept 100.0% of raw)
+   [PASS] depth-6 re-enumeration reproduces the committed RAW count (236,624 == 236,624)
+   [PASS] raw-weighted hits (643) EXCEED distinct hits (259) by x2.48 -- charging raw would demand explaining hits that were never reported
+
+====================================================================================================
+S6  EMPIRICAL LOCAL DENSITY near 1/alpha and m_p/m_e (committed values.f64)
+====================================================================================================
+  The sharpest possible multiplicity: how many DISTINCT values actually sit near the target?
+  E_local = (# distinct values within +-10% of t) * (2w / 0.20)   -- the same locally-uniform Poisson
+  estimator gate/fdr.py:_poisson_e_chance uses, but evaluated on the ENUMERATED set instead of the
+  25-germ mini-library. Also reported: the global-uniform prediction N_distinct*2w, and the ACTUAL
+  in-window count (committed nulls say 0).
+
+  depth 8: loaded 2,207,173 distinct values (committed 2,207,173) OK
+    1/alpha   t=137.035999177    in +-10% band:     3,660   E_local=5.600e-06   N_dist*2w=6.754e-04   ACTUAL in-window hits=0
+    m_p/m_e   t=1836.152673425   in +-10% band:     3,140   E_local=5.479e-10   N_dist*2w=7.703e-08   ACTUAL in-window hits=0
+
+  depth 9: loaded 9,830,707 distinct values (committed 9,830,707) OK
+    1/alpha   t=137.035999177    in +-10% band:    13,775   E_local=2.108e-05   N_dist*2w=3.008e-03   ACTUAL in-window hits=0
+    m_p/m_e   t=1836.152673425   in +-10% band:    12,046   E_local=2.102e-09   N_dist*2w=3.431e-07   ACTUAL in-window hits=0
+
+  depth 10: loaded 42,534,139 distinct values (committed 42,534,139) OK
+    1/alpha   t=137.035999177    in +-10% band:    56,015   E_local=8.570e-05   N_dist*2w=1.302e-02   ACTUAL in-window hits=0
+    m_p/m_e   t=1836.152673425   in +-10% band:    50,109   E_local=8.744e-09   N_dist*2w=1.484e-06   ACTUAL in-window hits=0
+
+  1/alpha: band count growth 3,660 -> 13,775 -> 56,015 (x3.76, x4.07);  band fraction of all distinct at D10 = 1.317e-03
+     global-uniform / local-empirical over-prediction factor: 120.6x, 142.7x, 151.9x
+
+  m_p/m_e: band count growth 3,140 -> 12,046 -> 50,109 (x3.84, x4.16);  band fraction of all distinct at D10 = 1.178e-03
+     global-uniform / local-empirical over-prediction factor: 140.6x, 163.2x, 169.8x
+   [PASS] all committed in-window counts for the two tight targets are 0 (the null, re-verified here)
+
+====================================================================================================
+S7  RECOMPUTED INFORMATIVE CEILING D_max  (five counting conventions)
+====================================================================================================
+
+  target             2w  (a)PUBLISHED  (b)real RAW  (c)real DISTINCT  (d)exact model  (e)LOCAL empirical
+  --------------------------------------------------------------------------------------------------
+  1/alpha      3.06e-10         10.44        11.93             12.96   13.20-13.42                 16.68
+  m_p/m_e      3.49e-14         13.11        17.93             19.16   19.59-20.73                 23.02
+
+  bases used: real raw x4.548/depth, real distinct x4.327/depth,
+  local-band growth x4.066 (1/alpha) and x4.160 (m_p/m_e) per depth.
+  (a) is GATE_POWER_ANALYSIS.ceiling(); (b), (c), (e) are anchored on MEASURED counts at D=10.
+  (d) uses the exact enumerator product with n_skel extrapolated at 4.0/4.33/4.8 per step and the
+  FITTED R(D), so it inherits the S4 fit residual (it underestimates distinct(10) by
+  1.087x and therefore reads ~0.06 depths high). (c) IS THE PREFERRED NUMBER:
+  measured count, measured growth, no fit.
+
+  ERROR IN THE PUBLISHED CEILING  (positive = published is TOO LOW / too strict):
+  target          vs raw   vs distinct    vs local  bits (raw->distinct)  bits (pub->distinct)
+  --------------------------------------------------------------------------------------------------
+  1/alpha          +1.49         +2.52       +6.23                  2.04                  4.10
+  m_p/m_e          +4.82         +6.05       +9.91                  2.04                  4.10
+   [PASS] the published ceiling is too LOW (too strict) for both tight targets on every corrected count
+   [PASS] the DEDUP part of that error is small (~2 bits at D10) -- the BASE is the dominant error
+
+====================================================================================================
+S8  CONSEQUENCE FOR THE INTERLOCK / BITS RULE (BITS_RULE.py)
+====================================================================================================
+
+     D   log2 published N   log2 real distinct N   bits overcharged
+  ----------------------------------------------------------------------
+    10               29.4                   25.2                4.2
+    13               44.2                   31.0               13.2
+    16               58.9                   36.7               22.2
+    18               68.7                   40.5               28.2
+    20               78.5                   44.3               34.2
+
+  at D=18 under PUBLISHED N=30^(D-4): need > 78.7 bits
+    k=1 (+m_p/m_e       ) cumulative   44.7 bits   short
+    k=2 (+1/alpha       ) cumulative   76.3 bits   short
+    k=3 (+m_mu/m_e      ) cumulative  104.1 bits   PASS
+    k=4 (+sin^2 theta_W ) cumulative  115.6 bits   PASS
+    k=5 (+m_t/m_b       ) cumulative  122.7 bits   PASS
+    k=6 (+alpha_s(M_Z)  ) cumulative  128.8 bits   PASS
+    -> kmin = 3
+
+  at D=18 under REAL distinct N: need > 50.5 bits
+    k=1 (+m_p/m_e       ) cumulative   44.7 bits   short
+    k=2 (+1/alpha       ) cumulative   76.3 bits   PASS
+    k=3 (+m_mu/m_e      ) cumulative  104.1 bits   PASS
+    k=4 (+sin^2 theta_W ) cumulative  115.6 bits   PASS
+    k=5 (+m_t/m_b       ) cumulative  122.7 bits   PASS
+    k=6 (+alpha_s(M_Z)  ) cumulative  128.8 bits   PASS
+    -> kmin = 2
+
+  BITS_RULE.py's headline conclusion -- "the two tightest (m_p/m_e + 1/alpha) give only 76.3 bits
+  and FALL SHORT of 78.7 ... the two most precisely measured numbers in physics are NOT enough
+  on their own at depth 18" -- is an ARTEFACT OF THE WRONG N. With the real distinct count the
+  threshold at D=18 is 50.5 bits, and 76.3 CLEARS it by 25.8 bits.
+  kmin drops from 3 to 2. This is the one place where the counting convention changes an
+  OPERATIONAL rule rather than a narrative number.
+  NOTE (both ways): gate/fdr.py as coded does NOT use N(D) at all -- its look-elsewhere multiplier is
+  mult = n_targets_searched (21), and its E_chance comes from the 25-germ mini-library, not the
+  enumeration. So the depth-10 CLEAN NULL itself is untouched by any of this: the recorded verdict
+  never charged the enumeration multiplicity. Only the PAPER's ceiling table and BITS_RULE's JACKPOT
+  read-out rule are affected.
+   [PASS] under the corrected count the 2 tightest targets DO clear the D=18 bits threshold (kmin 3 -> 2)
+   [PASS] the operational gate (gate/fdr.py) never used N(D), so no committed verdict flips
+
+====================================================================================================
+S9  BOTH-WAYS: the published windows vs the windows the SEARCH ACTUALLY USED
+====================================================================================================
+
+  target key           pdg rel_precision   search tol   published 2w  ratio pub/search
+  ------------------------------------------------------------------------------------------
+  alpha_em_inv_0               1.532e-10    1.532e-10      3.060e-10         9.984e-01
+  r_p_e                        4.263e-10    4.263e-10      3.490e-14         4.094e-05
+
+  m_p/m_e is a DERIVED ratio in targets/pdg_constants.py (quadrature of m_p and m_e relative errors),
+  so its own table window is 4.26e-10, not the CODATA
+  direct-ratio 1.74e-14 that GATE_POWER_ANALYSIS/BITS_RULE/the paper feed the ceiling formula. That
+  error runs the OTHER WAY: with the window the search actually used, m_p/m_e supplies
+  30.1 bits, not 44.7, and its ceiling under the corrected
+  distinct count is D = 12.26, not
+  19.16. Reported so the correction is not one-sided.
+   [PASS] the m_p/m_e window used in the published ceiling is ~1e4 tighter than the one the search actually applied (error in the LENIENT direction)
+
+====================================================================================================
+S10 BOTH-WAYS: two effects that push the corrected N back UP
+====================================================================================================
+  (i) ARE THE DEPTH SETS NESTED? If depth-D's value set did NOT contain depth-(D-1)'s, a campaign
+      that swept depths 6..D took |union| chances, not |distinct(D)|, and N would go UP:
+      D9  values also present in D10 : 9,830,707 / 9,830,707 (100.00%)
+      D8  values also present in D10 : 2,207,173 / 2,207,173 (100.00%)
+      -> NESTED. |union(D8,D9,D10)| = 33,309,840 == |unique(D10)| = 33,309,840: no union inflation.
+
+      That comparison exposes a THIRD dedup layer nobody has charged: |D10| = 42,534,139 mpmath
+      dedup keys collapse to only 33,309,840 distinct float64 values (x1.2769, 0.353 bits).
+      Values separated by less than a float64 ulp cannot be two independent chances at a window of
+      1e-10 relative, so even the distinct-VALUE count over-counts by that factor -- worth a further
+      +0.167 depths of ceiling, in the same direction as everything else in S7.
+
+  (ii) TARGET MULTIPLICITY. The published ceiling is PER TARGET, but the sweep asks 19 targets at
+       once, and gate/fdr.py does charge mult = n_targets. If the question is "is a hit on ANY target
+       informative", the honest multiplicity is N_distinct * n_targets:
+      n_targets = 19 -> 4.25 bits -> ceiling drops 2.01 depths
+  target      (c) distinct-only   (c) x 19 targets   (a) published   net vs published
+  --------------------------------------------------------------------------------------------
+  1/alpha                 12.96              10.95           10.44              +0.51
+  m_p/m_e                 19.16              17.15           13.11              +4.04
+
+  NET, stacking every correction I can justify (distinct not raw, real base not 30, float64
+  resolution, and the 19-target multiplicity charged against me):
+    1/alpha  : published 10.44  ->  11.12   (published too LOW by +0.68 depths)
+    m_p/m_e  : published 13.11  ->  17.32   (published too LOW by +4.21 depths)
+  The dedup question ALONE (raw -> distinct at fixed base) is worth 2.04 bits /
+  0.97 depths. The base error (30 vs 4.33) is worth far more and GROWS with D
+  (28 bits overcharged at D=18). The 19-target factor partially offsets both, by
+  2.01 depths, and is the ONLY correction found that runs the strict way.
+   [PASS] the depth sets are NESTED (D8, D9 fully inside D10), so no union inflation (33,309,840 == 33,309,840)
+   [PASS] even after charging the 19-target multiplicity the published ceiling is still too LOW for both tight targets
+
+====================================================================================================
+S11 THE ANSWER, IN ONE TABLE (both window conventions, all corrections)
+====================================================================================================
+
+  target       window used         2w  published D_max  corrected D_max  error (depths)
+  --------------------------------------------------------------------------------------------
+  1/alpha     paper/CODATA   3.06e-10            10.44            11.12           +0.68
+  1/alpha     search table   3.06e-10            10.44            11.12           +0.68
+  m_p/m_e     paper/CODATA   3.49e-14            13.11            17.32           +4.21
+  m_p/m_e     search table   8.53e-10            10.14            10.42           +0.28
+
+  READ-OUT. The published ceiling formula is structurally right; its INPUT N is wrong in two ways and
+  its m_p/m_e WINDOW is wrong in a third:
+    * raw vs distinct (the assigned question): distinct is correct, worth 2.04 bits at D10,
+      3.86 bits at D18. Direction: published is TOO STRICT.
+    * B = 30 is a step-menu/work figure, not a candidate count; the measured branching is
+      4.33. Worth 4.1 bits at D10 and 28 bits at D18. Direction: TOO STRICT, and it
+      is the DOMINANT error.
+    * m_p/m_e's window: the paper feeds the CODATA direct-ratio 3.5e-14, the search's own target
+      table gives 8.53e-10. Direction: TOO LENIENT, worth 14.6 bits.
+  With the search's own windows AND every N correction, the two tight targets supply
+  61.7 bits, and the D=18 threshold on the real distinct count is 50.5 -- still cleared,
+  so BITS_RULE's kmin = 2 conclusion survives the both-ways treatment.
+   [PASS] the audit is not one-sided: at least one correction found in each direction (N too strict, m_p/m_e window too lenient)
+   [PASS] kmin = 2 survives using the search's OWN windows (61.7 bits > 50.5)
+
+====================================================================================================
+EFFECTIVE_N AUDIT: 20/20 checks PASS. ALL PASS
+====================================================================================================

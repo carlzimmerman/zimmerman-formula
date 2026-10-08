@@ -1,0 +1,109 @@
+========================================================================================================
+GATE B GERM-CONTENT ENFORCEMENT -- real gate code, hand-built probes
+========================================================================================================
+
+REGISTRY (gate/registry.py) as loaded:
+   einstein_8pi               value=5.01325654926
+   friedmann_third            value=0.57735026919
+   a0_kernel_8pi3             value=2.89440501823
+   Ngen_3                     value=3
+   A4_dim_3                   value=3
+   S3_doublet_amp_sqrt2       value=1.41421356237
+   registry keys sharing one VALUE: {3.0: ['Ngen_3', 'A4_dim_3']}
+
+--------------------------------------------------------------------------------------------------------
+probe                                                          B.pass n_free n_app overdet coeffOK
+--------------------------------------------------------------------------------------------------------
+P1 NO germs at all (pure free O(1))                             False      1     0   False    True
+P2 ONLY germ 3 (Ngen_3) + 1 free                                False      1     1   False    True
+P3 ONLY sqrt(8pi/3) + 1 free                                    False      1     1   False    True
+P4 BOTH germs + exactly 1 free  (the enumerator's shape)         True      1     2    True    True
+P5 BOTH germs + 2 free                                          False      2     2    True    True
+P6 BOTH germs + 0 free                                          False      0     2    True    True
+P7 RELABEL: value 5.7888 declared as einstein_8pi               False      2     1   False    True
+P8 UNREGISTERED provenance key 'my_forced_thing'                False      2     1   False    True
+P9 provenance None (bare number)                                False      2     1   False    True
+PA duplicate-VALUE registry keys: 3 as Ngen_3 AND 3 as A4_dim_3, NO sqrt(8pi/3)   True      1     2    True    True
+PB single germ 3, candidate DECLARES 2 appears_in places         True      1     2    True    True
+PC single germ 3 + form_forced_independently=1                   True      1     2    True    True
+PD NO germ at all + form_forced_independently=5                  True      1     5    True    True
+--------------------------------------------------------------------------------------------------------
+
+Gate B's own tells:
+   P1   not overdetermined: forced structure appears in only 0 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+        (audit expectation: MUST FAIL: zero forced factors)
+   P2   not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+        (audit expectation: MUST FAIL: one forced appearance is a definition)
+   P3   not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+        (audit expectation: MUST FAIL: one forced appearance)
+   P4   PASS: kernel decomposes into 2 forced factor(s) [Ngen_3, a0_kernel_8pi3], overdetermined (2 independent forced appearances), exactly 1 free param (kap
+        (audit expectation: baseline: this is what the brute force always emits)
+   P5   free-parameter count = 2 (need exactly 1, kappa-class). needs >=2 free numbers to land the target -> a fit, not a kernel.
+        (audit expectation: MUST FAIL: n_free=2)
+   P6   free-parameter count = 0 (need exactly 1, kappa-class). zero free => suspiciously exact / not a 1-param relation
+        (audit expectation: MUST FAIL: n_free=0 (spec: suspiciously exact))
+   P7   factor(s) with no pre-fit provenance: 5.789(einstein_8pi:value 5.78881 != forced 5.01326) -> these are free fit parameters (n_free=2).
+        (audit expectation: MUST FAIL: numeric mismatch -> counted as free)
+   P8   factor(s) with no pre-fit provenance: 3(my_forced_thing:no registry provenance) -> these are free fit parameters (n_free=2).
+        (audit expectation: MUST FAIL: not in registry -> free)
+   P9   factor(s) with no pre-fit provenance: 3(None:no registry provenance) -> these are free fit parameters (n_free=2).
+        (audit expectation: MUST FAIL: no provenance -> free)
+   PA   PASS: kernel decomposes into 2 forced factor(s) [Ngen_3, A4_dim_3], overdetermined (2 independent forced appearances), exactly 1 free param (kappa).
+        (audit expectation: PROBE: two names for ONE number -> does the gate call it overdetermined?)
+   PB   PASS: kernel decomposes into 1 forced factor(s) [Ngen_3], overdetermined (2 independent forced appearances), exactly 1 free param (kappa).
+        (audit expectation: PROBE: appears_in is candidate-supplied -- is it verified?)
+   PC   PASS: kernel decomposes into 1 forced factor(s) [Ngen_3], overdetermined (2 independent forced appearances), exactly 1 free param (kappa).
+        (audit expectation: PROBE: form_forced_independently is candidate-supplied -- verified?)
+   PD   PASS: kernel decomposes into 0 forced factor(s) [], overdetermined (5 independent forced appearances), exactly 1 free param (kappa).
+        (audit expectation: PROBE: zero forced factors but a big self-declared form count)
+
+========================================================================================================
+Q1  ENFORCEMENT: can a germ-less expression clear Gate B?
+========================================================================================================
+   [PASS] no germs at all             -> Gate B FAILS
+   [PASS] only germ 3                 -> Gate B FAILS
+   [PASS] only sqrt(8pi/3)            -> Gate B FAILS
+   [PASS] both germs + 1 free         -> Gate B PASSES
+   [PASS] both germs + 2 free         -> Gate B FAILS
+   [PASS] both germs + 0 free         -> Gate B FAILS
+   [PASS] relabelled factor           -> Gate B FAILS
+   [PASS] unregistered provenance     -> Gate B FAILS
+   [PASS] provenance None             -> Gate B FAILS
+
+   composed validate(P1 germ-less) status = FDR-DEAD
+      tell: FDR-DEAD @ GATE A: E_chance=3.000e-04 (<1, sparse); 1 hits; surplus=7.5 bits (x19 look-elsewhere). below 10-bit threshold -> BAKED
+   composed validate(P4 both germs) status = FDR-DEAD
+      tell: FDR-DEAD @ GATE A: E_chance=3.000e-04 (<1, sparse); 1 hits; surplus=7.5 bits (x19 look-elsewhere). below 10-bit threshold -> BAKED
+   [PASS] germ-less candidate is NOT CERTIFIED by validate()
+
+========================================================================================================
+Q2  SELF-DECLARATION: are appears_in / form_forced_independently re-verified?
+========================================================================================================
+   (these probes carry NO sqrt(8pi/3) germ at all; if Gate B passes them, the
+    'must contain BOTH forced germs' requirement is satisfiable without one of them.)
+   [PASS] PA two registry names for the SAME number 3 -> Gate B passed? True  (a HOLE if True)
+   [PASS] PB self-declared appears_in=2 with ONE germ -> Gate B passed? True  (a HOLE if True)
+   [PASS] PC self-declared form_forced_independently=1 -> Gate B passed? True  (a HOLE if True)
+   [PASS] PD zero forced factors + form_forced=5 -> Gate B passed? True  (a HOLE if True)
+
+   HAND-FED Gate-B bypasses that clear B WITHOUT the sqrt(8pi/3) germ: ['PA', 'PB', 'PC']
+   PD (zero forced factors, form_forced=5): B.passed=True, n_free=1, n_app=5
+
+========================================================================================================
+Q3  is the BRUTE-FORCE path (exhaust.gate_candidate_for) immune to the Q2 holes?
+========================================================================================================
+   alphabet: 11 leaves, 25 germs
+   _germ_provenance() maps a germ VALUE -> the FIRST matching registry key:
+      germ 3            value=3  -> Ngen_3
+      germ sqrt(8pi/3)  value=2.89440501823  -> a0_kernel_8pi3
+      germ 8pi          value=25.1327412287  -> None
+      germ 2            value=2  -> None
+      germ pi           value=3.14159265359  -> None
+   [PASS] germ value 3 resolves to exactly ONE key (Ngen_3), so the duplicate-value hole (PA) is unreachable from the enumerator
+   gate_candidate_for sets appears_in=[prov] (1 element) and form_forced_independently=0 -> PB/PC/PD unreachable from the enumerator.
+   => the germ requirement IS enforced on the enumerated path; the holes are
+      hand-fed-candidate holes in gate/forced_kernel.py, not campaign leaks.
+
+========================================================================================================
+CHECKS: 15/15 PASS
+========================================================================================================

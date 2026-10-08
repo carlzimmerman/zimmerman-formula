@@ -1,0 +1,394 @@
+====================================================================================================
+S0  IS B = 30?  --  THE STEP MENU, RECONSTRUCTED FROM THE LIVE CODE
+====================================================================================================
+
+  leaves (11) : ['c', 'G', 'hbar', 'Lambda', 'rho_Lambda', 'H_Lambda', 'M_Planck', 'E_Hubble', 'E_dS', 'Lambda_QCD', 'v_EW']
+  POW exponents (5) : ['2.0', '3.0', '0.5', '-1.0', '0.66666667']
+  plain unaries (3) : ['SQRT', 'CBRT', 'INV']
+  menu size = 2*11 (MUL/DIV per leaf) + 5 (POW) + 3 (unary) = 30
+   [PASS] the docstring's B=30 IS the literal menu length (30)
+
+  (a) COLLISIONS. The 8 pow/unary entries are not 8 distinct FUNCTIONS. Test on a probe:
+        POW^0.5        == SQRT            (identical function, two menu slots)
+        POW^-1.0       == INV             (identical function, two menu slots)
+      -> 8 slots, 2 exact duplicate pairs, 6 distinct unary functions
+   [PASS] POW^0.5==SQRT and POW^-1==INV: the menu double-counts 2 of its 8 unary slots
+
+  (b) LEAF REDUNDANCY. The 22 append-ops are not 22 independent directions: several leaves
+      are exact functions of others, so append-sequences collide. Test numerically:
+        M_Planck     =?= sqrt(hbar*c/G)         rel diff = 0.00e+00  EXACT DEPENDENT
+        rho_Lambda   =?= Lambda*c^2/(8*pi*G)    rel diff = 4.63e-05  independent
+        H_Lambda     =?= c*sqrt(Lambda/3)       rel diff = 0.00e+00  EXACT DEPENDENT
+        E_dS         =?= hbar*H_Lambda          rel diff = 1.00e+00  independent
+      -> 2 of the 11 leaves are exact algebraic functions of the others
+   [PASS] at least one leaf is an exact function of other leaves (so the menu over-counts directions)
+
+  VERDICT S0. B=30 is the menu LENGTH and that part of the docstring is accurate. But 30 is NOT the
+  branching factor of the enumeration: (a) 2 of the 8 unary slots are the same function as another
+  slot, (b) leaves are algebraically dependent, and (c) -- decisively -- the enumerator DEDUPS BY
+  VALUE and discards every non-dimensionless node before anything is counted. The count that enters
+  a look-elsewhere calculation is the number of values COMPARED TO A TARGET, and that is measured
+  below.
+
+====================================================================================================
+S1  THE EXACT CANDIDATE-COUNT IDENTITY THE CODE IMPLEMENTS
+====================================================================================================
+
+  grind.py:58-60 states the count as  (11 * 30**b_s) * germ_recipe_count(g_s)  -- that is the count of
+  STEP SEQUENCES, before the skeleton layer is value-deduped. The code actually enumerates
+        raw(D) = SUM over budget splits (b_s,g_s) of  n_skeletons(b_s) * n_germ_recipes(g_s)
+  with n_skeletons = DEDUPED dimensionless skeletons. Both factors are computed here from the live
+  code and checked against the committed build_meta.json raw counts.
+
+    b_s=1: step sequences 11*30^1 =             330   ->  deduped dimensionless skeletons      13   collapse           25x   [recomputed]
+    b_s=2: step sequences 11*30^2 =           9,900   ->  deduped dimensionless skeletons      73   collapse          136x   [recomputed]
+    b_s=3: step sequences 11*30^3 =         297,000   ->  deduped dimensionless skeletons     247   collapse        1,202x   [cached layer]
+    b_s=4: step sequences 11*30^4 =       8,910,000   ->  deduped dimensionless skeletons   1,147   collapse        7,768x   [recomputed]
+    b_s=5: step sequences 11*30^5 =     267,300,000   ->  deduped dimensionless skeletons   5,250   collapse       50,914x   [cached layer]
+    b_s=6: step sequences 11*30^6 =   8,019,000,000   ->  deduped dimensionless skeletons  22,708   collapse      353,135x   [cached layer]
+
+    germ recipes per skeleton (n_free=23):
+      g_s= 3:      1,472
+      g_s= 4:      9,936  x6.75
+      g_s= 5:     36,708  x3.69
+      g_s= 6:    100,119  x2.73
+      g_s= 7:    226,941  x2.27
+      g_s= 8:    453,882  x2.00
+      g_s= 9:    829,058  x1.83
+      g_s=10:  1,413,465  x1.70
+      g_s=11:  2,282,451  x1.61
+      -> the germ layer's growth RATIO FALLS with g_s: it is POLYNOMIAL, not exponential
+
+    reconstructed raw(D) vs the committed build_meta.json raw_candidates:
+
+      D    model raw(D)   committed raw   match      30^(D-4)   model/30^(D-4)
+    --------------------------------------------------------------------------------------------
+      7       1,566,116       1,566,116   EXACT     2.700e+04           58.004
+      8       8,123,807       8,123,807   EXACT     8.100e+05           10.029
+      9      38,450,388      38,450,388   EXACT     2.430e+07            1.582
+     10     174,890,804     174,890,804   EXACT     7.290e+08            0.240
+   [PASS] the (n_skeletons x n_germ_recipes) identity reproduces every committed raw count EXACTLY
+
+    realized growth, committed numbers only:
+
+      D             raw   x prev      distinct   x prev  distinct/raw
+    ----------------------------------------------------------------------
+      7       1,566,116        -       498,848        -        0.3185
+      8       8,123,807     5.19     2,207,173     4.42        0.2717
+      9      38,450,388     4.73     9,830,707     4.45        0.2557
+     10     174,890,804     4.55    42,534,139     4.33        0.2432
+
+    log-linear fit over D=7..10:   B_raw = 4.807    B_distinct = 4.407
+    per-depth ratios distinct: ['4.42', '4.45', '4.33']  (DECLINING -> sub-exponential)
+
+  VERDICT S1. The realized branching factor of the enumeration is B ~ 4.41, not 30. The 30 in the
+  docstring is the pre-dedup step-menu length; between (a) the dimensionless filter, (b) value dedup and
+  (c) the germ layer being POLYNOMIAL in its own budget, each extra depth multiplies the DISTINCT value
+  count by only ~4.4. log2(4.41) = 2.14 bits per depth of look-elsewhere cost,
+  not log2(30) = 4.91.
+   [PASS] realized B (4.41) is far below the published 30
+
+====================================================================================================
+S2  IS D0 = 4 RIGHT?  (the model asserts N(D0) = 1)
+====================================================================================================
+
+  N(D) = B^(D-D0) asserts N(D0) = 1: exactly ONE candidate at depth D0. Two independent readings of
+  the code contradict D0=4 with N=1:
+    * grind.py's own count for the b_s=D-4 split is 11*30^(D-4) -- i.e. 11, not 1, at D=4.
+    * budget_splits(D) requires g_s>=3 and b_s>=1, so the FIRST non-empty depth is D=5, and the
+      distinct-value counts at low depth are:
+
+      D=5: splits [(1, 3)] -> raw 19,136
+      D=6: splits [(1, 4), (2, 3)] -> raw 236,624
+      D=7: splits [(1, 5), (2, 4), (3, 3)] -> raw 1,566,116
+      D=4: splits [] -> raw 0   (EMPTY: the model's anchor depth cannot even be built)
+
+  Calibration check. With the REAL distinct count at D=10 (42,534,139):
+      B=30  requires D0 = 4.84   (not 4)
+      B=4.41 requires D0 = -1.84   (not 4)
+  So (B=30, D0=4) is not two measured facts; it is one two-parameter guess that happens to land within
+  17x of the true multiplicity AT D=10 -- near the depth whose ceiling it is used to compute --
+  while having the wrong SLOPE. Its error therefore explodes away from D~10:
+
+       D   published N(D)=30^(D-4)  realized / extrapolated N(D)      over-count
+    ------------------------------------------------------------------------------
+       7                 2.700e+04                 4.988e+05             0.0541x
+       8                 8.100e+05                 2.207e+06              0.367x
+       9                 2.430e+07                 9.831e+06               2.47x
+      10                 7.290e+08                 4.253e+07               17.1x
+      12                 6.561e+11                 8.259e+08 (extrap)            794x
+      14                 5.905e+14                 1.604e+10 (extrap)       3.68e+04x
+      16                 5.314e+17                 3.114e+11 (extrap)       1.71e+06x
+      18                 4.783e+20                 6.048e+12 (extrap)       7.91e+07x
+   [PASS] D0=4 is not the depth at which N=1; budget_splits(4) is EMPTY so N(4)=0
+   [PASS] (B=30,D0=4) over-counts the real depth-10 multiplicity by >10x and by >1e6x at D=18
+
+====================================================================================================
+S3  THE MULTIPLICITY THAT ACTUALLY MATTERS: MEASURED LOCAL DENSITY
+====================================================================================================
+
+  N(D)*w assumes the value set is spread so that a fraction w of it lands in a relative window w --
+  i.e. roughly log-uniform over ~1 decade. The value set spans many decades and CLUSTERS, so this is
+  wrong; PAPER_ATOMOS_NULL.md already reports it as ~100x wrong but does not propagate it into the
+  ceiling. Here it is measured directly off the committed value arrays. The hit predicate is
+  rel_error <= tol, i.e. a two-sided window of relative width 2*tol.
+
+  (a) MACHINERY PROOF -- recount hits straight off the value arrays and compare to the
+      committed per-target n_hits in results_grind/depth_{8,9}/VERDICT.json:
+
+      depth 8: 21 committed targets, 20 of the 20 reachable ones recounted EXACTLY   NOT REACHABLE from sm_target_keys(): ['r_tau_mu']
+      depth 9: 21 committed targets, 20 of the 20 reachable ones recounted EXACTLY   NOT REACHABLE from sm_target_keys(): ['r_tau_mu']
+   [PASS] independent recount off the raw value arrays reproduces every committed per-target hit count (40 agree / 0 differ)
+
+      SIDE FINDING (not the lens, but it falls out of loading the arrays): the committed
+      value arrays contain entries OUTSIDE float64 range, and float64 collisions:
+
+         D       stored  inf (overflow)  <=0 (underflow)       usable  distinct f64
+      ------------------------------------------------------------------------------
+         8    2,207,173          19,394           19,394    2,168,385     1,793,972
+         9    9,830,707         158,256          149,308    9,523,143     7,886,885
+        10   42,534,139       1,144,060        1,085,488   40,304,591    33,309,838
+
+      So the depth-10 "42,534,139 distinct values" contains 2,229,548 values that overflowed or
+      underflowed float64 on the way to disk, and 6,994,753 further float64 collisions among the
+      rest. The number of DISTINGUISHABLE candidates that could ever land on an O(1)-ish SM target is
+      33,309,838, i.e. 1.28x fewer than the headline count. Irrelevant to the null (no target is
+      near the float64 rails), but it is a further over-count in any N-based look-elsewhere number.
+   [PASS] the headline distinct count over-states the float64-distinguishable multiplicity by >1.2x
+
+  (b) depth 10: 40,304,591 distinct values. Naive E = N*2w versus the MEASURED count:
+
+      target                    2w   naive N*2w  measured  naive/meas  local density rho
+      ------------------------------------------------------------------------------------
+      a_e                 2.24e-10    9.036e-03         0         nan          0.000e+00
+      alpha_em_inv_0      3.06e-10    1.235e-02         0         nan          0.000e+00
+      r_p_e               8.53e-10    3.436e-02         0         nan          0.000e+00
+      r_n_p               1.31e-09    5.260e-02         0         nan          0.000e+00
+      r_mu_e              4.35e-08    1.755e+00         0         nan          0.000e+00
+      a_mu                3.77e-07    1.521e+01         0         nan          0.000e+00
+      r_tau_e             1.35e-04    5.444e+03        28         194          2.073e+05
+      alpha_em_inv_MZ     1.41e-04    5.670e+03        50         113          3.554e+05
+      sin2_thetaW_MZ      2.59e-04    1.046e+04        72         145          2.775e+05
+      koide_Q_up          2.70e-03    1.088e+05       838         130          3.106e+05
+      higgs_lambda        3.51e-03    1.416e+05     1,130         125          3.215e+05
+      ckm_lambda          6.04e-03    2.436e+05     2,121         115          3.509e+05
+      koide_Q_down        6.14e-03    2.476e+05     2,098         118          3.415e+05
+      r_b_tau             1.44e-02    5.786e+05     4,747         122          3.307e+05
+      r_t_b               1.47e-02    5.942e+05     4,443         134          3.014e+05
+      alpha_s_MZ          1.53e-02    6.148e+05     4,933         125          3.234e+05
+      koide_Q_lep         2.03e-05    8.192e+02        11          74          5.412e+05
+      pmns_sin2_13        5.08e-02    2.049e+06    15,212         135          2.992e+05
+      pmns_sin2_12        7.92e-02    3.192e+06    26,142         122          3.300e+05
+      pmns_sin2_23        6.29e-02    2.537e+06    20,799         122          3.305e+05
+
+      median naive/measured over-count = 123x   (paper says '~100x')
+      typical measured local density rho (targets with >=300 hits) = 3.267e+05 per unit relative window
+      => effective multiplicity is rho, not N: 123x smaller than the distinct count
+   [PASS] the naive N*2w model over-states chance hits by a median 123x at depth 10
+
+  (c) DEPTH GROWTH OF THE LOCAL DENSITY (this, not N, is what sets the ceiling):
+
+      target                rho(D=8)     rho(D=9)    rho(D=10)   x/depth 8->10
+      --------------------------------------------------------------------------
+      ckm_lambda           2.564e+04    9.497e+04    3.509e+05           3.699
+      koide_Q_down         2.441e+04    1.004e+05    3.415e+05           3.740
+      r_b_tau              2.111e+04    8.757e+04    3.307e+05           3.958
+      r_t_b                2.021e+04    7.753e+04    3.014e+05           3.861
+      alpha_s_MZ           2.321e+04    8.929e+04    3.234e+05           3.733
+      pmns_sin2_13         2.010e+04    7.563e+04    2.992e+05           3.858
+      pmns_sin2_12         2.140e+04    8.877e+04    3.300e+05           3.927
+      pmns_sin2_23         2.301e+04    9.133e+04    3.305e+05           3.790
+
+      median density growth per depth  B_rho = 3.824   (vs distinct-count growth 4.407, vs published 30)
+   [PASS] the local density grows only ~3.82x per depth, slower than the distinct count
+
+  (d) THE TIGHT TARGETS. Their windows are far below the spacing of the value set, so measure rho on
+      a window ladder near each and read off where it stabilises; then E_chance = rho * 2w.
+
+      target              rho@w=1e-01   rho@w=1e-02   rho@w=1e-03   rho@w=1e-04   rho@w=1e-05   rho@w=1e-06
+      -----------------------------------------------------------------------------------------------------
+      alpha_em_inv_0        2.801e+05     2.766e+05     2.765e+05     1.700e+05     2.500e+05     1.000e+06
+      r_p_e                 2.505e+05     2.557e+05     2.725e+05     1.250e+05     2.000e+05     0.000e+00
+      a_e                   2.627e+05     2.648e+05     2.950e+05     2.600e+05     1.500e+05     0.000e+00
+      r_mu_e                2.742e+05     2.661e+05     3.125e+05     4.900e+05     2.500e+05     0.000e+00
+
+      The ladder is flat-ish across decades where counts are still large, then noise-limited: use the
+      widest still-local rung (w=1e-3) as rho, which is CONSERVATIVE for a ceiling because coarse rho
+      >= fine rho for a clustered set.
+
+====================================================================================================
+S4  IS 'EXPECTED HITS = 1' THE RIGHT CRITERION?
+====================================================================================================
+
+  E = 1 means "one chance match expected". Under Poisson that is P(>=1 chance hit) = 1-e^-1 = 0.632:
+  a 63% false-alarm rate. It is NOT a significance threshold, and it is the LENIENT end of the range.
+  Three defensible criteria, and the depth shift each implies (shift = ln(1/E*)/ln(B) depths):
+
+    criterion                                             E*   depth shift @B=30   depth shift @B=3.82
+    --------------------------------------------------------------------------------------------------
+    expected hits = 1 (published)                          1               -0.00                 -0.00
+    P(>=1 chance hit) <= 0.05, single target         0.05129               -0.87                 -2.21
+    Bonferroni over the 19 searched targets           0.0027               -1.74                 -4.41
+    Bonferroni over 19 targets x 8 depths          0.0003375               -2.35                 -5.96
+    BH-FDR q=0.05, rank-1 of 19 targets             0.002632               -1.75                 -4.43
+
+  VERDICT S4. E=1 is TOO LENIENT as an informativeness criterion, by 6.0 depths at the realized
+  branching factor: the honest threshold is E* = 0.000337 (5% family-wise over 19 targets x 8 depths),
+  not E=1. This correction pushes D_max DOWN. It is the ONE error in the derivation that runs in the
+  conservative direction, and it is much smaller than the multiplicity errors, which run the other way.
+  NOTE the derivation is also internally inconsistent about the factor 2: GATE_POWER_ANALYSIS.py uses
+  w2 = 2w, BITS_RULE.py uses w. That is 1 bit = 0.52 depths at B=3.82.
+   [PASS] E=1 corresponds to a 63% false-alarm probability, so it is a lenient criterion, not a significance threshold
+
+====================================================================================================
+S5  THE WINDOWS THEMSELVES: A 1000x UNIT ERROR IN THE PUBLISHED TABLE
+====================================================================================================
+
+  GATE_POWER_ANALYSIS.py:41 writes m_p/m_e's precision as  3.2e-11/1836.15 -> w = 1.74e-14, and
+  BITS_RULE.py:14 carries 3.49e-14. CODATA 2022 is m_p/m_e = 1836.152673426(32), i.e. an ABSOLUTE
+  uncertainty of 3.2e-8, so the relative precision is 1.74e-11 -- the published figure is 1000x too
+  tight. And the window the CODE actually searches with (propagated from the two kg masses) is:
+
+      repo's own registry: r_p_e rel_precision = 4.2626e-10   -> measurement_tol = 4.2626e-10
+      CODATA direct ratio 3.2e-8/1836.1527 = 1.7428e-11
+      BITS_RULE / GATE_POWER value (one-sided) = 1.7400e-14     <-- 1000x too tight
+
+      ceiling sensitivity to that alone, published model (B=30, D0=4, E=1):
+        BITS_RULE w=3.49e-14 (as published)            D_max = 13.11
+        CODATA direct ratio, two-sided                 D_max = 11.08
+        the window the code actually uses, two-sided   D_max = 10.14
+
+      So even INSIDE the published model, "D = 13.1 for m_p/m_e" should read D = 11.1 on the CODATA
+      ratio, or D = 10.1 on the window the search actually applies. That is a 2.0-2.6 depth
+      over-statement from a units slip, INDEPENDENT of the branching-factor problem.
+   [PASS] BITS_RULE/GATE_POWER's m_p/m_e window is ~1000x tighter than CODATA's relative precision
+
+  A second, structural cap nobody costed: engine/scoring.py:108 clamps measurement_tol to
+  min_tol = 1e-10. NO target is ever searched with a window tighter than 1e-10, however well measured.
+  So the ceiling of the ACTUAL SEARCH is capped at
+      published model : D_max <= 10.57
+      tightest window the registry actually presents = 1.121e-10 (a_e)
+   [PASS] the engine's min_tol floor caps the achievable single-target ceiling near D~10.8 in the published model, so 'D=13.1 for m_p/m_e' is unreachable by the code as written
+
+====================================================================================================
+S6  THE CORRECTED CEILING
+====================================================================================================
+
+  Corrected model. Anchor on MEASURED quantities rather than a guessed (B,D0):
+      E(D, target) = rho(target, D=10) * B_rho^(D-10) * 2w        [measured density, measured growth]
+      informative iff E <= E*
+  =>  D_max = 10 + ln( E* / (rho10 * 2w) ) / ln(B_rho)
+  with B_rho = 3.824 (S3c), rho10 measured per target (S3b/S3d), E* per S4.
+  For comparison the same with N instead of rho (i.e. keeping the paper's uniform-density assumption
+  but using the REAL distinct count and REAL growth) is also shown.
+
+    target                      2w used      rho10  PUBLISHED  realB,N,E=1  realB,rho,E=1  realB,rho,E*
+    ---------------------------------------------------------------------------------------------------
+    1/alpha                    3.06e-10   2.76e+05      10.44        12.93          16.99         11.03
+    m_p/m_e (code window)      8.53e-10   2.72e+05      10.14        12.24          16.24         10.28
+    m_p/m_e (CODATA ratio)     3.49e-11   2.72e+05      11.08        14.39          18.62         12.66
+    a_e                        2.24e-10   2.95e+05      10.53        13.14          17.17         11.21
+    alpha_s(M_Z)               1.53e-02   3.23e+05       5.23         0.98           3.66         -2.30
+    (a NEGATIVE corrected D_max is not a bug: a loosely measured target like alpha_s has NO
+     depth at which a single-target match would clear a family-wise threshold, not even D=5.)
+
+  (iv) SUB-EXPONENTIAL GROWTH. B^(D-D0) assumes a CONSTANT ratio. The measured ratios are not constant.
+       distinct-count ratios D7->10: ['4.42', '4.45', '4.33']
+       density ratios: D8->9 = 3.909,  D9->10 = 3.707   (falling)
+       Extrapolating with a FIXED ratio 3.82 is therefore an UPPER bound on the multiplicity and
+       hence a LOWER bound on D_max; a linearly-decaying ratio (slope -0.202/depth, reaching
+       2.09 by D=18) gives the other end of the bracket:
+       target                   D_max fixed-ratio   D_max decaying-ratio
+       -----------------------------------------------------------------
+       1/alpha                              11.03                     11
+       m_p/m_e (code win)                   10.28                     10
+       The bracket is wide because nothing in the repo measures the ratio past D=10. That is the
+       honest residual uncertainty in ANY version of this ceiling, published or corrected.
+
+  HEADLINE CORRECTION -- and the honest answer is that the ERRORS LARGELY CANCEL:
+      1/alpha  : published D_max = 10.44  ->  corrected 11.03   (+0.59 depths; published TOO STRICT)
+      m_p/m_e  : published D_max = 13.11  ->  corrected 10.28   (-2.83 depths on the window the
+                 code actually applies) or 12.66 (-0.45) on the CODATA direct ratio
+                 -- i.e. published TOO LENIENT for m_p/m_e, driven by the 1000x window slip.
+  ERROR LADDER for 1/alpha: start from the published figure, change ONE assumption at a time.
+  (An additive "budget" would be ambiguous because B and D0 are entangled, so substitute in sequence.)
+
+      published: B=30, D0=4, uniform N, E=1                D_max =  10.44
+      + real multiplicity level at D=10 (N=4.253e+07)      D_max =  11.28   (+0.84)
+      + real growth B=4.41 instead of 30                   D_max =  12.93   (+1.65)
+      + measured local density rho instead of N (123x)     D_max =  16.99   (+4.06)
+      + family-wise E* = 0.00034 instead of E=1            D_max =  11.03   (-5.96)
+      m_p/m_e only: window units 3.49e-14 -> code window   D_max =  10.28   (-2.38 vs CODATA ratio 12.66)
+
+  NET: the LEVEL of the published ceiling is roughly right (~10-13) by cancellation, but the SLOPE is
+  wrong by 2.5x: the true look-elsewhere cost is 1.94 bits/depth, not 4.91. Every claim that
+  depends on the slope rather than the level is therefore mis-stated (see S7b).
+   [PASS] the corrected 1/alpha ceiling is ABOVE the published 10.44 (published too strict)
+   [PASS] the corrected m_p/m_e ceiling on the window the code actually uses is BELOW the published 13.11 (published too lenient there)
+
+====================================================================================================
+S7  WHAT THE CORRECTION DOES AND DOES NOT CHANGE
+====================================================================================================
+
+  (a) DOES 'DEPTHS 10-18 WERE EMPTY BY CONSTRUCTION' SURVIVE? Test it, do not assume it.
+
+      target                       2w  published E(18)  corrected E(18)  informative @E*?
+      ------------------------------------------------------------------------------------
+      1/alpha                3.06e-10         1.47e+11         3.87e+00                no
+      m_p/m_e                8.53e-10         4.08e+11         1.06e+01                no
+      a_e                    2.24e-10         1.07e+11         3.02e+00                no
+      m_mu/m_e               4.35e-08         2.08e+13         6.22e+02                no
+
+      (E* = 0.00034.) VERDICT: the published CONCLUSION SURVIVES. Even with the multiplicity cut by
+      3.2e+10x, a single-target match at depth 18 still expects E ~ 3-600 chance hits, far above any
+      threshold. The paper is right that single-target matching is dead by ~depth 11-13 and right that
+      its depth-10-18 sampling could not have established a single-target result. It got there through
+      a derivation whose branching factor is 7x too big, whose D0 is unfoundable and whose criterion is
+      too lenient -- three errors that happen to cancel. DO NOT report this as a reversal.
+
+  (b) THE SLOPE-DEPENDENT CLAIMS DO NOT SURVIVE. BITS_RULE.py's threshold is
+      SUM_i log2(1/w_i) > log2(N(D)) + 10. The cost term is over-stated:
+         D   published log2(N)   corrected log2(rho)   over-stated by
+      ----------------------------------------------------------------
+        10                29.4                  18.3           11.1 bits
+        13                44.2                  24.1           20.0 bits
+        18                68.7                  33.8           34.9 bits
+
+      BITS_RULE's headline: "the two most precisely measured numbers in physics are NOT enough on their
+      own at depth 18" -- 76.3 available bits vs 78.7 needed. Corrected on BOTH sides (real windows,
+      real multiplicity): 61.7 available vs 43.8 needed -> they DO clear. The k_min conclusion and the
+      'stop escalating depth, each depth costs 4.9 bits' recommendation both change: the real cost is
+      1.94 bits/depth. THIS is the finding that touches the interlock rule.
+
+      The substitution "log2(N) -> log2(rho)" is the k=1 form. Done properly for a k-target interlock:
+      one structure out of N is tried, and its chance of landing in target i's window is
+      p_i = 2w_i * rho_i / N, so E_joint(k) = N * PROD p_i = N^(1-k) * PROD (2w_i rho_i), i.e.
+          need   SUM_i log2(1/(2w_i))  >  SUM_i log2(rho_i) - (k-1)*log2(N) + log2(1/E*)
+      which reduces to the single-target rule at k=1. Both forms, at the two tightest targets:
+
+      D=10  k=2 need: simple form   29.9 bits | full form   22.8 bits | available 61.7 -> CLEARS
+      D=18  k=2 need: simple form   45.3 bits | full form   36.7 bits | available 61.7 -> CLEARS
+      (published rule at D=18 said: need 78.7, available 76.3 -> FALLS SHORT.)
+   [PASS] the published bits-cost at depth 18 is over-stated by >30 bits, and under BOTH corrected interlock forms the two tightest targets CLEAR at depth 18 (reversing BITS_RULE)
+
+  (c) SIDE FINDING with interlock consequences: the SECOND holdout cannot be scored.
+      exhaust_parallel.sm_target_keys(include_holdout=True) returns 20 keys, not 21:
+        it re-adds koide_Q_lep by name but never r_tau_mu -> ['r_tau_mu'] is unreachable.
+      grind._target_windows() is built from that list, so depth 10 retained 0 records near r_tau_mu
+      even though 39 depth-10 values fall inside its window (82,624 records total).
+      PAPER §6 calls r_tau_mu "the stronger test" precisely because it has no famous closed
+      form. At depth 10 a survivor's out-of-sample prediction for it could not be scored from the
+      committed records -- which is exactly the input GATE_POWER_ANALYSIS's JACKPOT read-out rule
+      asks for. Outside this audit's lens, but it is a verified defect in the same chain.
+   [PASS] the second holdout r_tau_mu has depth-10 in-window values but ZERO retained records, so the documented out-of-sample check is not scoreable there
+
+  (d) it does NOT rescue the search's prior. The four structural obstructions in PAPER §5
+      (number field, period ring, dictionary, varying constants) are untouched by this audit, and the
+      hit-distribution diagnostic in §3 -- hits track window width and nothing else -- is CONFIRMED
+      here at higher precision (S3b: 19 targets, hits/2w flat at rho ~ 3e5 across five decades of
+      window). The corrections are to the ceiling ARITHMETIC and to the slope-dependent claims built
+      on it, not to the null.
+
+====================================================================================================
+CEILING AUDIT: 18/18 checks PASS.  ALL PASS
+====================================================================================================

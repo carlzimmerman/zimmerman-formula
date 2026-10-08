@@ -1,0 +1,304 @@
+========================================================================================================
+target_independence_graph -- AUDIT LENS: TARGET INDEPENDENCE (Gate-C interlock)
+========================================================================================================
+
+S1  VERIFY THE DEPENDENCY GRAPH -- reconstruct each target from its parents
+--------------------------------------------------------------------------------------------------------
+  target            parents                                     stored       rebuilt  rel resid   n sigma kind
+  ----------------------------------------------------------------------------------------------------
+  v_higgs           G_F                                      246.21965     246.21964   3.96e-08     0.016 DEF
+  higgs_lambda      m_H,v_higgs                             0.12928057    0.12928057   0.00e+00     0.000 ID
+  koide_Q_down      m_d,m_s,m_b                             0.73121844    0.73121844   0.00e+00     0.000 ID
+  koide_Q_lep       m_e,m_mu,m_tau                          0.66666051    0.66666051   0.00e+00     0.000 ID
+  koide_Q_up        m_u,m_c,m_t                             0.84893671    0.84893671   0.00e+00     0.000 ID
+  koide_theta_lep   m_e,m_mu,m_tau                           44.999735     44.999735   0.00e+00     0.000 ID
+  qlc_sum           ckm_theta12,pmns_theta12                     46.41         46.41   0.00e+00     0.000 ID
+  r_Dm2_atm_sol     Dm2_31_NO,Dm2_21                         33.827493     33.827493   0.00e+00     0.000 ID
+  r_b_s             m_b,m_s                                  44.705882     44.705882   0.00e+00     0.000 ID
+  r_b_tau           m_b,m_tau                                2.3524645     2.3524645   0.00e+00     0.000 ID
+  r_c_u             m_c,m_u                                  587.96296     587.96296   0.00e+00     0.000 ID
+  r_mu_e            m_mu,m_e                                 206.76828     206.76828   0.00e+00     0.000 ID
+  r_n_p             m_n,m_p                                  1.0013784     1.0013784   0.00e+00     0.000 ID
+  r_p_e             m_p,m_e                                  1836.1527     1836.1527   0.00e+00     0.000 ID
+  r_s_d             m_s,m_d                                  19.893617     19.893617   0.00e+00     0.000 ID
+  r_t_b             m_t,m_b                                  41.284689     41.284689   0.00e+00     0.000 ID
+  r_t_c             m_t,m_c                                  135.88189     135.88189   0.00e+00     0.000 ID
+  r_tau_e           m_tau,m_e                                3477.2283     3477.2283   0.00e+00     0.000 ID
+  r_tau_mu          m_tau,m_mu                               16.817029     16.817029   0.00e+00     0.000 ID
+  sqrt_md_ms        m_d,m_s                                 0.22420388    0.22420388   0.00e+00     0.000 ID
+  ckm_J             ckm_A,ckm_lambda,ckm_etabar               3.08e-05 3.0405213e-05   1.28e-02     0.304 REPAR
+  ckm_deltaCP       ckm_rhobar,ckm_etabar                         65.5     65.695886   2.99e-03     0.065 REPAR
+  ckm_theta12       ckm_lambda                                      13     13.003466   2.67e-04     0.087 REPAR
+  ckm_theta13       ckm_A,ckm_lambda,ckm_rhobar,ckm_etabar         0.201    0.20841321   3.69e-02     0.674 REPAR
+  ckm_theta23       ckm_A,ckm_lambda                              2.41     2.3968066   5.47e-03     0.220 REPAR
+  pmns_sin_t13      pmns_sin2_13                            0.14849984    0.14842507   5.04e-04     0.039 REPAR
+  pmns_theta12      pmns_sin2_12                                 33.41     33.398189   3.54e-04     0.016 REPAR
+  pmns_theta13      pmns_sin2_13                                  8.54     8.5356678   5.07e-04     0.039 REPAR
+  pmns_theta23      pmns_sin2_23                                  49.1     49.139688   8.08e-04     0.040 REPAR
+  sin2_thetaW_MZ    m_W,m_Z                                    0.23122    0.22320949   3.46e-02   267.017 THEO
+  tau_mu            G_F,m_mu                             2.1969811e-06 2.1873472e-06   4.39e-03  4379.024 THEO
+   [PASS] all 19 construction-identity (ID) edges reproduce their stored target to rel <= 1e-9 (worst 0.0e+00)
+   [PASS] the DEF edge (v_higgs <- G_F) reproduces to rel 4.0e-08
+   [PASS] every REPAR edge agrees within 1 sigma of the stored rounded PDG value (worst 0.67 sigma) -> same dof, stored twice
+   [PASS] the THEO edges do NOT close algebraically (worst 4379 sigma) -- correctly NOT exact redundancies; they are audited in theory_edges.py instead
+
+S2  EXACT-REDUNDANCY CLASSES  (#targets vs #independent dof)  -- ILLEGITIMATE INTERLOCKS
+--------------------------------------------------------------------------------------------------------
+  family                           members   dof  redundant   smallest dependent subset exhibited
+  ----------------------------------------------------------------------------------------------------
+  charged leptons + Koide                5     2          3   {koide_Q_lep, koide_theta_lep}
+  down-quark ratios + Koide_down         4     2          2   {r_s_d, sqrt_md_ms}
+  up-quark ratios + Koide_up             3     2          1   {r_c_u, r_t_c, koide_Q_up}
+  PMNS solar angle                       2     1          1   {pmns_sin2_12, pmns_theta12}
+  PMNS reactor angle                     3     1          2   {pmns_sin2_13, pmns_theta13}
+  PMNS atm angle                         2     1          1   {pmns_sin2_23, pmns_theta23}
+  CKM Wolfenstein block                  9     4          5   {ckm_lambda, ckm_theta12}
+  quark-lepton complementarity           3     2          1   {ckm_theta12, pmns_theta12, qlc_sum}
+  EW scale block                         4     2          2   {G_F, v_higgs}
+
+  TOTAL over these families: 35 member targets, 17 independent dof, 18 exactly redundant.
+  ILLEGITIMATE PAIRS (rank-1 pairs: one is an exact function of the other) -- 9 found:
+      koide_Q_lep        == f(koide_theta_lep)            [charged leptons + Koide]
+      r_s_d              == f(sqrt_md_ms)            [down-quark ratios + Koide_down]
+      pmns_sin2_12       == f(pmns_theta12)            [PMNS solar angle]
+      pmns_sin2_13       == f(pmns_theta13)            [PMNS reactor angle]
+      pmns_sin2_13       == f(pmns_sin_t13)            [PMNS reactor angle]
+      pmns_theta13       == f(pmns_sin_t13)            [PMNS reactor angle]
+      pmns_sin2_23       == f(pmns_theta23)            [PMNS atm angle]
+      ckm_lambda         == f(ckm_theta12)            [CKM Wolfenstein block]
+      G_F                == f(v_higgs)            [EW scale block]
+   [PASS] 35 registry targets in these families carry only 17 independent dof; 9 rank-1 pairs would be illegitimate 2-target interlocks
+
+S3  THE FITTABLE POOL (what a search MAY fit): bits per target, both repo conventions
+--------------------------------------------------------------------------------------------------------
+  target                    rel   gate tol  bits(BITS_RULE)  bits(gate FDR)   measured parents
+  ----------------------------------------------------------------------------------------------------
+  a_e                 1.121e-10   1.12e-10             32.1            29.7   a_e
+  alpha_em_inv_0      1.532e-10   1.53e-10             31.6            29.3   alpha_em_inv_0
+  r_p_e               4.263e-10   4.26e-10             30.1            27.8   m_e,m_p
+  r_n_p               6.526e-10   6.53e-10             29.5            27.2   m_n,m_p
+  r_mu_e              2.177e-08   2.18e-08             24.5            22.1   m_e,m_mu
+  a_mu                1.887e-07   1.89e-07             21.3            19.0   a_mu
+  r_tau_e             6.753e-05   6.75e-05             12.9            10.5   m_e,m_tau
+  alpha_em_inv_MZ     7.034e-05   7.03e-05             12.8            10.5   alpha_em_inv_MZ
+  sin2_thetaW_MZ      1.297e-04   1.30e-04             11.9             9.6   sin2_thetaW_MZ
+  koide_Q_up          1.349e-03   1.35e-03              8.5             6.2   m_c,m_t,m_u
+  higgs_lambda        1.757e-03   1.76e-03              8.2             5.8   G_F,m_H
+  ckm_lambda          3.022e-03   3.02e-03              7.4             5.0   ckm_lambda
+  koide_Q_down        3.072e-03   3.07e-03              7.3             5.0   m_b,m_d,m_s
+  r_b_tau             7.177e-03   7.18e-03              6.1             3.8   m_b,m_tau
+  r_t_b               7.371e-03   7.37e-03              6.1             3.8   m_b,m_t
+  alpha_s_MZ          7.627e-03   7.63e-03              6.0             3.7   alpha_s_MZ
+  pmns_sin2_13        2.542e-02   2.54e-02              4.3             2.0   pmns_sin2_13
+  pmns_sin2_23        3.147e-02   3.15e-02              4.0             1.7   pmns_sin2_23
+  pmns_sin2_12        3.960e-02   3.96e-02              3.7             1.3   pmns_sin2_12
+
+  naive SUM over the whole 19-target fittable pool = 268.2 bits (BITS_RULE conv)
+  targets NOT in the pool but in the registry: 51 (dimensionful, bounds, or rel > 1e-2)
+  NOTE: r_tau_mu is a HOLDOUT key yet sm_target_keys(include_holdout=True) returns 20 keys and does NOT contain it (confirmed) -- the 'always include' loop re-adds koide_Q_lep only.
+
+S4  SHARED-PARENT CORRELATION rho_ij within the fittable pool (|rho| >= 0.20)
+--------------------------------------------------------------------------------------------------------
+      rho_ij = Cov/(sig_i sig_j), Cov = sum_p (dlnTi/dlnp)(dlnTj/dlnp) relvar(p).
+      pdg_constants.ratio() states 'independent-Gaussian assumption' -- this is its size.
+
+  target i          target j                rho   shared parent(s)
+  ----------------------------------------------------------------------------------------------------
+  r_b_tau           r_t_b                -0.974   m_b
+  r_p_e             r_n_p                -0.343   m_p
+  koide_Q_down      r_b_tau               0.308   m_b
+  koide_Q_down      r_t_b                -0.300   m_b
+   [PASS] 4 fittable pairs share a parent measurement with |rho| >= 0.20; the worst is (r_b_tau, r_t_b) at rho = -0.974
+
+S5  CONDITIONAL BITS
+--------------------------------------------------------------------------------------------------------
+  5a. THE HOLDOUT LEAK -- is the held-back validation set actually out-of-sample?
+      HOLDOUT_KEYS = ['koide_Q_lep', 'r_tau_mu']; fittable pool has 19 targets.
+
+  holdout        own bits  predicted from               r_j(L1)   r_j(L2)       w_j cond bits  exponents
+  ----------------------------------------------------------------------------------------------------
+  koide_Q_lep        15.6  r_mu_e/r_tau_e/r_b_tau      2.03e-05  2.03e-05  2.03e-05    0.0000  r_mu_e^-0.1373, r_tau_e^+0.1505, r_b_tau^-0.0000
+  r_tau_mu           12.9  r_mu_e/r_tau_e              1.35e-04  1.35e-04  1.35e-04    0.0000  r_mu_e^-1.0000, r_tau_e^+1.0000
+
+      DIRECT CORNER SCAN (no linearisation): put r_mu_e and r_tau_e anywhere in their own
+      2-sigma windows, then compute the holdout values the analyst would 'predict'.
+    r_mu_e offset  r_tau_e offset   pred r_tau_mu   n sigma   pred koide_Q   n sigma
+  ----------------------------------------------------------------------------------------------------
+             -1.0            -1.0       16.815894      1.00    0.666653738      1.00
+             -1.0             0.0       16.817030      0.00    0.666660513      0.00
+             -1.0             1.0       16.818165      1.00    0.666667288      1.00
+              0.0            -1.0       16.815894      1.00    0.666653736      1.00
+              0.0             0.0       16.817029      0.00    0.666660511      0.00
+              0.0             1.0       16.818165      1.00    0.666667286      1.00
+              1.0            -1.0       16.815893      1.00    0.666653734      1.00
+              1.0             0.0       16.817029      0.00    0.666660509      0.00
+              1.0             1.0       16.818165      1.00    0.666667284      1.00
+
+      READ: r_tau_mu = r_tau_e / r_mu_e is ONE DIVISION of two targets the search is allowed to fit,
+      and koide_Q_lep = (1+A+B)/(1+sqrt A+sqrt B)^2 with A = r_mu_e, B = r_tau_e is a short arithmetic
+      composition of the same two. Feeding the two fittable targets at n sigma of THEIR OWN windows
+      reproduces the holdouts at at most 1.000329 x n sigma of the HOLDOUTS' windows -- a transfer gain of
+      1.0 to 6 decimals. That is the signature of TOTAL determination: the holdout sigmas in pdg_constants are
+      propagated from the very same m_e/m_mu/m_tau, so there is no slack anywhere for the holdout to
+      test. At the central values the miss is exactly 0.00 sigma on r_tau_mu.
+      Anything that fits r_mu_e and r_tau_e therefore PASSES the 2-sigma holdout test automatically,
+      having predicted nothing.
+      This is NOT a depth-budget question. The holdout's stated purpose (GATE_POWER_ANALYSIS S5.2,
+      pdg_constants.holdout(), PDGDataset.score_holdout) is that an ANALYST fixes the expression on the
+      fitted targets and then computes the held-back one. That division is done by hand, at zero depth
+      cost, and score_holdout() will report sigma <= 2 and passes_2sigma = True.
+   [PASS] the holdouts inherit 1.000329 sigma per input sigma from the FITTABLE pair (r_mu_e, r_tau_e) -> transfer gain 1.0, zero validation slack
+      pdg.score_holdout('r_tau_mu', prediction_from_pool) -> sigma=3.128e-12 rel=2.11e-16 passes_2sigma=True
+   [PASS] the repo's own PDGDataset.score_holdout('r_tau_mu', ...) returns passes_2sigma=True for a 'prediction' that is pure algebra on fittable targets
+      pdg.score_holdout('koide_Q_lep', prediction_from_pool) -> sigma=3.277e-11 rel=3.33e-16 passes_2sigma=True
+   [PASS] the repo's own PDGDataset.score_holdout('koide_Q_lep', ...) returns passes_2sigma=True for a 'prediction' that is pure algebra on fittable targets
+
+      COUNTERFACTUAL, FULL-POOL RANK TEST: is the holdout's dlnT/dlnp row in the span of ALL
+      remaining pool rows simultaneously? (a k<=3 subset scan could miss a longer combination)
+  dropped from pool           holdout         span residual   status
+  ----------------------------------------------------------------------------------------------------
+  (nothing)                   koide_Q_lep         3.300e-10   SPANNED -> LEAKS
+  (nothing)                   r_tau_mu            1.686e-10   SPANNED -> LEAKS
+  ['r_tau_e']                 koide_Q_lep         9.859e-02   NOT spanned -> genuinely out-of-sample
+  ['r_tau_e']                 r_tau_mu            4.633e-01   NOT spanned -> genuinely out-of-sample
+  ['r_mu_e']                  koide_Q_lep         1.451e-01   NOT spanned -> genuinely out-of-sample
+  ['r_mu_e']                  r_tau_mu            7.472e-01   NOT spanned -> genuinely out-of-sample
+  ['r_tau_e', 'r_mu_e']       koide_Q_lep         1.516e-01   NOT spanned -> genuinely out-of-sample
+  ['r_tau_e', 'r_mu_e']       r_tau_mu            7.679e-01   NOT spanned -> genuinely out-of-sample
+   [PASS] removing the single target r_tau_e (12.9 bits) restores BOTH holdouts to genuine out-of-sample status against the ENTIRE remaining pool
+      WHY r_tau_e is the whole leak: m_mu enters the pool only through r_mu_e, and m_tau only
+      through r_tau_e and r_b_tau. Strip r_tau_e and the pool's only remaining handle on m_tau is
+      r_b_tau = m_b/m_tau, whose m_b connects onward only to m_t and m_s -- never back to m_e or m_mu.
+      So no combination of the remaining 18 targets, of any length, reconstructs m_tau/m_mu. The rank
+      test above confirms it rather than assuming it.
+
+  5b. MAXIMAL MUTUALLY-INDEPENDENT SET -- ALGEBRA ONLY (what the dataset knows)
+      admit T_j iff cond_bits(T_j | admitted) > 0 AND max|rho| vs admitted < 0.90
+    # target              own bits  cond bits  max|rho|  status
+  ----------------------------------------------------------------------------------------------------
+    1 a_e                     32.1       32.1     0.000  ADMIT
+    2 alpha_em_inv_0          31.6       31.6     0.000  ADMIT
+    3 r_p_e                   30.1       30.1     0.000  ADMIT
+    4 r_n_p                   29.5       29.5     0.343  ADMIT
+    5 r_mu_e                  24.5       24.5     0.009  ADMIT
+    6 a_mu                    21.3       21.3     0.000  ADMIT
+    7 r_tau_e                 12.9       12.9     0.000  ADMIT
+    8 alpha_em_inv_MZ         12.8       12.8     0.000  ADMIT
+    9 sin2_thetaW_MZ          11.9       11.9     0.000  ADMIT
+   10 koide_Q_up               8.5        8.5     0.000  ADMIT
+   11 higgs_lambda             8.2        8.2     0.000  ADMIT
+   12 ckm_lambda               7.4        7.4     0.000  ADMIT
+   13 koide_Q_down             7.3        7.3     0.000  ADMIT
+   14 r_b_tau                  6.1        6.1     0.308  ADMIT
+   14 r_t_b                    6.1        6.1     0.974  REJECT (rho>=0.90)
+   15 alpha_s_MZ               6.0        6.0     0.000  ADMIT
+   16 pmns_sin2_13             4.3        4.3     0.000  ADMIT
+   17 pmns_sin2_23             4.0        4.0     0.000  ADMIT
+   18 pmns_sin2_12             3.7        3.7     0.000  ADMIT
+
+      SET (18/19): a_e, alpha_em_inv_0, r_p_e, r_n_p, r_mu_e, a_mu, r_tau_e, alpha_em_inv_MZ, sin2_thetaW_MZ, koide_Q_up, higgs_lambda, ckm_lambda, koide_Q_down, r_b_tau, alpha_s_MZ, pmns_sin2_13, pmns_sin2_23, pmns_sin2_12
+      TRUE independent bits = 262.2   (naive pool sum 268.2)
+
+  5b. MAXIMAL MUTUALLY-INDEPENDENT SET -- ALGEBRA + THEORY EDGES
+      admit T_j iff cond_bits(T_j | admitted) > 0 AND max|rho| vs admitted < 0.90
+    # target              own bits  cond bits  max|rho|  status
+  ----------------------------------------------------------------------------------------------------
+    1 a_e                     32.1       32.1     0.000  ADMIT
+    2 alpha_em_inv_0          31.6        3.0     0.000  ADMIT
+    3 r_p_e                   30.1       30.1     0.000  ADMIT
+    4 r_n_p                   29.5       29.5     0.343  ADMIT
+    5 r_mu_e                  24.5       24.5     0.009  ADMIT
+    6 a_mu                    21.3       21.3     0.000  ADMIT
+    7 r_tau_e                 12.9       12.9     0.000  ADMIT
+    8 alpha_em_inv_MZ         12.8        0.6     0.000  ADMIT
+    9 sin2_thetaW_MZ          11.9       11.9     0.000  ADMIT
+   10 koide_Q_up               8.5        8.5     0.000  ADMIT
+   11 higgs_lambda             8.2        8.2     0.000  ADMIT
+   12 ckm_lambda               7.4        7.4     0.000  ADMIT
+   13 koide_Q_down             7.3        7.3     0.000  ADMIT
+   14 r_b_tau                  6.1        6.1     0.308  ADMIT
+   14 r_t_b                    6.1        6.1     0.974  REJECT (rho>=0.90)
+   15 alpha_s_MZ               6.0        6.0     0.000  ADMIT
+   16 pmns_sin2_13             4.3        4.3     0.000  ADMIT
+   17 pmns_sin2_23             4.0        4.0     0.000  ADMIT
+   18 pmns_sin2_12             3.7        3.7     0.000  ADMIT
+
+      SET (18/19): a_e, alpha_em_inv_0, r_p_e, r_n_p, r_mu_e, a_mu, r_tau_e, alpha_em_inv_MZ, sin2_thetaW_MZ, koide_Q_up, higgs_lambda, ckm_lambda, koide_Q_down, r_b_tau, alpha_s_MZ, pmns_sin2_13, pmns_sin2_23, pmns_sin2_12
+      TRUE independent bits = 221.4   (naive pool sum 268.2)
+
+  5c. BEST INDEPENDENT PAIR / TRIPLE  (true combined bits vs the naive product-of-windows)
+--------------------------------------------------------------------------------------------------------
+
+   k = 2
+     [algebra only  ] BEST = a_e, alpha_em_inv_0
+                       naive   63.7 bits -> TRUE   63.7 bits (double-counted   0.0)
+     [algebra+theory] BEST = a_e, r_p_e
+                       naive   62.2 bits -> TRUE   62.2 bits (double-counted   0.0)
+     [tightest-2]  a_e, alpha_em_inv_0
+                       naive   63.7 -> TRUE   63.7 (algebra) /   35.1 (with theory edges)
+
+   k = 3
+     [algebra only  ] BEST = a_e, alpha_em_inv_0, r_p_e
+                       naive   93.8 bits -> TRUE   93.8 bits (double-counted   0.0)
+     [algebra+theory] BEST = a_e, r_p_e, r_n_p
+                       naive   91.7 bits -> TRUE   91.7 bits (double-counted   0.0)
+     [tightest-3]  a_e, alpha_em_inv_0, r_p_e
+                       naive   93.8 -> TRUE   93.8 (algebra) /   65.2 (with theory edges)
+
+S6  EFFECT ON THE OPERATIONAL RULE  (BITS_RULE.py: sum bits > log2 N(D) + 10)
+--------------------------------------------------------------------------------------------------------
+  A survivor interlocks k targets, not all 19. So the operative number is kmin: how many
+  targets, taken tightest-first, are needed to beat log2 N(D) + 10.
+
+   depth D   needed   kmin (BITS_RULE hand-typed)   kmin (dataset windows)    kmin (dataset + independence) 
+  ----------------------------------------------------------------------------------------------------
+        10     39.4   k=1 (44.7 bits)               k=2 (61.7 bits)           k=2 (62.2 bits)               
+        13     54.2   k=2 (76.3 bits)               k=2 (61.7 bits)           k=2 (62.2 bits)               
+        16     68.9   k=2 (76.3 bits)               k=3 (86.2 bits)           k=3 (91.7 bits)               
+        18     78.7   k=3 (104.1 bits)              k=3 (86.2 bits)           k=3 (91.7 bits)               
+        20     88.5   k=3 (104.1 bits)              k=4 (98.1 bits)           k=3 (91.7 bits)               
+
+  THE WORKED FALSE POSITIVE. A k=3 survivor on the three SHARPEST pool targets:
+  target            sector field    own bits  cond bits
+  ----------------------------------------------------------------------------------------------------
+  a_e               moment              32.1       32.1
+  alpha_em_inv_0    gauge               31.6        3.0
+  r_p_e             ratio               30.1       30.1
+
+      advertised: k = 3 targets in 3 different `sector` fields, 93.8 bits -> beats the depth-18
+                  threshold 78.7 comfortably; GATE_POWER S2 says "k >= 4 is worth a paper", S6/BITS_RULE
+                  say a 3-target interlock at 93.8 bits clears 78.7.
+      TRUE:       a_e and 1/alpha are ONE observable (theory_edges T1: the QED series reproduces a_e
+                  from alpha to 2.4e-9 relative). Independent content = 65.2 bits, which is
+                  BELOW the depth-18 threshold 78.7 and above the depth-10 threshold 39.4.
+      DIRECTION:  TOO LENIENT on the sector COUNT k and on any claim of "3 independent observables".
+                  NOT too lenient on the FDR arithmetic itself -- the enumeration cannot build the QED
+                  series (theory_edges T1), so three separate window hits really are three separate
+                  improbable events. The two statements are different and both are true.
+   [PASS] the sharpest k=3 pool interlock advertises 93.8 bits / 3 sectors but contains only 65.2 bits / 2 independent observables
+   [PASS] and that 93.8 -> 65.2 correction moves it across the depth-18 threshold 78.7
+
+  BITS_RULE.py's windows are HAND-TYPED. Compared with the dataset they actually gate on:
+  BITS_RULE name           BR w  dataset 2*rel   bits BR  bits data    delta
+  ----------------------------------------------------------------------------------------------------
+  m_p/m_e              3.49e-14       8.53e-10      44.7       30.1    +14.6
+  1/alpha              3.06e-10       3.06e-10      31.6       31.6     +0.0
+  m_mu/m_e             4.45e-09       4.35e-08      27.7       24.5     +3.3
+  koide_Q_lep          2.00e-05       2.03e-05      15.6       15.6     +0.0
+  r_tau_mu             1.40e-04       1.35e-04      12.8       12.9     -0.1
+  sin^2 theta_W        3.40e-04       2.59e-04      11.5       11.9     -0.4
+  m_t/m_b              7.00e-03       1.47e-02       7.2        6.1     +1.1
+  alpha_s(M_Z)         1.50e-02       1.53e-02       6.1        6.0     +0.0
+
+  The m_p/m_e disagreement of +14.6 bits is the largest. 1.7e-14 relative on m_p/m_e would be ~14
+  significant figures; the dataset's own parents m_p and m_e are each known only to ~3e-10 relative.
+  GATE_POWER_ANALYSIS line 41 reads "3.2e-11/1836.15", i.e. a RELATIVE uncertainty divided by the
+  value a second time. The running gate is NOT affected -- exhaust._exact_fdr_bits uses
+  measurement_tol(target) off the dataset -- but every advertised ceiling depth and the kmin in
+  BITS_RULE.py inherit the error, in the direction that OVERSTATES available bits.
+   [PASS] BITS_RULE/GATE_POWER's hand-typed window for m_p/m_e disagrees with the dataset the gate actually uses by +14.6 bits
+   [PASS] the running gate is unaffected (it reads measurement_tol off the dataset), so this is an advertised-threshold error, not a live gate bug
+
+========================================================================================================
+CHECKS: 14/14 PASS
+========================================================================================================

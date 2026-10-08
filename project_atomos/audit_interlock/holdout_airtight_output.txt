@@ -1,0 +1,230 @@
+========================================================================================================
+HOLDOUT AIRTIGHTNESS AUDIT -- real selection functions, real artifacts
+========================================================================================================
+
+(1) HOLDOUT_KEYS as loaded from targets/pdg_constants.py
+--------------------------------------------------------------------------------------------------------
+   HOLDOUT_KEYS = ['koide_Q_lep', 'r_tau_mu']   (type frozenset)
+   [PASS] HOLDOUT_KEYS == {koide_Q_lep, r_tau_mu}
+   [PASS] HOLDOUT_KEYS is immutable (frozenset)
+   koide_Q_lep    value=0.6666605115 sigma=6.77e-06 rel=1.02e-05 sector=koide units=''
+   [PASS] koide_Q_lep is in the dataset and flagged by ds.is_holdout()
+   r_tau_mu       value=16.81702933 sigma=0.00114 rel=6.75e-05 sector=ratio units=''
+   [PASS] r_tau_mu is in the dataset and flagged by ds.is_holdout()
+
+(2) EVERY real target-selection function, CALLED
+--------------------------------------------------------------------------------------------------------
+   selector                                                    N  holdout members
+   --------------------------------------------------------------------------------------------------
+   exhaust_parallel.sm_target_keys()                          19  NONE
+   exhaust_parallel.sm_target_keys(include_holdout=True)      20  ['koide_Q_lep']
+   run_atomos.select_targets(--all)                           17  NONE
+   pdg.dimensionless()                                        31  NONE
+   pdg.dimensionless(include_holdout=True)                    33  ['koide_Q_lep', 'r_tau_mu']
+   pdg.precise_targets(1e-2)                                  37  ['koide_Q_lep', 'r_tau_mu']
+   pdg.fittable(1e-2)                                         16  NONE
+   pdg.holdout()                                               2  ['koide_Q_lep', 'r_tau_mu']
+   grind._target_windows()                                    20  ['koide_Q_lep']
+   exhaust_depth4_forced.sm_target_keys (imported symbol)     19  NONE
+   exhaust_depth5_forced.sm_target_keys (imported symbol)     19  NONE
+   exhaust_depthN_forced.sm_target_keys (imported symbol)     19  NONE
+   overnight_vocab_search.sm_target_keys (imported symbol)    19  NONE
+   overnight_pair_search.sm_target_keys (imported symbol)     19  NONE
+   grind.sm_target_keys (imported symbol)                     19  NONE
+
+   [PASS] SEARCH path exhaust_parallel.sm_target_keys() leaks nothing
+   [PASS] SEARCH path run_atomos.select_targets(--all) leaks nothing
+   [PASS] SEARCH path pdg.dimensionless() leaks nothing
+   [PASS] SEARCH path pdg.fittable(1e-2) leaks nothing
+   [PASS] SEARCH path exhaust_depth4_forced.sm_target_keys (imported symbol) leaks nothing
+   [PASS] SEARCH path exhaust_depth5_forced.sm_target_keys (imported symbol) leaks nothing
+   [PASS] SEARCH path exhaust_depthN_forced.sm_target_keys (imported symbol) leaks nothing
+   [PASS] SEARCH path overnight_vocab_search.sm_target_keys (imported symbol) leaks nothing
+   [PASS] SEARCH path overnight_pair_search.sm_target_keys (imported symbol) leaks nothing
+   [PASS] SEARCH path grind.sm_target_keys (imported symbol) leaks nothing
+
+   [FAIL] intentional path exhaust_parallel.sm_target_keys(include_holdout=True) includes BOTH holdout keys (has ['koide_Q_lep'])
+   [PASS] intentional path pdg.holdout() includes BOTH holdout keys (has ['koide_Q_lep', 'r_tau_mu'])
+   [FAIL] intentional path grind._target_windows() includes BOTH holdout keys (has ['koide_Q_lep'])
+
+   *** include_holdout=True IS NOT THE FULL HISTORICAL LIST ANY MORE ***
+   sm_target_keys()                    -> 19 keys
+   sm_target_keys(include_holdout=True) -> 20 keys; holdout present = ['koide_Q_lep']
+   WHY: sm_target_keys builds `out` from precise_targets INTERSECT dimensionless(),
+   and dimensionless() now drops the holdout by default. The hard-coded re-add loop
+   names koide_Q_lep but NOT r_tau_mu, so r_tau_mu can never re-enter -- the
+   include_holdout=True flag cannot put back what the intersection already removed.
+   The docstring's claim ('returns the FULL historical list') is therefore false, and
+   the depth-8/9 artifacts below prove the historical list had 21 keys incl. r_tau_mu.
+   [PASS] r_tau_mu is UNREACHABLE even with include_holdout=True (a real regression in the 2026-07-27 fix)
+
+   NOTE  pdg.precise_targets(1e-2) is NOT holdout-filtered: contains ['koide_Q_lep', 'r_tau_mu']
+         (both current callers intersect it with dimensionless() then re-filter, so no
+          live leak -- but a new caller using it directly would search the holdout.)
+   score_holdout('koide_Q_lep', 2/3) = 0.91 sigma, rel=9.23e-06, pass=True
+   score_holdout('r_tau_mu', 16.8170) = 0.03 sigma, rel=1.74e-06, pass=True
+   [PASS] score_holdout works on both held-back targets (the only legitimate use)
+
+(3) AST SCAN: every .py file, every literal occurrence of a holdout key name
+--------------------------------------------------------------------------------------------------------
+   scanning 72 .py files under project_atomos
+   AST string-literal occurrences of a holdout key: 77
+
+   file                                      line  key            source
+   --------------------------------------------------------------------------------------------------
+   BITS_RULE.py                                14  koide_Q_lep    T = [("m_p/m_e",3.49e-14),("1/alpha",3.06e-10),("m_mu/m_e",4
+   BITS_RULE.py                                15  r_tau_mu       ("r_tau_mu",1.4e-4),("sin^2 theta_W",3.4e-4),("m_t/m_b",7.0e
+   BITS_RULE.py                                21  koide_Q_lep    note = "HELD BACK (validation)" if n in ("koide_Q_lep","r_ta
+   BITS_RULE.py                                21  r_tau_mu       note = "HELD BACK (validation)" if n in ("koide_Q_lep","r_ta
+   BITS_RULE.py                                30  koide_Q_lep    fit = [(n,w) for n,w in T if n not in ("koide_Q_lep","r_tau_
+   BITS_RULE.py                                30  r_tau_mu       fit = [(n,w) for n,w in T if n not in ("koide_Q_lep","r_tau_
+   audit_interlock/ceiling_math_audit.py      679  r_tau_mu       tv_rt = float(reg["r_tau_mu"].value); w_rt = float(measureme
+   audit_interlock/ceiling_math_audit.py      679  r_tau_mu       tv_rt = float(reg["r_tau_mu"].value); w_rt = float(measureme
+   audit_interlock/clustering_depth_and_gateA.py    83  r_tau_mu       ts21["r_tau_mu"] = resolve_target("r_tau_mu")
+   audit_interlock/clustering_depth_and_gateA.py    83  r_tau_mu       ts21["r_tau_mu"] = resolve_target("r_tau_mu")
+   audit_interlock/clustering_depth_and_gateA.py   102  r_tau_mu       for k in keys + ["r_tau_mu"]:      # 21 = 19 swept + koide_Q
+   audit_interlock/gate_b_cancelling_germ.py   217  koide_Q_lep    ts6 = resolve_target("koide_Q_lep")
+   audit_interlock/gate_b_cancelling_germ.py   218  koide_Q_lep    gc6 = gate_candidate_for(r6, alpha, "koide_Q_lep", ts6.pdg_t
+   audit_interlock/gate_power_s2_recompute.py    73  r_tau_mu       "m_tau/m_mu": "r_tau_mu", "sin^2 theta_W": "sin2_thetaW_MZ",
+   audit_interlock/gate_power_s2_recompute.py    74  koide_Q_lep    "alpha_s(M_Z)": "alpha_s_MZ", "m_t/m_b": "r_t_b", "Koide Q":
+   audit_interlock/holdout_airtight.py         64  koide_Q_lep    set(HOLDOUT_KEYS) == {"koide_Q_lep", "r_tau_mu"}, is_fatal=T
+   audit_interlock/holdout_airtight.py         64  r_tau_mu       set(HOLDOUT_KEYS) == {"koide_Q_lep", "r_tau_mu"}, is_fatal=T
+   audit_interlock/holdout_airtight.py        137  r_tau_mu       "2026-07-27 fix)", "r_tau_mu" not in ih, is_fatal=False)
+   audit_interlock/holdout_airtight.py        146  koide_Q_lep    s, r, p = ds.score_holdout("koide_Q_lep", 2 / 3)
+   audit_interlock/holdout_airtight.py        148  r_tau_mu       s2, r2, p2 = ds.score_holdout("r_tau_mu", 16.8170)
+   audit_interlock/holdout_airtight.py        343  r_tau_mu       if k == "r_tau_mu":
+   audit_interlock/interlock_independence_test.py    59  r_tau_mu       keys = list(sm_target_keys(include_holdout=True)) + ["r_tau_
+   audit_interlock/interlock_spec_sets.py      55  koide_Q_lep    ALL = POOL + ["koide_Q_lep", "r_tau_mu"]
+   audit_interlock/interlock_spec_sets.py      55  r_tau_mu       ALL = POOL + ["koide_Q_lep", "r_tau_mu"]
+   audit_interlock/interlock_spec_sets.py     111  r_tau_mu       rtm = [f for f in found if f[0] == "r_tau_mu"]
+   audit_interlock/interlock_spec_sets.py     117  r_tau_mu       - mp.mpf(DS['r_tau_mu'].value)) / mp.mpf(DS['r_tau_mu'].valu
+   audit_interlock/interlock_spec_sets.py     117  r_tau_mu       - mp.mpf(DS['r_tau_mu'].value)) / mp.mpf(DS['r_tau_mu'].valu
+   audit_interlock/interlock_spec_sets.py     129  koide_Q_lep    Qm = mp.mpf(DS["koide_Q_lep"].value)
+   audit_interlock/interlock_spec_sets.py     132  koide_Q_lep    print(f"  relative difference {float(abs(Q-Qm)/Qm):.3e}  (wi
+   audit_interlock/interlock_spec_sets.py     144  koide_Q_lep    WQ = 2 * measurement_tol(DS["koide_Q_lep"])
+   audit_interlock/interlock_spec_sets.py     151  koide_Q_lep    f"{WIN['koide_Q_lep']['bits']:.2f})")
+   audit_interlock/interlock_spec_sets.py     153  koide_Q_lep    check(f"koide_Q_lep given the two lepton ratios carries {cb:
+   audit_interlock/interlock_spec_sets.py     220  r_tau_mu       "r_tau_mu": {"m_tau": 1, "m_mu": -1},
+   audit_interlock/interlock_spec_sets.py     223  koide_Q_lep    "koide_Q_lep": ["m_e", "m_mu", "m_tau"], "higgs_lambda": ["m
+   audit_interlock/interlock_spec_sets.py     449  koide_Q_lep    gc = gate_candidate_for(r, alpha, "koide_Q_lep", DS["koide_Q
+   audit_interlock/interlock_spec_sets.py     449  koide_Q_lep    gc = gate_candidate_for(r, alpha, "koide_Q_lep", DS["koide_Q
+   audit_interlock/interlock_spec_sets.py     473  r_tau_mu       "r_tau_mu" not in sm_target_keys(True))
+   audit_interlock/interlock_spec_sets.py     574  koide_Q_lep    for h in ("koide_Q_lep", "r_tau_mu")))
+   audit_interlock/interlock_spec_sets.py     574  r_tau_mu       for h in ("koide_Q_lep", "r_tau_mu")))
+   audit_interlock/target_independence_graph.py    87  r_tau_mu       "r_tau_mu":     (("m_tau", "m_mu"),             lambda a, b:
+   audit_interlock/target_independence_graph.py    99  koide_Q_lep    "koide_Q_lep":  (("m_e", "m_mu", "m_tau"),      _Q,         
+   audit_interlock/target_independence_graph.py   205  koide_Q_lep    ["r_mu_e", "r_tau_mu", "r_tau_e", "koide_Q_lep", "koide_thet
+   audit_interlock/target_independence_graph.py   205  r_tau_mu       ["r_mu_e", "r_tau_mu", "r_tau_e", "koide_Q_lep", "koide_thet
+   audit_interlock/target_independence_graph.py   273  r_tau_mu       f"({'confirmed' if 'r_tau_mu' not in POOL_H else 'contains i
+   audit_interlock/target_independence_graph.py   381  koide_Q_lep    kq, rtm = ds.target("koide_Q_lep"), ds.target("r_tau_mu")
+   audit_interlock/target_independence_graph.py   381  r_tau_mu       kq, rtm = ds.target("koide_Q_lep"), ds.target("r_tau_mu")
+   audit_interlock/target_independence_graph.py   418  koide_Q_lep    for h, pred in (("r_tau_mu", B0 / A0), ("koide_Q_lep", _Q(1.
+   audit_interlock/target_independence_graph.py   418  r_tau_mu       for h, pred in (("r_tau_mu", B0 / A0), ("koide_Q_lep", _Q(1.
+   audit_interlock/target_independence_graph.py   584  koide_Q_lep    ("m_mu/m_e", 4.45e-9, "r_mu_e"), ("koide_Q_lep", 2.0e-5, "ko
+   audit_interlock/target_independence_graph.py   584  koide_Q_lep    ("m_mu/m_e", 4.45e-9, "r_mu_e"), ("koide_Q_lep", 2.0e-5, "ko
+   audit_interlock/target_independence_graph.py   585  r_tau_mu       ("r_tau_mu", 1.4e-4, "r_tau_mu"), ("sin^2 theta_W", 3.4e-4, 
+   audit_interlock/target_independence_graph.py   585  r_tau_mu       ("r_tau_mu", 1.4e-4, "r_tau_mu"), ("sin^2 theta_W", 3.4e-4, 
+   audit_interlock/window_convention_audit.py   120  koide_Q_lep    "koide_Q_lep": 2.0e-5, "r_tau_mu": 1.4e-4, "sin^2 theta_W": 
+   audit_interlock/window_convention_audit.py   120  r_tau_mu       "koide_Q_lep": 2.0e-5, "r_tau_mu": 1.4e-4, "sin^2 theta_W": 
+   audit_interlock/window_convention_audit.py   126  koide_Q_lep    "m_t/m_b": 0.0035, "koide_Q_lep": 1.0e-5}
+   audit_interlock/window_convention_audit.py   128  koide_Q_lep    "koide_Q_lep": "koide_Q_lep", "r_tau_mu": "r_tau_mu", "m_tau
+   audit_interlock/window_convention_audit.py   128  koide_Q_lep    "koide_Q_lep": "koide_Q_lep", "r_tau_mu": "r_tau_mu", "m_tau
+   audit_interlock/window_convention_audit.py   128  r_tau_mu       "koide_Q_lep": "koide_Q_lep", "r_tau_mu": "r_tau_mu", "m_tau
+   audit_interlock/window_convention_audit.py   128  r_tau_mu       "koide_Q_lep": "koide_Q_lep", "r_tau_mu": "r_tau_mu", "m_tau
+   audit_interlock/window_convention_audit.py   128  r_tau_mu       "koide_Q_lep": "koide_Q_lep", "r_tau_mu": "r_tau_mu", "m_tau
+   audit_interlock/window_convention_audit.py   269  r_tau_mu       ("r_tau_mu", 16.8170, 0.00114, "from PDG m_tau 1776.86(12)/m
+   audit_interlock/window_convention_audit.py   292  koide_Q_lep    HOLD = {"koide_Q_lep", "r_tau_mu"}
+   audit_interlock/window_convention_audit.py   292  r_tau_mu       HOLD = {"koide_Q_lep", "r_tau_mu"}
+   audit_interlock/window_convention_audit.py   395  koide_Q_lep    Q = ds.target("koide_Q_lep")
+   calibration/charged_lepton_search.py        74  r_tau_mu       "r_tau_mu": (m_tau / m_mu, 6.8e-5),   # m_tau 0.12/1776.86
+   exhaust_parallel.py                         95  koide_Q_lep    for k in ("koide_Q_lep", "r_mu_e", "r_p_e", "pmns_sin2_13", 
+   grind.py                                   146  koide_Q_lep    tightest_target="koide_Q_lep", tightest_rel=9.23286916681698
+   grind.py                                   150  koide_Q_lep    tightest_target="koide_Q_lep", tightest_rel=9.23286916681698
+   kappa_rerun/regression_published.py         93  r_tau_mu       _check(sorted(set(replay_targets) & set(HOLDOUT_KEYS)) == so
+   run_atomos.py                              538  koide_Q_lep    "koide_Q_lep": ("m_e", "m_mu", "m_tau"),
+   run_atomos.py                             1031  koide_Q_lep    for k in ("koide_Q_lep", "r_mu_e", "r_p_e", "pmns_sin2_13", 
+   run_atomos.py                             1283  koide_Q_lep    Q = ds.target("koide_Q_lep")
+   targets/pdg_constants.py                   412  r_tau_mu       ratio(g("m_tau"), g("m_mu"), "r_tau_mu", "m_tau/m_mu ~ 16.81
+   targets/pdg_constants.py                   436  koide_Q_lep    D.append(koide_Q(g("m_e"), g("m_mu"), g("m_tau"), "koide_Q_l
+   targets/pdg_constants.py                   603  koide_Q_lep    HOLDOUT_KEYS: frozenset = frozenset({"koide_Q_lep", "r_tau_m
+   targets/pdg_constants.py                   603  r_tau_mu       HOLDOUT_KEYS: frozenset = frozenset({"koide_Q_lep", "r_tau_m
+   targets/pdg_constants.py                   676  koide_Q_lep    Q = ds.target("koide_Q_lep")
+
+   classification (a name-based re-add is a LIST/TUPLE of target keys feeding a search pool):
+   BENIGN   BITS_RULE.py  definition / holdout-exclusion / power-analysis label
+   AUDIT    audit_interlock/ceiling_math_audit.py  (this audit's own scripts -- not a search pool)
+   AUDIT    audit_interlock/clustering_depth_and_gateA.py  (this audit's own scripts -- not a search pool)
+   AUDIT    audit_interlock/gate_b_cancelling_germ.py  (this audit's own scripts -- not a search pool)
+   AUDIT    audit_interlock/gate_power_s2_recompute.py  (this audit's own scripts -- not a search pool)
+   AUDIT    audit_interlock/holdout_airtight.py  (this audit's own scripts -- not a search pool)
+   AUDIT    audit_interlock/interlock_independence_test.py  (this audit's own scripts -- not a search pool)
+   AUDIT    audit_interlock/interlock_spec_sets.py  (this audit's own scripts -- not a search pool)
+   AUDIT    audit_interlock/target_independence_graph.py  (this audit's own scripts -- not a search pool)
+   AUDIT    audit_interlock/window_convention_audit.py  (this audit's own scripts -- not a search pool)
+   ** LEAK-CHANNEL ** calibration/charged_lepton_search.py:74  a SEARCH script with its OWN hard-coded TARGETS dict -- bypasses pdg_constants entirely, so HOLDOUT_KEYS cannot reach it
+   GUARDED  exhaust_parallel.py:95  hard-coded re-add loop -- but the function's LAST line re-filters with HOLDOUT_KEYS (verified by calling it above)
+   BENIGN   grind.py  committed replay ground-truth constant (not a pool)
+   ** REVIEW ** kappa_rerun/regression_published.py:93  r_tau_mu  ->  _check(sorted(set(replay_targets) & set(HOLDOUT_KEYS)) == sorted(HOLDO
+   BENIGN   run_atomos.py  koide mass-triple lookup / holdout scoring, not a pool
+   GUARDED  run_atomos.py:1031  hard-coded re-add loop -- select_targets() re-filters on its LAST line (verified by calling it above)
+   BENIGN   targets/pdg_constants.py  definition / holdout-exclusion / power-analysis label
+   [FAIL] no name-based occurrence outside {definition, guarded re-add, scoring, replay ground truth, audit scripts} remains in the CAMPAIGN code
+
+   the flagged occurrences, examined individually:
+      calibration/charged_lepton_search.py:74  r_tau_mu: "r_tau_mu": (m_tau / m_mu, 6.8e-5),   # m_tau 0.12/1776.86
+      kappa_rerun/regression_published.py:93  r_tau_mu: _check(sorted(set(replay_targets) & set(HOLDOUT_KEYS)) == sorted(HOLDOUT_KEYS - {"r_tau_mu
+   calibration/charged_lepton_search.py is a pre-holdout (2026-06) calibration
+   brute-force over its OWN hard-coded TARGETS dict containing r_tau_mu and
+   koide_Q; it is not invoked by grind/run_atomos/VERIFY_ALL, but nothing in the
+   repo stops it from being run as a search on a held-back target.
+
+(4) the two intentional include_holdout=True call sites, audited
+--------------------------------------------------------------------------------------------------------
+   grind._target_windows  (RETENTION):  include_holdout=True present -> True
+   grind.cmd_replay       (REPLAY):     include_holdout=True present -> True
+   grind.run_depth        (the SEARCH):  uses bare sm_target_keys() -> True
+   grind.cmd_deep_sample  (the SEARCH):  uses bare sm_target_keys() -> True
+   [PASS] run_depth (the exhaustive search) calls the holdout-EXCLUDING selector
+   [PASS] cmd_deep_sample (the sampled search) calls the holdout-EXCLUDING selector
+
+   NOTE  cmd_replay runs the FULL gate (validate) on holdout-target hits, because it
+         must reproduce committed depth-6/7 ground truth whose tightest hit IS
+         koide_Q_lep. It fits nothing and selects nothing, but its n_certified count
+         is taken over 20 targets including the holdout -- so a CERTIFIED holdout hit would surface there.
+   REPLAY_COMMITTED tightest_target: {6: 'koide_Q_lep', 7: 'koide_Q_lep'}
+   AND the replay's own label 'in-window hits (21 targets)' is now wrong: it sweeps
+   20 targets. It still reproduces the committed 259/1248 only because r_tau_mu
+   happens to contribute 0 hits at depths 6-7 (verified: `grind.py --replay 6` PASSes,
+   see audit_interlock/REPLAY6_AUDIT.txt).
+
+(5) COMMITTED ARTIFACTS: which recorded runs actually swept a holdout key?
+--------------------------------------------------------------------------------------------------------
+   depth 8: VERDICT per_target=21 targets, holdout in VERDICT=['koide_Q_lep', 'r_tau_mu']; target report files=21, holdout files=['koide_Q_lep', 'r_tau_mu']  (VERDICT mtime 2026-07-21)
+   depth 9: VERDICT per_target=21 targets, holdout in VERDICT=['koide_Q_lep', 'r_tau_mu']; target report files=21, holdout files=['koide_Q_lep', 'r_tau_mu']  (VERDICT mtime 2026-07-22)
+   depth 10: VERDICT per_target=0 targets, holdout in VERDICT=NONE; target report files=0, holdout files=NONE  (VERDICT mtime 2026-07-28)
+
+   depth 8 holdout sweeps recorded: [('koide_Q_lep', 4, 0), ('r_tau_mu', 1, 0)]
+   depth 9 holdout sweeps recorded: [('koide_Q_lep', 6, 0), ('r_tau_mu', 8, 0)]
+   depth 8 total n_hits 5,566 over 21 targets (incl. holdout: 5 hits)
+   depth 9 total n_hits 22,141 over 21 targets (incl. holdout: 14 hits)
+   depth 10 n_targets=19 n_hits=82,613 (post-fix: holdout excluded)
+   [PASS] depth 10 (the headline exhaustive null) swept 19 targets, holdout excluded
+   [PASS] depths 8 and 9 DID sweep both holdout keys (pre-fix artifacts, still on disk and still the basis of the 'depths 3-9 clean null' claim)
+
+   depth-10 retention accounting (records.sqlite is retained with the holdout INCLUDED):
+   retained records                          : 82,624
+   distinct values hitting a SEARCH target   : 82,613
+   distinct values hitting a HOLDOUT target  : {'koide_Q_lep': 11} (union 11)
+   holdout-only retained values (never swept): 11
+   [PASS] koide_Q_lep-window values exist in retention but were NEVER swept at depth 10 (retention != search -- the intended design)
+
+   consequence of the r_tau_mu omission, measured on the depth-10 value set:
+   koide_Q_lep    tol=1.016e-05  values inside its window =  11  of which RETAINED (formula recoverable) =  11
+   r_tau_mu       tol=6.753e-05  values inside its window =  39  of which RETAINED (formula recoverable) =   0
+   [PASS] r_tau_mu: 39 depth-10 values land in its window and 0 have a retained record -> a survivor's out-of-sample prediction for the INFORMATIVE holdout cannot be scored from the committed artifacts
+
+========================================================================================================
+CHECKS: 23/26 PASS
+FATAL (a live search path leaks the holdout):
+   no name-based occurrence outside {definition, guarded re-add, scoring, replay ground truth, audit scripts} remains in the CAMPAIGN code
+========================================================================================================
