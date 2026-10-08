@@ -1,0 +1,52 @@
+CFG450 X-COP gas-radius audit  MUTATE=True
+
+U1/U2 per cluster: RADIUS unit | header R500 vs JSON | M_NFW(fgas, RADIUS=1)/M_NFW(hydro, R500_json) | f_gas(RADIUS=1)
+  A1644    R/R500   1054.0 vs  1054.0 kpc (+0.00%)  ratio 1.0010  f_gas 0.127
+  A1795    R/R500   1153.0 vs  1153.0 kpc (+0.00%)  ratio 1.0004  f_gas 0.140
+  A2029    R/R500   1414.0 vs  1423.0 kpc (-0.63%)  ratio 0.9942  f_gas 0.140
+  A2142    R/R500   1424.0 vs  1424.0 kpc (+0.00%)  ratio 0.9996  f_gas 0.158
+  A2255    R/R500   1196.0 vs  1196.0 kpc (+0.00%)  ratio 0.9991  f_gas 0.151
+  A2319    R/R500   1368.0 vs  1346.0 kpc (+1.63%)  ratio 1.0140  f_gas 0.190
+  A3158    R/R500   1123.0 vs  1123.0 kpc (+0.00%)  ratio 0.9995  f_gas 0.145
+  A3266    R/R500   1430.0 vs  1430.0 kpc (+0.00%)  ratio 0.9998  f_gas 0.132
+  A644     R/R500   1250.0 vs  1230.0 kpc (+1.63%)  ratio 1.0127  f_gas 0.131
+  A85      R/R500   1235.0 vs  1235.0 kpc (+0.00%)  ratio 0.9991  f_gas 0.150
+  RXC1825  R/R500   1105.0 vs  1105.0 kpc (+0.00%)  ratio 1.0002  f_gas 0.132
+  ZW1215   R/R500   1358.0 vs  1358.0 kpc (+0.00%)  ratio 1.0017  f_gas 0.106
+U1 = R/R500; U2 = PASS  ->  NOT A BUG (RADIUS = 1 is R500)
+
+Definition-A deficits (median [16-84%]); gas read as Mpc (MUTATE); never pooled across footings:
+  canonical a0 9.3603e-11  b = 0.0: clusters audit-read 0.4135 -> R500 0.2251 [0.203-0.291]   groups 0.7866 [0.532-1.404]
+  canonical a0 9.3603e-11  b = 0.3: clusters audit-read 0.9054 -> R500 0.6108 [0.549-0.726]   groups 1.7596 [1.384-2.606]
+  alt       a0 1.1312e-10  b = 0.0: clusters audit-read 0.3507 -> R500 0.1793 [0.153-0.229]   groups 0.6489 [0.401-1.275]
+  alt       a0 1.1312e-10  b = 0.3: clusters audit-read 0.8426 -> R500 0.5526 [0.499-0.664]   groups 1.6219 [1.248-2.477]
+Movement (canonical, max over b): 2.95e-01  ->  MOVES
+
+CFG431 R2 read (RADIUS taken as Mpc): effective radius in R500 units per cluster: A1795 1.153, A2029 1.414, A2142 1.424, A2319 1.368, A644 1.250, A85 1.235, ZW1215 1.358; cluster e_med 0.225
+
+T15/T16 with the recomputed deficits (their other conventions held: a0 1.2e-10 in S, f_law 0.286, lambda floor 0.028):
+  original inputs 0.79/1.76, 0.41/0.91 (as committed)
+     T15 M_cold/M_b: groups_b0 -0.930  groups_b03 +0.040  clusters_b0 -0.982  clusters_b03 -0.482 | f_max cl 0.0824 (lam_max 0.00734) gr 0.1285 | f_res cl [0.0824, 0.1828] | C5 violation 3.95x
+     T16 windows groups [0.0117, 0.0288] clusters [0.0073, 0.0172] | intersection [0.0152, 0.0172] nonempty True | floor/cluster gap 1.63x
+  canonical deficits 0.787/1.760, 0.225/0.611; S at 1.2e-10 (as T15/T16)
+     T15 M_cold/M_b: groups_b0 -0.934  groups_b03 +0.040  clusters_b0 -1.167  clusters_b03 -0.782 | f_max cl 0.0452 (lam_max 0.00395) gr 0.1279 | f_res cl [0.0452, 0.1227] | C5 violation 7.34x
+     T16 windows groups [0.0117, 0.0288] clusters [0.0039, 0.0112] | intersection [0.0152, 0.0112] nonempty False | floor/cluster gap 2.51x
+  canonical deficits, S at the matching a0 9.3603e-11 (disclosed row; MW window held at T16's)
+     T15 M_cold/M_b: groups_b0 -0.717  groups_b03 +0.256  clusters_b0 -0.989  clusters_b03 -0.604 | f_max cl 0.0519 (lam_max 0.00454) gr 0.1463 | f_res cl [0.0519, 0.1407] | C5 violation 6.38x
+     T16 windows groups [0.0135, 0.0338] clusters [0.0045, 0.0129] | intersection [0.0152, 0.0129] nonempty False | floor/cluster gap 2.16x
+  alt deficits 0.649/1.622, 0.179/0.553; S at 1.2e-10 (as T15/T16)
+     T15 M_cold/M_b: groups_b0 -1.071  groups_b03 -0.098  clusters_b0 -1.213  clusters_b03 -0.840 | f_max cl 0.0360 (lam_max 0.00313) gr 0.1055 | f_res cl [0.0360, 0.1110] | C5 violation 9.27x
+     T16 windows groups [0.0095, 0.0261] clusters [0.0031, 0.0100] | intersection [0.0152, 0.0100] nonempty False | floor/cluster gap 2.79x
+  alt deficits, S at the matching a0 1.1312e-10 (disclosed row; MW window held at T16's)
+     T15 M_cold/M_b: groups_b0 -1.017  groups_b03 -0.044  clusters_b0 -1.169  clusters_b03 -0.795 | f_max cl 0.0372 (lam_max 0.00323) gr 0.1090 | f_res cl [0.0372, 0.1147] | C5 violation 8.96x
+     T16 windows groups [0.0098, 0.0271] clusters [0.0032, 0.0104] | intersection [0.0152, 0.0104] nonempty False | floor/cluster gap 2.69x
+
+CFG431 rows (definition A, b = 0):
+  primary as committed (gas audit-read, canonical): galaxy e 0.131 S 0.723  group e 0.787 S 2.310  cluster e 0.413 S 0.189 | cluster-galaxy z 1.37; cluster-group z 2.22; galaxy-group z 1.70 -> NOT UNIVERSAL
+  primary, gas at JSON R500 (canonical): galaxy e 0.131 S 0.723  group e 0.787 S 2.310  cluster e 0.225 S 0.131 | cluster-galaxy z 1.57; cluster-group z 2.35; galaxy-group z 1.70 -> NOT UNIVERSAL
+  R1-full alt (galaxies + groups + clusters at 1.1312e-10, gas at R500): galaxy e 0.118 S 0.743  group e 0.649 S 1.557  cluster e 0.179 S 0.123 | cluster-galaxy z 1.59; cluster-group z 2.13; galaxy-group z 1.29 -> NOT UNIVERSAL
+  R2 as committed (gas at RADIUS = R500 in Mpc, i.e. outside R500): galaxy e 0.131 S 0.723  group e 0.787 S 2.310  cluster e 0.225 S 0.131 | cluster-galaxy z 1.57; cluster-group z 2.35; galaxy-group z 1.70 -> NOT UNIVERSAL
+
+checks: {"C1_cfg382_reproduction": true, "C2_cfg431_R2_reproduction": true, "C3_t15_t16_reproduction": true, "MUTATE_flips": true}
+VERDICT: NOT A BUG (RADIUS = 1 is R500); deficits MOVES (canonical max shift 2.95e-01). CFG431 R2 read the gas outside R500 and is invalid.
+<LANE> COMPLETE: all checks PASS
