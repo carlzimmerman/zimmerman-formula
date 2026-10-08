@@ -15,3 +15,12 @@ Criteria are in FROZEN_CRITERIA.md. Engine `cfg416_pm.py` is a CFG414 copy with 
 - f_ret × 10 changed the covered mass by −13%. The mask responds to f_ret, but in the opposite direction to the one declared, and below the 20% threshold.
 
 **C1** is inherited from CFG414 (PASS).
+
+## RESULT (512³): NOT CONFIRMED (canonical pass, alt misses by 0.0009)
+`cfg416_analysis.py` (`cfg416_analysis.out`):
+- **canonical:** σ₈ 1.0072, max|P−1| 0.0923, GROWTH OK.
+- **alt:** σ₈ 1.0073, max|P−1| 0.1009, TENSION. It is over the 0.10 cut by 0.0009 and is kept as a miss.
+
+**Reading.** The census supply edge, which uses measured baryon inputs and the declared inconsistency, sits at the cut on alt at 512³. That matches CFG414's knife-edge. The small-scale excess still rises with resolution. The zero-knob rule (CFG424, 256³: 0.027–0.029) is confirmed or not by CFG425 R3 at 512³.
+
+CFG419 (DE branch, 512³) was paused so that CFG425 R3 could run first. It will be re-run afterwards; its launcher skips finished runs.
