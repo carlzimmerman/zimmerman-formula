@@ -1,0 +1,158 @@
+
+======================================================================================================================
+CFG499  option A (lenient black holes) as a full track on the C-H/K chassis   *** MUTATE: alpha_c outside the window; strong UH branch s- ***
+======================================================================================================================
+Action: sqrt(-g)[R - lambda K^2 + alpha a.a], 16 pi G = 1, beta = 0, lambda = c_2, alpha = alpha_c.
+Scope of test (1): O(v), l = 1, Schwarzschild + the test-khronon background; first metric-khronon round trip
+F0 -> h1 -> F1, local at the UH (generalised Frobenius in x = r - r_UH) plus the boundary-condition count.
+
+======================================================================================================================
+S0  the angle-integrated quadratic Lagrangian of the full action for the l = 1 sector (sympy)
+======================================================================================================================
+    loaded the cached derivation (l1PN.srepr in the system temp dir)
+    background khronon kept as P = H'(r) and lapse N0 (identity N0^-2 = -2P - eP^2); bilinear terms: KK 92, AA 68, EH 58
+    linear curvature of the l = 1 metric perturbation: Kretschmann_0 = 48/r**6, 12 Riemann components
+
+======================================================================================================================
+K1  flat-space khronon dispersion WITH metric mixing, from the same Lagrangian engine
+======================================================================================================================
+    tensor: -(k - omega)*(k + omega); scalar-sector determinant gcd: k**2*omega*(alpha*k**2*lambda + 3*alpha*lambda*omega**2 + 2*alpha*omega**2 - 2*k**2*lambda)
+  [PASS] K1 flat space: omega^2 = c_S^2 k^2 with c_S^2 = lambda (2 - alpha)/(alpha (2 + 3 lambda)) exactly, tensor speed 1
+         measured: omega^2 = [k**2*lambda*(2 - alpha)/(alpha*(3*lambda + 2))]
+
+======================================================================================================================
+K2  the khronon block at h = 0 against CFG319's committed S22, dK and d(a.a) operators
+======================================================================================================================
+  [PASS] K2 h = 0: S22 equals CFG319's committed S22 exactly; the O(v) dK and d(a.a) operator coefficients equal CFG319's
+         measured: S22 difference 0; operator differences [0, 0, 0, 0, 0, 0]
+
+======================================================================================================================
+K3  Einstein-Hilbert block gauge invariance, and 1c(i) the homogeneous Einstein l = 1 solutions
+======================================================================================================================
+  [PASS] K3 a pure-gauge l = 1 h = L_xi g (xi = (xi0 cos, xi1 cos, -xi2 sin, 0)) annihilates all six Einstein-Hilbert Euler-Lagrange equations identically
+         measured: residuals [0, 0, 0, 0, 0, 0]
+    gauge C = E = Kf = 0 vacuum system: E_A -> B = C1; E_E -> D = C1*r - C1 + r**2*Derivative(A(r), r)/2; E_B -> A = -2*C1/r + C2/r**2 + C3*r
+    remaining equations after substitution: [0, 0, -2*C3, 0, 0, 0]; constants [C1, C2, C3], constraint solution [{C3: 0}]
+    residual gauge (C, E, Kf preserved: [0, 0, 0]) is 2-dimensional (c1, c2): A = 2*(-c1 - c2*r)/r**2, B = c2, D = 2*c1/r + c2*r
+  [PASS] 1c(i) every homogeneous solution of the gauge-fixed Einstein l = 1 block is pure gauge: solution-space dimension = residual-gauge dimension = 2 (no physical l = 1 constant, none excluded anywhere, so no condition is added)
+         measured: dimension 2 vs residual gauge 2
+
+======================================================================================================================
+K4  joint gauge invariance of the khronon cross terms on an on-shell background (regular point r = 3)
+======================================================================================================================
+    on-shell: |E_F(pure gauge)| / |E_F(F part alone)| over x^0..x^7 = 3.04e-57
+    off-shell control (Y'' + 1e-3): |E_F(pure gauge)| / |E_F(F part alone)| over x^0..x^7 = 0.00296
+  [PASS] K4 the khronon Euler-Lagrange equation annihilates the joint pure-gauge (h, F) = (L_xi g, xi.dT0) on an on-shell background (<= 1e-20 relative), and does not when the background is pushed off shell (teeth: >= 1e-6)
+         measured: on-shell: 3.04e-57, off-shell control (Y'' + 1e-3): 0.00296
+
+======================================================================================================================
+1c(ii)  the cross terms: analytic wherever the lapse Y != 0 (so at r_S), and decaying at infinity
+======================================================================================================================
+    31 cross (h, F) coefficients; denominators that contain anything but r and the lapse N0: none
+    E_A source of the boosted khronon F = -r at r = 1e2, 1e3, 1e4: 0.00133, 0.000133, 1.33e-5  -> falls as r^-1.00
+    E_B source of the boosted khronon F = -r at r = 1e2, 1e3, 1e4: 0.0013, 0.000133, 1.33e-5  -> falls as r^-0.99
+    E_C source of the boosted khronon F = -r at r = 1e2, 1e3, 1e4: 8.36e-8, 8.63e-11, 8.66e-14  -> falls as r^-2.99
+    E_D source of the boosted khronon F = -r at r = 1e2, 1e3, 1e4: 1.33e-5, 1.33e-7, 1.33e-9  -> falls as r^-2.00
+    E_E source of the boosted khronon F = -r at r = 1e2, 1e3, 1e4: 1.71e-9, 1.73e-13, 1.73e-17  -> falls as r^-4.00
+    E_Kf source of the boosted khronon F = -r at r = 1e2, 1e3, 1e4: 1.71e-7, 1.73e-10, 1.73e-13  -> falls as r^-3.00
+  [PASS] 1c(ii) every cross coefficient is analytic wherever the lapse Y != 0 (denominators are powers of r and N0 only, so the option-C khronon, analytic at r_S, sources an analytic metric response and an analytic feedback there: r_S keeps one no-log condition), and the cross source of the boosted khronon F = -r decays at infinity (every Euler-Lagrange source density, which carries sqrt(-g) ~ r^2, falls at least as r^-1, i.e. the stress as r^-3; the l = 1 response of r^-3 is ~ r^-1: asymptotically flat, no new inadmissible mode)
+         measured: non-(r, N0) denominators: 0; decay powers of the sources: {'A': 0.9988610747499284, 'B': 0.9945317946367036, 'C': 2.9923885223177145, 'D': 1.9999729757892342, 'E': 3.997829703382223, 'Kf': 2.9967320468965464}
+
+======================================================================================================================
+1c(iii)  reading: the coupled spin-0 horizon (K1 c_S) vs the test-khronon one
+======================================================================================================================
+    alpha 3.200e-09, c_2 7.2888e-03: c_S(test)/c_S(coupled) = sqrt((2 + 3 lambda)/(2 - alpha)) = 1.00545; r_S - r_UH ~ 0.61 M/c_S grows by this factor (a single regular singular point, shifted)
+    alpha 9.624e-14, c_2 6.6700e-02: c_S(test)/c_S(coupled) = sqrt((2 + 3 lambda)/(2 - alpha)) = 1.04883; r_S - r_UH ~ 0.61 M/c_S grows by this factor (a single regular singular point, shifted)
+
+======================================================================================================================
+1a / 1b  the five window points: F0 (test-khronon UH modes) -> h1 (Einstein response) -> F1 (feedback)
+======================================================================================================================
+  -- W5 centre: alpha 1.7549e-11, c_2 2.2044e-02, r_UH 1.49999999863367, y1 0.942801802565, W0 0.577350270241; s+ 0.618040857157 (CFG319 0.61804085715739), s- -1.61804085716; series variable x / 1.728e-05
+     mode s-: F0 residual 3.5e-44; resonances in F0 []; h1 (all six Einstein eqs) residual 5.7e-43
+              stress (Einstein-equation sources) lead: A x^(s+0), B x^(s+1), C x^(s+1), D x^(s+0), E x^(s+1), Kf x^(s+0)
+              h1 lead (gauge C = E = Kf = 0): A x^(s+2), B x^(s+1), D x^(s+2)
+              curvature lead: dR x^(s+0), dKretschmann x^(s+0); worst Riemann component (EF basis) x^(s+0)
+              feedback into the khronon equation: {'S_lead': (1, 'pow', mpf('-0.0000000000000000130555575185724150783525670764330065836623659664679027765099682')), 'resonant_powers_in_reach': [], 'F1_lead_power': 1, 'exponent_shift': None}
+     [18s]
+  -- W5 corner a_max l_max: alpha 3.2000e-09, c_2 6.6667e-02, r_UH 1.49999993401537, y1 0.9427528763, W0 0.577350319985; s+ 0.618087314655 (CFG319 0.61808731465495), s- -1.61808731466; series variable x / 1.342e-04
+     mode s-: F0 residual 1.8e-46; resonances in F0 []; h1 (all six Einstein eqs) residual 3.8e-46
+              stress (Einstein-equation sources) lead: A x^(s+0), B x^(s+1), C x^(s+1), D x^(s+0), E x^(s+1), Kf x^(s+0)
+              h1 lead (gauge C = E = Kf = 0): A x^(s+2), B x^(s+1), D x^(s+2)
+              curvature lead: dR x^(s+0), dKretschmann x^(s+0); worst Riemann component (EF basis) x^(s+0)
+              feedback into the khronon equation: {'S_lead': (1, 'pow', mpf('-0.0000000000000558969726036287421929569728686313855860477218813218879653494012')), 'resonant_powers_in_reach': [], 'F1_lead_power': 1, 'exponent_shift': None}
+     [18s]
+  -- W5 corner a_max l_min: alpha 3.2000e-09, c_2 7.2888e-03, r_UH 1.4999994774345, y1 0.942639453709, W0 0.577350671461; s+ 0.618195217437 (CFG319 0.61819521743645), s- -1.61819521744; series variable x / 4.057e-04
+     mode s-: F0 residual 1.0e-47; resonances in F0 []; h1 (all six Einstein eqs) residual 4.3e-47
+              stress (Einstein-equation sources) lead: A x^(s+0), B x^(s+1), C x^(s+1), D x^(s+0), E x^(s+1), Kf x^(s+0)
+              h1 lead (gauge C = E = Kf = 0): A x^(s+2), B x^(s+1), D x^(s+2)
+              curvature lead: dR x^(s+0), dKretschmann x^(s+0); worst Riemann component (EF basis) x^(s+0)
+              feedback into the khronon equation: {'S_lead': (1, 'pow', mpf('-0.000000000000018476191703454290369674978846020078968911614709127512751126071')), 'resonant_powers_in_reach': [], 'F1_lead_power': 1, 'exponent_shift': None}
+     [18s]
+  -- W5 corner a_min l_max: alpha 9.6240e-14, c_2 6.6667e-02, r_UH 1.49999999999676, y1 0.942808733279, W0 0.577350269192; s+ 0.618034281234 (CFG319 0.61803428123402), s- -1.61803428123; series variable x / 7.358e-07
+     mode s-: F0 residual 6.7e-37; resonances in F0 []; h1 (all six Einstein eqs) residual 5.2e-39
+              stress (Einstein-equation sources) lead: A x^(s+0), B x^(s+1), C x^(s+1), D x^(s+0), E x^(s+1), Kf x^(s+0)
+              h1 lead (gauge C = E = Kf = 0): A x^(s+2), B x^(s+1), D x^(s+2)
+              curvature lead: dR x^(s+0), dKretschmann x^(s+0); worst Riemann component (EF basis) x^(s+0)
+              feedback into the khronon equation: {'S_lead': (1, 'pow', mpf('-9.22090553226275374433146071348420116323927734156893468473449206e-21')), 'resonant_powers_in_reach': [], 'F1_lead_power': 1, 'exponent_shift': None}
+     [18s]
+  -- W5 corner a_min l_min: alpha 9.6240e-14, c_2 7.2888e-03, r_UH 1.49999999997283, y1 0.942808109191, W0 0.577350269211; s+ 0.618034873311 (CFG319 0.61803487331126), s- -1.61803487331; series variable x / 2.225e-06
+     mode s-: F0 residual 2.8e-40; resonances in F0 []; h1 (all six Einstein eqs) residual 3.7e-40
+              stress (Einstein-equation sources) lead: A x^(s+0), B x^(s+1), C x^(s+1), D x^(s+0), E x^(s+1), Kf x^(s+0)
+              h1 lead (gauge C = E = Kf = 0): A x^(s+2), B x^(s+1), D x^(s+2)
+              curvature lead: dR x^(s+0), dKretschmann x^(s+0); worst Riemann component (EF basis) x^(s+0)
+              feedback into the khronon equation: {'S_lead': (1, 'pow', mpf('-3.04892267362838784175955610430387525125269878988099854412362011e-21')), 'resonant_powers_in_reach': [], 'F1_lead_power': 1, 'exponent_shift': None}
+     [18s]
+
+======================================================================================================================
+Scoring test (1) by the frozen rule
+======================================================================================================================
+    W5 centre               : 1a weak False; 1b hidden False; curvature exponent min -1.6180408571572098; fails ["h A ~ (0.3819591428427902, 'pow')", "h B ~ (-0.6180408571572098, 'pow')", "h D ~ (0.3819591428427902, 'pow')", 'curvature x^-1.618 not integrable', 'O(v^2) quadratic invariants x^-3.236 not integrable']
+    W5 corner a_max l_max   : 1a weak False; 1b hidden False; curvature exponent min -1.6180873146551895; fails ["h A ~ (0.3819126853448105, 'pow')", "h B ~ (-0.6180873146551895, 'pow')", "h D ~ (0.3819126853448105, 'pow')", 'curvature x^-1.618 not integrable', 'O(v^2) quadratic invariants x^-3.236 not integrable']
+    W5 corner a_max l_min   : 1a weak False; 1b hidden False; curvature exponent min -1.6181952174368668; fails ["h A ~ (0.3818047825631332, 'pow')", "h B ~ (-0.6181952174368668, 'pow')", "h D ~ (0.3818047825631332, 'pow')", 'curvature x^-1.618 not integrable', 'O(v^2) quadratic invariants x^-3.236 not integrable']
+    W5 corner a_min l_max   : 1a weak False; 1b hidden False; curvature exponent min -1.618034281233899; fails ["h A ~ (0.38196571876610097, 'pow')", "h B ~ (-0.618034281233899, 'pow')", "h D ~ (0.38196571876610097, 'pow')", 'curvature x^-1.618 not integrable', 'O(v^2) quadratic invariants x^-3.236 not integrable']
+    W5 corner a_min l_min   : 1a weak False; 1b hidden False; curvature exponent min -1.6180348733108871; fails ["h A ~ (0.38196512668911287, 'pow')", "h B ~ (-0.6180348733108871, 'pow')", "h D ~ (0.38196512668911287, 'pow')", 'curvature x^-1.618 not integrable', 'O(v^2) quadratic invariants x^-3.236 not integrable']
+  [PASS] K5 the metric response satisfies all six Einstein equations (incl. the gauged-away components) order by order in the solved window, relative to the source (<= 1e-20)
+         measured: max residual 5.24e-39
+  [PASS] K5b the F0 Frobenius series solve the test-khronon equation (<= 1e-30 relative) with the closed-form exponent
+         measured: max residual 6.67e-37
+    (1) 1a weak False; 1b hidden False; 1c count (Delta_len = 0) False  ->  (1) FAILS
+
+======================================================================================================================
+(2)  COLLAPSE (cfg499_collapse.py)
+======================================================================================================================
+    MUTATE run: test (2) is not re-run (it is not part of the MUTATE flips); read from the main JSON if present.
+
+======================================================================================================================
+(3)  THE WINDOW: every CFG467 gate on the no-constant sliver (and with the hierarchy)
+======================================================================================================================
+  [PASS] K7 alpha_rs(c_2) reproduces CFG467/CFG320 (1.1783e-13 at c_2 = 0.0667; the sliver open at the three grid points c_2 >= 0.038 and closed at c_2 = 7.29e-3)
+         measured: 7.2888e-03: 5.7951e-14, 3.8335e-02: 9.9278e-14, 5.0554e-02: 1.0825e-13, 6.6667e-02: 1.1783e-13
+  [PASS] K8 the re-implemented gates reproduce CFG467's committed sets at c_2 = 0.0667 (G4 lower edge, G6 island, G11 edge)
+         measured: G4 3.66520e-16 vs 3.66520e-16; G6 island 0.058824 vs 0.058824; G11 1.17829e-13 vs 1.17830e-13
+    the no-constant sliver opens at c_2 >= 0.03475 (alpha_rs(c_2) = 9.624e-14 there)
+    c_2 0.03475: sliver ['9.6240e-14', '9.6240e-14']; all gates pass at 0/7 grid alphas; hierarchy window [9.624e-14, 3.2e-9] all gates: False; tracking floor True; cosmological G: leaf-average branch passes, plain branch 1.5 c_2 = 0.052 vs L350 ceilings (c_2 <= 2.9e-3) EXCLUDED; test-(1) s+ at this c_2 [] in (1/2, 1): None
+    c_2 0.03834: sliver ['9.6240e-14', '9.9278e-14']; all gates pass at 0/7 grid alphas; hierarchy window [9.624e-14, 3.2e-9] all gates: False; tracking floor True; cosmological G: leaf-average branch passes, plain branch 1.5 c_2 = 0.058 vs L350 ceilings (c_2 <= 2.9e-3) EXCLUDED; test-(1) s+ at this c_2 [] in (1/2, 1): None
+    c_2 0.05055: sliver ['9.6240e-14', '1.0825e-13']; all gates pass at 0/7 grid alphas; hierarchy window [9.624e-14, 3.2e-9] all gates: False; tracking floor True; cosmological G: leaf-average branch passes, plain branch 1.5 c_2 = 0.076 vs L350 ceilings (c_2 <= 2.9e-3) EXCLUDED; test-(1) s+ at this c_2 [] in (1/2, 1): None
+    c_2 0.06667: sliver ['9.6240e-14', '1.1783e-13']; all gates pass at 0/7 grid alphas; hierarchy window [9.624e-14, 3.2e-9] all gates: False; tracking floor True; cosmological G: leaf-average branch passes, plain branch 1.5 c_2 = 0.100 vs L350 ceilings (c_2 <= 2.9e-3) EXCLUDED; test-(1) s+ at this c_2 [0.6180873146551896, 0.6180342812338989] in (1/2, 1): True
+    (3) FAILS  (condition: the leaf-average branch of the lambda term, as in L340/CFG467's window)
+
+======================================================================================================================
+MUTATE M1: alpha_c outside the window must fail (3)
+======================================================================================================================
+    alpha 1e-11, c_2 0.0667, hierarchy False: failing gates ['G11', 'G12'] -> all-gate set at this point EMPTY: True
+    alpha 1e-06, c_2 0.0667, hierarchy True: failing gates ['G6', 'G8', 'G11', 'G12'] -> all-gate set at this point EMPTY: True
+    injection s = 0.3 (curvature x^-0.7): weak False; fails ['O(v^2) quadratic invariants x^-1.400 not integrable']
+
+======================================================================================================================
+K9 and the verdict
+======================================================================================================================
+  [PASS] K9 a0 enters no computation: the windows and exponents are identical under both footing labels (bookkeeping)
+         measured: footings {'canonical': 9.36e-11, 'alt': 1.13e-10}: no a0 in any formula
+    test (1): FAILS   test (2): FAILS   test (3): FAILS
+    VERDICT (frozen rule): A WEAKENED ((1), (2), (3) FAILS)
+    MUTATE flip M1 all-gate set empty at both outside points: True
+    MUTATE flip M2 strong branch s- fails test (1): True
+    MUTATE flip injection s = 0.3 fails: True
+    load-bearing control failures: none;  runtime 182s;  rc 1
+    kappa = 1/2 is FITTED; no dark-matter particle; the cold mass is still required; chassis only (B has no action);
+    not "theory closed".

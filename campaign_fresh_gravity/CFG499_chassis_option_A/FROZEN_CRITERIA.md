@@ -161,3 +161,20 @@ boundary-value problem is solved. This is the approximation that limits the conc
 `cfg499_lib.py`; outputs `cfg499_option_a.out`, `cfg499_results.json`, `*_MUTATE` variants, `README.md` in plain words.
 Symbolic caches go to the scratch directory, never to the repo. nice -n 15, <= 4 threads. Commit locally, only this
 folder; do not push. No personal names or home paths in any file.
+
+## Dated correction, 2026-10-08 (appended AFTER the runs; post-hoc, nothing above is changed)
+
+Two clauses of 2a encoded a wrong expectation of how the universal horizon forms in collapse:
+- 2a(ii) said C(T) "increases monotonically to 3 sqrt3/4". The computed C(T) DECREASES monotonically to 3 sqrt3/4 from
+  above (a leaf with C below the limit cannot cross r = 3/2 at all).
+- 2a(iii) said R_s(T) > 3/2 "for every T". The late leaves meet the star surface at R_s* = 1.4582 < 3/2. Those points lie
+  on finite-T leaves, which reach infinity, so they are OUTSIDE the UH (the T = infinity leaf); r = 3/2 is where the UH
+  sits only asymptotically (the throat of the limiting leaf). The clause tested a fixed radius, not the UH.
+The frozen verdict is reported as computed (2a fails on these two clauses, so (2) FAILS and A reads WEAKENED). A
+corrected reading is reported SEPARATELY and labelled post-hoc: 2a(ii') C -> 3 sqrt3/4 (from either side) and 2a(iii')
+dropped (replaced by the existence of the limiting leaf, i.e. T -> infinity as C -> 3 sqrt3/4, which 2a(iv) already
+measures). Under that reading (2) is PARTIAL and A reads NOT DECIDED (open: 2c). The owner chooses which reading stands.
+
+In-code (not frozen) threshold corrected before the final run: 1c(ii) first demanded that every Euler-Lagrange source
+density fall as r^-2; the frozen text says only "decays at infinity". The densities carry sqrt(-g) ~ r^2, so r^-1 means a
+stress ~ r^-3 and an l = 1 metric response ~ r^-1 (asymptotically flat). The check now demands a decaying density.
