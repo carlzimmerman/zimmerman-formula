@@ -1,0 +1,218 @@
+--- OsirisDRP/backbone/drpBackbone__define.pro	2026-10-07 22:40:26
++++ compat/drpBackbone__define.pro	2026-10-07 22:40:26
+@@ -1,3 +1,6 @@
++; GDL PORT NOTE: GDL 1.0.1 does not bind SELF inside the no-argument SAX callbacks
++; StartDocument/EndDocument, so they are renamed *GDL and called explicitly around ParseFile.
++; No reduction logic is changed.
+ ;-----------------------------------------------------------------------------------------------------
+ ; Procedure drpBackbone__define
+ ;
+@@ -140,12 +143,13 @@
+ 		OPENR, lun, CONFIG_FILENAME_FILE, /GET_LUN
+ 		READF, lun, CONFIG_FILENAME
+ 		FREE_LUN, lun
+-		Self.ConfigParser -> ParseFile, drpXlateFileName(CONFIG_FILENAME)
++		Self.ConfigParser -> StartDocumentGDL
++		gdlsax_parse, Self.ConfigParser, drpXlateFileName(CONFIG_FILENAME)  ; GDL: was Self.ConfigParser -> ParseFile
+ 		Self.ConfigParser -> getParameters, Self
+     CATCH, parserError
+ 		IF parserError EQ 0 THEN BEGIN
+ 			continueAfterDRFParsing = 1    ; Assume it will be Ok to continue
+-			Self.Parser -> ParseFile, DRFFileName, Self
++			Self.Parser -> ParseDRF, DRFFileName, Self
+ 			CATCH, /CANCEL
+ 		ENDIF ELSE BEGIN
+       ; This branch, for errors we have not thought of yet, will cause a
+@@ -409,4 +413,29 @@
+ 	ENDELSE
+ 
+ 	CATCH, /CANCEL
++END
++
++;-----------------------------------------------------------------------------
++; GDL PORT: accessors for backbone fields used by the parser/pipeline classes
++;-----------------------------------------------------------------------------
++FUNCTION drpBackbone::GDLGet, tag
++  CASE STRUPCASE(tag) OF
++    'MODULES': RETURN, Self.Modules
++    'DATA': RETURN, Self.Data
++    'PARMLIST': RETURN, Self.ParmList
++    'REDUCTIONTYPE': RETURN, Self.ReductionType
++    'LOGPATH': RETURN, Self.LogPath
++    'CURRENTLYEXECUTINGMODULENUMBER': RETURN, Self.CurrentlyExecutingModuleNumber
++  ENDCASE
++END
++
++PRO drpBackbone::GDLSet, tag, value
++  CASE STRUPCASE(tag) OF
++    'MODULES': Self.Modules = value
++    'DATA': Self.Data = value
++    'PARMLIST': Self.ParmList = value
++    'REDUCTIONTYPE': Self.ReductionType = value
++    'LOGPATH': Self.LogPath = value
++    'CURRENTLYEXECUTINGMODULENUMBER': Self.CurrentlyExecutingModuleNumber = value
++  ENDCASE
+ END
+--- OsirisDRP/backbone/drpConfigParser__define.pro	2026-10-07 22:40:26
++++ compat/drpConfigParser__define.pro	2026-10-07 22:40:26
+@@ -1,3 +1,8 @@
++; GDL PORT NOTE: GDL enforces object-data privacy (another class's instance fields cannot be
++; read/written as Backbone.<field>), so those accesses go through drpBackbone::GDLGet/GDLSet.
++; GDL PORT NOTE: GDL 1.0.1 does not bind SELF inside the no-argument SAX callbacks
++; StartDocument/EndDocument, so they are renamed *GDL and called explicitly around ParseFile.
++; No reduction logic is changed.
+ ;-----------------------------------------------------------------------------------------------------
+ ; CLASS drpConfigParser
+ ;
+@@ -35,7 +40,7 @@
+ ; KEYWORDS:
+ ;	None.
+ ;-----------------------------------------------------------------------------------------------------
+-PRO drpConfigParser::StartDocument
++PRO drpConfigParser::StartDocumentGDL
+ 
+ 	IF PTR_VALID(Self.Parms) THEN BEGIN
+ 		PRINT, "Freeing parameter data..."
+@@ -52,7 +57,7 @@
+ 	
+ END
+ 
+-PRO drpConfigParser::EndDocument
++PRO drpConfigParser::EndDocumentGDL
+ 
+ 	;Self->printInfo
+ 	
+@@ -172,15 +177,16 @@
+ 
+ 	drpPushCallStack, 'drpConfigParser::getIDLFunctions'
+ 
+-	FOR i = 0, N_ELEMENTS(*Backbone.Modules)-1 DO BEGIN
++	bbMods = Backbone->GDLGet('Modules')  ; GDL port
++	FOR i = 0, N_ELEMENTS(*bbMods)-1 DO BEGIN
+ 		FOR j = 0, N_ELEMENTS(*Self.Modules)/3-1 DO BEGIN
+-			IF (*Self.Modules)[0, j] EQ (*Backbone.Modules)[i].Name AND $
+-			   (*Self.Modules)[2, j] EQ Backbone.ReductionType THEN $
+-				(*Backbone.Modules)[i].CallSequence = (*Self.Modules)[1,j]
++			IF (*Self.Modules)[0, j] EQ (*bbMods)[i].Name AND $
++			   (*Self.Modules)[2, j] EQ Backbone->GDLGet('ReductionType') THEN $
++				(*bbMods)[i].CallSequence = (*Self.Modules)[1,j]
+ 		ENDFOR
+-		If (*Backbone.Modules)[i].CallSequence EQ '' THEN $
++		If (*bbMods)[i].CallSequence EQ '' THEN $
+ 			MESSAGE, 'No IDL function is specified in the ' + $
+-			'configuration file for module: ' + (*Backbone.Modules)[i].Name 
++			'configuration file for module: ' + (*bbMods)[i].Name 
+ 	ENDFOR
+ 
+ 	void = drpPopCallstack()
+@@ -206,7 +212,7 @@
+ 
+ 	drpPushCallStack, 'drpConfigParser::getParameters'
+ 
+-	Backbone.ParmList = Self.Parms
++	Backbone->GDLSet, 'ParmList', Self.Parms
+ 
+ 	void = drpPopCallstack()
+ 
+--- OsirisDRP/backbone/drpDRFParser__define.pro	2026-10-07 22:40:26
++++ compat/drpDRFParser__define.pro	2026-10-07 22:40:26
+@@ -1,3 +1,8 @@
++; GDL PORT NOTE: GDL enforces object-data privacy (another class's instance fields cannot be
++; read/written as Backbone.<field>), so those accesses go through drpBackbone::GDLGet/GDLSet.
++; GDL PORT NOTE: GDL 1.0.1 does not bind SELF inside the no-argument SAX callbacks
++; StartDocument/EndDocument, so they are renamed *GDL and called explicitly around ParseFile.
++; No reduction logic is changed.
+ ;-----------------------------------------------------------------------------------------------------
+ ; CLASS drpDRFParser
+ ;
+@@ -53,7 +58,7 @@
+   PRINT, "Comment found.  Text = " + newComment
+ END
+ 
+-PRO drpDRFParser::ParseFile, FileName, Backbone
++PRO drpDRFParser::ParseDRF, FileName, Backbone
+   COMMON APP_CONSTANTS
+ 
+ 	; Free any previous structDataSet, structModule and structUpdateLists data
+@@ -77,13 +82,15 @@
+ 	PTR_FREE, Self.Modules
+ 	PTR_FREE, Self.Data
+ 
+-  Self -> IDLffXMLSAX::ParseFile, FileName
++  Self -> StartDocumentGDL
++  gdlsax_parse, Self, FileName  ; GDL: was Self -> IDLffXMLSAX::ParseFile, FileName
++  IF continueAfterDRFParsing EQ 1 THEN Self -> EndDocumentGDL, FileName
+ 
+   IF continueAfterDRFParsing  EQ 1 THEN BEGIN
+-    Backbone.LogPath = Self.LogPath
+-    Backbone.ReductionType = Self.ReductionType
+-    Backbone.Data = Self.Data
+-    Backbone.Modules = Self.Modules
++    Backbone->GDLSet, 'LogPath', Self.LogPath
++    Backbone->GDLSet, 'ReductionType', Self.ReductionType
++    Backbone->GDLSet, 'Data', Self.Data
++    Backbone->GDLSet, 'Modules', Self.Modules
+     IF PTR_VALID(Self.UpdateLists) THEN BEGIN
+       FOR i = 0, N_ELEMENTS(*Self.UpdateLists)-1 DO BEGIN
+         PTR_FREE, (*Self.UpdateLists)[i].parameters
+@@ -178,7 +185,7 @@
+ ; KEYWORDS:
+ ;	None.
+ ;-----------------------------------------------------------------------------------------------------
+-PRO drpDRFParser::StartDocument
++PRO drpDRFParser::StartDocumentGDL
+ 
+ 	COMMON APP_CONSTANTS
+ 
+@@ -213,7 +220,7 @@
+ ; KEYWORDS:
+ ;	None.
+ ;-----------------------------------------------------------------------------------------------------
+-PRO drpDRFParser::EndDocument
++PRO drpDRFParser::EndDocumentGDL, myOwnFileName
+ 
+ 	drpPushCallStack, 'drpDRFParser::StartDocument'
+ 
+@@ -299,7 +306,7 @@
+ 
+   ; Now place a copy of the current DRF into each available header
+   ; First, get the file name of the file we are parsing
+-  Self -> IDLffXMLSAX::GetProperty, FILENAME=myOwnFileName
++  ; GDL: file name passed in as an argument instead of GetProperty
+ 
+   ; Open the DRF file and read it into a string array
+   fileAsStringArray = ['']
+--- OsirisDRP/backbone/drpPipeline__define.pro	2026-10-07 22:40:26
++++ compat/drpPipeline__define.pro	2026-10-07 22:40:26
+@@ -1,3 +1,5 @@
++; GDL PORT NOTE: GDL enforces object-data privacy (another class's instance fields cannot be
++; read/written as Backbone.<field>), so those accesses go through drpBackbone::GDLGet/GDLSet.
+ PRO drpPipeline__define
+ 
+ 	void = {drpPipeline, Type:''}
+@@ -14,7 +16,7 @@
+ 	drpLog, 'Running Module: ' + Modules[ModNum].Name, /GENERAL, /DRF, DEPTH = 1
+ 
+   ; Add the currently executing module number to the Backbone structure
+-  Backbone.CurrentlyExecutingModuleNumber = ModNum
++  Backbone->GDLSet, 'CurrentlyExecutingModuleNumber', ModNum
+ 
+ 	Result = EXECUTE('drpEvaluate, ' + Modules[ModNum].CallSequence + $
+ 			'(DataSet, Modules, Backbone),  ''' + Modules[ModNum].Name + '''')
+--- OsirisDRP/backbone/drpStartup.pro	2026-10-07 22:40:27
++++ drpStartup_gdl.pro	2026-10-07 22:40:26
+@@ -19,7 +19,7 @@
+ IF (drs_idl_root EQ '') THEN print, "You should run scripts/osirisSetup.sh to set environment variables"
+ IF (drs_idl_root EQ '') THEN EXIT, /NO_CONFIRM
+ 
+-!PATH=backbone_dir+':'+module_dir+':'+'+'+idl_downloads_dir+':'+'<IDL_DEFAULT>'
++!PATH='/work/gdlstart/compat:'+backbone_dir+':'+module_dir+':'+'+'+idl_downloads_dir+':'+'+/usr/share/gnudatalanguage/lib'
+ !PATH=expand_path(!PATH)
+ 
+ readcol_path = FILE_WHICH('readcol.pro')
+@@ -63,3 +63,5 @@
+ .compile drpDRFPipeline__define.pro
+ .compile drpPipeline__define.pro
+ .compile drpRun.pro
++.compile gdlsax_parse.pro
++.compile idlffxmldomdocument__define.pro
