@@ -13,6 +13,6 @@ The predictions are flat 9.4e-11 / 1.13e-10 and the H(z) rival 3.1e-10 / 3.7e-10
 - Whether the 71 km/s dispersion is counted as support moves the implied a₀ by about 2.4×, which spans both predictions. That is the CFG270 pressure-term lesson again.
 - Of the reading-A draws, 30% have g_obs ≤ g_N, i.e. no root.
 - There is one galaxy, and its gas mass is inverted from star formation, so it can never establish evolution.
-- MUTATE (V × 1.81): reading B moves to 3e-9, so the estimator responds.
+- **MUTATE did not meet its frozen letter.** With V × 1.81, reading A moves from 1.3e-10 to 2.3e-9. That is past the rival (the law is non-linear near g ≈ g_N), so the class becomes NOT DIAGNOSTIC (neither), not FAVOURS H(z). The estimator responds strongly, but the control as frozen fails. It is kept and disclosed.
 
 The Keck archive inventory (OSIRIS raw frames, no reduced cubes) is in ../_external_data/cfg437_work/osiris_programs.csv. A raw re-reduction would not remove this systematic.
