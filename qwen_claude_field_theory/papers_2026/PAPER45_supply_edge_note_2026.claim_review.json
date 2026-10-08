@@ -1,0 +1,738 @@
+{
+ "about": "Claim-match review (claim_match_tex.py) of every digit-bearing sentence/table row against committed outputs. Non-MATCH entries are findings; the paper text is NOT edited (MNRAS is under review; PAPER41-45 are published, corrections need the owner's go).",
+ "claims": {
+  "35e4f33b8803ed1c": {
+   "section": "front",
+   "claim": "[4pt] {\\large Working note}",
+   "verdict": "CONTEXT",
+   "note": "",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "a7ea978860d28008": {
+   "section": "front",
+   "claim": "[6pt] {\\small The authors --- 2026-10-08, version 2.1 (v1.0 stated the hypothesis; v2.0 added the simulations; v2.1 corrects the wording of the control and the inputs after an internal audit, numbers ",
+   "verdict": "CONTEXT",
+   "note": "version history",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "6a434554f1efc3dd": {
+   "section": "front",
+   "claim": "\\begin{abstract} \\noindent We study the law $a_0=\\kappa c\\sqrt{G\\rho_\\Lambda}$ ($\\kappa=\\tfrac12$, fitted) with the kernel $\\nu(y)=1/(1-e^{-\\sqrt y})$ and a cold fluid of fixed cosmic amount.",
+   "verdict": "WRONG",
+   "note": "Minor. The engine kernel is nu_mono, not nu = 1/(1-e^{-sqrt y}). nu_mono equals that kernel below its peak y_P ~ 2.54 and replaces the decaying tail with a monotonic floor (DELTA = 0.05) above it, so it differs in the Newtonian regime. The edge (y ~ 0.03) sits in the region where the two agree, so the 5.85 r_M derivation is unaffected. kappa = 1/2 fitted: context.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_pm.py",
+     "sha": "5b3e604c4b368bec",
+     "locator": "l.95-108",
+     "value": "h_rar, DH_MONO floor, nu_mono"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "ec7febcffbed2bde": {
+   "section": "front",
+   "claim": "In particle-mesh simulations, letting the law act wherever matter has collapsed makes small-scale structure too clumpy: the excess in the matter power spectrum at $k\\le1\\,h$\\,Mpc$^{-1}$ is $+15.3\\%$/$",
+   "verdict": "MATCH",
+   "note": "Excess (P>1) confirmed by P1 values; 10% cut from the analysis rule.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG410_filament_share_of_excess/cfg410_results.json",
+     "sha": "888156a4d9a35538",
+     "locator": "canonical/alt BASE",
+     "value": "s8 1.0193/1.0243, pdev 0.153/0.193 (P1 1.153/1.193 >1)"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG411_overnight_convergence/cfg411_results.json",
+     "sha": "b1b3faf72cb976df",
+     "locator": "b.hi",
+     "value": "s8 1.0226, pdev 0.174"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "4a6dab37bbdea7ad": {
+   "section": "front",
+   "claim": "The law's extra (phantom) mass is the cold fluid itself, so a halo can build the phantom only until its own cold fluid is used up; for an undepleted halo this happens at $r_{\\rm edge}=r_M/\\ln[1/(1-f_b",
+   "verdict": "MATCH",
+   "note": "f_b = 0.02237/0.14237 = 0.1571; 1/ln(1/(1-f_b)) = 1/0.17094 = 5.850.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_pm.py",
+     "sha": "5b3e604c4b368bec",
+     "locator": "l.75",
+     "value": "om_b, om_c = 0.02237, 0.1200"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "5bd29413727a3b0a": {
+   "section": "front",
+   "claim": "With this rule the excess is $2.7\\%$ at $256^3$ and $3.3\\%$ at $512^3$, with $\\sigma_8$ within $0.6\\%$ of a control run without the law (the cold fluid evolved as ordinary cold matter, i.e.\\ $\\Lambda$",
+   "verdict": "MATCH",
+   "note": "2.7% = 256^3 canonical (alt 2.9%); 3.3% = 512^3 canonical (alt 4.0%); the largest sigma8 deviation over the 15 runs is 0.54%.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_results.json",
+     "sha": "8185a41a6e5d9712",
+     "locator": "TA-can, MUTATE",
+     "value": "pdev 0.0273; MUTATE s8 1.0326 pdev 0.154"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG425_turnaround_catchment_confirm/cfg425_results.json",
+     "sha": "d3e6319a65225f83",
+     "locator": "R1,R2,R3",
+     "value": "R3 512^3 s8 1.0045 pdev 0.0333"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG439_zero_knob_alt_512/cfg439_results.json",
+     "sha": "5e4859b5060e1647",
+     "locator": "A,B",
+     "value": "alt 512 s8 1.0054 pdev 0.0398; DE 1.0045/0.0335"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "386fd2ce5930ca23": {
+   "section": "front",
+   "claim": "It holds in three random realisations, on both footings, with $a_0$ tracking dark energy, and when the two settings inherited from earlier work are varied.",
+   "verdict": "MATCH",
+   "note": "There are three seeds (359/360/361) at 256^3 only; 512^3 has one seed (359). The settings variants are canonical only.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_results.json",
+     "sha": "8185a41a6e5d9712",
+     "locator": "TA-can, MUTATE",
+     "value": "pdev 0.0273; MUTATE s8 1.0326 pdev 0.154"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG425_turnaround_catchment_confirm/cfg425_results.json",
+     "sha": "d3e6319a65225f83",
+     "locator": "R1,R2,R3",
+     "value": "R3 512^3 s8 1.0045 pdev 0.0333"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG426_zero_knob_de_and_alt_seeds/cfg426_results.json",
+     "sha": "4c5b9afbd12056bb",
+     "locator": "D1,D2,A1,A2",
+     "value": ""
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG427_zero_knob_inherited_settings/cfg427_results.json",
+     "sha": "4135870b342c0781",
+     "locator": "E1,E2,G1,G2",
+     "value": ""
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "1cab028e998762b3": {
+   "section": "front",
+   "claim": "Turning the mass conservation off restores the excess ($15.4\\%$).",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_results.json",
+     "sha": "8185a41a6e5d9712",
+     "locator": "TA-can, MUTATE",
+     "value": "pdev 0.0273; MUTATE s8 1.0326 pdev 0.154"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "7618852a5b26c97a": {
+   "section": "front",
+   "claim": "Earlier rules that set the edge by hand, or from measured baryon censuses, sit at the $10\\%$ limit at $512^3$.",
+   "verdict": "MATCH",
+   "note": "On the alt footing they are at the limit (0.0996, 0.1009); on canonical, below it (0.080, 0.092).",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG414_confined_switch_512/cfg414_results.json",
+     "sha": "2303394c89830fcf",
+     "locator": "canonical/alt",
+     "value": "0.080/0.0996"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG416_supply_edge_confinement_512/cfg416_results.json",
+     "sha": "9a512f3c9d4a946a",
+     "locator": "canonical/alt",
+     "value": "0.092/0.1009"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "5d1209237dfd1643": {
+   "section": "Setting",
+   "claim": "\\section{Setting} The acceleration scale is $a_0=\\kappa c\\sqrt{G\\rho_\\Lambda}$ with $\\kappa=\\tfrac12$ fitted.",
+   "verdict": "CONTEXT",
+   "note": "definition; kappa fitted",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "8c33e6f9d8ee6ab2": {
+   "section": "Setting",
+   "claim": "We report two footings, $9.3603\\times10^{-11}$ and $1.1312\\times10^{-10}$\\,m\\,s$^{-2}$, separately.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_pm.py",
+     "sha": "5b3e604c4b368bec",
+     "locator": "l.80",
+     "value": "A0 canonical 9.3603e-11, alt 1.1312e-10"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "7ae9d1a57b09f052": {
+   "section": "Setting",
+   "claim": "The phantom density is $\\rho_{\\rm ph}=\\nabla\\!\\cdot[(\\nu-1)g_b]/4\\pi G$.",
+   "verdict": "MATCH",
+   "note": "The engine's source is s_ph = -div[(nu-1) g_Nb] in code units.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_pm.py",
+     "sha": "5b3e604c4b368bec",
+     "locator": "docstring l.22",
+     "value": "s_ph = -div[(nu - 1) g_Nb]"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "077b42da75a633cb": {
+   "section": "Setting",
+   "claim": "A cold fluid with the cosmic amount $\\Omega_c/\\Omega_b=5.364$ is assumed; no particle species is specified and the amount is an input.",
+   "verdict": "MATCH",
+   "note": "0.1200/0.02237 = 5.364.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_pm.py",
+     "sha": "5b3e604c4b368bec",
+     "locator": "l.75",
+     "value": "om_b 0.02237, om_c 0.1200"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "9f37be81c7c18b59": {
+   "section": "The problem",
+   "claim": "\\section{The problem} Particle-mesh runs: box $200\\,h^{-1}$\\,Mpc, initial redshift 49, 150 steps, the same initial conditions as a control run without the law, in which the cold fluid is evolved as or",
+   "verdict": "MATCH",
+   "note": "L = 200, z_i = 49, step grid 123+11+16 = 150. The control is CFG359 S0 (f = 0, GR+Lambda background, all matter Newtonian).",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_pm.py",
+     "sha": "5b3e604c4b368bec",
+     "locator": "l.82, step_grid",
+     "value": "L=200.0; ZI=49.0; 150 steps"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG359_native_pm_growth/FROZEN_CRITERIA.md",
+     "sha": "2a0e6ba0b3415d09",
+     "locator": "S0",
+     "value": "Newtonian control f=0"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c116d4dccb65dd1c": {
+   "section": "The problem",
+   "claim": "Pass means $|\\sigma_8-1|\\le5\\%$ and $\\max|P-1|\\le10\\%$ for $k\\le1\\,h$\\,Mpc$^{-1}$, both relative to the control.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_analysis.py",
+     "sha": "e05b752243a1b485",
+     "locator": "cat lambda",
+     "value": "GROWTH OK iff |s8-1|<=0.05 and pdev<=0.10, k<=1"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "46194800fae00da5": {
+   "section": "The problem",
+   "claim": "\\begin{center} \\begin{tabular}{lcc} \\toprule rule & $\\sigma_8$ ratio & $\\max|P-1|$",
+   "verdict": "CONTEXT",
+   "note": "table header",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c45dab9ed20b6d1c": {
+   "section": "The problem",
+   "claim": "\\midrule phantom added as extra gravity ($256^3$) & 1.2049 / 1.2573 &",
+   "verdict": "MATCH",
+   "note": "CFG361 T5. The label is loose: T5 adds only the phantom's excess over the local cold density, f max(s_ph - s_c, 0), not the whole phantom.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG361_pm_growth_T5_bookkeeping/cfg361_pm_growth_T5_results.json",
+     "sha": "f00d0d5f85726b90",
+     "locator": "ratios T5_FLAT_*_N256 z0 sig8",
+     "value": "1.2049 / 1.2573"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "91d7e73c127f1512": {
+   "section": "The problem",
+   "claim": "reservoir rule with gas filter ($256^3$) & 1.0193 / 1.0243 & 0.153 / 0.193",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG410_filament_share_of_excess/cfg410_results.json",
+     "sha": "888156a4d9a35538",
+     "locator": "canonical/alt BASE",
+     "value": "s8 1.0193/1.0243, pdev 0.153/0.193 (P1 1.153/1.193 >1)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "f697b72e91982b7b": {
+   "section": "The problem",
+   "claim": "the same at $512^3$ (canonical) & 1.0226 & 0.174",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG411_overnight_convergence/cfg411_results.json",
+     "sha": "b1b3faf72cb976df",
+     "locator": "b.hi",
+     "value": "s8 1.0226, pdev 0.174"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c06b0f72e7c35fe2": {
+   "section": "The problem",
+   "claim": "In the $256^3$ snapshots 0.805 of the switched-on mass in filament-like cells (about 81\\%) lies inside resolved halos' turnaround spheres, so the excess is a halo-outskirt effect.",
+   "verdict": "MATCH",
+   "note": "0.805 canonical (alt 0.811). The README says the l3<0 mass is in 'outskirts AND interiors' (31% at 1+delta >= 50), so 'halo-outskirt effect' simplifies.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG412_filament_blind_switch/cfg412_diag_results.json",
+     "sha": "9e59a6d6b76ef8a0",
+     "locator": "canonical_D2",
+     "value": "covered_by_resolved_host 0.805"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "963b508a4555c40b": {
+   "section": "The problem",
+   "claim": "Galaxy lensing (KiDS-1000 isolated lenses, with a free two-halo amplitude) only requires the law out to $x=0.48$ (canonical) and $0.53$ (alternative) of the turnaround radius, and in our snapshots 0.8",
+   "verdict": "MATCH",
+   "note": "x 0.48/0.53 are best fits with a free two-halo term (Delta chi2<=1: 0.39-0.58 / 0.44-0.64; alt marked HIGH), not hard requirements. S(0.4) = 0.83 canonical (alt 0.81); the README calls S(x) an upper bound.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG418_lensing_cold_ratio/cfg418_rc.json",
+     "sha": "6631c01b97745068",
+     "locator": "x_best",
+     "value": "0.479 / 0.529"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG413_on_radius_kids_vs_growth/cfg413_growth_results.json",
+     "sha": "f6f9df402aa457d2",
+     "locator": "canonical rows 2.0 0.4 S",
+     "value": "0.825"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "ab7f8d5d28661cdb": {
+   "section": "The rule",
+   "claim": "\\section{The rule} For a point mass with this kernel the enclosed phantom is $M_{\\rm ph}(<r)=M_b/(e^{s}-1)$ with $s=r_M/r$ and $r_M=\\sqrt{GM_b/a_0}$.",
+   "verdict": "MATCH",
+   "note": "For nu = 1/(1-e^{-s}), M_dyn = M_b/(1-e^{-s}), so M_ph = M_b/(e^s-1).",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "af425a9a4ffc25ff": {
+   "section": "The rule",
+   "claim": "For a halo that has kept its cosmic share of baryons this gives \\[ r_{\\rm edge}=\\frac{r_M}{\\ln[1/(1-f_b)]}=5.85\\,r_M ,\\] and the general form with retained fraction $f_{\\rm ret}$ is $r_M/\\ln(1+f_{\\rm ",
+   "verdict": "MATCH",
+   "note": "f_b/(1-f_b) = 1/5.364; 1/ln(1+1/5.364) = 5.850.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "e032cf2db1b16b6d": {
+   "section": "The rule",
+   "claim": "Version 1.0 used measured retention ($f_{\\rm ret}=0.07$--$0.10$), which places the edge at $0.24$--$0.54$ of the turnaround radius for KiDS lenses and $0.24$--$0.33$ for the simulated groups and clust",
+   "verdict": "UNSUPPORTED",
+   "note": "The sims' 0.24-0.33 matches (medians over host bins and footings, precheck JSON). The KiDS-lens 0.24-0.54 is in no committed output: PAPER45_audit.py recomputes it on the fly with cfg100_lib (canonical footing, small-f_ret approximation). v1.0 said 'canonical; about 10% lower on alt', a qualifier this version drops.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG415_shared_catchments_and_sqrtMb/precheck_supply_edge_hosts.json",
+     "sha": "3813e34436d0546d",
+     "locator": "x_median",
+     "value": "0.245-0.328"
+    },
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER45_audit.py",
+     "sha": "e26e52ef2872f24c",
+     "locator": "KiDS-lens x_edge row",
+     "value": "recomputed 0.24-0.54 canonical"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "14d9c3a7dcf44d1c": {
+   "section": "The rule",
+   "claim": "The simulation does not remove baryons, so the self-consistent choice there is $f_{\\rm ret}=1$.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_pm.py",
+     "sha": "5b3e604c4b368bec",
+     "locator": "docstring l.3",
+     "value": "f_ret default 1, PM self-consistent"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "fc9cef0f86c085d7": {
+   "section": "Results",
+   "claim": "\\section{Results} \\begin{center} \\begin{tabular}{lcc} \\toprule run & $\\sigma_8$ ratio & $\\max|P-1|$",
+   "verdict": "CONTEXT",
+   "note": "table header",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "f22f4889aee36a64": {
+   "section": "Results",
+   "claim": "\\midrule $256^3$, canonical / alternative & 1.0033 / 1.0031 & 0.027 / 0.029",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_results.json",
+     "sha": "8185a41a6e5d9712",
+     "locator": "TA-can, MUTATE",
+     "value": "pdev 0.0273; MUTATE s8 1.0326 pdev 0.154"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c51def5044d19cb1": {
+   "section": "Results",
+   "claim": "$256^3$, two more realisations (canonical) & 1.0024 / 1.0026 & 0.022 / 0.017",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG425_turnaround_catchment_confirm/cfg425_results.json",
+     "sha": "d3e6319a65225f83",
+     "locator": "R1,R2,R3",
+     "value": "R3 512^3 s8 1.0045 pdev 0.0333"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "caede7f7cdec9030": {
+   "section": "Results",
+   "claim": "$256^3$, the same two (alternative) & 1.0023 / 1.0030 & 0.025 / 0.023",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG426_zero_knob_de_and_alt_seeds/cfg426_results.json",
+     "sha": "4c5b9afbd12056bb",
+     "locator": "D1,D2,A1,A2",
+     "value": ""
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "fe3a9e7eb9b199dd": {
+   "section": "Results",
+   "claim": "$256^3$, $a_0$ tracking dark energy & 1.0035 / 1.0032 & 0.029 / 0.030",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG426_zero_knob_de_and_alt_seeds/cfg426_results.json",
+     "sha": "4c5b9afbd12056bb",
+     "locator": "D1,D2,A1,A2",
+     "value": ""
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "a86efc4afcdbb70f": {
+   "section": "Results",
+   "claim": "$256^3$, switch width halved / doubled & 1.0033 / 1.0033 & 0.027 / 0.027",
+   "verdict": "MATCH",
+   "note": "eps 0.0385/0.154 against the default 0.077.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG427_zero_knob_inherited_settings/cfg427_results.json",
+     "sha": "4135870b342c0781",
+     "locator": "E1,E2,G1,G2",
+     "value": ""
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "893872ac977fc58c": {
+   "section": "Results",
+   "claim": "$256^3$, other gas filters & 1.0027 / 1.0038 & 0.026 / 0.031",
+   "verdict": "MATCH",
+   "note": "MIXB/HOT1 against the default MIXA.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG427_zero_knob_inherited_settings/cfg427_results.json",
+     "sha": "4135870b342c0781",
+     "locator": "E1,E2,G1,G2",
+     "value": ""
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "00b4189391d65cac": {
+   "section": "Results",
+   "claim": "$\\mathbf{512^3}$, canonical & \\textbf{1.0045} & \\textbf{0.033}",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG425_turnaround_catchment_confirm/cfg425_results.json",
+     "sha": "d3e6319a65225f83",
+     "locator": "R1,R2,R3",
+     "value": "R3 512^3 s8 1.0045 pdev 0.0333"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "a132b1b6fe7adbc4": {
+   "section": "Results",
+   "claim": "$512^3$, alternative & 1.0054 & 0.040",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG439_zero_knob_alt_512/cfg439_results.json",
+     "sha": "5e4859b5060e1647",
+     "locator": "A,B",
+     "value": "alt 512 s8 1.0054 pdev 0.0398; DE 1.0045/0.0335"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "be17208e8e909c6f": {
+   "section": "Results",
+   "claim": "$512^3$, $a_0$ tracking dark energy & 1.0045 & 0.033",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG439_zero_knob_alt_512/cfg439_results.json",
+     "sha": "5e4859b5060e1647",
+     "locator": "A,B",
+     "value": "alt 512 s8 1.0054 pdev 0.0398; DE 1.0045/0.0335"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "6bd94e193d4d0aa0": {
+   "section": "Results",
+   "claim": "\\midrule control: mass conservation switched off ($256^3$) & 1.0326 & 0.154",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_results.json",
+     "sha": "8185a41a6e5d9712",
+     "locator": "TA-can, MUTATE",
+     "value": "pdev 0.0273; MUTATE s8 1.0326 pdev 0.154"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "21186ed9bed7aa08": {
+   "section": "Results",
+   "claim": "edge set by hand at $0.4\\,r_{\\rm ta}$ ($512^3$) & 1.0046 / 1.0059 & 0.080 / 0.0996",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG414_confined_switch_512/cfg414_results.json",
+     "sha": "2303394c89830fcf",
+     "locator": "canonical/alt",
+     "value": "1.0046/1.0059, 0.080/0.0996"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "ca9ff0fd1a83a623": {
+   "section": "Results",
+   "claim": "edge from census retention ($512^3$) & 1.0072 / 1.0073 & 0.092 / 0.1009",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG416_supply_edge_confinement_512/cfg416_results.json",
+     "sha": "9a512f3c9d4a946a",
+     "locator": "canonical/alt",
+     "value": "1.0072/1.0073, 0.092/0.1009"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "5d2d099679db76cc": {
+   "section": "Results",
+   "claim": "\\bottomrule \\end{tabular} \\end{center} Every run of the rule passes, 15 of 15.",
+   "verdict": "MATCH",
+   "note": "2+2+2+2+2+2+1+2 = 15 runs, all GROWTH OK.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_results.json",
+     "sha": "8185a41a6e5d9712",
+     "locator": "TA-can, MUTATE",
+     "value": "pdev 0.0273; MUTATE s8 1.0326 pdev 0.154"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG425_turnaround_catchment_confirm/cfg425_results.json",
+     "sha": "d3e6319a65225f83",
+     "locator": "R1,R2,R3",
+     "value": "R3 512^3 s8 1.0045 pdev 0.0333"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG426_zero_knob_de_and_alt_seeds/cfg426_results.json",
+     "sha": "4c5b9afbd12056bb",
+     "locator": "D1,D2,A1,A2",
+     "value": ""
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG427_zero_knob_inherited_settings/cfg427_results.json",
+     "sha": "4135870b342c0781",
+     "locator": "E1,E2,G1,G2",
+     "value": ""
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG439_zero_knob_alt_512/cfg439_results.json",
+     "sha": "5e4859b5060e1647",
+     "locator": "A,B",
+     "value": "alt 512 s8 1.0054 pdev 0.0398; DE 1.0045/0.0335"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "dbb66c32594468ba": {
+   "section": "Results",
+   "claim": "The excess changes from $2.7\\%$ to $3.3\\%$ between $256^3$ and $512^3$, a much smaller rise than the earlier rules showed; with two resolutions and one $512^3$ realisation, convergence is not establis",
+   "verdict": "OVERSTATES",
+   "note": "Minor. The rise is smaller only in absolute terms (+0.6 vs +2.1 points). As a ratio the new rule's excess grows MORE with resolution (3.3/2.7 = 1.22x) than the earlier reservoir rule's (17.4/15.3 = 1.14x). The 'convergence not established' caveat is present.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_results.json",
+     "sha": "8185a41a6e5d9712",
+     "locator": "TA-can, MUTATE",
+     "value": "pdev 0.0273; MUTATE s8 1.0326 pdev 0.154"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG425_turnaround_catchment_confirm/cfg425_results.json",
+     "sha": "d3e6319a65225f83",
+     "locator": "R1,R2,R3",
+     "value": "R3 512^3 s8 1.0045 pdev 0.0333"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG410_filament_share_of_excess/cfg410_results.json",
+     "sha": "888156a4d9a35538",
+     "locator": "canonical/alt BASE",
+     "value": "s8 1.0193/1.0243, pdev 0.153/0.193 (P1 1.153/1.193 >1)"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG411_overnight_convergence/cfg411_results.json",
+     "sha": "b1b3faf72cb976df",
+     "locator": "b.hi",
+     "value": "s8 1.0226, pdev 0.174"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "0b2773be6af1c786": {
+   "section": "Results",
+   "claim": "The largest share of a catchment's cold fluid used is 30\\% at $256^3$ and 57\\% at $512^3$; that share rises with resolution and is the quantity to watch at higher resolution.",
+   "verdict": "WRONG",
+   "note": "30% is the default-filter 256^3 maximum (0.302/0.304) in cfg424 outputs. But the MIXB gas-filter run, one of the 15 counted runs, reaches 0.368 (37%) at 256^3 (uncommitted work file), so 30% is not the largest. 57% (alt 512^3, 0.575; canonical 0.49) exists only in uncommitted _external_data/cfg424_work files, not in any committed output. 'No catchment is asked for more than it holds' matches (overdraw 0.0 in every committed result).",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_analysis.out",
+     "sha": "da2019ce5360f8ed",
+     "locator": "TA-can/TA-alt",
+     "value": "q_max 0.302/0.304"
+    },
+    {
+     "path": "../_external_data/cfg424_work/cfg424_RES_TA_MIXB_MASSCONS_fret1_FLAT_canonical_N256.json",
+     "sha": "17d8910182d9164c",
+     "locator": "snap.z0.q_max",
+     "value": "0.368 (uncommitted)"
+    },
+    {
+     "path": "../_external_data/cfg424_work/cfg424_RES_TA_MIXA_MASSCONS_fret1_FLAT_alt_N512.json",
+     "sha": "28a4fccc201d9df5",
+     "locator": "snap.z0.q_max",
+     "value": "0.575 (uncommitted)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "cf60ebd63f03e368": {
+   "section": "What this does and does not show",
+   "claim": "\\section{What this does and does not show} It shows that within this framework, structure growth can be kept within 10\\% of $\\Lambda$CDM-equivalent growth by a rule that follows from treating the phan",
+   "verdict": "MATCH",
+   "note": "10% pass holds for 15/15. 'No radius or width chosen to fit' needs qualifying: the switch width eps = 0.077 and the gas filter are inherited (stated elsewhere in the note; varied without effect in CFG427).",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG427_zero_knob_inherited_settings/cfg427_results.json",
+     "sha": "4135870b342c0781",
+     "locator": "E1,E2,G1,G2",
+     "value": ""
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "fa1fec511b9a674d": {
+   "section": "What this does and does not show",
+   "claim": "\\item One random realisation was run at $512^3$ (a second is running); the mesh does not resolve galaxy scales, and the share of cold fluid used (57\\% at $512^3$) could reach 100\\% at higher resolutio",
+   "verdict": "UNSUPPORTED",
+   "note": "57% appears in no committed output (only the uncommitted 512^3 alt work file, q_max 0.575). The status line 'a second is running' is stale: a seed-360 512^3 work file now exists (uncommitted).",
+   "sources": [
+    {
+     "path": "../_external_data/cfg424_work/cfg424_RES_TA_MIXA_MASSCONS_fret1_FLAT_alt_N512.json",
+     "sha": "28a4fccc201d9df5",
+     "locator": "snap.z0.q_max",
+     "value": "0.575 (uncommitted)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "26e7e9a335cd7721": {
+   "section": "What this does and does not show",
+   "claim": "A pass means the law does not spoil standard growth by more than 10\\%.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG424_turnaround_catchment/cfg424_analysis.py",
+     "sha": "e05b752243a1b485",
+     "locator": "cat",
+     "value": "pdev<=0.10"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "80c6be51660bd390": {
+   "section": "Reproducibility",
+   "claim": "The lanes are CFG414, CFG416 and CFG422--CFG427, CFG425 and CFG439 in the repository's \\texttt{campaign\\_fresh\\_gravity} directory; the engine is \\texttt{CFG424\\_turnaround\\_catchment/cfg424\\_pm.py} (",
+   "verdict": "CONTEXT",
+   "note": "Lane list. CFG425 is listed twice, and the 'problem' lanes (CFG361, 410-413, 415, 418) are omitted.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  }
+ }
+}

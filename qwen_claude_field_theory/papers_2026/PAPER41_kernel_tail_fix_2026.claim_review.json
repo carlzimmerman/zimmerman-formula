@@ -1,0 +1,742 @@
+{
+ "about": "Claim-match review (claim_match_tex.py) of every digit-bearing sentence/table row against committed outputs. Non-MATCH entries are findings; the paper text is NOT edited (MNRAS is under review; PAPER41-45 are published, corrections need the owner's go).",
+ "claims": {
+  "1d9e2928c52af452": {
+   "section": "front",
+   "claim": "[6pt] {\\small The authors --- 2026-10-05, version 1.0 --- AI-assisted research programme; not peer reviewed} \\end{center}",
+   "verdict": "CONTEXT",
+   "note": "Date/version line; this id occurs in both PAPER41 and PAPER43 (identical front-matter text).",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "766417e226ce7b59": {
+   "section": "front",
+   "claim": "\\begin{abstract} \\noindent The quadrature law $g^2=g_N^2+a_0g_N$, i.e.\\ $\\nu(y)=\\sqrt{1+1/y}$ with $y=g_N/a_0$ (Milgrom 1999, eq.~9), has a slow strong-field tail, $\\nu-1\\simeq 1/(2y)$.",
+   "verdict": "MATCH",
+   "note": "nu-1 ~ 1/(2y) is the trivial large-y expansion of sqrt(1+1/y); law attributed to Milgrom 1999.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p27_planck_cutoff_framework_kernel.out",
+     "sha": "abb0d461c19f4bad",
+     "locator": "line A",
+     "value": "I = Y - (1/4) ln Y + O(1)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "9aeb1eab29bb79aa": {
+   "section": "front",
+   "claim": "Held to all accelerations it gives a constant anomalous acceleration $a_0/2$ in the Solar System, 1279 times the Earth--Mars ephemeris bound, and it makes the vacuum term of the theory's field Lagrang",
+   "verdict": "MATCH",
+   "note": "1279 from make_paper41_figures (a0/2 / 3.66e-14); record review gives 1278x; linear divergence p27 A / p21 A.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
+     "sha": "4ef09f38d929cc19",
+     "locator": "exact_law_earth_ratio",
+     "value": "1279.0"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p27_planck_cutoff_framework_kernel.out",
+     "sha": "abb0d461c19f4bad",
+     "locator": "PASS A",
+     "value": "grows linearly"
+    },
+    {
+     "path": "real_research/reviews/mi_alpha1_solar_system_2026.out",
+     "sha": "9af607ddefff2336",
+     "locator": "line 102",
+     "value": "Earth 3.66e-14 1278x"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "802ee11510fdbace": {
+   "section": "front",
+   "claim": "We replace the tail by $\\nu_{\\rm fix}(y)=1+(\\sqrt{1+1/y}-1)/[1+(y/y_t)^2]$, which equals the law below a turn-off $y_t$ and falls as $y^{-3}$ above it.",
+   "verdict": "MATCH",
+   "note": "Definition; y^-3 fall-off is trivial algebra (y_t^2/(2y^3)).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.py",
+     "sha": "c869d50c3056894a",
+     "locator": "docstring",
+     "value": "nu - 1 ~ y^-(1+k)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "ebc08807521762fd": {
+   "section": "front",
+   "claim": "On SPARC the fixed kernel is indistinguishable from the exact law for $y_t\\ge100$ ($|\\Delta\\chi^2|\\le1.06$ on about 3000 points); every planet passes for $y_t\\le7.7\\times10^5$ (Mars binds); the vacuum",
+   "verdict": "MATCH",
+   "note": "|dchi2|<=1.06 on ~3000 points (p35 S), Mars-bound 7.7e5 (p35 P); pi/4*y_t vs 77.85/99.81/784.4 within 1-2% (arithmetic).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "PASS S",
+     "value": "|Delta chi2| <= 1.06, < 2 on ~3000 points"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "PASS P",
+     "value": "7.7e+05 (Mars binds)"
+    },
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
+     "sha": "4ef09f38d929cc19",
+     "locator": "vac_k2",
+     "value": "77.85/99.81/784.4"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "d18ab871696cb616": {
+   "section": "front",
+   "claim": "If, in addition, the vacuum energy of the $a_0$ sector is the observed dark energy (the ``offset reading'', an input), $y_t$ is fixed: $128.9$ on the footing that defines $a_0$ from $\\Lambda$, and $94",
+   "verdict": "OVERSTATES",
+   "note": "128.9/94-103 match the JSON, but the 94-103 range is only the spread of three central a0 values. The ensemble a0 carries 12.2% (p30: observed 73.19 +- 17.86 at 1 sigma, i.e. y_t ~75-118 at 1 sigma). The MIGHTEE value is width-frame-conditional: CFG309 rest-frame variant 1.311e-10 gives y_t ~66 (my arithmetic with the paper's integrand), and CFG304 makes MeerKAT an upper value. So 'measured a0 = 1.05-1.10' and 'y_t 94-103' are stated too narrowly.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
+     "sha": "4ef09f38d929cc19",
+     "locator": "offset_reading_measured_a0",
+     "value": "94.1/97.6/102.6/128.9"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p30_amplitude_inv_sqrt2_planck.out",
+     "sha": "0a8630f53f9ce227",
+     "locator": "line 15",
+     "value": "observed 73.19 +- 17.86"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG309_mightee_width_frame/cfg309_cfg301chain_FRAME_summary.out",
+     "sha": "06845590ce7fdc33",
+     "locator": "k = 0 summary",
+     "value": "pooled a0 1.3111e-10"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "f6c995c753b07e79": {
+   "section": "front",
+   "claim": "The turn-off value depends on its shape ($k=3,4$ give 167.5 and 182.4 on the framework footing), so it is not a derivation of the coefficient $\\kappa=\\tfrac12$, which stays fitted.",
+   "verdict": "MATCH",
+   "note": "k=3,4 values in p35 V.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "(V) k=3,k=4",
+     "value": "167.5, 182.4"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "6b6af7571d5a1d71": {
+   "section": "The problem",
+   "claim": "\\section{The problem} The law $g_{\\rm obs}^2=g_N^2+a_0g_N$ fits the radial acceleration relation of SPARC galaxies [LMS16] and is the deep-MOND relation with the next-order term of Milgrom's 1999 vacu",
+   "verdict": "CONTEXT",
+   "note": "Literature framing (LMS16, M99); only digits are a year/reference.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "9baf5dfda54d9a05": {
+   "section": "The problem",
+   "claim": "Its interpolating function has $\\nu-1\\simeq1/(2y)$ for $y\\gg1$, the ``$\\alpha=1$'' tail.",
+   "verdict": "MATCH",
+   "note": "Trivial expansion (alpha=1 tail).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p27_planck_cutoff_framework_kernel.out",
+     "sha": "abb0d461c19f4bad",
+     "locator": "PASS A",
+     "value": "I = Y - (1/4) ln Y"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "9f18d098b5180a1a": {
+   "section": "The problem",
+   "claim": "Two consequences follow, and both are failures of the law held at all accelerations, not of its galaxy-scale content: \\begin{itemize} \\item \\textbf{Planets.} The anomalous acceleration $(\\nu-1)g_N\\to ",
+   "verdict": "MATCH",
+   "note": "a0/2 = 4.68e-11 (arithmetic, a0 9.3603e-11); 1279 x Earth; Mars 3.72e-14 gives ~1257x (record), 'comparably'.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
+     "sha": "4ef09f38d929cc19",
+     "locator": "exact_law_earth_ratio",
+     "value": "1279"
+    },
+    {
+     "path": "real_research/reviews/mi_alpha1_solar_system_2026.out",
+     "sha": "9af607ddefff2336",
+     "locator": "lines 102-103",
+     "value": "Earth 3.66e-14 1278x; Mars 3.72e-14 1257x"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "4bb313abc7daca5c": {
+   "section": "The problem",
+   "claim": "Sereno \\& Jetzer require a tail exponent $\\gtrsim1.5$.",
+   "verdict": "MATCH",
+   "note": "Literature value attributed to Sereno & Jetzer; the record quotes it.",
+   "sources": [
+    {
+     "path": "real_research/reviews/mi_alpha1_solar_system_2026.out",
+     "sha": "9af607ddefff2336",
+     "locator": "line 74/84",
+     "value": "require alpha >~ 1.5"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "2cefd0b6ddfbd451": {
+   "section": "The problem",
+   "claim": "\\item \\textbf{Vacuum term.} In QUMOND, or in the $\\alpha+\\beta=0$ bimetric theory whose nonrelativistic limit it is [M09b, eq.~3], the field Lagrangian leaves a constant when the field vanishes.",
+   "verdict": "CONTEXT",
+   "note": "Theory/equation reference (alpha+beta=0, M09b eq. 3).",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "8818f88f3b0706e3": {
+   "section": "The problem",
+   "claim": "With no constant in strong fields this gives $\\Lambda/a_0^2=\\tfrac12\\int_0^\\infty2y(\\nu-1)\\,dy$ [M09b, eq.~24 with $f(1)=1$], the same in the exchange-symmetric bimetric class by an exact boundary-ter",
+   "verdict": "MATCH",
+   "note": "Exact boundary-term identity in p25 ID.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p25_symmetric_bimond_map.out",
+     "sha": "8a000f48ba700195",
+     "locator": "PASS ID",
+     "value": "the vacuum coefficient is the SAME in both BIMOND classes"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "ff9db9f095e3d425": {
+   "section": "The problem",
+   "claim": "For $\\nu=\\sqrt{1+1/y}$ the integral grows linearly with any cutoff; cut at the Planck acceleration it gives $\\Lambda=\\tfrac12a_0a_P/c^4$, about $10^{59}$ times the observed value (p27).",
+   "verdict": "MATCH",
+   "note": "p27: 3.0e59 (framework) / 2.4e59 (alt) -> 'about 10^59'.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p27_planck_cutoff_framework_kernel.out",
+     "sha": "abb0d461c19f4bad",
+     "locator": "PASS B",
+     "value": "Lambda = (1/2) a0 a_P / c^4 ... 3.0e+59 x too large"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "59987a58e31a049c": {
+   "section": "The turn-off",
+   "claim": "\\section{The turn-off} We keep the law where it is measured and switch the tail off above $y_t$: \\begin{equation} \\nu_{\\rm fix}(y)=1+\\frac{\\sqrt{1+1/y}-1}{1+(y/y_t)^k},\\qquad k=2\\ \\text{(default)} .",
+   "verdict": "MATCH",
+   "note": "Definition, as coded in p35 (k=2 default).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.py",
+     "sha": "c869d50c3056894a",
+     "locator": "nm1()",
+     "value": "base / (1 + (y / yt)**k)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "21ca74ed8f834ecc": {
+   "section": "The turn-off",
+   "claim": "\\end{equation} Below $y_t$ this is the law (deep limit, landmark triplet and sum rule unchanged); above it $\\nu-1\\simeq y_t^k/(2y^{1+k})$.",
+   "verdict": "UNSUPPORTED",
+   "note": "Asymptotic form is trivial algebra, but no committed output checks that the 'landmark triplet and sum rule' are unchanged. Below y_t the kernel is changed by the factor 1/(1+(y/y_t)^2), so it is not exactly the law. p49's orbital sum rule is finite only WITH the turn-off (for the exact kernel the boundary term grows), so the sum rule is changed, not untouched. Looked in p35/p36/p49 outputs.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p49_orbital_sum_rule_check_MUTATE.out",
+     "sha": "900de93f4d303ea6",
+     "locator": "PASS B",
+     "value": "the sum rule needs the turn-off"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "4e3fe5f6ed587dc4": {
+   "section": "The turn-off",
+   "claim": "Figure~\\ref{fig:tail} shows the fractional boost for three turn-offs against the planetary bounds converted to $\\nu-1$.",
+   "verdict": "MATCH",
+   "note": "Figure built by make_paper41_figures.py with y_t 128/1e3/1e5 and bare bounds/(y a0).",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/make_paper41_figures.py",
+     "sha": "252fe2e5f3300ba6",
+     "locator": "fig 1",
+     "value": "yt in (128, 1e3, 1e5); lim = b/(yp*a0)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "7f8697e394a3de67": {
+   "section": "The turn-off",
+   "claim": "\\begin{figure}[h]\\centering \\includegraphics[width=0.78\\textwidth]{fig1_paper41_tail.pdf} \\caption{Fractional boost $\\nu-1$ against $y=g_N/a_0$.",
+   "verdict": "CONTEXT",
+   "note": "Caption text.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "198b91fb4a9cacbe": {
+   "section": "The turn-off",
+   "claim": "Coloured: the turn-off at $y_t=128$, $10^3$, $10^5$ (line style repeats the colour).",
+   "verdict": "MATCH",
+   "note": "Script plots 128, 1e3, 1e5.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/make_paper41_figures.py",
+     "sha": "252fe2e5f3300ba6",
+     "locator": "fig 1 loop",
+     "value": "(128.0, 1e3, 1e5)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "f4d00e640188c1e6": {
+   "section": "The turn-off",
+   "claim": "Triangles: the planetary bounds on $\\nu-1$ (bare, no external-field credit).",
+   "verdict": "MATCH",
+   "note": "Bounds are bare (no EFE), as in the p35 docstring.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.py",
+     "sha": "c869d50c3056894a",
+     "locator": "docstring",
+     "value": "bare, no EFE credit"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "a180c547e9416704": {
+   "section": "Results",
+   "claim": "\\section{Results} \\textbf{Galaxies.} With the programme's SPARC profile likelihood (175 galaxies;",
+   "verdict": "MATCH",
+   "note": "175 galaxies is the Upsilon-free sample; the fixed-Upsilon MLS16-cut sample is 153 (p36).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p36_sparc_turnoff_fit.out",
+     "sha": "4bfec28892c8befa",
+     "locator": "rows",
+     "value": "all (175 gal); MLS16 cuts (153 gal)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "eb30b588a7c0ced2": {
+   "section": "Results",
+   "claim": "$\\Upsilon$ fixed at 0.5 with MLS16 cuts, or free per galaxy), the turn-off changes the best $\\chi^2$ by $+0.07$, $+0.04$, $0.00$ (fixed $\\Upsilon$) and $-1.06$, $-0.67$, $-0.01$ ($\\Upsilon$ free) for ",
+   "verdict": "MATCH",
+   "note": "Six dchi2 values in p35 S.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "(S) rows",
+     "value": "+0.07 +0.04 +0.00 | -1.06 -0.67 -0.01"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "a06a63d3ad81b0df": {
+   "section": "Results",
+   "claim": "A direct fit of $y_t$ bounds it only from below ($\\Delta\\chi^2<4$ for $y_t\\ge20$ at fixed $\\Upsilon$, $\\ge2$ with $\\Upsilon$ free; programme lane p36); the offset reading's values below change $\\chi^2",
+   "verdict": "OVERSTATES",
+   "note": "The thresholds (20 / 2) and the <1.2 (94 -> -1.19) match p36. But 'bounds it only from below' leaves out that with Upsilon free the fit PREFERS a low turn-off: best y_t = 5 at dchi2 = -53.2 vs the exact law (bulge-bearing -14.4). So y_t >= 100 is ~52 in chi2 worse than the best fit, not 'indistinguishable' from it. The 'Delta chi2 < 4' criterion is measured from the no-turn-off model, not from the minimum.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p36_sparc_turnoff_fit.out",
+     "sha": "4bfec28892c8befa",
+     "locator": "all, Upsilon free",
+     "value": "best y_t = 5 (Delta chi2 -53.22); Delta chi2 < 4 for y_t >= 2; 94 -> -1.19"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p36_sparc_turnoff_fit.out",
+     "sha": "4bfec28892c8befa",
+     "locator": "MLS16 cuts",
+     "value": "Delta chi2 < 4 for y_t >= 20"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "12be23cb92fba5d5": {
+   "section": "Results",
+   "claim": "\\textbf{Planets.} The largest allowed turn-off is $y_t=7.7\\times10^5$ (Mars), $1.77\\times10^6$ (Earth), $5.4\\times10^7$ (Mercury), $1.81\\times10^8$ (Venus).",
+   "verdict": "MATCH",
+   "note": "p35 P / JSON.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "(P)",
+     "value": "Mercury 5.40e+07, Venus 1.81e+08, Earth 1.77e+06, Mars 7.70e+05"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "ff24085ee12fac0b": {
+   "section": "Results",
+   "claim": "At $y_t=128$ the worst planet sits at $2.8\\times10^{-8}$ of its bound.",
+   "verdict": "MATCH",
+   "note": "2.77e-8 -> 2.8e-8.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "(P) y_t=128",
+     "value": "2.77e-08"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "be0ef6e51929ffcb": {
+   "section": "Results",
+   "claim": "\\textbf{Vacuum term.} The integral is finite: $\\Lambda/a_0^2=77.85$, $99.81$, $784.4$ at $y_t=100$, 128, $10^3$ ($k=2$).",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "(V) k=2",
+     "value": "77.85, 99.81, 784.4"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "d86db6179da1ec7d": {
+   "section": "Results",
+   "claim": "To leading order it is $\\tfrac12\\int_0^\\infty dy/[1+(y/y_t)^2]=(\\pi/4)\\,y_t$; the small-$y$ part of the kernel and a logarithm supply the rest (Fig.~\\ref{fig:vac}).",
+   "verdict": "MATCH",
+   "note": "pi/4*y_t = 78.5/100.5/785.4 vs 77.85/99.81/784.4 (arithmetic); log term as in p27's closed form.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
+     "sha": "4ef09f38d929cc19",
+     "locator": "vac_k2",
+     "value": "77.85/99.81/784.4"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p27_planck_cutoff_framework_kernel.out",
+     "sha": "abb0d461c19f4bad",
+     "locator": "line 1",
+     "value": "asinh / ln Y term"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "00703ff54b779996": {
+   "section": "Results",
+   "claim": "\\begin{figure}[h]\\centering \\includegraphics[width=0.78\\textwidth]{fig2_paper41_vacuum.pdf} \\caption{The vacuum term $\\Lambda/a_0^2$ against the turn-off $y_t$ for three turn-off shapes.",
+   "verdict": "CONTEXT",
+   "note": "Caption text.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "49775ac9ce827569": {
+   "section": "Results",
+   "claim": "Horizontal line: $32\\pi$, the framework footing.",
+   "verdict": "MATCH",
+   "note": "32 pi = 100.53 footing line; p35 W.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "(V) k=2",
+     "value": "32 pi needs y_t = 128.9"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c3c90c5d6dc725e6": {
+   "section": "The offset reading",
+   "claim": "\\section{The offset reading} If the $a_0$ sector's vacuum energy is the observed dark energy (an input; programme lane K), the turn-off is no longer free.",
+   "verdict": "CONTEXT",
+   "note": "Framing of the hypothesis (lane K), no result number.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "454c337cf4005aff": {
+   "section": "The offset reading",
+   "claim": "Then $\\Lambda_{\\rm obs}/a_0^2$ fixes $y_t$: \\begin{center} \\begin{tabular}{lcc} \\toprule $a_0$ (m\\,s$^{-2}$) & $\\Lambda_{\\rm obs}/a_0^2$ & $y_t$ ($k=2$)",
+   "verdict": "CONTEXT",
+   "note": "Table header.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "1d2172c5cb843644": {
+   "section": "The offset reading",
+   "claim": "\\midrule $9.3603\\times10^{-11}$ (defined from $\\Lambda$, $\\kappa=\\tfrac12$) & 100.53 & 128.9",
+   "verdict": "MATCH",
+   "note": "32 pi = 100.53; y_t 128.9.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
+     "sha": "4ef09f38d929cc19",
+     "locator": "framework footing 9.3603e-11",
+     "value": "100.53 / 128.9"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "7582a2acde0d5624": {
+   "section": "The offset reading",
+   "claim": "$1.05\\times10^{-10}$ (MeerKAT MIGHTEE-HI) & 79.89 & 102.6",
+   "verdict": "OVERSTATES",
+   "note": "79.89/102.6 match the JSON, and 1.0456e-10 is CFG301's pooled value. But the row labels it as THE MeerKAT measurement without caveat. CFG309 shows it depends on the width frame (rest-frame reading 1.311e-10), and CFG304 makes the MeerKAT a0 an upper value (Arecibo sees more HI; ~0.6-0.79e-10 in CFG304 posthoc). Both are committed before this paper's date.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
+     "sha": "4ef09f38d929cc19",
+     "locator": "MIGHTEE 1.05e-10",
+     "value": "79.89 / 102.6"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG301_mightee_hi_catalogue_width_chain/cfg301_stageB.out",
+     "sha": "69179584c272f60f",
+     "locator": "line 43",
+     "value": "pooled a0 = 1.0456e-10"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG309_mightee_width_frame/cfg309_cfg301chain_FRAME_summary.out",
+     "sha": "06845590ce7fdc33",
+     "locator": "k = 0",
+     "value": "1.3111e-10"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG304_mightee_flux_scale_alfalfa/cfg304_posthoc.out",
+     "sha": "7b57c0cfbb07d2b3",
+     "locator": "line 16",
+     "value": "(A) 6.708e-11 (B) 7.563e-11"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "295e92524db9a619": {
+   "section": "The offset reading",
+   "claim": "$1.0766\\times10^{-10}$ (SPARC profile) & 75.99 & 97.6",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
+     "sha": "4ef09f38d929cc19",
+     "locator": "SPARC record 1.0766e-10",
+     "value": "75.99 / 97.6"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p03_egb_and_data.out",
+     "sha": "eebce7189b631f76",
+     "locator": "line 13",
+     "value": "a0_hat = 1.0766e-10 +- 5.44%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "8d28c775cd5ee9c6": {
+   "section": "The offset reading",
+   "claim": "$1.097\\times10^{-10}$ (ensemble of nine analyses) & 73.19 & 94.1",
+   "verdict": "MATCH",
+   "note": "9 'analysis choices' (v01 states they are not independent measurements).",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
+     "sha": "4ef09f38d929cc19",
+     "locator": "lane V ensemble 1.097e-10",
+     "value": "73.19 / 94.1"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
+     "sha": "01fc9f219c524066",
+     "locator": "ENSEMBLE E",
+     "value": "9 analysis choices ... log-mean 1.097"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "b829308586ba1bab": {
+   "section": "The offset reading",
+   "claim": "On measured $a_0$ the boost turns off at $y_t\\approx94$--$103$, i.e.\\ $g_N\\approx10^{-8}$\\,m\\,s$^{-2}$, just at the upper edge of SPARC (about 5\\% of points have $y>10$; the sample tops out near $y\\ap",
+   "verdict": "UNSUPPORTED",
+   "note": "94-103 and g_N ~ 1e-8 (94 x 1.077e-10 = 1.0e-8) follow. 'SPARC stops at y ~ 1e2' is in p26. But 'about 5% of points have y > 10' and 'tops out near y ~ 110' are in no committed output (searched the puzzle_32pi .out files and agents/V).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p26_what_pins_the_tail.out",
+     "sha": "4983d3904b52add4",
+     "locator": "PASS D1",
+     "value": "SPARC stops at y ~ 1e2"
+    },
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
+     "sha": "4ef09f38d929cc19",
+     "locator": "offset_reading_measured_a0",
+     "value": "94.1-102.6"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "87b19635bb613d76": {
+   "section": "The offset reading",
+   "claim": "This is the reading's testable content: rotation-curve, lensing or dynamical data at $10\\lesssim y\\lesssim10^3$ (bulge-dominated inner regions, early-type galaxies) would see the boost fall below the ",
+   "verdict": "OVERSTATES",
+   "note": "The factor 1/[1+(y/y_t)^2] is algebra. But calling it 'the reading's testable content' contradicts the programme's own lane p38: existing early-type dynamics and lensing CANNOT see the turn-off (sample shift -0.00011 dex; a calibration ~878x better than today's 0.10 dex floor is needed). p36 puts the signature at <= 0.002 dex for y <= 100. The companion PAPER42 calls it 'structurally out of reach'.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p38_high_accel_turnoff.out",
+     "sha": "2c8ddbd208a2ad66",
+     "locator": "PASS D / PASS P",
+     "value": "CANNOT see the turn-off ... about 878x better"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p36_sparc_turnoff_fit.out",
+     "sha": "4bfec28892c8befa",
+     "locator": "PASS B",
+     "value": "its signature is <= 0.002 dex at y <= 100"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "66e0ad67b1f665ea": {
+   "section": "The offset reading",
+   "claim": "It also inherits lane K's consequence that with $w=-1$ the scale $a_0$ is constant in time.",
+   "verdict": "MATCH",
+   "note": "If rho_DE = const then a0 = const (trivial); p59 L check.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p59_a0z_drift_desi.out",
+     "sha": "99a4cc0e193dc389",
+     "locator": "PASS L",
+     "value": "LCDM gives a0(z)/a0(0) = 1 at every z"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "a981b08fba01b3ce": {
+   "section": "The offset reading",
+   "claim": "The companion paper develops this reading as a model of dark energy (doi:10.5281/zenodo.23171066).",
+   "verdict": "CONTEXT",
+   "note": "DOI.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "0c6824a637eaf71a": {
+   "section": "The offset reading",
+   "claim": "\\textbf{What it is not.} The turn-off value depends on the shape: $k=3$ and $k=4$ need $y_t=167.5$ and $182.4$ on the framework footing.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "(V) k=3,4",
+     "value": "167.5, 182.4"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "601e37ebb704d643": {
+   "section": "The offset reading",
+   "claim": "The ``round'' 128 is $32\\pi$ divided by the $\\pi/4$ of the $k=2$ integral.",
+   "verdict": "MATCH",
+   "note": "32 pi / (pi/4) = 128 exactly (arithmetic).",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "7241c616a7dfc092": {
+   "section": "The offset reading",
+   "claim": "Nothing here derives $\\kappa=\\tfrac12$ in $a_0=\\kappa c\\sqrt{G\\rho_\\Lambda}$.",
+   "verdict": "MATCH",
+   "note": "Consistent with the Lean independence result (kappa not derived).",
+   "sources": [
+    {
+     "path": "fable_independent_2026/lean_2026/PUZZLE_32pi_postulate_status_2026_10_05.out",
+     "sha": "c283966b3f01c377",
+     "locator": "postulate_independent",
+     "value": "standard axioms only"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "fec33f8c0555e1f9": {
+   "section": "Summary",
+   "claim": "\\section{Summary} A single turn-off removes the quadrature kernel's two strong-field failures (the planets and the divergent vacuum term) without touching galaxies, at the cost of one constant $y_t\\in",
+   "verdict": "MATCH",
+   "note": "Window [100, 7.7e5] = the tested indistinguishable range (p35) and the Mars bound. Note: SPARC alone allows y_t >= 20 (fixed Upsilon) and prefers y_t ~ 5 with Upsilon free (see a06a63d3ad81b0df).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "PASS S / PASS P",
+     "value": "y_t >= 100; 7.7e+05"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "76614990240bad6e": {
+   "section": "Summary",
+   "claim": "Under the offset reading that constant is set by $\\Lambda/a_0^2$ and lands at the edge of current data, which makes it testable.",
+   "verdict": "OVERSTATES",
+   "note": "'Lands at the edge of current data, which makes it testable' contradicts p38: current dynamics and lensing cannot see the turn-off (~878x short). PAPER42 concedes g_t cannot be measured independently.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p38_high_accel_turnoff.out",
+     "sha": "2c8ddbd208a2ad66",
+     "locator": "PASS D",
+     "value": "existing early-type dynamics and lensing CANNOT see the turn-off"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "42190cf51e208bc5": {
+   "section": "Summary",
+   "claim": "The cold mass ($\\Omega_ch^2\\approx0.12$) is still required; no dark-matter particle is added.",
+   "verdict": "MATCH",
+   "note": "Omega_c h^2 = 0.12 is the programme's standing CMB input.",
+   "sources": [
+    {
+     "path": "campaign_fresh_gravity/CFG4_target.out",
+     "sha": "b8cfad6c4070fdf0",
+     "locator": "line 219",
+     "value": "Omega_c h^2 = 0.1200"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "20be15e839156e94": {
+   "section": "Summary",
+   "claim": "\\paragraph{Reproducibility.} \\fpath{sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.py} (4/4; the exact-law control fails 3), \\fpath{qwen_claude_field_theory/papers_2026/make_paper41_figures.py}, \\fpath",
+   "verdict": "MATCH",
+   "note": "p35 4/4; MUTATE 1/4 (3 fail).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "last line",
+     "value": "4/4 pass"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix_MUTATE.out",
+     "sha": "045cdc961120fab4",
+     "locator": "last line",
+     "value": "1/4 pass (MUTATE)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "609d5bd5a686d034": {
+   "section": "Summary",
+   "claim": "\\small \\paragraph{References.} [LMS16] Lelli, McGaugh \\& Schombert, AJ 152, 157 (2016). [M99] Milgrom, Phys.\\ Lett.\\ A 253, 273 (1999), astro-ph/9805346. [M09] Milgrom, MNRAS 399, 474 (2009), arXiv:09",
+   "verdict": "CONTEXT",
+   "note": "References.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  }
+ }
+}

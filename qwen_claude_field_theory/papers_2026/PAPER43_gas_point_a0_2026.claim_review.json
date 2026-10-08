@@ -1,0 +1,845 @@
+{
+ "about": "Claim-match review (claim_match_tex.py) of every digit-bearing sentence/table row against committed outputs. Non-MATCH entries are findings; the paper text is NOT edited (MNRAS is under review; PAPER41-45 are published, corrections need the owner's go).",
+ "claims": {
+  "1d9e2928c52af452": {
+   "section": "front",
+   "claim": "[6pt] {\\small The authors --- 2026-10-05, version 1.0 --- AI-assisted research programme; not peer reviewed} \\end{center}",
+   "verdict": "CONTEXT",
+   "note": "Date/version line; this id occurs in both PAPER41 and PAPER43 (identical front-matter text).",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c71ff942112df743": {
+   "section": "front",
+   "claim": "\\begin{abstract} \\noindent Published values of the MOND acceleration scale scatter by $\\sim$20\\% because $a_0$ is degenerate with the stellar mass-to-light ratio $\\Upsilon$: in the deep regime $a_0\\si",
+   "verdict": "OVERSTATES",
+   "note": "The committed ensemble scatter of published/analysis a0 values is 11.8% sd (12.2% in ln), not ~20%; 20% is MLS16's quoted total error. Attributing the scatter to Upsilon alone is not shown: the interpolating-function choice also moves a0 (DBF23 1.11-1.54 across IFs, same data).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
+     "sha": "01fc9f219c524066",
+     "locator": "ENSEMBLE E",
+     "value": "sd 0.130 (11.8%) ... sd(ln) 12.2%; comparable to MLS16's quoted 20% total"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
+     "sha": "01fc9f219c524066",
+     "locator": "DBF23 rows",
+     "value": "1.11 / 1.13 / 1.54 / 1.16"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "fb929e008f6a597a": {
+   "section": "front",
+   "claim": "We remove most of that degeneracy by fitting only rotation-curve \\emph{points} at which gas supplies more than 80\\% of the baryonic acceleration.",
+   "verdict": "MATCH",
+   "note": "fcut 0.8 (11.2% vs 63%).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41b_gas_points_calibration.out",
+     "sha": "2d77f97ba5c7cd47",
+     "locator": "fcut 0.8",
+     "value": "spread 11.2%"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41_pin_mass_to_light.out",
+     "sha": "e016f84994bc7bd8",
+     "locator": "framework",
+     "value": "spread 63.1%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "30989eda656c0f5a": {
+   "section": "front",
+   "claim": "In SPARC this leaves 124 points in 19 galaxies, all deep in the MOND regime ($y=g_{\\rm bar}/a_0\\approx0.04$).",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p42_kernel_on_gas_points.out",
+     "sha": "3e1b91d808ecefc8",
+     "locator": "line 1",
+     "value": "19 galaxies, 124 points; ... median 0.040"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "7ec6e80259a25a54": {
+   "section": "front",
+   "claim": "Their $a_0$ changes by only 11\\% as $\\Upsilon$ runs from 0.3 to 0.7.",
+   "verdict": "OVERSTATES",
+   "note": "11.2% matches, but 'only' hides that the lane's own pre-set robustness check failed (G: spread < 10% required; 11.2% -> FAIL). Its calibration check also failed (U: Upsilon* 0.729 outside the 0.40-0.63 prior): p41b 0/2 pass.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41b_gas_points_calibration.out",
+     "sha": "2d77f97ba5c7cd47",
+     "locator": "FAIL G / FAIL U / 0/2 pass",
+     "value": "spread 11.2% < 10% FAIL"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "1769445ffc33067f": {
+   "section": "front",
+   "claim": "They also prefer the quadrature kernel $\\nu=\\sqrt{1+1/y}$ over the exponential RAR form ($\\Delta\\chi^2=+5.0$, independent of $\\Upsilon$), which cuts the kernel systematic to $\\sim$3\\%.",
+   "verdict": "UNSUPPORTED",
+   "note": "dchi2 = +5.0/+5.0/+5.4 at Upsilon 0.3/0.5/0.7 (approximately, not exactly, Upsilon-independent). The '~3%' kernel systematic is in no output: p42.out prints a0 only at n = 1. 3% is an assumed input in p44.py. p41b reports the RAR-vs-framework kernel systematic on these same points as 15.6%.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p42_kernel_on_gas_points.out",
+     "sha": "3e1b91d808ecefc8",
+     "locator": "RAR column",
+     "value": "+5.0 / +5.0 / +5.4"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p44_samplesize_and_bayes.py",
+     "sha": "08199096b2619da3",
+     "locator": "line 38",
+     "value": "floor = math.hypot(0.03, 0.085) (assumed)"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41b_gas_points_calibration.out",
+     "sha": "2d77f97ba5c7cd47",
+     "locator": "framework line",
+     "value": "kernel systematic (RAR) 15.6%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "47d16ef85fd62432": {
+   "section": "front",
+   "claim": "Selecting points rather than galaxies is essential: galaxy-level ``gas-rich'' samples retain a 63\\% $\\Upsilon$ dependence.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41_pin_mass_to_light.out",
+     "sha": "e016f84994bc7bd8",
+     "locator": "framework",
+     "value": "spread 63.1%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "0b15725433f914ae": {
+   "section": "front",
+   "claim": "The result then depends on distance, because for gas-dominated baryons $a_0$ scales roughly as $D^{-2}$ to $D^{-4}$.",
+   "verdict": "UNSUPPORTED",
+   "note": "No output gives the D^-2 to D^-4 scaling. p43's H0 73 -> 70 rerun (7.282 -> 6.667e-11) implies ~D^-2.1 (my arithmetic). p44 assumes 5% in D -> 8.5% in a0 (~D^-1.7). Only README prose says D^-3 to -4.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p43_wallaby_gas_points.out",
+     "sha": "8476f2971dbc3107",
+     "locator": "Upsilon row",
+     "value": "H0 70: 6.667e-11"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p44_samplesize_and_bayes.py",
+     "sha": "08199096b2619da3",
+     "locator": "docstring",
+     "value": "5% in D -> 8.5% in a0"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "e4ed17cef4c2c6b9": {
+   "section": "front",
+   "claim": "The eight galaxies with TRGB or Cepheid distances give $a_0=1.16\\times10^{-10}$\\,m\\,s$^{-2}$ ($\\pm20\\%$).",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p46_gas_points_trgb.out",
+     "sha": "53b05069025e3a95",
+     "locator": "TRGB/Cepheid",
+     "value": "8 galaxies, 70 pts; a0 = 1.158e-10 +- 20.2%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "82769e53c9983582": {
+   "section": "front",
+   "claim": "The eleven with Hubble-flow distances give $0.70\\times10^{-10}$ ($\\pm18\\%$).",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p46_gas_points_trgb.out",
+     "sha": "53b05069025e3a95",
+     "locator": "Hubble flow",
+     "value": "11 galaxies, 54 pts; 6.970e-11 +- 18.3%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "87c983ac22b7ce7a": {
+   "section": "front",
+   "claim": "WALLABY DR2 (46 galaxies, Hubble flow) gives $0.73\\times10^{-10}$ ($\\pm23\\%$), and LITTLE THINGS (22 galaxies, authors' baryon models) $0.78\\times10^{-10}$ ($\\pm41\\%$).",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p43_wallaby_gas_points.out",
+     "sha": "8476f2971dbc3107",
+     "locator": "a0 line",
+     "value": "7.282e-11 +-23.3%, 46 galaxies"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p47_little_things_a0.out",
+     "sha": "c7d9b91ab5b64696",
+     "locator": "a0",
+     "value": "7.796e-11 +- 40.8%, 22 galaxies"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c158dc10ecc60415": {
+   "section": "front",
+   "claim": "A random-effects combination gives $a_0=(8.3\\pm1.1)\\times10^{-11}$\\,m\\,s$^{-2}$ ($I^2=24\\%$).",
+   "verdict": "MATCH",
+   "note": "13.4% of 8.318 = 1.11.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "RANDOM-EFFECTS",
+     "value": "8.318e-11 (+-13.4%); I^2 = 24%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "e6da6ade2ae7260f": {
+   "section": "front",
+   "claim": "On it the conventional $1.2\\times10^{-10}$ is disfavoured at $2.7\\sigma$; the values tying $a_0$ to the dark-energy density ($\\tfrac12c\\sqrt{G\\rho_\\Lambda}=0.94$, $cH_\\Lambda/6$, $cH_\\Lambda/2\\pi$) al",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "pulls",
+     "value": "+2.74; +0.88/+0.62/+0.27; +2.30"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "11a3a63a3d22280f": {
+   "section": "front",
+   "claim": "That verdict is distance-conditional: three of the four inputs rest on Hubble-flow distances or external baryon models, and the TRGB/Cepheid subset alone favours 1.13.",
+   "verdict": "OVERSTATES",
+   "note": "'Three of four on HF/external models' is correct. But 'the TRGB/Cepheid subset favours 1.13' overstates: it is the nearest value (+0.12 sigma), while 9.36e-11 is only +1.06 sigma (stat only, 20% errors). The subset does not discriminate. The verdict language should match the pooled one.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p46_gas_points_trgb.out",
+     "sha": "53b05069025e3a95",
+     "locator": "vs rows",
+     "value": "alt rho_tot +0.12 sigma; kappa=1/2 rho_L +1.06 sigma"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "88ba8ba65032b9e6": {
+   "section": "front",
+   "claim": "Distinguishing the candidate coefficients needs distances good to $\\sim$3--5\\% for gas-dominated dwarfs, not more galaxies.",
+   "verdict": "WRONG",
+   "note": "Contradicts p44 on both counts. (1) Candidates 3.6-8.2% apart need a shared a0 floor < Delta/2 = 1.8-4.1% at 2 sigma. With p44's own 5%-in-D -> 8.5%-in-a0 conversion that is distances good to ~1-2.4%, not 3-5%. (2) 'Not more galaxies' is wrong: p44 needs 217-1137 gas-dominated galaxies at 2 sigma (check N FAIL), as the paper's own Sec. 4 says (~100-1000).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p44_samplesize_and_bayes.out",
+     "sha": "eac6210661588b84",
+     "locator": "table",
+     "value": "Milgrom 2pi rho_L 0.082 -> 217; Verlinde 6 0.036 -> 1137; FAIL N"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p44_samplesize_and_bayes.py",
+     "sha": "08199096b2619da3",
+     "locator": "docstring",
+     "value": "5% in D -> 8.5% in a0"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c55f048d9dbf5ece": {
+   "section": "Method: gas-dominated points",
+   "claim": "\\section{Method: gas-dominated points} For each SPARC galaxy [LMS16] (quality $\\le2$, $i\\ge30^\\circ$) we keep the radii where $V_{\\rm gas}^2/V_{\\rm bar}^2>0.8$ at $\\Upsilon_{\\rm disk}=0.5$ ($\\Upsilon_",
+   "verdict": "MATCH",
+   "note": "Cuts Q<=2, i>=30, sigma_int 0.11, bulge 1.4 x 0.5 = 0.7, fcut 0.8.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41b_gas_points_calibration.py",
+     "sha": "72a36b56b46f9788",
+     "locator": "lines 3,14,30",
+     "value": "MLS16 cuts, sigma_int 0.11, fcut 0.8"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41_pin_mass_to_light.py",
+     "sha": "b8ec6a1cdaf00e76",
+     "locator": "docstring",
+     "value": "bulge 1.4x"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "5e8d25474259ce66": {
+   "section": "Method: gas-dominated points",
+   "claim": "With a 0.8 cut the result changes by 11.2\\% between $\\Upsilon=0.3$ and 0.7.",
+   "verdict": "MATCH",
+   "note": "Note: the lane's < 10% robustness criterion FAILED at this value.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41b_gas_points_calibration.out",
+     "sha": "2d77f97ba5c7cd47",
+     "locator": "fcut 0.8",
+     "value": "spread 11.2%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "acde84b62d7592ef": {
+   "section": "Method: gas-dominated points",
+   "claim": "A galaxy-level cut (gas fraction $>0.6$ at the last point) changes by 63\\%, because the inner points of such galaxies are star-dominated.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41_pin_mass_to_light.out",
+     "sha": "e016f84994bc7bd8",
+     "locator": "framework",
+     "value": "spread 63.1%"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41_pin_mass_to_light.py",
+     "sha": "b8ec6a1cdaf00e76",
+     "locator": "docstring",
+     "value": "gas fraction at the last point > 0.6"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "28a87993c307be7e": {
+   "section": "Method: gas-dominated points",
+   "claim": "On the gas points the exponential RAR kernel is worse than $\\sqrt{1+1/y}$ by $\\Delta\\chi^2=+5.0$ at every $\\Upsilon$, and the allowed family members move $a_0$ by only $\\sim$3\\%.",
+   "verdict": "WRONG",
+   "note": "'+5.0 at every Upsilon' is wrong: p42 gives +5.0, +5.0, +5.4 at Upsilon 0.3/0.5/0.7. 'Family members move a0 by only ~3%' is in no output (p42 prints a0 at n = 1 only; 3% is an assumed input in p44). The data's best n is 1.6, not 1.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p42_kernel_on_gas_points.out",
+     "sha": "3e1b91d808ecefc8",
+     "locator": "Upsilon 0.7",
+     "value": "RAR +5.4 | best n 1.6"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p44_samplesize_and_bayes.py",
+     "sha": "08199096b2619da3",
+     "locator": "line 38",
+     "value": "0.03 assumed"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "71437ee791c4daf2": {
+   "section": "Results",
+   "claim": "\\section{Results} \\begin{center} \\begin{tabular}{lccc} \\toprule sample (gas-dominated points) & galaxies & points & $a_0$ ($10^{-10}$\\,m\\,s$^{-2}$)",
+   "verdict": "CONTEXT",
+   "note": "Table header.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "29270531419ebd64": {
+   "section": "Results",
+   "claim": "\\midrule SPARC, TRGB/Cepheid distances & 8 & 70 & $1.158\\pm20\\%$",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p46_gas_points_trgb.out",
+     "sha": "53b05069025e3a95",
+     "locator": "TRGB/Cepheid",
+     "value": "8 / 70 / 1.158e-10 +- 20.2%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "017a344a7586a8c9": {
+   "section": "Results",
+   "claim": "SPARC, Hubble-flow distances & 11 & 54 & $0.697\\pm18\\%$",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p46_gas_points_trgb.out",
+     "sha": "53b05069025e3a95",
+     "locator": "Hubble flow",
+     "value": "11 / 54 / 6.970e-11 +- 18.3%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "3844e5545eefda85": {
+   "section": "Results",
+   "claim": "SPARC, all & 19 & 124 & $0.900\\pm14\\%$",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p46_gas_points_trgb.out",
+     "sha": "53b05069025e3a95",
+     "locator": "all",
+     "value": "19 / 124 / 8.999e-11 +- 14.3%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "46804591105856bc": {
+   "section": "Results",
+   "claim": "WALLABY DR2 (Hubble flow;",
+   "verdict": "MATCH",
+   "note": "DR2, Hubble-flow distances (H0 73).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p43_wallaby_gas_points.out",
+     "sha": "8476f2971dbc3107",
+     "locator": "a0 line",
+     "value": "H0 73"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c4294729dfd150f7": {
+   "section": "Results",
+   "claim": "AllWISE stars) & 46 & 218 & $0.728\\pm23\\%$",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p43_wallaby_gas_points.out",
+     "sha": "8476f2971dbc3107",
+     "locator": "lines 2-3",
+     "value": "218 in 46 galaxies; 7.282e-11 +-23.3%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "5d022fcac6c5e394": {
+   "section": "Results",
+   "claim": "LITTLE THINGS (authors' baryon models) & 22 & 720 & $0.780\\pm41\\%$",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p47_little_things_a0.out",
+     "sha": "c7d9b91ab5b64696",
+     "locator": "lines 1-2",
+     "value": "22 galaxies; 720 points; 7.796e-11 +- 40.8%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "b95af741c75d9fdc": {
+   "section": "Results",
+   "claim": "\\midrule random-effects pool (four independent sets) & & & $0.832\\pm13\\%$",
+   "verdict": "MATCH",
+   "note": "8.318e-11 +- 13.4%. Note: 'independent' is approximate, since LITTLE THINGS shares 3 galaxies with SPARC, as the text says.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "RANDOM-EFFECTS",
+     "value": "8.318e-11 +-13.4%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "5f693300c20e8449": {
+   "section": "Results",
+   "claim": "\\begin{figure}[h]\\centering \\includegraphics[width=0.8\\textwidth]{fig1_paper43_forest.pdf} \\caption{The $\\Upsilon$-robust estimates (circles, 68\\%) and their random-effects pool (diamond), with candid",
+   "verdict": "MATCH",
+   "note": "Candidate values as in p48.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "candidate list",
+     "value": "8.626e-11, 9.360e-11, 1.131e-10, 1.2e-10"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "b4115635defae4ed": {
+   "section": "Results",
+   "claim": "\\textbf{WALLABY.} We used the DR2 kinematic models (rotation curves and face-on H\\,{\\sc i} surface densities) with AllWISE W1 stellar masses.",
+   "verdict": "CONTEXT",
+   "note": "Data description (DR2, W1).",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "610b491873de20ef": {
+   "section": "Results",
+   "claim": "The gas disc was computed by exact ring summation, checked to 0.9\\% against the Freeman disc.",
+   "verdict": "MATCH",
+   "note": "0.94% -> 0.9%.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p43_wallaby_gas_points.out",
+     "sha": "8476f2971dbc3107",
+     "locator": "PASS C",
+     "value": "max 0.94%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "16f2bf7834ed5e46": {
+   "section": "Results",
+   "claim": "We tested the survey's assumptions one at a time: the external field of the cluster fields (Hydra, Norma, NGC~4636, NGC~5044), via the quadrature law's own external-field cubic $g^2-g_N^2=a_0g_Ng/(g+\\",
+   "verdict": "MATCH",
+   "note": "EFE +1.0% (noclu) to +8.5% (maxclu); flux 8.349/7.282 = +14.7%; AD 7.681/7.282 = +5.5%. The cubic is in p43.py (equation book E7). Fields as in the g_ext table, which also has Vela and NGC 4808.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p43_wallaby_gas_points.out",
+     "sha": "8476f2971dbc3107",
+     "locator": "EFE / flux / AD rows",
+     "value": "noclu 7.357e-11, maxclu 7.899e-11 (+8.5%); 8.349e-11; 7.681e-11"
+    },
+    {
+     "path": "prep_2026/wallaby_firing/gext_wallaby_237.csv",
+     "sha": "c5699dab85a6041d",
+     "locator": "field column",
+     "value": "Hydra, Norma, NGC 4636, NGC 5044 (+ Vela, NGC 4808)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "b33e355b384a160a": {
+   "section": "Results",
+   "claim": "CMB-frame instead of Hubble-flow distances by $-33\\%$.",
+   "verdict": "MATCH",
+   "note": "4.883/7.282 = -32.9%.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p43_wallaby_gas_points.out",
+     "sha": "8476f2971dbc3107",
+     "locator": "CMB-frame",
+     "value": "4.883e-11"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "dc196e793432245f": {
+   "section": "Results",
+   "claim": "\\textbf{LITTLE THINGS.} For the three galaxies shared with SPARC (DDO~154, DDO~168, NGC~2366), the two teams' baryon models give per-galaxy $a_0$ that differ by a factor 1.6--2.4.",
+   "verdict": "MATCH",
+   "note": "Ratios 1.58, 1.60, 2.42.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p47_little_things_a0.out",
+     "sha": "c7d9b91ab5b64696",
+     "locator": "overlap rows",
+     "value": "2.42 / 1.60 / 1.58"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "2754bf80dea3d306": {
+   "section": "Results",
+   "claim": "Modelling choices, not only statistics, move $a_0$ by tens of percent.",
+   "verdict": "MATCH",
+   "note": "Overlap factors 1.6-2.4; p47 X FAIL.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p47_little_things_a0.out",
+     "sha": "c7d9b91ab5b64696",
+     "locator": "FAIL X",
+     "value": "pipelines disagree"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c0b3ba401a9932cb": {
+   "section": "Combination and candidate values",
+   "claim": "A DerSimonian--Laird random-effects combination gives $Q=3.97$ (3 degrees of freedom), $I^2=24\\%$ and $a_0=8.32\\times10^{-11}$\\,m\\,s$^{-2}$ ($\\pm13\\%$).",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "lines 1-2",
+     "value": "Q = 3.97 (k-1 = 3), I^2 = 24%; 8.318e-11 +-13.4%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "6e914fa24f584bf9": {
+   "section": "Combination and candidate values",
+   "claim": "Pulls of candidate values: $\\tfrac12c\\sqrt{G\\rho_\\Lambda}$ (9.36) $+0.88\\sigma$;",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "kappa=1/2 rho_Lambda",
+     "value": "9.360e-11: pull +0.88"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "8091695a4f8d7aeb": {
+   "section": "Combination and candidate values",
+   "claim": "$cH_\\Lambda/6$ (9.03) $+0.62$;",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "Verlinde 6 rho_L",
+     "value": "9.033e-11: pull +0.62"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "9602c4154dd459ed": {
+   "section": "Combination and candidate values",
+   "claim": "$cH_\\Lambda/2\\pi$ (8.63) $+0.27$;",
+   "verdict": "MATCH",
+   "note": "cH_Lambda/2pi = 5.4197e-10/2pi = 8.626e-11.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "Milgrom 2pi rho_L",
+     "value": "8.626e-11: pull +0.27"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "6086dda2bc4b51af": {
+   "section": "Combination and candidate values",
+   "claim": "$cH_0/2\\pi$ (10.4) $+1.69$;",
+   "verdict": "MATCH",
+   "note": "cH0/2pi = 6.5483e-10/2pi = 1.042e-10 (p48 labels it 'Milgrom 2pi rho_tot').",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "Milgrom 2pi rho_tot",
+     "value": "1.042e-10: pull +1.69"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "feb4b6e619778bbe": {
+   "section": "Combination and candidate values",
+   "claim": "$\\tfrac12c\\sqrt{G\\rho_{\\rm crit}}$ (11.3) $+2.30$;",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "alt rho_total",
+     "value": "1.131e-10: pull +2.30"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "432a01ae39f154a5": {
+   "section": "Combination and candidate values",
+   "claim": "$1.2\\times10^{-10}$ $+2.74$.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "SPARC conventional",
+     "value": "pull +2.74"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "aa3058dc77ae2000": {
+   "section": "Combination and candidate values",
+   "claim": "\\textbf{The distance caveat is load-bearing.} The Hubble-flow subsets sit low and the TRGB/Cepheid subset high (ratio 1.66, $\\sim2\\sigma$).",
+   "verdict": "MATCH",
+   "note": "1.158/0.697 = 1.661; ln ratio 0.507 / sqrt(0.202^2+0.183^2) = 1.86 sigma (arithmetic).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p46_gas_points_trgb.out",
+     "sha": "53b05069025e3a95",
+     "locator": "TRGB / HF rows",
+     "value": "1.158e-10 +-20.2%; 6.970e-11 +-18.3%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "fcd7b734c6cdac66": {
+   "section": "Combination and candidate values",
+   "claim": "On the redshift-independent subset alone, the critical-density value is the closest ($+2\\%$).",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p46_gas_points_trgb.out",
+     "sha": "53b05069025e3a95",
+     "locator": "vs alt rho_tot",
+     "value": "+2.4%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "60e6ff9ed761ee14": {
+   "section": "Combination and candidate values",
+   "claim": "For gas-dominated points the per-galaxy scatter is 0.60 in $\\ln a_0$.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p44_samplesize_and_bayes.out",
+     "sha": "eac6210661588b84",
+     "locator": "(1)",
+     "value": "scatter s = 0.604"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "6ba0aed0550e299d": {
+   "section": "Combination and candidate values",
+   "claim": "Separating candidates 4--9\\% apart at $2\\sigma$ needs $\\sim$100--1000 such galaxies \\emph{and} a shared distance-plus-kernel systematic below $\\sim$3--5\\%; today it is $\\sim$9\\%.",
+   "verdict": "OVERSTATES",
+   "note": "N ~100-1000 matches p44 (217-1137) and 'today ~9%' matches f = 0.090. But p44's requirement is floor < Delta/z = 1.8% (3.6% apart) to 4.1% (8.2% apart) at 2 sigma, not '~3-5%'.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p44_samplesize_and_bayes.out",
+     "sha": "eac6210661588b84",
+     "locator": "table / floor",
+     "value": "0.036 -> 1137; 0.082 -> 217; f = 0.090"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "c11e4e71eb72df02": {
+   "section": "Summary",
+   "claim": "\\section{Summary} Gas-dominated rotation-curve points give a mass-to-light-robust $a_0$, and they prefer the quadrature kernel over the exponential RAR.",
+   "verdict": "OVERSTATES",
+   "note": "'Mass-to-light-robust' outruns the lane's own check: p41b G (spread < 10%) FAILED at 11.2%, U failed, 0/2 pass. The RAR preference (dchi2 5.0-5.4) matches p42.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p41b_gas_points_calibration.out",
+     "sha": "2d77f97ba5c7cd47",
+     "locator": "FAIL G",
+     "value": "spread 11.2%"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p42_kernel_on_gas_points.out",
+     "sha": "3e1b91d808ecefc8",
+     "locator": "RAR",
+     "value": "+5.0/+5.0/+5.4"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "ea96f094a8e6e2b7": {
+   "section": "Summary",
+   "claim": "Combining independent sets gives $a_0=(8.3\\pm1.1)\\times10^{-11}$\\,m\\,s$^{-2}$.",
+   "verdict": "MATCH",
+   "note": "Sets share 3 galaxies (LT/SPARC), as disclosed.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "RANDOM-EFFECTS",
+     "value": "8.318e-11 +-13.4%"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "aa8572e7c04b607c": {
+   "section": "Summary",
+   "claim": "This is below the conventional $1.2\\times10^{-10}$ at $2.7\\sigma$, and consistent with $a_0$ set by the dark-energy density, but the result depends on the distance scale.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "pulls",
+     "value": "1.2e-10 +2.74; rho_Lambda candidates <= 0.88"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "9335c4b7c5a10287": {
+   "section": "Summary",
+   "claim": "No coefficient among $\\tfrac12$, $1/6$ and $1/2\\pi$ (on $\\rho_\\Lambda$) is preferred.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p44_samplesize_and_bayes.out",
+     "sha": "eac6210661588b84",
+     "locator": "PASS B",
+     "value": "no BF > 3 among them"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p48_meta_analysis.out",
+     "sha": "869ccc0a6b31e033",
+     "locator": "pulls",
+     "value": "0.88/0.62/0.27"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "db5e3971d9749f32": {
+   "section": "Summary",
+   "claim": "\\paragraph{Reproducibility.} \\fpath{sonnet55_push/puzzle_32pi/p41b_gas_points_calibration.py}, \\fpath{p42_kernel_on_gas_points.py}, \\fpath{p43_wallaby_gas_points.py}, \\fpath{p44_samplesize_and_bayes.p",
+   "verdict": "CONTEXT",
+   "note": "Reproducibility paths (exist, incl. data_assembly dirs).",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "69e2dcf472846d86": {
+   "section": "Summary",
+   "claim": "\\small \\paragraph{References.} [LMS16] Lelli, McGaugh \\& Schombert, AJ 152, 157 (2016) (SPARC).",
+   "verdict": "CONTEXT",
+   "note": "Reference.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "81f6d074e9ac26f8": {
+   "section": "Summary",
+   "claim": "WALLABY DR2: Murugeshan et al., arXiv:2409.13130 (2024); kinematic models via CADC.",
+   "verdict": "CONTEXT",
+   "note": "Reference.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "753dcc2084410cc0": {
+   "section": "Summary",
+   "claim": "LITTLE THINGS: Oh et al., AJ 149, 180 (2015), VizieR J/AJ/149/180.",
+   "verdict": "CONTEXT",
+   "note": "Reference.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "a4e533eff1900f3c": {
+   "section": "Summary",
+   "claim": "AllWISE: IRSA \\texttt{allwise\\_p3as\\_psd}.",
+   "verdict": "CONTEXT",
+   "note": "Reference.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "f44072d33438a6c6": {
+   "section": "Summary",
+   "claim": "Random effects: DerSimonian \\& Laird, Controlled Clinical Trials 7, 177 (1986).",
+   "verdict": "CONTEXT",
+   "note": "Reference.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  }
+ }
+}

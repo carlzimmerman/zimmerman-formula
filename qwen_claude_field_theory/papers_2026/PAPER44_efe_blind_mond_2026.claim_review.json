@@ -1,0 +1,459 @@
+{
+ "about": "Claim-match review (claim_match_tex.py) of every digit-bearing sentence/table row against committed outputs. Non-MATCH entries are findings; the paper text is NOT edited (MNRAS is under review; PAPER41-45 are published, corrections need the owner's go).",
+ "claims": {
+  "bcc4276e370e439c": {
+   "section": "front",
+   "claim": "[6pt] {\\small The authors --- 2026-10-06, version 1.0 --- AI-assisted research programme; not peer reviewed} \\end{center}",
+   "verdict": "CONTEXT",
+   "note": "date/version line",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "54a6c250e20fcaa8": {
+   "section": "front",
+   "claim": "We test the quadrature law $g^2=g_N^2+a_0g_N$ with $a_0=\\tfrac12c\\sqrt{G\\rho_\\Lambda}$ against three data sets that are sensitive to the EFE in different ways.",
+   "verdict": "MATCH",
+   "note": "Scripts use nu=sqrt(1+1/y) (= g^2=g_N^2+a0 g_N) at a0=9.3603e-11 = 1/2 c sqrt(G rho_L) canonical footing; the alternative footing (1.1312e-10) is not run for the satellites or wide binaries.",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm14b_sifon_table.py",
+     "sha": "d6b3b2abc898d6e1",
+     "locator": "nu(), a0",
+     "value": "nu=sqrt(1+1/y), a0=9.3603e-11"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "6353820053eef587": {
+   "section": "front",
+   "claim": "(i) Weak lensing of satellite galaxies in massive clusters (Sif\\'on et al.\\ 2018, five stellar-mass bins) is fitted by the full, isolated boost with $\\chi^2=0.7$ for 5 bins and a mean offset of $+0.01",
+   "verdict": "MATCH",
+   "note": "chi2 0.7, +0.01 dex, 99.7 (linear EFE), 99.5 (magnitude rule), eta 0.59-0.81 all in outputs; canonical footing only; r_bg is an estimate (isothermal-vs-NFW match), stated in the body.",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm14b_sifon_table.out",
+     "sha": "9e7a4f5d6b6ac3c5",
+     "locator": "rows A/B/C",
+     "value": "A chi2 0.7/5 offset +0.01; B chi2 99.7/5 offset +0.81; C chi2 131.6/5 offset +0.93"
+    },
+    {
+     "path": "sonnet55_push/cold_mass/cm15_sw01_rule_vs_satellites.out",
+     "sha": "f3048959c1b12358",
+     "locator": "rows A/D/B",
+     "value": "A 0.7; D (SW01 magnitude) 99.5; B (linear) 99.7; x 0.004-0.008, eta 0.59-0.81; nu A 11.06-15.40, D 1.49-1.64"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "93c1f40fd1fb6dc3": {
+   "section": "front",
+   "claim": "(ii) The anisotropic part of the EFE predicts a Cassini quadrupole $Q_2=2.195\\times10^{-26}$\\,s$^{-2}$, $6.3\\sigma$ above the measured value.",
+   "verdict": "MATCH",
+   "note": "Canonical footing; on the alt footing the same output gives +7.3 sigma. (2.195e-26-3e-27)/3e-27 = 6.3.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p58_cassini_kappa_bound.out",
+     "sha": "c0518f3682a6c3ce",
+     "locator": "a0=9.360e-11 row; Cassini 2 sigma line",
+     "value": "Q2 2.195e-26 (+6.3 sigma); kappa<0.171 (2 sigma); alt 1.130e-10 gives 2.501e-26 (+7.3 sigma)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "ef275791757d30eb": {
+   "section": "front",
+   "claim": "This costs two results that preferred an EFE, the Milky Way's Gaia DR3 outer decline and Chae's rotation-curve signal, and it makes a sharp prediction for Gaia DR4: wide binaries boosted as isolated M",
+   "verdict": "MATCH",
+   "note": "gamma_v = sqrt(nu(y)) at 1.5 Msun, canonical a0: 1.197 (10 kAU) and 1.511 (20 kAU) in the committed figure-number JSON (computed by make_paper44_figures.py; 3-D r used for projected s). Canonical footing only; the alt footing would give larger values.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER44_figures_numbers.json",
+     "sha": "9ddae7c6dfecb5b8",
+     "locator": "gamma_iso",
+     "value": "10000: 1.197; 20000: 1.511"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "d555b15220ebfcac": {
+   "section": "Cluster-satellite lensing",
+   "claim": "\\section{Cluster-satellite lensing} Sif\\'on et al.\\ (2018) measured subhalo masses $m_{\\rm bg}$ of satellites in MENeaCS clusters ($z<0.15$, host $\\sim10^{15.5}M_\\odot$) inside $r_{\\rm bg}$, where the",
+   "verdict": "WRONG",
+   "note": "Minor. z<0.15 is Sifon's. But 'host ~10^15.5' is Sifon's poorly constrained posterior M_h (15.54), which Sifon says is 'unrealistically high'. Sifon adopts an average M200,h ~ 6e14 (10^14.8), and this paper's own calculation uses that value in the next sentence (0.7 dex lower).",
+   "sources": [
+    {
+     "path": "../_external_data/sifon2018/src/meneacs_satellite_lensing.tex",
+     "sha": "ccc5c34047890a94",
+     "locator": "l.558, l.626-627, l.233",
+     "value": "posterior log M_h 15.54 'unrealistically high'; average M200,h ~ 6e14"
+    },
+    {
+     "path": "sonnet55_push/cold_mass/cm14b_sifon_table.py",
+     "sha": "d6b3b2abc898d6e1",
+     "locator": "M200",
+     "value": "M200 = 6e14, c = 4"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "64bae153ae013898": {
+   "section": "Cluster-satellite lensing",
+   "claim": "We read their table directly (five bins, $\\log M_*=9.51$--$11.01$) and estimate $r_{\\rm bg}=36$--$149$\\,kpc by matching an isothermal subhalo to an NFW host ($M_{200}=6\\times10^{14}M_\\odot$, $c=4$).",
+   "verdict": "MATCH",
+   "note": "Five bins log M* 9.51-11.01 parsed; r_bg 36-149 kpc; NFW M200 6e14, c 4 in script. (The script docstring's '~40-130 kpc' is superseded by the output.)",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm14b_sifon_table.out",
+     "sha": "9e7a4f5d6b6ac3c5",
+     "locator": "rows A/B/C",
+     "value": "A chi2 0.7/5 offset +0.01; B chi2 99.7/5 offset +0.81; C chi2 131.6/5 offset +0.93"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "91723dbc2d04b4d8": {
+   "section": "Cluster-satellite lensing",
+   "claim": "Each satellite's baryons are $1.2\\,M_*$; we add the galaxy-level retained cold mass found in early-type galaxies (13\\% of the cosmic share), which contributes about 5\\%.",
+   "verdict": "MATCH",
+   "note": "M_b = 1.2 M*; retained cold 0.13 x (0.12/0.02237) x M_b = 0.70 M_b. 13% = cm08 canonical 'others' (non-group ETGs; alt 0.12; the all-32 median is 0.30). Share of prediction A = 0.70/(nu+0.70) with nu 11.1-15.4 = 4.4-5.9%, so 'about 5%'.",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm08_etg_retained_fraction.out",
+     "sha": "25d62d5401f95876",
+     "locator": "canonical line",
+     "value": "others 0.13 (N 23)"
+    },
+    {
+     "path": "sonnet55_push/cold_mass/cm14b_sifon_table.out",
+     "sha": "9e7a4f5d6b6ac3c5",
+     "locator": "rows A/B/C",
+     "value": "A chi2 0.7/5 offset +0.01; B chi2 99.7/5 offset +0.81; C chi2 131.6/5 offset +0.93"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "d7b1aec0c8b2cfe6": {
+   "section": "Cluster-satellite lensing",
+   "claim": "At $r_{\\rm bg}$ the internal field is tiny, $x=g_N/a_0=0.004$--$0.008$, while the cluster's field is $\\eta=0.59$--$0.81$.",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm15_sw01_rule_vs_satellites.out",
+     "sha": "f3048959c1b12358",
+     "locator": "rows A/D/B",
+     "value": "A 0.7; D (SW01 magnitude) 99.5; B (linear) 99.7; x 0.004-0.008, eta 0.59-0.81; nu A 11.06-15.40, D 1.49-1.64"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "f940c51042190332": {
+   "section": "Cluster-satellite lensing",
+   "claim": "\\begin{center} \\begin{tabular}{lcc} \\toprule reading & $\\chi^2$ (5 bins) & mean offset (dex)",
+   "verdict": "MATCH",
+   "note": "Table header; 5 bins as in the output.",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm14b_sifon_table.out",
+     "sha": "9e7a4f5d6b6ac3c5",
+     "locator": "rows A/B/C",
+     "value": "A chi2 0.7/5 offset +0.01; B chi2 99.7/5 offset +0.81; C chi2 131.6/5 offset +0.93"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "602e4050aba1c126": {
+   "section": "Cluster-satellite lensing",
+   "claim": "\\midrule isolated boost $\\nu(x)$ (no EFE) & 0.7 & $+0.01$",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm14b_sifon_table.out",
+     "sha": "9e7a4f5d6b6ac3c5",
+     "locator": "rows A/B/C",
+     "value": "A chi2 0.7/5 offset +0.01; B chi2 99.7/5 offset +0.81; C chi2 131.6/5 offset +0.93"
+    },
+    {
+     "path": "sonnet55_push/cold_mass/cm15_sw01_rule_vs_satellites.out",
+     "sha": "f3048959c1b12358",
+     "locator": "rows A/D/B",
+     "value": "A 0.7; D (SW01 magnitude) 99.5; B (linear) 99.7; x 0.004-0.008, eta 0.59-0.81; nu A 11.06-15.40, D 1.49-1.64"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "756c11c3c833014c": {
+   "section": "Cluster-satellite lensing",
+   "claim": "magnitude EFE $\\nu(\\sqrt{x^2+\\eta^2})$ & 99.5 & --",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm15_sw01_rule_vs_satellites.out",
+     "sha": "f3048959c1b12358",
+     "locator": "rows A/D/B",
+     "value": "A 0.7; D (SW01 magnitude) 99.5; B (linear) 99.7; x 0.004-0.008, eta 0.59-0.81; nu A 11.06-15.40, D 1.49-1.64"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "2db42a9e2e3c453c": {
+   "section": "Cluster-satellite lensing",
+   "claim": "linear EFE $\\nu(x+\\eta)$ & 99.7 & $+0.81$",
+   "verdict": "MATCH",
+   "note": "chi2 99.7 and offset +0.81 come from the same reading B, nu((gN+ge)/a0).",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm14b_sifon_table.out",
+     "sha": "9e7a4f5d6b6ac3c5",
+     "locator": "rows A/B/C",
+     "value": "A chi2 0.7/5 offset +0.01; B chi2 99.7/5 offset +0.81; C chi2 131.6/5 offset +0.93"
+    },
+    {
+     "path": "sonnet55_push/cold_mass/cm15_sw01_rule_vs_satellites.out",
+     "sha": "f3048959c1b12358",
+     "locator": "rows A/D/B",
+     "value": "A 0.7; D (SW01 magnitude) 99.5; B (linear) 99.7; x 0.004-0.008, eta 0.59-0.81; nu A 11.06-15.40, D 1.49-1.64"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "76adf0b4506297eb": {
+   "section": "Cluster-satellite lensing",
+   "claim": "no phantom in a bound satellite (``ownership'') & 131.6 & $+0.93$",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm14b_sifon_table.out",
+     "sha": "9e7a4f5d6b6ac3c5",
+     "locator": "rows A/B/C",
+     "value": "A chi2 0.7/5 offset +0.01; B chi2 99.7/5 offset +0.81; C chi2 131.6/5 offset +0.93"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "63eca036a0c5de90": {
+   "section": "Cluster-satellite lensing",
+   "claim": "Any rule that lets the cluster's field enter the satellite's boost caps $\\nu$ near 1.5 instead of 11--15.",
+   "verdict": "MATCH",
+   "note": "EFE readings nu 1.49-1.64 ('near 1.5'); isolated 11.06-15.40 ('11-15').",
+   "sources": [
+    {
+     "path": "sonnet55_push/cold_mass/cm15_sw01_rule_vs_satellites.out",
+     "sha": "f3048959c1b12358",
+     "locator": "rows A/D/B",
+     "value": "A 0.7; D (SW01 magnitude) 99.5; B (linear) 99.7; x 0.004-0.008, eta 0.59-0.81; nu A 11.06-15.40, D 1.49-1.64"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "1082211cce27a595": {
+   "section": "The Cassini quadrupole and the outer Sol",
+   "claim": "\\section{The Cassini quadrupole and the outer Solar System} Solving the QUMOND field equation for the Sun in the Galactic field (multipole solver, observed $g_{\\rm ext}=2.146\\times10^{-10}$\\,m\\,s$^{-2",
+   "verdict": "MATCH",
+   "note": "g_ext 2.146e-10 is the input (233 km/s at 8.2 kpc); Q2 and 6.3 sigma are canonical; Cassini (3+-3)e-27 is attributed to Hees+2014.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p58_cassini_kappa_bound.out",
+     "sha": "c0518f3682a6c3ce",
+     "locator": "a0=9.360e-11 row; Cassini 2 sigma line",
+     "value": "Q2 2.195e-26 (+6.3 sigma); kappa<0.171 (2 sigma); alt 1.130e-10 gives 2.501e-26 (+7.3 sigma)"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p57_etno_secular_nbody.out",
+     "sha": "75ce8474f6240603",
+     "locator": "K1 line",
+     "value": "Q2 = 2.195e-26 s^-2"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "8348acd3d3c49044": {
+   "section": "The Cassini quadrupole and the outer Sol",
+   "claim": "Cassini alone would require $\\kappa<0.171$ ($2\\sigma$).",
+   "verdict": "MATCH",
+   "note": "",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p58_cassini_kappa_bound.out",
+     "sha": "c0518f3682a6c3ce",
+     "locator": "a0=9.360e-11 row; Cassini 2 sigma line",
+     "value": "Q2 2.195e-26 (+6.3 sigma); kappa<0.171 (2 sigma); alt 1.130e-10 gives 2.501e-26 (+7.3 sigma)"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "25a04b26728cf351": {
+   "section": "The Cassini quadrupole and the outer Sol",
+   "claim": "With the EFE removed $Q_2=0$.",
+   "verdict": "MATCH",
+   "note": "Follows by symmetry: with no external field the QUMOND solution for a point Sun is spherical, so it has no quadrupole. No run prints it.",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "1ca3632b3ee2d25d": {
+   "section": "The Cassini quadrupole and the outer Sol",
+   "claim": "In a secular model of detached trans-Neptunian objects (giant-planet quadrupole, Galactic tide, the QUMOND anomaly), the EFE's quadrupole drives large perihelion changes; with the external field remov",
+   "verdict": "OVERSTATES",
+   "note": "The 0.00485 AU is check C2: a monopole-only K1 run with planets AND tide switched off, over 200 Myr, compared with Newton. It is a numerical check that a central force conserves q, not 'the external field removed' in the full model described (planets + tide + QUMOND); with the tide on, perihelia do change. The EFE runs do move q a lot: K1 lost 0.573 vs Newton 0.187, detached occupancy 0.195 vs 0.067. But the pre-registered p57 decision was INCONCLUSIVE, and the paper does not say so.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p57_etno_secular_nbody.out",
+     "sha": "75ce8474f6240603",
+     "locator": "C2, K0-K3, VERDICT",
+     "value": "max|dq| 0.00485 AU; K1 occupancy 0.195 vs K0 0.067; VERDICT: INCONCLUSIVE"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p57_etno_secular_nbody.py",
+     "sha": "3024aaebf83532ea",
+     "locator": "l.11, l.120",
+     "value": "C2: l=0 only, planets and tide off, 2e8 yr"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "91e4668d9e0aa903": {
+   "section": "The Cassini quadrupole and the outer Sol",
+   "claim": "The EFE is what makes MOND overpopulate the detached disc (Vokrouhlick\\'y, Nesvorn\\'y \\& Tremaine 2024).",
+   "verdict": "MATCH",
+   "note": "Literature claim attributed to VNT24 (not checked against that paper's text here). The programme's own reduced-model test p57 is INCONCLUSIVE.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p57_etno_secular_nbody.out",
+     "sha": "75ce8474f6240603",
+     "locator": "VERDICT",
+     "value": "INCONCLUSIVE"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "e730c96b98c4946d": {
+   "section": "What an EFE-free rule costs and predicts",
+   "claim": "\\section{What an EFE-free rule costs and predicts} Two results in this programme preferred an EFE: the Milky Way's Gaia DR3 outer decline (the isolated kernel is $2.5\\sigma$ shallower; disequilibrium ",
+   "verdict": "WRONG",
+   "note": "'WALLABY gives -1.7 sigma' is wrong. -1.70 is the stacked AMPLITUDE A_hat = -1.70 +- 2.12 (Z = -0.57) of the directional-EFE asymmetry test, in units where AQUAL = +1. It is consistent with AQUAL; the sensitivity is ~0.3 sigma at AQUAL amplitude and the output says no verdict is possible. The direct Chae-type WALLABY test (h28) gives +0.4 sigma and is recorded as UNDERPOWERED. Other numbers: Chae 1.7-2.2 / 2.7-3.0 sigma match CFG8, but they mix two kernels (P2 = this law gives 1.7 / 2.7; nu_mono gives 2.2 / 3.0), so 'refitted with this law' is loose. MW 2.5 sigma is the extreme of L172's range (nominal slope -0.126/-0.117 gives 2.3/2.4 sigma), computed with the nu_RAR kernel, not this law. L172's 1-D LMC field model puts it at 1.1-1.6 sigma.",
+   "sources": [
+    {
+     "path": "prep_2026/wallaby_firing/fire_wallaby.out",
+     "sha": "9ff31f483a28f454",
+     "locator": "THE STACK, ALL canonical maxclu",
+     "value": "Ahat -1.70 boot 2.12, Z -0.57; AQUAL +1 registers at ~0.30 sigma"
+    },
+    {
+     "path": "hunt_2026/h28_chae_efe_wallaby.out",
+     "sha": "d0cb5508f9ddec3a",
+     "locator": "l.17, l.58",
+     "value": "+0.4 sigma from 0; UNDERPOWERED"
+    },
+    {
+     "path": "campaign_fresh_gravity/CFG8_chae_kernel.out",
+     "sha": "598541335ce65a5b",
+     "locator": "l.83-86",
+     "value": "V4 P2 can +1.7; V5 P2 alt +2.7; V6 mono can +2.2; V7 mono alt +3.0 sigma"
+    },
+    {
+     "path": "fable_independent_2026/L172_mw_outer_curve_and_fgal_ledger.out",
+     "sha": "b670dfb3f89df6e3",
+     "locator": "l.5-12, l.29-31",
+     "value": "isolated slope -0.126/-0.117; -2.50 sigma at grid edge; LMC 1.1-1.6 sigma"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "1139dfb8be463d1b": {
+   "section": "What an EFE-free rule costs and predicts",
+   "claim": "In exchange it predicts wide binaries boosted as isolated systems: $\\gamma_v=\\sqrt{\\nu(y)}=1.06$, $1.20$, $1.51$ at 5, 10, 20\\,kAU for $1.5\\,M_\\odot$ (3-D separation; the registered statistic is not r",
+   "verdict": "MATCH",
+   "note": "Values 1.06 / 1.197 / 1.511 and the magnitude rule's 1.113 (eta_sun 1.85 from p57 y_e 1.847) are in the committed figure JSON. Canonical footing only; caveats (3-D separation, registered statistic not recomputed) are stated.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER44_figures_numbers.json",
+     "sha": "9ddae7c6dfecb5b8",
+     "locator": "gamma_iso, gamma_sw01_20k",
+     "value": "1.06, 1.197, 1.511; 1.113"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p57_etno_secular_nbody.out",
+     "sha": "75ce8474f6240603",
+     "locator": "K1",
+     "value": "y_e = 1.847"
+    }
+   ],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "0da1560c6f8ef1db": {
+   "section": "What an EFE-free rule costs and predicts",
+   "claim": "Gaia DR4 (December 2026) decides; a Newtonian result would exclude this reading.",
+   "verdict": "CONTEXT",
+   "note": "DR4 date (2 Dec 2026 in the record)",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "24fd92a5112c51a8": {
+   "section": "Summary",
+   "claim": "The test is Gaia DR4.",
+   "verdict": "CONTEXT",
+   "note": "",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "cc3cdb4072317a15": {
+   "section": "Summary",
+   "claim": "The coefficient $\\kappa=\\tfrac12$ remains fitted; the cold mass of cosmology is still required.",
+   "verdict": "CONTEXT",
+   "note": "standing statement (kappa fitted)",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "b210986ec29575ce": {
+   "section": "Summary",
+   "claim": "\\paragraph{Reproducibility.} \\fpath{sonnet55_push/cold_mass/cm14b_sifon_table.py}, \\fpath{cm15_sw01_rule_vs_satellites.py}, \\fpath{cm08_etg_retained_fraction.py};",
+   "verdict": "CONTEXT",
+   "note": "paths exist",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "e0706a1ff3b07454": {
+   "section": "Summary",
+   "claim": "\\fpath{sonnet55_push/puzzle_32pi/p58_cassini_kappa_bound.py}, \\fpath{p57_etno_secular_nbody.py}, \\fpath{qumond_efe_multipole.py}; fetch log \\fpath{data_assembly/sifon2018/}; figures \\fpath{make_paper4",
+   "verdict": "CONTEXT",
+   "note": "paths exist",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "a9af331d6caef495": {
+   "section": "Summary",
+   "claim": "\\small \\paragraph{References.} Sif\\'on C. et al., MNRAS 478, 1244 (2018), arXiv:1706.06125.",
+   "verdict": "CONTEXT",
+   "note": "reference; matches the fetch log",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "9cfc829b97b5c474": {
+   "section": "Summary",
+   "claim": "S., Phys.\\ Rev.\\ D 89, 102002 (2014).",
+   "verdict": "CONTEXT",
+   "note": "reference",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "eb56fea25f0a4adc": {
+   "section": "Summary",
+   "claim": "Vokrouhlick\\'y D., Nesvorn\\'y D., Tremaine S., ApJ 968 (2024), arXiv:2403.09555.",
+   "verdict": "CONTEXT",
+   "note": "reference",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  },
+  "9b53867b27a96348": {
+   "section": "Summary",
+   "claim": "Milgrom M., Phys.\\ Lett.\\ A 253, 273 (1999).",
+   "verdict": "CONTEXT",
+   "note": "reference",
+   "sources": [],
+   "reviewer": "independent agent, 2026-10-08"
+  }
+ }
+}
