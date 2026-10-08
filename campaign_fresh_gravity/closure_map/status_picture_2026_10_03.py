@@ -40,7 +40,7 @@ groups = [
         ("High-z on halo-free inputs", "UNDEC", "RC100 on the flat line · CFG303"),
         ("CRISTAL z~5 / ALESS 122.1", "UNDEC", "stress tests: not robust · CFG307/308"),
         ("Gaia DR4 wide binaries", "OPEN", "decides 2 Dec 2026 · prereg"),
-        ("Structure growth, candidate B", "COND", "zero-knob mass-conserving edge, 512^3 · PAPER45 v2"),
+        ("Structure growth, candidate B", "COND", "zero-knob edge, 512^3 · PAPER45 v2"),
         ("Structure growth, chassis alone", "FAIL", "~7x too fast; CMB lensing excludes · L341"),
     ]),
     ("The deep 'why'", [
@@ -51,7 +51,7 @@ groups = [
     ]),
 ]
 
-fig = plt.figure(figsize=(15, 10.5), dpi=160)
+fig = plt.figure(figsize=(15, 11.2), dpi=160)
 fig.patch.set_facecolor("#f6f7f5")
 ax = fig.add_axes([0.02, 0.06, 0.96, 0.84]); ax.set_xlim(0, 4); ax.set_ylim(0, 8.2); ax.axis("off")
 fig.text(0.03, 0.955, "The Crispy Fried Chicken Status Board", fontsize=24, fontweight="bold", color="#16201d")
