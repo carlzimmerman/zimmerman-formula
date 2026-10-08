@@ -1,0 +1,585 @@
+==============================================================================================================
+CFG484: search for a relativistic chassis for candidate B
+kappa = 1/2 FITTED; both footings; theory + checks, no downloads; untested is not passed
+repo: <repo>   record module: <repo>/campaign_fresh_gravity/CFG484_alternative_chassis_search/cfg484_record.py
+==============================================================================================================
+
+[controls]
+  [PASS] K1 CFG467 committed JSON: union I_strict EMPTY, I_len [9.6240e-14, 3.2000e-09], verdict TENSION: read <repo>/campaign_fresh_gravity/CFG467_alpha_c_sign_tension/cfg467_results.json: I_strict EMPTY, I_len [9.6240e-14, 3.2000e-09], verdict TENSION
+  [PASS] K2 CFG373 perfect square g^2 + a_L^2 = (g_N + a_L)^2 for P2 with a_L = a0/2: expand(...) = 0
+  [FAIL] K3 P2 point-mass cold mass M(sqrt(1+x^2) - 1) (CFG44 B1) from the spherical identity: max rel diff 1.16e-10 over x in [1e-3, 1e3]
+  [PASS] K4 a0/2 anomaly reproduces MI_FIELD_THEORY_RESULTS 5.1 exclusions (Saturn 6686x, Mars 33429x, canonical): Saturn 6686x, Mars 33430x
+  [PASS] K5 CFG357 holds Q2C = SIG = 3e-27: <repo>/campaign_fresh_gravity/CFG357_heat_filter_cassini_q2/cfg357_heat_filter_q2.py: Q2C, SIG = 3e-27, 3e-27
+  [PASS] K6 nu_mono = nu_RAR at y = 0.1, 1, 2; max deviation 0.0104 +- 0.0005 dex at y = 14.35 +- 1: rel diff 2.8e-09; max 0.01037 dex at y = 14.35
+  [PASS] K7 interval engine and classification/ranking on toy rows: EMPTY; (1.5, 2]; [9.624e-14, 2); classes ok True; rank order ['works', 'clean', 'incomplete', 'tension', 'fails']
+  [PASS] K8 Schwarzschild Kretschmann = 48 G^2 M^2/(c^4 r^6), finite for r > 0: K = 48*G**2*M**2/(c**4*r**6)
+
+==============================================================================================================
+NC1: GR + Lambda chassis, MOND only in the cold-fluid sector (target keyed to the fluid's own 4-acceleration)
+==============================================================================================================
+
+[N1a] black holes (G12)
+  [PASS] N1a G12 for the GR chassis: Schwarzschild/Kerr regular outside r = 0 (LIT-GR; K8 the computed instance); the cold fluid is test matter near holes: K8 reused
+
+[N1b] messenger (H2): the static fluid's own 4-acceleration is the total field; the target is local in it
+  [PASS] N1b(i) static congruence in ds^2 = -(1+2Phi)dt^2 + (1-2Phi)dx^2: a^i = d_i Phi + O(Phi^2) (sympy): a^x = epsilon*Derivative(Phi(x, y, z), x)
+  [PASS] N1b(ii) y nu(y) strictly increasing on [1e-8, 1e8] for nu_mono and P2 (inversion exists, target local in |A|): monotone {'P2': True, 'nu_mono': True}; nu_mono round trip 9.9e-14
+
+[N1c] EP blindness (reported): NC1's target in a uniform external field is unchanged (ratio 1 exactly);
+      for comparison, the algebraic law's internal field at r = r_M (g_N = a0), aligned 1-D estimate:
+      P2       g_e =  0.01 a0: law internal field / isolated = 0.9364   NC1: 1 (EP)
+      P2       g_e =  0.10 a0: law internal field / isolated = 0.8402   NC1: 1 (EP)
+      P2       g_e =  1.00 a0: law internal field / isolated = 0.7321   NC1: 1 (EP)
+      nu_mono  g_e =  0.01 a0: law internal field / isolated = 0.9407   NC1: 1 (EP)
+      nu_mono  g_e =  0.10 a0: law internal field / isolated = 0.8372   NC1: 1 (EP)
+      nu_mono  g_e =  1.00 a0: law internal field / isolated = 0.6703   NC1: 1 (EP)
+
+[N1d] Solar System (G14): R1 embedded Sun (Liouville cap), R2/R3 Sun owns its own settled target
+  canonical R1 rho_host x1 = 0.0049 Msun/pc^3, sigma 144 km/s: Liouville-cap anomaly Mars 1.49e-22 (1.1e-07 of bound), Saturn 5.95e-23 (8.5e-09); Sun-target/cap at Saturn 2.1e+12; MW-fluid tide 1.98e-31 s^-2 (1.00 sigma from Q2 = 3e-27); monopole Saturn 1.3e-19; gamma contamination 2.3e-18
+  canonical R1 rho_host x3 = 0.0148 Msun/pc^3, sigma 144 km/s: Liouville-cap anomaly Mars 4.48e-22 (3.2e-07 of bound), Saturn 1.79e-22 (2.6e-08); Sun-target/cap at Saturn 7.0e+11; MW-fluid tide 5.94e-31 s^-2 (1.00 sigma from Q2 = 3e-27); monopole Saturn 4.0e-19; gamma contamination 7.0e-18
+  canonical R2 (nu_mono, Sun owns target): Mars 1.08e-10 m/s^2 = 76893x bound, Saturn 9.65e-11 = 13786x;  R3 (P2): Mars 33430x, Saturn 6686x
+  alt       R1 rho_host x1 = 0.0057 Msun/pc^3, sigma 147 km/s: Liouville-cap anomaly Mars 1.62e-22 (1.2e-07 of bound), Saturn 6.46e-23 (9.2e-09); Sun-target/cap at Saturn 2.3e+12; MW-fluid tide 2.40e-31 s^-2 (1.00 sigma from Q2 = 3e-27); monopole Saturn 1.5e-19; gamma contamination 2.7e-18
+  alt       R1 rho_host x3 = 0.0171 Msun/pc^3, sigma 147 km/s: Liouville-cap anomaly Mars 4.86e-22 (3.5e-07 of bound), Saturn 1.94e-22 (2.8e-08); Sun-target/cap at Saturn 7.7e+11; MW-fluid tide 7.19e-31 s^-2 (1.00 sigma from Q2 = 3e-27); monopole Saturn 4.6e-19; gamma contamination 8.2e-18
+  alt       R2 (nu_mono, Sun owns target): Mars 1.29e-10 m/s^2 = 92430x bound, Saturn 1.16e-10 = 16562x;  R3 (P2): Mars 40400x, Saturn 8080x
+  reported: Bondi-Hoyle capture radius of a collisional host fluid (v_rel 230 km/s): 0.024 AU (inside 5.2 solar radii: captured fluid falls into the Sun)
+  [PASS] N1d R1 (embedded Sun): Liouville-capped anomaly <= 0.1 x bound at Mars and Saturn; MW-fluid tide within 2 sigma of Q2; MW-fluid monopole <= 0.1 x bound; gamma contamination <= 2.3e-5 (both footings, host x1): see rows above
+  [PASS] (reported) N1d R2/R3 (Sun owns a settled target) exceed the ephemeris bounds (pre-declared expectation: FAIL by >= 1e3): min ratio nu_mono 13786, P2 6686
+  -> G14 for NC1 = COND (frozen rule: PASS needs phase-space-conserving settling shown for embedded systems; NC1's settling is dissipative, so not shown)
+
+[N1e] preferred-frame contamination by the fluid's mass (G6/G7)
+  [PASS] N1e fluid mass inside 1 AU / M_sun <= 1e-3 x the strict alpha2 bound (1.6e-12): 2.72e-18
+
+[N1f] realisability of the target with real mass (fluid-sector analog of G5; reported F-gate)
+  [PASS] N1f-v ring-integral disc field = Hankel form (4 points) and point-mass far field on the axis (z = 30 R_d): max rel diff 6.6e-12; far field / point mass 0.9903
+  disc fields built on 64x56 and 96x84 grids in 13.8 s (R in [0.05, 20], z in [0.02, 20] R_d; slab z < 0.02 R_d excluded)
+  canonical M_b 1e+09 R_d 1.0 kpc P2      : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  canonical M_b 1e+09 R_d 1.0 kpc nu_mono : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  canonical M_b 1e+10 R_d 2.0 kpc P2      : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  canonical M_b 1e+10 R_d 2.0 kpc nu_mono : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  canonical M_b 1e+11 R_d 3.5 kpc P2      : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  canonical M_b 1e+11 R_d 3.5 kpc nu_mono : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  alt       M_b 1e+09 R_d 1.0 kpc P2      : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  alt       M_b 1e+09 R_d 1.0 kpc nu_mono : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  alt       M_b 1e+10 R_d 2.0 kpc P2      : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  alt       M_b 1e+10 R_d 2.0 kpc nu_mono : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  alt       M_b 1e+11 R_d 3.5 kpc P2      : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  alt       M_b 1e+11 R_d 3.5 kpc nu_mono : eta = 0.00e+00 (dense 0.00e+00, converged); negative cells 0/3584
+  [PASS] (reported) N1f realisability: eta = |M_neg|/(M_pos + M_surface) <= 0.01 (canonical, both kernels, three discs): max eta 0.00e+00; converged True
+
+[N1g] Lagrangian forms of the own-acceleration rule (reading, argument only):
+  - foliation-invariant f(rho_c, A) of an irrotational fluid = a khronon dust: the BS24 class; N8 (BSX3 I1) closes it
+    by KiDS for ANY K (mu_eff^2 = k_J^2 (1 + c_ad^2)), and BSK1's inner instability applies.
+  - shift-symmetric f(X, box theta) of a superfluid phase: second derivatives of the phase, Ostrogradsky unless
+    degenerate; the FRIED_CHICKEN banner's dark_sector_honesty no-go (fourth order, ghost) is the record's instance;
+    a degenerate (DHOST-type) form is untested; doors 3/4/10 (CFG121/122/124) are the related record no-gos.
+  - so NC1 is scored only in its non-Lagrangian relaxation (dissipative) form; covariant relaxation-time
+    hydrodynamics/kinetics exists (LIT: Anderson-Witting; Israel-Stewart/BDNK causality), but a relaxation target
+    that contains grad A changes the principal part, so G1 for the full NC1 system is UNTESTED.
+
+==============================================================================================================
+NC2: khronon with alpha_c screened to 0 in strong fields (alpha_c a field-dependent function)
+==============================================================================================================
+  c2 = 7.2888e-03: at the universal horizon alpha_c must lie in G1_str (0, 0.5) U (0.5, 2) AND G12_str {0}: EMPTY;  with G12 lenient: [9.624e-14, 0.001]
+  c2 = 6.6667e-02: at the universal horizon alpha_c must lie in G1_str (0, 0.5) U (0.5, 2) AND G12_str {0}: EMPTY;  with G12 lenient: [9.624e-14, 0.001]
+  [PASS] (reported) N2 pointwise G1 (frozen-coefficient symbol) x G12 (UH) is EMPTY at every CFG467 c2 key (NC2 fails strictly): screening alpha_c -> 0 at the UH makes the khronon non-hyperbolic there; keeping alpha_c > 0 there fails reading S
+  -> NC2 FAILS at G12 under the strict reading; with reading W it reduces to row R03 plus >= 1 screening constant (dominated). If the screening zero is placed strictly behind the UH, the G1 failure is hidden: that is reading W's censorship argument again (LEN).
+
+==============================================================================================================
+SCORING (frozen rule): record rows R01-R25 + new classes NC1, NC2, NC3, NC5
+==============================================================================================================
+
+row  class          G: FAIL LEN UNT/COND   H: FAIL LEN UNT/COND   const   name
+NC1  INCOMPLETE        0   0    2               0   0    2            0      NEW: GR + Lambda chassis, MOND only in the cold fluid (own-4-acceleration target, relaxation form)
+R04  INCOMPLETE        0   0    2               0   0    2            4      C-H/K plus a Horava UV sector M_* (CFG467 option 2)
+R17  INCOMPLETE        0   0    2               2   0    2            -      GR + dark field, no MOND field (CFG2/5/9/10/FG004; CFG43/44)
+R16  INCOMPLETE        0   0   13               1   0    5            -      FRIED_CHICKEN frame flip (EH on the matter metric; dark sector on g)
+R12  INCOMPLETE        0   0   14               0   0    6            -      Astra IC20-IC28 integrable clock
+R19  INCOMPLETE        0   0   14               1   0    5            2      Dipolar dark matter / gravitational polarisation (door 3)
+R10  INCOMPLETE        0   0   14               1   0    5            -      Blanchet-Skordis khronon dust (BS24)
+R13  INCOMPLETE        0   0   14               1   0    5            -      Generated phantom GP0-GP5 + vacuum-gated L357-L361 (non-relativistic)
+R23  INCOMPLETE        0   0   14               1   0    5            -      Nonlocal metric Deser-Woodard / RR (door 9)
+R25  INCOMPLETE        0   0   14               1   0    5            -      Closed families: condensate/DBI v9 dark sector (N9); CQ gravity (L313/L314)
+R03  TENSION           0   1    0               0   0    2            3      C-H/K with reading W for black holes (CFG467 option 1)
+R07  FAILS             1   0   12               1   0    3            -      Derivation-chain action (FP7/FP14 root + XR20 tie + H_K1 + FK1)
+R09  FAILS             1   0   13               0   0    6            -      FC-KH khronometric f(a)
+R15  FAILS             1   0   13               0   0    6            -      MOND-sector gate MS1-MS5 (non-relativistic; cap as action term)
+NC5  FAILS             1   0   13               0   0    6            -      NEW (argument): Einstein-aether, aether not hypersurface-orthogonal
+R08  FAILS             1   0   13               1   0    5            -      AeST v9 embedding / FC-AeST
+R14  FAILS             1   0   13               1   0    5            -      Dark-energy gate DE1-DE13 (gate as a varied term)
+R22  FAILS             1   0   13               1   0    5            -      Mimetic (door 10)
+R24  FAILS             1   0   13               1   0    5            -      Modified-inertia field theory (baryon 4-acceleration dressing)
+R11  FAILS             1   0   13               2   0    4            -      Astra CA4/CA5 common action [U]
+R01  FAILS             1   1    0               0   0    2            3      C-H/K chassis, strict (L340 khronon, beta = 0)
+NC2  FAILS             1   1    0               0   0    2            4      NEW: khronon with alpha_c screened to 0 in strong fields
+NC3  FAILS             1   1    0               0   0    2            -      NEW (argument): invertible disformal / two-time-scale redefinition of the khronon chassis
+R05  FAILS             1   1    1               0   0    2            4      Candidate B's current working model on C-H/K (settling + khronon-lapse messenger)
+R20  FAILS             2   0   12               1   0    5            -      BIMOND (door 13)
+R21  FAILS             2   0   12               1   0    5            -      Covariant emergent gravity (door 12)
+R18  FAILS             2   0   12               2   0    4            3      Superfluid dark matter, Berezhiani-Khoury (door 4)
+R06  FAILS             2   1    0               1   0    1            -      V0 covariant action (CV1-CV4; region kernel; MS5 cap)
+R02  FAILS             5   0    2               0   0    2            2      C-H/K at alpha_c = 0 (minimal Horava)
+
+per-row gate detail (FAIL / LEN / COND / UNT listed; PASS and NA omitted):
+  R01 C-H/K chassis, strict (L340 khronon, beta = 0)  [FAILS]
+      G11 LEN  CFG320/CFG467: strict (no hierarchy) only in the 3/81 sliver c2 >= 0.038, alpha <= 1.18e-13; full window needs the Pospelov-Shang hierarchy reading
+      G12 FAIL CFG318/CFG319 count 4 vs 5 for every alpha_c > 0 (+RB2019, FHB2021 LIT): no fully regular moving hole; CFG467 strict set {0}
+      H3  COND CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal
+      H4  COND no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant
+  R02 C-H/K at alpha_c = 0 (minimal Horava)  [FAILS]
+      G1  FAIL CFG292: no real speeds at alpha_c = 0; Jacobson-Pulakkat 2025 Cauchy problem fails (XC2)
+      G2  FAIL CFG294 S4b: det = 4 N alpha k^4 = 0
+      G3  FAIL CFG467 G3 excludes {0}
+      G4  FAIL XC1: M_SC = sqrt(alpha) M_P c_s collapses at alpha_c = 0
+      G5  FAIL L340 H4: inertia negative at the top k for alpha = 0 (PROOF, large-k limit)
+      G8  UNT  CFG467: alpha <= 0 untested for pulsars
+      G11 UNT  CFG467: not shown allowed at 0
+      H3  COND CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal
+      H4  COND no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant
+  R03 C-H/K with reading W for black holes (CFG467 option 1)  [TENSION]
+      G12 LEN  reading W: regular outside the universal horizon, integrable x^-0.382 singularity on it, exterior imprint <= 3e-13 (CFG319 option C); owner call
+      H3  COND CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal
+      H4  COND no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant
+  R04 C-H/K plus a Horava UV sector M_* (CFG467 option 2)  [INCOMPLETE]
+      G11 COND if M_* <= 9.9e8 GeV realises CFG320's hierarchy (one constant for G11 and G12); untested
+      G12 UNT  UH regularisation by higher spatial derivatives: argument in CFG319, never computed
+      H3  COND CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal
+      H4  COND no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant
+  R05 Candidate B's current working model on C-H/K (settling + khronon-lapse messenger)  [FAILS]
+      G1  UNT  chassis part PASS (CFG292); the coupled fluid-khronon settling system's principal symbol is not computed
+      G11 LEN  CFG320/CFG467: strict (no hierarchy) only in the 3/81 sliver c2 >= 0.038, alpha <= 1.18e-13; full window needs the Pospelov-Shang hierarchy reading
+      G12 FAIL CFG318/CFG319 count 4 vs 5 for every alpha_c > 0 (+RB2019, FHB2021 LIT): no fully regular moving hole; CFG467 strict set {0}
+      H3  COND CFG373 G3 sink assumption K ~ Gamma/c; CFG381 +1 coupling; CFG472 target not a hydrostatic equilibrium in the transition; CFG473 holding force nonlocal
+      H4  COND no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant
+  R06 V0 covariant action (CV1-CV4; region kernel; MS5 cap)  [FAILS]
+      G1  FAIL DE12/DE13 (N14): the varied region gate gives a k^0 negative pressure on baryons, c_gate 1500-3700 km/s vs gas 37-117 km/s (gradient instability); no harmless repair; the data passes use a prescribed mask, which is not an action
+      G11 LEN  CFG320/CFG467: strict (no hierarchy) only in the 3/81 sliver c2 >= 0.038, alpha <= 1.18e-13; full window needs the Pospelov-Shang hierarchy reading
+      G12 FAIL CFG318/CFG319 count 4 vs 5 for every alpha_c > 0 (+RB2019, FHB2021 LIT): no fully regular moving hole; CFG467 strict set {0}
+      H3  COND CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal
+      H4  FAIL N14: the gate as a varied term is obstructed (DE12/13, XR15)
+  R07 Derivation-chain action (FP7/FP14 root + XR20 tie + H_K1 + FK1)  [FAILS]
+      G1  UNT  not computed on the record
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  alpha1 = -4 alpha_c - 8C/(1+C) (closure map); C at Solar wavenumbers not read here
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 FAIL XR25: the c2 -> infinity limit is singular at universal horizons (closure map 'OPEN'); alpha_c > 0 also meets CFG319's count
+      G14 UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  UNT  not computed on the record
+      H4  FAIL no ownership; band-pass separator squeezed: KiDS with web field +111..+153 vs +9 (FP23)
+      H5  UNT  not computed on the record
+  R08 AeST v9 embedding / FC-AeST  [FAILS]
+      G1  UNT  not computed on the record
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  FC-AeST + c2*: alpha2 = 1/lam_s + 2/(K_B lam_s^2) (N7); value not re-read here
+      G7  FAIL N7: alpha1 = -2(K_B + 2) on the healthy locus 0 < K_B <= 0.25 (linearised about the cosmological background; solar background unchecked)
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 UNT  not computed on the record
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  FAIL closure map: AeST needs dust at full Omega_dm; does not explain a0
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R09 FC-KH khronometric f(a)  [FAILS]
+      G1  UNT  not computed on the record
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 FAIL N6 (yq)' theorem: radial stability iff (yq)' >= 0, and exact-GR UV forces q = 0: the Cassini-vs-ghost pincer (one horn fails Cassini, the other is a ghost)
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  UNT  not computed on the record
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R10 Blanchet-Skordis khronon dust (BS24)  [INCOMPLETE]
+      G1  UNT  not computed on the record
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 UNT  BSK1: hiding the inner instability above ~1e3 a0 meets the ephemeris bound (Cassini-vs-ghost pincer returns; BS24 has no filter); not scored as a number
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  FAIL BSK1: with BS24's GR recovery the static halo is unstable wherever the phantom falls, rate^2 = (2 + 2/n) GM/r^3 (inner MW e-fold 1-4 Myr); N8 BSX3 I1: for ANY K, mu_eff^2 = k_J^2 (1 + c_ad^2), KiDS needs 1/k_J <= 0.22 Mpc vs MOND lensing 1/mu_eff >= 10 Mpc (x46); dust budget ends at 0.13-0.67 Mpc
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R11 Astra CA4/CA5 common action [U]  [FAILS]
+      G1  UNT  not computed on the record
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  [U] AS234: alpha2 extraction obstructed (R = -2 rho/7)
+      G7  FAIL [U] AS233: alpha1 = 4(alpha + 2 c2)/(2 - c2), O(1) at the reference cell
+      G8  UNT  not computed on the record
+      G9  UNT  [U] AS236/AS252: G_cosm/G_N = c_N
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  [U] AS239-240: c_T = N/b
+      G14 UNT  not computed on the record
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  UNT  not computed on the record
+      H4  FAIL FINAL_ACTION: full-on state 'impossible on the declared compact leaf', L361 screening absent, gate not bound-only
+      H5  UNT  not computed on the record
+      H6  FAIL FINAL_ACTION section 1: a0-vacuum 'an optional input, not a consequence'
+  R12 Astra IC20-IC28 integrable clock  [INCOMPLETE]
+      G1  UNT  lapse degeneration reported; 'full theory OPEN'
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 UNT  not computed on the record
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  UNT  not computed on the record
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R13 Generated phantom GP0-GP5 + vacuum-gated L357-L361 (non-relativistic)  [INCOMPLETE]
+      G1  UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G2  UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G3  UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G4  UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G5  UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G6  UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G7  UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G8  UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G9  UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G10 UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G11 UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G12 UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G13 UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      G14 UNT  no relativistic embedding of its own; the record's embedding is V0 (R06)
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  FAIL L363/GP3: private phantom + LCDM-like dark component fails cosmic shear (R 1.5-4.7); GP5: carrier still in galaxies at z = 2.5 (+0.82..+1.05 dex)
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R14 Dark-energy gate DE1-DE13 (gate as a varied term)  [FAILS]
+      G1  FAIL N14: a threshold gate flat at both ends has W'' of both signs; the instability lands on what the gate reads (metric k^4, DE7; baryons, DE12); DE13 no harmless repair
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 UNT  not computed on the record
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  UNT  not computed on the record
+      H4  FAIL N14
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R15 MOND-sector gate MS1-MS5 (non-relativistic; cap as action term)  [FAILS]
+      G1  FAIL MS5: the kappa-cap's fourth-order bracket B[W''U + W'/2] changes sign in the layer, so DE7's k^4 repair is still needed (unrepaired = unstable)
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 UNT  not computed on the record
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  UNT  not computed on the record
+      H4  COND MS1-MS5: switch on baryons + cap ~325 km/s is a design target; mechanism open
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R16 FRIED_CHICKEN frame flip (EH on the matter metric; dark sector on g)  [INCOMPLETE]
+      G1  COND row 7: no ghost, no gradient instability, no Cherenkov (K'' > 0 over 45 decades); full principal symbol not computed
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G14 COND rows 4-5: monopole 4e-28 x Mars budget, Q2 0.08-0.21 x ceiling, on the mu_10 kernel (not recomputed on nu_mono)
+      H1  UNT  not computed on the record
+      H2  FAIL banner: the g_b, grad g_b construction from a local covariant action without an independent dark density is fourth order with a ghost (dark_sector_honesty_2026)
+      H3  UNT  row 10 (amplitude law) OPEN; local-EOS / baryon-coupled-pressure / local-selection routes excluded (collapse_2026, local_selection_2026)
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R17 GR + dark field, no MOND field (CFG2/5/9/10/FG004; CFG43/44)  [INCOMPLETE]
+      G1  UNT  gravity sector PASS (LIT-GR); no fluid dynamics specified on the record
+      G14 COND N1d: R1 (embedded Sun) passes on both footings (Liouville cap, MW-fluid tide and monopole, gamma); R2/R3 (Sun owns a target) fail by >= 1e3; PASS would need the settling shown phase-space conserving for embedded systems (NC1's is dissipative). Reported: the fluid's own A sees the Sun only if the fluid is already at rest around it (EP); Bondi radius 0.02 AU
+      H2  FAIL CFG44 B3: local closures excluded (far-shell theorem); the spherical tidal closure is local but discs differ 3-15x; no messenger specified
+      H3  FAIL CFG44: every EOS/local/action closure excluded under GR + real mass; CFG5 SPARC 0.164/0.160 vs 0.145/0.142 dex, 2 load-bearing fails
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+  R18 Superfluid dark matter, Berezhiani-Khoury (door 4)  [FAILS]
+      G1  FAIL CFG122 G5.1: the MOND-carrying branch X < 0 has c_s^2 = 2X/m < 0 (gradient instability; 1 kpc mode e-folds in ~4.5 Myr at m = 1 eV)
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 FAIL CFG122 G5.4: unscreened 10.9/12.0 x Cassini, 6e8 x ephemeris; a0-line reading ephemeris 3.9e4 x; phase-boundary screening impossible
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  FAIL CFG122 Branch S G1.1: 0/3600 cells reach the target
+      H4  UNT  not computed on the record
+      H5  FAIL direct phonon-baryon coupling (the force ontology; violates the working model's rule)
+      H6  UNT  not computed on the record
+  R19 Dipolar dark matter / gravitational polarisation (door 3)  [INCOMPLETE]
+      G1  COND CFG121 G5 S2: V_U passes; V_B is a ghost only in a relativistic completion (untested)
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 COND CFG121 S4: uncapped monopole a0/2 (468x the line); safe only through the medium-density cap, which fails G1c
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  FAIL CFG121 G1/G1c/G2: medium budget needs Q^2/kappa_I >= ~140 vs <= 0.16/1.2 from growth
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R20 BIMOND (door 13)  [FAILS]
+      G1  FAIL CFG232 G5a: ghost for 13a/13b-i/13b-ii (reproduction of WF2/L70)
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 FAIL CFG232 G5b: Q2 fails (a property of the bare law), also for 13c
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  FAIL CFG232 G1-C fails for every sub-variant
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R21 Covariant emergent gravity (door 12)  [FAILS]
+      G1  FAIL CFG231 A3: a vector with an attractive static force needs a wrong-sign (ghost) kinetic term
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 FAIL CFG231: K1 Solar-System tail Q2 = 6.1e3 x the bound
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  FAIL CFG231: G1 fails for all eight variants
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R22 Mimetic (door 10)  [FAILS]
+      G1  FAIL CFG124: classes C, D, E1 fail health; class A healthy but carries no coupling
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 UNT  not computed on the record
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  FAIL CFG124 G1: no stationary state; target missed for A-D and E
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R23 Nonlocal metric Deser-Woodard / RR (door 9)  [INCOMPLETE]
+      G1  UNT  not computed on the record
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 UNT  not computed on the record
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  FAIL CFG123 G1-A: |rho_eff/rho_target| <= 6e-11 (shortfall >= 1.65e10)
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  R24 Modified-inertia field theory (baryon 4-acceleration dressing)  [FAILS]
+      G1  UNT  TOE map wall 2: Milgrom 1994, MI with both limits must be time-nonlocal; no covariant completion of dS-Unruh MI exists
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 FAIL Reading A: a constant a0/2 = 4.68e-11 (canon) at every planet, excluded 1017x (Mercury) to 33429x (Mars) by INPOP/EPM; the gated version is a separate mitigation
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  UNT  not computed on the record
+      H4  UNT  not computed on the record
+      H5  FAIL MOND as baryon inertia (force ontology); CFG447: an EFE-blind force is excluded by DR3 (7.7 sigma)
+      H6  UNT  not computed on the record
+  R25 Closed families: condensate/DBI v9 dark sector (N9); CQ gravity (L313/L314)  [INCOMPLETE]
+      G1  UNT  not computed on the record
+      G2  UNT  not computed on the record
+      G3  UNT  not computed on the record
+      G4  UNT  not computed on the record
+      G5  UNT  not computed on the record
+      G6  UNT  not computed on the record
+      G7  UNT  not computed on the record
+      G8  UNT  not computed on the record
+      G9  UNT  not computed on the record
+      G10 UNT  not computed on the record
+      G11 UNT  not computed on the record
+      G12 UNT  not computed on the record
+      G13 UNT  not computed on the record
+      G14 UNT  not computed on the record
+      H1  UNT  not computed on the record
+      H2  UNT  not computed on the record
+      H3  FAIL N9: charge dust cannot be CMB/forest-cold and absent from galaxies; CQ gravity closed as the phantom source (L313/L314)
+      H4  UNT  not computed on the record
+      H5  UNT  not computed on the record
+      H6  UNT  not computed on the record
+  NC1 NEW: GR + Lambda chassis, MOND only in the cold fluid (own-4-acceleration target, relaxation form)  [INCOMPLETE]
+      G1  UNT  gravity sector PASS (LIT-GR: Einstein + perfect fluid with 0 <= c_s^2 <= 1 strongly hyperbolic in harmonic gauge; globally hyperbolic spacetimes have a time function, so criterion B holds with the light cone); the fluid sector's relaxation rule reads grad A, which changes the principal part: not computed
+      G14 COND N1d: R1 (embedded Sun) passes on both footings (Liouville cap, MW-fluid tide and monopole, gamma); R2/R3 (Sun owns a target) fail by >= 1e3; PASS would need the settling shown phase-space conserving for embedded systems (NC1's is dissipative). Reported: the fluid's own A sees the Sun only if the fluid is already at rest around it (EP); Bondi radius 0.02 AU
+      H3  UNT  the decisive next test: a dissipative fluid microphysics that makes the rule an attractor, supplies the support/temperature non-adiabatically from settling energy, and is well-posed (CFG44's closure, CFG472 support, FRIED_CHICKEN row 10)
+      H4  COND fluid-sector first-order switch: CFG478 legal (LMP/van der Waals double tangent), CFG482 two-valued SED PASS in PM runs; non-relativistic, ownership mapping open
+  NC2 NEW: khronon with alpha_c screened to 0 in strong fields  [FAILS]
+      G11 LEN  CFG320/CFG467: strict (no hierarchy) only in the 3/81 sliver c2 >= 0.038, alpha <= 1.18e-13; full window needs the Pospelov-Shang hierarchy reading
+      G12 FAIL N2: alpha_c at the UH must be in G1_str (0, 0.5) U (0.5, 2) and in G12_str {0}: EMPTY at every c2
+      H3  COND CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal
+      H4  COND no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant
+  NC3 NEW (argument): invertible disformal / two-time-scale redefinition of the khronon chassis  [FAILS]
+      G11 LEN  CFG320/CFG467: strict (no hierarchy) only in the 3/81 sliver c2 >= 0.038, alpha <= 1.18e-13; full window needs the Pospelov-Shang hierarchy reading
+      G12 FAIL inherits R01 by redefinition invariance (ARG)
+      H3  COND CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal
+      H4  COND no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant
+  NC5 NEW (argument): Einstein-aether, aether not hypersurface-orthogonal  [FAILS]
+      G1  FAIL criterion B requires a global preferred time; a twisting aether defines no foliation (ARG); in spherical symmetry it reduces to the khronon (R01)
+      G2  UNT  not computed
+      G3  UNT  not computed
+      G4  UNT  not computed
+      G5  UNT  not computed
+      G6  UNT  not computed
+      G7  UNT  not computed
+      G8  UNT  not computed
+      G9  UNT  not computed
+      G10 UNT  not computed
+      G11 UNT  not computed
+      G12 UNT  not computed
+      G13 UNT  not computed
+      G14 UNT  not computed
+      H1  UNT  not computed
+      H2  UNT  not computed
+      H3  UNT  not computed
+      H4  UNT  not computed
+      H5  UNT  not computed
+      H6  UNT  not computed
+
+==============================================================================================================
+TOP CANDIDATE (frozen ranking): NC1 -- NEW: GR + Lambda chassis, MOND only in the cold fluid (own-4-acceleration target, relaxation form)  [INCOMPLETE]
+  runner-up: R04 -- C-H/K plus a Horava UV sector M_* (CFG467 option 2)  [INCOMPLETE]   (tied with the top on every gate count; separated only by the constant count)
+  open items of the top candidate: G1 UNT, G14 COND, H3 UNT, H4 COND
+LANE VERDICT: NONE  (WORKS: none; CHASSIS-CLEAN: none)
+==============================================================================================================
+
+checks: 16/17 pass; load-bearing failures: ['K3 P2 point-mass cold mass M(sqrt(1+x^2) - 1) (CFG44 B1) from the spherical identity']; runtime 14.7 s
+exit code 1

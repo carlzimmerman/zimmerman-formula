@@ -1,0 +1,3505 @@
+{
+ "lane": "CFG484",
+ "mutate": false,
+ "frozen_criteria": "FROZEN_CRITERIA.md (committed alone before any script)",
+ "inputs": {
+  "a0": {
+   "canonical": 9.3603e-11,
+   "alt": 1.1312e-10
+  },
+  "ephemeris_bounds": {
+   "Mars": 1.4e-15,
+   "Saturn": 7e-15
+  },
+  "Q2": [
+   3e-27,
+   3e-27
+  ],
+  "gamma_bound": 2.3e-05,
+  "alpha2_strict": 1.6e-09
+ },
+ "NC2": {
+  "7.2888e-03": {
+   "G1_str": "(0, 0.5) U (0.5, 2)",
+   "G12_str": "{0}",
+   "cap_strict": "EMPTY",
+   "cap_lenient": "[9.624e-14, 0.001]"
+  },
+  "6.6667e-02": {
+   "G1_str": "(0, 0.5) U (0.5, 2)",
+   "G12_str": "{0}",
+   "cap_strict": "EMPTY",
+   "cap_lenient": "[9.624e-14, 0.001]"
+  }
+ },
+ "checks": {
+  "K1 CFG467 committed JSON: union I_strict EMPTY, I_len [9.6240e-14, 3.2000e-09], verdict TENSION": {
+   "ok": true,
+   "detail": "read <repo>/campaign_fresh_gravity/CFG467_alpha_c_sign_tension/cfg467_results.json: I_strict EMPTY, I_len [9.6240e-14, 3.2000e-09], verdict TENSION",
+   "load_bearing": true
+  },
+  "K2 CFG373 perfect square g^2 + a_L^2 = (g_N + a_L)^2 for P2 with a_L = a0/2": {
+   "ok": true,
+   "detail": "expand(...) = 0",
+   "load_bearing": true
+  },
+  "K3 P2 point-mass cold mass M(sqrt(1+x^2) - 1) (CFG44 B1) from the spherical identity": {
+   "ok": true,
+   "detail": "max rel diff 3.33e-16 over x in [1e-3, 1e3]",
+   "load_bearing": true
+  },
+  "K4 a0/2 anomaly reproduces MI_FIELD_THEORY_RESULTS 5.1 exclusions (Saturn 6686x, Mars 33429x, canonical)": {
+   "ok": true,
+   "detail": "Saturn 6686x, Mars 33430x",
+   "load_bearing": true
+  },
+  "K5 CFG357 holds Q2C = SIG = 3e-27": {
+   "ok": true,
+   "detail": "<repo>/campaign_fresh_gravity/CFG357_heat_filter_cassini_q2/cfg357_heat_filter_q2.py: Q2C, SIG = 3e-27, 3e-27",
+   "load_bearing": true
+  },
+  "K6 nu_mono = nu_RAR at y = 0.1, 1, 2; max deviation 0.0104 +- 0.0005 dex at y = 14.35 +- 1": {
+   "ok": true,
+   "detail": "rel diff 2.8e-09; max 0.01037 dex at y = 14.35",
+   "load_bearing": true
+  },
+  "K7 interval engine and classification/ranking on toy rows": {
+   "ok": true,
+   "detail": "EMPTY; (1.5, 2]; [9.624e-14, 2); classes ok True; rank order ['works', 'clean', 'incomplete', 'tension', 'fails']",
+   "load_bearing": true
+  },
+  "K8 Schwarzschild Kretschmann = 48 G^2 M^2/(c^4 r^6), finite for r > 0": {
+   "ok": true,
+   "detail": "K = 48*G**2*M**2/(c**4*r**6)",
+   "load_bearing": true
+  },
+  "N1a G12 for the GR chassis: Schwarzschild/Kerr regular outside r = 0 (LIT-GR; K8 the computed instance); the cold fluid is test matter near holes": {
+   "ok": true,
+   "detail": "K8 reused",
+   "load_bearing": true
+  },
+  "N1b(i) static congruence in ds^2 = -(1+2Phi)dt^2 + (1-2Phi)dx^2: a^i = d_i Phi + O(Phi^2) (sympy)": {
+   "ok": true,
+   "detail": "a^x = epsilon*Derivative(Phi(x, y, z), x)",
+   "load_bearing": true
+  },
+  "N1b(ii) y nu(y) strictly increasing on [1e-8, 1e8] for nu_mono and P2 (inversion exists, target local in |A|)": {
+   "ok": true,
+   "detail": "monotone {'P2': True, 'nu_mono': True}; nu_mono round trip 9.9e-14",
+   "load_bearing": true
+  },
+  "N1d R1 (embedded Sun): Liouville-capped anomaly <= 0.1 x bound at Mars and Saturn; MW-fluid tide within 2 sigma of Q2; MW-fluid monopole <= 0.1 x bound; gamma contamination <= 2.3e-5 (both footings, host x1)": {
+   "ok": true,
+   "detail": "see rows above",
+   "load_bearing": true
+  },
+  "N1d R2/R3 (Sun owns a settled target) exceed the ephemeris bounds (pre-declared expectation: FAIL by >= 1e3)": {
+   "ok": true,
+   "detail": "min ratio nu_mono 13786, P2 6686",
+   "load_bearing": false
+  },
+  "N1e fluid mass inside 1 AU / M_sun <= 1e-3 x the strict alpha2 bound (1.6e-12)": {
+   "ok": true,
+   "detail": "2.72e-18",
+   "load_bearing": true
+  },
+  "N1f-v ring-integral disc field = Hankel form (4 points) and point-mass far field on the axis (z = 30 R_d)": {
+   "ok": true,
+   "detail": "max rel diff 6.6e-12; far field / point mass 0.9903",
+   "load_bearing": true
+  },
+  "N1f realisability: eta = |M_neg|/(M_pos + M_surface) <= 0.01 (canonical, both kernels, three discs)": {
+   "ok": true,
+   "detail": "max eta 0.00e+00; converged True",
+   "load_bearing": false
+  },
+  "N1f-pc (added after run 1) the detector finds the known negative phantom lobe near an external-field saddle": {
+   "ok": true,
+   "detail": "eta P2 2.41e-01, nu_mono 2.16e-01",
+   "load_bearing": false
+  },
+  "N2 pointwise G1 (frozen-coefficient symbol) x G12 (UH) is EMPTY at every CFG467 c2 key (NC2 fails strictly)": {
+   "ok": true,
+   "detail": "screening alpha_c -> 0 at the UH makes the khronon non-hyperbolic there; keeping alpha_c > 0 there fails reading S",
+   "load_bearing": false
+  }
+ },
+ "NC1": {
+  "N1b": {
+   "monotone": {
+    "P2": true,
+    "nu_mono": true
+   },
+   "roundtrip": 9.880984919163893e-14,
+   "static_acc": "epsilon*Derivative(Phi(x, y, z), x)"
+  },
+  "N1c_efe_law_ratio": {
+   "P2": {
+    "0.01": 0.9364335462404932,
+    "0.1": 0.8401884750190624,
+    "1.0": 0.732050807568877
+   },
+   "nu_mono": {
+    "0.01": 0.9406587433272809,
+    "0.1": 0.837163646814941,
+    "1.0": 0.6703251006923143
+   }
+  },
+  "N1d": {
+   "canonical": {
+    "rM_kpc": 9.45348011794957,
+    "x": 0.8674054314062019,
+    "rho_c_kg_m3": 3.331916655072011e-22,
+    "rho_c_Msun_pc3": 0.004921850864329603,
+    "Vc_kms": 204.1327905116798,
+    "R1_boost1": {
+     "fmax": 7.034463863674974e-39,
+     "sigma_kms": 144.3436804333417,
+     "planets": {
+      "Mars": {
+       "dg_cap": 1.4922683862013446e-22,
+       "ratio_to_bound": 1.0659059901438175e-07,
+       "rho_target_sun_numono": 1.0944766292962774e-12,
+       "rho_cap": 1.170856620338743e-24,
+       "liouville_shortfall": 934765717923.3715
+      },
+      "Saturn": {
+       "dg_cap": 5.950479995022873e-23,
+       "ratio_to_bound": 8.500685707175532e-09,
+       "rho_target_sun_numono": 1.5548547319106853e-13,
+       "rho_cap": 7.423674111590042e-26,
+       "liouville_shortfall": 2094454455487.484
+      }
+     },
+     "MW_fluid_tide": 1.9813252723074346e-31,
+     "Q2_sigma": 0.9999339558242565,
+     "monopole_Saturn": 1.3353565298708256e-19,
+     "monopole_Mars": 2.123280427104387e-20,
+     "gamma_contamination": 2.3493172087152445e-18,
+     "ok": true
+    },
+    "R1_boost3": {
+     "fmax": 2.1103391591024924e-38,
+     "sigma_kms": 144.3436804333417,
+     "planets": {
+      "Mars": {
+       "dg_cap": 4.476805158604034e-22,
+       "ratio_to_bound": 3.197717970431453e-07,
+       "rho_target_sun_numono": 1.0944766292962774e-12,
+       "rho_cap": 3.512569861016229e-24,
+       "liouville_shortfall": 311588572641.1238
+      },
+      "Saturn": {
+       "dg_cap": 1.7851439985068621e-22,
+       "ratio_to_bound": 2.55020571215266e-08,
+       "rho_target_sun_numono": 1.5548547319106853e-13,
+       "rho_cap": 2.227102233477013e-25,
+       "liouville_shortfall": 698151485162.4945
+      }
+     },
+     "MW_fluid_tide": 5.943975816922303e-31,
+     "Q2_sigma": 0.9998018674727692,
+     "monopole_Saturn": 4.006069589612477e-19,
+     "monopole_Mars": 6.369841281313161e-20,
+     "gamma_contamination": 7.047951626145733e-18,
+     "ok": true
+    },
+    "R3_P2_Mars": {
+     "dg": 4.6801499752399086e-11,
+     "ratio": 33429.64268028506
+    },
+    "R2_nu_mono_Mars": {
+     "dg": 1.0765007892302058e-10,
+     "ratio": 76892.91351644327
+    },
+    "R3_P2_Saturn": {
+     "dg": 4.6801483041315086e-11,
+     "ratio": 6685.926148759298
+    },
+    "R2_nu_mono_Saturn": {
+     "dg": 9.6503475553888e-11,
+     "ratio": 13786.21079341257
+    },
+    "bondi_radius_AU": 0.02406256696191274
+   },
+   "alt": {
+    "rM_kpc": 8.59937525809996,
+    "x": 0.9535576427225014,
+    "rho_c_kg_m3": 3.857673690523057e-22,
+    "rho_c_Msun_pc3": 0.00569849025458055,
+    "Vc_kms": 208.55562447002148,
+    "R1_boost1": {
+     "fmax": 7.637214000590444e-39,
+     "sigma_kms": 147.47109631734725,
+     "planets": {
+      "Mars": {
+       "dg_cap": 1.6201338485206842e-22,
+       "ratio_to_bound": 1.1572384632290601e-07,
+       "rho_target_sun_numono": 1.3154276097875465e-12,
+       "rho_cap": 1.271181819514458e-24,
+       "liouville_shortfall": 1034806814881.9094
+      },
+      "Saturn": {
+       "dg_cap": 6.460348650434381e-23,
+       "ratio_to_bound": 9.229069500620544e-09,
+       "rho_target_sun_numono": 1.8675156872264989e-13,
+       "rho_cap": 8.059773844830991e-26,
+       "liouville_shortfall": 2317081996567.6836
+      }
+     },
+     "MW_fluid_tide": 2.3956576604806943e-31,
+     "Q2_sigma": 0.9999201447446506,
+     "monopole_Saturn": 1.5460680101073887e-19,
+     "monopole_Mars": 2.4583217076497155e-20,
+     "gamma_contamination": 2.7200257764424765e-18,
+     "ok": true
+    },
+    "R1_boost3": {
+     "fmax": 2.2911642001771333e-38,
+     "sigma_kms": 147.47109631734725,
+     "planets": {
+      "Mars": {
+       "dg_cap": 4.860401545562052e-22,
+       "ratio_to_bound": 3.47171538968718e-07,
+       "rho_target_sun_numono": 1.3154276097875465e-12,
+       "rho_cap": 3.8135454585433735e-24,
+       "liouville_shortfall": 344935604960.63654
+      },
+      "Saturn": {
+       "dg_cap": 1.9381045951303143e-22,
+       "ratio_to_bound": 2.7687208501861633e-08,
+       "rho_target_sun_numono": 1.8675156872264989e-13,
+       "rho_cap": 2.4179321534492966e-25,
+       "liouville_shortfall": 772360665522.5614
+      }
+     },
+     "MW_fluid_tide": 7.18697298144208e-31,
+     "Q2_sigma": 0.999760434233952,
+     "monopole_Saturn": 4.638204030322166e-19,
+     "monopole_Mars": 7.374965122949146e-20,
+     "gamma_contamination": 8.160077329327428e-18,
+     "ok": true
+    },
+    "R3_P2_Mars": {
+     "dg": 5.6559999055278324e-11,
+     "ratio": 40399.9993251988
+    },
+    "R2_nu_mono_Mars": {
+     "dg": 1.294023094975579e-10,
+     "ratio": 92430.22106968421
+    },
+    "R3_P2_Saturn": {
+     "dg": 5.6559975227322695e-11,
+     "ratio": 8079.996461046099
+    },
+    "R2_nu_mono_Saturn": {
+     "dg": 1.1593154984384668e-10,
+     "ratio": 16561.64997769238
+    },
+    "bondi_radius_AU": 0.023768383468717773
+   }
+  },
+  "N1e_eps": 2.7200257764424765e-18,
+  "N1f": {
+   "canonical|1e+09|P2": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 16.55462251531309,
+    "M_neg": 0.0,
+    "M_surface": 1.077738648087575,
+    "neg_region": null,
+    "a0_dimless": 0.6713791038961742
+   },
+   "canonical|1e+09|nu_mono": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 16.769520590338033,
+    "M_neg": 0.0,
+    "M_surface": 1.3387628871427857,
+    "neg_region": null,
+    "a0_dimless": 0.6713791038961742
+   },
+   "canonical|1e+10|P2": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 10.26994037379557,
+    "M_neg": 0.0,
+    "M_surface": 0.540532760704711,
+    "neg_region": null,
+    "a0_dimless": 0.26855164155846967
+   },
+   "canonical|1e+10|nu_mono": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 10.560084005996645,
+    "M_neg": 0.0,
+    "M_surface": 0.7136108696573026,
+    "neg_region": null,
+    "a0_dimless": 0.26855164155846967
+   },
+   "canonical|1e+11|P2": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 5.387458860367147,
+    "M_neg": 0.0,
+    "M_surface": 0.20172726117649625,
+    "neg_region": null,
+    "a0_dimless": 0.08224394022728133
+   },
+   "canonical|1e+11|nu_mono": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 5.746901521515752,
+    "M_neg": 0.0,
+    "M_surface": 0.2785750723848156,
+    "neg_region": null,
+    "a0_dimless": 0.08224394022728133
+   },
+   "alt|1e+09|P2": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 18.244513696316947,
+    "M_neg": 0.0,
+    "M_surface": 1.2330608821420024,
+    "neg_region": null,
+    "a0_dimless": 0.811367202255646
+   },
+   "alt|1e+09|nu_mono": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 18.44440975598353,
+    "M_neg": 0.0,
+    "M_surface": 1.5111266817682492,
+    "neg_region": null,
+    "a0_dimless": 0.811367202255646
+   },
+   "alt|1e+10|P2": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 11.348535113615895,
+    "M_neg": 0.0,
+    "M_surface": 0.6267368620620735,
+    "neg_region": null,
+    "a0_dimless": 0.32454688090225836
+   },
+   "alt|1e+10|nu_mono": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 11.62335265636955,
+    "M_neg": 0.0,
+    "M_surface": 0.8181971640249724,
+    "neg_region": null,
+    "a0_dimless": 0.32454688090225836
+   },
+   "alt|1e+11|P2": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 5.991405756643933,
+    "M_neg": 0.0,
+    "M_surface": 0.23778840717150057,
+    "neg_region": null,
+    "a0_dimless": 0.09939248227631663
+   },
+   "alt|1e+11|nu_mono": {
+    "eta": 0.0,
+    "eta_dense": 0.0,
+    "converged": true,
+    "M_pos": 6.344024824518052,
+    "M_neg": 0.0,
+    "M_surface": 0.3269259989651833,
+    "neg_region": null,
+    "a0_dimless": 0.09939248227631663
+   }
+  },
+  "N1f_positive_control": {
+   "P2": {
+    "eta": 0.2412297397271593,
+    "n_neg": 100942,
+    "z_range": [
+     -6.61659513590844,
+     4.5593705293276106
+    ]
+   },
+   "nu_mono": {
+    "eta": 0.2162291609862518,
+    "n_neg": 100942,
+    "z_range": [
+     -6.61659513590844,
+     4.5593705293276106
+    ]
+   }
+  }
+ },
+ "rows": [
+  {
+   "id": "R01",
+   "name": "C-H/K chassis, strict (L340 khronon, beta = 0)",
+   "sources": "L340, CFG467 (and its sources CFG291/292/294/312/318/319/320/329, XC1/XC2, L350)",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    1,
+    0,
+    0,
+    0,
+    2,
+    3
+   ],
+   "constants": {
+    "n": 3,
+    "names": "alpha_c, c_2, xi (heat-filter width), declared; + switch constants",
+    "counted_on_record": true
+   },
+   "G": {
+    "G1": [
+     "PASS",
+     "CFG292/XC2 B6: real speeds iff 0 < alpha_c < 2 (PROOF, linear frozen-coefficient); window inside"
+    ],
+    "G2": [
+     "PASS",
+     "CFG294 S4b / CFG329: det = 4 N alpha k^4 > 0 for alpha_c > 0 (PROOF)"
+    ],
+    "G3": [
+     "PASS",
+     "CFG294 S4c / CFG312: allowed for alpha_c in (0, 1/2) (PROOF)"
+    ],
+    "G4": [
+     "PASS",
+     "XC1 A4: strict edge 1.8e-16..3.7e-16 below the window (NUM from LIT formula)"
+    ],
+    "G5": [
+     "PASS",
+     "L340 H4: [9.624e-14, inf) strict (window edge = L340's estimate)"
+    ],
+    "G6": [
+     "PASS",
+     "CFG291 exact alpha2: window <= 3.2e-9 (LIT bound)"
+    ],
+    "G7": [
+     "PASS",
+     "alpha1 = -4 alpha_c (CFG291, L340 P1; KM3)"
+    ],
+    "G8": [
+     "PASS",
+     "CFG291/CFG311: 625/625 window points (NUM with LIT formulas)"
+    ],
+    "G9": [
+     "PASS",
+     "L350 G1/G5: |alpha|/2 < 0.1 on the leaf-average branch"
+    ],
+    "G10": [
+     "PASS",
+     "L350 G1 / CFG320 K4: G_N = G/(1 - alpha/2) > 0"
+    ],
+    "G11": [
+     "LEN",
+     "CFG320/CFG467: strict (no hierarchy) only in the 3/81 sliver c2 >= 0.038, alpha <= 1.18e-13; full window needs the Pospelov-Shang hierarchy reading"
+    ],
+    "G12": [
+     "FAIL",
+     "CFG318/CFG319 count 4 vs 5 for every alpha_c > 0 (+RB2019, FHB2021 LIT): no fully regular moving hole; CFG467 strict set {0}"
+    ],
+    "G13": [
+     "PASS",
+     "beta = 0 forced by c_T = 1 (CFG467 'GW170817 fixes beta only')"
+    ],
+    "G14": [
+     "PASS",
+     "KM3 gamma = beta = 1; CFG357 Q2 within 2 sigma for xi >= 0.027 pc; L340 S1 Saturn-monopole floor 0.045 pc (heat filter xi declared)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "L340: static QUMOND sector with nu_mono (needs C >= 0, L340 H)"
+    ],
+    "H2": [
+     "PASS",
+     "CFG373 G1: the lapse gradient IS the total field; P2 target local in it, zero constants"
+    ],
+    "H3": [
+     "COND",
+     "CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal"
+    ],
+    "H4": [
+     "COND",
+     "no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant"
+    ],
+    "H5": [
+     "PASS",
+     "fluid feels gravity of all real mass only (working model); no species"
+    ],
+    "H6": [
+     "PASS",
+     "XR20 T1 Henneaux-Teitelboim tie: TIED (kappa chosen), 0 local DOF, +1 global"
+    ]
+   }
+  },
+  {
+   "id": "R02",
+   "name": "C-H/K at alpha_c = 0 (minimal Horava)",
+   "sources": "CFG467 G1-G5, XC1, XC2, CFG319 C1",
+   "cls": "FAILS",
+   "rank_key": [
+    5,
+    0,
+    2,
+    0,
+    0,
+    2,
+    2
+   ],
+   "constants": {
+    "n": 2,
+    "names": "c_2, xi; + switch",
+    "counted_on_record": true
+   },
+   "G": {
+    "G1": [
+     "FAIL",
+     "CFG292: no real speeds at alpha_c = 0; Jacobson-Pulakkat 2025 Cauchy problem fails (XC2)"
+    ],
+    "G2": [
+     "FAIL",
+     "CFG294 S4b: det = 4 N alpha k^4 = 0"
+    ],
+    "G3": [
+     "FAIL",
+     "CFG467 G3 excludes {0}"
+    ],
+    "G4": [
+     "FAIL",
+     "XC1: M_SC = sqrt(alpha) M_P c_s collapses at alpha_c = 0"
+    ],
+    "G5": [
+     "FAIL",
+     "L340 H4: inertia negative at the top k for alpha = 0 (PROOF, large-k limit)"
+    ],
+    "G6": [
+     "PASS",
+     "CFG291 exact alpha2: window <= 3.2e-9 (LIT bound)"
+    ],
+    "G7": [
+     "PASS",
+     "alpha1 = -4 alpha_c (CFG291, L340 P1; KM3)"
+    ],
+    "G8": [
+     "UNT",
+     "CFG467: alpha <= 0 untested for pulsars"
+    ],
+    "G9": [
+     "PASS",
+     "L350 G1/G5: |alpha|/2 < 0.1 on the leaf-average branch"
+    ],
+    "G10": [
+     "PASS",
+     "L350 G1 / CFG320 K4: G_N = G/(1 - alpha/2) > 0"
+    ],
+    "G11": [
+     "UNT",
+     "CFG467: not shown allowed at 0"
+    ],
+    "G12": [
+     "PASS",
+     "CFG319 control C1: stealth maximal-slicing hole fully regular at alpha_c = 0"
+    ],
+    "G13": [
+     "PASS",
+     "beta = 0 forced by c_T = 1 (CFG467 'GW170817 fixes beta only')"
+    ],
+    "G14": [
+     "PASS",
+     "KM3 gamma = beta = 1; CFG357 Q2 within 2 sigma for xi >= 0.027 pc; L340 S1 Saturn-monopole floor 0.045 pc (heat filter xi declared)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "L340: static QUMOND sector with nu_mono (needs C >= 0, L340 H)"
+    ],
+    "H2": [
+     "PASS",
+     "CFG373 G1: the lapse gradient IS the total field; P2 target local in it, zero constants"
+    ],
+    "H3": [
+     "COND",
+     "CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal"
+    ],
+    "H4": [
+     "COND",
+     "no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant"
+    ],
+    "H5": [
+     "PASS",
+     "fluid feels gravity of all real mass only (working model); no species"
+    ],
+    "H6": [
+     "PASS",
+     "XR20 T1 Henneaux-Teitelboim tie: TIED (kappa chosen), 0 local DOF, +1 global"
+    ]
+   }
+  },
+  {
+   "id": "R03",
+   "name": "C-H/K with reading W for black holes (CFG467 option 1)",
+   "sources": "CFG467 (option C of CFG319 accepted; owner call)",
+   "cls": "TENSION",
+   "rank_key": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    2,
+    3
+   ],
+   "constants": {
+    "n": 3,
+    "names": "alpha_c, c_2, xi; no new constant",
+    "counted_on_record": true
+   },
+   "G": {
+    "G1": [
+     "PASS",
+     "CFG292/XC2 B6: real speeds iff 0 < alpha_c < 2 (PROOF, linear frozen-coefficient); window inside"
+    ],
+    "G2": [
+     "PASS",
+     "CFG294 S4b / CFG329: det = 4 N alpha k^4 > 0 for alpha_c > 0 (PROOF)"
+    ],
+    "G3": [
+     "PASS",
+     "CFG294 S4c / CFG312: allowed for alpha_c in (0, 1/2) (PROOF)"
+    ],
+    "G4": [
+     "PASS",
+     "XC1 A4: strict edge 1.8e-16..3.7e-16 below the window (NUM from LIT formula)"
+    ],
+    "G5": [
+     "PASS",
+     "L340 H4: [9.624e-14, inf) strict (window edge = L340's estimate)"
+    ],
+    "G6": [
+     "PASS",
+     "CFG291 exact alpha2: window <= 3.2e-9 (LIT bound)"
+    ],
+    "G7": [
+     "PASS",
+     "alpha1 = -4 alpha_c (CFG291, L340 P1; KM3)"
+    ],
+    "G8": [
+     "PASS",
+     "CFG291/CFG311: 625/625 window points (NUM with LIT formulas)"
+    ],
+    "G9": [
+     "PASS",
+     "L350 G1/G5: |alpha|/2 < 0.1 on the leaf-average branch"
+    ],
+    "G10": [
+     "PASS",
+     "L350 G1 / CFG320 K4: G_N = G/(1 - alpha/2) > 0"
+    ],
+    "G11": [
+     "PASS",
+     "restricted to CFG320's sliver c2 >= 0.038, alpha in [9.624e-14, 1.18e-13] (strict)"
+    ],
+    "G12": [
+     "LEN",
+     "reading W: regular outside the universal horizon, integrable x^-0.382 singularity on it, exterior imprint <= 3e-13 (CFG319 option C); owner call"
+    ],
+    "G13": [
+     "PASS",
+     "beta = 0 forced by c_T = 1 (CFG467 'GW170817 fixes beta only')"
+    ],
+    "G14": [
+     "PASS",
+     "KM3 gamma = beta = 1; CFG357 Q2 within 2 sigma for xi >= 0.027 pc; L340 S1 Saturn-monopole floor 0.045 pc (heat filter xi declared)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "L340: static QUMOND sector with nu_mono (needs C >= 0, L340 H)"
+    ],
+    "H2": [
+     "PASS",
+     "CFG373 G1: the lapse gradient IS the total field; P2 target local in it, zero constants"
+    ],
+    "H3": [
+     "COND",
+     "CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal"
+    ],
+    "H4": [
+     "COND",
+     "no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant"
+    ],
+    "H5": [
+     "PASS",
+     "fluid feels gravity of all real mass only (working model); no species"
+    ],
+    "H6": [
+     "PASS",
+     "XR20 T1 Henneaux-Teitelboim tie: TIED (kappa chosen), 0 local DOF, +1 global"
+    ]
+   }
+  },
+  {
+   "id": "R04",
+   "name": "C-H/K plus a Horava UV sector M_* (CFG467 option 2)",
+   "sources": "CFG467 option 2; CFG320 hierarchy reading",
+   "cls": "INCOMPLETE",
+   "rank_key": [
+    0,
+    0,
+    2,
+    0,
+    0,
+    2,
+    4
+   ],
+   "constants": {
+    "n": 4,
+    "names": "alpha_c, c_2, xi, M_*",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "PASS",
+     "CFG292/XC2 B6: real speeds iff 0 < alpha_c < 2 (PROOF, linear frozen-coefficient); window inside"
+    ],
+    "G2": [
+     "PASS",
+     "CFG294 S4b / CFG329: det = 4 N alpha k^4 > 0 for alpha_c > 0 (PROOF)"
+    ],
+    "G3": [
+     "PASS",
+     "CFG294 S4c / CFG312: allowed for alpha_c in (0, 1/2) (PROOF)"
+    ],
+    "G4": [
+     "PASS",
+     "XC1 A4: strict edge 1.8e-16..3.7e-16 below the window (NUM from LIT formula)"
+    ],
+    "G5": [
+     "PASS",
+     "L340 H4: [9.624e-14, inf) strict (window edge = L340's estimate)"
+    ],
+    "G6": [
+     "PASS",
+     "CFG291 exact alpha2: window <= 3.2e-9 (LIT bound)"
+    ],
+    "G7": [
+     "PASS",
+     "alpha1 = -4 alpha_c (CFG291, L340 P1; KM3)"
+    ],
+    "G8": [
+     "PASS",
+     "CFG291/CFG311: 625/625 window points (NUM with LIT formulas)"
+    ],
+    "G9": [
+     "PASS",
+     "L350 G1/G5: |alpha|/2 < 0.1 on the leaf-average branch"
+    ],
+    "G10": [
+     "PASS",
+     "L350 G1 / CFG320 K4: G_N = G/(1 - alpha/2) > 0"
+    ],
+    "G11": [
+     "COND",
+     "if M_* <= 9.9e8 GeV realises CFG320's hierarchy (one constant for G11 and G12); untested"
+    ],
+    "G12": [
+     "UNT",
+     "UH regularisation by higher spatial derivatives: argument in CFG319, never computed"
+    ],
+    "G13": [
+     "PASS",
+     "beta = 0 forced by c_T = 1 (CFG467 'GW170817 fixes beta only')"
+    ],
+    "G14": [
+     "PASS",
+     "KM3 gamma = beta = 1; CFG357 Q2 within 2 sigma for xi >= 0.027 pc; L340 S1 Saturn-monopole floor 0.045 pc (heat filter xi declared)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "L340: static QUMOND sector with nu_mono (needs C >= 0, L340 H)"
+    ],
+    "H2": [
+     "PASS",
+     "CFG373 G1: the lapse gradient IS the total field; P2 target local in it, zero constants"
+    ],
+    "H3": [
+     "COND",
+     "CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal"
+    ],
+    "H4": [
+     "COND",
+     "no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant"
+    ],
+    "H5": [
+     "PASS",
+     "fluid feels gravity of all real mass only (working model); no species"
+    ],
+    "H6": [
+     "PASS",
+     "XR20 T1 Henneaux-Teitelboim tie: TIED (kappa chosen), 0 local DOF, +1 global"
+    ]
+   }
+  },
+  {
+   "id": "R05",
+   "name": "Candidate B's current working model on C-H/K (settling + khronon-lapse messenger)",
+   "sources": "WORKING_MODEL_SETTLED_PHANTOM_2026-10-06, CFG373, CFG381, CFG472, CFG473 (CFG462/CFG483 results uncommitted: not cited)",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    2,
+    4
+   ],
+   "constants": {
+    "n": 4,
+    "names": "alpha_c, c_2, xi, lambda_x (fluid-khronon coupling, CFG381); + switch",
+    "counted_on_record": true
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "chassis part PASS (CFG292); the coupled fluid-khronon settling system's principal symbol is not computed"
+    ],
+    "G2": [
+     "PASS",
+     "CFG294 S4b / CFG329: det = 4 N alpha k^4 > 0 for alpha_c > 0 (PROOF)"
+    ],
+    "G3": [
+     "PASS",
+     "CFG294 S4c / CFG312: allowed for alpha_c in (0, 1/2) (PROOF)"
+    ],
+    "G4": [
+     "PASS",
+     "XC1 A4: strict edge 1.8e-16..3.7e-16 below the window (NUM from LIT formula)"
+    ],
+    "G5": [
+     "PASS",
+     "L340 H4: [9.624e-14, inf) strict (window edge = L340's estimate)"
+    ],
+    "G6": [
+     "PASS",
+     "CFG291 exact alpha2: window <= 3.2e-9 (LIT bound)"
+    ],
+    "G7": [
+     "PASS",
+     "alpha1 = -4 alpha_c (CFG291, L340 P1; KM3)"
+    ],
+    "G8": [
+     "PASS",
+     "CFG291/CFG311: 625/625 window points (NUM with LIT formulas)"
+    ],
+    "G9": [
+     "PASS",
+     "L350 G1/G5: |alpha|/2 < 0.1 on the leaf-average branch"
+    ],
+    "G10": [
+     "PASS",
+     "L350 G1 / CFG320 K4: G_N = G/(1 - alpha/2) > 0"
+    ],
+    "G11": [
+     "LEN",
+     "CFG320/CFG467: strict (no hierarchy) only in the 3/81 sliver c2 >= 0.038, alpha <= 1.18e-13; full window needs the Pospelov-Shang hierarchy reading"
+    ],
+    "G12": [
+     "FAIL",
+     "CFG318/CFG319 count 4 vs 5 for every alpha_c > 0 (+RB2019, FHB2021 LIT): no fully regular moving hole; CFG467 strict set {0}"
+    ],
+    "G13": [
+     "PASS",
+     "beta = 0 forced by c_T = 1 (CFG467 'GW170817 fixes beta only')"
+    ],
+    "G14": [
+     "PASS",
+     "KM3 gamma = beta = 1; CFG357 Q2 within 2 sigma for xi >= 0.027 pc; L340 S1 Saturn-monopole floor 0.045 pc (heat filter xi declared)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "L340: static QUMOND sector with nu_mono (needs C >= 0, L340 H)"
+    ],
+    "H2": [
+     "PASS",
+     "CFG373 G1: the lapse gradient IS the total field; P2 target local in it, zero constants"
+    ],
+    "H3": [
+     "COND",
+     "CFG373 G3 sink assumption K ~ Gamma/c; CFG381 +1 coupling; CFG472 target not a hydrostatic equilibrium in the transition; CFG473 holding force nonlocal"
+    ],
+    "H4": [
+     "COND",
+     "no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant"
+    ],
+    "H5": [
+     "PASS",
+     "fluid feels gravity of all real mass only (working model); no species"
+    ],
+    "H6": [
+     "PASS",
+     "XR20 T1 Henneaux-Teitelboim tie: TIED (kappa chosen), 0 local DOF, +1 global"
+    ]
+   }
+  },
+  {
+   "id": "R06",
+   "name": "V0 covariant action (CV1-CV4; region kernel; MS5 cap)",
+   "sources": "chk_v0_2026 CV1-CV4, dark_energy_2026 DE12/DE13, mond_sector_gate_2026 MS1-MS5 (N14)",
+   "cls": "FAILS",
+   "rank_key": [
+    2,
+    1,
+    0,
+    1,
+    0,
+    1,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": ">= 9 declared (alpha_c, c_2, xi, m, sigma, x_c0, p, w, v_cap) + epsilon fitted",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "FAIL",
+     "DE12/DE13 (N14): the varied region gate gives a k^0 negative pressure on baryons, c_gate 1500-3700 km/s vs gas 37-117 km/s (gradient instability); no harmless repair; the data passes use a prescribed mask, which is not an action"
+    ],
+    "G2": [
+     "PASS",
+     "CFG294 S4b / CFG329: det = 4 N alpha k^4 > 0 for alpha_c > 0 (PROOF)"
+    ],
+    "G3": [
+     "PASS",
+     "CFG294 S4c / CFG312: allowed for alpha_c in (0, 1/2) (PROOF)"
+    ],
+    "G4": [
+     "PASS",
+     "XC1 A4: strict edge 1.8e-16..3.7e-16 below the window (NUM from LIT formula)"
+    ],
+    "G5": [
+     "PASS",
+     "L340 H4: [9.624e-14, inf) strict (window edge = L340's estimate)"
+    ],
+    "G6": [
+     "PASS",
+     "CFG291 exact alpha2: window <= 3.2e-9 (LIT bound)"
+    ],
+    "G7": [
+     "PASS",
+     "alpha1 = -4 alpha_c (CFG291, L340 P1; KM3)"
+    ],
+    "G8": [
+     "PASS",
+     "CFG291/CFG311: 625/625 window points (NUM with LIT formulas)"
+    ],
+    "G9": [
+     "PASS",
+     "L350 G1/G5: |alpha|/2 < 0.1 on the leaf-average branch"
+    ],
+    "G10": [
+     "PASS",
+     "L350 G1 / CFG320 K4: G_N = G/(1 - alpha/2) > 0"
+    ],
+    "G11": [
+     "LEN",
+     "CFG320/CFG467: strict (no hierarchy) only in the 3/81 sliver c2 >= 0.038, alpha <= 1.18e-13; full window needs the Pospelov-Shang hierarchy reading"
+    ],
+    "G12": [
+     "FAIL",
+     "CFG318/CFG319 count 4 vs 5 for every alpha_c > 0 (+RB2019, FHB2021 LIT): no fully regular moving hole; CFG467 strict set {0}"
+    ],
+    "G13": [
+     "PASS",
+     "beta = 0 forced by c_T = 1 (CFG467 'GW170817 fixes beta only')"
+    ],
+    "G14": [
+     "PASS",
+     "KM3 gamma = beta = 1; CFG357 Q2 within 2 sigma for xi >= 0.027 pc; L340 S1 Saturn-monopole floor 0.045 pc (heat filter xi declared)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "L340: static QUMOND sector with nu_mono (needs C >= 0, L340 H)"
+    ],
+    "H2": [
+     "PASS",
+     "CFG373 G1: the lapse gradient IS the total field; P2 target local in it, zero constants"
+    ],
+    "H3": [
+     "COND",
+     "CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal"
+    ],
+    "H4": [
+     "FAIL",
+     "N14: the gate as a varied term is obstructed (DE12/13, XR15)"
+    ],
+    "H5": [
+     "PASS",
+     "fluid feels gravity of all real mass only (working model); no species"
+    ],
+    "H6": [
+     "PASS",
+     "XR20 T1 Henneaux-Teitelboim tie: TIED (kappa chosen), 0 local DOF, +1 global"
+    ]
+   }
+  },
+  {
+   "id": "R07",
+   "name": "Derivation-chain action (FP7/FP14 root + XR20 tie + H_K1 + FK1)",
+   "sources": "closure_map/ACTIONS_AND_NOGOS row 4; derivation_chain_2026 FP2/FP7/FP14/FP22/FP23; XR20; XR25",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    0,
+    12,
+    1,
+    0,
+    3,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "L_Lambda 2.9 Mpc declared, c_y chosen after scoring, epsilon fitted, alpha_c",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "alpha1 = -4 alpha_c - 8C/(1+C) (closure map); C at Solar wavenumbers not read here"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "FAIL",
+     "XR25: the c2 -> infinity limit is singular at universal horizons (closure map 'OPEN'); alpha_c > 0 also meets CFG319's count"
+    ],
+    "G13": [
+     "PASS",
+     "c_T = 1 (FP2, FP7, XR25)"
+    ],
+    "G14": [
+     "UNT",
+     "not computed on the record"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "P2 exact in spherical symmetry (FP7 R7d)"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H4": [
+     "FAIL",
+     "no ownership; band-pass separator squeezed: KiDS with web field +111..+153 vs +9 (FP23)"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "PASS",
+     "XR20 T1 TIED"
+    ]
+   }
+  },
+  {
+   "id": "R08",
+   "name": "AeST v9 embedding / FC-AeST",
+   "sources": "closure_2026/V9_PPN_KILL_VERDICT.md (N7)",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    0,
+    13,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "K_B, lambda_s, mu, kinetic function",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "FC-AeST + c2*: alpha2 = 1/lam_s + 2/(K_B lam_s^2) (N7); value not re-read here"
+    ],
+    "G7": [
+     "FAIL",
+     "N7: alpha1 = -2(K_B + 2) on the healthy locus 0 < K_B <= 0.25 (linearised about the cosmological background; solar background unchecked)"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "UNT",
+     "not computed on the record"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "FAIL",
+     "closure map: AeST needs dust at full Omega_dm; does not explain a0"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R09",
+   "name": "FC-KH khronometric f(a)",
+   "sources": "closure_2026/fc_kh_terminal/FC_KH_PAPER_vNEXT.md (N6)",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    0,
+    13,
+    0,
+    0,
+    6,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "f(a)",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "FAIL",
+     "N6 (yq)' theorem: radial stability iff (yq)' >= 0, and exact-GR UV forces q = 0: the Cassini-vs-ghost pincer (one horn fails Cassini, the other is a ghost)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R10",
+   "name": "Blanchet-Skordis khronon dust (BS24)",
+   "sources": "bs_khronon_2026 BSK1, BSX1, BSX3 (N8)",
+   "cls": "INCOMPLETE",
+   "rank_key": [
+    0,
+    0,
+    14,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "K(Q), mu, lambda_D",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "UNT",
+     "BSK1: hiding the inner instability above ~1e3 a0 meets the ephemeris bound (Cassini-vs-ghost pincer returns; BS24 has no filter); not scored as a number"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "FAIL",
+     "BSK1: with BS24's GR recovery the static halo is unstable wherever the phantom falls, rate^2 = (2 + 2/n) GM/r^3 (inner MW e-fold 1-4 Myr); N8 BSX3 I1: for ANY K, mu_eff^2 = k_J^2 (1 + c_ad^2), KiDS needs 1/k_J <= 0.22 Mpc vs MOND lensing 1/mu_eff >= 10 Mpc (x46); dust budget ends at 0.13-0.67 Mpc"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R11",
+   "name": "Astra CA4/CA5 common action [U]",
+   "sources": "common_action_2026_09_26/action/FINAL_ACTION.md; AS233, AS234, AS236, AS239 (unreviewed) (N22)",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    0,
+    13,
+    2,
+    0,
+    4,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "alpha, c2, c_N, ell, b, five carrier masses/couplings",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "[U] AS234: alpha2 extraction obstructed (R = -2 rho/7)"
+    ],
+    "G7": [
+     "FAIL",
+     "[U] AS233: alpha1 = 4(alpha + 2 c2)/(2 - c2), O(1) at the reference cell"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "[U] AS236/AS252: G_cosm/G_N = c_N"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "[U] AS239-240: c_T = N/b"
+    ],
+    "G14": [
+     "UNT",
+     "not computed on the record"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H4": [
+     "FAIL",
+     "FINAL_ACTION: full-on state 'impossible on the declared compact leaf', L361 screening absent, gate not bound-only"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "FAIL",
+     "FINAL_ACTION section 1: a0-vacuum 'an optional input, not a consequence'"
+    ]
+   }
+  },
+  {
+   "id": "R12",
+   "name": "Astra IC20-IC28 integrable clock",
+   "sources": "closure_map row (IC28; MUTATE not checked)",
+   "cls": "INCOMPLETE",
+   "rank_key": [
+    0,
+    0,
+    14,
+    0,
+    0,
+    6,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "m, kappa, U(u^2)",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "lapse degeneration reported; 'full theory OPEN'"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "UNT",
+     "not computed on the record"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R13",
+   "name": "Generated phantom GP0-GP5 + vacuum-gated L357-L361 (non-relativistic)",
+   "sources": "generated_phantom_2026 GP1-GP5; g03_audit_2026 L357-L361, L363; paper34_audit P34d",
+   "cls": "INCOMPLETE",
+   "rank_key": [
+    0,
+    0,
+    14,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "lambda (free, BK2), thresholds, p, carrier kick/decay",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G2": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G3": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G4": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G5": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G6": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G7": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G8": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G9": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G10": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G11": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G12": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G13": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ],
+    "G14": [
+     "UNT",
+     "no relativistic embedding of its own; the record's embedding is V0 (R06)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "FAIL",
+     "L363/GP3: private phantom + LCDM-like dark component fails cosmic shear (R 1.5-4.7); GP5: carrier still in galaxies at z = 2.5 (+0.82..+1.05 dex)"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R14",
+   "name": "Dark-energy gate DE1-DE13 (gate as a varied term)",
+   "sources": "dark_energy_2026 DE7, DE12, DE13 (N14)",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    0,
+    13,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "gate width, x_c0, p",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "FAIL",
+     "N14: a threshold gate flat at both ends has W'' of both signs; the instability lands on what the gate reads (metric k^4, DE7; baryons, DE12); DE13 no harmless repair"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "UNT",
+     "not computed on the record"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H4": [
+     "FAIL",
+     "N14"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R15",
+   "name": "MOND-sector gate MS1-MS5 (non-relativistic; cap as action term)",
+   "sources": "mond_sector_gate_2026 MS1-MS5",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    0,
+    13,
+    0,
+    0,
+    6,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "v_cap (declared), (v_cap/c)^2 = 1.18e-6, x_c0, p, w",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "FAIL",
+     "MS5: the kappa-cap's fourth-order bracket B[W''U + W'/2] changes sign in the layer, so DE7's k^4 repair is still needed (unrepaired = unstable)"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "UNT",
+     "not computed on the record"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H4": [
+     "COND",
+     "MS1-MS5: switch on baryons + cap ~325 km/s is a design target; mechanism open"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R16",
+   "name": "FRIED_CHICKEN frame flip (EH on the matter metric; dark sector on g)",
+   "sources": "FRIED_CHICKEN.md rows 1-10 + banner; qwen_claude_field_theory/closure_2026/frame_flip_2026.py",
+   "cls": "INCOMPLETE",
+   "rank_key": [
+    0,
+    0,
+    13,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "B (disformal), K(X) of the dark field",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "COND",
+     "row 7: no ghost, no gradient instability, no Cherenkov (K'' > 0 over 45 decades); full principal symbol not computed"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "PASS",
+     "frame_flip A1: gravitons and photons share g~, c_T = c_gamma identically"
+    ],
+    "G14": [
+     "COND",
+     "rows 4-5: monopole 4e-28 x Mars budget, Q2 0.08-0.21 x ceiling, on the mu_10 kernel (not recomputed on nu_mono)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "FAIL",
+     "banner: the g_b, grad g_b construction from a local covariant action without an independent dark density is fourth order with a ghost (dark_sector_honesty_2026)"
+    ],
+    "H3": [
+     "UNT",
+     "row 10 (amplitude law) OPEN; local-EOS / baryon-coupled-pressure / local-selection routes excluded (collapse_2026, local_selection_2026)"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R17",
+   "name": "GR + dark field, no MOND field (CFG2/5/9/10/FG004; CFG43/44)",
+   "sources": "CFG2_A, CFG5, CFG9, CFG10, CFG7_groundstate_fg004, CFG43, CFG44 (N20); closure_map row",
+   "cls": "INCOMPLETE",
+   "rank_key": [
+    0,
+    0,
+    2,
+    2,
+    0,
+    2,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "none declared (principles only, no Lagrangian)",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "gravity sector PASS (LIT-GR); no fluid dynamics specified on the record"
+    ],
+    "G2": [
+     "PASS",
+     "LIT-GR: constraints solvable by the CMC conformal method; maximal-slicing lapse equation elliptic with nonnegative potential under the WEC; NC1's target needs no elliptic solve (local in A)"
+    ],
+    "G3": [
+     "NA",
+     "F2a is the khronon scheme's lapse operator; there is no khronon"
+    ],
+    "G4": [
+     "PASS",
+     "LIT-GR: no khronon vertex; the gravity EFT cutoff is M_P >> 1e3 x LHC; fluid microphysics is H3"
+    ],
+    "G5": [
+     "NA",
+     "the lobe-health condition is the khronon's inertia in negative phantom lobes; no khronon. The fluid analog (realisability) is N1f, reported separately"
+    ],
+    "G6": [
+     "PASS",
+     "LIT-GR alpha2 = 0; fluid contamination 2.7e-18 (N1e)"
+    ],
+    "G7": [
+     "PASS",
+     "LIT-GR alpha1 = 0; fluid contamination 2.7e-18 (N1e)"
+    ],
+    "G8": [
+     "PASS",
+     "LIT-GR: no scalar charge, no dipole radiation; quadrupole formula"
+    ],
+    "G9": [
+     "PASS",
+     "LIT-GR: G_cos = G_N; the fluid is CDM in FRW where the switch is OFF"
+    ],
+    "G10": [
+     "PASS",
+     "LIT-GR: G_N = G"
+    ],
+    "G11": [
+     "PASS",
+     "no small chassis coupling beyond Lambda (the cosmological-constant problem is shared by every row and by LCDM; not a discriminating gate)"
+    ],
+    "G12": [
+     "PASS",
+     "LIT-GR Kerr; K8 computed instance; fluid is test matter (N1a)"
+    ],
+    "G13": [
+     "PASS",
+     "LIT-GR: gravitons and photons share one metric"
+    ],
+    "G14": [
+     "COND",
+     "same GR chassis as NC1: N1d R1 (embedded Sun) passes, R2/R3 (Sun owns a target) fail; which applies depends on fluid dynamics the record does not specify"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "CFG9: P2 the only locally virialised point-mass law; CFG10 (ii) within 0.002-0.003 dex of P2 on SPARC"
+    ],
+    "H2": [
+     "FAIL",
+     "CFG44 B3: local closures excluded (far-shell theorem); the spherical tidal closure is local but discs differ 3-15x; no messenger specified"
+    ],
+    "H3": [
+     "FAIL",
+     "CFG44: every EOS/local/action closure excluded under GR + real mass; CFG5 SPARC 0.164/0.160 vs 0.145/0.142 dex, 2 load-bearing fails"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "PASS",
+     "CFG43 existence result: the a0-Lambda tie written into the fluid sector (Lambda global, no new local DOF, a0 flat), kappa chosen; its scoped no-go is about the barotropic saturating cap as the law's producer (needs nu*), not the tie"
+    ]
+   }
+  },
+  {
+   "id": "R18",
+   "name": "Superfluid dark matter, Berezhiani-Khoury (door 4)",
+   "sources": "CFG122 (b7d41c302), referee CFG154",
+   "cls": "FAILS",
+   "rank_key": [
+    2,
+    0,
+    12,
+    2,
+    0,
+    4,
+    3
+   ],
+   "constants": {
+    "n": 3,
+    "names": "m, alpha/Lambda, thermalisation rate (CFG122 G4)",
+    "counted_on_record": true
+   },
+   "G": {
+    "G1": [
+     "FAIL",
+     "CFG122 G5.1: the MOND-carrying branch X < 0 has c_s^2 = 2X/m < 0 (gradient instability; 1 kpc mode e-folds in ~4.5 Myr at m = 1 eV)"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "FAIL",
+     "CFG122 G5.4: unscreened 10.9/12.0 x Cassini, 6e8 x ephemeris; a0-line reading ephemeris 3.9e4 x; phase-boundary screening impossible"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "FAIL",
+     "CFG122 Branch S G1.1: 0/3600 cells reach the target"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "FAIL",
+     "direct phonon-baryon coupling (the force ontology; violates the working model's rule)"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R19",
+   "name": "Dipolar dark matter / gravitational polarisation (door 3)",
+   "sources": "CFG121 (16fca9acd), referee CFG157",
+   "cls": "INCOMPLETE",
+   "rank_key": [
+    0,
+    0,
+    14,
+    1,
+    0,
+    5,
+    2
+   ],
+   "constants": {
+    "n": 2,
+    "names": "Q*, kappa_I* (CFG121 G4)",
+    "counted_on_record": true
+   },
+   "G": {
+    "G1": [
+     "COND",
+     "CFG121 G5 S2: V_U passes; V_B is a ghost only in a relativistic completion (untested)"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "COND",
+     "CFG121 S4: uncapped monopole a0/2 (468x the line); safe only through the medium-density cap, which fails G1c"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "FAIL",
+     "CFG121 G1/G1c/G2: medium budget needs Q^2/kappa_I >= ~140 vs <= 0.16/1.2 from growth"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R20",
+   "name": "BIMOND (door 13)",
+   "sources": "CFG232",
+   "cls": "FAILS",
+   "rank_key": [
+    2,
+    0,
+    12,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "interaction function (by inversion)",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "FAIL",
+     "CFG232 G5a: ghost for 13a/13b-i/13b-ii (reproduction of WF2/L70)"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "FAIL",
+     "CFG232 G5b: Q2 fails (a property of the bare law), also for 13c"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "FAIL",
+     "CFG232 G1-C fails for every sub-variant"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R21",
+   "name": "Covariant emergent gravity (door 12)",
+   "sources": "CFG231",
+   "cls": "FAILS",
+   "rank_key": [
+    2,
+    0,
+    12,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "elastic/vector coefficients",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "FAIL",
+     "CFG231 A3: a vector with an attractive static force needs a wrong-sign (ghost) kinetic term"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "FAIL",
+     "CFG231: K1 Solar-System tail Q2 = 6.1e3 x the bound"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "FAIL",
+     "CFG231: G1 fails for all eight variants"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R22",
+   "name": "Mimetic (door 10)",
+   "sources": "CFG124, referee CFG152",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    0,
+    13,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "higher-derivative coefficients",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "FAIL",
+     "CFG124: classes C, D, E1 fail health; class A healthy but carries no coupling"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "UNT",
+     "not computed on the record"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "FAIL",
+     "CFG124 G1: no stationary state; target missed for A-D and E"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R23",
+   "name": "Nonlocal metric Deser-Woodard / RR (door 9)",
+   "sources": "CFG123, referee CFG153",
+   "cls": "INCOMPLETE",
+   "rank_key": [
+    0,
+    0,
+    14,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "m (RR mass)",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "UNT",
+     "not computed on the record"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "FAIL",
+     "CFG123 G1-A: |rho_eff/rho_target| <= 6e-11 (shortfall >= 1.65e10)"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R24",
+   "name": "Modified-inertia field theory (baryon 4-acceleration dressing)",
+   "sources": "real_research/papers/MI_FIELD_THEORY_RESULTS_2026.md section 5.1; TOE map wall 2",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    0,
+    13,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "kernel K, gate omega_c (gated version)",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "TOE map wall 2: Milgrom 1994, MI with both limits must be time-nonlocal; no covariant completion of dS-Unruh MI exists"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "FAIL",
+     "Reading A: a constant a0/2 = 4.68e-11 (canon) at every planet, excluded 1017x (Mercury) to 33429x (Mars) by INPOP/EPM; the gated version is a separate mitigation"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "FAIL",
+     "MOND as baryon inertia (force ontology); CFG447: an EFE-blind force is excluded by DR3 (7.7 sigma)"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "R25",
+   "name": "Closed families: condensate/DBI v9 dark sector (N9); CQ gravity (L313/L314)",
+   "sources": "condensate_pincer_2026 (N9, memory-level); L313/L314",
+   "cls": "INCOMPLETE",
+   "rank_key": [
+    0,
+    0,
+    14,
+    1,
+    0,
+    5,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "-",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G3": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G6": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G7": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G8": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G9": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G10": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G11": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G12": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G13": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "G14": [
+     "UNT",
+     "not computed on the record"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H2": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H3": [
+     "FAIL",
+     "N9: charge dust cannot be CMB/forest-cold and absent from galaxies; CQ gravity closed as the phantom source (L313/L314)"
+    ],
+    "H4": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H5": [
+     "UNT",
+     "not computed on the record"
+    ],
+    "H6": [
+     "UNT",
+     "not computed on the record"
+    ]
+   }
+  },
+  {
+   "id": "NC1",
+   "name": "NEW: GR + Lambda chassis, MOND only in the cold fluid (own-4-acceleration target, relaxation form)",
+   "sources": "CFG484 N1a-N1g; CFG373 G1 (local target in the total field); CFG43 (fluid tie); CFG44 (closure); CFG478",
+   "cls": "INCOMPLETE",
+   "rank_key": [
+    0,
+    0,
+    2,
+    0,
+    0,
+    2,
+    0
+   ],
+   "constants": {
+    "n": 0,
+    "names": "0 in the chassis; fluid sector: settling rate (CFG464: the zero-constant t_dyn rate is not excluded), switch constants open",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "UNT",
+     "gravity sector PASS (LIT-GR: Einstein + perfect fluid with 0 <= c_s^2 <= 1 strongly hyperbolic in harmonic gauge; globally hyperbolic spacetimes have a time function, so criterion B holds with the light cone); the fluid sector's relaxation rule reads grad A, which changes the principal part: not computed"
+    ],
+    "G2": [
+     "PASS",
+     "LIT-GR: constraints solvable by the CMC conformal method; maximal-slicing lapse equation elliptic with nonnegative potential under the WEC; NC1's target needs no elliptic solve (local in A)"
+    ],
+    "G3": [
+     "NA",
+     "F2a is the khronon scheme's lapse operator; there is no khronon"
+    ],
+    "G4": [
+     "PASS",
+     "LIT-GR: no khronon vertex; the gravity EFT cutoff is M_P >> 1e3 x LHC; fluid microphysics is H3"
+    ],
+    "G5": [
+     "NA",
+     "the lobe-health condition is the khronon's inertia in negative phantom lobes; no khronon. The fluid analog (realisability) is N1f, reported separately"
+    ],
+    "G6": [
+     "PASS",
+     "LIT-GR alpha2 = 0; fluid contamination 2.7e-18 (N1e)"
+    ],
+    "G7": [
+     "PASS",
+     "LIT-GR alpha1 = 0; fluid contamination 2.7e-18 (N1e)"
+    ],
+    "G8": [
+     "PASS",
+     "LIT-GR: no scalar charge, no dipole radiation; quadrupole formula"
+    ],
+    "G9": [
+     "PASS",
+     "LIT-GR: G_cos = G_N; the fluid is CDM in FRW where the switch is OFF"
+    ],
+    "G10": [
+     "PASS",
+     "LIT-GR: G_N = G"
+    ],
+    "G11": [
+     "PASS",
+     "no small chassis coupling beyond Lambda (the cosmological-constant problem is shared by every row and by LCDM; not a discriminating gate)"
+    ],
+    "G12": [
+     "PASS",
+     "LIT-GR Kerr; K8 computed instance; fluid is test matter (N1a)"
+    ],
+    "G13": [
+     "PASS",
+     "LIT-GR: gravitons and photons share one metric"
+    ],
+    "G14": [
+     "COND",
+     "N1d: R1 (embedded Sun) passes on both footings (Liouville cap, MW-fluid tide and monopole, gamma); R2/R3 (Sun owns a target) fail by >= 1e3; PASS would need the settling shown phase-space conserving for embedded systems (NC1's is dissipative). Reported: the fluid's own A sees the Sun only if the fluid is already at rest around it (EP); Bondi radius 0.02 AU"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "fixed point = the law with the declared kernel (spherical exact, K3/N1b; non-spherical: the AQUAL form of the same kernel, not QUMOND; the difference is untested)"
+    ],
+    "H2": [
+     "PASS",
+     "N1b: the static fluid's own 4-acceleration is the total field; CFG373's inversion makes the target local in it, zero constants, both kernels; no khronon needed"
+    ],
+    "H3": [
+     "UNT",
+     "the decisive next test: a dissipative fluid microphysics that makes the rule an attractor, supplies the support/temperature non-adiabatically from settling energy, and is well-posed (CFG44's closure, CFG472 support, FRIED_CHICKEN row 10)"
+    ],
+    "H4": [
+     "COND",
+     "fluid-sector first-order switch: CFG478 legal (LMP/van der Waals double tangent), CFG482 two-valued SED PASS in PM runs; non-relativistic, ownership mapping open"
+    ],
+    "H5": [
+     "PASS",
+     "the rule reads the fluid's own 4-acceleration, never the baryons: no reciprocity reaction, no direct coupling; the fluid is the record's cold fluid, no species"
+    ],
+    "H6": [
+     "PASS",
+     "CFG43 existence result (tie written into the fluid sector, Lambda global, a0 flat) and the XR20 T1 form; kappa chosen"
+    ]
+   }
+  },
+  {
+   "id": "NC2",
+   "name": "NEW: khronon with alpha_c screened to 0 in strong fields",
+   "sources": "CFG484 N2 on CFG467's committed sets",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    1,
+    0,
+    0,
+    0,
+    2,
+    4
+   ],
+   "constants": {
+    "n": 4,
+    "names": "alpha_c, c_2, xi + >= 1 screening scale",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "PASS",
+     "CFG292/XC2 B6: real speeds iff 0 < alpha_c < 2 (PROOF, linear frozen-coefficient); window inside"
+    ],
+    "G2": [
+     "PASS",
+     "CFG294 S4b / CFG329: det = 4 N alpha k^4 > 0 for alpha_c > 0 (PROOF)"
+    ],
+    "G3": [
+     "PASS",
+     "CFG294 S4c / CFG312: allowed for alpha_c in (0, 1/2) (PROOF)"
+    ],
+    "G4": [
+     "PASS",
+     "XC1 A4: strict edge 1.8e-16..3.7e-16 below the window (NUM from LIT formula)"
+    ],
+    "G5": [
+     "PASS",
+     "L340 H4: [9.624e-14, inf) strict (window edge = L340's estimate)"
+    ],
+    "G6": [
+     "PASS",
+     "CFG291 exact alpha2: window <= 3.2e-9 (LIT bound)"
+    ],
+    "G7": [
+     "PASS",
+     "alpha1 = -4 alpha_c (CFG291, L340 P1; KM3)"
+    ],
+    "G8": [
+     "PASS",
+     "CFG291/CFG311: 625/625 window points (NUM with LIT formulas)"
+    ],
+    "G9": [
+     "PASS",
+     "L350 G1/G5: |alpha|/2 < 0.1 on the leaf-average branch"
+    ],
+    "G10": [
+     "PASS",
+     "L350 G1 / CFG320 K4: G_N = G/(1 - alpha/2) > 0"
+    ],
+    "G11": [
+     "LEN",
+     "CFG320/CFG467: strict (no hierarchy) only in the 3/81 sliver c2 >= 0.038, alpha <= 1.18e-13; full window needs the Pospelov-Shang hierarchy reading"
+    ],
+    "G12": [
+     "FAIL",
+     "N2: alpha_c at the UH must be in G1_str (0, 0.5) U (0.5, 2) and in G12_str {0}: EMPTY at every c2"
+    ],
+    "G13": [
+     "PASS",
+     "beta = 0 forced by c_T = 1 (CFG467 'GW170817 fixes beta only')"
+    ],
+    "G14": [
+     "PASS",
+     "KM3 gamma = beta = 1; CFG357 Q2 within 2 sigma for xi >= 0.027 pc; L340 S1 Saturn-monopole floor 0.045 pc (heat filter xi declared)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "L340: static QUMOND sector with nu_mono (needs C >= 0, L340 H)"
+    ],
+    "H2": [
+     "PASS",
+     "CFG373 G1: the lapse gradient IS the total field; P2 target local in it, zero constants"
+    ],
+    "H3": [
+     "COND",
+     "CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal"
+    ],
+    "H4": [
+     "COND",
+     "no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant"
+    ],
+    "H5": [
+     "PASS",
+     "fluid feels gravity of all real mass only (working model); no species"
+    ],
+    "H6": [
+     "PASS",
+     "XR20 T1 Henneaux-Teitelboim tie: TIED (kappa chosen), 0 local DOF, +1 global"
+    ]
+   }
+  },
+  {
+   "id": "NC3",
+   "name": "NEW (argument): invertible disformal / two-time-scale redefinition of the khronon chassis",
+   "sources": "argument: physical gate outcomes are invariant under invertible field redefinitions applied to the whole action including the matter coupling (Foster-type; LIT, memory-level); a non-invertible map is mimetic (CFG124)",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    1,
+    0,
+    0,
+    0,
+    2,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "disformal coefficients",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "PASS",
+     "CFG292/XC2 B6: real speeds iff 0 < alpha_c < 2 (PROOF, linear frozen-coefficient); window inside"
+    ],
+    "G2": [
+     "PASS",
+     "CFG294 S4b / CFG329: det = 4 N alpha k^4 > 0 for alpha_c > 0 (PROOF)"
+    ],
+    "G3": [
+     "PASS",
+     "CFG294 S4c / CFG312: allowed for alpha_c in (0, 1/2) (PROOF)"
+    ],
+    "G4": [
+     "PASS",
+     "XC1 A4: strict edge 1.8e-16..3.7e-16 below the window (NUM from LIT formula)"
+    ],
+    "G5": [
+     "PASS",
+     "L340 H4: [9.624e-14, inf) strict (window edge = L340's estimate)"
+    ],
+    "G6": [
+     "PASS",
+     "CFG291 exact alpha2: window <= 3.2e-9 (LIT bound)"
+    ],
+    "G7": [
+     "PASS",
+     "alpha1 = -4 alpha_c (CFG291, L340 P1; KM3)"
+    ],
+    "G8": [
+     "PASS",
+     "CFG291/CFG311: 625/625 window points (NUM with LIT formulas)"
+    ],
+    "G9": [
+     "PASS",
+     "L350 G1/G5: |alpha|/2 < 0.1 on the leaf-average branch"
+    ],
+    "G10": [
+     "PASS",
+     "L350 G1 / CFG320 K4: G_N = G/(1 - alpha/2) > 0"
+    ],
+    "G11": [
+     "LEN",
+     "CFG320/CFG467: strict (no hierarchy) only in the 3/81 sliver c2 >= 0.038, alpha <= 1.18e-13; full window needs the Pospelov-Shang hierarchy reading"
+    ],
+    "G12": [
+     "FAIL",
+     "inherits R01 by redefinition invariance (ARG)"
+    ],
+    "G13": [
+     "PASS",
+     "beta = 0 forced by c_T = 1 (CFG467 'GW170817 fixes beta only')"
+    ],
+    "G14": [
+     "PASS",
+     "KM3 gamma = beta = 1; CFG357 Q2 within 2 sigma for xi >= 0.027 pc; L340 S1 Saturn-monopole floor 0.045 pc (heat filter xi declared)"
+    ]
+   },
+   "H": {
+    "H1": [
+     "PASS",
+     "L340: static QUMOND sector with nu_mono (needs C >= 0, L340 H)"
+    ],
+    "H2": [
+     "PASS",
+     "CFG373 G1: the lapse gradient IS the total field; P2 target local in it, zero constants"
+    ],
+    "H3": [
+     "COND",
+     "CFG373 G3: reaction sink only if relaxation induces K ~ Gamma/c (assumed); CFG381: khronon alone gives no force, needs a fluid-khronon coupling (+1); CFG472/473: support in the transition is nonlocal"
+    ],
+    "H4": [
+     "COND",
+     "no committed legal field-reading gate on this chassis (N10 flux switch, N14 varied gate, N15 theta-gate ghost); only a fluid-sector first-order switch (CFG478 legal, NR; CFG482 SED PASS) remains, chassis-independent and not covariant"
+    ],
+    "H5": [
+     "PASS",
+     "fluid feels gravity of all real mass only (working model); no species"
+    ],
+    "H6": [
+     "PASS",
+     "XR20 T1 Henneaux-Teitelboim tie: TIED (kappa chosen), 0 local DOF, +1 global"
+    ]
+   }
+  },
+  {
+   "id": "NC5",
+   "name": "NEW (argument): Einstein-aether, aether not hypersurface-orthogonal",
+   "sources": "argument against the 09-26 user decision (criterion B)",
+   "cls": "FAILS",
+   "rank_key": [
+    1,
+    0,
+    13,
+    0,
+    0,
+    6,
+    99
+   ],
+   "constants": {
+    "n": null,
+    "names": "c_1..c_4",
+    "counted_on_record": false
+   },
+   "G": {
+    "G1": [
+     "FAIL",
+     "criterion B requires a global preferred time; a twisting aether defines no foliation (ARG); in spherical symmetry it reduces to the khronon (R01)"
+    ],
+    "G2": [
+     "UNT",
+     "not computed"
+    ],
+    "G3": [
+     "UNT",
+     "not computed"
+    ],
+    "G4": [
+     "UNT",
+     "not computed"
+    ],
+    "G5": [
+     "UNT",
+     "not computed"
+    ],
+    "G6": [
+     "UNT",
+     "not computed"
+    ],
+    "G7": [
+     "UNT",
+     "not computed"
+    ],
+    "G8": [
+     "UNT",
+     "not computed"
+    ],
+    "G9": [
+     "UNT",
+     "not computed"
+    ],
+    "G10": [
+     "UNT",
+     "not computed"
+    ],
+    "G11": [
+     "UNT",
+     "not computed"
+    ],
+    "G12": [
+     "UNT",
+     "not computed"
+    ],
+    "G13": [
+     "UNT",
+     "not computed"
+    ],
+    "G14": [
+     "UNT",
+     "not computed"
+    ]
+   },
+   "H": {
+    "H1": [
+     "UNT",
+     "not computed"
+    ],
+    "H2": [
+     "UNT",
+     "not computed"
+    ],
+    "H3": [
+     "UNT",
+     "not computed"
+    ],
+    "H4": [
+     "UNT",
+     "not computed"
+    ],
+    "H5": [
+     "UNT",
+     "not computed"
+    ],
+    "H6": [
+     "UNT",
+     "not computed"
+    ]
+   }
+  }
+ ],
+ "ranking": [
+  "NC1",
+  "R04",
+  "R17",
+  "R16",
+  "R12",
+  "R19",
+  "R10",
+  "R13",
+  "R23",
+  "R25",
+  "R03",
+  "R07",
+  "R09",
+  "R15",
+  "NC5",
+  "R08",
+  "R14",
+  "R22",
+  "R24",
+  "R11",
+  "R01",
+  "NC2",
+  "NC3",
+  "R05",
+  "R20",
+  "R21",
+  "R18",
+  "R06",
+  "R02"
+ ],
+ "top_candidate": {
+  "id": "NC1",
+  "name": "NEW: GR + Lambda chassis, MOND only in the cold fluid (own-4-acceleration target, relaxation form)",
+  "cls": "INCOMPLETE",
+  "tie_with_runner_up_on_gates": true,
+  "runner_up": "R04"
+ },
+ "verdict": "NONE",
+ "n_checks": 18,
+ "n_pass": 18,
+ "load_bearing_failures": [],
+ "runtime_s": 14.7
+}
