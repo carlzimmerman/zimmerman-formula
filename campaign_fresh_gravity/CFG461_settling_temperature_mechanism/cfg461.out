@@ -1,0 +1,105 @@
+====================================================================================================
+CFG461 settling-temperature mechanism   MUTATE=False
+target sigma_t^4 = G M_b a0 / 4  (deep SIS, sigma^2 = V_f^2/2); f_b = 0.15713; share 5.364
+====================================================================================================
+
+[K1] symbolic identities (sympy)
+  V_c^2 = 2 sigma^2 for SIS: True;  sigma^2 = V_f^2/2 <=> sigma^4 = G M a0/4: True
+  truncated SIS E = -G M^2/(4R): True;  Jeans lambda_J^2 = 2 pi^2 r^2 (sigma-free): True
+  C2c Euler-Lagrange of the mismatch functional: Mc(r) = [Mph(r)]  (needs Mph = the law's target as input)
+  C2d self-gravitating tracer in law field: SIS balance residual = -V_f**2/r  -> requires V_f = 0 (no SIS)
+  C2d non-self-gravitating tracer: log-slope = -V_f**2/sigma**2  (= -2 only if sigma^2 = V_f^2/2 is CHOSEN)
+  C3b r_cap = 2*sigma**2/a0; M_SIS(<r_cap) = 4*sigma**4/(G*a0); sigma^4 = G M_SIS(<r_cap) a0/4 for EVERY sigma: True
+
+[c-test] target sigma_t^4 = G M_b kappa c sqrt(G rho_L)/4 is LINEAR in c.  A mechanism built only from
+  Newtonian gravity + Lambda (G, masses, radii, energies, H, rho_L) is c-independent -> d ln sigma^4/d ln c = 0.
+  required universal velocity U = sigma^4/(G M_b sqrt(G rho_L)) = kappa c/4 = 37474 km/s for every galaxy
+
+[K2 / C1b] Emden isothermal spiral (self-gravitating, no baryons, box): G = M = R = 1
+  min lambda = -0.3346 at contrast 708.6 (Antonov -0.335, 709); lambda at xi=2000: -0.2555 (SIS -1/4)
+  at lambda = -1/4: low-contrast equilibrium (contrast 65.82, sigma^2 0.4046) S = 3.7918;  SIS (sigma^2 0.5) S = 3.7481
+  -> SIS is the entropy maximum at its own energy: False  (Lynden-Bell & Wood: the SIS is the spiral centre, unstable)
+
+[K3 / C2b] isothermal cold fluid when the law's action acts on ALL real mass (units G = a0 = M_b = 1)
+  K3 deep-MOND isothermal, no baryons: sigma^4/(G M a0) = 0.04938, 0.04938  (4/81 = 0.04938)  PASS=True
+  a=0.3 rho0=0.001: root rejected (far slope -3.00, tail fraction 1.000): spurious (alpha -> 3 pole)
+  a=0.3 rho0=  1e-02: sigma^2=0.6243  slope[2,5 r_M]=-1.689  sigma^4/target=1.559 (+0.193 dex)  sigma^4/(G M_tot a0)=0.0612  far slope -4.04
+  a=0.3 rho0=  1e-01: sigma^2=0.6267  slope[2,5 r_M]=-1.710  sigma^4/target=1.571 (+0.196 dex)  sigma^4/(G M_tot a0)=0.0617  far slope -4.03
+  a=0.3 rho0=  1e+00: sigma^2=0.6374  slope[2,5 r_M]=-1.909  sigma^4/target=1.625 (+0.211 dex)  sigma^4/(G M_tot a0)=0.0638  far slope -3.96
+  a=0.3 rho0=  1e+01: sigma^2=0.6626  slope[2,5 r_M]=-2.450  sigma^4/target=1.756 (+0.245 dex)  sigma^4/(G M_tot a0)=0.0690  far slope -3.81
+  a=1.0 rho0=  1e-03: sigma^2=0.6241  slope[2,5 r_M]=-1.380  sigma^4/target=1.558 (+0.193 dex)  sigma^4/(G M_tot a0)=0.0612  far slope -4.04
+  a=1.0 rho0=  1e-02: sigma^2=0.6270  slope[2,5 r_M]=-1.505  sigma^4/target=1.573 (+0.197 dex)  sigma^4/(G M_tot a0)=0.0618  far slope -4.02
+  a=1.0 rho0=  1e-01: sigma^2=0.6421  slope[2,5 r_M]=-2.173  sigma^4/target=1.649 (+0.217 dex)  sigma^4/(G M_tot a0)=0.0648  far slope -3.93
+  a=1.0 rho0=  1e+00: sigma^2=0.6797  slope[2,5 r_M]=-3.059  sigma^4/target=1.848 (+0.267 dex)  sigma^4/(G M_tot a0)=0.0726  far slope -3.71
+  a=1.0 rho0=  1e+01: sigma^2=0.6983  slope[2,5 r_M]=-3.022  sigma^4/target=1.950 (+0.290 dex)  sigma^4/(G M_tot a0)=0.0766  far slope -3.61
+
+[numbers] three galaxies x two footings
+  C1a_LB_at_collapse_energy_zc1    canonical dex(sigma^4/target) = -1.015, -0.515, -0.181  dlns4/dlnMb=+1.333  dlns4/dlnc=+0.000  sigma[km/s]=23.4, 74.0, 159.5 (target 42.0, 99.5, 177.0)
+  C1a_LB_at_collapse_energy_zc1    alt       dex(sigma^4/target) = -1.097, -0.597, -0.264  dlns4/dlnMb=+1.333  dlns4/dlnc=+0.000  sigma[km/s]=23.4, 74.0, 159.5 (target 44.0, 104.4, 185.6)
+  C2a_heatflow_box_r200_z0         canonical dex(sigma^4/target) = -1.406, -0.906, -0.573  dlns4/dlnMb=+1.333  dlns4/dlnc=+0.000  sigma[km/s]=18.7, 59.1, 127.3 (target 42.0, 99.5, 177.0)
+  C2a_heatflow_box_r200_z0         alt       dex(sigma^4/target) = -1.489, -0.989, -0.655  dlns4/dlnMb=+1.333  dlns4/dlnc=+0.000  sigma[km/s]=18.7, 59.1, 127.3 (target 44.0, 104.4, 185.6)
+  C2b_law_on_all_mass_a1           canonical dex(sigma^4/target) = +0.217, +0.217, +0.217  dlns4/dlnMb=+1.000  dlns4/dlnc=+1.000  sigma[km/s]=47.6, 112.8, 200.6 (target 42.0, 99.5, 177.0)
+  C2b_law_on_all_mass_a1           alt       dex(sigma^4/target) = +0.217, +0.217, +0.217  dlns4/dlnMb=+1.000  dlns4/dlnc=+1.000  sigma[km/s]=49.9, 118.3, 210.3 (target 44.0, 104.4, 185.6)
+  C3a_unruh_bath_best_m            canonical dex(sigma^4/target) = +1.500, +0.000, -1.000  dlns4/dlnMb=+0.000  dlns4/dlnc=+0.000  sigma[km/s]=99.5, 99.5, 99.5 (target 42.0, 99.5, 177.0)
+  C3a_unruh_bath_best_m            alt       dex(sigma^4/target) = +1.582, +0.082, -0.918  dlns4/dlnMb=+0.000  dlns4/dlnc=+0.000  sigma[km/s]=109.4, 109.4, 109.4 (target 44.0, 104.4, 185.6)
+  C4_virial_zc0                    canonical dex(sigma^4/target) = -1.617, -1.117, -0.783  dlns4/dlnMb=+1.333  dlns4/dlnc=+0.000  sigma[km/s]=16.6, 52.3, 112.8 (target 42.0, 99.5, 177.0)
+  C4_virial_zc0                    alt       dex(sigma^4/target) = -1.699, -1.199, -0.866  dlns4/dlnMb=+1.333  dlns4/dlnc=+0.000  sigma[km/s]=16.6, 52.3, 112.8 (target 44.0, 104.4, 185.6)
+  C4_virial_zc1                    canonical dex(sigma^4/target) = -1.015, -0.515, -0.181  dlns4/dlnMb=+1.333  dlns4/dlnc=+0.000  sigma[km/s]=23.4, 74.0, 159.5 (target 42.0, 99.5, 177.0)
+  C4_virial_zc1                    alt       dex(sigma^4/target) = -1.097, -0.597, -0.264  dlns4/dlnMb=+1.333  dlns4/dlnc=+0.000  sigma[km/s]=23.4, 74.0, 159.5 (target 44.0, 104.4, 185.6)
+  C4_virial_zc3                    canonical dex(sigma^4/target) = -0.413, +0.087, +0.421  dlns4/dlnMb=+1.333  dlns4/dlnc=+0.000  sigma[km/s]=33.1, 104.7, 225.5 (target 42.0, 99.5, 177.0)
+  C4_virial_zc3                    alt       dex(sigma^4/target) = -0.495, +0.005, +0.339  dlns4/dlnMb=+1.333  dlns4/dlnc=+0.000  sigma[km/s]=33.1, 104.7, 225.5 (target 44.0, 104.4, 185.6)
+  R0_restatement_r_edge            canonical dex(sigma^4/target) = +0.073, +0.073, +0.073  dlns4/dlnMb=+1.000  dlns4/dlnc=+1.000  sigma[km/s]=43.8, 103.8, 184.6 (target 42.0, 99.5, 177.0)
+  R0_restatement_r_edge            alt       dex(sigma^4/target) = +0.073, +0.073, +0.073  dlns4/dlnMb=+1.000  dlns4/dlnc=+1.000  sigma[km/s]=45.9, 108.9, 193.6 (target 44.0, 104.4, 185.6)
+  R0_coldonly_r_edge               canonical dex(sigma^4/target) = -0.075, -0.075, -0.075  dlns4/dlnMb=+1.000  dlns4/dlnc=+1.000  sigma[km/s]=40.2, 95.3, 169.5 (target 42.0, 99.5, 177.0)
+  R0_coldonly_r_edge               alt       dex(sigma^4/target) = -0.075, -0.075, -0.075  dlns4/dlnMb=+1.000  dlns4/dlnc=+1.000  sigma[km/s]=42.1, 99.9, 177.7 (target 44.0, 104.4, 185.6)
+
+[C3a] particle mass a0-Unruh / de Sitter baths would need (m = k T / sigma_t^2)
+  canonical: T_U(a0) = 3.80e-31 K; m needed = 1.67e-27, 2.97e-28, 9.38e-29 eV (spread 1.25 dex); Gibbons-Hawking: 9.66e-27, 1.72e-27, 5.43e-28 eV
+  alt: T_U(a0) = 4.59e-31 K; m needed = 1.83e-27, 3.26e-28, 1.03e-28 eV (spread 1.25 dex); Gibbons-Hawking: 8.78e-27, 1.56e-27, 4.94e-28 eV
+
+[G-e] crossing time r_edge / V_f (relaxation ~ few crossings)
+  canonical: r_edge = 7.1, 40.1, 126.9 kpc; t_cross = 0.12, 0.28, 0.50 Gyr
+  alt: r_edge = 6.5, 36.5, 115.5 kpc; t_cross = 0.10, 0.24, 0.43 Gyr
+
+[post-freeze report, not a verdict input] SIS contraction factor R_vir/r_edge = (sigma^4_R0/sigma^4_C4)^(1/2);
+  the binding energy of a truncated SIS is G M^2/(4R), so the fluid must shed (R_vir/r_edge - 1) x its virial binding energy
+  z_c=0 canonical: R_vir/r_edge = 7.00, 3.93, 2.68
+  z_c=0 alt      : R_vir/r_edge = 7.69, 4.33, 2.95
+  z_c=1 canonical: R_vir/r_edge = 3.50, 1.97, 1.34
+  z_c=1 alt      : R_vir/r_edge = 3.85, 2.16, 1.47
+  z_c=3 canonical: R_vir/r_edge = 1.75, 0.98, 0.67
+  z_c=3 alt      : R_vir/r_edge = 1.92, 1.08, 0.74
+
+[gate table]  (G-b parts: output / SIS / amplitude / scaling)
+  C1a Lynden-Bell (Newtonian, E from collapse)         G-a PASS  G-b FAIL [Y/Y/n/n]  G-c PASS  G-d PASS  G-e PASS  => FAIL
+      sigma = multiplier set by E; c-free so dlns4/dlnc = 0; with E from collapse it is C4
+  C1b LB entropy max in a box (no baryons)             G-a PASS  G-b FAIL [n/n/n/n]  G-c PASS  G-d PASS  G-e PASS  => FAIL
+      at the SIS's own energy a cored state has higher entropy; sigma set by E
+  C2a T10 mu-heat flow, conserved mass, cosmological box G-a PASS  G-b FAIL [Y/Y/n/n]  G-c FAIL  G-d PASS  G-e PASS  => FAIL
+      amplitude = M_c/(4 pi R): set by the box; T10's drift inserts the target's shape (G-c)
+  C2b law's action on all real mass + entropy          G-a PASS  G-b FAIL [Y/n/n/Y]  G-c PASS  G-d PASS  G-e FAIL  => FAIL
+      sigma^4 ~ G M_tot a0 (selected) but not an SIS, M_tot not M_b (double count, A12); acts on all mass (growth)
+  C2c mismatch functional |g_N[b+c]-g_law[b]|^2        G-a PASS  G-b FAIL [Y/Y/n/n]  G-c FAIL  G-d PASS  G-e  --   => FAIL
+      minimiser = rho_ph exactly, because g_law is inserted; G-a holds only if the supply equals M_ph(<r_edge); G-e not scorable (static)
+  C2d tracer in law field + Newtonian self-gravity     G-a PASS  G-b FAIL [n/n/n/n]  G-c PASS  G-d PASS  G-e  --   => FAIL
+      self-gravitating: no SIS; tracer: slope -V_f^2/sigma^2, sigma free (A11 reaction)
+  C3a Unruh/de Sitter bath at a0                       G-a PASS  G-b FAIL [Y/n/n/n]  G-c FAIL  G-d PASS  G-e FAIL  => FAIL
+      universal T: sigma^2 independent of M_b; c cancels; needs a particle mass; acts everywhere
+  C3b vacuum stress boundary a0^2/8piG                 G-a PASS  G-b FAIL [n/Y/n/n]  G-c PASS  G-d PASS  G-e  --   => FAIL
+      identity sigma^4 = G M_SIS(<r_cap) a0/4 for every sigma: restates the BTFR as M_SIS(<r_cap) = M_b
+  C4 cosmological virialisation z_c=0                  G-a PASS  G-b FAIL [Y/Y/n/n]  G-c PASS  G-d PASS  G-e PASS  => FAIL
+      sigma^4 ~ M^(4/3), c-free
+  C4 cosmological virialisation z_c=1                  G-a PASS  G-b FAIL [Y/Y/n/n]  G-c PASS  G-d PASS  G-e PASS  => FAIL
+  C4 cosmological virialisation z_c=3                  G-a PASS  G-b FAIL [Y/Y/n/n]  G-c PASS  G-d PASS  G-e PASS  => FAIL
+  C5 Jeans marginality                                 G-a PASS  G-b FAIL [n/Y/n/n]  G-c PASS  G-d PASS  G-e  --   => FAIL
+      lambda_J^2 = 2 pi^2 r^2 for every sigma
+  C6 phonon coupling (BK, fork arm a)                  G-a  --   G-b  --  [  -    ]  G-c FAIL  G-d FAIL  G-e  --   => FAIL
+      NOT computed; fails G-d (direct dark-baryon coupling) and G-c (BK constants) by construction
+  R0 RESTATEMENT r_edge (control)                      G-a PASS  G-b FAIL [n/Y/Y/Y]  G-c FAIL  G-d PASS  G-e PASS  => FAIL
+      r_edge is the law's own output: G-c fails by construction; G-b parts 2-4 must pass (K4)
+  R0 cold-only variant                                 G-a PASS  G-b FAIL [n/Y/Y/Y]  G-c FAIL  G-d PASS  G-e PASS  => FAIL
+      sigma^2 = G M_c/(2 r_edge)
+
+VERDICT: NO CLASS PASSES
+controls: K1 True  K2 True  K3 True  K4 True
+exit 0
