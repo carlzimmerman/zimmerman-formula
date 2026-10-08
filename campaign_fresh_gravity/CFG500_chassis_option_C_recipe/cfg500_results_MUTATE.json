@@ -1,0 +1,856 @@
+{
+ "lane": "CFG500",
+ "mode": "MUTATE",
+ "frozen": "21b1db999",
+ "recipe": [
+  {
+   "id": "LAW",
+   "name": "the law: a0(t) = kappa c sqrt(G rho_DE(t)); g = nu(g_N/a0) g_N in bound, owned systems",
+   "status": "HYPOTHESIS",
+   "c469": null,
+   "tested_by": "SPARC (GATES 1.01), CFG301/309 MeerKAT, CFG6 a0(z), PAPER38 (calibration wall), DR4 prereg"
+  },
+  {
+   "id": "F1",
+   "name": "kappa = 1/2",
+   "status": "FITTED",
+   "c469": "kappa = 1/2",
+   "tested_by": "CFG493 (0.417 +- 0.095 canonical / 0.345 +- 0.078 alt: consistent, not discriminating)"
+  },
+  {
+   "id": "F2",
+   "name": "the cold energy's amount, Omega_c h^2 = 0.12 (S = Omega_c/Omega_b = 5.364)",
+   "status": "FITTED",
+   "c469": "Omega_c h^2 = 0.12",
+   "tested_by": "CMB by construction (GATES 3.01); CFG288 / CFG360 / CFG496 (no derivation, no clue)"
+  },
+  {
+   "id": "D1",
+   "name": "rho_DE(t) entering a0(t) (flat a0 only if w = -1)",
+   "status": "DATA",
+   "c469": "rho_DE(t)",
+   "tested_by": "CFG439 (DE-tracking a0 growth 512^3); CFG6 branches; PAPER38"
+  },
+  {
+   "id": "D2",
+   "name": "f_b = Omega_b/Omega_m",
+   "status": "DATA",
+   "c469": "f_b",
+   "tested_by": "enters the edge (CFG423/424) and the supply (CFG494/497)"
+  },
+  {
+   "id": "K1",
+   "name": "kernel nu_mono (nu_RAR to y* = 2.3374, monotone log splice)",
+   "status": "DECLARED FUNCTION",
+   "c469": "nu_mono",
+   "tested_by": "GATES 1.01/1.05 (SPARC, P2 ~2 sigma), CFG468 (frozen, no committed result), CFG493 (kernel moves kappa)"
+  },
+  {
+   "id": "K1a",
+   "name": "the splice shape constant delta = 0.05 (y* follows from delta by tangency)",
+   "status": "DECLARED CONSTANT",
+   "c469": "(inside the nu_mono row)",
+   "tested_by": "none separately (XC4 choice)"
+  },
+  {
+   "id": "S1",
+   "name": "bound-only switch: the law acts only in bound regions; exactly off on FRW",
+   "status": "DECLARED RULE",
+   "c469": "bound-only switch",
+   "tested_by": "CFG4_switch (CMB lensing 1.000, forest 0.00); CFG487 (switch exactly off on FRW; Gap 1 open)"
+  },
+  {
+   "id": "S2",
+   "name": "ownership: each system carries its own phantom; the Sun carries none; globulars class E; no EFE",
+   "status": "DECLARED RULE",
+   "c469": "ownership",
+   "tested_by": "GATES 4.01 (Cassini Q2), CFG332/333/465 (globulars), CFG491 (SPARC EFE slope +1.8 sigma lean), DR4 Arm C"
+  },
+  {
+   "id": "E1",
+   "name": "KiDS density edge x_e = 0.4 (phantom support for isolated-lens lensing)",
+   "status": "DECLARED CONSTANT",
+   "c469": "KiDS density edge x_e = 0.4",
+   "tested_by": "GATES 3.05 (KiDS PASS at declared x_e = 0.4), CFG413 (x = 0.3-0.5 window), GATES 3.09 (not derived)"
+  },
+  {
+   "id": "E2",
+   "name": "supply postulate: each galaxy settles S x M_b (its original baryons' cosmic share) inside its edge",
+   "status": "DECLARED RULE",
+   "c469": "(inside the growth-edge row)",
+   "tested_by": "six failed derivations: CFG461, CFG462, CFG488, CFG490, CFG494, CFG497 (STANDING 10-08)"
+  },
+  {
+   "id": "E3",
+   "name": "growth edge r_edge = r_M/ln(1/(1-f_b)) = 5.85 r_M",
+   "status": "DERIVED",
+   "c469": "(inside the growth-edge row)",
+   "tested_by": "CFG423/424 (given E2, the law and f_b, it has no further choice)"
+  },
+  {
+   "id": "E5",
+   "name": "max rule T5: dark mass = max(phantom, cosmic share) (clusters)",
+   "status": "DECLARED RULE",
+   "c469": null,
+   "tested_by": "GATES 2.01 X-COP identity 0.946 +- 0.080; CFG379 (supply limit does not set the cluster level)"
+  },
+  {
+   "id": "R1",
+   "name": "the cold energy relaxes toward the phantom target at rate Gamma (bookkeeping; no force derived)",
+   "status": "DECLARED RULE",
+   "c469": "cold fluid relaxes toward the phantom target at rate Gamma",
+   "tested_by": "CFG464 (lambda = 1 t_dyn rate NOT EXCLUDED), CFG431 (one clock not universal), CFG461 (no class sets sigma^4)"
+  },
+  {
+   "id": "R1c",
+   "name": "OPTIONAL: settling clock m with Dm/Dt = Gamma L (1 - m), Gamma = sqrt(4 pi G rho_X) (lambda = 1); V1 reads the cold energy (MS1 exception), V2 reads baryons",
+   "status": "OPTIONAL RULE",
+   "c469": null,
+   "tested_by": "CFG487 (both versions FAIL with the 5.85 r_M edge; V1 alone passes KiDS + SPARC, overdraws growth), CFG498 PENDING"
+  },
+  {
+   "id": "L1",
+   "name": "lensing = GR lensing of the effective dark density",
+   "status": "DECLARED RULE",
+   "c469": "lensing = GR lensing of the effective dark density",
+   "tested_by": "KiDS (GATES 3.05), SLACS (GATES 1.19), CFG495 (drawdown, KiDS cannot test)"
+  },
+  {
+   "id": "B1",
+   "name": "background cosmology GR + CDM at z >~ 10 (BBN, CMB standard by declaration)",
+   "status": "DECLARED RULE",
+   "c469": "background cosmology GR + CDM",
+   "tested_by": "GATES 3.01 (met by construction), 3.04 (BAO unchanged by construction), 3.13 (BBN standard by T4)"
+  },
+  {
+   "id": "G1",
+   "name": "the baryon field includes gas pressure",
+   "status": "DECLARED RULE",
+   "c469": "baryon field includes gas pressure",
+   "tested_by": "CFG372 (withdrawn pass), CFG427 (MIX-A vs MIX-B insensitive)"
+  },
+  {
+   "id": "FT",
+   "name": "footing: rho in the law is rho_Lambda (canonical) or rho_crit (alt); two parallel recipes, never pooled",
+   "status": "DECLARED DISCRETE CHOICE",
+   "c469": null,
+   "tested_by": "every lane reports both; CFG493 (kappa 0.42 / 0.35)"
+  },
+  {
+   "id": "N1",
+   "name": "stellar M/L",
+   "status": "NUISANCE",
+   "c469": "stellar M/L",
+   "tested_by": "per data set (GATES 1.01: one global Upsilon_disk 0.5-0.8)"
+  },
+  {
+   "id": "X1",
+   "name": "G = measured G (CFG469: no alpha_c/2 correction)",
+   "status": "RETIRED UNDER C",
+   "c469": "G = measured G",
+   "tested_by": "vacuous without the chassis: there is no alpha_c, so Newton's measured G enters as in every theory"
+  },
+  {
+   "id": "I1",
+   "name": "growth-engine inherited setting: T1 switch epsilon = 0.077 in the peak finder",
+   "status": "INHERITED SETTING",
+   "c469": null,
+   "tested_by": "CFG427: epsilon x0.5 / x2 give 0.0273 / 0.0273 (insensitive)"
+  },
+  {
+   "id": "I2",
+   "name": "growth-engine inherited setting: MIX-A gas filter",
+   "status": "INHERITED SETTING",
+   "c469": null,
+   "tested_by": "CFG427: MIX-B 0.0262, HOT1 0.0311 (insensitive)"
+  }
+ ],
+ "count": {
+  "total": 17,
+  "by_class": {
+   "FITTED": [
+    "F1",
+    "F2"
+   ],
+   "DATA": [
+    "D1",
+    "D2"
+   ],
+   "DECLARED FUNCTION": [
+    "K1"
+   ],
+   "DECLARED CONSTANT": [
+    "K1a",
+    "E1"
+   ],
+   "DECLARED RULE": [
+    "S1",
+    "S2",
+    "E2",
+    "E5",
+    "R1",
+    "L1",
+    "B1",
+    "G1"
+   ],
+   "DECLARED DISCRETE CHOICE": [
+    "FT"
+   ],
+   "NUISANCE": [
+    "N1"
+   ]
+  },
+  "optional": [
+   "R1c"
+  ],
+  "inherited_not_counted": [
+   "I1",
+   "I2"
+  ],
+  "cfg469": {
+   "FITTED": 2,
+   "DATA": 2,
+   "DECLARED FUNCTION": 1,
+   "RULE/CONST": 9,
+   "NUISANCE": 1
+  },
+  "reconcile": [
+   [
+    "+1",
+    "delta = 0.05 split out of the nu_mono row (CFG469 wrote 'DECLARED FUNCTION (+ shape constant delta)')"
+   ],
+   [
+    "+1",
+    "the growth-edge row is split: supply postulate (DECLARED RULE) + per-catchment conservation (DECLARED RULE); the 5.85 r_M edge itself is DERIVED given them, kappa and f_b"
+   ],
+   [
+    "+1",
+    "max rule T5 added: in CFG7's B ledger ('declared 5'), carries the X-COP pass, omitted from CFG469's table"
+   ],
+   [
+    "+1",
+    "footing choice added: the law has two readings of rho, run as two recipes (DECLARED DISCRETE CHOICE)"
+   ],
+   [
+    "-1",
+    "G = measured G retired: without the chassis there is no alpha_c/2 renormalisation to declare away"
+   ]
+  ]
+ },
+ "scorecard": [
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Gravity waves at light speed",
+   "board": "PASS",
+   "under_c": "UNTESTED",
+   "note": "c_T = 1 is a property of the khronon action (CFG292); a recipe has no tensor sector",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Equations well-posed (high freq.)",
+   "board": "COND",
+   "under_c": "UNTESTED",
+   "note": "no field equations to pose",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Full nonlinear well-posedness",
+   "board": "COND",
+   "under_c": "UNTESTED",
+   "note": "no field equations to pose",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Lapse condition, realistic matter",
+   "board": "PASS",
+   "under_c": "UNTESTED",
+   "note": "no lapse",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Binary pulsars",
+   "board": "PASS",
+   "under_c": "UNTESTED",
+   "note": "dipole radiation / alpha-hat need the khronon; margin 490,000x is a chassis result",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Strong coupling",
+   "board": "COND",
+   "under_c": "UNTESTED",
+   "note": "no field theory, no cutoff",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Solar system (PPN + Cassini Q2)",
+   "board": "PASS",
+   "under_c": "PARTIAL",
+   "note": "Cassini Q2 PASS via ownership (GATES 4.01, margin 2.0e4-3.3e4); gamma, alpha1, alpha2 UNTESTED; bare nu_mono is NOT Solar-System safe (CFG185), so the pass rests on the ownership rule alone",
+   "deps": [
+    "S2"
+   ],
+   "chassis": true,
+   "parts": {
+    "Cassini Q2 (ownership)": "PASS",
+    "PPN gamma, alpha1, alpha2": "UNTESTED"
+   },
+   "flag": null
+  },
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Matter conservation (G9)",
+   "board": "PASS",
+   "under_c": "UNTESTED",
+   "note": "no Bianchi identity without an action; the relaxation rule R1 has no force",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Structural order (G0)",
+   "board": "COND",
+   "under_c": "UNTESTED",
+   "note": "no action to order",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Zero-field nonlinear, ungated",
+   "board": "FAIL",
+   "under_c": "MOOT",
+   "note": "a FAIL of the ungated chassis; the recipe retires that object (moot, not passed)",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Relativistic theory (the chassis)",
+   "tile": "Black holes (EHT, LIGO ringdown)",
+   "board": "COND",
+   "under_c": "UNTESTED",
+   "note": "no strong-field sector; CFG467 alpha_c tension and CFG319 UH defect vanish with it",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Galaxies and clusters",
+   "tile": "Rotation curves (SPARC RAR)",
+   "board": "PASS",
+   "under_c": "PASS",
+   "note": "0.1003 dex with nu_mono; holds only while the 5.85 r_M edge is NOT applied to SPARC galaxies (CFG487: alt dwarfs A3 0.864 < 0.90 with it): see conflict C1",
+   "deps": [
+    "LAW",
+    "F1",
+    "K1",
+    "K1a",
+    "N1",
+    "G1"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Galaxies and clusters",
+   "tile": "Local a0 from MeerKAT",
+   "board": "PASS",
+   "under_c": "PASS",
+   "note": "a0 0.9-1.4e-10 matches SPARC; kernel-dependent like kappa (CFG493)",
+   "deps": [
+    "LAW",
+    "F1",
+    "K1"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Galaxies and clusters",
+   "tile": "Weak lensing (KiDS)",
+   "board": "PASS",
+   "under_c": "PASS",
+   "note": "passes with the declared x_e = 0.4; FAILS with the growth edge 5.85 r_M (CFG487 +60.5 / +70.6): see conflict C1",
+   "deps": [
+    "S1",
+    "E1",
+    "L1",
+    "LAW"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Galaxies and clusters",
+   "tile": "Clusters, Bullet Cluster",
+   "board": "PASS",
+   "under_c": "PASS",
+   "note": "X-COP identity 0.946 +- 0.080 through the max rule; Bullet needs the cold mass. The supply limit does not set the cluster level (CFG379 FAILS; CFG497 bonus: FAIL by 0.007 / 0.008): a tension of the supply rule, not of this tile",
+   "deps": [
+    "E5",
+    "F2",
+    "L1"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Galaxies and clusters",
+   "tile": "Andromeda + Local Volume dwarfs",
+   "board": "PASS",
+   "under_c": "PASS",
+   "note": "law alone, native inputs (CFG313)",
+   "deps": [
+    "LAW",
+    "S2"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Galaxies and clusters",
+   "tile": "Globulars + ownership rule",
+   "board": "COND",
+   "under_c": "COND",
+   "note": "CFG465: tile FRAGILE (Pal 3 unsourced); on sourced inputs Newton fits; law-applied exclusion ROBUST",
+   "deps": [
+    "S2"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Galaxies and clusters",
+   "tile": "Milky Way ultra-faint dwarfs",
+   "board": "COND",
+   "under_c": "COND",
+   "note": "CFG344 RESOLVES narrowly and conditionally (post-reionisation cold accretion, LCDM-calibrated assembly)",
+   "deps": [
+    "LAW",
+    "S2",
+    "F2"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Galaxies and clusters",
+   "tile": "Massive ellipticals (SLUGGS)",
+   "board": "UNDEC",
+   "under_c": "UNDEC",
+   "note": "sample not significant; the four centrals are a ROBUST FAIL with stars only (CFG466), a known board sub-fail",
+   "deps": [
+    "LAW",
+    "S2"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Cosmology and a0 over time",
+   "tile": "Constant a0 vs a0 ~ H(z)",
+   "board": "UNDEC",
+   "under_c": "UNDEC",
+   "note": "calibration wall (PAPER38); a0 tracks rho_DE, flat only if w = -1",
+   "deps": [
+    "LAW",
+    "D1"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Cosmology and a0 over time",
+   "tile": "High-z on halo-free inputs",
+   "board": "UNDEC",
+   "under_c": "UNDEC",
+   "note": "RC100 on the flat line (CFG303)",
+   "deps": [
+    "LAW"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Cosmology and a0 over time",
+   "tile": "CRISTAL z~5 / ALESS 122.1",
+   "board": "UNDEC",
+   "under_c": "UNDEC",
+   "note": "stress tests not robust (CFG307/308)",
+   "deps": [
+    "LAW"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Cosmology and a0 over time",
+   "tile": "Gaia DR4 wide binaries",
+   "board": "OPEN",
+   "under_c": "OPEN",
+   "note": "pre-registered Arm C (ownership, no EFE): gamma-hat = 1.000; decides 2 Dec 2026",
+   "deps": [
+    "S2"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "Cosmology and a0 over time",
+   "tile": "Structure growth, candidate B",
+   "board": "COND",
+   "under_c": "TENSION",
+   "note": "MISSING RULE E4 -> committed CFG424 'MUTATE (no compensation)': sigma8 1.0326, max|P-1| 0.154 > 0.10 -> TENSION | zero-knob edge + per-catchment conservation, 16/16 runs incl. 512^3 x2 seeds, both footings, DE-tracking; condition: bookkeeping cold energy, supply postulate an input, convergence beyond 512^3 untested; the edge clashes with lensing (C1)",
+   "deps": [
+    "S1",
+    "E2",
+    "E3",
+    "E4",
+    "F1",
+    "D2",
+    "F2",
+    "R1"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": "MISSING RULE E4 -> committed CFG424 'MUTATE (no compensation)': sigma8 1.0326, max|P-1| 0.154 > 0.10 -> TENSION"
+  },
+  {
+   "group": "Cosmology and a0 over time",
+   "tile": "Structure growth, chassis alone",
+   "board": "FAIL",
+   "under_c": "MOOT",
+   "note": "a FAIL of the ungated chassis (law on everywhere); retired with it, not passed",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "The deep 'why'",
+   "tile": "Why kappa = 1/2 (the 32 pi)",
+   "board": "OPEN",
+   "under_c": "OPEN",
+   "note": "stays OPEN, with one lead fewer: the khronon-class tie kappa = 2 sqrt(8 pi)/(3 beta) is lost",
+   "deps": [
+    "F1"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "The deep 'why'",
+   "tile": "What sets the cold-mass amount",
+   "board": "OPEN",
+   "under_c": "OPEN",
+   "note": "an input (FITTED); CFG496: 0/15 cold-dark energy clues",
+   "deps": [
+    "F2"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "The deep 'why'",
+   "tile": "Ownership from an action",
+   "board": "OPEN",
+   "under_c": "DECLARED",
+   "note": "under C there is no action to derive it from: the question is retired and ownership is a DECLARED RULE (not passed, not open)",
+   "deps": [
+    "S2"
+   ],
+   "chassis": false,
+   "parts": null,
+   "flag": null
+  },
+  {
+   "group": "The deep 'why'",
+   "tile": "Radiative stability (G12)",
+   "board": "COND",
+   "under_c": "UNTESTED",
+   "note": "no quantum field theory to run loops on",
+   "deps": [],
+   "chassis": true,
+   "parts": null,
+   "flag": null
+  }
+ ],
+ "tally_board": {
+  "PASS": 10,
+  "COND": 9,
+  "FAIL": 2,
+  "UNDEC": 4,
+  "OPEN": 4
+ },
+ "tally_under_c": {
+  "UNTESTED": 10,
+  "PARTIAL": 1,
+  "MOOT": 2,
+  "PASS": 5,
+  "COND": 2,
+  "UNDEC": 4,
+  "OPEN": 3,
+  "TENSION": 1,
+  "DECLARED": 1
+ },
+ "unavailable": [
+  [
+   "GW speed c_T = c and GW dispersion / polarisations",
+   "GATES 4.02, 5.07; tile 'Gravity waves at light speed'"
+  ],
+  [
+   "PPN gamma, beta, alpha1, alpha2, alpha3, zeta_i, xi",
+   "GATES 4.04; only Cassini Q2 survives, via ownership"
+  ],
+  [
+   "binary pulsars (dipole radiation, alpha-hat), neutron-star sensitivities",
+   "CFG291/311; tile 'Binary pulsars'"
+  ],
+  [
+   "BBN and the CMB",
+   "GATES 3.01 / 3.13: standard BY DECLARATION (rule B1), not predicted"
+  ],
+  [
+   "black holes: EHT shadows, ringdown, moving holes, the universal horizon",
+   "CFG318/319, CFG467, CFG469 option A"
+  ],
+  [
+   "strong field / compact objects, collapse",
+   "CFG318; RECIPE_GATE_AUDIT G11"
+  ],
+  [
+   "lensing = dynamics (Phi = Psi) as a derivation",
+   "GATES 4.03 (declared instead: rule L1)"
+  ],
+  [
+   "preferred-frame effects (a0 vs CMB-frame speed)",
+   "GATES 4.08 (KM1): neither tested nor threatened"
+  ],
+  [
+   "well-posedness, Cauchy problem, DOF / ghost count, strong coupling, radiative stability",
+   "GATES 5.02-5.05; G12"
+  ]
+ ],
+ "lost": [
+  [
+   "CFG373 khronon lapse carrier",
+   "LEAD (mechanism)",
+   "G1 PASS symbolic with zero constants: the phantom target is a local functional of the lapse field; overall CONDITIONAL"
+  ],
+  [
+   "CFG381 khronon reaction sink",
+   "LEAD (mechanism, +1 constant)",
+   "the khronon does not produce K ~ Gamma/c; a direct fluid-khronon coupling lambda_x would (+1 constant)"
+  ],
+  [
+   "CFG462 lapse settling edge",
+   "FAIL (no loss of a pass)",
+   "the lapse has no f_b and cannot stop settling at 5.85 r_M"
+  ],
+  [
+   "CFG483 khronon-boundary settling class (C7)",
+   "LEAD (derivation given the cosmic budget)",
+   "sigma^4 = G M_b a0/4 exact given M_c = nu M_b, edge 4.02 r_M (not 5.85); falsifier UNDECIDED at 256^3; not on STANDING, unaudited"
+  ],
+  [
+   "khronon-class a0 <-> rho_Lambda tie",
+   "TIE (not a derivation)",
+   "kappa = 2 sqrt(8 pi)/(3 beta); kappa = 1/2 iff beta = 6.684, beta not derived"
+  ],
+  [
+   "the chassis's own passes and conditions",
+   "BOARD TILES -> UNTESTED",
+   "c_T = 1, lapse W <= 0, pulsars 490,000x, PPN filter, G9 Bianchi, G0, G8, G11, G12 (CFG292/294/312/291/311/357/329/318/319/320)"
+  ],
+  [
+   "CFG469 option A / CFG467 alpha_c window",
+   "MOOT",
+   "the alpha_c sliver and the lenient-BH reading concern the chassis only"
+  ]
+ ],
+ "conflicts": [
+  {
+   "id": "C1",
+   "pair": "E1 (KiDS edge x_e = 0.4) vs E2/E3(/E4) (supply postulate -> 5.85 r_M growth edge)",
+   "established": true,
+   "evidence": "5.85 r_M on real lenses: KiDS chi2 - best +60.5 / +70.6 (> 4, CFG487); SPARC alt dwarfs FAIL (CFG487 A3 0.864); early-type levels chi2 30.5 / 38.1 vs <= 12.59 (CFG485 R8, CFG494 K4, CFG497 K5). Growth needs the edge + conservation (CFG424-460, 16/16).",
+   "resolutions": [
+    [
+     "HAND-SET, NON-CONSERVING",
+     true,
+     "one support x = 0.4 r_ta for both: KiDS +0.79 / +2.16 vs best (CFG413), growth 512^3 0.0799 / 0.0996 (CFG414, alt knife-edge by 0.0004), SPARC untouched for x >= 0.16 (CFG487 E2 row), early types pass with any extended edge (CFG494). Costs: x hand-set (owner 10-07: 'nothing chosen by hand'; CFG414 calls itself a diagnostic), CFG414 runs the RES rule with hand-set R_c = 3 Mpc/h (+1 constant) and no per-catchment conservation"
+    ],
+    [
+     "ZERO-KNOB clock taper, no edge (CFG487 V1)",
+     false,
+     "passes KiDS +2.05 / +0.71 and SPARC, but growth TENSION (post-hoc V1-CATCH max|P-1| 0.174 / 0.202); V1 is an MS1 exception"
+    ],
+    [
+     "PENDING: CFG498 clock taper + capped per-catchment conservation",
+     null,
+     "criteria d9c739010 committed; no committed result"
+    ]
+   ],
+   "status": "PENDING / RESOLVED ON RECORD only HAND-SET"
+  },
+  {
+   "id": "C2",
+   "pair": "R1c (settling clock as the support, no edge) vs growth's need for confinement",
+   "established": true,
+   "evidence": "CFG487 POST-HOC V1-CATCH: max|P-1| 0.174 / 0.202, overdraw 26% / 52% -> TENSION. With the edge, the clock is NOT DIAGNOSTIC for growth (FRW-firing control also passes).",
+   "status": "CONDITIONAL on using the clock as the support; CFG498 PENDING"
+  }
+ ],
+ "tensions": [
+  {
+   "id": "C3",
+   "pair": "R1c-V1 (cold-energy clock) vs MS1 (the switch reads baryons, never the carrier)",
+   "evidence": "CFG487: V1 is an MS1 EXCEPTION, NOT ADMISSIBLE under original MS1; V2 (strict MS1) alone fails KiDS +6.2 / +11.1",
+   "status": "RULE-LEVEL CONFLICT only if the V1 clock is adopted; the owner relaxed MS1 for testing (CFG351, 10-08 'test both')"
+  },
+  {
+   "id": "C4",
+   "pair": "E2 (supply-limited settling) vs E5 (max rule; cluster levels)",
+   "evidence": "CFG379 FAILS (supply limit does not set the X-COP / group / MW levels); CFG497 bonus: clusters FAIL by 0.007 / 0.008 at b = 0 for every supply >= nu - 1. The X-COP identity tile itself passes through E5.",
+   "status": "TENSION (level prediction fails); no board tile flips"
+  },
+  {
+   "id": "C6",
+   "pair": "K1 (kernel) vs F1 (kappa)",
+   "evidence": "CFG493: switching nu_mono to the quadrature form moves every route by +0.06 to +0.09 dex (kappa 0.417 -> 0.489), more than the 1/2 vs 1/sqrt(pi) gap; CFG468 frozen, no committed result",
+   "status": "DEPENDENCY, not a conflict: kappa must be refitted with the kernel; the recipe fixes nu_mono"
+  }
+ ],
+ "consistent": [
+  {
+   "id": "C5",
+   "pair": "S1 (bound-only switch) vs B1 (GR + CDM background)",
+   "evidence": "CFG487: the switch is exactly OFF on FRW and in linear parcels; CMB lensing 1.000 and forest 0.00 with the bound-only switch (GATES 3.02 / 3.12)",
+   "status": "CONSISTENT"
+  }
+ ],
+ "numbers": {
+  "424_mut_pdev": 0.15418907907389356,
+  "424_mut_s8": 1.0326158712790385,
+  "424_mut_verdict": "TENSION",
+  "425_R3": 0.03333391990036483,
+  "439_alt": 0.039761886326618257,
+  "439_de": 0.033451973632562026,
+  "460": 0.040003557240198884,
+  "zk_all_ok": true,
+  "zk_max_pdev": 0.040003557240198884,
+  "487_E1_canonical": 60.477363264323536,
+  "487_noedge_canonical": 2.048205380297839,
+  "487_V2noedge_canonical": 6.17075363623065,
+  "487_E2_canonical": 12.91625677241781,
+  "487_E1_alt": 70.57301393729163,
+  "487_noedge_alt": 0.7101324668290747,
+  "487_V2noedge_alt": 11.058017458447603,
+  "487_E2_alt": 20.78679153691916,
+  "487_sparc_V1": false,
+  "487_sparc_V2": false,
+  "487_catch_can": 0.17409471298798496,
+  "487_catch_alt": 0.20161732731069393,
+  "487_catch_verdicts": [
+   "TENSION",
+   "TENSION"
+  ],
+  "487_edge_growth_ok": true,
+  "414_can": 0.07987861573105359,
+  "414_alt": 0.0996427276074956,
+  "414_ok": true,
+  "413_x04_canonical": 0.7854675655878616,
+  "413_x04_alt": 2.1643327330998137
+ },
+ "verdict": "C NOT VIABLE",
+ "verdict_reasons": [
+  "tile 'Structure growth, candidate B' COND -> TENSION (MISSING RULE E4 -> committed CFG424 'MUTATE (no compensation)': sigma8 1.0326, max|P-1| 0.154 > 0.10 -> TENSION)"
+ ],
+ "checks": [
+  [
+   "K1 tile coverage (literal: 33 tiles)",
+   false,
+   "29 board tiles parsed (frozen text said 33: a counting error in the criteria, kept)"
+  ],
+  [
+   "K1b tile coverage (every parsed tile scored once, none invented)",
+   true,
+   "29 parsed; 29 scored; extra []; missing []"
+  ],
+  [
+   "K2 provenance (quotes verbatim at HEAD)",
+   true,
+   "92/92 found"
+  ],
+  [
+   "K3 no upgrade",
+   true,
+   "tiles raised: []"
+  ],
+  [
+   "K4 CFG469 reproduction",
+   true,
+   "12/12 CFG469 tiles flagged chassis (13 incl. growth-alone); CFG469 rows {'FITTED': 2, 'DATA': 2, 'DECLARED FUNCTION': 1, 'RULE/CONST': 9, 'NUISANCE': 1}"
+  ],
+  [
+   "K5 JSON numbers reproduce README values",
+   true,
+   "[(0.154, 0.154), (60.5, 60.5), (70.6, 70.6), (2.05, 2.05), (0.71, 0.71), (0.0996, 0.0996), (0.033, 0.033), (0.04, 0.04), (0.033, 0.033), (0.04, 0.04)]"
+  ],
+  [
+   "K6 pending-lane guard (no CFG498 result read)",
+   true,
+   "CFG498 files read: []"
+  ]
+ ],
+ "quotes_checked": 92,
+ "mutate": {
+  "growth_flagged": true,
+  "growth_status": "TENSION",
+  "verdict_changed": true
+ }
+}
