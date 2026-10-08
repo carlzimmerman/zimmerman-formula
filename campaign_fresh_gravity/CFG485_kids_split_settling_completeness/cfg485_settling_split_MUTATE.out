@@ -1,0 +1,142 @@
+CFG485 -- DOES SETTLING COMPLETENESS PRODUCE THE KiDS EARLY/LATE SPLIT?  Criteria: FROZEN_CRITERIA.md (019eb965a, committed alone first).
+  calib    CFG95's stellar-mass calibration, executed read-only from CFG95_kids_split_own_calibration.py up to its C1-C3 banner (MUTATE off).
+  ages     no stellar-population age on disk -> declared proxy P1 = LePhare sSFR formation time t_age = min(10^(MASS_BEST - SFR_BEST) yr, t_U(z)).
+  settle   f_i = 1 - exp(-sqrt(4 pi G rho_bar_i) t_age_i), lambda = 1, rho_bar = (M_b/f_b)/(4pi/3 r_edge^3), r_edge = r_M/ln(1/(1-f_b)) = 5.850 r_M,
+           r_M = sqrt(G M_b,true/a0), f_b = 0.02237/0.14237 (engine).
+  model    nu_mono phantom (CFG7_common.M_law) truncated at r_edge(M_b), x f, + true point mass; CFG95's stack (CFG61 grid, log-M_b interpolation);
+           CFG413's free two-halo amplitude on the difference (one amplitude, exact; 6 dof).
+  data     CFG95's released split (C_D) and re-measured split (CFG88 jackknife, Hartlap 41/49) on K1.
+  compare  S (per-lens f) vs B2 (uniform f = all-lens M_gal-weighted mean) vs B1 (CFG95's calibrated law to 0.40 r_ta, f = 1).
+VERDICT  per cell (data set x footing): S if p_S > 0.05 and dchi2 >= 4 vs B1 and vs B2; C if s_hat/sigma_s <= -2; else N.
+         SUPPORTED = all four S; CONTRADICTED = all four C; else NOT DIAGNOSTIC.
+MUTATE   CFG485_MUTATE=1: t_age permuted across all lenses (default_rng(485)); H1 must FAIL.
+
+  *** CFG485_MUTATE=1: t_age permuted across all lenses (default_rng(485)) -- H1 must FAIL ***
+
+  Step 0: CFG95 executed read-only (48 s); K1 = [8, 9, 10, 11, 12, 13, 14]; lenses 181,477 (late 93,398, early 88,079)
+  f_b = 0.157126; r_edge / r_M = 1/ln(1/(1-f_b)) = 5.85009; CFG61's own FB (not used) = 0.15712579897450307
+
+======================================================================================================================
+C1-C6  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG95's machinery (read-only) reproduces CFG95's committed H numbers to 1e-6 (released 20.3037 / 18.5935; re-measured 26.6775 / 24.7862)
+         canonical: released 20.3037, re-measured 26.6775; alt: released 18.5935, re-measured 24.7862; max |diff| 0.0e+00
+  [PASS] C2 CONTROL: this lane's vectorised stack (CFG61's 0.40 r_ta tables, f = 1, no two-halo) reproduces CFG95's model D on K1 to 1e-9 and its chi2 to 1e-6, both footings
+         max relative deviation of D 1.0e-14; max |chi2 diff| 3.2e-14 (0 s)
+  edge tables built (4 s): mass-conserving edge 5.8501 r_M; census edge (f_ret 0.1) 54.14 r_M
+  [PASS] C3 CONTROL: the nu_mono phantom at r = r_M/ln(1/(1-f_b)) = 5.850 r_M equals (1-f_b)/f_b M_b = 5.364 M_b to 1e-3 (M_b 1e9, 1e10.5, 1e12; both footings)
+         (1-f_b)/f_b = 5.3643; max relative deviation 4.5e-09
+  [PASS] C4 CONTROL: the log-M_b interpolation of the truncated phantom Delta Sigma (+ point mass) matches direct profiles at three off-node masses to 1% (K1 radii)
+         max relative deviations at log M* 10.325 / 10.775 / 11.125: 1.5e-03, 1.7e-03, 1.8e-03
+  edge / census stacks built (0 s)
+  [PASS] C5 CONTROL: the early and late two-halo templates are proportional over K1 (max rel. deviation of T_e/T_l from its mean < 1e-9)
+         max relative deviation 2.2e-16; T_e/T_l = 0.8307
+  [PASS] C6 CONTROL: every lens matches the LePhare file by exact position (IDs row-aligned); u - r > 2 reproduces typ; log M* = MASS_MED + 0.15
+         181,477 lenses; IDs aligned True; exact match True; typ True; logM True; lr_lenses order = CFG61's True
+  [PASS] C7 (proxy sanity): the age proxy orders the classes -- median t_age(early) >= median t_age(late)
+         median t_age early 9.14 Gyr, late 9.13 Gyr; fallback (bad MASS_BEST/SFR_BEST) 21; capped at t_U(z) early 77,416 / late 14,755
+
+======================================================================================================================
+PRIMARY  f = 1 - exp(-sqrt(4 pi G rho_bar) t_age), rho_bar inside r_edge = 5.850 r_M, P1 ages, free two-halo (6 dof)
+======================================================================================================================
+    [primary] canonical M_gal-weighted mean q = 1 - f: early 1.429e-02, late 1.194e-02, all 1.343e-02
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.004, -0.008, -0.014, -0.025, -0.043, -0.069, -0.08 ]
+        released  : chi2 S 4.595 (p 5.97e-01) | B2 4.573 | B1 5.506 (p 4.81e-01) /6 | dchi2 vs B1 +0.910, vs B2 -2.227e-02 | s_hat/sigma -1.39, SNR_inc 1.69e-02 -> N
+        remeasured: chi2 S 6.631 (p 3.56e-01) | B2 6.604 | B1 6.704 (p 3.49e-01) /6 | dchi2 vs B1 +0.073, vs B2 -2.729e-02 | s_hat/sigma -1.56, SNR_inc 1.56e-02 -> N
+    [primary] alt       M_gal-weighted mean q = 1 - f: early 1.151e-02, late 9.465e-03, all 1.076e-02
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.004, -0.007, -0.012, -0.021, -0.036, -0.063, -0.079]
+        released  : chi2 S 4.860 (p 5.62e-01) | B2 4.842 | B1 5.404 (p 4.93e-01) /6 | dchi2 vs B1 +0.543, vs B2 -1.840e-02 | s_hat/sigma -1.19, SNR_inc 1.52e-02 -> N
+        remeasured: chi2 S 6.076 (p 4.15e-01) | B2 6.052 | B1 6.585 (p 3.61e-01) /6 | dchi2 vs B1 +0.509, vs B2 -2.469e-02 | s_hat/sigma -1.48, SNR_inc 1.40e-02 -> N
+    data released   : [ 1.78,  1.84,  5.22, 11.86, 15.34,  9.86, 24.44]
+    data re-measured: [ 3.26,  7.14,  5.6 ,  5.33, 11.92, 21.48, 33.28]
+    canonical model D_S  : [0.329, 0.58 , 1.023, 1.805, 3.184, 2.727, 3.117]
+              model D_B1 : [0.537, 0.722, 0.979, 1.338, 1.844, 2.571, 3.637]
+    alt       model D_S  : [0.375, 0.662, 1.169, 2.062, 3.638, 5.319, 2.777]
+              model D_B1 : [0.678, 0.911, 1.233, 1.679, 2.306, 3.199, 4.495]
+  [FAIL] H1 [HEADLINE; MUTATE must fail] SUPPORTED: all four cells have p_S > 0.05 and dchi2 >= 4 vs B1 and vs B2  [MUTATE: ages shuffled]
+         released/canonical: N (p_S 5.97e-01, dB1 +0.91, dB2 -2.23e-02); released/alt: N (p_S 5.62e-01, dB1 +0.54, dB2 -1.84e-02); remeasured/canonical: N (p_S 3.56e-01, dB1 +0.07, dB2 -2.73e-02); remeasured/alt: N (p_S 4.15e-01, dB1 +0.51, dB2 -2.47e-02)
+  [PASS] H2 the prediction's sign survives: no cell has s_hat/sigma_s <= -2
+         released/canonical: s_hat/sigma -1.39 (SNR_inc 1.7e-02); released/alt: s_hat/sigma -1.19 (SNR_inc 1.5e-02); remeasured/canonical: s_hat/sigma -1.56 (SNR_inc 1.6e-02); remeasured/alt: s_hat/sigma -1.48 (SNR_inc 1.4e-02)
+
+    VERDICT (frozen rule): NOT DIAGNOSTIC   [cells {('released', 'canonical'): 'N', ('released', 'alt'): 'N', ('remeasured', 'canonical'): 'N', ('remeasured', 'alt'): 'N'}]
+    The settling increment's own signal-to-noise is < 2 in every cell: at lambda = 1 and the 5.85 r_M edge the reading cannot produce the split.
+
+======================================================================================================================
+REPORTED ROWS (no verdict weight)
+======================================================================================================================
+  [PASS] (reported) R1 (reported) per-class t_age, t_dyn (mean density inside r_edge) and q = 1 - f
+         canonical: early t_age 5/50/95% [0.54, 9.14, 11.11] Gyr, t_dyn [0.151, 0.199, 0.225] Gyr, q 5/50/95% [1.79e-28, 1.31e-19, 0.0659], M_gal-mean q 1.43e-02, N(q>1e-3) 11,190, N(q>0.1) 3,538 of 88,079; late t_age 5/50/95% [0.54, 9.13, 11.11] Gyr, t_dyn [0.1, 0.156, 0.209] Gyr, q 5/50/95% [3.6e-42, 9.79e-23, 0.0295], M_gal-mean q 1.19e-02, N(q>1e-3) 9,562, N(q>0.1) 2,685 of 93,398 | alt: early t_age 5/50/95% [0.54, 9.14, 11.11] Gyr, t_dyn [0.13, 0.172, 0.193] Gyr, q 5/50/95% [5.44e-33, 1.2e-22, 0.0424], M_gal-mean q 1.15e-02, N(q>1e-3) 9,685, N(q>0.1) 2,838 of 88,079; late t_age 5/50/95% [0.54, 9.13, 11.11] Gyr, t_dyn [0.086, 0.133, 0.179] Gyr, q 5/50/95% [6.82e-49, 1.86e-26, 0.0163], M_gal-mean q 9.46e-03, N(q>1e-3) 8,262, N(q>0.1) 2,139 of 93,398 | fallback 21
+    [R2_local_edge_density] canonical M_gal-weighted mean q = 1 - f: early 2.918e-02, late 2.498e-02, all 2.763e-02
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.008, -0.014, -0.025, -0.044, -0.077, -0.123, -0.142]
+        released  : chi2 S 4.626 (p 5.93e-01) | B2 4.586 | B1 5.506 (p 4.81e-01) /6 | dchi2 vs B1 +0.879, vs B2 -3.986e-02 | s_hat/sigma -1.39, SNR_inc 3.02e-02 -> N
+        remeasured: chi2 S 6.654 (p 3.54e-01) | B2 6.605 | B1 6.704 (p 3.49e-01) /6 | dchi2 vs B1 +0.050, vs B2 -4.888e-02 | s_hat/sigma -1.56, SNR_inc 2.78e-02 -> N
+    [R2_local_edge_density] alt       M_gal-weighted mean q = 1 - f: early 2.432e-02, late 2.049e-02, all 2.291e-02
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.007, -0.012, -0.022, -0.038, -0.068, -0.117, -0.148]
+        released  : chi2 S 4.882 (p 5.59e-01) | B2 4.847 | B1 5.404 (p 4.93e-01) /6 | dchi2 vs B1 +0.522, vs B2 -3.459e-02 | s_hat/sigma -1.19, SNR_inc 2.85e-02 -> N
+        remeasured: chi2 S 6.104 (p 4.12e-01) | B2 6.057 | B1 6.585 (p 3.61e-01) /6 | dchi2 vs B1 +0.482, vs B2 -4.643e-02 | s_hat/sigma -1.48, SNR_inc 2.61e-02 -> N
+    [R3_P2_half_age] canonical M_gal-weighted mean q = 1 - f: early 3.451e-02, late 2.974e-02, all 3.276e-02
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.009, -0.016, -0.028, -0.05 , -0.088, -0.139, -0.161]
+        released  : chi2 S 4.637 (p 5.91e-01) | B2 4.591 | B1 5.506 (p 4.81e-01) /6 | dchi2 vs B1 +0.869, vs B2 -4.538e-02 | s_hat/sigma -1.39, SNR_inc 3.44e-02 -> N
+        remeasured: chi2 S 6.661 (p 3.53e-01) | B2 6.605 | B1 6.704 (p 3.49e-01) /6 | dchi2 vs B1 +0.043, vs B2 -5.565e-02 | s_hat/sigma -1.56, SNR_inc 3.16e-02 -> N
+    [R3_P2_half_age] alt       M_gal-weighted mean q = 1 - f: early 2.898e-02, late 2.460e-02, all 2.737e-02
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.008, -0.014, -0.025, -0.044, -0.078, -0.134, -0.17 ]
+        released  : chi2 S 4.889 (p 5.58e-01) | B2 4.849 | B1 5.404 (p 4.93e-01) /6 | dchi2 vs B1 +0.515, vs B2 -3.974e-02 | s_hat/sigma -1.20, SNR_inc 3.27e-02 -> N
+        remeasured: chi2 S 6.112 (p 4.11e-01) | B2 6.059 | B1 6.585 (p 3.61e-01) /6 | dchi2 vs B1 +0.473, vs B2 -5.333e-02 | s_hat/sigma -1.48, SNR_inc 2.99e-02 -> N
+    [R4_local_and_P2] canonical M_gal-weighted mean q = 1 - f: early 6.173e-02, late 5.434e-02, all 5.901e-02
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.014, -0.025, -0.044, -0.077, -0.136, -0.216, -0.25 ]
+        released  : chi2 S 4.686 (p 5.85e-01) | B2 4.616 | B1 5.506 (p 4.81e-01) /6 | dchi2 vs B1 +0.819, vs B2 -7.074e-02 | s_hat/sigma -1.39, SNR_inc 5.32e-02 -> N
+        remeasured: chi2 S 6.694 (p 3.50e-01) | B2 6.608 | B1 6.704 (p 3.49e-01) /6 | dchi2 vs B1 +0.010, vs B2 -8.677e-02 | s_hat/sigma -1.57, SNR_inc 4.89e-02 -> N
+    [R4_local_and_P2] alt       M_gal-weighted mean q = 1 - f: early 5.315e-02, late 4.621e-02, all 5.060e-02
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.013, -0.022, -0.039, -0.07 , -0.123, -0.212, -0.269]
+        released  : chi2 S 4.924 (p 5.54e-01) | B2 4.860 | B1 5.404 (p 4.93e-01) /6 | dchi2 vs B1 +0.480, vs B2 -6.347e-02 | s_hat/sigma -1.20, SNR_inc 5.17e-02 -> N
+        remeasured: chi2 S 6.155 (p 4.06e-01) | B2 6.070 | B1 6.585 (p 3.61e-01) /6 | dchi2 vs B1 +0.430, vs B2 -8.512e-02 | s_hat/sigma -1.49, SNR_inc 4.73e-02 -> N
+    [R5_census_edge] canonical M_gal-weighted mean q = 1 - f: early 1.522e-01, late 1.367e-01, all 1.465e-01
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.104, -0.136, -0.178, -0.233, -0.303, -0.391, -0.501]
+        released  : chi2 S 5.542 (p 4.76e-01) | B2 5.505 | B1 5.506 (p 4.81e-01) /6 | dchi2 vs B1 -0.037, vs B2 -3.743e-02 | s_hat/sigma -1.75, SNR_inc 1.45e-01 -> N
+        remeasured: chi2 S 6.737 (p 3.46e-01) | B2 6.700 | B1 6.704 (p 3.49e-01) /6 | dchi2 vs B1 -0.033, vs B2 -3.712e-02 | s_hat/sigma -1.58, SNR_inc 1.40e-01 -> N
+    [R5_census_edge] alt       M_gal-weighted mean q = 1 - f: early 1.343e-01, late 1.198e-01, all 1.290e-01
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.105, -0.137, -0.18 , -0.236, -0.307, -0.398, -0.511]
+        released  : chi2 S 5.439 (p 4.89e-01) | B2 5.400 | B1 5.404 (p 4.93e-01) /6 | dchi2 vs B1 -0.035, vs B2 -3.855e-02 | s_hat/sigma -1.70, SNR_inc 1.47e-01 -> N
+        remeasured: chi2 S 6.618 (p 3.58e-01) | B2 6.579 | B1 6.585 (p 3.61e-01) /6 | dchi2 vs B1 -0.033, vs B2 -3.882e-02 | s_hat/sigma -1.56, SNR_inc 1.41e-01 -> N
+    [R6_cfg95_edge] canonical M_gal-weighted mean q = 1 - f: early 1.496e-01, late 1.470e-01, all 1.487e-01
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.017, -0.022, -0.029, -0.038, -0.05 , -0.065, -0.083]
+        released  : chi2 S 5.524 (p 4.79e-01) | B2 5.518 | B1 5.506 (p 4.81e-01) /6 | dchi2 vs B1 -0.019, vs B2 -6.151e-03 | s_hat/sigma -1.75, SNR_inc 2.40e-02 -> N
+        remeasured: chi2 S 6.718 (p 3.48e-01) | B2 6.712 | B1 6.704 (p 3.49e-01) /6 | dchi2 vs B1 -0.014, vs B2 -6.120e-03 | s_hat/sigma -1.58, SNR_inc 2.31e-02 -> N
+    [R6_cfg95_edge] alt       M_gal-weighted mean q = 1 - f: early 1.497e-01, late 1.471e-01, all 1.487e-01
+        increment D_S - D_B2 on K1 [Msun/pc^2]: [-0.018, -0.024, -0.032, -0.041, -0.054, -0.07 , -0.09 ]
+        released  : chi2 S 5.430 (p 4.90e-01) | B2 5.423 | B1 5.404 (p 4.93e-01) /6 | dchi2 vs B1 -0.027, vs B2 -6.869e-03 | s_hat/sigma -1.71, SNR_inc 2.58e-02 -> N
+        remeasured: chi2 S 6.607 (p 3.59e-01) | B2 6.600 | B1 6.585 (p 3.61e-01) /6 | dchi2 vs B1 -0.022, vs B2 -6.944e-03 | s_hat/sigma -1.57, SNR_inc 2.48e-02 -> N
+  [PASS] (reported) R2_local_edge_density (reported)
+         canonical/released: S 4.63 (p 5.9e-01), dB1 +0.88, dB2 -3.99e-02, s/sig -1.39, SNR 3.0e-02 [N]; q_e 2.9e-02 q_l 2.5e-02; canonical/remeasured: S 6.65 (p 3.5e-01), dB1 +0.05, dB2 -4.89e-02, s/sig -1.56, SNR 2.8e-02 [N]; q_e 2.9e-02 q_l 2.5e-02; alt/released: S 4.88 (p 5.6e-01), dB1 +0.52, dB2 -3.46e-02, s/sig -1.19, SNR 2.9e-02 [N]; q_e 2.4e-02 q_l 2.0e-02; alt/remeasured: S 6.10 (p 4.1e-01), dB1 +0.48, dB2 -4.64e-02, s/sig -1.48, SNR 2.6e-02 [N]; q_e 2.4e-02 q_l 2.0e-02
+  [PASS] (reported) R3_P2_half_age (reported)
+         canonical/released: S 4.64 (p 5.9e-01), dB1 +0.87, dB2 -4.54e-02, s/sig -1.39, SNR 3.4e-02 [N]; q_e 3.5e-02 q_l 3.0e-02; canonical/remeasured: S 6.66 (p 3.5e-01), dB1 +0.04, dB2 -5.56e-02, s/sig -1.56, SNR 3.2e-02 [N]; q_e 3.5e-02 q_l 3.0e-02; alt/released: S 4.89 (p 5.6e-01), dB1 +0.51, dB2 -3.97e-02, s/sig -1.20, SNR 3.3e-02 [N]; q_e 2.9e-02 q_l 2.5e-02; alt/remeasured: S 6.11 (p 4.1e-01), dB1 +0.47, dB2 -5.33e-02, s/sig -1.48, SNR 3.0e-02 [N]; q_e 2.9e-02 q_l 2.5e-02
+  [PASS] (reported) R4_local_and_P2 (reported)
+         canonical/released: S 4.69 (p 5.8e-01), dB1 +0.82, dB2 -7.07e-02, s/sig -1.39, SNR 5.3e-02 [N]; q_e 6.2e-02 q_l 5.4e-02; canonical/remeasured: S 6.69 (p 3.5e-01), dB1 +0.01, dB2 -8.68e-02, s/sig -1.57, SNR 4.9e-02 [N]; q_e 6.2e-02 q_l 5.4e-02; alt/released: S 4.92 (p 5.5e-01), dB1 +0.48, dB2 -6.35e-02, s/sig -1.20, SNR 5.2e-02 [N]; q_e 5.3e-02 q_l 4.6e-02; alt/remeasured: S 6.15 (p 4.1e-01), dB1 +0.43, dB2 -8.51e-02, s/sig -1.49, SNR 4.7e-02 [N]; q_e 5.3e-02 q_l 4.6e-02
+  [PASS] (reported) R5_census_edge (reported)
+         canonical/released: S 5.54 (p 4.8e-01), dB1 -0.04, dB2 -3.74e-02, s/sig -1.75, SNR 1.5e-01 [N]; q_e 1.5e-01 q_l 1.4e-01; canonical/remeasured: S 6.74 (p 3.5e-01), dB1 -0.03, dB2 -3.71e-02, s/sig -1.58, SNR 1.4e-01 [N]; q_e 1.5e-01 q_l 1.4e-01; alt/released: S 5.44 (p 4.9e-01), dB1 -0.04, dB2 -3.85e-02, s/sig -1.70, SNR 1.5e-01 [N]; q_e 1.3e-01 q_l 1.2e-01; alt/remeasured: S 6.62 (p 3.6e-01), dB1 -0.03, dB2 -3.88e-02, s/sig -1.56, SNR 1.4e-01 [N]; q_e 1.3e-01 q_l 1.2e-01
+  [PASS] (reported) R6_cfg95_edge (reported)
+         canonical/released: S 5.52 (p 4.8e-01), dB1 -0.02, dB2 -6.15e-03, s/sig -1.75, SNR 2.4e-02 [N]; q_e 1.5e-01 q_l 1.5e-01; canonical/remeasured: S 6.72 (p 3.5e-01), dB1 -0.01, dB2 -6.12e-03, s/sig -1.58, SNR 2.3e-02 [N]; q_e 1.5e-01 q_l 1.5e-01; alt/released: S 5.43 (p 4.9e-01), dB1 -0.03, dB2 -6.87e-03, s/sig -1.71, SNR 2.6e-02 [N]; q_e 1.5e-01 q_l 1.5e-01; alt/remeasured: S 6.61 (p 3.6e-01), dB1 -0.02, dB2 -6.94e-03, s/sig -1.57, SNR 2.5e-02 [N]; q_e 1.5e-01 q_l 1.5e-01
+  [PASS] (reported) R7 (reported) no two-halo term (7 dof): S, B2, B1 on the primary prediction
+         canonical/released: S 19.01 (p 8.1e-03), B2 18.88, B1 20.30 (p 4.9e-03); canonical/remeasured: S 26.35 (p 4.4e-04), B2 26.21, B1 26.68 (p 3.8e-04); alt/released: S 17.77 (p 1.3e-02), B2 17.66, B1 18.59 (p 9.6e-03); alt/remeasured: S 24.22 (p 1.0e-03), B2 24.10, B1 24.79 (p 8.3e-04)
+  [PASS] (reported) R8 (reported) absolute per-class profiles on K1 (released blocks, two-halo profiled per class, 6 dof)
+         canonical: early S 29.6 (A 1.71; no-2h 111.6), B1 2.5 (A 0.86; no-2h 23.1); late S 47.2 (A 0.53; no-2h 56.3), B1 13.9 (A -0.19; no-2h 15.1) | alt: early S 37.3 (A 1.68; no-2h 115.9), B1 2.9 (A 0.62; no-2h 13.5); late S 52.2 (A 0.55; no-2h 61.9), B1 14.3 (A -0.34; no-2h 18.1)
+      canonical early data [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+                      S (1-halo) [2.42, 4.26, 7.53, 13.28, 23.43, 36.63, 45.87]
+                      B1 (1-halo) [7.33, 9.79, 13.14, 17.71, 24.0, 32.73, 45.02]
+      canonical late  data [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+                      S (1-halo) [2.09, 3.69, 6.5, 11.47, 20.24, 33.9, 42.75]
+                      B1 (1-halo) [6.79, 9.07, 12.16, 16.37, 22.15, 30.16, 41.39]
+      alt       early data [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+                      S (1-halo) [2.35, 4.15, 7.32, 12.92, 22.8, 39.1, 50.09]
+                      B1 (1-halo) [7.91, 10.56, 14.16, 19.06, 25.77, 35.06, 48.06]
+      alt       late  data [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+                      S (1-halo) [1.98, 3.49, 6.15, 10.86, 19.16, 33.78, 47.31]
+                      B1 (1-halo) [7.23, 9.65, 12.92, 17.38, 23.47, 31.86, 43.56]
+  [PASS] (reported) R9 (reported) total-D sign: bins of K1 with D > 0 (prediction / released / re-measured)
+         canonical: D_S > 0 in 7/7; data 7/7 and 7/7; alt: D_S > 0 in 7/7; data 7/7 and 7/7
+
+    MUTATE: ages shuffled across all lenses; class contrast of M_gal-mean q per footing: canonical: early 1.429e-02 vs late 1.194e-02; alt: early 1.151e-02 vs late 9.465e-03
+
+    READING: verdict NOT DIAGNOSTIC (frozen rule).  kappa = 1/2 fitted; footings never pooled; cold mass still required; no particle.
+
+  17/18 checks pass; load-bearing failures: 1   (54 s)
