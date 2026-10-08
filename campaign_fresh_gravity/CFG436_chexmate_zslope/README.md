@@ -56,3 +56,6 @@ The baryonification paper gives model gas fractions for four CHEX-MATE stacks, i
 - The stacked f_gas values are model-dependent (BFC fits with a fixed, z-independent b_SZ). The bin medians differ in M_SZ (7.83 vs 8.36e14).
 - kappa = 1/2 is fitted. Both footings are reported, never pooled. The cold fluid's mass is still required (no dark-matter particle).
 - Nothing here says the data favour either branch.
+
+## Disclosure (deviation from the freeze, found on review; no verdict affected)
+The freeze says sigma_R comes from 20000 Monte Carlo draws. The script generates 20000 draws but evaluates R on the first 4000 per cell (runtime). At sigma_R ~ 0.16, the standard error of the spread is ~1%, while the power gate fails by a factor 2.4, so the verdict cannot change.
