@@ -1,0 +1,28 @@
+  V1-CAP canonical                : s8 0.9972  max|P-1| 0.1739  P@0.1/0.3/1 1.008/0.991/0.826 -> TENSION  (1646 s)
+      z0: q_raw max 2.007171020476214, q_max (after cap) 1.000, cap binds on 0.26286278590562917 of catchment mass, overdraw 0.0000, sum src -0.00116 vs sum|e| 1870869.0, min (s_c - comp)/s_c 0.0, catchments 1916
+      clock z0: latched mass 0.607 (voids 0.0339); <m> mass 0.485; min dm 0.0; m range [0.0, 0.9999999999999942]
+  V1-CAP alt                      : s8 0.9968  max|P-1| 0.2007  P@0.1/0.3/1 1.010/0.989/0.799 -> TENSION  (1573 s)
+      z0: q_raw max 2.2984062121104274, q_max (after cap) 1.000, cap binds on 0.5181239510395421 of catchment mass, overdraw 0.0000, sum src 0.00208 vs sum|e| 2082853.75, min (s_c - comp)/s_c 0.0, catchments 1921
+      clock z0: latched mass 0.607 (voids 0.0339); <m> mass 0.485; min dm 0.0; m range [0.0, 0.9999999999999863]
+  V2-CAP canonical                : s8 1.0030  max|P-1| 0.0181  P@0.1/0.3/1 1.006/1.008/0.982 -> GROWTH OK  (2018 s)
+      z0: q_raw max 0.6789706156582176, q_max (after cap) 0.679, cap binds on 0.0 of catchment mass, overdraw 0.0000, sum src -0.00101 vs sum|e| 454076.625, min (s_c - comp)/s_c 0.0, catchments 1954
+      clock z0: latched mass 0.147 (voids 0.0002); <m> mass 0.131; min dm 0.0; m range [0.0, 0.9999999999661119]
+  V2-CAP alt                      : s8 1.0039  max|P-1| 0.0203  P@0.1/0.3/1 1.007/1.010/0.980 -> GROWTH OK  (2017 s)
+      z0: q_raw max 0.8171560415971058, q_max (after cap) 0.817, cap binds on 0.0 of catchment mass, overdraw 0.0000, sum src 0.0015 vs sum|e| 571298.75, min (s_c - comp)/s_c 0.0, catchments 1950
+      clock z0: latched mass 0.148 (voids 0.0002); <m> mass 0.131; min dm 0.0; m range [0.0, 0.9999999999625645]
+  MUTATE-N (no comp, no cap)      : s8 1.0679  max|P-1| 0.2620  P@0.1/0.3/1 1.099/1.178/1.226 -> TENSION  (1601 s)
+      clock z0: latched mass 0.621 (voids 0.0360); <m> mass 0.497; min dm 0.0; m range [0.0, 0.9999999999999997]
+  MUTATE-U (cap removed; C1)      : s8 0.9972  max|P-1| 0.1741  P@0.1/0.3/1 1.008/0.991/0.826 -> TENSION  (1565 s)
+      z0: q_raw max 2.0145784031641183, q_max (after cap) 2.015, cap binds on 0.2628319845106614 of catchment mass, overdraw 0.2628, sum src 0.00104 vs sum|e| 1988355.875, min (s_c - comp)/s_c -1.0145784616470337, catchments 1915
+      clock z0: latched mass 0.607 (voids 0.0339); <m> mass 0.485; min dm 0.0; m range [0.0, 0.9999999999999942]
+  MUTA-CAP (FRW-firing, reported) : s8 0.9873  max|P-1| 0.3510  P@0.1/0.3/1 1.005/0.963/0.649 -> TENSION  (1457 s)
+      z0: q_raw max 2.5876727087273834, q_max (after cap) 1.000, cap binds on 0.915485126290438 of catchment mass, overdraw 0.0000, sum src -0.000427 vs sum|e| 2189154.0, min (s_c - comp)/s_c 0.0, catchments 1900
+      clock z0: latched mass 1.000 (voids 1.0000); <m> mass 0.992; min dm 0.0; m range [0.9181038728697302, 0.9999999999999853]
+
+  [PASS] C1 MUTATE-U (cap removed) reproduces CFG487 POST-HOC V1-CATCH canonical (s8 ratio, max|P-1|) within 1e-3: s8 0.997150 vs 0.997150 (|d| 0.0e+00); pdev 0.174095 vs 0.174095 (|d| 0.0e+00)
+  [PASS] C3 capped mass conservation: |sum src| / sum|e| <= 1e-3 and (s_c - comp)/s_c >= -1e-6 at every snapshot of every CAP run: worst |sum src|/sum|e| 9.76e-09; min (s_c - comp)/s_c 0.000e+00
+  [PASS] C5 PM clock: m in [0, 1] and never decreases along any particle: V1-CAP canonical: min dm 0.0, V1-CAP alt: min dm 0.0, V2-CAP canonical: min dm 0.0, V2-CAP alt: min dm 0.0, MUTATE-N: min dm 0.0, MUTATE-U: min dm 0.0, MUTA-CAP: min dm 0.0
+  [PASS] (reported) MUTATE-N (no compensation, no cap) is NOT GROWTH OK (else the growth leg is NOT DIAGNOSTIC): TENSION (s8 1.0679, pdev 0.2620)
+  growth leg V1: NOT PASSED: TENSION / TENSION
+  growth leg V2: GROWTH PASS
+  512^3 rule (iii): another 512^3 job running now: False

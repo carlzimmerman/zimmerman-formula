@@ -1,0 +1,84 @@
+CFG498 data legs (FROZEN_CRITERIA.md d9c739010): the clock taper (no edge) with the capped, mass-conserving draw.
+  object  phantom x m(r) out to r_ta (m from cfg487_lib.ShellClock: V1 rho_X = law mass, MS1 EXCEPTION; V2 rho_X = M_b(<r)/f_b,
+          strict MS1); draw D = tapered phantom inside r_ta; available cold energy C = (1 - f_b) M_ta, M_ta = (4pi/3) r_ta^3
+          (1 + delta_ta(z)) rho_m(z); q_raw = D / C.  PRIMARY cap: if q_raw > 1 the tapered phantom is x 1/q_raw.  REPORTED cap
+          (outer-first): truncated where the tapered phantom reaches C.
+  (b) KiDS  -- CFG413's stack P via CFG487's copied harness; PASS iff chi2 - chi2_best(CFG413) <= 4 on both footings.
+               Reported: two-halo frozen at CFG495's A_equiv = 0.07 and at A = 0.
+  (c) SPARC -- CFG346's S clauses via CFG487's copied harness (S-A3 >= 90% spirals and dwarfs; |d rms| < 0.005), both footings.
+Controls: C2 (uncapped rows = CFG487's switch-only rows; CFG413 x = 0.5 / 1.0 reproduced).  kappa = 1/2 FITTED; footings never pooled.
+MUTATE (CFG498_MUTATE=1, outputs *_MUTATE.*): the FRW-firing clock (m = background value on every shell): the taper must vanish
+(the KiDS row must move to CFG413's x = 1 neighbourhood, i.e. change by more than 4).
+
+shell clock: 293 shells, a_ta 0.0038-1.847; edge factor 5.8501; f_b 0.157126
+
+(b) KiDS stack P: lenses 181477, groups 1953
+  CFG413 committed: best (x = 0.5) chi2 8.9479 / 9.7704; x = 1 chi2 24.5044 / 23.4446
+
+  [canonical] (55 s) r_ta median 1.088 Mpc; M_b + M_ph,law(<r_ta) vs M_ta: max |rel diff| 5.0e-13
+    q_raw = D/C (V1): median 1.1801, 90% 1.1823, max 1.1833; cap binds for 1.0000 of groups (1.0000 of lenses)
+    q_raw = D/C (V2): median 1.1801, 90% 1.1823, max 1.1833; cap binds for 1.0000 of groups (1.0000 of lenses)
+    row            | chi2 free   A_2h   | chi2-best  chi2-x1 | chi2 2h=0.07 (CFG495) | chi2 no-2h | drop-one-bin (row - x0.5)
+    C2_x0.5        |     8.948   1.275 |    +0.000  -15.557 |       260.05          |    290.07 | +0.00..+0.00
+    C2_x1.0        |    24.504   1.120 |   +15.557   +0.000 |       215.03          |    241.29 | +4.38..+17.19
+    V1_cap         |    30.240   1.353 |   +21.292   +5.735 |       314.99          |    346.91 | +6.35..+23.12
+    V2_cap         |    30.240   1.353 |   +21.292   +5.735 |       314.99          |    346.91 | +6.35..+23.12
+    V1_cap_outer   |    18.177   1.153 |    +9.229   -6.328 |       221.04          |    248.11 | +2.46..+10.69
+    V2_cap_outer   |    18.177   1.153 |    +9.229   -6.328 |       221.04          |    248.11 | +2.46..+10.69
+    V1_nocap       |    24.516   1.120 |   +15.568   +0.011 |       215.23          |    241.50 | +4.38..+17.20
+    V2_nocap       |    24.516   1.120 |   +15.568   +0.011 |       215.23          |    241.50 | +4.38..+17.20
+
+  [alt] (52 s) r_ta median 1.141 Mpc; M_b + M_ph,law(<r_ta) vs M_ta: max |rel diff| 5.0e-13
+    q_raw = D/C (V1): median 1.1809, 90% 1.1828, max 1.1837; cap binds for 1.0000 of groups (1.0000 of lenses)
+    q_raw = D/C (V2): median 1.1809, 90% 1.1828, max 1.1837; cap binds for 1.0000 of groups (1.0000 of lenses)
+    row            | chi2 free   A_2h   | chi2-best  chi2-x1 | chi2 2h=0.07 (CFG495) | chi2 no-2h | drop-one-bin (row - x0.5)
+    C2_x0.5        |     9.770   1.118 |    +0.000  -13.674 |       199.60          |    225.82 | +0.00..+0.00
+    C2_x1.0        |    23.445   0.953 |   +13.674   +0.000 |       158.29          |    180.51 | +3.07..+15.30
+    V1_cap         |    28.697   1.213 |   +18.927   +5.252 |       254.66          |    283.18 | +4.51..+20.76
+    V2_cap         |    28.697   1.213 |   +18.927   +5.252 |       254.66          |    283.18 | +4.51..+20.76
+    V1_cap_outer   |    17.214   0.990 |    +7.444   -6.230 |       163.68          |    186.80 | +1.35..+8.92
+    V2_cap_outer   |    17.214   0.990 |    +7.444   -6.230 |       163.68          |    186.80 | +1.35..+8.92
+    V1_nocap       |    23.454   0.954 |   +13.684   +0.010 |       158.47          |    180.71 | +3.08..+15.31
+    V2_nocap       |    23.454   0.954 |   +13.684   +0.010 |       158.47          |    180.71 | +3.08..+15.31
+  [PASS] C2 KiDS harness (MUTATE run): CFG413 x = 0.5 / 1.0 reproduced within 0.01: max |diff| 0.00000
+  [FAIL] (reported) (b) KiDS V1 capped taper: chi2 - chi2_best(CFG413) <= 4 on both footings: canonical 30.240 - 8.948 = +21.292 (A 1.353, CFG486 range (0.746, 2.358)), alt 28.697 - 9.770 = +18.927 (A 1.213, CFG486 range (0.635, 2.155))
+  [FAIL] (reported) (b) KiDS V2 capped taper: chi2 - chi2_best(CFG413) <= 4 on both footings: canonical 30.240 - 8.948 = +21.292 (A 1.353, CFG486 range (0.746, 2.358)), alt 28.697 - 9.770 = +18.927 (A 1.213, CFG486 range (0.635, 2.155))
+  [PASS] (reported) MUTATE (FRW-firing clock): the V1 capped-taper KiDS chi2 moves by > 4 from the real clock's row on both footings: canonical: 30.240 vs 10.996, alt: 28.697 vs 10.481
+
+(a) SPARC (CFG346's S clauses; harness copied)
+  harnesses exec'd (4 s): 171 P3 rows, 175 rotmod galaxies (175 with masses); rms0 0.100329 / 0.101268
+
+  [canonical] row            | A3 spiral  A3 dwarf | max|dv| sp / dw | d rms
+    V1_cap         |    1.000     0.645 | 0.0288 / 0.0320 | +0.00961
+    V2_cap         |    1.000     0.645 | 0.0288 / 0.0320 | +0.00961
+    V1_cap_outer   |    1.000     1.000 | 0.0000 / 0.0001 | +0.00001
+    V2_cap_outer   |    1.000     1.000 | 0.0000 / 0.0001 | +0.00001
+    V1_nocap       |    1.000     1.000 | 0.0000 / 0.0001 | +0.00001
+    V2_nocap       |    1.000     1.000 | 0.0000 / 0.0001 | +0.00001
+    C3_one_noedge  |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000
+    q_raw = D/C (V1, P3 rows): median 1.1827, max 1.1850; cap binds for 1.0000
+    q_raw = D/C (V2, P3 rows): median 1.1827, max 1.1850; cap binds for 1.0000
+
+  [alt] row            | A3 spiral  A3 dwarf | max|dv| sp / dw | d rms
+    V1_cap         |    1.000     0.491 | 0.0295 / 0.0325 | +0.00075
+    V2_cap         |    1.000     0.491 | 0.0295 / 0.0325 | +0.00075
+    V1_cap_outer   |    1.000     1.000 | 0.0000 / 0.0001 | -0.00001
+    V2_cap_outer   |    1.000     1.000 | 0.0000 / 0.0001 | -0.00001
+    V1_nocap       |    1.000     1.000 | 0.0000 / 0.0001 | -0.00001
+    V2_nocap       |    1.000     1.000 | 0.0000 / 0.0001 | -0.00001
+    C3_one_noedge  |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000
+    q_raw = D/C (V1, P3 rows): median 1.1831, max 1.1852; cap binds for 1.0000
+    q_raw = D/C (V2, P3 rows): median 1.1831, max 1.1852; cap binds for 1.0000
+  [PASS] C3 SPARC harness: m = 1, no edge leaves A3 = 100% and d rms = 0; rms0 equals CFG39's: rms0 0.100328994 vs CFG39 0.100328994; canonical A3 1.00/1.00 drms +0.0e+00, alt A3 1.00/1.00 drms +0.0e+00
+  [FAIL] (reported) (c) SPARC V1 capped taper: S-A3 >= 90% (spirals, dwarfs) and |d rms| < 0.005, both footings: canonical A3 1.000/0.645 drms +0.0096, alt A3 1.000/0.491 drms +0.0007
+  [FAIL] (reported) (c) SPARC V2 capped taper: S-A3 >= 90% (spirals, dwarfs) and |d rms| < 0.005, both footings: canonical A3 1.000/0.645 drms +0.0096, alt A3 1.000/0.491 drms +0.0007
+
+  reported pass map (SPARC rule / KiDS rule) per row:
+    V1_cap          SPARC FAIL   KiDS FAIL
+    V2_cap          SPARC FAIL   KiDS FAIL
+    V1_cap_outer    SPARC PASS   KiDS FAIL
+    V2_cap_outer    SPARC PASS   KiDS FAIL
+    V1_nocap        SPARC PASS   KiDS FAIL
+    V2_nocap        SPARC PASS   KiDS FAIL
+
+  3/7 checks pass; load-bearing (controls) failures: 0; elapsed 115.2 s
