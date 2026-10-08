@@ -1,0 +1,58 @@
+VERIFY_ALL — started 2026-07-27 16:11:15
+==============================================================================
+
+[replay depth 6]
+  PASS — reproduces committed ground truth exactly
+    REPLAY depth 6 — computed vs committed  (wall 16.0s vs committed 13.2s 12-way-parallel/6GB-era; peak RSS self 0.12 GB, cap 40 GB)
+      raw candidates               computed=236624                                                  committed=236624                                        PASS
+      distinct values              computed=107719                                                  committed=107719                                        PASS
+      in-window hits (21 targets)  computed=259                                                     committed=259                                           PASS
+      CERTIFIED                    computed=0                                                       committed=0                                             PASS
+      RE-LABELED                   computed=0                                                       committed=0                                             PASS
+      tightest target              computed=koide_Q_lep                                             committed=koide_Q_lep                                   PASS
+      tightest rel_err             computed=9.232869166816987e-06                                   committed=9.232869166816987e-06                         PASS
+      tightest formula             computed=(((((c / c) / 3) * sqrt(8pi/3)) / sqrt(8pi/3)) * 2)     committed=(((((c / c) / 3) * sqrt(8pi/3)) / sqrt(8pi/3) PASS
+    REPLAY depth 6: PASS — streamed build is EXACT
+
+[replay depth 7]
+  PASS — reproduces committed ground truth exactly
+    REPLAY depth 7 — computed vs committed  (wall 99.0s vs committed 95.3s 12-way-parallel/6GB-era; peak RSS self 0.21 GB, cap 40 GB)
+      raw candidates               computed=1566116                                                 committed=1566116                                       PASS
+      distinct values              computed=498848                                                  committed=498848                                        PASS
+      in-window hits (21 targets)  computed=1248                                                    committed=1248                                          PASS
+      CERTIFIED                    computed=0                                                       committed=0                                             PASS
+      RE-LABELED                   computed=0                                                       committed=0                                             PASS
+      tightest target              computed=koide_Q_lep                                             committed=koide_Q_lep                                   PASS
+      tightest rel_err             computed=9.232869166816987e-06                                   committed=9.232869166816987e-06                         PASS
+      tightest formula             computed=((((((c / c) / 3) * sqrt(8pi/3)) / sqrt(8pi/3)) * (2)^1 committed=((((((c / c) / 3) * sqrt(8pi/3)) / sqrt(8pi/3 PASS
+    REPLAY depth 7: PASS — streamed build is EXACT
+
+[holdout scoping]
+    search list (sm_target_keys)     : 19 targets, leak=NONE
+    search list (select_targets)     : 17 targets, leak=NONE
+    replay list (include_holdout)    : 20 targets, holdout present=['koide_Q_lep']
+    PASS — searches exclude the holdout; replay includes it
+    score_holdout(koide_Q_lep, 2/3)  : 0.91 sigma, pass=True  (2/3 is Koide 1981, NOT evidence)
+
+[sharded build vs serial, depth 8]
+    raw      sharded=8,123,807 serial=8,123,807 MATCH
+    distinct sharded=2,207,173 serial=2,207,173 MATCH
+    PASS
+
+[zimmerman-formula scripts, exit codes]
+    exit 0   mi_dcac_branch_settled_2026   5/5 checks PASS
+    exit 0   mi_omegac_anchor_2026   8/8 checks PASS
+    exit 0   mi_wb_gate_fork_2026   11/11 checks PASS
+    exit 0   mi_wb_cubic_rise_2026   10/10 checks PASS
+    exit 0   mi_wb_exponent_pipeline_2026   6/6 checks PASS
+    exit 0   mi_wb_dr3_feasibility_2026   5/5 checks PASS
+    exit 0   mi_particle_vs_mode_2026   10/10 checks PASS
+    exit 0   Z_provenance_audit_2026   10/10 checks PASS
+    exit 0   two_loop_vs_alpha_2026   6/6 checks PASS
+    exit 0   alpha_12pi_identity_audit_2026   9/9 checks PASS
+    exit 0   mi_bh_unravel_desitter_2026   22/22 checks PASS
+    exit 0   mi_varying_constants_bridge_2026   8/8 checks PASS
+
+==============================================================================
+VERIFY_ALL — finished 2026-07-27 16:13:16
+OVERALL: ALL CHECKS PASS
