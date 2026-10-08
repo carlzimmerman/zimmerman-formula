@@ -42,8 +42,8 @@ Certified here:
   premise of C2) is EFE-free even on the ray -- no continuity needed (EFE-free forces `nu(y/4) sqrt(y/4) = nu(y) sqrt(y)/2`);
 * `law_not_efeFreeRay`: the dimensional law `g_N ↦ nu(g_N/a0) g_N` (a0 > 0) likewise; instances `nuMono_law_has_EFE`,
   `P2_law_has_EFE` (nu_beta at beta = 1) and `P2_sqrt_law_has_EFE` (nu = sqrt(1 + a0/g_N), CFG179's form);
-* `vecLaw_not_efeFree`, `vecLaw_R3_not_efeFree`: the vector law `g_N ↦ nu(|g_N|/a0) g_N` on any nontrivial real normed space
-  (in particular R^3) is not EFE-free;
+* `vecLaw_not_efeFree`, `vecLaw_R3_not_efeFree`: for any `nu` with C2's deep limit `nu(y) sqrt y -> 1`, the vector law
+  `g_N ↦ nu(|g_N|/a0) g_N` on any nontrivial real normed space (in particular R^3) is not EFE-free;
 * `deep_kernel_ne_one`: a kernel with that deep limit is not identically 1 on the ray (so the two ownership branches differ).
 So any law with MOND's square-root pull that is LOCAL IN THE TOTAL FIELD must show an external-field effect.  Ownership escapes
 the theorem only by being non-local: WHICH branch applies (law or Newton) is decided by membership data, not by the field, so the

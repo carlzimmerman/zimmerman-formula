@@ -291,8 +291,8 @@ theorem no_single_polytrope : ¬ ∃ Γ0 : ℝ, ∀ x : ℝ, 0 ≤ x → GammaX 
   norm_num at h0 h1
   linarith
 
-/-- (3l) the same in the physical radius: `GammaEff -> 2` as `r -> 0+` and `GammaEff -> 1` as `r -> +infinity`
-    (point-mass target). -/
+/-- (3l) the same in the physical radius: `GammaEff -> 2` as `r -> 0+` (point-mass target); the `r -> +infinity`
+    limit is `GammaEff_tendsto_atTop`. -/
 theorem GammaEff_tendsto_zero {G a0 M : ℝ} (hG : 0 < G) (ha : 0 < a0) (hM : 0 < M) :
     Tendsto (GammaEff G a0 M) (𝓝[>] 0) (𝓝 2) := by
   have hrM : 0 < Real.sqrt (G * M / a0) := Real.sqrt_pos.mpr (by positivity)
@@ -306,6 +306,7 @@ theorem GammaEff_tendsto_zero {G a0 M : ℝ} (hG : 0 < G) (ha : 0 < a0) (hM : 0 
   filter_upwards [self_mem_nhdsWithin] with r hr
   exact (GammaEff_eq hG ha hM hr).symm
 
+/-- (3l) `GammaEff -> 1` as `r -> +infinity` (point-mass target). -/
 theorem GammaEff_tendsto_atTop {G a0 M : ℝ} (hG : 0 < G) (ha : 0 < a0) (hM : 0 < M) :
     Tendsto (GammaEff G a0 M) atTop (𝓝 1) := by
   have hrM : 0 < Real.sqrt (G * M / a0) := Real.sqrt_pos.mpr (by positivity)

@@ -16,8 +16,10 @@ review:
   3. a review verdict other than MATCH (OVERSTATES, PREMISE-HIDDEN, WRONG-OBJECT, UNDERSTATES) FAILS
      until the README (or the theorem) is corrected and re-reviewed.
 
-Theorems listed in Axioms.lean but cited nowhere in the README are reported (UNCITED), not failed:
-they are certified but unadvertised, so no claim can overstate them.
+Theorems listed in Axioms.lean but cited nowhere in the README are held to the English attached to them
+inside the Lean files (their /-- docstring -/ and any module-header sentence naming them): each needs an
+entry in "in_file_reviews" whose hash covers statement + those claims, with verdict MATCH, or NO-CLAIM when
+the theorem carries no English at all (a helper).
 
 Usage:
   python3 ChainCert/statement_match.py               check; exit 0 iff all pass
@@ -66,6 +68,21 @@ def h(s):
     return hashlib.sha256(s.encode()).hexdigest()[:16]
 
 
+HEADERS = {}  # module -> its /-! ... -/ header blocks
+
+
+def doc_claims(name, decl):
+    """the English attached to a declaration inside the Lean files: its docstring, and every header bullet/sentence
+    of its module that names it in backticks"""
+    out = [decl["doc"]] if decl.get("doc") else []
+    short = name.split(".")[-1]
+    for blk in HEADERS.get(decl["module"], []):
+        for piece in re.split(r"(?<=\.)\s+(?=[A-Z])|\s\*\s", blk):
+            if re.search(r"`(?:[^`]*\.)?" + re.escape(short) + r"`", piece):
+                out.append(piece.strip())
+    return out
+
+
 def parse_lean():
     """Return {full_name: {module, kind, statement}}; statement = decl text up to its first top-level ':='."""
     decls = {}
@@ -75,9 +92,27 @@ def parse_lean():
         mod = f.stem
         lines = f.read_text().splitlines()
         stack = []  # namespace / section stack
+        doc = ""  # the /-- ... -/ docstring waiting for its declaration
         i = 0
         while i < len(lines):
             ln = lines[i]
+            st = ln.strip()
+            if st.startswith("/--") or st.startswith("/-!"):
+                j = i
+                block = []
+                while j < len(lines):
+                    block.append(lines[j])
+                    if "-/" in lines[j][(lines[j].find("/-") + 2) if j == i else 0:]:
+                        break
+                    j += 1
+                text = norm(" ".join(block))
+                if st.startswith("/-!"):
+                    HEADERS.setdefault(mod, []).append(text)
+                    doc = ""
+                else:
+                    doc = text
+                i = j + 1
+                continue
             m = NS_RE.match(ln)
             if m:
                 kw, nm = m.groups()
@@ -89,6 +124,8 @@ def parse_lean():
                 continue
             m = DECL_RE.match(ln)
             if not m:
+                if st and not st.startswith(("@[", "--")):
+                    doc = ""
                 i += 1
                 continue
             kind, name = m.groups()
@@ -117,7 +154,9 @@ def parse_lean():
                     j += 1
             ns = ".".join(n for kw, n in stack if kw == "namespace" and n)
             full = f"{ns}.{name}" if ns and not name.startswith(ns + ".") else name
-            decls[full] = {"module": mod, "kind": kind, "statement": norm(" ".join(buf)), "fields": fields}
+            decls[full] = {"module": mod, "kind": kind, "statement": norm(" ".join(buf)), "fields": fields,
+                           "doc": doc}
+            doc = ""
             i = j + 1
     return decls
 
@@ -129,7 +168,7 @@ def readme_rows():
         if ln.startswith("|") and not re.match(r"^\|\s*-", ln) and not ln.startswith("| link"):
             cells = [c.strip() for c in ln.strip().strip("|").split("|")]
             where = cells[-1] if cells else ""
-            mods = set(re.findall(r"`([A-Z][A-Za-z0-9]*)`", where))
+            mods = set(re.findall(r"`([A-Z][A-Za-z0-9]*)(?:\.lean)?`", where))
             rows.append((norm(ln), re.findall(r"`([^`]+)`", ln), mods))
         elif ln.lstrip().startswith(("-", "*")) or ln.strip():
             rows.append((norm(ln), re.findall(r"`([^`]+)`", ln), set()))
@@ -189,7 +228,8 @@ def key_hash(decl, rows_text):
     return h(decl["statement"] + "\n##\n" + "\n".join(sorted(rows_text)))
 
 
-def check(decls, rows, review):
+def check(decls, rows, review, infile=None):
+    infile = infile or {}
     cites, problems = collect(decls, rows)
     stale = missing = bad = 0
     for name, rtexts in sorted(cites.items()):
@@ -206,7 +246,26 @@ def check(decls, rows, review):
             problems.append(f"{r.get('verdict')}: {name} -- {r.get('note','')}")
     listed = set(re.findall(r"^#print axioms (\S+)", AXIOMS.read_text(), re.M))
     uncited = sorted(n for n in listed if n not in cites)
-    return cites, problems, uncited, (missing, stale, bad)
+    cited_counts = (missing, stale, bad)
+    # theorems the README does not cite are held to the English attached to them in the Lean files
+    for name in uncited:
+        claims = doc_claims(name, decls[name])
+        kh = doc_hash(decls[name], claims)
+        r = infile.get(name)
+        if r is None:
+            missing += 1
+            problems.append(f"UNREVIEWED (in-file): {name}")
+        elif r.get("hash") != kh:
+            stale += 1
+            problems.append(f"STALE (in-file): {name} (statement or docstring changed since review)")
+        elif not (r.get("verdict") == "MATCH" or (r.get("verdict") == "NO-CLAIM" and not claims)):
+            bad += 1
+            problems.append(f"{r.get('verdict')} (in-file): {name} -- {r.get('note','')}")
+    return cites, problems, uncited, cited_counts + (missing, stale, bad)
+
+
+def doc_hash(decl, claims):
+    return h(decl["statement"] + "\n##DOC\n" + "\n".join(claims))
 
 
 def unanchored(decls, rows):
@@ -223,7 +282,8 @@ def unanchored(decls, rows):
 def main():
     decls = parse_lean()
     rows = readme_rows()
-    review = json.loads(REVIEW.read_text())["reviews"] if REVIEW.exists() else {}
+    rv = json.loads(REVIEW.read_text()) if REVIEW.exists() else {}
+    review, infile = rv.get("reviews", {}), rv.get("in_file_reviews", {})
 
     if "--packets" in sys.argv:
         cites, problems = collect(decls, rows)
@@ -232,7 +292,16 @@ def main():
              "statement": decls[n]["statement"], "readme_claims": rt, "hash": key_hash(decls[n], rt)}
             for n, rt in sorted(cites.items())
         ]
-        PACKETS.write_text(json.dumps({"packets": out, "citation_problems": problems}, indent=1, ensure_ascii=False))
+        listed = re.findall(r"^#print axioms (\S+)", AXIOMS.read_text(), re.M)
+        infile_out = []
+        for n in listed:
+            if n in cites:
+                continue
+            cl = doc_claims(n, decls[n])
+            infile_out.append({"name": n, "module": decls[n]["module"], "statement": decls[n]["statement"],
+                               "in_file_claims": cl, "hash": doc_hash(decls[n], cl)})
+        PACKETS.write_text(json.dumps({"packets": out, "in_file_packets": infile_out, "citation_problems": problems},
+                                      indent=1, ensure_ascii=False))
         print(f"packets: {len(out)} cited declarations; citation problems: {len(problems)} -> {PACKETS.name}")
         for p in problems:
             print("  " + p)
@@ -241,7 +310,7 @@ def main():
     if os.environ.get("MUTATE") == "1":
         caught = 0
         rows_m = rows + [("| mutated | `mutated_claim_does_not_exist` | | `Chain` |", ["mutated_claim_does_not_exist"], {"Chain"})]
-        _, p1, _, _ = check(decls, rows_m, review)
+        _, p1, _, _ = check(decls, rows_m, review, infile)
         c1 = any("DANGLING: `mutated_claim_does_not_exist`" in p for p in p1)
         cites, _ = collect(decls, rows)
         victim = next((n for n in sorted(cites) if review.get(n, {}).get("hash") == key_hash(decls[n], cites[n])), None)
@@ -249,7 +318,7 @@ def main():
         if victim:
             decls_m = dict(decls)
             decls_m[victim] = dict(decls[victim], statement=decls[victim]["statement"] + " (h_extra : True)")
-            _, p2, _, _ = check(decls_m, rows, review)
+            _, p2, _, _ = check(decls_m, rows, review, infile)
             c2 = any(p.startswith(f"STALE: {victim} ") for p in p2)
         caught = int(c1) + int(c2)
         print(f"MUTATE: dangling citation caught: {c1}; perturbed statement ({victim}) caught as stale: {c2}")
@@ -257,12 +326,15 @@ def main():
         return 0 if caught == 2 else 1
 
     bad_verdicts = [n for n, r in review.items() if r.get("verdict") not in VERDICTS_ALL]
-    cites, problems, uncited, (missing, stale, bad) = check(decls, rows, review)
+    cites, problems, uncited, (missing, stale, bad, tm, ts, tb) = check(decls, rows, review, infile)
     problems += [f"INVALID-VERDICT: {n}" for n in bad_verdicts]
     print(f"cited declarations: {len(cites)}; reviewed MATCH: {len(cites) - missing - stale - bad}; "
           f"unreviewed: {missing}; stale: {stale}; non-MATCH: {bad}; citation problems: "
-          f"{len(problems) - missing - stale - bad - len(bad_verdicts)}")
-    print(f"theorems in Axioms.lean not cited in the README (UNCITED, informational): {len(uncited)}")
+          f"{len(problems) - tm - ts - tb - len(bad_verdicts)}")
+    ok_in = sum(1 for n in uncited if infile.get(n, {}).get("hash") == doc_hash(decls[n], doc_claims(n, decls[n])))
+    print(f"theorems in Axioms.lean not cited in the README: {len(uncited)}; unreviewed {tm - missing}, stale {ts - stale}, "
+          f"non-MATCH {tb - bad}; reviewed against their in-file docstring/header "
+          f"claims (current): {ok_in}; with no in-file claim: {sum(1 for n in uncited if not doc_claims(n, decls[n]))}")
     un = unanchored(decls, rows)
     print(f"README table rows naming a module but no declaration (UNANCHORED, informational -- not statement-matched): {len(un)}")
     for u in un:

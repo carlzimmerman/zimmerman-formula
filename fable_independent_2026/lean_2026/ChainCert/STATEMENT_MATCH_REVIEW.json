@@ -1,53 +1,65 @@
 {
- "about": "Statement-match review of ChainCert README claims vs Lean statements; enforced by statement_match.py. Each entry's hash covers the Lean statement and the README lines citing it, so an edit to either makes the entry stale.",
+ "about": "Statement-match review of ChainCert, enforced by statement_match.py. 'reviews': README-cited declarations vs the README lines citing them. 'in_file_reviews': theorems the README does not cite vs their docstring/header text (NO-CLAIM = bare helper). Each hash covers the Lean statement and the claim text, so editing either makes the entry stale.",
  "reviews": {
   "A0Numeric.a0_interval": {
-   "hash": "b06f657c22421338",
+   "hash": "bd53adfdb8645c1b",
    "verdict": "MATCH",
-   "note": "Statement is exactly the half-c-sqrt(G*3H^2 Omega/(8 pi G)) expression with H = H0*1000/Mpc, the declared cSI/GSI/Mpc and the two input intervals; strict bounds 9.24e-11/9.48e-11 as stated.",
-   "reviewer": "independent agent, chunk B, 2026-10-08"
+   "note": "Strict bounds 9.24e-11 < (1/2) cSI sqrt(GSI*3(H0*1000/Mpc)^2 Omega/(8 pi GSI)) < 9.48e-11 for H0 in [66.9,67.9], Omega in [0.6774,0.6920]; cSI, GSI, Mpc defs equal the row's values; kappa = 1/2 hard-coded.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "A0Numeric.a0_of_rhoLambda": {
-   "hash": "378a57a9c32abb88",
+   "hash": "5a7758309d75c5ad",
    "verdict": "MATCH",
-   "note": "Identity kappa c sqrt(G*3H^2 Omega/(8 pi G)) = kappa c H sqrt(3 Omega/(8 pi)) (a0num) under 0 < G, 0 <= H; side conditions are trivial for physical H, G.",
-   "reviewer": "independent agent, chunk B, 2026-10-08"
+   "note": "Identity kappa c sqrt(G*3H^2 Omega/(8 pi G)) = a0num = kappa c H sqrt(3 Omega/(8 pi)) under G > 0, H >= 0; 'G cancels' as the row says.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "A0Numeric.a0_point": {
-   "hash": "b0d9507a9101794d",
+   "hash": "9661e2f342710e36",
    "verdict": "MATCH",
-   "note": "Point bound 9.36e-11 < a0 < 9.361e-11 at H0 = 67.4, Omega_Lambda = 0.6847 with kappa = 1/2 hard-coded, as stated.",
-   "reviewer": "independent agent, chunk B, 2026-10-08"
+   "note": "9.36e-11 < a0 < 9.361e-11 at H0 = 67.4, Omega = 0.6847 with the declared constants and kappa = 1/2, as stated.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "A0Numeric.a0num_interval": {
+   "hash": "c25f09c7a1278e3a",
+   "verdict": "MATCH",
+   "note": "General interval lemma (kappa c Hlo slo <= a0num <= kappa c Hhi shi from input intervals and rational sqrt brackets); a supporting step of the row's interval claim.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "AqualAction.AqualMu": {
-   "hash": "5939af035e20d93a",
+   "hash": "564da298a07fc2e2",
    "verdict": "MATCH",
-   "note": "The four fields are exactly the listed properties; nu := inv y / y with inv the chosen root, unique by strict monotonicity.",
-   "reviewer": "independent agent, re-review R2, 2026-10-08"
+   "note": "Fields are exactly: x mu(x) positive, strictly increasing, continuous on (0,inf), onto (0,inf); nu := inv y / y with inv the chosen positive root, as the row defines.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "AqualAction.AqualMu.gauss_iff_kernel": {
-   "hash": "00f84ab13f80038c",
+   "hash": "3b66ad6f9cec77f3",
    "verdict": "MATCH",
    "note": "Equivalence for a0, g, gN > 0; matches.",
-   "reviewer": "independent agent, re-review R2, 2026-10-08"
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "AqualAction.AqualMu.gauss_of_kernel": {
-   "hash": "666496e0a616c917",
+   "hash": "4ede04570f3de8ed",
    "verdict": "MATCH",
-   "note": "Converse for a0, gN > 0 (with positivity of the solution); matches.",
-   "reviewer": "independent agent, re-review R2, 2026-10-08"
+   "note": "Converse for a0, gN > 0, with positivity of nu(gN/a0) gN; matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "AqualAction.AqualMu.inv_unique": {
+   "hash": "f1d28065121bf68d",
+   "verdict": "MATCH",
+   "note": "Any positive x with x mu(x) = y equals inv y: supports 'the unique positive root'.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "AqualAction.AqualMu.kernel_of_gauss": {
-   "hash": "aaf96a9ee3f6226c",
+   "hash": "f6e1400a077e8816",
    "verdict": "MATCH",
-   "note": "Forward direction for a0, g > 0; matches.",
-   "reviewer": "independent agent, re-review R2, 2026-10-08"
+   "note": "Forward direction mu(g/a0) g = gN => g = nu(gN/a0) gN for a0, g > 0 (gN > 0 not needed); matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "AqualAction.AqualMu.mu_mul_nu": {
-   "hash": "9191c4f638c7b22a",
+   "hash": "6f1c98e553a5a9bd",
    "verdict": "MATCH",
-   "note": "mu(x) nu(x mu(x)) = 1 for x > 0; matches in the row's positive-argument context.",
-   "reviewer": "independent agent, re-review R2, 2026-10-08"
+   "note": "mu(x) nu(x mu(x)) = 1 for x > 0; matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "AqualAction.AqualMu.nu_deep": {
    "hash": "4d40988bd5c1a9e4",
@@ -62,10 +74,10 @@
    "reviewer": "independent agent, chunk B, 2026-10-08"
   },
   "AqualAction.AqualMu.spherical_kernel": {
-   "hash": "ab9385da9a3efb3a",
+   "hash": "b299b8085a9ab1ac",
    "verdict": "MATCH",
-   "note": "README now says it carries the Gauss-step premises and g > 0 and the status is conditional; the parenthetical list omits M' = 4 pi r^2 rho (hM) but 'the Gauss step's premises' covers it.",
-   "reviewer": "independent agent, re-review R2, 2026-10-08"
+   "note": "Hypotheses hEL (reduced EL), hN (gN = GM/r^2), hM (M' = 4 pi r^2 rho), hreg (regularity), hg (g > 0); README says it carries the Gauss-step premises and g > 0 and is conditional. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "AqualAction.P2_deep_from_action": {
    "hash": "b05fba4b166d24d7",
@@ -146,16 +158,22 @@
    "reviewer": "independent agent, chunk B, 2026-10-08"
   },
   "C1_a0_form_iff": {
-   "hash": "c99e80068239baf5",
+   "hash": "0d6a34476ec427e2",
    "verdict": "MATCH",
-   "note": "The three linear equations are exactly the M, L, T exponent equations for c^a G^b rho^g (rho a mass density) to be L T^-2; iff over Q, as stated. The earlier 'all three equations needed' clause is gone.",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "note": "Exponent equations are kg, m, s rows for c = m s^-1, G = m^3 kg^-1 s^-2, rho = kg m^-3, target m s^-2; iff over Q. Dimension row's 'restates C1 via C1_a0_form_iff' is accurate.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "C1_a0_form_unique": {
+   "hash": "1ac0eeb6f4448cb8",
+   "verdict": "MATCH",
+   "note": "Forward direction only (equations => (1,1/2,1/2)); cited as 'also' next to the iff, which it supports. Docstring now says the converse is in C1_a0_form_iff (earlier OVERSTATES fixed).",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "C1_exponent_matrix_det": {
-   "hash": "3d3f633afc85e752",
+   "hash": "7d62f34d368e8685",
    "verdict": "MATCH",
-   "note": "det of the 3x3 exponent matrix (L, T, M rows) is -2, as stated.",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "note": "det of the (m, s, kg)-row exponent matrix = -2, as stated.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "C2_btfr_from_vacuum": {
    "hash": "e407558fa0005ef2",
@@ -170,16 +188,22 @@
    "reviewer": "independent agent, re-review R1, 2026-10-08"
   },
   "C2_nuBeta_deep": {
-   "hash": "c47b008838f42760",
+   "hash": "168ca1e6461427a1",
    "verdict": "MATCH",
-   "note": "Deep limit for every beta > 0, as stated.",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "note": "Deep limit nuBeta*sqrt y -> 1 as y -> 0+ for every beta > 0; matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "C2_nuBeta_mul_sqrt": {
+   "hash": "3bd9c2ce220fe3dc",
+   "verdict": "MATCH",
+   "note": "Exact identity nuBeta*sqrt y = (1+y^beta)^(1/(2beta)) for beta, y > 0; a supporting step of the row's deep-limit claim.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "C2_nuBeta_one": {
-   "hash": "bca96632ac3495ee",
+   "hash": "4eda22e103943e3a",
    "verdict": "MATCH",
-   "note": "nuBeta 1 y = sqrt(1 + 1/y) for y > 0, the P2 kernel, as stated.",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "note": "nuBeta 1 y = sqrt(1 + 1/y) for y > 0 (P2); matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "C3_conservation": {
    "hash": "d2fefb803e4fb045",
@@ -199,6 +223,12 @@
    "note": "3.76 < E(2.5) < 3.761 at (0.3138, 0.6862); numerically E = 3.7604.",
    "reviewer": "independent agent, re-review R1, 2026-10-08"
   },
+  "C4_flat_iff_rho_const": {
+   "hash": "cfc0bb358b67b90b",
+   "verdict": "MATCH",
+   "note": "Iff (kappa c sqrt(G rho z) constant in z) <-> (rho constant) under positivity; matches the row's 'a0(z) constant <=> rho_L(z) constant'.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
   "C4_rival_exceeds_flat": {
    "hash": "4c9812ad1b96344b",
    "verdict": "MATCH",
@@ -210,6 +240,12 @@
    "verdict": "MATCH",
    "note": "StrictMonoOn on z >= 0 with Om > 0, OL >= 0 (needs no flatness sum, so the README is if anything narrower); the domain z >= 0 is implicit in the row.",
    "reviewer": "independent agent, re-review R1, 2026-10-08"
+  },
+  "C5_kappa_free": {
+   "hash": "bcd8471203705a9b",
+   "verdict": "MATCH",
+   "note": "For b, beta > 0 and every kappa > 0 with kappa^2 b < 1 (i.e. kappa in (0, 1/sqrt b)) some Zq > 0 solves the relation: exactly 'onto (0, 1/sqrt b)'.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "CalibrationWall.P2_sq": {
    "hash": "b9e9d6495b3f2aec",
@@ -428,28 +464,40 @@
    "reviewer": "independent agent, chunk A, 2026-10-08"
   },
   "CandidateB": {
-   "hash": "ea09e28d6cbbcd8b",
+   "hash": "065fe831742613af",
    "verdict": "MATCH",
-   "note": "Fields (chain, hkappa_fit, nu, hnu_deep, H, accel, hown, Omega_b, Omega_c > 0, darkEdge, hcold) are the listed postulates; no axioms; H is a free input.",
-   "reviewer": "independent agent, re-review R2, 2026-10-08"
+   "note": "Fields: chain, hkappa_fit, nu, hnu_deep, H, accel, hown, Omega_b > 0, Omega_c > 0, darkEdge, hcold. These are the listed postulates; there are no axioms; H is a free input. Matches all cited lines (claim 3 omits Omega_b > 0, which is harmless).",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "CandidateB.a0_flat": {
-   "hash": "6c6b80f56a0ba02e",
+   "hash": "25bccc82c0543ced",
    "verdict": "MATCH",
    "note": "a0(z) = a0(0) from chain.hflat; matches.",
-   "reviewer": "independent agent, chunk B, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "CandidateB.a0_numeric": {
-   "hash": "a9d9ef48e10abc89",
+   "hash": "3670f52d9fdb8ef7",
    "verdict": "MATCH",
-   "note": "Hypotheses chain.c = cSI, chain.G = GSI, ρΛ(0) = 3(H0*1000/Mpc)^2 ΩΛ/(8 pi GSI) and the two intervals; κ = 1/2 from the field; conclusion at every z via flatness. Matches 'given those inputs ... at every z'.",
-   "reviewer": "independent agent, chunk B, 2026-10-08"
+   "note": "Hypotheses: chain.c = cSI (299792458), chain.G = GSI (6.6743e-11), rho_Lambda(0) = 3(H0*1000/Mpc)^2 Omega_Lambda/(8 pi GSI) with Mpc = 3.0856775814913673e22, plus the H0 and Omega_Lambda intervals; kappa = 1/2 is a structure field. Concludes 9.24e-11 < a0(z) < 9.48e-11 at every z (via flatness). Matches.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "CandidateB.btfr": {
+   "hash": "e71cff96d51d3ef8",
+   "verdict": "MATCH",
+   "note": "For B's declared kernel, v^4 -> G M (1/2) c sqrt(G rho_Lambda(0)) at every z.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "CandidateB.cold_edge_mass": {
+   "hash": "d00a9606caa5b0ee",
+   "verdict": "MATCH",
+   "note": "darkEdge = max(Mph, Oc/(Ob+Oc) Mcoll) for Mph >= 0, Mcoll > 0, from the declared rule hcold.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "CandidateB.cold_edge_monotone": {
-   "hash": "ff51823f20dcd069",
+   "hash": "767f7fabbf8a8344",
    "verdict": "MATCH",
    "note": "darkEdge Mph M1 <= darkEdge Mph M2 for Mph >= 0, 0 < M1 <= M2; matches 'monotone in M_coll'.",
-   "reviewer": "independent agent, chunk B, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "CandidateB.fluid_cap_a0": {
    "hash": "3a61461ad6d0e85c",
@@ -457,17 +505,35 @@
    "note": "README now carries c = 1 and Lambda = 8 pi G rho_Lambda(0); both conjuncts match.",
    "reviewer": "independent agent, re-review R2, 2026-10-08"
   },
+  "CandidateB.gammaHat_one": {
+   "hash": "1dc43d8423ddad1a",
+   "verdict": "MATCH",
+   "note": "Weighted mean over owned pairs is 1, given positive total weight and gN > 0 (individual weights need not be positive; still a weighted mean).",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
   "CandidateB.merged_law_has_EFE": {
-   "hash": "039d66f4316471bc",
+   "hash": "3c3f5bd97c19012a",
    "verdict": "MATCH",
    "note": "¬EFEFreeRay of gN ↦ ν(gN/a0(0)) gN for B's kernel; matches the ray/pointwise claim (the vector form is a separate theorem, merged_vecLaw_has_EFE, not needed for this citation).",
-   "reviewer": "independent agent, chunk B, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "CandidateB.merged_vecLaw_has_EFE": {
+   "hash": "9cfd52b8db8d9ef4",
+   "verdict": "MATCH",
+   "note": "Vector law with B's kernel at a0 = a0(0) on EuclideanSpace R (Fin 3) is not EFE-free.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "CandidateB.nonempty_fin2": {
    "hash": "e5066737d7b75c92",
    "verdict": "MATCH",
    "note": "Nonempty (CandidateB (Fin 2)); witness is unit-free (c = G = ρΛ = 1), which the README does not claim is physical; joint satisfiability matches.",
    "reviewer": "independent agent, chunk B, 2026-10-08"
+  },
+  "CandidateB.owned_boost_one": {
+   "hash": "413f1b47491df2ac",
+   "verdict": "MATCH",
+   "note": "Needs gN > 0 (implicit in a ratio); any gext.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "CandidateB.ownership_nonlocal": {
    "hash": "e1627cf5fffc3d2f",
@@ -476,10 +542,16 @@
    "reviewer": "independent agent, chunk B, 2026-10-08"
   },
   "CandidateB.predictions": {
-   "hash": "f7b17d23985f27aa",
+   "hash": "5809205d4d8e1d50",
    "verdict": "MATCH",
    "note": "Six conjuncts match (1)-(6), with Omega_m > 0, Omega_Lambda >= 0 for (3), gN > 0 for (4), Mph >= 0, Mcoll > 0 for (6); (5) is the ray (stronger) non-EFE-freeness.",
-   "reviewer": "independent agent, re-review R2, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "CandidateB.rival_separates": {
+   "hash": "cf86d5f837ae8641",
+   "verdict": "MATCH",
+   "note": "E strictly increasing on [0,inf) and, for z > 0, a0(z)/a0(0) = 1 < E(z), on a flat background.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "CandidateB_Action": {
    "hash": "db9bd17ec0b69a1e",
@@ -536,196 +608,400 @@
    "reviewer": "independent agent, re-review R2, 2026-10-08"
   },
   "ChainB.GammaEff": {
-   "hash": "5dd49f6db93ceb20",
+   "hash": "ad6efde65d7b2d12",
    "verdict": "MATCH",
    "note": "dlnP/dln rho_c via deriv on the explicit-sqrt P2 point mass, as described.",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainB.GammaEff_eq": {
-   "hash": "e0c03e6748630fea",
+   "hash": "ebe0d234e87f740d",
    "verdict": "MATCH",
    "note": "GammaEff = GammaX(r/sqrt(GM/a0)) for G, a0, M, r > 0, i.e. x^2 = a0 r^2/GM, as the row says.",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainB.GammaX_strictAntiOn": {
+   "hash": "1f12c7790b6d2afb",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainB.GammaX_tendsto_atTop": {
+   "hash": "65f73f8e2172b5b9",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainB.GammaX_tendsto_zero": {
+   "hash": "0ac63bda9c389bcd",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainB.Mc_hasDerivAt": {
+   "hash": "4cf8e8773c06f9c7",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainB.charge_identity": {
+   "hash": "9e2908daed0a611c",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainB.dispersion_half_vc_sq": {
+   "hash": "e8e838792b847922",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainB.gtot_eq_P2": {
+   "hash": "366ed559063b31f8",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainB.hydrostatic": {
+   "hash": "5f4b89fa29d4c414",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainB.no_single_polytrope": {
-   "hash": "71220864d5b0a34d",
+   "hash": "49947c80d43b755a",
    "verdict": "MATCH",
-   "note": "No constant equals GammaX on x >= 0; README says it is stated for Gamma(x). Minor: 'strictly decreasing from 2 to 1' is not this theorem (it is GammaX_strictAntiOn / GammaX_tendsto_zero / GammaX_tendsto_atTop, uncited in the row; optionally add them).",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "note": "No constant equals GammaX on x >= 0; the README says it is stated for Gamma(x), and the 'strictly decreasing from 2 to 1' part is now carried by the cited GammaX_strictAntiOn / GammaX_tendsto_zero / GammaX_tendsto_atTop. Matches.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainB.rhoC_eq_dMc": {
+   "hash": "ba0ff7ad41481ef2",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainC.Pext_pointMass": {
+   "hash": "7a0263ae47461e35",
+   "verdict": "MATCH",
+   "note": "Pext with Mb = const M, Sig = 0 equals ChainB.Pfun (G > 0); matches.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainC.Pext_tendsto_zero": {
+   "hash": "236b629e182e090b",
+   "verdict": "MATCH",
+   "note": "P -> 0 at infinity from Sig -> 0 and g_N -> 0 (both hypotheses), G > 0; matches.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.dispersion_ratio": {
-   "hash": "e54ee80619a0293b",
+   "hash": "2f63ca9d06bf1d1b",
    "verdict": "MATCH",
    "note": "Given the target at r, a0 > 0 and Mb r != 0: Pext/rho_c/(r g_tot/2) = 1 + 4 pi r^2 Sig/Mb, i.e. sigma^2/(V_c^2/2) with sigma^2 = P/rho_c and V_c^2 = r g_tot. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.exp_profile_decay": {
-   "hash": "6b67a984fe25f4bd",
+   "hash": "26c99635a2d307d9",
    "verdict": "MATCH",
    "note": "Lean: e^{-r} -> 0, i.e. Sig_out -> 0 for the exponential profile; the README now claims only Sig_out -> 0 and says g_N -> 0 is not formalised. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.exp_profile_identity_P": {
-   "hash": "6ff6535aad4d46ea",
+   "hash": "5f4166ad6d621224",
    "verdict": "MATCH",
-   "note": "For rho_b = Sig = e^{-r}, Mb = 4pi(2 - e^{-r}(r^2+2r+2)) the identity_P derivative holds at every r > 0, with no cold fluid; together with exp_profile_decay this is exactly 'witnesses Sig_out -> 0 without a cold fluid', and the README discloses g_N -> 0 is not formalised. (Minor: the row's module list omits this name though the text cites it.)",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "For Sig = rho_b = e^{-r}, Mb = 4pi(2 - e^{-r}(r^2+2r+2)) (so Mb' = 4pi r^2 e^{-r}, Sig' = -rho_b), identity (P) holds at every r > 0 with no cold fluid involved. Together with exp_profile_decay this supports 'witnesses Sig_out -> 0 without a cold fluid'; the README says g_N -> 0 is not formalised. The name now appears in the row's text. (Cosmetic: it is not in the parenthesised Profile list.)",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainC.gtot_pointMass": {
+   "hash": "d0921d6de4c93b7a",
+   "verdict": "MATCH",
+   "note": "Profile gtot with Mb = const M and Mc = ChainB.Mc equals ChainB.gtot at every r (definitional).",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.hydrostatic_general": {
-   "hash": "940e3c73c339d071",
+   "hash": "d78561d9932c52bd",
    "verdict": "MATCH",
    "note": "Adds the target at r and concludes dP/dr = -rho_c g_tot, as stated.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.identity_P": {
-   "hash": "384ca4b9e9371e1a",
+   "hash": "23e1eb5c2595152a",
    "verdict": "MATCH",
    "note": "For G > 0, r > 0, Mb' = 4 pi r^2 rho_b and Sig' = -rho_b at r: d/dr Pext = -a0 Mb/(4 pi r^3), where Pext is the stated bracket. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.isothermal_config": {
-   "hash": "4b05e38456f92079",
+   "hash": "43c314ab7fdc98f6",
    "verdict": "MATCH",
-   "note": "This is an ExtConfig, so the target holds, with Mb = Mc = a0 r^2/(4G) and Sig = -(a0/8piG) ln r. Sig and gN = a0/4 visibly do not decay, though Lean does not state that. 'Witnesses the target without decay' matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "An ExtConfig, so the target holds, with Mb = Mc = a0 r^2/(4G), rho_b = rho_c = a0/(8 pi G r), Sig = -(a0/8piG) ln r. Sig does not visibly decay and gN = a0/4 is constant, though Lean does not state 'no decay'. 'Witnesses the target without decay' matches.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainC.ode_hasDerivAt": {
+   "hash": "6417a16960fbc4ee",
+   "verdict": "MATCH",
+   "note": "With Mb', Mc' HasDerivAt hypotheses, r > 0, Mb+Mc != 0 and the target, w = G(Mb+Mc) - G Mb has derivative a0 r (G Mb)/(G(Mb+Mc)); the nonzero-u premise is implicit in the division.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainC.pointMass_config": {
+   "hash": "bfb6cae5af0445ed",
+   "verdict": "MATCH",
+   "note": "ExtConfig holds for Mb = M, Mc = ChainB.Mc, Sig = 0, rhoB = 0, rhoC = ChainB.rhoC under G, a0, M > 0; the decay part of \"satisfiability witness with the decay hypotheses\" is the separate pointMass_decay.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainC.pointMass_decay": {
+   "hash": "f081fbe3a9f5a933",
+   "verdict": "MATCH",
+   "note": "Sig = 0 -> 0 and g_N of a constant mass -> 0 at infinity (no sign hypothesis on M needed).",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainC.pointMass_hydrostatic": {
+   "hash": "21e02efab43f397f",
+   "verdict": "MATCH",
+   "note": "HasDerivAt Pfun (-(rhoC * gtot)) r for r > 0, i.e. ChainB hydrostatic form; matches.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainC.pointMass_ode": {
+   "hash": "240b84acb77883ba",
+   "verdict": "MATCH",
+   "note": "G * deriv Mc r = a0 r (G M)/(G(M + Mc r)) at r > 0; matches the target ODE.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainC.pointMass_pressure_pos": {
+   "hash": "53de6a29ae746869",
+   "verdict": "MATCH",
+   "note": "0 < ChainB.Pfun = a0 M/(8 pi r^2) for G, a0, M, r > 0; matches.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.pointMass_target": {
-   "hash": "42b174efb0cbe266",
+   "hash": "4dfbe72e46bddee0",
    "verdict": "MATCH",
    "note": "The ChainB point-mass rho_c and Mc satisfy the target with constant Mb, which supports 'the point-mass case reduces to PointMass'. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.pressure_nonneg": {
-   "hash": "e9ac638905d5ebe0",
+   "hash": "23bdef809355cbe0",
    "verdict": "MATCH",
-   "note": "Pext >= 0 for r > 0 under ExtConfig and the two decay limits. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "Pext >= 0 for r > 0 under ExtConfig (which includes rho_b >= 0 and Mb >= 0) and the two decay limits. Matches.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.pressure_pos": {
-   "hash": "d9fe9a2e2582ff77",
+   "hash": "c166d7680c95c257",
    "verdict": "MATCH",
    "note": "Assumes Mb r > 0 at every r > 0 and concludes Pext > 0 at every r > 0. The reworded README ('> 0 at every r > 0 when M_b > 0 at every r > 0') now says exactly this. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.pressure_unique": {
-   "hash": "cc4411a835b90cb0",
+   "hash": "1c847b24f1440be5",
    "verdict": "MATCH",
-   "note": "Within ExtConfig (target at all r > 0, rho_b >= 0, Mb >= 0, Mb + Mc > 0, a0 > 0) and with Sig -> 0 and gN -> 0, any Q with Q' = -rho_c g_tot and Q -> 0 equals Pext for r > 0. The extra fields are 'given the target' plus physical positivity. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "Inside ExtConfig (target at every r > 0; rho_b >= 0, Mb >= 0, Mb + Mc > 0, a0 > 0, G > 0) with Sig -> 0 and gN -> 0, any Q with Q' = -rho_c g_tot that tends to 0 equals Pext for r > 0. The extra fields are 'given the target' plus physical positivity. Matches.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainC.target_iff_ode": {
-   "hash": "2631f68247026b32",
+   "hash": "6cdd631ab11dd0cb",
    "verdict": "MATCH",
    "note": "With Mb + Mc != 0: target iff G(4 pi r^2 rho_c) = a0 r u_N/u, where u_N = G Mb and u = G(Mb + Mc); 4 pi r^2 rho_c stands for M_c'. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "ChainC.w_eq": {
+   "hash": "aada5565861faf86",
+   "verdict": "MATCH",
+   "note": "Function identity G(Mb+Mc) - G Mb = G Mc; trivial ring identity, as described.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "ChainPremises": {
-   "hash": "4d663e21437c5d80",
+   "hash": "230e083ec0976eb0",
    "verdict": "MATCH",
-   "note": "Fields kappa, c, G, rho_L(z) with positivity and hflat : forall z, rho_L z = rho_L 0; the README correctly calls flatness the premise hflat. The iff and 'false without hflat' are carried by other (C4) theorems, not this structure.",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "note": "Fields kappa, c, G, rho_L(z) with positivity and hflat : rho_L z = rho_L 0; README calls flatness the premise hflat. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "ChainPremises.a0": {
-   "hash": "0bf003aff86d4f6a",
+   "hash": "e991d0edfa8579b5",
    "verdict": "MATCH",
-   "note": "a0 z = kappa c sqrt(G rho_L z); the fluid-cap row now says it is not linked inside Fluid and that FluidLink links it under Lambda = 8 pi G rho_L/c^2, which is accurate (earlier UNDERSTATES fixed).",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "note": "a0 z := kappa c sqrt(G rho_L z); the fluid-cap row names it only as the kernel's a0 that FluidLink links under Lambda = 8 pi G rho_L/c^2. Accurate.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "ChainPremises.a0_flat": {
-   "hash": "2352fc51cc6dc224",
+   "hash": "c97d96255db49dbe",
    "verdict": "MATCH",
-   "note": "P.a0 z = P.a0 0 from hflat; matches its use in the composed row.",
-   "reviewer": "independent agent, chunk B, 2026-10-08"
+   "note": "P.a0 z = P.a0 0 from hflat; matches its role in the composed row.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "ChainPremises.btfr_limit": {
+   "hash": "6e5128334d9e9f4e",
+   "verdict": "MATCH",
+   "note": "((GM/r) nu_mono(GM/(r^2 a0 z)))^2 -> G M a0(z) as r -> inf for M > 0; supports the row's BTFR limit.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "ChainPremises.btfr_limit_redshift_independent": {
+   "hash": "0c3e7c92a7cc4879",
+   "verdict": "MATCH",
+   "note": "Same limit equals G M a0(0) at every z, using the structure field hflat; matches 'given rho_L constant, the BTFR limit is the same at every redshift'.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Cusp.Kfam_identity": {
-   "hash": "769604768af6dc1b",
+   "hash": "f25f4fd30e18eec2",
    "verdict": "MATCH",
-   "note": "Exact identity K(M) = M^(1/3-2a) c0^2/(2 k^2 m(c0 M^-a)) for c0, k, M > 0, as stated.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "Exact K(M) = M^(1/3-2a) c0^2/(2 k^2 m(c0 M^-a)) for c0, k, M > 0; matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.c1_bounds": {
+   "hash": "a576a02b84ea2c96",
+   "verdict": "MATCH",
+   "note": "c(1e8) in (21.18,21.22): auxiliary step (header quotes these values); supports the row's factor.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.c2_bounds": {
+   "hash": "8592d54b0bdb7850",
+   "verdict": "MATCH",
+   "note": "c(1e10) in (13.30,13.32): auxiliary step; supports the row's factor.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.c_at_1e10": {
+   "hash": "bc9883e288c2aca4",
+   "verdict": "MATCH",
+   "note": "c(1e10) = 16.8 / 10^0.101: auxiliary step toward the (2.25,2.29) factor.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.c_at_1e8": {
+   "hash": "9ff900f66436e523",
+   "verdict": "MATCH",
+   "note": "c(1e8) = 16.8 * 10^0.101: auxiliary step toward the (2.25,2.29) factor.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.c_at_1e9": {
+   "hash": "49c95849439a5623",
+   "verdict": "MATCH",
+   "note": "cfam aDM c0DM 1e9 = 16.8: directly the row's 'c(10^9) = 16.8' (c0DM fixed for it).",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Cusp.debris_corollary": {
-   "hash": "d7c160cf5a1c4e4d",
+   "hash": "07d50840444a9f02",
    "verdict": "MATCH",
-   "note": "For any k > 0: cfam(1e9) = 16.8, 100^(1/3 - 2a) is in (1.830, 1.832), and Kfam(1e10)/Kfam(1e8) is in (2.25, 2.29). The README now attributes the (2.25, 2.29) factor to K = lim M(<r)/r^2, which nfw_small_r_K identifies with Kc. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "cfam(1e9) = 16.8 with aDM = 101/1000; 100^(1/3-2a) in (1.830,1.832); Kfam(1e10)/Kfam(1e8) in (2.25,2.29) for any k > 0; Kfam is Kc along R200 = k M^(1/3), c = c0 M^-a, and Kc is the r->0 coefficient by nfw_small_r_K. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Cusp.leading_exponent": {
-   "hash": "5830b87c86e3f4e9",
+   "hash": "d42fd44e43b81849",
    "verdict": "MATCH",
-   "note": "1/3 - 2(0.101) = 197/1500, which lies in (0.1313, 0.1314); the README's '= 0.1313' is the truncated value. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "1/3 - 2(101/1000) = 197/1500 in (0.1313, 0.1314); README '= 0.1313' is the truncated value. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.m_c1_hi": {
+   "hash": "99d7f0457a48fc8a",
+   "verdict": "MATCH",
+   "note": "m(21.22) <= 2.152: auxiliary numeric bracket for the (2.25,2.29) factor.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.m_c1_lo": {
+   "hash": "df709fb4511eb5a1",
+   "verdict": "MATCH",
+   "note": "m(21.18) >= 2.139: auxiliary numeric bracket for the (2.25,2.29) factor.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.m_c2_hi": {
+   "hash": "4bfc6505c9d86a11",
+   "verdict": "MATCH",
+   "note": "m(13.32) <= 1.738: auxiliary numeric bracket for the (2.25,2.29) factor.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.m_c2_lo": {
+   "hash": "60f4a12741c99fc5",
+   "verdict": "MATCH",
+   "note": "m(13.30) >= 1.723: auxiliary numeric bracket for the (2.25,2.29) factor.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Cusp.m_lower": {
-   "hash": "9b499a12d4ecdcb6",
+   "hash": "021d35d7a933f77b",
    "verdict": "MATCH",
-   "note": "x^2/2 - 2x^3/3 <= m x for x >= 0, as stated.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "x^2/2 - 2x^3/3 <= m x for x >= 0; matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Cusp.m_pos": {
-   "hash": "aef42e58ba6bcca5",
+   "hash": "97ca3977735835b5",
    "verdict": "MATCH",
-   "note": "m x > 0 for x > 0; the domain x = r/r_s > 0 is implicit. Matches.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "m x > 0 for x > 0; 'm > 0' on the implicit domain x > 0. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Cusp.m_strictMonoOn": {
-   "hash": "bf5e2e43d3e6f9e8",
+   "hash": "69a013a27611676d",
    "verdict": "MATCH",
-   "note": "Strictly increasing on [0, inf), as stated.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "Strictly increasing on [0, inf); matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Cusp.m_upper": {
-   "hash": "4510dd1584d3a57b",
+   "hash": "301d30c9bb267fcf",
    "verdict": "MATCH",
-   "note": "m x <= x^2/2 for x >= 0, as stated.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "m x <= x^2/2 for x >= 0; matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Cusp.nfw_rho_s_form": {
-   "hash": "e85ccf6e39d0e2c4",
+   "hash": "c045b1c0061f8675",
    "verdict": "MATCH",
-   "note": "With r_s = R200/c and rho_s = M200/(4 pi r_s^3 m(c)): M = 4 pi rho_s r_s^3 m(r/r_s) and K r^2 = 2 pi rho_s r_s r^2, as stated.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "With r_s = R200/c, rho_s = M200/(4 pi r_s^3 m(c)): nfwMass = 4 pi rho_s r_s^3 m(r/r_s) and Kc r^2 = 2 pi rho_s r_s r^2; matches 'the 2 pi rho_s r_s r^2 form'.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Cusp.nfw_small_r_K": {
-   "hash": "739e3276e4be36a3",
+   "hash": "e7428498f388a934",
    "verdict": "MATCH",
-   "note": "nfwMass/(K r^2) -> 1 as r -> 0+ with K = M200 c^2/(2 m(c) R200^2), as stated.",
-   "reviewer": "independent agent, re-review R3, 2026-10-08"
+   "note": "nfwMass/(Kc r^2) -> 1 as r -> 0+, Kc = M200 c^2/(2 m(c) R200^2); matches 'M(<r) ~ K r^2'.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.nfw_small_r_form1": {
+   "hash": "3383b2a2ea6f195e",
+   "verdict": "MATCH",
+   "note": "M(<r)/[M200 (c r/R200)^2/(2 m(c))] -> 1 as r -> 0+; supporting form of the row's small-r claim.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.nfw_small_r_rho_s": {
+   "hash": "cfe9661c6f042b01",
+   "verdict": "MATCH",
+   "note": "Same limit with denominator 2 pi rho_s r_s r^2; supports the row's 2 pi rho_s r_s r^2 form.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.t_bounds": {
+   "hash": "0df90ba476c8b626",
+   "verdict": "MATCH",
+   "note": "10^0.101 in (1.2618,1.2619): auxiliary numeric step toward the row's (2.25,2.29) factor; the prose states no separate value. Not misattached.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.u_bounds": {
+   "hash": "dea325916e60ffdc",
+   "verdict": "MATCH",
+   "note": "10^(197/750) = 100^(1/3-2a) in (1.830,1.832): carries the row's leading-exponent interval.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Dimension.C1_in_framework": {
-   "hash": "6c852cb7931503f0",
+   "hash": "d5060f7037b481ce",
    "verdict": "MATCH",
-   "note": "c^α G^β ρ^γ is an acceleration iff (α,β,γ) = (1,½,½); a restatement of C1 as the README says.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "note": "alpha dc + beta dG + gamma drho = dAcc iff (1,1/2,1/2), via C1_a0_form_iff; the row's 'restates C1' is accurate.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Dimension.GcSpan_iff": {
-   "hash": "c51d0f7f9c410360",
+   "hash": "248eab1045161fa2",
    "verdict": "MATCH",
    "note": "x is in the ℚ-span of dG, dc iff massExp x = 0; matches 'X is not dimensionally a monomial in G and c iff massExp X ≠ 0' (rational exponents).",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.acc_c_family": {
-   "hash": "3520047807397499",
+   "hash": "6f17f67400330fd8",
    "verdict": "MATCH",
    "note": "For X with dimension acc·c^k, the unique (a,d,e) is (½, k/2, −½), i.e. r* = √(GMc^k/X). Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.acc_from_GcX_iff": {
-   "hash": "0abb7fcc8416312d",
+   "hash": "961e371ad3b8e357",
    "verdict": "MATCH",
    "note": "(G,c,X) form an acceleration monomial iff massExp X ≠ 0. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.acc_unique": {
-   "hash": "afefa8905f5a4882",
+   "hash": "40cc0d963fe6d9cd",
    "verdict": "MATCH",
    "note": "Unique exponents (½,0,−½) for X an acceleration: r* = √(GM/a₀). Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.basis_decomp": {
-   "hash": "5d7f19472c906e96",
+   "hash": "46331788a90687c3",
    "verdict": "MATCH",
    "note": "Exact decomposition of any Dim in the (dG, dM, dc) basis with dM-coefficient massExp x; supports the iff as cited.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.force_not_admissible": {
    "hash": "8b54d6bbf47f5e64",
@@ -746,22 +1022,28 @@
    "reviewer": "independent agent, chunk C, 2026-10-08"
   },
   "Dimension.length_GMc_iff": {
-   "hash": "935fdd6089083cae",
+   "hash": "3910782081d5df5d",
    "verdict": "MATCH",
-   "note": "G^a M^b c^d is a length iff (a,b,d) = (1,1,−2). Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "note": "mono a b d = dLen iff (1,1,-2); matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Dimension.length_GMc_mass_exp": {
+   "hash": "662026397cb1213f",
+   "verdict": "MATCH",
+   "note": "If G^a M^b c^d is a length then b = 1: the M-exponent part of the row's '(a,b,d) = (1,1,-2)' and of 'no (G,M,c) monomial is a length proportional to M^1/2'. Pointer fits.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.no_quarterM_velocity_GMc": {
-   "hash": "58f18ac294e5c0bf",
+   "hash": "53efddfcbb535002",
    "verdict": "MATCH",
-   "note": "No (G,M,c) monomial with M^¼ is a velocity. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "note": "No (a,d) with mono a (1/4) d a velocity; matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Dimension.no_sqrtM_length_GMc": {
-   "hash": "5e238662ccbef053",
+   "hash": "4091607cd999e20e",
    "verdict": "MATCH",
-   "note": "No (G,M,c) monomial with M^½ is a length. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "note": "No (a,d) with mono a (1/2) d a length; matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "Dimension.not_only_accelerations": {
    "hash": "28b88c3ddda5ab3e",
@@ -770,46 +1052,46 @@
    "reviewer": "independent agent, chunk C, 2026-10-08"
   },
   "Dimension.quarterM_velocity_acc": {
-   "hash": "49271efb0847d77f",
+   "hash": "fff973c59151e325",
    "verdict": "MATCH",
    "note": "If G^a M^¼ c^d X^e is a velocity then G^(4a−1) c^(4d) X^(4e) is an acceleration, i.e. v⁴ = GMA. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.quarterM_velocity_iff": {
-   "hash": "0241c7631c44c5e4",
+   "hash": "3814518b5f248eed",
    "verdict": "MATCH",
    "note": "M^¼ velocity monomial exists iff massExp X ≠ 0. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.rho_length": {
-   "hash": "be6a5262973a024d",
+   "hash": "e6564f28e0bfd5c9",
    "verdict": "MATCH",
    "note": "G^¼ M^½ c^(−½) ρ^(−¼) is a length = √(GM/(c√(Gρ_Λ))). Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.sqrtM_length_acc": {
-   "hash": "8b9e741bf457e268",
+   "hash": "f874aa5f9d92f845",
    "verdict": "MATCH",
    "note": "Given the length, G^(1−2a) c^(−2d) X^(−2e) is an acceleration; r* = √(GM/A) is the exponent identity. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.sqrtM_length_iff": {
-   "hash": "98232854c43263cf",
+   "hash": "6550e5cd24a039e0",
    "verdict": "MATCH",
    "note": "M^½ length monomial with one extra X exists iff massExp X ≠ 0. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.sqrtM_length_iff_acc": {
-   "hash": "d75faeff4c33dc16",
+   "hash": "d154bcf2de241abf",
    "verdict": "MATCH",
    "note": "Existence of the M^½ length iff (G,c,X) form an acceleration. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Dimension.velocity_GMc_iff": {
-   "hash": "ab097cb2b1c5af1f",
+   "hash": "e176e77403926bd5",
    "verdict": "MATCH",
-   "note": "G^a M^b c^d is a velocity iff (0,0,1). Matches 'the only velocity is c'.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "note": "mono a b d = dc iff (0,0,1): 'the only velocity is c'. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
   },
   "DoorEleven.boosted_flux": {
    "hash": "05656b7a7b23c23a",
@@ -877,6 +1159,18 @@
    "note": "c = 1 and Lambda = 8 pi G rho(z): capA0 = a0 z; matches.",
    "reviewer": "independent agent, re-review R2, 2026-10-08"
   },
+  "Ownership.P2_law_has_EFE": {
+   "hash": "118b4c09093e29a3",
+   "verdict": "MATCH",
+   "note": "Same for nu_beta at beta = 1.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
+  "Ownership.P2_sqrt_law_has_EFE": {
+   "hash": "9c29e4493dba639d",
+   "verdict": "MATCH",
+   "note": "Same for sqrt(1 + 1/(gN/a0)) gN = sqrt(1 + a0/gN) gN.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
   "Ownership.deep_kernel_ne_one": {
    "hash": "9e6bb89abc2424ee",
    "verdict": "MATCH",
@@ -884,16 +1178,16 @@
    "reviewer": "independent agent, chunk C, 2026-10-08"
   },
   "Ownership.deep_not_efeFreeRay": {
-   "hash": "2bae00067b2064b6",
+   "hash": "2de36b5f18bf1d79",
    "verdict": "MATCH",
    "note": "¬EFEFreeRay (y ↦ ν y · y) under the deep limit only; no continuity assumed. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "Ownership.law_not_efeFreeRay": {
-   "hash": "486c3c7e04af8b5d",
+   "hash": "11a4a749481e9221",
    "verdict": "MATCH",
    "note": "Same for gN ↦ ν(gN/a0) gN with a0 > 0. Matches (the listed instances are separate theorems).",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "Ownership.noEFE_continuousLinear": {
    "hash": "4f053a1a40ed125f",
@@ -931,11 +1225,23 @@
    "note": "Continuous F not of the form k z is not EFE-free; matches.",
    "reviewer": "independent agent, re-review R2, 2026-10-08"
   },
+  "Ownership.nuMono_law_has_EFE": {
+   "hash": "7477874b197048b6",
+   "verdict": "MATCH",
+   "note": "gN -> nu_mono(gN/a0) gN is not EFE-free on the ray, a0 > 0.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
+  },
   "Ownership.owned_boost_one": {
-   "hash": "a3822994b9fba6b6",
+   "hash": "8bc766922c5bec32",
    "verdict": "MATCH",
    "note": "For an owned system, boost = gN/gN = 1 for every gN > 0, gext, ν, a0. Matches; README already says it is near-definitional.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "Ownership.owned_internal_newton": {
+   "hash": "8843888a5b967d79",
+   "verdict": "MATCH",
+   "note": "Owned branch: internalAccel = gN for any gext, nu, a0; this is the row's 'g_N if owned; the external field enters neither branch'.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Ownership.ownership_distinguishes": {
    "hash": "9e82e121f688877c",
@@ -950,28 +1256,40 @@
    "reviewer": "independent agent, chunk C, 2026-10-08"
   },
   "Ownership.top_boost_gt_one_P2": {
-   "hash": "01152065090df2dc",
+   "hash": "9e822eb469144f7b",
    "verdict": "MATCH",
-   "note": "Top-level, a0 > 0, gN > 0: boost under ν = √(1+1/y) exceeds 1, gext arbitrary but unused. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "note": "Top-level, a0 > 0, gN > 0: boost under nu = sqrt(1+1/y) > 1, gext unused; the bare law, as the row says.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "Ownership.top_boost_gt_one_nuMono": {
-   "hash": "7e5cbd52da4d6dc3",
+   "hash": "2ea93eb4e45eb664",
    "verdict": "MATCH",
    "note": "Same with nuMono = 1/(1−e^(−√y)). Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "Ownership.top_internal_law": {
+   "hash": "8f19529debf0e35e",
+   "verdict": "MATCH",
+   "note": "Top-level branch: internalAccel = nu(gN/a0) gN for any gext; this is the row's 'nu(g_N/a0) g_N if top-level'.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "Ownership.vecLaw_R3_not_efeFree": {
+   "hash": "6be8912d745534c8",
+   "verdict": "MATCH",
+   "note": "Lean: for a0 > 0 and nu with the C2 deep limit nu(y)sqrt(y) -> 1, vecLaw nu a0 on EuclideanSpace R (Fin 3) is not EFE-free. The README row's 'It also holds ... including R^3' inherits the deep-limit premise from the row's opening clause, so it matches. The previous PREMISE-HIDDEN concerned the module-header bullet, which (Ownership.lean l.45) now reads 'for any nu with C2's deep limit', so that issue is fixed.",
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "Ownership.vecLaw_not_efeFree": {
-   "hash": "4cb976b7141f810a",
+   "hash": "765b543347c774e2",
    "verdict": "MATCH",
    "note": "vecLaw ν a0 (v ↦ ν(‖v‖/a0)•v) is not EFE-free on any nontrivial real normed space for a0 > 0 and the deep-limit kernel. Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "reviewer": "independent agent, review S3, 2026-10-08"
   },
   "Ownership.wideBinary_gammaHat_one": {
-   "hash": "2fe37511f977c223",
+   "hash": "a4ca2d6845f8e903",
    "verdict": "MATCH",
-   "note": "Weighted mean of boosts over owned pairs = 1, needing each gN > 0 and total weight > 0 (individual weights need not be positive, so the theorem is slightly more general than 'positively weighted'). Matches.",
-   "reviewer": "independent agent, chunk C, 2026-10-08"
+   "note": "Weighted mean of boosts over owned pairs = 1, needing gN > 0 for each pair and total weight > 0 (more general than 'positively weighted'). Matches.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "cap_a0_eq": {
    "hash": "218a44dc13a8201b",
@@ -980,22 +1298,208 @@
    "reviewer": "independent agent, re-review R2, 2026-10-08"
   },
   "cap_a0_tie": {
-   "hash": "efcbb577a90bd902",
+   "hash": "6469a63bc5016a08",
    "verdict": "MATCH",
    "note": "8 pi G P_cap = kappa^2 Lambda/(8 pi) with P_cap = (kappa^2/8pi)(1/8piG) Lambda, i.e. M_P^2 = 1/(8 pi G); README calls it an identity inside Fluid and points to FluidLink for the link. Matches.",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "exch_bare_speed_lt": {
+   "hash": "355f50b0a1b34b9c",
+   "verdict": "MATCH",
+   "note": "Proves c/sqrt(1+beta) < c for c, beta > 0. The row does not spell out c_m < c, but it follows from the row's two stated clauses (sqrt>1 and c_m = c/sqrt(1+beta)); the theorem is consistent with the prose and not misleading. Optional: add 'so c_m < c'.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_beta_eq_epsc_lamt": {
+   "hash": "d9fef6f273978f93",
+   "verdict": "MATCH",
+   "note": "With eps_c = c_f vartheta M, lam_t = vt/(g_b M), beta = c_f vt^2/N (N, g_b, M != 0): beta = eps_c lam_t. Matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_beta_pos": {
+   "hash": "4cc1382996b12dfc",
+   "verdict": "MATCH",
+   "note": "Row now states the premises 'for c_f, N > 0, vt != 0', exactly the statement's hypotheses; earlier PREMISE-HIDDEN resolved.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_delta_mul_fbb": {
+   "hash": "c8eae9ddffb3387f",
+   "verdict": "MATCH",
+   "note": "x(1/x)=1 for x = lam_t r_led != 0; exactly the row's 'delta f_bb = 1 (for lam_t r_led != 0)'. Trivial but correctly stated.",
+   "reviewer": "independent agent, review T, 2026-10-08"
   },
   "exch_fbb_gt_one": {
-   "hash": "36a554afd4e85542",
+   "hash": "9f2c0ca4f7874b5c",
    "verdict": "MATCH",
-   "note": "Statement: 0 < delta < 1 and delta f = 1 give 1 < f. ExchangeMutate m16b weakens delta < 1 to delta < 2 (false), and ExchangeMutate.out shows 31 errors for 30 Exchange theorems + 1. The line's '161 theorems' is a dated count (the library now checks 331 per verify_chain.out). README line 3 still says 'all 161 theorems' without a date, which is stale.",
-   "reviewer": "independent agent, chunk A, 2026-10-08"
+   "note": "0<delta<1, delta f=1 => 1<f; row 'delta f_bb = 1 ... so 0<delta<1 forces f_bb>1' matches. ExchangeMutate.out has 31 errors as the verify line claims; the '161 theorems' count is dated historical.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_fbb_large": {
+   "hash": "5b507edbd812af9a",
+   "verdict": "MATCH",
+   "note": "Row now 'for delta > 0 ... delta <= eps forces f_bb >= 1/eps', matching hypotheses 0<delta, delta<=eps, delta f=1; earlier PREMISE-HIDDEN resolved. (Minor: the bound 'eps' is a different symbol from eps_c.)",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_freal_lt_one": {
+   "hash": "874df2a2b8a2168c",
+   "verdict": "MATCH",
+   "note": "Row now '< 1 for r_led, eps_c > 0 and 1 + beta > 0', exactly the hypotheses; earlier PREMISE-HIDDEN resolved.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_freal_open": {
+   "hash": "abcc7f93542cf905",
+   "verdict": "MATCH",
+   "note": "At r_led = 0 the expression is 1 (any beta, eps_c): '1 in the open class'. Matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_freal_split": {
+   "hash": "1067c947c17de4c6",
+   "verdict": "MATCH",
+   "note": "For eps_c != 0, beta = eps_c lam_t: 1-(1+beta) r/eps_c = 1 - r/eps_c - lam_t r, i.e. f_real = 1 - r/eps_c - delta. Matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_hyd_reaction": {
+   "hash": "9ee9041a90eeedfb",
+   "verdict": "MATCH",
+   "note": "d/du of hydShellE = (3/4) a0 dm ((R-u)+u/3) is -(a0/2) dm; with the per-mass step this is the row's 'reaction a0/2 per unit mass'.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "exch_hyd_reaction_per_mass": {
+   "hash": "55ab8d3a992b33dd",
+   "verdict": "MATCH",
+   "note": "Algebra step -(-(a0/2) dm)/dm = a0/2 for dm != 0; it carries the 'per unit mass' in the row's 'reaction a0/2 per unit mass'. Pointer fits.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "exch_not_both_small": {
+   "hash": "af460fd16904ee33",
+   "verdict": "MATCH",
+   "note": "Row now 'for delta > 0 (so f_bb > 0)'; f>0 follows from delta>0 and delta f=1, so the hypotheses are covered; earlier PREMISE-HIDDEN resolved.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_open_delta_zero": {
+   "hash": "189de0f05da2bd54",
+   "verdict": "MATCH",
+   "note": "lam_t*0 = 0; row says only r_led = 0 gives delta = 0 and does not claim the identity there. Matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_reaction_ne_rled": {
+   "hash": "ec0dbe07433d8d0d",
+   "verdict": "MATCH",
+   "note": "lam_t != 0 => r - 1/lam_t != r; 'never equal to r_led' (lam_t != 0 implicit in 1/lam_t). Matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_reaction_neg_of_delta_lt_one": {
+   "hash": "3f7bf7335c1827a2",
+   "verdict": "MATCH",
+   "note": "Row now says 'negative for lam_t > 0, delta < 1', exactly the hypotheses 0<lam_t, lam_t r<1; earlier PREMISE-HIDDEN resolved.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_reaction_via_delta": {
+   "hash": "e290796520e7a308",
+   "verdict": "MATCH",
+   "note": "r - 1/lam_t = (lam_t r - 1)/lam_t for lam_t != 0, i.e. (delta-1)/lam_t with delta = lam_t r_led. Matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_retardation_iff": {
+   "hash": "44ad77dc0286aaf5",
+   "verdict": "MATCH",
+   "note": "Algebraic equivalence on symbols for the second derivatives (the linear relation is assumed as hypotheses hEt/hEr, as the claim says); matches.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "exch_shell_integral": {
+   "hash": "f26245eeaf20dbc9",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "exch_sigma_bounds": {
+   "hash": "24f771cdd237671d",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "exch_sigma_pointmass": {
+   "hash": "80bcee6c78f7cdc3",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "exch_sigma_pointmass_strictAnti": {
+   "hash": "e400c6f8184610e2",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "exch_sigma_strictMono": {
+   "hash": "19a06980084a2553",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "exch_speed_eq_iff": {
+   "hash": "0afec435cc5d26b3",
+   "verdict": "MATCH",
+   "note": "Under beta>0 (the row's context), c_m sqrt(1+beta)=c iff c_m=c/sqrt(1+beta). Matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_speed_gt_one": {
+   "hash": "86fc5b72dc2a23ae",
+   "verdict": "MATCH",
+   "note": "beta>0 => sqrt(1+beta)>1; row reaches it from beta>0 ('so sqrt(1+beta) > 1'). Matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_static_delta_fbb": {
+   "hash": "e49b56f7bd3380de",
+   "verdict": "MATCH",
+   "note": "f_bb defined as (vartheta M/(vt/g_b))/(vartheta r_led) equals 1/(lam_t r_led) and delta f_bb = 1, given vt, g_b, M, r_led, vartheta != 0; row's 'for lam_t r_led != 0' covers it. Matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_static_reaction": {
+   "hash": "667b7ebf24e5709b",
+   "verdict": "MATCH",
+   "note": "F/vartheta = r_led - 1/lam_t under c_f, N, vt, g_b, M != 0 and the model definitions. The nonzero premises are implicit in 1/lam_t and F/vartheta (lam_t = vt/(g_b M)); the 'any values' sentence is about the free trade-off, not degenerate zeros. Matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_static_theta": {
+   "hash": "f77754da754f2d80",
+   "verdict": "MATCH",
+   "note": "With the model definitions (vartheta, beta, eps=-r_led/c_f, S, E, theta) and c_f, N != 0, theta = vartheta M - (1+beta) r_led/c_f. Matches; nonzero c_f is implicit in the formula's division.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_symbol_charpoly": {
+   "hash": "4ffee144e7c03789",
+   "verdict": "MATCH",
+   "note": "exchSymbol is the declared 3x3 matrix !![0,-1,0; -cm^2(1+beta),0,cm^2 beta; 0,0,0]; det(lam I - S) = lam(lam^2 - c_m^2(1+beta)) for all values, as the row says.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_symbol_eigen_iff": {
+   "hash": "b3b1ac94b89da358",
+   "verdict": "MATCH",
+   "note": "For beta>-1 the roots are exactly 0, +-c_m sqrt(1+beta) (any c_m); row's roots clause with beta > -1 matches.",
+   "reviewer": "independent agent, review T, 2026-10-08"
+  },
+  "exch_symbol_roots_distinct": {
+   "hash": "656885d7e7ca66f1",
+   "verdict": "MATCH",
+   "note": "c_m>0, beta>-1 => -r<0<r with r=c_m sqrt(1+beta): the three roots distinct, as the row's 'distinct ... for c_m > 0, beta > -1'.",
+   "reviewer": "independent agent, review T, 2026-10-08"
   },
   "fex": {
    "hash": "cdfe17dc270396bc",
    "verdict": "MATCH",
    "note": "fex = max 0 (1 - Mph/Mc), as stated.",
    "reviewer": "independent agent, re-review R1, 2026-10-08"
+  },
+  "fluid_pressure": {
+   "hash": "470017b800354d82",
+   "verdict": "MATCH",
+   "note": "n rho' - rho = Pc x^2/(1+x^2) with x = m n/s, for s != 0, exactly as stated.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
+  },
+  "fluid_pressure_bounds": {
+   "hash": "696189d9630504d6",
+   "verdict": "MATCH",
+   "note": "(0 <= P < Pc) or Pc = 0, with 0 <= Pc. The row's P in [0, P_cap) is vacuous/empty at P_cap = 0, so the claim is read as for P_cap > 0; not misleading. Optional: 'for P_cap > 0'.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "footR2": {
    "hash": "d5d36543784a9dfd",
@@ -1112,10 +1616,16 @@
    "reviewer": "independent agent, re-review R1, 2026-10-08"
   },
   "nuBeta": {
-   "hash": "d447c54220237053",
+   "hash": "7e795fb7495cbb2d",
    "verdict": "MATCH",
-   "note": "nuBeta b y = (1 + y^-b)^(1/(2b)); at b = 0 Lean's 1/0 = 0 makes it identically 1, so the README's beta = 0 remark is true by definition (no theorem states the limit failure, but it is immediate).",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "note": "nuBeta b y = (1 + y^-b)^(1/(2b)); at b = 0 Lean gives (1+1)^0 = 1, so 'identically 1' holds by definition and nuBeta*sqrt y -> 0, so the limit fails. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "nuMono_aux": {
+   "hash": "8b823a6d5867e74b",
+   "verdict": "MATCH",
+   "note": "Helper limit s/(1-e^{-s}) -> 1 as s -> 0+; it is the core of nuMono_deep (nuMono y = 1/(1-e^{-sqrt y})), fits as an 'also' pointer for the nu_mono deep-limit claim.",
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "nuMono_btfr_from_vacuum": {
    "hash": "a0f42ef743c84322",
@@ -1124,10 +1634,10 @@
    "reviewer": "independent agent, re-review R1, 2026-10-08"
   },
   "nuMono_deep": {
-   "hash": "712756bef4ff6411",
+   "hash": "293b4e96fb52d8d0",
    "verdict": "MATCH",
    "note": "nu_mono(y) sqrt y -> 1 as y -> 0+, as stated.",
-   "reviewer": "independent agent, re-review R1, 2026-10-08"
+   "reviewer": "independent agent, review S2, 2026-10-08"
   },
   "sep_lt_cap": {
    "hash": "a9c45eb78479b9ed",
@@ -1172,10 +1682,396 @@
    "reviewer": "independent agent, re-review R1, 2026-10-08"
   },
   "zero_point_linear_in_kappa": {
-   "hash": "6ab7884c4778f15d",
+   "hash": "8fce3eff64732880",
    "verdict": "MATCH",
-   "note": "Closed-form ratio (G M κ1 c sqrt(Gρ))/(G M κ2 c sqrt(Gρ)) = κ1/κ2 under positivity; README correctly says it does not mention the limit.",
-   "reviewer": "independent agent, chunk B, 2026-10-08"
+   "note": "Closed-form ratio equals kappa1/kappa2 under positivity; README says it is a ratio by cancellation and does not mention the limit. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  }
+ },
+ "in_file_reviews": {
+  "AqualAction.AqualMu.inv_mul_mu": {
+   "hash": "17abecfe1c09cf15",
+   "verdict": "NO-CLAIM",
+   "note": "Inverse solves x mu(x) = y; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "AqualAction.AqualMu.inv_pos": {
+   "hash": "f4234d23ee64abb4",
+   "verdict": "NO-CLAIM",
+   "note": "Positivity of the inverse; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "AqualAction.AqualMu.inv_spec": {
+   "hash": "1ef4569ed02f2872",
+   "verdict": "NO-CLAIM",
+   "note": "The chosen inverse is positive and solves x mu(x) = y for y > 0; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "AqualAction.AqualMu.inv_tendsto_zero": {
+   "hash": "d23156b0be92e9a7",
+   "verdict": "MATCH",
+   "note": "inv -> 0+ as y -> 0+ (within (0,inf)).",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "AqualAction.AqualMu.mu_pos": {
+   "hash": "b67dfda0d62eebab",
+   "verdict": "NO-CLAIM",
+   "note": "mu(x) > 0 for x > 0, from x mu(x) > 0; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "AqualAction.AqualMu.nu_mul": {
+   "hash": "3933ca1ca79369e3",
+   "verdict": "NO-CLAIM",
+   "note": "nu(y) y = inv(y) for y > 0, unfolding nu := inv/y; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "AqualAction.muP2_mul": {
+   "hash": "2573e1245e37978f",
+   "verdict": "NO-CLAIM",
+   "note": "Algebraic unfolding x muP2(x) = (sqrt(1+4x^2) - 1)/2 for x != 0; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "AqualAction.muP2_onto_from_regimes": {
+   "hash": "93341787ebf2f8f7",
+   "verdict": "MATCH",
+   "note": "Every y > 0 has x > 0 with x muP2(x) = y; 'also follows from the two regimes' describes the proof route. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "CalibrationWall.LP2F_hasDeriv": {
+   "hash": "fa0283781cdf935b",
+   "verdict": "NO-CLAIM",
+   "note": "Derivative of LP2F; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.LP2_eq": {
+   "hash": "655f61ffd7129f24",
+   "verdict": "NO-CLAIM",
+   "note": "Closed form of log(e^u nuP2(e^u)) = (u + log(e^u + 1))/2; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.LmonoF_hasDeriv": {
+   "hash": "d8f1499f1b132b5a",
+   "verdict": "NO-CLAIM",
+   "note": "Derivative of LmonoF; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.Lmono_eq": {
+   "hash": "d690a3b5b2592508",
+   "verdict": "NO-CLAIM",
+   "note": "Closed form of log(e^u nu_mono(e^u)) = LmonoF u for all real u; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.T2c_yratio": {
+   "hash": "c0b0817f42e97395",
+   "verdict": "NO-CLAIM",
+   "note": "y ratio at two points equals g1/g2 (f, a0 cancel); nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.convex_increment": {
+   "hash": "c69693aa6d3e404f",
+   "verdict": "NO-CLAIM",
+   "note": "Strictly convex L has strictly increasing forward increments; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.fisher_sum_id": {
+   "hash": "7597c31b0bd36673",
+   "verdict": "NO-CLAIM",
+   "note": "Pure algebraic identity sum_ij (b_i - b_j)^2 = 2n sum b_i^2 - 2(sum b_i)^2; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.gObs_nuP2_pos": {
+   "hash": "6b6d0e6f118a1d97",
+   "verdict": "NO-CLAIM",
+   "note": "Positivity of g_obs for P2; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.log_gObs_general": {
+   "hash": "496b8518b3ba66e4",
+   "verdict": "NO-CLAIM",
+   "note": "Rewrites log g_obs as log a0 + L(log f - log a0 + log g) with L(u) = log(e^u nu(e^u)); nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.log_gObs_nuP2": {
+   "hash": "9b5ff9afd64dc881",
+   "verdict": "MATCH",
+   "note": "log g_obs = (s + log g + log(e^s g + e^t))/2 for g > 0, f = e^s, a0 = e^t.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.nuMono_pos": {
+   "hash": "35dbe3fed22e5d5d",
+   "verdict": "NO-CLAIM",
+   "note": "nu_mono(y) > 0 for y > 0; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.nuP2_deep": {
+   "hash": "e7deb4a6ac9ff873",
+   "verdict": "NO-CLAIM",
+   "note": "Deep limit nuP2(y) sqrt(y) -> 1 as y -> 0+; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.nuP2_eq_nuBeta": {
+   "hash": "2aa88bfc7d720801",
+   "verdict": "NO-CLAIM",
+   "note": "nuP2 = nu_beta at beta = 1 for y > 0; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.sum_one_sub_sq": {
+   "hash": "bc97f5dc4c111796",
+   "verdict": "NO-CLAIM",
+   "note": "Pure algebraic expansion of sum (1 - b_i)^2; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CalibrationWall.two_point_core": {
+   "hash": "b9bfdc499ac18c2e",
+   "verdict": "NO-CLAIM",
+   "note": "Strict convexity makes the two-point difference injective in the shift m; core of T2e; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CandidateB.a0_eq": {
+   "hash": "577b36ce6f8151e5",
+   "verdict": "MATCH",
+   "note": "Uses the field hkappa_fit (kappa = 1/2), which the docstring calls the fitted value.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "CandidateB.cold_budget": {
+   "hash": "c10e8289db5fb091",
+   "verdict": "MATCH",
+   "note": "Field identity (1 - Ob/(Ob+Oc)) M = Oc/(Ob+Oc) M (Ob, Oc > 0 from fields).",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.GammaEff_tendsto_atTop": {
+   "hash": "d5b6e4ceda9cf801",
+   "verdict": "MATCH",
+   "note": "Docstring now present: GammaEff -> 1 as r -> inf for G, a0, M > 0; matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "ChainB.GammaEff_tendsto_zero": {
+   "hash": "fbf1cc33806ceada",
+   "verdict": "MATCH",
+   "note": "Docstring now states only the r -> 0+ limit (-> 2) and points to GammaEff_tendsto_atTop for r -> inf; matches (earlier OVERSTATES fixed).",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "ChainB.GammaX_bounds": {
+   "hash": "e6a275fae8be7ff8",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.GammaX_eq": {
+   "hash": "a5ec0f4dbe243548",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.GammaX_eq_two_iff": {
+   "hash": "789975e0ccc6c0b7",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.Pfun_logderiv": {
+   "hash": "d09b516cd9b782fa",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.rhoC_hasDeriv": {
+   "hash": "4a4d5223e3bfdfae",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.rhoC_logderiv": {
+   "hash": "bd6cece99bb64c86",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.sx_hasDeriv": {
+   "hash": "7073141276eb0d6e",
+   "verdict": "NO-CLAIM",
+   "note": "Helper: derivative of sqrt(1+k r^2) is k r/sx; correct, nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.sx_pos": {
+   "hash": "741a73d704b33a4b",
+   "verdict": "NO-CLAIM",
+   "note": "Helper: sx > 0; correct, nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.sx_sq": {
+   "hash": "48c8002b691f87b7",
+   "verdict": "NO-CLAIM",
+   "note": "Helper: sx^2 = 1 + a0 r^2/(GM); correct for the definition, nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.target_ODE": {
+   "hash": "e4edf0674fa6123d",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainB.total_u_sq": {
+   "hash": "a3aaf05f8d68d902",
+   "verdict": "MATCH",
+   "note": "Statement matches the claim, with the stated hypotheses.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "ChainC.charge_nonneg": {
+   "hash": "d14ccc84839705c7",
+   "verdict": "MATCH",
+   "note": "Docstring now: charge >= 0 when Mb(r) >= 0 with a0, r > 0, and says the dP/dr sign needs identity_P and is not this theorem. Matches (earlier OVERSTATES fixed).",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "ChainC.rhoC_nonneg": {
+   "hash": "cf91ba4b958d38e3",
+   "verdict": "MATCH",
+   "note": "Under the target rhoC*gtot = charge, Mb r >= 0, Mb+Mc > 0: rhoC >= 0; the quoted formula a0 Mb/(4 pi G r (Mb+Mc)) is charge/gtot from the defs. Matches; header correctly calls it conditional.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "ChainPremises.a0_pos": {
+   "hash": "85415eb56b92ef76",
+   "verdict": "NO-CLAIM",
+   "note": "Positivity of the tied a0(z) from the structure's positivity fields; nothing odd.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.Kfam_bracket": {
+   "hash": "0b050f3c861e55f4",
+   "verdict": "MATCH",
+   "note": "For a > 0, 0 < M1 <= M2: (M2/M1)^(1/3-2a) <= K ratio <= (M2/M1)^(1/3); matches docstring and header.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.Kfam_bracket_range": {
+   "hash": "7c52ccb76b65c341",
+   "verdict": "MATCH",
+   "note": "Under c(M1), c(M2) in [5,20], a > 0, M1 <= M2: lower (M2/M1)^(1/3-2a), upper min((9/4)(M2/M1)^(1/3-2a), (M2/M1)^(1/3)); matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.Kfam_ratio": {
+   "hash": "14ce138c8ea98aa0",
+   "verdict": "MATCH",
+   "note": "Exact K(M2)/K(M1) = (M2/M1)^(1/3-2a) m(c(M1))/m(c(M2)) for c0, k, M1, M2 > 0; matches 'exact two-mass ratio'.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.R_at_1e9": {
+   "hash": "65fd537c592941bb",
+   "verdict": "NO-CLAIM",
+   "note": "(1e9)^(1/3) = 1000; correct.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.exp2_le": {
+   "hash": "1fcb571ac63004b3",
+   "verdict": "NO-CLAIM",
+   "note": "Numerical bound e^2 <= 7.3890561 (e^2 = 7.38905610 to 8 d.p.); true, tight.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.exp3_ge": {
+   "hash": "83d13c8f7ade0c85",
+   "verdict": "NO-CLAIM",
+   "note": "Numerical bound e^3 >= 20.0855369; true.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.exp3_le": {
+   "hash": "abba5dbca4d87a93",
+   "verdict": "NO-CLAIM",
+   "note": "Numerical bound e^3 <= 20.0855370; true.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.exp_4log2": {
+   "hash": "b446903b0e5bb0bc",
+   "verdict": "NO-CLAIM",
+   "note": "exp(4 log 2) = 16; correct identity.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.le_of_deriv_nonneg": {
+   "hash": "f1c6a2395bae4dd6",
+   "verdict": "MATCH",
+   "note": "Generic monotonicity: HasDerivAt on x >= 0 with f' >= 0 on x > 0 gives f 0 <= f x for x >= 0; matches.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.log_hi": {
+   "hash": "b92c73dfb6a6ddc6",
+   "verdict": "NO-CLAIM",
+   "note": "Helper: 0 < E <= exp n, x > 0 gives log x <= n - 1 + x/E; correct.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.log_lo": {
+   "hash": "f5a52eb5238821de",
+   "verdict": "NO-CLAIM",
+   "note": "Helper: exp n <= E, x > 0 gives n + 1 - E/x <= log x; correct.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.m20_le": {
+   "hash": "7e40e1d5fea3bc2c",
+   "verdict": "NO-CLAIM",
+   "note": "m(20) = ln 21 - 20/21 = 2.092 <= 2.0932; true, used by m_ratio_range.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.m5_ge": {
+   "hash": "edcb160d70bceb41",
+   "verdict": "NO-CLAIM",
+   "note": "m(5) = ln 6 - 5/6 = 0.958 >= 0.935; true, used by m_ratio_range.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.m_div_sq_antitoneOn": {
+   "hash": "01b2659e4c17bb79",
+   "verdict": "MATCH",
+   "note": "m(x)/x^2 antitone on (0, inf); header only names it, consistent with its use in Kfam_bracket. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.m_elastic": {
+   "hash": "a051c7553ef1fa40",
+   "verdict": "MATCH",
+   "note": "(x/(1+x))^2 <= 2 m x for x >= 0; header only names it. Matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.m_hasDerivAt": {
+   "hash": "d696e44457f8970f",
+   "verdict": "NO-CLAIM",
+   "note": "Helper m'(x) = x/(1+x)^2 for x > -1; correct.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.m_ratio_range": {
+   "hash": "8b0f69b103021c1c",
+   "verdict": "MATCH",
+   "note": "For c1, c2 in [5,20]: m(c1)/m(c2) <= 9/4; matches.",
+   "reviewer": "independent agent, review S1, 2026-10-08"
+  },
+  "Cusp.m_ratio_tendsto": {
+   "hash": "9ff1a3c4659d54b7",
+   "verdict": "NO-CLAIM",
+   "note": "Helper m(x)/(x^2/2) -> 1 as x -> 0+; correct, underlies the small-r limits.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.m_zero": {
+   "hash": "e358267789743f62",
+   "verdict": "NO-CLAIM",
+   "note": "Helper m(0) = 0; correct.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Cusp.range_witness": {
+   "hash": "8e8e090e50e66a9d",
+   "verdict": "MATCH",
+   "note": "a, c0 > 0, 0 < M9 <= M10, c(M9), c(M10) in [5,20] all hold; the docstring lists k > 0 among the hypotheses but the statement has no k (vacuously fine, any k > 0 works) and the (13.30,13.32) parenthetical is proved by c2_bounds, not here. Optional fix: drop k > 0 from the list or note \"any k > 0\".",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "Dimension.massExp_mono": {
+   "hash": "38dfdec93f1bd07e",
+   "verdict": "MATCH",
+   "note": "massExp(mono a b d + e x) = b + e massExp x (massExp is linear and gives 0,1,0 on G,M,c).",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "DoorEleven.eta4_mul_self": {
+   "hash": "9c5f95da6bc88389",
+   "verdict": "MATCH",
+   "note": "diag(-1,1,1,1) squared is the identity.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
+  },
+  "rhoFluid_hasDeriv": {
+   "hash": "ce728eeb3b5e64e1",
+   "verdict": "NO-CLAIM",
+   "note": "Helper: derivative of rhoFluid in n (s != 0); correct and non-vacuous.",
+   "reviewer": "independent agent, in-file review, 2026-10-08"
   }
  }
 }

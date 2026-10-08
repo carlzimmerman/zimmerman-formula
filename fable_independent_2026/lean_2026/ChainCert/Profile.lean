@@ -89,8 +89,8 @@ theorem hydrostatic_general {G a0 : ℝ} (hG : 0 < G) {Mb Mc Sig : ℝ → ℝ} 
     HasDerivAt (Pext G a0 Mb Sig) (-(rhoC * gtot G Mb Mc r)) r := by
   rw [hT]; exact identity_P hG hr hMb hS
 
-/-- If `rho_b >= 0` (so `Mb` is nondecreasing) the pressure is a decreasing function of `r`; more precisely this is the
-    derivative sign: `dP/dr = -charge <= 0` whenever `Mb(r) >= 0`. -/
+/-- `charge >= 0` whenever `Mb(r) >= 0` (with `a0, r > 0`). With `identity_P` (`dP/dr = -charge`) this gives the
+    derivative sign `dP/dr <= 0`; that combination is not this theorem. -/
 theorem charge_nonneg {a0 : ℝ} (ha : 0 < a0) {Mb : ℝ → ℝ} {r : ℝ} (hr : 0 < r) (hM : 0 ≤ Mb r) :
     0 ≤ charge a0 Mb r := by
   unfold charge; positivity

@@ -21,7 +21,8 @@ sourced by the enclosed baryon mass) to CFG70's exchange, with two dimensionless
 * The trade-off (state precisely).  Given `delta f = 1` with `delta, f > 0`: `delta < 1 => f > 1` (`exch_fbb_gt_one`);
   `delta <= eps => f >= 1/eps` (`exch_fbb_large`); and no pair of bounds `delta <= a`, `f <= b` with `a b < 1` can hold
   (`exch_not_both_small`).  The identity needs `lam_t r_led != 0`: in the open class `r_led = 0` one has `delta = 0`
-  and `f_bb` is not defined (`exch_open_delta_zero`); Lean's `1/0 = 0` is NOT used to cover this case.
+  (`exch_open_delta_zero`, which states only that); that `f_bb` is then undefined is an informal remark, not a theorem,
+  and Lean's `1/0 = 0` is NOT used to cover this case.
 * `eps_c` tie.  With `eps_c = c_f vartheta M` (= `c_f theta^T_full`) and `lam_t = vt/(g_b M)`: `beta = eps_c lam_t`
   (`exch_beta_eq_epsc_lamt`); the delivered-heat fraction `f_real = 1 - (1+beta) r_led/eps_c` equals `1 - r_led/eps_c - delta`
   (`exch_freal_split`), equals `1` for the open class, and is `< 1` when `r_led, eps_c > 0`, `1+beta > 0` (`exch_freal_open`,

@@ -29,8 +29,8 @@ open Filter Topology
 theorem C1_exponent_matrix_det : Matrix.det !![(1:ℚ), 3, -3; -1, -2, 0; 0, -1, 1] = -2 := by
   simp [Matrix.det_fin_three]
 
-/-- a0 = xi * c^alpha * G^beta * rho^gamma has the units of an acceleration (m s^-2)
-    iff (alpha, beta, gamma) = (1, 1/2, 1/2): a0 = xi c sqrt(G rho). -/
+/-- if a0 = xi * c^alpha * G^beta * rho^gamma has the units of an acceleration (m s^-2) then
+    (alpha, beta, gamma) = (1, 1/2, 1/2): a0 = xi c sqrt(G rho). The converse is in `C1_a0_form_iff`. -/
 theorem C1_a0_form_unique (α β γ : ℚ)
     (hkg : -β + γ = 0) (hm : α + 3 * β - 3 * γ = 1) (hs : -α - 2 * β = -2) :
     α = 1 ∧ β = 1 / 2 ∧ γ = 1 / 2 := by
