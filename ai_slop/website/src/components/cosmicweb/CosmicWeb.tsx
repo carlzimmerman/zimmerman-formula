@@ -9,6 +9,8 @@ import LayerView from './LayerView'
 import HaloView from './HaloView'
 import Timeline from './Timeline'
 import Timelapse from './Timelapse'
+import Gate from '@/components/common/Gate'
+import { getDevice } from '@/components/common/device'
 
 function Section({ id, kicker, title, children }: { id: string; kicker: string; title: string; children: React.ReactNode }) {
   return (
@@ -126,6 +128,7 @@ export default function CosmicWeb() {
           <p className="text-gray-700 max-w-3xl mb-4 text-sm">
             The real 512³ run at z = 0, averaged in blocks of 4 to a 128³ volume so it loads in 2 MB. The full-resolution cells are in the next section.
           </p>
+          <Gate auto={!getDevice().low} label="Show the 3D box (2 MB)" note="This is a 3D ray-marched volume, the heaviest view on the page, so on phones and low-power devices it waits for you.">
           <div className="grid lg:grid-cols-[minmax(0,1fr)_17rem] gap-5 items-start">
             <VolumeView meta={meta} view={view} showSwitch={showSwitch} cut={cut} gain={gain} rotate={rotate} />
             <div className="space-y-3 text-sm text-gray-700">
@@ -147,6 +150,7 @@ export default function CosmicWeb() {
               </p>
             </div>
           </div>
+          </Gate>
         </Section>
 
         <Section id="layers" kicker="full resolution" title="Single cells of the 512³ grid">
@@ -165,7 +169,7 @@ export default function CosmicWeb() {
             the halo as a whole is. The control run holds fewer particles than the framework run inside the same sphere in {meta.halos.filter(h => h.n_control_sphere < h.n).length} of {meta.halos.length} halos
             (median {Math.abs(Math.round(median(meta.halos.map(h => (h.n_control_sphere / h.n - 1) * 100))))}% fewer, each run measured about its own halo centre).
           </p>
-          <HaloView meta={meta} />
+          <Gate auto={!getDevice().low} label="Show the halo viewer" note="Each halo is a few hundred thousand dots drawn in 3D, so on phones and low-power devices it waits for you."><HaloView meta={meta} /></Gate>
         </Section>
 
         <Section id="numbers" kicker="the comparison" title="How far apart the two runs are">
@@ -245,6 +249,7 @@ export default function CosmicWeb() {
             <li>In these runs the extra &ldquo;cold fluid&rdquo; is bookkeeping, not particles that move. The particles carry {(meta.m_particle_msun_h / 1e9).toFixed(2)}×10⁹ M☉/h each in the 512³ run (Ω_m ρ_crit per cell), and halo masses use that.</li>
             <li>Gravity is solved on the mesh, so structure inside about two cells (0.8 Mpc/h at 512³) is smoothed by it. Halo cores here are resolution-limited, and the particle views show where the particles are, not unresolved physics inside that scale.</li>
             <li>One box, one seed per run, the canonical a₀ footing only. The control is a single run, so how much of the dense-cell gap is chaos and how much is the model is not separated here. The timeline is a {tl ? `${tl.n}³` : '256³'} replay with seed 360, not the 512³ run itself.</li>
+            <li>The heavy views are built to be gentle on ordinary machines: they draw only when something changes, stop when scrolled away or when the tab is hidden, render at lower resolution while you drag and lower their own quality if frames get slow, load only what you ask for, and on phones and low-power devices the 3D views wait for a click.</li>
             <li>The 512³ layers store counts exactly below 128 particles per cell and to within 4% above ({(meta.checks.res.frac_particles_in_cells_gt_127 * 100).toFixed(0)}% of particles sit in such cells). The 3D box is a 4×4×4 average. Halo views draw every {meta.halo_stride}th particle; their numbers use all of them.</li>
           </ul>
           <div className="mt-6 text-xs text-gray-500 space-y-1 max-w-3xl">

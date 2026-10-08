@@ -35,9 +35,8 @@ export default function LayerView({ meta, view, showSwitch }: Props) {
 
   const ready = view === 'res' ? !!res : view === 's0' ? !!s0 : !!(res && s0)
 
-  const draw = useCallback(() => {
-    const cv = canvas.current
-    if (!cv || !ready) return
+  const paint = useCallback(() => {          // recolour the 512 x 512 image: only when the layer, view or overlay changes
+    if (!ready) return
     if (!off.current) { off.current = document.createElement('canvas'); off.current.width = NC; off.current.height = NC }
     const oc = off.current, og = oc.getContext('2d')!
     const img = og.createImageData(NC, NC), o = img.data
@@ -62,6 +61,10 @@ export default function LayerView({ meta, view, showSwitch }: Props) {
       }
     }
     og.putImageData(img, 0, 0)
+  }, [ready, k, view, showSwitch, swi, res, s0, lut, div, meta])
+  const blit = useCallback(() => {           // pan and zoom only redraw the cached image
+    const cv = canvas.current, oc = off.current
+    if (!cv || !oc || !ready) return
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
     const W = Math.round(cv.clientWidth * dpr)
     if (cv.width !== W) { cv.width = W; cv.height = W }
@@ -70,9 +73,10 @@ export default function LayerView({ meta, view, showSwitch }: Props) {
     g.imageSmoothingEnabled = false
     const t = tf.current, sc = (W / NC) * t.s
     g.drawImage(oc, 0, 0, NC, NC, t.x * dpr, t.y * dpr, NC * sc, NC * sc)
-  }, [ready, k, view, showSwitch, swi, res, s0, lut, div, meta])
+  }, [ready])
+  const draw = blit
 
-  useEffect(() => { draw() }, [draw])
+  useEffect(() => { paint(); blit() }, [paint, blit])
   useEffect(() => { const f = () => draw(); window.addEventListener('resize', f); return () => window.removeEventListener('resize', f) }, [draw])
 
   const clampPan = (w: number) => { const t = tf.current; t.x = Math.min(0, Math.max(w - w * t.s, t.x)); t.y = Math.min(0, Math.max(w - w * t.s, t.y)) }

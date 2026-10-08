@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { CosmicMeta, densityLut, divergingLut, fetchPreview } from './data'
+import { getDevice, guardContext, maxPixelRatio } from '@/components/common/device'
 
 export type View = 'res' | 's0' | 'diff'
 
@@ -114,6 +115,8 @@ export default function VolumeView({ meta, view, showSwitch, cut, gain, rotate }
   const [err, setErr] = useState('')
   const [ready, setReady] = useState(false)
   const [loaded, setLoaded] = useState(false)
+  const [ctlLoaded, setCtlLoaded] = useState(false)
+  const [note, setNote] = useState('')
 
   useEffect(() => {
     const el = host.current!
@@ -125,10 +128,14 @@ export default function VolumeView({ meta, view, showSwitch, cut, gain, rotate }
       return
     }
     if (!renderer.capabilities.isWebGL2) { setErr('WebGL2 is not available in this browser.'); return }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5))
+    const dev = getDevice(), basePr = maxPixelRatio(dev), baseSteps = dev.low ? 120 : 220
+    let qual = 1, interacting = false, settle = 0
+    const applyPr = () => renderer.setPixelRatio(basePr * qual * (interacting ? 0.6 : 1))
+    applyPr()
     renderer.setClearColor(0x070a12, 1)
     el.appendChild(renderer.domElement)
     Object.assign(renderer.domElement.style, { width: '100%', height: '100%', display: 'block', touchAction: 'none' })
+    const unguard = guardContext(renderer.domElement, () => setErr('The graphics context was lost. Reload the page to see the 3D box.'))
 
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(40, 1, 0.05, 20)
@@ -144,7 +151,7 @@ export default function VolumeView({ meta, view, showSwitch, cut, gain, rotate }
       uniforms: {
         uA: { value: tex3(blank, 2) }, uB: { value: tex3(blank, 2) }, uF: { value: tex3(blank, 2) },
         uLut: { value: lutTex(densityLut()) }, uDiv: { value: lutTex(divergingLut()) },
-        uView: { value: 0 }, uSwitch: { value: 0 }, uCut: { value: 0.4 }, uGain: { value: 3 }, uSteps: { value: 260 },
+        uView: { value: 0 }, uSwitch: { value: 0 }, uCut: { value: 0.4 }, uGain: { value: 3 }, uSteps: { value: baseSteps },
         uRange: { value: meta.log_hi - meta.log_lo }, uDiffScale: { value: 0.15 },
       },
     })
@@ -157,23 +164,38 @@ export default function VolumeView({ meta, view, showSwitch, cut, gain, rotate }
     const dirty = () => { need = true }
     const resize = () => {
       const w = el.clientWidth, h = el.clientHeight
-      renderer.setSize(w, h, false); camera.aspect = w / Math.max(h, 1); camera.updateProjectionMatrix(); need = true
+      applyPr(); renderer.setSize(w, h, false); camera.aspect = w / Math.max(h, 1); camera.updateProjectionMatrix(); need = true
     }
     resize()
     orbit.addEventListener('change', dirty)
+    // while dragging, draw at 0.6x resolution and sharpen when the hand stops
+    orbit.addEventListener('start', () => { window.clearTimeout(settle); interacting = true; applyPr(); need = true })
+    orbit.addEventListener('end', () => { window.clearTimeout(settle); settle = window.setTimeout(() => { interacting = false; applyPr(); resize() }, 280) })
     const ro = new ResizeObserver(resize); ro.observe(el)
     const io = new IntersectionObserver(es => { visible = es[0].isIntersecting; need = true }, { threshold: 0 }); io.observe(el)
+    let lastT = 0, slow = 0
     const loop = () => {
       raf = requestAnimationFrame(loop)
-      if (!visible) return
+      if (!visible || document.hidden) { lastT = 0; return }
       orbit.update()
-      if (need || orbit.autoRotate) { renderer.render(scene, camera); need = false }
+      if (need || orbit.autoRotate) {
+        renderer.render(scene, camera); need = false
+        // quality governor: sustained slow frames (the ray march is fill-rate bound) lower the resolution and the sample count
+        const now = performance.now()
+        if (lastT && now - lastT < 250) { slow = now - lastT > 45 ? slow + 1 : Math.max(0, slow - 1) } else slow = 0
+        lastT = now
+        if (slow > 8 && qual > 0.5) {
+          qual = Math.max(0.5, qual - 0.15); slow = 0
+          mat.uniforms.uSteps.value = Math.max(70, Math.round(baseSteps * (0.4 + 0.6 * qual))); applyPr(); resize()
+          setNote('Rendering quality was lowered to keep the view smooth on this device.')
+        }
+      } else lastT = 0
     }
     loop()
     st.current = { mat, orbit, dirty }
     setReady(true)
     return () => {
-      cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); orbit.dispose()
+      cancelAnimationFrame(raf); window.clearTimeout(settle); unguard(); ro.disconnect(); io.disconnect(); orbit.dispose()
       for (const k of ['uA', 'uB', 'uF', 'uLut', 'uDiv']) mat.uniforms[k].value.dispose()
       mat.dispose(); box.geometry.dispose(); edges.geometry.dispose(); renderer.dispose()
       if (renderer.domElement.parentElement === el) el.removeChild(renderer.domElement)
@@ -181,20 +203,31 @@ export default function VolumeView({ meta, view, showSwitch, cut, gain, rotate }
     }
   }, [meta])
 
-  useEffect(() => {
+  useEffect(() => {          // the framework volume and the switch field load first (1.9 MB); the control only if someone asks for it
     if (!ready) return
     let dead = false
-    Promise.all([fetchPreview('vol128_res.u8.gz'), fetchPreview('vol128_s0.u8.gz'), fetchPreview('swi128.u8.gz')])
-      .then(([a, b, f]) => {
+    Promise.all([fetchPreview('vol128_res.u8.gz'), fetchPreview('swi128.u8.gz')])
+      .then(([a, f]) => {
         if (dead || !st.current) return
         const u = st.current.mat.uniforms
-        for (const k of ['uA', 'uB', 'uF']) u[k].value.dispose()
-        u.uA.value = tex3(a, 128); u.uB.value = tex3(b, 128); u.uF.value = tex3(f, 128)
+        for (const k of ['uA', 'uF']) u[k].value.dispose()
+        u.uA.value = tex3(a, 128); u.uF.value = tex3(f, 128)
         setLoaded(true); st.current.dirty()
       })
       .catch(e => { if (!dead) setErr(String(e.message || e)) })
     return () => { dead = true }
   }, [ready])
+  const wantCtl = view !== 'res'
+  useEffect(() => {
+    if (!ready || !wantCtl || ctlLoaded) return
+    let dead = false
+    fetchPreview('vol128_s0.u8.gz').then(b => {
+      if (dead || !st.current) return
+      st.current.mat.uniforms.uB.value.dispose(); st.current.mat.uniforms.uB.value = tex3(b, 128)
+      setCtlLoaded(true); st.current.dirty()
+    }).catch(e => { if (!dead) setErr(String(e.message || e)) })
+    return () => { dead = true }
+  }, [ready, wantCtl, ctlLoaded])
 
   useEffect(() => {
     const s = st.current
@@ -206,12 +239,13 @@ export default function VolumeView({ meta, view, showSwitch, cut, gain, rotate }
     u.uGain.value = gain
     s.orbit.autoRotate = rotate
     s.dirty()
-  }, [view, showSwitch, cut, gain, rotate, loaded, ready, meta])
+  }, [view, showSwitch, cut, gain, rotate, loaded, ctlLoaded, ready, meta])
 
   return (
     <div className="relative w-full rounded-xl overflow-hidden border border-gray-300 bg-[#070a12]" style={{ aspectRatio: '16 / 10' }}>
       <div ref={host} className="absolute inset-0" />
-      {(err || !loaded) && <div className="absolute inset-0 flex items-center justify-center text-sm text-gray-300 bg-black/40 pointer-events-none px-6 text-center">{err || 'Loading 2 MB of the real 512³ run…'}</div>}
+      {(err || !loaded || (wantCtl && !ctlLoaded)) && <div className="absolute inset-0 flex items-center justify-center text-sm text-gray-300 bg-black/40 pointer-events-none px-6 text-center">{err || (loaded ? 'Loading the control run (2 MB)…' : 'Loading 2 MB of the real 512³ run…')}</div>}
+      {note && <div className="absolute right-3 top-2 text-[11px] text-amber-200 bg-black/50 rounded px-2 py-1 pointer-events-none">{note}</div>}
       <div className="absolute left-3 bottom-2 text-[11px] text-gray-400 pointer-events-none">
         drag to rotate · scroll to zoom · box = {meta.L} Mpc/h per side · 512³ run at z = 0, averaged to 128³
       </div>

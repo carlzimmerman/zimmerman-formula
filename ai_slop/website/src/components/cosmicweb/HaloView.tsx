@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { allowAutoMotion, getDevice, guardContext, maxPixelRatio } from '@/components/common/device'
 import Plot from '@/components/toscale/Plot'
 import { BASE, CosmicMeta, HaloInfo, fmtBytes, fmtMass } from './data'
 
@@ -72,7 +73,7 @@ export default function HaloView({ meta }: { meta: CosmicMeta }) {
   const [mode, setMode] = useState<Mode>('both')
   const [size, setSize] = useState(0.02)
   const [alpha, setAlpha] = useState(0.1)
-  const [rotate, setRotate] = useState(true)
+  const [rotate, setRotate] = useState(() => allowAutoMotion(getDevice()))
   const [data, setData] = useState<Parsed | null>(null)
   const [err, setErr] = useState('')
   const host = useRef<HTMLDivElement>(null)
@@ -95,10 +96,11 @@ export default function HaloView({ meta }: { meta: CosmicMeta }) {
   useEffect(() => {
     const el = host.current!
     let renderer: THREE.WebGLRenderer
-    try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false }) } catch { setErr('WebGL is not available in this browser.'); return }
-    const pr = Math.min(window.devicePixelRatio || 1, 2)
+    try { renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, powerPreference: 'low-power' }) } catch { setErr('WebGL is not available in this browser.'); return }
+    const pr = maxPixelRatio(getDevice())
     renderer.setPixelRatio(pr); renderer.setClearColor(0x070a12, 1)
     el.appendChild(renderer.domElement)
+    const unguard = guardContext(renderer.domElement, () => setErr('The graphics context was lost. Reload the page to see this view.'))
     Object.assign(renderer.domElement.style, { width: '100%', height: '100%', display: 'block', touchAction: 'none' })
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 50)
@@ -128,7 +130,7 @@ export default function HaloView({ meta }: { meta: CosmicMeta }) {
     orbit.addEventListener('change', dirty)
     const ro = new ResizeObserver(resize); ro.observe(el)
     const io = new IntersectionObserver(es => { visible = es[0].isIntersecting; need = true }, { threshold: 0 }); io.observe(el)
-    const loop = () => { raf = requestAnimationFrame(loop); if (!visible) return; orbit.update(); if (need || orbit.autoRotate) { renderer.render(scene, camera); need = false } }
+    const loop = () => { raf = requestAnimationFrame(loop); if (!visible || document.hidden) return; orbit.update(); if (need || orbit.autoRotate) { renderer.render(scene, camera); need = false } }
     loop()
     const set = (p: Parsed) => {
       const g = (pos: Float32Array) => {
@@ -141,7 +143,7 @@ export default function HaloView({ meta }: { meta: CosmicMeta }) {
     }
     st.current = { fw, s0, mats, orbit, dirty, set }
     return () => {
-      cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); orbit.dispose()
+      cancelAnimationFrame(raf); unguard(); ro.disconnect(); io.disconnect(); orbit.dispose()
       fw.geometry.dispose(); s0.geometry.dispose(); mats.forEach(m => m.dispose()); ring.geometry.dispose(); renderer.dispose()
       if (renderer.domElement.parentElement === el) el.removeChild(renderer.domElement)
       st.current = null

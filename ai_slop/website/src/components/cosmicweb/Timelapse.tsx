@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { allowAutoMotion, getDevice, guardContext, maxPixelRatio } from '@/components/common/device'
 import { BASE, TimelineMeta, fmtBytes, fmtMass } from './data'
 import { ageGyr, fmtAge } from './Timeline'
 
@@ -36,7 +37,7 @@ export default function Timelapse({ tl, frame }: { tl: TimelineMeta; frame: numb
   const [showCtl, setShowCtl] = useState(true)
   const [size, setSize] = useState(0.35)
   const [alpha, setAlpha] = useState(0.5)
-  const [rotate, setRotate] = useState(true)
+  const [rotate, setRotate] = useState(() => allowAutoMotion(getDevice()))
   const hl = tl.halo, F = tl.frames, N = hl.n
 
   useEffect(() => {
@@ -54,10 +55,11 @@ export default function Timelapse({ tl, frame }: { tl: TimelineMeta; frame: numb
     if (!started) return
     const el = host.current!
     let renderer: THREE.WebGLRenderer
-    try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false }) } catch { setErr('WebGL is not available in this browser.'); return }
-    const pr = Math.min(window.devicePixelRatio || 1, 2)
+    try { renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, powerPreference: 'low-power' }) } catch { setErr('WebGL is not available in this browser.'); return }
+    const pr = maxPixelRatio(getDevice())
     renderer.setPixelRatio(pr); renderer.setClearColor(0x070a12, 1)
     el.appendChild(renderer.domElement)
+    const unguard = guardContext(renderer.domElement, () => setErr('The graphics context was lost. Reload the page to see this view.'))
     Object.assign(renderer.domElement.style, { width: '100%', height: '100%', display: 'block', touchAction: 'none' })
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(45, 1, 0.05, 500)
@@ -82,12 +84,12 @@ export default function Timelapse({ tl, frame }: { tl: TimelineMeta; frame: numb
     orbit.addEventListener('change', dirty)
     const ro = new ResizeObserver(resize); ro.observe(el)
     const io = new IntersectionObserver(es => { visible = es[0].isIntersecting; need = true }, { threshold: 0 }); io.observe(el)
-    const loop = () => { raf = requestAnimationFrame(loop); if (!visible) return; orbit.update(); if (need || orbit.autoRotate) { renderer.render(scene, camera); need = false } }
+    const loop = () => { raf = requestAnimationFrame(loop); if (!visible || document.hidden) return; orbit.update(); if (need || orbit.autoRotate) { renderer.render(scene, camera); need = false } }
     loop()
     const set = (run: number, p: Float32Array) => { const at = pts[run].geometry.getAttribute('position') as THREE.BufferAttribute; (at.array as Float32Array).set(p); at.needsUpdate = true; need = true }
     st.current = { pts, mats, orbit, dirty, set }
     return () => {
-      cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); orbit.dispose()
+      cancelAnimationFrame(raf); unguard(); ro.disconnect(); io.disconnect(); orbit.dispose()
       pts.forEach(p => p.geometry.dispose()); mats.forEach(m => m.dispose()); renderer.dispose()
       if (renderer.domElement.parentElement === el) el.removeChild(renderer.domElement)
       st.current = null
