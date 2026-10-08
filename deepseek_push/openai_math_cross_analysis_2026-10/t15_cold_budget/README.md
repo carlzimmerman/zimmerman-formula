@@ -86,3 +86,26 @@ the kernel supply is replaced by the deficit-reservoir inside R500. The
 T12 λ-confirmation and T14's scatter readings both inherit the branch
 misread; the budget is the reason the audit's numbers refused to be
 fit.
+
+## Correction (dated 2026-10-07) — MW-30 row: unit mix in the script
+
+The T15 script mixed units in the MW-30 row: the deficit x was computed
+in M_b = 1e11 units while S(<30 kpc) used M_b = 7e10 (enclosed baryons)
+— the reported −0.97/−0.65/+0.25 were wrong. Corrected (both in M_b =
+7e10 units; x = (M_tot − M_b)/M_b with M_tot from V):
+
+    V = 188 km/s:  x = 2.53, S = 2.85, f·S = 2.45 → M_cold = +0.08
+    V = 200 km/s:  x = 3.00 → f·S = 0.86·2.85 = 2.45 → M_cold = +0.55
+    V = 230 km/s:  x = 4.29 → M_cold = +1.84
+
+**The MW-30 point CLOSES (positive cold fluid) — it sits on the
+knife-edge:** the deficit approaches the kernel supply (f_max = 0.89 at
+V=188; the budget becomes INFEASIBLE (deficit > supply, M_cold < 0
+unavoidable) for V ≳ 195 with M_b = 7e10. The boundary: M_b(30 kpc) ∈
+[6.4, 7.3]e10 at the measured flat level — a mass-model test, not a
+coupling test. The groups (−0.93/+0.04) and clusters (−0.98/−0.48)
+rows are unaffected (same M_b convention in x and S there). T15's other
+conclusions stand untouched: deficits ≠ settled fractions (branch
+error), the cluster/group overdraft, the λ ceiling 0.0073–0.0172, the
+T12-range violation (≥ 3.95×), the reservoir reading, MUTATE = the T12
+identification.

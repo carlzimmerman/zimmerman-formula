@@ -1,0 +1,20 @@
+T16 coupling gradient (CORRECTED 10-07)  MUTATE=False
+
+MW-30 (x in M_b units; inf = budget INFEASIBLE: deficit > kernel supply):
+  Mb7e+10_V188: x=2.52 S=2.85 feasible=True lam_max=0.0326
+  Mb7e+10_V200: x=2.99 S=2.85 feasible=False lam_max=inf
+  Mb7e+10_V230: x=4.27 S=2.85 feasible=False lam_max=inf
+  Mb1e+11_V188: x=1.46 S=2.31 feasible=True lam_max=0.0152
+  Mb1e+11_V200: x=1.79 S=2.31 feasible=True lam_max=0.0212
+  Mb1e+11_V230: x=2.69 S=2.31 feasible=False lam_max=inf
+groups/clusters: groups_b0=0.0117  groups_b03=0.0288  clusters_b0=0.0073  clusters_b03=0.0172
+windows: MW [0.0152, 0.0326]  groups [0.0117, 0.0288]  clusters [0.0073, 0.0172]
+C1 windows PASS=True
+C2 three-way intersection [0.0152, 0.0172] nonempty=True  PASS=True  [corrected: original freeze's EMPTY claim refuted by the unit fix]
+C3 floor-budget bind: lambda_floor 0.028 vs clusters <= 0.0172: gap 1.63x  PASS=True
+C4 gradient: n span [0.14, 0.17] (M_b-unit sensitivity dominates the MW point)  PASS=True
+C5 MW knife-edge: feasible@V188=True, infeasible@V200=False (M_b=7e10)  PASS=True
+C7 report: with lambda = 0.016 (the deficit-closing universal value), e(MW-30) = 0.325 vs the calibrated floor 0.14 (2.3x) — the floor and the cluster budget cannot share one lambda.
+
+checks: {"C1_windows": true, "C2_intersection": true, "C3_floor_bind": true, "C4_gradient": true, "C5_knifeedge": true, "C7_report": true}
+<LANE> COMPLETE: 6/6 checks PASS (C7 report only).

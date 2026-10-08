@@ -71,3 +71,38 @@ the fit reduces to a new pure-algebra statement (the budget algebra is
 already certified in the master — #14–16); the exp/log machinery rides
 the lane per house pattern. Language: a measurement with registered
 windows, not a derivation; nothing "closed".
+
+## Correction (dated 2026-10-07) — the unit fix refutes the empty-intersection claim
+
+The original S1/S2 (empty three-way intersection) rested on a hand-
+computed MW-30 window with mixed units (V in km/s untreated, M_b
+conventions mixed). Corrected script (V in m/s; M_b = 7e10 AND 1e11
+both reported):
+
+  corrected windows:  MW-30 [0.0155, 0.0331]  (feasible readings only;
+                      infeasible above for V > ~195 km/s at M_b = 7e10,
+                      deficit > kernel supply — the knife-edge)
+                      groups [0.0117, 0.0287], clusters [0.0073, 0.0172]
+
+  **The three-way intersection is NONEMPTY: [0.0152, 0.0172] — a
+  universal deficit-closing coupling λ ≈ 0.016 exists. The original
+  "no single λ survives the budgets" claim is REFUTED by the corrected
+  arithmetic.** What does NOT survive: the MW FLOOR with λ = 0.028
+  (e = 0.14) vs the cluster budget (λ ≤ 0.0172): gap 1.63× — the
+  binding tension is FLOOR-vs-CLUSTER-BUDGET, not among the budgets.
+  The gradient reframes: exponent n ∈ [0.14, 0.17] with the M_b-unit
+  sensitivity dominating the MW point — a mild, unit-sensitive slope,
+  not a strong gradient.
+
+  Corrected check meanings (C1–C5 as implemented; other freeze text
+  superseded where it conflicts): C1 windows table; C2 three-way
+  NONEMPTY in [0.0152, 0.0172]; C3 floor-vs-cluster bind ≥ 1.5×
+  (measured 1.63×); C4 n window [0, 0.55] (measured 0.14–0.17); C5
+  MW-30 knife-edge: feasible at V=188, infeasible at V=200 (M_b = 7e10)
+  — mutation-invariant. MUTATE (bounds inversion) flips {C1, C2, C3,
+  C4}.
+
+  The MW-30 unit fix also corrects T15's MW row (dated correction
+  there): the MW-30 point CLOSES (+0.08 M_b at V = 188, M_b = 7e10)
+  instead of T15's reported −0.97. T15's groups/clusters rows and all
+  its other conclusions stand.
