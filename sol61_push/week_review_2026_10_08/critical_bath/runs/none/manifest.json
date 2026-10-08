@@ -1,0 +1,163 @@
+{
+  "schema_version": 2,
+  "claim_id": "CRITICAL_BESSEL_BATH_THRESHOLD_RESPONSE",
+  "repository": {
+    "commit": "d9c7390103314e51a468fe41d5ed6d83d6d4801f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/week_review_2026_10_08/critical_bath/checks.py",
+    "--output",
+    "sol61_push/week_review_2026_10_08/critical_bath/runs/none/results.json",
+    "--mutate",
+    "none"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Coordinate Bessel transforms generate a normalized Gamma transition measure; resolvent and correlation agree with independent quadrature; a boundary change restores finite susceptibility and a quadratic response",
+    "coefficient_domain": "Double precision quadrature and root finding; exact rational potential identity",
+    "conventions": "L2(dr), ordinary Bessel J, E=k squared, normalized Gaussian source, dimensionless variables",
+    "inputs": [
+      "sol61_push/week_review_2026_10_08/critical_bath/checks.py"
+    ],
+    "bounds": {
+      "nu": [
+        0.2,
+        0.3333333333333333,
+        0.45
+      ],
+      "D": [
+        0.01,
+        0.0001,
+        1e-06,
+        1e-08
+      ],
+      "k": [
+        0.01,
+        0.2,
+        1,
+        3
+      ],
+      "t": [
+        0,
+        1,
+        10,
+        1000,
+        1000000
+      ],
+      "zeta": [
+        0.01,
+        0.1,
+        1
+      ],
+      "log_energy_window": [
+        -90,
+        35
+      ],
+      "controls": [
+        "boundary",
+        "jacobian"
+      ],
+      "history": "Analytic formulas specified before the run; not externally preregistered"
+    },
+    "non_claims": [
+      "No derived BFSS critical channel",
+      "No full gravity action",
+      "No selection of physical coefficient",
+      "Finite computations are not universal proofs"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-08T18:36:27.588081+00:00",
+    "runtime_seconds": 0.452998,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/week_review_2026_10_08/critical_bath/checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/critical_bath/checks.py",
+      "sha256": "7393ca7b06c7a446e3408ecd79cff22092224ba0ad5f55f29c52950786ff2654",
+      "sha256_after": "7393ca7b06c7a446e3408ecd79cff22092224ba0ad5f55f29c52950786ff2654"
+    }
+  ],
+  "output_directory": "sol61_push/week_review_2026_10_08/critical_bath/runs/none",
+  "declared_results": [
+    "sol61_push/week_review_2026_10_08/critical_bath/runs/none/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/critical_bath/runs/none/stdout.txt",
+      "sha256": "0a778ba6bf50d296ff222066c7361a94181fcc0ad7ee0623e519e82b89ae9cde",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/critical_bath/runs/none/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/critical_bath/runs/none/results.json",
+      "sha256": "8c3ff5175209e8a876dceb4345be49d655463dc56c24d4f115ddb35b4b864db5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
