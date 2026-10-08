@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "THRESHOLD_HAMILTONIAN_DEEP_MOND_RESPONSE",
+  "repository": {
+    "commit": "a9bf7e6d5734c3055aac1bc76855e76b7a4d7ef2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/week_review_2026_10_08/astra_derivation_chains/threshold_checks_v2.py",
+    "--output",
+    "sol61_push/week_review_2026_10_08/astra_derivation_chains/threshold_runs_v2/sign/results.json",
+    "--mutate",
+    "sign"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Rank-one threshold resolvent yields a positive three-halves response for spectral exponent -1/3, with a cutoff remainder bound and Legendre deep coefficient",
+    "coefficient_domain": "Double precision exact integral representation and independent quadrature",
+    "conventions": "Dimensionless D; relative Hamiltonian E0=-epsilon; response H=D squared/2+epsilon; spectral density C E^beta on (0,cutoff)",
+    "inputs": [
+      "sol61_push/week_review_2026_10_08/astra_derivation_chains/threshold_checks_v2.py"
+    ],
+    "bounds": {
+      "D": [
+        0.01,
+        0.001,
+        0.0001,
+        1e-05,
+        1e-06,
+        1e-07,
+        1e-08
+      ],
+      "C": 1,
+      "cutoff": 1,
+      "beta": "-1/3",
+      "history": "Analytic scaling derived before numerical contract; not preregistered",
+      "revision": "Stable complementary incomplete-beta argument avoids loss of relative accuracy in the source finite difference."
+    },
+    "non_claims": [
+      "Not a BFSS computation",
+      "No selected physical spectral density",
+      "No full MONO or P2 interpolation",
+      "No measured coupling or 32pi coefficient",
+      "No extra gravitational DOF count"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-08T18:04:02.061627+00:00",
+    "runtime_seconds": 0.290976,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/week_review_2026_10_08/astra_derivation_chains/threshold_checks_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/astra_derivation_chains/threshold_checks_v2.py",
+      "sha256": "dda5148e55dbcc604a52f3fd331905ad2b67b4bb35f7060dd7fec038d1f42da2",
+      "sha256_after": "dda5148e55dbcc604a52f3fd331905ad2b67b4bb35f7060dd7fec038d1f42da2"
+    }
+  ],
+  "output_directory": "sol61_push/week_review_2026_10_08/astra_derivation_chains/threshold_runs_v2/sign",
+  "declared_results": [
+    "sol61_push/week_review_2026_10_08/astra_derivation_chains/threshold_runs_v2/sign/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/astra_derivation_chains/threshold_runs_v2/sign/stdout.txt",
+      "sha256": "a0ef64cf7df2dac6d849c7c6960e24baa2f615aea6cfdcfa1a23f0257fed411c",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/astra_derivation_chains/threshold_runs_v2/sign/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/astra_derivation_chains/threshold_runs_v2/sign/results.json",
+      "sha256": "0b5380957bb12bee2f4336a01fc57e38f028bc4c2fc76393306154406ca81f87",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
