@@ -1,0 +1,59 @@
+CFG486  MUTATE=False  rows x = [0.23, 0.232, 0.359, 1.0]
+A plausibility range from CFG413's committed free-A grid ([min/1.5, 1.5 max]): canonical CFG413 1.120-1.572 -> [0.746, 2.358], alt CFG413 0.953-1.436 -> [0.635, 2.155]
+
+=== STACK F: CFG352's own scorer (FP1/L355, Brouwer+21 Fig-3, 4 mass bins; 1 s)
+  Amax   foot      | law chi2 | x=1.0 chi2 (dlaw) | x=0.359 chi2 (dlaw) | x=0.232 chi2 (dlaw) | dchi2_edge (0.232 vs 1.0) | A per mass bin at 0.232 / 1.0
+  A0     canonical |  162.605 |  153.429 (  -9.18) |  231.412 ( +68.81) |  331.885 (+169.28) |  +178.46 | [0.0, 0.0, 0.0, 0.0] / [0.0, 0.0, 0.0, 0.0]
+  A0     alt       |  154.758 |  145.462 (  -9.30) |  220.080 ( +65.32) |  318.221 (+163.46) |  +172.76 | [0.0, 0.0, 0.0, 0.0] / [0.0, 0.0, 0.0, 0.0]
+  Amax2  canonical |  159.602 |  149.324 ( -10.28) |  159.325 (  -0.28) |  206.277 ( +46.67) |   +56.95 | [0.82, 1.09, 2.0, 2.0] / [0.09, 0.0, 0.5, 0.16]
+  Amax2  alt       |  152.319 |  142.881 (  -9.44) |  151.800 (  -0.52) |  199.515 ( +47.20) |   +56.63 | [0.83, 1.12, 2.0, 2.0] / [0.03, 0.0, 0.58, 0.0]
+  Afree  canonical |  159.602 |  149.324 ( -10.28) |  159.325 (  -0.28) |  205.384 ( +45.78) |   +56.06 | [0.82, 1.09, 2.28, 2.22] / [0.09, 0.0, 0.5, 0.16]
+  Afree  alt       |  152.319 |  142.881 (  -9.44) |  151.800 (  -0.52) |  196.874 ( +44.56) |   +53.99 | [0.83, 1.12, 2.32, 2.27] / [0.03, 0.0, 0.58, 0.0]
+  [PASS] C1 stack F, Amax = 0 reproduces CFG352 (law chi2 + row dchi2) to 0.01: max |diff| 0.00002 over 8 numbers
+  [PASS] C3 stack P has 181,477 lenses and 15 bins: lenses 181477, bins 15
+  stack P tables canonical: 34 s; groups 1953; r_ta_law median 1.088 Mpc; CFG352 r_bound median 1.127 Mpc; ratio r_bound/r_ta_law median 1.0278 (10-90% 0.9162-1.1570)
+  stack P tables alt: 66 s; groups 1953; r_ta_law median 1.141 Mpc; CFG352 r_bound median 1.182 Mpc; ratio r_bound/r_ta_law median 1.0278 (10-90% 0.9162-1.1570)
+
+=== STACK P: CFG413's floor (CFG377 primary, 181477 lenses, 15 bins, jackknife + Hartlap 0.6735)
+  pair-weighted mean R [Mpc]: [2.17  1.82  1.376 1.036 0.78  0.588 0.442 0.333 0.251 0.189 0.142 0.107 0.081 0.061 0.046]
+  [canonical]   x    | chi2 free   dchi2    A_2h  | chi2 A>=0  dchi2 | chi2 A=0   dchi2
+        0.230 |   16.884   -7.620  1.5718 |   16.884   -7.62 |   444.15  +202.86
+        0.232 |   16.743   -7.761  1.5677 |   16.743   -7.76 |   441.78  +200.49
+        0.359 |   10.842  -13.662  1.3884 |   10.842  -13.66 |   344.18  +102.89
+        1.000 |   24.504   +0.000  1.1196 |   24.504   +0.00 |   241.29    +0.00
+  [alt]   x    | chi2 free   dchi2    A_2h  | chi2 A>=0  dchi2 | chi2 A=0   dchi2
+        0.230 |   22.520   -0.924  1.4364 |   22.520   -0.92 |   379.34  +198.83
+        0.232 |   22.330   -1.115  1.4320 |   22.330   -1.11 |   376.96  +196.45
+        0.359 |   13.622   -9.823  1.2411 |   13.622   -9.82 |   280.00   +99.49
+        1.000 |   23.445   +0.000  0.9530 |   23.445   +0.00 |   180.51    +0.00
+  [PASS] C2 stack P reproduces CFG413's committed x = 0.23 and 1.0 chi2 (free and A = 0) to 0.01: max |diff| 0.00000
+
+DECISION (stack P, free A): dchi2_edge (0.232 vs 1.0) = -7.761 / -1.115; A(0.232) = 1.5677 / 1.4320, A(1.0) = 1.1196 / 0.9530; A in range: {'canonical': True, 'alt': True}
+VERDICT: REVIVED
+  [PASS] R1 setup: the trusted range (R <= 0.3/h Mpc) holds 9 bins: bins [6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+R1 trusted 9 bins (R <= 0.445 Mpc; Hartlap 0.7959):
+  [canonical] chi2 free x=0.232 5.735 (A 1.272), x=0.359 6.601 (A 1.270), x=1.0 6.563 (A 1.305); dchi2_edge free -0.828; A=0 -6.94
+  [alt] chi2 free x=0.232 6.463 (A 1.054), x=0.359 7.445 (A 1.067), x=1.0 7.552 (A 1.100); dchi2_edge free -1.089; A=0 -8.19
+  rule outcome on the trusted bins (reported only): REVIVED
+R3 drop-one-bin dchi2_edge [canonical]: -9.44 .. +3.91 (worst when dropping bin 1, R 1.820 Mpc); drops with dchi2 > 4: 0, > 9: 0
+R3 drop-one-bin dchi2_edge [alt]: -2.75 .. +8.28 (worst when dropping bin 1, R 1.820 Mpc); drops with dchi2 > 4: 2, > 9: 0
+R4 stack F Amax2: dchi2_edge +56.95 / +56.63 -> STILL KILLED
+R4 stack F Afree: dchi2_edge +56.06 / +53.99 -> STILL KILLED
+  stack-dependent (stack F Afree vs stack P disagree on KILLED vs not): True
+R5 [canonical] CFG352 r_ta on stack P: dchi2_edge free -10.173 (A 1.5472 / 1.1102); A=0 +190.63
+R5 [alt] CFG352 r_ta on stack P: dchi2_edge free -3.758 (A 1.4099 / 0.9416); A=0 +186.66
+  [FAIL] R6 setup: the wide-grid linear two-halo ESD matches FP1's ESD2h (R >= 0.05 Mpc) to 2%: max rel diff 0.0312
+R6 [canonical] x=0.232: b_eff per bin (outer -> inner) [   2.19    2.68    3.73    5.29    7.59   11.07   16.45   25.07   39.48   65.18  113.72  211.37  413.76  842.55 1771.  ]; outer 6 bins (R > 0.445 Mpc) max 11.07; bins with b_eff > 2: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+R6 [canonical] x=1.0: b_eff per bin (outer -> inner) [   1.56    1.92    2.67    3.77    5.42    7.9    11.75   17.9    28.19   46.55   81.22  150.95  295.49  601.72 1264.79]; outer 6 bins (R > 0.445 Mpc) max 7.90; bins with b_eff > 2: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+R6 [alt] x=0.232: b_eff per bin (outer -> inner) [   2.      2.45    3.41    4.83    6.93   10.11   15.03   22.9    36.06   59.54  103.88  193.07  377.94  769.61 1617.68]; outer 6 bins (R > 0.445 Mpc) max 10.11; bins with b_eff > 2: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+R6 [alt] x=1.0: b_eff per bin (outer -> inner) [   1.33    1.63    2.27    3.21    4.61    6.73   10.     15.24   24.     39.63   69.13  128.49  251.52  512.18 1076.58]; outer 6 bins (R > 0.445 Mpc) max 6.73; bins with b_eff > 2: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+  [canonical] two-halo share of the model at R = 0.44 / 1.04 / 2.17 Mpc: x=0.232 0.49/0.72/0.88; x=1.0 0.40/0.43/0.56
+  [alt] two-halo share of the model at R = 0.44 / 1.04 / 2.17 Mpc: x=0.232 0.44/0.67/0.85; x=1.0 0.34/0.37/0.48
+
+POST-HOC PH1 (R6 check diagnosis): with FP1's own inner edge (0.02 Mpc) the linear ESD matches FP1 to 2.4e-04; with the 1e-4 Mpc edge the difference is FP1's core approximation, 0.0052 at R >= 0.076 Mpc and 6.5e-05 at R >= 0.445 Mpc (the outer bins that carry the flag). The check FAIL is kept.
+POST-HOC PH2 [canonical] stack P, LINEAR two-halo shape (b free): chi2 x=0.232 207.20 (b 2.99), x=0.359 170.45 (b 2.58), x=1.0 185.17 (b 1.46); dchi2_edge +22.03; first caustic -14.72; trusted 9 bins dchi2_edge -4.40
+POST-HOC PH2 [alt] stack P, LINEAR two-halo shape (b free): chi2 x=0.232 156.88 (b 2.90), x=0.359 123.41 (b 2.45), x=1.0 141.93 (b 1.21); dchi2_edge +14.95; first caustic -18.52; trusted 9 bins dchi2_edge -3.18
+  PH2 rule outcome (A-range test not applicable, different template): STILL KILLED
+
+checks {'C1 stack F, Amax = 0 reproduces CFG352 (law chi2 + row dchi2) to 0.01': True, 'C3 stack P has 181,477 lenses and 15 bins': True, "C2 stack P reproduces CFG413's committed x = 0.23 and 1.0 chi2 (free and A = 0) to 0.01": True, 'R1 setup: the trusted range (R <= 0.3/h Mpc) holds 9 bins': True, "R6 setup: the wide-grid linear two-halo ESD matches FP1's ESD2h (R >= 0.05 Mpc) to 2%": False}; elapsed 67 s
