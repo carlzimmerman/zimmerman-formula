@@ -451,6 +451,14 @@ export default function Home() {
               <div className="font-medium text-gray-900 mb-1">The 512³ run</div>
               <p className="text-gray-600">The real output of the 134-million-particle simulation: every cell, single slices, and individual halo particles, framework run beside a Newtonian control.</p>
             </Link>
+            <Link href="/galaxy-sim" className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors">
+              <div className="font-medium text-gray-900 mb-1">A real galaxy, live</div>
+              <p className="text-gray-600">Pick a SPARC galaxy and watch its stars evolve in your browser under the law with a₀ fixed, beside the standard dark-halo picture.</p>
+            </Link>
+            <Link href="/wide-binaries" className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors">
+              <div className="font-medium text-gray-900 mb-1">What Gaia DR4 will see</div>
+              <p className="text-gray-600">A mock wide-binary sky from the frozen pre-registered pipeline: what each law would return when DR4 lands on 2 December 2026.</p>
+            </Link>
             <Link href="/simulate" className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors">
               <div className="font-medium text-gray-900 mb-1">Simulations</div>
               <p className="text-gray-600">Rotation curves and the acceleration relation, computed from the law rather than illustrated.</p>
