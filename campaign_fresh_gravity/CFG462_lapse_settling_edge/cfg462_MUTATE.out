@@ -1,0 +1,168 @@
+==============================================================================================================
+CFG462 lapse settling edge   MUTATE=True (a0 inside the lapse = 2 x true)
+f_b = 0.157134; y_e = ln^2(1/(1-f_b)) = 0.029223; r_edge = 5.8498 r_M; total field at edge 0.18597 a0
+supplies: CAT (scored) = 22.6 M_b (CFG118 turnaround); SHARE (restatement control) = 5.364 M_b
+==============================================================================================================
+
+[K1] CFG373's identities (sympy, copied) + nu_mono inverse round trip
+  perfect square identity = 0; local target - CFG44 = 0; AQUAL flux identity holds: True
+  nu_mono inverse round trip max rel err on [1e-5, 1e5] = 1.3e-15; P2 closed form 6.6e-12  -> K1 PASS
+
+[K5] lapse field energy = -W for a bounded spherical mass (truncated SIS; sympy)
+  W = -G*M**2/R; field energy = G*M**2/R; sum = 0  -> K5 PASS
+  So the weak-field lapse's own energy IS the binding energy: contraction releases it (a source), it cannot absorb it.
+
+[K2] unlimited supply: the lapse fixed point M_c = M_t[g] (iterated from M_c = 0) vs the law's M_ph, Hernquist host
+  nu_mono a = 0.3 r_M: max |M_fp/M_ph - 1| = 5.8e-15 (plain iteration x1000: 1.2e-12)  PASS
+  nu_mono a = 1.0 r_M: max |M_fp/M_ph - 1| = 6.8e-15 (plain iteration x1000: 1.8e-12)  PASS
+  P2      a = 0.3 r_M: max |M_fp/M_ph - 1| = 1.9e-13 (plain iteration x1000: 8.5e-13)  PASS
+  P2      a = 1.0 r_M: max |M_fp/M_ph - 1| = 1.3e-13 (plain iteration x1000: 1.3e-12)  PASS
+  K2 PASS: the lapse carries the law's phantom (the SIS in the deep regime) on an extended host, zero constants
+
+[cells] r_M, catchment and virial radii (physical; the mechanisms use x = r/r_M(true a0))
+  canonical M_b=10^9.0 : r_M =    1.22 kpc, r_edge =     7.1 kpc, r_ta =   236.0 kpc (x_ta =  193.4), R_vir(z_c=1) = 20.47 r_M (R_vir/r_edge = 3.50)
+  canonical M_b=10^10.5: r_M =    6.86 kpc, r_edge =    40.1 kpc, r_ta =   746.3 kpc (x_ta =  108.8), R_vir(z_c=1) = 11.51 r_M (R_vir/r_edge = 1.97)
+  canonical M_b=10^11.5: r_M =   21.70 kpc, r_edge =   126.9 kpc, r_ta =  1607.8 kpc (x_ta =   74.1), R_vir(z_c=1) =  7.84 r_M (R_vir/r_edge = 1.34)
+  alt       M_b=10^9.0 : r_M =    1.11 kpc, r_edge =     6.5 kpc, r_ta =   236.0 kpc (x_ta =  212.6), R_vir(z_c=1) = 22.50 r_M (R_vir/r_edge = 3.85)
+  alt       M_b=10^10.5: r_M =    6.24 kpc, r_edge =    36.5 kpc, r_ta =   746.3 kpc (x_ta =  119.6), R_vir(z_c=1) = 12.65 r_M (R_vir/r_edge = 2.16)
+  alt       M_b=10^11.5: r_M =   19.74 kpc, r_edge =   115.5 kpc, r_ta =  1607.8 kpc (x_ta =   81.5), R_vir(z_c=1) =  8.62 r_M (R_vir/r_edge = 1.47)
+
+[flows] equilibrium edges. nu_mono, Hernquist a = 0.3 r_M (scored). dex = log10(r_e/r_edge), r_edge = 5.8498 r_M
+  CAT     F-H  : r_e/r_M =   16.61,   16.61,   16.61,   16.61,   16.61,   16.61  | dex = +0.453, +0.453, +0.453, +0.453, +0.453, +0.453  | within 0.05 dex in 6/6: False
+  CAT     F-2  : r_e/r_M =   21.56,   21.55,   21.54,   21.55,   21.54,   21.55  | dex = +0.566, +0.566, +0.566, +0.566, +0.566, +0.566  | within 0.05 dex in 6/6: False
+  CAT     F-KL : r_e/r_M =  193.40,  108.75,   74.09,  212.60,  119.56,   81.45  | dex = +1.519, +1.269, +1.103, +1.560, +1.310, +1.144  | within 0.05 dex in 6/6: False
+  CAT     F-0  : r_e/r_M =  193.40,  108.75,   74.09,  212.60,  119.56,   81.45  | dex = +1.519, +1.269, +1.103, +1.560, +1.310, +1.144  | within 0.05 dex in 6/6: False
+  SHARE   F-H  : r_e/r_M =    4.38,    4.38,    4.38,    4.38,    4.38,    4.38  | dex = -0.126, -0.126, -0.126, -0.126, -0.126, -0.126  | within 0.05 dex in 6/6: False
+  SHARE   F-2  : r_e/r_M =    5.74,    5.74,    5.74,    5.74,    5.74,    5.74  | dex = -0.008, -0.008, -0.008, -0.009, -0.008, -0.008  | within 0.05 dex in 6/6: True
+  SHARE   F-KL : r_e/r_M =  193.40,  108.75,   74.09,  212.60,  119.56,   81.45  | dex = +1.519, +1.269, +1.103, +1.560, +1.310, +1.144  | within 0.05 dex in 6/6: False
+  SHARE   F-0  : r_e/r_M =   20.47,   11.51,    7.84,   22.50,   12.65,    8.62  | dex = +0.544, +0.294, +0.127, +0.585, +0.335, +0.168  | within 0.05 dex in 6/6: False
+  2xSHARE F-H  : r_e/r_M =    8.20,    8.20,    8.20,    8.20,    8.20,    8.20  | dex = +0.147, +0.147, +0.147, +0.147, +0.147, +0.147  | within 0.05 dex in 6/6: False
+  (cell order: canonical 1e9, 10^10.5, 10^11.5; alt 1e9, 10^10.5, 10^11.5)
+
+[flow diagnostics]
+  CAT     F-H  : y_edge (g_N/a0 at r_e) middle-canonical = 0.00350 (target 0.02922); KKT cap binds outside: True; grid edge vs brentq: 4.1e-04 dex
+           locality: NOT lapse-local: drive v = D[g_N(g) - g_b] needs the baryons' own field g_b (equivalently the fluid's own field g_c, a second elliptic solve keyed to one species): CFG60/CFG473 class, G9 tension
+  CAT     F-2  : y_edge (g_N/a0 at r_e) middle-canonical = 0.00209 (target 0.02922); mu = 9.285e-06; support fills domain: False; self-consistency resid (indep. lapse re-read) max 3.1e-08; mass check 1.000000; max rho_t/mu outside 0.903
+           locality: lapse-local (rho_c and rho_t[g] at the point)
+  CAT     F-KL : y_edge (g_N/a0 at r_e) middle-canonical = 0.00008 (target 0.02922); lambda = 0.9588 (middle canonical; range 0.9580-0.9600); resid of rho_c = lambda rho_t[g] (indep. re-read) 6.2e-15; min rho_c 2.83e-09
+           locality: lapse-local (rho_c and rho_t[g] at the point); = T3/T10 JKO settling
+  CAT     F-0  : y_edge (g_N/a0 at r_e) middle-canonical = 0.00008 (target 0.02922); 
+           locality: the chassis as committed: no settling drive at all (CFG381)
+  SHARE   F-H  : y_edge (g_N/a0 at r_e) middle-canonical = 0.04574 (target 0.02922); KKT cap binds outside: True; grid edge vs brentq: 4.1e-04 dex
+           locality: NOT lapse-local: drive v = D[g_N(g) - g_b] needs the baryons' own field g_b (equivalently the fluid's own field g_c, a second elliptic solve keyed to one species): CFG60/CFG473 class, G9 tension
+  SHARE   F-2  : y_edge (g_N/a0 at r_e) middle-canonical = 0.02742 (target 0.02922); mu = 4.526e-04; support fills domain: False; self-consistency resid (indep. lapse re-read) max 9.0e-08; mass check 1.000000; max rho_t/mu outside 0.908
+           locality: lapse-local (rho_c and rho_t[g] at the point)
+  SHARE   F-KL : y_edge (g_N/a0 at r_e) middle-canonical = 0.00008 (target 0.02922); lambda = 0.8438 (middle canonical; range 0.8433-0.8444); resid of rho_c = lambda rho_t[g] (indep. re-read) 6.7e-15; min rho_c 1.65e-10
+           locality: lapse-local (rho_c and rho_t[g] at the point); = T3/T10 JKO settling
+  SHARE   F-0  : y_edge (g_N/a0 at r_e) middle-canonical = 0.00717 (target 0.02922); 
+           locality: the chassis as committed: no settling drive at all (CFG381)
+  2xSHARE F-H  : y_edge (g_N/a0 at r_e) middle-canonical = 0.01384 (target 0.02922); KKT cap binds outside: True; grid edge vs brentq: 3.7e-04 dex
+           locality: NOT lapse-local: drive v = D[g_N(g) - g_b] needs the baryons' own field g_b (equivalently the fluid's own field g_c, a second elliptic solve keyed to one species): CFG60/CFG473 class, G9 tension
+
+[K3] restatement control: F-H with exactly the cosmic share (the edge enters through the supply)
+  point-mass host: x_e = 4.13641 r_M vs 5.84976 (OUTSIDE 1e-3)
+  Hernquist a = 0.3: dex = -0.1261, -0.1261, -0.1261, -0.1261, -0.1261, -0.1261 -> within 0.05: False
+
+[K4] F-H as a time-dependent settling run (Lagrangian shells; middle galaxy, canonical, CAT supply, uniform-mu start)
+  dynamic edge = 16.614 r_M vs equilibrium 16.614 r_M (6.2e-11 dex); M_c(<r) vs equilibrium on [0.1, 0.9] r_e: max 3.0e-15; median shell radius over time 54.38, 54.05, 8.61, 8.61
+  mobility D x10 moves the settled edge by 3.9e-16 dex (D sets the clock only)  -> K4 PASS
+  identity check: F-H velocity/D minus [g_N(g) - g_b] = 1.4e-15 (the drive needs the baryons' own field g_b)
+
+==============================================================================================================
+GATES (scored supply CAT, a = 0.3 r_M, nu_mono)
+  F-H  : P1 FAIL (worst |dex| = 0.453); P2 structurally clean; L: NOT lapse-local: drive v = D[g_N(g) - g_b] needs the baryons...
+  F-2  : P1 FAIL (worst |dex| = 0.566); P2 structurally clean; L: lapse-local (rho_c and rho_t[g] at the point)...
+  F-KL : P1 FAIL (worst |dex| = 1.560); P2 structurally clean; L: lapse-local (rho_c and rho_t[g] at the point); = T3/T10 JKO ...
+  F-0  : P1 FAIL (worst |dex| = 1.560); P2 structurally clean; L: the chassis as committed: no settling drive at all (CFG381)...
+
+[f_b-test] d ln y_e / d ln f_b with f_b x1.2 wherever it enters the mechanism (target 2.181, nu_mono point mass)
+  CAT   F-H  : +0.000
+  CAT   F-2  : +0.000
+  CAT   F-KL : +0.000
+  CAT   F-0  : +0.000
+  SHARE F-H  : +1.955
+  SHARE F-2  : +1.965
+  SHARE F-KL : +0.000
+  SHARE F-0  : +0.649
+  (analytic exhaustion edge, point mass: +2.202 for a finite x1.2 step; derivative 2.181)
+
+[edge state] law-settled to r_edge + CAT remainder at uniform mu over [r_edge, r_ta]: does the flux vanish at r_edge?
+  canonical 10^10.5: rho_t[g]/rho_c at 1.1 r_edge = 2.20 (the lapse asks for MORE fluid outside)
+     F-H   mass flux (D = 1; + outward) at 1.0 / 1.1 / 1.5 r_edge = -5.29e-04 / -5.40e-04 / -8.80e-04
+     F-2   mass flux (D = 1; + outward) at 1.0 / 1.1 / 1.5 r_edge = +6.93e-04 / -3.73e-05 / -7.41e-06
+     F-KL  mass flux (D = 1; + outward) at 1.0 / 1.1 / 1.5 r_edge = +6.94e-01 / +4.69e-02 / -1.68e-02
+  alt       10^9.0: rho_t[g]/rho_c at 1.1 r_edge = 3.25 (the lapse asks for MORE fluid outside)
+     F-H   mass flux (D = 1; + outward) at 1.0 / 1.1 / 1.5 r_edge = -5.33e-04 / -3.22e-04 / -4.59e-04
+     F-2   mass flux (D = 1; + outward) at 1.0 / 1.1 / 1.5 r_edge = +6.97e-04 / -2.25e-05 / -3.87e-06
+     F-KL  mass flux (D = 1; + outward) at 1.0 / 1.1 / 1.5 r_edge = +7.61e-01 / +7.79e-02 / -1.26e-02
+  alt       10^11.5: rho_t[g]/rho_c at 1.1 r_edge = 1.88 (the lapse asks for MORE fluid outside)
+     F-H   mass flux (D = 1; + outward) at 1.0 / 1.1 / 1.5 r_edge = -5.23e-04 / -6.81e-04 / -1.15e-03
+     F-2   mass flux (D = 1; + outward) at 1.0 / 1.1 / 1.5 r_edge = +6.91e-04 / -4.66e-05 / -9.73e-06
+     F-KL  mass flux (D = 1; + outward) at 1.0 / 1.1 / 1.5 r_edge = +6.47e-01 / +3.10e-02 / -1.80e-02
+
+[reported variants, not scored]
+  a=1.0 nu_mono                  CAT   F-H  : dex = +0.469, +0.469, +0.469, +0.469, +0.469, +0.469
+  a=1.0 nu_mono                  CAT   F-2  : dex = +0.583, +0.583, +0.583, +0.583, +0.583, +0.583
+  a=1.0 nu_mono                  CAT   F-KL : dex = +1.519, +1.269, +1.103, +1.560, +1.310, +1.144
+  a=1.0 nu_mono                  SHARE F-H  : dex = -0.080, -0.080, -0.080, -0.080, -0.080, -0.080
+  a=1.0 nu_mono                  SHARE F-2  : dex = +0.039, +0.039, +0.039, +0.039, +0.039, +0.039
+  a=1.0 nu_mono                  SHARE F-KL : dex = +1.519, +1.269, +1.103, +1.560, +1.310, +1.144
+  a=0.3 P2 (CFG373 closed form)  CAT   F-H  : dex = +0.462, +0.462, +0.462, +0.462, +0.462, +0.462
+  a=0.3 P2 (CFG373 closed form)  CAT   F-2  : dex = +0.573, +0.573, +0.573, +0.573, +0.573, +0.573
+  a=0.3 P2 (CFG373 closed form)  CAT   F-KL : dex = +1.519, +1.269, +1.103, +1.560, +1.310, +1.144
+  a=0.3 P2 (CFG373 closed form)  SHARE F-H  : dex = -0.099, -0.099, -0.099, -0.099, -0.099, -0.099
+  a=0.3 P2 (CFG373 closed form)  SHARE F-2  : dex = +0.015, +0.015, +0.015, +0.015, +0.015, +0.015
+  a=0.3 P2 (CFG373 closed form)  SHARE F-KL : dex = +1.519, +1.269, +1.103, +1.560, +1.310, +1.144
+  point mass nu_mono             CAT   F-H  : dex = +0.446, +0.446, +0.446, +0.446, +0.446, +0.446
+  point mass nu_mono             CAT   F-2  : dex = +0.558, +0.558, +0.558, +0.558, +0.559, +0.559
+  point mass nu_mono             CAT   F-KL : dex = +1.519, +1.269, +1.103, +1.560, +1.310, +1.144
+  point mass nu_mono             SHARE F-H  : dex = -0.151, -0.151, -0.151, -0.151, -0.151, -0.151
+  point mass nu_mono             SHARE F-2  : dex = -0.034, -0.033, -0.034, -0.033, -0.033, -0.034
+  point mass nu_mono             SHARE F-KL : dex = +1.519, +1.269, +1.103, +1.560, +1.310, +1.144
+
+[POST-RUN REPORT, not a verdict input] where each equilibrium's cold mass sits, and whether it realises the law
+  (middle galaxy, canonical, a = 0.3 r_M, nu_mono). r50/r90/r95 = radii enclosing 50/90/95% of the cold mass;
+  g/g_law = the equilibrium's total field over the law's field at 2, 5, 10, 20 r_M; Mc/Mb = M_c(<r)/M_b(<r) there.
+  CAT   F-H  : r50/r90/r95 =   8.61 /  15.01 /  15.81 r_M | g/g_law at 2,5,10,20 = 1.332, 1.377, 1.395, 1.167 | Mc/Mb = 2.78, 7.01, 14.07, 23.28
+  CAT   F-2  : r50/r90/r95 =   8.73 /  16.70 /  18.24 r_M | g/g_law at 2,5,10,20 = 1.332, 1.373, 1.364, 1.154 | Mc/Mb = 2.78, 6.98, 13.75, 23.01
+  CAT   F-KL : r50/r90/r95 =  12.42 /  44.77 /  60.91 r_M | g/g_law at 2,5,10,20 = 1.247, 1.180, 1.036, 0.799 | Mc/Mb = 2.54, 5.86, 10.20, 15.62
+  SHARE F-H  : r50/r90/r95 =   2.43 /   3.99 /   4.18 r_M | g/g_law at 2,5,10,20 = 1.332, 1.208, 0.619, 0.314 | Mc/Mb = 2.78, 6.03, 5.69, 5.53
+  SHARE F-2  : r50/r90/r95 =   2.49 /   4.50 /   4.89 r_M | g/g_law at 2,5,10,20 = 1.317, 1.168, 0.619, 0.314 | Mc/Mb = 2.73, 5.79, 5.69, 5.53
+  SHARE F-KL : r50/r90/r95 =   3.92 /  15.51 /  23.87 r_M | g/g_law at 2,5,10,20 = 1.036, 0.783, 0.520, 0.296 | Mc/Mb = 1.94, 3.56, 4.62, 5.16
+  Reading: F-KL with the lapse-carried target is a PARTIAL law whose g/g_law falls outward (1.25 -> 0.80 over 2-20 r_M
+  on CAT, 1.04 -> 0.30 on SHARE), with its cold mass spread over the whole catchment; only where
+  g << [(1-lambda)/lambda] a0 does it approach M_c ~ [lambda/(1-lambda)] M_b (baryon-tracing). Its percentile radii are not an edge.
+  F-2 follows the law (of rho_b - mu) inside ~r_e/2 and bends below it toward its edge. F-H realises the law exactly inside its edge.
+
+[energy sink] what settling to r_edge must shed, and what the same field can absorb (z_c = 1 unless stated)
+  canonical 10^9.0 : R_vir/r_edge = 3.50 (z_c=3: 1.75); dE toy = 8.66e+48 J (= 2.50 x E_vir), virial = 1.24e+49 J; z_c=3 toy +5.20e+48 J
+             capacity/required: lapse 0 (K5) | alpha_c 3.2e-09 | K^2 (CFG381-induced K) 3.0e-24 | direct coupling must enhance K by 5.7e+11-2.3e+17
+             (Hernquist W check: W/(-G M^2/6a) = 1.00000)
+  canonical 10^10.5: R_vir/r_edge = 1.97 (z_c=3: 0.98); dE toy = 1.06e+51 J (= 0.97 x E_vir), virial = 1.15e+51 J; z_c=3 toy -3.57e+49 J
+             capacity/required: lapse 0 (K5) | alpha_c 3.2e-09 | K^2 (CFG381-induced K) 3.3e-23 | direct coupling must enhance K by 1.7e+11-7.1e+16
+             (Hernquist W check: W/(-G M^2/6a) = 1.00000)
+  canonical 10^11.5: R_vir/r_edge = 1.34 (z_c=3: 0.67); dE toy = 1.73e+52 J (= 0.34 x E_vir), virial = 2.56e+51 J; z_c=3 toy -3.36e+52 J
+             capacity/required: lapse 0 (K5) | alpha_c 3.2e-09 | K^2 (CFG381-induced K) 1.5e-21 | direct coupling must enhance K by 2.6e+10-1.1e+16
+             (Hernquist W check: W/(-G M^2/6a) = 1.00000)
+  alt       10^9.0 : R_vir/r_edge = 3.85 (z_c=3: 1.92); dE toy = 9.87e+48 J (= 2.85 x E_vir), virial = 1.44e+49 J; z_c=3 toy +6.40e+48 J
+             capacity/required: lapse 0 (K5) | alpha_c 3.2e-09 | K^2 (CFG381-induced K) 3.2e-24 | direct coupling must enhance K by 5.6e+11-2.3e+17
+             (Hernquist W check: W/(-G M^2/6a) = 1.00000)
+  alt       10^10.5: R_vir/r_edge = 2.16 (z_c=3: 1.08); dE toy = 1.27e+51 J (= 1.16 x E_vir), virial = 1.50e+51 J; z_c=3 toy +1.79e+50 J
+             capacity/required: lapse 0 (K5) | alpha_c 3.2e-09 | K^2 (CFG381-induced K) 3.0e-23 | direct coupling must enhance K by 1.8e+11-7.3e+16
+             (Hernquist W check: W/(-G M^2/6a) = 1.00000)
+  alt       10^11.5: R_vir/r_edge = 1.47 (z_c=3: 0.74); dE toy = 2.41e+52 J (= 0.47 x E_vir), virial = 1.32e+52 J; z_c=3 toy -2.68e+52 J
+             capacity/required: lapse 0 (K5) | alpha_c 3.2e-09 | K^2 (CFG381-induced K) 3.5e-22 | direct coupling must enhance K by 5.4e+10-2.2e+16
+             (Hernquist W check: W/(-G M^2/6a) = 1.00000)
+  SINK: NOT SUPPLIED by the same field (frozen line: some channel >= 1 in all 6 cells)
+
+==============================================================================================================
+LANE VERDICT: MUTATE: no flow and no control lands on the true r_edge
+SINK: NOT SUPPLIED
+
+[MUTATE teeth] K3 point mass shift -0.1505 dex (pred -0.1505); Hernquist shifts -0.1437, -0.1437, -0.1437, -0.1437, -0.1437, -0.1437; all fail P1 vs true r_edge: True; no flow passes P1: True
+  F-H   CAT dex vs TRUE r_edge under MUTATE: +0.453, +0.453, +0.453, +0.453, +0.453, +0.453
+  F-2   CAT dex vs TRUE r_edge under MUTATE: +0.566, +0.566, +0.566, +0.566, +0.566, +0.566
+  F-KL  CAT dex vs TRUE r_edge under MUTATE: +1.519, +1.269, +1.103, +1.560, +1.310, +1.144
+  F-0   CAT dex vs TRUE r_edge under MUTATE: +1.519, +1.269, +1.103, +1.560, +1.310, +1.144
+MUTATE: teeth DETECTED (exit 1, as designed)
+exit 1
