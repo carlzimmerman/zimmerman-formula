@@ -1,0 +1,85 @@
+CFG433 T13 phantom dispersion vs MW satellites   MUTATE=True
+Fritz+2018 Table 2 rows parsed: 39
+C1 parse: 39 rows = True; V3D vs sqrt(Vrad^2+Vtan^2) within 2 sigma: 39/39  PASS=True
+C3 canonical: V_pred 30-300 kpc = 178.4 -> 166.5 km/s (spread 7.1 %); (G M_b a0)^1/4 = 165.2 km/s; V_pred(300)/deep = 1.0079
+C3 alt      : V_pred 30-300 kpc = 185.8 -> 174.5 km/s (spread 6.5 %); (G M_b a0)^1/4 = 173.3 km/s; V_pred(300)/deep = 1.0072
+C3 flat-potential appropriate (<10 %)  PASS=True
+
+window 30-300 kpc: 31 objects: AquII, BooI, BooII, CVenI, CVenII, CarI, CarII, CBerI, CraI, CraII, DraI, FnxI, GruI, HerI, HorI, HyaII, LeoI, LeoII, LeoIV, LeoV, PisII, RetII, SclI, Seg2, SxtI, TriII, TucII, UMaI, UMaII, UMiI, Wil1
+M1 planted mocks (n = 31 radii / 17 kinematic, gamma 3.11, beta -0.44, canonical, 100 each)
+  V_c x 1.00: PASS(|D|<=2) 96/100, D>3 1/100
+  V_c x 1.35: PASS(|D|<=2) 24/100, D>3 29/100
+M1 power check (unmodified PASS >= 80, x1.35 FAIL >= 80): False
+
+M2 real velocities x 1.3500
+
+  --- footing canonical (a0 = 9.3603e-11) [x1.350]
+  case                     n  gamma   beta   V_obs    sig  r_med  V_pred      D   V_pred range over radii
+  PRIMARY                 14   3.11  -0.44   321.6   32.8     71   170.8  +4.60   [168.0, 177.2]  (bad boots 0)
+  V1 no quality cut       31   3.11  -0.52   286.7   26.7    102   169.1  +4.40   [166.7, 177.2]  (bad boots 0)
+  V2 e_t<=100             22   3.11  -0.40   292.7   28.8     81   170.1  +4.25   [166.7, 177.2]  (bad boots 0)
+  V3 no LMC candidates    11   2.90  -0.75   286.4   32.7     79   170.2  +3.55   [168.0, 176.5]  (bad boots 0)
+  V4 no Leo I             14   3.19  -0.44   324.8   33.6     71   170.8  +4.58   [168.0, 177.2]  (bad boots 0)
+  V5 inner 30-100         11   3.29  -0.38   357.3   56.3     54   172.5  +3.28   [169.6, 177.2]  (bad boots 0)
+  V6 outer 100-300         3   4.58  -1.71   206.0   11.4    111   168.8  +3.26   [168.0, 169.0]  (bad boots 0)
+  V7 gamma=2              14   2.00  -0.44   273.0   21.7     71   170.8  +4.70   [168.0, 177.2]  (bad boots 0)
+  V8 gamma=3              14   3.00  -0.44   316.9   27.0     71   170.8  +5.40   [168.0, 177.2]  (bad boots 0)
+  V9 M_b=7.3e10                              321.6   32.8     71   180.0  +4.32
+  (ref) M_b=1e11 (T13's value): V_pred = 195.9, D = +3.84
+  isotropic-equivalent sigma = V_obs/sqrt2 = 227.4 km/s vs T13-style sigma_ph(M_b=6e10) = 120.8
+  VERDICT (canonical): FAIL   D_primary = +4.60
+
+  --- footing alt (a0 = 1.1312e-10) [x1.350]
+  case                     n  gamma   beta   V_obs    sig  r_med  V_pred      D   V_pred range over radii
+  PRIMARY                 14   3.11  -0.44   321.6   32.8     71   178.5  +4.37   [175.9, 184.7]  (bad boots 0)
+  V1 no quality cut       31   3.11  -0.52   286.7   26.7    102   176.9  +4.11   [174.6, 184.7]  (bad boots 0)
+  V2 e_t<=100             22   3.11  -0.40   292.7   28.8     81   177.9  +3.98   [174.6, 184.7]  (bad boots 0)
+  V3 no LMC candidates    11   2.90  -0.75   286.4   32.7     79   178.0  +3.31   [175.9, 184.0]  (bad boots 0)
+  V4 no Leo I             14   3.19  -0.44   324.8   33.6     71   178.5  +4.35   [175.9, 184.7]  (bad boots 0)
+  V5 inner 30-100         11   3.29  -0.38   357.3   56.3     54   180.2  +3.15   [177.5, 184.7]  (bad boots 0)
+  V6 outer 100-300         3   4.58  -1.71   206.0   11.4    111   176.6  +2.57   [175.9, 176.8]  (bad boots 0)
+  V7 gamma=2              14   2.00  -0.44   273.0   21.7     71   178.5  +4.35   [175.9, 184.7]  (bad boots 0)
+  V8 gamma=3              14   3.00  -0.44   316.9   27.0     71   178.5  +5.12   [175.9, 184.7]  (bad boots 0)
+  V9 M_b=7.3e10                              321.6   32.8     71   188.1  +4.07
+  (ref) M_b=1e11 (T13's value): V_pred = 204.6, D = +3.57
+  isotropic-equivalent sigma = V_obs/sqrt2 = 227.4 km/s vs T13-style sigma_ph(M_b=6e10) = 126.2
+  VERDICT (alt): FAIL   D_primary = +4.37
+
+M2 real velocities x 0.7407
+
+  --- footing canonical (a0 = 9.3603e-11) [x0.741]
+  case                     n  gamma   beta   V_obs    sig  r_med  V_pred      D   V_pred range over radii
+  PRIMARY                 21   3.11  -0.43   163.5   15.6     79   170.2  -0.43   [166.7, 177.2]  (bad boots 0)
+  V1 no quality cut       31   3.11  -0.52   157.3   14.7    102   169.1  -0.80   [166.7, 177.2]  (bad boots 0)
+  V2 e_t<=100             25   3.11  -0.47   165.0   16.6     83   170.0  -0.30   [166.7, 177.2]  (bad boots 0)
+  V3 no LMC candidates    17   2.90  -0.52   146.9   15.6     85   169.9  -1.47   [166.7, 176.5]  (bad boots 0)
+  V4 no Leo I             20   3.19  -0.60   166.4   15.8     78   170.2  -0.25   [167.0, 177.2]  (bad boots 0)
+  V5 inner 30-100         14   3.29  -0.58   185.3   27.0     48   173.4  +0.44   [169.6, 177.2]  (bad boots 0)
+  V6 outer 100-300         7   4.58   0.06   145.2   22.9    129   168.3  -1.01   [166.7, 169.1]  (bad boots 4)
+  V7 gamma=2              21   2.00  -0.43   138.6   11.1     79   170.2  -2.83   [166.7, 177.2]  (bad boots 0)
+  V8 gamma=3              21   3.00  -0.43   161.1   12.1     79   170.2  -0.75   [166.7, 177.2]  (bad boots 0)
+  V9 M_b=7.3e10                              163.5   15.6     79   179.3  -1.01
+  (ref) M_b=1e11 (T13's value): V_pred = 195.0, D = -2.02
+  isotropic-equivalent sigma = V_obs/sqrt2 = 115.6 km/s vs T13-style sigma_ph(M_b=6e10) = 120.4
+  VERDICT (canonical): PASS   D_primary = -0.43
+
+  --- footing alt (a0 = 1.1312e-10) [x0.741]
+  case                     n  gamma   beta   V_obs    sig  r_med  V_pred      D   V_pred range over radii
+  PRIMARY                 21   3.11  -0.43   163.5   15.6     79   178.0  -0.93   [174.6, 184.7]  (bad boots 0)
+  V1 no quality cut       31   3.11  -0.52   157.3   14.7    102   176.9  -1.33   [174.6, 184.7]  (bad boots 0)
+  V2 e_t<=100             25   3.11  -0.47   165.0   16.6     83   177.8  -0.77   [174.6, 184.7]  (bad boots 0)
+  V3 no LMC candidates    17   2.90  -0.52   146.9   15.6     85   177.7  -1.97   [174.6, 184.0]  (bad boots 0)
+  V4 no Leo I             20   3.19  -0.60   166.4   15.8     78   178.0  -0.74   [174.9, 184.7]  (bad boots 0)
+  V5 inner 30-100         14   3.29  -0.58   185.3   27.0     48   181.0  +0.16   [177.5, 184.7]  (bad boots 0)
+  V6 outer 100-300         7   4.58   0.06   145.2   22.9    129   176.1  -1.35   [174.6, 176.9]  (bad boots 4)
+  V7 gamma=2              21   2.00  -0.43   138.6   11.1     79   178.0  -3.53   [174.6, 184.7]  (bad boots 0)
+  V8 gamma=3              21   3.00  -0.43   161.1   12.1     79   178.0  -1.39   [174.6, 184.7]  (bad boots 0)
+  V9 M_b=7.3e10                              163.5   15.6     79   187.4  -1.54
+  (ref) M_b=1e11 (T13's value): V_pred = 203.8, D = -2.59
+  isotropic-equivalent sigma = V_obs/sqrt2 = 115.6 km/s vs T13-style sigma_ph(M_b=6e10) = 125.9
+  VERDICT (alt): PASS   D_primary = -0.93
+
+M2 flip vs main run: {'canonical': True, 'alt': True}  (main: {'canonical': 'TENSION', 'alt': 'TENSION'})
+M3 anisotropy-blind V = 232.8 vs primary 231.9: 0.05 sigma apart (informational; >1 means anisotropy matters: False)
+
+MUTATE SUMMARY: M1 False; M2 flips {'canonical': True, 'alt': True}; test DIAGNOSTIC = False
