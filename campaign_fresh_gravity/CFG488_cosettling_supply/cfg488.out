@@ -1,0 +1,174 @@
+====================================================================================================================
+CFG488 co-settling per Lagrangian shell   MUTATE=False
+shell composition Omega_c/Omega_b = 5.364 (f_b = 0.157134); TRUE edge r_edge = r_M/ln(1+1/5.364) = 5.8498 r_M
+footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2 (kappa = 1/2 FITTED; never pooled)
+====================================================================================================================
+
+[K1] sympy: composition identity, point-mass exhaustion radius, marginal-edge equation, CS-M telescoping
+  composition identity residual = 0; nu-1 = 1/(e^(1/x)-1) residual = 0; x_e = 1/ln(1+1/S) residual = 0
+  marginal phantom d(y(nu-1))/dy = nu + y nu' - 1 residual = 0; d/dx of d_m M_ph at fixed y = m/x^2: 0
+  x_e(5.364) = 5.849761 r_M; x_k(5.364) = 11.706635 r_M (closed-form check -7.1e-06); x_k(10.728) = 22.444887  -> K1 PASS
+
+====================================================================================================================
+SCALE-FREE READINGS (history enters only through the Lagrangian order of the galaxy's baryons; any monotone history
+from ~0 gives the same result). Units: r_M of the present M_b. Point host scored; Hernquist a = 0.3 r_M(t) reported.
+====================================================================================================================
+[K2] CS-P point host, exhaustion radius of the composition supply: 5.849761 r_M (5.8498 to 6.6e-06) -> K2 PASS
+[K3] CS-M numerical superposition vs telescoped closed form on [0.05, 0.95] x_k: max rel err 3.9e-06 -> K3 PASS
+
+  reading host           r_e(99.9%)   support  dex vs r_edge    P1  P1b max dev   at x   P1b  settled total / M_b
+  CS-P    point              5.8444     5.850        -0.0004   yes      +0.0000   0.59   yes  5.3640
+  CS-P    hernquist0.3       6.0868        --        +0.0173   yes      +0.0000   0.59   yes  5.3640
+  CS-M    point             11.3522    11.707        +0.2879    no      -0.2226   4.68    no  5.3640
+  CS-M    hernquist0.3      11.8543        --        +0.3067    no      -0.2249   4.68    no  5.3640
+  CS-F    point              5.6725     5.850        -0.0134   yes      +2.1603   0.59    no  5.3640
+  CS-F    hernquist0.3       5.9106        --        +0.0045   yes      +2.0679   0.59    no  5.3640
+    x =  0.500 r_M: M_s/M_ph  CS-P 1.0000  CS-M 0.9350  CS-F 3.4461
+    x =  1.000 r_M: M_s/M_ph  CS-P 1.0000  CS-M 0.9267  CS-F 2.3785
+    x =  2.002 r_M: M_s/M_ph  CS-P 1.0000  CS-M 0.8892  CS-F 1.8446
+    x =  2.928 r_M: M_s/M_ph  CS-P 1.0000  CS-M 0.8510  CS-F 1.5921
+    x =  5.855 r_M: M_s/M_ph  CS-P 0.9991  CS-M 0.7275  CS-F 0.9991   | inside r_edge: CS-M 0.728, CS-F 1.000 of the supply
+
+  R-EQ (profile = CFG462's SHARE control to 1e-6): CS-P True, CS-M False, CS-F False
+
+====================================================================================================================
+INFALL HISTORIES: H-N (CFG118 point core, LCDM; scored) and H-B (Bertschinger EdS; reported); one run per q at 1e10,
+rescaled r ~ M^(1/3) (exact self-similarity of the point-core problem)
+====================================================================================================================
+  integrator: CFG118_secondary_infall/shellcore.c (read-only), sha256 8ffb9124cc41d268...; compiled into a temp dir per run
+  simulation products reused from cfg488_sims.json (hash 9dde747f10ce156e)
+
+[K4] H-N set-up vs CFG118's committed point-core 1e10 runs
+  q = 0.05: M_ta/M_b = 23.632 (CFG118 23.642), r_ta0 = 507.94 kpc (CFG118 508.00), measured zero-velocity / single-shell = 1.0000; cold mass inside the measured r_ta at z = 0 = 23.63 M_b; shells to 77.8 M_b; ok
+  q = 0.10: M_ta/M_b = 23.632 (CFG118 23.642), r_ta0 = 507.94 kpc (CFG118 508.00), measured zero-velocity / single-shell = 1.0000; cold mass inside the measured r_ta at z = 0 = 23.63 M_b; shells to 77.8 M_b; ok
+  q = 0.20: M_ta/M_b = 23.632 (CFG118 23.642), r_ta0 = 507.94 kpc (CFG118 508.00), measured zero-velocity / single-shell = 1.0000; cold mass inside the measured r_ta at z = 0 = 23.63 M_b; shells to 77.8 M_b; ok
+  -> K4 PASS  (note: M_ta in CFG118's set-up is the COLD Lagrangian mass of the turnaround shell; the core is extra)
+
+====================================================================================================================
+POOL-BASED READINGS (H-N, R1 inner-first; 6 cells x 3 q). Edges in r_M; dex = log10(r_e / 5.8498 r_M).
+====================================================================================================================
+
+  H-N q = 0.05: eligible cold (composition) = 5.364000 M_b; binned time-averaged pool closure 0.9923; boundary shell index 1379
+    cell                     x_ta | CS-I settled  stranded     r_e     dex  P1b dev | CS-0 settled     r_e     dex  P1b dev | pool r50     r99  P/T(rM)
+    9.0 canonical           193.2 |        5.183     0.140   5.663  -0.014   +0.576 |        5.182   43.90  +0.875   +0.574 |     5.87   27.86     1.09
+    9.0 alt                 212.4 |        5.213     0.110   5.693  -0.012   +0.472 |        5.210   48.22  +0.916   -0.493 |     6.45   30.63     1.00
+    10.5 canonical          108.6 |        4.853     0.470   5.332  -0.040   +1.777 |        4.853   24.92  +0.629   +1.777 |     3.30   15.67     1.78
+    10.5 alt                119.4 |        4.925     0.398   5.404  -0.034   +1.583 |        4.925   27.34  +0.670   +1.583 |     3.63   17.23     1.65
+    11.5 canonical           74.0 |        4.403     0.919   4.882  -0.079   +3.120 |        4.403   17.20  +0.468   +3.120 |     2.25   10.68     2.40
+    11.5 alt                 81.4 |        4.540     0.782   5.019  -0.067   +2.635 |        4.540   18.84  +0.508   +2.635 |     2.47   11.74     2.24
+
+  H-N q = 0.10: eligible cold (composition) = 5.364000 M_b; binned time-averaged pool closure 1.0164; boundary shell index 1379
+    cell                     x_ta | CS-I settled  stranded     r_e     dex  P1b dev | CS-0 settled     r_e     dex  P1b dev | pool r50     r99  P/T(rM)
+    9.0 canonical           193.2 |        5.371     0.081   5.851  +0.000   +0.335 |        5.369   46.34  +0.899   -0.409 |     5.36   34.32     0.93
+    9.0 alt                 212.4 |        5.395     0.057   5.875  +0.002   +0.246 |        5.393   50.93  +0.940   -0.448 |     5.90   37.73     0.83
+    10.5 canonical          108.6 |        4.945     0.507   5.425  -0.033   +1.505 |        4.945   26.21  +0.651   +1.505 |     3.02   19.30     1.85
+    10.5 alt                119.4 |        5.059     0.392   5.539  -0.024   +1.318 |        5.060   28.77  +0.692   +1.318 |     3.32   21.22     1.67
+    11.5 canonical           74.0 |        4.316     1.136   4.794  -0.086   +2.987 |        4.320   18.00  +0.488   +2.987 |     2.05   13.15     2.63
+    11.5 alt                 81.4 |        4.501     0.951   4.979  -0.070   +2.479 |        4.501   19.74  +0.528   +2.479 |     2.26   14.45     2.43
+
+  H-N q = 0.20: eligible cold (composition) = 5.364000 M_b; binned time-averaged pool closure 1.0092; boundary shell index 1379
+    cell                     x_ta | CS-I settled  stranded     r_e     dex  P1b dev | CS-0 settled     r_e     dex  P1b dev | pool r50     r99  P/T(rM)
+    9.0 canonical           193.2 |        5.412     0.001   5.893  +0.003   +0.004 |        5.407   42.56  +0.862   -0.409 |     5.21   25.90     0.86
+    9.0 alt                 212.4 |        5.413     0.000   5.894  +0.003   +0.000 |        5.409   46.78  +0.903   -0.455 |     5.73   28.47     0.74
+    10.5 canonical          108.6 |        5.046     0.367   5.526  -0.025   +1.187 |        5.035   24.11  +0.615   +1.187 |     2.93   14.56     1.62
+    10.5 alt                119.4 |        5.153     0.261   5.633  -0.016   +0.924 |        5.149   26.44  +0.655   +0.924 |     3.22   16.01     1.48
+    11.5 canonical           74.0 |        4.220     1.193   4.698  -0.095   +2.538 |        4.224   16.72  +0.456   +2.538 |     2.00    9.92     2.35
+    11.5 alt                 81.4 |        4.439     0.975   4.917  -0.075   +2.071 |        4.444   18.28  +0.495   +2.071 |     2.19   10.91     2.14
+
+[K5] CS-I min-cut total vs innermost-first greedy fill: max rel diff 4.2e-16 -> K5 PASS
+  CS-I q = 0.05: edge dex range -0.079 .. -0.012  P1 no;  worst P1b dev +3.120  P1b no
+  CS-I q = 0.10: edge dex range -0.086 .. +0.002  P1 no;  worst P1b dev +2.987  P1b no
+  CS-I q = 0.20: edge dex range -0.095 .. +0.003  P1 no;  worst P1b dev +2.538  P1b no
+  CS-0 q = 0.05: edge dex range +0.468 .. +0.916  P1 no;  worst P1b dev +3.120  P1b no
+  CS-0 q = 0.10: edge dex range +0.488 .. +0.940  P1 no;  worst P1b dev +2.987  P1b no
+  CS-0 q = 0.20: edge dex range +0.456 .. +0.903  P1 no;  worst P1b dev +2.538  P1b no
+
+[K6] resolution (reported): N = 5000 vs 20000 H-N, CS-I and CS-0 edges
+    CS-I q = 0.05 at N = 5000: edge dex -0.059 .. -0.003, worst P1b +2.958 -> (1) fail
+    CS-I q = 0.10 at N = 5000: edge dex -0.080 .. -0.007, worst P1b +3.311 -> (1) fail
+    CS-I q = 0.20 at N = 5000: edge dex -0.094 .. -0.014, worst P1b +2.478 -> (1) fail
+    CS-0 q = 0.05 at N = 5000: edge dex +0.783 .. +1.231, worst P1b +2.958 -> (1) fail
+    CS-0 q = 0.10 at N = 5000: edge dex +0.445 .. +0.899, worst P1b +3.311 -> (1) fail
+    CS-0 q = 0.20 at N = 5000: edge dex +0.543 .. +0.995, worst P1b +2.478 -> (1) fail
+  max |edge(5000) - edge(20000)|: CS-I 0.020 dex, CS-0 0.315 dex (the CS-0 edge is the pool's outer tail) -> K6 FAIL (kept, disclosed); (1) verdict flips at N = 5000: none
+
+  R2 (uniform retention; reported) and H-B (Bertschinger EdS; reported): CS-I edge dex / CS-I P1b dev / CS-0 edge dex
+    R2 H-N q = 0.05 canonical: [9.0] -0.002 / +0.000 / +1.516 (strand 0.00)  [10.5] -0.004 / +0.076 / +1.267 (strand 0.02)  [11.5] -0.006 / +0.224 / +1.100 (strand 0.05)  CS-I (1) fail
+    R2 H-N q = 0.05 alt      : [9.0] -0.002 / +0.000 / +1.558 (strand 0.00)  [10.5] -0.003 / +0.054 / +1.308 (strand 0.01)  [11.5] -0.006 / +0.171 / +1.141 (strand 0.04)  CS-I (1) fail
+    R2 H-N q = 0.10 canonical: [9.0] +0.029 / +0.001 / +1.516 (strand 0.00)  [10.5] +0.029 / +0.034 / +1.266 (strand 0.01)  [11.5] +0.027 / +0.164 / +1.100 (strand 0.04)  CS-I (1) fail
+    R2 H-N q = 0.10 alt      : [9.0] +0.029 / +0.000 / +1.557 (strand 0.00)  [10.5] +0.029 / +0.016 / +1.307 (strand 0.00)  [11.5] +0.027 / +0.115 / +1.141 (strand 0.03)  CS-I (1) fail
+    R2 H-N q = 0.20 canonical: [9.0] +0.002 / +0.000 / +1.516 (strand 0.00)  [10.5] +0.002 / +0.000 / +1.266 (strand 0.00)  [11.5] +0.001 / +0.047 / +1.100 (strand 0.01)  CS-I (1) pass
+    R2 H-N q = 0.20 alt      : [9.0] +0.002 / +0.000 / +1.558 (strand 0.00)  [10.5] +0.002 / +0.000 / +1.308 (strand 0.00)  [11.5] +0.002 / +0.005 / +1.141 (strand 0.00)  CS-I (1) pass
+    R1 H-B q = 0.05 canonical: [9.0] -0.041 / +2.425 / +1.081 (strand 0.69)  [10.5] -0.095 / +4.811 / +0.837 (strand 1.31)  [11.5] -0.149 / +6.446 / +0.675 (strand 1.86)  CS-I (1) fail
+    R1 H-B q = 0.05 alt      : [9.0] -0.032 / +2.012 / +1.121 (strand 0.58)  [10.5] -0.086 / +4.140 / +0.877 (strand 1.21)  [11.5] -0.133 / +6.206 / +0.715 (strand 1.71)  CS-I (1) fail
+    R1 H-B q = 0.10 canonical: [9.0] -0.031 / +1.336 / +0.704 (strand 0.42)  [10.5] -0.100 / +3.658 / +0.458 (strand 1.22)  [11.5] -0.159 / +5.375 / +0.294 (strand 1.81)  CS-I (1) fail
+    R1 H-B q = 0.10 alt      : [9.0] -0.023 / +1.049 / +0.745 (strand 0.33)  [10.5] -0.086 / +3.060 / +0.498 (strand 1.07)  [11.5] -0.143 / +5.025 / +0.334 (strand 1.66)  CS-I (1) fail
+    R1 H-B q = 0.20 canonical: [9.0] -0.020 / +0.823 / +0.548 (strand 0.20)  [10.5] -0.100 / +2.658 / +0.303 (strand 1.13)  [11.5] -0.189 / +4.378 / +0.141 (strand 1.99)  CS-I (1) fail
+    R1 H-B q = 0.20 alt      : [9.0] -0.017 / +0.653 / +0.588 (strand 0.16)  [10.5] -0.082 / +2.113 / +0.343 (strand 0.94)  [11.5] -0.162 / +4.073 / +0.181 (strand 1.76)  CS-I (1) fail
+
+  CS-P supply from every run (composition, fractional boundary shell): min 5.364000000000, max 5.364000000000 M_b (spread 8.9e-16) -> the CS-P profile is identical across histories (R-EQ history test)
+
+  CONTAMINATION (reported): INELIGIBLE (unsettled, CDM-like) cold fluid of H-N inside r, / M_ph(<r) [and in share units]
+    q = 0.05 (canonical): [9.0] rM 0.00  r_e/2 0.05  r_e 0.07 (0.07 sh) | [10.5] rM 0.06  r_e/2 0.12  r_e 0.19 (0.19 sh) | [11.5] rM 0.15  r_e/2 0.26  r_e 0.35 (0.35 sh)
+    q = 0.10 (canonical): [9.0] rM 0.00  r_e/2 0.01  r_e 0.11 (0.11 sh) | [10.5] rM 0.00  r_e/2 0.17  r_e 0.29 (0.29 sh) | [11.5] rM 0.03  r_e/2 0.41  r_e 0.52 (0.52 sh)
+    q = 0.20 (canonical): [9.0] rM 0.00  r_e/2 0.00  r_e 0.02 (0.02 sh) | [10.5] rM 0.00  r_e/2 0.02  r_e 0.15 (0.15 sh) | [11.5] rM 0.00  r_e/2 0.12  r_e 0.35 (0.35 sh)
+    R2, q = 0.05 (canonical; f_r = 0.227): [9.0] r_e/2 0.52  r_e 0.43 | [10.5] r_e/2 0.84  r_e 0.70 | [11.5] r_e/2 1.18  r_e 0.94
+    R2, q = 0.10 (canonical; f_r = 0.227): [9.0] r_e/2 0.55  r_e 0.50 | [10.5] r_e/2 0.97  r_e 0.80 | [11.5] r_e/2 1.39  r_e 1.09
+    R2, q = 0.20 (canonical; f_r = 0.227): [9.0] r_e/2 0.48  r_e 0.43 | [10.5] r_e/2 0.85  r_e 0.72 | [11.5] r_e/2 1.20  r_e 0.96
+  'law contaminated' flag (ineligible > 10% of M_ph(<r_edge) at every q): 9.0_canonical no, 9.0_alt no, 10.5_canonical YES, 10.5_alt YES, 11.5_canonical YES, 11.5_alt YES
+
+====================================================================================================================
+(2) CLUSTERS: unsettled fraction of the dark mass inside R500 (record: CFG453 committed medians, X-COP)
+====================================================================================================================
+  canonical: nu-1 = 2.940; x_T15 (b=0/0.3) = 5.118/7.739; record u in [0.4334, 0.6275] (CFG383 bracket 0.3-0.7)
+             free placement (CS-P, CS-M, CS-F): u = 0.000  -> dark inside R500 = M_ph = 2.94 M_b (measured 5.12-7.74); sensitivity with ineligible = max(0, x_T - S) at b = 0.3: u = 0.307
+             in place (CS-I, CS-0): u = 1 - (nu-1)/5.364 = 0.4520  (margins to the range: +0.0186 / +0.1756)
+  alt      : nu-1 = 3.277; x_T15 (b=0/0.3) = 5.118/7.739; record u in [0.3675, 0.5840] (CFG383 bracket 0.3-0.7)
+             free placement (CS-P, CS-M, CS-F): u = 0.000  -> dark inside R500 = M_ph = 3.28 M_b (measured 5.12-7.74); sensitivity with ineligible = max(0, x_T - S) at b = 0.3: u = 0.307
+             in place (CS-I, CS-0): u = 1 - (nu-1)/5.364 = 0.3892  (margins to the range: +0.0216 / +0.1948)
+  (2) per reading: CS-P FAIL, CS-M FAIL, CS-F FAIL, CS-I PASS, CS-0 PASS
+
+====================================================================================================================
+(3) G9: does keying settling to the baryons' accretion history need a direct baryon-cold coupling?
+====================================================================================================================
+  per-parcel signal, N = 20000: the eligible boundary shell's own partner baryons (7.25e-04 M_b) vs the mass enclosed at its time-averaged radius (0.1064 r_ta0): dg/g = 6.96e-05
+  per-parcel signal, N = 5000: the eligible boundary shell's own partner baryons (2.90e-03 M_b) vs the mass enclosed at its time-averaged radius (0.0607 r_ta0): dg/g = 4.67e-04
+  ratio (N=5000)/(N=20000) = 6.707 (1/N scaling predicts 4.000)
+  POST-HOC, same radius 0.1064 r_ta0 (time-averaged enclosed mass): dg/g = 7.33e-05 (N=20000), 3.25e-04 (N=5000), ratio 4.434: the per-parcel signal is the shell's own baryon mass over an O(1) enclosed mass, so it vanishes as 1/N in the continuum
+  collective signal at r_edge (1e10, canonical, q = 0.1): if the galaxy's baryons stayed on the eligible orbits, the baryons inside r_edge drop by 0.317 M_b against 5.86 M_b enclosed: dg/g = 0.054 (O(f_b); halo-level, not per parcel)
+
+  classification (literal rule | best gravitational surrogate):
+    CS-P: G9-FAIL (needs q in Gal(t) for every cold parcel (partner identity across species)) | surrogate: cap = (rho_c/rho_b)_cosmic x M_b,gal: species-split M_b,gal and the settled cold's own enclosed mass (G9-TENSION); with the ratio read from (own density, K) it is the share cap written as a law = the edge definition
+    CS-I: G9-FAIL (partner identity (as CS-P) plus inward-only motion) | surrogate: Lagrangian cut M_L(q) <= M_b,gal/f_b: M_L latched from its own turnaround field is clean, M_b,gal is species-split (G9-TENSION), f_b a coefficient; and the cut IS the R1 assumption, not retention physics
+    CS-0: G9-FAIL (partner identity) | surrogate: as CS-I
+    CS-M: G9-FAIL (partner identity and the galaxy's baryon mass at each accretion) | surrogate: needs M_b,gal(t) along the history: species-split (G9-TENSION) and per-shell identity (FAIL)
+    CS-F: G9-FAIL (as CS-M) | surrogate: as CS-M
+
+====================================================================================================================
+(4) DEPLETION: LIVE (edge = x_e(S) r_M(present)) and SET (edge = r_M/ln(1 + f_ret/S)) on CFG413's KiDS lens groups
+====================================================================================================================
+  canonical: 1953 groups; weighted median r_ta = 1.395 Mpc, r_M/r_ta = 0.0065
+             LIVE: x_edge = 5.850 r_M -> median 0.0377 r_ta (16-84%: 0.0305-0.0436); weight in [0.3, 0.5]: 0.000
+             SET: median x_edge = 0.5 at f_ret = 0.0697, = 0.3 at f_ret = 0.1166; at f_ret 0.07 / 0.10 / 0.18 / 0.3 / 0.5: 0.498 / 0.349 / 0.195 / 0.119 / 0.072
+  alt      : 1953 groups; weighted median r_ta = 1.462 Mpc, r_M/r_ta = 0.0056
+             LIVE: x_edge = 5.850 r_M -> median 0.0327 r_ta (16-84%: 0.0264-0.0378); weight in [0.3, 0.5]: 0.000
+             SET: median x_edge = 0.5 at f_ret = 0.0604, = 0.3 at f_ret = 0.1010; at f_ret 0.07 / 0.10 / 0.18 / 0.3 / 0.5: 0.432 / 0.303 / 0.170 / 0.103 / 0.063
+  (r_ta per group from cfg100 r_ta_law, 0 s)
+  SET edge in r_M: f_ret 1.0: 5.8, f_ret 0.5: 11.2, f_ret 0.3: 18.4, f_ret 0.18: 30.3, f_ret 0.1: 54.1, f_ret 0.07: 77.1
+  (4) labels: LIVE MISS; SET CONDITIONAL (needs f_ret,gal 0.070-0.117 canonical / 0.060-0.101 alt; PAPER45 v1 census 0.07-0.10 is halo-level, and co-settling has f_ret,gal >= census)
+
+====================================================================================================================
+VERDICT TABLE
+====================================================================================================================
+  reading  (1) edge+law  R-EQ  (2) clusters    (3) G9
+  CS-P             PASS   yes          FAIL   G9-FAIL
+  CS-I             FAIL    no          PASS   G9-FAIL
+  CS-0             FAIL    no          PASS   G9-FAIL
+  CS-M             FAIL    no          FAIL   G9-FAIL
+  CS-F             FAIL    no          FAIL   G9-FAIL
+
+  LANE VERDICT: FAIL (RESTATEMENT ONLY)
+  (4): LIVE MISS, SET CONDITIONAL
+
+Controls: K1 True  K2 True  K3 True  K4 True  K5 True  K6 False (reported)
+exit code 0

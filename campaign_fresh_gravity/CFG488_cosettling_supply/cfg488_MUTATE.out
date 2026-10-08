@@ -1,0 +1,164 @@
+====================================================================================================================
+CFG488 co-settling per Lagrangian shell   MUTATE=True
+shell composition Omega_c/Omega_b = 10.728 (f_b = 0.085266); TRUE edge r_edge = r_M/ln(1+1/5.364) = 5.8498 r_M
+footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2 (kappa = 1/2 FITTED; never pooled)
+====================================================================================================================
+
+[K1] sympy: composition identity, point-mass exhaustion radius, marginal-edge equation, CS-M telescoping
+  composition identity residual = 0; nu-1 = 1/(e^(1/x)-1) residual = 0; x_e = 1/ln(1+1/S) residual = 0
+  marginal phantom d(y(nu-1))/dy = nu + y nu' - 1 residual = 0; d/dx of d_m M_ph at fixed y = m/x^2: 0
+  x_e(5.364) = 5.849761 r_M; x_k(5.364) = 11.706635 r_M (closed-form check -7.1e-06); x_k(10.728) = 22.444887  -> K1 PASS
+
+====================================================================================================================
+SCALE-FREE READINGS (history enters only through the Lagrangian order of the galaxy's baryons; any monotone history
+from ~0 gives the same result). Units: r_M of the present M_b. Point host scored; Hernquist a = 0.3 r_M(t) reported.
+====================================================================================================================
+[K2] CS-P point host, exhaustion radius of the composition supply: 5.849761 r_M (5.8498 to 6.6e-06) -> K2 PASS
+[K3] CS-M numerical superposition vs telescoped closed form on [0.05, 0.95] x_k: max rel err 2.2e-06 -> K3 PASS
+
+  reading host           r_e(99.9%)   support  dex vs r_edge    P1  P1b max dev   at x   P1b  settled total / M_b
+  CS-P    point             11.2098    11.221        +0.2825    no      +0.0000   0.59   yes  10.7280
+  CS-P    hernquist0.3      11.4778        --        +0.2927    no      +0.0000   0.59   yes  10.7280
+  CS-M    point             21.7511    22.445        +0.5703    no      -0.1162   4.68    no  10.7280
+  CS-M    hernquist0.3      22.2931        --        +0.5810    no      -0.1198   4.68    no  10.7280
+  CS-F    point             10.8737    11.221        +0.2692    no      +2.2859   0.59    no  10.7280
+  CS-F    hernquist0.3      11.1371        --        +0.2796    no      +2.1936   0.59    no  10.7280
+    x =  0.500 r_M: M_s/M_ph  CS-P 1.0000  CS-M 0.9661  CS-F 3.5706
+    x =  1.000 r_M: M_s/M_ph  CS-P 1.0000  CS-M 0.9617  CS-F 2.5188
+    x =  2.002 r_M: M_s/M_ph  CS-P 1.0000  CS-M 0.9422  CS-F 2.0568
+    x =  2.928 r_M: M_s/M_ph  CS-P 1.0000  CS-M 0.9223  CS-F 1.8772
+    x =  5.855 r_M: M_s/M_ph  CS-P 1.0000  CS-M 0.8578  CS-F 1.5207   | inside r_edge: CS-M 0.429, CS-F 0.761 of the supply
+
+  R-EQ (profile = CFG462's SHARE control to 1e-6): CS-P False, CS-M False, CS-F False   [MUTATE: the share control is the TRUE 5.364; the mutated readings cannot equal it]
+
+====================================================================================================================
+INFALL HISTORIES: H-N (CFG118 point core, LCDM; scored) and H-B (Bertschinger EdS; reported); one run per q at 1e10,
+rescaled r ~ M^(1/3) (exact self-similarity of the point-core problem)
+====================================================================================================================
+  integrator: CFG118_secondary_infall/shellcore.c (read-only), sha256 8ffb9124cc41d268...; compiled into a temp dir per run
+  running 3 infall simulations, 3 at a time (separate processes) ...
+    [1/3] HN q=0.20 N=20000: 26 s, turned 5875
+    [2/3] HN q=0.10 N=20000: 30 s, turned 5875
+    [3/3] HN q=0.05 N=20000: 37 s, turned 5875
+  products written to cfg488_sims_MUTATE.json (hash 9dde747f10ce156e); wall 0.6 min
+
+[K4] H-N set-up vs CFG118's committed point-core 1e10 runs
+  q = 0.05: M_ta/M_b = 29.079 (CFG118 23.642), r_ta0 = 539.45 kpc (CFG118 508.00), measured zero-velocity / single-shell = 1.0000; cold mass inside the measured r_ta at z = 0 = 29.08 M_b; shells to 99.0 M_b; MISS
+  q = 0.10: M_ta/M_b = 29.079 (CFG118 23.642), r_ta0 = 539.45 kpc (CFG118 508.00), measured zero-velocity / single-shell = 1.0000; cold mass inside the measured r_ta at z = 0 = 29.08 M_b; shells to 99.0 M_b; MISS
+  q = 0.20: M_ta/M_b = 29.079 (CFG118 23.642), r_ta0 = 539.45 kpc (CFG118 508.00), measured zero-velocity / single-shell = 1.0000; cold mass inside the measured r_ta at z = 0 = 29.08 M_b; shells to 99.0 M_b; MISS
+  (MUTATE: the shell split is changed, so CFG118's numbers are not expected; K4 is checked in the main run)
+  -> K4 PASS  (note: M_ta in CFG118's set-up is the COLD Lagrangian mass of the turnaround shell; the core is extra)
+
+====================================================================================================================
+POOL-BASED READINGS (H-N, R1 inner-first; 6 cells x 3 q). Edges in r_M; dex = log10(r_e / 5.8498 r_M).
+====================================================================================================================
+
+  H-N q = 0.05: eligible cold (composition) = 10.728000 M_b; binned time-averaged pool closure 1.0071; boundary shell index 2167
+    cell                     x_ta | CS-I settled  stranded     r_e     dex  P1b dev | CS-0 settled     r_e     dex  P1b dev | pool r50     r99  P/T(rM)
+    9.0 canonical           205.2 |       10.669     0.135  11.151  +0.280   +0.556 |       10.668   81.58  +1.144   +0.526 |    10.67   69.57     1.17
+    9.0 alt                 225.6 |       10.691     0.113  11.172  +0.281   +0.485 |       10.690   89.68  +1.186   +0.394 |    11.73   76.48     1.07
+    10.5 canonical          115.4 |       10.119     0.685  10.601  +0.258   +1.987 |       10.121   45.92  +0.895   +1.987 |     6.00   39.12     2.03
+    10.5 alt                126.8 |       10.279     0.526  10.761  +0.265   +1.753 |       10.278   50.46  +0.936   +1.753 |     6.60   43.01     1.84
+    11.5 canonical           78.6 |        8.994     1.810   9.477  +0.210   +3.384 |        8.999   31.71  +0.734   +3.384 |     4.09   26.65     2.98
+    11.5 alt                 86.4 |        9.349     1.455   9.832  +0.225   +2.881 |        9.352   34.67  +0.773   +2.881 |     4.49   29.30     2.70
+
+  H-N q = 0.10: eligible cold (composition) = 10.728000 M_b; binned time-averaged pool closure 0.9958; boundary shell index 2167
+    cell                     x_ta | CS-I settled  stranded     r_e     dex  P1b dev | CS-0 settled     r_e     dex  P1b dev | pool r50     r99  P/T(rM)
+    9.0 canonical           205.2 |       10.585     0.099  11.067  +0.277   +0.404 |       10.581   56.68  +0.986   +0.387 |    10.11   49.18     1.05
+    9.0 alt                 225.6 |       10.627     0.056  11.109  +0.279   +0.239 |       10.622   62.30  +1.027   -0.367 |    11.11   54.07     0.95
+    10.5 canonical          115.4 |        9.971     0.712  10.453  +0.252   +1.738 |        9.972   31.93  +0.737   +1.738 |     5.69   27.66     1.99
+    10.5 alt                126.8 |       10.161     0.522  10.643  +0.260   +1.532 |       10.160   35.08  +0.778   +1.532 |     6.25   30.40     1.79
+    11.5 canonical           78.6 |        8.720     1.963   9.202  +0.197   +3.320 |        8.720   21.83  +0.572   +3.320 |     3.87   18.84     2.96
+    11.5 alt                 86.4 |        9.029     1.655   9.511  +0.211   +2.735 |        9.028   23.98  +0.613   +2.735 |     4.26   20.71     2.71
+
+  H-N q = 0.20: eligible cold (composition) = 10.728000 M_b; binned time-averaged pool closure 1.0008; boundary shell index 2167
+    cell                     x_ta | CS-I settled  stranded     r_e     dex  P1b dev | CS-0 settled     r_e     dex  P1b dev | pool r50     r99  P/T(rM)
+    9.0 canonical           205.2 |       10.736     0.000  11.218  +0.283   +0.000 |       10.734   45.07  +0.887   -0.336 |    10.17   40.19     0.86
+    9.0 alt                 225.6 |       10.736     0.000  11.218  +0.283   +0.000 |       10.736   49.55  +0.928   -0.403 |    11.18   44.18     0.75
+    10.5 canonical          115.4 |       10.101     0.635  10.583  +0.257   +1.230 |       10.098   25.37  +0.637   +1.230 |     5.72   22.60     1.84
+    10.5 alt                126.8 |       10.338     0.398  10.820  +0.267   +1.006 |       10.313   27.88  +0.678   +1.006 |     6.29   24.84     1.64
+    11.5 canonical           78.6 |        8.786     1.950   9.268  +0.200   +2.886 |        8.786   17.33  +0.472   +2.886 |     3.90   15.40     2.74
+    11.5 alt                 86.4 |        9.163     1.573   9.645  +0.217   +2.356 |        9.162   19.04  +0.512   +2.356 |     4.28   16.93     2.50
+
+[K5] CS-I min-cut total vs innermost-first greedy fill: max rel diff 2.0e-16 -> K5 PASS
+  CS-I q = 0.05: edge dex range +0.210 .. +0.281  P1 no;  worst P1b dev +3.384  P1b no
+  CS-I q = 0.10: edge dex range +0.197 .. +0.279  P1 no;  worst P1b dev +3.320  P1b no
+  CS-I q = 0.20: edge dex range +0.200 .. +0.283  P1 no;  worst P1b dev +2.886  P1b no
+  CS-0 q = 0.05: edge dex range +0.734 .. +1.186  P1 no;  worst P1b dev +3.384  P1b no
+  CS-0 q = 0.10: edge dex range +0.572 .. +1.027  P1 no;  worst P1b dev +3.320  P1b no
+  CS-0 q = 0.20: edge dex range +0.472 .. +0.928  P1 no;  worst P1b dev +2.886  P1b no
+
+  CONTAMINATION (reported): INELIGIBLE (unsettled, CDM-like) cold fluid of H-N inside r, / M_ph(<r) [and in share units]
+    q = 0.05 (canonical): [9.0] rM 0.00  r_e/2 0.01  r_e 0.03 (0.03 sh) | [10.5] rM 0.00  r_e/2 0.05  r_e 0.11 (0.11 sh) | [11.5] rM 0.02  r_e/2 0.14  r_e 0.20 (0.20 sh)
+    q = 0.10 (canonical): [9.0] rM 0.00  r_e/2 0.00  r_e 0.01 (0.01 sh) | [10.5] rM 0.00  r_e/2 0.01  r_e 0.08 (0.08 sh) | [11.5] rM 0.00  r_e/2 0.06  r_e 0.23 (0.23 sh)
+    q = 0.20 (canonical): [9.0] rM 0.00  r_e/2 0.00  r_e 0.00 (0.00 sh) | [10.5] rM 0.00  r_e/2 0.00  r_e 0.01 (0.01 sh) | [11.5] rM 0.00  r_e/2 0.00  r_e 0.11 (0.11 sh)
+    R2, q = 0.05 (canonical; f_r = 0.369): [9.0] r_e/2 0.50  r_e 0.42 | [10.5] r_e/2 0.84  r_e 0.70 | [11.5] r_e/2 1.19  r_e 0.92
+    R2, q = 0.10 (canonical; f_r = 0.369): [9.0] r_e/2 0.49  r_e 0.43 | [10.5] r_e/2 0.84  r_e 0.70 | [11.5] r_e/2 1.18  r_e 0.97
+    R2, q = 0.20 (canonical; f_r = 0.369): [9.0] r_e/2 0.46  r_e 0.40 | [10.5] r_e/2 0.80  r_e 0.64 | [11.5] r_e/2 1.07  r_e 0.87
+  'law contaminated' flag (ineligible > 10% of M_ph(<r_edge) at every q): 9.0_canonical no, 9.0_alt no, 10.5_canonical no, 10.5_alt no, 11.5_canonical YES, 11.5_alt no
+
+====================================================================================================================
+(2) CLUSTERS: unsettled fraction of the dark mass inside R500 (record: CFG453 committed medians, X-COP)
+====================================================================================================================
+  canonical: nu-1 = 2.940; x_T15 (b=0/0.3) = 5.118/7.739; record u in [0.4334, 0.6275] (CFG383 bracket 0.3-0.7)
+             free placement (CS-P, CS-M, CS-F): u = 0.000  -> dark inside R500 = M_ph = 2.94 M_b (measured 5.12-7.74); sensitivity with ineligible = max(0, x_T - S) at b = 0.3: u = 0.000
+             in place (CS-I, CS-0): u = 1 - (nu-1)/10.728 = 0.7260  (margins to the range: +0.2926 / -0.0984)
+  alt      : nu-1 = 3.277; x_T15 (b=0/0.3) = 5.118/7.739; record u in [0.3675, 0.5840] (CFG383 bracket 0.3-0.7)
+             free placement (CS-P, CS-M, CS-F): u = 0.000  -> dark inside R500 = M_ph = 3.28 M_b (measured 5.12-7.74); sensitivity with ineligible = max(0, x_T - S) at b = 0.3: u = 0.000
+             in place (CS-I, CS-0): u = 1 - (nu-1)/10.728 = 0.6946  (margins to the range: +0.3270 / -0.1106)
+  (2) per reading: CS-P FAIL, CS-M FAIL, CS-F FAIL, CS-I FAIL, CS-0 FAIL
+
+====================================================================================================================
+(3) G9: does keying settling to the baryons' accretion history need a direct baryon-cold coupling?
+====================================================================================================================
+  per-parcel signal, N = 20000: the eligible boundary shell's own partner baryons (4.61e-04 M_b) vs the mass enclosed at its time-averaged radius (0.0719 r_ta0): dg/g = 5.29e-05
+  collective signal at r_edge (1e10, canonical, q = 0.1): if the galaxy's baryons stayed on the eligible orbits, the baryons inside r_edge drop by 0.547 M_b against 6.11 M_b enclosed: dg/g = 0.089 (O(f_b); halo-level, not per parcel)
+
+  classification (literal rule | best gravitational surrogate):
+    CS-P: G9-FAIL (needs q in Gal(t) for every cold parcel (partner identity across species)) | surrogate: cap = (rho_c/rho_b)_cosmic x M_b,gal: species-split M_b,gal and the settled cold's own enclosed mass (G9-TENSION); with the ratio read from (own density, K) it is the share cap written as a law = the edge definition
+    CS-I: G9-FAIL (partner identity (as CS-P) plus inward-only motion) | surrogate: Lagrangian cut M_L(q) <= M_b,gal/f_b: M_L latched from its own turnaround field is clean, M_b,gal is species-split (G9-TENSION), f_b a coefficient; and the cut IS the R1 assumption, not retention physics
+    CS-0: G9-FAIL (partner identity) | surrogate: as CS-I
+    CS-M: G9-FAIL (partner identity and the galaxy's baryon mass at each accretion) | surrogate: needs M_b,gal(t) along the history: species-split (G9-TENSION) and per-shell identity (FAIL)
+    CS-F: G9-FAIL (as CS-M) | surrogate: as CS-M
+
+====================================================================================================================
+(4) DEPLETION: LIVE (edge = x_e(S) r_M(present)) and SET (edge = r_M/ln(1 + f_ret/S)) on CFG413's KiDS lens groups
+====================================================================================================================
+  canonical: 1953 groups; weighted median r_ta = 1.395 Mpc, r_M/r_ta = 0.0065
+             LIVE: x_edge = 11.221 r_M -> median 0.0724 r_ta (16-84%: 0.0584-0.0836); weight in [0.3, 0.5]: 0.000
+             SET: median x_edge = 0.5 at f_ret = 0.1393, = 0.3 at f_ret = 0.2332; at f_ret 0.07 / 0.10 / 0.18 / 0.3 / 0.5: 0.992 / 0.695 / 0.388 / 0.234 / 0.142
+  alt      : 1953 groups; weighted median r_ta = 1.462 Mpc, r_M/r_ta = 0.0056
+             LIVE: x_edge = 11.221 r_M -> median 0.0628 r_ta (16-84%: 0.0507-0.0725); weight in [0.3, 0.5]: 0.000
+             SET: median x_edge = 0.5 at f_ret = 0.1208, = 0.3 at f_ret = 0.2021; at f_ret 0.07 / 0.10 / 0.18 / 0.3 / 0.5: 0.861 / 0.603 / 0.336 / 0.203 / 0.123
+  (r_ta per group from cfg100 r_ta_law, 0 s)
+  SET edge in r_M: f_ret 1.0: 11.2, f_ret 0.5: 22.0, f_ret 0.3: 36.3, f_ret 0.18: 60.1, f_ret 0.1: 107.8, f_ret 0.07: 153.8
+  (4) labels: LIVE MISS; SET CONDITIONAL (needs f_ret,gal 0.139-0.233 canonical / 0.121-0.202 alt; PAPER45 v1 census 0.07-0.10 is halo-level, and co-settling has f_ret,gal >= census)
+
+====================================================================================================================
+VERDICT TABLE
+====================================================================================================================
+  reading  (1) edge+law  R-EQ  (2) clusters    (3) G9
+  CS-P             FAIL    no          FAIL   G9-FAIL
+  CS-I             FAIL    no          FAIL   G9-FAIL
+  CS-0             FAIL    no          FAIL   G9-FAIL
+  CS-M             FAIL    no          FAIL   G9-FAIL
+  CS-F             FAIL    no          FAIL   G9-FAIL
+
+  LANE VERDICT: FAIL   [MUTATE run: scored against the TRUE r_edge; see the teeth below]
+  (4): LIVE MISS, SET CONDITIONAL
+
+====================================================================================================================
+MUTATE TEETH: Omega_c/Omega_b x 2; predicted shifts vs the main run
+====================================================================================================================
+  CS-P: shift +0.2829 dex (predicted +0.2829) -> as predicted; mutated edge +0.2825 vs true r_edge -> P1 fails
+  CS-M: shift +0.2824 dex (predicted +0.2827) -> as predicted; mutated edge +0.5703 vs true r_edge -> P1 fails
+  CS-F: shift +0.2826 dex (predicted +0.2829) -> as predicted; mutated edge +0.2692 vs true r_edge -> P1 fails
+  CS-I: shifts +0.277 .. +0.299 dex over q x cells (supply-keyed prediction +0.2829) -> as predicted
+  CS-0: shifts +0.016 .. +0.269 dex over q x cells (supply-keyed prediction +0.2829) -> NOT as predicted
+  f_b-test d ln y_e/d ln f_b (finite difference over the MUTATE pair; 2.18 = local value for a genuine nu = Om/Ob edge): CS-P 2.131, CS-M 2.127, CS-F 2.129
+  (2) under MUTATE: in-place u = canonical 0.7260 (range 0.4334-0.6275), alt 0.6946 (range 0.3675-0.5840)
+
+  TEETH DETECTED
+
+Controls: K1 True  K2 True  K3 True  K4 True  K5 True  K6 None (reported)
+exit code 1
