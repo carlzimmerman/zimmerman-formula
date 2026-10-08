@@ -234,3 +234,50 @@ It tests one declared relaxation law (and reports three relatives). A FAIL kills
 rule, NC1 as CFG484 posed it; it does not exclude every conceivable fluid dynamics. A PASS would not derive kappa, the
 amount 5.364, or the switch (H4 is not tested here). Spherical, static baryons, Newtonian limit, one collapse redshift.
 It says nothing about data favouring the framework.
+
+## Correction 1 (2026-10-08, after run 2; appended, nothing above edited)
+
+**Numerics only.** The physics, members, hosts, initial states, run lengths, metric, pass lines, verdict rules, controls
+and MUTATE are unchanged.
+
+What changes in the 1-D code (section 3):
+- (a) Wall: r_w = 0.02 -> 0.05 r_M (half the inner scored radius 0.1).
+- (b) Target at the wall: M_t,0 = 0 -> r_w^2 F(g_wall), the wall's own 4-acceleration. An inert core holds the law's
+  target phantom inside the wall, M_core = M_ph(<r_w) (2.0e-3 M_b for the nu_mono point mass, 1.4e-3 for Hernquist
+  a = 1). It is counted in gravity and in V_c. The dynamic supply is 5.364 - M_core, so the total is still 5.364 M_b.
+- (c) Shell masses: "geometric in enclosed mass from 2e-4 M_b" -> smooth geometric shell masses (one constant
+  neighbour ratio). The first shell is 2e-4 M_b at N = 240 and 1e-4 M_b at N = 480.
+- (d) Step cap: 4e7 -> 2e8. This is a resource limit only.
+
+Why:
+- Run 2 used the frozen numerics. It failed the load-bearing control C-static: the exact Hernquist a = 1 target state
+  crashed at t = 0.25 (dt < 1e-9).
+- The failure is a grid-scale sawtooth at shells 2-3, next to the first shell. In the frozen grid that shell carries
+  23 times its neighbour's mass. With M_t,0 = 0 it is also given a target it can never meet: the law's phantom inside the
+  wall (3.4e-4 M_b for nu_mono) exceeds the 2e-4 M_b shell.
+- Every scored cell of run 2 crashed at t = 0.3 to 2, in the same place. So run 2 cannot separate the physics from the
+  discretisation.
+
+Tests made after run 2 (not frozen):
+- Halving the CFL, or doubling N, changes the crash.
+- The smooth grid with the consistent wall holds the exact target state: C-static D = 2.5e-4 (point mass) and 2.7e-4
+  (Hernquist a = 1) over 2 t_e. The frozen numerics reproduce run 2's crash exactly.
+
+**Disclosed:** before writing this correction, the corrected numerics were run once on one scored cell, the 1e10
+canonical point mass with M1. It completed: D10/20/40 = 0.185 / 0.178 / 0.180. The correction was chosen so that
+C-static passes, not to move D.
+
+### Readings applied to cases the text did not foresee
+
+- **C-energy:** an EC run that crashed cannot certify energy conservation, so the check fails.
+- **Resolution rule:** if the N = 240 and N = 480 runs both crash, the outcome is resolution-consistent.
+- **(3b):** the W_res of a crashed scored run is untested, not passed.
+
+### Operational
+
+- Run 1 was terminated (SIGTERM, on a shared machine) before it wrote any outputs; its log is kept.
+- Runs 2 and later ran under `nice -n 15` with 4 workers and 1 BLAS thread, at the coordinator's request.
+- K3 is now computed in cancellation-free form. Run 1 showed P2's g_N' rounding to 1.0 at g = 1e8 a0 (a float artefact).
+  The identity and the pass line are unchanged.
+
+None of these changes the physics.
