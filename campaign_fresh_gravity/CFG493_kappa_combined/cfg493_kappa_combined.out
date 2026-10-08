@@ -1,0 +1,102 @@
+CFG493 combined kappa
+K1 footing identities
+  [PASS] K1a c sqrt(G rho_Lambda) = 1.87248e-10 vs 2 x 9.3603e-11 (rel +2.22e-04, tol 1e-3)
+  [PASS] K1b kappa_crit/kappa_Lambda = 0.82747 vs sqrt(Omega_Lambda) 0.82765 (tol 2e-3; record values rounded)
+  [PASS] K1c exact: den_L/den_c = 0.827647267862 = sqrt(0.685) 0.827647267862
+  canonical candidates: 1/2 a0 9.3603e-11 (kappa 0.5000); 1/sqrt(pi) a0 1.0562e-10 (kappa 0.5642); 0.6 a0 1.1232e-10 (kappa 0.6000); cH0/2pi (Milgrom) a0 1.0422e-10 (kappa 0.5567); cH_Lambda/2pi a0 8.6257e-11 (kappa 0.4608)
+  alt       candidates: 1/2 a0 1.1312e-10 (kappa 0.5000); 1/sqrt(pi) a0 1.2764e-10 (kappa 0.5642); 0.6 a0 1.3574e-10 (kappa 0.6000); cH0/2pi (Milgrom) a0 1.0422e-10 (kappa 0.4607)
+
+P1 SPARC gas-dominated points, ladder distances (CFG449 S0+SR, 12 galaxies)
+  [PASS] K2a P1 reproduces CFG449: log a0 -10.06858 vs -10.06858 (tol 1e-4); boot SD 0.0897 vs 0.0897 (tol 2e-3)
+  [PASS] K2b P1 flux-tie input read from CFG306 P6 = 0.052739
+  nominal log a0 -10.0686 +- 0.0897; on the ALFALFA flux scale (M_gas x 10^-0.0527): -10.0152 (shift +0.0534)
+  levers: gas -1.048, stellar -0.210, distance -2.216 (dex a0 per dex)
+
+P2 MeerKAT MIGHTEE-HI rest-frame width chain (CFG309 k = 0; CFG306 numbers; CFG304 flux offset)
+  [PASS] K2c P2 inputs: a0(k0) 1.31107e-10, a0(k0, H0 67.4) 1.20784e-10, a0_gas(R -0.1945) 9.01333e-11 vs 1.3111e-10 / 1.2078e-10 / 9.0133e-11 (tol 1e-3); R equals CFG304 median -0.19453
+  base (H0 67.4, catalogue flux) log a0 -9.9180; on the ALFALFA scale -10.0807 (a0 8.3036e-11)
+  levers: gas -0.837, stellar -0.278, Hubble-flow distance scale +2.167; CFG304 68% half-width 0.0470 dex
+
+P3 WALLABY DR2 gas points (p43 method; kernel switch; H0 switch)
+  [PASS] K2d P3 control (quadrature, H0 73) a0 7.2818e-11 vs p43 7.282e-11 (rel -0.0000, tol 0.005); H0 70 6.6673e-11 vs 6.667e-11 (rel +0.0000)
+  46 galaxies, 218 gas points, median y 0.072, nearest D 9.2 Mpc; nu_mono at H0 67.4: a0 4.9883e-11 (log -10.3020; boot 68% 4.095e-11-6.619e-11, +-0.1043 dex)
+  levers: gas -1.213, stellar -0.111, Hubble-flow +2.282; CMB-frame 3.233e-11, AD8 5.288e-11, Rd x0.5/x2 5.598e-11/4.618e-11, no flux corr 5.868e-11
+
+I2 M/L-insensitivity (|lever_star| x 0.068 <= 0.05 dex)
+  [PASS] I2 P1 SPARC gas points (ladder): 0.0143 dex
+  [PASS] I2 P2 MeerKAT MIGHTEE-HI widths: 0.0189 dex
+  [PASS] I2 P3 WALLABY DR2 gas points: 0.0075 dex
+
+PER-ROUTE BUDGET (dex in log a0; shared terms = |lever| x prior sigma)
+  P1 SPARC gas points (ladder): log a0 -10.0152 +- 0.1408  (a0 9.657e-11; kappa_Lambda 0.516 +- 0.167; kappa_crit 0.427 +- 0.138)
+     statistics 0.0897, P1 RC reduction 0.0890, ladder zero point 0.0222, flux-tie transfer 0.0267, S_gas 0.0496, S_star 0.0143, S_HF 0.0000
+  P2 MeerKAT MIGHTEE-HI widths: log a0 -10.0807 +- 0.1511  (a0 8.304e-11; kappa_Lambda 0.444 +- 0.154; kappa_crit 0.367 +- 0.128)
+     statistics 0.0330, P2 width recipe 0.1011, flux-tie transfer 0.0904, S_gas 0.0396, S_star 0.0189, S_HF 0.0377
+  P3 WALLABY DR2 gas points: log a0 -10.3020 +- 0.1714  (a0 4.988e-11; kappa_Lambda 0.266 +- 0.105; kappa_crit 0.220 +- 0.087)
+     statistics 0.1043, P3 distance frame 0.0942, P3 AD/Rd/EFE 0.0589, flux-tie transfer 0.0353, S_gas 0.0574, S_star 0.0075, S_HF 0.0397
+
+K4 GLS sanity
+  [PASS] K4 weights sum 1.000000000000000; identical inputs -10 return -10.000000000000
+
+POWER LABEL (error model only): sigma_hat 0.0985 dex (25.5% in kappa) -> NOT POSSIBLE
+  shared-systematic floor (all route-unique terms -> 0): 0.0385 dex (9.3%) vs the 2-3% goal (0.0087-0.0128 dex): ABOVE the goal
+
+K3 coverage (4000 mocks from N(L_1/2, C))
+  [PASS] K3 mean pull +0.0061 (|.|<=0.05), SD 0.9938 (0.95-1.05), P(p<0.05) 0.0545 (0.035-0.065)
+
+COMBINED (GLS, primary routes)
+  weights: P1 +0.414, P2 +0.343, P3 +0.243
+  log a0 = -10.1073 +- 0.0985  ->  a0 = 7.8105e-11 m s^-2 (68% 6.226e-11-9.798e-11)
+  consistency chi2 2.010 / 2 dof, p 0.366 -> routes mutually consistent
+  canonical footing: kappa = 0.4172 +- 0.0946 (rho_Lambda)
+     pulls: 1/2 0.80 sigma; 1/sqrt(pi) 1.33 sigma; 0.6 1.60 sigma; cH0/2pi (Milgrom) 1.27 sigma; cH_Lambda/2pi 0.44 sigma
+     VERDICT (canonical): CONSISTENT BUT NOT DISCRIMINATING
+  alt       footing: kappa = 0.3452 +- 0.0783 (rho_crit)
+     pulls: 1/2 1.63 sigma; 1/sqrt(pi) 2.17 sigma; 0.6 2.44 sigma; cH0/2pi (Milgrom) 1.27 sigma
+     VERDICT (alt): CONSISTENT BUT NOT DISCRIMINATING
+  the two footings' 1/2 values (9.36e-11 vs 1.131e-10) differ by 0.0822 dex = 0.84 sigma_hat; canonical-1/2 pull 0.80, alt-1/2 pull 1.63
+  per-route pulls against the combination (diagonal, shared terms included): P1 +0.92; P2 +0.23; P3 -1.39
+
+DOMINANT SYSTEMATIC (sigma_hat with one group removed)
+  without statistics          : sigma_hat 0.0851 (reduction 0.0134)
+  without S_gas               : sigma_hat 0.0859 (reduction 0.0126)
+  without S_star              : sigma_hat 0.0974 (reduction 0.0010)
+  without S_HF                : sigma_hat 0.0957 (reduction 0.0028)
+  without ladder zero point   : sigma_hat 0.0980 (reduction 0.0004)
+  without flux-tie transfer   : sigma_hat 0.0908 (reduction 0.0076)
+  without P1 RC reduction     : sigma_hat 0.0885 (reduction 0.0099)
+  without P2 width recipe     : sigma_hat 0.0888 (reduction 0.0097)
+  without P3 distance frame   : sigma_hat 0.0948 (reduction 0.0036)
+  without P3 AD/Rd/EFE        : sigma_hat 0.0973 (reduction 0.0012)
+  -> dominant group: statistics
+
+VARIANTS (reported; never the verdict)
+  V1 SPARC = estimator C                                     log a0 -10.1148 +- 0.0651; kappa_L 0.410, kappa_c 0.339; p 0.485; CONSISTENT BUT NOT DISCRIMINATING / INCONSISTENT WITH 1/2
+  V2 SPARC = estimator A                                     log a0 -10.0995 +- 0.0609; kappa_L 0.425, kappa_c 0.352; p 0.445; CONSISTENT BUT NOT DISCRIMINATING / INCONSISTENT WITH 1/2
+  V3 kernel = quadrature sqrt(1+1/y) (all routes)            log a0 -10.0385 +- 0.0985; kappa_L 0.489, kappa_c 0.405; p 0.446; CONSISTENT BUT NOT DISCRIMINATING / CONSISTENT BUT NOT DISCRIMINATING
+     kernel shifts: P1 +0.0647, P2 +0.0579, P3 +0.0913 dex
+  V4 no flux tie (own flux scales)                           log a0 -10.0310 +- 0.0908; kappa_L 0.497, kappa_c 0.412; p 0.234; CONSISTENT BUT NOT DISCRIMINATING / CONSISTENT BUT NOT DISCRIMINATING
+  V5 P2 flux offset -0.087 (S2 z-trend)                      log a0 -10.0734 +- 0.0985; kappa_L 0.451, kappa_c 0.373; p 0.258; CONSISTENT BUT NOT DISCRIMINATING / CONSISTENT BUT NOT DISCRIMINATING
+  V6 HF distances at H0 73.04, rho_Lambda at 67.4            log a0 -10.0621 +- 0.0985; kappa_L 0.463, kappa_c 0.383; p 0.517; CONSISTENT BUT NOT DISCRIMINATING / CONSISTENT BUT NOT DISCRIMINATING
+  V7 footing rebuilt at H0 73.04 (Omega_Lambda fixed)        log a0 -10.0621 +- 0.0985; kappa_L 0.427, kappa_c 0.354; p 0.517; CONSISTENT BUT NOT DISCRIMINATING / CONSISTENT BUT NOT DISCRIMINATING
+  V8 + KiDS late-type rows (M* band 0.17 shared)             log a0 -10.0654 +- 0.0877; kappa_L 0.459, kappa_c 0.380; p 0.176; CONSISTENT BUT NOT DISCRIMINATING / CONSISTENT BUT NOT DISCRIMINATING
+  V9 no P1 rotation-curve reduction term                     log a0 -10.0825 +- 0.0885; kappa_L 0.442, kappa_c 0.366; p 0.310; CONSISTENT BUT NOT DISCRIMINATING / CONSISTENT BUT NOT DISCRIMINATING
+  V10 recipe and transfer half-widths uniform (/sqrt 3)      log a0 -10.0942 +- 0.0850; kappa_L 0.430, kappa_c 0.356; p 0.341; CONSISTENT BUT NOT DISCRIMINATING / CONSISTENT BUT NOT DISCRIMINATING
+  V11 P1 = CFG397 10-galaxy anchor                           log a0 -10.0474 +- 0.0955; kappa_L 0.479, kappa_c 0.396; p 0.136; CONSISTENT BUT NOT DISCRIMINATING / CONSISTENT BUT NOT DISCRIMINATING
+
+REPORT-ONLY ROUTES (not combined; reason in the criteria)
+  SPARC estimator A (Planck-consistent)                      log a0 -10.0741 +- 0.0704: kappa_L 0.450, kappa_c 0.373
+  SPARC estimator B (shape only)                             log a0 -9.9612 +- 0.1371: kappa_L 0.584, kappa_c 0.483
+  SPARC estimator C (profile likelihood)                     log a0 -10.0906 +- 0.0771: kappa_L 0.434, kappa_c 0.359
+  SPARC Hubble-flow gas points (tabulated H0 73)             log a0 -10.1797 +- 0.0850: kappa_L 0.353, kappa_c 0.292
+  SPARC Hubble-flow gas points moved to H0 67.4 (x(67.4/73)^2) log a0 -10.2490 +- 0.0850: kappa_L 0.301, kappa_c 0.249
+  KiDS late, z 0.20 (stat only; M* band +-0.17)              log a0 -9.8061 +- 0.1054: kappa_L 0.835, kappa_c 0.691
+  KiDS late, z 0.40                                          log a0 -10.1943 +- 0.1805: kappa_L 0.341, kappa_c 0.283
+  PAPER43 pool (quadrature kernel, mixed H0)                 log a0 -10.0800 +- 0.0582: kappa_L 0.444, kappa_c 0.368
+  Desmond 2023 (literature, SPARC, free M/L)                 log a0 -9.9245 +- 0.0365: kappa_L 0.636, kappa_c 0.526
+  KiDS T-early-LO                                           log a0 -9.6334 +- 0.0535: kappa_L 1.242 (class-inconsistent with late)
+  KiDS T-early-HI                                           log a0 -9.4140 +- 0.0441: kappa_L 2.059 (class-inconsistent with late)
+  KiDS MM-early-LO                                          log a0 -9.5981 +- 0.0631: kappa_L 1.348 (class-inconsistent with late)
+  KiDS MM-early-HI                                          log a0 -9.3658 +- 0.0479: kappa_L 2.301 (class-inconsistent with late)
+
+12/12 checks pass; load-bearing failures: 0
