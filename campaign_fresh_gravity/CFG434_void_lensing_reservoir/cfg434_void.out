@@ -1,0 +1,34 @@
+CFG434 void lensing vs the unsettled reservoir   MUTATE=False
+
+eps = f_u*5.364/6.364 in [0.548, 0.759];  R_sel in (1.0, 1.25)
+REF-C b_ref (f(z)/0.37): Full 2.009  LOWZ 1.868  CMASS 2.066  Small 2.008  Large 2.011
+REF-L b_ref (Full, b_Vg/1.36) = 1.816
+  Full: R_V 40.3 Mpc/h = 59.5 Mpc; Delta Sigma reaches 3 R_V = 178 Mpc
+  LOWZ: R_V 40.3 Mpc/h = 59.5 Mpc; Delta Sigma reaches 3 R_V = 178 Mpc
+  CMASS: R_V 40.3 Mpc/h = 59.5 Mpc; Delta Sigma reaches 3 R_V = 178 Mpc
+  Small: R_V 33.7 Mpc/h = 49.7 Mpc; Delta Sigma reaches 3 R_V = 149 Mpc
+  Large: R_V 57.9 Mpc/h = 85.4 Mpc; Delta Sigma reaches 3 R_V = 256 Mpc
+
+PRIMARY (Full, REF-C): A_obs = 0.813 +- 0.125
+C-POW: smooth-vs-clumpy gap at least favourable corner = 0.438 vs 2 sigma_A = 0.251 -> PASS
+  reading I  SMOOTH: min|z| = -0.02 at eps 0.548, R_sel 1.23 -> CONSISTENT   corners -1.49 +0.11 -1.49 +0.11
+  reading I  CLUMPY: min|z| = -3.39 at eps 0.548, R_sel 1.25 -> EXCLUDED   corners -5.86 -3.39 -7.54 -4.74
+  reading I b_u allowed (|z|<=1.96): most lenient eps0.548_R1.25 [0.0, 0.59]; most stringent eps0.759_R1.00 [0.0, 0.077]
+  reading II SMOOTH: min|z| = +2.88 at eps 0.548, R_sel 1.00 -> DISFAVOURED   corners +2.88 +3.60 +4.56 +4.95
+  reading II CLUMPY: min|z| = -0.02 at eps 0.548, R_sel 1.23 -> CONSISTENT   corners -1.49 +0.11 -1.49 +0.11
+  reading II b_u allowed (|z|<=1.96): most lenient eps0.548_R1.00 [0.211, 1.0]; most stringent eps0.759_R1.25 [0.618, 1.0]
+  C4 LCDM (A = 1/R_sel): min|z| = -0.02 -> CONSISTENT
+
+HEADLINE: SMOOTH RESERVOIR CONSISTENT under reading I / DISFAVOURED under reading II
+
+ROBUSTNESS (reported, not decisive): SMOOTH min|z| reading I / reading II
+  LOWZ REF-C                   A = 0.750 +- 0.152:  I -0.33 CONSISTENT  II +1.96 CONSISTENT
+  CMASS REF-C                  A = 0.833 +- 0.189:  I -0.00 CONSISTENT  II +2.01 DISFAVOURED
+  Small REF-C                  A = 0.712 +- 0.156:  I -0.57 CONSISTENT  II +1.67 CONSISTENT
+  Large REF-C                  A = 0.726 +- 0.154:  I -0.48 CONSISTENT  II +1.78 CONSISTENT
+  Full REF-L (scale-dependence) A = 0.735 +- 0.113:  I -0.57 CONSISTENT  II +2.50 DISFAVOURED
+  Full REF-C Gaussian in b_Vg  A = 0.813 +- 0.125:  I -0.02 CONSISTENT  II +5.18 EXCLUDED
+  Full REF-C R_sel = 1 only    A = 0.813 +- 0.125:  I -1.49 CONSISTENT  II +2.88 DISFAVOURED
+  DES Y1 (Fang+2019): b_slope around voids slightly ABOVE the large-scale bias (<2 sigma) -> A < 1, same direction (qualitative)
+
+checks: {"C1_bref": true, "C2_refs_agree": true, "C3_limits": true, "C_POW": true, "C4_LCDM_reported": true}
