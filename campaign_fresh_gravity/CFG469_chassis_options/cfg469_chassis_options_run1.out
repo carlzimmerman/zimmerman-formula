@@ -1,0 +1,673 @@
+
+====================================================================================================================
+INPUTS (read-only)
+====================================================================================================================
+  CFG319 W5 points: 5;  CFG320 Lambda_HL_max = 9.8698103e+8 GeV, M_P = 2.435e+18 GeV;  c_2 grid 9 points
+  window alpha_c [9.62405e-14, 3.2e-9];  footings (labels only) {'canonical': 9.3619e-11, 'alt': 1.1279e-10}
+
+====================================================================================================================
+OPTION B -- +1 constant M_*: lowest-order Horava-type UV operator (test-khronon limit)
+====================================================================================================================
+  B0 operators (frozen): O_A: Delta L = + alpha_c eps (D_m a^m)^2,  D.a = grad.a - a.a
+                         O_K: Delta L = - c_2 eps h^{mn} d_m K d_n K,  h = g + u u
+     eps = 1/(M_* r_g)^2 (one coefficient each, fixed by M_*): +1 constant.
+
+====================================================================================================================
+B1  flat-space dispersion of the khronon scalar (sympy, T = t + pi, Minkowski)
+====================================================================================================================
+  IR                  : EL symbol -2*k**2*(-alpha*omega**2 + k**2*lambda);  omega^2 = k**2*lambda/alpha
+  O_A healthy (+)     : EL symbol 2*k**2*(alpha*epsilon_UV*k**2*omega**2 + alpha*omega**2 - k**2*lambda);  omega^2 = k**2*lambda/(alpha*(epsilon_UV*k**2 + 1))
+  O_A wrong sign (-)  : EL symbol -2*k**2*(alpha*epsilon_UV*k**2*omega**2 - alpha*omega**2 + k**2*lambda);  omega^2 = -k**2*lambda/(alpha*(epsilon_UV*k**2 - 1))
+  O_K healthy (-)     : EL symbol -2*k**2*(-alpha*omega**2 + epsilon_UV*k**4*lambda + k**2*lambda);  omega^2 = k**2*lambda*(epsilon_UV*k**2 + 1)/alpha
+  O_K wrong sign (+)  : EL symbol 2*k**2*(alpha*omega**2 + epsilon_UV*k**4*lambda - k**2*lambda);  omega^2 = -k**2*lambda*(epsilon_UV*k**2 - 1)/alpha
+  [PASS] K4a B1 the derived dispersions equal the closed forms: O_A omega^2 = c_S^2 k^2/(1 + eps k^2), O_K omega^2 = c_S^2 k^2 (1 + eps k^2), c_S^2 = c_2/alpha (test khronon)
+         measured: O_A True, O_K True
+  [PASS] B1 both arms healthy with the frozen signs (kinetic > 0, omega^2 > 0 for all k); the opposite signs fail (O_A ghost at k > 1/sqrt(eps), O_K gradient instability)
+         measured: healthy A True, K True; wrong-sign A ghost True, wrong-sign K omega^2 < 0 True
+         reading:  UV scaling: O_A omega -> c_S/sqrt(eps) (z = 0, the phase speed falls to zero); O_K z = 2 (speed grows)
+  K4b induced metric of the leaf (from the embedding): h_ij = Matrix([[-epsilon**2*Derivative(pi_s(x, y, z), x)**2 + 1, -epsilon**2*Derivative(pi_s(x, y, z), x)*Derivative(pi_s(x, y, z), y), -epsilon**2*Derivative(pi_s(x, y, z), x)*Derivative(pi_s(x, y, z), z)], [-epsilon**2*Derivative(pi_s(x, y, z), x)*Derivative(pi_s(x, y, z), y), -epsilon**2*Derivative(pi_s(x, y, z), y)**2 + 1, -epsilon**2*Derivative(pi_s(x, y, z), y)*Derivative(pi_s(x, y, z), z)], [-epsilon**2*Derivative(pi_s(x, y, z), x)*Derivative(pi_s(x, y, z), z), -epsilon**2*Derivative(pi_s(x, y, z), y)*Derivative(pi_s(x, y, z), z), -epsilon**2*Derivative(pi_s(x, y, z), z)**2 + 1]])
+  [PASS] K4b leaf-curvature (B-type) terms vanish at quadratic order on the test-khronon background: the leaf metric is delta_ij + O(eps^2), so R[h] = O(eps^2) and R^2, R_ij R^ij = O(eps^4)
+         measured: O(eps) part of h_ij: Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+
+====================================================================================================================
+B2  the O(v) moving black hole with the UV term: derivation (sympy jets, r eliminated) and control K1
+====================================================================================================================
+  built arm IR: M_ij keys [(0, 0), (0, 1), (0, 2), (1, 1), (1, 2), (2, 2)]  (1.6s)
+  built arm A: M_ij keys [(0, 0), (0, 1), (0, 2), (0, 3), (1, 1), (1, 2), (1, 3), (2, 2), (2, 3), (3, 3)]  (6.5s)
+  built arm K: M_ij keys [(0, 0), (0, 1), (0, 2), (0, 3), (1, 1), (1, 2), (1, 3), (2, 2), (2, 3), (3, 3)]  (17.1s)
+  [PASS] K1 at eps = 0 the derivation reproduces CFG319's committed S22, dK_ops, daa_ops exactly, and both UV arms reduce to the IR form
+         measured: S22 diff 0; ops diffs [0, 0, 0, 0, 0, 0]; arms at eps=0 equal IR: {'A': True, 'K': True}
+  leading coefficient (S22) arm IR: 8*Y0**4*(W**2*alpha - Y0**2*lambda)/(3*(W**2 - Y0**2 + 1)**2)
+  leading coefficient (S33) arm A: 8*W**2*Y0**6*alpha*epsilon_UV/(3*(W**2 - Y0**2 + 1)**2)
+  leading coefficient (S33) arm K: -8*Y0**8*epsilon_UV*lambda/(3*(W**2 - Y0**2 + 1)**2)
+  r_S singular for arm IR: True  (W**2*alpha - Y0**2*lambda)
+  r_S singular for arm A: False  (only Y0, W and constant factors (zero only at the UH, Y = 0, and at infinity, W = 0))
+  r_S singular for arm K: False  (only Y0, W and constant factors (zero only at the UH, Y = 0, and at infinity, W = 0))
+
+====================================================================================================================
+K3 / K2  controls: the IR operator through the same local-analysis and counting code
+====================================================================================================================
+  [IR | stealth                | alpha     3.2e-9 lambda  0.0072888 eps       0.0]
+      UH  x^s, s =         -1.61803398875  -> strong    powers {'dK': [-0.6180339887498949, -1.618033988749895], 'd(a.a)': [-1.618033988749895, -2.618033988749895]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None]}
+      UH  x^s, s =          0.61803398875  -> weak      powers {'dK': [1.618033988749895, 0.6180339887498949], 'd(a.a)': [0.6180339887498949, -0.38196601125010515]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      COUNT: 4 constants; conditions: infinity 1 + normalisation 1 + r_S 1 + UH 2 (strict) / 1 (lenient) = 5 / 4;  Delta_strict +1, Delta_lenient +0
+  [FAIL] K3 IR UH exponents: stealth background gives {-1, 0, (sqrt5-1)/2, -(sqrt5+1)/2} (s^2 + s - 1 = 0); the five W5 points (CFG319's y1, r_UH) reproduce CFG319's committed rootsU to 1e-8
+         measured: stealth max dev 1.05e-13; per-point max dev {'W5 corner a_max l_min': 3.5e-12, 'W5 corner a_max l_max': 5e-12, 'W5 centre': 2.6e-12, 'W5 corner a_min l_min': 1.3e-12, 'W5 corner a_min l_max': 4e-12}
+  [PASS] K2 IR count reproduces CFG319: 4 constants, 5 conditions strict (Delta +1), option C determined (lenient Delta 0)
+         measured: N_const 4, strict 5, lenient 4
+
+====================================================================================================================
+B2  the UV arms: local solutions, classification, count (stealth background, then the five W5 points at the physical M_* band edges)
+====================================================================================================================
+  [K  | stealth                | alpha     3.2e-9 lambda  0.0072888 eps    0.0001]
+      UH  x^s, s =         -1.61803398875  -> strong    powers {'dK': [-0.6180339887498949, -1.618033988749895], 'd(a.a)': [-1.618033988749895, -2.618033988749895], 'd((DK)^2)': [0.38196601125010515, -0.6180339887498949]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =          0.61803398875  -> weak      powers {'dK': [1.618033988749895, 0.6180339887498949], 'd(a.a)': [0.6180339887498949, -0.38196601125010515], 'd((DK)^2)': [2.618033988749895, 1.618033988749895]}
+      UH  essential exp(int b x^-2), b = (0.0 - 0.043036691j), beta = (1.0 - 0.019127418j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 9.9e-375)
+      UH  essential exp(int b x^-2), b = (0.0 + 0.043036691j), beta = (1.0 + 0.019127418j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 9.9e-375)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -100.0, beta = -101.0 -> admissible (decaying)
+      inf exp(int b r^0), b = 100.0, beta = 99.0 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | stealth                | alpha     3.2e-9 lambda  0.0072888 eps   1.0e-20]
+      UH  x^s, s =         -1.61803398875  -> strong    powers {'dK': [-0.6180339887498949, -1.618033988749895], 'd(a.a)': [-1.618033988749895, -2.618033988749895], 'd((DK)^2)': [0.38196601125010515, -0.6180339887498949]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =          0.61803398875  -> weak      powers {'dK': [1.618033988749895, 0.6180339887498949], 'd(a.a)': [0.6180339887498949, -0.38196601125010515], 'd((DK)^2)': [2.618033988749895, 1.618033988749895]}
+      UH  essential exp(int b x^-2), b = (0.0 - 4303669.1j), beta = (1.0 - 1912741.8j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 2.14e-342)
+      UH  essential exp(int b x^-2), b = (0.0 + 4303669.1j), beta = (1.0 + 1912741.8j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 2.14e-342)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -1.0e+10, beta = -1.0e+10 -> admissible (decaying)
+      inf exp(int b r^0), b = 1.0e+10, beta = 1.0e+10 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | stealth                | alpha     3.2e-9 lambda  0.0072888 eps    0.0001]
+      UH  x^s, s =          -106.57190999  -> strong    powers {'dK': [-105.57190998982195, -106.57190998982195], 'd(a.a)': [-106.57190998982195, -107.57190998982195], 'd(D.a)': [-106.57190998982195, -107.57190998982195]}
+      UH  x^s, s =         -1.61799423572  -> strong    powers {'dK': [-0.6179942357238759, -1.617994235723876], 'd(a.a)': [-1.617994235723876, -2.617994235723876], 'd(D.a)': [-1.617994235723876, -2.617994235723876]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.617994235724  -> weak      powers {'dK': [1.617994235723876, 0.6179942357238759], 'd(a.a)': [0.6179942357238759, -0.3820057642761241], 'd(D.a)': [0.6179942357238759, -0.3820057642761241]}
+      UH  x^s, s =           105.57190999  -> regular   powers {'dK': [106.57190998982195, 105.57190998982195], 'd(a.a)': [105.57190998982195, 104.57190998982195], 'd(D.a)': [105.57190998982195, 104.57190998982195]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 116179.94j), beta = (-4.0 - 1.6871278e-354j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 116179.94j), beta = (-4.0 + 1.6871278e-354j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | stealth                | alpha     3.2e-9 lambda  0.0072888 eps   1.0e-20]
+      UH  x^s, s =         -10606601718.3  -> strong    powers {'dK': [-10606601717.298212, -10606601718.298212], 'd(a.a)': [-10606601718.298212, -10606601719.298212], 'd(D.a)': [-10606601718.298212, -10606601719.298212]}
+      UH  x^s, s =         -1.61803398875  -> strong    powers {'dK': [-0.6180339887498949, -1.618033988749895], 'd(a.a)': [-1.618033988749895, -2.618033988749895], 'd(D.a)': [-1.618033988749895, -2.618033988749895]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =          0.61803398875  -> weak      powers {'dK': [1.618033988749895, 0.6180339887498949], 'd(a.a)': [0.6180339887498949, -0.38196601125010515], 'd(D.a)': [0.6180339887498949, -0.38196601125010515]}
+      UH  x^s, s =          10606601717.3  -> regular   powers {'dK': [10606601718.298212, 10606601717.298212], 'd(a.a)': [10606601717.298212, 10606601716.298212], 'd(D.a)': [10606601717.298212, 10606601716.298212]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 1.1617994e+13j), beta = (-4.0 - 1.4828241e-346j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 1.1617994e+13j), beta = (-4.0 + 1.4828241e-346j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+
+  -- W5 points with their own CFG319 backgrounds; M_* at the band's upper edge min(Lambda_HL_max, Lambda_sc) and at the reading lower edge 1e-12 GeV; holes 10 Msun and M87*
+  [K  | W5 corner a_max l_min  | alpha 0.0000000032 lambda 0.007288800437803917 eps 1.83304e-58]
+      UH  x^s, s =         -1.61819521744  -> strong    powers {'dK': [-0.6181952174368668, -1.6181952174368668], 'd(a.a)': [-1.6181952174368668, -2.618195217436867], 'd((DK)^2)': [0.38180478256313316, -0.6181952174368668]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618195217437  -> weak      powers {'dK': [1.6181952174368668, 0.6181952174368668], 'd(a.a)': [0.6181952174368668, -0.38180478256313316], 'd((DK)^2)': [2.618195217436867, 1.6181952174368668]}
+      UH  essential exp(int b x^-2), b = (0.0 - 3.1798748e+25j), beta = (1.0 - 1.4142977e+25j) -> strong  powers {'dK': [-0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [-0.0, -2.0]} (transport res 8.72e-267)
+      UH  essential exp(int b x^-2), b = (0.0 + 3.1798748e+25j), beta = (1.0 + 1.4142977e+25j) -> strong  powers {'dK': [-0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [-0.0, -2.0]} (transport res 8.72e-267)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -7.3860903e+28, beta = -7.3860903e+28 -> admissible (decaying)
+      inf exp(int b r^0), b = 7.3860903e+28, beta = 7.3860903e+28 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_max l_min  | alpha 0.0000000032 lambda 0.007288800437803917 eps 4.33814e-76]
+      UH  x^s, s =         -1.61819521744  -> strong    powers {'dK': [-0.6181952174368668, -1.6181952174368668], 'd(a.a)': [-1.6181952174368668, -2.618195217436867], 'd((DK)^2)': [0.38180478256313316, -0.6181952174368668]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618195217437  -> weak      powers {'dK': [1.6181952174368668, 0.6181952174368668], 'd(a.a)': [0.6181952174368668, -0.38180478256313316], 'd((DK)^2)': [2.618195217436867, 1.6181952174368668]}
+      UH  essential exp(int b x^-2), b = (0.0 - 2.0670155e+34j), beta = (1.0 - 9.1933659e+33j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 6.44e-232)
+      UH  essential exp(int b x^-2), b = (0.0 + 2.0670155e+34j), beta = (1.0 + 9.1933659e+33j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 6.44e-232)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -4.8011837e+37, beta = -4.8011837e+37 -> admissible (decaying)
+      inf exp(int b r^0), b = 4.8011837e+37, beta = 4.8011837e+37 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_max l_min  | alpha 0.0000000032 lambda 0.007288800437803917 eps 1.78562e-16]
+      UH  x^s, s =         -1.61819521744  -> strong    powers {'dK': [-0.6181952174368668, -1.6181952174368668], 'd(a.a)': [-1.6181952174368668, -2.618195217436867], 'd((DK)^2)': [0.38180478256313316, -0.6181952174368668]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618195217437  -> weak      powers {'dK': [1.6181952174368668, 0.6181952174368668], 'd(a.a)': [0.6181952174368668, -0.38180478256313316], 'd((DK)^2)': [2.618195217436867, 1.6181952174368668]}
+      UH  essential exp(int b x^-2), b = (0.0 - 32218.196j), beta = (1.0 - 14329.532j) -> strong  powers {'dK': [-0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [-0.0, -2.0]} (transport res 4.99e-351)
+      UH  essential exp(int b x^-2), b = (0.0 + 32218.196j), beta = (1.0 + 14329.532j) -> strong  powers {'dK': [-0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [-0.0, -2.0]} (transport res 4.99e-351)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -74835180.0, beta = -74835181.0 -> admissible (decaying)
+      inf exp(int b r^0), b = 74835180.0, beta = 74835179.0 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_max l_min  | alpha 0.0000000032 lambda 0.007288800437803917 eps 1.83304e-58]
+      UH  x^s, s =     -7.83554118261e+28  -> strong    powers {'dK': [-7.835541182612379e+28, -7.835541182612379e+28], 'd(a.a)': [-7.835541182612379e+28, -7.835541182612379e+28], 'd(D.a)': [-7.835541182612379e+28, -7.835541182612379e+28]}
+      UH  x^s, s =         -1.61819521744  -> strong    powers {'dK': [-0.6181952174368668, -1.6181952174368668], 'd(a.a)': [-1.6181952174368668, -2.618195217436867], 'd(D.a)': [-1.6181952174368668, -2.618195217436867]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618195217437  -> weak      powers {'dK': [1.6181952174368668, 0.6181952174368668], 'd(a.a)': [0.6181952174368668, -0.38180478256313316], 'd(D.a)': [0.6181952174368668, -0.38180478256313316]}
+      UH  x^s, s =      7.83554118261e+28  -> regular   powers {'dK': [7.835541182612379e+28, 7.835541182612379e+28], 'd(a.a)': [7.835541182612379e+28, 7.835541182612379e+28], 'd(D.a)': [7.835541182612379e+28, 7.835541182612379e+28]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 + 8.5811544e+31j), beta = (-4.0 + 6.6580153e-328j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 - 8.5811544e+31j), beta = (-4.0 - 6.6580153e-328j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_max l_min  | alpha 0.0000000032 lambda 0.007288800437803917 eps 4.33814e-76]
+      UH  x^s, s =     -5.09334054391e+37  -> strong    powers {'dK': [-5.09334054390846e+37, -5.09334054390846e+37], 'd(a.a)': [-5.09334054390846e+37, -5.09334054390846e+37], 'd(D.a)': [-5.09334054390846e+37, -5.09334054390846e+37]}
+      UH  x^s, s =         -1.61819521744  -> strong    powers {'dK': [-0.6181952174368668, -1.6181952174368668], 'd(a.a)': [-1.6181952174368668, -2.618195217436867], 'd(D.a)': [-1.6181952174368668, -2.618195217436867]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618195217437  -> weak      powers {'dK': [1.6181952174368668, 0.6181952174368668], 'd(a.a)': [0.6181952174368668, -0.38180478256313316], 'd(D.a)': [0.6181952174368668, -0.38180478256313316]}
+      UH  x^s, s =      5.09334054391e+37  -> regular   powers {'dK': [5.09334054390846e+37, 5.09334054390846e+37], 'd(a.a)': [5.09334054390846e+37, 5.09334054390846e+37], 'd(D.a)': [5.09334054390846e+37, 5.09334054390846e+37]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 5.5780118e+40j), beta = (-4.0 - 3.7178428e-319j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 5.5780118e+40j), beta = (-4.0 + 3.7178428e-319j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_max l_min  | alpha 0.0000000032 lambda 0.007288800437803917 eps 1.78562e-16]
+      UH  x^s, s =          -79388974.952  -> strong    powers {'dK': [-79388973.95202185, -79388974.95202185], 'd(a.a)': [-79388974.95202185, -79388975.95202185], 'd(D.a)': [-79388974.95202185, -79388975.95202185]}
+      UH  x^s, s =         -1.61819521744  -> strong    powers {'dK': [-0.6181952174368668, -1.6181952174368668], 'd(a.a)': [-1.6181952174368668, -2.618195217436867], 'd(D.a)': [-1.6181952174368668, -2.618195217436867]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618195217437  -> weak      powers {'dK': [1.6181952174368668, 0.6181952174368668], 'd(a.a)': [0.6181952174368668, -0.3818047825631332], 'd(D.a)': [0.6181952174368668, -0.3818047825631332]}
+      UH  x^s, s =           79388973.952  -> regular   powers {'dK': [79388974.95202185, 79388973.95202185], 'd(a.a)': [79388973.95202185, 79388972.95202185], 'd(D.a)': [79388973.95202185, 79388972.95202185]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 8.6943458e+10j), beta = (-4.0 + 6.590258e-349j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 8.6943458e+10j), beta = (-4.0 - 6.590258e-349j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_max l_max  | alpha 0.0000000032 lambda 0.06666666666666667 eps 1.83304e-58]
+      UH  x^s, s =         -1.61808731466  -> strong    powers {'dK': [-0.6180873146551896, -1.6180873146551895], 'd(a.a)': [-1.6180873146551895, -2.6180873146551895], 'd((DK)^2)': [0.3819126853448104, -0.6180873146551896]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618087314655  -> weak      powers {'dK': [1.6180873146551895, 0.6180873146551896], 'd(a.a)': [0.6180873146551896, -0.3819126853448104], 'd((DK)^2)': [2.6180873146551895, 1.6180873146551895]}
+      UH  essential exp(int b x^-2), b = (0.0 - 1.0511844e+25j), beta = (1.0 - 4.6730452e+24j) -> strong  powers {'dK': [-0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [-0.0, -2.0]} (transport res 6.06e-269)
+      UH  essential exp(int b x^-2), b = (0.0 + 1.0511844e+25j), beta = (1.0 + 4.6730452e+24j) -> strong  powers {'dK': [-0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [-0.0, -2.0]} (transport res 6.06e-269)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -7.3860903e+28, beta = -7.3860903e+28 -> admissible (decaying)
+      inf exp(int b r^0), b = 7.3860903e+28, beta = 7.3860903e+28 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_max l_max  | alpha 0.0000000032 lambda 0.06666666666666667 eps 4.33814e-76]
+      UH  x^s, s =         -1.61808731466  -> strong    powers {'dK': [-0.6180873146551896, -1.6180873146551895], 'd(a.a)': [-1.6180873146551895, -2.6180873146551895], 'd((DK)^2)': [0.3819126853448104, -0.6180873146551896]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618087314655  -> weak      powers {'dK': [1.6180873146551895, 0.6180873146551896], 'd(a.a)': [0.6180873146551896, -0.3819126853448104], 'd((DK)^2)': [2.6180873146551895, 1.6180873146551895]}
+      UH  essential exp(int b x^-2), b = (0.0 - 6.8330189e+33j), beta = (1.0 - 3.0376218e+33j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 5.03e-234)
+      UH  essential exp(int b x^-2), b = (0.0 + 6.8330189e+33j), beta = (1.0 + 3.0376218e+33j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 5.03e-234)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -4.8011837e+37, beta = -4.8011837e+37 -> admissible (decaying)
+      inf exp(int b r^0), b = 4.8011837e+37, beta = 4.8011837e+37 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_max l_max  | alpha 0.0000000032 lambda 0.06666666666666667 eps 1.78562e-16]
+      UH  x^s, s =         -1.61808731466  -> strong    powers {'dK': [-0.6180873146551896, -1.6180873146551895], 'd(a.a)': [-1.6180873146551895, -2.6180873146551895], 'd((DK)^2)': [0.3819126853448104, -0.6180873146551896]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618087314655  -> weak      powers {'dK': [1.6180873146551895, 0.6180873146551896], 'd(a.a)': [0.6180873146551896, -0.3819126853448104], 'd((DK)^2)': [2.6180873146551895, 1.6180873146551895]}
+      UH  essential exp(int b x^-2), b = (0.0 - 10650.503j), beta = (1.0 - 4734.686j) -> strong  powers {'dK': [-0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [-0.0, -2.0]} (transport res 1.56e-353)
+      UH  essential exp(int b x^-2), b = (0.0 + 10650.503j), beta = (1.0 + 4734.686j) -> strong  powers {'dK': [-0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [-0.0, -2.0]} (transport res 1.56e-353)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -74835180.0, beta = -74835181.0 -> admissible (decaying)
+      inf exp(int b r^0), b = 74835180.0, beta = 74835179.0 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_max l_max  | alpha 0.0000000032 lambda 0.06666666666666667 eps 1.83304e-58]
+      UH  x^s, s =     -7.83459848872e+28  -> strong    powers {'dK': [-7.83459848871543e+28, -7.83459848871543e+28], 'd(a.a)': [-7.83459848871543e+28, -7.83459848871543e+28], 'd(D.a)': [-7.83459848871543e+28, -7.83459848871543e+28]}
+      UH  x^s, s =         -1.61808731466  -> strong    powers {'dK': [-0.6180873146551896, -1.6180873146551895], 'd(a.a)': [-1.6180873146551895, -2.6180873146551895], 'd(D.a)': [-1.6180873146551895, -2.6180873146551895]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618087314655  -> weak      powers {'dK': [1.6180873146551895, 0.6180873146551896], 'd(a.a)': [0.6180873146551896, -0.3819126853448104], 'd(D.a)': [0.6180873146551896, -0.3819126853448104]}
+      UH  x^s, s =      7.83459848872e+28  -> regular   powers {'dK': [7.83459848871543e+28, 7.83459848871543e+28], 'd(a.a)': [7.83459848871543e+28, 7.83459848871543e+28], 'd(D.a)': [7.83459848871543e+28, 7.83459848871543e+28]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 2.5952076e+32j), beta = (-4.0 + 1.2437148e-327j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 2.5952076e+32j), beta = (-4.0 - 1.2437148e-327j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_max l_max  | alpha 0.0000000032 lambda 0.06666666666666667 eps 4.33814e-76]
+      UH  x^s, s =     -5.09272776415e+37  -> strong    powers {'dK': [-5.0927277641484e+37, -5.0927277641484e+37], 'd(a.a)': [-5.0927277641484e+37, -5.0927277641484e+37], 'd(D.a)': [-5.0927277641484e+37, -5.0927277641484e+37]}
+      UH  x^s, s =         -1.61808731466  -> strong    powers {'dK': [-0.6180873146551896, -1.6180873146551895], 'd(a.a)': [-1.6180873146551895, -2.6180873146551895], 'd(D.a)': [-1.6180873146551895, -2.6180873146551895]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618087314655  -> weak      powers {'dK': [1.6180873146551895, 0.6180873146551896], 'd(a.a)': [0.6180873146551896, -0.3819126853448104], 'd(D.a)': [0.6180873146551896, -0.3819126853448104]}
+      UH  x^s, s =      5.09272776415e+37  -> regular   powers {'dK': [5.0927277641484e+37, 5.0927277641484e+37], 'd(a.a)': [5.0927277641484e+37, 5.0927277641484e+37], 'd(D.a)': [5.0927277641484e+37, 5.0927277641484e+37]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 + 1.686964e+41j), beta = (-4.0 + 0.0j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 - 1.686964e+41j), beta = (-4.0 + 0.0j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_max l_max  | alpha 0.0000000032 lambda 0.06666666666666667 eps 1.78562e-16]
+      UH  x^s, s =         -79379423.6651  -> strong    powers {'dK': [-79379422.66514112, -79379423.66514112], 'd(a.a)': [-79379423.66514112, -79379424.66514112], 'd(D.a)': [-79379423.66514112, -79379424.66514112]}
+      UH  x^s, s =         -1.61808731466  -> strong    powers {'dK': [-0.6180873146551895, -1.6180873146551895], 'd(a.a)': [-1.6180873146551895, -2.6180873146551895], 'd(D.a)': [-1.6180873146551895, -2.6180873146551895]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618087314655  -> weak      powers {'dK': [1.6180873146551895, 0.6180873146551895], 'd(a.a)': [0.6180873146551895, -0.38191268534481043], 'd(D.a)': [0.6180873146551895, -0.38191268534481043]}
+      UH  x^s, s =          79379422.6651  -> regular   powers {'dK': [79379423.66514112, 79379422.66514112], 'd(a.a)': [79379422.66514112, 79379421.66514112], 'd(D.a)': [79379422.66514112, 79379421.66514112]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 + 2.6294402e+11j), beta = (-4.0 - 1.2310578e-348j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 - 2.6294402e+11j), beta = (-4.0 + 1.2310578e-348j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 centre              | alpha 0.000000000017549060799417394 lambda 0.022043593835555212 eps 1.83304e-58]
+      UH  x^s, s =         -1.61804085716  -> strong    powers {'dK': [-0.6180408571572098, -1.6180408571572098], 'd(a.a)': [-1.6180408571572098, -2.61804085715721], 'd((DK)^2)': [0.3819591428427902, -0.6180408571572098]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618040857157  -> weak      powers {'dK': [1.6180408571572098, 0.6180408571572098], 'd(a.a)': [0.6180408571572098, -0.3819591428427902], 'd((DK)^2)': [2.61804085715721, 1.6180408571572098]}
+      UH  essential exp(int b x^-2), b = (0.0 - 1.3536267e+24j), beta = (1.0 - 6.0163035e+23j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 1.16e-274)
+      UH  essential exp(int b x^-2), b = (0.0 + 1.3536267e+24j), beta = (1.0 + 6.0163035e+23j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 1.16e-274)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -7.3860903e+28, beta = -7.3860903e+28 -> admissible (decaying)
+      inf exp(int b r^0), b = 7.3860903e+28, beta = 7.3860903e+28 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 centre              | alpha 0.000000000017549060799417394 lambda 0.022043593835555212 eps 4.33814e-76]
+      UH  x^s, s =         -1.61804085716  -> strong    powers {'dK': [-0.6180408571572098, -1.6180408571572098], 'd(a.a)': [-1.6180408571572098, -2.61804085715721], 'd((DK)^2)': [0.3819591428427902, -0.6180408571572098]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618040857157  -> weak      powers {'dK': [1.6180408571572098, 0.6180408571572098], 'd(a.a)': [0.6180408571572098, -0.3819591428427902], 'd((DK)^2)': [2.61804085715721, 1.6180408571572098]}
+      UH  essential exp(int b x^-2), b = (0.0 - 8.7989861e+32j), beta = (1.0 - 3.9107806e+32j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 0.0)
+      UH  essential exp(int b x^-2), b = (0.0 + 8.7989861e+32j), beta = (1.0 + 3.9107806e+32j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 0.0)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -4.8011837e+37, beta = -4.8011837e+37 -> admissible (decaying)
+      inf exp(int b r^0), b = 4.8011837e+37, beta = 4.8011837e+37 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 centre              | alpha 0.000000000017549060799417394 lambda 0.022043593835555212 eps 1.78562e-16]
+      UH  x^s, s =         -1.61804085716  -> strong    powers {'dK': [-0.6180408571572098, -1.6180408571572098], 'd(a.a)': [-1.6180408571572098, -2.61804085715721], 'd((DK)^2)': [0.3819591428427902, -0.6180408571572098]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618040857157  -> weak      powers {'dK': [1.6180408571572098, 0.6180408571572098], 'd(a.a)': [0.6180408571572098, -0.3819591428427902], 'd((DK)^2)': [2.61804085715721, 1.6180408571572098]}
+      UH  essential exp(int b x^-2), b = (0.0 - 1371.482j), beta = (1.0 - 609.56628j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 1.78e-358)
+      UH  essential exp(int b x^-2), b = (0.0 + 1371.482j), beta = (1.0 + 609.56628j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 1.78e-358)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -74835180.0, beta = -74835181.0 -> admissible (decaying)
+      inf exp(int b r^0), b = 74835180.0, beta = 74835179.0 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 centre              | alpha 0.000000000017549060799417394 lambda 0.022043593835555212 eps 1.83304e-58]
+      UH  x^s, s =     -7.83419191584e+28  -> strong    powers {'dK': [-7.8341919158378805e+28, -7.8341919158378805e+28], 'd(a.a)': [-7.8341919158378805e+28, -7.8341919158378805e+28], 'd(D.a)': [-7.8341919158378805e+28, -7.8341919158378805e+28]}
+      UH  x^s, s =         -1.61804085716  -> strong    powers {'dK': [-0.6180408571572098, -1.6180408571572098], 'd(a.a)': [-1.6180408571572098, -2.61804085715721], 'd(D.a)': [-1.6180408571572098, -2.61804085715721]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618040857157  -> weak      powers {'dK': [1.6180408571572098, 0.6180408571572098], 'd(a.a)': [0.6180408571572098, -0.3819591428427902], 'd(D.a)': [0.6180408571572098, -0.3819591428427902]}
+      UH  x^s, s =      7.83419191584e+28  -> regular   powers {'dK': [7.8341919158378805e+28, 7.8341919158378805e+28], 'd(a.a)': [7.8341919158378805e+28, 7.8341919158378805e+28], 'd(D.a)': [7.8341919158378805e+28, 7.8341919158378805e+28]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 2.0151482e+33j), beta = (-4.0 + 1.6454037e-326j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 2.0151482e+33j), beta = (-4.0 - 1.6454037e-326j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 centre              | alpha 0.000000000017549060799417394 lambda 0.022043593835555212 eps 4.33814e-76]
+      UH  x^s, s =     -5.09246347939e+37  -> strong    powers {'dK': [-5.092463479388354e+37, -5.092463479388354e+37], 'd(a.a)': [-5.092463479388354e+37, -5.092463479388354e+37], 'd(D.a)': [-5.092463479388354e+37, -5.092463479388354e+37]}
+      UH  x^s, s =         -1.61804085716  -> strong    powers {'dK': [-0.6180408571572098, -1.6180408571572098], 'd(a.a)': [-1.6180408571572098, -2.61804085715721], 'd(D.a)': [-1.6180408571572098, -2.61804085715721]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618040857157  -> weak      powers {'dK': [1.6180408571572098, 0.6180408571572098], 'd(a.a)': [0.6180408571572098, -0.3819591428427902], 'd(D.a)': [0.6180408571572098, -0.3819591428427902]}
+      UH  x^s, s =      5.09246347939e+37  -> regular   powers {'dK': [5.092463479388354e+37, 5.092463479388354e+37], 'd(a.a)': [5.092463479388354e+37, 5.092463479388354e+37], 'd(D.a)': [5.092463479388354e+37, 5.092463479388354e+37]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 1.3099077e+42j), beta = (-4.0 - 1.0783082e-317j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 1.3099077e+42j), beta = (-4.0 + 1.0783082e-317j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 centre              | alpha 0.000000000017549060799417394 lambda 0.022043593835555212 eps 1.78562e-16]
+      UH  x^s, s =         -79375304.3066  -> strong    powers {'dK': [-79375303.30656251, -79375304.30656251], 'd(a.a)': [-79375304.30656251, -79375305.30656251], 'd(D.a)': [-79375304.30656251, -79375305.30656251]}
+      UH  x^s, s =         -1.61804085716  -> strong    powers {'dK': [-0.6180408571572097, -1.6180408571572098], 'd(a.a)': [-1.6180408571572098, -2.61804085715721], 'd(D.a)': [-1.6180408571572098, -2.61804085715721]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618040857157  -> weak      powers {'dK': [1.6180408571572098, 0.6180408571572097], 'd(a.a)': [0.6180408571572097, -0.38195914284279026], 'd(D.a)': [0.6180408571572097, -0.38195914284279026]}
+      UH  x^s, s =          79375303.3066  -> regular   powers {'dK': [79375304.30656251, 79375303.30656251], 'd(a.a)': [79375303.30656251, 79375302.30656251], 'd(D.a)': [79375303.30656251, 79375302.30656251]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 2.0417294e+12j), beta = (-4.0 - 1.7643803e-347j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 2.0417294e+12j), beta = (-4.0 + 1.7643803e-347j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_min l_min  | alpha 9.624047966926507e-14 lambda 0.007288800437803917 eps 1.83304e-58]
+      UH  x^s, s =         -1.61803487331  -> strong    powers {'dK': [-0.6180348733108872, -1.6180348733108871], 'd(a.a)': [-1.6180348733108871, -2.6180348733108874], 'd((DK)^2)': [0.38196512668911276, -0.6180348733108872]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618034873311  -> weak      powers {'dK': [1.6180348733108871, 0.6180348733108872], 'd(a.a)': [0.6180348733108872, -0.38196512668911276], 'd((DK)^2)': [2.6180348733108874, 1.6180348733108871]}
+      UH  essential exp(int b x^-2), b = (0.0 - 1.7432442e+23j), beta = (1.0 - 7.7477826e+22j) -> strong  powers {'dK': [-0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [-0.0, -2.0]} (transport res 5.51e-281)
+      UH  essential exp(int b x^-2), b = (0.0 + 1.7432442e+23j), beta = (1.0 + 7.7477826e+22j) -> strong  powers {'dK': [-0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [-0.0, -2.0]} (transport res 5.51e-281)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -7.3860903e+28, beta = -7.3860903e+28 -> admissible (decaying)
+      inf exp(int b r^0), b = 7.3860903e+28, beta = 7.3860903e+28 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_min l_min  | alpha 9.624047966926507e-14 lambda 0.007288800437803917 eps 4.33814e-76]
+      UH  x^s, s =         -1.61803487331  -> strong    powers {'dK': [-0.6180348733108872, -1.6180348733108871], 'd(a.a)': [-1.6180348733108871, -2.6180348733108874], 'd((DK)^2)': [0.38196512668911276, -0.6180348733108872]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618034873311  -> weak      powers {'dK': [1.6180348733108871, 0.6180348733108872], 'd(a.a)': [0.6180348733108872, -0.38196512668911276], 'd((DK)^2)': [2.6180348733108874, 1.6180348733108871]}
+      UH  essential exp(int b x^-2), b = (0.0 - 1.1331618e+32j), beta = (1.0 - 5.0362948e+31j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 0.0)
+      UH  essential exp(int b x^-2), b = (0.0 + 1.1331618e+32j), beta = (1.0 + 5.0362948e+31j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 0.0)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -4.8011837e+37, beta = -4.8011837e+37 -> admissible (decaying)
+      inf exp(int b r^0), b = 4.8011837e+37, beta = 4.8011837e+37 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_min l_min  | alpha 9.624047966926507e-14 lambda 0.007288800437803917 eps 1.78562e-16]
+      UH  x^s, s =         -1.61803487331  -> strong    powers {'dK': [-0.6180348733108872, -1.6180348733108871], 'd(a.a)': [-1.6180348733108871, -2.6180348733108874], 'd((DK)^2)': [0.38196512668911276, -0.6180348733108872]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618034873311  -> weak      powers {'dK': [1.6180348733108871, 0.6180348733108872], 'd(a.a)': [0.6180348733108872, -0.38196512668911276], 'd((DK)^2)': [2.6180348733108874, 1.6180348733108871]}
+      UH  essential exp(int b x^-2), b = (0.0 - 176.62388j), beta = (1.0 - 78.499812j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 2.84e-365)
+      UH  essential exp(int b x^-2), b = (0.0 + 176.62388j), beta = (1.0 + 78.499812j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 2.84e-365)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -74835180.0, beta = -74835181.0 -> admissible (decaying)
+      inf exp(int b r^0), b = 74835180.0, beta = 74835179.0 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_min l_min  | alpha 9.624047966926507e-14 lambda 0.007288800437803917 eps 1.83304e-58]
+      UH  x^s, s =     -7.83413951141e+28  -> strong    powers {'dK': [-7.834139511411207e+28, -7.834139511411207e+28], 'd(a.a)': [-7.834139511411207e+28, -7.834139511411207e+28], 'd(D.a)': [-7.834139511411207e+28, -7.834139511411207e+28]}
+      UH  x^s, s =         -1.61803487331  -> strong    powers {'dK': [-0.6180348733108872, -1.6180348733108871], 'd(a.a)': [-1.6180348733108871, -2.6180348733108874], 'd(D.a)': [-1.6180348733108871, -2.6180348733108874]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618034873311  -> weak      powers {'dK': [1.6180348733108871, 0.6180348733108872], 'd(a.a)': [0.6180348733108872, -0.38196512668911276], 'd(D.a)': [0.6180348733108872, -0.38196512668911276]}
+      UH  x^s, s =      7.83413951141e+28  -> regular   powers {'dK': [7.834139511411207e+28, 7.834139511411207e+28], 'd(a.a)': [7.834139511411207e+28, 7.834139511411207e+28], 'd(D.a)': [7.834139511411207e+28, 7.834139511411207e+28]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 1.5647388e+34j), beta = (-4.0 - 1.088414e-325j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 1.5647388e+34j), beta = (-4.0 + 1.088414e-325j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_min l_min  | alpha 9.624047966926507e-14 lambda 0.007288800437803917 eps 4.33814e-76]
+      UH  x^s, s =     -5.09242941491e+37  -> strong    powers {'dK': [-5.092429414914077e+37, -5.092429414914077e+37], 'd(a.a)': [-5.092429414914077e+37, -5.092429414914077e+37], 'd(D.a)': [-5.092429414914077e+37, -5.092429414914077e+37]}
+      UH  x^s, s =         -1.61803487331  -> strong    powers {'dK': [-0.6180348733108872, -1.6180348733108871], 'd(a.a)': [-1.6180348733108871, -2.6180348733108874], 'd(D.a)': [-1.6180348733108871, -2.6180348733108874]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618034873311  -> weak      powers {'dK': [1.6180348733108871, 0.6180348733108872], 'd(a.a)': [0.6180348733108872, -0.38196512668911276], 'd(D.a)': [0.6180348733108872, -0.38196512668911276]}
+      UH  x^s, s =      5.09242941491e+37  -> regular   powers {'dK': [5.092429414914077e+37, 5.092429414914077e+37], 'd(a.a)': [5.092429414914077e+37, 5.092429414914077e+37], 'd(D.a)': [5.092429414914077e+37, 5.092429414914077e+37]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 1.0171279e+43j), beta = (-4.0 + 5.4868263e-318j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 1.0171279e+43j), beta = (-4.0 - 5.4868263e-318j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_min l_min  | alpha 9.624047966926507e-14 lambda 0.007288800437803917 eps 1.78562e-16]
+      UH  x^s, s =         -79374773.3498  -> strong    powers {'dK': [-79374772.34978576, -79374773.34978576], 'd(a.a)': [-79374773.34978576, -79374774.34978576], 'd(D.a)': [-79374773.34978576, -79374774.34978576]}
+      UH  x^s, s =         -1.61803487331  -> strong    powers {'dK': [-0.6180348733108871, -1.6180348733108871], 'd(a.a)': [-1.6180348733108871, -2.6180348733108874], 'd(D.a)': [-1.6180348733108871, -2.6180348733108874]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618034873311  -> weak      powers {'dK': [1.6180348733108871, 0.6180348733108871], 'd(a.a)': [0.6180348733108871, -0.3819651266891128], 'd(D.a)': [0.6180348733108871, -0.3819651266891128]}
+      UH  x^s, s =          79374772.3498  -> regular   powers {'dK': [79374773.34978576, 79374772.34978576], 'd(a.a)': [79374772.34978576, 79374771.34978576], 'd(D.a)': [79374772.34978576, 79374771.34978576]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 + 1.5853788e+13j), beta = (-4.0 + 0.0j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 - 1.5853788e+13j), beta = (-4.0 + 0.0j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_min l_max  | alpha 9.624047966926507e-14 lambda 0.06666666666666667 eps 2.4832e-58]
+      UH  x^s, s =         -1.61803428123  -> strong    powers {'dK': [-0.6180342812338989, -1.618034281233899], 'd(a.a)': [-1.618034281233899, -2.618034281233899], 'd((DK)^2)': [0.381965718766101, -0.6180342812338989]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618034281234  -> weak      powers {'dK': [1.618034281233899, 0.6180342812338989], 'd(a.a)': [0.6180342812338989, -0.381965718766101], 'd((DK)^2)': [2.618034281233899, 1.618034281233899]}
+      UH  essential exp(int b x^-2), b = (0.0 - 4.9523438e+22j), beta = (1.0 - 2.2010446e+22j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 4.3e-283)
+      UH  essential exp(int b x^-2), b = (0.0 + 4.9523438e+22j), beta = (1.0 + 2.2010446e+22j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 4.3e-283)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -6.3459127e+28, beta = -6.3459127e+28 -> admissible (decaying)
+      inf exp(int b r^0), b = 6.3459127e+28, beta = 6.3459127e+28 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_min l_max  | alpha 9.624047966926507e-14 lambda 0.06666666666666667 eps 5.87685e-76]
+      UH  x^s, s =         -1.61803428123  -> strong    powers {'dK': [-0.6180342812338989, -1.618034281233899], 'd(a.a)': [-1.618034281233899, -2.618034281233899], 'd((DK)^2)': [0.381965718766101, -0.6180342812338989]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618034281234  -> weak      powers {'dK': [1.618034281233899, 0.6180342812338989], 'd(a.a)': [0.6180342812338989, -0.381965718766101], 'd((DK)^2)': [2.618034281233899, 1.618034281233899]}
+      UH  essential exp(int b x^-2), b = (0.0 - 3.2191744e+31j), beta = (1.0 - 1.430746e+31j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 7.15e-248)
+      UH  essential exp(int b x^-2), b = (0.0 + 3.2191744e+31j), beta = (1.0 + 1.430746e+31j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 7.15e-248)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -4.1250366e+37, beta = -4.1250366e+37 -> admissible (decaying)
+      inf exp(int b r^0), b = 4.1250366e+37, beta = 4.1250366e+37 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [K  | W5 corner a_min l_max  | alpha 9.624047966926507e-14 lambda 0.06666666666666667 eps 1.78562e-16]
+      UH  x^s, s =         -1.61803428123  -> strong    powers {'dK': [-0.6180342812338989, -1.618034281233899], 'd(a.a)': [-1.618034281233899, -2.618034281233899], 'd((DK)^2)': [0.381965718766101, -0.6180342812338989]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd((DK)^2)': [1.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd((DK)^2)': [2.0, 1.0]}
+      UH  x^s, s =         0.618034281234  -> weak      powers {'dK': [1.618034281233899, 0.6180342812338989], 'd(a.a)': [0.6180342812338989, -0.381965718766101], 'd((DK)^2)': [2.618034281233899, 1.618034281233899]}
+      UH  essential exp(int b x^-2), b = (0.0 - 58.401298j), beta = (1.0 - 25.956167j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 4.43e-367)
+      UH  essential exp(int b x^-2), b = (0.0 + 58.401298j), beta = (1.0 + 25.956167j) -> strong  powers {'dK': [0.0, -2.0], 'd(a.a)': [-1.0, -3.0], 'd((DK)^2)': [0.0, -2.0]} (transport res 4.43e-367)
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^0), b = -74835180.0, beta = -74835181.0 -> admissible (decaying)
+      inf exp(int b r^0), b = 74835180.0, beta = 74835179.0 -> inadmissible (growing)
+      COUNT: 6 constants; conditions: infinity 2 + normalisation 1 + r_S 0 + UH 4 (strict) / 3 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_min l_max  | alpha 9.624047966926507e-14 lambda 0.06666666666666667 eps 2.4832e-58]
+      UH  x^s, s =     -6.73085901288e+28  -> strong    powers {'dK': [-6.730859012883643e+28, -6.730859012883643e+28], 'd(a.a)': [-6.730859012883643e+28, -6.730859012883643e+28], 'd(D.a)': [-6.730859012883643e+28, -6.730859012883643e+28]}
+      UH  x^s, s =         -1.61803428123  -> strong    powers {'dK': [-0.6180342812338989, -1.618034281233899], 'd(a.a)': [-1.618034281233899, -2.618034281233899], 'd(D.a)': [-1.618034281233899, -2.618034281233899]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618034281234  -> weak      powers {'dK': [1.618034281233899, 0.6180342812338989], 'd(a.a)': [0.6180342812338989, -0.381965718766101], 'd(D.a)': [0.6180342812338989, -0.381965718766101]}
+      UH  x^s, s =      6.73085901288e+28  -> regular   powers {'dK': [6.730859012883643e+28, 6.730859012883643e+28], 'd(a.a)': [6.730859012883643e+28, 6.730859012883643e+28], 'd(D.a)': [6.730859012883643e+28, 6.730859012883643e+28]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 4.0658156e+34j), beta = (-4.0 + 1.7364566e-325j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 4.0658156e+34j), beta = (-4.0 - 1.7364566e-325j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_min l_max  | alpha 9.624047966926507e-14 lambda 0.06666666666666667 eps 5.87685e-76]
+      UH  x^s, s =     -4.37526347022e+37  -> strong    powers {'dK': [-4.375263470215351e+37, -4.375263470215351e+37], 'd(a.a)': [-4.375263470215351e+37, -4.375263470215351e+37], 'd(D.a)': [-4.375263470215351e+37, -4.375263470215351e+37]}
+      UH  x^s, s =         -1.61803428123  -> strong    powers {'dK': [-0.6180342812338989, -1.618034281233899], 'd(a.a)': [-1.618034281233899, -2.618034281233899], 'd(D.a)': [-1.618034281233899, -2.618034281233899]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618034281234  -> weak      powers {'dK': [1.618034281233899, 0.6180342812338989], 'd(a.a)': [0.6180342812338989, -0.381965718766101], 'd(D.a)': [0.6180342812338989, -0.381965718766101]}
+      UH  x^s, s =      4.37526347022e+37  -> regular   powers {'dK': [4.375263470215351e+37, 4.375263470215351e+37], 'd(a.a)': [4.375263470215351e+37, 4.375263470215351e+37], 'd(D.a)': [4.375263470215351e+37, 4.375263470215351e+37]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 2.6429041e+43j), beta = (-4.0 + 2.100885e-316j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 2.6429041e+43j), beta = (-4.0 - 2.100885e-316j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+  [A  | W5 corner a_min l_max  | alpha 9.624047966926507e-14 lambda 0.06666666666666667 eps 1.78562e-16]
+      UH  x^s, s =          -79374720.808  -> strong    powers {'dK': [-79374719.80801192, -79374720.80801192], 'd(a.a)': [-79374720.80801192, -79374721.80801192], 'd(D.a)': [-79374720.80801192, -79374721.80801192]}
+      UH  x^s, s =         -1.61803428123  -> strong    powers {'dK': [-0.6180342812338989, -1.6180342812338988], 'd(a.a)': [-1.6180342812338988, -2.618034281233899], 'd(D.a)': [-1.6180342812338988, -2.618034281233899]}
+      UH  x^s, s =                   -1.0  -> regular   powers {'dK': [0.0, 0.0], 'd(a.a)': [0.0, 0.0], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =                    0.0  -> regular   powers {'dK': [1.0, 0.0], 'd(a.a)': [None, None], 'd(D.a)': [0.0, 0.0]}
+      UH  x^s, s =         0.618034281234  -> weak      powers {'dK': [1.6180342812338988, 0.6180342812338989], 'd(a.a)': [0.6180342812338989, -0.3819657187661011], 'd(D.a)': [0.6180342812338989, -0.3819657187661011]}
+      UH  x^s, s =           79374719.808  -> regular   powers {'dK': [79374720.80801192, 79374719.80801192], 'd(a.a)': [79374719.80801192, 79374718.80801192], 'd(D.a)': [79374719.80801192, 79374718.80801192]}
+      inf r^s, s =       -2.0  -> admissible
+      inf r^s, s =        0.0  -> admissible
+      inf r^s, s =        1.0  -> boost (normalisation)
+      inf r^s, s =        3.0  -> inadmissible
+      inf exp(int b r^2), b = (0.0 - 4.7946774e+13j), beta = (-4.0 + 2.1801682e-346j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      inf exp(int b r^2), b = (0.0 + 4.7946774e+13j), beta = (-4.0 - 2.1801682e-346j) -> inadmissible (oscillatory; F'' or F''' does not decay)
+      COUNT: 6 constants; conditions: infinity 3 + normalisation 1 + r_S 0 + UH 3 (strict) / 2 (lenient) = 7 / 6;  Delta_strict +1, Delta_lenient +0
+
+  arm O_K: Delta_strict over all runs [1];  Delta_lenient [0]
+
+  arm O_A: Delta_strict over all runs [1];  Delta_lenient [0]
+  s+ with the UV term present: arm K ['0.61803398', '0.61803428', '0.61803487', '0.61804085', '0.61808731', '0.61819521']; arm A ['0.61799423', '0.61803398', '0.61803428', '0.61803487', '0.61804085', '0.61808731', '0.61819521']  (the UV term does not remove it)
+
+====================================================================================================================
+B3  (frozen: only if Delta_strict <= 0 for an arm)
+====================================================================================================================
+  arm O_K: Delta_strict = [1] > 0 -> B3 not reached
+  arm O_A: Delta_strict = [1] > 0 -> B3 not reached
+
+====================================================================================================================
+B4  the M_* band: upper edge min(Lambda_HL_max, Lambda_sc) per CFG320 grid point; lower edge none on record
+====================================================================================================================
+  [PASS] (reading) B4 the M_* band is non-empty
+         measured: upper edges 8.4799e+08 .. 9.8698e+08 GeV over 81 points; reading lower edge 1e-12 GeV (sub-mm tests, recalled, PROVISIONAL); non-empty at 81/81
+  VERDICT arm O_K: FAILS (gate G12 of CFG467, strict BH regularity: the UV term does not supply the fifth condition; over-determined by 1)
+  VERDICT arm O_A: FAILS (gate G12 of CFG467, strict BH regularity: the UV term does not supply the fifth condition; over-determined by 1)
+  VERDICT B (best arm, O_K): FAILS
+
+====================================================================================================================
+OPTION A -- lenient black holes (CFG319 option C) + the Pospelov-Shang hierarchy
+====================================================================================================================
+  [PASS] A1a T -> +infinity at the UH at every finite v: lim x H'(r_UH + x) = -1/(y1 W0), finite and non-zero from both sides
+         measured: y1 = 2*sqrt(2)/3, W0 = sqrt(3)/3, kappa_U = y1 W0 = 2*sqrt(6)/9; limit + -3*sqrt(6)/4, limit - -3*sqrt(6)/4
+  [PASS] A1b the global time function tau = -exp(-kappa_U T) extends analytically across the UH (H' + 1/(kappa x) is regular), with d tau/dr != 0 and a timelike normal there (g^{mn} d tau d tau = e(r_UH) (d_r tau)^2 < 0)
+         measured: negative powers in the series of H' + 1/(kappa x): False; e(r_UH) = -1/3; sign -1
+  [PASS] A1c fastest-signal reach from on/inside the UH (leaf = infinite speed, and c = 1, 444, 7.9e5, 1e12, both directions): max r <= r_UH + 1e-9
+         measured: max r reached 1.5 at ('1.5', '-10', 'leaf', 1)
+  [PASS] K5 reach code control: from exterior start points the leaf reaches r = 1e4
+         measured: max r 10042.792
+  [PASS] A1d O(v) persistence: delta tau ~ x^(1+s+) with 1 + s+ > 1 at all W5 points (tau stays C^1); control: the C' option (s-) gives 1 + s- < 0 (foliation destroyed) and is flagged
+         measured: 1+s+ ['1.6181952', '1.6180873', '1.6180409', '1.6180349', '1.6180343']; 1+s- ['-0.618195', '-0.618087', '-0.618041', '-0.618035', '-0.618034']
+  [PASS] A1e zero free data on the defect: option C has as many conditions as constants (computed K2 count), so the s+ amplitude is an output
+         measured: free parameters on the UH = 0; CFG319 option C admissible at all W5: [True, True, True, True, True]
+         reading:  rule-level exterior difference C vs C' at 6M (committed): {'W5 corner a_max l_min': '3.03632e-13', 'W5 corner a_max l_max': '1.31202e-14', 'W5 centre': '3.96273e-17', 'W5 corner a_min l_min': '1.20227e-19', 'W5 corner a_min l_max': '5.25474e-21'}
+  [PASS] A2a exterior regular: CFG319 option C admissible, modes -1 and 0 regular, s+ weak at all W5 points
+         measured: ['weakly singular', 'weakly singular', 'weakly singular', 'weakly singular', 'weakly singular']
+  [PASS] A2b O(v) stress / Ricci exponent p1 = s+ - 1 > -1 (integrable)
+         measured: p1 ['-0.381805', '-0.381913', '-0.381959', '-0.381965', '-0.381966']
+  [PASS] A2c quadratic invariants at O(v^2): 2 p1 > -1, i.e. s+ > 1/2
+         measured: 2 p1 ['-0.76361', '-0.763825', '-0.763918', '-0.76393', '-0.763931'] (margin 0.118 in s+)
+  [PASS] A2d Tipler and Krolak integrals along radial free fall (dr/dtau = -sqrt(2/r) at r_UH, transversal) finite: the change of the single and double integrals between cut-offs 1e-15 and 1e-30 is < 1e-5
+         measured: {'W5 corner a_max l_min': ('8.63e-10', '8.63e-10'), 'W5 corner a_max l_max': ('8.66e-10', '8.66e-10'), 'W5 centre': ('8.68e-10', '8.68e-10'), 'W5 corner a_min l_min': ('8.68e-10', '8.68e-10'), 'W5 corner a_min l_max': ('8.68e-10', '8.68e-10')}; dr/dtau = -1.1547
+  [PASS] K6 control: the s- mode's Krolak integral diverges (change between cut-offs > 1e10)
+         measured: {'W5 corner a_max l_min': '2.17e+48', 'W5 corner a_max l_max': '2.16e+48', 'W5 centre': '2.15e+48', 'W5 corner a_min l_min': '2.15e+48', 'W5 corner a_min l_max': '2.15e+48'}
+  [PASS] A2e metric class C^{1, s+} with 0 < s+ < 1 and a transversal crossing: Hoelder Christoffels, unique transversal geodesics (Caratheodory)
+         measured: s+ ['0.618195', '0.618087', '0.618041', '0.618035', '0.618034']
+  [PASS] (reading) A2f (ARG, reading) O(v) Killing-energy flux through the sphere: integral of cos(theta) = 0; the O(v^2) flux is r-independent (conservation) and vanishes at infinity for stationary decaying fields; O(v^2) fields not computed
+         measured: integral = 0
+  reading S: A2 reads FAIL by definition (the curvature diverges pointwise on the UH as x^(s+ - 1) = x^-0.382).
+  [PASS] A3a the momentum dL/d(grad_m u_n) = -2 lambda K g^{mn} + 2 alpha u^m a^n contains only g, u, K, a (sympy); the option-C perturbations of K, a, u vanish at the UH (exponents >= 0), so the Noether charge and symplectic current are finite there
+         measured: momentum identity True; exponents {'W5 corner a_max l_min': {'dK': 1.61819521743645, 'da, du': 0.61819521743645}, 'W5 corner a_max l_max': {'dK': 1.61808731465495, 'da, du': 0.61808731465495}, 'W5 centre': {'dK': 1.61804085715739, 'da, du': 0.61804085715739}, 'W5 corner a_min l_min': {'dK': 1.61803487331126, 'da, du': 0.61803487331126}, 'W5 corner a_min l_max': {'dK': 1.61803428123402, 'da, du': 0.61803428123402}}
+  [PASS] A3b kappa_UH unperturbed at O(v): its change ~ x^s+ -> 0 at the UH and carries cos(theta) (sphere average 0)
+         measured: s+ > 0 at all W5: True; sphere average 0
+  [PASS] A3c the O(v) first law is trivial: delta A_UH = delta M = 0 for an l = 1 perturbation
+         measured: integral cos(theta) sin(theta) dtheta = 0
+  UH temperature (Berglund-Bhattacharyya-Mattingly 2012/13 and later disputes): literature recalled from memory, PROVISIONAL, not read, not scored.
+
+====================================================================================================================
+A4  the joint alpha_c window
+====================================================================================================================
+  [PASS] K9 alpha_rs reproduces CFG467's G11 edge (5.80e-14 / 1.18e-13 at the c_2 ends) to 1e-2, and the A4-0 window is non-empty exactly at c_2 >= 0.038 (3 points)
+         measured: max rel dev 0.00e+00; non-empty at 3/9, first c_2 0.0383350090957384
+  [PASS] A4-H window (reading W + hierarchy) = CFG467's I_len = [9.624e-14, 3.2e-9] at every c_2
+         measured: True
+  [PASS] A4-UV some healthy UV operator keeps option C (lenient count Delta_len <= 0)
+         measured: Delta_len <= 0: O_K True, O_A True
+         reading:  an arm with Delta_len > 0 would destroy option C itself; that arm is excluded as the hierarchy's UV sector
+  VERDICT A: WORKS-CONDITIONAL (conditions: (i) owner adopts reading W; (ii) full window needs the hierarchy (+1 UV scale M_* <= 9.9e8 GeV, of the O_K type if O_A destroys option C), or 0 new constants on the c_2 >= 0.038 sliver; (iii) CFG319 scope (test-khronon limit, collapse formation) and CFG467 tested-range edges)
+
+====================================================================================================================
+OPTION C -- the chassis retired: candidate B as a recipe
+====================================================================================================================
+  [found] kappa = 1/2                                                                    FITTED                                     (closure_map/GATES.md)
+  [found] rho_DE(t) in a0(t) = kappa c sqrt(G rho_DE(t))                                 DATA                                       (WORKING_MODEL_SETTLED_PHANTOM_2026-10-06.md)
+  [found] kernel nu_mono (nu_RAR to y* = 2.3374, log splice delta = 0.05)                DECLARED FUNCTION (+1 shape constant delta) (CFG5_common.py)
+  [found] bound-only switch                                                              DECLARED RULE                              (closure_map/GATES.md)
+  [found] KiDS density edge x_e = 0.4                                                    DECLARED CONSTANT                          (closure_map/GATES.md)
+  [found] growth edge r_M/ln(1/(1 - f_b)) = 5.85 r_M with the turnaround catchment       DECLARED RULE (zero-knob given kappa, f_b) (STANDING_2026-09-29.md)
+  [found] cosmic baryon fraction f_b                                                     DATA                                       (STANDING_2026-09-29.md)
+  [found] cold-fluid amount Omega_c h^2 = 0.12                                           FITTED (as in LCDM)                        (closure_map/GATES.md)
+  [found] cold fluid relaxes toward the phantom target at rate Gamma (bookkeeping, not derived) DECLARED RULE                              (WORKING_MODEL_SETTLED_PHANTOM_2026-10-06.md)
+  [found] ownership (the Sun carries no phantom; globulars class E Newtonian)            DECLARED RULE                              (closure_map/GATES.md)
+  [found] lensing = GR lensing of the effective dark density (Phi = Psi)                 DECLARED RULE                              (closure_map/GATES.md)
+  [found] background cosmology GR + CDM at z >~ 10                                       DECLARED RULE                              (closure_map/GATES.md)
+  [found] baryon field includes gas pressure                                             DECLARED MODELLING RULE                    (WORKING_MODEL_SETTLED_PHANTOM_2026-10-06.md)
+  [found] stellar M/L Upsilon_disk                                                       NUISANCE (per data set)                    (closure_map/GATES.md)
+  [found] G = measured Newton constant (no alpha_c/2 correction without the chassis)     DECLARED                                   (closure_map/RECIPE_GATE_AUDIT_2026-10-03.md)
+  [PASS] K7a provenance: every inventory row's quoted source string is found in its committed file
+         measured: 15/15 found
+  inventory by class: {'FITTED': 2, 'DATA': 2, 'DECLARED FUNCTION': 1, 'DECLARED RULE': 6, 'DECLARED CONSTANT': 1, 'DECLARED MODELLING RULE': 1, 'NUISANCE': 1, 'DECLARED': 1}
+  gates that become UNTESTED (not passed): 16 (12 are status-board tiles found in the board script)
+     - Gravity waves at light speed: status board col. 1 (CFG292); GATES 4.02 NS for B
+     - Equations well-posed (high freq.): status board col. 1 (CFG292)
+     - Full nonlinear well-posedness: status board col. 1 (CFG294)
+     - Lapse condition, realistic matter: status board col. 1 (CFG312)
+     - Binary pulsars: status board col. 1 (CFG291/311); GATES 4.04 NS for B
+     - Strong coupling: status board col. 1 (XC1/XC3); GATES 5.03
+     - Solar system (PPN + Cassini Q2): status board col. 1 (CFG291/357; the chassis filter). B keeps GATES 4.01 via ownership; PPN alpha1/alpha2/gamma become untested
+     - Matter conservation (G9): status board col. 1 (CFG329)
+     - Structural order (G0): status board col. 1 (CFG329)
+     - Zero-field nonlinear, ungated: status board col. 1 (CFG358, FAIL chassis-only): becomes moot, not passed
+     - Black holes (EHT, LIGO ringdown): status board col. 1 (CFG318/319): the CFG467 tension disappears with the chassis, but BH physics becomes untested
+     - Radiative stability (G12): status board col. 4 (CFG320)
+     - lensing = dynamics as a derivation: GATES 4.03 (already NS as derivation for B)
+     - Newton/GR recovery, measured G derived: GATES 5.09
+     - DOF count / ghost freedom of a field theory: GATES 5.05, RECIPE G4/G5
+     - Cauchy problem / causality: GATES 5.04
+  dependency audit: 14 current B rows; rows using a chassis-only ingredient: 0
+  leads that use the chassis (lost as mechanisms, not passes): CFG373 khronon-lapse carrier (G1) [chassis khronon lapse]; CFG381 khronon reaction sink (+1 coupling) [chassis khronon]; CFG462 lapse settling edge (FAIL, exhaustion only) [chassis khronon lapse]; CFG483 khronon-boundary settling class (cold-fluid shock + khronon-lapse total field) [chassis khronon lapse]; khronon-class a0-rho_Lambda tie kappa = 2 sqrt(8 pi)/(3 beta) (WORKING_MODEL synthesis 4) [chassis khronon]
+  [PASS] K7b injecting one fake chassis dependency into a B pass turns the C verdict to FAILS
+         measured: FAILS
+  VERDICT C: WORKS-CONDITIONAL (condition: 16 gates untested; B is a recipe, not a theory; the tension is bypassed, not resolved)
+  [PASS] K8 a0 enters no computation (A4 windows and the B4 band identical under both footing labels; bookkeeping)
+         measured: identical: True
+
+====================================================================================================================
+SUMMARY
+====================================================================================================================
+  option A: WORKS-CONDITIONAL
+  option B: FAILS
+  option C: WORKS-CONDITIONAL
+
+  checks 28/29 pass; load-bearing failures 1; rc 1; runtime 142.9 s
+  kappa = 1/2 is FITTED; no dark-matter particle is added; the cold mass is still required; not 'theory closed'.
+rc=1

@@ -1,0 +1,8026 @@
+{
+ "lane": "CFG469",
+ "mutate": false,
+ "frozen_criteria_commit": "fd00569e9",
+ "checks": {
+  "K4a B1 the derived dispersions equal the closed forms: O_A omega^2 = c_S^2 k^2/(1 + eps k^2), O_K omega^2 = c_S^2 k^2 (1 + eps k^2), c_S^2 = c_2/alpha (test khronon)": {
+   "ok": true,
+   "measured": "O_A True, O_K True",
+   "load_bearing": true
+  },
+  "B1 both arms healthy with the frozen signs (kinetic > 0, omega^2 > 0 for all k); the opposite signs fail (O_A ghost at k > 1/sqrt(eps), O_K gradient instability)": {
+   "ok": true,
+   "measured": "healthy A True, K True; wrong-sign A ghost True, wrong-sign K omega^2 < 0 True",
+   "load_bearing": true
+  },
+  "K4b leaf-curvature (B-type) terms vanish at quadratic order on the test-khronon background: the leaf metric is delta_ij + O(eps^2), so R[h] = O(eps^2) and R^2, R_ij R^ij = O(eps^4)": {
+   "ok": true,
+   "measured": "O(eps) part of h_ij: Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0]])",
+   "load_bearing": true
+  },
+  "K1 at eps = 0 the derivation reproduces CFG319's committed S22, dK_ops, daa_ops exactly, and both UV arms reduce to the IR form": {
+   "ok": true,
+   "measured": "S22 diff 0; ops diffs [0, 0, 0, 0, 0, 0]; arms at eps=0 equal IR: {'A': True, 'K': True}",
+   "load_bearing": true
+  },
+  "K3 IR UH exponents: stealth background gives {-1, 0, (sqrt5-1)/2, -(sqrt5+1)/2} (s^2 + s - 1 = 0); the five W5 points (CFG319's y1, r_UH) reproduce CFG319's committed rootsU to 1e-8": {
+   "ok": true,
+   "measured": "stealth max dev 3.09e-40; per-point max dev {'W5 corner a_max l_min': 4.1682991803510866e-13, 'W5 corner a_max l_max': 2.396228868301091e-13, 'W5 centre': 1.9021121932000883e-13, 'W5 corner a_min l_min': 4.1276034427874047e-13, 'W5 corner a_min l_max': 1.210279602778771e-13}",
+   "load_bearing": true
+  },
+  "K2 IR count reproduces CFG319: 4 constants, 5 conditions strict (Delta +1), option C determined (lenient Delta 0)": {
+   "ok": true,
+   "measured": "N_const 4, strict 5, lenient 4",
+   "load_bearing": true
+  },
+  "K10 (added control, not in the frozen list) every analysis finds as many local solutions at the UH and at infinity as the order of the equation": {
+   "ok": true,
+   "measured": "35 analyses; all consistent: True",
+   "load_bearing": true
+  },
+  "B4 the M_* band is non-empty": {
+   "ok": true,
+   "measured": "upper edges 8.4799e+08 .. 9.8698e+08 GeV over 81 points; reading lower edge 1e-12 GeV (sub-mm tests, recalled, PROVISIONAL); non-empty at 81/81",
+   "load_bearing": false
+  },
+  "A1a T -> +infinity at the UH at every finite v: lim x H'(r_UH + x) = -1/(y1 W0), finite and non-zero from both sides": {
+   "ok": true,
+   "measured": "y1 = 2*sqrt(2)/3, W0 = sqrt(3)/3, kappa_U = y1 W0 = 2*sqrt(6)/9; limit + -3*sqrt(6)/4, limit - -3*sqrt(6)/4",
+   "load_bearing": true
+  },
+  "A1b the global time function tau = -exp(-kappa_U T) extends analytically across the UH (H' + 1/(kappa x) is regular), with d tau/dr != 0 and a timelike normal there (g^{mn} d tau d tau = e(r_UH) (d_r tau)^2 < 0)": {
+   "ok": true,
+   "measured": "negative powers in the series of H' + 1/(kappa x): False; e(r_UH) = -1/3; sign -1",
+   "load_bearing": true
+  },
+  "A1c fastest-signal reach from on/inside the UH (leaf = infinite speed, and c = 1, 444, 7.9e5, 1e12, both directions): max r <= r_UH + 1e-9": {
+   "ok": true,
+   "measured": "max r reached 1.5 at ('1.5', '-10', 'leaf', 1)",
+   "load_bearing": true
+  },
+  "K5 reach code control: from exterior start points the leaf reaches r = 1e4": {
+   "ok": true,
+   "measured": "max r 10042.792",
+   "load_bearing": true
+  },
+  "A1d O(v) persistence: delta tau ~ x^(1+s+) with 1 + s+ > 1 at all W5 points (tau stays C^1); control: the C' option (s-) gives 1 + s- < 0 (foliation destroyed) and is flagged": {
+   "ok": true,
+   "measured": "1+s+ ['1.6181952', '1.6180873', '1.6180409', '1.6180349', '1.6180343']; 1+s- ['-0.618195', '-0.618087', '-0.618041', '-0.618035', '-0.618034']",
+   "load_bearing": true
+  },
+  "A1e zero free data on the defect: option C has as many conditions as constants (computed K2 count), so the s+ amplitude is an output": {
+   "ok": true,
+   "measured": "free parameters on the UH = 0; CFG319 option C admissible at all W5: [True, True, True, True, True]",
+   "load_bearing": true
+  },
+  "A2a exterior regular: CFG319 option C admissible, modes -1 and 0 regular, s+ weak at all W5 points": {
+   "ok": true,
+   "measured": "['weakly singular', 'weakly singular', 'weakly singular', 'weakly singular', 'weakly singular']",
+   "load_bearing": true
+  },
+  "A2b O(v) stress / Ricci exponent p1 = s+ - 1 > -1 (integrable)": {
+   "ok": true,
+   "measured": "p1 ['-0.381805', '-0.381913', '-0.381959', '-0.381965', '-0.381966']",
+   "load_bearing": true
+  },
+  "A2c quadratic invariants at O(v^2): 2 p1 > -1, i.e. s+ > 1/2": {
+   "ok": true,
+   "measured": "2 p1 ['-0.76361', '-0.763825', '-0.763918', '-0.76393', '-0.763931'] (margin 0.118 in s+)",
+   "load_bearing": true
+  },
+  "A2d Tipler and Krolak integrals along radial free fall (dr/dtau = -sqrt(2/r) at r_UH, transversal) finite: the change of the single and double integrals between cut-offs 1e-15 and 1e-30 is < 1e-5": {
+   "ok": true,
+   "measured": "{'W5 corner a_max l_min': ('8.63e-10', '8.63e-10'), 'W5 corner a_max l_max': ('8.66e-10', '8.66e-10'), 'W5 centre': ('8.68e-10', '8.68e-10'), 'W5 corner a_min l_min': ('8.68e-10', '8.68e-10'), 'W5 corner a_min l_max': ('8.68e-10', '8.68e-10')}; dr/dtau = -1.1547",
+   "load_bearing": true
+  },
+  "K6 control: the s- mode's Krolak integral diverges (change between cut-offs > 1e10)": {
+   "ok": true,
+   "measured": "{'W5 corner a_max l_min': '2.17e+48', 'W5 corner a_max l_max': '2.16e+48', 'W5 centre': '2.15e+48', 'W5 corner a_min l_min': '2.15e+48', 'W5 corner a_min l_max': '2.15e+48'}",
+   "load_bearing": true
+  },
+  "A2e metric class C^{1, s+} with 0 < s+ < 1 and a transversal crossing: Hoelder Christoffels, unique transversal geodesics (Caratheodory)": {
+   "ok": true,
+   "measured": "s+ ['0.618195', '0.618087', '0.618041', '0.618035', '0.618034']",
+   "load_bearing": true
+  },
+  "A2f (ARG, reading) O(v) Killing-energy flux through the sphere: integral of cos(theta) = 0; the O(v^2) flux is r-independent (conservation) and vanishes at infinity for stationary decaying fields; O(v^2) fields not computed": {
+   "ok": true,
+   "measured": "integral = 0",
+   "load_bearing": false
+  },
+  "A3a the momentum dL/d(grad_m u_n) = -2 lambda K g^{mn} + 2 alpha u^m a^n contains only g, u, K, a (sympy); the option-C perturbations of K, a, u vanish at the UH (exponents >= 0), so the Noether charge and symplectic current are finite there": {
+   "ok": true,
+   "measured": "momentum identity True; exponents {'W5 corner a_max l_min': {'dK': 1.61819521743645, 'da, du': 0.61819521743645}, 'W5 corner a_max l_max': {'dK': 1.61808731465495, 'da, du': 0.61808731465495}, 'W5 centre': {'dK': 1.61804085715739, 'da, du': 0.61804085715739}, 'W5 corner a_min l_min': {'dK': 1.61803487331126, 'da, du': 0.61803487331126}, 'W5 corner a_min l_max': {'dK': 1.61803428123402, 'da, du': 0.61803428123402}}",
+   "load_bearing": true
+  },
+  "A3b kappa_UH unperturbed at O(v): its change ~ x^s+ -> 0 at the UH and carries cos(theta) (sphere average 0)": {
+   "ok": true,
+   "measured": "s+ > 0 at all W5: True; sphere average 0",
+   "load_bearing": true
+  },
+  "A3c the O(v) first law is trivial: delta A_UH = delta M = 0 for an l = 1 perturbation": {
+   "ok": true,
+   "measured": "integral cos(theta) sin(theta) dtheta = 0",
+   "load_bearing": true
+  },
+  "K9 alpha_rs reproduces CFG467's G11 edge (5.80e-14 / 1.18e-13 at the c_2 ends) to 1e-2, and the A4-0 window is non-empty exactly at c_2 >= 0.038 (3 points)": {
+   "ok": true,
+   "measured": "max rel dev 0.00e+00; non-empty at 3/9, first c_2 0.0383350090957384",
+   "load_bearing": true
+  },
+  "A4-H window (reading W + hierarchy) = CFG467's I_len = [9.624e-14, 3.2e-9] at every c_2": {
+   "ok": true,
+   "measured": "True",
+   "load_bearing": true
+  },
+  "A4-UV some healthy UV operator keeps option C (lenient count Delta_len <= 0)": {
+   "ok": true,
+   "measured": "Delta_len <= 0: O_K True, O_A True",
+   "load_bearing": true
+  },
+  "K7a provenance: every inventory row's quoted source string is found in its committed file": {
+   "ok": true,
+   "measured": "15/15 found",
+   "load_bearing": true
+  },
+  "K7b injecting one fake chassis dependency into a B pass turns the C verdict to FAILS": {
+   "ok": true,
+   "measured": "FAILS",
+   "load_bearing": true
+  },
+  "K8 a0 enters no computation (A4 windows and the B4 band identical under both footing labels; bookkeeping)": {
+   "ok": true,
+   "measured": "identical: True",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "inputs": {
+   "Lambda_HL_max_GeV": 986981030.6401844,
+   "M_P_GeV": 2.435e+18,
+   "W5": [
+    "W5 corner a_max l_min",
+    "W5 corner a_max l_max",
+    "W5 centre",
+    "W5 corner a_min l_min",
+    "W5 corner a_min l_max"
+   ],
+   "r_g_m": {
+    "10 Msun": 14767.0,
+    "M87* (6.5e9 Msun)": 9599000000000.0
+   },
+   "hbar_c_GeV_m": 1.973269804e-16
+  },
+  "B1": {
+   "IR": {
+    "EL_symbol": "-2*k**2*(-alpha*omega**2 + k**2*lambda)",
+    "kinetic_coeff": "2*alpha*k**2",
+    "omega2": "k**2*lambda/alpha"
+   },
+   "O_A healthy (+)": {
+    "EL_symbol": "2*k**2*(alpha*epsilon_UV*k**2*omega**2 + alpha*omega**2 - k**2*lambda)",
+    "kinetic_coeff": "2*alpha*k**2*(epsilon_UV*k**2 + 1)",
+    "omega2": "k**2*lambda/(alpha*(epsilon_UV*k**2 + 1))"
+   },
+   "O_A wrong sign (-)": {
+    "EL_symbol": "-2*k**2*(alpha*epsilon_UV*k**2*omega**2 - alpha*omega**2 + k**2*lambda)",
+    "kinetic_coeff": "-2*alpha*k**2*(epsilon_UV*k**2 - 1)",
+    "omega2": "-k**2*lambda/(alpha*(epsilon_UV*k**2 - 1))"
+   },
+   "O_K healthy (-)": {
+    "EL_symbol": "-2*k**2*(-alpha*omega**2 + epsilon_UV*k**4*lambda + k**2*lambda)",
+    "kinetic_coeff": "2*alpha*k**2",
+    "omega2": "k**2*lambda*(epsilon_UV*k**2 + 1)/alpha"
+   },
+   "O_K wrong sign (+)": {
+    "EL_symbol": "2*k**2*(alpha*omega**2 + epsilon_UV*k**4*lambda - k**2*lambda)",
+    "kinetic_coeff": "2*alpha*k**2",
+    "omega2": "-k**2*lambda*(epsilon_UV*k**2 - 1)/alpha"
+   }
+  },
+  "B2_top_coefficients": {
+   "IR": "8*Y0**4*(W**2*alpha - Y0**2*lambda)/(3*(W**2 - Y0**2 + 1)**2)",
+   "A": "8*W**2*Y0**6*alpha*epsilon_UV/(3*(W**2 - Y0**2 + 1)**2)",
+   "K": "-8*Y0**8*epsilon_UV*lambda/(3*(W**2 - Y0**2 + 1)**2)"
+  },
+  "rS_singular": {
+   "IR": true,
+   "A": false,
+   "K": false
+  },
+  "IR_stealth": {
+   "arm": "IR",
+   "point": "stealth",
+   "alpha": "3.2e-9",
+   "lambda": "0.0072888",
+   "eps": "0.0",
+   "uh": {
+    "m": {
+     "1": 1,
+     "2": 2,
+     "3": 3,
+     "0": 1,
+     "4": 4
+    },
+    "P": {
+     "1": 0,
+     "2": 0,
+     "3": 0,
+     "0": 1,
+     "4": 0
+    },
+    "edges": [],
+    "modes": [
+     {
+      "type": "Frobenius",
+      "s": "-1.61803398875",
+      "s_full": "-1.61803398874989484820458683436563811772",
+      "class": "strong",
+      "powers": {
+       "dK": [
+        -0.6180339887498949,
+        -1.618033988749895
+       ],
+       "d(a.a)": [
+        -1.618033988749895,
+        -2.618033988749895
+       ]
+      }
+     },
+     {
+      "type": "Frobenius",
+      "s": "-1.0",
+      "s_full": "-1.0",
+      "class": "regular",
+      "powers": {
+       "dK": [
+        0.0,
+        0.0
+       ],
+       "d(a.a)": [
+        0.0,
+        0.0
+       ]
+      }
+     },
+     {
+      "type": "Frobenius",
+      "s": "0.0",
+      "s_full": "0.0",
+      "class": "regular",
+      "powers": {
+       "dK": [
+        1.0,
+        0.0
+       ],
+       "d(a.a)": [
+        null,
+        null
+       ]
+      }
+     },
+     {
+      "type": "Frobenius",
+      "s": "0.61803398875",
+      "s_full": "0.6180339887498948482045868343656381177203",
+      "class": "weak",
+      "powers": {
+       "dK": [
+        1.618033988749895,
+        0.6180339887498949
+       ],
+       "d(a.a)": [
+        0.6180339887498949,
+        -0.38196601125010515
+       ]
+      }
+     }
+    ]
+   },
+   "inf": {
+    "m": {
+     "1": -2,
+     "2": 0,
+     "3": 1,
+     "0": -3,
+     "4": 2
+    },
+    "modes": [
+     {
+      "type": "power r^s",
+      "s": "-2.0",
+      "status": "admissible"
+     },
+     {
+      "type": "power r^s",
+      "s": "0.0",
+      "status": "admissible"
+     },
+     {
+      "type": "power r^s",
+      "s": "1.0",
+      "status": "boost (normalisation)"
+     },
+     {
+      "type": "power r^s",
+      "s": "3.0",
+      "status": "inadmissible"
+     }
+    ]
+   },
+   "count": {
+    "N_const": 4,
+    "inf_inadmissible": 1,
+    "normalisation": 1,
+    "r_S": 1,
+    "UH_nonregular": 2,
+    "UH_strong": 1,
+    "N_cond_strict": 5,
+    "N_cond_lenient": 4,
+    "Delta_strict": 1,
+    "Delta_lenient": 0,
+    "n_local_uh": 4,
+    "n_local_inf": 4
+   }
+  },
+  "B2_arms": {
+   "A": [
+    {
+     "arm": "A",
+     "point": "stealth",
+     "alpha": "3.2e-9",
+     "lambda": "0.0072888",
+     "eps": "0.0001",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-106.57190999",
+        "s_full": "-106.5719099898219433705556238192316358542",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -105.57190998982195,
+          -106.57190998982195
+         ],
+         "d(a.a)": [
+          -106.57190998982195,
+          -107.57190998982195
+         ],
+         "d(D.a)": [
+          -106.57190998982195,
+          -107.57190998982195
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61799423572",
+        "s_full": "-1.617994235723875922999552587646498619634",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6179942357238759,
+          -1.617994235723876
+         ],
+         "d(a.a)": [
+          -1.617994235723876,
+          -2.617994235723876
+         ],
+         "d(D.a)": [
+          -1.617994235723876,
+          -2.617994235723876
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.617994235724",
+        "s_full": "0.6179942357238759229995525876464986196338",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.617994235723876,
+          0.6179942357238759
+         ],
+         "d(a.a)": [
+          0.6179942357238759,
+          -0.3820057642761241
+         ],
+         "d(D.a)": [
+          0.6179942357238759,
+          -0.3820057642761241
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "105.57190999",
+        "s_full": "105.5719099898219433705556238192316358542",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          106.57190998982195,
+          105.57190998982195
+         ],
+         "d(a.a)": [
+          105.57190998982195,
+          104.57190998982195
+         ],
+         "d(D.a)": [
+          105.57190998982195,
+          104.57190998982195
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 116179.94j)",
+        "beta": "(-4.0 - 1.6871278e-354j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "3.92e-346"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 116179.94j)",
+        "beta": "(-4.0 + 1.6871278e-354j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "3.92e-346"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     }
+    },
+    {
+     "arm": "A",
+     "point": "stealth",
+     "alpha": "3.2e-9",
+     "lambda": "0.0072888",
+     "eps": "1.0e-20",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-10606601718.3",
+        "s_full": "-10606601718.29821286607159099667161454964",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -10606601717.298212,
+          -10606601718.298212
+         ],
+         "d(a.a)": [
+          -10606601718.298212,
+          -10606601719.298212
+         ],
+         "d(D.a)": [
+          -10606601718.298212,
+          -10606601719.298212
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61803398875",
+        "s_full": "-1.618033988749894848200611602405638491593",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180339887498949,
+          -1.618033988749895
+         ],
+         "d(a.a)": [
+          -1.618033988749895,
+          -2.618033988749895
+         ],
+         "d(D.a)": [
+          -1.618033988749895,
+          -2.618033988749895
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.61803398875",
+        "s_full": "0.6180339887498948482006116024056384915934",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.618033988749895,
+          0.6180339887498949
+         ],
+         "d(a.a)": [
+          0.6180339887498949,
+          -0.38196601125010515
+         ],
+         "d(D.a)": [
+          0.6180339887498949,
+          -0.38196601125010515
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "10606601717.3",
+        "s_full": "10606601717.29821286607159099667161454964",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          10606601718.298212,
+          10606601717.298212
+         ],
+         "d(a.a)": [
+          10606601717.298212,
+          10606601716.298212
+         ],
+         "d(D.a)": [
+          10606601717.298212,
+          10606601716.298212
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 1.1617994e+13j)",
+        "beta": "(-4.0 - 1.4828241e-346j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "3.75e-322"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 1.1617994e+13j)",
+        "beta": "(-4.0 + 1.4828241e-346j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "3.75e-322"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     }
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_max l_min",
+     "alpha": "0.0000000032",
+     "lambda": "0.007288800437803917",
+     "eps": "1.83304e-58",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-7.83554118261e+28",
+        "s_full": "-78355411826123791315876688263.96198785619",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -7.835541182612379e+28,
+          -7.835541182612379e+28
+         ],
+         "d(a.a)": [
+          -7.835541182612379e+28,
+          -7.835541182612379e+28
+         ],
+         "d(D.a)": [
+          -7.835541182612379e+28,
+          -7.835541182612379e+28
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61819521744",
+        "s_full": "-1.618195217436866829918035108652555210346",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6181952174368668,
+          -1.6181952174368668
+         ],
+         "d(a.a)": [
+          -1.6181952174368668,
+          -2.618195217436867
+         ],
+         "d(D.a)": [
+          -1.6181952174368668,
+          -2.618195217436867
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618195217437",
+        "s_full": "0.6181952174368668299180351086525552103456",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6181952174368668,
+          0.6181952174368668
+         ],
+         "d(a.a)": [
+          0.6181952174368668,
+          -0.38180478256313316
+         ],
+         "d(D.a)": [
+          0.6181952174368668,
+          -0.38180478256313316
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "7.83554118261e+28",
+        "s_full": "78355411826123791315876688262.96198785619",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          7.835541182612379e+28,
+          7.835541182612379e+28
+         ],
+         "d(a.a)": [
+          7.835541182612379e+28,
+          7.835541182612379e+28
+         ],
+         "d(D.a)": [
+          7.835541182612379e+28,
+          7.835541182612379e+28
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 8.5811544e+31j)",
+        "beta": "(-4.0 + 6.6580153e-328j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "1.55e-265"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 8.5811544e+31j)",
+        "beta": "(-4.0 - 6.6580153e-328j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "1.55e-265"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "10 Msun",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_max l_min",
+     "alpha": "0.0000000032",
+     "lambda": "0.007288800437803917",
+     "eps": "4.33814e-76",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-5.09334054391e+37",
+        "s_full": "-50933405439084598959917405745308567849.87",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -5.09334054390846e+37,
+          -5.09334054390846e+37
+         ],
+         "d(a.a)": [
+          -5.09334054390846e+37,
+          -5.09334054390846e+37
+         ],
+         "d(D.a)": [
+          -5.09334054390846e+37,
+          -5.09334054390846e+37
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61819521744",
+        "s_full": "-1.618195217436866829918035108652555210346",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6181952174368668,
+          -1.6181952174368668
+         ],
+         "d(a.a)": [
+          -1.6181952174368668,
+          -2.618195217436867
+         ],
+         "d(D.a)": [
+          -1.6181952174368668,
+          -2.618195217436867
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618195217437",
+        "s_full": "0.6181952174368668299180351086525552103456",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6181952174368668,
+          0.6181952174368668
+         ],
+         "d(a.a)": [
+          0.6181952174368668,
+          -0.38180478256313316
+         ],
+         "d(D.a)": [
+          0.6181952174368668,
+          -0.38180478256313316
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "5.09334054391e+37",
+        "s_full": "50933405439084598959917405745308567848.87",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          5.09334054390846e+37,
+          5.09334054390846e+37
+         ],
+         "d(a.a)": [
+          5.09334054390846e+37,
+          5.09334054390846e+37
+         ],
+         "d(D.a)": [
+          5.09334054390846e+37,
+          5.09334054390846e+37
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 5.5780118e+40j)",
+        "beta": "(-4.0 - 3.7178428e-319j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "5.28e-239"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 5.5780118e+40j)",
+        "beta": "(-4.0 + 3.7178428e-319j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "5.28e-239"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "M87* (6.5e9 Msun)",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_max l_min",
+     "alpha": "0.0000000032",
+     "lambda": "0.007288800437803917",
+     "eps": "1.78562e-16",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-79388974.952",
+        "s_full": "-79388974.95202185488439649508093826520139",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -79388973.95202185,
+          -79388974.95202185
+         ],
+         "d(a.a)": [
+          -79388974.95202185,
+          -79388975.95202185
+         ],
+         "d(D.a)": [
+          -79388974.95202185,
+          -79388975.95202185
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61819521744",
+        "s_full": "-1.618195217436866758945789866694056054157",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6181952174368668,
+          -1.6181952174368668
+         ],
+         "d(a.a)": [
+          -1.6181952174368668,
+          -2.618195217436867
+         ],
+         "d(D.a)": [
+          -1.6181952174368668,
+          -2.618195217436867
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618195217437",
+        "s_full": "0.6181952174368667589457898666940560541567",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6181952174368668,
+          0.6181952174368668
+         ],
+         "d(a.a)": [
+          0.6181952174368668,
+          -0.3818047825631332
+         ],
+         "d(D.a)": [
+          0.6181952174368668,
+          -0.3818047825631332
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "79388973.952",
+        "s_full": "79388973.95202185488439649508093826520139",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          79388974.95202185,
+          79388973.95202185
+         ],
+         "d(a.a)": [
+          79388973.95202185,
+          79388972.95202185
+         ],
+         "d(D.a)": [
+          79388973.95202185,
+          79388972.95202185
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 8.6943458e+10j)",
+        "beta": "(-4.0 + 6.590258e-349j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "2.64e-328"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 8.6943458e+10j)",
+        "beta": "(-4.0 - 6.590258e-349j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "2.64e-328"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 1e-12,
+     "hole": "10 Msun",
+     "M_star_label": "band low (reading)"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_max l_max",
+     "alpha": "0.0000000032",
+     "lambda": "0.06666666666666667",
+     "eps": "1.83304e-58",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-7.83459848872e+28",
+        "s_full": "-78345984887154301584819168674.80712510025",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -7.83459848871543e+28,
+          -7.83459848871543e+28
+         ],
+         "d(a.a)": [
+          -7.83459848871543e+28,
+          -7.83459848871543e+28
+         ],
+         "d(D.a)": [
+          -7.83459848871543e+28,
+          -7.83459848871543e+28
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61808731466",
+        "s_full": "-1.618087314655189622886830109128340263526",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180873146551896,
+          -1.6180873146551895
+         ],
+         "d(a.a)": [
+          -1.6180873146551895,
+          -2.6180873146551895
+         ],
+         "d(D.a)": [
+          -1.6180873146551895,
+          -2.6180873146551895
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618087314655",
+        "s_full": "0.6180873146551896228868301091283402635264",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180873146551895,
+          0.6180873146551896
+         ],
+         "d(a.a)": [
+          0.6180873146551896,
+          -0.3819126853448104
+         ],
+         "d(D.a)": [
+          0.6180873146551896,
+          -0.3819126853448104
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "7.83459848872e+28",
+        "s_full": "78345984887154301584819168673.80712510025",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          7.83459848871543e+28,
+          7.83459848871543e+28
+         ],
+         "d(a.a)": [
+          7.83459848871543e+28,
+          7.83459848871543e+28
+         ],
+         "d(D.a)": [
+          7.83459848871543e+28,
+          7.83459848871543e+28
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 2.5952076e+32j)",
+        "beta": "(-4.0 + 1.2437148e-327j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "9.92e-264"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 2.5952076e+32j)",
+        "beta": "(-4.0 - 1.2437148e-327j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "9.92e-264"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "10 Msun",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_max l_max",
+     "alpha": "0.0000000032",
+     "lambda": "0.06666666666666667",
+     "eps": "4.33814e-76",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-5.09272776415e+37",
+        "s_full": "-50927277641483994102571896804000412666.4",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -5.0927277641484e+37,
+          -5.0927277641484e+37
+         ],
+         "d(a.a)": [
+          -5.0927277641484e+37,
+          -5.0927277641484e+37
+         ],
+         "d(D.a)": [
+          -5.0927277641484e+37,
+          -5.0927277641484e+37
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61808731466",
+        "s_full": "-1.618087314655189622886830109128340263526",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180873146551896,
+          -1.6180873146551895
+         ],
+         "d(a.a)": [
+          -1.6180873146551895,
+          -2.6180873146551895
+         ],
+         "d(D.a)": [
+          -1.6180873146551895,
+          -2.6180873146551895
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618087314655",
+        "s_full": "0.6180873146551896228868301091283402635264",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180873146551895,
+          0.6180873146551896
+         ],
+         "d(a.a)": [
+          0.6180873146551896,
+          -0.3819126853448104
+         ],
+         "d(D.a)": [
+          0.6180873146551896,
+          -0.3819126853448104
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "5.09272776415e+37",
+        "s_full": "50927277641483994102571896804000412665.4",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          5.0927277641484e+37,
+          5.0927277641484e+37
+         ],
+         "d(a.a)": [
+          5.0927277641484e+37,
+          5.0927277641484e+37
+         ],
+         "d(D.a)": [
+          5.0927277641484e+37,
+          5.0927277641484e+37
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 1.686964e+41j)",
+        "beta": "(-4.0 + 0.0j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "9.83e-237"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 1.686964e+41j)",
+        "beta": "(-4.0 + 0.0j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "9.83e-237"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "M87* (6.5e9 Msun)",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_max l_max",
+     "alpha": "0.0000000032",
+     "lambda": "0.06666666666666667",
+     "eps": "1.78562e-16",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-79379423.6651",
+        "s_full": "-79379423.66514111803098612841006025283081",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -79379422.66514112,
+          -79379423.66514112
+         ],
+         "d(a.a)": [
+          -79379423.66514112,
+          -79379424.66514112
+         ],
+         "d(D.a)": [
+          -79379423.66514112,
+          -79379424.66514112
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61808731466",
+        "s_full": "-1.618087314655189551907778788840523104836",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180873146551895,
+          -1.6180873146551895
+         ],
+         "d(a.a)": [
+          -1.6180873146551895,
+          -2.6180873146551895
+         ],
+         "d(D.a)": [
+          -1.6180873146551895,
+          -2.6180873146551895
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618087314655",
+        "s_full": "0.6180873146551895519077787888405231048362",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180873146551895,
+          0.6180873146551895
+         ],
+         "d(a.a)": [
+          0.6180873146551895,
+          -0.38191268534481043
+         ],
+         "d(D.a)": [
+          0.6180873146551895,
+          -0.38191268534481043
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "79379422.6651",
+        "s_full": "79379422.66514111803098612841006025283081",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          79379423.66514112,
+          79379422.66514112
+         ],
+         "d(a.a)": [
+          79379422.66514112,
+          79379421.66514112
+         ],
+         "d(D.a)": [
+          79379422.66514112,
+          79379421.66514112
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 2.6294402e+11j)",
+        "beta": "(-4.0 - 1.2310578e-348j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "3.38e-326"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 2.6294402e+11j)",
+        "beta": "(-4.0 + 1.2310578e-348j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "3.38e-326"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 1e-12,
+     "hole": "10 Msun",
+     "M_star_label": "band low (reading)"
+    },
+    {
+     "arm": "A",
+     "point": "W5 centre",
+     "alpha": "0.000000000017549060799417394",
+     "lambda": "0.022043593835555212",
+     "eps": "1.83304e-58",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-7.83419191584e+28",
+        "s_full": "-78341919158378808886198854192.31193660836",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -7.8341919158378805e+28,
+          -7.8341919158378805e+28
+         ],
+         "d(a.a)": [
+          -7.8341919158378805e+28,
+          -7.8341919158378805e+28
+         ],
+         "d(D.a)": [
+          -7.8341919158378805e+28,
+          -7.8341919158378805e+28
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61804085716",
+        "s_full": "-1.618040857157209788780679991163422039003",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180408571572098,
+          -1.6180408571572098
+         ],
+         "d(a.a)": [
+          -1.6180408571572098,
+          -2.61804085715721
+         ],
+         "d(D.a)": [
+          -1.6180408571572098,
+          -2.61804085715721
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618040857157",
+        "s_full": "0.6180408571572097887806799911634220390031",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180408571572098,
+          0.6180408571572098
+         ],
+         "d(a.a)": [
+          0.6180408571572098,
+          -0.3819591428427902
+         ],
+         "d(D.a)": [
+          0.6180408571572098,
+          -0.3819591428427902
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "7.83419191584e+28",
+        "s_full": "78341919158378808886198854191.31193660836",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          7.8341919158378805e+28,
+          7.8341919158378805e+28
+         ],
+         "d(a.a)": [
+          7.8341919158378805e+28,
+          7.8341919158378805e+28
+         ],
+         "d(D.a)": [
+          7.8341919158378805e+28,
+          7.8341919158378805e+28
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 2.0151482e+33j)",
+        "beta": "(-4.0 + 1.6454037e-326j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "5.34e-261"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 2.0151482e+33j)",
+        "beta": "(-4.0 - 1.6454037e-326j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "5.34e-261"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "10 Msun",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "A",
+     "point": "W5 centre",
+     "alpha": "0.000000000017549060799417394",
+     "lambda": "0.022043593835555212",
+     "eps": "4.33814e-76",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-5.09246347939e+37",
+        "s_full": "-50924634793883536703367156591535368017.27",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -5.092463479388354e+37,
+          -5.092463479388354e+37
+         ],
+         "d(a.a)": [
+          -5.092463479388354e+37,
+          -5.092463479388354e+37
+         ],
+         "d(D.a)": [
+          -5.092463479388354e+37,
+          -5.092463479388354e+37
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61804085716",
+        "s_full": "-1.618040857157209788780679991163422039003",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180408571572098,
+          -1.6180408571572098
+         ],
+         "d(a.a)": [
+          -1.6180408571572098,
+          -2.61804085715721
+         ],
+         "d(D.a)": [
+          -1.6180408571572098,
+          -2.61804085715721
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618040857157",
+        "s_full": "0.6180408571572097887806799911634220390031",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180408571572098,
+          0.6180408571572098
+         ],
+         "d(a.a)": [
+          0.6180408571572098,
+          -0.3819591428427902
+         ],
+         "d(D.a)": [
+          0.6180408571572098,
+          -0.3819591428427902
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "5.09246347939e+37",
+        "s_full": "50924634793883536703367156591535368016.27",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          5.092463479388354e+37,
+          5.092463479388354e+37
+         ],
+         "d(a.a)": [
+          5.092463479388354e+37,
+          5.092463479388354e+37
+         ],
+         "d(D.a)": [
+          5.092463479388354e+37,
+          5.092463479388354e+37
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 1.3099077e+42j)",
+        "beta": "(-4.0 - 1.0783082e-317j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "1.26e-234"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 1.3099077e+42j)",
+        "beta": "(-4.0 + 1.0783082e-317j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "1.26e-234"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "M87* (6.5e9 Msun)",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "A",
+     "point": "W5 centre",
+     "alpha": "0.000000000017549060799417394",
+     "lambda": "0.022043593835555212",
+     "eps": "1.78562e-16",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-79375304.3066",
+        "s_full": "-79375304.30656250831874813289679764238955",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -79375303.30656251,
+          -79375304.30656251
+         ],
+         "d(a.a)": [
+          -79375304.30656251,
+          -79375305.30656251
+         ],
+         "d(D.a)": [
+          -79375304.30656251,
+          -79375305.30656251
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61804085716",
+        "s_full": "-1.618040857157209717798685422811148004282",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180408571572097,
+          -1.6180408571572098
+         ],
+         "d(a.a)": [
+          -1.6180408571572098,
+          -2.61804085715721
+         ],
+         "d(D.a)": [
+          -1.6180408571572098,
+          -2.61804085715721
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618040857157",
+        "s_full": "0.6180408571572097177986854228111480042816",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180408571572098,
+          0.6180408571572097
+         ],
+         "d(a.a)": [
+          0.6180408571572097,
+          -0.38195914284279026
+         ],
+         "d(D.a)": [
+          0.6180408571572097,
+          -0.38195914284279026
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "79375303.3066",
+        "s_full": "79375303.30656250831874813289679764238955",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          79375304.30656251,
+          79375303.30656251
+         ],
+         "d(a.a)": [
+          79375303.30656251,
+          79375302.30656251
+         ],
+         "d(D.a)": [
+          79375303.30656251,
+          79375302.30656251
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 2.0417294e+12j)",
+        "beta": "(-4.0 - 1.7643803e-347j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "1.05e-323"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 2.0417294e+12j)",
+        "beta": "(-4.0 + 1.7643803e-347j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "1.05e-323"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 1e-12,
+     "hole": "10 Msun",
+     "M_star_label": "band low (reading)"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_min l_min",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.007288800437803917",
+     "eps": "1.83304e-58",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-7.83413951141e+28",
+        "s_full": "-78341395114112072485590505075.72746988643",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -7.834139511411207e+28,
+          -7.834139511411207e+28
+         ],
+         "d(a.a)": [
+          -7.834139511411207e+28,
+          -7.834139511411207e+28
+         ],
+         "d(D.a)": [
+          -7.834139511411207e+28,
+          -7.834139511411207e+28
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61803487331",
+        "s_full": "-1.618034873310887239655721259543208774721",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180348733108872,
+          -1.6180348733108871
+         ],
+         "d(a.a)": [
+          -1.6180348733108871,
+          -2.6180348733108874
+         ],
+         "d(D.a)": [
+          -1.6180348733108871,
+          -2.6180348733108874
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034873311",
+        "s_full": "0.6180348733108872396557212595432087747214",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180348733108871,
+          0.6180348733108872
+         ],
+         "d(a.a)": [
+          0.6180348733108872,
+          -0.38196512668911276
+         ],
+         "d(D.a)": [
+          0.6180348733108872,
+          -0.38196512668911276
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "7.83413951141e+28",
+        "s_full": "78341395114112072485590505074.72746988643",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          7.834139511411207e+28,
+          7.834139511411207e+28
+         ],
+         "d(a.a)": [
+          7.834139511411207e+28,
+          7.834139511411207e+28
+         ],
+         "d(D.a)": [
+          7.834139511411207e+28,
+          7.834139511411207e+28
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 1.5647388e+34j)",
+        "beta": "(-4.0 - 1.088414e-325j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "1.43e-258"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 1.5647388e+34j)",
+        "beta": "(-4.0 + 1.088414e-325j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "1.43e-258"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "10 Msun",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_min l_min",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.007288800437803917",
+     "eps": "4.33814e-76",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-5.09242941491e+37",
+        "s_full": "-50924294149140772248200938458529727327.64",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -5.092429414914077e+37,
+          -5.092429414914077e+37
+         ],
+         "d(a.a)": [
+          -5.092429414914077e+37,
+          -5.092429414914077e+37
+         ],
+         "d(D.a)": [
+          -5.092429414914077e+37,
+          -5.092429414914077e+37
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61803487331",
+        "s_full": "-1.618034873310887239655721259543208774721",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180348733108872,
+          -1.6180348733108871
+         ],
+         "d(a.a)": [
+          -1.6180348733108871,
+          -2.6180348733108874
+         ],
+         "d(D.a)": [
+          -1.6180348733108871,
+          -2.6180348733108874
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034873311",
+        "s_full": "0.6180348733108872396557212595432087747214",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180348733108871,
+          0.6180348733108872
+         ],
+         "d(a.a)": [
+          0.6180348733108872,
+          -0.38196512668911276
+         ],
+         "d(D.a)": [
+          0.6180348733108872,
+          -0.38196512668911276
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "5.09242941491e+37",
+        "s_full": "50924294149140772248200938458529727326.64",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          5.092429414914077e+37,
+          5.092429414914077e+37
+         ],
+         "d(a.a)": [
+          5.092429414914077e+37,
+          5.092429414914077e+37
+         ],
+         "d(D.a)": [
+          5.092429414914077e+37,
+          5.092429414914077e+37
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 1.0171279e+43j)",
+        "beta": "(-4.0 + 5.4868263e-318j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "2.42e-232"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 1.0171279e+43j)",
+        "beta": "(-4.0 - 5.4868263e-318j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "2.42e-232"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "M87* (6.5e9 Msun)",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_min l_min",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.007288800437803917",
+     "eps": "1.78562e-16",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-79374773.3498",
+        "s_full": "-79374773.34978576409865638853085986262268",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -79374772.34978576,
+          -79374773.34978576
+         ],
+         "d(a.a)": [
+          -79374773.34978576,
+          -79374774.34978576
+         ],
+         "d(D.a)": [
+          -79374773.34978576,
+          -79374774.34978576
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61803487331",
+        "s_full": "-1.618034873310887168673346914446092002937",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180348733108871,
+          -1.6180348733108871
+         ],
+         "d(a.a)": [
+          -1.6180348733108871,
+          -2.6180348733108874
+         ],
+         "d(D.a)": [
+          -1.6180348733108871,
+          -2.6180348733108874
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034873311",
+        "s_full": "0.6180348733108871686733469144460920029368",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180348733108871,
+          0.6180348733108871
+         ],
+         "d(a.a)": [
+          0.6180348733108871,
+          -0.3819651266891128
+         ],
+         "d(D.a)": [
+          0.6180348733108871,
+          -0.3819651266891128
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "79374772.3498",
+        "s_full": "79374772.34978576409865638853085986262268",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          79374773.34978576,
+          79374772.34978576
+         ],
+         "d(a.a)": [
+          79374772.34978576,
+          79374771.34978576
+         ],
+         "d(D.a)": [
+          79374772.34978576,
+          79374771.34978576
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 1.5853788e+13j)",
+        "beta": "(-4.0 + 0.0j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "1.58e-322"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 1.5853788e+13j)",
+        "beta": "(-4.0 + 0.0j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "1.58e-322"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 1e-12,
+     "hole": "10 Msun",
+     "M_star_label": "band low (reading)"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_min l_max",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.06666666666666667",
+     "eps": "2.4832e-58",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-6.73085901288e+28",
+        "s_full": "-67308590128836434693705622378.65889371225",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -6.730859012883643e+28,
+          -6.730859012883643e+28
+         ],
+         "d(a.a)": [
+          -6.730859012883643e+28,
+          -6.730859012883643e+28
+         ],
+         "d(D.a)": [
+          -6.730859012883643e+28,
+          -6.730859012883643e+28
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61803428123",
+        "s_full": "-1.618034281233898972039722122901760464586",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180342812338989,
+          -1.618034281233899
+         ],
+         "d(a.a)": [
+          -1.618034281233899,
+          -2.618034281233899
+         ],
+         "d(D.a)": [
+          -1.618034281233899,
+          -2.618034281233899
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034281234",
+        "s_full": "0.6180342812338989720397221229017604645859",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.618034281233899,
+          0.6180342812338989
+         ],
+         "d(a.a)": [
+          0.6180342812338989,
+          -0.381965718766101
+         ],
+         "d(D.a)": [
+          0.6180342812338989,
+          -0.381965718766101
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "6.73085901288e+28",
+        "s_full": "67308590128836434693705622377.65889371225",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          6.730859012883643e+28,
+          6.730859012883643e+28
+         ],
+         "d(a.a)": [
+          6.730859012883643e+28,
+          6.730859012883643e+28
+         ],
+         "d(D.a)": [
+          6.730859012883643e+28,
+          6.730859012883643e+28
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 4.0658156e+34j)",
+        "beta": "(-4.0 + 1.7364566e-325j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "2.75e-256"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 4.0658156e+34j)",
+        "beta": "(-4.0 - 1.7364566e-325j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "2.75e-256"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 847985225.8709937,
+     "hole": "10 Msun",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_min l_max",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.06666666666666667",
+     "eps": "5.87685e-76",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-4.37526347022e+37",
+        "s_full": "-43752634702153513687606167075773496360.21",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -4.375263470215351e+37,
+          -4.375263470215351e+37
+         ],
+         "d(a.a)": [
+          -4.375263470215351e+37,
+          -4.375263470215351e+37
+         ],
+         "d(D.a)": [
+          -4.375263470215351e+37,
+          -4.375263470215351e+37
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61803428123",
+        "s_full": "-1.618034281233898972039722122901760464586",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180342812338989,
+          -1.618034281233899
+         ],
+         "d(a.a)": [
+          -1.618034281233899,
+          -2.618034281233899
+         ],
+         "d(D.a)": [
+          -1.618034281233899,
+          -2.618034281233899
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034281234",
+        "s_full": "0.6180342812338989720397221229017604645859",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.618034281233899,
+          0.6180342812338989
+         ],
+         "d(a.a)": [
+          0.6180342812338989,
+          -0.381965718766101
+         ],
+         "d(D.a)": [
+          0.6180342812338989,
+          -0.381965718766101
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "4.37526347022e+37",
+        "s_full": "43752634702153513687606167075773496359.21",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          4.375263470215351e+37,
+          4.375263470215351e+37
+         ],
+         "d(a.a)": [
+          4.375263470215351e+37,
+          4.375263470215351e+37
+         ],
+         "d(D.a)": [
+          4.375263470215351e+37,
+          4.375263470215351e+37
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 2.6429041e+43j)",
+        "beta": "(-4.0 + 2.100885e-316j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "5.93e-230"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 2.6429041e+43j)",
+        "beta": "(-4.0 - 2.100885e-316j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "5.93e-230"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 847985225.8709937,
+     "hole": "M87* (6.5e9 Msun)",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "A",
+     "point": "W5 corner a_min l_max",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.06666666666666667",
+     "eps": "1.78562e-16",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 5,
+       "6": 6
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 0,
+       "6": 0
+      },
+      "edges": [],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-79374720.808",
+        "s_full": "-79374720.80801192414638997480078351852327",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -79374719.80801192,
+          -79374720.80801192
+         ],
+         "d(a.a)": [
+          -79374720.80801192,
+          -79374721.80801192
+         ],
+         "d(D.a)": [
+          -79374720.80801192,
+          -79374721.80801192
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.61803428123",
+        "s_full": "-1.618034281233898901057310189960522922072",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180342812338989,
+          -1.6180342812338988
+         ],
+         "d(a.a)": [
+          -1.6180342812338988,
+          -2.618034281233899
+         ],
+         "d(D.a)": [
+          -1.6180342812338988,
+          -2.618034281233899
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d(D.a)": [
+          0.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034281234",
+        "s_full": "0.6180342812338989010573101899605229220716",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180342812338988,
+          0.6180342812338989
+         ],
+         "d(a.a)": [
+          0.6180342812338989,
+          -0.3819657187661011
+         ],
+         "d(D.a)": [
+          0.6180342812338989,
+          -0.3819657187661011
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "79374719.808",
+        "s_full": "79374719.80801192414638997480078351852327",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          79374720.80801192,
+          79374719.80801192
+         ],
+         "d(a.a)": [
+          79374719.80801192,
+          79374718.80801192
+         ],
+         "d(D.a)": [
+          79374719.80801192,
+          79374718.80801192
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": -3,
+       "6": -2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 - 4.7946774e+13j)",
+        "beta": "(-4.0 + 2.1801682e-346j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "4.86e-319"
+       },
+       {
+        "type": "exp(int b r^2)",
+        "b": "(0.0 + 4.7946774e+13j)",
+        "beta": "(-4.0 - 2.1801682e-346j)",
+        "status": "inadmissible (oscillatory; F'' or F''' does not decay)",
+        "transport_residual": "4.86e-319"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 3,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 3,
+      "UH_strong": 2,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 1e-12,
+     "hole": "10 Msun",
+     "M_star_label": "band low (reading)"
+    }
+   ],
+   "K": [
+    {
+     "arm": "K",
+     "point": "stealth",
+     "alpha": "3.2e-9",
+     "lambda": "0.0072888",
+     "eps": "0.0001",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61803398875",
+        "s_full": "-1.61803398874989484820458683436563811772",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180339887498949,
+          -1.618033988749895
+         ],
+         "d(a.a)": [
+          -1.618033988749895,
+          -2.618033988749895
+         ],
+         "d((DK)^2)": [
+          0.38196601125010515,
+          -0.6180339887498949
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.61803398875",
+        "s_full": "0.6180339887498948482045868343656381177203",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.618033988749895,
+          0.6180339887498949
+         ],
+         "d(a.a)": [
+          0.6180339887498949,
+          -0.38196601125010515
+         ],
+         "d((DK)^2)": [
+          2.618033988749895,
+          1.618033988749895
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 0.043036691j)",
+        "beta": "(1.0 - 0.019127418j)",
+        "class": "strong",
+        "transport_residual": "9.9e-375",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 0.043036691j)",
+        "beta": "(1.0 + 0.019127418j)",
+        "class": "strong",
+        "transport_residual": "9.9e-375",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-100.0",
+        "beta": "-101.0",
+        "status": "admissible (decaying)",
+        "transport_residual": "7.79e-353"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "100.0",
+        "beta": "99.0",
+        "status": "inadmissible (growing)",
+        "transport_residual": "7.79e-353"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     }
+    },
+    {
+     "arm": "K",
+     "point": "stealth",
+     "alpha": "3.2e-9",
+     "lambda": "0.0072888",
+     "eps": "1.0e-20",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61803398875",
+        "s_full": "-1.61803398874989484820458683436563811772",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180339887498949,
+          -1.618033988749895
+         ],
+         "d(a.a)": [
+          -1.618033988749895,
+          -2.618033988749895
+         ],
+         "d((DK)^2)": [
+          0.38196601125010515,
+          -0.6180339887498949
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.61803398875",
+        "s_full": "0.6180339887498948482045868343656381177203",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.618033988749895,
+          0.6180339887498949
+         ],
+         "d(a.a)": [
+          0.6180339887498949,
+          -0.38196601125010515
+         ],
+         "d((DK)^2)": [
+          2.618033988749895,
+          1.618033988749895
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 4303669.1j)",
+        "beta": "(1.0 - 1912741.8j)",
+        "class": "strong",
+        "transport_residual": "2.14e-342",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 4303669.1j)",
+        "beta": "(1.0 + 1912741.8j)",
+        "class": "strong",
+        "transport_residual": "2.14e-342",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-1.0e+10",
+        "beta": "-1.0e+10",
+        "status": "admissible (decaying)",
+        "transport_residual": "7.91e-323"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "1.0e+10",
+        "beta": "1.0e+10",
+        "status": "inadmissible (growing)",
+        "transport_residual": "7.91e-323"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     }
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_max l_min",
+     "alpha": "0.0000000032",
+     "lambda": "0.007288800437803917",
+     "eps": "1.83304e-58",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61819521744",
+        "s_full": "-1.618195217436866829918035108652555210346",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6181952174368668,
+          -1.6181952174368668
+         ],
+         "d(a.a)": [
+          -1.6181952174368668,
+          -2.618195217436867
+         ],
+         "d((DK)^2)": [
+          0.38180478256313316,
+          -0.6181952174368668
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618195217437",
+        "s_full": "0.6181952174368668299180351086525552103456",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6181952174368668,
+          0.6181952174368668
+         ],
+         "d(a.a)": [
+          0.6181952174368668,
+          -0.38180478256313316
+         ],
+         "d((DK)^2)": [
+          2.618195217436867,
+          1.6181952174368668
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 3.1798748e+25j)",
+        "beta": "(1.0 - 1.4142977e+25j)",
+        "class": "strong",
+        "transport_residual": "8.72e-267",
+        "powers": {
+         "dK": [
+          -0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          -0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 3.1798748e+25j)",
+        "beta": "(1.0 + 1.4142977e+25j)",
+        "class": "strong",
+        "transport_residual": "8.72e-267",
+        "powers": {
+         "dK": [
+          -0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          -0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-7.3860903e+28",
+        "beta": "-7.3860903e+28",
+        "status": "admissible (decaying)",
+        "transport_residual": "7.36e-219"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "7.3860903e+28",
+        "beta": "7.3860903e+28",
+        "status": "inadmissible (growing)",
+        "transport_residual": "7.36e-219"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "10 Msun",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_max l_min",
+     "alpha": "0.0000000032",
+     "lambda": "0.007288800437803917",
+     "eps": "4.33814e-76",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61819521744",
+        "s_full": "-1.618195217436866829918035108652555210346",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6181952174368668,
+          -1.6181952174368668
+         ],
+         "d(a.a)": [
+          -1.6181952174368668,
+          -2.618195217436867
+         ],
+         "d((DK)^2)": [
+          0.38180478256313316,
+          -0.6181952174368668
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618195217437",
+        "s_full": "0.6181952174368668299180351086525552103456",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6181952174368668,
+          0.6181952174368668
+         ],
+         "d(a.a)": [
+          0.6181952174368668,
+          -0.38180478256313316
+         ],
+         "d((DK)^2)": [
+          2.618195217436867,
+          1.6181952174368668
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 2.0670155e+34j)",
+        "beta": "(1.0 - 9.1933659e+33j)",
+        "class": "strong",
+        "transport_residual": "6.44e-232",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 2.0670155e+34j)",
+        "beta": "(1.0 + 9.1933659e+33j)",
+        "class": "strong",
+        "transport_residual": "6.44e-232",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-4.8011837e+37",
+        "beta": "-4.8011837e+37",
+        "status": "admissible (decaying)",
+        "transport_residual": "6.36e-175"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "4.8011837e+37",
+        "beta": "4.8011837e+37",
+        "status": "inadmissible (growing)",
+        "transport_residual": "6.36e-175"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "M87* (6.5e9 Msun)",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_max l_min",
+     "alpha": "0.0000000032",
+     "lambda": "0.007288800437803917",
+     "eps": "1.78562e-16",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61819521744",
+        "s_full": "-1.618195217436866829918035108652555210346",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6181952174368668,
+          -1.6181952174368668
+         ],
+         "d(a.a)": [
+          -1.6181952174368668,
+          -2.618195217436867
+         ],
+         "d((DK)^2)": [
+          0.38180478256313316,
+          -0.6181952174368668
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618195217437",
+        "s_full": "0.6181952174368668299180351086525552103456",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6181952174368668,
+          0.6181952174368668
+         ],
+         "d(a.a)": [
+          0.6181952174368668,
+          -0.38180478256313316
+         ],
+         "d((DK)^2)": [
+          2.618195217436867,
+          1.6181952174368668
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 32218.196j)",
+        "beta": "(1.0 - 14329.532j)",
+        "class": "strong",
+        "transport_residual": "4.99e-351",
+        "powers": {
+         "dK": [
+          -0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          -0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 32218.196j)",
+        "beta": "(1.0 + 14329.532j)",
+        "class": "strong",
+        "transport_residual": "4.99e-351",
+        "powers": {
+         "dK": [
+          -0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          -0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-74835180.0",
+        "beta": "-74835181.0",
+        "status": "admissible (decaying)",
+        "transport_residual": "1.75e-323"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "74835180.0",
+        "beta": "74835179.0",
+        "status": "inadmissible (growing)",
+        "transport_residual": "1.75e-323"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 1e-12,
+     "hole": "10 Msun",
+     "M_star_label": "band low (reading)"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_max l_max",
+     "alpha": "0.0000000032",
+     "lambda": "0.06666666666666667",
+     "eps": "1.83304e-58",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61808731466",
+        "s_full": "-1.618087314655189622886830109128340263526",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180873146551896,
+          -1.6180873146551895
+         ],
+         "d(a.a)": [
+          -1.6180873146551895,
+          -2.6180873146551895
+         ],
+         "d((DK)^2)": [
+          0.3819126853448104,
+          -0.6180873146551896
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618087314655",
+        "s_full": "0.6180873146551896228868301091283402635264",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180873146551895,
+          0.6180873146551896
+         ],
+         "d(a.a)": [
+          0.6180873146551896,
+          -0.3819126853448104
+         ],
+         "d((DK)^2)": [
+          2.6180873146551895,
+          1.6180873146551895
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 1.0511844e+25j)",
+        "beta": "(1.0 - 4.6730452e+24j)",
+        "class": "strong",
+        "transport_residual": "6.06e-269",
+        "powers": {
+         "dK": [
+          -0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          -0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 1.0511844e+25j)",
+        "beta": "(1.0 + 4.6730452e+24j)",
+        "class": "strong",
+        "transport_residual": "6.06e-269",
+        "powers": {
+         "dK": [
+          -0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          -0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-7.3860903e+28",
+        "beta": "-7.3860903e+28",
+        "status": "admissible (decaying)",
+        "transport_residual": "9.19e-218"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "7.3860903e+28",
+        "beta": "7.3860903e+28",
+        "status": "inadmissible (growing)",
+        "transport_residual": "9.19e-218"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "10 Msun",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_max l_max",
+     "alpha": "0.0000000032",
+     "lambda": "0.06666666666666667",
+     "eps": "4.33814e-76",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61808731466",
+        "s_full": "-1.618087314655189622886830109128340263526",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180873146551896,
+          -1.6180873146551895
+         ],
+         "d(a.a)": [
+          -1.6180873146551895,
+          -2.6180873146551895
+         ],
+         "d((DK)^2)": [
+          0.3819126853448104,
+          -0.6180873146551896
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618087314655",
+        "s_full": "0.6180873146551896228868301091283402635264",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180873146551895,
+          0.6180873146551896
+         ],
+         "d(a.a)": [
+          0.6180873146551896,
+          -0.3819126853448104
+         ],
+         "d((DK)^2)": [
+          2.6180873146551895,
+          1.6180873146551895
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 6.8330189e+33j)",
+        "beta": "(1.0 - 3.0376218e+33j)",
+        "class": "strong",
+        "transport_residual": "5.03e-234",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 6.8330189e+33j)",
+        "beta": "(1.0 + 3.0376218e+33j)",
+        "class": "strong",
+        "transport_residual": "5.03e-234",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-4.8011837e+37",
+        "beta": "-4.8011837e+37",
+        "status": "admissible (decaying)",
+        "transport_residual": "1.75e-173"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "4.8011837e+37",
+        "beta": "4.8011837e+37",
+        "status": "inadmissible (growing)",
+        "transport_residual": "1.75e-173"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "M87* (6.5e9 Msun)",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_max l_max",
+     "alpha": "0.0000000032",
+     "lambda": "0.06666666666666667",
+     "eps": "1.78562e-16",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61808731466",
+        "s_full": "-1.618087314655189622886830109128340263526",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180873146551896,
+          -1.6180873146551895
+         ],
+         "d(a.a)": [
+          -1.6180873146551895,
+          -2.6180873146551895
+         ],
+         "d((DK)^2)": [
+          0.3819126853448104,
+          -0.6180873146551896
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618087314655",
+        "s_full": "0.6180873146551896228868301091283402635264",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180873146551895,
+          0.6180873146551896
+         ],
+         "d(a.a)": [
+          0.6180873146551896,
+          -0.3819126853448104
+         ],
+         "d((DK)^2)": [
+          2.6180873146551895,
+          1.6180873146551895
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 10650.503j)",
+        "beta": "(1.0 - 4734.686j)",
+        "class": "strong",
+        "transport_residual": "1.56e-353",
+        "powers": {
+         "dK": [
+          -0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          -0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 10650.503j)",
+        "beta": "(1.0 + 4734.686j)",
+        "class": "strong",
+        "transport_residual": "1.56e-353",
+        "powers": {
+         "dK": [
+          -0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          -0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-74835180.0",
+        "beta": "-74835181.0",
+        "status": "admissible (decaying)",
+        "transport_residual": "1.5e-322"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "74835180.0",
+        "beta": "74835179.0",
+        "status": "inadmissible (growing)",
+        "transport_residual": "1.5e-322"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 1e-12,
+     "hole": "10 Msun",
+     "M_star_label": "band low (reading)"
+    },
+    {
+     "arm": "K",
+     "point": "W5 centre",
+     "alpha": "0.000000000017549060799417394",
+     "lambda": "0.022043593835555212",
+     "eps": "1.83304e-58",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61804085716",
+        "s_full": "-1.618040857157209788780679991163422039003",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180408571572098,
+          -1.6180408571572098
+         ],
+         "d(a.a)": [
+          -1.6180408571572098,
+          -2.61804085715721
+         ],
+         "d((DK)^2)": [
+          0.3819591428427902,
+          -0.6180408571572098
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618040857157",
+        "s_full": "0.6180408571572097887806799911634220390031",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180408571572098,
+          0.6180408571572098
+         ],
+         "d(a.a)": [
+          0.6180408571572098,
+          -0.3819591428427902
+         ],
+         "d((DK)^2)": [
+          2.61804085715721,
+          1.6180408571572098
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 1.3536267e+24j)",
+        "beta": "(1.0 - 6.0163035e+23j)",
+        "class": "strong",
+        "transport_residual": "1.16e-274",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 1.3536267e+24j)",
+        "beta": "(1.0 + 6.0163035e+23j)",
+        "class": "strong",
+        "transport_residual": "1.16e-274",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-7.3860903e+28",
+        "beta": "-7.3860903e+28",
+        "status": "admissible (decaying)",
+        "transport_residual": "2.21e-218"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "7.3860903e+28",
+        "beta": "7.3860903e+28",
+        "status": "inadmissible (growing)",
+        "transport_residual": "2.21e-218"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "10 Msun",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "K",
+     "point": "W5 centre",
+     "alpha": "0.000000000017549060799417394",
+     "lambda": "0.022043593835555212",
+     "eps": "4.33814e-76",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61804085716",
+        "s_full": "-1.618040857157209788780679991163422039003",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180408571572098,
+          -1.6180408571572098
+         ],
+         "d(a.a)": [
+          -1.6180408571572098,
+          -2.61804085715721
+         ],
+         "d((DK)^2)": [
+          0.3819591428427902,
+          -0.6180408571572098
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618040857157",
+        "s_full": "0.6180408571572097887806799911634220390031",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180408571572098,
+          0.6180408571572098
+         ],
+         "d(a.a)": [
+          0.6180408571572098,
+          -0.3819591428427902
+         ],
+         "d((DK)^2)": [
+          2.61804085715721,
+          1.6180408571572098
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 8.7989861e+32j)",
+        "beta": "(1.0 - 3.9107806e+32j)",
+        "class": "strong",
+        "transport_residual": "0.0",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 8.7989861e+32j)",
+        "beta": "(1.0 + 3.9107806e+32j)",
+        "class": "strong",
+        "transport_residual": "0.0",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-4.8011837e+37",
+        "beta": "-4.8011837e+37",
+        "status": "admissible (decaying)",
+        "transport_residual": "2.68e-174"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "4.8011837e+37",
+        "beta": "4.8011837e+37",
+        "status": "inadmissible (growing)",
+        "transport_residual": "2.68e-174"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "M87* (6.5e9 Msun)",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "K",
+     "point": "W5 centre",
+     "alpha": "0.000000000017549060799417394",
+     "lambda": "0.022043593835555212",
+     "eps": "1.78562e-16",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61804085716",
+        "s_full": "-1.618040857157209788780679991163422039003",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180408571572098,
+          -1.6180408571572098
+         ],
+         "d(a.a)": [
+          -1.6180408571572098,
+          -2.61804085715721
+         ],
+         "d((DK)^2)": [
+          0.3819591428427902,
+          -0.6180408571572098
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618040857157",
+        "s_full": "0.6180408571572097887806799911634220390031",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180408571572098,
+          0.6180408571572098
+         ],
+         "d(a.a)": [
+          0.6180408571572098,
+          -0.3819591428427902
+         ],
+         "d((DK)^2)": [
+          2.61804085715721,
+          1.6180408571572098
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 1371.482j)",
+        "beta": "(1.0 - 609.56628j)",
+        "class": "strong",
+        "transport_residual": "1.78e-358",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 1371.482j)",
+        "beta": "(1.0 + 609.56628j)",
+        "class": "strong",
+        "transport_residual": "1.78e-358",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-74835180.0",
+        "beta": "-74835181.0",
+        "status": "admissible (decaying)",
+        "transport_residual": "2.48e-323"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "74835180.0",
+        "beta": "74835179.0",
+        "status": "inadmissible (growing)",
+        "transport_residual": "2.48e-323"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 1e-12,
+     "hole": "10 Msun",
+     "M_star_label": "band low (reading)"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_min l_min",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.007288800437803917",
+     "eps": "1.83304e-58",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61803487331",
+        "s_full": "-1.618034873310887239655721259543208774721",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180348733108872,
+          -1.6180348733108871
+         ],
+         "d(a.a)": [
+          -1.6180348733108871,
+          -2.6180348733108874
+         ],
+         "d((DK)^2)": [
+          0.38196512668911276,
+          -0.6180348733108872
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034873311",
+        "s_full": "0.6180348733108872396557212595432087747214",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180348733108871,
+          0.6180348733108872
+         ],
+         "d(a.a)": [
+          0.6180348733108872,
+          -0.38196512668911276
+         ],
+         "d((DK)^2)": [
+          2.6180348733108874,
+          1.6180348733108871
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 1.7432442e+23j)",
+        "beta": "(1.0 - 7.7477826e+22j)",
+        "class": "strong",
+        "transport_residual": "5.51e-281",
+        "powers": {
+         "dK": [
+          -0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          -0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 1.7432442e+23j)",
+        "beta": "(1.0 + 7.7477826e+22j)",
+        "class": "strong",
+        "transport_residual": "5.51e-281",
+        "powers": {
+         "dK": [
+          -0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          -0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-7.3860903e+28",
+        "beta": "-7.3860903e+28",
+        "status": "admissible (decaying)",
+        "transport_residual": "7.36e-219"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "7.3860903e+28",
+        "beta": "7.3860903e+28",
+        "status": "inadmissible (growing)",
+        "transport_residual": "7.36e-219"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "10 Msun",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_min l_min",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.007288800437803917",
+     "eps": "4.33814e-76",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61803487331",
+        "s_full": "-1.618034873310887239655721259543208774721",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180348733108872,
+          -1.6180348733108871
+         ],
+         "d(a.a)": [
+          -1.6180348733108871,
+          -2.6180348733108874
+         ],
+         "d((DK)^2)": [
+          0.38196512668911276,
+          -0.6180348733108872
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034873311",
+        "s_full": "0.6180348733108872396557212595432087747214",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180348733108871,
+          0.6180348733108872
+         ],
+         "d(a.a)": [
+          0.6180348733108872,
+          -0.38196512668911276
+         ],
+         "d((DK)^2)": [
+          2.6180348733108874,
+          1.6180348733108871
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 1.1331618e+32j)",
+        "beta": "(1.0 - 5.0362948e+31j)",
+        "class": "strong",
+        "transport_residual": "0.0",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 1.1331618e+32j)",
+        "beta": "(1.0 + 5.0362948e+31j)",
+        "class": "strong",
+        "transport_residual": "0.0",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-4.8011837e+37",
+        "beta": "-4.8011837e+37",
+        "status": "admissible (decaying)",
+        "transport_residual": "6.36e-175"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "4.8011837e+37",
+        "beta": "4.8011837e+37",
+        "status": "inadmissible (growing)",
+        "transport_residual": "6.36e-175"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 986981030.6401844,
+     "hole": "M87* (6.5e9 Msun)",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_min l_min",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.007288800437803917",
+     "eps": "1.78562e-16",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61803487331",
+        "s_full": "-1.618034873310887239655721259543208774721",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180348733108872,
+          -1.6180348733108871
+         ],
+         "d(a.a)": [
+          -1.6180348733108871,
+          -2.6180348733108874
+         ],
+         "d((DK)^2)": [
+          0.38196512668911276,
+          -0.6180348733108872
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034873311",
+        "s_full": "0.6180348733108872396557212595432087747214",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.6180348733108871,
+          0.6180348733108872
+         ],
+         "d(a.a)": [
+          0.6180348733108872,
+          -0.38196512668911276
+         ],
+         "d((DK)^2)": [
+          2.6180348733108874,
+          1.6180348733108871
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 176.62388j)",
+        "beta": "(1.0 - 78.499812j)",
+        "class": "strong",
+        "transport_residual": "2.84e-365",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 176.62388j)",
+        "beta": "(1.0 + 78.499812j)",
+        "class": "strong",
+        "transport_residual": "2.84e-365",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-74835180.0",
+        "beta": "-74835181.0",
+        "status": "admissible (decaying)",
+        "transport_residual": "1.75e-323"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "74835180.0",
+        "beta": "74835179.0",
+        "status": "inadmissible (growing)",
+        "transport_residual": "1.75e-323"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 1e-12,
+     "hole": "10 Msun",
+     "M_star_label": "band low (reading)"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_min l_max",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.06666666666666667",
+     "eps": "2.4832e-58",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61803428123",
+        "s_full": "-1.618034281233898972039722122901760464586",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180342812338989,
+          -1.618034281233899
+         ],
+         "d(a.a)": [
+          -1.618034281233899,
+          -2.618034281233899
+         ],
+         "d((DK)^2)": [
+          0.381965718766101,
+          -0.6180342812338989
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034281234",
+        "s_full": "0.6180342812338989720397221229017604645859",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.618034281233899,
+          0.6180342812338989
+         ],
+         "d(a.a)": [
+          0.6180342812338989,
+          -0.381965718766101
+         ],
+         "d((DK)^2)": [
+          2.618034281233899,
+          1.618034281233899
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 4.9523438e+22j)",
+        "beta": "(1.0 - 2.2010446e+22j)",
+        "class": "strong",
+        "transport_residual": "4.3e-283",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 4.9523438e+22j)",
+        "beta": "(1.0 + 2.2010446e+22j)",
+        "class": "strong",
+        "transport_residual": "4.3e-283",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-6.3459127e+28",
+        "beta": "-6.3459127e+28",
+        "status": "admissible (decaying)",
+        "transport_residual": "1.96e-218"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "6.3459127e+28",
+        "beta": "6.3459127e+28",
+        "status": "inadmissible (growing)",
+        "transport_residual": "1.96e-218"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 847985225.8709937,
+     "hole": "10 Msun",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_min l_max",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.06666666666666667",
+     "eps": "5.87685e-76",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61803428123",
+        "s_full": "-1.618034281233898972039722122901760464586",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180342812338989,
+          -1.618034281233899
+         ],
+         "d(a.a)": [
+          -1.618034281233899,
+          -2.618034281233899
+         ],
+         "d((DK)^2)": [
+          0.381965718766101,
+          -0.6180342812338989
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034281234",
+        "s_full": "0.6180342812338989720397221229017604645859",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.618034281233899,
+          0.6180342812338989
+         ],
+         "d(a.a)": [
+          0.6180342812338989,
+          -0.381965718766101
+         ],
+         "d((DK)^2)": [
+          2.618034281233899,
+          1.618034281233899
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 3.2191744e+31j)",
+        "beta": "(1.0 - 1.430746e+31j)",
+        "class": "strong",
+        "transport_residual": "7.15e-248",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 3.2191744e+31j)",
+        "beta": "(1.0 + 1.430746e+31j)",
+        "class": "strong",
+        "transport_residual": "7.15e-248",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-4.1250366e+37",
+        "beta": "-4.1250366e+37",
+        "status": "admissible (decaying)",
+        "transport_residual": "4.96e-174"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "4.1250366e+37",
+        "beta": "4.1250366e+37",
+        "status": "inadmissible (growing)",
+        "transport_residual": "4.96e-174"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 847985225.8709937,
+     "hole": "M87* (6.5e9 Msun)",
+     "M_star_label": "band top"
+    },
+    {
+     "arm": "K",
+     "point": "W5 corner a_min l_max",
+     "alpha": "9.624047966926507e-14",
+     "lambda": "0.06666666666666667",
+     "eps": "1.78562e-16",
+     "uh": {
+      "m": {
+       "1": 1,
+       "2": 2,
+       "3": 3,
+       "0": 1,
+       "4": 4,
+       "5": 7,
+       "6": 8
+      },
+      "P": {
+       "1": 0,
+       "2": 0,
+       "3": 0,
+       "0": 1,
+       "4": 0,
+       "5": 2,
+       "6": 2
+      },
+      "edges": [
+       {
+        "k_a": 4,
+        "k_b": 6,
+        "slope": "1"
+       }
+      ],
+      "modes": [
+       {
+        "type": "Frobenius",
+        "s": "-1.61803428123",
+        "s_full": "-1.618034281233898972039722122901760464586",
+        "class": "strong",
+        "powers": {
+         "dK": [
+          -0.6180342812338989,
+          -1.618034281233899
+         ],
+         "d(a.a)": [
+          -1.618034281233899,
+          -2.618034281233899
+         ],
+         "d((DK)^2)": [
+          0.381965718766101,
+          -0.6180342812338989
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "-1.0",
+        "s_full": "-1.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          0.0,
+          0.0
+         ],
+         "d(a.a)": [
+          0.0,
+          0.0
+         ],
+         "d((DK)^2)": [
+          1.0,
+          0.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.0",
+        "s_full": "0.0",
+        "class": "regular",
+        "powers": {
+         "dK": [
+          1.0,
+          0.0
+         ],
+         "d(a.a)": [
+          null,
+          null
+         ],
+         "d((DK)^2)": [
+          2.0,
+          1.0
+         ]
+        }
+       },
+       {
+        "type": "Frobenius",
+        "s": "0.618034281234",
+        "s_full": "0.6180342812338989720397221229017604645859",
+        "class": "weak",
+        "powers": {
+         "dK": [
+          1.618034281233899,
+          0.6180342812338989
+         ],
+         "d(a.a)": [
+          0.6180342812338989,
+          -0.381965718766101
+         ],
+         "d((DK)^2)": [
+          2.618034281233899,
+          1.618034281233899
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 - 58.401298j)",
+        "beta": "(1.0 - 25.956167j)",
+        "class": "strong",
+        "transport_residual": "4.43e-367",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       },
+       {
+        "type": "essential exp(int b x^-2)",
+        "b": "(0.0 + 58.401298j)",
+        "beta": "(1.0 + 25.956167j)",
+        "class": "strong",
+        "transport_residual": "4.43e-367",
+        "powers": {
+         "dK": [
+          0.0,
+          -2.0
+         ],
+         "d(a.a)": [
+          -1.0,
+          -3.0
+         ],
+         "d((DK)^2)": [
+          0.0,
+          -2.0
+         ]
+        }
+       }
+      ]
+     },
+     "inf": {
+      "m": {
+       "1": -2,
+       "2": 0,
+       "3": 1,
+       "0": -3,
+       "4": 2,
+       "5": 1,
+       "6": 2
+      },
+      "modes": [
+       {
+        "type": "power r^s",
+        "s": "-2.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "0.0",
+        "status": "admissible"
+       },
+       {
+        "type": "power r^s",
+        "s": "1.0",
+        "status": "boost (normalisation)"
+       },
+       {
+        "type": "power r^s",
+        "s": "3.0",
+        "status": "inadmissible"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "-74835180.0",
+        "beta": "-74835181.0",
+        "status": "admissible (decaying)",
+        "transport_residual": "1.5e-322"
+       },
+       {
+        "type": "exp(int b r^0)",
+        "b": "74835180.0",
+        "beta": "74835179.0",
+        "status": "inadmissible (growing)",
+        "transport_residual": "1.5e-322"
+       }
+      ]
+     },
+     "count": {
+      "N_const": 6,
+      "inf_inadmissible": 2,
+      "normalisation": 1,
+      "r_S": 0,
+      "UH_nonregular": 4,
+      "UH_strong": 3,
+      "N_cond_strict": 7,
+      "N_cond_lenient": 6,
+      "Delta_strict": 1,
+      "Delta_lenient": 0,
+      "n_local_uh": 6,
+      "n_local_inf": 6
+     },
+     "M_star_GeV": 1e-12,
+     "hole": "10 Msun",
+     "M_star_label": "band low (reading)"
+    }
+   ]
+  },
+  "B2_Delta_K": {
+   "strict": [
+    1
+   ],
+   "lenient": [
+    0
+   ]
+  },
+  "B2_Delta_A": {
+   "strict": [
+    1
+   ],
+   "lenient": [
+    0
+   ]
+  },
+  "B_mechanism_hrr_minus_Y2": "0",
+  "splus_with_UV": {
+   "K": [
+    "0.61803398",
+    "0.61803428",
+    "0.61803487",
+    "0.61804085",
+    "0.61808731",
+    "0.61819521"
+   ],
+   "A": [
+    "0.61799423",
+    "0.61803398",
+    "0.61803428",
+    "0.61803487",
+    "0.61804085",
+    "0.61808731",
+    "0.61819521"
+   ]
+  },
+  "B4": {
+   "upper_min_GeV": 847985225.8709925,
+   "upper_max_GeV": 986981030.6401844,
+   "lower_reading_GeV": 1e-12,
+   "band_ok": true,
+   "mutate_Mstar_GeV": null
+  },
+  "verdict_B": {
+   "arms": {
+    "K": {
+     "Delta_strict": [
+      1
+     ],
+     "Delta_lenient": [
+      0
+     ],
+     "verdict": "FAILS (gate G12 of CFG467, strict BH regularity: the UV term does not supply the fifth condition; over-determined by 1)"
+    },
+    "A": {
+     "Delta_strict": [
+      1
+     ],
+     "Delta_lenient": [
+      0
+     ],
+     "verdict": "FAILS (gate G12 of CFG467, strict BH regularity: the UV term does not supply the fifth condition; over-determined by 1)"
+    }
+   },
+   "best_arm": "K",
+   "verdict": "FAILS"
+  },
+  "A4": {
+   "alpha_rs": {
+    "0.007288800437803914": 5.795056221179658e-14,
+    "0.009611975272279635": 6.347631280577291e-14,
+    "0.012675620552831585": 6.950396186471735e-14,
+    "0.016715747996432436": 7.606824081439888e-14,
+    "0.022043593835555205": 8.320153070899397e-14,
+    "0.029069595287667355": 9.09314568814874e-14,
+    "0.0383350090957384": 9.927757821779456e-14,
+    "0.050553607913275844": 1.082470077210819e-13,
+    "0.06666666666666665": 1.1782889519002835e-13
+   },
+   "A4_0_window": {
+    "7.2888e-03": "EMPTY",
+    "9.6120e-03": "EMPTY",
+    "1.2676e-02": "EMPTY",
+    "1.6716e-02": "EMPTY",
+    "2.2044e-02": "EMPTY",
+    "2.9070e-02": "EMPTY",
+    "3.8335e-02": "[9.6240e-14, 9.9278e-14]",
+    "5.0554e-02": "[9.6240e-14, 1.0825e-13]",
+    "6.6667e-02": "[9.6240e-14, 1.1783e-13]"
+   },
+   "A4_H_window": "[9.624e-14, 3.2e-9] at all 9 c_2",
+   "UV_consistency": {
+    "K": true,
+    "A": true
+   }
+  },
+  "verdict_A": {
+   "verdict": "WORKS-CONDITIONAL",
+   "why": "conditions: (i) owner adopts reading W; (ii) full window [9.624e-14, 3.2e-9] needs the hierarchy (+1 UV scale M_* <= 9.87e+08 GeV; option C survives the tested UV operators ['O_K', 'O_A']), or 0 new constants on the sliver [9.624e-14, alpha_rs(c_2)] at 3/9 c_2 (c_2 >= 0.038); (iii) CFG319 scope (test-khronon limit, collapse formation) and CFG467 tested-range edges"
+  },
+  "C": {
+   "inventory": [
+    {
+     "item": "kappa = 1/2",
+     "status": "FITTED",
+     "source": "closure_map/GATES.md"
+    },
+    {
+     "item": "rho_DE(t) in a0(t) = kappa c sqrt(G rho_DE(t))",
+     "status": "DATA",
+     "source": "WORKING_MODEL_SETTLED_PHANTOM_2026-10-06.md"
+    },
+    {
+     "item": "kernel nu_mono (nu_RAR to y* = 2.3374, log splice delta = 0.05)",
+     "status": "DECLARED FUNCTION (+1 shape constant delta)",
+     "source": "CFG5_common.py"
+    },
+    {
+     "item": "bound-only switch",
+     "status": "DECLARED RULE",
+     "source": "closure_map/GATES.md"
+    },
+    {
+     "item": "KiDS density edge x_e = 0.4",
+     "status": "DECLARED CONSTANT",
+     "source": "closure_map/GATES.md"
+    },
+    {
+     "item": "growth edge r_M/ln(1/(1 - f_b)) = 5.85 r_M with the turnaround catchment",
+     "status": "DECLARED RULE (zero-knob given kappa, f_b)",
+     "source": "STANDING_2026-09-29.md"
+    },
+    {
+     "item": "cosmic baryon fraction f_b",
+     "status": "DATA",
+     "source": "STANDING_2026-09-29.md"
+    },
+    {
+     "item": "cold-fluid amount Omega_c h^2 = 0.12",
+     "status": "FITTED (as in LCDM)",
+     "source": "closure_map/GATES.md"
+    },
+    {
+     "item": "cold fluid relaxes toward the phantom target at rate Gamma (bookkeeping, not derived)",
+     "status": "DECLARED RULE",
+     "source": "WORKING_MODEL_SETTLED_PHANTOM_2026-10-06.md"
+    },
+    {
+     "item": "ownership (the Sun carries no phantom; globulars class E Newtonian)",
+     "status": "DECLARED RULE",
+     "source": "closure_map/GATES.md"
+    },
+    {
+     "item": "lensing = GR lensing of the effective dark density (Phi = Psi)",
+     "status": "DECLARED RULE",
+     "source": "closure_map/GATES.md"
+    },
+    {
+     "item": "background cosmology GR + CDM at z >~ 10",
+     "status": "DECLARED RULE",
+     "source": "closure_map/GATES.md"
+    },
+    {
+     "item": "baryon field includes gas pressure",
+     "status": "DECLARED MODELLING RULE",
+     "source": "WORKING_MODEL_SETTLED_PHANTOM_2026-10-06.md"
+    },
+    {
+     "item": "stellar M/L Upsilon_disk",
+     "status": "NUISANCE (per data set)",
+     "source": "closure_map/GATES.md"
+    },
+    {
+     "item": "G = measured Newton constant (no alpha_c/2 correction without the chassis)",
+     "status": "DECLARED",
+     "source": "closure_map/RECIPE_GATE_AUDIT_2026-10-03.md"
+    }
+   ],
+   "inventory_counts": {
+    "FITTED": 2,
+    "DATA": 2,
+    "DECLARED FUNCTION": 1,
+    "DECLARED RULE": 6,
+    "DECLARED CONSTANT": 1,
+    "DECLARED MODELLING RULE": 1,
+    "NUISANCE": 1,
+    "DECLARED": 1
+   },
+   "untested": [
+    {
+     "gate": "Gravity waves at light speed",
+     "where": "status board col. 1 (CFG292); GATES 4.02 NS for B"
+    },
+    {
+     "gate": "Equations well-posed (high freq.)",
+     "where": "status board col. 1 (CFG292)"
+    },
+    {
+     "gate": "Full nonlinear well-posedness",
+     "where": "status board col. 1 (CFG294)"
+    },
+    {
+     "gate": "Lapse condition, realistic matter",
+     "where": "status board col. 1 (CFG312)"
+    },
+    {
+     "gate": "Binary pulsars",
+     "where": "status board col. 1 (CFG291/311); GATES 4.04 NS for B"
+    },
+    {
+     "gate": "Strong coupling",
+     "where": "status board col. 1 (XC1/XC3); GATES 5.03"
+    },
+    {
+     "gate": "Solar system (PPN + Cassini Q2)",
+     "where": "status board col. 1 (CFG291/357; the chassis filter). B keeps GATES 4.01 via ownership; PPN alpha1/alpha2/gamma become untested"
+    },
+    {
+     "gate": "Matter conservation (G9)",
+     "where": "status board col. 1 (CFG329)"
+    },
+    {
+     "gate": "Structural order (G0)",
+     "where": "status board col. 1 (CFG329)"
+    },
+    {
+     "gate": "Zero-field nonlinear, ungated",
+     "where": "status board col. 1 (CFG358, FAIL chassis-only): becomes moot, not passed"
+    },
+    {
+     "gate": "Black holes (EHT, LIGO ringdown)",
+     "where": "status board col. 1 (CFG318/319): the CFG467 tension disappears with the chassis, but BH physics becomes untested"
+    },
+    {
+     "gate": "Radiative stability (G12)",
+     "where": "status board col. 4 (CFG320)"
+    },
+    {
+     "gate": "lensing = dynamics as a derivation",
+     "where": "GATES 4.03 (already NS as derivation for B)"
+    },
+    {
+     "gate": "Newton/GR recovery, measured G derived",
+     "where": "GATES 5.09"
+    },
+    {
+     "gate": "DOF count / ghost freedom of a field theory",
+     "where": "GATES 5.05, RECIPE G4/G5"
+    },
+    {
+     "gate": "Cauchy problem / causality",
+     "where": "GATES 5.04"
+    }
+   ],
+   "dependent_rows": [],
+   "leads_lost": [
+    "CFG373 khronon-lapse carrier (G1)",
+    "CFG381 khronon reaction sink (+1 coupling)",
+    "CFG462 lapse settling edge (FAIL, exhaustion only)",
+    "CFG483 khronon-boundary settling class (cold-fluid shock + khronon-lapse total field)",
+    "khronon-class a0-rho_Lambda tie kappa = 2 sqrt(8 pi)/(3 beta) (WORKING_MODEL synthesis 4)"
+   ],
+   "verdict": "WORKS-CONDITIONAL"
+  }
+ },
+ "verdicts": {
+  "A": "WORKS-CONDITIONAL",
+  "B": "FAILS",
+  "C": "WORKS-CONDITIONAL"
+ },
+ "n_checks": 30,
+ "n_pass": 30,
+ "n_fail_load_bearing": 0,
+ "runtime_s": 142.1
+}
