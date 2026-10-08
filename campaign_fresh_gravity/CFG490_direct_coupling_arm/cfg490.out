@@ -1,0 +1,162 @@
+====================================================================================================================
+CFG490 the direct-coupling arm (G9 violated by construction; labelled experiment)   MUTATE=False
+S = 5.364; f_b = 0.157134; x_edge = 5.849761 r_M; catchment supply 23.63 M_b (CFG488 K4; 22.6 reported)
+kappa = 1/2 FITTED; both footings, never pooled; the cold fluid's mass is still required (its amount is an input).
+====================================================================================================================
+
+====================================================================================================================
+K1  structural identities (sympy)
+====================================================================================================================
+  (a) same-spin exchange: alpha_bb alpha_cc - alpha_bc^2 = Lagrange sum of squares (N = 3, symbolic): True
+      so |alpha_bc| <= sqrt(alpha_bb alpha_cc) for any number of scalars (or of vectors).  Mixed loophole (scalar + vector,
+      equal magnitudes, opposite vector charges): alpha_bb = 0, alpha_cc = 0, alpha_bc = 2*g_b*g_c -> cancellation exists: True (reported; see B2 note)
+  (b) FRW neutrality e_c n_c = e_b n_B -> eps_c/eps_b per unit mass = 1/S; outward force on cold = alpha_cc G (M_c - S M_b)/r^2: True
+  (d) BK (CFG122/154 EFT, a0 tie): M_DM(<x r_M)/M_b = sqrt(2)*sqrt(M_b)*m**2*x**2/(8*sqrt(pi)*M_Pl**2*sqrt(a_0)*alpha); d ln/d ln M_b = 1/2: True
+  (e) R0 at the exact edge: (1+S)^2 ln^2(1+1/S) = 1.18354 (+0.0732 dex): True
+  (f) massless-vector dipole / GR quadrupole = 5*Delta**2*alpha_N*c**2/(48*v**2): True
+
+====================================================================================================================
+K2-K4  controls on the equilibria
+====================================================================================================================
+  K2: C2 at alpha_N = 0 (= F-H), Hernquist 0.3, S_cat = 22.6: exhaustion radius 23.38017 r_M vs CFG462's committed 23.38018 (rel -4.5e-07) -> PASS
+  K3: C3 point-mass gate edge 5.8497613 r_M vs x_edge 5.8497613 (rel -4.1e-09); nu_mono inverse round trip 2.2e-15 -> PASS
+  K1(c): C2's neutral point: |m*(x_edge) - S| over alpha_N = 1e-6..1e6 (point mass): max 2.0e-08 -> PASS  (both terms vanish there for every alpha_N)
+
+====================================================================================================================
+C2  neutralising U(1): the declared alpha_N window scan (F-H + Coulomb force on the cold fluid, w = 1)
+====================================================================================================================
+  K4: roots nondecreasing in r for all 161 alpha_N x 3 hosts: True; max relative root residual 7.6e-10 -> PASS
+  [point] law within 5% for alpha_N <= 5.01e-02; edge within 0.05 dex at 2 of 161 alpha_N; supply within 0.05 dex for alpha_N >= 5.01e+01; ALL gates: 0 alpha_N
+      alpha_N =  1.0e-08: E    24.103 r_M (+0.615 dex), supply +0.644, T +0.018, law 1.31e-08, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e-02: E    24.183 r_M (+0.616 dex), supply +0.644, T +0.015, law 0.00803, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e-01: E    24.939 r_M (+0.630 dex), supply +0.644, T -0.012, law 0.0801, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e+00: E    40.371 r_M (+0.839 dex), supply +0.644, T -0.430, law 0.776, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e+01: E    91.825 r_M (+1.196 dex), supply +0.185, T -1.997, law 5.95, settled 8.221 M_b, unsettled at r_ta 15.409  (canonical 10^10.5)
+      alpha_N =  1.0e+02: E    43.378 r_M (+0.870 dex), supply +0.022, T -1.630, law 17.9, settled 5.651 M_b, unsettled at r_ta 17.979  (canonical 10^10.5)
+      alpha_N =  1.0e+03: E    14.400 r_M (+0.391 dex), supply +0.002, T -0.706, law 22.3, settled 5.393 M_b, unsettled at r_ta 18.237  (canonical 10^10.5)
+      alpha_N =  1.0e+04: E     3.931 r_M (-0.173 dex), supply -0.000, T +0.418, law 22.9, settled 5.367 M_b, unsettled at r_ta 18.263  (canonical 10^10.5)
+      alpha_N =  1.0e+06: E     0.001 r_M (-3.767 dex), supply -0.000, T +7.607, law 23, settled 5.364 M_b, unsettled at r_ta 18.266  (canonical 10^10.5)
+  [H0.3 ] law within 5% for alpha_N <= 1.26e-01; edge within 0.05 dex at 0 of 161 alpha_N; supply within 0.05 dex for alpha_N >= 5.01e+01; ALL gates: 0 alpha_N
+      alpha_N =  1.0e-08: E    24.390 r_M (+0.620 dex), supply +0.644, T +0.007, law 6.74e-09, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e-02: E    24.470 r_M (+0.621 dex), supply +0.644, T +0.004, law 0.00383, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e-01: E    25.249 r_M (+0.635 dex), supply +0.644, T -0.023, law 0.0381, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e+00: E    41.335 r_M (+0.849 dex), supply +0.644, T -0.451, law 0.365, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e+01: E    99.358 r_M (+1.230 dex), supply +0.183, T -2.070, law 2.68, settled 8.175 M_b, unsettled at r_ta 15.455  (canonical 10^10.5)
+      alpha_N =  1.0e+02: E    92.928 r_M (+1.201 dex), supply +0.020, T -2.296, law 7.95, settled 5.620 M_b, unsettled at r_ta 18.010  (canonical 10^10.5)
+      alpha_N =  1.0e+03: E    92.041 r_M (+1.197 dex), supply -0.001, T -2.322, law 9.93, settled 5.363 M_b, unsettled at r_ta 18.267  (canonical 10^10.5)
+      alpha_N =  1.0e+04: E    91.949 r_M (+1.196 dex), supply -0.003, T -2.325, law 10.2, settled 5.337 M_b, unsettled at r_ta 18.293  (canonical 10^10.5)
+      alpha_N =  1.0e+06: E    91.939 r_M (+1.196 dex), supply -0.003, T -2.325, law 10.2, settled 5.335 M_b, unsettled at r_ta 18.295  (canonical 10^10.5)
+  [H1.0 ] law within 5% for alpha_N <= 2.51e-01; edge within 0.05 dex at 0 of 161 alpha_N; supply within 0.05 dex for alpha_N >= 5.01e+01; ALL gates: 0 alpha_N
+      alpha_N =  1.0e-08: E    25.035 r_M (+0.631 dex), supply +0.644, T -0.018, law 2.46e-09, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e-02: E    25.130 r_M (+0.633 dex), supply +0.644, T -0.021, law 0.00177, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e-01: E    25.951 r_M (+0.647 dex), supply +0.644, T -0.049, law 0.0176, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e+00: E    43.597 r_M (+0.872 dex), supply +0.644, T -0.498, law 0.166, settled 23.630 M_b, unsettled at r_ta 0.000  (canonical 10^10.5)
+      alpha_N =  1.0e+01: E   104.156 r_M (+1.251 dex), supply +0.177, T -2.123, law 1.12, settled 8.072 M_b, unsettled at r_ta 15.558  (canonical 10^10.5)
+      alpha_N =  1.0e+02: E   103.104 r_M (+1.246 dex), supply +0.014, T -2.398, law 2.97, settled 5.548 M_b, unsettled at r_ta 18.082  (canonical 10^10.5)
+      alpha_N =  1.0e+03: E   103.006 r_M (+1.246 dex), supply -0.006, T -2.431, law 3.62, settled 5.295 M_b, unsettled at r_ta 18.335  (canonical 10^10.5)
+      alpha_N =  1.0e+04: E   102.996 r_M (+1.246 dex), supply -0.008, T -2.435, law 3.7, settled 5.269 M_b, unsettled at r_ta 18.361  (canonical 10^10.5)
+      alpha_N =  1.0e+06: E   102.995 r_M (+1.246 dex), supply -0.008, T -2.435, law 3.71, settled 5.267 M_b, unsettled at r_ta 18.363  (canonical 10^10.5)
+  point host, alpha_N = 100: cold inside r = 1e-03 r_M is 4.165 M_b (collapse onto the baryons)
+  POST-RUN LINE (labelled; noticed in the first output): point-host alpha_N with the edge inside 0.05 dex in all cells: ['5.01e+03', '6.31e+03'] -- a sweep crossing (E goes +0.39 -> -0.17 dex between 1e3 and 1e4) with law deviation 22.9
+  alpha_N = 0 (uncoupled F-H, CAT): E = 24.10 r_M (+0.615 dex), supply +0.644 dex, T +0.018 dex (the law-target carries the temperature for any far edge)
+  gravity-normalised [point]: law needs alpha_N <= 0.342; the cap needs alpha_N >= 279.8; window closed by 2.91 dex
+  gravity-normalised [H0.3]: law needs alpha_N <= 0.435; the cap needs alpha_N >= 279.8; window closed by 2.81 dex
+  gravity-normalised [H1.0]: law needs alpha_N <= 0.727; the cap needs alpha_N >= 279.8; window closed by 2.59 dex
+  scan (w = 1): supply-cap threshold / law threshold = point 3.00 dex, H0.3 2.60 dex (invariant under the F-H weight w)
+
+====================================================================================================================
+C3  supply-transfer gate: J = Gamma rho_u Theta(-E.g), composition field div E = 4 pi G (s rho_b - rho_c)
+====================================================================================================================
+  [point] gate edge 5.8498 r_M; E(99.9%) 5.8444 (-0.0004 dex); supply vs S M_b,total -0.0004 dex (vs S M_b(<E) -0.0004); T +0.0733 dex (cold-only -0.0754); law 0.0e+00; baryons inside E 1.000; gates ALL PASS
+  [H0.3 ] gate edge 5.5498 r_M; E(99.9%) 5.5449 (-0.0232 dex); supply vs S M_b,total -0.0462 dex (vs S M_b(<E) -0.0004); T +0.0275 dex (cold-only -0.1211); law 0.0e+00; baryons inside E 0.900; gates ALL PASS
+  [H1.0 ] gate edge 4.8498 r_M; E(99.9%) 4.8459 (-0.0818 dex); supply vs S M_b,total -0.1633 dex (vs S M_b(<E) -0.0003); T -0.0897 dex (cold-only -0.2383); law 0.0e+00; baryons inside E 0.687; gates {'sup': False, 'edge': False, 'T': True, 'law': True, 'count': True, 'all': False}
+
+====================================================================================================================
+BOUNDS  inputs ((U) = recalled, unverified; record values marked)
+====================================================================================================================
+  Delta(B/mu): Ti-Pt 9.0516e-04 (record 9.052e-4), Be-Ti 2.4376e-03; B/mu Sun 0.99410, Saturn 0.99401, rocky 1.00074 (U)
+  Eot-Wash |eta| <= 3.9e-13 (U); MICROSCOPE |eta| <= 1e-15 (record CFG122; recalled final 2-sigma 7e-15, U); Cassini 2.3e-05 (record); ephemeris ceiling 1.27e-05 a0 (record)
+  K5: Delta(B/mu)_Ti,Pt 9.0516e-04 vs 9.052e-4; CFG122 Reading-B eta_MIC 3.1060e-09 vs 3.106e-9; J1738 GR Pb-dot -2.7461e-14 vs -2.746e-14 -> PASS
+  pulsar J1738+0333    : Delta_B 0.1095, v/c 1.18e-03, dipole/GR = 892 alpha_N; window +0.188 -> alpha_N <= 0.000211  (R = 11 / 13 km: 0.000171 / 0.000254)
+  pulsar J0348+0432    : Delta_B 0.1599, v/c 1.97e-03, dipole/GR = 688 alpha_N; window +0.41 -> alpha_N <= 0.000596  (R = 11 / 13 km: 0.000484 / 0.000722)
+  pulsar J0737-3039A/B : Delta_B 0.0077, v/c 2.08e-03, dipole/GR = 1.43 alpha_N; window +0.00013 -> alpha_N <= 9.11e-05  (R = 11 / 13 km: 7.42e-05 / 0.00011)
+  Bullet (record Table 2): alpha_bc <= 3.5 at t = 0.2 Gyr (14 at 0.1 Gyr, U); main plasma column 0.0439 g/cm^2 -> drag kappa_d <= 6.84 cm^2/g
+  U(1) (alpha_N) limits: B1 1.6e-10, B2 1.1e-12, B3_eph 2.75e-09, B3_orbits 1, B4 9.11e-05, B5 18.8, B6 0.288, B7 1
+
+====================================================================================================================
+C1  Berezhiani-Khoury phonon coupling -(alpha Lambda/M_Pl) theta rho_b (best case: one constant m^2/alpha centred)
+====================================================================================================================
+  best-case constant m^2/(2 alpha M_Pl^2) = 10^-55.057  (m = 1.02 eV at alpha = 1)
+    point|canonical|9.0   : supply -0.585 dex, BK edge 11.469 r_M (+0.292), T(R0 formal) -0.512, cold-mass law dev 0.937
+    point|canonical|10.5  : supply +0.165 dex, BK edge 4.836 r_M (-0.083), T(R0 formal) +0.238, cold-mass law dev 0.648
+    point|canonical|11.5  : supply +0.665 dex, BK edge 2.720 r_M (-0.333), T(R0 formal) +0.738, cold-mass law dev 2.78
+    point|alt|9.0         : supply -0.626 dex, BK edge 12.025 r_M (+0.313), T(R0 formal) -0.553, cold-mass law dev 0.943
+    point|alt|10.5        : supply +0.124 dex, BK edge 5.071 r_M (-0.062), T(R0 formal) +0.197, cold-mass law dev 0.679
+    point|alt|11.5        : supply +0.624 dex, BK edge 2.852 r_M (-0.312), T(R0 formal) +0.697, cold-mass law dev 2.44
+    H0.3|canonical|9.0    : supply -0.624 dex, BK edge 11.744 r_M (+0.303), T(R0 formal) -0.539, cold-mass law dev 0.964
+    H0.3|canonical|10.5   : supply +0.126 dex, BK edge 5.092 r_M (-0.060), T(R0 formal) +0.179, cold-mass law dev 0.795
+    H0.3|canonical|11.5   : supply +0.626 dex, BK edge 2.957 r_M (-0.296), T(R0 formal) +0.642, cold-mass law dev 2.58
+    H0.3|alt|9.0          : supply -0.665 dex, BK edge 12.300 r_M (+0.323), T(R0 formal) -0.579, cold-mass law dev 0.967
+    H0.3|alt|10.5         : supply +0.085 dex, BK edge 5.327 r_M (-0.041), T(R0 formal) +0.140, cold-mass law dev 0.814
+    H0.3|alt|11.5         : supply +0.585 dex, BK edge 3.090 r_M (-0.277), T(R0 formal) +0.604, cold-mass law dev 2.26
+  supply spread over the 12 combinations 1.331 dex (exponent 1/2 in M_b/a0); constants m, alpha (+ rate) = 3
+  bounds (Reading B = BK as written; CFG122 showed screening impossible): Eot-Wash eta 7.53e-09 (1.93e+04 x); MICROSCOPE 3.11e-09 (3.11e+06 x); Cassini |gamma-1| 2.51e-04 (10.9 x); reading A MICROSCOPE 5.33 x
+
+====================================================================================================================
+C2 / C3b  the U(1) at its scored strengths; G-REAL for the sign gate
+====================================================================================================================
+  C2 at alpha_N,req = 279.8 (gravity-normalised cap): B1 FAIL; B2 FAIL; B4 FAIL; B6 FAIL; B3 FAIL; B5 FAIL; B7 FAIL
+     limit / required: B1 -12.2 dex, B2 -14.4 dex, B3_eph -11.0 dex, B4 -6.5 dex, B5 -1.2 dex, B6 -3.0 dex, B7 -2.4 dex
+  C2 at the law's own maximum alpha_N = 0.342: B1 FAIL; B2 FAIL; B4 FAIL; B6 FAIL; B3 FAIL; B5 PASS; B7 PASS
+  G-REAL [point]: contrast = 4.390e-04 alpha_N; at the scored alpha_N = 5.52e-13: 2.43e-16; a readable gate (contrast 1) needs alpha_N >= 2278
+  G-REAL [H0.3]: contrast = 4.131e-04 alpha_N; at the scored alpha_N = 5.52e-13: 2.28e-16; a readable gate (contrast 1) needs alpha_N >= 2421
+  C3b at alpha_N = 5.52e-13: B1 PASS; B2 PASS; B4 PASS; B6 PASS (CONDITIONAL: inherited settling rate / linear-order settling); B3 PASS; B5 PASS (CONDITIONAL: inherited settling rate / linear-order settling); B7 PASS
+  C3b at the readable-gate strength alpha_N = 2278: B1 FAIL; B2 FAIL; B4 FAIL; B6 FAIL; B3 FAIL; B5 FAIL; B7 FAIL
+
+====================================================================================================================
+C4  drag: d_t v_c = ... - rho_b kappa_d |v_rel| (v_c - v_b)
+====================================================================================================================
+  [canonical] partner-baryon column at the edge 3.548e-04 g/cm^2 -> locking needs kappa_d >= 2.82e+03 cm^2/g (mass-independent); CMB allows <= 0.005 (+5.8 dex); Bullet allows <= 6.84 (+2.6 dex)
+  [alt] partner-baryon column at the edge 4.288e-04 g/cm^2 -> locking needs kappa_d >= 2.33e+03 cm^2/g (mass-independent); CMB allows <= 0.005 (+5.7 dex); Bullet allows <= 6.84 (+2.5 dex)
+  locked transient [point]: M_c = S M_b(<r): law dev 23.1; E(99.9%) 0 r_M
+  locked transient [H0.3]: M_c = S M_b(<r): law dev 10.2; E(99.9%) 600 r_M
+  static equilibrium (drag vanishes when nothing moves) = the uncoupled F-H CAT fill: E +0.615 dex, supply +0.644 dex
+
+====================================================================================================================
+REPORTED (not verdict inputs)
+====================================================================================================================
+  clusters (CFG488, closed box): free placement u = canonical 0.000, alt 0.000; in-place u = canonical 0.452, alt 0.389; record range canonical [0.433, 0.628], alt [0.368, 0.584]. C3's gate decides neither (it depends on the sign of the cluster outskirts' composition): UNDECIDED.
+  energy sink (CFG462): EXHAUSTION ONLY (FAIL): no flow stops at r_edge with the cat... the sink stays NOT SUPPLIED in every coupling here (inherited).
+  C3b composition-field EFE (host 6e10 Msun, edge 55.3 kpc): host field / satellite's own at 0.5 r_e,sat = 1e+07@20kpc 2.43, 1e+07@50kpc 0.0587, 1e+09@20kpc 2.43, 1e+09@50kpc 0.0587  (>~1: the satellite's gate is set by its host)
+  C3b counts ALL baryons (hot CGM too): edge shift for extra counted baryons f_CGM M_b inside the edge: f = 0.05: +0.020 dex, f = 0.2: +0.073 dex, f = 0.5: +0.164 dex
+  B-L instead of B (anomaly-free gauging): hydrogen is neutral, the charge counts neutrons only, so the gate's supply would
+  track the neutron fraction (Y_p, metals), not M_b. Gauging B alone needs anomaly-cancelling fermions. (stated, not computed)
+  scalar + vector cancellation (K1a loophole): baryon-baryon force cancelled exactly only if both couple to the same charge;
+  a scalar couples to mass, a vector to B, so the residual is alpha x Delta(B m_u/M) = the B2 composition signal again.
+
+====================================================================================================================
+PER-CELL TABLE (point host; physical units)
+====================================================================================================================
+  canonical 10^9.0 : r_M   1.22 kpc, r_edge    7.14 kpc, sigma_t   42.0 km/s, x_ta  193.4 | C1 E +0.292 sup -0.585 T -0.512 | C2(alpha_req) E +0.697 sup +0.009 T -1.307 law 21 | C3 E -0.0004 sup -0.0004 T +0.0733 | C4(static) E +0.615
+  canonical 10^10.5: r_M   6.86 kpc, r_edge   40.14 kpc, sigma_t   99.5 km/s, x_ta  108.8 | C1 E -0.083 sup +0.165 T +0.238 | C2(alpha_req) E +0.687 sup +0.009 T -1.286 law 21 | C3 E -0.0004 sup -0.0004 T +0.0733 | C4(static) E +0.615
+  canonical 10^11.5: r_M  21.70 kpc, r_edge  126.94 kpc, sigma_t  177.0 km/s, x_ta   74.1 | C1 E -0.333 sup +0.665 T +0.738 | C2(alpha_req) E +0.670 sup +0.009 T -1.252 law 21 | C3 E -0.0004 sup -0.0004 T +0.0733 | C4(static) E +0.615
+  alt       10^9.0 : r_M   1.11 kpc, r_edge    6.49 kpc, sigma_t   44.0 km/s, x_ta  212.6 | C1 E +0.313 sup -0.626 T -0.553 | C2(alpha_req) E +0.698 sup +0.009 T -1.309 law 21 | C3 E -0.0004 sup -0.0004 T +0.0733 | C4(static) E +0.615
+  alt       10^10.5: r_M   6.24 kpc, r_edge   36.52 kpc, sigma_t  104.4 km/s, x_ta  119.6 | C1 E -0.062 sup +0.124 T +0.197 | C2(alpha_req) E +0.689 sup +0.009 T -1.291 law 21 | C3 E -0.0004 sup -0.0004 T +0.0733 | C4(static) E +0.615
+  alt       10^11.5: r_M  19.74 kpc, r_edge  115.47 kpc, sigma_t  185.6 km/s, x_ta   81.5 | C1 E -0.312 sup +0.624 T +0.697 | C2(alpha_req) E +0.675 sup +0.009 T -1.263 law 21 | C3 E -0.0004 sup -0.0004 T +0.0733 | C4(static) E +0.615
+
+====================================================================================================================
+MUTATE  (M-a) coupling -> 0 must lose the edge; (M-b) coupling x 100 must violate >= 1 bound
+====================================================================================================================
+  (the mutated checks print only with CFG490_MUTATE=1)
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  C1   DELIVERS FAIL     SURVIVES FAIL                 constants 3
+  C2   DELIVERS FAIL     SURVIVES FAIL                 constants 1
+  C3a  DELIVERS PASS-R   SURVIVES VACUOUS              constants 1
+  C3b  DELIVERS PASS-NA  SURVIVES PASS (CONDITIONAL)   constants 1
+  C4   DELIVERS FAIL     SURVIVES FAIL                 constants 1
+  LANE: arm (a) does NOT deliver cleanly: no Lagrangian coupling delivers; only the rule-level gate does, as the edge definition (C3a, PASS-R) or as a sign gate on a gauged charge too weak to be read (C3b, PASS-NA)
+  controls: K1 PASS, K2 PASS, K3 PASS, K4 PASS, K5 PASS
+  exit 0
