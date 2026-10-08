@@ -418,13 +418,12 @@ def run(switch, branch, foot, npg, amp=1.0):
         _, info = forces(mesh, delta, a, switch if switch != "S0" else "S0", branch, foot, dta, diag=True)
         grids = info.pop("_grids")
         res["snap"][name] = dict(a=a, D=Dgrow(a), k=kb, P=pb, sigma8=s8, **info, t=time.time() - t0)
-        if name == "z0":
-            extra_fields = {}
-            if len(grids) > 2:
-                extra_fields = dict(sph=grids[2], sc=grids[3])
-            np.savez_compressed(os.path.join(WORK, f"cfg414_{tag}_z0.npz"), pos=pos.astype(np.float32),
+        # CFG482: per-epoch SED grids (pos only at z0 to bound file size)
+        if len(grids) > 2:
+            pos_field = dict(pos=pos.astype(np.float32)) if name == "z0" else {}
+            np.savez_compressed(os.path.join(WORK, f"cfg414_{tag}_{name}.npz"),
                                 f=grids[0].astype(np.float16), l3=grids[1].astype(np.float16),
-                                **extra_fields)
+                                sph=grids[2], sc=grids[3], **pos_field)
         print(f"  [{tag}] {name} a={a:.4f} sigma8={s8:.4f} t={time.time() - t0:.0f}s", flush=True)
     snapshot("zi", AI)
     delta = mesh.deposit(pos); acc, _ = forces(mesh, delta, AI, switch, branch, foot, dta)
