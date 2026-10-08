@@ -1,0 +1,45 @@
+CFG463 POST-HOC (written after the main and MUTATE runs; no verdict depends on it).
+
+P1  REPRODUCTION: the main script's sections 1-5 are exec'd read-only and the L6-canonical S2 orbits are integrated again; every
+    per-object median infall lookback must equal the main run's committed JSON value.
+P2  INDEPENDENT INTEGRATOR: the 26 central orbits are re-integrated with scipy's DOP853 (rtol 1e-10) in the radial equation
+    r'' = L^2/r^3 - g(r, tau), the crossings refined on the dense output; |t_inf(DOP853) - t_inf(leapfrog)| is reported.
+P3  CONSISTENCY WITH CFG344's OWN SLOPE: the main run's power mocks (same seed, same sequence) are regenerated; reported is the
+    fraction of mocks whose Z is at least the observed L6-canonical Z (how often CFG344's predicted slope, plus the observed
+    scatter, would produce a lean as positive as the data's).  The power numbers must reproduce the main run's.
+kappa = 1/2 FITTED.  No dark-matter particle; the cold fluid's MASS is still required.
+
+======================================================================================================================
+P1  REPRODUCTION of the main run's L6-canonical infall times
+======================================================================================================================
+  [PASS] P1: the per-object median infall lookbacks (L6 canonical, S2) equal the main run's JSON
+         max |d| 0.0e+00 Gyr (29 s)
+
+======================================================================================================================
+P2  INDEPENDENT INTEGRATOR (DOP853, radial equation) on the 26 central orbits, L6 canonical
+======================================================================================================================
+    Aquarius II 0.852/0.852; Bootes I 9.582/9.582; Bootes II 10.940/10.940; Canes Venatici II 5.921/5.921; Carina II 5.978/5.978; Carina III 6.795/6.795; Coma Berenices 9.032/9.032; Eridanus II 0.000/0.000; Grus I 0.419/0.419; Hercules 7.949/7.949; Horologium I 7.130/7.130; Hydrus I 9.337/9.337; Leo IV 0.456/0.456; Leo V 0.483/0.483; Pisces II 0.194/0.194; Reticulum II 10.258/10.258; Segue 1 11.844/11.844; Tucana II 7.622/7.622; Ursa Major I 6.316/6.316; Ursa Major II 9.307/9.307; Willman 1 10.973/10.973; Draco II 10.817/10.817; Hydra II 0.991/0.991; Segue 2 9.685/9.685; Triangulum II 8.157/8.157; Tucana III 12.280/12.280
+  [PASS] (reported) P2 (reported): DOP853 vs leapfrog central t_inf (Gyr), L6 canonical
+         max |d| 0.0003 Gyr; median 7.1e-07; 0 of 26 differ by > 0.01 Gyr
+
+======================================================================================================================
+P3  CONSISTENCY OF THE OBSERVED LEAN WITH CFG344's OWN PREDICTED SLOPE (L6 canonical, S1)
+======================================================================================================================
+    NFW: power 0.051 (main 0.051); mock Z median -0.30 [16-84 -1.29, +0.62]; observed Z +1.43; P(Z_mock >= Z_obs) = 0.0320
+    SIS: power 0.179 (main 0.179); mock Z median -1.13 [16-84 -2.12, -0.29]; observed Z +1.43; P(Z_mock >= Z_obs) = 0.0025
+  [PASS] P3: the power mocks reproduce the main run's power exactly
+         max |d| 0.0e+00
+
+======================================================================================================================
+P4  P3 AT FIXED LUMINOSITY (added after P3: P3's mocks drop CFG344's own luminosity term, see the README)
+======================================================================================================================
+    Under CFG344 the excess also rises for fainter fossils (one M_c for all, so cold mass dominates more), and the faintest systems
+    are found nearby and fell in early: that alone makes rho(x, t) positive.  P4 removes it: statistic = partial Spearman of (x, t)
+    given M_V; mocks x = a + b M_V + permuted residual + Delta_x(t_true) (OLS a, b from the data; 2000, seed 4637).
+    NFW: partial-Z power 0.022; mock partial Z median -0.09 [16-84 -0.95, +0.81]; observed partial rho +0.175 (Z +0.71); P(Z_mock >= Z_obs) = 0.1885
+    SIS: partial-Z power 0.121; mock partial Z median -0.99 [16-84 -1.86, -0.06]; observed partial rho +0.175 (Z +0.71); P(Z_mock >= Z_obs) = 0.0290
+    OLS x = +0.759 +0.0850 M_V (dex per mag)
+
+  kappa = 1/2 FITTED.  No dark-matter particle; the cold fluid's MASS is still required.  POST-HOC: no verdict depends on this file.
+
+  3/3 checks pass; load-bearing failures: 0   (59 s)

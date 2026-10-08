@@ -1,0 +1,198 @@
+CFG463 -- DOES THE ULTRA-FAINTS' BARE-LAW EXCESS RISE WITH LATER INFALL?  The per-object test of CFG344.
+
+CFG344 explains the Milky Way ultra-faints' bare-law excess by post-reionisation cold accretion onto reionisation fossils; the
+accretion stops at infall, so with one formation epoch a LATER infaller carries MORE cold mass (3.7e8 / 5.75e8 / 8.8e8 Msun at
+z_inf = 3 / 2 / 1).  Prediction, object by object: the excess x = log10(sigma_obs / sigma_law) ANTI-correlates with the infall
+lookback time.  Everything is frozen in FROZEN_CRITERIA.md (committed e201f79eb, before this script and before any infall time).
+In one line each:
+  SAMPLE   S1 (verdict): FG001's resolved ultra-faints with a Fritz+18 Table 2 entry (21).  Reported: S2 (+5 upper limits), S3
+           (no LMC candidates), S4 (all 31 resolved with the LVD's EDR3 motions; data veto).
+  EXCESS   FG001's isolated law of the stars (sigma_pred, efe=False; Upsilon_V 2; r = 4/3 r_half), exec'd read-only as in CFG28.
+  ORBITS   Fritz's frame (R0 8.2 kpc, v_sun (11, 248, 7.3) km/s, z_sun 25 pc); 300 Gaussian draws + central (seed 463); in-plane KDK
+           leapfrog backward, dt 0.5 Myr, to the lookback at z_f = 8.
+  HOSTS    L6 (PRIMARY): nu_mono(g_N/a0) g_N, M_b(t) = 6.0e10 h(z); L7: 7.3e10; L6s: M_b fixed (reported); N: Newtonian NFW
+           M_200c = 9.82e11 h(z), DM14 c(M, z) (reported).  h(z) = CFG344's own Correa+15 MAH at 9.82e11 (exec'd read-only).
+  INFALL   the largest lookback at which r <= R_200c(z) of 9.82e11 h(z) (first entry); B300: fixed 300 kpc (reported).
+  STAT     Spearman rho(x, median t_inf); Z = atanh(rho) sqrt((N-3)/1.06); CFG344 predicts rho < 0.
+  VERDICT  SUPPORTED: Z <= -2 in L6/L7 x canonical/alt, f_neg >= 0.84 (L6, both), rho < 0 for L6s and N, no S4 veto, controls
+           pass.  CONTRADICTED: the mirror.  Else NOT DIAGNOSTIC, with the power to see CFG344's own slope.
+MUTATE (CFG463_MUTATE=1): each object's infall-time block permuted across objects (seed 4631) -> must read NOT DIAGNOSTIC.
+kappa = 1/2 FITTED.  No dark-matter particle: the cold fluid's MASS is still required.  Nothing here says the theory is closed or that
+the data favour the framework.
+
+  FROZEN_CRITERIA.md sha256 38075d10451644c0a7480b4042901c6a27152e55edf57313e74818a96f8ec005 (committed e201f79eb)
+
+======================================================================================================================
+C-X  FG001's committed resolved ultra-faint median
+======================================================================================================================
+  [PASS] C-X: FG001's committed resolved ultra-faint isolated median (+0.355 / +0.334) reproduced to 1e-9
+         max |d| 0.0e+00; 31 resolved, 9 limits
+
+======================================================================================================================
+C-DATA  the Fritz+18 source and its tables
+======================================================================================================================
+  [PASS] C-DATA: the LaTeX source's sha256 equals FETCH_LOG.md's; Tables 1 and 2 parse to 39 rows each, in the same order
+         sha256 5e958fa5...1197 (log 5e958fa5...1197); rows 39 / 39 / Table 3 39; order True
+
+  S1 21: Aquarius II, Bootes I, Bootes II, Canes Venatici II, Carina II, Carina III, Coma Berenices, Eridanus II, Grus I, Hercules, Horologium I, Hydrus I, Leo IV, Leo V, Pisces II, Reticulum II, Segue 1, Tucana II, Ursa Major I, Ursa Major II, Willman 1
+  S2 26 (adds the limits Draco II, Hydra II, Segue 2, Triangulum II, Tucana III); S3 15; S4 31
+
+======================================================================================================================
+C-FRITZ  the frame conversion against Fritz Table 2
+======================================================================================================================
+    Aquarius II        d_GC  105.1 (Fritz  105)  V_rad   +43.3 (Fritz   +49 +- 8)  V_tan  291.1 (Fritz  244 +- 208)
+    Bootes I           d_GC   64.0 (Fritz   64)  V_rad   +94.9 (Fritz   +94 +- 2)  V_tan  169.9 (Fritz  167 +- 32)
+    Bootes II          d_GC   39.7 (Fritz   39)  V_rad   -47.8 (Fritz   -54 +- 9)  V_tan  394.2 (Fritz  379 +- 74)
+    Canes Venatici II  d_GC  160.6 (Fritz  161)  V_rad   -92.9 (Fritz   -93 +- 4)  V_tan  197.0 (Fritz  157 +- 136)
+    Carina II          d_GC   37.1 (Fritz   37)  V_rad  +203.8 (Fritz  +203 +- 3)  V_tan  292.1 (Fritz  291 +- 18)
+    Carina III         d_GC   29.0 (Fritz   29)  V_rad   +46.3 (Fritz   +46 +- 4)  V_tan  385.9 (Fritz  385 +- 32)
+    Coma Berenices     d_GC   43.5 (Fritz   43)  V_rad   +29.0 (Fritz   +32 +- 3)  V_tan  276.0 (Fritz  274 +- 30)
+    Eridanus II        d_GC  364.9 (Fritz  365)  V_rad   -61.2 (Fritz   -71 +- 6)  V_tan  757.7 (Fritz  612 +- 464)
+    Grus I             d_GC  116.4 (Fritz  116)  V_rad  -202.8 (Fritz  -196 +- 4)  V_tan  222.9 (Fritz  191 +- 122)
+    Hercules           d_GC  128.7 (Fritz  129)  V_rad  +151.0 (Fritz  +152 +- 1)  V_tan   62.0 (Fritz   59 +- 49)
+    Horologium I       d_GC   83.5 (Fritz   83)  V_rad   -34.0 (Fritz   -34 +- 3)  V_tan  214.5 (Fritz  210 +- 46)
+    Hydrus I           d_GC   25.7 (Fritz   26)  V_rad   -57.2 (Fritz   -57 +- 2)  V_tan  365.8 (Fritz  366 +- 14)
+    Leo IV             d_GC  154.7 (Fritz  155)  V_rad   +12.8 (Fritz    +2 +- 8)  V_tan  355.4 (Fritz  312 +- 262)
+    Leo V              d_GC  173.8 (Fritz  174)  V_rad   +42.0 (Fritz   +51 +- 7)  V_tan  329.1 (Fritz  308 +- 264)
+    Pisces II          d_GC  181.9 (Fritz  182)  V_rad   -79.2 (Fritz   -65 +- 8)  V_tan  382.4 (Fritz  395 +- 356)
+    Reticulum II       d_GC   33.0 (Fritz   33)  V_rad  -102.3 (Fritz  -102 +- 2)  V_tan  226.2 (Fritz  226 +- 16)
+    Segue 1            d_GC   27.8 (Fritz   28)  V_rad  +116.4 (Fritz  +116 +- 4)  V_tan  201.9 (Fritz  201 +- 30)
+    Tucana II          d_GC   53.7 (Fritz   54)  V_rad  -187.1 (Fritz  -187 +- 2)  V_tan  213.5 (Fritz  212 +- 31)
+    Ursa Major I       d_GC  102.0 (Fritz  102)  V_rad   +11.2 (Fritz   +10 +- 2)  V_tan  263.0 (Fritz  257 +- 58)
+    Ursa Major II      d_GC   40.9 (Fritz   41)  V_rad   -58.4 (Fritz   -59 +- 2)  V_tan  282.7 (Fritz  282 +- 20)
+    Willman 1          d_GC   42.8 (Fritz   43)  V_rad   +18.1 (Fritz   +23 +- 4)  V_tan  121.7 (Fritz  118 +- 52)
+    Draco II           d_GC   23.8 (Fritz   24)  V_rad  -155.7 (Fritz  -156 +- 8)  V_tan  319.3 (Fritz  319 +- 27)
+    Hydra II           d_GC  147.8 (Fritz  148)  V_rad  +129.6 (Fritz  +118 +- 6)  V_tan  251.1 (Fritz  258 +- 224)
+    Segue 2            d_GC   42.3 (Fritz   42)  V_rad   +73.0 (Fritz   +73 +- 3)  V_tan  214.5 (Fritz  212 +- 38)
+    Triangulum II      d_GC   34.7 (Fritz   35)  V_rad  -256.2 (Fritz  -256 +- 3)  V_tan  214.3 (Fritz  214 +- 28)
+    Tucana III         d_GC   21.1 (Fritz   21)  V_rad  -227.7 (Fritz  -228 +- 2)  V_tan   60.2 (Fritz   61 +- 12)
+  [FAIL] C-FRITZ: |d_GC - Fritz| <= 1.5 kpc and |V_rad - Fritz| <= 3 km/s for all 26; |V_tan - Fritz| <= max(5 km/s, 5%) where its error < 30
+         max |dd| 0.69 kpc; max |dV_rad| 14.21 km/s; worst V_tan / tolerance 0.16 (8 rows)
+  [PASS] (reported) C-FRITZ diagnostic (POST-HOC, reported): the V_rad residual by measurement quality
+         V_tan error < 30 km/s (8 objects): max |dV_rad| 2.99 km/s; the other 18: max 14.21; with our MC median instead of the central value: 15.28; largest |dV_rad| / Fritz's quoted error 1.94; objects off by > 3 km/s: Aquarius II (-5.7), Bootes II (+6.2), Eridanus II (+9.8), Grus I (-6.8), Leo IV (+10.8), Leo V (-9.0), Pisces II (-14.2), Willman 1 (-4.9), Hydra II (+11.6)
+
+======================================================================================================================
+C-MAH  the MW's growth, its R_200c boundary and the NFW concentration
+======================================================================================================================
+  [PASS] C-MAH: h(0) = 1, h monotone over z 0..8, R_200c(0) in 200-220 kpc, DM14 at z = 0 equals CFG36's c(M) (and h equals CFG344's M_of)
+         alpha 0.2120 beta -0.7168; h(0)-1 0.0e+00; monotone True; R_200c(0) 210.4 kpc; c(0) 8.38; |DM14 - CFG36| 0.0e+00; |h - M_of/M0| 2.2e-16; z_1/2 1.20; t_max 13.163 Gyr (z_f 8); R_200c at z 1/2/3 = 118/67/41 kpc
+
+======================================================================================================================
+C-ORB  integrator checks (central S2 orbits)
+======================================================================================================================
+  [PASS] C-ORB (a): static L6 host, central S2 orbits: |E_end - E_0| / (v0^2/2) <= 1e-4 over t_max
+         max 4.4e-06 (median 2.5e-07) over 13.16 Gyr
+  [PASS] C-ORB (b): dt halved: >= 90% of the central L6-canonical S2 orbits keep t_inf within 0.05 Gyr
+         100% within; max |dt_inf| 0.000 Gyr
+  integrated L6 canonical on S2 (7826 orbits) in 30 s
+  integrated L6 alt on S2 (7826 orbits) in 31 s
+  integrated L7 canonical on S2 (7826 orbits) in 30 s
+  integrated L7 alt on S2 (7826 orbits) in 31 s
+  integrated L6s canonical on S2 (7826 orbits) in 31 s
+  integrated L6s alt on S2 (7826 orbits) in 31 s
+  integrated N on S2 (7826 orbits) in 3 s
+  integrated L6 canonical on S4 (9331 orbits) in 34 s
+  integrated L6 alt on S4 (9331 orbits) in 35 s
+
+======================================================================================================================
+PER-OBJECT TABLE (S2; t_inf = median [16-84%] lookback in Gyr; x canonical / alt; * = upper limit; L = LMC candidate)
+======================================================================================================================
+    object              x can  x alt  ELOG  r_now    v_r    v_t               L6 can             L6 alt                  N  L6s can   B300
+    Aquarius II        +0.466 +0.446 0.139  105.1    +43    291    0.53 [ 0.30, 6.59]  0.54 [ 0.30, 7.35]  0.52 [ 0.30, 5.68]     0.53   0.85
+    Bootes I           +0.229 +0.209 0.038   64.0    +95    170    9.72 [ 8.55,10.58]  9.79 [ 8.97,10.66]  9.81 [ 8.61,10.83]    10.77  13.16
+    Bootes II          +0.218 +0.198 0.155   39.7    -48    394    0.63 [ 0.48, 9.63]  6.65 [ 0.49,10.22]  0.60 [ 0.47, 7.61]     7.22   8.45
+    Canes Venatici II  +0.432 +0.412 0.091  160.6    -93    197    0.36 [ 0.25, 7.81]  0.37 [ 0.25, 7.64]  0.34 [ 0.24, 6.59]     0.36   8.39
+    Carina II L        +0.303 +0.283 0.128   37.1   +204    292    7.57 [ 6.16,10.55]  9.15 [ 7.48,10.64]  0.84 [ 0.78, 0.92]    10.10  11.99
+    Carina III L       +0.736 +0.716 0.248   29.0    +46    386    8.00 [ 0.64,10.64]  8.50 [ 6.25,10.45]  0.71 [ 0.60, 6.98]     9.73  11.37
+    Coma Berenices     +0.322 +0.302 0.068   43.5    +29    276    9.44 [ 8.28,10.36]  9.65 [ 8.49,10.47]  9.27 [ 7.34,10.45]    10.63  13.16
+    Eridanus II        +0.355 +0.334 0.066  364.9    -61    758    0.00 [ 0.00, 0.00]  0.00 [ 0.00, 0.00]  0.00 [ 0.00, 0.00]     0.00   0.00
+    Grus I             +0.215 +0.195 0.182  116.4   -203    223    0.41 [ 0.30, 8.30]  0.44 [ 0.30, 8.58]  0.38 [ 0.29, 0.48]     0.43   7.89
+    Hercules           -0.000 -0.021 0.124  128.7   +151     62    8.53 [ 5.99,10.08]  8.50 [ 6.13,10.40]  7.34 [ 1.45, 9.97]    10.10  13.02
+    Horologium I L     +0.580 +0.560 0.164   83.5    -34    215    8.22 [ 5.84, 9.45]  8.22 [ 6.03, 9.33]  7.66 [ 0.84, 9.47]     9.13  13.16
+    Hydrus I L         +0.188 +0.167 0.076   25.7    -57    366    8.98 [ 6.55,10.84]  9.58 [ 7.78,10.87]  0.79 [ 0.68, 9.98]    10.60  12.75
+    Leo IV             +0.251 +0.231 0.102  154.7    +13    355    0.31 [ 0.18, 0.80]  0.32 [ 0.18, 0.84]  0.31 [ 0.18, 0.71]     0.31   0.57
+    Leo V              +0.313 +0.293 0.178  173.8    +42    329    0.23 [ 0.14, 0.56]  0.23 [ 0.14, 0.57]  0.23 [ 0.14, 0.53]     0.23   0.48
+    Pisces II          +0.371 +0.351 0.193  181.9    -79    382    0.12 [ 0.05, 0.25]  0.12 [ 0.05, 0.26]  0.12 [ 0.05, 0.25]     0.12   0.33
+    Reticulum II L     +0.475 +0.455 0.103   33.0   -102    226   10.62 [ 9.84,11.27] 10.76 [10.00,11.39] 10.86 [ 9.91,11.49]    11.76  13.16
+    Segue 1            +0.698 +0.678 0.100   27.8   +116    202   11.21 [10.43,11.78] 11.25 [10.64,11.86] 11.43 [10.48,12.01]    12.24  13.16
+    Tucana II L        +0.436 +0.415 0.103   53.7   -187    213    9.13 [ 6.15,10.59]  9.53 [ 8.02,10.74]  7.96 [ 0.69,10.45]    10.46  13.16
+    Ursa Major I       +0.571 +0.551 0.068  102.0    +11    263    5.30 [ 0.66, 7.51]  5.76 [ 0.68, 7.74]  0.90 [ 0.64, 6.74]     6.70  12.16
+    Ursa Major II      +0.587 +0.567 0.069   40.9    -58    283    9.45 [ 7.86,10.53]  9.59 [ 8.39,10.64]  9.14 [ 6.19,10.64]    10.72  13.16
+    Willman 1          +0.646 +0.626 0.129   42.8    +18    122   11.04 [10.41,11.57] 11.13 [10.52,11.64] 11.40 [10.66,11.85]    11.98  13.16
+    Draco II *         +0.564 +0.544 0.000   23.8   -156    319    9.66 [ 8.21,11.06] 10.08 [ 8.92,11.31]  7.91 [ 0.76,10.58]    11.24  13.16
+    Hydra II *         +0.330 +0.311 0.000  147.8   +130    251    0.44 [ 0.23, 1.30]  0.45 [ 0.23, 5.51]  0.43 [ 0.23, 1.23]     0.44   0.71
+    Segue 2 *          +0.349 +0.329 0.000   42.3    +73    214   10.39 [ 9.28,10.94] 10.32 [ 9.51,11.05] 10.41 [ 9.40,11.14]    11.29  13.16
+    Triangulum II *    +0.643 +0.623 0.000   34.7   -256    214    9.40 [ 7.77,11.22]  9.64 [ 8.54,11.27]  7.16 [ 0.72,10.47]    11.10  12.75
+    Tucana III *       +0.276 +0.256 0.000   21.1   -228     60   11.83 [11.35,12.58] 11.98 [11.46,12.63] 12.03 [11.57,12.67]    12.82  13.16
+
+======================================================================================================================
+READINGS (S1 = verdict sample; Spearman rho(x, median t_inf); CFG344 predicts rho < 0)
+======================================================================================================================
+    L6   canonical S1     N 21  rho +0.334  Z +1.43  p_perm 0.142  f_neg 0.09  MC-median rho +0.232  median t_inf 8.00 Gyr  censored 0.0%   [LOAD-BEARING]
+    L6   canonical S2     N 26  rho +0.276  Z +1.32  p_perm 0.169  f_neg 0.11  MC-median rho +0.195  median t_inf 8.38 Gyr  censored 0.0%   [reported]
+    L6   canonical S3     N 15  rho +0.325  Z +1.13  p_perm 0.234  f_neg 0.10  MC-median rho +0.241  median t_inf 0.63 Gyr  censored 0.0%   [reported]
+    L6   alt       S1     N 21  rho +0.274  Z +1.16  p_perm 0.237  f_neg 0.09  MC-median rho +0.201  median t_inf 8.50 Gyr  censored 0.0%   [LOAD-BEARING]
+    L6   alt       S2     N 26  rho +0.244  Z +1.16  p_perm 0.221  f_neg 0.08  MC-median rho +0.179  median t_inf 8.82 Gyr  censored 0.0%   [reported]
+    L6   alt       S3     N 15  rho +0.271  Z +0.94  p_perm 0.326  f_neg 0.09  MC-median rho +0.239  median t_inf 5.76 Gyr  censored 0.0%   [reported]
+    L7   canonical S1     N 21  rho +0.253  Z +1.07  p_perm 0.275  f_neg 0.12  MC-median rho +0.193  median t_inf 8.51 Gyr  censored 0.0%   [LOAD-BEARING]
+    L7   canonical S2     N 26  rho +0.246  Z +1.17  p_perm 0.218  f_neg 0.12  MC-median rho +0.175  median t_inf 8.85 Gyr  censored 0.0%   [reported]
+    L7   canonical S3     N 15  rho +0.271  Z +0.94  p_perm 0.326  f_neg 0.09  MC-median rho +0.232  median t_inf 5.77 Gyr  censored 0.0%   [reported]
+    L7   alt       S1     N 21  rho +0.286  Z +1.21  p_perm 0.217  f_neg 0.13  MC-median rho +0.216  median t_inf 9.03 Gyr  censored 0.0%   [LOAD-BEARING]
+    L7   alt       S2     N 26  rho +0.269  Z +1.28  p_perm 0.178  f_neg 0.11  MC-median rho +0.190  median t_inf 9.24 Gyr  censored 0.0%   [reported]
+    L7   alt       S3     N 15  rho +0.261  Z +0.90  p_perm 0.347  f_neg 0.09  MC-median rho +0.225  median t_inf 6.43 Gyr  censored 0.0%   [reported]
+    L6s  canonical S1     N 21  rho +0.286  Z +1.21  p_perm 0.216  f_neg 0.12  MC-median rho +0.217  median t_inf 9.73 Gyr  censored 0.0%   [reported]
+    L6s  canonical S2     N 26  rho +0.274  Z +1.31  p_perm 0.169  f_neg 0.08  MC-median rho +0.194  median t_inf 10.10 Gyr  censored 0.1%   [reported]
+    L6s  canonical S3     N 15  rho +0.293  Z +1.02  p_perm 0.288  f_neg 0.09  MC-median rho +0.230  median t_inf 6.70 Gyr  censored 0.1%   [reported]
+    L6s  alt       S1     N 21  rho +0.256  Z +1.08  p_perm 0.268  f_neg 0.11  MC-median rho +0.196  median t_inf 10.15 Gyr  censored 0.0%   [reported]
+    L6s  alt       S2     N 26  rho +0.253  Z +1.21  p_perm 0.203  f_neg 0.10  MC-median rho +0.181  median t_inf 10.24 Gyr  censored 0.2%   [reported]
+    L6s  alt       S3     N 15  rho +0.239  Z +0.82  p_perm 0.393  f_neg 0.08  MC-median rho +0.218  median t_inf 7.23 Gyr  censored 0.0%   [reported]
+    N    canonical S1     N 21  rho +0.373  Z +1.61  p_perm 0.099  f_neg 0.06  MC-median rho +0.236  median t_inf 0.84 Gyr  censored 0.0%   [reported]
+    N    canonical S2     N 26  rho +0.275  Z +1.31  p_perm 0.173  f_neg 0.10  MC-median rho +0.178  median t_inf 4.03 Gyr  censored 0.0%   [reported]
+    N    canonical S3     N 15  rho +0.304  Z +1.05  p_perm 0.270  f_neg 0.08  MC-median rho +0.264  median t_inf 0.60 Gyr  censored 0.0%   [reported]
+    N    alt       S1     N 21  rho +0.373  Z +1.61  p_perm 0.099  f_neg 0.06  MC-median rho +0.236  median t_inf 0.84 Gyr  censored 0.0%   [reported]
+    N    alt       S2     N 26  rho +0.275  Z +1.31  p_perm 0.173  f_neg 0.10  MC-median rho +0.178  median t_inf 4.03 Gyr  censored 0.0%   [reported]
+    N    alt       S3     N 15  rho +0.304  Z +1.05  p_perm 0.270  f_neg 0.08  MC-median rho +0.262  median t_inf 0.60 Gyr  censored 0.0%   [reported]
+    L6   canonical S4     N 31  rho +0.163  Z +0.84  p_perm 0.384  f_neg 0.17  MC-median rho +0.119  median t_inf 9.14 Gyr  censored 0.0%   [reported]
+    L6   canonical S1B300 N 21  rho +0.327  Z +1.40  p_perm 0.150  f_neg 0.11  MC-median rho +0.199  median t_inf 12.16 Gyr  censored 46.2%   [reported]
+    L6   alt       S4     N 31  rho +0.138  Z +0.71  p_perm 0.459  f_neg 0.25  MC-median rho +0.103  median t_inf 9.51 Gyr  censored 0.0%   [reported]
+    L6   alt       S1B300 N 21  rho +0.182  Z +0.76  p_perm 0.431  f_neg 0.13  MC-median rho +0.201  median t_inf 12.45 Gyr  censored 49.8%   [reported]
+
+======================================================================================================================
+C-SIGN / C-NULL
+======================================================================================================================
+  [PASS] C-SIGN: x = -t_inf gives rho = -1
+         rho -1.000000
+  [PASS] C-NULL: 10,000 shuffles of t_inf (L6 canonical, S1): P(|Z| >= 2) <= 0.07
+         0.0411
+
+======================================================================================================================
+REPORTED ROWS (none is a verdict)
+======================================================================================================================
+    canonical partial | log r_GC: rho +0.212 (Z +0.86; rho(x, r) -0.265, rho(t, r) -0.745);  partial | M_V: rho +0.175 (Z +0.71; rho(x, M_V) +0.519, rho(t, M_V) +0.375)
+    canonical leave-one-out Z range [+1.00, +1.80];  Theil-Sen dx/dt_inf +0.0163 +- 0.0096 dex/Gyr;  Spearman(x, r_GC) on S1 -0.265 (CFG28's T2 on the 31: -0.22)
+    alt       partial | log r_GC: rho +0.108 (Z +0.43; rho(x, r) -0.265, rho(t, r) -0.796);  partial | M_V: rho +0.102 (Z +0.41; rho(x, M_V) +0.519, rho(t, M_V) +0.371)
+    alt       leave-one-out Z range [+0.71, +1.48];  Theil-Sen dx/dt_inf +0.0161 +- 0.0113 dex/Gyr;  Spearman(x, r_GC) on S1 -0.265 (CFG28's T2 on the 31: -0.22)
+
+    CFG344 committed offsets (P1 canonical; z_inf 3/2/1): NFW +0.0023/-0.0245/-0.0508; SIS -0.0480/-0.1365/-0.2236; log M_c 8.570/8.760/8.942 (vs its JSON HIST: max |d| 0.0e+00)
+    POWER (NFW cold-mass profile, L6 canonical, S1, N 21): P(Z <= -2) = 0.051; predicted rho -0.073 (median Z -0.30); predicted Theil-Sen slope -0.0041 dex/Gyr (observed +0.0163 +- 0.0096); predicted shifts span -0.014..+0.050 dex
+    POWER (SIS cold-mass profile, L6 canonical, S1, N 21): P(Z <= -2) = 0.179; predicted rho -0.268 (median Z -1.13); predicted Theil-Sen slope -0.0136 dex/Gyr (observed +0.0163 +- 0.0096); predicted shifts span -0.045..+0.166 dex
+
+    static NFW (9.82e11, c 8.4) central pericentre vs Fritz Table 3 (0.8e12 / 1.6e12 potentials), kpc:
+    Aquarius II 104 (99/95); Bootes I 46 (45/32); Bootes II nan (39/38); Canes Venatici II nan (116/85); Carina II 29 (29/26); Carina III 29 (29/28); Coma Berenices 43 (43/42); Eridanus II nan (357/356); Grus I nan (67/58); Hercules 24 (20/14); Horologium I 81 (80/70); Hydrus I nan (25/25); Leo IV 155 (153/150); Leo V 172 (168/165); Pisces II nan (173/171); Reticulum II 28 (27/23); Segue 1 22 (20/16); Tucana II nan (34/29); Ursa Major I 102 (101/100); Ursa Major II 40 (39/38); Willman 1 25 (18/12); Draco II nan (20/19); Hydra II 125 (135/116); Segue 2 38 (37/29); Triangulum II nan (19/16); Tucana III 4 (3/2)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+    L6 canonical: Z +1.43
+    L6 alt      : Z +1.16
+    L7 canonical: Z +1.07
+    L7 alt      : Z +1.21
+    sign conditions: L6s rho +0.286 / +0.256;  N rho +0.373 / +0.373;  S4 veto Z +0.84 / +0.71;  MC f_neg 0.09 / 0.09
+    SUPPORTED   : load_bearing False, mc_sign False, sign_conditions False, veto False, all False
+    CONTRADICTED: load_bearing False, mc_sign True, sign_conditions True, veto False, all False
+
+    VERDICT: NOT DIAGNOSTIC   (load-bearing controls FAIL; power for CFG344's slope: NFW profile 0.05, SIS profile 0.18, N = 21)
+
+  kappa = 1/2 FITTED.  No dark-matter particle; the cold fluid's MASS is still required.  Runtime 263 s.
+
+  8/9 checks pass; load-bearing failures: 1   (263 s)
