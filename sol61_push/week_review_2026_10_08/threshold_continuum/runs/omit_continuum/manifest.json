@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "claim_id": "THRESHOLD_CONTINUUM_ROBUSTNESS_AND_SOURCE_REPAIR",
+  "repository": {
+    "commit": "e8ec321b0e96d69dea49293b3ce0032581f2540a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/week_review_2026_10_08/threshold_continuum/checks.py",
+    "--output",
+    "sol61_push/week_review_2026_10_08/threshold_continuum/runs/omit_continuum/results.json",
+    "--mutate",
+    "omit_continuum"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite examples of the alpha>1/3 robustness theorem, a critical coefficient change, subcritical continuum dominance, and noncommuting spectral source repair",
+    "coefficient_domain": "Double precision quadrature, scalar roots and symmetric eigenvalues; independent incomplete-beta benchmark",
+    "conventions": "C=L=b=1; signed linear source paired continua; energy=-epsilon; all variables dimensionless",
+    "inputs": [
+      "sol61_push/week_review_2026_10_08/threshold_continuum/checks.py"
+    ],
+    "bounds": {
+      "D": [
+        0.01,
+        0.0001,
+        1e-06,
+        1e-08,
+        1e-10
+      ],
+      "alpha": [
+        0.2,
+        0.3333333333333333,
+        0.5,
+        1.0
+      ],
+      "matrix_dimension": 6,
+      "quadrature_log_u_lower": -40,
+      "history": "Analytic proof and examples specified before execution; not an independent preregistration",
+      "controls": [
+        "omit_continuum",
+        "omit_filter"
+      ]
+    },
+    "non_claims": [
+      "No BFSS computation",
+      "No new empirical data",
+      "No full MONO interpolation",
+      "No 32pi squared coefficient selection",
+      "Not an independent proof audit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-08T18:26:16.247791+00:00",
+    "runtime_seconds": 0.779873,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/week_review_2026_10_08/threshold_continuum/checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/threshold_continuum/checks.py",
+      "sha256": "5956e3e03c1ded45fe1c3a9767fb159dce7e19b1cdaa6e0b4dfa4c55ea1c2f5d",
+      "sha256_after": "5956e3e03c1ded45fe1c3a9767fb159dce7e19b1cdaa6e0b4dfa4c55ea1c2f5d"
+    }
+  ],
+  "output_directory": "sol61_push/week_review_2026_10_08/threshold_continuum/runs/omit_continuum",
+  "declared_results": [
+    "sol61_push/week_review_2026_10_08/threshold_continuum/runs/omit_continuum/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/threshold_continuum/runs/omit_continuum/stdout.txt",
+      "sha256": "559383e22e26755bf63648408c6fdc645e9ec69e9fb581e814aec65b0fbb988c",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/threshold_continuum/runs/omit_continuum/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/threshold_continuum/runs/omit_continuum/results.json",
+      "sha256": "c3ac4011eb8f08c82237bd7ca15b00f1f9c44cc72712e99729401d6298f69f6e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
