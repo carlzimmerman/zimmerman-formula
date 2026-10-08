@@ -76,7 +76,7 @@ fi
 
 # ---- 4. the committed physics scripts in the main repo still run clean
 say ""; say "[zimmerman-formula scripts, exit codes]"
-R=/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews
+R="$(cd .. && pwd)/real_research/reviews"   # repo root (cwd is this script's dir, line 13)
 for f in mi_dcac_branch_settled_2026 mi_omegac_anchor_2026 mi_wb_gate_fork_2026 \
          mi_wb_cubic_rise_2026 mi_wb_exponent_pipeline_2026 mi_wb_dr3_feasibility_2026 \
          mi_particle_vs_mode_2026 Z_provenance_audit_2026 two_loop_vs_alpha_2026 \
