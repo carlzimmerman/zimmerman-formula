@@ -1,0 +1,40 @@
+CFG464 zero-constant t_dyn settling rate on the corrected ledger  MUTATE=True
+ledger: M_cold/M_b = x - f S/M_b;  f = 1 - exp(-lambda sqrt(4 pi G rho) tau), tau 10.3 Gyr, rho_R500 1.55e-24 kg/m^3 (T15)
+x: groups/clusters T15's own (M_tot - M_b)/M_b per object (CFG453 read, gas at JSON R500); MW-30 one M_b per row
+
+MUTATE: planted x := x_A (CFG382 definition A) for groups/clusters -- the CFG429 misread
+
+canonical footing (a0 9.3603e-11), lambda = 1
+  f(lambda=1): R500 0.999992 (at rho_R500/10: 0.9754);  MW-30 1.000000
+  (i) T15 conventions    [S/M_b groups 5.375 clusters 4.341]: groups_b0 -4.588  clusters_b0 -3.928  groups_b03 -3.615  clusters_b03 -3.436
+  (ii) per-object S      [median of x_i - f S_i]: groups_b0 -6.038  clusters_b0 -2.472  groups_b03 -5.246  clusters_b03 -1.829
+  per-object negatives (ii): groups_b0 20/20  clusters_b0 7/7  groups_b03 20/20  clusters_b03 7/7;  worst object: groups_b0 NGC3402 -7.76  clusters_b0 A1795 -2.75  groups_b03 NGC3402 -6.17  clusters_b03 A1795 -2.25
+  binding GC row: groups_b0 (ii) = -6.038
+  info: per-object S - (nu - 1) at b = 0, median / max|.|: clusters +0.0003 / 0.0004, groups +0.0007 / 0.0010 (kernel supply vs the law's phantom: at f = 1, M_cold ~ x - (nu - 1) = 5.364 x_A, the beyond-law excess)
+  MW-30 M_b 7e+10 throughout: V188: x 2.521 S 2.467 -> +0.055  V200: x 2.985 S 2.467 -> +0.519  V230: x 4.271 S 2.467 -> +1.804;  V0 = 186.5 km/s; robust-positive; V188 tension False
+  MW-30 M_b 1e+11 throughout: V188: x 1.465 S 1.992 -> -0.527  V200: x 1.790 S 1.992 -> -0.203  V230: x 2.689 S 1.992 -> +0.697;  V0 = 207.1 km/s; speed-dependent; V188 tension True
+  LEGACY (not scored) CFG429 mixed row, x at 1e11 / S at 7e10: V188 -1.002  V200 -0.677  V230 +0.223
+  -> GC rows feasible 0/8;  MW robust-negative for both M_b: False;  VERDICT (canonical): MW-SPEED-DEPENDENT
+
+alt footing (a0 1.1312e-10), lambda = 1
+  f(lambda=1): R500 0.999992 (at rho_R500/10: 0.9754);  MW-30 1.000000
+  (i) T15 conventions    [S/M_b groups 5.956 clusters 4.819]: groups_b0 -5.307  clusters_b0 -4.468  groups_b03 -4.334  clusters_b03 -3.976
+  (ii) per-object S      [median of x_i - f S_i]: groups_b0 -6.859  clusters_b0 -2.919  groups_b03 -6.067  clusters_b03 -2.206
+  per-object negatives (ii): groups_b0 20/20  clusters_b0 7/7  groups_b03 20/20  clusters_b03 7/7;  worst object: groups_b0 NGC3402 -8.93  clusters_b0 A1795 -3.17  groups_b03 NGC3402 -7.35  clusters_b03 A1795 -2.68
+  binding GC row: groups_b0 (ii) = -6.859
+  info: per-object S - (nu - 1) at b = 0, median / max|.|: clusters +0.0004 / 0.0004, groups +0.0008 / 0.0011 (kernel supply vs the law's phantom: at f = 1, M_cold ~ x - (nu - 1) = 5.364 x_A, the beyond-law excess)
+  MW-30 M_b 7e+10 throughout: V188: x 2.521 S 2.756 -> -0.235  V200: x 2.985 S 2.756 -> +0.229  V230: x 4.271 S 2.756 -> +1.515;  V0 = 194.2 km/s; speed-dependent; V188 tension True
+  MW-30 M_b 1e+11 throughout: V188: x 1.465 S 2.233 -> -0.768  V200: x 1.790 S 2.233 -> -0.444  V230: x 2.689 S 2.233 -> +0.456;  V0 = 215.3 km/s; speed-dependent; V188 tension True
+  LEGACY (not scored) CFG429 mixed row, x at 1e11 / S at 7e10: V188 -1.291  V200 -0.966  V230 -0.067
+  -> GC rows feasible 0/8;  MW robust-negative for both M_b: False;  VERDICT (alt): MW-SPEED-DEPENDENT
+
+reference only (T15's a0 1.2e-10, not a footing): (i) groups_b0 -5.545  clusters_b0 -4.647  groups_b03 -4.572  clusters_b03 -4.155;  MW-30 V0 7e+10: 196.6  1e+11: 218.0 km/s
+controls: C1 max |dxT| 0.0e+00;  C2 max |drow| 0.0e+00;  C4 max |d CFG429| 0.0030;  C5 min f 0.999992
+M1a: x_A 0.41, a0 1.2e-10, lambda 0.0073: clusters_b0 +0.0019  PASS=True
+M1b: canonical lambda_c 0.00854 x_A 0.4135 -> clusters_b0 +0.00e+00  alt lambda_c 0.00645 x_A 0.3507 -> clusters_b0 +2.22e-16  PASS=True
+M2: x := x_A at lambda = 1, GC rows feasible: canonical 0/8  alt 0/8  PASS=True
+sensitivity (not a check): corrected ledger at lambda 0.0073: canonical (i) +10.40 +4.76 +15.48 +7.38  alt (i) +10.36 +4.72 +15.43 +7.34  (no group/cluster row reaches 0)
+
+OVERALL VERDICT (lambda = 1, Gamma = 1/t_dyn): MW-SPEED-DEPENDENT
+checks: {"C1_xT_medians_cfg453": true, "C2_cfg453_rows_lambda0.028": true, "C4_cfg429_reproduced": true, "C5_f_lambda1_ge_0.9999": true, "M1a_T15_ceiling_binding_row_zero": true, "M1b_footing_ceiling_binding_row_zero": true, "M2_xA_lambda1_all_GC_negative": true}
+<LANE> COMPLETE: all checks PASS

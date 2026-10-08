@@ -1,0 +1,37 @@
+CFG464 zero-constant t_dyn settling rate on the corrected ledger  MUTATE=False
+ledger: M_cold/M_b = x - f S/M_b;  f = 1 - exp(-lambda sqrt(4 pi G rho) tau), tau 10.3 Gyr, rho_R500 1.55e-24 kg/m^3 (T15)
+x: groups/clusters T15's own (M_tot - M_b)/M_b per object (CFG453 read, gas at JSON R500); MW-30 one M_b per row
+
+canonical footing (a0 9.3603e-11), lambda = 1
+  f(lambda=1): R500 0.999992 (at rho_R500/10: 0.9754);  MW-30 1.000000
+  (i) T15 conventions    [S/M_b groups 5.375 clusters 4.341]: groups_b0 +5.470  clusters_b0 +0.777  groups_b03 +10.547  clusters_b03 +3.398
+  (ii) per-object S      [median of x_i - f S_i]: groups_b0 +4.219  clusters_b0 +2.218  groups_b03 +9.438  clusters_b03 +4.856
+  per-object negatives (ii): groups_b0 0/20  clusters_b0 0/7  groups_b03 0/20  clusters_b03 0/7;  worst object: groups_b0 A194 +2.01  clusters_b0 A2319 +1.91  groups_b03 A194 +6.06  clusters_b03 A2319 +4.17
+  binding GC row: clusters_b0 (i) = +0.777
+  info: per-object S - (nu - 1) at b = 0, median / max|.|: clusters +0.0003 / 0.0004, groups +0.0007 / 0.0010 (kernel supply vs the law's phantom: at f = 1, M_cold ~ x - (nu - 1) = 5.364 x_A, the beyond-law excess)
+  MW-30 M_b 7e+10 throughout: V188: x 2.521 S 2.467 -> +0.055  V200: x 2.985 S 2.467 -> +0.519  V230: x 4.271 S 2.467 -> +1.804;  V0 = 186.5 km/s; robust-positive; V188 tension False
+  MW-30 M_b 1e+11 throughout: V188: x 1.465 S 1.992 -> -0.527  V200: x 1.790 S 1.992 -> -0.203  V230: x 2.689 S 1.992 -> +0.697;  V0 = 207.1 km/s; speed-dependent; V188 tension True
+  LEGACY (not scored) CFG429 mixed row, x at 1e11 / S at 7e10: V188 -1.002  V200 -0.677  V230 +0.223
+  -> GC rows feasible 8/8;  MW robust-negative for both M_b: False;  VERDICT (canonical): NOT EXCLUDED
+
+alt footing (a0 1.1312e-10), lambda = 1
+  f(lambda=1): R500 0.999992 (at rho_R500/10: 0.9754);  MW-30 1.000000
+  (i) T15 conventions    [S/M_b groups 5.956 clusters 4.819]: groups_b0 +4.889  clusters_b0 +0.299  groups_b03 +9.966  clusters_b03 +2.921
+  (ii) per-object S      [median of x_i - f S_i]: groups_b0 +3.480  clusters_b0 +1.881  groups_b03 +8.699  clusters_b03 +4.519
+  per-object negatives (ii): groups_b0 0/20  clusters_b0 0/7  groups_b03 0/20  clusters_b03 0/7;  worst object: groups_b0 A194 +1.32  clusters_b0 A2319 +1.62  groups_b03 A194 +5.38  clusters_b03 A2319 +3.89
+  binding GC row: clusters_b0 (i) = +0.299
+  info: per-object S - (nu - 1) at b = 0, median / max|.|: clusters +0.0004 / 0.0004, groups +0.0008 / 0.0011 (kernel supply vs the law's phantom: at f = 1, M_cold ~ x - (nu - 1) = 5.364 x_A, the beyond-law excess)
+  MW-30 M_b 7e+10 throughout: V188: x 2.521 S 2.756 -> -0.235  V200: x 2.985 S 2.756 -> +0.229  V230: x 4.271 S 2.756 -> +1.515;  V0 = 194.2 km/s; speed-dependent; V188 tension True
+  MW-30 M_b 1e+11 throughout: V188: x 1.465 S 2.233 -> -0.768  V200: x 1.790 S 2.233 -> -0.444  V230: x 2.689 S 2.233 -> +0.456;  V0 = 215.3 km/s; speed-dependent; V188 tension True
+  LEGACY (not scored) CFG429 mixed row, x at 1e11 / S at 7e10: V188 -1.291  V200 -0.966  V230 -0.067
+  -> GC rows feasible 8/8;  MW robust-negative for both M_b: False;  VERDICT (alt): NOT EXCLUDED
+
+reference only (T15's a0 1.2e-10, not a footing): (i) groups_b0 +4.697  clusters_b0 +0.141  groups_b03 +9.773  clusters_b03 +2.762;  MW-30 V0 7e+10: 196.6  1e+11: 218.0 km/s
+controls: C1 max |dxT| 0.0e+00;  C2 max |drow| 0.0e+00;  C3 max |d a2| 4.5e-04;  C4 max |d CFG429| 0.0030;  C5 min f 0.999992
+
+OVERALL VERDICT (lambda = 1, Gamma = 1/t_dyn): NOT EXCLUDED (ROBUST: all 8 GC rows feasible on both footings)
+  at lambda = 1, f -> 1 everywhere, so M_cold/M_b = x - S (the fully settled ledger); on T15's own x every group and
+  cluster row keeps positive cold mass, so these rows give no upper bound on lambda (as CFG453 found). The only row that
+  can go negative is the MW 30-kpc point, and its sign depends on V and on the MW baryon mass (V0 lines above).
+checks: {"C1_xT_medians_cfg453": true, "C2_cfg453_rows_lambda0.028": true, "C3_audit_a2_rows": true, "C4_cfg429_reproduced": true, "C5_f_lambda1_ge_0.9999": true}
+<LANE> COMPLETE: all checks PASS
