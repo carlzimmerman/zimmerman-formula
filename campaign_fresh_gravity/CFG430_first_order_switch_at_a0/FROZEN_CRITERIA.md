@@ -56,3 +56,14 @@ The script must reproduce I1 against CFG481's own `scan_band` at its reference p
 If either flip does not occur, the harness is broken and the lane is INVALID.
 
 **Compute.** The operator part is analytic plus 5×5 transfer matrices and runs in seconds. C5 is two deposits and a few 256³ FFTs, run under nice -n 15 with ≤ 4 threads, well under 30 minutes. No downloads.
+
+---
+**Dated correction (2026-10-07, after run 1; decision rules unchanged).** Run 1 failed C0, so it is INVALID. Its output is kept as `cfg430_hc_map_run1_INVALID.out`.
+
+The cause was in this file's identity I1. CFG481's transfer matrix adds the on-site term U·C(n,2) at both ends of every bond, which makes it 2U·C(n,2) per site. The particle-hole point in CFG481's actual code convention is therefore X_s = 3U + 4J (general form: (n_max − 1)U + n_max·J), not (3U + 8J)/2. The J part was already right: it matched CFG481 to 2.5e-10 at U = 0.
+
+The symmetry-free Maxwell check also now compares the two highest maxima instead of the outermost pair. Nothing else changed: the window, the grid, the dictionaries, the verdict rules and the MUTATE are as frozen above. The lane is re-run in full.
+
+**Dated note (2026-10-07, after run 2).** Run 2 (`cfg430_hc_map_run2_INVALID.out`) passed I1 at CFG481's reference to 2.5e-10. It also passed the generic Maxwell check at two of three settings (to 1e-12). At the third setting (β = 0.45, just above onset) the check returned no root. Its fixed ±0.5 h-bracket was wider than the narrow window in which both maxima exist. The bracket now narrows (0.5, 0.2, 0.05, 0.01) until both ends have two maxima. This is a harness fix only. Rules unchanged; full re-run.
+
+**Dated note (2026-10-07, after run 3).** Run 3 (`cfg430_hc_map_run3_INVALID.out`) returned −2.69 against I1 = −2.74 at the β = 0.45 setting. A direct trace shows the two maxima are exactly equal at h = −2.74 (0.4097 = 0.4097), so I1 holds. The checker's bisection had hit an exact zero of Δ: that set da = 0 and walked the bracket to its edge. An exact zero now returns the midpoint. This is a harness fix only. Rules unchanged; full re-run.
