@@ -2,7 +2,7 @@
 
 The criteria were committed first (FROZEN_CRITERIA.md). The engine is `cfg423_pm.py` (CFG416 copy, exact edge, f_ret ≡ 1), the launcher `run_423.py`, and the verdict comes from `cfg423_analysis.py`.
 
-**Edge.** r_edge = r_M / ln(1/(1 − f_b)) ≈ 5.84 r_M. This is where the phantom has used up the halo's own cold fluid. It is the T10 r_supply (deepseek_push/openai_math_cross_analysis_2026-10/t10), read as mass conservation, with no census input because the PM never depletes baryons.
+**Edge.** r_edge = r_M / ln(1/(1 − f_b)) ≈ 5.85 r_M (corrected 10-08 from 5.84: the engine's f_b = 0.02237/0.14237 gives 5.850). This is where the phantom has used up the halo's own cold fluid. It is the T10 r_supply (deepseek_push/openai_math_cross_analysis_2026-10/t10), read as mass conservation, with no census input because the PM never depletes baryons.
 
 | run | σ₈ ratio | max\|P−1\| (k ≤ 1) | verdict |
 |---|---|---|---|
