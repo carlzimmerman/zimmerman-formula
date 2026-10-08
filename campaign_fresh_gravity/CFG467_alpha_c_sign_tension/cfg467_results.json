@@ -1,0 +1,824 @@
+{
+ "lane": "CFG467",
+ "mutate": false,
+ "frozen_criteria": "FROZEN_CRITERIA.md (committed alone before the script)",
+ "inputs": {
+  "alpha_window_L340": [
+   9.624047966926507e-14,
+   3.2e-09
+  ],
+  "c2_grid": [
+   0.007288800437803914,
+   0.009611975272279635,
+   0.012675620552831585,
+   0.016715747996432436,
+   0.022043593835555205,
+   0.029069595287667355,
+   0.0383350090957384,
+   0.050553607913275844,
+   0.06666666666666665
+  ],
+  "Lambda_HL_max_GeV": 986981030.6401844,
+  "sources": {
+   "L340": "real_research/g03_audit_2026/L340_filtered_khronon_completion_results.json",
+   "XC1": "real_research/extra_crispy_2026/XC1_strong_coupling_chk_results.json",
+   "CFG291": "campaign_fresh_gravity/CFG291_khronon_binary_pulsar/cfg291_khronon_binary_pulsar_results.json",
+   "CFG292": "campaign_fresh_gravity/CFG292_khronon_strong_hyperbolicity/cfg292_khronon_strong_hyperbolicity_results.json",
+   "CFG294": "campaign_fresh_gravity/CFG294_chassis_nonlinear_wellposedness/cfg294_chassis_nonlinear_wellposedness_results.json",
+   "CFG311": "campaign_fresh_gravity/CFG311_ns_sensitivity/cfg311_ns_sensitivity_results.json",
+   "CFG312": "campaign_fresh_gravity/CFG312_lapse_condition_W/cfg312_lapse_condition_W_results.json",
+   "CFG318": "campaign_fresh_gravity/CFG318_strong_field_bh/cfg318_strong_field_bh_results.json",
+   "CFG319": "campaign_fresh_gravity/CFG319_moving_black_hole/cfg319_moving_bh_results.json",
+   "CFG320": "campaign_fresh_gravity/CFG320_radiative_stability_g12/cfg320_radiative_stability_results.json"
+  }
+ },
+ "table": {
+  "G1": {
+   "gate": "strong hyperbolicity + criterion B (F2a)",
+   "source": "CFG292, CFG294 S1, XC2 B6",
+   "kind": "PROOF (linear principal symbol)",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "(0, 0.5) U (0.5, 2)",
+     "A_len": "(0, 2)",
+     "X_str": "(-inf, 0] U {0.5} U [2, inf)"
+    },
+    "6.6667e-02": {
+     "A_str": "(0, 0.5) U (0.5, 2)",
+     "A_len": "(0, 2)",
+     "X_str": "(-inf, 0] U {0.5} U [2, inf)"
+    }
+   }
+  },
+  "G2": {
+   "gate": "lapse/U ellipticity + UV positivity",
+   "source": "CFG294 S4b, CFG329",
+   "kind": "PROOF",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "(0, inf)",
+     "A_len": "(0, inf)",
+     "X_str": "(-inf, 0]"
+    },
+    "6.6667e-02": {
+     "A_str": "(0, inf)",
+     "A_len": "(0, inf)",
+     "X_str": "(-inf, 0]"
+    }
+   }
+  },
+  "G3": {
+   "gate": "F2a lapse kernel with W <= 0",
+   "source": "CFG294 S4c, CFG312",
+   "kind": "PROOF (homogeneous class; Hardy sufficient)",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "(-inf, 0) U (0, 0.5)",
+     "A_len": "(-inf, 0) U (0, 0.5)",
+     "X_str": "{0} U [0.5, inf)"
+    },
+    "6.6667e-02": {
+     "A_str": "(-inf, 0) U (0, 0.5)",
+     "A_len": "(-inf, 0) U (0, 0.5)",
+     "X_str": "{0} U [0.5, inf)"
+    }
+   }
+  },
+  "G4": {
+   "gate": "strong coupling G8",
+   "source": "XC1 A4 (GSS2018 eq. 15)",
+   "kind": "NUM from LIT formula (tree level)",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "[1.8026e-16, 2]",
+     "A_len": "[1.8026e-20, 2]",
+     "X_str": "(-inf, 1.8026e-16) U (2, inf)"
+    },
+    "6.6667e-02": {
+     "A_str": "[3.6652e-16, 2]",
+     "A_len": "[3.6652e-20, 2]",
+     "X_str": "(-inf, 3.6652e-16) U (2, inf)"
+    }
+   }
+  },
+  "G5": {
+   "gate": "negative-lobe health",
+   "source": "L340 H4",
+   "kind": "PROOF alpha<=0 fails; NUM edge",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "[9.6240e-14, inf)",
+     "A_len": "[2.7516e-14, inf)",
+     "X_str": "(-inf, 2.7516e-14)"
+    },
+    "6.6667e-02": {
+     "A_str": "[9.6240e-14, inf)",
+     "A_len": "[2.7516e-14, inf)",
+     "X_str": "(-inf, 2.7516e-14)"
+    }
+   }
+  },
+  "G6": {
+   "gate": "PPN alpha2",
+   "source": "L340 P1, CFG291 (Shao+2013)",
+   "kind": "LIT (provisional)",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "[-3.2000e-09, 3.2000e-09] U [0.00718407, 0.00718408]",
+     "A_len": "[-4.7997e-07, 4.8003e-07] U [0.0071836, 0.00718455]",
+     "X_str": "(-inf, -3.2000e-09) U (3.2000e-09, 0.00718407) U (0.00718408, inf)"
+    },
+    "6.6667e-02": {
+     "A_str": "[-3.2000e-09, 3.2000e-09] U [0.0588235, 0.0588235]",
+     "A_len": "[-4.8000e-07, 4.8000e-07] U [0.0588231, 0.058824]",
+     "X_str": "(-inf, -3.2000e-09) U (3.2000e-09, 0.0588235) U (0.0588235, inf)"
+    }
+   }
+  },
+  "G7": {
+   "gate": "PPN alpha1",
+   "source": "CFG291, L340 P1",
+   "kind": "LIT (provisional)",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "[-2.7500e-06, 2.7500e-06]",
+     "A_len": "(-8.2500e-06, 8.7500e-06)",
+     "X_str": "(-inf, -2.7500e-06) U (2.7500e-06, inf)"
+    },
+    "6.6667e-02": {
+     "A_str": "[-2.7500e-06, 2.7500e-06]",
+     "A_len": "(-8.2500e-06, 8.7500e-06)",
+     "X_str": "(-inf, -2.7500e-06) U (2.7500e-06, inf)"
+    }
+   }
+  },
+  "G8": {
+   "gate": "binary-pulsar dipole",
+   "source": "CFG291, CFG311",
+   "kind": "NUM with LIT formulas",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "[9.6240e-14, 3.2000e-09]",
+     "A_len": "(0, 3.2000e-09]",
+     "X_str": "EMPTY"
+    },
+    "6.6667e-02": {
+     "A_str": "[9.6240e-14, 3.2000e-09]",
+     "A_len": "(0, 3.2000e-09]",
+     "X_str": "EMPTY"
+    }
+   }
+  },
+  "G9": {
+   "gate": "cosmological G / BBN",
+   "source": "L350 G1, G5",
+   "kind": "PROOF formula + LIT bound",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "(-0.2, 0.2)",
+     "A_len": "(-0.2, 0.2)",
+     "X_str": "(-inf, -0.2] U [0.2, inf)"
+    },
+    "6.6667e-02": {
+     "A_str": "(-0.2, 0.2)",
+     "A_len": "(-0.2, 0.2)",
+     "X_str": "(-inf, -0.2] U [0.2, inf)"
+    }
+   }
+  },
+  "G10": {
+   "gate": "G_N > 0",
+   "source": "L350 G1, CFG320 K4",
+   "kind": "PROOF",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "(-inf, 2)",
+     "A_len": "(-inf, 2)",
+     "X_str": "[2, inf)"
+    },
+    "6.6667e-02": {
+     "A_str": "(-inf, 2)",
+     "A_len": "(-inf, 2)",
+     "X_str": "[2, inf)"
+    }
+   }
+  },
+  "G11": {
+   "gate": "radiative stability G12",
+   "source": "CFG320",
+   "kind": "NUM + LIT (provisional)",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "EMPTY",
+     "A_len": "[9.6240e-14, 3.2000e-09]",
+     "X_str": "[9.6240e-14, 3.2000e-09]"
+    },
+    "6.6667e-02": {
+     "A_str": "[9.6240e-14, 1.1783e-13]",
+     "A_len": "[9.6240e-14, 3.2000e-09]",
+     "X_str": "(1.1783e-13, 3.2000e-09]"
+    }
+   }
+  },
+  "G12": {
+   "gate": "black-hole regularity G11",
+   "source": "CFG318, CFG319 (+RB2019, FHB2021)",
+   "kind": "NUM + ARG (count) + LIT",
+   "by_c2": {
+    "7.2888e-03": {
+     "A_str": "{0}",
+     "A_len": "{0} U [9.6240e-14, 0.001]",
+     "X_str": "(0, inf)"
+    },
+    "6.6667e-02": {
+     "A_str": "{0}",
+     "A_len": "{0} U [9.6240e-14, 0.001]",
+     "X_str": "(0, inf)"
+    }
+   }
+  }
+ },
+ "per_c2": {
+  "7.2888e-03": {
+   "I_strict": "EMPTY",
+   "I_len": "[9.6240e-14, 3.2000e-09]",
+   "NX": "EMPTY",
+   "I_len_but_G12_strict": "EMPTY"
+  },
+  "9.6120e-03": {
+   "I_strict": "EMPTY",
+   "I_len": "[9.6240e-14, 3.2000e-09]",
+   "NX": "EMPTY",
+   "I_len_but_G12_strict": "EMPTY"
+  },
+  "1.2676e-02": {
+   "I_strict": "EMPTY",
+   "I_len": "[9.6240e-14, 3.2000e-09]",
+   "NX": "EMPTY",
+   "I_len_but_G12_strict": "EMPTY"
+  },
+  "1.6716e-02": {
+   "I_strict": "EMPTY",
+   "I_len": "[9.6240e-14, 3.2000e-09]",
+   "NX": "EMPTY",
+   "I_len_but_G12_strict": "EMPTY"
+  },
+  "2.2044e-02": {
+   "I_strict": "EMPTY",
+   "I_len": "[9.6240e-14, 3.2000e-09]",
+   "NX": "EMPTY",
+   "I_len_but_G12_strict": "EMPTY"
+  },
+  "2.9070e-02": {
+   "I_strict": "EMPTY",
+   "I_len": "[9.6240e-14, 3.2000e-09]",
+   "NX": "EMPTY",
+   "I_len_but_G12_strict": "EMPTY"
+  },
+  "3.8335e-02": {
+   "I_strict": "EMPTY",
+   "I_len": "[9.6240e-14, 3.2000e-09]",
+   "NX": "EMPTY",
+   "I_len_but_G12_strict": "EMPTY"
+  },
+  "5.0554e-02": {
+   "I_strict": "EMPTY",
+   "I_len": "[9.6240e-14, 3.2000e-09]",
+   "NX": "EMPTY",
+   "I_len_but_G12_strict": "EMPTY"
+  },
+  "6.6667e-02": {
+   "I_strict": "EMPTY",
+   "I_len": "[9.6240e-14, 3.2000e-09]",
+   "NX": "EMPTY",
+   "I_len_but_G12_strict": "EMPTY"
+  }
+ },
+ "edges": {
+  "G4_strict": {
+   "7.2888e-03": [
+    "[1.8026e-16, 2]"
+   ],
+   "9.6120e-03": [
+    "[1.9745e-16, 2]"
+   ],
+   "1.2676e-02": [
+    "[2.1620e-16, 2]"
+   ],
+   "1.6716e-02": [
+    "[2.3662e-16, 2]"
+   ],
+   "2.2044e-02": [
+    "[2.5881e-16, 2]"
+   ],
+   "2.9070e-02": [
+    "[2.8285e-16, 2]"
+   ],
+   "3.8335e-02": [
+    "[3.0881e-16, 2]"
+   ],
+   "5.0554e-02": [
+    "[3.3671e-16, 2]"
+   ],
+   "6.6667e-02": [
+    "[3.6652e-16, 2]"
+   ]
+  },
+  "G5_alpha_bis": {
+   "7.2888e-03": 2.7516121875693277e-14,
+   "9.6120e-03": 2.7516121875693277e-14,
+   "1.2676e-02": 2.7516121875693277e-14,
+   "1.6716e-02": 2.7516121875693277e-14,
+   "2.2044e-02": 2.7516121875693277e-14,
+   "2.9070e-02": 2.7516121875693277e-14,
+   "3.8335e-02": 2.7516121875693277e-14,
+   "5.0554e-02": 2.7516121875693277e-14,
+   "6.6667e-02": 2.7516121875693277e-14
+  },
+  "G5_lobe_thresholds_c2_0.01": {
+   "Solar nbhd lobe": 2.7425248071739573e-19,
+   "galaxy-in-group lobe": 2.7516121875693277e-14,
+   "cluster-outskirt lobe": 8.122044252337036e-15
+  },
+  "G11_alpha_rs": {
+   "7.2888e-03": 5.795056221179658e-14,
+   "9.6120e-03": 6.347631280577291e-14,
+   "1.2676e-02": 6.950396186471735e-14,
+   "1.6716e-02": 7.606824081439888e-14,
+   "2.2044e-02": 8.320153070899397e-14,
+   "2.9070e-02": 9.09314568814874e-14,
+   "3.8335e-02": 9.927757821779456e-14,
+   "5.0554e-02": 1.082470077210819e-13,
+   "6.6667e-02": 1.1782889519002835e-13
+  },
+  "G6_strict": {
+   "7.2888e-03": "[-3.2000e-09, 3.2000e-09] U [0.00718407, 0.00718408]",
+   "9.6120e-03": "[-3.2000e-09, 3.2000e-09] U [0.00943068, 0.00943068]",
+   "1.2676e-02": "[-3.2000e-09, 3.2000e-09] U [0.0123622, 0.0123622]",
+   "1.6716e-02": "[-3.2000e-09, 3.2000e-09] U [0.016175, 0.016175]",
+   "2.2044e-02": "[-3.2000e-09, 3.2000e-09] U [0.0211128, 0.0211128]",
+   "2.9070e-02": "[-3.2000e-09, 3.2000e-09] U [0.0274724, 0.0274724]",
+   "3.8335e-02": "[-3.2000e-09, 3.2000e-09] U [0.0356052, 0.0356052]",
+   "5.0554e-02": "[-3.2000e-09, 3.2000e-09] U [0.0459116, 0.0459116]",
+   "6.6667e-02": "[-3.2000e-09, 3.2000e-09] U [0.0588235, 0.0588235]"
+  }
+ },
+ "union": {
+  "I_strict": "EMPTY",
+  "I_len": "[9.6240e-14, 3.2000e-09]",
+  "NX": "EMPTY",
+  "I_len_G12_strict": "EMPTY"
+ },
+ "binding_edges": {
+  "I_len": {
+   "7.2888e-03": {
+    "lower {9.6240e-14}": [
+     "G11",
+     "G12"
+    ],
+    "upper {3.2000e-09}": [
+     "G8",
+     "G11"
+    ]
+   },
+   "6.6667e-02": {
+    "lower {9.6240e-14}": [
+     "G11",
+     "G12"
+    ],
+    "upper {3.2000e-09}": [
+     "G8",
+     "G11"
+    ]
+   }
+  },
+  "relax_G12_only": {
+   "6.6667e-02": {
+    "lower {9.6240e-14}": [
+     "G5",
+     "G8",
+     "G11",
+     "G12"
+    ],
+    "upper {1.1783e-13}": [
+     "G11"
+    ]
+   }
+  }
+ },
+ "who_excludes": {
+  "7.2888e-03": {
+   "-1e-09": {
+    "X": [
+     "G1",
+     "G2",
+     "G4",
+     "G5"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11",
+     "G12"
+    ]
+   },
+   "0": {
+    "X": [
+     "G1",
+     "G2",
+     "G3",
+     "G4",
+     "G5"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "1e-15": {
+    "X": [
+     "G5",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "1e-13": {
+    "X": [
+     "G11",
+     "G12"
+    ],
+    "not_A_only": []
+   },
+   "1e-11": {
+    "X": [
+     "G11",
+     "G12"
+    ],
+    "not_A_only": []
+   },
+   "3e-09": {
+    "X": [
+     "G11",
+     "G12"
+    ],
+    "not_A_only": []
+   },
+   "1e-06": {
+    "X": [
+     "G6",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "0.1": {
+    "X": [
+     "G6",
+     "G7",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "0.5": {
+    "X": [
+     "G1",
+     "G3",
+     "G6",
+     "G7",
+     "G9",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "1": {
+    "X": [
+     "G3",
+     "G6",
+     "G7",
+     "G9",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   }
+  },
+  "2.2044e-02": {
+   "-1e-09": {
+    "X": [
+     "G1",
+     "G2",
+     "G4",
+     "G5"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11",
+     "G12"
+    ]
+   },
+   "0": {
+    "X": [
+     "G1",
+     "G2",
+     "G3",
+     "G4",
+     "G5"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "1e-15": {
+    "X": [
+     "G5",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "1e-13": {
+    "X": [
+     "G11",
+     "G12"
+    ],
+    "not_A_only": []
+   },
+   "1e-11": {
+    "X": [
+     "G11",
+     "G12"
+    ],
+    "not_A_only": []
+   },
+   "3e-09": {
+    "X": [
+     "G11",
+     "G12"
+    ],
+    "not_A_only": []
+   },
+   "1e-06": {
+    "X": [
+     "G6",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "0.1": {
+    "X": [
+     "G6",
+     "G7",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "0.5": {
+    "X": [
+     "G1",
+     "G3",
+     "G6",
+     "G7",
+     "G9",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "1": {
+    "X": [
+     "G3",
+     "G6",
+     "G7",
+     "G9",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   }
+  },
+  "6.6667e-02": {
+   "-1e-09": {
+    "X": [
+     "G1",
+     "G2",
+     "G4",
+     "G5"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11",
+     "G12"
+    ]
+   },
+   "0": {
+    "X": [
+     "G1",
+     "G2",
+     "G3",
+     "G4",
+     "G5"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "1e-15": {
+    "X": [
+     "G5",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "1e-13": {
+    "X": [
+     "G12"
+    ],
+    "not_A_only": []
+   },
+   "1e-11": {
+    "X": [
+     "G11",
+     "G12"
+    ],
+    "not_A_only": []
+   },
+   "3e-09": {
+    "X": [
+     "G11",
+     "G12"
+    ],
+    "not_A_only": []
+   },
+   "1e-06": {
+    "X": [
+     "G6",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "0.1": {
+    "X": [
+     "G6",
+     "G7",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "0.5": {
+    "X": [
+     "G1",
+     "G3",
+     "G6",
+     "G7",
+     "G9",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   },
+   "1": {
+    "X": [
+     "G3",
+     "G6",
+     "G7",
+     "G9",
+     "G12"
+    ],
+    "not_A_only": [
+     "G8",
+     "G11"
+    ]
+   }
+  }
+ },
+ "minimal_opening_relaxations": [
+  [
+   "G12"
+  ]
+ ],
+ "single_relaxations": {
+  "G1": "EMPTY",
+  "G4": "EMPTY",
+  "G5": "EMPTY",
+  "G6": "EMPTY",
+  "G7": "EMPTY",
+  "G8": "EMPTY",
+  "G11": "EMPTY",
+  "G12": "[9.6240e-14, 1.1783e-13]"
+ },
+ "G12_only_by_c2": {
+  "7.2888e-03": "EMPTY",
+  "9.6120e-03": "EMPTY",
+  "1.2676e-02": "EMPTY",
+  "1.6716e-02": "EMPTY",
+  "2.2044e-02": "EMPTY",
+  "2.9070e-02": "EMPTY",
+  "3.8335e-02": "[9.6240e-14, 9.9278e-14]",
+  "5.0554e-02": "[9.6240e-14, 1.0825e-13]",
+  "6.6667e-02": "[9.6240e-14, 1.1783e-13]"
+ },
+ "readings": {
+  "r1_phys_lapse_resonance_alpha": "(0, inf)",
+  "r2_S22_numerator_alpha_neg": "-8*Y**4*(W**2*n + Y**2*l)",
+  "r3_plain_BBN": {
+   "7.2888e-03": [
+    -0.22405304144475302,
+    0.18032023881792947
+   ],
+   "6.6667e-02": [
+    -0.4200000000000004,
+    0.019999999999999796
+   ]
+  }
+ },
+ "mutate_response": {},
+ "checks": {
+  "K7 toy intersections: (0,1) n {0} = EMPTY; (0,1) n [1/2,2] = [1/2,1); ((0,1/2) U (1/2,2)) n [1/2,1] = (1/2,1]; mirror((1,2]) = [-2,-1)": {
+   "ok": true,
+   "measured": "EMPTY; [0.5, 1); (0.5, 1]",
+   "load_bearing": true
+  },
+  "K1 G1's sets agree with CFG292's committed F2a scalar polynomial (c_S^2 = c_2(2-alpha)/(alpha(2+3c_2)) > 0 iff 0 < alpha < 2 at every grid c_2 > 0) and its lapse coefficient (2 alpha - 1)/4 (zero only at 1/2)": {
+   "ok": true,
+   "measured": "c_S^2 reproduced: True; sets used by the gate: A_len (0, 2), A_str (0, 0.5) U (0.5, 2)",
+   "load_bearing": true
+  },
+  "K2 the G4 formula reproduces XC1's committed minimum k_sc at its worst point to 1e-6 relative": {
+   "ok": true,
+   "measured": "8.479852e+08 vs 8.479852e+08 GeV (rel 0.0e+00)",
+   "load_bearing": true
+  },
+  "K3 the re-implemented L340 symbol reproduces the committed H4 booleans (alpha = 0, 1e-9; four lobes), and in every negative lobe the inertia at the grid's top k is negative for alpha = 0 and alpha = -1e-20": {
+   "ok": true,
+   "measured": "all match",
+   "load_bearing": true
+  },
+  "K4 the G6/G7 formulas reproduce CFG291's committed PPN corners to 1e-6 relative": {
+   "ok": true,
+   "measured": "match",
+   "load_bearing": true
+  },
+  "K5 Lambda_sc reproduces CFG320's committed min/max to 1e-6 and its no-hierarchy sub-window holds exactly CFG320's 3 committed grid points": {
+   "ok": true,
+   "measured": "min 8.479852e+08/8.479852e+08, max 3.555315e+12/3.555315e+12; sub-window points 3: (9.624e-14, 0.0383), (9.624e-14, 0.0506), (9.624e-14, 0.0667)",
+   "load_bearing": true
+  },
+  "K6 CFG319's committed JSON: no fully regular moving BH at the five window points, option C admissible at all five, the alpha = 0 stealth control C1 passed; window and ladder alphas read from numbers.runs": {
+   "ok": true,
+   "measured": "full_regular [False, False, False, False, False]; optC_admissible [True, True, True, True, True]; W5 alphas ['9.624e-14', '9.624e-14', '1.755e-11', '3.200e-09', '3.200e-09']; ladder ['1e-07', '1e-06', '1e-05', '1e-04', '1e-03'] (c_2 = 0.05)",
+   "load_bearing": true
+  },
+  "K8 flipping EVERY gate's sign convention mirrors I_strict, I_len and NX exactly and leaves the verdict unchanged": {
+   "ok": true,
+   "measured": "mirrored I_len [-3.2000e-09, -9.6240e-14]; verdict TENSION vs TENSION",
+   "load_bearing": true
+  },
+  "K9 footings: every gate set is identical under the canonical and alt a0 labels (no gate takes a0; bookkeeping check)": {
+   "ok": true,
+   "measured": "identical",
+   "load_bearing": true
+  }
+ },
+ "n_checks": 9,
+ "n_pass": 9,
+ "n_fail_load_bearing": 0,
+ "verdict": "TENSION",
+ "runtime_s": 5.1
+}

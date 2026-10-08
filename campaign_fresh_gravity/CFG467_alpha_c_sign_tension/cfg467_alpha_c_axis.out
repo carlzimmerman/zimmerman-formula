@@ -1,0 +1,284 @@
+
+======================================================================================================================
+CFG467  the alpha_c axis of the chassis (C-H/K, beta = 0)
+======================================================================================================================
+Source verdicts as committed (read-only):
+    CFG291  CONDITIONAL
+    CFG292  OPEN (frozen-rule fall-through: the CONDITIONAL rule also required F1 to be strongly hyperbolic and it is not 
+    CFG294  CONDITIONAL
+    CFG311  PASS (at the stated scope)
+    CFG312  PASS-WITH-EXCEPTIONS (scoped)
+    CFG318  CONDITIONAL
+    CFG319  CONDITIONAL
+    CFG320  CONDITIONAL
+L340 P1 window: alpha_c in [9.6240e-14, 3.2000e-09], c_2 in [7.2888e-03, 6.6667e-02]
+c_2 grid (CFG320 c2_scored): 7.2888e-03, 9.6120e-03, 1.2676e-02, 1.6716e-02, 2.2044e-02, 2.9070e-02, 3.8335e-02, 5.0554e-02, 6.6667e-02
+
+======================================================================================================================
+K7  the set engine on toy sets
+======================================================================================================================
+  [PASS] K7 toy intersections: (0,1) n {0} = EMPTY; (0,1) n [1/2,2] = [1/2,1); ((0,1/2) U (1/2,2)) n [1/2,1] = (1/2,1]; mirror((1,2]) = [-2,-1)
+         measured: EMPTY; [0.5, 1); (0.5, 1]
+
+======================================================================================================================
+G1  strong hyperbolicity + criterion B in F2a (CFG292 T1/COND; CFG294 S1; XC2 B6)  [PROOF, linear principal symbol]
+======================================================================================================================
+    committed F2a scalar characteristic polynomial at beta = 0: k**2*(k - lam)**2*(k + lam)**2*(alpha*c_2*k**2 + 3*alpha*c_2*lam**2 + 2*alpha*lam**2 - 2*c_2*k**2)/4
+    physical scalar factor Q = (alpha*c_2*k**2 + 3*alpha*c_2*lam**2 + 2*alpha*lam**2 - 2*c_2*k**2)/4;  lam^2/k^2 = c_S^2 = -c_2*(alpha - 2)/(alpha*(3*c_2 + 2))
+    committed F2a lapse coefficient: alpha/2 - 1/4  (zero at alpha = [1/2])
+    derived at every grid c_2: c_S^2 > 0 iff alpha in (0, 2); strict set (0, 0.5) U (0.5, 2)
+    alpha = 1/2: F2a gauge artefact (physical lapse coefficient alpha/2 != 0, CFG294 S1 table) -> lenient keeps it
+  [PASS] K1 G1's sets agree with CFG292's committed F2a scalar polynomial (c_S^2 = c_2(2-alpha)/(alpha(2+3c_2)) > 0 iff 0 < alpha < 2 at every grid c_2 > 0) and its lapse coefficient (2 alpha - 1)/4 (zero only at 1/2)
+         measured: c_S^2 reproduced: True; sets used by the gate: A_len (0, 2), A_str (0, 0.5) U (0.5, 2)
+
+======================================================================================================================
+G2  lapse/U leaf system: ellipticity (CFG294 S4b, joint det 4 N alpha k^4) and UV positivity (CFG329)  [PROOF]
+======================================================================================================================
+    CFG329 lapse coefficient (2C + alpha(1+C))/(1+C) -> alpha as C -> 0 (the heat filter removes C at k >> 1/xi, XC1 A3)
+    positivity set (0, inf);  joint-system ellipticity set (-inf, 0) U (0, inf);  low-k (C > 0) reading: positive for alpha > -2C/(1+C)
+    G2: A = (0, inf), X = (-inf, 0]
+
+======================================================================================================================
+G3  F2a lapse kernel with W <= 0, W != 0 (CFG294 S4c; CFG312 Hardy factor 1/2 - alpha)  [PROOF, homogeneous class]
+======================================================================================================================
+    h_F2a(K) = (alpha - 1/2) K + W, W < 0: zero at K* = 2*W_abs/(2*alpha - 1); K* > 0 (a resonance, non-trivial kernel) iff alpha in (0.5, inf); at alpha = 1/2 the k^2 term vanishes (not elliptic)
+    G3: A = (-inf, 0) U (0, 0.5), X = {0} U [0.5, inf)  (alpha = 0 is excluded through CFG294's joint ellipticity)
+    reading r1 (not scored): CFG294's physical velocity-fixed form alpha K + W has a resonance K* = W_abs/alpha > 0 for alpha in (0, inf); it is resonance-free with W < 0 only for alpha <= 0. CFG294 records this resonance and states that F2a, the operator the scheme inverts, has none.
+
+======================================================================================================================
+G4  strong coupling G8 (XC1 A4; Guemruekcueoglu, Saravani & Sotiriou 2018 eq. 15)  [NUM from LIT formula, tree level]
+======================================================================================================================
+    k_sc(alpha <= 0) = 0 by XC1's definition (no UV kinetic term): alpha <= 0 is strongly coupled at every scale
+    c_2 7.2888e-03: strict (>= 1e3 x LHC) A = [1.8026e-16, 2];  lenient (>= LHC) A = [1.8026e-20, 2];  upper edges 2 - 3.261e-13 / 2 - 3.261e-17 (c_s -> 0 as alpha -> 2)
+    c_2 2.2044e-02: strict (>= 1e3 x LHC) A = [2.5881e-16, 2];  lenient (>= LHC) A = [2.5881e-20, 2];  upper edges 2 - 1.102e-13 / 2 - 1.102e-17 (c_s -> 0 as alpha -> 2)
+    c_2 6.6667e-02: strict (>= 1e3 x LHC) A = [3.6652e-16, 2];  lenient (>= LHC) A = [3.6652e-20, 2];  upper edges 2 - 3.880e-14 / 2 - 3.880e-18 (c_s -> 0 as alpha -> 2)
+  [PASS] K2 the G4 formula reproduces XC1's committed minimum k_sc at its worst point to 1e-6 relative
+         measured: 8.479852e+08 vs 8.479852e+08 GeV (rel 0.0e+00)
+
+======================================================================================================================
+G5  negative-phantom-lobe health (L340 H4)  [PROOF that alpha <= 0 fails; NUM edge]
+======================================================================================================================
+    Solar nbhd lob a=0: (False, False) vs (False, False); Solar nbhd lob a=1e-09: (True, True) vs (True, True); galaxy-in-grou a=0: (False, False) vs (False, False); galaxy-in-grou a=1e-09: (True, True) vs (True, True); cluster-outski a=0: (False, False) vs (False, False); cluster-outski a=1e-09: (True, True) vs (True, True); galaxy transit a=0: (True, True) vs (True, True); galaxy transit a=1e-09: (True, True) vs (True, True)
+  [PASS] K3 the re-implemented L340 symbol reproduces the committed H4 booleans (alpha = 0, 1e-9; four lobes), and in every negative lobe the inertia at the grid's top k is negative for alpha = 0 and alpha = -1e-20
+         measured: all match
+         note: large-k limit: inertia -> alpha k^2 + lambda0/2 with lambda0 < 0, so alpha <= 0 fails in every negative lobe (proof)
+    bisected thresholds on L340's k grid (c_2 = 1e-2): Solar nbhd lobe: 2.7425e-19 (L340 estimate 2.4361e-18); galaxy-in-group lobe: 2.7516e-14 (L340 estimate 9.6240e-14); cluster-outskirt lobe: 8.1220e-15 (L340 estimate 3.0075e-14)
+    binding lobe threshold over the c_2 grid: 2.7516e-14 .. 2.7516e-14 (record edge 9.6240e-14 is the estimate |lambda0| xi^2/20)
+
+======================================================================================================================
+G6/G7  PPN alpha2 and alpha1 (exact khronometric formulas at beta = 0; L340 P1, CFG291)  [LIT, provisional]
+======================================================================================================================
+    alpha_c=9.62e-14 c2=7.289e-03: a1 -3.8496e-13/-3.8496e-13, a2 -4.812024e-14/-4.812024e-14; alpha_c=9.62e-14 c2=6.667e-02: a1 -3.8496e-13/-3.8496e-13, a2 -4.812024e-14/-4.812024e-14; alpha_c=3.20e-09 c2=7.289e-03: a1 -1.2800e-08/-1.2800e-08, a2 -1.599999e-09/-1.599999e-09; alpha_c=3.20e-09 c2=6.667e-02: a1 -1.2800e-08/-1.2800e-08, a2 -1.600000e-09/-1.600000e-09
+  [PASS] K4 the G6/G7 formulas reproduce CFG291's committed PPN corners to 1e-6 relative
+         measured: match
+    c_2 7.2888e-03: |alpha2| <= 1.6e-9 -> [-3.2000e-09, 3.2000e-09] U [0.00718407, 0.00718408]
+                    |alpha2| <= 2.4e-7 -> [-4.7997e-07, 4.8003e-07] U [0.0071836, 0.00718455]
+    c_2 6.6667e-02: |alpha2| <= 1.6e-9 -> [-3.2000e-09, 3.2000e-09] U [0.0588235, 0.0588235]
+                    |alpha2| <= 2.4e-7 -> [-4.8000e-07, 4.8000e-07] U [0.0588231, 0.058824]
+    the second island sits at alpha = c_2/(1 + 2 c_2), where c_S = 1 and alpha2 vanishes again; alpha1 excludes it (G7)
+    G7: alpha1 = -4 alpha; strict |alpha1| <= 1.1e-5 -> [-2.7500e-06, 2.7500e-06]; lenient -3.5e-5 < alpha1 < 3.3e-5 -> (-8.2500e-06, 8.7500e-06)
+
+======================================================================================================================
+G8  binary-pulsar dipole (CFG291 + CFG311)  [NUM with LIT formulas]
+======================================================================================================================
+    tested pass on [9.6240e-14, 3.2000e-09] (CFG291 625/625 under B0-B2; CFG311 PASS at its scope, margin >= 4.9e5); lenient (0, 3.2000e-09] via CFG291 C6 (flux -> 0 monotonically as alpha -> 0+); alpha <= 0 and alpha > 3.2e-9: untested
+
+======================================================================================================================
+G9/G10  cosmological G / BBN (L350 G1, G5) and G_N > 0  [PROOF formula + LIT bound; PROOF]
+======================================================================================================================
+    G9 leaf-average branch |G_cos/G_N - 1| = |alpha|/2 < 0.1 -> (-0.2, 0.2);  G10 G_N = G/(1 - alpha/2) > 0 -> (-inf, 2)
+    reading r3 (plain branch, (2 - alpha)/(2 + 3 c_2) within 10% of 1) at c_2 7.2888e-03: alpha in (-0.2241, 0.1803)
+    reading r3 (plain branch, (2 - alpha)/(2 + 3 c_2) within 10% of 1) at c_2 6.6667e-02: alpha in (-0.4200, 0.0200)
+
+======================================================================================================================
+G11  radiative stability G12 (CFG320)  [NUM + LIT, provisional]
+======================================================================================================================
+  [PASS] K5 Lambda_sc reproduces CFG320's committed min/max to 1e-6 and its no-hierarchy sub-window holds exactly CFG320's 3 committed grid points
+         measured: min 8.479852e+08/8.479852e+08, max 3.555315e+12/3.555315e+12; sub-window points 3: (9.624e-14, 0.0383), (9.624e-14, 0.0506), (9.624e-14, 0.0667)
+    Lambda_HL_max (CFG320) = 9.8698e+08 GeV; alpha_rs(c_2) where Lambda_sc = cap: 7.289e-03: 5.7951e-14, 9.612e-03: 6.3476e-14, 1.268e-02: 6.9504e-14, 1.672e-02: 7.6068e-14, 2.204e-02: 8.3202e-14, 2.907e-02: 9.0931e-14, 3.834e-02: 9.9278e-14, 5.055e-02: 1.0825e-13, 6.667e-02: 1.1783e-13
+    strict (no hierarchy) A non-empty for c_2 >= 3.8335e-02 on the grid; lenient (M_* <= 9.9e8 GeV granted) A = [9.6240e-14, 3.2000e-09]
+
+======================================================================================================================
+G12  black-hole regularity G11 (CFG318, CFG319; RB2019, FHB2021; Kovachik-Sibiryakov provisional)  [NUM + ARG + LIT]
+======================================================================================================================
+  [PASS] K6 CFG319's committed JSON: no fully regular moving BH at the five window points, option C admissible at all five, the alpha = 0 stealth control C1 passed; window and ladder alphas read from numbers.runs
+         measured: full_regular [False, False, False, False, False]; optC_admissible [True, True, True, True, True]; W5 alphas ['9.624e-14', '9.624e-14', '1.755e-11', '3.200e-09', '3.200e-09']; ladder ['1e-07', '1e-06', '1e-05', '1e-04', '1e-03'] (c_2 = 0.05)
+    CFG319 S22 numerator at beta = 0: 8*Y**4*(W**2*alpha - Y**2*lambda); with alpha = -n < 0, lambda = l > 0: -8*Y**4*(W**2*n + Y**2*l)
+    reading r2 (not scored): for alpha < 0 the bracket -(n W^2 + l Y^2) never vanishes, so there is no spin-0 horizon and
+    CFG319's r_S condition drops out of the count (4 constants vs 4 conditions). Existence is NOT computed; alpha < 0 is U.
+    G12 strict (reading S): A = {0}, X = (0, inf) (count over-determined by one for every alpha > 0,
+      test-khronon limit; numerically at the 5 window points and the ladder)
+    G12 lenient (reading W, option C accepted): A = {0} U [9.6240e-14, 0.001]
+
+======================================================================================================================
+THE INTERVAL TABLE (strict A / lenient A / shown-excluded X), per gate, at c_2 min / max
+======================================================================================================================
+  G1   strong hyperbolicity + criterion B (F2a)  [CFG292, CFG294 S1, XC2 B6; PROOF (linear principal symbol)]
+        c_2 7.2888e-03: strict A (0, 0.5) U (0.5, 2)
+                       lenient A (0, 2)
+                       X (-inf, 0] U {0.5} U [2, inf)
+        c_2 6.6667e-02: strict A (0, 0.5) U (0.5, 2)
+                       lenient A (0, 2)
+                       X (-inf, 0] U {0.5} U [2, inf)
+  G2   lapse/U ellipticity + UV positivity  [CFG294 S4b, CFG329; PROOF]
+        c_2 7.2888e-03: strict A (0, inf)
+                       lenient A (0, inf)
+                       X (-inf, 0]
+        c_2 6.6667e-02: strict A (0, inf)
+                       lenient A (0, inf)
+                       X (-inf, 0]
+  G3   F2a lapse kernel with W <= 0  [CFG294 S4c, CFG312; PROOF (homogeneous class; Hardy sufficient)]
+        c_2 7.2888e-03: strict A (-inf, 0) U (0, 0.5)
+                       lenient A (-inf, 0) U (0, 0.5)
+                       X {0} U [0.5, inf)
+        c_2 6.6667e-02: strict A (-inf, 0) U (0, 0.5)
+                       lenient A (-inf, 0) U (0, 0.5)
+                       X {0} U [0.5, inf)
+  G4   strong coupling G8  [XC1 A4 (GSS2018 eq. 15); NUM from LIT formula (tree level)]
+        c_2 7.2888e-03: strict A [1.8026e-16, 2]
+                       lenient A [1.8026e-20, 2]
+                       X (-inf, 1.8026e-16) U (2, inf)
+        c_2 6.6667e-02: strict A [3.6652e-16, 2]
+                       lenient A [3.6652e-20, 2]
+                       X (-inf, 3.6652e-16) U (2, inf)
+  G5   negative-lobe health  [L340 H4; PROOF alpha<=0 fails; NUM edge]
+        c_2 7.2888e-03: strict A [9.6240e-14, inf)
+                       lenient A [2.7516e-14, inf)
+                       X (-inf, 2.7516e-14)
+        c_2 6.6667e-02: strict A [9.6240e-14, inf)
+                       lenient A [2.7516e-14, inf)
+                       X (-inf, 2.7516e-14)
+  G6   PPN alpha2  [L340 P1, CFG291 (Shao+2013); LIT (provisional)]
+        c_2 7.2888e-03: strict A [-3.2000e-09, 3.2000e-09] U [0.00718407, 0.00718408]
+                       lenient A [-4.7997e-07, 4.8003e-07] U [0.0071836, 0.00718455]
+                       X (-inf, -3.2000e-09) U (3.2000e-09, 0.00718407) U (0.00718408, inf)
+        c_2 6.6667e-02: strict A [-3.2000e-09, 3.2000e-09] U [0.0588235, 0.0588235]
+                       lenient A [-4.8000e-07, 4.8000e-07] U [0.0588231, 0.058824]
+                       X (-inf, -3.2000e-09) U (3.2000e-09, 0.0588235) U (0.0588235, inf)
+  G7   PPN alpha1  [CFG291, L340 P1; LIT (provisional)]
+        c_2 7.2888e-03: strict A [-2.7500e-06, 2.7500e-06]
+                       lenient A (-8.2500e-06, 8.7500e-06)
+                       X (-inf, -2.7500e-06) U (2.7500e-06, inf)
+        c_2 6.6667e-02: strict A [-2.7500e-06, 2.7500e-06]
+                       lenient A (-8.2500e-06, 8.7500e-06)
+                       X (-inf, -2.7500e-06) U (2.7500e-06, inf)
+  G8   binary-pulsar dipole  [CFG291, CFG311; NUM with LIT formulas]
+        c_2 7.2888e-03: strict A [9.6240e-14, 3.2000e-09]
+                       lenient A (0, 3.2000e-09]
+                       X EMPTY
+        c_2 6.6667e-02: strict A [9.6240e-14, 3.2000e-09]
+                       lenient A (0, 3.2000e-09]
+                       X EMPTY
+  G9   cosmological G / BBN  [L350 G1, G5; PROOF formula + LIT bound]
+        c_2 7.2888e-03: strict A (-0.2, 0.2)
+                       lenient A (-0.2, 0.2)
+                       X (-inf, -0.2] U [0.2, inf)
+        c_2 6.6667e-02: strict A (-0.2, 0.2)
+                       lenient A (-0.2, 0.2)
+                       X (-inf, -0.2] U [0.2, inf)
+  G10  G_N > 0  [L350 G1, CFG320 K4; PROOF]
+        c_2 7.2888e-03: strict A (-inf, 2)
+                       lenient A (-inf, 2)
+                       X [2, inf)
+        c_2 6.6667e-02: strict A (-inf, 2)
+                       lenient A (-inf, 2)
+                       X [2, inf)
+  G11  radiative stability G12  [CFG320; NUM + LIT (provisional)]
+        c_2 7.2888e-03: strict A EMPTY
+                       lenient A [9.6240e-14, 3.2000e-09]
+                       X [9.6240e-14, 3.2000e-09]
+        c_2 6.6667e-02: strict A [9.6240e-14, 1.1783e-13]
+                       lenient A [9.6240e-14, 3.2000e-09]
+                       X (1.1783e-13, 3.2000e-09]
+  G12  black-hole regularity G11  [CFG318, CFG319 (+RB2019, FHB2021); NUM + ARG (count) + LIT]
+        c_2 7.2888e-03: strict A {0}
+                       lenient A {0} U [9.6240e-14, 0.001]
+                       X (0, inf)
+        c_2 6.6667e-02: strict A {0}
+                       lenient A {0} U [9.6240e-14, 0.001]
+                       X (0, inf)
+  relaxable gates (strict != lenient somewhere): ['G1', 'G4', 'G5', 'G6', 'G7', 'G8', 'G11', 'G12']
+
+======================================================================================================================
+INTERSECTIONS per c_2
+======================================================================================================================
+  c_2 7.2888e-03:  I_strict EMPTY                        I_len [9.6240e-14, 3.2000e-09]     NX EMPTY      I_len with G12 strict EMPTY
+  c_2 9.6120e-03:  I_strict EMPTY                        I_len [9.6240e-14, 3.2000e-09]     NX EMPTY      I_len with G12 strict EMPTY
+  c_2 1.2676e-02:  I_strict EMPTY                        I_len [9.6240e-14, 3.2000e-09]     NX EMPTY      I_len with G12 strict EMPTY
+  c_2 1.6716e-02:  I_strict EMPTY                        I_len [9.6240e-14, 3.2000e-09]     NX EMPTY      I_len with G12 strict EMPTY
+  c_2 2.2044e-02:  I_strict EMPTY                        I_len [9.6240e-14, 3.2000e-09]     NX EMPTY      I_len with G12 strict EMPTY
+  c_2 2.9070e-02:  I_strict EMPTY                        I_len [9.6240e-14, 3.2000e-09]     NX EMPTY      I_len with G12 strict EMPTY
+  c_2 3.8335e-02:  I_strict EMPTY                        I_len [9.6240e-14, 3.2000e-09]     NX EMPTY      I_len with G12 strict EMPTY
+  c_2 5.0554e-02:  I_strict EMPTY                        I_len [9.6240e-14, 3.2000e-09]     NX EMPTY      I_len with G12 strict EMPTY
+  c_2 6.6667e-02:  I_strict EMPTY                        I_len [9.6240e-14, 3.2000e-09]     NX EMPTY      I_len with G12 strict EMPTY
+  union over c_2:  I_strict EMPTY;  I_len [9.6240e-14, 3.2000e-09];  NX EMPTY;  I_len with G12 strict EMPTY
+  binding gates at the edges (a point 1e-9 outside the edge is not allowed by):
+    I_len at c_2 7.2888e-03: lower {9.6240e-14}: G11,G12; upper {3.2000e-09}: G8,G11
+    I_len at c_2 6.6667e-02: lower {9.6240e-14}: G11,G12; upper {3.2000e-09}: G8,G11
+    relax_G12_only at c_2 6.6667e-02: lower {9.6240e-14}: G5,G8,G11,G12; upper {1.1783e-13}: G11
+
+======================================================================================================================
+WHO EXCLUDES WHAT (strict sets; 'X' = shown excluded, 'not-A' = not shown allowed)
+======================================================================================================================
+  c_2 7.2888e-03:
+     alpha  -1e-09: X by G1,G2,G4,G5                        not shown allowed by G8,G11,G12
+     alpha       0: X by G1,G2,G3,G4,G5                     not shown allowed by G8,G11
+     alpha   1e-15: X by G5,G12                             not shown allowed by G8,G11
+     alpha   1e-13: X by G11,G12                            not shown allowed by -
+     alpha   1e-11: X by G11,G12                            not shown allowed by -
+     alpha   3e-09: X by G11,G12                            not shown allowed by -
+     alpha   1e-06: X by G6,G12                             not shown allowed by G8,G11
+     alpha     0.1: X by G6,G7,G12                          not shown allowed by G8,G11
+     alpha     0.5: X by G1,G3,G6,G7,G9,G12                 not shown allowed by G8,G11
+     alpha       1: X by G3,G6,G7,G9,G12                    not shown allowed by G8,G11
+  c_2 2.2044e-02:
+     alpha  -1e-09: X by G1,G2,G4,G5                        not shown allowed by G8,G11,G12
+     alpha       0: X by G1,G2,G3,G4,G5                     not shown allowed by G8,G11
+     alpha   1e-15: X by G5,G12                             not shown allowed by G8,G11
+     alpha   1e-13: X by G11,G12                            not shown allowed by -
+     alpha   1e-11: X by G11,G12                            not shown allowed by -
+     alpha   3e-09: X by G11,G12                            not shown allowed by -
+     alpha   1e-06: X by G6,G12                             not shown allowed by G8,G11
+     alpha     0.1: X by G6,G7,G12                          not shown allowed by G8,G11
+     alpha     0.5: X by G1,G3,G6,G7,G9,G12                 not shown allowed by G8,G11
+     alpha       1: X by G3,G6,G7,G9,G12                    not shown allowed by G8,G11
+  c_2 6.6667e-02:
+     alpha  -1e-09: X by G1,G2,G4,G5                        not shown allowed by G8,G11,G12
+     alpha       0: X by G1,G2,G3,G4,G5                     not shown allowed by G8,G11
+     alpha   1e-15: X by G5,G12                             not shown allowed by G8,G11
+     alpha   1e-13: X by G12                                not shown allowed by -
+     alpha   1e-11: X by G11,G12                            not shown allowed by -
+     alpha   3e-09: X by G11,G12                            not shown allowed by -
+     alpha   1e-06: X by G6,G12                             not shown allowed by G8,G11
+     alpha     0.1: X by G6,G7,G12                          not shown allowed by G8,G11
+     alpha     0.5: X by G1,G3,G6,G7,G9,G12                 not shown allowed by G8,G11
+     alpha       1: X by G3,G6,G7,G9,G12                    not shown allowed by G8,G11
+
+======================================================================================================================
+MINIMAL RELAXATIONS that open the intersection (all subsets of the relaxable gates)
+======================================================================================================================
+  relax ['G12']: opens [9.6240e-14, 1.1783e-13]
+  single relaxations: G1: EMPTY; G4: EMPTY; G5: EMPTY; G6: EMPTY; G7: EMPTY; G8: EMPTY; G11: EMPTY; G12: [9.6240e-14, 1.1783e-13]
+  relax G12 only, per c_2: 7.2888e-03: EMPTY; 9.6120e-03: EMPTY; 1.2676e-02: EMPTY; 1.6716e-02: EMPTY; 2.2044e-02: EMPTY; 2.9070e-02: EMPTY; 3.8335e-02: [9.6240e-14, 9.9278e-14]; 5.0554e-02: [9.6240e-14, 1.0825e-13]; 6.6667e-02: [9.6240e-14, 1.1783e-13]
+
+======================================================================================================================
+K8 mirror control and K9 footings
+======================================================================================================================
+  [PASS] K8 flipping EVERY gate's sign convention mirrors I_strict, I_len and NX exactly and leaves the verdict unchanged
+         measured: mirrored I_len [-3.2000e-09, -9.6240e-14]; verdict TENSION vs TENSION
+  [PASS] K9 footings: every gate set is identical under the canonical and alt a0 labels (no gate takes a0; bookkeeping check)
+         measured: identical
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  union over c_2 of I_strict = EMPTY
+  union over c_2 of I_len    = [9.6240e-14, 3.2000e-09]
+  not-shown-excluded (strict X) = EMPTY;  lenient everywhere but G12 strict = EMPTY
+  VERDICT (frozen rule): TENSION
+  The strict intersection is empty: G1 (proof) and G2 (proof) need alpha_c > 0, and the strict black-hole criterion
+  allows only alpha_c = 0. It opens only when G12 is read as W (option C accepted); with every other gate relaxed and
+  G12 strict it stays empty, i.e. under the strict black-hole criterion alone the emptiness is robust.
+  checks: 9/9 pass; load-bearing failures: 0
+  Chassis only. Candidate B has no action: untested for B. kappa = 1/2 is FITTED; the cold mass is still required.
+  runtime 5.1 s
