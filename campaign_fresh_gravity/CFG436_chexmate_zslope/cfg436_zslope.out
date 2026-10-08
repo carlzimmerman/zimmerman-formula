@@ -1,0 +1,52 @@
+CFG436 CHEX-MATE z-slope (T16 discriminator)   MUTATE=False
+
+G0 data gate: per-cluster CHEX-MATE table with z, M500 and M_gas,500 (>= 30 clusters)?
+  scanned 31 tables in 13 files; tables with a gas-mass column: []
+  arXiv 2609.09144 (Sept 2026) states 'no gas fraction measurements ... obtained for the CHEX-MATE clusters': True
+  G0 FAIL -> PRIMARY verdict: NOT POSSIBLE
+
+CHEX-MATE overview tables: 122 clusters, z 0.056-0.596, median 0.178, std 0.145
+
+Registered predictions (T16): saturation x(z)/x(ref) = 1; slow-rate F(z)/F(ref), tau = t(z) - t(2)
+  t(0) = 13.46 Gyr, t(2) = 3.23 Gyr -> tau(0) = 10.23 Gyr (T16: 10.3)
+  lam 0.0073 (win_lo): R(bin4/bin3) = 0.862 [fixed-rho 0.773]; x(0.6)/x(0.05) = 0.653; dlnx/dz = -0.770 [fixed-rho -1.317]
+  lam 0.0123 (PRIMARY_mid): R(bin4/bin3) = 0.864 [fixed-rho 0.777]; x(0.6)/x(0.05) = 0.659; dlnx/dz = -0.753 [fixed-rho -1.292]
+  lam 0.0172 (win_hi): R(bin4/bin3) = 0.867 [fixed-rho 0.780]; x(0.6)/x(0.05) = 0.665; dlnx/dz = -0.736 [fixed-rho -1.267]
+  lam 0.0160 (universal): R(bin4/bin3) = 0.866 [fixed-rho 0.779]; x(0.6)/x(0.05) = 0.664; dlnx/dz = -0.740 [fixed-rho -1.273]
+  lam 0.0280 (MW_floor): R(bin4/bin3) = 0.873 [fixed-rho 0.788]; x(0.6)/x(0.05) = 0.679; dlnx/dz = -0.700 [fixed-rho -1.215]
+  C3: rate x tau(0) = 11.64 (T16 11.74), nu_mono >= 1: True -> PASS
+
+Indicative row: arXiv 2609.09144 figure fgas_measured.pdf (vector extraction)
+  calibration: x ticks [85.203, 183.836, 282.47] (resid 0.000 pt), 9 y ticks (resid 0.001 pt); CHEX-MATE markers found: 4 -> C1 PASS
+  marker 1: M500c = 3.189e+14 [2.88e+14, 3.85e+14]  f_gas = 0.0860 [0.0787, 0.0924]
+  marker 2: M500c = 5.610e+14 [5.04e+14, 6.73e+14]  f_gas = 0.0992 [0.0903, 0.1076]
+  marker 3: M500c = 1.192e+15 [1.04e+15, 1.38e+15]  f_gas = 0.1090 [0.0988, 0.1188]
+  marker 4: M500c = 1.136e+15 [1.03e+15, 1.35e+15]  f_gas = 0.1177 [0.1066, 0.1275]
+  C2 (markers 1 < 2 < 3,4 in mass, as bins 1 < 2 < 3,4 in M_SZ): PASS
+
+  Indicative R = x(bin4, z 0.43)/x(bin3, z 0.234); slow-rate R_slow = 0.864 (lam 0.0123), saturation 1
+  A_draw_order|canonical|fstar0.012    x3 0.844 x4 0.797 (y 0.10/0.12)  R_obs 0.944 +- 0.163  power NO -> NON-DIAGNOSTIC
+  A_draw_order|canonical|fstar0.008    x3 0.886 x4 0.834 (y 0.09/0.11)  R_obs 0.941 +- 0.168  power NO -> NON-DIAGNOSTIC
+  A_draw_order|canonical|fstar0.016    x3 0.804 x4 0.762 (y 0.10/0.12)  R_obs 0.948 +- 0.158  power NO -> NON-DIAGNOSTIC
+  A_draw_order|alt|fstar0.012          x3 0.784 x4 0.743 (y 0.08/0.10)  R_obs 0.948 +- 0.170  power NO -> NON-DIAGNOSTIC
+  A_draw_order|alt|fstar0.008          x3 0.826 x4 0.780 (y 0.08/0.09)  R_obs 0.944 +- 0.176  power NO -> NON-DIAGNOSTIC
+  A_draw_order|alt|fstar0.016          x3 0.746 x4 0.709 (y 0.08/0.10)  R_obs 0.951 +- 0.172  power NO -> NON-DIAGNOSTIC
+  B_swapped|canonical|fstar0.012       x3 0.755 x4 0.886 (y 0.10/0.11)  R_obs 1.173 +- 0.206  power NO -> NON-DIAGNOSTIC
+  B_swapped|canonical|fstar0.008       x3 0.792 x4 0.929 (y 0.10/0.11)  R_obs 1.173 +- 0.212  power NO -> NON-DIAGNOSTIC
+  B_swapped|canonical|fstar0.016       x3 0.721 x4 0.845 (y 0.11/0.12)  R_obs 1.172 +- 0.202  power NO -> NON-DIAGNOSTIC
+  B_swapped|alt|fstar0.012             x3 0.698 x4 0.831 (y 0.08/0.09)  R_obs 1.191 +- 0.219  power NO -> NON-DIAGNOSTIC
+  B_swapped|alt|fstar0.008             x3 0.734 x4 0.873 (y 0.08/0.09)  R_obs 1.191 +- 0.226  power NO -> NON-DIAGNOSTIC
+  B_swapped|alt|fstar0.016             x3 0.664 x4 0.791 (y 0.09/0.10)  R_obs 1.191 +- 0.220  power NO -> NON-DIAGNOSTIC
+  INDICATIVE ROW: NON-DIAGNOSTIC
+
+Forecast for a per-cluster CHEX-MATE test (if a table existed):
+  lam 0.0073: predicted dlnx/dz -0.770; 122 clusters, std z 0.145: sigma(slope) = 0.188 (scatter 0.3) / 0.313 (0.5) -> 4.1 / 2.5 sigma
+  lam 0.0123: predicted dlnx/dz -0.753; 122 clusters, std z 0.145: sigma(slope) = 0.188 (scatter 0.3) / 0.313 (0.5) -> 4.0 / 2.4 sigma
+  lam 0.0172: predicted dlnx/dz -0.736; 122 clusters, std z 0.145: sigma(slope) = 0.188 (scatter 0.3) / 0.313 (0.5) -> 3.9 / 2.4 sigma
+  lam 0.0280: predicted dlnx/dz -0.700; 122 clusters, std z 0.145: sigma(slope) = 0.188 (scatter 0.3) / 0.313 (0.5) -> 3.7 / 2.2 sigma
+  bias amplification dlnx/dln M_tot = 1.83; a drift in ln(1-b) of 0.113 over z 0.05-0.6 fakes half the PRIMARY slope
+
+PRIMARY VERDICT (T16 z-slope on CHEX-MATE): NOT POSSIBLE
+  missing: per-cluster M_gas,500 (or f_gas) and a total mass (HSE / WL / dynamical) on one footing for the CHEX-MATE clusters; the collaboration's per-cluster gas products are not public (the Sept-2026 BFC paper says none exist).
+
+checks: {"C3_T16_repro": true, "C1_figure": true, "C2_bin12_order": true}
