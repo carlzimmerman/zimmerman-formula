@@ -15,4 +15,4 @@ The criteria were committed first. The script is `cfg358_zero_field_N2047.py` (l
 - The λ values themselves wander within ±0.003 of about 0.073 over the last three grids, while the ε = 1e-4 set converges.
 - So the frozen verdict rests on a single 0.006 bump that passes the zero-guard. This is recorded as a knife-edge, not reinterpreted.
 
-**Scope.** This is 1-D only. It says nothing about growth or σ₈.
+**Scope.** This is 1-D only, and it applies to the UNGATED chassis: the law is on everywhere, including the open FRW background (CFG321's setup). It is not a test of candidate B, whose switch is off in unbound regions, and B's action does not exist, so for B it is untested. It says nothing about growth or σ₈.

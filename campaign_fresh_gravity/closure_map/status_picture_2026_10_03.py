@@ -22,7 +22,7 @@ groups = [
         ("Solar system (PPN + Cassini Q2)", "PASS", "filter evades Q2 tension at kappa 1/2 · CFG291/357"),
         ("Matter conservation (G9)", "PASS", "Bianchi identity holds; grad T = 0 · CFG329"),
         ("Structural order (G0)", "COND", "no ghost; elliptic solvability open · CFG329"),
-        ("Zero-field nonlinear dependence", "FAIL", "1-D, knife-edge at N = 2047 · CFG321/358"),
+        ("Zero-field nonlinear, ungated", "FAIL", "chassis only; B switch off there · CFG358"),
         ("Black holes (EHT, LIGO ringdown)", "COND", "hidden mild inner-horizon defect · CFG318/319"),
     ]),
     ("Galaxies and clusters", [

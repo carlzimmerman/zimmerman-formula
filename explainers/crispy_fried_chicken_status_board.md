@@ -40,7 +40,7 @@ This is the full field theory underneath the law: general relativity plus a pref
   - structural order (G0): no runaway "ghost" mode, but solvability in the strongly nonlinear regime is unproved;
   - **black holes.** EHT shadows and LIGO ringdowns are matched to better than one part in 10⁹. A *moving* black hole keeps a hidden, Planck-scale defect on its innermost horizon. A 2019 paper's standard would count that as fatal; the owner's reading of it is still pending.
 
-- **Fails: zero-field nonlinear dependence (G5/G10).** In a 1-D test, the theory's sensitivity to tiny perturbations should level off as the grid gets finer. At the smaller perturbation it does (λ → 0.086). At the larger one, the frozen rule calls a fail on the finest grid (N = 2047, CFG358). The deciding step is one +0.006 bump just past the threshold, so this is a knife-edge fail. It is recorded as a fail, not reinterpreted, and it says nothing about growth.
+- **Fails, for the ungated chassis only: zero-field nonlinear dependence (G5/G10).** This 1-D test runs the bare relativistic chassis with the law switched on everywhere, including the smooth, expanding cosmic background, where the field is near zero. In that setting the sensitivity to tiny perturbations does not level off at the larger perturbation on the finest grid (N = 2047, CFG358, a knife-edge call). **It does not test candidate B, your live model:** there the law is switched off outside bound halos, so it never acts on that background. Candidate B's full action does not exist yet, so for B this is untested, not passed. This sits alongside the ungated chassis's growth failure in Column 3.
 
 ## Column 2 · Galaxies and clusters
 
