@@ -1,0 +1,41 @@
+CFG483 khronon-boundary settling class (C7)
+==============================================================================
+inputs: Omega_m/Omega_b = 5.364, f_b = 0.157134, kappa=1/2 FITTED, footings: ['canonical', 'alt']
+
+[controls]
+  [PASS] K1b shock+enclosure identity: (9/64)*(16/9) = 1/4  (amplitude coefficient): (9/64)(16/9) = 0.25 -> sigma^4 = (1/4) G M_b a0
+  [PASS] K1c sigma^4 ~ M_b^2/rM^2 with rM^2 = G M_b/a0  =>  sigma^4 ~ (a0/G) M_b (slope 1): sympy: dln/dlnM = 1
+
+[derived no-flux edge]
+  fluid: isothermal post-shock state  2 sigma^2 = r F_tot(r)
+  khronon lapse (G1): F_tot = a0 nu(y) y ;  consistency + mass budget:
+  M_c = (4/3)(2 sigma^2 r_e / G)   =>   F_tot(r_e) = (3/4) G M_c / r_e^2
+  with F_tot(r_e) = nu(y_e) g_N(r_e), g_N = G M_b/r_e^2:  nu(y_e) = (3/4)(M_c/M_b) = (3/4) nu
+  deep form nu = y^-1/2 => y_e = 16/(9 nu^2) = 0.06179,  g_N,e = 0.06179 a0,  r_e = (3/4) nu r_M = 4.0230 r_M
+  total field at the edge: g_tot = nu(y_e) y_e a0 = 0.2486 a0 
+  [CFG461's identified edge class: nu(y_e)y_e ~ 0.19 a0 (their r_edge = 5.85 r_M, +0.073 dex restatement);
+   C7's mass-budget edge r_e = 0.75 nu r_M = 4.02 r_M gives g_tot = 0.249 a0 and the EXACT amplitude]
+  [PASS] edge total field in the 0.19-0.25 a0 class (CFG461's edge condition): g_tot,e = 0.2486 a0
+foot         M_b r_e [kpc]  dex(s4/s4t)
+canonical   1.0e+09      4.91     +0.00000  (exact by construction)
+canonical   3.2e+10     27.61     -0.00000  (exact by construction)
+canonical   3.2e+11     87.30     -0.00000  (exact by construction)
+alt      1.0e+09      4.47     +0.00000  (exact by construction)
+alt      3.2e+10     25.11     +0.00000  (exact by construction)
+alt      3.2e+11     79.41     -0.00000  (exact by construction)
+  [PASS] G-b.3 amplitude within 0.1 dex: max|dex| = 0.0000  [analytic 0.0000]
+  [PASS] G-b.4b d ln s4 / d ln a0 = 1 (c-test: a0 = kappa c sqrt(G rho_L)): 1.000000
+  [PASS] G-c no constant beyond kappa (edge from mass budget + khronon field shape): inputs G, c, rho_L(a0), Omega_m/Omega_b, z_c; coefficients (3/16),(4/3) dimensionless from the isothermal shock
+
+[experimental falsifier: liquid-phase phantom share]
+prediction: liquid phase s_ph/s_c = 1.6857  ( = 2 nu/(1+nu) = 2 Omega_c/Omega_m )
+measured: eta_L ratio-of-means range over population cuts = 1.3056..1.7240
+    all x>0         : 1.6176
+    sc>=p50         : 1.4126
+    sc>=p75         : 1.3056
+    x>12 (GMM-like) : 1.7240
+  [FAIL] FALSIFIER at z0 (pre-registered): cut-robust range inside [1.586,1.786] => PASS; fully outside => KILL-BOX; else UNDECIDED, KILL armed for the 512^3 rerun: range = 1.3056..1.7240 vs pred 1.6857 -> UNDECIDED at 256^3 (cut-dependent; GMM-like cut 2.3% off)
+
+==============================================================================
+VERDICT: BOUNDARY + AMPLITUDE + SCALING DERIVED (C7: khronon-lapse edge, isothermal-shock enclosure, cosmic mass budget): sigma^4 = G M_b a0/4 exact by construction, c- and M_b-exponents exactly 1.  FALSIFIER UNDECIDED at 256^3 (cut-robust eta_L range 1.306..1.724 vs pred 1.6857; CFG482 GMM-like cut 1.724 = 2.3% off); KILL armed for the 512^3 rerun.  SINK STATUS (record item, unchanged): the dissipative/energy-conserving virial route still needs the K^2 channel (R_K ~ (alpha_c/c2)(V/c)^2 = 1e-11 short; direct lambda_x = +1 constant, CFG381).  The infall-shock route derived in C7 requires no separate sink.
+Pre-registered kill: a 512^3 rerun whose liquid SED liquid-population eta_L range lies fully outside [1.586,1.786] kills C7.

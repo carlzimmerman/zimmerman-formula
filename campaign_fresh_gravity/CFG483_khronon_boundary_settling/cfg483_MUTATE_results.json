@@ -1,0 +1,38 @@
+{
+ "lane": "CFG483",
+ "mutate": true,
+ "edge": {
+  "r_e": "0.75*nu r_M (deep)",
+  "y_e": 0.06178740203066769,
+  "g_tot_e": 0.2485707183693761,
+  "nu(y_e)": 4.023
+ },
+ "eta_L_pred": 1.6857322438717788,
+ "eta_L_meas": null,
+ "eta_L_cuts": null,
+ "falsifier": null,
+ "checks": [
+  {
+   "name": "K1b shock+enclosure identity: (9/64)*(16/9) = 1/4  (amplitude coefficient)",
+   "pass": true,
+   "value": "(9/64)(16/9) = 0.25 -> sigma^4 = (1/4) G M_b a0"
+  },
+  {
+   "name": "K1c sigma^4 ~ M_b^2/rM^2 with rM^2 = G M_b/a0  =>  sigma^4 ~ (a0/G) M_b (slope 1)",
+   "pass": true,
+   "value": "sympy: dln/dlnM = 1"
+  },
+  {
+   "name": "edge total field in the 0.19-0.25 a0 class (CFG461's edge condition)",
+   "pass": true,
+   "value": "g_tot,e = 0.2486 a0"
+  },
+  {
+   "name": "MUTATE breaks the amplitude (rc 1)",
+   "pass": true,
+   "value": "dex = +0.3010"
+  }
+ ],
+ "verdict": "MUTATE run for the record (rc 1: amplitude broken as required).",
+ "sink_status": "OPEN record item; not required by the infall-shock route"
+}

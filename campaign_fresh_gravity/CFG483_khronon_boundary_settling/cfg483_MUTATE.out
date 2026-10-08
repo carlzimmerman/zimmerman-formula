@@ -1,0 +1,28 @@
+CFG483 khronon-boundary settling class (C7)  (MUTATE: a0->2a0, M_b dropped)
+==============================================================================
+inputs: Omega_m/Omega_b = 5.364, f_b = 0.157134, kappa=1/2 FITTED, footings: ['canonical', 'alt']
+
+[controls]
+  [PASS] K1b shock+enclosure identity: (9/64)*(16/9) = 1/4  (amplitude coefficient): (9/64)(16/9) = 0.25 -> sigma^4 = (1/4) G M_b a0
+  [PASS] K1c sigma^4 ~ M_b^2/rM^2 with rM^2 = G M_b/a0  =>  sigma^4 ~ (a0/G) M_b (slope 1): sympy: dln/dlnM = 1
+
+[derived no-flux edge]
+  fluid: isothermal post-shock state  2 sigma^2 = r F_tot(r)
+  khronon lapse (G1): F_tot = a0 nu(y) y ;  consistency + mass budget:
+  M_c = (4/3)(2 sigma^2 r_e / G)   =>   F_tot(r_e) = (3/4) G M_c / r_e^2
+  with F_tot(r_e) = nu(y_e) g_N(r_e), g_N = G M_b/r_e^2:  nu(y_e) = (3/4)(M_c/M_b) = (3/4) nu
+  deep form nu = y^-1/2 => y_e = 16/(9 nu^2) = 0.06179,  g_N,e = 0.06179 a0,  r_e = (3/4) nu r_M = 4.0230 r_M
+  total field at the edge: g_tot = nu(y_e) y_e a0 = 0.2486 a0 
+  [CFG461's identified edge class: nu(y_e)y_e ~ 0.19 a0 (their r_edge = 5.85 r_M, +0.073 dex restatement);
+   C7's mass-budget edge r_e = 0.75 nu r_M = 4.02 r_M gives g_tot = 0.249 a0 and the EXACT amplitude]
+  [PASS] edge total field in the 0.19-0.25 a0 class (CFG461's edge condition): g_tot,e = 0.2486 a0
+
+[MUTATE] middle galaxy: s4/s4t = 2.000  dex = +0.301  (a0->2a0, M_b dropped)
+  [PASS] MUTATE breaks the amplitude (rc 1): dex = +0.3010
+
+[experimental falsifier: liquid-phase phantom share]
+prediction: liquid phase s_ph/s_c = 1.6857  ( = 2 nu/(1+nu) = 2 Omega_c/Omega_m )
+
+==============================================================================
+VERDICT: MUTATE run for the record (rc 1: amplitude broken as required).
+Pre-registered kill: a 512^3 rerun whose liquid SED liquid-population eta_L range lies fully outside [1.586,1.786] kills C7.

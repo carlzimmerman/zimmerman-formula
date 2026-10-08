@@ -1,0 +1,61 @@
+{
+ "lane": "CFG483",
+ "mutate": false,
+ "edge": {
+  "r_e": "0.75*nu r_M (deep)",
+  "y_e": 0.06178740203066769,
+  "g_tot_e": 0.2485707183693761,
+  "nu(y_e)": 4.023
+ },
+ "eta_L_pred": 1.6857322438717788,
+ "eta_L_meas": [
+  1.305638854362214,
+  1.7240165922688004
+ ],
+ "eta_L_cuts": {
+  "all x>0": 1.6175653758070159,
+  "sc>=p50": 1.4125695745825717,
+  "sc>=p75": 1.305638854362214,
+  "x>12 (GMM-like)": 1.7240165922688004
+ },
+ "falsifier": "UNDECIDED at 256^3 (cut-dependent; GMM-like cut 2.3% off)",
+ "checks": [
+  {
+   "name": "K1b shock+enclosure identity: (9/64)*(16/9) = 1/4  (amplitude coefficient)",
+   "pass": true,
+   "value": "(9/64)(16/9) = 0.25 -> sigma^4 = (1/4) G M_b a0"
+  },
+  {
+   "name": "K1c sigma^4 ~ M_b^2/rM^2 with rM^2 = G M_b/a0  =>  sigma^4 ~ (a0/G) M_b (slope 1)",
+   "pass": true,
+   "value": "sympy: dln/dlnM = 1"
+  },
+  {
+   "name": "edge total field in the 0.19-0.25 a0 class (CFG461's edge condition)",
+   "pass": true,
+   "value": "g_tot,e = 0.2486 a0"
+  },
+  {
+   "name": "G-b.3 amplitude within 0.1 dex",
+   "pass": true,
+   "value": "max|dex| = 0.0000  [analytic 0.0000]"
+  },
+  {
+   "name": "G-b.4b d ln s4 / d ln a0 = 1 (c-test: a0 = kappa c sqrt(G rho_L))",
+   "pass": true,
+   "value": "1.000000"
+  },
+  {
+   "name": "G-c no constant beyond kappa (edge from mass budget + khronon field shape)",
+   "pass": true,
+   "value": "inputs G, c, rho_L(a0), Omega_m/Omega_b, z_c; coefficients (3/16),(4/3) dimensionless from the isothermal shock"
+  },
+  {
+   "name": "FALSIFIER at z0 (pre-registered): cut-robust range inside [1.586,1.786] => PASS; fully outside => KILL-BOX; else UNDECIDED, KILL armed for the 512^3 rerun",
+   "pass": false,
+   "value": "range = 1.3056..1.7240 vs pred 1.6857 -> UNDECIDED at 256^3 (cut-dependent; GMM-like cut 2.3% off)"
+  }
+ ],
+ "verdict": "BOUNDARY + AMPLITUDE + SCALING DERIVED (C7: khronon-lapse edge, isothermal-shock enclosure, cosmic mass budget): sigma^4 = G M_b a0/4 exact by construction, c- and M_b-exponents exactly 1.  FALSIFIER UNDECIDED at 256^3 (cut-robust eta_L range 1.306..1.724 vs pred 1.6857; CFG482 GMM-like cut 1.724 = 2.3% off); KILL armed for the 512^3 rerun.  SINK STATUS (record item, unchanged): the dissipative/energy-conserving virial route still needs the K^2 channel (R_K ~ (alpha_c/c2)(V/c)^2 = 1e-11 short; direct lambda_x = +1 constant, CFG381).  The infall-shock route derived in C7 requires no separate sink.",
+ "sink_status": "OPEN record item; not required by the infall-shock route"
+}
