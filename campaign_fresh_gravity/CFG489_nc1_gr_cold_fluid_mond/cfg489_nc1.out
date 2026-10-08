@@ -1,0 +1,213 @@
+==============================================================================================================
+CFG489: NC1's decisive tests (GR + Lambda chassis, MOND only in the cold fluid)
+kappa = 1/2 FITTED; both footings; no dark-matter particle (cold mass still required); not 'theory closed'
+criteria: FROZEN_CRITERIA.md (6cce7b447) + appended correction 1 (32b3f9a35: numerics only; run 2 kept as _run2)
+==============================================================================================================
+
+[K1] sympy: Newtonian-limit 4-acceleration of a moving fluid element
+  [PASS] K1 a^i = dv/dt + (v.grad)v + grad Phi to first order (residual terms are Phi*v, v*dPhi/dt, ...)  -- eps*delta coefficient: -2*Phi(t, x, y, z)*Derivative(v_x(t, x, y, z), t) - 3*v_x(t, x, y, z)*Derivative(Phi(t, x, y, z), t)
+
+[K2] sympy: the M1 cubic from the linear system (A read kinematically)
+  [PASS] K2 det(linear system) = const x cubic; tau = 0 closed form; s = 0 gives Jeans; A-kin = -grad(P+p_s)/rho  -- det/cubic = -rho0
+
+[K3] kernel facts: g_N'(g) and g_N(g)/g in (0, 1) on g in [1e-8, 1e8] a0
+  [PASS] K3 n in (0, 1) for every background (both kernels; g_N', 1 - g_N', g_N/g, 1 - g_N/g all > 0, cancellation-free)  -- {"P2": {"min_dgN": "2e-08", "min_1m_dgN": "1.25e-17", "min_ratio": "7.97e-09", "min_1m_ratio": "5e-09"}, "nu_mono": {"min_dgN": "2e-08", "min_1m_dgN": "3.24e-10", "min_ratio": "1e-08", "min_1m_ratio": "1.19e-08", "z_table": [1.0000000500000009e-07, 99990791.27588744]}}
+
+[STEP 1] G1 well-posedness: dispersion of the linearised relaxation system, s = +1
+  homog|adiabatic|M1           Pa True  Pb True  Pc True   sup G/w_ref 1.000e+00  top-decade growth slope +0.000  -> PASS
+  homog|isothermal|M1          Pa True  Pb True  Pc True   sup G/w_ref 1.000e+00  top-decade growth slope +0.000  -> PASS
+  homog|adiabatic|M2           Pa True  Pb True  Pc True   sup G/w_ref 1.000e+00  top-decade growth slope +0.000  -> PASS
+  homog|adiabatic|M3           Pa True  Pb True  Pc True   sup G/w_ref 7.071e-01  top-decade growth slope +0.000  -> PASS
+  homog|adiabatic|M1-hyd       Pa True  Pb False Pc False  sup G/w_ref 5.503e+10  top-decade growth slope +1.333  -> FAIL
+  homog|adiabatic|M2-hyd       Pa True  Pb False Pc False  sup G/w_ref 1.291e+16  top-decade growth slope +2.000  -> FAIL
+  SIS (60 cells: x 3-100, 3 angles, 2 kernels, adiabatic/isothermal) M1     : 60/60 pass; worst sup G/w_ref -2.325e-01; sweep (all frozen coefficients): all pass (worst 1.000e+00)
+  SIS (60 cells: x 3-100, 3 angles, 2 kernels, adiabatic/isothermal) M2     : 60/60 pass; worst sup G/w_ref 0.000e+00; sweep (all frozen coefficients): all pass (worst 1.000e+00)
+  SIS (60 cells: x 3-100, 3 angles, 2 kernels, adiabatic/isothermal) M3     : 60/60 pass; worst sup G/w_ref 0.000e+00; sweep (all frozen coefficients): all pass (worst 7.071e-01)
+  SIS (60 cells: x 3-100, 3 angles, 2 kernels, adiabatic/isothermal) M1-hyd : 0/60 pass; worst sup G/w_ref 5.485e+10; sweep (all frozen coefficients): FAILS (worst 5.503e+10)
+  SIS (60 cells: x 3-100, 3 angles, 2 kernels, adiabatic/isothermal) M2-hyd : 0/60 pass; worst sup G/w_ref 1.285e+16; sweep (all frozen coefficients): FAILS (worst 1.291e+16)
+  M1 high-k character (homogeneous): fastest root Im w = -1.000e+08 at k = 1e4, -1.000e+12 at k = 1e6 -> |Im w| ~ k^2.00 (parabolic damping); relativistic causality: COND (needs a second-order regulator; not PASS here)
+  post-freeze (reported, not a verdict input): M1 linearised about an OFF-target state, R = rho_t/rho; homogeneous frozen coefficients (n = 0, w_J tau = 1); K_eff = c_s^2 (1 + s(1-R)) + s sigma^2 (R - 1 + n)
+    gamma 5/3 : R 1: K_eff +1.67, G(k_max) -0.83, sup 1.00; R 2: K_eff +1.00, G(k_max) -0.83, sup 1.00; R 3.5: K_eff +0.00, G(k_max) +0.00, sup 1.00; R 4: K_eff -0.33, G(k_max) +0.18, sup 1.00; R 10: K_eff -4.33, G(k_max) +1.41, sup 1.41; R 30: K_eff -17.67, G(k_max) +3.45, sup 3.45 FAILS line; R 100: K_eff -64.33, G(k_max) +7.23, sup 7.23 FAILS line; R 10000: K_eff -6664.33, G(k_max) +80.81, sup 80.81 FAILS line
+    isothermal: R 1: K_eff +1.00, G(k_max) -0.50, sup 1.00; R 2: K_eff +1.00, G(k_max) -0.50, sup 1.00; R 3.5: K_eff +1.00, G(k_max) -0.50, sup 1.00; R 4: K_eff +1.00, G(k_max) -0.50, sup 1.00; R 10: K_eff +1.00, G(k_max) -0.50, sup 1.00; R 30: K_eff +1.00, G(k_max) -0.50, sup 1.00; R 100: K_eff +1.00, G(k_max) -0.50, sup 1.00; R 10000: K_eff +1.00, G(k_max) -0.50, sup 1.00
+    -> with gamma = 5/3 and s = +1, K_eff < 0 for R > 3.50 (+1.5 n): growth at EVERY large k (rate ~ w_J sqrt((gamma-1)(R - R*)), bounded in k but not in R); the frozen line fails for R >~ 30. Isothermal: K_eff = sigma^2 (1 + s n) > 0 for every R (no off-target instability)
+  [PASS] STEP 1 PASS for the scored member M1 (s = +1)  -- homogeneous + every SIS cell, both kernels, adiabatic and isothermal
+
+[K4] C target routine at static A = g_law reproduces the P2 point-mass cold mass; nu_mono supply edge
+  [PASS] K4 P2 point-mass target M(sqrt(1+x^2)-1) <= 1e-6 rel; nu_mono edge 5.8498 +- 0.001  -- P2 max rel 2.3e-14; nu_mono table round trip 8.1e-09; x_e = 5.84976
+
+[K5] CFG461 contraction factors (z_c = 1, canonical)
+  [PASS] K5 R_vir/r_e = 3.50 / 1.97 / 1.34 to 1%  -- 3.498, 1.967, 1.340
+
+[K6] CFG484 N1d reproduces from its committed JSON
+  [PASS] K6 R1 Liouville ratios and R2 nu_mono ratios match CFG484 to 1%  -- canonical|Mars: 1.0000/1.0000, canonical|Saturn: 1.0000/1.0000, alt|Mars: 1.0000/1.0000, alt|Saturn: 1.0000/1.0000
+
+[STEP 4] G14 capture by the embedded Sun (v_rel 230 km/s)
+  canonical host rho 0.0049 Msun/pc^3, sigma 144 km/s, tau_local 59.9 Myr, R_far 6001 AU
+    Mars   (4a) Liouville 1.07e-07 x bound | (4b) t_res/tau 1.05e-09, f <= 1.85e-08, x R2 (76893x bound) = 1.42e-03 x bound (P2 6.17e-04) | (4c) orbital tau 109.3 d, t_res/tau 0.21, f 1.00 -> 76893 x bound
+    Saturn (4a) Liouville 8.50e-09 x bound | (4b) t_res/tau 6.59e-09, f <= 9.70e-08, x R2 (13786x bound) = 1.34e-03 x bound (P2 6.49e-04) | (4c) orbital tau 1724.4 d, t_res/tau 0.08, f 1.00 -> 13786 x bound
+    (4d) BHL radius 0.024 AU (adiabatic c_s: 0.020); accreted in 4.6 Gyr 2.7e-10 Msun (into the Sun)
+  alt       host rho 0.0057 Msun/pc^3, sigma 147 km/s, tau_local 55.7 Myr, R_far 5873 AU
+    Mars   (4a) Liouville 1.16e-07 x bound | (4b) t_res/tau 1.13e-09, f <= 2.05e-08, x R2 (92430x bound) = 1.90e-03 x bound (P2 8.30e-04) | (4c) orbital tau 109.3 d, t_res/tau 0.21, f 1.00 -> 92430 x bound
+    Saturn (4a) Liouville 9.23e-09 x bound | (4b) t_res/tau 7.09e-09, f <= 1.08e-07, x R2 (16562x bound) = 1.78e-03 x bound (P2 8.71e-04) | (4c) orbital tau 1724.4 d, t_res/tau 0.08, f 1.00 -> 16562 x bound
+    (4d) BHL radius 0.024 AU (adiabatic c_s: 0.020); accreted in 4.6 Gyr 3.1e-10 Msun (into the Sun)
+  -> STEP 4 = COND (4a True, 4b True, 4c False)
+
+[STEP 2] 1-D runs: 74 infall runs + 7 static-start runs on 4 threads (N = 240, wall r_w = 0.05 r_M with the inert target core, smooth shell masses from 0.0002 M_b; correction 1)
+  done M1                     point|1e9|canonical        crashed 3 steps   13077581 D10/20/40 None/None/None (119 s)
+  done M1-EC                  point|1e9|canonical        crashed 3 steps    1241882 D10/20/40 None/None/None (10 s)
+  done M1                     point|1e10|canonical       crashed 3 steps    6148461 D10/20/40 None/None/None (47 s)
+  done M1-EC                  point|1e10|canonical       crashed 3 steps     776181 D10/20/40 None/None/None (6 s)
+  done M1                     point|1e11|canonical       crashed 0 steps   16126997 D10/20/40 0.1014/0.1043/0.1052 (185 s)
+  done M1-EC                  point|1e11|canonical       crashed 3 steps     449600 D10/20/40 None/None/None (3 s)
+  done M1                     point|1e12|canonical       crashed 3 steps    1688166 D10/20/40 None/None/None (13 s)
+  done M1-EC                  point|1e12|canonical       crashed 3 steps     357897 D10/20/40 None/None/None (3 s)
+  done M1                     point|1e9|alt              crashed 3 steps   15793916 D10/20/40 None/None/None (195 s)
+  done M1-EC                  point|1e9|alt              crashed 3 steps    1210935 D10/20/40 None/None/None (9 s)
+  done M1                     point|1e10|alt             crashed 3 steps    7283680 D10/20/40 None/None/None (95 s)
+  done M1-EC                  point|1e10|alt             crashed 3 steps     878555 D10/20/40 None/None/None (16 s)
+  done M1                     point|1e11|alt             crashed 0 steps   18575363 D10/20/40 0.1204/0.1226/0.1215 (224 s)
+  done M1-EC                  point|1e11|alt             crashed 3 steps     510711 D10/20/40 None/None/None (9 s)
+  done M1                     point|1e12|alt             crashed 3 steps    8135274 D10/20/40 None/None/None (131 s)
+  done M1-EC                  point|1e12|alt             crashed 3 steps     316938 D10/20/40 None/None/None (5 s)
+  done M1                     hernquist|a=0.1|canonical  crashed 3 steps     125420 D10/20/40 None/None/None (1 s)
+  done M1-EC                  hernquist|a=0.1|canonical  crashed 3 steps     552313 D10/20/40 None/None/None (9 s)
+  done M1                     hernquist|a=0.3|canonical  crashed 3 steps     103966 D10/20/40 None/None/None (2 s)
+  done M1-EC                  hernquist|a=0.3|canonical  crashed 3 steps     260359 D10/20/40 None/None/None (5 s)
+  done M1                     hernquist|a=1|canonical    crashed 3 steps     106783 D10/20/40 None/None/None (2 s)
+  done M1-EC                  hernquist|a=1|canonical    crashed 3 steps      69937 D10/20/40 None/None/None (1 s)
+  done M1                     hernquist|a=3|canonical    crashed 3 steps    2084257 D10/20/40 None/None/None (34 s)
+  done M1-EC                  hernquist|a=3|canonical    crashed 3 steps      28194 D10/20/40 None/None/None (0 s)
+  done M1                     hernquist|a=0.1|alt        crashed 3 steps     107989 D10/20/40 None/None/None (2 s)
+  done M1-EC                  hernquist|a=0.1|alt        crashed 3 steps     685649 D10/20/40 None/None/None (13 s)
+  done M1                     hernquist|a=0.3|alt        crashed 3 steps      98606 D10/20/40 None/None/None (1 s)
+  done M1-EC                  hernquist|a=0.3|alt        crashed 3 steps     251178 D10/20/40 None/None/None (5 s)
+  done M1                     hernquist|a=1|alt          crashed 3 steps     102592 D10/20/40 None/None/None (2 s)
+  done M1-EC                  hernquist|a=1|alt          crashed 3 steps      75131 D10/20/40 None/None/None (2 s)
+  done M1                     hernquist|a=3|alt          crashed 3 steps    2175403 D10/20/40 None/None/None (37 s)
+  done M1-EC                  hernquist|a=3|alt          crashed 3 steps      36358 D10/20/40 None/None/None (0 s)
+  done M1                     farshell_A|canonical       crashed 3 steps     140763 D10/20/40 None/None/None (1 s)
+  done M1-EC                  farshell_A|canonical       crashed 3 steps      39462 D10/20/40 None/None/None (1 s)
+  done M1                     farshell_B|canonical       crashed 3 steps     140349 D10/20/40 None/None/None (2 s)
+  done M1-EC                  farshell_B|canonical       crashed 3 steps       5791 D10/20/40 None/None/None (0 s)
+  done M1                     farshell_A|alt             crashed 3 steps     139844 D10/20/40 None/None/None (2 s)
+  done M1-EC                  farshell_A|alt             crashed 3 steps      38743 D10/20/40 None/None/None (1 s)
+  done M1                     farshell_B|alt             crashed 3 steps    3893814 D10/20/40 None/None/None (47 s)
+  done M1-EC                  farshell_B|alt             crashed 3 steps       6008 D10/20/40 None/None/None (0 s)
+  done P2                     point|1e9|canonical        crashed 3 steps    7938209 D10/20/40 None/None/None (51 s)
+  done M2                     point|1e9|canonical        crashed 3 steps        222 D10/20/40 None/None/None (0 s)
+  done M3                     point|1e9|canonical        crashed 0 steps      83293 D10/20/40 0.2431/0.3385/0.3117 (3 s)
+  done P2                     point|1e10|canonical       crashed 0 steps   15739452 D10/20/40 0.1607/0.1514/0.1540 (95 s)
+  done M2                     point|1e10|canonical       crashed 3 steps        139 D10/20/40 None/None/None (0 s)
+  done M3                     point|1e10|canonical       crashed 0 steps     128842 D10/20/40 0.2320/0.2379/0.2321 (4 s)
+  done P2                     point|1e11|canonical       crashed 0 steps    8582625 D10/20/40 0.0754/0.0798/0.0816 (52 s)
+  done M2                     point|1e11|canonical       crashed 1 steps         69 D10/20/40 None/None/None (0 s)
+  done M3                     point|1e11|canonical       crashed 0 steps     207455 D10/20/40 0.1676/0.1517/0.1513 (6 s)
+  done P2                     point|1e12|canonical       crashed 3 steps     617523 D10/20/40 None/None/None (4 s)
+  done M2                     point|1e12|canonical       crashed 3 steps         41 D10/20/40 None/None/None (0 s)
+  done M3                     point|1e12|canonical       crashed 0 steps     335425 D10/20/40 0.0828/0.0831/0.0830 (10 s)
+  done P2                     point|1e9|alt              crashed 3 steps    9515636 D10/20/40 None/None/None (57 s)
+  done M2                     point|1e9|alt              crashed 3 steps        246 D10/20/40 None/None/None (0 s)
+  done M3                     point|1e9|alt              crashed 0 steps      75391 D10/20/40 0.2634/0.3474/0.3364 (2 s)
+  done P2                     point|1e10|alt             crashed 0 steps   18035330 D10/20/40 0.1787/0.1707/0.1735 (108 s)
+  done M2                     point|1e10|alt             crashed 3 steps        155 D10/20/40 None/None/None (0 s)
+  done M3                     point|1e10|alt             crashed 0 steps     115095 D10/20/40 0.2254/0.2724/0.2544 (3 s)
+  done P2                     point|1e11|alt             crashed 0 steps   10034269 D10/20/40 0.0906/0.0961/0.0967 (60 s)
+  done M2                     point|1e11|alt             crashed 3 steps         90 D10/20/40 None/None/None (0 s)
+  done M3                     point|1e11|alt             crashed 0 steps     184142 D10/20/40 0.1954/0.1720/0.1701 (5 s)
+  done P2                     point|1e12|alt             crashed 3 steps     854900 D10/20/40 None/None/None (5 s)
+  done M2                     point|1e12|alt             crashed 3 steps         42 D10/20/40 None/None/None (0 s)
+  done M3                     point|1e12|alt             crashed 0 steps     298354 D10/20/40 0.0987/0.0982/0.0982 (9 s)
+  done hydro                  point|1e10|canonical       crashed 0 steps     104355 D10/20/40 0.2573/0.2278/0.2242 (0 s)
+  done PH-cfl0.1              point|1e9|canonical        crashed 3 steps   31925479 D10/20/40 None/None/None (237 s)
+  done PH-cfl0.1              point|1e10|canonical       crashed 3 steps   15901859 D10/20/40 None/None/None (121 s)
+  done PH-cfl0.1              point|1e11|canonical       crashed 0 steps   40647054 D10/20/40 0.1011/0.1045/0.1052 (311 s)
+  done PH-cfl0.1              point|1e12|canonical       crashed 3 steps    4598019 D10/20/40 None/None/None (36 s)
+  done PH-cfl0.1              point|1e9|alt              crashed 3 steps   38831983 D10/20/40 None/None/None (289 s)
+  done PH-cfl0.1              point|1e10|alt             crashed 3 steps   18176722 D10/20/40 None/None/None (135 s)
+  done PH-cfl0.1              point|1e11|alt             crashed 0 steps   46550588 D10/20/40 0.1205/0.1225/0.1215 (355 s)
+  done PH-cfl0.1              point|1e12|alt             crashed 3 steps   14517744 D10/20/40 None/None/None (114 s)
+  done N480                   point|1e10|canonical       crashed 3 steps   11006750 D10/20/40 None/None/None (167 s)
+  done C-static               point|1e10|canonical       crashed 0 steps    1067741 D10/20/40 0.0004/None/None (0 s)
+  done C-static               hernquist|a=1|canonical    crashed 0 steps     175137 D10/20/40 0.0005/None/None (0 s)
+  done C-heat                 point|1e10|canonical       crashed 0 steps    1032621 D10/20/40 0.0285/None/None (0 s)
+  done C-cool                 point|1e10|canonical       crashed 0 steps    1144675 D10/20/40 0.0315/None/None (0 s)
+  done PH-dilute-R2           point|1e10|canonical       crashed 0 steps     265367 D10/20/40 0.1203/None/None (0 s)
+  done PH-dilute-R10          point|1e10|canonical       crashed 3 steps      85490 D10/20/40 0.2445/None/None (0 s)
+  done PH-dilute-R10-hydro    point|1e10|canonical       crashed 0 steps     159005 D10/20/40 0.2820/None/None (0 s)
+  done PH-late                point|1e10|canonical       crashed 3 steps    2473382 D10/20/40 0.1379/None/None (19 s)
+  done PH-frozen              point|1e10|canonical       crashed 3 steps     110127 D10/20/40 None/None/None (1 s)
+  done C-static-frozen        hernquist|a=1|canonical    crashed 3 steps   34514570 D10/20/40 0.0036/None/None (0 s)
+
+[controls] C-static (start at the exact target), C-energy (EC run conserves energy)
+  [PASS] C-static: after 20 t_e, D <= 0.01 and max|v| <= 0.01 V_f (point 1e10 canonical; Hernquist a = 1)  -- point|1e10|canonical: D 4.49e-04, max|v| 3.67e-06; hernquist|a=1|canonical: D 5.14e-04, max|v| 9.00e-06
+  reported: the same C-static on the FROZEN numerics (Hernquist a = 1; run 2's load-bearing failure): crashed 3 at t 0.25 of 132.0
+  [FAIL] C-energy: EC run (point 1e10 canonical) conserves energy, |E_end - E_i| <= 2e-3 |E_t| (a run that crashed cannot certify it)  -- crashed 3 at t 88.91 of 319.2; up to its last sample 7.20e-04 (E_i -0.7557, E_t -3.5752)
+  reported (post-freeze integrator check): pure-hydro run (s = 0, all forces conservative, shock heat internal) over the full 319 time units: |E_end - E_i|/|E_t| = 2.80e-04 (crashed 0)
+  reported C-heat: exact target with e x 1.2, 20 t_e of M1 -> D 0.029 dex (the target's grip against a wrong temperature)
+  reported C-cool: exact target with e x 0.8, 20 t_e of M1 -> D 0.032 dex (the target's grip against a wrong temperature)
+
+[STEP 2] verdict table (M1, nu_mono, reservoir form; D in dex, scored D40 on x in [0.1, x_e])
+  point|1e9|canonical        R_ta  49.1 r_M  x_e 5.850  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.968/5.364  r_surf 31.89  -> FAIL
+  point|1e10|canonical       R_ta  33.5 r_M  x_e 5.850  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 1.896/5.364  r_surf 17.11  -> FAIL
+  point|1e11|canonical       R_ta  22.8 r_M  x_e 5.850  D10 0.101 D20 0.104 D40 0.105 (0.9x_e 0.105)  settled True   mass inside x_e 3.160/5.364  r_surf 12.26  -> FAIL
+  point|1e12|canonical       R_ta  15.5 r_M  x_e 5.850  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 1.135/5.364  r_surf 20.29  -> FAIL
+  point|1e9|alt              R_ta  54.0 r_M  x_e 5.850  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.874/5.364  r_surf 36.10  -> FAIL
+  point|1e10|alt             R_ta  36.8 r_M  x_e 5.850  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 1.420/5.364  r_surf 21.18  -> FAIL
+  point|1e11|alt             R_ta  25.1 r_M  x_e 5.850  D10 0.120 D20 0.122 D40 0.121 (0.9x_e 0.121)  settled True   mass inside x_e 2.744/5.364  r_surf 13.80  -> FAIL
+  point|1e12|alt             R_ta  17.1 r_M  x_e 5.850  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 1.530/5.364  r_surf 25.61  -> FAIL
+  hernquist|a=0.1|canonical  R_ta  33.5 r_M  x_e 5.933  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.030/5.364  r_surf 33.46  -> FAIL
+  hernquist|a=0.3|canonical  R_ta  33.5 r_M  x_e 6.092  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.033/5.364  r_surf 33.46  -> FAIL
+  hernquist|a=1|canonical    R_ta  33.5 r_M  x_e 6.601  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.042/5.364  r_surf 33.44  -> FAIL
+  hernquist|a=3|canonical    R_ta  33.5 r_M  x_e 7.786  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.072/5.364  r_surf 33.38  -> FAIL
+  hernquist|a=0.1|alt        R_ta  36.8 r_M  x_e 5.933  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.023/5.364  r_surf 36.78  -> FAIL
+  hernquist|a=0.3|alt        R_ta  36.8 r_M  x_e 6.092  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.025/5.364  r_surf 36.78  -> FAIL
+  hernquist|a=1|alt          R_ta  36.8 r_M  x_e 6.601  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.032/5.364  r_surf 36.77  -> FAIL
+  hernquist|a=3|alt          R_ta  36.8 r_M  x_e 7.786  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.054/5.364  r_surf 36.72  -> FAIL
+  farshell_A|canonical       R_ta  33.5 r_M  x_e 5.852  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.030/5.364  r_surf 33.45  -> FAIL
+  farshell_B|canonical       R_ta  33.5 r_M  x_e 5.852  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.030/5.364  r_surf 33.42  -> FAIL
+  farshell_A|alt             R_ta  36.8 r_M  x_e 5.855  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.023/5.364  r_surf 36.77  -> FAIL
+  farshell_B|alt             R_ta  36.8 r_M  x_e 5.855  D10 None D20 None D40 None (0.9x_e None)  settled False  mass inside x_e 0.023/5.364  r_surf 36.73  -> FAIL
+  far-shell pair canonical: max |log V_c,A/V_c,B| = inf dex over x <= 5.85 (R' = 10.36 r_M)
+  far-shell pair alt: max |log V_c,A/V_c,B| = inf dex over x <= 5.86 (R' = 11.39 r_M)
+  resolution: N = 480 D40 None (crashed 3, t 57.96) vs N = 240 None (crashed 3, t 70.84) -> consistent
+  reported members on the point-mass cells (D40): P2: None, 0.154, 0.081, None, None, 0.173, 0.096, None; M2: None, None, None, None, None, None, None, None; M3: 0.311, 0.232, 0.151, 0.083, 0.336, 0.254, 0.170, 0.098
+  post-freeze PH-cfl0.1 (the 8 scored point cells, M1, CFL 0.1 instead of 0.25): point|1e9|canonical: crash 3 at t 110.5; point|1e10|canonical: crash 3 at t 73.0; point|1e11|canonical: D40 0.105; point|1e12|canonical: crash 3 at t 42.0; point|1e9|alt: crash 3 at t 125.4; point|1e10|alt: crash 3 at t 77.6; point|1e11|alt: D40 0.122; point|1e12|alt: crash 3 at t 62.6
+  reported pure hydro (s = 0), point 1e10 canonical: D40 0.2242, fluid inside x_e at the end 1.396 of 5.364, surface at 264 r_M
+  post-freeze PH-late (hydro to t_coll + 5 t_e, then M1 on for 40 t_e): crashed 3 at t 70.72 of 234.0; D40 None
+  post-freeze PH-frozen (the scored cell on the frozen numerics): crashed 3 at t 0.66 of 319.2; D40 None
+  post-freeze PH-dilute-R2 (exact target, fluid beyond x = 1 diluted to R = rho_t/rho = 2, M1; 5 t_e): crashed 0, t 29.25 of 29.25, steps 265367
+  post-freeze PH-dilute-R10 (exact target, fluid beyond x = 1 diluted to R = rho_t/rho = 10, M1; 5 t_e): crashed 3, t 0.19 of 29.25, steps 85490
+  post-freeze PH-dilute-R10-hydro (exact target, fluid beyond x = 1 diluted to R = rho_t/rho = 10, s = 0; 5 t_e): crashed 0, t 29.25 of 29.25, steps 159005
+  -> STEP 2 = FAIL
+
+[STEP 3] energy: (3a) static budget E_t vs E_i; (3b) reservoir work |W_res|; (3c) EC runs (reported)
+  point|1e9|canonical        E_t   -3.575  E_i   -0.515  (E_t-E_i)/|E_t| -0.856  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -2.172e+00 (S_q +1.077e+01)
+  point|1e10|canonical       E_t   -3.575  E_i   -0.756  (E_t-E_i)/|E_t| -0.789  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -2.299e+00 (S_q +4.410e+01)
+  point|1e11|canonical       E_t   -3.575  E_i   -1.109  (E_t-E_i)/|E_t| -0.690  W_res/|E_t| +0.922  | EC: D40 None, floor hits 0, S_ps +1.093e+00 (S_q +4.550e+01)
+  point|1e12|canonical       E_t   -3.575  E_i   -1.629  (E_t-E_i)/|E_t| -0.544  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 3478557, S_ps -5.198e+01 (S_q +4.788e+01)
+  point|1e9|alt              E_t   -3.575  E_i   -0.468  (E_t-E_i)/|E_t| -0.869  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -2.209e+00 (S_q +9.392e+00)
+  point|1e10|alt             E_t   -3.575  E_i   -0.687  (E_t-E_i)/|E_t| -0.808  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -4.059e+00 (S_q +4.367e+01)
+  point|1e11|alt             E_t   -3.575  E_i   -1.009  (E_t-E_i)/|E_t| -0.718  W_res/|E_t| +1.225  | EC: D40 None, floor hits 0, S_ps +4.061e-01 (S_q +4.508e+01)
+  point|1e12|alt             E_t   -3.575  E_i   -1.481  (E_t-E_i)/|E_t| -0.586  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 1062922, S_ps -3.874e+00 (S_q +4.706e+01)
+  hernquist|a=0.1|canonical  E_t   -3.450  E_i   -0.754  (E_t-E_i)/|E_t| -0.781  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 2, S_ps -6.566e+00 (S_q +4.809e+01)
+  hernquist|a=0.3|canonical  E_t   -3.226  E_i   -0.752  (E_t-E_i)/|E_t| -0.767  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -3.564e+00 (S_q +7.196e+00)
+  hernquist|a=1|canonical    E_t   -2.690  E_i   -0.743  (E_t-E_i)/|E_t| -0.724  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -4.060e-01 (S_q +5.078e-01)
+  hernquist|a=3|canonical    E_t   -1.994  E_i   -0.722  (E_t-E_i)/|E_t| -0.638  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -1.673e-02 (S_q +3.135e-02)
+  hernquist|a=0.1|alt        E_t   -3.450  E_i   -0.686  (E_t-E_i)/|E_t| -0.801  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -6.155e+00 (S_q +1.520e+01)
+  hernquist|a=0.3|alt        E_t   -3.226  E_i   -0.684  (E_t-E_i)/|E_t| -0.788  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -4.423e+00 (S_q +7.735e+00)
+  hernquist|a=1|alt          E_t   -2.690  E_i   -0.677  (E_t-E_i)/|E_t| -0.748  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -5.326e-01 (S_q +6.456e-01)
+  hernquist|a=3|alt          E_t   -1.994  E_i   -0.659  (E_t-E_i)/|E_t| -0.669  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -2.421e-02 (S_q +3.723e-02)
+  farshell_A|canonical       E_t   -3.287  E_i   -0.756  (E_t-E_i)/|E_t| -0.770  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -4.496e-02 (S_q +5.288e-02)
+  farshell_B|canonical       E_t   -8.462  E_i   -3.083  (E_t-E_i)/|E_t| -0.636  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -1.391e-01 (S_q +1.902e-01)
+  farshell_A|alt             E_t   -3.238  E_i   -0.687  (E_t-E_i)/|E_t| -0.788  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -4.647e-02 (S_q +5.432e-02)
+  farshell_B|alt             E_t   -7.945  E_i   -2.804  (E_t-E_i)/|E_t| -0.647  W_res/|E_t| n/a (crashed)  | EC: D40 None, floor hits 0, S_ps -1.772e-01 (S_q +2.301e-01)
+  CFG461-convention contraction factors R_vir/r_e (z_c = 1): 1e9|canonical 3.50, 1e10|canonical 2.38, 1e11|canonical 1.62, 1e12|canonical 1.11, 1e9|alt 3.85, 1e10|alt 2.62, 1e11|alt 1.79, 1e12|alt 1.22
+  -> STEP 3 = FAIL ((3a) FAIL, (3b) FAIL)
+
+==============================================================================================================
+VERDICT: step (1) PASS | step (2) FAIL | step (3) FAIL | step (4) COND  ->  NC1 DEAD
+  by the frozen rule the chassis question returns to CFG484's R04 (C-H/K + Horava UV sector M_*); its decisive test is CFG319's moving-black-hole count with the z = 3 Horava terms at the universal horizon
+  constants: chassis 0; fluid sector lambda = 1 (zero-constant), s = +1 and gamma = 5/3 structural; kappa fitted; amount 5.364 input
+==============================================================================================================
+
+checks: 8/9 pass; load-bearing failures: ['C-energy: EC run (point 1e10 canonical) conserves energy, |E_end - E_i| <= 2e-3 |E_t| (a run that crashed cannot certify it)']; runtime 1110 s

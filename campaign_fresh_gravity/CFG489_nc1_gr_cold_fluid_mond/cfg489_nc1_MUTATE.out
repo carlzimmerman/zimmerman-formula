@@ -1,0 +1,79 @@
+==============================================================================================================
+CFG489: NC1's decisive tests (GR + Lambda chassis, MOND only in the cold fluid)   [MUTATE]
+kappa = 1/2 FITTED; both footings; no dark-matter particle (cold mass still required); not 'theory closed'
+criteria: FROZEN_CRITERIA.md (6cce7b447) + appended correction 1 (32b3f9a35: numerics only; run 2 kept as _run2)
+==============================================================================================================
+
+[K1] sympy: Newtonian-limit 4-acceleration of a moving fluid element
+  [PASS] K1 a^i = dv/dt + (v.grad)v + grad Phi to first order (residual terms are Phi*v, v*dPhi/dt, ...)  -- eps*delta coefficient: -2*Phi(t, x, y, z)*Derivative(v_x(t, x, y, z), t) - 3*v_x(t, x, y, z)*Derivative(Phi(t, x, y, z), t)
+
+[K2] sympy: the M1 cubic from the linear system (A read kinematically)
+  [PASS] K2 det(linear system) = const x cubic; tau = 0 closed form; s = 0 gives Jeans; A-kin = -grad(P+p_s)/rho  -- det/cubic = -rho0
+
+[K3] kernel facts: g_N'(g) and g_N(g)/g in (0, 1) on g in [1e-8, 1e8] a0
+  [PASS] K3 n in (0, 1) for every background (both kernels; g_N', 1 - g_N', g_N/g, 1 - g_N/g all > 0, cancellation-free)  -- {"P2": {"min_dgN": "2e-08", "min_1m_dgN": "1.25e-17", "min_ratio": "7.97e-09", "min_1m_ratio": "5e-09"}, "nu_mono": {"min_dgN": "2e-08", "min_1m_dgN": "3.24e-10", "min_ratio": "1e-08", "min_1m_ratio": "1.19e-08", "z_table": [1.0000000500000009e-07, 99990791.27588744]}}
+
+[STEP 1] G1 well-posedness: dispersion of the linearised relaxation system, s = -1  [MUTATE MA: anti-relaxation]
+  homog|adiabatic|M1           Pa True  Pb False Pc False  sup G/w_ref 1.000e+16  top-decade growth slope +2.000  -> FAIL
+  homog|isothermal|M1          Pa False Pb False Pc False  sup G/w_ref inf  top-decade growth slope +2.000  -> FAIL
+  homog|adiabatic|M2           Pa False Pb False Pc True   sup G/w_ref inf  top-decade growth slope -0.000  -> FAIL
+  homog|adiabatic|M3           Pa False Pb False Pc False  sup G/w_ref inf  top-decade growth slope +nan  -> FAIL
+  homog|adiabatic|M1-hyd       Pa True  Pb False Pc False  sup G/w_ref 2.752e+10  top-decade growth slope +1.333  -> FAIL
+  homog|adiabatic|M2-hyd       Pa True  Pb True  Pc True   sup G/w_ref 1.000e+00  top-decade growth slope +0.000  -> PASS
+  SIS (60 cells: x 3-100, 3 angles, 2 kernels, adiabatic/isothermal) M1     : 0/60 pass; worst sup G/w_ref 9.901e+15; sweep (all frozen coefficients): FAILS (worst inf)
+  SIS (60 cells: x 3-100, 3 angles, 2 kernels, adiabatic/isothermal) M2     : 60/60 pass; worst sup G/w_ref 1.986e+00; sweep (all frozen coefficients): FAILS (worst inf)
+  SIS (60 cells: x 3-100, 3 angles, 2 kernels, adiabatic/isothermal) M3     : 60/60 pass; worst sup G/w_ref 0.000e+00; sweep (all frozen coefficients): FAILS (worst inf)
+  SIS (60 cells: x 3-100, 3 angles, 2 kernels, adiabatic/isothermal) M1-hyd : 0/60 pass; worst sup G/w_ref 2.742e+10; sweep (all frozen coefficients): FAILS (worst 2.752e+10)
+  SIS (60 cells: x 3-100, 3 angles, 2 kernels, adiabatic/isothermal) M2-hyd : 60/60 pass; worst sup G/w_ref 0.000e+00; sweep (all frozen coefficients): all pass (worst 1.000e+00)
+  M1 high-k character (homogeneous): fastest root Im w = -7.033e-01 at k = 1e4, -7.033e-01 at k = 1e6 -> |Im w| ~ k^0.00 (parabolic GROWTH); relativistic causality: COND (needs a second-order regulator; not PASS here)
+  post-freeze (reported, not a verdict input): M1 linearised about an OFF-target state, R = rho_t/rho; homogeneous frozen coefficients (n = 0, w_J tau = 1); K_eff = c_s^2 (1 + s(1-R)) + s sigma^2 (R - 1 + n)
+    gamma 5/3 : R 1: K_eff +1.67, G(k_max) +9999999999999998.00, sup 9999999999999998.00 FAILS line; R 2: K_eff +2.33, G(k_max) +9999999999999998.00, sup 9999999999999998.00 FAILS line; R 3.5: K_eff +3.33, G(k_max) +9999999999999998.00, sup 9999999999999998.00 FAILS line; R 4: K_eff +3.67, G(k_max) +9999999999999998.00, sup 9999999999999998.00 FAILS line; R 10: K_eff +7.67, G(k_max) +9999999999999998.00, sup 9999999999999998.00 FAILS line; R 30: K_eff +21.00, G(k_max) +9999999999999998.00, sup 9999999999999998.00 FAILS line; R 100: K_eff +67.67, G(k_max) +9999999999999998.00, sup 9999999999999998.00 FAILS line; R 10000: K_eff +6667.67, G(k_max) +9999999999999998.00, sup 9999999999999998.00 FAILS line
+    isothermal: R 1: K_eff +1.00, G(k_max) +10000000000000000.00, sup nan FAILS line; R 2: K_eff +1.00, G(k_max) +10000000000000000.00, sup nan FAILS line; R 3.5: K_eff +1.00, G(k_max) +10000000000000000.00, sup nan FAILS line; R 4: K_eff +1.00, G(k_max) +10000000000000000.00, sup nan FAILS line; R 10: K_eff +1.00, G(k_max) +10000000000000000.00, sup nan FAILS line; R 30: K_eff +1.00, G(k_max) +10000000000000000.00, sup nan FAILS line; R 100: K_eff +1.00, G(k_max) +10000000000000000.00, sup nan FAILS line; R 10000: K_eff +1.00, G(k_max) +10000000000000000.00, sup nan FAILS line
+    -> s = -1 (MUTATE): every R and both closures fail the line (growth ~ k^2 from the anti-relaxation itself)
+  [FAIL] (reported) STEP 1 PASS for the scored member M1 (s = -1)  -- homogeneous + every SIS cell, both kernels, adiabatic and isothermal
+
+[K4] C target routine at static A = g_law reproduces the P2 point-mass cold mass; nu_mono supply edge
+  [PASS] K4 P2 point-mass target M(sqrt(1+x^2)-1) <= 1e-6 rel; nu_mono edge 5.8498 +- 0.001  -- P2 max rel 2.3e-14; nu_mono table round trip 8.1e-09; x_e = 5.84976
+
+[K5] CFG461 contraction factors (z_c = 1, canonical)
+  [PASS] K5 R_vir/r_e = 3.50 / 1.97 / 1.34 to 1%  -- 3.498, 1.967, 1.340
+
+[K6] CFG484 N1d reproduces from its committed JSON
+  [PASS] K6 R1 Liouville ratios and R2 nu_mono ratios match CFG484 to 1%  -- canonical|Mars: 1.0000/1.0000, canonical|Saturn: 1.0000/1.0000, alt|Mars: 1.0000/1.0000, alt|Saturn: 1.0000/1.0000
+
+[STEP 4] G14 capture by the embedded Sun (v_rel 230 km/s)
+  canonical host rho 0.0049 Msun/pc^3, sigma 144 km/s, tau_local 59.9 Myr, R_far 6001 AU
+    Mars   (4a) Liouville 1.07e-07 x bound | (4b) t_res/tau 1.05e-09, f <= 1.85e-08, x R2 (76893x bound) = 1.42e-03 x bound (P2 6.17e-04) | (4c) orbital tau 109.3 d, t_res/tau 0.21, f 1.00 -> 76893 x bound
+    Saturn (4a) Liouville 8.50e-09 x bound | (4b) t_res/tau 6.59e-09, f <= 9.70e-08, x R2 (13786x bound) = 1.34e-03 x bound (P2 6.49e-04) | (4c) orbital tau 1724.4 d, t_res/tau 0.08, f 1.00 -> 13786 x bound
+    (4d) BHL radius 0.024 AU (adiabatic c_s: 0.020); accreted in 4.6 Gyr 2.7e-10 Msun (into the Sun)
+  alt       host rho 0.0057 Msun/pc^3, sigma 147 km/s, tau_local 55.7 Myr, R_far 5873 AU
+    Mars   (4a) Liouville 1.16e-07 x bound | (4b) t_res/tau 1.13e-09, f <= 2.05e-08, x R2 (92430x bound) = 1.90e-03 x bound (P2 8.30e-04) | (4c) orbital tau 109.3 d, t_res/tau 0.21, f 1.00 -> 92430 x bound
+    Saturn (4a) Liouville 9.23e-09 x bound | (4b) t_res/tau 7.09e-09, f <= 1.08e-07, x R2 (16562x bound) = 1.78e-03 x bound (P2 8.71e-04) | (4c) orbital tau 1724.4 d, t_res/tau 0.08, f 1.00 -> 16562 x bound
+    (4d) BHL radius 0.024 AU (adiabatic c_s: 0.020); accreted in 4.6 Gyr 3.1e-10 Msun (into the Sun)
+  -> STEP 4 = COND (4a True, 4b True, 4c False)
+
+[STEP 2] 1-D runs: 9 infall runs + 0 static-start runs on 4 threads (N = 240, wall r_w = 0.05 r_M with the inert target core, smooth shell masses from 0.0002 M_b; correction 1)
+  done MB                     point|1e9|canonical        crashed 3 steps   31248335 D10/20/40 None/None/None (229 s)
+  done MB                     point|1e10|canonical       crashed 3 steps   14133719 D10/20/40 None/None/None (108 s)
+  done MB                     point|1e11|canonical       crashed 0 steps   46906372 D10/20/40 0.1044/0.1040/0.1035 (361 s)
+  done MB                     point|1e12|canonical       crashed 0 steps   28094951 D10/20/40 0.0373/0.0372/0.0372 (217 s)
+  done MB                     point|1e9|alt              crashed 3 steps   37752897 D10/20/40 None/None/None (272 s)
+  done MB                     point|1e10|alt             crashed 3 steps   17403071 D10/20/40 None/None/None (127 s)
+  done MB                     point|1e11|alt             crashed 3 steps    7927273 D10/20/40 None/None/None (58 s)
+  done MB                     point|1e12|alt             crashed 0 steps   32233085 D10/20/40 0.0502/0.0512/0.0511 (243 s)
+  done MA-1D                  point|1e10|canonical       crashed 3 steps    4952195 D10/20/40 None/None/None (39 s)
+
+[MUTATE MB] target a0 -> 2 a0 inside F; scored against the true law and the 2 a0 law
+  point|1e9|canonical        not measurable: main crashed 3, MB crashed 3 (t 104.1 of 385.5)
+  point|1e10|canonical       not measurable: main crashed 3, MB crashed 3 (t 62.0 of 319.2)
+  point|1e11|canonical       D vs true law 0.103  D vs 2a0 law 0.1709  shift +0.0150 (predicted +0.0596, rms 0.0463) -> does NOT move as predicted
+  point|1e12|canonical       not measurable: main crashed 3, MB crashed 0 (t 260.9 of 260.9)
+  point|1e9|alt              not measurable: main crashed 3, MB crashed 3 (t 118.0 of 408.7)
+  point|1e10|alt             not measurable: main crashed 3, MB crashed 3 (t 71.2 of 332.2)
+  point|1e11|alt             not measurable: main crashed 0, MB crashed 3 (t 44.1 of 289.2)
+  point|1e12|alt             not measurable: main crashed 3, MB crashed 0 (t 265.1 of 265.1)
+  MB summary: 1 measurable cells; attractor moves as predicted: False
+
+[MUTATE MA-1D] s = -1, point 1e10 canonical: crashed 3 (1 inversion, 2 NaN, 3 dt), t reached 1.61 of 319.2
+
+checks: 6/7 pass; load-bearing failures: none; runtime 534 s
