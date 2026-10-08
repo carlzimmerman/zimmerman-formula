@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import Plot from '@/components/toscale/Plot'
+import SeeAlso from '@/components/common/SeeAlso'
 
 type Foot = 'canonical' | 'alt'
 interface Fit { g: number; s: number; chi2: number; nb: number; kappa: number }
@@ -64,7 +65,7 @@ function Scatter({ ens, pairs, inj }: { ens: Ens; pairs: Uint16Array | null; inj
     g.strokeStyle = '#e5e7eb'; g.fillStyle = '#6b7280'; g.font = '11px sans-serif'; g.lineWidth = 1
     for (let v = -1; v <= 2; v++) { g.beginPath(); g.moveTo(X(v), m.t); g.lineTo(X(v), H - m.b); g.stroke(); g.textAlign = 'center'; g.fillText(String(v), X(v), H - m.b + 15) }
     for (let v = 0; v <= 2; v += 0.5) { g.beginPath(); g.moveTo(m.l, Y(v)); g.lineTo(W - m.r, Y(v)); g.stroke(); g.textAlign = 'right'; g.fillText(v.toFixed(1), m.l - 6, Y(v) + 4) }
-    g.fillStyle = '#374151'; g.textAlign = 'center'; g.fillText('log₁₀ y  (y = Newtonian acceleration at the projected separation / a₀;  left = wider, weaker pairs)', (m.l + W - m.r) / 2, H - 4)
+    g.fillStyle = '#374151'; g.textAlign = 'center'; g.fillText(W < 560 ? 'log₁₀ y  (left = weaker gravity)' : 'log₁₀ y  (y = Newtonian acceleration at the projected separation / a₀;  left = wider, weaker pairs)', (m.l + W - m.r) / 2, H - 4)
     g.save(); g.translate(13, (m.t + H - m.b) / 2); g.rotate(-Math.PI / 2); g.fillText('ṽ = v⊥ / v_circ', 0, 0); g.restore()
     if (pairs) {
       const off = ens.pair_counts.slice(0, inj).reduce((a, b) => a + b, 0), n = ens.pair_counts[inj]
@@ -233,6 +234,7 @@ export default function WideBinaries() {
             <a className="text-blue-600 hover:underline" href="https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md" target="_blank" rel="noopener noreferrer">the DR4 pre-registration</a>. Files are made by <code>ai_slop/website/scripts/build_wb_mock_sky.py</code>, which imports the pipeline unchanged.
           </p>
         </section>
+        <SeeAlso current="/wide-binaries" />
       </div>
     </div>
   )

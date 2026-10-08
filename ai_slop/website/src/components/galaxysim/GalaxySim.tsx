@@ -6,6 +6,7 @@ import * as THREE from 'three'
 import Plot from '@/components/toscale/Plot'
 import { allowAutoMotion, getDevice, guardContext, maxPixelRatio } from '@/components/common/device'
 import type { GalaxyData, Kernel, Mode } from './engine'
+import SeeAlso from '@/components/common/SeeAlso'
 
 const GYR_PER_UNIT = 0.9778
 
@@ -276,6 +277,7 @@ export default function GalaxySim() {
           </ul>
           <p className="mt-6 text-xs text-gray-500 max-w-3xl">Data: SPARC (Lelli, McGaugh &amp; Schombert 2016) via the repository copy, Υ_disk = 0.61, the record&apos;s kernel ν_mono, a₀ canonical. Files are made by <code>ai_slop/website/scripts/build_sparc_sim.py</code>; the engine is <code>src/components/galaxysim/engine.ts</code> and is tested headless by <code>scripts/test_galaxy_engine.mts</code>.</p>
         </section>
+        <SeeAlso current="/galaxy-sim" />
       </div>
     </div>
   )

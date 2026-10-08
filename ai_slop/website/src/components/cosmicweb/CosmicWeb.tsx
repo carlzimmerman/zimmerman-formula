@@ -11,6 +11,7 @@ import Timeline from './Timeline'
 import Timelapse from './Timelapse'
 import Gate from '@/components/common/Gate'
 import { getDevice } from '@/components/common/device'
+import SeeAlso from '@/components/common/SeeAlso'
 
 function Section({ id, kicker, title, children }: { id: string; kicker: string; title: string; children: React.ReactNode }) {
   return (
@@ -262,6 +263,7 @@ export default function CosmicWeb() {
             </p>
           </div>
         </Section>
+        <SeeAlso current="/cosmic-web" />
       </div>
     </div>
   )
