@@ -40,6 +40,8 @@ This is the full field theory underneath the law: general relativity plus a pref
   - structural order (G0): no runaway "ghost" mode, but solvability in the strongly nonlinear regime is unproved;
   - **black holes.** EHT shadows and LIGO ringdowns are matched to better than one part in 10⁹. A *moving* black hole keeps a hidden, Planck-scale defect on its innermost horizon. A 2019 paper's standard would count that as fatal; the owner's reading of it is still pending.
 
+- **Fails: zero-field nonlinear dependence (G5/G10).** In a 1-D test, the theory's sensitivity to tiny perturbations should level off as the grid gets finer. At the smaller perturbation it does (λ → 0.086). At the larger one, the frozen rule calls a fail on the finest grid (N = 2047, CFG358). The deciding step is one +0.006 bump just past the threshold, so this is a knife-edge fail. It is recorded as a fail, not reinterpreted, and it says nothing about growth.
+
 ## Column 2 · Galaxies and clusters
 
 - **Passes:**
@@ -59,7 +61,7 @@ The theory's sharpest prediction is that **a₀ stays constant**. Its main rival
 
 - **Not decidable yet: a₀ over time.** The two lines separate at redshift 2–5. At those redshifts, though, the uncertainty in how much gas each galaxy holds is larger than the gap between the lines (the "calibration wall", PAPER38). No public data set can settle this today.
 - **Open: Gaia DR4 wide binaries** (data release 2 December 2026). This test is pre-registered and frozen: PAPER35 predicts exactly Newtonian behaviour.
-- **Conditional: structure growth, candidate B.** Simulated in a universe-in-a-box (CFG361 onward), switching the law on everywhere makes small-scale structure 15–17% too clumpy. The fix has no hand-set numbers. The phantom is cold fluid, so the law stops where each halo's own cold fluid runs out. That cold fluid is drawn from the halo's own turnaround sphere, so mass is conserved halo by halo. With this rule, growth passes at 512³ resolution on both a₀ values and with a₀ tracking dark energy (3–4% against an allowed 10%; CFG424–439). The condition: in these runs the cold fluid is bookkeeping, not simulated particles, and the settling mechanism is not yet derived from an action.
+- **Conditional: structure growth, candidate B.** Simulated in a universe-in-a-box (CFG361 onward), switching the law on everywhere makes small-scale structure 15–17% too clumpy. The fix has no hand-set numbers. The phantom is cold fluid, so the law stops where each halo's own cold fluid runs out. That cold fluid is drawn from the halo's own turnaround sphere, so mass is conserved halo by halo. With this rule, growth passes at 512³ resolution on both a₀ values and with a₀ tracking dark energy (3–4% against an allowed 10%; CFG424–439; published as PAPER45 v2.0, DOI 10.5281/zenodo.23237726). The condition: in these runs the cold fluid is bookkeeping, not simulated particles, and the settling mechanism is not yet derived from an action.
 - **Fails: structure growth, chassis alone.** Without B's switch, all matter feels the MOND boost and structure grows about 7× too fast, which CMB lensing rules out. This variant is dead; candidate B is the live one.
 
 ## Column 4 · The deep "why"
@@ -72,7 +74,7 @@ The theory's sharpest prediction is that **a₀ stays constant**. Its main rival
 
 ## The bottom line
 
-The law wins where it is cleanest: rotation curves, MeerKAT, lensing, and every local test of gravity. It has one hard failure, the Milky Way's ultra-faint dwarfs. The two tests that could change the picture are **Gaia DR4** (2 December 2026) and **a₀ at redshift ~2.5**, which still needs better gas measurements.
+The law wins where it is cleanest: rotation curves, MeerKAT, lensing, and every local test of gravity. Structure growth, the biggest cosmology failure, now has a fix with no hand-set numbers, conditional on the cold fluid settling as assumed. The hard failures are the Milky Way's ultra-faint dwarfs (now conditional) and a knife-edge 1-D nonlinear test. Three things stay open: why κ = ½, what sets the cold fluid's amount, and ρ_Λ. The two tests that could change the picture are **Gaia DR4** (2 December 2026) and **a₀ at redshift ~2.5**.
 
 ---
 

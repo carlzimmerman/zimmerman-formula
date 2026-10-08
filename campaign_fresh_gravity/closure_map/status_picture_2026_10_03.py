@@ -22,6 +22,7 @@ groups = [
         ("Solar system (PPN + Cassini Q2)", "PASS", "filter evades Q2 tension at kappa 1/2 · CFG291/357"),
         ("Matter conservation (G9)", "PASS", "Bianchi identity holds; grad T = 0 · CFG329"),
         ("Structural order (G0)", "COND", "no ghost; elliptic solvability open · CFG329"),
+        ("Zero-field nonlinear dependence", "FAIL", "1-D, knife-edge at N = 2047 · CFG321/358"),
         ("Black holes (EHT, LIGO ringdown)", "COND", "hidden mild inner-horizon defect · CFG318/319"),
     ]),
     ("Galaxies and clusters", [
@@ -39,7 +40,7 @@ groups = [
         ("High-z on halo-free inputs", "UNDEC", "RC100 on the flat line · CFG303"),
         ("CRISTAL z~5 / ALESS 122.1", "UNDEC", "stress tests: not robust · CFG307/308"),
         ("Gaia DR4 wide binaries", "OPEN", "decides 2 Dec 2026 · prereg"),
-        ("Structure growth, candidate B", "COND", "zero-knob mass-conserving edge, 512^3 · CFG424-439"),
+        ("Structure growth, candidate B", "COND", "zero-knob mass-conserving edge, 512^3 · PAPER45 v2"),
         ("Structure growth, chassis alone", "FAIL", "~7x too fast; CMB lensing excludes · L341"),
     ]),
     ("The deep 'why'", [
