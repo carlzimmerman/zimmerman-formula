@@ -11,6 +11,7 @@ export default function Home() {
           <nav className="flex items-center justify-between flex-wrap gap-3">
             <div className="text-lg font-semibold text-gray-900">a₀ from the Cosmological Constant</div>
             <div className="flex items-center gap-6 text-sm">
+              <Link href="/cosmic-web" className="text-gray-900 font-medium hover:text-gray-600">512³ run</Link>
               <Link href="/field-theory" className="text-gray-900 font-medium hover:text-gray-600">Field theory</Link>
               <Link href="/rar" className="text-gray-600 hover:text-gray-900">Galaxy data</Link>
               <Link href="/simulate" className="text-gray-600 hover:text-gray-900">Simulations</Link>
@@ -445,6 +446,10 @@ export default function Home() {
             <Link href="/rar" className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors">
               <div className="font-medium text-gray-900 mb-1">Galaxy data</div>
               <p className="text-gray-600">The radial acceleration relation and baryonic Tully&ndash;Fisher behaviour — the part that is empirically grounded.</p>
+            </Link>
+            <Link href="/cosmic-web" className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors">
+              <div className="font-medium text-gray-900 mb-1">The 512³ run</div>
+              <p className="text-gray-600">The real output of the 134-million-particle simulation: every cell, single slices, and individual halo particles, framework run beside a Newtonian control.</p>
             </Link>
             <Link href="/simulate" className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors">
               <div className="font-medium text-gray-900 mb-1">Simulations</div>
