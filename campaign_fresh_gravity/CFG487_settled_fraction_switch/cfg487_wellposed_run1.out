@@ -1,0 +1,49 @@
+CFG487 analytic legs (FROZEN_CRITERIA.md e8f72dcc9):
+  (a)-type switch properties: A1 m = 0 exactly on FRW and in linear parcels (delta_lin <= 0.1); A2 turnaround thresholds.
+  (d) CFG337-style well-posedness of the settled-fraction switch on DE12's 24 transitions (z in {0.25, 1, 2.5, 4},
+      M_b in {1e10, 1e11, 1e12}, both footings; DE12's transition() exec'd read-only, as CFG337), gas 1e5 / 1e6 K,
+      k in [1e-3, 1e3]/kpc.  Linear system (quasi-static Newtonian WKB; the latch fixed where L = 1):
+        s^2 xi = (Gamma_g^2 - c_s^2 k^2) xi + i (4 pi G rho_ph / k) F dm,   (s + Gamma) dm = -i k (1 - m)(Gamma/2) chi xi
+      =>  s^3 + Gamma s^2 - A s - (A Gamma + C) = 0,  A = Gamma_g^2 - c_s^2 k^2,  C = Gamma_ph^2 F (1 - m) Gamma chi / 2
+      H1 no ghost; H2 real speeds {0, +-c_s}; H3 growth bounded uniformly in k; H4 extra growth <= Gamma_g, no length.
+  Legality (reported): conversion-energy ratios, the edge's bilocality.  Controls C4 (shell model), C5 (detector).
+MUTATE (CFG487_MUTATE=1, outputs *_MUTATE.*): the FRW-firing clock (latched from z_i); A1 must FAIL; exit 1.
+kappa = 1/2 FITTED; both footings, never pooled; the cold fluid's mass is still required.
+
+(a) SWITCH PROPERTIES ON FRW AND LINEAR PARCELS
+  [PASS] A1 m = 0 exactly on FRW (latch never fires: theta = 3H > 0) and in linear parcels delta_lin(z = 0) <= 0.1 (theta/3H >= 0.967): FRW parcel turned around: False, min theta/3H 1.000000, m 0; delta_lin = 0.1 parcel turned around: False, min theta/3H 0.97938, m 0
+  A2 (reported): EdS sphere turnaround delta_lin = (3/20)(6 pi)^(2/3) = 1.0624; Zel'dovich sheet 3/(3+f): f = 1 -> 0.750, f(z=0) = 0.530 -> 0.850
+
+C4 SHELL MODEL
+  [FAIL] C4 shell model: EdS t_c/t_ta = 1.5 + 1/pi within 0.5%; LCDM turnaround density = cfg100 one_plus_delta_ta within 1% (z 0, 0.25, 1): EdS max rel dev 7.07e-02; LCDM rel dev z0.0: +1.03e-03, z0.25: +4.19e-04, z1.0: +4.41e-05
+
+DE12 transition() loaded read-only; f_b(DE12) 0.1571 vs engine 0.1571; gas c_s 1e5 K 37.1, 1e6 K 117.3 km/s
+
+(d) WELL-POSEDNESS ON THE 24 TRANSITIONS
+  V1|edge|1e5K      : worst extra growth / Gamma_g 0.0074 at z4.0/1e+12/alt r 205 kpc (m 0.953, s_max/Gamma_g 1.0001); H3 bounded True
+  V1|edge|1e6K      : worst extra growth / Gamma_g 0.0074 at z4.0/1e+12/alt r 205 kpc (m 0.953, s_max/Gamma_g 0.9997); H3 bounded True
+  V1|noedge|1e5K    : worst extra growth / Gamma_g 0.1308 at z0.25/1e+10/canonical r 1601 kpc (m 0.000, s_max/Gamma_g 0.9229); H3 bounded True
+  V1|noedge|1e6K    : worst extra growth / Gamma_g 0.1160 at z2.5/1e+10/alt r 420 kpc (m 0.000, s_max/Gamma_g 0.9643); H3 bounded True
+  V2|edge|1e5K      : worst extra growth / Gamma_g 0.0637 at z4.0/1e+12/alt r 205 kpc (m 0.953, s_max/Gamma_g 1.0011); H3 bounded True
+  V2|edge|1e6K      : worst extra growth / Gamma_g 0.0637 at z4.0/1e+12/alt r 205 kpc (m 0.953, s_max/Gamma_g 1.0007); H3 bounded True
+  V2|noedge|1e5K    : worst extra growth / Gamma_g 0.4389 at z0.25/1e+10/alt r 862 kpc (m 0.000, s_max/Gamma_g 1.0291); H3 bounded True
+  V2|noedge|1e6K    : worst extra growth / Gamma_g 0.4389 at z0.25/1e+10/alt r 862 kpc (m 0.000, s_max/Gamma_g 0.7197); H3 bounded True
+  [PASS] (d) H1 gas inertia rho > 0 and no kinetic term for the label (first-order transport): no ghost: state of the system: rho_b > 0 on every transition; the label obeys a first-order rate law (CFG349 C1 analogue)
+  [PASS] (d) H2 characteristic speeds real, |v| <= c: {0 (label, along the flow), +-c_s}: c_s max 117.3 km/s
+  [PASS] (reported) (d) V1 with the edge: H3 bounded in k and H4 extra growth <= Gamma_g on all 24 transitions, 1e5 and 1e6 K: 1e5K: 0.0074, 1e6K: 0.0074
+  [PASS] (reported) (d) V1 switch only (no edge): H3 and H4 (reported): 1e5K: 0.1308, 1e6K: 0.1160
+  [PASS] (reported) (d) V2 with the edge: H3 bounded in k and H4 extra growth <= Gamma_g on all 24 transitions, 1e5 and 1e6 K: 1e5K: 0.0637, 1e6K: 0.0637
+  [PASS] (reported) (d) V2 switch only (no edge): H3 and H4 (reported): 1e5K: 0.4389, 1e6K: 0.4389
+  [PASS] (d) analytic bound s_max^2 <= Gamma_g^2 + Gamma_ph^2 F (1 - m) chi / 2 holds at every point (Lean L5): all transitions, versions, edges, temperatures
+
+C5 DETECTOR
+  [FAIL] C5 detector: no-coupling limit gives s_max = Gamma_g at small k; an injected slaved k-linear term is flagged unbounded by H3: s/Gamma_g at k_min 0.999994749; slaved s(k_max)/s(k_min) 5.613e+03
+
+LEGALITY (reported; cannot raise a verdict)
+  conversion-energy ratio V1_30kpc  : min 0.057  median 0.115  max 0.287   [B / (rho_c v_c^2/2): cold-fluid heating per unit settled mass]
+  conversion-energy ratio V1_edge   : min 0.0457  median 0.0759  max 0.108   [B / (rho_c v_c^2/2): cold-fluid heating per unit settled mass]
+  conversion-energy ratio V2_30kpc  : min 0.218  median 1.76  max 21   [B / (rho_b c_s^2), 1e6 K: gas heating]
+  conversion-energy ratio V2_edge   : min 0.247  median 0.971  max 3.72   [B / (rho_b c_s^2), 1e6 K: gas heating]
+  the edge reads the host's total M_b (bilocal, CFG48-type); for a point mass it is the local baryonic field g_N = a0 / 5.850^2 = 0.0292 a0 (a local, baryon-only reading; not used in the scored model)
+
+  8/10 checks pass; load-bearing failures: 2; elapsed 18.0 s

@@ -1,0 +1,177 @@
+{
+ "lane": "CFG487",
+ "script": "cfg487_wellposed",
+ "mutate": false,
+ "A1": {
+  "frw_turned": false,
+  "frw_min_theta_ratio": 0.9999999908050762,
+  "lin_turned": false,
+  "lin_min_theta_ratio": 0.9793816053134413,
+  "m_frw": 0.0,
+  "m_lin": 0.0
+ },
+ "A2": {
+  "sphere": 1.0624096524001363,
+  "sheet_f1": 0.75,
+  "sheet_z0": 0.8498518007029404
+ },
+ "C4": {
+  "eds_dev": 0.07068040188566549,
+  "lcdm_dev": {
+   "0.0": 0.0010258492346122416,
+   "0.25": 0.00041947872095504657,
+   "1.0": 4.41326961866384e-05
+  }
+ },
+ "C4_posthoc": {
+  "duration_max_dev": 2.3521483871746796e-08,
+  "lin_max_dev": 0.003173775772194798,
+  "early_E_min_z4": 167.2984780320321
+ },
+ "d_worst": {
+  "V1|edge|1e5K": {
+   "h4": 0.007422769988683681,
+   "at": "z4.0/1e+12/alt",
+   "r_kpc": 205.07806858803332,
+   "m": 0.9530112816118845,
+   "smax_over_Gg": 1.000103644868669,
+   "h3_all": true
+  },
+  "V1|edge|1e6K": {
+   "h4": 0.007422769988708213,
+   "at": "z4.0/1e+12/alt",
+   "r_kpc": 205.07806858803332,
+   "m": 0.9530112816118845,
+   "smax_over_Gg": 0.9996533749670492,
+   "h3_all": true
+  },
+  "V1|noedge|1e5K": {
+   "h4": 0.13078911510047006,
+   "at": "z0.25/1e+10/canonical",
+   "r_kpc": 1601.1335882103433,
+   "m": 0.0,
+   "smax_over_Gg": 0.9228668460303769,
+   "h3_all": true
+  },
+  "V1|noedge|1e6K": {
+   "h4": 0.11603549103034626,
+   "at": "z2.5/1e+10/alt",
+   "r_kpc": 420.4936921722096,
+   "m": 0.0,
+   "smax_over_Gg": 0.9643132124105375,
+   "h3_all": true
+  },
+  "V2|edge|1e5K": {
+   "h4": 0.06370738949563798,
+   "at": "z4.0/1e+12/alt",
+   "r_kpc": 205.07806858803332,
+   "m": 0.9531492812718313,
+   "smax_over_Gg": 1.0011116520866503,
+   "h3_all": true
+  },
+  "V2|edge|1e6K": {
+   "h4": 0.06370738949564085,
+   "at": "z4.0/1e+12/alt",
+   "r_kpc": 205.07806858803332,
+   "m": 0.9531492812718313,
+   "smax_over_Gg": 1.0006620776367199,
+   "h3_all": true
+  },
+  "V2|noedge|1e5K": {
+   "h4": 0.4388549757261527,
+   "at": "z0.25/1e+10/alt",
+   "r_kpc": 862.183588786414,
+   "m": 0.0,
+   "smax_over_Gg": 1.0290544916486288,
+   "h3_all": true
+  },
+  "V2|noedge|1e6K": {
+   "h4": 0.4388549757261527,
+   "at": "z0.25/1e+10/alt",
+   "r_kpc": 862.183588786414,
+   "m": 0.0,
+   "smax_over_Gg": 0.7196989290175623,
+   "h3_all": true
+  }
+ },
+ "d_pass_V1": true,
+ "d_noedge_V1": true,
+ "d_pass_V2": true,
+ "d_noedge_V2": true,
+ "legality": {
+  "V1_30kpc": {
+   "min": 0.05704393922287199,
+   "median": 0.11454081843953406,
+   "max": 0.28717498091115773
+  },
+  "V1_edge": {
+   "min": 0.04569301311839293,
+   "median": 0.07588418572350827,
+   "max": 0.10824114120869371
+  },
+  "V2_30kpc": {
+   "min": 0.21835790089172433,
+   "median": 1.7609393739506576,
+   "max": 20.958458272930418
+  },
+  "V2_edge": {
+   "min": 0.24714670961311114,
+   "median": 0.9709930637811404,
+   "max": 3.7220209230998704
+  }
+ },
+ "edge_local_yN": 0.02921964936528722,
+ "checks": {
+  "A1 m = 0 exactly on FRW (latch never fires: theta = 3H > 0) and in linear parcels delta_lin(z = 0) <= 0.1 (theta/3H >= 0.967)": {
+   "ok": true,
+   "load_bearing": true,
+   "msg": "FRW parcel turned around: False, min theta/3H 1.000000, m 0; delta_lin = 0.1 parcel turned around: False, min theta/3H 0.97938, m 0"
+  },
+  "C4 shell model: EdS t_c/t_ta = 1.5 + 1/pi within 0.5%; LCDM turnaround density = cfg100 one_plus_delta_ta within 1% (z 0, 0.25, 1)": {
+   "ok": false,
+   "load_bearing": true,
+   "msg": "EdS max rel dev 7.07e-02; LCDM rel dev z0.0: +1.03e-03, z0.25: +4.19e-04, z1.0: +4.41e-05"
+  },
+  "(d) H1 gas inertia rho > 0 and no kinetic term for the label (first-order transport): no ghost": {
+   "ok": true,
+   "load_bearing": true,
+   "msg": "state of the system: rho_b > 0 on every transition; the label obeys a first-order rate law (CFG349 C1 analogue)"
+  },
+  "(d) H2 characteristic speeds real, |v| <= c: {0 (label, along the flow), +-c_s}": {
+   "ok": true,
+   "load_bearing": true,
+   "msg": "c_s max 117.3 km/s"
+  },
+  "(d) V1 with the edge: H3 bounded in k and H4 extra growth <= Gamma_g on all 24 transitions, 1e5 and 1e6 K": {
+   "ok": true,
+   "load_bearing": false,
+   "msg": "1e5K: 0.0074, 1e6K: 0.0074"
+  },
+  "(d) V1 switch only (no edge): H3 and H4 (reported)": {
+   "ok": true,
+   "load_bearing": false,
+   "msg": "1e5K: 0.1308, 1e6K: 0.1160"
+  },
+  "(d) V2 with the edge: H3 bounded in k and H4 extra growth <= Gamma_g on all 24 transitions, 1e5 and 1e6 K": {
+   "ok": true,
+   "load_bearing": false,
+   "msg": "1e5K: 0.0637, 1e6K: 0.0637"
+  },
+  "(d) V2 switch only (no edge): H3 and H4 (reported)": {
+   "ok": true,
+   "load_bearing": false,
+   "msg": "1e5K: 0.4389, 1e6K: 0.4389"
+  },
+  "(d) analytic bound s_max^2 <= Gamma_g^2 + Gamma_ph^2 F (1 - m) chi / 2 holds at every point (Lean L5)": {
+   "ok": true,
+   "load_bearing": true,
+   "msg": "all transitions, versions, edges, temperatures"
+  },
+  "C5 detector: no-coupling limit gives s_max = Gamma_g at small k; an injected slaved k-linear term is flagged unbounded by H3": {
+   "ok": true,
+   "load_bearing": true,
+   "msg": "s / Jeans at k_min 1.000000000000 (s/Gamma_g 0.999994749); slaved s(k_max)/s(k_min) 5.613e+03"
+  }
+ },
+ "elapsed_s": 17.8
+}

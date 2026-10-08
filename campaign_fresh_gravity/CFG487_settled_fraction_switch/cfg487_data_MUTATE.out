@@ -1,0 +1,94 @@
+CFG487 data legs (FROZEN_CRITERIA.md e8f72dcc9): the settled-fraction switch f = m(r) Theta(r_edge - r) on
+  (a) SPARC  -- CFG346's S clauses (S-A3 at R_HI >= 90% with |d log v| < 0.03, spirals and dwarfs; rotmod RAR |d rms| < 0.005),
+               harness copied from CFG346 (CFG45 + CFG4_galaxy_law prefixes exec'd read-only); SPARC_Lelli2016c.mrt + rotmod;
+  (b) KiDS   -- CFG413's stack P copied (CFG377 primary stack, 15 g_bar bins, 50-patch jackknife, Hartlap, free R^-0.8 two-halo
+               amplitude profiled); PASS iff chi2 - chi2_best(CFG413, x = 0.5) <= 4 on both footings.
+Versions: V1 (cold-fluid clock, rho_X = total law mass; MS1 EXCEPTION) and V2 (baryon clock, rho_X = M_b(<r)/f_b; strict MS1).
+Edge E1 (scored): r_edge = 5.850 sqrt(G M_b / a0), M_b present.  Reported rows: switch only (to r_ta), edge only (m = 1),
+E2 edge (M_b = f_b M_ta,law), conservative clock bracket.  kappa = 1/2 FITTED; both footings, never pooled.
+MUTATE (CFG487_MUTATE=1, outputs *_MUTATE.*): the FRW-firing clock (m = 1 - exp(-E_bg) on every shell, latched from z_i);
+reported rows only (the frozen analytic MUTATE check lives in cfg487_wellposed.py).
+
+shell clock: 293 shells, a_ta 0.0038-1.847; edge factor 5.8501; f_b 0.157126
+
+(b) KiDS stack P: lenses 181477, groups 1953
+  CFG413 committed: best (x = 0.5) chi2 8.9479 / 9.7704; x = 1 chi2 24.5044 / 23.4446
+
+  [canonical] (79 s) r_ta median 1.088 Mpc; x_edge E1 median 0.0291 (10-90% 0.0187-0.0423); E2 median 0.1637 (0.1311-0.1975); m at r_edge(E1): V1 min 0.999613, V2 min 0.999613
+    row            | chi2 free   A_2h   | chi2-best  chi2-x1 | chi2 no-2h | drop-one-bin (row - x0.5)
+    C2_x0.5        |     8.948   1.275 |    +0.000  -15.557 |    290.07 | +0.00..+0.00
+    C2_x1.0        |    24.504   1.120 |   +15.557   +0.000 |    241.29 | +4.38..+17.19
+    V1_E1          |    69.402   2.329 |   +60.454  +44.898 |   1007.26 | +36.75..+62.91
+    V2_E1          |    69.402   2.329 |   +60.454  +44.898 |   1007.26 | +36.75..+62.91
+    V1_noedge      |    24.516   1.120 |   +15.568   +0.011 |    241.50 | +4.38..+17.20
+    V2_noedge      |    24.516   1.120 |   +15.568   +0.011 |    241.50 | +4.38..+17.20
+    edge_only_E1   |    69.425   2.329 |   +60.477  +44.921 |   1007.20 | +36.75..+62.93
+    V1_E2          |    21.770   1.676 |   +12.823   -2.734 |    507.76 | +8.99..+14.07
+    V2_E2          |    21.770   1.676 |   +12.823   -2.734 |    507.76 | +8.99..+14.07
+    edge_only_E2   |    21.791   1.676 |   +12.843   -2.713 |    507.59 | +9.01..+14.09
+    V1_E1_cons     |    69.402   2.329 |   +60.454  +44.898 |   1007.26 | +36.75..+62.91
+    V2_E1_cons     |    69.402   2.329 |   +60.454  +44.898 |   1007.26 | +36.75..+62.91
+
+  [alt] (87 s) r_ta median 1.141 Mpc; x_edge E1 median 0.0252 (10-90% 0.0162-0.0367); E2 median 0.1524 (0.1221-0.1839); m at r_edge(E1): V1 min 0.999613, V2 min 0.999613
+    row            | chi2 free   A_2h   | chi2-best  chi2-x1 | chi2 no-2h | drop-one-bin (row - x0.5)
+    C2_x0.5        |     9.770   1.118 |    +0.000  -13.674 |    225.82 | +0.00..+0.00
+    C2_x1.0        |    23.445   0.953 |   +13.674   +0.000 |    180.51 | +3.07..+15.30
+    V1_E1          |    80.312   2.323 |   +70.542  +56.868 |   1013.21 | +36.93..+73.15
+    V2_E1          |    80.312   2.323 |   +70.542  +56.868 |   1013.21 | +36.93..+73.15
+    V1_noedge      |    23.454   0.954 |   +13.684   +0.010 |    180.71 | +3.08..+15.31
+    V2_noedge      |    23.454   0.954 |   +13.684   +0.010 |    180.71 | +3.08..+15.31
+    edge_only_E1   |    80.343   2.322 |   +70.573  +56.899 |   1013.15 | +36.93..+73.18
+    V1_E2          |    30.486   1.589 |   +20.716   +7.041 |    467.06 | +15.69..+22.32
+    V2_E2          |    30.486   1.589 |   +20.716   +7.041 |    467.06 | +15.69..+22.32
+    edge_only_E2   |    30.519   1.588 |   +20.749   +7.075 |    466.89 | +15.72..+22.36
+    V1_E1_cons     |    80.312   2.323 |   +70.542  +56.868 |   1013.21 | +36.93..+73.15
+    V2_E1_cons     |    80.312   2.323 |   +70.542  +56.868 |   1013.21 | +36.93..+73.15
+  [PASS] C2 KiDS harness: m = 1 sharp edges at x = 0.5 and 1.0 reproduce CFG413's committed chi2 within 0.01: max |diff| 0.00000
+  [FAIL] (reported) (b) KiDS V1 (E1): chi2 - chi2_best(CFG413) <= 4 on both footings: canonical 69.402 - 8.948 = +60.454 (A 2.329, CFG486 range (0.746, 2.358)), alt 80.312 - 9.770 = +70.542 (A 2.323, CFG486 range (0.635, 2.155))
+  [FAIL] (reported) (b) KiDS V2 (E1): chi2 - chi2_best(CFG413) <= 4 on both footings: canonical 69.402 - 8.948 = +60.454 (A 2.329, CFG486 range (0.746, 2.358)), alt 80.312 - 9.770 = +70.542 (A 2.323, CFG486 range (0.635, 2.155))
+
+(a) SPARC (CFG346's S clauses; harness copied)
+  harnesses exec'd (5 s): 171 P3 rows, 175 rotmod galaxies (175 with masses); rms0 0.100329 / 0.101268
+
+  [canonical] row            | A3 spiral  A3 dwarf | max|dv| sp / dw | d rms    | R_HI beyond r_edge(E1): sp / dw | rotmod pts beyond E1
+    V1_E1          |    1.000     0.945 | 0.0000 / 0.0697 | +0.00027 | 0.000 / 0.209 | 107 / 3389
+    V2_E1          |    1.000     0.945 | 0.0000 / 0.0697 | +0.00027 | 0.000 / 0.209 | 107 / 3389
+    V1_noedge      |    1.000     1.000 | 0.0000 / 0.0001 | +0.00001 | 0.000 / 0.209 | 107 / 3389
+    V2_noedge      |    1.000     1.000 | 0.0000 / 0.0001 | +0.00001 | 0.000 / 0.209 | 107 / 3389
+    edge_only_E1   |    1.000     0.945 | 0.0000 / 0.0696 | +0.00026 | 0.000 / 0.209 | 107 / 3389
+    V1_E2          |    1.000     1.000 | 0.0000 / 0.0001 | +0.00001 | 0.000 / 0.209 | 107 / 3389
+    V2_E2          |    1.000     1.000 | 0.0000 / 0.0001 | +0.00001 | 0.000 / 0.209 | 107 / 3389
+    edge_only_E2   |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | 0.000 / 0.209 | 107 / 3389
+    V1_E1_cons     |    1.000     0.945 | 0.0000 / 0.0697 | +0.00027 | 0.000 / 0.209 | 107 / 3389
+    V2_E1_cons     |    1.000     0.945 | 0.0000 / 0.0697 | +0.00027 | 0.000 / 0.209 | 107 / 3389
+    C3_one_noedge  |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | 0.000 / 0.209 | 107 / 3389
+
+  [alt] row            | A3 spiral  A3 dwarf | max|dv| sp / dw | d rms    | R_HI beyond r_edge(E1): sp / dw | rotmod pts beyond E1
+    V1_E1          |    1.000     0.864 | 0.0000 / 0.0894 | -0.00033 | 0.000 / 0.391 | 156 / 3389
+    V2_E1          |    1.000     0.864 | 0.0000 / 0.0894 | -0.00033 | 0.000 / 0.391 | 156 / 3389
+    V1_noedge      |    1.000     1.000 | 0.0000 / 0.0001 | -0.00001 | 0.000 / 0.391 | 156 / 3389
+    V2_noedge      |    1.000     1.000 | 0.0000 / 0.0001 | -0.00001 | 0.000 / 0.391 | 156 / 3389
+    edge_only_E1   |    1.000     0.864 | 0.0000 / 0.0893 | -0.00032 | 0.000 / 0.391 | 156 / 3389
+    V1_E2          |    1.000     1.000 | 0.0000 / 0.0001 | -0.00001 | 0.000 / 0.391 | 156 / 3389
+    V2_E2          |    1.000     1.000 | 0.0000 / 0.0001 | -0.00001 | 0.000 / 0.391 | 156 / 3389
+    edge_only_E2   |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | 0.000 / 0.391 | 156 / 3389
+    V1_E1_cons     |    1.000     0.864 | 0.0000 / 0.0894 | -0.00033 | 0.000 / 0.391 | 156 / 3389
+    V2_E1_cons     |    1.000     0.864 | 0.0000 / 0.0894 | -0.00033 | 0.000 / 0.391 | 156 / 3389
+    C3_one_noedge  |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | 0.000 / 0.391 | 156 / 3389
+  [PASS] C3 SPARC harness: m = 1, no edge leaves A3 = 100% and d rms = 0; rms0 equals CFG39's: rms0 0.100328994 vs CFG39 0.100328994; canonical A3 1.00/1.00 drms +0.0e+00, alt A3 1.00/1.00 drms +0.0e+00
+  [FAIL] (reported) (a) SPARC V1 (E1): S-A3 >= 90% (spirals, dwarfs) and |d rms| < 0.005, both footings: canonical A3 1.000/0.945 drms +0.0003, alt A3 1.000/0.864 drms -0.0003
+  [FAIL] (reported) (a) SPARC V2 (E1): S-A3 >= 90% (spirals, dwarfs) and |d rms| < 0.005, both footings: canonical A3 1.000/0.945 drms +0.0003, alt A3 1.000/0.864 drms -0.0003
+
+  reported pass map (SPARC rule / KiDS rule) per row:
+    V1_E1           SPARC FAIL   KiDS FAIL
+    V2_E1           SPARC FAIL   KiDS FAIL
+    V1_noedge       SPARC PASS   KiDS FAIL
+    V2_noedge       SPARC PASS   KiDS FAIL
+    edge_only_E1    SPARC FAIL   KiDS FAIL
+    V1_E2           SPARC PASS   KiDS FAIL
+    V2_E2           SPARC PASS   KiDS FAIL
+    edge_only_E2    SPARC PASS   KiDS FAIL
+    V1_E1_cons      SPARC FAIL   KiDS FAIL
+    V2_E1_cons      SPARC FAIL   KiDS FAIL
+
+  2/6 checks pass; load-bearing (controls) failures: 0; elapsed 175.2 s

@@ -1,0 +1,18 @@
+CFG487 analytic legs (FROZEN_CRITERIA.md e8f72dcc9):
+  (a)-type switch properties: A1 m = 0 exactly on FRW and in linear parcels (delta_lin <= 0.1); A2 turnaround thresholds.
+  (d) CFG337-style well-posedness of the settled-fraction switch on DE12's 24 transitions (z in {0.25, 1, 2.5, 4},
+      M_b in {1e10, 1e11, 1e12}, both footings; DE12's transition() exec'd read-only, as CFG337), gas 1e5 / 1e6 K,
+      k in [1e-3, 1e3]/kpc.  Linear system (quasi-static Newtonian WKB; the latch fixed where L = 1):
+        s^2 xi = (Gamma_g^2 - c_s^2 k^2) xi + i (4 pi G rho_ph / k) F dm,   (s + Gamma) dm = -i k (1 - m)(Gamma/2) chi xi
+      =>  s^3 + Gamma s^2 - A s - (A Gamma + C) = 0,  A = Gamma_g^2 - c_s^2 k^2,  C = Gamma_ph^2 F (1 - m) Gamma chi / 2
+      H1 no ghost; H2 real speeds {0, +-c_s}; H3 growth bounded uniformly in k; H4 extra growth <= Gamma_g, no length.
+  Legality (reported): conversion-energy ratios, the edge's bilocality.  Controls C4 (shell model), C5 (detector).
+MUTATE (CFG487_MUTATE=1, outputs *_MUTATE.*): the FRW-firing clock (latched from z_i); A1 must FAIL; exit 1.
+kappa = 1/2 FITTED; both footings, never pooled; the cold fluid's mass is still required.
+
+(a) SWITCH PROPERTIES ON FRW AND LINEAR PARCELS
+  MUTATE: FRW-firing clock (latched from z_i): background exponent 8.191 -> m_bg(z = 0) = 0.9997
+  [FAIL] A1 m = 0 exactly on FRW (latch never fires: theta = 3H > 0) and in linear parcels delta_lin(z = 0) <= 0.1 (theta/3H >= 0.967): FRW parcel turned around: False, min theta/3H 1.000000, m 0.9997; delta_lin = 0.1 parcel turned around: False, min theta/3H 0.97938, m 0.9997
+  MUTATE detected: the FRW-firing clock gives a nonzero background switch (A1 fails) -> exit 1
+
+  0/1 checks pass; load-bearing failures: 1; elapsed 2.7 s
