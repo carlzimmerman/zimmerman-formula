@@ -1,0 +1,27 @@
+  V1-U canonical              : s8 1.0053  max|P-1| 0.0243  P@0.1/0.3/1 1.009/1.012/1.014 -> GROWTH OK  (1588 s)
+      z0: q_raw max 39.655, cap binds on 1.000 of catchment mass, unsettled share of catchment cold 0.1272726486398091, sum src -0.000168 vs sum|e| 2.859e+05, min (w_c - comp)/s_c 0.0, catchments 1941
+      clock z0: latched mass 0.607; <m> mass 0.486; min dm 0.0; m range [0.0, 0.9999999999999997]
+  V1-U alt                    : s8 1.0059  max|P-1| 0.0265  P@0.1/0.3/1 1.010/1.014/1.014 -> GROWTH OK  (1591 s)
+      z0: q_raw max 46.473, cap binds on 1.000 of catchment mass, unsettled share of catchment cold 0.1273340301591177, sum src -0.00121 vs sum|e| 2.861e+05, min (w_c - comp)/s_c 0.0, catchments 1940
+      clock z0: latched mass 0.607; <m> mass 0.486; min dm 0.0; m range [0.0, 0.9999999999999997]
+  V2-U canonical              : s8 1.0060  max|P-1| 0.0409  P@0.1/0.3/1 1.007/1.016/1.034 -> GROWTH OK  (1940 s)
+      z0: q_raw max 1.994, cap binds on 0.022 of catchment mass, unsettled share of catchment cold 0.6070835733607669, sum src 0.00226 vs sum|e| 4.439e+05, min (w_c - comp)/s_c 0.0, catchments 1962
+      clock z0: latched mass 0.149; <m> mass 0.132; min dm 0.0; m range [0.0, 0.999999999975878]
+  V2-U alt                    : s8 1.0076  max|P-1| 0.0525  P@0.1/0.3/1 1.009/1.020/1.044 -> GROWTH OK  (1959 s)
+      z0: q_raw max 2.363, cap binds on 0.055 of catchment mass, unsettled share of catchment cold 0.6033588574127158, sum src -0.00169 vs sum|e| 5.49e+05, min (w_c - comp)/s_c 0.0, catchments 1964
+      clock z0: latched mass 0.151; <m> mass 0.133; min dm 0.0; m range [0.0, 0.999999999976484]
+  MUTATE-N (no comp, no cap)  : s8 1.0679  max|P-1| 0.2620  P@0.1/0.3/1 1.099/1.178/1.226 -> TENSION  (1549 s)
+      z0: sum src = sum e None, e_mean None
+      clock z0: latched mass 0.621; <m> mass 0.497; min dm 0.0; m range [0.0, 0.9999999999999997]
+  C1 PROP (CFG498 weight)     : s8 0.9972  max|P-1| 0.1739  P@0.1/0.3/1 1.008/0.991/0.826 -> TENSION  (1590 s)
+      z0: q_raw max 2.007, cap binds on 0.263 of catchment mass, unsettled share of catchment cold 1.0, sum src -0.00116 vs sum|e| 1.871e+06, min (w_c - comp)/s_c 0.0, catchments 1916
+      clock z0: latched mass 0.607; <m> mass 0.485; min dm 0.0; m range [0.0, 0.9999999999999942]
+
+  [PASS] C1 PROP run reproduces CFG498 V1-CAP canonical bit for bit (sigma8 and P(k) at every snapshot): max |d sigma8| 0.000e+00, max |dP| 0.000e+00
+  [PASS] (reported) C1b MUTATE-N reproduces CFG498 MUTATE-N bit for bit: max |d sigma8| 0.000e+00, max |dP| 0.000e+00
+  [PASS] C3 mass conservation: |sum src| / sum|e| <= 1e-3 and ((1 - m) s_c - comp)/s_c >= -1e-6 at every snapshot of every U run: worst |sum src|/sum|e| 9.11e-09; min ((1-m) s_c - comp)/s_c 0.000e+00
+  [PASS] C5 PM clock: m in [0, 1] and never decreases along any particle: V1-U canonical: min dm 0.0, V1-U alt: min dm 0.0, V2-U canonical: min dm 0.0, V2-U alt: min dm 0.0, MUTATE-N: min dm 0.0, C1 PROP: min dm 0.0
+  [PASS] (reported) MUTATE-N (no compensation, no cap) is NOT GROWTH OK (else the growth leg is NOT DIAGNOSTIC): TENSION (s8 1.0679, pdev 0.2620)
+  growth leg V1: GROWTH PASS
+  growth leg V2: GROWTH PASS
+  512^3 rule: another 512^3 job running now: False
