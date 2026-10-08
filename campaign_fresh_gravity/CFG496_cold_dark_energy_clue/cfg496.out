@@ -1,0 +1,72 @@
+CFG496: hunt for a clue linking COLD ENERGY (Omega_c/Omega_b) and DARK ENERGY (rho_Lambda). kappa = 1/2 FITTED.
+On-disk data only. Both footings, never pooled. Criteria: FROZEN_CRITERIA.md.
+R = 5.3643  f_b = 0.15713  s = 0.17094  y_e = 0.02922  g_e/a0 = 0.18596  Om = 0.3138  OmL = 0.6862
+
+== Structural (sympy, symbolic R and kappa)
+C01 nu(y_e = ln^2(1+1/R)) == 1 + R identically: True  -> BUILT-IN (the edge is DEFINED by the phantom using R M_b)
+C02 deep form sigma^4 == G M_b a0/4 for any R: True; exact-kernel factor on sigma^4 = (R + 1)**2*log((R + 1)/R)**2 = 1.1835 (+0.073 dex, = CFG461 R0)  -> BUILT-IN
+C03 g_e/a0 = 0.18596; best F1 form 1/4 pi^-1 kappa^1 OmL^-1 Om^-1 = 0.18479 (|dln| 0.0063); match(<=0.01) True; look-elsewhere p = 0.620; second: z=1: value 0.186 vs form 0.236 (|dln| 0.238, need <= 0.03) -> FAIL  -> COINCIDENCE
+     (deep limit: g_e -> f_b a0 = 0.1571 a0; the 0.186 is f_b dressed by the kernel, i.e. set by the law)
+C04 rho_edge_local/rho_L: d ln/d ln M_b = -0.500 (can) / -0.500 (alt); value 1e7/1e11/1e15 = 1.61e+05/1.61e+03/16.1  -> NO MATCH (not scale-free)
+C04 rho_mean(<r_edge)/rho_L: d ln/d ln M_b = -0.500 (can) / -0.500 (alt); value 1e7/1e11/1e15 = 4.84e+05/4.84e+03/48.4; equals 200 rho_crit at log M_b = 13.44 (can) / 13.69 (alt)  -> NO MATCH (not scale-free)
+C05 t_edge/t_L: d ln/d ln M_b = +0.250 (can) / +0.250 (alt); value 1e7/1e11/1e15 = 0.000702/0.00702/0.0702; equals t_L at log M_b = 19.61 (can) / 19.86 (alt)  -> NO MATCH (not scale-free)
+C06 r_edge/R_Lambda: d ln/d ln M_b = +0.167 (can) / +0.167 (alt); value 1e7/1e11/1e15 = 0.016/0.0745/0.346; equals R_Lambda at log M_b = 17.77 (can) / 18.01 (alt)  -> NO MATCH (not scale-free)
+C07 Buckingham: dims (M,L,T) of (G, c, rho_L, M_b) -> Pi groups ['[3/2, -3, 1/2, 1]'] (one group, Pi = G^3 M_b^2 rho_L / c^6)
+     r_edge          M-exponent   1/2  mass-free False  c, rho_L only via a0 True
+     M_tot           M-exponent     1  mass-free False  c, rho_L only via a0 True
+     rho_edge_local  M-exponent  -1/2  mass-free False  c, rho_L only via a0 True
+     rho_mean        M-exponent  -1/2  mass-free False  c, rho_L only via a0 True
+     t_dyn           M-exponent   1/4  mass-free False  c, rho_L only via a0 True
+     V_edge          M-exponent   1/4  mass-free False  c, rho_L only via a0 True
+     g_edge          M-exponent     0  mass-free True   c, rho_L only via a0 True
+     Sigma_edge      M-exponent     0  mass-free True   c, rho_L only via a0 True
+     P_edge          M-exponent     0  mass-free True   c, rho_L only via a0 True
+     mass-free edge quantities: ['g_edge', 'Sigma_edge', 'P_edge']; all enter dark energy only through a0 -> BUILT-IN (no scale-free cold-dark relation beyond the law exists in the record's model)
+
+== Simulation (committed zero-knob runs)
+C08 q_max 256^3 seed 359 = 0.302 (can) / 0.304 (alt); Omega_m = 0.3138 (|dln| 0.038 > 0.01); best F1 form 3 pi^-1 Om^1 |dln| 0.0080, p = 0.772; 512^3 seed 360 (CFG460) = 0.526 (second check FAIL: an extreme statistic that moves with resolution/seed)  -> COINCIDENCE
+C09 cfg424_pm.py computes the settled supply as f_ret f_b M_ta and the edge as r_M/ln(1+f_ret f_b/(1-f_b)) with r_M = sqrt(G M_b/a0(a)): True -> every a0 regularity of the settled cold energy is put in by the code: BUILT-IN
+
+== Epoch
+C10 a0/(c H(z)) == kappa sqrt(3 OmL(z)/(8 pi)) identically: True. Any framework epoch marker a0 = X c H(z) is the threshold OmL(z) = 8*pi*X**2/(3*kappa**2).
+     e.g. X = 1/(2 pi): OmL(z*) = 0.849 > today's 0.686 (a future epoch). rho_c = rho_L at z = 0.374; rho_m = rho_L at z = 0.298.
+     The framework has no dynamics that sets Omega_c/Omega_Lambda: R is an input, rho_L is an input, and the 'MOND coincidence'
+     a0 ~ cH0/6 IS the cosmic coincidence written through kappa (L258).  -> BUILT-IN (input; no 'why now')
+C11 Omega_c/Omega_L = 0.3854; best F2 form 1/2 pi^1 kappa^2 = 0.3927 (|dln| 0.0188); match False; p = 0.560; second: n/a (no match)  -> NO MATCH
+C12 R = 5.3643; best F1 form 4 pi^1 kappa^-1 OmL^1 Om^1 = 5.4116 (|dln| 0.0088); match True; p = 0.733; second: z=1: value 5.364 vs form 4.237 (|dln| 0.236, need <= 0.03) -> FAIL  -> COINCIDENCE
+
+== Data
+C13 X-COP (12 clusters; K3 CFG432 data identity PASS): y_mix where M_HSE/(1-b)/M_b = 1+R, vs galaxy edge log y_e = -1.534
+     canonical|b0.0 median log y_mix -1.043 +- 0.122  Delta +0.491 dex  censored 3  slope vs log M500 +1.11 +- 0.81  match False  no-trend True
+     canonical|b0.3 median log y_mix -1.271 +- 0.058  Delta +0.264 dex  censored 10  slope vs log M500 +0.56 +- 0.20  match False  no-trend False
+     alt|b0.0       median log y_mix -1.126 +- 0.122  Delta +0.409 dex  censored 3  slope vs log M500 +1.11 +- 0.81  match False  no-trend True
+     alt|b0.3       median log y_mix -1.353 +- 0.058  Delta +0.182 dex  censored 10  slope vs log M500 +0.56 +- 0.20  match False  no-trend False
+     look-elsewhere p (worst cell, 3-dex prior) = 0.327  -> NO MATCH
+C14 SPARC (153 galaxies, Q<3, Inc>=30, Ups 0.5/0.7): Delta = mean res(y<y_e) - mean res(y_e<=y<3y_e); edge cap predicts Delta_pred
+     canonical Delta +0.0129 +- 0.0378  Delta_pred -0.0770  points below/inside 171/779 (39 galaxies below)  match False
+     alt       Delta -0.0138 +- 0.0391  Delta_pred -0.0851  points below/inside 248/848 (46 galaxies below)  match False
+     look-elsewhere: fraction of 200 random thresholds y_t = ln^2(1+1/R'), R' in [1.5, 20], that also match = 0.000; second check = C13 match False  -> NO MATCH
+C15 canonical rho(res, log R_last/r_edge) +0.037  rho(res, log Sigma_eff/Sigma_M) +0.160  p_LEE(max|rho|, 2000 shuffles) 0.0795  R-invariant True
+C15 alt       rho(res, log R_last/r_edge) +0.005  rho(res, log Sigma_eff/Sigma_M) +0.198  p_LEE(max|rho|, 2000 shuffles) 0.0250  R-invariant True
+     -> NO MATCH  (R enters only as a constant offset, so no correlation can carry the cold-energy amount)
+K4 SPARC nu_mono median residual: can +0.021 / alt -0.005 dex -> PASS
+K1 sympy identities + wrong-identity control: PASS;  K2 planted 3 pi kappa Om: delta 0.0e+00, p 0.0000 -> PASS;  K3 PASS
+
+== Candidate table
+  C01  edge mix = cosmic mix                      BUILT-IN
+  C02  sigma^4 = G M_b a0/4 from the share        BUILT-IN
+  C03  g_e/a0 = 0.186 = simple DE number          COINCIDENCE
+  C04  edge density / rho_L scale-free            NO MATCH
+  C05  edge time / vacuum time scale-free         NO MATCH
+  C06  r_edge / R_Lambda scale-free               NO MATCH
+  C07  mass-free relation not set by a0           BUILT-IN
+  C08  q_max = Omega_m                            COINCIDENCE
+  C09  sim settled-a0 regularity                  BUILT-IN
+  C10  why now                                    BUILT-IN
+  C11  Omega_c/Omega_L = simple number            NO MATCH
+  C12  R = simple DE number                       COINCIDENCE
+  C13  X-COP cosmic mix at y_e                    NO MATCH
+  C14  SPARC edge feature at y_e                  NO MATCH
+  C15  SPARC residual vs DE-scaled quantities     NO MATCH
+CLUES: 0
+Controls K1-K4: PASS.  kappa = 1/2 FITTED; cold energy's mass still required; no particle; not 'theory closed'.

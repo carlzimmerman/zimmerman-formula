@@ -1,0 +1,17 @@
+CFG496 post-freeze checks (no verdict weight).
+P1 C13 censoring bounds (real R): censored clusters set to -inf (lowest possible y_mix) vs their last-radius value
+   canonical|b0.0 censored  3/12  Delta in [+0.491, +0.491] dex  (b=0: robust miss, > 0.15 dex even at the lower bound)
+   canonical|b0.3 censored 10/12  Delta in [-inf, +0.264] dex  (censoring-dominated: undetermined)
+   alt|b0.0       censored  3/12  Delta in [+0.409, +0.409] dex  (b=0: robust miss, > 0.15 dex even at the lower bound)
+   alt|b0.3       censored 10/12  Delta in [-inf, +0.182] dex  (censoring-dominated: undetermined)
+
+P2 MUTATE C13 matches: 23 of 200 draws, R' range 3.89-4.37
+   of these, 23 have > 6/12 clusters censored in at least one cell: the 'match' sits on upper limits, not crossings
+
+P3 MUTATE CLUE: R' = 4.3639 vs 4/(3 pi kappa OmL Om) = 4.3638 today
+   z = 0.5: form 3.427, |dln| 0.242 -> FAIL
+   z = 1.0: form 4.434, |dln| 0.016 -> PASS
+   z = 2.0: form 10.025, |dln| 0.832 -> FAIL
+   z = 3.0: form 21.266, |dln| 1.584 -> FAIL
+   OmL*Om is symmetric about rho_m = rho_L; at R' = 4.36 that epoch is z ~ 0.41, so z = 1 nearly mirrors z = 0.
+   A two-epoch second check would have caught it. The frozen rate (0.005) is kept as reported; this hole is disclosed.
