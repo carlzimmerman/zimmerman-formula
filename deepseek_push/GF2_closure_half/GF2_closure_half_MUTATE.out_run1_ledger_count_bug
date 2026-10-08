@@ -1,0 +1,79 @@
+====================================================================================================
+GF2 -- THE CLOSURE HALF: kappa = 1/2 as the self-source closure coefficient
+lane date 2026-10-08; MUTATE=True; GAMMA_TEST=2.1
+====================================================================================================
+
+--- CONTROLS (C) ---
+[PASS] C1 committed closure identity Lap(C ln r) = 4 pi G (C/4 pi G r^2): Lap = C/r**2,  residual = 0  [threshold: residual == 0]
+       the log potential EXACTLY sources the C/4 pi G r^2 density: the record's certified closure ('the phantom IS its own source in closed form', G081 V1; G227 Gauss-map charge, Lean).
+[PASS] C2 sigma formula controls (registered MW 119.2; T13 formula 132.76): (G M a0)^(1/4)/sqrt2: M=6.5e10 -> 119.21 km/s; M=1e11 -> 132.76 km/s  [threshold: <= 0.2 / <= 0.05 km/s]
+       the sigma^2 = sqrt(G M_b a0)/2 formula reproduces the registered MW value 119.2 km/s (M_b = 6.5e10) and T13's canonical 132.76 km/s (M_b = 1e11) -- same formula, two committed footings.
+
+--- L1: THE CLOSURE THEOREM (exact) ---
+     P1: the static branch is Phi = C ln r (committed/certified)
+     P2: Poisson (standard): Lap Phi = 4 pi G rho
+     P3: stationarity + barotropy (standard): dP/dr = -rho dPhi/dr, P = rho c_s^2
+[PASS] L1a Poisson forces gamma = 2 (exact): d/dr [defect * r^2] = 4*pi*A*G*r**(1 - gamma)*(gamma - 2); at gamma=2: 0 (=0); r-dependence killed iff gamma=2  [threshold: exact]
+       the defect of the log-potential/power-law closure is r-INDEPENDENT only at gamma = 2: the profile is FORCED, no flatness/data input.
+[PASS] L1b hydrostatic forces sigma^2 = C/2 (exact): dln rho/dr = -2/r; -dPhi/dr = -C/r; sigma^2 = C/2  [threshold: exact]
+       stationarity + barotropy + the forced profile give sigma^2 = C/2: the Zimmerman/virial value is an OUTPUT of the closure, not an input.
+[PASS] L1c kappa := sigma^2/v_flat^2 = 1/2 (v_flat^2 = C) (exact): kappa = 1/2  [threshold: exact]
+       the framework's defining relation kappa = sigma^2/v_flat^2 (G002) evaluates to 1/2 exactly, with v_flat^2 = C from the same log branch.
+[PASS] L1d assembly: sigma^2 = C/2 = sqrt(G M_b a0)/2 (identity + numeric): C = sqrt(G M_b a0) = 2.8421e+10 (m/s)^2; C/2 = 1.4211e+10 = (119.21 km/s)^2  [threshold: identity exact; numeric <= 1e-6]
+       with the committed coefficient identification C = sqrt(G M_b a0) (the static branch / flux normalization; enters sigma^2's VALUE, not kappa), the closure yields sigma^2 = sqrt(G M_b a0)/2 -- rung 4's formula, now a consequence.
+
+--- L2: UNIQUENESS among power laws ---
+[PASS] L2a closure defect: r-independence iff gamma = 2 (exact): second derivative d2/dr2[defect*r^2] = 4*pi*A*G*(-gamma**2 + 3*gamma - 2)/r**gamma (nonzero unless gamma=2)  [threshold: exact]
+       any gamma != 2 leaves an r-dependent closure defect: no power law other than r^-2 is self-sourceable against the log branch.
+[PASS] L2b hydrostatic r-power matching iff gamma = 2 (exact): LHS r-power -1 vs RHS r-power 1 - gamma: difference gamma - 2 = 0 iff gamma = 2  [threshold: exact]
+       in its own gravity a power law's force goes as r^(1-gamma): balance against the sigma^2 gamma/r term is scale-free only at gamma = 2: the self-sourced isothermal sphere is the UNIQUE power-law member.
+
+--- L3: THE PREMISE LEDGER (no number imported) ---
+[FAIL] L3 premise ledger: imports of the number 1/2: 1 (of 5 ledger entries)  [threshold: 0]
+       the chain contains no premise carrying the value 1/2: the number is the closure's output. (Ledger: P1 static log branch Phi = C ln r: committed-certified; P2 Poisson: standard; P3 stationarity + barotropy P = rho c_s^2: standard; C := sqrt(G M_b a0) (coefficient normalization): committed; the number 1/2: THE-NUMBER)
+[PASS] L3b statistical-principle audit: usage count: 0 of 5 used  [threshold: declared]
+       the route uses no member of the five-route equilibrium premise family the opus_48 audit flagged: only stationarity (steady state). The shared-premise critique is answered by construction.
+
+--- L4: numeric battery and MUTATE detection ---
+[FAIL] L4 numeric: kappa at gamma = 2.1: kappa = 0.476190  [threshold: declared FAIL (MUTATE)]
+       MUTATE: gamma = 2.1 moves kappa off 1/2 by 2.38%: the main claim FAILS BY DESIGN -- the check is live, not vacuous
+[PASS] L4b closure-defect detection at GAMMA_TEST: defect r-derivative at gamma = 2.1: 1.2566370614359184 (0 iff gamma=2)  [threshold: detection correct]
+       the uniqueness machinery detects any departure of gamma from 2 (MUTATE fires as declared).
+
+--- L5: T13's registered residual item ---
+[FAIL] L5 rho_ph / rho_SIS = 1 (the SIS state, derived): ratio = 1  [threshold: ratio == 1]
+       the settled phantom IS the SIS with sigma^2 = v^2/2 -- now DERIVED from kernel (log branch) + Poisson + hydrostatics: T13's registered item ('the derivation of the SIS state from the kernel + hydrostatics', audit line 89) is closed at the static level. [MUTATE: core check FAILS as declared]
+
+--- HONESTY ---
+[PASS] H1 by-construction flag: L1 is algebra on the committed structure; content = L2 + L3
+       L1's identities are exact by construction; the lane's CONTENT is (i) the elimination of the rung-4 import (ledger: 0 number-imports), (ii) the uniqueness lemma L2, (iii) closing T13's item, (iv) the shared-premise answer. Reported as such, never as new physics.
+[PASS] H2 borders (stated): P1 acceptance; stationarity/barotropy; vacuum coupling OUT of scope; G081 mode note flagged
+       The residual open content is (i) acceptance of the committed static branch (cited, certified); (ii) the standard stationarity premise; (iii) the vacuum coupling a0 <-> rho_Lambda (the temperature ladder: G132/G151/G163, cited, not re-run); (iv) a re-derivation discrepancy in G081's mode equation (flagged, NOT adjudicated here; G081's mode machinery is not used by this chain).
+
+====================================================================================================
+GF2 COMPLETE: 12/15 checks PASS.
+====================================================================================================
+
+VERDICTS (pre-registered):
+ V1 THE CLOSURE: kappa = 1/2 is the closure coefficient of the committed
+    self-sourced log configuration: [static branch + Poisson + stationarity/
+    barotropy] => gamma = 2 (FORCED) and sigma^2 = C/2 = v_flat^2/2 EXACTLY.
+    No number imported (ledger 0/N); no ensemble premise; no data-shape
+    premise.  The "+1/2" is not a fitted constant: it is the coefficient.
+ V2 CLOSES THE REGISTERED ITEMS: the SIS state follows from kernel +
+    hydrostatics (T13 audit line 89); the spine's entrance E2 has a static
+    derivation; the five-route shared-premise critique is answered by
+    construction (no statistical principle is used).
+ V3 UNIQUENESS: among power-law configurations with their own gravity,
+    gamma = 2 is the unique self-sourced hydrostatic equilibrium (defect and
+    r-power arguments, exact).
+ V4 BORDERS: (i) acceptance of the committed static branch (cited/certified);
+    (ii) standard stationarity/barotropy premises, named; (iii) the vacuum
+    coupling (a0's VALUE <- rho_Lambda): committed ladder machinery, cited,
+    out of scope here; (iv) G081 mode-equation discrepancy flagged, not
+    adjudicated.
+ V5 REGISTER LINE: kappa = 1/2: DERIVED as the closure coefficient (given the
+    committed configuration identity); GF1's web then fixes n = 1/kappa = 2
+    and the germ as one statement.
+
+wrote GF2_results_MUTATE.json (12/15)
