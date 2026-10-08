@@ -353,6 +353,8 @@ def forces(mesh, delta, a, switch, branch, foot, dta, diag=False):
         divk = sum(1j * kv * mesh.fwd(w * g) for kv, g in zip(mesh.kvec, gb)); del gb, w, nu
         s_ph = -mesh.inv(divk); del divk                        # phantom source, units of 1.5 Om delta / a
         s_c = (1.5 * Om * (1.0 - FB) / a) * (1.0 + delta)        # cosmic cold share in the same units
+        if diag and "_grids" in info:                           # CFG482: SED dump for the two-valued test
+            info["_grids"] = info["_grids"] + (s_ph.astype(np.float32), s_c.astype(np.float32))
         if switch in ("S1", "ADD"):
             extra = s_ph if switch == "S1" else fsw * s_ph
         elif switch in ("T5", "S1T5"):
@@ -417,8 +419,12 @@ def run(switch, branch, foot, npg, amp=1.0):
         grids = info.pop("_grids")
         res["snap"][name] = dict(a=a, D=Dgrow(a), k=kb, P=pb, sigma8=s8, **info, t=time.time() - t0)
         if name == "z0":
+            extra_fields = {}
+            if len(grids) > 2:
+                extra_fields = dict(sph=grids[2], sc=grids[3])
             np.savez_compressed(os.path.join(WORK, f"cfg414_{tag}_z0.npz"), pos=pos.astype(np.float32),
-                                f=grids[0].astype(np.float16), l3=grids[1].astype(np.float16))
+                                f=grids[0].astype(np.float16), l3=grids[1].astype(np.float16),
+                                **extra_fields)
         print(f"  [{tag}] {name} a={a:.4f} sigma8={s8:.4f} t={time.time() - t0:.0f}s", flush=True)
     snapshot("zi", AI)
     delta = mesh.deposit(pos); acc, _ = forces(mesh, delta, AI, switch, branch, foot, dta)
