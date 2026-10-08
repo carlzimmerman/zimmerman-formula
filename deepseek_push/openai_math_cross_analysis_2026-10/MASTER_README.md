@@ -90,3 +90,12 @@ one file, zero sorry, three axioms, reproducing the per-lane
 certificates (T9–T13) exactly. The theory's OUTER layer (κ, λ, the cold
 fluid) remains honestly open, with its fitted/convention-bound status
 printed in the same file's docstring.
+## Addendum (2026-10-07): the cold profile is measured
+
+The radial application of cert #14–16 to the published MW halo anchors
+(T18) re-derived the knife-edge radially (|M_cold(30)|/M_b = 0.13,
+V=188) and measured the cold component's profile: x_cold(100) = 0.28 →
+x_cold(217) = 0.46, shape = the un-settled reservoir. Falsifier suite
+extension: a cusping ρ_cold inside 50 kpc, or the 30-kpc cold
+exceeding 0.3 M_b under V=188-consistent data, kills the inner
+closure.

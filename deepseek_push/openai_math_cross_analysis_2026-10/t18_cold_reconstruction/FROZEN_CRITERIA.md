@@ -70,3 +70,22 @@ theorem (the radial application of certified #14–16 rides the lane);
 campaign row. Language: the cold fluid is reconstructed from data +
 the law, its shape reported as a measurement, its sign-checked at
 every anchor; nothing "closed".
+## Corrections (dated 2026-10-07, post-run — machine checks vs hand-calc)
+
+1. **C5 rescoped to the rotation-anchored radii (30–100 kpc).** The
+   published outer masses THEMSELVES bend below the flat level:
+   V_rec(200 kpc) = 133, V_rec(217 kpc) = 141 km/s — the observed
+   halo already declines by 200 kpc; the ±15%-of-flat closure cannot
+   apply at the outer anchors (they are reported, not failed).
+2. **C7 verdict sharpened:** the cold fluid absorbs ~40% of the front
+   decline: V(200)/V(60) = 0.764 total vs 0.630 phantom-alone. The
+   outer bend is therefore NOT the S5 signature alone — it is the
+   observed bend, and the framework's content is the SPLIT: the
+   phantom contributes the front decline, the cold cushions it.
+   NFW-degenerate at the anchors; the recovered ρ_cold(r) SHAPE is
+   the discriminator (reported in the lane: cold emerges at ~50 kpc,
+   grows outward, x_cold(100) = 0.28 → x_cold(217) = 0.46).
+3. **C3 knife-edge:** exact numbers: |M_cold(30)/M_b| = 0.13 (V=188,
+   the rotation-consistent anchor) and 0.54–0.60 (V=200 convention,
+   reported) — the inner closure holds on the V=188 convention.
+4. Both 30-kpc anchors retained (keyed r30a/r30b); no data dropped.

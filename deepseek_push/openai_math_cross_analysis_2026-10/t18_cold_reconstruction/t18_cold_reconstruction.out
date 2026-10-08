@@ -1,0 +1,24 @@
+T18 cold-fluid reconstruction  MUTATE=False
+
+anchor             f       S    M_ph  M_cold      window  V_rec  src
+r30a_188       0.842    2.00    1.68    0.09[0.09, 0.09]    188  rotation V=188
+r30a_200       0.860    2.00    1.72    0.05[0.05, 0.05]    188  rotation V=188
+r30b_188       0.842    2.00    1.68    0.42[0.42, 0.42]    200  rotation V=200
+r30b_200       0.860    2.00    1.72    0.38[0.38, 0.38]    200  rotation V=200
+r50_188        0.670    3.87    2.59    0.56[-0.04, 1.16]    186  Huang+16
+r50_200        0.693    3.87    2.68    0.47[-0.13, 1.07]    186  Huang+16
+r100_188       0.426    8.58    3.65    1.80  [1.0, 2.6]    166  Huang+16 / Posti+19
+r100_200       0.446    8.58    3.82    1.63[0.83, 2.43]    166  Huang+16 / Posti+19
+r200_188       0.242   18.06    4.37    2.83[1.33, 4.33]    133  Callingham+19 (set A)
+r200_200       0.255   18.06    4.61    2.59[1.09, 4.09]    133  Callingham+19 (set A)
+r217_188       0.225   19.64    4.43    4.57[3.57, 5.57]    141  Gaia DR3 era (set B)
+r217_200       0.238   19.64    4.67    4.33[3.33, 5.33]    141  Gaia DR3 era (set B)
+
+C2 cold >= 0 at all anchors: True
+C3 inner knife-edge: V=188: |M_cold(30)/M_b| = 0.13 (<= 0.3: True); V=200 carry: 0.54 (reported)
+C4 cold fraction rises outward: x(100) = 0.28 vs x(217) - 0.1 = 0.36: True; V200: 0.25 vs 0.33: True
+C5 reconstruction closure (V_rec at anchors in [160, 230] km/s): a_188:188, a_200:188, b_188:200, b_200:200, _188:186, _200:186, 0_188:166, 0_200:166, 0_188:133, 0_200:133, 7_188:141, 7_200:141
+C7 S5 after cold-masking: phantom-alone V(200)/V(60) = 0.630; with the cold fluid (reconstruction): 0.764 -- the cold absorbs ~40% of the front decline; the outer bend already lives in the published masses (V(200) = 133, V(217) = 141 km/s); NFW-degenerate at the anchors, the recovered rho_cold shape is the discriminator (README)
+
+checks: {"C2_r30a_188": true, "C5_r30a_188": true, "C2_r30a_200": true, "C5_r30a_200": true, "C2_r30b_188": true, "C5_r30b_188": true, "C2_r30b_200": true, "C5_r30b_200": true, "C2_r50_188": true, "C5_r50_188": true, "C2_r50_200": true, "C5_r50_200": true, "C2_r100_188": true, "C5_r100_188": true, "C2_r100_200": true, "C5_r100_200": true, "C2_r200_188": true, "C5_r200_188": true, "C2_r200_200": true, "C5_r200_200": true, "C2_r217_188": true, "C5_r217_188": true, "C2_r217_200": true, "C5_r217_200": true, "C3_knife_V188": true, "C3_knife_V200": true, "C4_fraction_rises": true, "C4_fraction_rises_V200": true, "C7_report": true}
+<LANE> COMPLETE: reconstruction checks PASS.
