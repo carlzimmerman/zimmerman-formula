@@ -1,0 +1,267 @@
+======================================================================================================================
+CFG465 input audit of the globular verdicts (CFG332, CFG333)
+======================================================================================================================
+
+--- 1. INPUT PROVENANCE (grades fixed in FROZEN_CRITERIA.md) ---
+  sigma_obs          NGC 2419  | used 4.771 (bins interp. at r_h; N 62)
+      grade B catalogue-only | source: Baumgardt web veldisp table (retrieved 2026-09-03), 3 RV bins N 62/62/59 = 183; BH2018 table2 lists N_RV 195; Ibata+11 / Baumgardt+09 named in the record, values and star lists NOT on disk
+      alternatives: light-weighted global over the 3 bins (AUDIT 1b), N 183
+  sigma_obs          Pal 3     | used 1.70 +0.38/-0.30 (N 22)
+      grade U UNSOURCED | source: Baumgardt web veldisp table only; BH2018 lists N_RV 14 (8 stars added from an unnamed source); no paper in the record names the stars; catalogue's own Newtonian model sigma0 0.80 sits 3.0 sigma below the bin
+      alternatives: none measured (sigma0 0.80 is a Newtonian model output: excluded)
+  sigma_obs          Pal 4     | used 0.88 +0.20/-0.17 (N 23)
+      grade A paper-verified | source: Baumgardt web veldisp table; N 23 = BH2018 N_RV 23 = Frank+12 (MNRAS 423, 2917) 23 members, 0.87 +- 0.18 quoted in h93
+      alternatives: Frank+12 0.87 +- 0.18
+  sigma_obs          Pal 14    | used 0.71 +0.18/-0.14 (N 16)
+      grade C MISMATCHED | source: Baumgardt web veldisp table; N 16 = Jordi+09 (AJ 137, 4586) 16 members, but Jordi+09 report 0.38 +- 0.12 (quoted in h93); BH2018 lists N_RV 17
+      alternatives: Jordi+09 0.38 +- 0.12 (A)
+  D_sun              all       | used 2023 catalogue 88.47/94.84/101.39/73.58 kpc
+      grade A | source: Baumgardt & Vasiliev 2021 via the 2023 parameter table (header names the paper)
+      alternatives: BH2018 table2 'literature' distances 83.20/92.50/103.00/71.00 (A)
+  R_GC               all       | used 2023 catalogue 95.93/98.17/104.05/68.55 kpc
+      grade A (derived) | source: 2023 parameter table; reproduced from D and position with R0 = 8.178 kpc (C5)
+      alternatives: recomputed at the BH2018 distances
+  V (apparent)       all       | used 10.56/14.56/14.23/14.13
+      grade B catalogue-only | source: 2023 parameter table; primary photometry not named
+      alternatives: via BH2018 Mass/(M/L_V)
+  E(B-V)             all       | used 0.08/0.04/0.01/0.04
+      grade cited, not on disk | source: 'Harris (2010)' hard-coded in h93/CFG332/CFG333; Harris 2010 catalogue NOT on disk (needs owner go)
+      alternatives: none in the record
+  L_V                all       | used from V, E(B-V), D (1.29e4 Pal 3, 1.16e4 Pal 14 ...)
+      grade B derived | source: rebuilt; matches the 2023 catalogue's own Mass/(M/L_V) to 1-3%
+      alternatives: BH2018 table2 Mass/(M/L_V) (A, derived): NGC 2419 4.40e5, Pal 3 2.16e4, Pal 4 1.82e4, Pal 14 6.68e3 at BH2018 D
+  r_h,l              all       | used 19.76/20.16/15.88/27.63 pc
+      grade B (N-body fit to surface density) | source: 2023 parameter table
+      alternatives: BH2018 table2 rmlp 18.29/19.69/17.87/23.60 pc (A)
+  Upsilon_V prior    all       | used lognormal(1.6, 0.15 dex)
+      grade assumption | source: h93's stated SPS fiducial (12 Gyr, [Fe/H] ~ -1.5, Kroupa); no SPS table on disk
+      alternatives: band edges 1.3 / 2.2 (reported, not scored); route 2 MF-slope Upsilon
+  MF slope (route 2) all       | used -1.57/-1.14/-0.34/-1.26 (2023)
+      grade B (Newtonian N-body) | source: 2023 combined table cols 28-29
+      alternatives: BH2018 -1.50 d / -1.50 d / -1.52 c / -1.52 c (A; d = estimated from relaxation time)
+  M_MW,b (g_ext)     all       | used 6e10 point mass
+      grade parameter | source: h93 / FG001 / CFG333 (the framework's MW baryons)
+      alternatives: 5e10 (hunt_2026/h37 bracket), 7.3e10 (CFG286 census-high)
+  binary correction  all       | used none
+      grade not applied | source: no measured correction on disk; CFG334 is a model (OVERSTATED per AUDIT)
+      alternatives: none measured (needs multi-epoch RVs: owner go)
+  Newtonian model outputs all       | used sigma0, M_dyn, M/L_dyn
+      grade never an input | source: used only as checks in h93/AUDIT
+      alternatives: -
+
+  BH2018 table2 (deepseek_push/data2/bh2018_cds_table2.dat) vs the 2023 catalogue:
+   NGC 2419  N_RV 195 -> 183 | D  83.20a ->  88.47 | L_V(BH18) = M/(M/L) 4.399e+05 at D18 | rmlp 18.29 -> r_h,l 19.76 | MF -1.50d -> -1.57 | model sigma0 7.1 -> 5.1
+   Pal 3     N_RV  14 ->  22 | D  92.50a ->  94.84 | L_V(BH18) = M/(M/L) 2.158e+04 at D18 | rmlp 19.69 -> r_h,l 20.16 | MF -1.50d -> -1.14 | model sigma0 1.4 -> 0.8
+   Pal 4     N_RV  23 ->  23 | D 103.00a -> 101.39 | L_V(BH18) = M/(M/L) 1.817e+04 at D18 | rmlp 17.87 -> r_h,l 15.88 | MF -1.52c -> -0.34 | model sigma0 1.0 -> 0.8
+   Pal 14    N_RV  17 ->  16 | D  71.00a ->  73.58 | L_V(BH18) = M/(M/L) 6.676e+03 at D18 | rmlp 23.60 -> r_h,l 27.63 | MF -1.52c -> -1.26 | model sigma0 0.8 -> 0.7
+
+  the two catalogue luminosities at a common distance (BH2018's D): L_V(BH18) / L_V(2023 V)
+   NGC 2419  4.399e+05 / 4.441e+05 = 0.991  (-0.004 dex, +0.01 mag)
+   Pal 3     2.158e+04 / 1.230e+04 = 1.754  (+0.244 dex, -0.61 mag)
+   Pal 4     1.817e+04 / 1.897e+04 = 0.958  (-0.019 dex, +0.05 mag)
+   Pal 14    6.676e+03 / 1.077e+04 = 0.620  (-0.208 dex, +0.52 mag)
+  NGC 2419 light-weighted global sigma 4.648 +- 0.407 (N 183) vs at r_h 4.771 (N 62)
+
+--- 2. DATA CONTROLS ---
+  [PASS] C4 BH2018 table2 parses to N_RV 195/14/23/17 and D 83.20/92.50/103.00/71.00; the three 2023 copies agree (< 1e-6)  (N_RV [195, 14, 23, 17], D [83.2, 92.5, 103.0, 71.0], worst copy diff 0.0e+00)
+  [PASS] C5 R0 = 8.178 kpc reproduces the 2023 R_GC at the 2023 D (< 1e-3)  (max rel dev 3.5e-05; NGC 2419 R_GC(D18) 90.66, Pal 3 R_GC(D18) 95.83, Pal 4 R_GC(D18) 105.65, Pal 14 R_GC(D18) 65.98)
+  [PASS] C6 route-2 Kroupa input (alpha -2.3, branch K) returns Ups_MF = 1.6 (1e-6)  (1.600000000)
+
+--- 3. BASE (committed inputs) -- reproduction of CFG332 / CFG333 / AUDIT ---
+  NGC 2419  sigma 4.771 (+0.481/-0.481) N  62  L_V 5.021e+05  r_h 19.76  R_GC 95.93  g_ext 9.090e-13  MF -1.57
+  Pal 3     sigma 1.700 (+0.380/-0.300) N  22  L_V 1.293e+04  r_h 20.16  R_GC 98.17  g_ext 8.680e-13  MF -1.14
+  Pal 4     sigma 0.880 (+0.200/-0.170) N  23  L_V 1.838e+04  r_h 15.88  R_GC 104.05  g_ext 7.726e-13  MF -0.34
+  Pal 14    sigma 0.710 (+0.180/-0.140) N  16  L_V 1.156e+04  r_h 27.63  R_GC 68.55  g_ext 1.780e-12  MF -1.26
+  per-object signed z (BASE); clusters: NGC 2419, Pal 3, Pal 4, Pal 14
+   canonical 1(a) class E Newton         : T   2.83  z NGC 2419  +0.15  Pal 3  +3.81  Pal 4  -0.45  Pal 14  +0.79
+   canonical 1(b-EFE) law + alg EFE      : T   4.13  z NGC 2419  -1.48  Pal 3  -0.33  Pal 4  -4.09  Pal 14  -2.77
+   canonical 1(b-B) isolated law         : T   5.07  z NGC 2419  -1.50  Pal 3  -0.81  Pal 4  -4.33  Pal 14  -3.85
+   canonical 2 MF-slope Ups, branch S    : T   2.55  z NGC 2419  -1.03  Pal 3  +0.48  Pal 4  -2.80  Pal 14  -2.10
+   canonical 2 MF-slope Ups, branch K    : T   2.17  z NGC 2419  -0.45  Pal 3  +0.84  Pal 4  -2.65  Pal 14  -1.78
+   canonical 3 full QUMOND monopole      : T   4.28  z NGC 2419  -1.47  Pal 3  -0.64  Pal 4  -4.28  Pal 14  -2.71
+   canonical CFG333 GC R0 labels top/top/top/top    : joint Ups 0.685 +- 0.139  t  -4.43  L  +5.49  -> FAIL
+   canonical CFG333 GC R1 labels top/top/top/top    : joint Ups 0.685 +- 0.139  t  -4.43  L  +5.49  -> FAIL
+   canonical CFG333 GC R2 labels own/own/own/own    : joint Ups 2.144 +- 0.435  t  +0.00  L  -1.11  -> PASS
+   canonical CFG333 GC R3 labels top/top/top/own    : joint Ups 0.912 +- 0.185  t  -2.09  L  +3.80  -> FAIL
+   canonical tile (published errors): class E T  +1.58 z NGC 2419 +0.10  Pal 3 +3.15  Pal 4 -0.46  Pal 14 +0.60 | law+EFE T  +3.22
+   canonical CFG333 decision (this footing): PARTIAL  counts {'R0': 1, 'R1': 1, 'R2': 3, 'R3': 2}
+   alt       1(a) class E Newton         : T   2.83  z NGC 2419  +0.15  Pal 3  +3.81  Pal 4  -0.45  Pal 14  +0.79
+   alt       1(b-EFE) law + alg EFE      : T   4.46  z NGC 2419  -1.69  Pal 3  -0.55  Pal 4  -4.26  Pal 14  -2.92
+   alt       1(b-B) isolated law         : T   5.41  z NGC 2419  -1.71  Pal 3  -1.04  Pal 4  -4.50  Pal 14  -3.99
+   alt       2 MF-slope Ups, branch S    : T   2.84  z NGC 2419  -1.24  Pal 3  +0.26  Pal 4  -2.99  Pal 14  -2.25
+   alt       2 MF-slope Ups, branch K    : T   2.40  z NGC 2419  -0.67  Pal 3  +0.62  Pal 4  -2.84  Pal 14  -1.93
+   alt       3 full QUMOND monopole      : T   4.62  z NGC 2419  -1.68  Pal 3  -0.86  Pal 4  -4.44  Pal 14  -2.85
+   alt       CFG333 GC R0 labels top/top/top/top    : joint Ups 0.638 +- 0.129  t  -5.12  L  +5.82  -> FAIL
+   alt       CFG333 GC R1 labels top/top/top/top    : joint Ups 0.638 +- 0.129  t  -5.12  L  +5.82  -> FAIL
+   alt       CFG333 GC R2 labels own/own/own/own    : joint Ups 2.144 +- 0.435  t  +0.00  L  -1.11  -> PASS
+   alt       CFG333 GC R3 labels top/top/top/own    : joint Ups 0.859 +- 0.174  t  -2.53  L  +4.11  -> FAIL
+   alt       tile (published errors): class E T  +1.58 z NGC 2419 +0.10  Pal 3 +3.15  Pal 4 -0.46  Pal 14 +0.60 | law+EFE T  +3.54
+   alt       CFG333 decision (this footing): PARTIAL  counts {'R0': 1, 'R1': 1, 'R2': 3, 'R3': 2}
+   CFG332 frozen labels: r1a NOT, r1bEFE NOT, r1bB NOT, r2S NOT, r2K NOT, r3 NOT | CFG333 decision PARTIAL {'R0': 1, 'R1': 1, 'R2': 3, 'R3': 2}
+  [PASS] C1 BASE reproduces CFG332's six route T (both footings, +-0.01) and frozen labels; no-Pal-3 and published-alt cells for 1(a), 1(b-EFE)  (max |dT| 0.0000; labels same; no-Pal-3 / published cells max |dT| 0.0000)
+  [PASS] C2 BASE reproduces CFG333's GC cells R0-R3 (t_joint, L; +-0.01) and its PARTIAL decision  (max diff 0.0000; decision PARTIAL {'R0': 1, 'R1': 1, 'R2': 3, 'R3': 2})
+  [PASS] C3 BASE reproduces AUDIT's published-error T: 1.58 (class E), 3.22 / 3.54 (law + EFE) (+-0.01)  (class E 1.58/1.58, law 3.22/3.54; max diff 0.0000)
+
+--- 4. (a) SOURCED-ONLY (grades A+B): Pal 3 dropped; Pal 4 Frank+12; Pal 14 Jordi+09; NGC 2419 catalogue at r_h ---
+  clusters retained: 3 of 4 -> SUPPORTED (>= 3)
+  per-object signed z ((a) SOURCED-ONLY); clusters: NGC 2419, Pal 4, Pal 14
+   canonical 1(a) class E Newton         : T   0.88  z NGC 2419  +0.15  Pal 4  -0.50  Pal 14  -1.62
+   canonical 1(b-EFE) law + alg EFE      : T   5.77  z NGC 2419  -1.48  Pal 4  -4.14  Pal 14  -4.70
+   canonical 1(b-B) isolated law         : T   6.63  z NGC 2419  -1.50  Pal 4  -4.38  Pal 14  -5.59
+   canonical 2 MF-slope Ups, branch S    : T   4.37  z NGC 2419  -1.03  Pal 4  -2.85  Pal 14  -4.11
+   canonical 2 MF-slope Ups, branch K    : T   3.95  z NGC 2419  -0.45  Pal 4  -2.70  Pal 14  -3.85
+   canonical 3 full QUMOND monopole      : T   5.84  z NGC 2419  -1.47  Pal 4  -4.32  Pal 14  -4.62
+   canonical CFG333 GC R0 labels top/top/top        : joint Ups 0.579 +- 0.132  t  -5.48  L  +6.90  -> FAIL
+   canonical CFG333 GC R1 labels top/top/top        : joint Ups 0.579 +- 0.132  t  -5.48  L  +6.90  -> FAIL
+   canonical CFG333 GC R2 labels own/own/own        : joint Ups 1.427 +- 0.325  t  +0.00  L  +1.03  -> PASS
+   canonical CFG333 GC R3 labels top/top/own        : joint Ups 0.727 +- 0.165  t  -3.46  L  +4.48  -> FAIL
+   canonical tile (published errors): class E T  -0.38 z NGC 2419 +0.10  Pal 4 -0.50  Pal 14 -1.24 | law+EFE T  +4.37
+   canonical CFG333 decision (this footing): PARTIAL  counts {'R0': 1, 'R1': 1, 'R2': 3, 'R3': 2}
+   alt       1(a) class E Newton         : T   0.88  z NGC 2419  +0.15  Pal 4  -0.50  Pal 14  -1.62
+   alt       1(b-EFE) law + alg EFE      : T   6.04  z NGC 2419  -1.69  Pal 4  -4.30  Pal 14  -4.82
+   alt       1(b-B) isolated law         : T   6.88  z NGC 2419  -1.71  Pal 4  -4.54  Pal 14  -5.71
+   alt       2 MF-slope Ups, branch S    : T   4.64  z NGC 2419  -1.24  Pal 4  -3.03  Pal 14  -4.24
+   alt       2 MF-slope Ups, branch K    : T   4.21  z NGC 2419  -0.67  Pal 4  -2.89  Pal 14  -3.98
+   alt       3 full QUMOND monopole      : T   6.10  z NGC 2419  -1.68  Pal 4  -4.49  Pal 14  -4.74
+   alt       CFG333 GC R0 labels top/top/top        : joint Ups 0.541 +- 0.123  t  -6.16  L  +7.15  -> FAIL
+   alt       CFG333 GC R1 labels top/top/top        : joint Ups 0.541 +- 0.123  t  -6.16  L  +7.15  -> FAIL
+   alt       CFG333 GC R2 labels own/own/own        : joint Ups 1.427 +- 0.325  t  +0.00  L  +1.03  -> PASS
+   alt       CFG333 GC R3 labels top/top/own        : joint Ups 0.686 +- 0.156  t  -3.93  L  +4.71  -> FAIL
+   alt       tile (published errors): class E T  -0.38 z NGC 2419 +0.10  Pal 4 -0.50  Pal 14 -1.24 | law+EFE T  +4.62
+   alt       CFG333 decision (this footing): PARTIAL  counts {'R0': 1, 'R1': 1, 'R2': 3, 'R3': 2}
+   CFG332 frozen labels: r1a MATCH, r1bEFE NOT, r1bB NOT, r2S NOT, r2K NOT, r3 NOT | CFG333 decision PARTIAL {'R0': 1, 'R1': 1, 'R2': 3, 'R3': 2}
+
+--- 4'. (a') PAPER-VERIFIED (grade A only: Pal 4 Frank+12, Pal 14 Jordi+09) -- REPORTED, 2 clusters < 3 => UNSUPPORTED at this level ---
+  per-object signed z ((a') PAPER-VERIFIED); clusters: Pal 4, Pal 14
+   canonical 1(a) class E Newton         : T   0.94  z Pal 4  -0.50  Pal 14  -1.62
+   canonical 1(b-EFE) law + alg EFE      : T   5.86  z Pal 4  -4.14  Pal 14  -4.70
+   canonical 1(b-B) isolated law         : T   6.74  z Pal 4  -4.38  Pal 14  -5.59
+   canonical 2 MF-slope Ups, branch S    : T   4.53  z Pal 4  -2.85  Pal 14  -4.11
+   canonical 2 MF-slope Ups, branch K    : T   4.22  z Pal 4  -2.70  Pal 14  -3.85
+   canonical 3 full QUMOND monopole      : T   5.94  z Pal 4  -4.32  Pal 14  -4.62
+   canonical CFG333 GC R0 labels top/top            : joint Ups 0.154 +- 0.064  t -17.81  L  +6.93  -> FAIL
+   canonical CFG333 GC R1 labels top/top            : joint Ups 0.154 +- 0.064  t -17.81  L  +6.93  -> FAIL
+   canonical CFG333 GC R2 labels own/own            : joint Ups 0.985 +- 0.413  t  -0.76  L  +1.38  -> PASS
+   canonical CFG333 GC R3 labels top/own            : joint Ups 0.333 +- 0.140  t  -6.93  L  +4.41  -> FAIL
+   canonical tile (published errors): class E T  +0.25 z Pal 4 -0.50  Pal 14 -1.24 | law+EFE T  +4.57
+   canonical CFG333 decision (this footing): PARTIAL  counts {'R0': 1, 'R1': 1, 'R2': 3, 'R3': 2}
+   alt       1(a) class E Newton         : T   0.94  z Pal 4  -0.50  Pal 14  -1.62
+   alt       1(b-EFE) law + alg EFE      : T   6.07  z Pal 4  -4.30  Pal 14  -4.82
+   alt       1(b-B) isolated law         : T   6.94  z Pal 4  -4.54  Pal 14  -5.71
+   alt       2 MF-slope Ups, branch S    : T   4.76  z Pal 4  -3.03  Pal 14  -4.24
+   alt       2 MF-slope Ups, branch K    : T   4.45  z Pal 4  -2.89  Pal 14  -3.98
+   alt       3 full QUMOND monopole      : T   6.15  z Pal 4  -4.49  Pal 14  -4.74
+   alt       CFG333 GC R0 labels top/top            : joint Ups 0.141 +- 0.059  t -19.63  L  +7.12  -> FAIL
+   alt       CFG333 GC R1 labels top/top            : joint Ups 0.141 +- 0.059  t -19.63  L  +7.12  -> FAIL
+   alt       CFG333 GC R2 labels own/own            : joint Ups 0.985 +- 0.413  t  -0.76  L  +1.38  -> PASS
+   alt       CFG333 GC R3 labels top/own            : joint Ups 0.315 +- 0.132  t  -7.47  L  +4.57  -> FAIL
+   alt       tile (published errors): class E T  +0.25 z Pal 4 -0.50  Pal 14 -1.24 | law+EFE T  +4.77
+   alt       CFG333 decision (this footing): PARTIAL  counts {'R0': 1, 'R1': 1, 'R2': 3, 'R3': 2}
+   CFG332 frozen labels: r1a MATCH, r1bEFE NOT, r1bB NOT, r2S NOT, r2K NOT, r3 NOT | CFG333 decision PARTIAL {'R0': 1, 'R1': 1, 'R2': 3, 'R3': 2}
+
+--- 5. ONE-AT-A-TIME SWAPS from BASE (attribution; T canonical/alt; CFG333 R2 GC cell t, L) ---
+  swap                       r1a        r1bEFE          r1bB           r2S           r2K            r3        R2 GC t;L    tile E      333
+  BASE               2.83/ 2.83   4.13/ 4.46   5.07/ 5.41   2.55/ 2.84   2.17/ 2.40   4.28/ 4.62 +0.00;-1.11    +1.58  PARTIAL
+  n2419=global       2.95/ 2.95   4.36/ 4.70   5.27/ 5.63   2.77/ 3.08   2.34/ 2.60   4.51/ 4.86 +0.00;-1.02    +1.56  PARTIAL
+  p3=drop            0.27/ 0.27   4.42/ 4.72   5.30/ 5.59   2.80/ 3.12   2.33/ 2.63   4.54/ 4.83 +0.00;-0.50    -1.26  PARTIAL
+  p4=frank           2.84/ 2.84   4.17/ 4.49   5.11/ 5.44   2.59/ 2.87   2.21/ 2.44   4.32/ 4.65 +0.00;-1.07    +1.59  PARTIAL
+  p14=jordi          3.12/ 3.12   5.46/ 5.75   6.38/ 6.67   4.08/ 4.33   3.72/ 3.94   5.56/ 5.86 +0.00;+0.47    +1.87  PARTIAL
+  D=18               2.92/ 2.92   4.03/ 4.35   4.99/ 5.32   2.48/ 2.75   2.14/ 2.35   4.17/ 4.50 +0.07;-1.19    +1.71  PARTIAL
+  L=18               2.09/ 2.09   3.87/ 4.23   4.98/ 5.33   2.03/ 2.39   1.53/ 1.84   4.05/ 4.41 +0.00;-1.38    +0.90  PARTIAL
+  R=18               2.76/ 2.76   4.15/ 4.47   5.05/ 5.38   2.56/ 2.84   2.18/ 2.41   4.35/ 4.68 +0.00;-1.22    +1.44  PARTIAL
+  MW=5.0e+10         2.83/ 2.83   4.23/ 4.56   5.07/ 5.41   2.67/ 2.96   2.28/ 2.52   4.37/ 4.71 +0.00;-1.11    +1.58  PARTIAL
+  MW=7.3e+10         2.83/ 2.83   4.02/ 4.34   5.07/ 5.41   2.41/ 2.69   2.04/ 2.27   4.18/ 4.51 +0.00;-1.11    +1.58  PARTIAL
+  MF=18              2.83/ 2.83   4.13/ 4.46   5.07/ 5.41   3.39/ 3.68   2.83/ 3.08   4.28/ 4.62 +0.00;-1.11    +1.58  PARTIAL
+
+--- 6. (b) FULL FACTORIAL over the record's alternatives ---
+  768 variants (2 x 2 x 2 x 2 x 2 x 2 x 2 x 3 x 2)
+
+  element                                  BASE (canon / alt / label)         (a) sourced                    flips/N (canon, alt, label)  class
+  E1  CFG332 1(a) class E Newton             fail /   fail / NOT              pass /   pass / MATCH          492, 492, 500 /768  FRAGILE/FRAGILE/FRAGILE
+  E2  CFG332 1(b-EFE) law + alg EFE          fail /   fail / NOT              fail /   fail / NOT              0,   0,   0 /768  ROBUST/ROBUST/ROBUST
+  E3  CFG332 1(b-B) isolated law             fail /   fail / NOT              fail /   fail / NOT              0,   0,   0 /768  ROBUST/ROBUST/ROBUST
+  E4  CFG332 route 2 S                       fail /   fail / NOT              fail /   fail / NOT             12,   0,  12 /768  FRAGILE/ROBUST/FRAGILE
+  E5  CFG332 route 2 K                       fail /   fail / NOT              fail /   fail / NOT             82,  39,  82 /768  FRAGILE/FRAGILE/FRAGILE
+  E6  CFG332 route 3 QUMOND                  fail /   fail / NOT              fail /   fail / NOT              0,   0,   0 /768  ROBUST/ROBUST/ROBUST
+  E7  CFG333 GC cell, R2 (class E)           pass /   pass / PASS             pass /   pass / PASS             0,   0,   0 /768  ROBUST/ROBUST/ROBUST
+  E8a CFG333 GC cell, R0                     fail /   fail / FAIL             fail /   fail / FAIL             0,   0,   0 /768  ROBUST/ROBUST/ROBUST
+  E8b CFG333 GC cell, R1                     fail /   fail / FAIL             fail /   fail / FAIL             0,   0,   0 /768  ROBUST/ROBUST/ROBUST
+  E8c CFG333 GC cell, R3                     fail /   fail / FAIL             fail /   fail / FAIL             0,   0,   0 /768  ROBUST/ROBUST/ROBUST
+  E9  CFG333 decision                      PARTIAL / PARTIAL / PARTIAL        PARTIAL / PARTIAL / PARTIAL          0,   0,   0 /768  ROBUST/ROBUST/ROBUST
+  E10a tile: published-error T, class E      pass /   pass / pass             pass /   pass / pass             0,   0,   0 /768  ROBUST/ROBUST/ROBUST
+  E10b published-error T, law + EFE          fail /   fail / fail             fail /   fail / fail             0,   0,   0 /768  ROBUST/ROBUST/ROBUST
+
+  conditional flip rate of the combined label, by factor level (fraction of the variants at that level whose label differs from BASE):
+  element                                    n2419=rh n2419=global      p3=cat     p3=drop      p4=cat    p4=frank     p14=cat   p14=jordi        D=23        D=18        L=23        L=18        R=23        R=18  MW=6.0e+10  MW=5.0e+10  MW=7.3e+10       MF=23       MF=18
+  E1  CFG332 1(a) class E Newton                 0.66        0.65        0.30        1.00        0.65        0.65        0.55        0.75        0.68        0.62        0.50        0.80        0.62        0.68        0.66        0.66        0.64        0.65        0.65
+  E2  CFG332 1(b-EFE) law + alg EFE              0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00
+  E3  CFG332 1(b-B) isolated law                 0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00
+  E4  CFG332 route 2 S                           0.03        0.00        0.03        0.00        0.02        0.02        0.03        0.00        0.01        0.02        0.00        0.03        0.02        0.02        0.02        0.00        0.03        0.03        0.00
+  E5  CFG332 route 2 K                           0.12        0.09        0.12        0.09        0.11        0.10        0.21        0.00        0.10        0.11        0.00        0.21        0.10        0.11        0.10        0.09        0.12        0.21        0.00
+  E6  CFG332 route 3 QUMOND                      0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00
+  E7  CFG333 GC cell, R2 (class E)               0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00
+  E8a CFG333 GC cell, R0                         0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00
+  E8b CFG333 GC cell, R1                         0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00
+  E8c CFG333 GC cell, R3                         0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00
+  E9  CFG333 decision                            0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00
+  E10a tile: published-error T, class E          0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00
+  E10b published-error T, law + EFE              0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00        0.00
+
+  margins: range of each statistic over all variants (BASE value; min .. max), per footing
+   canonical 1(a) class E Newton              T: BASE +2.834; range +0.096 .. +3.344
+   canonical 1(b-EFE) law + alg EFE           T: BASE +4.132; range +3.631 .. +6.101
+   canonical 1(b-B) isolated law              T: BASE +5.071; range +4.867 .. +6.804
+   canonical 2 MF-slope Ups, branch S         T: BASE +2.549; range +1.764 .. +5.402
+   canonical 2 MF-slope Ups, branch K         T: BASE +2.166; range +1.315 .. +4.855
+   canonical 3 full QUMOND monopole           T: BASE +4.282; range +3.844 .. +6.214
+   canonical tile: published-error class E    T: BASE +1.577; range -1.929 .. +1.997
+   canonical published-error law + EFE        T: BASE +3.215; range +2.702 .. +4.547
+   canonical CFG333 GC R0                           t range  -5.48 ..  -3.90; L range  +5.23 ..  +7.04
+   canonical CFG333 GC R1                           t range  -5.48 ..  -3.90; L range  +5.23 ..  +7.04
+   canonical CFG333 GC R2                           t range  +0.00 ..  +0.10; L range  -1.66 ..  +1.18
+   canonical CFG333 GC R3                           t range  -3.66 ..  -1.42; L range  +3.71 ..  +4.75
+   alt       1(a) class E Newton              T: BASE +2.834; range +0.096 .. +3.344
+   alt       1(b-EFE) law + alg EFE           T: BASE +4.455; range +3.986 .. +6.375
+   alt       1(b-B) isolated law              T: BASE +5.406; range +5.189 .. +7.068
+   alt       2 MF-slope Ups, branch S         T: BASE +2.835; range +2.101 .. +5.666
+   alt       2 MF-slope Ups, branch K         T: BASE +2.401; range +1.591 .. +5.111
+   alt       3 full QUMOND monopole           T: BASE +4.618; range +4.172 .. +6.487
+   alt       tile: published-error class E    T: BASE +1.577; range -1.929 .. +1.997
+   alt       published-error law + EFE        T: BASE +3.539; range +3.038 .. +4.795
+   alt       CFG333 GC R0                           t range  -6.16 ..  -4.53; L range  +5.51 ..  +7.32
+   alt       CFG333 GC R1                           t range  -6.16 ..  -4.53; L range  +5.51 ..  +7.32
+   alt       CFG333 GC R2                           t range  +0.00 ..  +0.10; L range  -1.66 ..  +1.18
+   alt       CFG333 GC R3                           t range  -4.21 ..  -1.76; L range  +3.96 ..  +5.01
+
+  fragile elements with Pal 3 KEPT (p3=cat): label flips and conditional flip rates by level
+   E1  CFG332 1(a) class E Newton           116/384: n2419=rh 0.31, n2419=global 0.29, p4=cat 0.30, p4=frank 0.30, p14=cat 0.10, p14=jordi 0.50, D=23 0.35, D=18 0.25, L=23 0.00, L=18 0.60, R=23 0.25, R=18 0.35, MW=6.0e+10 0.31, MW=5.0e+10 0.31, MW=7.3e+10 0.28, MF=23 0.30, MF=18 0.30
+   E4  CFG332 route 2 S                     12/384: n2419=rh 0.06, n2419=global 0.00, p4=cat 0.03, p4=frank 0.03, p14=cat 0.06, p14=jordi 0.00, D=23 0.02, D=18 0.04, L=23 0.00, L=18 0.06, R=23 0.03, R=18 0.03, MW=6.0e+10 0.03, MW=5.0e+10 0.00, MW=7.3e+10 0.06, MF=23 0.06, MF=18 0.00
+   E5  CFG332 route 2 K                     48/384: n2419=rh 0.12, n2419=global 0.12, p4=cat 0.12, p4=frank 0.12, p14=cat 0.25, p14=jordi 0.00, D=23 0.12, D=18 0.12, L=23 0.00, L=18 0.25, R=23 0.12, R=18 0.12, MW=6.0e+10 0.12, MW=5.0e+10 0.12, MW=7.3e+10 0.12, MF=23 0.25, MF=18 0.00
+
+--- 7. Upsilon_V prior centre (assumption) -- REPORTED, not scored: class E only ---
+  BASE     Ups centre 1.3: CFG332 1(a) T  +3.44 | published-error T  +2.21 | CFG333 Newton L  -1.95
+  BASE     Ups centre 1.6: CFG332 1(a) T  +2.83 | published-error T  +1.58 | CFG333 Newton L  -1.11
+  BASE     Ups centre 2.2: CFG332 1(a) T  +2.27 | published-error T  +1.21 | CFG333 Newton L  +0.17
+  SOURCED  Ups centre 1.3: CFG332 1(a) T  +0.62 | published-error T  -0.61 | CFG333 Newton L  +0.33
+  SOURCED  Ups centre 1.6: CFG332 1(a) T  +0.88 | published-error T  -0.38 | CFG333 Newton L  +1.03
+  SOURCED  Ups centre 2.2: CFG332 1(a) T  +1.73 | published-error T  +0.88 | CFG333 Newton L  +2.12
+
+--- 8. VERDICT ---
+  E1  CFG332 1(a) class E Newton           canonical FRAGILE  alt FRAGILE  label FRAGILE   (BASE NOT -> sourced MATCH; label flips in 500/768 variants)
+  E2  CFG332 1(b-EFE) law + alg EFE        canonical ROBUST   alt ROBUST   label ROBUST    (BASE NOT -> sourced NOT; label flips in 0/768 variants)
+  E3  CFG332 1(b-B) isolated law           canonical ROBUST   alt ROBUST   label ROBUST    (BASE NOT -> sourced NOT; label flips in 0/768 variants)
+  E4  CFG332 route 2 S                     canonical FRAGILE  alt ROBUST   label FRAGILE   (BASE NOT -> sourced NOT; label flips in 12/768 variants)
+  E5  CFG332 route 2 K                     canonical FRAGILE  alt FRAGILE  label FRAGILE   (BASE NOT -> sourced NOT; label flips in 82/768 variants)
+  E6  CFG332 route 3 QUMOND                canonical ROBUST   alt ROBUST   label ROBUST    (BASE NOT -> sourced NOT; label flips in 0/768 variants)
+  E7  CFG333 GC cell, R2 (class E)         canonical ROBUST   alt ROBUST   label ROBUST    (BASE PASS -> sourced PASS; label flips in 0/768 variants)
+  E8a CFG333 GC cell, R0                   canonical ROBUST   alt ROBUST   label ROBUST    (BASE FAIL -> sourced FAIL; label flips in 0/768 variants)
+  E8b CFG333 GC cell, R1                   canonical ROBUST   alt ROBUST   label ROBUST    (BASE FAIL -> sourced FAIL; label flips in 0/768 variants)
+  E8c CFG333 GC cell, R3                   canonical ROBUST   alt ROBUST   label ROBUST    (BASE FAIL -> sourced FAIL; label flips in 0/768 variants)
+  E9  CFG333 decision                      canonical ROBUST   alt ROBUST   label ROBUST    (BASE PARTIAL -> sourced PARTIAL; label flips in 0/768 variants)
+  E10a tile: published-error T, class E    canonical ROBUST   alt ROBUST   label ROBUST    (BASE pass -> sourced pass; label flips in 0/768 variants)
+  E10b published-error T, law + EFE        canonical ROBUST   alt ROBUST   label ROBUST    (BASE fail -> sourced fail; label flips in 0/768 variants)
+
+  TILE 'Globulars + ownership rule' (E1, E7, E9): FRAGILE   | sourced-only retains 3/4 clusters; paper-verified level 2/4 => UNSUPPORTED there
+  LAW SIDE (globulars under the law: E2, E3, E6): ROBUST
+
+6/6 checks pass
