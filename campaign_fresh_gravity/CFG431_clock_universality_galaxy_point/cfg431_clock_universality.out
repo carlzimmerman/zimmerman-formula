@@ -1,0 +1,42 @@
+CFG431 clock universality  MUTATE=False
+Branch: leftover e (definition A); S = sigma(ln t) = sigma_e/(e_med |ln e_med|). S is total scatter (upper bound on intrinsic).
+
+T14 inputs (0.43/0.60 +- 0.15 = CFG382 TOLERANCE bands, not population scatter), reported only:
+  e branch (correct per T15): clusters 0.413, groups 0.489   |   T14's f branch: clusters 0.468, groups 0.409
+
+PRIMARY (def A, b = 0, canonical; as on disk):
+  primary
+     galaxy   N 23  e_med 0.131  sigma_e 0.193  S = sigma(ln t) 0.723  delta(ln S) 0.281  (boot e_med outside (0,1): 0.0%)
+     group    N 20  e_med 0.787  sigma_e 0.436  S = sigma(ln t) 2.310  delta(ln S) 0.625  (boot e_med outside (0,1): 1.5%)
+     cluster  N  7  e_med 0.413  sigma_e 0.069  S = sigma(ln t) 0.189  delta(ln S) 0.937  (boot e_med outside (0,1): 0.0%)
+     pairs: cluster-galaxy z = 1.37; cluster-group z = 2.22; galaxy-group z = 1.70  ->  NOT UNIVERSAL
+
+ROBUSTNESS (reported):
+  R1 alt footing (galaxies a0 = 1.1312e-10)
+     galaxy   N 23  e_med 0.118  sigma_e 0.187  S = sigma(ln t) 0.743  delta(ln S) 0.299  (boot e_med outside (0,1): 0.0%)
+     group    N 20  e_med 0.787  sigma_e 0.436  S = sigma(ln t) 2.310  delta(ln S) 0.625  (boot e_med outside (0,1): 1.5%)
+     cluster  N  7  e_med 0.413  sigma_e 0.069  S = sigma(ln t) 0.189  delta(ln S) 0.937  (boot e_med outside (0,1): 0.0%)
+     pairs: cluster-galaxy z = 1.39; cluster-group z = 2.22; galaxy-group z = 1.64  ->  NOT UNIVERSAL
+  R2 X-COP gas mass at R500
+     galaxy   N 23  e_med 0.131  sigma_e 0.193  S = sigma(ln t) 0.723  delta(ln S) 0.281  (boot e_med outside (0,1): 0.0%)
+     group    N 20  e_med 0.787  sigma_e 0.436  S = sigma(ln t) 2.310  delta(ln S) 0.625  (boot e_med outside (0,1): 1.5%)
+     cluster  N  7  e_med 0.225  sigma_e 0.044  S = sigma(ln t) 0.131  delta(ln S) 1.051  (boot e_med outside (0,1): 0.0%)
+     pairs: cluster-galaxy z = 1.57; cluster-group z = 2.35; galaxy-group z = 1.70  ->  NOT UNIVERSAL
+  R3 hydrostatic bias b = 0.1
+     galaxy   N 23  e_med 0.131  sigma_e 0.193  S = sigma(ln t) 0.723  delta(ln S) 0.281  (boot e_med outside (0,1): 0.0%)
+     group    N 20  e_med 1.039  sigma_e 0.485  S = sigma(ln t) inf  delta(ln S) inf  (boot e_med outside (0,1): 64.8%)
+     cluster  N  7  e_med 0.541  sigma_e 0.072  S = sigma(ln t) 0.218  delta(ln S) 0.972  (boot e_med outside (0,1): 1.2%)
+     pairs: cluster-galaxy z = 1.18  ->  CONSISTENT, NOT DIAGNOSTIC [undefined: group]
+  R4 noise-corrected (MC of per-object input errors; sigma_int^2 = sigma_e^2 - sigma_noise^2):
+     galaxy   sigma_e 0.193  median per-object noise 0.109  sigma_int 0.159  S_int 0.596
+     group    sigma_e 0.436  median per-object noise 0.361  sigma_int 0.246  S_int 1.301
+     cluster  sigma_e 0.069  median per-object noise 0.043  sigma_int 0.054  S_int 0.148
+  exact per-object map ln t_i = ln(-ln e_i) (0 < e_i < 1 only):
+     galaxy   kept 18/23  sigma(ln t) robust 0.491
+     group    kept 15/20  sigma(ln t) robust 0.774
+     cluster  kept 7/7  sigma(ln t) robust 0.201
+
+MUTATE run verdict (from cfg431_results_MUTATE.json): NOT UNIVERSAL
+
+checks: {"C1_identity": true, "C2_reproduction": true, "C3_control_integrity": true}
+VERDICT: NOT UNIVERSAL  (FRAGILE: robustness rows give CONSISTENT, NOT DIAGNOSTIC / NOT UNIVERSAL)
