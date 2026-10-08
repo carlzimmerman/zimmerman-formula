@@ -22,13 +22,14 @@ target by chance; only a gate-survivor counts.
 from __future__ import annotations
 import itertools
 import math
+import os
 import sys
 from dataclasses import dataclass
 
 import mpmath as mp
 mp.mp.dps = 40
 
-sys.path.insert(0, "/Users/carlzimmerman/new_physics/project_atomos")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from gate.candidate import Candidate, SearchSpace, Coefficient, Interlock, Factor
 from gate.verdict import validate

@@ -22,7 +22,7 @@ from pathlib import Path
 
 import numpy as np
 
-ROOT = Path("/Users/carlzimmerman/new_physics/project_atomos")
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import targets.pdg_constants as pdg                                   # noqa: E402
 from engine.scoring import measurement_tol, score_value               # noqa: E402

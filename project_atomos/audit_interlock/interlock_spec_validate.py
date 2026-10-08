@@ -30,7 +30,7 @@ import numpy as np
 from mpmath import mp
 mp.dps = 40
 
-ROOT = Path("/Users/carlzimmerman/new_physics/project_atomos")
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 import targets.pdg_constants as pdg                                   # noqa: E402
 from engine.scoring import score_value                                # noqa: E402

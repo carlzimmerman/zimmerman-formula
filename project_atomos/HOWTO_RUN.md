@@ -8,7 +8,7 @@ READJUST when it hits a dead end. Pure stdlib + numpy + scipy + sympy + mpmath. 
 ## 0. First, prove the machine is trustworthy (always do this before a real run)
 
 ```bash
-cd /Users/carlzimmerman/new_physics/project_atomos
+cd project_atomos
 python3 run_atomos.py --calibrate          # acceptance test: must be PASS (a0 CERTIFIED, Koide RE-LABELED, 6 dead REJECTED)
 ```
 If calibration is not PASS, do not trust any lead the runner emits. (Last verified: PASS 8/8, 2026-06-25.)
@@ -18,7 +18,7 @@ If calibration is not PASS, do not trust any lead the runner emits. (Last verifi
 ## 1. Launch the day-long run (the command)
 
 ```bash
-cd /Users/carlzimmerman/new_physics/project_atomos
+cd project_atomos
 python3 run_atomos.py --hours 24 --all
 ```
 

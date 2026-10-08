@@ -152,7 +152,7 @@ No maximal-re-verification flag needed beyond the reproduced numerics. Quarantin
 SM mass sector stays WALLED.
 
 ## Files
-- Verification scripts: `/Users/carlzimmerman/new_physics/zimmerman-formula/opus_48_extended_research/reviews/koide_dsunruh/`
+- Verification scripts: `opus_48_extended_research/reviews/koide_dsunruh/`
   (eja_singh_delta_structure_verify.py, eja_singh_tradeoff_massratios.py, routeB_shared_root_verify.py,
    tradeoff_2param_escape.py, ladder_softness.py, bridge_final_verify.py, koide_geometry_crossfermion.py)
 - Singh PDFs extracted to /tmp/ (2108.05787, 2304.01213, 2508.10131) — verbatim grep-confirmed.

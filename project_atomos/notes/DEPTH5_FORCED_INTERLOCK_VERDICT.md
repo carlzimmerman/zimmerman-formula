@@ -263,7 +263,7 @@ the constructive scheme proven complete (no silent miss).
 ## 8. Reproduction commands
 
 ```bash
-cd /Users/carlzimmerman/new_physics/project_atomos
+cd project_atomos
 
 # constructive space size (closed-form)
 python3 exhaust_depth5_forced.py --space

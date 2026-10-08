@@ -131,7 +131,7 @@ candidate-needing-scrutiny.
 
 ---
 
-## Reproduction commands (from `/Users/carlzimmerman/new_physics/project_atomos`)
+## Reproduction commands (from `project_atomos`)
 
 ```
 # Depth-6 completeness + a0:

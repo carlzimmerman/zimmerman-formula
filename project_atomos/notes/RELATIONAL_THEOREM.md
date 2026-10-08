@@ -2,8 +2,8 @@
 
 **Project:** PROJECT_ATOMOS — the relational (Koide-class) shape
 **Date:** 2026-06-25
-**Enumerator:** `/Users/carlzimmerman/new_physics/project_atomos/exhaust_relational.py`
-**Gate:** `/Users/carlzimmerman/new_physics/project_atomos/gate/` (3-part gate, reused verbatim, never modified)
+**Enumerator:** `project_atomos/exhaust_relational.py`
+**Gate:** `project_atomos/gate/` (3-part gate, reused verbatim, never modified)
 **Status:** ADVERSARIALLY VERIFIED — clean null, Koide is the unique survivor (and even Koide is gate-killed).
 
 ---
@@ -185,7 +185,7 @@ This is the **honest expected null**, reported in both directions:
 ## REPRODUCE
 
 ```
-cd /Users/carlzimmerman/new_physics/project_atomos
+cd project_atomos
 python3 exhaust_relational.py --self-check              # completeness (1014, PROVEN)
 python3 exhaust_relational.py --koide-ground-truth      # re-derive Koide (PASS)
 python3 exhaust_relational.py --sector all              # full sweep (clean null)

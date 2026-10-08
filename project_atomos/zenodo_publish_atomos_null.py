@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Publish PAPER_ATOMOS_NULL.pdf to Zenodo (production).
-Reads ZENODO_ACCESS_TOKEN from /Users/carlzimmerman/new_physics/.env -- NEVER printed.
+Reads ZENODO_ACCESS_TOKEN from the workspace .env two levels above this file -- NEVER printed.
 Usage: python zenodo_publish_atomos_null.py                      new record (v1/v2 flow)
        python zenodo_publish_atomos_null.py DRAFT_ID             resume an existing draft
        python zenodo_publish_atomos_null.py --newversion REC_ID [--meta FILE]
@@ -9,7 +9,7 @@ Usage: python zenodo_publish_atomos_null.py                      new record (v1/
 """
 import json, os, sys, time, urllib.request, urllib.error
 
-ENV = "/Users/carlzimmerman/new_physics/.env"
+ENV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".env")
 PDF = "pdf/PAPER_ATOMOS_NULL.pdf"
 META = "PAPER_ATOMOS_NULL.zenodo.json"
 if "--meta" in sys.argv:

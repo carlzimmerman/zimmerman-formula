@@ -187,7 +187,7 @@ a door.
 ## 6. Reproduction commands (each exits 0)
 
 ```bash
-cd /Users/carlzimmerman/new_physics/project_atomos
+cd project_atomos
 python3 exhaust_depth4_forced.py --a0-check     # RULE 2 reach proof: a0 = (c/Z)*H_L = 9.36018e-11, PASS
 python3 exhaust_depth4_forced.py --self-check    # completeness + soundness; prints closed accounting
 python3 exhaust_depth4_forced.py --target r_mu_e # one SM target: dim_valid 0, CERTIFIED 0

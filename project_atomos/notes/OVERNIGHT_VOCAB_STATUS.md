@@ -71,7 +71,7 @@ launch (deterministic stop at deadline).
 - Header:         `results_overnight_vocab/vocab_search_20260707T003316.header.json`
 
 ```
-tail -f /Users/carlzimmerman/new_physics/project_atomos/results_overnight_vocab/vocab_search_20260707T003316.summary.txt
+tail -f project_atomos/results_overnight_vocab/vocab_search_20260707T003316.summary.txt
 ```
 
 Each line: counter, germ key, depth, n_targets, n_recipes, best hit (target :

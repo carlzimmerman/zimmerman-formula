@@ -67,7 +67,7 @@ look-elsewhere), n_certified this config, certified_cumulative, elapsed, peak RS
 
 ### Overnight launch command
 ```
-cd /Users/carlzimmerman/new_physics/project_atomos
+cd project_atomos
 nohup python3 overnight_pair_search.py --hours 8 \
     > results_overnight_pairs/console.out 2>&1 &
 ```
