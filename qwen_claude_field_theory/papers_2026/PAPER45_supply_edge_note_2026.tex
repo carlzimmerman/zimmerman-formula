@@ -17,11 +17,11 @@
 \begin{center}
 {\Large\bfseries The Supply Edge: A Mass-Conserving Rule Without Tuned Radii\\ Fixes Structure Growth Under a Vacuum-Tied MOND Law}\\[4pt]
 {\large Working note}\\[6pt]
-{\small The authors --- 2026-10-08, version 2.0 (v1.0, 2026-10-07, stated the hypothesis; this version adds the simulations that test it) --- AI-assisted research programme; not peer reviewed.}
+{\small The authors --- 2026-10-08, version 2.1 (v1.0 stated the hypothesis; v2.0 added the simulations; v2.1 corrects the wording of the control and the inputs after an internal audit, numbers unchanged) --- AI-assisted research programme; not peer reviewed.}
 \end{center}
 
 \begin{abstract}
-\noindent We study the law $a_0=\kappa c\sqrt{G\rho_\Lambda}$ ($\kappa=\tfrac12$, fitted) with the kernel $\nu(y)=1/(1-e^{-\sqrt y})$ and a cold fluid of fixed cosmic amount. In particle-mesh simulations, letting the law act wherever matter has collapsed makes small-scale structure too clumpy: the excess in the matter power spectrum at $k\le1\,h$\,Mpc$^{-1}$ is $+15.3\%$/$+19.3\%$ on the two footings at $256^3$ and $+17.4\%$ at $512^3$, against an allowed $10\%$. We test one rule with no tuned radius. The law's extra (phantom) mass is the cold fluid itself, so a halo can build the phantom only until its own cold fluid is used up; for an undepleted halo this happens at $r_{\rm edge}=r_M/\ln[1/(1-f_b)]\approx5.85\,r_M$. The cold fluid used is drawn from the same halo's turnaround sphere, so mass is conserved halo by halo. With this rule the excess is $2.7\%$ at $256^3$ and $3.3\%$ at $512^3$, with $\sigma_8$ within $0.6\%$ of the Newtonian control. It holds in three random realisations, on both footings, with $a_0$ tracking dark energy, and when the two settings inherited from earlier work are varied. Turning the mass conservation off restores the excess ($15.4\%$). Earlier rules that set the edge by hand, or from measured baryon censuses, sit at the $10\%$ limit at $512^3$. The rule's only inputs are $\kappa$ and the cosmic baryon fraction. The cold fluid is handled as bookkeeping, not as simulated particles, and $\kappa$, the cold fluid's amount and $\rho_\Lambda$ remain undetermined.
+\noindent We study the law $a_0=\kappa c\sqrt{G\rho_\Lambda}$ ($\kappa=\tfrac12$, fitted) with the kernel $\nu(y)=1/(1-e^{-\sqrt y})$ and a cold fluid of fixed cosmic amount. In particle-mesh simulations, letting the law act wherever matter has collapsed makes small-scale structure too clumpy: the excess in the matter power spectrum at $k\le1\,h$\,Mpc$^{-1}$ is $+15.3\%$/$+19.3\%$ on the two footings at $256^3$ and $+17.4\%$ at $512^3$, against an allowed $10\%$. We test one rule with no tuned radius. The law's extra (phantom) mass is the cold fluid itself, so a halo can build the phantom only until its own cold fluid is used up; for an undepleted halo this happens at $r_{\rm edge}=r_M/\ln[1/(1-f_b)]\approx5.85\,r_M$. The cold fluid used is drawn from the same halo's turnaround sphere, so mass is conserved halo by halo. With this rule the excess is $2.7\%$ at $256^3$ and $3.3\%$ at $512^3$, with $\sigma_8$ within $0.6\%$ of a control run without the law (the cold fluid evolved as ordinary cold matter, i.e.\ $\Lambda$CDM-equivalent growth). It holds in three random realisations, on both footings, with $a_0$ tracking dark energy, and when the two settings inherited from earlier work are varied. Turning the mass conservation off restores the excess ($15.4\%$). Earlier rules that set the edge by hand, or from measured baryon censuses, sit at the $10\%$ limit at $512^3$. The rule adds no tuned radius or width; its framework inputs are $\kappa$ and the cosmic baryon fraction, and it inherits standard ingredients (a $\Lambda$CDM initial power spectrum, a spherical-collapse turnaround density, a halo finder and the pass thresholds). The cold fluid is handled as bookkeeping, not as simulated particles, and $\kappa$, the cold fluid's amount and $\rho_\Lambda$ remain undetermined.
 \end{abstract}
 % Every number is checked against committed outputs by PAPER45_audit.py.
 
@@ -29,7 +29,7 @@
 The acceleration scale is $a_0=\kappa c\sqrt{G\rho_\Lambda}$ with $\kappa=\tfrac12$ fitted. We report two footings, $9.3603\times10^{-11}$ and $1.1312\times10^{-10}$\,m\,s$^{-2}$, separately. The phantom density is $\rho_{\rm ph}=\nabla\!\cdot[(\nu-1)g_b]/4\pi G$. A cold fluid with the cosmic amount $\Omega_c/\Omega_b=5.364$ is assumed; no particle species is specified and the amount is an input. In the working model the phantom is not extra mass from nowhere: it is cold fluid that has settled into the profile the law requires.
 
 \section{The problem}
-Particle-mesh runs: box $200\,h^{-1}$\,Mpc, initial redshift 49, 150 steps, the same initial conditions as a Newtonian control. Pass means $|\sigma_8-1|\le5\%$ and $\max|P-1|\le10\%$ for $k\le1\,h$\,Mpc$^{-1}$, both relative to the control.
+Particle-mesh runs: box $200\,h^{-1}$\,Mpc, initial redshift 49, 150 steps, the same initial conditions as a control run without the law, in which the cold fluid is evolved as ordinary cold matter (so the control has $\Lambda$CDM-equivalent growth). Pass means $|\sigma_8-1|\le5\%$ and $\max|P-1|\le10\%$ for $k\le1\,h$\,Mpc$^{-1}$, both relative to the control.
 \begin{center}
 \begin{tabular}{lcc}
 \toprule
@@ -72,16 +72,16 @@ edge from census retention ($512^3$) & 1.0072 / 1.0073 & 0.092 / 0.1009\\
 \bottomrule
 \end{tabular}
 \end{center}
-Every run of the rule passes, 15 of 15. The excess changes from $2.7\%$ to $3.3\%$ between $256^3$ and $512^3$, so it does not grow toward the limit as the earlier rules did. No catchment is ever asked for more cold fluid than it holds. The largest share of a catchment's cold fluid used is 30\% at $256^3$ and 57\% at $512^3$; that share rises with resolution and is the quantity to watch at higher resolution. The control shows that the mass conservation, not the edge alone, removes the excess.
+Every run of the rule passes, 15 of 15. The excess changes from $2.7\%$ to $3.3\%$ between $256^3$ and $512^3$, a much smaller rise than the earlier rules showed; with two resolutions and one $512^3$ realisation, convergence is not established. No catchment is ever asked for more cold fluid than it holds. The largest share of a catchment's cold fluid used is 30\% at $256^3$ and 57\% at $512^3$; that share rises with resolution and is the quantity to watch at higher resolution. The control shows that the mass conservation, not the edge alone, removes the excess.
 
 \section{What this does and does not show}
-It shows that within this framework, structure growth can be made consistent with the Newtonian benchmark by a rule that follows from treating the phantom as conserved cold fluid, with no radius or width chosen to fit. The inputs are $\kappa$ (fitted to rotation curves) and $f_b$.
+It shows that within this framework, structure growth can be kept within 10\% of $\Lambda$CDM-equivalent growth by a rule that follows from treating the phantom as conserved cold fluid, with no radius or width chosen to fit. Its framework inputs are $\kappa$ (fitted to rotation curves) and $f_b$; it also inherits a $\Lambda$CDM initial spectrum, a spherical-collapse turnaround density, a halo finder and the pass thresholds.
 
 It does not show the following:
 \begin{itemize}
 \item The cold fluid is bookkeeping in these runs. Its settling into the phantom profile is imposed, not derived from an action.
-\item One random realisation was run at $512^3$; the mesh does not resolve galaxy scales.
-\item The pass criteria compare with a Newtonian control. They are not a comparison with survey data.
+\item One random realisation was run at $512^3$ (a second is running); the mesh does not resolve galaxy scales, and the share of cold fluid used (57\% at $512^3$) could reach 100\% at higher resolution.
+\item The pass criteria compare with a control that has $\Lambda$CDM-equivalent growth, not with survey data. A pass means the law does not spoil standard growth by more than 10\%.
 \item $\kappa$, the cold fluid's amount and $\rho_\Lambda$ are not derived, and no dark-matter particle is identified.
 \end{itemize}
 

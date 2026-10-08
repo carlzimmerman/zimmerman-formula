@@ -44,7 +44,7 @@ row("CFG427 eps 1.0033/1.0033 0.027/0.027; filters 1.0027/1.0038 0.026/0.031", (
     and "1.0033 / 1.0033 & 0.027 / 0.027" in tex and "1.0027 / 1.0038 & 0.026 / 0.031" in tex)
 c439 = j("CFG439_zero_knob_alt_512/cfg439_results.json")
 row("CFG439 512 alt 1.0054/0.040, DE 1.0045/0.033", (round(c439["A FLAT alt"]["s8"], 4), round(c439["A FLAT alt"]["pdev"], 3), round(c439["B DE canonical"]["s8"], 4), round(c439["B DE canonical"]["pdev"], 3)) == (1.0054, 0.040, 1.0045, 0.033)
-    and "1.0054 & 0.040" in tex and "1.0045 & 0.033" in tex and "$0.6\\%$" in tex)
+    and "1.0054 & 0.040" in tex and "1.0045 & 0.033" in tex and "$0.6\\%$" in tex and "Lambda$CDM-equivalent" in tex and "convergence is not established" in tex)
 allr = [c424["TA-can"], c424["TA-alt"], R1, R2, R3] + [c426[k] for k in c426 if k != "verdict"] + [c427[k] for k in c427 if k != "verdict"] + [c439["A FLAT alt"], c439["B DE canonical"]]
 row("15 of 15 runs of the rule GROWTH OK, all sigma8 within 0.6%", len(allr) == 15 and all(r["verdict"] == "GROWTH OK" and abs(r["s8"] - 1) <= 0.006 for r in allr) and "15 of 15" in tex)
 c414 = j("CFG414_confined_switch_512/cfg414_results.json"); c416 = j("CFG416_supply_edge_confinement_512/cfg416_results.json")

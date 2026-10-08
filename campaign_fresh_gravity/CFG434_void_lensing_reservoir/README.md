@@ -58,3 +58,6 @@ The reservoir's void-scale contrast b_u **cannot be predicted without a new free
 - It does not say the data favour the framework. LCDM is CONSISTENT, and reading I simply reproduces LCDM in voids.
 - It does not test the CMB-lensing over-lensing of CFG363. It tests only the void-scale contrast.
 - kappa = 1/2 is fitted. The cold fluid's mass is still required (no dark-matter particle is added). The reservoir's clumpiness b_u is a new free parameter, bounded here, not derived.
+
+## FORWARD NOTE (2026-10-08, data audit)
+The "borderline" escape for reading II needs clumped growth at least 25% above ΛCDM. The adopted zero-knob growth rule (CFG424/425/439) gives σ₈ at most 0.54% above the control and cancels the phantom inside each catchment, so the escape is not available under candidate B as now specified. Reading II's smooth-reservoir case therefore stays **disfavoured, 2.9σ under the frozen error model** (5.2σ under the alternative error model). This weakens reading II of the reservoir, not the growth result. See AUDIT_data_and_assumptions_2026-10-08/.

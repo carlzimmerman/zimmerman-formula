@@ -64,3 +64,8 @@ value is above 1, so no group clock exists, and the verdict becomes CONSISTENT, 
 - **What would settle the bias question.** Group masses calibrated by lensing would decide the group level, and with it the
   verdict.
 - κ = ½ is fitted. The cold mass is still required.
+
+## FORWARD NOTE (2026-10-08, data audit + CFG450)
+- The robustness row R2 (X-COP gas "at R500" versus "at 1 Mpc") is INVALID. CFG450 shows that CFG382's RADIUS is in R500 units, so the gas was already read at R500; the "gas at 1 Mpc" premise above is wrong.
+- "NOT UNIVERSAL" holds on the canonical footing only, so the verdict stays FRAGILE.
+- See campaign_fresh_gravity/AUDIT_data_and_assumptions_2026-10-08/.
