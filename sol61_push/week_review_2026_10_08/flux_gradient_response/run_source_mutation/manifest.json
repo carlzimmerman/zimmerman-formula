@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "FLUX_GRADIENT_COMPACT_SOURCE",
+  "repository": {
+    "commit": "32b3f9a35cd6f85693de14dbe5517ffe42e9b38e",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "-u",
+    "sol61_push/week_review_2026_10_08/flux_gradient_response/source_checks.py",
+    "--output",
+    "sol61_push/week_review_2026_10_08/flux_gradient_response/run_source_mutation/results.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Specified C1 compact monotone density gives force suppression in matched bounded BVPs, consistent with the conditional maximum-principle theorem.",
+    "coefficient_domain": "Exact algebra and bounded floating-point boundary value checks",
+    "conventions": "g=grad Phi outward, F=dW/dg vector, W is the P2 potential; kappa>0; source current J=F-kappa (dF/dg) Laplacian F.",
+    "inputs": [
+      "sol61_push/week_review_2026_10_08/flux_gradient_response/source_checks.py"
+    ],
+    "bounds": {
+      "B_a0_Rsource": 1,
+      "kappa": [
+        0.1,
+        1.0
+      ],
+      "inner_outer_boundaries": [
+        [
+          0.0001,
+          10.0
+        ],
+        [
+          1e-05,
+          15.0
+        ]
+      ],
+      "tol": 1e-08,
+      "max_nodes": 20000,
+      "exploratory_status": "All four BVPs explored before contract; not preregistered."
+    },
+    "non_claims": [
+      "No global matched source solution",
+      "No all-background stability",
+      "No cosmological coefficient selection",
+      "No global novelty claim",
+      "Deep Bessel formula is linearized, not exact full nonlinear P2"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-08T17:18:09.666333+00:00",
+    "runtime_seconds": 0.720214,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 200000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/week_review_2026_10_08/flux_gradient_response/source_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/flux_gradient_response/source_checks.py",
+      "sha256": "72251e39e7ecb2886598f012f899aeb52b4de8cb26b684bb8784adac620f717f",
+      "sha256_after": "72251e39e7ecb2886598f012f899aeb52b4de8cb26b684bb8784adac620f717f"
+    }
+  ],
+  "output_directory": "sol61_push/week_review_2026_10_08/flux_gradient_response/run_source_mutation",
+  "declared_results": [
+    "sol61_push/week_review_2026_10_08/flux_gradient_response/run_source_mutation/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/flux_gradient_response/run_source_mutation/stdout.txt",
+      "sha256": "43c0365f561412ae694695f1e0eb899cf6513af0498d9e280f24dfe9c906f235",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/flux_gradient_response/run_source_mutation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/flux_gradient_response/run_source_mutation/results.json",
+      "sha256": "964d0252b620cfdb75b0849fba1b3da06de55810ed7218874ea662f499eae5a1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

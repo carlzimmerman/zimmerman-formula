@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "ALIGNED_FLUX_STATIC_COERCIVITY",
+  "repository": {
+    "commit": "a9b702fa477c07a8556c2df5486ea7f30e74f7df",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "-u",
+    "sol61_push/week_review_2026_10_08/flux_gradient_response/stability_checks.py",
+    "--output",
+    "sol61_push/week_review_2026_10_08/flux_gradient_response/run_stability_main/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "At aligned spherical stationary states the unconstrained flux Hessian has sharp uniform lower bound 5/(3 sqrt(3)); positive kinetic energy implies no growing finite-energy linear modes on bounded domains away from zero field, with fixed sources and zero boundary energy flux.",
+    "coefficient_domain": "Exact algebra and bounded floating-point boundary value checks",
+    "conventions": "g=grad Phi outward, F=dW/dg vector, W is the P2 potential; kappa>0; source current J=F-kappa (dF/dg) Laplacian F.",
+    "inputs": [
+      "sol61_push/week_review_2026_10_08/flux_gradient_response/stability_checks.py"
+    ],
+    "bounds": {
+      "symbolic": "F>0 a0>0 S>=0",
+      "numeric_F": [
+        "1/100",
+        "1/2",
+        "1",
+        "100"
+      ],
+      "numeric_S": [
+        0,
+        1,
+        100
+      ],
+      "a0_numeric": 1,
+      "exploratory_status": "Radial Hessian and sharp minimum explored before contract; not preregistered."
+    },
+    "non_claims": [
+      "No dynamical baryon stability",
+      "No zero-field result",
+      "No arbitrary-background stability",
+      "No relativistic causality or vacuum coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-08T17:23:49.238999+00:00",
+    "runtime_seconds": 0.788313,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 200000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/week_review_2026_10_08/flux_gradient_response/run_stability_main/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/week_review_2026_10_08/flux_gradient_response/stability_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/flux_gradient_response/stability_checks.py",
+      "sha256": "aee755a1b4009209c1e4058596d3d09e5bdf926b0aad3d12cb63478ce7da6fd1",
+      "sha256_after": "aee755a1b4009209c1e4058596d3d09e5bdf926b0aad3d12cb63478ce7da6fd1"
+    }
+  ],
+  "output_directory": "sol61_push/week_review_2026_10_08/flux_gradient_response/run_stability_main",
+  "declared_results": [
+    "sol61_push/week_review_2026_10_08/flux_gradient_response/run_stability_main/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/flux_gradient_response/run_stability_main/stdout.txt",
+      "sha256": "525d7a51280bb24d6467232738003cc043f7e5ce207c5071dd01d079407d4548",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/flux_gradient_response/run_stability_main/stderr.txt",
+      "sha256": "e2b7b93357a26bda4b62f06b1769c02c2b783822f5a7ba0b02d12d65383e8ae8",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/week_review_2026_10_08/flux_gradient_response/run_stability_main/results.json"
+  ]
+}

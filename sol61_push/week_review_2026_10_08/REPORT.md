@@ -179,3 +179,7 @@ The original `checks.py`, `contract.json` and `run_main/` preserve a 60-second s
 ## Continuation
 
 The [variational response continuation](variational_response/REPORT.md) derives a sharp minimum-gradient bound, a nearby explicitly selected interpolation law, the exact 28/27 gradient-energy comparison for the quadrature state, and a direct-energy obstruction. The vacuum normalization remains open.
+
+The [critical spinor continuation](critical_spinor_response/REPORT.md) supplies a proposed analytic source-coupled parent for deep MOND, derives its exact spherical mass correction and finite-shell threshold, checks a local dynamical sector, and proves a trial-state obstruction for a specified relaxed fluctuation model. Critical tuning, full interpolation, and the vacuum coefficient remain unresolved.
+
+The [flux-gradient continuation](flux_gradient_response/REPORT.md) replaces the spatial term, preserves an exact P2 exterior branch, proves conditional suppression for regular monotone sources, computes matched-source examples, and derives a coercive second variation covering angular perturbations of aligned spherical backgrounds away from zero-field points. The [fifty-step research map](flux_gradient_response/NEXT_50.md) separates the remaining mathematical, physical, observational and vacuum-normalization obligations.

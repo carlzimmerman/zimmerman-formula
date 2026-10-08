@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "claim_id": "P2_SPINOR_POTENTIAL_RECONSTRUCTION",
+  "repository": {
+    "commit": "32b3f9a35cd6f85693de14dbe5517ffe42e9b38e",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "-u",
+    "sol61_push/week_review_2026_10_08/critical_spinor_response/p2_checks.py",
+    "--output",
+    "sol61_push/week_review_2026_10_08/critical_spinor_response/run_p2_mutation/results.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact P2 selects a unique local spinor potential up to an additive constant, conditional on this specified parent and epsilon=0.",
+    "coefficient_domain": "Exact symbolic real algebra, positive q h a0",
+    "conventions": "U prime(q)=h D; g=h q; D nonnegative; U(0)=0.",
+    "inputs": [
+      "sol61_push/week_review_2026_10_08/critical_spinor_response/p2_checks.py"
+    ],
+    "bounds": {
+      "symbolic_only": true
+    },
+    "non_claims": [
+      "Reconstruction does not select the potential physically",
+      "No vacuum normalization",
+      "Finite epsilon not covered"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-08T17:05:44.596895+00:00",
+    "runtime_seconds": 0.393832,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 200000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/week_review_2026_10_08/critical_spinor_response/p2_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/critical_spinor_response/p2_checks.py",
+      "sha256": "9faeb93b57ddafeac128bde048ae2b5b48a870e6dfc8391cf281ad933d0deb1c",
+      "sha256_after": "9faeb93b57ddafeac128bde048ae2b5b48a870e6dfc8391cf281ad933d0deb1c"
+    }
+  ],
+  "output_directory": "sol61_push/week_review_2026_10_08/critical_spinor_response/run_p2_mutation",
+  "declared_results": [
+    "sol61_push/week_review_2026_10_08/critical_spinor_response/run_p2_mutation/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/week_review_2026_10_08/critical_spinor_response/run_p2_mutation/stdout.txt",
+      "sha256": "617bfc564fb31f9ea40fcd70a65a6cdf3a8d77cb7575bf2a1468c1641b561245",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/critical_spinor_response/run_p2_mutation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/week_review_2026_10_08/critical_spinor_response/run_p2_mutation/results.json",
+      "sha256": "e48e04839fce4d93025ae89b7f7c4df2ae7f69c2d0fc602a4f43031ebf2610c1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
