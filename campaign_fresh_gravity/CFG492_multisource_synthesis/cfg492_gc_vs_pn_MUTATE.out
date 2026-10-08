@@ -1,0 +1,88 @@
+====================================================================================================================
+CFG492 B -- same-galaxy GC vs PN test of the SLUGGS outer deficit   *** MUTATE: shuffled PN <-> galaxy pairing ***
+====================================================================================================================
+PN galaxies with a SLUGGS centre: ['NGC821', 'NGC1023', 'NGC3377', 'NGC3608', 'NGC4374', 'NGC4494', 'NGC4564', 'NGC5846']
+
+C3 PN centring (median PN radius-vector offset / R_e; clipped mean v - v_sys):
+   NGC821   N_raw  127  N_clean  126  centre offset 0.12 R_e  dv   -17.3 km/s  ok
+   NGC1023  N_raw  204  N_clean  180  centre offset 0.32 R_e  dv   +14.3 km/s  ok
+   NGC3377  N_raw  154  N_clean  151  centre offset 0.26 R_e  dv   +22.4 km/s  ok
+   NGC3608  N_raw   91  N_clean   88  centre offset 0.63 R_e  dv   -27.0 km/s  ok
+   NGC4374  N_raw  454  N_clean  452  centre offset 0.05 R_e  dv   +19.1 km/s  ok
+   NGC4494  N_raw  267  N_clean  257  centre offset 0.21 R_e  dv    +4.4 km/s  ok
+   NGC4564  N_raw   49  N_clean   49  centre offset 0.72 R_e  dv   +11.9 km/s  ok
+   NGC5846  N_raw  124  N_clean  124  centre offset 0.19 R_e  dv   -13.4 km/s  ok
+
+Paired galaxies (>= 30 clean GCs and PNe, >= 2 bins each): ['NGC821', 'NGC1023', 'NGC3377', 'NGC4374', 'NGC4494', 'NGC5846']  (N = 6)
+PN-only galaxies (no usable GC offset): ['NGC3608', 'NGC4564']
+
+--------------------------------------------------------------------------------------------------------------------
+FOOTING canonical (a0 = 9.36e-11)
+--------------------------------------------------------------------------------------------------------------------
+  galaxy   logM_law  N_GC  O_GC +- boot   N_PN  O_PN +- boot   Delta=PN-GC   R_PN range kpc   R_GC range kpc
+  NGC821     10.98    68  +0.142 +- 0.045   124  +0.273 +- 0.035   +0.132          3.9- 15.1         7.2- 19.6
+  NGC1023    10.79   113  +0.104 +- 0.030   126  +0.073 +- 0.031   -0.031          1.6- 11.6         2.6- 17.2
+  NGC3377    10.33   124  +0.064 +- 0.024   180  +0.337 +- 0.020   +0.273          1.9- 12.5         2.8- 18.8
+  NGC4374    11.52    41  +0.201 +- 0.075   151  -0.275 +- 0.039   -0.476          9.0- 60.4         8.3- 22.1
+  NGC4494    10.87   105  -0.103 +- 0.037   452  +0.360 +- 0.020   +0.462          1.6-  9.2         3.3- 20.4
+  NGC5846    11.47   210  +0.213 +- 0.021   257  -0.147 +- 0.022   -0.360          8.7- 46.9         8.0- 53.6
+  NGC3608    10.86   --      --            88  +0.150 +- 0.049   (PN only)       5.0- 21.2
+  NGC4564    10.54   --      --            49  +0.042 +- 0.036   (PN only)       2.5-  6.6
+
+  M_GC (paired) = +0.1036 +- 0.0473
+  M_PN (paired) = +0.1036 +- 0.1089  (galaxy-to-galaxy 0.1089, inverse-variance 0.0102)  -> +0.95 sigma
+  D = mean(PN - GC) = -0.0000 +- 0.1486  (galaxy-to-galaxy 0.1486, inverse-variance 0.0166)  -> -0.00 sigma ;  rms(Delta) = 0.3324
+  frozen rule -> UNDECIDED
+
+  reported rows (not decision rows), mean over the paired galaxies:
+    O_PN_bp05      : +0.1346 (N 6)
+    O_PN_bm05      : +0.0881 (N 6)
+    O_PN_all       : +0.0998 (N 6)
+    O_GC_alabi     : +0.0909  (gamma [2.88, 2.89, 3.2, 2.56, 2.87, 2.59])
+    centrals ['NGC4374', 'NGC5846']: O_GC +0.207, O_PN -0.211
+    non-centrals ['NGC821', 'NGC1023', 'NGC3377', 'NGC4494']: O_GC +0.052, O_PN +0.261
+    Pearson r(O_GC, O_PN) across galaxies: -0.78 (N 6; descriptive)
+
+--------------------------------------------------------------------------------------------------------------------
+FOOTING alt (a0 = 1.13e-10)
+--------------------------------------------------------------------------------------------------------------------
+  galaxy   logM_law  N_GC  O_GC +- boot   N_PN  O_PN +- boot   Delta=PN-GC   R_PN range kpc   R_GC range kpc
+  NGC821     10.96    68  +0.134 +- 0.047   124  +0.267 +- 0.036   +0.133          3.9- 15.1         7.2- 19.6
+  NGC1023    10.78   113  +0.091 +- 0.034   126  +0.063 +- 0.031   -0.028          1.6- 11.6         2.6- 17.2
+  NGC3377    10.30   124  +0.057 +- 0.025   180  +0.330 +- 0.019   +0.273          1.9- 12.5         2.8- 18.8
+  NGC4374    11.51    41  +0.189 +- 0.070   151  -0.287 +- 0.039   -0.476          9.0- 60.4         8.3- 22.1
+  NGC4494    10.85   105  -0.111 +- 0.038   452  +0.354 +- 0.020   +0.465          1.6-  9.2         3.3- 20.4
+  NGC5846    11.44   210  +0.203 +- 0.022   257  -0.155 +- 0.021   -0.359          8.7- 46.9         8.0- 53.6
+  NGC3608    10.83   --      --            88  +0.142 +- 0.047   (PN only)       5.0- 21.2
+  NGC4564    10.52   --      --            49  +0.035 +- 0.039   (PN only)       2.5-  6.6
+
+  M_GC (paired) = +0.0938 +- 0.0469
+  M_PN (paired) = +0.0953 +- 0.1098  (galaxy-to-galaxy 0.1098, inverse-variance 0.0100)  -> +0.87 sigma
+  D = mean(PN - GC) = +0.0015 +- 0.1489  (galaxy-to-galaxy 0.1489, inverse-variance 0.0168)  -> +0.01 sigma ;  rms(Delta) = 0.3330
+  frozen rule -> UNDECIDED
+
+  reported rows (not decision rows), mean over the paired galaxies:
+    O_PN_bp05      : +0.1257 (N 6)
+    O_PN_bm05      : +0.0802 (N 6)
+    O_PN_all       : +0.0930 (N 6)
+    O_GC_alabi     : +0.0809  (gamma [2.88, 2.89, 3.2, 2.56, 2.87, 2.59])
+    centrals ['NGC4374', 'NGC5846']: O_GC +0.196, O_PN -0.221
+    non-centrals ['NGC821', 'NGC1023', 'NGC3377', 'NGC4494']: O_GC +0.043, O_PN +0.254
+    Pearson r(O_GC, O_PN) across galaxies: -0.77 (N 6; descriptive)
+
+--------------------------------------------------------------------------------------------------------------------
+CHECKS
+--------------------------------------------------------------------------------------------------------------------
+  [PASS] C2 general-density Jeans solver (rho = r^-3) reproduces the power-law solver within 0.002 dex
+         max |diff| = 0.00e+00 dex
+  [PASS] C3 every PN catalogue centred on its galaxy (median offset < 1 R_e, |dv| < 150 km/s)
+         see table above
+  [PASS] C4 >= 5 paired galaxies with >= 30 clean PNe and >= 2 bins
+         N_paired = 6
+  [PASS] M1 (canonical) shuffled pairing raises rms(Delta) above the true pairing
+         true 0.0698 -> shuffled 0.3324
+  [PASS] M1 (alt) shuffled pairing raises rms(Delta) above the true pairing
+         true 0.0700 -> shuffled 0.3330
+
+VERDICT (frozen rules, both footings): UNDECIDED   [canonical: UNDECIDED; alt: UNDECIDED]
+5/5 checks pass

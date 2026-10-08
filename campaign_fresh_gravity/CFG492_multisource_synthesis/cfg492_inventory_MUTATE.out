@@ -1,0 +1,136 @@
+==============================================================================================================
+CFG492 A -- multi-source inventory and cross-match (on-disk only)   *** MUTATE: +60 arcsec Dec shift ***
+==============================================================================================================
+
+HIGH-Z catalogues read (entries):
+  KMOS3D_cat      785 entries (   785 with coordinates)  [M]  KMOS3D catalogue (Wisnioski+19), positions, z, SED M*
+  KMOS3D_fit      192 entries (   192 with coordinates)  [K_Ha-KMOS]  our KMOS3D cube fits (CFG270; 192 discs, arctan V(r), PSF-limited)
+  SINS_AO          38 entries (    38 with coordinates)  [K_Ha-SINF-AO,M]  SINS/zC-SINF AO sample (Foerster Schreiber+18) + our AO profiles
+  SINS2009         47 entries (    17 with coordinates)  [K_Ha-SINF]  SINS seeing-limited dynamics (Foerster Schreiber+09)
+  PHIBSS13         73 entries (    56 with coordinates)  [G_CO,M,K_CO]  PHIBSS 2013 (Tacconi+13) CO(3-2) gas, M*, CO-based V_rot
+  PHIBSS2          61 entries (    61 with coordinates)  [G_CO,M]  PHIBSS2 z 0.5-0.8 (Freundlich+19) CO(2-1) gas, M*, HST sizes, integrated CO FWHM
+  NOEMA3D          10 entries (    10 with coordinates)  [K_CO,G_CO,M]  NOEMA3D (Jolly+26) CO rotation curves + resolved CO/[CI]/dust + M*
+  RC100           100 entries (    72 with coordinates)  [K_model]  RC100 (Nestor Shachar+23) V_c(R_e), f_DM, M_bar (KMOS3D/SINS/LUCI/NOEMA data; model values)
+  RC41             41 entries (    27 with coordinates)  [K_model,M]  RC41 (Price+21) model fits; gas mixes measured CO and scaling relations (no flag)
+  Genzel17          6 entries (     6 with coordinates)  [K_Ha-deep]  Genzel+17 six deep outer curves (digitised CFG400)
+  Lelli23           2 entries (     1 with coordinates)  [K_CO,G_CO]  Lelli+23 ALMA CO/[CI] rotation curves + mass models
+  KURVS            22 entries (    22 with coordinates)  [K_Ha-KMOS-deep,M]  KURVS-CDFS (Puglisi+23) deep Ha curves to 6 R_d
+  ALPAKA           28 entries (    28 with coordinates)  [K_CO,G_CO,M]  ALPAKA I (Rizzo+23) ALMA CO/[CI] curves, L' (gas needs alpha)
+  CRISTAL          32 entries (    32 with coordinates)  [K_CII,M]  ALMA-CRISTAL (z 4-6) [CII] kinematics, M*
+  MSA3D            30 entries (    30 with coordinates)  [K_Ha-JWST,M]  MSA-3D JWST slit-stepping Ha kinematics
+  KROSS           586 entries (   586 with coordinates)  [K_Ha-KMOS,M]  KROSS (Harrison+17 v2) Ha KMOS z~0.9
+  GOODSALMA2       88 entries (    88 with coordinates)  [G_dust,M]  GOODS-ALMA 2.0 1.1 mm continuum (dust -> gas), M*
+  ACE              25 entries (    25 with coordinates)  [G_CO,M]  ACE z~2.3 COSMOS ALMA CO(3-2) + dust + M*
+  Bourne19         10 entries (    10 with coordinates)  [G_CO,M]  Bourne+19 z~1 [CI]+CO+dust, M*
+  RO23              5 entries (     5 with coordinates)  [K_CII,G_CO]  Roman-Oliveira+23 [CII] discs z~4.3
+  MIGHTEE_hz       12 entries (    12 with coordinates)  [G_HI,K_HI-width,M]  MIGHTEE-HI z 0.25-0.5 HI detections
+  ALMA_arch      3034 entries (  3034 with coordinates)  [G_cov]  ALMA archive rows (CFG403 metadata; COVERAGE of a line/continuum, not a measured gas mass)
+  coordinate edges (<= 1.0 arcsec, |dz| <= 0.01(1+z)): 3
+
+HIGH-Z overlap counts:
+  objects in >= 2 catalogues (ALMA archive coverage not counted)        : 276
+  >= 3 catalogues                                                       : 43
+  >= 4 catalogues                                                       : 15
+  K (any kinematics) + measured gas + M*                                : 10
+  K observed (not model-only) + measured gas + M*                       : 10
+  K + ALMA archive coverage only (gas not yet measured)                 : 0
+  two independent kinematic tracers (CO/[CII] and Ha)                   : 13
+  AO/JWST inner + deep outer                                            : 4
+  AO/JWST inner + deep outer + measured gas (CFG385 specification)      : 2
+  deep outer + measured gas + M*                                        : 2
+
+HIGH-Z objects in >= 3 catalogues, or with K + measured gas + M*:
+  z 2.211  | BX610|Q2343-BX610                                            | ALPAKA|PHIBSS13|RC100|RC41|SINS2009|SINS_AO | K:CO|Ha-SINF|Ha-SINF-AO|model G:meas
+  z 1.507  | D3a 6397|D3a-6397|D3a_6397|Deep3a-6397                       | Genzel17|RC100|RC41|SINS2009|SINS_AO | K:Ha-SINF|Ha-SINF-AO|Ha-deep|model G:-
+  z 2.172  | BX389|Q2343-BX389                                            | PHIBSS13|RC100|RC41|SINS2009|SINS_AO | K:CO|Ha-SINF|Ha-SINF-AO|model G:-
+  z 2.196  | ZC406690|zC 406690|zC406690|zC_406690                        | Genzel17|PHIBSS13|RC100|RC41|SINS_AO | K:CO|Ha-SINF-AO|Ha-deep|model G:meas
+  z 2.24   | ZC400569|zC 400569|zC-400569|zC_400569                       | Genzel17|Lelli23|RC100|RC41|SINS_AO | K:CO|Ha-SINF-AO|Ha-deep|model G:meas
+  z 2.258  | BX482|Q2346-BX482                                            | PHIBSS13|RC100|RC41|SINS2009|SINS_AO | K:CO|Ha-SINF|Ha-SINF-AO|model G:meas
+  z 2.383  | D3a 15504|D3a-15504|D3a_15504|Deep3a-15504                   | Genzel17|RC100|RC41|SINS2009|SINS_AO | K:Ha-SINF|Ha-SINF-AO|Ha-deep|model G:-
+  z 0.853  | COS4 01351|COS4_01351                                        | Genzel17|KMOS3D_cat|RC100|RC41 | K:Ha-deep|model G:-
+  z 1.614  | GS4 43501|GS4_43501                                          | Genzel17|KMOS3D_cat|RC100|RC41 | K:Ha-deep|model G:-
+  z 2.224  | K20 ID7|K20-ID7|K20_ID7                                      | RC100|RC41|SINS2009|SINS_AO | K:Ha-SINF|Ha-SINF-AO|model G:-
+  z 2.235  | K20 ID6|K20-ID6|K20_ID6                                      | RC100|RC41|SINS2009|SINS_AO | K:Ha-SINF|Ha-SINF-AO|model G:-
+  z 2.308  | COS4 02672|COS4_02672                                        | KMOS3D_cat|KMOS3D_fit|RC100|RC41 | K:Ha-KMOS|model G:-
+  z 2.387  | D3a 6004|D3a-6004|D3a_6004|Deep3a-6004                       | RC100|RC41|SINS2009|SINS_AO | K:Ha-SINF|Ha-SINF-AO|model G:-
+  z 2.432  | GS4 37124|GS4_37124                                          | KMOS3D_cat|KMOS3D_fit|RC100|RC41 | K:Ha-KMOS|model G:-
+  z 2.451  | GS4 42930|GS4_42930                                          | KMOS3D_cat|KMOS3D_fit|RC100|RC41 | K:Ha-KMOS|model G:-
+  z 0.76   | GS4 13143|GS4_13143                                          | KMOS3D_cat|RC100|RC41 | K:model G:-
+  z 0.822  | GS4 03228|GS4_03228                                          | KMOS3D_cat|RC100|RC41 | K:model G:-
+  z 0.831  | GS4 32976|GS4_32976                                          | KMOS3D_cat|RC100|RC41 | K:model G:-
+  z 0.99   | GS4 05881|GS4_05881                                          | KMOS3D_cat|RC100|RC41 | K:model G:-
+  z 1.12   | EGS 13035123|EGS13035123|EGS_13035123                        | PHIBSS13|RC100|RC41 | K:CO|model G:meas
+  z 1.197  | EGS 13004291|EGS13004291|EGS_13004291                        | PHIBSS13|RC100|RC41 | K:CO|model G:meas
+  z 1.23   | EGS 13003805|EGS13003805|EGS_13003805                        | PHIBSS13|RC100|RC41 | K:CO|model G:meas
+  z 1.446  | ZC403741|zC 403741|zC_403741                                 | RC100|RC41|SINS_AO | K:Ha-SINF-AO|model G:-
+  z 1.53   | EGS 13011166|EGS13011166|EGS_13011166                        | PHIBSS13|RC100|RC41 | K:CO|model G:meas
+  z 1.615  | GS4 14152|GS4_14152                                          | KMOS3D_cat|RC100|RC41 | K:model G:-
+  z 2.038  | K20 ID9|K20-ID9|K20_ID9                                      | RC100|RC41|SINS2009 | K:Ha-SINF|model G:-
+  z 2.063  | COS4 10347|COS4_10347                                        | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.097  | COS4 13174|COS4_13174                                        | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.108  | Q2343-BX513                                                  | PHIBSS13|SINS2009|SINS_AO | K:CO|Ha-SINF|Ha-SINF-AO G:meas
+  z 2.122  | GS4 01529|GS4_01529                                          | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.154  | ZC405501|zC 405501|zC_405501                                 | RC100|RC41|SINS_AO | K:Ha-SINF-AO|model G:-
+  z 2.162  | COS4 08775|COS4_08775                                        | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.171  | COS4 05094|COS4_05094                                        | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.171  | SSA22 MD41|SSA22_MD41|SSA22a-MD41                            | RC100|RC41|SINS2009 | K:Ha-SINF|model G:-
+  z 2.177  | U4 36568|U4_36568                                            | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.182  | ZC407302|zC 407302|zC_407302                                 | RC100|RC41|SINS_AO | K:Ha-SINF-AO|model G:-
+  z 2.191  | U4 20704|U4_20704                                            | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.192  | COS4 05433|COS4_05433                                        | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.225  | U4 13704|U4_13704                                            | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.246  | U3 10584|U3_10584                                            | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.331  | Q1623-BX599                                                  | PHIBSS13|SINS2009|SINS_AO | K:CO|Ha-SINF|Ha-SINF-AO G:meas
+  z 2.441  | COS4 06079|COS4_06079                                        | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+  z 2.469  | COS4 19753|COS4_19753                                        | KMOS3D_cat|KMOS3D_fit|RC100 | K:Ha-KMOS|model G:-
+
+LOCAL (SPARC reference, 175 galaxies): matches per catalogue (name, or <= 30 arcsec with |dcz| <= 300 km/s)
+  SPARC x DiskMass_sample :    1   [M_phot]  DiskMass parent sample (Bershady+10): sample/photometry; NO dynamical disc mass on disk
+  SPARC x DMS_XI          :    0   [K_Ha]  DiskMass XI (Swaters+25) Ha velocity fields: V_rot, inclination, iiTF
+  SPARC x LITTLE_THINGS   :    3   [K_HI,G_HI,M]  LITTLE THINGS (Oh+15) HI rotation curves + mass models
+  SPARC x DiTeodoro23     :    1   [K_HI,G_HI,M]  Di Teodoro+23 massive spirals HI curves
+  SPARC x xGASS           :    0   [G_HI,M]  xGASS (Catinella+18) HI masses, M*
+  SPARC x ALFALFA_SDSS    :    0   [G_HI,K_HI-width,M]  ALFALFA a100 x SDSS (Haynes+18, Durbala+20): HI mass, W50, M*
+  SPARC x WALLABY_kin     :    0   [K_HI,G_HI]  WALLABY DR2 kinematic models (HI rotation curves)
+  SPARC x MIGHTEE_DR1     :    0   [G_HI,K_HI-width,M]  MIGHTEE-HI DR1 COSMOS catalogue (widths, M_HI, M*)
+  SPARC x CF4_sesame      :  175   [Dist]  Cosmicflows-4 resolver positions for SPARC names (distance table in table2.dat)
+  SPARC x UNGC            :   36   [Dist,M,G_HI]  Updated Nearby Galaxy Catalog (D <= 11 Mpc): TRGB/Cepheid distances, L_K, M_HI
+  SPARC x S4G             :   76   [M_phot]  S4G 3.6um morphology (Buta+15)
+  SPARC x ATLAS3D         :    0   [K_STAR,M]  ATLAS3D JAM M/L, SPS M/L (early types)
+  SPARC x KiDS_bright     :    0   [L_stack]  KiDS-1000 bright galaxy sample (lens positions; per-object lensing S/N << 1)
+  SPARC galaxies with >= 1 independent-kinematics/gas/mass source beyond SPARC (CF4/S4G/KiDS not counted): 37
+  SPARC galaxies with an INDEPENDENT rotation curve (DMS XI / LITTLE THINGS / Di Teodoro / WALLABY): 4 -> ['DDO154', 'DDO168', 'NGC2366', 'UGC02885']
+  SPARC galaxies with KiDS lens positions: 0 (per-object weak lensing is not measurable; FP21: 2,036 stacked z~0.026 lenses gave S/N 0.1)
+  SPARC x DiskMass parent sample: 1 -> ['UGC07690'] (the stellar-dispersion disc masses, Martinsson+13, are NOT on disk)
+
+EARLY TYPES (by NGC number): catalogue sizes SLUGGS_GC 27, PN_Coccato09 6, PN_N1023_N08 1, PN_N3379_S06 2, PN_N4494_N09 1, Xray_Humphrey06 7, ATLAS3D_JAM 231, Lx_OSullivan01 362, HI_denHeijer15 15
+  GC + PN (two independent outer tracers)   :   8 -> ['NGC821', 'NGC1023', 'NGC3377', 'NGC3608', 'NGC4374', 'NGC4494', 'NGC4564', 'NGC5846']
+  GC + PN + ATLAS3D JAM (inner anchor)      :   8 -> ['NGC821', 'NGC1023', 'NGC3377', 'NGC3608', 'NGC4374', 'NGC4494', 'NGC4564', 'NGC5846']
+  GC + X-ray (Humphrey)                     :   3 -> ['NGC720', 'NGC1407', 'NGC4649']
+  GC + X-ray + JAM                          :   1 -> ['NGC4649']
+  PN + X-ray                                :   0 -> []
+  GC + PN + X-ray                           :   0 -> []
+  PN + JAM (PN-only law test)               :  10 -> ['NGC821', 'NGC1023', 'NGC3377', 'NGC3379', 'NGC3384', 'NGC3608', 'NGC4374', 'NGC4494', 'NGC4564', 'NGC5846']
+  HI ring + JAM (+GC)                       :  15 -> ['NGC2685', 'NGC2824', 'NGC2859', 'NGC2974', 'NGC3522', 'NGC3626', 'NGC3838', 'NGC3941', 'NGC3945', 'NGC3998', 'NGC4203', 'NGC4262', 'NGC4278', 'NGC5582', 'NGC6798']
+
+CLUSTERS (X-COP reference: 13 entries in xcop_r500_ettori2019.json = the 12 X-COP clusters + Hydra A): which other sources supply the same cluster
+  (groener_<Method>: literature compilation (Groener+16) entry by method; WINGS: spectroscopic member count (Cava+09);
+   PSZ2/eRASS1: coordinate match <= 3 arcmin, |dz| <= 0.01; X-COP itself supplies the hydrostatic X-ray + SZ-pressure mass profile)
+  A85      z 0.0555 | PSZ2_SZ(1.84); groener_CM(1); groener_LOSVD(1); groener_X-ray(2)
+  A644     z 0.0704 | PSZ2_SZ(1.53); eRASS1_X(1.6); groener_X-ray(3)
+  A1644    z 0.0473 | PSZ2_SZ(1.61); WINGS_members(266); eRASS1_X(0.36); groener_X-ray(1)
+  A1795    z 0.0622 | PSZ2_SZ(0.94); WINGS_members(91); groener_LOSVD(1); groener_X-ray(5)
+  A2029    z 0.0773 | groener_X-ray(6)
+  A2142    z 0.0909 | PSZ2_SZ(0.79); groener_CM(1); groener_LOSVD(2); groener_WL(2); groener_X-ray(1)
+  A2255    z 0.0809 | PSZ2_SZ(1.77); groener_CM(1); groener_LOSVD(1)
+  A2319    z 0.0557 | PSZ2_SZ(2.0); groener_X-ray(2)
+  A3158    z 0.0597 | PSZ2_SZ(2.67); WINGS_members(278); eRASS1_X(1.4); groener_LOSVD(2); groener_X-ray(1)
+  A3266    z 0.0589 | WINGS_members(266); eRASS1_X(0.98); groener_X-ray(2)
+  HydraA   z 0.0538 | groener_WL(1); groener_X-ray(1)
+  RXC1825  z 0.0650 | PSZ2_SZ(1.08)
+  ZW1215   z 0.0766 | eRASS1_X(0.82); groener_CM(1); groener_X-ray(1)
+  X-COP x lensing (WL/SL)                                : 2
+  X-COP x galaxy dynamics (LOSVD/caustic/WINGS members)  : 8
+  X-COP x lensing x dynamics                             : 1
+
+SUMMARY JSON written.
