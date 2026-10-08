@@ -1,6 +1,6 @@
 # The Crispy Fried Chicken Status Board
 
-*Where the theory stands, as of 5 October 2026, in one picture.*
+*Where the theory stands, as of 8 October 2026, in one picture.*
 
 The theory makes one claim: the acceleration scale where galaxies stop obeying Newton, a₀, is set by the density of dark energy.
 
@@ -48,7 +48,7 @@ This is the full field theory underneath the law: general relativity plus a pref
   - weak lensing (KiDS);
   - clusters, including the Bullet Cluster, which needs the cold mass;
   - Andromeda's and the Local Volume's dwarfs.
-- **Fails: the Milky Way's ultra-faint dwarfs.** They move about 2× faster than the law predicts, at 3.8σ, which is the generous end of the estimate. Every data-side explanation has been tested and fails: binary stars, stellar masses, the Milky Way's pull, and tides. Fixing them needs new theory.
+- **Conditional: the Milky Way's ultra-faint dwarfs.** They move about 2× faster than the law predicts (3.8σ at the generous end), and every data-side explanation fails. Post-reionisation cold accretion onto these fossils (CFG344) removes the offset, but only in a narrow window and with ΛCDM-calibrated assembly assumed.
 - **Not decidable yet: the massive ellipticals.** They are about 20% too fast, but once measured tracers are used the gap is not significant. The four galaxies at the centres of groups and clusters still disagree.
 
 ## Column 3 · Cosmology, and does a₀ change over cosmic time?
@@ -59,7 +59,7 @@ The theory's sharpest prediction is that **a₀ stays constant**. Its main rival
 
 - **Not decidable yet: a₀ over time.** The two lines separate at redshift 2–5. At those redshifts, though, the uncertainty in how much gas each galaxy holds is larger than the gap between the lines (the "calibration wall", PAPER38). No public data set can settle this today.
 - **Open: Gaia DR4 wide binaries** (data release 2 December 2026). This test is pre-registered and frozen: PAPER35 predicts exactly Newtonian behaviour.
-- **Pass: structure growth, candidate B.** The cosmic web is not gravitationally bound, so B's switch stays off there. Large-scale growth therefore matches ΛCDM's, and Planck's CMB lensing is reproduced. This also means the test cannot tell B apart from ΛCDM.
+- **Conditional: structure growth, candidate B.** Simulated in a universe-in-a-box (CFG361 onward), switching the law on everywhere makes small-scale structure 15–17% too clumpy. The fix has no hand-set numbers. The phantom is cold fluid, so the law stops where each halo's own cold fluid runs out. That cold fluid is drawn from the halo's own turnaround sphere, so mass is conserved halo by halo. With this rule, growth passes at 512³ resolution on both a₀ values and with a₀ tracking dark energy (3–4% against an allowed 10%; CFG424–439). The condition: in these runs the cold fluid is bookkeeping, not simulated particles, and the settling mechanism is not yet derived from an action.
 - **Fails: structure growth, chassis alone.** Without B's switch, all matter feels the MOND boost and structure grows about 7× too fast, which CMB lensing rules out. This variant is dead; candidate B is the live one.
 
 ## Column 4 · The deep "why"
