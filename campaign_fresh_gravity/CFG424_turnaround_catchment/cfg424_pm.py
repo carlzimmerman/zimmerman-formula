@@ -80,7 +80,7 @@ ACC_UNIT = 1e10 * h / MPC                       # H0^2 (Mpc/h) in m/s^2
 A0 = {"canonical": 9.3603e-11, "alt": 1.1312e-10}
 W0, WA = -0.838, -0.62                          # DESI DR2 CPL (chart_a0z_one.py), A0-DE only
 L = 200.0; ZI = 49.0; AI = 1.0 / (1 + ZI); SEED = int(os.environ.get('CFG424_SEED', '359')); NSEED = int(os.environ.get('CFG424_NSEED', '256'))
-EPS = 0.077
+EPS = float(os.environ.get("CFG424_EPS", "0.077"))
 E = lambda a: math.sqrt(Om / a ** 3 + OL)
 
 def a0_code(a, branch, foot):
@@ -464,7 +464,7 @@ def run(switch, branch, foot, npg, amp=1.0):
     except OSError:
         pass
     os.makedirs(WORK, exist_ok=True)
-    tag = f"{switch}_{'TA' if RC == 0 else f'Rc{RC:g}'}{'_NOCOMP' if NOCOMP else ''}_{MIX}_MASSCONS_fret{F423:g}_{branch}_{foot}_N{npg}" + (f"_seed{SEED}" if SEED != 359 else "") + ("_MUTATE" if MUTATE else "")
+    tag = f"{switch}_{'TA' if RC == 0 else f'Rc{RC:g}'}{'_NOCOMP' if NOCOMP else ''}_{MIX}_MASSCONS_fret{F423:g}_{branch}_{foot}_N{npg}" + (f"_seed{SEED}" if SEED != 359 else "") + (f"_eps{EPS:g}" if EPS != 0.077 else "") + ("_MUTATE" if MUTATE else "")
     mesh = Mesh(npg); pmesh = mesh; dta = dta_table(); t0 = time.time()
     pos, mom = initial_conditions(npg, amp)
     aa = step_grid(); snaps = {0.5: "z1", 2 / 3: "z0.5", 1.0: "z0"}
