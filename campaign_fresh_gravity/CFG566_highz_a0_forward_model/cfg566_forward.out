@@ -1,0 +1,75 @@
+CFG566: forward-model the committed high-z implied-a0 estimators (CFG270 KMOS3D PT1; CFG303 RC100 native route B quartiles) under three truths:
+(A) a0 tracking rho_DE (CFG223 M-DEC), (B) flat a0, (C) LCDM with feedback (CFG565 machinery: Moster13(z) + DC14 + Dutton-Maccio c(M,z)).
+Frozen criteria: FROZEN_CRITERIA.md (379260732), committed before this script.  kappa = 1/2 FITTED; cold mass required, no DM particle; not theory closed.
+
+CONTROLS
+  [PASS] K1 CFG270 PT1 reproduced from its inputs (72 T1 fits): s* = 2.4414 (root) vs committed 2.4413
+    RC100 B Q1: n 25, z_med 0.81, s* 1.4834 (committed 1.4834)
+    RC100 B Q2: n 22, z_med 1.36, s* 1.0143 (committed 1.0143)
+    RC100 B Q3: n 26, z_med 2.01, s* 0.8418 (committed 0.8418)
+    RC100 B Q4: n 27, z_med 2.26, s* NO ROOT (committed NO ROOT)
+  [PASS] K2 RC100 native B Q1-Q4 reproduced through CFG223 analyse: see above
+  [PASS] K4 CFG565 K2: Moster z-terms vanish at z = 0 (exec'd code): moster(12, 0) = 10.534979
+
+  [PASS] K3 noiseless injection on R1: A(canonical, G0) returns median a0(z_i)/a0C within 0.03 dex; B returns 1 to 1e-6: A 0.8495 vs 0.8495; B 1.000000
+
+R1 KMOS3D PT1 [G0 no gas]: committed log s* = +0.388 (s* = 2.441)
+    A_can : median s* 0.611 (16-84% 0.001-4.74; 2.3-97.7% 0.001-28.5); floor frac 0.20; p_lo 0.7300, p_hi 0.2700
+    A_alt : median s* 0.862 (16-84% 0.0126-5.08; 2.3-97.7% 0.001-28.7); floor frac 0.15; p_lo 0.6980, p_hi 0.3020
+    B_can : median s* 0.771 (16-84% 0.001-5.39; 2.3-97.7% 0.001-37.5); floor frac 0.17; p_lo 0.7000, p_hi 0.3000
+    B_alt : median s* 1.06 (16-84% 0.0324-6.89; 2.3-97.7% 0.001-37.6); floor frac 0.14; p_lo 0.6650, p_hi 0.3350
+    C     : median s* 1.1 (16-84% 0.0909-6.94; 2.3-97.7% 0.001-40.1); floor frac 0.09; p_lo 0.6640, p_hi 0.3360
+
+R1 KMOS3D PT1 [G1 B2 scaling gas]: committed log s* = +0.388 (s* = 2.441)
+    A_can : median s* 8.28 (16-84% 1.57-39.7; 2.3-97.7% 0.286-199); floor frac 0.00; p_lo 0.2320, p_hi 0.7680
+    A_alt : median s* 9.24 (16-84% 1.66-43.9; 2.3-97.7% 0.247-202); floor frac 0.00; p_lo 0.2090, p_hi 0.7910
+    B_can : median s* 9.42 (16-84% 1.72-43; 2.3-97.7% 0.31-274); floor frac 0.00; p_lo 0.2290, p_hi 0.7710
+    B_alt : median s* 9.89 (16-84% 1.93-52.9; 2.3-97.7% 0.328-236); floor frac 0.00; p_lo 0.2020, p_hi 0.7980
+    C     : median s* 10.2 (16-84% 1.99-49.1; 2.3-97.7% 0.355-241); floor frac 0.00; p_lo 0.1900, p_hi 0.8100
+
+R2 RC100 B Q1: committed log s* = +0.171 (s* = 1.483)
+    A_can : median s* 0.972 (16-84% 0.205-2.72; 2.3-97.7% 0.001-6.49); floor frac 0.06; p_lo 0.6470, p_hi 0.3530
+    A_alt : median s* 1.26 (16-84% 0.318-3.27; 2.3-97.7% 0.001-7.54); floor frac 0.05; p_lo 0.5660, p_hi 0.4340
+    B_can : median s* 0.944 (16-84% 0.198-2.72; 2.3-97.7% 0.001-5.74); floor frac 0.07; p_lo 0.6450, p_hi 0.3550
+    B_alt : median s* 1.28 (16-84% 0.336-2.78; 2.3-97.7% 0.001-6.35); floor frac 0.06; p_lo 0.5730, p_hi 0.4270
+    C     : median s* 0.935 (16-84% 0.224-2.67; 2.3-97.7% 0.001-6.27); floor frac 0.05; p_lo 0.6620, p_hi 0.3380
+
+R3 RC100 B Q2: committed log s* = +0.006 (s* = 1.014)
+    A_can : median s* 0.929 (16-84% 0.069-2.97; 2.3-97.7% 0.001-7.77); floor frac 0.14; p_lo 0.5270, p_hi 0.4730
+    A_alt : median s* 1.24 (16-84% 0.177-3.68; 2.3-97.7% 0.001-9); floor frac 0.09; p_lo 0.4360, p_hi 0.5640
+    B_can : median s* 1.01 (16-84% 0.0957-3.07; 2.3-97.7% 0.001-8.13); floor frac 0.12; p_lo 0.5020, p_hi 0.4980
+    B_alt : median s* 1.26 (16-84% 0.188-3.44; 2.3-97.7% 0.001-8.46); floor frac 0.11; p_lo 0.4270, p_hi 0.5730
+    C     : median s* 0.994 (16-84% 0.0751-3.17; 2.3-97.7% 0.001-7.9); floor frac 0.12; p_lo 0.5050, p_hi 0.4950
+
+R4 RC100 B Q3: committed log s* = -0.075 (s* = 0.842)
+    A_can : median s* 0.81 (16-84% 0.001-3.33; 2.3-97.7% 0.001-8.77); floor frac 0.26; p_lo 0.5130, p_hi 0.4870
+    A_alt : median s* 1.2 (16-84% 0.001-3.92; 2.3-97.7% 0.001-10.1); floor frac 0.21; p_lo 0.4320, p_hi 0.5680
+    B_can : median s* 0.976 (16-84% 0.001-3.65; 2.3-97.7% 0.001-10.1); floor frac 0.23; p_lo 0.4610, p_hi 0.5390
+    B_alt : median s* 1.23 (16-84% 0.001-3.78; 2.3-97.7% 0.001-9.35); floor frac 0.17; p_lo 0.4030, p_hi 0.5970
+    C     : median s* 1.23 (16-84% 0.001-4; 2.3-97.7% 0.001-9.33); floor frac 0.18; p_lo 0.4090, p_hi 0.5910
+
+R5 RC100 B Q4: committed log s* = -3.000 (s* = NO ROOT/floor)
+    A_can : median s* 0.778 (16-84% 0.001-3.64; 2.3-97.7% 0.001-10.6); floor frac 0.29; p_lo 0.2870, p_hi 1.0000
+    A_alt : median s* 1.1 (16-84% 0.001-4.01; 2.3-97.7% 0.001-11.2); floor frac 0.23; p_lo 0.2310, p_hi 1.0000
+    B_can : median s* 1.01 (16-84% 0.001-4.08; 2.3-97.7% 0.001-11.2); floor frac 0.25; p_lo 0.2530, p_hi 1.0000
+    B_alt : median s* 1.23 (16-84% 0.001-4.04; 2.3-97.7% 0.001-10.2); floor frac 0.20; p_lo 0.2040, p_hi 1.0000
+    C     : median s* 1.39 (16-84% 0.001-4.96; 2.3-97.7% 0.001-12.2); floor frac 0.18; p_lo 0.1850, p_hi 1.0000
+
+POWER (|median_A - median_C| / sqrt(hw_A^2 + hw_C^2), A at the less separated footing)
+    R1: 0.06 -> NON-DISCRIMINATING row
+    RC100 Q1: 0.02 -> NON-DISCRIMINATING row
+    RC100 Q2: 0.03 -> NON-DISCRIMINATING row
+    RC100 Q3: 0.00 -> NON-DISCRIMINATING row
+    RC100 Q4: 0.04 -> NON-DISCRIMINATING row
+    R1 DIAGNOSTIC (no recipe, no shared zero-point; not a verdict input): power 0.48; medians A_can 0.893, A_alt 1.04, C 1.32 (hw 0.18 / 0.15 dex)
+
+ROW FLAGS
+    R1: A_can ok, A_alt ok, B_can ok, B_alt ok, C ok
+    RC100 Q1: A_can ok, A_alt ok, B_can ok, B_alt ok, C ok
+    RC100 Q2: A_can ok, A_alt ok, B_can ok, B_alt ok, C ok
+    RC100 Q3: A_can ok, A_alt ok, B_can ok, B_alt ok, C ok
+    RC100 Q4: A_can ok, A_alt ok, B_can ok, B_alt ok, C ok
+
+VERDICT: NON-DISCRIMINATING  (powered rows: none; C disfavoured on none; framework disfavoured on none; neither fits on none)
+HAND ESTIMATES: HE1 MISS (A_can 0.611, C 1.1); HE2 hit (power 0.06); HE3 MISS (diagnostic 0.48)
+CONTROLS: 4/4 pass
