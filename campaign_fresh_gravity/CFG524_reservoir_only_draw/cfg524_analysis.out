@@ -1,0 +1,64 @@
+CFG524: compensation drawn only from the unsettled cold-energy reservoir. Matched S0 controls (reused):
+  L50: cfg521_S0_TA_MIXA_MASSCONS_fretcensus_FLAT_canonical_N256_L50.json sha256 3352c647852d5d19  cfg {'switch': 'S0', 'np': 256, 'mesh': 256, 'L': 50.0, 'rmin': 0.390625, 'z_i': 49.0, 'nsteps': 150, 'amp': 1.0}  box sigma8(z0) 0.8024
+  L25: cfg521_S0_TA_MIXA_MASSCONS_fretcensus_FLAT_canonical_N256_L25.json sha256 3f2c91159291feb2  cfg {'switch': 'S0', 'np': 256, 'mesh': 256, 'L': 25.0, 'rmin': 0.1953125, 'z_i': 49.0, 'nsteps': 150, 'amp': 1.0}  box sigma8(z0) 0.6286
+  L100: cfg521_S0_TA_MIXA_MASSCONS_fretcensus_FLAT_canonical_N256_L100.json sha256 5d6bfff648d9efe1  cfg {'switch': 'S0', 'np': 256, 'mesh': 256, 'L': 100.0, 'rmin': 0.78125, 'z_i': 49.0, 'nsteps': 150, 'amp': 1.0}  box sigma8(z0) 0.8647
+  L200: cfg359_S0_FLAT_canonical_N256.json sha256 37bdffbe934db23a  cfg {'switch': 'S0', 'np': 256, 'mesh': 256, 'L': 200.0, 'rmin': None, 'z_i': 49.0, 'nsteps': 150, 'amp': 1.0}  box sigma8(z0) 0.9064
+  L200_512: cfg411_S0_Rc3_MIXA_FLAT_canonical_N512.json sha256 f3b13f6787df170c  cfg {'switch': 'S0', 'np': 512, 'mesh': 512, 'L': 200.0, 'rmin': None, 'z_i': 49.0, 'nsteps': 150, 'amp': 1.0}  box sigma8(z0) 0.8754
+
+MUTATE (draw SC) reproduction of CFG521 DC-can (|d s8|/s8 and max|dP/P| <= 1e-8 at every snapshot):
+  L50: |d s8|/s8 0.00e+00, max|dP/P| 0.00e+00 -> PASS
+  L25: |d s8|/s8 0.00e+00, max|dP/P| 0.00e+00 -> PASS
+
+L = 50 Mpc/h, 256^3 (CFG521 gate, k <= 4.02)
+  run                     s8      s4  maxdev   (k)   k<=1  P/P_S0 @0.3/1/3/4/8          verdict     q_max  cap(snaps/n/e-rm)  res_frac(z0)  draw-rho/sc-rho(z0)
+  R2-can              1.0210  1.0346  0.3360  3.65 0.1346  1.064/1.104/0.729/0.660/0.589 TENSION    1.019  1/1/1.17e-02  0.566  325.420/289.396
+  R2-alt              1.0229  1.0415  0.2977  3.65 0.1585  1.069/1.151/0.761/0.697/0.617 TENSION    1.035  1/1/2.19e-02  0.581  310.744/304.339
+  R1-can              1.0228  1.0297  0.3781  3.65 0.1158  1.070/1.051/0.680/0.619/0.552 TENSION    2.829  2/4/5.66e-01  0.271  734.301/272.072
+  R1-alt              1.0250  1.0355  0.3366  3.65 0.1340  1.076/1.085/0.721/0.662/0.598 TENSION    2.878  2/3/6.33e-01  0.246  804.550/289.082
+  K1 (f_ret=1, R2)    1.0178  1.0365  0.2824  3.52 0.1505  1.058/1.148/0.769/0.703/0.638 TENSION    1.009  1/1/5.23e-03  0.625  300.376/309.779
+  MUTATE (SC)         1.0138  1.0187  0.3717  3.65 0.0866  1.045/1.023/0.675/0.628/0.613 TENSION    0.429  0/0/5.69e-07  1.000  341.774/282.125
+  Sum e R2-can / K1: z1 0.870  z0.5 0.897  z0 0.957
+  Sum e R1-can / K1: z1 0.864  z0.5 0.847  z0 0.436
+
+L = 25 Mpc/h, 256^3 (CFG521 gate, k <= 8.04)
+  run                     s8      s4  maxdev   (k)   k<=1  P/P_S0 @0.3/1/3/4/8          verdict     q_max  cap(snaps/n/e-rm)  res_frac(z0)  draw-rho/sc-rho(z0)
+  R2-can              1.0255  1.0519  0.5086  7.55 0.2181  1.053/1.163/0.851/0.702/0.466 TENSION    1.342  1/1/2.53e-01  0.494  437.710/361.135
+  R2-alt              1.0279  1.0598  0.4469  7.80 0.2487  1.057/1.187/0.934/0.785/0.529 TENSION    1.605  1/2/2.85e-01  0.497  460.566/396.051
+  R1-can              1.0269  1.0525  0.5240  7.55 0.2170  1.057/1.154/0.813/0.668/0.457 TENSION    3.078  1/2/6.42e-01  0.284  900.544/353.288
+  R1-alt              1.0306  1.0603  0.4610  7.80 0.2466  1.064/1.179/0.895/0.754/0.519 TENSION    3.328  2/2/6.80e-01  0.260  1001.796/386.342
+  K1 (f_ret=1, R2)    1.0223  1.0555  0.4434  7.80 0.2256  1.044/1.188/0.966/0.833/0.561 TENSION    1.483  1/2/2.31e-01  0.537  376.706/404.150
+  MUTATE (SC)         1.0156  1.0297  0.5497  7.80 0.1216  1.033/1.073/0.680/0.585/0.436 TENSION    0.538  0/0/4.55e-07  1.000  370.041/338.799
+  Sum e R2-can / K1: z1 0.676  z0.5 0.790  z0 0.808
+  Sum e R1-can / K1: z1 0.667  z0.5 0.767  z0 0.383
+
+L = 100 Mpc/h, 256^3 (reported, k <= 2.01)
+  run                     s8      s4  maxdev   (k)   k<=1  P/P_S0 @0.3/1/3/4/8          verdict     q_max  cap(snaps/n/e-rm)  res_frac(z0)  draw-rho/sc-rho(z0)
+  R2-can              1.0143  1.0257  0.0906  0.50 0.0906  1.062/1.028/0.866/0.853/0.790 GROWTH OK  0.947  0/0/2.11e-07  0.660  227.476/200.945
+  R1-can              1.0133  1.0174  0.1892  1.95 0.0735  1.056/0.976/0.750/0.747/0.710 TENSION    30.803  2/25/5.17e-01  0.201  556.058/179.434
+
+L = 200 Mpc/h, 256^3 (CFG361 cuts, k <= 1)
+  run                     s8      s4  maxdev   (k)   k<=1  P/P_S0 @0.3/1/3/4/8          verdict     q_max  cap(snaps/n/e-rm)  res_frac(z0)  draw-rho/sc-rho(z0)
+  R2-can              1.0051     nan  0.0474  0.57 0.0474  1.016/1.021/0.922/0.930/  -   GROWTH OK  0.677  0/0/1.53e-06  0.674  96.670/115.197
+  R2-alt              1.0060     nan  0.0546  0.66 0.0546  1.019/1.025/0.932/0.950/  -   GROWTH OK  0.701  0/0/1.60e-07  0.702  87.818/115.916
+  R1-can              1.0033     nan  0.0203  0.57 0.0203  1.011/0.987/0.887/0.886/  -   GROWTH OK  72957926750183100973390369914880.000  3/688/5.18e-01  0.055  378.962/111.258
+  R1-alt              1.0037     nan  0.0249  0.57 0.0249  1.011/1.006/0.931/0.924/  -   GROWTH OK  182663411140441862994062628356096.000  3/959/6.74e-01  0.037  445.533/115.377
+
+Convergence trend: P/P_S0 at k = 4 h/Mpc (z = 0, nearest bin), L = 200 / 100 / 50 / 25
+  old draw (CFG518/521 census can)   0.893 / 0.804 / 0.628 / 0.585
+  R2-can                             0.930 / 0.853 / 0.660 / 0.702
+  R1-can                             0.886 / 0.747 / 0.619 / 0.668
+  R2-alt                             0.950 /   -   / 0.697 / 0.785
+  R1-alt                             0.924 /   -   / 0.662 / 0.754
+  L50 R2-can P/P_S0 at k = 4 by z (z1 / z0.5 / z0): 0.902 / 0.789 / 0.660
+  L50 R1-can P/P_S0 at k = 4 by z (z1 / z0.5 / z0): 0.856 / 0.648 / 0.619
+  L50 MUTATE (SC) P/P_S0 at k = 4 by z (z1 / z0.5 / z0): 0.897 / 0.762 / 0.628
+
+Decision (per draw rule):
+  R2: FAIL
+      L50 R2-can: TENSION; L50 R2-alt: TENSION; L25 R2-can: TENSION; L25 R2-alt: TENSION; L200 R2-can: GROWTH OK; L200 R2-alt: GROWTH OK
+  R1: FAIL
+      L50 R1-can: TENSION; L50 R1-alt: TENSION; L25 R1-can: TENSION; L25 R1-alt: TENSION; L200 R1-can: GROWTH OK; L200 R1-alt: GROWTH OK
+LANE VERDICT (256^3): R2 FAIL, R1 FAIL
+512^3: not run (no draw rule passed at 256^3)
+
+kappa = 1/2 FITTED; footings never pooled; cold energy MASS still required; not theory closed.
