@@ -1,0 +1,41 @@
+CFG515 (e) cluster unsettled fraction, the growth bookkeeping (section 5, argued + arithmetic), and the frozen verdict
+(FROZEN_CRITERIA.md 2bbe75602, sections 3e, 4, 5, 7).
+(e) CFG453's per-object X-COP clusters / Lovisari groups (its script executed read-only up to its T15/T16 block); each object's f_ret
+    from cfg515_lib; settled(<R500) = min(M_ph(<R500), 5.364 M_b / f_ret); u = median(x_T15 - settled/M_b) / median(x_T15) for b = 0,
+    0.3; PASS iff both lie inside the record range [0.433, 0.628] / [0.368, 0.584].  Structurally blind for f_ret <= 1 (declared).
+Verdict: reads cfg515_{kids,levels,sparc,mw}_results{,_MUTATE}.json.
+MUTATE (CFG515_MUTATE=1): f_ret = 1 and 0.01; M1/M2 teeth.
+  [PASS] K2 this lane's fret_of = CFG416's (function text exec'd) on 7001 points; self-consistency residual < 1e-9 (M_b 1e7-3e14): max |diff| 0.0e+00; max residual 6.9e-15
+  (e) [census|canonical] clusters u b0 0.433 / b0.3 0.628 (record (0.433, 0.628)); f_ret clusters 0.86-0.90, groups 0.41-0.67; edge inside R500: 0/7 cl -> PASS
+       budget x_T15 <= 5.364/f_ret (reported): clusters violate 1/7 (b0), 7/7 (b0.3); groups 14/20 (b0), 20/20 (b0.3); group median x_T 10.8 vs supply 10.4
+  (e) [census|alt      ] clusters u b0 0.368 / b0.3 0.584 (record (0.368, 0.584)); f_ret clusters 0.86-0.90, groups 0.41-0.67; edge inside R500: 0/7 cl -> PASS
+       budget x_T15 <= 5.364/f_ret (reported): clusters violate 1/7 (b0), 7/7 (b0.3); groups 14/20 (b0), 20/20 (b0.3); group median x_T 10.8 vs supply 10.4
+  (e) [lo07  |canonical] clusters u b0 0.433 / b0.3 0.628 (record (0.433, 0.628)); f_ret clusters 0.07-0.07, groups 0.07-0.07; edge inside R500: 0/7 cl -> PASS
+       budget x_T15 <= 5.364/f_ret (reported): clusters violate 0/7 (b0), 0/7 (b0.3); groups 0/20 (b0), 0/20 (b0.3); group median x_T 10.8 vs supply 76.6
+  (e) [lo07  |alt      ] clusters u b0 0.368 / b0.3 0.584 (record (0.368, 0.584)); f_ret clusters 0.07-0.07, groups 0.07-0.07; edge inside R500: 0/7 cl -> PASS
+       budget x_T15 <= 5.364/f_ret (reported): clusters violate 0/7 (b0), 0/7 (b0.3); groups 0/20 (b0), 0/20 (b0.3); group median x_T 10.8 vs supply 76.6
+  (e) [hi18  |canonical] clusters u b0 0.433 / b0.3 0.628 (record (0.433, 0.628)); f_ret clusters 0.18-0.18, groups 0.18-0.18; edge inside R500: 0/7 cl -> PASS
+       budget x_T15 <= 5.364/f_ret (reported): clusters violate 0/7 (b0), 0/7 (b0.3); groups 0/20 (b0), 0/20 (b0.3); group median x_T 10.8 vs supply 29.8
+  (e) [hi18  |alt      ] clusters u b0 0.368 / b0.3 0.584 (record (0.368, 0.584)); f_ret clusters 0.18-0.18, groups 0.18-0.18; edge inside R500: 0/7 cl -> PASS
+       budget x_T15 <= 5.364/f_ret (reported): clusters violate 0/7 (b0), 0/7 (b0.3); groups 0/20 (b0), 0/20 (b0.3); group median x_T 10.8 vs supply 29.8
+  [PASS] K8 CFG453 objects (read-only prefix) reproduce its committed median x_T15 (clusters, groups; b = 0, 0.3) to 1e-9: max |diff| 0.0e+00
+
+  GROWTH BOOKKEEPING (per halo of original baryons M_o; present M_now = f_ret M_o). Arithmetic only.
+    f_ret 1.00: settled = 5.364 M_o in both pictures; real edge / PM edge 1.00; share of the settled mass inside the PM edge in the real halo 1.00; CFG416's uncapped phantom inside its census radius = 1.00 x the supply
+    f_ret 0.18: settled = 5.364 M_o in both pictures; real edge / PM edge 2.20; share of the settled mass inside the PM edge in the real halo 0.45; CFG416's uncapped phantom inside its census radius = 2.30 x the supply
+    f_ret 0.10: settled = 5.364 M_o in both pictures; real edge / PM edge 2.93; share of the settled mass inside the PM edge in the real halo 0.34; CFG416's uncapped phantom inside its census radius = 3.10 x the supply
+    f_ret 0.07: settled = 5.364 M_o in both pictures; real edge / PM edge 3.49; share of the settled mass inside the PM edge in the real halo 0.28; CFG416's uncapped phantom inside its census radius = 3.71 x the supply
+  [PASS] inputs: kids controls all pass: failures []
+  [PASS] inputs: levels controls all pass: failures []
+  [PASS] inputs: sparc controls all pass: failures []
+  [PASS] inputs: mw controls all pass: failures []
+
+  PER-TEST VERDICTS (both footings each)
+    [census] (a) FAIL [a1 FAIL, a2 FAIL]  (b) PASS  (c) PASS  (d) FAIL  (e) PASS  ->  PARTLY
+    [lo07  ] (a) FAIL [a1 PASS, a2 FAIL]  (b) PASS  (c) PASS  (d) FAIL  (e) PASS  ->  PARTLY
+    [hi18  ] (a) FAIL [a1 FAIL, a2 FAIL]  (b) PASS  (c) PASS  (d) FAIL  (e) PASS  ->  PARTLY
+
+  FROZEN VERDICT (primary census, CFG416 fret_of): PARTLY
+  bracket robustness: a bracket-robust, a1 bracket-sensitive, a2 bracket-robust, b bracket-robust, c bracket-robust, d bracket-robust, e bracket-robust
+
+6/6 checks pass; load-bearing failures 0

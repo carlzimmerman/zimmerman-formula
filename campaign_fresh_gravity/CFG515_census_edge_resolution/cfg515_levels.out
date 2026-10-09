@@ -1,0 +1,62 @@
+CFG515 (b) early-type lensing levels with the census edge (FROZEN_CRITERIA.md 2bbe75602, section 3b; CFG485 caveat 2 / R8).
+CFG485's script is executed read-only up to its C6 banner (CFG95 calibration, CFG61 grid stack, released per-class K1 blocks, controls
+C1-C5).  Model: nu_mono phantom of each grid node's present baryons, fully settled, out to min(r_edge, r_ta) with
+r_ta = CFG61's 0.40 r_ta edge / 0.40 at that node and redshift; + point mass.  Two-halo amplitude profiled per class (6 dof).
+PASS (early types) iff chi2(census edge) - chi2(B1 = CFG95's law to 0.40 r_ta) <= 4 on both footings.  Late types: same rule, reported.
+MUTATE (CFG515_MUTATE=1): f_ret = 1 and 0.01.
+  [PASS] K0 CFG485's own controls C1-C5 pass when its prefix is executed read-only: 5 checks, failures []
+  CFG485 prefix executed (53 s)
+  [PASS] K5 CFG485 machinery reproduces its committed R8 B1 chi2 (early 2.548 / 2.865) within 1e-3: max |diff| 0.0e+00
+
+  [census|canonical] (7 s) f_ret at log M* 10.3/10.75/11.1: 0.100/0.100/0.147; x_edge (z 0.25): 0.281/0.352/0.289
+      early: chi2 2.50 (A 0.85; no-2h 22.8) vs B1 2.55 (A 0.86): d -0.05 -> PASS
+             data  [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+             model [7.37, 9.81, 13.15, 17.71, 24.0, 32.73, 45.03]
+      late : chi2 13.79 (A -0.20; no-2h 15.0) vs B1 13.87 (A -0.19): d -0.08 -> PASS (reported)
+             data  [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+             model [6.82, 9.08, 12.16, 16.37, 22.15, 30.16, 41.39]
+
+  [census|alt      ] (7 s) f_ret at log M* 10.3/10.75/11.1: 0.100/0.100/0.147; x_edge (z 0.25): 0.244/0.305/0.251
+      early: chi2 2.74 (A 0.61; no-2h 13.1) vs B1 2.87 (A 0.62): d -0.12 -> PASS
+             data  [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+             model [8.0, 10.6, 14.18, 19.07, 25.78, 35.06, 48.06]
+      late : chi2 14.12 (A -0.35; no-2h 18.0) vs B1 14.33 (A -0.34): d -0.21 -> PASS (reported)
+             data  [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+             model [7.29, 9.68, 12.94, 17.38, 23.47, 31.86, 43.56]
+  => census: (b) early types PASS; late types (reported) PASS
+
+  [lo07  |canonical] (7 s) f_ret at log M* 10.3/10.75/11.1: 0.070/0.070/0.070; x_edge (z 0.25): 0.400/0.501/0.603
+      early: chi2 2.59 (A 0.86; no-2h 23.3) vs B1 2.55 (A 0.86): d +0.04 -> PASS
+             data  [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+             model [7.3, 9.77, 13.13, 17.7, 23.99, 32.73, 45.02]
+      late : chi2 13.96 (A -0.19; no-2h 15.1) vs B1 13.87 (A -0.19): d +0.09 -> PASS (reported)
+             data  [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+             model [6.77, 9.05, 12.15, 16.37, 22.15, 30.16, 41.39]
+
+  [lo07  |alt      ] (7 s) f_ret at log M* 10.3/10.75/11.1: 0.070/0.070/0.070; x_edge (z 0.25): 0.347/0.435/0.524
+      early: chi2 2.90 (A 0.62; no-2h 13.7) vs B1 2.87 (A 0.62): d +0.03 -> PASS
+             data  [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+             model [7.89, 10.55, 14.15, 19.05, 25.77, 35.06, 48.06]
+      late : chi2 14.39 (A -0.34; no-2h 18.1) vs B1 14.33 (A -0.34): d +0.06 -> PASS (reported)
+             data  [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+             model [7.22, 9.64, 12.92, 17.37, 23.46, 31.86, 43.56]
+  => lo07: (b) early types PASS; late types (reported) PASS
+
+  [hi18  |canonical] (7 s) f_ret at log M* 10.3/10.75/11.1: 0.180/0.180/0.180; x_edge (z 0.25): 0.157/0.197/0.237
+      early: chi2 2.22 (A 0.83; no-2h 21.5) vs B1 2.55 (A 0.86): d -0.33 -> PASS
+             data  [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+             model [7.61, 9.9, 13.19, 17.74, 24.01, 32.74, 45.03]
+      late : chi2 12.51 (A -0.23; no-2h 14.2) vs B1 13.87 (A -0.19): d -1.36 -> PASS (reported)
+             data  [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+             model [7.2, 9.21, 12.23, 16.41, 22.17, 30.17, 41.39]
+
+  [hi18  |alt      ] (7 s) f_ret at log M* 10.3/10.75/11.1: 0.180/0.180/0.180; x_edge (z 0.25): 0.136/0.171/0.206
+      early: chi2 2.15 (A 0.56; no-2h 11.0) vs B1 2.87 (A 0.62): d -0.72 -> PASS
+             data  [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+             model [8.53, 10.76, 14.25, 19.1, 25.8, 35.07, 48.07]
+      late : chi2 11.39 (A -0.41; no-2h 16.8) vs B1 14.33 (A -0.34): d -2.94 -> PASS (reported)
+             data  [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+             model [8.18, 9.91, 13.04, 17.44, 23.5, 31.88, 43.57]
+  => hi18: (b) early types PASS; late types (reported) PASS
+
+2/2 checks pass; load-bearing failures 0; elapsed 95.3 s

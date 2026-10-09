@@ -1,0 +1,27 @@
+CFG515 (d) Milky Way timing + satellites with each object's census edge (FROZEN_CRITERIA.md 2bbe75602, section 3d).
+CFG513's script is executed read-only up to its bias-table helpers (constants, baryon shapes, the Prof class: nu_mono phantom = settled
+cold energy, numeric edge M_ph(<r_edge) = 5.364 M_b / f_ret).  The LG timing integrator and the Fritz+18 satellite parsing / turning
+points are copied from CFG513 (not edited).  MW: M_b = 6.0e10 (L172 shapes; 7.3e10 reported), M31: 1.2e11 point mass; each with
+its OWN f_ret (cfg515_lib: census = CFG416 fret_of self-consistent; bracket 0.07 / 0.18).  O-MW ownership, with Lambda.
+PASS iff |z| <= 3 vs -109.3 +- 4.4 km/s (measurement error only) AND CFG433 D = (231.9 - V_c(78 kpc))/21.4 <= 3, both footings.
+MUTATE (CFG515_MUTATE=1): f_ret = 1 and 0.01.
+  [PASS] K0 CFG513 constants as recorded (M_b 6.0e10 / 7.3e10, M31 1.2e11, LG 780 kpc, -109.3 +- 4.4, t0 13.80): read from CFG513
+  [PASS] K7 CFG513 reproduction at f_ret = 0.18 (both objects): timing v_r within 0.5 km/s, D within 0.02, unbound = 4: canonical: dv +0.000, dD +0.0000, unbound 4; alt: dv +0.000, dD +0.0000, unbound 4
+  [census|canonical] f_ret MW 0.100 / M31 0.136; edges 512 / 535 kpc; totals 3.28e+12 / 4.86e+12; LG v -168.7 (z +13.5); V_c(78) 170.1 (D +2.89); unbound 2/39 -> FAIL
+      7.3e10 variant (reported): f_ret 0.100; v -180.0 (z +16.1); D +2.46; unbound 2
+  [census|alt      ] f_ret MW 0.100 / M31 0.136; edges 466 / 487 kpc; totals 3.28e+12 / 4.86e+12; LG v -168.8 (z +13.5); V_c(78) 177.9 (D +2.52); unbound 2/39 -> FAIL
+      7.3e10 variant (reported): f_ret 0.100; v -180.2 (z +16.1); D +2.08; unbound 2
+  => census: (d) FAIL
+  [lo07  |canonical] f_ret MW 0.070 / M31 0.070; edges 729 / 1031 kpc; totals 4.66e+12 / 9.32e+12; LG v -244.2 (z +30.7); V_c(78) 170.1 (D +2.89); unbound 2/39 -> FAIL
+      7.3e10 variant (reported): f_ret 0.070; v -257.1 (z +33.6); D +2.46; unbound 2
+  [lo07  |alt      ] f_ret MW 0.070 / M31 0.070; edges 664 / 938 kpc; totals 4.66e+12 / 9.32e+12; LG v -248.2 (z +31.6); V_c(78) 177.9 (D +2.52); unbound 2/39 -> FAIL
+      7.3e10 variant (reported): f_ret 0.070; v -261.0 (z +34.5); D +2.08; unbound 2
+  => lo07: (d) FAIL
+  [hi18  |canonical] f_ret MW 0.180 / M31 0.180; edges 286 / 405 kpc; totals 1.85e+12 / 3.70e+12; LG v -122.8 (z +3.1); V_c(78) 170.1 (D +2.89); unbound 4/39 -> FAIL
+      7.3e10 variant (reported): f_ret 0.180; v -130.5 (z +4.8); D +2.46; unbound 2
+  [hi18  |alt      ] f_ret MW 0.180 / M31 0.180; edges 261 / 369 kpc; totals 1.85e+12 / 3.70e+12; LG v -122.8 (z +3.1); V_c(78) 177.9 (D +2.52); unbound 4/39 -> FAIL
+      7.3e10 variant (reported): f_ret 0.180; v -130.5 (z +4.8); D +2.08; unbound 2
+  => hi18: (d) FAIL
+  POST HOC (no verdict weight, not a fit): common_fret_needed|canonical 0.206; m31_fret_needed_with_mw_census|canonical 0.434; common_fret_needed|alt 0.206; m31_fret_needed_with_mw_census|alt 0.436
+
+2/2 checks pass; load-bearing failures 0; elapsed 75.9 s

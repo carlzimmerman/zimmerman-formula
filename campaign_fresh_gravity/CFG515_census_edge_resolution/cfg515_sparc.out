@@ -1,0 +1,25 @@
+CFG515 (c) SPARC with the census edge (FROZEN_CRITERIA.md 2bbe75602, section 3c).
+CFG487's SPARC harness (itself CFG346's: CFG45 + CFG4_galaxy_law prefixes exec'd read-only; SPARC_Lelli2016c.mrt + rotmod) is executed
+read-only from cfg487_data.py (its "(a) SPARC" section up to the scoring loop); only the switch profile is replaced:
+f(r) = 1 for r <= min(r_edge, r_ta), 0 beyond (fully settled), r_edge = r_M / ln(1 + f_ret f_b/(1 - f_b)), f_ret per galaxy from cfg515_lib.
+PASS iff S-A3 >= 90% (|d log v| < 0.03 at R_HI) for spirals AND dwarfs and rotmod RAR |d rms| < 0.005, both footings (CFG346).
+MUTATE (CFG515_MUTATE=1): f_ret = 1 and 0.01.
+  CFG487 SPARC harness executed read-only (5 s): 171 P3 rows, 175 rotmod galaxies
+
+  [canonical] row            | A3 spiral  A3 dwarf | max|dv| sp / dw | d rms    | R_HI beyond edge: sp / dw
+    C3_one_noedge  |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | -
+    census         |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | 0.000 / 0.000
+    lo07           |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | 0.000 / 0.000
+    hi18           |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | 0.000 / 0.000
+
+  [alt] row            | A3 spiral  A3 dwarf | max|dv| sp / dw | d rms    | R_HI beyond edge: sp / dw
+    C3_one_noedge  |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | -
+    census         |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | 0.000 / 0.000
+    lo07           |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | 0.000 / 0.000
+    hi18           |    1.000     1.000 | 0.0000 / 0.0000 | +0.00000 | 0.000 / 0.000
+  [PASS] K6 SPARC harness: m = 1, no edge leaves A3 = 100% and d rms = 0; rms0 equals CFG39's: rms0 0.100328994 vs CFG39 0.100328994
+  => census: (c) PASS  (f_ret over rows 0.100-0.228, median 0.100)
+  => lo07: (c) PASS  (f_ret over rows 0.070-0.070, median 0.070)
+  => hi18: (c) PASS  (f_ret over rows 0.180-0.180, median 0.180)
+
+1/1 checks pass; load-bearing failures 0; elapsed 4.8 s

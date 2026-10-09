@@ -1,0 +1,37 @@
+CFG515 (a) KiDS isolated lenses with the census edge (FROZEN_CRITERIA.md 2bbe75602, sections 1-3a).
+  (a1) CFG413 harness: CFG377 stack P, free R^-0.8 two-halo amplitude profiled; PASS iff chi2 - chi2_best(CFG413) <= 4, both footings.
+  (a2) CFG503 frozen environment (E nlz + stripping W10 + SHMR rank-one; Moster primary), inner 9 bins (R <= 0.445 Mpc):
+       PASS iff chi2_inner9 - min(CFG503's five frozen models) <= 4, both footings.  CFG503's G1/G3 gates FAILED (label carried).
+Model: nu_mono phantom of the group's present baryons M_gal, fully settled, out to min(r_edge, r_ta), frozen beyond, + point mass.
+r_edge = r_M / ln(1 + f_ret f_b/(1 - f_b)); f_ret from cfg515_lib (census = CFG416 fret_of, self-consistent; bracket 0.07 / 0.18).
+MUTATE (CFG515_MUTATE=1): f_ret = 1 and 0.01 instead (outputs *_MUTATE.*).
+CFG503's cfg503_own (functions, tables) and cfg100_lib / cfg495_lenslib are imported read-only; CFG413/CFG487/CFG503 scoring code copied.
+
+  *** CFG515_MUTATE=1: f_ret = 1 (PM value on real galaxies) and 0.01 (unphysically depleted) ***
+  [PASS] C0 stack P data vector = CFG377 primary: exact
+  [PASS] K4 CFG503: re-scoring its committed own tables reproduces its committed chi2 (full and inner-9) for all five frozen models within 0.01: max |diff| 1.78e-14; inner-9 can: LCDM 7.60, LAW_RTA 60.70, EDGE 240.86, V1 60.09, F_DD 5.24; alt: LCDM 7.60, LAW_RTA 38.93, EDGE 240.65, V1 38.31, F_DD 5.66
+
+per-group tables built for 1953 groups x 2 modes x 2 footings (250 s)
+  [PASS] K3 KiDS harness: m = 1 sharp edges at x = 0.5 and 1.0 reproduce CFG413's committed chi2 within 0.01: max |diff| 0.00000
+  [PASS] K1 closed-form point-mass edge = numeric nu_mono root of M_ph(<r) = 5.364 M_b / f_ret (f_ret 1, 0.18, 0.07, 0.01) to 1e-6: max rel 4.9e-09 (nu_mono is FP1's table)
+
+(a1) CFG413 harness (free two-halo)  |  (a2) CFG503 environment, inner 9 bins (R <= 0.445 Mpc)
+  CFG413 best (x = 0.5): 8.948 / 9.770;  CFG503 inner-9 best of five: F_DD 5.24 / F_DD 5.66;  LAW_RTA inner-9 60.70 / 38.93
+  [one   |canonical] f_ret median 1.000 (10-90% 1.000-1.000); x_edge (lens-wtd) 0.038 (0.030-0.044); capped 0.000
+      a1: chi2 69.425 (A 2.329; no-2h 1007.2); - best +60.477; - x1 +44.921; drop-one-bin vs x0.5 +36.75..+62.93 -> FAIL
+      a2: chi2/15 416.69 (LCDM 34.34); inner-9 240.86 - best5 (F_DD) +235.62; - LAW_RTA +180.16 -> FAIL [label: CFG503 G1/G3 FAILED]
+  [one   |alt      ] f_ret median 1.000 (10-90% 1.000-1.000); x_edge (lens-wtd) 0.033 (0.026-0.038); capped 0.000
+      a1: chi2 80.343 (A 2.322; no-2h 1013.2); - best +70.573; - x1 +56.899; drop-one-bin vs x0.5 +36.93..+73.18 -> FAIL
+      a2: chi2/15 417.68 (LCDM 34.34); inner-9 240.65 - best5 (F_DD) +234.98; - LAW_RTA +201.72 -> FAIL [label: CFG503 G1/G3 FAILED]
+  => one: a1 FAIL, a2 FAIL, (a) FAIL
+  [dep01 |canonical] f_ret median 0.010 (10-90% 0.010-0.010); x_edge (lens-wtd) 3.464 (2.798-4.000); capped 1.000
+      a1: chi2 24.504 (A 1.120; no-2h 241.3); - best +15.557; - x1 +0.000; drop-one-bin vs x0.5 +4.38..+17.19 -> FAIL
+      a2: chi2/15 81.38 (LCDM 34.34); inner-9 60.70 - best5 (F_DD) +55.46; - LAW_RTA +0.00 -> FAIL [label: CFG503 G1/G3 FAILED]
+  [dep01 |alt      ] f_ret median 0.010 (10-90% 0.010-0.010); x_edge (lens-wtd) 3.006 (2.428-3.471); capped 1.000
+      a1: chi2 23.445 (A 0.953; no-2h 180.5); - best +13.674; - x1 +0.000; drop-one-bin vs x0.5 +3.07..+15.30 -> FAIL
+      a2: chi2/15 59.51 (LCDM 34.34); inner-9 38.93 - best5 (F_DD) +33.26; - LAW_RTA +0.00 -> FAIL [label: CFG503 G1/G3 FAILED]
+  => dep01: a1 FAIL, a2 FAIL, (a) FAIL
+  [PASS] M1 (KiDS) f_ret = 1 reproduces CFG487's edge_only_E1 d_vs_best +60.5 / +70.6 within 0.5: max |diff| 0.027
+  [PASS] M1 (CFG503) f_ret = 1 reproduces CFG503's EDGE inner-9 (240.9 / 240.7) within 1: max |diff| 0.000
+
+6/6 checks pass; load-bearing failures 0; elapsed 252.7 s

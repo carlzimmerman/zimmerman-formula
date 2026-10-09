@@ -1,0 +1,46 @@
+CFG515 (b) early-type lensing levels with the census edge (FROZEN_CRITERIA.md 2bbe75602, section 3b; CFG485 caveat 2 / R8).
+CFG485's script is executed read-only up to its C6 banner (CFG95 calibration, CFG61 grid stack, released per-class K1 blocks, controls
+C1-C5).  Model: nu_mono phantom of each grid node's present baryons, fully settled, out to min(r_edge, r_ta) with
+r_ta = CFG61's 0.40 r_ta edge / 0.40 at that node and redshift; + point mass.  Two-halo amplitude profiled per class (6 dof).
+PASS (early types) iff chi2(census edge) - chi2(B1 = CFG95's law to 0.40 r_ta) <= 4 on both footings.  Late types: same rule, reported.
+MUTATE (CFG515_MUTATE=1): f_ret = 1 and 0.01.
+  [PASS] K0 CFG485's own controls C1-C5 pass when its prefix is executed read-only: 5 checks, failures []
+  CFG485 prefix executed (53 s)
+  [PASS] K5 CFG485 machinery reproduces its committed R8 B1 chi2 (early 2.548 / 2.865) within 1e-3: max |diff| 0.0e+00
+
+  [one   |canonical] (7 s) f_ret at log M* 10.3/10.75/11.1: 1.000/1.000/1.000; x_edge (z 0.25): 0.030/0.038/0.046
+      early: chi2 30.45 (A 1.68; no-2h 109.8) vs B1 2.55 (A 0.86): d +27.91 -> FAIL
+             data  [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+             model [2.45, 4.32, 7.62, 13.44, 23.71, 37.06, 46.37]
+      late : chi2 47.94 (A 0.52; no-2h 56.4) vs B1 13.87 (A -0.19): d +34.06 -> FAIL (reported)
+             data  [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+             model [2.11, 3.72, 6.57, 11.59, 20.45, 34.24, 43.15]
+
+  [one   |alt      ] (7 s) f_ret at log M* 10.3/10.75/11.1: 1.000/1.000/1.000; x_edge (z 0.25): 0.026/0.033/0.040
+      early: chi2 38.11 (A 1.65; no-2h 114.6) vs B1 2.87 (A 0.62): d +35.25 -> FAIL
+             data  [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+             model [2.38, 4.19, 7.4, 13.05, 23.02, 39.49, 50.54]
+      late : chi2 52.81 (A 0.54; no-2h 62.1) vs B1 14.33 (A -0.34): d +38.48 -> FAIL (reported)
+             data  [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+             model [1.99, 3.52, 6.2, 10.95, 19.31, 34.06, 47.68]
+  => one: (b) early types FAIL; late types (reported) FAIL
+
+  [dep01 |canonical] (7 s) f_ret at log M* 10.3/10.75/11.1: 0.010/0.010/0.010; x_edge (z 0.25): 2.787/3.488/4.200
+      early: chi2 2.60 (A 0.86; no-2h 23.3) vs B1 2.55 (A 0.86): d +0.05 -> PASS
+             data  [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+             model [7.29, 9.77, 13.12, 17.7, 23.99, 32.73, 45.02]
+      late : chi2 14.01 (A -0.19; no-2h 15.2) vs B1 13.87 (A -0.19): d +0.14 -> PASS (reported)
+             data  [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+             model [6.76, 9.05, 12.15, 16.36, 22.15, 30.16, 41.39]
+
+  [dep01 |alt      ] (7 s) f_ret at log M* 10.3/10.75/11.1: 0.010/0.010/0.010; x_edge (z 0.25): 2.418/3.027/3.645
+      early: chi2 2.92 (A 0.62; no-2h 13.7) vs B1 2.87 (A 0.62): d +0.06 -> PASS
+             data  [10.73, 12.45, 17.62, 23.39, 30.45, 36.82, 47.72]
+             model [7.87, 10.54, 14.15, 19.05, 25.77, 35.06, 48.06]
+      late : chi2 14.46 (A -0.34; no-2h 18.1) vs B1 14.33 (A -0.34): d +0.13 -> PASS (reported)
+             data  [8.96, 10.61, 12.39, 11.53, 15.11, 26.96, 23.28]
+             model [7.2, 9.63, 12.91, 17.37, 23.46, 31.86, 43.56]
+  => dep01: (b) early types PASS; late types (reported) PASS
+  [PASS] M1 (levels) f_ret = 1 reproduces CFG485 R8 early-type S chi2 (30.45 / 38.11) within 1: max |diff| 0.000; late 47.94 / 52.81 (CFG485 47.79 / 52.69, settling q included there)
+
+3/3 checks pass; load-bearing failures 0; elapsed 81.1 s
