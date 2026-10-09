@@ -85,3 +85,12 @@ How to read that:
 - **Keplerian is 2.4–3.7σ from the data too.**
 - **The lever is 15–22 kpc.** Points beyond 19 kpc carry 15% errors and absorb every model.
 - **The DR4 decider:** a slope of −0.25 or steeper, held with an error of 0.04 or less, excludes the law on shape whatever the disc mass. A slope of −0.20 or shallower passes it.
+
+## 7. Update: CFG532b (eight more curves, owner-approved arXiv sources)
+- **Combined slope over red-giant and Gaia-inversion curves** (one curve per shared-data group): the law is 3.0–3.9σ too shallow for RM-v and 3.8–4.8σ for RM-φ, range −2.1 to −5.3 across pairs. That is SHAPE EXCLUDED under the frozen rule.
+- **Smooth NFW halos fitted to each curve fail the same statistic** (Z −3.4; post hoc). The steep 15–27 kpc decline strains every smooth equilibrium model, not only this law.
+- **The result rests on one distance scale.** Zhou+23 (−0.19) agrees with the law; Ou/Wang/Jiao (−0.32 to −0.36) do not.
+- **Cepheids (Feng+26) are flat to 17.6 kpc**, where the law is 1.3–2.1σ too steep.
+
+So the review's "decline is real but exaggerated" scenario is now the crux for the law as well. DR4's distance scale at 15–25 kpc decides it.
+
