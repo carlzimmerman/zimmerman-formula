@@ -28,3 +28,5 @@ Criteria 6b46ce8a7 (committed before the script). Script `cfg565_gdagger_z.py` (
 - The record's earlier "ΛCDM-native +0.33 dex" (no feedback, a different construction) is smaller than this lane's +0.69 dex.
 
 One-line summary: CFG565 feedback-ΛCDM g†(z) RISES (×1.2 / 2.8 / 4.9 at z = 1 / 2 / 2.5) vs the framework's ~0.8: an opposite-sign, ~0.8-dex discriminator at z ≈ 2.5 that clears the calibration floor.
+
+**FORWARD NOTE (10-09, after CFG566, b497258af).** The ×4.9 is the emergent g† of a *full-RAR fit*, including halo-dominated outskirts. Through the record's own high-z estimators (CFG270 KMOS3D, CFG303 RC100), which read near-Newtonian points at ~2.2 r_d where compact z ≈ 2 discs are baryon-dominated, feedback-ΛCDM predicts only ~×1.3–1.5 in s★ (~0.17 dex above the framework). Mass-calibration leverage then swamps it (CFG566: NON-DISCRIMINATING, power ≤ 0.06). **The "~0.8 dex, three times the calibration floor" reading above applies only to discs measured out to low g_bar with measured gas (CFG385's recipe), not to existing samples.**
