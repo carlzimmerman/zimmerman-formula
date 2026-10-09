@@ -1,0 +1,61 @@
+CFG569 KURVS-15 archival CO self-calibration  MODE=MUTATE_B
+==============================================================================
+record: z 1.613 logM* 10.07 R_e 3.8 i_SFR 38.0 i* 65.0 sigma0 68.0 R_max 9.2 V(R_max) 112.2; kpc/" 8.690, D_L 12238.1 Mpc
+  [PASS] R1 authors' model at R_max / sin i_SFR reproduces V(R_max) 112.2 within 2%: 113.2
+  [PASS] R1b table row as expected (z 1.613, logM* 10.07, R_e 3.8, i_SFR 38, sigma0 68, R_max 9.2): read
+
+--- ibar_b3 ---
+  shape (478, 378, 378), nu 87.0635-88.9271 GHz, dchan 3.907 MHz (13.28 km/s), beam 2.646x1.733" PA -88, pix 0.3000", BUNIT Jy/beam
+  [PASS] H1 ibar_b3: +-300 km/s window inside the spw: v -2378..3954
+  [PASS] H2 ibar_b3: beam class: 2.141"
+  [PASS] H3 ibar_b3: source pb >= 0.9: pb 1.000 at pixel (189.0,189.0)
+  [PASS] H4 ibar_b3: units Jy/beam: Jy/beam
+  w300: S +0.5499 Jy km/s (stat peak pixel), sigma 0.0797 (MAD of 200 off-source; plain std 0.0818), S/N +6.90; 45 chans
+  [PASS] ibar_b3: >= 50 off-source positions: 200
+  reported: 2.0"-radius aperture sum/beam +0.4778 Jy km/s
+  w200: S +0.5114 Jy km/s (stat peak pixel), sigma 0.0577 (MAD of 200 off-source; plain std 0.0570), S/N +8.86; 30 chans
+  [PASS] N1 ibar_b3: line-free windows at the source |median z| < 1.5, scatter 0.5-2 (n=7): median -0.36, std 0.58, z = [0.03, -0.76, -0.84, -0.36, -0.82, 0.03, 0.85]
+
+--- ibar_b6 ---
+  shape (238, 270, 270), nu 220.3025-222.1542 GHz, dchan 7.813 MHz (10.62 km/s), beam 1.504x0.894" PA -75, pix 0.1700", BUNIT Jy/beam
+  [PASS] H1 ibar_b6: +-300 km/s window inside the spw: v -2196..321
+  [PASS] H2 ibar_b6: beam class: 1.160"
+  [PASS] H3 ibar_b6: source pb >= 0.9: pb 1.000 at pixel (135.0,135.0)
+  [PASS] H4 ibar_b6: units Jy/beam: Jy/beam
+  w300: S -0.0253 Jy km/s (stat peak pixel), sigma 0.1274 (MAD of 157 off-source; plain std 0.1202), S/N -0.20; 56 chans
+  [PASS] ibar_b6: >= 50 off-source positions: 157
+  w200: S -0.0663 Jy km/s (stat peak pixel), sigma 0.1204 (MAD of 157 off-source; plain std 0.1168), S/N -0.55; 38 chans
+  [PASS] N1 ibar_b6: line-free windows at the source |median z| < 1.5, scatter 0.5-2 (n=2): median -0.52, std 0.71, z = [-1.23, 0.18]
+
+--- molina_b3 ---
+  shape (158, 2744, 2744), nu 86.9301-88.7700 GHz, dchan 11.719 MHz (39.82 km/s), beam 0.162x0.126" PA 77, pix 0.0240", BUNIT Jy/beam
+  [PASS] H1 molina_b3: +-300 km/s window inside the spw: v -1844..4408
+  [PASS] H2 molina_b3: beam class: 0.143"
+  [PASS] H3 molina_b3: source pb >= 0.9: pb 1.000 at pixel (1372.0,1372.0)
+  [PASS] H4 molina_b3: units Jy/beam: Jy/beam
+  w300: S -0.1471 Jy km/s (stat 1.2in aperture), sigma 0.1941 (MAD of 200 off-source; plain std 0.2078), S/N -0.76; 15 chans
+  [PASS] molina_b3: >= 50 off-source positions: 200
+  w200: S -0.0497 Jy km/s (stat 1.2in aperture), sigma 0.1671 (MAD of 200 off-source; plain std 0.1876), S/N -0.30; 10 chans
+  [PASS] N1 molina_b3: line-free windows at the source |median z| < 1.5, scatter 0.5-2 (n=6): median +0.66, std 0.81, z = [1.03, 1.26, 0.3, -0.43, 1.61, -0.47]
+
+--- detection and conversion ---
+  alpha_CO 4.36: M_mol(S measured +0.5499) = 1.091e+11 Msun (mu +9.29); 3-sigma limit S < 0.239 Jy km/s -> M_mol < 4.742e+10 (mu < 4.04)
+  alpha_CO 1.0: M_mol(S measured +0.5499) = 2.503e+10 Msun (mu +2.13); 3-sigma limit S < 0.239 Jy km/s -> M_mol < 1.088e+10 (mu < 0.93)
+  Ibar B3 CO(2-1) S/N +6.90 -> DETECTED; Molina S/N -0.76 -> NOT DETECTED; Ibar B6 CO(5-4) S/N -0.20 (reported only)
+  [PASS] MUTATE_B injected 0.5 Jy km/s line reads DETECTED: S/N +6.90
+  [PASS] MUTATE_B recovered / injected (window fraction applied) within 30%: 1.000
+  [FAIL] C_disc ring-sum exponential vs Freeman at 2/4/8 kpc within 3%: [0.9678, 0.9821, 0.9931]
+
+--- rotation-curve span (data property; no a0 number unless a gas shape is measured) ---
+  i38 Rpsf P0 : n 16, R 2.68-9.18 kpc, g_obs max/min 2.01 (need >= 6.4); stars-only y (f=1) 0.91 -> 0.25 canonical, 0.75 -> 0.20 alt (need >= 3 -> <= 0.3)
+  i38 Rpsf B10: n 16, R 2.68-9.18 kpc, g_obs max/min 1.20 (need >= 6.4); stars-only y (f=1) 0.91 -> 0.25 canonical, 0.75 -> 0.20 alt (need >= 3 -> <= 0.3)
+  i38 R0.5 P0 : n 21, R 0.71-9.18 kpc, g_obs max/min 4.40 (need >= 6.4); stars-only y (f=1) 0.98 -> 0.25 canonical, 0.81 -> 0.20 alt (need >= 3 -> <= 0.3)
+  i38 R0.5 B10: n 21, R 0.71-9.18 kpc, g_obs max/min 1.35 (need >= 6.4); stars-only y (f=1) 0.98 -> 0.25 canonical, 0.81 -> 0.20 alt (need >= 3 -> <= 0.3)
+  i65 Rpsf P0 : n 16, R 2.68-9.18 kpc, g_obs max/min 2.01 (need >= 6.4); stars-only y (f=1) 0.91 -> 0.25 canonical, 0.75 -> 0.20 alt (need >= 3 -> <= 0.3)
+  i65 Rpsf B10: n 16, R 2.68-9.18 kpc, g_obs max/min 1.11 (need >= 6.4); stars-only y (f=1) 0.91 -> 0.25 canonical, 0.75 -> 0.20 alt (need >= 3 -> <= 0.3)
+  i65 R0.5 P0 : n 21, R 0.71-9.18 kpc, g_obs max/min 4.40 (need >= 6.4); stars-only y (f=1) 0.98 -> 0.25 canonical, 0.81 -> 0.20 alt (need >= 3 -> <= 0.3)
+  i65 R0.5 B10: n 21, R 0.71-9.18 kpc, g_obs max/min 1.17 (need >= 6.4); stars-only y (f=1) 0.98 -> 0.25 canonical, 0.81 -> 0.20 alt (need >= 3 -> <= 0.3)
+  RESULT span criterion (primary i38/Rpsf/P0) g_obs max/min >= 6.4: NOT MET (2.01)
+
+VERDICT (MUTATE_B): NOT POSSIBLE -- GAS SHAPE UNMEASURED. One galaxy: a demonstration at most; it cannot decide a0(z).
+checks: 22/23 pass
