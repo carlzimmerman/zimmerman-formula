@@ -1,0 +1,101 @@
+CFG561 -- DO ISOLATED KiDS LENSES INSIDE COSMIC VOIDS LENS DIFFERENTLY FROM MATCHED LENSES OUTSIDE?
+Settling (supply-limited cold fluid) predicts LOWER outer lensing in voids; a law-as-force without EFE (foil) predicts HIGHER;
+LCDM a small difference at fixed M* (declared |D| < ~0.1 dex).  Pure data; a0 footings (9.3603e-11 / 1.1312e-10, kappa = 1/2
+FITTED) irrelevant.  Criteria frozen and committed before this script: FROZEN_CRITERIA.md (4a5cebaa2).
+  data   cfg110_perlens.npz, lr_lenses.npz, lr_esd_jackknife.npz, KiDS DR4 bright sample (pool), Mao+2017 BOSS DR12 voids (data/).
+  set    KiDS-N (Dec > -15), 0.22 <= z_l <= 0.50.  p_void = max over voids of the photo-z-integrated chord probability
+         (sigma_z = 0.02(1+z)).  VOID p >= 0.25, OUTSIDE p < 0.02; OUTSIDE reweighted to VOID's (logM*, z, colour) histogram.
+  stat   D_K = log10[ESD_V / ESD_O] pooled over K (KO = bins 0-7 headline, K1 = 8-14); 50-patch jackknife.
+MUTATE=1: p_void shuffled among analysis-set lenses (seed 561); the tracer C3 must FAIL -> rc 1.
+
+  *** MUTATE=1: p_void shuffled among analysis-set lenses -- the tracer C3 must FAIL ***
+
+======================================================================================================================
+C1  CONTROL: CFG88's full-sample K1 split from the per-lens sums (CFG446 C1)
+======================================================================================================================
+  [PASS] C1 CONTROL: D_full equals CFG88's K1 D (1e-6 rel) and the zero-model Hartlap chi2 equals CFG88's 35.0418 (1e-6 rel)
+         max rel dev 5.3e-14; chi2 35.0418/7 vs 35.0418 (p 1.10e-05)
+
+======================================================================================================================
+C2  CONTROL: lenses in the bright sample; neighbour pool
+======================================================================================================================
+  [PASS] C2 CONTROL: all lenses match the bright sample by exact position, same z, all in the pool
+         181,477 lenses; exact True; z True; in pool True
+  analysis set: KiDS-N, 0.22 <= z <= 0.50: 76,061 lenses (early 39,000, late 37,061)
+  voids: 1228 in the catalogue, 903 BOSS North; centres in the KiDS-N box: 102
+  p_void: fraction >= 0.25: 0.1378; >= 0.5: 0.0255; < 0.02: 0.6688; max 0.781
+
+======================================================================================================================
+C3 inputs: pool neighbours within 8 Mpc/h comoving projected, |dz| < 2 x 0.018(1+z)
+======================================================================================================================
+  mean neighbours 161.3 (min 0)
+  jackknife: 25 of 50 patches populated in the analysis set; factor (n-1)/n = 0.9600
+
+======================================================================================================================
+POWER / C5: 100 random analysis-set subsets of the VOID size vs their matched complement
+======================================================================================================================
+  KO: N_void 10,483; expected sigma_D 0.0799 dex; null z std 1.029 mean -0.024; purity pV-pO 0.397; P(3 sigma | true 0.1 dex) 0.01; expected corrected 2-sigma bound 0.417 dex
+  K1: N_void 10,483; expected sigma_D 0.0730 dex; null z std 0.925 mean +0.127; purity pV-pO 0.397; P(3 sigma | true 0.1 dex) 0.01; expected corrected 2-sigma bound 0.379 dex
+  [PASS] (reported) C5 (reported): null calibration -- std of D/sigma over 100 random subsets in [0.7, 1.3], KO and K1
+         KO 1.029, K1 0.925
+
+======================================================================================================================
+MEASUREMENT: VOID (p >= 0.25) vs matched OUTSIDE (p < 0.02)
+======================================================================================================================
+  VOID N 10,482 (dropped for empty cells 0.0001), OUTSIDE N 50,872 (effective 48862); purity pV 0.398, pO 0.0007
+  KO: D = +0.0036 +- 0.0853 dex (+0.04 sigma); purity-corrected +0.0090 +- 0.2211; corrected 2-sigma bound 0.451 dex
+  K1: D = +0.1168 +- 0.0523 dex (+2.23 sigma); purity-corrected +0.2497 +- 0.0976; corrected 2-sigma bound 0.445 dex
+  tracer T = log10(N_V/N_O) = -0.0001 +- 0.0030 (-0.03 sigma)
+  [FAIL] C3 POSITIVE CONTROL: void lenses have fewer pool neighbours than matched outside lenses, T < 0 at > 3 sigma
+         T = -0.0001 +- 0.0030 (-0.03 sigma)
+
+======================================================================================================================
+C4  CONTROL: 20 random void catalogues (z, R_eff kept).  DEPARTURE (disclosed): the frozen spec redrew ALL BOSS-North centres into the KiDS-N box (x~5 the real void density there; OUTSIDE emptied, run 1 NaN, kept as cfg561_voids_RUN1_C4misspecified.out).  Fix: only voids with centres in RA 118-248, Dec -1.2..+12 (the voids that can reach the lenses; BOSS-North centres stop at Dec -1.15) are redrawn, uniformly in that same box.
+======================================================================================================================
+  voids redrawn per catalogue: 242
+  random  0: N_void 26060; z_KO -2.79, z_K1 +0.95, z_T -0.46
+  random  1: N_void 18203; z_KO +0.07, z_K1 -0.96, z_T +0.63
+  random  2: N_void  9270; z_KO -0.10, z_K1 -0.51, z_T -0.51
+  random  3: N_void 24200; z_KO -1.71, z_K1 +1.39, z_T -0.32
+  random  4: N_void 18915; z_KO +0.26, z_K1 +0.19, z_T +0.36
+  random  5: N_void 18583; z_KO -1.23, z_K1 +1.26, z_T -1.24
+  random  6: N_void 24370; z_KO +0.34, z_K1 -1.23, z_T -0.02
+  random  7: N_void 21372; z_KO -1.14, z_K1 +0.07, z_T -0.39
+  random  8: N_void 14487; z_KO -0.08, z_K1 -0.99, z_T +0.00
+  random  9: N_void 17412; z_KO +1.04, z_K1 +1.05, z_T +0.34
+  random 10: N_void 19431; z_KO -0.16, z_K1 -0.41, z_T +0.33
+  random 11: N_void 19831; z_KO -2.21, z_K1 +1.58, z_T -0.55
+  random 12: N_void 33868; z_KO +0.55, z_K1 +0.53, z_T -0.22
+  random 13: N_void 17513; z_KO -0.87, z_K1 -0.74, z_T +0.03
+  random 14: N_void 19257; z_KO -0.00, z_K1 +0.93, z_T -1.21
+  random 15: N_void 27897; z_KO -1.28, z_K1 -0.18, z_T -0.22
+  random 16: N_void 20153; z_KO -0.66, z_K1 +0.99, z_T -0.28
+  random 17: N_void 25202; z_KO +1.51, z_K1 +1.02, z_T +0.95
+  random 18: N_void 16926; z_KO -0.38, z_K1 -0.65, z_T -0.63
+  random 19: N_void 18041; z_KO -0.68, z_K1 +0.03, z_T +0.07
+  [PASS] C4 CONTROL: random voids -> null (mean z of D_KO and D_K1 within +-1.01, no |z| > 3.5)
+         KO: mean -0.48, std 1.03, max|z| 2.79; K1: mean +0.22, std 0.87, max|z| 1.58; T: mean -0.17, std 0.53, max|z| 1.24
+
+======================================================================================================================
+POST HOC (added after run 1, reported only): does the void flag trace KiDS neighbour density at a wider aperture?
+======================================================================================================================
+  p >= 0.25, 20 Mpc/h: T20 = -0.0005 +- 0.0030 (-0.17 sigma)
+  p >= 0.5, 20 Mpc/h: T20 = -0.0003 +- 0.0047 (-0.07 sigma)
+
+======================================================================================================================
+SENSITIVITY (reported only, never the verdict)
+======================================================================================================================
+  deep cores R = 0.5 R_eff  : N_V   581, pV 0.322; KO -0.6884 +- 1.2584 (-0.55 s); K1 +0.0992 +- 0.2017 (+0.49 s); T -0.0053 (-0.67 s)
+  p >= 0.5                  : N_V  1942, pV 0.615; KO -0.1612 +- 0.2737 (-0.59 s); K1 +0.1118 +- 0.1449 (+0.77 s); T -0.0026 (-0.56 s)
+  p-weighted                : N_V 25176, pV 0.354; KO -0.0089 +- 0.0673 (-0.13 s); K1 +0.1279 +- 0.0458 (+2.79 s); T +0.0008 (+0.41 s)
+  early only                : N_V  5350, pV 0.398; KO +0.0204 +- 0.0921 (+0.22 s); K1 +0.0886 +- 0.0606 (+1.46 s); T +0.0013 (+0.34 s)
+  late only                 : N_V  5132, pV 0.397; KO -0.0467 +- 0.1902 (-0.25 s); K1 +0.2158 +- 0.1219 (+1.77 s); T -0.0017 (-0.36 s)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  HEADLINE (outer bins KO): D = +0.0036 +- 0.0853 dex -> NON-DISCRIMINATING
+  1-halo K1 (same map, reported): D = +0.1168 +- 0.0523 dex -> NON-DISCRIMINATING
+  LCDM's 2-halo term is also lower around void galaxies: a negative outer D is not unique to settling.  kappa fitted; cold mass still required; not theory closed.
+
+  4/5 checks pass; load-bearing failures: 1   (59 s)
