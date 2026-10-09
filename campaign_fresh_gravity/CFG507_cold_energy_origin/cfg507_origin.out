@@ -1,0 +1,76 @@
+CFG507 run; frozen cec378664; h=0.674, omega_c=0.12, omega_b=0.02237, Omega_L=0.6865
+  chain cmb         : <w0> -0.418 +- 0.205, <wa> -1.751 +- 0.580
+  chain pantheonplus: <w0> -0.838 +- 0.055, <wa> -0.617 +- 0.208
+  chain union3      : <w0> -0.667 +- 0.088, <wa> -1.085 +- 0.293
+  chain desy5       : <w0> -0.752 +- 0.057, <wa> -0.861 +- 0.221
+  LCDM chi2 cmb/PP/U3/DY5 = 9.43/9.22/14.44/18.79
+  [PASS] K5 Pantheon+ chain mean w0 within 0.01 of -0.838 (-0.8380)
+
+=== M1: running (H^2-tracking) vacuum feeding cold energy;  rho_vac = rho_L + nu 3H^2/8piG ===
+  exact: d rho_c/dN = -3(1-nu) rho_c + nu(4 Or a^-4 + 3 Ob a^-3);  comoving y = rho_c a^3:
+  y(N) = 4 nu Or/(1+3nu) [e^{3nu N - (1+3nu) N_i} - e^{-N}] + Ob [e^{3nu(N - N_i)} - 1]  (no cold energy before N_i)
+  [PASS] K1 M1 nu = 0: no cold energy and (w0, wa) = (-1, 0) to 1e-5 (max y = 0.0e+00; w0+1 = +0.0e+00, wa = +0.0e+00)
+  [PASS] K2 M1 pure-radiation closed form vs ODE to 1e-6 (and full closed form vs ODE) (rad +8.0e-13; full +5.6e-14)
+         nu amount       z_i   T_i[eV]  in@1e5 drift3000-1100 drift1100-0   dNeff      w0      wa      dchi2 PP/U3/DY5  a0(2)/a0 a0(10)/a0  pass
+   +1.0e-08    yes  7.18e+10  1.20e+07  1.0000      +6.22e-08   +2.65e-07  0.0000  -1.000  -0.000  +0.00/ +0.00/ +0.00   1.00000    1.0000  ALL
+   +1.0e-07    yes  7.18e+09  1.20e+06  1.0000      +6.22e-07   +2.65e-06  0.0000  -1.000  -0.000  +0.00/ +0.00/ +0.00   1.00000    1.0000  ALL
+   +1.0e-06    yes  7.18e+08  1.20e+05  0.9998      +6.22e-06   +2.65e-05  0.0000  -1.000  -0.000  +0.00/ +0.00/ +0.00   1.00001    1.0003  ALL
+   +1.0e-05    yes  7.17e+07  1.20e+04  0.9982      +6.22e-05   +2.65e-04  0.0001  -1.000  -0.000  +0.01/ +0.01/ +0.01   1.00006    1.0030  ALL
+   +3.0e-05    yes  2.39e+07  4.01e+03  0.9946      +1.87e-04   +7.94e-04  0.0002  -1.000  -0.001  +0.02/ +0.02/ +0.02   1.00018    1.0091  ALL
+   +7.0e-05    yes  1.02e+07  1.72e+03  0.9874      +4.35e-04   +1.85e-03  0.0004  -1.000  -0.002  +0.05/ +0.04/ +0.05   1.00042    1.0211  no
+   +1.0e-04    yes  7.16e+06  1.20e+03  0.9820      +6.22e-04   +2.65e-03  0.0006  -1.000  -0.003  +0.07/ +0.06/ +0.07   1.00060    1.0301  no
+   +3.0e-04    yes  2.38e+06  3.98e+02  0.9463      +1.87e-03   +7.96e-03  0.0018  -0.999  -0.009  +0.22/ +0.17/ +0.21   1.00180    1.0882  no
+   +1.0e-03    yes  7.04e+05  1.18e+02  0.8245      +6.25e-03   +2.68e-02  0.0061  -0.995  -0.031  +0.73/ +0.55/ +0.71   1.00610    1.2748  no
+   +3.0e-03    yes  2.29e+05  3.83e+01  0.5012      +1.89e-02   +8.21e-02  0.0185  -0.984  -0.098  +2.11/ +1.58/ +2.03   1.01931    1.7252  no
+   +1.0e-02    yes  6.45e+04  1.08e+01  0.0000      +6.55e-02   +2.96e-01  0.0620  -0.936  -0.411  +4.22/ +2.89/ +4.10   1.07813    3.0023  no
+   +3.0e-02    yes  1.96e+04  3.28e+00  0.0000      +2.20e-01   +1.12e+00  0.1900  -0.696  -2.436 -205.62/-172.31/-197.12   1.44918    7.1643  no
+   +1.0e-01    yes  5.50e+03  9.22e-01  0.0000      +1.26e+00   +9.59e+00  0.6825  -1.170  +2.176 -352.01/-279.49/-314.96       nan       nan  no
+
+  M1 isocurvature, separate universes in the radiation era (production on, baryons off):
+    switch T    : S/zeta = +0.000e+00, beta_iso = 0.000e+00  (pass)
+    switch tau  : S/zeta = +0.000e+00, beta_iso = 0.000e+00  (pass)
+    switch clock: S/zeta = -5.005e-01, beta_iso = 2.003e-01  (FAIL)
+    -> a switch keyed to the local temperature or to local proper time is adiabatic (S = 0): in the growing mode both are
+       the same local clock. Isocurvature appears only for a trigger with its OWN fluctuation (a spectator clock):
+       S = (1/2) d ln t_i per unit, so beta_iso <= 0.02 needs |d tau / t_i| <= 0.29 zeta. CORRECTION to the frozen hand
+       expectation 'S-t EXCLUDED': a global-time switch is not excluded unless its clock fluctuates independently.
+
+  M1 parameter values passing C-AMOUNT + C-PRESENT + C-NEFF + C-LATE: nu <= 3e-05 (grid); amount = (nu, T_i) -> one free combination nu/a_i for one number
+  Any nu reproducing DESI (dchi2 >= 4 on PP, U3, DY5)?  NO, at any nu on the grid
+  ... and also passing C-PRESENT + C-NEFF?  NO
+  M1 VERDICT: RESTATEMENT  (two constants nu, T_i; the amount is their combination; DESI not reproduced)
+
+=== M2: the MOND field's dust branch with its charge SOURCED BY BARYONS (A = exp(beta phi/Mbar_Pl)) ===
+  a =   1e-04: rho_d,src/rho_b = 4.713412e-10   Delta ln A = 4.713548e-10   ratio 0.999971
+  a =   1e-03: rho_d,src/rho_b = 2.966252e-08   Delta ln A = 2.966260e-08   ratio 0.999997
+  a =   1e-01: rho_d,src/rho_b = 3.749030e-05   Delta ln A = 3.749030e-05   ratio 1.000000
+  a =   1e+00: rho_d,src/rho_b = 9.519660e-04   Delta ln A = 9.519660e-04   ratio 1.000000
+  [PASS] K3 M2 identity rho_d,src/rho_b = Delta ln A (to 1e-2 relative, linear regime) (max dev 2.9e-05)
+  times (LCDM): t(3000) = 6.3971e+04 yr, t(1100) = 3.6612e+05 yr, t0 = 1.3810e+10 yr
+  tie R_src(z=1100) = 5.364 needs d ln A/dt = 1.465e-05/yr -> |Gdot/G| = 2.93e-05/yr (bound 2e-13: x1.5e+08);
+     comoving drift z 3000 -> 1100 = +4.72 (bound 0.01); Delta ln A to today = 2.02e+05 (BBN/CMB bound 0.05)
+  softer tie R_src(today) = 5.364: |Gdot/G| = 7.77e-10/yr (x3.9e+03 over); share at z=1100 = 1.42e-04, i.e. not present by recombination
+  C-GDOT ceiling on the baryon-sourced share today: R_src <= 1.38e-03 = 2.6e-04 of 5.364
+  inherited (not re-run): the dust branch needs an extra scale M (CFG288 road S: M >= 4.24 eV) and breaks at stream crossing (L374).
+  M2 VERDICT: RESTATEMENT (baryon-sourced tie EXCLUDED: C-PRESENT, C-GDOT; amount = the free initial charge J_i, CFG288 A2)
+
+=== M3: dark-energy seesaw relic m* = sqrt(rho_L^(1/4) M), thermal freeze-out  [FORCES A FIELD QUANTUM] ===
+  [PASS] K4 M3 Boltzmann: m = 100 GeV, <sigma v> = 2.2e-26 cm^3/s -> Omega h^2 in [0.10, 0.13] (0.1185, x_f ~ 23.8)
+  rho_L^(1/4) = 2.2418 meV;  m*(Mbar_Pl) = 2336.4 GeV,  m*(M_Pl) = 5231.7 GeV
+  144 forms: Omega h^2 spans 0.000248 .. 112 (median 0.562); hits within 0.120 +- 0.001: 1  (p = 0.0069)
+  closest form: M = Mbar_Pl, alpha = alpha_s, k = 0.25, g = 4: Omega h^2 = 0.1192 (<sigma v> = 2.34e-26 cm^3/s)
+    HIT: M = Mbar_Pl, alpha = alpha_s, k = 0.25, g = 4: Omega h^2 = 0.11915
+  scaling: Omega h^2 ~ m*^2 / (k alpha^2), so the amount is set by the chosen coupling (a continuous dial), not by rho_L alone.
+  C-COLD: free-streaming length (T_kd = 1 MeV) = 1.3e-06 Mpc (< 0.1); C-PRESENT: frozen out at T ~ m*/x_f ~ 93 GeV (z ~ 1e14);
+  C-NEFF: non-relativistic at BBN, its energy there is negligible; C-ADIAB: a thermal relic of the reheated plasma is adiabatic.
+  C-PARTICLE: YES, a TeV-scale massive particle (a WIMP-like field quantum). Direct/indirect detection: not tested here (no data on disk).
+  M3 VERDICT: PREDICTIVE-PENDING (check MUTATE scrambled draws)
+
+=== SUMMARY ===
+  M1 early running vacuum -> cold:  RESTATEMENT
+  M2 baryon-sourced MOND-field charge: RESTATEMENT (baryon-sourced tie EXCLUDED: C-PRESENT, C-GDOT; amount = the free initial charge J_i, CFG288 A2)
+  M3 dark-energy seesaw relic:      PREDICTIVE-PENDING (check MUTATE scrambled draws)
+  PREDICTIVE result: none for M1/M2; M3 has one grammar hit, decided by the scrambled-cosmology MUTATE run (frozen rule).
+  The cold energy's origin is still an input unless the M3 MUTATE says otherwise; its mass is still required. kappa = 1/2 fitted.
+
+5/5 checks pass

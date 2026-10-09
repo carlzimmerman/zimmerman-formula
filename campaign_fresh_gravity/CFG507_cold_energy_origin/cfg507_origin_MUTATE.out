@@ -1,0 +1,37 @@
+CFG507 MUTATE run; frozen cec378664; h=0.674, omega_c=0.12, omega_b=0.02237, Omega_L=0.6865
+  chain cmb         : <w0> -0.418 +- 0.205, <wa> -1.751 +- 0.580
+  chain pantheonplus: <w0> -0.838 +- 0.055, <wa> -0.617 +- 0.208
+  chain union3      : <w0> -0.667 +- 0.088, <wa> -1.085 +- 0.293
+  chain desy5       : <w0> -0.752 +- 0.057, <wa> -0.861 +- 0.221
+  LCDM chi2 cmb/PP/U3/DY5 = 9.43/9.22/14.44/18.79
+
+=== M1: running (H^2-tracking) vacuum feeding cold energy;  rho_vac = rho_L + nu 3H^2/8piG ===
+  exact: d rho_c/dN = -3(1-nu) rho_c + nu(4 Or a^-4 + 3 Ob a^-3);  comoving y = rho_c a^3:
+  y(N) = 4 nu Or/(1+3nu) [e^{3nu N - (1+3nu) N_i} - e^{-N}] + Ob [e^{3nu(N - N_i)} - 1]  (no cold energy before N_i)
+         nu amount       z_i   T_i[eV]  in@1e5 drift3000-1100 drift1100-0   dNeff      w0      wa      dchi2 PP/U3/DY5  a0(2)/a0 a0(10)/a0  pass
+   -1.0e-08     NO  -- amount unreachable (no switch-on gives omega_c = 0.120 at z = 1000)
+   -1.0e-06     NO  -- amount unreachable (no switch-on gives omega_c = 0.120 at z = 1000)
+   -1.0e-04     NO  -- amount unreachable (no switch-on gives omega_c = 0.120 at z = 1000)
+   -1.0e-03     NO  -- amount unreachable (no switch-on gives omega_c = 0.120 at z = 1000)
+   -1.0e-02     NO  -- amount unreachable (no switch-on gives omega_c = 0.120 at z = 1000)
+   -3.0e-02     NO  -- amount unreachable (no switch-on gives omega_c = 0.120 at z = 1000)
+   -1.0e-01     NO  -- amount unreachable (no switch-on gives omega_c = 0.120 at z = 1000)
+
+  MUTATE M1 wrong sign (nu < 0, cold -> vacuum): amount reachable at 0 of 7 nu values
+  [PASS] MUTATE M1: the wrong-sign exchange fails C-AMOUNT at every nu (produces no positive cold energy) 
+
+=== M2: the MOND field's dust branch with its charge SOURCED BY BARYONS (A = exp(beta phi/Mbar_Pl)) ===
+  a =   1e-04: rho_d,src/rho_b = 0.000000e+00   Delta ln A = 0.000000e+00   ratio nan
+  a =   1e-03: rho_d,src/rho_b = 0.000000e+00   Delta ln A = 0.000000e+00   ratio nan
+  a =   1e-01: rho_d,src/rho_b = 0.000000e+00   Delta ln A = 0.000000e+00   ratio nan
+  a =   1e+00: rho_d,src/rho_b = 0.000000e+00   Delta ln A = 0.000000e+00   ratio nan
+  [PASS] MUTATE M2: beta = 0 -> sourced share vanishes (|R_src| < 1e-12) (max 0.0e+00)
+
+=== M3: dark-energy seesaw relic m* = sqrt(rho_L^(1/4) M), thermal freeze-out  [FORCES A FIELD QUANTUM] ===
+  200 scrambled cosmologies (R' in [3, 8]): hits per draw mean 0.345, max 1, draws with >= 1 hit 69, 99th percentile 1.0
+  real cosmology on the same interpolated tables: 1 hits
+  frozen PREDICTIVE leg: real exact hits 1 <= scrambled 99th percentile 1.0 -> M3 PREDICTIVE: NO; fraction of scrambled draws with >= as many hits: 0.345
+
+=== SUMMARY ===
+
+2/2 checks pass
