@@ -1,0 +1,2167 @@
+{
+ "slug": "cfg513",
+ "checks": [
+  {
+   "name": "C1 nu_mono point-mass edge = r_M/ln(1 + f_ret f_b/(1 - f_b)) within 1% (f_ret = 1 and 0.18, both footings)",
+   "detail": "canonical f_ret 1.0: 5.850 r_M vs 5.850 (-4.1e-09); canonical f_ret 0.18: 30.297 r_M vs 30.297 (-3.7e-09); alt f_ret 1.0: 5.850 r_M vs 5.850 (-4.1e-09); alt f_ret 0.18: 30.297 r_M vs 30.297 (-3.7e-09)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 extended baryons -> point-mass law at 200 kpc within 1% (bare); rho_ph >= 0 inside the edge",
+   "detail": "M(<200) ratio - 1: -5.3e-04, -5.3e-04; min rho_ph 6.166e+03 Msun/kpc^3",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C5 the N-F fitter recovers a synthetic NFW + baryons curve (M200c 9e11, c 11) to 1e-3",
+   "detail": "recovered M200c 9.00000e+11, c 11.00000",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 the N-B08 / N-B16 spherical orbits reproduce Fritz Table 3 central pericentres: median |dperi|/peri <= 15% each",
+   "detail": "N-B08: 0.023, N-B16: 0.022",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 the timing integrator reproduces the analytic radial Kepler solution (no Lambda) to 1e-4 in t0",
+   "detail": "analytic t 16.157179 Gyr (v -114.961 km/s), integrator 16.157178 Gyr, rel -1.9e-08",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C7 (reported) deep-MOND two-body + Lambda at FP11's nominal 1.75e11 within 10% of FP11's committed P2 first approach",
+   "detail": "canonical: -174.9 vs FP11 -175.5 (-0.3%); alt: -191.1 vs FP11 -191.7 (-0.3%)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C6 (reported) CFG484's host-fluid density at R0 (0.0049 / 0.0057 Msun/pc^3, P2 point mass) reproduced within 5%",
+   "detail": "0.00492 / 0.00569",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "rows": [
+  {
+   "key": "a1",
+   "label": "Satellite pericentres, Fritz 0.8e12 NFW potential assumed",
+   "verdict": "NONE",
+   "b_sigma_min": -0.15640623020403205,
+   "b_sigma_max": 0.048313774572729645,
+   "frac_min": -0.02825866702071811,
+   "frac_max": 3.669200675737727e-06,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [frac>1sig 0.03]",
+     "b_sigma": -0.15640623020403205,
+     "frac": -0.02825866702071811,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [frac>1sig 0.00]",
+     "b_sigma": -0.06964583041527389,
+     "frac": -0.0006029466223281821,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [frac>1sig 0.03]",
+     "b_sigma": -0.10746194668513691,
+     "frac": -0.019747305695072326,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [frac>1sig 0.00]",
+     "b_sigma": 0.048313774572729645,
+     "frac": 3.669200675737727e-06,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "Fritz+18 Table 3 peri errors (on disk)",
+   "touches": "satellites (CFG433/CFG463/CFG286), UFD tidal history",
+   "extra": ""
+  },
+  {
+   "key": "a2",
+   "label": "Satellite pericentres, Fritz 1.6e12 NFW potential assumed",
+   "verdict": "MINOR",
+   "b_sigma_min": -0.63097729130503,
+   "b_sigma_max": -0.3180180809779013,
+   "frac_min": -0.16992310917937314,
+   "frac_max": -0.12877991127667443,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [frac>1sig 0.31]",
+     "b_sigma": -0.63097729130503,
+     "frac": -0.16992310917937314,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [frac>1sig 0.23]",
+     "b_sigma": -0.3571442371547682,
+     "frac": -0.1404921978986866,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [frac>1sig 0.28]",
+     "b_sigma": -0.6154652328606158,
+     "frac": -0.15989984622342535,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [frac>1sig 0.18]",
+     "b_sigma": -0.3180180809779013,
+     "frac": -0.12877991127667443,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "Fritz+18 Table 3 peri errors (on disk)",
+   "touches": "satellites, UFD tidal history",
+   "extra": ""
+  },
+  {
+   "key": "a3",
+   "label": "Record's bare-law host (CFG433/463/286) vs the edge profile, pericentres",
+   "verdict": "NONE",
+   "b_sigma_min": -0.01389641220235268,
+   "b_sigma_max": 2.0062383127344005e-15,
+   "frac_min": -0.004702067996435466,
+   "frac_max": 2.220446049250313e-16,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [apo bare/edge-1 median -0.227]",
+     "b_sigma": -0.011683465566239816,
+     "frac": -0.003953282957249282,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [apo bare/edge-1 median -0.000]",
+     "b_sigma": 1.937843824800273e-15,
+     "frac": 2.220446049250313e-16,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [apo bare/edge-1 median -0.227]",
+     "b_sigma": -0.01389641220235268,
+     "frac": -0.004702067996435466,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [apo bare/edge-1 median -0.000]",
+     "b_sigma": 2.0062383127344005e-15,
+     "frac": 0.0,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "Fritz+18 peri errors",
+   "touches": "satellites, UFD infall order (CFG463)",
+   "extra": ""
+  },
+  {
+   "key": "a4",
+   "label": "CFG433 V_c at r_med 78 kpc: bare law (used) vs edge profile",
+   "verdict": "MATERIAL",
+   "b_sigma_min": 0.0,
+   "b_sigma_max": 1.5325007726505449,
+   "frac_min": 0.0,
+   "frac_max": 0.22606374908369098,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 1.1713624202530188,
+     "frac": 0.17279115611808304,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": 0.0,
+     "frac": 0.0,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 1.5325007726505449,
+     "frac": 0.22606374908369098,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": 0.0,
+     "frac": 0.0,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "CFG433's +-21.4 km/s (on disk)",
+   "touches": "satellites (CFG433)",
+   "extra": ""
+  },
+  {
+   "key": "b-N-F-50",
+   "label": "M(<50 kpc) extrapolated by N-F",
+   "verdict": "NONE",
+   "b_sigma_min": -0.06009478532515544,
+   "b_sigma_max": 0.20958767229450154,
+   "frac_min": -0.009014217798773316,
+   "frac_max": 0.03143815084417523,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 0.0632991640149679,
+     "frac": 0.009494874602245185,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": 0.0632991640149679,
+     "frac": 0.009494874602245185,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 0.20958767229450154,
+     "frac": 0.03143815084417523,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": 0.20958767229450154,
+     "frac": 0.03143815084417523,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": -0.06009478532515544,
+     "frac": -0.009014217798773316,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -0.06009478532515544,
+     "frac": -0.009014217798773316,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 0.06716223197323087,
+     "frac": 0.01007433479598463,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": 0.06716223197323087,
+     "frac": 0.01007433479598463,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "15% (recalled typical)",
+   "touches": "MW mass; LG timing; satellites' host mass",
+   "extra": ""
+  },
+  {
+   "key": "b-N-F-100",
+   "label": "M(<100 kpc) extrapolated by N-F",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -1.0471416791906951,
+   "b_sigma_max": 4.037361503732972,
+   "frac_min": -0.15707125187860427,
+   "frac_max": 0.6056042255599459,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 3.4994570962265454,
+     "frac": 0.5249185644339818,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -0.8269226123390457,
+     "frac": -0.12403839185085686,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 3.0303879576763615,
+     "frac": 0.4545581936514542,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -0.5518065387598811,
+     "frac": -0.08277098081398215,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 4.037361503732972,
+     "frac": 0.6056042255599459,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -1.0471416791906951,
+     "frac": -0.15707125187860427,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 3.4755543648356175,
+     "frac": 0.5213331547253426,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -0.8190678476786014,
+     "frac": -0.1228601771517902,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "15% (recalled typical)",
+   "touches": "MW mass; LG timing; satellites' host mass",
+   "extra": ""
+  },
+  {
+   "key": "b-N-F-200",
+   "label": "M(<200 kpc) extrapolated by N-F",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -1.808946963200903,
+   "b_sigma_max": 6.905274503569318,
+   "frac_min": -0.3617893926401806,
+   "frac_max": 1.3810549007138637,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 6.474394637174079,
+     "frac": 1.2948789274348158,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -1.6278205487218311,
+     "frac": -0.3255641097443662,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 6.151336093443455,
+     "frac": 1.2302672186886912,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -1.393835257209876,
+     "frac": -0.2787670514419752,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 6.905274503569318,
+     "frac": 1.3810549007138637,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -1.808946963200903,
+     "frac": -0.3617893926401806,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 6.453973181785122,
+     "frac": 1.2907946363570244,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -1.6210480522846642,
+     "frac": -0.32420961045693286,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "20% (recalled typical)",
+   "touches": "MW mass; LG timing; satellites' host mass",
+   "extra": ""
+  },
+  {
+   "key": "b-N-F-300",
+   "label": "M(<300 kpc) extrapolated by N-F",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -2.112551567026717,
+   "b_sigma_max": 9.41985720253737,
+   "frac_min": -0.4225103134053434,
+   "frac_max": 1.8839714405074743,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 8.996673254217793,
+     "frac": 1.7993346508435586,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -2.108210362575865,
+     "frac": -0.42164207251517305,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 8.725986581666742,
+     "frac": 1.7451973163333485,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -2.0155634978100867,
+     "frac": -0.40311269956201734,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 9.41985720253737,
+     "frac": 1.8839714405074743,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -2.0207782325083983,
+     "frac": -0.4041556465016797,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 8.975661207061282,
+     "frac": 1.7951322414122566,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -2.112551567026717,
+     "frac": -0.4225103134053434,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "20% (recalled typical)",
+   "touches": "MW mass; LG timing; satellites' host mass",
+   "extra": ""
+  },
+  {
+   "key": "b-N-F-M200",
+   "label": "'MW halo mass' M200c by N-F vs the framework's total (M_b + M_cold)",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -2.611324146526386,
+   "b_sigma_max": 7.079748684395173,
+   "frac_min": -0.5222648293052772,
+   "frac_max": 1.4159497368790346,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [M200c inferred 8.83e+11 (R200 203) vs F total 3.82e+11; F M(<R200) 3.82e+11]",
+     "b_sigma": 6.560530529067776,
+     "frac": 1.3121061058135552,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [M200c inferred 8.83e+11 (R200 203) vs F total 1.85e+12; F M(<R200) 1.32e+12]",
+     "b_sigma": -2.611324146526386,
+     "frac": -0.5222648293052772,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0 [M200c inferred 1.08e+12 (R200 217) vs F total 4.65e+11; F M(<R200) 4.65e+11]",
+     "b_sigma": 6.660365109549238,
+     "frac": 1.3320730219098476,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18 [M200c inferred 1.08e+12 (R200 217) vs F total 2.25e+12; F M(<R200) 1.56e+12]",
+     "b_sigma": -2.590695988403527,
+     "frac": -0.5181391976807055,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [M200c inferred 9.23e+11 (R200 206) vs F total 3.82e+11; F M(<R200) 3.82e+11]",
+     "b_sigma": 7.079748684395173,
+     "frac": 1.4159497368790346,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [M200c inferred 9.23e+11 (R200 206) vs F total 1.85e+12; F M(<R200) 1.47e+12]",
+     "b_sigma": -2.5040415380684777,
+     "frac": -0.5008083076136955,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0 [M200c inferred 1.12e+12 (R200 219) vs F total 4.65e+11; F M(<R200) 4.65e+11]",
+     "b_sigma": 7.015009696015859,
+     "frac": 1.4030019392031718,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18 [M200c inferred 1.12e+12 (R200 219) vs F total 2.25e+12; F M(<R200) 1.72e+12]",
+     "b_sigma": -2.5174181264465934,
+     "frac": -0.5034836252893187,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "20% (recalled review)",
+   "touches": "MW mass; f_ret readings",
+   "extra": ""
+  },
+  {
+   "key": "b-N-F+T-50",
+   "label": "M(<50 kpc) extrapolated by N-F+T",
+   "verdict": "MINOR",
+   "b_sigma_min": -0.8010582423814516,
+   "b_sigma_max": 0.31373462122606277,
+   "frac_min": -0.12015873635721774,
+   "frac_max": 0.047060193183909416,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": -0.6509302326933475,
+     "frac": -0.09763953490400212,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": 0.24284247219814592,
+     "frac": 0.03642637082972189,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": -0.485401880405103,
+     "frac": -0.07281028206076545,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": 0.31373462122606277,
+     "frac": 0.047060193183909416,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": -0.8010582423814516,
+     "frac": -0.12015873635721774,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": 0.16347354507987227,
+     "frac": 0.024521031761980838,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": -0.6413361594421156,
+     "frac": -0.09620042391631733,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": 0.24375747779161294,
+     "frac": 0.03656362166874194,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "15% (recalled typical)",
+   "touches": "MW mass; LG timing; satellites' host mass",
+   "extra": ""
+  },
+  {
+   "key": "b-N-F+T-100",
+   "label": "M(<100 kpc) extrapolated by N-F+T",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -0.7427982013168382,
+   "b_sigma_max": 2.2377807982285347,
+   "frac_min": -0.11141973019752571,
+   "frac_max": 0.3356671197342802,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 1.8463277301578278,
+     "frac": 0.27694915952367416,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -0.5722728170576878,
+     "frac": -0.08584092255865317,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 1.4888848550284066,
+     "frac": 0.22333272825426098,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -0.39634196470830146,
+     "frac": -0.05945129470624522,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 2.2377807982285347,
+     "frac": 0.3356671197342802,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -0.7427982013168382,
+     "frac": -0.11141973019752571,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 1.83766277486953,
+     "frac": 0.2756494162304295,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -0.5680526199672802,
+     "frac": -0.08520789299509202,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "15% (recalled typical)",
+   "touches": "MW mass; LG timing; satellites' host mass",
+   "extra": ""
+  },
+  {
+   "key": "b-N-F+T-200",
+   "label": "M(<200 kpc) extrapolated by N-F+T",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -1.5846351407274288,
+   "b_sigma_max": 4.419643775178456,
+   "frac_min": -0.3169270281454858,
+   "frac_max": 0.8839287550356913,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 4.131673576744601,
+     "frac": 0.8263347153489202,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -1.4349196898206573,
+     "frac": -0.28698393796413146,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 3.8965050041829707,
+     "frac": 0.7793010008365941,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -1.2720173445036476,
+     "frac": -0.2544034689007295,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 4.419643775178456,
+     "frac": 0.8839287550356913,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -1.5846351407274288,
+     "frac": -0.3169270281454858,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 4.1295375565875565,
+     "frac": 0.8259075113175114,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -1.430652509605404,
+     "frac": -0.2861305019210808,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "20% (recalled typical)",
+   "touches": "MW mass; LG timing; satellites' host mass",
+   "extra": ""
+  },
+  {
+   "key": "b-N-F+T-300",
+   "label": "M(<300 kpc) extrapolated by N-F+T",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -1.932030495539273,
+   "b_sigma_max": 6.15358402615211,
+   "frac_min": -0.3864060991078546,
+   "frac_max": 1.230716805230422,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 5.884639965676614,
+     "frac": 1.176927993135323,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -1.924710185455536,
+     "frac": -0.3849420370911072,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 5.690157273094704,
+     "frac": 1.138031454618941,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -1.903251789456875,
+     "frac": -0.380650357891375,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 6.15358402615211,
+     "frac": 1.230716805230422,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": -1.7893174294599683,
+     "frac": -0.3578634858919937,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0",
+     "b_sigma": 5.88612642608717,
+     "frac": 1.177225285217434,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18",
+     "b_sigma": -1.932030495539273,
+     "frac": -0.3864060991078546,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "20% (recalled typical)",
+   "touches": "MW mass; LG timing; satellites' host mass",
+   "extra": ""
+  },
+  {
+   "key": "b-N-F+T-M200",
+   "label": "'MW halo mass' M200c by N-F+T vs the framework's total (M_b + M_cold)",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -2.4885039499807142,
+   "b_sigma_max": 4.1552865153674095,
+   "frac_min": -0.49770078999614287,
+   "frac_max": 0.831057303073482,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [M200c inferred 6.73e+11 (R200 185) vs F total 3.82e+11; F M(<R200) 3.82e+11]",
+     "b_sigma": 3.812230530618008,
+     "frac": 0.7624461061236016,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [M200c inferred 9.45e+11 (R200 208) vs F total 1.85e+12; F M(<R200) 1.35e+12]",
+     "b_sigma": -2.443253054240207,
+     "frac": -0.4886506108480414,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0 [M200c inferred 8.23e+11 (R200 198) vs F total 4.65e+11; F M(<R200) 4.64e+11]",
+     "b_sigma": 3.857261320941152,
+     "frac": 0.7714522641882304,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18 [M200c inferred 1.13e+12 (R200 220) vs F total 2.25e+12; F M(<R200) 1.58e+12]",
+     "b_sigma": -2.4885039499807142,
+     "frac": -0.49770078999614287,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [M200c inferred 6.99e+11 (R200 188) vs F total 3.82e+11; F M(<R200) 3.82e+11]",
+     "b_sigma": 4.1552865153674095,
+     "frac": 0.831057303073482,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [M200c inferred 1.00e+12 (R200 212) vs F total 1.85e+12; F M(<R200) 1.51e+12]",
+     "b_sigma": -2.2888113316458507,
+     "frac": -0.45776226632917016,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0 [M200c inferred 8.49e+11 (R200 200) vs F total 4.65e+11; F M(<R200) 4.64e+11]",
+     "b_sigma": 4.134223750241191,
+     "frac": 0.8268447500482383,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18 [M200c inferred 1.20e+12 (R200 224) vs F total 2.25e+12; F M(<R200) 1.76e+12]",
+     "b_sigma": -2.3424638322042926,
+     "frac": -0.4684927664408586,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "20% (recalled review)",
+   "touches": "MW mass; f_ret readings",
+   "extra": ""
+  },
+  {
+   "key": "b2",
+   "label": "LG timing mass (point-mass Kepler read of the framework's own orbit) vs the framework's true M_MW + M_M31",
+   "verdict": "NONE",
+   "b_sigma_min": -0.02437384173969548,
+   "b_sigma_max": -0.006080044223932823,
+   "frac_min": -0.004874768347939096,
+   "frac_max": -0.0012160088447865647,
+   "cells": [
+    {
+     "cell": "canonical|f_ret 1.0",
+     "b_sigma": -0.007004627148534115,
+     "frac": -0.001400925429706823,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|f_ret 0.18",
+     "b_sigma": -0.02437384173969548,
+     "frac": -0.004874768347939096,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|f_ret 1.0",
+     "b_sigma": -0.006080044223932823,
+     "frac": -0.0012160088447865647,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|f_ret 0.18",
+     "b_sigma": -0.02072767199620129,
+     "frac": -0.004145534399240258,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "20% (recalled timing-mass systematic)",
+   "touches": "LG timing (CFG20/CFG30); MW mass",
+   "extra": ""
+  },
+  {
+   "key": "c-spherical",
+   "label": "Local dark/cold density, spherical rho(R0): N-F vs framework",
+   "verdict": "NONE",
+   "b_sigma_min": -0.00020602490150567476,
+   "b_sigma_max": 0.11417948665971789,
+   "frac_min": -4.120498030113495e-05,
+   "frac_max": 0.022835897331943578,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [F 0.0064 vs N-F 0.0065 Msun/pc^3]",
+     "b_sigma": 0.06118970503094845,
+     "frac": 0.01223794100618969,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [F 0.0064 vs N-F 0.0065 Msun/pc^3]",
+     "b_sigma": 0.06118970503094845,
+     "frac": 0.01223794100618969,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0 [F 0.0069 vs N-F 0.0069 Msun/pc^3]",
+     "b_sigma": -0.00020602490150567476,
+     "frac": -4.120498030113495e-05,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18 [F 0.0069 vs N-F 0.0069 Msun/pc^3]",
+     "b_sigma": -0.00020602490150567476,
+     "frac": -4.120498030113495e-05,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [F 0.0073 vs N-F 0.0074 Msun/pc^3]",
+     "b_sigma": 0.11417948665971789,
+     "frac": 0.022835897331943578,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [F 0.0073 vs N-F 0.0074 Msun/pc^3]",
+     "b_sigma": 0.11417948665971789,
+     "frac": 0.022835897331943578,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0 [F 0.0078 vs N-F 0.0079 Msun/pc^3]",
+     "b_sigma": 0.05867510424787392,
+     "frac": 0.011735020849574784,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18 [F 0.0078 vs N-F 0.0079 Msun/pc^3]",
+     "b_sigma": 0.05867510424787392,
+     "frac": 0.011735020849574784,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "20% (recalled review)",
+   "touches": "local density; vertical-force / Oort-limit tests",
+   "extra": ""
+  },
+  {
+   "key": "c-midplane",
+   "label": "Local dark/cold density, midplane rho (phantom disc): N-F vs framework",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -4.521767086969896,
+   "b_sigma_max": -4.50074027360505,
+   "frac_min": -0.9043534173939792,
+   "frac_max": -0.9001480547210101,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [F 0.0667 vs N-F 0.0065 Msun/pc^3]",
+     "b_sigma": -4.512012107000553,
+     "frac": -0.9024024214001106,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [F 0.0667 vs N-F 0.0065 Msun/pc^3]",
+     "b_sigma": -4.512012107000553,
+     "frac": -0.9024024214001106,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0 [F 0.0689 vs N-F 0.0069 Msun/pc^3]",
+     "b_sigma": -4.50074027360505,
+     "frac": -0.9001480547210101,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18 [F 0.0689 vs N-F 0.0069 Msun/pc^3]",
+     "b_sigma": -4.50074027360505,
+     "frac": -0.9001480547210101,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [F 0.0776 vs N-F 0.0074 Msun/pc^3]",
+     "b_sigma": -4.521767086969896,
+     "frac": -0.9043534173939792,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [F 0.0776 vs N-F 0.0074 Msun/pc^3]",
+     "b_sigma": -4.521767086969896,
+     "frac": -0.9043534173939792,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0 [F 0.0807 vs N-F 0.0079 Msun/pc^3]",
+     "b_sigma": -4.5116081545510545,
+     "frac": -0.902321630910211,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18 [F 0.0807 vs N-F 0.0079 Msun/pc^3]",
+     "b_sigma": -4.5116081545510545,
+     "frac": -0.902321630910211,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "20% (recalled review)",
+   "touches": "local density; vertical-force / Oort-limit tests",
+   "extra": ""
+  },
+  {
+   "key": "c-slab",
+   "label": "Local dark/cold density, slab |z|<1.1 kpc equivalent: N-F vs framework",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -3.0126944344533526,
+   "b_sigma_max": -2.96695510527484,
+   "frac_min": -0.6025388868906706,
+   "frac_max": -0.593391021054968,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [F 0.0162 vs N-F 0.0065 Msun/pc^3]",
+     "b_sigma": -2.9911533717809813,
+     "frac": -0.5982306743561963,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [F 0.0162 vs N-F 0.0065 Msun/pc^3]",
+     "b_sigma": -2.9911533717809813,
+     "frac": -0.5982306743561963,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 1.0 [F 0.0169 vs N-F 0.0069 Msun/pc^3]",
+     "b_sigma": -2.96695510527484,
+     "frac": -0.593391021054968,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 7.3e+10|f_ret 0.18 [F 0.0169 vs N-F 0.0069 Msun/pc^3]",
+     "b_sigma": -2.96695510527484,
+     "frac": -0.593391021054968,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [F 0.0187 vs N-F 0.0074 Msun/pc^3]",
+     "b_sigma": -3.0126944344533526,
+     "frac": -0.6025388868906706,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [F 0.0187 vs N-F 0.0074 Msun/pc^3]",
+     "b_sigma": -3.0126944344533526,
+     "frac": -0.6025388868906706,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 1.0 [F 0.0196 vs N-F 0.0079 Msun/pc^3]",
+     "b_sigma": -2.990311491402733,
+     "frac": -0.5980622982805466,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 7.3e+10|f_ret 0.18 [F 0.0196 vs N-F 0.0079 Msun/pc^3]",
+     "b_sigma": -2.990311491402733,
+     "frac": -0.5980622982805466,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "20% (recalled review)",
+   "touches": "local density; vertical-force / Oort-limit tests",
+   "extra": ""
+  },
+  {
+   "key": "d1",
+   "label": "DR4 Arm C / settling (gamma = 1.000): the MW-model tide's maximum effect on gamma_v at 30 kAU",
+   "verdict": "NONE",
+   "b_sigma_min": -0.03374691188220382,
+   "b_sigma_max": -0.029023176991710257,
+   "frac_min": -0.0009390950996185684,
+   "frac_max": -0.0008076449597348336,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [tide/internal F 1.7e-03 vs N-F 1.0e-04]",
+     "b_sigma": -0.029023176991710257,
+     "frac": -0.0008076449597348336,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [tide/internal F 1.7e-03 vs N-F 1.0e-04]",
+     "b_sigma": -0.029023176991710257,
+     "frac": -0.0008076449597348336,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [tide/internal F 2.0e-03 vs N-F 1.2e-04]",
+     "b_sigma": -0.03374691188220382,
+     "frac": -0.0009390950996185684,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [tide/internal F 2.0e-03 vs N-F 1.2e-04]",
+     "b_sigma": -0.03374691188220382,
+     "frac": -0.0009390950996185684,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "sigma_tot 0.0278 (prereg)",
+   "touches": "DR4 Arm C, Amendment 21 (decisive)",
+   "extra": ""
+  },
+  {
+   "key": "d2",
+   "label": "DR4 Arms A/B: the model g_ext at the Sun, N-F vs framework, against the prereg's own g_ext bracket (1.778 -> 2.078: 16%)",
+   "verdict": "NONE",
+   "b_sigma_min": 0.02582064431837033,
+   "b_sigma_max": 0.03091299414778595,
+   "frac_min": 0.004131303090939253,
+   "frac_max": 0.004946079063645752,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [model g_obs F 1.759e-10 vs N-F 1.768e-10]",
+     "b_sigma": 0.03091299414778595,
+     "frac": 0.004946079063645752,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [model g_obs F 1.759e-10 vs N-F 1.768e-10]",
+     "b_sigma": 0.03091299414778595,
+     "frac": 0.004946079063645752,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [model g_obs F 1.854e-10 vs N-F 1.861e-10]",
+     "b_sigma": 0.02582064431837033,
+     "frac": 0.004131303090939253,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [model g_obs F 1.854e-10 vs N-F 1.861e-10]",
+     "b_sigma": 0.02582064431837033,
+     "frac": 0.004131303090939253,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "the 16% bracket between the two frozen conventions (proxy; the arms use the OBSERVED g_ext)",
+   "touches": "DR4 Arms A/B",
+   "extra": ""
+  },
+  {
+   "key": "e-LMC-S-model",
+   "label": "LMC compact-object halo fraction bound if the S-model halo is assumed",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -1.0761525331456174,
+   "b_sigma_max": -0.7512602836282065,
+   "frac_min": -0.26903813328640436,
+   "frac_max": -0.18781507090705163,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [tau F 3.45e-07 vs S-model 4.72e-07]",
+     "b_sigma": -1.0761525331456174,
+     "frac": -0.26903813328640436,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [tau F 3.45e-07 vs S-model 4.72e-07]",
+     "b_sigma": -1.0761525331456174,
+     "frac": -0.26903813328640436,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [tau F 3.83e-07 vs S-model 4.72e-07]",
+     "b_sigma": -0.7512602836282065,
+     "frac": -0.18781507090705163,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [tau F 3.83e-07 vs S-model 4.72e-07]",
+     "b_sigma": -0.7512602836282065,
+     "frac": -0.18781507090705163,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "25% halo-model systematic (recalled)",
+   "touches": "PBH reading (CFG510)",
+   "extra": ""
+  },
+  {
+   "key": "e-LMC-N-F",
+   "label": "LMC compact-object halo fraction bound if the N-F halo is assumed",
+   "verdict": "NONE",
+   "b_sigma_min": -0.14957202176109563,
+   "b_sigma_max": -0.12901041368435706,
+   "frac_min": -0.03739300544027391,
+   "frac_max": -0.032252603421089265,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [tau F 3.45e-07 vs N-F 3.58e-07]",
+     "b_sigma": -0.14957202176109563,
+     "frac": -0.03739300544027391,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [tau F 3.45e-07 vs N-F 3.58e-07]",
+     "b_sigma": -0.14957202176109563,
+     "frac": -0.03739300544027391,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [tau F 3.83e-07 vs N-F 3.96e-07]",
+     "b_sigma": -0.12901041368435706,
+     "frac": -0.032252603421089265,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [tau F 3.83e-07 vs N-F 3.96e-07]",
+     "b_sigma": -0.12901041368435706,
+     "frac": -0.032252603421089265,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "25% halo-model systematic (recalled)",
+   "touches": "PBH reading (CFG510)",
+   "extra": ""
+  },
+  {
+   "key": "e-SMC-S-model",
+   "label": "SMC compact-object halo fraction bound if the S-model halo is assumed",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -1.076689331190892,
+   "b_sigma_max": -0.7410831166783449,
+   "frac_min": -0.269172332797723,
+   "frac_max": -0.18527077916958623,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [tau F 4.92e-07 vs S-model 6.73e-07]",
+     "b_sigma": -1.076689331190892,
+     "frac": -0.269172332797723,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [tau F 4.93e-07 vs S-model 6.73e-07]",
+     "b_sigma": -1.0724573065343685,
+     "frac": -0.26811432663359214,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [tau F 5.44e-07 vs S-model 6.73e-07]",
+     "b_sigma": -0.7664764896159308,
+     "frac": -0.1916191224039827,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [tau F 5.49e-07 vs S-model 6.73e-07]",
+     "b_sigma": -0.7410831166783449,
+     "frac": -0.18527077916958623,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "25% halo-model systematic (recalled)",
+   "touches": "PBH reading (CFG510)",
+   "extra": ""
+  },
+  {
+   "key": "e-SMC-N-F",
+   "label": "SMC compact-object halo fraction bound if the N-F halo is assumed",
+   "verdict": "NONE",
+   "b_sigma_min": -0.13025080361385566,
+   "b_sigma_max": -0.09986104946387364,
+   "frac_min": -0.032562700903463915,
+   "frac_max": -0.02496526236596841,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [tau F 4.92e-07 vs N-F 5.08e-07]",
+     "b_sigma": -0.1240965071152047,
+     "frac": -0.031024126778801175,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [tau F 4.93e-07 vs N-F 5.08e-07]",
+     "b_sigma": -0.11848543083678953,
+     "frac": -0.029621357709197382,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [tau F 5.44e-07 vs N-F 5.63e-07]",
+     "b_sigma": -0.13025080361385566,
+     "frac": -0.032562700903463915,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [tau F 5.49e-07 vs N-F 5.63e-07]",
+     "b_sigma": -0.09986104946387364,
+     "frac": -0.02496526236596841,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "25% halo-model systematic (recalled)",
+   "touches": "PBH reading (CFG510)",
+   "extra": ""
+  },
+  {
+   "key": "f-Vc-GD-1",
+   "label": "Stream V_c at GD-1 (14 kpc): N-F vs framework",
+   "verdict": "MINOR",
+   "b_sigma_min": 0.6042559797388214,
+   "b_sigma_max": 0.7169913791902904,
+   "frac_min": 0.012085119594776428,
+   "frac_max": 0.014339827583805809,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [V_c F 187.9 vs N-F 190.1]",
+     "b_sigma": 0.6042559797388214,
+     "frac": 0.012085119594776428,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [V_c F 187.9 vs N-F 190.1]",
+     "b_sigma": 0.6042559797388214,
+     "frac": 0.012085119594776428,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [V_c F 194.4 vs N-F 197.2]",
+     "b_sigma": 0.7169913791902904,
+     "frac": 0.014339827583805809,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [V_c F 194.4 vs N-F 197.2]",
+     "b_sigma": 0.7169913791902904,
+     "frac": 0.014339827583805809,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "2% (recalled stream precision)",
+   "touches": "streams",
+   "extra": ""
+  },
+  {
+   "key": "f-Vc-Pal 5",
+   "label": "Stream V_c at Pal 5 (19 kpc): N-F vs framework",
+   "verdict": "MINOR",
+   "b_sigma_min": 0.8097923189188116,
+   "b_sigma_max": 0.874614203759172,
+   "frac_min": 0.016195846378376233,
+   "frac_max": 0.01749228407518344,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [V_c F 183.5 vs N-F 186.5]",
+     "b_sigma": 0.8097923189188116,
+     "frac": 0.016195846378376233,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [V_c F 183.5 vs N-F 186.5]",
+     "b_sigma": 0.8097923189188116,
+     "frac": 0.016195846378376233,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [V_c F 190.4 vs N-F 193.8]",
+     "b_sigma": 0.874614203759172,
+     "frac": 0.01749228407518344,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [V_c F 190.4 vs N-F 193.8]",
+     "b_sigma": 0.874614203759172,
+     "frac": 0.01749228407518344,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "2% (recalled stream precision)",
+   "touches": "streams",
+   "extra": ""
+  },
+  {
+   "key": "f-Vc-Orphan 40",
+   "label": "Stream V_c at Orphan 40 (40 kpc): N-F vs framework",
+   "verdict": "MINOR",
+   "b_sigma_min": 0.4217946039087206,
+   "b_sigma_max": 0.7311149146501994,
+   "frac_min": 0.008435892078174412,
+   "frac_max": 0.014622298293003988,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [V_c F 174.7 vs N-F 177.3]",
+     "b_sigma": 0.7311149146501994,
+     "frac": 0.014622298293003988,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [V_c F 174.7 vs N-F 177.3]",
+     "b_sigma": 0.7311149146501994,
+     "frac": 0.014622298293003988,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [V_c F 182.2 vs N-F 183.8]",
+     "b_sigma": 0.4217946039087206,
+     "frac": 0.008435892078174412,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [V_c F 182.2 vs N-F 183.8]",
+     "b_sigma": 0.4217946039087206,
+     "frac": 0.008435892078174412,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "2% (recalled stream precision)",
+   "touches": "streams",
+   "extra": ""
+  },
+  {
+   "key": "f-Vc-Orphan 60",
+   "label": "Stream V_c at Orphan 60 (60 kpc): N-F vs framework",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -0.9771982479282182,
+   "b_sigma_max": 3.1349634778547464,
+   "frac_min": -0.019543964958564364,
+   "frac_max": 0.06269926955709493,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [V_c F 165.4 vs N-F 170.3]",
+     "b_sigma": 1.4754910997188508,
+     "frac": 0.029509821994377017,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [V_c F 171.6 vs N-F 170.3]",
+     "b_sigma": -0.3896120826604177,
+     "frac": -0.007792241653208354,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [V_c F 165.4 vs N-F 175.8]",
+     "b_sigma": 3.1349634778547464,
+     "frac": 0.06269926955709493,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [V_c F 179.3 vs N-F 175.8]",
+     "b_sigma": -0.9771982479282182,
+     "frac": -0.019543964958564364,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "2% (recalled stream precision)",
+   "touches": "streams",
+   "extra": ""
+  },
+  {
+   "key": "f-Vc-Sgr 100",
+   "label": "Stream V_c at Sgr 100 (100 kpc): N-F vs framework",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -4.094424409408726,
+   "b_sigma_max": 13.356219614966491,
+   "frac_min": -0.08188848818817451,
+   "frac_max": 0.2671243922993298,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [V_c F 128.1 vs N-F 158.2]",
+     "b_sigma": 11.743796539287676,
+     "frac": 0.23487593078575353,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [V_c F 169.1 vs N-F 158.2]",
+     "b_sigma": -3.2035896635985828,
+     "frac": -0.06407179327197166,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [V_c F 128.1 vs N-F 162.4]",
+     "b_sigma": 13.356219614966491,
+     "frac": 0.2671243922993298,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [V_c F 176.8 vs N-F 162.4]",
+     "b_sigma": -4.094424409408726,
+     "frac": -0.08188848818817451,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "2% (recalled stream precision)",
+   "touches": "streams",
+   "extra": ""
+  },
+  {
+   "key": "f-q",
+   "label": "Halo flattening at GD-1 (14 kpc): a spherical-NFW analysis (q = 1) vs the framework's phantom force",
+   "verdict": "MATERIAL",
+   "b_sigma_min": 2.1877466718986804,
+   "b_sigma_max": 2.1877466718986804,
+   "frac_min": 0.10938733359493402,
+   "frac_max": 0.10938733359493402,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [q_F 0.891 vs spherical NFW 1]",
+     "b_sigma": 2.1877466718986804,
+     "frac": 0.10938733359493402,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [q_F 0.891 vs spherical NFW 1]",
+     "b_sigma": 2.1877466718986804,
+     "frac": 0.10938733359493402,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [q_F 0.891 vs spherical NFW 1]",
+     "b_sigma": 2.1877466718986804,
+     "frac": 0.10938733359493402,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [q_F 0.891 vs spherical NFW 1]",
+     "b_sigma": 2.1877466718986804,
+     "frac": 0.10938733359493402,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "0.05 (recalled; Bovy+16 0.94 +- 0.05, Koposov+10 0.87 +0.07/-0.04)",
+   "touches": "streams; a framework TEST vs measured q",
+   "extra": ""
+  },
+  {
+   "key": "g1",
+   "label": "Cassini Q2: Galactic tidal-tensor difference (N-F vs framework)",
+   "verdict": "NONE",
+   "b_sigma_min": 0.0011292984379990918,
+   "b_sigma_max": 0.001317300027694596,
+   "frac_min": 0.0011292984379990918,
+   "frac_max": 0.001317300027694596,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 0.0011292984379990918,
+     "frac": 0.0011292984379990918,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": 0.0011292984379990918,
+     "frac": 0.0011292984379990918,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0",
+     "b_sigma": 0.001317300027694596,
+     "frac": 0.001317300027694596,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18",
+     "b_sigma": 0.001317300027694596,
+     "frac": 0.001317300027694596,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "Cassini 3e-27 s^-2 (PAPER44)",
+   "touches": "no-EFE claims (PAPER44), Solar system",
+   "extra": ""
+  },
+  {
+   "key": "g2",
+   "label": "Vertical Galactic tide (Oort cloud / detached TNO secular models): 4 pi G rho_0,total, N-F vs framework",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -1.6978148586016655,
+   "b_sigma_max": -1.537882550752715,
+   "frac_min": -0.3395629717203331,
+   "frac_max": -0.307576510150543,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [4piG rho_0 F/N-F]",
+     "b_sigma": -1.537882550752715,
+     "frac": -0.307576510150543,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [4piG rho_0 F/N-F]",
+     "b_sigma": -1.537882550752715,
+     "frac": -0.307576510150543,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [4piG rho_0 F/N-F]",
+     "b_sigma": -1.6978148586016655,
+     "frac": -0.3395629717203331,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [4piG rho_0 F/N-F]",
+     "b_sigma": -1.6978148586016655,
+     "frac": -0.3395629717203331,
+     "verdict": "MATERIAL"
+    }
+   ],
+   "sigma": "20% (recalled local-density precision)",
+   "touches": "PAPER44 TNO run (Galactic tide term)",
+   "extra": ""
+  },
+  {
+   "key": "h-50",
+   "label": "EFE rival's deep-regime satellite dispersion at 50 kpc: shift from the host model",
+   "verdict": "NONE",
+   "b_sigma_min": -0.020520591447259207,
+   "b_sigma_max": 0.019662881740356634,
+   "frac_min": -0.009014217798773316,
+   "frac_max": 0.009494874602245185,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 1.009]",
+     "b_sigma": -0.020520591447259207,
+     "frac": 0.009494874602245185,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 1.009]",
+     "b_sigma": -0.020520591447259207,
+     "frac": 0.009494874602245185,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 0.991]",
+     "b_sigma": 0.019662881740356634,
+     "frac": -0.009014217798773316,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 0.991]",
+     "b_sigma": 0.019662881740356634,
+     "frac": -0.009014217798773316,
+     "verdict": "NONE"
+    }
+   ],
+   "sigma": "0.1 dex (recalled dwarf dispersion error)",
+   "touches": "no-EFE claims (satellite EFE rival)",
+   "extra": ""
+  },
+  {
+   "key": "h-100",
+   "label": "EFE rival's deep-regime satellite dispersion at 100 kpc: shift from the host model",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -1.0281925121920903,
+   "b_sigma_max": 0.3710456713929589,
+   "frac_min": -0.15707125187860427,
+   "frac_max": 0.6056042255599459,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 1.525]",
+     "b_sigma": -0.9162332578851973,
+     "frac": 0.5249185644339818,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 0.876]",
+     "b_sigma": 0.2875746388762288,
+     "frac": -0.12403839185085686,
+     "verdict": "NONE"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 1.606]",
+     "b_sigma": -1.0281925121920903,
+     "frac": 0.6056042255599459,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 0.843]",
+     "b_sigma": 0.3710456713929589,
+     "frac": -0.15707125187860427,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "0.1 dex (recalled dwarf dispersion error)",
+   "touches": "no-EFE claims (satellite EFE rival)",
+   "extra": ""
+  },
+  {
+   "key": "h-200",
+   "label": "EFE rival's deep-regime satellite dispersion at 200 kpc: shift from the host model",
+   "verdict": "MATERIAL",
+   "b_sigma_min": -1.8838470459076475,
+   "b_sigma_max": 0.9751799095220529,
+   "frac_min": -0.3617893926401806,
+   "frac_max": 1.3810549007138637,
+   "cells": [
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 2.295]",
+     "b_sigma": -1.80379889046885,
+     "frac": 1.2948789274348158,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "canonical|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 0.674]",
+     "b_sigma": 0.8552966334554402,
+     "frac": -0.3255641097443662,
+     "verdict": "MINOR"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 2.381]",
+     "b_sigma": -1.8838470459076475,
+     "frac": 1.3810549007138637,
+     "verdict": "MATERIAL"
+    },
+    {
+     "cell": "alt|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 0.638]",
+     "b_sigma": 0.9751799095220529,
+     "frac": -0.3617893926401806,
+     "verdict": "MINOR"
+    }
+   ],
+   "sigma": "0.1 dex (recalled dwarf dispersion error)",
+   "touches": "no-EFE claims (satellite EFE rival)",
+   "extra": ""
+  }
+ ],
+ "numbers": {
+  "r_split_kpc": 323.0865786510141,
+  "N-D": {
+   "M200": 595714628345.9237,
+   "c": 19.063397411055085,
+   "chi2": 10.005741120060414,
+   "ndof": 35
+  },
+  "rc_test": {
+   "canonical|6.0e+10": {
+    "v8": 210.68583601405717,
+    "v20": 189.81910751085425,
+    "v25": 184.7265318701245,
+    "chi2_ou": 305.75768781295284,
+    "n_ou": 37,
+    "chi2_ei": 242.09034446854457,
+    "n_ei": 38,
+    "med_ratio_ou": 1.10516753937273
+   },
+   "canonical|7.3e+10": {
+    "v8": 226.5179116474191,
+    "v20": 201.68284853943587,
+    "v25": 195.83859916455395,
+    "chi2_ou": 43.53350401209384,
+    "n_ou": 37,
+    "chi2_ei": 20.72389164539356,
+    "n_ei": 38,
+    "med_ratio_ou": 1.0317540952758748
+   },
+   "alt|6.0e+10": {
+    "v8": 216.2832010816573,
+    "v20": 196.9515750164738,
+    "v25": 192.04372077518403,
+    "chi2_ou": 150.3629189649709,
+    "n_ou": 37,
+    "chi2_ei": 107.28127286991467,
+    "n_ei": 38,
+    "med_ratio_ou": 1.0728238514401995
+   },
+   "alt|7.3e+10": {
+    "v8": 232.14900097392749,
+    "v20": 209.06160558758648,
+    "v25": 203.43567396006316,
+    "chi2_ou": 12.32108947527792,
+    "n_ou": 37,
+    "chi2_ei": 15.729763063755334,
+    "n_ei": 38,
+    "med_ratio_ou": 1.002990847017399
+   }
+  },
+  "profile|canonical|1.0": {
+   "r_edge": 55.38465559670539,
+   "M_cold": 321840000000.0,
+   "M_tot": 381840000000.0,
+   "M50": 347468460301.3738,
+   "M100": 381715920134.52783,
+   "M200": 381777641008.1823,
+   "M300": 381798354770.146,
+   "rho_R0": 0.006433211061756641
+  },
+  "profile|canonical|0.18": {
+   "r_edge": 286.4830188260747,
+   "M_cold": 1788000000000.0,
+   "M_tot": 1848000000000.0,
+   "M50": 347468460301.3738,
+   "M100": 664510507695.7134,
+   "M200": 1299061150175.9905,
+   "M300": 1847958354770.1453,
+   "rho_R0": 0.006433211061756641
+  },
+  "profile|alt|1.0": {
+   "r_edge": 50.41847952692034,
+   "M_cold": 321840000000.0,
+   "M_tot": 381840000000.0,
+   "M50": 378656808609.24664,
+   "M100": 381715920134.5264,
+   "M200": 381777641008.1809,
+   "M300": 381798354770.1446,
+   "rho_R0": 0.007254451184907861
+  },
+  "profile|alt|0.18": {
+   "r_edge": 260.74297010580455,
+   "M_cold": 1788000000000.0,
+   "M_tot": 1848000000000.0,
+   "M50": 378656808609.24664,
+   "M100": 727089562074.3888,
+   "M200": 1424347249360.272,
+   "M300": 1847958354770.1467,
+   "rho_R0": 0.007254451184907861
+  },
+  "first_infall_counts": {
+   "N-B08": 16,
+   "N-B16": 8,
+   "('canonical', 60000000000.0, 1.0)": 27,
+   "('canonical', 60000000000.0, 0.18)": 11,
+   "('alt', 60000000000.0, 1.0)": 27,
+   "('alt', 60000000000.0, 0.18)": 10
+  },
+  "kepler_timing_mass": {
+   "False": 4273300646115.2983,
+   "True": 4848995157899.142
+  },
+  "lg_timing": {
+   "canonical|1.0": {
+    "v_OMW": -8.892594007382714,
+    "z_OMW": -22.819864998322107,
+    "v_OLG": -213.37734236711415,
+    "z_OLG": 23.653941447071396,
+    "M_true_total": 1145520000000.0,
+    "M_kepler_from_framework_orbit": 1143915211901.7622,
+    "edges": [
+     55.38465559670539,
+     78.19808478162976,
+     95.77270328894572
+    ]
+   },
+   "canonical|0.18": {
+    "v_OMW": -122.76234251281396,
+    "z_OMW": 3.0596232983668092,
+    "v_OLG": -583.1070719124931,
+    "z_OLG": 107.68342543465751,
+    "M_true_total": 5544000000000.0,
+    "M_kepler_from_framework_orbit": 5516974284279.025,
+    "edges": [
+     286.4830188260747,
+     405.0057346246766,
+     496.02869636575565
+    ]
+   },
+   "canonical|None": {
+    "v_OMW": -294.5778744406674,
+    "z_OMW": 42.10860782742441,
+    "v_OLG": -701.773961924822,
+    "z_OLG": 134.65317316473227,
+    "M_true_total": null,
+    "M_kepler_from_framework_orbit": 17422966046505.947,
+    "edges": [
+     null,
+     null,
+     null
+    ]
+   },
+   "alt|1.0": {
+    "v_OMW": -8.900978184853827,
+    "z_OMW": -22.81795950344231,
+    "v_OLG": -213.41317027737438,
+    "z_OLG": 23.662084153948722,
+    "M_true_total": 1145520000000.0,
+    "M_kepler_from_framework_orbit": 1144127037548.12,
+    "edges": [
+     50.41847952692034,
+     71.16964821056727,
+     87.16466164463613
+    ]
+   },
+   "alt|0.18": {
+    "v_OMW": -122.84147441023552,
+    "z_OMW": 3.077607820508073,
+    "v_OLG": -597.8417974025591,
+    "z_OLG": 111.03222668239978,
+    "M_true_total": 5544000000000.0,
+    "M_kepler_from_framework_orbit": 5521017157290.612,
+    "edges": [
+     260.74297010580455,
+     368.6038569484465,
+     451.44568337286483
+    ]
+   },
+   "alt|None": {
+    "v_OMW": -317.903864829596,
+    "z_OMW": 47.40996927945363,
+    "v_OLG": -749.9226532216434,
+    "z_OLG": 145.5960575503735,
+    "M_true_total": null,
+    "M_kepler_from_framework_orbit": 19512485649361.414,
+    "edges": [
+     null,
+     null,
+     null
+    ]
+   }
+  },
+  "local_density": {
+   "spherical rho(R0)|canonical|Mb 6.0e+10|f_ret 1.0": {
+    "framework": 0.006433211061756641,
+    "nfw": 0.006511940319210785
+   },
+   "spherical rho(R0)|canonical|Mb 6.0e+10|f_ret 0.18": {
+    "framework": 0.006433211061756641,
+    "nfw": 0.006511940319210785
+   },
+   "spherical rho(R0)|canonical|Mb 7.3e+10|f_ret 1.0": {
+    "framework": 0.00688131069933369,
+    "nfw": 0.006881027155061878
+   },
+   "spherical rho(R0)|canonical|Mb 7.3e+10|f_ret 0.18": {
+    "framework": 0.00688131069933369,
+    "nfw": 0.006881027155061878
+   },
+   "spherical rho(R0)|alt|Mb 6.0e+10|f_ret 1.0": {
+    "framework": 0.007254451184907861,
+    "nfw": 0.007420113087366014
+   },
+   "spherical rho(R0)|alt|Mb 6.0e+10|f_ret 0.18": {
+    "framework": 0.007254451184907861,
+    "nfw": 0.007420113087366014
+   },
+   "spherical rho(R0)|alt|Mb 7.3e+10|f_ret 1.0": {
+    "framework": 0.007787901840086486,
+    "nfw": 0.007879293030554343
+   },
+   "spherical rho(R0)|alt|Mb 7.3e+10|f_ret 0.18": {
+    "framework": 0.007787901840086486,
+    "nfw": 0.007879293030554343
+   },
+   "midplane rho (phantom disc)|canonical|Mb 6.0e+10|f_ret 1.0": {
+    "framework": 0.06672235533534196,
+    "nfw": 0.006511940319210785
+   },
+   "midplane rho (phantom disc)|canonical|Mb 6.0e+10|f_ret 0.18": {
+    "framework": 0.06672235533534196,
+    "nfw": 0.006511940319210785
+   },
+   "midplane rho (phantom disc)|canonical|Mb 7.3e+10|f_ret 1.0": {
+    "framework": 0.06891229946333091,
+    "nfw": 0.006881027155061878
+   },
+   "midplane rho (phantom disc)|canonical|Mb 7.3e+10|f_ret 0.18": {
+    "framework": 0.06891229946333091,
+    "nfw": 0.006881027155061878
+   },
+   "midplane rho (phantom disc)|alt|Mb 6.0e+10|f_ret 1.0": {
+    "framework": 0.07757844436460747,
+    "nfw": 0.007420113087366014
+   },
+   "midplane rho (phantom disc)|alt|Mb 6.0e+10|f_ret 0.18": {
+    "framework": 0.07757844436460747,
+    "nfw": 0.007420113087366014
+   },
+   "midplane rho (phantom disc)|alt|Mb 7.3e+10|f_ret 1.0": {
+    "framework": 0.0806656898961064,
+    "nfw": 0.007879293030554343
+   },
+   "midplane rho (phantom disc)|alt|Mb 7.3e+10|f_ret 0.18": {
+    "framework": 0.0806656898961064,
+    "nfw": 0.007879293030554343
+   },
+   "slab |z|<1.1 kpc equivalent|canonical|Mb 6.0e+10|f_ret 1.0": {
+    "framework": 0.016208157028354302,
+    "nfw": 0.006511940319210785
+   },
+   "slab |z|<1.1 kpc equivalent|canonical|Mb 6.0e+10|f_ret 0.18": {
+    "framework": 0.016208157028354302,
+    "nfw": 0.006511940319210785
+   },
+   "slab |z|<1.1 kpc equivalent|canonical|Mb 7.3e+10|f_ret 1.0": {
+    "framework": 0.016922959185296543,
+    "nfw": 0.006881027155061878
+   },
+   "slab |z|<1.1 kpc equivalent|canonical|Mb 7.3e+10|f_ret 0.18": {
+    "framework": 0.016922959185296543,
+    "nfw": 0.006881027155061878
+   },
+   "slab |z|<1.1 kpc equivalent|alt|Mb 6.0e+10|f_ret 1.0": {
+    "framework": 0.018668777504593177,
+    "nfw": 0.007420113087366014
+   },
+   "slab |z|<1.1 kpc equivalent|alt|Mb 6.0e+10|f_ret 0.18": {
+    "framework": 0.018668777504593177,
+    "nfw": 0.007420113087366014
+   },
+   "slab |z|<1.1 kpc equivalent|alt|Mb 7.3e+10|f_ret 1.0": {
+    "framework": 0.019603269354547818,
+    "nfw": 0.007879293030554343
+   },
+   "slab |z|<1.1 kpc equivalent|alt|Mb 7.3e+10|f_ret 0.18": {
+    "framework": 0.019603269354547818,
+    "nfw": 0.007879293030554343
+   }
+  },
+  "dr4": {
+   "canonical|Mb 6.0e+10|f_ret 1.0": {
+    "phantom_tide_sph": 2.159080763442403e-31,
+    "phantom_tide_with_disc": 3.7874004906637945e-30,
+    "tide_over_internal_30kAU": 0.001719368583114208,
+    "gN_R0": 1.1891917959552906e-10,
+    "yN": 1.2705040555077889,
+    "gobs_model": 1.7590291166097605e-10
+   },
+   "canonical|Mb 6.0e+10|f_ret 0.18": {
+    "phantom_tide_sph": 2.159080763442403e-31,
+    "phantom_tide_with_disc": 3.7874004906637945e-30,
+    "tide_over_internal_30kAU": 0.001719368583114208,
+    "gN_R0": 1.1891917959552906e-10,
+    "yN": 1.2705040555077889,
+    "gobs_model": 1.7590291166097605e-10
+   },
+   "alt|Mb 6.0e+10|f_ret 1.0": {
+    "phantom_tide_sph": 2.4989622516261142e-31,
+    "phantom_tide_with_disc": 4.403631088481903e-30,
+    "tide_over_internal_30kAU": 0.0019991191752298165,
+    "gN_R0": 1.1891917959552906e-10,
+    "yN": 1.0523821203144164,
+    "gobs_model": 1.853736178509896e-10
+   },
+   "alt|Mb 6.0e+10|f_ret 0.18": {
+    "phantom_tide_sph": 2.4989622516261142e-31,
+    "phantom_tide_with_disc": 4.403631088481903e-30,
+    "tide_over_internal_30kAU": 0.0019991191752298165,
+    "gN_R0": 1.1891917959552906e-10,
+    "yN": 1.0523821203144164,
+    "gobs_model": 1.853736178509896e-10
+   }
+  },
+  "tau": {
+   "LMC": {
+    "S-model": 4.717062815610882e-07,
+    "canonical|Mb 6.0e+10|f_ret 1.0": 3.44799304110422e-07,
+    "NF canonical|Mb 6.0e+10|f_ret 1.0": 3.5819322533400574e-07,
+    "canonical|Mb 6.0e+10|f_ret 0.18": 3.44799304110422e-07,
+    "NF canonical|Mb 6.0e+10|f_ret 0.18": 3.5819322533400574e-07,
+    "alt|Mb 6.0e+10|f_ret 1.0": 3.831127328423908e-07,
+    "NF alt|Mb 6.0e+10|f_ret 1.0": 3.958809232623459e-07,
+    "alt|Mb 6.0e+10|f_ret 0.18": 3.831127328423908e-07,
+    "NF alt|Mb 6.0e+10|f_ret 0.18": 3.958809232623459e-07
+   },
+   "SMC": {
+    "S-model": 6.732894714786812e-07,
+    "canonical|Mb 6.0e+10|f_ret 1.0": 4.920585737926186e-07,
+    "NF canonical|Mb 6.0e+10|f_ret 1.0": 5.078130296029476e-07,
+    "canonical|Mb 6.0e+10|f_ret 0.18": 4.927709182036874e-07,
+    "NF canonical|Mb 6.0e+10|f_ret 0.18": 5.078130296029476e-07,
+    "alt|Mb 6.0e+10|f_ret 1.0": 5.442743338300949e-07,
+    "NF alt|Mb 6.0e+10|f_ret 1.0": 5.625939110869285e-07,
+    "alt|Mb 6.0e+10|f_ret 0.18": 5.48548606491147e-07,
+    "NF alt|Mb 6.0e+10|f_ret 0.18": 5.625939110869285e-07
+   },
+   "Baade": {
+    "S-model": 1.3336783593536995e-07,
+    "canonical|Mb 6.0e+10|f_ret 1.0": 1.7806353146752205e-07,
+    "NF canonical|Mb 6.0e+10|f_ret 1.0": 2.1310091059381347e-07,
+    "canonical|Mb 6.0e+10|f_ret 0.18": 1.7806353146752205e-07,
+    "NF canonical|Mb 6.0e+10|f_ret 0.18": 2.1310091059381347e-07,
+    "alt|Mb 6.0e+10|f_ret 1.0": 2.1158048672310695e-07,
+    "NF alt|Mb 6.0e+10|f_ret 1.0": 2.525442054330504e-07,
+    "alt|Mb 6.0e+10|f_ret 0.18": 2.1158048672310695e-07,
+    "NF alt|Mb 6.0e+10|f_ret 0.18": 2.525442054330504e-07
+   }
+  },
+  "q_flattening": {
+   "canonical|Mb 6.0e+10|f_ret 1.0": 0.890612666405066,
+   "canonical|Mb 6.0e+10|f_ret 0.18": 0.890612666405066,
+   "alt|Mb 6.0e+10|f_ret 1.0": 0.890612666405066,
+   "alt|Mb 6.0e+10|f_ret 0.18": 0.890612666405066
+  },
+  "solar": {
+   "canonical|Mb 6.0e+10|f_ret 1.0": {
+    "framework": {
+     "radial": -7.504480936945239e-31,
+     "azim": 6.9706837009519785e-31,
+     "vertical": 1.1165279562485452e-29,
+     "rho_tot": 0.19575752058133847
+    },
+    "nfw": {
+     "radial": -7.839270857806832e-31,
+     "azim": 7.005161253664554e-31,
+     "vertical": 7.777551425713378e-30,
+     "rho_tot": 0.1355471055652073
+    },
+    "diff_norm": 3.3878953139972756e-30
+   },
+   "canonical|Mb 6.0e+10|f_ret 0.18": {
+    "framework": {
+     "radial": -7.504480936945239e-31,
+     "azim": 6.9706837009519785e-31,
+     "vertical": 1.1165279562485452e-29,
+     "rho_tot": 0.19575752058133847
+    },
+    "nfw": {
+     "radial": -7.839270857806832e-31,
+     "azim": 7.005161253664554e-31,
+     "vertical": 7.777551425713378e-30,
+     "rho_tot": 0.1355471055652073
+    },
+    "diff_norm": 3.3878953139972756e-30
+   },
+   "alt|Mb 6.0e+10|f_ret 1.0": {
+    "framework": {
+     "radial": -7.7289258844069195e-31,
+     "azim": 7.34598901370581e-31,
+     "vertical": 1.1766424123774345e-29,
+     "rho_tot": 0.206613609610604
+    },
+    "nfw": {
+     "radial": -8.066111956693046e-31,
+     "azim": 7.37633752082414e-31,
+     "vertical": 7.814669056480147e-30,
+     "rho_tot": 0.13645527833336252
+    },
+    "diff_norm": 3.951900083083788e-30
+   },
+   "alt|Mb 6.0e+10|f_ret 0.18": {
+    "framework": {
+     "radial": -7.7289258844069195e-31,
+     "azim": 7.34598901370581e-31,
+     "vertical": 1.1766424123774345e-29,
+     "rho_tot": 0.206613609610604
+    },
+    "nfw": {
+     "radial": -8.066111956693046e-31,
+     "azim": 7.37633752082414e-31,
+     "vertical": 7.814669056480147e-30,
+     "rho_tot": 0.13645527833336252
+    },
+    "diff_norm": 3.951900083083788e-30
+   }
+  },
+  "post_run": {
+   "cfg433_D|canonical|Mb 6.0e+10|f_ret 1.0": 4.057383936670236,
+   "cfg433_D|canonical|Mb 6.0e+10|f_ret 0.18": 2.886021516417218,
+   "cfg433_D|alt|Mb 6.0e+10|f_ret 1.0": 4.057383936670249,
+   "cfg433_D|alt|Mb 6.0e+10|f_ret 0.18": 2.5248831640197036,
+   "cfg433_D|canonical|Mb 6.0e+10|f_ret None": 2.886021516417218,
+   "cfg433_D|alt|Mb 6.0e+10|f_ret None": 2.5248831640197036,
+   "cfg433_D|canonical|Mb 7.3e+10|f_ret 1.0": 3.3589630682760516,
+   "cfg433_D|canonical|Mb 7.3e+10|f_ret 0.18": 2.460993330921988,
+   "cfg433_D|canonical|Mb 7.3e+10|f_ret None": 2.460993330921988,
+   "cfg433_D|alt|Mb 7.3e+10|f_ret 1.0": 3.3589630682760463,
+   "cfg433_D|alt|Mb 7.3e+10|f_ret 0.18": 2.0829020905147866,
+   "cfg433_D|alt|Mb 7.3e+10|f_ret None": 2.0829020905147866,
+   "unbound|N-B08": 6,
+   "unbound|N-B16": 2,
+   "unbound|('canonical', 60000000000.0, 1.0)": 24,
+   "unbound|('canonical', 60000000000.0, 0.18)": 4,
+   "unbound|('alt', 60000000000.0, 1.0)": 24,
+   "unbound|('alt', 60000000000.0, 0.18)": 4,
+   "unbound|('canonical', 60000000000.0, None)": 0,
+   "unbound|('alt', 60000000000.0, None)": 0,
+   "lg_fret_needed|canonical": 0.20585479450635394,
+   "lg_fret_needed|alt": 0.20599437536219856,
+   "rho0_tot|canonical": 0.12914238986106383,
+   "rho0_tot|alt": 0.13641188487148215,
+   "vc_inplane_vs_sph|canonical|6.0e+10|8.178": [
+    210.68583601405717,
+    209.18328071608704
+   ],
+   "vc_inplane_vs_sph|canonical|6.0e+10|20.0": [
+    189.81910751085425,
+    187.1985827656286
+   ],
+   "vc_inplane_vs_sph|canonical|7.3e+10|8.178": [
+    226.5179116474191,
+    225.359775690666
+   ],
+   "vc_inplane_vs_sph|canonical|7.3e+10|20.0": [
+    201.68284853943587,
+    199.13788117190492
+   ],
+   "vc_inplane_vs_sph|alt|6.0e+10|8.178": [
+    216.2832010816573,
+    214.29412408149923
+   ],
+   "vc_inplane_vs_sph|alt|6.0e+10|20.0": [
+    196.9515750164738,
+    194.0155032504789
+   ],
+   "vc_inplane_vs_sph|alt|7.3e+10|8.178": [
+    232.14900097392749,
+    230.51255392105028
+   ],
+   "vc_inplane_vs_sph|alt|7.3e+10|20.0": [
+    209.06160558758648,
+    206.185094530155
+   ]
+  }
+ }
+}

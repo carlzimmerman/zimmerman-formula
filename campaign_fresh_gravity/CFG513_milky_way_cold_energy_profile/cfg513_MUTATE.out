@@ -1,0 +1,517 @@
+CFG513 -- THE MILKY WAY'S OWN COLD-ENERGY PROFILE vs NFW, AND THE BIAS AN NFW ASSUMPTION PUTS INTO MW-BASED MEASUREMENTS.
+Criteria: FROZEN_CRITERIA.md (committed alone first, 548396b05).  In one line each:
+  PROFILE  record baryons (6.0e10 primary, 7.3e10 census-high; L172 shapes), nu_mono, phantom = settled cold energy (candidate B),
+           PAPER45 zero-knob edge M_ph(<r_edge) = M_b (1-f_b)/(f_ret f_b) with f_ret = 1 and 0.18 (never pooled), bare law reported.
+  NFW      N-F = NFW + same baryons fitted to the framework's own V_c at the Ou+24 radii (N-F+T adds M(<50), M(<100)); N-D = fitted
+           to the Ou+24 data; literature halos RECALLED, UNVERIFIED.
+  BIAS     b = Q(assumed NFW) - Q(true framework), in units of the measurement's quoted error; MATERIAL > 1, MINOR 0.3-1, NONE <= 0.3.
+MUTATE (CFG513_MUTATE=1): truth := the assumed NFW of every row -> every bias must vanish.
+kappa = 1/2 FITTED.  No dark-matter particle: the cold energy's MASS is still required.  Not theory closed; the data are not said to
+favour the framework.
+
+  FROZEN_CRITERIA.md sha256 7f765bcb097fbb10762d626752e58d18498b80f8d51172e59ea815dcdfc808b2
+
+  *** MUTATE: the 'true' profile of every row is the assumed NFW of that row; every bias must vanish ***
+
+======================================================================================================================
+1. THE FRAMEWORK'S MILKY WAY: baryons + nu_mono + settled cold energy (phantom) with the PAPER45 edge
+======================================================================================================================
+  baryons (6.0e10 primary): bulge 8.955e+09 (Hernquist a 0.7), stellar disc 4.030e+10 (R_d 2.6), gas 1.075e+10 (R_d 6.0); census-high 7.3e10 scaled the same.  f_b = 0.1571 ((1 - f_b)/f_b = 5.364)
+  F|canonical|Mb6.0e+10|fret1.0: M_b 6.00e+10, r_M 9.5 kpc, M_cold 3.218e+11, r_edge 55.4 kpc
+  F|canonical|Mb6.0e+10|fret0.18: M_b 6.00e+10, r_M 9.5 kpc, M_cold 1.788e+12, r_edge 286.5 kpc
+  F|canonical|Mb6.0e+10|fretbare: M_b 6.00e+10, r_M 9.5 kpc, M_cold inf, r_edge inf kpc
+  F|canonical|Mb7.3e+10|fret1.0: M_b 7.30e+10, r_M 10.4 kpc, M_cold 3.916e+11, r_edge 61.1 kpc
+  F|canonical|Mb7.3e+10|fret0.18: M_b 7.30e+10, r_M 10.4 kpc, M_cold 2.175e+12, r_edge 316.0 kpc
+  F|canonical|Mb7.3e+10|fretbare: M_b 7.30e+10, r_M 10.4 kpc, M_cold inf, r_edge inf kpc
+  F|alt|Mb6.0e+10|fret1.0: M_b 6.00e+10, r_M 8.6 kpc, M_cold 3.218e+11, r_edge 50.4 kpc
+  F|alt|Mb6.0e+10|fret0.18: M_b 6.00e+10, r_M 8.6 kpc, M_cold 1.788e+12, r_edge 260.7 kpc
+  F|alt|Mb6.0e+10|fretbare: M_b 6.00e+10, r_M 8.6 kpc, M_cold inf, r_edge inf kpc
+  F|alt|Mb7.3e+10|fret1.0: M_b 7.30e+10, r_M 9.5 kpc, M_cold 3.916e+11, r_edge 55.6 kpc
+  F|alt|Mb7.3e+10|fret0.18: M_b 7.30e+10, r_M 9.5 kpc, M_cold 2.175e+12, r_edge 287.6 kpc
+  F|alt|Mb7.3e+10|fretbare: M_b 7.30e+10, r_M 9.5 kpc, M_cold inf, r_edge inf kpc
+  [PASS] C1 nu_mono point-mass edge = r_M/ln(1 + f_ret f_b/(1 - f_b)) within 1% (f_ret = 1 and 0.18, both footings)
+         canonical f_ret 1.0: 5.850 r_M vs 5.850 (-4.1e-09); canonical f_ret 0.18: 30.297 r_M vs 30.297 (-3.7e-09); alt f_ret 1.0: 5.850 r_M vs 5.850 (-4.1e-09); alt f_ret 0.18: 30.297 r_M vs 30.297 (-3.7e-09)
+  [PASS] C2 extended baryons -> point-mass law at 200 kpc within 1% (bare); rho_ph >= 0 inside the edge
+         M(<200) ratio - 1: -5.3e-04, -5.3e-04; min rho_ph 6.166e+03 Msun/kpc^3
+
+  OWNERSHIP: O-MW -> the MW owns its phantom to its edge.  O-LG -> the Local Group is the outermost bound system; the MW-centric spherical profile is defined only inside r_split = 323 kpc (deep-law field equality toward M31 at 780 kpc).
+
+======================================================================================================================
+2. NFW REFERENCES (same baryons, Newtonian).  Literature halos RECALLED, UNVERIFIED
+======================================================================================================================
+  Ou+24: 37 points 6.27-27.31 kpc; Eilers+19: 38 points 5.27-24.82 kpc (on disk)
+  [PASS] C5 the N-F fitter recovers a synthetic NFW + baryons curve (M200c 9e11, c 11) to 1e-3
+         recovered M200c 9.00000e+11, c 11.00000
+  N-std: NFW M200c 1.000e+12, c 10.00, r_s 21.16 kpc, rho_s 0.00565 Msun/pc^3   [RECALLED, UNVERIFIED]
+  N-McM: NFW M200c 1.389e+12, c 12.04, r_s 19.60 kpc, rho_s 0.00854 Msun/pc^3   [RECALLED, UNVERIFIED]
+  N-B08: NFW M200c 8.000e+11, c 12.27, r_s 16.00 kpc, rho_s 0.00936 Msun/pc^3   [RECALLED, UNVERIFIED]
+  N-B16: NFW M200c 1.600e+12, c 15.46, r_s 16.00 kpc, rho_s 0.01669 Msun/pc^3   [RECALLED, UNVERIFIED]
+  Eilers+2019 NFW M_vir 7.25e11; Jiao+2023 Einasto ~2e11 (via L172): reported only [RECALLED, UNVERIFIED]
+  N-D (NFW + record baryons 6.0e10 fitted to Ou+24 data): N-fit: NFW M200c 5.957e+11, c 19.06, r_s 9.34 kpc, rho_s 0.02842 Msun/pc^3; chi2 10.0 / 35
+
+  THE FRAMEWORK'S IN-PLANE V_c AGAINST THE MW DATA (a TEST, nothing fitted; Ou errors random (+) stated systematic):
+    canonical M_b 6.0e+10: V(R0) 210.7, V(20) 189.8, V(25) 184.7 km/s; chi2 Ou 306/37, Eilers (3% sys) 242/38; median V_obs/V_F 1.105
+    canonical M_b 7.3e+10: V(R0) 226.5, V(20) 201.7, V(25) 195.8 km/s; chi2 Ou 44/37, Eilers (3% sys) 21/38; median V_obs/V_F 1.032
+    alt       M_b 6.0e+10: V(R0) 216.3, V(20) 197.0, V(25) 192.0 km/s; chi2 Ou 150/37, Eilers (3% sys) 107/38; median V_obs/V_F 1.073
+    alt       M_b 7.3e+10: V(R0) 232.1, V(20) 209.1, V(25) 203.4 km/s; chi2 Ou 12/37, Eilers (3% sys) 16/38; median V_obs/V_F 1.003
+  N-F   for F|canonical|Mb6.0e+10|fret1.0: N-fit: NFW M200c 8.097e+11, c 9.51, r_s 20.73 kpc, rho_s 0.00499 Msun/pc^3; chi2 0.33
+  N-F+T for F|canonical|Mb6.0e+10|fret1.0: N-fit: NFW M200c 6.011e+11, c 11.56, r_s 15.45 kpc, rho_s 0.00806 Msun/pc^3; chi2 6.35
+  N-F   for F|canonical|Mb7.3e+10|fret1.0: N-fit: NFW M200c 9.939e+11, c 8.99, r_s 23.49 kpc, rho_s 0.00435 Msun/pc^3; chi2 0.38
+  N-F+T for F|canonical|Mb7.3e+10|fret1.0: N-fit: NFW M200c 7.351e+11, c 10.83, r_s 17.63 kpc, rho_s 0.00687 Msun/pc^3; chi2 4.49
+  N-F   for F|alt|Mb6.0e+10|fret1.0: N-fit: NFW M200c 8.500e+11, c 10.74, r_s 18.65 kpc, rho_s 0.00673 Msun/pc^3; chi2 0.28
+  N-F+T for F|alt|Mb6.0e+10|fret1.0: N-fit: NFW M200c 6.279e+11, c 13.19, r_s 13.74 kpc, rho_s 0.01119 Msun/pc^3; chi2 8.83
+  N-F   for F|alt|Mb7.3e+10|fret1.0: N-fit: NFW M200c 1.028e+12, c 10.25, r_s 20.82 kpc, rho_s 0.00600 Msun/pc^3; chi2 0.33
+  N-F+T for F|alt|Mb7.3e+10|fret1.0: N-fit: NFW M200c 7.617e+11, c 12.43, r_s 15.54 kpc, rho_s 0.00966 Msun/pc^3; chi2 6.29
+
+======================================================================================================================
+3. THE PROFILE: rho(r), M(<r), V_c(r), 0.1-500 kpc (framework vs N-F and literature NFW)
+======================================================================================================================
+
+  canonical, M_b 6.0e10:  r [kpc] | M(<r) [1e10]: F f_ret 1 / F f_ret 0.18 / bare / N-F(f1) / N-std / N-McM | V_c,sph: F1 / F0.18 / N-F / N-McM
+        1.0 |    0.60    0.60    0.60    0.62    0.63    0.65 |  160.6  160.6  162.8  167.6
+        2.0 |    1.44    1.44    1.44    1.50    1.53    1.63 |  176.1  176.1  179.3  187.5
+        5.0 |    4.29    4.29    4.29    4.43    4.63    5.15 |  192.1  192.1  195.3  210.5
+        8.2 |    7.11    7.11    7.11    7.27    7.72    8.88 |  193.4  193.4  195.6  216.2
+       10.0 |    8.56    8.56    8.56    8.74    9.37   10.94 |  191.9  191.9  193.9  216.9
+       15.0 |   12.18   12.18   12.18   12.50   13.66   16.42 |  186.9  186.9  189.3  217.0
+       20.0 |   15.54   15.54   15.54   16.07   17.82   21.78 |  182.8  182.8  185.9  216.4
+       30.0 |   22.02   22.02   22.02   22.89   25.83   32.07 |  177.7  177.7  181.2  214.4
+       50.0 |   34.75   34.75   34.75   35.08   40.25   50.32 |  172.9  172.9  173.7  208.1
+       75.0 |   38.17   50.60   50.60   47.73   55.29   69.12 |  147.9  170.3  165.5  199.1
+      100.0 |   38.17   66.45   66.45   58.21   67.77   84.57 |  128.1  169.1  158.2  190.7
+      150.0 |   38.18   98.18   98.18   74.78   87.55  108.89 |  104.6  167.8  146.4  176.7
+      200.0 |   38.18  129.91  129.91   87.61  102.89  127.65 |   90.6  167.1  137.3  165.7
+      250.0 |   38.18  161.64  161.64   98.07  115.40  142.89 |   81.0  166.8  129.9  156.8
+      300.0 |   38.18  184.80  193.37  106.88  125.95  155.72 |   74.0  162.8  123.8  149.4
+      400.0 |   38.18  184.80  256.85  121.20  143.11  176.53 |   64.1  141.0  114.2  137.8  [beyond r_split: LG-owned under O-LG]
+      500.0 |   38.18  184.80  320.32  132.60  156.77  193.08 |   57.3  126.1  106.8  128.9  [beyond r_split: LG-owned under O-LG]
+
+  alt, M_b 6.0e10:  r [kpc] | M(<r) [1e10]: F f_ret 1 / F f_ret 0.18 / bare / N-F(f1) / N-std / N-McM | V_c,sph: F1 / F0.18 / N-F / N-McM
+        1.0 |    0.61    0.61    0.61    0.63    0.63    0.65 |  161.8  161.8  164.4  167.6
+        2.0 |    1.48    1.48    1.48    1.54    1.53    1.63 |  178.3  178.3  182.0  187.5
+        5.0 |    4.49    4.49    4.49    4.65    4.63    5.15 |  196.5  196.5  200.0  210.5
+        8.2 |    7.52    7.52    7.52    7.72    7.72    8.88 |  198.9  198.9  201.5  216.2
+       10.0 |    9.10    9.10    9.10    9.33    9.37   10.94 |  197.9  197.9  200.4  216.9
+       15.0 |   13.06   13.06   13.06   13.45   13.66   16.42 |  193.5  193.5  196.4  217.0
+       20.0 |   16.75   16.75   16.75   17.35   17.82   21.78 |  189.8  189.8  193.2  216.4
+       30.0 |   23.87   23.87   23.87   24.70   25.83   32.07 |  185.0  185.0  188.2  214.4
+       50.0 |   37.87   37.87   37.87   37.52   40.25   50.32 |  180.5  180.5  179.7  208.1
+       75.0 |   38.17   55.29   55.29   50.60   55.29   69.12 |  147.9  178.1  170.3  199.1
+      100.0 |   38.17   72.71   72.71   61.29   67.77   84.57 |  128.1  176.8  162.4  190.7
+      150.0 |   38.18  107.57  107.57   78.04   87.55  108.89 |  104.6  175.6  149.6  176.7
+      200.0 |   38.18  142.43  142.43   90.90  102.89  127.65 |   90.6  175.0  139.8  165.7
+      250.0 |   38.18  177.30  177.30  101.34  115.40  142.89 |   81.0  174.7  132.0  156.8
+      300.0 |   38.18  184.80  212.17  110.11  125.95  155.72 |   74.0  162.8  125.6  149.4
+      400.0 |   38.18  184.80  281.91  124.33  143.11  176.53 |   64.1  141.0  115.6  137.8  [beyond r_split: LG-owned under O-LG]
+      500.0 |   38.18  184.80  351.66  135.61  156.77  193.08 |   57.3  126.1  108.0  128.9  [beyond r_split: LG-owned under O-LG]
+
+======================================================================================================================
+4. THE BIAS CATALOGUE: b = Q(assumed NFW) - Q(true framework), in units of the quoted error
+======================================================================================================================
+
+(a) SATELLITE ORBITS -- Fritz+2018 Tables 2 and 3 (on disk), static spherical potentials, exact turning points
+  source sha256 5e958fa5eaf60ecab083ab0accddef0c0e807015edd25695cdd67c98eb591197
+  39 objects with Table 2 + Table 3 entries (galactocentric distance = Fritz's own d_GC column; see README deviation note)
+  [PASS] C4 the N-B08 / N-B16 spherical orbits reproduce Fritz Table 3 central pericentres: median |dperi|/peri <= 15% each
+         N-B08: 0.023, N-B16: 0.022
+
+  object    d_GC | peri: Fritz08 B08  B16 | F can f1  F can f.18 F alt f1 | apo: B08  B16  F can f1  F can f.18 | first-infall (apo>300) B08/F1
+  AquII      105 |    99   102    99 |    102     101     102 |    622    178    inf    269 | Y/Y
+  BooI        64 |    45    42    31 |     44      44      44 |     99     76    182     99 | n/n
+  BooII       39 |    39    38    38 |     39      39      38 |  54271    168    inf    662 | Y/Y
+  CVenI      211 |    85    80    55 |    120      71     120 |    292    245 622550    249 | n/Y
+  CVenII     161 |   116   114    87 |    129     106     129 |    375    215    inf    239 | Y/Y
+  CarI       105 |   103   105    61 |    105      98     105 |    109    105    593    105 | n/Y
+  CarII       37 |    29    28    26 |     29      29      28 |    627    118    inf    328 | Y/Y
+  CarIII      29 |    29    29    29 |     29      29      29 |    919    109    inf    408 | Y/Y
+  CBerI       43 |    43    42    42 |     43      43      42 |    143     62    inf    141 | n/Y
+  CraI       145 |    81    75    47 |    140      69     140 |    146    145    188    145 | n/n
+  CraII      111 |    27    26    18 |     30      27      29 |    133    122    171    129 | n/n
+  DraI        79 |    42    40    28 |     44      42      44 |    106     90    166    103 | n/n
+  DraII       24 |    20    21    20 |     21      21      21 |    187     63    inf    198 | n/Y
+  EriII      365 |   357   362   362 |    363     362     363 |    inf    inf    inf    inf | Y/Y
+  FnxI       141 |   100    94    59 |    126      85     126 |    160    147    659    151 | n/Y
+  GruI       116 |    67    69    60 |     73      68      73 |   3980    341    inf    475 | Y/Y
+  HerI       129 |    20    20    15 |     22      21      22 |    243    180    inf    202 | n/Y
+  HorI        83 |    80    80    70 |     81      80      81 |    167     91    inf    140 | n/Y
+  HyaII      148 |   135   130   125 |    132     128     132 |    inf    648    inf   1238 | Y/Y
+  HyiI        26 |    25    26    25 |     26      26      26 |    320     78    inf    266 | Y/Y
+  LeoI       273 |    63    61    46 |     78      56      78 |   1452    553    inf    608 | Y/Y
+  LeoII      227 |    67    65    43 |    130      58     130 |    231    229    252    229 | n/n
+  LeoIV      155 |   153   155   155 |    155     155     155 |    inf   1724    inf    inf | Y/Y
+  LeoV       174 |   168   171   170 |    171     171     171 |    inf   3529    inf    inf | Y/Y
+  PhxI       419 |   302   297   260 |    323     263     323 |    inf   1340    inf  18659 | Y/Y
+  PisII      182 |   173   179   179 |    179     179     179 |    inf    inf    inf    inf | Y/Y
+  RetII       33 |    27    27    23 |     28      28      27 |     68     44     92     80 | n/n
+  SgrI        19 |    16    16    15 |     16      16      16 |     66     35    104     87 | n/n
+  SclI        85 |    69    69    53 |     73      69      73 |    152    100    inf    134 | n/Y
+  Seg1        28 |    20    20    16 |     21      21      20 |     49     36     58     58 | n/n
+  Seg2        42 |    37    36    29 |     37      37      36 |     72     49     96     79 | n/n
+  SxtI        89 |    79    80    73 |     82      80      82 |    342    136    inf    214 | Y/Y
+  TriII       35 |    19    19    17 |     19      19      19 |    289     95    inf    235 | n/Y
+  TucII       54 |    34    34    30 |     35      35      35 |    269    110    inf    207 | n/Y
+  TucIII      21 |     3     3     2 |      3       3       3 |     43     33     51     51 | n/n
+  UMaI       102 |   101   102   102 |    102     102     102 |    741    183    inf    285 | Y/Y
+  UMaII       41 |    39    40    38 |     40      40      40 |    161     67    inf    156 | n/Y
+  UMiI        78 |    44    42    29 |     47      45      47 |     95     85    130     94 | n/n
+  Wil1        43 |    18    17    12 |     20      20      19 |     44     43     44     44 | n/n
+  ROW a1 Satellite pericentres, Fritz 0.8e12 NFW potential assumed: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma Fritz+18 Table 3 peri errors (on disk); touches satellites (CFG433/CFG463/CFG286), UFD tidal history)
+        canonical|Mb 6.0e+10|f_ret 1.0 [frac>1sig 0.00] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [frac>1sig 0.00] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [frac>1sig 0.00]    b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [frac>1sig 0.00]   b/sigma   +0.000  frac  +0.0000  NONE
+  ROW a2 Satellite pericentres, Fritz 1.6e12 NFW potential assumed: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma Fritz+18 Table 3 peri errors (on disk); touches satellites, UFD tidal history)
+        canonical|Mb 6.0e+10|f_ret 1.0 [frac>1sig 0.00] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [frac>1sig 0.00] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [frac>1sig 0.00]    b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [frac>1sig 0.00]   b/sigma   +0.000  frac  +0.0000  NONE
+  first-infall-like (apo > 300 kpc or unbound) counts of 39: N-B08: 16, N-B16: 8, ('canonical', 60000000000.0, 1.0): 27, ('canonical', 60000000000.0, 0.18): 11, ('alt', 60000000000.0, 1.0): 27, ('alt', 60000000000.0, 0.18): 10
+  ROW a3 Record's bare-law host (CFG433/463/286) vs the edge profile, pericentres: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma Fritz+18 peri errors; touches satellites, UFD infall order (CFG463))
+        canonical|Mb 6.0e+10|f_ret 1.0 [apo bare/edge-1 median -0.227] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [apo bare/edge-1 median -0.000] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [apo bare/edge-1 median -0.227] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [apo bare/edge-1 median -0.000] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW a4 CFG433 V_c at r_med 78 kpc: bare law (used) vs edge profile: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma CFG433's +-21.4 km/s (on disk); touches satellites (CFG433))
+        canonical|Mb 6.0e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+
+(b) MW MASS: NFW fitted to the framework's inner curve (N-F) and with two tracer masses (N-F+T), extrapolated
+  ROW b-N-F-50 M(<50 kpc) extrapolated by N-F: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 15% (recalled typical); touches MW mass; LG timing; satellites' host mass)
+        canonical|Mb 6.0e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+  ROW b-N-F-100 M(<100 kpc) extrapolated by N-F: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 15% (recalled typical); touches MW mass; LG timing; satellites' host mass)
+        canonical|Mb 6.0e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+  ROW b-N-F-200 M(<200 kpc) extrapolated by N-F: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 20% (recalled typical); touches MW mass; LG timing; satellites' host mass)
+        canonical|Mb 6.0e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+  ROW b-N-F-300 M(<300 kpc) extrapolated by N-F: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 20% (recalled typical); touches MW mass; LG timing; satellites' host mass)
+        canonical|Mb 6.0e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+  ROW b-N-F-M200 'MW halo mass' M200c by N-F vs the framework's total (M_b + M_cold): NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 20% (recalled review); touches MW mass; f_ret readings)
+        canonical|Mb 6.0e+10|f_ret 1.0 [M200c inferred 8.83e+11 (R200 203) vs F total 8.83e+11; F M(<R200) 8.83e+11] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [M200c inferred 8.83e+11 (R200 203) vs F total 8.83e+11; F M(<R200) 8.83e+11] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0 [M200c inferred 1.08e+12 (R200 217) vs F total 1.08e+12; F M(<R200) 1.08e+12] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18 [M200c inferred 1.08e+12 (R200 217) vs F total 1.08e+12; F M(<R200) 1.08e+12] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [M200c inferred 9.23e+11 (R200 206) vs F total 9.23e+11; F M(<R200) 9.23e+11] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [M200c inferred 9.23e+11 (R200 206) vs F total 9.23e+11; F M(<R200) 9.23e+11] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0 [M200c inferred 1.12e+12 (R200 219) vs F total 1.12e+12; F M(<R200) 1.12e+12] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18 [M200c inferred 1.12e+12 (R200 219) vs F total 1.12e+12; F M(<R200) 1.12e+12] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW b-N-F+T-50 M(<50 kpc) extrapolated by N-F+T: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 15% (recalled typical); touches MW mass; LG timing; satellites' host mass)
+        canonical|Mb 6.0e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+  ROW b-N-F+T-100 M(<100 kpc) extrapolated by N-F+T: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 15% (recalled typical); touches MW mass; LG timing; satellites' host mass)
+        canonical|Mb 6.0e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+  ROW b-N-F+T-200 M(<200 kpc) extrapolated by N-F+T: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 20% (recalled typical); touches MW mass; LG timing; satellites' host mass)
+        canonical|Mb 6.0e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+  ROW b-N-F+T-300 M(<300 kpc) extrapolated by N-F+T: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 20% (recalled typical); touches MW mass; LG timing; satellites' host mass)
+        canonical|Mb 6.0e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+  ROW b-N-F+T-M200 'MW halo mass' M200c by N-F+T vs the framework's total (M_b + M_cold): NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 20% (recalled review); touches MW mass; f_ret readings)
+        canonical|Mb 6.0e+10|f_ret 1.0 [M200c inferred 6.73e+11 (R200 185) vs F total 6.73e+11; F M(<R200) 6.73e+11] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [M200c inferred 9.45e+11 (R200 208) vs F total 9.45e+11; F M(<R200) 9.45e+11] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0 [M200c inferred 8.23e+11 (R200 198) vs F total 8.23e+11; F M(<R200) 8.23e+11] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18 [M200c inferred 1.13e+12 (R200 220) vs F total 1.13e+12; F M(<R200) 1.13e+12] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [M200c inferred 6.99e+11 (R200 188) vs F total 6.99e+11; F M(<R200) 6.99e+11] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [M200c inferred 1.00e+12 (R200 212) vs F total 1.00e+12; F M(<R200) 1.00e+12] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0 [M200c inferred 8.49e+11 (R200 200) vs F total 8.49e+11; F M(<R200) 8.49e+11] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18 [M200c inferred 1.20e+12 (R200 224) vs F total 1.20e+12; F M(<R200) 1.20e+12] b/sigma   +0.000  frac  +0.0000  NONE
+
+(b2) LOCAL GROUP TIMING: radial first approach, 0 -> 780 kpc at t0 = 13.80 Gyr
+  [PASS] C3 the timing integrator reproduces the analytic radial Kepler solution (no Lambda) to 1e-4 in t0
+         analytic t 16.157179 Gyr (v -114.961 km/s), integrator 16.157178 Gyr, rel -1.9e-08
+  Kepler timing mass from the measured -109.3 km/s at 780 kpc: 4.273e+12 (no Lambda), 4.849e+12 (Lambda) Msun
+  [PASS] (reported) C7 (reported) deep-MOND two-body + Lambda at FP11's nominal 1.75e11 within 10% of FP11's committed P2 first approach
+         canonical: -174.9 vs FP11 -175.5 (-0.3%); alt: -191.1 vs FP11 -191.7 (-0.3%)
+  canonical f_ret 1.0  : O-MW v_pred    -8.9 km/s (z vs -109.3: -22.8); O-LG v_pred  -213.4 (z +23.7); edges MW/M31/LG 55/78/96 kpc; true M_tot 1.146e+12; Kepler mass a point-mass analysis reads off this orbit 1.144e+12
+  canonical f_ret 0.18 : O-MW v_pred  -122.8 km/s (z vs -109.3: +3.1); O-LG v_pred  -583.1 (z +107.7); edges MW/M31/LG 286/405/496 kpc; true M_tot 5.544e+12; Kepler mass a point-mass analysis reads off this orbit 5.517e+12
+  canonical f_ret None : O-MW v_pred  -294.6 km/s (z vs -109.3: +42.1); O-LG v_pred  -701.8 (z +134.7); edges MW/M31/LG inf/inf/inf kpc; true M_tot inf; Kepler mass a point-mass analysis reads off this orbit 1.742e+13
+  alt       f_ret 1.0  : O-MW v_pred    -8.9 km/s (z vs -109.3: -22.8); O-LG v_pred  -213.4 (z +23.7); edges MW/M31/LG 50/71/87 kpc; true M_tot 1.146e+12; Kepler mass a point-mass analysis reads off this orbit 1.144e+12
+  alt       f_ret 0.18 : O-MW v_pred  -122.8 km/s (z vs -109.3: +3.1); O-LG v_pred  -597.8 (z +111.0); edges MW/M31/LG 261/369/451 kpc; true M_tot 5.544e+12; Kepler mass a point-mass analysis reads off this orbit 5.521e+12
+  alt       f_ret None : O-MW v_pred  -317.9 km/s (z vs -109.3: +47.4); O-LG v_pred  -749.9 (z +145.6); edges MW/M31/LG inf/inf/inf kpc; true M_tot inf; Kepler mass a point-mass analysis reads off this orbit 1.951e+13
+  ROW b2 LG timing mass (point-mass Kepler read of the framework's own orbit) vs the framework's true M_MW + M_M31: NONE  (b/sigma -0.00 .. +0.00; frac -0.000 .. +0.000; sigma 20% (recalled timing-mass systematic); touches LG timing (CFG20/CFG30); MW mass)
+        canonical|f_ret 1.0                          b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|f_ret 0.18                         b/sigma   -0.000  frac  -0.0000  NONE
+        alt|f_ret 1.0                                b/sigma   +0.000  frac  +0.0000  NONE
+        alt|f_ret 0.18                               b/sigma   -0.000  frac  -0.0000  NONE
+
+(c) LOCAL COLD-ENERGY DENSITY AT THE SUN (R0 = 8.178 kpc)
+  ROW c-spherical Local dark/cold density, spherical rho(R0): N-F vs framework: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 20% (recalled review); touches local density; vertical-force / Oort-limit tests)
+        canonical|Mb 6.0e+10|f_ret 1.0 [F 0.0065 vs N-F 0.0065 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [F 0.0065 vs N-F 0.0065 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0 [F 0.0069 vs N-F 0.0069 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18 [F 0.0069 vs N-F 0.0069 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [F 0.0074 vs N-F 0.0074 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [F 0.0074 vs N-F 0.0074 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0 [F 0.0079 vs N-F 0.0079 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18 [F 0.0079 vs N-F 0.0079 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW c-midplane Local dark/cold density, midplane rho (phantom disc): N-F vs framework: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 20% (recalled review); touches local density; vertical-force / Oort-limit tests)
+        canonical|Mb 6.0e+10|f_ret 1.0 [F 0.0065 vs N-F 0.0065 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [F 0.0065 vs N-F 0.0065 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0 [F 0.0069 vs N-F 0.0069 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18 [F 0.0069 vs N-F 0.0069 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [F 0.0074 vs N-F 0.0074 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [F 0.0074 vs N-F 0.0074 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0 [F 0.0079 vs N-F 0.0079 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18 [F 0.0079 vs N-F 0.0079 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW c-slab Local dark/cold density, slab |z|<1.1 kpc equivalent: N-F vs framework: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 20% (recalled review); touches local density; vertical-force / Oort-limit tests)
+        canonical|Mb 6.0e+10|f_ret 1.0 [F 0.0065 vs N-F 0.0065 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [F 0.0065 vs N-F 0.0065 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 1.0 [F 0.0069 vs N-F 0.0069 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 7.3e+10|f_ret 0.18 [F 0.0069 vs N-F 0.0069 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [F 0.0074 vs N-F 0.0074 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [F 0.0074 vs N-F 0.0074 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 1.0 [F 0.0079 vs N-F 0.0079 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 7.3e+10|f_ret 0.18 [F 0.0079 vs N-F 0.0079 Msun/pc^3] b/sigma   +0.000  frac  +0.0000  NONE
+  canonical|Mb 6.0e+10|f_ret 1.0: midplane phantom = (nu-1) rho_b 0.0618 + gradient term 0.0049 Msun/pc^3; rho_b,mid 0.1290; nu(R0) 1.479
+  canonical|Mb 6.0e+10|f_ret 0.18: midplane phantom = (nu-1) rho_b 0.0618 + gradient term 0.0049 Msun/pc^3; rho_b,mid 0.1290; nu(R0) 1.479
+  literature local DM (RECALLED, UNVERIFIED): 0.008-0.013 Msun/pc^3 (0.3-0.5 GeV/cm^3); N-std 0.0076, N-McM 0.0102, N-D 0.0092
+  [PASS] (reported) C6 (reported) CFG484's host-fluid density at R0 (0.0049 / 0.0057 Msun/pc^3, P2 point mass) reproduced within 5%
+         0.00492 / 0.00569
+
+(d) WIDE BINARIES / GAIA DR4 -- the frozen prereg READ ONLY (prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md)
+  prereg sha256 4a005c03723de032145cae71fcc9ecf82c6c0d66eaf53c3363bb13d38a2bcfb5 (read only)
+    prereg contains 'g_ext,obs = 1.778e-10': True
+    prereg contains 'Vc^2/R0 = 2.078e-10': True
+    prereg contains '1.6–2.6e-31': True
+    prereg contains '3 × 10⁻⁴': True
+    prereg contains 'γ_v = 1.000 (exactly Newtonian)': True
+    prereg contains 'γ = 1.000': True
+  sigma_tot derived from the prereg's Arm A row: 0.1614/5.8 = 0.0278
+  canonical|Mb 6.0e+10|f_ret 1.0: phantom tide spherical 2.29e-31, with phantom disc 2.29e-31 s^-2 (prereg 1.6-2.6e-31); tide/internal at 30 kAU (1.5 Msun) 1.0e-04 (prereg ~3e-4); model g_N(R0) 1.189e-10 (y_N 1.271), model g_obs(R0) 1.768e-10 vs frozen 1.778e-10 / 2.078e-10
+  canonical|Mb 6.0e+10|f_ret 0.18: phantom tide spherical 2.29e-31, with phantom disc 2.29e-31 s^-2 (prereg 1.6-2.6e-31); tide/internal at 30 kAU (1.5 Msun) 1.0e-04 (prereg ~3e-4); model g_N(R0) 1.189e-10 (y_N 1.271), model g_obs(R0) 1.768e-10 vs frozen 1.778e-10 / 2.078e-10
+  alt|Mb 6.0e+10|f_ret 1.0: phantom tide spherical 2.66e-31, with phantom disc 2.66e-31 s^-2 (prereg 1.6-2.6e-31); tide/internal at 30 kAU (1.5 Msun) 1.2e-04 (prereg ~3e-4); model g_N(R0) 1.189e-10 (y_N 1.052), model g_obs(R0) 1.861e-10 vs frozen 1.778e-10 / 2.078e-10
+  alt|Mb 6.0e+10|f_ret 0.18: phantom tide spherical 2.66e-31, with phantom disc 2.66e-31 s^-2 (prereg 1.6-2.6e-31); tide/internal at 30 kAU (1.5 Msun) 1.2e-04 (prereg ~3e-4); model g_N(R0) 1.189e-10 (y_N 1.052), model g_obs(R0) 1.861e-10 vs frozen 1.778e-10 / 2.078e-10
+  ROW d1 DR4 Arm C / settling (gamma = 1.000): the MW-model tide's maximum effect on gamma_v at 30 kAU: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma sigma_tot 0.0278 (prereg); touches DR4 Arm C, Amendment 21 (decisive))
+        canonical|Mb 6.0e+10|f_ret 1.0 [tide/internal F 1.0e-04 vs N-F 1.0e-04] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [tide/internal F 1.0e-04 vs N-F 1.0e-04] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [tide/internal F 1.2e-04 vs N-F 1.2e-04] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [tide/internal F 1.2e-04 vs N-F 1.2e-04] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW d2 DR4 Arms A/B: the model g_ext at the Sun, N-F vs framework, against the prereg's own g_ext bracket (1.778 -> 2.078: 16%): NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma the 16% bracket between the two frozen conventions (proxy; the arms use the OBSERVED g_ext); touches DR4 Arms A/B)
+        canonical|Mb 6.0e+10|f_ret 1.0 [model g_obs F 1.768e-10 vs N-F 1.768e-10] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [model g_obs F 1.768e-10 vs N-F 1.768e-10] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [model g_obs F 1.861e-10 vs N-F 1.861e-10] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [model g_obs F 1.861e-10 vs N-F 1.861e-10] b/sigma   +0.000  frac  +0.0000  NONE
+
+(e) MICROLENSING OPTICAL DEPTH (halo only); directions and distances RECALLED
+  LMC: S-model 4.717e-07; canonical|Mb 6.0e+10|f_ret 1.0 3.448e-07; NF canonical|Mb 6.0e+10|f_ret 1.0 3.582e-07; canonical|Mb 6.0e+10|f_ret 0.18 3.448e-07; NF canonical|Mb 6.0e+10|f_ret 0.18 3.582e-07; alt|Mb 6.0e+10|f_ret 1.0 3.831e-07; NF alt|Mb 6.0e+10|f_ret 1.0 3.959e-07; alt|Mb 6.0e+10|f_ret 0.18 3.831e-07; NF alt|Mb 6.0e+10|f_ret 0.18 3.959e-07
+  SMC: S-model 6.733e-07; canonical|Mb 6.0e+10|f_ret 1.0 4.921e-07; NF canonical|Mb 6.0e+10|f_ret 1.0 5.078e-07; canonical|Mb 6.0e+10|f_ret 0.18 4.928e-07; NF canonical|Mb 6.0e+10|f_ret 0.18 5.078e-07; alt|Mb 6.0e+10|f_ret 1.0 5.443e-07; NF alt|Mb 6.0e+10|f_ret 1.0 5.626e-07; alt|Mb 6.0e+10|f_ret 0.18 5.485e-07; NF alt|Mb 6.0e+10|f_ret 0.18 5.626e-07
+  Baade: S-model 1.334e-07; canonical|Mb 6.0e+10|f_ret 1.0 1.781e-07; NF canonical|Mb 6.0e+10|f_ret 1.0 2.131e-07; canonical|Mb 6.0e+10|f_ret 0.18 1.781e-07; NF canonical|Mb 6.0e+10|f_ret 0.18 2.131e-07; alt|Mb 6.0e+10|f_ret 1.0 2.116e-07; NF alt|Mb 6.0e+10|f_ret 1.0 2.525e-07; alt|Mb 6.0e+10|f_ret 0.18 2.116e-07; NF alt|Mb 6.0e+10|f_ret 0.18 2.525e-07
+  ROW e-LMC-S-model LMC compact-object halo fraction bound if the S-model halo is assumed: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 25% halo-model systematic (recalled); touches PBH reading (CFG510))
+        canonical|Mb 6.0e+10|f_ret 1.0 [tau F 4.72e-07 vs S-model 4.72e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [tau F 4.72e-07 vs S-model 4.72e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [tau F 4.72e-07 vs S-model 4.72e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [tau F 4.72e-07 vs S-model 4.72e-07] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW e-LMC-N-F LMC compact-object halo fraction bound if the N-F halo is assumed: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 25% halo-model systematic (recalled); touches PBH reading (CFG510))
+        canonical|Mb 6.0e+10|f_ret 1.0 [tau F 3.58e-07 vs N-F 3.58e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [tau F 3.58e-07 vs N-F 3.58e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [tau F 3.96e-07 vs N-F 3.96e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [tau F 3.96e-07 vs N-F 3.96e-07] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW e-SMC-S-model SMC compact-object halo fraction bound if the S-model halo is assumed: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 25% halo-model systematic (recalled); touches PBH reading (CFG510))
+        canonical|Mb 6.0e+10|f_ret 1.0 [tau F 6.73e-07 vs S-model 6.73e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [tau F 6.73e-07 vs S-model 6.73e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [tau F 6.73e-07 vs S-model 6.73e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [tau F 6.73e-07 vs S-model 6.73e-07] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW e-SMC-N-F SMC compact-object halo fraction bound if the N-F halo is assumed: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 25% halo-model systematic (recalled); touches PBH reading (CFG510))
+        canonical|Mb 6.0e+10|f_ret 1.0 [tau F 5.08e-07 vs N-F 5.08e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [tau F 5.08e-07 vs N-F 5.08e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [tau F 5.63e-07 vs N-F 5.63e-07] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [tau F 5.63e-07 vs N-F 5.63e-07] b/sigma   +0.000  frac  +0.0000  NONE
+
+(f) STREAMS: V_c at stream radii, and the flattening of the non-baryonic force at r = 14 kpc, 45 deg
+  ROW f-Vc-GD-1 Stream V_c at GD-1 (14 kpc): N-F vs framework: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 2% (recalled stream precision); touches streams)
+        canonical|Mb 6.0e+10|f_ret 1.0 [V_c F 190.1 vs N-F 190.1] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [V_c F 190.1 vs N-F 190.1] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [V_c F 197.2 vs N-F 197.2] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [V_c F 197.2 vs N-F 197.2] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW f-Vc-Pal 5 Stream V_c at Pal 5 (19 kpc): N-F vs framework: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 2% (recalled stream precision); touches streams)
+        canonical|Mb 6.0e+10|f_ret 1.0 [V_c F 186.5 vs N-F 186.5] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [V_c F 186.5 vs N-F 186.5] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [V_c F 193.8 vs N-F 193.8] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [V_c F 193.8 vs N-F 193.8] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW f-Vc-Orphan 40 Stream V_c at Orphan 40 (40 kpc): N-F vs framework: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 2% (recalled stream precision); touches streams)
+        canonical|Mb 6.0e+10|f_ret 1.0 [V_c F 177.3 vs N-F 177.3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [V_c F 177.3 vs N-F 177.3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [V_c F 183.8 vs N-F 183.8] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [V_c F 183.8 vs N-F 183.8] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW f-Vc-Orphan 60 Stream V_c at Orphan 60 (60 kpc): N-F vs framework: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 2% (recalled stream precision); touches streams)
+        canonical|Mb 6.0e+10|f_ret 1.0 [V_c F 170.3 vs N-F 170.3] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [V_c F 170.3 vs N-F 170.3] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [V_c F 175.8 vs N-F 175.8] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [V_c F 175.8 vs N-F 175.8] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW f-Vc-Sgr 100 Stream V_c at Sgr 100 (100 kpc): N-F vs framework: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 2% (recalled stream precision); touches streams)
+        canonical|Mb 6.0e+10|f_ret 1.0 [V_c F 158.2 vs N-F 158.2] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [V_c F 158.2 vs N-F 158.2] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [V_c F 162.4 vs N-F 162.4] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [V_c F 162.4 vs N-F 162.4] b/sigma   +0.000  frac  +0.0000  NONE
+  ROW f-q Halo flattening at GD-1 (14 kpc): a spherical-NFW analysis (q = 1) vs the framework's phantom force: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 0.05 (recalled; Bovy+16 0.94 +- 0.05, Koposov+10 0.87 +0.07/-0.04); touches streams; a framework TEST vs measured q)
+        canonical|Mb 6.0e+10|f_ret 1.0 [q_F 1.000 vs spherical NFW 1] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [q_F 1.000 vs spherical NFW 1] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [q_F 1.000 vs spherical NFW 1] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [q_F 1.000 vs spherical NFW 1] b/sigma   +0.000  frac  +0.0000  NONE
+
+(g) SOLAR SYSTEM: Galactic tidal tensor at the Sun, framework (with phantom disc) vs N-F; Cassini Q2 = (3 +- 3)e-27 s^-2 (PAPER44)
+  canonical|Mb 6.0e+10|f_ret 1.0: F tide (R, phi, z) = (-7.84e-31, 7.01e-31, 7.78e-30) s^-2, rho_0,tot 0.1355; N-F (-7.84e-31, 7.01e-31, 7.78e-30), rho_0,tot 0.1355; |diff| 0.00e+00
+  canonical|Mb 6.0e+10|f_ret 0.18: F tide (R, phi, z) = (-7.84e-31, 7.01e-31, 7.78e-30) s^-2, rho_0,tot 0.1355; N-F (-7.84e-31, 7.01e-31, 7.78e-30), rho_0,tot 0.1355; |diff| 0.00e+00
+  alt|Mb 6.0e+10|f_ret 1.0: F tide (R, phi, z) = (-8.07e-31, 7.38e-31, 7.81e-30) s^-2, rho_0,tot 0.1365; N-F (-8.07e-31, 7.38e-31, 7.81e-30), rho_0,tot 0.1365; |diff| 0.00e+00
+  alt|Mb 6.0e+10|f_ret 0.18: F tide (R, phi, z) = (-8.07e-31, 7.38e-31, 7.81e-30) s^-2, rho_0,tot 0.1365; N-F (-8.07e-31, 7.38e-31, 7.81e-30), rho_0,tot 0.1365; |diff| 0.00e+00
+  ROW g1 Cassini Q2: Galactic tidal-tensor difference (N-F vs framework): NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma Cassini 3e-27 s^-2 (PAPER44); touches no-EFE claims (PAPER44), Solar system)
+        canonical|Mb 6.0e+10|f_ret 1.0               b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18              b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0                     b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18                    b/sigma   +0.000  frac  +0.0000  NONE
+  ROW g2 Vertical Galactic tide (Oort cloud / detached TNO secular models): 4 pi G rho_0,total, N-F vs framework: NONE  (b/sigma +0.00 .. +0.00; frac +0.000 .. +0.000; sigma 20% (recalled local-density precision); touches PAPER44 TNO run (Galactic tide term))
+        canonical|Mb 6.0e+10|f_ret 1.0 [4piG rho_0 F/N-F] b/sigma   +0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [4piG rho_0 F/N-F] b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [4piG rho_0 F/N-F]  b/sigma   +0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [4piG rho_0 F/N-F] b/sigma   +0.000  frac  +0.0000  NONE
+
+(h) EFE-RIVAL HOST FIELD at satellite distances: g_ext = G M(<r)/r^2, N-F vs framework
+  ROW h-50 EFE rival's deep-regime satellite dispersion at 50 kpc: shift from the host model: NONE  (b/sigma -0.00 .. -0.00; frac +0.000 .. +0.000; sigma 0.1 dex (recalled dwarf dispersion error); touches no-EFE claims (satellite EFE rival))
+        canonical|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+  ROW h-100 EFE rival's deep-regime satellite dispersion at 100 kpc: shift from the host model: NONE  (b/sigma -0.00 .. -0.00; frac +0.000 .. +0.000; sigma 0.1 dex (recalled dwarf dispersion error); touches no-EFE claims (satellite EFE rival))
+        canonical|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+  ROW h-200 EFE rival's deep-regime satellite dispersion at 200 kpc: shift from the host model: NONE  (b/sigma -0.00 .. -0.00; frac +0.000 .. +0.000; sigma 0.1 dex (recalled dwarf dispersion error); touches no-EFE claims (satellite EFE rival))
+        canonical|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+        canonical|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 1.0 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+        alt|Mb 6.0e+10|f_ret 0.18 [g_ext N-F/F 1.000] b/sigma   -0.000  frac  +0.0000  NONE
+
+======================================================================================================================
+ADDED AFTER THE FIRST RUN (reported only; no verdict input): framework TESTS the bias rows exposed
+======================================================================================================================
+  These lines were added after run 1 printed the profile (edge 50-61 kpc at f_ret = 1, not the ~175 kpc of the pre-freeze mental note,
+  which used a wrong r_M of ~30 kpc; the true r_M is 8.6-10.4 kpc).  They score the framework's own MW against on-disk numbers.
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs canonical|Mb 6.0e+10|f_ret 1.0        : V_F  145.1 -> D = +4.06 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs canonical|Mb 6.0e+10|f_ret 0.18       : V_F  170.1 -> D = +2.89 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs alt|Mb 6.0e+10|f_ret 1.0              : V_F  145.1 -> D = +4.06 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs alt|Mb 6.0e+10|f_ret 0.18             : V_F  177.9 -> D = +2.52 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs canonical|Mb 6.0e+10|f_ret None       : V_F  170.1 -> D = +2.89 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs alt|Mb 6.0e+10|f_ret None             : V_F  177.9 -> D = +2.52 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs canonical|Mb 7.3e+10|f_ret 1.0        : V_F  160.0 -> D = +3.36 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs canonical|Mb 7.3e+10|f_ret 0.18       : V_F  179.2 -> D = +2.46 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs canonical|Mb 7.3e+10|f_ret None       : V_F  179.2 -> D = +2.46 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs alt|Mb 7.3e+10|f_ret 1.0              : V_F  160.0 -> D = +3.36 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs alt|Mb 7.3e+10|f_ret 0.18             : V_F  187.3 -> D = +2.08 sigma
+  CFG433 V_c,obs 231.9 +- 21.4 at 78 kpc vs alt|Mb 7.3e+10|f_ret None             : V_F  187.3 -> D = +2.08 sigma
+  Fritz sample (39): unbound at central values in N-B08                                 :  6; apo > 300 kpc or unbound: 16
+  Fritz sample (39): unbound at central values in N-B16                                 :  2; apo > 300 kpc or unbound:  8
+  Fritz sample (39): unbound at central values in ('canonical', 60000000000.0, 1.0)     : 24; apo > 300 kpc or unbound: 27
+  Fritz sample (39): unbound at central values in ('canonical', 60000000000.0, 0.18)    :  4; apo > 300 kpc or unbound: 11
+  Fritz sample (39): unbound at central values in ('alt', 60000000000.0, 1.0)           : 24; apo > 300 kpc or unbound: 27
+  Fritz sample (39): unbound at central values in ('alt', 60000000000.0, 0.18)          :  4; apo > 300 kpc or unbound: 10
+  Fritz sample (39): unbound at central values in ('canonical', 60000000000.0, None)    :  0; apo > 300 kpc or unbound: 11
+  Fritz sample (39): unbound at central values in ('alt', 60000000000.0, None)          :  0; apo > 300 kpc or unbound: 10
+  LG timing (O-MW, Lambda): the f_ret that gives -109.3 km/s is 0.206 (canonical); the census value is 0.18 -- post hoc, not a fit
+  LG timing (O-MW, Lambda): the f_ret that gives -109.3 km/s is 0.206 (alt); the census value is 0.18 -- post hoc, not a fit
+  local total midplane density, recalled rho_b 0.084 (UNVERIFIED): framework with phantom disc 0.129 Msun/pc^3 (nu 1.479); without the phantom disc (spherical cold only) 0.090; recalled measured total ~0.10 +- 0.01 -> +2.9 / -1.0 sigma (UNVERIFIED inputs)
+  local total midplane density, recalled rho_b 0.084 (UNVERIFIED): framework with phantom disc 0.136 Msun/pc^3 (nu 1.559); without the phantom disc (spherical cold only) 0.091; recalled measured total ~0.10 +- 0.01 -> +3.6 / -0.9 sigma (UNVERIFIED inputs)
+  canonical M_b 6.0e+10 R  8.18: in-plane law V_c  210.7; disc baryons + SPHERICAL cold energy  209.2 km/s (-0.7%)
+  canonical M_b 6.0e+10 R 20.00: in-plane law V_c  189.8; disc baryons + SPHERICAL cold energy  187.2 km/s (-1.4%)
+  canonical M_b 7.3e+10 R  8.18: in-plane law V_c  226.5; disc baryons + SPHERICAL cold energy  225.4 km/s (-0.5%)
+  canonical M_b 7.3e+10 R 20.00: in-plane law V_c  201.7; disc baryons + SPHERICAL cold energy  199.1 km/s (-1.3%)
+  alt       M_b 6.0e+10 R  8.18: in-plane law V_c  216.3; disc baryons + SPHERICAL cold energy  214.3 km/s (-0.9%)
+  alt       M_b 6.0e+10 R 20.00: in-plane law V_c  197.0; disc baryons + SPHERICAL cold energy  194.0 km/s (-1.5%)
+  alt       M_b 7.3e+10 R  8.18: in-plane law V_c  232.1; disc baryons + SPHERICAL cold energy  230.5 km/s (-0.7%)
+  alt       M_b 7.3e+10 R 20.00: in-plane law V_c  209.1; disc baryons + SPHERICAL cold energy  206.2 km/s (-1.4%)
+
+======================================================================================================================
+5. SUMMARY: the bias table (worst cell per row)
+======================================================================================================================
+  a1               NONE      b/sigma   +0.00 ..   +0.00   Satellite pericentres, Fritz 0.8e12 NFW potential assumed
+  a2               NONE      b/sigma   +0.00 ..   +0.00   Satellite pericentres, Fritz 1.6e12 NFW potential assumed
+  a3               NONE      b/sigma   +0.00 ..   +0.00   Record's bare-law host (CFG433/463/286) vs the edge profile, pericentres
+  a4               NONE      b/sigma   +0.00 ..   +0.00   CFG433 V_c at r_med 78 kpc: bare law (used) vs edge profile
+  b-N-F-50         NONE      b/sigma   +0.00 ..   +0.00   M(<50 kpc) extrapolated by N-F
+  b-N-F-100        NONE      b/sigma   +0.00 ..   +0.00   M(<100 kpc) extrapolated by N-F
+  b-N-F-200        NONE      b/sigma   +0.00 ..   +0.00   M(<200 kpc) extrapolated by N-F
+  b-N-F-300        NONE      b/sigma   +0.00 ..   +0.00   M(<300 kpc) extrapolated by N-F
+  b-N-F-M200       NONE      b/sigma   +0.00 ..   +0.00   'MW halo mass' M200c by N-F vs the framework's total (M_b + M_cold)
+  b-N-F+T-50       NONE      b/sigma   +0.00 ..   +0.00   M(<50 kpc) extrapolated by N-F+T
+  b-N-F+T-100      NONE      b/sigma   +0.00 ..   +0.00   M(<100 kpc) extrapolated by N-F+T
+  b-N-F+T-200      NONE      b/sigma   +0.00 ..   +0.00   M(<200 kpc) extrapolated by N-F+T
+  b-N-F+T-300      NONE      b/sigma   +0.00 ..   +0.00   M(<300 kpc) extrapolated by N-F+T
+  b-N-F+T-M200     NONE      b/sigma   +0.00 ..   +0.00   'MW halo mass' M200c by N-F+T vs the framework's total (M_b + M_cold)
+  b2               NONE      b/sigma   -0.00 ..   +0.00   LG timing mass (point-mass Kepler read of the framework's own orbit) vs the framework's true M_MW + M_M31
+  c-spherical      NONE      b/sigma   +0.00 ..   +0.00   Local dark/cold density, spherical rho(R0): N-F vs framework
+  c-midplane       NONE      b/sigma   +0.00 ..   +0.00   Local dark/cold density, midplane rho (phantom disc): N-F vs framework
+  c-slab           NONE      b/sigma   +0.00 ..   +0.00   Local dark/cold density, slab |z|<1.1 kpc equivalent: N-F vs framework
+  d1               NONE      b/sigma   +0.00 ..   +0.00   DR4 Arm C / settling (gamma = 1.000): the MW-model tide's maximum effect on gamma_v at 30 kAU
+  d2               NONE      b/sigma   +0.00 ..   +0.00   DR4 Arms A/B: the model g_ext at the Sun, N-F vs framework, against the prereg's own g_ext bracket (1.778 -> 2.078: 16%)
+  e-LMC-S-model    NONE      b/sigma   +0.00 ..   +0.00   LMC compact-object halo fraction bound if the S-model halo is assumed
+  e-LMC-N-F        NONE      b/sigma   +0.00 ..   +0.00   LMC compact-object halo fraction bound if the N-F halo is assumed
+  e-SMC-S-model    NONE      b/sigma   +0.00 ..   +0.00   SMC compact-object halo fraction bound if the S-model halo is assumed
+  e-SMC-N-F        NONE      b/sigma   +0.00 ..   +0.00   SMC compact-object halo fraction bound if the N-F halo is assumed
+  f-Vc-GD-1        NONE      b/sigma   +0.00 ..   +0.00   Stream V_c at GD-1 (14 kpc): N-F vs framework
+  f-Vc-Pal 5       NONE      b/sigma   +0.00 ..   +0.00   Stream V_c at Pal 5 (19 kpc): N-F vs framework
+  f-Vc-Orphan 40   NONE      b/sigma   +0.00 ..   +0.00   Stream V_c at Orphan 40 (40 kpc): N-F vs framework
+  f-Vc-Orphan 60   NONE      b/sigma   +0.00 ..   +0.00   Stream V_c at Orphan 60 (60 kpc): N-F vs framework
+  f-Vc-Sgr 100     NONE      b/sigma   +0.00 ..   +0.00   Stream V_c at Sgr 100 (100 kpc): N-F vs framework
+  f-q              NONE      b/sigma   +0.00 ..   +0.00   Halo flattening at GD-1 (14 kpc): a spherical-NFW analysis (q = 1) vs the framework's phantom force
+  g1               NONE      b/sigma   +0.00 ..   +0.00   Cassini Q2: Galactic tidal-tensor difference (N-F vs framework)
+  g2               NONE      b/sigma   +0.00 ..   +0.00   Vertical Galactic tide (Oort cloud / detached TNO secular models): 4 pi G rho_0,total, N-F vs framework
+  h-50             NONE      b/sigma   -0.00 ..   -0.00   EFE rival's deep-regime satellite dispersion at 50 kpc: shift from the host model
+  h-100            NONE      b/sigma   -0.00 ..   -0.00   EFE rival's deep-regime satellite dispersion at 100 kpc: shift from the host model
+  h-200            NONE      b/sigma   -0.00 ..   -0.00   EFE rival's deep-regime satellite dispersion at 200 kpc: shift from the host model
+  [PASS] MUTATE: truth = the assumed NFW in every row -> every bias vanishes (max |b/sigma| <= 1e-3) and every verdict is NONE
+         max |b/sigma| 4.13e-08; all NONE True
+
+  8/8 checks pass; load-bearing failures: 0   (121 s)
