@@ -24,7 +24,7 @@
 | Supply postulate | not derivable under G9 (six attacks) | CFG461, 462, 488, 490, 494, 497 |
 | Chassis | A WORKS-CONDITIONAL (O(v) bounded; collapse item 2c open); B FAILS; C viable with conflicts | CFG469, 499, 500 |
 | GR + cold-energy relaxation | DEAD | CFG489 |
-| Small-scale power (k ≳ 2 h/Mpc) | NEW TENSION: once host interiors are resolved, P/P_S0 falls to 0.63 at k 4 (L 50) and 0.44 at k 8 (L 25), growing with time and NOT converged with resolution. f_ret = 1 shows it too; no-compensation does not. Cause: per-catchment compensation draws from dense cores, so halos are less concentrated. Growth passes hold for k ≤ 1 only. The galaxy-regime f_ret ≈ 0.1 test was NOT ACHIEVED (groups overwrite galaxy catchments) | CFG521 (CFG506 diag., CFG518) |
+| Small-scale power (k ≳ 2 h/Mpc) | NEW TENSION: once host interiors are resolved, P/P_S0 falls to 0.63 at k 4 (L 50) and 0.44 at k 8 (L 25), growing with time and NOT converged with resolution. f_ret = 1 shows it too; no-compensation does not. Cause: per-catchment compensation draws from dense cores, so halos are less concentrated. CFG524: drawing only from the unsettled reservoir (R2 literal, R1 alternative, both run) does NOT fix it (L50 k 4: 0.66 / 0.62; still deepens with resolution). In this engine the settled phantom sits in the outskirts, so the reservoir is mostly in the cores. Every per-catchment draw tried de-concentrates halos; no forced rule fixes it. Growth passes hold for k ≤ 1 only. The galaxy-regime f_ret ≈ 0.1 test was NOT ACHIEVED (groups overwrite galaxy catchments) | CFG521 (CFG506 diag., CFG518) |
 
 ## Not diagnostic yet (data-limited)
 - **κ:** 0.42 ± 0.10 (CFG493).
