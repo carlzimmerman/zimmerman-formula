@@ -71,3 +71,17 @@ Law: a₀ = κc√(Gρ_DE), κ = ½ **fitted**. Kernel ν(y) = 1/(1−e^(−√y
 The decline Gaia sees to 27 kpc is what the law predicts from the baryons, **if** the Milky Way's baryons are near 7.3 × 10¹⁰ rather than the census 5.4 × 10¹⁰. That ~3σ disc-mass question is the real issue, not modified gravity versus a Keplerian tail. CFG532 (running) scores the framework at the census baryons. Gaia DR4 decides on two fronts: whether the curve flattens at about 175–195 km/s, and the vertical-force map that separates round cold energy (CFG516) from a dark or phantom disc (the Sylos Labini claim).
 
 κ = ½ is fitted; the cold energy's mass is still required; not theory closed. Literature numbers are taken from the review's text, not re-derived from the cited papers.
+
+## 6. Update, same day: CFG532 (census baryons held fixed)
+The heavy-disc problem in §3.5 depends on which form of the round rule is used:
+- **RM-v** (the algebraic law on the in-plane field) fits with **census baryons**: M* needed 5.4–6.1 × 10¹⁰, within z −0.1 to +1.2 of the census. χ² against Ou+24 is 55.9/37 canonical and 12.9/37 alt; against Eilers+19, 30.7/38 and 11.5/38.
+- **RM-φ** (the QUMOND phantom's enclosed mass) still needs a disc +1.5 to +3.0σ heavier than the census.
+
+**The real tension is shape.** The law's outer slope over 15–27.5 kpc stays between −0.10 and −0.19 for every disc mass and footing. Measured slopes are −0.33 ± 0.07 (Ou+24) and −0.28 ± 0.07 (Eilers+19), with Keplerian at −0.5. So the law is 1.7–3.0σ too shallow, and by its frozen rule CFG532 is EXCLUDED (shape) on Ou+24.
+
+How to read that:
+- **It hinges on systematics.** Ou's own upper inner-error budget makes RM-v consistent on both footings.
+- **The fitted NFW misses the same slope by about the same amount** (−2.1σ on Ou, −2.9σ on the compilation; applied post hoc, so not a verdict input).
+- **Keplerian is 2.4–3.7σ from the data too.**
+- **The lever is 15–22 kpc.** Points beyond 19 kpc carry 15% errors and absorb every model.
+- **The DR4 decider:** a slope of −0.25 or steeper, held with an error of 0.04 or less, excludes the law on shape whatever the disc mass. A slope of −0.20 or shallower passes it.
