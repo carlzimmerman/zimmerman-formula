@@ -1,6 +1,6 @@
 # The Crispy Fried Chicken Status Board
 
-*Where the theory stands, as of 8 October 2026, in one picture.*
+*Where the theory stands, as of 9 October 2026, in one picture.*
 
 The theory makes one claim: the acceleration scale where galaxies stop obeying Newton, a₀, is set by the density of dark energy.
 
@@ -47,11 +47,14 @@ This is the full field theory underneath the law: general relativity plus a pref
 - **Passes:**
   - rotation curves (SPARC, 0.10 dex scatter);
   - a₀ measured locally with MeerKAT, 0.9–1.3 × 10⁻¹⁰ (PAPER40);
-  - weak lensing (KiDS);
   - clusters, including the Bullet Cluster, which needs the cold mass;
-  - Andromeda's and the Local Volume's dwarfs.
+  - Andromeda's and the Local Volume's dwarfs;
+  - the Milky Way's vertical force: round cold energy beats MOND's flattened phantom disc in 32 of 32 cells (CFG516). This separates the theory from MOND, and Gaia DR4 tests it directly.
 - **Conditional: the Milky Way's ultra-faint dwarfs.** They move about 2× faster than the law predicts (3.8σ at the generous end), and every data-side explanation fails. Post-reionisation cold accretion onto these fossils (CFG344) removes the offset, but only in a narrow window and with ΛCDM-calibrated assembly assumed.
-- **Not decidable yet: the massive ellipticals.** They are about 20% too fast, but once measured tracers are used the gap is not significant. The four galaxies at the centres of groups and clusters still disagree.
+- **Conditional: Local Group timing.** The earlier 13.5σ miss came mostly from treating the orbit as radial with measurement errors only. With Andromeda's sideways motion it drops to about 2–3σ, and a derived shared cold-energy supply between the two galaxies removes most of the rest. About 4σ remains on the old straight-line statistic (CFG522).
+- **Footing-dependent: lensing around isolated galaxies (KiDS).** In a validated neighbourhood model the zero-knob edge falls short in the inner 50–190 kpc (CFG529). On the alt footing an allowed 0.1 dex heavier stellar mass closes it; on canonical none does (CFG531). The deficit sits in the most massive, early-type lenses.
+- **Tension: the four central ellipticals (SLUGGS).** With each galaxy's measured globular-cluster profile and orbits, the gap is about +0.07 dex on average, 2.8–3.5σ statistical only (CFG528b). Heavier stars, hot gas and the cold-energy edge all fail to close it. It is not a foreground effect.
+- **Not decidable yet (DR4): the Milky Way's outer slope.** At census baryons the law fits the speeds, but Gaia's 15–27 kpc decline is 3–5σ steeper than the law (CFG532b). A standard dark-matter halo fails the same test (3.4σ). The result rests on a disputed distance scale, and Cepheids stay flat. External galaxies show no such decline. DR4 fixes the distance scale.
 
 ## Column 3 · Cosmology, and does a₀ change over cosmic time?
 
@@ -61,7 +64,7 @@ The theory's sharpest prediction is that **a₀ stays constant**. Its main rival
 
 - **Not decidable yet: a₀ over time.** The two lines separate at redshift 2–5. At those redshifts, though, the uncertainty in how much gas each galaxy holds is larger than the gap between the lines (the "calibration wall", PAPER38). No public data set can settle this today.
 - **Open: Gaia DR4 wide binaries** (data release 2 December 2026). This test is pre-registered and frozen: PAPER35 predicts exactly Newtonian behaviour.
-- **Conditional: structure growth, candidate B.** Simulated in a universe-in-a-box (CFG361 onward), switching the law on everywhere makes small-scale structure 15–17% too clumpy. The fix has no hand-set numbers. The phantom is cold fluid, so the law stops where each halo's own cold fluid runs out. That cold fluid is drawn from the halo's own turnaround sphere, so mass is conserved halo by halo. With this rule, growth passes at 512³ resolution on both a₀ values and with a₀ tracking dark energy (3–4% against an allowed 10%; CFG424–439; published as PAPER45 v2.0, DOI 10.5281/zenodo.23237726). The condition: in these runs the cold fluid is bookkeeping, not simulated particles, and the settling mechanism is not yet derived from an action.
+- **Conditional: structure growth, candidate B.** Simulated in a universe-in-a-box (CFG361 onward), switching the law on everywhere makes structure 15–17% too clumpy. The fix has no hand-set numbers: the extra gravity is cold energy that each halo can spend only once, drawn from its own surroundings. Large-scale growth passes in every run, including two 512³ realisations, and with cold energy placed where real, gas-stripped galaxies put it (CFG518; PAPER45 v2.1). Once halo cores were resolved, the bookkeeping turned out to rob them (CFG521, CFG526). A rebuilt engine that draws only from each halo's outer reservoir now makes halos match the law's own profile at every resolution (CFG527). Whether small-scale clumpiness converges is being settled by a fixed-box resolution study (CFG530, running). The condition: cold energy is bookkeeping, not simulated particles, and its settling is not derived from an action.
 - **Fails: structure growth, chassis alone.** Without B's switch, all matter feels the MOND boost and structure grows about 7× too fast, which CMB lensing rules out. This variant is dead; candidate B is the live one.
 
 ## Column 4 · The deep "why"
@@ -74,7 +77,7 @@ The theory's sharpest prediction is that **a₀ stays constant**. Its main rival
 
 ## The bottom line
 
-The law wins where it is cleanest: rotation curves, MeerKAT, lensing, and every local test of gravity. Structure growth, the biggest cosmology failure, now has a fix with no hand-set numbers, conditional on the cold fluid settling as assumed. The hard failures are the Milky Way's ultra-faint dwarfs (now conditional) and a knife-edge 1-D nonlinear test. Three things stay open: why κ = ½, what sets the cold fluid's amount, and ρ_Λ. The two tests that could change the picture are **Gaia DR4** (2 December 2026) and **a₀ at redshift ~2.5**.
+The law wins where it is cleanest: rotation curves, MeerKAT, clusters, and every local test of gravity. It separates from MOND on the Milky Way's vertical force. Structure growth has a fix with no hand-set numbers on large scales, and halos now match the law's profile; small-scale convergence is being settled. The pattern in the misses is massive, settled galaxies: central ellipticals, massive isolated lenses (on canonical), and the Milky Way's outer slope (shared with dark-matter halos, and resting on a disputed distance scale). Three things stay open: why κ = ½, what sets the cold energy's amount, and ρ_Λ. The two tests that could change the picture are **Gaia DR4** (2 December 2026) and **a₀ at redshift ~2.5**.
 
 ---
 
