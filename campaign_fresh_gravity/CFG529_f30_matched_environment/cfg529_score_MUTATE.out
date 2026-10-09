@@ -1,0 +1,37 @@
+CFG529 stage 2 (FROZEN_CRITERIA.md, criteria commit 33969d1a7): the f30-matched environment term.
+Constructions: A = CFG503 (sharp r_ta boundary, halofit x zeta two-halo, stripping, SHMR rank-one); B = CFG504 (smooth DK14 transition,
+primary x_t).  The HOD leaked-satellite grid of each window K (W10 stack P, W30 f30, ALL) is rescaled to the MEASURED fraction (CFG519 JSON:
+0.2234 / 0.1686 / parent 0.3134) by CFG520 part B's rule.  Gates G1m, G2f (required), G3m (reported, labelled); then, per valid construction,
+the census edge on f30 (Delta vs the best sharp edge x >= 0.2 <= 4 AND p > 0.01) and the record's model set (p > 0.01), both footings.
+Inputs: CFG503 / CFG504 env + own tables, CFG525 stage-1 tables (W10 sharp), this lane's cfg529_tables.npz, committed JSON (read-only).
+MUTATE (CFG529_MUTATE=1, outputs *_MUTATE.*): T1 f_ret = 1 must fail; T2 stack-P environment reproduces CFG525's fixed-environment fail;
+T3 mismatched (W10) environment on f30 visible; T4 zero leakage visible.
+measured leaked fractions (CFG519): W10 0.223427, W30 0.168633 (sigma_stat 0.00603, sigma_tot declared 0.00667), ALL parent 0.313386
+  [PASS] K1 stack P data vector = CFG377 primary (1e-10): max rel 0.0e+00
+stack P 181477 lenses / 1953 groups; f30 57265 lenses / 1676 groups; ALL 605531 lenses / 2066 groups
+construction B: x_t primary 0.9101
+  [PASS] K2a construction A with the HOD f rebuilds CFG503's committed E_nlz tables (W10 / W30 / ALL; 1e-9 rel, 1e3 floor): 1.3e-13
+  scaling P    (W10) moster  : HOD stack-weighted f X = 0.18056 -> s = 1.2374; scaled f' = 0.223427
+  scaling P    (W10) behroozi: HOD stack-weighted f X = 0.18079 -> s = 1.2358; scaled f' = 0.223427
+  scaling f30  (W30) moster  : HOD stack-weighted f X = 0.13062 -> s = 1.2910; scaled f' = 0.168633
+  scaling f30  (W30) behroozi: HOD stack-weighted f X = 0.13030 -> s = 1.2942; scaled f' = 0.168633
+  scaling ALL  (ALL) moster  : HOD stack-weighted f X = 0.26519 -> s = 1.1818; scaled f' = 0.313386
+  scaling ALL  (ALL) behroozi: HOD stack-weighted f X = 0.26533 -> s = 1.1811; scaled f' = 0.313386
+  [PASS] K7 scaled grids give stack-weighted f' = f_meas within 1e-9 (no clipping bias): max |d| 5.6e-17
+
+== controls ==
+  [PASS] K2 construction A with the HOD f reproduces CFG503's 14 stack-P chi2, f30 and ALL LCDM within 0.01: stack P max |d| 0.0000; f30 21.524 vs 21.524; ALL 73.994 vs 73.994
+  [PASS] K5 construction B with the HOD f reproduces CFG504's 14 stack-P chi2, f30 and ALL LCDM within 0.01: stack P max |d| 0.0000; f30 21.360 vs 21.360; ALL 50.905 vs 50.905
+  [PASS] K3 construction A with the W10 measured scaling reproduces CFG520 part B's 14 scaled stack-P chi2 within 0.01 (s within 1e-4): max |d| 0.0000; s diff 6.7e-16; LCDM 26.134
+  [PASS] K4 construction A, stack P, W10 measured: direct census Delta and best-x chi2 reproduce CFG525's H3 within 0.01: census Delta +19.440 / +20.528 (CFG525 +19.440 / +20.528); best x 0.70/0.70 chi2 63.145/44.657
+  [PASS] K6 new tables: sharp full / tr_W10 rows = CFG525's (1e-9 rel, 1e-3 floor); windowing path on the 5.85 r_M EDGE = CFG504's EDGE|prim tables for 20 groups (1e-9 rel); all f30-group rows finite: vs CFG525 0.0e+00; vs CFG504 EDGE prim 0.0e+00; finite True
+
+== MUTATE ==
+  [PASS] T1 f_ret = 1 in the f30-matched environment FAILS (Delta > 4) on both footings in both constructions: A canonical: +159.43; A alt: +176.56; B canonical: +170.42; B alt: +189.95
+  [PASS] T2 stack-P environment (W10, 0.2234) on stack P reproduces CFG525's fixed-environment census FAIL: +19.440 / +20.528
+  [PASS] T3 mismatched stack-P environment on f30 differs from the matched one by > 0.5 sigma_f30 in some LCDM bin: max |dm| / sigma = 1.66; mismatched: LCDM chi2 30.81 (matched 22.47); census Delta +0.12 / +0.24
+  T4 [A] zero leakage: max |dm|/sigma 1.68; G2f LCDM chi2 23.53 (p 7.36e-02) PASS; census Delta +12.11 / +18.64 (FAIL / FAIL)
+  T4 [B] zero leakage: max |dm|/sigma 1.67; G2f LCDM chi2 22.59 (p 9.32e-02) PASS; census Delta +9.10 / +14.89 (FAIL / FAIL)
+  [PASS] T4 zero leakage moves the f30 LCDM model by > 0.5 sigma_f30 in some bin (both constructions): A 1.68; B 1.67
+
+12/12 checks pass; elapsed 11.9 s
