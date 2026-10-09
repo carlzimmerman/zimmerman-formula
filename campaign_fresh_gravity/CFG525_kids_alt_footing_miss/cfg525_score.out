@@ -1,0 +1,109 @@
+CFG525 stage 3 (FROZEN_CRITERIA.md 7f99a4371): scoring of every declared row in harnesses H1 (CFG413 free R^-0.8 two-halo, 15 bins),
+H2 (H1 on the 9 trusted bins), H3 (CFG503 environment with the measured leaked fraction 0.2234, CFG520 part-B scaling; H3i = inner 9),
+H4 (reported: H3's E stack as a free-amplitude shape), each as Delta = chi2 - chi2(best sharp-edge node x >= 0.2), both footings.
+Inputs: stage-1 node tables (cfg525_tables.npz), stage-2 neighbours (cfg525_neighbours.npz), CFG503 / CFG515 / CFG520 / CFG522 / CFG413
+committed files (read-only).  Edges between nodes: cubic spline in log x per group onto a 300-point fine grid, then linear per lens.
+MUTATE (CFG525_MUTATE=1): T1 f_ret = 1 and T2 f_ret = 0.01 (direct rows) must FAIL H1 on both footings.
+H3 scaling to the measured leaked fraction 0.2234: s_M 1.2374, s_B 1.2358 (CFG520 part B: 1.2374 / 1.2358)
+  [PASS] K3 nodes x = 0.5 / 1.0 reproduce CFG413's chi2 and f30 x = 0.3 reproduces CFG413 S1, within 0.01: max |diff| 0.00000
+  [PASS] K4 H3 machinery with LCDM own tables reproduces CFG520 part B's scaled LCDM 15-bin chi2 within 0.01: 26.1342 vs 26.1342
+  [canonical] best-x: H1 x=0.50 chi2 8.948, H2 x=0.24 chi2 5.685, H3 x=0.70 chi2 63.145, H3i x=0.24 chi2 47.106, H3_unscaled x=0.80 chi2 77.089, H3i_unscaled x=0.26 chi2 56.468, H4 x=0.70 chi2 53.055; f30 H1 x=0.40 13.875
+  [alt] best-x: H1 x=0.55 chi2 9.641, H2 x=0.24 chi2 6.442, H3 x=0.70 chi2 44.657, H3i x=0.22 chi2 28.657, H3_unscaled x=0.70 chi2 51.940, H3i_unscaled x=0.24 chi2 35.304, H4 x=0.70 chi2 36.457; f30 H1 x=0.40 10.795
+  [canonical] H3 chi2 range over nodes x in [0.2, 1]: 39.26; node chi2 H1 / H3: 0.20:19.5/102.4, 0.22:17.6/97.0, 0.24:16.2/92.9, 0.26:15.0/89.6, 0.28:13.9/87.0, 0.30:13.0/84.8, 0.33:11.8/81.9, 0.36:10.8/79.1, 0.40:9.7/75.7, 0.45:9.0/72.0, 0.50:8.9/68.9, 0.55:9.4/66.6, 0.60:10.2/64.9, 0.70:12.7/63.1, 0.80:16.2/63.8, 0.90:20.3/66.2, 1.00:24.5/69.7
+  [alt] H3 chi2 range over nodes x in [0.2, 1]: 32.70; node chi2 H1 / H3: 0.20:25.7/77.4, 0.22:23.5/72.9, 0.24:21.6/69.4, 0.26:19.8/66.8, 0.28:18.2/64.7, 0.30:16.9/62.8, 0.33:15.1/60.3, 0.36:13.6/57.8, 0.40:11.9/54.7, 0.45:10.5/51.4, 0.50:9.8/48.8, 0.55:9.6/46.9, 0.60:9.9/45.5, 0.70:11.9/44.7, 0.80:15.3/46.6, 0.90:19.3/50.3, 1.00:23.4/55.0
+  [PASS] K2b tabulated fret_census equals direct calls within 1e-4: max |d| 1.2e-09
+
+== direct rows (stage-1 direct tables) ==
+  direct census : H1 chi2 12.145/18.613; vs CFG413 best +3.197/+8.842; vs fine-node best +3.197/+8.972; H3 +19.44/+20.53
+  direct one    : H1 chi2 69.425/80.343; vs CFG413 best +60.477/+70.573; vs fine-node best +60.477/+70.702; H3 +257.53/+276.12
+  direct dep01  : H1 chi2 24.504/23.445; vs CFG413 best +15.557/+13.674; vs fine-node best +15.557/+13.803; H3 +6.60/+10.34
+  [PASS] K1 direct census reproduces CFG515 (a1) chi2 and (a2) inner-9 within 0.01: a1 max |d| 0.00000; a2 inner-9 0.00000
+
+== rows (Delta vs best node in the same harness; canonical/alt) ==
+  census (interpolated)              x_med 0.343/0.297 | H1 +3.22/+8.94 [FAIL] | H2 +1.03/+1.03 | H3 +19.45/+20.50 | H3i +2.10/+1.98 | H4 +13.47/+18.47
+  [PASS] K2 interpolated census reproduces the direct census H1 chi2 within 0.05: max |d| 0.0353
+  D6 lens weight with census r_edge >= r_ta: 0.0000 / 0.0000 -> the census model does not depend on z_l
+
+-- D1 stellar-mass scale (edge only; plausible |delta| <= 0.10) --
+  D1 delta -0.15 dex                 x_med 0.294/0.255 | H1 +5.53/+11.92 [FAIL] | H2 +1.06/+0.27 | H3 +23.86/+24.01 | H3i +1.59/+0.73 | H4 +14.39/+17.92
+  D1 delta -0.10 dex                 x_med 0.311/0.270 | H1 +4.77/+10.77 [FAIL] | H2 +1.22/+0.73 | H3 +22.23/+22.82 | H3i +1.91/+1.51 | H4 +14.43/+18.59
+  D1 delta -0.05 dex                 x_med 0.328/0.284 | H1 +3.98/+9.82 [FAIL] | H2 +1.19/+0.98 | H3 +20.75/+21.63 | H3i +2.06/+1.88 | H4 +14.07/+18.73
+  D1 delta +0.05 dex                 x_med 0.352/0.305 | H1 +2.64/+8.10 [FAIL] | H2 +0.90/+0.94 | H3 +18.34/+19.46 | H3i +2.12/+1.93 | H4 +12.86/+17.95
+  D1 delta +0.10 dex                 x_med 0.359/0.312 | H1 +2.27/+7.38 [FAIL] | H2 +0.85/+0.81 | H3 +17.41/+18.55 | H3i +2.13/+1.81 | H4 +12.34/+17.30
+  D1 delta +0.15 dex                 x_med 0.365/0.316 | H1 +2.01/+6.83 [FAIL] | H2 +0.83/+0.73 | H3 +16.63/+17.78 | H3i +2.13/+1.73 | H4 +11.84/+16.70
+
+-- D2 cold gas (edge only) --
+  D2 stars only                      x_med 0.320/0.278 | H1 +4.56/+10.61 [FAIL] | H2 +1.08/+0.63 | H3 +22.01/+22.62 | H3i +1.80/+1.42 | H4 +14.00/+18.24
+  D2 f_cold x 2                      x_med 0.356/0.309 | H1 +2.30/+7.46 [FAIL] | H2 +0.87/+0.87 | H3 +17.49/+18.66 | H3i +2.16/+1.89 | H4 +12.42/+17.45
+
+-- f_ret scan, constant per lens (D3 rows 0.05 / 0.07 / 0.09; the rest post hoc) --
+  f_ret 0.04                         x_med 0.868/0.754 | H1 +9.04/+3.57 [FAIL] | H2 +0.87/+1.10 | H3 -0.06/-1.76 | H3i +3.16/+2.63 | H4 +1.25/-1.68
+  f_ret 0.05                         x_med 0.695/0.603 | H1 +3.17/+0.43 [PASS] | H2 +0.86/+1.07 | H3 -2.09/-0.89 | H3i +3.11/+2.59 | H4 -2.72/-0.53
+  f_ret 0.06                         x_med 0.580/0.503 | H1 +1.24/+1.70 [PASS] | H2 +0.85/+1.04 | H3 +1.89/+4.94 | H3i +3.03/+2.52 | H4 +1.77/+7.18
+  f_ret 0.07                         x_med 0.498/0.432 | H1 +1.17/+2.61 [PASS] | H2 +0.83/+0.99 | H3 +6.60/+8.98 | H3i +2.91/+2.43 | H4 +6.69/+11.79
+  f_ret 0.08                         x_med 0.436/0.378 | H1 +0.76/+4.42 [FAIL] | H2 +0.81/+0.95 | H3 +10.60/+13.02 | H3i +2.75/+2.33 | H4 +9.45/+15.33
+  f_ret 0.09                         x_med 0.388/0.336 | H1 +1.51/+6.20 [FAIL] | H2 +0.82/+1.09 | H3 +14.62/+16.46 | H3i +2.54/+2.38 | H4 +11.68/+17.36
+  f_ret 0.10                         x_med 0.349/0.303 | H1 +2.72/+8.33 [FAIL] | H2 +1.03/+1.33 | H3 +18.10/+19.55 | H3i +2.31/+2.44 | H4 +13.22/+18.71
+  f_ret 0.11                         x_med 0.318/0.276 | H1 +4.34/+10.23 [FAIL] | H2 +1.27/+0.98 | H3 +21.29/+22.14 | H3i +2.06/+1.90 | H4 +14.32/+18.86
+  f_ret 0.12                         x_med 0.292/0.253 | H1 +5.62/+12.09 [FAIL] | H2 +1.03/+0.22 | H3 +24.07/+24.17 | H3i +1.53/+0.62 | H4 +14.35/+17.81
+  f_ret 0.14                         x_med 0.250/0.217 | H1 +7.78/+16.37 [FAIL] | H2 +0.06/+0.33 | H3 +28.42/+29.44 | H3i -0.55/-0.55 | H4 +11.65/+15.59
+  f_ret 0.16                         x_med 0.220/0.190 | H1 +10.24/+19.15 [FAIL] | H2 +0.39/+1.54 | H3 +34.22/+35.92 | H3i -0.53/+0.47 | H4 +9.36/+12.86
+  f_ret 0.18                         x_med 0.195/0.170 | H1 +12.20/+22.12 [FAIL] | H2 +1.30/+4.08 | H3 +40.95/+43.43 | H3i +1.41/+3.12 | H4 +7.31/+10.85
+  f_ret 0.20                         x_med 0.176/0.153 | H1 +14.70/+25.68 [FAIL] | H2 +3.15/+7.33 | H3 +48.35/+51.07 | H3i +4.42/+5.98 | H4 +6.15/+9.43
+  POST HOC (no verdict weight): largest constant f_ret with Delta_H1 <= 4: canonical 0.10791331160509593, alt 0.07767976206329578
+  D3(c) LG full statistic (CFG522 scan, canonical) at common f_ret: 0.08 z_full,LMC +6.45; 0.10 +4.30; 0.07 (linear extrapolation) +7.53 -> CONFLICTED; f_ret 0.07 H1 PASS both footings
+
+-- D7 isolation: f30 sample (H1 only) --
+  D7 census, f30 sample              x_med 0.343/0.297 | H1 -0.24/+1.00 [PASS]
+
+-- M-i shared catchments (census once per catchment; supply by own baryons) --
+  [canonical] group-mean neighbour excess / M_gal: lens-weighted mean -0.1448; raw per lens mean 0.0044
+  [alt] group-mean neighbour excess / M_gal: lens-weighted mean -0.1591; raw per lens mean 0.0047
+  M-i(a) photometric neighbours      x_med 0.343/0.297 | H1 +3.22/+8.94 [FAIL] | H2 +1.03/+1.03 | H3 +19.45/+20.50 | H3i +2.10/+1.98 | H4 +13.47/+18.47
+  M-i(a) upper (raw, per lens)       x_med 0.343/0.297 | H1 +3.22/+8.95 [FAIL] | H2 +1.03/+1.02 | H3 +19.47/+20.52 | H3i +2.09/+1.96 | H4 +13.47/+18.46
+  M-i(b) leaked satellites only      H1 +3.41/+9.31 [FAIL] | H2 +0.70/+0.55 | H3 +20.65/+21.46 | H3i +1.65/+1.42
+  M-i (a)+(b) [the M-i row]          H1 +3.41/+9.31 [FAIL] | H2 +0.70/+0.55 | H3 +20.65/+21.46 | H3i +1.65/+1.42
+  FORBIDDEN double-counted supply    H1 +1.59/+6.14 [FAIL] | H2 +0.94/+0.96 | H3 +15.18/+16.26 | H3i +2.24/+2.02
+
+-- M-ii uniform multiplier s on the census edge (H1) --
+  s x census edge 0.6                x_med 0.206/0.178 | H1 +11.56/+21.13 [FAIL] | H2 +0.96/+3.28 | H3 +39.38/+41.55 | H3i +0.90/+2.32 | H4 +7.76/+11.14
+  s x census edge 0.7                x_med 0.240/0.208 | H1 +8.75/+17.48 [FAIL] | H2 +0.05/+0.74 | H3 +31.24/+32.54 | H3i -0.59/-0.18 | H4 +10.42/+14.13
+  s x census edge 0.8                x_med 0.274/0.238 | H1 +6.52/+14.06 [FAIL] | H2 +0.34/-0.02 | H3 +26.46/+26.80 | H3i +0.39/-0.25 | H4 +12.94/+16.38
+  s x census edge 0.9                x_med 0.308/0.268 | H1 +4.91/+11.10 [FAIL] | H2 +0.97/+0.43 | H3 +22.82/+23.31 | H3i +1.51/+1.03 | H4 +14.01/+18.03
+  s x census edge 1.0                x_med 0.343/0.297 | H1 +3.22/+8.94 [FAIL] | H2 +1.03/+1.03 | H3 +19.45/+20.50 | H3i +2.10/+1.98 | H4 +13.47/+18.47
+  s x census edge 1.1                x_med 0.377/0.327 | H1 +1.95/+6.95 [FAIL] | H2 +0.88/+1.10 | H3 +16.30/+17.84 | H3i +2.38/+2.29 | H4 +12.30/+17.74
+  s x census edge 1.2                x_med 0.411/0.357 | H1 +1.17/+5.43 [FAIL] | H2 +0.83/+0.99 | H3 +13.36/+15.33 | H3i +2.58/+2.30 | H4 +10.93/+16.54
+  s x census edge 1.3                x_med 0.446/0.387 | H1 +0.76/+4.20 [FAIL] | H2 +0.81/+0.96 | H3 +10.65/+12.96 | H3i +2.72/+2.34 | H4 +9.35/+15.04
+  s x census edge 1.4                x_med 0.480/0.416 | H1 +0.79/+3.12 [PASS] | H2 +0.82/+0.97 | H3 +8.33/+10.70 | H3i +2.83/+2.39 | H4 +7.79/+13.19
+  s x census edge 1.5                x_med 0.514/0.446 | H1 +0.93/+2.37 [PASS] | H2 +0.83/+0.99 | H3 +6.30/+8.69 | H3i +2.91/+2.43 | H4 +6.17/+11.27
+  s x census edge 1.6                x_med 0.548/0.476 | H1 +0.99/+1.88 [PASS] | H2 +0.84/+1.01 | H3 +4.38/+6.96 | H3i +2.97/+2.47 | H4 +4.30/+9.39
+  s x census edge 1.8                x_med 0.617/0.535 | H1 +1.25/+0.90 [PASS] | H2 +0.85/+1.04 | H3 +0.82/+3.60 | H3i +3.04/+2.53 | H4 +0.25/+5.17
+  s x census edge 2.0                x_med 0.686/0.595 | H1 +2.53/+0.28 [PASS] | H2 +0.86/+1.06 | H3 -1.22/+0.33 | H3i +3.09/+2.57 | H4 -1.88/+0.81
+  s x census edge 2.4                x_med 0.823/0.714 | H1 +6.87/+2.02 [FAIL] | H2 +0.87/+1.09 | H3 -0.96/-1.83 | H3i +3.15/+2.62 | H4 -0.38/-1.94
+  [canonical] s_best 1.3 (parabola 1.344); min_s chi2 - best-x +0.76; s range Delta<=4 [1.0, 2.0]; x_census 0.343 -> x at s_best 0.461; LEVEL False; SHAPE False
+  [alt] s_best 2.0 (parabola 2.025); min_s chi2 - best-x +0.28; s range Delta<=4 [1.4, 2.4]; x_census 0.297 -> x at s_best 0.602; LEVEL True; SHAPE False
+  derived footing ratio x_alt/x_can = (a0_can/a0_alt)^1/2 * r_ta,can/r_ta,alt = 0.9097 x 0.9540 = 0.8678 (lens-weighted; measured from the tables 0.8678); ratio of placed edges x(s_best) alt/can 1.3069
+
+== verdict (frozen order) ==
+  M-i row passes H1 both: False; DATA-ISSUE items: ['D7 f30']; NOT-DIAGNOSTIC test: alt D_H2 +1.03, alt H3 range 32.70 -> False
+  VERDICT: DATA-ISSUE  (alt census: H1 3.00 sigma vs fine best, 2.97 sigma vs CFG413 best; H3 4.53 sigma)
+
+== POST HOC (no verdict weight): how solid is the D7 f30 pass? ==
+  [canonical] f30 H1 node chi2 (x >= 0.2): 0.20:19.3, 0.22:18.2, 0.24:17.2, 0.26:16.4, 0.28:15.6, 0.30:15.0, 0.33:14.4, 0.36:14.0, 0.40:13.9, 0.45:14.6, 0.50:16.3, 0.55:18.7, 0.60:21.3, 0.70:26.7, 0.80:31.7, 0.90:35.9, 1.00:39.6; range 25.71
+  [canonical] f30 f_ret = 1 (direct): Delta_H1 +53.23
+  [alt] f30 H1 node chi2 (x >= 0.2): 0.20:17.2, 0.22:15.9, 0.24:14.8, 0.26:13.7, 0.28:12.8, 0.30:12.1, 0.33:11.3, 0.36:10.8, 0.40:10.8, 0.45:11.8, 0.50:13.8, 0.55:16.4, 0.60:19.2, 0.70:24.9, 0.80:29.9, 0.90:34.2, 1.00:38.0; range 27.25
+  [alt] f30 f_ret = 1 (direct): Delta_H1 +61.60
+  PH f30 f_ret 0.05                  x_med 0.695/0.603 | H1 +15.11/+10.89 [FAIL]
+  PH f30 f_ret 0.07                  x_med 0.498/0.432 | H1 +3.43/+0.64 [PASS]
+  PH f30 f_ret 0.10                  x_med 0.349/0.303 | H1 -0.74/+0.37 [PASS]
+  PH f30 f_ret 0.12                  x_med 0.292/0.253 | H1 +0.78/+2.41 [PASS]
+  PH f30 f_ret 0.14                  x_med 0.250/0.217 | H1 +2.20/+4.63 [FAIL]
+  PH f30 f_ret 0.18                  x_med 0.195/0.170 | H1 +5.11/+8.03 [FAIL]
+  drop_one_census_P: Delta vs best node per dropped bin: canonical +2.33..+4.42; alt +7.24..+10.68
+  drop_one_census_f30: Delta vs best node per dropped bin: canonical -0.43..+0.35; alt +0.03..+1.97
+  [canonical] complement (stack P minus f30, 124212 lenses) best node x 0.90 chi2 9.61
+  [alt] complement (stack P minus f30, 124212 lenses) best node x 0.90 chi2 10.47
+  PH census, complement of f30       x_med 0.343/0.297 | H1 +21.96/+31.42 [FAIL]
+  rows with lens weight below the node range (computed directly): 3; max weight 0.0005
+
+5/5 checks pass; load-bearing failures 0; elapsed 27.8 s

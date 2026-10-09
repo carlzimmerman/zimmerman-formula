@@ -1,0 +1,29 @@
+CFG525 stage 3 (FROZEN_CRITERIA.md 7f99a4371): scoring of every declared row in harnesses H1 (CFG413 free R^-0.8 two-halo, 15 bins),
+H2 (H1 on the 9 trusted bins), H3 (CFG503 environment with the measured leaked fraction 0.2234, CFG520 part-B scaling; H3i = inner 9),
+H4 (reported: H3's E stack as a free-amplitude shape), each as Delta = chi2 - chi2(best sharp-edge node x >= 0.2), both footings.
+Inputs: stage-1 node tables (cfg525_tables.npz), stage-2 neighbours (cfg525_neighbours.npz), CFG503 / CFG515 / CFG520 / CFG522 / CFG413
+committed files (read-only).  Edges between nodes: cubic spline in log x per group onto a 300-point fine grid, then linear per lens.
+MUTATE (CFG525_MUTATE=1): T1 f_ret = 1 and T2 f_ret = 0.01 (direct rows) must FAIL H1 on both footings.
+H3 scaling to the measured leaked fraction 0.2234: s_M 1.2374, s_B 1.2358 (CFG520 part B: 1.2374 / 1.2358)
+  [PASS] K3 nodes x = 0.5 / 1.0 reproduce CFG413's chi2 and f30 x = 0.3 reproduces CFG413 S1, within 0.01: max |diff| 0.00000
+  [PASS] K4 H3 machinery with LCDM own tables reproduces CFG520 part B's scaled LCDM 15-bin chi2 within 0.01: 26.1342 vs 26.1342
+  [canonical] best-x: H1 x=0.50 chi2 8.948, H2 x=0.24 chi2 5.685, H3 x=0.70 chi2 63.145, H3i x=0.24 chi2 47.106, H3_unscaled x=0.80 chi2 77.089, H3i_unscaled x=0.26 chi2 56.468, H4 x=0.70 chi2 53.055; f30 H1 x=0.40 13.875
+  [alt] best-x: H1 x=0.55 chi2 9.641, H2 x=0.24 chi2 6.442, H3 x=0.70 chi2 44.657, H3i x=0.22 chi2 28.657, H3_unscaled x=0.70 chi2 51.940, H3i_unscaled x=0.24 chi2 35.304, H4 x=0.70 chi2 36.457; f30 H1 x=0.40 10.795
+  [canonical] H3 chi2 range over nodes x in [0.2, 1]: 39.26; node chi2 H1 / H3: 0.20:19.5/102.4, 0.22:17.6/97.0, 0.24:16.2/92.9, 0.26:15.0/89.6, 0.28:13.9/87.0, 0.30:13.0/84.8, 0.33:11.8/81.9, 0.36:10.8/79.1, 0.40:9.7/75.7, 0.45:9.0/72.0, 0.50:8.9/68.9, 0.55:9.4/66.6, 0.60:10.2/64.9, 0.70:12.7/63.1, 0.80:16.2/63.8, 0.90:20.3/66.2, 1.00:24.5/69.7
+  [alt] H3 chi2 range over nodes x in [0.2, 1]: 32.70; node chi2 H1 / H3: 0.20:25.7/77.4, 0.22:23.5/72.9, 0.24:21.6/69.4, 0.26:19.8/66.8, 0.28:18.2/64.7, 0.30:16.9/62.8, 0.33:15.1/60.3, 0.36:13.6/57.8, 0.40:11.9/54.7, 0.45:10.5/51.4, 0.50:9.8/48.8, 0.55:9.6/46.9, 0.60:9.9/45.5, 0.70:11.9/44.7, 0.80:15.3/46.6, 0.90:19.3/50.3, 1.00:23.4/55.0
+  [PASS] K2b tabulated fret_census equals direct calls within 1e-4: max |d| 1.2e-09
+
+== direct rows (stage-1 direct tables) ==
+  direct census : H1 chi2 12.145/18.613; vs CFG413 best +3.197/+8.842; vs fine-node best +3.197/+8.972; H3 +19.44/+20.53
+  direct one    : H1 chi2 69.425/80.343; vs CFG413 best +60.477/+70.573; vs fine-node best +60.477/+70.702; H3 +257.53/+276.12
+  direct dep01  : H1 chi2 24.504/23.445; vs CFG413 best +15.557/+13.674; vs fine-node best +15.557/+13.803; H3 +6.60/+10.34
+  [PASS] K1 direct census reproduces CFG515 (a1) chi2 and (a2) inner-9 within 0.01: a1 max |d| 0.00000; a2 inner-9 0.00000
+
+== rows (Delta vs best node in the same harness; canonical/alt) ==
+  census (interpolated)              x_med 0.343/0.297 | H1 +3.22/+8.94 [FAIL] | H2 +1.03/+1.03 | H3 +19.45/+20.50 | H3i +2.10/+1.98 | H4 +13.47/+18.47
+  [PASS] K2 interpolated census reproduces the direct census H1 chi2 within 0.05: max |d| 0.0353
+  D6 lens weight with census r_edge >= r_ta: 0.0000 / 0.0000 -> the census model does not depend on z_l
+  [PASS] T1 f_ret = 1 FAILS H1 on both footings and reproduces CFG515 M1 (+60.48 / +70.57) within 0.1: +60.48 / +70.57
+  [PASS] T2 f_ret = 0.01 FAILS H1 on both footings: +15.56 / +13.67
+
+7/7 checks pass; load-bearing failures 0; elapsed 10.2 s
