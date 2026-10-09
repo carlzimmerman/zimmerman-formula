@@ -99,3 +99,74 @@ The deciding fetch is the tracer, not the mass. Each is a small published table,
 - **GC orbital-anisotropy constraints:** Zhu+14 and Agnello+14 for M87; Pota+15-type analyses for the others.
 
 A group-scale X-ray profile for NGC 5846 would not decide it: it would need ×31–35 the measured gas.
+
+---
+
+# CFG528b (2026-10-09): measured GC density profiles and measured anisotropy
+
+- **Criteria:** `FROZEN_CRITERIA_v2.md`, committed alone first (d7a546f9c). It records the source line for every input.
+- **Data:** arXiv LaTeX sources fetched by the coordinating session on the owner's direct approval, held outside git in `../_external_data/cfg528_work/src/`. The log is `FETCH_LOG.md`. Total 26.6 MB, and all SHA-256 values match (control K4).
+- **Script:** `cfg528b_measured_tracers.py`, about 100 s. Outputs `.out` / `_results.json` (4/4 checks). MUTATE: `CFG528B_MUTATE=1` (2/2).
+
+## Inputs (details in the criteria)
+
+| galaxy | density | anisotropy |
+|---|---|---|
+| NGC 4374 | Gómez & Richtler 04: projected Σ ∝ R^−1.09±0.12, so 3D γ = 2.09 | unmeasured, β = 0 |
+| NGC 4365 | Blom+12: Sérsic n 2.68, R_e 6.1′ | unmeasured, β = 0 |
+| NGC 5846 | Napolitano+14: red + blue Sérsic | red β → 0.43, blue β → 0.15 (Churazov form) |
+| M87 | Agnello+14 | Zhu+14: −0.2 → +0.2 → 0 |
+
+At the outer GC bins the measured 3D slopes are:
+- M87: 1.87–2.34;
+- NGC 4365: 1.87–2.80;
+- NGC 4374: 2.09;
+- NGC 5846: 2.33–2.83.
+
+## Frozen verdict: GENUINE TENSION, 2.8σ (class statistic, joint best case, alt footing; 3.5σ canonical)
+
+| row | centrals' mean (can / alt) | cleared |
+|---|---|---|
+| M, K0 (stars only) | +0.181 / +0.171 | 1/4 (NGC 4374, Z 1.7 / 1.5) |
+| M, R-bar | +0.155 / +0.143 | 1/4 |
+| M, R-own | +0.150 / +0.139 | 1/4 |
+| J joint best case (R-own, heaviest admissible IMF, D × 1.1, most favourable quoted ±2σ density and β edges; β ±0.5 for the two unmeasured) | +0.073 / +0.057 | 1/4 |
+
+**Per galaxy in J** (can / alt):
+- M87: +0.103 / +0.090 (Z 5.9 / 5.2);
+- NGC 4365: +0.137 / +0.120 (Z 6.0 / 5.2);
+- NGC 5846: +0.139 / +0.122 (Z 6.3 / 5.5);
+- NGC 4374: −0.089 / −0.105 (Z −1.2 / −1.4).
+
+The class Z of 2.8–3.5 is pulled down by NGC 4374 going negative. Three of the four stay individually above 5σ.
+
+## Reading
+- **The measured tracers do not support the "shallow slope" escape.**
+  - CFG466 found R-own + β = +0.5 + γ free (prior U[2,4]) clears all four.
+  - The measured profiles are steeper than that prior's lower edge at the outer bins for NGC 4365 and 5846.
+  - NGC 5846's measured β (≤ 0.43, red) is a kinematic measurement, not a free edge.
+- **NGC 4374 is the exception.** Its measured slope is shallow (γ 2.09). With σ_i = 0.074 from only 41 GCs, it is not decisive either way.
+- **What remains is the same group-central residual,** now about +0.09 to +0.14 dex in three galaxies, after every quoted-uncertainty edge was turned in the law's favour.
+
+**Caveats:**
+- The σ_i are statistical only. CFG466's headroom says an extra per-galaxy systematic of about 0.05–0.075 dex (JAM M/L, distance, Hernquist scale) would be needed to clear the three. That is comparable to the J offsets, so the per-galaxy Z values overstate certainty.
+- The NGC 5846 and M87 anisotropies come from Newtonian models (NFW or M2M with a dark halo), not from the law's own fit.
+- The photometric GC mixture is applied to the spectroscopic sample.
+- Zhu+14's β profile was digitised from the text, not from a table.
+- NGC 4365 and 4374 have no measured β.
+
+**Controls:**
+- K1: the new variable-β solver reproduces CFG331 to 1e-15.
+- K2: the Plummer deprojection is exact to 7e-16.
+- K3: the M87 Agnello offset reproduces CFG466's C4 (+0.21780 / +0.20620).
+- K4: the SHA-256 values match.
+
+**MUTATE:**
+- MA: γ = 3 with β = 0 reproduces CFG528 K0 and R-own to 1e-16.
+- MB: γ = 4 with β = −0.5 does not close, and every offset rises by +0.05 to +0.12 over row M. PASS.
+
+**Not used:** Kartha+14 (wrong galaxies); Pota+13 (fits in figures only); Agnello+14 per-population β (figures only).
+
+**Still not on disk:** anisotropy for NGC 4365 and 4374 (e.g. Pota+15 / Napolitano+11 PN for NGC 4374). These would tighten the J edges for the two galaxies whose β was set by the ±0.5 bracket.
+
+κ = ½ is fitted. The cold energy's mass is still required. This is not "theory closed".
