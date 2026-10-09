@@ -1,0 +1,76 @@
+CFG563 -- CFG561's VOID LENSING TEST REDONE WITH GAMA SPECTROSCOPIC REDSHIFTS AND A GAMA ENVIRONMENT CATALOGUE.
+Settling predicts LOWER outer lensing for void lenses; a law-as-force without EFE (foil) HIGHER; LCDM a small difference at fixed
+M* (|D| < ~0.1 dex) but also a lower 2-halo term around void galaxies.  Pure data; a0 footings (9.3603e-11 / 1.1312e-10, kappa = 1/2
+FITTED) irrelevant.  Criteria frozen and committed before this script: FROZEN_CRITERIA.md (7f876f805).
+  data   cfg110_perlens.npz, lr_lenses.npz, lr_esd_jackknife.npz; GAMA DR4 G3CGalv10 (CFG471, read only), Eardley+2015
+         GalaxiesClassifiedv01, Alpaslan+2014 Fil/Tendril/VoidGals v02 (Data Central TAP).
+  set    GAMA boxes, nearest G3CGal galaxy within 1.5", |z_spec - z_phot| < 0.1(1+z_spec), Eardley class with NQ > 2.
+         VOID GeoS4 = 0, OUTSIDE GeoS4 in {1,2,3}; OUTSIDE reweighted to VOID's (logM*, z_spec, colour) histogram.
+  stat   D_K = log10[ESD_V / ESD_O] pooled over K (KO = bins 0-7 headline, K1 = 8-14); June-patch jackknife.
+MUTATE=1: the VOID/OUTSIDE flag shuffled among analysis-set lenses (seed 563); the tracer C3 must FAIL -> rc 1.
+  all five input tables match their logged sha256
+
+======================================================================================================================
+C1a CONTROL: CFG88's full-sample K1 split from the per-lens sums (CFG561 C1)
+======================================================================================================================
+  [PASS] C1a CONTROL: D_full equals CFG88's K1 D (1e-6 rel) and the zero-model Hartlap chi2 equals CFG88's 35.0418 (1e-6 rel)
+         max rel dev 5.3e-14; chi2 35.0418/7 vs 35.0418 (p 1.10e-05)
+
+======================================================================================================================
+FOOTPRINT AND CROSS-MATCH (CFG471's boxes and 1.5" radius)
+======================================================================================================================
+  [PASS] C2 CONTROL: chance-match rate (positions shifted +60" in Dec) < 2% of the real match rate
+         0.141%
+  footprint lenses 34,872; matched 20,542; catastrophic photo-z dropped 69; with an Eardley class (NQ>2): 8,151
+  analysis set 8,151: GeoS4 void 2,059, sheet 3,217, filament 2,488, knot 387; z_spec 0.048-0.265 (median 0.213)
+  Alpaslan classes in the analysis set: void 160, tendril 1000, filament 1284
+  June patches holding analysis-set lenses: 12 [0, 1, 2, 3, 8, 9, 10, 11, 18, 19, 20, 21]; sub-patches 36
+
+======================================================================================================================
+C1b CONTROL: the K1 early/late split restricted to the GAMA footprint vs the full sample
+======================================================================================================================
+  [PASS] C1b CONTROL: footprint K1 early/late pooled log ratio within 3 sigma of the full-sample value
+         footprint +0.1157 +- 0.0552 vs full +0.1817 (-1.19 sigma; 12 patches)
+
+======================================================================================================================
+C3 inputs: G3CGal neighbours within 8 Mpc/h comoving projected, |c dz|/(1+z) < 1000 km/s (lens excluded)
+======================================================================================================================
+  mean neighbours 76.42 (median 60)
+
+======================================================================================================================
+POWER / C5: 100 random analysis-set subsets of the VOID size vs their matched complement
+======================================================================================================================
+  KO: N_void 2,059; expected sigma_D 0.2720 dex; null z std 0.818 mean +0.117; P(3 sigma | true 0.1 dex) 0.004; P(3 sigma | 0.3 dex) 0.029; expected 2-sigma null bound 0.544 dex (NULL needs < 0.1); subsets with an undefined log ratio 5/100
+  K1: N_void 2,059; expected sigma_D 0.1871 dex; null z std 0.968 mean +0.132; P(3 sigma | true 0.1 dex) 0.007; P(3 sigma | 0.3 dex) 0.081; expected 2-sigma null bound 0.374 dex (NULL needs < 0.1); subsets with an undefined log ratio 0/100
+  declared before scoring: UNDERPOWERED for a 0.1 dex outer offset (frozen rule P < 0.5)
+  [PASS] (reported) C5 (reported): null calibration -- std of D/sigma over 100 random subsets in [0.7, 1.3], KO and K1
+         KO 0.818, K1 0.968
+
+======================================================================================================================
+MEASUREMENT: VOID (GeoS4 = 0) vs matched OUTSIDE (GeoS4 = 1, 2, 3)
+======================================================================================================================
+  VOID N 2,050 (dropped for empty cells 0.0044), OUTSIDE N 6,092 (effective 4753)
+  KO: D = -0.0384 +- 0.2824 dex (-0.14 sigma); 2-sigma bound 0.603 dex
+  K1: D = -0.1933 +- 0.2844 dex (-0.68 sigma); 2-sigma bound 0.762 dex
+  tracer T = log10(N_V/N_O) = -0.4624 +- 0.0145 (-31.85 sigma)
+  [PASS] C3 POSITIVE CONTROL: void lenses have fewer GAMA spec-z neighbours than matched outside lenses, T < 0 at > 3 sigma
+         T = -0.4624 +- 0.0145 (-31.85 sigma)
+
+======================================================================================================================
+SENSITIVITY (reported only, never the verdict)
+======================================================================================================================
+  GeoS10 void vs rest               : N_V  1707, N_O  6434; KO -0.3686 +- 0.3126 (-1.18 s); K1 -0.9774 +- nan (+nan s); T -0.4258 (-19.90 s)
+  GeoS4 void vs sheet+filament      : N_V  2050, N_O  5705; KO -0.0346 +- 0.2933 (-0.12 s); K1 -0.2044 +- 0.2954 (-0.69 s); T -0.4390 (-30.92 s)
+  early only                        : N_V   883, N_O  3125; KO -0.7217 +- nan (+nan s); K1 -0.2971 +- 0.3577 (-0.83 s); T -0.4612 (-33.50 s)
+  late only                         : N_V  1167, N_O  2967; KO +0.3617 +- 0.3345 (+1.08 s); K1 +0.0475 +- 0.5042 (+0.09 s); T -0.4634 (-23.66 s)
+  Alpaslan void vs fil+tendril      : N_V   157, N_O  2284; KO +0.6425 +- 0.3719 (+1.73 s); K1 -0.1857 +- nan (+nan s); T -0.2656 (-10.30 s)
+  headline, 36 sub-patch jackknife  : N_V  2050, N_O  6092; KO -0.0384 +- 0.2524 (-0.15 s); K1 -0.1933 +- 0.2782 (-0.69 s); T -0.4624 (-37.33 s)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  HEADLINE (outer bins KO): D = -0.0384 +- 0.2824 dex -> NON-DISCRIMINATING (UNDERPOWERED for 0.1 dex, declared before scoring)
+  1-halo K1 (same map, reported): D = -0.1933 +- 0.2844 dex -> NON-DISCRIMINATING
+  LCDM's 2-halo term is also lower around void galaxies: a negative outer D is not unique to settling.  kappa fitted; cold mass still required; not theory closed.
+
+  5/5 checks pass; load-bearing failures: 0   (8 s)
