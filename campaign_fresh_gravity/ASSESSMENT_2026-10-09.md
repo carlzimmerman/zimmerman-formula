@@ -16,7 +16,7 @@
 ## Fails, or open with a known cause
 | front | result | lanes |
 |---|---|---|
-| Local Group timing | census masses too heavy: approach −168.7 km/s, z +13.5; post hoc needs a common f_ret of 0.21 | CFG515 |
+| Local Group timing | was z +13.5 (CFG515: radial-only orbit, 4.4 km/s error only). With M31's tangential motion and full errors the census is at z_full +2.2 (+2.7 LMC, +3.0 M33): DATA-ISSUE, fragile. A derived shared-catchment rule (the pair shares one supply; f_LG 0.170, −28% mass) gives z_full −0.1 to +1.0 but still z +4.4 on the strict radial statistic. LG timing only weakly discriminates (allows common f_ret 0.12–0.30); it rejects f_ret = 1. Literature values PROVISIONAL (recalled) | CFG515, 522 |
 | KiDS, alt footing | census edge +8.84 FAIL (canonical +3.20 PASS); sensitive to the f_ret bracket | CFG515 |
 | Lensing environment ruler (ΛCDM-built) | MODEL STILL INADEQUATE: G1 and G2 pass, G3 fails at 50.9/15. With the measured leakage 0.223, CFG503's ΛCDM G1 passes (34.3 → 26.1); G3 not re-scored. Edge still about 300 above F_dd on both footings | CFG504, 520 |
 | Lensing environment ruler (native) | INVALID: too many satellites in the box (0.34–0.43 vs the measured 0.223 ± 0.004). CALIBRATION FAILED: at 512³ the box cannot reach the flat measured parent fraction of about 0.31 (it resolves no hosts below log M_ta 11.9). Needs 1024³ or a zoom | CFG506, 519, 520 |
@@ -47,4 +47,4 @@
   - edge-on σ_z and HI flaring (round rule vs phantom disc ×1.6–3.6).
 
 ## Bottom line
-The growth clash is close to dissolved. Census placement keeps growth OK (256³ both footings, 512³ confirmed; group-scale hosts only) while fixing early-type lensing, SPARC, satellites and clusters. Two numbers still miss: Local Group timing and KiDS on the alt footing. The lensing environment ruler is the remaining measurement problem. Its satellite input is now measured (0.223). With that input the edge stays about 300 worse than the best framework lens, and the native ruler needs a finer box (1024³ or a zoom) before it can judge.
+The growth clash is close to dissolved. Census placement keeps growth OK (256³ both footings, 512³ confirmed; group-scale hosts only) while fixing early-type lensing, SPARC, satellites and clusters. KiDS on the alt footing still misses; the Local Group timing miss was mostly a scoring simplification (CFG522), with a residual +4.4σ on the strict radial statistic. The lensing environment ruler is the remaining measurement problem. Its satellite input is now measured (0.223). With that input the edge stays about 300 worse than the best framework lens, and the native ruler needs a finer box (1024³ or a zoom) before it can judge.
