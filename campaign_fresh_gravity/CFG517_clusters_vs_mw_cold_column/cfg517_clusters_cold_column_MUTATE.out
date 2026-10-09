@@ -1,0 +1,121 @@
+==============================================================================================================
+CFG517 clusters vs the Milky Way's predicted cold-energy column  *** MUTATE: map rotated 180 deg in l ***
+==============================================================================================================
+McMillan17 baryons on CFG514's grid: M_b = 6.6418e+10 Msun (CFG514: 6.64e10)
+  ROUND_canonical: angle-averaged profile M(<120 kpc) vs grid cell sum: +0.259%
+  ROUND_alt: angle-averaged profile M(<120 kpc) vs grid cell sum: +0.259%
+column tables built (2 s)
+
+--- M0 map controls
+  ROUND_canonical  plane/pole x1.45  GC/anticentre x5.46  |b|>=20: psi<70 / psi>110 x2.39  C range 59-281 Msun/pc^2  max ln C spread in 1-deg psi bins 0.0102
+  DISC_canonical   plane/pole x3.48  GC/anticentre x3.15  |b|>=20: psi<70 / psi>110 x1.79  C range 75-246 Msun/pc^2  max ln C spread in 1-deg psi bins 0.6014
+  ROUND_alt        plane/pole x1.48  GC/anticentre x5.80  |b|>=20: psi<70 / psi>110 x2.43  C range 65-325 Msun/pc^2  max ln C spread in 1-deg psi bins 0.0120
+  DISC_alt         plane/pole x3.61  GC/anticentre x3.29  |b|>=20: psi<70 / psi>110 x1.80  C range 84-281 Msun/pc^2  max ln C spread in 1-deg psi bins 0.6079
+  [FAIL] M0a ROUND map is a function of psi only (ln C spread in 1-deg psi bins < 1%)
+  [FAIL] M0b DISC map reproduces CFG514 O9 GC/AC and plane/pole ratios: max dev 7.16% (< 5%)
+  post-freeze diagnostics (not frozen; added after M0a/M0b failed on the first run):
+  [PASS] M0a' (post-freeze, correctly specified) ROUND map deviates from a pure function of psi by 0.0017 in ln C (< 0.01); angle-averaged M(<120) vs grid +0.259% / +0.259% (< 1%)
+    ROUND_canonical: |ln C(l,b) - ln C(psi, b=0)| max 0.0017 (all sky), 0.0002 (|b| >= 15); a pure function of psi has a 1-deg-bin spread of 0.0104 from its gradient alone
+    ROUND_alt: |ln C(l,b) - ln C(psi, b=0)| max 0.0020 (all sky), 0.0002 (|b| >= 15); a pure function of psi has a 1-deg-bin spread of 0.0122 from its gradient alone
+    DISC_canonical on CFG514's O9 cells: GC/AC x3.065, plane/pole x3.305, pole column 89.4 (CFG514: 3.053, 3.246)
+    DISC_alt on CFG514's O9 cells: GC/AC x3.199, plane/pole x3.431, pole column 100.0 (CFG514: 3.187, 3.369)
+
+--- SFD dust per NSIDE-32 pixel (mean of 64 NSIDE-256 sub-pixel centres)
+  E(B-V) median at |b|>=20: 0.042; NGP-region mean 0.018
+
+--- catalogues (on disk)
+  PSZ2           N = 1653
+  PSZ2_z         N = 1094
+  PSZ2_COSMO     N = 507
+  eRASS1         N = 6473
+  eRASS1_all     N = 12247
+  eRASS1_EXT12   N = 3386
+  MCXC           N = 1743
+  [PASS] catalogue sizes PSZ2 1653 (1653), eRASS1 12247 (12247)
+
+==============================================================================================================
+CELLS: beta = d ln(density) / d ln(cold column) at fixed |b| band x hemisphere, dust, ecliptic latitude
+==============================================================================================================
+  catalogue     mask map               Npix   Ncl     beta     sP   phi  s_rot  sigma      z   S(top vs bottom tercile) [95%]       max|corr nuis|  [post-freeze info: z Poisson-only; fraction of the 29 rotations with beta below]
+  PSZ2          M-P  ROUND_canonical   7445  1241  +0.0604 0.0918  1.03 0.4792 0.4792  +0.13   -0.046 [-1.105, +0.480]   0.14   zP +0.65  rank 0.52
+  PSZ2          M-P  DISC_canonical    7445  1241  +0.0789 0.1370  1.03 0.5252 0.5252  +0.15   -0.043 [-0.797, +0.395]   0.30   zP +0.57  rank 0.52
+  PSZ2          M-P  ROUND_alt         7445  1241  +0.0583 0.0902  1.03 0.4631 0.4631  +0.13   -0.045 [-1.079, +0.475]   0.14   zP +0.64  rank 0.52
+  PSZ2          M-P  DISC_alt          7445  1241  +0.0771 0.1362  1.03 0.5154 0.5154  +0.15   -0.042 [-0.785, +0.392]   0.30   zP +0.56  rank 0.52
+  PSZ2          M-1  ROUND_canonical   5766   970  -0.0133 0.1167  1.02 0.5569 0.5569  -0.02   +0.009 [-1.032, +0.517]   0.14   zP -0.11  rank 0.41
+  PSZ2          M-1  ROUND_alt         5766   970  -0.0139 0.1148  1.02 0.5426 0.5426  -0.03   +0.009 [-1.017, +0.513]   0.14   zP -0.12  rank 0.41
+  PSZ2          M-2  ROUND_canonical   8715  1414  -0.0155 0.0797  1.04 0.3578 0.3578  -0.04   +0.013 [-0.744, +0.441]   0.10   zP -0.19  rank 0.38
+  PSZ2          M-2  ROUND_alt         8715  1414  -0.0162 0.0782  1.04 0.3432 0.3432  -0.05   +0.013 [-0.719, +0.434]   0.10   zP -0.20  rank 0.38
+  PSZ2_z        M-P  ROUND_canonical   7445   933  +0.0768 0.1082  1.04 0.4988 0.4988  +0.15   -0.059 [-1.193, +0.489]   0.14   zP +0.70  rank 0.52
+  PSZ2_z        M-P  ROUND_alt         7445   933  +0.0746 0.1062  1.04 0.4831 0.4831  +0.15   -0.058 [-1.168, +0.484]   0.14   zP +0.69  rank 0.52
+  PSZ2_z        M-1  ROUND_canonical   5766   748  -0.0467 0.1352  1.03 0.6131 0.6131  -0.08   +0.030 [-1.138, +0.560]   0.14   zP -0.34  rank 0.31
+  PSZ2_z        M-1  ROUND_alt         5766   748  -0.0469 0.1330  1.03 0.5958 0.5958  -0.08   +0.031 [-1.115, +0.556]   0.14   zP -0.35  rank 0.31
+  PSZ2_z        M-2  ROUND_canonical   8715  1008  +0.0449 0.0997  1.04 0.3598 0.3598  +0.12   -0.037 [-0.837, +0.415]   0.10   zP +0.44  rank 0.59
+  PSZ2_z        M-2  ROUND_alt         8715  1008  +0.0432 0.0978  1.04 0.3467 0.3467  +0.12   -0.036 [-0.816, +0.409]   0.10   zP +0.43  rank 0.59
+  PSZ2_COSMO    M-P  ROUND_canonical   7445   471  -0.0638 0.1597  1.01 0.3897 0.3897  -0.16   +0.046 [-0.684, +0.460]   0.14   zP -0.40  rank 0.10
+  PSZ2_COSMO    M-P  ROUND_alt         7445   471  -0.0629 0.1569  1.01 0.3786 0.3786  -0.17   +0.047 [-0.673, +0.457]   0.14   zP -0.40  rank 0.10
+  PSZ2_COSMO    M-1  ROUND_canonical   5766   373  -0.2994 0.2007  1.00 0.7168 0.7168  -0.42   +0.179 [-1.069, +0.674]   0.14   zP -1.49  rank 0.24
+  PSZ2_COSMO    M-1  ROUND_alt         5766   373  -0.2953 0.1975  1.00 0.6984 0.6984  -0.42   +0.179 [-1.049, +0.671]   0.14   zP -1.49  rank 0.24
+  PSZ2_COSMO    M-2  ROUND_canonical   8715   499  -0.0567 0.1515  0.95 0.2783 0.2783  -0.20   +0.045 [-0.486, +0.386]   0.10   zP -0.37  rank 0.10
+  PSZ2_COSMO    M-2  ROUND_alt         8715   499  -0.0557 0.1488  0.95 0.2702 0.2702  -0.21   +0.045 [-0.479, +0.383]   0.10   zP -0.37  rank 0.10
+  eRASS1        M-P  ROUND_canonical   3743  5904  +0.1247 0.0530  1.37 0.9225 0.9225  +0.14   -0.100 [-3.355, +0.722]   0.18   zP +2.01  rank 0.59
+  eRASS1        M-P  DISC_canonical    3743  5904  +0.1573 0.0773  1.37 0.6835 0.6835  +0.23   -0.089 [-1.259, +0.475]   0.30   zP +1.74  rank 0.69
+  eRASS1        M-P  ROUND_alt         3743  5904  +0.1213 0.0522  1.37 0.9087 0.9087  +0.13   -0.098 [-3.363, +0.723]   0.18   zP +1.99  rank 0.62
+  eRASS1        M-P  DISC_alt          3743  5904  +0.1544 0.0770  1.37 0.6721 0.6721  +0.23   -0.088 [-1.242, +0.472]   0.30   zP +1.71  rank 0.69
+  eRASS1        M-1  ROUND_canonical   2900  4665  +0.2948 0.0639  1.37 1.2853 1.2853  +0.23   -0.218 [-5.587, +0.775]   0.16   zP +3.95  rank 0.59
+  eRASS1        M-1  ROUND_alt         2900  4665  +0.2888 0.0628  1.37 1.2658 1.2658  +0.23   -0.217 [-5.592, +0.775]   0.16   zP +3.93  rank 0.59
+  eRASS1        M-2  ROUND_canonical   4363  6320  +0.1706 0.0500  1.41 0.9575 0.9575  +0.18   -0.149 [-4.302, +0.751]   0.18   zP +2.87  rank 0.66
+  eRASS1        M-2  ROUND_alt         4363  6320  +0.1668 0.0492  1.41 0.9432 0.9432  +0.18   -0.148 [-4.323, +0.752]   0.18   zP +2.85  rank 0.66
+  eRASS1_all    M-P  ROUND_canonical   3743 11250  +0.0992 0.0376  1.59 0.7896 0.7896  +0.13   -0.078 [-2.503, +0.668]   0.18   zP +2.09  rank 0.62
+  eRASS1_all    M-P  ROUND_alt         3743 11250  +0.0966 0.0370  1.59 0.7788 0.7788  +0.12   -0.078 [-2.514, +0.670]   0.18   zP +2.07  rank 0.62
+  eRASS1_all    M-1  ROUND_canonical   2900  8878  +0.2270 0.0457  1.57 1.0662 1.0662  +0.21   -0.164 [-3.721, +0.713]   0.16   zP +3.97  rank 0.59
+  eRASS1_all    M-1  ROUND_alt         2900  8878  +0.2223 0.0450  1.57 1.0510 1.0510  +0.21   -0.163 [-3.730, +0.714]   0.16   zP +3.95  rank 0.59
+  eRASS1_all    M-2  ROUND_canonical   4363 12023  +0.1380 0.0357  1.66 0.8472 0.8472  +0.16   -0.119 [-3.330, +0.711]   0.18   zP +3.00  rank 0.66
+  eRASS1_all    M-2  ROUND_alt         4363 12023  +0.1351 0.0350  1.66 0.8354 0.8354  +0.16   -0.119 [-3.350, +0.712]   0.18   zP +2.99  rank 0.66
+  eRASS1_EXT12  M-P  ROUND_canonical   3743  3036  +0.1328 0.0756  1.24 1.0902 1.0902  +0.12   -0.106 [-4.627, +0.782]   0.18   zP +1.58  rank 0.62
+  eRASS1_EXT12  M-P  ROUND_alt         3743  3036  +0.1290 0.0743  1.24 1.0754 1.0754  +0.12   -0.105 [-4.652, +0.784]   0.18   zP +1.56  rank 0.55
+  eRASS1_EXT12  M-1  ROUND_canonical   2900  2393  +0.3107 0.0900  1.25 1.4192 1.4192  +0.22   -0.231 [-6.937, +0.809]   0.16   zP +3.08  rank 0.59
+  eRASS1_EXT12  M-1  ROUND_alt         2900  2393  +0.3042 0.0886  1.25 1.3980 1.3980  +0.22   -0.230 [-6.946, +0.810]   0.16   zP +3.07  rank 0.59
+  eRASS1_EXT12  M-2  ROUND_canonical   4363  3269  +0.1865 0.0706  1.27 1.1002 1.1002  +0.17   -0.164 [-5.747, +0.799]   0.18   zP +2.34  rank 0.66
+  eRASS1_EXT12  M-2  ROUND_alt         4363  3269  +0.1822 0.0694  1.27 1.0850 1.0850  +0.17   -0.163 [-5.788, +0.801]   0.18   zP +2.33  rank 0.66
+  MCXC          M-P  ROUND_canonical   7445  1561  +0.1830 0.0846  1.27 0.4160 0.4160  +0.44   -0.146 [-1.104, +0.376]   0.14   zP +1.92  rank 0.59
+  MCXC          M-P  DISC_canonical    7445  1561  +0.2570 0.1260  1.27 0.5359 0.5359  +0.48   -0.146 [-0.996, +0.343]   0.30   zP +1.81  rank 0.62
+  MCXC          M-P  ROUND_alt         7445  1561  +0.1792 0.0830  1.27 0.4041 0.4041  +0.44   -0.145 [-1.087, +0.371]   0.14   zP +1.91  rank 0.59
+  MCXC          M-P  DISC_alt          7445  1561  +0.2548 0.1254  1.27 0.5279 0.5279  +0.48   -0.145 [-0.988, +0.340]   0.30   zP +1.80  rank 0.62
+  MCXC          M-1  ROUND_canonical   5766  1307  +0.0617 0.1022  1.30 0.4427 0.4427  +0.14   -0.041 [-0.843, +0.411]   0.14   zP +0.53  rank 0.48
+  MCXC          M-1  ROUND_alt         5766  1307  +0.0597 0.1005  1.30 0.4334 0.4334  +0.14   -0.041 [-0.836, +0.410]   0.14   zP +0.52  rank 0.48
+  MCXC          M-2  ROUND_canonical   8715  1640  +0.1937 0.0787  1.24 0.3677 0.3677  +0.53   -0.170 [-1.099, +0.348]   0.10   zP +2.21  rank 0.59
+  MCXC          M-2  ROUND_alt         8715  1640  +0.1901 0.0773  1.24 0.3558 0.3558  +0.53   -0.170 [-1.081, +0.342]   0.10   zP +2.21  rank 0.59
+
+--- post-freeze info: beta as a function of the map rotation dl (round canonical, mask M-P); dl = 0 is the real orientation
+  PSZ2    dl=0: +0.060 | 40:+0.12 50:+0.18 60:+0.28 70:+0.45 80:+0.82 90:+1.52 100:+1.39 110:+0.30 120:-0.07 130:-0.16 140:-0.19 150:-0.19 160:-0.19 170:-0.19 180:-0.19 190:-0.19 200:-0.19 210:-0.18 220:-0.18 230:-0.17 240:-0.15 250:-0.11 260:+0.04 270:+0.61 280:+1.08 290:+0.58 300:+0.29 310:+0.17 320:+0.12
+          robust null (median, 1.4826 MAD of the 29 rotations): +0.044, 0.343 -> z_robust = +0.05; Poisson-only z = +0.65, S 95% (Poisson-only) [-0.198, +0.087]
+  eRASS1  dl=0: +0.125 | 40:+0.11 50:+0.13 60:+0.17 70:+0.26 80:+0.52 90:+1.38 100:+1.91 110:+0.17 120:-0.13 130:-0.18 140:-0.18 150:-0.18 160:-0.18 170:-0.18 180:-0.19 190:-0.20 200:-0.21 210:-0.23 220:-0.26 230:-0.30 240:-0.36 250:-0.45 260:-0.58 270:-0.24 280:+4.14 290:+1.23 300:+0.64 310:+0.42 320:+0.30
+          robust null (median, 1.4826 MAD of the 29 rotations): -0.177, 0.408 -> z_robust = +0.74; Poisson-only z = +2.01, S 95% (Poisson-only) [-0.206, -0.002]
+  MCXC    dl=0: +0.183 | 40:+0.21 50:+0.25 60:+0.31 70:+0.42 80:+0.64 90:+0.91 100:+0.42 110:-0.16 120:-0.24 130:-0.23 140:-0.23 150:-0.23 160:-0.22 170:-0.23 180:-0.23 190:-0.24 200:-0.25 210:-0.27 220:-0.29 230:-0.33 240:-0.37 250:-0.43 260:-0.45 270:-0.02 280:+1.01 290:+0.77 300:+0.47 310:+0.32 320:+0.25
+          robust null (median, 1.4826 MAD of the 29 rotations): -0.225, 0.306 -> z_robust = +1.33; Poisson-only z = +1.92, S 95% (Poisson-only) [-0.317, +0.003]
+
+--- direct contrast: density ratio psi < 70 deg (towards GC) / psi > 110 deg (away), band-matched, mask M-P
+  PSZ2          towards/away = 1.068  (N 317 / 302); sigma(ln) Poisson 0.080, rotation 0.080; z = +0.82
+  PSZ2_z        towards/away = 1.140  (N 239 / 213); sigma(ln) Poisson 0.094, rotation 0.160; z = +0.82
+  PSZ2_COSMO    towards/away = 0.930  (N 101 / 111); sigma(ln) Poisson 0.138, rotation 0.073; z = -0.53
+  eRASS1        towards/away = 1.055  (N 1409 / 1290); sigma(ln) Poisson 0.039, rotation 0.670; z = +0.08
+  eRASS1_all    towards/away = 1.037  (N 2749 / 2561); sigma(ln) Poisson 0.027, rotation 0.656; z = +0.05
+  eRASS1_EXT12  towards/away = 1.033  (N 700 / 654); sigma(ln) Poisson 0.054, rotation 0.829; z = +0.04
+  MCXC          towards/away = 1.182  (N 432 / 371); sigma(ln) Poisson 0.071, rotation 0.298; z = +0.56
+
+==============================================================================================================
+INJECTIONS (round canonical map, mask M-P)
+==============================================================================================================
+  I1 PSZ2     20% thinning of top-tercile pixels (50 seeds): mean d beta +0.2075 +- 0.0258; power |d beta|/sigma = 0.43; 3-sigma detectable S (log-linear) 0.66; mean dS -0.175 (target +0.20; sigma_S ~ 0.357)
+  I2 PSZ2     null mocks: |z_P| >= 3 in 0/200 (0.0%); 20% injected: mean S = -0.184 +- 0.076
+  [PASS] MUTATE-A PSZ2: injected suppression (true-map top tercile) seen through the 180-deg map gives d beta +0.2075 (must be > 0, opposite to the primary's negative response)
+  I1 eRASS1   20% thinning of top-tercile pixels (50 seeds): mean d beta +0.2820 +- 0.0183; power |d beta|/sigma = 0.31; 3-sigma detectable S (log-linear) 0.88; mean dS -0.263 (target +0.20; sigma_S ~ 0.702)
+  I2 eRASS1   null mocks: |z_P| >= 3 in 1/200 (0.5%); 20% injected: mean S = -0.240 +- 0.054
+  [PASS] MUTATE-A eRASS1: injected suppression (true-map top tercile) seen through the 180-deg map gives d beta +0.2820 (must be > 0, opposite to the primary's negative response)
+  I1 MCXC     20% thinning of top-tercile pixels (50 seeds): mean d beta +0.2315 +- 0.0247; power |d beta|/sigma = 0.56; 3-sigma detectable S (log-linear) 0.61; mean dS -0.216 (target +0.20; sigma_S ~ 0.310)
+  I2 MCXC     null mocks: |z_P| >= 3 in 0/200 (0.0%); 20% injected: mean S = -0.189 +- 0.073
+  [PASS] MUTATE-A MCXC: injected suppression (true-map top tercile) seen through the 180-deg map gives d beta +0.2315 (must be > 0, opposite to the primary's negative response)
+
+MUTATE (180-deg map): PSZ2 primary beta = +0.0604 +- 0.4792 (z +0.13); eRASS1 z = +0.14
+
+checks: 5/7 pass; runtime 15 s
