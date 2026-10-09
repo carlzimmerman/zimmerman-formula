@@ -1,0 +1,144 @@
+========================================================================================================================
+CFG528 -- SLUGGS centrals: data re-check, missing hot gas, derived mechanisms
+========================================================================================================================
+columns: offset dex (Z = offset / sigma_i, CFG466 bootstrap at gamma 3) for NGC 4486 | 4365 | 4374 | 5846
+sigma_i: canonical: 4486 0.0174, 4365 0.0230, 4374 0.0738, 5846 0.0222; alt: 4486 0.0174, 4365 0.0230, 4374 0.0738, 5846 0.0222
+
+ITEM 1 -- data / assumption re-check
+ 1a stellar M/L and IMF (inner excess eps_in = log law-pred M(<r12) / (M_JAM/2); admissible <= +0.06 dex)
+    eps_in jam   : canonical: 4486 -0.000, 4365 +0.000, 4374 -0.000, 5846 +0.000; alt: 4486 -0.000, 4365 +0.000, 4374 -0.000, 5846 +0.000
+    eps_in salp  : canonical: 4486 +0.078, 4365 +0.198, 4374 +0.081, 5846 +0.042; alt: 4486 +0.088, 4365 +0.212, 4374 +0.091, 5846 +0.059
+    eps_in chab  : canonical: 4486 -0.136, 4365 -0.002, 4374 -0.134, 5846 -0.151; alt: 4486 -0.121, 4365 +0.018, 4374 -0.119, 5846 -0.129
+    eps_in chab2x: canonical: 4486 +0.124, 4365 +0.242, 4374 +0.127, 5846 +0.084; alt: 4486 +0.132, 4365 +0.254, 4374 +0.135, 5846 +0.099
+  1a(i) JAM-law ceiling (K0, record) canonical +0.275(+15.8) +0.205( +8.9) +0.201( +2.7) +0.213( +9.6) | mean +0.224 Zc +10.9 | cleared 0/4
+  1a(i) JAM-law ceiling (K0, record) alt       +0.264(+15.2) +0.197( +8.6) +0.189( +2.6) +0.203( +9.1) | mean +0.213 Zc +10.4 | cleared 0/4
+                                     -> CLOSES both footings: False
+  1a(ii) Salpeter population         canonical +0.246(+14.2) +0.128( +5.6) +0.173( +2.3) +0.198( +8.9) | mean +0.186 Zc  +9.1 | cleared 0/4
+  1a(ii) Salpeter population         alt       +0.232(+13.3) +0.113( +4.9) +0.157( +2.1) +0.181( +8.1) | mean +0.171 Zc  +8.3 | cleared 0/4
+                                     -> CLOSES both footings: False  [INADMISSIBLE]  (eps_in max +0.212)
+  1a(iii) Chabrier = Salp-0.25       canonical +0.326(+18.8) +0.206( +9.0) +0.249( +3.4) +0.271(+12.2) | mean +0.263 Zc +12.8 | cleared 0/4
+  1a(iii) Chabrier = Salp-0.25       alt       +0.310(+17.8) +0.190( +8.2) +0.232( +3.1) +0.253(+11.4) | mean +0.246 Zc +12.0 | cleared 0/4
+                                     -> CLOSES both footings: False  (eps_in max +0.018)
+  1a(iv) 2x Chabrier (bottom-heavy)  canonical +0.229(+13.2) +0.112( +4.9) +0.157( +2.1) +0.182( +8.2) | mean +0.170 Zc  +8.3 | cleared 0/4
+  1a(iv) 2x Chabrier (bottom-heavy)  alt       +0.215(+12.4) +0.097( +4.2) +0.142( +1.9) +0.166( +7.5) | mean +0.155 Zc  +7.5 | cleared 1/4
+                                     -> CLOSES both footings: False  [INADMISSIBLE]  (eps_in max +0.254)
+    post hoc (reported): M* multiplier on the JAM ceiling that nulls each central (log), and its inner excess
+      canonical: 4486 x10^+0.780 (eps_in +0.729); 4365 x10^+0.631 (eps_in +0.539); 4374 x10^+0.613 (eps_in +0.568); 5846 x10^+0.677 (eps_in +0.595)
+      alt: 4486 x10^+0.769 (eps_in +0.706); 4365 x10^+0.620 (eps_in +0.512); 4374 x10^+0.591 (eps_in +0.537); 5846 x10^+0.660 (eps_in +0.563)
+ 1b distances (SBF record; ATLAS3D; SBF x0.9 / x1.1)
+    D_SBF / D_ATLAS3D (Mpc): 4486 16.70/17.20, 4365 23.10/23.30, 4374 18.50/18.50, 5846 24.20/24.20
+  1b ATLAS3D distance                canonical +0.273(+15.7) +0.205( +8.9) +0.201( +2.7) +0.213( +9.6) | mean +0.223 Zc +10.8 | cleared 0/4
+  1b ATLAS3D distance                alt       +0.263(+15.1) +0.196( +8.5) +0.189( +2.6) +0.203( +9.1) | mean +0.213 Zc +10.3 | cleared 0/4
+                                     -> CLOSES both footings: False
+  1b SBF x0.9                        canonical +0.281(+16.2) +0.210( +9.1) +0.208( +2.8) +0.219( +9.9) | mean +0.230 Zc +11.2 | cleared 0/4
+  1b SBF x0.9                        alt       +0.270(+15.6) +0.201( +8.8) +0.196( +2.7) +0.209( +9.4) | mean +0.219 Zc +10.6 | cleared 0/4
+                                     -> CLOSES both footings: False
+  1b SBF x1.1                        canonical +0.270(+15.5) +0.201( +8.7) +0.195( +2.6) +0.208( +9.4) | mean +0.218 Zc +10.6 | cleared 0/4
+  1b SBF x1.1                        alt       +0.259(+14.9) +0.193( +8.4) +0.183( +2.5) +0.198( +8.9) | mean +0.208 Zc +10.1 | cleared 0/4
+                                     -> CLOSES both footings: False
+    post hoc: distance factor that nulls each central: canonical: 4486 xnan, 4365 xnan, 4374 xnan, 5846 xnan; alt: 4486 xnan, 4365 xnan, 4374 xnan, 5846 xnan
+ 1c anisotropy (gamma 3)
+  1c beta -0.5                       canonical +0.272(+15.6) +0.204( +8.9) +0.200( +2.7) +0.212( +9.5) | mean +0.222 Zc +10.8 | cleared 0/4
+  1c beta -0.5                       alt       +0.262(+15.1) +0.196( +8.5) +0.189( +2.6) +0.203( +9.1) | mean +0.212 Zc +10.3 | cleared 0/4
+                                     -> CLOSES both footings: False
+  1c beta +0.5                       canonical +0.281(+16.1) +0.208( +9.0) +0.203( +2.8) +0.215( +9.7) | mean +0.227 Zc +11.0 | cleared 0/4
+  1c beta +0.5                       alt       +0.269(+15.5) +0.199( +8.6) +0.190( +2.6) +0.205( +9.2) | mean +0.216 Zc +10.5 | cleared 0/4
+                                     -> CLOSES both footings: False
+    CFG466 free-gamma classes (quoted): K0|canonical ROBUST FAIL; K0|alt ROBUST FAIL; own|canonical ROBUST FAIL; own|alt ROBUST FAIL; beta+0.5: beta+0.5|K0|canonical ROBUST FAIL; beta+0.5|own|canonical NOT DIAGNOSTIC; beta+0.5|own|alt NOT DIAGNOSTIC
+ 1d radial range
+  1d all bins                        canonical +0.275(+15.8) +0.220( +9.6) +0.249( +3.4) +0.195( +8.8) | mean +0.235 Zc +11.4 | cleared 0/4
+  1d all bins                        alt       +0.264(+15.2) +0.213( +9.3) +0.239( +3.2) +0.186( +8.4) | mean +0.226 Zc +11.0 | cleared 0/4
+                                     -> CLOSES both footings: False
+  1d outermost bin only              canonical +0.247(+14.2) +0.289(+12.6) +0.201( +2.7) +0.221( +9.9) | mean +0.240 Zc +11.6 | cleared 0/4
+  1d outermost bin only              alt       +0.232(+13.3) +0.278(+12.1) +0.189( +2.6) +0.209( +9.4) | mean +0.227 Zc +11.0 | cleared 0/4
+                                     -> CLOSES both footings: False  [INADMISSIBLE]  (reported)
+  1d innermost outer bin only        canonical +0.175(+10.1) +0.203( +8.8) +0.201( +2.7) +0.254(+11.4) | mean +0.208 Zc +10.1 | cleared 0/4
+  1d innermost outer bin only        alt       +0.171( +9.9) +0.198( +8.6) +0.189( +2.6) +0.247(+11.1) | mean +0.201 Zc  +9.8 | cleared 0/4
+                                     -> CLOSES both footings: False  [INADMISSIBLE]  (reported)
+ 1e round rule: the field is the spherical algebraic law on sphere-enclosed baryons (= CFG516 RM = spherical QUMOND)
+  [PASS] R1 phantom mass rebuilt from its own density reproduces the field used, <= 1e-3 relative over the GC range
+         max rel diff 3.91e-06
+ 1f EFE
+  1f R-efe (CFG331)                  canonical +0.275(+15.8) +0.355(+15.4) +0.337( +4.6) +0.213( +9.6) | mean +0.295 Zc +14.3 | cleared 0/4
+  1f R-efe (CFG331)                  alt       +0.264(+15.2) +0.359(+15.6) +0.336( +4.5) +0.203( +9.1) | mean +0.291 Zc +14.1 | cleared 0/4
+                                     -> CLOSES both footings: False  [INADMISSIBLE]  (EFE raises offsets)
+  [PASS] E1 EFE lowers no offset
+         R-efe >= K0 for every central, both footings
+
+ITEM 2 -- missing baryons: hot gas
+    NGC4486: Lakhchaura D1 + Churazov+08 + Urban+11 (to 1.2 Mpc); measured to 1245 kpc; outermost GC bin 109 kpc; M_gas(<R_out) extrap 4.18e+11 vs trunc 4.18e+11 Msun
+    NGC4365: Fukazawa+06 beta-model; measured to 45 kpc; outermost GC bin 50 kpc; M_gas(<R_out) extrap 3.17e+09 vs trunc 2.67e+09 Msun
+    NGC4374: Lakhchaura+18 D1; measured to 18 kpc; outermost GC bin 22 kpc; M_gas(<R_out) extrap 1.70e+09 vs trunc 1.29e+09 Msun
+    NGC5846: Lakhchaura+18 D1; measured to 30 kpc; outermost GC bin 54 kpc; M_gas(<R_out) extrap 2.11e+10 vs trunc 8.82e+09 Msun
+  2a R-bar gas truncated at measured edge canonical +0.211(+12.1) +0.204( +8.9) +0.201( +2.7) +0.210( +9.4) | mean +0.206 Zc +10.0 | cleared 0/4
+  2a R-bar gas truncated at measured edge alt       +0.199(+11.5) +0.196( +8.5) +0.189( +2.6) +0.200( +9.0) | mean +0.196 Zc  +9.5 | cleared 0/4
+                                     -> CLOSES both footings: False
+  2b R-bar gas extrapolated (CFG331) canonical +0.211(+12.1) +0.202( +8.8) +0.199( +2.7) +0.195( +8.8) | mean +0.202 Zc  +9.8 | cleared 0/4
+  2b R-bar gas extrapolated (CFG331) alt       +0.199(+11.5) +0.194( +8.4) +0.187( +2.5) +0.184( +8.3) | mean +0.191 Zc  +9.3 | cleared 0/4
+                                     -> CLOSES both footings: False
+  2c R-own (CFG331)                  canonical +0.204(+11.7) +0.202( +8.8) +0.199( +2.7) +0.187( +8.4) | mean +0.198 Zc  +9.6 | cleared 0/4
+  2c R-own (CFG331)                  alt       +0.193(+11.1) +0.194( +8.4) +0.187( +2.5) +0.176( +7.9) | mean +0.187 Zc  +9.1 | cleared 0/4
+                                     -> CLOSES both footings: False
+    post hoc: gas multiplier (measured shape, extrapolated; stars re-calibrated) that nulls each central: canonical: 4486 x18.5, 4365 x268.3, 4374 x195.6, 5846 x35.1; alt: 4486 x16.9, 4365 x239.2, 4374 x174.8, 5846 x31.0  (nan = no root below x1000 or the inner JAM mass is exceeded first)
+
+ITEM 3 -- derived mechanisms
+ 3a census edge / supply cap
+    canonical NGC4486 own : M_b 8.60e+11  f_ret 0.341  r_edge     581 kpc vs R_out   109  M_ph(<R_out) 2.17e+12 vs supply 1.35e+13  -> cap binds: False
+    canonical NGC4486 host: M_b 3.24e+13  f_ret 0.776  r_edge    1626 kpc vs R_out   109  M_ph(<R_out) 2.17e+12 vs supply 2.24e+14  -> cap binds: False
+    canonical NGC4365 own : M_b 2.51e+11  f_ret 0.202  r_edge     523 kpc vs R_out    50  M_ph(<R_out) 4.94e+11 vs supply 6.66e+12  -> cap binds: False
+    canonical NGC4374 own : M_b 3.35e+11  f_ret 0.232  r_edge     528 kpc vs R_out    22  M_ph(<R_out) 1.68e+11 vs supply 7.75e+12  -> cap binds: False
+    canonical NGC5846 own : M_b 3.10e+11  f_ret 0.224  r_edge     526 kpc vs R_out    54  M_ph(<R_out) 5.84e+11 vs supply 7.44e+12  -> cap binds: False
+    canonical NGC5846 host: M_b 4.15e+11  f_ret 0.255  r_edge     535 kpc vs R_out    54  M_ph(<R_out) 5.84e+11 vs supply 8.73e+12  -> cap binds: False
+    alt       NGC4486 own : M_b 8.46e+11  f_ret 0.339  r_edge     528 kpc vs R_out   109  M_ph(<R_out) 2.41e+12 vs supply 1.34e+13  -> cap binds: False
+    alt       NGC4486 host: M_b 3.24e+13  f_ret 0.776  r_edge    1480 kpc vs R_out   109  M_ph(<R_out) 2.41e+12 vs supply 2.24e+14  -> cap binds: False
+    alt       NGC4365 own : M_b 2.36e+11  f_ret 0.196  r_edge     475 kpc vs R_out    50  M_ph(<R_out) 5.39e+11 vs supply 6.46e+12  -> cap binds: False
+    alt       NGC4374 own : M_b 3.24e+11  f_ret 0.228  r_edge     480 kpc vs R_out    22  M_ph(<R_out) 1.90e+11 vs supply 7.62e+12  -> cap binds: False
+    alt       NGC5846 own : M_b 2.95e+11  f_ret 0.218  r_edge     478 kpc vs R_out    54  M_ph(<R_out) 6.39e+11 vs supply 7.24e+12  -> cap binds: False
+    alt       NGC5846 host: M_b 3.99e+11  f_ret 0.251  r_edge     486 kpc vs R_out    54  M_ph(<R_out) 6.39e+11 vs supply 8.54e+12  -> cap binds: False
+  3a census edge (own supply cap)    canonical +0.211(+12.1) +0.202( +8.8) +0.199( +2.7) +0.195( +8.8) | mean +0.202 Zc  +9.8 | cleared 0/4
+  3a census edge (own supply cap)    alt       +0.199(+11.5) +0.194( +8.4) +0.187( +2.5) +0.184( +8.3) | mean +0.191 Zc  +9.3 | cleared 0/4
+                                     -> CLOSES both footings: False  (cap binds somewhere: False)
+ 3b round rule = 1e (prediction already RM; no change).  3c host ownership = row 2c.
+ 3d TEMPLATE (not derived): host unsettled cold energy from X-COP (CFG432), host centres only, Newtonian
+    canonical: NGC4486: Q01 10.87, s -0.547, R500 700, M_u(<R_out) 3.57e+12, M_u(<r12) 7.52e+10 vs M_JAM/2 2.59e+11; NGC5846: Q01 10.87, s -0.547, R500 380, M_u(<R_out) 1.90e+11, M_u(<r12) 2.88e+10 vs M_JAM/2 1.87e+11
+    alt: NGC4486: Q01 10.47, s -0.595, R500 700, M_u(<R_out) 3.37e+12, M_u(<r12) 8.01e+10 vs M_JAM/2 2.59e+11; NGC5846: Q01 10.47, s -0.595, R500 380, M_u(<R_out) 1.80e+11, M_u(<r12) 2.96e+10 vs M_JAM/2 1.87e+11
+  3d template R-own (primary)        canonical +0.102( +5.9) +0.202( +8.8) +0.199( +2.7) +0.164( +7.4) | mean +0.167 Zc  +8.1 | cleared 0/4
+  3d template R-own (primary)        alt       +0.101( +5.8) +0.194( +8.4) +0.187( +2.5) +0.158( +7.1) | mean +0.160 Zc  +7.8 | cleared 0/4
+                                     -> CLOSES both footings: False  [INADMISSIBLE]  (TEMPLATE, not derived)
+  3d template flat Q inward          canonical +0.106( +6.1) +0.202( +8.8) +0.199( +2.7) +0.156( +7.0) | mean +0.166 Zc  +8.1 | cleared 0/4
+  3d template flat Q inward          alt       +0.104( +6.0) +0.194( +8.4) +0.187( +2.5) +0.149( +6.7) | mean +0.158 Zc  +7.7 | cleared 0/4
+                                     -> CLOSES both footings: False  [INADMISSIBLE]  (TEMPLATE, not derived)
+  3d template R500 x0.7              canonical +0.117( +6.7) +0.202( +8.8) +0.199( +2.7) +0.168( +7.6) | mean +0.171 Zc  +8.3 | cleared 0/4
+  3d template R500 x0.7              alt       +0.116( +6.7) +0.194( +8.4) +0.187( +2.5) +0.162( +7.3) | mean +0.164 Zc  +8.0 | cleared 0/4
+                                     -> CLOSES both footings: False  [INADMISSIBLE]  (TEMPLATE, not derived)
+  3d template R500 x1.3              canonical +0.091( +5.2) +0.202( +8.8) +0.199( +2.7) +0.161( +7.2) | mean +0.163 Zc  +7.9 | cleared 0/4
+  3d template R500 x1.3              alt       +0.090( +5.2) +0.194( +8.4) +0.187( +2.5) +0.156( +7.0) | mean +0.156 Zc  +7.6 | cleared 0/4
+                                     -> CLOSES both footings: False  [INADMISSIBLE]  (TEMPLATE, not derived)
+    template label (primary): TEMPLATE NO; brackets: TEMPLATE NO, TEMPLATE NO, TEMPLATE NO
+
+JOINT BEST CASE (R-own extrapolated gas, beta +0.5, heaviest admissible IMF per galaxy, D x1.1, outer bins)
+    IMF row used: canonical: 4486 jam, 4365 jam, 4374 jam, 5846 salp; alt: 4486 jam, 4365 chab, 4374 jam, 5846 salp
+  JOINT best case                    canonical +0.170( +9.8) +0.197( +8.6) +0.192( +2.6) +0.149( +6.7) | mean +0.177 Zc  +8.6 | cleared 0/4
+  JOINT best case                    alt       +0.157( +9.0) +0.177( +7.7) +0.179( +2.4) +0.132( +5.9) | mean +0.161 Zc  +7.8 | cleared 0/4
+                                     -> CLOSES both footings: False
+  JOINT + template (reported)        canonical +0.066( +3.8) +0.197( +8.6) +0.192( +2.6) +0.113( +5.1) | mean +0.142 Zc  +6.9 | cleared 0/4
+  JOINT + template (reported)        alt       +0.065( +3.8) +0.177( +7.7) +0.179( +2.4) +0.100( +4.5) | mean +0.130 Zc  +6.3 | cleared 0/4
+                                     -> CLOSES both footings: False  [INADMISSIBLE]  (TEMPLATE)
+
+CHECKS
+  [PASS] K1 K0 path reproduces CFG330 K0 per central to 1e-9
+         max |diff| 1.11e-16
+  [PASS] K2 R-own / R-bar reproduce CFG331 JSON to 1e-9
+         max |diff| 0.00e+00
+  [PASS] K3 sigma_i loaded from CFG466 for 4 x 2
+         8 values
+  [PASS] K4 fret_census is CFG515's (imported module)
+         /CFG515_census_edge_resolution/cfg515_lib.py
+
+VERDICT (frozen order)
+  headline: GENUINE TENSION (7.8 sigma, joint best case, less favourable footing)  []
+  joint best case Z_class: canonical +8.60 (cleared 0/4), alt +7.84 (cleared 0/4)
+  primary Z_class K0: canonical +10.87, alt +10.37; R-own: canonical +9.63, alt +9.10
+  template (not derived): TEMPLATE NO
+
+  6/6 checks pass
