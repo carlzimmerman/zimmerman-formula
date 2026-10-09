@@ -1,0 +1,28 @@
+stage mutate; hosts 101; satellites 378, primary 359; C2 rows 75704
+K1 geometry (relativistic): C3 found in C2 0.997; median |dR| 0.001 kpc; median |d dv| 0.812 km/s -> True
+K1 geometry (cz-HRV): C3 found in C2 0.997; median |dR| 0.001 kpc; median |d dv| 0.589 km/s -> True
+
+magnitude window M_r [-20.54, -10.88]; dv formula relativistic
+C2 objects in window (30-300 kpc, mag-matched): 361, of which flagged satellites 359
+  bin 30-60: n_obs 41; sideband 275-1000 N 1 (+-1.0) -> n_int 0.38 (+-0.38); f_int 0.009
+  bin 60-110: n_obs 69; sideband 275-1000 N 1 (+-1.0) -> n_int 0.38 (+-0.38); f_int 0.005
+  bin 110-190: n_obs 100; sideband 275-1000 N 15 (+-3.9) -> n_int 5.69 (+-1.47); f_int 0.057
+  bin 190-300: n_obs 149; sideband 275-1000 N 25 (+-5.0) -> n_int 9.48 (+-1.90); f_int 0.064
+  overall expected interloper fraction 0.044
+variant sideband 275-2000: f_int [0.031, 0.016, 0.061, 0.067]; sloped: v_s 20000 km/s, f_int [0.029, 0.03, 0.06, 0.079]
+tracer gamma_t 1.992 (CFG562 1.992)
+MUTATE: velocities replaced by NFW-Moster draws plus interlopers at the fixed f_int
+
+== STAGE 2 SCORE: primary (fixed f_int, flat sideband 275-1000, isotropic)
+  canonical: VERDICT NFW-PREFERRED; Delta(-2lnL): a[canonical] +21.19, b[canonical,f=0.18] +17.05, c +0.00, b[canonical,f=0.1] +14.05, c_lim +13.52
+  alt: VERDICT NFW-PREFERRED; Delta(-2lnL): a[alt] +23.82, b[alt,f=0.18] +14.71, c +0.00, b[alt,f=0.1] +13.42, c_lim +13.52
+   -2lnL a[canonical]             4309.65
+   -2lnL a[alt]                   4312.28
+   -2lnL b[canonical,f=0.18]      4305.51
+   -2lnL b[alt,f=0.18]            4303.17
+   -2lnL b[canonical,f=0.1]       4302.51
+   -2lnL b[alt,f=0.1]             4301.89
+   -2lnL c                        4288.46
+   -2lnL c_lim                    4301.98
+   -2lnL b[canonical,f=1.0]       4561.22
+MUTATE detected (verdict not LAW-FLAT): True

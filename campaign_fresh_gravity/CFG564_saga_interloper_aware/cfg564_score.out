@@ -1,0 +1,50 @@
+stage score; hosts 101; satellites 378, primary 359; C2 rows 75704
+K1 geometry (relativistic): C3 found in C2 0.997; median |dR| 0.001 kpc; median |d dv| 0.812 km/s -> True
+K1 geometry (cz-HRV): C3 found in C2 0.997; median |dR| 0.001 kpc; median |d dv| 0.589 km/s -> True
+
+magnitude window M_r [-20.54, -10.88]; dv formula relativistic
+C2 objects in window (30-300 kpc, mag-matched): 361, of which flagged satellites 359
+  bin 30-60: n_obs 41; sideband 275-1000 N 1 (+-1.0) -> n_int 0.38 (+-0.38); f_int 0.009
+  bin 60-110: n_obs 69; sideband 275-1000 N 1 (+-1.0) -> n_int 0.38 (+-0.38); f_int 0.005
+  bin 110-190: n_obs 100; sideband 275-1000 N 15 (+-3.9) -> n_int 5.69 (+-1.47); f_int 0.057
+  bin 190-300: n_obs 149; sideband 275-1000 N 25 (+-5.0) -> n_int 9.48 (+-1.90); f_int 0.064
+  overall expected interloper fraction 0.044
+variant sideband 275-2000: f_int [0.031, 0.016, 0.061, 0.067]; sloped: v_s 20000 km/s, f_int [0.029, 0.03, 0.06, 0.079]
+tracer gamma_t 1.992 (CFG562 1.992)
+
+== STAGE 2 SCORE: primary (fixed f_int, flat sideband 275-1000, isotropic)
+  canonical: VERDICT LAW-FLAT; Delta(-2lnL): a[canonical] +0.00, b[canonical,f=0.18] +49.93, c +26.12, b[canonical,f=0.1] +12.00, c_lim +14.01
+  alt: VERDICT LAW-FLAT; Delta(-2lnL): a[alt] +0.00, b[alt,f=0.18] +51.69, c +33.65, b[alt,f=0.1] +12.31, c_lim +21.53
+   -2lnL a[canonical]             4437.18
+   -2lnL a[alt]                   4429.65
+   -2lnL b[canonical,f=0.18]      4487.10
+   -2lnL b[alt,f=0.18]            4481.35
+   -2lnL b[canonical,f=0.1]       4449.18
+   -2lnL b[alt,f=0.1]             4441.97
+   -2lnL c                        4463.30
+   -2lnL c_lim                    4451.19
+   -2lnL b[canonical,f=1.0]       4901.40
+K2 reproduce CFG562 free-f: 8/8 match -> True
+   free constant f a[canonical]           -2lnL   4419.68 f 0.248
+   free constant f a[alt]                 -2lnL   4418.86 f 0.211
+   free constant f b[canonical,f=0.18]    -2lnL   4423.02 f 0.378
+   free constant f b[alt,f=0.18]          -2lnL   4422.32 f 0.370
+   free constant f b[canonical,f=0.1]     -2lnL   4419.40 f 0.295
+   free constant f b[alt,f=0.1]           -2lnL   4418.35 f 0.274
+   free constant f c                      -2lnL   4420.83 f 0.326
+   free constant f c_lim                  -2lnL   4424.14 f 0.289
+   free constant f b[canonical,f=1.0]     -2lnL   4467.80 f 0.600
+
+== REPORTED variants
+  free shape A: canonical NON-DISCRIMINATING (a[canonical] +0.0, b[canonical,f=0.18] +11.2, c +6.6, b[canonical,f=0.1] +2.4, c_lim +2.9) | alt LAW-FLAT (a[alt] +0.0, b[alt,f=0.18] +11.5, c +10.6, b[alt,f=0.1] +2.3, c_lim +6.8)
+   fitted A: a[canonical] 3.57, a[alt] 2.95, b[canonical,f=0.18] 6.17, b[alt,f=0.18] 6.05, b[canonical,f=0.1] 4.52, b[alt,f=0.1] 4.20, c 5.15, c_lim 4.52, b[canonical,f=1.0] 11.86
+  free constant f: canonical NON-DISCRIMINATING (a[canonical] +0.0, b[canonical,f=0.18] +3.3, c +1.1, b[canonical,f=0.1] -0.3, c_lim +4.5) | alt NON-DISCRIMINATING (a[alt] +0.0, b[alt,f=0.18] +3.5, c +2.0, b[alt,f=0.1] -0.5, c_lim +5.3)
+  sideband 275-2000: canonical LAW-FLAT (a[canonical] +0.0, b[canonical,f=0.18] +47.6, c +24.5, b[canonical,f=0.1] +11.4, c_lim +13.9) | alt LAW-FLAT (a[alt] +0.0, b[alt,f=0.18] +49.4, c +31.6, b[alt,f=0.1] +11.6, c_lim +20.9)
+  sloped sideband v_s 20000: canonical LAW-FLAT (a[canonical] +0.0, b[canonical,f=0.18] +44.3, c +22.5, b[canonical,f=0.1] +10.4, c_lim +13.4) | alt LAW-FLAT (a[alt] +0.0, b[alt,f=0.18] +45.9, c +29.1, b[alt,f=0.1] +10.6, c_lim +20.0)
+  beta 0.3: canonical LAW-FLAT (a[canonical] +0.0, b[canonical,f=0.18] +57.0, c +30.8, b[canonical,f=0.1] +14.4, c_lim +19.8) | alt LAW-FLAT (a[alt] +0.0, b[alt,f=0.18] +58.5, c +36.8, b[alt,f=0.1] +14.6, c_lim +25.7)
+  Gold+Silver: canonical LAW-FLAT (a[canonical] +0.0, b[canonical,f=0.18] +45.4, c +22.6, b[canonical,f=0.1] +10.5, c_lim +12.1) | alt LAW-FLAT (a[alt] +0.0, b[alt,f=0.18] +46.6, c +29.5, b[alt,f=0.1] +10.5, c_lim +18.9)
+  f_int = 0 (CFG562 zero-parameter): canonical LAW-FLAT (a[canonical] +0.0, b[canonical,f=0.18] +107.5, c +63.8, b[canonical,f=0.1] +23.1, c_lim +35.2) | alt LAW-FLAT (a[alt] +0.0, b[alt,f=0.18] +111.4, c +74.7, b[alt,f=0.1] +24.1, c_lim +46.1)
+goodness of fit (fraction of best-model mocks with -2lnL >= data): {'canonical': {'model': 'a[canonical]', 'p': 0.0}, 'alt': {'model': 'a[alt]', 'p': 0.0}}
+stage-1 power checks: {'K0_sha256': True, 'K1_geometry': True, 'K3_injection': False}
+
+checks: {'K0_sha256': True, 'K1_geometry': True, 'K2_cfg562': True, 'K3_injection': False}
