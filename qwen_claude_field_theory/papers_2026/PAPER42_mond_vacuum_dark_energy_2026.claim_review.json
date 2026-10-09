@@ -1,50 +1,6 @@
 {
  "about": "Claim-match review (claim_match_tex.py) of every digit-bearing sentence/table row against committed outputs. Non-MATCH entries are findings; the paper text is NOT edited (MNRAS is under review; PAPER41-45 are published, corrections need the owner's go).",
  "claims": {
-  "0afd956bf0e283b9": {
-   "section": "front",
-   "claim": "a Consistent Model with a Turn-Off Near $10^{-8}$\\,m\\,s$^{-2}$}",
-   "verdict": "MATCH",
-   "note": "g_t = 1.03e-8.",
-   "sources": [
-    {
-     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
-     "sha": "42de67141b064e49",
-     "locator": "gt_obs_ms2",
-     "value": "1.03e-08"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
-  "c282907a1c03519d": {
-   "section": "front",
-   "claim": "[6pt] {\\small The authors --- 2026-10-05, version 1.1 (v1.0: doi:10.5281/zenodo.23171066) --- AI-assisted research programme; not peer reviewed} \\end{center}",
-   "verdict": "CONTEXT",
-   "note": "Date/version/DOI.",
-   "sources": [],
-   "reviewer": "independent agent, 2026-10-08"
-  },
-  "20a10e0fe1f8e262": {
-   "section": "front",
-   "claim": "\\begin{abstract} \\noindent The MOND acceleration scale and the cosmological constant obey $\\Lambda\\sim a_0^2/c^4$ to within an order-one factor.",
-   "verdict": "OVERSTATES",
-   "note": "The programme's own outputs put Lambda c^4/a0^2 at 73-100 (32 pi = 100.5; 73.19 measured). That is a factor ~10^2, not 'order one'; only sqrt(Lambda) c^2/a0 ~ 9-10 is close to order ten. The coincidence is overstated.",
-   "sources": [
-    {
-     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
-     "sha": "42de67141b064e49",
-     "locator": "obs_Lambda_over_a0sq",
-     "value": "73.19"
-    },
-    {
-     "path": "qwen_claude_field_theory/papers_2026/PAPER41_figures_numbers.json",
-     "sha": "4ef09f38d929cc19",
-     "locator": "framework footing",
-     "value": "100.53"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
   "8245e3a29a0ffb71": {
    "section": "front",
    "claim": "In the field theories of MOND that have a Lagrangian (QUMOND, and the nonrelativistic limit of bimetric MOND), the zero-field energy is fixed by the interpolating function, $\\Lambda/a_0^2=\\tfrac12\\int",
@@ -83,33 +39,6 @@
      "sha": "640df4842b4e19e9",
      "locator": "PASS A",
      "value": "DIVERGES"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
-  "29aea4a2f50a5dbd": {
-   "section": "front",
-   "claim": "With measured $a_0=1.097\\times10^{-10}$\\,m\\,s$^{-2}$, the observed $\\Lambda$ then fixes $y_t=94$ ($71$--$117$ at $2\\sigma$), a turn-off at $g_N\\approx1.0\\times10^{-8}$\\,m\\,s$^{-2}$.",
-   "verdict": "WRONG",
-   "note": "y_t = 94 and g_t 1.0e-8 match, but '71-117 at 2 sigma' is a 1-sigma range. make_paper42_figures.py sets the band to 73.19 x (1 +- 2 x 0.122), yet Lambda/a0^2 goes as a0^-2: a 12.2% 1-sigma in a0 is +-24.4% in the ratio. p30 lists the same quantity as 73.19 +- 17.86 (1 sigma) = 55.3-91.1, the paper's '2 sigma' band. The true 2-sigma band is ~44.9-119.2 (log) -> y_t ~58-153 (my arithmetic with the script's integrand).",
-   "sources": [
-    {
-     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
-     "sha": "42de67141b064e49",
-     "locator": "yt_band / obs_band_2sigma",
-     "value": "[71.3, 116.8] / [55.3, 91.1]"
-    },
-    {
-     "path": "qwen_claude_field_theory/papers_2026/make_paper42_figures.py",
-     "sha": "f8e01242496c73a6",
-     "locator": "line lo, hi",
-     "value": "obs * (1 -+ 2 * 0.122)"
-    },
-    {
-     "path": "sonnet55_push/puzzle_32pi/p30_amplitude_inv_sqrt2_planck.out",
-     "sha": "0a8630f53f9ce227",
-     "locator": "line 15",
-     "value": "observed 73.19 +- 17.86"
     }
    ],
    "reviewer": "independent agent, 2026-10-08"
@@ -180,27 +109,6 @@
    ],
    "reviewer": "independent agent, 2026-10-08"
   },
-  "8b23bdb7a47a0cc5": {
-   "section": "The proposal",
-   "claim": "\\section{The proposal} Two scales of very different origin are numerically close: MOND's $a_0\\approx1.1\\times10^{-10}$\\,m\\,s$^{-2}$, fitted to galaxies [LMS16, D23], and $c^2\\sqrt{\\Lambda}$ from cosmo",
-   "verdict": "WRONG",
-   "note": "a0 ~ 1.1e-10 is attributed to [LMS16, D23], but those give 1.20e-10 and 1.19e-10 (programme table v01). 1.1 is the programme's own ensemble log-mean 1.097.",
-   "sources": [
-    {
-     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
-     "sha": "01fc9f219c524066",
-     "locator": "rows MLS16 / Des23",
-     "value": "1.2000 / 1.1900"
-    },
-    {
-     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
-     "sha": "01fc9f219c524066",
-     "locator": "ENSEMBLE E",
-     "value": "log-mean 1.097"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
   "5a8ca4e392b06fcc": {
    "section": "The proposal",
    "claim": "Milgrom has emphasised the coincidence [M20].",
@@ -258,21 +166,6 @@
      "sha": "8a000f48ba700195",
      "locator": "PASS M2",
      "value": "m = M' = (nu - 1)/(2 nu - 1), x* = y (2 nu - 1)"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
-  "31e5472566e6ed0f": {
-   "section": "The vacuum energy of a MOND field theory",
-   "claim": "The two classes' vacuum integrals differ by the boundary term $2y^2(\\nu-1)^2$, which vanishes.",
-   "verdict": "OVERSTATES",
-   "note": "The identity is in p25/Lean (class_identity_integrand). But '2y^2(nu-1)^2 vanishes' is stated generally, before the turn-off is introduced. For the quadrature kernel the boundary term tends to 1/2 as y -> infinity (p25 J1: its J still diverges). It vanishes only for tails faster than 1/y, e.g. with the turn-off.",
-   "sources": [
-    {
-     "path": "sonnet55_push/puzzle_32pi/p25_symmetric_bimond_map.out",
-     "sha": "8a000f48ba700195",
-     "locator": "PASS ID / PASS J1",
-     "value": "J - I_nu = int d[2 y^2 (nu-1)^2]; framework kernel's J still DIVERGES"
     }
    ],
    "reviewer": "independent agent, 2026-10-08"
@@ -373,27 +266,6 @@
    ],
    "reviewer": "independent agent, 2026-10-08"
   },
-  "0b2083f11d2aab40": {
-   "section": "The tail, and why it must turn off",
-   "claim": "SPARC cannot distinguish it from the exact law for $y_t\\ge100$ ($|\\Delta\\chi^2|\\le1.06$), and a direct fit bounds $y_t$ only from below ($\\ge2$--$20$, depending on the mass-to-light treatment).",
-   "verdict": "OVERSTATES",
-   "note": "Numbers match p35/p36, but 'bounds y_t only from below' omits that with Upsilon free the best fit is y_t = 5 at dchi2 -53.2 (bulge-bearing -14.4). The data PREFER a turn-off inside the galaxy range on that treatment.",
-   "sources": [
-    {
-     "path": "sonnet55_push/puzzle_32pi/p36_sparc_turnoff_fit.out",
-     "sha": "4bfec28892c8befa",
-     "locator": "all, Upsilon free",
-     "value": "best y_t = 5 (Delta chi2 -53.22)"
-    },
-    {
-     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
-     "sha": "c4cc19ef2a36df50",
-     "locator": "(S)",
-     "value": "-1.06"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
   "822618337bd325eb": {
    "section": "The tail, and why it must turn off",
    "claim": "All inner planets pass for $y_t\\le7.7\\times10^5$ (Mars binds).",
@@ -409,123 +281,12 @@
    ],
    "reviewer": "independent agent, 2026-10-08"
   },
-  "218475df759e0d0c": {
-   "section": "What the observed $\\Lambda$ fixes",
-   "claim": "\\section{What the observed $\\Lambda$ fixes} With measured $a_0$ the observed ratio is $\\Lambda c^4/a_0^2=73.19$ (ensemble of nine SPARC analyses, $a_0=1.097\\times10^{-10}$, $\\pm12\\%$), i.e.\\ $55.3$--$",
-   "verdict": "WRONG",
-   "note": "73.19 and 1.097e-10 +-12% match. But '55.3-91.1 at 2 sigma' is the 1-sigma band (p30: 73.19 +- 17.86), because the script doubles the a0 error without squaring the a0^-2 dependence; the 2-sigma band is ~45-119. Also 'nine SPARC analyses': ensemble E includes McGaugh 2012's gas-rich BTFR (not SPARC), and v01 calls E analysis choices, not independent measurements.",
-   "sources": [
-    {
-     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
-     "sha": "42de67141b064e49",
-     "locator": "obs_band_2sigma",
-     "value": "[55.3, 91.1]"
-    },
-    {
-     "path": "sonnet55_push/puzzle_32pi/p30_amplitude_inv_sqrt2_planck.out",
-     "sha": "0a8630f53f9ce227",
-     "locator": "line 15",
-     "value": "73.19 +- 17.86"
-    },
-    {
-     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
-     "sha": "01fc9f219c524066",
-     "locator": "ENSEMBLE E / zE list",
-     "value": "McG12 among members"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
-  "c8963eab23aa570e": {
-   "section": "What the observed $\\Lambda$ fixes",
-   "claim": "Solving the vacuum condition (Fig.~\\ref{fig:band}) gives \\begin{equation} y_t=94\\ (71\\text{--}117\\ \\text{at }2\\sigma),\\qquad g_t=y_ta_0\\approx1.0\\times10^{-8}\\ {\\rm m\\,s^{-2}} .",
-   "verdict": "WRONG",
-   "note": "y_t = 94 and g_t = 1.03e-8 match; '71-117 at 2 sigma' is the 1-sigma range (see 29aea4a2f50a5dbd); 2 sigma is ~58-153.",
-   "sources": [
-    {
-     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
-     "sha": "42de67141b064e49",
-     "locator": "yt_band",
-     "value": "[71.3, 116.8]"
-    },
-    {
-     "path": "sonnet55_push/puzzle_32pi/p30_amplitude_inv_sqrt2_planck.out",
-     "sha": "0a8630f53f9ce227",
-     "locator": "line 15",
-     "value": "+- 17.86 (1 sigma)"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
-  "0bfb9325d6b13db1": {
-   "section": "What the observed $\\Lambda$ fixes",
-   "claim": "\\end{equation} On the footing that defines $a_0=\\tfrac12c\\sqrt{G\\rho_\\Lambda}$ the same condition gives $y_t=128.9$.",
-   "verdict": "MATCH",
-   "note": "",
-   "sources": [
-    {
-     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
-     "sha": "42de67141b064e49",
-     "locator": "yt_framework",
-     "value": "128.9"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
-  "f6cb747dbd3b04dd": {
-   "section": "What the observed $\\Lambda$ fixes",
-   "claim": "Either way the turn-off sits just above the highest accelerations in SPARC ($y\\lesssim110$) and far below the planets ($y\\sim10^7$--$10^8$).",
-   "verdict": "WRONG",
-   "note": "With y_t = 94 and SPARC reaching y ~ 110 (the paper's own figure; p26 'stops at y ~ 1e2'), the turn-off sits AT or below the highest SPARC accelerations, not 'just above' them. Planets y 2.7e7-4.2e8 is consistent with '10^7-10^8' (Mercury slightly above).",
-   "sources": [
-    {
-     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
-     "sha": "42de67141b064e49",
-     "locator": "yt_obs",
-     "value": "94.1"
-    },
-    {
-     "path": "sonnet55_push/puzzle_32pi/p26_what_pins_the_tail.out",
-     "sha": "4983d3904b52add4",
-     "locator": "PASS D1",
-     "value": "SPARC stops at y ~ 1e2"
-    },
-    {
-     "path": "qwen_claude_field_theory/papers_2026/make_paper41_figures.py",
-     "sha": "252fe2e5f3300ba6",
-     "locator": "planets",
-     "value": "y 2.729e7-4.228e8"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
   "968aa0f45a3e18d2": {
    "section": "What the observed $\\Lambda$ fixes",
    "claim": "\\begin{figure}[h]\\centering \\includegraphics[width=0.78\\textwidth]{fig1_paper42_band.pdf} \\caption{The MOND field's vacuum energy $\\Lambda c^4/a_0^2$ against its turn-off $y_t$ (blue).",
    "verdict": "CONTEXT",
    "note": "Caption text.",
    "sources": [],
-   "reviewer": "independent agent, 2026-10-08"
-  },
-  "d1ddaf20a6086ca1": {
-   "section": "What the observed $\\Lambda$ fixes",
-   "claim": "Horizontal band: the value required by the observed $\\Lambda$ with measured $a_0$ ($\\pm2\\sigma$); the dot marks the central solution $y_t=94$.",
-   "verdict": "WRONG",
-   "note": "The band drawn as '+-2 sigma' is the 1-sigma band (obs x (1 +- 2 x 0.122) for an a0^-2 quantity).",
-   "sources": [
-    {
-     "path": "qwen_claude_field_theory/papers_2026/make_paper42_figures.py",
-     "sha": "f8e01242496c73a6",
-     "locator": "lo, hi",
-     "value": "obs * (1 -+ 2 * 0.122)"
-    },
-    {
-     "path": "sonnet55_push/puzzle_32pi/p30_amplitude_inv_sqrt2_planck.out",
-     "sha": "0a8630f53f9ce227",
-     "locator": "line 15",
-     "value": "73.19 +- 17.86"
-    }
-   ],
    "reviewer": "independent agent, 2026-10-08"
   },
   "2e514dc95c487b45": {
@@ -694,14 +455,6 @@
    ],
    "reviewer": "independent agent, 2026-10-08"
   },
-  "f8bc30622b863e12": {
-   "section": "Predictions",
-   "claim": "\\item \\textbf{No zero-point $\\Lambda$.} The cosmological constant is the MOND field's energy, of order $a_0^2/G$, not a quantum zero-point sum, so the $10^{122}$ mismatch does not arise in this readin",
-   "verdict": "OVERSTATES",
-   "note": "No output addresses the 10^122 problem. The next sentence concedes that any matter vacuum energy must be 'cancelled or small', which is the cosmological-constant problem itself, so it is relocated, not avoided.",
-   "sources": [],
-   "reviewer": "independent agent, 2026-10-08"
-  },
   "0e67df8c50131066": {
    "section": "What is not derived",
    "claim": "\\section{What is not derived} \\begin{itemize} \\item \\textbf{The coefficient.} A Lean proof shows that $a_0=\\tfrac12c\\sqrt{G\\rho_\\Lambda}$ (equivalently $\\Lambda A_S=32\\pi^2$ with $A_S$ the area of the",
@@ -753,27 +506,6 @@
    ],
    "reviewer": "independent agent, 2026-10-08"
   },
-  "3578e0e186167f8d": {
-   "section": "What is not derived",
-   "claim": "\\item \\textbf{The kernel's transition shape.} On SPARC the RAR kernel fits better than $\\sqrt{1+1/y}$, but the preference is degenerate with the stellar mass-to-light ratio (it falls from $\\Delta\\chi^",
-   "verdict": "OVERSTATES",
-   "note": "141 -> 12 matches p37b. But the bullet leaves out the consequence that matters for the model. With the RAR kernel SPARC prefers, the vacuum integral converges with no turn-off to Lambda = 12.99 a0^2 (p21 B), 5.6x below the observed 73.19. There is then no free y_t, so the Lambda match needs the worse-fitting kernel (or a free f'(1), which p21 C calls insertion). Also overall chi2 at Upsilon 0.7 is worse (4853 vs 4597).",
-   "sources": [
-    {
-     "path": "sonnet55_push/puzzle_32pi/p37b_shape_vs_upsilon.out",
-     "sha": "1f8f7a9adec90b58",
-     "locator": "Upsilon 0.5/0.7",
-     "value": "RAR -141 / RAR -12"
-    },
-    {
-     "path": "sonnet55_push/puzzle_32pi/p21_bimond_vacuum.out",
-     "sha": "640df4842b4e19e9",
-     "locator": "PASS B",
-     "value": "Lambda = 12.988 a0^2 ... 7.74x short of 32 pi"
-    }
-   ],
-   "reviewer": "independent agent, 2026-10-08"
-  },
   "7e81480c3be1a973": {
    "section": "What is not derived",
    "claim": "\\paragraph{Reproducibility.} Scripts \\fpath{sonnet55_push/puzzle_32pi/p21_bimond_vacuum.py}, \\fpath{p25_symmetric_bimond_map.py}, \\fpath{p35_kernel_tail_fix.py}, \\fpath{p36_sparc_turnoff_fit.py}, \\fpa",
@@ -797,6 +529,413 @@
    "note": "References.",
    "sources": [],
    "reviewer": "independent agent, 2026-10-08"
+  },
+  "0afd956bf0e283b9": {
+   "section": "front",
+   "claim": "a Consistent Model with a Turn-Off Near $10^{-8}$\\,m\\,s$^{-2}$}",
+   "verdict": "MATCH",
+   "note": "Title turn-off 'near 1e-8': g_t = 1.03e-8 m/s^2.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "gt_obs_ms2",
+     "value": "1.03e-08"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "0eef024059f9e056": {
+   "section": "front",
+   "claim": "[6pt] {\\small The authors --- 2026-10-08, version 1.2 (corrections; v1.1: doi:10.5281/zenodo.23172298, v1.0: doi:10.5281/zenodo.23171066) --- AI-assisted research programme; not peer reviewed} \\end{ce",
+   "verdict": "CONTEXT",
+   "note": "Version/date/DOI line: context, not a result.",
+   "sources": [],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "299c1d2fdcbd5616": {
+   "section": "front",
+   "claim": "\\begin{abstract} \\noindent The MOND acceleration scale and the cosmological constant are numerically related: $c^2\\sqrt{\\Lambda}/a_0\\approx9$--$10$, i.e.\\ $\\Lambda c^4/a_0^2\\approx73$--$100$.",
+   "verdict": "CONTEXT",
+   "note": "73-100 are the two CENTRAL values (measured-a0 ensemble 73.19; footing 32pi = 100.53), not an uncertainty range (the measured-a0 1-sigma band is 58.1-94.9). sqrt gives c^2 sqrt(Lambda)/a0 = 8.56-10.03, so '9-10' rounds 8.6 up.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "obs_Lambda_over_a0sq",
+     "value": "73.19"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p30_amplitude_inv_sqrt2_planck.out",
+     "sha": "0a8630f53f9ce227",
+     "locator": "framework rows",
+     "value": "32 pi = 100.531"
+    },
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "obs_band_1sigma",
+     "value": "[58.1, 94.9]"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "3c0531145d1eaf44": {
+   "section": "The proposal",
+   "claim": "\\section{The proposal} Two scales of very different origin are numerically close: MOND's $a_0\\approx1.1$--$1.2\\times10^{-10}$\\,m\\,s$^{-2}$, fitted to galaxies ($1.20$ [LMS16], $1.19$ [D23]; we use the",
+   "verdict": "MATCH",
+   "note": "LMS16 1.20 and Des23 1.19 (Desmond 2023, arXiv 2303.11314) as in the determinations table; ensemble log-mean 1.097.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
+     "sha": "01fc9f219c524066",
+     "locator": "MLS16 row",
+     "value": "1.2000"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
+     "sha": "01fc9f219c524066",
+     "locator": "Des23 row",
+     "value": "1.1900"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
+     "sha": "01fc9f219c524066",
+     "locator": "ENSEMBLE E",
+     "value": "log-mean 1.097"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "b5381d79d3e5284d": {
+   "section": "The vacuum energy of a MOND field theory",
+   "claim": "The two classes' vacuum integrals differ by the boundary term $2y^2(\\nu-1)^2$.",
+   "verdict": "MATCH",
+   "note": "p25 ID: J - I_nu = int d[2y^2(nu-1)^2] exactly.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p25_symmetric_bimond_map.out",
+     "sha": "8a000f48ba700195",
+     "locator": "PASS ID",
+     "value": "J - I_nu = int d[2 y^2 (nu-1)^2] exactly"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "15c5a77d19544452": {
+   "section": "The vacuum energy of a MOND field theory",
+   "claim": "It vanishes for any tail falling faster than $1/y$, such as the turn-off below.",
+   "verdict": "MATCH",
+   "note": "Checked analytically: 2y^2(nu-1)^2 -> 0 at infinity iff nu-1 = o(1/y); the k=2 turn-off tail ~ y_t^2/(2y^3) gives ~y^-4 -> 0; the y->0 end gives ~2y -> 0. Not printed in an output, but the identity it rests on is p25's.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p25_symmetric_bimond_map.out",
+     "sha": "8a000f48ba700195",
+     "locator": "PASS ID",
+     "value": "boundary term identity"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "a473093dd8314427": {
+   "section": "The vacuum energy of a MOND field theory",
+   "claim": "For the plain quadrature kernel it tends to $\\tfrac12$, and both integrals diverge.",
+   "verdict": "MATCH",
+   "note": "nu-1 ~ 1/(2y) gives 2y^2/(4y^2) = 1/2; p21 A and p25 J1: framework kernel diverges in both classes.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p21_bimond_vacuum.out",
+     "sha": "640df4842b4e19e9",
+     "locator": "PASS A",
+     "value": "framework kernel DIVERGES"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p25_symmetric_bimond_map.out",
+     "sha": "8a000f48ba700195",
+     "locator": "PASS J1",
+     "value": "J still DIVERGES in the symmetric class"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "827a10adc637a03b": {
+   "section": "The tail, and why it must turn off",
+   "claim": "With $\\Upsilon$ fixed it prefers the exact law and bounds $y_t$ only from below ($y_t\\ge20$).",
+   "verdict": "MATCH",
+   "note": "p36 MLS16 cuts, Upsilon 0.5 (153 gal): every Delta chi2 >= 0, best y_t = 10000 (+0.00), Delta chi2 < 4 for y_t >= 20. Note the fixed-Upsilon sample is 153 galaxies with MLS16 cuts, not the 175 of the free fit.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p36_sparc_turnoff_fit.out",
+     "sha": "4bfec28892c8befa",
+     "locator": "MLS16 cuts, Upsilon 0.5 row",
+     "value": "best y_t = 10000 (+0.00); Delta chi2 < 4 for y_t >= 20"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "bf1674c6782fbe63": {
+   "section": "The tail, and why it must turn off",
+   "claim": "With $\\Upsilon$ free per galaxy it prefers $y_t=5$ ($\\Delta\\chi^2=-53.2$ against the exact law;",
+   "verdict": "MATCH",
+   "note": "p36 all, Upsilon free (175 gal): best y_t = 5, Delta chi2 -53.22 (on the coarse grid 1,2,3,5,10,...).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p36_sparc_turnoff_fit.out",
+     "sha": "4bfec28892c8befa",
+     "locator": "all, Upsilon free row",
+     "value": "best y_t = 5 (Delta chi2 -53.22)"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "0bfb9325d6b13db1": {
+   "section": "What the observed $\\Lambda$ fixes",
+   "claim": "\\end{equation} On the footing that defines $a_0=\\tfrac12c\\sqrt{G\\rho_\\Lambda}$ the same condition gives $y_t=128.9$.",
+   "verdict": "MATCH",
+   "note": "p35 V: k=2, 32 pi needs y_t = 128.9.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "(V) k = 2",
+     "value": "32 pi needs y_t = 128.9"
+    },
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "yt_framework",
+     "value": "128.9"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "b98c2aacca8bea9a": {
+   "section": "What the observed $\\Lambda$ fixes",
+   "claim": "Horizontal band: the value required by the observed $\\Lambda$ with measured $a_0$ (dark: $1\\sigma$, light: $2\\sigma$); the dot marks the central solution $y_t=94$.",
+   "verdict": "MATCH",
+   "note": "Script draws the 1-sigma band in the darker colour (#cde2fb) over the 2-sigma lighter band (#e6f0fc) and the dot at yt_obs = 94.1.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "obs_band_1sigma, obs_band_2sigma, yt_obs",
+     "value": "[57.3,93.4], [44.9,119.2], 94.1"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "3578e0e186167f8d": {
+   "section": "What is not derived",
+   "claim": "\\item \\textbf{The kernel's transition shape.} On SPARC the RAR kernel fits better than $\\sqrt{1+1/y}$, but the preference is degenerate with the stellar mass-to-light ratio (it falls from $\\Delta\\chi^",
+   "verdict": "MATCH",
+   "note": "p37b: RAR vs n=1 (= sqrt(1+1/y)) -141 / -50 / -12 at Upsilon 0.5/0.6/0.7; RAR better at all three.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p37b_shape_vs_upsilon.out",
+     "sha": "1f8f7a9adec90b58",
+     "locator": "Upsilon 0.5/0.7 rows",
+     "value": "RAR -141 ... RAR -12"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "e4da57b90bdc554e": {
+   "section": "What is not derived",
+   "claim": "This matters here: with the RAR kernel the vacuum integral converges without any turn-off, to $\\Lambda c^4/a_0^2=12.99$, $5.6\\times$ below the observed value (p21).",
+   "verdict": "MATCH",
+   "note": "p21: RAR converges, Lambda/a0^2 = 12.988; 73.19/12.988 = 5.64 -> 5.6x (p21 itself quotes 7.74x against 32 pi; the 5.6x is against the measured-a0 value, as stated).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p21_bimond_vacuum.out",
+     "sha": "640df4842b4e19e9",
+     "locator": "RAR row",
+     "value": "CONVERGED -> Lambda/a0^2 (f=1) = 12.988"
+    },
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "obs_Lambda_over_a0sq",
+     "value": "73.19"
+    }
+   ],
+   "reviewer": "independent agent, re-review, 2026-10-08"
+  },
+  "027ed0896fbf6aef": {
+   "section": "front",
+   "claim": "With measured $a_0=1.097\\times10^{-10}$\\,m\\,s$^{-2}$, the observed $\\Lambda$ then fixes $y_t=94$ ($74$--$120$ at $1\\sigma$, $58$--$153$ at $2\\sigma$), a turn-off at $g_N\\approx1.0\\times10^{-8}$\\,m\\,s$",
+   "verdict": "MATCH",
+   "note": "y_t 94.1 -> 94; 1 sigma 73.8-119.8 -> 74-120; 2 sigma 58.0-152.8 -> 58-153; g_t 1.03e-8 -> ~1.0e-8. a0 = 1.097e-10 is the log-mean of the 9-member ensemble E (v01); 'measured' is acceptable since the body says three members are the programme's own refits.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "yt_obs, yt_band_1sigma, yt_band_2sigma, gt_obs_ms2",
+     "value": "94.1; [73.8,119.8]; [58.0,152.8]; 1.03e-08"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
+     "sha": "01fc9f219c524066",
+     "locator": "ENSEMBLE E",
+     "value": "log-mean 1.097, sd(ln) 12.2%"
+    }
+   ],
+   "reviewer": "independent agent, final check, 2026-10-08"
+  },
+  "a2f8a8fe10ba8583": {
+   "section": "The tail, and why it must turn off",
+   "claim": "SPARC cannot distinguish it from the exact law for $y_t\\ge100$ ($|\\Delta\\chi^2|\\le1.06$).",
+   "verdict": "MATCH",
+   "note": "p35 S: Delta chi2 at y_t = 100/128/1000 is +0.07/+0.04/+0.00 (Upsilon 0.5) and -1.06/-0.67/-0.01 (Upsilon free); max |Delta chi2| = 1.06 at y_t = 100. Only three y_t values were sampled, but p36's grid (100, 128, 300, 1000, 10000) is monotone, so 'for y_t >= 100' holds. Side note: the central y_t = 94 itself sits below 100 (p36: -1.19, still within 4).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "(S) and PASS S",
+     "value": "|Delta chi2| <= 1.06 for y_t >= 100"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p36_sparc_turnoff_fit.out",
+     "sha": "4bfec28892c8befa",
+     "locator": "all, Upsilon free row",
+     "value": "94:-1.2 100:-1.1 128:-0.7 300:-0.1"
+    }
+   ],
+   "reviewer": "independent agent, final check, 2026-10-08"
+  },
+  "e5880c819b002822": {
+   "section": "The tail, and why it must turn off",
+   "claim": "$-14.4$ in the 32 bulge-bearing galaxies) and no $y_t\\ge2$ fits worse than the exact law by more than $\\Delta\\chi^2=4$.",
+   "verdict": "MATCH",
+   "note": "Rewritten to the independent reviewer's suggested wording; checked by the coordinating session (NOT independently re-reviewed).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p36_sparc_turnoff_fit.out",
+     "sha": "4bfec28892c8befa",
+     "locator": "line 5",
+     "value": "Delta chi2 < 4 for y_t >= 2 (one-sided vs exact law)"
+    }
+   ],
+   "reviewer": "coordinating session self-check, 2026-10-08"
+  },
+  "be3e32d72aefd3e5": {
+   "section": "What the observed $\\Lambda$ fixes",
+   "claim": "\\section{What the observed $\\Lambda$ fixes} With measured $a_0$ the observed ratio is $\\Lambda c^4/a_0^2=73.19$ (log-mean $a_0=1.097\\times10^{-10}$ over the programme's ensemble of nine analysis choic",
+   "verdict": "MATCH",
+   "note": "obs = 32 pi (9.3603e-11/1.097e-10)^2 = 73.19. The ensemble E has 9 declared members (MLS16, Des23, Rod18-RAR, CZ19-RAR, DBF23-RAR, McG12, thisR0, thisR1, thisR2). Exactly three are the programme's own SPARC refits (v02: 0.8725, 0.944, 1.106). The header says 'ENSEMBLE OF ANALYSIS CHOICES (not independent measurements)'. Log-mean 1.097, sd(ln) 12.2%. '12.2% in ln a0' means sd(ln a0) = 0.122, which is acceptable shorthand.",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.py",
+     "sha": "7eb0b02d2ab46202",
+     "locator": "docstring lines 6-9; E_ids line 103",
+     "value": "9 members, 3 'this work (v02)'; not independent"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/agents/V_evidence_for_the_coefficient/v01_determinations_table.out",
+     "sha": "01fc9f219c524066",
+     "locator": "ENSEMBLE E",
+     "value": "log-mean 1.097 with sd(ln) 12.2%"
+    },
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "obs_Lambda_over_a0sq",
+     "value": "73.19"
+    }
+   ],
+   "reviewer": "independent agent, final check, 2026-10-08"
+  },
+  "802404a3a6ecdefd": {
+   "section": "What the observed $\\Lambda$ fixes",
+   "claim": "Since $\\ln(\\Lambda c^4/a_0^2)=\\text{const}-2\\ln a_0$, this gives $57.3$--$93.4$ at $1\\sigma$ and $44.9$--$119.2$ at $2\\sigma$.",
+   "verdict": "MATCH",
+   "note": "Recomputed: 73.19 x exp(-/+0.244) = 57.35 / 93.41; 73.19 x exp(-/+0.488) = 44.93 / 119.24. The bands match the JSON. The mapping (ln ratio = const - 2 ln a0, so sigma doubles) is correct and is what make_paper42_figures.py implements. Implicit assumptions: the ensemble's analysis-choice scatter is treated as a Gaussian 1 sigma in ln a0, and the Lambda/H0 uncertainty is neglected.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/make_paper42_figures.py",
+     "sha": "d80cefebc9dd4be2",
+     "locator": "band = lambda k: (obs*exp(-2k SIG), obs*exp(2k SIG)), SIG = 0.122",
+     "value": "log-mapped bands"
+    },
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "obs_band_1sigma, obs_band_2sigma",
+     "value": "[57.3,93.4]; [44.9,119.2]"
+    }
+   ],
+   "reviewer": "independent agent, final check, 2026-10-08"
+  },
+  "bdd441cdc8dc3f41": {
+   "section": "What the observed $\\Lambda$ fixes",
+   "claim": "Solving the vacuum condition (Fig.~\\ref{fig:band}) gives \\begin{equation} y_t=94\\ (74\\text{--}120\\ \\text{at }1\\sigma;\\ 58\\text{--}153\\ \\text{at }2\\sigma),\\qquad g_t=y_ta_0\\approx1.0\\times10^{-8}\\ {\\rm",
+   "verdict": "MATCH",
+   "note": "y_t 94.1 (73.8-119.8; 58.0-152.8) rounds as stated. g_t = 94.1 x 1.097e-10 = 1.03e-8. Consistent with Lambda/a0^2 ~ (pi/4) y_t (73.9 at 94.1). PAPER42_audit.py passes 14/14.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "yt_*, gt_obs_ms2",
+     "value": "94.1; [73.8,119.8]; [58.0,152.8]; 1.03e-08"
+    }
+   ],
+   "reviewer": "independent agent, final check, 2026-10-08"
+  },
+  "1ab802db395ce740": {
+   "section": "What the observed $\\Lambda$ fixes",
+   "claim": "Either way the turn-off sits just above the accelerations SPARC reaches and far below the planets ($y\\sim10^7$--$10^8$).",
+   "verdict": "MATCH",
+   "note": "Rewritten to the independent reviewer's suggested wording; checked by the coordinating session (NOT independently re-reviewed).",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "yt_obs, yt_framework",
+     "value": "94.1, 128.9"
+    },
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "SPARC range",
+     "value": "y <= 100"
+    }
+   ],
+   "reviewer": "coordinating session self-check, 2026-10-08"
+  },
+  "4fd36570541e606a": {
+   "section": "Predictions",
+   "claim": "\\item \\textbf{No zero-point $\\Lambda$.} The cosmological constant is the MOND field's energy, of order $a_0^2/G$, not a quantum zero-point sum, so the $10^{122}$ problem is relocated rather than solve",
+   "verdict": "MATCH",
+   "note": "rho_DE c^2 = Lambda c^4/(8 pi G) = 73.19 a0^2/(8 pi G) = 2.9 a0^2/G, so 'of order a0^2/G' holds. 'Relocated rather than solved; any separate matter vacuum energy must still be cancelled or small' matches the abstract's (iii) and is properly hedged. The flat assertion 'is the MOND field's energy' is the paper's hypothesis, flagged as such in 'What is not derived'. Under 'Predictions' this item is an interpretation rather than a testable prediction, but it is not wrong.",
+   "sources": [
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_figures_numbers.json",
+     "sha": "a8695400af8a4a28",
+     "locator": "obs_Lambda_over_a0sq",
+     "value": "73.19"
+    },
+    {
+     "path": "qwen_claude_field_theory/papers_2026/PAPER42_mond_vacuum_dark_energy_2026.tex",
+     "sha": "9c6142949718dbbf",
+     "locator": "What is not derived: identification",
+     "value": "hypothesis, not a consequence of the action"
+    }
+   ],
+   "reviewer": "independent agent, final check, 2026-10-08"
+  },
+  "c61e585930054a55": {
+   "section": "What the observed $\\Lambda$ fixes",
+   "claim": "Shaded: turn-offs that SPARC cannot distinguish from the exact law ($y_t\\ge100$) and that the planets allow.}\\label{fig:band} \\end{figure}",
+   "verdict": "MATCH",
+   "note": "Rewritten to the independent reviewer's suggested wording; checked by the coordinating session (NOT independently re-reviewed).",
+   "sources": [
+    {
+     "path": "sonnet55_push/puzzle_32pi/p35_kernel_tail_fix.out",
+     "sha": "c4cc19ef2a36df50",
+     "locator": "SPARC |dchi2|<=1.06 for y_t>=100",
+     "value": "1.06"
+    }
+   ],
+   "reviewer": "coordinating session self-check, 2026-10-08"
   }
  }
 }
