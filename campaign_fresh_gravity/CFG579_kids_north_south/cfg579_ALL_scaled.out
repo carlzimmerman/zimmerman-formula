@@ -1,0 +1,108 @@
+CFG529 stage 2 (FROZEN_CRITERIA.md, criteria commit 33969d1a7): the f30-matched environment term.
+Constructions: A = CFG503 (sharp r_ta boundary, halofit x zeta two-halo, stripping, SHMR rank-one); B = CFG504 (smooth DK14 transition,
+primary x_t).  The HOD leaked-satellite grid of each window K (W10 stack P, W30 f30, ALL) is rescaled to the MEASURED fraction (CFG519 JSON:
+0.2234 / 0.1686 / parent 0.3134) by CFG520 part B's rule.  Gates G1m, G2f (required), G3m (reported, labelled); then, per valid construction,
+the census edge on f30 (Delta vs the best sharp edge x >= 0.2 <= 4 AND p > 0.01) and the record's model set (p > 0.01), both footings.
+Inputs: CFG503 / CFG504 env + own tables, CFG525 stage-1 tables (W10 sharp), this lane's cfg529_tables.npz, committed JSON (read-only).
+MUTATE (CFG529_MUTATE=1, outputs *_MUTATE.*): T1 f_ret = 1 must fail; T2 stack-P environment reproduces CFG525's fixed-environment fail;
+T3 mismatched (W10) environment on f30 visible; T4 zero leakage visible.
+measured leaked fractions (CFG519): W10 0.223427, W30 0.168633 (sigma_stat 0.00603, sigma_tot declared 0.00667), ALL parent 0.313386
+  [PASS] K1 stack P data vector = CFG377 primary (1e-10): max rel 0.0e+00
+stack P 181477 lenses / 1953 groups; f30 57265 lenses / 1676 groups; ALL 605531 lenses / 2066 groups
+construction B: x_t primary 0.9101
+  [PASS] K2a construction A with the HOD f rebuilds CFG503's committed E_nlz tables (W10 / W30 / ALL; 1e-9 rel, 1e3 floor): 1.3e-13
+  scaling P    (W10) moster  : HOD stack-weighted f X = 0.18056 -> s = 1.2374; scaled f' = 0.223427
+  scaling P    (W10) behroozi: HOD stack-weighted f X = 0.18079 -> s = 1.2358; scaled f' = 0.223427
+  scaling f30  (W30) moster  : HOD stack-weighted f X = 0.13062 -> s = 1.2910; scaled f' = 0.168633
+  scaling f30  (W30) behroozi: HOD stack-weighted f X = 0.13030 -> s = 1.2942; scaled f' = 0.168633
+  scaling ALL  (ALL) moster  : HOD stack-weighted f X = 0.26519 -> s = 1.1818; scaled f' = 0.313386
+  scaling ALL  (ALL) behroozi: HOD stack-weighted f X = 0.26533 -> s = 1.1811; scaled f' = 0.313386
+  [PASS] K7 scaled grids give stack-weighted f' = f_meas within 1e-9 (no clipping bias): max |d| 5.6e-17
+
+== controls ==
+  [PASS] K2 construction A with the HOD f reproduces CFG503's 14 stack-P chi2, f30 and ALL LCDM within 0.01: stack P max |d| 0.0000; f30 21.524 vs 21.524; ALL 73.994 vs 73.994
+  [PASS] K5 construction B with the HOD f reproduces CFG504's 14 stack-P chi2, f30 and ALL LCDM within 0.01: stack P max |d| 0.0000; f30 21.360 vs 21.360; ALL 50.905 vs 50.905
+  [PASS] K3 construction A with the W10 measured scaling reproduces CFG520 part B's 14 scaled stack-P chi2 within 0.01 (s within 1e-4): max |d| 0.0000; s diff 6.7e-16; LCDM 26.134
+  [PASS] K4 construction A, stack P, W10 measured: direct census Delta and best-x chi2 reproduce CFG525's H3 within 0.01: census Delta +19.440 / +20.528 (CFG525 +19.440 / +20.528); best x 0.70/0.70 chi2 63.145/44.657
+  [PASS] K6 new tables: sharp full / tr_W10 rows = CFG525's (1e-9 rel, 1e-3 floor); windowing path on the 5.85 r_M EDGE = CFG504's EDGE|prim tables for 20 groups (1e-9 rel); all f30-group rows finite: vs CFG525 0.0e+00; vs CFG504 EDGE prim 0.0e+00; finite True
+
+== 4a environment validation (LCDM, SHMR-propagated) ==
+  [A] G1m stack P (0.2234) chi2 26.13 (p 0.037) PASS; G2f f30 (0.1686) chi2 22.47 (p 0.096) PASS; G3m ALL (0.3134) chi2 67.93 (p 1.0e-08; inner9 32.8 outer6 32.1) FAIL (reported) -> ENVIRONMENT VALID (A)
+    f30 LCDM pull: -2.77 -1.49 +0.89 +0.80 +0.13 +0.56 -0.56 -1.02 -2.84 -1.59 -0.38 -2.22 -1.31 -0.92 -1.35
+    (reported) G2f at f30 -1 sigma_tot (0.1620): chi2 22.26 (p 0.101)
+    (reported) G2f at f30 +1 sigma_tot (0.1753): chi2 22.69 (p 0.091)
+  [B] G1m stack P (0.2234) chi2 14.08 (p 0.519) PASS; G2f f30 (0.1686) chi2 22.51 (p 0.095) PASS; G3m ALL (0.3134) chi2 59.23 (p 3.4e-07; inner9 31.6 outer6 23.2) FAIL (reported) -> ENVIRONMENT VALID (B)
+    f30 LCDM pull: -3.18 -2.39 -0.19 +0.28 +0.31 +0.72 -0.50 -1.00 -2.83 -1.58 -0.38 -2.22 -1.31 -0.92 -1.35
+    (reported) G2f at f30 -1 sigma_tot (0.1620): chi2 22.27 (p 0.101)
+    (reported) G2f at f30 +1 sigma_tot (0.1753): chi2 22.77 (p 0.089)
+  ENVIRONMENT VALID (valid constructions: ['A', 'B'])
+
+== 4b/4c re-score on f30 (measured f30 leakage; verdict) ==
+
+  --- construction A (VALID) ---
+    [canonical] best sharp edge x = 0.50 (chi2 40.58; node range 27.1); best of (i)-(v): F_DD
+      model    | chi2/15 (p)          | inner9 outer6 | - best(i-v) | p>0.01
+      LCDM     |    22.47 (9.61e-02) |  10.51  13.11 |     +8.11 | PASS
+      LAW_RTA  |    54.40 (2.25e-06) |  21.07  24.29 |    +40.04 | FAIL
+      EDGE     |   200.01 (2.11e-34) |  89.63  63.68 |   +185.65 | FAIL
+      V1       |    48.35 (2.23e-05) |  21.03  20.63 |    +33.99 | FAIL
+      F_DD     |    14.36 (4.98e-01) |   3.89  13.97 |     +0.00 | PASS
+      CENSUS   |    45.57 (6.22e-05) |  20.31  22.91 |    +31.21 | FAIL  Delta vs best edge +4.99 -> FAIL
+      F_NODD   |    22.59 (9.33e-02) |  11.79  14.33 |     +8.23 | PASS   (reported)
+      LAW_X05  |    40.58 (3.70e-04) |  20.87  17.45 |    +26.22 | FAIL   (reported)
+    [alt] best sharp edge x = 0.45 (chi2 28.42; node range 23.1); best of (i)-(v): F_DD
+      model    | chi2/15 (p)          | inner9 outer6 | - best(i-v) | p>0.01
+      LCDM     |    22.47 (9.61e-02) |  10.51  13.11 |     +8.19 | PASS
+      LAW_RTA  |    44.26 (1.00e-04) |  13.83  25.99 |    +29.99 | FAIL
+      EDGE     |   204.99 (2.06e-35) |  92.68  63.66 |   +190.71 | FAIL
+      V1       |    35.88 (1.84e-03) |  13.80  19.34 |    +21.60 | FAIL
+      F_DD     |    14.28 (5.05e-01) |   3.96  13.86 |     +0.00 | PASS
+      CENSUS   |    35.84 (1.86e-03) |  13.10  22.83 |    +21.56 | FAIL  Delta vs best edge +7.42 -> FAIL
+      F_NODD   |    24.19 (6.20e-02) |  13.27  14.46 |     +9.91 | PASS   (reported)
+      LAW_X05  |    28.68 (1.77e-02) |  13.71  15.58 |    +14.40 | PASS   (reported)
+
+  --- construction B (VALID) ---
+    [canonical] best sharp edge x = 0.45 (chi2 51.02; node range 23.3); best of (i)-(v): F_DD
+      model    | chi2/15 (p)          | inner9 outer6 | - best(i-v) | p>0.01
+      LCDM     |    22.51 (9.51e-02) |  10.43  17.63 |     +4.73 | PASS
+      LAW_RTA  |    59.67 (2.88e-07) |  21.14  24.09 |    +41.89 | FAIL
+      EDGE     |   221.44 (9.05e-39) |  90.48  59.77 |   +203.66 | FAIL
+      V1       |    57.59 (6.52e-07) |  21.17  23.30 |    +39.81 | FAIL
+      F_DD     |    17.78 (2.74e-01) |   3.87  18.59 |     +0.00 | PASS
+      CENSUS   |    54.10 (2.53e-06) |  20.49  23.60 |    +36.32 | FAIL  Delta vs best edge +3.08 -> FAIL
+      F_NODD   |    23.78 (6.90e-02) |  11.70  19.18 |     +5.99 | PASS   (reported)
+      LAW_X05  |    51.34 (7.26e-06) |  21.02  20.74 |    +33.56 | FAIL   (reported)
+    [alt] best sharp edge x = 0.45 (chi2 37.43; node range 19.2); best of (i)-(v): F_DD
+      model    | chi2/15 (p)          | inner9 outer6 | - best(i-v) | p>0.01
+      LCDM     |    22.51 (9.51e-02) |  10.43  17.63 |     +4.58 | PASS
+      LAW_RTA  |    46.18 (4.97e-05) |  13.87  23.61 |    +28.26 | FAIL
+      EDGE     |   227.37 (5.52e-40) |  93.56  59.75 |   +209.45 | FAIL
+      V1       |    43.44 (1.34e-04) |  13.89  21.95 |    +25.51 | FAIL
+      F_DD     |    17.93 (2.66e-01) |   3.93  18.52 |     +0.00 | PASS
+      CENSUS   |    42.44 (1.93e-04) |  13.21  23.42 |    +24.51 | FAIL  Delta vs best edge +5.01 -> FAIL
+      F_NODD   |    25.16 (4.78e-02) |  13.16  19.39 |     +7.23 | PASS   (reported)
+      LAW_X05  |    38.30 (8.13e-04) |  13.80  19.65 |    +20.38 | FAIL   (reported)
+
+== reported variants (no verdict weight) ==
+  [A] f30 -1 sigma_tot                      : G2f LCDM 22.26 (p 0.101); census Delta +5.24 / +7.80, p 0.000 / 0.001; best x 0.50 / 0.45
+  [A] f30 +1 sigma_tot                      : G2f LCDM 22.69 (p 0.091); census Delta +4.74 / +7.04, p 0.000 / 0.003; best x 0.50 / 0.45
+  [A] sum-of-bins scaling convention        : G2f LCDM 22.85 (p 0.087); census Delta +4.47 / +6.66, p 0.000 / 0.004; best x 0.50 / 0.45
+  [A] E-only scaling (own mixing at HOD f)  : G2f LCDM 23.31 (p 0.078); census Delta +4.90 / +7.26, p 0.000 / 0.003; best x 0.50 / 0.45
+  [A] HOD f (unscaled; CFG503/504 N1)       : G2f LCDM 21.52 (p 0.121); census Delta +6.46 / +9.65, p 0.000 / 0.000; best x 0.50 / 0.45
+  [B] f30 -1 sigma_tot                      : G2f LCDM 22.27 (p 0.101); census Delta +3.27 / +5.35, p 0.000 / 0.000; best x 0.45 / 0.45
+  [B] f30 +1 sigma_tot                      : G2f LCDM 22.77 (p 0.089); census Delta +2.89 / +4.67, p 0.000 / 0.000; best x 0.45 / 0.45
+  [B] sum-of-bins scaling convention        : G2f LCDM 22.96 (p 0.085); census Delta +2.69 / +4.33, p 0.000 / 0.000; best x 0.45 / 0.45
+  [B] E-only scaling (own mixing at HOD f)  : G2f LCDM 23.25 (p 0.079); census Delta +2.99 / +4.80, p 0.000 / 0.000; best x 0.45 / 0.45
+  [B] HOD f (unscaled; CFG503/504 N1)       : G2f LCDM 21.36 (p 0.126); census Delta +4.20 / +7.01, p 0.000 / 0.000; best x 0.45 / 0.45
+
+== VERDICT (frozen rule) ==
+  ENVIRONMENT VALID; valid constructions: ['A', 'B']
+  census edge [canonical]: FAIL  (A: Delta +4.99, chi2 45.57, p 0.000; B: Delta +3.08, chi2 54.10, p 0.000)
+  census edge [alt]: FAIL  (A: Delta +7.42, chi2 35.84, p 0.002; B: Delta +5.01, chi2 42.44, p 0.000)
+  per-model [A, canonical]: LCDM PASS, LAW_RTA FAIL, EDGE FAIL, V1 FAIL, F_DD PASS, CENSUS FAIL
+  per-model [A, alt]: LCDM PASS, LAW_RTA FAIL, EDGE FAIL, V1 FAIL, F_DD PASS, CENSUS FAIL
+  per-model [B, canonical]: LCDM PASS, LAW_RTA FAIL, EDGE FAIL, V1 FAIL, F_DD PASS, CENSUS FAIL
+  per-model [B, alt]: LCDM PASS, LAW_RTA FAIL, EDGE FAIL, V1 FAIL, F_DD PASS, CENSUS FAIL
+  labels: G3 (ALL) FAILS - environment validated for isolated samples only; CFG504's three-gate rule not met; transition PM-calibrated at log M_ta >= 13.5 and extrapolated ~1 dex (construction B, CFG504); nonlinear 2h NOT CROSS-CHECKED BY PM (CFG503)
+
+8/8 checks pass; elapsed 27.3 s
