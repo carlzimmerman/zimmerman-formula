@@ -1,4 +1,4 @@
-# CFG518: growth with the depletion-consistent (census) placement of cold energy. PASS at 256³ on both footings; 512³ PENDING
+# CFG518: growth with the depletion-consistent (census) placement of cold energy. PASS at 256³ on both footings; CONFIRMED at 512³ (canonical)
 
 - **Criteria:** `FROZEN_CRITERIA.md`, committed alone first (9014750d1).
 - **Engine:** `cfg518_pm.py`, a copy of CFG424's `cfg424_pm.py` (RC = 0). The changes are listed in full in the criteria.
@@ -34,11 +34,21 @@ This is the run CFG515 specified. CFG424/425 passed growth with f_ret = 1: the p
 - **K1 control.** K1 reproduces CFG424 TA-can to 9e-9 in max|P−1| and 1e-9 in the σ₈ ratio, so the engine change is clean.
 - **MUTATE analysis** (`_MUTATE.out`). With the no-compensation run in the DC-can slot, the lane drops to PARTIAL, so the decision rule has teeth.
 
-**Frozen verdict: PASS (256³).** The 512³ canonical run, at NSEED 512 against CFG411's 512³ S0, is running detached. It is PENDING.
+**512³ canonical** (seed 359, NSEED 512, against CFG411's 512³ S0):
+
+| run | σ₈ ratio | max\|P−1\| (k ≤ 1) | P/P_S0 at 0.1 / 0.3 / 1 | verdict |
+|---|---|---|---|---|
+| DC-can 512³ (census) | 1.0047 | **0.0285** | 1.004 / 1.019 / 0.981 | GROWTH OK |
+
+- The f_ret = 1 run at 512³ (CFG425 R3) gave 0.033.
+- q_max is 0.49. There is no overdraw, and the cap never acted.
+- The mass-weighted mean f_ret in the catchments is 0.70 at z = 0, with a minimum of 0.43.
+
+**Frozen verdict: PASS (256³), CONFIRMED (512³).**
 
 ## What it means
 
-- **Growth is not hurt by the census placement at 256³.** The excess goes 0.027 → 0.023 (canonical) and 0.029 → 0.030 (alt).
+- **Growth is not hurt by the census placement.** The excess goes 0.027 → 0.023 (canonical) and 0.029 → 0.030 (alt) at 256³, and 0.033 → 0.0285 at 512³.
 - **The result sits at the bottom of CFG515's argued bracket (0.027 to 0.08–0.10), not in the middle.** Two things keep it there:
   - The per-catchment compensation still removes the large-scale source.
   - The retained-baryon phantom is smaller. The total excess Σe, relative to f_ret = 1, is 0.99 at z = 1, 0.83 at z = 0.5 and 0.71 at z = 0.
@@ -60,7 +70,7 @@ This is the run CFG515 specified. CFG424/425 passed growth with f_ret = 1: the p
 ## Compute
 
 - **256³:** four runs at 4 threads each under nice 10, two at a time. Each took about 38 min on a loaded 16-core machine (2.3 ks per run).
-- **512³:** one run at 8 threads.
+- **512³:** one run at 8 threads. It took 33.1 ks wall time (about 9.2 h) on a heavily loaded machine, with about 1.2 cores used on average and a peak RSS of about 21 GB.
 
 ## Run
 
