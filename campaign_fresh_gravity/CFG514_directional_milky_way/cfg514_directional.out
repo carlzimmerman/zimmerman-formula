@@ -1,0 +1,230 @@
+==============================================================================================================
+CFG514 directional Milky Way  PRIMARY
+==============================================================================================================
+grid: 200x200 cells, R,z to 2958 kpc; cell at R0: dR = 0.382 kpc
+
+--- numerical controls
+  [PASS] K1 Newtonian Plummer |g| vs analytic, r = 1-100 kpc, three directions: max dev 2.36e-03 (< 1%)
+  [PASS] K2 QUMOND Plummer |g| vs exact spherical nu(g_N) g_N: max dev 1.22e-03 (< 2%)
+  [PASS] K3a baryon mass on the grid 6.6418e+10 vs direct integral 6.6457e+10 Msun (-0.06%)
+  [FAIL] K3b Newtonian K_z(R0, 1.1)/2piG = 62.0 vs direct column 55.1 Msun/pc^2 (+12.63%)  [K_z also carries the radial-force term, so a few % is expected]
+  baryons alone: M_b = 6.642e+10 Msun, v_c(R0) = 177.3 km/s
+  [PASS] K6 NFW fit converged: log M200 = 11.791 +- 0.04199326322085578, c = 16.10 +- 1.2280614379799988
+  [PASS] K4 [canonical] F0 midplane v_c at 40-60 kpc vs spherical nu(gN)gN: max dev 1.76% (< 3%)
+  [PASS] K4 [alt] F0 midplane v_c at 40-60 kpc vs spherical nu(gN)gN: max dev 1.75% (< 3%)
+  K5 applies to the MUTATE run only
+
+--- rotation-curve fits (Eilers+19, 38 points, sigma = stat (+) 2%)
+  model                 A     chi2 npar  v_c(R0)        M_b    r_M  r_edge  neg ph
+  F0_canonical      1.000    351.2    0    212.3  6.642e+10   9.95    58.2  -0.000
+  FA_canonical      1.221     19.1    1    228.8  8.111e+10  10.99    64.3  -0.000
+  F0e_canonical     1.000    350.7    0    212.3  6.642e+10   9.95    58.2  -0.000
+  FAe_canonical     1.221     19.1    1    228.8  8.110e+10  10.99    64.3  -0.000
+  F0_alt            1.000    140.1    0    217.7  6.642e+10   9.05    52.9  -0.000
+  FA_alt            1.123     30.6    1    227.1  7.457e+10   9.59    56.1  -0.000
+  F0e_alt           1.000    139.9    0    217.7  6.642e+10   9.05    52.9  -0.000
+  FAe_alt           1.122     30.8    1    227.1  7.455e+10   9.59    56.1  -0.000
+  N (NFW)           1.000     14.4    2    230.4   M200 = 6.183e+11, c = 16.10, rs = 11.2 kpc
+
+==============================================================================================================
+O1  K_z,1.1(R) vs Bovy & Rix 2013 (43 MAPs)
+==============================================================================================================
+  data exponential refit (sigma (+) 5%): K0 = 66.4 +- 2.2, h = 2.72 +- 0.15 kpc;  stat-only: K0 = 66.7, h = 2.71 +- 0.14
+  model             chi2(5%)  chi2stat   K(R0)   K0fit      h  dchi2 vs N
+  N                     43.7      52.3    75.2    74.7   3.47
+  baryons               88.5     110.7    62.0    61.7   3.33
+  F0_canonical         144.9     173.6    90.0    89.6   3.95      +101.2
+  FA_canonical         424.5     512.7   104.5   103.9   3.89      +380.8
+  F0e_canonical        144.9     173.6    90.0    89.6   3.95      +101.2
+  FAe_canonical        424.2     512.4   104.5   103.9   3.89      +380.5
+  F0_alt               210.2     252.8    94.8    94.3   4.00      +166.5
+  FA_alt               378.7     457.4   103.1   102.5   3.97      +335.0
+  F0e_alt              210.1     252.7    94.8    94.3   4.00      +166.4
+  FAe_alt              378.2     456.7   103.1   102.5   3.97      +334.5
+  shape (h): data 2.72 +- 0.15; NFW 3.47 (+4.9 sig); F0_canonical 3.95 (+8.0); F0_alt 4.00 (+8.4); FA_canonical 3.89 (+7.6); FA_alt 3.97 (+8.2)
+  O1 VERDICT (frozen dchi2 rule, both footings and F0/FA): FAVOURS NFW
+
+==============================================================================================================
+O2  K_z(z) at R0 (prediction only)
+==============================================================================================================
+  z [kpc]           0.25    0.50    0.75    1.10    1.50    2.00    3.00    4.00     S=K(1.1)/K(4)
+  N                 38.9    55.5    65.6    75.2    83.2    91.0   101.9   108.1       0.695
+  F0_canonical      51.8    71.3    81.6    90.0    96.0   100.8   105.7   106.7       0.844
+  FA_canonical      60.2    82.8    94.8   104.5   111.3   116.8   122.2   123.2       0.848
+  F0e_canonical     51.8    71.3    81.6    90.0    96.0   100.8   105.7   106.7       0.844
+  FAe_canonical     60.2    82.8    94.7   104.5   111.3   116.8   122.2   123.2       0.848
+  F0_alt            54.5    75.0    85.9    94.8   101.1   106.2   111.6   112.9       0.839
+  FA_alt            59.3    81.6    93.4   103.1   109.9   115.4   121.1   122.4       0.842
+  F0e_alt           54.5    75.0    85.9    94.8   101.1   106.2   111.6   112.9       0.839
+  FAe_alt           59.3    81.6    93.4   103.1   109.9   115.4   121.1   122.4       0.842
+  ratio F0_canonical   1.332   1.284   1.244   1.198   1.153   1.107   1.037   0.987
+  ratio FA_canonical   1.547   1.491   1.445   1.390   1.337   1.283   1.199   1.139
+  ratio F0e_canonical   1.332   1.284   1.244   1.198   1.153   1.107   1.037   0.987
+  ratio FAe_canonical   1.546   1.491   1.445   1.390   1.337   1.283   1.199   1.139
+  ratio F0_alt       1.401   1.351   1.309   1.261   1.214   1.167   1.095   1.044
+  ratio FA_alt       1.524   1.470   1.424   1.371   1.320   1.268   1.189   1.132
+  ratio F0e_alt      1.401   1.351   1.309   1.261   1.214   1.167   1.095   1.044
+  ratio FAe_alt      1.524   1.469   1.424   1.371   1.320   1.267   1.188   1.132
+  dark-only vertical force at R0 (framework: total minus Newtonian baryons; NFW: halo):
+  F0_canonical      16.0    21.8    25.1    28.0    30.5    32.9    36.7    39.4   S_dark = 0.711
+  FA_canonical      16.4    22.4    25.7    28.8    31.4    33.9    38.0    41.0   S_dark = 0.703
+  F0_alt            18.7    25.5    29.3    32.8    35.6    38.4    42.6    45.6   S_dark = 0.718
+  N                  3.0     6.1     9.1    13.2    17.8    23.2    32.9    40.8   S_dark = 0.323
+
+==============================================================================================================
+O3  potential flattening q_Phi(r) and dark-density axis ratio (prediction only)
+==============================================================================================================
+  r [kpc]                       10      20      30      50     100
+  N  q_Phi total             0.878   0.962   0.983   0.995   0.999
+  F0_canonical   q_Phi tot    0.768   0.889   0.936   0.974   0.993
+                 q_Phi dark   0.774   0.890   0.937   0.974   0.993
+                 q_rho dark   0.076   0.174   0.240   0.497   0.976
+                 rho pole/plane   0.082   0.081   0.099   0.275   0.955
+  FA_canonical   q_Phi tot    0.768   0.889   0.936   0.974   0.993
+                 q_Phi dark   0.775   0.890   0.937   0.974   0.993
+                 q_rho dark     nan   0.169   0.239   0.498   0.976
+                 rho pole/plane   0.086   0.083   0.100   0.276   0.955
+  F0e_canonical  q_Phi tot    0.769   0.889   0.937   0.976   0.995
+                 q_Phi dark   0.775   0.891   0.938   0.977   0.995
+                 q_rho dark   0.076   0.174   0.240   0.497     nan
+                 rho pole/plane   0.082   0.081   0.099   0.275     nan
+  FAe_canonical  q_Phi tot    0.768   0.889   0.937   0.976   0.995
+                 q_Phi dark   0.775   0.891   0.938   0.976   0.995
+                 q_rho dark     nan   0.169   0.239   0.498     nan
+                 rho pole/plane   0.086   0.083   0.100   0.276     nan
+  F0_alt         q_Phi tot    0.769   0.889   0.936   0.974   0.993
+                 q_Phi dark   0.774   0.890   0.937   0.974   0.993
+                 q_rho dark   0.096   0.177   0.240   0.496   0.976
+                 rho pole/plane   0.079   0.079   0.098   0.273   0.955
+  FA_alt         q_Phi tot    0.769   0.889   0.936   0.974   0.993
+                 q_Phi dark   0.774   0.890   0.937   0.974   0.993
+                 q_rho dark   0.085   0.175   0.240   0.496   0.976
+                 rho pole/plane   0.081   0.080   0.098   0.274   0.955
+  F0e_alt        q_Phi tot    0.769   0.889   0.937   0.977   0.995
+                 q_Phi dark   0.774   0.891   0.938   0.978   0.995
+                 q_rho dark   0.096   0.177   0.240   0.496     nan
+                 rho pole/plane   0.079   0.079   0.098   0.273     nan
+  FAe_alt        q_Phi tot    0.769   0.889   0.937   0.977   0.995
+                 q_Phi dark   0.775   0.891   0.938   0.978   0.995
+                 q_rho dark   0.085   0.175   0.240   0.496     nan
+                 rho pole/plane   0.081   0.080   0.098   0.274     nan
+
+  local dark density at the Sun and dark column |z|<1.1 kpc at R0:
+  F0_canonical     rho_dark(R0,0) = 0.0530 Msun/pc^3   Sigma_dark(|z|<1.1) = 36.0 Msun/pc^2
+  FA_canonical     rho_dark(R0,0) = 0.0547 Msun/pc^3   Sigma_dark(|z|<1.1) = 37.5 Msun/pc^2
+  F0e_canonical    rho_dark(R0,0) = 0.0530 Msun/pc^3   Sigma_dark(|z|<1.1) = 36.0 Msun/pc^2
+  FAe_canonical    rho_dark(R0,0) = 0.0547 Msun/pc^3   Sigma_dark(|z|<1.1) = 37.5 Msun/pc^2
+  F0_alt           rho_dark(R0,0) = 0.0617 Msun/pc^3   Sigma_dark(|z|<1.1) = 41.6 Msun/pc^2
+  FA_alt           rho_dark(R0,0) = 0.0631 Msun/pc^3   Sigma_dark(|z|<1.1) = 42.8 Msun/pc^2
+  F0e_alt          rho_dark(R0,0) = 0.0617 Msun/pc^3   Sigma_dark(|z|<1.1) = 41.6 Msun/pc^2
+  FAe_alt          rho_dark(R0,0) = 0.0631 Msun/pc^3   Sigma_dark(|z|<1.1) = 42.7 Msun/pc^2
+  N                rho_dark(R0,0) = 0.0086 Msun/pc^3   Sigma_dark(|z|<1.1) = 18.8 Msun/pc^2
+
+==============================================================================================================
+O4  halo-star dispersion by Galactocentric latitude: DESI DR1 MWS BHB stars
+==============================================================================================================
+  scanned 6007 rvtab files
+  rows passing the spectroscopic cuts: 1167
+  [primary r 15-40 kpc] stars: pole 138, plane 89
+    measured sigma_pole = 99.5, sigma_plane = 102.4 km/s, ratio = 0.972 +- 0.090
+    q_t=1.0: N 0.9958 | F0_canonical 0.9638 (dF-N -0.0320) | F0_alt 0.9639 (dF-N -0.0319) | FA_canonical 0.9637 (dF-N -0.0321) | FA_alt 0.9638 (dF-N -0.0320)
+    power gate q_t=1.0: |F-N| >= sigma(measured) = 0.090?  CLOSED -> NOT DIAGNOSTIC
+    q_t=0.7: N 1.1194 | F0_canonical 1.0825 (dF-N -0.0369) | F0_alt 1.0829 (dF-N -0.0365) | FA_canonical 1.0821 (dF-N -0.0374) | FA_alt 1.0827 (dF-N -0.0368)
+    power gate q_t=0.7: |F-N| >= sigma(measured) = 0.090?  CLOSED -> NOT DIAGNOSTIC
+  [variant r 10-60 kpc] stars: pole 256, plane 111
+    measured sigma_pole = 94.0, sigma_plane = 106.9 km/s, ratio = 0.880 +- 0.065
+    q_t=1.0: N 0.9517 | F0_canonical 0.9407 (dF-N -0.0111) | F0_alt 0.9418 (dF-N -0.0099) | FA_canonical 0.9393 (dF-N -0.0124) | FA_alt 0.9411 (dF-N -0.0106)
+    power gate q_t=1.0: |F-N| >= sigma(measured) = 0.065?  CLOSED -> NOT DIAGNOSTIC
+    q_t=0.7: N 1.0767 | F0_canonical 1.0641 (dF-N -0.0127) | F0_alt 1.0658 (dF-N -0.0109) | FA_canonical 1.0620 (dF-N -0.0147) | FA_alt 1.0648 (dF-N -0.0120)
+    power gate q_t=0.7: |F-N| >= sigma(measured) = 0.065?  CLOSED -> NOT DIAGNOSTIC
+  O4 VERDICT: NOT DIAGNOSTIC (power gate closed)
+
+==============================================================================================================
+O5  satellites by direction (power argument; no positions on disk)
+==============================================================================================================
+  F0_canonical   V_c(pole)/V_c(plane) at r = 30/50/78/100 kpc: 0.9496 0.9745 0.9889 0.9932
+  F0_alt         V_c(pole)/V_c(plane) at r = 30/50/78/100 kpc: 0.9500 0.9746 0.9890 0.9932
+  FA_canonical   V_c(pole)/V_c(plane) at r = 30/50/78/100 kpc: 0.9491 0.9744 0.9889 0.9932
+  N              V_c(pole)/V_c(plane) at r = 30/50/78/100 kpc: 0.9796 0.9928 0.9977 0.9987
+  largest |F - N| = 0.0305 vs half-sample error 0.131: below
+
+==============================================================================================================
+O6  Shapiro delay and gravitational redshift by direction (prediction only)
+==============================================================================================================
+  differential Shapiro delay to D = 1 kpc relative to the NGP direction [days]:
+    N             GC    +0.105 anticentre    -0.069 Baade    +0.105 LMC    +0.020 SMC    +0.038 M31    -0.031
+    F0_canonical  GC    +0.095 anticentre    -0.052 Baade    +0.095 LMC    +0.020 SMC    +0.035 M31    -0.021
+    F0_alt        GC    +0.100 anticentre    -0.055 Baade    +0.100 LMC    +0.021 SMC    +0.037 M31    -0.023
+    FA_canonical  GC    +0.111 anticentre    -0.060 Baade    +0.110 LMC    +0.024 SMC    +0.040 M31    -0.025
+  differential Shapiro delay to D = 8 kpc relative to the NGP direction [days]:
+    N             GC   +11.041 anticentre    -2.116 Baade   +10.470 LMC    +0.821 SMC    +1.715 M31    -1.066
+    F0_canonical  GC    +9.635 anticentre    -1.423 Baade    +9.077 LMC    +0.870 SMC    +1.492 M31    -0.615
+    F0_alt        GC   +10.024 anticentre    -1.512 Baade    +9.456 LMC    +0.920 SMC    +1.577 M31    -0.653
+    FA_canonical  GC   +11.326 anticentre    -1.635 Baade   +10.656 LMC    +1.004 SMC    +1.723 M31    -0.707
+  differential Shapiro delay to D = 50 kpc relative to the NGP direction [days]:
+    N             GC   +41.362 anticentre   -10.525 Baade   +39.337 LMC    +3.256 SMC    +7.440 M31    -5.487
+    F0_canonical  GC   +38.184 anticentre    -7.616 Baade   +35.979 LMC    +3.851 SMC    +6.857 M31    -3.426
+    F0_alt        GC   +40.336 anticentre    -8.212 Baade   +38.063 LMC    +4.134 SMC    +7.358 M31    -3.692
+    FA_canonical  GC   +44.145 anticentre    -8.603 Baade   +41.528 LMC    +4.373 SMC    +7.787 M31    -3.872
+  gravitational redshift (Phi_source - Phi_sun)/c [km/s] and Phi difference F - N:
+    N             LMC(50) +0.2553 NGP 20 kpc +0.1596 GC 20 kpc +0.0654 M31-dir 100 kpc +0.3207
+    F0_canonical  LMC(50) +0.2338 NGP 20 kpc +0.1471 GC 20 kpc +0.0562 M31-dir 100 kpc +0.3103
+    F0_alt        LMC(50) +0.2508 NGP 20 kpc +0.1568 GC 20 kpc +0.0594 M31-dir 100 kpc +0.3343
+    FA_canonical  LMC(50) +0.2656 NGP 20 kpc +0.1684 GC 20 kpc +0.0649 M31-dir 100 kpc +0.3508
+    F-N F0_canonicalLMC(50) -21.5 m/s NGP 20 kpc -12.5 m/s GC 20 kpc -9.1 m/s M31-dir 100 kpc -10.4 m/s
+    F-N F0_alt    LMC(50) -4.5 m/s NGP 20 kpc -2.8 m/s GC 20 kpc -5.9 m/s M31-dir 100 kpc +13.7 m/s
+    F-N FA_canonicalLMC(50) +10.3 m/s NGP 20 kpc +8.7 m/s GC 20 kpc -0.4 m/s M31-dir 100 kpc +30.1 m/s
+
+==============================================================================================================
+O7  microlensing optical depth (smooth cold energy and CDM both give tau_dark = 0)
+==============================================================================================================
+  Baade(8.5)       tau_stars = 1.48e-06;  tau_dark if compact: tau_dark_if_compact_N 3.76e-07, tau_dark_if_compact_F0_canonical 2.74e-07, tau_dark_if_compact_F0_alt 3.34e-07
+  LMC(50)          tau_stars = 2.11e-08;  tau_dark if compact: tau_dark_if_compact_N 3.93e-07, tau_dark_if_compact_F0_canonical 3.28e-07, tau_dark_if_compact_F0_alt 3.63e-07
+  SMC(62)          tau_stars = 1.56e-08;  tau_dark if compact: tau_dark_if_compact_N 5.66e-07, tau_dark_if_compact_F0_canonical 4.28e-07, tau_dark_if_compact_F0_alt 4.75e-07
+  M31(MW to 300)   tau_stars = 2.76e-08;  tau_dark if compact: tau_dark_if_compact_N 4.87e-07, tau_dark_if_compact_F0_canonical 6.90e-07, tau_dark_if_compact_F0_alt 7.61e-07
+
+==============================================================================================================
+O8/O9  dark convergence (to 300 kpc) and dark column (to 100 kpc) over the sky
+==============================================================================================================
+  N              column(<100 kpc) [Msun/pc^2]: pole 101.4, plane 188.3 (x1.86), GC-dir 578.1, anticentre 59.7 (x9.68) | kappa mean 9.99e-07, dipole |9.20e-07|, quad_z -3.44e-07
+  F0_canonical   column(<100 kpc) [Msun/pc^2]: pole 89.4, plane 290.2 (x3.25), GC-dir 519.9, anticentre 170.3 (x3.05) | kappa mean 1.28e-06, dipole |6.20e-07|, quad_z -4.02e-07
+  F0_alt         column(<100 kpc) [Msun/pc^2]: pole 100.0, plane 336.8 (x3.37), GC-dir 618.4, anticentre 194.0 (x3.19) | kappa mean 1.42e-06, dipole |7.07e-07|, quad_z -4.67e-07
+  FA_canonical   column(<100 kpc) [Msun/pc^2]: pole 96.7, plane 300.7 (x3.11), GC-dir 523.6, anticentre 180.3 (x2.90) | kappa mean 1.39e-06, dipole |6.56e-07|, quad_z -4.16e-07
+
+==============================================================================================================
+O10 enclosed mass vs Bird+2022 (radial) and the zero-knob edge
+==============================================================================================================
+  F0_canonical     M(<52) = 3.81 (z -0.21), M(<73) = 5.22 (z +0.82) e11; sum z^2 = 0.71; V_c,sph(78 kpc) = 174.9 km/s
+  FA_canonical     M(<52) = 4.26 (z +0.12), M(<73) = 5.81 (z +1.34) e11; sum z^2 = 1.81; V_c,sph(78 kpc) = 184.5 km/s
+  F0e_canonical    M(<52) = 3.81 (z -0.21), M(<73) = 4.24 (z -0.06) e11; sum z^2 = 0.05; V_c,sph(78 kpc) = 152.9 km/s
+  FAe_canonical    M(<52) = 4.26 (z +0.12), M(<73) = 5.17 (z +0.78) e11; sum z^2 = 0.62; V_c,sph(78 kpc) = 168.9 km/s
+  F0_alt           M(<52) = 4.16 (z +0.04), M(<73) = 5.70 (z +1.24) e11; sum z^2 = 1.55; V_c,sph(78 kpc) = 182.9 km/s
+  FA_alt           M(<52) = 4.43 (z +0.24), M(<73) = 6.06 (z +1.57) e11; sum z^2 = 2.51; V_c,sph(78 kpc) = 188.6 km/s
+  F0e_alt          M(<52) = 4.15 (z +0.04), M(<73) = 4.23 (z -0.06) e11; sum z^2 = 0.00; V_c,sph(78 kpc) = 152.8 km/s
+  FAe_alt          M(<52) = 4.43 (z +0.24), M(<73) = 4.75 (z +0.40) e11; sum z^2 = 0.22; V_c,sph(78 kpc) = 161.8 km/s
+  N                M(<52) = 3.63 (z -0.35), M(<73) = 4.42 (z +0.11) e11; sum z^2 = 0.13; V_c,sph(78 kpc) = 159.0 km/s
+  O10 VERDICT (no edge): NOT DIAGNOSTIC;  with the edge: NOT DIAGNOSTIC
+
+==============================================================================================================
+RANKING: D_now = |F-N|/sigma_now, D_DR4 = |F-N|/sigma_DR4 (declared, unsourced sigma_DR4)
+==============================================================================================================
+  F0_canonical   O1 now  10.1, DR4  43.0 | O2 DR4  19.0 (shape S  5.0) | O3 DR4   2.2 | O4 now  0.35, DR4  1.12 | O5 now 0.234
+  FA_canonical   O1 now  19.5, DR4  77.1 | O2 DR4  35.6 (shape S  5.2) | O3 DR4   2.2 | O4 now  0.36, DR4  1.12 | O5 now 0.234
+  F0_alt         O1 now  12.9, DR4  55.3 | O2 DR4  24.3 (shape S  4.9) | O3 DR4   2.2 | O4 now  0.35, DR4  1.12 | O5 now 0.234
+  FA_alt         O1 now  18.3, DR4  74.9 | O2 DR4  34.0 (shape S  5.0) | O3 DR4   2.2 | O4 now  0.35, DR4  1.12 | O5 now 0.234
+
+figure: cfg514_directional.png
+
+checks: 6/7 pass;  run time 169 s
+VERDICTS: {
+ "O1": "FAVOURS NFW",
+ "O2": "NOT DIAGNOSTIC (prediction only; no K_z(z) table on disk)",
+ "O3": "NOT DIAGNOSTIC (prediction only; stream constraints not on disk)",
+ "O4": "NOT DIAGNOSTIC (power gate closed)",
+ "O5": "NOT DIAGNOSTIC (predicted gap below the half-sample error; positions not on disk)",
+ "O6": "NOT DIAGNOSTIC (no measurement; static delays have no reference; redshifts degenerate with systemic velocity)",
+ "O7": "NOT DIAGNOSTIC (tau_dark = 0 in both: a smooth field and CDM particles do not microlens)",
+ "O8": "NOT DIAGNOSTIC (kappa ~1e-6 with an unobservable uniform part)",
+ "O10": "NOT DIAGNOSTIC",
+ "O10_edge": "NOT DIAGNOSTIC"
+}
