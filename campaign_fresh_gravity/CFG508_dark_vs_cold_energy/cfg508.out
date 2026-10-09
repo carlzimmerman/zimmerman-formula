@@ -1,0 +1,129 @@
+==============================================================================================================
+CFG508: dark energy vs cold energy -- difference and unity (criteria 7e07bbe99)
+==============================================================================================================
+Planck 2018: h 0.6736, Omega_b 0.04930, Omega_c 0.26447, Omega_m 0.31377, R = Omega_c/Omega_b = 5.364
+footings (reported only; ratios are footing-independent): a0 canonical 9.3603e-11, alt 1.1312e-10
+CAMB LCDM P_lin at z = [0.0, 0.295, 0.5, 0.51, 0.706, 0.919, 1.0, 1.317, 1.491, 1.5] (kmax 10 h/Mpc)
+solver runs: 59 models, total 4.1 s CPU
+  [PASS] K1 alpha = 0 reproduces the LCDM growth ODE (D, f, both tracers) at z = 0, 0.5, 1.5: max dev 5.61e-08 (< 1e-4)
+  [PASS] K2 solver vs stock CLASS, fluid cs2 = 1e-6, delta_fld ratio at z = 0, k = 0.1/0.3/1: mine 0.9383/0.5452/0.0108, CLASS 0.9377/0.5419/0.0069; max |dev| 0.0033 (<= 0.02); CLASS Omega_L 0.6861 vs mine 0.6862
+  [PASS] K4 LCDM chi2 (ShapeFit+BAO) = 4.559 vs L181's 4.56 (|d| < 0.01)
+
+T1 per model (Delta chi2 vs LCDM on DESI DR1 ShapeFit+BAO; growth cut = CFG361 on z = 0 linear P):
+  model           cs2_today |    baryon: dchi2  s8r   maxP |    total: dchi2  s8r   maxP | T1a  T1b  [nfev, s]
+  a-3.16e-05      -2.28e-05 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [518]
+  a-5.62e-05      -4.06e-05 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [527]
+  a-1.00e-04      -7.22e-05 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [521]
+  a-1.78e-04      -1.28e-04 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [515]
+  a-3.16e-04      -2.28e-04 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [524]
+  a-5.62e-04      -4.06e-04 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [521]
+  a-1.00e-03      -7.21e-04 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [521]
+  a-1.78e-03      -1.28e-03 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [509]
+  a-3.16e-03      -2.28e-03 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [509]
+  a-5.62e-03      -4.05e-03 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [497]
+  a-1.00e-02      -7.18e-03 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [497]
+  a-1.78e-02      -1.27e-02 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [509]
+  a-3.16e-02      -2.25e-02 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [497]
+  a-5.62e-02      -3.94e-02 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [497]
+  a-1.00e-01      -6.84e-02 | LINEAR BLOW-UP (imaginary sound speed; delta > 1e12 x initial before z = 0) -> EXCL FAIL [485]
+  LCDM             0.00e+00 |     +0.00 1.0000  0.000 |     -0.00 1.0000  0.000 | ok   ok   [194, 0.0]
+  a+1.00e-08       7.22e-09 |     +0.00 1.0000  0.001 |     +0.01 0.9996  0.014 | ok   ok   [194, 0.0]
+  a+1.78e-08       1.28e-08 |     +0.00 1.0000  0.001 |     +0.01 0.9993  0.024 | ok   ok   [194, 0.0]
+  a+3.16e-08       2.28e-08 |     +0.00 0.9999  0.003 |     +0.03 0.9987  0.043 | ok   ok   [194, 0.0]
+  a+5.62e-08       4.06e-08 |     +0.00 0.9999  0.005 |     +0.05 0.9977  0.075 | ok   ok   [194, 0.0]
+  a+1.00e-07       7.22e-08 |     +0.00 0.9998  0.008 |     +0.09 0.9959  0.130 | ok   ok   [194, 0.0]
+  a+1.78e-07       1.28e-07 |     +0.01 0.9996  0.014 |     +0.18 0.9928  0.221 | ok   ok   [209, 0.0]
+  a+3.16e-07       2.28e-07 |     +0.02 0.9992  0.025 |     +0.35 0.9874  0.362 | ok   ok   [209, 0.0]
+  a+5.62e-07       4.06e-07 |     +0.03 0.9986  0.044 |     +0.74 0.9783  0.560 | ok   ok   [221, 0.0]
+  a+1.00e-06       7.22e-07 |     +0.05 0.9976  0.075 |     +1.60 0.9629  0.784 | ok   ok   [260, 0.0]
+  a+1.78e-06       1.28e-06 |     +0.09 0.9958  0.123 |     +3.62 0.9376  0.952 | ok   FAIL [284, 0.0]
+  a+3.16e-06       2.28e-06 |     +0.18 0.9927  0.193 |     +8.19 0.8975  1.000 | ok   FAIL [299, 0.0]
+  a+5.62e-06       4.06e-06 |     +0.35 0.9875  0.281 |    +17.61 0.8371  1.000 | ok   FAIL [344, 0.0]
+  a+1.00e-05       7.22e-06 |     +0.72 0.9791  0.374 |    +32.92 0.7539  1.000 | ok   FAIL [431, 0.0]
+  a+1.78e-05       1.28e-05 |     +1.53 0.9658  0.457 |    +47.50 0.6521  1.000 | ok   FAIL [482, 0.0]
+  a+3.16e-05       2.28e-05 |     +3.28 0.9460  0.535 |    +49.47 0.5421  1.000 | ok   FAIL [581, 0.0]
+  a+5.62e-05       4.06e-05 |     +6.95 0.9185  0.604 |    +39.98 0.4373  1.000 | ok   FAIL [674, 0.0]
+  a+1.00e-04       7.22e-05 |    +14.00 0.8836  0.665 |    +23.31 0.3467  1.000 | EXCL FAIL [830, 0.0]
+  a+1.78e-04       1.28e-04 |    +26.10 0.8424  0.718 |     +7.31 0.2727  1.000 | ok   FAIL [1046, 0.0]
+  a+3.16e-04       2.28e-04 |    +44.54 0.7967  0.764 |     +1.64 0.2149  1.000 | ok   FAIL [1337, 0.1]
+  a+5.62e-04       4.06e-04 |    +69.65 0.7482  0.803 |     +0.38 0.1737  1.000 | ok   FAIL [1652, 0.1]
+  a+1.00e-03       7.22e-04 |   +100.52 0.6985  0.836 |     +1.99 0.1411  1.000 | ok   FAIL [2219, 0.1]
+  a+1.78e-03       1.28e-03 |   +135.19 0.6490  0.864 |     +0.13 0.1206  1.000 | ok   FAIL [2771, 0.1]
+  a+3.16e-03       2.29e-03 |   +171.38 0.6007  0.887 |     +8.24 0.1055  1.000 | ok   FAIL [3650, 0.1]
+  a+5.62e-03       4.07e-03 |   +206.89 0.5546  0.906 |     +8.38 0.0892  1.000 | ok   FAIL [4814, 0.2]
+  a+1.00e-02       7.25e-03 |   +240.08 0.5114  0.922 |    +12.80 0.0862  1.000 | EXCL FAIL [6311, 0.3]
+  a+1.78e-02       1.29e-02 |   +269.72 0.4720  0.934 |    +12.43 0.0740  1.000 | EXCL FAIL [8336, 0.4]
+  a+3.16e-02       2.32e-02 |   +294.78 0.4375  0.943 |     +7.55 0.0724  1.000 | ok   FAIL [11045, 0.5]
+  a+5.62e-02       4.17e-02 |   +314.47 0.4096  0.950 |     +7.83 0.0658  1.000 | ok   FAIL [14567, 0.6]
+  a+1.00e-01       7.55e-02 |   +327.13 0.3908  0.953 |    +15.27 0.0638  1.000 | EXCL FAIL [19235, 0.8]
+  a-1.00e-08      -7.22e-09 |     -0.00 1.0000  0.001 |     -0.01 1.0004  0.014 | ok   ok   [194, 0.0]
+  a-1.78e-08      -1.28e-08 |     -0.00 1.0000  0.001 |     -0.01 1.0007  0.025 | ok   ok   [194, 0.0]
+  a-3.16e-08      -2.28e-08 |     -0.00 1.0001  0.003 |     -0.02 1.0013  0.044 | ok   ok   [194, 0.0]
+  a-5.62e-08      -4.06e-08 |     -0.00 1.0001  0.005 |     -0.04 1.0024  0.080 | ok   ok   [194, 0.0]
+  a-1.00e-07      -7.22e-08 |     -0.00 1.0003  0.008 |     -0.07 1.0043  0.147 | ok   ok   [194, 0.0]
+  a-1.78e-07      -1.28e-07 |     -0.01 1.0004  0.015 |     -0.11 1.0077  0.273 | ok   ok   [194, 0.0]
+  a-3.16e-07      -2.28e-07 |     -0.01 1.0008  0.027 |     -0.13 1.0142  0.528 | ok   ok   [194, 0.0]
+  a-5.62e-07      -4.06e-07 |     -0.02 1.0014  0.050 |     +0.07 1.0276  1.094 | ok   ok   [230, 0.0]
+  a-1.00e-06      -7.22e-07 |     -0.04 1.0026  0.092 |     +2.16 1.0649  2.563 | ok   ok   [245, 0.0]
+  a-1.78e-06      -1.28e-06 |     -0.07 1.0049  0.180 |    +39.49 1.3161  7.506 | ok   FAIL [269, 0.0]
+  a-3.16e-06      -2.28e-06 |     -0.06 1.0105  0.378 |  +1596.30 4.9374 32.516 | ok   FAIL [308, 0.0]
+  a-5.62e-06      -4.06e-06 |     +1.50 1.0748  0.943 | +141807.36 67.8514 264.639 | ok   FAIL [359, 0.0]
+  a-1.00e-05      -7.22e-06 |   +496.44 6.4917  3.466 | +49211070.13 2665.9286 5369.229 | EXCL FAIL [416, 0.0]
+  a-1.78e-05      -1.28e-05 | +497874.88 497.6050 33.267 | +126605770847.30 401741.1241 374096.664 | EXCL FAIL [491, 0.0]
+
+T1a (DESI DR1 f sigma8, both tracers) allowed alpha: +side up to 5.62e-05 (first excluded 0.0001), -side down to -5.62e-06 (first excluded 1e-05)
+T1b (CFG361 growth cut) allowed alpha: +side up to 1.00e-06 (first failing 1.778279410038923e-06), -side down to -1.00e-06 (first failing 1.778279410038923e-06)
+  DISCLOSED: T1a +side has NOT-excluded grid points beyond the first exclusion (non-contiguous allowed set): 1.78e-04, 3.16e-04, 5.62e-04, 1.00e-03, 1.78e-03, 3.16e-03, 5.62e-03, 3.16e-02, 5.62e-02; max not excluded 5.62e-02
+T1a AND T1b together: allowed alpha in [-1.00e-06, 1.00e-06] (grid), all contiguous: True
+
+T2 background (DESI DR2 w0wa chains, 2-D Gaussian; observer assumes non-interacting dust omega_c):
+  [PASS] K3 alpha = 0 -> (w0, wa) = (-1.00e+00+(-1), -2.52e-15)
+  chain cmb         : <w0> -0.418 +- 0.205, <wa> -1.751 +- 0.580, rho -0.98
+  chain pantheonplus: <w0> -0.838 +- 0.055, <wa> -0.617 +- 0.208, rho -0.89
+  chain union3      : <w0> -0.667 +- 0.088, <wa> -1.085 +- 0.293, rho -0.93
+  chain desy5       : <w0> -0.752 +- 0.057, <wa> -0.861 +- 0.221, rho -0.91
+  best alpha for cmb         : +0.0501 -> (w0, wa)_eff = (-1.024, -0.037), dchi2 vs alpha=0 -0.58 (CPL resid 6.5e-04, min rho_DE,eff +0.590)
+  best alpha for pantheonplus: -0.0100 -> (w0, wa)_eff = (-0.995, +0.007), dchi2 vs alpha=0 -0.06 (CPL resid 1.1e-04, min rho_DE,eff +0.686)
+  best alpha for union3      : -0.0200 -> (w0, wa)_eff = (-0.990, +0.014), dchi2 vs alpha=0 -0.22 (CPL resid 2.2e-04, min rho_DE,eff +0.686)
+  best alpha for desy5       : -0.0501 -> (w0, wa)_eff = (-0.974, +0.034), dchi2 vs alpha=0 -2.16 (CPL resid 5.0e-04, min rho_DE,eff +0.686)
+  DESI-PREFERS-U-A (dchi2 <= -4 on all three SN chains at each chain's best alpha): False
+  at T1a bound alpha = +5.62e-05: (w0, wa)_eff = (-1.000028, -0.000040); dchi2 vs alpha=0: cmb -0.0015, pantheonplus +0.0008, union3 +0.0011, desy5 +0.0045
+  at T1a bound alpha = -5.62e-06: (w0, wa)_eff = (-0.999997, +0.000004); dchi2 vs alpha=0: cmb +0.0001, pantheonplus -0.0001, union3 -0.0001, desy5 -0.0004
+
+  a0(z)/a0(0) = sqrt(rho_v(z)/rho_v(0)) in the U-X decomposition (H2 / w=-1: 1 exactly):
+    T1a bound +            alpha +5.62e-05: z=1 0.999970, z=2 0.999941, z=2.5 0.999929
+    T1a bound -            alpha -5.62e-06: z=1 1.000003, z=2 1.000006, z=2.5 1.000007
+    DESI best pantheonplus alpha -1.00e-02: z=1 1.005437, z=2 1.010608, z=2.5 1.012778
+    DESI best union3       alpha -2.00e-02: z=1 1.010914, z=2 1.021301, z=2.5 1.025675
+    DESI best desy5        alpha -5.01e-02: z=1 1.027933, z=2 1.054566, z=2.5 1.065904
+    DESI pantheonplus non-interacting a0(2.5)/a0(0) = sqrt(rho_DE ratio): 0.827 [0.755, 0.899]
+    DESI union3       non-interacting a0(2.5)/a0(0) = sqrt(rho_DE ratio): 0.782 [0.704, 0.860]
+    DESI desy5        non-interacting a0(2.5)/a0(0) = sqrt(rho_DE ratio): 0.798 [0.725, 0.872]
+
+  ISW proxy: dlnPhi/dlna (LCDM vs U-A at the T1a bound; 0 = no ISW):
+    LCDM          : z=0.0: k0.01 -0.4738, k0.1 -0.4738; z=0.5: k0.01 -0.2397, k0.1 -0.2397; z=1.0: k0.01 -0.1237, k0.1 -0.1237
+    a+5.62e-05    : z=0.0: k0.01 -0.4836, k0.1 -1.7072; z=0.5: k0.01 -0.2451, k0.1 -0.8467; z=1.0: k0.01 -0.1263, k0.1 -0.3993
+
+T3 fixed ratio rho_c/rho_DE across epochs (cold energy non-interacting, CPL rho_DE; DESI DR2 chains):
+  cmb         : r(z)/r(0) median [95%]: z=0.5 2.42 [1.92,3.15], z=1 6.56 [5.24,8.40], z=2 38.06 [28.04,54.24] -> U-R fails
+  pantheonplus: r(z)/r(0) median [95%]: z=0.5 3.17 [2.96,3.38], z=1 8.16 [7.35,9.11], z=2 35.03 [27.42,46.51] -> U-R fails
+  union3      : r(z)/r(0) median [95%]: z=0.5 2.85 [2.56,3.16], z=1 7.51 [6.60,8.54], z=2 36.49 [27.88,50.53] -> U-R fails
+  desy5       : r(z)/r(0) median [95%]: z=0.5 3.01 [2.82,3.21], z=1 7.86 [7.09,8.76], z=2 36.18 [28.04,48.74] -> U-R fails
+  U-R (fixed ratio): EXCLUDED
+  [PASS] K5 scrambled cosmology (200 draws R' in [3,8]): ratio drift independent of R' (max rel change 5.6e-16); false U-R passes 0/200
+
+POST-FREEZE checks (labelled, no verdict weight):
+  P1 alpha 1.78e-03: fluid velocity at z=0.51, rtol 1e-7 vs 1e-9: max rel diff 5.8e-06 (islands are not a solver artefact if small)
+  P1 alpha 3.16e-02: fluid velocity at z=0.51, rtol 1e-7 vs 1e-9: max rel diff 1.8e-05 (islands are not a solver artefact if small)
+  P1b alpha 1.78e-03, k=0.1, z=0.51: baryon velocity / LCDM +0.420, fluid velocity / LCDM +1.437, fluid delta / LCDM +0.049 -> the total tracer is carried by acoustic flow of the fluid
+  P2 alpha -3.16e-05: k <= 0.2 only: baryon delta / LCDM at z=0.51: k=0.05 1, k=0.1 1.01, k=0.2 1.02
+  P2 alpha -1.00e-04: k <= 0.2 only: baryon delta / LCDM at z=0.51: k=0.05 1, k=0.1 1.02, k=0.2 1.08
+  P2 alpha -1.00e-03: k <= 0.2 only: baryon delta / LCDM at z=0.51: k=0.05 1.05, k=0.1 1.27, k=0.2 5.09
+
+T4 (record read; see README): U-F -- no committed lane fixes Omega_c from the field's constants (CFG428 one Bose field DEAD; CFG288/CFG360 amount free; CFG496 0/15 clues). U-0 -- identical to H2 by construction, 2 dark constants (= H2).
+  frozen-rule input: T1a max |alpha| not excluded = 5.62e-02 -> bound below 1e-3: False (contiguous-from-zero bound 5.62e-05)
+
+LANE VERDICT (frozen rule): NOT DECIDABLE (U-A bound looser than 1e-3 or U-R not excluded; see output)
+
+controls: K1 PASS, K2 PASS, K3 PASS, K4 PASS, K5 PASS   [8 s]
+kappa = 1/2 FITTED; the cold energy's mass is still required; no dark-matter particle claimed; not theory closed.

@@ -1,0 +1,24 @@
+==============================================================================================================
+CFG508 MUTATE: dark energy vs cold energy -- difference and unity (criteria 7e07bbe99)
+==============================================================================================================
+Planck 2018: h 0.6736, Omega_b 0.04930, Omega_c 0.26447, Omega_m 0.31377, R = Omega_c/Omega_b = 5.364
+footings (reported only; ratios are footing-independent): a0 canonical 9.3603e-11, alt 1.1312e-10
+CAMB LCDM P_lin at z = [0.0, 0.295, 0.5, 0.51, 0.706, 0.919, 1.0, 1.317, 1.491, 1.5] (kmax 10 h/Mpc)
+solver runs: 2 models, total 0.8 s CPU
+  [PASS] K1 alpha = 0 reproduces the LCDM growth ODE (D, f, both tracers) at z = 0, 0.5, 1.5: max dev 5.61e-08 (< 1e-4)
+  [PASS] K2 solver vs stock CLASS, fluid cs2 = 1e-6, delta_fld ratio at z = 0, k = 0.1/0.3/1: mine 0.9383/0.5452/0.0108, CLASS 0.9377/0.5419/0.0069; max |dev| 0.0033 (<= 0.02); CLASS Omega_L 0.6861 vs mine 0.6862
+  [PASS] K4 LCDM chi2 (ShapeFit+BAO) = 4.559 vs L181's 4.56 (|d| < 0.01)
+
+T1 per model (Delta chi2 vs LCDM on DESI DR1 ShapeFit+BAO; growth cut = CFG361 on z = 0 linear P):
+  model           cs2_today |    baryon: dchi2  s8r   maxP |    total: dchi2  s8r   maxP | T1a  T1b  [nfev, s]
+  LCDM             0.00e+00 |     +0.00 1.0000  0.000 |     -0.00 1.0000  0.000 | ok   ok   [194, 0.0]
+  MUT_cs2_0.01     1.00e-02 |   +504.05 0.0559  0.998 |   +480.75 0.0090  1.000 | EXCL FAIL [21542, 0.8]
+
+MUTATE: unified fluid with constant c_s^2 = 0.01: T1a EXCLUDED (dchi2 baryon +504.1, total +480.8); T1b FAILS CUT
+  ISW proxy dlnPhi/dlna z=0.0: k=0.01 -0.623, k=0.1 -2.374; LCDM -0.474
+  ISW proxy dlnPhi/dlna z=0.5: k=0.01 +0.204, k=0.1 -0.774; LCDM -0.240
+  ISW proxy dlnPhi/dlna z=1.0: k=0.01 -0.077, k=0.1 -3.308; LCDM -0.124
+MUTATE OK: the power-spectrum test excludes c_s^2 = 0.01
+
+controls: K1 PASS, K2 PASS, K4 PASS   [4 s]
+kappa = 1/2 FITTED; the cold energy's mass is still required; no dark-matter particle claimed; not theory closed.
