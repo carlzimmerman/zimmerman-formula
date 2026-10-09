@@ -1,0 +1,30 @@
+CFG520 calibration (FROZEN_CRITERIA.md sections 1-2; criteria commit 6d184c37d).
+
+1. Target: CFG519's parent (ALL candidates) satellite fraction S_IC per (log M*, z) cell, from CFG519's own state and cell code (C_T check);
+   T_a = W-weighted over z 0.1-0.4 for a = [10.50, 10.75), [10.75, 11.00).
+2. Fit the occupation constant B (primary; alpha = 1) on the two S0 512^3 catalogues ONLY; CAL-OK; declared (B, alpha) fallback.
+3. C_A: drawn catalogue vs expectation. Blindness: list of files opened.
+MUTATE (CFG520_MUTATE=1): the same procedure with every target doubled (M2X); writes cfg520_calib_results_MUTATE.json.
+mode: MUTATE M2X (targets doubled)
+  [PASS] C_T target code reproduces CFG519's f_ALL_parent and ISO f_IC (1e-9): parent 0.3133864615, ISO 0.2234274645
+
+CFG519 parent (ALL) satellite fraction S_IC per (log M*, z_phot) cell, colour pooled with the ALL weight (12-region jackknife):
+  log M*       | z 0.1-0.2 | z 0.2-0.3 | z 0.3-0.4 | z 0.4-0.5
+   8.50- 9.50 | 0.289+-0.011 | 0.235+-0.011 | 0.137+-0.199 | 0.278+-0.010
+   9.50-10.00 | 0.340+-0.010 | 0.220+-0.007 | 0.196+-0.019 | 0.246+-0.007
+  10.00-10.25 | 0.382+-0.012 | 0.283+-0.008 | 0.170+-0.016 | 0.240+-0.006
+  10.25-10.50 | 0.365+-0.015 | 0.319+-0.009 | 0.241+-0.014 | 0.146+-0.044
+  10.50-10.75 | 0.359+-0.014 | 0.328+-0.007 | 0.298+-0.009 | 0.180+-0.028
+  10.75-11.00 | 0.320+-0.026 | 0.312+-0.010 | 0.305+-0.007 | 0.220+-0.013
+targets T_a (z 0.1-0.4): [10.50, 10.75) 0.3251 +- 0.0043; [10.75, 11.00) 0.3094 +- 0.0052; stack-P ISO weight shares [0.478, 0.522]
+MUTATE M2X: targets doubled -> [0.6502, 0.6187]
+
+B = 17 (CFG506) on the S0 catalogues: f_box [0.5936, 0.3734]
+primary (alpha = 1): B* = 5.349 (log 0.7283); f_box [0.7068, 0.5869] vs T [0.6502, 0.6187]; weighted mean 0.6443 vs 0.6338 -> CAL-OK False
+primary fails CAL-OK -> declared fallback (B, alpha)
+fallback: alpha* = 0.76, B* = 3.172; f_box [0.6838, 0.588] vs T [0.6502, 0.6187]; weighted mean 0.6338 vs 0.6338 -> CAL-OK True
+  [PASS] C_A [S0512_359] drawn vs expected parent fraction within 0.01 per calibration bin: drawn [0.6881, 0.5862], expected [0.683, 0.5854]
+  [S0512_359] m_lim,box 10.06; log M_min(10.5) 12.33, (11.0) 13.19; parent fraction per 0.1 dex (expected) 10.0: 0.882, 10.1: 0.850, 10.2: 0.814, 10.3: 0.778, 10.4: 0.746, 10.5: 0.709, 10.6: 0.671, 10.7: 0.636, 10.8: 0.590, 10.9: 0.552, 11.0: 0.506
+  [PASS] C_A [S0512_360] drawn vs expected parent fraction within 0.01 per calibration bin: drawn [0.6901, 0.5908], expected [0.6845, 0.5907]
+  [S0512_360] m_lim,box 10.08; log M_min(10.5) 12.32, (11.0) 13.18; parent fraction per 0.1 dex (expected) 10.0: 0.884, 10.1: 0.853, 10.2: 0.817, 10.3: 0.783, 10.4: 0.746, 10.5: 0.711, 10.6: 0.672, 10.7: 0.635, 10.8: 0.596, 10.9: 0.558, 11.0: 0.514
+  [PASS] blindness: only S0 catalogues, CFG519 state, CFG502 staging opened (no TA box, no shear/ESD file): cfg519_work/cfg519_state.npz; cfg502_work/cfg502_stage.npz; cfg506_work/cfg506_box_S0512_359.npz; cfg506_work/cfg506_box_S0512_360.npz
