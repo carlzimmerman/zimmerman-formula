@@ -137,6 +137,21 @@ for k, kw in (("PROXY", dict(lw=2.2, ls=(0, (5, 3)))), ("H(z)", dict(lw=2.8)), (
 ax.text(4.42, 7.9, r"$a_0$ grows with $H(z)$", color=LAW["H(z)"], fontsize=12.5, ha="right", fontweight="bold")
 ax.text(5.95, 4.1, r"$\Lambda$CDM proxy", color=LAW["PROXY"], fontsize=11, ha="right", fontweight="bold")
 ax.text(5.95, 1.0, r"constant $a_0$", color=LAW["FLAT"], fontsize=12.5, ha="right", fontweight="bold", va="bottom")
+# CFG565 (0254fc320; forward note 9138c2b4f): LCDM + DC14 feedback cores, emergent full-RAR g-dagger(z)/g-dagger(0) with its 16-84% band.
+# A FULL-RAR fit (outer, halo-dominated radii included); through inner-disc estimators it shrinks to ~0.17 dex at z ~ 2 (CFG566).
+FBC = "#8c510a"
+J565 = json.load(open(os.path.join(CFG, "CFG565_feedback_gdagger_vs_z", "cfg565_gdagger_z_results.json")))
+zf = np.array([0.0, 1.0, 2.0, 2.5]); rf = np.array([1.0] + [J565["res"][k]["median"] for k in ("1.0", "2.0", "2.5")])
+lf = np.array([1.0] + [J565["res"][k]["p16"] for k in ("1.0", "2.0", "2.5")]); hf = np.array([1.0] + [J565["res"][k]["p84"] for k in ("1.0", "2.0", "2.5")])
+check("CFG565 feedback-LCDM full-RAR g-dagger ratios 1.20 / 2.82 / 4.88 at z = 1 / 2 / 2.5", [round(x, 2) for x in rf[1:]] == [1.2, 2.82, 4.88])
+zfi = np.linspace(0, 2.5, 60)
+ax.fill_between(zfi, np.interp(zfi, zf, lf) * U, np.interp(zfi, zf, hf) * U, color=FBC, alpha=0.10, lw=0, zorder=1)
+ax.plot(zfi, np.interp(zfi, zf, rf) * U, color=FBC, lw=2.4, ls=(0, (6, 2, 1.5, 2)), zorder=2)
+ax.text(2.55, 4.88 * U * 0.80, "ΛCDM + feedback\n(full-RAR fit, CFG565)", color=FBC, fontsize=10, fontweight="bold", ha="left", va="top")
+# The separation window: with self-calibrated discs (~0.1 dex per galaxy) a 3-sigma split needs ~0.3 dex; the DE-tracking law separates from
+# a0 ~ H(z) and from full-RAR feedback-LCDM by >= ~0.3 dex from z ~ 1.2-1.5 on (0.38 / ~0.28 dex at z 1.5; 0.54 / 0.51 at z 2).
+ax.axvspan(1.2, 2.0, color="#ffd166", alpha=0.18, zorder=0.5, lw=0)
+ax.text(1.3, 27.0, "best window", ha="center", va="center", fontsize=9.5, color="#8a6d00", fontweight="bold")
 ax.fill_between([XLO, 0.08], U, ALT / 1e-10, color="#444", zorder=6, lw=0)
 ax.text(-0.08, 0.60, "today\n(SPARC)", fontsize=9.5, color="#333", ha="left", va="center")
 ax.plot([0.0, 0.0], [0.70, 0.90], color="#888", lw=0.8)
