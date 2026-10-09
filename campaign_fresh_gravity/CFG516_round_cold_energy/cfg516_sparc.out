@@ -1,0 +1,78 @@
+==============================================================================================================
+CFG516 Parts 2+3  SPARC: round enclosed-mass rule vs full QUMOND; edge-on vertical predictions
+==============================================================================================================
+  galaxies (Q <= 2): 163
+
+--- controls
+  [PASS] S3 QUMOND Plummer (M 1e9, b 1 kpc) on the scale-free grid at u = 0.4 kpc, r = 0.5-20 kpc: max dev 0.09% (< 2%)
+  S5 (info) near-Kuzmin MN disc: QUMOND/algebraic in-plane at R = 1,2,4,8,15,30 kpc: 0.806 0.894 0.947 0.978 0.992 0.997
+  ... 10/163 galaxies (1 s)
+  ... 20/163 galaxies (3 s)
+  ... 30/163 galaxies (4 s)
+  ... 40/163 galaxies (6 s)
+  ... 50/163 galaxies (7 s)
+  ... 60/163 galaxies (9 s)
+  ... 70/163 galaxies (10 s)
+  ... 80/163 galaxies (11 s)
+  ... 90/163 galaxies (13 s)
+  ... 100/163 galaxies (14 s)
+  ... 110/163 galaxies (16 s)
+  ... 120/163 galaxies (17 s)
+  ... 130/163 galaxies (19 s)
+  ... 140/163 galaxies (20 s)
+  ... 150/163 galaxies (21 s)
+  ... 160/163 galaxies (23 s)
+  [PASS] S1 grid baryons vs rotmod V_bar: median per-galaxy rms |V_grid/V_bar - 1| = 4.41% (<= 5%); 90th pct 11.4%, worst UGC01281 47.8%
+  [PASS] S2 [canonical] ALG on grid baryons vs ALG on rotmod V_bar: weighted rms difference 0.0118 dex (<= 0.02)
+  [PASS] S2 [alt] ALG on grid baryons vs ALG on rotmod V_bar: weighted rms difference 0.0116 dex (<= 0.02)
+  [PASS] S4 RM-phi identity: phantom enclosed mass by Gauss flux vs cell sum at R_last/2, R_last (first 8 galaxies): max dev 1.85% (< 3%)
+
+==============================================================================================================
+PART 2: weighted rms of log g_obs - log g_model (weights (V/eV)^2), all points of all galaxies
+==============================================================================================================
+  points used: 3244 in 163 galaxies (points with any non-positive model or g_bar dropped from ALL models alike)
+  a0 = 9.36e-11 (canonical): ALG_rotmod 0.1117 (mean +0.056)  ALG 0.1125 (mean +0.057)  PD 0.1203 (mean +0.068)  RMphi 0.1205 (mean +0.073)  RMv 0.1062 (mean +0.037)
+  a0 = 1.13e-10 (alt): ALG_rotmod 0.1005 (mean +0.028)  ALG 0.1014 (mean +0.029)  PD 0.1073 (mean +0.041)  RMphi 0.1060 (mean +0.046)  RMv 0.0999 (mean +0.010)
+  a0 free  ALG   : a0 = 1.341e-10  rms = 0.0978  kappa_canonical = 0.716  kappa_alt = 0.593
+  a0 free  PD    : a0 = 1.441e-10  rms = 0.1004  kappa_canonical = 0.770  kappa_alt = 0.638
+  a0 free  RMphi : a0 = 1.520e-10  rms = 0.0957  kappa_canonical = 0.812  kappa_alt = 0.673
+  a0 free  RMv   : a0 = 1.204e-10  rms = 0.0995  kappa_canonical = 0.643  kappa_alt = 0.533
+
+  SPARC rule: rms(RM) <= rms(PD) + 0.02 dex at canonical, alt and a0 free
+  RMphi: d rms canonical +0.0003  alt -0.0013  free -0.0047  -> PASS;  dlog a0_fit vs PD +0.023 dex
+  RMv: d rms canonical -0.0141  alt -0.0074  free -0.0009  -> PASS;  dlog a0_fit vs PD -0.078 dex  KAPPA MOVES
+
+  V1 (post-run variant, disclosed): only points whose grid V_bar matches rotmod within 5%
+  points kept: 2872 of 3244
+  canonical: ALG 0.1112  PD 0.1188  RMphi 0.1195  RMv 0.1037
+  alt: ALG 0.0997  PD 0.1054  RMphi 0.1045  RMv 0.0971
+  a0 free ALG   : a0 = 1.351e-10, rms 0.0957, kappa_canonical 0.722, kappa_alt 0.598
+  a0 free PD    : a0 = 1.449e-10, rms 0.0981, kappa_canonical 0.774, kappa_alt 0.641
+  a0 free RMphi : a0 = 1.531e-10, rms 0.0935, kappa_canonical 0.818, kappa_alt 0.677
+  a0 free RMv   : a0 = 1.208e-10, rms 0.0966, kappa_canonical 0.645, kappa_alt 0.535
+  V1 RMphi: d rms canonical +0.0007 alt -0.0009 free -0.0046 -> PASS
+  V1 RMv: d rms canonical -0.0151 alt -0.0083 free -0.0015 -> PASS
+
+  median per-galaxy in-plane acceleration ratios (fixed footings):
+  canonical: RMphi/PD 1.0048   RMv/PD 1.0917   PD/ALG 0.9409
+  alt: RMphi/PD 1.0049   RMv/PD 1.0925   PD/ALG 0.9392
+
+==============================================================================================================
+PART 3: edge-on vertical structure, PD (phantom disc) vs RM (round), prediction only
+==============================================================================================================
+  ratios PD/RM: nu_z^2 (midplane vertical frequency^2, from K_z at 0.25 h_z) and K_z(h_z);
+  stellar sigma_z at fixed scale height ~ sqrt(K_z) -> ratio sqrt; HI thickness at fixed sigma_HI ~ 1/nu_z -> ratio RM/PD of h_HI = sqrt(nu_z2_PD/nu_z2_RM)
+  canonical R=2Rd   all (n=163): RMphi: nu_z^2 PD/RM 2.41 [1.46-3.69], sigma_z PD/RM 1.450, h_HI RM/PD 1.55  RMv: nu_z^2 PD/RM 2.29 [1.45-3.67], sigma_z PD/RM 1.406, h_HI RM/PD 1.51
+  canonical R=2Rd   HSB (n= 72): RMphi: nu_z^2 PD/RM 1.60 [1.28-1.87], sigma_z PD/RM 1.221, h_HI RM/PD 1.26  RMv: nu_z^2 PD/RM 1.57 [1.27-1.85], sigma_z PD/RM 1.205, h_HI RM/PD 1.25
+  canonical R=2Rd   LSB (n= 91): RMphi: nu_z^2 PD/RM 3.30 [2.55-4.26], sigma_z PD/RM 1.661, h_HI RM/PD 1.82  RMv: nu_z^2 PD/RM 3.22 [2.50-4.24], sigma_z PD/RM 1.636, h_HI RM/PD 1.80
+  canonical R=Rlast all (n=163): RMphi: nu_z^2 PD/RM 3.34 [1.89-4.52], sigma_z PD/RM 1.694, h_HI RM/PD 1.83  RMv: nu_z^2 PD/RM 3.12 [1.84-4.38], sigma_z PD/RM 1.616, h_HI RM/PD 1.77
+  canonical R=Rlast HSB (n= 72): RMphi: nu_z^2 PD/RM 2.36 [1.67-4.12], sigma_z PD/RM 1.475, h_HI RM/PD 1.54  RMv: nu_z^2 PD/RM 2.30 [1.60-4.04], sigma_z PD/RM 1.428, h_HI RM/PD 1.52
+  canonical R=Rlast LSB (n= 91): RMphi: nu_z^2 PD/RM 3.55 [2.74-4.78], sigma_z PD/RM 1.753, h_HI RM/PD 1.89  RMv: nu_z^2 PD/RM 3.36 [2.50-4.58], sigma_z PD/RM 1.655, h_HI RM/PD 1.83
+  alt       R=2Rd   all (n=163): RMphi: nu_z^2 PD/RM 2.55 [1.54-3.97], sigma_z PD/RM 1.484, h_HI RM/PD 1.60  RMv: nu_z^2 PD/RM 2.44 [1.52-3.95], sigma_z PD/RM 1.445, h_HI RM/PD 1.56
+  alt       R=2Rd   HSB (n= 72): RMphi: nu_z^2 PD/RM 1.69 [1.33-1.98], sigma_z PD/RM 1.247, h_HI RM/PD 1.30  RMv: nu_z^2 PD/RM 1.64 [1.32-1.96], sigma_z PD/RM 1.229, h_HI RM/PD 1.28
+  alt       R=2Rd   LSB (n= 91): RMphi: nu_z^2 PD/RM 3.54 [2.72-4.59], sigma_z PD/RM 1.704, h_HI RM/PD 1.88  RMv: nu_z^2 PD/RM 3.44 [2.66-4.53], sigma_z PD/RM 1.674, h_HI RM/PD 1.86
+  alt       R=Rlast all (n=163): RMphi: nu_z^2 PD/RM 3.53 [1.99-4.87], sigma_z PD/RM 1.733, h_HI RM/PD 1.88  RMv: nu_z^2 PD/RM 3.28 [1.94-4.64], sigma_z PD/RM 1.648, h_HI RM/PD 1.81
+  alt       R=Rlast HSB (n= 72): RMphi: nu_z^2 PD/RM 2.48 [1.73-4.41], sigma_z PD/RM 1.509, h_HI RM/PD 1.58  RMv: nu_z^2 PD/RM 2.40 [1.65-4.30], sigma_z PD/RM 1.454, h_HI RM/PD 1.55
+  alt       R=Rlast LSB (n= 91): RMphi: nu_z^2 PD/RM 3.74 [2.87-5.10], sigma_z PD/RM 1.795, h_HI RM/PD 1.93  RMv: nu_z^2 PD/RM 3.59 [2.62-4.88], sigma_z PD/RM 1.699, h_HI RM/PD 1.90
+
+checks: 5/5 pass; runtime 23 s
