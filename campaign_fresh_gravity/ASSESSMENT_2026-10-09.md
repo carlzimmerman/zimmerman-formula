@@ -6,7 +6,7 @@
 | front | result | lanes |
 |---|---|---|
 | Structure growth, zero-knob rule | 16/16 runs GROWTH OK, including two 512³ realisations; the broken control fails | CFG424–427, 439, 460; PAPER45 v2.1 |
-| Growth with the census (depletion-consistent) placement | 256³ GROWTH OK on both footings (σ8 1.0028 / 1.0036, max\|P−1\| 0.023 / 0.030); MUTATE TENSION 0.139; K1 reproduces CFG424 to 1e-8. 512³ PENDING | CFG518 |
+| Growth with the census (depletion-consistent) placement | 256³ GROWTH OK on both footings (σ8 1.0028 / 1.0036, max\|P−1\| 0.023 / 0.030); MUTATE TENSION 0.139; K1 reproduces CFG424 to 1e-8. **512³ CONFIRMED** (σ8 1.0047, max\|P−1\| 0.0285). Scope: resolved hosts are groups/clusters (census f_ret 0.43–0.90); the f_ret ≈ 0.10 galaxy regime is untested | CFG518 |
 | Rotation curves (SPARC) | the census edge passes; round enclosed-mass rule within 0.02 dex of full QUMOND | CFG515, 516 |
 | Milky Way vertical force | round cold energy beats the QUMOND phantom disc in 32/32 cells; MUTATE restores the rejection | CFG514, 516 |
 | Early-type lensing levels | pass with the census edge (−0.05 / −0.12 vs B1) | CFG515 |
@@ -47,4 +47,4 @@
   - edge-on σ_z and HI flaring (round rule vs phantom disc ×1.6–3.6).
 
 ## Bottom line
-The growth clash is close to dissolved. Census placement keeps growth OK at 256³ while fixing early-type lensing, SPARC, satellites and clusters. Two numbers still miss: Local Group timing and KiDS on the alt footing. The lensing environment ruler is the remaining measurement problem. Its satellite input is now measured (0.223). With that input the edge stays about 300 worse than the best framework lens, and the native ruler needs a finer box (1024³ or a zoom) before it can judge.
+The growth clash is close to dissolved. Census placement keeps growth OK (256³ both footings, 512³ confirmed; group-scale hosts only) while fixing early-type lensing, SPARC, satellites and clusters. Two numbers still miss: Local Group timing and KiDS on the alt footing. The lensing environment ruler is the remaining measurement problem. Its satellite input is now measured (0.223). With that input the edge stays about 300 worse than the best framework lens, and the native ruler needs a finer box (1024³ or a zoom) before it can judge.
