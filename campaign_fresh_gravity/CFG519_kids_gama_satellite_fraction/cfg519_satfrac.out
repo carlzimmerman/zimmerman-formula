@@ -1,0 +1,76 @@
+CFG519: observed satellite (leakage) fraction and spectroscopic companion count of the KiDS isolated lenses (stack P, W = 10)
+from the KiDS-bright x GAMA DR4 G3C v10 overlap (G09 / G12 / G15).  Criteria: FROZEN_CRITERIA.md (ff98baf04), committed alone first.
+
+Pure data: no gravity model is evaluated; the a0 footings (canonical 9.3603e-11, alt 1.1312e-10 m/s^2; kappa = 1/2 FITTED) do not enter.
+Inputs: ../_external_data/cfg502_work/cfg502_stage.npz (ISO / ALL lenses, WW, photometric companion counts),
+        real_research/data/lensing_rar/KiDS_DR4_brightsample*.fits (pool), ../_external_data/cfg519_work/G3C*v10.csv (CFG471's logged fetch).
+MUTATE (CFG519_MUTATE=1): M1 G3C redshifts shuffled within each field; M2 KiDS RA shifted +1 deg inside each field before matching.
+
+mode: MAIN
+a0 footings: irrelevant here (pure data); kappa = 1/2 is FITTED elsewhere; nothing here evaluates a gravity model.
+
+== C1 / C2: staging and pool
+  [PASS] C1 ISO count and weights = staging: ISO 181,477, ALL 605,531, f30 57,265
+  [PASS] C2 rebuilt pool reproduces the staging lenses exactly: pool 661,720; lens candidates 605,531
+
+== C3: G3C files (CFG471's logged fetch, copied)
+  [PASS] C3 SHA-256 of both G3C files = CFG471 FETCH_LOG: G3CGalv10.csv ok; G3CFoFGroupv10.csv ok
+  G3CGal rows 204,110; in G09/G12/G15 184,081; grouped 0.408
+  KiDS pool in the three fields: 133,906
+  matched (1.5 arcsec, one-to-one): 92,386 of 133,906 in-field pool (0.690); 76 duplicate claims dropped
+  [PASS] (reported) C4 match quality (median sep < 0.5 arcsec): median sep 0.129"; photo-z NMAD 0.0171, bias -0.0004, |dz|/(1+z) > 0.15: 0.0014
+
+  ISO lenses in overlap 34,541 (of 181,477), matched 20,294 (0.588); ALL in overlap 121,489, matched 83,311
+  pool completeness (mean over z cells): r 17.0-17.5: 0.560, r 18.0-18.5: 0.781, r 19.0-19.5: 0.948, r 19.5-20.0: 0.350
+
+== pair searches
+  spec pairs stored: 134,771 (matched lenses 20,294)
+  [PASS] C2b inner photometric companion counts on overlap lenses = CFG502's cin: 34,541 lenses
+  share of the photometric companion excess on overlap lenses in completeness cells c < 0.1: 0.074
+
+== results (stack-P weighted, completeness-reweighted to the full 181,477-lens stack; 12-region jackknife)
+  weight share in cells with >= 20 matched lenses: 0.996; defined after fallback: 1.000
+  f_IC                      0.2234 +- 0.0034
+  f_BCG                     0.2249 +- 0.0033
+  f_N3                      0.1319 +- 0.0034
+  f_raw                     0.2258 +- 0.0037
+  f_ALL_parent              0.3134 +- 0.0033
+  f_ALL_on_isocells         0.2952 +- 0.0028
+  f30                       0.1686 +- 0.0060
+  iso_over_all              0.7570 +- 0.0092
+  C_spec_sub                0.1246 +- 0.0046
+  C_spec2000_sub            0.1264 +- 0.0048
+  C_phot_sub                0.1981 +- 0.0098
+  C_phot_overlap_all_sub    0.2112 +- 0.0087
+  C_diff_sub               -0.0734 +- 0.0071
+  C_spec_all                0.1373 +- 0.0039
+  C_spec2000_all            0.1384 +- 0.0037
+  C_phot_all                0.2376 +- 0.0115
+  C_phot_overlap_all_all    0.2527 +- 0.0116
+  C_diff_all               -0.1003 +- 0.0089
+  f_pair_raw                0.1137 +- 0.0018
+  f_pair                    0.0929 +- 0.0019
+
+  f_sat (S_IC) per (log M*, z_phot) cell [typ combined with stack-P weights; n matched]:
+    log M*  8.50- 9.50: 0.202 (650)  0.181 (174)  0.199 (12)  0.199 (0)
+    log M*  9.50-10.00: 0.205 (813)  0.160 (1079)  0.136 (163)  0.157 (8)
+    log M* 10.00-10.25: 0.229 (500)  0.218 (1075)  0.167 (223)  0.179 (7)
+    log M* 10.25-10.50: 0.212 (536)  0.253 (1923)  0.208 (776)  0.056 (51)
+    log M* 10.50-10.75: 0.243 (343)  0.237 (2603)  0.243 (2326)  0.143 (278)
+    log M* 10.75-11.00: 0.153 (126)  0.216 (1561)  0.236 (4108)  0.189 (959)
+
+== C5 / C6
+  [PASS] C5 GAMA-area photo-z representative (|p_10,in - p_10,out| <= 0.02, z < 0.3): p_10 in 0.0750, out 0.0701
+  ISO pass fraction: overlap 0.284, outside fields 0.304
+  C6 veto efficiency, G3C satellite vs its matched iterative centre (z<0.3): 0.1031 of 6,981 qualifying pairs; ISO share of these satellites 0.156
+  C6 veto efficiency, G3C satellite vs its matched iterative centre (all z): 0.0991 of 9,507 qualifying pairs; ISO share of these satellites 0.216
+
+== verdicts (frozen rules)
+  V1 f_obs = 0.2234 +- 0.0044 (stat 0.0034, sys 0.0028) vs CFG502_HOD 0.171: 11.75 sigma -> EXCLUDED
+  V1 f_obs = 0.2234 +- 0.0044 (stat 0.0034, sys 0.0028) vs CFG503 0.181: 9.65 sigma -> EXCLUDED
+  V1 f_obs = 0.2234 +- 0.0044 (stat 0.0034, sys 0.0028) vs CFG506_F 0.343: 27.02 sigma -> EXCLUDED
+  V1 f_obs = 0.2234 +- 0.0044 (stat 0.0034, sys 0.0028) vs CFG506_P 0.432: 46.86 sigma -> EXCLUDED
+  -> CFG506 box galaxy-halo rule needs re-calibration: YES; CFG502/503 leakage input confirmed: NO (LEAKAGE INPUT CONTRADICTED)
+  V2 C_spec (log M* >= 10.44) = 0.1246 +- 0.0046; / 0.313 = 0.398 -> box prediction NOT CONSISTENT; C_phot same lenses 0.1981; |diff| = 10.31 sigma -> photometric excess QUESTIONED
+
+labels: none; elapsed 28 s
