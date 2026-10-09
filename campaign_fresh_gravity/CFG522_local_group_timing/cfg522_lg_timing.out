@@ -1,0 +1,93 @@
+CFG522 -- the Local Group timing miss of CFG515 (d): data re-check (D1-D6), mechanisms (M1 shared catchment, M2 extended-body
+mutual force, M3 law between the pair [reference], M4 time dependence [scope + reported bracket]), verdict per FROZEN_CRITERIA.md
+(committed alone first, d38a869bc).
+CFG515's cfg515_mw.py is executed read-only up to its CFG513 cross-check (it in turn executes CFG513's script read-only): this gives
+the Prof class (nu_mono phantom = settled cold energy, numeric edge), the CFG513 radial timing integrator, the Fritz+18 satellites
+and CFG515's cell() (the strict statistic).  kappa = 1/2 FITTED; footings never pooled; a0 flat.  External numbers are PROVISIONAL
+literature recalls (FROZEN_CRITERIA.md section 1); nothing is downloaded.
+MUTATE (CFG522_MUTATE=1): T1 M31 x 0.3, T2 law-on between the halos on top of cold energy, T3 double-counted supply; each must FAIL.
+  FROZEN_CRITERIA.md sha256 d64f6ff1ac2d93dbfeb626592f66e9f18e1dc22f06fa6eb57590539a2e98add8
+
+== Controls
+  [PASS] K1 fast integrator reproduces CFG515 census v and f_ret=1 z (0.5 km/s / 0.3): canonical: v -168.68 (CFG515 -168.68), f=1 z -22.82; alt: v -168.82 (CFG515 -168.82), f=1 z -22.82
+  [PASS] K2 radial integrator (Lambda = 0, point mass 4e12) vs analytic Kepler cycloid: mass within 0.5%: v_num -103.148, v_analytic -103.148; Kepler mass from v_num 4.0000e+12 (+0.000%)
+  [PASS] K3 mutual-force quadrature: well-separated (d = 20 Mpc) gives G M1 M2/d^2 within 1e-3: ratio 0.999993
+  [PASS] K4 2-D integrator at v_tan = 0.5 km/s reproduces the radial integrator within 0.5 km/s: radial -168.68, 2-D -168.68
+  [PASS] K5 vdM12 solar motion reproduces v_r = -109.3 within 1.5 km/s (tangential term neglected): -110.20 km/s
+
+== D1 v_r re-derivation
+    vdM12_solar: v_r = -110.20 km/s (shift vs -109.3: -0.90)
+    modern_R0_8.178: v_r = -112.32 km/s (shift vs -109.3: -3.02)
+    modern_R0_8.277: v_r = -109.95 km/s (shift vs -109.3: -0.65)
+    D1 data issue: False
+
+== D2 distance (census-individual, radial, z_meas)
+    [canonical] D 730.0: v -184.0 z +17.0; D 752.0: v -177.1 z +15.4; D 761.0: v -174.4 z +14.8; D 770.0: v -171.7 z +14.2; D 785.0: v -167.2 z +13.2; D 810.0: v -160.0 z +11.5
+    [alt] D 730.0: v -184.1 z +17.0; D 752.0: v -177.3 z +15.4; D 761.0: v -174.5 z +14.8; D 770.0: v -171.8 z +14.2; D 785.0: v -167.3 z +13.2; D 810.0: v -160.1 z +11.6
+    D2 data issue: False
+
+== D3 tangential motion (census-individual, z vs -109.3 +- 4.4)
+    [canonical] vt 17.0: v -167.9 z +13.3; vt 34.3: v -165.7 z +12.8; vt 57.0: v -160.5 z +11.6; vt 82.4: v -151.4 z +9.6; vt 113.6: v -134.7 z +5.8
+    [alt] vt 17.0: v -168.1 z +13.4; vt 34.3: v -165.9 z +12.9; vt 57.0: v -160.7 z +11.7; vt 82.4: v -151.6 z +9.6; vt 113.6: v -134.9 z +5.8
+    D3 data issue: False
+
+== D4/D5 barycentres (projections on the GC->M31 line)
+    v_LMC . n = -231.8 km/s (LMC moves away from M31 along the line); v_GSR(M33) - v_GSR(M31) = +74.3 km/s (radial only)
+
+== D6 census inputs and turnaround radii (CFG416 constants)
+    MW              : M_b 6.00e+10, f_ret 0.1000 (floor), log M_ta 12.411 [Msun/h], R_ta 1249 kpc
+    M31             : M_b 1.20e+11, f_ret 0.1357 (ramp), log M_ta 12.579 [Msun/h], R_ta 1421 kpc
+    MW+M31          : M_b 1.80e+11, f_ret 0.1704 (ramp), log M_ta 12.656 [Msun/h], R_ta 1507 kpc
+    MW7.3e10        : M_b 7.30e+10, f_ret 0.1000 (floor), log M_ta 12.496 [Msun/h], R_ta 1333 kpc
+    MW7.3e10+M31    : M_b 1.93e+11, f_ret 0.1768 (ramp), log M_ta 12.671 [Msun/h], R_ta 1524 kpc
+    MW+M31+M33+LMC  : M_b 1.91e+11, f_ret 0.1759 (ramp), log M_ta 12.669 [Msun/h], R_ta 1522 kpc
+    M33             : M_b 8.00e+09, f_ret 0.1000 (floor), log M_ta 11.536 [Msun/h], R_ta 638 kpc
+    M1 precondition (a census turnaround sphere contains the other galaxy): True
+
+== Census-individual (the miss) and f_ret = 1, full statistics
+    [canonical] census-individual: M 3.28e+12+4.86e+12; edges 512/535 kpc; v_rad -168.7 (z_meas +13.50); v(vt 82.4) -151.4, sigma_full 19.2 (D 12.8, vt 13.7) z_full +2.19; LMC f 0.042 -> v_obs -99.5, z_full,LMC +2.70; (reported) +M33 f 0.082 -> v_obs -93.4, z +3.01
+    [canonical] f_ret = 1: M 3.82e+11+7.64e+11; edges 55/78 kpc; v_rad -8.9 (z_meas -22.82); v(vt 82.4) nan, sigma_full nan (D nan, vt nan) z_full +inf; LMC f 0.361 -> v_obs -25.5, z_full,LMC +inf; (reported) +M33 f 0.364 -> v_obs 1.5, z +inf
+    [alt      ] census-individual: M 3.28e+12+4.86e+12; edges 466/487 kpc; v_rad -168.8 (z_meas +13.53); v(vt 82.4) -151.6, sigma_full 19.3 (D 12.8, vt 13.7) z_full +2.20; LMC f 0.042 -> v_obs -99.5, z_full,LMC +2.70; (reported) +M33 f 0.082 -> v_obs -93.4, z +3.02
+    [alt      ] f_ret = 1: M 3.82e+11+7.64e+11; edges 50/71 kpc; v_rad -8.9 (z_meas -22.82); v(vt 82.4) nan, sigma_full nan (D nan, vt nan) z_full +inf; LMC f 0.361 -> v_obs -25.5, z_full,LMC +inf; (reported) +M33 f 0.364 -> v_obs 1.5, z +inf
+
+== M1 shared catchment: f_LG = fret_census(M_b,MW + M_b,M31) = 0.1704
+    [canonical] CFG515 cell at f_LG: v -128.54 (z +4.37); D +2.89; unbound 4/39; edges 302/427 kpc
+    [canonical] M1 shared: M 1.95e+12+3.90e+12; edges 302/427 kpc; v_rad -128.5 (z_meas +4.37); v(vt 82.4) -107.0, sigma_full 21.9 (D 11.8, vt 18.0) z_full -0.11; LMC f 0.071 -> v_obs -92.9, z_full,LMC +0.64; (reported) +M33 f 0.101 -> v_obs -85.4, z +0.98
+      reported: MW 7.3e10 -> f_LG 0.1768, v -132.39 (z +5.25); +M33+LMC baryons in the census -> f_LG 0.1759, v -125.19 (z +3.61) [only the catchment value changes]
+    [alt      ] CFG515 cell at f_LG: v -128.62 (z +4.39); D +2.52; unbound 4/39; edges 275/389 kpc
+    [alt      ] M1 shared: M 1.95e+12+3.90e+12; edges 275/389 kpc; v_rad -128.6 (z_meas +4.39); v(vt 82.4) -107.1, sigma_full 22.0 (D 11.8, vt 18.1) z_full -0.10; LMC f 0.071 -> v_obs -92.9, z_full,LMC +0.64; (reported) +M33 f 0.101 -> v_obs -85.4, z +0.98
+      reported: MW 7.3e10 -> f_LG 0.1768, v -132.47 (z +5.27); +M33+LMC baryons in the census -> f_LG 0.1759, v -125.28 (z +3.63) [only the catchment value changes]
+    M1 strict pass (both footings): False
+
+== M2 extended-body mutual force
+    [canonical] at 780 kpc exact/shortcut acceleration = 0.9766
+    [canonical] M2 census-individual, exact mutual force: M 3.28e+12+4.86e+12; edges 512/535 kpc; v_rad -167.1 (z_meas +13.13); v(vt 82.4) -150.1, sigma_full 18.9 (D 12.4, vt 13.5) z_full +2.16; LMC f 0.042 -> v_obs -99.5, z_full,LMC +2.68; (reported) +M33 f 0.082 -> v_obs -93.4, z +3.00
+    [canonical] M2 on M1 (reported): M 1.95e+12+3.90e+12; edges 302/427 kpc; v_rad -127.9 (z_meas +4.23); v(vt 82.4) -106.8, sigma_full 21.7 (D 11.7, vt 17.7) z_full -0.12; LMC f 0.071 -> v_obs -92.9, z_full,LMC +0.64; (reported) +M33 f 0.101 -> v_obs -85.4, z +0.99
+    [alt] at 780 kpc exact/shortcut acceleration = 0.9918
+    [alt      ] M2 census-individual, exact mutual force: M 3.28e+12+4.86e+12; edges 466/487 kpc; v_rad -167.8 (z_meas +13.29); v(vt 82.4) -150.9, sigma_full 19.0 (D 12.6, vt 13.5) z_full +2.19; LMC f 0.042 -> v_obs -99.5, z_full,LMC +2.70; (reported) +M33 f 0.082 -> v_obs -93.4, z +3.02
+    [alt      ] M2 on M1 (reported): M 1.95e+12+3.90e+12; edges 275/389 kpc; v_rad -128.1 (z_meas +4.28); v(vt 82.4) -106.9, sigma_full 21.8 (D 11.7, vt 17.8) z_full -0.11; LMC f 0.071 -> v_obs -92.9, z_full,LMC +0.64; (reported) +M33 f 0.101 -> v_obs -85.4, z +0.99
+
+== M3 (a) law on between the pair, baryons only, EFE-free (reference, not candidate B)
+    [canonical] test-mass nu_mono: v -222.6 (z +25.7); deep-MOND two-body: v -178.0 (z +15.6)
+    [alt] test-mass nu_mono: v -241.5 (z +30.0); deep-MOND two-body: v -194.4 (z +19.3)
+
+== M4 time dependence: a0 flat (identity); reported bracket M_cold(t) ~ t/t0 (census-individual, no verdict weight)
+    [canonical] v -132.9 (z +5.4)
+    [alt] v -133.0 (z +5.4)
+
+== POST HOC (reported, no verdict weight, not a fit): common f_ret scan, canonical; which totals keep |z_full,LMC| <= 3
+    [canonical] common f_ret 0.08: M 4.08e+12+8.17e+12; edges 639/903 kpc; v_rad -226.8 (z_meas +26.70); v(vt 82.4) -213.2, sigma_full 17.3 (D 13.1, vt 10.5) z_full +6.00; LMC f 0.034 -> v_obs -101.5, z_full,LMC +6.45; (reported) +M33 f 0.051 -> v_obs -97.7, z +6.67
+    [canonical] common f_ret 0.1: M 3.28e+12+6.56e+12; edges 512/724 kpc; v_rad -194.8 (z_meas +19.44); v(vt 82.4) -179.5, sigma_full 18.6 (D 13.5, vt 12.0) z_full +3.77; LMC f 0.042 -> v_obs -99.5, z_full,LMC +4.30; (reported) +M33 f 0.063 -> v_obs -94.9, z +4.55
+    [canonical] common f_ret 0.12: M 2.74e+12+5.48e+12; edges 427/604 kpc; v_rad -170.0 (z_meas +13.80); v(vt 82.4) -152.8, sigma_full 19.2 (D 12.8, vt 13.6) z_full +2.27; LMC f 0.050 -> v_obs -97.6, z_full,LMC +2.87; (reported) +M33 f 0.074 -> v_obs -92.1, z +3.16
+    [canonical] common f_ret 0.14: M 2.36e+12+4.72e+12; edges 367/519 kpc; v_rad -150.8 (z_meas +9.43); v(vt 82.4) -131.9, sigma_full 20.1 (D 12.3, vt 15.3) z_full +1.12; LMC f 0.059 -> v_obs -95.7, z_full,LMC +1.80; (reported) +M33 f 0.085 -> v_obs -89.4, z +2.11
+    [canonical] common f_ret 0.17: M 1.95e+12+3.91e+12; edges 303/428 kpc; v_rad -128.8 (z_meas +4.43); v(vt 82.4) -107.3, sigma_full 21.9 (D 11.8, vt 17.9) z_full -0.09; LMC f 0.071 -> v_obs -92.9, z_full,LMC +0.66; (reported) +M33 f 0.101 -> v_obs -85.4, z +1.00
+    [canonical] common f_ret 0.2: M 1.67e+12+3.34e+12; edges 258/365 kpc; v_rad -112.1 (z_meas +0.64); v(vt 82.4) -88.0, sigma_full 24.3 (D 11.4, vt 21.0) z_full -0.88; LMC f 0.083 -> v_obs -90.1, z_full,LMC -0.09; (reported) +M33 f 0.116 -> v_obs -81.5, z +0.27
+    [canonical] common f_ret 0.25: M 1.35e+12+2.69e+12; edges 208/293 kpc; v_rad -91.5 (z_meas -4.04); v(vt 82.4) -63.0, sigma_full 29.4 (D 11.1, vt 26.9) z_full -1.57; LMC f 0.102 -> v_obs -85.6, z_full,LMC -0.77; (reported) +M33 f 0.140 -> v_obs -75.2, z -0.42
+    [canonical] common f_ret 0.3: M 1.13e+12+2.27e+12; edges 174/246 kpc; v_rad -76.5 (z_meas -7.46); v(vt 82.4) -43.2, sigma_full 33.9 (D 11.1, vt 31.7) z_full -1.95; LMC f 0.122 -> v_obs -81.1, z_full,LMC -1.12; (reported) +M33 f 0.162 -> v_obs -69.0, z -0.76
+    [canonical] common f_ret 0.4: M 8.65e+11+1.73e+12; edges 132/186 kpc; v_rad -55.7 (z_meas -12.17); v(vt 82.4) -12.6, sigma_full nan (D 11.0, vt nan) z_full +nan; LMC f 0.160 -> v_obs -72.3, z_full,LMC +nan; (reported) +M33 f 0.202 -> v_obs -57.3, z +nan
+    [canonical] common f_ret 0.55: M 6.45e+11+1.29e+12; edges 97/137 kpc; v_rad -36.5 (z_meas -16.55); v(vt 82.4) nan, sigma_full nan (D nan, vt nan) z_full +inf; LMC f 0.214 -> v_obs -59.7, z_full,LMC +inf; (reported) +M33 f 0.253 -> v_obs -40.9, z +inf
+
+== VERDICT: DATA-ISSUE
+   {"verdict": "DATA-ISSUE", "data_issue": true, "m1_strict": false, "m1_full_ok": true, "m1_lmc_ok": true, "m2_strict": false, "m2_lmc_ok": true, "mutate_teeth_fail": true, "not_diagnostic": false}
+
+5/5 checks pass; load-bearing failures 0; elapsed 61.4 s
