@@ -42,6 +42,8 @@
   - dark vs cold energy, two components (CFG508);
   - gravitational waves (CFG512).
 
+- **a₀ at z 1.5–2 (CFG535):** no crisp test exists on disk or one small download away. Stacked outer curves are limited by the pressure prescription (it shifts the slope by 0.19–0.29, against a flat-vs-rival gap of 0.17–0.20). Forecast power is Z_eff 0.3–0.6; the Übler+17 within-sample δ(z) is NON-DIAGNOSTIC. The crisp route stays the CFG571 sealed ALMA predictions and new low-V observations.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
