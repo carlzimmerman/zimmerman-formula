@@ -1,0 +1,54 @@
+====================================================================================================
+CFG574  Milky Way HI flaring: RM vs PD  *** MUTATE: RM-phi cold mass in a q=0.3 homeoid ***
+====================================================================================================
+data: Kalberla & Dedes 2008 HWHM = 0.15 exp((R-8.5)/9.8) kpc; scored R = 10-30 kpc; model R0 = 8.122 kpc
+
+--- controls
+  [PASS] C3 HWHM extractor recovers a sech^2 HWHM (0.3525 kpc) to 1%
+  [PASS] C1 B1 (fixed 85 pc HI) grid baryon mass 6.6418e+10 matches CFG514's 6.64e10 to 2%
+     B1 with the observed-flaring HI layer: grid baryon mass 6.6419e+10 (same surface densities; thicker gas)
+
+--- primary_obsHI  footing canonical (a0 = 2.888e+03)
+    model         sigma  rms_ln      R0  consistent  h(10,15,20,25,30) kpc   [obs 0.17, 0.29, 0.48, 0.81, 1.35]
+    RM-phi         8.90   0.152   12.25  False       [0.18, 0.34, 0.53, 0.74, 0.94] 
+    RM-v           6.90   0.091    9.81  True        [0.15, 0.30, 0.54, 0.83, 1.14] 
+    PD             8.97   0.056    9.86  True        [0.16, 0.30, 0.52, 0.82, 1.20] 
+    Newton(C2)     5.77   0.140    8.18  True        [0.12, 0.27, 0.52, 0.91, 1.45] 
+  [FAIL] C2 [canonical] Newtonian baryons alone are not a plausible match (rms 0.140, R0 8.18, sigma 5.8)
+    call: NOT DIAGNOSTIC
+
+--- primary_obsHI  footing alt (a0 = 3.487e+03)
+    model         sigma  rms_ln      R0  consistent  h(10,15,20,25,30) kpc   [obs 0.17, 0.29, 0.48, 0.81, 1.35]
+    RM-phi         9.16   0.159   12.49  False       [0.18, 0.34, 0.53, 0.73, 0.93] 
+    RM-v           7.01   0.092    9.96  True        [0.15, 0.30, 0.54, 0.82, 1.12] 
+    PD             9.29   0.056    9.92  True        [0.16, 0.30, 0.51, 0.82, 1.20] 
+    Newton(C2)     5.77   0.140    8.18  True        [0.12, 0.27, 0.52, 0.91, 1.45] 
+  [FAIL] C2 [alt] Newtonian baryons alone are not a plausible match (rms 0.140, R0 8.18, sigma 5.8)
+    call: NOT DIAGNOSTIC
+
+--- variant_fixedHI  footing canonical (a0 = 2.888e+03)
+    model         sigma  rms_ln      R0  consistent  h(10,15,20,25,30) kpc   [obs 0.17, 0.29, 0.48, 0.81, 1.35]
+    RM-phi         9.69   0.157   12.72  False       [0.19, 0.34, 0.52, 0.73, 0.95] 
+    RM-v           7.89   0.072   10.49  True        [0.16, 0.31, 0.52, 0.79, 1.13] 
+    PD            10.98   0.104   11.67  True        [0.19, 0.33, 0.50, 0.75, 1.10] 
+    Newton(C2)     6.91   0.060    9.05  True        [0.15, 0.28, 0.50, 0.85, 1.38] 
+    call: NOT DIAGNOSTIC
+
+--- variant_fixedHI  footing alt (a0 = 3.487e+03)
+    model         sigma  rms_ln      R0  consistent  h(10,15,20,25,30) kpc   [obs 0.17, 0.29, 0.48, 0.81, 1.35]
+    RM-phi         9.93   0.164   12.93  False       [0.19, 0.34, 0.52, 0.72, 0.93] 
+    RM-v           7.99   0.077   10.62  True        [0.17, 0.31, 0.52, 0.79, 1.11] 
+    PD            11.39   0.108   11.77  True        [0.19, 0.33, 0.50, 0.75, 1.09] 
+    Newton(C2)     6.91   0.060    9.05  True        [0.15, 0.28, 0.50, 0.85, 1.38] 
+    call: NOT DIAGNOSTIC
+
+VERDICT (primary, both footings): NOT DIAGNOSTIC
+MUTATE reading: compare RM-phi here with the PRIMARY output's RM-phi (frozen: must not be consistent where RM-phi was).
+
+DISCLOSED post-freeze variant (not a gate): KD08 distances rescaled by R0/8.5 = 0.9555
+    [canonical] RM-phi  sigma   7.12  rms_ln 0.096  R0 9.79  consistent True
+    [canonical] PD      sigma   9.38  rms_ln 0.066  R0 9.88  consistent True
+    [alt] RM-phi  sigma   7.23  rms_ln 0.100  R0 9.93  consistent True
+    [alt] PD      sigma   9.72  rms_ln 0.067  R0 9.93  consistent True
+
+checks: 2/4 pass
