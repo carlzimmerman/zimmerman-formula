@@ -1,0 +1,75 @@
+CFG527: law-respecting engine (shell draw outside the census edge, unfiltered retained-baryon source). Matched S0 controls (reused):
+  L50: cfg521_S0_TA_MIXA_MASSCONS_fretcensus_FLAT_canonical_N256_L50.json sha256 3352c647852d5d19  sigma8(z0) 0.8024
+  L25: cfg521_S0_TA_MIXA_MASSCONS_fretcensus_FLAT_canonical_N256_L25.json sha256 3f2c91159291feb2  sigma8(z0) 0.6286
+  L100: cfg521_S0_TA_MIXA_MASSCONS_fretcensus_FLAT_canonical_N256_L100.json sha256 5d6bfff648d9efe1  sigma8(z0) 0.8647
+  L200: cfg359_S0_FLAT_canonical_N256.json sha256 37bdffbe934db23a  sigma8(z0) 0.9064
+  L200_512: cfg411_S0_Rc3_MIXA_FLAT_canonical_N512.json sha256 f3b13f6787df170c  sigma8(z0) 0.8754
+
+MUTATE A (SC draw + MIX-A) reproduction of CFG521 DC-can (|d s8|/s8 and max|dP/P| <= 1e-8 at every snapshot):
+  L50: |d s8|/s8 0.00e+00, max|dP/P| 0.00e+00 -> PASS
+  L25: |d s8|/s8 0.00e+00, max|dP/P| 0.00e+00 -> PASS
+
+L = 200 Mpc/h, 256^3 (CFG361 cuts, k <= 1 (gating))
+  run            s8      s4  maxdev   (k)   k<=1  P/P_S0 @0.3/1/2/3/4/8              verdict     q_max  cap(snaps/n/e-rm)  empty-shell(n/e)  shell_frac(z0)  draw/sc rho(z0)  P@kNy/2 stable
+  LR-can     1.0071     nan  0.0901  0.75 0.0901  1.022/1.074/1.015/1.040/1.061/  -   GROWTH OK  1.412  2/3/1.08e-02  0/0.00e+00  0.621  39.760/125.483  1.015 yes
+  LR-alt     1.0071     nan  0.0970  0.75 0.0970  1.023/1.077/0.996/1.020/1.064/  -   GROWTH OK  1.244  2/2/7.84e-03  0/0.00e+00  0.666  43.370/124.247  0.996 yes
+  MUTATE B   1.0456     nan  0.2127  0.66 0.2127  1.122/1.167/1.091/1.095/1.136/  -   TENSION    0.000  0/0/0.00e+00  0/0.00e+00    -      -  /  -    1.091 yes
+
+L = 100 Mpc/h, 256^3 (CFG361 cuts, reported)
+  run            s8      s4  maxdev   (k)   k<=1  P/P_S0 @0.3/1/2/3/4/8              verdict     q_max  cap(snaps/n/e-rm)  empty-shell(n/e)  shell_frac(z0)  draw/sc rho(z0)  P@kNy/2 stable
+  LR-can     1.0141  1.0351  0.1168  0.57 0.1168  1.070/1.085/1.000/0.958/0.963/0.926 TENSION    1.631  2/11/1.26e-01  0/0.00e+00  0.557  44.041/223.258  0.963 yes
+  LR-alt     1.0146  1.0348  0.1178  0.50 0.1178  1.080/1.061/0.955/0.945/0.951/0.916 TENSION    1.618  2/8/1.02e-01  0/0.00e+00  0.579  51.188/218.817  0.951 yes
+
+L = 50 Mpc/h, 256^3 (CFG521 gate vs S0, k <= 4.02 (information))
+  run            s8      s4  maxdev   (k)   k<=1  P/P_S0 @0.3/1/2/3/4/8              verdict     q_max  cap(snaps/n/e-rm)  empty-shell(n/e)  shell_frac(z0)  draw/sc rho(z0)  P@kNy/2 stable
+  LR-can     1.0133  1.0346  0.1724  1.01 0.1545  1.038/1.172/0.991/0.932/0.878/0.826 TENSION    3.034  3/7/5.18e-01  0/0.00e+00  0.375  31.748/383.353  0.826 yes
+  LR-alt     1.0124  1.0404  0.2045  1.01 0.1830  1.033/1.205/0.995/0.907/0.856/0.786 TENSION    2.333  3/5/4.55e-01  0/0.00e+00  0.432  49.167/370.634  0.786 yes
+  K1         1.0093  1.0427  0.2680  1.14 0.2004  1.038/1.225/0.961/0.820/0.748/0.665 TENSION    2.403  2/36/3.07e-01  0/0.00e+00  0.558  58.334/331.893  0.665 yes
+  MUTATE A   1.0138  1.0187  0.3717  3.65 0.0866  1.045/1.023/0.799/0.675/0.628/0.613 TENSION    0.429  0/0/5.69e-07  0/0.00e+00    -    341.774/282.125  0.613 yes
+  SHF        1.0161  1.0369  0.1723  1.01 0.1615  1.049/1.172/0.975/0.895/0.851/0.800 TENSION    1.827  2/2/2.84e-01  0/0.00e+00  0.382  30.797/373.776  0.800 yes
+  Sum e LR-can / K1: z1 0.463  z0.5 0.533  z0 0.624
+
+L = 25 Mpc/h, 256^3 (CFG521 gate vs S0, k <= 8.04 (information))
+  run            s8      s4  maxdev   (k)   k<=1  P/P_S0 @0.3/1/2/3/4/8              verdict     q_max  cap(snaps/n/e-rm)  empty-shell(n/e)  shell_frac(z0)  draw/sc rho(z0)  P@kNy/2 stable
+  LR-can     1.0198  1.0470  0.3672  2.02 0.1807  1.038/1.167/1.367/1.215/1.185/1.027 TENSION    5.670  3/5/7.51e-01  0/0.00e+00  0.280  23.758/688.251  0.878 yes
+  LR-alt     1.0221  1.0526  0.4284  2.02 0.1979  1.042/1.181/1.428/1.235/1.227/1.097 TENSION    4.869  3/4/7.37e-01  0/0.00e+00  0.318  31.645/699.012  0.865 yes
+  K1         1.0017  1.0435  0.3746  2.02 0.1939  0.998/1.218/1.375/1.081/1.015/0.697 TENSION    3.831  3/38/5.99e-01  0/0.00e+00  0.471  61.292/498.379  0.530 yes
+  MUTATE A   1.0156  1.0297  0.5497  7.80 0.1216  1.033/1.073/0.947/0.680/0.585/0.436 TENSION    0.538  0/0/4.55e-07  0/0.00e+00    -    370.041/338.799  0.430 yes
+  SHF        1.0202  1.0461  0.3553  2.02 0.1804  1.039/1.158/1.355/1.168/1.123/0.974 TENSION    3.098  3/2/6.11e-01  0/0.00e+00  0.279  23.016/660.374  0.852 yes
+  Sum e LR-can / K1: z1 0.388  z0.5 0.438  z0 0.487
+
+Trend: P/P_S0 at k = 4 h/Mpc (z = 0, nearest bin), L = 200 / 100 / 50 / 25
+  old draw (CFG518/521 can)    0.893 / 0.804 / 0.628 / 0.585
+  CFG524 R2-can                0.930 / 0.853 / 0.660 / 0.702
+  LR-can                       1.061 / 0.963 / 0.878 / 1.185
+  LR-alt                       1.064 / 0.951 / 0.856 / 1.227
+  SHF                            -   /   -   / 0.851 / 1.123
+  MUTATE A                       -   /   -   / 0.628 / 0.585
+  K1                             -   /   -   / 0.748 / 1.015
+  L50 LR-can P/P_S0 at k = 4 by z (z1 / z0.5 / z0): 1.024 / 0.984 / 0.878
+  L50 LR-alt P/P_S0 at k = 4 by z (z1 / z0.5 / z0): 1.031 / 0.976 / 0.856
+  L50 MUTATE A P/P_S0 at k = 4 by z (z1 / z0.5 / z0): 0.897 / 0.762 / 0.628
+
+Small-box r(k) = P/P_S0 convergence (|r50 - r25| <= 0.05 and |r100 - r50| <= 0.05), z = 0:
+  LR-can k = 2.0: L100 1.000  L50 0.991  L25 1.367 -> NOT converged
+  LR-can k = 4.0: L100 0.963  L50 0.878  L25 1.185 -> NOT converged
+  LR-alt k = 2.0: L100 0.955  L50 0.995  L25 1.428 -> NOT converged
+  LR-alt k = 4.0: L100 0.951  L50 0.856  L25 1.227 -> NOT converged
+
+Gate 1 (cfg527_profiles.json):
+  [canonical] LAW-CONSISTENT
+  [alt] LAW-CONSISTENT
+  MUTATE A fails law consistency: True
+
+Stability (NOFILT runs; finite and P/P_S0(k_Nyq/2, z0) <= 2): all STABLE
+  SHF (filter on) vs LR-can P/P_S0 at k_Nyq/2: L50 0.800 vs 0.826; L25 0.852 vs 0.878
+
+Decision (per footing):
+  MUTATE B (no compensation, NOFILT, L200): TENSION  (must NOT be GROWTH OK)
+  [canonical] PARTIAL (small-box r(k) not converged at 2.0, 4.0)
+      {"gate1": "LAW-CONSISTENT", "L200": "GROWTH OK", "MUTATE_B": "TENSION", "r_converged_k2_k4": [false, false], "stable": [true, true, true, true], "CFG521_small_box_vs_S0": {"L50": "TENSION", "L25": "TENSION"}}
+  [alt] PARTIAL (small-box r(k) not converged at 2.0, 4.0)
+      {"gate1": "LAW-CONSISTENT", "L200": "GROWTH OK", "MUTATE_B": "TENSION", "r_converged_k2_k4": [false, false], "stable": [true, true, true, true], "CFG521_small_box_vs_S0": {"L50": "TENSION", "L25": "TENSION"}}
+512^3: not run (not both footings PASS at 256^3)
+
+kappa = 1/2 FITTED; footings never pooled; cold energy MASS still required; not theory closed.
