@@ -1,0 +1,121 @@
+CFG542 PRIMARY: one dissipative variational principle for candidate B
+kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not 'theory closed'.
+
+Pa (Schwinger-Keldysh / MSR):
+  MSR_response_variation_gives_drift: True
+  KMS_fluctuation_relation_M_independent: True
+  FP_equilibrium_M_independent: True
+  energy_balance_identity: True
+  energy_balance_homogeneous_deg1_in_alpha: True
+  bath_force_laplace: X_s*g**2/(m_q*(omega**2 + s**2))
+  bath_friction_scales_g2: True
+  alpha_verdict: FREE: KMS/FDR fix the noise given the mobility; the mobility is a transport coefficient (bath: alpha ~ g^2 x spectral density)
+Pb (metriplectic Onsager + dark-energy partner):
+  dE_drho_is_Phi: True
+  M_symmetric: True
+  degeneracy_M_dE_zero: True
+  flux_12: m12*(psi1 - psi2)/Theta
+  flux_is_classA_discrete: True
+  Q_discrete: (m12*psi1*(K00*rho1 - K01*rho1 + K01*rho2 + K02*rho3 - K11*rho2 - K12*rho3 + Pb1 - Pb2) - m23*psi3*(K01*rho1 - K02*rho1 + K11*rho2 - K12*rho2 + K12*rho3 - K22*rho3 + Pb2 - Pb3) - psi2*(m12*(K00*rho1 - K01*rho1 + K01*rho2 + K02*rho3 - K11*rho2 - K12*rho3 + Pb1 - Pb2) - m23*(K01*rho1 - K02*rho1 + K11*rho2 - K12*rho2 + K12*rho3 - K22*rho3 + Pb2 - Pb3)))/Theta
+  Q_is_mob_dpsi_dPhi: True
+  dEdt_exact_zero: True
+  dSdt: (m12*psi1**2 - 2*m12*psi1*psi2 + m12*psi2**2 + m23*psi2**2 - 2*m23*psi2*psi3 + m23*psi3**2)/Theta**2
+  dSdt_sum_of_squares: True
+  mass_conserved: True
+  support_free: m_e enter only as nonnegative prefactors of sum-of-squares and of M dE = 0: any support s(x) >= 0 passes
+  M3_thermal_extra_flux: m12*(K00*rho1 - K01*rho1 + K01*rho2 + K02*rho3 - K11*rho2 - K12*rho3 + Pb1 - Pb2)/T_phi
+  M3_thermal_shifts_stationarity: True
+  M1_noPartner_dEdt: (-m12*(psi1 - psi2)*(K00*rho1 + K01*rho2 + K02*rho3 + Pb1) + m23*(psi2 - psi3)*(K02*rho1 + K12*rho2 + K22*rho3 + Pb3) + (m12*psi1 + m23*psi3 - psi2*(m12 + m23))*(K01*rho1 + K11*rho2 + K12*rho3 + Pb2))/Theta
+  M1_noPartner_energy_not_conserved: True
+  orbital_dFdt_integrand_outward: 4*pi*dpsi*r**2*rho_c*u
+  L_dS_degeneracy_holds: False
+  Q_continuum: Q = rho_c alpha tau_ff 1_B 1_C grad(psi).grad(Phi)
+  Q_nonneg_spherical: True
+  phi_energy_identity: True
+  phi_equation: phi_tt + 3H phi_t - c^2 lap phi + V'(phi) = Q/phi_t  (singular where phi_t = 0, i.e. w = -1)
+Pb* (slip with flux relaxation alpha tau_ff):
+  extended_Lyapunov_identity: True
+  extended_Lyapunov: d/dt [F + int rho_c w^2/2 dV] = -int rho_c w^2/(alpha tau) dV <= 0 (no boundary term: w = 0 on the mobility boundary)
+  overdamped_limit_leading_order: True
+  stationary_set: w = 0 and rho_c grad psi = 0 (same as class A; alpha-free)
+  speed_bound_identity: True
+  speed_bound: |w| <= sqrt(2 max|psi|) for static psi, starting at rest (psi <= 0)
+Pc (conservative readings):
+  c1_stationary_requires: 4 pi G (rho_m + d) = 0
+  c1_required_d: [-rm]
+  c1_impossible: True
+  healthy_omega2: k**2
+  needed_U_plus_F_requires_b_pos: True
+  b_pos_a_pos_omega2: -k**2
+  b_pos_a_neg: ghost (negative kinetic energy)
+  healthy_static_energy_equals_minus_F: True
+  M4_force_on_cold_energy: +grad psi (outward: settling reverses)
+  coulomb_escape: a constraint (A0-type) field needs a conserved deficit charge; d = max(rho_ph - rho_c, 0) is one-sided and rho_ph is not conserved
+K9 dispersion (tau_ff = 1, beta = 1 in scans):
+  Pb  : {'poly': 'K**2*alpha*q + K**2*s + s**3 + s**2/beta', 'H2': '-K**2*(alpha*beta*q - 1)/beta', 'condition': 'alpha beta q < 1'}
+  Pb* : H3/K^2 at K->0 = -(alpha + beta)*(alpha**2*q + alpha*beta*q - 1)/(alpha**3*beta**2); condition expr -(alpha + beta)*(alpha**2*q + alpha*beta*q - 1)
+  alpha_max (beta = 1, q -> 1): {'Pb': 1.0, 'Pbstar': 0.6180339887498949}; at q = 1 - f_b: {'Pb': 1.1864166666666667, 'Pbstar': 0.6985060144474314}
+  scan Pb: a=0.25: STABLE (-3.76e-07), a=0.5: STABLE (-2.53e-07), a=0.6: STABLE (-2.03e-07), a=0.618: STABLE (-1.94e-07), a=0.65: STABLE (-1.78e-07), a=1.0: STABLE (-5.00e-09), a=2.0: UNSTABLE (+4.90e-01)
+  scan Pbstar: a=0.25: STABLE (-3.45e-07), a=0.5: STABLE (-1.29e-07), a=0.6: STABLE (-2.48e-08), a=0.618: STABLE (-5.04e-09), a=0.65: UNSTABLE (+1.58e-03), a=1.0: UNSTABLE (+7.54e-02), a=2.0: UNSTABLE (+1.96e-01)
+Switch:
+  S1_total_density_reading_leak: (P - rho_c)**2*Subs(Derivative(s(_xi_1), _xi_1), _xi_1, rho_b + rho_c)/2
+  S1_total_density_reading_LEAK: True
+  S1_baryon_reading_leak: 0
+  S1_baryon_reading_LEAK: False
+  S2_mobility_gate: NO LEAK for any reading: the gate multiplies a sum of squares and never enters the drive
+  S3_tophat_theta_zero_at_turnaround: True
+  S3_sheet_theta_zero_at_lambda1_a: [3/4]
+  S3_theta_b_fires_in_sheets: True
+  S3_switch: INPUT
+Angular momentum:
+  j_conserved_per_element: True
+  a_s_radial_component_zero: True
+  element_energy_rate: w (dPhi/dr - v_perp^2/r)
+  element_energy_rate_check: True
+  nonradial_solvability_condition: -x1*(u2*v3 - u3*v2) + x2*(u1*v3 - u3*v1) - x3*(u1*v2 - u2*v1)
+  round_deficit_response_symmetric: True
+  label: CONSERVED (conditions: radial slide in the region's baryon-centre frame; round deficit; velocity-space term a_s = -(w/r) v_perp)
+K10 DESI DR2 w0wa chains (on disk):
+  cmb: {'cross_weight_frac': 0.9981284942670331, 'median_w0': -0.41414029, 'median_z_cross': 0.4990987422722235}
+  pantheonplus: {'cross_weight_frac': 0.9984197615094037, 'median_w0': -0.83866271, 'median_z_cross': 0.35757489310274493}
+  union3: {'cross_weight_frac': 0.9998925981442828, 'median_w0': -0.6670064, 'median_z_cross': 0.4440569960716621}
+  desy5: {'cross_weight_frac': 1.0, 'median_w0': -0.7534148, 'median_z_cross': 0.40585374569418875}
+  [sympy done, 3 s]
+K0 control: CFG541 Model.run MW t90(1) = 10.010189 Gyr vs JSON 10.010189: rel 0.0e+00 -> PASS
+  can MW od alpha 0.5: t90 20.02 Gyr (end 160.4, 19200 steps); dW 0.770 V_f^2 M_cat; intQ/dW 1.0004; maxinc F -9.9e-14; vmax 1391 km/s (4.64e-03 c) vs sqrt(2|psi|max) 534; Pi 295.8; |dM|/M 0.0e+00; front sub/analytic 1.0000 (lit 0.9954); settled 0.9955; flux x 5.73e-07
+  can MW od alpha 1.0: t90 10.01 Gyr (end 85.1, 20300 steps); dW 0.770 V_f^2 M_cat; intQ/dW 1.0004; maxinc F -5.2e-14; vmax 2781 km/s (9.28e-03 c) vs sqrt(2|psi|max) 534; Pi 591.6; |dM|/M 0.0e+00; front sub/analytic 1.0000 (lit 0.9954); settled 0.9955; flux x 1.15e-06
+  can MW od alpha 2.0: t90 5.01 Gyr (end 45.3, 21500 steps); dW 0.770 V_f^2 M_cat; intQ/dW 1.0004; maxinc F -2.5e-14; vmax 5562 km/s (1.86e-02 c) vs sqrt(2|psi|max) 534; Pi 1183.1; |dM|/M 0.0e+00; front sub/analytic 1.0000 (lit 0.9954); settled 0.9955; flux x 2.29e-06
+  can MW slip alpha 0.5: t90 16.69 Gyr (end 300.0, 9949 steps); dW 2.719 V_f^2 M_cat; intQ/dW 1.0005; maxinc F +1.8e-03, L +1.8e-03; vmax 231 km/s (7.69e-04 c) vs sqrt(2|psi|max) 536; Pi 37.2; |dM|/M 1.9e-16; front sub/analytic 0.6634 (lit 0.6634); settled 1.0000; flux x 1.39e-06
+  can MW slip alpha 1.0: t90 11.90 Gyr (end 300.0, 44349 steps); dW 45.329 V_f^2 M_cat; intQ/dW 1.0001; maxinc F +1.2e-02, L +1.1e-02; vmax 404 km/s (1.35e-03 c) vs sqrt(2|psi|max) 536; Pi 77.2; |dM|/M 9.7e-15; front sub/analytic 0.0536 (lit 0.0536); settled 1.0000; flux x 2.15e-04
+  can MW slip alpha 2.0: t90 10.61 Gyr (end 300.0, 418982 steps); dW 527.431 V_f^2 M_cat; intQ/dW 1.0000; maxinc F +3.7e-04, L +2.7e-04; vmax 492 km/s (1.64e-03 c) vs sqrt(2|psi|max) 563; Pi 84.2; |dM|/M 4.2e-14; front sub/analytic 0.0014 (lit 0.0014); settled 1.0000; flux x 3.88e-01
+  can cluster od alpha 0.5: t90 17.58 Gyr (end 97.9, 3900 steps); dW 0.986 V_f^2 M_cat; intQ/dW 1.0009; maxinc F -5.1e-14; vmax 11982 km/s (4.00e-02 c) vs sqrt(2|psi|max) 3009; Pi 470.1; |dM|/M 0.0e+00; front sub/analytic 1.0000 (lit 1.0087); settled 0.9833; flux x 1.46e-05
+  can cluster od alpha 1.0: t90 8.79 Gyr (end 49.0, 3900 steps); dW 0.986 V_f^2 M_cat; intQ/dW 1.0009; maxinc F -5.1e-14; vmax 23964 km/s (7.99e-02 c) vs sqrt(2|psi|max) 3009; Pi 940.2; |dM|/M 0.0e+00; front sub/analytic 1.0000 (lit 1.0087); settled 0.9833; flux x 2.93e-05
+  can cluster od alpha 2.0: t90 4.39 Gyr (end 26.3, 4000 steps); dW 0.986 V_f^2 M_cat; intQ/dW 1.0009; maxinc F -2.2e-14; vmax 47927 km/s (1.60e-01 c) vs sqrt(2|psi|max) 3009; Pi 1880.3; |dM|/M 1.8e-16; front sub/analytic 1.0000 (lit 1.0087); settled 0.9833; flux x 5.86e-05
+  can cluster slip alpha 0.5: t90 14.61 Gyr (end 300.0, 13593 steps); dW 3.767 V_f^2 M_cat; intQ/dW 1.0003; maxinc F +1.4e-03, L +1.4e-03; vmax 1327 km/s (4.43e-03 c) vs sqrt(2|psi|max) 3015; Pi 232.6; |dM|/M 3.6e-16; front sub/analytic 0.6664 (lit 0.6664); settled 1.0000; flux x 8.32e-02
+  can cluster slip alpha 1.0: t90 10.96 Gyr (end 300.0, 127215 steps); dW 38.496 V_f^2 M_cat; intQ/dW 1.0001; maxinc F +1.5e-02, L +1.4e-02; vmax 2638 km/s (8.80e-03 c) vs sqrt(2|psi|max) 3015; Pi 1568.7; |dM|/M 4.5e-15; front sub/analytic 0.1096 (lit 0.1096); settled 1.0000; flux x 3.55e+01
+  can cluster slip alpha 2.0: t90 9.81 Gyr (end 16.2, 1108700 steps); dW 680.343 V_f^2 M_cat; intQ/dW 1.0000; maxinc F +1.0e-03, L +7.5e-04; vmax 3272 km/s (1.09e-02 c) vs sqrt(2|psi|max) 3242; Pi 63775.9; |dM|/M 1.1e-14; front sub/analytic 0.0036 (lit 0.0036); settled 1.0000; flux x 3.86e+03
+  alt MW od alpha 0.5: t90 18.06 Gyr (end 93.5, 16000 steps); dW 0.791 V_f^2 M_cat; intQ/dW 1.0004; maxinc F -1.9e-14; vmax 1659 km/s (5.53e-03 c) vs sqrt(2|psi|max) 568; Pi 380.5; |dM|/M 3.9e-16; front sub/analytic 1.0000 (lit 1.0085); settled 0.9815; flux x 5.54e-07
+  alt MW od alpha 1.0: t90 9.03 Gyr (end 49.0, 16700 steps); dW 0.791 V_f^2 M_cat; intQ/dW 1.0004; maxinc F -9.4e-15; vmax 3318 km/s (1.11e-02 c) vs sqrt(2|psi|max) 568; Pi 761.1; |dM|/M 5.8e-16; front sub/analytic 1.0000 (lit 1.0085); settled 0.9815; flux x 1.11e-06
+  alt MW od alpha 2.0: t90 4.51 Gyr (end 25.5, 17300 steps); dW 0.791 V_f^2 M_cat; intQ/dW 1.0004; maxinc F -5.1e-15; vmax 6636 km/s (2.21e-02 c) vs sqrt(2|psi|max) 568; Pi 1522.2; |dM|/M 3.9e-16; front sub/analytic 1.0000 (lit 1.0085); settled 0.9815; flux x 2.22e-06
+  alt MW slip alpha 0.5: t90 15.24 Gyr (end 300.0, 11276 steps); dW 3.153 V_f^2 M_cat; intQ/dW 1.0005; maxinc F +1.3e-03, L +1.3e-03; vmax 248 km/s (8.26e-04 c) vs sqrt(2|psi|max) 569; Pi 44.6; |dM|/M 1.2e-15; front sub/analytic 0.6197 (lit 0.6197); settled 1.0000; flux x 1.55e-06
+  alt MW slip alpha 1.0: t90 11.30 Gyr (end 300.0, 52502 steps); dW 51.051 V_f^2 M_cat; intQ/dW 1.0001; maxinc F +9.6e-03, L +8.8e-03; vmax 446 km/s (1.49e-03 c) vs sqrt(2|psi|max) 569; Pi 83.0; |dM|/M 6.4e-15; front sub/analytic 0.0403 (lit 0.0403); settled 1.0000; flux x 2.67e-04
+  alt MW slip alpha 2.0: t90 10.11 Gyr (end 17.0, 577500 steps); dW 651.550 V_f^2 M_cat; intQ/dW 1.0000; maxinc F +2.6e-04, L +1.8e-04; vmax 521 km/s (1.74e-03 c) vs sqrt(2|psi|max) 595; Pi 89.3; |dM|/M 8.7e-15; front sub/analytic 0.0011 (lit 0.0011); settled 1.0000; flux x 1.01e+00
+  alt cluster od alpha 0.5: t90 16.01 Gyr (end 120.6, 4700 steps); dW 1.012 V_f^2 M_cat; intQ/dW 1.0009; maxinc F -3.4e-13; vmax 14463 km/s (4.82e-02 c) vs sqrt(2|psi|max) 3223; Pi 654.3; |dM|/M 1.8e-16; front sub/analytic 1.0000 (lit 0.9955); settled 0.9952; flux x 1.52e-05
+  alt cluster od alpha 1.0: t90 8.01 Gyr (end 63.4, 4800 steps); dW 1.012 V_f^2 M_cat; intQ/dW 1.0009; maxinc F -1.9e-13; vmax 28927 km/s (9.65e-02 c) vs sqrt(2|psi|max) 3223; Pi 1308.6; |dM|/M 0.0e+00; front sub/analytic 1.0000 (lit 0.9955); settled 0.9952; flux x 3.04e-05
+  alt cluster od alpha 2.0: t90 4.00 Gyr (end 33.3, 4900 steps); dW 1.012 V_f^2 M_cat; intQ/dW 1.0009; maxinc F -1.0e-13; vmax 57853 km/s (1.93e-01 c) vs sqrt(2|psi|max) 3223; Pi 2617.1; |dM|/M 0.0e+00; front sub/analytic 1.0000 (lit 0.9955); settled 0.9952; flux x 6.07e-05
+  alt cluster slip alpha 0.5: t90 13.56 Gyr (end 300.0, 20430 steps); dW 4.615 V_f^2 M_cat; intQ/dW 1.0003; maxinc F +3.4e-03, L +3.4e-03; vmax 1461 km/s (4.87e-03 c) vs sqrt(2|psi|max) 3228; Pi 333.5; |dM|/M 0.0e+00; front sub/analytic 0.6083 (lit 0.6083); settled 1.0000; flux x 2.21e-01
+  alt cluster slip alpha 1.0: t90 10.30 Gyr (end 300.0, 215265 steps); dW 52.844 V_f^2 M_cat; intQ/dW 1.0001; maxinc F +1.2e-02, L +1.1e-02; vmax 3021 km/s (1.01e-02 c) vs sqrt(2|psi|max) 3228; Pi 2682.6; |dM|/M 8.2e-15; front sub/analytic 0.0848 (lit 0.0848); settled 1.0000; flux x 1.09e+02
+  alt cluster slip alpha 2.0: t90 9.27 Gyr (end 300.0, 1470002 steps); dW 917.230 V_f^2 M_cat; intQ/dW 1.0000; maxinc F +5.5e-04, L +3.9e-04; vmax 3507 km/s (1.17e-02 c) vs sqrt(2|psi|max) 3440; Pi 113534.8; |dM|/M 2.3e-15; front sub/analytic 0.0024 (lit 0.0024); settled 1.0000; flux x 4.98e+03
+K7: Q/E_sink up to 3.65; cosmic drho/rho 8.17e-06; dlog10 a0 1.77e-06 (rho fork), 4.28e-06 (-p fork) -> PASS
+K8 Pb: outgoing x max 6.07e-05; near-field x^2/(2(1+w)) 1.14e-08 (1+w 0.161) -> PASS
+K8 Pbstar: outgoing x max 4.98e+03; near-field x^2/(2(1+w)) 7.67e+07 (1+w 0.161) -> FAIL
+Task 3: speed bound in every run False; cluster |w|/c <= 1e-2 False; INERTIA-LIMITED REGIME: NO
+  t90(0.5)/t90(2): can_MW: od 4.00, slip 1.57, can_cluster: od 4.00, slip 1.49, alt_MW: od 4.00, slip 1.51, alt_cluster: od 4.00, slip 1.46
+  edge (sub-cell / analytic): can_MW_a0.5 0.6634, can_MW_a1.0 0.0536, can_MW_a2.0 0.0014, can_cluster_a0.5 0.6664, can_cluster_a1.0 0.1096, can_cluster_a2.0 0.0036, alt_MW_a0.5 0.6197, alt_MW_a1.0 0.0403, alt_MW_a2.0 0.0011, alt_cluster_a0.5 0.6083, alt_cluster_a1.0 0.0848, alt_cluster_a2.0 0.0024; within 2%: False
+LABELS:
+  Pa: {'label': 'CONSISTENT WITH OPEN ITEMS', 'alpha': 'FREE', 'Q': 'DERIVED (same as Pb, from the SK energy current)', 'switch': 'INPUT', 'open': ['alpha FREE: KMS/FDR fix the noise, not the mobility; a bath gives alpha ~ g^2 (new coupling)', 'GENERIC degeneracy L dS = 0 fails: orbital motion can raise F (no second law for the full kinetic system)', 'overdamped drift speeds in diffuse reservoirs (CFG541 item 3)', 'kinetic consistency (CFG541 item 5)', 'switch INPUT', 'canonical partner singular at the DESI-preferred w = -1 crossing', 'C1: overdamped cluster drift speed up to 0.193 c (> 1e-2 margin)']}
+  Pb: {'label': 'CONSISTENT WITH OPEN ITEMS', 'alpha': 'FREE', 'Q': 'DERIVED: Q = rho_c alpha tau_ff 1_B 1_C grad psi . grad Phi', 'switch': 'INPUT', 'open': ['alpha FREE (bounded by K9)', 'GENERIC degeneracy L dS = 0 fails: orbital motion can raise F (no second law for the full kinetic system)', 'overdamped drift speeds in diffuse reservoirs (CFG541 item 3)', 'kinetic consistency (CFG541 item 5)', 'switch INPUT', 'canonical partner singular at the DESI-preferred w = -1 crossing', 'C1: overdamped cluster drift speed up to 0.193 c (> 1e-2 margin)']}
+  Pbstar: {'label': 'INCONSISTENT', 'failure': 'K4: the extended Lyapunov F + K_w rises in the 1-D runs (max step +1.4e-02 of F0). The sympy identity uses dF/drho_c = psi everywhere; at overfilled points (d = 0) adding mass has derivative 0, so inertial overshoot into the filled core raises F while the slip has already been paid by -grad psi. The one-sided deficit never removes the overfill.', 'alpha': 'FREE', 'Q': 'DERIVED: Q = -rho_c w . grad Phi', 'switch': 'INPUT', 'open': ['alpha FREE (bounded: q alpha (alpha + 1) < 1 -> alpha < 0.618 for q -> 1)', 'GENERIC degeneracy L dS = 0 fails: orbital motion can raise F (no second law for the full kinetic system)', 'edge moves inward (inertial overfill)', 'kinetic consistency (CFG541 item 5)', 'switch INPUT', 'canonical partner singular at the DESI-preferred w = -1 crossing', 'K8 fails (collapsed cores radiate; outgoing x up to 5.0e+03)', 'inertia-limited regime NO as frozen']}
+  Pc1: {'label': 'INCONSISTENT', 'failure': "friction on the cold energy's own velocity removes its support: stationary needs rho_m + d = 0"}
+  Pc2: {'label': 'INCONSISTENT', 'failure': 'a healthy local mediator gives static energy -F: force +grad psi (settling reverses); +F needs a ghost or a gradient-unstable field'}
+[total 345 s]

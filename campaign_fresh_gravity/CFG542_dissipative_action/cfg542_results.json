@@ -1,0 +1,923 @@
+{
+ "lane": "CFG542",
+ "mutate": false,
+ "settings": {
+  "kappa": 0.5,
+  "footings": {
+   "can": 9.3603e-11,
+   "alt": 1.1312e-10
+  },
+  "f_b": 0.15712579897450307,
+  "grid_N": 400
+ },
+ "Pa": {
+  "MSR_response_variation_gives_drift": true,
+  "KMS_fluctuation_relation_M_independent": true,
+  "FP_equilibrium_M_independent": true,
+  "energy_balance_identity": true,
+  "energy_balance_homogeneous_deg1_in_alpha": true,
+  "bath_force_laplace": "X_s*g**2/(m_q*(omega**2 + s**2))",
+  "bath_friction_scales_g2": true,
+  "alpha_verdict": "FREE: KMS/FDR fix the noise given the mobility; the mobility is a transport coefficient (bath: alpha ~ g^2 x spectral density)"
+ },
+ "Pb": {
+  "dE_drho_is_Phi": true,
+  "M_symmetric": true,
+  "degeneracy_M_dE_zero": true,
+  "flux_12": "m12*(psi1 - psi2)/Theta",
+  "flux_is_classA_discrete": true,
+  "Q_discrete": "(m12*psi1*(K00*rho1 - K01*rho1 + K01*rho2 + K02*rho3 - K11*rho2 - K12*rho3 + Pb1 - Pb2) - m23*psi3*(K01*rho1 - K02*rho1 + K11*rho2 - K12*rho2 + K12*rho3 - K22*rho3 + Pb2 - Pb3) - psi2*(m12*(K00*rho1 - K01*rho1 + K01*rho2 + K02*rho3 - K11*rho2 - K12*rho3 + Pb1 - Pb2) - m23*(K01*rho1 - K02*rho1 + K11*rho2 - K12*rho2 + K12*rho3 - K22*rho3 + Pb2 - Pb3)))/Theta",
+  "Q_is_mob_dpsi_dPhi": true,
+  "dEdt_exact_zero": true,
+  "dSdt": "(m12*psi1**2 - 2*m12*psi1*psi2 + m12*psi2**2 + m23*psi2**2 - 2*m23*psi2*psi3 + m23*psi3**2)/Theta**2",
+  "dSdt_sum_of_squares": true,
+  "mass_conserved": true,
+  "support_free": "m_e enter only as nonnegative prefactors of sum-of-squares and of M dE = 0: any support s(x) >= 0 passes",
+  "M3_thermal_extra_flux": "m12*(K00*rho1 - K01*rho1 + K01*rho2 + K02*rho3 - K11*rho2 - K12*rho3 + Pb1 - Pb2)/T_phi",
+  "M3_thermal_shifts_stationarity": true,
+  "M1_noPartner_dEdt": "(-m12*(psi1 - psi2)*(K00*rho1 + K01*rho2 + K02*rho3 + Pb1) + m23*(psi2 - psi3)*(K02*rho1 + K12*rho2 + K22*rho3 + Pb3) + (m12*psi1 + m23*psi3 - psi2*(m12 + m23))*(K01*rho1 + K11*rho2 + K12*rho3 + Pb2))/Theta",
+  "M1_noPartner_energy_not_conserved": true,
+  "orbital_dFdt_integrand_outward": "4*pi*dpsi*r**2*rho_c*u",
+  "L_dS_degeneracy_holds": false,
+  "Q_continuum": "Q = rho_c alpha tau_ff 1_B 1_C grad(psi).grad(Phi)",
+  "Q_nonneg_spherical": true,
+  "phi_energy_identity": true,
+  "phi_equation": "phi_tt + 3H phi_t - c^2 lap phi + V'(phi) = Q/phi_t  (singular where phi_t = 0, i.e. w = -1)"
+ },
+ "Pbstar": {
+  "extended_Lyapunov_identity": true,
+  "extended_Lyapunov": "d/dt [F + int rho_c w^2/2 dV] = -int rho_c w^2/(alpha tau) dV <= 0 (no boundary term: w = 0 on the mobility boundary)",
+  "overdamped_limit_leading_order": true,
+  "stationary_set": "w = 0 and rho_c grad psi = 0 (same as class A; alpha-free)",
+  "speed_bound_identity": true,
+  "speed_bound": "|w| <= sqrt(2 max|psi|) for static psi, starting at rest (psi <= 0)"
+ },
+ "Pc": {
+  "c1_stationary_requires": "4 pi G (rho_m + d) = 0",
+  "c1_required_d": "[-rm]",
+  "c1_impossible": true,
+  "healthy_omega2": "k**2",
+  "needed_U_plus_F_requires_b_pos": true,
+  "b_pos_a_pos_omega2": "-k**2",
+  "b_pos_a_neg": "ghost (negative kinetic energy)",
+  "healthy_static_energy_equals_minus_F": true,
+  "M4_force_on_cold_energy": "+grad psi (outward: settling reverses)",
+  "coulomb_escape": "a constraint (A0-type) field needs a conserved deficit charge; d = max(rho_ph - rho_c, 0) is one-sided and rho_ph is not conserved"
+ },
+ "K9_dispersion": {
+  "Pb": {
+   "poly": "K**2*alpha*q + K**2*s + s**3 + s**2/beta",
+   "H2": "-K**2*(alpha*beta*q - 1)/beta",
+   "condition": "alpha beta q < 1"
+  },
+  "Pbstar": {
+   "poly": "K**2*q + K**2*s/alpha + s**4 + s**3*(alpha + beta)/(alpha*beta) + s**2*(K**2*alpha*beta + 1)/(alpha*beta)",
+   "H2": "(K**2*alpha**2*beta + alpha + beta)/(alpha**2*beta**2)",
+   "H3": "-K**2*(-K**2*alpha**2*beta + alpha**3*q + 2*alpha**2*beta*q + alpha*beta**2*q - alpha - beta)/(alpha**3*beta**2)",
+   "H3_over_K2_at_K0": "-(alpha + beta)*(alpha**2*q + alpha*beta*q - 1)/(alpha**3*beta**2)",
+   "K0_condition_expr": "-(alpha + beta)*(alpha**2*q + alpha*beta*q - 1)"
+  },
+  "alpha_max_beta1_q1": {
+   "Pb": 1.0,
+   "Pbstar": 0.6180339887498949
+  },
+  "alpha_max_beta1_q_cosmic": {
+   "Pb": 1.1864166666666667,
+   "Pbstar": 0.6985060144474314
+  },
+  "Pbstar_instantaneous": "s^2 + s/alpha + q = 0: STABLE for every alpha > 0, q > 0",
+  "scan_beta1": {
+   "Pb": {
+    "0.25": {
+     "max_Re_s": -3.7625019000609456e-07,
+     "at_K_q": [
+      0.001,
+      0.99
+     ],
+     "stable": true
+    },
+    "0.5": {
+     "max_Re_s": -2.5250000252579197e-07,
+     "at_K_q": [
+      0.001,
+      0.99
+     ],
+     "stable": true
+    },
+    "0.6": {
+     "max_Re_s": -2.029999618359858e-07,
+     "at_K_q": [
+      0.001,
+      0.99
+     ],
+     "stable": true
+    },
+    "0.618": {
+     "max_Re_s": -1.9408995659452646e-07,
+     "at_K_q": [
+      0.001,
+      0.99
+     ],
+     "stable": true
+    },
+    "0.65": {
+     "max_Re_s": -1.7824994884194632e-07,
+     "at_K_q": [
+      0.001,
+      0.99
+     ],
+     "stable": true
+    },
+    "1.0": {
+     "max_Re_s": -4.999995100200625e-09,
+     "at_K_q": [
+      0.001,
+      0.99
+     ],
+     "stable": true
+    },
+    "2.0": {
+     "max_Re_s": 0.4899980790189854,
+     "at_K_q": [
+      1000.0,
+      0.99
+     ],
+     "stable": false
+    }
+   },
+   "Pbstar": {
+    "0.25": {
+     "max_Re_s": -3.4531265006710374e-07,
+     "at_K_q": [
+      0.001,
+      0.99
+     ],
+     "stable": true
+    },
+    "0.5": {
+     "max_Re_s": -1.2874999943019065e-07,
+     "at_K_q": [
+      0.001,
+      0.99
+     ],
+     "stable": true
+    },
+    "0.6": {
+     "max_Re_s": -2.480008281147141e-08,
+     "at_K_q": [
+      0.001,
+      0.99
+     ],
+     "stable": true
+    },
+    "0.618": {
+     "max_Re_s": -5.037731448165061e-09,
+     "at_K_q": [
+      0.001,
+      0.99
+     ],
+     "stable": true
+    },
+    "0.65": {
+     "max_Re_s": 0.0015801390761402364,
+     "at_K_q": [
+      0.31622776601683794,
+      0.99
+     ],
+     "stable": false
+    },
+    "1.0": {
+     "max_Re_s": 0.07538070643949302,
+     "at_K_q": [
+      0.7943282347242822,
+      0.99
+     ],
+     "stable": false
+    },
+    "2.0": {
+     "max_Re_s": 0.19626949286993145,
+     "at_K_q": [
+      1.0,
+      0.99
+     ],
+     "stable": false
+    }
+   }
+  }
+ },
+ "switch": {
+  "S1_total_density_reading_leak": "(P - rho_c)**2*Subs(Derivative(s(_xi_1), _xi_1), _xi_1, rho_b + rho_c)/2",
+  "S1_total_density_reading_LEAK": true,
+  "S1_baryon_reading_leak": "0",
+  "S1_baryon_reading_LEAK": false,
+  "S2_mobility_gate": "NO LEAK for any reading: the gate multiplies a sum of squares and never enters the drive",
+  "S3_tophat_theta_zero_at_turnaround": true,
+  "S3_sheet_theta_zero_at_lambda1_a": "[3/4]",
+  "S3_theta_b_fires_in_sheets": true,
+  "S3_switch": "INPUT"
+ },
+ "angular_momentum": {
+  "j_conserved_per_element": true,
+  "a_s_radial_component_zero": true,
+  "element_energy_rate": "w (dPhi/dr - v_perp^2/r)",
+  "element_energy_rate_check": true,
+  "nonradial_solvability_condition": "-x1*(u2*v3 - u3*v2) + x2*(u1*v3 - u3*v1) - x3*(u1*v2 - u2*v1)",
+  "round_deficit_response_symmetric": true,
+  "label": "CONSERVED (conditions: radial slide in the region's baryon-centre frame; round deficit; velocity-space term a_s = -(w/r) v_perp)"
+ },
+ "K10_desi": {
+  "cmb": {
+   "cross_weight_frac": 0.9981284942670331,
+   "median_w0": -0.41414029,
+   "median_z_cross": 0.4990987422722235
+  },
+  "pantheonplus": {
+   "cross_weight_frac": 0.9984197615094037,
+   "median_w0": -0.83866271,
+   "median_z_cross": 0.35757489310274493
+  },
+  "union3": {
+   "cross_weight_frac": 0.9998925981442828,
+   "median_w0": -0.6670064,
+   "median_z_cross": 0.4440569960716621
+  },
+  "desy5": {
+   "cross_weight_frac": 1.0,
+   "median_w0": -0.7534148,
+   "median_z_cross": 0.40585374569418875
+  }
+ },
+ "K0": {
+  "t90_Gyr": 10.010189229677012,
+  "t90_CFG541": 10.010189229677012,
+  "rel": 0.0,
+  "pass_": true
+ },
+ "one_d": {
+  "can": {
+   "MW": {
+    "fret": 0.1,
+    "Vf_kms": 165.24011973860735,
+    "r_analytic_kpc": 514.3182020135458,
+    "od_a0.5": {
+     "t90_Gyr": 20.020328716322872,
+     "t_end_Gyr": 160.38943382223852,
+     "steps": 19200,
+     "dW_per_Mcat_Vf2": 0.769799543561378,
+     "Q_over_dW": 1.000449527378797,
+     "maxincF": -9.908012064164272e-14,
+     "maxincL": null,
+     "vmax_over_c": 0.004638308013216529,
+     "vmax_kms": 1390.52976024328,
+     "Pi_max": 295.7863662346834,
+     "sqrt2psimax_kms": 534.3823058125154,
+     "speed_bound_ok": false,
+     "mass_err": 0.0,
+     "front_sub_over_analytic": 1.0000014414264953,
+     "front_lit_over_analytic": 0.9954311239196699,
+     "settled_over_Mcat": 0.9954694037269429,
+     "x_flux": 5.726500608506041e-07
+    },
+    "od_a1.0": {
+     "t90_Gyr": 10.010189229677012,
+     "t_end_Gyr": 85.14896301861458,
+     "steps": 20300,
+     "dW_per_Mcat_Vf2": 0.7697995622651822,
+     "Q_over_dW": 1.0004495273678808,
+     "maxincF": -5.1665846491304363e-14,
+     "maxincL": null,
+     "vmax_over_c": 0.009276616026433059,
+     "vmax_kms": 2781.05952048656,
+     "Pi_max": 591.5727324693668,
+     "sqrt2psimax_kms": 534.3823058125154,
+     "speed_bound_ok": false,
+     "mass_err": 0.0,
+     "front_sub_over_analytic": 1.0000007500919645,
+     "front_lit_over_analytic": 0.9954311239196699,
+     "settled_over_Mcat": 0.9954700921942361,
+     "x_flux": 1.1453001217012082e-06
+    },
+    "od_a2.0": {
+     "t90_Gyr": 5.00510149607667,
+     "t_end_Gyr": 45.2767975679411,
+     "steps": 21500,
+     "dW_per_Mcat_Vf2": 0.7697995726146908,
+     "Q_over_dW": 1.0004495273618408,
+     "maxincF": -2.5324583074449724e-14,
+     "maxincL": null,
+     "vmax_over_c": 0.018553232052866117,
+     "vmax_kms": 5562.11904097312,
+     "Pi_max": 1183.1454649387335,
+     "sqrt2psimax_kms": 534.3823058125154,
+     "speed_bound_ok": false,
+     "mass_err": 0.0,
+     "front_sub_over_analytic": 1.000000367546506,
+     "front_lit_over_analytic": 0.9954311239196699,
+     "settled_over_Mcat": 0.9954704731527183,
+     "x_flux": 2.2906002434024163e-06
+    },
+    "slip_a0.5": {
+     "t90_Gyr": 16.69336397287754,
+     "t_end_Gyr": 300.0,
+     "steps": 9949,
+     "dW_per_Mcat_Vf2": 2.718505040557884,
+     "Q_over_dW": 1.0005228232713685,
+     "maxincF": 0.0018300961474752842,
+     "maxincL": 0.0018299768245733025,
+     "vmax_over_c": 0.0007693818729962918,
+     "vmax_kms": 230.65488284620213,
+     "Pi_max": 37.15825810716483,
+     "sqrt2psimax_kms": 536.0400309728229,
+     "speed_bound_ok": true,
+     "mass_err": 1.9337410395239072e-16,
+     "front_sub_over_analytic": 0.6634373492800049,
+     "front_lit_over_analytic": 0.6634373492800067,
+     "settled_over_Mcat": 0.9999999999999998,
+     "x_flux": 1.3886435556798063e-06
+    },
+    "slip_a1.0": {
+     "t90_Gyr": 11.90426943555321,
+     "t_end_Gyr": 300.0,
+     "steps": 44349,
+     "dW_per_Mcat_Vf2": 45.32915826568241,
+     "Q_over_dW": 1.0000707936269453,
+     "maxincF": 0.012282983911049964,
+     "maxincL": 0.01129668346220226,
+     "vmax_over_c": 0.0013463072733232186,
+     "vmax_kms": 403.6127666928456,
+     "Pi_max": 77.19419992039457,
+     "sqrt2psimax_kms": 536.0400291116789,
+     "speed_bound_ok": true,
+     "mass_err": 9.668705197619536e-15,
+     "front_sub_over_analytic": 0.053615439078210994,
+     "front_lit_over_analytic": 0.05361543907821114,
+     "settled_over_Mcat": 1.0000000000000098,
+     "x_flux": 0.00021516764109287033
+    },
+    "slip_a2.0": {
+     "t90_Gyr": 10.609721506518648,
+     "t_end_Gyr": 300.0,
+     "steps": 418982,
+     "dW_per_Mcat_Vf2": 527.4311318049154,
+     "Q_over_dW": 1.000010176264599,
+     "maxincF": 0.00036821803112708503,
+     "maxincL": 0.0002668950462308811,
+     "vmax_over_c": 0.0016413481465171525,
+     "vmax_kms": 492.0637952781213,
+     "Pi_max": 84.20115243625989,
+     "sqrt2psimax_kms": 562.6068837930372,
+     "speed_bound_ok": true,
+     "mass_err": 4.2155554661621175e-14,
+     "front_sub_over_analytic": 0.001354068893211488,
+     "front_lit_over_analytic": 0.0013540688932114913,
+     "settled_over_Mcat": 1.000000000000042,
+     "x_flux": 0.3881592499930398
+    }
+   },
+   "cluster": {
+    "fret": 0.9,
+    "Vf_kms": 1168.4240919124634,
+    "r_analytic_kpc": 3047.925228837335,
+    "od_a0.5": {
+     "t90_Gyr": 17.578044068063985,
+     "t_end_Gyr": 97.94911692742565,
+     "steps": 3900,
+     "dW_per_Mcat_Vf2": 0.9858728270154925,
+     "Q_over_dW": 1.0009389847109837,
+     "maxincF": -5.0564943970735874e-14,
+     "maxincL": null,
+     "vmax_over_c": 0.03996720516931735,
+     "vmax_kms": 11981.866677099953,
+     "Pi_max": 470.07847812529076,
+     "sqrt2psimax_kms": 3009.295835285269,
+     "speed_bound_ok": false,
+     "mass_err": 0.0,
+     "front_sub_over_analytic": 0.9999973108532231,
+     "front_lit_over_analytic": 1.008736800083604,
+     "settled_over_Mcat": 0.9833415199212127,
+     "x_flux": 1.4640038112972141e-05
+    },
+    "od_a1.0": {
+     "t90_Gyr": 8.789022034031992,
+     "t_end_Gyr": 48.974558463712825,
+     "steps": 3900,
+     "dW_per_Mcat_Vf2": 0.9858728270154925,
+     "Q_over_dW": 1.0009389847109837,
+     "maxincF": -5.0564943970735874e-14,
+     "maxincL": null,
+     "vmax_over_c": 0.0799344103386347,
+     "vmax_kms": 23963.733354199907,
+     "Pi_max": 940.1569562505815,
+     "sqrt2psimax_kms": 3009.295835285269,
+     "speed_bound_ok": false,
+     "mass_err": 0.0,
+     "front_sub_over_analytic": 0.9999973108532231,
+     "front_lit_over_analytic": 1.008736800083604,
+     "settled_over_Mcat": 0.9833415199212127,
+     "x_flux": 2.9280076225944282e-05
+    },
+    "od_a2.0": {
+     "t90_Gyr": 4.39451302121097,
+     "t_end_Gyr": 26.27785828367703,
+     "steps": 4000,
+     "dW_per_Mcat_Vf2": 0.9858728308940317,
+     "Q_over_dW": 1.0009389847072878,
+     "maxincF": -2.1911475720652212e-14,
+     "maxincL": null,
+     "vmax_over_c": 0.1598688206772694,
+     "vmax_kms": 47927.466708399814,
+     "Pi_max": 1880.313912501163,
+     "sqrt2psimax_kms": 3009.295835285269,
+     "speed_bound_ok": false,
+     "mass_err": 1.7821357420252327e-16,
+     "front_sub_over_analytic": 0.9999971921281877,
+     "front_lit_over_analytic": 1.008736800083604,
+     "settled_over_Mcat": 0.983341648980148,
+     "x_flux": 5.8560152451888565e-05
+    },
+    "slip_a0.5": {
+     "t90_Gyr": 14.608736400340483,
+     "t_end_Gyr": 300.0,
+     "steps": 13593,
+     "dW_per_Mcat_Vf2": 3.7667644286369413,
+     "Q_over_dW": 1.0003355682336328,
+     "maxincF": 0.0014338361381239448,
+     "maxincL": 0.0014209647501608996,
+     "vmax_over_c": 0.004426548271609551,
+     "vmax_kms": 1327.045786801479,
+     "Pi_max": 232.56353744137854,
+     "sqrt2psimax_kms": 3015.2696128768293,
+     "speed_bound_ok": true,
+     "mass_err": 3.5642714840504653e-16,
+     "front_sub_over_analytic": 0.6663600063030961,
+     "front_lit_over_analytic": 0.666360006303098,
+     "settled_over_Mcat": 1.0000000000000004,
+     "x_flux": 0.08319866948432447
+    },
+    "slip_a1.0": {
+     "t90_Gyr": 10.955726534666606,
+     "t_end_Gyr": 300.0,
+     "steps": 127215,
+     "dW_per_Mcat_Vf2": 38.49608839650503,
+     "Q_over_dW": 1.0000773996973409,
+     "maxincF": 0.015104909343204033,
+     "maxincL": 0.013946642225512751,
+     "vmax_over_c": 0.008798782843357946,
+     "vmax_kms": 2637.8087360185077,
+     "Pi_max": 1568.6543443443768,
+     "sqrt2psimax_kms": 3015.269562502904,
+     "speed_bound_ok": true,
+     "mass_err": 4.455339355063082e-15,
+     "front_sub_over_analytic": 0.10961737936631816,
+     "front_lit_over_analytic": 0.10961737936631846,
+     "settled_over_Mcat": 1.0000000000000042,
+     "x_flux": 35.51712055226495
+    },
+    "slip_a2.0": {
+     "t90_Gyr": 9.808733189353845,
+     "t_end_Gyr": 16.249904779121458,
+     "steps": 1108700,
+     "dW_per_Mcat_Vf2": 680.3433458766019,
+     "Q_over_dW": 1.000007871778048,
+     "maxincF": 0.0010146966650331497,
+     "maxincL": 0.0007492478799840591,
+     "vmax_over_c": 0.010914221185194943,
+     "vmax_kms": 3272.0011962652648,
+     "Pi_max": 63775.90566412905,
+     "sqrt2psimax_kms": 3241.56604443969,
+     "speed_bound_ok": false,
+     "mass_err": 1.0871028026353918e-14,
+     "front_sub_over_analytic": 0.0036054437421726977,
+     "front_lit_over_analytic": 0.0036054437421727077,
+     "settled_over_Mcat": 0.9999999999999889,
+     "x_flux": 3855.8190294844953
+    }
+   }
+  },
+  "alt": {
+   "MW": {
+    "fret": 0.1,
+    "Vf_kms": 173.25186089983066,
+    "r_analytic_kpc": 468.0956822603353,
+    "od_a0.5": {
+     "t90_Gyr": 18.056021908419755,
+     "t_end_Gyr": 93.5263874001867,
+     "steps": 16000,
+     "dW_per_Mcat_Vf2": 0.7905122638355425,
+     "Q_over_dW": 1.0003800900065147,
+     "maxincF": -1.8945456925160553e-14,
+     "maxincL": null,
+     "vmax_over_c": 0.00553422125494292,
+     "vmax_kms": 1659.1177931351826,
+     "Pi_max": 380.5384715635606,
+     "sqrt2psimax_kms": 567.5921641721511,
+     "speed_bound_ok": false,
+     "mass_err": 3.8674820790478144e-16,
+     "front_sub_over_analytic": 1.0000004783073955,
+     "front_lit_over_analytic": 1.0084775048307857,
+     "settled_over_Mcat": 0.981454570830812,
+     "x_flux": 5.539516193405133e-07
+    },
+    "od_a1.0": {
+     "t90_Gyr": 9.028018600046058,
+     "t_end_Gyr": 49.003843669241625,
+     "steps": 16700,
+     "dW_per_Mcat_Vf2": 0.7905122722684418,
+     "Q_over_dW": 1.0003800900024609,
+     "maxincF": -9.363846526228779e-15,
+     "maxincL": null,
+     "vmax_over_c": 0.01106844250988584,
+     "vmax_kms": 3318.2355862703653,
+     "Pi_max": 761.0769431271212,
+     "sqrt2psimax_kms": 567.5921641721511,
+     "speed_bound_ok": false,
+     "mass_err": 5.801223118571722e-16,
+     "front_sub_over_analytic": 1.0000002368937388,
+     "front_lit_over_analytic": 1.0084775048307857,
+     "settled_over_Mcat": 0.9814548182088723,
+     "x_flux": 1.1079032386810267e-06
+    },
+    "od_a2.0": {
+     "t90_Gyr": 4.5140109972360225,
+     "t_end_Gyr": 25.462200392827217,
+     "steps": 17300,
+     "dW_per_Mcat_Vf2": 0.7905122758759113,
+     "Q_over_dW": 1.000380090000726,
+     "maxincF": -5.081157029736547e-15,
+     "maxincL": null,
+     "vmax_over_c": 0.02213688501977168,
+     "vmax_kms": 6636.471172540731,
+     "Pi_max": 1522.1538862542425,
+     "sqrt2psimax_kms": 567.5921641721511,
+     "speed_bound_ok": false,
+     "mass_err": 3.8674820790478144e-16,
+     "front_sub_over_analytic": 1.0000001297163088,
+     "front_lit_over_analytic": 1.0084775048307857,
+     "settled_over_Mcat": 0.9814549280342066,
+     "x_flux": 2.2158064773620533e-06
+    },
+    "slip_a0.5": {
+     "t90_Gyr": 15.242390909405188,
+     "t_end_Gyr": 300.0,
+     "steps": 11276,
+     "dW_per_Mcat_Vf2": 3.1527821636264894,
+     "Q_over_dW": 1.0004589281961247,
+     "maxincF": 0.001288774799305294,
+     "maxincL": 0.0012737166902063136,
+     "vmax_over_c": 0.0008264936655036455,
+     "vmax_kms": 247.7765675027677,
+     "Pi_max": 44.58514678033898,
+     "sqrt2psimax_kms": 569.039867478852,
+     "speed_bound_ok": true,
+     "mass_err": 1.1602446237143443e-15,
+     "front_sub_over_analytic": 0.6197444655918782,
+     "front_lit_over_analytic": 0.6197444655918799,
+     "settled_over_Mcat": 1.0000000000000009,
+     "x_flux": 1.5485995355593147e-06
+    },
+    "slip_a1.0": {
+     "t90_Gyr": 11.295231621412595,
+     "t_end_Gyr": 300.0,
+     "steps": 52502,
+     "dW_per_Mcat_Vf2": 51.05149434040549,
+     "Q_over_dW": 1.000061460072959,
+     "maxincF": 0.009554759191288374,
+     "maxincL": 0.008771195156085196,
+     "vmax_over_c": 0.0014886898684581267,
+     "vmax_kms": 446.29799486475844,
+     "Pi_max": 83.0354797298126,
+     "sqrt2psimax_kms": 569.0398711193747,
+     "speed_bound_ok": true,
+     "mass_err": 6.381345430428894e-15,
+     "front_sub_over_analytic": 0.040338825365537706,
+     "front_lit_over_analytic": 0.04033882536553781,
+     "settled_over_Mcat": 1.0000000000000064,
+     "x_flux": 0.0002672107607279962
+    },
+    "slip_a2.0": {
+     "t90_Gyr": 10.112522329539281,
+     "t_end_Gyr": 17.0145692089464,
+     "steps": 577500,
+     "dW_per_Mcat_Vf2": 651.5497245234061,
+     "Q_over_dW": 1.0000081627120716,
+     "maxincF": 0.00025694741315194944,
+     "maxincL": 0.00018287217176367874,
+     "vmax_over_c": 0.001737530820667312,
+     "vmax_kms": 520.8986355786107,
+     "Pi_max": 89.32899889181991,
+     "sqrt2psimax_kms": 594.5478534633435,
+     "speed_bound_ok": true,
+     "mass_err": 8.701834677857583e-15,
+     "front_sub_over_analytic": 0.001135177623099882,
+     "front_lit_over_analytic": 0.0011351776230998849,
+     "settled_over_Mcat": 0.9999999999999913,
+     "x_flux": 1.0073547883734135
+    }
+   },
+   "cluster": {
+    "fret": 0.9,
+    "Vf_kms": 1225.0756569545872,
+    "r_analytic_kpc": 2772.424170301481,
+    "od_a0.5": {
+     "t90_Gyr": 16.013128374775253,
+     "t_end_Gyr": 120.57765279037586,
+     "steps": 4700,
+     "dW_per_Mcat_Vf2": 1.0124869051478027,
+     "Q_over_dW": 1.000913836963456,
+     "maxincF": -3.374792385913411e-13,
+     "maxincL": null,
+     "vmax_over_c": 0.048244542543577795,
+     "vmax_kms": 14463.349994224758,
+     "Pi_max": 654.2753299738677,
+     "sqrt2psimax_kms": 3223.123650936373,
+     "speed_bound_ok": false,
+     "mass_err": 1.7821357420252322e-16,
+     "front_sub_over_analytic": 0.9999977543251599,
+     "front_lit_over_analytic": 0.9954732743480978,
+     "settled_over_Mcat": 0.9952130871907092,
+     "x_flux": 1.5182239656641406e-05
+    },
+    "od_a1.0": {
+     "t90_Gyr": 8.006572335495898,
+     "t_end_Gyr": 63.39596269176572,
+     "steps": 4800,
+     "dW_per_Mcat_Vf2": 1.0124869144258075,
+     "Q_over_dW": 1.0009138369550823,
+     "maxincF": -1.870117642228067e-13,
+     "maxincL": null,
+     "vmax_over_c": 0.09648908508715559,
+     "vmax_kms": 28926.699988449516,
+     "Pi_max": 1308.5506599477353,
+     "sqrt2psimax_kms": 3223.123650936373,
+     "speed_bound_ok": false,
+     "mass_err": 0.0,
+     "front_sub_over_analytic": 0.9999974261135887,
+     "front_lit_over_analytic": 0.9954732743480978,
+     "settled_over_Mcat": 0.9952134360152528,
+     "x_flux": 3.0364479313282813e-05
+    },
+    "od_a2.0": {
+     "t90_Gyr": 4.0032884261572415,
+     "t_end_Gyr": 33.251549494171755,
+     "steps": 4900,
+     "dW_per_Mcat_Vf2": 1.0124869195689046,
+     "Q_over_dW": 1.0009138369504402,
+     "maxincF": -1.0358046097060002e-13,
+     "maxincL": null,
+     "vmax_over_c": 0.19297817017431118,
+     "vmax_kms": 57853.39997689903,
+     "Pi_max": 2617.1013198954706,
+     "sqrt2psimax_kms": 3223.123650936373,
+     "speed_bound_ok": false,
+     "mass_err": 0.0,
+     "front_sub_over_analytic": 0.9999972441728445,
+     "front_lit_over_analytic": 0.9954732743480978,
+     "settled_over_Mcat": 0.9952136293824896,
+     "x_flux": 6.0728958626565625e-05
+    },
+    "slip_a0.5": {
+     "t90_Gyr": 13.55933380032842,
+     "t_end_Gyr": 300.0,
+     "steps": 20430,
+     "dW_per_Mcat_Vf2": 4.614772215171947,
+     "Q_over_dW": 1.0002816693713776,
+     "maxincF": 0.003350868090019514,
+     "maxincL": 0.003350813075807955,
+     "vmax_over_c": 0.004873203811470738,
+     "vmax_kms": 1460.9497489757812,
+     "Pi_max": 333.5259533278924,
+     "sqrt2psimax_kms": 3227.9218179848335,
+     "speed_bound_ok": true,
+     "mass_err": 0.0,
+     "front_sub_over_analytic": 0.6083136351300116,
+     "front_lit_over_analytic": 0.6083136351300132,
+     "settled_over_Mcat": 1.0,
+     "x_flux": 0.22144104644457555
+    },
+    "slip_a1.0": {
+     "t90_Gyr": 10.299217640350575,
+     "t_end_Gyr": 300.0,
+     "steps": 215265,
+     "dW_per_Mcat_Vf2": 52.844114993691335,
+     "Q_over_dW": 1.0000570857009325,
+     "maxincF": 0.012281103983997904,
+     "maxincL": 0.011241311712413543,
+     "vmax_over_c": 0.0100760445947143,
+     "vmax_kms": 3020.7221759670138,
+     "Pi_max": 2682.6409100868773,
+     "sqrt2psimax_kms": 3227.9217891681906,
+     "speed_bound_ok": true,
+     "mass_err": 8.197824413316068e-15,
+     "front_sub_over_analytic": 0.08482411474362174,
+     "front_lit_over_analytic": 0.08482411474362198,
+     "settled_over_Mcat": 1.0000000000000082,
+     "x_flux": 109.08715641554087
+    },
+    "slip_a2.0": {
+     "t90_Gyr": 9.273936212565669,
+     "t_end_Gyr": 300.0,
+     "steps": 1470002,
+     "dW_per_Mcat_Vf2": 917.2297264035318,
+     "Q_over_dW": 1.0000054916512249,
+     "maxincF": 0.0005457868991518671,
+     "maxincL": 0.00039231993833072976,
+     "vmax_over_c": 0.01169831688293879,
+     "vmax_kms": 3507.0671727991185,
+     "Pi_max": 113534.78727925179,
+     "sqrt2psimax_kms": 3440.2898551984745,
+     "speed_bound_ok": false,
+     "mass_err": 2.316776464632802e-15,
+     "front_sub_over_analytic": 0.0023863242013725276,
+     "front_lit_over_analytic": 0.0023863242013725337,
+     "settled_over_Mcat": 0.9999999999999977,
+     "x_flux": 4975.373204642548
+    }
+   }
+  }
+ },
+ "K7": {
+  "energy_ratio_Q_over_Esink_max": 3.6482314705411354,
+  "cosmic_drho_over_rho": 8.167185126772424e-06,
+  "dlog10_a0_rho": 1.7734744745018454e-06,
+  "dlog10_a0_minus_p": 4.282363360744147e-06,
+  "bound": 0.004,
+  "pass_": true
+ },
+ "K8": {
+  "Pb": {
+   "x_outgoing_max": 6.0728958626565625e-05,
+   "one_plus_w_min_median": 0.16133728999999997,
+   "near_field": 1.14294916440803e-08,
+   "bound": 0.001,
+   "x_by_run": {
+    "can_MW_a0.5": 5.726500608506041e-07,
+    "can_MW_a1.0": 1.1453001217012082e-06,
+    "can_MW_a2.0": 2.2906002434024163e-06,
+    "can_cluster_a0.5": 1.4640038112972141e-05,
+    "can_cluster_a1.0": 2.9280076225944282e-05,
+    "can_cluster_a2.0": 5.8560152451888565e-05,
+    "alt_MW_a0.5": 5.539516193405133e-07,
+    "alt_MW_a1.0": 1.1079032386810267e-06,
+    "alt_MW_a2.0": 2.2158064773620533e-06,
+    "alt_cluster_a0.5": 1.5182239656641406e-05,
+    "alt_cluster_a1.0": 3.0364479313282813e-05,
+    "alt_cluster_a2.0": 6.0728958626565625e-05
+   },
+   "delta_rho_over_rho": 6.0728958626565625e-05,
+   "pass_": true
+  },
+  "Pbstar": {
+   "x_outgoing_max": 4975.373204642548,
+   "one_plus_w_min_median": 0.16133728999999997,
+   "near_field": 76716109.85121626,
+   "bound": 0.001,
+   "x_by_run": {
+    "can_MW_a0.5": 1.3886435556798063e-06,
+    "can_MW_a1.0": 0.00021516764109287033,
+    "can_MW_a2.0": 0.3881592499930398,
+    "can_cluster_a0.5": 0.08319866948432447,
+    "can_cluster_a1.0": 35.51712055226495,
+    "can_cluster_a2.0": 3855.8190294844953,
+    "alt_MW_a0.5": 1.5485995355593147e-06,
+    "alt_MW_a1.0": 0.0002672107607279962,
+    "alt_MW_a2.0": 1.0073547883734135,
+    "alt_cluster_a0.5": 0.22144104644457555,
+    "alt_cluster_a1.0": 109.08715641554087,
+    "alt_cluster_a2.0": 4975.373204642548
+   },
+   "delta_rho_over_rho": 76716109.85121626,
+   "pass_": false
+  }
+ },
+ "checks": {
+  "K1": true,
+  "K2_sympy": true,
+  "K2_numeric_max_dev": 0.0009389847109837479,
+  "K2_numeric": true,
+  "K3": true,
+  "K3_max_mass_err": 4.2155554661621175e-14,
+  "K4_sympy": true,
+  "K4_od_max_step_inc": -5.081157029736547e-15,
+  "K4_slip_max_step_inc_L": 0.013946642225512751,
+  "K4_od_flag": false,
+  "K4_slip_flag": true,
+  "K5": "FREE",
+  "K6": "DERIVED: Q = rho_c alpha tau_ff 1_B 1_C grad psi . grad Phi (Pb); Pb*: Q = -rho_c w . grad Phi",
+  "K7": true,
+  "K8_Pb": true,
+  "K8_Pbstar": false,
+  "K9_Pb": "CAUSAL-WITH-tau for alpha beta q < 1 (alpha_max 1.000 at beta = 1, q -> 1)",
+  "K9_Pbstar": "CAUSAL-WITH-tau for q alpha (alpha + beta) < 1 (alpha_max 0.6180 at beta = 1, q -> 1)",
+  "C1_cluster_vmax_over_c": {
+   "can_od_a0.5": 0.03996720516931735,
+   "can_od_a1.0": 0.0799344103386347,
+   "can_od_a2.0": 0.1598688206772694,
+   "can_slip_a0.5": 0.004426548271609551,
+   "can_slip_a1.0": 0.008798782843357946,
+   "can_slip_a2.0": 0.010914221185194943,
+   "alt_od_a0.5": 0.048244542543577795,
+   "alt_od_a1.0": 0.09648908508715559,
+   "alt_od_a2.0": 0.19297817017431118,
+   "alt_slip_a0.5": 0.004873203811470738,
+   "alt_slip_a1.0": 0.0100760445947143,
+   "alt_slip_a2.0": 0.01169831688293879
+  },
+  "K10_crossing_open_item": true
+ },
+ "task3": {
+  "speed_bound_all": false,
+  "cluster_vmax_le_1e2c": false,
+  "no_new_constant": true,
+  "INERTIA_LIMITED": "NO",
+  "t90_ratio_0p5_over_2": {
+   "can_MW": {
+    "od": 3.99998456215446,
+    "slip": 1.573402653653169
+   },
+   "can_cluster": {
+    "od": 3.99999817572963,
+    "slip": 1.4893601567424062
+   },
+   "alt_MW": {
+    "od": 3.999995108446934,
+    "slip": 1.5072788383251579
+   },
+   "alt_cluster": {
+    "od": 3.999993672738255,
+    "slip": 1.4620904748035979
+   }
+  },
+  "edge_sub_over_analytic": {
+   "can_MW_a0.5": 0.6634373492800049,
+   "can_MW_a1.0": 0.053615439078210994,
+   "can_MW_a2.0": 0.001354068893211488,
+   "can_cluster_a0.5": 0.6663600063030961,
+   "can_cluster_a1.0": 0.10961737936631816,
+   "can_cluster_a2.0": 0.0036054437421726977,
+   "alt_MW_a0.5": 0.6197444655918782,
+   "alt_MW_a1.0": 0.040338825365537706,
+   "alt_MW_a2.0": 0.001135177623099882,
+   "alt_cluster_a0.5": 0.6083136351300116,
+   "alt_cluster_a1.0": 0.08482411474362174,
+   "alt_cluster_a2.0": 0.0023863242013725276
+  },
+  "edge_within_2pct": false
+ },
+ "labels": {
+  "Pa": {
+   "label": "CONSISTENT WITH OPEN ITEMS",
+   "alpha": "FREE",
+   "Q": "DERIVED (same as Pb, from the SK energy current)",
+   "switch": "INPUT",
+   "open": [
+    "alpha FREE: KMS/FDR fix the noise, not the mobility; a bath gives alpha ~ g^2 (new coupling)",
+    "GENERIC degeneracy L dS = 0 fails: orbital motion can raise F (no second law for the full kinetic system)",
+    "overdamped drift speeds in diffuse reservoirs (CFG541 item 3)",
+    "kinetic consistency (CFG541 item 5)",
+    "switch INPUT",
+    "canonical partner singular at the DESI-preferred w = -1 crossing",
+    "C1: overdamped cluster drift speed up to 0.193 c (> 1e-2 margin)"
+   ]
+  },
+  "Pb": {
+   "label": "CONSISTENT WITH OPEN ITEMS",
+   "alpha": "FREE",
+   "Q": "DERIVED: Q = rho_c alpha tau_ff 1_B 1_C grad psi . grad Phi",
+   "switch": "INPUT",
+   "open": [
+    "alpha FREE (bounded by K9)",
+    "GENERIC degeneracy L dS = 0 fails: orbital motion can raise F (no second law for the full kinetic system)",
+    "overdamped drift speeds in diffuse reservoirs (CFG541 item 3)",
+    "kinetic consistency (CFG541 item 5)",
+    "switch INPUT",
+    "canonical partner singular at the DESI-preferred w = -1 crossing",
+    "C1: overdamped cluster drift speed up to 0.193 c (> 1e-2 margin)"
+   ]
+  },
+  "Pbstar": {
+   "label": "INCONSISTENT",
+   "failure": "K4: the extended Lyapunov F + K_w rises in the 1-D runs (max step +1.4e-02 of F0). The sympy identity uses dF/drho_c = psi everywhere; at overfilled points (d = 0) adding mass has derivative 0, so inertial overshoot into the filled core raises F while the slip has already been paid by -grad psi. The one-sided deficit never removes the overfill.",
+   "alpha": "FREE",
+   "Q": "DERIVED: Q = -rho_c w . grad Phi",
+   "switch": "INPUT",
+   "open": [
+    "alpha FREE (bounded: q alpha (alpha + 1) < 1 -> alpha < 0.618 for q -> 1)",
+    "GENERIC degeneracy L dS = 0 fails: orbital motion can raise F (no second law for the full kinetic system)",
+    "edge moves inward (inertial overfill)",
+    "kinetic consistency (CFG541 item 5)",
+    "switch INPUT",
+    "canonical partner singular at the DESI-preferred w = -1 crossing",
+    "K8 fails (collapsed cores radiate; outgoing x up to 5.0e+03)",
+    "inertia-limited regime NO as frozen"
+   ]
+  },
+  "Pc1": {
+   "label": "INCONSISTENT",
+   "failure": "friction on the cold energy's own velocity removes its support: stationary needs rho_m + d = 0"
+  },
+  "Pc2": {
+   "label": "INCONSISTENT",
+   "failure": "a healthy local mediator gives static energy -F: force +grad psi (settling reverses); +F needs a ghost or a gradient-unstable field"
+  }
+ }
+}
