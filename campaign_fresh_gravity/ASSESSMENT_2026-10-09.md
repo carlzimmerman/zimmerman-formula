@@ -57,6 +57,8 @@
 
 - **Kinetic consistency (CFG544):** class A as is fails (σ = 0 → radial collapse, core overfill). The derived two-sided deficit fails. A velocity relaxation to the local Jeans σ passes all cells but its target is posited. No Lyapunov function for the full system. Kinetic support softens the edge outward 25–55%.
 
+- **Cold-energy EoM in simulation (CFG539): NO CLASS VIABLE.** Class A (overdamped settling) fails growth at every box and resolution (0.10–0.50), never halves the deficit, and its mobility acts as a knob. Mechanism: the drift carries no momentum, so settled cold energy keeps its orbit and leaves. Class C fails at 256³. The census edge is load-bearing but not derived. **POST-HOC FLAG:** CFG527/530 growth was judged on PARTICLES only; on the GRAVITATING density the excess is 0.34–0.39. CFG555 is re-judging every growth lane, including PAPER45's, on the gravitating field.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
