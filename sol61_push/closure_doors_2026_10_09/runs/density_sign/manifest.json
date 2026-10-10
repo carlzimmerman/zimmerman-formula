@@ -1,0 +1,157 @@
+{
+  "schema_version": 2,
+  "claim_id": "FINITE_SUSCEPTIBILITY_POSITIVE_FINITE_HALO",
+  "repository": {
+    "commit": "94a0fce426db5cb7e0099f3f3337df8b3e96197c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closure_doors_2026_10_09/checks.py",
+    "--output",
+    "sol61_push/closure_doors_2026_10_09/runs/density_sign/results.json",
+    "--mutate",
+    "density_sign"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Positive spectral response has finite asymptotic mass, monotone spherical halo mass, and nonnegative extended-source coefficients; compare force shape with a capped RAR target",
+    "coefficient_domain": "Double precision quadrature and shape-preserving interpolation",
+    "conventions": "nu=1/3, dimensionless Gaussian bath, eta calibrated to mass ratio 5.364, acceleration normalized by critical asymptotic coefficient",
+    "inputs": [
+      "sol61_push/closure_doors_2026_10_09/checks.py"
+    ],
+    "bounds": {
+      "zeta": [
+        0.001,
+        0.01,
+        0.1,
+        1,
+        10
+      ],
+      "epsilon_log10": [
+        -20,
+        4
+      ],
+      "epsilon_points": 81,
+      "log_energy": [
+        -140,
+        40
+      ],
+      "comparison_y": [
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1,
+        3,
+        10,
+        30,
+        100
+      ],
+      "force_shape_gate_dex": 0.05,
+      "history": "Frozen before this numerical scout; the gate is illustrative and is not an observational exclusion"
+    },
+    "non_claims": [
+      "No actual cold energy formation",
+      "No empirical fit",
+      "No parameter selection",
+      "Finite checks are not the analytic proof",
+      "Current RAR cold-energy target is distinct from earlier filtered MONO"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-10T00:18:47.652040+00:00",
+    "runtime_seconds": 1.538254,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closure_doors_2026_10_09/checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closure_doors_2026_10_09/checks.py",
+      "sha256": "4afb433e143fcdbee2e7e441e3e6839cf540c4de251d8bdbe39916688076d41c",
+      "sha256_after": "4afb433e143fcdbee2e7e441e3e6839cf540c4de251d8bdbe39916688076d41c"
+    }
+  ],
+  "output_directory": "sol61_push/closure_doors_2026_10_09/runs/density_sign",
+  "declared_results": [
+    "sol61_push/closure_doors_2026_10_09/runs/density_sign/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/closure_doors_2026_10_09/runs/density_sign/stdout.txt",
+      "sha256": "dab7a69fafbdf5b2b5c8c5e778c87fac75d6c627fb520b8960945551cb9846b8",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_doors_2026_10_09/runs/density_sign/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/closure_doors_2026_10_09/runs/density_sign/results.json",
+      "sha256": "4d50bfd291942816724bf99f3c8b75f022b13c7216ba1da0eb8f96a6b334eca6",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
