@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "TRANSPORT_CLOCK_2026_10_10",
+  "repository": {
+    "commit": "e7bd0a4433286b1a96df17bf8b4fbca776c0287c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/transport_clock_2026_10_10/check.py",
+    "sol61_push/transport_clock_2026_10_10/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6; standard library only"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact-kernel amplitude-edge mass accounting and instantaneous finite-core drift flux, checked against independent finite differences and mass balance",
+    "coefficient_domain": "real formulas evaluated in IEEE-754 binary64",
+    "conventions": "Dimensionless G=V_f=alpha=r_in=M_b=r_M=1 where relevant; spherical exponential kernel; inward flux positive; settled supply distinct from whole catchment supply",
+    "inputs": [
+      "Analytic equations in REPORT.md; no observational data"
+    ],
+    "bounds": {
+      "supply_over_mb": [
+        5.364,
+        20,
+        50
+      ],
+      "amplitudes": [
+        0.5,
+        1,
+        2,
+        3
+      ],
+      "fill": [
+        0.2,
+        0.5,
+        0.8
+      ],
+      "r_over_core": [
+        2,
+        5,
+        10,
+        50,
+        100
+      ],
+      "wall_seconds": 20
+    },
+    "non_claims": [
+      "No evolved halo or observed age measurement",
+      "No finite grid establishes physical universality",
+      "No derivation of kappa=1/2 or 32pi squared",
+      "No repaired-kernel claim outside its shared deep limit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-10T22:15:46.589062+00:00",
+    "runtime_seconds": 0.043603,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/transport_clock_2026_10_10/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/transport_clock_2026_10_10/check.py",
+      "sha256": "c237fda94aa3b64aba8f5963612a37f5f86c95dc0f798fd81ce36f92e5a0954a",
+      "sha256_after": "c237fda94aa3b64aba8f5963612a37f5f86c95dc0f798fd81ce36f92e5a0954a"
+    }
+  ],
+  "output_directory": "sol61_push/transport_clock_2026_10_10/run",
+  "declared_results": [
+    "sol61_push/transport_clock_2026_10_10/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/transport_clock_2026_10_10/run/stdout.txt",
+      "sha256": "f76aa18340c8c54713873fb295b4c9cb4960870828571b1b68ca0126d88a4679",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/transport_clock_2026_10_10/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/transport_clock_2026_10_10/run/results.json",
+      "sha256": "e6c4c2727effd0e340e71b7590498849b8b78208a44cc2a1bcc1745cc78c494d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
