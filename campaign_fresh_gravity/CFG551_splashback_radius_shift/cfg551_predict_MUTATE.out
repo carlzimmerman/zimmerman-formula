@@ -1,0 +1,31 @@
+CFG551 Tasks 2-3: predicted splashback-radius ratio (framework / LCDM) per published measurement, the confrontation, controls.
+
+Implements FROZEN_CRITERIA.md (b1b7c9e08).
+Inputs (read-only): ../CFG546_drained_shell_cluster_lensing/cfg546_predict_results.json (rho_g templates, S0 stack),
+  cfg546_predict_MUTATE_results.json (shuffled-centre template), cfg546_forecast_results.json (linear r_sp shifts),
+  ../CFG495_drawdown_shell/cfg495_sim_analysis_results.json (V6), ../CFG504_smooth_halo_transition/cfg504_calib_results.json (K-S0),
+  cfg551_ptemplate_results.json (particle templates, this lane), cfg551_measurements.json (compilation, this lane).
+Outputs: cfg551_predict.out / cfg551_predict_results.json; CFG551_MUTATE=1 -> cfg551_predict_MUTATE.out / _results.json.
+
+== MUTATE-0 (gate): template zero; fits start only from the perturbed points; R_pred must be 1 +- 0.01
+  [PASS] MUTATE-0 zero shell: max |R_pred - 1| = 0.0000 over 11 measurements x 2 methods
+
+== MUTATE-SHUF (gate): CFG546 shuffled-centre rho_g template (512^3 canonical clusters); |R_pred - 1| <= 0.05
+  [PASS] MUTATE-SHUF shuffled centres: R_pred 1.001-1.003; max |R - 1| = 0.0025
+
+== MUTATE-FULL (gate): CFG546's linear-bias r_sp shift re-run with its own lib, setups and constructed covariances
+   D1 canonical: linear shift +30.4% (CFG546 JSON +30.4%); nonlinear fit, 0.3-30, sigma_bin 0.05: +36.0%, constructed covariance: +29.7%
+   D1 alt      : linear shift +28.3% (CFG546 JSON +28.3%); nonlinear fit, 0.3-30, sigma_bin 0.05: +25.7%, constructed covariance: +20.2%
+   D2 canonical: linear shift +30.4% (CFG546 JSON +30.4%); nonlinear fit, 0.3-30, sigma_bin 0.05: +36.0%, constructed covariance: +29.0%
+   D2 alt      : linear shift +26.1% (CFG546 JSON +26.1%); nonlinear fit, 0.3-30, sigma_bin 0.05: +25.7%, constructed covariance: +19.3%
+   D3 canonical: linear shift +34.8% (CFG546 JSON +34.8%); nonlinear fit, 0.3-30, sigma_bin 0.05: +33.6%, constructed covariance: +33.8%
+   D3 alt      : linear shift +32.6% (CFG546 JSON +32.6%); nonlinear fit, 0.3-30, sigma_bin 0.05: +23.6%, constructed covariance: +24.0%
+   D4 canonical: linear shift +30.4% (CFG546 JSON +30.4%); nonlinear fit, 0.3-30, sigma_bin 0.05: +35.8%, constructed covariance: +29.1%
+   D4 alt      : linear shift +28.3% (CFG546 JSON +28.3%); nonlinear fit, 0.3-30, sigma_bin 0.05: +25.7%, constructed covariance: +20.8%
+   D6 canonical: linear shift +32.6% (CFG546 JSON +32.6%); nonlinear fit, 0.3-30, sigma_bin 0.05: +36.0%, constructed covariance: +29.8%
+   D6 alt      : linear shift +28.3% (CFG546 JSON +28.3%); nonlinear fit, 0.3-30, sigma_bin 0.05: +25.5%, constructed covariance: +20.1%
+   D7 canonical: linear shift +14.2% (CFG546 JSON +14.2%); nonlinear fit, 0.3-30, sigma_bin 0.05: +7.4%, constructed covariance: +25.0%
+   D7 alt      : linear shift +20.0% (CFG546 JSON +20.0%); nonlinear fit, 0.3-30, sigma_bin 0.05: +28.6%, constructed covariance: +22.3%
+   D8 canonical: linear shift +24.1% (CFG546 JSON +24.1%); nonlinear fit, 0.3-30, sigma_bin 0.05: +39.0%, constructed covariance: +29.9%
+   D8 alt      : linear shift +26.1% (CFG546 JSON +26.1%); nonlinear fit, 0.3-30, sigma_bin 0.05: +28.9%, constructed covariance: +22.9%
+  [PASS] MUTATE-FULL reproduces CFG546 linear shifts: max |diff| = 0.0000 (gate 0.005)

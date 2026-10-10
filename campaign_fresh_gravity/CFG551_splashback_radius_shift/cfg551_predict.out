@@ -1,0 +1,117 @@
+CFG551 Tasks 2-3: predicted splashback-radius ratio (framework / LCDM) per published measurement, the confrontation, controls.
+
+Implements FROZEN_CRITERIA.md (b1b7c9e08).
+Inputs (read-only): ../CFG546_drained_shell_cluster_lensing/cfg546_predict_results.json (rho_g templates, S0 stack),
+  cfg546_predict_MUTATE_results.json (shuffled-centre template), cfg546_forecast_results.json (linear r_sp shifts),
+  ../CFG495_drawdown_shell/cfg495_sim_analysis_results.json (V6), ../CFG504_smooth_halo_transition/cfg504_calib_results.json (K-S0),
+  cfg551_ptemplate_results.json (particle templates, this lane), cfg551_measurements.json (compilation, this lane).
+Outputs: cfg551_predict.out / cfg551_predict_results.json; CFG551_MUTATE=1 -> cfg551_predict_MUTATE.out / _results.json.
+
+== K-S0 (gate): DK14 pipeline (3D, sigma_bin 0.05, 0.2-10 Mpc/h, priors) on CFG504 S0 512^3 stacks vs colossus more15
+   S0_512_a R3: log M_ta 14.24, log M200m 13.98 (r_ta-matched 13.97); r_sp fit 2.955 = 2.69 r200m; more15 1.299 -> ratio 2.274 (r_ta-matched mass: 2.280); DK14 fiducial 1.383 -> ratio 2.137; chi2 51.6
+   S0_512_a R4: log M_ta 14.59, log M200m 14.33 (r_ta-matched 14.32); r_sp fit 4.298 EDGE = 3.00 r200m; more15 1.625 -> ratio 2.645 (r_ta-matched mass: 2.647); DK14 fiducial 1.756 -> ratio 2.447; chi2 72.0
+   S0_512_b R3: log M_ta 14.23, log M200m 13.97 (r_ta-matched 13.95); r_sp fit 2.908 = 2.67 r200m; more15 1.290 -> ratio 2.254 (r_ta-matched mass: 2.276); DK14 fiducial 1.371 -> ratio 2.121; chi2 70.3
+   S0_512_b R4: log M_ta 14.60, log M200m 14.34 (r_ta-matched 14.35); r_sp fit 4.256 = 2.94 r200m; more15 1.640 -> ratio 2.595 (r_ta-matched mass: 2.585); DK14 fiducial 1.772 -> ratio 2.402; chi2 98.6
+  [FAIL] K-S0 LCDM own ratio (S0 boxes / more15) in 0.85-1.15: S0_512_a|R3 2.274, S0_512_a|R4 2.645, S0_512_b|R3 2.254, S0_512_b|R4 2.595
+
+== V7 sim route (reported): DK14 3D fits to the CFG546 stacked S0 rho_g profile and to S0 x (1 + rel), x 0.2-3.95 r_ta (512^3 clusters)
+   rho_g canonical 512: sim route r_sp S0 0.967, F 3.285 -> ratio 3.399; analytic route at the same mass (z = 0) 1.292  (chi2 S0 36.4, F 63.9)
+   rho_p canonical 512: sim route r_sp S0 0.967, F 1.180 -> ratio 1.221; analytic route at the same mass (z = 0) 1.090  (chi2 S0 36.4, F 28.3)
+  [PASS] (reported) K-ROUTE sim vs analytic ratio (rho_g canonical 512): 3.399 vs 1.292
+
+== Predictions: 18 compiled measurements; R_pred = r_sp(fit framework) / r_sp(fit LCDM), same pipeline
+
+-- Shin21_L [L-SZX] Shin+21 (arXiv:2105.05914) ACT DR5 x DES Y3 lensing: z 0.455, M200m 4.81e+14 h^-1 Msun 
+   canonical: R_pred 1.242 +- 0.007 (r_sp 2.114 -> 2.627 h^-1 Mpc, 1.12 -> 1.39 r200m); 256^3 1.078 +- 0.004; soft 1.25/1.55 1.088/0.939; sb 0.02/0.10 1.244/1.242; 0.3-30 1.384; cov 1.241; CFG495 1.046  (19 s)
+   alt      : R_pred 1.188 +- 0.008 (r_sp 2.114 -> 2.511 h^-1 Mpc, 1.12 -> 1.33 r200m); 256^3 1.094 +- 0.005; soft 1.25/1.55 1.155/1.046; sb 0.02/0.10 1.189/1.184; 0.3-30 1.287; cov 1.195; CFG495 1.044  (17 s)
+   (reported only, not in criteria) r_sp,obs / more15 at this mass, comoving: 2.45 / 2.47 = 0.993
+
+-- Contigiani19_L [L-SZX] Contigiani, Hoekstra & Bahe 2019 (arXiv:1809.10045) CCCP lensing: z 0.3, M200m 1.19e+15 h^-1 Msun 
+   canonical: R_pred 1.171 +- 0.005 (r_sp 2.594 -> 3.037 h^-1 Mpc, 1.02 -> 1.19 r200m); 256^3 1.079 +- 0.003; soft 1.25/1.55 1.027/0.923; sb 0.02/0.10 1.175/1.170; 0.3-30 1.067; cov 1.201; CFG495 1.041  (19 s)
+   alt      : R_pred 1.167 +- 0.004 (r_sp 2.594 -> 3.028 h^-1 Mpc, 1.02 -> 1.19 r200m); 256^3 1.092 +- 0.004; soft 1.25/1.55 1.125/1.013; sb 0.02/0.10 1.175/1.170; 0.3-30 1.257; cov 1.179; CFG495 1.040  (17 s)
+
+-- Mpetha25_L [L-SZX] Mpetha+25 (arXiv:2501.09147) UNIONS lensing around M2C / SPIDERS: no mass / z compiled -> no prediction (r_sp 1.77 +0.20 -0.18 cMpc/h (M2C); no data/LCDM ratio quoted; no mass/z extracted)
+
+-- Chang18_L [L-OPT] Chang+18 (arXiv:1710.06808) DES Y1 redMaPPer lensing: z 0.41, M200m 2.50e+14 h^-1 Msun 
+   canonical: R_pred 1.275 +- 0.006 (r_sp 1.820 -> 2.321 h^-1 Mpc, 1.20 -> 1.53 r200m); 256^3 1.069 +- 0.005; soft 1.25/1.55 1.173/0.975; sb 0.02/0.10 1.276/1.274; 0.3-30 1.378; cov 1.267; CFG495 1.031  (17 s)
+   alt      : R_pred 1.177 +- 0.008 (r_sp 1.820 -> 2.141 h^-1 Mpc, 1.20 -> 1.41 r200m); 256^3 1.088 +- 0.006; soft 1.25/1.55 1.174/1.093; sb 0.02/0.10 1.177/1.171; 0.3-30 1.270; cov 1.185; CFG495 1.029  (17 s)
+
+-- Shin19_SPT_G [G-SZX] Shin+19 (arXiv:1811.06081) SPT-SZ x DES Y1 galaxies: z 0.49, M200m 5.25e+14 h^-1 Msun 
+   canonical: R_pred 1.067 +- 0.003 (r_sp 2.140 -> 2.284 h^-1 Mpc, 1.10 -> 1.18 r200m); 256^3 1.012 +- 0.001; soft 1.25/1.55 1.023/0.972; sb 0.02/0.10 1.065/1.068; 0.3-30 1.088  (7 s)
+   alt      : R_pred 1.010 +- 0.002 (r_sp 2.140 -> 2.161 h^-1 Mpc, 1.10 -> 1.11 r200m); 256^3 1.005 +- 0.001; soft 1.25/1.55 0.962/0.951; sb 0.02/0.10 1.004/1.009; 0.3-30 1.054  (9 s)
+
+-- Shin19_ACT_G [G-SZX] Shin+19 (arXiv:1811.06081) ACT x DES Y1 galaxies: z 0.49, M200m 5.70e+14 h^-1 Msun 
+   canonical: R_pred 1.064 +- 0.003 (r_sp 2.178 -> 2.317 h^-1 Mpc, 1.09 -> 1.16 r200m); 256^3 1.011 +- 0.001; soft 1.25/1.55 1.018/0.969; sb 0.02/0.10 1.062/1.064; 0.3-30 1.087  (7 s)
+   alt      : R_pred 1.004 +- 0.002 (r_sp 2.178 -> 2.188 h^-1 Mpc, 1.09 -> 1.10 r200m); 256^3 1.002 +- 0.001; soft 1.25/1.55 0.960/0.952; sb 0.02/0.10 0.999/1.003; 0.3-30 1.050  (8 s)
+
+-- Shin21_G [G-SZX] Shin+21 (arXiv:2105.05914) ACT DR5 x DES Y3 galaxies: z 0.455, M200m 4.81e+14 h^-1 Msun 
+   canonical: R_pred 1.071 +- 0.003 (r_sp 2.114 -> 2.264 h^-1 Mpc, 1.12 -> 1.20 r200m); 256^3 1.015 +- 0.001; soft 1.25/1.55 1.030/0.977; sb 0.02/0.10 1.069/1.072; 0.3-30 1.090  (7 s)
+   alt      : R_pred 1.017 +- 0.002 (r_sp 2.114 -> 2.150 h^-1 Mpc, 1.12 -> 1.14 r200m); 256^3 1.009 +- 0.001; soft 1.25/1.55 0.966/0.951; sb 0.02/0.10 1.010/1.016; 0.3-30 1.058  (9 s)
+   (reported only, not in criteria) r_sp,obs / more15 at this mass, comoving: 2.40 / 1.95 = 1.228
+
+-- Adhikari21_G [G-SZX] Adhikari+21 (arXiv:2008.11663) ACT DR5 x DES Y3 galaxies: z 0.49, M200m 5.42e+14 h^-1 Msun 
+   canonical: R_pred 1.065 +- 0.003 (r_sp 2.156 -> 2.297 h^-1 Mpc, 1.10 -> 1.17 r200m); 256^3 1.011 +- 0.001; soft 1.25/1.55 1.020/0.971; sb 0.02/0.10 1.064/1.066; 0.3-30 1.088  (8 s)
+   alt      : R_pred 1.007 +- 0.002 (r_sp 2.156 -> 2.171 h^-1 Mpc, 1.10 -> 1.11 r200m); 256^3 1.003 +- 0.001; soft 1.25/1.55 0.961/0.952; sb 0.02/0.10 1.001/1.006; 0.3-30 1.052  (8 s)
+
+-- Zurcher19_G [G-SZX] Zurcher & More 2019 (arXiv:1811.06511) Planck PSZ2 x Pan-STARRS: z 0.18, M200m 5.84e+14 h^-1 Msun 
+   canonical: R_pred 1.081 +- 0.004 (r_sp 2.289 -> 2.474 h^-1 Mpc, 1.14 -> 1.23 r200m); 256^3 1.024 +- 0.002; soft 1.25/1.55 1.054/0.999; sb 0.02/0.10 1.079/1.083; 0.3-30 1.090  (8 s)
+   alt      : R_pred 1.046 +- 0.004 (r_sp 2.289 -> 2.395 h^-1 Mpc, 1.14 -> 1.19 r200m); 256^3 1.025 +- 0.002; soft 1.25/1.55 0.982/0.950; sb 0.02/0.10 1.041/1.046; 0.3-30 1.073  (8 s)
+
+-- Rana23_G [G-SZX] Rana+23 (arXiv:2301.03626) eFEDS x HSC: z 0.46, M200m 3.31e+14 h^-1 Msun 
+   canonical: R_pred 1.078 +- 0.003 (r_sp 1.942 -> 2.093 h^-1 Mpc, 1.17 -> 1.26 r200m); 256^3 1.019 +- 0.001; soft 1.25/1.55 1.043/0.988; sb 0.02/0.10 1.075/1.079; 0.3-30 1.090  (7 s)
+   alt      : R_pred 1.032 +- 0.003 (r_sp 1.942 -> 2.004 h^-1 Mpc, 1.17 -> 1.20 r200m); 256^3 1.017 +- 0.002; soft 1.25/1.55 0.975/0.952; sb 0.02/0.10 1.024/1.031; 0.3-30 1.064  (8 s)
+
+-- Bianconi21_G [G-SZX] Bianconi+21 (arXiv:2010.05920) LoCuSS: no mass / z compiled -> no prediction (r_sp/r200m 1.158 +- 0.071 / 1.291 +- 0.062 (subsamples); no quoted LCDM ratio)
+
+-- Chang18_G [G-OPT] Chang+18 (arXiv:1710.06808) DES Y1 redMaPPer galaxies: z 0.41, M200m 2.50e+14 h^-1 Msun 
+   canonical: R_pred 1.084 +- 0.003 (r_sp 1.820 -> 1.974 h^-1 Mpc, 1.20 -> 1.30 r200m); 256^3 1.024 +- 0.002; soft 1.25/1.55 1.055/1.000; sb 0.02/0.10 1.080/1.086; 0.3-30 1.091  (7 s)
+   alt      : R_pred 1.046 +- 0.003 (r_sp 1.820 -> 1.904 h^-1 Mpc, 1.20 -> 1.26 r200m); 256^3 1.024 +- 0.002; soft 1.25/1.55 0.986/0.954; sb 0.02/0.10 1.038/1.046; 0.3-30 1.071  (8 s)
+
+-- Shin19_rM_G [G-OPT] Shin+19 redMaPPer control (DES Y1): z 0.46, M200m 5.29e+14 h^-1 Msun 
+   canonical: R_pred 1.068 +- 0.003 (r_sp 2.156 -> 2.303 h^-1 Mpc, 1.11 -> 1.18 r200m); 256^3 1.013 +- 0.001; soft 1.25/1.55 1.025/0.973; sb 0.02/0.10 1.066/1.069; 0.3-30 1.089  (8 s)
+   alt      : R_pred 1.012 +- 0.002 (r_sp 2.156 -> 2.181 h^-1 Mpc, 1.11 -> 1.12 r200m); 256^3 1.006 +- 0.001; soft 1.25/1.55 0.963/0.951; sb 0.02/0.10 1.006/1.010; 0.3-30 1.055  (9 s)
+
+-- More16_G [G-OPT] More+16 (arXiv:1601.06063) SDSS redMaPPer: no mass / z compiled -> no prediction ('about 20 +- 5%' smaller is a second-hand quote (U); split-sample r_sp only)
+
+-- Baxter17_G [G-OPT] Baxter+17 (arXiv:1702.01722) SDSS redMaPPer: no mass / z compiled -> no prediction (r_sp 1.18 +- 0.08; no simulation number in the text)
+
+-- Murata20_G [G-OPT] Murata+20 (arXiv:2001.01160) HSC CAMIRA: no mass / z compiled -> no prediction (agreement with model within 0.5/1.9/0.2/0.2 sigma; no ratio quoted)
+
+-- Giocoli24_L [L-OPT] Giocoli+24 (arXiv:2402.06717) AMICO KiDS-DR3 lensing: no mass / z compiled -> no prediction (r_sp close to R200m; More+15 / Diemer20 predict larger; no ratio)
+
+-- Lesci26_LG [L-OPT] Lesci+26 (arXiv:2602.07114) AMICO KiDS-1000: no mass / z compiled -> no prediction (agrees with LCDM; per-bin r_sp/r200m only)
+
+== Confrontation: Z_i = (R_pred - R_obs) / sqrt(sig_obs^2 + sig_pred^2); sig_obs on the side facing the prediction
+   Shin21_L   [L-SZX] R_obs 1.038 (-0.255/+0.184, PROVISIONAL) | Z can +1.11 (R 1.242), alt +0.81 (R 1.188); 256^3 can +0.22, alt +0.30 [IN]
+   Contigiani19_L [L-SZX] no usable R_obs (PROVISIONAL) [not usable]
+   Chang18_L  [L-OPT] R_obs 0.918 (-0.147/+0.147, PROVISIONAL) | Z can +2.43 (R 1.275), alt +1.76 (R 1.177); 256^3 can +1.03, alt +1.15 [IN]
+   Shin19_SPT_G [G-SZX] R_obs 1.097 (-0.228/+0.257, PROVISIONAL) | Z can -0.13 (R 1.067), alt -0.38 (R 1.010); 256^3 can -0.37, alt -0.40 [IN]
+   Shin19_ACT_G [G-SZX] R_obs 1.042 (-0.269/+0.345, PROVISIONAL) | Z can +0.06 (R 1.064), alt -0.14 (R 1.004); 256^3 can -0.12, alt -0.15 [overlap: reported only]
+   Shin21_G   [G-SZX] R_obs 0.976 (-0.123/+0.057, PROVISIONAL) | Z can +1.67 (R 1.071), alt +0.72 (R 1.017); 256^3 can +0.68, alt +0.57 [IN]
+   Adhikari21_G [G-SZX] no usable R_obs (PROVISIONAL) [not usable]
+   Zurcher19_G [G-SZX] R_obs 0.979 (-0.159/+0.138, PROVISIONAL) | Z can +0.74 (R 1.081), alt +0.49 (R 1.046); 256^3 can +0.33, alt +0.33 [IN]
+   Rana23_G   [G-SZX] R_obs 0.806 (-0.148/+0.170, PROVISIONAL) | Z can +1.61 (R 1.078), alt +1.33 (R 1.032); 256^3 can +1.26, alt +1.24 [IN]
+   Chang18_G  [G-OPT] R_obs 0.774 (-0.055/+0.055, PROVISIONAL) | Z can +5.65 (R 1.084), alt +4.96 (R 1.046); 256^3 can +4.56, alt +4.57 [IN]
+   Shin19_rM_G [G-OPT] no usable R_obs (U) [not usable]
+
+   class L-SZX: members ['Shin21_L']
+     canonical: mean R_obs 1.038 +- 0.184; Z primary +1.11 (S 1.32), 256^3 +0.22 (S 0.42); V2_s1.25 +0.27, V2_s1.55 -0.39, V3_sb0.02 +1.12, V3_sb0.1 +1.11, V4_range +1.88, V5_cov +1.10, V6_cfg495 +0.05
+     alt      : mean R_obs 1.038 +- 0.184; Z primary +0.81 (S 1.02), 256^3 +0.30 (S 0.51); V2_s1.25 +0.64, V2_s1.55 +0.04, V3_sb0.02 +0.82, V3_sb0.1 +0.79, V4_range +1.35, V5_cov +0.85, V6_cfg495 +0.04
+
+   class L-OPT: members ['Chang18_L']
+     canonical: mean R_obs 0.918 +- 0.147; Z primary +2.43 (S 1.87), 256^3 +1.03 (S 0.47); V2_s1.25 +1.73, V2_s1.55 +0.39, V3_sb0.02 +2.44, V3_sb0.1 +2.42, V4_range +3.12, V5_cov +2.37, V6_cfg495 +0.77
+     alt      : mean R_obs 0.918 +- 0.147; Z primary +1.76 (S 1.20), 256^3 +1.15 (S 0.59); V2_s1.25 +1.74, V2_s1.55 +1.19, V3_sb0.02 +1.76, V3_sb0.1 +1.71, V4_range +2.39, V5_cov +1.81, V6_cfg495 +0.76
+
+   class G-SZX: members ['Shin19_SPT_G', 'Shin21_G', 'Zurcher19_G', 'Rana23_G']
+     canonical: mean R_obs 0.968 +- 0.049; Z primary +2.14 (S 1.48), 256^3 +0.99 (S 0.33); V2_s1.25 +1.34, V2_s1.55 +0.25, V3_sb0.02 +2.10, V3_sb0.1 +2.16, V4_range +2.49
+     alt      : mean R_obs 0.968 +- 0.049; Z primary +1.10 (S 0.44), 256^3 +0.88 (S 0.23); V2_s1.25 +0.21, V2_s1.55 -0.05, V3_sb0.02 +0.96, V3_sb0.1 +1.07, V4_range +1.88
+
+   class G-OPT: members ['Chang18_G']
+     canonical: mean R_obs 0.774 +- 0.055; Z primary +5.65 (S 1.54), 256^3 +4.56 (S 0.44); V2_s1.25 +5.12, V2_s1.55 +4.11, V3_sb0.02 +5.58, V3_sb0.1 +5.68, V4_range +5.76
+     alt      : mean R_obs 0.774 +- 0.055; Z primary +4.96 (S 0.85), 256^3 +4.57 (S 0.45); V2_s1.25 +3.85, V2_s1.55 +3.28, V3_sb0.02 +4.80, V3_sb0.1 +4.96, V4_range +5.41
+
+== Verdicts (frozen rule; L-SZX sets the lane verdict)
+   L-SZX: NOT DIAGNOSTIC (data precision; S 1.02)  per footing {'canonical': 'NOT DIAGNOSTIC (data precision; S 1.32)', 'alt': 'NOT DIAGNOSTIC (data precision; S 1.02)'}  labels ['FEW MEASUREMENTS']  <- LANE VERDICT
+   L-OPT: NOT DIAGNOSTIC (data precision; S 1.20)  per footing {'canonical': 'NOT DIAGNOSTIC (template non-convergence; Z 2.43 at 512^3, 1.03 at 256^3)', 'alt': 'NOT DIAGNOSTIC (data precision; S 1.20)'}  labels ['FEW MEASUREMENTS', 'NOT ROBUST (alt V4_range)'] (reported)
+   G-SZX: NOT DIAGNOSTIC (data precision; S 0.44)  per footing {'canonical': 'NOT DIAGNOSTIC (template non-convergence; Z 2.14 at 512^3, 0.99 at 256^3)', 'alt': 'NOT DIAGNOSTIC (data precision; S 0.44)'}  labels [] (reported)
+   G-OPT: EXCLUDED  per footing {'canonical': 'EXCLUDED', 'alt': 'EXCLUDED'}  labels ['FEW MEASUREMENTS', 'SELECTION-DOMINATED'] (reported)
