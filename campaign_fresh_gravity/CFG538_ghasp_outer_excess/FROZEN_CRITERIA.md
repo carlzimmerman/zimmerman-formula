@@ -1,0 +1,65 @@
+# CFG538 FROZEN CRITERIA: is CFG534's SPARC early-type outer excess replicated in GHASP (Halpha Fabry-Perot curves + Rc photometry)?
+
+Frozen 2026-10-09, committed alone before any CFG538 script exists and before any GHASP velocity residual is computed.
+
+**Framework terms.** a0 = kappa c sqrt(G rho_DE), kappa = 1/2 FITTED. Footings 9.3603e-11 (canonical) and 1.1312e-10 (alt), never pooled. Kernel nu(y) = 1/(1 - exp(-sqrt y)). Cold energy mass is required by the framework; its amount is free. Not theory closed. Nothing is fetched (the CDS data files are behind a bot check; the owner downloaded them by hand, see FETCH_LOG.md).
+
+**Hypothesis H (outer-excess form).** At fixed baryonic mass, early-type (T <= 3) discs show a POSITIVE outer residual from the law (R >= 3 R_d) and no inner excess (R <= 1.5 R_d). Reference: CFG534 SPARC Delta_out = +0.071 +- 0.026 (nominal Z 2.75; shuffle-calibrated Z-equivalent ~2.1, CFG537 post-freeze), Delta_out - Delta_in = +0.104.
+
+## Disclosures before freezing (2026-10-09)
+In this session I read CFG537's FROZEN_CRITERIA, README and scripts (`cfg537_wallaby.py`, `cfg537_sparc_ml.py`, `cfg537_postfreeze.py`), CFG445's `ring_sum_g`/`freeman_g`, and the four GHASP ReadMe files. I parsed the GHASP tables and ran label/coverage/photometry counts only. **No velocity residual, no g_bar at any RC radius, no forecast number has been computed.** What I saw:
+- Files: J/MNRAS/390/466 tablef = 4208 rows, 82 galaxies (both sides as separate points, per-side a/r); tableb3 = 203 rows (all GHASP galaxies: HyperLeda T, Dist, morphological i, Vmax); J/MNRAS/388/500 tablec3 = 108 rows (its tablef, 93 RCs, is MISSING); Barbosa+15 table1 = 170, table4 = 232 component rows for 128 galaxies (classes: 103 bulge, 75 bar, 26 nucleus, 8 arm, 4 arms, 4 lens, 1 ring; discs Type I 87 / II 39 / III 2); Korsaga+19 tablea1 = 124, tablea2 = 100 (the tablea1 rows with f_ID <= 2).
+- Cross-matches: all 82 RC galaxies are in tableb3; 59 are in Korsaga tablea1; 66 in Barbosa table4; 2 in 388/500 tablec3.
+- Photometry check: Korsaga's L_D equals the integral of the (mu0, h) exponential to R25 with M_sun,Rc = 4.42 (median ratio 0.98; outliers UGC 1256, 1317, 1886). Barbosa inner-disc h / Korsaga h: median ~1.1, wide tails (0.15 to 18; Barbosa Type II discs have h_i up to 500").
+- **Coverage counts (decisive, disclosed):** RC galaxies in Korsaga tablea1 with f_ID <= 2 and tableb3 i >= 30: 41 (7 with T <= 3). Galaxies with >= 2 RC points at R >= 3 h (Korsaga h): 23 of these 41, only **1** early. All 41 have >= 2 points at R <= 1.5 h (inner band resolved). Per 0.4-dex bin of a STARS-ONLY log M* (Bell & de Jong Rc M/L, no gas; for counting only), outer band 3 h, f_ID <= 2 & i >= 30: early appear only in 10.6-11.0 (1 early / 3 late). With R >= 2 h instead: early 1 / 2 / 1 in bins 10.2 / 10.6 / 11.0 (late 2 / 5 / 1). Without any quality or inclination cut, 3 h: early 1 / 2 / 2 in bins 9.4 / 9.8 / 10.6. Median Rlast/h (Korsaga) = 3.5 for these 41; the early types' Halpha curves end at 1.1-4.5 h (one at 10.6).
+- **Expectation stated before scoring:** with the on-disk RCs (390/466 only) the frozen outer-band adequacy rule (section 3) is expected to FAIL, giving NO INDEPENDENT SAMPLE. The lane is still run in full so the record holds the numbers, and the missing 388/500 RCs are forecast (section 6).
+
+## 1. Sample
+- **RCs:** J/MNRAS/390/466 tablef, parsed by the ReadMe byte layout (Name 1-8, r kpc 10-14, Vrot 32-34, e_Vrot 36-38, Side 43). Both sides kept as separate points. Points with r > 0 and Vrot > 0 used. eV = e_Vrot. Radii are in kpc at the tableb3 distance (H0 = 75, Virgo-infall corrected).
+- **Galaxy parameters:** tableb3 (T = HyperLeda T, bytes 11-14; Dist 32-36; i 56-57). Korsaga tablea1 (B-V 31-34, mu0 50-53, h 55-57, mue 66-70, re 72-75, n 77-80, LD 59-64, LB 82-87, R25/h 41-43, Rlast/h 46-49, f_ID 89).
+- **Cuts:** in Korsaga tablea1 (baryon model) with f_ID <= 2 (Korsaga's mass-model quality selection); tableb3 morphological i >= 30. Names normalised (spaces removed, upper case, leading zeros of the number stripped). Row counts asserted (4208, 82, 203, 108, 170, 232, 124, 100).
+- **Label:** early = T <= 3 (tableb3 HyperLeda T), late otherwise.
+- **SPARC overlap removal (primary = removed):** a GHASP galaxy is an overlap if its normalised name, or the RC3 name/altname of the RC3 entry with that UGC number (`real_research/data/rc3_devaucouleurs1991_colors.tsv`, giving NGC <-> UGC), equals a normalised SPARC name, OR its Barbosa table1 / RC3 position lies within 60" of a SPARC position (`sparc_positions_merged.json`). Count and names reported. The with-overlap result is reported separately with the same ladder (no verdict weight).
+
+## 2. Baryon model (declared rule, no knobs)
+- **Stars (Korsaga tablea1 = the GHASP team's Rc digest of Barbosa+15 OHP and SDSS decompositions, in kpc).** Disc: infinite thin exponential, Sigma(R) = Upsilon I0 exp(-R/h), I0 [Lsun/pc^2] = 10^(0.4(4.42 + 21.572 - mu0)); g by `freeman_g` (CFG445). Bulge (when mue, re, n given): spherical Sersic, deprojected with the Prugniel-Simien density (p = 1 - 0.6097/n + 0.05463/n^2, b_n Ciotti-Bertin), normalised to the projected Sersic total L_b = 2 pi n e^b b^-2n Gamma(2n) I_e re^2; g = G M(<r)/r^2. Barbosa table4 is NOT used for the mass model (its multi-component broken-disc fits with bars, arms, rings and Type II inner scale lengths up to 500" would need extra modelling rules); it supplies positions (table1) only. Check C2: median L_D(profile, to R25)/LD and L_b/LB reported.
+- **R_d = Korsaga h** (Rc band). Disclosed: Rc scale lengths are typically longer than SPARC's 3.6 micron R_d, so the bands R >= 3 R_d / R <= 1.5 R_d sit at somewhat larger radii than in SPARC; the bands are NOT rescaled (that would be a knob).
+- **Rc M/L (primary): Korsaga's fixed-M/L technique,** Upsilon_Rc = 10^(-0.660 + 1.222 (B-V)) (Bell & de Jong 2001), B-V from tablea1 (RC3 or Korsaga's T-relation), same Upsilon for disc and bulge. Check C3: equals tablea2 M/LfML to 0.01. Disclosed: this colour M/L is TYPE-DEPENDENT (redder early types get heavier M/L), unlike CFG534's single 3.6 micron Upsilon; heavier early-type stars push early residuals DOWN, i.e. against H. Sensitivity S1 uses a single type-independent Upsilon_Rc = the sample median of the primary Upsilon.
+- **Gas (GHASP has no HI).** M_HI from a scaling relation calibrated on SPARC (all SPARC galaxies with MHI > 0, L36 > 0, T given): OLS log M_HI = a + b (log M* - 10) + c (T - 5), M* = 0.5 L36; residual scatter sigma_g reported. Applied with GHASP M* = Upsilon_Rc (L_d + L_b) and tableb3 T. Disclosed: Bell & de Jong (diet Salpeter) Rc masses sit higher than SPARC's Upsilon_3.6 = 0.5 masses (~0.1-0.15 dex); with b ~ -0.5 that shifts M_HI by < 0.1 dex, inside sigma_g and the gas variants. Radial profile: exponential, M_gas = 1.33 M_HI, scale length h_g fixed by the HI size-mass relation (Wang et al. 2016: log D_HI[kpc] = 0.506 log M_HI - 3.293) with Sigma_HI(D_HI/2) = 1 Msun/pc^2; g by `freeman_g`. Molecular gas omitted (centrally concentrated, larger in Sa-Sb: it would bias early-type INNER residuals up, i.e. against the "no inner excess" half of H, and barely touch the outer band).
+- **Gas bias sign (stated before scoring).** Missing or underestimated gas lowers g_bar and RAISES the residual. Late types are gas-richer, so omitting gas raises late-type residuals more than early-type ones and pushes Delta = early - late NEGATIVE, AGAINST H, most strongly in the outer band (gas is extended). Overestimating late-type gas does the opposite (towards H). Quantified: G0 gas omitted, G+ gas x2, G- gas x0.5, GMC 200 seeded draws of lognormal scatter sigma_g per galaxy (mean and SD of Delta). Gas bias = Delta(G0) - Delta(nominal).
+- **M_b for binning** = Upsilon_Rc (L_d + L_b) + 1.33 M_HI(scaling), at the primary Upsilon in every variant.
+
+## 3. Statistic (copied from CFG534/CFG537)
+g_obs = V^2/R; r = log10(g_obs / (nu(g_bar/a0) g_bar)) where g_bar > 0 and g_obs > 0; point weight 1/(sp^2 + 0.05^2), sp = 2 eV/V/ln10; d_in = weighted mean over R <= 1.5 R_d, d_out over R >= 3 R_d, each needing >= 2 points; d_oi = d_out - d_in. `matched()`: bins 7.0 to 12.2 step 0.4 in log M_b; a bin counts with >= 2 early and >= 2 late finite values; inverse-variance combination of mean(early) - mean(late). Both footings.
+- **Primary significance = shuffle-calibrated** (CFG537's finding: the nominal Z's null SD is 1.2-1.3): 4000 seeded within-bin T shuffles; one-sided p of the observed nominal Z in the direction of its sign; Z_cal = Phi^-1(1-p) with that sign (p = 0 reported as a bound). sigma_cal = sigma_nominal x null SD. Nominal Z, pooled-variance Z and leave-one-galaxy-out range also printed.
+- **Adequacy (copied from CFG537 section 0):** >= 2 bins with >= 2 early and >= 2 late valid values AND n_early (matched) >= 8.
+- **Inner-band resolution check:** number with >= 2 points at R <= 1.5 R_d; median h / Barbosa seeing (arcsec, table1) reported.
+
+## 4. Verdict ladder (per footing; primary sample = overlaps removed, gas nominal, Upsilon primary)
+1. **NO INDEPENDENT SAMPLE:** outer-band adequacy fails.
+2. **REPLICATED:** Delta_out > 0 with Z_cal >= 2, AND Delta_oi testable (>= 1 matched bin) with Delta_oi > 0.
+3. **NOT REPLICATED:** Delta_out < 0 with Z_cal <= -2; or Delta_out + 2 sigma_cal < 0.071 (SPARC amplitude excluded at 2 sigma).
+4. **CONSISTENT:** Delta_out > 0 and neither 2 nor 3 (Z_cal >= 2 with Delta_oi untestable -> "CONSISTENT, outer only"; with Delta_oi <= 0 -> "CONSISTENT, radial pattern not reproduced").
+5. **NOT DIAGNOSTIC (consistent with +0.071):** Delta_out <= 0, Z_cal > -2, and 0.071 not excluded.
+Headline = the common label, else FOOTING-DEPENDENT with both labels.
+
+## 5. Descriptive analyses (pre-declared; ladder labels printed, NO verdict weight)
+- **D1 inner half of H:** Delta_in early - late (H predicts ~0). Labels: INNER EXCESS if Delta_in > 0 with Z_cal >= 2; INNER DEFICIT if Z_cal <= -2; NO INNER DIFFERENCE otherwise; NOT TESTABLE if inadequate.
+- **D2 adapted outer band R >= 2 R_d** (GHASP's Halpha reach), scored with the section-4 ladder against SPARC's own R >= 2 R_d value computed with CFG534's code in the same run (the 0.071 in rung 3 replaced by that SPARC value).
+- **D3** primary statistic without the f_ID and inclination cuts (all 59 RC galaxies with Korsaga photometry, minus overlaps).
+- **With SPARC overlaps kept:** primary, D2 and D3 re-scored.
+
+## 6. Power forecast (printed BEFORE any residual, STAGE=forecast)
+- On-disk sample: sigma_fc = `matched()` variance formula with GHASP's per-bin counts (valid band) and SPARC's within-bin within-class variance of d_out (CFG534 rows; missing bin -> SPARC pooled), scatter x1.0 and x1.5; expected Z = 0.071/sigma_fc; P(Z >= 2). For the primary band and D2.
+- **Full-GHASP forecast (what the missing 388/500 RCs would add):** all Korsaga tablea1 galaxies with f_ID <= 2, tableb3 i >= 30, overlaps removed, using Korsaga's Rlast/h (their RCs combine both GHASP sets): counts per bin and class with Rlast/h >= 3 (necessary for the outer band; an upper bound on coverage) and >= 2 (D2), and the same sigma_fc. Reported as a forecast only.
+
+## 7. Free stellar M/L (as CFG537 Part B; on the primary statistic if adequate, else on D2 with no verdict weight)
+Per galaxy and footing, a multiplier f on the primary Upsilon (disc and bulge together), log10 f on a grid -0.30 to +0.30 step 0.01 (a factor 2 either way of the colour M/L). B1 global fit minimising sum w r^2 over all usable points; B2 fit on R <= 1.5 R_d points only (< 2 inner points -> f = 1); B3 bound: early f = 2, late f = 0.5. M_b binning unchanged. Early - late Delta log f reported. M/L verdict: EXCESS SURVIVES M/L if B1 and B2 Delta > 0 with Z_cal >= 2; ABSORBED BY M/L if B1 or B2 Z_cal < 1; PARTIAL otherwise (calibrated Z from 1000 shuffles here).
+
+## 8. Controls, MUTATE, sensitivities
+- **C1** the copied CFG534 SPARC code reproduces Delta_out +0.0712 / +0.0722 within 0.001. **C2** photometry check (above). **C3** Upsilon equals tablea2 M/LfML. **C4** SPARC gas calibration: coefficients and sigma_g printed. **C5** row counts.
+- **MUTATE (CFG538_MUTATE=1, separate outputs),** run on the primary statistic if adequate, else on the first adequate of D2, D3, D2-with-overlaps; if none is adequate, on the one with the most matched bins (>= 1): MU1 T shuffled within bins, 200 seeded shuffles, |mean nominal Z| < 0.5; MU2 +0.071 added to every early galaxy's band residuals, recovered shift within 0.002. A failed MUTATE is reported, not repaired.
+- **Sensitivities (no verdict weight):** S1 single Upsilon_Rc (sample median); S2 RC3 T (by UGC number) in place of HyperLeda T; S3 early cut T <= 2 and T <= 4; S4 bins shifted +0.2 dex; gas G0 / G+ / G- / GMC.
+
+## Reporting
+Numbers in the README come from the results JSON. A lean is not a detection; no sentence says the data favour the framework or LCDM. Verify a fail as hard as a win. Frozen text is never edited; later notes are dated disclosures in the README.
