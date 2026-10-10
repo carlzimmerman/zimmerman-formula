@@ -1,0 +1,163 @@
+CFG546 Step F: Fisher forecast of the drained-shell amplitude A against a DK14 baseline with splashback marginalised.
+
+Implements FROZEN_CRITERIA.md (baf7e3dd4), Step F, K4 and MUTATE-FORECAST.
+Templates: cfg546_predict_results.json (R5, this lane) and ../CFG495_drawdown_shell/cfg495_sim_analysis_results.json (variant).
+On-disk dataset: DESI DR1 LRG ΔΣ covariance (reads only rp bin edges and the joint covariance; no ΔΣ values).
+Outputs: cfg546_forecast.out / cfg546_forecast_results.json; CFG546_MUTATE=1 -> *_MUTATE.* (noise-realisation recovery).
+
+Templates: clusters s_res 2.029; groups s_res 0.045 (groups 256^3 median r_ta < 5 cells: the alt R5 group template does NOT count by the resolution rule)
+  [PASS] K4 projection vs analytic NFW: max |dev| 1.30e-03 over 0.1-10 R/r_s
+
+== Template peak effect in ΔΣ (A = 1) and the forecast, per dataset (Z = 1/sigma_A, DK14 r_t, beta, gamma, b_e, s_e free; m0, m1)
+
+-- D1 DES-Y1 redMaPPer lambda>=20: N 6500, z_l 0.4, log M200m 14.3, n_eff 6.0, sigma_e 0.27, z_s 0.75; template clusters  [(U) recalled parameters]
+   published  0.30- 28.4 h^-1 Mpc | canonical | R5_512: Z  1.38 (fixed splash  2.49); corr(A,ln r_t) -0.80, corr(A,s_e) +0.26; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +30.4%; max |dDS/DS| 16.2% | variants Z: r_ta+ 1.46, r_ta- 1.45, cov1.3 1.21, LSSx2 1.28
+   published  0.30- 28.4 h^-1 Mpc | canonical | R5_256: Z  0.66 (fixed splash  0.81); corr(A,ln r_t) -0.50, corr(A,s_e) +0.52; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +10.5%; max |dDS/DS| 4.2%
+   published  0.30- 28.4 h^-1 Mpc | canonical | CFG495: Z  0.79 (fixed splash  0.83); corr(A,ln r_t) -0.20, corr(A,s_e) -0.67; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +5.1%; max |dDS/DS| 8.7%
+   published  0.30- 28.4 h^-1 Mpc | alt       | R5_512: Z  1.51 (fixed splash  1.98); corr(A,ln r_t) -0.59, corr(A,s_e) +0.48; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +28.3%; max |dDS/DS| 10.9% | variants Z: r_ta+ 1.26, r_ta- 1.75, cov1.3 1.34, LSSx2 1.45
+   published  0.30- 28.4 h^-1 Mpc | alt       | R5_256: Z  0.74 (fixed splash  0.97); corr(A,ln r_t) -0.59, corr(A,s_e) +0.48; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +12.3%; max |dDS/DS| 5.4%
+   published  0.30- 28.4 h^-1 Mpc | alt       | CFG495: Z  0.86 (fixed splash  0.90); corr(A,ln r_t) -0.21, corr(A,s_e) -0.68; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +5.1%; max |dDS/DS| 9.3%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_512: Z  1.38 (fixed splash  2.51); corr(A,ln r_t) -0.81, corr(A,s_e) +0.29; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +30.4%; max |dDS/DS| 16.3% | variants Z: r_ta+ 1.48, r_ta- 1.45, cov1.3 1.21, LSSx2 1.27
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_256: Z  0.66 (fixed splash  0.81); corr(A,ln r_t) -0.51, corr(A,s_e) +0.54; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +10.5%; max |dDS/DS| 4.3%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | CFG495: Z  0.80 (fixed splash  0.84); corr(A,ln r_t) -0.22, corr(A,s_e) -0.66; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +5.1%; max |dDS/DS| 8.6%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_512: Z  1.50 (fixed splash  1.98); corr(A,ln r_t) -0.59, corr(A,s_e) +0.51; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +28.3%; max |dDS/DS| 10.9% | variants Z: r_ta+ 1.27, r_ta- 1.74, cov1.3 1.34, LSSx2 1.45
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_256: Z  0.74 (fixed splash  0.98); corr(A,ln r_t) -0.59, corr(A,s_e) +0.51; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +12.3%; max |dDS/DS| 5.4%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | CFG495: Z  0.88 (fixed splash  0.92); corr(A,ln r_t) -0.23, corr(A,s_e) -0.67; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +5.1%; max |dDS/DS| 9.1%
+
+-- D2 DES-Y3 redMaPPer lambda>=20: N 16000, z_l 0.42, log M200m 14.3, n_eff 5.6, sigma_e 0.26, z_s 0.75; template clusters  [(U) recalled parameters]
+   published  0.30- 28.8 h^-1 Mpc | canonical | R5_512: Z  2.06 (fixed splash  3.58); corr(A,ln r_t) -0.76, corr(A,s_e) +0.26; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +30.4%; max |dDS/DS| 16.2% | variants Z: r_ta+ 2.21, r_ta- 2.09, cov1.3 1.81, LSSx2 1.91
+   published  0.30- 28.8 h^-1 Mpc | canonical | R5_256: Z  0.96 (fixed splash  1.13); corr(A,ln r_t) -0.42, corr(A,s_e) +0.53; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +10.5%; max |dDS/DS| 4.2%
+   published  0.30- 28.8 h^-1 Mpc | canonical | CFG495: Z  1.17 (fixed splash  1.22); corr(A,ln r_t) -0.13, corr(A,s_e) -0.69; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +3.4%; max |dDS/DS| 8.7%
+   published  0.30- 28.8 h^-1 Mpc | alt       | R5_512: Z  2.19 (fixed splash  2.78); corr(A,ln r_t) -0.51, corr(A,s_e) +0.49; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +26.1%; max |dDS/DS| 10.9% | variants Z: r_ta+ 1.89, r_ta- 2.43, cov1.3 1.93, LSSx2 2.10
+   published  0.30- 28.8 h^-1 Mpc | alt       | R5_256: Z  1.08 (fixed splash  1.37); corr(A,ln r_t) -0.51, corr(A,s_e) +0.49; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +12.3%; max |dDS/DS| 5.4%
+   published  0.30- 28.8 h^-1 Mpc | alt       | CFG495: Z  1.27 (fixed splash  1.33); corr(A,ln r_t) -0.14, corr(A,s_e) -0.69; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +5.1%; max |dDS/DS| 9.2%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_512: Z  2.06 (fixed splash  3.60); corr(A,ln r_t) -0.76, corr(A,s_e) +0.29; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +30.4%; max |dDS/DS| 16.3% | variants Z: r_ta+ 2.23, r_ta- 2.08, cov1.3 1.81, LSSx2 1.91
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_256: Z  0.96 (fixed splash  1.13); corr(A,ln r_t) -0.42, corr(A,s_e) +0.54; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +10.5%; max |dDS/DS| 4.3%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | CFG495: Z  1.18 (fixed splash  1.23); corr(A,ln r_t) -0.14, corr(A,s_e) -0.68; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +5.1%; max |dDS/DS| 8.6%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_512: Z  2.18 (fixed splash  2.78); corr(A,ln r_t) -0.52, corr(A,s_e) +0.51; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +26.1%; max |dDS/DS| 10.9% | variants Z: r_ta+ 1.89, r_ta- 2.42, cov1.3 1.93, LSSx2 2.10
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_256: Z  1.07 (fixed splash  1.37); corr(A,ln r_t) -0.52, corr(A,s_e) +0.51; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +12.3%; max |dDS/DS| 5.4%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | CFG495: Z  1.29 (fixed splash  1.35); corr(A,ln r_t) -0.15, corr(A,s_e) -0.68; r_sp/r_ta 0.33 (r_sp/r200m 1.23); apparent r_sp shift +5.1%; max |dDS/DS| 9.1%
+
+-- D3 SDSS redMaPPer x SDSS shear: N 5500, z_l 0.24, log M200m 14.3, n_eff 1.2, sigma_e 0.36, z_s 0.4; template clusters  [(U) recalled parameters]
+   published  0.30- 25.2 h^-1 Mpc | canonical | R5_512: Z  0.40 (fixed splash  0.96); corr(A,ln r_t) -0.90, corr(A,s_e) +0.50; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +34.8%; max |dDS/DS| 16.4% | variants Z: r_ta+ 0.39, r_ta- 0.52, cov1.3 0.36, LSSx2 0.40
+   published  0.30- 25.2 h^-1 Mpc | canonical | R5_256: Z  0.23 (fixed splash  0.33); corr(A,ln r_t) -0.71, corr(A,s_e) +0.56; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +12.3%; max |dDS/DS| 4.3%
+   published  0.30- 25.2 h^-1 Mpc | canonical | CFG495: Z  0.25 (fixed splash  0.29); corr(A,ln r_t) -0.50, corr(A,s_e) -0.64; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +6.9%; max |dDS/DS| 8.8%
+   published  0.30- 25.2 h^-1 Mpc | alt       | R5_512: Z  0.52 (fixed splash  0.82); corr(A,ln r_t) -0.76, corr(A,s_e) +0.55; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +32.6%; max |dDS/DS| 11.0% | variants Z: r_ta+ 0.39, r_ta- 0.65, cov1.3 0.46, LSSx2 0.52
+   published  0.30- 25.2 h^-1 Mpc | alt       | R5_256: Z  0.26 (fixed splash  0.40); corr(A,ln r_t) -0.76, corr(A,s_e) +0.55; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +16.1%; max |dDS/DS| 5.4%
+   published  0.30- 25.2 h^-1 Mpc | alt       | CFG495: Z  0.27 (fixed splash  0.31); corr(A,ln r_t) -0.52, corr(A,s_e) -0.65; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +6.9%; max |dDS/DS| 9.4%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_512: Z  0.40 (fixed splash  0.99); corr(A,ln r_t) -0.91, corr(A,s_e) +0.60; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +34.8%; max |dDS/DS| 16.5% | variants Z: r_ta+ 0.40, r_ta- 0.52, cov1.3 0.35, LSSx2 0.40
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_256: Z  0.23 (fixed splash  0.34); corr(A,ln r_t) -0.73, corr(A,s_e) +0.64; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +12.3%; max |dDS/DS| 4.3%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | CFG495: Z  0.26 (fixed splash  0.31); corr(A,ln r_t) -0.55, corr(A,s_e) -0.59; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +6.9%; max |dDS/DS| 8.5%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_512: Z  0.52 (fixed splash  0.83); corr(A,ln r_t) -0.78, corr(A,s_e) +0.63; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +32.6%; max |dDS/DS| 11.0% | variants Z: r_ta+ 0.40, r_ta- 0.65, cov1.3 0.46, LSSx2 0.51
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_256: Z  0.25 (fixed splash  0.41); corr(A,ln r_t) -0.78, corr(A,s_e) +0.63; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +16.1%; max |dDS/DS| 5.4%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | CFG495: Z  0.28 (fixed splash  0.35); corr(A,ln r_t) -0.57, corr(A,s_e) -0.59; r_sp/r_ta 0.35 (r_sp/r200m 1.23); apparent r_sp shift +8.6%; max |dDS/DS| 9.3%
+
+-- D4 HSC-Y3 x CAMIRA/redMaPPer: N 1800, z_l 0.5, log M200m 14.1, n_eff 15.0, sigma_e 0.24, z_s 1.0; template clusters  [(U) recalled parameters]
+   published  0.30- 15.2 h^-1 Mpc | canonical | R5_512: Z  0.83 (fixed splash  1.47); corr(A,ln r_t) -0.81, corr(A,s_e) -0.30; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +28.3%; max |dDS/DS| 16.4% | variants Z: r_ta+ 0.66, r_ta- 1.06, cov1.3 0.73, LSSx2 0.75
+   published  0.30- 15.2 h^-1 Mpc | canonical | R5_256: Z  0.47 (fixed splash  0.58); corr(A,ln r_t) -0.52, corr(A,s_e) +0.12; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +10.5%; max |dDS/DS| 4.3%
+   published  0.30- 15.2 h^-1 Mpc | canonical | CFG495: Z  0.53 (fixed splash  0.56); corr(A,ln r_t) -0.23, corr(A,s_e) -0.53; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +3.4%; max |dDS/DS| 9.0%
+   published  0.30- 15.2 h^-1 Mpc | alt       | R5_512: Z  1.06 (fixed splash  1.37); corr(A,ln r_t) -0.59, corr(A,s_e) +0.07; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +26.1%; max |dDS/DS| 10.9% | variants Z: r_ta+ 0.72, r_ta- 1.37, cov1.3 0.95, LSSx2 1.01
+   published  0.30- 15.2 h^-1 Mpc | alt       | R5_256: Z  0.52 (fixed splash  0.68); corr(A,ln r_t) -0.59, corr(A,s_e) +0.07; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +12.3%; max |dDS/DS| 5.4%
+   published  0.30- 15.2 h^-1 Mpc | alt       | CFG495: Z  0.56 (fixed splash  0.59); corr(A,ln r_t) -0.21, corr(A,s_e) -0.57; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +3.4%; max |dDS/DS| 9.6%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_512: Z  0.90 (fixed splash  1.73); corr(A,ln r_t) -0.84, corr(A,s_e) +0.16; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +30.4%; max |dDS/DS| 16.1% | variants Z: r_ta+ 0.91, r_ta- 1.05, cov1.3 0.79, LSSx2 0.79
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_256: Z  0.47 (fixed splash  0.61); corr(A,ln r_t) -0.59, corr(A,s_e) +0.46; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +10.5%; max |dDS/DS| 4.2%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | CFG495: Z  0.55 (fixed splash  0.60); corr(A,ln r_t) -0.34, corr(A,s_e) -0.55; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +5.1%; max |dDS/DS| 8.9%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_512: Z  1.05 (fixed splash  1.48); corr(A,ln r_t) -0.66, corr(A,s_e) +0.42; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +28.3%; max |dDS/DS| 10.9% | variants Z: r_ta+ 0.80, r_ta- 1.35, cov1.3 0.94, LSSx2 0.99
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_256: Z  0.52 (fixed splash  0.73); corr(A,ln r_t) -0.66, corr(A,s_e) +0.42; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +12.3%; max |dDS/DS| 5.4%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | CFG495: Z  0.59 (fixed splash  0.65); corr(A,ln r_t) -0.34, corr(A,s_e) -0.56; r_sp/r_ta 0.32 (r_sp/r200m 1.25); apparent r_sp shift +5.1%; max |dDS/DS| 9.6%
+
+-- D5 KiDS-1000 x GAMA groups Nfof>=5: N 2400, z_l 0.2, log M200m 13.6, n_eff 6.2, sigma_e 0.27, z_s 0.65; template groups  [(U) recalled parameters]
+   published  0.30-  1.6 h^-1 Mpc | canonical | R5_512: Z  0.08 (fixed splash  0.09); corr(A,ln r_t) +0.45, corr(A,s_e) -0.70; r_sp/r_ta 0.37 (r_sp/r200m 1.30); apparent r_sp shift -81.0%; max |dDS/DS| 1.5% | variants Z: r_ta+ 0.07, r_ta- 0.05, cov1.3 0.07, LSSx2 0.08
+   published  0.30-  1.6 h^-1 Mpc | canonical | CFG495: Z  0.08 (fixed splash  0.08); corr(A,ln r_t) +0.17, corr(A,s_e) +0.64; r_sp/r_ta 0.37 (r_sp/r200m 1.30); apparent r_sp shift +37.1%; max |dDS/DS| 3.8%
+   published  0.30-  1.6 h^-1 Mpc | alt       | R5_512: Z  0.02 (fixed splash  0.02); corr(A,ln r_t) +0.43, corr(A,s_e) -0.69; r_sp/r_ta 0.37 (r_sp/r200m 1.30); apparent r_sp shift -81.0%; max |dDS/DS| 0.4% | variants Z: r_ta+ 0.02, r_ta- 0.01, cov1.3 0.02, LSSx2 0.02 [UNRESOLVED template: does not count]
+   published  0.30-  1.6 h^-1 Mpc | alt       | CFG495: Z  0.06 (fixed splash  0.06); corr(A,ln r_t) +0.22, corr(A,s_e) +0.63; r_sp/r_ta 0.37 (r_sp/r200m 1.30); apparent r_sp shift +30.4%; max |dDS/DS| 3.2%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_512: Z  0.12 (fixed splash  0.12); corr(A,ln r_t) -0.27, corr(A,s_e) +0.93; r_sp/r_ta 0.37 (r_sp/r200m 1.30); apparent r_sp shift +5.1%; max |dDS/DS| 7.9% | variants Z: r_ta+ 0.11, r_ta- 0.12, cov1.3 0.10, LSSx2 0.11
+   extended   0.30- 30.0 h^-1 Mpc | canonical | CFG495: Z  0.12 (fixed splash  0.19); corr(A,ln r_t) +0.77, corr(A,s_e) +0.39; r_sp/r_ta 0.37 (r_sp/r200m 1.30); apparent r_sp shift -4.9%; max |dDS/DS| 4.7%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_512: Z  0.03 (fixed splash  0.03); corr(A,ln r_t) +0.31, corr(A,s_e) +0.57; r_sp/r_ta 0.37 (r_sp/r200m 1.30); apparent r_sp shift +0.0%; max |dDS/DS| 0.4% | variants Z: r_ta+ 0.03, r_ta- 0.02, cov1.3 0.03, LSSx2 0.03 [UNRESOLVED template: does not count]
+   extended   0.30- 30.0 h^-1 Mpc | alt       | CFG495: Z  0.09 (fixed splash  0.15); corr(A,ln r_t) +0.79, corr(A,s_e) +0.66; r_sp/r_ta 0.37 (r_sp/r200m 1.30); apparent r_sp shift -3.3%; max |dDS/DS| 4.6%
+
+-- D6 eRASS1 x DES/KiDS/HSC: N 2200, z_l 0.3, log M200m 14.4, n_eff 6.0, sigma_e 0.26, z_s 0.75; template clusters  [(U) recalled parameters]
+   published  0.44-  2.8 h^-1 Mpc | canonical | R5_512: Z  0.61 (fixed splash  0.90); corr(A,ln r_t) -0.73, corr(A,s_e) -0.39; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift -89.0%; max |dDS/DS| 13.0% | variants Z: r_ta+ 0.27, r_ta- 0.90, cov1.3 0.54, LSSx2 0.61
+   published  0.44-  2.8 h^-1 Mpc | canonical | R5_256: Z  0.40 (fixed splash  0.47); corr(A,ln r_t) -0.51, corr(A,s_e) -0.50; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift -89.0%; max |dDS/DS| 4.3%
+   published  0.44-  2.8 h^-1 Mpc | canonical | CFG495: Z  0.34 (fixed splash  0.44); corr(A,ln r_t) -0.61, corr(A,s_e) -0.46; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift -89.0%; max |dDS/DS| 4.8%
+   published  0.44-  2.8 h^-1 Mpc | alt       | R5_512: Z  0.90 (fixed splash  1.08); corr(A,ln r_t) -0.54, corr(A,s_e) -0.48; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift -89.0%; max |dDS/DS| 10.8% | variants Z: r_ta+ 0.47, r_ta- 1.17, cov1.3 0.79, LSSx2 0.89
+   published  0.44-  2.8 h^-1 Mpc | alt       | R5_256: Z  0.44 (fixed splash  0.53); corr(A,ln r_t) -0.54, corr(A,s_e) -0.48; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift -89.0%; max |dDS/DS| 5.3%
+   published  0.44-  2.8 h^-1 Mpc | alt       | CFG495: Z  0.38 (fixed splash  0.47); corr(A,ln r_t) -0.59, corr(A,s_e) -0.46; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift -89.0%; max |dDS/DS| 5.2%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_512: Z  1.14 (fixed splash  2.12); corr(A,ln r_t) -0.82, corr(A,s_e) +0.26; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift +32.6%; max |dDS/DS| 16.2% | variants Z: r_ta+ 1.14, r_ta- 1.28, cov1.3 1.00, LSSx2 1.05
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_256: Z  0.59 (fixed splash  0.71); corr(A,ln r_t) -0.50, corr(A,s_e) +0.47; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift +10.5%; max |dDS/DS| 4.2%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | CFG495: Z  0.68 (fixed splash  0.71); corr(A,ln r_t) -0.23, corr(A,s_e) -0.62; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift +5.1%; max |dDS/DS| 8.7%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_512: Z  1.34 (fixed splash  1.73); corr(A,ln r_t) -0.58, corr(A,s_e) +0.44; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift +28.3%; max |dDS/DS| 10.9% | variants Z: r_ta+ 1.06, r_ta- 1.57, cov1.3 1.19, LSSx2 1.28
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_256: Z  0.66 (fixed splash  0.85); corr(A,ln r_t) -0.58, corr(A,s_e) +0.44; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift +12.3%; max |dDS/DS| 5.4%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | CFG495: Z  0.73 (fixed splash  0.77); corr(A,ln r_t) -0.24, corr(A,s_e) -0.63; r_sp/r_ta 0.33 (r_sp/r200m 1.21); apparent r_sp shift +5.1%; max |dDS/DS| 9.3%
+
+-- D7 SPT x DES-Y3: N 700, z_l 0.55, log M200m 14.8, n_eff 5.6, sigma_e 0.26, z_s 0.85; template clusters  [(U) recalled parameters]
+   published  0.52-  3.4 h^-1 Mpc | canonical | R5_512: Z  0.10 (fixed splash  0.44); corr(A,ln r_t) -0.98, corr(A,s_e) +0.80; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +32.6%; max |dDS/DS| 8.9% | variants Z: r_ta+ 0.12, r_ta- 0.25, cov1.3 0.08, LSSx2 0.10
+   published  0.52-  3.4 h^-1 Mpc | canonical | R5_256: Z  0.06 (fixed splash  0.24); corr(A,ln r_t) -0.96, corr(A,s_e) +0.35; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +26.1%; max |dDS/DS| 3.6%
+   published  0.52-  3.4 h^-1 Mpc | canonical | CFG495: Z  0.05 (fixed splash  0.22); corr(A,ln r_t) -0.97, corr(A,s_e) +0.60; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +18.0%; max |dDS/DS| 3.7%
+   published  0.52-  3.4 h^-1 Mpc | alt       | R5_512: Z  0.14 (fixed splash  0.56); corr(A,ln r_t) -0.97, corr(A,s_e) +0.44; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +51.4%; max |dDS/DS| 8.9% | variants Z: r_ta+ 0.13, r_ta- 0.39, cov1.3 0.13, LSSx2 0.14
+   published  0.52-  3.4 h^-1 Mpc | alt       | R5_256: Z  0.07 (fixed splash  0.28); corr(A,ln r_t) -0.97, corr(A,s_e) +0.44; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +26.1%; max |dDS/DS| 4.4%
+   published  0.52-  3.4 h^-1 Mpc | alt       | CFG495: Z  0.06 (fixed splash  0.24); corr(A,ln r_t) -0.97, corr(A,s_e) +0.55; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +20.0%; max |dDS/DS| 3.9%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_512: Z  0.73 (fixed splash  1.30); corr(A,ln r_t) -0.82, corr(A,s_e) -0.57; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +14.2%; max |dDS/DS| 14.1% | variants Z: r_ta+ 0.73, r_ta- 0.71, cov1.3 0.64, LSSx2 0.63
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_256: Z  0.25 (fixed splash  0.50); corr(A,ln r_t) -0.86, corr(A,s_e) +0.03; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +8.6%; max |dDS/DS| 3.7%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | CFG495: Z  0.34 (fixed splash  0.40); corr(A,ln r_t) -0.50, corr(A,s_e) -0.76; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +1.7%; max |dDS/DS| 8.6%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_512: Z  0.57 (fixed splash  1.20); corr(A,ln r_t) -0.87, corr(A,s_e) -0.14; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +20.0%; max |dDS/DS| 9.6% | variants Z: r_ta+ 0.50, r_ta- 0.75, cov1.3 0.50, LSSx2 0.52
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_256: Z  0.28 (fixed splash  0.59); corr(A,ln r_t) -0.87, corr(A,s_e) -0.14; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +10.5%; max |dDS/DS| 4.8%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | CFG495: Z  0.37 (fixed splash  0.43); corr(A,ln r_t) -0.49, corr(A,s_e) -0.78; r_sp/r_ta 0.28 (r_sp/r200m 1.07); apparent r_sp shift +1.7%; max |dDS/DS| 9.2%
+
+-- D8 ACT DR5 x DES-Y3/HSC: N 1000, z_l 0.5, log M200m 14.6, n_eff 5.6, sigma_e 0.26, z_s 0.85; template clusters  [(U) recalled parameters]
+   published  0.30- 10.1 h^-1 Mpc | canonical | R5_512: Z  0.45 (fixed splash  0.83); corr(A,ln r_t) -0.83, corr(A,s_e) -0.59; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +22.0%; max |dDS/DS| 15.5% | variants Z: r_ta+ 0.33, r_ta- 0.65, cov1.3 0.39, LSSx2 0.44
+   published  0.30- 10.1 h^-1 Mpc | canonical | R5_256: Z  0.29 (fixed splash  0.43); corr(A,ln r_t) -0.72, corr(A,s_e) +0.17; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +10.5%; max |dDS/DS| 4.0%
+   published  0.30- 10.1 h^-1 Mpc | canonical | CFG495: Z  0.26 (fixed splash  0.42); corr(A,ln r_t) -0.77, corr(A,s_e) +0.57; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +8.6%; max |dDS/DS| 8.8%
+   published  0.30- 10.1 h^-1 Mpc | alt       | R5_512: Z  0.63 (fixed splash  0.99); corr(A,ln r_t) -0.75, corr(A,s_e) +0.07; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +24.1%; max |dDS/DS| 10.3% | variants Z: r_ta+ 0.36, r_ta- 0.94, cov1.3 0.56, LSSx2 0.62
+   published  0.30- 10.1 h^-1 Mpc | alt       | R5_256: Z  0.31 (fixed splash  0.49); corr(A,ln r_t) -0.75, corr(A,s_e) +0.07; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +12.3%; max |dDS/DS| 5.1%
+   published  0.30- 10.1 h^-1 Mpc | alt       | CFG495: Z  0.30 (fixed splash  0.45); corr(A,ln r_t) -0.73, corr(A,s_e) +0.48; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +8.6%; max |dDS/DS| 9.4%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_512: Z  0.76 (fixed splash  1.48); corr(A,ln r_t) -0.85, corr(A,s_e) -0.22; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +24.1%; max |dDS/DS| 15.4% | variants Z: r_ta+ 0.82, r_ta- 0.78, cov1.3 0.66, LSSx2 0.67
+   extended   0.30- 30.0 h^-1 Mpc | canonical | R5_256: Z  0.31 (fixed splash  0.53); corr(A,ln r_t) -0.79, corr(A,s_e) +0.37; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +10.5%; max |dDS/DS| 4.0%
+   extended   0.30- 30.0 h^-1 Mpc | canonical | CFG495: Z  0.39 (fixed splash  0.44); corr(A,ln r_t) -0.45, corr(A,s_e) -0.72; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +5.1%; max |dDS/DS| 8.4%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_512: Z  0.71 (fixed splash  1.29); corr(A,ln r_t) -0.82, corr(A,s_e) +0.28; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +26.1%; max |dDS/DS| 10.3% | variants Z: r_ta+ 0.59, r_ta- 0.94, cov1.3 0.62, LSSx2 0.66
+   extended   0.30- 30.0 h^-1 Mpc | alt       | R5_256: Z  0.35 (fixed splash  0.63); corr(A,ln r_t) -0.82, corr(A,s_e) +0.28; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +12.3%; max |dDS/DS| 5.1%
+   extended   0.30- 30.0 h^-1 Mpc | alt       | CFG495: Z  0.42 (fixed splash  0.48); corr(A,ln r_t) -0.44, corr(A,s_e) -0.74; r_sp/r_ta 0.30 (r_sp/r200m 1.13); apparent r_sp shift +5.1%; max |dDS/DS| 9.2%
+
+-- DESI DR1 LRG1 x {'KiDS': [4, 5], 'DES': [4], 'HSCY3': [3, 4]} (joint analytic covariance; pre-data fiducial log M200m 13.4 (U)); template groups; GALAXY-SELECTED, NOT HALO-CENTRED
+   primary  0.5-  30 | canonical | R5_512: Z  0.16 (fixed splash  0.17); corr(A,ln r_t) -0.18, corr(A,s_e) +0.92; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift +5.1%; max |dDS/DS| 8.2% | variants Z: r_ta+ 0.18, r_ta- 0.15, cov1.3 0.14
+   primary  0.5-  30 | canonical | CFG495: Z  0.05 (fixed splash  0.05); corr(A,ln r_t) -0.19, corr(A,s_e) +0.95; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift -1.6%; max |dDS/DS| 4.6%
+   primary  0.5-  30 | alt       | R5_512: Z  0.01 (fixed splash  0.02); corr(A,ln r_t) +0.95, corr(A,s_e) +0.97; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 0.4% | variants Z: r_ta+ 0.01, r_ta- 0.01, cov1.3 0.01 [UNRESOLVED template: does not count]
+   primary  0.5-  30 | alt       | CFG495: Z  0.05 (fixed splash  0.05); corr(A,ln r_t) -0.26, corr(A,s_e) +0.96; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 4.6%
+   r1       1.0-  30 | canonical | R5_512: Z  0.12 (fixed splash  0.16); corr(A,ln r_t) -0.68, corr(A,s_e) +0.93; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift -78.3%; max |dDS/DS| 8.2%
+   r1       1.0-  30 | canonical | CFG495: Z  0.05 (fixed splash  0.05); corr(A,ln r_t) -0.04, corr(A,s_e) +0.88; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift -1.6%; max |dDS/DS| 4.6%
+   r1       1.0-  30 | alt       | R5_512: Z  0.01 (fixed splash  0.01); corr(A,ln r_t) +0.17, corr(A,s_e) +0.92; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 0.4% [UNRESOLVED template: does not count]
+   r1       1.0-  30 | alt       | CFG495: Z  0.05 (fixed splash  0.05); corr(A,ln r_t) -0.12, corr(A,s_e) +0.91; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 4.6%
+   to80     0.5-  80 | canonical | R5_512: Z  0.20 (fixed splash  0.21); corr(A,ln r_t) -0.32, corr(A,s_e) +0.89; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift +6.9%; max |dDS/DS| 8.2%
+   to80     0.5-  80 | canonical | CFG495: Z  0.05 (fixed splash  0.05); corr(A,ln r_t) -0.30, corr(A,s_e) +0.94; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift -1.6%; max |dDS/DS| 4.6%
+   to80     0.5-  80 | alt       | R5_512: Z  0.01 (fixed splash  0.02); corr(A,ln r_t) +0.93, corr(A,s_e) +0.97; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 0.4% [UNRESOLVED template: does not count]
+   to80     0.5-  80 | alt       | CFG495: Z  0.06 (fixed splash  0.06); corr(A,ln r_t) -0.37, corr(A,s_e) +0.95; r_sp/r_ta 0.34 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 4.6%
+
+-- DESI DR1 LRG2 x {'HSCY3': [3, 4]} (joint analytic covariance; pre-data fiducial log M200m 13.4 (U)); template groups; GALAXY-SELECTED, NOT HALO-CENTRED
+   primary  0.5-  30 | canonical | R5_512: Z  0.14 (fixed splash  0.15); corr(A,ln r_t) -0.23, corr(A,s_e) +0.91; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift +5.1%; max |dDS/DS| 8.4% | variants Z: r_ta+ 0.16, r_ta- 0.13, cov1.3 0.13
+   primary  0.5-  30 | canonical | CFG495: Z  0.04 (fixed splash  0.04); corr(A,ln r_t) +0.14, corr(A,s_e) +0.96; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift -1.6%; max |dDS/DS| 4.6%
+   primary  0.5-  30 | alt       | R5_512: Z  0.01 (fixed splash  0.02); corr(A,ln r_t) +0.91, corr(A,s_e) +0.97; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 0.4% | variants Z: r_ta+ 0.01, r_ta- 0.01, cov1.3 0.01 [UNRESOLVED template: does not count]
+   primary  0.5-  30 | alt       | CFG495: Z  0.04 (fixed splash  0.04); corr(A,ln r_t) -0.07, corr(A,s_e) +0.97; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 4.6%
+   r1       1.0-  30 | canonical | R5_512: Z  0.10 (fixed splash  0.15); corr(A,ln r_t) -0.70, corr(A,s_e) +0.94; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift -78.3%; max |dDS/DS| 8.4%
+   r1       1.0-  30 | canonical | CFG495: Z  0.04 (fixed splash  0.04); corr(A,ln r_t) +0.02, corr(A,s_e) +0.89; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift -1.6%; max |dDS/DS| 4.6%
+   r1       1.0-  30 | alt       | R5_512: Z  0.01 (fixed splash  0.01); corr(A,ln r_t) +0.16, corr(A,s_e) +0.91; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 0.4% [UNRESOLVED template: does not count]
+   r1       1.0-  30 | alt       | CFG495: Z  0.04 (fixed splash  0.04); corr(A,ln r_t) -0.09, corr(A,s_e) +0.92; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 4.6%
+   to80     0.5-  80 | canonical | R5_512: Z  0.18 (fixed splash  0.19); corr(A,ln r_t) -0.32, corr(A,s_e) +0.88; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift +6.9%; max |dDS/DS| 8.4%
+   to80     0.5-  80 | canonical | CFG495: Z  0.05 (fixed splash  0.05); corr(A,ln r_t) +0.01, corr(A,s_e) +0.95; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift -1.6%; max |dDS/DS| 4.6%
+   to80     0.5-  80 | alt       | R5_512: Z  0.01 (fixed splash  0.02); corr(A,ln r_t) +0.89, corr(A,s_e) +0.96; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 0.4% [UNRESOLVED template: does not count]
+   to80     0.5-  80 | alt       | CFG495: Z  0.05 (fixed splash  0.05); corr(A,ln r_t) -0.19, corr(A,s_e) +0.95; r_sp/r_ta 0.32 (r_sp/r200m 1.33); apparent r_sp shift +0.0%; max |dDS/DS| 4.6%
+
+== Ranking (primary R5_512 template, best range per dataset; Z both footings; alt group template does not count)
+  D2        [published]: Z can 2.06, alt 2.19; Z(256^3 can) 0.96; corr(A, ln r_t) -0.76; sigma_A cost of freeing splashback x1.74
+  D1        [published]: Z can 1.38, alt 1.51; Z(256^3 can) 0.66; corr(A, ln r_t) -0.80; sigma_A cost of freeing splashback x1.81
+  D6        [extended]: Z can 1.14, alt 1.34; Z(256^3 can) 0.59; corr(A, ln r_t) -0.82; sigma_A cost of freeing splashback x1.86
+  D4        [extended]: Z can 0.90, alt 1.05; Z(256^3 can) 0.47; corr(A, ln r_t) -0.84; sigma_A cost of freeing splashback x1.93
+  D8        [extended]: Z can 0.76, alt 0.71; Z(256^3 can) 0.31; corr(A, ln r_t) -0.85; sigma_A cost of freeing splashback x1.96
+  D7        [extended]: Z can 0.73, alt 0.57; Z(256^3 can) 0.25; corr(A, ln r_t) -0.82; sigma_A cost of freeing splashback x1.79
+  D3        [published]: Z can 0.40, alt 0.52; Z(256^3 can) 0.23; corr(A, ln r_t) -0.90; sigma_A cost of freeing splashback x2.39
+  DESI_LRG1 [to80]: Z can 0.20, alt 0.01 (alt does not count); Z(256^3 can) nan; corr(A, ln r_t) -0.32; sigma_A cost of freeing splashback x1.05
+  DESI_LRG2 [to80]: Z can 0.18, alt 0.01 (alt does not count); Z(256^3 can) nan; corr(A, ln r_t) -0.32; sigma_A cost of freeing splashback x1.06
+  D5        [extended]: Z can 0.12, alt 0.03 (alt does not count); Z(256^3 can) nan; corr(A, ln r_t) -0.27; sigma_A cost of freeing splashback x1.04
+
+  Cluster candidates with Z >= 3 on both footings: []
+  ... with Z >= 2: ['D2[published]']; |corr(A, ln r_t)| > 0.9 for all: False
+  RESOLUTION-CONDITIONAL (Z>=3 with 512^3 template but Z<2 with 256^3): []

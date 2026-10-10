@@ -1,0 +1,66 @@
+CFG546 Step P: the drained-shell templates from the R5 (shell-draw) engine against the matched S0 control.
+
+Implements FROZEN_CRITERIA.md (baf7e3dd4), Step P, K1, K2, K3-input and MUTATE-SIM.
+Inputs (read-only): ../../../_external_data/cfg530_work/profiles/N{512,256}/cfg526_{LRcan,LRalt,S0}_L200{.npz,_rhog.npy,_rhop.npy}
+Outputs: cfg546_predict.out / cfg546_predict_results.json  (CFG546_MUTATE=1 -> *_MUTATE.*: shuffled centres)
+
+================ N512_LRcan vs S0 (N512, dx 0.3906 Mpc/h, Om 0.3138)
+  [PASS] K1 N512_LRcan: mean S0 1.0000000, mean F 1.0000000, |dmean| 1.85e-09; S0 rhog=rhop (subsampled max diff 4.88e-04); 8 Mpc/h top-hat corr(F,S0) 0.9883
+  [PASS] K2 N512_LRcan: 4589 kept centres; recomputed r_ta / npz ron within one coarse step (1.261) for 0.995
+  groups: 3282 centres, median log M_ta 13.51, median r_ta 1.95 Mpc/h (5.0 cells) RESOLVED
+    rel(x) at x = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [-0.2532, -0.1014, -0.17, -0.1448, -0.1265, -0.1037, -0.0646, -0.0385, -0.0327, -0.0104, -0.0079, -0.0292, 0.0188]
+      +- [0.0254, 0.0065, 0.0077, 0.0086, 0.0106, 0.0115, 0.012, 0.0131, 0.0127, 0.0139, 0.0143, 0.0146, 0.0154]
+    depletion depth D (min over 1-3 r_ta, 3-bin smoothed) = +0.1526 +- 0.0072; inner excess E (0.2-1 r_ta) = -0.0271; sign change at x = None; mean |rel| over 1-3 r_ta = 0.0706; drained shell predicted: True
+    T2D(X) [Delta Sigma ratio] at X = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [-0.3388, -0.019, -0.0233, -0.0476, -0.0443, -0.102, -0.106, -0.0553, -0.0898, -0.1278, -0.1145, -0.1021, -0.0791]  +- [0.0142, 0.0076, 0.0093, 0.0143, 0.019, 0.0228, 0.0268, 0.0283, 0.0294, 0.0355, 0.0409, 0.044, 0.0327]
+  clusters: 295 centres, median log M_ta 14.44, median r_ta 4.00 Mpc/h (10.2 cells) RESOLVED
+    rel(x) at x = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [0.063, 0.3162, 0.005, -0.2947, -0.2779, -0.141, -0.0415, 0.0085, 0.0372, 0.041, 0.0157, 0.0239, 0.0014]
+      +- [0.0141, 0.0322, 0.0249, 0.0351, 0.0247, 0.0267, 0.0285, 0.0324, 0.0339, 0.0324, 0.03, 0.0306, 0.0334]
+    depletion depth D (min over 1-3 r_ta, 3-bin smoothed) = +0.3087 +- 0.0267; inner excess E (0.2-1 r_ta) = +0.3731; sign change at x = 0.8500000000000001; mean |rel| over 1-3 r_ta = 0.1103; drained shell predicted: True
+    T2D(X) [Delta Sigma ratio] at X = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [-0.3491, 0.224, 0.2838, 0.1653, 0.1268, 0.0701, 0.0045, -0.0026, 0.0192, 0.0449, 0.0281, 0.0559, 0.0622]  +- [0.0238, 0.0186, 0.0218, 0.0196, 0.0211, 0.024, 0.0288, 0.0259, 0.0295, 0.0307, 0.026, 0.0299, 0.0246]
+  (35 s)
+
+================ N256_LRcan vs S0 (N256, dx 0.7812 Mpc/h, Om 0.3138)
+  [PASS] K1 N256_LRcan: mean S0 1.0000000, mean F 1.0000000, |dmean| 2.40e-09; S0 rhog=rhop (subsampled max diff 1.22e-04); 8 Mpc/h top-hat corr(F,S0) 0.9936
+  [PASS] K2 N256_LRcan: 5238 kept centres; recomputed r_ta / npz ron within one coarse step (1.196) for 0.996
+  groups: 3725 centres, median log M_ta 13.37, median r_ta 1.76 Mpc/h (2.2 cells) UNRESOLVED (<5 cells)
+    rel(x) at x = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [nan, -0.3512, -0.1484, -0.1145, -0.2166, -0.0355, 0.0249, -0.0143, -0.011, -0.0272, -0.0185, -0.0384, 0.006]
+      +- [nan, 0.0151, 0.0037, 0.0041, 0.053, 0.0077, 0.2586, 0.0101, 0.0091, 0.0121, 0.0174, 0.0269, 0.0139]
+    depletion depth D (min over 1-3 r_ta, 3-bin smoothed) = +0.2294 +- 0.0217; inner excess E (0.2-1 r_ta) = +1.1379; sign change at x = 0.45; mean |rel| over 1-3 r_ta = 0.0400; drained shell predicted: True
+    T2D(X) [Delta Sigma ratio] at X = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [nan, 0.3277, 0.041, -0.0304, -0.064, -0.0358, 0.0141, -0.0499, -0.0528, -0.0624, -0.031, -0.0738, -0.0072]  +- [nan, 0.0133, 0.009, 0.0119, 0.0207, 0.0165, 0.0216, 0.0198, 0.0195, 0.0313, 0.0316, 0.0479, 0.0348]
+  clusters: 242 centres, median log M_ta 14.47, median r_ta 4.10 Mpc/h (5.2 cells) RESOLVED
+    rel(x) at x = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [0.2286, -0.0021, -0.0227, -0.1063, -0.1287, -0.0787, -0.0629, -0.0218, 0.0251, 0.0158, 0.0541, 0.0127, 0.0083]
+      +- [0.0435, 0.0227, 0.0229, 0.0245, 0.0263, 0.0211, 0.0207, 0.0238, 0.0387, 0.0192, 0.0319, 0.0263, 0.0322]
+    depletion depth D (min over 1-3 r_ta, 3-bin smoothed) = +0.1476 +- 0.0175; inner excess E (0.2-1 r_ta) = +0.1576; sign change at x = 0.55; mean |rel| over 1-3 r_ta = 0.0531; drained shell predicted: True
+    T2D(X) [Delta Sigma ratio] at X = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [-0.0152, 0.1622, 0.103, 0.0999, 0.0611, 0.0162, -0.0008, -0.0111, -0.0381, 0.0186, -0.0583, 0.0261, 0.0208]  +- [0.0387, 0.0148, 0.0168, 0.0162, 0.0196, 0.0226, 0.0287, 0.0231, 0.0308, 0.0233, 0.0317, 0.0267, 0.0286]
+  (9 s)
+
+================ N256_LRalt vs S0 (N256, dx 0.7812 Mpc/h, Om 0.3138)
+  [PASS] K1 N256_LRalt: mean S0 1.0000000, mean F 1.0000000, |dmean| 2.31e-09; S0 rhog=rhop (subsampled max diff 1.22e-04); 8 Mpc/h top-hat corr(F,S0) 0.9924
+  [PASS] K2 N256_LRalt: 5238 kept centres; recomputed r_ta / npz ron within one coarse step (1.196) for 0.996
+  groups: 3725 centres, median log M_ta 13.37, median r_ta 1.76 Mpc/h (2.2 cells) UNRESOLVED (<5 cells)
+    rel(x) at x = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [nan, -0.3353, -0.1612, -0.1132, -0.2413, -0.0438, -0.2366, -0.0227, -0.01, -0.0346, -0.0147, -0.0291, 0.0007]
+      +- [nan, 0.0167, 0.0043, 0.0055, 0.0573, 0.0088, 2.0412, 0.0108, 0.0111, 0.0129, 0.0243, 0.0326, 0.0152]
+    depletion depth D (min over 1-3 r_ta, 3-bin smoothed) = +0.2228 +- 0.0357; inner excess E (0.2-1 r_ta) = +0.0864; sign change at x = 0.35; mean |rel| over 1-3 r_ta = 0.0551; drained shell predicted: True
+    T2D(X) [Delta Sigma ratio] at X = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [nan, 0.3165, 0.0495, -0.045, -0.0573, -0.0352, 0.0265, -0.0283, -0.0643, -0.0635, -0.0417, -0.106, -0.0359]  +- [nan, 0.0146, 0.0095, 0.0119, 0.0222, 0.0187, 0.0245, 0.0234, 0.023, 0.034, 0.0345, 0.0482, 0.0369]
+  clusters: 242 centres, median log M_ta 14.47, median r_ta 4.10 Mpc/h (5.2 cells) RESOLVED
+    rel(x) at x = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [0.331, 0.0401, -0.0175, -0.1392, -0.163, -0.0703, -0.0615, -0.031, 0.0308, 0.0071, 0.0634, 0.0046, -0.0076]
+      +- [0.0517, 0.0246, 0.026, 0.0272, 0.0259, 0.0301, 0.0295, 0.0274, 0.0467, 0.0247, 0.0331, 0.0308, 0.0352]
+    depletion depth D (min over 1-3 r_ta, 3-bin smoothed) = +0.1708 +- 0.0175; inner excess E (0.2-1 r_ta) = +0.2134; sign change at x = 0.6499999999999999; mean |rel| over 1-3 r_ta = 0.0612; drained shell predicted: True
+    T2D(X) [Delta Sigma ratio] at X = [0.15, 0.45, 0.75, 1.05, 1.35, 1.65, 1.95, 2.25, 2.55, 2.85, 3.15, 3.45, 3.75]
+      [-0.0354, 0.1925, 0.136, 0.12, 0.0751, 0.0368, 0.0019, -0.0093, -0.0289, 0.0039, -0.0595, 0.0347, 0.0167]  +- [0.0396, 0.0185, 0.0189, 0.0164, 0.0238, 0.0231, 0.0355, 0.0288, 0.035, 0.0247, 0.0303, 0.0276, 0.0313]
+  (9 s)
+
+== Footing construction: alt primary = 256^3 alt template x s_res (512 can onto 256 can, 0.2 <= x <= 3)
+  groups: s_res = 0.045
+  clusters: s_res = 2.029

@@ -1,0 +1,15 @@
+CFG546 Step F: Fisher forecast of the drained-shell amplitude A against a DK14 baseline with splashback marginalised.
+
+Implements FROZEN_CRITERIA.md (baf7e3dd4), Step F, K4 and MUTATE-FORECAST.
+Templates: cfg546_predict_results.json (R5, this lane) and ../CFG495_drawdown_shell/cfg495_sim_analysis_results.json (variant).
+On-disk dataset: DESI DR1 LRG ΔΣ covariance (reads only rp bin edges and the joint covariance; no ΔΣ values).
+Outputs: cfg546_forecast.out / cfg546_forecast_results.json; CFG546_MUTATE=1 -> *_MUTATE.* (noise-realisation recovery).
+
+Templates: clusters s_res 2.029; groups s_res 0.045 (groups 256^3 median r_ta < 5 cells: the alt R5 group template does NOT count by the resolution rule)
+  [PASS] K4 projection vs analytic NFW: max |dev| 1.30e-03 over 0.1-10 R/r_s
+
+== MUTATE-FORECAST: 300 noise realisations per case; A = 0 and A = 1 injected; full nonlinear fit with priors
+  [PASS] MUTATE-FORECAST D2-extended canonical A=0: mean Ahat +0.019 (sigma_A Fisher 0.486; +0.04 sigma), scatter 0.444, frac |Ahat/sigma|>2 = 0.023 (233 s)
+  [PASS] MUTATE-FORECAST D2-extended canonical A=1: mean Ahat +0.954 (-0.10 sigma from 1), scatter 0.434 vs Fisher 0.486 (ratio 0.89) (209 s)
+  [FAIL] MUTATE-FORECAST DESI LRG1 canonical A=0: mean Ahat -2.123 (sigma_A Fisher 6.156; -0.34 sigma), scatter 3.716, frac |Ahat/sigma|>2 = 0.007 (655 s)
+  [FAIL] MUTATE-FORECAST DESI LRG1 canonical A=1: mean Ahat -0.874 (-0.30 sigma from 1), scatter 3.363 vs Fisher 6.156 (ratio 0.55) (407 s)
