@@ -1,0 +1,139 @@
+CFG550 velocity part of the settling dynamics
+MW_can: V_f 165.2 km/s; deep T_ph/V_f^2 0.5008; T_ph shell 0.502-0.513; route c: r_e 2.4299516798178513, r99_t 1.590870366786091, D_t -0.029467033952152166; B2 closed sigma^2 off by +0.163 dex; B3 beta=0 D -0.389; A4 {'rho_monotone_in_r': True, 'r_of_rho_max_over_rM': 0.0001, 'frac_cells_increasing': 0.0, 'f_min_over_max': 1.4728279087413745e-21, 'f_negative_frac': 0.0, 'isotropic_lift_exists': True}
+MW_alt: V_f 173.3 km/s; deep T_ph/V_f^2 0.5007; T_ph shell 0.501-0.511; route c: r_e 2.6702648109001133, r99_t 1.5907927800346457, D_t -0.02944479904174149; B2 closed sigma^2 off by +0.175 dex; B3 beta=0 D -0.431; A4 {'rho_monotone_in_r': True, 'r_of_rho_max_over_rM': 0.0001, 'frac_cells_increasing': 0.0, 'f_min_over_max': 9.567440864692775e-22, 'f_negative_frac': 0.0, 'isotropic_lift_exists': True}
+cluster_can: V_f 1168.4 km/s; deep T_ph/V_f^2 0.5017; T_ph shell 0.530-0.877; route c: r_e 2.675435404941271, r99_t 1.6087863021904087, D_t -0.03509822962178458; B2 closed sigma^2 off by +0.172 dex; B3 beta=0 D -0.449; A4 {'rho_monotone_in_r': False, 'r_of_rho_max_over_rM': 0.26110789284455854, 'frac_cells_increasing': 0.20618, 'f_min_over_max': -0.8146082260849569, 'f_negative_frac': 0.1, 'isotropic_lift_exists': False}
+cluster_alt: V_f 1225.1 km/s; deep T_ph/V_f^2 0.5017; T_ph shell 0.530-0.877; route c: r_e 2.9414481630130846, r99_t 1.6088597154624091, D_t -0.0350959989519706; B2 closed sigma^2 off by +0.183 dex; B3 beta=0 D -0.491; A4 {'rho_monotone_in_r': False, 'r_of_rho_max_over_rM': 0.2611078928445587, 'frac_cells_increasing': 0.20618, 'f_min_over_max': -0.8146079502559068, 'f_negative_frac': 0.1, 'isotropic_lift_exists': False}
+
+Sympy:
+  A1_T_from_shape: [V_f**2/2]
+  A1_amplitude_A: 1/(4*pi**(5/2)*G*V_f*r_0**2)
+  A1_velocity_integral_check: True
+  A1_Jeans_sigma2: V_f**2/2
+  A1_pass: True
+  A1_note: the law's own (rho_ph, Phi_law) fix the phase-space phantom f_ph = A exp(-E/T) with T = V_f^2/2 and its amplitude; no temperature is inserted. Input level: the same rho_ph class A already takes.
+  A2_M_symmetric: True
+  A2_M_dE_zero: True
+  A2_dSdt_is_sum_of_squares: True
+  A2_dEdt_zero: True
+  A2_mass_conserved: True
+  A2_stationary_condition: log((f0*p1/(f1*p0))**(T/Theta))
+  A2_continuum_flux: -gamma*(T*Derivative(f(v), v) + v*f(v))
+  A2_continuum_is_OU: True
+  A2_dmean_dt: -gamma*m
+  A2_dv2_dt: 2*gamma*(T - m**2 - s)
+  A2_pass: True
+  A3_energy_into_matter_per_dof: gamma*(T - s)
+  A3_two_way: M is symmetric PSD with M dE = 0; dS/dt is a sum of squares for any state, hot or cold, so the partner may give energy (cold matter, <v^2> < 3T) or take it (hot matter): two-way exchange is allowed by M
+  A0_stationarity: Derivative(C(f0), f0) - Derivative(C(f1), f1)
+  A0_note: Casimir entropy + partner: stationary iff C'(f) is the same in every velocity cell -> f uniform in v (C strictly convex), not normalisable on unbounded v: no finite temperature (T -> infinity), energy flows from phi into matter without bound. Without the partner (energy-conserving Landau pairs) the equilibrium is the Maxwellian at the local kinetic temperature: a cold (sigma = 0) element is already stationary -> T stays at the source value 0.
+  A0_uniform_f_normalisable: False
+  B1_beta: [0]
+  A5_phase_space_KL_Vlasov_rate_identity: True
+  A5_phase_space_KL_note: d/dt int f ln(f/f_ph)|Vlasov = -int f (F'/F) v.grad(Phi_law - Phi): vanishes only where the real potential equals the law's (psi = Phi_law - Phi = 0)
+  A5_c1_drift_rate_mode: -2*pi*G*alpha*epsilon**2*rho_0**2*tau*(-4*pi*G*rho_0 + k**2*sigma2)/k**2
+  A5_c1_rises_for_k_below_kJ: True
+  A5_cne1_max_rate: A**2/(4*C*alpha) - B*alpha
+  A5_cne1_positive_if_alpha_below: [A/(2*sqrt(B)*sqrt(C))]
+  A5_other_candidates: {'E_N + Casimirs (incl. E_N - T S_B)': 'Vlasov-invariant; drift rate -alpha int rho tau grad psi.grad Phi (indefinite, CFG544) and the relaxation heats cold matter (dE_N > 0): not monotone', 'F + c F_v (c >= 0)': 'Vlasov rate int rho u.grad psi + c(...) first order in u, dissipation O(alpha): fails for small alpha', 'phase-space KL to f_ph': 'Vlasov rate vanishes only where Phi = Phi_law (identity above)'}
+  A5_full_system_Lyapunov: NOT ESTABLISHED
+  A6_total_momentum_decay: -gamma*m
+  A6_note: the relaxation pulls each bin's mean velocity to zero in the region's baryon frame: total j decays at alpha/tau unless already zero, and the stochastic kicks change each element's j: NOT CONSERVED. A reference centred on the local mean velocity would conserve momentum (d<v>/dt = 0) but was not frozen and is not run.
+  A7_note: the velocity relaxation acts at fixed x (an ODE in v per point): no spatial propagation, no new speed; alpha keeps only CFG542's stability bound (alpha beta q < 1)
+
+Discrete velocity model (+M): {'KL_start': 1.0231915207642217, 'KL_end': 0.004546321267526936, 'KL_monotone_down': True, 'KL_monotone_up': False, 'steps_done': 5000, 'max_dE_total': 9.020562075079397e-16, 'partner_energy_end': -0.4106117393570859, 'mass_err': 1.5543122344752192e-15}
+
+Runs (end state; shell 0.1-0.9 r_*):
+  MW_alt|C2_vlasov_eq             2.0 Gyr logXJ +0.004 logX544 +0.000 D +0.047 last2 dXJ/dD +0.001/+0.048 r99 1.381 beta +0.21 out -0.000 in +0.000 sink -0.000 (rate +0.0000/Gyr) integ 7.7e-04 riseF 0.003576100281463607 G550 True G544 True (10s)
+       s(r) bins: 1.19 1.14 1.17 1.15 1.09 1.07 1.05 1.00 0.95 0.93 0.87 0.86 0.83 0.83 0.93 1.28
+  MW_alt|C5_fix2_C                5.0 Gyr logXJ +0.009 logX544 -0.001 D +0.027 last2 dXJ/dD -0.016/-0.011 r99 1.280 beta +0.05 out -0.288 in +0.229 sink -0.517 (rate -0.0045/Gyr) integ 9.0e-04 riseF 0.0009753348623692264 G550 True G544 True (59s)
+       s(r) bins: 1.08 1.05 1.03 1.01 1.03 1.05 1.05 1.05 0.99 0.96 0.95 0.93 0.91 0.92 1.02 1.28
+  MW_alt|a1_B                    10.0 Gyr logXJ +0.125 logX544 +0.052 D -0.116 last2 dXJ/dD -0.000/-0.011 r99 2.036 beta +0.08 out +1.717 in +1.826 sink -0.109 (rate -0.0020/Gyr) integ 8.7e-03 riseF 0.00025138968152746063 G550 False G544 False (128s)
+       s(r) bins: 0.97 0.92 0.94 0.96 0.91 0.95 0.90 0.93 0.96 0.92 0.99 1.06 1.12 1.22 1.49 2.19
+  MW_alt|a1_C                     5.0 Gyr logXJ +0.114 logX544 +0.076 D -0.048 last2 dXJ/dD +0.003/-0.046 r99 1.663 beta -0.00 out -0.109 in +0.702 sink -0.811 (rate -0.0427/Gyr) integ 9.2e-04 riseF 0.0029680213917359314 G550 False G544 True (63s)
+       s(r) bins: 0.96 1.02 0.98 1.01 0.99 0.97 0.97 0.98 1.02 1.00 1.08 1.11 1.20 1.33 1.59 2.33
+  MW_alt|a1_over_base             5.0 Gyr logXJ +0.117 logX544 +0.070 D -0.062 last2 dXJ/dD +0.003/-0.028 r99 1.765 beta +0.00 out +0.191 in +0.524 sink -0.333 (rate -0.0312/Gyr) integ 1.8e-03 riseF 0.00293985282914806 G550 False G544 True (63s)
+       s(r) bins: 0.98 0.92 1.01 1.01 0.94 1.01 1.02 0.96 0.98 0.99 1.06 1.07 1.19 1.29 1.57 2.29
+  MW_alt|a1_over_inj              5.0 Gyr logXJ +0.105 logX544 +0.081 D -0.047 last2 dXJ/dD +0.007/-0.040 r99 1.826 beta +0.02 out -0.175 in +0.350 sink -0.525 (rate -0.0392/Gyr) integ 1.3e-03 riseF 0.0031780104619313063 G550 False G544 True (68s)
+       s(r) bins: 0.97 0.97 1.03 0.98 0.97 0.98 0.97 1.01 1.01 1.04 1.08 1.16 1.19 1.36 1.65 2.39
+  MW_alt|c_B                     10.0 Gyr logXJ +0.071 logX544 -0.013 D -0.119 last2 dXJ/dD -0.021/+0.020 r99 2.010 beta +0.05 out +1.375 in +1.283 sink +0.092 (rate +0.0085/Gyr) integ 8.6e-03 riseF -0.0018184735675133455 G550 False G544 False (140s)
+       s(r) bins: 0.90 0.97 0.89 0.93 0.89 0.90 0.88 0.89 0.90 0.85 0.88 0.94 0.92 0.99 1.17 1.68
+  MW_alt|c_C                      5.0 Gyr logXJ +0.035 logX544 +0.004 D -0.028 last2 dXJ/dD +0.005/-0.026 r99 1.648 beta -0.04 out -0.340 in +0.254 sink -0.594 (rate -0.0156/Gyr) integ 8.9e-04 riseF 0.08955209719659656 G550 True G544 True (68s)
+       s(r) bins: 0.96 0.92 0.98 0.95 0.99 0.95 0.92 0.95 0.93 0.93 0.92 0.94 0.98 1.04 1.22 1.72
+  MW_alt|c_over_base              5.0 Gyr logXJ +0.038 logX544 +0.002 D -0.042 last2 dXJ/dD +0.007/-0.014 r99 1.688 beta -0.03 out -0.085 in +0.023 sink -0.109 (rate -0.0098/Gyr) integ 1.6e-03 riseF 0.011686327576937309 G550 True G544 True (68s)
+       s(r) bins: 0.95 0.96 0.94 0.98 0.97 0.95 0.92 0.94 0.95 0.89 0.93 0.93 0.98 1.05 1.21 1.67
+  MW_alt|c_over_inj               5.0 Gyr logXJ +0.021 logX544 +0.006 D -0.027 last2 dXJ/dD +0.008/-0.025 r99 1.991 beta -0.02 out -0.505 in -0.234 sink -0.271 (rate -0.0161/Gyr) integ 1.2e-03 riseF -0.003020144827712389 G550 True G544 True (74s)
+       s(r) bins: 0.97 0.95 0.96 0.93 0.95 0.94 0.96 0.94 0.94 0.91 0.95 0.96 1.00 1.05 1.23 1.69
+  MW_can|C2_vlasov_eq             2.0 Gyr logXJ -0.005 logX544 -0.008 D +0.023 last2 dXJ/dD -0.008/+0.025 r99 1.278 beta +0.19 out -0.000 in +0.000 sink -0.000 (rate +0.0000/Gyr) integ 6.5e-04 riseF 0.0026688614135296665 G550 True G544 True (9s)
+       s(r) bins: 1.12 1.15 1.07 1.11 1.04 1.04 1.00 0.97 0.93 0.90 0.90 0.84 0.86 0.89 0.90 1.28
+  MW_can|C5_fix2_C                5.0 Gyr logXJ +0.016 logX544 +0.006 D +0.027 last2 dXJ/dD -0.011/-0.016 r99 1.236 beta +0.06 out -0.269 in +0.244 sink -0.513 (rate -0.0040/Gyr) integ 8.0e-04 riseF 0.0010830888956901335 G550 True G544 True (50s)
+       s(r) bins: 1.06 1.11 1.07 1.08 1.06 1.06 1.04 1.06 0.98 0.99 1.01 0.95 0.90 0.94 0.97 1.30
+  MW_can|a1_B                    10.0 Gyr logXJ +0.125 logX544 +0.055 D -0.112 last2 dXJ/dD -0.004/-0.006 r99 1.975 beta +0.05 out +1.528 in +1.658 sink -0.130 (rate -0.0042/Gyr) integ 6.9e-03 riseF 0.0003657865653619141 G550 False G544 False (112s)
+       s(r) bins: 0.90 0.98 0.95 0.96 0.95 0.94 0.93 0.95 0.96 0.93 0.97 1.04 1.11 1.20 1.51 2.24
+  MW_can|a1_C                     5.0 Gyr logXJ +0.112 logX544 +0.081 D -0.041 last2 dXJ/dD +0.000/-0.052 r99 1.587 beta -0.01 out -0.153 in +0.636 sink -0.788 (rate -0.0406/Gyr) integ 8.0e-04 riseF 0.0030677033198908614 G550 False G544 False (54s)
+       s(r) bins: 0.98 1.07 0.96 1.03 1.00 1.05 0.96 1.03 1.01 1.02 1.07 1.10 1.23 1.35 1.66 2.32
+  MW_can|a1_over_base             5.0 Gyr logXJ +0.115 logX544 +0.074 D -0.057 last2 dXJ/dD +0.001/-0.035 r99 1.667 beta +0.01 out +0.135 in +0.449 sink -0.315 (rate -0.0283/Gyr) integ 1.5e-03 riseF 0.0032951055701544297 G550 False G544 True (56s)
+       s(r) bins: 0.97 1.03 0.94 1.05 1.01 0.96 0.95 0.95 1.00 1.03 1.06 1.11 1.21 1.30 1.60 2.30
+  MW_can|a1_over_inj              5.0 Gyr logXJ +0.100 logX544 +0.083 D -0.035 last2 dXJ/dD -0.002/-0.033 r99 1.776 beta +0.01 out -0.240 in +0.267 sink -0.507 (rate -0.0368/Gyr) integ 1.1e-03 riseF 0.0036850418086507605 G550 False G544 True (61s)
+       s(r) bins: 0.98 0.97 0.97 0.97 1.00 0.99 1.01 1.02 1.03 1.07 1.05 1.15 1.19 1.37 1.63 2.46
+  MW_can|c_B                     10.0 Gyr logXJ +0.069 logX544 -0.017 D -0.131 last2 dXJ/dD -0.020/+0.021 r99 2.215 beta +0.06 out +1.243 in +1.175 sink +0.068 (rate +0.0093/Gyr) integ 6.8e-03 riseF -0.0002046407322497556 G550 False G544 False (119s)
+       s(r) bins: 0.91 0.95 0.92 0.94 0.92 0.87 0.86 0.86 0.86 0.87 0.87 0.89 0.91 1.02 1.17 1.68
+  MW_can|c_C                      5.0 Gyr logXJ +0.031 logX544 +0.004 D -0.022 last2 dXJ/dD +0.003/-0.028 r99 1.612 beta -0.04 out -0.335 in +0.249 sink -0.584 (rate -0.0132/Gyr) integ 7.9e-04 riseF 0.08440138666597154 G550 True G544 True (61s)
+       s(r) bins: 0.98 0.97 0.95 0.97 0.97 0.96 0.93 0.92 0.90 0.94 0.92 0.97 0.99 1.06 1.19 1.69
+  MW_can|c_over_base              5.0 Gyr logXJ +0.036 logX544 +0.002 D -0.044 last2 dXJ/dD +0.004/-0.020 r99 1.662 beta -0.03 out -0.090 in +0.011 sink -0.100 (rate -0.0069/Gyr) integ 1.4e-03 riseF 0.005316430422709276 G550 True G544 True (61s)
+       s(r) bins: 0.95 0.97 0.96 0.94 0.97 0.91 0.94 0.90 0.92 0.91 0.94 0.95 0.99 1.07 1.20 1.67
+  MW_can|c_over_inj               5.0 Gyr logXJ +0.016 logX544 +0.005 D -0.025 last2 dXJ/dD -0.000/-0.030 r99 1.872 beta -0.00 out -0.512 in -0.249 sink -0.262 (rate -0.0131/Gyr) integ 1.1e-03 riseF -0.0002140794207696775 G550 True G544 True (65s)
+       s(r) bins: 0.98 0.94 0.92 0.97 0.93 0.93 0.94 0.96 0.97 0.92 0.95 0.94 0.98 1.08 1.19 1.69
+  cluster_alt|C2_vlasov_eq        2.0 Gyr logXJ +0.029 logX544 +0.021 D +0.083 last2 dXJ/dD +0.027/+0.083 r99 1.699 beta +0.28 out -0.000 in +0.000 sink -0.000 (rate +0.0000/Gyr) integ 3.8e-04 riseF 0.007259784973275344 G550 False G544 False (23s)
+       s(r) bins: 1.18 1.26 1.22 1.21 1.23 1.17 1.12 1.07 1.01 0.96 0.90 0.87 0.82 0.82 0.93 1.26
+  cluster_alt|C5_fix2_C           5.0 Gyr logXJ +0.025 logX544 +0.007 D -0.021 last2 dXJ/dD -0.012/-0.028 r99 1.490 beta +0.23 out -1.977 in -1.269 sink -0.708 (rate -0.0083/Gyr) integ 6.6e-04 riseF 0.0022253703189528723 G550 True G544 True (144s)
+       s(r) bins: 1.10 1.03 1.14 1.15 1.10 1.10 0.99 1.00 0.97 0.98 0.94 0.92 0.92 0.94 1.03 1.35
+  cluster_alt|a1_B               10.0 Gyr logXJ +0.672 logX544 +0.534 D -0.259 last2 dXJ/dD -0.306/-0.000 r99 5907.326 beta +0.89 out +3.018 in +49200058675962622754781492260601607911793243715534848.000 sink -49200058675962622754781492260601607911793243715534848.000 (rate +0.0000/Gyr) integ 8.6e+100 riseF 0.006225090663134908 G550 False G544 False (340s)
+       s(r) bins: 1.06 1.60 1.34 2.48 1.30 1.07 1.39 1.24 1.24 7.72 3.41 1.69 1.36 2.96 15.68 3.25
+  cluster_alt|a1_C                5.0 Gyr logXJ +0.519 logX544 +0.425 D -0.190 last2 dXJ/dD +0.128/-0.077 r99 950.375 beta +0.82 out +0.648 in +8627896591118395978323341468399304704.000 sink -8627896591118395978323341468399304704.000 (rate -4315491583601936946903123730194497536.0000/Gyr) integ 2.1e+69 riseF 0.015377179802816738 G550 False G544 False (172s)
+       s(r) bins: 1.39 1.37 1.52 1.00 0.99 1.35 1.58 10.21 2.43 2.07 1.23 2.54 1.67 2.50 3.33 3.00
+  cluster_alt|a1_over_base        5.0 Gyr logXJ +0.448 logX544 +0.351 D -0.197 last2 dXJ/dD +0.103/-0.073 r99 824.111 beta +0.78 out +0.923 in +16495989011098127225109688990607066247548895232.000 sink -16495989011098127225109688990607066247548895232.000 (rate -8250945189406680899386201361197272966136594432.0000/Gyr) integ 6.1e+88 riseF 0.015135409491788149 G550 False G544 False (173s)
+       s(r) bins: 1.85 1.07 1.34 1.61 1.07 1.13 4.93 1.38 1.19 1.85 1.44 1.51 1.58 2.47 5.00 3.66
+  cluster_alt|a1_over_inj         5.0 Gyr logXJ +2.255 logX544 +2.174 D -0.181 last2 dXJ/dD +1.876/-0.074 r99 739.024 beta +1.00 out +0.692 in +17337111746560056436397840301810030032715776.000 sink -17337111746560056436397840301810030032715776.000 (rate +0.0000/Gyr) integ 3.3e+82 riseF 0.015962303661825272 G550 False G544 False (185s)
+       s(r) bins: 1.06 1.74 1.99 1.15 1.43 6.20 188.46 1.18 1.48 1.99 1.75 2.38 1.49 1.62 4.98 2898.41
+  cluster_alt|c_B                10.0 Gyr logXJ +0.052 logX544 -0.009 D -0.103 last2 dXJ/dD -0.018/+0.045 r99 6.166 beta +0.08 out +0.153 in +13941575782507392942769306922569939156748730368.000 sink -13941575782507392942769306922569939156748730368.000 (rate +0.0000/Gyr) integ 1.2e+89 riseF -0.0021993313958132274 G550 False G544 False (342s)
+       s(r) bins: 0.92 1.01 0.95 0.92 0.91 0.90 0.88 0.86 0.88 0.86 0.90 0.87 0.96 1.12 1.19 1.83
+  cluster_alt|c_C                 5.0 Gyr logXJ +0.060 logX544 +0.028 D -0.052 last2 dXJ/dD +0.028/-0.042 r99 2.281 beta +0.19 out -1.721 in +13222169628570911196793511290567535593898415034931871744.000 sink -13222169628570911196793511290567535593898415034931871744.000 (rate +0.0000/Gyr) integ 3.2e+106 riseF 0.21873927297944332 G550 True G544 True (168s)
+       s(r) bins: 1.60 0.92 0.96 0.99 0.92 1.46 0.90 0.93 0.93 0.99 0.91 1.01 0.96 1.03 1.22 1.87
+  cluster_alt|c_over_base         5.0 Gyr logXJ +0.031 logX544 -0.004 D -0.056 last2 dXJ/dD +0.007/-0.018 r99 3.519 beta +0.02 out -1.259 in +184999161617517523309456301631462779951970779136.000 sink -184999161617517523309456301631462779951970779136.000 (rate -92532672128078329694132672015022075258297384960.0000/Gyr) integ 6.7e+88 riseF 0.013630255677654267 G550 True G544 True (168s)
+       s(r) bins: 0.93 0.95 0.95 0.98 0.91 0.93 0.93 0.90 0.93 0.94 0.91 0.91 1.00 1.01 1.19 1.68
+  cluster_alt|c_over_inj          5.0 Gyr logXJ +0.020 logX544 -0.001 D -0.048 last2 dXJ/dD -0.001/-0.025 r99 3.823 beta +0.06 out -1.719 in +15198901932698036001135835799608370459122260246528.000 sink -15198901932698036001135835799608370459122260246528.000 (rate +0.0000/Gyr) integ 9.2e+100 riseF -0.0008020724223252144 G550 True G544 True (180s)
+       s(r) bins: 0.96 0.92 0.98 1.02 0.98 0.93 0.95 0.93 0.90 0.90 0.92 0.92 0.96 1.02 1.21 1.70
+  cluster_can|C2_vlasov_eq        2.0 Gyr logXJ +0.013 logX544 +0.006 D +0.043 last2 dXJ/dD +0.010/+0.044 r99 1.546 beta +0.24 out -0.000 in +0.000 sink -0.000 (rate +0.0000/Gyr) integ 3.5e-04 riseF 0.005288497417673004 G550 True G544 True (20s)
+       s(r) bins: 1.15 1.16 1.19 1.19 1.09 1.10 1.05 1.01 0.97 0.92 0.89 0.86 0.83 0.82 0.94 1.28
+  cluster_can|C5_fix2_C           5.0 Gyr logXJ +0.030 logX544 +0.014 D -0.012 last2 dXJ/dD -0.015/-0.045 r99 1.442 beta +0.24 out -1.781 in -1.081 sink -0.700 (rate -0.0041/Gyr) integ 4.9e-04 riseF 0.002688333275452365 G550 True G544 True (123s)
+       s(r) bins: 1.23 1.20 1.13 1.14 1.08 1.06 1.05 1.02 1.01 0.97 0.94 0.92 0.92 0.97 1.00 1.38
+  cluster_can|a1_B               10.0 Gyr logXJ +0.489 logX544 +0.362 D -0.248 last2 dXJ/dD -0.166/-0.015 r99 5162.154 beta +0.81 out +2.611 in +31179341513532968725455660916211187712.000 sink -31179341513532968725455660916211187712.000 (rate +0.0000/Gyr) integ 4.0e+71 riseF 0.005892564704248906 G550 False G544 False (296s)
+       s(r) bins: 1.21 1.49 1.07 0.98 1.18 2.01 2.66 3.92 1.34 1.53 1.41 2.18 1.31 3.01 4.61 2.96
+  cluster_can|a1_C                5.0 Gyr logXJ +0.949 logX544 +0.867 D -0.167 last2 dXJ/dD +0.379/-0.090 r99 614.216 beta +0.95 out +0.459 in +2044059424527542106928996941824.000 sink -2044059424527542106928996941824.000 (rate +0.0000/Gyr) integ 2.8e+77 riseF 0.01619977292317662 G550 False G544 False (149s)
+       s(r) bins: 1.97 1.47 1.80 1.36 9.70 3.79 2.24 1.49 1.40 1.35 2.47 2.29 1.66 4.43 6.55 94.11
+  cluster_can|a1_over_base        5.0 Gyr logXJ +0.690 logX544 +0.605 D -0.182 last2 dXJ/dD +0.278/-0.071 r99 366.598 beta +0.90 out +0.735 in +4128816235853942421316435968.000 sink -4128816235853942421316435968.000 (rate +0.0000/Gyr) integ 2.4e+63 riseF 0.016040285517162994 G550 False G544 False (146s)
+       s(r) bins: 1.46 1.12 1.92 1.15 1.35 4.59 1.32 26.06 1.45 1.51 5.19 1.96 2.18 1.68 2.11 3.31
+  cluster_can|a1_over_inj         5.0 Gyr logXJ +0.364 logX544 +0.293 D -0.168 last2 dXJ/dD -0.011/-0.081 r99 401.100 beta +0.70 out +0.505 in +204340908030716559820263844585712245538816.000 sink -204340908030716559820263844585712245538816.000 (rate +0.0000/Gyr) integ 5.7e+93 riseF 0.017628228303506153 G550 False G544 False (157s)
+       s(r) bins: 1.32 1.11 1.29 1.21 1.22 1.14 1.32 1.13 2.99 1.58 1.98 1.41 1.38 2.94 1.93 5.09
+  cluster_can|c_B                10.0 Gyr logXJ +0.048 logX544 -0.012 D -0.122 last2 dXJ/dD -0.017/+0.026 r99 4.080 beta +0.09 out +0.179 in +69503981175445372855545455146481101523144030107467776.000 sink -69503981175445372855545455146481101523144030107467776.000 (rate +0.0000/Gyr) integ 2.3e+105 riseF -1.674820594213954e-05 G550 False G544 False (297s)
+       s(r) bins: 0.94 1.04 0.94 0.93 0.93 0.90 0.87 0.85 0.86 0.89 0.87 0.92 0.92 1.02 1.19 1.75
+  cluster_can|c_C                 5.0 Gyr logXJ +0.167 logX544 +0.139 D -0.050 last2 dXJ/dD +0.139/-0.043 r99 1.777 beta +0.54 out -1.582 in +173276792944483375838658560.000 sink -173276792944483375838658560.000 (rate +0.0000/Gyr) integ 9.3e+46 riseF 0.2020426996761793 G550 False G544 False (146s)
+       s(r) bins: 1.00 0.98 0.99 0.98 0.94 0.94 0.95 0.95 0.93 0.92 0.91 0.91 1.00 1.04 1.18 11.04
+  cluster_can|c_over_base         5.0 Gyr logXJ +0.034 logX544 +0.002 D -0.061 last2 dXJ/dD +0.006/-0.030 r99 2.848 beta +0.08 out -1.128 in +1335403342651773599158997907311266332137226240.000 sink -1335403342651773599158997907311266332137226240.000 (rate +0.0000/Gyr) integ 1.3e+103 riseF 0.013122615019291716 G550 True G544 True (145s)
+       s(r) bins: 0.96 1.02 0.95 0.94 0.96 0.95 0.95 0.92 0.91 0.92 0.93 0.91 1.02 1.04 1.22 1.72
+  cluster_can|c_over_inj          5.0 Gyr logXJ +0.023 logX544 +0.005 D -0.051 last2 dXJ/dD -0.037/-0.041 r99 3.043 beta +0.04 out -1.578 in +3208043664786479118266003449970688.000 sink -3208043664786479118266003449970688.000 (rate +0.0000/Gyr) integ 1.4e+62 riseF 0.00016142609897796376 G550 True G544 True (156s)
+       s(r) bins: 0.96 0.95 1.03 0.97 0.94 0.94 0.96 0.91 0.92 0.92 0.89 0.95 1.01 1.05 1.28 1.76
+
+Controls: A1 deep True; C2 {'MW_can': True, 'MW_alt': True, 'cluster_can': True, 'cluster_alt': True}; C5 {'MW_can': {'dlogX': 0.0, 'dD': 0.0, 'ok': True}, 'MW_alt': {'dlogX': 0.0, 'dD': 0.0, 'ok': True}, 'cluster_can': {'dlogX': 0.0, 'dD': 0.0, 'ok': True}, 'cluster_alt': {'dlogX': 0.0, 'dD': 0.0, 'ok': True}}; mass True -> PASS
+
+Route a1: G550 B {'MW_can': False, 'MW_alt': False, 'cluster_can': False, 'cluster_alt': False} C {'MW_can': False, 'MW_alt': False, 'cluster_can': False, 'cluster_alt': False}; G544 {'MW_can': {'B': False, 'C': False}, 'MW_alt': {'B': False, 'C': True}, 'cluster_can': {'B': False, 'C': False}, 'cluster_alt': {'B': False, 'C': False}}
+  overfill P {'MW_can': 0.4514154552410099, 'MW_alt': 0.48027575641516557, 'cluster_can': 0.36665172568355076, 'cluster_alt': 0.30658897355446035} -> NOT HANDLED; edge {'MW_can|B': 0.6905100791722559, 'MW_can|C': 0.47187200939029067, 'MW_alt|B': 0.7208457485882296, 'MW_alt|C': 0.5182878807678631, 'cluster_can|B': 8.558415659020143, 'cluster_can|C': 6.429653932296363, 'cluster_alt|B': 8.693255040145296, 'cluster_alt|C': 6.866163188441256} -> NOT PRESERVED
+  energy {'MW_can': {'B_net': -0.13033737731674067, 'B_out': 1.5278252174543863, 'B_in': 1.658162594771127, 'B_rate_last2': -0.004150912293578239, 'C_net': -0.7880710349704064, 'C_out': -0.15251324796772617, 'C_in': 0.6355577870026803, 'C_rate_last2': -0.04062999916379678, 'C_whole_history': -0.018271472705224223, 'B_relax_in_rate_last2': 0.13037337542246646}, 'MW_alt': {'B_net': -0.10866357968021545, 'B_out': 1.7170492934999835, 'B_in': 1.825712873180199, 'B_rate_last2': -0.00199672542237907, 'C_net': -0.8110426495078549, 'C_out': -0.10864278634023289, 'C_in': 0.702399863167622, 'C_rate_last2': -0.04267422241483461, 'C_whole_history': -0.0205303772394132, 'B_relax_in_rate_last2': 0.141623067255089}, 'cluster_can': {'B_net': -3.117934151353297e+37, 'B_out': 2.610514616538148, 'B_in': 3.117934151353297e+37, 'B_rate_last2': 0.0, 'C_net': -2.044059424527542e+30, 'C_out': 0.4594876200750176, 'C_in': 2.044059424527542e+30, 'C_rate_last2': 0.0, 'C_whole_history': -2.044059424527542e+30, 'B_relax_in_rate_last2': 0.0}, 'cluster_alt': {'B_net': -4.920005867596262e+52, 'B_out': 3.0181057971642917, 'B_in': 4.920005867596262e+52, 'B_rate_last2': 0.0, 'C_net': -8.627896591118396e+36, 'C_out': 0.648462109161237, 'C_in': 8.627896591118396e+36, 'C_rate_last2': -4.315491583601937e+36, 'C_whole_history': -8.627896591118396e+36, 'B_relax_in_rate_last2': 0.0}} -> compatible False
+  LABEL INCONSISTENT (the derived target fails G550); Lyapunov NOT ESTABLISHED
+
+Route c: G550 B {'MW_can': False, 'MW_alt': False, 'cluster_can': False, 'cluster_alt': False} C {'MW_can': True, 'MW_alt': True, 'cluster_can': False, 'cluster_alt': True}; G544 {'MW_can': {'B': False, 'C': True}, 'MW_alt': {'B': False, 'C': True}, 'cluster_can': {'B': False, 'C': False}, 'cluster_alt': {'B': False, 'C': True}}
+  overfill P {'MW_can': 0.4889058913542467, 'MW_alt': 0.4369973190348524, 'cluster_can': 0.47467503361721114, 'cluster_alt': 0.42985208426714444} -> NOT HANDLED; edge {'MW_can|B': 0.8051931900702212, 'MW_can|C': 0.48738312859695154, 'MW_alt|B': 0.7080712312079162, 'MW_alt|C': 0.509342355763773, 'cluster_can|B': 1.415385396707326, 'cluster_can|C': 0.5844222181480994, 'cluster_alt|B': 1.8283895165651165, 'cluster_alt|C': 0.8338697613685571} -> NOT PRESERVED
+  energy {'MW_can': {'B_net': 0.06812495127744476, 'B_out': 1.2427721239573128, 'B_in': 1.1746471726798682, 'B_rate_last2': 0.009334229085053826, 'C_net': -0.5841291197752313, 'C_out': -0.33470405432087597, 'C_in': 0.24942506545435536, 'C_rate_last2': -0.013230661276807536, 'C_whole_history': 0.1856704424899509, 'B_relax_in_rate_last2': 0.08822291630054813}, 'MW_alt': {'B_net': 0.09204414801363987, 'B_out': 1.374911117735429, 'B_in': 1.2828669697217892, 'B_rate_last2': 0.008509329621879535, 'C_net': -0.5940977789709112, 'C_out': -0.3403556249062949, 'C_in': 0.2537421540646164, 'C_rate_last2': -0.015621749430070189, 'C_whole_history': 0.19641449329753047, 'B_relax_in_rate_last2': 0.0931006018340007}, 'cluster_can': {'B_net': -6.950398117544537e+52, 'B_out': 0.17895491869120078, 'B_in': 6.950398117544537e+52, 'B_rate_last2': 0.0, 'C_net': -1.7327679294448338e+26, 'C_out': -1.5816001854443638, 'C_in': 1.7327679294448338e+26, 'C_rate_last2': 0.0, 'C_whole_history': -1.7327679294448338e+26, 'B_relax_in_rate_last2': 0.0}, 'cluster_alt': {'B_net': -1.3941575782507393e+46, 'B_out': 0.15306060863471874, 'B_in': 1.3941575782507393e+46, 'B_rate_last2': 0.0, 'C_net': -1.322216962857091e+55, 'C_out': -1.721234114012397, 'C_in': 1.322216962857091e+55, 'C_rate_last2': 0.0, 'C_whole_history': -1.322216962857091e+55, 'B_relax_in_rate_last2': 0.0}} -> compatible False
+  LABEL INCONSISTENT (the derived target fails G550); Lyapunov NOT ESTABLISHED
+
+LABELS: {'a1': 'INCONSISTENT (the derived target fails G550); Lyapunov NOT ESTABLISHED', 'c': 'INCONSISTENT (the derived target fails G550); Lyapunov NOT ESTABLISHED', 'a0': 'INCONSISTENT (Casimir entropy: no finite temperature with the partner, T -> infinity; Landau pairs without it keep sigma = 0)', 'b': 'POSITED (with the sink the multiplier is undetermined)'}
