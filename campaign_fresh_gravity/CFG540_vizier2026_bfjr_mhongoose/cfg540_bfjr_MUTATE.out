@@ -1,0 +1,91 @@
+CFG540 Part A MUTATE: Tian+2026 BFJR, N = 1400; kappa = 1/2 FITTED; footings never pooled
+K3 logFPmass reproduces 5 Re sigma^2/G: max |diff| = 0.0002 dex -> PASS
+K2 Newtonian Hernquist 3D <v^2> = 3 sigma_los^2 vs GM/(6a): rel err 6.00e-10 -> PASS (the frozen text's 'sigma^2 = GM/(6a)' is the 3D mean square; LOS is GM/(18a))
+
+=== footing can: a0 = 9.360e-11 ===
+K1 deep-MOND 4/81 limit on 2 groups with y<1e-3: max |diff| = 0.0015 dex -> PASS
+
+-- run M0_primary (beta +0.0, edge True, newton False, a0 x 1.0)
+  GROUPS       N   63  mean +0.153  SE 0.021  sys 0.029  Z +4.31 (Z_stat +7.4)  wmean +0.280  med +0.152  rms 0.164  -> ABOVE LAW (strong)
+  ELLIPTICALS  N 1244  mean +0.100  SE 0.003  sys 0.041  Z +2.43 (Z_stat +37.2)  wmean +0.117  med +0.103  rms 0.095  -> ABOVE LAW
+  DWARFS       N   93  mean +0.055  SE 0.013  sys 0.029  Z +1.71 (Z_stat +4.2)  wmean +0.084  med +0.067  rms 0.127  -> CONSISTENT
+    ATLAS elliptical   N   26  mean -0.015 +- 0.014  med -0.024  rms 0.073  s 0.455
+    Fornax dwarf       N   31  mean +0.041 +- 0.025  med +0.057  rms 0.141  s 0.296
+    Galaxy group       N   63  mean +0.153 +- 0.021  med +0.152  rms 0.164  s 0.288
+    Local Group dwarf  N   28  mean +0.061 +- 0.028  med +0.065  rms 0.147  s 0.274
+    MaNGA elliptical   N 1218  mean +0.102 +- 0.003  med +0.105  rms 0.094  s 0.410
+    Virgo dwarf        N   34  mean +0.062 +- 0.016  med +0.082  rms 0.093  s 0.302
+  r_edge/Re min: GROUPS 0.7, ELLIPTICALS 17.8, DWARFS 1.3
+
+-- run M1_newton (beta +0.0, edge True, newton True, a0 x 1.0)
+  GROUPS       N   63  mean +0.810  SE 0.019  sys 0.050  Z +15.17 (Z_stat +43.2)  wmean +0.870  med +0.825  rms 0.149  -> NOT DIAGNOSTIC
+  ELLIPTICALS  N 1244  mean +0.152  SE 0.003  sys 0.050  Z +3.02 (Z_stat +46.9)  wmean +0.160  med +0.150  rms 0.114  -> NOT DIAGNOSTIC
+  DWARFS       N   93  mean +0.395  SE 0.024  sys 0.050  Z +7.15 (Z_stat +16.8)  wmean +0.326  med +0.334  rms 0.227  -> NOT DIAGNOSTIC
+    ATLAS elliptical   N   26  mean +0.006 +- 0.016  med -0.011  rms 0.083  s 0.500
+    Fornax dwarf       N   31  mean +0.317 +- 0.027  med +0.303  rms 0.148  s 0.500
+    Galaxy group       N   63  mean +0.810 +- 0.019  med +0.825  rms 0.149  s 0.500
+    Local Group dwarf  N   28  mean +0.603 +- 0.051  med +0.614  rms 0.271  s 0.500
+    MaNGA elliptical   N 1218  mean +0.155 +- 0.003  med +0.153  rms 0.113  s 0.500
+    Virgo dwarf        N   34  mean +0.296 +- 0.018  med +0.296  rms 0.107  s 0.500
+  r_edge/Re min: GROUPS 0.7, ELLIPTICALS 17.8, DWARFS 1.3
+
+-- run M2_a0x4 (beta +0.0, edge True, newton False, a0 x 4.0)
+  GROUPS       N   63  mean +0.113  SE 0.021  sys 0.030  Z +3.04 (Z_stat +5.3)  wmean +0.245  med +0.102  rms 0.168  -> ABOVE LAW (strong)
+  ELLIPTICALS  N 1244  mean +0.028  SE 0.002  sys 0.035  Z +0.79 (Z_stat +11.2)  wmean +0.044  med +0.032  rms 0.087  -> CONSISTENT
+  DWARFS       N   93  mean -0.075  SE 0.013  sys 0.028  Z -2.42 (Z_stat -5.6)  wmean -0.039  med -0.072  rms 0.130  -> BELOW LAW
+    ATLAS elliptical   N   26  mean -0.058 +- 0.013  med -0.066  rms 0.066  s 0.399
+    Fornax dwarf       N   31  mean -0.089 +- 0.026  med -0.079  rms 0.146  s 0.275
+    Galaxy group       N   63  mean +0.113 +- 0.021  med +0.102  rms 0.168  s 0.304
+    Local Group dwarf  N   28  mean -0.073 +- 0.028  med -0.078  rms 0.150  s 0.288
+    MaNGA elliptical   N 1218  mean +0.030 +- 0.002  med +0.034  rms 0.087  s 0.350
+    Virgo dwarf        N   34  mean -0.065 +- 0.016  med -0.048  rms 0.094  s 0.277
+  r_edge/Re min: GROUPS 0.3, ELLIPTICALS 8.9, DWARFS 0.6
+M1_newton: {'GROUPS': 'NOT DIAGNOSTIC', 'DWARFS': 'NOT DIAGNOSTIC'} -> MUTATE OK (not consistent)
+M2_a0x4: {'GROUPS': 'ABOVE LAW (strong)', 'DWARFS': 'BELOW LAW'} -> MUTATE OK (not consistent)
+M3 shuffle ELLIPTICALS: true rms 0.095; shuffles with larger rms 200/200 -> MUTATE OK
+M3 shuffle DWARFS: true rms 0.127; shuffles with larger rms 200/200 -> MUTATE OK
+MUTATE overall (can): PASS
+
+=== footing alt: a0 = 1.130e-10 ===
+K1 deep-MOND 4/81 limit on 4 groups with y<1e-3: max |diff| = 0.0015 dex -> PASS
+
+-- run M0_primary (beta +0.0, edge True, newton False, a0 x 1.0)
+  GROUPS       N   63  mean +0.145  SE 0.021  sys 0.029  Z +4.06 (Z_stat +7.0)  wmean +0.273  med +0.144  rms 0.164  -> ABOVE LAW (strong)
+  ELLIPTICALS  N 1244  mean +0.092  SE 0.003  sys 0.040  Z +2.29 (Z_stat +34.8)  wmean +0.109  med +0.095  rms 0.094  -> ABOVE LAW
+  DWARFS       N   93  mean +0.038  SE 0.013  sys 0.029  Z +1.18 (Z_stat +2.9)  wmean +0.068  med +0.048  rms 0.127  -> CONSISTENT
+    ATLAS elliptical   N   26  mean -0.019 +- 0.014  med -0.028  rms 0.072  s 0.448
+    Fornax dwarf       N   31  mean +0.024 +- 0.026  med +0.039  rms 0.142  s 0.293
+    Galaxy group       N   63  mean +0.145 +- 0.021  med +0.144  rms 0.164  s 0.290
+    Local Group dwarf  N   28  mean +0.042 +- 0.028  med +0.045  rms 0.147  s 0.274
+    MaNGA elliptical   N 1218  mean +0.095 +- 0.003  med +0.098  rms 0.093  s 0.401
+    Virgo dwarf        N   34  mean +0.046 +- 0.016  med +0.065  rms 0.093  s 0.298
+  r_edge/Re min: GROUPS 0.6, ELLIPTICALS 16.2, DWARFS 1.1
+
+-- run M1_newton (beta +0.0, edge True, newton True, a0 x 1.0)
+  GROUPS       N   63  mean +0.810  SE 0.019  sys 0.050  Z +15.17 (Z_stat +43.2)  wmean +0.870  med +0.825  rms 0.149  -> NOT DIAGNOSTIC
+  ELLIPTICALS  N 1244  mean +0.152  SE 0.003  sys 0.050  Z +3.02 (Z_stat +46.9)  wmean +0.160  med +0.150  rms 0.114  -> NOT DIAGNOSTIC
+  DWARFS       N   93  mean +0.395  SE 0.024  sys 0.050  Z +7.15 (Z_stat +16.8)  wmean +0.326  med +0.334  rms 0.227  -> NOT DIAGNOSTIC
+    ATLAS elliptical   N   26  mean +0.006 +- 0.016  med -0.011  rms 0.083  s 0.500
+    Fornax dwarf       N   31  mean +0.317 +- 0.027  med +0.303  rms 0.148  s 0.500
+    Galaxy group       N   63  mean +0.810 +- 0.019  med +0.825  rms 0.149  s 0.500
+    Local Group dwarf  N   28  mean +0.603 +- 0.051  med +0.614  rms 0.271  s 0.500
+    MaNGA elliptical   N 1218  mean +0.155 +- 0.003  med +0.153  rms 0.113  s 0.500
+    Virgo dwarf        N   34  mean +0.296 +- 0.018  med +0.296  rms 0.107  s 0.500
+  r_edge/Re min: GROUPS 0.6, ELLIPTICALS 16.2, DWARFS 1.1
+
+-- run M2_a0x4 (beta +0.0, edge True, newton False, a0 x 4.0)
+  GROUPS       N   63  mean +0.111  SE 0.021  sys 0.031  Z +2.98 (Z_stat +5.2)  wmean +0.244  med +0.098  rms 0.169  -> ABOVE LAW
+  ELLIPTICALS  N 1244  mean +0.015  SE 0.002  sys 0.034  Z +0.44 (Z_stat +6.2)  wmean +0.031  med +0.019  rms 0.086  -> CONSISTENT
+  DWARFS       N   93  mean -0.093  SE 0.014  sys 0.028  Z -3.00 (Z_stat -6.9)  wmean -0.057  med -0.092  rms 0.131  -> BELOW LAW (strong)
+    ATLAS elliptical   N   26  mean -0.067 +- 0.013  med -0.076  rms 0.066  s 0.390
+    Fornax dwarf       N   31  mean -0.107 +- 0.026  med -0.098  rms 0.146  s 0.272
+    Galaxy group       N   63  mean +0.111 +- 0.021  med +0.098  rms 0.169  s 0.306
+    Local Group dwarf  N   28  mean -0.090 +- 0.029  med -0.096  rms 0.152  s 0.293
+    MaNGA elliptical   N 1218  mean +0.017 +- 0.002  med +0.021  rms 0.086  s 0.343
+    Virgo dwarf        N   34  mean -0.083 +- 0.016  med -0.066  rms 0.095  s 0.275
+  r_edge/Re min: GROUPS 0.3, ELLIPTICALS 8.1, DWARFS 0.6
+M1_newton: {'GROUPS': 'NOT DIAGNOSTIC', 'DWARFS': 'NOT DIAGNOSTIC'} -> MUTATE OK (not consistent)
+M2_a0x4: {'GROUPS': 'ABOVE LAW', 'DWARFS': 'BELOW LAW (strong)'} -> MUTATE OK (not consistent)
+M3 shuffle ELLIPTICALS: true rms 0.094; shuffles with larger rms 200/200 -> MUTATE OK
+M3 shuffle DWARFS: true rms 0.127; shuffles with larger rms 200/200 -> MUTATE OK
+MUTATE overall (alt): PASS
