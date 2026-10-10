@@ -71,6 +71,8 @@
 
 - **Required halo profile (CFG593, CONTEXT ONLY: halo model + SHMR lens masses):** within a declared 3-parameter family no profile fits both cosmic shear and KiDS f30 on either footing; no record rule predicts an overlap. Post hoc, giving the KiDS lenses the halo model's own (ΛCDM-SHMR) catchment mass opens an overlap with PARTIAL settling: only 30–80% of the law's phantom settled, reaching about 0.5 r_ta, with the rest unsettled and drained. That echoes the finite-age fractions (CFG557: 0.8→0.5) and class A's rate-limited partial fill (CFG539). It is a clue, not a result.
 
+- **Measured cold supply (CFG595, framework-native):** the cold mass in the framework's own bound regions is 1.5–3.6× LARGER than the assumed (1−f_b)M_ta. It rises with host mass and z, is NOT converged, and the bound region percolates (69–84% in one component). The engine actually settles only about 21% of it. Re-running with the measured supply, the gravitating-field excess PERSISTS at about half size (k ≤ 1: 0.66 → 0.29 can, 0.63 → 0.32 alt), cut by the availability cap, not by less supply. The supply assumption is not the cause.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
