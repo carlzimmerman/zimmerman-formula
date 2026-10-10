@@ -1,0 +1,284 @@
+CFG554 self-consistent Jeans target of the velocity part
+MW_can: V_f 165.2 km/s, r_* 514.3 kpc, r99_analytic 0.9901 r_*, CFG541 dW 0.770 V_f^2
+MW_alt: V_f 173.3 km/s, r_* 468.1 kpc, r99_analytic 0.9901 r_*, CFG541 dW 0.791 V_f^2
+cluster_can: V_f 1168.4 km/s, r_* 3047.9 kpc, r99_analytic 0.9907 r_*, CFG541 dW 0.986 V_f^2
+cluster_alt: V_f 1225.1 km/s, r_* 2772.4 kpc, r99_analytic 0.9907 r_*, CFG541 dW 1.012 V_f^2
+
+Sympy (204s):
+  S1a_maximiser: [exp(A00*v1**2 + 2*A01*v1*v2 + 2*A02*v1*v3 + A11*v2**2 + 2*A12*v2*v3 + A22*v3**2 - mu - 1)]
+  S1a_is_gaussian: True
+  S1a_by_parts: True
+  S1b_quadratic_form: (r*v1**2*Derivative(l(r), r) + v2**2*l(r) + v3**2*l(r))/r
+  S1b_quadratic_form_ok: True
+  S1b_sigma_r2_for_lambda_prime_eq_minus_Lp: 1/(2*Lp)
+  S1b_isotropy_ODE_solution: Eq(l(r), C1*r)
+  S1b_isotropic_sigma2: -1/(2*C1)
+  S1b_isotropic_iff_isothermal: True
+  S1c_SIS_sigma_r2_sigma_t2: ['V_f**2/2', 'V_f**2/2']
+  S1c_SIS_jeans_residual: 0
+  S1c_pass: True
+  S1d_second_variation: -1/f
+  S1d_strictly_concave: True
+  S1e_by_parts_identity: True
+  S1e_note: int 4 pi r^3 J dr = [4 pi r^3 P_r] - int 4 pi r^2 (P_r + 2 P_t) dr + int 4 pi r^3 rho g dr = 0 -> 2K = int rho r g dV (virial); the total-energy constraint is implied, not independent
+  S1f_nu: 2*(-r*Derivative(l(r), r) + l(r))/(3*r)
+  S1f_lambda_solution: Eq(2*Integral(r*l(r), r) + 3*Integral(r**2/s2J(r), r)/2, C1)
+  S1f_solvable_for_any_sigmaJ2: True
+  S1f_scalar_constraint: multiplier lambda_i on d_i(tr Pi/3) + rho d_i Phi: by parts +(div lambda) tr Pi/3 -> f ~ exp((div lambda) v^2/3): isotropic, sigma^2 = -3/(2 div lambda), and scalar hydrostatics fixes rho sigma^2 = isotropic Jeans pressure = FIX-2's target. This is the Euler-fluid statement; the exact Vlasov moment is the tensor one (route a).
+  S1_pass: True
+  S2_extra_term_v_independent: True
+  S2_extra_term_at_equilibrium_over_T0_Theta: 1.0
+  S2_extra_term_at_equilibrium_is_constant: True
+  S2_M_symmetric: True
+  S2_M_dE_zero: True
+  S2_dSdt_sum_of_squares: True
+  S2_mass_conserved: True
+  S2_stationary_condition_pair01: T0*(log(f0/f1) - log(exp((-v0**2 + v1**2)/(2*s(f0 + f1 + f2))) + exp((v1**2 - v2**2)/(2*s(f0 + f1 + f2))) + 1) + log(exp((v0**2 - v1**2)/(2*s(f0 + f1 + f2))) + exp((v0**2 - v2**2)/(2*s(f0 + f1 + f2))) + 1))/Theta
+  S2_dKL_dsigma2_at_match: 0
+  S2_position_drift_unchanged_on_velocity_equilibrium: True
+  S2_pass: True
+  S3_dmean_t_dt: 0
+  S3_dvar_t_dt: 2*gamma*(-s + sigma_t2)
+  S3_dmean_r_dt: -gamma*m
+  S3_pair_partner_dE: 0
+  S3_pair_stationarity_residual_quadratic_g: 2*d*g2*(a1 - a2 + d)
+  S3_stationary_g_affine: {g2: 0}
+  S3_radial_kick_dj: Matrix([[0], [0], [0]])
+  S3_pair_dj: Matrix([[0], [0], [0]])
+  S3_pass: True
+  S4_vlasov_residual_coeffs: {'(3, 0)': 'b(r)**2*Derivative(a(r), r)', '(1, 2)': '(r*a(r)*Derivative(b(r), r) + 2*a(r)*b(r) - 2*b(r)**2)*a(r)/r', '(1, 0)': '2*(A(r)*g(r) + a(r)*Derivative(A(r), r))*a(r)*b(r)**2/A(r)'}
+  S4_note: v_r^3 coefficient forces a' = 0 (radial dispersion constant); the v_r v_t^2 coefficient then forces 1/b = 1/a + 2 gamma r^2, i.e. ln f = -E/a - gamma L^2 + const. The route-a maximiser for a general current density is therefore NOT an exact Vlasov steady state: rho and rho u are stationary at the instant (moment level), third moments are generated, and the relaxation has to keep acting.
+  L_max_rate_first_order_vs_dissipation: A**2/(4*C*alpha) - B*alpha
+  L_positive_if_alpha_below: [A/(2*sqrt(B)*sqrt(C))]
+  L_candidates: {'F (two-sided)': 'Vlasov rate int rho u.grad psi, first order in the bulk velocity; drift -int rho alpha tau |grad psi|^2; relaxation 0 -> fails for small alpha', 'F + KL to the route target (any weight)': 'the target depends on rho, so its Vlasov rate contains int (dKL/drho) div(rho u), first order in u; dissipation O(alpha) -> fails for small alpha', 'E_N - T S_B (isothermal)': 'the self-consistent target is not isothermal (S1b): the relaxation does not decrease it', 'E_N + Casimirs': 'drift indefinite (CFG544), relaxation two-way'}
+  L_full_system: NOT ESTABLISHED
+  MK_no_partner_w_dot_dE: -v0**2/2 + v1**2/2
+  MK_no_partner_breaks_M_dE: True
+
+C6 (solver, Gaussian in harmonic field): {'ok': True, 'max_dev_sr2': 0.06155648452562401, 'max_dev_st2': 0.013637348691850404, 'pass': False, 'jeans_resid_median_abs_r_le3': 0.06571370811686972, 'diag_fix2_iso_formula_max_dev_r_le3': 0.04156542723247103, 'diag_max_dev_sr2_r_le1p5': 0.006563135420852184, 'diag_dev_profile': [(0.0010459608996405856, 1.0028427127266397, 1.0018311174412324, 0.9976487724157983), (0.0016393434480684458, 1.0028427353958849, 1.0018311086196492, 0.9976487724114851), (0.002569356982319707, 1.0028427432021705, 1.0018311108678473, 0.9976487724009097), (0.0040269751346939196, 1.0028427499377992, 1.0018311226048782, 0.9976487723749633), (0.0063115125095627115, 1.0028427632519719, 1.0018311530510373, 0.9976487723118391), (0.009892087441804968, 1.0028427951211725, 1.0018312282602608, 0.9976487721599473), (0.015503953102850658, 1.0028428732085286, 1.001831413117722, 0.9976487718061545), (0.02429947806562583, 1.0028430650922089, 1.0018318672421114, 0.9976487710535866), (0.03808477943301209, 1.0028435371688682, 1.001832982797172, 0.9976487699080734), (0.05969059996037511, 1.0028447012511772, 1.0018357231780126, 0.997648771336876), (0.0935535869361274, 1.0028475876249348, 1.0018424552076675, 0.9976488004483369), (0.14662733553399765, 1.0028548399644652, 1.0018589945822929, 0.9976490264438741), (0.22981027483722352, 1.0028736334785915, 1.0018996375696996, 0.9976505137787456), (0.3601836057950791, 1.0029257088711065, 1.0019995645331157, 0.997659792316139), (0.5645188404889007, 1.0030893786397364, 1.0022455740515377, 0.9977165260206318), (0.8847751983699164, 1.0037085121543723, 1.0028532446438383, 0.9980606731595867), (1.3867157223177142, 1.0065631354208522, 1.004367831379407, 1.0001408201583988), (2.1734113909001773, 1.0221838281601978, 1.0082649230684486, 1.012667200347884), (3.4064062288120374, 1.1492916286227588, 1.0215001858059232, 1.086973779142123), (5.338889565165801, 91.57880256417049, 1.2684891295946132, 1.4941683426482124)]}
+Angular-momentum numeric test: {'route_b_momentum_pairs': {'J0': [-206.99733898004143, -388.8564256601411, 7583.1467819663685], 'J1': [-206.9973389800384, -388.85642566013934, 7583.146781966362], 'rel_change': 9.57385885609666e-16}, 'cfg544_fix2': {'J0': [-206.99733898004143, -388.8564256601411, 7583.1467819663685], 'J1': [76.61865966307721, -71.14676902001787, 143.5138876587639], 'rel_change': 0.9810268912714578}, 'pass': True}
+
+Runs (end state; shell 0.1-0.9 r_*):
+  MW_alt|C2_vlasov_eq           2.0 Gyr a=1.0 logXJ +0.004 logX544 +0.000 D +0.047 last2 dXJ/dD +0.001/+0.048 r99 1.381 beta +0.21 out -0.000 in +0.000 sink -0.000 (rate +0.0000/Gyr) integ 7.7e-04 vmax 3.30 gross_in 0.00 blow False fail None riseF 0.003576100281463607 G550 True G544 True (9s)
+       s(r) bins: 1.19 1.14 1.17 1.15 1.09 1.07 1.05 1.00 0.95 0.93 0.87 0.86 0.83 0.83 0.93 1.28
+  MW_alt|a_B                   10.0 Gyr a=1.0 logXJ +0.002 logX544 -0.012 D +0.005 last2 dXJ/dD -0.001/-0.002 r99 1.377 beta -0.15 out +0.478 in +0.232 sink +0.245 (rate +0.0019/Gyr) integ 6.5e-03 vmax 3.54 gross_in 0.72 blow False fail 0.0 riseF 4.1059323129210015e-05 G550 True G544 True (252s)
+       s(r) bins: 0.91 0.97 0.91 0.96 0.98 0.92 0.94 0.87 0.93 0.88 0.89 0.90 0.96 0.98 1.18 1.61
+       route-a target beta: shell median -0.21484917364404266, edge (0.8-1.2 r_*) median -0.9025915991006679
+  MW_alt|a_B_al0.5             10.0 Gyr a=0.5 logXJ +0.021 logX544 -0.001 D -0.005 last2 dXJ/dD +0.009/+0.053 r99 1.711 beta -0.03 out +0.209 in -0.003 sink +0.212 (rate +0.0134/Gyr) integ 7.1e-03 vmax 3.33 gross_in 0.38 blow False fail 0.0 riseF -0.00023514767402507678 G550 False G544 False (252s)
+       s(r) bins: 1.00 1.02 1.01 0.98 0.94 0.93 0.97 0.94 0.90 0.87 0.90 0.91 0.96 1.04 1.22 1.79
+       route-a target beta: shell median -0.21255306082160808, edge (0.8-1.2 r_*) median -0.10093240394889413
+  MW_alt|a_B_al2.0             10.0 Gyr a=2.0 logXJ -0.001 logX544 -0.007 D -0.006 last2 dXJ/dD -0.001/-0.004 r99 1.121 beta -0.24 out +0.716 in +0.459 sink +0.257 (rate +0.0007/Gyr) integ 6.4e-03 vmax 3.81 gross_in 1.15 blow False fail 0.0 riseF 1.0152538515902508e-05 G550 True G544 True (249s)
+       s(r) bins: 0.97 0.94 0.92 0.91 0.94 0.95 0.92 0.89 0.91 0.91 0.89 0.93 0.94 1.01 1.17 1.61
+       route-a target beta: shell median -0.17921687904627392, edge (0.8-1.2 r_*) median -0.7288829135608623
+  MW_alt|a_C                    5.0 Gyr a=1.0 logXJ +0.010 logX544 -0.001 D +0.021 last2 dXJ/dD -0.019/-0.011 r99 1.309 beta -0.19 out -0.294 in +0.246 sink -0.541 (rate -0.0087/Gyr) integ 8.8e-04 vmax 4.16 gross_in 0.61 blow False fail 0.0 riseF 0.0011535182491185273 G550 True G544 True (122s)
+       s(r) bins: 0.92 1.01 0.93 0.96 0.96 0.95 0.96 0.90 0.94 0.91 0.91 0.93 0.97 1.05 1.18 1.67
+       route-a target beta: shell median -0.203810667754592, edge (0.8-1.2 r_*) median -0.7890297404764821
+  MW_alt|a_C_al0.5              5.0 Gyr a=0.5 logXJ +0.030 logX544 +0.024 D +0.055 last2 dXJ/dD -0.049/-0.084 r99 1.507 beta -0.09 out -0.650 in -0.100 sink -0.550 (rate -0.0246/Gyr) integ 1.3e-03 vmax 4.34 gross_in 0.36 blow False fail 0.0 riseF 0.006795805289938882 G550 False G544 False (121s)
+       s(r) bins: 1.02 1.02 1.06 1.04 1.05 1.04 0.99 0.99 0.99 0.98 0.96 0.99 1.01 1.09 1.23 1.69
+       route-a target beta: shell median -0.2684559659671435, edge (0.8-1.2 r_*) median -0.3130551907480288
+  MW_alt|a_C_al2.0              5.0 Gyr a=2.0 logXJ +0.002 logX544 -0.004 D -0.004 last2 dXJ/dD -0.004/-0.010 r99 1.120 beta -0.26 out -0.089 in +0.441 sink -0.530 (rate -0.0008/Gyr) integ 8.0e-04 vmax 3.92 gross_in 0.87 blow False fail 0.0 riseF 0.00014284650335301768 G550 True G544 True (123s)
+       s(r) bins: 0.91 0.94 0.93 0.92 0.90 0.88 0.97 0.91 0.90 0.91 0.91 0.94 0.96 1.03 1.18 1.61
+       route-a target beta: shell median -0.18714263267174303, edge (0.8-1.2 r_*) median -0.7663761806434695
+  MW_alt|a_over_base            5.0 Gyr a=1.0 logXJ +0.006 logX544 -0.006 D +0.005 last2 dXJ/dD -0.002/-0.007 r99 1.326 beta -0.18 out -0.077 in -0.035 sink -0.042 (rate -0.0044/Gyr) integ 1.6e-03 vmax 3.88 gross_in 0.33 blow False fail 0.0 riseF 0.0003175129465397254 G550 True G544 True (124s)
+       s(r) bins: 0.96 1.01 0.95 0.96 0.97 0.94 0.93 0.89 0.89 0.91 0.91 0.93 0.95 1.02 1.16 1.64
+       route-a target beta: shell median -0.20702879608772962, edge (0.8-1.2 r_*) median -0.6125708241757235
+  MW_alt|a_over_inj             5.0 Gyr a=1.0 logXJ +0.002 logX544 +0.011 D +0.010 last2 dXJ/dD -0.004/-0.013 r99 1.458 beta -0.16 out -0.282 in -0.049 sink -0.232 (rate -0.0065/Gyr) integ 1.1e-03 vmax 3.65 gross_in 0.33 blow False fail 0.0 riseF 0.00031840619783768344 G550 True G544 True (129s)
+       s(r) bins: 1.00 0.97 1.04 0.93 0.92 0.95 0.94 0.95 0.95 0.92 0.97 0.96 0.98 1.06 1.25 1.73
+       route-a target beta: shell median -0.1961811631780721, edge (0.8-1.2 r_*) median -0.3033116755805081
+  MW_alt|b_B                   10.0 Gyr a=1.0 logXJ +0.009 logX544 -0.001 D +0.024 last2 dXJ/dD -0.006/+0.010 r99 1.262 beta +0.08 out +0.411 in +0.138 sink +0.273 (rate +0.0025/Gyr) integ 7.0e-03 vmax 3.93 gross_in 0.67 blow False fail None riseF 0.00011930223666066202 G550 True G544 True (112s)
+       s(r) bins: 1.03 1.04 1.08 1.02 1.05 1.06 0.97 1.01 1.00 0.95 0.94 0.95 0.95 0.91 0.99 1.28
+  MW_alt|b_B_al0.5             10.0 Gyr a=0.5 logXJ +0.052 logX544 +0.051 D +0.056 last2 dXJ/dD +0.041/+0.073 r99 1.315 beta +0.20 out +0.169 in -0.086 sink +0.255 (rate +0.0098/Gyr) integ 7.4e-03 vmax 3.39 gross_in 0.34 blow False fail None riseF 0.0008868806677347518 G550 False G544 False (112s)
+       s(r) bins: 1.15 1.14 1.13 1.10 1.17 1.10 1.14 1.07 1.12 1.07 1.04 1.06 1.04 1.05 1.14 1.54
+  MW_alt|b_B_al2.0             10.0 Gyr a=2.0 logXJ -0.002 logX544 -0.006 D +0.005 last2 dXJ/dD -0.001/+0.002 r99 1.092 beta +0.04 out +0.662 in +0.382 sink +0.280 (rate +0.0005/Gyr) integ 7.0e-03 vmax 3.54 gross_in 1.09 blow False fail None riseF 8.296161994688176e-06 G550 True G544 True (113s)
+       s(r) bins: 0.98 1.01 0.98 1.02 0.99 0.99 1.04 1.00 0.96 1.00 0.97 0.98 0.94 0.93 0.97 1.11
+  MW_alt|b_C                    5.0 Gyr a=1.0 logXJ +0.009 logX544 -0.001 D +0.027 last2 dXJ/dD -0.016/-0.011 r99 1.280 beta +0.05 out -0.288 in +0.229 sink -0.517 (rate -0.0045/Gyr) integ 9.0e-04 vmax 3.70 gross_in 0.61 blow False fail None riseF 0.0009753348623692264 G550 True G544 True (57s)
+       s(r) bins: 1.08 1.05 1.03 1.01 1.03 1.05 1.05 1.05 0.99 0.96 0.95 0.93 0.91 0.92 1.02 1.28
+  MW_alt|b_C_al0.5              5.0 Gyr a=0.5 logXJ +0.028 logX544 +0.022 D +0.076 last2 dXJ/dD -0.051/-0.065 r99 1.514 beta +0.10 out -0.651 in -0.122 sink -0.529 (rate -0.0175/Gyr) integ 1.3e-03 vmax 3.86 gross_in 0.36 blow False fail None riseF 0.00619349047023242 G550 False G544 False (57s)
+       s(r) bins: 1.07 1.12 1.14 1.11 1.13 1.10 1.07 1.05 1.01 0.98 0.94 0.94 0.95 0.96 1.08 1.48
+  MW_alt|b_C_al2.0              5.0 Gyr a=2.0 logXJ -0.001 logX544 -0.005 D +0.004 last2 dXJ/dD -0.002/-0.002 r99 1.093 beta +0.02 out -0.095 in +0.411 sink -0.506 (rate +0.0001/Gyr) integ 8.2e-04 vmax 3.93 gross_in 0.86 blow False fail None riseF 0.00012484713408478118 G550 True G544 True (56s)
+       s(r) bins: 0.96 1.04 1.03 0.96 0.96 0.97 1.04 1.00 0.99 0.96 1.00 0.97 0.95 0.96 0.97 1.08
+  MW_alt|b_over_base            5.0 Gyr a=1.0 logXJ +0.004 logX544 -0.006 D +0.012 last2 dXJ/dD -0.002/-0.003 r99 1.309 beta +0.05 out -0.060 in -0.043 sink -0.017 (rate -0.0009/Gyr) integ 1.6e-03 vmax 3.82 gross_in 0.32 blow False fail None riseF 0.0002843702112266787 G550 True G544 True (57s)
+       s(r) bins: 1.04 1.03 1.04 1.03 1.00 1.03 1.04 0.97 0.96 0.95 0.94 0.92 0.94 0.92 1.00 1.28
+  MW_alt|b_over_inj             5.0 Gyr a=1.0 logXJ +0.006 logX544 +0.016 D +0.018 last2 dXJ/dD -0.002/-0.003 r99 1.419 beta +0.06 out -0.266 in -0.062 sink -0.204 (rate -0.0020/Gyr) integ 1.2e-03 vmax 3.79 gross_in 0.33 blow False fail None riseF 0.0001841388673144098 G550 True G544 True (62s)
+       s(r) bins: 1.07 0.98 1.05 1.02 1.03 1.04 1.04 1.06 1.01 0.98 1.03 0.96 0.95 1.03 1.10 1.41
+  MW_alt|c_B                   10.0 Gyr a=1.0 logXJ -0.010 logX544 -0.002 D +0.002 last2 dXJ/dD -0.006/-0.003 r99 1.513 beta -0.17 out -5.177 in -5.464 sink +0.287 (rate -0.0018/Gyr) integ 1.2e-01 vmax 3.40 gross_in 0.01 blow False fail None riseF 0.00042780827795633737 G550 True G544 True (122s)
+       s(r) bins: 0.89 0.88 0.91 0.84 0.87 0.85 0.87 0.89 0.87 0.87 0.89 0.94 1.00 1.10 1.27 1.88
+  MW_alt|c_C                    5.0 Gyr a=1.0 logXJ -0.004 logX544 +0.006 D +0.009 last2 dXJ/dD -0.023/-0.042 r99 1.422 beta -0.20 out -2.176 in -1.696 sink -0.480 (rate -0.0099/Gyr) integ 4.6e-03 vmax 3.82 gross_in 0.20 blow False fail None riseF 0.005326516750317463 G550 True G544 True (62s)
+       s(r) bins: 0.89 0.94 0.86 0.85 0.86 0.84 0.91 0.85 0.91 0.91 0.92 0.99 1.02 1.12 1.34 1.92
+  MW_alt|c_over_base            5.0 Gyr a=1.0 logXJ -0.009 logX544 -0.001 D +0.000 last2 dXJ/dD -0.009/-0.022 r99 1.478 beta -0.20 out -2.000 in -2.020 sink +0.021 (rate -0.0060/Gyr) integ 9.5e-03 vmax 3.38 gross_in 0.01 blow False fail None riseF 0.0029143824242842714 G550 True G544 True (62s)
+       s(r) bins: 0.86 0.84 0.87 0.89 0.88 0.86 0.86 0.84 0.90 0.88 0.92 0.97 0.98 1.09 1.30 1.95
+  MW_alt|c_over_inj             5.0 Gyr a=1.0 logXJ -0.015 logX544 +0.011 D +0.027 last2 dXJ/dD -0.009/-0.009 r99 1.604 beta -0.18 out -2.251 in -2.090 sink -0.161 (rate -0.0069/Gyr) integ 6.4e-03 vmax 3.38 gross_in 0.01 blow False fail None riseF 0.0017332048823649078 G550 True G544 True (67s)
+       s(r) bins: 0.85 0.87 0.86 0.85 0.86 0.89 0.89 0.86 0.90 0.92 0.95 0.96 1.07 1.10 1.36 2.01
+  MW_can|C2_vlasov_eq           2.0 Gyr a=1.0 logXJ -0.005 logX544 -0.008 D +0.023 last2 dXJ/dD -0.008/+0.025 r99 1.278 beta +0.19 out -0.000 in +0.000 sink -0.000 (rate +0.0000/Gyr) integ 6.5e-04 vmax 3.38 gross_in 0.00 blow False fail None riseF 0.0026688614135296665 G550 True G544 True (8s)
+       s(r) bins: 1.12 1.15 1.07 1.11 1.04 1.04 1.00 0.97 0.93 0.90 0.90 0.84 0.86 0.89 0.90 1.28
+  MW_can|a_B                   10.0 Gyr a=1.0 logXJ +0.004 logX544 -0.008 D +0.005 last2 dXJ/dD +0.001/+0.006 r99 1.368 beta -0.16 out +0.476 in +0.256 sink +0.220 (rate +0.0011/Gyr) integ 4.9e-03 vmax 3.47 gross_in 0.65 blow False fail 0.0 riseF 1.7170116685241225e-05 G550 True G544 True (220s)
+       s(r) bins: 0.92 0.96 0.97 0.97 1.00 0.96 0.90 0.93 0.89 0.88 0.88 0.89 0.94 1.01 1.21 1.66
+       route-a target beta: shell median -0.18746264444655725, edge (0.8-1.2 r_*) median -0.6823552680755263
+  MW_can|a_B_al0.5             10.0 Gyr a=0.5 logXJ +0.027 logX544 +0.006 D -0.020 last2 dXJ/dD +0.021/+0.070 r99 1.635 beta -0.02 out +0.222 in +0.037 sink +0.185 (rate +0.0115/Gyr) integ 5.7e-03 vmax 3.71 gross_in 0.35 blow False fail 0.0 riseF -2.1348247329844095e-05 G550 False G544 False (219s)
+       s(r) bins: 0.99 1.03 1.00 0.97 1.01 0.93 0.92 0.92 0.87 0.90 0.93 0.92 0.99 1.08 1.27 1.81
+       route-a target beta: shell median -0.23620049401179244, edge (0.8-1.2 r_*) median -0.4387143235651083
+  MW_can|a_B_al2.0             10.0 Gyr a=2.0 logXJ +0.001 logX544 -0.006 D -0.004 last2 dXJ/dD -0.000/-0.004 r99 1.141 beta -0.27 out +0.695 in +0.463 sink +0.232 (rate -0.0005/Gyr) integ 4.8e-03 vmax 3.57 gross_in 1.04 blow False fail 0.0 riseF 1.1989562046920313e-05 G550 True G544 True (216s)
+       s(r) bins: 0.92 0.96 0.94 0.93 0.99 0.90 0.91 0.91 0.93 0.88 0.88 0.93 0.94 1.02 1.17 1.63
+       route-a target beta: shell median -0.167979448570176, edge (0.8-1.2 r_*) median -0.61412382919417
+  MW_can|a_C                    5.0 Gyr a=1.0 logXJ +0.017 logX544 +0.009 D +0.023 last2 dXJ/dD -0.013/-0.014 r99 1.249 beta -0.20 out -0.277 in +0.260 sink -0.537 (rate -0.0081/Gyr) integ 7.2e-04 vmax 3.77 gross_in 0.58 blow False fail 0.0 riseF 0.0012222199299227756 G550 True G544 True (108s)
+       s(r) bins: 1.01 1.03 0.94 1.03 0.96 1.00 0.93 0.94 0.90 0.95 0.95 0.95 1.00 1.05 1.21 1.76
+       route-a target beta: shell median -0.2137154636626093, edge (0.8-1.2 r_*) median -0.9237327898331282
+  MW_can|a_C_al0.5              5.0 Gyr a=0.5 logXJ +0.050 logX544 +0.052 D +0.094 last2 dXJ/dD -0.027/-0.044 r99 1.386 beta -0.11 out -0.609 in -0.076 sink -0.533 (rate -0.0223/Gyr) integ 1.1e-03 vmax 3.78 gross_in 0.34 blow False fail 0.0 riseF 0.007393723816148211 G550 True G544 True (107s)
+       s(r) bins: 1.18 1.17 1.09 1.09 1.09 1.10 1.07 1.03 1.05 1.06 1.04 1.04 1.09 1.15 1.39 1.80
+       route-a target beta: shell median -0.28289168487689154, edge (0.8-1.2 r_*) median 0.02107758062805376
+  MW_can|a_C_al2.0              5.0 Gyr a=2.0 logXJ +0.003 logX544 -0.003 D +0.002 last2 dXJ/dD -0.006/-0.007 r99 1.114 beta -0.26 out -0.088 in +0.443 sink -0.531 (rate -0.0013/Gyr) integ 6.4e-04 vmax 3.89 gross_in 0.81 blow False fail 0.0 riseF 0.00016497379138436606 G550 True G544 True (107s)
+       s(r) bins: 0.96 0.92 0.93 0.97 0.91 0.95 0.93 0.90 0.91 0.90 0.90 0.93 0.96 1.03 1.18 1.60
+       route-a target beta: shell median -0.18063762488503976, edge (0.8-1.2 r_*) median -0.9522740378220147
+  MW_can|a_over_base            5.0 Gyr a=1.0 logXJ +0.008 logX544 -0.002 D +0.006 last2 dXJ/dD -0.003/-0.004 r99 1.303 beta -0.18 out -0.067 in -0.026 sink -0.041 (rate -0.0037/Gyr) integ 1.4e-03 vmax 3.82 gross_in 0.29 blow False fail 0.0 riseF 0.00035289967111750776 G550 True G544 True (109s)
+       s(r) bins: 0.97 1.01 0.99 0.97 0.95 0.91 0.90 0.91 0.90 0.91 0.92 0.95 0.96 1.03 1.18 1.70
+       route-a target beta: shell median -0.23432448879716528, edge (0.8-1.2 r_*) median -0.6631358853217941
+  MW_can|a_over_inj             5.0 Gyr a=1.0 logXJ +0.002 logX544 +0.012 D +0.008 last2 dXJ/dD -0.012/-0.015 r99 1.417 beta -0.15 out -0.280 in -0.048 sink -0.232 (rate -0.0033/Gyr) integ 9.8e-04 vmax 3.56 gross_in 0.29 blow False fail 0.0 riseF 0.0003644945117021193 G550 True G544 True (113s)
+       s(r) bins: 1.00 0.98 0.95 0.91 0.99 0.94 0.95 0.95 0.93 0.93 0.99 0.94 1.00 1.09 1.23 1.77
+       route-a target beta: shell median -0.19033534053952117, edge (0.8-1.2 r_*) median -0.38296866399065377
+  MW_can|b_B                   10.0 Gyr a=1.0 logXJ +0.013 logX544 +0.003 D +0.027 last2 dXJ/dD +0.002/+0.011 r99 1.231 beta +0.07 out +0.428 in +0.179 sink +0.249 (rate +0.0003/Gyr) integ 5.5e-03 vmax 3.53 gross_in 0.61 blow False fail None riseF 0.0001454064513112128 G550 True G544 True (98s)
+       s(r) bins: 0.91 1.06 1.10 1.08 1.15 1.06 1.00 1.01 1.04 0.97 0.97 0.91 0.93 0.95 0.98 1.26
+  MW_can|b_B_al0.5             10.0 Gyr a=0.5 logXJ +0.047 logX544 +0.047 D +0.038 last2 dXJ/dD +0.050/+0.087 r99 1.268 beta +0.22 out +0.211 in -0.015 sink +0.226 (rate +0.0070/Gyr) integ 5.9e-03 vmax 3.59 gross_in 0.32 blow False fail None riseF 0.0006104840063319278 G550 False G544 False (97s)
+       s(r) bins: 1.06 1.11 1.14 1.09 1.13 1.04 1.12 1.04 1.07 1.06 1.04 1.03 1.03 1.07 1.13 1.42
+  MW_can|b_B_al2.0             10.0 Gyr a=2.0 logXJ -0.001 logX544 -0.005 D +0.005 last2 dXJ/dD -0.001/+0.000 r99 1.095 beta +0.03 out +0.652 in +0.395 sink +0.258 (rate -0.0002/Gyr) integ 5.6e-03 vmax 3.69 gross_in 1.00 blow False fail None riseF 9.496123661056798e-06 G550 True G544 True (98s)
+       s(r) bins: 1.05 1.00 1.05 0.94 1.03 0.98 1.02 1.04 0.97 0.98 0.93 0.97 0.94 0.96 0.97 1.11
+  MW_can|b_C                    5.0 Gyr a=1.0 logXJ +0.016 logX544 +0.006 D +0.027 last2 dXJ/dD -0.011/-0.016 r99 1.236 beta +0.06 out -0.269 in +0.244 sink -0.513 (rate -0.0040/Gyr) integ 8.0e-04 vmax 3.80 gross_in 0.57 blow False fail None riseF 0.0010830888956901335 G550 True G544 True (49s)
+       s(r) bins: 1.06 1.11 1.07 1.08 1.06 1.06 1.04 1.06 0.98 0.99 1.01 0.95 0.90 0.94 0.97 1.30
+  MW_can|b_C_al0.5              5.0 Gyr a=0.5 logXJ +0.048 logX544 +0.052 D +0.100 last2 dXJ/dD -0.023/-0.034 r99 1.405 beta +0.09 out -0.602 in -0.087 sink -0.514 (rate -0.0161/Gyr) integ 1.1e-03 vmax 4.26 gross_in 0.34 blow False fail None riseF 0.006884402406600162 G550 False G544 False (49s)
+       s(r) bins: 1.29 1.21 1.27 1.22 1.21 1.15 1.15 1.12 1.08 1.09 1.04 0.96 0.99 1.02 1.15 1.53
+  MW_can|b_C_al2.0              5.0 Gyr a=2.0 logXJ -0.001 logX544 -0.007 D +0.004 last2 dXJ/dD -0.005/-0.003 r99 1.093 beta +0.03 out -0.091 in +0.414 sink -0.505 (rate +0.0010/Gyr) integ 7.2e-04 vmax 3.87 gross_in 0.80 blow False fail None riseF 0.00015049790495069823 G550 True G544 True (49s)
+       s(r) bins: 0.95 0.97 1.01 1.04 0.98 1.01 0.99 1.04 0.96 0.99 0.97 0.95 0.96 0.97 0.94 1.08
+  MW_can|b_over_base            5.0 Gyr a=1.0 logXJ +0.005 logX544 -0.005 D +0.013 last2 dXJ/dD -0.002/+0.000 r99 1.289 beta +0.05 out -0.050 in -0.037 sink -0.013 (rate +0.0013/Gyr) integ 1.5e-03 vmax 3.74 gross_in 0.28 blow False fail None riseF 0.0002873531065715195 G550 True G544 True (49s)
+       s(r) bins: 1.03 1.06 1.03 1.03 1.05 1.00 0.99 1.00 0.97 0.95 0.94 0.93 0.93 0.94 0.98 1.29
+  MW_can|b_over_inj             5.0 Gyr a=1.0 logXJ +0.004 logX544 +0.016 D +0.017 last2 dXJ/dD -0.009/-0.004 r99 1.398 beta +0.07 out -0.262 in -0.059 sink -0.204 (rate +0.0008/Gyr) integ 1.0e-03 vmax 3.59 gross_in 0.28 blow False fail None riseF 0.00018579431880290855 G550 True G544 True (53s)
+       s(r) bins: 1.01 1.01 1.08 0.99 1.00 1.04 1.03 1.02 1.01 1.04 1.02 1.00 0.96 0.99 1.10 1.42
+  MW_can|c_B                   10.0 Gyr a=1.0 logXJ -0.006 logX544 +0.003 D +0.010 last2 dXJ/dD -0.006/+0.006 r99 1.464 beta -0.17 out -4.423 in -4.690 sink +0.267 (rate -0.0045/Gyr) integ 9.2e-02 vmax 3.43 gross_in 0.02 blow False fail None riseF 0.0005935622695443537 G550 True G544 True (107s)
+       s(r) bins: 0.89 0.87 0.86 0.88 0.91 0.89 0.84 0.86 0.88 0.87 0.91 0.95 1.02 1.12 1.33 1.94
+  MW_can|c_C                    5.0 Gyr a=1.0 logXJ +0.003 logX544 +0.015 D +0.025 last2 dXJ/dD -0.022/-0.034 r99 1.377 beta -0.17 out -1.911 in -1.435 sink -0.476 (rate -0.0101/Gyr) integ 3.9e-03 vmax 3.32 gross_in 0.19 blow False fail None riseF 0.006087653431720917 G550 True G544 True (53s)
+       s(r) bins: 0.91 0.88 0.91 0.88 0.85 0.86 0.90 0.89 0.87 0.93 0.95 0.99 1.04 1.18 1.37 2.02
+  MW_can|c_over_base            5.0 Gyr a=1.0 logXJ -0.005 logX544 +0.004 D +0.023 last2 dXJ/dD -0.008/-0.003 r99 1.429 beta -0.18 out -1.726 in -1.752 sink +0.026 (rate -0.0036/Gyr) integ 8.4e-03 vmax 3.28 gross_in 0.01 blow False fail None riseF 0.0034375920425297516 G550 True G544 True (53s)
+       s(r) bins: 0.85 0.87 0.89 0.86 0.81 0.88 0.87 0.85 0.87 0.91 0.96 0.97 0.99 1.12 1.31 2.00
+  MW_can|c_over_inj             5.0 Gyr a=1.0 logXJ -0.014 logX544 +0.013 D +0.031 last2 dXJ/dD -0.017/-0.009 r99 1.547 beta -0.17 out -2.005 in -1.844 sink -0.160 (rate -0.0045/Gyr) integ 5.8e-03 vmax 3.42 gross_in 0.01 blow False fail None riseF 0.0024051746066717167 G550 True G544 True (58s)
+       s(r) bins: 0.89 0.87 0.82 0.86 0.87 0.88 0.92 0.90 0.88 0.91 0.94 0.97 1.04 1.15 1.38 1.99
+  cluster_alt|C2_vlasov_eq      2.0 Gyr a=1.0 logXJ +0.029 logX544 +0.021 D +0.083 last2 dXJ/dD +0.027/+0.083 r99 1.699 beta +0.28 out -0.000 in +0.000 sink -0.000 (rate +0.0000/Gyr) integ 3.8e-04 vmax 9.42 gross_in 0.00 blow False fail None riseF 0.007259784973275344 G550 False G544 False (22s)
+       s(r) bins: 1.18 1.26 1.22 1.21 1.23 1.17 1.12 1.07 1.01 0.96 0.90 0.87 0.82 0.82 0.93 1.26
+  cluster_alt|a_B              10.0 Gyr a=1.0 logXJ +0.119 logX544 +0.044 D -0.095 last2 dXJ/dD -0.000/+0.014 r99 6.765 beta +0.12 out -1.405 in -0.895 sink -0.511 (rate -0.0446/Gyr) integ 3.3e-03 vmax 8.20 gross_in 1.60 blow False fail 0.0 riseF 0.0011185927188818675 G550 False G544 True (598s)
+       s(r) bins: 1.01 1.03 0.95 0.96 0.98 0.98 0.94 0.94 0.95 0.93 0.98 0.94 1.08 1.29 1.55 2.27
+       route-a target beta: shell median -0.13961051562109072, edge (0.8-1.2 r_*) median 0.553676902335511
+  cluster_alt|a_B_al0.5        10.0 Gyr a=0.5 logXJ +0.153 logX544 +0.001 D -0.296 last2 dXJ/dD -0.003/+0.009 r99 8.764 beta +0.34 out -0.655 in +0.032 sink -0.686 (rate -0.0611/Gyr) integ 1.9e-03 vmax 6.15 gross_in 1.30 blow False fail 0.0 riseF 0.0056338556921640345 G550 False G544 False (602s)
+       s(r) bins: 0.97 0.90 0.89 0.87 0.85 0.78 0.90 0.77 0.79 0.81 0.79 0.83 0.98 1.04 1.29 2.15
+       route-a target beta: shell median 0.018156574545490578, edge (0.8-1.2 r_*) median 0.5758615739088699
+  cluster_alt|a_B_al2.0        10.0 Gyr a=2.0 logXJ +0.082 logX544 +0.059 D -0.014 last2 dXJ/dD -0.005/-0.002 r99 1.662 beta -0.18 out -1.374 in -1.418 sink +0.044 (rate +0.0101/Gyr) integ 4.6e-03 vmax 7.96 gross_in 2.09 blow False fail 0.0 riseF 3.527311247211887e-05 G550 True G544 True (578s)
+       s(r) bins: 0.96 1.04 0.97 1.09 1.04 1.01 0.96 0.99 1.01 1.01 1.01 1.09 1.14 1.27 1.61 2.36
+       route-a target beta: shell median -0.423840038470634, edge (0.8-1.2 r_*) median 0.05528979000541612
+  cluster_alt|a_C               5.0 Gyr a=1.0 logXJ +0.104 logX544 +0.062 D -0.068 last2 dXJ/dD +0.001/-0.033 r99 2.037 beta +0.06 out -1.678 in -0.576 sink -1.103 (rate -0.0731/Gyr) integ 2.9e-04 vmax 10.62 gross_in 0.96 blow False fail 0.0 riseF 0.002918903187891923 G550 False G544 True (287s)
+       s(r) bins: 1.05 1.06 0.94 1.07 1.00 1.01 1.01 0.96 1.00 0.98 1.03 1.05 1.12 1.27 1.57 2.43
+       route-a target beta: shell median -0.36209954444348114, edge (0.8-1.2 r_*) median 0.1548163815934801
+  cluster_alt|a_C_al0.5         5.0 Gyr a=0.5 logXJ +0.106 logX544 +0.043 D -0.146 last2 dXJ/dD -0.016/-0.113 r99 2.715 beta +0.21 out -1.804 in -0.594 sink -1.210 (rate -0.1104/Gyr) integ 7.2e-04 vmax 9.31 gross_in 0.71 blow False fail 0.0 riseF 0.010314923012605857 G550 False G544 False (293s)
+       s(r) bins: 1.07 1.01 0.99 1.00 0.98 0.96 0.95 0.94 0.92 0.90 0.94 1.00 1.03 1.14 1.41 2.09
+       route-a target beta: shell median -0.15082486176098397, edge (0.8-1.2 r_*) median 0.4693621240685183
+  cluster_alt|a_C_al2.0         5.0 Gyr a=2.0 logXJ +0.088 logX544 +0.070 D -0.013 last2 dXJ/dD +0.009/-0.004 r99 1.435 beta -0.16 out -1.380 in -0.453 sink -0.927 (rate -0.0305/Gyr) integ 2.5e-04 vmax 10.08 gross_in 1.35 blow False fail 0.0 riseF 0.0005801376722157229 G550 True G544 True (282s)
+       s(r) bins: 1.04 1.02 1.01 1.07 0.99 1.03 0.94 1.03 1.00 1.05 1.07 1.09 1.18 1.32 1.64 2.50
+       route-a target beta: shell median -0.2915748526547044, edge (0.8-1.2 r_*) median 0.34047523795230117
+  cluster_alt|a_over_base       5.0 Gyr a=1.0 logXJ +0.108 logX544 +0.063 D -0.065 last2 dXJ/dD +0.006/-0.015 r99 2.137 beta +0.06 out -1.311 in -0.813 sink -0.498 (rate -0.0710/Gyr) integ 7.4e-04 vmax 9.83 gross_in 0.69 blow False fail 0.0 riseF 0.002892425176900469 G550 False G544 True (289s)
+       s(r) bins: 0.96 1.05 1.06 1.01 1.02 1.02 0.99 0.97 0.99 1.03 1.03 1.03 1.12 1.28 1.57 2.37
+       route-a target beta: shell median -0.2872176715835171, edge (0.8-1.2 r_*) median 0.3923426701004745
+  cluster_alt|a_over_inj        5.0 Gyr a=1.0 logXJ +0.104 logX544 +0.071 D -0.069 last2 dXJ/dD -0.000/-0.030 r99 2.309 beta +0.06 out -1.636 in -0.925 sink -0.711 (rate -0.0844/Gyr) integ 4.8e-04 vmax 9.42 gross_in 0.71 blow False fail 0.0 riseF 0.003508944846069051 G550 False G544 True (300s)
+       s(r) bins: 0.99 1.08 1.04 0.99 0.98 1.01 0.97 0.95 1.01 0.99 1.04 1.11 1.13 1.34 1.67 2.53
+       route-a target beta: shell median -0.41926616144131335, edge (0.8-1.2 r_*) median 0.013839622744917901
+  cluster_alt|b_B              10.0 Gyr a=1.0 logXJ +0.022 logX544 +0.004 D -0.017 last2 dXJ/dD -0.010/-0.001 r99 1.550 beta +0.24 out -2.476 in -2.781 sink +0.305 (rate +0.0020/Gyr) integ 3.1e-03 vmax 7.55 gross_in 0.85 blow False fail None riseF 0.00025312600650556356 G550 True G544 True (266s)
+       s(r) bins: 1.15 1.03 1.12 1.12 1.05 1.07 1.02 0.98 0.99 1.01 0.90 0.89 0.89 0.96 1.04 1.33
+  cluster_alt|b_B_al0.5        10.0 Gyr a=0.5 logXJ +0.068 logX544 +0.035 D -0.002 last2 dXJ/dD +0.002/+0.042 r99 2.322 beta +0.32 out -1.675 in -1.868 sink +0.193 (rate +0.0016/Gyr) integ 1.4e-03 vmax 6.65 gross_in 0.65 blow False fail None riseF 0.001120714899061837 G550 True G544 True (264s)
+       s(r) bins: 1.22 1.15 1.21 1.24 1.11 1.10 1.06 1.06 1.04 0.97 0.99 0.94 0.94 1.00 1.16 1.60
+  cluster_alt|b_B_al2.0        10.0 Gyr a=2.0 logXJ +0.010 logX544 +0.007 D -0.000 last2 dXJ/dD -0.001/+0.002 r99 1.117 beta +0.10 out -2.413 in -2.776 sink +0.364 (rate +0.0026/Gyr) integ 4.2e-03 vmax 8.34 gross_in 1.40 blow False fail None riseF 5.49919823523902e-05 G550 True G544 True (265s)
+       s(r) bins: 1.09 1.02 1.10 1.09 1.07 1.07 1.02 1.00 1.01 1.00 0.97 0.97 0.97 0.96 0.97 1.16
+  cluster_alt|b_C               5.0 Gyr a=1.0 logXJ +0.025 logX544 +0.007 D -0.021 last2 dXJ/dD -0.012/-0.028 r99 1.490 beta +0.23 out -1.977 in -1.269 sink -0.708 (rate -0.0083/Gyr) integ 6.6e-04 vmax 7.09 gross_in 0.69 blow False fail None riseF 0.0022253703189528723 G550 True G544 True (133s)
+       s(r) bins: 1.10 1.03 1.14 1.15 1.10 1.10 0.99 1.00 0.97 0.98 0.94 0.92 0.92 0.94 1.03 1.35
+  cluster_alt|b_C_al0.5         5.0 Gyr a=0.5 logXJ +0.037 logX544 -0.004 D -0.055 last2 dXJ/dD -0.053/-0.133 r99 2.300 beta +0.35 out -2.218 in -1.374 sink -0.844 (rate -0.0422/Gyr) integ 4.0e-04 vmax 6.65 gross_in 0.47 blow False fail None riseF 0.008209784647094348 G550 False G544 False (136s)
+       s(r) bins: 1.13 1.17 1.07 1.06 1.06 1.03 0.94 0.98 0.94 0.90 0.88 0.85 0.84 0.89 1.00 1.42
+  cluster_alt|b_C_al2.0         5.0 Gyr a=2.0 logXJ +0.011 logX544 +0.007 D -0.002 last2 dXJ/dD +0.004/+0.002 r99 1.119 beta +0.11 out -1.732 in -1.077 sink -0.655 (rate -0.0056/Gyr) integ 3.2e-04 vmax 6.90 gross_in 1.03 blow False fail None riseF 0.00037240216710804493 G550 True G544 True (135s)
+       s(r) bins: 1.03 1.14 1.05 1.10 1.01 1.01 1.05 1.01 1.02 0.99 1.01 0.97 0.97 0.94 0.99 1.13
+  cluster_alt|b_over_base       5.0 Gyr a=1.0 logXJ +0.023 logX544 +0.006 D -0.019 last2 dXJ/dD -0.000/-0.010 r99 1.437 beta +0.23 out -1.566 in -1.499 sink -0.067 (rate -0.0055/Gyr) integ 4.2e-04 vmax 9.42 gross_in 0.45 blow False fail None riseF 0.0005491424092980076 G550 True G544 True (133s)
+       s(r) bins: 1.21 1.07 1.14 1.12 1.09 1.04 1.00 1.00 0.96 0.94 0.94 0.93 0.92 0.94 1.03 1.39
+  cluster_alt|b_over_inj        5.0 Gyr a=1.0 logXJ +0.019 logX544 +0.017 D -0.015 last2 dXJ/dD -0.009/-0.021 r99 1.552 beta +0.21 out -1.872 in -1.656 sink -0.216 (rate -0.0039/Gyr) integ 5.5e-04 vmax 9.42 gross_in 0.43 blow False fail None riseF 0.0006627085446078511 G550 True G544 True (144s)
+       s(r) bins: 1.09 1.09 1.07 1.15 1.12 1.06 1.02 1.03 0.98 0.97 0.95 0.94 0.94 1.01 1.10 1.47
+  cluster_alt|c_B              10.0 Gyr a=1.0 logXJ +0.020 logX544 +0.012 D -0.053 last2 dXJ/dD -0.005/-0.009 r99 1.819 beta -0.13 out -34.211 in -34.710 sink +0.499 (rate -0.0020/Gyr) integ 1.1e-01 vmax 5.64 gross_in 0.00 blow False fail None riseF 0.00233903929816777 G550 True G544 True (293s)
+       s(r) bins: 0.91 0.85 0.87 0.86 0.86 0.91 0.91 0.88 0.93 0.93 0.95 0.94 1.03 1.15 1.43 2.00
+  cluster_alt|c_C               5.0 Gyr a=1.0 logXJ +0.021 logX544 +0.016 D -0.055 last2 dXJ/dD -0.025/-0.025 r99 1.687 beta -0.13 out -19.970 in -19.464 sink -0.506 (rate -0.0080/Gyr) integ 1.2e-02 vmax 5.60 gross_in 0.05 blow False fail None riseF 0.022225173696168714 G550 True G544 True (147s)
+       s(r) bins: 0.85 0.84 0.86 0.87 0.88 0.92 0.90 0.92 0.92 0.94 0.97 1.00 1.05 1.15 1.40 2.03
+  cluster_alt|c_over_base       5.0 Gyr a=1.0 logXJ +0.021 logX544 +0.013 D -0.050 last2 dXJ/dD -0.012/-0.013 r99 1.694 beta -0.12 out -18.488 in -18.632 sink +0.145 (rate -0.0110/Gyr) integ 2.2e-02 vmax 9.42 gross_in 0.00 blow False fail None riseF 0.011582178142536387 G550 True G544 True (147s)
+       s(r) bins: 0.86 0.84 0.87 0.84 0.93 0.89 0.93 0.90 0.90 0.92 0.97 1.00 1.04 1.12 1.41 1.98
+  cluster_alt|c_over_inj        5.0 Gyr a=1.0 logXJ +0.009 logX544 +0.016 D -0.043 last2 dXJ/dD -0.025/-0.016 r99 1.821 beta -0.13 out -19.414 in -19.408 sink -0.006 (rate -0.0055/Gyr) integ 1.9e-02 vmax 9.42 gross_in 0.00 blow False fail None riseF 0.013555371380652373 G550 True G544 True (159s)
+       s(r) bins: 0.79 0.83 0.81 0.86 0.87 0.86 0.88 0.91 0.94 0.94 0.94 1.01 1.05 1.20 1.42 2.15
+  cluster_can|C2_vlasov_eq      2.0 Gyr a=1.0 logXJ +0.013 logX544 +0.006 D +0.043 last2 dXJ/dD +0.010/+0.044 r99 1.546 beta +0.24 out -0.000 in +0.000 sink -0.000 (rate +0.0000/Gyr) integ 3.5e-04 vmax 9.42 gross_in 0.00 blow False fail None riseF 0.005288497417673004 G550 True G544 True (19s)
+       s(r) bins: 1.15 1.16 1.19 1.19 1.09 1.10 1.05 1.01 0.97 0.92 0.89 0.86 0.83 0.82 0.94 1.28
+  cluster_can|a_B              10.0 Gyr a=1.0 logXJ +0.119 logX544 +0.047 D -0.098 last2 dXJ/dD +0.001/+0.005 r99 6.004 beta +0.13 out -1.210 in -0.750 sink -0.460 (rate -0.0443/Gyr) integ 2.7e-03 vmax 7.53 gross_in 1.42 blow False fail 0.0 riseF 0.0015713445988774376 G550 False G544 True (522s)
+       s(r) bins: 0.98 1.08 0.97 1.01 0.95 1.01 0.95 0.92 0.96 0.92 0.98 1.02 1.07 1.25 1.56 2.34
+       route-a target beta: shell median -0.3959468203591935, edge (0.8-1.2 r_*) median 0.3273995038119254
+  cluster_can|a_B_al0.5        10.0 Gyr a=0.5 logXJ +0.148 logX544 +0.011 D -0.283 last2 dXJ/dD -0.001/+0.005 r99 7.193 beta +0.33 out -0.543 in +0.045 sink -0.589 (rate -0.0601/Gyr) integ 1.1e-03 vmax 6.22 gross_in 1.15 blow False fail 0.0 riseF 0.005825078853897327 G550 False G544 False (523s)
+       s(r) bins: 0.90 0.93 0.77 0.90 0.85 0.79 0.80 0.80 0.82 0.82 0.84 0.90 0.98 1.16 1.44 2.19
+       route-a target beta: shell median -0.5428831563337662, edge (0.8-1.2 r_*) median -0.2610902303458009
+  cluster_can|a_B_al2.0        10.0 Gyr a=2.0 logXJ +0.082 logX544 +0.060 D -0.019 last2 dXJ/dD +0.002/-0.007 r99 1.657 beta -0.15 out -1.167 in -1.186 sink +0.019 (rate +0.0006/Gyr) integ 2.6e-03 vmax 9.73 gross_in 1.82 blow False fail 0.0 riseF 8.70480663040521e-05 G550 True G544 True (504s)
+       s(r) bins: 1.00 1.07 1.02 0.96 1.03 0.99 0.94 0.99 0.97 0.99 1.03 1.12 1.14 1.34 1.60 2.38
+       route-a target beta: shell median -0.29566112277877465, edge (0.8-1.2 r_*) median 0.40263837559484805
+  cluster_can|a_C               5.0 Gyr a=1.0 logXJ +0.103 logX544 +0.068 D -0.065 last2 dXJ/dD -0.007/-0.035 r99 1.940 beta +0.06 out -1.548 in -0.489 sink -1.059 (rate -0.0638/Gyr) integ 2.4e-04 vmax 8.57 gross_in 0.85 blow False fail 0.0 riseF 0.0031973188497065944 G550 False G544 True (250s)
+       s(r) bins: 1.14 1.08 1.06 1.06 1.03 1.00 0.98 1.01 0.97 0.98 1.04 1.06 1.18 1.30 1.54 2.39
+       route-a target beta: shell median -0.37485259739828203, edge (0.8-1.2 r_*) median 0.23435014172253044
+  cluster_can|a_C_al0.5         5.0 Gyr a=0.5 logXJ +0.102 logX544 +0.050 D -0.108 last2 dXJ/dD -0.031/-0.113 r99 2.420 beta +0.19 out -1.696 in -0.565 sink -1.131 (rate -0.0924/Gyr) integ 8.3e-04 vmax 8.95 gross_in 0.62 blow False fail 0.0 riseF 0.010690846792996778 G550 False G544 False (256s)
+       s(r) bins: 1.06 0.96 1.10 0.97 0.98 0.96 0.95 0.93 0.95 0.96 0.98 1.00 1.05 1.22 1.44 2.12
+       route-a target beta: shell median -0.11581409134322629, edge (0.8-1.2 r_*) median 0.5150685808743098
+  cluster_can|a_C_al2.0         5.0 Gyr a=2.0 logXJ +0.083 logX544 +0.066 D -0.017 last2 dXJ/dD -0.002/-0.009 r99 1.422 beta -0.15 out -1.244 in -0.340 sink -0.903 (rate -0.0188/Gyr) integ 4.0e-04 vmax 9.11 gross_in 1.23 blow False fail 0.0 riseF 0.0005402297406382571 G550 True G544 True (246s)
+       s(r) bins: 1.07 1.05 1.06 1.06 1.00 0.97 1.05 1.00 1.01 1.04 1.05 1.08 1.17 1.27 1.57 2.42
+       route-a target beta: shell median -0.28258706875661177, edge (0.8-1.2 r_*) median 0.35205914952412265
+  cluster_can|a_over_base       5.0 Gyr a=1.0 logXJ +0.103 logX544 +0.063 D -0.068 last2 dXJ/dD +0.001/-0.023 r99 1.972 beta +0.06 out -1.195 in -0.756 sink -0.439 (rate -0.0594/Gyr) integ 4.1e-04 vmax 9.78 gross_in 0.60 blow False fail 0.0 riseF 0.003245447052254891 G550 False G544 True (251s)
+       s(r) bins: 1.06 1.07 0.98 1.05 1.00 1.04 0.95 0.99 1.00 1.00 1.00 1.06 1.14 1.29 1.54 2.41
+       route-a target beta: shell median -0.2079383699674171, edge (0.8-1.2 r_*) median 0.47400352532677115
+  cluster_can|a_over_inj        5.0 Gyr a=1.0 logXJ +0.104 logX544 +0.077 D -0.067 last2 dXJ/dD +0.001/-0.032 r99 2.117 beta +0.04 out -1.489 in -0.842 sink -0.647 (rate -0.0681/Gyr) integ 5.7e-04 vmax 9.42 gross_in 0.61 blow False fail 0.0 riseF 0.0037288970668531087 G550 False G544 True (261s)
+       s(r) bins: 1.05 1.15 1.08 1.03 1.00 1.03 1.00 1.00 1.01 1.00 1.05 1.04 1.19 1.31 1.68 2.52
+       route-a target beta: shell median -0.20170593975658213, edge (0.8-1.2 r_*) median 0.4257512349264986
+  cluster_can|b_B              10.0 Gyr a=1.0 logXJ +0.026 logX544 +0.010 D -0.020 last2 dXJ/dD -0.010/-0.015 r99 1.527 beta +0.24 out -2.146 in -2.428 sink +0.283 (rate +0.0023/Gyr) integ 2.4e-03 vmax 6.96 gross_in 0.74 blow False fail None riseF 0.00027185038679501975 G550 True G544 True (230s)
+       s(r) bins: 1.13 1.10 1.12 1.05 1.14 1.07 1.07 0.96 0.99 0.98 0.94 0.92 0.95 0.94 1.03 1.38
+  cluster_can|b_B_al0.5        10.0 Gyr a=0.5 logXJ +0.075 logX544 +0.048 D -0.006 last2 dXJ/dD +0.016/+0.060 r99 2.150 beta +0.37 out -1.335 in -1.513 sink +0.178 (rate +0.0027/Gyr) integ 2.1e-03 vmax 6.83 gross_in 0.56 blow False fail None riseF 0.0009646668295120972 G550 False G544 False (229s)
+       s(r) bins: 1.25 1.26 1.24 1.17 1.15 1.18 1.17 1.07 1.06 1.06 1.00 1.03 1.01 1.03 1.17 1.62
+  cluster_can|b_B_al2.0        10.0 Gyr a=2.0 logXJ +0.005 logX544 +0.002 D -0.001 last2 dXJ/dD -0.004/-0.003 r99 1.120 beta +0.11 out -1.998 in -2.340 sink +0.342 (rate +0.0017/Gyr) integ 2.5e-03 vmax 7.52 gross_in 1.23 blow False fail None riseF 8.654735838800192e-05 G550 True G544 True (229s)
+       s(r) bins: 1.06 1.00 1.09 1.02 1.07 1.02 1.01 1.00 0.97 0.96 0.97 0.98 1.00 0.96 0.98 1.13
+  cluster_can|b_C               5.0 Gyr a=1.0 logXJ +0.030 logX544 +0.014 D -0.012 last2 dXJ/dD -0.015/-0.045 r99 1.442 beta +0.24 out -1.781 in -1.081 sink -0.700 (rate -0.0041/Gyr) integ 4.9e-04 vmax 7.18 gross_in 0.63 blow False fail None riseF 0.002688333275452365 G550 True G544 True (116s)
+       s(r) bins: 1.23 1.20 1.13 1.14 1.08 1.06 1.05 1.02 1.01 0.97 0.94 0.92 0.92 0.97 1.00 1.38
+  cluster_can|b_C_al0.5         5.0 Gyr a=0.5 logXJ +0.047 logX544 +0.015 D -0.029 last2 dXJ/dD -0.057/-0.125 r99 2.129 beta +0.34 out -2.053 in -1.226 sink -0.827 (rate -0.0400/Gyr) integ 5.6e-04 vmax 7.35 gross_in 0.41 blow False fail None riseF 0.009239104757481003 G550 False G544 False (115s)
+       s(r) bins: 1.16 1.14 1.18 1.16 1.08 1.06 1.04 0.99 0.93 0.94 0.91 0.88 0.87 0.93 1.08 1.48
+  cluster_can|b_C_al2.0         5.0 Gyr a=2.0 logXJ +0.010 logX544 +0.005 D +0.000 last2 dXJ/dD -0.001/-0.009 r99 1.117 beta +0.13 out -1.536 in -0.888 sink -0.648 (rate +0.0002/Gyr) integ 3.2e-04 vmax 7.43 gross_in 0.95 blow False fail None riseF 0.000485876587585592 G550 True G544 True (115s)
+       s(r) bins: 1.06 1.12 1.06 1.04 1.04 1.04 1.04 1.05 1.02 1.01 0.98 0.98 0.93 0.94 0.97 1.12
+  cluster_can|b_over_base       5.0 Gyr a=1.0 logXJ +0.022 logX544 +0.007 D -0.011 last2 dXJ/dD -0.004/+0.002 r99 1.423 beta +0.24 out -1.360 in -1.297 sink -0.063 (rate -0.0006/Gyr) integ 7.2e-04 vmax 9.42 gross_in 0.38 blow False fail None riseF 0.000594809966177887 G550 True G544 True (116s)
+       s(r) bins: 1.18 1.15 1.13 1.11 1.03 1.09 1.03 1.00 0.92 0.98 0.94 0.94 0.93 0.93 1.01 1.35
+  cluster_can|b_over_inj        5.0 Gyr a=1.0 logXJ +0.024 logX544 +0.024 D -0.017 last2 dXJ/dD -0.003/-0.013 r99 1.540 beta +0.21 out -1.669 in -1.449 sink -0.219 (rate -0.0077/Gyr) integ 7.2e-04 vmax 9.42 gross_in 0.38 blow False fail None riseF 0.0006723202541659204 G550 True G544 True (125s)
+       s(r) bins: 1.10 1.14 1.19 1.11 1.10 1.03 1.03 1.02 1.04 1.01 1.00 0.96 0.95 0.99 1.14 1.48
+  cluster_can|c_B              10.0 Gyr a=1.0 logXJ +0.019 logX544 +0.011 D -0.063 last2 dXJ/dD -0.011/-0.008 r99 1.715 beta -0.11 out -28.970 in -29.459 sink +0.489 (rate -0.0054/Gyr) integ 8.6e-02 vmax 5.57 gross_in 0.00 blow False fail None riseF 0.0024615870421528553 G550 True G544 True (253s)
+       s(r) bins: 0.84 0.85 0.88 0.85 0.87 0.88 0.88 0.93 0.87 0.95 0.96 0.99 1.04 1.18 1.39 2.02
+  cluster_can|c_C               5.0 Gyr a=1.0 logXJ +0.025 logX544 +0.023 D -0.054 last2 dXJ/dD -0.033/-0.054 r99 1.665 beta -0.11 out -17.071 in -16.575 sink -0.496 (rate -0.0069/Gyr) integ 1.0e-02 vmax 5.35 gross_in 0.05 blow False fail None riseF 0.023754446906025777 G550 False G544 False (127s)
+       s(r) bins: 0.85 0.87 0.88 0.88 0.90 0.92 0.91 0.87 0.93 0.93 0.96 1.03 1.08 1.14 1.44 2.11
+  cluster_can|c_over_base       5.0 Gyr a=1.0 logXJ +0.021 logX544 +0.017 D -0.060 last2 dXJ/dD -0.020/-0.037 r99 1.666 beta -0.11 out -15.752 in -15.906 sink +0.153 (rate -0.0048/Gyr) integ 2.0e-02 vmax 9.42 gross_in 0.00 blow False fail None riseF 0.015060346573309343 G550 True G544 True (126s)
+       s(r) bins: 0.81 0.87 0.90 0.89 0.90 0.87 0.88 0.89 0.91 0.95 0.95 1.00 1.02 1.18 1.42 2.08
+  cluster_can|c_over_inj        5.0 Gyr a=1.0 logXJ +0.018 logX544 +0.027 D -0.033 last2 dXJ/dD -0.016/-0.020 r99 1.802 beta -0.16 out -16.645 in -16.655 sink +0.010 (rate -0.0040/Gyr) integ 1.5e-02 vmax 9.42 gross_in 0.00 blow False fail None riseF 0.017756825047946158 G550 True G544 True (136s)
+       s(r) bins: 0.91 0.86 0.83 0.87 0.87 0.92 0.94 0.94 0.92 0.97 0.93 1.02 1.10 1.20 1.50 2.17
+
+Controls: C2 {'MW_can': True, 'MW_alt': True, 'cluster_can': True, 'cluster_alt': True}; C5 {'MW_can': {'dlogX': 0.0, 'dD': 0.0, 'ok': True}, 'MW_alt': {'dlogX': 0.0, 'dD': 0.0, 'ok': True}, 'cluster_can': {'dlogX': 0.0, 'dD': 0.0, 'ok': True}, 'cluster_alt': {'dlogX': 0.0, 'dD': 0.0, 'ok': True}}; C6 False; mass True -> FAIL as frozen (all except C6: True)
+
+Route a: G550 B {'MW_can': True, 'MW_alt': True, 'cluster_can': False, 'cluster_alt': False} C {'MW_can': True, 'MW_alt': True, 'cluster_can': False, 'cluster_alt': False}; G544 {'MW_can': {'B': True, 'C': True}, 'MW_alt': {'B': True, 'C': True}, 'cluster_can': {'B': True, 'C': True}, 'cluster_alt': {'B': True, 'C': True}}
+  overfill P {'MW_can': 0.4051262433052796, 'MW_alt': 0.38682497127537424, 'cluster_can': 0.29717615419094545, 'cluster_alt': 0.28776333482743166} -> NOT HANDLED; edge {'MW_can|B': 0.32294813154451874, 'MW_can|C': 0.23210301948903864, 'MW_alt|B': 0.3297643049032987, 'MW_alt|C': 0.27908038895075876, 'cluster_can|B': 1.8018104468525695, 'cluster_can|C': 0.6722128042440972, 'cluster_alt|B': 1.9211289453019709, 'cluster_alt|C': 0.7208110146455035} -> NOT PRESERVED
+  energy {'MW_can': {'B_net': 0.2195870520318866, 'B_out': 0.4759217049918807, 'B_in': 0.2563346529599941, 'B_rate_last2': 0.0011124245791754453, 'B_relax_in_rate_last2': -0.0032310275239295317, 'C_net': -0.5366413811786426, 'C_out': -0.2769323761012867, 'C_in': 0.25970900507735584, 'C_rate_last2': -0.00809416080813111, 'C_whole_history': 0.23315818108653963}, 'MW_alt': {'B_net': 0.24518375294743072, 'B_out': 0.47758019224952736, 'B_in': 0.23239643930209664, 'B_rate_last2': 0.001869239134844489, 'B_relax_in_rate_last2': -0.011291465756379467, 'C_net': -0.5405881581365901, 'C_out': -0.29447213346044904, 'C_in': 0.2461160246761411, 'C_rate_last2': -0.008665655290288498, 'C_whole_history': 0.24992411413185156}, 'cluster_can': {'B_net': -0.4601694063131225, 'B_out': -1.2102536154493198, 'B_in': -0.7500842091361972, 'B_rate_last2': -0.04425819222011161, 'B_relax_in_rate_last2': -0.14527839599476025, 'C_net': -1.0592133040043046, 'C_out': -1.5484419834641614, 'C_in': -0.4892286794598569, 'C_rate_last2': -0.0637852251964481, 'C_whole_history': -0.07334047698881208}, 'cluster_alt': {'B_net': -0.5105277506671634, 'B_out': -1.4050549007988824, 'B_in': -0.894527150131719, 'B_rate_last2': -0.044577346211997486, 'B_relax_in_rate_last2': -0.15592411487134772, 'C_net': -1.1025519171342613, 'C_out': -1.6780911196764492, 'C_in': -0.5755392025421878, 'C_rate_last2': -0.07311683958086573, 'C_whole_history': -0.09006500270845352}} -> compatible False
+  blow-ups {}; solver fail {'cluster_alt|a_B': 0.0, 'cluster_alt|a_B_al0.5': 0.0, 'cluster_alt|a_B_al2.0': 0.0, 'cluster_can|a_B': 0.0, 'cluster_can|a_B_al0.5': 0.0, 'cluster_can|a_B_al2.0': 0.0, 'cluster_alt|a_C': 0.0, 'cluster_alt|a_over_base': 0.0, 'cluster_alt|a_over_inj': 0.0, 'cluster_alt|a_C_al0.5': 0.0, 'cluster_alt|a_C_al2.0': 0.0, 'cluster_can|a_C': 0.0, 'cluster_can|a_over_base': 0.0, 'cluster_can|a_over_inj': 0.0, 'cluster_can|a_C_al0.5': 0.0, 'cluster_can|a_C_al2.0': 0.0, 'MW_alt|a_B': 0.0, 'MW_alt|a_B_al0.5': 0.0, 'MW_alt|a_B_al2.0': 0.0, 'MW_can|a_B': 0.0, 'MW_can|a_B_al0.5': 0.0, 'MW_can|a_B_al2.0': 0.0, 'MW_alt|a_C': 0.0, 'MW_alt|a_over_base': 0.0, 'MW_alt|a_over_inj': 0.0, 'MW_alt|a_C_al0.5': 0.0, 'MW_alt|a_C_al2.0': 0.0, 'MW_can|a_C': 0.0, 'MW_can|a_over_base': 0.0, 'MW_can|a_over_inj': 0.0, 'MW_can|a_C_al0.5': 0.0, 'MW_can|a_C_al2.0': 0.0}; robustness {'MW_can|B|al0.5': False, 'MW_can|B|al2.0': True, 'MW_can|C|al0.5': True, 'MW_can|C|al2.0': True, 'MW_alt|B|al0.5': False, 'MW_alt|B|al2.0': True, 'MW_alt|C|al0.5': False, 'MW_alt|C|al2.0': True, 'cluster_can|B|al0.5': False, 'cluster_can|B|al2.0': True, 'cluster_can|C|al0.5': False, 'cluster_can|C|al2.0': True, 'cluster_alt|B|al0.5': False, 'cluster_alt|B|al2.0': True, 'cluster_alt|C|al0.5': False, 'cluster_alt|C|al2.0': True}
+  LABEL INCONSISTENT (the derived target fails G550); Lyapunov NOT ESTABLISHED
+
+Route b: G550 B {'MW_can': True, 'MW_alt': True, 'cluster_can': True, 'cluster_alt': True} C {'MW_can': True, 'MW_alt': True, 'cluster_can': True, 'cluster_alt': True}; G544 {'MW_can': {'B': True, 'C': True}, 'MW_alt': {'B': True, 'C': True}, 'cluster_can': {'B': True, 'C': True}, 'cluster_alt': {'B': True, 'C': True}}
+  overfill P {'MW_can': 0.4265493496556997, 'MW_alt': 0.4270394484871693, 'cluster_can': 0.33930972658000863, 'cluster_alt': 0.3012102196324512} -> NOT HANDLED; edge {'MW_can|B': 0.2179033616981602, 'MW_can|C': 0.2221764428343307, 'MW_alt|B': 0.24289331905894718, 'MW_alt|C': 0.2570506356854843, 'cluster_can|B': 0.43275356609580096, 'cluster_can|C': 0.37567356963582826, 'cluster_alt|B': 0.44747902429895503, 'cluster_alt|C': 0.4079227884127892} -> PRESERVED
+  energy {'MW_can': {'B_net': 0.24870633153050345, 'B_out': 0.42788357880001954, 'B_in': 0.17917724726951606, 'B_rate_last2': 0.00030640926671441396, 'B_relax_in_rate_last2': -0.018660790654312313, 'C_net': -0.513227699906027, 'C_out': -0.26912969716621366, 'C_in': 0.24409800273981339, 'C_rate_last2': -0.004036729769317895, 'C_whole_history': 0.2565718623591552}, 'MW_alt': {'B_net': 0.27294951537407297, 'B_out': 0.41132384467274863, 'B_in': 0.13837432929867566, 'B_rate_last2': 0.0024899845521265127, 'B_relax_in_rate_last2': -0.029700817335809704, 'C_net': -0.5166809776467194, 'C_out': -0.2878493757566836, 'C_in': 0.22883160189003576, 'C_rate_last2': -0.004533340182898221, 'C_whole_history': 0.2738312946217223}, 'cluster_can': {'B_net': 0.28265228650565216, 'B_out': -2.1455645920577653, 'B_in': -2.4282168785634175, 'B_rate_last2': 0.0022509422918782496, 'B_relax_in_rate_last2': -0.3032720098614272, 'C_net': -0.7001270318626734, 'C_out': -1.7810699124381912, 'C_in': -1.0809428805755177, 'C_rate_last2': -0.004078385654323974, 'C_whole_history': 0.28574579515281906}, 'cluster_alt': {'B_net': 0.3051235811461951, 'B_out': -2.476240239759197, 'B_in': -2.781363820905392, 'B_rate_last2': 0.0020253421580398814, 'B_relax_in_rate_last2': -0.32259348166485263, 'C_net': -0.7076577069724229, 'C_out': -1.9770292535134002, 'C_in': -1.2693715465409774, 'C_rate_last2': -0.008328823814098198, 'C_whole_history': 0.3048292074533848}} -> compatible True
+  blow-ups {}; solver fail {'cluster_alt|b_B': None, 'cluster_alt|b_B_al0.5': None, 'cluster_alt|b_B_al2.0': None, 'cluster_can|b_B': None, 'cluster_can|b_B_al0.5': None, 'cluster_can|b_B_al2.0': None, 'cluster_alt|b_C': None, 'cluster_alt|b_over_base': None, 'cluster_alt|b_over_inj': None, 'cluster_alt|b_C_al0.5': None, 'cluster_alt|b_C_al2.0': None, 'cluster_can|b_C': None, 'cluster_can|b_over_base': None, 'cluster_can|b_over_inj': None, 'cluster_can|b_C_al0.5': None, 'cluster_can|b_C_al2.0': None, 'MW_alt|b_B': None, 'MW_alt|b_B_al0.5': None, 'MW_alt|b_B_al2.0': None, 'MW_can|b_B': None, 'MW_can|b_B_al0.5': None, 'MW_can|b_B_al2.0': None, 'MW_alt|b_C': None, 'MW_alt|b_over_base': None, 'MW_alt|b_over_inj': None, 'MW_alt|b_C_al0.5': None, 'MW_alt|b_C_al2.0': None, 'MW_can|b_C': None, 'MW_can|b_over_base': None, 'MW_can|b_over_inj': None, 'MW_can|b_C_al0.5': None, 'MW_can|b_C_al2.0': None}; robustness {'MW_can|B|al0.5': False, 'MW_can|B|al2.0': True, 'MW_can|C|al0.5': False, 'MW_can|C|al2.0': True, 'MW_alt|B|al0.5': False, 'MW_alt|B|al2.0': True, 'MW_alt|C|al0.5': False, 'MW_alt|C|al2.0': True, 'cluster_can|B|al0.5': False, 'cluster_can|B|al2.0': True, 'cluster_can|C|al0.5': False, 'cluster_can|C|al2.0': True, 'cluster_alt|B|al0.5': True, 'cluster_alt|B|al2.0': True, 'cluster_alt|C|al0.5': False, 'cluster_alt|C|al2.0': True}
+  LABEL POSITED (target needs isotropy / the scalar fluid closure, S1f); metriplectic structure S2 PASS; angular momentum conserved; bench passes G550 in all cells, energy COMPATIBLE; Lyapunov NOT ESTABLISHED
+
+Route c: G550 B {'MW_can': True, 'MW_alt': True, 'cluster_can': True, 'cluster_alt': True} C {'MW_can': True, 'MW_alt': True, 'cluster_can': False, 'cluster_alt': True}; G544 {'MW_can': {'B': True, 'C': True}, 'MW_alt': {'B': True, 'C': True}, 'cluster_can': {'B': True, 'C': False}, 'cluster_alt': {'B': True, 'C': True}}
+  overfill P {'MW_can': 0.42731446059678607, 'MW_alt': 0.4492531597089235, 'cluster_can': 0.369341102644554, 'cluster_alt': 0.37292693859256} -> NOT HANDLED; edge {'MW_can|B': 0.3911568974033988, 'MW_can|C': 0.32996265995056495, 'MW_alt|B': 0.4239713209171064, 'MW_alt|C': 0.36211186461196154, 'cluster_can|B': 0.5485018195574806, 'cluster_can|C': 0.5191203016135906, 'cluster_alt|B': 0.6077481087319263, 'cluster_alt|C': 0.5322246421719732} -> NOT PRESERVED
+  energy {'MW_can': {'B_net': 0.26699809307382183, 'B_out': -4.4231254262284585, 'B_in': -4.69012351930228, 'B_rate_last2': -0.004469627213575129, 'B_relax_in_rate_last2': -0.42656875740940703, 'C_net': -0.47556877567931766, 'C_out': -1.9106306705822258, 'C_in': -1.435061894902908, 'C_rate_last2': -0.010142584840890147, 'C_whole_history': 0.29423078658586455}, 'MW_alt': {'B_net': 0.28701722471258395, 'B_out': -5.176605542195476, 'B_in': -5.46362276690806, 'B_rate_last2': -0.001836635379119967, 'B_relax_in_rate_last2': -0.49395794479851296, 'C_net': -0.4799801091659014, 'C_out': -2.175699654272206, 'C_in': -1.6957195451063047, 'C_rate_last2': -0.009945052306157078, 'C_whole_history': 0.3105321631025403}, 'cluster_can': {'B_net': 0.4888499411900289, 'B_out': -28.969703353971596, 'B_in': -29.458553295161625, 'B_rate_last2': -0.005377972531882813, 'B_relax_in_rate_last2': -3.345564804083853, 'C_net': -0.4960781609722644, 'C_out': -17.071292545779286, 'C_in': -16.575214384807023, 'C_rate_last2': -0.006896615474724327, 'C_whole_history': 0.4897946660432281}, 'cluster_alt': {'B_net': 0.4991886818629631, 'B_out': -34.21120530384991, 'B_in': -34.71039398571287, 'B_rate_last2': -0.0019891239344280555, 'B_relax_in_rate_last2': -3.9227376352280636, 'C_net': -0.506282643479776, 'C_out': -19.96986226744992, 'C_in': -19.463579623970144, 'C_rate_last2': -0.007963560389651033, 'C_whole_history': 0.5062042709460317}} -> compatible True
+  blow-ups {}; solver fail {'cluster_alt|c_B': None, 'cluster_can|c_B': None, 'cluster_alt|c_C': None, 'cluster_alt|c_over_base': None, 'cluster_alt|c_over_inj': None, 'cluster_can|c_C': None, 'cluster_can|c_over_base': None, 'cluster_can|c_over_inj': None, 'MW_alt|c_B': None, 'MW_can|c_B': None, 'MW_alt|c_C': None, 'MW_alt|c_over_base': None, 'MW_alt|c_over_inj': None, 'MW_can|c_C': None, 'MW_can|c_over_base': None, 'MW_can|c_over_inj': None}; robustness not run (frozen: robustness for routes a and b)
+  LABEL INCONSISTENT (the derived target fails G550); Lyapunov NOT ESTABLISHED
+
+LABELS as frozen: {'a': 'NO LABEL as frozen (control C6 fails)', 'b': 'NO LABEL as frozen (control C6 fails)', 'c': 'NO LABEL as frozen (control C6 fails)'}
+LABELS if C6 is read at the grid's resolution: {'a': 'INCONSISTENT (the derived target fails G550); Lyapunov NOT ESTABLISHED', 'b': 'POSITED (target needs isotropy / the scalar fluid closure, S1f); metriplectic structure S2 PASS; angular momentum conserved; bench passes G550 in all cells, energy COMPATIBLE; Lyapunov NOT ESTABLISHED', 'c': 'INCONSISTENT (the derived target fails G550); Lyapunov NOT ESTABLISHED'}
