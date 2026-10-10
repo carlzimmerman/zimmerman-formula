@@ -41,3 +41,8 @@ To resume an agent lane: read its FROZEN_CRITERIA.md and any committed outputs, 
   - CFG467: α_c tension.
 - **Not diagnostic:** CFG463 (UFD infall), CFG433 (MW satellites), CFG437/438 (BX442).
 - **Ready for the owner:** the Keck one-page figure (`explainers/img/keck_osiris_bx442_summary.png`); a private ALMA/VLA draft (`../_external_data/proposals/`).
+
+## Update 2026-10-09 (late): running and queued
+- **Running:** CFG530 (512³ fixed-box convergence; L200 canonical = TENSION 0.113, core R 1.14; L100 512³ pending), CFG539 (cold-energy EoM, Stage 2 two-species PM), CFG541 (precise equations: variational origin, edge, energy sink, causality), CFG468 (kernel grid).
+- **QUEUED (owner said yes 10-09):** CFG542, a dissipative variational principle for candidate B. Launch it AFTER CFG541 reports, building on its Onsager result. It needs one principle (Onsager / Schwinger–Keldysh / a partner field absorbing the settling energy) that yields the CFG539 class-A drift, the energy sink, and a covariant local definition of "bound" (the switch, Gap 1). No knobs; frozen criteria first.
+- **Theory statement:** THEORY_v1_2026-10-09.md. **Assessment:** ASSESSMENT_2026-10-09.md.
