@@ -51,6 +51,8 @@
 
 - **Dark-energy evolution (CFG549, DESI-independent):** from its own ingredients the framework predicts Λ plus a settling trickle of Δρ_DE/ρ_DE ≈ 2–8.5e-7 (w just below −1; unobservable). Any real evolution is FREE: no closure route forces ρ_DE(z). PAPER42's zero-field coefficient fails (κ 1.39 vs 0.42, +10σ). The framework's channel is MEASUREMENT: a₀(z)/a₀(0) = √(ρ_DE(z)/ρ_DE(0)) with κ cancelling exactly. It competes with DESI at z ≈ 2–2.5 with about 56–97 discs per bin at 0.1 dex. DESI shows TENSION with pure Λ, as for ΛCDM.
 
+- **Drained shell around clusters (CFG546):** the R5 engine predicts a real drained shell about 30% deep at 0.85–2 r_ta (512³, NOT converged: ×2 from 256³). In ΔΣ a ΛCDM splashback profile can absorb it (correlation −0.8). Best forecast is DES-Y3 redMaPPer at Z ≈ 2.1, marginal; nothing on disk can test it. Cheaper lever: the predicted +26–35% outward shift of the inferred splashback radius vs published values (its own lane).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
