@@ -1,0 +1,31 @@
+CFG549 stage 1: framework-only predictions (no DESI/DES/SN).  MUTATE = False
+inputs: kappa 0.5, footings {'can': 9.3603e-11, 'alt': 1.1312e-10}, f_b 0.15713, Omega_m 0.31339978339159447, h 0.674, cold/b 5.3643, settled frac (CFG506) 0.1621
+CAMB sigma8 = 0.8110
+
+[R1] SETTLING SOURCE: Lambda + settling trickle into a w = -1 sink (maximal accumulation)
+  can|A|Mmin1e+08          F(0) 0.577  drho_DE/rho_DE(0) 7.108e-07  1+w(0) -5.34e-08  1+w(1) -1.34e-07  max|1+w| 1.34e-07  CPL (w0+1, wa) = (-6.43e-07, +3.21e-06); H-fit (-9.82e-08, -1.01e-07)
+  can|B|Mmin1e+08          F(0) 0.162  drho_DE/rho_DE(0) 1.998e-07  1+w(0) -1.50e-08  1+w(1) -3.75e-08  max|1+w| 3.75e-08  CPL (w0+1, wa) = (-1.81e-07, +9.03e-07); H-fit (-2.76e-08, -2.84e-08)
+  alt|A|Mmin1e+08          F(0) 0.577  drho_DE/rho_DE(0) 8.477e-07  1+w(0) -6.35e-08  1+w(1) -1.59e-07  max|1+w| 1.59e-07  CPL (w0+1, wa) = (-7.64e-07, +3.82e-06); H-fit (-1.17e-07, -1.20e-07)
+  alt|B|Mmin1e+08          F(0) 0.162  drho_DE/rho_DE(0) 2.383e-07  1+w(0) -1.78e-08  1+w(1) -4.46e-08  max|1+w| 4.46e-08  CPL (w0+1, wa) = (-2.15e-07, +1.07e-06); H-fit (-3.28e-08, -3.37e-08)
+  CFG541 ceiling (all cold energy at the cluster e_max): 2.239e-06
+  MU3 null e(M) = 0: max |drho| = 0.0
+  a0(z)/a0(0) under the trickle (can, A): z0.5: 0.9999999484, z1: 0.9999998936, z2: 0.9999998161, z2.5: 0.9999997898
+
+[M-C4] vacuum -> cold at Gamma = a0(t)/c = kappa sqrt(G rho_vac(t)) (zero new constants; CFG360 C4 re-run)
+  can: frozen rho_eff projection UNDEFINED (rho_eff <= 0 at z >= 2.08); H-fit Om 0.3136, max resid 5.8e-05
+  can: Gamma0/H0 0.1429; 1+w_vac(0) +0.0476; cold gain +0.0981; Om_obs 0.3393; CPL (w0, wa)_eff = (-0.9615, -0.0377); a0(2.5)/a0(0) 1.0569
+  alt: frozen rho_eff projection UNDEFINED (rho_eff <= 0 at z >= 1.91); H-fit Om 0.3136, max resid 6.6e-05
+  alt: Gamma0/H0 0.1727; 1+w_vac(0) +0.0576; cold gain +0.1181; Om_obs 0.3446; CPL (w0, wa)_eff = (-0.9535, -0.0444); a0(2.5)/a0(0) 1.0692
+
+[R3] CLOSURE ROUTES
+  (a) Eq(3*(w(t) + 1)*H(t)*rho(t) + Derivative(rho(t), t), Q(t)) -> one equation, two unknown functions; w = -1: rho = C1 + Integral(Q(t), t)
+  (e) 1/2 int (nu_mono - 1) d(y^2) = 2*pi**4/15 = 12.9879 (needs 32 pi = 100.53 for kappa = 1/2); implied kappa = 1.3911 vs fitted 0.417 +- 0.095 (+10.3 sigma)
+  (b) NO RELATION to rho_DE dynamics: the cap (CFG364/365) compares the phantom with 5.364 M_b/f_ret per galaxy; it contains a0 (so rho_DE) only as a galaxy-level inequality that needs the unknown retention f_ret; it has no time derivative of rho_DE and no cosmic-level content
+  (c) NO RELATION: DE1-DE13 use a constant Lambda background (E^2 = Om(1+z)^3 + 1 - Om) and read Omega_L as a threshold; DE7 found the gate ill-posed when varied as an action term; no equation for rho_DE(t)
+  (d) BOUNDS (derived inequality, not a forcing): class A is one-sided (CFG541 open item 5), so if a0 falls after a system settles the cold energy overfills (rho_c > rho_ph) and is never removed. Then a settled galaxy's dynamical a0 = max of a0(t) since it settled. Under the framework's own prediction (Lambda + trickle, rho_DE non-decreasing) the ratchet never binds. If rho_DE falls (w > -1), local galaxies read the past maximum: kappa_fit = kappa_true sqrt(rho_max/rho_0); the size under DESI is evaluated at the test stage
+
+[MU2] kappa-ratio invariance of a0(z)/a0(0) (on the trickle rho_DE(z), can A)
+  max deviation across kappa 0.42/0.5/0.55: 3.33e-16
+
+checks: K2_sigma8 PASS, K1_ST_norm PASS, K6_cpl_lambda PASS, K3_ceiling_can PASS, K3_ceiling_alt PASS, MU3_null PASS, K5_sympy_nu_mono PASS, MU2_kappa_invariance PASS
+wrote cfg549_predictions.json sha256 f110566ea4862abee0a00380ea01e9dd9772f792396dd5474b9aa5d88d88820c
