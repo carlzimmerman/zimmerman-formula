@@ -1,0 +1,45 @@
+====================================================================================================
+CFG580  hot-gas escape vs eRASS:4 (APEC, AtomDB v3.1.3)  PRIMARY
+====================================================================================================
+bound: L(0.5-2 keV) < 1.90e+40 erg/s (QU stack 1.1e+40 +- 4.0e+39); required gas f M*, f = {'canonical': 0.8, 'alt': 0.55}
+
+--- controls
+  [PASS] C1 Z=0 APEC band emissivity at 0.3 keV 7.314e-25 vs analytic free-free (Gaunt 1.2) 8.233e-25 erg cm^3/s (30%)
+  [PASS] C2 emissivity rises with Z at 0.12 keV: Z=0.1 4.419e-25, Z=1 3.968e-24
+
+--- band emissivity (erg cm^3/s per n_e n_H), 0.5-2 keV
+  Z=0.1: 0.08:5.50e-26  0.10:1.96e-25  0.12:4.42e-25  0.14:7.59e-25  0.16:1.12e-24  0.18:1.46e-24  0.20:1.74e-24  0.22:1.97e-24  0.24:2.16e-24  0.26:2.33e-24  0.28:2.50e-24  0.30:2.66e-24
+  Z=0.3: 0.08:1.52e-25  0.10:5.44e-25  0.12:1.23e-24  0.14:2.09e-24  0.16:3.07e-24  0.18:3.96e-24  0.20:4.66e-24  0.22:5.20e-24  0.24:5.59e-24  0.26:5.92e-24  0.28:6.22e-24  0.30:6.53e-24
+  Z=1.0: 0.08:4.90e-25  0.10:1.76e-24  0.12:3.97e-24  0.14:6.77e-24  0.16:9.90e-24  0.18:1.27e-23  0.20:1.49e-23  0.22:1.65e-23  0.24:1.76e-23  0.26:1.85e-23  0.28:1.92e-23  0.30:2.01e-23
+
+--- predicted L(0.5-2 keV) for the uniform 100 kpc sphere (minimum-luminosity case), primary kT 0.10-0.13 keV
+  [canonical|10.8] Mgas 5.05e+10  Z=0.1: 3.51e+39-1.06e+40  Z=0.3: 9.75e+39-2.94e+40  Z=1.0: 3.16e+40-9.52e+40
+  [canonical|10.7] Mgas 4.01e+10  Z=0.1: 2.22e+39-6.71e+39  Z=0.3: 6.15e+39-1.86e+40  Z=1.0: 1.99e+40-6.01e+40
+  [canonical|10.9] Mgas 6.35e+10  Z=0.1: 5.57e+39-1.69e+40  Z=0.3: 1.55e+40-4.67e+40  Z=1.0: 5.01e+40-1.51e+41
+  [alt|10.8] Mgas 3.47e+10  Z=0.1: 1.66e+39-5.03e+39  Z=0.3: 4.61e+39-1.39e+40  Z=1.0: 1.49e+40-4.50e+40
+  [alt|10.7] Mgas 2.76e+10  Z=0.1: 1.05e+39-3.17e+39  Z=0.3: 2.91e+39-8.78e+39  Z=1.0: 9.42e+39-2.84e+40
+  [alt|10.9] Mgas 4.37e+10  Z=0.1: 2.63e+39-7.97e+39  Z=0.3: 7.31e+39-2.21e+40  Z=1.0: 2.37e+40-7.13e+40
+
+VERDICT (primary: log M* 10.8, uniform sphere, all Z, kT 0.10-0.13): ESCAPE OPEN
+  hides: canonical Z=0.1 at kT [0.1, 0.11, 0.12, 0.13]
+  hides: canonical Z=0.3 at kT [0.1, 0.11]
+  hides: alt Z=0.1 at kT [0.1, 0.11, 0.12, 0.13]
+  hides: alt Z=0.3 at kT [0.1, 0.11, 0.12, 0.13]
+  hides: alt Z=1.0 at kT [0.1]
+
+--- reported: full kT grid (log M* 10.8, canonical f=0.8, uniform); where it would hide
+  Z=0.1: L at kT 0.08 / 0.10 / 0.13 / 0.20 / 0.30 = 9.85e+38 / 3.51e+39 / 1.06e+40 / 3.12e+40 / 4.77e+40; below bound at kT [0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15]
+  Z=0.3: L at kT 0.08 / 0.10 / 0.13 / 0.20 / 0.30 = 2.71e+39 / 9.75e+39 / 2.94e+40 / 8.36e+40 / 1.17e+41; below bound at kT [0.08, 0.09, 0.1, 0.11]
+  Z=1.0: L at kT 0.08 / 0.10 / 0.13 / 0.20 / 0.30 = 8.77e+39 / 3.16e+40 / 9.52e+40 / 2.67e+41 / 3.59e+41; below bound at kT [0.08, 0.09]
+
+--- reported: gas fraction that would just reach the bound (uniform, log M* 10.8)
+  Z=0.1 kT=0.1: f_bound = 1.860
+  Z=0.1 kT=0.13: f_bound = 1.069
+  Z=0.3 kT=0.1: f_bound = 1.117
+  Z=0.3 kT=0.13: f_bound = 0.643
+  Z=1.0 kT=0.1: f_bound = 0.620
+  Z=1.0 kT=0.13: f_bound = 0.357
+
+--- reported: beta-model (rc 10 kpc) / uniform luminosity ratio = 1.7
+
+checks: 2/2 pass
