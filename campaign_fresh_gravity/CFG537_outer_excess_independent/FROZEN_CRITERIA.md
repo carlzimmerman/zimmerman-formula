@@ -1,0 +1,46 @@
+# CFG537 FROZEN CRITERIA: is CFG534's SPARC early-type outer excess replicated in an independent sample, and does it survive a free stellar M/L?
+
+Frozen 2026-10-09, committed alone before any CFG537 script exists and before any WALLABY residual or free-M/L SPARC number is computed.
+
+**Framework terms.** a0 = kappa c sqrt(G rho_DE), kappa = 1/2 FITTED. Footings 9.3603e-11 (canonical) and 1.1312e-10 (alt), never pooled. Kernel nu(y) = 1/(1 - exp(-sqrt y)) (CFG534's `nu`). Cold energy mass is required by the framework; its amount is free. Not theory closed. No downloads.
+
+**Hypothesis H (outer-excess form).** At fixed baryonic mass, early-type (T <= 3) discs show a POSITIVE outer residual from the law (R >= 3 R_d) and no inner excess (R <= 1.5 R_d). Reference: CFG534 Test 3 (criteria aa8dc312e), SPARC Delta_out = +0.071 +- 0.026 (Z +2.75) / +0.072 +- 0.026 (Z +2.76); Delta_out - Delta_in = +0.104 +- 0.033 (Z +3.13) / +0.098 (Z +3.00); 23 early, 26 late in 3 bins (log M_b 10.2-11.4).
+
+**Disclosures before freezing.** In this session I read CFG534's README, FROZEN_CRITERIA and `cfg534_sparc_sluggs.py`, CFG301's README (MIGHTEE: catalogue widths only), CFG445's README and `cfg445_common.py` (WALLABY baryon model), CFG492's inventory code and output (independent-RC census). I inspected the headers of the WALLABY DR2 kinematic/source catalogues, the 2MASS XSC cone file, the RC3 table, the Di Teodoro+23 RC/morphology tables, den Heijer+15, DiskMass XI and LITTLE THINGS. I ran ONE label/coverage count on WALLABY (no velocity residual): of 236 unique kinematic galaxies, 231 have QFlag <= 1, 214 also inc >= 30, 142 also an XSC match <= 20", 87 also an RC3 T within 30"; 19 have T <= 3. Per 0.4-dex log M_b bin (Upsilon_K 0.6, dist_h): 9.8-10.2 early 3 / late 6; 10.2-10.6 early 9 / late 21; 10.6-11.0 early 5 / late 17; 11.0-11.4 early 1 / late 6. Nearly every galaxy has >= 2 rings at R >= 3 R_d; only ~15 have >= 2 rings at R <= 1.5 R_d (median R_d / beam = 0.35), so the inner band is expected to be largely UNTESTABLE in WALLABY. No WALLABY residual, no free-M/L fit and no forecast number has been computed.
+
+## 0. Independent-sample inventory (rule)
+A sample is USABLE for Part A if it is on disk and has, per galaxy: a resolved rotation curve (V(R) with errors), a baryon model that can be evaluated at each radius (stellar luminosity + scale length, gas surface density or mass + extent), a Hubble type (or the frozen T label) and is not a SPARC galaxy. It is ADEQUATE if, after the cuts, >= 2 log M_b bins hold >= 2 early and >= 2 late galaxies with a valid outer band and n_early (matched) >= 8. Each on-disk candidate is listed in the README with N, proxy, baryon model, radial coverage and status. If no candidate is adequate the verdict is NO INDEPENDENT SAMPLE and a fetch list (source, size) is given; nothing is fetched.
+
+## Part A: replication in WALLABY DR2 (primary candidate)
+- **Data (read-only):** `campaign_fresh_gravity/CFG445_group_centrals_x3/data/` (WALLABY DR2 kinematic + source catalogues, identical sha256 to `_external_data/wallaby_dr2`; 2MASS XSC cones), `real_research/data/rc3_devaucouleurs1991_colors.tsv` (RC3 T), `real_research/data/sparc_positions_merged.json` and `SPARC_Lelli2016c.mrt` (overlap removal).
+- **Galaxy record:** one row per name, the highest team release (CFG445 rule). Cuts: QFlag_model <= 1; Inc_model >= 30; XSC match <= 20" with finite K.ext and Kr.eff; RC3 nearest entry within 30" of (RA_model, DEC_model) with finite T, dropped as AMBIGUOUS if a second RC3 entry with a different T also lies within 30"; dist_h > 0 from the source catalogue (same team release).
+- **SPARC overlap removal:** drop any galaxy within 60" of a SPARC position, or whose RC3 name/altname (spaces removed, case-folded, leading zeros of the number stripped) equals a SPARC name. Count reported.
+- **Baryons (CFG445's model, copied):** gas = razor-thin ring sum of 1.33 x SD_FO_model (CFG445 `ring_sum_g`, softening 0.1 kpc, 600 rings); stars = Freeman exponential disc, M* = Upsilon_K L_K with Upsilon_K = 0.6, M_sun,K = 3.28, R_d = Kr.eff x (kpc per arcsec) / 1.678. No bulge component (no decomposition exists on disk; disclosed: this mis-places inner stellar mass of bulgy galaxies but leaves the enclosed mass at R >= 3 R_d nearly unchanged, so it bears on Delta_in, not Delta_out). Distances dist_h. M_b = Upsilon_K L_K + 1.33 x 10^log_m_hi.
+- **Statistic (copied from CFG534 exactly):** g_obs = V^2/R; residual r = log10(g_obs / (nu(g_bar/a0) g_bar)) where g_bar > 0 and g_obs > 0; point weight 1/(sp^2 + 0.05^2), sp = 2 eV/V/ln10 with eV = e_Vrot_model; d_in = weighted mean over R <= 1.5 R_d, d_out = over R >= 3 R_d, each needing >= 2 points; d_oi = d_out - d_in. Label early = T <= 3, late = otherwise. Matching: `matched()` of CFG534, bins EDG = 7.0 to 12.2 step 0.4 in log M_b, a bin counts if it has >= 2 early and >= 2 late finite values; inverse-variance combination of (mean early - mean late). Both footings.
+- **Power forecast (run and printed BEFORE any WALLABY residual, STAGE=forecast):** sigma_fc(Delta_out) = the `matched()` variance formula with each WALLABY bin's counts (early/late with a valid outer band) and SPARC's within-bin, within-class sample variance of d_out (CFG534 rows; a bin missing in SPARC uses SPARC's pooled within-bin variance). Variants: scatter x1.0 and x1.5. Reported: expected Z = 0.071/sigma_fc and power P(Z >= 2) = Phi(0.071/sigma_fc - 2). Pre-declared UNDERPOWERED if sigma_fc(x1.0) > 0.0355.
+- **Verdict ladder (per footing; realized sigma = `matched()` sigma):**
+  1. NO INDEPENDENT SAMPLE: the adequacy rule of section 0 fails.
+  2. REPLICATED: Delta_out > 0 with Z >= 2, AND Delta_oi testable (>= 1 matched bin) with Delta_oi > 0.
+  3. NOT REPLICATED: Delta_out <= 0 with sigma <= 0.0355; or Delta_out + 2 sigma < 0.071 (the SPARC amplitude excluded at 2 sigma).
+  4. CONSISTENT: Delta_out > 0 and neither 2 nor 3 (includes Z >= 2 with Delta_oi untestable -> "CONSISTENT, outer only"; Z >= 2 with Delta_oi <= 0 -> "CONSISTENT, radial pattern not reproduced").
+  5. NOT DIAGNOSTIC: Delta_out <= 0 with sigma > 0.0355 and Delta_out + 2 sigma >= 0.071.
+  Headline = the common label, else FOOTING-DEPENDENT with both labels.
+- **Controls:** A-C1 the copied SPARC code reproduces CFG534's Delta_out (+0.0712 / +0.0718 to 0.001) and Delta_oi. A-C2 WALLABY HI check (CFG445 C-HI): 2 pi int SD_FO R dR vs catalogue log M_HI, median |diff| <= 0.15 dex. A-C3 RC3 match separations reported (median, max) and the number dropped as ambiguous. A-C4 overlap count reported.
+- **MUTATE (CFG537_MUTATE=1, separate outputs):** MU1 T shuffled within log M_b bins, 200 seeded shuffles: |mean Z(Delta_out)| < 0.5 on both footings (the label shuffle must kill it). MU2 injection: +0.071 dex added to every early galaxy's outer-band residuals; the recovered Delta_out shift must equal +0.071 within 0.002 (plumbing check). A failed MUTATE is reported, not repaired.
+- **Sensitivities (reported, NO verdict weight):** S1 AllWISE W1 luminosity (w1gmag, else w1mpro; M_sun,W1 = 3.24, Upsilon_W1 = 0.5) in place of K for M* and M_b (R_d unchanged); S2 RC3 match radius 15"; S3 eV including e_Vrot_model_inc in quadrature; S4 early cut T <= 2 and T <= 4; S5 bins shifted +0.2 dex.
+
+## Part B: SPARC robustness, NOT a replication: does the early-type outer excess survive a free stellar M/L?
+- **Sample and statistic:** CFG534's SAMP (Q <= 2, Inc >= 30; 153 discs), label, bins, bands, weights and `matched()` unchanged. Gas fixed (Vgas as tabulated).
+- **B1 (primary): global free M/L.** Per galaxy and footing, Upsilon_d on a grid 0.30 to 0.80 step 0.01 (3.6 micron population-synthesis bounds), Upsilon_b = 1.4 Upsilon_d (CFG534's 0.5/0.7 ratio), chosen to minimise sum w r^2 over all usable points (g_bar > 0, g_obs > 0) with CFG534's weights. M_b for the bin assignment stays at CFG534's fixed Upsilon (0.5) so the matching is unchanged. Then d_out, d_in, d_oi and matched early - late.
+- **B2: inner-fit M/L.** Upsilon_d fitted on R <= 1.5 R_d points only (galaxies with < 2 inner points keep 0.5); d_out evaluated with that Upsilon. (Stars dominate inside; a heavier-star explanation must remove the outer excess here.)
+- **B3: extreme differential bound.** Early Upsilon_d = 0.80, late Upsilon_d = 0.30 (the most a bounded M/L difference can do against H).
+- **Also reported:** matched early - late difference in log Upsilon_d (B1, B2) and the fraction of each class at the bounds.
+- **M/L verdict (per footing, on B1, with B2 as the discriminant):**
+  - EXCESS SURVIVES M/L: B1 Delta_out > 0 with Z >= 2 AND B2 Delta_out > 0 with Z >= 2.
+  - ABSORBED BY M/L: B1 Delta_out Z < 1 OR B2 Delta_out Z < 1.
+  - PARTIAL: otherwise.
+  B3 is reported as the bounding case, no verdict weight.
+- **Controls / MUTATE:** B-C1 with Upsilon_d fixed at 0.5 the Part B code reproduces CFG534's Delta_out to 1e-6. B-MU1 (MUTATE run) T shuffled within bins, 200 shuffles: |mean Z| of B1 Delta_out < 0.5.
+
+## Reporting
+Numbers in the README come from the results JSONs. A lean is not a detection; no sentence says the data favour the framework or LCDM. Verify a fail as hard as a win: whichever way Part A comes out, its realized sigma, the per-bin values and leave-one-galaxy-out range are printed.
