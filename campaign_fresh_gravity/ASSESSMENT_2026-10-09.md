@@ -67,6 +67,8 @@
 
 - **Halo assumption audit (CFG594):** of 59 ingredients, 10 are data-forced, 13 framework-derived (2 posited), 17 ΛCDM-inherited, 7 standard-MOND-inherited and 12 conventions. The halo SHAPE is the framework's own (the law's round phantom); the halo SUPPLY is borrowed (cold energy clusters as CDM, ΛCDM turnaround ball, ΛCDM-relative census f_ret), and so is the S0 yardstick. The supply sets the sign of the growth excess. Top framework-native tests: (1) measure the cold mass that actually reaches each host's edge in our own PM; (2) take catchment masses from each system's own data; (3) a framework-native shear test at higher resolution; (5) the round per-region phantom in the PM, and R7 (no EFE) against DR4.
 
+- **Required halo profile (CFG593, CONTEXT ONLY: halo model + SHMR lens masses):** within a declared 3-parameter family no profile fits both cosmic shear and KiDS f30 on either footing; no record rule predicts an overlap. Post hoc, giving the KiDS lenses the halo model's own (ΛCDM-SHMR) catchment mass opens an overlap with PARTIAL settling: only 30–80% of the law's phantom settled, reaching about 0.5 r_ta, with the rest unsettled and drained. That echoes the finite-age fractions (CFG557: 0.8→0.5) and class A's rate-limited partial fill (CFG539). It is a clue, not a result.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
