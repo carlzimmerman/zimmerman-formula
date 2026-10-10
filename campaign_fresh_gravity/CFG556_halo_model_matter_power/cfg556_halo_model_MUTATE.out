@@ -1,0 +1,40 @@
+CFG556 halo model (MUTATE) -- FROZEN_CRITERIA.md (77ec620e0). kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed.
+Om 0.31377  f_b 0.15713  rho_m 8.7083e+10 Msun/h/(Mpc/h)^3  Delta_ta 11.81  A_miss 0.2315  int n b M_ta/rho 1.3188  int n M/rho 0.6262  mean M_ta/M200m (1e12..1e15) 1.747
+
+C1 sigma8(P_lin) 0.81109 vs 0.811: rel 1.1e-04 (<= 1e-3) -> PASS
+C2 2-halo I(k=1e-3): L-std 1.000000, L-ta 1.000000 -> PASS (framework cases checked below)
+C4 numerical vs analytic truncated-NFW U(k), M = 1e11/1e13/1e15, k 0.05-3: max rel 7.0e-06 (<= 1e-3) -> PASS
+
+C5 (reported) P_lin vs S0 z_i spectrum / D(z_i)^2:
+  N256: median 1.009, range 0.960-1.080 over 14 bins
+  N512: median 0.990, range 0.846-1.063 over 14 bins
+
+Validation: LCDM halo model (L-std) / S0 PM P(k) at z = 0 (particle = gravitating for S0):
+  N256 (k 0.1-1.0): 0.1:1.090  0.2:0.959  0.3:0.890  0.5:0.904  0.7:0.938  1:1.041  | min 0.871 max 1.090 -> GOOD;  sigma8 HM 0.9011 vs S0 0.9064
+  N512 (k 0.1-2.0): 0.1:1.071  0.2:1.167  0.3:0.944  0.5:0.903  0.7:0.951  1:0.996  1.5:1.110  2:1.223  | min 0.873 max 1.223 -> POOR;  sigma8 HM 0.9011 vs S0 0.8754
+
+Halo-model framework / LCDM.  PRIMARY R = 1 + (P_F,ta - P_L,ta)/P_L,std; E = max(R-1), D = min(R-1) over 0.05 <= k <= 1.
+
+[canonical] MUTATE
+  canonical|primary                  E +0.715 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.553 D +0.002 | s8 ratio 1.0402  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.002  0.1:1.008  0.2:1.044  0.3:1.124  0.35:1.180  0.4:1.243  0.5:1.375  0.7:1.589  1:1.716  1.5:1.660  2:1.532  3:1.279
+  canonical|M1_lta                   E +0.000 (k 0.05)  D +0.000 (k 0.05)  | ratio-form E +0.000 D +0.000 | s8 ratio 1.0000  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.000  0.1:1.000  0.2:1.000  0.3:1.000  0.35:1.000  0.4:1.000  0.5:1.000  0.7:1.000  1:1.000  1.5:1.000  2:1.000  3:1.000
+  canonical|M2_bare_noedge           E +9.746 (k 0.21)  D +2.476 (k 0.99)  | ratio-form E +8.713 D +1.915 | s8 ratio 3.2060  I(1e-3) 3.17069  capped 0
+      R(k): 0.05:10.284  0.1:10.461  0.2:10.738  0.3:10.527  0.35:10.179  0.4:9.694  0.5:8.468  0.7:5.942  1:3.425  1.5:1.692  2:1.061  3:0.607
+  canonical|M3_noshell               E +1.536 (k 0.54)  D +0.924 (k 0.05)  | ratio-form E +0.987 D +0.867 | s8 ratio 1.4690  I(1e-3) 1.36570  capped 0
+      R(k): 0.05:1.922  0.1:1.984  0.2:2.161  0.3:2.346  0.35:2.420  0.4:2.476  0.5:2.532  0.7:2.480  1:2.248  1.5:1.895  2:1.648  3:1.305
+  M1 max|R-1| 0.0e+00 (<= 1e-10) -> BITES;  M2 E +9.746 vs primary +0.715 -> BITES (M_ball/M_ta at logM_ta 12/14: 2.44/3.04);  M3 max|dR| (0.3-1) 1.240 (>= 0.01) -> BITES
+
+[alt] MUTATE
+  alt|primary                        E +0.883 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.683 D +0.002 | s8 ratio 1.0463  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.002  0.1:1.008  0.2:1.049  0.3:1.140  0.35:1.204  0.4:1.276  0.5:1.431  0.7:1.696  1:1.885  1.5:1.888  2:1.788  3:1.551
+  alt|M1_lta                         E +0.000 (k 0.05)  D +0.000 (k 0.05)  | ratio-form E +0.000 D +0.000 | s8 ratio 1.0000  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.000  0.1:1.000  0.2:1.000  0.3:1.000  0.35:1.000  0.4:1.000  0.5:1.000  0.7:1.000  1:1.000  1.5:1.000  2:1.000  3:1.000
+  alt|M2_bare_noedge                 E +12.020 (k 0.22)  D +3.246 (k 0.99)  | ratio-form E +10.708 D +2.510 | s8 ratio 3.5279  I(1e-3) 3.48136  capped 0
+      R(k): 0.05:12.409  0.1:12.635  0.2:13.002  0.3:12.781  0.35:12.373  0.4:11.796  0.5:10.322  0.7:7.258  1:4.184  1.5:2.054  2:1.278  3:0.726
+  alt|M3_noshell                     E +1.768 (k 0.58)  D +1.018 (k 0.05)  | ratio-form E +1.191 D +0.955 | s8 ratio 1.5136  I(1e-3) 1.39722  capped 0
+      R(k): 0.05:2.016  0.1:2.085  0.2:2.287  0.3:2.504  0.35:2.595  0.4:2.667  0.5:2.751  0.7:2.737  1:2.534  1.5:2.196  2:1.951  3:1.598
+  M1 max|R-1| 0.0e+00 (<= 1e-10) -> BITES;  M2 E +12.020 vs primary +0.883 -> BITES (M_ball/M_ta at logM_ta 12/14: 2.68/3.34);  M3 max|dR| (0.3-1) 1.394 (>= 0.01) -> BITES
+
+MUTATE: all teeth bite -> True

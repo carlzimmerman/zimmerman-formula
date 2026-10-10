@@ -1,0 +1,103 @@
+CFG556 halo model  -- FROZEN_CRITERIA.md (77ec620e0). kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed.
+Om 0.31377  f_b 0.15713  rho_m 8.7083e+10 Msun/h/(Mpc/h)^3  Delta_ta 11.81  A_miss 0.2315  int n b M_ta/rho 1.3188  int n M/rho 0.6262  mean M_ta/M200m (1e12..1e15) 1.747
+
+C1 sigma8(P_lin) 0.81109 vs 0.811: rel 1.1e-04 (<= 1e-3) -> PASS
+C2 2-halo I(k=1e-3): L-std 1.000000, L-ta 1.000000 -> PASS (framework cases checked below)
+C4 numerical vs analytic truncated-NFW U(k), M = 1e11/1e13/1e15, k 0.05-3: max rel 7.0e-06 (<= 1e-3) -> PASS
+
+C5 (reported) P_lin vs S0 z_i spectrum / D(z_i)^2:
+  N256: median 1.009, range 0.960-1.080 over 14 bins
+  N512: median 0.990, range 0.846-1.063 over 14 bins
+
+Validation: LCDM halo model (L-std) / S0 PM P(k) at z = 0 (particle = gravitating for S0):
+  N256 (k 0.1-1.0): 0.1:1.090  0.2:0.959  0.3:0.890  0.5:0.904  0.7:0.938  1:1.041  | min 0.871 max 1.090 -> GOOD;  sigma8 HM 0.9011 vs S0 0.9064
+  N512 (k 0.1-2.0): 0.1:1.071  0.2:1.167  0.3:0.944  0.5:0.903  0.7:0.951  1:0.996  1.5:1.110  2:1.223  | min 0.873 max 1.223 -> POOR;  sigma8 HM 0.9011 vs S0 0.8754
+
+Halo-model framework / LCDM.  PRIMARY R = 1 + (P_F,ta - P_L,ta)/P_L,std; E = max(R-1), D = min(R-1) over 0.05 <= k <= 1.
+
+[canonical]
+  canonical|census|cen               E +0.715 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.553 D +0.002 | s8 ratio 1.0402  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.002  0.1:1.008  0.2:1.044  0.3:1.124  0.35:1.180  0.4:1.243  0.5:1.375  0.7:1.589  1:1.716  1.5:1.660  2:1.532  3:1.279
+  canonical|census|emg               E +0.077 (k 0.58)  D -0.009 (k 0.99)  | ratio-form E +0.049 D -0.007 | s8 ratio 1.0072  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.001  0.1:1.002  0.2:1.012  0.3:1.032  0.35:1.043  0.4:1.054  0.5:1.072  0.7:1.069  1:0.988  1.5:0.815  2:0.678  3:0.496
+  canonical|census|s25               E +0.671 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.519 D +0.002 | s8 ratio 1.0381  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.002  0.1:1.007  0.2:1.042  0.3:1.118  0.35:1.171  0.4:1.231  0.5:1.355  0.7:1.556  1:1.671  1.5:1.611  2:1.484  3:1.238
+  canonical|census|s55               E +0.572 (k 0.99)  D +0.001 (k 0.05)  | ratio-form E +0.442 D +0.001 | s8 ratio 1.0331  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.001  0.1:1.006  0.2:1.036  0.3:1.103  0.35:1.149  0.4:1.200  0.5:1.308  0.7:1.479  1:1.572  1.5:1.508  2:1.390  3:1.167
+  canonical|fret1|cen                E +0.882 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.682 D +0.002 | s8 ratio 1.0470  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.002  0.1:1.009  0.2:1.049  0.3:1.141  0.35:1.206  0.4:1.278  0.5:1.432  0.7:1.695  1:1.884  1.5:1.910  2:1.863  3:1.778
+  canonical|census|cen|r200scope     E -0.000 (k 0.05)  D -0.081 (k 0.99)  | ratio-form E -0.000 D -0.081 | s8 ratio 0.9973  I(1e-3) 1.00000  capped 53
+      R(k): 0.05:1.000  0.1:1.000  0.2:0.998  0.3:0.995  0.35:0.993  0.4:0.990  0.5:0.982  0.7:0.960  1:0.918  1.5:0.848  2:0.791  3:0.699
+
+[alt]
+  alt|census|cen                     E +0.883 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.683 D +0.002 | s8 ratio 1.0463  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.002  0.1:1.008  0.2:1.049  0.3:1.140  0.35:1.204  0.4:1.276  0.5:1.431  0.7:1.696  1:1.885  1.5:1.888  2:1.788  3:1.551
+  alt|census|emg                     E +0.146 (k 0.67)  D +0.001 (k 0.05)  | ratio-form E +0.097 D +0.001 | s8 ratio 1.0124  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.001  0.1:1.003  0.2:1.018  0.3:1.047  0.35:1.066  0.4:1.085  0.5:1.119  0.7:1.146  1:1.086  1.5:0.916  2:0.771  3:0.572
+  alt|census|s25                     E +0.838 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.648 D +0.002 | s8 ratio 1.0444  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.002  0.1:1.008  0.2:1.047  0.3:1.134  0.35:1.196  0.4:1.265  0.5:1.413  0.7:1.664  1:1.840  1.5:1.835  2:1.734  3:1.501
+  alt|census|s55                     E +0.737 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.569 D +0.002 | s8 ratio 1.0399  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.002  0.1:1.007  0.2:1.042  0.3:1.121  0.35:1.176  0.4:1.238  0.5:1.370  0.7:1.590  1:1.738  1.5:1.721  2:1.624  3:1.412
+  alt|fret1|cen                      E +1.047 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.809 D +0.002 | s8 ratio 1.0527  I(1e-3) 1.00000  capped 0
+      R(k): 0.05:1.002  0.1:1.009  0.2:1.054  0.3:1.155  0.35:1.227  0.4:1.308  0.5:1.484  0.7:1.797  1:2.051  1.5:2.143  2:2.130  3:2.080
+  alt|census|cen|r200scope           E -0.000 (k 0.05)  D -0.047 (k 0.99)  | ratio-form E -0.000 D -0.047 | s8 ratio 0.9985  I(1e-3) 1.00000  capped 32
+      R(k): 0.05:1.000  0.1:1.000  0.2:0.999  0.3:0.997  0.35:0.996  0.4:0.994  0.5:0.989  0.7:0.976  1:0.952  1.5:0.917  2:0.889  3:0.826
+
+C3 mass conservation |M_F(<r_ta) - M_ta|/M_ta, every variant, every 4th mass: max 1.1e-16 (<= 1e-6) -> PASS
+C2 framework cases I(1e-3): max |I-1| 3.4e-07 -> PASS
+
+M_F(<r)/M_L(<r) (census, E-cen) at r/r_ta = 0.05 0.1 0.2 0.3 0.5 1; r_e/r_ta; q:
+  canonical logM_ta 12: 0.91 0.91 1.08 1.27 1.20 1.00 | r_e/r_ta 0.350 (r200m/r_ta 0.331), q 0.62, f_ret 0.10
+  canonical logM_ta 13: 0.57 0.75 1.18 1.59 1.27 1.00 | r_e/r_ta 0.291 (r200m/r_ta 0.327), q 0.76, f_ret 0.32
+  canonical logM_ta 14: 0.52 0.76 1.24 1.75 1.34 1.00 | r_e/r_ta 0.300 (r200m/r_ta 0.322), q 0.90, f_ret 0.70
+  canonical logM_ta 15: 0.40 0.57 0.90 1.25 1.39 1.00 | r_e/r_ta 0.395 (r200m/r_ta 0.318), q 0.96, f_ret 0.90
+  alt       logM_ta 12: 0.99 1.00 1.19 1.39 1.21 1.00 | r_e/r_ta 0.318 (r200m/r_ta 0.331), q 0.65, f_ret 0.10
+  alt       logM_ta 13: 0.64 0.85 1.36 1.61 1.27 1.00 | r_e/r_ta 0.264 (r200m/r_ta 0.327), q 0.78, f_ret 0.32
+  alt       logM_ta 14: 0.59 0.87 1.44 1.76 1.34 1.00 | r_e/r_ta 0.273 (r200m/r_ta 0.322), q 0.90, f_ret 0.70
+  alt       logM_ta 15: 0.46 0.66 1.04 1.44 1.39 1.00 | r_e/r_ta 0.359 (r200m/r_ta 0.318), q 0.96, f_ret 0.90
+
+PM-matched halo model (f_ret = 1, E-cen, framework only for log M_ta >= 12.3 (512^3) / 13.2 (256^3)) vs CFG555 PM gravitating ratio:
+  PMmatched|N512|canonical           E +0.881 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.681 D +0.002 | s8 ratio 1.0469  I(1e-3) 1.00000
+      R(k): 0.05:1.002  0.1:1.009  0.2:1.049  0.3:1.141  0.35:1.205  0.4:1.278  0.5:1.432  0.7:1.695  1:1.884  1.5:1.910  2:1.862  3:1.774
+  PMmatched|N512|alt                 E +1.046 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.809 D +0.002 | s8 ratio 1.0526  I(1e-3) 1.00000
+      R(k): 0.05:1.002  0.1:1.009  0.2:1.054  0.3:1.155  0.35:1.227  0.4:1.308  0.5:1.484  0.7:1.797  1:2.050  1.5:2.142  2:2.129  3:2.077
+  PMmatched|N256|canonical           E +0.876 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.677 D +0.002 | s8 ratio 1.0465  I(1e-3) 1.00000
+      R(k): 0.05:1.002  0.1:1.009  0.2:1.049  0.3:1.140  0.35:1.204  0.4:1.277  0.5:1.430  0.7:1.692  1:1.878  1.5:1.897  2:1.836  3:1.699
+  PMmatched|N256|alt                 E +1.041 (k 0.99)  D +0.002 (k 0.05)  | ratio-form E +0.805 D +0.002 | s8 ratio 1.0523  I(1e-3) 1.00000
+      R(k): 0.05:1.002  0.1:1.009  0.2:1.053  0.3:1.154  0.35:1.226  0.4:1.307  0.5:1.482  0.7:1.794  1:2.045  1.5:2.129  2:2.102  3:2.000
+  425_R3_can_512     N512 canonical PM pdev 0.163 at k 0.32: r_PM 1.163 vs HM 1.162 (primary census 1.142); k=1: r_PM 0.847 vs HM 1.884; fraction +0.99 -> NOT REPRODUCED
+      k: PM/HM  0.1:1.030/1.009  0.2:1.091/1.049  0.3:1.151/1.141  0.4:1.158/1.278  0.5:1.132/1.432  0.7:1.027/1.695  1:0.851/1.884
+  439_A_alt_512      N512 alt       PM pdev 0.193 at k 0.41: r_PM 1.193 vs HM 1.325 (primary census 1.291); k=1: r_PM 0.872 vs HM 2.050; fraction +1.69 -> NOT REPRODUCED
+      k: PM/HM  0.1:1.030/1.009  0.2:1.099/1.054  0.3:1.172/1.155  0.4:1.191/1.308  0.5:1.162/1.484  0.7:1.057/1.797  1:0.876/2.050
+  439_B_DEcan_512    N512 canonical PM pdev 0.167 at k 0.32: r_PM 1.167 vs HM 1.162 (primary census 1.142); k=1: r_PM 0.851 vs HM 1.884; fraction +0.97 -> NOT REPRODUCED
+      k: PM/HM  0.1:1.035/1.009  0.2:1.098/1.049  0.3:1.156/1.141  0.4:1.163/1.278  0.5:1.137/1.432  0.7:1.031/1.695  1:0.855/1.884
+  460_can_512_s360   N512 canonical PM pdev 0.184 at k 0.97: r_PM 0.816 vs HM 1.875 (primary census 1.713); k=1: r_PM 0.803 vs HM 1.884; fraction -4.76 -> NOT REPRODUCED
+      k: PM/HM  0.1:1.016/1.009  0.2:1.072/1.049  0.3:1.126/1.141  0.4:1.143/1.278  0.5:1.099/1.432  0.7:0.978/1.695  1:0.806/1.884
+  518_DCcan_512      N512 canonical PM pdev 0.150 at k 0.32: r_PM 1.150 vs HM 1.162 (primary census 1.142); k=1: r_PM 0.832 vs HM 1.884; fraction +1.08 -> NOT REPRODUCED
+      k: PM/HM  0.1:1.027/1.009  0.2:1.081/1.049  0.3:1.140/1.141  0.4:1.145/1.278  0.5:1.116/1.432  0.7:1.009/1.695  1:0.836/1.884
+  424_TAcan          N256 canonical PM pdev 0.075 at k 0.35: r_PM 1.075 vs HM 1.201 (primary census 1.177); k=1: r_PM 0.948 vs HM 1.878; fraction +2.68 -> NOT REPRODUCED
+      k: PM/HM  0.1:1.008/1.009  0.2:1.033/1.049  0.3:1.061/1.140  0.4:1.070/1.277  0.5:1.062/1.430  0.7:1.018/1.692  1:0.950/1.878
+  424_TAalt          N256 alt       PM pdev 0.077 at k 0.41: r_PM 1.077 vs HM 1.324 (primary census 1.291); k=1: r_PM 0.964 vs HM 2.045; fraction +4.19 -> NOT REPRODUCED
+      k: PM/HM  0.1:1.007/1.009  0.2:1.032/1.053  0.3:1.059/1.154  0.4:1.075/1.307  0.5:1.072/1.482  0.7:1.032/1.794  1:0.966/2.045
+
+Verdict per footing (PRIMARY: census f_ret, E-cen, all halos):
+  canonical: INTRINSIC  VARIANT-SENSITIVE: canonical|census|cen|r200scope, canonical|census|emg, canonical|census|emg|ratioform
+     E +0.715 at k 0.99, D +0.002 at k 0.05; PM-matched reproduces a 512^3 PM run: False; validation 256/512: GOOD/POOR; s8 ratio 1.0402
+  alt: INTRINSIC  VARIANT-SENSITIVE: alt|census|cen|r200scope, alt|census|emg|ratioform
+     E +0.883 at k 0.99, D +0.002 at k 0.05; PM-matched reproduces a 512^3 PM run: False; validation 256/512: GOOD/POOR; s8 ratio 1.0463
+
+POST-FREEZE (reported, not a verdict input): CFG530 R5 engine (census f_ret, draw only from the shell r_e..r_ta), gravitating r = P/P_S0 from cfg555_results.json, vs halo-model PRIMARY R:
+  530_LRcan_L100_N256    pdev 0.661 (k 0.63); r(0.5) 1.566 vs HM 1.375; r(1) 1.504 vs HM 1.716
+  530_LRalt_L100_N256    pdev 0.634 (k 0.63); r(0.5) 1.541 vs HM 1.431; r(1) 1.526 vs HM 1.885
+  530_LRcan_L100_N512    pdev 0.570 (k 0.69); r(0.5) 1.485 vs HM 1.375; r(1) 1.487 vs HM 1.716
+  530_LRalt_L100_N512    pdev 0.655 (k 0.69); r(0.5) 1.558 vs HM 1.431; r(1) 1.560 vs HM 1.885
+  530_LRcan_L200_N256    pdev 0.336 (k 0.57); r(0.5) 1.291 vs HM 1.375; r(1) 1.273 vs HM 1.716
+  530_LRalt_L200_N256    pdev 0.388 (k 0.57); r(0.5) 1.332 vs HM 1.431; r(1) 1.343 vs HM 1.885
+  530_LRcan_L200_N512    pdev 0.544 (k 0.57); r(0.5) 1.499 vs HM 1.375; r(1) 1.384 vs HM 1.716
+  530_LRalt_L200_N512    pdev 0.596 (k 0.57); r(0.5) 1.546 vs HM 1.431; r(1) 1.408 vs HM 1.885
+
+Drivers of the PRIMARY Delta R (1-halo / 2-halo by log M_ta decade):
+  canonical k=0.35: dR +0.184 (sum check -2.6e-16)  13-14:+0.003/+0.004  14-15:+0.071/+0.020  15-16:+0.075/+0.011
+  canonical k=1.0: dR +0.715 (sum check 1.4e-15)  12-13:+0.001/+0.001  13-14:+0.056/+0.006  14-15:+0.567/+0.022  15-16:+0.061/+0.002
+  alt       k=0.35: dR +0.208 (sum check 3.7e-16)  13-14:+0.003/+0.004  14-15:+0.077/+0.022  15-16:+0.090/+0.013
+  alt       k=1.0: dR +0.883 (sum check 3.3e-16)  12-13:+0.001/+0.001  13-14:+0.060/+0.007  14-15:+0.653/+0.025  15-16:+0.134/+0.003
