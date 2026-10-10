@@ -30,7 +30,12 @@
      "value": "h_rar, DH_MONO floor, nu_mono"
     }
    ],
-   "reviewer": "independent agent, 2026-10-08"
+   "reviewer": "independent agent, 2026-10-08",
+   "resolution": {
+    "status": "FIXED in v2.2 (2026-10-10, not yet published)",
+    "new_text": "with the kernel $\\nu_{\\rm mono}$ (equal to $1/(1-e^{-\\sqrt y})$ for $y\\lesssim2.5$, with a monotonic tail above; it differs only in the near-Newtonian regime, by $\\le2.4\\%$ at $y=10$--$30$)",
+    "check": "PAPER45_audit.py row 'kernel' recomputes nu_mono from cfg424_pm.py: Y_P = 2.54, agreement < 2e-4 for y <= 2.5, max difference 2.42% at y ~ 14 (global)."
+   }
   },
   "ec7febcffbed2bde": {
    "section": "front",
@@ -348,7 +353,12 @@
    "verdict": "MATCH",
    "note": "For nu = 1/(1-e^{-s}), M_dyn = M_b/(1-e^{-s}), so M_ph = M_b/(e^s-1).",
    "sources": [],
-   "reviewer": "independent agent, 2026-10-08"
+   "reviewer": "independent agent, 2026-10-08",
+   "resolution": {
+    "status": "CLARIFIED in v2.2 (2026-10-10, not yet published)",
+    "new_text": "(This closed form uses $1/(1-e^{-\\sqrt y})$; $\\nu_{\\rm mono}$ equals it wherever $y=s^2\\lesssim2.5$, which includes the edge, $y\\approx0.03$.)",
+    "check": "Closed form unchanged; the engine kernel agrees with it to < 1e-6 at the edge (PAPER45_audit.py row 'kernel')."
+   }
   },
   "af425a9a4ffc25ff": {
    "section": "The rule",

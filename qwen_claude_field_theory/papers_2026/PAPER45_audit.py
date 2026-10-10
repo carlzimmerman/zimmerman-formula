@@ -98,4 +98,16 @@ row("CFG460 second 512^3 realisation: committed particle 1.0037 / 0.040 (GROWTH 
     and abs(c460["s8"] - GR["460_can_512_s360"]["particle"]["s8"]) < 1e-7 and abs(c460["pdev"] - GR["460_can_512_s360"]["particle"]["pdev"]) < 1e-7)
 row("v2.2 version line + scope note (comparison rows not re-measured)", "version 2.2" in tex and "Correction (2026-10-10)" in tex and "they were not re-measured" in tex and "Fixes Structure Growth" not in tex
     and "is therefore not fixed by this rule" in tex)
+# ---- v2.2 kernel wording: nu_mono (engine) vs 1/(1-exp(-sqrt y)), recomputed from the engine source
+_src = open(os.path.join(C, "CFG424_turnaround_catchment", "cfg424_pm.py")).read()
+_ns = {"np": __import__("numpy"), "math": math}; from scipy.optimize import brentq as _bq; _ns["brentq"] = _bq
+exec(_src[_src.index("def h_rar"):_src.index("# ---------------------------------------------------------------- linear theory")], _ns)
+import numpy as _np
+_nu = lambda y: 1 / (1 - _np.exp(-_np.sqrt(y)))
+_lo = _np.logspace(-3, _np.log10(2.5), 400); _hi = _np.linspace(10, 30, 2001); _all = _np.logspace(-3, 4, 7001)
+_d = lambda y: _ns["nu_mono"](y) / _nu(y) - 1
+_ye = (1 / 5.85) ** 2
+row("kernel: Y_P 2.54; nu_mono = analytic for y <= 2.5 (<2e-4) and at the edge y~0.03; max diff 2.4% (y=10-30, also global)",
+    round(_ns["Y_P"], 2) == 2.54 and _np.abs(_d(_lo)).max() < 2e-4 and abs(_d(_ye)) < 1e-6 and round(_d(_hi).max() * 100, 1) == 2.4 and _d(_all).max() <= _d(_hi).max() + 1e-6
+    and "\\nu_{\\rm mono}$ (equal to $1/(1-e^{-\\sqrt y})$ for $y\\lesssim2.5$" in tex and "$\\le2.4\\%$ at $y=10$--$30$" in tex and "$y\\approx0.03$" in tex)
 print(f"\n{sum(rows)}/{len(rows)} audit rows pass"); sys.exit(0 if all(rows) else 1)
