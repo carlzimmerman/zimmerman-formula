@@ -45,6 +45,8 @@
 
 - **a₀ at z 1.5–2 (CFG535):** no crisp test exists on disk or one small download away. Stacked outer curves are limited by the pressure prescription (it shifts the slope by 0.19–0.29, against a flat-vs-rival gap of 0.17–0.20). Forecast power is Z_eff 0.3–0.6; the Übler+17 within-sample δ(z) is NON-DIAGNOSTIC. The crisp route stays the CFG571 sealed ALMA predictions and new low-V observations.
 
+- **Cosmic-time triangulation (CFG547):** compact, gas-rich baryons under an unchanged a₀ reproduce the published decline of f_DM(<R_e) with z (−0.086 predicted vs −0.080 ± 0.035 observed, RC100). That is route-dependent, so NOT DIAGNOSTIC. The rival a₀ ∝ H(z) predicts almost no decline (tension Z 2.2–3.2 on both routes, not excluded). There is no robust switch-on epoch and no non-trivial dark-energy/galaxy coincidence; a₀/cH is tautological. One candidate for a future lane: at z ≳ 2 settling cannot yet have filled to the census edge (rate-dependent).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
