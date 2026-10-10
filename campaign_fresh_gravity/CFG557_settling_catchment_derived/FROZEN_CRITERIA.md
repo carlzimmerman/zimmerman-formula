@@ -1,0 +1,66 @@
+# CFG557 FROZEN CRITERIA: which cold energy can have settled by today? Derive the catchment, then test that one choice everywhere
+
+Frozen 2026-10-10, before any script is written or any CFG557 number is computed. This file is committed alone and never edited afterwards; later notes go in the README as dated disclosures.
+
+Standing settings: κ = ½ is FITTED; footings a0 = 9.3603e-11 (canonical) and 1.1312e-10 (alt) m/s², scored separately, never pooled; flat a0; kernel ν_mono (the analytic 1/(1 − e^−√y) where the copied machinery uses it); candidate B; G9 (only real mass gravitates); no EFE. The cold energy's MASS is still required; no particle species. Not "theory closed"; nothing here says the data favour the framework. Other lanes are read-only (imported or exec'd, never edited). No downloads, no PM runs; nice -n 10, ≤ 4 threads.
+
+## 0. The lever and the rule
+
+CFG556: with each halo's whole turnaround-catchment cold supply (1 − f_b) M_ta settling inside r_e ≈ r200m, the halo-model gravitating power is +72–89% at k = 1 and σ8 +4.0–4.6% (INTRINSIC); with a catchment = r200m ball the sign flips (−8% / −5%). The supply amount (A6, the catchment) is inherited (CFG541 open item 8). OWNER RULE: no knob scans. The catchment is DERIVED below from the framework's own definitions and one choice is tested everywhere. Alternatives are context only, never verdicts.
+
+## 1. Derivation (task 1)
+
+**D1, what candidate B's switch selects (analytic + numeric check).** The switch is B = {λ₂ ≥ (Δ_ta − 1)/3} (CFG541 E8), λ's the eigenvalues of ∂i∂jφ with ∇²φ = δ. For a spherically symmetric profile the eigenvalues are δ̄(<r)/3 (twice, tangential) and δ(r) − 2δ̄(<r)/3 (radial). For a declining profile δ(r) < δ̄(<r), so λ₂ = δ̄(<r)/3 and B = {1 + δ̄(<r) ≥ Δ_ta} = the turnaround ball. Numeric check on the CFG556 extended NFW at log M200m = 11, 12, 13, 14, 15: the radius where λ₂ crosses (Δ_ta − 1)/3 equals r_ta to ≤ 1e-3 (control D1). Consequence: B ∩ C = the turnaround ball, so "the switch acts inside bound systems" selects candidate (a), not the virial/splashback ball (b), as the *mobility region*. Candidate (b) would need a redefinition of B (a posit) and is reported as context only.
+
+**D2, what the stationary state is.** CFG541 V4: the minimiser of F at fixed catchment mass is the inside-out fill using the whole B ∩ C cold energy, α-free. So (a) is the α-free STATIONARY answer. The z = 0 state equals it only for shells whose cold energy has had time to reach the edge. That is a kinematic question, answered by D3.
+
+**D3, the dynamical catchment r_c(M, z) (candidate c).** Each mass shell (enclosed mass M, conserved until shell crossing) enters B ∩ C when it turns around (B grows with the turnaround radius). Its cold energy can be counted as settled at the observation epoch t_obs only if
+  t_reach(M; r_e) + t_cap(r_e; α) ≤ t_obs,
+where:
+- **t_reach** is the time at which the shell's spherical-collapse trajectory first reaches r ≤ r_e (the halo's edge at t_obs, physical radius) after turnaround; if the shell turned around inside r_e, t_reach = t_ta. **Free-fall-limited**: the cold energy cannot reach r_e earlier than its own shell does (inward transport no faster than free fall; CFG541 open item 3's inertia limit). The trajectory comes from r̈ = −GM/r² + Ω_Λ H0² r in the ΛCDM background (h = 0.6736, Ω_m = 0.14237/h², flat, no radiation), from the growing mode at a_i = 1e-3, for the shell's linear overdensity δ_L (extrapolated to t_obs with the ΛCDM D(a)). No free constants.
+- **δ_L(M)** comes from the EPS main-progenitor ODE in the barrier variable ω (Neistein, van den Bosch & Dekel 2006 form, recalled, PROVISIONAL): dM/dω = −√(2/π) M / √(S(M/q) − S(M)), q = 2.2, S = σ²(M) at t_obs from the CFG556 linear spectrum (Eisenstein–Hu no-wiggle, σ8 = 0.811, copied verbatim). It starts at (ω0 = δ_ta,lin(t_obs), M_ta) where δ_ta,lin(t_obs) is the δ_L whose shell turns around exactly at t_obs (same ODE). A shell of mass M then has δ_L(M) = ω(M). The barrier label is ω only, so the same ODE serves the turnaround and collapse barriers. The ΛCDM accretion history is the framework's: outside B ∩ C cold energy behaves as cold matter (T6), and R3 conserves the mass inside r_ta, so the turnaround dynamics is ΛCDM's. q = 1.6 and 3.0 are reported as an inherited-input bracket (not a scan; no verdict use).
+- **r_e** is the supply-exhaustion edge with the derived supply (point-mass form, CFG541 T2a emergent): r_e = r_M / ln(1 + M_b/(s_c (1 − f_b) M_ta)), r_M = √(G M_b/a0), M_b = f_ret f_b M_ta with census f_ret = CFG416 `fret_of(log10 M_ta [Msun/h])` (copied verbatim). s_c = M_c/M_ta enters r_e, and r_e enters M_c: **s_c is the fixed point** of this loop (iterated from s_c = 1 to |Δs_c| < 1e-6).
+- **t_cap** = 1/Γ at the edge, the CFG541 linear relaxation rate Γ = α (ρ_c/ρ_m) √(4πG ρ_m), with the edge density of the point-mass deep-law phantom ρ_m = V_f²/(4πG r_e²), V_f = (G M_b a0)^{1/4}, ρ_c/ρ_m = 1: t_cap = r_e/(α V_f). α ∈ {0.5, 1, 2} (CFG541: O(1) FREE) and α → ∞ (t_cap = 0, the **free-fall ceiling**, α-free).
+- M_c is the largest shell mass satisfying the condition (shells on a grid of M/M_ta from 0.02 to 1; linear interpolation of the crossing). r_c is the radius holding M_c in the CFG556 extended NFW of the same M_ta (Δ_ta = 11.81, Duffy08 c200m). Report r_c/r_ta and r_c/r200m vs log M_ta = 11–15 at z = 0, both footings, all four α values; and M_c/M200m. Also reported for context: the shell that collapses at t_obs (δ_L = δ_c), and the More, Diemer & Kravtsov 2015 splashback mass for the PM-like accretion rate (recalled, PROVISIONAL).
+
+**Controls (derivation).** K1: Δ_ta(z = 0) from the ODE (mean enclosed overdensity at turnaround relative to ρ̄_m) within 0.5% of 11.816 (CFG541). K2: δ_c(z = 0) (linear δ of the shell that collapses at t0) in [1.670, 1.690]. K3: t0 within 0.3% of 13.796 Gyr (CFG547). K4: the fixed point converges for every grid object. K5 (reported): main-progenitor M(z = 1)/M0 at log M = 12 and 14.
+
+**Derivation verdict rule (frozen).**
+- **(a) kinematically excluded at z = 0** if the free-fall ceiling s_c,∞ < 0.95 at every log M_ta in 11–15 (z = 0, both footings).
+- **α-sensitivity:** A = min over log M_ta 11–15 (z = 0, both footings) of s_c(α = 0.5)/s_c(α = 2).
+  - A ≥ 0.90 → **CATCHMENT DERIVED (c)**; the tested choice is s_c(α = 1).
+  - A < 0.90 → **NOT DERIVABLE exactly (needs α)**; the single tested choice is the α-free **free-fall ceiling s_c,∞**, labelled DERIVED UPPER BOUND. Every test is then read as "at the most settled supply kinematics allows"; α = 1 results are reported for the halo model only, as context.
+- The tested choice is written s_c*(M_ta, z, footing). It is applied with each object's own M_ta (census-inferred for observed systems) and epoch.
+
+## 2. Tests with the tested catchment only (task 2)
+
+All recomputations change ONE thing in the source lane: the settled supply × s_c*. Everything else is the source lane's machinery, exec'd or imported read-only.
+
+**(i) Growth: CFG556 halo model.** CFG556's primary structure (census f_ret, E-cen edge, drained shell R5, mass conserved inside r_ta, R = 1 + (P_F,ta − P_L,ta)/P_L,std) with supply (1 − f_b) M_ta s_c*(M_ta, 0) and r_e = r_M/ln(1 + f_ret f_b/((1 − f_b) s_c*)). **PASS** iff max |R − 1| ≤ 0.10 over 0.05 ≤ k ≤ 1 h/Mpc AND |σ8,F/σ8,L − 1| ≤ 0.05; per footing. Reported (no verdict): ratio form P_F,ta/P_L,ta; α = 1 and α = 0.5 catchments; supply = M200m/M_ta (candidate b, ta scope); drivers by mass decade; M_F/M_L at r/r_ta = 0.1, 0.2, 0.3, 0.5.
+
+**(ii) Groups: CFG543 P2** (the addendum's adopted reading: Tian+26 M_bar = member stars + observed X-ray gas, complete; progenitor-containment supply (1 − f_b)/f_b · M_bar/0.10), with supply × s_c*(M_ta,group, 0), M_ta,group = M_bar/(0.10 f_b) and s_c* computed self-consistently with that group's own baryons (M_b = M_bar, f = 0.10 in the edge formula). CFG543's statistics (Δ̄, Z = Δ̄/σ_tot). **PASS** iff CLOSES (|Z| < 2), per footing. Reported: the addendum's aperture variant (σ inside R < Re, k = 1 and 1.563) and the Re/k(c) conversions; s_c* at the progenitor (galaxy-floor) mass instead of the group mass.
+
+**(iii) KiDS: CFG529 machinery** (exec'd read-only up to its controls, as CFG531 does), f30 sample, measured f30 leakage, constructions A (CFG503) and B (CFG504). New per-group direct own-profile tables for the derived edge r_e = r_M/ln(1 + f f_b/((1 − f_b) s_c*)), f = census f_ret(M_b), s_c* at the group's census M_ta and lens redshift, min(r_e, r_ta), through CFG529's own `variants()` path. **PASS** iff p > 0.01 in both constructions (CFG529's absolute rule), per footing. Reported: Δ vs CFG529's best sharp-edge node (placement statistic, Δ ≤ 4), inner-9 / outer-6 χ² split. **Inner bins / early types:** the derived edge radius in kpc per f30 lens, split early / late (CFG531's type flag). If every derived edge lies beyond the K-in band's outer radius (98 kpc), the own profile in the K-in bins is identical to CFG531's and its ε (+0.342 / +0.231) and early-type split are UNCHANGED BY CONSTRUCTION; otherwise the fraction of lenses with edges inside 98 kpc is reported and the inner-band χ² is the measure.
+- Control KK1: my table path reproduces T29's census direct tables (s_c = 1) for 20 random f30 groups to ≤ 1e-6 relative.
+
+**(iv) Milky Way: CFG532/553.** The derived MW edge with s_c*(M_ta,MW census, 0) through CFG513's Prof (supply COLD_PER_B M_b/f_ret × s_c*). **PASS (unchanged)** iff r_e > 30 kpc on both footings: then the rotation curves (CFG532) and K_z (CFG553) inside 30 kpc are identical by construction (the law inside the edge does not depend on the supply). Otherwise report the change.
+
+**(v) Local Group: CFG522 timing and CFG548 zero-velocity radius.** CFG522's M1 shared catchment (f_LG = fret_census(1.8e11)), each galaxy's settled supply × s_c* at its own share M_ta,i = M_b,i/(f_LG f_b), plus the **unsettled cold energy** (1 − s_c*)(1 − f_b) M_ta,i kept as mass (it is still inside the catchment; R3) with the CFG556 drained-shell shape (∝ M_L of the extended NFW of M_ta,i between r_e,i and r_ta,i). Timing via CFG522's `full_stats` (z_meas radial and z_full at v_tan 82.4 with σ_full). **Timing PASS** iff |z_full| < 2 on the footing. Reported: z_meas (strict radial), z_full,LMC, the variant with the unsettled shell omitted (a lower bound on the timing mass).
+- **Zero-velocity radius:** the LG mass inside R0 from the barycentre (point-mass settled parts + the fraction of each galaxy's unsettled shell inside R0, spherical-shell offset geometry), R0_pred from CFG548's own mass → R0 pairs (log-log interpolation of the JSON values), iterated; Z = (R0_pred − R0_meas)/σ_tot with CFG548's R0_meas and σ_tot. CFG548's diagnostic line (σ_tot/R0 ≤ 11.6%) is not met, so the ZVS is reported as NOT DIAGNOSTIC; the question answered is whether the mass moves toward the flow mass (ΔZ and M_in(R0)).
+
+**Overall (frozen):** does the single tested catchment satisfy growth AND groups AND KiDS AND MW AND LG timing? YES only if all five PASS on a footing; otherwise list which pass and which fail, per footing, and say plainly if it fixes some and breaks others.
+
+## 3. MUTATE (`CFG557_MUTATE=1`; separate `_MUTATE` outputs; exit 1 iff all teeth bite)
+
+- **MU1, catchment = turnaround (s_c ≡ 1):** the halo model reproduces CFG556's primary R(k) (both footings) to max |ΔR| ≤ 1e-10 and its σ8 ratios to 1e-10; groups reproduce CFG543's P2 means (+0.060 / +0.043 as stored in its JSON) to 1e-4; the LG pair with no shell reproduces CFG522's M1 z_full to 0.01.
+- **MU2, catchment = 0 (s_c ≡ 0, nothing settled):** in the halo model the cold energy then stays as cold matter in the L-ta shape, so R ≡ 1 to ≤ 1e-10 at every k; groups give the baryons-only Newtonian limit, within 0.005 dex of CFG543's stored Newtonian P2 mean.
+- **MU3, infinite age:** the derivation with t_obs → 10³ t0 must return s_c = 1 (to 1e-3) at every grid mass: the reduction comes only from the finite age, and the stationary state is (a).
+- MU1–MU3 are reported per footing. A MUTATE failure labels the lane NO LABEL.
+
+## 4. Outputs
+
+`cfg557_lib.py` (derivation library), `cfg557_derive.py`, `cfg557_tests.py` (halo model, groups, MW, LG), `cfg557_kids.py`; `.out` / `_MUTATE.out`; `cfg557_*results*.json`; `README.md`. Lane folder only, specific paths, committed with a message starting "CFG557 results:"; not pushed. KiDS tables cached outside git in `_external_data/cfg557_work/`.
+
+## 5. Pre-freeze disclosure (dated 2026-10-10)
+
+Read before freezing: CFG556 README/script, CFG541 EQUATIONS, CFG543 README + addendum, CFG547 README, CFG529/531 READMEs and table/score code structure, CFG522/548 READMEs, CFG539 robustness line ("coefficient acts as a knob"), THEORY_v1. Hand estimates made before freezing (no script run): (1) the spherical-tidal-tensor argument of D1 (B = turnaround ball); (2) τ at turnaround density ≈ 10 Gyr and a drift speed in the outer shell ≈ 50–230 α km/s; t_cap = r_e/(αV_f) ≈ 1.8/α Gyr for a MW-mass edge; (3) EdS reasoning that shells collapsing today turned around near t0/2, so s_c,∞ might be ≈ 0.4–0.6 and the α spread large; (4) the MW edge should stay ≫ 30 kpc; the mass inside the LG turnaround is conserved (R3), so the ZVS mass should barely move. None of these sets a threshold above.
