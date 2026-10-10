@@ -1,0 +1,127 @@
+CFG544 kinetic consistency of class-A settling
+MW_can: V_f 165.2 km/s, r_* 514.3 kpc, r_ta/r_* 2.430, M_cat/M_b 53.643, t_unit 3.043 Gyr; C4 |M_ph(<r_*)/M_cat - 1| = 1.04e-04; C1 sigma_eq^2/V_f^2 (deep, 100 r_M) = 0.5008
+MW_alt: V_f 173.3 km/s, r_* 468.1 kpc, r_ta/r_* 2.670, M_cat/M_b 53.643, t_unit 2.642 Gyr; C4 |M_ph(<r_*)/M_cat - 1| = 1.60e-04; C1 sigma_eq^2/V_f^2 (deep, 100 r_M) = 0.5007
+cluster_can: V_f 1168.4 km/s, r_* 3047.9 kpc, r_ta/r_* 2.676, M_cat/M_b 5.960, t_unit 2.551 Gyr; C4 |M_ph(<r_*)/M_cat - 1| = 1.47e-04; C1 sigma_eq^2/V_f^2 (deep, 100 r_M) = 0.5017
+cluster_alt: V_f 1225.1 km/s, r_* 2772.4 kpc, r_ta/r_* 2.942, M_cat/M_b 5.960, t_unit 2.213 Gyr; C4 |M_ph(<r_*)/M_cat - 1| = 9.79e-05; C1 sigma_eq^2/V_f^2 (deep, 100 r_M) = 0.5017
+
+Sympy:
+  K1_Dsigma2_along_u_plus_vs: -2*s2(x, t)*Derivative(u(x, t), x) - Derivative(q(x, t), x)/rho(x, t)
+  K1_no_drift_compression_term: True
+  K1_contains_dvs_dx: False
+  K1_note: drift-advected sigma^2 obeys D sigma^2/Dt = -2 sigma^2 u_x - q_x/rho with D along u + v_s: the drift compresses density without compression heating, so settled cold energy keeps its source dispersion
+  K3a_first_variation_equals_psi: True
+  K3a_hessian_equals_K_symmetric: True
+  K3a_note: two-sided: dF/drho_c = psi everywhere (no interval), Hessian = Coulomb kernel (positive) -> smooth convex gradient flow
+  K3b_by_parts_identity: True
+  K3c_identity: lap psi = 4 pi G (rho_ph - rho_c) = lap(Phi_ph - Phi_c) => psi = Phi_law - Phi (inside B∩C, isolated BCs); v_s = alpha tau (g_law - g)
+  K3d_OU_dissipation_is_J2_over_f: True
+  K3d_note: at fixed x the OU term is the gradient flow of int f (v^2/2 + T ln f) dv, dG_x/dt = -gamma int J^2/f <= 0; with T = sigma_J^2(x) varying in x there is no global E - T S conserved by Vlasov
+  K3e_dF_dt_Vlasov_integrand: psi_x*rho*u
+  K3e_dE_dt_drift_integrand: -Phi_x*alpha*psi_x*rho*tau
+  K3e_d(E-TS)_dt_drift_integrand_isothermal: -T*alpha*dlnq_x*psi_x*rho*tau + alpha*psi_x**2*rho*tau
+  K3e_Elaw_minus_F_equals_E_plus_const: True
+  K3e_signs: {'F under Vlasov': 'int rho u psi_x: sign of u relative to psi_x -> INDEFINITE', 'E under drift': '-alpha int rho tau psi_x Phi_x: negative for underfill (psi_x > 0), positive for overfill removal -> INDEFINITE', 'E - T S under drift': '+alpha int rho tau psi_x^2 - alpha T int rho tau psi_x (ln rho/rho_ph)_x: first term >= 0 -> INDEFINITE', 'E_law - F': 'equals E + const (sympy), so same as E -> INDEFINITE'}
+  K3_full_system_Lyapunov: NOT ESTABLISHED
+
+Runs (end state; shell 0.1-0.9 r_*):
+  MW_alt|C2_vlasov_eq                t  2.0 Gyr  logX +0.000  D +0.044  dlogX/dD last2 -0.003/+0.045  M(<r*)/Mph 0.928  r99 1.383  beta +0.22  sink -0.000  dE/E +6.6e-03  lim 0.0e+00  gate True  tD None  (2s)
+       s(r) bins: 1.18 1.15 1.17 1.15 1.08 1.07 1.05 1.01 0.95 0.93 0.87 0.86 0.84 0.83 0.93 1.29
+  MW_alt|asis_B                      t 10.0 Gyr  logX -0.170  D -0.019  dlogX/dD last2 -0.138/-0.069  M(<r*)/Mph 0.809  r99 22.584  beta +0.98  sink +0.990  dE/E +1.1e+01  lim 5.5e-05  gate False  tD 0.0  (81s)
+       s(r) bins: 1.34 1.10 1.00 1.02 0.77 0.62 0.51 0.50 0.42 0.28 0.19 0.32 0.18 0.15 0.67 0.29
+  MW_alt|asis_C                      t  5.0 Gyr  logX -0.221  D -0.092  dlogX/dD last2 -0.442/-0.224  M(<r*)/Mph 0.787  r99 21.334  beta +0.99  sink +0.391  dE/E +6.0e+00  lim 0.0e+00  gate False  tD 1.7568233937546913  (41s)
+       s(r) bins: 0.94 1.43 0.75 0.59 0.48 0.76 0.51 0.39 0.44 0.39 0.49 0.55 0.43 0.22 0.39 0.60
+  MW_alt|fix1_B                      t 10.0 Gyr  logX -0.424  D -0.196  dlogX/dD last2 -0.556/-0.156  M(<r*)/Mph 0.676  r99 1.798  beta +0.98  sink +0.387  dE/E +3.7e-01  lim 7.6e-05  gate False  tD 0.0  (84s)
+       s(r) bins: 0.67 0.74 0.61 0.54 0.52 0.45 0.42 0.38 0.31 0.27 0.18 0.13 0.39 0.15 0.34 0.49
+  MW_alt|fix1_C                      t  5.0 Gyr  logX -0.219  D -0.174  dlogX/dD last2 -0.395/-0.260  M(<r*)/Mph 0.640  r99 2.420  beta +0.99  sink -0.474  dE/E +1.2e+00  lim 4.9e-04  gate False  tD 1.5058486232183068  (40s)
+       s(r) bins: 0.97 0.82 0.83 0.69 0.45 0.57 0.28 0.31 0.25 0.20 0.25 0.26 0.38 0.88 0.70 1.09
+  MW_alt|fix2_B                      t 10.0 Gyr  logX -0.001  D +0.024  dlogX/dD last2 -0.010/+0.010  M(<r*)/Mph 0.919  r99 1.262  beta +0.08  sink +0.273  dE/E -1.2e+00  lim 6.1e-05  gate True  tD 0.0  (109s)
+       s(r) bins: 1.04 1.04 1.06 1.03 1.05 1.04 0.97 1.01 1.00 0.97 0.93 0.95 0.95 0.91 1.00 1.28
+  MW_alt|fix2_C                      t  5.0 Gyr  logX -0.001  D +0.026  dlogX/dD last2 -0.019/-0.017  M(<r*)/Mph 0.919  r99 1.281  beta +0.05  sink -0.516  dE/E +5.1e-01  lim 1.1e-05  gate True  tD None  (53s)
+       s(r) bins: 1.07 1.06 1.03 0.99 1.03 1.05 1.06 1.05 0.99 0.97 0.95 0.93 0.91 0.93 1.02 1.27
+  MW_alt|over_one_base               t  5.0 Gyr  logX -0.029  D +0.047  dlogX/dD last2 -0.101/-0.095  M(<r*)/Mph 0.965  r99 1.137  beta +0.17  sink +0.120  dE/E -1.6e-01  lim 0.0e+00  gate False  tD 2.5097477053638446  (40s)
+       s(r) bins: 1.24 1.15 1.19 1.13 1.13 1.11 1.10 1.04 1.01 0.92 0.90 0.85 0.81 0.71 0.59 0.77
+  MW_alt|over_one_inj                t  5.0 Gyr  logX +0.026  D +0.091  dlogX/dD last2 -0.127/-0.086  M(<r*)/Mph 1.066  r99 1.036  beta +0.17  sink +0.094  dE/E -2.9e-02  lim 0.0e+00  gate False  tD 1.7568233937546913  (46s)
+       s(r) bins: 1.48 1.39 1.28 1.32 1.28 1.21 1.21 1.14 1.11 1.03 0.94 0.92 0.86 0.80 0.71 0.61
+  MW_alt|over_two_base               t  5.0 Gyr  logX -0.023  D -0.051  dlogX/dD last2 -0.085/-0.091  M(<r*)/Mph 0.901  r99 1.419  beta +0.19  sink -0.043  dE/E +9.9e-02  lim 5.3e-08  gate False  tD None  (43s)
+       s(r) bins: 0.91 0.92 0.93 0.99 0.94 0.96 0.97 0.87 0.91 0.86 0.84 0.87 0.87 0.87 0.90 1.01
+  MW_alt|over_two_inj                t  5.0 Gyr  logX +0.006  D -0.060  dlogX/dD last2 -0.080/-0.099  M(<r*)/Mph 0.914  r99 1.536  beta +0.21  sink -0.246  dE/E +3.5e-01  lim 1.6e-08  gate False  tD None  (43s)
+       s(r) bins: 0.85 0.91 0.99 0.94 0.93 0.96 0.94 0.94 0.91 0.90 0.89 0.91 0.95 0.97 1.05 1.30
+  MW_can|C2_vlasov_eq                t  2.0 Gyr  logX -0.008  D +0.024  dlogX/dD last2 -0.011/+0.026  M(<r*)/Mph 0.940  r99 1.279  beta +0.19  sink -0.000  dE/E +5.2e-03  lim 0.0e+00  gate True  tD None  (2s)
+       s(r) bins: 1.12 1.13 1.08 1.10 1.04 1.03 1.00 0.97 0.93 0.90 0.91 0.84 0.86 0.89 0.90 1.28
+  MW_can|asis_B                      t 10.0 Gyr  logX -0.149  D -0.009  dlogX/dD last2 -0.248/-0.076  M(<r*)/Mph 0.810  r99 18.758  beta +0.98  sink +0.866  dE/E +1.0e+01  lim 7.2e-05  gate False  tD 0.0  (67s)
+       s(r) bins: 1.57 1.38 1.14 1.05 0.89 0.89 0.78 0.61 0.46 0.39 0.23 0.21 0.84 0.47 0.45 0.26
+  MW_can|asis_C                      t  5.0 Gyr  logX -0.188  D -0.042  dlogX/dD last2 -0.454/-0.305  M(<r*)/Mph 0.833  r99 17.490  beta +0.99  sink +0.294  dE/E +5.9e+00  lim 0.0e+00  gate False  tD 2.246065870855902  (34s)
+       s(r) bins: 1.46 1.04 0.70 0.84 0.73 0.55 0.42 0.45 0.32 0.40 0.40 0.29 0.21 0.37 0.34 0.50
+  MW_can|fix1_B                      t 10.0 Gyr  logX -0.082  D -0.186  dlogX/dD last2 -0.272/-0.228  M(<r*)/Mph 0.706  r99 1.776  beta +0.99  sink +0.198  dE/E +1.1e+00  lim 1.0e-04  gate False  tD 0.0  (69s)
+       s(r) bins: 1.10 0.95 0.71 0.64 0.49 0.48 0.36 0.37 0.31 0.28 0.33 0.37 0.40 0.60 0.85 1.47
+  MW_can|fix1_C                      t  5.0 Gyr  logX +0.055  D -0.181  dlogX/dD last2 -0.105/-0.297  M(<r*)/Mph 0.904  r99 2.397  beta +0.99  sink -0.574  dE/E +1.3e+00  lim 5.7e-04  gate False  tD 2.994754494474536  (34s)
+       s(r) bins: 0.83 0.77 0.70 0.81 0.63 0.71 0.58 0.44 0.53 0.59 0.70 0.42 0.75 1.03 0.94 0.50
+  MW_can|fix2_B                      t 10.0 Gyr  logX +0.003  D +0.022  dlogX/dD last2 -0.004/+0.008  M(<r*)/Mph 0.931  r99 1.230  beta +0.07  sink +0.249  dE/E -9.9e-01  lim 7.9e-05  gate True  tD 0.0  (93s)
+       s(r) bins: 0.90 1.07 1.11 1.07 1.13 1.06 1.00 1.03 1.03 0.97 0.97 0.91 0.93 0.96 0.98 1.27
+  MW_can|fix2_C                      t  5.0 Gyr  logX +0.006  D +0.031  dlogX/dD last2 -0.012/-0.016  M(<r*)/Mph 0.934  r99 1.238  beta +0.06  sink -0.512  dE/E +5.0e-01  lim 1.1e-05  gate True  tD None  (46s)
+       s(r) bins: 1.02 1.12 1.10 1.09 1.01 1.10 1.04 1.06 0.98 1.00 1.01 0.94 0.91 0.94 0.98 1.31
+  MW_can|over_one_base               t  5.0 Gyr  logX +0.004  D +0.094  dlogX/dD last2 -0.043/-0.028  M(<r*)/Mph 0.956  r99 1.274  beta +0.19  sink +0.109  dE/E -1.4e-01  lim 0.0e+00  gate True  tD 2.994754494474536  (35s)
+       s(r) bins: 1.26 1.23 1.33 1.25 1.25 1.19 1.18 1.12 1.08 1.06 0.99 0.91 0.77 0.56 0.60 0.76
+  MW_can|over_one_inj                t  5.0 Gyr  logX +0.046  D +0.120  dlogX/dD last2 -0.089/-0.079  M(<r*)/Mph 1.063  r99 1.125  beta +0.18  sink +0.087  dE/E -4.6e-02  lim 0.0e+00  gate False  tD 1.9965029963163574  (38s)
+       s(r) bins: 1.44 1.40 1.40 1.39 1.32 1.36 1.23 1.21 1.16 1.09 1.06 1.00 0.91 0.73 0.59 0.80
+  MW_can|over_two_base               t  5.0 Gyr  logX +0.027  D -0.028  dlogX/dD last2 -0.007/-0.066  M(<r*)/Mph 0.900  r99 1.407  beta +0.24  sink -0.086  dE/E +1.8e-01  lim 0.0e+00  gate False  tD None  (36s)
+       s(r) bins: 1.01 1.03 1.08 1.09 1.09 1.11 1.10 1.11 1.09 1.07 1.01 1.02 0.97 0.91 0.88 1.01
+  MW_can|over_two_inj                t  5.0 Gyr  logX +0.058  D -0.026  dlogX/dD last2 -0.009/-0.067  M(<r*)/Mph 0.933  r99 1.521  beta +0.25  sink -0.292  dE/E +4.1e-01  lim 7.5e-08  gate False  tD None  (18s)
+       s(r) bins: 1.05 1.06 1.07 1.11 1.13 1.12 1.10 1.13 1.09 1.09 1.12 1.10 1.08 1.04 1.03 1.23
+  cluster_alt|C2_vlasov_eq           t  2.0 Gyr  logX +0.021  D +0.085  dlogX/dD last2 +0.018/+0.085  M(<r*)/Mph 0.894  r99 1.731  beta +0.28  sink -0.000  dE/E +1.8e-01  lim 0.0e+00  gate False  tD None  (12s)
+       s(r) bins: 1.21 1.25 1.24 1.21 1.23 1.17 1.12 1.08 1.00 0.96 0.90 0.87 0.82 0.82 0.93 1.26
+  cluster_alt|asis_B                 t 10.0 Gyr  logX -0.071  D +0.066  dlogX/dD last2 +0.151/+0.105  M(<r*)/Mph 0.695  r99 84.198  beta +0.99  sink +1.678  dE/E +6.7e+01  lim 0.0e+00  gate False  tD 0.0  (191s)
+       s(r) bins: 1.54 1.39 1.30 1.03 1.02 0.86 0.78 0.58 0.50 0.63 0.41 0.40 0.50 0.83 2.40 2.42
+  cluster_alt|asis_C                 t  5.0 Gyr  logX +0.003  D +0.044  dlogX/dD last2 +0.068/+0.136  M(<r*)/Mph 0.632  r99 51.184  beta +0.99  sink +0.608  dE/E +1.6e+01  lim 0.0e+00  gate False  tD 1.500293381769799  (101s)
+       s(r) bins: 1.38 1.06 1.04 0.96 0.96 0.83 0.84 0.49 0.46 0.58 1.41 1.22 0.83 1.97 1.94 5.20
+  cluster_alt|fix1_B                 t 10.0 Gyr  logX +0.440  D -0.447  dlogX/dD last2 +0.045/+0.163  M(<r*)/Mph 0.324  r99 82.876  beta +1.00  sink +0.158  dE/E +1.0e+02  lim 2.6e-05  gate False  tD 0.0  (189s)
+       s(r) bins: 1.73 1.32 2.50 0.96 1.67 2.23 1.23 0.79 1.80 1.35 3.14 2.82 2.40 4.17 3.69 5.76
+  cluster_alt|fix1_C                 t  5.0 Gyr  logX +0.268  D -0.901  dlogX/dD last2 -0.391/-0.211  M(<r*)/Mph 0.164  r99 46.340  beta +1.00  sink -1.847  dE/E +1.0e+01  lim 5.3e-05  gate False  tD 2.0003911756930655  (95s)
+       s(r) bins: 0.22 0.13 0.09 0.30 1.25 0.42 1.53 3.08 1.27 0.14 0.59 0.37 0.33 0.46 0.38 0.38
+  cluster_alt|fix2_B                 t 10.0 Gyr  logX +0.005  D -0.026  dlogX/dD last2 -0.010/-0.014  M(<r*)/Mph 0.848  r99 1.552  beta +0.24  sink +0.679  dE/E -8.1e-01  lim 1.3e-06  gate True  tD 0.0  (254s)
+       s(r) bins: 1.12 1.11 1.14 1.05 1.06 1.04 1.03 0.99 0.99 0.97 0.92 0.90 0.89 0.95 1.05 1.39
+  cluster_alt|fix2_C                 t  5.0 Gyr  logX +0.008  D -0.013  dlogX/dD last2 -0.018/-0.029  M(<r*)/Mph 0.860  r99 1.518  beta +0.23  sink -0.486  dE/E +6.1e-01  lim 6.3e-07  gate True  tD None  (125s)
+       s(r) bins: 1.13 1.06 1.09 1.10 1.13 1.05 1.01 1.02 0.99 0.95 0.96 0.91 0.92 0.95 1.03 1.34
+  cluster_alt|over_one_base          t  5.0 Gyr  logX -0.051  D +0.039  dlogX/dD last2 -0.078/-0.077  M(<r*)/Mph 0.946  r99 1.309  beta +0.14  sink +0.145  dE/E +8.6e-02  lim 0.0e+00  gate False  tD 2.250440072654699  (96s)
+       s(r) bins: 1.09 1.11 1.11 1.05 1.09 1.02 0.99 0.95 0.93 0.86 0.80 0.74 0.73 0.70 0.71 0.74
+  cluster_alt|over_one_inj           t  5.0 Gyr  logX -0.015  D +0.078  dlogX/dD last2 -0.067/-0.075  M(<r*)/Mph 1.012  r99 1.236  beta +0.15  sink +0.117  dE/E +1.4e-01  lim 0.0e+00  gate False  tD 1.500293381769799  (104s)
+       s(r) bins: 1.20 1.22 1.19 1.14 1.11 1.08 1.03 1.02 0.95 0.94 0.88 0.79 0.75 0.75 0.76 0.82
+  cluster_alt|over_two_base          t  5.0 Gyr  logX -0.114  D -0.052  dlogX/dD last2 -0.169/-0.051  M(<r*)/Mph 0.829  r99 1.457  beta +0.16  sink +0.038  dE/E +9.8e-02  lim 0.0e+00  gate False  tD None  (96s)
+       s(r) bins: 1.00 0.98 0.97 0.87 0.89 0.87 0.82 0.77 0.72 0.72 0.69 0.66 0.62 0.65 0.65 0.82
+  cluster_alt|over_two_inj           t  5.0 Gyr  logX -0.101  D -0.047  dlogX/dD last2 -0.179/-0.078  M(<r*)/Mph 0.824  r99 1.552  beta +0.15  sink -0.115  dE/E +2.9e-01  lim 0.0e+00  gate False  tD None  (100s)
+       s(r) bins: 0.96 0.95 0.90 0.88 0.87 0.90 0.80 0.76 0.74 0.74 0.71 0.67 0.67 0.69 0.75 0.95
+  cluster_can|C2_vlasov_eq           t  2.0 Gyr  logX +0.008  D +0.047  dlogX/dD last2 +0.004/+0.047  M(<r*)/Mph 0.907  r99 1.568  beta +0.25  sink -0.000  dE/E +1.8e-01  lim 0.0e+00  gate True  tD None  (5s)
+       s(r) bins: 1.12 1.17 1.19 1.19 1.09 1.10 1.05 1.01 0.97 0.92 0.91 0.86 0.83 0.88 0.94 1.29
+  cluster_can|asis_B                 t 10.0 Gyr  logX -0.077  D +0.040  dlogX/dD last2 -0.038/+0.087  M(<r*)/Mph 0.684  r99 69.722  beta +0.99  sink +1.506  dE/E +5.4e+01  lim 0.0e+00  gate False  tD 0.0  (161s)
+       s(r) bins: 1.15 1.13 1.31 1.84 0.98 0.73 0.69 0.60 0.94 0.47 0.45 0.61 0.80 0.43 0.70 0.89
+  cluster_can|asis_C                 t  5.0 Gyr  logX -0.016  D -0.007  dlogX/dD last2 -0.087/-0.011  M(<r*)/Mph 0.645  r99 43.331  beta +0.99  sink +0.519  dE/E +1.5e+01  lim 0.0e+00  gate False  tD 1.749756657974957  (80s)
+       s(r) bins: 1.07 1.01 0.89 0.83 0.75 0.74 0.70 0.53 0.51 0.65 0.71 1.41 0.86 2.46 1.42 1.93
+  cluster_can|fix1_B                 t 10.0 Gyr  logX +0.441  D -0.571  dlogX/dD last2 -0.076/+0.147  M(<r*)/Mph 0.286  r99 71.085  beta +1.00  sink +0.032  dE/E +7.9e+01  lim 1.6e-05  gate False  tD 0.0  (171s)
+       s(r) bins: 1.15 0.83 1.06 1.31 0.70 0.69 1.55 1.15 4.12 2.30 2.57 2.78 2.05 4.68 2.83 4.94
+  cluster_can|fix1_C                 t  5.0 Gyr  logX +0.378  D -0.891  dlogX/dD last2 -0.275/-0.518  M(<r*)/Mph 0.157  r99 40.404  beta +1.00  sink -1.949  dE/E +1.1e+01  lim 6.4e-05  gate False  tD 2.499652368535653  (81s)
+       s(r) bins: 0.13 0.21 0.31 0.71 0.83 0.51 0.63 0.51 3.39 0.25 0.41 0.47 0.41 0.34 0.43 0.94
+  cluster_can|fix2_B                 t 10.0 Gyr  logX +0.013  D -0.019  dlogX/dD last2 -0.010/-0.018  M(<r*)/Mph 0.857  r99 1.539  beta +0.26  sink +0.666  dE/E -5.8e-01  lim 1.4e-06  gate True  tD 0.0  (234s)
+       s(r) bins: 1.14 1.10 1.13 1.17 1.20 1.07 1.02 1.03 1.01 0.96 0.95 0.92 0.93 0.94 1.02 1.37
+  cluster_can|fix2_C                 t  5.0 Gyr  logX +0.013  D -0.008  dlogX/dD last2 -0.018/-0.042  M(<r*)/Mph 0.874  r99 1.467  beta +0.24  sink -0.536  dE/E +5.9e-01  lim 1.6e-06  gate True  tD None  (112s)
+       s(r) bins: 1.23 1.13 1.17 1.10 1.08 1.05 1.10 1.03 1.00 0.95 0.93 0.90 0.94 0.95 1.03 1.35
+  cluster_can|over_one_base          t  5.0 Gyr  logX -0.052  D +0.029  dlogX/dD last2 -0.113/-0.107  M(<r*)/Mph 0.949  r99 1.315  beta +0.16  sink +0.132  dE/E +8.1e-02  lim 0.0e+00  gate False  tD 2.2496871316820877  (85s)
+       s(r) bins: 1.14 1.06 1.05 1.07 1.04 0.99 1.00 0.96 0.95 0.88 0.81 0.78 0.77 0.72 0.66 0.65
+  cluster_can|over_one_inj           t  5.0 Gyr  logX -0.024  D +0.059  dlogX/dD last2 -0.115/-0.115  M(<r*)/Mph 1.031  r99 1.307  beta +0.14  sink +0.104  dE/E +2.0e-01  lim 0.0e+00  gate False  tD 1.749756657974957  (89s)
+       s(r) bins: 1.12 1.12 1.12 1.09 1.09 1.05 1.00 1.04 0.99 0.94 0.86 0.82 0.81 0.77 0.73 0.75
+  cluster_can|over_two_base          t  5.0 Gyr  logX -0.077  D -0.064  dlogX/dD last2 -0.138/-0.112  M(<r*)/Mph 0.863  r99 1.536  beta +0.19  sink -0.011  dE/E +1.8e-01  lim 0.0e+00  gate False  tD None  (83s)
+       s(r) bins: 0.97 0.93 0.91 0.89 0.91 0.89 0.85 0.80 0.79 0.77 0.76 0.74 0.74 0.74 0.79 0.95
+  cluster_can|over_two_inj           t  5.0 Gyr  logX -0.054  D -0.070  dlogX/dD last2 -0.132/-0.118  M(<r*)/Mph 0.859  r99 1.639  beta +0.19  sink -0.175  dE/E +3.7e-01  lim 0.0e+00  gate False  tD None  (90s)
+       s(r) bins: 0.97 0.94 0.89 0.89 0.93 0.89 0.88 0.84 0.79 0.82 0.80 0.77 0.79 0.82 0.88 1.13
+
+Controls: C1 True; C4 M_ph(<r_*) = M_cat to 1e-4: False; C2 {'MW_can': True, 'MW_alt': True, 'cluster_can': True, 'cluster_alt': True}; C3 {'MW_can': True, 'MW_alt': True, 'cluster_can': False, 'cluster_alt': False}; mass exact True -> FAIL as frozen
+
+Q1 as is: {'MW_can': {'B': False, 'C': False}, 'MW_alt': {'B': False, 'C': False}, 'cluster_can': {'B': False, 'C': False}, 'cluster_alt': {'B': False, 'C': False}} -> NOT consistent as is
+FIX-1 gates {'MW_can': {'B': False, 'C': False}, 'MW_alt': {'B': False, 'C': False}, 'cluster_can': {'B': False, 'C': False}, 'cluster_alt': {'B': False, 'C': False}} -> False; FIX-2 gates {'MW_can': {'B': True, 'C': True}, 'MW_alt': {'B': True, 'C': True}, 'cluster_can': {'B': True, 'C': True}, 'cluster_alt': {'B': True, 'C': True}} -> True
+Energy (net sink per M_cat V_f^2; rate last 2 Gyr): MW_can|fix1_B +0.198 (+0.0841/Gyr); MW_can|fix1_C -0.574 (+0.0599/Gyr); MW_can|fix2_B +0.249 (+0.0002/Gyr); MW_can|fix2_C -0.512 (-0.0039/Gyr); MW_alt|fix1_B +0.387 (+0.1384/Gyr); MW_alt|fix1_C -0.474 (+0.1379/Gyr); MW_alt|fix2_B +0.273 (+0.0027/Gyr); MW_alt|fix2_C -0.516 (-0.0041/Gyr); cluster_can|fix1_B +0.032 (+0.1060/Gyr); cluster_can|fix1_C -1.949 (+0.2041/Gyr); cluster_can|fix2_B +0.666 (+0.0451/Gyr); cluster_can|fix2_C -0.536 (+0.0229/Gyr); cluster_alt|fix1_B +0.158 (+0.0630/Gyr); cluster_alt|fix1_C -1.847 (+0.1926/Gyr); cluster_alt|fix2_B +0.679 (+0.0452/Gyr); cluster_alt|fix2_C -0.486 (+0.0394/Gyr)
+Energy compatible (FIX-1): False
+Overfill P: MW_can|one +1.223, MW_alt|one +1.161, cluster_can|one +1.110, cluster_alt|one +0.889, MW_can|two +0.373, MW_alt|two +0.145, cluster_can|two -0.046, cluster_alt|two -0.069 -> NOT HANDLED
+Q3 1-D: MW_can: r*_one 1.0000 r*_two 1.0000 dln +9.27e-10 maxcum 9.27e-10 (t 60 Gyr); MW_alt: r*_one 1.0000 r*_two 1.0000 dln -8.88e-16 maxcum 2.82e-17 (t 60 Gyr); cluster_can: r*_one 1.0000 r*_two 1.0000 dln +2.83e-06 maxcum 3.10e-06 (t 60 Gyr); cluster_alt: r*_one 1.0000 r*_two 1.0000 dln +2.21e-06 maxcum 3.15e-06 (t 60 Gyr)
+Q3 N-body dln r99 (FIX-1, IC-B): {'MW_can': 0.5843998075421832, 'MW_alt': 0.5965643151260672, 'cluster_can': 4.273188648737603, 'cluster_alt': 4.42664812363709} -> CHANGED
+ALT-S (diagnostic): {'MW_can': {'exists': True, 'M_over_Mcat': 1.0, 'D_shell': -1.5657733163255894, 'log_rho_over_rhoph_at_rM': -3.261130212252236, 'r99_over_rstar': 2.420542995197935, 'central_fraction_inside_0p01': 2.52134063409911e-06}, 'MW_alt': {'exists': True, 'M_over_Mcat': 0.9999999999999998, 'D_shell': -1.7003533008718335, 'log_rho_over_rhoph_at_rM': -3.406817126260068, 'r99_over_rstar': 2.659771684717203, 'central_fraction_inside_0p01': 1.5467300380393064e-06}, 'cluster_can': {'exists': True, 'M_over_Mcat': 0.9999999999999998, 'D_shell': None, 'log_rho_over_rhoph_at_rM': None, 'r99_over_rstar': 0.001002379588271936, 'central_fraction_inside_0p01': 1.0}, 'cluster_alt': {'exists': True, 'M_over_Mcat': 0.9999999999999984, 'D_shell': None, 'log_rho_over_rhoph_at_rM': None, 'r99_over_rstar': 0.0010023839928231379, 'central_fraction_inside_0p01': 1.0}}
+
+LABELS: kinetic as frozen = NO LABEL as frozen (control C4 fails); kinetic if C4 is read at the toy's resolution = NO LABEL (controls fail); overfill = NOT HANDLED; Q3 = CHANGED; full-system Lyapunov = NOT ESTABLISHED
