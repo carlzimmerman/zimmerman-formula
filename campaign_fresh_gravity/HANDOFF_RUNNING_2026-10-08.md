@@ -54,3 +54,4 @@ To resume an agent lane: read its FROZEN_CRITERIA.md and any committed outputs, 
   - If CFG557 fixes growth but breaks another test: launch a lane on that conflict (mechanism + data check).
   - If CFG557 is NOT DERIVABLE: write the minimal postulate set honestly into Theory v1.
 - **Waiting on the owner:** "publish" for PAPER45 v2.2 (prepared, audit 44/44, commit e19da03d0); DES ΔΣ (not public); 100 GB DES shear (needs a yes).
+- **2026-10-10 16:2x: CFG468 kernel grid PAUSED (SIGSTOP; watchdog 57207 also stopped) at owner request, to free CPU for CFG596. Resume with: kill -CONT $(pgrep -f cfg468_zero_field_runs.py) 57207**
