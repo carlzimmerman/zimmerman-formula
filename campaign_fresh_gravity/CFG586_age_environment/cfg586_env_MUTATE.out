@@ -1,0 +1,29 @@
+====================================================================================================
+CFG586  old vs young early types: environment or age?  *** MUTATE: OLD leakage x3 ***
+====================================================================================================
+  [PASS] C1 CFG509 all-lens measured/predicted 0.8454 (0.845)
+  [PASS] C2 CFG509 stack-weighted early lambda reproduced: 1.0572 (1.0572)
+
+--- step 1: companion counts (no lensing)
+  f30all    N  57265  companion excess 0.1295  lambda 0.436 +- 0.017  f_leak 0.074
+  f30early  N  26572  companion excess 0.1420  lambda 0.602 +- 0.030  f_leak 0.095
+  old       N   8843  companion excess 0.1418  lambda 0.602 +- 0.053  f_leak 0.094
+  young     N   8850  companion excess 0.1389  lambda 0.590 +- 0.050  f_leak 0.092
+  lambda_old - lambda_young = +0.013 +- 0.066 (Z +0.19); ratio 1.021
+  leakage scale factors (vs f30 average): old 4.143, young 1.352
+
+--- step 2: lensing re-score
+  cell            band   D_raw (Z)            D_env (Z)            eps_old / eps_young (env)
+  [A canonical] K9     +0.941 (+2.66)      +0.786 (+2.08)      +0.986 / +0.200
+  [A canonical] K-in   +0.646 (+1.51)      +0.569 (+1.31)      +0.673 / +0.105
+  [A alt      ] K9     +0.862 (+2.66)      +0.721 (+2.09)      +0.819 / +0.098
+  [A alt      ] K-in   +0.592 (+1.51)      +0.522 (+1.31)      +0.535 / +0.013
+  [B canonical] K9     +0.938 (+2.65)      +0.783 (+2.08)      +0.985 / +0.201
+  [B canonical] K-in   +0.646 (+1.51)      +0.569 (+1.31)      +0.673 / +0.105
+  [B alt      ] K9     +0.859 (+2.65)      +0.719 (+2.08)      +0.818 / +0.099
+  [B alt      ] K-in   +0.592 (+1.51)      +0.522 (+1.31)      +0.535 / +0.013
+
+VERDICT: AGE SIGNAL SURVIVES
+  [PASS] MUTATE: tripling OLD's leakage lowers D(K9) in every cell (direction check)
+
+checks: 3/3 pass
