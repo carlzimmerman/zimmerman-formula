@@ -1,0 +1,32 @@
+CFG539 Stage 1 -- candidate cold-energy equations of motion   *** MUTATE: settling sign reversed ***
+kappa = 1/2 FITTED; cold energy mass required; footings never pooled; not theory closed.
+
+S1 (A) linearised deficit relaxation rate Gamma = 2*sqrt(pi)*sqrt(G)*rho_ph/sqrt(rho_m) = (rho_c/rho_m) sqrt(4 pi G rho_m): PASS
+   dimensions: sqrt(G rho) x seconds = 1 -> only G and the local density enter: PASS
+
+S2 (A) toy: deficit 0.407, shell supply 0.602; F monotone non-increasing: False (max dF/F0 +3.89e-03); unfilled u: 1 -> 1.4889; |dM|/M 1.6e-14; settled mass -0.1992 (all through the boundary of s: net inflow); min rho_c 0.000; steps 82218 -> FAIL
+   sympy: psi (w psi')' = (psi w psi')' - w psi'^2 (w = rho_c tau >= 0), so dF/dt = -int rho_c tau |grad psi|^2 <= 0 in the deficit interior: PASS
+   stationary <=> rho_c tau grad psi = 0 on the catchment <=> psi harmonic on supp d <=> d = 0 (wherever the catchment still holds cold energy)
+
+S3 (A) toy, small catchment: deficit 0.407 > shell supply 0.102: settled -0.1992 <= available 0.1016; left in shell 3.01e-01 (296.2%); unfilled u 1.489 (supply-limited, d stays > 0); min rho_c 0.00e+00; |dM|/M 6.0e-15 -> FAIL  (the cap is EMERGENT: nothing more than the catchment holds can arrive)
+
+S4 (B) hydrostatic equilibrium in the law potential: rho ~ r^(-V**2/sigma**2); SIS needs sigma = [sqrt(2)*V/2]; amplitude match needs sigma = [sqrt(2)*V/2]; with V^4 = G M_b a0: sigma^4 = G*M_b*a_0/4 -> a per-system temperature: PASS (shown)
+   no G9 mechanism sets it (CFG461: 0 of 10 classes); without dissipation the target is 2.2-7.7x more bound than the infall (CFG489 3a).
+   => class B needs a per-system constant (knob) and a sink: KILLED (Stage-1 rule: knob).
+
+S5 (C) toy (inertial, no friction): unfilled u min 0.356, final 0.793, mean over the last third 0.716; monotone: False; KE + F drift 128.73% of its initial value
+   no Lyapunov decrease: T1 is not an attractor of C analytically (it may still be approached numerically) -> carried to Stage 2 (no knob, G9 kept).
+
+S6 (D) T17 rate law d_t f = lambda sqrt(4 pi G rho)(1 - f): T16 budget windows mw [0.015195671875673406, 0.03264458582744989], groups [0.011733624305332807, 0.028771780675592863], clusters [0.007335185785012018, 0.017228329246152252]; intersection [0.015195671875673406, 0.017228329246152252].
+   lambda is FITTED (MW floor 0.028, CFG382) and must sit in [0.0152, 0.0172] to clear the budget; the only zero-constant value lambda = 1 lies 58-66x above that window; and the law has no transport (mass conservation needs the bookkeeping draw). => KILLED (knob; no transport).
+   (E) KL/JKO flow (T3 lane): needs a diffusion scale D (a length^2/time: knob), its minimiser is the global rescaling c rho_ph, and rho_ph < 0 on the deep annulus (T3: -66.5 M_b canonical) leaves ln rho_ph undefined. => KILLED (knob).
+
+Stage-1 table (constants beyond kappa, 5.364, f_b | G9 matter conservation | T1 | T2 | T3 | T5 | T6 | causality):
+  A  overdamped flow   | none (tau_ff = 1/sqrt(4 pi G rho_m), coefficient by the free-fall principle) | exact (continuity) | equilibrium d = 0 (Lyapunov) | INHERITED edge; cap EMERGENT | from surroundings (flux into the deficit) | structural | mobility 0 outside catchments | parabolic: COND | sink NOT SUPPLIED
+  B  conservative fluid| per-system temperature (knob)  | exact | only if sigma^4 = G M_b a0/4 | - | - | - | - | KILLED
+  C  inertial force    | none                           | exact | not an attractor (no Lyapunov) | INHERITED edge | net inflow | structural | as A | elliptic psi | to Stage 2
+  D  T17 rate law      | lambda fitted (knob)           | needs the bookkeeping draw | - | - | - | - | - | KILLED
+  E  KL/JKO            | diffusion scale D (knob)       | exact | global rescaling, not the edge fill | - | - | - | - | KILLED
+
+Stage-1 survivors: ['C']   (some Stage-1 check FAILED -- see above)
+MUTATE (sign reversed) S2 FAILS -> DETECTED
