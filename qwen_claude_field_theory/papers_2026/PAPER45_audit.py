@@ -58,4 +58,44 @@ if os.path.isdir(W):
     q512 = max(qm(f) for f in os.listdir(W) if f.endswith("N512.json") and "_TA_MIXA" in f)
     row("max catchment draw 30% (256^3) / 57% (512^3) [work files]", round(q256 * 100) == 30 and round(q512 * 100) == 57 and "30\\% at $256^3$ and 57\\% at $512^3$" in tex)
 row("edge 5.85 r_M = 1/ln(1/(1-f_b)) with engine f_b", abs(1 / math.log(1 / (1 - 0.02237 / (0.02237 + 0.1200))) - 5.85) < 5e-3 and "5.85\\,r_M" in tex)
+
+# ---- v2.2 correction: every rule run re-measured on the GRAVITATING density (CFG555)
+G = j("CFG555_growth_on_gravitating_field/cfg555_results.json"); GR = G["runs"]
+f4 = lambda x: f"{x:.4f}"; f3 = lambda x: f"{x:.3f}"
+ctab = [("$256^3$, canonical &", "424_TAcan"), ("$256^3$, alternative &", "424_TAalt"),
+        ("$256^3$, realisation 2 (canonical) &", "425_R1_can_s360"), ("$256^3$, realisation 3 (canonical) &", "425_R2_can_s361"),
+        ("$256^3$, realisation 2 (alternative) &", "426_A1_alt_s360"), ("$256^3$, realisation 3 (alternative) &", "426_A2_alt_s361"),
+        ("$256^3$, $a_0$ tracking dark energy (canonical) &", "426_D1_DEcan"), ("$256^3$, $a_0$ tracking dark energy (alternative) &", "426_D2_DEalt"),
+        ("$256^3$, switch width halved &", "427_E1_eps0.0385"), ("$256^3$, switch width doubled &", "427_E2_eps0.154"),
+        ("$256^3$, other gas filter (1) &", "427_G1_MIXB"), ("$256^3$, other gas filter (2) &", "427_G2_HOT1"),
+        ("\\textbf{, canonical} &", "425_R3_can_512"), ("$512^3$, alternative &", "439_A_alt_512"),
+        ("$512^3$, $a_0$ tracking dark energy &", "439_B_DEcan_512"), ("$512^3$, realisation 2 (canonical) &", "460_can_512_s360"),
+        ("control: mass conservation switched off ($256^3$) &", "424_MUTATE_nocomp")]
+for lab, k in ctab:
+    r = GR[k]; p, g = r["particle"], r["gravitating"]
+    gs = f"{f4(g['s8'])} / {f3(g['pdev'])}"
+    if k.endswith("512") or k.startswith("460"): gs = "\\textbf{" + gs + "}"
+    line = f"{lab} {f4(p['s8'])} / {f3(p['pdev'])} & {gs}\\\\"
+    ok = r["status"] == "EVALUATED" and r["gates_pass"] and r["C0"]["pass_"] and line in tex
+    ok = ok and (g["verdict"] == "GROWTH OK") == (r["N"] == 256 and r["counted_as_pass"])
+    row(f"CFG555 {k}: particle {f4(p['s8'])}/{f3(p['pdev'])}, gravitating {f4(g['s8'])}/{f3(g['pdev'])} ({g['verdict']})", ok)
+P45 = G["PAPER45"]; r256 = P45["range_256"]
+row("CFG555 PAPER45 verdict FAILS, 12 of 15, failing = the three 512^3 runs", P45["verdict"] == "CLAIM FAILS ON GRAVITATING FIELD" and P45["n_runs"] == 15 and P45["n_growth_ok"] == 12
+    and sorted(P45["failing_or_unevaluable"]) == ["425_R3_can_512", "439_A_alt_512", "439_B_DEcan_512"] and "12 of 15 pass" in tex)
+row("CFG555 256^3 gravitating range 0.063-0.082, s8 1.014-1.019", (f3(r256["pdev"][0]), f3(r256["pdev"][1]), f"{r256['s8'][0]:.3f}", f"{r256['s8'][1]:.3f}") == ("0.063", "0.082", "1.014", "1.019")
+    and "$\\max|P-1|=0.063$--$0.082$, $\\sigma_8$ ratio $1.014$--$1.019$" in tex and "$6.3$--$8.2\\%$ at $256^3$" in tex)
+k512 = ["425_R3_can_512", "439_A_alt_512", "439_B_DEcan_512", "460_can_512_s360"]
+pd = [GR[k]["gravitating"]["pdev"] for k in k512]; s8 = [GR[k]["gravitating"]["s8"] for k in k512]
+row("CFG555 all four 512^3 runs fail: 0.163-0.193 (16-19%), s8 +3-5% and inside the 5% cut", all(GR[k]["gravitating"]["verdict"] == "TENSION" for k in k512) and all(GR[k]["particle"]["verdict"] == "GROWTH OK" for k in k512)
+    and (f3(min(pd)), f3(max(pd))) == ("0.163", "0.193") and (round(min(pd) * 100), round(max(pd) * 100)) == (16, 19) and all(0.03 <= s - 1 <= 0.05 for s in s8)
+    and "$0.163$--$0.193$ against $0.10$" in tex and "$16$--$19\\%$ at $512^3$ ($\\sigma_8$ $+3$--$5\\%$)" in tex and "$\\sigma_8$ stays inside its $5\\%$ cut" in tex)
+r1 = [GR[k]["gravitating"]["r_at"]["1.0"] for k in k512]
+row("CFG555 512^3 gravitating 13-20% below control at k = 1", (round((1 - max(r1)) * 100), round((1 - min(r1)) * 100)) == (13, 20) and "$13$--$20\\%$ below the control at $k=1" in tex)
+row("CFG555 particle numbers reproduced to < 1e-7 (C0) and controls C1/C2 pass", G["C0_all_pass"] and G["controls"]["C1_pass"] and G["controls"]["C2_pass"]
+    and all(max(abs(GR[k]["particle"]["s8"] - GR[k]["committed"]["s8"]), abs(GR[k]["particle"]["pdev"] - GR[k]["committed"]["pdev"])) < 1e-7 for k in GR) and "better than $10^{-7}$" in tex)
+c460 = j("CFG460_zero_knob_512_second_seed/cfg460_results.json")
+row("CFG460 second 512^3 realisation: committed particle 1.0037 / 0.040 (GROWTH OK) = CFG555 particle", (f4(c460["s8"]), f3(c460["pdev"]), c460["cut"]) == ("1.0037", "0.040", "GROWTH OK")
+    and abs(c460["s8"] - GR["460_can_512_s360"]["particle"]["s8"]) < 1e-7 and abs(c460["pdev"] - GR["460_can_512_s360"]["particle"]["pdev"]) < 1e-7)
+row("v2.2 version line + scope note (comparison rows not re-measured)", "version 2.2" in tex and "Correction (2026-10-10)" in tex and "they were not re-measured" in tex and "Fixes Structure Growth" not in tex
+    and "is therefore not fixed by this rule" in tex)
 print(f"\n{sum(rows)}/{len(rows)} audit rows pass"); sys.exit(0 if all(rows) else 1)

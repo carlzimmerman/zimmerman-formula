@@ -9,19 +9,19 @@
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
-\hypersetup{pdftitle={The Supply Edge: A Mass-Conserving Rule Without Tuned Radii Fixes Structure Growth Under a Vacuum-Tied MOND Law}, pdfauthor={The authors}}
+\hypersetup{pdftitle={The Supply Edge: A Mass-Conserving Rule Without Tuned Radii Under a Vacuum-Tied MOND Law Keeps Particle Clustering Within 10\%, but Not the Gravitating Matter Spectrum at 512\textasciicircum 3}, pdfauthor={The authors}}
 \setlist{nosep,leftmargin=1.3em}
 \setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
 \sloppy
 \begin{document}
 \begin{center}
-{\Large\bfseries The Supply Edge: A Mass-Conserving Rule Without Tuned Radii\\ Fixes Structure Growth Under a Vacuum-Tied MOND Law}\\[4pt]
+{\Large\bfseries The Supply Edge: A Mass-Conserving Rule Without Tuned Radii\\ Under a Vacuum-Tied MOND Law Keeps Particle Clustering\\ Within 10\%, but Not the Gravitating Matter Spectrum at $512^3$}\\[4pt]
 {\large Working note}\\[6pt]
-{\small The authors --- 2026-10-08, version 2.1 (v1.0 stated the hypothesis; v2.0 added the simulations; v2.1 corrects the wording of the control and the inputs after an internal audit, numbers unchanged) --- AI-assisted research programme; not peer reviewed.}
+{\small The authors --- 2026-10-10, version 2.2 (v1.0 stated the hypothesis; v2.0 added the simulations; v2.1 corrected the wording of the control and the inputs after an internal audit, numbers unchanged; v2.2 corrects the growth claim: the numbers were measured on the particle field, and on the gravitating field the rule fails at $512^3$) --- AI-assisted research programme; not peer reviewed.}
 \end{center}
 
 \begin{abstract}
-\noindent We study the law $a_0=\kappa c\sqrt{G\rho_\Lambda}$ ($\kappa=\tfrac12$, fitted) with the kernel $\nu(y)=1/(1-e^{-\sqrt y})$ and a cold fluid of fixed cosmic amount. In particle-mesh simulations, letting the law act wherever matter has collapsed makes small-scale structure too clumpy: the excess in the matter power spectrum at $k\le1\,h$\,Mpc$^{-1}$ is $+15.3\%$/$+19.3\%$ on the two footings at $256^3$ and $+17.4\%$ at $512^3$, against an allowed $10\%$. We test one rule with no tuned radius. The law's extra (phantom) mass is the cold fluid itself, so a halo can build the phantom only until its own cold fluid is used up; for an undepleted halo this happens at $r_{\rm edge}=r_M/\ln[1/(1-f_b)]\approx5.85\,r_M$. The cold fluid used is drawn from the same halo's turnaround sphere, so mass is conserved halo by halo. With this rule the excess is $2.7\%$ at $256^3$ and $3.3\%$ at $512^3$, with $\sigma_8$ within $0.6\%$ of a control run without the law (the cold fluid evolved as ordinary cold matter, i.e.\ $\Lambda$CDM-equivalent growth). It holds in three random realisations, on both footings, with $a_0$ tracking dark energy, and when the two settings inherited from earlier work are varied. Turning the mass conservation off restores the excess ($15.4\%$). Earlier rules that set the edge by hand, or from measured baryon censuses, sit at the $10\%$ limit at $512^3$. The rule adds no tuned radius or width; its framework inputs are $\kappa$ and the cosmic baryon fraction, and it inherits standard ingredients (a $\Lambda$CDM initial power spectrum, a spherical-collapse turnaround density, a halo finder and the pass thresholds). The cold fluid is handled as bookkeeping, not as simulated particles, and $\kappa$, the cold fluid's amount and $\rho_\Lambda$ remain undetermined.
+\noindent We study the law $a_0=\kappa c\sqrt{G\rho_\Lambda}$ ($\kappa=\tfrac12$, fitted) with the kernel $\nu(y)=1/(1-e^{-\sqrt y})$ and a cold fluid of fixed cosmic amount. In particle-mesh simulations, letting the law act wherever matter has collapsed makes small-scale structure too clumpy: the excess in the particle power spectrum at $k\le1\,h$\,Mpc$^{-1}$ is $+15.3\%$/$+19.3\%$ on the two footings at $256^3$ and $+17.4\%$ at $512^3$, against an allowed $10\%$. We test one rule with no tuned radius. The law's extra (phantom) mass is the cold fluid itself, so a halo can build the phantom only until its own cold fluid is used up; for an undepleted halo this happens at $r_{\rm edge}=r_M/\ln[1/(1-f_b)]\approx5.85\,r_M$. The cold fluid used is drawn from the same halo's turnaround sphere, so mass is conserved halo by halo. With this rule the excess in the particle (baryon-tracing) power spectrum is $2.7\%$ at $256^3$ and $3.3\%$ at $512^3$, with $\sigma_8$ within $0.6\%$ of a control run without the law (the cold fluid evolved as ordinary cold matter, i.e.\ $\Lambda$CDM-equivalent growth). It holds in three random realisations, on both footings, with $a_0$ tracking dark energy, and when the two settings inherited from earlier work are varied, on the particle density; on the gravitating density it holds at $256^3$ only. In the gravitating matter density, which includes the cold fluid the rule settles into each halo and is what lensing measures, the excess is $6.3$--$8.2\%$ at $256^3$ but $16$--$19\%$ at $512^3$ ($\sigma_8$ $+3$--$5\%$), above the $10\%$ limit, in every $512^3$ run. Turning the mass conservation off restores the excess ($15.4\%$ in the particle spectrum). Earlier rules that set the edge by hand, or from measured baryon censuses, sit at the $10\%$ limit at $512^3$. The rule adds no tuned radius or width; its framework inputs are $\kappa$ and the cosmic baryon fraction, and it inherits standard ingredients (a $\Lambda$CDM initial power spectrum, a spherical-collapse turnaround density, a halo finder and the pass thresholds). The cold fluid is handled as bookkeeping, not as simulated particles, and $\kappa$, the cold fluid's amount and $\rho_\Lambda$ remain undetermined.
 \end{abstract}
 % Every number is checked against committed outputs by PAPER45_audit.py.
 
@@ -72,19 +72,48 @@ edge from census retention ($512^3$) & 1.0072 / 1.0073 & 0.092 / 0.1009\\
 \bottomrule
 \end{tabular}
 \end{center}
-Every run of the rule passes, 15 of 15. The excess changes from $2.7\%$ to $3.3\%$ between $256^3$ and $512^3$, a much smaller rise than the earlier rules showed; with two resolutions and one $512^3$ realisation, convergence is not established. No catchment is ever asked for more cold fluid than it holds. The largest share of a catchment's cold fluid used is 30\% at $256^3$ and 57\% at $512^3$; that share rises with resolution and is the quantity to watch at higher resolution. The control shows that the mass conservation, not the edge alone, removes the excess.
+On the particle density every run of the rule passes, 15 of 15 (on the gravitating density 12 of 15 pass; see the correction below). The excess changes from $2.7\%$ to $3.3\%$ between $256^3$ and $512^3$, a much smaller rise than the earlier rules showed; with two resolutions and one $512^3$ realisation, convergence is not established. No catchment is ever asked for more cold fluid than it holds. The largest share of a catchment's cold fluid used is 30\% at $256^3$ and 57\% at $512^3$; that share rises with resolution and is the quantity to watch at higher resolution. The control shows that the mass conservation, not the edge alone, removes the excess from the particle spectrum.
+
+\textbf{Correction (2026-10-10).} The spectra in the table above, and in all earlier versions of this note, were measured on the particle density. The rule moves cold fluid within each catchment, and that moved mass gravitates, so the matter power spectrum is that of the particles plus the settled source. We re-measured every run of the rule on that density from the same saved $z=0$ states, using each run's own force calculation (lane CFG555; the particle numbers are reproduced to better than $10^{-7}$). The second $512^3$ realisation, still running in v2.1, is included. Same control, same cuts.
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+run & particle: $\sigma_8$ / $\max|P-1|$ & gravitating: $\sigma_8$ / $\max|P-1|$\\
+\midrule
+$256^3$, canonical & 1.0033 / 0.027 & 1.0158 / 0.075\\
+$256^3$, alternative & 1.0031 / 0.029 & 1.0156 / 0.077\\
+$256^3$, realisation 2 (canonical) & 1.0024 / 0.022 & 1.0141 / 0.063\\
+$256^3$, realisation 3 (canonical) & 1.0026 / 0.017 & 1.0175 / 0.075\\
+$256^3$, realisation 2 (alternative) & 1.0023 / 0.025 & 1.0149 / 0.068\\
+$256^3$, realisation 3 (alternative) & 1.0030 / 0.023 & 1.0193 / 0.082\\
+$256^3$, $a_0$ tracking dark energy (canonical) & 1.0035 / 0.029 & 1.0157 / 0.074\\
+$256^3$, $a_0$ tracking dark energy (alternative) & 1.0032 / 0.030 & 1.0154 / 0.075\\
+$256^3$, switch width halved & 1.0033 / 0.027 & 1.0158 / 0.075\\
+$256^3$, switch width doubled & 1.0033 / 0.027 & 1.0159 / 0.075\\
+$256^3$, other gas filter (1) & 1.0027 / 0.026 & 1.0153 / 0.072\\
+$256^3$, other gas filter (2) & 1.0038 / 0.031 & 1.0160 / 0.076\\
+$\mathbf{512^3}$\textbf{, canonical} & 1.0045 / 0.033 & \textbf{1.0405 / 0.163}\\
+$512^3$, alternative & 1.0054 / 0.040 & \textbf{1.0459 / 0.193}\\
+$512^3$, $a_0$ tracking dark energy & 1.0045 / 0.033 & \textbf{1.0429 / 0.167}\\
+$512^3$, realisation 2 (canonical) & 1.0037 / 0.040 & \textbf{1.0333 / 0.184}\\
+\midrule
+control: mass conservation switched off ($256^3$) & 1.0326 / 0.154 & 1.1730 / 0.505\\
+\bottomrule
+\end{tabular}
+\end{center}
+On the gravitating density all twelve $256^3$ runs pass ($\max|P-1|=0.063$--$0.082$, $\sigma_8$ ratio $1.014$--$1.019$). All four $512^3$ runs fail the spectrum cut ($0.163$--$0.193$ against $0.10$), although $\sigma_8$ stays inside its $5\%$ cut. At $512^3$ the gravitating spectrum is also $13$--$20\%$ below the control at $k=1\,h$\,Mpc$^{-1}$, so the miss is a reshaping on both sides of the cut, not a single bin. The excess comes mainly from the settled cold fluid being positively correlated with the particles on catchment scales, and it grows with resolution together with the catchment draw noted above. The rows of the problem table and the two comparison rows (edge set by hand, edge from census retention), and the $+15.3\%$/$+19.3\%$/$+17.4\%$ numbers in the abstract, are also particle-field numbers; they were not re-measured.
 
 \section{What this does and does not show}
-It shows that within this framework, structure growth can be kept within 10\% of $\Lambda$CDM-equivalent growth by a rule that follows from treating the phantom as conserved cold fluid, with no radius or width chosen to fit. Its framework inputs are $\kappa$ (fitted to rotation curves) and $f_b$; it also inherits a $\Lambda$CDM initial spectrum, a spherical-collapse turnaround density, a halo finder and the pass thresholds.
+Within this framework, the rule keeps the particle (baryon-tracing) spectrum within 10\% of $\Lambda$CDM-equivalent growth at $256^3$ and $512^3$, with no radius or width chosen to fit. It does not keep the gravitating matter spectrum within 10\% at $512^3$, and the gap grows with resolution. Structure growth as seen by lensing (weak lensing, cosmic shear $S_8$, cluster counts) is therefore not fixed by this rule; galaxy clustering, which traces the baryons, corresponds to the particle field up to bias. The rule's framework inputs are $\kappa$ (fitted to rotation curves) and $f_b$; it also inherits a $\Lambda$CDM initial spectrum, a spherical-collapse turnaround density, a halo finder and the pass thresholds.
 
 It does not show the following:
 \begin{itemize}
 \item The cold fluid is bookkeeping in these runs. Its settling into the phantom profile is imposed, not derived from an action.
-\item One random realisation was run at $512^3$ (a second is running); the mesh does not resolve galaxy scales, and the share of cold fluid used (57\% at $512^3$) could reach 100\% at higher resolution.
+\item Two random realisations were run at $512^3$; both fail on the gravitating density. The mesh does not resolve galaxy scales, and the share of cold fluid used (57\% at $512^3$) could reach 100\% at higher resolution.
 \item The pass criteria compare with a control that has $\Lambda$CDM-equivalent growth, not with survey data. A pass means the law does not spoil standard growth by more than 10\%.
 \item $\kappa$, the cold fluid's amount and $\rho_\Lambda$ are not derived, and no dark-matter particle is identified.
 \end{itemize}
 
 \section{Reproducibility}
-Each test's pass rule was committed before the run, and each test includes a deliberately broken control. The lanes are CFG414, CFG416 and CFG422--CFG427, CFG425 and CFG439 in the repository's \texttt{campaign\_fresh\_gravity} directory; the engine is \texttt{CFG424\_turnaround\_catchment/cfg424\_pm.py} (mode \texttt{RC = 0}).
+Each test's pass rule was committed before the run, and each test includes a deliberately broken control. The lanes are CFG414, CFG416 and CFG422--CFG427, CFG425, CFG439 and CFG460, and the gravitating-field re-measurement is CFG555, in the repository's \texttt{campaign\_fresh\_gravity} directory; the engine is \texttt{CFG424\_turnaround\_catchment/cfg424\_pm.py} (mode \texttt{RC = 0}).
 \end{document}
