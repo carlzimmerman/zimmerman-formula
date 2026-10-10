@@ -41,7 +41,7 @@ SPILL = os.environ.get("CFG596_SPILL", "0") == "1"
 MAXSTEPS = int(os.environ.get("CFG596_MAXSTEPS", "100000"))
 EXTRA = [int(x) for x in os.environ.get("CFG596_EXTRA", "128,141").split(",") if x.strip()]
 RC = 0.0; MIX = "NOFILT"; VETO = False; FRETX = 1.0
-_INC = {"mask": None, "catch": None, "fcode": None, "ftab": None, "calls": 0}
+_INC = {"mask": None, "catch": None, "fcode": None, "ftab": None, "calls": 0}     # mask / catch packed bits; fcode a DField
 FRET_MODE = "census"; NOCOMP = False; DRAW = "SHELL"
 RMIN_PHYS = float(os.environ.get("CFG596_RMIN", "1.56"))
 MIXES = {"MIXA": (0.28, 0.54, 0.18), "MIXB": (0.57, 0.25, 0.18), "HOT1": (0.0, 1.0, 0.0), "NOFILT": (0.0, 0.0, 1.0)}
@@ -103,18 +103,77 @@ def fgrow(a, e=1e-4):
 def dta_table():
     return json.load(open(DTA_FILE))
 
+STAGE = ["init"]; MEMST = {}
+try:
+    import ctypes
+    _LIBC = ctypes.CDLL("/usr/lib/libSystem.dylib"); _LIBC.malloc_zone_pressure_relief.restype = ctypes.c_size_t
+except Exception:
+    _LIBC = None
+RELIEF = os.environ.get("CFG596_RELIEF", "1") == "1"
+def stage(name):
+    """stage label (memory profile) + return freed malloc pages to the OS (macOS keeps freed pages resident as 'reusable'
+    until pressure; this keeps the process RSS equal to its live memory; no effect on any number)."""
+    STAGE[0] = name
+    if RELIEF and _LIBC is not None: _LIBC.malloc_zone_pressure_relief(None, 0)
+def _profiler():
+    import psutil, threading
+    pr = psutil.Process()
+    import tracemalloc
+    tracemalloc.start(int(os.environ.get("CFG596_TMDEPTH", "1")))
+    TOP = {"cur": 0.0}
+    def loop():
+        while True:
+            r = pr.memory_info().rss / 1e9; k = STAGE[0]
+            cur, pk = tracemalloc.get_traced_memory(); tracemalloc.reset_peak()
+            if r > MEMST.get(k, 0.0): MEMST[k] = r
+            if pk / 1e9 > MEMST.get("live:" + k, 0.0): MEMST["live:" + k] = pk / 1e9
+            tms = os.environ.get("CFG596_TMSTAGE")
+            if os.environ.get("CFG596_TMSNAP") and (tms is None or tms == k) and cur / 1e9 > TOP["cur"] + 0.05:
+                TOP["cur"] = cur / 1e9; sn = tracemalloc.take_snapshot()
+                st = sn.statistics("traceback")[:12]
+                MEMST["top"] = [f"{k} {cur / 1e9:.2f}"] + [f"{x.size / 1e9:.2f}GB " + " | ".join(str(f) for f in x.traceback) for x in st]
+            time.sleep(0.05)
+    threading.Thread(target=loop, daemon=True).start()
+if os.environ.get("CFG596_PROFILE", "0") == "1": _profiler()
 def rss_gb():
     return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e9        # macOS: bytes (peak)
 
-# ---------------------------------------------------------------- spill helper (disk temporaries)
-_SP = {}
-def spill(name, arr):
-    if not SPILL: return arr
-    fn = os.path.join(WORK, "tmp", f"spill_{os.getpid()}_{name}.npy"); os.makedirs(os.path.dirname(fn), exist_ok=True)
-    np.save(fn, arr); _SP[name] = fn; return None
-def unspill(name, arr):
-    if not SPILL: return arr
-    fn = _SP.pop(name); x = np.load(fn); os.remove(fn); return x
+# ---------------------------------------------------------------- disk-backed fields (CFG596_SPILL=1) or in-memory (validation sizes)
+class DField:
+    """a full (M, M, M) field addressed by x-slabs; on disk via pread/pwrite (not mapped, so not in the process RSS) when SPILL."""
+    _n = 0
+    def __init__(self, name, M, dtype, inner=None):
+        self.M = M; self.dt = np.dtype(dtype); self.inner = tuple(inner) if inner else (M, M)
+        self.per = int(np.prod(self.inner)) * self.dt.itemsize; self.arr = None; self.fd = None
+        if SPILL:
+            DField._n += 1
+            d = os.path.join(WORK, "tmp"); os.makedirs(d, exist_ok=True)
+            self.fn = os.path.join(d, f"df_{os.getpid()}_{DField._n}_{name}.bin")
+            self.fd = os.open(self.fn, os.O_RDWR | os.O_CREAT | os.O_TRUNC, 0o600); os.ftruncate(self.fd, M * self.per)
+        else:
+            self.arr = np.empty((M,) + self.inner, self.dt)        # in-memory (np.empty: pages committed only when written)
+    def write(self, s, x):
+        if self.fd is None: self.arr[s] = x; return
+        mv = memoryview(np.ascontiguousarray(x, dtype=self.dt)).cast("B"); off = s.start * self.per; o = 0
+        while o < len(mv): o += os.pwrite(self.fd, mv[o:], off + o)
+    def write_all(self, x):
+        if self.fd is None: self.arr = x; return
+        for i in range(0, self.M, 16): self.write(slice(i, min(i + 16, self.M)), x[i:i + 16])
+    def read(self, s):
+        if self.fd is None: return self.arr[s]
+        n = (s.stop - s.start) * self.per; off = s.start * self.per; parts = []; got = 0
+        while got < n:
+            c = os.pread(self.fd, n - got, off + got); parts.append(c); got += len(c)
+        return np.frombuffer(b"".join(parts) if len(parts) > 1 else parts[0], self.dt).reshape((s.stop - s.start,) + self.inner)
+    def read_all(self):
+        if self.fd is None: return self.arr
+        out = np.empty((self.M,) + self.inner, self.dt)
+        for i in range(0, self.M, 16): out[i:i + 16] = self.read(slice(i, min(i + 16, self.M)))
+        return out
+    def close(self):
+        if self.fd is not None:
+            os.close(self.fd); os.remove(self.fn); self.fd = None
+        self.arr = None
 
 # ---------------------------------------------------------------- mesh with in-place padded FFTs
 class Mesh:
@@ -126,7 +185,7 @@ class Mesh:
         self.kvec = (self.kx, self.ky, self.kz)
         self.SL = max(1, min(M, int(os.environ.get("CFG596_SLAB", str(max(1, (1 << 24) // (M * M)))))))
         self.slabs = [slice(i, min(i + self.SL, M)) for i in range(0, M, self.SL)]
-        PS = max(1, min(M, int(os.environ.get("CFG596_PSLAB", str(max(1, (1 << 21) // (M * M)))))))
+        PS = max(1, min(M, int(os.environ.get("CFG596_PSLAB", str(max(1, (1 << 20) // (M * M)))))))
         self.pslabs = [slice(i, min(i + PS, M)) for i in range(0, M, PS)]       # thread-pool tasks (bounded temporaries per thread)
     def kv_s(self, c, s):
         return self.kx[s] if c == 0 else self.kvec[c]
@@ -201,7 +260,7 @@ class Particles:
         self.npg = npg; self.N = npg ** 3
         self.CH = npg * npg * max(1, int(os.environ.get("CFG596_CHUNK_PLANES", "8")))
         self.chunks = [(i, min(i + self.CH, self.N)) for i in range(0, self.N, self.CH)]
-        ICH = npg * npg * max(1, int(os.environ.get("CFG596_ICHUNK_PLANES", "2")))
+        ICH = int(os.environ.get("CFG596_ICHUNK", str(1 << 19)))
         self.ichunks = [(i, min(i + ICH, self.N)) for i in range(0, self.N, ICH)]   # thread-pool particle tasks
     def q(self, c, i0, i1):
         idx = np.arange(i0, i1, dtype=np.int64); n = self.npg
@@ -234,7 +293,7 @@ def deposit(mesh, P):
                 for cz in (0, 1):
                     iz = i1[:, 2] if cz else i0[:, 2]; wz = w[:, 2] if cz else 1 - w[:, 2]
                     rho += np.bincount((ix * M + iy) * M + iz, weights=wx * wy * wz, minlength=M ** 3)
-        rho = rho.reshape((M,) * 3); return (rho / rho.mean() - 1.0).astype(np.float32)
+        rho = rho.reshape((M,) * 3); Dd = DField("delta", M, np.float32); Dd.write_all((rho / rho.mean() - 1.0).astype(np.float32)); return Dd
     rho = np.zeros((M, M * M), np.float64)
     for a_, b_ in P.chunks:
         pos = P.positions(a_, b_); i0, i1, w = mesh.cic_idx(pos); del pos
@@ -259,10 +318,11 @@ def deposit(mesh, P):
         rho[start:start + n1] += acc[:n1]
         if n1 < Wn: rho[:Wn - n1] += acc[n1:]
         del acc
-    m = rho.mean(); out = np.empty((M, M, M), np.float32); r3 = rho.reshape(M, M, M)
-    def _b(s): out[s] = (r3[s] / m - 1.0).astype(np.float32)
+    m = rho.mean(); r3 = rho.reshape(M, M, M)
+    Dd = DField("delta", M, np.float32)
+    def _b(s): Dd.write(s, (r3[s] / m - 1.0).astype(np.float32))
     EACH(mesh, _b)
-    return out
+    return Dd
 
 def interp1(mesh, gpad, pos):
     """cfg527 Mesh.interp for ONE grid (identical per-component arithmetic); gpad = padded real view (M, M, M+2) of the field."""
@@ -277,9 +337,17 @@ def interp1(mesh, gpad, pos):
                 out += (wx * wy * wz) * flat[(ix * M + iy) * Mp + iz]
     return out
 
+def fwd_field(mesh, x):
+    """= mesh.fwd(x) for an array or a DField (filled slab-wise into a fresh buffer; bitwise identical)."""
+    if not isinstance(x, DField): return mesh.fwd(x)
+    b = mesh.cbuf(); rv = mesh.real(b)
+    def _b(s): rv[s] = x.read(s)
+    EACH(mesh, _b)
+    return mesh.fwd_ip(b)
+
 def measure_pk(mesh, delta):
     """cfg527 measure_pk (sigma8 plus sigma2/sigma4 diagnostics); slab accumulation of the bin sums (measurement only)."""
-    M = mesh.M; dk = mesh.fwd(delta)
+    M = mesh.M; dk = fwd_field(mesh, delta)
     kf = 2 * np.pi / L; edges = np.arange(0.5, M // 2 + 1, 1.0) * kf
     nb = np.zeros(len(edges) + 1); sk = np.zeros(len(edges) + 1); sp = np.zeros(len(edges) + 1); sig = {8.0: 0.0, 2.0: 0.0, 4.0: 0.0}
     for s in mesh.slabs:
@@ -343,19 +411,20 @@ def initial_conditions_lean(m, P, amp=1.0):
         kk = np.sqrt(m.k2_s(s)).astype(np.float64)
         buf[s] = buf[s] * np.sqrt(P_lin0(kk) / (L / npg) ** 3) * npg ** 1.5 * amp
     buf[npg // 2, :, :] = 0; buf[:, npg // 2, :] = 0; buf[:, :, -1] = 0; buf[0, 0, 0] = 0
-    dk = buf
+    Ddk = DField("dk", npg, np.complex128, inner=buf.shape[1:]); Ddk.write_all(buf)
+    if SPILL: del buf
     Di = Dgrow(AI); cm = AI ** 2 * E(AI) * fgrow(AI) * Di
     P.x = [np.empty(P.N, np.float32) for _ in range(3)]; P.mom = [np.empty(P.N, np.float32) for _ in range(3)]
     for c in range(3):
-        b = np.empty_like(dk)
-        for s in m.slabs: b[s] = (1j * m.kv_s(c, s)) * dk[s] * m.ik2_s(s)
+        b = m.cbuf(np.complex128)
+        for s in m.slabs: b[s] = (1j * m.kv_s(c, s)) * Ddk.read(s) * m.ik2_s(s)
         psi = m.inv_ip(b)
         for i0, i1 in P.chunks:
             p = psi[i0 // (npg * npg):i1 // (npg * npg)].reshape(-1)
             P.x[c][i0:i1] = (Di * p).astype(np.float32)
             P.mom[c][i0:i1] = (cm * p).astype(np.float32)
         del b, psi
-    del dk, buf; gc.collect()
+    Ddk.close(); gc.collect()
 
 def step_grid():
     seg = [(AI, 0.5, 123), (0.5, 2 / 3, 11), (2 / 3, 1.0, 16)]
@@ -366,13 +435,12 @@ def step_grid():
     return np.array(a)
 
 def catch_labels(m):
-    """periodic 6-connected component labels of mask m (cfg527; int32 result, same values)."""
+    """periodic 6-connected component labels of mask m (cfg527): returns r = component index of every True cell in C order
+    (= the original r[mm], int32) and nc.  Callers guarantee m.any()."""
     from scipy import ndimage
     from scipy.sparse import coo_matrix
     from scipy.sparse.csgraph import connected_components
     lab, n = ndimage.label(m)
-    if n == 0:
-        return lab.ravel(), 1
     pa, pb = [], []
     for ax in range(3):
         l0 = np.take(lab, 0, axis=ax).ravel(); l1 = np.take(lab, -1, axis=ax).ravel(); k = (l0 > 0) & (l1 > 0)
@@ -380,10 +448,9 @@ def catch_labels(m):
     pa = np.concatenate(pa); pb = np.concatenate(pb)
     g = coo_matrix((np.ones(len(pa), np.int8), (pa, pb)), shape=(n + 1, n + 1))
     nc, root = connected_components(g, directed=False)
-    sel = lab.ravel() > 0
-    r = root.astype(np.int32)[lab.ravel()[sel]]
-    del lab
-    return r, nc, sel
+    lv = lab.reshape(-1); del lab
+    r = root.astype(np.int32)[lv[lv > 0]]
+    return r, nc
 
 def fret_of(lM):
     if FRET_MODE == "one": return 1.0
@@ -400,16 +467,16 @@ def x_supply(R, Dta, a, branch, foot):
     rM = math.sqrt(6.674e-11 * Mbn * 1.989e30 / a0p) / 3.0857e22 * 0.674 / a
     return min(rM / math.log(1.0 + fr * FB / (1.0 - FB)) / R, 1.0)
 
-def in_cover(mesh, delta, Dta, x, a=1.0, branch='FLAT', foot='canonical', want_fret=False):
-    """cfg527 in_cover (declared FFT implementation): identical arithmetic; f_ret returned as (uint8 code, float32 table)."""
+def cover_peaks(mesh, delta, Dta):
+    """cfg527 in_cover, first half (resolved peaks and their r_ON); identical arithmetic.  The original evaluates this twice per
+    refresh with identical inputs (mask call, catchment call); it is evaluated once and shared (deterministic -> identical)."""
     from scipy import ndimage
     M, dx = mesh.M, mesh.dx
     tau = (Dta - 1.0) / 3.0
     mx = ndimage.maximum_filter(delta, size=3, mode="wrap")
     pk = (delta == mx) & (delta >= 3 * (tau - EPS)); del mx
     if not pk.any():
-        z = np.zeros(delta.shape, bool)
-        return (z, np.zeros(delta.shape, np.uint8), np.ones(1, np.float32)) if want_fret else z
+        return None
     Rg = np.geomspace(dx, 8.0, 14)
     rhok = mesh.cbuf(); rr = mesh.real(rhok)
     def _b(s): rr[s] = (1.0 + delta[s]).astype(np.float32)
@@ -427,12 +494,21 @@ def in_cover(mesh, delta, Dta, x, a=1.0, branch='FLAT', foot='canonical', want_f
         mean = mesh.inv_ip(b)[idx[:, 0], idx[:, 1], idx[:, 2]]
         ok &= mean >= Dta
         ron[ok] = R
-    del rhok
+    del rhok, b
+    return idx, ron, Rg
+
+def cover_balls(mesh, peaks, Dta, x, a=1.0, branch='FLAT', foot='canonical', want_fret=False):
+    """cfg527 in_cover, second half (union of balls); returns the PACKED mask (and, with want_fret, a uint8 f_ret code + float32 table)."""
+    M, dx = mesh.M, mesh.dx
+    if peaks is None:
+        z = np.zeros((M, M, M), bool)
+        return (pack(z), np.zeros((M, M, M), np.uint8), np.ones(1, np.float32)) if want_fret else pack(z)
+    idx, ron, Rg = peaks
     res = ron >= RMIN_PHYS
-    mask = np.zeros(delta.shape, bool)
-    code = np.zeros(delta.shape, np.uint8) if want_fret else None; tab = [np.float32(1.0)]
+    mask = np.zeros((M, M, M), bool)
+    code = np.zeros((M, M, M), np.uint8) if want_fret else None; tab = [np.float32(1.0)]
     g = np.arange(M); g = np.minimum(g, M - g) * dx
-    bb = mesh.cbuf()
+    b = None; bb = None
     for R in Rg[Rg >= RMIN_PHYS - 1e-9]:
         sel = res & (np.abs(ron - R) < 1e-9)
         if not sel.any():
@@ -443,6 +519,7 @@ def in_cover(mesh, delta, Dta, x, a=1.0, branch='FLAT', foot='canonical', want_f
             mask[idx[sel, 0], idx[sel, 1], idx[sel, 2]] = True
             if want_fret: code[idx[sel, 0], idx[sel, 1], idx[sel, 2]] = kc
             continue
+        if b is None: b = mesh.cbuf(); bb = mesh.cbuf()
         pr = mesh.real(b)
         def _b(s): pr[s] = 0.0
         EACH(mesh, _b)
@@ -461,29 +538,38 @@ def in_cover(mesh, delta, Dta, x, a=1.0, branch='FLAT', foot='canonical', want_f
             if want_fret: code[s][cs] = kc
         EACH(mesh, _b)
     del b, bb
-    return (mask, code, np.array(tab, np.float32)) if want_fret else mask
+    pm = pack(mask); del mask
+    return (pm, code, np.array(tab, np.float32)) if want_fret else pm
 
-def tidal_l2(mesh, dk):
-    """l2 of the tidal tensor t_ij = irfftn(k_i k_j dk / k^2)."""
+def pack(m):
+    return np.packbits(m, axis=-1)
+def unpack(p, s=slice(None)):
+    M = p.shape[0]
+    return np.unpackbits(p[s], axis=-1, count=M).astype(bool)
+
+def tidal_exact_fsw(mesh, dk, tau, Dfsw):
+    """exact mode: the original six-field transform, eig3 -> l2 -> f_sw (written to Dfsw)."""
     M = mesh.M; tk = [(0, 0), (1, 1), (2, 2), (0, 1), (0, 2), (1, 2)]
-    if MODE == "exact":
-        t = []
-        for i, j in tk:
-            b = mesh.cbuf()
-            def _b(s): b[s] = mesh.kv_s(i, s) * mesh.kv_s(j, s) * dk[s] * mesh.ik2_s(s)
-            EACH(mesh, _b)
-            r = mesh.inv_ip(b); out = np.empty(r.shape, np.float32)
-            def _b(s): out[s] = r[s]
-            EACH(mesh, _b)
-            t.append(out); del b
-        l2 = np.empty((M, M, M), np.float32)
-        def ev(s): l2[s] = eig_l2([x[s] for x in t])
-        pmap(ev, mesh.pslabs); del t
-        return l2
-    # lean: F_p = A0[kx^p dk / k^2] (p = 0, 1, 2), then per x-slab the kx-free factors and the axis-1/axis-2 transforms
-    F = []
+    t = []
+    for i, j in tk:
+        b = mesh.cbuf()
+        def _b(s): b[s] = mesh.kv_s(i, s) * mesh.kv_s(j, s) * dk[s] * mesh.ik2_s(s)
+        EACH(mesh, _b)
+        r = mesh.inv_ip(b); out = np.empty(r.shape, np.float32)
+        def _b(s): out[s] = r[s]
+        EACH(mesh, _b)
+        t.append(out); del b
+    def ev(s):
+        l2 = eig_l2_blocked([x[s] for x in t])
+        Dfsw.write(s, np.clip(0.5 + (l2 - tau) / (2 * EPS), 0, 1).astype(np.float32))
+    pmap(ev, mesh.pslabs); del t
+
+def tidal_lean_fsw(mesh, dk, tau, Dfsw):
+    """lean mode: F_p = A0[kx^p dk / k^2] (p = 0, 1, 2; p = 2 in dk's own buffer), then per x-slab the kx-free factors and the
+    axis-1 / axis-2 transforms, eig3 -> l2 -> f_sw written to Dfsw (no full l2 or tensor field held)."""
+    M = mesh.M; F = []
     for p in range(3):
-        b = mesh.cbuf() if p < 2 else dk                          # p = 2 reuses dk's buffer in place (its last use)
+        b = mesh.cbuf() if p < 2 else dk
         def _b(s):
             kxp = 1.0 if p == 0 else (mesh.kx[s] if p == 1 else mesh.kx[s] * mesh.kx[s])
             b[s] = (kxp * dk[s]) * mesh.ik2_s(s) if p else dk[s] * mesh.ik2_s(s)
@@ -491,11 +577,7 @@ def tidal_l2(mesh, dk):
         r = sfft.ifft(b, axis=0, overwrite_x=True, norm="forward", workers=NTH)
         if not np.shares_memory(r, b): b[...] = r
         F.append(b)
-    return F
-
-def tidal_l2_lean_finish(mesh, F):
-    M = mesh.M; ky, kz = mesh.ky, mesh.kz; sc = np.float32(1.0 / M ** 3)
-    l2 = np.empty((M, M, M), np.float32)
+    ky, kz = mesh.ky, mesh.kz; sc = np.float32(1.0 / M ** 3)
     fac = {(0, 0): (2, 1.0), (1, 1): (0, ky * ky), (2, 2): (0, kz * kz), (0, 1): (1, ky), (0, 2): (1, kz), (1, 2): (0, ky * kz)}
     order = [(0, 0), (1, 1), (2, 2), (0, 1), (0, 2), (1, 2)]
     def ev(s):
@@ -504,70 +586,71 @@ def tidal_l2_lean_finish(mesh, F):
             p, f = fac[ij]
             t = sfft.ifft(F[p][s] * f, axis=1, norm="forward", workers=1)
             comps.append(sfft.irfft(t, n=M, axis=2, norm="forward", workers=1) * sc)
-        l2[s] = eig_l2(comps)
+        l2 = eig_l2_blocked(comps)
+        Dfsw.write(s, np.clip(0.5 + (l2 - tau) / (2 * EPS), 0, 1).astype(np.float32))
     pmap(ev, mesh.pslabs)
-    return l2
+    del F
 
-def forces(mesh, delta, a, switch, branch, foot, dta, diag=False):
+def eig_l2_blocked(t):
+    """eig_l2 over y-blocks (bounded float64 temporaries per thread; elementwise -> identical)."""
+    n0, M = t[0].shape[0], t[0].shape[1]; out = np.empty(t[0].shape, np.float32)
+    yb = max(1, (1 << 17) // (n0 * t[0].shape[2]))
+    for j in range(0, M, yb):
+        out[:, j:j + yb] = eig_l2([x[:, j:j + yb] for x in t])
+    return out
+
+def forces(mesh, box, a, switch, branch, foot, dta, diag=False, keep_state=False):
     """cfg527 forces for switch RES (RC = 0, census, SHELL draw, NOFILT) or S0; returns (phik buffer, info).
-    The accelerations are -a * irfftn(1j k phik), formed per component by the caller."""
-    info = {}
-    dk = mesh.fwd(delta)
+    box = [delta] (taken over, so the caller holds no reference).  Accelerations = -a irfftn(1j k phik), formed by the caller.
+    keep_state (extra snapshots only): the diagnostic call's catchment / f_ret refresh is NOT stored (measurement only)."""
+    info = {}; M = mesh.M
+    Dd = box.pop(); delta = None
+    stage("f_dk"); dk = fwd_field(mesh, Dd)
     if switch == "S0":
+        Dd.close()
         def _b(s): dk[s] = ((-1.5 * Om / a) * dk[s]) * mesh.ik2_s(s)
         EACH(mesh, _b)
         if diag: info["finite"] = bool(np.all(np.isfinite(dk)))
         return dk, info
-    # ---- tidal switch
-    if MODE == "exact":
-        l2 = tidal_l2(mesh, dk); del dk
-    else:
-        F = tidal_l2(mesh, dk); del dk
-        delta = spill("delta", delta)
-        l2 = tidal_l2_lean_finish(mesh, F); del F
-        delta = unspill("delta", delta)
     D = math.exp(np.interp(math.log(1 / a), np.log1p(dta["z"]), np.log(dta["D"])))
     tau = (D - 1.0) / 3.0
-    fsw = l2
-    def _b(s): fsw[s] = np.clip(0.5 + (l2[s] - tau) / (2 * EPS), 0, 1).astype(np.float32)
-    EACH(mesh, _b)
-    del l2
-    if not diag:
-        if _INC["mask"] is None or _INC["calls"] % 10 == 0:
-            fsw = spill("fsw", fsw)
-            _INC["mask"] = in_cover(mesh, delta, D, None, a, branch, foot)
-            _INC["catch"], _INC["fcode"], _INC["ftab"] = in_cover(mesh, delta, D, 1.0, a, branch, foot, want_fret=True)
-            fsw = unspill("fsw", fsw)
-        _INC["calls"] += 1
-        edge = _INC["mask"]
-    else:
-        fsw = spill("fsw", fsw)
-        edge = in_cover(mesh, delta, D, None, a, branch, foot)
-        _INC["catch"], _INC["fcode"], _INC["ftab"] = in_cover(mesh, delta, D, 1.0, a, branch, foot, want_fret=True)
-        fsw = unspill("fsw", fsw)
-    def _b(s): fsw[s] = fsw[s] * edge[s].astype(np.float32)
-    EACH(mesh, _b)
+    Dfsw = DField("fsw", M, np.float32)
+    stage("f_tidal")
+    if MODE == "exact": tidal_exact_fsw(mesh, dk, tau, Dfsw)
+    else: tidal_lean_fsw(mesh, dk, tau, Dfsw)
+    del dk
+    # ---- census edge (every 10th call) and catchments / f_ret
+    refresh = (not diag) and (_INC["mask"] is None or _INC["calls"] % 10 == 0)
+    if refresh or diag:
+        stage("f_incover")
+        if delta is None: delta = Dd.read_all()
+        peaks = cover_peaks(mesh, delta, D)
+        if SPILL: del delta; delta = None
+        edge_p = cover_balls(mesh, peaks, D, None, a, branch, foot)
+        catch_p, code, tab = cover_balls(mesh, peaks, D, 1.0, a, branch, foot, want_fret=True)
+        del peaks
+        Dcode = DField("fcode", M, np.uint8); Dcode.write_all(code); del code
+        if not diag:
+            _INC["mask"] = edge_p
+        if not keep_state:
+            if _INC["fcode"] is not None and _INC["fcode"] is not Dcode: _INC["fcode"].close()
+            _INC["catch"], _INC["fcode"], _INC["ftab"] = catch_p, Dcode, tab
+    if not diag: _INC["calls"] += 1
+    if not diag: edge_p = _INC["mask"]
+    if not (diag and keep_state): catch_p, Dcode, tab = _INC["catch"], _INC["fcode"], _INC["ftab"]
     info.update(tau=tau, Delta_ta=D)
     # ---- MOND input: retained baryons f_ret(x)(1 + delta), W(k) = 1 (NOFILT)
     fc, fh, fs = MIXES[MIX]
     kJ = lambda T: math.sqrt(1.5 * Om / a) * 100.0 / (math.sqrt(5 * 1.380649e-23 * T / (3 * 0.6 * 1.67262192e-27)) / 1e3)
     kJ4, kJ6 = kJ(1e4), kJ(1e6)
-    fcode, ftab, catch = _INC["fcode"], _INC["ftab"], _INC["catch"]
+    stage("f_mond")
     phb = mesh.cbuf(); pr = mesh.real(phb)
-    def _b(s): pr[s] = (ftab[fcode[s]] * (1.0 + delta[s])).astype(np.float32)
+    def _b(s): pr[s] = (tab[Dcode.read(s)] * (1.0 + Dd.read(s))).astype(np.float32)
     EACH(mesh, _b)
+    if diag and keep_state: Dcode.close()
     mesh.fwd_ip(phb)
     def _b(s): phb[s] = ((-1.5 * Om / a) * phb[s]) * mesh.ik2_s(s)
     EACH(mesh, _b)
-    if diag and DIAGX:
-        rho_ = (1.0 + delta) * catch; fr_ = ftab[fcode]
-        info["fret_mass_mean_catch"] = float((fr_ * rho_).sum() / max(rho_.sum(), 1e-30))
-        info["fret_min"] = float(fr_.min()); info["fret_vol_lt1"] = float((fr_ < 1).mean()); del rho_, fr_
-    delta = spill("delta", delta); fsw = spill("fsw", fsw); edge = spill("edge", edge)
-    catch = spill("catch", catch); fcode = spill("fcode", fcode)
-    if SPILL:
-        _INC["catch"] = None; _INC["fcode"] = None
-        if not diag: _INC["mask"] = None
     def gb_comp(c, b):
         def _b(s):
             kk = mesh.k2_s(s)
@@ -578,100 +661,117 @@ def forces(mesh, delta, a, switch, branch, foot, dta, diag=False):
         def _b(s): r[s] = FB * (-r[s])
         EACH(mesh, _b)
         return r
-    ysq = np.empty((mesh.M,) * 3, np.float32); gbuf = mesh.cbuf()
+    ysq = np.empty((M,) * 3, np.float32); gbuf = mesh.cbuf()
     for c in range(3):
         g = gb_comp(c, gbuf)
         if c == 0:
             def _b(s): ysq[s] = g[s] ** 2
-            EACH(mesh, _b)
         else:
             def _b(s): ysq[s] += g[s] ** 2
-            EACH(mesh, _b)
+        EACH(mesh, _b)
     a0c = a * a0_code(a, branch, foot)
     if diag and DIAGX: info["y_median"] = float(np.median(np.sqrt(ysq) / a0c))
+    Dw = DField("w", M, np.float32)
     def fw(s):
-        y = np.sqrt(ysq[s]) / a0c
-        ysq[s] = nu_mono(y).astype(np.float32) - 1.0
-    pmap(fw, mesh.pslabs); w = ysq; del ysq
+        for j in range(s.start, s.stop):
+            y = np.sqrt(ysq[j:j + 1]) / a0c
+            Dw.write(slice(j, j + 1), nu_mono(y).astype(np.float32) - 1.0)
+    pmap(fw, mesh.pslabs); del ysq
     divk = mesh.cbuf()
     for c in range(3):
         g = gb_comp(c, gbuf)
-        def _b(s): g[s] = w[s] * g[s]
+        def _b(s): g[s] = Dw.read(s) * g[s]
         EACH(mesh, _b)
         mesh.fwd_ip(gbuf)
         if c == 0:
             def _b(s): divk[s] = (1j * mesh.kv_s(c, s)) * gbuf[s]; divk[s] += 0
-            EACH(mesh, _b)
         else:
             def _b(s): divk[s] += (1j * mesh.kv_s(c, s)) * gbuf[s]
-            EACH(mesh, _b)
-    del gbuf, phb, w
+        EACH(mesh, _b)
+    del gbuf, phb; Dw.close()
     s_ph = mesh.inv_ip(divk)                                      # divk buffer now holds the real field
     def _b(s): s_ph[s] = -s_ph[s]
     EACH(mesh, _b)
-    # ---- source
-    delta = unspill("delta", delta); fsw = unspill("fsw", fsw); catch = unspill("catch", catch)
-    edge = unspill("edge", edge)
-    if not diag: _INC["mask"] = edge
+    # ---- source: e = f_sw max(s_ph - s_c, 0) on the catchments; per-catchment draw from the shell (catchment AND NOT edge)
+    stage("f_source")
     cs = (1.5 * Om * (1.0 - FB) / a)
     e = s_ph
-    def _b(s): e[s] = fsw[s] * np.maximum(s_ph[s] - cs * (1.0 + delta[s]), 0.0)
+    def _b(s):
+        fsw_s = Dfsw.read(s) * unpack(edge_p, s).astype(np.float32)
+        e[s] = fsw_s * np.maximum(s_ph[s] - cs * (1.0 + Dd.read(s)), 0.0)
+        e[s] = e[s] * unpack(catch_p, s)
     EACH(mesh, _b)
-    del fsw
-    def _b(s): e[s] = e[s] * catch[s]
-    EACH(mesh, _b)
+    Dfsw.close()
+    catch = unpack(catch_p)
     if not catch.any():                                            # cfg527: no components -> nc = 1, q = 0, comp = 0, src = e
+        del catch
         if diag:
-            ec = _contig(e); info.update(overdraw_mass=0.0, q_max=0.0, cap_active=False, n_catch=1, e_sum=float(ec.sum()),
-                                         e_mean=float(ec.mean()), src_sum=float(ec.sum())); del ec
-        _INC["catch"] = catch; fcode = unspill("fcode", fcode); _INC["fcode"] = fcode
-        return _finish_phik(mesh, divk, delta, a, info, diag)
-    mm = catch.reshape(-1)
-    d_flat = delta.reshape(-1)
-    sc_sel = cs * (1.0 + d_flat[mm])                               # = s_c.ravel()[mm] (float32)
-    shell = (catch & ~edge).reshape(-1)[mm]
-    rv_sel = (sc_sel * shell).astype(np.float32)                   # = rv.ravel()[mm]
-    if diag: rho_sel = (1.0 + d_flat[mm]).astype(np.float64)
-    del shell
-    delta = spill("delta", delta)
-    r, nc, sel = catch_labels(catch)
-    assert np.array_equal(sel, mm)
-    del sel
-    _INC["catch"] = catch if not SPILL else None
-    catch = spill("catch", catch) if SPILL else catch
-    e_sel = _sel(e, mm)
-    E_ = np.bincount(r, weights=e_sel.astype(np.float64), minlength=nc)
-    C_ = np.bincount(r, weights=rv_sel.astype(np.float64), minlength=nc)
+            es = _psum(e); info.update(overdraw_mass=0.0, q_max=0.0, cap_active=False, n_catch=1, e_sum=es, e_mean=es / M ** 3, src_sum=es)
+        return _finish_phik(mesh, divk, Dd, a, info, diag)
+    stage("f_labels")
+    r, nc = catch_labels(catch); del catch
+    # groups of planes: exact mode one group (= the original single bincount); lean mode groups of GP planes
+    GP = M if MODE == "exact" else max(1, int(os.environ.get("CFG596_GROUP_PLANES", "16")))
+    groups = [slice(i, min(i + GP, M)) for i in range(0, M, GP)]
+    E_ = np.zeros(nc); C_ = np.zeros(nc); W_ = np.zeros(nc) if diag else None
+    offs = [0]
+    def gsel(gs):
+        cm = unpack(catch_p, gs).reshape(-1)
+        sh = (unpack(catch_p, gs) & ~unpack(edge_p, gs)).reshape(-1)[cm]
+        dl = np.ascontiguousarray(Dd.read(gs)).reshape(-1)[cm]
+        sc_sel = cs * (1.0 + dl)
+        rv_sel = (sc_sel * sh).astype(np.float32)
+        e_sel = _sel(e[gs], cm)
+        return cm, dl, rv_sel, e_sel
+    sel_cache = []
+    o = 0
+    for gs in groups:
+        cm, dl, rv_sel, e_sel = gsel(gs); n = int(cm.sum()); rr = r[o:o + n]
+        if GP == M:
+            E_ = np.bincount(rr, weights=e_sel.astype(np.float64), minlength=nc)
+            C_ = np.bincount(rr, weights=rv_sel.astype(np.float64), minlength=nc)
+            if diag: W_ = np.bincount(rr, weights=(1.0 + dl).astype(np.float64), minlength=nc)
+        else:
+            E_ += np.bincount(rr, weights=e_sel.astype(np.float64), minlength=nc)
+            C_ += np.bincount(rr, weights=rv_sel.astype(np.float64), minlength=nc)
+            if diag: W_ += np.bincount(rr, weights=(1.0 + dl).astype(np.float64), minlength=nc)
+        o += n
     q = E_ / np.maximum(C_, 1e-30)
     q_raw = q.copy(); capf = np.where(q > 1.0, 1.0 / np.maximum(q, 1e-30), 1.0)
-    if (q > 1.0).any():
-        e_sel = (e_sel * capf[np.maximum(r, 0)]).astype(np.float32)
-        q = np.minimum(q, 1.0)
-    comp_sel = (rv_sel * q[r]).astype(np.float32)
+    capon = bool((q > 1.0).any())
+    if capon: q = np.minimum(q, 1.0)
     if diag:
-        wq = np.bincount(r, weights=rho_sel, minlength=nc)
-        info["overdraw_mass"] = float(wq[q_raw > 1].sum() / max(wq.sum(), 1e-30)); info["q_max"] = float(q_raw.max()) if nc else 0.0
-        info["cap_active"] = bool((q_raw > 1).any()); info["n_catch"] = int(nc)
-        del wq, rho_sel
-    src_sel = e_sel - comp_sel
-    del r, rv_sel, comp_sel
-    _put(e, mm, e_sel)
-    if diag:
-        ec = _contig(e); info["e_sum"] = float(ec.sum()); info["e_mean"] = float(ec.mean()); del ec
-    _put(e, mm, src_sel); del e_sel, src_sel
-    if diag:
-        sc_ = _contig(e); info["src_sum"] = float(sc_.sum()); del sc_
-    catch = unspill("catch", catch) if SPILL else catch
-    _INC["catch"] = catch
-    fcode = unspill("fcode", fcode); _INC["fcode"] = fcode
-    del mm, d_flat
-    delta = unspill("delta", delta)
-    return _finish_phik(mesh, divk, delta, a, info, diag)
+        info["overdraw_mass"] = float(W_[q_raw > 1].sum() / max(W_.sum(), 1e-30)); info["q_max"] = float(q_raw.max()) if nc else 0.0
+        info["cap_active"] = capon; info["n_catch"] = int(nc)
+    o = 0; es = 0.0; ss = 0.0
+    for gs in groups:
+        cm, dl, rv_sel, e_sel = gsel(gs); n = int(cm.sum()); rr = r[o:o + n]
+        if capon: e_sel = (e_sel * capf[np.maximum(rr, 0)]).astype(np.float32)
+        comp_sel = (rv_sel * q[rr]).astype(np.float32)
+        _put(e[gs], cm, e_sel)
+        if diag and GP == M:
+            ec = _contig(e); info["e_sum"] = float(ec.sum()); info["e_mean"] = float(ec.mean()); del ec
+        elif diag: es += _psum(e[gs])
+        _put(e[gs], cm, e_sel - comp_sel)
+        if diag and GP == M:
+            ec = _contig(e); info["src_sum"] = float(ec.sum()); del ec
+        elif diag: ss += _psum(e[gs])
+        o += n
+    if diag and GP != M: info.update(e_sum=es, e_mean=es / M ** 3, src_sum=ss)
+    del r
+    return _finish_phik(mesh, divk, Dd, a, info, diag)
 
-def _finish_phik(mesh, divk, delta, a, info, diag):
+def _psum(x):
+    return float(sum(float(x[i].astype(np.float64).sum()) for i in range(x.shape[0])))
+
+def _finish_phik(mesh, divk, Dd, a, info, diag):
     # ---- total potential: phik = (-1.5 Om / a) dk / k^2 - fwd(src) / k^2
-    srck = mesh.fwd_ip(divk)                                       # in place: src (real) -> its transform
-    phik = mesh.fwd(delta); del delta
+    stage("f_finish"); srck = mesh.fwd_ip(divk)                     # in place: src (real) -> its transform
+    phik = mesh.cbuf(); pr = mesh.real(phik)
+    def _b(s): pr[s] = Dd.read(s)
+    EACH(mesh, _b)
+    Dd.close()
+    mesh.fwd_ip(phik)
     def _b(s):
         ik2 = mesh.ik2_s(s)
         phik[s] = ((-1.5 * Om / a) * phik[s]) * ik2
@@ -686,17 +786,15 @@ def _sel(x, mm):
     M = x.shape[0]; per = x.shape[1] * x.shape[2]; parts = []
     for i in range(M):
         parts.append(x[i].reshape(-1)[mm[i * per:(i + 1) * per]])
-    return np.concatenate(parts)
+    return np.concatenate(parts) if parts else np.zeros(0, x.dtype)
 def _put(x, mm, v):
     M = x.shape[0]; per = x.shape[1] * x.shape[2]; o = 0
     for i in range(M):
         m_ = mm[i * per:(i + 1) * per]; n = int(m_.sum())
         if n:
-            xi = x[i]; flat = xi.reshape(-1) if xi.flags.c_contiguous else None
-            if flat is not None: flat[m_] = v[o:o + n]
-            else:
-                t = np.ascontiguousarray(xi).reshape(-1); t[m_] = v[o:o + n]; x[i] = t.reshape(xi.shape)
+            xi = x[i]; t = np.ascontiguousarray(xi).reshape(-1); t[m_] = v[o:o + n]; x[i] = t.reshape(xi.shape)
         o += n
+
 def _contig(x):
     out = np.empty(x.shape, x.dtype)
     out[...] = x
@@ -712,9 +810,10 @@ def grav_field(mesh, phik, a):
     return mesh.inv_ip(b)
 
 def block_mean(x, f):
-    M = x.shape[0]; n = M // f; out = np.empty((n, n, n), np.float32)
+    M = x.M if isinstance(x, DField) else x.shape[0]; n = M // f; out = np.empty((n, n, n), np.float32)
     for i in range(n):
-        out[i] = x[i * f:(i + 1) * f].astype(np.float64).reshape(f, n, f, n, f).mean(axis=(0, 2, 4)).astype(np.float32)
+        sl = x.read(slice(i * f, (i + 1) * f)) if isinstance(x, DField) else x[i * f:(i + 1) * f]
+        out[i] = sl.astype(np.float64).reshape(f, n, f, n, f).mean(axis=(0, 2, 4)).astype(np.float32)
     return out
 
 # ---------------------------------------------------------------- run
@@ -730,7 +829,7 @@ def run(switch, branch, foot, npg, amp=1.0):
         pos, mom = initial_conditions_exact(npg, amp)
         P.x = [np.ascontiguousarray(pos[:, c]) for c in range(3)]; P.mom = [np.ascontiguousarray(mom[:, c]) for c in range(3)]; del pos, mom
     else:
-        initial_conditions_lean(mesh, P, amp)
+        stage("ic"); initial_conditions_lean(mesh, P, amp)
     aa = step_grid(); nsteps = len(aa) - 1
     snaps = {0.5: "z1", 2 / 3: "z0.5", 1.0: "z0"}
     extra = {i: f"x{1 / aa[i] - 1:.4f}" for i in EXTRA if 0 < i <= nsteps}
@@ -741,20 +840,19 @@ def run(switch, branch, foot, npg, amp=1.0):
     def log(msg):
         print(f"  [{tag}] {msg} t={time.time() - t0:.0f}s maxrss={rss_gb():.2f}GB", flush=True)
     def snapshot(name, a, restore=False):
-        delta = deposit(mesh, P)
-        kb, pb, s8, sig = measure_pk(mesh, delta)
-        saved = (_INC["catch"], _INC["fcode"], _INC["ftab"]) if restore else None
-        phik, info = forces(mesh, delta, a, switch, branch, foot, dta, diag=True)
-        if restore: _INC["catch"], _INC["fcode"], _INC["ftab"] = saved
-        dg = grav_field(mesh, phik, a); del phik
+        stage("snap_deposit"); Dd = deposit(mesh, P)
+        kb, pb, s8, sig = measure_pk(mesh, Dd)
+        f = max(1, npg // 256); bm_p = block_mean(Dd, f)
+        box = [Dd]; del Dd
+        phik, info = forces(mesh, box, a, switch, branch, foot, dta, diag=True, keep_state=restore)
+        stage("snap_grav"); dg = grav_field(mesh, phik, a); del phik
         dgc = _contig(dg); del dg
         _, pg, s8g, sigg = measure_pk(mesh, dgc)
-        f = max(1, npg // 256)
-        np.savez_compressed(os.path.join(WORK, f"{tag}_{name}_mesh256.npz"), dpart=block_mean(delta, f), dgrav=block_mean(dgc, f))
-        del dgc, delta
+        np.savez_compressed(os.path.join(WORK, f"{tag}_{name}_mesh256.npz"), dpart=bm_p, dgrav=block_mean(dgc, f))
+        del dgc
         res["snap"][name] = dict(a=a, z=1 / a - 1, D=Dgrow(a), k=kb, P=pb, sigma8=s8, **sig, P_grav=pg, sigma8_grav=s8g,
                                  sigma2_grav=sigg["sigma2"], sigma4_grav=sigg["sigma4"], measurement_only=restore, **info, t=time.time() - t0)
-        res["mem"].append([name, rss_gb()])
+        res["mem"].append([name, rss_gb()]); res["mem_stage"] = dict(MEMST)
         json.dump(res, open(jfn, "w"))
         log(f"snapshot {name} a={a:.4f} sigma8={s8:.4f} grav {s8g:.4f}")
     def final_positions():
@@ -775,22 +873,23 @@ def run(switch, branch, foot, npg, amp=1.0):
             pmap(task, P.ichunks)
         del b
     snapshot("zi", AI)
-    delta = deposit(mesh, P); phik, _ = forces(mesh, delta, AI, switch, branch, foot, dta); del delta
+    stage("deposit"); box = [deposit(mesh, P)]; phik, _ = forces(mesh, box, AI, switch, branch, foot, dta)
+    stage("accel")
     a0_, a1_ = aa[0], aa[1]; am = math.sqrt(a0_ * a1_)
     accel_pass(phik, AI, [quad(lambda x: 1 / (x * x * E(x)), a0_, am)[0]]); del phik
-    P.drift(quad(lambda x: 1 / (x ** 3 * E(x)), a0_, a1_)[0])
+    stage("drift"); P.drift(quad(lambda x: 1 / (x ** 3 * E(x)), a0_, a1_)[0])
     log("step 0 drift done")
     TM = res.setdefault("timing_s", {"deposit": 0.0, "forces": 0.0, "accel": 0.0, "drift": 0.0, "snap": 0.0})
     for n in range(nsteps):
         a0_, a1_ = aa[n], aa[n + 1]; am = math.sqrt(a0_ * a1_)
-        t_ = time.time(); delta = deposit(mesh, P); TM["deposit"] += time.time() - t_
-        t_ = time.time(); phik, _ = forces(mesh, delta, a1_, switch, branch, foot, dta); del delta; TM["forces"] += time.time() - t_
+        stage("deposit"); t_ = time.time(); box = [deposit(mesh, P)]; TM["deposit"] += time.time() - t_
+        t_ = time.time(); phik, _ = forces(mesh, box, a1_, switch, branch, foot, dta); TM["forces"] += time.time() - t_
         kicks = [quad(lambda x: 1 / (x * x * E(x)), am, a1_)[0]]
         last = n == nsteps - 1
         if not last:
             b0, b1 = aa[n + 1], aa[n + 2]; bm = math.sqrt(b0 * b1)
             kicks.append(quad(lambda x: 1 / (x * x * E(x)), b0, bm)[0])
-        t_ = time.time(); accel_pass(phik, a1_, kicks); del phik; TM["accel"] += time.time() - t_
+        stage("accel"); t_ = time.time(); accel_pass(phik, a1_, kicks); del phik; TM["accel"] += time.time() - t_
         t_ = time.time()
         for asn, nm in snaps.items():
             if abs(a1_ - asn) < 1e-9: snapshot(nm, a1_)
@@ -799,9 +898,10 @@ def run(switch, branch, foot, npg, amp=1.0):
         if not last:
             t_ = time.time(); P.drift(quad(lambda x: 1 / (x ** 3 * E(x)), b0, b1)[0]); TM["drift"] += time.time() - t_
         if (n + 1) % 5 == 0 or n < 3: log(f"step {n + 1}/{nsteps} a={a1_:.4f} timing " + " ".join(f"{k} {v:.0f}" for k, v in TM.items()))
-        res["mem"].append([f"step{n + 1}", rss_gb()])
+        res["mem"].append([f"step{n + 1}", rss_gb()]); res["mem_stage"] = dict(MEMST)
         if n + 1 >= MAXSTEPS:
             res["stopped_at_step"] = n + 1; break
+    if _INC["fcode"] is not None: _INC["fcode"].close()
     res["runtime_s"] = time.time() - t0; res["maxrss_gb"] = rss_gb()
     if npg <= 512 and "stopped_at_step" not in res:
         np.savez_compressed(os.path.join(WORK, f"{tag}_z0pos.npz"), pos=final_positions())

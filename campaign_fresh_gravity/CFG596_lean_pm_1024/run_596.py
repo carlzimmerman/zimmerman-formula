@@ -21,7 +21,7 @@ JOBS = {
     "VLs": dict(sw="S0", foot="canonical", N=256, MODE="lean", L="100", NSEED="512", RMIN="0.78125", THREADS="3"),
     "VLr": dict(sw="RES", foot="canonical", N=256, MODE="lean", L="100", NSEED="512", RMIN="0.78125", THREADS="3"),
     "VMs": dict(sw="S0", foot="canonical", N=512, MODE="lean", L="100", NSEED="512", RMIN="0.78125", THREADS="12", SPILL="1"),
-    "VMr": dict(sw="RES", foot="canonical", N=512, MODE="lean", L="100", NSEED="512", RMIN="0.78125", THREADS="12", SPILL="1", MAXSTEPS="12"),
+    "VMr": dict(sw="RES", foot="canonical", N=512, MODE="lean", L="100", NSEED="512", RMIN="0.78125", THREADS="12", SPILL="1", MAXSTEPS="12", PROFILE="1"),
     "P0": dict(sw="S0", foot="canonical", N=1024, MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1"),
     "P1": dict(sw="RES", foot="canonical", N=1024, MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1"),
     "P2": dict(sw="RES", foot="alt", N=1024, MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1"),
@@ -30,6 +30,14 @@ JOBS = {
 def swap_used_mb():
     out = subprocess.run(["sysctl", "vm.swapusage"], capture_output=True, text=True).stdout
     m = re.search(r"used = ([\d.]+)M", out); return float(m.group(1)) if m else 0.0
+import ctypes, shutil
+_LP = ctypes.CDLL("/usr/lib/libproc.dylib")
+class _RU(ctypes.Structure):
+    _fields_ = [("uuid", ctypes.c_uint8 * 16)] + [(n, ctypes.c_uint64) for n in ("ut", "st", "piw", "iw", "pageins", "wired", "resident", "footprint")] + [("pad", ctypes.c_uint64 * 40)]
+def footprint_gb(pid):
+    ru = _RU(); return ru.footprint / 1e9 if _LP.proc_pid_rusage(int(pid), 2, ctypes.byref(ru)) == 0 else -1.0
+def disk_free_gb():
+    return shutil.disk_usage(WORK).free / 1e9
 def rss_gb(pid):
     out = subprocess.run(["ps", "-o", "rss=", "-p", str(pid)], capture_output=True, text=True).stdout.strip()
     return float(out) / 1e6 if out else 0.0                     # ps rss in KiB
@@ -37,7 +45,8 @@ def rss_gb(pid):
 def start(job):
     s = JOBS[job]; d = os.path.join(WORK, job); os.makedirs(d, exist_ok=True)
     env = dict(os.environ, CFG596_MODE=s["MODE"], CFG596_L=s["L"], CFG596_NSEED=s["NSEED"], CFG596_RMIN=s["RMIN"], CFG596_THREADS=s["THREADS"],
-               CFG596_WORK=d, CFG596_SPILL=s.get("SPILL", "0"), CFG596_MAXSTEPS=s.get("MAXSTEPS", "100000"))
+               CFG596_WORK=d, CFG596_SPILL=s.get("SPILL", "0"), CFG596_MAXSTEPS=s.get("MAXSTEPS", "100000"),
+               CFG596_PROFILE=s.get("PROFILE", "0"))
     json.dump(dict(job=job, spec=s, start=time.strftime("%Y-%m-%d %H:%M")), open(os.path.join(d, "job.json"), "w"), indent=1)
     log = open(os.path.join(d, "engine.log"), "w")
     p = subprocess.Popen(["nice", "-n", "10", sys.executable, ENGINE, s["sw"], s["foot"], str(s["N"])], stdout=log, stderr=subprocess.STDOUT, env=env)
@@ -47,10 +56,12 @@ def watch(runs):
     while any(r["p"].poll() is None for r in runs):
         for r in runs:
             if r["p"].poll() is not None: continue
-            g = rss_gb(r["p"].pid); sw = swap_used_mb(); r["peak"] = max(r["peak"], g)
-            print(time.strftime("%Y-%m-%d %H:%M:%S"), f"rss {g:.2f} GB peak {r['peak']:.2f} swap_used {sw:.0f} MB (start {r['swap0']:.0f})", file=r["wl"], flush=True)
+            g = rss_gb(r["p"].pid); sw = swap_used_mb(); r["peak"] = max(r["peak"], g); fp = footprint_gb(r["p"].pid); df = disk_free_gb()
+            print(time.strftime("%Y-%m-%d %H:%M:%S"), f"rss {g:.2f} GB peak {r['peak']:.2f} swap_used {sw:.0f} MB (start {r['swap0']:.0f}) footprint {fp:.2f} GB disk_free {df:.1f} GB", file=r["wl"], flush=True)
             if g > RSS_MAX_GB or sw - r["swap0"] > SWAP_GROW_MB:
                 print("ABORT (frozen rule): rss", g, "swap growth", sw - r["swap0"], file=r["wl"], flush=True); r["p"].kill()
+            elif df < 3.0:
+                print("ABORT (disk guard): free disk", df, "GB", file=r["wl"], flush=True); r["p"].kill()
         time.sleep(20)
     for r in runs:
         print("exit", r["p"].returncode, "peak_rss_gb", round(r["peak"], 2), time.strftime("%Y-%m-%d %H:%M"), file=r["wl"], flush=True)
@@ -65,6 +76,8 @@ if __name__ == "__main__":
             for r in rs: print(r["job"], "rc", r["p"].returncode, "peak", round(r["peak"], 2), time.strftime("%Y-%m-%d %H:%M"), file=lg, flush=True)
         else:
             for j in jobs:
+                if JOBS[j]["N"] >= 1024 and disk_free_gb() < 18.0:
+                    print(j, "not started: free disk", round(disk_free_gb(), 1), "GB < 18 GB", file=lg, flush=True); break
                 r = start(j); watch([r])
                 print(j, "rc", r["p"].returncode, "peak", round(r["peak"], 2), time.strftime("%Y-%m-%d %H:%M"), file=lg, flush=True)
                 if r["p"].returncode != 0:
