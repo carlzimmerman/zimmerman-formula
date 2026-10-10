@@ -1,0 +1,38 @@
+{
+  "contract_id": "CFG428-SI-conversion-audit-2026-10-10",
+  "scope": "Narrow numerical audit, not a new condensate theory or observational claim.",
+  "freeze_disclosure": "Saved before this audit script and its execution. The factor-1000 error and corrected three-node times were already identified in chat; this is not a blinded discovery or an independently predicted success.",
+  "primary_cases_mass_eV": [0.62, 0.81, 1.04],
+  "primary_window_mass_eV": [0.62, 1.04],
+  "constants": {
+    "hbar_J_s": 1.054571817e-34,
+    "c_m_s": 299792458.0,
+    "eV_J": 1.602176634e-19,
+    "total_density_kg_m3": 1.55e-24,
+    "baryon_fraction": 0.157,
+    "velocity_m_s": 1000000.0,
+    "seconds_per_Gyr": 3.156e16,
+    "threshold_Gyr": 13.8,
+    "cross_section_per_mass_cm2_g": 1.0,
+    "old_cross_section_per_mass_m2_kg": 0.0001
+  },
+  "formula": "rho_c=(1-f_b)*rho; m=m_eV*eV/c^2; n=rho_c/m; occ=n*(2*pi*hbar)^3/[m^3*(2*pi*v^2)^(3/2)]; Gamma=rho_c*(sigma/m)*v*(1+occ); t=1/Gamma.",
+  "primary_decision": "At each original mass, compare corrected t to 13.8 Gyr; do not alter density, velocity, species factor, enhancement prescription, mass interval, or threshold.",
+  "checks": {
+    "independent_SI_cgs_relative_tolerance": 1e-12,
+    "old_output_reproduction_relative_tolerance": 1e-12,
+    "old_to_corrected_time_ratio": 1000.0,
+    "wrong_conversion_mutation": "The original 1e-4 SI value must fail comparison with an independent cgs calculation at 1 cm2/g.",
+    "primary_source_files_unchanged": true
+  },
+  "posthoc_boundary": "Compute the analytic root t(m)=13.8 Gyr under exactly the same rate formula, with occupation B/m_eV^4. Since t rises monotonically with positive m, compare that root with the fixed lower bound 0.62 eV to decide the entire prescribed continuum. This is a post-hoc numerical boundary, not a phase prediction or parameter scan.",
+  "secondary_reading": "Read CFG383/384 hypotheses and conversions. Depletion and thermal routes are alternatives under CFG428's own criteria: only tests 1 and 3 enter ONE FIELD VIABLE. The 0.62 eV floor is the declared calibrated cluster bracket, not a universal boson-mass floor.",
+  "resources": {"processes": 1, "randomness": false, "dependencies": "Python standard library only", "expected_runtime_seconds": 2},
+  "non_claims": [
+    "No new microscopic settling mechanism, equation of state, abundance derivation or successful halo profile is established.",
+    "No external literature bound is revalidated.",
+    "No scan of density, velocity, species degeneracy, scattering law or normal fraction is performed.",
+    "No Claude file or frozen criterion is edited."
+  ],
+  "authorized_outputs": ["thermal_contract.json", "thermal_audit.py", "thermal_results.json"]
+}

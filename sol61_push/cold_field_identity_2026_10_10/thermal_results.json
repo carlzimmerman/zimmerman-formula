@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "claim_id": "CFG428-SI-conversion-audit-2026-10-10",
+  "repository": {
+    "commit": "10774ea7ef59a8c90ffd6e99413a58b30d59e425",
+    "dirty": true,
+    "dirty_state_scope": "Whole repository; unrelated changes pre-existed. Source inputs hashed separately."
+  },
+  "command": "python3 sol61_push/cold_field_identity_2026_10_10/thermal_audit.py",
+  "environment": {
+    "software": [
+      "Python 3.9.6 (standard library only)"
+    ],
+    "hardware": "Darwin arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "CFG428 contains a 1000-fold cross-section unit conversion error; correct times and assess its unchanged threshold and mass interval.",
+    "coefficient_domain": "IEEE-754 Python binary64 floats; analytic monotonicity in positive real mass.",
+    "conventions": "Original CFG428 rho, velocity, age, hbar and 1+occupation kept; SI and cgs evaluated independently.",
+    "inputs": [
+      {
+        "path": "campaign_fresh_gravity/CFG428_one_bose_field_ledger/cfg428_ledger.py",
+        "sha256": "66cb12d063b5a5a825563b333abf3308fe6e5ccd463a1192eceda603bc184379"
+      },
+      {
+        "path": "campaign_fresh_gravity/CFG428_one_bose_field_ledger/cfg428_results.json",
+        "sha256": "039bac8821148c816f08b61ee3328d7b600ab88f9e5d9e1ce102d2b95d4833f4"
+      },
+      {
+        "path": "campaign_fresh_gravity/CFG428_one_bose_field_ledger/FROZEN_CRITERIA.md",
+        "sha256": "2324b93f01857ce3b1265e1c6f2fd938c0109c2747d8474b86eaad6c13773b4b"
+      },
+      {
+        "path": "campaign_fresh_gravity/CFG383_bose_condensate_split/FROZEN_CRITERIA.md",
+        "sha256": "877ba07ce3c0740aeeb4c71d0f91e328d773fa6aace9fe8346897067bca5ed45"
+      },
+      {
+        "path": "campaign_fresh_gravity/CFG384_self_interacting_bose/cfg384_si_bose.py",
+        "sha256": "82914f0889fc431e00c45e635a6fc23f4cbbd7fcab79d403c06e0b3f02e13c46"
+      }
+    ],
+    "bounds": {
+      "primary_cases_eV": [
+        0.62,
+        0.81,
+        1.04
+      ],
+      "declared_continuum_eV": [
+        0.62,
+        1.04
+      ],
+      "relative_check_tolerance": 1e-12,
+      "grid_scan_performed": false
+    },
+    "non_claims": [
+      "No new microscopic settling mechanism, equation of state, abundance derivation or successful halo profile is established.",
+      "No external literature bound is revalidated.",
+      "No scan of density, velocity, species degeneracy, scattering law or normal fraction is performed.",
+      "No Claude file or frozen criterion is edited."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "none",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-10T18:56:57.057623+00:00",
+    "runtime_seconds": 0.7826852919999999,
+    "exit_status": 0
+  },
+  "outputs": [
+    {
+      "path": "sol61_push/cold_field_identity_2026_10_10/thermal_contract.json",
+      "sha256": "d412a9460ce1c4687488089c9ef7a4f3f476b6ebcb3cf8abb99a354d3c196bf0"
+    },
+    {
+      "path": "sol61_push/cold_field_identity_2026_10_10/thermal_audit.py",
+      "sha256": "f4bb3a2e7cc512198f12084552478efc51daa2516c3fa1eda7a6e70627554dbb"
+    }
+  ],
+  "checks": [
+    {
+      "name": "SI conversion is 0.1 m2/kg",
+      "passed": true,
+      "value": 0.1
+    },
+    {
+      "name": "m=0.62: independent SI/cgs rates",
+      "passed": true,
+      "relative_error": 6.661338147750939e-16
+    },
+    {
+      "name": "m=0.62: independent SI/cgs occupations",
+      "passed": true,
+      "relative_error": 8.881784197001252e-16
+    },
+    {
+      "name": "m=0.62: reproduce stored erroneous time",
+      "passed": true,
+      "recomputed_Gyr": 14120.000555169483,
+      "stored_Gyr": 14120.000555169485
+    },
+    {
+      "name": "m=0.62: time ratio 1000",
+      "passed": true,
+      "ratio": 1000.0000000000002
+    },
+    {
+      "name": "m=0.62: wrong-conversion mutation detected",
+      "passed": true,
+      "mutated_rate_over_independent_rate": 0.0009999999999999992
+    },
+    {
+      "name": "m=0.81: independent SI/cgs rates",
+      "passed": true,
+      "relative_error": 0.0
+    },
+    {
+      "name": "m=0.81: independent SI/cgs occupations",
+      "passed": true,
+      "relative_error": 3.3306690738754696e-16
+    },
+    {
+      "name": "m=0.81: reproduce stored erroneous time",
+      "passed": true,
+      "recomputed_Gyr": 37011.48928718747,
+      "stored_Gyr": 37011.48928718747
+    },
+    {
+      "name": "m=0.81: time ratio 1000",
+      "passed": true,
+      "ratio": 1000.0000000000002
+    },
+    {
+      "name": "m=0.81: wrong-conversion mutation detected",
+      "passed": true,
+      "mutated_rate_over_independent_rate": 0.0009999999999999998
+    },
+    {
+      "name": "m=1.04: independent SI/cgs rates",
+      "passed": true,
+      "relative_error": 2.220446049250313e-16
+    },
+    {
+      "name": "m=1.04: independent SI/cgs occupations",
+      "passed": true,
+      "relative_error": 6.661338147750939e-16
+    },
+    {
+      "name": "m=1.04: reproduce stored erroneous time",
+      "passed": true,
+      "recomputed_Gyr": 79692.10283284132,
+      "stored_Gyr": 79692.10283284135
+    },
+    {
+      "name": "m=1.04: time ratio 1000",
+      "passed": true,
+      "ratio": 1000.0000000000005
+    },
+    {
+      "name": "m=1.04: wrong-conversion mutation detected",
+      "passed": true,
+      "mutated_rate_over_independent_rate": 0.0009999999999999996
+    },
+    {
+      "name": "analytic critical-mass substitution",
+      "passed": true,
+      "critical_mass_eV": 0.6162412352802326,
+      "substituted_time_Gyr": 13.800000000000002
+    },
+    {
+      "name": "Claude source files unchanged",
+      "passed": true
+    }
+  ],
+  "result": "implementation and finite assertion verified in the stated range",
+  "primary_rows": [
+    {
+      "mass_eV": 0.62,
+      "occupation": 16.17390352385409,
+      "corrected_rate_s_inverse": 2.244028103944395e-18,
+      "independent_cgs_rate_s_inverse": 2.2440281039443966e-18,
+      "stored_time_Gyr": 14120.000555169485,
+      "corrected_time_Gyr": 14.120000555169481,
+      "independent_cgs_time_Gyr": 14.12000055516947,
+      "time_over_threshold": 1.023188446026774,
+      "primary_thermal_allowed": false,
+      "corrected_depletion_sigma_over_mass_cm2_g": [
+        {
+          "normal_fraction": 0.05,
+          "value": 2.173110098138675e+28
+        },
+        {
+          "normal_fraction": 0.3,
+          "value": 2.369281865891555e+29
+        }
+      ]
+    },
+    {
+      "mass_eV": 0.81,
+      "occupation": 5.551898666104022,
+      "corrected_rate_s_inverse": 8.561038392064823e-19,
+      "independent_cgs_rate_s_inverse": 8.561038392064823e-19,
+      "stored_time_Gyr": 37011.48928718747,
+      "corrected_time_Gyr": 37.01148928718746,
+      "independent_cgs_time_Gyr": 37.01148928718746,
+      "time_over_threshold": 2.6819919773324243,
+      "primary_thermal_allowed": false,
+      "corrected_depletion_sigma_over_mass_cm2_g": [
+        {
+          "normal_fraction": 0.05,
+          "value": 1.9878515714635934e+28
+        },
+        {
+          "normal_fraction": 0.3,
+          "value": 2.1672996156001358e+29
+        }
+      ]
+    },
+    {
+      "mass_eV": 1.04,
+      "occupation": 2.0429053654148754,
+      "corrected_rate_s_inverse": 3.976012295719348e-19,
+      "independent_cgs_rate_s_inverse": 3.9760122957193487e-19,
+      "stored_time_Gyr": 79692.10283284135,
+      "corrected_time_Gyr": 79.69210283284131,
+      "independent_cgs_time_Gyr": 79.6921028328413,
+      "time_over_threshold": 5.77479006035082,
+      "primary_thermal_allowed": false,
+      "corrected_depletion_sigma_over_mass_cm2_g": [
+        {
+          "normal_fraction": 0.05,
+          "value": 1.8289472505235e+28
+        },
+        {
+          "normal_fraction": 0.3,
+          "value": 1.9940506272779842e+29
+        }
+      ]
+    }
+  ],
+  "posthoc_boundary": {
+    "label": "POST HOC numerical boundary; not a phase prediction",
+    "occupation_B_in_eV_units": 2.389910329000522,
+    "unboosted_time_Gyr": 242.49552729124684,
+    "formula": "mcrit=(B/(t0/tH-1))^(1/4); dt/dm=4*t0*B*m^3/(m^4+B)^2 > 0",
+    "critical_mass_eV": 0.6162412352802326,
+    "critical_time_Gyr": 13.800000000000002,
+    "declared_window_eV": [
+      0.62,
+      1.04
+    ],
+    "any_thermal_overlap_in_declared_continuum": false,
+    "fractional_lower_mass_bound_shift_to_equality": 0.006062523741560355,
+    "fastest_declared_time_Gyr": 14.120000555169481,
+    "minimum_sigma_over_mass_cm2_g_at_lower_bound": 1.023188446026774
+  },
+  "documentary_reading": {
+    "depletion_vs_thermal": "Alternatives: CFG428 ONE FIELD VIABLE depends on tests 1 and 3, not test 2.",
+    "mass_floor": "0.62 eV is the fixed lower endpoint of the CFG383 calibrated cluster normal-fraction/velocity bracket, not a microscopic or cosmological mass floor.",
+    "CFG384_units": "Uses cm2/g directly, m_kg*1000 for grams, n_SI*1e-6 for cm^-3 and v_SI*100 for cm/s; no matching factor-1000 bug found in these conversions.",
+    "CFG384_differences": "Its cluster density is 0.85*500*rho_crit/3; enhancement max(D,1), with g=1 and a reported g=2 variant. It is not numerically identical to CFG428's rho and 1+D prescription.",
+    "unchanged_primary_outcome": "No thermal overlap on [0.62,1.04] eV at the exact declared constants; headline severity changes from thousands-fold failure to a 2.32% boundary miss at the favorable end."
+  },
+  "residual_risks": [
+    "The phenomenological rate and recalled 1 cm2/g bound are inputs, not independently authenticated physical theorems.",
+    "The boundary is close to the declared lower endpoint; this run does not vary density, velocity, species, thermal closure or calibrated fraction.",
+    "Results JSON contains the manifest and scientific rows; output hashes cover the contract and code, not a recursive hash of this file. Input hashes are recorded explicitly."
+  ]
+}
