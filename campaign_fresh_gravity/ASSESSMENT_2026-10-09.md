@@ -2,6 +2,8 @@
 
 κ = ½ is fitted. The two footings (9.36e-11 / 1.13e-10) are never pooled. The cold energy's mass is still required. This is not a closed theory. Every line below cites a committed lane.
 
+> **CORRECTION 2026-10-10 (CFG555):** every growth verdict below was measured on the PARTICLE density. On the GRAVITATING density (what lensing and σ8 measure) the zero-knob rule passes only at 256³ (0.063–0.082). It FAILS at 512³ (0.150–0.193; σ8 +3–5%) in all realisations and footings, including PAPER45's headline row. Growth as seen by lensing is NOT fixed by the rule.
+
 ## Passes
 | front | result | lanes |
 |---|---|---|
