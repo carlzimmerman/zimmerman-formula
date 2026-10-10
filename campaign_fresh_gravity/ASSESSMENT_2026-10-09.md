@@ -55,6 +55,8 @@
 
 - **Dissipative principle (CFG542):** Pb (metriplectic Onsager + dark-energy scalar partner) is CONSISTENT WITH OPEN ITEMS. It gives the class-A drift and the energy sink Q (derived) with total energy conserved. α is FREE; the switch is an INPUT. An inertial-slip variant collapses the edge (INCONSISTENT). A canonical partner cannot follow DESI's w = −1 crossing (needs a non-canonical or multi-field partner).
 
+- **Kinetic consistency (CFG544):** class A as is fails (σ = 0 → radial collapse, core overfill). The derived two-sided deficit fails. A velocity relaxation to the local Jeans σ passes all cells but its target is posited. No Lyapunov function for the full system. Kinetic support softens the edge outward 25–55%.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
