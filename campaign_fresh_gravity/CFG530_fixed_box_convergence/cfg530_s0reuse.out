@@ -1,0 +1,33 @@
+(a) identical functions: {'initial_conditions': True, 'step_grid': True, 'Mesh': True, 'P_lin0': True, 'Dgrow': True, 'fgrow': True, 'T_eh': True, 'dta_table': True, 'delta_ta': True}
+(a) forces() S0 path (header lines + acc line) identical: True
+(a) measure_pk diff (9 lines):
+    --- 
+    +++ 
+    @@ -18,2 +18,4 @@
+    -    x = (kk * 8.0).astype(np.float64); x = np.where(x > 0, x, 1e-3)
+    -    s8 = math.sqrt(float(np.sum(wt * pk3 * (3 * (np.sin(x) - x * np.cos(x)) / x ** 3) ** 2)) / L ** 3)
+    +    def sig(R_):
+    +        x = (kk * R_).astype(np.float64); x = np.where(x > 0, x, 1e-3)
+    +        return math.sqrt(float(np.sum(wt * pk3 * (3 * (np.sin(x) - x * np.cos(x)) / x ** 3) ** 2)) / L ** 3)
+    +    s8 = sig(8.0); _INC["sig"] = {"sigma2": sig(2.0), "sigma4": sig(4.0)}       # CFG521 diagnostics
+(a) run diff (17 lines):
+    --- 
+    +++ 
+    @@ -7 +7 @@
+    -    tag = f"{switch}_Rc{RC:g}_{MIX}{'_VETO' if VETO else ''}_{branch}_{foot}_N{npg}" + (f"_seed{SEED}" if SEED != 359 else "") + ("_MUTATE" if MUTATE else "")
+    +    tag = f"{switch}_{'TA' if RC == 0 else f'Rc{RC:g}'}{'_NOCOMP' if NOCOMP else ''}_{MIX}_MASSCONS_fret{FRET_MODE}_{branch}_{foot}_N{npg}" + (f"_L{L:g}" if L != 200.0 else "") + (f"_seed{SEED}" if SEED != 359 else "") + (f"_eps{EPS:g}" if EPS != 0.077 else "") + ("_MUTATE" if MUTATE else "") + f"_draw{DRAW}"
+    @@ -12 +12 @@
+    -           "mutate": MUTATE, "L": L, "z_i": ZI, "nsteps": len(aa) - 1, "snap": {}}
+    +           "mutate": MUTATE, "draw": DRAW, "L": L, "rmin": RMIN_PHYS, "z_i": ZI, "nsteps": len(aa) - 1, "snap": {}}
+    @@ -18 +18 @@
+    -        res["snap"][name] = dict(a=a, D=Dgrow(a), k=kb, P=pb, sigma8=s8, **info, t=time.time() - t0)
+    +        res["snap"][name] = dict(a=a, D=Dgrow(a), k=kb, P=pb, sigma8=s8, **_INC.get("sig", {}), **info, t=time.time() - t0)
+    @@ -20 +20 @@
+    -            np.savez_compressed(os.path.join(WORK, f"cfg411_{tag}_z0.npz"), pos=pos.astype(np.float32),
+    +            np.savez_compressed(os.path.join(WORK, f"cfg527_{tag}_z0.npz"), pos=pos.astype(np.float32),
+    @@ -38 +38 @@
+    -    json.dump(res, open(os.path.join(WORK, f"cfg411_{tag}.json"), "w"))
+    +    json.dump(res, open(os.path.join(WORK, f"cfg527_{tag}.json"), "w"))
+(b) zi: |d sigma8|/sigma8 = 0.000e+00, max|dP/P| = 0.000e+00
+(c) z0 from saved float32 positions: |d sigma8|/sigma8 = 2.828e-09, max|dP/P| = 3.347e-08
+REUSE CFG411 S0 N512 as S0_L200_N512: YES (a True, b True, c True)

@@ -1,0 +1,77 @@
+CFG530: fixed-box resolution study of the CFG527 law-respecting engine (imported unchanged).
+kappa = 1/2 FITTED; footings never pooled; a0 flat; cold energy MASS still required; not theory closed.
+
+engine cfg527_pm.py sha256 aeabd0ba4ca5ff1a3b1cc3c17a895821670608397928cfa42d3f03707bd50df0
+statistic identity (CFG527 core R reproduced to 1e-12): PASS
+S0 L200 N512 = CFG411 S0 N512 reused: True (zi exact {'d_sigma8_rel': 0.0, 'max_dP_rel': 0.0}, z0 re-measure {'d_sigma8_rel': 2.8275544128320007e-09, 'max_dP_rel': 3.3465761939410754e-08})
+
+REP: reproduction of CFG527 256^3 (|d s8|/s8 and max|dP/P| <= 1e-8 at every snapshot)
+  REPcan_L100: |d s8|/s8 0.00e+00, max|dP/P| 0.00e+00 -> PASS
+  REPalt_L100: |d s8|/s8 0.00e+00, max|dP/P| 0.00e+00 -> PASS
+  REPcan_L200: |d s8|/s8 0.00e+00, max|dP/P| 0.00e+00 -> PASS
+  REPalt_L200: |d s8|/s8 0.00e+00, max|dP/P| 0.00e+00 -> PASS
+
+Per run, z = 0, vs matched S0 (same L, N, NSEED 512).  r(k) at resolved bins (k <= k_Nyq/4); cap/percolation; core R (CFG526).
+run                 kq   s8 r  k=0.3    k=1    k=2    k=4 max|P-1|k<=1  coreR  nsc  q_max  capM  capE shell   big span stable
+LRcan_L100_N128   1.01 1.0025  1.007  1.064    -      -          0.076    -     19  0.893 0.000 -0.000 0.676 0.082    F True
+LRalt_L100_N128   1.01 1.0021  1.006  1.071    -      -          0.083    -      9  0.836 0.000 -0.000 0.712 0.080    F True
+LRcan_L100_N256   2.01 1.0105  1.034  1.146  1.023    -          0.145  0.968   98  1.850 0.215 0.152 0.581 0.084    F True
+LRalt_L100_N256   2.01 1.0086  1.032  1.143  1.018    -          0.149  0.961   98  1.772 0.185 0.123 0.603 0.083    F True
+LRcan_L100_N512   4.02 1.0121  1.041  1.132  1.027  0.952        0.125  1.128  100  3.233 0.619 0.517 0.350 0.154    F True
+LRalt_L100_N512   4.02 1.0136  1.047  1.150  1.036  0.958        0.147  1.042  100  2.898 0.636 0.484 0.383 0.149    F True
+LRcan_L200_N128   0.50 1.0025  1.007    -      -      -          0.061    -     15  1.886 0.009 0.003 0.710 0.029    F True
+LRalt_L200_N128   0.50 1.0017  1.005    -      -      -          0.047    -      4  2.152 0.017 0.008 0.744 0.028    F True
+LRcan_L200_N256   1.01 1.0073  1.025  1.070    -      -          0.080  0.973  100  1.156 0.032 0.004 0.631 0.027    F True
+LRalt_L200_N256   1.01 1.0071  1.027  1.073    -      -          0.086  0.966   66  1.271 0.009 0.002 0.677 0.026    F True
+LRcan_L200_N512   2.01 1.0101  1.035  1.100  0.990    -          0.113  1.142  100  2.362 0.408 0.194 0.471 0.035    F True
+LRalt_L200_N512   2.01 1.0101  1.037  1.107  0.987    -          0.121  1.060  100  2.574 0.365 0.165 0.504 0.045    F True
+BXcan_L100_N128   1.01 1.0015  1.004  1.058    -      -          0.069    -     18  0.827 0.000 0.000 0.654 0.099    F True
+BXalt_L100_N128   1.01 1.0003  0.999  1.056    -      -          0.074    -      9  1.052 0.101 0.009 0.702 0.101    F True
+BXcan_L100_N256   2.01 1.0040  1.016  1.105  1.000    -          0.109  0.969  100  1.676 0.287 0.123 0.490 0.121    F True
+BXalt_L100_N256   2.01 1.0030  1.017  1.103  1.001    -          0.112  0.962  100  1.561 0.243 0.123 0.522 0.119    F True
+MUTA_L100_N256    2.01 1.0054  1.020  0.997  0.849    -          0.047  0.746  100  0.441 0.000 0.000   -   0.093    F True
+
+1. Fixed-box resolution convergence (N256 vs N512; |dr| <= 0.05 at resolved k in {1, 2, 4}; |d log10 core R| <= 0.05 dex)
+  [canonical] NOT CONVERGED
+    L100: NOT CONVERGED -- core R 0.968 -> 1.128 (d log +0.066)
+      r(k=1) N128/256/512: 1.064 / 1.146 / 1.132
+      r(k=2) N128/256/512:   -   / 1.023 / 1.027
+      r(k=4) N128/256/512:   -   /   -   / 0.952
+      core R  N128/256/512:   -   / 0.968 / 1.128
+    L200: NOT CONVERGED -- core R 0.973 -> 1.142 (d log +0.070)
+      r(k=1) N128/256/512:   -   / 1.070 / 1.100
+      r(k=2) N128/256/512:   -   /   -   / 0.990
+      r(k=4) N128/256/512:   -   /   -   /   -  
+      core R  N128/256/512:   -   / 0.973 / 1.142
+  [alt] CONVERGED
+    L100: CONVERGED
+      r(k=1) N128/256/512: 1.071 / 1.143 / 1.150
+      r(k=2) N128/256/512:   -   / 1.018 / 1.036
+      r(k=4) N128/256/512:   -   /   -   / 0.958
+      core R  N128/256/512:   -   / 0.961 / 1.042
+    L200: CONVERGED
+      r(k=1) N128/256/512:   -   / 1.073 / 1.107
+      r(k=2) N128/256/512:   -   /   -   / 0.987
+      r(k=4) N128/256/512:   -   /   -   /   -  
+      core R  N128/256/512:   -   / 0.966 / 1.060
+
+2. Box-size check at matched cell size and RMIN 1.56 (P1: BX L100/N128 vs L200/N256; P2: BX L100/N256 vs L200/N512)
+  [canonical] BOX-SIZE EFFECT: YES -- P2 log10 core R d -0.071 (2F 0.003)
+      realization floor F (NSEED 256 vs 512, same box, N256): 1.0 0.061, 2.0 0.024, coreR 0.002
+      P1: r(k=1) L100 1.058 vs L200 1.070 (d -0.013)
+      P2: r(k=1) L100 1.105 vs L200 1.100 (d +0.005); r(k=2) L100 1.000 vs L200 0.990 (d +0.010); log10 core R L100 0.969 vs L200 1.142 (d -0.071)
+      P2b(RMIN differs): r(k=1) L100 1.146 vs L200 1.100 (d +0.046); r(k=2) L100 1.023 vs L200 0.990 (d +0.033); log10 core R L100 0.968 vs L200 1.142 (d -0.071)
+  [alt] BOX-SIZE EFFECT: NO
+      realization floor F (NSEED 256 vs 512, same box, N256): 1.0 0.082, 2.0 0.063, coreR 0.002
+      P1: r(k=1) L100 1.056 vs L200 1.073 (d -0.018)
+      P2: r(k=1) L100 1.103 vs L200 1.107 (d -0.003); r(k=2) L100 1.001 vs L200 0.987 (d +0.015); log10 core R L100 0.962 vs L200 1.060 (d -0.042)
+      P2b(RMIN differs): r(k=1) L100 1.143 vs L200 1.107 (d +0.037); r(k=2) L100 1.018 vs L200 0.987 (d +0.032); log10 core R L100 0.961 vs L200 1.060 (d -0.043)
+
+3. Growth gate L200 512^3 (CFG361 cuts at z = 0, k <= 1, vs S0 N512 = CFG411 reused)
+  [canonical] TENSION: sigma8 ratio 1.0101, max|P/P_S0 - 1| (k <= 1) 0.113 at k = 0.692 -> CFG527 256^3 GROWTH OK NOT CONFIRMED at 512^3
+  [alt] TENSION: sigma8 ratio 1.0101, max|P/P_S0 - 1| (k <= 1) 0.121 at k = 0.818 -> CFG527 256^3 GROWTH OK NOT CONFIRMED at 512^3
+
+4. Controls
+  MUTATE (CFG521 old draw SC + MIX-A, L100 N256): core R 0.746 -> must fail law consistency: OK (fails)
+  stability (NOFILT runs): all STABLE (16 runs)
+  REP reproduction: PASS
