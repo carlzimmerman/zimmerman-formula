@@ -46,3 +46,11 @@ To resume an agent lane: read its FROZEN_CRITERIA.md and any committed outputs, 
 - **Running:** CFG530 (512³ fixed-box convergence; L200 canonical = TENSION 0.113, core R 1.14; L100 512³ pending), CFG539 (cold-energy EoM, Stage 2 two-species PM), CFG541 (precise equations: variational origin, edge, energy sink, causality), CFG468 (kernel grid).
 - **QUEUED (owner said yes 10-09):** CFG542, a dissipative variational principle for candidate B. Launch it AFTER CFG541 reports, building on its Onsager result. It needs one principle (Onsager / Schwinger–Keldysh / a partner field absorbing the settling energy) that yields the CFG539 class-A drift, the energy sink, and a covariant local definition of "bound" (the switch, Gap 1). No knobs; frozen criteria first.
 - **Theory statement:** THEORY_v1_2026-10-09.md. **Assessment:** ASSESSMENT_2026-10-09.md.
+
+## Update 2026-10-10 (owner away ~5 h): the plan
+- **Running:** CFG557 (derive the settling catchment, the lever for the intrinsic growth excess, CFG556) and CFG558 (velocity part: isotropy forced?, overfill removal, α-robustness).
+- **Next, automatically:**
+  - If CFG557 derives a catchment that passes growth (halo model) and does not break groups, KiDS, MW and LG, AND CFG558 gives a derived velocity part: launch CFG559, the two-species PM with the derived catchment and velocity relaxation. Test at 256³ then 512³ on the GRAVITATING field (CFG555 statistic), both footings.
+  - If CFG557 fixes growth but breaks another test: launch a lane on that conflict (mechanism + data check).
+  - If CFG557 is NOT DERIVABLE: write the minimal postulate set honestly into Theory v1.
+- **Waiting on the owner:** "publish" for PAPER45 v2.2 (prepared, audit 44/44, commit e19da03d0); DES ΔΣ (not public); 100 GB DES shear (needs a yes).
