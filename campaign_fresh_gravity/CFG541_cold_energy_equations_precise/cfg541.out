@@ -1,0 +1,104 @@
+CFG541 PRIMARY: cold-energy equations of motion made precise (CFG539 class A)
+kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed. Delta_ta(z=0) = 11.8157
+
+D1 dimensional + constants audit: PASS; tau built from ['G', 'rho_m']
+
+V1 first variation (3-cell sympy model): dF/drho_c = s psi on {d > 0}: PASS; at a filled cell the left derivative = psi (True), right = 0 -> interval [psi, 0]
+V2 gradient-flow test (response matrix dmu_i/drho_j symmetric?): VARIATIONAL form (s = f_sw catch, no edge) True -> IS a gradient flow; CFG539 COMMITTED form (edge in s, mobility on catch) False -> IS NOT a gradient flow
+   committed-form response matrix: Matrix([[K00, K01, 0], [K01, K11, 0], [K02, K12, 0]])
+V3 sympy by-parts identity: PASS; stationary condition alpha-free: True (solutions dpsi = [0])
+
+C2 linear dispersion about a uniform state (units Gamma = 4 pi G rho_c tau = 1; q = Gamma tau = rho_c/rho_m; K = c k/Gamma; tau_psi = beta tau):
+   A0 root: s = ['-1'] (k-independent: no propagation, no k^2 diffusion)
+   A0 instantaneous: monic coeffs ['1', '1']; Hurwitz {'root': '[-1]'}
+      root scan max Re s/Gamma = -1.0000e+00 at (K, q) = (0.001, 0.01) -> STABLE
+   A1 undamped wave: monic coeffs ['1', '0', 'K**2', 'K**2']; Hurwitz {'a2': '0', 'a1': 'K**2', 'a0': 'K**2', 'H2 = a2 a1 - a0': '-K**2'}
+      root scan max Re s/Gamma = +5.0000e-01 at (K, q) = (1000.0, 0.01) -> UNSTABLE; beta scan {'0.5': 0.49999950000153603, '1.0': 0.49999950000153603, '2.0': 0.49999950000153603, '5.0': 0.49999950000153603}
+   A2 damped wave: monic coeffs ['1', '1/(beta*q)', 'K**2', 'K**2']; Hurwitz {'a2': '1/(beta*q)', 'a1': 'K**2', 'a0': 'K**2', 'H2 = a2 a1 - a0': '-K**2*(beta*q - 1)/(beta*q)'}
+      root scan max Re s/Gamma = -4.9500e-09 at (K, q) = (0.001, 0.99) -> STABLE; beta scan {'0.5': -2.4875000017109846e-09, '1.0': -4.949995246242184e-09, '2.0': 0.2474745000006351, '5.0': 0.39898950000122113}
+   A3 Cattaneo + instantaneous: monic coeffs ['1', '1/q', '1/q']; Hurwitz {'a1': '1/q', 'a0': '1/q'}
+      root scan max Re s/Gamma = -5.0505e-01 at (K, q) = (0.001, 0.99) -> STABLE
+   A4 Cattaneo + undamped wave: monic coeffs ['1', '1/q', 'K**2', 'K**2/q', 'K**2/q']; Hurwitz {'a3': '1/q', 'a2': 'K**2', 'a1': 'K**2/q', 'a0': 'K**2/q', 'H2 = a3 a2 - a1': '0', 'H3 = a3 a2 a1 - a1^2 - a3^2 a0': '-K**2/q**3'}
+      root scan max Re s/Gamma = +4.9510e-01 at (K, q) = (10.0, 0.01) -> UNSTABLE; beta scan {'0.5': 0.49409320521800765, '1.0': 0.49409320521800765, '2.0': 0.49409320521800765, '5.0': 0.49409320521800765}
+   A5 Cattaneo + damped wave: monic coeffs ['1', '(beta + 1)/(beta*q)', 'K**2 + 1/(beta*q**2)', 'K**2/q', 'K**2/q']; Hurwitz {'a3': '(beta + 1)/(beta*q)', 'a2': 'K**2 + 1/(beta*q**2)', 'a1': 'K**2/q', 'a0': 'K**2/q', 'H2 = a3 a2 - a1': '(K**2*beta*q**2 + beta + 1)/(beta**2*q**3)', 'H3 = a3 a2 a1 - a1^2 - a3^2 a0': 'K**2*(K**2*beta*q**2 - beta**2*q - 2*beta*q + beta - q + 1)/(beta**2*q**4)'}
+      root scan max Re s/Gamma = +7.6083e-02 at (K, q) = (0.7943282347242822, 0.99) -> UNSTABLE; beta scan {'0.5': 0.018593261770100233, '1.0': 0.06969445577776014, '2.0': 0.15554792542914248, '5.0': 0.24164135327035677}
+
+Systems: MW-like M_b 6.0e10, a 2.5 kpc; group-like = CFG540 median (log M_b 11.755, Re 509.7 kpc, a 280.8 kpc); cluster-like 1.5e14 point mass (energy bound only)
+
+=== footing can (a0 = 9.3603e-11)
+T2a MW point (f_ret 0.100, M_cat 53.64 M_b, r_M 9.45, r_ta 1250 kpc): r_census 511.82; flow literal 516.19 (1.0085), sub-cell 511.91 (1.0002); analytic exhaustion 511.91; front min dlog -2.95e-02 (cell 0.029); KKT 0.0e+00; |dM|/M 3.9e-16; settled 1.000000 M_cat; 0.5-front receded in 14 samples (max front / final 1.511); post-freeze filled front (q >= 0.999): min dlog +0.00e+00, receded in 0 samples; the undrained reservoir already has rho_c0 >= rho_ph/2 beyond 1.569 r_*
+    N = 1600 check: literal/census 1.0011, sub-cell/census 1.0000, front receded in 43 samples (min dlog -1.47e-02, cell 0.0074)
+T2a group point (f_ret 0.291, M_cat 18.44 M_b, r_M 29.11, r_ta 1853 kpc): r_census 551.29; flow literal 548.95 (0.9958), sub-cell 551.35 (1.0001); analytic exhaustion 551.35; front min dlog -5.53e-02 (cell 0.028); KKT 0.0e+00; |dM|/M 2.4e-16; settled 0.995644 M_cat; 0.5-front receded in 9 samples (max front / final 1.319); post-freeze filled front (q >= 0.999): min dlog +0.00e+00, receded in 0 samples; the undrained reservoir already has rho_c0 >= rho_ph/2 beyond 2.549 r_*
+    N = 1600 check: literal/census 1.0027, sub-cell/census 1.0000, front receded in 32 samples (min dlog -1.38e-02, cell 0.0069)
+MW Hernquist (f_ret 0.100, M_cat 53.64 M_b, V_f 165.2 km/s, r_ta 1250 kpc):
+   V4 r_* analytic 514.32 kpc, flow sub-cell 514.32 (1.0000), literal 511.97; point-mass census 511.82; KKT violation 0.0e+00 (filled 367, empty 32); front min dlog -2.70e-02 (receded in 15 samples, max/final 1.500); filled front receded in 0 samples
+   V3 max step dF/F0 -5.17e-14; |dM|/M 0.0e+00; negative-rho_ph cells 0
+   V5 t_90 [Gyr] alpha 0.5: 20.02, alpha 1.0: 10.01, alpha 2.0: 5.01; steady profiles max|dM_c(<r)|/M_cat across alpha 6.9e-07
+   S0 per settled mass: dW 21019 km^2/s^2 (0.770 V_f^2), K_f 0.529 V_f^2, E_sink 0.241 V_f^2; E_sink/K_f 0.454; dF/dW 0.996
+   C1 t=0 max|v_s| 1427.4 km/s at 88 kpc: /c 4.76e-03, /V_c 8.537; run max over cells with rho_c >= 1e-3 rho_c0: 2781.1 km/s
+   post-freeze diag: overdamped-consistency Pi = |v_s| tau/r: t=0 max 81.16 at 86 kpc; run max 591.57 (overdamped reading needs Pi << 1)
+group Hernquist (f_ret 0.291, M_cat 18.44 M_b, V_f 290.0 km/s, r_ta 1853 kpc):
+   V4 r_* analytic 748.77 kpc, flow sub-cell 748.77 (1.0000), literal 746.83; point-mass census 551.29; KKT violation 0.0e+00 (filled 344, empty 55); front min dlog -6.49e-02 (receded in 8 samples, max/final 1.406); filled front receded in 0 samples
+   V3 max step dF/F0 -5.08e-14; |dM|/M 3.6e-16; negative-rho_ph cells 0
+   V5 t_90 [Gyr] alpha 0.5: 17.76, alpha 1.0: 8.88, alpha 2.0: 4.44; steady profiles max|dM_c(<r)|/M_cat across alpha 7.5e-07
+   S0 per settled mass: dW 34506 km^2/s^2 (0.410 V_f^2), K_f 0.298 V_f^2, E_sink 0.112 V_f^2; E_sink/K_f 0.378; dF/dW 1.135
+   C1 t=0 max|v_s| 667.9 km/s at 348 kpc: /c 2.23e-03, /V_c 3.155; run max over cells with rho_c >= 1e-3 rho_c0: 2592.0 km/s
+   post-freeze diag: overdamped-consistency Pi = |v_s| tau/r: t=0 max 10.64 at 260 kpc; run max 141.14 (overdamped reading needs Pi << 1)
+cluster Hernquist(point) (f_ret 0.900, M_cat 5.96 M_b, V_f 1168.4 km/s, r_ta 8156 kpc):
+   V4 r_* analytic 3047.93 kpc, flow sub-cell 3047.92 (1.0000), literal 3074.55; point-mass census 3047.51; KKT violation 0.0e+00 (filled 359, empty 40); front min dlog -4.88e-02 (receded in 11 samples, max/final 1.477); filled front receded in 0 samples
+   V3 max step dF/F0 -5.06e-14; |dM|/M 0.0e+00; negative-rho_ph cells 0
+   V5 t_90 [Gyr] alpha 1.0: 8.79; steady profiles max|dM_c(<r)|/M_cat across alpha 0.0e+00
+   S0 per settled mass: dW 1345928 km^2/s^2 (0.986 V_f^2), K_f 0.664 V_f^2, E_sink 0.322 V_f^2; E_sink/K_f 0.485; dF/dW 0.711
+   C1 t=0 max|v_s| 12811.6 km/s at 296 kpc: /c 4.27e-02, /V_c 8.023; run max over cells with rho_c >= 1e-3 rho_c0: 23963.7 km/s
+   post-freeze diag: overdamped-consistency Pi = |v_s| tau/r: t=0 max 408.04 at 169 kpc; run max 940.16 (overdamped reading needs Pi << 1)
+
+=== footing alt (a0 = 1.1312e-10)
+T2a MW point (f_ret 0.100, M_cat 53.64 M_b, r_M 8.60, r_ta 1250 kpc): r_census 465.58; flow literal 468.82 (1.0070), sub-cell 465.65 (1.0002); analytic exhaustion 465.65; front min dlog -2.97e-02 (cell 0.030); KKT 0.0e+00; |dM|/M 5.8e-16; settled 1.000000 M_cat; 0.5-front receded in 13 samples (max front / final 1.472); post-freeze filled front (q >= 0.999): min dlog +0.00e+00, receded in 0 samples; the undrained reservoir already has rho_c0 >= rho_ph/2 beyond 1.824 r_*
+    N = 1600 check: literal/census 0.9995, sub-cell/census 1.0000, front receded in 42 samples (min dlog -1.49e-02, cell 0.0074)
+T2a group point (f_ret 0.291, M_cat 18.44 M_b, r_M 26.48, r_ta 1853 kpc): r_census 501.48; flow literal 499.66 (0.9964), sub-cell 501.53 (1.0001); analytic exhaustion 501.53; front min dlog -2.79e-02 (cell 0.028); KKT 0.0e+00; |dM|/M 2.4e-16; settled 0.996264 M_cat; 0.5-front receded in 8 samples (max front / final 1.250); post-freeze filled front (q >= 0.999): min dlog +0.00e+00, receded in 0 samples; the undrained reservoir already has rho_c0 >= rho_ph/2 beyond 2.956 r_*
+    N = 1600 check: literal/census 1.0033, sub-cell/census 1.0000, front receded in 27 samples (min dlog -1.39e-02, cell 0.0070)
+MW Hernquist (f_ret 0.100, M_cat 53.64 M_b, V_f 173.3 km/s, r_ta 1250 kpc):
+   V4 r_* analytic 468.10 kpc, flow sub-cell 468.10 (1.0000), literal 472.06; point-mass census 465.58; KKT violation 0.0e+00 (filled 363, empty 36); front min dlog -2.70e-02 (receded in 15 samples, max/final 1.500); filled front receded in 0 samples
+   V3 max step dF/F0 -9.36e-15; |dM|/M 5.8e-16; negative-rho_ph cells 0
+   V5 t_90 [Gyr] alpha 0.5: 18.06, alpha 1.0: 9.03, alpha 2.0: 4.51; steady profiles max|dM_c(<r)|/M_cat across alpha 2.5e-07
+   S0 per settled mass: dW 23728 km^2/s^2 (0.791 V_f^2), K_f 0.528 V_f^2, E_sink 0.263 V_f^2; E_sink/K_f 0.497; dF/dW 1.045
+   C1 t=0 max|v_s| 1577.1 km/s at 88 kpc: /c 5.26e-03, /V_c 9.016; run max over cells with rho_c >= 1e-3 rho_c0: 3318.2 km/s
+   post-freeze diag: overdamped-consistency Pi = |v_s| tau/r: t=0 max 89.68 at 86 kpc; run max 761.08 (overdamped reading needs Pi << 1)
+group Hernquist (f_ret 0.291, M_cat 18.44 M_b, V_f 304.0 km/s, r_ta 1853 kpc):
+   V4 r_* analytic 695.10 kpc, flow sub-cell 695.10 (1.0000), literal 699.88; point-mass census 501.48; KKT violation 0.0e+00 (filled 339, empty 60); front min dlog -6.49e-02 (receded in 7 samples, max/final 1.384); filled front receded in 0 samples
+   V3 max step dF/F0 -1.59e-14; |dM|/M 0.0e+00; negative-rho_ph cells 0
+   V5 t_90 [Gyr] alpha 0.5: 16.22, alpha 1.0: 8.11, alpha 2.0: 4.05; steady profiles max|dM_c(<r)|/M_cat across alpha 2.8e-07
+   S0 per settled mass: dW 37977 km^2/s^2 (0.411 V_f^2), K_f 0.290 V_f^2, E_sink 0.121 V_f^2; E_sink/K_f 0.419; dF/dW 1.225
+   C1 t=0 max|v_s| 737.1 km/s at 348 kpc: /c 2.46e-03, /V_c 3.324; run max over cells with rho_c >= 1e-3 rho_c0: 2989.8 km/s
+   post-freeze diag: overdamped-consistency Pi = |v_s| tau/r: t=0 max 11.74 at 260 kpc; run max 163.00 (overdamped reading needs Pi << 1)
+cluster Hernquist(point) (f_ret 0.900, M_cat 5.96 M_b, V_f 1225.1 km/s, r_ta 8156 kpc):
+   V4 r_* analytic 2772.42 kpc, flow sub-cell 2772.42 (1.0000), literal 2759.87; point-mass census 2772.17; KKT violation 0.0e+00 (filled 356, empty 43); front min dlog -4.93e-02 (receded in 10 samples, max/final 1.412); filled front receded in 0 samples
+   V3 max step dF/F0 -1.87e-13; |dM|/M 0.0e+00; negative-rho_ph cells 0
+   V5 t_90 [Gyr] alpha 1.0: 8.01; steady profiles max|dM_c(<r)|/M_cat across alpha 0.0e+00
+   S0 per settled mass: dW 1519551 km^2/s^2 (1.012 V_f^2), K_f 0.664 V_f^2, E_sink 0.348 V_f^2; E_sink/K_f 0.525; dF/dW 0.763
+   C1 t=0 max|v_s| 15486.1 km/s at 273 kpc: /c 5.17e-02, /V_c 9.250; run max over cells with rho_c >= 1e-3 rho_c0: 28926.7 km/s
+   post-freeze diag: overdamped-consistency Pi = |v_s| tau/r: t=0 max 542.18 at 151 kpc; run max 1308.55 (overdamped reading needs Pi << 1)
+
+V3 numeric Lyapunov (max step dF/F0 <= 1e-9, all Hernquist/cluster runs at alpha = 1): PASS
+V4 minimiser (sub-cell r_* within 1% of the analytic inside-out fill, KKT <= 1e-6): PASS; literal-face reading within 1%: True
+V5 stationary states alpha-free (profiles <= 1e-3): PASS; coefficient: O(1) FREE; robustness (t_90(alpha 0.5) < 10 Gyr everywhere): RATE-SENSITIVE
+T2a: literal face within 1% of census in every point cell: True; sub-cell within 1%: True; inside-out (front never recedes, point cells): False; N = 1600 check: literal within 1% True, inside-out False
+T2a frozen label: NOT EMERGENT BY THE FROZEN RULE; post-freeze filled-front (q >= 0.999) monotone in every run: True
+
+T2b groups (can, N 63): census point-mass edge (CFG540 identity) +0.1527 +- 0.021; class-A exhaustion edge +0.1184 +- 0.021; no edge +0.0100
+   class-A r_*/Re median 1.51 (range 0.99-3.26); supply scan mean Delta {'1.5': 0.09106564542301332, '2.0': 0.07504943830073023, '3.0': 0.05685376543273288, '5.0': 0.040200618421183554, '10.0': 0.026068016215181827, '20.0': 0.018326462427180865, '50.0': 0.0134228784128977}; factor for |Delta| < 0.042: 5.0
+
+T2b groups (alt, N 63): census point-mass edge (CFG540 identity) +0.1446 +- 0.021; class-A exhaustion edge +0.1057 +- 0.021; no edge -0.0103
+   class-A r_*/Re median 1.40 (range 0.92-3.00); supply scan mean Delta {'1.5': 0.07685554667991663, '2.0': 0.05987904681287014, '3.0': 0.04047439539778559, '5.0': 0.02258144441790183, '10.0': 0.007273660554552094, '20.0': -0.0011690646003623896, '50.0': -0.006541035152217792}; factor for |Delta| < 0.042: 3.0
+T2b label (can mean +0.118): PROBLEM PERSISTS
+T2b identity control (census point-mass edge vs CFG540 JSON group mean): |diff| {'can': 0.0, 'alt': 0.0} -> PASS
+
+S(i) heat in the cold energy: worst log10(1 + E_sink/K_f) = 0.175 -> EXCLUDED
+S(ii) dark-energy exchange: max e/c^2 5.82e-06; cosmic Delta rho_DE/rho_DE 2.24e-06, Delta log10 a0 4.86e-07 dex; local can_MW: stay 1.94e-03, leave-at-c 5.97e-09; can_group: stay 1.92e-04, leave-at-c 2.05e-09; alt_MW: stay 2.09e-03, leave-at-c 6.51e-09; alt_group: stay 1.91e-04, leave-at-c 2.03e-09 -> ALLOWED (clustering-DE case: EXCLUDED); conditions: exact Lambda cannot exchange; Q not derived
+S(iii) radiation: EM EXCLUDED (dark); GW P/P_req max 1.1e-15 -> EXCLUDED
+S(iv) baryons: EXCLUDED by G9; E_sink/K_b can_MW 17.2, can_group 2.8, alt_MW 18.8, alt_group 3.0
+
+C1 subluminal (max|v_s|/c < 1e-2): False.  C2 stability: {'A0 instantaneous': 'STABLE', 'A1 undamped wave': 'UNSTABLE', 'A2 damped wave': 'STABLE', 'A3 Cattaneo + instantaneous': 'STABLE', 'A4 Cattaneo + undamped wave': 'UNSTABLE', 'A5 Cattaneo + damped wave': 'UNSTABLE'}
+Causality label: CAUSAL-WITH-tau (undamped retarded psi: UNSTABLE)
+
+Overall (E1, with the open items listed in EQUATIONS.md): SPECIFIED WITH OPEN ITEMS
