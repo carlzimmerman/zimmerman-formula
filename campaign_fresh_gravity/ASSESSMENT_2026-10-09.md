@@ -65,6 +65,8 @@
 
 - **Cold-energy EoM in simulation (CFG539): NO CLASS VIABLE.** Class A (overdamped settling) fails growth at every box and resolution (0.10–0.50), never halves the deficit, and its mobility acts as a knob. Mechanism: the drift carries no momentum, so settled cold energy keeps its orbit and leaves. Class C fails at 256³. The census edge is load-bearing but not derived. **POST-HOC FLAG:** CFG527/530 growth was judged on PARTICLES only; on the GRAVITATING density the excess is 0.34–0.39. CFG555 is re-judging every growth lane, including PAPER45's, on the gravitating field.
 
+- **Halo assumption audit (CFG594):** of 59 ingredients, 10 are data-forced, 13 framework-derived (2 posited), 17 ΛCDM-inherited, 7 standard-MOND-inherited and 12 conventions. The halo SHAPE is the framework's own (the law's round phantom); the halo SUPPLY is borrowed (cold energy clusters as CDM, ΛCDM turnaround ball, ΛCDM-relative census f_ret), and so is the S0 yardstick. The supply sets the sign of the growth excess. Top framework-native tests: (1) measure the cold mass that actually reaches each host's edge in our own PM; (2) take catchment masses from each system's own data; (3) a framework-native shear test at higher resolution; (5) the round per-region phantom in the PM, and R7 (no EFE) against DR4.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
