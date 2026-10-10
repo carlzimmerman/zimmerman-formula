@@ -2,7 +2,7 @@
 
 κ = ½ is fitted. The two footings (9.36e-11 / 1.13e-10) are never pooled. The cold energy's mass is still required. This is not a closed theory. Every line below cites a committed lane.
 
-> **CORRECTION 2026-10-10 (CFG555):** every growth verdict below was measured on the PARTICLE density. On the GRAVITATING density (what lensing and σ8 measure) the zero-knob rule passes only at 256³ (0.063–0.082). It FAILS at 512³ (0.150–0.193; σ8 +3–5%) in all realisations and footings, including PAPER45's headline row. Growth as seen by lensing is NOT fixed by the rule.
+> **CORRECTION 2026-10-10 (CFG555):** every growth verdict below was measured on the PARTICLE density. On the GRAVITATING density (what lensing and σ8 measure) the zero-knob rule passes only at 256³ (0.063–0.082). It FAILS at 512³ (0.150–0.193; σ8 +3–5%) in all realisations and footings, including PAPER45's headline row. Growth as seen by lensing is NOT fixed by the rule. **CFG556 (halo model, resolution-free): the excess is INTRINSIC** to the framework's settling rules. The whole turnaround catchment's cold supply settles inside about r200m (×1.25–1.76 ΛCDM mass at 0.3 r_ta), giving +12–14% power at k 0.3, +72–89% at k 1, σ8 +4.0–4.6%. That matches the PM peak (1.16 vs 1.16) and runs opposite to the cosmic-shear S8 data. VARIANT-SENSITIVE: with an r200m catchment the sign flips to a small deficit (−5–8%). The supply amount (catchment definition) is the lever, and it is inherited, not derived.
 
 ## Passes
 | front | result | lanes |
