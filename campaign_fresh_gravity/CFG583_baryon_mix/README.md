@@ -28,3 +28,10 @@
   M_b is positive in every cell — the same direction as KiDS's deficit growing with M*. A frozen test of a mass trend
   would be a separate lane.
 - The time question is out of scope here (SPARC is z ≈ 0).
+
+## Dated correction (2026-10-09, after CFG584)
+The reading above said SPARC "cannot see the KiDS pattern". That was too strong: the orchestrator's CFG534 found a SPARC
+early-type outer excess of +0.071 dex sorted by Hubble type (surviving a free M/L in CFG537 Part B; not replicated in
+WALLABY, CFG537 Part A). CFG583's gas-fraction and bulge-fraction predictors did not detect a composition effect, but the
+type split does show one in SPARC. The post-hoc mass slope noted above did not replicate in WALLABY (CFG584: −0.07,
+Z ≈ −2). No verdict changes.

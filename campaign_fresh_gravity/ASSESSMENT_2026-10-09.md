@@ -47,6 +47,8 @@
 
 - **Cosmic-time triangulation (CFG547):** compact, gas-rich baryons under an unchanged a₀ reproduce the published decline of f_DM(<R_e) with z (−0.086 predicted vs −0.080 ± 0.035 observed, RC100). That is route-dependent, so NOT DIAGNOSTIC. The rival a₀ ∝ H(z) predicts almost no decline (tension Z 2.2–3.2 on both routes, not excluded). There is no robust switch-on epoch and no non-trivial dark-energy/galaxy coincidence; a₀/cH is tautological. One candidate for a future lane: at z ≳ 2 settling cannot yet have filled to the census edge (rate-dependent).
 
+- **Emergent a₀ vs Λ (CFG545):** no varied-Λ simulation has measured an acceleration scale. The ΛCDM estimate gives d ln a₀/d ln Λ = −0.01 to +0.16 against the framework's 0.5 (NOT DIAGNOSTIC by the frozen 0.15 line, but well below 0.5). The time version is the observable split: feedback-ΛCDM's emergent a₀ rises about ×3 by z = 2 (Magneticum; CFG565) while the framework stays flat. The decisive simulation spec is written (Λ₀ vs 10Λ₀, RAR to g ~ 1e-12, error < 0.08 dex).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
