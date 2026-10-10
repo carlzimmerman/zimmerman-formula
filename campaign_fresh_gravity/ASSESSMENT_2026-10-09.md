@@ -49,6 +49,8 @@
 
 - **Emergent a₀ vs Λ (CFG545):** no varied-Λ simulation has measured an acceleration scale. The ΛCDM estimate gives d ln a₀/d ln Λ = −0.01 to +0.16 against the framework's 0.5 (NOT DIAGNOSTIC by the frozen 0.15 line, but well below 0.5). The time version is the observable split: feedback-ΛCDM's emergent a₀ rises about ×3 by z = 2 (Magneticum; CFG565) while the framework stays flat. The decisive simulation spec is written (Λ₀ vs 10Λ₀, RAR to g ~ 1e-12, error < 0.08 dex).
 
+- **Dark-energy evolution (CFG549, DESI-independent):** from its own ingredients the framework predicts Λ plus a settling trickle of Δρ_DE/ρ_DE ≈ 2–8.5e-7 (w just below −1; unobservable). Any real evolution is FREE: no closure route forces ρ_DE(z). PAPER42's zero-field coefficient fails (κ 1.39 vs 0.42, +10σ). The framework's channel is MEASUREMENT: a₀(z)/a₀(0) = √(ρ_DE(z)/ρ_DE(0)) with κ cancelling exactly. It competes with DESI at z ≈ 2–2.5 with about 56–97 discs per bin at 0.1 dex. DESI shows TENSION with pure Λ, as for ΛCDM.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
