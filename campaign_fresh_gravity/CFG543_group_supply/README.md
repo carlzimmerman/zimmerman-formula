@@ -107,3 +107,61 @@ CFG540/541 put the 63 Tian+2026 groups at Δ̄ = +0.118 / +0.105 with the class-
   estimated). With it, h could be measured per group instead of the single NGC 4936 anchor.
 
 Dated 2026-10-09.
+
+## Addendum (dated 2026-10-09, post-freeze; the frozen verdict above is unchanged)
+
+**Source.** The coordinating session fetched the public arXiv source of Tian+26 (2605.26965) on the owner's approval. It is
+stored outside git in `_external_data/vizier2026/tian26/src/BFJR.tex`. I checked the statements below against that text.
+`cfg543_addendum.py` writes `.out` and `_results.json`.
+
+**What the paper says**
+- **Group M_bar = member stars + observed X-ray hot gas.** Stars come from K-band magnitudes (Cappellari 2013, Kroupa IMF).
+  For ellipticals and groups the paper puts the median gas-to-baryon fraction at "about 8%" (ST2024). Unobserved warm-hot gas
+  is excluded. The 63 groups are 13 from ST2024 and 50 from Milgrom 2019, mainly built on the MK2011 catalogue.
+- **Re for groups** is the average projected radius of all member galaxies.
+- **σ** is the biweight line-of-sight dispersion of the members inside that radius.
+
+**D1 is superseded.**
+- M_bar does contain the observed hot gas, at about 8%.
+- The NGC 4936 comparison used Lovisari's gas out to R500, which reaches beyond the member region Tian counts. So "HOT GAS
+  EXCLUDED" was a wrong reading of that comparison. The ratio of 1.72 is a gas amount out to R500, not gas missing from M_bar.
+- This settles the frozen pair of readings in favour of **P2**: consistent containment supply with M_bar complete.
+  - P2 gives +0.060 (Z 1.65) / +0.043 (Z 1.20) and CLOSES.
+  - P1 and P3 add hot gas that M_bar already counts, or gas lying beyond the members. Their over-corrections do not apply.
+
+**What this means for the census group f_ret**
+- Read as the stars + cold-gas retention, the census floor (0.10) and its group values (0.3–0.6) imply hot gas of about
+  3.99 × M_bar (median). The paper reports about 0.08 of M_bar as observed X-ray gas.
+- So the census group f_ret overpredicts the baryons in these groups, inside the member radius, by about 50×.
+- The census group values come from X-ray-selected groups and clusters, with gas measured out to R500. They do not describe
+  the baryons of these optically selected groups inside the member radius.
+- This is also why CFG540's supply was too small. Its census f_ret divided a nearly complete M_bar by a retention that
+  assumes a large atmosphere the members do not hold.
+- With M_bar complete, containment puts these groups' retention at the galaxy floor, not at 0.3–0.6. Whether the extra
+  Lovisari-type gas beyond R_mean should enter the supply is left open. It would raise the supply.
+
+**Mean-projected-radius conversion for the Hernquist tracer (derived)**
+- ⟨R⟩ = (π/4)⟨r⟩ for isotropic projection.
+- ⟨r⟩ diverges logarithmically for an untruncated Hernquist, so the conversion depends on where the members are truncated,
+  r_t = c a.
+- k = ⟨R⟩/R_e is 1.126 (c = 10), 1.563 (c = 20), 2.224 (c = 50) and 2.767 (c = 100).
+- So the frozen R2 value (1.052, the pairwise harmonic radius) is not the paper's definition. The true R_e is Re/k, with
+  k ≈ 1.1–2.8.
+
+| | c = 10 | c = 20 | c = 50 | c = 100 |
+|---|---|---|---|---|
+| C0, can / alt | +0.109 / +0.096 (ABOVE) | +0.086 / +0.071 (ABOVE) | +0.064 / +0.049 (CLOSES) | +0.053 / +0.037 (CLOSES) |
+| P2, can / alt | +0.054 / +0.038 | +0.042 / +0.025 | +0.031 / +0.013 | +0.025 / +0.007 (all CLOSE) |
+
+**Aperture**
+- The paper measures σ within R < Re, not over the whole system as the frozen setup assumed.
+- P2 with that aperture gives +0.030 / +0.011 ± 0.021 (SE only) at k = 1, and +0.021 / +0.002 at k = 1.563.
+- P2 closes under every conversion and both apertures.
+
+**Plain reading after the addendum**
+- The CFG540/541 group excess came from an assumption error. The supply was set with a gas-plus-stars census retention
+  applied to a nearly complete stellar-plus-observed-gas M_bar.
+- With the supply set consistently by progenitor containment (inherited input: the 0.10 galaxy floor; the progenitor
+  partition is still an assumption, and P2h is marginal on can), the groups sit on the law within +0.00 to +0.06 dex.
+- The mass trend (+0.10 dex per dex in P2) remains.
+- κ is fitted, and the cold energy's mass is still required.
