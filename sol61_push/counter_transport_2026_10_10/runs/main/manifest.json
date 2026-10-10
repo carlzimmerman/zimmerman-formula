@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "claim_id": "COUNTER_TRANSPORT_ENERGY_MOMENT_GATE",
+  "repository": {
+    "commit": "6fc71e70f14c122762172a1b38c69474a304f6ce",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/counter_transport_2026_10_10/checks.py",
+    "--output",
+    "sol61_push/counter_transport_2026_10_10/runs/main/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Positive finite-width shell redistribution can preserve total mass and either second radial moment or exact gravitational binding energy; compute full per-halo Fourier change",
+    "coefficient_domain": "double precision adaptive quadrature and quadratic root solving",
+    "conventions": "G=M_initial=R_outer=1; isolated truncated NFW one-component initial density, no fixed external baryons; shell shapes follow initial mass density inside specified bands",
+    "inputs": [
+      "sol61_push/counter_transport_2026_10_10/checks.py"
+    ],
+    "bounds": {
+      "c": [
+        5,
+        15,
+        40
+      ],
+      "inward_fraction_of_donor_mass": [
+        0.02,
+        0.1,
+        0.3
+      ],
+      "radial_bands": [
+        [
+          0.05,
+          0.15
+        ],
+        [
+          0.25,
+          0.35
+        ],
+        [
+          0.7,
+          0.9
+        ]
+      ],
+      "kR": [
+        0.01,
+        0.1,
+        1,
+        3,
+        10
+      ],
+      "history": "Frozen before numerical execution; theory route chosen after review of CFG556-593 failures"
+    },
+    "non_claims": [
+      "No likelihood or cosmic shear prediction",
+      "No RAR target selected",
+      "No DF, stability, formation or angular-momentum transfer mechanism",
+      "No derivation of kappa or energy partition"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-10T18:25:54.013069+00:00",
+    "runtime_seconds": 1.471244,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/counter_transport_2026_10_10/checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/counter_transport_2026_10_10/checks.py",
+      "sha256": "9e40ce9d669555aa2ddc1b5bcce1a773918333a96a18f24ea26a86a84df9474e",
+      "sha256_after": "9e40ce9d669555aa2ddc1b5bcce1a773918333a96a18f24ea26a86a84df9474e"
+    }
+  ],
+  "output_directory": "sol61_push/counter_transport_2026_10_10/runs/main",
+  "declared_results": [
+    "sol61_push/counter_transport_2026_10_10/runs/main/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/counter_transport_2026_10_10/runs/main/stdout.txt",
+      "sha256": "0497dcbeda41825921f8e6bec7e6bb41e4b5dc2e74c95068f6fe00cf7782c4ec",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/counter_transport_2026_10_10/runs/main/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/counter_transport_2026_10_10/runs/main/results.json",
+      "sha256": "15db49e75dff797c183d5916c4a3bb56eb20c9f93cc59a9f6676184b9be772d9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

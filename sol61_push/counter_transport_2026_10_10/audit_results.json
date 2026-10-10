@@ -1,0 +1,78 @@
+{
+  "assertion": "Independent numerical verification of the saved main-run mass, binding-energy, second-moment and Fourier calculations",
+  "passed": true,
+  "method": "NumPy fixed Gauss-Legendre, 160 nodes per radial segment; direct W=-integral M dM/r and direct Fourier integration of changed density",
+  "conventions": "G=M_initial=R_outer=1; isolated one-component truncated NFW; main branches only",
+  "bounds": {
+    "c": [
+      5.0,
+      15.0,
+      40.0
+    ],
+    "inward_fraction_of_donor_mass": [
+      0.02,
+      0.1,
+      0.3
+    ],
+    "radial_bands": [
+      [
+        0.05,
+        0.15
+      ],
+      [
+        0.25,
+        0.35
+      ],
+      [
+        0.7,
+        0.9
+      ]
+    ],
+    "kR": [
+      0.01,
+      0.1,
+      1.0,
+      3.0,
+      10.0
+    ]
+  },
+  "branches_audited": 27,
+  "fourier_points_audited": 135,
+  "absolute_tolerance": 1e-12,
+  "maximum_absolute_residuals": {
+    "W": 4.49293380277993e-16,
+    "I2": 1.1926223897340549e-17,
+    "U": 2.220446049250313e-16,
+    "ratio": 6.661338147750939e-16,
+    "mass": 5.551115123125783e-16
+  },
+  "input_and_output_hash_checks": [
+    {
+      "path": "sol61_push/counter_transport_2026_10_10/checks.py",
+      "sha256": "9e40ce9d669555aa2ddc1b5bcce1a773918333a96a18f24ea26a86a84df9474e",
+      "matches_manifest": true
+    },
+    {
+      "path": "sol61_push/counter_transport_2026_10_10/runs/main/stdout.txt",
+      "sha256": "0497dcbeda41825921f8e6bec7e6bb41e4b5dc2e74c95068f6fe00cf7782c4ec",
+      "matches_manifest": true
+    },
+    {
+      "path": "sol61_push/counter_transport_2026_10_10/runs/main/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "matches_manifest": true
+    },
+    {
+      "path": "sol61_push/counter_transport_2026_10_10/runs/main/results.json",
+      "sha256": "15db49e75dff797c183d5916c4a3bb56eb20c9f93cc59a9f6676184b9be772d9",
+      "matches_manifest": true
+    }
+  ],
+  "nonclaims": [
+    "Floating-point quadrature agreement is not a certified error bound or a universal theorem.",
+    "Equal gravitational binding energy does not establish a physical energy-conserving evolution; E=W/2 additionally requires isolated stationary endpoints without surface terms.",
+    "Positive density is not a stationary phase-space distribution: upward density jumps at the band boundaries exclude an ordinary isotropic nonnegative f(E) equilibrium there; anisotropic support is untested.",
+    "No RAR equilibrium, angular-momentum transport, entropy, stability or formation-timescale result.",
+    "Individual-halo Fourier changes are not a cosmic-shear or observational prediction."
+  ]
+}
