@@ -53,6 +53,8 @@
 
 - **Drained shell around clusters (CFG546):** the R5 engine predicts a real drained shell about 30% deep at 0.85–2 r_ta (512³, NOT converged: ×2 from 256³). In ΔΣ a ΛCDM splashback profile can absorb it (correlation −0.8). Best forecast is DES-Y3 redMaPPer at Z ≈ 2.1, marginal; nothing on disk can test it. Cheaper lever: the predicted +26–35% outward shift of the inferred splashback radius vs published values (its own lane).
 
+- **Dissipative principle (CFG542):** Pb (metriplectic Onsager + dark-energy scalar partner) is CONSISTENT WITH OPEN ITEMS. It gives the class-A drift and the energy sink Q (derived) with total energy conserved. α is FREE; the switch is an INPUT. An inertial-slip variant collapses the edge (INCONSISTENT). A canonical partner cannot follow DESI's w = −1 crossing (needs a non-canonical or multi-field partner).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
