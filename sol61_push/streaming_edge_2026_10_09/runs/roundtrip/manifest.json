@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLD_RAR_TOM_FORWARD_DENSITY_CHECK",
+  "repository": {
+    "commit": "d769decdd93ec1af3a9f8fc46434948c6d4beee8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/streaming_edge_2026_10_09/roundtrip.py",
+    "--output",
+    "sol61_push/streaming_edge_2026_10_09/runs/roundtrip/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Forward velocity integral of inverted TOM distribution recovers the prescribed density at selected radii, with quadrature refinement",
+    "coefficient_domain": "Double precision, symbolic derivatives, adaptive and Gauss-Legendre quadrature",
+    "conventions": "Same dimensionless target as contract.json; independent explicit density expression and forward Abel integral",
+    "inputs": [
+      "sol61_push/streaming_edge_2026_10_09/roundtrip.py"
+    ],
+    "bounds": {
+      "b": [
+        0.3,
+        1,
+        3
+      ],
+      "q": [
+        0.5364,
+        5.364
+      ],
+      "r_over_R": [
+        0.1,
+        0.5,
+        0.9
+      ],
+      "quadrature_nodes": [
+        32,
+        64
+      ],
+      "relative_tolerance": 1e-06,
+      "history": "Follow-up verification selected after these six cases passed the initial sign scout"
+    },
+    "non_claims": [
+      "Not a continuum proof or independent observational test",
+      "Shares inversion formula and SymPy with the first scout",
+      "No dynamical stability or formation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-10T03:27:29.889242+00:00",
+    "runtime_seconds": 2.247011,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/streaming_edge_2026_10_09/roundtrip.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/streaming_edge_2026_10_09/roundtrip.py",
+      "sha256": "af6e9bf7ef65f36070e0655dd6a3996c5134bcaec655d3b2da5a643a8b90ec6f",
+      "sha256_after": "af6e9bf7ef65f36070e0655dd6a3996c5134bcaec655d3b2da5a643a8b90ec6f"
+    }
+  ],
+  "output_directory": "sol61_push/streaming_edge_2026_10_09/runs/roundtrip",
+  "declared_results": [
+    "sol61_push/streaming_edge_2026_10_09/runs/roundtrip/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/streaming_edge_2026_10_09/runs/roundtrip/stdout.txt",
+      "sha256": "06d59a9e3dc4a75b915cceff8931e867108481c753c138e014199c50f262b579",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/streaming_edge_2026_10_09/runs/roundtrip/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/streaming_edge_2026_10_09/runs/roundtrip/results.json",
+      "sha256": "1b1385ef0bccd1a7f76090833079980e394f789bd81aa461fc7647c91798153a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
