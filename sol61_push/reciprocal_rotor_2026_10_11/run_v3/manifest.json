@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "RECIPROCAL_ROTOR_CORE_TRAFFIC",
+  "repository": {
+    "commit": "22b88786ac1b0c5bf9199a8553bdea2df8088357",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/reciprocal_rotor_2026_10_11/experiment.py",
+    "--output",
+    "sol61_push/reciprocal_rotor_2026_10_11/run_v3/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite Hamiltonian reciprocal transfer from a positive baryonic mass source; measure whether initially distinct matched-invariant passing populations reduce core traffic or retain mixture dependence",
+    "coefficient_domain": "Analytic Newtonian Hamiltonian and binary64 numerical ODE",
+    "conventions": "G=M_b=1; no a0 or vacuum scale supplied. Clouds have nonspinning internal profiles, constrained center separation2a and inertia M_b*a^2. Full baryonic COM recoil retained. Cold tracers do not self-gravitate.",
+    "inputs": [
+      "a=.2 s=.05 eta=.01 R0=2 E=-.2; 24 uniform incident phases each paired j=+/- .05 or +/-.3",
+      "Full Plummer pair initial Omega=.5 or0; exact planar ring average initialOmega=.5; matched totalH,P,J between j populations at sameOmega",
+      "One asymmetric2-tracer recoil control; wrong reciprocal-torque-sign mutation"
+    ],
+    "bounds": {
+      "end_time": 40,
+      "main_cells": 6,
+      "tracers_per_cell": 48,
+      "diagnostic_dt": [
+        0.01,
+        0.005
+      ],
+      "rtol": 2e-09,
+      "atol": 2e-11,
+      "max_step": 0.04,
+      "refined_rtol": 1e-10,
+      "refined_atol": 1e-12,
+      "refined_max_step": 0.02,
+      "wall_seconds": 120,
+      "conservation_absolute_tolerance": 2e-08
+    },
+    "non_claims": [
+      "No full self-gravitating galaxy or cosmological evolution",
+      "No selected density law or kappa; two footings not tested by this dimensionless mechanics",
+      "Finite control radii lie within/near baryonic source and do not test point-source exponential asymptote",
+      "Positive instantaneous orbital energy at finite radius is only an escape proxy",
+      "Few passages cannot establish a late-time attractor; discrete phase sampling is not continuum convergence",
+      "Constraint-supported clouds are not a freely deforming galaxy"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T17:24:26.761729+00:00",
+    "runtime_seconds": 8.678763,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 110,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/reciprocal_rotor_2026_10_11/experiment.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/reciprocal_rotor_2026_10_11/experiment.py",
+      "sha256": "9eaecc0b7e53dbb699c8abaf621f56091cf3fc96d5bb17ca748ba49448890817",
+      "sha256_after": "9eaecc0b7e53dbb699c8abaf621f56091cf3fc96d5bb17ca748ba49448890817"
+    }
+  ],
+  "output_directory": "sol61_push/reciprocal_rotor_2026_10_11/run_v3",
+  "declared_results": [
+    "sol61_push/reciprocal_rotor_2026_10_11/run_v3/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/reciprocal_rotor_2026_10_11/run_v3/stdout.txt",
+      "sha256": "b8412f07812d7d4910dbc4105e5ee504b0e39c241559237b8829d11e1674a2e4",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_rotor_2026_10_11/run_v3/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_rotor_2026_10_11/run_v3/results.json",
+      "sha256": "f35135a2cd85a92c6998e5d6e8d140394b4079c6abadaf9a81b213c9d82f1062",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "REFLECTION_STATIC_CORE_SCATTERING",
+  "repository": {
+    "commit": "22b88786ac1b0c5bf9199a8553bdea2df8088357",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/reciprocal_rotor_2026_10_11/reflection_control.py",
+    "--output",
+    "sol61_push/reciprocal_rotor_2026_10_11/reflection_run_v2/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Determine whether the nonaxisymmetric positive mass source redirects core traffic with exactly reflection-symmetric initial data and no spin energy transfer",
+    "coefficient_domain": "Analytic symmetry and binary64 ODE",
+    "conventions": "Same reciprocal Hamiltonian as experiment.py; reflected incident phases(k+1/2)2pi/Nphase keep rotor at rest in exact arithmetic; +/-j paired. This follow-up was chosen after run_v2's similar rotating/nonrotating crossing counts.",
+    "inputs": [
+      "Nphase24,48; j=.05,.3; initialOmega0; all other physical parameters inherited from experiment.py"
+    ],
+    "bounds": {
+      "end_time": 40,
+      "tracers": [
+        48,
+        96
+      ],
+      "cells": 4,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "max_step": 0.02,
+      "max_spin_tolerance": 1e-08,
+      "individual_energy_tolerance": 2e-06,
+      "wall_seconds": 90
+    },
+    "non_claims": [
+      "Not a preregistered observational test",
+      "No phase-continuum convergence or global halo formation",
+      "No vacuum coupling, cold abundance or kappa derivation",
+      "Symmetric rest configuration is a controlled example, not a general outcome"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T17:26:06.814430+00:00",
+    "runtime_seconds": 8.424926,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 80,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/reciprocal_rotor_2026_10_11/experiment.py",
+    "sol61_push/reciprocal_rotor_2026_10_11/reflection_control.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/reciprocal_rotor_2026_10_11/experiment.py",
+      "sha256": "9eaecc0b7e53dbb699c8abaf621f56091cf3fc96d5bb17ca748ba49448890817",
+      "sha256_after": "9eaecc0b7e53dbb699c8abaf621f56091cf3fc96d5bb17ca748ba49448890817"
+    },
+    {
+      "path": "sol61_push/reciprocal_rotor_2026_10_11/reflection_control.py",
+      "sha256": "6787d001c29a0ac413571753c0c3f043359df51229597bf483c56d783e670296",
+      "sha256_after": "6787d001c29a0ac413571753c0c3f043359df51229597bf483c56d783e670296"
+    }
+  ],
+  "output_directory": "sol61_push/reciprocal_rotor_2026_10_11/reflection_run_v2",
+  "declared_results": [
+    "sol61_push/reciprocal_rotor_2026_10_11/reflection_run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/reciprocal_rotor_2026_10_11/reflection_run_v2/stdout.txt",
+      "sha256": "162239cdfeec2575598aadf4ec79648312df74cd76bc94d0694494351326e3a4",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_rotor_2026_10_11/reflection_run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/reciprocal_rotor_2026_10_11/reflection_run_v2/results.json",
+      "sha256": "d26271e1a1b897e45c5a4a561ffaaad1df2561c86db91e46f40584b469b138ca",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
