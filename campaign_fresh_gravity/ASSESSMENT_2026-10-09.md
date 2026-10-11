@@ -79,6 +79,8 @@
 
 - **Kernel family (CFG468, chassis-only zero-field test):** no kernel with an exact deep-MOND limit removes the zero-field chaos, because the engine's fields sit at y ≲ 1e-17 where all such kernels coincide. A C² splice capping ν below about 2.4e-29 m/s² (S1) removes it with SPARC unchanged, but it adds one declared constant: owner option, NOT adopted, needs N = 2047. Other findings: SPARC can't see kernel kinks; ν_mono's large-y splice costs about 30 χ²; κ is kernel-conditional (0.46–0.60); ν_simple and ν_standard fail SPARC. Remaining cells cancelled (cannot change the answer).
 
+- **Velocity part (CFG620):** a derived maximum-entropy anisotropic target holds the law's profile everywhere (including compact 'hollows') with a sharp edge. INCONSISTENT as frozen (steadiness at 10 Gyr), but it passes by the age at α ≥ 1. Overfill is not handled and it is not α-robust at ×0.5.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
