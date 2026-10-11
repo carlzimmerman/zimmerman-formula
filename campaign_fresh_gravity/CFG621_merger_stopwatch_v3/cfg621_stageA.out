@@ -1,0 +1,22 @@
+CFG621 stage A: isolated-halo noise floor of the declared estimator (FROZEN_CRITERIA_A.md). No merger run.
+estimator E-1: shrinking circle R0 300 / R_min 75 kpc (galaxy, gas, lensing); spread variants (300,60) (300,90) (200,75) (400,75)
+running 48 isolated run(s) on <= 4 processes ...
+
+T-1/T-2 pooled over 2928 epochs (48 runs x 61): P95_L = 8.30 kpc -> T_L = 24.90 kpc; P95_G = 4.90 kpc -> T_G = 14.70 kpc
+T-4 (stage-B C4(b)) on all 48 runs: max d_L 16.03 (<= 24.90), max d_G 12.67 (<= 14.70), max |M(<300) drift| 0.0483 (<= 0.10): PASS
+
+R-1 per configuration (6 seeds x 61 epochs): P95 / max of d_L, d_G, spread s [kpc]; median d_L; max galaxy offset from true centre
+  main alpha 0 can: d_L  9.77/14.99  d_G  5.45/12.11  s  8.73/13.04  median d_L  2.88  gal 16.29
+  main alpha 0 alt: d_L  9.68/14.98  d_G  5.99/12.45  s  8.63/14.64  median d_L  3.13  gal 16.32
+  main alpha 1 can: d_L  9.28/14.45  d_G  5.65/12.67  s  8.10/10.83  median d_L  2.57  gal 17.35
+  main alpha 1 alt: d_L  9.13/16.03  d_G  6.44/12.66  s  7.90/10.78  median d_L  2.98  gal 17.34
+  sub  alpha 0 can: d_L  4.47/ 5.95  d_G  3.41/ 4.60  s  6.24/ 7.17  median d_L  1.87  gal  5.41
+  sub  alpha 0 alt: d_L  4.64/ 5.88  d_G  3.47/ 4.56  s  6.28/ 7.29  median d_L  1.92  gal  5.38
+  sub  alpha 1 can: d_L  4.67/ 6.31  d_G  3.27/ 6.04  s  6.44/ 6.95  median d_L  1.74  gal  4.95
+  sub  alpha 1 alt: d_L  4.48/ 6.41  d_G  3.28/ 6.06  s  6.45/ 6.89  median d_L  1.73  gal  4.95
+  alpha 1 minus alpha 0 median d_L [kpc]: {"main_can": -0.3, "main_alt": -0.16, "sub_can": -0.14, "sub_alt": -0.19}
+
+R-2 pooled P95 of the lensing spread s = 7.66 kpc; fraction of isolated epochs UNSTABLE under T-3 (s > T_L): 0.0000
+R-3 P95_L (sub only) = 4.56 kpc; N_B = P95_L,sub / (194 x 0.125 kpc) = 0.188  (<= 1: Bullet score diagnostic)
+R-4 CFG599's realisation (main, alpha 1, can, seed 599) with E-1: max d_L 8.66 kpc (CFG599 R_min 50: 18.17), max d_G 9.54, max s 9.05, M(<300) drift -0.0045
+t = 0 (reported): largest of d_L, d_G, galaxy-from-true over the 48 starts = 4.67 kpc
