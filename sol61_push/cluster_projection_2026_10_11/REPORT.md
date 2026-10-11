@@ -146,6 +146,11 @@ consistency. Then freeze the native deflection operator and positional-error
 treatment, with point-lens, mass-sheet and wrong-redshift MUTATE checks. Use both
 footings separately and the same measured baryons; include the complete merger
 geometry rather than isolated static progenitors. Do not adopt external halo
-templates. The repaired kernel, no-cold switch, kappa and sealed predictions stay
+templates. The repaired kernel, baryon-only switch, kappa and sealed predictions stay
 unchanged. No theory-level failure or success follows until this comparison and
 the remaining action/growth obligations are actually resolved.
+
+Git provenance: while these outputs were staged, another writer committed the
+shared index in `2f6846261` (labelled CFG628). That commit consequently contains
+this lane's outputs too. Our own criteria-only commit `7779a6213` still precedes
+our run. No other lane's files or criteria were edited here; history is preserved.
