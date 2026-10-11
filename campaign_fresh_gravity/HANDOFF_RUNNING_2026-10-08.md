@@ -55,3 +55,4 @@ To resume an agent lane: read its FROZEN_CRITERIA.md and any committed outputs, 
   - If CFG557 is NOT DERIVABLE: write the minimal postulate set honestly into Theory v1.
 - **Waiting on the owner:** "publish" for PAPER45 v2.2 (prepared, audit 44/44, commit e19da03d0); DES ΔΣ (not public); 100 GB DES shear (needs a yes).
 - **2026-10-10 16:2x: CFG468 kernel grid PAUSED (SIGSTOP; watchdog 57207 also stopped) at owner request, to free CPU for CFG596. Resume with: kill -CONT $(pgrep -f cfg468_zero_field_runs.py) 57207**
+- **2026-10-10 late: CFG596 production running** (1024³ L100: S0 → LRcan → LRalt; ETAs about 10-11 14:00 / 10-12 10:00 / 10-13 06:00). No checkpoints (disk was about 20 GB free). After P1 finishes, from campaign_fresh_gravity/CFG596_lean_pm_1024/ run `CFG596_MUTATE=1 nice -n 10 python3 cfg596_native.py` then `nice -n 10 python3 cfg596_native.py`, and commit. Caffeinate extended to 96 h.
