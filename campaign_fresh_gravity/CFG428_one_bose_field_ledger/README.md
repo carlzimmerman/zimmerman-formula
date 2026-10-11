@@ -20,3 +20,6 @@ The criteria were committed first. The script is `cfg428_ledger.py`. MUTATE (Bul
 - cluster cores, which are about 100× denser. The rate there scales roughly as ρ², which would bring t down to a few Gyr in the inner core but not at R500.
 
 CFG474's conclusion stands: the cold fluid behaves operationally as cold dark matter.
+
+## Correction (2026-10-10, found by the independent review REVIEW_openai_astra_2026-10-10.md)
+`cfg428_ledger.py:9` converts 1 cm²/g as 1e-4 m²/kg. The correct value is 0.1 m²/kg (1e-4 m² / 1e-3 kg), so the cross-section was 1000× too small. The T3 thermal relaxation times are therefore about 1000× SHORTER: about 14–80 Gyr, not 1.4–8 × 10⁴ Gyr. The verdict STARVED keeps its sign only marginally (the shortest time, about 14.1 Gyr, exceeds the 13.8 Gyr age by about 2%). The frozen text and outputs are left unedited; any reuse must apply this factor.
