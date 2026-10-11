@@ -1,81 +1,121 @@
-# CFG596: lean 1024³ PM for a decisive framework-native shear test. PRE-FLIGHT STOP: no buildable box makes CFG592's native test DIAGNOSTIC under its frozen rule; L = 400, N = 1024 keeps zero data points
+# CFG596: a lean 1024³ PM and a framework-native shear test with the framework's own boost as the sensitivity tooth. Status: ENGINE VALIDATED (bit-for-bit); PRODUCTION RUNNING; verdict PENDING
 
-- **Date:** 2026-10-10. **Status:** stopped at the pre-flight, before any engine work, frozen criteria or production run. Nothing was run on the PM; no machine time was committed to a day-long job.
-- **Settings:** κ = ½ is FITTED. Footings never pooled. The cold energy's MASS is still required. Not "theory closed". Nothing here says the data favour the framework.
-- **Numbers:** every number below comes from `cfg596_preflight.json` and `cfg596_tooth_audit.json`.
-- **No verdict role.** This lane issues no class for the framework. It checks whether the planned production *could* change CFG592's NOT DIAGNOSTIC, using CFG592's native machinery unchanged (`cfg592_native.py` is exec'd up to its run section; nothing in it is edited).
+- **Dates:** 2026-10-10 (pre-flight, criteria, engine, validation; production started the same evening).
+- **Settings:** κ = ½ is FITTED. The footings are never pooled. The cold energy's MASS is still required; no particle species. Not "theory closed". Nothing here says the data favour the framework.
+- **Numbers:** every number below comes from a committed JSON: `cfg596_preflight.json`, `cfg596_tooth_audit.json`, `cfg596_validate.json`, `cfg596_native_results_test530*.json`, and, when production ends, `cfg596_native_results*.json`.
+- **CFG592's verdict is unchanged:** NOT DIAGNOSTIC on every track.
 
-## Why a pre-flight
+## Commits so far
 
-The plan was: build a memory-lean copy of the CFG518 census engine, validate it, run L = 400 Mpc/h, N = 1024 for S0 and the framework (days per run), then re-run CFG592's native likelihood. CFG592's frozen rule needs two things for a run to count:
-1. **Support cut:** a data point is kept only if ≥ 90% of its Limber–Hankel integrand lies inside [k_lo, k_hi], with k_hi = πN/(4L). A survey with fewer than 10 kept points is NOT DIAGNOSTIC.
-2. **Tooth NZ2:** a 20% excess ramped over k = 0.5 → 1 h/Mpc, injected into the S0 best-fit mock, must give an S0 refit χ²_min ≥ 9 (IA and photo-z free). Otherwise NOT DIAGNOSTIC.
+| step | commit |
+|---|---|
+| pre-flight (no verdict role) | ac4857dce |
+| FROZEN CRITERIA, committed alone, written after the pre-flight (disclosed in it) | f6c27d401 |
+| engine + validation | 2258e1ea3 |
+| engine v2 (memory) + re-validation | 8459ceedd |
+| production code freeze (allocator release) | c8825cf4a |
+| production code freeze v2 (uncached spill files, freed views) | 6323b630f |
 
-Both depend only on [k_lo, k_hi] and on the S0 spectrum, so they can be checked before any run.
+## Part 0. Pre-flight: no buildable box passes CFG592's frozen tooth (`cfg596_preflight.py`, `cfg596_tooth_audit.py`)
 
-## Method (`cfg596_preflight.py`, `cfg596_tooth_audit.py`)
+**Method.** CFG592's native machinery was run unchanged. The S0 spectrum is a splice of existing S0 PM spectra: CFG518 S0 L200 N512 below k = 0.5 and CFG530 S0 L100 N512 above. A hypothetical box changes only [k_lo, k_hi = πN/(4L)].
 
-- **S0 spectrum:** existing S0 PM spectra spliced together: CFG518 S0 L200 N512 below k = 0.5, CFG530 S0 L100 N512 above, matched at k = 0.5. Nodes z = 0, 0.5, 1 come from their JSONs. Beyond the grid, the extension rule is `node_P`'s own.
-- **Hypothetical box:** only changes [k_lo, k_hi]. k_lo = 1.276 × 2π/L, the first-bin ratio of the L200 run.
-- **Proxy check:** at L100 N512 the proxy keeps 20 KiDS / 40 DES points, and the tooth gives χ² 0.89 / 0.13. CFG592's real run gave 20 / 38 points and 0.79 / 0.04. The proxy reproduces the real run closely.
+**Proxy check.** At L100 N512 the proxy keeps 20 KiDS / 40 DES points, and the tooth gives χ² 0.89 / 0.13. CFG592's real run gave 20 / 38 points and 0.79 / 0.04.
 
-## Results
-
-**Support cut and frozen tooth** (`cfg596_preflight.out`):
-
-| box | k range (h/Mpc) | KiDS kept | DES kept | frozen NZ2 χ² KiDS / DES |
-|---|---|---|---|---|
-| L200 N512 (existing) | 0.040–2.01 | 0 | 0 | — |
-| L100 N512 (existing) | 0.080–4.02 | 20 | 40 | 0.89 / 0.13 FAILS |
-| **L400 N1024 (planned)** | 0.020–2.01 | **0** | **0** | — |
-| L400 N768 | 0.020–1.51 | 0 | 0 | — |
-| L300 N1024 | 0.027–2.68 | 0 | 0 | — |
-| L250 N1024 | 0.032–3.22 | 0 | 6 | — |
-| L200 N1024 | 0.040–4.02 | 49 | 57 | 1.32 / 0.36 FAILS |
-| L150 N1024 | 0.053–5.36 | 93 | 70 | 4.13 / 0.79 FAILS |
-| L100 N1024 | 0.080–8.04 | 119 | 100 | 6.33 / 0.88 FAILS |
-| L400 N1536 | 0.020–3.02 | 0 | 0 | — |
-| L400 N2048 | 0.020–4.02 | 84 | 153 | 1.39 / 0.82 FAILS |
-| L100 N2048 | 0.080–16.1 | 156 | 118 | 7.37 / 1.42 FAILS |
-| idealised, everything resolved | 0.005–49 | 225 | 227 | **7.95 / 1.95 FAILS** |
-
-1. **The planned L = 400, N = 1024 production keeps no data point in either survey.** Its k_hi = 2.01 equals the L200 N512 k_hi. The cut is set by k_hi, and lowering k_lo does not rescue small-θ points.
-2. **No box passes the frozen tooth, not even the idealised one where every published point is kept.** With all 225 KiDS points the 20% excess gives χ² 7.95 (< 9); DES gives 1.95. Under CFG592's frozen rule the native test is NOT DIAGNOSTIC for every possible PM box. The limit is the data plus the free nuisances, not the PM's k range.
-
-**Tooth audit** (`cfg596_tooth_audit.out`). (b) fixes IA = 0. (c) is the ramp amplitude the data can detect at χ² = 9. (d) injects the framework's own measured boost B = P_grav/P_part (CFG530 L100 N512, z = 0, held at all z, held flat outside k 0.08–4) instead of the 20% ramp.
-
-| box | survey | (a) frozen NZ2 | (b) no IA | (c) amplitude for χ² = 9 | (d) own boost, can / alt |
+| box | k range (h/Mpc) | KiDS / DES kept | CFG592 tooth NZ2 χ², KiDS / DES | framework's own boost injected, KiDS (can / alt) | same, DES (can / alt) |
 |---|---|---|---|---|---|
-| idealised | KiDS | 7.95 | 9.12 | 0.213 | 16.98 / 22.10 |
-| idealised | DES | 1.95 | 2.44 | 0.516 | 17.91 / 16.64 |
-| L150 N1024 | KiDS | 4.13 | 4.42 | 0.294 | 14.43 / 18.75 |
-| L150 N1024 | DES | 0.79 | 0.89 | 1.056 | 3.40 / 4.21 |
-| L100 N1024 | KiDS | 6.33 | 7.41 | 0.238 | 14.64 / 19.14 |
-| L100 N1024 | DES | 0.88 | 1.20 | 0.709 | 8.56 / 9.69 |
+| L400 N1024 (first plan) | 0.020–2.01 | **0 / 0** | — | — | — |
+| L200 N1024 | 0.040–4.02 | 49 / 57 | 1.32 / 0.36 | | |
+| L150 N1024 | 0.053–5.36 | 93 / 70 | 4.13 / 0.79 | 14.43 / 18.75 | 3.40 / 4.21 |
+| **L100 N1024** | 0.080–8.04 | **119 / 100** | 6.33 / 0.88 | **14.64 / 19.14** | **8.56 / 9.69** |
+| everything resolved (ideal reference) | 0.005–49 | 225 / 227 | **7.95 / 1.95** | 16.98 / 22.10 | 17.91 / 16.64 |
 
-- **KiDS just misses the frozen tooth.** It needs a 21.3% ramp with everything resolved, and 23.8% at L100 N1024. DES needs ≥ 52%.
-- **The framework's own boost is larger than the tooth's 20%.** It would be detectable on KiDS at χ² 14–22 even in boxes of L100–150 at N = 1024. This is the same point CFG592 made at N = 512.
-- **The tooth's shape is what fails.** The frozen tooth is a 20% excess concentrated at k ≥ 1. The framework's boost already reaches 1.20 at k = 0.3. The tooth is the frozen criterion, so it stands.
+- **CFG592's tooth cannot be passed by any box.** It is a 20% excess at k ≥ 1, and it fails even with every published point resolved. KiDS would need a 21.3% ramp, DES 52%.
+- **The framework's own boost is detectable.** B = P_grav/P_part reaches 1.20 at k = 0.3, so injecting it gives χ² of 14–22 on KiDS.
 
-## What this means for the lane
+## Part 1. The owner's decision and the frozen rule (`FROZEN_CRITERIA.md`, f6c27d401)
 
-- **Production as specified (L400 N1024) cannot change CFG592's NOT DIAGNOSTIC.** It would keep zero points.
-- **No other box can either,** while NZ2 stays as frozen.
-- **The engine work (a lean 1024³ PM) was not started.** For reference only, a rough analytic estimate (not measured): float32 positions and velocities for 1024³ particles take 25.8 GB; one float32 1024³ mesh plus its rfft take about 8.6 GB. A chunked engine could plausibly fit under 50 GB. Two other heavy jobs (CFG595, CFG468) were running on the machine at the time.
-- **Options that need an owner decision** (none taken here, and each would need its own frozen criteria committed alone):
-  1. Accept CFG592's NOT DIAGNOSTIC as final for the native track under its frozen tooth.
-  2. Declare a new, separately frozen sensitivity rule, for example a tooth sized at the excess the data can detect, or the framework's own predicted boost shape. **Caution:** this rule would be chosen after seeing that the frozen one is unreachable. It must be disclosed as post-hoc and carries no right to rewrite CFG592.
-  3. If option 2 is approved, the useful box is L100–150 at N = 1024 (k_hi 5–8), not L400. It keeps 93–119 KiDS points.
+- **New sensitivity tooth T-OWN.** The injected boost is the framework's OWN B(k), from the CFG530 L100 N512 cache, z = 0, both footings. A survey × footing is DIAGNOSTIC only if that injected boost gives χ² ≥ 9 on its surviving points.
+  - This rule is post-hoc relative to CFG592. It is disclosed as such in the criteria.
+- **Everything else is CFG592's, unchanged:** the support cut (f ≥ 0.9 inside [k_lo, k_hi], N_kept ≥ 10), the nuisances, the statistic Δχ²(F − S0), and the class labels.
+- **Framework model:** its MEASURED gravitating P(k, z) at the nodes z = 0, 0.5, 1. "Held" (CFG592's former PRIMARY) replaces "fade" in the robustness set.
+- **Box:** L = 100 Mpc/h, N = 1024, chosen by the pre-flight (more kept points, and the strongest own-boost tooth). NSEED 1024 and seed 359 give a new realisation. RMIN = 0.78125.
+- **Snapshots:** z = 1, 0.7548, 0.5, 0.2562, 0. The two extras are measurement only.
+
+## Part 2. The lean engine (`cfg596_pm.py`, launcher `run_596.py`)
+
+**Source.** It is a copy of the CFG527 census engine (cfg527_pm.py, sha256 aeabd0ba…), the engine of the CFG530 runs. It runs the RES switch (census edge, shell draw, unfiltered source, cap) and S0. No formula, constant, threshold, switch, mask rule or time step is changed.
+
+**Engineering changes:**
+- **FFTs** are in-place and axis by axis on padded buffers. They are bitwise identical to scipy's rfftn / irfftn; this was checked directly and through the V-E gates.
+- **Elementwise expressions** are evaluated slab by slab on a thread pool; 1/k² is computed per slab.
+- **Kicks** are fused per component, so no particle accelerations are stored.
+- **Disk-backed slab fields** (pread / pwrite, not memory-mapped) hold δ, f_sw, w = ν − 1, the f_ret code and the IC field.
+- **The census and catchment masks** are stored as packed bits.
+- **The resolved-peak search** is shared between the two catchment calls. It is deterministic, so the result is identical.
+- **The macOS allocator** keeps freed pages resident; the engine asks it to release them at stage changes. This has no effect on any number.
+
+**Two modes:**
+- **exact:** float64 wrapped positions and momenta, unchunked deposit, the original six-field tidal transform, the original IC routine.
+- **lean (production):** float32 Lagrangian displacement and float32 momentum, a windowed chunked deposit, factorised tidal transforms, a component-wise in-place IC.
+
+## Part 3. Validation at 256³ (`cfg596_validate.py` → `cfg596_validate.out` / `.json`): ALL GATES PASS
+
+| gate | result |
+|---|---|
+| V-E(a) exact LRcan L200 N256 vs CFG527 | **bit-for-bit:** P and σ8 at all four snapshots differ by 0; z = 0 positions identical; q_max, n_catch, e_sum, src_sum identical |
+| V-E(b) exact S0 L100 N256 (NSEED 512) vs CFG530 | **bit-for-bit;** z = 0 positions identical |
+| V-G gravitating P vs CFG555 (527_LRcan_L200) | max \|ΔP_grav/P_grav\| 7.4e-8; \|Δσ8_grav\| 3.2e-9 → PASS |
+| V-L lean S0 L100 N256 vs CFG530 | max \|ΔP/P\| 3.9e-8 (k ≤ 2.01); \|Δσ8/σ8\| 3.7e-9 → **STRICT PASS** |
+| V-L lean LRcan L100 N256 vs CFG530 | max \|ΔP/P\| 6.3e-8; \|Δσ8/σ8\| 5.4e-9; \|ΔB\| (z = 0) 7.6e-8 → **STRICT PASS** |
+
+- The extra snapshots were confirmed measurement only: exact mode with them on is still bit-for-bit.
+- The likelihood pipeline (`cfg596_native.py --test530`) reproduces CFG592 exactly on CFG530 L100 N512, using the held construction. Its outputs are `cfg596_native_test530.out` and `_MUTATE.out`.
+  - Δχ² is +23.85 (KiDS) and +4.20 (DES) canonical, +30.04 and +5.56 alt.
+  - That box's T-OWN tooth (pipeline check only, no verdict) gives 7.78 / 2.06 canonical and 9.89 / 1.14 alt.
+
+## Part 4. Memory (frozen gate V-M)
+
+| job | peak resident (GB) | note |
+|---|---|---|
+| 256³ (VEa, VEb, VLs, VLr) | 5.9 / 5.2 / 2.9 / 2.9 | exact mode holds full arrays; the lean 256³ runs are dominated by the NSEED-512 IC |
+| 512³ RES, first 12 calls (VMr) | 9.0 (watchdog), 9.9 (ru_maxrss) | measured before the allocator release was added; RSS then included freed-but-resident pages |
+| 512³ RES profile with release | 6.6 | live memory about state + 3 fields |
+| 512³ S0 full run (VMs) | 8.7 (watchdog), footprint 4.9 | reported comparison with CFG530 S0_L100_N512: max \|ΔP/P\| ≤ 5.6e-8 (k ≤ 4.02), \|Δσ8\| ≤ 6.6e-9 |
+| **1024³ RES probe (VMx)**, production settings: IC, zi snapshot, initial force, 3 steps | **39.2 (watchdog), 40.5 (ru_maxrss), footprint ≤ 39.2; swap growth ≤ 2.4 GB** | **V-M PASS (≤ 50 GB)** |
+
+- **An earlier probe was aborted by the frozen swap rule** (+6.6 GB) on code freeze c8825cf4a. The 8.6 GB IC spill was written through the file cache, and the machine's other load left little room. The fix was to open spill files uncached and drop views that kept freed buffers alive (6323b630f). That probe was discarded, and its spill file was removed.
+- **Probe step timing at 1024³:** about 370–450 s per step, made up of deposit ~140 s, forces ~100 s and acceleration ~130–200 s.
+
+The analytic model at 1024³:
+- particle state: 25.8 GB;
+- at most three full mesh fields alive at once: 12.9 GB;
+- per-thread temporaries: under 1 GB;
+- expected total: about 40–44 GB.
+
+## Part 5. Production (`run_596.py serial VMx P0 P1 P2`, detached, nice 10, 14 threads, watchdog)
+
+- **Order:** the probe VMx, then P0 (S0), P1 (LRcan), P2 (LRalt).
+- **Watchdog:** a job is killed if its RSS exceeds 50 GB, if swap grows by more than 4 GB, or if free disk falls below 3 GB. A 1024³ job does not start with less than 18 GB of free disk.
+- **Checkpoints:** none. Free disk was 25 GB, below the state + 10 GB that the criteria require. Partial JSON is written after every snapshot.
+- **Started:** 2026-10-10 21:40 (P0).
+- **Timing estimate** from the 1024³ probe: S0 about 12 h; each RES footing about 16–18 h. Expected finish: P0 about 2026-10-11 10:00, P1 about 2026-10-12 04:00, P2 about 2026-10-12 22:00.
+- **Likelihood:** after P0 and P1, run
+  ```
+  CFG596_MUTATE=1 nice -n 10 python3 cfg596_native.py
+  nice -n 10 python3 cfg596_native.py
+  ```
+  The alt footing stays PENDING until P2 finishes.
 
 ## Disclosures (dated 2026-10-10)
 
-- **No FROZEN_CRITERIA.md was committed for this pre-flight.** It is a feasibility check with no verdict role, it applies CFG592's frozen rule unchanged, and it touches no framework–data Δχ².
-- **The (d) injections are mocks.** They use only the S0 best-fit theory and the framework's z = 0 boost; no framework fit to data was computed.
-- **The spliced S0 spectrum is a proxy.** The support fractions depend weakly on its shape; the proxy-vs-real check at L100 N512 is above.
-- **The idealised box (L1600, N 100000)** is a reference, not a buildable run.
-
-## Scripts
-
-- `cfg596_preflight.py`: about 1 min.
-- `cfg596_tooth_audit.py`: about 12 min.
-- Run each with `nice -n 10`. Both read CFG592's data in `_external_data/cfg592_work`, and the CFG518 / CFG530 / CFG555 caches, read-only.
+- **The new tooth was set after the pre-flight.** It is post-hoc relative to CFG592, whose verdict stands.
+- **The production realisation is new.** NSEED = 1024, whereas CFG530 used NSEED = 512. S0 and the framework run share it.
+- **Lean-mode numerics differ from exact mode** at the 1e-8 level in P(k) at 256³ (V-L). The 1024³ runs exist only in lean mode.
+- **No checkpoints,** because of the disk limit. A crash means a rerun.
+- **Flagged ingredients inherited from ΛCDM, as in CFG592:**
+  - the EH IC spectrum;
+  - the flat w = −1 background;
+  - the Δ_ta(z) shell table;
+  - the survey nuisance priors;
+  - massless neutrinos.

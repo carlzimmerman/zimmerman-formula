@@ -54,7 +54,7 @@ if VEa:
     dG = float(np.max(np.abs(pg / rg - 1))); dS = float(abs(VEa["snap"]["z0"]["sigma8_grav"] / g["s8_grav"] - 1))
     RES["gates"]["V-G"] = dict(maxrelPgrav=dG, relsig8grav=dS, PASS=bool(dG <= 1e-5 and dS <= 1e-5))
     P(f"V-G gravitating field vs CFG555 (527_LRcan_L200): max|dPgrav/Pgrav| {dG:.2e}, |ds8g| {dS:.2e} -> {'PASS' if dG <= 1e-5 and dS <= 1e-5 else 'FAIL'}")
-else: P("V-E(a): not run")
+elif "V-E(a)" not in RES["gates"]: P("V-E(a): not run")
 
 # ---------------- V-E (b)
 VEb, _ = mine("VEb")
@@ -67,7 +67,7 @@ if VEb:
     pos_eq = bool(np.array_equal(pr, pm)); passE = all(c[z]["maxrelP"] <= 1e-12 and c[z]["relsig8"] <= 1e-12 for z in c) and pos_eq
     RES["gates"]["V-E(b)"] = dict(cmp=c, z0_positions_identical=pos_eq, PASS=passE, bitwise=all(c[z]["maxrelP"] == 0 and c[z]["relsig8"] == 0 for z in c))
     P(f"V-E(b) exact S0 L100 N256 (NSEED 512) vs CFG530: " + "; ".join(f"{z}: {c[z]['maxrelP']:.1e} / {c[z]['relsig8']:.1e}" for z in c) + f"; z0 positions identical {pos_eq} -> {'PASS' if passE else 'FAIL'}")
-else: P("V-E(b): not run")
+elif "V-E(b)" not in RES["gates"]: P("V-E(b): not run")
 
 # ---------------- V-L
 khi = math.pi * 256 / (4 * 100.0)
@@ -104,7 +104,7 @@ for job in ("VEa", "VEb", "VLs", "VLr", "VMs", "VMr", "VMx", "P0", "P1", "P2"):
         if mf: fpk = max(fpk, float(mf.group(1)))
     m_, _ = mine(job)
     mem[job] = dict(watch_peak_rss_gb=pk, watch_peak_footprint_gb=fpk or None, max_swap_growth_mb=swmax, engine_maxrss_gb=(m_ or {}).get("maxrss_gb") or ((m_ or {}).get("mem") or [[None, None]])[-1][1])
-    P(f"V-M {job}: watchdog peak RSS {pk:.2f} GB (20 s samples), footprint {fpk:.2f} GB, engine ru_maxrss {mem[job]['engine_maxrss_gb']}, swap growth {swmax:.0f} MB")
+    P(f"V-M {job}: watchdog peak RSS {pk:.2f} GB (20 s samples), footprint {(f"{fpk:.2f} GB" if fpk else "n/a")}, engine ru_maxrss {mem[job]['engine_maxrss_gb']}, swap growth {swmax:.0f} MB")
 RES["memory"] = mem
 VMs, _ = mine("VMs")
 if VMs and "z0" in VMs["snap"]:
