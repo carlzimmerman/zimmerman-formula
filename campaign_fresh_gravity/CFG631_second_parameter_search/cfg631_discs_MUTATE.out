@@ -1,0 +1,51 @@
+==============================================================================================================
+CFG631 discs: what besides the law sets the outer residual?  *** MUTATE: +0.20 dex across the log Sigma_* range ***
+==============================================================================================================
+
+--- controls
+  [PASS] C1 exponential kernel reproduces CFG584's WALLABY slope: canonical -0.0716, alt -0.0686
+  kernel swap (exponential -> repaired nu_mono): max |dDelta_out| SPARC 0.0000, WALLABY 0.0000 dex
+  [PASS] C2 |median Delta_out| < 0.1 dex: SPARC canonical +0.021, SPARC alt -0.014, WALLABY canonical +0.033, WALLABY alt +0.006
+  N: SPARC 128 (colour 78, env 109); WALLABY 85 (W1-W2 84)
+
+--- results (OLS jointly with log M_b; coefficient in dex across the 16-84 range; family-wise p from 5000 max-T draws over 26 t's)
+  max-T 95th percentile |t| = 2.97
+  SPARC   lMb (per 0.5 dex)  can: -0.015 [-0.040,+0.011] t -1.13 p_fw nan   alt: -0.015 [-0.040,+0.011] t -1.13 p_fw nan
+  SPARC   fgas               can: +0.119 [-0.006,+0.244] t +1.87 p_fw 0.569   alt: +0.116 [-0.009,+0.241] t +1.82 p_fw 0.605
+  SPARC   bul                can: -0.008 [-0.087,+0.070] t -0.20 p_fw 1.000   alt: -0.007 [-0.086,+0.071] t -0.18 p_fw 1.000
+  SPARC   lSig               can: +0.307 [+0.204,+0.410] t +5.82 p_fw 0.000   alt: +0.311 [+0.208,+0.414] t +5.91 p_fw 0.000
+  SPARC   T                  can: -0.147 [-0.264,-0.030] t -2.46 p_fw 0.188   alt: -0.145 [-0.262,-0.028] t -2.44 p_fw 0.199
+  SPARC   inc                can: +0.024 [-0.027,+0.076] t +0.92 p_fw 0.996   alt: +0.024 [-0.027,+0.075] t +0.92 p_fw 0.996
+  SPARC   HF                 can: +0.024 [-0.029,+0.076] t +0.88 p_fw 0.998   alt: +0.023 [-0.029,+0.076] t +0.87 p_fw 0.998
+  SPARC   colour             can: -0.030 [-0.166,+0.107] t -0.42 p_fw 1.000   alt: -0.030 [-0.166,+0.106] t -0.43 p_fw 1.000
+  SPARC   env                can: -0.027 [-0.073,+0.019] t -1.15 p_fw 0.969   alt: -0.027 [-0.073,+0.019] t -1.16 p_fw 0.968
+  SPARC   omnibus F (all core terms beyond mass): can F 10.42 p 0.000; alt F 10.76 p 0.000
+  WALLABY lMb (per 0.5 dex)  can: -0.042 [-0.088,+0.005] t -1.75 p_fw nan   alt: -0.042 [-0.088,+0.005] t -1.76 p_fw nan
+  WALLABY fgas               can: +0.001 [-0.085,+0.087] t +0.03 p_fw 1.000   alt: -0.002 [-0.088,+0.084] t -0.05 p_fw 1.000
+  WALLABY lSig               can: +0.209 [+0.109,+0.309] t +4.11 p_fw 0.002   alt: +0.211 [+0.112,+0.311] t +4.16 p_fw 0.002
+  WALLABY T                  can: -0.012 [-0.072,+0.049] t -0.38 p_fw 1.000   alt: -0.011 [-0.071,+0.050] t -0.35 p_fw 1.000
+  WALLABY inc                can: +0.087 [+0.005,+0.168] t +2.08 p_fw 0.408   alt: +0.086 [+0.004,+0.167] t +2.06 p_fw 0.425
+  WALLABY W12                can: -0.091 [-0.154,-0.027] t -2.81 p_fw 0.078   alt: -0.090 [-0.154,-0.027] t -2.79 p_fw 0.083
+  WALLABY omnibus F (all core terms beyond mass): can F 7.22 p 0.000; alt F 7.40 p 0.000
+
+--- discovery / confirmation (frozen rules)
+  DISCOVERED: ['SPARC:lSig (+1)', 'WALLABY:lSig (+1)']
+  confirm lSig in SPARC: one-sided p (worse footing) 0.0002 vs Holm 0.0500 -> REPLICATED
+  confirm lSig in WALLABY: one-sided p (worse footing) 0.0004 vs Holm 0.0500 -> REPLICATED
+
+VERDICT (discs): SECOND PARAMETER FOUND   status: {'lSig': 'REPLICATED'}
+  disc age reading (SPARC colour B-[3.6], redder -> more excess predicted): -0.030 / -0.030 dex across the range; one-sided p 0.736 / 0.741
+
+--- MUTATE reading
+  SPARC canonical: lSig coefficient shift +0.136864 vs injected +0.136864
+  SPARC alt: lSig coefficient shift +0.136864 vs injected +0.136864
+  WALLABY canonical: lSig coefficient shift +0.271671 vs injected +0.271671
+  WALLABY alt: lSig coefficient shift +0.271671 vs injected +0.271671
+  [PASS] MUTATE linearity: coefficient shift equals the injection (1e-9)
+  [PASS] MUTATE: injected log Sigma_* dependence REPLICATED (status REPLICATED)
+
+--- variant (reported only): SPARC g_bar < a0/3 residual, same core model, classical t
+  [canonical] N 120  fgas +0.222 (t +2.91)  bul -0.017 (t -0.32)  lSig +0.117 (t +1.85)  T -0.154 (t -2.13)  inc +0.019 (t +0.58)  HF +0.019 (t +0.59)
+  [alt] N 122  fgas +0.214 (t +2.79)  bul -0.014 (t -0.27)  lSig +0.112 (t +1.76)  T -0.159 (t -2.21)  inc +0.017 (t +0.53)  HF +0.021 (t +0.63)
+
+checks: 4/4 pass
