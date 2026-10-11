@@ -77,6 +77,8 @@
 
 - **Settling front (CFG598): one α does NOT give working partial settling.** The front is always inside-out. At α ≳ 0.5 the MW and groups pass but hosts fill to the supply edge, so the excess stays. At α = 0.25 partial settling appears at 0.2–0.5 r_ta, but the MW, canonical groups and the excess (cut 21–24% < 25% bar) narrowly miss. An inside-out front cannot reduce the inner concentration that drives the excess. Supply-rate bound α ≲ 0.3–1.0 by mass.
 
+- **Kernel family (CFG468, chassis-only zero-field test):** no kernel with an exact deep-MOND limit removes the zero-field chaos, because the engine's fields sit at y ≲ 1e-17 where all such kernels coincide. A C² splice capping ν below about 2.4e-29 m/s² (S1) removes it with SPARC unchanged, but it adds one declared constant: owner option, NOT adopted, needs N = 2047. Other findings: SPARC can't see kernel kinks; ν_mono's large-y splice costs about 30 χ²; κ is kernel-conditional (0.46–0.60); ν_simple and ν_standard fail SPARC. Remaining cells cancelled (cannot change the answer).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
