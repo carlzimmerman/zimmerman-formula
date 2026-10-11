@@ -83,6 +83,8 @@
 
 - **Merger stopwatch v3 (CFG621, VALID as frozen; all control, calibration and MUTATE gates pass):** instant re-settling (α = ∞) is EXCLUDED on both footings (Z_B +7.86 / +8.06; the lensing peak stays on the stripped gas). Pure collisionless (α = 0) is UNDETERMINED (Harvey within 2σ, Bullet cell unscorable). No α node is allowed on either footing; α 1–10 are unscorable but as-run Z_B +8 to +16, so no reading supports α ≳ 0.5. Unscored, the merger side leans to α ≲ 0.03, in TENSION with the galaxy side (α ≳ 0.5, CFG598/620). Caveat B-D1: most cells are unscorable because one convergence variant reaches toward the main cluster (merger-environment spread, unseen by isolated stage A). A v4 with a merger-calibrated stability rule must rescore α 0, 0.03, 0.1.
 
+- **Shear with redshift (CFG591, CONTEXT ONLY: ΛCDM-calibrated halo-model machinery, as CFG590; NO LABEL, control HZ1 failed by the frozen rule, post-hoc impact ≤ 2e-11 on R):** running R(k,z) keeps 0.68 (canonical) / 0.77 (alt) of CFG590's excess. Alt stays EXCLUDED under every mapping; canonical becomes NOT DIAGNOSTIC (M1 excludes thinly, min Zmax 3.36; cruder mapping M2 reads consistent). A DESI-tracking a₀(z) background changes no class (slightly worse). Survivors (emergent edge, r200m scope) now sit on the low-power side. The verdict rests on the framework-native raw-data test CFG596.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
