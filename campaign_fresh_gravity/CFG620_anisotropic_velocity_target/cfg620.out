@@ -1,0 +1,179 @@
+CFG620 anisotropic velocity-relaxation target
+MW_can: V_f 165.2 km/s, r_* 514.3 kpc, r_M 9.45 kpc, b/r_M 0.264, f_ret 0.100, r_ta/r_* 2.430, M_cat/M_b 53.64, t_unit 3.043 Gyr; C4 1.04e-04; toy hollow r_pk None
+MW_alt: V_f 173.3 km/s, r_* 468.1 kpc, r_M 8.60 kpc, b/r_M 0.291, f_ret 0.100, r_ta/r_* 2.670, M_cat/M_b 53.64, t_unit 2.642 Gyr; C4 1.60e-04; toy hollow r_pk None
+cluster_can: V_f 1168.4 km/s, r_* 3047.9 kpc, r_M 472.67 kpc, b/r_M 0.000, f_ret 0.900, r_ta/r_* 2.676, M_cat/M_b 5.96, t_unit 2.551 Gyr; C4 1.47e-04; toy hollow r_pk 0.04048088513464885
+cluster_alt: V_f 1225.1 km/s, r_* 2772.4 kpc, r_M 429.96 kpc, b/r_M 0.000, f_ret 0.900, r_ta/r_* 2.942, M_cat/M_b 5.96, t_unit 2.213 Gyr; C4 9.79e-05; toy hollow r_pk 0.04048088513464885
+compact_can: V_f 187.7 km/s, r_* 545.7 kpc, r_M 12.20 kpc, b/r_M 0.082, f_ret 0.122, r_ta/r_* 2.545, M_cat/M_b 44.13, t_unit 2.842 Gyr; C4 2.19e-04; toy hollow r_pk 0.0038260443509591166
+compact_alt: V_f 196.9 km/s, r_* 496.5 kpc, r_M 11.10 kpc, b/r_M 0.090, f_ret 0.122, r_ta/r_* 2.797, M_cat/M_b 44.13, t_unit 2.466 Gyr; C4 1.68e-04; toy hollow r_pk 0.003595423063850431
+
+CS (harmonic isothermal): {'bin_err': 9.587731262742654e-08, 'maxdev_r_le_3': 0.9895119917983473, 'pass_as_frozen': False, 'maxdev_r_0p1_to_3': 0.007149276193584075, 'pass_outside_inner_boundary_layer': True, 'inner_layer_bins': [{'r': 0.01026232367765987, 's2r': 0.010488008201652766, 's2t_half': 0.08091109308349027}, {'r': 0.011382261047610762, 's2r': 0.1996941026001317, 's2t_half': 0.8906979158704326}, {'r': 0.012624418272636275, 's2r': 0.19371664016233253, 's2t_half': 0.8784060117649658}, {'r': 0.01400213332446167, 's2r': 0.2844739463083434, 's2t_half': 0.9200681831400119}, {'r': 0.015530199760646738, 's2r': 0.48939747446921444, 's2t_half': 0.9960110463527874}, {'r': 0.017225025574084406, 's2r': 0.6607006261125449, 's2t_half': 1.044378536555263}]}
+
+Sympy / K6:
+  K1: {'stationarity_F_eq_exp_minus1_minus_Plambda': True, 'dual_hessian_is_gram_PSD': True, 'entropy_strictly_concave_unique': True, 'passed': True}
+  K2: {'by_parts_identity': True, 'twoK_equals_int_rho_r_g_for_any_beta': True, 'energy_constraint_redundant': True, 'passed': True}
+  K3: {'vr2_bound_vanishes_at_edge': True, 'linear_coefficient_2_gR_minus_L2_over_R3': True, 'sigma_r_to_zero_sigma_t_finite': True, 'passed': True}
+  K4: {'rho_formula_q4_over_4sinh2': True, 'dlnrho_dlnr_eq_minus4_plus_q_coth': True, 'q_star': 3.830016096309075, 'q_star_in_3_4': True, 'isotropic_drho_dPhi_le_0': True, 'passed': True}
+  K5: {'mass_exact': True, 'KL_decreasing_x_minus_1_lnx_ge_0': True, 'log_mean_factorisation': True, 'log_mean_positive': True, 'energy_needs_phi_partner': True, 'energy_closed_with_partner': True, 'passed': True}
+  K6: {'rel_dJ_plain': 0.999365888403857, 'rel_dJ_conserving': 2.898487581508249e-16, 'passed': True}
+  K1_K5_pass: True
+
+== Part S: ME target of the exact law (unsoftened, units r_M), reported region r >= 0.05 r_M ==
+MW_can: b/r_M 0.264, R 54.41 r_M, lib r_lo 0.0050; solver err 9.8e-16 (1 it); hollow False (r_pk None r_M, 0 bins); beta hollow median None, bulk median -0.012 [-0.0803395028156011, 0.01592203756556476]; edge sr2/st2 0.029 (beta -16.0); GDSAI violations 0; fine-grid |dlog| 0.010
+    LP ISO d_min hollow None / outer 0.0000; LP MIRROR d'_min 0.0 (11 bins), hollow None
+MW_alt: b/r_M 0.291, R 54.43 r_M, lib r_lo 0.0050; solver err 9.8e-16 (1 it); hollow False (r_pk None r_M, 0 bins); beta hollow median None, bulk median -0.011 [-0.08017086903826254, 0.018241946687700517]; edge sr2/st2 0.029 (beta -16.0); GDSAI violations 0; fine-grid |dlog| 0.010
+    LP ISO d_min hollow None / outer 0.0000; LP MIRROR d'_min 0.0 (11 bins), hollow None
+cluster_can: b/r_M 0.000, R 6.45 r_M, lib r_lo 0.0302; solver err 2.4e-06 (400 it); hollow True (r_pk 0.264 r_M, 37 bins); beta hollow median -5.815964130136636, bulk median -0.260 [-1.8343316876516758, -0.07357062093150257]; edge sr2/st2 0.015 (beta -32.9); GDSAI violations 0; fine-grid |dlog| 0.019
+    LP ISO d_min hollow 0.819091796875 / outer 0.0446; LP MIRROR d'_min 0.98638916015625 (109 bins), hollow 0.98638916015625
+cluster_alt: b/r_M 0.000, R 6.45 r_M, lib r_lo 0.0302; solver err 6.3e-06 (400 it); hollow True (r_pk 0.264 r_M, 37 bins); beta hollow median -5.816202914952303, bulk median -0.260 [-1.8344170485207991, -0.07356669350659928]; edge sr2/st2 0.015 (beta -32.9); GDSAI violations 0; fine-grid |dlog| 0.019
+    LP ISO d_min hollow 0.819091796875 / outer 0.0447; LP MIRROR d'_min 0.98638916015625 (109 bins), hollow 0.98638916015625
+compact_can: b/r_M 0.082, R 44.71 r_M, lib r_lo 0.0050; solver err 1.0e-12 (9 it); hollow True (r_pk 0.17 r_M, 16 bins); beta hollow median -0.7281118587195657, bulk median -0.041 [-0.5471043021758821, 0.010381958223224297]; edge sr2/st2 0.029 (beta -16.5); GDSAI violations 0; fine-grid |dlog| 0.011
+    LP ISO d_min hollow 0.02435302734375 / outer 0.0000; LP MIRROR d'_min 0.3359375 (56 bins), hollow 0.2890625
+compact_alt: b/r_M 0.090, R 44.72 r_M, lib r_lo 0.0050; solver err 8.1e-13 (7 it); hollow True (r_pk 0.157 r_M, 15 bins); beta hollow median -0.5805996014283503, bulk median -0.040 [-0.4762843422943759, 0.01047927172044516]; edge sr2/st2 0.029 (beta -16.5); GDSAI violations 0; fine-grid |dlog| 0.011
+    LP ISO d_min hollow 0.0 / outer 0.0000; LP MIRROR d'_min 0.250244140625 (55 bins), hollow 0.16412353515625
+
+== Part N: ME target in the bench field ==
+MW_can: lib r_lo 0.001 r_*, solver err 1.8e-15; beta shell median +0.000, inner median 0.022205353873162637, edge -23.2
+MW_alt: lib r_lo 0.001 r_*, solver err 1.7e-15; beta shell median +0.001, inner median 0.02408502572017651, edge -23.2
+cluster_can: lib r_lo 0.00468 r_*, solver err 1.6e-07; beta shell median -0.175, inner median -4.627687997434383, edge -32.8
+cluster_alt: lib r_lo 0.004681 r_*, solver err 1.9e-03; beta shell median -0.175, inner median -4.630062492432268, edge -32.8
+compact_can: lib r_lo 0.001 r_*, solver err 7.1e-09; beta shell median -0.005, inner median -0.04136440196517488, edge -23.2
+compact_alt: lib r_lo 0.001 r_*, solver err 1.1e-09; beta shell median -0.005, inner median -0.026211990282095643, edge -23.2
+
+CFG541 drift-only release dW/V_f^2 per M_cat: {'MW_can': 0.7697995622651822, 'MW_alt': 0.7905122722684417, 'cluster_can': 0.9858728270154925, 'cluster_alt': 1.0124869144258077, 'compact_can': 0.805142614915059, 'compact_alt': 0.8261397389690729}
+
+bench: 78 runs on 4 processes
+bench wall 3151 s
+  cluster_alt|A_B_a0.5         t 13.80  logXJ -0.015 D -0.003 dlnr99 +0.497 beta -0.11 sink +0.394 G550 True H 0.006634939213976395 blow False err 6.4e-03 wall 388s
+  cluster_alt|A_C_a0.5         t 13.80  logXJ -0.012 D -0.000 dlnr99 +0.038 beta -0.20 sink -0.631 G550 True H 0.01087137526560337 blow False err 1.7e-03 wall 390s
+  cluster_alt|A_B_a1.0         t 13.80  logXJ -0.009 D +0.006 dlnr99 -0.008 beta -0.26 sink +0.375 G550 True H -0.0029372074333149927 blow False err 2.8e-03 wall 387s
+  cluster_alt|A_C_a1.0         t 13.80  logXJ -0.012 D -0.001 dlnr99 -0.009 beta -0.26 sink -0.636 G550 True H 0.002100019235839457 blow False err 6.2e-04 wall 388s
+  cluster_alt|A_B_a2.0         t 13.80  logXJ -0.015 D -0.002 dlnr99 -0.012 beta -0.26 sink +0.377 G550 True H -0.001273200466076785 blow False err 1.7e-03 wall 390s
+  cluster_alt|A_C_a2.0         t 13.80  logXJ -0.010 D +0.003 dlnr99 -0.012 beta -0.28 sink -0.640 G550 True H 0.0034676077917298576 blow False err 6.8e-04 wall 388s
+  cluster_can|A_B_a0.5         t 13.80  logXJ -0.035 D -0.021 dlnr99 +0.599 beta -0.13 sink +0.364 G550 True H 0.0174775044860291 blow False err 8.6e-03 wall 336s
+  cluster_can|A_C_a0.5         t 13.80  logXJ -0.004 D +0.004 dlnr99 +0.011 beta -0.17 sink -0.633 G550 True H 0.011459360046736668 blow False err 1.9e-03 wall 338s
+  cluster_can|A_B_a1.0         t 13.80  logXJ -0.007 D +0.003 dlnr99 -0.012 beta -0.26 sink +0.351 G550 True H 0.0018410687855957624 blow False err 5.3e-03 wall 342s
+  cluster_can|A_C_a1.0         t 13.80  logXJ -0.015 D -0.002 dlnr99 -0.007 beta -0.29 sink -0.632 G550 True H -0.007894084967113333 blow False err 1.1e-03 wall 342s
+  cluster_can|A_B_a2.0         t 13.80  logXJ -0.014 D +0.002 dlnr99 -0.013 beta -0.26 sink +0.352 G550 True H 0.00711601506243123 blow False err 1.4e-03 wall 340s
+  cluster_can|A_C_a2.0         t 13.80  logXJ -0.014 D -0.003 dlnr99 -0.013 beta -0.27 sink -0.633 G550 True H -0.004950557152538561 blow False err 3.9e-04 wall 339s
+  cluster_alt|AG_B             t 10.00  logXJ +0.039 D -0.048 dlnr99 +0.609 beta +0.21 sink +0.149 G550 True H 0.26723356574956614 blow False err 4.8e-03 wall 282s
+  cluster_alt|b_B              t 10.00  logXJ +0.022 D -0.017 dlnr99 +0.447 beta +0.24 sink +0.305 G550 True H 0.42905997053324796 blow False err 3.1e-03 wall 270s
+  cluster_can|AG_B             t 10.00  logXJ +0.038 D -0.034 dlnr99 +0.591 beta +0.23 sink +0.147 G550 True H 0.2791945077380737 blow False err 2.8e-03 wall 245s
+  cluster_can|b_B              t 10.00  logXJ +0.026 D -0.020 dlnr99 +0.433 beta +0.24 sink +0.283 G550 True H 0.4399287918891139 blow False err 2.4e-03 wall 235s
+  compact_alt|A_B_a0.5         t 13.80  logXJ -0.045 D -0.024 dlnr99 +0.505 beta -0.08 sink +0.306 G550 True H -0.009697249027991583 blow False err 1.6e-02 wall 178s
+  compact_alt|A_C_a0.5         t 13.80  logXJ -0.004 D +0.009 dlnr99 +0.003 beta -0.15 sink -0.517 G550 True H -0.004496055342183821 blow False err 4.5e-03 wall 180s
+  compact_alt|A_B_a1.0         t 13.80  logXJ -0.018 D +0.004 dlnr99 -0.010 beta -0.16 sink +0.305 G550 True H -0.012848129706949641 blow False err 1.4e-02 wall 181s
+  compact_alt|A_C_a1.0         t 13.80  logXJ -0.020 D +0.002 dlnr99 -0.004 beta -0.19 sink -0.517 G550 True H 0.03121949692435069 blow False err 3.2e-03 wall 181s
+  compact_alt|A_B_a2.0         t 13.80  logXJ -0.023 D -0.001 dlnr99 -0.005 beta -0.19 sink +0.305 G550 True H -0.013903523864015012 blow False err 1.3e-02 wall 178s
+  compact_alt|A_C_a2.0         t 13.80  logXJ -0.023 D -0.001 dlnr99 -0.004 beta -0.17 sink -0.514 G550 True H 0.004711946444639996 blow False err 2.8e-03 wall 180s
+  MW_alt|A_B_a0.5              t 13.80  logXJ -0.050 D -0.036 dlnr99 +0.510 beta -0.10 sink +0.284 G550 True H None blow False err 1.4e-02 wall 164s
+  MW_alt|A_C_a0.5              t 13.80  logXJ +0.005 D +0.019 dlnr99 -0.010 beta -0.10 sink -0.505 G550 True H None blow False err 4.3e-03 wall 166s
+  MW_alt|A_B_a1.0              t 13.80  logXJ -0.023 D +0.003 dlnr99 -0.002 beta -0.15 sink +0.291 G550 True H None blow False err 1.1e-02 wall 170s
+  MW_alt|A_C_a1.0              t 13.80  logXJ -0.021 D -0.001 dlnr99 -0.008 beta -0.18 sink -0.501 G550 True H None blow False err 2.8e-03 wall 170s
+  MW_alt|A_B_a2.0              t 13.80  logXJ -0.021 D +0.005 dlnr99 -0.012 beta -0.15 sink +0.285 G550 True H None blow False err 1.0e-02 wall 169s
+  MW_alt|A_C_a2.0              t 13.80  logXJ -0.017 D -0.000 dlnr99 -0.013 beta -0.16 sink -0.506 G550 True H None blow False err 2.4e-03 wall 170s
+  compact_can|A_B_a0.5         t 13.80  logXJ -0.047 D -0.033 dlnr99 +0.515 beta -0.11 sink +0.272 G550 True H -0.0030097589393617654 blow False err 1.3e-02 wall 153s
+  compact_can|A_C_a0.5         t 13.80  logXJ +0.006 D +0.023 dlnr99 -0.007 beta -0.10 sink -0.515 G550 True H -0.005077831808734682 blow False err 4.2e-03 wall 155s
+  compact_can|A_B_a1.0         t 13.80  logXJ -0.029 D -0.003 dlnr99 +0.039 beta -0.15 sink +0.291 G550 True H -0.014507998055294546 blow False err 1.1e-02 wall 155s
+  compact_can|A_C_a1.0         t 13.80  logXJ -0.018 D +0.003 dlnr99 -0.004 beta -0.18 sink -0.514 G550 True H 0.020091115339589818 blow False err 2.8e-03 wall 156s
+  compact_can|A_B_a2.0         t 13.80  logXJ -0.022 D -0.001 dlnr99 -0.005 beta -0.17 sink +0.283 G550 True H -0.008198524148287246 blow False err 1.0e-02 wall 151s
+  compact_can|A_C_a2.0         t 13.80  logXJ -0.022 D -0.000 dlnr99 -0.004 beta -0.16 sink -0.515 G550 True H -0.0061155729999947785 blow False err 2.5e-03 wall 152s
+  MW_can|A_B_a0.5              t 13.80  logXJ -0.045 D -0.051 dlnr99 +0.488 beta -0.11 sink +0.240 G550 False H None blow False err 1.2e-02 wall 139s
+  MW_can|A_C_a0.5              t 13.80  logXJ -0.001 D +0.025 dlnr99 +0.079 beta -0.06 sink -0.492 G550 True H None blow False err 4.0e-03 wall 140s
+  MW_can|A_B_a1.0              t 13.80  logXJ -0.031 D -0.006 dlnr99 +0.066 beta -0.14 sink +0.270 G550 True H None blow False err 9.3e-03 wall 143s
+  MW_can|A_C_a1.0              t 13.80  logXJ -0.015 D +0.002 dlnr99 -0.009 beta -0.19 sink -0.503 G550 True H None blow False err 2.5e-03 wall 143s
+  MW_can|A_B_a2.0              t 13.80  logXJ -0.021 D +0.000 dlnr99 -0.013 beta -0.15 sink +0.263 G550 True H None blow False err 8.2e-03 wall 143s
+  MW_can|A_C_a2.0              t 13.80  logXJ -0.021 D +0.001 dlnr99 -0.013 beta -0.18 sink -0.503 G550 True H None blow False err 2.1e-03 wall 144s
+  cluster_alt|AG_C             t 5.00  logXJ +0.043 D -0.022 dlnr99 +0.479 beta +0.20 sink -0.814 G550 True H 0.277444576590472 blow False err 4.8e-04 wall 144s
+  cluster_alt|b_C              t 5.00  logXJ +0.025 D -0.021 dlnr99 +0.408 beta +0.23 sink -0.708 G550 True H 0.4166036814611334 blow False err 6.6e-04 wall 137s
+  cluster_alt|A_over_base      t 5.00  logXJ -0.014 D -0.001 dlnr99 -0.010 beta -0.30 sink -0.009 G550 True H 0.0014131775420249241 blow False err 4.3e-04 wall 140s
+  cluster_alt|A_over_inj       t 5.00  logXJ -0.028 D +0.005 dlnr99 +0.058 beta -0.25 sink -0.138 G550 True H 0.004034984049360051 blow False err 3.4e-04 wall 152s
+  compact_alt|AG_B             t 10.00  logXJ -0.007 D +0.019 dlnr99 +0.305 beta -0.05 sink +0.299 G550 True H 0.013728764764015267 blow False err 1.0e-02 wall 129s
+  compact_alt|b_B              t 10.00  logXJ +0.009 D +0.015 dlnr99 +0.244 beta +0.06 sink +0.289 G550 True H 0.37914836220781617 blow False err 8.9e-03 wall 124s
+  cluster_can|AG_C             t 5.00  logXJ +0.037 D -0.014 dlnr99 +0.441 beta +0.18 sink -0.785 G550 False H 0.27605511044481573 blow False err 4.4e-04 wall 126s
+  cluster_can|b_C              t 5.00  logXJ +0.030 D -0.012 dlnr99 +0.376 beta +0.24 sink -0.700 G550 True H 0.4146596526387732 blow False err 4.9e-04 wall 119s
+  cluster_can|A_over_base      t 5.00  logXJ -0.013 D +0.001 dlnr99 -0.009 beta -0.27 sink -0.007 G550 True H 0.005772696695109013 blow False err 3.7e-04 wall 126s
+  cluster_can|A_over_inj       t 5.00  logXJ -0.029 D +0.004 dlnr99 +0.067 beta -0.27 sink -0.135 G550 True H -0.0011808978245243372 blow False err 3.0e-04 wall 135s
+  MW_alt|AG_B                  t 10.00  logXJ -0.009 D +0.023 dlnr99 +0.281 beta -0.06 sink +0.290 G550 True H None blow False err 8.7e-03 wall 123s
+  MW_alt|b_B                   t 10.00  logXJ +0.009 D +0.024 dlnr99 +0.243 beta +0.08 sink +0.273 G550 True H None blow False err 7.0e-03 wall 117s
+  compact_can|AG_B             t 10.00  logXJ -0.006 D +0.033 dlnr99 +0.261 beta -0.05 sink +0.292 G550 True H 0.046650143859057795 blow False err 8.2e-03 wall 110s
+  compact_can|b_B              t 10.00  logXJ +0.010 D +0.028 dlnr99 +0.237 beta +0.09 sink +0.272 G550 True H 0.36834333982251993 blow False err 6.9e-03 wall 105s
+  MW_can|AG_B                  t 10.00  logXJ -0.003 D +0.047 dlnr99 +0.255 beta -0.09 sink +0.274 G550 True H None blow False err 6.9e-03 wall 101s
+  MW_can|b_B                   t 10.00  logXJ +0.013 D +0.027 dlnr99 +0.218 beta +0.07 sink +0.249 G550 True H None blow False err 5.5e-03 wall 98s
+  compact_alt|AG_C             t 5.00  logXJ -0.002 D +0.026 dlnr99 +0.256 beta -0.07 sink -0.519 G550 True H 0.004711946444639996 blow False err 1.1e-03 wall 68s
+  compact_alt|b_C              t 5.00  logXJ +0.009 D +0.012 dlnr99 +0.246 beta +0.07 sink -0.533 G550 True H 0.37957560718266037 blow False err 1.0e-03 wall 64s
+  compact_alt|A_over_base      t 5.00  logXJ -0.023 D +0.001 dlnr99 -0.006 beta -0.17 sink -0.006 G550 True H -0.019219312162890214 blow False err 2.0e-03 wall 67s
+  compact_alt|A_over_inj       t 5.00  logXJ -0.039 D +0.008 dlnr99 +0.092 beta -0.17 sink -0.181 G550 True H -0.021363980629479324 blow False err 1.4e-03 wall 74s
+  MW_alt|AG_C                  t 5.00  logXJ -0.003 D +0.033 dlnr99 +0.243 beta -0.08 sink -0.499 G550 True H None blow False err 1.0e-03 wall 63s
+  MW_alt|b_C                   t 5.00  logXJ +0.009 D +0.027 dlnr99 +0.257 beta +0.05 sink -0.517 G550 True H None blow False err 9.0e-04 wall 59s
+  MW_alt|A_over_base           t 5.00  logXJ -0.020 D +0.001 dlnr99 -0.009 beta -0.17 sink -0.005 G550 True H None blow False err 1.7e-03 wall 62s
+  MW_alt|A_over_inj            t 5.00  logXJ -0.044 D +0.004 dlnr99 +0.094 beta -0.16 sink -0.174 G550 True H None blow False err 1.2e-03 wall 67s
+  cluster_alt|C2p_vlasov_F     t 2.00  logXJ -0.014 D +0.001 dlnr99 -0.006 beta -0.24 sink -0.000 G550 True H 0.022379279404788413 blow False err 1.8e-04 wall 22s
+  compact_can|AG_C             t 5.00  logXJ +0.001 D +0.041 dlnr99 +0.237 beta -0.07 sink -0.510 G550 True H 0.009196041578335371 blow False err 1.0e-03 wall 56s
+  compact_can|b_C              t 5.00  logXJ +0.015 D +0.030 dlnr99 +0.238 beta +0.07 sink -0.530 G550 True H 0.36702529789460675 blow False err 9.1e-04 wall 53s
+  compact_can|A_over_base      t 5.00  logXJ -0.019 D +0.002 dlnr99 -0.004 beta -0.18 sink -0.006 G550 True H -0.015568546767688221 blow False err 1.7e-03 wall 55s
+  compact_can|A_over_inj       t 5.00  logXJ -0.040 D +0.008 dlnr99 +0.091 beta -0.16 sink -0.181 G550 True H 0.023986159223114024 blow False err 1.2e-03 wall 61s
+  MW_can|AG_C                  t 5.00  logXJ +0.002 D +0.042 dlnr99 +0.203 beta -0.09 sink -0.491 G550 True H None blow False err 9.0e-04 wall 53s
+  MW_can|b_C                   t 5.00  logXJ +0.016 D +0.027 dlnr99 +0.222 beta +0.06 sink -0.513 G550 True H None blow False err 8.0e-04 wall 49s
+  MW_can|A_over_base           t 5.00  logXJ -0.020 D -0.001 dlnr99 -0.010 beta -0.18 sink -0.006 G550 True H None blow False err 1.5e-03 wall 52s
+  MW_can|A_over_inj            t 5.00  logXJ -0.034 D +0.009 dlnr99 +0.097 beta -0.16 sink -0.180 G550 True H None blow False err 1.1e-03 wall 58s
+  cluster_can|C2p_vlasov_F     t 2.00  logXJ -0.013 D +0.005 dlnr99 -0.005 beta -0.24 sink -0.000 G550 True H 0.01971001959032138 blow False err 1.6e-04 wall 20s
+  compact_alt|C2p_vlasov_F     t 2.00  logXJ -0.020 D +0.002 dlnr99 -0.007 beta -0.16 sink -0.000 G550 True H 0.07957552238206013 blow False err 8.5e-04 wall 10s
+  MW_alt|C2p_vlasov_F          t 2.00  logXJ -0.021 D +0.001 dlnr99 -0.007 beta -0.17 sink -0.000 G550 True H None blow False err 6.8e-04 wall 10s
+  compact_can|C2p_vlasov_F     t 2.00  logXJ -0.019 D +0.003 dlnr99 -0.007 beta -0.17 sink -0.000 G550 True H 0.11162262810220903 blow False err 7.5e-04 wall 9s
+  MW_can|C2p_vlasov_F          t 2.00  logXJ -0.020 D +0.000 dlnr99 -0.006 beta -0.17 sink -0.000 G550 True H None blow False err 6.6e-04 wall 8s
+
+== Labels ==
+  target: INCONSISTENT
+  edge: SOFTENED
+  works_in_compact: NO
+  overfill: NOT HANDLED
+  alpha: NOT alpha-ROBUST
+  lyapunov: NOT ESTABLISHED
+  controls_pass_as_frozen: False
+  controls_pass_CS_read_outside_layer: True
+  controls: {"CS_as_frozen": false, "CS_outside_inner_layer": true, "C2p": true, "C4": {"MW_can": 0.00010405010740544007, "MW_alt": 0.00015965610855439571, "cluster_can": 0.00014719166292653796, "cluster_alt": 9.792260609531311e-05, "compact_can": 0.00021949898039141935, "compact_alt": 0.00016802052836162318}, "C4_pass_1e4": false, "C5": true, "mass_exact": true}
+  G550 (alpha 1): {'MW_can': False, 'MW_alt': False, 'cluster_can': False, 'cluster_alt': True, 'compact_can': False, 'compact_alt': False}; blow-up {'MW_can': False, 'MW_alt': False, 'cluster_can': False, 'cluster_alt': False, 'compact_can': False, 'compact_alt': False}
+  energy IC-B net {'MW_can': 0.25028977407770664, 'MW_alt': 0.2833882563888978, 'cluster_can': 0.35610725614067973, 'cluster_alt': 0.38823437597210303, 'compact_can': 0.273920156617734, 'compact_alt': 0.3037696362945599}; IC-C whole history {'MW_can': 0.2559527399002913, 'MW_alt': 0.28547335499325666, 'cluster_can': 0.35340224042826296, 'cluster_alt': 0.3887788253841712, 'compact_can': 0.2808750147957638, 'compact_alt': 0.3122620579929025}
+  hollow held {'cluster_can': True, 'cluster_alt': True, 'compact_can': True, 'compact_alt': True}; FIX-A H {'cluster_can': {'B': {'H': 0.006188348025491436, 'sH': 0.04082048910547174, 'n': 113.19108280254777, 'n_exp': 111.5896374140825}, 'C': {'H': -0.0036486991961311712, 'sH': 0.041285421959296784, 'n': 110.65605095541402}}, 'cluster_alt': {'B': {'H': 0.0009387037101622783, 'sH': 0.04107161966698522, 'n': 111.81111111111112, 'n_exp': 111.56969851910205}, 'C': {'H': -0.0018539180382545625, 'sH': 0.04120388254879738, 'n': 111.09444444444445}}, 'compact_can': {'B': {'H': 0.028806347237801865, 'sH': 0.17071993247409045, 'n': 6.4714285714285715, 'n_exp': 6.056110835292803}, 'C': {'H': -0.024147482154847685, 'sH': 0.18145174327954106, 'n': 5.728571428571429}}, 'compact_alt': {'B': {'H': -0.012848129706949641, 'sH': 0.19256538076401, 'n': 5.08641975308642, 'n_exp': 5.2391438973302655}, 'C': {'H': 0.019637624374535638, 'sH': 0.18549633600434717, 'n': 5.481481481481482}}}
+  FIX-2 H {'cluster_can': {'B': 0.4399287918891139, 'C': 0.4146596526387732}, 'cluster_alt': {'B': 0.42905997053324796, 'C': 0.4166036814611334}, 'compact_can': {'B': 0.36834333982251993, 'C': 0.36702529789460675}, 'compact_alt': {'B': 0.37914836220781617, 'C': 0.37957560718266037}}; FIX-AG H {'cluster_can': {'B': 0.2791945077380737, 'C': 0.27605511044481573}, 'cluster_alt': {'B': 0.26723356574956614, 'C': 0.277444576590472}, 'compact_can': {'B': 0.046650143859057795, 'C': 0.009196041578335371}, 'compact_alt': {'B': 0.013728764764015267, 'C': 0.004711946444639996}}
+  edge FIX-A {'MW_can': {'B': 0.04216546257805521, 'C': 0.05299626314791545}, 'MW_alt': {'B': 0.07482361329136622, 'C': 0.07700584638469195}, 'cluster_can': {'B': 0.11994414557190206, 'C': 0.12534040385528694}, 'cluster_alt': {'B': 0.07949098085992803, 'C': 0.12913331680175472}, 'compact_can': {'B': 0.06934901149474648, 'C': 0.0780451117570409}, 'compact_alt': {'B': 0.08577846181559069, 'C': 0.08601811742417087}}
+  edge FIX-2 {'MW_can': {'B': 0.2179033616981602, 'C': 0.2221764428343307}, 'MW_alt': {'B': 0.24289331905894718, 'C': 0.2570506356854843}, 'cluster_can': {'B': 0.43275356609580096, 'C': 0.37567356963582826}, 'cluster_alt': {'B': 0.44747902429895503, 'C': 0.4079227884127892}, 'compact_can': {'B': 0.2374842964623148, 'C': 0.23766608180157608}, 'compact_alt': {'B': 0.24433865637450602, 'C': 0.24584068059204942}}
+  edge FIX-AG {'MW_can': {'B': 0.25518355722104097, 'C': 0.20322214597387345}, 'MW_alt': {'B': 0.28136768158312286, 'C': 0.24286673311372536}, 'cluster_can': {'B': 0.5906042380569393, 'C': 0.4407758095070006}, 'cluster_alt': {'B': 0.6086443946308587, 'C': 0.479108970670425}, 'compact_can': {'B': 0.26067442711274114, 'C': 0.2374613484872965}, 'compact_alt': {'B': 0.30461447313064904, 'C': 0.25615067764060157}}
+  overfill P {'MW_can': 0.3561591430757456, 'MW_alt': 0.36920720030639587, 'cluster_can': 0.42133572389063173, 'cluster_alt': 0.5020170327207532, 'compact_can': 0.3110687022900756, 'compact_alt': 0.32455135547919006}
+  alpha robustness: 30/36 pass
+    MW_can|B|a0.5: {'pass_': False, 'gate_age': False, 'logXJ': -0.04545551562554177, 'D': -0.050642925218046954, 'dD': -0.04331869321854326, 'dXJ': -0.05690241361358701, 'dln_r99': 0.48789565826556214, 'within_CFG558_allowance': False, 'H': None, 'hollow_held': None}
+    MW_can|C|a0.5: {'pass_': True, 'gate_age': True, 'logXJ': -0.0007840525451343544, 'D': 0.02539869620846709, 'dD': 0.018077140204171345, 'dXJ': 0.022314949140209976, 'dln_r99': 0.07905708546285413, 'within_CFG558_allowance': True, 'H': None, 'hollow_held': None}
+    MW_can|B|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.03077230653738702, 'D': -0.005650974309599882, 'dD': 0.004506975089891544, 'dXJ': 0.00143208029977877, 'dln_r99': 0.06638907383024133, 'within_CFG558_allowance': True, 'H': None, 'hollow_held': None}
+    MW_can|C|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.01543883816016875, 'D': 0.002270594857371658, 'dD': -0.001239981740437623, 'dXJ': -0.00014635278980356173, 'dln_r99': -0.009126914925071282, 'within_CFG558_allowance': True, 'H': None, 'hollow_held': None}
+    MW_can|B|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.021474281944845457, 'D': 0.00021615356725784233, 'dD': -0.0010907247660717529, 'dXJ': -0.0007828838546757207, 'dln_r99': -0.012876282877681788, 'within_CFG558_allowance': True, 'H': None, 'hollow_held': None}
+    MW_can|C|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.021025539626816914, 'D': 0.000943622617470884, 'dD': 0.004971562862643775, 'dXJ': -0.0016691559794340463, 'dln_r99': -0.013452481045086525, 'within_CFG558_allowance': True, 'H': None, 'hollow_held': None}
+    MW_alt|B|a0.5: {'pass_': False, 'gate_age': False, 'logXJ': -0.050315132317089305, 'D': -0.03554253730231992, 'dD': -0.007549954575185515, 'dXJ': -0.02714169558718193, 'dln_r99': 0.5104097966458556, 'within_CFG558_allowance': False, 'H': None, 'hollow_held': None}
+    MW_alt|C|a0.5: {'pass_': True, 'gate_age': True, 'logXJ': 0.004779299077983646, 'D': 0.01922388476821036, 'dD': 0.0017578830636529388, 'dXJ': 0.005625623066089334, 'dln_r99': -0.00966978427113372, 'within_CFG558_allowance': True, 'H': None, 'hollow_held': None}
+    MW_alt|B|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.02329368728852938, 'D': 0.0032481848162550803, 'dD': 0.01247536413657869, 'dXJ': 0.011166930015096006, 'dln_r99': -0.0019907266548847558, 'within_CFG558_allowance': True, 'H': None, 'hollow_held': None}
+    MW_alt|C|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.020519043153140806, 'D': -0.0005900814889069514, 'dD': 7.032931046249019e-06, 'dXJ': -0.007271299114043067, 'dln_r99': -0.008234007100896201, 'within_CFG558_allowance': True, 'H': None, 'hollow_held': None}
+    MW_alt|B|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.021143425617191444, 'D': 0.00487398370331091, 'dD': 0.00597666372921726, 'dXJ': -0.0008307758706357846, 'dln_r99': -0.012433400227520229, 'within_CFG558_allowance': True, 'H': None, 'hollow_held': None}
+    MW_alt|C|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.01746539555901583, 'D': -1.687075506307659e-05, 'dD': -0.0013807695254815322, 'dXJ': 0.004256219756838611, 'dln_r99': -0.013214524842918312, 'within_CFG558_allowance': True, 'H': None, 'hollow_held': None}
+    cluster_can|B|a0.5: {'pass_': False, 'gate_age': True, 'logXJ': -0.035307535374891376, 'D': -0.020682912487610873, 'dD': 0.014654929681375488, 'dXJ': 0.00012849537206808398, 'dln_r99': 0.5985232414811041, 'within_CFG558_allowance': False, 'H': 0.0174775044860291, 'hollow_held': True}
+    cluster_can|C|a0.5: {'pass_': True, 'gate_age': True, 'logXJ': -0.003938192381845915, 'D': 0.004465286456296891, 'dD': -0.015019219421054605, 'dXJ': -0.013084827261680147, 'dln_r99': 0.010614418444556387, 'within_CFG558_allowance': True, 'H': 0.011459360046736668, 'hollow_held': True}
+    cluster_can|B|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.006948953434052822, 'D': 0.003389207063969196, 'dD': 0.00911779678095753, 'dXJ': 0.016387606901077788, 'dln_r99': -0.011545029082598786, 'within_CFG558_allowance': True, 'H': 0.0018410687855957624, 'hollow_held': True}
+    cluster_can|C|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.015285055581790859, 'D': -0.00167177802044157, 'dD': -0.005507615640126461, 'dXJ': -0.0042349032727673624, 'dln_r99': -0.007448587789604167, 'within_CFG558_allowance': True, 'H': -0.007894084967113333, 'hollow_held': True}
+    cluster_can|B|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.014266286717741886, 'D': 0.0024684902333467654, 'dD': 0.0024339636934222427, 'dXJ': -0.0026807408545787056, 'dln_r99': -0.013097602634824419, 'within_CFG558_allowance': True, 'H': 0.00711601506243123, 'hollow_held': True}
+    cluster_can|C|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.014224212792008245, 'D': -0.002859157226091656, 'dD': -0.0013746043078897486, 'dXJ': -0.0049037778513875575, 'dln_r99': -0.012850125865410218, 'within_CFG558_allowance': True, 'H': -0.004950557152538561, 'hollow_held': True}
+    cluster_alt|B|a0.5: {'pass_': False, 'gate_age': True, 'logXJ': -0.015032416224317788, 'D': -0.0032487168782826324, 'dD': 0.02156169780233247, 'dXJ': 0.019865775358744363, 'dln_r99': 0.4973059854985243, 'within_CFG558_allowance': True, 'H': 0.006634939213976395, 'hollow_held': True}
+    cluster_alt|C|a0.5: {'pass_': True, 'gate_age': True, 'logXJ': -0.012377221646906815, 'D': -0.00019046803069632488, 'dD': -0.008746107805369384, 'dXJ': -0.01109370476995028, 'dln_r99': 0.038372439729177574, 'within_CFG558_allowance': True, 'H': 0.01087137526560337, 'hollow_held': True}
+    cluster_alt|B|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.008686607004724333, 'D': 0.006491914008113152, 'dD': 0.0031230741072552854, 'dXJ': 0.005496771838740653, 'dln_r99': -0.008219450671138596, 'within_CFG558_allowance': True, 'H': -0.0029372074333149927, 'hollow_held': True}
+    cluster_alt|C|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.011920021725956978, 'D': -0.0013854697516230557, 'dD': -0.00010326832678677744, 'dXJ': -0.0018949298792683283, 'dln_r99': -0.008777613895767351, 'within_CFG558_allowance': True, 'H': 0.002100019235839457, 'hollow_held': True}
+    cluster_alt|B|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.015237924537745504, 'D': -0.0017522389159426296, 'dD': -0.003435043175673609, 'dXJ': -0.0014290113961030176, 'dln_r99': -0.012358285659280809, 'within_CFG558_allowance': True, 'H': -0.001273200466076785, 'hollow_held': True}
+    cluster_alt|C|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.009861906604030338, 'D': 0.0025745249145980994, 'dD': 0.0022528612842005, 'dXJ': 0.006623840627673046, 'dln_r99': -0.012448675606482171, 'within_CFG558_allowance': True, 'H': 0.0034676077917298576, 'hollow_held': True}
+    compact_can|B|a0.5: {'pass_': False, 'gate_age': True, 'logXJ': -0.046658930528594975, 'D': -0.03273251522771319, 'dD': -0.021576905792510696, 'dXJ': -0.03316690235605864, 'dln_r99': 0.5146240369068981, 'within_CFG558_allowance': None, 'H': -0.0030097589393617654, 'hollow_held': True}
+    compact_can|C|a0.5: {'pass_': True, 'gate_age': True, 'logXJ': 0.0062461513663633695, 'D': 0.02265068017970382, 'dD': 0.019922528459636702, 'dXJ': 0.018586894943816455, 'dln_r99': -0.006634245209363226, 'within_CFG558_allowance': None, 'H': -0.005077831808734682, 'hollow_held': True}
+    compact_can|B|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.029158374142986103, 'D': -0.0028472725409275047, 'dD': 0.011020306291006941, 'dXJ': 0.005722726117639326, 'dln_r99': 0.039369286252277126, 'within_CFG558_allowance': None, 'H': -0.014507998055294546, 'hollow_held': True}
+    compact_can|C|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.017704824753695367, 'D': 0.0025497876616537903, 'dD': -0.0036297177039524963, 'dXJ': 0.0008880976389096205, 'dln_r99': -0.00397610969493853, 'within_CFG558_allowance': None, 'H': 0.020091115339589818, 'hollow_held': True}
+    compact_can|B|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.0224781692899166, 'D': -0.0013554207671775092, 'dD': -0.0002006839884284399, 'dXJ': -0.0011376529577421732, 'dln_r99': -0.005042292037647691, 'within_CFG558_allowance': None, 'H': -0.008198524148287246, 'hollow_held': True}
+    compact_can|C|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.02179916251799819, 'D': -0.00023806882461704958, 'dD': 0.0023005900138696076, 'dXJ': 0.000551750645545683, 'dln_r99': -0.00438249399669617, 'within_CFG558_allowance': None, 'H': -0.0061155729999947785, 'hollow_held': True}
+    compact_alt|B|a0.5: {'pass_': False, 'gate_age': True, 'logXJ': -0.0449077712230933, 'D': -0.0238231045428917, 'dD': 0.007118753824489243, 'dXJ': -0.01013691648111495, 'dln_r99': 0.5052711981248129, 'within_CFG558_allowance': None, 'H': -0.009697249027991583, 'hollow_held': True}
+    compact_alt|C|a0.5: {'pass_': True, 'gate_age': True, 'logXJ': -0.003828694685054758, 'D': 0.008818834567071807, 'dD': -0.016515756341988996, 'dXJ': -0.007234814541271052, 'dln_r99': 0.0029855052962867693, 'within_CFG558_allowance': None, 'H': -0.004496055342183821, 'hollow_held': True}
+    compact_alt|B|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.018007979619196635, 'D': 0.003760567780899277, 'dD': 0.008824699099073342, 'dXJ': 0.012843356381644303, 'dln_r99': -0.010357907743652117, 'within_CFG558_allowance': None, 'H': -0.012848129706949641, 'hollow_held': True}
+    compact_alt|C|a1.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.019560525996523175, 'D': 0.002187699341016266, 'dD': 0.0007152089636137532, 'dXJ': 0.0013035660511182302, 'dln_r99': -0.0037774276170937527, 'within_CFG558_allowance': None, 'H': 0.03121949692435069, 'hollow_held': True}
+    compact_alt|B|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.02337803985906753, 'D': -0.0007775703763827886, 'dD': -0.0017965466185430998, 'dXJ': -0.0020429674964353335, 'dln_r99': -0.00471387797756053, 'within_CFG558_allowance': None, 'H': -0.013903523864015012, 'hollow_held': True}
+    compact_alt|C|a2.0: {'pass_': True, 'gate_age': True, 'logXJ': -0.022659873923844963, 'D': -0.0014535856903387593, 'dD': -0.002037100809802354, 'dXJ': -0.0018764359176444978, 'dln_r99': -0.004329916088607395, 'within_CFG558_allowance': None, 'H': 0.004711946444639996, 'hollow_held': True}
