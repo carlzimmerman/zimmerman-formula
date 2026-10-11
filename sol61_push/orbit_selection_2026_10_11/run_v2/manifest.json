@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "INNER_ORBIT_SELECTION_KERNEL_FORK",
+  "repository": {
+    "commit": "19d8c776494f0995d5b6b9330dd3ca5065025f5e",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/orbit_selection_2026_10_11/check.py",
+    "--output",
+    "sol61_push/orbit_selection_2026_10_11/run_v2/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Two independently evaluated Kepler velocity integrals corroborate the exponential low-j selector; the existing repaired kernel permits a positive high-binding isotropic cusp; prescribed rotating quadrupole obeys Jacobi work relation",
+    "coefficient_domain": "Analytic real reductions and binary64 quadrature/ODE",
+    "conventions": "G=Mb=a0=1. E is orbital energy, Psi positive binding potential. DF is mass density in phase space, j specific angular momentum. Exponential and repaired kernels kept distinct.",
+    "inputs": [
+      "K=2; monoenergy benchmarks E=-1,-0.5,0; q=4,16,64,256,1024",
+      "Isotropic positive-energy branch E>=1; Psi=10,100,1000,10000",
+      "Rotating quadrupole eps=.01 a=.3 soft=.01 Omega=.7; initial (1,0,0,.6)"
+    ],
+    "bounds": {
+      "wall_seconds": 45,
+      "torque_time": [
+        0,
+        40
+      ],
+      "torque_rtol": 2e-10,
+      "torque_atol": 2e-12,
+      "quadrature_epsrel": 1e-11,
+      "global_halo_evolved": false
+    },
+    "non_claims": [
+      "No self-consistent halo formation, stability, full action or species identification",
+      "No selected kappa or cold abundance",
+      "Repaired interpolation is existing prior work; no observational refit",
+      "Point-source inner asymptotics do not apply inside finite baryons",
+      "External quadrupole work is tracked; no baryonic backreaction simulated"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T17:05:47.837618+00:00",
+    "runtime_seconds": 0.352615,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 35,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/orbit_selection_2026_10_11/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/orbit_selection_2026_10_11/check.py",
+      "sha256": "6ba7ce30481955553a9562d3044a2e8ab5157982679a9d4ada8301b78befce51",
+      "sha256_after": "6ba7ce30481955553a9562d3044a2e8ab5157982679a9d4ada8301b78befce51"
+    }
+  ],
+  "output_directory": "sol61_push/orbit_selection_2026_10_11/run_v2",
+  "declared_results": [
+    "sol61_push/orbit_selection_2026_10_11/run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/orbit_selection_2026_10_11/run_v2/stdout.txt",
+      "sha256": "1e283f38bb96a88ae1a106f63cadb07dda2bf9f6317db87677092151c1ac47a4",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/orbit_selection_2026_10_11/run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/orbit_selection_2026_10_11/run_v2/results.json",
+      "sha256": "5503357c2966f8520bce0a615c636f80c3a035e3fda3b8a431237b160e743e94",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
