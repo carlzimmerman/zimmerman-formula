@@ -93,6 +93,8 @@
 
 - **Keating clue (CFG627 note; CFG628 FRB halo-gas test):** none of the four new results (FRB 20240304B at z = 2.15, CHIME and MeerKAT HI intensity mapping) is decisive: the mean FRB DM–z matches a standard baryon budget, the z = 2.15 dwarf host's kinematics are unresolvable, and no BAO was measured. CFG628 on FLIMFLAM DR1 (8 sightlines, rebuilt without the ΛCDM halo-mass prior): NON-DIAGNOSTIC on both footings (σ(f_halo) 0.264 > 0.25 gate); the MUTATE control (f_ret = 1) is NOT detected (Z +0.99), so the test has no teeth at this sample size (~70 sightlines needed). The per-halo test needs the FLIMFLAM foreground catalogue (not yet released/fetched).
 
+- **Settling feeds dark energy (CFG630; criteria 45dd454a6; MUTATE pass):** the settling hand-off is real in the framework but tiny: Q today 7–9e-34 W/m³; Δρ_DE/ρ_DE ≈ 1e-6 since z = 1 (2.7–3.8e-6 since z = 8); phantom-side (1 + w ≈ −2e-7, no crossing of −1); a₀(z) drift ≤ 7e-7 dex for z ≤ 3. Below any sensitivity by 4–5 orders of magnitude (DESI, galaxy a₀(z)); the flat-a₀ prediction and the sealed ALMA predictions are unaffected. Settling cannot produce or rescue a DESI-size w crossing. Scope: a homogeneous Q only; astra's local-sink audit (b626126ed) shows the local hand-off needs a dynamical partner, not passive vacuum. Inherited: excursion-set mass fraction, Eisenstein–Hu spectrum (HMF context).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
