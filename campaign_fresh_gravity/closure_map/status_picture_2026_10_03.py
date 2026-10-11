@@ -44,7 +44,8 @@ groups = [
         ("CRISTAL z~5 / ALESS 122.1", "UNDEC", "stress tests: not robust · CFG307/308"),
         ("Gaia DR4 wide binaries", "OPEN", "decides 2 Dec 2026 · prereg"),
         ("Gaia DR4 MW predictions", "OPEN", "sealed 10-10 · CFG553"),
-        ("Structure growth, candidate B", "FAIL", "gravitating field fails at 512^3; intrinsic · CFG555/556"),
+        ("Structure growth, candidate B", "FAIL", "fails at 512^3 (gravitating) · CFG555/556"),
+        ("Cosmic shear (KiDS / DES xi)", "UNDEC", "context only, CFG590/592; not decisive"),
         ("Structure growth, chassis alone", "FAIL", "~7x too fast; CMB lensing excludes · L341"),
     ]),
     ("The deep 'why'", [
