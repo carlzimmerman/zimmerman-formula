@@ -1,0 +1,65 @@
+Gas contribution at the observed Bullet image positions
+2026-10-11; frozen criteria commit 024069537.
+
+The gas-only deflection maps are now evaluated at all 135 gold images and
+expressed in the existing ICRS east/north tangent chart. The saved operator
+has the existing 86 source contrasts in each of two coordinates. This is
+an observational input to a later mass test, not that test's result.
+
+CONSTRUCTION
+Map alpha1/alpha2 are interpreted as west/north map-plane vectors, following
+the prior differential convention check. For each image, use the Jacobian
+of map pixel -> celestial coordinates -> ICRS -> target TAN coordinates.
+This accounts for the differing tangent origins, rather than only flipping
+the west/east sign. The thin-lens vector transformation is first-order in
+deflection, consistent with the adopted lens-plane operator. The missing
+RADESYS header is retained as two distinct ICRS/FK5 J2000 interpretations.
+Bilinear interpolation is primary; cubic interpolation is a sensitivity check.
+Neither interpolation nor frame is selected by fitting the lensing images.
+
+run_v2/operator.npz stores image positions, Helmert matrix, source factors,
+map pixels, and alpha_infinity, H alpha_infinity and H diag(w) alpha_infinity
+for all four frame/interpolator combinations. Image IDs in results.json
+fix their order. alpha_infinity uses the release convention Dls/Ds=1.
+Reduced contrasts use ONLY the author's flat Om=.3, H0=70, z_lens=.296
+background. This is explicitly context, not native normalization on either
+a0 footing. H is source-constant-annihilating, not an observational covariance
+whitener; these contrasts are not a chi-squared or image-plane residual test.
+
+NUMERICAL RESULTS
+Maximum unreduced gas deflection: about 9.960 arcsec.
+Maximum author-context reduced contrast component: about 2.708 arcsec.
+Bilinear vs cubic maximum deflection-vector difference: 0.002184 arcsec;
+maximum reduced-contrast component difference: 0.000918 arcsec.
+ICRS vs FK5 maximum deflection-vector difference: 0.002584 arcsec;
+maximum reduced-contrast component difference: 0.000300 arcsec.
+These are implementation sensitivities, NOT gas-calibration uncertainties
+or total observational errors. The original gas-map normalization and its
+small unexplained differential offset remain unchanged.
+
+CHECKS
+91/91 in run_v2, including 49 source-constant checks. Affine interpolation,
+chart inverse, target coordinates, known west/east basis, finite differences
+at two steps, source-distance weights, and target-gauge invariance pass.
+Sign and angular-unit MUTATE controls detect deliberately wrong conventions.
+A second summation method verifies all 17 saved arrays against the first
+run to 1e-10 absolute. Both runs and both source versions are preserved.
+The first BLAS matrix products emitted divide/overflow/invalid warnings
+despite finite results and passing checks. The independent unoptimized
+Einstein-summation rerun is warning-free and agrees. The cause of the first
+library warnings is not established; they were not silently suppressed.
+The v2 manifest validates all declared input/output hashes.
+
+WHAT IS STILL REQUIRED
+1. Native distance conversion of the X-ray gas reconstruction, including
+   its geometric and spectral assumptions; changing only Dls/Ds is inadequate.
+2. Stellar masses and gas depth/host assignment for the fixed repaired-kernel
+   settled profile. A projected gas map alone does not determine that profile.
+3. Subtract the complete baryon-plus-settled prediction; test the remaining
+   lensing using positive, shared-budget reservoir mass on each footing.
+   A free fitted halo is not a derived cold-energy distribution.
+
+No gas-only exclusion, mass lower bound, required reservoir amount, carrier,
+settling rate, or action has been derived here. Neither a0 footing was fitted
+or tested by this preparation. Kappa stays fitted and the goal stays open.
+No Claude lane, mass calibration, or sealed prediction was changed.
