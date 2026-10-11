@@ -1,0 +1,34 @@
+CFG623: merger stopwatch v5 (CFG622 + Harvey window from d_SG >= 4 a_cc + majority-agreement stability rule)  [controls]
+criteria FROZEN_CRITERIA.md; kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; candidate B; G9; no EFE;
+cold energy's mass required (an input); no particle species; yardsticks = raw data only.
+inherited calibration (CFG621): v0 = 2666.6666666666665 km/s, eta = 1.132; T_L = 24.90 kpc; majority >= 3/4; guards 75.0 kpc; Harvey d_SG >= 200 kpc
+  CFG621 controls: CFG599's control code (read-only) with the stage-A estimator E-1 (R_min 75 kpc).
+  CFG599 controls (criteria 8a10775bd). Units kpc, Gyr, Msun.
+    [PASS] [CFG597 routine] C1 Poisson: grid force vs the analytic Hernquist force (M 1e15, a 300 kpc), 3 cells <= r <= 1500 kpc, <= 3%: max |rel err| = 0.0283, median 0.0095 (54 cells)
+    [PASS] [CFG597 routine] C2 Sod shock tube (gamma 5/3, 200 cells, t = 0.2): L1 density error <= 3% of the exact solution: L1/mean = 0.0112
+    [PASS] [CFG597 routine] C3 round phantom from binned Hernquist baryons (4e6 particles) vs CFG541 E7 analytic, 0.1-2 a, <= 1%: max |rel err| = 0.0013
+    [PASS] C4(a) t = 0, exactly centred isolated main and sub: gas, galaxy and lensing peaks within 3 kpc of the true centre: {"main": {"gal": 1.68, "gas": 0.0, "lens": 2.03}, "sub": {"gal": 1.72, "gas": 0.12, "lens": 1.7}}
+    [PASS] C5 settle step: settled cold mass unchanged exactly; cold momentum conserved to <= 1e-3 of its |p| scale: dM = 0.000e+00, |dp|/scale = 2.57e-17
+    [PASS] C6 drag: (i) light test cloud in uniform gas at rest follows v0/(1 + k v0 t) to <= 2% over one drag time; (ii) real-mass cloud: cloud + gas momentum and total energy conserved to <= 1e-6 of the cloud's initial |p| and KE: (i) max |v/v_an - 1| = 1.17e-07 over t_d = 0.4023 Gyr (Sigma_cc = 3.703e+08 Msun/kpc^2); (ii) |dp|/p_cl = 5.25e-13, |dE|/KE_cl = 0.00e+00; (ii) bulk-speed deviation from the no-entrainment law 0.097 (reported: the real core entrains the gas of its own cells)
+  
+CONTROLS C1-C3, C4(a), C5, C6: ALL PASS
+  C4(b) (CFG621 stage-A T-4, re-read): PASS; N_B = 0.188 (<= 1)
+
+CONTROL ENSEMBLE: alpha {0, inf} x seeds [603, 604, 605] x both footings (12 runs; the grid uses seed 599 only)
+  running 12 run(s) on <= 4 processes ...
+  C7 mask null test at t = 0: max |E-M - unmasked| sub lensing peak = 0.000 kpc (<= 3) -> PASS
+  C9 alpha   0 can: Bullet stable 2/3, Harvey scorable 3/3 (used/window ['39/39', '40/40', '40/40']; window opens at t-t_peri [0.22, 0.21, 0.21]) -> PASS
+  C9 alpha inf can: Bullet stable 3/3, Harvey scorable 3/3 (used/window ['33/39', '30/38', '35/38']; window opens at t-t_peri [0.21, 0.22, 0.22]) -> PASS
+  C9 alpha   0 alt: Bullet stable 3/3, Harvey scorable 3/3 (used/window ['39/39', '40/40', '40/40']; window opens at t-t_peri [0.21, 0.2, 0.2]) -> PASS
+  C9 alpha inf alt: Bullet stable 3/3, Harvey scorable 3/3 (used/window ['34/40', '28/40', '33/40']; window opens at t-t_peri [0.21, 0.21, 0.21]) -> PASS
+  reported: 165 control epochs with the primary > 300 kpc from the sub galaxies; flagged unstable: 30
+  seed scatter alpha   0 can: f [0.112, 0.13, 0.215] sigma 0.055 (N_M 0.44); beta-bar [0.06, 0.065, 0.062]; status ['ALLOWED', 'ALLOWED', 'UNSCORABLE']
+  seed scatter alpha inf can: f [1.025, 1.027, 1.026] sigma 0.001 (N_M 0.01); beta-bar [1.011, 1.013, 1.013]; status ['EXCLUDED', 'EXCLUDED', 'EXCLUDED']
+  seed scatter alpha   0 alt: f [0.075, 0.126, 0.109] sigma 0.026 (N_M 0.21); beta-bar [0.06, 0.065, 0.06]; status ['ALLOWED', 'ALLOWED', 'ALLOWED']
+  seed scatter alpha inf alt: f [1.05, 1.05, 1.053] sigma 0.002 (N_M 0.02); beta-bar [1.016, 1.019, 1.019]; status ['EXCLUDED', 'EXCLUDED', 'EXCLUDED']
+
+B-4 CALIBRATION CHECK (alpha = 0, canonical, seed 599, CFG621's v0 and eta; calib mode)
+  running 1 run(s) on <= 4 processes ...
+  speed 2699.4 km/s (K1 in 2700 +- 200); d_SG 196.9 kpc (G1 in 194 +- 50); eta 1.132 in [0.1, 2.5]: True  (CFG621: 2699.4 / 196.9)
+
+GATES 1-3 (controls, C4, control ensemble + C7 + C9, calibration check): ALL PASS

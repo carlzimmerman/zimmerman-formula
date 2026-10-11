@@ -86,6 +86,8 @@
 
 - **Shear with redshift (CFG591, CONTEXT ONLY: ΛCDM-calibrated halo-model machinery, as CFG590; NO LABEL, control HZ1 failed by the frozen rule, post-hoc impact ≤ 2e-11 on R):** running R(k,z) keeps 0.68 (canonical) / 0.77 (alt) of CFG590's excess. Alt stays EXCLUDED under every mapping; canonical becomes NOT DIAGNOSTIC (M1 excludes thinly, min Zmax 3.36; cruder mapping M2 reads consistent). A DESI-tracking a₀(z) background changes no class (slightly worse). Survivors (emergent edge, r200m scope) now sit on the low-power side. The verdict rests on the framework-native raw-data test CFG596.
 
+- **No cold energy (CFG624, owner's test; frozen 803cef306; all MUTATE controls pass):** baryons + the law only. Galaxies are IDENTICAL to candidate B (SPARC rms 0.100 / 0.101 dex; the census edge lies beyond all data radii), so removing cold energy cannot ease the central-elliptical, MW-slope or isolated-lens tensions. It BREAKS: X-COP (law on baryons gives 55–60% of the measured mass; missing 3.1 / 2.8 × baryons, 13–15σ), the Bullet Cluster (lensing stays on the gas, Z_B +7.9), LG timing (too fast, −208 / −225 vs −109 km/s), and cosmic shear (switched branch = Newtonian baryons, ξ± ~1e-5 of the data; law-everywhere runs away ×6–14, post-freeze, no verdict weight). Groups pass. CMB untestable (no derived early-universe law). Reading: cold energy's MASS is required; the tensions sit in how it is distributed and settles in massive old systems. Correction: the record's "baryons-only LG reaches −109 km/s" (F68) used FP9's separator law and does not hold for the current law.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
