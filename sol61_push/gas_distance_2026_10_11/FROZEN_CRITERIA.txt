@@ -1,0 +1,33 @@
+Conditional X-ray gas distance conversion; frozen before calculation.
+
+Hold redshift, observed angular X-ray morphology, spectral emissivity,
+composition, angular 3D geometry and clumping prescription fixed. The gas
+is optically thin and surface brightness is proportional to integral n^2 dl.
+For distance ratio lambda=Dl_new/Dl_old, derive density lambda^-1/2,
+column lambda^1/2, fixed-angular-aperture mass lambda^5/2 and unreduced
+lensing alpha and kappa lambda^3/2. Source-reduced alpha additionally
+multiplies (Dls/Ds)_new/(Dls/Ds)_old. These are conditional transformations,
+not inference that the actual gas has the assumed depth or emissivity.
+
+Use author flat H0=70, Om=.3 and existing PM flat H0=67.36,
+Om=(.02237+.1200)/.6736^2 at zl=.296. Use the prior observed image operator
+and source redshifts. No DESI fit, halo prescription or a0-dependent
+normalization. Save two explicitly named footing copies of the same gas
+input; gas lensing is not a function of a0 in this fixed-background step.
+
+Controls: numerical LOS integration of a Gaussian toy under lambda
+{.5,1,2} reproduces brightness invariance, column and angular-mass scaling
+at 1e-8. Independent distance integrals agree with Astropy at 1e-8 relative.
+Identity and round trip map conversion return input at 1e-12 relative.
+MUTATE fixing physical density when changing distance fails brightness
+invariance at lambda=2 by >.1. MUTATE treating physical gas aperture mass
+as fixed gives alpha exponent -1 rather than 3/2 and fails toy oracle.
+Verify constant-source gauge and finite arrays. Report actual difference
+from a distance-factor-only rescaling, without using it as fit evidence.
+
+A separate analytic elongation eta of LOS depth at fixed angular shape
+preserves brightness with n -> eta^-1/2 n but changes gas column and
+alpha by sqrt(eta). Demonstrate with eta {0.5,2}; do not assign that bracket
+to Bullet or fit eta. No numerical threshold can validate actual 3D gas
+geometry from this experiment. No theory pass/fail, cold mass, or action.
+One process, one thread, CPU30s, wall60s. Preserve failures.
