@@ -1,0 +1,407 @@
+<title>Kepler Grade Prediction Chart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+/* Layout: one dated ledger of future tests, then the confronted record, then what not to cite. Data-driven rows; filters on top. */
+:root {
+  --bg: #f3f5f6; --surface: #ffffff; --fg: #14212b; --muted: #55646f; --line: #d3dade; --accent: #0b5f7a;
+  --k1: #1c7a4e; --k1-bg: #dff1e7; --k2: #a15f00; --k2-bg: #fbecd0; --k3: #55646f; --k3-bg: #e5eaed;
+  --bad: #b3361f; --bad-bg: #f8e1dc; --pass: #1c6a8a; --pass-bg: #dcecf3;
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f171d; --surface: #17222a; --fg: #e4ebef; --muted: #98a9b4; --line: #2b3b46; --accent: #5ab8d6;
+    --k1: #62d09b; --k1-bg: #153a2b; --k2: #f0b45a; --k2-bg: #3d2d0f; --k3: #98a9b4; --k3-bg: #22313a;
+    --bad: #f08a77; --bad-bg: #3f1d17; --pass: #7cc4e0; --pass-bg: #14313f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f171d; --surface: #17222a; --fg: #e4ebef; --muted: #98a9b4; --line: #2b3b46; --accent: #5ab8d6;
+  --k1: #62d09b; --k1-bg: #153a2b; --k2: #f0b45a; --k2-bg: #3d2d0f; --k3: #98a9b4; --k3-bg: #22313a;
+  --bad: #f08a77; --bad-bg: #3f1d17; --pass: #7cc4e0; --pass-bg: #14313f; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 14.5px; line-height: 1.5; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 64px; }
+h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); line-height: 1.05; margin: 0 0 6px; text-wrap: balance; letter-spacing: -0.01em; }
+.sub { color: var(--muted); max-width: 74ch; margin: 0 0 18px; }
+.box { border: 1px solid var(--line); background: var(--surface); padding: 12px 14px; font-size: 13.5px; color: var(--muted); display: grid; gap: 5px; margin-bottom: 18px; }
+.box b { color: var(--fg); font-weight: 600; }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; margin-bottom: 18px; }
+.legend div { background: var(--surface); border: 1px solid var(--line); padding: 10px 13px; font-size: 13px; color: var(--muted); min-width: 0; }
+.legend p { margin: 5px 0 0; }
+.chip { display: inline-block; font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; padding: 2px 7px; letter-spacing: 0.04em; border-radius: 2px; white-space: nowrap; }
+.chip.k1 { color: var(--k1); background: var(--k1-bg); } .chip.k2 { color: var(--k2); background: var(--k2-bg); } .chip.k3 { color: var(--k3); background: var(--k3-bg); }
+.chip.fail { color: var(--bad); background: var(--bad-bg); } .chip.pass { color: var(--pass); background: var(--pass-bg); }
+.chip.nd { color: var(--k3); background: var(--k3-bg); } .chip.void { color: var(--bad); background: transparent; border: 1px solid var(--bad); }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); padding-block: 8px; z-index: 5; border-bottom: 1px solid var(--line); }
+.tools button, .tools input { font-family: var(--font-mono); font-size: 12px; background: var(--surface); color: var(--fg); border: 1px solid var(--line); padding: 6px 10px; border-radius: 2px; }
+.tools button { cursor: pointer; } .tools button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.tools input { flex: 1 1 200px; min-width: 0; } .tools button:focus-visible, .tools input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+#count { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-left: auto; }
+.strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border: 1px solid var(--line); background: var(--surface); margin-bottom: 6px; }
+.strip div { padding: 10px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); min-width: 0; font-size: 12.5px; }
+.strip .d { font-family: var(--font-mono); font-weight: 500; color: var(--accent); font-size: 12.5px; padding: 0; border: 0; }
+h2 { font-family: var(--font-display); font-size: 1.5rem; margin: 38px 0 4px; text-wrap: balance; }
+h3 { font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 24px 0 6px; }
+.note { color: var(--muted); margin: 0 0 10px; font-size: 13px; max-width: 80ch; }
+.head, .row { display: grid; grid-template-columns: 104px minmax(0,1.15fr) minmax(0,1.35fr) minmax(0,1.4fr) 50px; gap: 14px; align-items: start; }
+.head { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 0 14px 6px; border-bottom: 2px solid var(--fg); }
+.row { background: var(--surface); border-bottom: 1px solid var(--line); padding: 12px 14px; }
+.row > * { min-width: 0; } .row[hidden] { display: none; }
+.date { font-family: var(--font-mono); font-size: 12.5px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.date small { display: block; color: var(--muted); font-weight: 400; font-size: 11px; margin-top: 2px; }
+.t b { display: block; font-weight: 600; } .t span { display: block; margin-top: 2px; color: var(--muted); font-size: 13px; }
+.c { font-size: 13px; } .c .l { display: block; margin-top: 5px; color: var(--muted); } .c .l:first-of-type { margin-top: 0; }
+.lab { display: none; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 1px; }
+.src { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.warn { display: block; margin-top: 5px; font-size: 12.5px; color: var(--bad); }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 12px; }
+.g { text-align: right; }
+.h2, .r2 { display: grid; gap: 14px; align-items: start; grid-template-columns: minmax(0,1.2fr) minmax(0,2.2fr) 84px minmax(0,0.9fr); }
+.h2 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 0 14px 6px; border-bottom: 2px solid var(--fg); }
+.r2 { background: var(--surface); border-bottom: 1px solid var(--line); padding: 10px 14px; font-size: 13px; } .r2[hidden] { display: none; }
+.r2 > * { min-width: 0; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+.card { background: var(--surface); border: 1px solid var(--line); padding: 10px 13px; font-size: 13px; min-width: 0; } .card b { font-weight: 600; } .card p { margin: 3px 0 0; color: var(--muted); }
+.foot { margin-top: 44px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12.5px; display: grid; gap: 7px; max-width: 90ch; }
+@media (max-width: 880px) {
+  .head, .h2 { display: none; } .row, .r2 { grid-template-columns: 1fr; gap: 9px; } .lab { display: block; } .g { text-align: left; order: -1; }
+}
+</style>
+
+<div class="wrap">
+  <h1>Kepler Grade Prediction Chart</h1>
+  <p class="sub">Every testable prediction found on the record, dated where the data has a date, with the framework's number, what the rivals say, and what would count against it. The confronted record and the retracted claims are on the same page so the chart does not read as a list of wins.</p>
+
+  <div class="box">
+    <span><b>Standing terms.</b> κ = ½ is fitted, not derived. Two footings, canonical a₀ = 9.36e-11 and alt 1.13e-10 m/s², are never pooled and are written can / alt. The cold energy's mass is still required. This is not a closed theory.</span>
+    <span><b>Built 2026-10-11</b> from five sweeps of the repo (predictions ledgers, prep_2026 pre-registrations, lanes CFG1 to CFG700, the atomos kill sheet, memory notes). Some lane folders were only keyword-screened, so this is thorough but not a guarantee of completeness. Release dates for Euclid, Rubin, JUNO, LISA and 4MOST come from the record's own inventories and are not independently verified.</span>
+    <span><b>Rules applied.</b> Verdicts use raw data against framework-native predictions. Rows tied to the retired modified-inertia arm are tagged MI-ARM and are not live.</span>
+  </div>
+
+  <div class="legend">
+    <div><span class="chip k1">K1</span><p><b>Kepler grade.</b> A number fixed before the data exist (frozen criteria or a sealed hash), a date, and a stated result that counts against it.</p></div>
+    <div><span class="chip k2">K2</span><p><b>Capped.</b> The number is sharp, but the test cannot reach 3σ with today's systematics, the rivals predict nearly the same, or it is conditional on an assumption.</p></div>
+    <div><span class="chip k3">K3</span><p><b>Open.</b> A real prediction with no usable data, no date, or only a forecast.</p></div>
+  </div>
+
+  <h2>Coming up</h2>
+  <div class="strip">
+    <div><div class="d">2026-10-11 to 13</div>Framework-native cosmic shear, 1024³ run (CFG596), verdict pending</div>
+    <div><div class="d">2026-11-06</div>ALMA U4_27928, CO at z 1.42</div>
+    <div><div class="d">2026-11-28</div>ALMA GS4_24110, deep [CI] at z 2.00</div>
+    <div><div class="d">2026-12-02</div>Gaia DR4: wide binaries, Milky Way force and curve</div>
+    <div><div class="d">2026-12-17</div>ALMA Big Wheel at 0.24″</div>
+    <div><div class="d">2027 to 2028</div>Rubin SNe w(z) gate, JUNO θ₁₂, DESI DR3</div>
+    <div><div class="d">2030s</div>LISA, DUNE / Hyper-K, LEGEND-1000, CMB-S4</div>
+  </div>
+
+  <div class="tools" role="search">
+    <button type="button" data-f="all" aria-pressed="true">All</button>
+    <button type="button" data-f="K1" aria-pressed="false">K1</button>
+    <button type="button" data-f="K2" aria-pressed="false">K2</button>
+    <button type="button" data-f="K3" aria-pressed="false">K3</button>
+    <input id="q" type="search" placeholder="Search tests, lanes, numbers" aria-label="Search the chart">
+    <span id="count" aria-live="polite"></span>
+  </div>
+
+  <h2>Future tests</h2>
+  <p class="note">Sorted by date within each group. Every row has a grade; the filter above applies to this section, and the search also filters the confronted list.</p>
+  <div id="future"></div>
+
+  <h2>Already confronted</h2>
+  <p class="note">What the record says so far. “Not diagnostic” means the test could not separate the readings, which is different from a pass.</p>
+  <div id="conf"></div>
+
+  <h2>Do not cite</h2>
+  <p class="note">Withdrawn, superseded or void claims that still sit in older files. Listed so none is picked up as a live prediction.</p>
+  <div class="cards" id="dnc"></div>
+
+  <h2>Not predicted</h2>
+  <p class="note">Statements the framework does not make, so they are never claimed as tests.</p>
+  <div class="cards" id="non"></div>
+
+  <div class="foot">
+    <span>Sources in the repo: <span class="num">predictions_2026/*</span>, <span class="num">prep_2026/*</span> (including <span class="num">gaia_dr4_prep/PREREGISTRATION_DR4.md</span>, amendments 1 to 21), <span class="num">campaign_fresh_gravity/CFG1 to CFG700</span>, <span class="num">ASSESSMENT_2026-10-09.md</span>, <span class="num">THEORY_v1_2026-10-09.md</span>, <span class="num">closure_map/WHAT_WOULD_DECIDE_2026-09-29.md</span>, <span class="num">KILL_SHEET_2026-10-10.md</span>, <span class="num">real_research/*</span>, <span class="num">project_atomos/*</span>.</span>
+    <span>Numbers were read from those files by five sweeps and merged here. Where two files disagree, the newer amendment or lane wins and the older value is under “Do not cite”. Nothing on this page says the data favour the framework.</span>
+  </div>
+</div>
+
+<script>
+var FUTURE = [
+{h:"Dated releases", n:"The first rows were sealed before their data became public.", rows:[
+ {d:"2026-10-11 to 13", s:"1024³ run in progress", t:"Framework-native cosmic shear (CFG596)", u:"Lean 1024³ particle-mesh, L = 100 Mpc/h, snapshots z = 1, 0.75, 0.5, 0.26, 0",
+  p:"Own gravitating field against raw KiDS-1000 and DES Y3 ξ±. Diagnostic only if the framework's own boost gives χ² ≥ 9 on the surviving points (tooth T-OWN).",
+  r:"Same-pipeline comparison model S0. Today's 512³ runs lean against (Δχ² +23.9 / +4.2 can, +30.0 / +5.6 alt on KiDS / DES).",
+  k:"A decisive version needs L ≥ 400 Mpc/h at N ≥ 1024. Verdict pending.", g:"K1", src:"CFG596, CFG592"},
+ {d:"2026-11-06", s:"public release", t:"ALMA U4_27928", u:"CO at 0.07″, z 1.419; required gas for the measured rotation",
+  p:"At V<sub>c</sub> 225 km/s: log M<sub>gas</sub> <span class='num'>9.84 / 9.46</span> (F-DESI) and <span class='num'>9.75 / 9.19</span> (F-flat) can / alt. At 250–300 km/s every model needs gas and the framework needs 0.2–0.9 dex more than a₀∝H(z).",
+  r:"At V<sub>c</sub> 225 both rivals (a₀∝H(z), ΛCDM+feedback scale) sit at the FLOOR: stars alone already exceed what they allow. Below 200 km/s every model is at the floor and the test says nothing.",
+  k:"Gas outside the required band at V<sub>c</sub> ≥ 225. One disc, so nothing is excluded.", g:"K1", src:"CFG571, sealed hash in PREDICTIONS_HASH.txt"},
+ {d:"2026-11-28", s:"proprietary until", t:"ALMA GS4_24110", u:"Deep [CI](2–1) at 0.09″ and dust, z 1.997 (2025.1.01377.L)",
+  p:"Required log M<sub>gas</sub> (can, M* 10.89, R<sub>g</sub> = R<sub>d</sub> / 1.5R<sub>d</sub>): F-flat <span class='num'>9.5 / 9.7</span>; F-DESI <span class='num'>9.8 / 10.1</span>. Alt footing F-DESI 9.1 / 9.4. The stellar-mass branch moves it by 0.6 dex.",
+  r:"a₀∝H(z) and ΛCDM+feedback at the FLOOR in every branch.",
+  k:"Gas near 10<sup>10</sup> M☉ inside R<sub>e</sub> counts against both rivals; negligible gas troubles the dark-energy-tracking branch.",
+  w:"Already partly scored on other public data (CFG572/573): CO gives log M<sub>gas</sub> 10.95, dust 10.5–10.7, [CI] below 10.3. The framework fits only with the dust gas, tracers disagree by about 0.7 dex, no model is excluded, and CFG573 was not diagnostic.", g:"K1", src:"CFG570, CFG571, CFG572, CFG573"},
+ {d:"2026-12-02", s:"Gaia DR4", t:"Wide binaries: candidate B (Arm C)", u:"Velocity boost γ̂ at 2–30 kAU, about 30,000 pairs; pipeline and 21 amendments frozen",
+  p:"Hierarchical ownership gives <span class='num'>γ = 1.000</span> exactly, no a₀ dependence. 0.944–1.056 is consistent; 1.056–1.084 disfavoured at 2–3σ<sub>tot</sub>.",
+  r:"Newton and ΛCDM: 1.000, the same. A Newtonian result kills the strict-MOND arm and cannot confirm B.",
+  k:"γ̂ ≥ 1.084 with the stability checks passing kills B (and Newton and ΛCDM with it). Report raw γ̂ with σ<sub>fit</sub> and distances to every anchor, never one verdict word.", g:"K1", src:"PREREGISTRATION_DR4.md Amdt 13, 21; CFG63"},
+ {d:"2026-12-02", s:"Gaia DR4", t:"Wide binaries: strict MOND + EFE (Arm A)", u:"Full AQUAL external-field solve (Amdt 10)",
+  p:"γ̂ = <span class='num'>1.1614–1.1814</span> can; <span class='num'>1.1917–1.2267</span> alt. Newton sits 5.8σ<sub>tot</sub> below the canonical floor at N = 30,000.",
+  r:"B, Newton, ΛCDM: 1.000.",
+  k:"γ̂ below about 1.056 falsifies it. Above 1.23 is unscoreable (contamination guard); 43–49% of true alt-top outcomes land there.", g:"K1", src:"Amdt 10, 11; CFG63"},
+ {d:"2026-12-02", s:"Gaia DR4", t:"Wide binaries: derivation-chain law and merge band", u:"Amdt 14 (filter length ξ); CFG200 forecast (provisional)",
+  p:"Chain ceiling <span class='num'>1.0725 / 1.0900</span>, falling to 1.000 by ξ ≥ 0.3 pc. Door-11 merge band <span class='num'>1.089–1.102</span> (g<sub>ext</sub> 1.778e-10) or 1.063–1.077 (2.146e-10).",
+  r:"Newton / B / ΛCDM 1.000. Chain vs Newton: 3.6σ can / 4.5σ alt at the ceiling, needing N = 58,850 / 21,660 for 3σ.",
+  k:"Chain killed at ≥ 1.157 / 1.174. Merge vs ownership 3.2–3.7σ at N = 30,000 (alt 4.0–4.6σ).", g:"K2", src:"Amdt 14; CFG200"},
+ {d:"2026-12-02", s:"Gaia DR4", t:"Wide binaries: Arm B (covariant) and anisotropy", u:"Amdt 12, 20",
+  p:"Arm B: <span class='num'>1.0000 ± 0.0025</span> (ξ ≥ 4 pc), flagged not a testable arm (cap 2.25σ can / 1.50σ alt). Arm A anisotropy: perpendicular-dominant, +0.0013 to +0.0046.",
+  r:"Outer pairs (beyond about 1.96 r<sub>M</sub>) parallel-dominant is expected and not a kill.",
+  k:"Arm B killed ≥ 1.084. Opposite-sense anisotropy at ≥ 3σ falsifies the derived EFE; a null is not a kill. Quoted only if neither fit sits on a grid edge.", g:"K2", src:"Amdt 12, 20"},
+ {d:"2026-12-02", s:"Gaia DR4", t:"Milky Way vertical force and local dark density", u:"Five sealed observables (CFG553); round cold energy against the QUMOND phantom disc",
+  p:"K<sub>z</sub>(R₀, 1.1)/2πG <span class='num'>74.1 (68.3–79.9) / 75.6</span> M☉/pc²; local dark density <span class='num'>0.323 / 0.360</span> GeV/cm³; Oort limit 0.116 / 0.117 M☉/pc³; σ<sub>z</sub>(R₀) 16.8 / 16.9 km/s.",
+  r:"Phantom disc: K<sub>z</sub> 90.1 / 94.8, dark density 2.01 / 2.34, Oort limit 0.160 / 0.169, σ<sub>z</sub> 19.3 / 19.8. A fitted NFW gives K<sub>z</sub> 76.3, so the round rule cannot be separated from NFW here.",
+  k:"K<sub>z</sub> near 90 favours the disc. Needs 3.5–5.8 M☉/pc² on one K<sub>z</sub> value; the 36-cell K<sub>z</sub>(R, z) grid separates at 40–80% per-point error. Round beats the disc in 32/32 cells today.",
+  w:"Control K6 failed as frozen (a mis-specified expectation); the spherical-equivalent column was added before the seal and disclosed.", g:"K1", src:"CFG553, hash f8bea44f… in PREDICTIONS_HASH.txt; CFG514/516"},
+ {d:"2026-12-02", s:"Gaia DR4", t:"Milky Way outer curve", u:"Distance scale at 15–27.5 kpc decides",
+  p:"dlnV/dlnR 15–22 kpc <span class='num'>−0.162 / −0.149</span>; V(20 kpc) 199.5 / 206.6 km/s; V<sub>c</sub>(60 kpc) <span class='num'>178.1 / 186.0</span> km/s; mean V<sub>c</sub> 30–60 kpc 182.6 / 190.3.",
+  r:"NFW fit: slope −0.171 to −0.174, V<sub>c</sub>(60) 166.5. Round and disc share the in-plane speed, so this cannot separate them.",
+  k:"A slope of −0.25 or steeper at σ ≤ 0.04 excludes both the framework and NFW. V<sub>c</sub>(60) near 166 favours NFW. Today's shape test already reads Z −3.6 / −3.9 (see confronted).", g:"K1", src:"CFG553 P2, P5; CFG532b"},
+ {d:"2026-12-02", s:"Gaia DR4", t:"Stream flattening and K<sub>z</sub>(z) shape", u:"GD-1 / Pal 5 at 10–20 kpc",
+  p:"Round-rule shapes from CFG514, with ASSUMED DR4 errors.", r:"Phantom disc.", k:"σ(q<sub>Φ</sub>) 0.05 gives about 2σ; K<sub>z</sub>(z) shape 5σ at 3% bins.", g:"K3", src:"CFG514"},
+ {d:"2026-12-17", s:"public release", t:"ALMA Big Wheel", u:"CO(4–3) at 0.24″, one z 3.245 disc, 30 GB (2025.1.00107.S)",
+  p:"Nothing is sealed. A single object near y ≈ 2–4 at 10 kpc.", r:"Not forecast.", k:"No frozen rule yet; a single object cannot be conditioned (CFG240), so it would be a labelled envelope.", g:"K3", src:"CFG268"}
+]},
+{h:"a₀(z) and dark energy", n:"Flat a₀ is the framework's distinctive law; a₀∝H(z) is the rival; ΛCDM has no a₀ and its emergent scale is the proxy.", rows:[
+ {d:"no date", s:"needs new observations", t:"a₀ at z ≈ 2.5", u:"Lensed rotators, JWST IFU plus ALMA Band 3 CO(3–2); pre-registered in PAPER7 (DOI 10.5281/zenodo.22563139)",
+  p:"Flat: BTFR zero-point shift <span class='num'>0.00 dex</span>.", r:"ΛCDM-native <span class='num'>+0.334 dex</span> (feedback-ΛCDM g† ×2.8 at z = 2); a₀∝H(z) <span class='num'>+0.58 dex</span>; DE-tracking 0.09 dex below flat.",
+  k:"Offset ≥ 0.5 dex kills flat a₀; under 0.07 dex rules out H(z) tracking at 2σ (N ≥ 10). Needs 3 rotators at ±0.10 dex or 4 at ±0.20, with y from 3 down to 0.3 at 5% velocity. Cap from the mass-scale floor: 2.3σ against H(z), 1.3σ against ΛCDM. No object passes the gate today.", g:"K2", src:"CFG52/54/63/385; CFG268; PAPER7"},
+ {d:"2027+", s:"Rubin / LSST-DESC SNe", t:"Dark-energy w(z) gate", u:"Frozen 2026-07-21 (DOI 10.5281/zenodo.21478568)",
+  p:"a₀(z)/a₀(0) = √(ρ<sub>DE</sub>(z)/ρ<sub>DE</sub>(0)), κ cancels. R = a₀(3)/a₀(0) about <span class='num'>0.60–0.75</span>; DESI DR2 baseline 0.775 [0.683, 0.878], a 2.0σ decline.",
+  r:"Constant a₀ (R = 1); a₀∝H(z).", k:"OPEN if ≥ 3σ with R in [0.55, 0.85]. DISSOLVED to constant-a₀ if flat within 2σ (not a kill). STRAINED if R > 1 at ≥ 3σ. Rubin reaches 3.3σ on forecast. Today UNDECIDED.", g:"K1", src:"rubin_prereg; ledger A-3"},
+ {d:"DESI DR3 (2026–27)", s:"date not on record", t:"Dark-energy evolution, framework prediction", u:"CFG549, sealed (hash f110566e… in PREDICTIONS_HASH.txt)",
+  p:"The framework does not predict ρ<sub>DE</sub>(z). It gives Λ plus a settling trickle Δρ/ρ ≈ <span class='num'>7.1e-7 / 2.0e-7</span> (can A / B), 1 + w(0) = −5.3e-8. Any real evolution is free.",
+  r:"DESI's evolving fits; the ΛCDM tension is shared.", k:"The galaxy channel needs N ≈ 1730 / 640 / 97 / 56 discs per bin at 0.1 dex for z = 0.5 / 1 / 2 / 2.5 to match DESI+DESY5. Verdict TENSION, same as ΛCDM, not excluded.", g:"K2", src:"CFG549"},
+ {d:"no date", s:"untested on data", t:"Elastic-vacuum fork: a₀ follows −p<sub>DE</sub>", u:"Rigidity left free; one-modulus form excluded (Δχ² +416)",
+  p:"a₀(1)/a₀(0) = <span class='num'>1.16 / 1.39 / 1.26 / 1.94</span> and a₀(2.5)/a₀(0) = 1.02 / 1.15 / 1.07 / 1.46 for DESI+Pantheon+ / Union3 / DESY5 / DESI+CMB.",
+  r:"Two-component law H2: 0.83 / 0.78 / 0.80 / 0.73 at z = 2.5. Gap 0.09–0.17 dex.", k:"A result at the H2 values rather than the elastic ones. Needs a₀ at z ≈ 1 and 2.5 to 0.1 dex.", g:"K3", src:"CFG511"},
+ {d:"no date", s:"older, CPL-era wording", t:"DESI DR3 decision matrix", u:"Pre-registered fleet note; re-check against the flat law before citing",
+  p:"Bump of +6.0% for (w₀, w<sub>a</sub>) = (−0.727, −1.05), a₀(z=3)/a₀ = 0.648; +3.6% and 0.775 for (−0.838, −0.62).",
+  r:"w = −1 dissolves it.", k:"Can kill, never confirm. Direct detection of the bump is below the current floor (> 2030).", g:"K3", src:"PREREGISTERED_EMPIRICAL_FLEET_2026-07.md"},
+ {d:"no date", s:"needs new simulations", t:"Emergent a₀ against Λ", u:"Varied-Λ hydro runs, none exist",
+  p:"d ln a₀ / d ln Λ = <span class='num'>0.5</span>.", r:"ΛCDM estimate −0.014 to +0.161. Time version: feedback-ΛCDM g† rises ×1.2 / 2.8 / 4.9 at z = 1 / 2 / 2.5 against flat (CFG566 corrected it to ×1.3–1.5, power ≤ 0.06).",
+  k:"Spec: runs at Λ₀ and 10Λ₀, RAR to g ≈ 1e-12 m/s², error under 0.08 dex per run.", g:"K3", src:"CFG545, CFG565, CFG566"},
+ {d:"no date", s:"ALMA 2026.1.00363.S, not yet observed", t:"KURVS CO gas survey", u:"Seven discs with v/σ₀ ≥ 1.5 at about 1.6″",
+  p:"Required baryons lower than the H(z) rival by <span class='num'>0.19–0.31 dex</span> (Burkert and no-pressure branches, never pooled).", r:"a₀∝H(z) at the FLOOR in 6 of 7 discs on the no-pressure branch. F-DESI vs F-flat 0.02 dex or less.",
+  k:"Forecast 1.0–1.6σ with a 0.15 dex floor: it would lean, not decide. Pressure support is the largest open input.", g:"K2", src:"CFG571"},
+ {d:"no date", s:"MIGHTEE-HI / LADUMA", t:"Local a₀ slope with redshift", u:"Anchored slope a₀(z)/a₀(0) = 1 + 5.59z (can)",
+  p:"Flat: ×1.00. Anchored: ×1.11 / 1.31 / 1.50 at z = 0.02 / 0.055 / 0.09.", r:"a₀∝H(z): ×1.010 / 1.027 / 1.045.", k:"Not possible in 12 of 13 cells; the rival differs from flat by at most 4.5% at z ≤ 0.093. About 290 galaxies would be needed on statistics alone.", g:"K3", src:"CFG258, CFG300"},
+ {d:"no date", s:"needs a rotator at z ≥ 10", t:"BTFR zero-point deficit at high z", u:"Resolved rotators at z ≥ 10 (ALMA [CII], JWST)",
+  p:"Deficit at fixed baryonic mass: <span class='num'>0.009% z=5; 0.34% z=10; 2.6% z=15; 7.8% z=20; 19% z=30</span>.", r:"Flat a₀ (zero); the MOND regime shrinks as Σ† falls.", k:"Offset below z = 5 above 0.1% in v. Power about zero today.", g:"K3", src:"SWEEP3 inventory (check before citing)"},
+ {d:"no date", s:"JWST / ALMA direct gas", t:"High-z BTFR footing fork", u:"Constant a₀ (can) against a₀ rising as E(z) (alt)",
+  p:"Jeanneau-subsample offset: can <span class='num'>0.000</span>, alt <span class='num'>−0.243</span>.", r:"Combined today 0.99σ (alt side) / 0.95σ (can side): a wash.", k:"Needs a coherent gas term ≤ 0.10 dex.", g:"K3", src:"jeanneau_refit; highz_tfr_fork"}
+]},
+{h:"Galaxies, lensing and clusters", n:"", rows:[
+ {d:"Euclid DR1", s:"date not confirmed; one inventory says Oct 2026", t:"Cluster-lensing kink: exact null", u:"Filed 2026-07-16; the detection target was retired (below the usable radius and the 0.06 dex floor)",
+  p:"Elastic-medium branch: kink at g<sub>bar</sub> = <span class='num'>2.7092e-10 / 3.2707e-10</span> m/s² (y<sub>c</sub> = 2.894); slope break −0.138 / −0.275.", r:"Pure MI and ΛCDM: no kink.", k:"Rule D: ≥ 5σ break with slope change in −0.10 to −0.30. Rule N: p ≤ 1.7–2.5% per bin excludes the n = 1 throttle at 3σ. A null does not separate MOND from ΛCDM.", g:"K2", src:"cluster_kink_spec; ledger A-6"},
+ {d:"Euclid / LSST", s:"mid-2020s to 2027", t:"Isolated-lens RAR to 1 Mpc", u:"No accreted dark charge",
+  p:"Lensing stays on √(g<sub>bar</sub> a₀); χ²/dof 2.03 / 0.94 on KiDS today.", r:"An accreting cold component multiplies the 100 kpc–1 Mpc signal by 3–20.", k:"A ×2–3 excess at 100–300 kpc. Today's amplitude budget (±0.3 dex) still allows ×2.", g:"K2", src:"ledger A-7"},
+ {d:"no date", s:"needs DES Y3 ΔΣ (download declined)", t:"Early-type shortfall is physical", u:"KiDS early types about 30–40% short at 50–100 kpc",
+  p:"The shortfall persists in an independent survey.", r:"A KiDS or SLUGGS systematic.", k:"Vanishing in DES or DESI-lens data. Replication with DESI DR1 lenses is the crispiest scoped step (CFG314).", g:"K3", src:"KILL_SHEET G9; CFG314"},
+ {d:"no date", s:"needs multi-epoch dispersions", t:"Ultra-faint dwarfs: bare law against B's cold-mass rule", u:"Only 2 multi-epoch systems today",
+  p:"Separation <span class='num'>0.38 dex</span> between the isolated law and the rule.", r:"ΛCDM not separable here.", k:"With 8 systems: median offset above the law > 0.35 kills the isolated law; < 0.03 kills the rule. Cap 2.5σ (2.1σ with the binary shift); 3σ never.", g:"K2", src:"CFG42/46/63"},
+ {d:"no date", s:"X-ray group masses", t:"Groups at R500", u:"Hydrostatic allowance 20% (0.079 dex) is the floor",
+  p:"B against the closure rule: Δ = 0.149 dex today.", r:"B vs bare law: Δ = 0.012 dex, not separable.", k:"A shortfall above 0.17 dex (2σ) kills B's cold-share rule. Cap 1.8σ (2.6σ at R2500).", g:"K2", src:"CFG63/81/85"},
+ {d:"no date", s:"needs a bigger sample", t:"Directional external-field effect", u:"Aligned outer-curve asymmetry toward the attractor, WALLABY / MaNGA",
+  p:"Rule R7 (no external field): amplitude <span class='num'>0</span>.", r:"AQUAL-type EFE +1–4%; elastic branch 0.5–0.77 of AQUAL. On record: n = 16 gave +2.95; WALLABY n = 25 gave −1.70 ± 2.12 (an amplitude).",
+  k:"Detection at the AQUAL amplitude needs N ≥ 560 and counts against R7; a deep null below 0.7% needs about 1,160. AQUAL vs the elastic branch needs about 6,000.", g:"K3", src:"ledger A-4; aligned_firing"},
+ {d:"no date", s:"BIG-SPARC not public", t:"Environment independence of a₀", u:"Per-galaxy a₀ tracks ρ<sub>Λ</sub>, not local density",
+  p:"No correlation; the decisive null is 13–34σ on 175 SPARC galaxies already.", r:"Density-dependent a₀; cosmic-web slope: alt −0.177, Verlinde-style +0.5 (canonical 0, needs N ≈ 490, have 52–55).", k:"a₀ correlating with local density.", g:"K3", src:"ledger A-8; cosmicweb_a0"},
+ {d:"no date", s:"BIG-SPARC, TRGB distances", t:"Gas-dominated a₀ line", u:"E = g<sub>obs</sub>² − g<sub>bar</sub>² = a₀ g<sub>bar</sub>",
+  p:"Gas slope <span class='num'>1.181e-10 ± 16%</span> (GLS), 0.973e-10 (median); TRGB subset 1.333e-10.", r:"Footing not decided: both priors tighten but stay non-diagnostic.", k:"A gas slope of 3e-10 breaks it outright.", g:"K3", src:"a0_line, a0_line_trgb"},
+ {d:"no date", s:"long-period comets", t:"Oort-cloud anisotropy", u:"Keyed to the galactic field direction (DOI 21966646)",
+  p:"Spike modulation <span class='num'>1.069</span> (7%); injection modulation 1.169 (17%).", r:"Isotropic injection.", k:"Isotropy at the 5% level, or this and the wide-binary result disagreeing on ν₀. Prior art owed (Pauco & Klacka 2016).", g:"K3", src:"ledger A-5"},
+ {d:"no date", s:"SPARC + TRGB distances", t:"κ = ½ against 1/(2π)", u:"κ is fitted",
+  p:"Fit leans ½ at about 2.2σ (one shape) / 1.55σ (shape-free); κ = 0.42 ± 0.10 (CFG493, can).", r:"1/(2π); Gaia DR4 is not a κ-meter (dlnγ/dlnκ = 0.18).", k:"½ excluded at 3σ by the distance-free estimator (floor 3.9%). No shape reaches 3σ today.", g:"K3", src:"ledger A-10; CFG493"},
+ {d:"no date", s:"large clean RAR sample", t:"Kernel fingerprint", u:"The test is a₀-independent; this is Milgrom's kernel shape, not unique to the framework",
+  p:"At D = √2 the slope is 0.75 and the curvature 0.125.", r:"Rival kernels differ by about the ±0.03–0.06 SPARC precision.", k:"Marginal today.", g:"K3", src:"kernel_fingerprint"},
+ {d:"no date", s:"needs measured σ_z", t:"Edge-on disc thickness and HI flaring", u:"Round rule against the phantom disc",
+  p:"σ<sub>z</sub> 20–75% lower and HI 25–90% thicker than the phantom disc (×1.6–3.6).", r:"Standard MOND phantom disc.", k:"Not diagnostic yet: the outer dispersion decides (about 7 vs 9 km/s) and no qualifying measurement exists.", g:"K3", src:"CFG574–578"},
+ {d:"no date", s:"DES ΔΣ not public", t:"Drained shell and splashback shift around clusters", u:"Engine not converged (×2 from 256³ to 512³)",
+  p:"Shell about <span class='num'>30% deep</span> at 0.85–2 r<sub>ta</sub>; lensing splashback shift +17–28% at 512³ (+7–9% at 256³).", r:"A ΛCDM splashback profile can absorb it (correlation −0.8).", k:"Best forecast Z ≈ 2.1 (DES-Y3 redMaPPer); a measured lensing r<sub>sp</sub> ratio below 1.07. Nothing on disk can test it.", g:"K3", src:"CFG546, CFG551, CFG552"},
+ {d:"no date", s:"resolved TDG kinematics", t:"Tidal dwarf galaxies", u:"Ownership reading (Arm C): Newtonian",
+  p:"NGC 5557-E1 old TDG: Newton 16–24, law + EFE 28–41, isolated law 45–58 km/s.", r:"The long-memory reading gives M<sub>dyn</sub>/M<sub>bar</sub> 1.4–1.9 [MI-ARM]. The two readings are not pooled.", k:"Non-discriminating today (no data).", g:"K3", src:"CFG441/448; tdg_test"},
+ {d:"no date", s:"HI and lensing data", t:"Smaller null and shape predictions", u:"Paper-branch statements; several are contingent on the scalar being non-propagating",
+  p:"RAR residual blind to halo concentration (Spearman +0.012, N = 155); no starless subhalos at 10<sup>7</sup>–10<sup>9</sup> M☉; phantom ceiling 0.6476 a₀ at g<sub>bar</sub> = 2.54 a₀; dSph σ rises about 1.9× over 40–250 kpc; red-minus-blue outer slope +0.155 / +0.128.",
+  r:"ΛCDM assembly bias; unbounded halos.", k:"Any nonzero concentration correlation; a starless perturber; a galaxy above the ceiling. The red-blue test is capped at 1.9σ.", g:"K3", src:"NF P1/P4/P17–21; CFG53"},
+ {d:"no date", s:"khronon reading", t:"a₀ tied to CMB-frame speed", u:"CFG182/186",
+  p:"β = 0.11–0.27.", r:"SPARC 95% limit β < 2.8; sky dipole A = 0.237, p = 0.77 (null).", k:"Neither confirmed nor excluded; the conditional bound is 10–26× short.", g:"K3", src:"CFG182, CFG186"},
+ {d:"no date", s:"deep voids", t:"Timescape / void reading", u:"c-common reading",
+  p:"a₀ higher in voids by <span class='num'>+0.176 dex</span>; slope −0.145 (δ<sub>v</sub> = −0.8) per dex of 1 + δ.", r:"Constant a₀.", k:"About 266 deep-void galaxies needed; 2M++ N = 52 gives −0.083 ± 0.135, 2MRS N = 38 gives +0.029 ± 0.075.", g:"K3", src:"CFG252"},
+ {d:"MI-ARM", s:"arm closed 2026-08-08", t:"Retired modified-inertia tests", u:"Listed for completeness; they depend on the retired arm",
+  p:"η(β) slide dlnη/dβ = +0.75; infall σ-spread 0.2–1% (the old 6–13% is retracted); anisotropy-offset slope sign; SHLEM exact null window 0.43 ms (can) / 0.53 ms (alt).", r:"MG: flat or zero.", k:"η(β): 9 CLASH-VLT clusters give −0.09 ± 0.20; 4MOST CHANCES about 2029–31. Treat as non-live.", g:"K3", src:"prep_2026 sigma_spread, cluster_efe_*, shlem_null"}
+]},
+{h:"Structure growth and cosmology", n:"", rows:[
+ {d:"no date", s:"DESI final full-shape", t:"Hubble-kernel growth branch (paper branch)", u:"Standing record: growth fails on the gravitating field; see confronted",
+  p:"σ₈ +1.1% (1.5% alt); S8 0.843; fσ₈ +2.7 / 1.9 / 1.1% at z = 0.3 / 0.6 / 1.0.", r:"ΛCDM growth.", k:"Low S8 or fσ₈ at the few-percent level.", g:"K3", src:"PAPER15/16"},
+ {d:"no date", s:"varied small-scale power", t:"Small-scale power deficit", u:"512³ boxes, near the mesh limit",
+  p:"P/P<sub>S0</sub> 16–20% below at k = 2–3 h/Mpc.", r:"S0 (ΛCDM dark-matter-only PM).", k:"Not converged; an engine artefact in part (CFG526).", g:"K3", src:"CFG521/526/527"},
+ {d:"DESI Lyα", s:"date not on record", t:"Small-scale cutoff", u:"Lyman-α forest",
+  p:"Half-mode k ≈ 35 h/Mpc; Murgia α < 0.03 passes (derived α = 0.0190).", r:"CDM.", k:"A cutoff mismatch. Today 0.4–0.9σ (the '6–8σ' was withdrawn).", g:"K3", src:"SWEEP3; forest_bcut"},
+ {d:"2030s", s:"LISA / Taiji / TianQin, DECIGO", t:"Primordial-black-hole window", u:"Asteroid-mass window as the cold energy; literature bounds recalled, unverified",
+  p:"Window <span class='num'>10<sup>17</sup>–10<sup>22</sup> g</span>; induced GW peak 1.2 mHz (10<sup>22</sup> g) to 0.36 Hz (10<sup>17</sup> g), Ω<sub>GW</sub>h² about 4–5e-9.", r:"No PBH cold energy.", k:"A null LISA background rules out Gaussian adiabatic formation across most of the window. The amount is a restatement of Ω<sub>c</sub>.", g:"K3", src:"CFG510"},
+ {d:"2030s", s:"LISA, ET", t:"Gravitational waves and EMRI dress", u:"c<sub>T</sub> = c and α<sub>M</sub> = 0",
+  p:"Relaxed phantom: EMRI phase ΔΦ <span class='num'>5e-8 to 5e-6 rad</span> (undetectable). Unrelaxed spike 11 to 1.2e4 rad. Ξ ≡ 1.", r:"Spike-level dress; α<sub>M</sub> ≠ 0.", k:"ΔΦ ≳ 0.1–1 rad kills the relaxed rule; a confirmed α<sub>M</sub> ≠ 0 falsifies the class. A null does not discriminate. Superradiance leaves wave-field mass windows 2.0–4.4e-20 eV and 5.3e-17 to 6.8e-13 eV.", g:"K3", src:"CFG512, CFG367"},
+ {d:"no date", s:"binary-pulsar timing", t:"Khronon dipole radiation", u:"Conditional pass",
+  p:"α<sub>c</sub> in [9.6e-14, 3.2e-9]; largest Ṗ<sub>b</sub> deviation 4.9e-13 (wave-zone) or 1.9e-8 (universal bound). Flux-ledger repair is period-independent.", r:"GR.", k:"A period-dependent deviation.", g:"K3", src:"CFG291"},
+ {d:"no date", s:"direct detection", t:"No dark-matter particle", u:"A requirement",
+  p:"No direct or indirect detection; DM cannot decay or annihilate; no 11–28 eV thermal relic. Early stiff component Ω ≲ 4e-25 (a 24-order fine tuning, not a kill).", r:"Particle dark matter.", k:"A confirmed detection.", g:"K3", src:"NF P6/P10/P16"},
+ {d:"BepiColombo MORE", s:"arrival Nov 2026 per one inventory", t:"Solar-system residuals", u:"Unverified date",
+  p:"Any MOND detection would exclude the F(Z) class; a coherent apsidal residual would revive F(Y). Planetary corner needs ω<sub>c</sub> in [1.78e-14, 2.21e-14] rad/s (can).", r:"GR / ephemerides.", k:"Reading B (a₀/c drift) already excluded ×246 (MESSENGER) and 47–57σ (LLR).", g:"K3", src:"ET:62-63; planetary_doors"}
+]},
+{h:"Neutrino and particle sector", n:"All conditional on tri-maximal TM1 mixing, Dirac neutrinos and m₁ = ρ<sub>Λ</sub><sup>1/4</sup>. A coherent chain is not evidence. The particle-numerology search found no certified interlock (42,534,139 distinct, 0 certified).", rows:[
+ {d:"2027–28", s:"JUNO", t:"Solar mixing angle", u:"KILL_SHEET A1",
+  p:"sin²θ₁₂ in <span class='num'>[0.3162, 0.3198]</span> for s₁₃² in [0.020, 0.025] (central today 0.309).", r:"Other textures; TM2 and golden ratio sit 3.6–3.8σ off.", k:"The whole 3σ range outside the window.", g:"K3", src:"KILL_SHEET:27; atomos FS16"},
+ {d:"~2030", s:"JUNO", t:"Mass ordering", u:"A5",
+  p:"Normal ordering.", r:"Inverted ordering.", k:"Inverted ordering established.", g:"K3", src:"KILL_SHEET:31"},
+ {d:"2030s", s:"NOvA/T2K, DUNE, Hyper-K", t:"CP phase and octant", u:"A2",
+  p:"sign(cos δ) = sign(s₂₃² − ½); cos²δ ≤ 0.21; |J| ≥ 0.0277.", r:"Other δ.", k:"δ near 0° or 180°.", g:"K3", src:"KILL_SHEET:28"},
+ {d:"2030s", s:"LEGEND-1000, nEXO", t:"No neutrinoless double beta decay", u:"A3 (Dirac)",
+  p:"m<sub>ββ</sub> = <span class='num'>0</span>. Dirac needs m<sub>lightest</sub> below 7.66 meV (NO).", r:"Majorana.", k:"Any 0νββ signal.", g:"K3", src:"KILL_SHEET:29; FS11"},
+ {d:"~2030", s:"DESI DR3 + Euclid + CMB-S4", t:"Sum of neutrino masses", u:"A4",
+  p:"Σm<sub>ν</sub> = <span class='num'>0.0613–0.0614 eV</span> (masses 2.24 / 8.95 / 50.3 meV); m<sub>β</sub> ≈ 9 meV (unreachable by KATRIN, about 22× below).", r:"Minimal normal-ordering floor 0.0587 eV, 0.06σ away.", k:"A 95% bound below 0.0609 eV. It already shows about 3σ effective-mass tension with DESI, shared with the minimal ordering. Growing-mass tower: m<sub>ν</sub>(z=3)/m<sub>ν</sub>(0) = 0.59–0.75, dies if w = −1.", g:"K3", src:"KILL_SHEET:30; CFG507; neutrino_desi"},
+ {d:"no date", s:"CMB B-modes", t:"Inflation by stochastic misalignment", u:"CFG362",
+  p:"H<sub>I</sub> ≤ 83 GeV.", r:"High-scale inflation.", k:"A B-mode detection.", g:"K3", src:"CFG362"}
+]}
+];
+
+var CONF = [
+{h:"Passes and agreements", rows:[
+ {t:"SPARC rotation curves", o:"Kernel ν<sub>mono</sub> rms 0.100 / 0.099 dex; band [7.8e-11, 2.0e-10] contains both footings. Non-diagnostic of a₀ itself.", r:"pass", s:"GATES 1.01; concordance P1"},
+ {t:"BTFR zero-point", o:"Both footings inside [8.7e-11, 1.55e-10]; canonical about 1.8σ below the median.", r:"pass", s:"concordance P3"},
+ {t:"KiDS lensing RAR", o:"χ²/dof 2.03 / 0.94; canonical inside only via a hot-CGM file (marginal).", r:"pass", s:"concordance P2"},
+ {t:"Milky Way vertical force", o:"Round cold energy beats the QUMOND phantom disc in 32/32 cells; MUTATE restores the rejection.", r:"pass", s:"CFG514/516"},
+ {t:"Early-type lensing levels, clusters, MW satellites", o:"Pass with the census edge: lensing −0.05 / −0.12; clusters blind and declared; satellites 2/39 unbound.", r:"pass", s:"CFG515"},
+ {t:"Baryonic Faber–Jackson, groups", o:"Consistent supply closes the gap: +0.00 to +0.06 dex.", r:"pass", s:"CFG540/543"},
+ {t:"c<sub>T</sub> = c, γ<sub>PPN</sub> = 1, solar-system nulls", o:"GW170817 exact; lensing = dynamics residual 0.601σ; planetary nulls pass by 3.8–6.8 orders. The covariant door fails Cassini Q2 by 13–17σ (retired door).", r:"pass", s:"concordance N1–N4"},
+ {t:"CMB, Lyα forest, SN host-mass step", o:"CMB Δχ² 1.343 / 4998 multipoles; Lyα 0.4–0.9σ; 6.9σ step reproduced (decisive tests 18% power).", r:"pass", s:"ledger B"},
+ {t:"Local a₀ and RC100 flat law", o:"47 MeerKAT discs match SPARC; RC100 flat a₀ disfavours the ΛCDM-native rise at 3.9σ (a restatement of the falling dark-matter fraction).", r:"pass", s:"CFG301; SLH 3rd pass"},
+ {t:"No bar-strength dependence, bulk-flow null", o:"−0.026 ± 0.039 dex; β = 0.447 against 0.440.", r:"pass", s:"SLH"}
+]},
+{h:"Fails and tensions", rows:[
+ {t:"Structure growth, gravitating field", o:"Fails at 512³: 0.150–0.193 against the 0.10 cut, σ₈ +3–5%. The particle-density pass stands (PAPER45 v2.2). The excess is intrinsic and persists at about half size with the measured supply (0.66 → 0.29 can).", r:"fail", s:"CFG555/556/595"},
+ {t:"Milky Way outer slope", o:"Z −3.6 / −3.9 (can / alt): shape excluded as frozen, resting on the distance scale. DR4 decides.", r:"fail", s:"CFG532b"},
+ {t:"SLUGGS central ellipticals", o:"+0.07 / +0.06 dex after the joint best case (class 3.5σ / 2.8σ, statistical only).", r:"fail", s:"CFG528"},
+ {t:"Milky Way ultra-faints", o:"+0.325 / +0.304 dex, 3.8 / 3.5σ against candidate B.", r:"fail", s:"GATES 1.09"},
+ {t:"Coma ultra-diffuse galaxies", o:"+1.159 dex (factor 14), 4.9σ can / 4.7σ alt. Never cite 19.4σ.", r:"fail", s:"standing rules"},
+ {t:"M31 satellites, Local Group timing", o:"M31 LVD −2.67σ. LG timing z<sub>full</sub> +2.2 can (strict radial +4.4), a data-limited tension shared with ΛCDM.", r:"fail", s:"CFG286; CFG522/548"},
+ {t:"Chae EFE fits (the cost of R7)", o:"4.1 / 4.3σ from zero external field.", r:"fail", s:"GATES 1.15"},
+ {t:"a₀ rising with z: MUSE-DARK III and eRASS1", o:"MUSE a₀(z≈1) = 2.38e-10, a rise (15.1σ raw, 1.9–3.0σ after drift); the standing notes call it a live threat. eRASS1 η(z) +0.187 ± 0.013 dex per unit z (selection-prone) against zero for constant a₀.", r:"fail", s:"standing rules; Ciocan+26"},
+ {t:"No cold energy", o:"Breaks X-COP (13–15σ), the Bullet cluster (Z<sub>B</sub> +7.9) and LG timing; SPARC rms 0.100 / 0.101 dex. Mass is required.", r:"fail", s:"CFG624"},
+ {t:"Reionization optical depth", o:"τ<sub>e</sub> 0.064–0.070 against Planck 0.054 ± 0.007 (+1.4–2.2σ, adverse).", r:"fail", s:"NF P19"},
+ {t:"Retired-arm failures", o:"Single-metric MI lensing under-lenses (F(1) 0.563 vs 1/ν 0.707); bulk-flow boost overshoots about 10×; the a₀/2 planetary tail is excluded ×1018 to ×40,000; the a₀/c drift ×246 (MESSENGER); the disformal photon metric by 7.3 orders. These closed the modified-inertia arm.", r:"fail", s:"prep_2026 SALVAGE_SYNTHESIS, DOOR_SCOREBOARD"}
+]},
+{h:"Not diagnostic", rows:[
+ {t:"Cosmic shear, framework-native", o:"Δχ² +23.85 / +4.20 (can), +30.04 / +5.56 (alt) on 20 KiDS / 38 DES points. Not diagnostic under the frozen rules; leans against. The S₈-free fit needs 0.746 / 0.726. CFG590 and CFG591 are context only (ΛCDM-calibrated machinery).", r:"nd", s:"CFG592"},
+ {t:"KiDS inner shortfall", o:"ε +0.34 / +0.23 at 52–98 kpc; footing-dependent (alt closed by a +0.10 dex stellar mass). The edge position does not move it (CFG600, void); the leaked-satellite normalisation does (CFG601).", r:"nd", s:"CFG529/531/600/601"},
+ {t:"Early-type age signal", o:"Raw KiDS, equal-mass old vs young early types: K9 A = +0.166 (×1.46), Z +2.33; stellar-mass bias not excluded. Colour clock undecided; early-only (Z +3.44 matched).", r:"nd", s:"CFG585–589, 700"},
+ {t:"High-z a₀ (z ≈ 1.5–5)", o:"KURVS lean to the rival, flat under Burkert, CRISTAL both-consistent, ALPAKA / Amvrosiadis / Roman-Oliveira lower bounds, BX442 pressure-dependent (a₀ ×2.4), JWST-baryon discs y = 1–48. None is a detection.", r:"nd", s:"CFG140–229, 270–285, 437, 602"},
+ {t:"High-z BTFR, SNe a₀", o:"Jeanneau Δb +0.140 ± 0.272 (0.51σ can, 1.41σ alt); footing fork a wash (0.99 / 0.95σ); SNe ρ<sub>DE</sub> against galaxy a₀ ratio 1.64, +1.5σ.", r:"nd", s:"jeanneau_refit; sne_lambda"},
+ {t:"Cosmic-time and dark-energy triangulation", o:"f<sub>DM</sub>(<R<sub>e</sub>) decline −0.086 predicted vs −0.080 ± 0.035; H(z) tension Z 2.2–3.2, route-dependent.", r:"nd", s:"CFG547"},
+ {t:"Merger-vs-galaxy settling", o:"α = {0} only on both footings; α = 0.1, 0.3, ∞ excluded (Z<sub>B</sub> +5.9 to +8.1). CFG597, 599 and 622 void.", r:"nd", s:"CFG621/623"},
+ {t:"UFD infall order, clusters vs MW cold column, bar friction", o:"Wrong sign none reaches 2σ; suppression below 20% at 95%; partial ρ −0.091 (p 0.35).", r:"nd", s:"CFG463/517/560"},
+ {t:"MW outer HI flaring, DiskMass σ<sub>z</sub>, SAGA, void lensing", o:"No qualifying measurement or non-discriminating.", r:"nd", s:"CFG561–578"},
+ {t:"Wide-binary DR3 dry run", o:"γ̂ 1.205 ± 0.035 (can) / 1.2025 ± 0.0337 (alt), contaminated: evidence for nothing.", r:"nd", s:"PREREGISTRATION_DR4"},
+ {t:"Bullet-type cluster mass", o:"Lensing mass traces galaxies (right sign); the kernel supplies 2.6–3.3× against 8.3–9.8× needed, a 3.2× gap.", r:"nd", s:"NF P5"}
+]}
+];
+
+var DNC = [
+ ["s^TX amplitude and bands","8.68e-10 collapsed to 1.258e-15 under the α = 2 kernel (Amdt 5). The '9.6×' margin is also void."],
+ ["Wide-binary targets 1.09, 1.0246, 1.0310, 1.1582, 1.2139 / 1.2592","Superseded by Amdt 10 to 14. The gated 1.0004–1.0006 'Newton confirms the framework' was withdrawn (Amdt 6)."],
+ ["a₀(3) = 0.74, +6% bump at z ≈ 0.4, CPL a₀","Retired dressing. The derived law is flat below 1% for z ≤ 5. The CPL numbers survive only as one dark-energy-tracking branch."],
+ ["'κ = ½ derived'","κ is fitted. The deepseek PD01–22 and glm53 'equilibrium' claims, and GF2's SIS ratio, are not the law's κ."],
+ ["'Theory closed' or 'every door closed'","Say every local route is closed and one nonlocal door remains."],
+ ["Ly-α '6–8σ' exclusion","Corrected to 0.4–0.9σ."],
+ ["Coma UDG '19.4σ'","Use 4.9σ (can) / 4.7σ (alt) / 2.7σ (first infall)."],
+ ["5.09 keV line, the 2.55 keV line, λ<sub>fs</sub> = 0.558 Mpc, 'cosmic-noon freeze'","Self-anchored; 6.3σ below the forest floor. Do not list as predictions."],
+ ["KiDS 'tolerates 6–14% of a CDM-like halo'","A covariance bug. Void."],
+ ["MUSE reconciliation; v9 dark sector; condensate or cluster phase-pinning dark sector","Dead or withdrawn."],
+ ["Atomos v2 claims","The no-valid-holdout and 'Gate B forced' claims are withdrawn; v3 (DOI 23246734) is current."],
+ ["'Z as the dark-to-baryon ratio'; MIGHTEE '5σ' a₀ rise; 'DR4 a₀ 20–21% worse than SPARC'","Wrong or flips with M/L (DR4 is 12.6% better)."],
+ ["Priority over Alcock 2609.38796","Never claim Zenodo priority; his letter was received 07-10."],
+ ["Council sessions and the 'light-end soliton' for UFDs","Fictional AI transcripts in ai_slop/. Only the session RESULTS files are real."],
+ ["Older ledger wording","The 09-02 and 09-09 ledgers and the June-era PREDICTIONS_100 predate the retractions. Re-check every number before citing."]
+];
+
+var NON = [
+ ["S8","No prediction either way. Linear order is inherited; the nonlinear sign is adverse and unpriced."],
+ ["Early-galaxy counts at z > 10","Halo abundance is ΛCDM's, since the law switches off before turnaround. The JWST UV-luminosity excess is neither help nor harm."],
+ ["21-cm and cosmic dawn","No linear signature, though the transition falls in the EDGES window."],
+ ["Collapse-timing speed-up (1.1–2× at z = 6–25)","Real but observationally inaccessible; it needs rotators below Σ† at z > 5."],
+ ["Separating B from Newton or ΛCDM in DR4","All three predict γ = 1.000. A Newtonian result is survival, not confirmation."],
+ ["a₀ from Gaia DR4","DR4 does not measure a₀ = 9.36e-11."],
+ ["Killing ΛCDM","No committed forecast separates the framework from ΛCDM above 1.3σ."],
+ ["The Standard Model mass sector","Walled. No forced structure; textures A2 withdrawn."],
+ ["Clusters alone","The framework does not close clusters by itself; η(R500) 1.72–2.08 is a standing liability."]
+];
+
+var state = {f:"all", q:""};
+function gradeChip(g){return '<span class="chip '+g.toLowerCase()+'">'+g+'</span>';}
+function renderFuture(){
+  var out = "";
+  FUTURE.forEach(function(sec){
+    out += '<h3>'+sec.h+'</h3>';
+    if(sec.n) out += '<p class="note">'+sec.n+'</p>';
+    out += '<div class="head"><span>Date</span><span>Test</span><span>Framework predicts</span><span>Rivals and what counts against it</span><span style="text-align:right">Grade</span></div>';
+    sec.rows.forEach(function(r){
+      out += '<div class="row" data-g="'+r.g+'"><div class="date">'+r.d+(r.s?'<small>'+r.s+'</small>':'')+'</div>'+
+        '<div class="t"><b>'+r.t+'</b>'+(r.u?'<span>'+r.u+'</span>':'')+'</div>'+
+        '<div class="c"><div class="lab">Framework predicts</div>'+r.p+'</div>'+
+        '<div class="c"><div class="lab">Rivals and what counts against it</div><span class="l"><b>Rivals.</b> '+r.r+'</span><span class="l"><b>Counts against.</b> '+r.k+'</span>'+(r.w?'<span class="warn">'+r.w+'</span>':'')+'<span class="src">'+r.src+'</span></div>'+
+        '<div class="g">'+gradeChip(r.g)+'</div></div>';
+    });
+  });
+  document.getElementById("future").innerHTML = out;
+}
+var RL = {pass:"PASS", fail:"FAILS", nd:"NOT DIAG.", "void":"VOID"};
+function renderConf(){
+  var out = "";
+  CONF.forEach(function(sec){
+    out += '<h3>'+sec.h+'</h3><div class="h2"><span>Test</span><span>Outcome</span><span>Result</span><span>Source</span></div>';
+    sec.rows.forEach(function(r){
+      out += '<div class="r2"><div class="t"><b>'+r.t+'</b></div><div>'+r.o+'</div><div><span class="chip '+r.r+'">'+RL[r.r]+'</span></div><div class="src" style="margin:0">'+r.s+'</div></div>';
+    });
+  });
+  document.getElementById("conf").innerHTML = out;
+}
+function cards(id, arr){
+  document.getElementById(id).innerHTML = arr.map(function(c){return '<div class="card"><b>'+c[0]+'</b><p>'+c[1]+'</p></div>';}).join("");
+}
+function apply(){
+  var q = state.q.toLowerCase(), shown = 0, total = 0;
+  document.querySelectorAll("#future .row").forEach(function(el){
+    total++;
+    var ok = (state.f==="all" || el.dataset.g===state.f) && (!q || el.textContent.toLowerCase().indexOf(q)>-1);
+    el.hidden = !ok; if(ok) shown++;
+  });
+  document.querySelectorAll("#conf .r2").forEach(function(el){
+    el.hidden = !!q && el.textContent.toLowerCase().indexOf(q)===-1;
+  });
+  document.getElementById("count").textContent = shown+" of "+total+" future tests";
+}
+renderFuture(); renderConf(); cards("dnc", DNC); cards("non", NON);
+document.querySelectorAll(".tools button").forEach(function(b){
+  b.addEventListener("click", function(){
+    state.f = b.dataset.f;
+    document.querySelectorAll(".tools button").forEach(function(x){x.setAttribute("aria-pressed", x===b ? "true":"false");});
+    apply();
+  });
+});
+document.getElementById("q").addEventListener("input", function(e){state.q = e.target.value; apply();});
+apply();
+</script>
