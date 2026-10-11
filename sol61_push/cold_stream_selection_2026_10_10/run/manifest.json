@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLD_STREAM_OCCUPANCY_AND_COEFFICIENT",
+  "repository": {
+    "commit": "8a10775bdbe6d5def3698ea0ee3cc0a6fdb6476d",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_stream_selection_2026_10_10/check.py",
+    "sol61_push/cold_stream_selection_2026_10_10/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6 standard library"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite numerical checks of target-dependent escape-speed crossing bound, residence probabilities and coefficient dictionary",
+    "coefficient_domain": "Analytic real identities; binary64 quadrature and finite differences",
+    "conventions": "G=Mb=a0=1 for target; G Mb=1 E=-1 for tracer orbits; mass-equivalent rho_DE; exponential kernel",
+    "inputs": [
+      "Supply ratio5.364; q=.5,1,4,10,20; orbit j=.3,.7 with isotropic orientations"
+    ],
+    "bounds": {
+      "quadrature_intervals": 4096,
+      "wall_seconds": 15,
+      "orbit_normalization_tolerance": 1e-07
+    },
+    "non_claims": [
+      "No cold species identified",
+      "No full self-gravitating orbit evolution or stability test",
+      "No derived kappa or new empirical limit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T02:19:45.879515+00:00",
+    "runtime_seconds": 0.138257,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 15.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_stream_selection_2026_10_10/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_stream_selection_2026_10_10/check.py",
+      "sha256": "997dd5b5a6fa7884c203c6797406bcb52051ff01aeee52da7d551b8d9aa9d6c1",
+      "sha256_after": "997dd5b5a6fa7884c203c6797406bcb52051ff01aeee52da7d551b8d9aa9d6c1"
+    }
+  ],
+  "output_directory": "sol61_push/cold_stream_selection_2026_10_10/run",
+  "declared_results": [
+    "sol61_push/cold_stream_selection_2026_10_10/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_stream_selection_2026_10_10/run/stdout.txt",
+      "sha256": "3db92f6ada8e5e4d8bf8f8a372506dcedc879db7cb9c2e3e0bc3c40560040568",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_stream_selection_2026_10_10/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_stream_selection_2026_10_10/run/results.json",
+      "sha256": "51d627e93b447bf77bad7283cf2e5a82cdb8adf0c66b7db8a051d9eb77c55f36",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
