@@ -110,6 +110,13 @@ try:
 except Exception:
     _LIBC = None
 RELIEF = os.environ.get("CFG596_RELIEF", "1") == "1"
+def _relief_loop():
+    while True:
+        time.sleep(1.0)
+        _LIBC.malloc_zone_pressure_relief(None, 0)
+if RELIEF and _LIBC is not None:
+    import threading
+    threading.Thread(target=_relief_loop, daemon=True).start()          # keep RSS ~ live memory between stage changes too
 def stage(name):
     """stage label (memory profile) + return freed malloc pages to the OS (macOS keeps freed pages resident as 'reusable'
     until pressure; this keeps the process RSS equal to its live memory; no effect on any number)."""

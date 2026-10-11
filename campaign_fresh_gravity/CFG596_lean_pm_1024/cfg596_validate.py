@@ -81,16 +81,18 @@ for job, run in (("VLs", "S0_L100_N256"), ("VLr", "LRcan_L100_N256")):
 
 # ---------------- V-M
 mem = {}
-for job in ("VEa", "VEb", "VLs", "VLr", "VMs", "VMr", "P0", "P1", "P2"):
+for job in ("VEa", "VEb", "VLs", "VLr", "VMs", "VMr", "VMx", "P0", "P1", "P2"):
     wl = os.path.join(W, job, "watch.log")
     if not os.path.exists(wl): continue
-    pk = 0.0; sw0 = None; swmax = 0.0
+    pk = 0.0; sw0 = None; swmax = 0.0; fpk = 0.0
     for line in open(wl):
         mm = re.search(r"rss ([\d.]+) GB peak ([\d.]+) swap_used ([\d.]+) MB \(start ([\d.]+)\)", line)
         if mm: pk = max(pk, float(mm.group(2))); swmax = max(swmax, float(mm.group(3)) - float(mm.group(4)))
+        mf = re.search(r"footprint ([\d.]+) GB", line)
+        if mf: fpk = max(fpk, float(mf.group(1)))
     m_, _ = mine(job)
-    mem[job] = dict(watch_peak_rss_gb=pk, max_swap_growth_mb=swmax, engine_maxrss_gb=(m_ or {}).get("maxrss_gb") or ((m_ or {}).get("mem") or [[None, None]])[-1][1])
-    P(f"V-M {job}: watchdog peak RSS {pk:.2f} GB, engine ru_maxrss {mem[job]['engine_maxrss_gb']}, swap growth {swmax:.0f} MB")
+    mem[job] = dict(watch_peak_rss_gb=pk, watch_peak_footprint_gb=fpk or None, max_swap_growth_mb=swmax, engine_maxrss_gb=(m_ or {}).get("maxrss_gb") or ((m_ or {}).get("mem") or [[None, None]])[-1][1])
+    P(f"V-M {job}: watchdog peak RSS {pk:.2f} GB (20 s samples), footprint {fpk:.2f} GB, engine ru_maxrss {mem[job]['engine_maxrss_gb']}, swap growth {swmax:.0f} MB")
 RES["memory"] = mem
 VMs, _ = mine("VMs")
 if VMs and "z0" in VMs["snap"]:

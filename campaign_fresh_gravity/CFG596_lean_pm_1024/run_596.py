@@ -9,6 +9,7 @@ Jobs:  VEa  exact RES can N256 L200 NSEED256 RMIN 1.56   (CFG527 reproduction, g
        VLs / VLr  lean S0 / RES can, N256 L100 NSEED512 RMIN 0.78125 (gate V-L vs CFG530)
        VMs  lean S0 N512 L100 NSEED512 (full run, V-M + reported comparison with CFG530 S0_L100_N512)
        VMr  lean RES can N512 L100 NSEED512, first 12 force calls (V-M)
+       VMx  lean RES can N1024 L100, first 3 steps + zi snapshot (memory probe before production, V-M)
        P0 / P1 / P2  production: lean S0 / RES can / RES alt, N1024 L100 NSEED1024 RMIN 0.78125, 14 threads, spill on."""
 import os, sys, subprocess, time, json, re
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -22,6 +23,7 @@ JOBS = {
     "VLr": dict(sw="RES", foot="canonical", N=256, MODE="lean", L="100", NSEED="512", RMIN="0.78125", THREADS="3"),
     "VMs": dict(sw="S0", foot="canonical", N=512, MODE="lean", L="100", NSEED="512", RMIN="0.78125", THREADS="12", SPILL="1"),
     "VMr": dict(sw="RES", foot="canonical", N=512, MODE="lean", L="100", NSEED="512", RMIN="0.78125", THREADS="12", SPILL="1", MAXSTEPS="12", PROFILE="1"),
+    "VMx": dict(sw="RES", foot="canonical", N=1024, MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1", MAXSTEPS="3"),
     "P0": dict(sw="S0", foot="canonical", N=1024, MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1"),
     "P1": dict(sw="RES", foot="canonical", N=1024, MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1"),
     "P2": dict(sw="RES", foot="alt", N=1024, MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1"),
