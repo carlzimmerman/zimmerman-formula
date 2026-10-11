@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "claim_id": "INSTANTANEOUS_DIPOLE_SIZE_RESPONSE",
+  "repository": {
+    "commit": "edf1b5e1ae0a240c583f1d62eaf9b94a487a581a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/response_channels_2026_10_10/check.py",
+    "sol61_push/response_channels_2026_10_10/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6 standard library"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite translated/dilated Gaussian force integrals approach analytically derived instantaneous moment response rates with ratio 2",
+    "coefficient_domain": "Real analytic identities; binary64 Simpson integration",
+    "conventions": "4*pi*G=rho_center=R=alpha=1; two-sided drift; tau=rho^-1/2; isolated potentials; target fixed",
+    "inputs": [
+      "Gaussian target; shifts/dilations .02,.01,.005; r in [0,12]; mu in [-1,1]"
+    ],
+    "bounds": {
+      "radial_intervals": [
+        400,
+        800
+      ],
+      "angular_intervals": 80,
+      "relative_tolerance": 0.001,
+      "wall_seconds": 20
+    },
+    "non_claims": [
+      "No time evolution, equilibrium proof, merger constraint or identification of substance",
+      "No derivation of target profile, kappa or vacuum coupling",
+      "Moment rates need not be exponential or equal actual mass delivery rates"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T01:45:40.359497+00:00",
+    "runtime_seconds": 0.7783,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 15,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/response_channels_2026_10_10/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/response_channels_2026_10_10/check.py",
+      "sha256": "fe2774661fd2efd00b5455ccc5b4392d08b3d7c4a53b6546699a0a846998d61c",
+      "sha256_after": "fe2774661fd2efd00b5455ccc5b4392d08b3d7c4a53b6546699a0a846998d61c"
+    }
+  ],
+  "output_directory": "sol61_push/response_channels_2026_10_10/run",
+  "declared_results": [
+    "sol61_push/response_channels_2026_10_10/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/response_channels_2026_10_10/run/stdout.txt",
+      "sha256": "dda4b4f8796a30bb470ae5d433714268d8da10aa8ba328e487192c6c3476a412",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/response_channels_2026_10_10/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/response_channels_2026_10_10/run/results.json",
+      "sha256": "2703c4437de34067d9e33c72b066c9a16cb80f701fabdc95edb77a0e383727c2",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
