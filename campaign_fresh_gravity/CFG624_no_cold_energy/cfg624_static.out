@@ -1,0 +1,37 @@
+CFG624 G1 (SPARC), G2 (X-COP) and G4 (Local Group timing + Tian+26 groups) for NO COLD ENERGY (FROZEN_CRITERIA.md 803cef306).
+Committed pipelines are executed read-only; only the dark component is removed.  MUTATE checks are run in the same pass (named M-*).
+  G1: CFG487's SPARC harness (as CFG515/cfg515_sparc.py runs it).  NCE = the law, no edge; B = the census edge; M-G1: a0 -> 0.
+  G2: CFG4_clusters.py's X-COP rows (the record's corrected audit).  NCE = M_law; B = identity reading; M-G2 reproduces CFG4.
+  G4: CFG522's timing machinery (CFG515/513 constants); NCE = M3 (baryons, law between the pair, no EFE) in the NCE background age;
+      M-G4 reproduces CFG522 M3 at 13.80 Gyr and runs a0 -> 0.  Groups: CFG543's committed C0_noedge row (= the law, no edge).
+
+== G1 SPARC RAR (CFG487 harness, read-only)
+  [canonical] RAR rms: NCE (law, no edge) 0.1003 dex; B (census edge) 0.1003; d +0.00000; A3 sp/dw 1.000/1.000; M-G1 a0 -> 0 (Newtonian baryons) 0.3966
+  [alt] RAR rms: NCE (law, no edge) 0.1013 dex; B (census edge) 0.1013; d +0.00000; A3 sp/dw 1.000/1.000; M-G1 a0 -> 0 (Newtonian baryons) 0.3966
+  [PASS] C-G1 the harness reproduces CFG39's rms0 (canonical): 0.100328994 vs 0.100328994
+  [PASS] M-G1a census row reproduces CFG515 (d rms = 0): d rms +0.0e+00, +0.0e+00
+  [PASS] M-G1b a0 -> 0 FAILS G1 (rms > 0.15): 0.397, 0.397
+  G1 verdict: PASS
+
+== G2 X-COP (the record's corrected hydrostatic audit rows, as CFG4_clusters.py)
+  [canonical nu_mono] at 0.80 R500 (12 clusters): eta = M_HSE/M_NCE = 1.820 +- 0.232; missing 3.09 +- 0.71 M_b (15.1 sigma on the median); NCE/measured 0.550; B identity/measured 0.946; eta at b 0.06/0.1/0.2: 1.94 / 2.02 / 2.27
+  [canonical P2] at 0.80 R500 (12 clusters): eta = M_HSE/M_NCE = 2.029 +- 0.268; missing 3.47 +- 0.70 M_b (17.1 sigma on the median); NCE/measured 0.493; B identity/measured 0.946; eta at b 0.06/0.1/0.2: 2.16 / 2.25 / 2.54
+  [alt nu_mono] at 0.80 R500 (12 clusters): eta = M_HSE/M_NCE = 1.679 +- 0.216; missing 2.75 +- 0.72 M_b (13.2 sigma on the median); NCE/measured 0.596; B identity/measured 0.946; eta at b 0.06/0.1/0.2: 1.79 / 1.87 / 2.10
+  [alt P2] at 0.80 R500 (12 clusters): eta = M_HSE/M_NCE = 1.861 +- 0.248; missing 3.14 +- 0.72 M_b (15.2 sigma on the median); NCE/measured 0.537; B identity/measured 0.946; eta at b 0.06/0.1/0.2: 1.98 / 2.07 / 2.33
+  [PASS] M-G2a this lane reproduces CFG4's committed eta and the identity reading (restore cold energy) to 1e-9: canonical: eta 1.8196 vs 1.8196, B 0.9457; alt: eta 1.6787 vs 1.6787, B 0.9457
+  [PASS] M-G2b a0 -> 0 gives the Newtonian deficit (M_HSE/M_b, CFG4 K1 Newtonian 1 + 5.73): 6.73, 6.73
+  G2 verdict: FAIL
+
+== G4 Local Group timing (CFG522 machinery, read-only)
+  background: CFG522 t0 13.800 Gyr (record); NCE (Omega_b 0.0493, Omega_k +0.2645, Omega_L 0.68623) t0 17.769 Gyr ; CAMB age (with radiation) 17.73114807005997
+  [canonical] NCE (t0 17.77 Gyr): two-body v -207.7 (z_meas +22.4), at v_t 82.4 v -190.3 (z_full +4.90, sigma 16.5); test-mass v -254.5 (z_full +8.91)
+  [canonical] record age 13.80: two-body v -178.0 (z +15.6), z_full +2.58; test-mass v -222.6; a0 -> 0 (NCE age): v nan z_full inf
+  [alt] NCE (t0 17.77 Gyr): two-body v -225.0 (z_meas +26.3), at v_t 82.4 v -208.9 (z_full +6.35, sigma 15.7); test-mass v -274.4 (z_full +10.69)
+  [alt] record age 13.80: two-body v -194.4 (z +19.3), z_full +3.75; test-mass v -241.5; a0 -> 0 (NCE age): v nan z_full inf
+  [PASS] M-G4a at 13.80 Gyr the M3 numbers reproduce CFG522 (0.05 km/s): canonical: -222.55/-222.55, -178.00/-178.00; alt: -241.47/-241.47, -194.37/-194.37
+  [PASS] M-G4b a0 -> 0 (Newtonian baryons) FAILS the timing: canonical: v nan; alt: v nan
+  groups [canonical] Tian+26 N 63: NCE (law, no edge) mean +0.010 dex (Z +0.31); B consistent supply P2 +0.060 (Z +1.65)
+  groups [alt] Tian+26 N 63: NCE (law, no edge) mean -0.010 dex (Z -0.31); B consistent supply P2 +0.043 (Z +1.20)
+  G4 verdicts: LG FAIL; groups PASS
+
+7/7 checks pass; elapsed 16.8 s
