@@ -1,0 +1,135 @@
+CFG468 -- THE KERNEL FAMILY.  Is there a nu(y) that (i) fits the SPARC RAR as well as nu_mono, (ii) keeps nu -> y^-1/2 (y -> 0)
+and nu -> 1 (y -> inf), and (iii) removes the zero-field nonlinear FAIL of the UNGATED chassis (CFG321/322/325/358)?
+Criteria frozen first: FROZEN_CRITERIA.md (b0d7274a0).  a0 = kappa c sqrt(G rho_Lambda) is fixed; kappa is FITTED and refit per
+kernel; both footings reported (9.36e-11 rho_Lambda / 1.13e-10 rho_crit).
+
+ARM 1 (SPARC): lane V's v_common (imported read-only, sha256 recorded), T-free (Upsilon free per galaxy, all, sigma_int 0.0808) and
+T-fix (Upsilon 0.5, MLS16 cuts, sigma_int 0.11); a0 refit per kernel; SPARC-PASS iff Delta chi2 vs nu_mono <= 4 in both.
+ARM 2 (zero-field): the CFG321 engine byte-identical (cfg468_engine.py), kernels swapped, one physical unit y*_ref; arrays made by
+cfg468_zero_field_runs.py (nu_mono baseline: CFG325's committed-run arrays, re-scored); CFG325's frozen ratio rule on
+N = 127/255/511/1023 at eps = 1e-3 and 1e-4, plus the pre-declared BOUNDED class.  VIABLE = SPARC-PASS and CONVERGENT.
+SCOPE: the zero-field arm is the UNGATED chassis only (law on everywhere, 1-D, data class D); nothing about candidate B, growth or
+sigma_8.
+Run from the repository root:   python3 campaign_fresh_gravity/CFG468_kernel_family/cfg468_kernel_family.py
+MUTATE:  CFG468_MUTATE=1 ... : the kinked kernel (1/nu piecewise linear in sqrt y) must NOT come out VIABLE (rc = 1 when it does not).
+
+  engine sha256 bde2fbb6abb12fad4e8392917b792374016fd8127da2a02dcaa8338ff8952174 == CFG321's engine (verified); v_common sha256 2da20e2a871c375d...
+  c sqrt(G rho_Lambda) = 1.8725e-10, c sqrt(G rho_crit) = 2.2624e-10 (H0 67.4, Omega_L 0.685): kappa = 1/2 -> a0 = 9.3624e-11 / 1.1312e-10
+
+======================================================================================================================
+K  THE KERNELS: identity, the nu_n family, the limits (ii), the tails (reporting)
+======================================================================================================================
+  [PASS] C-K K0 is the record's standing kernel (CFG5_common.nu_mono itself, XC4), and nu_simple / nu_standard equal the nu_n family [1/2 + sqrt(1/4 + y^-n)]^(1/n) at n = 1, 2 to 1e-12 on y in [1e-6, 1e6]
+         measured: max rel dev n=1 0.0e+00, n=2 4.4e-16
+    nu_mono     : nu sqrt(y) at y = 1e-30 / 1e-20 / 1e-12: 1 / 1 / 1;  nu - 1 at y = 1e2/1e4/1e6/1e8: 7.46e-03 / 8.94e-05 / 1.04e-06 / 1.19e-08;  (ii): exact
+    nu_simple   : nu sqrt(y) at y = 1e-30 / 1e-20 / 1e-12: 1 / 1 / 1;  nu - 1 at y = 1e2/1e4/1e6/1e8: 9.90e-03 / 1.00e-04 / 1.00e-06 / 1.00e-08;  (ii): exact
+    nu_standard : nu sqrt(y) at y = 1e-30 / 1e-20 / 1e-12: 1 / 1 / 1;  nu - 1 at y = 1e2/1e4/1e6/1e8: 5.00e-05 / 5.00e-09 / 5.00e-13 / 8.88e-16;  (ii): exact
+    S1          : nu sqrt(y) at y = 1e-30 / 1e-20 / 1e-12: 2.77935e-06 / 0.277765 / 1;  nu - 1 at y = 1e2/1e4/1e6/1e8: 7.46e-03 / 8.94e-05 / 1.04e-06 / 1.19e-08;  (ii): operational (y >= 2.56e-19)
+    S2          : nu sqrt(y) at y = 1e-30 / 1e-20 / 1e-12: 1.4063e-11 / 1.4063e-06 / 0.014063;  nu - 1 at y = 1e2/1e4/1e6/1e8: 7.46e-03 / 8.94e-05 / 1.04e-06 / 1.19e-08;  (ii): operational (y >= 1e-08)
+    nu_rar      : nu sqrt(y) at y = 1e-30 / 1e-20 / 1e-12: 1 / 1 / 1;  nu - 1 at y = 1e2/1e4/1e6/1e8: 4.54e-05 / 0.00e+00 / 0.00e+00 / 0.00e+00;  (ii): exact
+    nu_p2       : nu sqrt(y) at y = 1e-30 / 1e-20 / 1e-12: 1 / 1 / 1;  nu - 1 at y = 1e2/1e4/1e6/1e8: 4.99e-03 / 5.00e-05 / 5.00e-07 / 5.00e-09;  (ii): exact
+  [PASS] (ii) numerically: every kernel labelled 'exact' has nu sqrt(y) = 1 to 1e-6 at y = 1e-30 and nu - 1 < 1e-3 at y = 1e8; the splices are finite at y -> 0 (nu sqrt(y) -> 0), i.e. (ii) only operational, as frozen
+         measured: nu_mono: 1, nu_simple: 1, nu_standard: 1, S1: 2.78e-06, S2: 1.41e-11, nu_rar: 1, nu_p2: 1
+    note: nu - 1 at y = 1e6 (about Saturn) is the bare Solar-System tail; the chassis' heat filter (L340/CFG357) changes it; reporting only
+
+  KERNEL STRUCTURE (reporting; used by the README's kernel-dependence flags):
+    UFD range y = 0.01-0.1, wide binaries / EFE / clusters y ~ 0.3-10 (nu / nu_mono); Solar-System tail slope d ln(nu-1)/d ln y at 1e6; min of h' = d[y(nu-1)]/dy over y in [1e-6, 1e8] (phantom monotone iff >= 0; XC5 leaf convexity needs > -1)
+    nu_mono     : nu/nu_mono at y = 0.01/0.05/0.3/1/3/10: 1.000 / 1.000 / 1.000 / 1.000 / 1.000 / 1.000;  tail slope at 1e6 -0.97;  min h' +0.0000 at y = 1e+08
+    nu_simple   : nu/nu_mono at y = 0.01/0.05/0.3/1/3/10: 1.000 / 1.002 / 1.009 / 1.023 / 1.038 / 1.022;  tail slope at 1e6 -1.00;  min h' -0.0000 at y = 5.68e+06
+    nu_standard : nu/nu_mono at y = 0.01/0.05/0.3/1/3/10: 0.954 / 0.907 / 0.830 / 0.804 / 0.862 / 0.941;  tail slope at 1e6 -2.00;  min h' -0.0814 at y = 1.15
+    S1          : nu/nu_mono at y = 0.01/0.05/0.3/1/3/10: 1.000 / 1.000 / 1.000 / 1.000 / 1.000 / 1.000;  tail slope at 1e6 -0.97;  min h' +0.0000 at y = 1e+08
+    S2          : nu/nu_mono at y = 0.01/0.05/0.3/1/3/10: 1.000 / 1.000 / 1.000 / 1.000 / 1.000 / 1.000;  tail slope at 1e6 -0.97;  min h' +0.0000 at y = 1e+08
+    nu_rar      : nu/nu_mono at y = 0.01/0.05/0.3/1/3/10: 1.000 / 1.000 / 1.000 / 1.000 / 0.998 / 0.978;  tail slope at 1e6 +nan;  min h' -0.0324 at y = 6.63
+    nu_p2       : nu/nu_mono at y = 0.01/0.05/0.3/1/3/10: 0.956 / 0.918 / 0.878 / 0.894 / 0.949 / 0.982;  tail slope at 1e6 -1.00;  min h' -0.0000 at y = 1.19e+06
+
+======================================================================================================================
+C0  ENGINE ADAPTERS: one physical unit y*_ref; nu_mono adapter == the engine's NuMonoKernel; Q and C_L identities; C^2 joins
+======================================================================================================================
+  [PASS] C0a the generic nu_mono adapter reproduces the engine's NuMonoKernel C_T, C_L, Q to <= 1e-10 (relative) on yhat in [1e-12, 10], with the engine's own y* and C*
+         measured: {'CT': 4.440892098500626e-16, 'CL': 4.440892098500626e-16, 'Q': 1.4432899320127035e-15}; y* 2.560000e-18 vs engine 2.560000e-18
+    nu_simple   : dQ/dyhat vs 2 yhat C_T max dev 4.2e-11; d(yhat C_T)/dyhat vs C_L 6.3e-11; min C_L 1.581e-01; min C_T 3.162e-01 (convex iff C_T, C_L > 0); C_T(1) = 1.000000, C_T(1e-4) = 100
+    nu_standard : dQ/dyhat vs 2 yhat C_T max dev 4.3e-11; d(yhat C_T)/dyhat vs C_L 6.3e-11; min C_L 1.581e-01; min C_T 3.162e-01 (convex iff C_T, C_L > 0); C_T(1) = 1.000000, C_T(1e-4) = 100
+    S1          : dQ/dyhat vs 2 yhat C_T max dev 3.9e-11; d(yhat C_T)/dyhat vs C_L 2.0e-10; min C_L 1.581e-01; min C_T 3.162e-01 (convex iff C_T, C_L > 0); C_T(1) = 1.000000, C_T(1e-4) = 4.44695
+    S2          : dQ/dyhat vs 2 yhat C_T max dev 1.7e-11; d(yhat C_T)/dyhat vs C_L 1.6e-11; min C_L 2.250e-05; min C_T 2.250e-05 (convex iff C_T, C_L > 0); C_T(1) = 0.000022, C_T(1e-4) = 2.24992e-05
+  [PASS] C0b every candidate adapter satisfies dQ/dyhat = 2 yhat C_T and C_L = d(yhat C_T)/dyhat to <= 1e-6 (finite differences, away from kinks/joins) and is convex on the engine range (C_T > 0, C_L > 0)
+         measured: nu_simple: 4.2e-11/6.3e-11, minCL 1.58e-01; nu_standard: 4.3e-11/6.3e-11, minCL 1.58e-01; S1: 3.9e-11/2.0e-10, minCL 1.58e-01; S2: 1.7e-11/1.6e-11, minCL 2.25e-05
+  [PASS] C0c S1/S2 are C^2 at the join: relative jumps of C_T, C_L and dC_L/dyhat <= 1e-8 (both branches evaluated at y_s)
+         measured: S1: C_T 0.0e+00, C_L 2.2e-16, dC_L 9.1e-13; S2: C_T 2.2e-16, C_L 0.0e+00, dC_L 6.7e-13
+
+======================================================================================================================
+ARM 1  SPARC RAR (lane V machinery): a0 refit per kernel, two treatments, Delta chi2 vs nu_mono; PASS iff <= 4 in both
+======================================================================================================================
+  SPARC: 175 galaxies (SPARC_Lelli2016c.mrt + rotmod); T-free 175 galaxies, T-fix 153
+  [PASS] C-S the SPARC code reproduces p35's printed exact-law (P2) chi2_min on p35's 61-point grid: T-fix 4596.5, T-free 3139.8 (to 0.1)
+         measured: T-fix 4596.5, T-free 3139.8
+  kernel       |  T-free: a0  kappa_L  kappa_c      chi2    dchi2 |  T-fix: a0  kappa_L  kappa_c      chi2    dchi2 | PASS (<= 4 both)
+  nu_mono      |  8.8711e-11    0.474    0.392    3001.3    +0.00 | 1.1131e-10    0.594    0.492    4457.1    +0.00 | True
+  nu_simple    |  8.8054e-11    0.470    0.389    3014.1   +12.77 | 1.0859e-10    0.580    0.480    4450.2    -6.95 | False
+  nu_standard  |  1.1180e-10    0.597    0.494    3243.6  +242.31 | 1.5582e-10    0.832    0.689    4864.8  +407.64 | False
+  S1           |  8.8711e-11    0.474    0.392    3001.3    +0.00 | 1.1131e-10    0.594    0.492    4457.1    +0.00 | True
+  S2           |  8.8711e-11    0.474    0.392    3001.3    +0.00 | 1.1131e-10    0.594    0.492    4457.1    +0.00 | True
+  nu_rar       |  8.6944e-11    0.464    0.384    2971.2   -30.15 | 1.1136e-10    0.595    0.492    4456.0    -1.09 | True
+  nu_p2        |  1.0825e-10    0.578    0.478    3139.6  +138.27 | 1.4199e-10    0.758    0.628    4596.5  +139.35 | False
+  chi2 counts independent points; lane V's crude clustering deflation is about x18 (p36), so dchi2/18 is the clustered reading (reported, not used).  Distances: SPARC as tabulated (lane V convention).
+  [PASS] SPARC grid: every best fit is interior to the a0 grid (no edge minimum)
+         measured: []
+
+======================================================================================================================
+ARM 2  ZERO-FIELD (UNGATED chassis, 1-D, data class D): CFG325's frozen ratio rule on N = 127/255/511/1023, kernels swapped
+======================================================================================================================
+
+  --- nu_mono ---  zero-field verdict: OPEN
+    eps 1e-03: lambda N127 0.0414, N255 0.0663, N511 0.0721, N1023 0.0709; Amax 338.7, 1051.9, 1827.5, 1990.4
+      increments ['0.0250', '0.0057', '-0.0012']; r2 0.2295, r3 -0.2035; lambda_inf 0.0711; <rms yhat>[T/2,T] [0.5979, 0.5725, 0.5548, 0.5224]; class RESOLVED-CONVERGENT
+    eps 1e-04: lambda N127 0.0569, N255 0.0762, N511 0.0916, N1023 0.0875; Amax 897.2, 1733.9, 7434.4, 4798.7
+      increments ['0.0194', '0.0154', '-0.0042']; r2 0.7959, r3 -0.2713; lambda_inf 0.0884; <rms yhat>[T/2,T] [0.5999, 0.5069, 0.4525, 0.5034]; class OPEN
+
+  --- nu_simple ---  zero-field verdict: OPEN
+    eps 1e-03: lambda N127 0.0414, N255 0.0663, N511 0.0721, N1023 0.0709; Amax 338.7, 1051.9, 1827.5, 1990.4
+      increments ['0.0250', '0.0057', '-0.0012']; r2 0.2295, r3 -0.2035; lambda_inf 0.0711; <rms yhat>[T/2,T] [0.5979, 0.5725, 0.5548, 0.5224]; class RESOLVED-CONVERGENT
+    eps 1e-04: lambda N127 0.0569, N255 0.0762, N511 0.0916, N1023 0.0875; Amax 897.2, 1733.9, 7434.4, 4798.7
+      increments ['0.0194', '0.0154', '-0.0042']; r2 0.7959, r3 -0.2713; lambda_inf 0.0884; <rms yhat>[T/2,T] [0.5999, 0.5069, 0.4525, 0.5034]; class OPEN
+
+  --- nu_standard ---  zero-field verdict: INCOMPLETE
+    eps 1e-03: lambda N127 None, N255 None, N511 None, N1023 None; Amax -, -, -, -
+    eps 1e-04: lambda N127 None, N255 None, N511 0.0916, N1023 None; Amax -, -, 7434.4, -
+
+  --- S1 ---  zero-field verdict: CONVERGENT
+    eps 1e-03: lambda N127 None, N255 None, N511 None, N1023 None; Amax 5.5, 6.6, 6.3, 6.3
+      increments ['None', 'None', 'None']; r2 None, r3 None; lambda_inf None; <rms yhat>[T/2,T] [0.4882, 0.4846, 0.4845, 0.4845]; class BOUNDED
+    eps 1e-04: lambda N127 None, N255 None, N511 None, N1023 None; Amax 5.5, 6.6, 6.3, 6.3
+      increments ['None', 'None', 'None']; r2 None, r3 None; lambda_inf None; <rms yhat>[T/2,T] [0.4889, 0.4852, 0.4852, 0.4852]; class BOUNDED
+
+  --- S2 ---  zero-field verdict: INCOMPLETE
+    eps 1e-03: lambda N127 None, N255 None, N511 None, N1023 None; Amax -, -, -, -
+    eps 1e-04: lambda N127 None, N255 None, N511 None, N1023 None; Amax -, -, -, -
+  [PASS] C1 the nu_mono baseline re-scored from CFG325's committed-run arrays reproduces CFG325's lambda table (4 decimals) and its OPEN verdict
+         measured: OPEN; eps 1e-3 ['0.0414', '0.0663', '0.0721', '0.0709']; eps 1e-4 ['0.0569', '0.0762', '0.0916', '0.0875']
+  [PASS] C1' the generic-adapter driver (nu_mono_generic, N = 127, both eps) reproduces CFG325's lambda (4 decimals) and Amax (1 decimal)
+         measured: eps 1e-03: 0.0414/0.0414, 338.7/338.7; eps 1e-04: 0.0569/0.0569, 897.2/897.2
+    P1: max |lambda_k - lambda_nu_mono| over the (N, eps) cells available (of 8): nu_simple 0.0000 (8 cells), nu_standard 0.0000 (1 cells)
+  [PASS] P1 (prediction frozen before any run) the class-(ii) kernels reproduce nu_mono's lambda(N) to within 0.001 at every N and eps (evaluated on every available cell; the full 8-cell ladder is required for at least one class-(ii) kernel)
+         measured: {'nu_simple': ('0.0000', 8), 'nu_standard': ('0.0000', 1)}
+
+======================================================================================================================
+TABLE  kernel x gate  (VIABLE = SPARC-PASS and zero-field CONVERGENT; (ii) reported beside it)
+======================================================================================================================
+  kernel       (ii)                         dchi2 free/fix  kappa_L free/fix  SPARC           ZF eps1e-3           ZF eps1e-4       ZF verdict  VIABLE
+  nu_mono      exact                        +0.00/  +0.00    0.474/  0.594   True  RESOLVED-CONVERGENT                 OPEN             OPEN     False
+  nu_simple    exact                       +12.77/  -6.95    0.470/  0.580  False  RESOLVED-CONVERGENT                 OPEN             OPEN     False
+  nu_standard  exact                      +242.31/+407.64    0.597/  0.832  False           INCOMPLETE           INCOMPLETE       INCOMPLETE     False
+  S1           operational (y >= 2.56e-19)   +0.00/  +0.00    0.474/  0.594   True              BOUNDED              BOUNDED       CONVERGENT      True
+  S2           operational (y >= 1e-08)     +0.00/  +0.00    0.474/  0.594   True           INCOMPLETE           INCOMPLETE       INCOMPLETE UNDECIDED
+  nu_rar       exact                       -30.15/  -1.09    0.464/  0.595   True              not run              not run class (ii): = nu_mono by P1     False
+  nu_p2        exact                      +138.27/+139.35    0.578/  0.758  False              not run              not run class (ii): = nu_mono by P1     False
+
+======================================================================================================================
+VERDICT (frozen rule)
+======================================================================================================================
+  incomplete zero-field ladders: ['nu_standard', 'S2']; VIABLE undecided for: ['S2'] (a kernel failing SPARC is not VIABLE whatever its zero-field verdict)
+  VIABLE kernels: ['S1'];  VIABLE with (ii) exact: none
+  ANSWER to the question (a kernel with (i) + (ii) exact + (iii)): NO
+    S1: VIABLE only with (ii) operational -- it adds a declared constant (the splice point), against the zero-knob rule: an OPTION, not adopted
+  Scope: the zero-field arm concerns the UNGATED chassis only (law on everywhere, open FRW background, 1-D, data class D); nothing about candidate B, growth or sigma_8.  N = 2047 not run (a CONVERGENT at 1023 needs it: nu_mono's OPEN at 1023 became FAIL at 2047).
+
+  10/10 checks pass; wall 20 s
