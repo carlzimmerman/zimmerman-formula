@@ -1,0 +1,74 @@
+A bound for spherical 3D outer reservoirs
+2026-10-11; frozen criteria 4086dd855; 405/405 checks passed.
+
+IMPORTANT DISTINCTION
+The preceding exterior_deflection result requires a projected disk free of
+the mass being bounded. A reservoir outside a 3D sphere does not satisfy
+that condition: its near/far portions project inside the disk. Do not apply
+that earlier disk bound just because a catchment has an inner 3D radius.
+The bound below instead assumes a spherically symmetric positive reservoir.
+Roundness is required for settled cold mass by the framework; it is NOT
+here inferred for its unsettled reservoir. This test is conditional on that
+additional support/symmetry proposal, not a new framework assumption.
+
+CONTINUUM DERIVATION
+A uniform thin shell of radius a, measured in angular coordinates, has
+projected enclosed fraction 1-sqrt(1-s^2/a^2) inside projected radius s<a.
+For angular mass coefficient B its deflection vector is
+ alpha(theta)= B theta/[a^2(1+q)], q=sqrt(1-|theta|^2/a^2).
+Its Jacobian eigenvalues are
+ tangential: B/[a^2(1+q)], radial: B/[a^2 q(1+q)].
+The latter is largest. On a convex disk |theta|<=m<R, for every a>=R,
+it is at most B/[R^2 q_R(1+q_R)], q_R=sqrt(1-m^2/R^2).
+This follows since increasing a increases a^2, q and 1+q at fixed m;
+increasing image radius increases the eigenvalue at fixed a.
+Integrate the Jacobian along the image-pair segment, which lies inside
+that disk. Then integrate over arbitrary nonnegative shell masses. Thus
+
+ |alpha_i-alpha_j| <= B_total |theta_i-theta_j| L,
+ L=1/[R^2 q_R(1+q_R)], m=max(|theta_i|,|theta_j|)<R.
+
+This proves the continuum bound for every positive spherical shell mixture,
+not only the numerical examples. No radial profile or shell discretization
+is needed in the proof. At the centre L approaches 1/(2R^2); near the shell
+boundary it diverges, so extrapolating the central approximation is unsafe.
+
+For several declared centres and exclusion radii, use m_k and L_k separately:
+ |delta_ij| <= w_s |theta_i-theta_j| sum_k B_k L_k.
+Here delta subtracts all fixed baryonic and settled components. The B_k are
+nonnegative and must obey the shared available-mass budget. These linear
+necessary inequalities can reject some allocations before a radial fit.
+They do not establish feasibility, dynamics, ownership or a common rate.
+Arbitrary non-spherical exterior 3D mass is outside this proof's domain.
+
+GAS-ONLY ILLUSTRATION (NOT A RESERVOIR MEASUREMENT)
+All non-gas mass is hypothetically spherical about the catalogue tangent
+origin and exterior to the selected radius; real interior stars/settled
+mass invalidate this premise. Applying the formula to the gas-only
+remainder gives minimum total non-gas masses:
+ R=674.555 kpc: 6.24547e15 solar masses;
+ R=919.847 kpc: 1.29326e16;
+ R=1226.463 kpc: 2.41630e16;
+ R=2452.926 kpc: 1.01122e17.
+The limiting pair is N11.1/N11.2 in all four illustrative cases.
+These are NOT Bullet mass estimates, cold-reservoir requirements, measured
+support radii or exclusions. They demonstrate evaluation of a conditional
+bound. Their difference from the projected-disk examples compares different
+support/symmetry classes and does not rank either as a universally tighter
+bound. No observational covariance or complete image likelihood is included.
+
+VERIFICATION AND NEXT USE
+Symbolic radial derivative and central limit verified; 200 random image-pair
+shell checks plus 200 positive-shell-mixture checks pass. Controls reject
+zero interior lensing and the 3D/projected-support conflation. Finite observed
+pair outputs pass. Pinned-input manifest validates; numerical checks are
+supporting evidence, with the continuum argument above doing the universal
+work. No global novelty claim.
+
+Next, use physically declared centres/exclusion regions and the complete
+footing-specific interior prediction. Minimize required exterior mass with
+shared-budget constraints, propagating interior and astrometric uncertainty.
+A robust violation could reject that reservoir proposal. Present tests
+cannot yet do so. No action, species, rate or kappa was derived, and neither
+a0 footing received a theory verdict. Claude files and sealed predictions
+were not changed.
