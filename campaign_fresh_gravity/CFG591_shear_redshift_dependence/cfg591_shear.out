@@ -1,0 +1,175 @@
+CFG590: framework matter power vs cosmic shear, identical HMcode-2020 feedback on both models
+kappa = 1/2 FITTED; footings never pooled; flat a0; nu_mono; candidate B; cold energy MASS still required; not theory closed.
+CAMB 1.6.6; HMcode-2020 DMO base; cosmology h 0.6736, wb 0.02237, wc 0.12, ns 0.965, sigma8 0.811
+  C1 sigma8(z=0) = 0.81100 -> PASS
+  C2 fit identity |A(C_NL) - 1|, |A(C_L)|: 0.0e+00 -> PASS
+  C3 LCDM A_eff decreasing in T over [7.3, 8.3]: True
+  C4 max |R(1e-3) - 1| over inputs: 1.12e-06 -> PASS
+
+CFG591: CFG590's projection with R(k) -> R(k, z) from the epoch halo model (z nodes 0, 0.25, 0.5, 0.75, 1)
+kappa = 1/2 FITTED; footings never pooled; flat a0 (w = -1); nu_mono; candidate B; cold energy MASS still required; not theory closed.
+
+--- LCDM (R = 1), same feedback ---
+  feedback  off: A_eff M1 KiDS 1.000 (Z +2.73)  DES 1.000 (Z +4.50)   M2 1.000
+  feedback  7.3: A_eff M1 KiDS 0.988 (Z +2.50)  DES 0.988 (Z +4.21)   M2 0.980
+  feedback  7.6: A_eff M1 KiDS 0.948 (Z +1.74)  DES 0.948 (Z +3.21)   M2 0.927
+  feedback  7.8: A_eff M1 KiDS 0.906 (Z +0.92)  DES 0.906 (Z +2.16)   M2 0.877
+  feedback  8.0: A_eff M1 KiDS 0.854 (Z -0.08)  DES 0.854 (Z +0.86)   M2 0.825
+  feedback  8.3: A_eff M1 KiDS 0.783 (Z -1.45)  DES 0.782 (Z -0.94)   M2 0.766
+  M1 class over [7.3, 8.3]: CONSISTENT  (min Zmax 0.58 at T 8.1; |Z|<2 at T = [7.9, 8.0, 8.1, 8.2, 8.3]; inside fiducial: True); feedback off: EXCLUDED
+  mapping systematics: {'M2': 'CONSISTENT', 'lmax1000': 'CONSISTENT', 'lmax3000': 'CONSISTENT', 'nz-0.1': 'CONSISTENT', 'nz+0.1': 'CONSISTENT'} -> final class CONSISTENT
+  feedback needed (KiDS): Z = 0 at log T_AGN = 7.985; Z = +2 at 7.516; Z = -2 at 8.499; S_fb(k=1, z=0.5) at Z=0: 0.904
+  feedback needed (DES): Z = 0 at log T_AGN = 8.132; Z = +2 at 7.825; Z = -2 at 8.676; S_fb(k=1, z=0.5) at Z=0: 0.877
+  S8-equivalent: KiDS off 0.829, T7.8 0.811; DES off 0.829, T7.8 0.811  (data 0.759; base Planck-like 0.829)
+
+===================== footing canonical =====================
+  R(k=1, z) PRIMARY: z 0: 1.292  z 0.25: 1.215  z 0.5: 1.147  z 0.75: 1.088  z 1: 1.038
+
+--- canonical | PRIMARY with R(k, z) ---
+  feedback  off: A_eff M1 KiDS 1.208 (Z +6.73)  DES 1.210 (Z +9.74)   M2 1.105
+  feedback  7.3: A_eff M1 KiDS 1.193 (Z +6.45)  DES 1.195 (Z +9.39)   M2 1.084
+  feedback  7.6: A_eff M1 KiDS 1.148 (Z +5.57)  DES 1.150 (Z +8.24)   M2 1.028
+  feedback  7.8: A_eff M1 KiDS 1.098 (Z +4.62)  DES 1.100 (Z +7.01)   M2 0.974
+  feedback  8.0: A_eff M1 KiDS 1.037 (Z +3.45)  DES 1.039 (Z +5.48)   M2 0.917
+  feedback  8.3: A_eff M1 KiDS 0.953 (Z +1.82)  DES 0.954 (Z +3.36)   M2 0.853
+  M1 class over [7.3, 8.3]: EXCLUDED  (min Zmax 3.36 at T 8.3; |Z|<2 at T = []; inside fiducial: False); feedback off: EXCLUDED
+  mapping systematics: {'M2': 'CONSISTENT', 'lmax1000': 'EXCLUDED', 'lmax3000': 'TENSION', 'nz-0.1': 'EXCLUDED', 'nz+0.1': 'EXCLUDED'} -> final class NOT DIAGNOSTIC
+  feedback needed (KiDS): Z = 0 at log T_AGN = None; Z = +2 at 8.262; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  feedback needed (DES): Z = 0 at log T_AGN = None; Z = +2 at 8.749; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  S8-equivalent: KiDS off 0.871, T7.8 0.850; DES off 0.871, T7.8 0.851  (data 0.759; base Planck-like 0.829)
+  excess dA (M1) vs LCDM: off KiDS +0.208 DES +0.210; T8.3 KiDS +0.170 DES +0.172; s_A (vs CFG590 fixed R): off 0.681/0.694; 7.8 0.682/0.694; 8.3 0.680/0.692; CFG590 fixed-R class EXCLUDED
+  tail bracket (R = 1 for z > 1): M1 EXCLUDED (min Zmax 3.36), final NOT DIAGNOSTIC -> HIGH-Z-TAIL-SENSITIVE: False
+
+--- canonical | CFG557_TESTED with R(k, z) ---
+  feedback  off: A_eff M1 KiDS 1.363 (Z +9.71)  DES 1.365 (Z +13.62)   M2 1.278
+  feedback  7.3: A_eff M1 KiDS 1.347 (Z +9.39)  DES 1.349 (Z +13.22)   M2 1.254
+  feedback  7.6: A_eff M1 KiDS 1.294 (Z +8.39)  DES 1.297 (Z +11.91)   M2 1.188
+  feedback  7.8: A_eff M1 KiDS 1.239 (Z +7.32)  DES 1.241 (Z +10.52)   M2 1.127
+  feedback  8.0: A_eff M1 KiDS 1.170 (Z +6.00)  DES 1.172 (Z +8.80)   M2 1.062
+  feedback  8.3: A_eff M1 KiDS 1.076 (Z +4.19)  DES 1.077 (Z +6.43)   M2 0.989
+  M1 class over [7.3, 8.3]: EXCLUDED  (min Zmax 6.43 at T 8.3; |Z|<2 at T = []; inside fiducial: False); feedback off: EXCLUDED
+  mapping systematics: {'M2': 'EXCLUDED', 'lmax1000': 'EXCLUDED', 'lmax3000': 'EXCLUDED', 'nz-0.1': 'EXCLUDED', 'nz+0.1': 'EXCLUDED'} -> final class EXCLUDED
+  feedback needed (KiDS): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  feedback needed (DES): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  excess dA (M1) vs LCDM: off KiDS +0.363 DES +0.365; T8.3 KiDS +0.293 DES +0.295; s_A (vs CFG590 fixed R): off 0.775/0.785; 7.8 0.774/0.783; 8.3 0.771/0.781; CFG590 fixed-R class EXCLUDED
+
+--- canonical | CFG556_cen with R(k, z) ---
+  feedback  off: A_eff M1 KiDS 1.478 (Z +11.92)  DES 1.478 (Z +16.45)   M2 1.247
+  feedback  7.3: A_eff M1 KiDS 1.461 (Z +11.59)  DES 1.462 (Z +16.04)   M2 1.225
+  feedback  7.6: A_eff M1 KiDS 1.410 (Z +10.62)  DES 1.411 (Z +14.78)   M2 1.169
+  feedback  7.8: A_eff M1 KiDS 1.354 (Z +9.55)  DES 1.355 (Z +13.38)   M2 1.113
+  feedback  8.0: A_eff M1 KiDS 1.284 (Z +8.19)  DES 1.285 (Z +11.62)   M2 1.051
+  feedback  8.3: A_eff M1 KiDS 1.184 (Z +6.28)  DES 1.185 (Z +9.12)   M2 0.979
+  M1 class over [7.3, 8.3]: EXCLUDED  (min Zmax 9.12 at T 8.3; |Z|<2 at T = []; inside fiducial: False); feedback off: EXCLUDED
+  mapping systematics: {'M2': 'EXCLUDED', 'lmax1000': 'EXCLUDED', 'lmax3000': 'EXCLUDED', 'nz-0.1': 'EXCLUDED', 'nz+0.1': 'EXCLUDED'} -> final class EXCLUDED
+  feedback needed (KiDS): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  feedback needed (DES): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  excess dA (M1) vs LCDM: off KiDS +0.478 DES +0.478; T8.3 KiDS +0.402 DES +0.402; s_A (vs CFG590 fixed R): off 0.784/0.793; 7.8 0.787/0.796; 8.3 0.787/0.797; CFG590 fixed-R class EXCLUDED
+
+--- canonical | CFG556_emg with R(k, z) ---
+  feedback  off: A_eff M1 KiDS 0.711 (Z -2.83)  DES 0.712 (Z -2.69)   M2 0.553
+  feedback  7.3: A_eff M1 KiDS 0.702 (Z -2.99)  DES 0.704 (Z -2.90)   M2 0.543
+  feedback  7.6: A_eff M1 KiDS 0.677 (Z -3.47)  DES 0.679 (Z -3.52)   M2 0.515
+  feedback  7.8: A_eff M1 KiDS 0.649 (Z -4.02)  DES 0.651 (Z -4.23)   M2 0.488
+  feedback  8.0: A_eff M1 KiDS 0.612 (Z -4.72)  DES 0.614 (Z -5.15)   M2 0.457
+  feedback  8.3: A_eff M1 KiDS 0.559 (Z -5.74)  DES 0.561 (Z -6.48)   M2 0.420
+  M1 class over [7.3, 8.3]: TENSION  (min Zmax 2.99 at T 7.3; |Z|<2 at T = []; inside fiducial: False); feedback off: TENSION
+  mapping systematics: {'M2': 'EXCLUDED', 'lmax1000': 'CONSISTENT', 'lmax3000': 'EXCLUDED', 'nz-0.1': 'EXCLUDED', 'nz+0.1': 'TENSION'} -> final class NOT DIAGNOSTIC
+  feedback needed (KiDS): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  feedback needed (DES): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  excess dA (M1) vs LCDM: off KiDS -0.289 DES -0.288; T8.3 KiDS -0.223 DES -0.222; s_A (vs CFG590 fixed R): off 1.290/1.273; 7.8 1.309/1.291; 8.3 1.324/1.305; CFG590 fixed-R class CONSISTENT
+  tail bracket (R = 1 for z > 1): M1 TENSION (min Zmax 2.99), final NOT DIAGNOSTIC -> HIGH-Z-TAIL-SENSITIVE: False
+
+--- canonical | CFG556_r200scope with R(k, z) ---
+  feedback  off: A_eff M1 KiDS 0.790 (Z -1.31)  DES 0.788 (Z -0.80)   M2 0.778
+  feedback  7.3: A_eff M1 KiDS 0.780 (Z -1.50)  DES 0.778 (Z -1.04)   M2 0.763
+  feedback  7.6: A_eff M1 KiDS 0.751 (Z -2.06)  DES 0.749 (Z -1.77)   M2 0.724
+  feedback  7.8: A_eff M1 KiDS 0.718 (Z -2.68)  DES 0.717 (Z -2.57)   M2 0.685
+  feedback  8.0: A_eff M1 KiDS 0.677 (Z -3.48)  DES 0.676 (Z -3.60)   M2 0.644
+  feedback  8.3: A_eff M1 KiDS 0.619 (Z -4.59)  DES 0.618 (Z -5.06)   M2 0.596
+  M1 class over [7.3, 8.3]: CONSISTENT  (min Zmax 1.50 at T 7.3; |Z|<2 at T = [7.3, 7.4, 7.5]; inside fiducial: False); feedback off: CONSISTENT
+  mapping systematics: {'M2': 'CONSISTENT', 'lmax1000': 'CONSISTENT', 'lmax3000': 'TENSION', 'nz-0.1': 'CONSISTENT', 'nz+0.1': 'CONSISTENT'} -> final class NOT DIAGNOSTIC
+  feedback needed (KiDS): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at 7.574; S_fb(k=1, z=0.5) at Z=0: None
+  feedback needed (DES): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at 7.663; S_fb(k=1, z=0.5) at Z=0: None
+  excess dA (M1) vs LCDM: off KiDS -0.210 DES -0.212; T8.3 KiDS -0.163 DES -0.165; s_A (vs CFG590 fixed R): off 1.064/1.068; 7.8 1.060/1.065; 8.3 1.057/1.062; CFG590 fixed-R class CONSISTENT
+  tail bracket (R = 1 for z > 1): M1 CONSISTENT (min Zmax 1.50), final NOT DIAGNOSTIC -> HIGH-Z-TAIL-SENSITIVE: False
+
+  VERDICT [canonical] framework PRIMARY with R(k, z): NOT DIAGNOSTIC (M1 EXCLUDED, min Zmax 3.36); mainline variants {'CFG557_TESTED': 'EXCLUDED', 'CFG556_cen': 'EXCLUDED', 'CFG556_emg': 'TENSION'} -> VARIANT-SENSITIVE; HIGH-Z-TAIL-SENSITIVE False; CFG559 full_kin carried at fixed z = 0 R (not rerun): EXCLUDED
+  survivors: emergent edge NOT DIAGNOSTIC (M1 TENSION); r200m scope NOT DIAGNOSTIC (M1 CONSISTENT)
+
+===================== footing alt =====================
+  R(k=1, z) PRIMARY: z 0: 1.378  z 0.25: 1.302  z 0.5: 1.228  z 0.75: 1.161  z 1: 1.104
+
+--- alt | PRIMARY with R(k, z) ---
+  feedback  off: A_eff M1 KiDS 1.352 (Z +9.50)  DES 1.354 (Z +13.35)   M2 1.263
+  feedback  7.3: A_eff M1 KiDS 1.336 (Z +9.19)  DES 1.338 (Z +12.96)   M2 1.239
+  feedback  7.6: A_eff M1 KiDS 1.284 (Z +8.19)  DES 1.286 (Z +11.66)   M2 1.175
+  feedback  7.8: A_eff M1 KiDS 1.228 (Z +7.12)  DES 1.231 (Z +10.27)   M2 1.114
+  feedback  8.0: A_eff M1 KiDS 1.160 (Z +5.82)  DES 1.163 (Z +8.57)   M2 1.050
+  feedback  8.3: A_eff M1 KiDS 1.067 (Z +4.02)  DES 1.069 (Z +6.22)   M2 0.977
+  M1 class over [7.3, 8.3]: EXCLUDED  (min Zmax 6.22 at T 8.3; |Z|<2 at T = []; inside fiducial: False); feedback off: EXCLUDED
+  mapping systematics: {'M2': 'EXCLUDED', 'lmax1000': 'EXCLUDED', 'lmax3000': 'EXCLUDED', 'nz-0.1': 'EXCLUDED', 'nz+0.1': 'EXCLUDED'} -> final class EXCLUDED
+  feedback needed (KiDS): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  feedback needed (DES): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  S8-equivalent: KiDS off 0.896, T7.8 0.874; DES off 0.896, T7.8 0.874  (data 0.759; base Planck-like 0.829)
+  excess dA (M1) vs LCDM: off KiDS +0.352 DES +0.354; T8.3 KiDS +0.285 DES +0.286; s_A (vs CFG590 fixed R): off 0.774/0.783; 7.8 0.772/0.782; 8.3 0.770/0.780; CFG590 fixed-R class EXCLUDED
+  tail bracket (R = 1 for z > 1): M1 EXCLUDED (min Zmax 6.22), final EXCLUDED -> HIGH-Z-TAIL-SENSITIVE: False
+
+--- alt | CFG557_TESTED with R(k, z) ---
+  feedback  off: A_eff M1 KiDS 1.512 (Z +12.58)  DES 1.515 (Z +17.37)   M2 1.449
+  feedback  7.3: A_eff M1 KiDS 1.494 (Z +12.23)  DES 1.497 (Z +16.93)   M2 1.421
+  feedback  7.6: A_eff M1 KiDS 1.435 (Z +11.10)  DES 1.438 (Z +15.45)   M2 1.346
+  feedback  7.8: A_eff M1 KiDS 1.373 (Z +9.90)  DES 1.376 (Z +13.90)   M2 1.277
+  feedback  8.0: A_eff M1 KiDS 1.297 (Z +8.44)  DES 1.300 (Z +11.99)   M2 1.204
+  feedback  8.3: A_eff M1 KiDS 1.193 (Z +6.45)  DES 1.196 (Z +9.39)   M2 1.122
+  M1 class over [7.3, 8.3]: EXCLUDED  (min Zmax 9.39 at T 8.3; |Z|<2 at T = []; inside fiducial: False); feedback off: EXCLUDED
+  mapping systematics: {'M2': 'EXCLUDED', 'lmax1000': 'EXCLUDED', 'lmax3000': 'EXCLUDED', 'nz-0.1': 'EXCLUDED', 'nz+0.1': 'EXCLUDED'} -> final class EXCLUDED
+  feedback needed (KiDS): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  feedback needed (DES): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  excess dA (M1) vs LCDM: off KiDS +0.512 DES +0.515; T8.3 KiDS +0.411 DES +0.413; s_A (vs CFG590 fixed R): off 0.818/0.826; 7.8 0.816/0.824; 8.3 0.814/0.822; CFG590 fixed-R class EXCLUDED
+
+--- alt | CFG556_cen with R(k, z) ---
+  feedback  off: A_eff M1 KiDS 1.711 (Z +16.40)  DES 1.710 (Z +22.25)   M2 1.494
+  feedback  7.3: A_eff M1 KiDS 1.691 (Z +16.03)  DES 1.691 (Z +21.78)   M2 1.468
+  feedback  7.6: A_eff M1 KiDS 1.632 (Z +14.89)  DES 1.632 (Z +20.30)   M2 1.401
+  feedback  7.8: A_eff M1 KiDS 1.567 (Z +13.64)  DES 1.567 (Z +18.68)   M2 1.334
+  feedback  8.0: A_eff M1 KiDS 1.486 (Z +12.08)  DES 1.486 (Z +16.65)   M2 1.261
+  feedback  8.3: A_eff M1 KiDS 1.372 (Z +9.89)  DES 1.372 (Z +13.79)   M2 1.176
+  M1 class over [7.3, 8.3]: EXCLUDED  (min Zmax 13.79 at T 8.3; |Z|<2 at T = []; inside fiducial: False); feedback off: EXCLUDED
+  mapping systematics: {'M2': 'EXCLUDED', 'lmax1000': 'EXCLUDED', 'lmax3000': 'EXCLUDED', 'nz-0.1': 'EXCLUDED', 'nz+0.1': 'EXCLUDED'} -> final class EXCLUDED
+  feedback needed (KiDS): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  feedback needed (DES): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at None; S_fb(k=1, z=0.5) at Z=0: None
+  excess dA (M1) vs LCDM: off KiDS +0.711 DES +0.710; T8.3 KiDS +0.590 DES +0.589; s_A (vs CFG590 fixed R): off 0.846/0.853; 7.8 0.848/0.854; 8.3 0.847/0.854; CFG590 fixed-R class EXCLUDED
+
+--- alt | CFG556_emg with R(k, z) ---
+  feedback  off: A_eff M1 KiDS 0.815 (Z -0.83)  DES 0.816 (Z -0.11)   M2 0.660
+  feedback  7.3: A_eff M1 KiDS 0.805 (Z -1.01)  DES 0.806 (Z -0.34)   M2 0.647
+  feedback  7.6: A_eff M1 KiDS 0.777 (Z -1.55)  DES 0.778 (Z -1.05)   M2 0.616
+  feedback  7.8: A_eff M1 KiDS 0.745 (Z -2.17)  DES 0.746 (Z -1.84)   M2 0.584
+  feedback  8.0: A_eff M1 KiDS 0.704 (Z -2.96)  DES 0.705 (Z -2.86)   M2 0.548
+  feedback  8.3: A_eff M1 KiDS 0.645 (Z -4.09)  DES 0.646 (Z -4.35)   M2 0.506
+  M1 class over [7.3, 8.3]: CONSISTENT  (min Zmax 1.01 at T 7.3; |Z|<2 at T = [7.3, 7.4, 7.5, 7.6, 7.7]; inside fiducial: True); feedback off: CONSISTENT
+  mapping systematics: {'M2': 'EXCLUDED', 'lmax1000': 'CONSISTENT', 'lmax3000': 'TENSION', 'nz-0.1': 'CONSISTENT', 'nz+0.1': 'CONSISTENT'} -> final class NOT DIAGNOSTIC
+  feedback needed (KiDS): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at 7.75; S_fb(k=1, z=0.5) at Z=0: None
+  feedback needed (DES): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at 7.833; S_fb(k=1, z=0.5) at Z=0: None
+  excess dA (M1) vs LCDM: off KiDS -0.185 DES -0.184; T8.3 KiDS -0.137 DES -0.136; s_A (vs CFG590 fixed R): off 1.501/1.466; 7.8 1.559/1.519; 8.3 1.607/1.562; CFG590 fixed-R class CONSISTENT
+  tail bracket (R = 1 for z > 1): M1 CONSISTENT (min Zmax 1.01), final NOT DIAGNOSTIC -> HIGH-Z-TAIL-SENSITIVE: False
+
+--- alt | CFG556_r200scope with R(k, z) ---
+  feedback  off: A_eff M1 KiDS 0.829 (Z -0.55)  DES 0.829 (Z +0.22)   M2 0.750
+  feedback  7.3: A_eff M1 KiDS 0.819 (Z -0.75)  DES 0.819 (Z -0.03)   M2 0.736
+  feedback  7.6: A_eff M1 KiDS 0.788 (Z -1.35)  DES 0.788 (Z -0.81)   M2 0.698
+  feedback  7.8: A_eff M1 KiDS 0.754 (Z -2.01)  DES 0.753 (Z -1.66)   M2 0.661
+  feedback  8.0: A_eff M1 KiDS 0.710 (Z -2.84)  DES 0.710 (Z -2.74)   M2 0.621
+  feedback  8.3: A_eff M1 KiDS 0.650 (Z -4.01)  DES 0.649 (Z -4.27)   M2 0.574
+  M1 class over [7.3, 8.3]: CONSISTENT  (min Zmax 0.75 at T 7.3; |Z|<2 at T = [7.3, 7.4, 7.5, 7.6, 7.7]; inside fiducial: True); feedback off: CONSISTENT
+  mapping systematics: {'M2': 'TENSION', 'lmax1000': 'CONSISTENT', 'lmax3000': 'CONSISTENT', 'nz-0.1': 'CONSISTENT', 'nz+0.1': 'CONSISTENT'} -> final class NOT DIAGNOSTIC
+  feedback needed (KiDS): Z = 0 at log T_AGN = None; Z = +2 at None; Z = -2 at 7.797; S_fb(k=1, z=0.5) at Z=0: None
+  feedback needed (DES): Z = 0 at log T_AGN = 7.284 (OUTSIDE calibration); Z = +2 at None; Z = -2 at 7.865; S_fb(k=1, z=0.5) at Z=0: 0.991
+  excess dA (M1) vs LCDM: off KiDS -0.171 DES -0.171; T8.3 KiDS -0.133 DES -0.133; s_A (vs CFG590 fixed R): off 1.415/1.407; 7.8 1.417/1.409; 8.3 1.415/1.408; CFG590 fixed-R class CONSISTENT
+  tail bracket (R = 1 for z > 1): M1 CONSISTENT (min Zmax 0.75), final NOT DIAGNOSTIC -> HIGH-Z-TAIL-SENSITIVE: False
+
+  VERDICT [alt] framework PRIMARY with R(k, z): EXCLUDED (M1 EXCLUDED, min Zmax 6.22); mainline variants {'CFG557_TESTED': 'EXCLUDED', 'CFG556_cen': 'EXCLUDED', 'CFG556_emg': 'CONSISTENT'} -> VARIANT-SENSITIVE; HIGH-Z-TAIL-SENSITIVE False; CFG559 full_kin carried at fixed z = 0 R (not rerun): EXCLUDED
+  survivors: emergent edge NOT DIAGNOSTIC (M1 CONSISTENT); r200m scope NOT DIAGNOSTIC (M1 CONSISTENT)
+
+  VERDICT LCDM-DMO (same rule, same feedback): CONSISTENT (M1 CONSISTENT)
