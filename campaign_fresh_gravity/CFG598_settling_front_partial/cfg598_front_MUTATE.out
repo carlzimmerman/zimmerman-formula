@@ -1,0 +1,20 @@
+CFG598 main (FROZEN_CRITERIA.md): the settling front of CFG541 class A with infall sources (transport-clock geometry automatic),
+kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed.  Accretion history INHERITED (CFG557).
+
+K1 t0 = 13.8196 Gyr (CFG557 13.820), Delta_ta = 11.8056 (11.806) -> PASS
+
+K3 transport-clock benchmark (SIS target, filled core r_i, uniform f beyond; PDE flux divergence, one instant, alpha = 1):
+  f = 0.2: r/r_i 2.00: PDE 1.7829e+00 vs TC 1.7850e+00 (rel -0.0012), single/PDE 2.004; r/r_i 4.99: PDE 2.8651e-01 vs TC 2.8684e-01 (rel -0.0012), single/PDE 5.000; r/r_i 9.99: PDE 7.1637e-02 vs TC 7.1719e-02 (rel -0.0012), single/PDE 10.000
+  f = 0.5: r/r_i 2.00: PDE 1.7619e+00 vs TC 1.7639e+00 (rel -0.0012), single/PDE 2.004; r/r_i 4.99: PDE 2.8313e-01 vs TC 2.8346e-01 (rel -0.0012), single/PDE 5.000; r/r_i 9.99: PDE 7.0792e-02 vs TC 7.0874e-02 (rel -0.0012), single/PDE 10.000
+  f = 0.8: r/r_i 2.00: PDE 8.9147e-01 vs TC 8.9249e-01 (rel -0.0012), single/PDE 2.004; r/r_i 4.99: PDE 1.4325e-01 vs TC 1.4342e-01 (rel -0.0012), single/PDE 5.000; r/r_i 9.99: PDE 3.5818e-02 vs TC 3.5860e-02 (rel -0.0012), single/PDE 10.000
+  -> K3 PASS (<= 2%);  M2 tooth (single clock = r/r_i x PDE to 2%): BITES
+  M2 single-clock code path vs analytic tanh^2: |diff| 1.39e-14 -> BITES
+
+=== MUTATE ===
+  M1 P0: alpha 64 vs exact inf: max |dF_set| 0.0008, S(<r_ta) ratio 1.0000, steps 863364 -> BITES
+  M1 P2: alpha 64 vs exact inf: max |dF_set| 0.0014, S(<r_ta) ratio 1.0018, steps 4409823 -> BITES
+  M1b log 12 can: minimiser edge 319.2 kpc vs CFG541 r_M/ln(1+M_b/M_cat) 319.1 kpc (rel +0.0002) -> BITES
+  M1b log 12 alt: minimiser edge 290.3 kpc vs CFG541 r_M/ln(1+M_b/M_cat) 290.3 kpc (rel +0.0002) -> BITES
+  M1b log 14 can: minimiser edge 1271.5 kpc vs CFG541 r_M/ln(1+M_b/M_cat) 1271.3 kpc (rel +0.0002) -> BITES
+  M1b log 14 alt: minimiser edge 1156.6 kpc vs CFG541 r_M/ln(1+M_b/M_cat) 1156.5 kpc (rel +0.0002) -> BITES
+  all teeth bite: True
