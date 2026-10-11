@@ -1,0 +1,68 @@
+Conditional conversion of the Bullet X-ray gas operator
+2026-10-11; frozen criteria commit 303e6387b; 63/63 checks passed.
+
+DERIVATION AND ITS LIMITS
+At fixed redshift, observed X-ray surface brightness is proportional to
+integral n_e^2 Lambda(T,Z) dl, with fixed spectral emissivity/composition.
+Retain the same angular 3D model and clumping. A distance change lambda
+scales all physical lengths by lambda. To preserve brightness, density
+must change by lambda^-1/2. Hence gas column scales as lambda^1/2, and mass
+inside the SAME ANGULAR aperture scales as lambda^(5/2).
+
+For an unreduced thin lens, alpha_infinity is proportional to projected
+mass/angular-impact-physical-radius, or equivalently Dl times the angular
+convolution of the surface density. Thus alpha_infinity and kappa_infinity
+scale as lambda^(3/2). For each actual source, also multiply by its new
+Dls/Ds. It is incorrect to keep the physical gas mass fixed, or change only
+the source efficiency while leaving an X-ray-calibrated map unchanged.
+These statements hold at corresponding angular positions; they do NOT
+rescale a fixed 250-kpc aperture mass without re-evaluating its boundary.
+
+This derivation does not establish the real line-of-sight gas structure.
+An extra depth elongation eta at fixed transverse angular shape instead
+requires density eta^-1/2 and gives column/deflection sqrt(eta), while
+preserving X-ray brightness. The toy eta={.5,2} tests this degeneracy;
+it is NOT an observational interval for Bullet and is not fitted here.
+This extends the existing baryon-depth warning to a normalization ambiguity.
+
+NUMBERS
+Author background: flat Om=.3, H0=70; Dl(z=.296)=910.251427 Mpc.
+Existing PM background: flat Om=.3137721027, H0=67.36; Dl=943.140543 Mpc.
+PM inputs are inherited background choices, not newly derived parameters.
+lambda=1.036131903.
+Density factor 0.982409327; column factor 1.017905645.
+Same-angular-aperture gas mass factor 1.092792272.
+Unreduced deflection/convergence factor 1.054684513 (+5.47 percent).
+Across the gold source catalogue the new/old efficiency ratio is
+0.997115326--0.997969356.
+
+The corrected source contrasts differ from a source-efficiency-only
+conversion by up to 0.147740 arcsec; from the original author-context
+contrasts by up to 0.141783 arcsec. These are source-contrast components,
+not image-plane positional residuals or a likelihood. They are not
+an inferred missing cold mass or evidence of a fit improvement.
+
+SAVED INPUT AND CHECKS
+run/operator.npz stores converted deflections and source contrasts for
+both frame choices and both interpolators. Canonical and alt gas entries
+are identical by construction: a0 does not affect this fixed-background
+Newtonian gas contribution. Their settled cold profiles still must be
+computed separately; copying gas inputs does not test either full theory.
+
+A direct Gaussian LOS quadrature checks brightness, column, mass and
+lensing scaling for nine distance/depth pairs. Independent FLRW quadratures
+verify Astropy distances and all source factors. Identity, round trip,
+finite arrays and source-gauge checks pass. Fixed-density and fixed-mass
+MUTATE errors are detected. The manifest verifies pinned sources and outputs;
+no statistical threshold was selected from the result. No runtime warnings.
+
+WHAT THIS ENABLES
+The previous observed-image gas operator now has a conditional normalization
+consistent with the PM background. Preserve its fixed-geometry qualifier
+and source calibration uncertainty in any subsequent residual calculation.
+The full test still needs independent stellar profiles, actual gas geometry
+and host assignment, a derived settled component, and the positive shared
+reservoir budget. No source uncertainty was absorbed into a tunable halo.
+This result alone neither rescues nor excludes candidate B. Kappa remains
+fitted; no action, rate or carrier has been derived. No Claude files or
+sealed predictions were changed.
