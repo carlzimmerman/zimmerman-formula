@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "CAPTURED_PROFILE_BOUNDED_DF",
+  "repository": {
+    "commit": "a5e6e3696c2fe80dfcd1932c633f371f4b08d3c1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/captured_profile_2026_10_11/experiment.py",
+    "--output",
+    "sol61_push/captured_profile_2026_10_11/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Orbit-averaged radial mass profile predicted by prescribed spherical contraction of a specified finite bounded 3D DF; separately verify local Abel powers for target cusp",
+    "coefficient_domain": "Analytic velocity measure and quadrature with binary64 ODE",
+    "conventions": "G=M=1, Plummer b=.5 to .05; finite constant initial f on r1.5..2.5, E.02...8, inward velocity hemisphere. SO(3) orientation average exact. Reservoir mass.001. No self-gravity. a0=1 only for diagnostic target overlay.",
+    "inputs": [
+      "T=2,8; n_r=n_E=4,6 and n_s=16,24 with mu=s²-1",
+      "Final negative energies orbit-averaged by dr/v_r, normalized by radial period",
+      "Target shape comparisons in .05.. .4 remove amplitude only; raw exponential and logarithmically repaired kernels kept distinct",
+      "Abel endpoint exponent11/6 for self-consistent cusp and7/4 in baryon-only tracer potential"
+    ],
+    "bounds": {
+      "cells": 4,
+      "maximum_orbits": 864,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "max_step": 0.02,
+      "refined_rtol": 2e-12,
+      "refined_atol": 2e-14,
+      "refined_max_step": 0.01,
+      "radial_quadrature_orders": [
+        96,
+        192
+      ],
+      "classification_energy_margin": 1e-07,
+      "work_error_tolerance": 1e-07,
+      "wall_seconds": 180,
+      "cpu_seconds": 160
+    },
+    "non_claims": [
+      "No formation of galaxy-mass halo or self-consistent cold gravity",
+      "Finite quadrature can miss narrow capture or pericentre regions; no continuum convergence asserted",
+      "No microscopic carrier, abundance, a0 or kappa derived",
+      "The bounded-f obstruction applies to exact cusp at origin with finite escape depth, not automatically to observed finite annuli",
+      "Local positive Abel endpoint is not a global DF or stability theorem",
+      "Orbit average assumes phase mixing and is not a demonstrated finite-time mixing process"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T17:57:41.532119+00:00",
+    "runtime_seconds": 3.599774,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 160,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/captured_profile_2026_10_11/experiment.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/captured_profile_2026_10_11/experiment.py",
+      "sha256": "9ce74cda502699b94dd0c4c8687f66b5664fcc40cbffb0c67c67e64a8bdb2c3e",
+      "sha256_after": "9ce74cda502699b94dd0c4c8687f66b5664fcc40cbffb0c67c67e64a8bdb2c3e"
+    }
+  ],
+  "output_directory": "sol61_push/captured_profile_2026_10_11/run",
+  "declared_results": [
+    "sol61_push/captured_profile_2026_10_11/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/captured_profile_2026_10_11/run/stdout.txt",
+      "sha256": "2318ba9b441cf1b575c75504993d795e5781d5bd2cffb2b4f35fa1c24dcda95b",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/captured_profile_2026_10_11/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/captured_profile_2026_10_11/run/results.json",
+      "sha256": "69993abec98bd563f275276d4d2eec0f93dcca520e413165142780c2fb0fd543",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
