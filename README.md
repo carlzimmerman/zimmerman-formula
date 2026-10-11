@@ -414,6 +414,7 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-10-11 | [10.5281/zenodo.23303805](https://doi.org/10.5281/zenodo.23303805) (concept 23303804) | A Dated, Graded Ledger of the Testable Predictions of a Vacuum-Tied MOND Framework, with Its Confronted Record and Retracted Claims (Working Note) | v1.0 (PAPER46; 98 future tests graded K1–K4, 51 confronted results, 15 deposits, claims not to cite; built from the Kepler Grade Prediction Chart by `PAPER46_build.py`, `PAPER46_audit.py` 10/10; kappa fitted, not theory closed) |
 | 2026-10-04 | [10.5281/zenodo.23142559](https://doi.org/10.5281/zenodo.23142559) | A Width-Chain Estimate of the MOND Acceleration Scale from MIGHTEE-HI COSMOS, with its Flux-Scale, Line-Width and Kernel Systematics | v1.0 (PAPER40; audit passes). Note: the same PDF was also published earlier as a separate record, [10.5281/zenodo.23120033](https://doi.org/10.5281/zenodo.23120033), a duplicate |
 | 2026-10-04 | [10.5281/zenodo.23142561](https://doi.org/10.5281/zenodo.23142561) | What a Complete Mechanism for a Lambda-Tied MOND Law Would Have to Do: A Closure Map of Scoped No-Gos and a Reading of the Requirements | v1.1 (PAPER39) |
 | 2026-10-04 | [10.5281/zenodo.23142564](https://doi.org/10.5281/zenodo.23142564) | Only the Outermost Bound System Carries the Phantom: Hierarchical Ownership in a Lambda-Tied MOND Law, Its Scorecard, and an Exactly Newtonian Wide-Binary Prediction | v1 (PAPER35; public before Gaia DR4) |
