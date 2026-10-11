@@ -1,0 +1,44 @@
+CFG621: merger stopwatch v3 for cold-energy settling (stage B; noise-calibrated rerun of CFG599)  [MUTATE]
+criteria FROZEN_CRITERIA_A.md + FROZEN_CRITERIA_B.md; kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; candidate B; G9; no EFE;
+cold energy's mass required (an input); no particle species; yardsticks = raw data only (no LCDM, no MOND force law).
+
+D1 Bullet (Clowe+06 Table 2 via the record script, read-only): galaxy-plasma 209.4 (main) / 194.1 (sub) kpc; BCG-BCG 721.5 kpc; f_obs = 0.045; sigma_f = 0.125 (PROVISIONAL)
+D2 Harvey+15: beta = -0.04 +- 0.07
+
+C1-C3, C4(a), C5, C6 (cfg621_controls_results.json): ALL PASS
+
+C4(b) (stage-A T-4, cfg621_stageA_results.json): T_L = 24.90 kpc, T_G = 14.70 kpc; N_B = 0.188
+  48 isolated runs: max d_L 16.03, max d_G 12.67, max |M(<300) drift| 0.0483: PASS
+
+M-6 CALIBRATION (alpha = 0, canonical): K1 speed at the 720-kpc epoch 2700 +- 200 km/s; G1 d_SG 194 +- 50 kpc; eta in [0.1, 2.5]
+  round 1: v0 bracketing on [0, 4000] km/s at eta = 1
+  running 4 run(s) on <= 4 processes ...
+    K1  v0 =     0.0 km/s, eta = 1: speed at the 720-kpc epoch  1145.2 km/s, d_SG  130.9 kpc
+    K1  v0 =  1333.3 km/s, eta = 1: speed at the 720-kpc epoch  2271.4 km/s, d_SG  201.6 kpc
+    K1  v0 =  2666.7 km/s, eta = 1: speed at the 720-kpc epoch  2699.4 km/s, d_SG  181.3 kpc
+    K1  v0 =  4000.0 km/s, eta = 1: speed at the 720-kpc epoch  4300.9 km/s, d_SG  183.8 kpc
+  round 1: eta bracketing on [0.03, 10] (log) at v0 = 2666.7 km/s
+  running 4 run(s) on <= 4 processes ...
+    G1  v0 =  2666.7 km/s, eta = 0.03: d_SG at the 720-kpc epoch    3.8 kpc, speed  2919.4 km/s
+    G1  v0 =  2666.7 km/s, eta = 0.208: d_SG at the 720-kpc epoch   47.3 kpc, speed  2897.4 km/s
+    G1  v0 =  2666.7 km/s, eta = 1.442: d_SG at the 720-kpc epoch  227.1 kpc, speed  2700.2 km/s
+    G1  v0 =  2666.7 km/s, eta = 10: d_SG at the 720-kpc epoch  422.9 kpc, speed  2697.3 km/s
+  running 3 run(s) on <= 4 processes ...
+    G1  v0 =  2666.7 km/s, eta = 0.3375: d_SG at the 720-kpc epoch   75.9 kpc, speed  2751.5 km/s
+    G1  v0 =  2666.7 km/s, eta = 0.5477: d_SG at the 720-kpc epoch  111.4 kpc, speed  2721.5 km/s
+    G1  v0 =  2666.7 km/s, eta = 0.8888: d_SG at the 720-kpc epoch  165.1 kpc, speed  2765.8 km/s
+  running 3 run(s) on <= 4 processes ...
+    G1  v0 =  2666.7 km/s, eta = 1.003: d_SG at the 720-kpc epoch  181.7 kpc, speed  2699.4 km/s
+    G1  v0 =  2666.7 km/s, eta = 1.132: d_SG at the 720-kpc epoch  196.9 kpc, speed  2699.4 km/s
+    G1  v0 =  2666.7 km/s, eta = 1.278: d_SG at the 720-kpc epoch  212.1 kpc, speed  2699.8 km/s
+  round 1 result: v0 = 2666.7 km/s, eta = 1.132 -> speed 2699.4 km/s (K1 in 2700 +- 200), d_SG 196.9 kpc (G1 in 194 +- 50)
+  CALIBRATION PASS: {"ok": true, "v0_kms": 2666.667, "eta": 1.132, "speed_kms": 2699.406, "dSG": 196.941, "K1": true, "G1": true, "eta_in_plausible_range": true, "reason": null}
+
+MUTATE runs (5)
+  running 5 run(s) on <= 4 processes ...
+  M1 alpha = inf: f = 1.0271850034857763 (>= 0.5) -> PASS
+  M2 alpha = 0: f = 0.1811367048330338 (|f| <= 0.25), beta-bar = 0.08247475126955447 (<= 0.10) -> PASS
+  M3 roles swapped, alpha = inf: f = 0.2353513146744731 (<= 0.25) -> PASS   [swapped alpha = 0 reported: f = 0.10386474502274429]
+  M4 seed 600 vs 599 at alpha = 0 (reported): delta f = 0.031164966067264904, delta beta-bar = 0.026119865259831065; d_SG 196.76228819696823 vs 196.94071632151153
+
+MUTATE M1-M3: ALL PASS

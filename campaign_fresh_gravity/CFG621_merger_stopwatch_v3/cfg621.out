@@ -1,0 +1,75 @@
+CFG621: merger stopwatch v3 for cold-energy settling (stage B; noise-calibrated rerun of CFG599)
+criteria FROZEN_CRITERIA_A.md + FROZEN_CRITERIA_B.md; kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; candidate B; G9; no EFE;
+cold energy's mass required (an input); no particle species; yardsticks = raw data only (no LCDM, no MOND force law).
+
+D1 Bullet (Clowe+06 Table 2 via the record script, read-only): galaxy-plasma 209.4 (main) / 194.1 (sub) kpc; BCG-BCG 721.5 kpc; f_obs = 0.045; sigma_f = 0.125 (PROVISIONAL)
+D2 Harvey+15: beta = -0.04 +- 0.07
+
+C1-C3, C4(a), C5, C6 (cfg621_controls_results.json): ALL PASS
+
+C4(b) (stage-A T-4, cfg621_stageA_results.json): T_L = 24.90 kpc, T_G = 14.70 kpc; N_B = 0.188
+  48 isolated runs: max d_L 16.03, max d_G 12.67, max |M(<300) drift| 0.0483: PASS
+
+M-6 CALIBRATION (alpha = 0, canonical): K1 speed at the 720-kpc epoch 2700 +- 200 km/s; G1 d_SG 194 +- 50 kpc; eta in [0.1, 2.5]
+  round 1: v0 bracketing on [0, 4000] km/s at eta = 1
+    K1  v0 =     0.0 km/s, eta = 1: speed at the 720-kpc epoch  1145.2 km/s, d_SG  130.9 kpc
+    K1  v0 =  1333.3 km/s, eta = 1: speed at the 720-kpc epoch  2271.4 km/s, d_SG  201.6 kpc
+    K1  v0 =  2666.7 km/s, eta = 1: speed at the 720-kpc epoch  2699.4 km/s, d_SG  181.3 kpc
+    K1  v0 =  4000.0 km/s, eta = 1: speed at the 720-kpc epoch  4300.9 km/s, d_SG  183.8 kpc
+  round 1: eta bracketing on [0.03, 10] (log) at v0 = 2666.7 km/s
+    G1  v0 =  2666.7 km/s, eta = 0.03: d_SG at the 720-kpc epoch    3.8 kpc, speed  2919.4 km/s
+    G1  v0 =  2666.7 km/s, eta = 0.208: d_SG at the 720-kpc epoch   47.3 kpc, speed  2897.4 km/s
+    G1  v0 =  2666.7 km/s, eta = 1.442: d_SG at the 720-kpc epoch  227.1 kpc, speed  2700.2 km/s
+    G1  v0 =  2666.7 km/s, eta = 10: d_SG at the 720-kpc epoch  422.9 kpc, speed  2697.3 km/s
+    G1  v0 =  2666.7 km/s, eta = 0.3375: d_SG at the 720-kpc epoch   75.9 kpc, speed  2751.5 km/s
+    G1  v0 =  2666.7 km/s, eta = 0.5477: d_SG at the 720-kpc epoch  111.4 kpc, speed  2721.5 km/s
+    G1  v0 =  2666.7 km/s, eta = 0.8888: d_SG at the 720-kpc epoch  165.1 kpc, speed  2765.8 km/s
+    G1  v0 =  2666.7 km/s, eta = 1.003: d_SG at the 720-kpc epoch  181.7 kpc, speed  2699.4 km/s
+    G1  v0 =  2666.7 km/s, eta = 1.132: d_SG at the 720-kpc epoch  196.9 kpc, speed  2699.4 km/s
+    G1  v0 =  2666.7 km/s, eta = 1.278: d_SG at the 720-kpc epoch  212.1 kpc, speed  2699.8 km/s
+  round 1 result: v0 = 2666.7 km/s, eta = 1.132 -> speed 2699.4 km/s (K1 in 2700 +- 200), d_SG 196.9 kpc (G1 in 194 +- 50)
+  CALIBRATION PASS: {"ok": true, "v0_kms": 2666.667, "eta": 1.132, "speed_kms": 2699.406, "dSG": 196.941, "K1": true, "G1": true, "eta_in_plausible_range": true, "reason": null}
+
+RUN GRID: 16 runs (10:1, L, 2S; v0 = 2666.7 km/s, eta = 1.132, both footings)
+  running 14 run(s) on <= 4 processes ...
+
+FOOTING VALIDITY at alpha = 0 (speed 2700 +- 200, d_SG 194 +- 50): {"can": {"valid": true, "speed_kms": 2699.4, "dSG": 196.9}, "alt": {"valid": true, "speed_kms": 2686.5, "dSG": 197.0}}
+
+PER-NODE SCORES (sub; f at the 720-kpc epoch; Harvey beta-bar over 0.1-0.6 Gyr after pericentre)
+ alpha foot |  t_obs  speed    dSG       f    Z_B      spread |   n_H    bbar    Z_H | f_cold   cap | status
+     0  can |  0.202   2699  196.9  +0.181  +1.09 [131.0, 66.2] | 40/50  +0.082  +1.75 | +0.090 0.000 | UNSCORABLE
+  0.03  can |  0.202   2647  197.1  +0.435  +3.12 [85.6, 55.1] | 43/50  +0.260  +4.29 | +0.190 0.000 | UNSCORABLE
+   0.1  can |  0.206   3149  193.0  +0.803  +6.07 [87.4, 87.3] | 30/50  +0.568  +8.69 | +0.430 0.000 | UNSCORABLE
+   0.3  can |  0.209   2996  195.8  +1.005  +7.68 [19.6, 19.6] | 41/50  +0.991 +14.73 | +0.910 0.000 | EXCLUDED
+     1  can |  0.219   1975  212.7  +2.073 +16.23 [94.7, 95.3] |  1/50  +1.030   +nan | +2.012 0.000 | UNSCORABLE
+     3  can |  0.210   3120  206.3  +1.078  +8.27 [287.9, 299.7] |  0/50    +nan   +nan | +2.471 0.000 | UNSCORABLE
+    10  can |  0.211   2793  199.7  +1.056  +8.08 [95.8, 70.1] |  2/50  +1.014   +nan | +2.803 0.000 | UNSCORABLE
+   inf  can |  0.214   3387  198.3  +1.027  +7.86 [18.3, 18.4] | 34/50  +1.015 +15.07 | +2.932 0.000 | EXCLUDED
+     0  alt |  0.199   2687  197.0  +0.178  +1.06 [80.2, 50.3] | 39/50  +0.061  +1.44 | +0.084 0.000 | UNSCORABLE
+  0.03  alt |  0.199   2736  198.2  +0.377  +2.65 [54.3, 54.7] | 40/50  +0.215  +3.64 | +0.200 0.000 | UNSCORABLE
+   0.1  alt |  0.204   3338  195.7  +0.782  +5.90 [11.3, 24.1] | 19/50  +0.720   +nan | +0.447 0.000 | UNSCORABLE
+   0.3  alt |  0.207   3124  198.1  +0.989  +7.55 [30.8, 31.4] | 37/50  +1.000 +14.86 | +0.924 0.000 | UNSCORABLE
+     1  alt |  0.219   2895  214.8  +2.079 +16.27 [33.2, 33.2] |  3/50  +1.920   +nan | +1.989 0.000 | UNSCORABLE
+     3  alt |  0.207   3002  209.4  +1.109  +8.51 [285.3, 297.3] |  0/50    +nan   +nan | +2.398 0.000 | UNSCORABLE
+    10  alt |  0.207   3232  202.2  +1.125  +8.64 [87.8, 71.8] |  0/50    +nan   +nan | +2.742 0.000 | UNSCORABLE
+   inf  alt |  0.209   3520  201.2  +1.052  +8.06 [19.0, 19.0] | 28/50  +1.020 +15.14 | +2.857 0.000 | EXCLUDED
+
+ALLOWED nodes: can []  alt [];  EXCLUDED: can ['0.3', 'inf']  alt ['inf'];  UNSCORABLE/VOID: can ['0', '0.03', '0.1', '1', '3', '10']  alt ['0', '0.03', '0.1', '0.3', '1', '3', '10']
+
+VERDICTS (frozen V-1..V-4)
+  V1_instant_resettling: EXCLUDED
+  V1_Z_B_inf: [7.8574800278862105, 8.055013474213048]
+  V1_Z_H_inf_reported: [15.07328607639788, 15.13727950701157]
+  V2_pure_collisionless: UNDETERMINED
+  V3_galaxy_side: INCOMPATIBLE (no node alpha >= 1 allowed on both footings)
+  V4_summary: mixed; see the per-node table
+
+D3 (sign level, not scored): sub beta at TSP 0.5 / 0.7 Gyr, canonical
+  alpha    0: 0.055 / 0.005
+  alpha 0.03: 0.143 / 0.039
+  alpha  0.1: 0.392 / 0.329
+  alpha  0.3: 0.976 / 0.983
+  alpha    1: 1.133 / 0.906
+  alpha    3: 1.29 / 0.973
+  alpha   10: 1.148 / 0.095
+  alpha  inf: 1.002 / 0.045
