@@ -1,0 +1,65 @@
+Raw colour-lensing shape check: unresolved
+2026-10-11; criteria committed alone as 05887ff2c.
+
+This bounded, post-hoc diagnostic reproduces CFG700 directly from the
+per-lens measured WG/WW tables and its colour split. No CFG529/531 model
+code was imported, and no environment profile or cold profile was subtracted.
+The original four log amplitude ratios and all ESD points reproduce to
+1e-10. Counts are 8860 redder and 8854 bluer early-type lenses.
+
+RESULT
+S = A(K-in) - A(K-out) = 0.10999268 dex.
+Joint 50-patch jackknife sigma = 0.16638770 dex; S/sigma = 0.6611.
+Ignoring band covariance would give 0.17767112 dex, not the adopted error.
+200 paired mass-stratified relabellings give sigma = 0.18376401 dex,
+S/sigma = 0.5986, and plus-one two-sided tail fraction 111/201 = 0.55224.
+Their mean is -0.03921253 dex: the nonlinear ratio statistic's null is
+not exactly centered at zero. The tail above is the frozen absolute-S
+calculation, not a centered or asymptotic significance claim.
+
+Verdict: shape unresolved by this diagnostic. This does not disprove the
+existing amplitude association. It does not exclude every possible shape
+statistic. It does not identify cold energy, age, a stellar-mass bias or
+any settling law. The relabelling null is no association, NOT a fitted
+nonzero-amplitude-only null; its p-value must not be sold as a formal test
+of shape at arbitrary fixed amplitude. The paired jackknife remains the
+separate uncertainty on the measured shape contrast.
+
+These stacks use acceleration-indexed bins with lens-dependent physical
+radii. A 'radial shape' interpretation requires forward modelling of that
+binning and selection. Present-baryon equality is not established simply
+by matching catalogue stellar masses and their medians.
+
+CONTROLS AND PROVENANCE
+11/11 checks passed: colour/position matching, source sample counts,
+pointwise ESD and four amplitude reproduction, uniform OLD-signal x0.8
+shift with shape unchanged, inner-bin x10^0.2 injection with exact +0.2
+shape shift, source null sigma reproduction, positive weighted totals,
+and finite outputs. The two injection controls test different responses;
+neither is used as an observed physical signal.
+
+All original sources are hash-pinned in the runner manifest. The result
+also saves paired jackknife and permutation band amplitudes for review.
+run_v2/manifest.json validates against current sources. One process and
+one numerical-library thread; CPU cap 120 s, wall cap 180 s. Original run/
+failed at the optional os.nice call because the OS denied that operation,
+before scientific data were loaded. It is preserved with original code.
+check_v2 catches only that permission error; no criteria or statistic changed.
+An initial runner invocation missing required --input arguments was rejected
+before execution and produced no scientific result.
+
+NEXT ACTION
+Do not build a new settling mechanism from this colour amplitude alone.
+A useful discriminating measurement needs independently constrained stellar
+mass and environment responses, or a new sample with sufficient shape
+precision. No claim is made that more permutations cure that missing
+identifiability. Return the main effort to Bullet's measured baryon lensing
+operator and shared-reservoir mass test, alongside the native cosmic-shear
+run. Both footing-specific predictions still need their actual data tests.
+Kappa remains fitted; the action and cold carrier remain unresolved.
+
+Production status checked this turn: PID17844 (1024^3 PM) was live;
+PID17843 its parent was live. Previous CFG626 PID45651 was missing, but
+no completed mono results were present at the inspected output path.
+That is not a verified kinetic result or justification to restart it.
+No Claude output was modified. No heavy simulation was launched.
