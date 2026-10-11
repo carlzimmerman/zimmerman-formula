@@ -11,6 +11,9 @@ export default function Home() {
           <nav className="flex items-center justify-between flex-wrap gap-3">
             <div className="text-lg font-semibold text-gray-900">a₀ from the Cosmological Constant</div>
             <div className="flex items-center gap-6 text-sm">
+              <Link href="/status" className="text-gray-900 font-medium hover:text-gray-600">Status board</Link>
+              <a href="/kepler-grade/" className="text-gray-900 font-medium hover:text-gray-600">Predictions</a>
+              <Link href="/to-scale" className="text-gray-900 font-medium hover:text-gray-600">To scale</Link>
               <Link href="/cosmic-web" className="text-gray-900 font-medium hover:text-gray-600">512³ run</Link>
               <Link href="/field-theory" className="text-gray-900 font-medium hover:text-gray-600">Field theory</Link>
               <Link href="/rar" className="text-gray-600 hover:text-gray-900">Galaxy data</Link>
