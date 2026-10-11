@@ -1,0 +1,82 @@
+{
+ "lane": "CFG625",
+ "phase": "c16",
+ "C1_C6": {
+  "[CFG597 routine] C1 Poisson: grid force vs the analytic Hernquist force (M 1e15, a 300 kpc), 3 cells <= r <= 1500 kpc, <= 3%": {
+   "ok": true,
+   "measured": "max |rel err| = 0.0283, median 0.0095 (54 cells)"
+  },
+  "[CFG597 routine] C2 Sod shock tube (gamma 5/3, 200 cells, t = 0.2): L1 density error <= 3% of the exact solution": {
+   "ok": true,
+   "measured": "L1/mean = 0.0112"
+  },
+  "[CFG597 routine] C3 round phantom from binned Hernquist baryons (4e6 particles) vs CFG541 E7 analytic, 0.1-2 a, <= 1%": {
+   "ok": true,
+   "measured": "max |rel err| = 0.0013"
+  },
+  "C3b_reported": {
+   "note": "reported, not a frozen control: painted phantom of the main's SAMPLED baryons vs the painted analytic IC phantom, same grid discretisation, M(<300, 600, 1000 kpc)",
+   "rel_err": [
+    0.0573,
+    0.0153,
+    0.0035
+   ]
+  },
+  "C4(a) t = 0, exactly centred isolated main and sub: gas, galaxy and lensing peaks within 3 kpc of the true centre": {
+   "ok": true,
+   "measured": "{\"main\": {\"gal\": 1.68, \"gas\": 0.0, \"lens\": 2.03}, \"sub\": {\"gal\": 1.72, \"gas\": 0.12, \"lens\": 1.7}}"
+  },
+  "C4a_detail": {
+   "main": {
+    "offsets_from_true_centre_kpc": {
+     "gal": 1.684633311878887,
+     "gas": 1.8602818969284655e-16,
+     "lens": 2.0291959333467724
+    },
+    "lens_spread": 6.681056489813181
+   },
+   "sub": {
+    "offsets_from_true_centre_kpc": {
+     "gal": 1.7186801111306802,
+     "gas": 0.12101192944274392,
+     "lens": 1.703052071547115
+    },
+    "lens_spread": 1.2639348428950292
+   }
+  },
+  "C5 settle step: settled cold mass unchanged exactly; cold momentum conserved to <= 1e-3 of its |p| scale": {
+   "ok": true,
+   "measured": "dM = 0.000e+00, |dp|/scale = 2.57e-17"
+  },
+  "C6 drag: (i) light test cloud in uniform gas at rest follows v0/(1 + k v0 t) to <= 2% over one drag time; (ii) real-mass cloud: cloud + gas momentum and total energy conserved to <= 1e-6 of the cloud's initial |p| and KE": {
+   "ok": true,
+   "measured": "(i) max |v/v_an - 1| = 1.17e-07 over t_d = 0.4023 Gyr (Sigma_cc = 3.703e+08 Msun/kpc^2); (ii) |dp|/p_cl = 5.25e-13, |dE|/KE_cl = 0.00e+00; (ii) bulk-speed deviation from the no-entrainment law 0.097 (reported: the real core entrains the gas of its own cells)"
+  },
+  "C6_detail": {
+   "kinematics": {
+    "worst": 1.1682084055664177e-07,
+    "t_d": 0.40234711707160076,
+    "Sigma": 370336762.08307296,
+    "dp_rel_cloud": 5.740830278745351e-13,
+    "dE_rel_cloudKE": 0.0
+   },
+   "conservation": {
+    "worst": 0.0966479037063237,
+    "t_d": 0.40234711707160076,
+    "Sigma": 370336762.08307296,
+    "dp_rel_cloud": 5.24874535501007e-13,
+    "dE_rel_cloudKE": 0.0
+   }
+  },
+  "all_pass": true
+ },
+ "C4b": {
+  "ok": true,
+  "failing_runs": [],
+  "max_dL_all": 16.034518954430784,
+  "max_dG_all": 12.66830102460468,
+  "max_abs_M300_drift": 0.04832877908723732
+ },
+ "N_B": 0.18793720855909515,
+ "ok": true
+}
