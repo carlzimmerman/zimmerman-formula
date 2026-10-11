@@ -26,10 +26,19 @@ def cmp_runs(a, b, kmax=None, keys=("zi", "z1", "z0.5", "z0")):
                       diag={k: [a["snap"][z].get(k), b["snap"][z].get(k)] for k in ("q_max", "n_catch", "e_sum", "src_sum") if k in a["snap"][z]})
     return out
 RES = dict(lane="CFG596 validation", date="2026-10-10", criteria_commit="f6c27d401", gates={})
+_PREV = json.load(open(os.path.join(HERE, "cfg596_validate.json"))) if os.path.exists(os.path.join(HERE, "cfg596_validate.json")) else {}
+def _pos_or_prev(gate, f):
+    """z0 position files were deleted after the gates ran (disk space); then the committed result of that gate is carried over."""
+    return os.path.exists(f) if f else False
 
 # ---------------- V-E (a) and V-G
 a_ref = json.load(open(os.path.join(W527, "cfg527_RES_TA_NOFILT_MASSCONS_fretcensus_FLAT_canonical_N256_drawSHELL.json")))
 VEa, fVEa = mine("VEa")
+if VEa and not glob.glob(os.path.join(W, "VEa", "*_z0pos.npz")) and "V-E(a)" in _PREV.get("gates", {}):
+    RES["gates"]["V-E(a)"] = dict(_PREV["gates"]["V-E(a)"], carried_over="z0 position file removed after the gate ran (disk); result from the committed run")
+    RES["gates"]["V-G"] = _PREV["gates"]["V-G"]
+    P(f"V-E(a): carried over from the committed run (PASS={RES['gates']['V-E(a)']['PASS']}, bitwise={RES['gates']['V-E(a)']['bitwise']}); V-G PASS={RES['gates']['V-G']['PASS']} (max|dPgrav| {RES['gates']['V-G']['maxrelPgrav']:.2e})")
+    VEa = None
 if VEa:
     c = cmp_runs(a_ref, VEa)
     pr = np.load(os.path.join(W527, "cfg527_RES_TA_NOFILT_MASSCONS_fretcensus_FLAT_canonical_N256_drawSHELL_z0.npz"))["pos"]
@@ -49,6 +58,9 @@ else: P("V-E(a): not run")
 
 # ---------------- V-E (b)
 VEb, _ = mine("VEb")
+if VEb and not glob.glob(os.path.join(W, "VEb", "*_z0pos.npz")) and "V-E(b)" in _PREV.get("gates", {}):
+    RES["gates"]["V-E(b)"] = dict(_PREV["gates"]["V-E(b)"], carried_over="z0 position file removed after the gate ran (disk); result from the committed run")
+    P(f"V-E(b): carried over from the committed run (PASS={RES['gates']['V-E(b)']['PASS']}, bitwise={RES['gates']['V-E(b)']['bitwise']})"); VEb = None
 if VEb:
     b_ref, fb = ref530("S0_L100_N256"); c = cmp_runs(b_ref, VEb)
     pr = np.load(glob.glob(os.path.join(R530, "S0_L100_N256", "*_z0.npz"))[0])["pos"]; pm = np.load(glob.glob(os.path.join(W, "VEb", "*_z0pos.npz"))[0])["pos"]

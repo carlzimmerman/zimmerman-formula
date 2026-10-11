@@ -67,6 +67,10 @@ def watch(runs):
         time.sleep(20)
     for r in runs:
         print("exit", r["p"].returncode, "peak_rss_gb", round(r["peak"], 2), time.strftime("%Y-%m-%d %H:%M"), file=r["wl"], flush=True)
+        td = os.path.join(r["d"], "tmp")                           # remove disk-backed temporaries left by a killed job
+        if os.path.isdir(td):
+            for f in os.listdir(td):
+                if f.startswith("df_"): os.remove(os.path.join(td, f))
 
 if __name__ == "__main__":
     mode, jobs = sys.argv[1], sys.argv[2:]

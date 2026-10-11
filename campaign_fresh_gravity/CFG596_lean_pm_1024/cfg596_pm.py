@@ -157,6 +157,10 @@ class DField:
             d = os.path.join(WORK, "tmp"); os.makedirs(d, exist_ok=True)
             self.fn = os.path.join(d, f"df_{os.getpid()}_{DField._n}_{name}.bin")
             self.fd = os.open(self.fn, os.O_RDWR | os.O_CREAT | os.O_TRUNC, 0o600); os.ftruncate(self.fd, M * self.per)
+            try:
+                import fcntl; fcntl.fcntl(self.fd, 48, 1)          # F_NOCACHE: bypass the file cache (no dirty pages competing with RAM)
+            except Exception:
+                pass
         else:
             self.arr = np.empty((M,) + self.inner, self.dt)        # in-memory (np.empty: pages committed only when written)
     def write(self, s, x):
@@ -419,7 +423,9 @@ def initial_conditions_lean(m, P, amp=1.0):
         buf[s] = buf[s] * np.sqrt(P_lin0(kk) / (L / npg) ** 3) * npg ** 1.5 * amp
     buf[npg // 2, :, :] = 0; buf[:, npg // 2, :] = 0; buf[:, :, -1] = 0; buf[0, 0, 0] = 0
     Ddk = DField("dk", npg, np.complex128, inner=buf.shape[1:]); Ddk.write_all(buf)
-    if SPILL: del buf
+    if SPILL:
+        del buf
+        if NSEED == npg: del rv
     Di = Dgrow(AI); cm = AI ** 2 * E(AI) * fgrow(AI) * Di
     P.x = [np.empty(P.N, np.float32) for _ in range(3)]; P.mom = [np.empty(P.N, np.float32) for _ in range(3)]
     for c in range(3):
@@ -501,7 +507,7 @@ def cover_peaks(mesh, delta, Dta):
         mean = mesh.inv_ip(b)[idx[:, 0], idx[:, 1], idx[:, 2]]
         ok &= mean >= Dta
         ron[ok] = R
-    del rhok, b
+    del rhok, b, rr
     return idx, ron, Rg
 
 def cover_balls(mesh, peaks, Dta, x, a=1.0, branch='FLAT', foot='canonical', want_fret=False):
@@ -544,7 +550,7 @@ def cover_balls(mesh, peaks, Dta, x, a=1.0, branch='FLAT', foot='canonical', wan
             mask[s] |= cs
             if want_fret: code[s][cs] = kc
         EACH(mesh, _b)
-    del b, bb
+    pr = br = conv = None; del b, bb
     pm = pack(mask); del mask
     return (pm, code, np.array(tab, np.float32)) if want_fret else pm
 
@@ -695,7 +701,7 @@ def forces(mesh, box, a, switch, branch, foot, dta, diag=False, keep_state=False
         else:
             def _b(s): divk[s] += (1j * mesh.kv_s(c, s)) * gbuf[s]
         EACH(mesh, _b)
-    del gbuf, phb; Dw.close()
+    del g, pr, gbuf, phb; Dw.close()                              # (views keep their buffer alive: drop them too)
     s_ph = mesh.inv_ip(divk)                                      # divk buffer now holds the real field
     def _b(s): s_ph[s] = -s_ph[s]
     EACH(mesh, _b)
