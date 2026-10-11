@@ -1,0 +1,60 @@
+CFG628 FRB foreground-halo partition vs census R4  (criteria 2f6846261)
+kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed.
+K1 nu_mono vs exponential for y < 1: max |d| = 4.80e-05  FAIL at the frozen 1e-6 (absolute) tolerance; max relative |d| = 4.92e-09 (the engine's own table/trapezoid resolution; reported, tolerance not changed)
+K2 profile normalisation max err 0.0e+00; numeric phantom root vs closed-form edge max rel diff 4.8e-09  PASS
+
+sec.2 REBUILT MEASUREMENT (Khrykin+24 Table 3, flat priors, ln-sigma term included; no HMF f_d prior)
+  f_gas (= f_halo) median 0.615  p16 0.328  p84 0.855  -> sigma(f_halo) = 0.264  (-0.287 / +0.240)
+  f_igm median 0.674  p16 0.494  p84 0.855
+  <DM_host^unk> median 24.4  (p16 17.4, p84 34.8)
+  published (fiducial, with the HMF-based f_d prior): f_igm 0.59 +0.11/-0.10, f_gas 0.55 +0.26/-0.29, mu 69 +28/-19; published sigma(f_gas) = 0.275
+
+C1 partial identity vs Khrykin+24 fiducial (f_igm 0.59, f_gas 0.55, mu 69):
+  C1-a flat, ln-sigma      f_igm 0.674  f_gas 0.615 (p16 0.328 p84 0.855)  mu 24.4  -> reproduced
+  C1-b flat, no ln-sigma   f_igm 0.522  f_gas 0.487 (p16 0.160 p84 0.822)  mu 161.3  -> reproduced
+  C1-c approx f_d prior    f_igm 0.633  f_gas 0.605 (p16 0.311 p84 0.848)  mu 24.2  -> reproduced
+  NOTE: the frozen C1 rule tests only the f medians. <DM_host^unk> is NOT reproduced (rebuilt 24 / 161 / 24 vs 69): the paper's exact likelihood normalisation and its HMF-based f_d prior are not recoverable from the text.
+
+C2 synthetic recovery (truth f_igm 0.6, f_gas 0.5, mu 69; 300 mocks, grid 101x101x61): 68% coverage 0.950  FAIL; median mock sigma(f_gas) 0.301
+   reading: scatter of recovered medians 0.157 (mean 0.506) vs quoted sigma 0.301 -> the f_gas posterior is wider than the estimator scatter, i.e. prior-dominated (bounded flat prior); over-coverage, not bias
+
+sec.3 FRAMEWORK f_gas-EQUIVALENT (census f_ret, CFG416 fret_of)
+  [canonical a0 = 9.3603e-11]
+    logM_h  f_ret(M_ta=M_h)  M*/(f_bT M_h)  r_edge/r200   E1:B-lo  E1:B-hi  E2:B-lo  E2:B-hi   (M_ta = M_h)
+    11.00    0.100           0.043           0.90       0.064    0.108    0.064    0.108
+    11.50    0.100           0.145           1.09       0.000    0.108    0.000    0.108
+    12.00    0.100           0.220           1.32       0.000    0.108    0.000    0.108
+    12.50    0.100           0.137           1.60       0.000    0.108    0.000    0.108
+    13.00    0.248           0.067           1.25       0.200    0.267    0.200    0.267
+    M_ta = 2 M_h, logM_h 11.0: f_ret 0.100  E1:B-lo 0.172  E1:B-hi 0.215  E2:B-lo 0.172  E2:B-hi 0.215
+    M_ta = 2 M_h, logM_h 12.0: f_ret 0.100  E1:B-lo 0.000  E1:B-hi 0.215  E2:B-lo 0.000  E2:B-hi 0.215
+    M_ta = 2 M_h, logM_h 13.0: f_ret 0.383  E1:B-lo 0.758  E1:B-hi 0.824  E2:B-lo 0.758  E2:B-hi 0.824
+    PREDICTION INTERVAL P = [0.000, 0.824]  (grid 11.0-13.0; all variants)
+    reported only: 10.0-11.0 & 13.05-13.5 extension -> [0.070, 1.266]; E2 temperature bracket sigma^2 = 2/9 Vf^2: [0.000, 0.824], = Vf^2: [0.000, 0.824]
+    DISCLOSED (post-run): frozen point-mass isothermal profile is degenerate: at logM_h 12, M_ta = M_h, 1.0000 of the gas lies inside 1e-3 r_edge, so E2 = E1 wherever r_edge > r200 would matter. P does not depend on the profile (its edges are B-lo min and E1:B-hi max).
+    post-freeze diagnostic E2' (gas in r_M..r_edge, sigma^2 = Vf^2/2): cylinder fraction at logM_h 11/12/13 (M_ta = M_h) 1.000 / 0.889 / 0.919; E2' range [0.000, 0.700] (no verdict weight)
+    reported only (post-freeze subset, M_ta = M_h only): P1 = [0.000, 0.267]
+  [alt a0 = 1.1312e-10]
+    logM_h  f_ret(M_ta=M_h)  M*/(f_bT M_h)  r_edge/r200   E1:B-lo  E1:B-hi  E2:B-lo  E2:B-hi   (M_ta = M_h)
+    11.00    0.100           0.043           0.82       0.064    0.108    0.064    0.108
+    11.50    0.100           0.145           0.99       0.000    0.108    0.000    0.108
+    12.00    0.100           0.220           1.20       0.000    0.108    0.000    0.108
+    12.50    0.100           0.137           1.46       0.000    0.108    0.000    0.108
+    13.00    0.248           0.067           1.14       0.200    0.267    0.200    0.267
+    M_ta = 2 M_h, logM_h 11.0: f_ret 0.100  E1:B-lo 0.172  E1:B-hi 0.215  E2:B-lo 0.172  E2:B-hi 0.215
+    M_ta = 2 M_h, logM_h 12.0: f_ret 0.100  E1:B-lo 0.000  E1:B-hi 0.215  E2:B-lo 0.000  E2:B-hi 0.215
+    M_ta = 2 M_h, logM_h 13.0: f_ret 0.383  E1:B-lo 0.758  E1:B-hi 0.824  E2:B-lo 0.758  E2:B-hi 0.824
+    PREDICTION INTERVAL P = [0.000, 0.824]  (grid 11.0-13.0; all variants)
+    reported only: 10.0-11.0 & 13.05-13.5 extension -> [0.070, 1.266]; E2 temperature bracket sigma^2 = 2/9 Vf^2: [0.000, 0.824], = Vf^2: [0.000, 0.824]
+    DISCLOSED (post-run): frozen point-mass isothermal profile is degenerate: at logM_h 12, M_ta = M_h, 1.0000 of the gas lies inside 1e-3 r_edge, so E2 = E1 wherever r_edge > r200 would matter. P does not depend on the profile (its edges are B-lo min and E1:B-hi max).
+    post-freeze diagnostic E2' (gas in r_M..r_edge, sigma^2 = Vf^2/2): cylinder fraction at logM_h 11/12/13 (M_ta = M_h) 1.000 / 0.936 / 0.962; E2' range [0.000, 0.740] (no verdict weight)
+    reported only (post-freeze subset, M_ta = M_h only): P1 = [0.000, 0.267]
+
+POWER GATE: sigma(f_halo) rebuilt = 0.264 > 0.25 -> NON-DIAGNOSTIC (published 0.275 -> NON-DIAGNOSTIC)
+  [canonical] P = [0.000, 0.824] vs f_halo 0.615 (-0.287/+0.240): Z_near +0.00, Z_far +2.14 -> bin CONSISTENT (interval-limited); VERDICT NON-DIAGNOSTIC
+        Pr(f_gas >= 0.000) = 1.000; forecast N for sigma <= 0.25: 9 sightlines; N for |Z_near| = 3: never (inside P)
+        (forecast scales sigma as N^-1/2 from a prior-bounded posterior: optimistic; no verdict weight)
+  [alt] P = [0.000, 0.824] vs f_halo 0.615 (-0.287/+0.240): Z_near +0.00, Z_far +2.14 -> bin CONSISTENT (interval-limited); VERDICT NON-DIAGNOSTIC
+        Pr(f_gas >= 0.000) = 1.000; forecast N for sigma <= 0.25: 9 sightlines; N for |Z_near| = 3: never (inside P)
+        (forecast scales sigma as N^-1/2 from a prior-bounded posterior: optimistic; no verdict weight)
+  f_IGM CONTEXT: P_IGM = [0.60, 0.95] vs f_igm 0.674 (-0.179/+0.181): Z_near +0.00, Z_far +1.52 -> CONSISTENT (CONTEXT; no verdict weight)
