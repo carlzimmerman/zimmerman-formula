@@ -115,4 +115,4 @@ With T = t0 − t_s the bound is 0.23–0.63. For α ≳ 0.5–1 the drift can c
 
 Commits: criteria dd49c4124; results in the commit that adds this README.
 
-**ID note (dated 2026-10-10).** After this lane's criteria were committed (dd49c4124), an untracked folder `CFG598_anisotropic_velocity_target/` from a parallel session appeared. It is not part of this lane and was not touched. The two lanes share the number CFG598; the ledger owner should renumber one of them.
+**ID note (dated 2026-10-10).** After this lane's criteria were committed (dd49c4124), a parallel session committed its own CFG598 criteria (93abcbeb6, `CFG598_anisotropic_velocity_target/`, anisotropic velocity-relaxation target). It is not part of this lane and was not touched. The two lanes share the number CFG598; the ledger owner should renumber one of them.
