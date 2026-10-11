@@ -1,0 +1,31 @@
+CFG597: cluster mergers as a stopwatch for cold-energy settling  [MUTATE]
+criteria FROZEN_CRITERIA.md (ae49ff4d7); kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; nu_mono; candidate B;
+G9; no EFE; cold energy's mass required (an input); no particle species; yardsticks = raw data only (no LCDM, no MOND force law).
+
+D1 Bullet (Clowe+06 Table 2 via the record script, read-only): galaxy-plasma 209.4 (main) / 194.1 (sub) kpc; BCG-BCG 721.5 kpc; 2'' = 8.8 kpc
+   f_obs sub = 0.045, main = 0.042; sigma_f = 1/8 = 0.125 (PROVISIONAL, from the 8-sigma offset)
+D2 Harvey+15: beta = -0.04 +- 0.07 (72 substructures; record L370/L371)
+
+M-6 CALIBRATION (as disclosed in README D-1): v0 per (mass ratio, case) so that the galaxy-centroid speed at the 720-kpc post-pericentre epoch is 2700 +- 200 km/s (alpha = 0, canonical; v0 >= 0)
+  10:1 L: v0 = 1691 km/s -> speed at the 720-kpc epoch = 1867 km/s (t_peri 0.967 Gyr)
+  10:1 U: v0 = 0 km/s -> speed at the 720-kpc epoch = 2825 km/s (t_peri 1.487 Gyr)
+  4:1 L: v0 = 548 km/s -> speed at the 720-kpc epoch = 1675 km/s (t_peri 1.512 Gyr)
+  4:1 U: v0 = 0 km/s -> speed at the 720-kpc epoch = 2362 km/s (t_peri 1.397 Gyr)
+  10:1 L: v0 = 2582 km/s -> speed at the 720-kpc epoch = 3048 km/s (t_peri 0.734 Gyr)
+  4:1 L: v0 = 2188 km/s -> speed at the 720-kpc epoch = 2551 km/s (t_peri 0.801 Gyr)
+  4:1 U: v0 = 1309 km/s -> speed at the 720-kpc epoch = 3305 km/s (t_peri 0.845 Gyr)
+  10:1 L: v0 = 2160 km/s -> speed at the 720-kpc epoch = 2323 km/s (t_peri 0.829 Gyr)
+  4:1 U: v0 = 0 km/s -> speed at the 720-kpc epoch = 2362 km/s (t_peri 1.397 Gyr)
+  10:1 L: v0 = 2561 km/s -> speed at the 720-kpc epoch = 3021 km/s (t_peri 0.739 Gyr)
+  4:1 U: v0 = 1309 km/s -> speed at the 720-kpc epoch = 3305 km/s (t_peri 0.845 Gyr)
+
+RUN GRID: 4 runs
+  running 2 runs on 4 processes ...
+
+MUTATE M1-M3 (L-2S canonical, 10:1)
+  M1 alpha = inf puts lensing on the gas (f >= 0.5): f150 = 0.6560990839692085  -> PASS
+  M2 alpha = 0, no drift/OU: |f| <= 0.25 and beta-bar <= 0.10: f150 = 0.06276104178069382, beta-bar = 0.1247576193606517  -> FAIL
+  M3 roles swapped (hydro 0.13 M_b), alpha = inf: lensing on the collisionless baryons (f <= 0.25): f150 = 0.07165307910886659  -> PASS
+  (reported) swapped roles at alpha = 0: f150 = 0.020599238752187436
+
+MUTATE: SOME FAIL
