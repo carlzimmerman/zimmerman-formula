@@ -67,7 +67,7 @@ Integration by parts in the Poisson bracket gives
 
 \[
  \boxed{\dot M_B=\int f\,\delta(E_s-H)
- [\dot E_s-\partial_tH],d\Gamma.}
+ [\dot E_s-\partial_tH]\,d\Gamma.}
 \]
 
 This is an instantaneous energy-domain flux, not a theorem of permanent

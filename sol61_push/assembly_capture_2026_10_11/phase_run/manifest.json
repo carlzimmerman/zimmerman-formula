@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "claim_id": "ASSEMBLY_CAPTURE_PHASE_REFINEMENT",
+  "repository": {
+    "commit": "43730771f161904fa9a77c8fb360dac732143344",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/assembly_capture_2026_10_11/phase_refinement.py",
+    "--output",
+    "sol61_push/assembly_capture_2026_10_11/phase_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Check angular sampling sensitivity of sparse or absent closed-component Hill capture seen in the main run",
+    "coefficient_domain": "Binary64 numerical ODE with analytic energy barrier",
+    "conventions": "Imports unchanged experiment.py; G=M=r_H=1; equal-weight finite shell parcels, not physical capture rates",
+    "inputs": [
+      "Hill cells E=.03,T=2; E=.3,T=2; E=.8,T=8",
+      "16 and32 incident angles, same6 signed j values, N=96 and192"
+    ],
+    "bounds": {
+      "cells": 6,
+      "maximum_parcels": 192,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "max_step": 0.02,
+      "wall_seconds": 150,
+      "cpu_seconds": 130
+    },
+    "non_claims": [
+      "No continuum convergence or astrophysical mass normalization",
+      "Phase refinement does not refine angular-momentum magnitudes, initial radius, incident time distribution or geometry",
+      "Closed below-saddle count is sufficient rather than exhaustive for retention"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T17:43:22.580205+00:00",
+    "runtime_seconds": 2.542083,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 150.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 130,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/assembly_capture_2026_10_11/experiment.py",
+    "sol61_push/assembly_capture_2026_10_11/phase_refinement.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/experiment.py",
+      "sha256": "cdc35a4a0515caea382351fb1fbf60d048a6de2683469ae17583bd63459112fe",
+      "sha256_after": "cdc35a4a0515caea382351fb1fbf60d048a6de2683469ae17583bd63459112fe"
+    },
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/phase_refinement.py",
+      "sha256": "3b618c3aa55c4505c784a4b7aefb9fb904c695f3d3a4854bc318ec03bb171e38",
+      "sha256_after": "3b618c3aa55c4505c784a4b7aefb9fb904c695f3d3a4854bc318ec03bb171e38"
+    }
+  ],
+  "output_directory": "sol61_push/assembly_capture_2026_10_11/phase_run",
+  "declared_results": [
+    "sol61_push/assembly_capture_2026_10_11/phase_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/phase_run/stdout.txt",
+      "sha256": "f7daf2d6ebfdaf6ca0596d7abc195c07c31ad171deca54239c269cee68557479",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/phase_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/phase_run/results.json",
+      "sha256": "bfacb9749027cfba03a890cab1e5f347326313ade6edceb2c4faa982b4f47a6c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

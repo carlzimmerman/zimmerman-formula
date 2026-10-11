@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "ASSEMBLY_CAPTURE_FINITE_STREAMS",
+  "repository": {
+    "commit": "43730771f161904fa9a77c8fb360dac732143344",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/assembly_capture_2026_10_11/experiment.py",
+    "--output",
+    "sol61_push/assembly_capture_2026_10_11/run_v2/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Measure capture from finite incoming shells during prescribed contraction, with exact work accounting and isolated versus tidal retention criteria; Hill inputs are initially exterior to the closed central component, not proved globally unbound",
+    "coefficient_domain": "Analytic Newtonian test-particle equations and binary64 numerical integration",
+    "conventions": "G=M=1; Plummer b=.5 to .05 by cubic smoothstep; planar Hill tide omega^2=1/3; no tracer self-gravity or baryonic backreaction",
+    "inputs": [
+      "R0=2; isolated initial energy .03,.3,.8; j=+/-.05,+/-.25,+/-.6 at eight phases, 48 equal parcels",
+      "Static initial and final controls and contraction durations .5,2,8; post-contraction interval12",
+      "Specific rotating Jacobi energy with tidal potential -1.5 omega^2 x^2; closed central component requires E<Es and |x|<xL"
+    ],
+    "bounds": {
+      "cells": 30,
+      "parcels_per_cell": 48,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "max_step": 0.02,
+      "refined_rtol": 2e-12,
+      "refined_atol": 2e-14,
+      "refined_max_step": 0.01,
+      "classification_margin": 1e-07,
+      "late_residence_midpoint_dt": [
+        0.02,
+        0.01
+      ],
+      "wall_seconds": 180,
+      "cpu_seconds": 160
+    },
+    "non_claims": [
+      "No universal density selector or microscopic cold carrier",
+      "No cosmological abundance, a0, kappa or vacuum coupling",
+      "Finite chosen incident streams, not an inferred stellar or galactic distribution or capture cross-section",
+      "Prescribed contraction is externally powered, not a self-consistent closed baryonic action",
+      "Hill approximation is local to a host and test particles remain in the stipulated model only",
+      "Energy-above-saddle Hill trajectories may remain trapped; closed-component count is sufficient, not an exhaustive census",
+      "Midpoint residence quadrature does not certify aperture event completeness"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T17:42:07.059727+00:00",
+    "runtime_seconds": 8.810523,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 160,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/assembly_capture_2026_10_11/experiment.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/experiment.py",
+      "sha256": "cdc35a4a0515caea382351fb1fbf60d048a6de2683469ae17583bd63459112fe",
+      "sha256_after": "cdc35a4a0515caea382351fb1fbf60d048a6de2683469ae17583bd63459112fe"
+    }
+  ],
+  "output_directory": "sol61_push/assembly_capture_2026_10_11/run_v2",
+  "declared_results": [
+    "sol61_push/assembly_capture_2026_10_11/run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/run_v2/stdout.txt",
+      "sha256": "237692e82271240a3ad70c8fcbec305e0b3f491cc369e72294577ee2f261b8a7",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/run_v2/results.json",
+      "sha256": "94d323076c1fc481c1fef19018b300dec4969f1553691528472b40707c548129",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "ASSEMBLY_CAPTURE_CRITICAL_INTEGRATOR_REFINEMENT",
+  "repository": {
+    "commit": "43730771f161904fa9a77c8fb360dac732143344",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/assembly_capture_2026_10_11/critical_refinement.py",
+    "--output",
+    "sol61_push/assembly_capture_2026_10_11/critical_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Check positive Hill captures and mixed isolated capture under tighter numerical integration against recorded lower-accuracy runs",
+    "coefficient_domain": "Binary64 numerical ODE",
+    "conventions": "Unchanged experiment.py; strict energy agreement and identical retained masks required",
+    "inputs": [
+      "Isolated E=.8,T2,N48; Hill E=.8,T8,N48; Hill E=.03,T2,N192; Hill E=.8,T8,N192",
+      "References run_v2/results.json and phase_run/results.json"
+    ],
+    "bounds": {
+      "cells": 4,
+      "maximum_parcels": 192,
+      "rtol": 2e-12,
+      "atol": 2e-14,
+      "max_step": 0.01,
+      "energy_agreement_absolute": 3e-07,
+      "wall_seconds": 150,
+      "cpu_seconds": 130
+    },
+    "non_claims": [
+      "Not continuum convergence, exhaustive capture classification or a physical population prediction",
+      "Agreement of two integrator settings is not an interval-arithmetic proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T17:44:40.358924+00:00",
+    "runtime_seconds": 3.104109,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 150.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 130,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/assembly_capture_2026_10_11/experiment.py",
+    "sol61_push/assembly_capture_2026_10_11/critical_refinement.py",
+    "sol61_push/assembly_capture_2026_10_11/run_v2/results.json",
+    "sol61_push/assembly_capture_2026_10_11/phase_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/experiment.py",
+      "sha256": "cdc35a4a0515caea382351fb1fbf60d048a6de2683469ae17583bd63459112fe",
+      "sha256_after": "cdc35a4a0515caea382351fb1fbf60d048a6de2683469ae17583bd63459112fe"
+    },
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/critical_refinement.py",
+      "sha256": "ef4f43cad581a87338756d55bd83ea8e54648f40b2849246536ffe1c96708a59",
+      "sha256_after": "ef4f43cad581a87338756d55bd83ea8e54648f40b2849246536ffe1c96708a59"
+    },
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/run_v2/results.json",
+      "sha256": "94d323076c1fc481c1fef19018b300dec4969f1553691528472b40707c548129",
+      "sha256_after": "94d323076c1fc481c1fef19018b300dec4969f1553691528472b40707c548129"
+    },
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/phase_run/results.json",
+      "sha256": "bfacb9749027cfba03a890cab1e5f347326313ade6edceb2c4faa982b4f47a6c",
+      "sha256_after": "bfacb9749027cfba03a890cab1e5f347326313ade6edceb2c4faa982b4f47a6c"
+    }
+  ],
+  "output_directory": "sol61_push/assembly_capture_2026_10_11/critical_run",
+  "declared_results": [
+    "sol61_push/assembly_capture_2026_10_11/critical_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/critical_run/stdout.txt",
+      "sha256": "fac8a7bdbdfe3a2679a6e318d42feb62f07d203e2ab6fadeb5d3a22dcbb02851",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/critical_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/assembly_capture_2026_10_11/critical_run/results.json",
+      "sha256": "a0e3c39c1e7ea2b57fb2c95963bf1e7c55a920708cccf0194cd3b151f2d7d0a1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
