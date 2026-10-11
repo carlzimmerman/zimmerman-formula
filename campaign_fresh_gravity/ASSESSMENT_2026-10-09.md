@@ -81,6 +81,8 @@
 
 - **Velocity part (CFG620):** a derived maximum-entropy anisotropic target holds the law's profile everywhere (including compact 'hollows') with a sharp edge. INCONSISTENT as frozen (steadiness at 10 Gyr), but it passes by the age at α ≥ 1. Overfill is not handled and it is not α-robust at ×0.5.
 
+- **Merger stopwatch v3 (CFG621, VALID as frozen; all control, calibration and MUTATE gates pass):** instant re-settling (α = ∞) is EXCLUDED on both footings (Z_B +7.86 / +8.06; the lensing peak stays on the stripped gas). Pure collisionless (α = 0) is UNDETERMINED (Harvey within 2σ, Bullet cell unscorable). No α node is allowed on either footing; α 1–10 are unscorable but as-run Z_B +8 to +16, so no reading supports α ≳ 0.5. Unscored, the merger side leans to α ≲ 0.03, in TENSION with the galaxy side (α ≳ 0.5, CFG598/620). Caveat B-D1: most cells are unscorable because one convergence variant reaches toward the main cluster (merger-environment spread, unseen by isolated stage A). A v4 with a merger-calibrated stability rule must rescore α 0, 0.03, 0.1.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
