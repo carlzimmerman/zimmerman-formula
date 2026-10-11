@@ -97,6 +97,8 @@
 
 - **Second-parameter search (CFG631; criteria 06ca28e0d; one permutation max-T family):** in DISCS nothing beyond the law survives (WALLABY bounds gas, surface density and type effects to ≤ 0.07–0.11 dex at 95%; SPARC's omnibus p 0.03 is the old early-type/dense/gas-poor direction, CFG534, not one property). In KiDS EARLY TYPES the age signal HOLDS at full size with colour, sSFR, photo-z and companions controlled (D +0.85 to +0.93, Z_emp +2.54, family-wise p 0.035). Reading: composition and gravity strength do not set the cold energy; formation time does, in massive early types only (no framework mechanism yet). Caveats: the KiDS known-signal control failed as frozen (badly chosen); the estimator inherits the CFG529 environment model and SHMR profiles.
 
+- **FRB DM scatter (CFG632; Sharma+26's 114 raw FRBs; criteria 3d0747e75): the census gas is CONSISTENT (interval-limited)** on both footings (A = σ_data/σ_census 0.944 / 0.877, Z −0.45 / −1.05). The test has teeth: power gate passes, and both MUTATE controls are EXCLUDED on the real data (f_ret = 1 at Z −7 to −9; f_ret = 0.01 at +4.1). The law's own hydrostatic gas profile fits; the beta-model bracket reaches tension. Largest systematic: the MW halo term (80 instead of 50 → canonical Z +2.1). This fixes where gas sits, not the growth tension: FRBs see only ionized gas, while the framework's excess is in settled cold energy (census variant still +0.72 / +0.88). It excludes the f_ret = 1 supply variant. Inherited: their likelihood/host prior, Tinker HMF, Duffy concentrations, Moster stellar masses (labelled).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
