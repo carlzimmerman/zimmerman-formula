@@ -1,0 +1,90 @@
+INNER-WALL ORBIT SUPPORT: EXACT GAP IN THE PROPOSED REACHABILITY TEST
+2026-10-11. Analytic source audit; no new numerical experiment.
+Base f3daba4a11174616e18d44bd78c9349c98fcd95c.
+
+CORRECTION TO THE NEXT ACTION
+Do not merely refine the previous angular-marginal library. It excludes a
+whole class of trajectories allowed by the particle benchmark. Complete its
+reflecting-wall orbit support first, then use fixed cumulative density rows.
+The prior finite results remain reproducible, but cannot test the full
+benchmark's spherical reachability. The compact canonical finite pass is
+only a binned-marginal pass, not exact continuous marginal preservation.
+
+SOURCE FINDING
+CFG544 vlasov_step reflects rr<RMIN to2*RMIN-rr and reverses radial velocity.
+It keeps L unchanged. CFG620 Library specifies natural peri/apo turning
+points with rp>=rlo; EL_from_peri_apo sets radial velocity to zero at both
+turning points. It has no wall-impact family with nonzero incoming radial
+speed at RMIN. In the previous test rlo=RMIN=.001.
+These are different dynamical supports. This is not evidence that CFG620's
+positive equilibrium is nonexistent; it restricts which initial populations
+could reach it under the proposed spherical collisionless explanation.
+
+EXACT SUPPORT BOUND
+Let g(r)>0 and r^3 g(r) nondecreasing on [r_in,R]. At a natural pericentre
+r_p, radial acceleration satisfies
+  rddot = j^2/r_p^3 - g(r_p) >=0,
+hence j^2>=r_p^3 g(r_p)>=r_in^3 g(r_in)=j_min^2>0.
+Thus EVERY natural-pericentre orbit in that annulus has j>=j_min.
+This applies to a continuum library as well as a finite one.
+
+For the benchmark target g=M(r)r/(r^2+eps^2)^(3/2), M(r)>=0 and
+M'(r)>=0 on this interval. The geometric factor in r^3g is
+  r^4/(r^2+eps^2)^(3/2),
+whose logarithmic derivative is
+  (r^2+4eps^2)/[r(r^2+eps^2)]>0.
+The assumption follows from the target's nonnegative spherical baryon and
+cold densities, with its inner cold mass subtracted consistently.
+
+The benchmark initial velocities have two tangential Gaussian components
+of width sigma=.05. At ANY positive initial radius r,
+  Pr(j<j_min | r)=1-exp[-j_min^2/(2 sigma^2 r^2)]>0.
+Averaging over either IC-B or IC-C gives positive mass below j_min.
+No orbit mixture in the natural-pericentre annulus can preserve that EXACT
+initial marginal, regardless of grid refinement. This says nothing about
+whether the missing fraction is observationally important. Coarse j bins
+can hide it; thus a finite binned feasibility pass is compatible with this
+exact support obstruction. The obstruction is to this restricted orbit set,
+not to spherical collisionless motion with the benchmark's reflecting wall,
+and not to real halos that extend below the numerical cutoff.
+
+THE MISSING FAMILY, EXPLICITLY
+For an apocentre r_a>r_in, set
+  E=Phi(r_a)+j^2/(2 r_a^2),
+  j_cross^2 = 2[Phi(r_a)-Phi(r_in)]/(1/r_in^2-1/r_a^2).
+If 0<=j^2<j_cross^2, then radial speed at the wall is nonzero:
+  v_r(r_in)^2=2[Phi(r_a)-Phi(r_in)]
+                  -j^2(1/r_in^2-1/r_a^2)>0.
+These orbits bounce at the wall, rather than turn naturally before it.
+Under the monotone r^3g condition, the effective potential has at most one
+minimum; the interval between wall and outer turning point is accessible.
+Their radial period and mass residence fractions are
+  T_r=2 integral_(r_in)^(r_a) dr/sqrt(2[E-Phi(r)]-j^2/r^2),
+  P_k=(2/T_r) integral_(bin k intersect [r_in,r_a]) dr/|v_r|.
+The change r=r_a-(r_a-r_in)u^2, u in[0,1], removes the simple outer-turning
+point square-root singularity. The degenerate j=j_cross boundary needs its
+own limiting treatment. The existing natural-orbit family plus this wall
+family supplies the missing support. A zero-j radial wall orbit is an
+immediate analytic control; the existing library cannot represent it.
+
+SELF-REVIEW
+- Reflection is central: it reverses radial velocity and preserves j. It
+  does not supply a hidden torque that excuses changing the j marginal.
+- No claim that a hard wall is a physical halo mechanism. This only matches
+  the actual benchmark when auditing its dynamics. A physical continuum
+  model should test sensitivity to taking r_in toward zero or resolving the
+  centre, and conserve material/energy appropriately there.
+- Gaussian tails are exact statements about the prescribed continuum IC,
+  not a guarantee a finite random particle sample contains every tail.
+- Monotonic r^3g is an explicit hypothesis, verified algebraically above
+  for nonnegative enclosed mass with this softening. Not arbitrary potentials.
+- A completed orbit set would still test only equilibrium accessibility,
+  not stability, formation rate, capture, or the dark-energy receiver.
+
+HANDOFF
+The next meaningful experiment is to add wall-impact orbits in our own
+library wrapper, validate their periods/residence fractions and j conservation
+against direct trajectories, then rerun the fixed-marginal feasibility test.
+Freeze criteria first. Do not modify Claude's library or discard the previous
+finite failures. Keep both a0 footings separate. No tuned constant is added
+by faithfully reproducing the benchmark's pre-existing numerical boundary.
