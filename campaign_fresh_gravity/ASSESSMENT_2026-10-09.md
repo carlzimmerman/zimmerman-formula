@@ -95,6 +95,8 @@
 
 - **Settling feeds dark energy (CFG630; criteria 45dd454a6; MUTATE pass):** the settling hand-off is real in the framework but tiny: Q today 7–9e-34 W/m³; Δρ_DE/ρ_DE ≈ 1e-6 since z = 1 (2.7–3.8e-6 since z = 8); phantom-side (1 + w ≈ −2e-7, no crossing of −1); a₀(z) drift ≤ 7e-7 dex for z ≤ 3. Below any sensitivity by 4–5 orders of magnitude (DESI, galaxy a₀(z)); the flat-a₀ prediction and the sealed ALMA predictions are unaffected. Settling cannot produce or rescue a DESI-size w crossing. Scope: a homogeneous Q only; astra's local-sink audit (b626126ed) shows the local hand-off needs a dynamical partner, not passive vacuum. Inherited: excursion-set mass fraction, Eisenstein–Hu spectrum (HMF context).
 
+- **Second-parameter search (CFG631; criteria 06ca28e0d; one permutation max-T family):** in DISCS nothing beyond the law survives (WALLABY bounds gas, surface density and type effects to ≤ 0.07–0.11 dex at 95%; SPARC's omnibus p 0.03 is the old early-type/dense/gas-poor direction, CFG534, not one property). In KiDS EARLY TYPES the age signal HOLDS at full size with colour, sSFR, photo-z and companions controlled (D +0.85 to +0.93, Z_emp +2.54, family-wise p 0.035). Reading: composition and gravity strength do not set the cold energy; formation time does, in massive early types only (no framework mechanism yet). Caveats: the KiDS known-signal control failed as frozen (badly chosen); the estimator inherits the CFG529 environment model and SHMR profiles.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
