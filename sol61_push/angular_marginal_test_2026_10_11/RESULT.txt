@@ -1,0 +1,62 @@
+ANGULAR-MOMENTUM MARGINAL TEST: NO CONTINUUM EXCLUSION
+2026-10-11. Frozen criteria 7d3396e45, committed alone before code/run.
+Read the exact experiment bounds in FROZEN_CRITERIA.txt.
+
+RESULT
+All 12 density-only problems are feasible (six cells, two resolutions).
+Adding the existing initial angular-momentum marginal gives:
+- IC-B compact canonical: feasible at BOTH 24 and48 radial bins, residual
+  about3.3e-15, unit total mass to roundoff.
+- Other IC-B cases: residuals at48 bins range1.75e-6 to2.20e-5.
+  Quadrature changes are4.8e-6 to5.4e-6. Several misses cannot be separated
+  from quadrature error at the frozen1e-6 feasibility threshold.
+- IC-C: all six finite libraries miss. At48 bins residuals are
+  MW can5.6253e-4 / alt5.3476e-4;
+  cluster can1.99043e-3 / alt1.99039e-3;
+  compact can8.0041e-4 / alt7.7728e-4.
+  These exceed the measured quadrature differences, but every residual
+  shrinks substantially with refinement. No converged continuum lower bound.
+
+Thus the angular-momentum invariant DOES NOT close the collective route.
+There is a concrete finite feasibility witness for compact canonical B.
+There is no proof that any candidate forms dynamically, is stable, has the
+correct capture/energy accounting, or works for all required systems.
+IC-B and C are benchmark choices, not derived cosmological initial data.
+
+IMPORTANT INTERPRETATION LIMITS
+The rows use absolute fraction-of-total mass error. As radial bins narrow,
+the same density discrepancy can produce smaller per-bin errors. Halving t
+is NOT evidence of continuum convergence by itself. The next discriminator
+must fix physical cumulative-mass test radii while refining the orbit set,
+and preferably bound a separating dual functional over continuous orbits.
+Likewise the quadrature condition1e-5 is looser than the LP gate1e-6; the
+freeze is preserved and those marginal IC-B failures are INCONCLUSIVE.
+
+The orbit set excludes pericentres below .001r_* and apocentres beyond r_*.
+J is binned, and finite sampling of E,L is not all possible stationary DFs.
+A feasible binned marginal need not reproduce the exact continuous marginal.
+No inference that non-spherical torques are required in the actual theory.
+Target mass/Mcat is1.000067 to1.000186. Shape normalization was declared in
+advance; supply and energy are NOT tested. Failed LP solutions can change
+their total mass slightly as part of the minimax residual; those solutions
+are not physical candidates, and their reported mass is retained.
+
+VERIFICATION
+run_v2:84/84 numerical controls pass. Known positive-mixture witness is
+recovered; impossible empty-support j-bin mutation is rejected; deleting
+j constraints makes its impossible requirement unenforced as expected.
+Both run manifests validate against the current input hashes. Runtime about
+3 seconds each, one numerical thread, no new heavy simulation.
+Original run:72/72 controls, finite results, but BLAS matrix-vector witness
+construction emitted divide/overflow/invalid warnings. Preserved unchanged.
+check_v2 uses unoptimized einsum for that one product and adds explicit
+finite-witness checks. stderr is empty and ALL scientific result rows are
+exactly identical to run1. The underlying BLAS warning cause is not proven.
+
+DECISION
+Keep collective dynamics open. The previous invariant is a useful constraint,
+not an argument that the repaired halo necessarily needs extra torques.
+Next use fixed cumulative rows and continuous-orbit bounds before spending
+resources on a large evolution experiment. Rate, receiver, cluster supply,
+concentration and the required raw-data verdicts remain unresolved.
+Kappa fitted; canonical/alt never pooled; sealed predictions unchanged.
