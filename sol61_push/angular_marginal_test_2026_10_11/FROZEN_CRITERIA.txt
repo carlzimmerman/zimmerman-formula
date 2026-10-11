@@ -1,0 +1,31 @@
+2026-10-11. Freeze before code/run. Base dbbf55477.
+Claim: finite-library feasibility of spherical collisionless reachability of
+CFG626's repaired-kernel softened target, at fixed initial j marginal.
+Six cells from committed cfg626_results_mono.json; footings never pooled.
+Use CFG620 Library at nb=24,48,sub=2, NTH=48, rmin=.001,rmax=1.
+Use CFG626 repaired kernel table and CFG544 baryon and phantom functions,
+softening .01. Subtract phantom mass inside rmin as toy_target does.
+Normalize target shell masses to unit total for feasibility. Disclose any
+Mcat difference; this tests shape and angular marginal, not supply amount.
+Initial distributions: benchmark B uniform spatial sphere to rta (radius
+floor rmin*1.01), and C target radial mass profile from rmin to1; tangential
+velocities two independent normals sigma=.05 in benchmark code units.
+Compute j-bin probabilities by deterministic quadrature of Rayleigh CDF
+1-exp[-j^2/(2 sigma^2 r^2)], 8192/16384 radial quantiles, require absolute
+bin agreement <=1e-5 else quadrature inconclusive for that cell.
+Bin edges: 0, geomspace(1e-4,2*sqrt(g(1)),15), infinity.
+LP variables orbit mass>=0 and residual t>=0. Minimize largest absolute
+row error in unit-total-mass units, density rows P.T and j-bin indicators.
+Report density-only first, then density+initial-j for each B,C separately.
+Finite feasible iff t<=1e-6, max residual independently <=1e-6, mass within
+1e-6; otherwise finite incompatible, conditional on solver tolerance and
+support. Refinement is a diagnostic, not continuum proof. No data verdict.
+Controls: synthesize density and j marginals from a known positive weight
+vector; LP must recover both to1e-7. MUTATE empty-support j bin with all mass
+there must be incompatible (t>1e-3). MUTATE omit j rows: show the code no
+longer enforces the impossible j target. Net-spin counterexample analytic
+in prior derivation; not counted as a new numerical check.
+Read source AST functions only; do not import top-level campaign drivers.
+Single numerical thread, <1GB expected memory, CPU90s, wall120s,
+per-LP time limit3s. Any resource failure is inconclusive and preserved.
+No tuning, no framework failure/closure claim; alpha remains underived.
