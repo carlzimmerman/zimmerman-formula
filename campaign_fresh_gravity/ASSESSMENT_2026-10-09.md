@@ -75,6 +75,8 @@
 
 - **Merger stopwatch (CFG597): VOID as frozen.** Control C4 failed (a gas-centroid estimator artefact). α_max was mis-computed (the full passing set is {0, 10}, with the 10 an aperture artefact), M2 failed, the calibration missed, and the gas model over-strips the bullet (gas 770–950 kpc from galaxies vs the observed 194). It says nothing about α. A valid rerun spec is in its README. As-run only: relaxing cold energy pulls lensing toward the stripped gas by α ≈ 1.
 
+- **Settling front (CFG598): one α does NOT give working partial settling.** The front is always inside-out. At α ≳ 0.5 the MW and groups pass but hosts fill to the supply edge, so the excess stays. At α = 0.25 partial settling appears at 0.2–0.5 r_ta, but the MW, canonical groups and the excess (cut 21–24% < 25% bar) narrowly miss. An inside-out front cannot reduce the inner concentration that drives the excess. Supply-rate bound α ≲ 0.3–1.0 by mass.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
