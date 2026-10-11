@@ -56,6 +56,7 @@ def req(method, url, tok, data=None, ctype="application/json", raw=None, tries=4
 def main():
     tok = token()
     meta = json.load(open(META))
+    meta = meta.get("metadata", meta)      # the .zenodo.json files wrap the fields in a top-level 'metadata' key
 
     # 1) create deposition, a new version of a published record, or reuse a DRAFT id
     if "--newversion" in sys.argv:
