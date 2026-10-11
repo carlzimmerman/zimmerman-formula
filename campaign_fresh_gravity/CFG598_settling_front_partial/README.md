@@ -57,7 +57,7 @@ All masses (11–15) and the alt footing are in `cfg598_front.out`. Alt is lower
 **P2 (deposited after first collapse with radial-orbit weights).** It is dominated by the placement, not by α:
 - the orbit-averaged reservoir already fills the inner region at α = 0 (F_set(<0.1) ≈ 0.88–1.0);
 - shells that have not collapsed by t0 (22–54% of the catchment, rising with mass) are not yet delivered;
-- F_set(<0.5) is 0.29–0.43 at every α, and S/S_∞ is above 1 because of the overfill (one-sided deficit).
+- F_set(<0.5) is 0.29–0.44 at every α (log 11–15), and S/S_∞ is above 1 because of the overfill (one-sided deficit).
 
 **Supply bound α_sup = G S/(T V_f³ · 2/(3√3))** with T = t0 − t_ta(X = 0.5):
 
@@ -114,3 +114,5 @@ With T = t0 − t_s the bound is 0.23–0.63. For α ≳ 0.5–1 the drift can c
 - **CFG543 footings.** The group path uses CFG543's rounded footings (9.36e-11 / 1.13e-10) so that G0 reproduces CFG543 exactly.
 
 Commits: criteria dd49c4124; results in the commit that adds this README.
+
+**ID note (dated 2026-10-10).** After this lane's criteria were committed (dd49c4124), an untracked folder `CFG598_anisotropic_velocity_target/` from a parallel session appeared. It is not part of this lane and was not touched. The two lanes share the number CFG598; the ledger owner should renumber one of them.
