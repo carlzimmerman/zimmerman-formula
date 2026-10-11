@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "claim_id": "LOCAL_VACUUM_SINK_REACTION",
+  "repository": {
+    "commit": "bf2711f02cfdcaf6a02cc8d762a2ff8849ed1244",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/local_sink_reaction_2026_10_11/check.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Pure-vacuum local heat deposit requires unsuppressed gradient reaction relative to deposited specific energy",
+    "coefficient_domain": "exact Sympy expressions and binary64 illustrations",
+    "conventions": "metric -+++; x0=ct; V energy density; rho cold mass density",
+    "inputs": [
+      "sol61_push/local_sink_reaction_2026_10_11/check.py",
+      "sol61_push/local_sink_reaction_2026_10_11/FROZEN_CRITERIA.md"
+    ],
+    "bounds": {
+      "symbolic": "one Gaussian deposit with exponential time ramp",
+      "speeds_m_per_s": [
+        200000,
+        1000000
+      ],
+      "cpu_seconds": 10,
+      "wall_seconds": 20
+    },
+    "non_claims": [
+      "No self-consistent halo evolution",
+      "No derived coupling, rate, or dark sector action",
+      "No observational verdict"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T19:05:17.695824+00:00",
+    "runtime_seconds": 1.014394,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 10000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/local_sink_reaction_2026_10_11/check.py",
+    "sol61_push/local_sink_reaction_2026_10_11/FROZEN_CRITERIA.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/local_sink_reaction_2026_10_11/check.py",
+      "sha256": "690aeda07afbe86d2d398e5d6256cb76ee816012b284c1d3b9ba00c1d2246b38",
+      "sha256_after": "690aeda07afbe86d2d398e5d6256cb76ee816012b284c1d3b9ba00c1d2246b38"
+    },
+    {
+      "path": "sol61_push/local_sink_reaction_2026_10_11/FROZEN_CRITERIA.md",
+      "sha256": "91850405b28871b846b372a8116b0061f86a77c2eba549a49ece0d1aea3a671b",
+      "sha256_after": "91850405b28871b846b372a8116b0061f86a77c2eba549a49ece0d1aea3a671b"
+    }
+  ],
+  "output_directory": "sol61_push/local_sink_reaction_2026_10_11/run",
+  "declared_results": [
+    "sol61_push/local_sink_reaction_2026_10_11/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/local_sink_reaction_2026_10_11/run/stdout.txt",
+      "sha256": "d58321008072dc9c9dec34f23d62b2f7be4a450255e20ff671eb09fbeb373007",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/local_sink_reaction_2026_10_11/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/local_sink_reaction_2026_10_11/run/results.json",
+      "sha256": "440862db052e23482afd3cbdaed846e4fa386a7f5a2d4f1ea269efae8f94b93e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
