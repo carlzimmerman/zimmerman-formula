@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "FINITE_RECIPROCAL_ASSEMBLY",
+  "repository": {
+    "commit": "1c69c8300fa97db5d5402d1e046b6d994b2c2e4d",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/finite_assembly_2026_10_11/experiment.py",
+    "--output",
+    "sol61_push/finite_assembly_2026_10_11/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite variational breathing source with recoil, self-gravitating softened stream parcels, and explicitly recorded dissipated energy; test whether source can be evolved without prescribed b(t)",
+    "coefficient_domain": "Analytic Hamiltonian plus binary64 ODE",
+    "conventions": "G=M=1; Gaussian baryon variance b², breathing inertia3M, self energy-A/b, supportC/b²; A=1/(2sqrt(pi)), C=.05A. Positive softened pair gravity epsilon=.08. Qdot=3M gamma bdot².",
+    "inputs": [
+      "24 antipodally paired stream parcels at radius2, j=.2/.6 with paired signs; initial instantaneous energies.05 including other streams",
+      "eta=.05,1; gamma0,.5,2; no-self-gravity control with matched physical initial states ateta1gamma.5",
+      "Refined eta1gamma.5 and intentionally wrong source reaction sign"
+    ],
+    "bounds": {
+      "end_time": 30,
+      "parcels": 24,
+      "main_cells": 7,
+      "rtol": 1e-09,
+      "atol": 1e-11,
+      "max_step": 0.03,
+      "refined_rtol": 2e-11,
+      "refined_atol": 2e-13,
+      "refined_max_step": 0.01,
+      "energy_error_tolerance": 2e-06,
+      "wall_seconds": 180,
+      "cpu_seconds": 160
+    },
+    "non_claims": [
+      "Homologous Gaussian ansatz is not full gas hydrodynamics",
+      "24 softened parcels do not establish Vlasov convergence or physical halo formation",
+      "Finite late core occupation is not permanent capture or stationary density",
+      "Cooling rate and support coefficient remain inputs; no vacuum coupling, cold carrier, abundance, a0 or kappa derived",
+      "No-self-gravity control has matched states but different Hamiltonian and total initial energy"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T18:09:36.564925+00:00",
+    "runtime_seconds": 25.908849,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 160,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/finite_assembly_2026_10_11/experiment.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/finite_assembly_2026_10_11/experiment.py",
+      "sha256": "4d2fad493023601e088c71f33bc645e65dbf4ebe3075b1ddcf8f6bccc4bf552a",
+      "sha256_after": "4d2fad493023601e088c71f33bc645e65dbf4ebe3075b1ddcf8f6bccc4bf552a"
+    }
+  ],
+  "output_directory": "sol61_push/finite_assembly_2026_10_11/run",
+  "declared_results": [
+    "sol61_push/finite_assembly_2026_10_11/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/finite_assembly_2026_10_11/run/stdout.txt",
+      "sha256": "68b6fa9fcd5796dd528b2e65500e8d4b06e7272d62ae6e4c15245dd20c7139aa",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/finite_assembly_2026_10_11/run/stderr.txt",
+      "sha256": "3ef2105d7b546f1068c250cda61234e84e91509f58ed53f3224f49a3c4c4f8de",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/finite_assembly_2026_10_11/run/results.json",
+      "sha256": "2bdf8ffd3c18a442063c1538f1a021c8087dcf12d950977da5eb202d5c2aa780",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
