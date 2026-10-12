@@ -44,3 +44,70 @@ variance. No full-theory exclusion or completion, and no partial result
 promoted to CFG596's final verdict. Await the existing production/scoring
 sequence; do not restart or duplicate it. This is new evidence, not a wait
 being counted as a theoretical breakthrough.
+
+FOLLOW-UP: SOURCE TRACE AND A BOUND THAT NEEDS NO NEW MESH RUN
+
+Base 741900ad3dc0705e5c89e5c791d788a894527914. Previous turn: progress.
+Read cfg596_pm.py forces (616 onward), source assembly (708 onward),
+_finish_phik (780 onward), grav_field, and measure_pk (359 onward).
+
+The force builder forms a positive deficit within the edge, caps it against
+available supply per connected catchment, and subtracts compensation from
+the catchment shell outside the edge. _finish_phik then computes, for k!=0,
+
+ phi_k=-(1.5 Om/a) delta_particle,k/k^2 - src_k/k^2.
+
+Consequently the measured gravitating contrast is, up to numerical roundoff,
+
+ delta_grav=delta_particle+s,  s=a src/(1.5 Om).
+
+This is an explicit field correction at the current particle positions. The
+particles respond to it dynamically, but the correction is not itself a
+separately evolved phase-space mass population. This trace does not claim a
+coding bug or double counting: it identifies the effective closure that a
+material cold-energy completion must reproduce with mass transport, momentum,
+and energy accounting. A balanced source integral alone supplies none of them.
+
+The captured z1 diagnostic has src_sum/e_sum=1.5112066778448708e-11, so the
+net source is tiny relative to the positive addition. That concerns the
+monopole only, not the distribution or force at finite k. It cannot be used
+to dismiss the measured gravitating-power excess.
+
+Let P_p, P_g and P_s be the shell-averaged powers of these three fields.
+measure_pk uses the same positive weights and CIC deconvolution for both
+recorded fields and no shot-noise subtraction. Hence the reverse triangle
+inequality for that weighted Fourier norm gives
+
+ P_s >= (sqrt(P_g)-sqrt(P_p))^2.
+
+Writing R_p=P_p/P_S0 and R_g=P_g/P_S0 gives the directly usable bound
+ P_s/P_S0 >= (sqrt(R_g)-sqrt(R_p))^2.
+
+At k=.8830225972579516:
+ R_p=1.0393058411377174, R_g=1.418804026616789;
+ P_s/P_S0 >= .029471308979205843;
+ sqrt(P_s/P_p) >= .16839454886383343.
+
+At k=.9435210567135378 the corresponding source-power lower bound is
+.028401701012054803 and source/particle amplitude lower bound is
+.16494514641364844. Values are arithmetic from the already captured JSONs.
+These are weighted RMS FOURIER-bin amplitudes, not pointwise forces or
+fractions of the total halo mass. They are not measurements of P_s itself.
+
+P_g=P_p+2 Re P_ps+P_s. Auto-spectra do not determine the cross spectrum or
+which spatial component causes its correlation. Therefore no assertion that
+'the source alone contributes 42% power' follows. Nor can one infer the effect
+of changing its amplitude after particles evolve under the altered force.
+The inequality isolates a minimum extra-field amplitude without those claims.
+
+Decision: the immediate physical gap is a material realization of this
+compensated field closure, tested on the gravitating field. Local capture and
+edge constructions that ignore that closure do not address the new evidence.
+Native likelihood completion is still required; this source audit cannot
+replace it or yield an observational verdict. No production code was edited.
+
+Self-review: signs and factors in the Poisson inversion; same measurement
+weights; absence of power subtraction; distinction between P1 particle field
+and S0 reference; positive-norm inequality; monopole versus finite k; missing
+cross-spectrum; frozen-field algebra versus rerun dynamics. Analytic and
+read-only arithmetic checks, not a new simulation or independent referee audit.
