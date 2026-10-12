@@ -111,6 +111,8 @@
 
 - **Baryon heat exchange "Door 1" (CFG643; criteria c7dad5f10; MUTATE 3/3): CLOSED on both footings.** Q_c = C a₀ v ρ_b cannot be the mechanism: the framework's own infall path must LOSE energy (CFG541), so heating has the wrong sign; the required import is 8–57× the baryons' entire kinetic energy (1.5–3.5× even with full refill); collisionless cold energy has no transport, so no BTFR balance (FKPS closure needs C spread ×45–52); the needed σ ∝ 1/(n_c v²) needs a new density-screened coupling (a particle with a free cross-section). Heating could only spread settled mass by breaking the law's profile.
 
+- **Energy-bounded settling H-EB (CFG645; criteria 21b7b0857; MUTATE pass): NOT DERIVABLE KNOB-FREE.** Every derived capacity is inert or zero: the dark-energy rest energy exceeds what settling must shed by ≥ 8e3 (galaxies ~2e6); astra's receiver never fills when absorbing (π² grows) so any π₀ ≠ 0 settles everything and π₀ = 0 settles nothing; the local CFG635 cap binds only in the innermost cusp (≤ 1.1e-4 of the mass). Only a free efficiency η cuts groups/clusters (η varies ×250 across mass — a knob), and then overshoots to a deficit. Energy disposal does not set how much settles; the open problem stays the supply and the edge.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
