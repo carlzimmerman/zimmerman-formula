@@ -113,6 +113,8 @@
 
 - **Energy-bounded settling H-EB (CFG645; criteria 21b7b0857; MUTATE pass): NOT DERIVABLE KNOB-FREE.** Every derived capacity is inert or zero: the dark-energy rest energy exceeds what settling must shed by ≥ 8e3 (galaxies ~2e6); astra's receiver never fills when absorbing (π² grows) so any π₀ ≠ 0 settles everything and π₀ = 0 settles nothing; the local CFG635 cap binds only in the innermost cusp (≤ 1.1e-4 of the mass). Only a free efficiency η cuts groups/clusters (η varies ×250 across mass — a knob), and then overshoots to a deficit. Energy disposal does not set how much settles; the open problem stays the supply and the edge.
 
+- **PM accounting audit (CFG647; criteria 2e1ea8c58): NO BUG.** Settled source is built per unique cell, redistributes mass (conserved to 3e-11), and never exceeds supply. Physics finding: the theory's supply rule pools supply across merged overlapping catchments (chains of up to hundreds of hosts), so dominant hosts draw neighbours' shells; at z = 0 about 10% of settled mass (13.5% in log M_ta ≥ 13.5) is imported. Removing the import statically lowers the own boost 1.20/1.25/1.21 → 1.13/1.17/1.16 at k 0.3/0.5/1: about a third of the excess, not enough alone. A per-host supply rule would be a theory change (512³ spec in the README).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
