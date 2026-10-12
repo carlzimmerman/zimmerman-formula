@@ -225,3 +225,116 @@ Self-review: phase-space velocity Jacobian; turning-point Taylor sign; beta
 integral endpoint convergence p<1; p=1/2 normalization; pressure/density ratio;
 positive energy slope; entropy integrability. This is an analytic self-review,
 not an independent stability proof or a numerical convergence experiment.
+
+7. FOLLOW-UP: LOCAL DRIFT-DIFFUSION LAW REQUIRED BY THAT EDGE
+
+Base 369eef6dff631fb239a679512009c550797c7e9d. Previous turn: progress.
+This section derives an orbit-averaged local kinetic compatibility condition.
+It does not identify a microscopic noise source or a complete physical law.
+
+Hold the spherical potential, outer radius and angular momentum L fixed.
+Set q=E_R(L)-E>=0. The density with respect to dq dL is not f itself:
+
+ n(q,L)=8 pi^2 L T_r(E_R-q,L) f(E_R-q,L).
+
+For the edge family in section 6,
+n_*(q,L)=K(L) T_r(q,L) q^(-1/2). Assume T_r positive and continuously
+differentiable near q=0 on a nondegenerate L interval. This regularity is an
+additional condition, not a claim covering nearly circular or separatrix orbits.
+
+Take an Ito diffusion at fixed L,
+ dq=A(q,L) dt+sqrt(2D(q,L)) dW,
+ partial_t n=-partial_q J,  J=A n-partial_q(D n).
+
+Zero stationary flux requires EXACTLY, wherever n_*>0,
+
+ A=D'+D partial_q log n_*
+  =D'-D/(2q)+D partial_q log T_r.                     (7.1)
+
+Consequences:
+ - If D tends to D0>0 and D' remains finite, A must diverge as -D0/(2q).
+   A bounded drift and nonzero edge diffusion cannot maintain this edge.
+ - If D=d(L) q, d(L)>0, then
+   A=d(L)/2+d(L)q partial_q log T_r,
+   which is finite at the edge. Degenerate diffusion avoids a divergent drift.
+ - More generally D=d q^s gives the leading pair
+   A=d(s-1/2)q^(s-1), subject to the stated smooth period assumption.
+   These are compatibility relations, not a derivation of d or s.
+
+7a. An explicit regular edge process, with its limits
+
+For constant T_r the choice D=d q, A=d/2 has the local equation
+
+ dq=(d/2)dt+sqrt(2d q)dW.                            (7.2)
+
+It has a nonnegative realization: let u be ordinary Brownian motion scaled
+as du=sqrt(d/2)dB and put q=u^2. Ito's rule gives
+dq=(d/2)dt+sqrt(2d)u dB; changing the Brownian sign on u<0 gives (7.2).
+Thus the q=0 edge can be attained and left without extending to q<0.
+This specifies the nonabsorbing squared-Brownian extension. Absorption at
+zero would be a different boundary model and would not give the same law.
+
+For an illustrative FINITE interval only, reflecting u at +/-sqrt(Q) yields
+a uniform stationary u density and hence n_*(q)=1/(2 sqrt(Qq)), 0<q<Q.
+The q process inherits a reflection term at Q. Without this upper confinement,
+q^(-1/2) is not normalizable on the half-line and is not a global equilibrium.
+Neither Q nor the reflecting upper boundary has been derived for a halo.
+This finite-interval example demonstrates mathematical realizability only.
+
+The factor 1/2 in (7.2) comes from the Ito transformation and the prescribed
+edge exponent. It is NOT a derivation of the formula's kappa=1/2.
+
+For general smooth T_r and a specified normalizable n_* on a finite domain,
+(7.1) rewrites the current as
+
+ J=-D n_* partial_q(n/n_*).
+
+Under boundary conditions that remove the entropy boundary term,
+
+ d/dt int n log(n/n_*) dq
+       =-int D n [partial_q log(n/n_*)]^2 dq <=0.
+
+The vanishing of boundary terms needs checking for the chosen singular
+domain; it is not implied by merely writing a formal zero-flux condition.
+The reflected-u example supplies one concrete boundary realization.
+
+7b. What remains physical rather than algebraic
+
+Equation (7.2) is a candidate LOCAL edge dynamics, not a parameter-free halo
+law. Choosing q=u^2 manufactures the desired Jacobian unless u has an
+independent physical identification and dynamics. A coordinate substitution
+does not produce microscopic fluctuations or explain their strength.
+
+At fixed potential and L, dE=-dq. Away from boundary reflection the mean
+orbital energy change from (7.2) is -d/2 per unit time in specific-energy
+units. The variance coefficient is 2d q. That energy must be balanced by a
+physical receiver. A stochastic equation alone supplies no such receiver,
+rest-energy accounting, angular torque model or equilibrium import capacity.
+In a forming halo E_R and Phi change; dropping their time derivatives would
+invalidate this energy ledger. Fixed L also cannot repair a mismatched total
+angular-momentum distribution in the initial material cohort.
+
+All positive rescalings of d leave the stationary exponent unchanged while
+changing the time scale. The global density and distribution across L are
+also unselected. Those facts prevent reporting this as the requested law.
+
+Analytic controls: constant D and A=0 give n_*=constant (not the required
+edge); D=dq and A=0 give n_* proportional to 1/q (nonnormalizable at zero).
+The d/2 drift is essential for the integrable exponent within this class.
+No script or numerical experiment was run. The CFG620 target resampling is
+a BGK jump process, not this diffusion; no incompatibility with that code is
+inferred from a differential-generator assumption it does not make.
+
+Literature discovery: squared-Bessel/Brownian-square processes are standard.
+Search located the primary preprint 'Optimal Strong Approximation of the
+One-dimensional Squared Bessel Process', arXiv:1601.01455,
+https://arxiv.org/abs/1601.01455 . Its abstract gives dX=dt+2sqrt(X)dW;
+our q=(d/2)X has (7.2). Only the abstract was inspected; no approximation
+theorem is imported. The construction and stationarity algebra are displayed
+above. No novelty or physical applicability is inferred from this connection.
+
+Self-review: Ito versus Fick convention fixed by J=A n-(Dn)'; orbit measure
+retained; derivative of log q has negative sign; Brownian-square quadratic
+variation included; upper-boundary reflection disclosed; rate freedom and
+specific-energy sign checked. Goal remains open; next physical obligation
+is a source for D(q,L), not another chosen relaxation coefficient.
