@@ -119,6 +119,8 @@
 
 - **CMB safety (CFG649; criteria 0d6f7f883; MUTATE bites):** PRIMARY CMB SAFE — the only extra source is the catchment-gated settling term (zero-sum, so background untouched), a₀ enters only inside it, nothing switches on at z_i = 49 (P1 ≡ P0 there), and the expected number of turnaround peaks in the last-scattering volume at z = 1100 is 10^−1232. CMB LENSING for candidate B canonical: ΔA = +1.3% (Planck 8–400), range +0.9% to +7.9% over 12 extrapolation variants → CONDITIONAL (the box holds only 10–16% of the lensing kernel; boost still ~5% at the box's lowest k); on the particle field only +0.17% (SAFE), so it hinges on whether the phantom part of the gravitating field bends light (open). ACT-range context reads UNSAFE (uniform weights; bandpowers not on disk). Raw Planck PR4 / ACT DR6 lensing bandpowers would need the owner's go.
 
+- **KiDS-fail anatomy + framework-native gas expulsion (CFG646; declarations 3c1c5a42f):** 56–79% of KiDS's +68.7 comes from k < 1 (mostly 0.3–1), driven by high-z tomographic pairs (4-5, 5-5, 4-4); all of DES's comes from k < 1 — i.e. from scales where gas matters least. The PM indeed omitted the framework's own gas expulsion (3.4% of mass still gravitating inside halos). Moving it out (primary placement) lowers P_grav by 2–5% at k 0.3–1 (PM and halo model agree within 0.007) and KiDS Δχ² to ~+52 (range +36 to +62 over placements): real, right sign, about a quarter of the Δχ², NOT enough. The excess is the settled cold energy from the supply rule. Native EXPEL spec frozen (741a8adcc), not run.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
