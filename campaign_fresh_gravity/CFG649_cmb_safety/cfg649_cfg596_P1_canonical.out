@@ -1,0 +1,72 @@
+CFG649 CMB-safety gate  tag=cfg596_P1_canonical  MUTATE=False
+  F  = _external_data/cfg596_work/P1/cfg596_RES_canonical_N1024_L100_ns1024_lean.json
+  S0 = _external_data/cfg596_work/P0/cfg596_S0_canonical_N1024_L100_ns1024_lean.json
+  box L = 100 Mpc/h, N = 1024; support k = 0.0802-7.980 h/Mpc (127 bins); late snapshots a = 0.5000, 0.5698, 0.6667, 0.7961, 1.0000; z_i snapshot a = 0.020
+
+PART A  primary CMB: is the switch off at recombination?
+  [PASS] A1: switch OFF at the run's start z = 49: n_catch <= 1, e_sum = 0, max|P_grav,F/P_grav,S0 - 1| <= 1e-6 -- n_catch 1, e_sum 0.0, max dev P_grav 0.00e+00, particle P 0.00e+00
+  switch diagnostics per stored snapshot (F): zi: n_catch 1, e_sum 0; z1: n_catch 786, e_sum 6.54e+07; x0.7548: n_catch 740, e_sum 6.59e+07; z0.5: n_catch 732, e_sum 6.16e+07; x0.2562: n_catch 695, e_sum 5.52e+07; z0: n_catch 641, e_sum 4.66e+07
+  NOTE: no diagnostics were stored between z_i and the first late snapshot -> the in-box switch-on epoch is NOT measured.
+  A2 a0_use: L64: def a0_code(a, branch, foot):; L479: a0p = a0_code(a, branch, foot) * ACC_UNIT; L685: a0c = a * a0_code(a, branch, foot)
+  A2 branch: L66: if branch == "FLAT": return base; L67: if branch == "CRIT": return base * E(a); L68: if branch == "DE": return base * math.sqrt(a ** (-3 * (1 + W0 + WA)) * math.exp(-3 * WA * (1 - a)))
+  A2 catch_mask: L715: e[s] = e[s] * unpack(catch_p, s)
+  A2 no_catch_branch: L719: if not catch.any():                                            # cfg527: no components -> nc = 1, q = 0, comp 
+  A2 finish: L791: phik[s] = phik[s] - srck[s] * ik2
+  A2 s0_path: L622: if switch == "S0":
+  A2 zero_sum: L763: comp_sel = (rv_sel * q[rr]).astype(np.float32)
+  A2 peak_rule: L490: pk = (delta == mx) & (delta >= 3 * (tau - EPS)); del mx
+  A2 ball_rule: L508: ok &= mean >= Dta
+  [PASS] A2: engine scan: the only extra source is e*catch (resolved turnaround peaks, enclosed mean >= Delta_ta) minus a per-component zero-sum compensation; a0 enters only via nu inside that path; no source outside catchments -- a0_code used at L64,L479,L685; FLAT branch constant
+  A3 z = 1100: max sigma_lin over R in [1e-3, 10] Mpc/h = 1.399e-02; most dangerous R = 0.001 Mpc/h, nu = 75.9; log10 N(turnaround peaks in the whole last-scattering ball) = -1232.0
+  [PASS] A3: ESTIMATE: expected number of linear turnaround peaks at z = 1100 in the last-scattering volume < 1e-10 -- log10 N_max = -1232.0 at R = 0.001 Mpc/h
+  A3 context: in-box switch-on estimate (linear peaks at R_L = 1.38 Mpc/h reaching N = 1 in the box): z_on ~ 9.607769423558898
+  A4 context (CFG630 JSON): settling -> dark energy since z = 1: 9.77e-07-1.10e-06 of rho_DE0 (canonical); max over brackets 5.87e-06
+  PART A verdict: SWITCH-OFF CONFIRMED  (primary-CMB physics in the switch-off era is GR-linear and inherited; no primary-CMB spectrum computed)
+
+PART B  CMB lensing from the gravitating field
+  Limber: 2041 integer L (8-2048) x 700 z (1e-3-50); chi_* = 9405.2 Mpc/h (engine background, no radiation)
+  coverage (base1): box region (z <= 1 AND k in support) = 8-400 0.103, 8-2048 0.108, ACT40-763 0.156 | z <= 1 (any k) = 8-400 0.272, 8-2048 0.258, ACT40-763 0.190 | k in support (any z) = 8-400 0.145, 8-2048 0.197, ACT40-763 0.606
+  coverage (base2): box region (z <= 1 AND k in support) = 8-400 0.094, 8-2048 0.096, ACT40-763 0.117 | z <= 1 (any k) = 8-400 0.263, 8-2048 0.246, ACT40-763 0.151 | k in support (any z) = 8-400 0.141, 8-2048 0.193, ACT40-763 0.596
+  R_grav(k = 0.1) at a = 0.500: 1.0602, 0.570: 1.0652, 0.667: 1.0609, 0.796: 1.0563, 1.000: 1.0471
+  R_grav(k = 0.3) at a = 0.500: 1.1958, 0.570: 1.2231, 0.667: 1.2358, 0.796: 1.2557, 1.000: 1.2460
+  R_grav(k = 0.5) at a = 0.500: 1.3202, 0.570: 1.3505, 0.667: 1.3646, 0.796: 1.3663, 1.000: 1.3411
+  R_grav(k = 1.0) at a = 0.500: 1.4176, 0.570: 1.4126, 0.667: 1.3753, 0.796: 1.3200, 1.000: 1.3101
+  R_grav(k = 2.0) at a = 0.500: 1.2236, 0.570: 1.2213, 0.667: 1.1845, 0.796: 1.1314, 1.000: 1.1138
+
+  [gravitating field (VERDICT)] canonical (base1, Z-b, K-a): dA 8-400 = +0.0133, 8-2048 = +0.0181, ACT-range = +0.0527; dchi2_rel 8-400 = 0.56, 8-2048 = 1.51
+    per-band A_b (8-400): 1.0011 1.0031 1.0071 1.0132 1.0210 1.0294 1.0377 1.0456 1.0531
+    member              dA 8-400  dA 8-2048   dA ACT  dchi2 8-400
+    base1|Za|Ka          +0.0112    +0.0136  +0.0312        0.333
+    base1|Za|Kb          +0.0248    +0.0255  +0.0340        1.066
+    base1|Zb|Ka          +0.0133    +0.0181  +0.0527        0.561
+    base1|Zb|Kb          +0.0539    +0.0557  +0.0667        4.759
+    base1|Zc|Ka          +0.0138    +0.0207  +0.0671        0.643
+    base1|Zc|Kb          +0.0794    +0.0823  +0.0972       10.298
+    base2|Za|Ka          +0.0088    +0.0101  +0.0204        0.190
+    base2|Za|Kb          +0.0223    +0.0220  +0.0231        0.893
+    base2|Zb|Ka          +0.0110    +0.0148  +0.0420        0.378
+    base2|Zb|Kb          +0.0517    +0.0525  +0.0562        4.407
+    base2|Zc|Ka          +0.0116    +0.0176  +0.0578        0.453
+    base2|Zc|Kb          +0.0776    +0.0796  +0.0887        9.811
+    bracket ranges: 8-400 [+0.0088, +0.0794] (2 sigma 0.056) -> CONDITIONAL; 8-2048 [+0.0101, +0.0823] (2 sigma 0.052) -> CONDITIONAL; ACT40-763 [+0.0204, +0.0972] (2 sigma 0.046) -> UNSAFE
+
+  [particle field (CONTEXT ONLY)] canonical (base1, Z-b, K-a): dA 8-400 = +0.0017, 8-2048 = +0.0022, ACT-range = +0.0056; dchi2_rel 8-400 = 0.01, 8-2048 = 0.02
+    per-band A_b (8-400): 1.0002 1.0006 1.0012 1.0019 1.0027 1.0034 1.0042 1.0049 1.0055
+    member              dA 8-400  dA 8-2048   dA ACT  dchi2 8-400
+    base1|Za|Ka          +0.0016    +0.0020  +0.0043        0.006
+    base1|Za|Kb          +0.0031    +0.0032  +0.0046        0.017
+    base1|Zb|Ka          +0.0017    +0.0022  +0.0056        0.008
+    base1|Zb|Kb          +0.0049    +0.0051  +0.0065        0.039
+    base1|Zc|Ka          +0.0018    +0.0024  +0.0065        0.008
+    base1|Zc|Kb          +0.0064    +0.0067  +0.0084        0.068
+    base2|Za|Ka          +0.0012    +0.0013  +0.0025        0.003
+    base2|Za|Kb          +0.0026    +0.0026  +0.0027        0.013
+    base2|Zb|Ka          +0.0013    +0.0016  +0.0038        0.004
+    base2|Zb|Kb          +0.0045    +0.0045  +0.0048        0.033
+    base2|Zc|Ka          +0.0014    +0.0018  +0.0048        0.005
+    base2|Zc|Kb          +0.0060    +0.0062  +0.0068        0.060
+    bracket ranges: 8-400 [+0.0012, +0.0064] (2 sigma 0.056) -> SAFE; 8-2048 [+0.0013, +0.0067] (2 sigma 0.052) -> SAFE; ACT40-763 [+0.0025, +0.0084] (2 sigma 0.046) -> SAFE
+
+  PART B verdict (Planck 8-400 band weights, 2 sigma = 0.056, F vs S0): CONDITIONAL; ACT-range label (context) UNSAFE
+
+runtime 2 s; maxrss 0.27 GB. kappa = 1/2 FITTED; cold energy mass required; not theory closed.
