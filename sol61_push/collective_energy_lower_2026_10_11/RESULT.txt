@@ -1,0 +1,71 @@
+BOTH BENCHMARK INITIAL STATES REQUIRE ENERGY EXCHANGE, WITH OPPOSITE SIGNS
+2026-10-11. Criteria21d6bb2fe.18/18 controls, clean stderr, validated manifest.
+
+For IC-C (target spatial density but sigma=.05 initial velocities), required
+energy IMPORT lower bounds, in M_target V_f^2 units, are:
+                  canonical      alt
+MW                .49733816      .49631869
+cluster           .63791708      .63792281
+compact           .50886649      .50838059
+All exceed the frozen1e-4 criterion. Import means energy delivered TO cold
+matter. These are benchmark numerical bounds, not observational measurements.
+
+Together with collective_energy_gate (f67c3e9ca), IC-B needs EXPORT .265-.394
+in the same units. Thus neither prescribed state can reach the exact target
+by isolated energy-conserving collective dynamics with static baryons and the
+same retained mass. The required exchange direction depends on initial state.
+This rules out the proposed purely conservative replacement for this benchmark;
+it does NOT rule out candidate B, cosmological formation, responsive baryons,
+changing supply, or an explicitly coupled energy receiver.
+
+DERIVATION OF LOWER BOUND
+On [r0,R], g>0 and r^3g nondecreasing. A bounded orbit with apocentre ra<=R
+has j^2<=ra^3g(ra). Its effective potential is nondecreasing beyond ra, so
+  E<=Phi(R)+j^2/(2R^2).
+At the wall,
+  vr(r0)^2<=2[Phi(R)-Phi(r0)]-j^2(1/r0^2-1/R^2)
+            <=2 DeltaPhi.
+Therefore Pr(r0)<=2rho(r0)DeltaPhi. Combine with exact annulus virial:
+  2K=I-4pi r0^3 Pr(r0), I=integral r g dM,
+to obtain
+  max(0,I/2-r0 M'(r0)DeltaPhi)<=K<=I/2.
+Here M' is cold target mass derivative, with density understood as the
+one-sided limit above the inner wall; baryon density is not included in M'.
+At fixed cold density and static baryons W is fixed. Adding W gives a narrow
+allowed interval [Emin,Emax]. The initial energy lies below Emin in every C
+cell, and above Emax in every B cell. Wall pressure cannot hide the mismatch.
+No velocity isotropy, entropy maximization or specific mixing rate assumed.
+This applies to ordinary nonnegative stationary orbital populations with a
+natural outer edge and well-defined finite boundary moments. A singular
+surface mass or extra confining force would require a different model.
+
+NUMERICAL WIDTH AND CONTROLS
+K/M lies between approximately.500-.642 across the six cells. Each interval
+width is only about.000215-.000337, whereas IC-C has K_initial/M=.00375.
+DeltaPhi is checked by adaptive and32769-node logarithmic quadratures;
+target M'(r0) by one-sided derivatives at two step sizes. The inherited
+source interpolation and baryon-potential approximations are disclosed in
+the upper-bound report; no interval-arithmetic continuum certificate claimed.
+Symbolic Jeans identity, exact harmonic isotropic-annulus virial, radial
+speed saturation, and wrong pressure-sign/speed-factor mutations all pass
+their frozen checks. Evidence files retain every numerical value.
+
+IMPLICATION FOR THE ACTION
+An evolution claimed to attract both benchmark initial states to this target
+must explicitly account for energy exchange in BOTH directions, or openly
+change the retained mass, baryonic state, boundary flux or final density.
+A one-way positive-Q sink from cold matter into dark energy cannot accomplish
+both tasks while all those quantities are fixed. An effective BGK heating
+step is not automatically a contradiction if its partner supplies the energy;
+the partner's loss and regular dynamics must be derived and checked.
+No statement is made that real halos begin in IC-C. If the proposed action
+restricts allowed initial states, that restriction needs independent physical
+justification, rather than exclusion of difficult states after seeing results.
+
+NEXT DECISION
+Stop treating phase mixing alone as a complete settling solution. It can
+remain the reversible part of a coupled model. Inspect whether the declared
+receiver permits the required signed exchange without a singular division by
+its vanishing velocity, and retains conservation and stability. The measured
+energy gaps provide explicit targets for that derivation. Alpha cannot change
+these endpoint energy signs. Kappa remains fitted; no data verdict or closure.
