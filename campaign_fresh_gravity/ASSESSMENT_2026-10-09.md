@@ -123,6 +123,8 @@
 
 - **Neighbour-bounded edge H-NB (CFG644; criteria 6a03c0870): RULED OUT** as a repair, both footings. With the supply cap kept it can only move edges inward; massive systems almost never have a closing (≥ equal-mass) neighbour, so the halo-model shear excess is unchanged (0% removed); KiDS f30 no change (bites 0% of lens weight); MW unchanged (r_nb 323 kpc from M31); groups still close. The isolated lenses want MORE supply, which H-NB cannot give. The KiDS dense-vs-isolated statistic is a mask artefact (MUTATE M2 finding). Native PM spec written, not recommended.
 
+- **CFG636 (capped settling source, 1024³ canonical, 2026-10-12): KiDS Δχ² +68.7 → +14.0** (robust min +9.19, T-OWN passes) → still **EXCLUDED, narrowly**; DES +7.0 not diagnostic. Own boost at k 0.3–1 down from 1.19–1.25 to 1.056–1.058. ~80% of the raw-KiDS tension removed by limiting the settling source alone; gas expulsion (CFG646) and per-host supply (CFG647) are not yet included and each removed a further fraction in static estimates. Conditional on inherited ICs; a census cap, not a phase law.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).

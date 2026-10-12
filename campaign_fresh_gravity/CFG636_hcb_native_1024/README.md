@@ -59,3 +59,20 @@ memory is ≥ 42 GB. It kills nothing. Log: `cfg636_waiter.log` in the work fold
 2. Alt: `nohup nice -n 10 python3 run_636.py serial C2 > ../../../_external_data/cfg636_work/run_636_C2_nohup.log 2>&1 &`
    (only when the machine is free), then repeat step 1.
 3. Optional MUTATE production run `CM` (old weight, canonical) must reproduce CFG596 P1; no verdict role.
+
+## RESULT (2026-10-12): canonical 1024³ L100, C1 (H-CB census cap) vs CFG596 P0
+
+Scored with `cfg636_native.py` as frozen (89aeaae12); MUTATE first (NZ1 bites). Outputs: `cfg636_native.out/json`,
+`cfg636_native_MUTATE.out/json`.
+- Own boost B(z=0) at k 0.3/0.5/1/2/4: 1.058 / 1.056 / 1.056 / 1.025 / 1.003 (CFG596: 1.186 / 1.252 / 1.206 / 1.103 / 1.035).
+- **KiDS: Δχ² +13.97** (CFG596 +68.73); robustness min +9.19 (widen2), noIA +17.8, held-out +12.3, DESI +11.1; T-OWN passes →
+  **EXCLUDED, narrowly** (every variant ≥ 9; widen2 at 9.19).
+- **DES: Δχ² +7.01** (robust 4.0–13.3), T-OWN fails → NOT DIAGNOSTIC.
+- Growth benchmark (NOT an observational gate — see astra audit 5c31fcad4): G = 0.089 → "PASS" as frozen.
+- Verdict as frozen: canonical FAIL (EXCLUDED); alt PENDING.
+
+Reading: capping the settling source cuts the raw-KiDS tension by ~80% (Δχ² 68.7 → 14.0) but leaves it just above the
+exclusion line. Scope: this is a uniform census cap (f_c = 0.10 in every catchment; field baryons still source), not a
+phase law (astra bd8981d3d); the framework's own gas expulsion (CFG646, ~¼ of Δχ²) and per-host supply (CFG647, ~⅓ of the
+excess) are NOT included; verdicts are conditional on the inherited ΛCDM ICs/background (astra 5c31fcad4).
+κ = ½ fitted; cold energy mass required; not theory closed.
