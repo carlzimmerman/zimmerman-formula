@@ -105,6 +105,8 @@
 
 - **🛑 CFG596 DECISIVE NATIVE SHEAR TEST, canonical footing (2026-10-12): EXCLUDED on KiDS-1000.** Framework's own 1024³ L100 gravitating-field P(k,z) vs a same-pipeline S0, scored on raw KiDS-1000 ξ± with no ΛCDM machinery: Δχ² +68.7 (every robustness variant ≥ +43.9; T-OWN tooth passes; NZ1 bites). DES Y3: Δχ² +22.4, same direction, NOT DIAGNOSTIC (tooth fails). Own boost B(z=0) 1.19 / 1.25 / 1.21 at k 0.3 / 0.5 / 1. The current settling rules (candidate B, all-baryon source, census supply) put too much clumping in the sky, on raw data and the framework's own terms. Alt footing pending (P2). Untested natively: the condensed-baryon source H-CB (CFG634), whose halo-model reading flips the excess to a deficit — its PM run is now the priority after P2.
 
+- **⚠️ Scope of CFG636 (astra review bd8981d3d, accepted):** the running H-CB test is a census-based CAP, not a phase law: inside every catchment the source weight is 0.10 (fret_of never drops below 0.10), outside it stays 1.0, and the PM carries no separate hot/condensed density, so it cannot tell hot from condensed baryons at all. A KiDS pass would show only that this capped source survives those gates; it would NOT establish H-CB or explain cold energy. A genuine phase-sensitive source needs a PM that carries condensed and hot baryons separately.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
