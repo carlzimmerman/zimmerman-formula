@@ -119,3 +119,25 @@ The analytic model at 1024³:
   - the Δ_ta(z) shell table;
   - the survey nuisance priors;
   - massless neutrinos.
+
+## RESULT (2026-10-12): canonical footing, 1024³ L100 (P0 S0 + P1 RES canonical)
+
+Scored with `cfg596_native.py` exactly as frozen (criteria f6c27d401), after a one-line engineering fix (2026-10-12): the
+extra-snapshot merge `dict({...}, **extra)` crashed on float keys and was replaced by `{**{...}, **extra}`; no statistic,
+data cut or rule changed. Outputs: `cfg596_native.out/json`, `cfg596_native_MUTATE.out/json`. (numpy matmul RuntimeWarnings
+from CFG592's projection appear in the console; every χ² is finite and the pipeline reproduces CFG592 on the CFG530 test.)
+
+- Own boost on the gravitating field, B(z=0) at k 0.3/0.5/1/2/4 h/Mpc: 1.186 / 1.252 / 1.206 / 1.103 / 1.035.
+- **KiDS-1000 (N_kept 104 of 225): Δχ²(F − S0) = +68.7** (χ² S0 144.3, p 0.014; F 213.0, p < 0.001); robustness set
+  min +43.9 (widen2), noIA +86.0, held-out +61.2, DESI background +56.8; T-OWN tooth PASS (χ²_min 16.4 ≥ 9).
+  **Verdict: EXCLUDED** (Δχ² ≥ 9 and every robustness variant ≥ 9).
+- **DES Y3 (N_kept 52 of 227): Δχ² = +22.4**, same direction (robust 12.7–44.3), but the T-OWN tooth FAILS (χ²_min 2.4 < 9)
+  → **NOT DIAGNOSTIC** as frozen.
+- MUTATE: NZ1 bites in every survey (|Δχ²| = 0 when F ≡ S0).
+- Alt footing: PENDING (P2 running).
+
+Reading: on raw KiDS-1000 ξ±, with no ΛCDM-calibrated machinery and a same-pipeline comparison, the framework's current
+settling rules (candidate B, census supply, phantom sourced by all baryons) put ~19–25% too much power at k 0.3–1 h/Mpc and
+are EXCLUDED on the canonical footing. Scope: the L100 box loses 54% (KiDS) / 77% (DES) of points to the support cut; no
+baryonic feedback in either arm (same pipeline); S0 itself is marginal on KiDS (p 0.014). The condensed-baryon source
+(CFG634 H-CB) is NOT tested by this run. κ = ½ fitted; cold energy mass required; not theory closed.

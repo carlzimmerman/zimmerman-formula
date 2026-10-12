@@ -107,7 +107,7 @@ for foot, F, S, N, L in runs_list():
             ic[f"{z:.4f}"] = dev
         res["interp_check_max_abs_dlnP"] = ic
         P("  interpolation check (reported): " + "; ".join(f"z {z}: F {d['F']:.4f}, S0 {d['S0']:.4f}" for z, d in ic.items()))
-        nodes5 = dict({z: run["nodes"][z] for z in (0.0, 0.5, 1.0)}, **extra); run["nodes5"] = nodes5; zs5 = sorted(nodes5)
+        nodes5 = {**{z: run["nodes"][z] for z in (0.0, 0.5, 1.0)}, **extra}; run["nodes5"] = nodes5; zs5 = sorted(nodes5)  # 2026-10-12 fix: float keys cannot be **kwargs
     for sn, Sv in SURV.items():
         f = support_mask(Sv, run, PS0); keep = Sv["pubkeep"] & (f >= 0.9); D = subset(Sv, keep)
         Npub = int(Sv["pubkeep"].sum()); r = dict(N_kept=D["N"], N_published=Npub, frac_lost=1 - D["N"] / Npub); N_ok = D["N"] >= 10
