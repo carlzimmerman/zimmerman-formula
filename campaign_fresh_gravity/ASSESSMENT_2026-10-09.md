@@ -107,6 +107,8 @@
 
 - **⚠️ Scope of CFG636 (astra review bd8981d3d, accepted):** the running H-CB test is a census-based CAP, not a phase law: inside every catchment the source weight is 0.10 (fret_of never drops below 0.10), outside it stays 1.0, and the PM carries no separate hot/condensed density, so it cannot tell hot from condensed baryons at all. A KiDS pass would show only that this capped source survives those gates; it would NOT establish H-CB or explain cold energy. A genuine phase-sensitive source needs a PM that carries condensed and hot baryons separately.
 
+- **Derived reservoir (CFG637; criteria e67940c56; MUTATE reproduces CFG634 exactly): no single DERIVED rule passes groups, X-COP and the Bullet together**, for either source, both footings, both methods (self-similar secondary infall; maximum-entropy F(E)) and every bracket. Under candidate B's own rules (R1, R2, R5, G9) the reservoir is EMPTY everywhere (the law's phantom takes the whole supply out to the edge): groups pass, but X-COP (η 1.82 / 1.68) and the Bullet main (z −3.4) FAIL — the record's cluster pass rested on the RI convention. Under H-CB a concentrated reservoir survives in clusters: X-COP inner band PASSES (0.86 / 0.89) and the Bullet main passes (z +0.30; core 0.79 of lensing), but R200-scale cluster mass is 33–40% short (η 1.49 / 1.66 FAIL); Bullet sub TENSION (input-mass-limited). The fail depends on CFG634's X-COP supply convention and the rule that the settled phantom extends past R200. Native cross-check: CFG636/640.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
