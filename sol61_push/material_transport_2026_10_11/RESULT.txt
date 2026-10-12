@@ -100,3 +100,83 @@ Self-review: cap positivity independent of net sum; numerical floor exception;
 Lagrange-multiplier sign; elliptic compatibility; solenoidal-current orthogonality;
 positive kinetic remainder; peculiar-energy scale factor; bulk versus random
 motion distinction. Analytic self-review only, no new numerical experiment.
+
+5. FOLLOW-UP: A RECIPROCITY TEST FOR THE ALGEBRAIC REDISTRIBUTION
+
+Base 9c5205d10b022be8b50e3e72390fbe95566c7126. Previous turn: verified wait.
+This test concerns the intended material interpretation with FIXED baryons,
+fixed gate, fixed target and fixed catchment. It does not compute the full
+CFG596 Jacobian, whose baryon proxy and segmentation also depend on particles.
+No production result is changed and no numerical experiment is run.
+
+Suppose a cold-density-only potential energy U[rho] yields the force potential
+Phi[rho]=delta U/delta rho. In a finite cell model its Jacobian must be
+symmetric on allowed fixed-mass variations: h^T D Phi k=k^T D Phi h.
+This is the equality of mixed second variations, a necessary condition for
+a twice differentiable energy functional on the smooth branch considered.
+
+Let T(rho) implement the unsaturated deficit fill plus proportional shell draw:
+the target fixes each core cell's output mass, and all removed shell mass is
+distributed in proportion to its existing shell masses. The force prescription
+under test is Phi=K T(rho), with symmetric Newtonian kernel K. Symmetry of K
+does not ensure symmetry of K DT.
+
+Exact four-cell counterexample (units G=1): place cell centres at x=0,1,3,4.
+Cells 1,2 form the core and 3,4 the shell; their radii from x=.5 are .5,.5,
+2.5,3.5. Take input masses (1,1,2,2) and target core masses (1.5,1.5).
+The deficit is 1, shell supply 4, so the cap is inactive and shell retention
+is b=3/4. In a neighborhood that keeps the same branch,
+
+ T_core=(1.5,1.5),
+ T_shell=rho_shell [1-(3-rho_1-rho_2)/(rho_3+rho_4)].
+
+Choose the fixed-total-mass perturbations
+ h=(1,-1,0,0), k=(0,0,1,-1).
+Both keep every density positive for sufficiently small amplitudes, and
+ DT h=0, DT k=(3/4)k.
+
+For the cross-cell Newtonian entries K_ij=-1/|x_i-x_j|,
+ h^T K k=-1/3+1/4+1/2-1/3=1/12.
+No diagonal self-energy entry is used in this calculation. Hence
+
+ h^T D Phi k=1/16,   k^T D Phi h=0.
+
+The fixed-target redistribution plus the unmodified Newtonian force of the
+redistributed density is therefore NOT the derivative of a density-only
+energy in this example. A sufficiently small loop in these two density
+directions has nonzero work to leading order, with magnitude coefficient
+1/16 times its oriented area. This is a local branch result, not a statement
+about global catchment switching or a measured simulation energy drift.
+
+The example is nonspherical within a round catchment. Restricting every
+perturbation to exactly spherical shells can remove this particular test by
+the shell theorem. The example must not be used to claim all spherical
+implementations fail. A three-dimensional completion needs its own admissible
+perturbation space specified and audited.
+
+5a. Why 'use the gravitational energy of T(rho)' changes the force
+
+One can define W_T=1/2 T(rho)^T K T(rho), but its derivative is
+
+ grad_rho W_T=(DT)^T K T(rho),
+
+not K T(rho). Fixed external baryon terms acquire the same chain-rule factor
+when written as functions of T. Omitting that factor is not a variational
+derivation. Including it changes the prescribed response and requires checking
+the acceleration law again. In this example W_T is invariant in direction h,
+although the originally prescribed Phi need not give zero h-work.
+
+5b. Scope and implication for the dynamical law
+
+This closes a tempting shortcut: a mass-balanced positive redistribution does
+not automatically supply a conservative cold-density action. It does NOT
+rule out a theory with independent transported density, a receiver, additional
+state variables, memory, or a genuinely dissipative law. Those are precisely
+the missing dynamics; their equations and energy transfer must be supplied.
+Nor does it prove that the actual complete CFG596 mapping is nonvariational:
+its other density dependencies were deliberately held fixed in this test.
+
+Self-review: same smooth active branch; equal-mass tangent perturbations;
+positive densities and available supply; exact shell retention; mixed-kernel
+fraction arithmetic; no self-kernel dependence; restricted versus full-engine
+claim; chain-rule transpose; spherical exception. Analytic self-review only.
