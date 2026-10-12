@@ -55,3 +55,33 @@ says the data favour the framework.
 
 No complete mechanism. No derivation of a₀, κ or Ω_c/Ω_b. Link 4 is spherical only. Link 7 is a construction with imposed
 coefficients. Links 9–10 are open. Nothing here is evidence for the carrier's existence.
+
+## 5. Addendum (2026-10-12, after CFG663): closure of the structural question "what kind of thing is cold energy?"
+
+Each step cites a committed result; nothing new is computed here.
+
+1. **Lensing tracks dynamics (CFG663).** A response that acts on matter but not on light is excluded (+0.16 dex on raw
+   KiDS + SPARC). In metric gravity light responds to the metric potentials, whose source is energy density; a field's own
+   stress (about ρσ²) is far too small to lens as phantom mass. So the extra pull is either **real gravitating mass (door A)**
+   or **a modified metric (door C)**. The separate non-lensing response sector (door B, link 7 as written) is closed.
+2. **Door C is disfavoured by the record.** The single-metric pincer is closed (DC-013, DC-019). A metric modification sourced by a
+   nonlinear field equation carries an external-field effect, and cluster satellites reject the EFE magnitude
+   (χ² 99.5–99.7 vs 0.7 for 5 bins; PAPER44, cm14b/cm15; caveats there: estimated r_bg, 1-D EFE). AeST survives elsewhere on the
+   record only with its own dust and an EFE.
+3. **Door A explains EFE-blindness for free.** Real cold mass bound to each system moves with it; a satellite keeps its own
+   settled cold energy, so internal dynamics ignore the host's field (R7) without any special field theory.
+4. **The arrangement is not a local equilibrium (CFG660, CFG661).** With {G, a₀}, no local, first-order stress of the cold mass
+   makes the law an exact, well-posed equilibrium. The arrangement must be nonlocal or history-driven: exactly the record's round
+   rule (enclosed baryons) and class-A settling toward the law's profile (CFG541 + FIX-2; CFG638's fluid form).
+
+**Structural conclusion:** cold energy is real, collisionless-at-large-scale, gravitating mass whose distribution inside bound
+systems is set nonlocally by each system's own baryons. The equations of CFG541/544/638 are the forced form, not one option.
+
+**What stays open (all quantitative, all in flight):** the settling rate α versus mergers (CFG639, CFG641 queued; CFG623 allows
+only α = 0); the settled profile versus cosmic shear (CFG596 excluded the all-baryon source; CFG636 cap and the orchestrator's
+CFG640 phase source pending); the energy sink (dynamical dark-energy exchange allowed: CFG542, CFG630); the microscopic origin of
+the nonlocal selector and of a₀ = κc√(Gρ_DE) (no route derives either).
+
+**Proposed lanes made moot:** CFG662 (scoring the non-lensing stiff response on SPARC) and CFG664 (collisionless cold matter added
+to a non-lensing response) test a sector that CFG663 excludes; they are not run. For astra: link 7 survives only if it is
+re-cast so that its effect lenses (as real energy density or through the metric) while staying stable and EFE-blind.
