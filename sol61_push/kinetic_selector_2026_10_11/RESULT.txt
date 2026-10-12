@@ -1,0 +1,132 @@
+KINETIC SELECTOR: ENERGY-CASIMIR REPAIR AND ITS ADMISSION CONDITIONS
+
+Base ecebe477a80e7536ef38f6175eb57afcff73d1bc. Previous turn: progress.
+Objective unchanged: the full cold-energy dynamical law, not merely stability.
+Analytic self-review; no numerical experiment, independent review, or fit.
+
+Sources inspected: CFG542_dissipative_action/ACTION.md, especially section 6;
+THEORY_v1_2026-10-09.md; CFG626_kernel_recheck_anisotropic_target/README.md.
+CFG542 explicitly notes that its density-deficit functional is changed by
+ordinary orbital transport. The following conditional replacement addresses
+that scalar-invariance problem, but does NOT establish a full GENERIC action.
+
+1. Exact orbital invariant, including self-gravity
+
+Use mass phase-space density f, static baryon potential Phi_b, isolated
+Newtonian gravity Delta Phi_f=4 pi G int f d^3v, and no boundary flux.
+
+ H_c[f]=int f (v^2/2+Phi_b) d^3x d^3v
+                       +1/2 int rho_f Phi_f d^3x,
+ C[f]=int C_0(f) d^3x d^3v,
+ A[f]=H_c[f]+C[f]-mu int f d^3x d^3v.
+
+Vlasov-Poisson preserves H_c, every sufficiently regular finite C, and mass.
+Therefore dA/dt=0 under the FULL isolated orbital flow, even away from the
+target. The spatially local density-deficit functional lacks this property.
+Here mu is a mass-constraint multiplier, not a new force coefficient.
+
+Suppose a self-consistent target has f_*=F(E_*), E_*=v^2/2+Phi_b+Phi_*, with
+F strictly decreasing on its occupied energy range. Define on its image
+
+ C_0'(f)=mu-F^{-1}(f),   C_0''(f)=-1/F'(F^{-1}(f))>0.
+
+Then delta A/delta f=E_f+C_0'(f)-mu vanishes at f_* on its positive support.
+The vacuum region also needs the appropriate nonnegativity/KKT inequality;
+the displayed interior equation alone does not certify a constrained minimum.
+In spherical dynamics one can conditionally use C_0(f,L), because each
+particle's angular momentum is conserved. That extension is not a Casimir
+for arbitrary nonspherical dynamics. The required inverse is at fixed L.
+
+This inverse construction encodes a chosen distribution. It neither derives
+the distribution from density alone nor makes all systems share one C_0.
+A finite nonnegative orbit-weight solution does not prove F_E<0 or supply a
+smooth inverse. The current CFG626 existence checks cannot substitute for it.
+
+2. Two traps: stability and GENERIC degeneracy
+
+For equal-mass perturbations supported where the interior target relation
+holds, integration by parts gives exactly
+
+ A[f]-A[f_*]
+ =int [C_0(f)-C_0(f_*)-C_0'(f_*)(f-f_*)] d^3x d^3v
+             -1/(8 pi G) int |grad(Phi_f-Phi_*)|^2 d^3x.
+
+The first term is nonnegative if C_0 is convex. The gravitational term is
+NEGATIVE. A coercivity/minimization argument on the admitted perturbations
+is still required; convex C_0 alone is not a proof of halo stability.
+New support outside the occupied target requires the additional KKT terms.
+
+Moreover, dA/dt=0 along its Hamiltonian flow is weaker than L delta A=0.
+For the Vlasov Poisson operator L, L delta C=0 and L delta mass=0, but
+
+ L delta A = L delta H_c,
+
+which is generally the nonzero orbital evolution vector. Thus choosing
+S=-A/Theta does NOT satisfy the GENERIC entropy degeneracy L delta S=0.
+Do not promote this repair to a proof that CFG542's full GENERIC gap is closed.
+With reversible energy exchange to a wave receiver even the separate H_c
+conservation used in section 1 need not persist.
+
+3. A cheap admission test at a free outer edge
+
+Consider an isotropic target with only energies E<E_cut and a free outer
+radius R where Phi_tot(R)=E_cut. Let Psi=E_cut-Phi_tot(r)>0 inside. Then
+
+ rho(r)=4 pi sqrt(2) int_0^Psi F(E_cut-epsilon)
+                                      sqrt(Psi-epsilon) d epsilon.
+
+For a nonnegative decreasing F(E), choose any occupied reference E_ref<E_cut
+where F(E_ref) is finite. Near the edge, E_ref<E_cut-Psi, so
+ F(E_cut-epsilon)<=F(E_ref) throughout the integral. Hence
+
+ 0<=rho(r)<= (8 pi sqrt(2)/3) F(E_ref) Psi^(3/2) -> 0.
+
+Therefore this regular, decreasing, isotropic free-edge class cannot represent
+a density with a finite nonzero inward limit followed by a sharp jump to zero.
+This is an exact restricted obstruction, not a failure of all orbit-supported
+targets. A reflecting outer wall, anisotropic angular-momentum-dependent
+cutoffs, or distribution-valued populations fall outside this proof. No wall
+may be silently interpreted as physical confinement. A merely narrow smooth
+edge also is not an exact density jump.
+
+The current record describes sharp supply-limited profiles. Before importing
+an isotropic energy-Casimir selector, the actual continuum target and boundary
+condition must pass this test. CFG626's finite approximately isotropic support
+does not itself certify these continuum conditions. No new finite edge test
+was run here and no CFG626 result is relabelled.
+
+4. Decision for the dynamical-law program
+
+Useful exact advance: an orbit-invariant variational target can be written
+conditionally, avoiding the old density-only orbital drift of the functional.
+It is not yet an admissible universal selector or a settling dynamics.
+
+Required next inputs are specific:
+ (a) one actual continuum target F(E,L) and its free/wall boundary conditions;
+ (b) invertibility/monotonicity and a stability estimate, not only Jeans moments;
+ (c) a single cross-system prescription, rather than separately chosen C_0;
+ (d) a dissipative operator with mass, angular-momentum and total-energy checks,
+     a physical two-sign receiver, and a derived normalization.
+
+Do not run another tuned relaxation against a hand-picked C_0 as a completion
+test. The edge and GENERIC distinctions above must be resolved first. It is
+permitted to encode the empirical target in an action; doing so still needs
+the stated kinetic, energy and boundary consistency and does not derive kappa.
+
+5. Literature and review scope
+
+This method is established, not novel: Yan Guo and Gerhard Rein, 'Stable
+Steady States in Stellar Dynamics', arXiv:math-ph/9806006v1 (1998-06-10),
+https://arxiv.org/pdf/math-ph/9806006 . Primary PDF inspected, introduction,
+equations (1.8)-(1.9), and section 2 assumptions Q1-Q5. It constructs stable
+minimizers under specified hypotheses, with spherical restrictions in that
+version. Those hypotheses are not verified for this project's target; its
+stability conclusion is not transferred here. Their G=1, U=our Phi, and Q
+plays the role of C_0. Our external baryon potential is an additional input.
+
+Self-review: functional derivative of self-energy has no extra factor 1/2;
+gravitational quadratic remainder is negative; inverse derivative has the
+correct sign; energy invariance distinguished from Poisson degeneracy;
+velocity Jacobian in the edge integral and its 2/3 factor checked; finite
+reference bound uses the correct monotonicity direction. All conclusions
+above are conditional analytic statements, not empirical or numerical passes.
