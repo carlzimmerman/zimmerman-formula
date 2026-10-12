@@ -1,0 +1,19 @@
+CFG644 T6 (CONTEXT ONLY, LCDM halo model labelled): CFG556's halo model with the settled cold energy of each halo truncated at its
+neighbour-bounded radius r_nb, drawn from the halo model's own neighbour statistics.  Criteria: FROZEN_CRITERIA.md (6a03c0870).
+CFG556 cfg556_halo_model.py is exec'd read-only up to its run block.  Closing neighbours: halos with M_ta' >= M_ta (Tinker08 number
+density, clustering 1 + b b' xi_lin(s), Tinker10 bias, xi from the same P_lin), s >= r_ta + r_ta'; pairwise watershed with the
+framework's census profiles; P(r_nb < x) = 1 - exp(-N(<s_x)).  Remainder goes into CFG556's drained shell (its native convention).
+MUTATE (CFG644_MUTATE=1): M1 r_nb = inf for every halo -> CFG556 primary R(k) exactly.
+*** REPORTED VARIANT: separations s >= max(r_ta, r_ta') (catchments may overlap; the smaller centre outside the larger r_ta) ***
+
+[canonical]
+  [PASS] K1 [canonical] CFG556 primary (census, cen) reproduced from the exec'd code (E, sigma8 ratio): |d| 0.0e+00
+  [canonical] E census +0.7151 -> H-NB +0.7151 (k 0.99); R(0.35) 1.1803 -> 1.1803; R(1) 1.7160 -> 1.7160; sigma8 ratio 1.0402 -> 1.0402; excess removed 0.00% -> NEGLIGIBLE
+      P(r_nb < r_e) by log M_ta: 10-11: 0.012  11-12: 0.013  12-13: 0.014  13-14: 0.000  14-15: 0.000  15-16: 0.000
+
+[alt]
+  [PASS] K1 [alt] CFG556 primary (census, cen) reproduced from the exec'd code (E, sigma8 ratio): |d| 0.0e+00
+  [alt] E census +0.8829 -> H-NB +0.8829 (k 0.99); R(0.35) 1.2038 -> 1.2038; R(1) 1.8852 -> 1.8852; sigma8 ratio 1.0463 -> 1.0463; excess removed 0.00% -> NEGLIGIBLE
+      P(r_nb < r_e) by log M_ta: 10-11: 0.005  11-12: 0.006  12-13: 0.006  13-14: 0.000  14-15: 0.000  15-16: 0.000
+
+2/2 checks pass; elapsed 13.8 s

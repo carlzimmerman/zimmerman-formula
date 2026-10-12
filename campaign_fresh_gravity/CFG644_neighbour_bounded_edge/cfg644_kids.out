@@ -1,0 +1,56 @@
+CFG644 KiDS arm: T2 (isolated stacks, census-edge fail) and T3 (ALL parent sample, dense vs isolated sign test).
+Criteria: FROZEN_CRITERIA.md (6a03c0870).  Raw ESD only in verdicts; CFG529's environment model vectors appear as CONTEXT ONLY.
+Read-only reuse: cfg100_lib, cfg515_lib, CFG503 cfg503_own (kids_Md, kids_fin), the CFG525 pool rule, CFG525 tables (control),
+CFG529 committed CENSUS vectors (context), cfg502_stage.npz (ALL sample).  Own-profile node tables are cached outside git in
+../../../_external_data/cfg644_work/.
+MUTATE (CFG644_MUTATE=1, *_MUTATE outputs): M1 r_nb = inf -> census stacks exactly; M2 shuffled neighbour sets within T3 cells;
+M3 r_nb = 0.5 r_edge for every f30 lens.
+
+== own-profile node tables (law truncated at x r_ta; census row; unit uniform sphere of radius r_ta) ==
+  tables P read from cache (1953 groups)
+  tables ALL read from cache (2066 groups)
+  [PASS] K1 rebuilt stack-P node tables (x >= 0.06) and census rows = CFG525's committed-work tables (rel 1e-10): max rel 0.0e+00
+
+pool 661,720 galaxies (CFG525 rule)
+
+================ T2: isolated stacks (stack P, f30 primary) ================
+  [PASS] K2 every stack-P lens found in the pool at zero separation with identical M_gal: 181477/181477
+  stack P: 181,477 lenses; window pairs within 7.0 Mpc: 686,558 (mean 3.78 per lens)
+  [PASS] K3 stack-P raw ESD = CFG377 primary (1e-10): data vector
+  [PASS] K4 CONTEXT harness: CFG529's committed CENSUS vectors with its covariance reproduce its census chi2 (A, B, both footings): max |d| 0.0e+00
+  [canonical] f30   : bite weight 0.00000 (N 0); chi2 B 97.908 -> H-NB 97.908 (d +0.0000); U-drop d +0.0000; bracket S bite 0.00260 d +0.1059; M1 d +0.0e+00; no closing nbr 0.463; min r_nb/r_edge 1.61; T2-U d +6.53 (r_nb >= r_ta weight 0.868)
+      CONTEXT (CFG529 LCDM-built env) primary_U0: A 45.57 -> 45.57; B 54.10 -> 54.10
+      CONTEXT (CFG529 LCDM-built env) bracket_S: A 45.57 -> 45.63; B 54.10 -> 54.16
+  [canonical] stackP: bite weight 0.00000 (N 0); chi2 B 360.297 -> H-NB 360.297 (d +0.0000); U-drop d +0.0000; bracket S bite 0.00745 d +0.8198; M1 d +0.0e+00; no closing nbr 0.381; min r_nb/r_edge 1.61; T2-U d -118.25 (r_nb >= r_ta weight 0.841)
+  [PASS] M1 [canonical] r_nb = inf reproduces the census stacks exactly (f30 and stack P): max rel 0
+  [canonical] T2 VERDICT (f30, native): NO CHANGE
+  [alt] f30   : bite weight 0.00000 (N 0); chi2 B 78.723 -> H-NB 78.723 (d +0.0000); U-drop d +0.0000; bracket S bite 0.00203 d +0.0898; M1 d +0.0e+00; no closing nbr 0.463; min r_nb/r_edge 1.77; T2-U d +1.84 (r_nb >= r_ta weight 0.840)
+      CONTEXT (CFG529 LCDM-built env) primary_U0: A 35.84 -> 35.84; B 42.44 -> 42.44
+      CONTEXT (CFG529 LCDM-built env) bracket_S: A 35.84 -> 35.88; B 42.44 -> 42.48
+  [alt] stackP: bite weight 0.00000 (N 0); chi2 B 323.153 -> H-NB 323.153 (d +0.0000); U-drop d +0.0000; bracket S bite 0.00624 d +0.7736; M1 d +0.0e+00; no closing nbr 0.381; min r_nb/r_edge 1.77; T2-U d -141.72 (r_nb >= r_ta weight 0.807)
+  [PASS] M1 [alt] r_nb = inf reproduces the census stacks exactly (f30 and stack P): max rel 0
+  [alt] T2 VERDICT (f30, native): NO CHANGE
+
+================ T3: ALL parent sample, dense vs isolated (sign test) ================
+  [PASS] K5 every ALL lens found in the pool at zero separation with identical M_gal: 605531/605531
+  ALL: 605,531 lenses; window pairs within 7.0 Mpc: 5,741,590 (mean 9.48)
+      reported: bin-matched (post hoc) A_data +0.1381 +- 0.0622 (Z +2.22), A_pred +0.0042; unmasked (neighbour lensing included) A_data +0.5537 +- 0.0179 (Z +30.99), A_pred -0.1355
+  [canonical] primary/primary   OUT   : N dense  14258 (w 0.028; kept bins 0.18 vs iso 0.80)  A_data -0.0666 +- 0.0817 (Z -0.82; jk 0.0787; null mean +0.0015)  A_pred +0.0042 -> x purity +0.0040 (Z +0.05)  => WEAK; NOT DIAGNOSTIC
+  [canonical] primary/primary   K-out : N dense  14258 (w 0.028; kept bins 0.55 vs iso 0.99)  A_data +0.1647 +- 0.0780 (Z +2.11; jk 0.0778; null mean -0.0119)  A_pred +0.0043 -> x purity +0.0040 (Z +0.05)  => NOT SUPPORTED (sign); NOT DIAGNOSTIC
+  [canonical] primary: DENSE lenses 65,037 (weight 0.1102); purity p 0.935 (weighted raw 17291502.1 vs background 1122857.2)
+      reported: bin-matched (post hoc) A_data +0.0129 +- 0.0395 (Z +0.33), A_pred -0.0091; unmasked (neighbour lensing included) A_data +0.5421 +- 0.0117 (Z +46.28), A_pred -0.1439
+  [canonical] primary/bracket_S OUT   : N dense  41658 (w 0.103; kept bins 0.25 vs iso 0.83)  A_data -0.1801 +- 0.0368 (Z -4.89; jk 0.0641; null mean -0.0146)  A_pred -0.0091 -> x purity -0.0091 (Z -0.25)  => WEAK; NOT DIAGNOSTIC
+  [canonical] primary/bracket_S K-out : N dense  41653 (w 0.103; kept bins 0.68 vs iso 1.00)  A_data +0.0355 +- 0.0519 (Z +0.68; jk 0.0595; null mean -0.0030)  A_pred +0.0036 -> x purity +0.0036 (Z +0.07)  => NOT SUPPORTED (sign); NOT DIAGNOSTIC
+  [canonical] primary/bracket_S outer6: N dense   4891 (w 0.012; kept bins 0.26 vs iso 0.76)  A_data -0.1574 +- 0.1401 (Z -1.12; jk 0.1792; null mean -0.0612)  A_pred -0.0974 -> x purity -0.0974 (Z -0.70)  => WEAK; NOT DIAGNOSTIC
+  [canonical] T3 VERDICT (OUT, primary): {'data_class': 'WEAK', 'power_class': 'NOT DIAGNOSTIC'}
+      reported: bin-matched (post hoc) A_data -0.0069 +- 0.0956 (Z -0.07), A_pred +0.0047; unmasked (neighbour lensing included) A_data +0.5682 +- 0.0188 (Z +30.24), A_pred -0.1476
+  [alt] primary/primary   OUT   : N dense  10948 (w 0.022; kept bins 0.17 vs iso 0.79)  A_data -0.2304 +- 0.0730 (Z -3.16; jk 0.1462; null mean +0.0068)  A_pred +0.0047 -> x purity +0.0044 (Z +0.06)  => WEAK; NOT DIAGNOSTIC
+  [alt] primary/primary   K-out : N dense  10948 (w 0.022; kept bins 0.50 vs iso 0.98)  A_data +0.0310 +- 0.1184 (Z +0.26; jk 0.1519; null mean -0.0234)  A_pred +0.0047 -> x purity +0.0044 (Z +0.04)  => NOT SUPPORTED (sign); NOT DIAGNOSTIC
+  [alt] primary: DENSE lenses 57,283 (weight 0.0978); purity p 0.945 (weighted raw 15126795.3 vs background 826202.5)
+      reported: bin-matched (post hoc) A_data -0.0690 +- 0.0479 (Z -1.44), A_pred -0.0133; unmasked (neighbour lensing included) A_data +0.5557 +- 0.0117 (Z +47.58), A_pred -0.1558
+  [alt] primary/bracket_S OUT   : N dense  32656 (w 0.080; kept bins 0.22 vs iso 0.82)  A_data -0.2744 +- 0.0517 (Z -5.31; jk 0.0984; null mean -0.0201)  A_pred -0.0133 -> x purity -0.0133 (Z -0.26)  => WEAK; NOT DIAGNOSTIC
+  [alt] primary/bracket_S K-out : N dense  32656 (w 0.080; kept bins 0.63 vs iso 1.00)  A_data -0.0384 +- 0.0578 (Z -0.66; jk 0.0890; null mean -0.0094)  A_pred -0.0010 -> x purity -0.0010 (Z -0.02)  => WEAK; NOT DIAGNOSTIC
+  [alt] primary/bracket_S outer6: N dense   2624 (w 0.007; kept bins 0.27 vs iso 0.76)  A_data -0.2340 +- 0.2809 (Z -0.83; jk 0.3304; null mean -0.1004)  A_pred -0.1187 -> x purity -0.1187 (Z -0.42)  => WEAK; NOT DIAGNOSTIC
+  [alt] T3 VERDICT (OUT, primary): {'data_class': 'WEAK', 'power_class': 'NOT DIAGNOSTIC'}
+
+7/7 checks pass; elapsed 399.1 s
