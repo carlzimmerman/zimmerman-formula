@@ -174,8 +174,9 @@ class Infall:
                     self.rgrid_avg = np.geomspace(1e-3, 3.0, 300) * rta
                     avgM = np.zeros_like(self.rgrid_avg)
                 res = self.turned & (self.m_cold > 0)
-                o = np.argsort(self.r[res]); cr = np.cumsum(self.m_cold[res][o])
-                avgM += dt * np.interp(self.rgrid_avg, self.r[res][o], cr, left=0.0)
+                if res.any():
+                    o = np.argsort(self.r[res]); cr = np.cumsum(self.m_cold[res][o])
+                    avgM += dt * np.interp(self.rgrid_avg, self.r[res][o], cr, left=0.0)
                 avg_w += dt
             nstep += 1
         self.nstep = nstep
@@ -310,14 +311,14 @@ def maxent_reservoir(rg, Mfix, Mres_tot, Etarget, rta, nit=60):
     lr = np.log(rg)
 
     def rho_of_W(W):
-        W = np.maximum(W, 0.0)
-        return np.exp(W) * erf(np.sqrt(W)) - np.sqrt(4 * W / math.pi) * (1 + 2 * W / 3)
+        W = np.maximum(W, 0.0); Wm = float(W.max())     # overall factor exp(-Wm) only (normalisation is free)
+        return np.exp(W - Wm) * erf(np.sqrt(W)) - np.exp(-Wm) * np.sqrt(4 * W / math.pi) * (1 + 2 * W / 3)
 
     def eps_of_W(W):   # kinetic energy density per unit rho1*s2
         W = np.maximum(W, 0.0)
         # integral of 4 pi v^2 (v^2/2) [exp(W - v^2/2) - 1] dv (v in units of s), normalised like rho_of_W
         v = np.linspace(0, 1, 400)[None, :] * np.sqrt(2 * W)[:, None]
-        f = np.maximum(np.exp(W[:, None] - v ** 2 / 2) - 1, 0.0)
+        f = np.maximum(np.exp(W[:, None] - v ** 2 / 2 - W[:, None]) - np.exp(-W[:, None]), 0.0)   # per-radius factor cancels in I/J
         I = np.trapz(v ** 4 / 2 * f, v, axis=1)
         J = np.trapz(v ** 2 * f, v, axis=1)
         return np.where(J > 0, I / np.maximum(J, 1e-300), 0.0)
@@ -354,6 +355,8 @@ def maxent_reservoir(rg, Mfix, Mres_tot, Etarget, rta, nit=60):
     vals = np.array(vals)
     ok = np.isfinite(vals)
     k = np.where(ok[:-1] & ok[1:] & (np.sign(vals[:-1] - Etarget) != np.sign(vals[1:] - Etarget)))[0]
+    if not ok.any():
+        return np.full(len(rg), np.nan), float("nan"), float("nan"), False
     if not len(k):
         kk = int(np.nanargmin(np.abs(vals - Etarget)))
         out = solve(s2s[kk]); return out[0], float(s2s[kk]), float(out[1]), False

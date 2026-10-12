@@ -1,0 +1,121 @@
+CFG637 gates (FROZEN_CRITERIA.md, e67940c56): CFG634's static gates T2 (Tian+26 groups), T3 (X-COP, incl. the inner band)
+and T4b/c (Bullet) re-scored with the DERIVED reservoir (RD = Method A, RB = Method B maximum entropy) read from
+cfg637_profiles.npz (written by cfg637_derive.py).
+
+CFG634's scripts are executed from their committed source text (slices of cfg634_static.py and cfg634_bullet.py), with ONE
+textual patch per reservoir function: a branch res == "RD" that adds the derived reservoir M_res(<r) (gate units) to the settled
+phantom. Everything else (data, settled phantom, supply, statistics, thresholds) is CFG634's. MUTATE M-R: with res = R0 / RI / RN
+the same executed code must reproduce CFG634's JSON numbers to 1e-9.
+  [PASS] C-T3 audit profile code reproduces the audit rows' g_baryon (1e-9): max rel 2.2e-16
+
+== T2 Tian+26 groups (CFG634 code; RD = derived reservoir)
+  [PASS] M-R T2: R0/RI/RN/hot/M2 cells reproduce CFG634 (mean and Z, 1e-9): max abs diff 0.0e+00
+  [canonical] HCB|RD|P|phase         mean +0.066  Z +1.85  -> CLOSES
+  [canonical] HCB|RD|eps0.5|phase    mean +0.066  Z +1.84  -> CLOSES
+  [canonical] HCB|RD|q0.05|phase     mean +0.066  Z +1.84  -> CLOSES
+  [canonical] HCB|RD|q0.2|phase      mean +0.066  Z +1.84  -> CLOSES
+  [canonical] HCB|RD|uniform|phase   mean +0.066  Z +1.85  -> CLOSES
+  [canonical] HCB|RD|P|avg           mean +0.065  Z +1.83  -> CLOSES
+  [canonical] HCB|RB|P|phase         mean +0.066  Z +1.85  -> CLOSES
+  [canonical] B|RD|P|phase           mean +0.060  Z +1.65  -> CLOSES
+  [canonical] B|RD|eps0.5|phase      mean +0.060  Z +1.65  -> CLOSES
+  [canonical] B|RD|q0.05|phase       mean +0.060  Z +1.65  -> CLOSES
+  [canonical] B|RD|q0.2|phase        mean +0.060  Z +1.65  -> CLOSES
+  [canonical] B|RD|uniform|phase     mean +0.060  Z +1.65  -> CLOSES
+  [canonical] B|RD|P|avg             mean +0.060  Z +1.65  -> CLOSES
+  [canonical] B|RB|P|phase           mean +0.060  Z +1.65  -> CLOSES
+  [alt] HCB|RD|P|phase         mean +0.050  Z +1.38  -> CLOSES
+  [alt] HCB|RD|eps0.5|phase    mean +0.050  Z +1.38  -> CLOSES
+  [alt] HCB|RD|q0.05|phase     mean +0.050  Z +1.38  -> CLOSES
+  [alt] HCB|RD|q0.2|phase      mean +0.050  Z +1.38  -> CLOSES
+  [alt] HCB|RD|uniform|phase   mean +0.050  Z +1.38  -> CLOSES
+  [alt] HCB|RD|P|avg           mean +0.050  Z +1.38  -> CLOSES
+  [alt] HCB|RB|P|phase         mean +0.050  Z +1.38  -> CLOSES
+  [alt] B|RD|P|phase           mean +0.043  Z +1.20  -> CLOSES
+  [alt] B|RD|eps0.5|phase      mean +0.043  Z +1.20  -> CLOSES
+  [alt] B|RD|q0.05|phase       mean +0.043  Z +1.20  -> CLOSES
+  [alt] B|RD|q0.2|phase        mean +0.043  Z +1.20  -> CLOSES
+  [alt] B|RD|uniform|phase     mean +0.043  Z +1.20  -> CLOSES
+  [alt] B|RD|P|avg             mean +0.043  Z +1.20  -> CLOSES
+  [alt] B|RB|P|phase           mean +0.043  Z +1.20  -> CLOSES
+
+== T3 X-COP (CFG634 code; RD = derived reservoir)
+  [PASS] M-R T3: R0/RI/RN cells reproduce CFG634 (headline eta, sigma, inner band, 1e-9): max abs diff 0.0e+00
+  HCB|RD|P|phase         eta headline 1.494+-0.061 / 1.661+-0.080 -> FAIL     | inner 200-420 0.859 / 0.889 (PASS) | b=0.2 1.867 / 2.076
+  HCB|RD|eps0.5|phase    eta headline 1.913+-0.063 / 1.970+-0.068 -> FAIL     | inner 200-420 1.638 / 1.657 (FAIL) | b=0.2 2.391 / 2.462
+  HCB|RD|q0.05|phase     eta headline 1.501+-0.058 / 1.655+-0.079 -> FAIL     | inner 200-420 0.864 / 0.893 (PASS) | b=0.2 1.877 / 2.068
+  HCB|RD|q0.2|phase      eta headline 1.476+-0.059 / 1.652+-0.080 -> FAIL     | inner 200-420 0.944 / 0.954 (PASS) | b=0.2 1.845 / 2.066
+  HCB|RD|uniform|phase   eta headline 3.032+-0.119 / 3.129+-0.117 -> FAIL     | inner 200-420 3.954 / 4.157 (FAIL) | b=0.2 3.790 / 3.911
+  HCB|RD|P|avg           eta headline 1.487+-0.059 / 1.622+-0.075 -> FAIL     | inner 200-420 0.867 / 0.903 (PASS) | b=0.2 1.859 / 2.028
+  HCB|RB|P|phase         eta headline 1.573+-0.077 / 1.774+-0.099 -> FAIL     | inner 200-420 0.941 / 0.938 (PASS) | b=0.2 1.966 / 2.217
+  B|RD|P|phase           eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  B|RD|eps0.5|phase      eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  B|RD|q0.05|phase       eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  B|RD|q0.2|phase        eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  B|RD|uniform|phase     eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  B|RD|P|avg             eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  B|RB|P|phase           eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+
+== T4 Bullet (CFG634 code; RD = derived reservoir)
+  [PASS] C-T4 aperture integrator vs analytic Plummer projected mass (1e-3): 6.0972e+12 vs 6.0976e+12
+  [PASS] M-R T4: R0/RI/RN cells (4 variants x 2 footings x 3 sources) reproduce CFG634 (dkappa, M250/P16, 1e-9): max abs diff 0.0e+00
+  BASE|can|HCB|RD|P|phase        dkappa main +0.264 (z -0.54), sub -0.025 (z -2.63) -> TENSION | M(<250)/P16 main 0.61, sub 0.09 | reservoir main 1.33e+14, sub 0.00e+00
+  BASE|can|B|RD|P|phase          dkappa main +0.025 (z -3.35), sub +0.001 (z -2.29) -> FAIL    | M(<250)/P16 main 0.33, sub 0.16 | reservoir main 0.00e+00, sub 0.00e+00
+  BASE|alt|HCB|RD|P|phase        dkappa main +0.107 (z -2.39), sub -0.020 (z -2.56) -> TENSION | M(<250)/P16 main 0.35, sub 0.09 | reservoir main 2.57e+13, sub 0.00e+00
+  BASE|alt|B|RD|P|phase          dkappa main +0.030 (z -3.30), sub +0.005 (z -2.24) -> FAIL    | M(<250)/P16 main 0.36, sub 0.18 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|can|HCB|RD|P|phase          dkappa main +0.335 (z +0.30), sub -0.030 (z -2.68) -> TENSION | M(<250)/P16 main 0.79, sub 0.11 | reservoir main 5.78e+14, sub 0.00e+00
+  B1|can|HCB|RD|eps0.5|phase     dkappa main +0.169 (z -1.67), sub -0.027 (z -2.65) -> TENSION | M(<250)/P16 main 0.49, sub 0.11 | reservoir main 5.77e+14, sub 0.00e+00
+  B1|can|HCB|RD|q0.05|phase      dkappa main +0.485 (z +2.07), sub -0.033 (z -2.72) -> TENSION | M(<250)/P16 main 0.80, sub 0.11 | reservoir main 5.78e+14, sub 0.00e+00
+  B1|can|HCB|RD|q0.2|phase       dkappa main +0.168 (z -1.68), sub -0.033 (z -2.73) -> TENSION | M(<250)/P16 main 0.74, sub 0.11 | reservoir main 5.78e+14, sub 0.00e+00
+  B1|can|HCB|RD|uniform|phase    dkappa main +0.023 (z -3.38), sub -0.021 (z -2.58) -> FAIL    | M(<250)/P16 main 0.32, sub 0.11 | reservoir main 5.78e+14, sub 0.00e+00
+  B1|can|HCB|RD|P|avg            dkappa main +0.357 (z +0.55), sub -0.031 (z -2.70) -> TENSION | M(<250)/P16 main 0.81, sub 0.11 | reservoir main 5.82e+14, sub 1.46e+10
+  B1|can|HCB|RB|P|phase          dkappa main +0.097 (z -2.51), sub -0.039 (z -2.80) -> TENSION | M(<250)/P16 main 0.66, sub 0.11 | reservoir main 5.78e+14, sub 0.00e+00
+  B1|can|B|RD|P|phase            dkappa main +0.021 (z -3.41), sub +0.001 (z -2.30) -> FAIL    | M(<250)/P16 main 0.32, sub 0.17 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|can|B|RD|eps0.5|phase       dkappa main +0.021 (z -3.41), sub +0.001 (z -2.30) -> FAIL    | M(<250)/P16 main 0.32, sub 0.17 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|can|B|RD|q0.05|phase        dkappa main +0.021 (z -3.41), sub +0.001 (z -2.30) -> FAIL    | M(<250)/P16 main 0.32, sub 0.17 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|can|B|RD|q0.2|phase         dkappa main +0.021 (z -3.41), sub +0.001 (z -2.30) -> FAIL    | M(<250)/P16 main 0.32, sub 0.17 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|can|B|RD|uniform|phase      dkappa main +0.021 (z -3.41), sub +0.001 (z -2.30) -> FAIL    | M(<250)/P16 main 0.32, sub 0.17 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|can|B|RD|P|avg              dkappa main +0.021 (z -3.41), sub +0.001 (z -2.30) -> FAIL    | M(<250)/P16 main 0.32, sub 0.17 | reservoir main 2.91e+11, sub 1.13e+10
+  B1|can|B|RB|P|phase            dkappa main +0.021 (z -3.41), sub +0.001 (z -2.30) -> FAIL    | M(<250)/P16 main 0.32, sub 0.17 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|alt|HCB|RD|P|phase          dkappa main +0.330 (z +0.24), sub -0.028 (z -2.67) -> TENSION | M(<250)/P16 main 0.78, sub 0.12 | reservoir main 5.17e+14, sub 0.00e+00
+  B1|alt|HCB|RD|eps0.5|phase     dkappa main +0.163 (z -1.73), sub -0.025 (z -2.63) -> TENSION | M(<250)/P16 main 0.49, sub 0.12 | reservoir main 5.15e+14, sub 0.00e+00
+  B1|alt|HCB|RD|q0.05|phase      dkappa main +0.472 (z +1.91), sub -0.030 (z -2.69) -> TENSION | M(<250)/P16 main 0.79, sub 0.12 | reservoir main 5.17e+14, sub 0.00e+00
+  B1|alt|HCB|RD|q0.2|phase       dkappa main +0.176 (z -1.58), sub -0.031 (z -2.70) -> TENSION | M(<250)/P16 main 0.74, sub 0.12 | reservoir main 5.17e+14, sub 0.00e+00
+  B1|alt|HCB|RD|uniform|phase    dkappa main +0.017 (z -3.45), sub -0.019 (z -2.55) -> FAIL    | M(<250)/P16 main 0.30, sub 0.12 | reservoir main 5.17e+14, sub 0.00e+00
+  B1|alt|HCB|RD|P|avg            dkappa main +0.339 (z +0.35), sub -0.031 (z -2.70) -> TENSION | M(<250)/P16 main 0.81, sub 0.12 | reservoir main 5.23e+14, sub 1.44e+10
+  B1|alt|HCB|RB|P|phase          dkappa main +0.131 (z -2.11), sub -0.036 (z -2.76) -> TENSION | M(<250)/P16 main 0.67, sub 0.12 | reservoir main 5.17e+14, sub 0.00e+00
+  B1|alt|B|RD|P|phase            dkappa main +0.025 (z -3.36), sub +0.005 (z -2.24) -> FAIL    | M(<250)/P16 main 0.35, sub 0.18 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|alt|B|RD|eps0.5|phase       dkappa main +0.025 (z -3.36), sub +0.021 (z -2.04) -> FAIL    | M(<250)/P16 main 0.35, sub 0.19 | reservoir main 0.00e+00, sub 1.64e+12
+  B1|alt|B|RD|q0.05|phase        dkappa main +0.025 (z -3.36), sub +0.005 (z -2.24) -> FAIL    | M(<250)/P16 main 0.35, sub 0.18 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|alt|B|RD|q0.2|phase         dkappa main +0.025 (z -3.36), sub +0.005 (z -2.24) -> FAIL    | M(<250)/P16 main 0.35, sub 0.18 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|alt|B|RD|uniform|phase      dkappa main +0.025 (z -3.36), sub +0.005 (z -2.24) -> FAIL    | M(<250)/P16 main 0.35, sub 0.18 | reservoir main 0.00e+00, sub 0.00e+00
+  B1|alt|B|RD|P|avg              dkappa main +0.025 (z -3.36), sub +0.005 (z -2.24) -> FAIL    | M(<250)/P16 main 0.35, sub 0.18 | reservoir main 2.79e+11, sub 1.10e+10
+  B1|alt|B|RB|P|phase            dkappa main +0.025 (z -3.36), sub +0.005 (z -2.24) -> FAIL    | M(<250)/P16 main 0.35, sub 0.18 | reservoir main 0.00e+00, sub 0.00e+00
+  B2|can|HCB|RD|P|phase          dkappa main +0.340 (z +0.36), sub -0.024 (z -2.61) -> TENSION | M(<250)/P16 main 0.78, sub 0.11 | reservoir main 5.75e+14, sub 0.00e+00
+  B2|can|B|RD|P|phase            dkappa main +0.023 (z -3.38), sub +0.003 (z -2.27) -> FAIL    | M(<250)/P16 main 0.33, sub 0.17 | reservoir main 0.00e+00, sub 0.00e+00
+  B2|alt|HCB|RD|P|phase          dkappa main +0.334 (z +0.29), sub -0.021 (z -2.57) -> TENSION | M(<250)/P16 main 0.77, sub 0.12 | reservoir main 5.13e+14, sub 0.00e+00
+  B2|alt|B|RD|P|phase            dkappa main +0.028 (z -3.33), sub +0.007 (z -2.22) -> FAIL    | M(<250)/P16 main 0.35, sub 0.19 | reservoir main 0.00e+00, sub 0.00e+00
+  B3|can|HCB|RD|P|phase          dkappa main +0.265 (z -0.53), sub -0.029 (z -2.68) -> TENSION | M(<250)/P16 main 0.65, sub 0.12 | reservoir main 3.34e+14, sub 0.00e+00
+  B3|can|B|RD|P|phase            dkappa main +0.017 (z -3.45), sub +0.002 (z -2.28) -> FAIL    | M(<250)/P16 main 0.33, sub 0.20 | reservoir main 0.00e+00, sub 0.00e+00
+  B3|alt|HCB|RD|P|phase          dkappa main +0.280 (z -0.35), sub -0.026 (z -2.64) -> TENSION | M(<250)/P16 main 0.65, sub 0.13 | reservoir main 2.78e+14, sub 0.00e+00
+  B3|alt|B|RD|P|phase            dkappa main +0.021 (z -3.41), sub +0.006 (z -2.22) -> FAIL    | M(<250)/P16 main 0.35, sub 0.21 | reservoir main 0.00e+00, sub 0.00e+00
+
+== joint gates J (T2 PASS, T3 headline PASS, T4b B1 PASS, each on both footings) and J+ (plus T3 inner band PASS)
+  HCB|RD|P|phase         T2 CLOSES/CLOSES | T3 FAIL (inner PASS) | T4b B1 TENSION/TENSION -> J FAIL, J+ FAIL
+  HCB|RD|P|avg           T2 CLOSES/CLOSES | T3 FAIL (inner PASS) | T4b B1 TENSION/TENSION -> J FAIL, J+ FAIL
+  HCB|RD|eps0.5|phase    T2 CLOSES/CLOSES | T3 FAIL (inner FAIL) | T4b B1 TENSION/TENSION -> J FAIL, J+ FAIL
+  HCB|RD|q0.05|phase     T2 CLOSES/CLOSES | T3 FAIL (inner PASS) | T4b B1 TENSION/TENSION -> J FAIL, J+ FAIL
+  HCB|RD|q0.2|phase      T2 CLOSES/CLOSES | T3 FAIL (inner PASS) | T4b B1 TENSION/TENSION -> J FAIL, J+ FAIL
+  HCB|RD|uniform|phase   T2 CLOSES/CLOSES | T3 FAIL (inner FAIL) | T4b B1 FAIL/FAIL -> J FAIL, J+ FAIL
+  HCB|RB|P|phase         T2 CLOSES/CLOSES | T3 FAIL (inner PASS) | T4b B1 TENSION/TENSION -> J FAIL, J+ FAIL
+  B|RD|P|phase           T2 CLOSES/CLOSES | T3 FAIL (inner FAIL) | T4b B1 FAIL/FAIL -> J FAIL, J+ FAIL
+  B|RD|P|avg             T2 CLOSES/CLOSES | T3 FAIL (inner FAIL) | T4b B1 FAIL/FAIL -> J FAIL, J+ FAIL
+  B|RD|eps0.5|phase      T2 CLOSES/CLOSES | T3 FAIL (inner FAIL) | T4b B1 FAIL/FAIL -> J FAIL, J+ FAIL
+  B|RD|q0.05|phase       T2 CLOSES/CLOSES | T3 FAIL (inner FAIL) | T4b B1 FAIL/FAIL -> J FAIL, J+ FAIL
+  B|RD|q0.2|phase        T2 CLOSES/CLOSES | T3 FAIL (inner FAIL) | T4b B1 FAIL/FAIL -> J FAIL, J+ FAIL
+  B|RD|uniform|phase     T2 CLOSES/CLOSES | T3 FAIL (inner FAIL) | T4b B1 FAIL/FAIL -> J FAIL, J+ FAIL
+  B|RB|P|phase           T2 CLOSES/CLOSES | T3 FAIL (inner FAIL) | T4b B1 FAIL/FAIL -> J FAIL, J+ FAIL
+  VERDICT [HCB]: DERIVED RESERVOIR FAILS T3 X-COP, T4b Bullet
+  VERDICT [B]: DERIVED RESERVOIR FAILS T3 X-COP, T4b Bullet
+
+5/5 checks pass; elapsed 5.3 s

@@ -1,0 +1,55 @@
+CFG637 derivations (FROZEN_CRITERIA.md, e67940c56): Method A (self-similar secondary infall, cfg637_lib) for every gate system
+(63 Tian+26 groups, 12 X-COP clusters, Bullet progenitors BASE/B1/B2/B3) on both footings and both source variants (candidate B:
+all retained baryons source the phantom; H-CB: condensed only), the derivation brackets, Method B (maximum entropy), the
+representative mass-scale shapes, controls C1-C4 and MUTATE M-G / M-D. Writes cfg637_profiles.npz (reservoir M_res(<r) per
+system/cell, kpc and Msun), cfg637_derive.out and cfg637_derive_results.json. Computes no gate number.
+  background: Om 0.3138, OL 0.6862, f_b 0.15713, cold/b 5.3643, H0 0.06889/Gyr
+
+== groups: Method A per group (Hernquist retained core, f_ret 0.10, catchment M_bar/0.10)
+  [canonical] 63 groups done (2166 s)
+  [alt] 63 groups done (4143 s)
+
+== X-COP: Method A per cluster (audit gas + stars to R200, f_ret 0.90, catchment M_b(<R200)/0.90)
+  [canonical] X-COP done (4986 s)
+  [alt] X-COP done (5830 s)
+
+== Bullet: Method A per progenitor (p.Mbar retained, f_ret 1, catchment p.Mb, a_obs = 1/1.296)
+  Bullet BASE done (5872 s)
+  Bullet B1 done (6042 s)
+  Bullet B2 done (6096 s)
+  Bullet B3 done (6123 s)
+
+== controls and MUTATE
+  [PASS] C1 mass conservation supply = drawn + reservoir (1e-9): max rel 9.6e-16
+  [PASS] C1b turned-around mass within 1% of M_ta: max |M_turned/M_ta - 1| 0.0073 (G|NGC4993|canonical|B|A|eps0.5)
+  group NGC4258 (B source) [canonical] M_res(<x r_ta)/M_res at x 0.02/0.05/0.1/0.3: N1600 0.0000 0.0000 0.0000 0.0000 | N3200 0.0000 0.0000 0.0000 0.0000 | gravity off 0.0000 0.0000 0.0000 0.0000 | uniform 0.0000 0.0000 0.0000 0.0000 | time-avg 0.0000 0.0000 0.0000 0.0000 | reservoir/supply 0.000
+  group NGC4258 (B source) [alt] M_res(<x r_ta)/M_res at x 0.02/0.05/0.1/0.3: N1600 0.0000 0.0000 0.0000 0.0000 | N3200 0.0000 0.0000 0.0000 0.0000 | gravity off 0.0000 0.0000 0.0000 0.0000 | uniform 0.0000 0.0000 0.0000 0.0000 | time-avg 0.0000 0.0000 0.0000 0.0000 | reservoir/supply 0.000
+  cluster A1795 (B source) [canonical] M_res(<x r_ta)/M_res at x 0.02/0.05/0.1/0.3: N1600 0.0000 0.0000 0.0000 0.0000 | N3200 0.0000 0.0000 0.0000 0.0000 | gravity off 0.0000 0.0000 0.0000 0.0000 | uniform 0.0000 0.0000 0.0000 0.0000 | time-avg 0.0000 0.0000 0.0000 0.0000 | reservoir/supply 0.000
+  cluster A1795 (B source) [alt] M_res(<x r_ta)/M_res at x 0.02/0.05/0.1/0.3: N1600 0.0000 0.0000 0.0000 0.0000 | N3200 0.0000 0.0000 0.0000 0.0000 | gravity off 0.0000 0.0000 0.0000 0.0774 | uniform 0.0000 0.0000 0.0000 0.0000 | time-avg 0.0000 0.0000 0.0000 0.0000 | reservoir/supply 0.000
+  cluster A1795 (H-CB source) [canonical] M_res(<x r_ta)/M_res at x 0.02/0.05/0.1/0.3: N1600 0.2089 0.4703 0.7710 1.0000 | N3200 0.2172 0.4851 0.7809 1.0000 | gravity off 0.0894 0.5338 0.8810 1.0000 | uniform 0.0058 0.0340 0.0761 0.3349 | time-avg 0.2072 0.4787 0.7730 1.0306 | reservoir/supply 0.257
+  cluster A1795 (H-CB source) [alt] M_res(<x r_ta)/M_res at x 0.02/0.05/0.1/0.3: N1600 0.2869 0.6065 0.9241 1.0000 | N3200 0.2988 0.6146 0.9333 1.0000 | gravity off 0.1174 0.6290 0.9645 1.0000 | uniform 0.0044 0.0256 0.0586 0.2930 | time-avg 0.2762 0.6109 0.9589 1.0517 | reservoir/supply 0.182
+  group NGC4258 (B source)|canonical: derived reservoir EMPTY in the primary run; gravity off / N3200 / uniform reservoir fractions 0.000 / 0.000 / 0.000 (M-G not applicable: nothing to perturb)
+  group NGC4258 (B source)|alt: derived reservoir EMPTY in the primary run; gravity off / N3200 / uniform reservoir fractions 0.000 / 0.000 / 0.000 (M-G not applicable: nothing to perturb)
+  cluster A1795 (B source)|canonical: derived reservoir EMPTY in the primary run; gravity off / N3200 / uniform reservoir fractions 0.000 / 0.000 / 0.000 (M-G not applicable: nothing to perturb)
+  cluster A1795 (B source)|alt: derived reservoir EMPTY in the primary run; gravity off / N3200 / uniform reservoir fractions 0.005 / 0.000 / 0.000 (M-G not applicable: nothing to perturb)
+  [PASS] M-G reservoir self-gravity off changes M_res(<0.1 r_ta) by > 5% (every control system with a non-empty reservoir, both footings): group NGC4258 (B source)|canonical: n/a (reservoir empty), group NGC4258 (B source)|alt: n/a (reservoir empty), cluster A1795 (B source)|canonical: n/a (reservoir empty), cluster A1795 (B source)|alt: n/a (reservoir empty), cluster A1795 (H-CB source)|canonical: 0.544, cluster A1795 (H-CB source)|alt: 0.545
+  M-D (reported) uniform draw changes M_res(<0.05 r_ta) by: group NGC4258 (B source)|canonical: n/a (reservoir empty), group NGC4258 (B source)|alt: n/a (reservoir empty), cluster A1795 (B source)|canonical: n/a (reservoir empty), cluster A1795 (B source)|alt: n/a (reservoir empty), cluster A1795 (H-CB source)|canonical: 0.928, cluster A1795 (H-CB source)|alt: 0.958
+  C2 (reported) N1600 vs N3200 max rel diff at 0.02-0.3 r_ta: group NGC4258 (B source)|canonical: n/a (reservoir empty), group NGC4258 (B source)|alt: n/a (reservoir empty), cluster A1795 (B source)|canonical: n/a (reservoir empty), cluster A1795 (B source)|alt: n/a (reservoir empty), cluster A1795 (H-CB source)|canonical: 0.039, cluster A1795 (H-CB source)|alt: 0.041 -> within 10%
+  C4 (reported) time-avg / phase-mixed at 0.05, 0.1 r_ta: group NGC4258 (B source)|canonical: n/a (reservoir empty)/n/a (reservoir empty), group NGC4258 (B source)|alt: n/a (reservoir empty)/n/a (reservoir empty), cluster A1795 (B source)|canonical: n/a (reservoir empty)/n/a (reservoir empty), cluster A1795 (B source)|alt: n/a (reservoir empty)/n/a (reservoir empty), cluster A1795 (H-CB source)|canonical: 1.018/1.003, cluster A1795 (H-CB source)|alt: 1.007/1.038
+  C3 (reported) Bertschinger benchmark (no core, no settling, eps 1, q 0.02, Lambda background): log-slope over 0.03-0.15 r_ta = -2.293 (EdS theory -2.25)
+
+== reservoir shapes by mass scale (Method A primary; M_res(<x r_ta)/M_res and local log-slope of rho_res)
+  galaxy (M_b 6e10, Hernquist a 3 kpc, f_ret 0.10) [canonical|B] r_ta 1238 kpc, reservoir/supply 0.000, edge x 0.41790469123885676 | frac(<x) nan nan nan nan nan | slope at 0.03/0.1/0.3 +0.00 -0.00 -0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 0.00 0.00 0.00
+  galaxy (M_b 6e10, Hernquist a 3 kpc, f_ret 0.10) [canonical|HCB] r_ta 1238 kpc, reservoir/supply 0.000, edge x 0.41790469123885676 | frac(<x) nan nan nan nan nan | slope at 0.03/0.1/0.3 +0.00 -0.00 -0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 0.00 0.00 0.00
+  galaxy (M_b 6e10, Hernquist a 3 kpc, f_ret 0.10) [alt|B] r_ta 1238 kpc, reservoir/supply 0.000, edge x 0.3815703193559398 | frac(<x) nan nan nan nan nan | slope at 0.03/0.1/0.3 -0.00 -0.00 -0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 0.00 0.00 0.00
+  galaxy (M_b 6e10, Hernquist a 3 kpc, f_ret 0.10) [alt|HCB] r_ta 1238 kpc, reservoir/supply 0.000, edge x 0.3815703193559398 | frac(<x) nan nan nan nan nan | slope at 0.03/0.1/0.3 -0.00 -0.00 -0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 0.00 0.00 0.00
+  group (NGC4258, log M_bar 10.93) [canonical|B] r_ta 1390 kpc, reservoir/supply 0.000, edge x 0.5246067793624973 | frac(<x) nan nan nan nan nan | slope at 0.03/0.1/0.3 -0.00 +0.00 +0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 0.00 0.00 0.00
+  group (NGC4258, log M_bar 10.93) [canonical|HCB] r_ta 1390 kpc, reservoir/supply 0.000, edge x 0.5407561311218879 | frac(<x) nan nan nan nan nan | slope at 0.03/0.1/0.3 +0.00 +0.00 +0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 0.00 0.00 0.00
+  group (NGC4258, log M_bar 10.93) [alt|B] r_ta 1390 kpc, reservoir/supply 0.000, edge x 0.4789952841740844 | frac(<x) nan nan nan nan nan | slope at 0.03/0.1/0.3 +0.00 +0.00 +0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 0.00 0.00 0.00
+  group (NGC4258, log M_bar 10.93) [alt|HCB] r_ta 1390 kpc, reservoir/supply 0.000, edge x 0.5012825284810861 | frac(<x) nan nan nan nan nan | slope at 0.03/0.1/0.3 +0.00 +0.00 +0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 0.00 0.00 0.00
+  cluster (A1795) [canonical|B] r_ta 7019 kpc, reservoir/supply 0.000, edge x 0.35371681146407047 | frac(<x) nan nan nan nan nan | slope at 0.03/0.1/0.3 +0.00 +0.00 -0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 0.00 0.00 0.00
+  cluster (A1795) [canonical|HCB] r_ta 7019 kpc, reservoir/supply 0.257, edge x 1.3633640488259868 | frac(<x) 0.0668 0.3297 0.7710 1.0000 1.0000 | slope at 0.03/0.1/0.3 -0.70 -3.23 +16790.11 | M_res/(M_b+M_set) at 0.03/0.1/0.3 4.02 1.76 0.67
+  cluster (A1795) [alt|B] r_ta 7019 kpc, reservoir/supply 0.000, edge x 0.3229632008001752 | frac(<x) nan nan nan nan nan | slope at 0.03/0.1/0.3 +0.00 +0.00 +0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 0.00 0.00 0.00
+  cluster (A1795) [alt|HCB] r_ta 7019 kpc, reservoir/supply 0.182, edge x 1.2448275083172111 | frac(<x) 0.0943 0.4478 0.9241 1.0000 1.0000 | slope at 0.03/0.1/0.3 -2.30 -2.56 +0.00 | M_res/(M_b+M_set) at 0.03/0.1/0.3 3.69 1.43 0.45
+
+3/3 checks pass; elapsed 6487.1 s
