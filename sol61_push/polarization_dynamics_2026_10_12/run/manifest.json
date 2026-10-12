@@ -1,0 +1,162 @@
+{
+  "schema_version": 2,
+  "claim_id": "EXACT_POLARIZATION_LINEAR_ESCAPE",
+  "repository": {
+    "commit": "e1524b26a83adcfd9f990f72d816de15af10dc45",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "sol61_push/polarization_dynamics_2026_10_12/calculate.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Bounded linear wave-packet evolution of the exact-kernel effective polarization model: test energy conservation, local radiation escape, and vacuum zero modes.",
+    "coefficient_domain": "IEEE float64/complex128; analytic Fourier-mode time evolution",
+    "conventions": "Dimensionless C=a0=Z=I=1, one longitudinal spatial dimension, periodic length 512. Uniform background. Imported kernel definition is the repaired CFG596 formula, reproduced explicitly; not the different CFG597 nu_mono.",
+    "inputs": [
+      "sol61_push/polarization_dynamics_2026_10_12/calculate.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "grids": [
+        1024,
+        2048
+      ],
+      "g_background": [
+        0.001,
+        0.01,
+        0.1,
+        1.0
+      ],
+      "times": [
+        0,
+        50,
+        100,
+        150
+      ],
+      "width": 8,
+      "central_halfwidth": 24,
+      "threads": 1,
+      "timeout_seconds": 45
+    },
+    "criteria": {
+      "energy_relative_error_max": 1e-09,
+      "central_fraction_resolution_difference_max": 0.01,
+      "negative_omega_squared_tolerance": 1e-10,
+      "local_escape": "central perturbation-energy fraction below 0.10 at t=150 for that background only",
+      "vacuum": "A nonzero stationary zero-energy null perturbation disproves strict linear attraction at vacuum; not nonlinear stability or instability."
+    },
+    "controls": [
+      "Two spatial resolutions",
+      "Zero-time identity",
+      "Negative quadratic mismatch a=0.99 must yield a negative eigenvalue",
+      "Vacuum null mode H(1,ik)=0"
+    ],
+    "non_claims": [
+      "No microscopic identification, derived Z/I or physical time unit",
+      "No nonlinear, spherical, cosmological, lensing or data calculation",
+      "Radiation leaves only the central window, not the periodic system",
+      "No damping, equilibrium selection or full theory claimed"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T20:27:05.360482+00:00",
+    "runtime_seconds": 0.292421,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/polarization_dynamics_2026_10_12/calculate.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/calculate.py",
+      "sha256": "6afe5da1c7dd88534531fd81be54d3bf9ea82fc95510f3b1d3f168d782562cf6",
+      "sha256_after": "6afe5da1c7dd88534531fd81be54d3bf9ea82fc95510f3b1d3f168d782562cf6"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sha256": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c",
+      "sha256_after": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c"
+    }
+  ],
+  "output_directory": "sol61_push/polarization_dynamics_2026_10_12/run",
+  "declared_results": [
+    "sol61_push/polarization_dynamics_2026_10_12/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/run/stdout.txt",
+      "sha256": "60c6b3530e62b4f90ccf1b9fbe9331754301c29e1b7e04dc125c461dcde1a5d9",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/run/results.json",
+      "sha256": "d105aae4248727097ba7dc2f96cbb113866b836760681571f20be453a46c231e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

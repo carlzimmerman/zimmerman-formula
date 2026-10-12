@@ -1,0 +1,16 @@
+{
+  "claim_id": "EXACT_POLARIZATION_LINEAR_ESCAPE",
+  "mathematics": {
+    "assertion_tested": "Bounded linear wave-packet evolution of the exact-kernel effective polarization model: test energy conservation, local radiation escape, and vacuum zero modes.",
+    "coefficient_domain": "IEEE float64/complex128; analytic Fourier-mode time evolution",
+    "conventions": "Dimensionless C=a0=Z=I=1, one longitudinal spatial dimension, periodic length 512. Uniform background. Imported kernel definition is the repaired CFG596 formula, reproduced explicitly; not the different CFG597 nu_mono.",
+    "inputs": ["sol61_push/polarization_dynamics_2026_10_12/calculate.py", "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"],
+    "bounds": {"grids": [1024, 2048], "g_background": [0.001, 0.01, 0.1, 1.0], "times": [0, 50, 100, 150], "width": 8, "central_halfwidth": 24, "threads": 1, "timeout_seconds": 45},
+    "criteria": {"energy_relative_error_max": 1e-9, "central_fraction_resolution_difference_max": 0.01, "negative_omega_squared_tolerance": 1e-10, "local_escape": "central perturbation-energy fraction below 0.10 at t=150 for that background only", "vacuum": "A nonzero stationary zero-energy null perturbation disproves strict linear attraction at vacuum; not nonlinear stability or instability."},
+    "controls": ["Two spatial resolutions", "Zero-time identity", "Negative quadratic mismatch a=0.99 must yield a negative eigenvalue", "Vacuum null mode H(1,ik)=0"],
+    "non_claims": ["No microscopic identification, derived Z/I or physical time unit", "No nonlinear, spherical, cosmological, lensing or data calculation", "Radiation leaves only the central window, not the periodic system", "No damping, equilibrium selection or full theory claimed"]
+  },
+  "execution_artifacts": ["sol61_push/polarization_dynamics_2026_10_12/calculate.py", "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"],
+  "software": [{"name":"Python","version":"3.13.9"},{"name":"NumPy","version":"1.26.4"},{"name":"SciPy","version":"1.14.1"}],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

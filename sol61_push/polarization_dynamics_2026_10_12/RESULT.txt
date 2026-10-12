@@ -1,0 +1,86 @@
+Executed calculation: can polarization waves remove a local disturbance?
+2026-10-12. Exact-kernel effective model; finite linear evidence only.
+Code, contract and validated run/manifest.json accompany this result.
+The run uses one thread and completed in under one second. No large PM job
+was interrupted. Resource limits and actual input hashes are in the manifest.
+
+RESULT
+The construction can radiate perturbation energy away from a local region
+at nonzero background, without an artificial drag term. It does not show
+universal settling. Weak-field propagation slows, and the linear vacuum
+has stationary null disturbances. No complete cold-energy theory follows.
+
+Method
+Use the actual CFG596 repaired-kernel definitions, extracted by an explicit
+AST whitelist; do not import the PM engine. Solve the inverse background
+relation and use the piecewise derivative of its log interpolation.
+Linearise the two-field energy in EXACT_POLARIZATION.txt in one longitudinal
+dimension about constant g. Set C=a0=Z=I=1 (chosen units/response coefficients,
+not predicted physical values). Write a=1/(1-B'(g)). The Hermitian stiffness is
+
+ H(k) = [[k^2, i k],[-i k, a]].
+
+Prepare a width-8 Gaussian Phi disturbance, zero velocities and P=Phi_x/a.
+Its amplitude is arbitrary in this linear system; the listed Gaussian is a
+normalised shape, not a finite-amplitude claim about the nonlinear theory.
+Diagonalise each Fourier mode and propagate exactly with cos(omega*t).
+Use periodic length 512, N=1024 and 2048, t=0,50,100,150. Energy in |x|<24
+is compared to total perturbation energy. This is a finite local window;
+waves remain in the periodic system and can eventually return.
+
+Fine-grid central energy fraction at t=150
+ g/a0    initial fraction    final fraction    local escape (<0.10)
+ 0.001   0.999520            0.986015          NO
+ 0.01    0.999520            0.545188          NO
+ 0.1     0.999520            0.00003643        YES
+ 1       0.999520            0.000007968       YES
+
+Both resolutions meet the predeclared 0.01 absolute agreement threshold.
+All energy checks meet relative error 1e-9. Zero-time reconstruction,
+kernel inversion, nonnegative squared frequencies and vacuum null mode
+checks pass. A deliberately negative quadratic mismatch a=0.99 at k=0.1
+produces omega^2=-9.9990e-5 and is detected. Passing controls validate this
+bounded linear calculation, not a material or a galaxy-formation theory.
+
+Why the weak-field limitation is structural
+-----------------------------------------
+The mode equation in these units is
+ omega^4-(k^2+a)omega^2+k^2(a-1)=0.
+At long wavelength, omega_slow^2=B'(g) k^2+O(k^4).
+The measured dimensionless long-wave speeds are 0.04469, 0.14037,
+0.41687 and 0.88120 for the four backgrounds, respectively.
+
+With general positive Z,I and C, the long-wave speed squared is
+ v_slow^2=B'(g)/(C Z). I affects the finite-frequency branch but cancels
+from this leading low-frequency speed. On the deep branch B~g^2/a0,
+ v_slow^2~2g/(C Z a0).
+Thus the long-wave crossing-time estimate for a fixed region grows like
+ g^(-1/2) for fixed Z. This is an asymptotic wave timescale, not a measured
+galaxy settling time or a rigorous bound on every packet.
+
+At g=0, a=1 and H(k)*(1,ik)=0. A nonzero perturbation on this null branch
+remains stationary in the LINEARISED system at every k. Cubic and higher
+terms can alter its nonlinear evolution; this calculation does not prove
+nonlinear trapping or nonlinear instability. It does prove that a claim of
+strict linear attraction at vacuum would be false for this model.
+
+Physical interpretation and next decision
+-----------------------------------------
+Energy export by propagating internal-field waves is a concrete candidate
+channel. This run shows that channel operates for small disturbances around
+some nonzero backgrounds. It does not create dissipation, select a halo,
+move a conserved cold-mass distribution, or convert wave energy into vacuum
+energy. The receiving region contains the outgoing waves and their energy.
+Z and I still have to come from the underlying fields; no timescale in Gyr
+can be reported. A relativistic metric coupling/lensing prediction is absent.
+
+The next mathematical issue is nonlinear vacuum evolution and coupling to
+an actual conserved cold-mass sector. Adding a gradient regulator would
+change static solutions and cannot be treated as a free numerical repair.
+The preferred next microscopic test is whether the existing carrier action
+generates the P.grad(Phi) coupling and the required positive response kernel;
+otherwise the present model remains an inverse-designed extra sector.
+
+Review status: separate analytic self-review, not independent review.
+No numerical result is promoted to a universal stability theorem. Original
+goal remains open; the source of kappa=1/2 is not addressed by this run.
