@@ -1,0 +1,47 @@
+CFG635 one dark sector  [MUTATE]; kappa = 0.5 FITTED; H0 = 1.4378e-33 eV
+
+K1 single real field: fluctuation mass^2 = V''(phi_bar) is shared by the smooth mode and its excitations
+  linearised: ddot(dphi) + 3H dot(dphi) + (k^2/a^2 + Derivative(V(x), (x, 2))) dphi = 0
+  [PASS] K1_mass_theorem: G1 needs V'' <~ H0^2 (frozen/thawing), G2 needs V'' >= (2e-20 eV)^2: ratio of masses 1.39e+13 along ONE direction -> a single real field cannot do both; the two jobs need two field directions
+
+K2 complex field Phi = r e^{i theta}: radial oscillation (cold) <-> phase (smooth) exchange
+  [PASS] K2a_Q_identity: dE_theta/dt = rdot (d_r V_b - r thetadot^2) (sympy, exact)
+  [PASS] K2b_total_derivative: V_b = 0: p_theta conserved, Q = rdot dH_theta/dr = d/dt H_theta(r(t), p): periodic r -> zero secular exchange
+  [PASS] K2c_coupling_off: coupling off -> dE_theta/dt = 0 exactly: decoupled constant smooth part + independent wave dust
+  C MUTATE resonant explicit breaking (omega_theta = m_r/2): E_theta growth +2.672e+00; E_tot err 8.1e-10
+  [PASS] K2d_MUTATE_resonance_bites: resonant shift breaking DOES transfer energy secularly -- from the radial oscillation itself (cold REST energy, a G9 violation), not from settling
+
+K3 C1 (pNGB phase = dark energy, radial wave dust = cold energy): constants
+  f = sqrt(3 Omega_L)(H0/m_theta) MPL = 1.434 MPL (fixed by rho_DE once m_theta/H0 is chosen)
+  lambda = (m_r/f)^2 = 3.28e-95 at m_r = 2e-20 eV; radial amplitude for Omega_c: 0.0103 f
+  an O(1) amplitude over-produces cold energy x9.51e+03; compensating with the mass needs m_r = 2.21e-28 eV , 1e8 below the 2e-20 eV wave-dust floor and ~ H(z_eq) = 2.26e-28 eV (no dust onset before equality; the m^1/2 scaling itself breaks there)
+  r -> theta theta decay rate / H0 = 4.54e-84; self-scattering sigma/m ~ 5.9e-109 cm^2/g
+  [PASS] K3_C1_behaviour_and_knobs: cold part stable + collisionless (behaviour gates OK as in CFG288 road W); the amplitude is not natural (O(1) amplitude fails) -> the amount stays an input; knobs: m_r, m_theta/H0 (or theta_i)
+
+K4 C2 ghost-condensate receiver: w = -1 with nonzero theta_dot; regular pair bracket without stall
+  [PASS] K4a_w_minus1_with_motion: P'(X0) = 0 -> w = -1, while theta_dot0 = sqrt(2 X0) != 0 and pi = P' theta_dot = 0
+  [PASS] K4b_Hprime_at_rest: dH/dpi at pi = 0 equals sqrt(2)*sqrt(X_0)
+  M grad E = 0: True; Edot = 0; Sdot = m*pi**2*Derivative(S(q), q)**2/mu**2; qdot(pi = 0) = 0
+  [PASS] K4c_MUTATE_canonical_stalls: canonical receiver (H'(0) = 0): drift vanishes at pi = 0 -- the astra stall returns (control bites)
+  [PASS] K4d_deposit_is_dust: delta rho = 2*X_0*c*dX, delta p = 0 (first order) -> deposit has w = 0; c_s^2 = dX/(2*X_0): the energy handed over becomes GC dust, not w = -1; invisible to a -p_DE bridge at first order
+
+K5 GC phantom side (receiver LOSING energy: import, IC-C type): gradient instability vs superluminal phonons
+  omega^2 = c_s^2 k^2 + k^4/M_k^2; for c_s^2 < 0: gamma_max = Abs(M_k*c_s2)/2
+
+K6 local deposit: R(y) = rho_ph V_c^2 / (rho_DE c^2), point mass, from the law + a0 = kappa c sqrt(G rho_DE)
+  [PASS] K6a_deep_limit: deep limit R = kappa**2*y/(4*pi) = kappa^2 g^2/(4 pi a0^2) (g^2 = y a0^2 there); kappa^2/(4pi) = 0.0199
+  exponential: rho-bridge, full local retention: dlog10 a0(y=1) = 0.0062; dlog10 g(y=1) = 0.0018, dlog10 g(y=30) = 0.0009
+  exponential: R(1) = 0.0290, R(10) = 0.303, R(30) = 0.415; max on y<=1e3 0.428 at y = 23.9; R >= 1 from y = None
+  nu_mono: rho-bridge, full local retention: dlog10 a0(y=1) = 0.0062; dlog10 g(y=1) = 0.0018, dlog10 g(y=30) = 0.0029
+  nu_mono: R(1) = 0.0290, R(10) = 0.277, R(30) = 0.829; max on y<=1e3 31.344 at y = 1e+03; R >= 1 from y = 36.057864302164276
+  [PASS] K6b_relation_numbers: settling-energy density of the phantom is O(0.01) of rho_DE c^2 at g ~ a0 and O(0.4-1) at y ~ 10-30 (kernel-dependent above y ~ 2.5)
+  cosmic: |c_s^2| = 1.90e-06 -> stable only if M_k < 1.05e+06 H0 -> phonons superluminal below ~8.45 kpc
+  local_peak: |c_s^2| = 2.14e-01 -> stable only if M_k < 9.35e+00 H0 -> phonons superluminal below ~9.52e+05 kpc
+  [PASS] K5_phantom_side: import (receiver-loses-energy) side: gradient-stable only with a k^4 scale so low that sub-galactic (cosmic excursion) to Gpc (local excursion) phonons are superluminal -> G4/G5 conflict on that side; export side is stable
+
+K7 C3 superfluid two-fluid: Landau critical velocity and drag-damped growth
+  [PASS] K7a_landau: min omega/k = c_ph (omega/k increasing: d/dk = k/(2*m_q*sqrt(4*c_ph**2*m_q**2 + k**2)) > 0)
+  D_ratio_gamma_0.1 = 0.978, D_ratio_gamma_1.0 = 0.817, D_ratio_gamma_10.0 = 0.333
+  [PASS] K7b_drag_damps_growth: a drag fast enough to settle halos (Gamma ~ 10-50 H0) freezes linear growth if it acts on the linear cold field; if c_ph > V_f there is no drag at all (superfluid)
+
+15/15 checks pass

@@ -1,0 +1,146 @@
+{
+ "K1": {
+  "m_floor_eV": 2e-20,
+  "H0_eV": 1.4377768e-33,
+  "required_mass_ratio": 13910364946770.596
+ },
+ "checks": {
+  "K1_mass_theorem": {
+   "pass": true,
+   "detail": "G1 needs V'' <~ H0^2 (frozen/thawing), G2 needs V'' >= (2e-20 eV)^2: ratio of masses 1.39e+13 along ONE direction -> a single real field cannot do both; the two jobs need two field directions"
+  },
+  "K2a_Q_identity": {
+   "pass": true,
+   "detail": "dE_theta/dt = rdot (d_r V_b - r thetadot^2) (sympy, exact)"
+  },
+  "K2b_total_derivative": {
+   "pass": true,
+   "detail": "V_b = 0: p_theta conserved, Q = rdot dH_theta/dr = d/dt H_theta(r(t), p): periodic r -> zero secular exchange"
+  },
+  "K2c_coupling_off": {
+   "pass": true,
+   "detail": "coupling off -> dE_theta/dt = 0 exactly: decoupled constant smooth part + independent wave dust"
+  },
+  "K2d_no_secular_exchange": {
+   "pass": true,
+   "detail": "shift-symmetric and slow-pNGB phases take no secular energy from the radial mode"
+  },
+  "K3_C1_behaviour_and_knobs": {
+   "pass": true,
+   "detail": "cold part stable + collisionless (behaviour gates OK as in CFG288 road W); the amplitude is not natural (O(1) amplitude fails) -> the amount stays an input; knobs: m_r, m_theta/H0 (or theta_i)"
+  },
+  "K4a_w_minus1_with_motion": {
+   "pass": true,
+   "detail": "P'(X0) = 0 -> w = -1, while theta_dot0 = sqrt(2 X0) != 0 and pi = P' theta_dot = 0"
+  },
+  "K4b_Hprime_at_rest": {
+   "pass": true,
+   "detail": "dH/dpi at pi = 0 equals sqrt(2)*sqrt(X_0)"
+  },
+  "K4c_bracket_regular_no_stall": {
+   "pass": true,
+   "detail": "GC receiver: energy conserved, entropy non-decreasing, drift at receiver rest = m v^2 S' (no stall, no 1/pi)"
+  },
+  "K4d_deposit_is_dust": {
+   "pass": true,
+   "detail": "delta rho = 2*X_0*c*dX, delta p = 0 (first order) -> deposit has w = 0; c_s^2 = dX/(2*X_0): the energy handed over becomes GC dust, not w = -1; invisible to a -p_DE bridge at first order"
+  },
+  "K6a_deep_limit": {
+   "pass": true,
+   "detail": "deep limit R = kappa**2*y/(4*pi) = kappa^2 g^2/(4 pi a0^2) (g^2 = y a0^2 there); kappa^2/(4pi) = 0.0199"
+  },
+  "K6b_relation_numbers": {
+   "pass": true,
+   "detail": "settling-energy density of the phantom is O(0.01) of rho_DE c^2 at g ~ a0 and O(0.4-1) at y ~ 10-30 (kernel-dependent above y ~ 2.5)"
+  },
+  "K5_phantom_side": {
+   "pass": true,
+   "detail": "import (receiver-loses-energy) side: gradient-stable only with a k^4 scale so low that sub-galactic (cosmic excursion) to Gpc (local excursion) phonons are superluminal -> G4/G5 conflict on that side; export side is stable"
+  },
+  "K7a_landau": {
+   "pass": true,
+   "detail": "min omega/k = c_ph (omega/k increasing: d/dk = k/(2*m_q*sqrt(4*c_ph**2*m_q**2 + k**2)) > 0)"
+  },
+  "K7b_drag_damps_growth": {
+   "pass": true,
+   "detail": "a drag fast enough to settle halos (Gamma ~ 10-50 H0) freezes linear growth if it acts on the linear cold field; if c_ph > V_f there is no drag at all (superfluid)"
+  }
+ },
+ "K2": [
+  {
+   "label": "A shift-symmetric (p_theta = 0.01)",
+   "eps": 0.0,
+   "omega_theta_over_m_r": 0.0,
+   "periods": 400,
+   "E_theta_first10": 6.0986752557786645e-05,
+   "E_theta_last10": 6.098687220381947e-05,
+   "relative_drift": 1.9618364286433376e-06,
+   "E_tot_rel_err": 1.0066344424686235e-09
+  },
+  {
+   "label": "B slow pNGB (omega_theta = 0.01 m_r)",
+   "eps": 0.0001,
+   "omega_theta_over_m_r": 0.01,
+   "periods": 1000,
+   "E_theta_first10": 4.471678071178152e-06,
+   "E_theta_last10": 4.4722831338868656e-06,
+   "relative_drift": 0.00013530998857302912,
+   "E_tot_rel_err": 2.259314291208625e-09
+  }
+ ],
+ "K3": {
+  "m_theta_over_H0": 1.0,
+  "f_over_MPL": 1.433527118683145,
+  "lambda": 3.282843912087532e-95,
+  "radial_amp_over_f": 0.010254427564302789,
+  "overproduction_for_O1_amplitude": 9509.926419547412,
+  "compensating_mass_eV": 2.2114426554424837e-28,
+  "H_eq_eV": 2.2634541114497217e-28,
+  "decay_r_to_thetatheta_over_H0": 4.542436941602012e-84,
+  "sigma_over_m_cm2_per_g": 5.853973138193852e-109
+ },
+ "K5": {
+  "cosmic": {
+   "drho_over_rhoDE": 3.8e-06,
+   "abs_cs2": 1.9e-06,
+   "Mk_max_over_H0": 1052631.5789473683,
+   "superluminal_below_Mpc": 0.008451122703264095
+  },
+  "local_peak": {
+   "drho_over_rhoDE": 0.4279675847309859,
+   "abs_cs2": 0.21398379236549295,
+   "Mk_max_over_H0": 9.346502264918827,
+   "superluminal_below_Mpc": 951.7912030476671
+  }
+ },
+ "K6": {
+  "exponential": {
+   "R_y1": 0.028975832123436348,
+   "R_y10": 0.30319476385636035,
+   "R_y30": 0.41520550456911376,
+   "R_max_on_grid": 0.4279675847309859,
+   "y_at_max": 23.878112829131783,
+   "first_y_R_ge_1": null,
+   "dlog10_a0_rho_bridge_y1": 0.006202587236079889,
+   "dlog10_g_rho_bridge_y1": 0.0018048806466155571,
+   "dlog10_g_rho_bridge_y30": 0.000867059442541566
+  },
+  "nu_mono": {
+   "R_y1": 0.02897583231269531,
+   "R_y10": 0.27687901225038286,
+   "R_y30": 0.8291011066620759,
+   "R_max_on_grid": 31.343871235434847,
+   "y_at_max": 1000.0,
+   "first_y_R_ge_1": 36.057864302164276,
+   "dlog10_a0_rho_bridge_y1": 0.006202587276019682,
+   "dlog10_g_rho_bridge_y1": 0.0018048806632455948,
+   "dlog10_g_rho_bridge_y30": 0.002897328095547286
+  }
+ },
+ "K7": {
+  "D_ratio_gamma_0.1": 0.9782818998861565,
+  "D_ratio_gamma_1.0": 0.8173811168805378,
+  "D_ratio_gamma_10.0": 0.332743667707457
+ },
+ "mutate": false
+}
