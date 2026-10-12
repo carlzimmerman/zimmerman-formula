@@ -188,3 +188,77 @@ turning-point branch; spatial versus energy singularity; delta-distribution
 velocity integral; injection time-to-energy Jacobian; required regularity and
 L exclusions. No numerical or stability claim. The microscopic finite-width
 capture/redistribution kernel remains the unresolved next input.
+
+6. FOLLOW-UP: FINITE-WIDTH RADIAL DRAG HAS NO FINITE-TRANSIT ENERGY FOLD
+
+Base e75e9ff30518a5a9c9d7f0881a616f5ea1801ba3. Previous turn: progress.
+Test a concrete mass-preserving, angular-momentum-preserving interaction:
+radial acceleration a_drag=-gamma(r) v_r, gamma>=0, in a finite spherical
+layer r_i<r<R. Phi is static, L fixed, gamma continuously bounded. No claim
+that this phenomenological gamma is derived from the proposed dark sector.
+
+On an inward passage with v_r<0 throughout the layer, put
+V_eff=Phi+L^2/(2r^2) and E=v_r^2/2+V_eff. Then exactly
+
+ Edot=-gamma v_r^2,
+ dE/dr=gamma(r) sqrt(2[E-V_eff(r)]).                    (4)
+
+The derivative is positive with respect to increasing r; the actual inward
+motion decreases r and therefore decreases E. This sign matters.
+
+Let E_out=T_L(E_in) be energy at the fixed exit radius r_i for entry at R.
+Differentiate (4) with respect to E_in. The variational solution is
+
+ dT_L/dE_in
+ =exp(int_R^r_i gamma(r)/sqrt(2[E(r)-V_eff(r)]) dr)
+ =exp(-int_entry^exit gamma dt)>0.                     (5)
+
+For finite integrated damping Gamma=int gamma dt, the map is strictly
+increasing, with nonzero Jacobian. It compresses energy intervals but does
+not create a fold or an inverse-square-root singularity from a bounded
+incoming energy distribution. In a neighborhood with uniformly bounded
+Gamma, the outgoing distribution is bounded by the incoming bound times
+exp(Gamma_max). This is a local result for complete, regular inward transits.
+It excludes turning-point/long-residence limits where the assumed bound fails.
+
+In particular, near a regular crossing of the capture threshold E_out=E_R(L),
+the captured energy distribution is finite on the captured side. Phase mixing
+with finite nonzero radial period does not change that into f~q^(-1/2).
+For a regular nondegenerate L interval its contribution to spatial density
+vanishes as sqrt(R-r), by the earlier orbit integral. Thus this finite-transit
+drag mechanism alone does not produce the exact finite-density jump.
+
+This does NOT exclude an observationally narrow smooth edge. Large but finite
+Gamma can produce a compressed energy band. Locally a small incoming spread
+Delta E is reduced by exp(-Gamma), corresponding to an apocentre spread
+Delta r approximately exp(-Gamma) Delta E/a(L). Neither a required numerical
+width nor a physical Gamma has been calculated here, so no empirical failure
+or formation-time exclusion follows from the exact-jump result.
+
+6a. A permanent dissipative layer keeps evolving the captured population
+
+If the same radial drag continues after capture, its energy change per radial
+cycle is
+
+ Delta E=-int_cycle gamma(r) v_r^2 dt.
+
+It is strictly negative for any orbit spending positive time with gamma>0
+and v_r!=0. A stationary captured population on those orbits therefore needs
+compensating energy input or a rule that disables/reverses the interaction.
+Mass and angular momentum conservation alone do not supply that rule.
+Orbits avoiding the layer and circular orbits are exceptions; their survival
+does not select the required distribution of energies and L.
+
+Combining (5) with this cycle identity distinguishes three mechanisms rather
+than treating them as interchangeable: one-pass finite drag gives a smooth
+energy map; infinite-residence limits can make that map singular; persistent
+drag changes the supposed endpoint. A successful capture model must specify
+which occurs, include its receiver, and show the desired supported final state.
+
+Self-review: work sign; conversion from time to inward radius; variational
+factor 1/|v_r|; exponential equals integrated damping on the actual orbit;
+positive Jacobian; need for a uniform bound near the threshold; phase-volume
+factor; distinction between exact discontinuity and finite-resolution edge;
+orbital-cycle loss exceptions. Analytic self-review, no numerical experiment.
+This closes only the regular one-pass radial-drag explanation of the exact
+edge; it does not close finite-width capture in general or the user's theory.
