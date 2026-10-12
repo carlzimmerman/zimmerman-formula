@@ -1,0 +1,94 @@
+Sourced nonlinear polarization: formation test, 2026-10-12
+Conclusion: the tested conservative model does NOT form its prescribed
+static force profile within the declared 10% tolerance by the tested time.
+This is a bounded formation failure, not a proof of impossibility or a
+refutation of the user's acceleration relation. No complete theory obtained.
+
+What was actually solved
+------------------------
+Full nonlinear radial equations of the effective two-field model, fixed
+positive compact baryon density, initially Phi=P=all velocities=0.
+rho_b is a Gaussian exp(-r^2/8), cut at r=8 and normalised to integral
+rho_b*r^2 dr=1. Units C=a0=Z=I=1. Source coupling rho_b*Phi is included
+in the conserved Hamiltonian. Baryons are held fixed; their assembly and
+backreaction are not simulated. The initial-value problem therefore starts
+with a prescribed source and a field out of equilibrium.
+
+Radial finite volumes have an energy-adjoint gradient and divergence.
+The static target is constructed on that same mesh from enclosed baryon
+flux and the exact inverse-deficit interpolant. Its force residual is
+checked independently of whether evolution approaches it. No relaxation
+toward a supplied target is inserted into the evolution equations.
+
+Sequence and honest status
+--------------------------
+1. Short run to t=160: R=128 at N=512 and 1024; R=256 at N=1024.
+   Numerical controls pass. Fine-grid final RMS fractional force error
+   on r=2..20 is 29.84%, versus declared tolerance 10% throughout t=120..160.
+   The larger box gives the same interior result at the same mesh spacing.
+
+2. Declared continuation to t=640, after seeing the short result:
+   R=512 at N=2048 and 4096; R=1024 at N=4096. This uses the same physical
+   source and response coefficients, not a retuned model. The original
+   long-run force-refinement check FAILS (12.28% vs the 3% tolerance).
+   Its failed manifest/results are retained; no converged physics claim
+   rests on that pair alone.
+
+3. Declared refinement repair: R=512, N=8192, dt=0.01, t=640.
+   Final force change relative to N=4096 is 2.1947% in the prescribed
+   relative L2 norm, below 3%. Static residual 2.16e-13; source-removal
+   zero-state RHS exactly zero. Maximum sampled Hamiltonian error is
+   1.634e-7 of |H_static|. Initial H is zero, so dividing by H_initial
+   would be meaningless; this is NOT relative error against H_initial.
+   All repair controls pass; its provenance manifest validates.
+
+   Fine-grid late RMS fractional force error:
+    t=560 25.94%, 580 25.88%, 600 25.81%, 620 25.77%, 640 25.74%.
+   Intermediate samples also fail the 10% gate. The force stays attractive.
+   Formation gate: FAIL in this tested interval and radial range.
+
+Allowing error does not mean silently expanding the acceptance band. The
+10% physical-profile tolerance was declared before the first sourced run.
+The roughly 26% discrepancy survives refinement substantially better than
+that discrepancy. The 2.2% check is a bounded numerical diagnostic, NOT
+a rigorous continuum error bar or an observational uncertainty estimate.
+Refinement simultaneously changes space/time resolution. No convergence
+order proof, nonlinear stability theorem or infinite-time exclusion follows.
+
+Why the wave-packet successes were insufficient
+----------------------------------------------
+Removing free perturbation energy from a central window does not prove
+formation around a permanent source. In the earlier constant-background
+linear system the mode equation is
+ omega^4-(k^2+a)omega^2+k^2(a-1)=0, a=1/(1-B').
+For a>1 the low frequency tends to sqrt(a-1) at large k, with
+ omega_low^2=(a-1)[1-1/k^2+O(k^-4)].
+Its group velocity tends to zero as sqrt(a-1)/k^3. Thus the model contains
+short-scale modes that transport energy poorly despite its positive energy.
+This is an analytic local diagnostic, not an attribution of the measured
+26% discrepancy to a specific mode; no mode decomposition was run here.
+
+Decision and remaining physical work
+------------------------------------
+Do not promote 'polarization waves export energy' to 'cold matter settles
+into the law'. The current conservative response model fails the concrete
+finite-time formation test. Longer times, other initial conditions and a
+physically derived dissipative channel remain untested continuations.
+Changing Z/I or adding drag just to pass would introduce undetermined
+response parameters, not derive a mechanism. A pressure/gradient repair
+must also be checked for changes to the static law and for its energy source.
+
+The field still has no independently conserved cold mass, physical response
+times, relativistic metric/lensing completion or derivation of kappa=1/2.
+The next high-value obligation is a carrier-derived relaxation/transport
+kernel and receiver, with their fluctuation and energy budget, or an explicit
+source-assembly history that produces the target without ad hoc relaxation.
+This is not yet a full solution even though the prescribed static boundary
+problem itself has been constructed and verified.
+
+Artifacts: spherical.py, spherical_contract.json, spherical_run/;
+spherical_long.py, spherical_long_contract.json, spherical_long_run/;
+spherical_fine.py, spherical_fine_contract.json, spherical_fine_run/.
+All contracts preceded their own numerical results. The longer/finer
+contracts disclose the preceding observations. Single-thread small-memory
+jobs only; no existing large PM simulation changed. Self-review only.

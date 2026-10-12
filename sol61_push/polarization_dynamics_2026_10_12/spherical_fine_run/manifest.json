@@ -1,0 +1,178 @@
+{
+  "schema_version": 2,
+  "claim_id": "POLARIZATION_SPHERICAL_REFINEMENT_REPAIR",
+  "repository": {
+    "commit": "79599c03e0709d0d4162e119524d3cd30d284406",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "sol61_push/polarization_dynamics_2026_10_12/spherical_fine.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Post-long-run refinement: 12.3% pointwise L2 difference exceeded 3% tolerance. Run dr=0.0625 dt=0.01 at R=512 to compare with prior dr=0.125. Preserve prior failure.",
+    "coefficient_domain": "float64, radial finite volume with energy-adjoint gradient/divergence, velocity Verlet",
+    "conventions": "C=a0=Z=I=1. rho_b proportional exp(-r^2/8), cut at r=8, integral rho r^2 dr=1. Regular origin, fixed Phi=0 at outer face. No damping. Inverse CFG596 deficit interpolation as in previous nonlinear run.",
+    "inputs": [
+      "sol61_push/polarization_dynamics_2026_10_12/spherical_fine.py",
+      "sol61_push/polarization_dynamics_2026_10_12/spherical_long.py",
+      "sol61_push/polarization_dynamics_2026_10_12/spherical.py",
+      "sol61_push/polarization_dynamics_2026_10_12/spherical_long_run/results.json",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "runs": [
+        [
+          512,
+          8192,
+          0.01
+        ]
+      ],
+      "end_time": 640,
+      "evaluation_radius": [
+        2,
+        20
+      ],
+      "sample_interval": 10,
+      "timeout_seconds": 180,
+      "threads": 1
+    },
+    "criteria": {
+      "energy_error_normalised_to_static_energy": 0.002,
+      "static_acceleration_residual": 1e-07,
+      "final_refinement_force_relative_L2": 0.03,
+      "final_box_force_relative_L2": 0.03,
+      "formation": "RMS fractional force error <=0.10 on r=2..20 at every sampled time 560..640; no negative force"
+    },
+    "controls": [
+      "Discrete static solution has zero acceleration",
+      "Refine grid and timestep",
+      "Double outer radius at same resolution",
+      "Remove rho_b: zero initial state stays zero"
+    ],
+    "non_claims": [
+      "Fixed baryons, not coupled galaxy formation",
+      "No independent cold mass, metric/lensing or cosmology",
+      "No physical time unit or derived response coefficients",
+      "Finite-time approximate agreement is not an attractor theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T23:13:11.430920+00:00",
+    "runtime_seconds": 36.552633,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 165,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/polarization_dynamics_2026_10_12/spherical_fine.py",
+    "sol61_push/polarization_dynamics_2026_10_12/spherical_long.py",
+    "sol61_push/polarization_dynamics_2026_10_12/spherical.py",
+    "sol61_push/polarization_dynamics_2026_10_12/spherical_long_run/results.json",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/spherical_fine.py",
+      "sha256": "ce1f3e92901ce90f5879dfc23c31d316b0450fd719b827952b808475f0f83235",
+      "sha256_after": "ce1f3e92901ce90f5879dfc23c31d316b0450fd719b827952b808475f0f83235"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/spherical_long.py",
+      "sha256": "d18d01af386b787eb34f7679f3abde455698d1ce55c1ddf8b24803a89b7a7168",
+      "sha256_after": "d18d01af386b787eb34f7679f3abde455698d1ce55c1ddf8b24803a89b7a7168"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/spherical.py",
+      "sha256": "bddcde63edafa10d378bb504659639a15947765167b30e79e8ac8edf61ff9b1c",
+      "sha256_after": "bddcde63edafa10d378bb504659639a15947765167b30e79e8ac8edf61ff9b1c"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/spherical_long_run/results.json",
+      "sha256": "48362db78f8d3266e4206f343289c94fbf821a2e8d576a2d6b591f1ef63535df",
+      "sha256_after": "48362db78f8d3266e4206f343289c94fbf821a2e8d576a2d6b591f1ef63535df"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sha256": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c",
+      "sha256_after": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c"
+    }
+  ],
+  "output_directory": "sol61_push/polarization_dynamics_2026_10_12/spherical_fine_run",
+  "declared_results": [
+    "sol61_push/polarization_dynamics_2026_10_12/spherical_fine_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/spherical_fine_run/stdout.txt",
+      "sha256": "eaa7770beba0bc79f212101405049cc3707c2b70bf6b45cdd9ee0db1f8d0b009",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/spherical_fine_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/spherical_fine_run/results.json",
+      "sha256": "1ae2438fa2dd8e4efd6ced78dfbeb2111afcf67117403a0a13309dd85e704404",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
