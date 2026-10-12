@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "claim_id": "charged_action_expanding_energy_bound",
+  "repository": {
+    "commit": "16f64b7adfdc9ed0fe1393760bff25dfaa6c8ee0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/charged_expansion.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Check FLRW virial and charge identities on nonlinear homogeneous trajectory and evaluate energy comparison bound",
+    "coefficient_domain": "binary64",
+    "conventions": "Canonical complex fields; radiation a^2=1+2H0t; comoving charge and energy",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/charged_expansion.py"
+    ],
+    "bounds": {
+      "m": 1,
+      "u": 0.1,
+      "g": 0.03,
+      "H0": 0.003,
+      "t_max": 1000,
+      "samples": 2001,
+      "rtol": 2e-10,
+      "atol": 2e-12,
+      "max_step": 0.2
+    },
+    "non_claims": [
+      "No cosmological production yield",
+      "Finite trajectory does not establish general field theorem",
+      "No quantum result"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T19:39:27.230339+00:00",
+    "runtime_seconds": 1.325059,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/charged_expansion.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_expansion.py",
+      "sha256": "fb16ba89a5b90d5e4e56978ffb1a521c9dd3eb183ae7cd4051b6e71bedce5edd",
+      "sha256_after": "fb16ba89a5b90d5e4e56978ffb1a521c9dd3eb183ae7cd4051b6e71bedce5edd"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/charged_expansion_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/charged_expansion_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_expansion_run/stdout.txt",
+      "sha256": "7f9e75cdd8163e9ef8e6bccff61dbc67ab07f2ba46203e85a00bc4d50153331d",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_expansion_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_expansion_run/results.json",
+      "sha256": "7f9e75cdd8163e9ef8e6bccff61dbc67ab07f2ba46203e85a00bc4d50153331d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

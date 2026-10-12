@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "crossover_retuning_at_fixed_halo_pressure_support",
+  "repository": {
+    "commit": "f2652404da07fb10c0498ef1f285bd365eb69f40",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/portal_retuning.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Analytic matter-era minimum and finite-history numerical minimum of sound distance",
+    "coefficient_domain": "binary64",
+    "conventions": "Keep 200 km/s support at rho_h=1e-21 kg/m3, vary softened EOS crossover and normalize strength",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/portal_retuning.py",
+      "sol61_push/cold_production_2026_10_11/portal_cosmology_run/results.json"
+    ],
+    "bounds": {
+      "halo_to_crossover_ratio": [
+        0.05,
+        4
+      ],
+      "finite_history_a": [
+        0.001,
+        1
+      ]
+    },
+    "non_claims": [
+      "No lower bound across arbitrary interactions",
+      "No observed power spectrum constraint"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T21:48:01.415599+00:00",
+    "runtime_seconds": 0.427336,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/portal_retuning.py",
+    "sol61_push/cold_production_2026_10_11/portal_cosmology_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_retuning.py",
+      "sha256": "10c8361d4b1495c947a49400a87ad37dd2d6bcf472a634dee625cf749f33a979",
+      "sha256_after": "10c8361d4b1495c947a49400a87ad37dd2d6bcf472a634dee625cf749f33a979"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_cosmology_run/results.json",
+      "sha256": "1d194f46acaceb8fab6ffe74bfe7d0363de4247d0c381f2de2698a8249ccd0a6",
+      "sha256_after": "1d194f46acaceb8fab6ffe74bfe7d0363de4247d0c381f2de2698a8249ccd0a6"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/portal_retuning_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/portal_retuning_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_retuning_run/stdout.txt",
+      "sha256": "d7fa10b96477cc2e9b86ab7b6e068d1b7ed262c56f6ada47accf9c88b2311fc5",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_retuning_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_retuning_run/results.json",
+      "sha256": "d7fa10b96477cc2e9b86ab7b6e068d1b7ed262c56f6ada47accf9c88b2311fc5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

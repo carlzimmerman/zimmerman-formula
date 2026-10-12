@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "charged_gaussian_tighter_integration",
+  "repository": {
+    "commit": "16f64b7adfdc9ed0fe1393760bff25dfaa6c8ee0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/charged_envelope_tight.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Gaussian quantum pair production with source depletion and required charge-protected quartic normal and anomalous terms",
+    "coefficient_domain": "binary64 complex128",
+    "conventions": "Positive-charge daughter modes; unordered opposite momentum pairs; x=m epsilon t; charged circular source normalization",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/charged_envelope_tight.py"
+    ],
+    "bounds": {
+      "K": [
+        512
+      ],
+      "vmax": [
+        2
+      ],
+      "x": [
+        0,
+        200
+      ],
+      "m_eV": 1e-12,
+      "epsilon": 1e-07,
+      "u": 0.001,
+      "z": 1000000.0,
+      "rtol": 1e-10
+    },
+    "non_claims": [
+      "No full quantum field theory",
+      "No moving-source or non-Gaussian scattering",
+      "No abundance prediction",
+      "No validated match to classical survival theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T19:42:40.940336+00:00",
+    "runtime_seconds": 4.245515,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/charged_envelope_tight.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_envelope_tight.py",
+      "sha256": "7052eca6ccb94dad4e0ab1a2f9d133db3762f3d914d3b23b93f9809085888ae0",
+      "sha256_after": "7052eca6ccb94dad4e0ab1a2f9d133db3762f3d914d3b23b93f9809085888ae0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/charged_envelope_tight_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/charged_envelope_tight_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_envelope_tight_run/stdout.txt",
+      "sha256": "94bca2948227bc257725b9d7891f1498baf54eb8e153cd2dce35d870bd0a8913",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_envelope_tight_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_envelope_tight_run/results.json",
+      "sha256": "b4e6e3d704d49c20ed10730fd851e4a230ec619abaa08a6a4502bd87de945b55",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

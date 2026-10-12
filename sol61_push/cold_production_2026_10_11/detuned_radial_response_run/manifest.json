@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "detuned_produced_radial_spectrum_frozen_response",
+  "repository": {
+    "commit": "62003f51c5265e4cd055c1f8e23ad2dedf60483d",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/detuned_radial_response.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Continuum angular Born response averaged over saved produced radial occupations",
+    "coefficient_domain": "binary64",
+    "conventions": "Classical envelope, free daughter phases, Wick connected source variance; response time starts after a frozen-spectrum reset",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/detuned_radial_response.py",
+      "sol61_push/cold_production_2026_10_11/detuned_bogoliubov_run/results.json"
+    ],
+    "bounds": {
+      "radial_nodes": [
+        512,
+        1024,
+        1536
+      ],
+      "times": [
+        1,
+        10,
+        30,
+        100,
+        200
+      ],
+      "radial_bandwidth": [
+        2,
+        3
+      ]
+    },
+    "non_claims": [
+      "No actual produced-state history",
+      "No nonlinear survival fraction",
+      "No irreversible conversion theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T00:04:46.042278+00:00",
+    "runtime_seconds": 3.381891,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/detuned_radial_response.py",
+    "sol61_push/cold_production_2026_10_11/detuned_bogoliubov_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_radial_response.py",
+      "sha256": "3a6883f3073c33aeac8f6e2332ed758c75c4db90280276fe82556252d53a8ee1",
+      "sha256_after": "3a6883f3073c33aeac8f6e2332ed758c75c4db90280276fe82556252d53a8ee1"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_bogoliubov_run/results.json",
+      "sha256": "dd62466a09fbf04990698b2a5df0389dbfe98c39ea109689cb3eb4073bcbb928",
+      "sha256_after": "dd62466a09fbf04990698b2a5df0389dbfe98c39ea109689cb3eb4073bcbb928"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/detuned_radial_response_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/detuned_radial_response_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_radial_response_run/stdout.txt",
+      "sha256": "0b2fa6af9b12c1f494d75404c4b3d7e86da16586f52ffab8cdc722887686e658",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_radial_response_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_radial_response_run/results.json",
+      "sha256": "0b2fa6af9b12c1f494d75404c4b3d7e86da16586f52ffab8cdc722887686e658",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

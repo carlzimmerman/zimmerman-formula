@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "initial_inverse_source_flux_width_consistency",
+  "repository": {
+    "commit": "6bc0e8e4e53e3f330cbd0431564642148dc2e1a8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/source_initial_width.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Resolved initial inverse-source flux and fixed-bath damping width relative to recoil and shell energy spread",
+    "coefficient_domain": "binary64",
+    "conventions": "Exact relativistic vacuum 1->2 decay kinematics, lab time dilation, source density of states; ideal stimulated bath gain/loss",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/source_initial_width.py",
+      "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json",
+      "sol61_push/cold_production_2026_10_11/alpha2_bogoliubov_run/results.json"
+    ],
+    "bounds": {
+      "production_rows": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "source_and_angle_quadratures": [
+        96,
+        192,
+        256,
+        192
+      ],
+      "source_recoil": "0 to twice maximum daughter kinetic energy minus gap"
+    },
+    "non_claims": [
+      "No spectral-function solution",
+      "No time evolution or condensate growth",
+      "No coherent-to-kinetic matching"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T00:55:26.822178+00:00",
+    "runtime_seconds": 0.786973,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/source_initial_width.py",
+    "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json",
+    "sol61_push/cold_production_2026_10_11/alpha2_bogoliubov_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/source_initial_width.py",
+      "sha256": "cea9dd4cde4e3838c946660794ed90e5385e3c0091953e3d37b9baa49a16b9d4",
+      "sha256_after": "cea9dd4cde4e3838c946660794ed90e5385e3c0091953e3d37b9baa49a16b9d4"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json",
+      "sha256": "704dd29451fc8d378618723dd5f371af6e21ae76f2bb1dd59c1926a9eb6ba08b",
+      "sha256_after": "704dd29451fc8d378618723dd5f371af6e21ae76f2bb1dd59c1926a9eb6ba08b"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/alpha2_bogoliubov_run/results.json",
+      "sha256": "f281b0c81502bb54346e9cf15690a29c0c910174ff987f7f02934373ae442ee8",
+      "sha256_after": "f281b0c81502bb54346e9cf15690a29c0c910174ff987f7f02934373ae442ee8"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/source_initial_width_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/source_initial_width_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/source_initial_width_run/stdout.txt",
+      "sha256": "7d67fe9ae0d96a4ed7d8e15db7323eadbe618990f0f3b593736ca358b6e690ec",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/source_initial_width_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/source_initial_width_run/results.json",
+      "sha256": "7d67fe9ae0d96a4ed7d8e15db7323eadbe618990f0f3b593736ca358b6e690ec",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

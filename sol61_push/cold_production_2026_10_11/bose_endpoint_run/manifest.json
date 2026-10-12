@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "claim_id": "conditional_bose_equilibrium_endpoint",
+  "repository": {
+    "commit": "1fea200136b7c5888d9f6f6e2a2e554dcbdc6c0b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/bose_endpoint.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Ideal nonrelativistic charge-conserving Bose equilibrium energy and entropy constraints at candidate density",
+    "coefficient_domain": "binary64",
+    "conventions": "hbar=c=kB=1; daughter charge1, source charge2; gap=M-2m; condensed branch chemical potential zero",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/bose_endpoint.py",
+      "sol61_push/cold_production_2026_10_11/nr_quantum_bound_run/results.json"
+    ],
+    "bounds": {
+      "scale_factor_ratios": [
+        1,
+        2,
+        10,
+        100,
+        1000,
+        1000000
+      ],
+      "thermal_integral_upper_sqrt_energy_over_T": 30,
+      "fugacity_terms": 20000
+    },
+    "non_claims": [
+      "No equilibration rate or continuum quantum construction",
+      "No proof of interacting thermodynamic phase",
+      "No halo or cosmological transfer prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T00:38:43.769608+00:00",
+    "runtime_seconds": 0.402146,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/bose_endpoint.py",
+    "sol61_push/cold_production_2026_10_11/nr_quantum_bound_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/bose_endpoint.py",
+      "sha256": "615b036a849b7dd1f0a30a6e7e9c409ef542324ca945cfa67ab474ea3373aa78",
+      "sha256_after": "615b036a849b7dd1f0a30a6e7e9c409ef542324ca945cfa67ab474ea3373aa78"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nr_quantum_bound_run/results.json",
+      "sha256": "92053be34fb9dce46731967d5be4556301b730f0f72fdc79e3ae424f25238d4a",
+      "sha256_after": "92053be34fb9dce46731967d5be4556301b730f0f72fdc79e3ae424f25238d4a"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/bose_endpoint_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/bose_endpoint_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/bose_endpoint_run/stdout.txt",
+      "sha256": "6fe61304ccb82437c3d3c423a97f93b1dfc3f5e8642e423050b0bc07836729d5",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/bose_endpoint_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/bose_endpoint_run/results.json",
+      "sha256": "6fe61304ccb82437c3d3c423a97f93b1dfc3f5e8642e423050b0bc07836729d5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

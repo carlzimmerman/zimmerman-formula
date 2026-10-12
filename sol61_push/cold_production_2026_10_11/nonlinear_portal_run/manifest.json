@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "nonlinear_vacuum_portal_pressure_vs_source_coldness",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/nonlinear_portal.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Quadratic source heating; convex asymptotically linear portal and preserved resonance detuning",
+    "coefficient_domain": "binary64",
+    "conventions": "Charge-aligned S=|phi|^2+4|chi|^2; coherent NR pressure; exact relativistic homogeneous circular source",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/nonlinear_portal.py",
+      "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sol61_push/cold_production_2026_10_11/repulsive_scales_run/results.json"
+    ],
+    "bounds": {
+      "S_over_S0": [
+        0.0001,
+        0.1,
+        "1/sqrt(2)",
+        1,
+        10,
+        10000,
+        "source value"
+      ],
+      "halo_sound_speed_m_s": 200000
+    },
+    "non_claims": [
+      "No halo or production evolution",
+      "Parameters selected rather than derived"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T21:20:59.841646+00:00",
+    "runtime_seconds": 0.048284,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/nonlinear_portal.py",
+    "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+    "sol61_push/cold_production_2026_10_11/repulsive_scales_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nonlinear_portal.py",
+      "sha256": "557fb6d5679948355ecdd619ae4c0d7a560c7ea56ead32ec35a52f1bb3af3127",
+      "sha256_after": "557fb6d5679948355ecdd619ae4c0d7a560c7ea56ead32ec35a52f1bb3af3127"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sha256": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0",
+      "sha256_after": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_scales_run/results.json",
+      "sha256": "054a2cf641c5827c8c9d72633456780bb50a68b27a5178944d21d28d32a948d0",
+      "sha256_after": "054a2cf641c5827c8c9d72633456780bb50a68b27a5178944d21d28d32a948d0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/nonlinear_portal_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/nonlinear_portal_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nonlinear_portal_run/stdout.txt",
+      "sha256": "82a3f17c7e935d343cf28588eaa26f560934d1fb4727c4b65becb6d6bdc47fed",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nonlinear_portal_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nonlinear_portal_run/results.json",
+      "sha256": "615312dcbaa4da87d81b5c740f217cd5e06943e5271529b9357fa8053c0c91c5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

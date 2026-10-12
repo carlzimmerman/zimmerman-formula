@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "conditional_gaussian_hartree_shift_bound",
+  "repository": {
+    "commit": "024069537c68f6514423d8f55845d96adf49396e",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/hartree_bound.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Evaluate Gaussian variance and Hartree shift upper bounds using chosen source normalization",
+    "coefficient_domain": "binary64",
+    "conventions": "Vacuum-subtracted retained modes; unordered real-field pairs; a>=1; natural units",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/hartree_bound.py",
+      "sol61_push/cold_production_2026_10_11/envelope_run_v2/results.json"
+    ],
+    "bounds": {
+      "x_max": 200,
+      "a_min": 1,
+      "occupation_test_points": [
+        0,
+        1e-06,
+        0.1,
+        1,
+        10,
+        1000000.0
+      ]
+    },
+    "non_claims": [
+      "No nonlinear evolution error theorem",
+      "No full-field or ultraviolet claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T19:29:24.835263+00:00",
+    "runtime_seconds": 0.167056,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/hartree_bound.py",
+    "sol61_push/cold_production_2026_10_11/envelope_run_v2/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/hartree_bound.py",
+      "sha256": "5e21df9874d487cde94e8a94adb11df510a862b9058f60c0a209ce3166a7e5c9",
+      "sha256_after": "5e21df9874d487cde94e8a94adb11df510a862b9058f60c0a209ce3166a7e5c9"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/envelope_run_v2/results.json",
+      "sha256": "44d8e60b18faff39507b62dc4b79b2efdad7c5e6a0c25de0b1c7ae03890c1641",
+      "sha256_after": "44d8e60b18faff39507b62dc4b79b2efdad7c5e6a0c25de0b1c7ae03890c1641"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/hartree_bound_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/hartree_bound_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/hartree_bound_run/stdout.txt",
+      "sha256": "13916d36f13b103e0291c5de1961ad04ba830c23d0165c5248e0a6cdc2f2164e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/hartree_bound_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/hartree_bound_run/results.json",
+      "sha256": "13916d36f13b103e0291c5de1961ad04ba830c23d0165c5248e0a6cdc2f2164e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

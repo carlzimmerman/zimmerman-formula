@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "regulated_NR_quantum_positive_energy_identity",
+  "repository": {
+    "commit": "f67c3e9cac96b48a8bdd5553deaf9abdaa1de187",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/nr_quantum_bound.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Positive operator factorization and kinetic bound, with exact finite-sector evolution from daughter vacuum",
+    "coefficient_domain": "binary64",
+    "conventions": "Normal ordered lattice bosons, source charge two, positive hopping kinetic energy",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/nr_quantum_bound.py",
+      "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json"
+    ],
+    "bounds": {
+      "cells": 2,
+      "Q": [
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "time_gap_units": [
+        0,
+        100
+      ],
+      "time_samples": 501
+    },
+    "non_claims": [
+      "No renormalized continuum QFT theorem",
+      "No macroscopic production fraction or full stress bound"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T00:07:32.595329+00:00",
+    "runtime_seconds": 0.710824,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/nr_quantum_bound.py",
+    "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nr_quantum_bound.py",
+      "sha256": "0784bc08fc57987663df385ffb90c009c946541357371588440909ae339daa88",
+      "sha256_after": "0784bc08fc57987663df385ffb90c009c946541357371588440909ae339daa88"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json",
+      "sha256": "704dd29451fc8d378618723dd5f371af6e21ae76f2bb1dd59c1926a9eb6ba08b",
+      "sha256_after": "704dd29451fc8d378618723dd5f371af6e21ae76f2bb1dd59c1926a9eb6ba08b"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/nr_quantum_bound_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/nr_quantum_bound_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nr_quantum_bound_run/stdout.txt",
+      "sha256": "92053be34fb9dce46731967d5be4556301b730f0f72fdc79e3ae424f25238d4a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nr_quantum_bound_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nr_quantum_bound_run/results.json",
+      "sha256": "92053be34fb9dce46731967d5be4556301b730f0f72fdc79e3ae424f25238d4a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

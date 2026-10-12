@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "conditional_dephased_shell_condensate_gain",
+  "repository": {
+    "commit": "6bc0e8e4e53e3f330cbd0431564642148dc2e1a8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/condensate_gain.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Initial fixed-bath condensate gain integral on inherited produced radial spectra",
+    "coefficient_domain": "binary64",
+    "conventions": "hbar=c=1; NR golden-rule coefficient; exact kinetic energy in mapped radial quadrature and vacuum invariant amplitude",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/condensate_gain.py",
+      "sol61_push/cold_production_2026_10_11/detuned_bogoliubov_run/results.json",
+      "sol61_push/cold_production_2026_10_11/alpha2_bogoliubov_run/results.json"
+    ],
+    "bounds": {
+      "alpha": [
+        1,
+        2
+      ],
+      "quadratures": [
+        512,
+        1024,
+        1536
+      ],
+      "band_half_width": [
+        2,
+        3
+      ],
+      "gain_epoch": "x=200 dephased handoff"
+    },
+    "non_claims": [
+      "No dephasing mechanism",
+      "No depletion or reverse-process evolution",
+      "No full condensation time or continuum condensate fraction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T00:48:19.795268+00:00",
+    "runtime_seconds": 1.212123,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/condensate_gain.py",
+    "sol61_push/cold_production_2026_10_11/detuned_bogoliubov_run/results.json",
+    "sol61_push/cold_production_2026_10_11/alpha2_bogoliubov_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/condensate_gain.py",
+      "sha256": "b0de658cc7d1169398fc1c108356dd3d581c71fdce54e2d8fab05a956de0c39b",
+      "sha256_after": "b0de658cc7d1169398fc1c108356dd3d581c71fdce54e2d8fab05a956de0c39b"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_bogoliubov_run/results.json",
+      "sha256": "dd62466a09fbf04990698b2a5df0389dbfe98c39ea109689cb3eb4073bcbb928",
+      "sha256_after": "dd62466a09fbf04990698b2a5df0389dbfe98c39ea109689cb3eb4073bcbb928"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/alpha2_bogoliubov_run/results.json",
+      "sha256": "f281b0c81502bb54346e9cf15690a29c0c910174ff987f7f02934373ae442ee8",
+      "sha256_after": "f281b0c81502bb54346e9cf15690a29c0c910174ff987f7f02934373ae442ee8"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/condensate_gain_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/condensate_gain_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/condensate_gain_run/stdout.txt",
+      "sha256": "43507a3719ea495ca43826e12fbd03a09c2431b9d7de3d577a9dd80bef85820f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/condensate_gain_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/condensate_gain_run/results.json",
+      "sha256": "43507a3719ea495ca43826e12fbd03a09c2431b9d7de3d577a9dd80bef85820f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

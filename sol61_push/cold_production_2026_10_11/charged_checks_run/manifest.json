@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "charged_action_energy_and_coherent_pressure",
+  "repository": {
+    "commit": "303e6387b621cdbf1c4d06662a6d93fbe307985f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/charged_checks.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Check charge-energy and virial algebra plus linear instability eigenvalues for new action",
+    "coefficient_domain": "binary64",
+    "conventions": "Two canonical complex fields; charges 1,2; m=1; Delta=4m^2u^2; potential square",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/charged_checks.py"
+    ],
+    "bounds": {
+      "complex_test_values": [
+        "0",
+        ".2+.3i",
+        "-.7+.1i"
+      ],
+      "u": 0.001,
+      "g_algebra": 0.01,
+      "epsilon_linear": 1e-07,
+      "linear_band_offsets": [
+        -1.5,
+        -0.5,
+        0,
+        0.5,
+        1.5
+      ]
+    },
+    "non_claims": [
+      "No nonlinear production yield",
+      "No cosmological pressure proof",
+      "No original-action identity"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T19:36:11.767665+00:00",
+    "runtime_seconds": 0.409929,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/charged_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_checks.py",
+      "sha256": "118de560ab52cb274bb1596a76e4e3df57ded1deb8f6d6b4fa3caf11f91a9f13",
+      "sha256_after": "118de560ab52cb274bb1596a76e4e3df57ded1deb8f6d6b4fa3caf11f91a9f13"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/charged_checks_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/charged_checks_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_checks_run/stdout.txt",
+      "sha256": "3c1042b0514e660e3c9f0ca669b9e9902b64554f30d03f4ea6f86660ca0f2992",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_checks_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/charged_checks_run/results.json",
+      "sha256": "55cd63786fad6df6251e223c4f86bf541345bc18f21ac2241c3752aa18f7e655",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
