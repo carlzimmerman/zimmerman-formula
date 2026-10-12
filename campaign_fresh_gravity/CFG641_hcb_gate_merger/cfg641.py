@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CFG640 (FROZEN_CRITERIA.md, 4b928d160): H-CB (stars-only phantom source) + the CFG639 deficit gate in CFG623's merger stopwatch.
+"""CFG641 (renumbered from CFG640; FROZEN_CRITERIA.md, 4b928d160): H-CB (stars-only phantom source) + the CFG639 deficit gate in CFG623's merger stopwatch.
 
 Read-only re-use: CFG623's pipeline and scores (via CFG639's cfg639_merger, which also supplies the gated settle step Sim639) and
 CFG621's calibrate().  Changes, all from the criteria:
@@ -9,7 +9,7 @@ CFG621's calibrate().  Changes, all from the criteria:
   * (v0, eta) re-fit per reservoir rule by CFG621's calibrate().
 cfg keys: src 'all' | 'stars', res 'R0' | 'RN' | 'RI', gate 'gate' | 'none'.  src='all', res='R0', gate='none' is CFG623 exactly.
 kappa = 1/2 FITTED; footings never pooled; cold energy mass required; no particle species; not "theory closed".
-Run (heavy, ~10 GB over 4 processes): only via run_640.sh.
+Run (heavy, ~10 GB over 4 processes): only via run_641.sh.
 """
 import os, sys, json, math, time
 os.environ.setdefault("OMP_NUM_THREADS", "1")
@@ -143,7 +143,7 @@ def max_diff(r, o):
 def calibrate(res):
     CAL_ARM["src"], CAL_ARM["res"] = "stars", res
     C.RUNS = os.path.join(HERE, f"runs_calib_{res}"); os.makedirs(C.RUNS, exist_ok=True)
-    fn = os.path.join(HERE, f"cfg640_calibration_{res}.json")
+    fn = os.path.join(HERE, f"cfg641_calibration_{res}.json")
     if os.path.exists(fn):
         return json.load(open(fn))
     cal = C.calibrate()
@@ -180,8 +180,8 @@ def vh1(A):
 def main():
     T0 = time.time()
     P = M.P
-    P("CFG640: H-CB (stars-only source) + deficit gate in CFG623's merger stopwatch (criteria 4b928d160)")
-    R = {"lane": "CFG640", "criteria": "4b928d160", "void_reasons": []}
+    P("CFG641 (was CFG640): H-CB (stars-only source) + deficit gate in CFG623's merger stopwatch (criteria 4b928d160)")
+    R = {"lane": "CFG641", "criteria": "4b928d160", "void_reasons": []}
     # T-H static
     th = {}
     for f in FEET:
@@ -210,8 +210,8 @@ def main():
     P(f"C-R0 {d0}  C-R1 {d1} -> {'PASS' if ctrl_ok else 'FAIL'}")
     if not ctrl_ok:
         R["void_reasons"].append("C-R0/C-R1 do not reproduce CFG623")
-        R["status"] = "VOID"; json.dump(M._round(R), open(os.path.join(HERE, "cfg640_results.json"), "w"), indent=1, default=float)
-        open(os.path.join(HERE, "cfg640.out"), "w").write("\n".join(M.OUT) + "\n"); return 1
+        R["status"] = "VOID"; json.dump(M._round(R), open(os.path.join(HERE, "cfg641_results.json"), "w"), indent=1, default=float)
+        open(os.path.join(HERE, "cfg641.out"), "w").write("\n".join(M.OUT) + "\n"); return 1
     arms = {}
     for res, tags in (("RN", (("P", "gate"), ("U", "none"))), ("RI", (("S", "gate"),))):
         P(f"\nCALIBRATION {res} (CFG621 calibrate(), alpha = 0, canonical)")
@@ -273,8 +273,8 @@ def main():
     R["status"] = "VALID" if not R["void_reasons"] else ("PARTIAL" if Pm else "VOID")
     P(f"\nVERDICTS ({R['status']}): {json.dumps(V, default=str)}")
     R["wall_s"] = time.time() - T0
-    json.dump(M._round(R), open(os.path.join(HERE, "cfg640_results.json"), "w"), indent=1, default=float)
-    open(os.path.join(HERE, "cfg640.out"), "w").write("\n".join(M.OUT) + "\n")
+    json.dump(M._round(R), open(os.path.join(HERE, "cfg641_results.json"), "w"), indent=1, default=float)
+    open(os.path.join(HERE, "cfg641.out"), "w").write("\n".join(M.OUT) + "\n")
     return 0
 
 

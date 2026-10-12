@@ -1,8 +1,8 @@
 #!/bin/bash
-# CFG640 waiter (FROZEN_CRITERIA.md section 5): start only after CFG639 Part B has finished, with no 1024^3 run live and >= 16 GB free.
-# Usage: nohup bash campaign_fresh_gravity/CFG640_hcb_gate_merger/run_640.sh &
+# CFG641 waiter (renumbered from CFG640) (FROZEN_CRITERIA.md section 5): start only after CFG639 Part B has finished, with no 1024^3 run live and >= 16 GB free.
+# Usage: nohup bash campaign_fresh_gravity/CFG641_hcb_gate_merger/run_641.sh &
 HERE="$(cd "$(dirname "$0")" && pwd)"
-LOG="$HERE/../../../_external_data/cfg640_work/waiter.log"; mkdir -p "$(dirname "$LOG")"
+LOG="$HERE/../../../_external_data/cfg641_work/waiter.log"; mkdir -p "$(dirname "$LOG")"
 L639="$HERE/../../../_external_data/cfg639_work/waiter.log"
 free_gb() { vm_stat | awk '/page size of/ {ps=$8} /Pages free/ {f=$3} /Pages inactive/ {i=$3} END {gsub("\\.","",f); gsub("\\.","",i); printf "%d", (f+i)*ps/1e9}'; }
 while true; do
@@ -12,8 +12,8 @@ while true; do
   fi
   fg=$(free_gb)
   if [ "$fg" -lt 16 ]; then echo "$(date '+%F %T') free ${fg} GB < 16; waiting" >> "$LOG"; sleep 600; continue; fi
-  echo "$(date '+%F %T') starting CFG640 (free ${fg} GB)" >> "$LOG"
-  cd "$HERE" && OMP_NUM_THREADS=1 nice -n 10 python3 cfg640.py >> "$LOG" 2>&1
-  echo "$(date '+%F %T') CFG640 exit $?" >> "$LOG"
+  echo "$(date '+%F %T') starting CFG641 (free ${fg} GB)" >> "$LOG"
+  cd "$HERE" && OMP_NUM_THREADS=1 nice -n 10 python3 cfg641.py >> "$LOG" 2>&1
+  echo "$(date '+%F %T') CFG641 exit $?" >> "$LOG"
   break
 done

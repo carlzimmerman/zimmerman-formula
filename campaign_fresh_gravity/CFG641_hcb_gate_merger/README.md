@@ -1,4 +1,10 @@
-# CFG640: H-CB (stars-only source) plus the deficit gate, in the merger stopwatch
+# CFG641 (renumbered from CFG640): H-CB (stars-only source) plus the deficit gate, in the merger stopwatch
+
+> **Renumbering (2026-10-12).** This lane's criteria were committed as "CFG640" (4b928d160) in `CFG640_hcb_gate_merger/`. The
+> orchestrator independently committed a different lane under the same number six minutes later (71b2cc1c9,
+> `CFG640_phase_source_pm/`, the 1024³ phase-source shear test), from its own ID block. History is not rewritten: this lane
+> moved to CFG641 by `git mv`. `FROZEN_CRITERIA.md` is unedited and still says "CFG640" in its text; it is this lane's
+> criteria. No run had started when the lane was renamed.
 
 - **Criteria:** `FROZEN_CRITERIA.md`, committed alone first (4b928d160), 2026-10-12.
 - **Question:** if only condensed baryons (stars) source the law's phantom (CFG634's H-CB), and settling and relaxation act only
@@ -9,10 +15,10 @@
 
 ## Status: QUEUED (no data run yet)
 
-`run_640.sh` (nohup) waits until CFG639 Part B has finished, no 1024³ run is live and ≥ 16 GB is free, then runs `cfg640.py`:
+`run_641.sh` (nohup) waits until CFG639 Part B has finished, no 1024³ run is live and ≥ 16 GB is free, then runs `cfg641.py`:
 controls → RN calibration → arm P → arm U → RI calibration → arm S → scoring. Expected cost: about 45 grid runs of about 13 min plus
 two calibrations (about 20 short runs each) on 4 processes, about 4–5 h and about 10 GB. Log:
-`../../../_external_data/cfg640_work/waiter.log` (outside the repo). Outputs `cfg640.out`, `cfg640_results.json`, `runs*/`.
+`../../../_external_data/cfg641_work/waiter.log` (outside the repo). Outputs `cfg641.out`, `cfg641_results.json`, `runs*/`.
 Nothing commits them automatically.
 
 ## Pre-run disclosures (2026-10-12, before any data run; not verdict inputs)
@@ -36,5 +42,5 @@ Nothing commits them automatically.
 | file | what |
 |---|---|
 | `FROZEN_CRITERIA.md` | criteria (4b928d160) |
-| `cfg640.py` | the lane (CFG623/639 pipeline and CFG621 `calibrate()` imported read-only; progenitor, phantom field and calibration patches in-process) |
-| `run_640.sh` | waiter |
+| `cfg641.py` | the lane (CFG623/639 pipeline and CFG621 `calibrate()` imported read-only; progenitor, phantom field and calibration patches in-process) |
+| `run_641.sh` | waiter |
