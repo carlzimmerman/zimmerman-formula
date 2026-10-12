@@ -85,3 +85,27 @@ the nonlocal selector and of a₀ = κc√(Gρ_DE) (no route derives either).
 **Proposed lanes made moot:** CFG662 (scoring the non-lensing stiff response on SPARC) and CFG664 (collisionless cold matter added
 to a non-lensing response) test a sector that CFG663 excludes; they are not run. For astra: link 7 survives only if it is
 re-cast so that its effect lenses (as real energy density or through the metric) while staying stable and EFE-blind.
+
+## 6. Addendum (2026-10-12, after CFG665): the selector specification
+
+The selector is the process that arranges cold energy inside bound systems into the law's profile (equivalently, sets the deep
+temperature σ⁴ = G M_b a₀/4). No tested class supplies it. Each closed door fixes a property it must have:
+
+| # | the selector must | because | source |
+|---|---|---|---|
+| S1 | carry c at O(1) on galaxy scales (read a₀, i.e. ρ_DE c²) | σ⁴ is linear in c; every c-free mechanism (violent relaxation, max entropy, virialisation, adiabatic response, Jeans marginality) is excluded | CFG461 c-test |
+| S2 | read each system's **own** enclosed baryons and ignore external fields | satellites keep their full boost (χ² 0.7 vs 99.5 with EFE) | PAPER44, R7 |
+| S3 | be **nonlocal** (enclosed mass, catchment), not a local stress or local field function of the cold energy | no local first-order stress with {G, a₀} gives the law as a well-posed equilibrium | CFG660, CFG661 |
+| S4 | produce **real gravitating mass** that lenses like dynamics | a non-lensing response is excluded on raw KiDS + SPARC | CFG663 |
+| S5 | give the law's **interpolation**: Solar-System-silent at high g (exponentially), quadrature-like transition | Verlinde's linear sum fails shape and the Solar System; a Boltzmann (isothermal) halo has no regular solution with a universal edge | CFG117, CFG665 |
+| S6 | not be thermal equilibrium of the cold energy | the SIS is not a max-entropy state; isothermal + universal edge has no regular solution | CFG461 C1b, CFG665 |
+| S7 | exchange energy with a reservoir in both signs (export while settling, import when reheating) | settling must lose 0.1–0.35 V_f² per unit mass; IC-C needs import | CFG541, CFG542, CFG544; astra receiver work |
+| S8 | be slow or frozen during cluster mergers | Bullet + Harvey allow only α = 0 so far | CFG623 (CFG639, CFG641 pending) |
+| S9 | not need hot-gas heating, a Born-class screened scattering, a fixed-flux vacuum portal, or feedback work as the selecting agent | each closed | CFG643; astra STABLE_SCREENING_AND_SUPPLY, FOUR_FORM_PORTAL, SETTLED_HALO_RESULT |
+
+**Plain reading.** S1–S6 together describe something that reads the vacuum (c, ρ_DE), reads each system's enclosed baryons
+nonlocally, deposits real mass, and is silent at high acceleration. That is MOND's founding problem stated as a property of a
+matter component: deriving the selector is equivalent to deriving the law's ν from microphysics, which no route in physics has
+done. Until such microphysics exists, the record's position stands: the law (A1, A2) and the supply (A6) are axioms, and class-A
+settling toward the law's profile is the forced dynamical form (§5). The specification above is the target for any proposed
+microphysics (astra's side): a candidate that violates any row is already excluded.
