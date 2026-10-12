@@ -130,3 +130,98 @@ correct sign; energy invariance distinguished from Poisson degeneracy;
 velocity Jacobian in the edge integral and its 2/3 factor checked; finite
 reference bound uses the correct monotonicity direction. All conclusions
 above are conditional analytic statements, not empirical or numerical passes.
+
+6. FOLLOW-UP: WHAT AN ANISOTROPIC FREE EDGE CAN REQUIRE
+
+Base 5f2851eafb3bc3a9162bf181af47b83e3e99c40f; previous turn was progress.
+Inspected cfg620_lib.py Library/_orbits/maxent and CFG544 cfg544.py boundary
+handling. CFG620 bounds orbit apocentres by rhi and uses turning-point orbits;
+CFG544 explicitly reflects at RMIN. These are not evidence for a reflecting
+OUTER wall. The previously documented missing inner wall-impact orbit family
+is a separate issue, unchanged by the following outer-edge calculation.
+
+6a. Exact density integral and a nonempty singular edge family
+
+Let R be a free outer radius, L=|x cross v|, and
+ V_eff(r,L)=Phi(r)+L^2/(2r^2), E_R(L)=V_eff(R,L).
+Restrict L to a compact interval I strictly below L_c=sqrt(R^3 Phi'(R)),
+with positive turning-point slope a(L)=Phi'(R)-L^2/R^3. Assume smooth Phi
+and nondegenerate inner turning points so the radial periods stay finite.
+Then, writing x=R-r,
+
+ delta(r,L)=E_R(L)-V_eff(r,L)=a(L)x+O(x^2)>0.
+
+For an ordinary anisotropic distribution supported at E<E_R(L), its density is
+
+ rho(r)=(4 pi/r^2) int L dL int_[V_eff(r,L)]^[E_R(L)]
+                            f(E,L) / sqrt(2[E-V_eff(r,L)]) dE.
+
+Take, locally near the upper-energy boundary on I,
+
+ f(E,L)=A(L)[E_R(L)-E]^(-p),  A(L)>=0, p<1.
+
+For a pure power on that interval the inner integral is exactly
+
+ (A(L)/sqrt(2)) delta^(1/2-p) Beta(1-p,1/2).
+
+Consequences for this family, with regular L integration:
+ p<1/2: the density contribution vanishes at R;
+ p=1/2: a finite, nonzero edge density is possible;
+ 1/2<p<1: the density contribution diverges at R.
+
+At p=1/2 specifically,
+
+ rho(R-)=(2 sqrt(2) pi^2/R^2) int_I L A(L) dL.
+
+This is a local edge construction, not a reconstruction of the entire law's
+density or a proof that the computed CFG620 weights converge to this family.
+It proves that a finite-density jump need not require a physical outer wall
+or a delta-function distribution. The energy singularity is integrable.
+
+The velocity-moment check is equally explicit. At fixed L, the ratio of the
+radial-pressure integral to the density integral is
+
+ <v_r^2>_L=delta/(3/2-p).
+
+At p=1/2 it is delta, so radial pressure vanishes linearly at the edge while
+tangential speeds tend to L/R. This is compatible with strong tangential
+support there. It is not an isotropic population at the boundary.
+
+6b. Why this does not rescue the proposed convex selector
+
+For p=1/2 with A(L)>0,
+
+ partial_E f=+(A(L)/2)[E_R(L)-E]^(-3/2)>0.
+
+At fixed L, the inverse construction of section 1 would therefore give
+C_0,ff=-1/(partial_E f)<0 on that branch. The proposed CONVEX energy-Casimir
+selector is unavailable for this edge family. This sign does not prove a
+physical instability; it invalidates that sufficient variational route.
+
+It also does not rule out maximum entropy at fixed spatial-bin masses:
+with finite radial period and phase measure 8 pi^2 L T_r dE dL,
+the singular contribution behaves as int_0^eta q^(-1/2)|log q| dq, which is
+finite. Therefore finite discrete entropy or finite orbit mass cannot certify
+bounded continuum f. The variational constraint in CFG620 is not the same
+as minimizing energy plus a convex Casimir.
+
+6c. What is now resolved, and what would actually discriminate
+
+The sharp edge has an admissible local anisotropic mechanism. The price in
+this family is a rising, singular energy distribution at the edge, rather
+than an ordinary decreasing distribution covered by section 1. A useful
+continuum check of the existing orbit target would measure the mass in
+q=E_R(L)-E bands at fixed nondegenerate L as resolution increases. This
+family predicts mass proportional to sqrt(eta) in 0<q<eta when T_r is finite;
+a bounded f predicts O(eta). These are diagnostic scalings, not results from
+a run. Degenerate nearly circular orbits and the inner wall must be separated
+before using that test, rather than pooled into an apparent exponent.
+
+The main objective remains open: no selector, formation process, rate, or
+physical receiver has been derived for this singular edge population. Do not
+replace that objective with demonstrating finite-bin realizability again.
+
+Self-review: phase-space velocity Jacobian; turning-point Taylor sign; beta
+integral endpoint convergence p<1; p=1/2 normalization; pressure/density ratio;
+positive energy slope; entropy integrability. This is an analytic self-review,
+not an independent stability proof or a numerical convergence experiment.
