@@ -1,0 +1,102 @@
+MATERIAL REALIZATION OF THE COMPENSATED FIELD: POSITIVITY AND TRANSPORT COST
+
+Base 8433827bc6979a892991ceb0722e062a64da6685. Previous turn: progress.
+Read cfg596_pm.py source construction/cap/shell subtraction and force finish.
+This is a necessary-condition analysis, not a new physical completion.
+
+1. The field correction need not imply negative cold mass
+
+In the engine's source units let c_s=1.5 Om(1-FB)/a and let the base cold
+source be c_s(1+delta_p)>=0. Write its proposed material replacement as
+
+ c_eff=c_s(1+delta_p)+e_capped-q c_s(1+delta_p) I_shell.
+
+The positive addition e_capped is nonnegative, the shell flag is 0 or 1,
+and the applied catchment factor obeys 0<=q<=1. Thus c_eff>=0 pointwise
+in exact arithmetic, assuming the deposited base density is nonnegative.
+The negative COMPENSATION is a removal from existing mass, not automatically
+a negative physical mass population. This distinction prevents a false no-go.
+
+For a catchment with available source C>0 and requested source E, the ideal
+cap adds min(E,C) and removes the same amount. The code's max(C,1e-30)
+floor and float32 arithmetic mean exact zero-sum balance is not a universal
+machine identity, particularly in an empty catchment. The captured z1 residual
+was separately reported. This proof is not a new cellwise numerical audit.
+
+Therefore an instantaneous nonnegative, approximately mass-balanced density
+map is plausible from the implemented algebra. Positivity does not establish
+that particles can realize it causally with the required velocities and energy.
+
+2. The least kinetic current for a specified density HISTORY
+
+In physical coordinates on a fixed domain, suppose rho(x,t)>0 and dot rho
+are prescribed, with no normal flux at the boundary and int dot rho=0.
+Any material current j must satisfy dot rho+div j=0. Its bulk kinetic energy
+is K_bulk=1/2 int |j|^2/rho. Random velocity dispersion can add energy but
+cannot reduce this bulk lower bound.
+
+Minimize K_bulk over currents subject to continuity. Varying
+1/2 int |j|^2/rho + int lambda(div j+dot rho) yields
+
+ j_min=rho grad lambda,
+ -div(rho grad lambda)=dot rho,
+ K_min=1/2 int rho |grad lambda|^2.                    (1)
+
+This is an instantaneous conditional kinematic construction. For any other
+admissible current j=j_min+w, div w=0 with zero boundary flux. The cross term
+int grad lambda dot w vanishes, so
+
+ K_bulk[j]=K_min+1/2 int |w|^2/rho >=K_min.            (2)
+
+Equivalently every smooth test function psi supplies the lower bound
+
+ K_bulk >= int psi dot rho - 1/2 int rho |grad psi|^2.
+
+These formulas give a way to test the transport cost of a proposed field
+history without positing a dissipative mobility. They require the HISTORY,
+not merely the final compensated density. Different interpolation times give
+different currents/costs; this does not remove the missing physical clock.
+
+If rho vanishes, the elliptic problem can be degenerate. Disconnected supports
+may impose separate mass-compatibility conditions and infinite-cost barriers.
+No general existence theorem for the capped simulation density is asserted.
+At moving catchment boundaries, the missing boundary flux must be retained.
+Cosmological use also requires scale-factor conventions: for comoving mass
+density mu=a^3 rho and comoving flux j_x, the peculiar bulk energy is
+a^2/2 int |j_x|^2/mu. A snapshot difference is not itself a physical velocity.
+
+3. What a momentum closure still owes
+
+Continuity plus (1) does not derive the force or pressure that produces j_min.
+For u=j/rho, a Newtonian kinetic completion must also satisfy
+
+ rho[partial_t u+(u dot grad)u]
+       =-rho grad Phi-div Pi+f_exchange,
+
+where Pi is the velocity-dispersion stress and f_exchange has a receiver
+reaction and energy balance. Many choices give the same density/current;
+the minimum-current prescription does not select one, conserve each particle's
+angular momentum in arbitrary geometry, or prove stability of the final halo.
+As dot rho tends to zero, (1) gives zero bulk current, NOT zero velocity
+dispersion. Confusing those would repeat the earlier unsupported-halo failure.
+
+4. Decision and missing evidence
+
+The compensated source passes a conditional positivity test; its unresolved
+problem is dynamical realizability, not the sign of its subtraction. A useful
+next native diagnostic needs closely spaced source-density snapshots plus
+particle velocity/current information. The currently captured zi/z1 power
+JSONs cannot supply dot rho, Pi, or f_exchange. The stored coarse density
+meshes at widely separated redshifts cannot certify an instantaneous transport
+law either. No transport energy number is claimed from them.
+
+Do not restart the live production job or silently change its output protocol.
+Use its completed native likelihood to decide whether this field closure is
+worth completing; if retained, a separately specified diagnostic run can test
+(1)-(2) with its actual time-dependent source. The original dynamical-law
+objective remains open, including receiver, rate, catchment and kinetic support.
+
+Self-review: cap positivity independent of net sum; numerical floor exception;
+Lagrange-multiplier sign; elliptic compatibility; solenoidal-current orthogonality;
+positive kinetic remainder; peculiar-energy scale factor; bulk versus random
+motion distinction. Analytic self-review only, no new numerical experiment.
