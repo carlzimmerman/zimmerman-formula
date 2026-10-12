@@ -109,6 +109,8 @@
 
 - **Derived reservoir (CFG637; criteria e67940c56; MUTATE reproduces CFG634 exactly): no single DERIVED rule passes groups, X-COP and the Bullet together**, for either source, both footings, both methods (self-similar secondary infall; maximum-entropy F(E)) and every bracket. Under candidate B's own rules (R1, R2, R5, G9) the reservoir is EMPTY everywhere (the law's phantom takes the whole supply out to the edge): groups pass, but X-COP (η 1.82 / 1.68) and the Bullet main (z −3.4) FAIL — the record's cluster pass rested on the RI convention. Under H-CB a concentrated reservoir survives in clusters: X-COP inner band PASSES (0.86 / 0.89) and the Bullet main passes (z +0.30; core 0.79 of lensing), but R200-scale cluster mass is 33–40% short (η 1.49 / 1.66 FAIL); Bullet sub TENSION (input-mass-limited). The fail depends on CFG634's X-COP supply convention and the rule that the settled phantom extends past R200. Native cross-check: CFG636/640.
 
+- **Baryon heat exchange "Door 1" (CFG643; criteria c7dad5f10; MUTATE 3/3): CLOSED on both footings.** Q_c = C a₀ v ρ_b cannot be the mechanism: the framework's own infall path must LOSE energy (CFG541), so heating has the wrong sign; the required import is 8–57× the baryons' entire kinetic energy (1.5–3.5× even with full refill); collisionless cold energy has no transport, so no BTFR balance (FKPS closure needs C spread ×45–52); the needed σ ∝ 1/(n_c v²) needs a new density-screened coupling (a particle with a free cross-section). Heating could only spread settled mass by breaking the law's profile.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
