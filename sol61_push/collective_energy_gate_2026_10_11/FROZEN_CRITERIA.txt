@@ -1,0 +1,26 @@
+2026-10-11. Base62003f51c. Freeze alone before run.
+Question: does conservation of total cold energy permit stationary support
+of the benchmark repaired target without energy export?
+Use six CFG626 cells; fixed baryons, real cold self-gravity, eps=.01,
+rmin=.001 and target rmax1. Footings separately. Normalize BOTH initial and
+target cold mass to target M=Mph(1)-Mph(rmin), disclose M/Mcat.
+IC-B uniform initial sphere to rta, floored at1.01rmin; IC-C target radial
+mass distribution; Gaussian velocities sigma=.05, expected K=.00375M.
+Potential consistent with softened spherical force: cold pair kernel
+-1/sqrt(max(r,s)^2+eps^2), Wcc=-integral M(<r)/sqrt(r^2+eps^2) dM.
+Baryon potential integral of source force to infinity, from CFG544
+phi_b_grid unchanged (includes its finite-grid/tail approximation).
+Stationary annulus virial:2K=integral r g dM +4pi[R^3Pr(R)-rmin^3Pr(rmin)].
+With natural outer cutoff Pr(R)=0 and nonnegative inner pressure,
+E_final<=W_target+0.5 integral r g dM = Emax.
+Calculate (E_initial-Emax)/M for IC-B/C using131072,262144 equal-mass
+midpoints. Report positive only if gap>1e-4 and refinement difference<1e-5
+in code V_f^2 units. Negative gap is necessary-condition pass, not proof.
+Controls: Newtonian uniform sphere self-energy=-3M^2/(5R) to1e-5;
+self-energy from half integral Phi_c dM vs shell ordered integral1e-8;
+finite-difference symmetric pair potential matches code force1e-5;
+MUTATE double-count pair energy fails sphere test; invert potential sign
+fails attractive-force check. Symbolic boundary term retained in report.
+Single thread, CPU30s/wall45s, expected<300MB. Source AST extraction only.
+No raw-data verdict, no no-go for nonisolated evolving baryons/escape/receiver.
+Kappa fitted; no new constants; predictions untouched.
