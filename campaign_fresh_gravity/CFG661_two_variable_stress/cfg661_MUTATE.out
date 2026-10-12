@@ -1,0 +1,17 @@
+CFG661 [MUTATE]
+T1 coefficient of g_N'' for P_par(rho_c, g): 0
+   equals dP_par/drho_c (F'-1)/4piG: False  -> exactness forces dP_par/drho_c = 0 wherever F' != 1
+T2a coefficient of g_N'' for P_par(rho_c, rho_b, g) = [P_rho_c (F'-1) + P_rho_b]/4piG: True
+T2b family P_par = P_A(g) + Psi(u/h(g)), u = rho_c - (F'-1) rho_b, arbitrary Psi, explicit law: residual (-4*a0**3*r*Derivative(gr(r), (r, 2)) - 8*a0**3*Derivative(gr(r), r) - 8*a0**2*r*gr(r)*Derivative(gr(r), (r, 2)) + 4*a0**2*r*Derivative(gr(r), r)**2 - 16*a0**2*gr(r)*Derivative(gr(r), r) - 5*a0*r*gr(r)**2*Derivative(gr(r), (r, 2)) + 2*a0*r*gr(r)*Derivative(gr(r), r)**2 - 11*a0*gr(r)**2*Derivative(gr(r), r) - r*gr(r)**3*Derivative(gr(r), (r, 2)) - 3*gr(r)**3*Derivative(gr(r), r))*Subs(Derivative(Psi(wv), wv), wv, (8*a0**11 - 16*a0**10*r*Derivative(gr(r), r) + 56*a0**10*gr(r) - 128*a0**9*r*gr(r)*Derivative(gr(r), r) + 154*a0**9*gr(r)**2 - 456*a0**8*r*gr(r)**2*Derivative(gr(r), r) + 172*a0**8*gr(r)**3 - 952*a0**7*r*gr(r)**3*Derivative(gr(r), r) - 86*a0**7*gr(r)**4 - 1289*a0**6*r*gr(r)**4*Derivative(gr(r), r) - 546*a0**6*gr(r)**5 - 1182*a0**5*r*gr(r)**5*Derivative(gr(r), r) - 826*a0**5*gr(r)**6 - 743*a0**4*r*gr(r)**6*Derivative(gr(r), r) - 706*a0**4*gr(r)**7 - 316*a0**3*r*gr(r)**7*Derivative(gr(r), r) - 378*a0**3*gr(r)**8 - 87*a0**2*r*gr(r)**8*Derivative(gr(r), r) - 126*a0**2*gr(r)**9 - 14*a0*r*gr(r)**9*Derivative(gr(r), r) - 24*a0*gr(r)**10 - r*gr(r)**10*Derivative(gr(r), r) - 2*gr(r)**11)/(2*a0*r*(4*a0**10 + 36*a0**9*gr(r) + 145*a0**8*gr(r)**2 + 344*a0**7*gr(r)**3 + 532*a0**6*gr(r)**4 + 560*a0**5*gr(r)**5 + 406*a0**4*gr(r)**6 + 200*a0**3*gr(r)**7 + 64*a0**2*gr(r)**8 + 12*a0*gr(r)**9 + gr(r)**10)))/(2*a0*r*(a0**3 + 3*a0**2*gr(r) + 3*a0*gr(r)**2 + gr(r)**3)) -> NONZERO
+   on-shell u/h = (a0**3 - 2*a0**2*gp*r - 2*a0*gp*r*gr(r) - 2*a0*gr(r)**2 - gp*r*gr(r)**2/2 - gr(r)**3)/(a0*r*(a0**2 + 2*a0*gr(r) + gr(r)**2))  (expected 1/r for any g' — the invariant is 'radius', local off-shell)
+
+T3(i) dimensionless groups of w = u/h with {G, a0}: 0 -> Psi must be constant: True
+      with c added: [[1/2, 0, -1/2, 1]]  (w c^2/a0)
+T3(ii) Psi1=0                : max Im omega at k = 1e1/1e3/1e5 = 2.47/21.4/214
+T3(ii) Psi1>0 (c_eff^2=0.01) : max Im omega at k = 1e1/1e3/1e5 = 2.37/4.68/4.69
+T3(ii) Psi1>0 (c_eff^2=0.5)  : max Im omega at k = 1e1/1e3/1e5 = 1.36/1.36/1.36
+      sqrt(k) growth iff Psi1 = 0, bounded for Psi1 > 0: True
+
+T4 required Psi'(1/r) for c_eff^2 = V^2/2: gg**2*rr*(1 - ss)/(4*pi*G); d/dg at fixed r = gg*rr*(1 - ss)/(2*pi*G) -> depends on g: True (no universal Psi; with c, f is a free function)
+
+MUTATE: M1 (no g_N'' in rho_c') coefficient vanishes: True; M2 (u with F') residual nonzero: True
