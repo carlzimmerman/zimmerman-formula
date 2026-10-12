@@ -1,0 +1,161 @@
+Recent-work Lambda-CDM dependency audit
+2026-10-12; base 8ab2f8d70. Read-only audit of other research lanes.
+Primary verdict: correct only after a stated restriction.
+Restriction: current cosmological verdicts test particular settling models
+conditioned on inherited cosmological inputs, not the acceleration relation
+or every possible dynamical completion independently of those inputs.
+Self-review; no new simulation, no independent referee, no novelty claim.
+
+SUMMARY
+1. Yes: Lambda-CDM inputs enter the recent native PM predictions and scorer.
+2. Removing halo-model fitting formulae did NOT remove those inputs.
+3. A same-pipeline control does NOT mathematically cancel their effects.
+4. The 10% control-spectrum gate is a benchmark, not a raw-data exclusion.
+5. The observed KiDS mismatch cannot be erased by noticing these facts.
+6. Neither a finished theory nor a demonstrated rescue follows from this audit.
+
+Verified dependency chain and dispositions
+-----------------------------------------
+A. CFG596/cfg596_pm.py, lines 51-105 and initialisation at 397-429:
+ h=0.6736; omega_b=0.02237; omega_c=0.1200; ns=0.965; SIG8=0.811.
+ Om=(omega_b+omega_c)/h^2; Omega_L=1-Om.
+ E(a)=sqrt(Om/a^3+Omega_L).
+ T_eh sets a CDM/baryon transfer shape; the initial spectrum is normalised
+ to SIG8 at a=1, then backscaled with Dgrow to a=0.02. Initial velocities
+ also use the same growing mode.
+ DISPOSITION: declared fiducial model inputs, not theory predictions or
+ model-independent measurements. Retaining them is legitimate for a
+ controlled late-time modification that explicitly assumes their validity.
+ It is not a self-contained alternative cosmology. Do not confuse SIG8
+ normalisation of the input linear spectrum with forcing the final measured
+ nonlinear framework sigma8 to equal 0.811.
+
+B. CFG596/cfg596_pm.py DTA_FILE, M_ta and x_supply:
+ imports cfg361_delta_ta_table.json; uses the inherited turnaround census,
+ retention law, cosmic baryon fraction and supply geometry. Hard-coded
+ 0.315 and 0.674 also occur in catchment conversion (near 475-480).
+ DISPOSITION: these enter the actual force/supply model, not merely a
+ comparison curve. Replacing a halo mass function did not remove them.
+ The table's Lambda-CDM shell provenance is disclosed in CFG596/636 criteria;
+ its generating ODE was not independently rerun in this audit.
+
+C. CFG592/cfg592_native.py, imported by CFG596's native scorer:
+ node_P continues below k_lo with the same EH shape. Pmat uses measured
+ node spectra at z=0,0.5,1, but continues above z=1 with Dgrow^2.
+ BG['PM'] fixes flat Lambda background distances; the lensing kernel uses
+ Om. The DESI distance variant reads a DESI+CMB+DES-Y5 CPL chain, not a
+ theory-independent distance measurement or a rerun of growth dynamics.
+ DISPOSITION: the finite-k support cut limits extrapolation; it does not
+ eliminate it or validate the high-z growth continuation. Quantitative
+ impact is UNMEASURED here. No claim that this explains +68.7 is warranted.
+ Nuisance priors and published covariance remain analysis assumptions;
+ their full cosmology sensitivity was not audited here.
+
+D. CFG636/cfg636_native.py lines 103-111 and 199-204; criteria sections 5-6:
+ G=max_{k<=1}|P_framework/P_S0-1|; G>0.10 directly forces FAIL.
+ DISPOSITION: control-deviation benchmark, not a measurement likelihood.
+ S0 is an unmodified matter simulation on the inherited background/ICs.
+ A distinct theory need not stay within 10% of it unless a separately
+ justified observable constraint establishes that tolerance.
+ Preserve the frozen score and historical FAIL label. In scientific
+ interpretation report 'benchmark failure' separately from 'observational
+ exclusion'. Any revised observational gate must be declared prospectively,
+ with the already-seen results disclosed; never silently rewrite this gate.
+
+E. CFG642 criteria section 1 and CFG637/cfg637_lib.py lines 33-35:
+ ratio q=omega_c/omega_b=0.1200/0.02237 approximately 5.364 is imported
+ from Planck's cosmological fit. CFG637 uses this ratio in cold supply.
+ DISPOSITION: conditional inferred abundance, not an independently derived
+ universal constant. Searching expressions that reproduce q is not deriving
+ it. A BBN alternative that replaces only omega_b but keeps omega_c=0.1200
+ still carries the Planck dark-density assumption. The published ratio
+ uncertainty also needs the parameter covariance (already disclosed absent).
+
+F. CFG637 reservoir derivation:
+ no NFW profile is imposed in Method A, a meaningful improvement. However
+ flat Lambda expansion, cosmic ratio, seed slope, angular-momentum bracket,
+ self-similar core growth, per-system catchment supply and R5 drawing remain
+ inputs. The code explicitly prescribes settled target mass from the law.
+ DISPOSITION: derived reservoir CONDITIONAL ON those dynamics and inputs.
+ 'Inherited ingredients (context)' is too weak when they drive predictions.
+ The failed joint gate rejects the tried constructions; it is not a general
+ theorem that cold energy cannot supply clusters. Neither does it validate
+ the earlier RI convention that made clusters appear to pass.
+
+G. CFG640 phase-source PM:
+ now carries condensed fractions and passes the phase-discriminator controls
+ missing from CFG636. It still inherits PM cosmology/supply, the census floor,
+ an assumed gas profile and cooling closure. README explicitly says no W_int
+ or conversion-energy evolution is implemented.
+ DISPOSITION: real implementation progress, incomplete energy-conserving
+ dynamics. Atomic cooling physics itself is not a Lambda-CDM assumption.
+
+H. CFG643 baryon heat exchange:
+ energy conservation and a finite reservoir are not Lambda-CDM assumptions.
+ Its numerical shortages depend on the chosen supply, endpoint and initial
+ conditions. The sign conflict between the tested heating-only model and an
+ export-requiring history survives as a conditional mechanism obstruction.
+ Do not dismiss conservation arguments solely because cosmological inputs
+ elsewhere were inherited.
+
+I. Older HMcode/BAHAMAS/Tinker/Duffy/Moster/NFW-based lanes:
+ CFG590/591/593/632 already carry context-only warnings. Preserve that
+ downgrade symmetrically for apparent successes and apparent failures.
+ This audit does not reinstate those labels as independent evidence.
+
+Exact check: shared inputs do not cancel a likelihood difference
+-------------------------------------------------------------
+Let d be the measured vector, C positive definite, s(theta) the control,
+f(theta)=s(theta)+e(theta) the framework and r=s-d. At fixed nuisances,
+ Delta chi^2 = e^T C^-1 e + 2 r^T C^-1 e.
+Both r and e can depend on the shared cosmological inputs theta. Equal
+inputs reduce some numerical/systematic differences but cannot remove
+this dependence. Even with fixed e it remains through the second term.
+Illustrative exact one-component counterexample (not survey data):
+ C=1, d=1, e=1. For s=0, Delta=-1; for s=1, Delta=+1.
+Nuisance minimisation does not supply a general cancellation identity.
+Therefore refitting/deriving shared cosmology requires a fresh, declared
+analysis, not subtracting a correction from the existing +68.7.
+
+What survives
+-------------
+CFG596: +68.7264 KiDS delta-chi-square, robust minimum +43.8622, is retained
+for the tested model at the fixed inherited cosmology. DES is nondiagnostic.
+The benchmark's failure is real within its stated hypotheses. The phrase
+'no Lambda-CDM machinery' in the assessment is not accurate without the
+qualification 'no imported nonlinear halo-model spectrum in the primary
+prediction; background, IC, supply and extrapolation assumptions remain'.
+This audit supersedes any broader reading in our earlier chat summaries.
+
+Closure plan: three necessary advances, not three new fitted escape knobs
+------------------------------------------------------------------------
+1. Keep current CFG636 running/scoring unchanged. Report data likelihood,
+   absolute fit, support limitations and benchmark G separately. Latest
+   observed at 15:37 EDT: watchdog live, latest engine step 105/150. No final
+   score yet. Do not stop/restart a large run for this audit.
+2. Specify conserved dark mass and its current, phase conversion, reciprocal
+   forces and the energy receiver in ONE law. Initial/boundary conditions
+   remain explicit. Derive catchment supply/retention from that evolution,
+   or label them as empirical inputs. CFG640 addresses only phase labelling.
+3. Under that same law derive background and linear perturbations; alternatively
+   prove the regime where the shared Lambda-CDM background/transfer is valid.
+   Then infer cosmological inputs jointly with observations, counting free
+   parameters and priors. Predict nonlinear observables with that solution,
+   retaining held-out tests. Do not tune each system's reservoir separately.
+
+Missing functions are the cold transport/relaxation operator, its reaction
+partner, a phase/thermal evolution law, and the cosmological perturbation
+closure. The algebraic a0 relation supplies none of these uniquely. Replacing
+borrowed functions with unspecified symbols would not complete the theory.
+kappa=1/2 remains fitted. No one-shot completion has been established.
+
+External provenance checked 2026-10-12 (primary sources)
+------------------------------------------------------
+Planck 2018 VI, arXiv:1807.06209v4 abstract explicitly conditions H0,
+Omega_m and sigma8 on base Lambda-CDM; it reports omega_c and omega_b in
+that cosmological analysis, with stability in several tested extensions.
+https://arxiv.org/abs/1807.06209
+Eisenstein & Hu, Power Spectra for Cold Dark Matter and its Variants:
+https://arxiv.org/abs/astro-ph/9710252
+External checks establish model provenance, not numerical blame for the
+observed tension. No claim of literature novelty or exhaustive repo audit.
