@@ -1,0 +1,29 @@
+2026-10-11. Base92e7c23aa. Freeze alone before code or run.
+Question: does adding the benchmark's missing wall-impact orbit family change
+finite feasibility at conserved initial j distribution? No continuum verdict.
+Retain six CFG626 cells, repaired kernel, softened target field, rmin=.001,
+R=1, sigma=.05 IC-B/C and normalized mass from angular_marginal_test.
+Natural orbit libraries nb24,48 sub2. FIXED density observables: cumulative
+mass at geomspace(.001,1,25)[1:] (24 radii, common across refinement).
+Augment with wall orbits at2*nb logarithmic apocentre-cell centres and24
+j/j_cross nodes linspace(0,.999,24). Compute residence integrals using
+r=ra-(ra-rmin)u^2, Gauss64 per radial interval; union with natural library.
+Natural orbit cumulative rows sampled at its aligned existing bin boundaries.
+Fixed j-bin rule as prior test:0,geomspace(1e-4,2sqrt(g(1)),15),infinity.
+Initial marginal quadrature65536/131072 midpoint radial quantiles. If bin
+change>1e-7, corresponding result inconclusive. LP minimax absolute row
+residual with exact totalmass=1. Finite feasible <=1e-6 residual.
+Compare natural-only vs augmented at both resolutions, B/C individually.
+Save feasible weights and matrices for audit. Nonnegative weights required.
+Validate wall periods/residence by (a) analytic radial harmonic orbit:
+Tr=2acos(rmin/ra) for g=r; ra=.1,.5,1; (b) independent adaptive quadrature
+for j/j_cross=0,.5,.9 in harmonic field; (c) direct radial ODE wall crossing
+and return to apocentre for ra=.5,j=.5j_cross. Period agreement1e-5,
+residence normalization1e-10; Gauss32/64 difference <=1e-5 for validation.
+MUTATE factor2 period must fail analytic check; forbidden negative squared
+radial speed must be rejected, never clipped into a plausible orbit.
+Known positive mixture LP control <=1e-7; empty-j-bin mutation t>1e-3.
+CPU120s wall180s, per LP3s, one thread, expected <1GB. No heavy PM job.
+If source or numerical controls fail, no physical verdict. Even passing
+feasibility is not formation, stability, capture, action or rate derivation.
+No sealed prediction edited; kappa fitted, footings never pooled.
