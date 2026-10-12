@@ -1,0 +1,129 @@
+Exact equilibrium versus dynamical support: continuation of CFG660
+2026-10-12. Base commit 53e9e6e56. Analytical result; self-review only.
+Sources: CFG660 README and its stated spherical equilibrium equations.
+No numerical experiment or new observational verdict. No novelty claim.
+Original goal, a complete physical theory: NOT ACHIEVED.
+
+Question
+Can a local two-variable stress Pi(rho_c,g) add ordinary compressive
+support while retaining the exact acceleration law for arbitrary smooth
+spherical baryon profiles? CFG660 leaves this question open.
+
+Answer under the following precise assumptions: NO.
+The equilibrium requirement forces the two stress eigenvalues back to
+CFG660's density-independent stress on an open set of admissible states.
+This is not a no-go result for gradient, thermal, elastic or rate-dependent
+constitutive laws, or for approximate agreement on a restricted population.
+
+Assumptions and notation
+------------------------
+r>0; inward acceleration magnitude g>0; baryonic acceleration b=B(g),
+where B is a smooth local inverse of the prescribed monotone law g=F(b).
+Let C=4*pi*G and A(g)=1-B_g. Restrict to an interval where A is nonzero.
+Real cold mass supplies the acceleration difference through Poisson:
+
+ C rho = (g-b)' + 2(g-b)/r = A g' + 2(g-B)/r.                 (1)
+
+The cold medium has independent density rho and radial/tangential stresses
+P(rho,g), Q(rho,g), smooth on the open state domain, with no explicit r,
+gradients, baryonic density, entropy or other state variables. Equilibrium:
+
+ dP/dr + 2(P-Q)/r = -rho*g.                                 (2)
+
+Require (2) for every locally admissible smooth spherical baryon profile
+on the branch. Densities rho>0 and rho_b=(B_g g'+2B/r)/C>0 are strict
+inequalities, so admissible local derivatives can be varied in an open
+neighbourhood. This is a local theorem, not a claim about every global halo.
+
+Proof
+-----
+1. Differentiate (1). The coefficient of g'' in rho' is A/C.
+   Equation (2) contains g'' only through P_rho*rho'. Its other terms
+   depend on g,g',r and rho. The baryon density depends on g' but not g'',
+   so g'' can vary freely locally while the strict density conditions hold.
+   Therefore P_rho*A/C=0, hence P_rho=0 on the accessible open set.
+   Write P=p(g) there. This already excludes an ordinary positive radial
+   acoustic modulus dP/d rho at fixed g in this two-variable class.
+
+2. Substitute g'=[C rho-2(g-B)/r]/A into (2):
+
+ rho*(C p_g/A+g)
+   + (2/r)*[p-Q-p_g*(g-B)/A] = 0.                           (3)
+
+   At fixed g and rho>0, vary r in a small interval and choose g' by (1).
+   Positivity remains true locally. The constant and 1/r coefficients
+   in (3) must separately vanish. Thus
+
+ p_g = -g*A/C = g*(B_g-1)/C,
+ Q = p + g*(g-B)/C.                                        (4)
+
+   Q is therefore independent of rho as well. The only residual freedom
+   is a common additive constant in p and Q, which creates no force in
+   the bulk and no compressive modulus. Boundary stress fixes that constant.
+
+3. Formula (4) is exactly CFG660's stress, since B_g=1/F'(B(g)).
+   The hypothesised density dependence provides no new radial support.
+
+Checks by direct algebra (no computer algebra run)
+-------------------------------------------------
+Substituting (4) into (2) gives
+ -g*A*g'/C - 2g*(g-B)/(C*r) = -rho*g by (1).
+Deep branch B=g^2/a0 gives
+ p=-g^2/(2C)+2g^3/(3C*a0)+constant,
+ Q-p=g^2/C-g^3/(C*a0), reproducing CFG660's deep expressions.
+Dimensions: g^2/G is pressure; C*rho has acceleration/length units.
+The proof does not cover A=0, rho=0, isolated admissible states, or an
+explicit coordinate dependence. Adding such cases silently would be invalid.
+
+A different continuation survives: stress that vanishes at rest
+--------------------------------------------------------------
+Do not spend another run merely fitting P(rho,g) within the excluded class.
+A rate-dependent correction can vanish in every static equilibrium while
+altering perturbations. For example a viscous force with longitudinal
+kinematic coefficient nu_v>0 adds -nu_v*k^2*u to a local velocity mode.
+This is a conditional constitutive proposal, not a derived material law.
+
+For a frozen-coefficient mode of the CFG660 type, write the undamped
+dispersion in growth-rate notation as lambda^2=J+i*K*k, with real J,K
+(the sign of K changes with wave direction). With this damping:
+
+ lambda^2 + nu_v*k^2*lambda - J - i*K*k = 0.                (5)
+
+For fixed nu_v>0 and |k| tending to infinity, its roots satisfy
+ lambda_fast ~ -nu_v*k^2,
+ lambda_slow = i*K/(nu_v*k) + J/(nu_v*k^2) + O(k^-4).
+
+Unlike the undamped square-root growth, neither root has an unbounded
+positive real part at high k. This is a local dispersion check only:
+finite-wavelength Jeans growth may remain, and it is not a proof of
+nonlinear/global well-posedness, halo formation or relativistic causality.
+At k=0 the roots are finite; finite k has finite polynomial coefficients.
+The limit nu_v->0 is singular; an arbitrarily small coefficient cannot
+be called irrelevant to resolution or relaxation times.
+
+Energy and remaining obligations
+-------------------------------
+For a Newtonian viscous stress tau=2*eta*D_dev+zeta*(div u)*I,
+eta,zeta>=0, force +div tau removes mechanical energy at rate
+ Q_heat=2*eta*D_dev:D_dev+zeta*(div u)^2 per volume in a closed domain.
+Its opposite must appear as internal/receiver energy. This identity
+does not supply a conserved energy for CFG660's field-aligned equilibrium
+stress; that underlying reciprocal action/energy remains to be derived.
+If accumulated heat changes the equilibrium stress, include that change.
+An unmodelled fixed-temperature bath is not an allowed closure.
+
+Next discriminating work: derive a positive dissipative response and its
+receiver from the existing cold-sector degrees of freedom, with a rate
+fixed by their dynamics. First establish a common energy functional for
+the conservative stress; then derive transport, rather than inserting a
+free viscosity. This route is OPEN but unproved. No viscosity coefficient,
+stable endpoint, mass abundance or kappa=1/2 has been derived here.
+
+Meaning
+-------
+The exact static relation strongly constrains constitutive freedom. A
+successful dynamical completion can contain physics invisible at static
+equilibrium, so matching the relation alone cannot identify that physics.
+This result narrows the next calculation; it does not identify the true
+nature of cold energy. CFG660's particle-realizability and instability
+claims retain their stated scopes; no universal exclusion is inferred.
