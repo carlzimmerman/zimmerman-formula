@@ -115,6 +115,8 @@
 
 - **PM accounting audit (CFG647; criteria 2e1ea8c58): NO BUG.** Settled source is built per unique cell, redistributes mass (conserved to 3e-11), and never exceeds supply. Physics finding: the theory's supply rule pools supply across merged overlapping catchments (chains of up to hundreds of hosts), so dominant hosts draw neighbours' shells; at z = 0 about 10% of settled mass (13.5% in log M_ta ≥ 13.5) is imported. Removing the import statically lowers the own boost 1.20/1.25/1.21 → 1.13/1.17/1.16 at k 0.3/0.5/1: about a third of the excess, not enough alone. A per-host supply rule would be a theory change (512³ spec in the README).
 
+- **⚠️ ΛCDM-dependency audit (astra 5c31fcad4, accepted): the native PM verdicts are CONDITIONAL on inherited cosmological inputs.** cfg596_pm.py uses Planck-fit h, ω_b, ω_c, n_s, an EH transfer shape normalised to σ8 = 0.811 and back-scaled with ΛCDM growth to z_i, a ΛCDM-provenance Δ_ta turnaround table, hard-coded 0.315/0.674, and the scorer uses a flat-Λ background and Dgrow continuation above z = 1. A same-pipeline S0 does NOT cancel these. So CFG596's raw-KiDS exclusion tests "candidate B's settling on inherited ΛCDM initial conditions and background", not the law or every completion. Also: the 10% "growth gate" in CFG636/640 criteria is a BENCHMARK against S0, not an observational exclusion — report it separately (frozen labels kept, never rewritten). Next: framework-consistent ICs (e.g. normalised to the CMB primary amplitude A_s, valid while the switch is off) and a native Δ_ta.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
