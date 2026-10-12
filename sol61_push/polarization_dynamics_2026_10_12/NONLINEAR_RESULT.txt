@@ -1,0 +1,71 @@
+Nonlinear vacuum continuation, 2026-10-12
+Finite numerical evidence; self-reviewed. Original theory goal remains open.
+
+The linear-vacuum null packet is NOT stationary under the full constitutive
+force in the tested cases. Nonlinear transport exports most of its energy
+from the central region for two of the three tested amplitudes by t=300.
+This narrows the earlier linear-vacuum obstruction: linear neutrality did
+not establish nonlinear trapping, and nonlinear trapping is not observed
+for these two cases on this time interval.
+
+Fine-grid results (N=1024, dt=0.075, dimensionless units):
+ Initial peak |grad Phi|/a0    central energy / initial total at t=300
+ 0.01                         0.506639
+ 0.03                         0.064121
+ 0.10                         0.022877
+
+All three gradient profiles change substantially (relative L2 differences
+1.27-1.56). Dropping the nonlinear force leaves the same prepared null
+packet exactly stationary in the linear control. The frozen <10% central
+energy gate passes at 0.03 and 0.10, fails at 0.01 at this end time.
+Failure of that finite-time gate is not permanent trapping.
+
+Validation
+----------
+Two grids/timesteps: (512,0.15) and (1024,0.075). Final central fractions
+differ by at most 0.000735, below the frozen 0.03 tolerance. Maximum sampled
+energy drift on the fine grid is 0.00018865 relative (0.018865%), below
+the 0.2% frozen threshold. Drift decreases on refinement. The run's
+manifest validates with input/output hashes; raw samples and controls are
+in nonlinear_run/results.json. No random sampling or data fitting.
+
+Equations and boundaries
+-----------------------
+ C=a0=Z=I=1; q=D Phi, with the spectral derivative D.
+ Phi_tt=D(q-P), P_tt=q-P-sign(P)b(|P|).
+ Here p=g-B(g), and b(p) is the inverse CFG596 table's baryonic field.
+ Energy density = (Phi_t^2+P_t^2+(q-P)^2)/2 + int_0^|P| b(s) ds.
+The potential integral is evaluated exactly for the piecewise-linear inverse
+interpolant used in the force, so force and monitored energy are consistent.
+The small interval below the first tabulated p is joined linearly to zero;
+this is a disclosed finite-table approximation near the vacuum.
+
+Initial Phi is a width-8 Gaussian scaled to the declared peak gradient,
+P=q, both velocities zero. Periodic length 512; central window |x|<24.
+There is no damping, absorbing boundary, mass source or gradient regulator.
+Energy leaving the central window remains elsewhere in the periodic box;
+recurrence is possible. No strict monotonic decay or infinite-time
+attractor is claimed. The Nyquist derivative is zero to preserve real
+fields. Two-resolution agreement is a bounded check, not proof of spectral
+convergence, aliasing control at arbitrary times or PDE well-posedness.
+
+Physical meaning
+----------------
+The effective field has a conservative energy-transport mechanism even
+around vacuum at finite amplitude: nonlinear waves. That is stronger than
+the previous nonzero-background linear propagation result. It does not
+identify microscopic polarization degrees of freedom, assign physical
+values to Z/I, transport conserved cold monopole mass, or demonstrate
+settling around a baryonic source. No formation time in Gyr is available.
+The model still encodes the desired kernel through its potential rather
+than deriving the kernel or kappa=1/2. It has no relativistic lensing
+completion. The next discriminating physical calculation is a sourced,
+energy-accounted response and its coupling to the existing cold carrier;
+this vacuum packet result alone cannot fill either obligation.
+
+Reproduction
+------------
+Use nonlinear_contract.json and the computation-audit runner command
+recorded in nonlinear_run/manifest.json. A rerun requires a fresh output
+directory and corresponding result destination, so preserve these outputs.
+No existing simulation or other research lane was edited or interrupted.

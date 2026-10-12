@@ -1,0 +1,15 @@
+{
+ "claim_id":"POLARIZATION_NONLINEAR_VACUUM",
+ "mathematics":{
+  "assertion_tested":"Does nonlinear evolution move the linear-vacuum null packet and transport its energy out of a central region?",
+  "coefficient_domain":"float64, pseudospectral spatial derivative, velocity Verlet time evolution",
+  "conventions":"C=a0=Z=I=1, no damping, sources or regulator. Periodic L=512. Phi_tt=D(D Phi-P); P_tt=D Phi-P-sign(P)*b(|P|). b is piecewise-linear inverse of the CFG596 repaired deficit table; its integral is evaluated exactly for this interpolant.",
+  "inputs":["sol61_push/polarization_dynamics_2026_10_12/nonlinear.py","campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"],
+  "bounds":{"peak_initial_gradient":[0.01,0.03,0.1],"width":8,"grids":[512,1024],"dt":[0.15,0.075],"end_time":300,"central_halfwidth":24,"thread_cap":1,"timeout_seconds":60},
+  "criteria":{"energy_relative_drift":0.002,"resolution_difference_central_fraction":0.03,"nonlinear_motion":"relative L2 change in gradient >0.01 by t=300","local_energy_escape":"central energy / initial total energy <0.10 at t=300","linear_control":"dropping nonlinear force leaves the null packet stationary to relative gradient change <1e-8"},
+  "non_claims":["Not nonlinear global well-posedness","Not physical timescales, halo formation or cold mass transport","Periodic energy export from a window is not dissipation","Simultaneous spatial/time refinement does not separate their errors"]
+ },
+ "execution_artifacts":["sol61_push/polarization_dynamics_2026_10_12/nonlinear.py","campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"],
+ "software":[{"name":"Python","version":"3.13.9"},{"name":"NumPy","version":"1.26.4"},{"name":"SciPy","version":"1.14.1"}],
+ "randomness":{"used":false,"generator":"","seed":null}
+}
