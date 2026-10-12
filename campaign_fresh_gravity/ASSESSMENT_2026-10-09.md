@@ -121,6 +121,8 @@
 
 - **KiDS-fail anatomy + framework-native gas expulsion (CFG646; declarations 3c1c5a42f):** 56–79% of KiDS's +68.7 comes from k < 1 (mostly 0.3–1), driven by high-z tomographic pairs (4-5, 5-5, 4-4); all of DES's comes from k < 1 — i.e. from scales where gas matters least. The PM indeed omitted the framework's own gas expulsion (3.4% of mass still gravitating inside halos). Moving it out (primary placement) lowers P_grav by 2–5% at k 0.3–1 (PM and halo model agree within 0.007) and KiDS Δχ² to ~+52 (range +36 to +62 over placements): real, right sign, about a quarter of the Δχ², NOT enough. The excess is the settled cold energy from the supply rule. Native EXPEL spec frozen (741a8adcc), not run.
 
+- **Neighbour-bounded edge H-NB (CFG644; criteria 6a03c0870): RULED OUT** as a repair, both footings. With the supply cap kept it can only move edges inward; massive systems almost never have a closing (≥ equal-mass) neighbour, so the halo-model shear excess is unchanged (0% removed); KiDS f30 no change (bites 0% of lens weight); MW unchanged (r_nb 323 kpc from M31); groups still close. The isolated lenses want MORE supply, which H-NB cannot give. The KiDS dense-vs-isolated statistic is a mask artefact (MUTATE M2 finding). Native PM spec written, not recommended.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
