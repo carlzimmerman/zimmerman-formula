@@ -109,3 +109,82 @@ sign; equal-density exception; differentiation at moving R; specific-energy
 definition; radial-action versus energy-cutoff distinction retained. All
 statements are analytic under the displayed hypotheses. No simulation or
 external theorem is used. The requested dynamical law remains unresolved.
+
+5. FOLLOW-UP: INSTANTANEOUS RADIAL CAPTURE DOES NOT GIVE THE REQUIRED EDGE
+
+Base c2af44894a6f28bd3b37da55d563bd1011fe20d6. Previous turn: progress.
+Read CFG620 cfg620.py vel_step: mode A resamples radial and tangential speeds
+from a target; it is not the radial capture mechanism tested here. No claim
+about that code's output is inferred by replacing its operator with this one.
+Production handle PID17844 was revalidated live (elapsed 09:34:25, canonical
+CFG596 1024 run); no restart or numerical load was added. This is analytic work.
+
+5a. Single encounter, static spherical potential and boundary
+
+An incoming element at r=R has specific angular momentum L and radial velocity
+v_r<0. Its energy is E_in=E_R(L)+v_r^2/2, where
+E_R(L)=Phi(R)+L^2/(2R^2). Suppose a zero-width interaction at R preserves L
+and changes only radial velocity. Its outgoing energy necessarily satisfies
+
+ E_out=E_R(L)+(v_r,out)^2/2 >= E_R(L).
+
+For the nondegenerate outer-turning branch L^2<R^3 Phi'(R), confinement to
+apocentre <=R requires E_out<=E_R(L). Both conditions together force
+
+ v_r,out=0, E_out=E_R(L), Delta E_removed=v_r,in^2/2.
+
+Radial acceleration after this event is inward, so the material can enter
+an orbit with apocentre R. This is an inelastic radial impulse, not ordinary
+conservative gravitational capture. It retains rest mass and angular momentum
+but still needs an energy receiver and a physical impulse mechanism.
+
+5b. The resulting stationary orbit population has the wrong edge shape
+
+After phase mixing in the frozen potential, such events at the same R populate
+f(E,L)=K(L) delta(E-E_R(L)), up to the choice of positive orbit weights K.
+On a nondegenerate L interval below the circular endpoint, section 6 of
+kinetic_selector gives delta_r=E_R-V_eff(r,L)=a(L)(R-r)+O((R-r)^2).
+Direct velocity integration then gives
+
+ rho(r)=(4 pi/r^2) int L K(L)/sqrt(2 delta_r) dL
+        ~ const*(R-r)^(-1/2)
+
+for finite nonzero positive weights with the displayed integral finite.
+This edge divergence is locally mass-integrable but is not the stipulated
+finite-density jump. It differs from the integrable ENERGY distribution
+f~[E_R-E]^(-1/2), which yields a finite spatial edge. Confusing these two
+inverse-square-root factors would give a false completion.
+
+A finite-width interaction can remove more energy after r<R and distribute
+final apocentres below R. That is a genuinely different route, requiring its
+energy-loss distribution and receiver to be calculated. It cannot be replaced
+by the zero-width impulse above. Nearly circular populations, evolving Phi,
+torques and finite-age unphase-mixed streams also lie outside this result.
+
+5c. A smoothly advancing front does not automatically fix the distribution
+
+As a restricted illustration let Phi be fixed, R(t) strictly increasing, and
+capture at each time assign E_cap(L,t)=Phi(R(t))+L^2/(2R(t)^2). For fixed L,
+ E_cap,dot=a(L,t) Rdot.
+If the mass injection rate per dL is I_L(t), the final orbit mass per dE dL
+is n_E=I_L(t_cap)/|E_cap,dot(t_cap)| before further evolution.
+
+For a regular front-fed allocation I_L=Rdot k_L(t), with k_L finite and
+a>0, n_E=k_L/a is finite even as the front slows. With finite nonzero radial
+period, f=n_E/(8 pi^2 L T_r) is finite on an L interval away from L=0.
+Its near-edge density contribution therefore vanishes as sqrt(R-r), rather
+than approaching a nonzero constant. A singular residence/injection pattern
+or another process is needed for the required energy accumulation.
+
+This is not an exclusion of every advancing front: the allocation I_L, moving
+potential, subsequent interactions, and capture away from the front were
+restricted explicitly. It shows why simply choosing a front speed does not
+derive the target phase-space population. Total front-fed conversion from
+section 1 is proportional to Rdot for a finite target edge density; positing
+nonzero total front-only injection while Rdot=0 violates that particular ansatz.
+
+Self-review: same-position kinetic lower bound; angular-momentum preservation;
+turning-point branch; spatial versus energy singularity; delta-distribution
+velocity integral; injection time-to-energy Jacobian; required regularity and
+L exclusions. No numerical or stability claim. The microscopic finite-width
+capture/redistribution kernel remains the unresolved next input.
