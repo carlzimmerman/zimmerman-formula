@@ -1,0 +1,78 @@
+CFG634 static gates T1 (SPARC), T2 (Tian+26 groups), T3 (X-COP), T6 (KiDS) for H-CB, the condensed-baryon source
+(FROZEN_CRITERIA.md, committed alone in 1fea20013).
+
+H-CB: the law's phantom (settled cold energy) is sourced only by condensed baryons (stars + cold gas); hot X-ray gas gravitates as
+Newtonian mass only; unsettled cold energy is a collisionless reservoir (bracketed: R0 / RI / RN, not derived).
+Committed pipelines are reused read-only: CFG487 SPARC harness (as CFG624 G1 execs it), CFG543 group machinery, the record's X-COP
+audit (cluster_audit.py profiles + results.json rows, as CFG4 / CFG624 read them), KiDS lens catalogue.
+MUTATE controls run in the same pass: M1 (hot gas restored to the source -> record candidate-B numbers), M2 (no baryons in the source).
+
+== T1 SPARC (CFG487 harness exec'd read-only, exactly as CFG624 G1)
+  [PASS] T1a rotmod columns carry no hot-gas term (Vgas = HI x 1.33, Vdisk, Vbul only): ['Rad', 'Vobs', 'errV', 'Vgas', 'Vdisk', 'Vbul', 'SBdisk', 'SBbul'] (175 files)
+  [canonical] rms H-CB 0.1003 dex; record B (census edge, CFG515/CFG624) 0.1003; d +0.0e+00; M1 0.1003; M2 (no source) 0.3966
+  [alt] rms H-CB 0.1013 dex; record B (census edge, CFG515/CFG624) 0.1013; d +0.0e+00; M1 0.1013; M2 (no source) 0.3966
+  [PASS] M1-T1 hot restored reproduces CFG624's B rms (1e-9): 0.100328994/0.100328994, 0.101268350/0.101268350
+  [PASS] M2-T1 no baryons in the source BREAKS galaxies (rms > 0.15): 0.397, 0.397
+  T1 verdict: PASS (a check: hot = 0 in discs, so the source is B's by construction)
+
+== T2 Tian+26 groups (CFG543 machinery imported read-only; P2 containment supply; class-A edge)
+  [canonical] PRIMARY R0 hot0.08 H       mean +0.067  Z +1.86  -> CLOSES
+  [canonical] hot0.04                    mean +0.063  Z +1.73  -> CLOSES
+  [canonical] hot0.16                    mean +0.074  Z +2.06  -> ABOVE
+  [canonical] hotshape X                 mean +0.067  Z +1.87  -> CLOSES
+  [canonical] Re k=1.563                 mean +0.049  Z +1.39  -> CLOSES
+  [canonical] RN c4                      mean -0.175  Z -4.29  -> BELOW (over-corrects)
+  [canonical] RN c3                      mean -0.165  Z -4.11  -> BELOW (over-corrects)
+  [canonical] RN c5                      mean -0.182  Z -4.43  -> BELOW (over-corrects)
+  [canonical] RI                         mean +0.067  Z +1.85  -> CLOSES
+  [canonical] B (all source) R0 [=M1]    mean +0.060  Z +1.65  -> CLOSES
+  [canonical] B (all source) RN c4       mean -0.174  Z -4.27  -> BELOW (over-corrects)
+  [canonical] B (all source) RI          mean +0.060  Z +1.65  -> CLOSES
+  [canonical] M2 no source R0            mean +0.810  Z +15.17  -> ABOVE
+  [alt] PRIMARY R0 hot0.08 H       mean +0.050  Z +1.38  -> CLOSES
+  [alt] hot0.04                    mean +0.047  Z +1.29  -> CLOSES
+  [alt] hot0.16                    mean +0.058  Z +1.60  -> CLOSES
+  [alt] hotshape X                 mean +0.051  Z +1.39  -> CLOSES
+  [alt] Re k=1.563                 mean +0.032  Z +0.91  -> CLOSES
+  [alt] RN c4                      mean -0.174  Z -4.24  -> BELOW (over-corrects)
+  [alt] RN c3                      mean -0.165  Z -4.07  -> BELOW (over-corrects)
+  [alt] RN c5                      mean -0.181  Z -4.38  -> BELOW (over-corrects)
+  [alt] RI                         mean +0.050  Z +1.38  -> CLOSES
+  [alt] B (all source) R0 [=M1]    mean +0.043  Z +1.20  -> CLOSES
+  [alt] B (all source) RN c4       mean -0.173  Z -4.25  -> BELOW (over-corrects)
+  [alt] B (all source) RI          mean +0.043  Z +1.20  -> CLOSES
+  [alt] M2 no source R0            mean +0.810  Z +15.17  -> ABOVE
+  [PASS] M1-T2 hot restored to the source reproduces CFG543 P2 (1e-4): +0.05961/+0.05961, +0.04349/+0.04349
+  [PASS] M2-T2 no baryons in the source does NOT close: +0.810 ABOVE, +0.810 ABOVE
+  T2 verdict (primary R0): PASS; labels: ['RESERVOIR-DEPENDENT (RN c4, RN c3, RN c5 flip it)', 'HOT-FRACTION-DEPENDENT (hot0.16)']
+
+== T3 X-COP (the record's corrected audit rows; stars/gas split from the audit's own profile code)
+  [PASS] C-T3 audit profile code reproduces the audit rows' g_baryon (1e-9): max rel 2.2e-16
+  HCB|R0       eta headline 3.973+-0.116 / 3.805+-0.113 -> FAIL     | inner 200-420 5.201 / 4.983 (FAIL) | b=0.2 4.966 / 4.756
+  HCB|RI       eta headline 1.057+-0.031 / 1.057+-0.031 -> PASS     | inner 200-420 1.535 / 1.535 (FAIL) | b=0.2 1.322 / 1.322
+  HCB|RNc4     eta headline 0.895+-0.043 / 0.898+-0.043 -> PASS     | inner 200-420 0.890 / 0.897 (PASS) | b=0.2 1.118 / 1.123
+  HCB|RNc3     eta headline 0.939+-0.045 / 0.943+-0.045 -> PASS     | inner 200-420 1.023 / 1.029 (PASS) | b=0.2 1.173 / 1.179
+  HCB|RNc5     eta headline 0.864+-0.041 / 0.868+-0.041 -> PASS     | inner 200-420 0.797 / 0.804 (TENSION) | b=0.2 1.080 / 1.085
+  B|R0         eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  B|RI         eta headline 1.057+-0.031 / 1.057+-0.031 -> PASS     | inner 200-420 1.535 / 1.535 (FAIL) | b=0.2 1.322 / 1.322
+  B|RNc4       eta headline 1.082+-0.057 / 1.115+-0.060 -> PASS     | inner 200-420 1.460 / 1.583 (FAIL) | b=0.2 1.353 / 1.394
+  B|RNc3       eta headline 1.110+-0.058 / 1.137+-0.059 -> PASS     | inner 200-420 1.606 / 1.738 (FAIL) | b=0.2 1.388 / 1.421
+  B|RNc5       eta headline 1.057+-0.057 / 1.094+-0.060 -> PASS     | inner 200-420 1.343 / 1.457 (FAIL) | b=0.2 1.322 / 1.368
+  M2|R0        eta headline 6.730+-0.197 / 6.730+-0.197 -> FAIL     | inner 200-420 9.771 / 9.771 (FAIL) | b=0.2 8.412 / 8.412
+  M2|RI        eta headline 1.057+-0.031 / 1.057+-0.031 -> PASS     | inner 200-420 1.535 / 1.535 (FAIL) | b=0.2 1.322 / 1.322
+  M2|RNc4      eta headline 0.859+-0.042 / 0.859+-0.042 -> PASS     | inner 200-420 0.829 / 0.829 (PASS) | b=0.2 1.073 / 1.073
+  M2|RNc3      eta headline 0.905+-0.045 / 0.905+-0.045 -> PASS     | inner 200-420 0.969 / 0.969 (PASS) | b=0.2 1.131 / 1.131
+  M2|RNc5      eta headline 0.826+-0.040 / 0.826+-0.040 -> PASS     | inner 200-420 0.730 / 0.730 (FAIL) | b=0.2 1.032 / 1.032
+  [PASS] M1-T3a hot restored, R0 reproduces CFG624 NCE eta (1e-6): 1.819602/1.819602, 1.678747/1.678747
+  [PASS] M1-T3b hot restored, RI reproduces CFG4's identity reading median(M_id/M_HSE) (1e-6): 0.945725/0.945725, 0.945725/0.945725
+  identity statistic median(M_model/M_HSE) under RI: H-CB 0.9457 / 0.9457; B 0.9457 / 0.9457  (cosmic share dominates the settled phantom in both)
+  condensed share of baryons at the headline radius: median 0.062 (range 0.035-0.071); R200 beyond the gas data for 3/12 clusters (log-extrapolated)
+  T3 verdict: PASS (reservoir-conditional); H-CB labels by reservoir: {'HCB|R0': 'FAIL', 'HCB|RI': 'PASS', 'HCB|RNc4': 'PASS', 'HCB|RNc3': 'PASS', 'HCB|RNc5': 'PASS'}
+
+== T6 KiDS / isolated lenses (record source check)
+  [PASS] T6a the record's lens source is stars + cold gas only (Mgal = M*(1 + f_cold), f_cold >= 0; no hot term): f_cold median 0.210, min 0.110, max 9.930, N 181477
+  [canonical] hot-gas escape at 50 kpc (log M* 10.81): law gives dg/dg_N = 2.84; under H-CB the hot gas is Newtonian, keeping 0.35 of the record's escape boost
+  [alt] hot-gas escape at 50 kpc (log M* 10.81): law gives dg/dg_N = 3.07; under H-CB the hot gas is Newtonian, keeping 0.33 of the record's escape boost
+  T6 verdict: NO CHANGE (the record's CFG529/531 numbers carry over: census edge FAILS f30 on both footings; the early-type age signal is untouched)
+
+9/9 checks pass; elapsed 5.0 s

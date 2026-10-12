@@ -1,0 +1,46 @@
+CFG634 T4 (FROZEN_CRITERIA.md, 1fea20013): static Bullet check for H-CB, the condensed-baryon source. No merger grid is run.
+
+Progenitors: CFG625's Progenitor625 (variants BASE, B1 primary, B2, B3; M200 1.5e15 main / 1.5e14 sub with the cool-core cloud),
+imported read-only. Condensed = the stellar component rho_s; hot = ICM grid gas + cool-core cloud.
+  H-CB settled phantom: the round-rule phantom of the stars alone (truncated at r_t as the progenitor does).
+  Reservoir: R0 (case L), RI (cold(<r) = max(settled, 5.364 M_b(<r))), RN (supply 5.364 M_b minus settled, NFW c = 4 in r200; CFG629).
+(a) gas-tied share of the dark mass inside 250 kpc; (b) Clowe+06 Table 2 aperture convergence contrast (galaxy minus plasma,
+100 kpc apertures at the measured positions; measured aperture baryons; dark components centred on the BCGs; Sigma_crit from CFG4 H5);
+(c) main-cluster projected M(<250 kpc) / Paraficz+16 (PROVISIONAL, recalled; CFG625's constants).
+MUTATE: M1 hot restored to the source reproduces CFG625 static (R0, B1) and CFG629 (RN, BASE).
+  positions (kpc, main BCG at 0): Main cluster BCG (+0, +0); Main cluster plasma (-189, +90); Subcluster BCG (-715, +94); Subcluster plasma (-523, +116)
+  [PASS] C-T4 aperture integrator vs analytic Plummer projected mass (1e-3): 6.0972e+12 vs 6.0976e+12
+  [PASS] T4a H-CB settled phantom is unchanged when the hot gas is doubled (B's changes: code path has teeth): H-CB max |d rho| 0.0e+00; B max |d rho| 4.56e+11
+  (a) B's gas-tied share of the settled phantom inside 250 kpc (H-CB: 0 by construction): B1_can_main 0.66; B1_can_sub 0.48; B1_alt_main 0.67; B1_alt_sub 0.48
+  BASE|can|B_alpha0|R0     dkappa main +0.025 (obs +0.31+-0.08, z -3.35), sub +0.001 (obs +0.18+-0.08, z -2.29) -> FAIL | M(<250)/P16 main 0.33, sub 0.16 | settled main 3.42e+14, reservoir 0.00e+00
+  BASE|can|B_alpha0|RI     dkappa main +0.149 (obs +0.31+-0.08, z -1.90), sub +0.112 (obs +0.18+-0.08, z -0.87) -> PASS | M(<250)/P16 main 0.91, sub 0.26 | settled main 3.42e+14, reservoir 8.53e+14
+  BASE|can|B_alpha0|RN     dkappa main +0.242 (obs +0.31+-0.08, z -0.80), sub -0.008 (obs +0.18+-0.08, z -2.41) -> TENSION | M(<250)/P16 main 0.84, sub 0.19 | settled main 3.42e+14, reservoir 8.53e+14
+  BASE|alt|B_alpha0|R0     dkappa main +0.030 (obs +0.31+-0.08, z -3.30), sub +0.005 (obs +0.18+-0.08, z -2.24) -> FAIL | M(<250)/P16 main 0.36, sub 0.18 | settled main 3.85e+14, reservoir 0.00e+00
+  BASE|alt|B_alpha0|RI     dkappa main +0.148 (obs +0.31+-0.08, z -1.91), sub +0.112 (obs +0.18+-0.08, z -0.87) -> PASS | M(<250)/P16 main 0.91, sub 0.26 | settled main 3.85e+14, reservoir 8.11e+14
+  BASE|alt|B_alpha0|RN     dkappa main +0.236 (obs +0.31+-0.08, z -0.87), sub -0.013 (obs +0.18+-0.08, z -2.47) -> TENSION | M(<250)/P16 main 0.84, sub 0.18 | settled main 3.85e+14, reservoir 8.11e+14
+  B1|can|HCB|R0            dkappa main +0.000 (obs +0.31+-0.08, z -3.65), sub -0.017 (obs +0.18+-0.08, z -2.53) -> FAIL | M(<250)/P16 main 0.20, sub 0.11 | settled main 9.19e+13, reservoir 0.00e+00
+  B1|can|HCB|RI            dkappa main +0.102 (obs +0.31+-0.08, z -2.45), sub +0.110 (obs +0.18+-0.08, z -0.89) -> TENSION | M(<250)/P16 main 0.87, sub 0.28 | settled main 9.19e+13, reservoir 1.10e+15
+  B1|can|HCB|RN            dkappa main +0.277 (obs +0.31+-0.08, z -0.39), sub +0.019 (obs +0.18+-0.08, z -2.06) -> TENSION | M(<250)/P16 main 0.86, sub 0.24 | settled main 9.19e+13, reservoir 1.10e+15
+  B1|can|B_alpha0|R0       dkappa main +0.021 (obs +0.31+-0.08, z -3.41), sub +0.001 (obs +0.18+-0.08, z -2.30) -> FAIL | M(<250)/P16 main 0.32, sub 0.17 | settled main 3.40e+14, reservoir 0.00e+00
+  B1|can|B_alpha0|RI       dkappa main +0.102 (obs +0.31+-0.08, z -2.46), sub +0.110 (obs +0.18+-0.08, z -0.89) -> TENSION | M(<250)/P16 main 0.87, sub 0.28 | settled main 3.40e+14, reservoir 8.55e+14
+  B1|can|B_alpha0|RN       dkappa main +0.238 (obs +0.31+-0.08, z -0.85), sub -0.008 (obs +0.18+-0.08, z -2.41) -> TENSION | M(<250)/P16 main 0.83, sub 0.20 | settled main 3.40e+14, reservoir 8.55e+14
+  B1|can|M2|R0             dkappa main -0.009 (obs +0.31+-0.08, z -3.76), sub -0.030 (obs +0.18+-0.08, z -2.68) -> FAIL | M(<250)/P16 main 0.14, sub 0.04 | settled main 0.00e+00, reservoir 0.00e+00
+  B1|can|M2|RI             dkappa main +0.102 (obs +0.31+-0.08, z -2.45), sub +0.110 (obs +0.18+-0.08, z -0.89) -> TENSION | M(<250)/P16 main 0.87, sub 0.28 | settled main 0.00e+00, reservoir 1.20e+15
+  B1|can|M2|RN             dkappa main +0.289 (obs +0.31+-0.08, z -0.25), sub +0.046 (obs +0.18+-0.08, z -1.71) -> PASS | M(<250)/P16 main 0.85, sub 0.26 | settled main 0.00e+00, reservoir 1.20e+15
+  B1|alt|HCB|R0            dkappa main +0.001 (obs +0.31+-0.08, z -3.64), sub -0.016 (obs +0.18+-0.08, z -2.51) -> FAIL | M(<250)/P16 main 0.21, sub 0.12 | settled main 1.01e+14, reservoir 0.00e+00
+  B1|alt|HCB|RI            dkappa main +0.102 (obs +0.31+-0.08, z -2.45), sub +0.110 (obs +0.18+-0.08, z -0.89) -> TENSION | M(<250)/P16 main 0.87, sub 0.28 | settled main 1.01e+14, reservoir 1.09e+15
+  B1|alt|HCB|RN            dkappa main +0.276 (obs +0.31+-0.08, z -0.40), sub +0.016 (obs +0.18+-0.08, z -2.10) -> TENSION | M(<250)/P16 main 0.86, sub 0.24 | settled main 1.01e+14, reservoir 1.09e+15
+  B1|alt|B_alpha0|R0       dkappa main +0.025 (obs +0.31+-0.08, z -3.36), sub +0.005 (obs +0.18+-0.08, z -2.24) -> FAIL | M(<250)/P16 main 0.35, sub 0.18 | settled main 3.82e+14, reservoir 0.00e+00
+  B1|alt|B_alpha0|RI       dkappa main +0.101 (obs +0.31+-0.08, z -2.46), sub +0.110 (obs +0.18+-0.08, z -0.90) -> TENSION | M(<250)/P16 main 0.87, sub 0.28 | settled main 3.82e+14, reservoir 8.14e+14
+  B1|alt|B_alpha0|RN       dkappa main +0.232 (obs +0.31+-0.08, z -0.92), sub -0.013 (obs +0.18+-0.08, z -2.48) -> TENSION | M(<250)/P16 main 0.83, sub 0.19 | settled main 3.82e+14, reservoir 8.13e+14
+  B1|alt|M2|R0             dkappa main -0.009 (obs +0.31+-0.08, z -3.76), sub -0.030 (obs +0.18+-0.08, z -2.68) -> FAIL | M(<250)/P16 main 0.14, sub 0.04 | settled main 0.00e+00, reservoir 0.00e+00
+  B1|alt|M2|RI             dkappa main +0.102 (obs +0.31+-0.08, z -2.45), sub +0.110 (obs +0.18+-0.08, z -0.89) -> TENSION | M(<250)/P16 main 0.87, sub 0.28 | settled main 0.00e+00, reservoir 1.20e+15
+  B1|alt|M2|RN             dkappa main +0.289 (obs +0.31+-0.08, z -0.25), sub +0.046 (obs +0.18+-0.08, z -1.71) -> PASS | M(<250)/P16 main 0.85, sub 0.26 | settled main 0.00e+00, reservoir 1.20e+15
+  B1|can|B_alphaInf_proxy|R0 (reported only): dkappa main -0.027, sub -0.053
+  B1|alt|B_alphaInf_proxy|R0 (reported only): dkappa main -0.030, sub -0.057
+  [PASS] M1-T4a hot restored (B source, R0) reproduces CFG625 static B1 M(<250)/P16 (1e-6): max diff 0.0e+00
+  [PASS] M1-T4b hot restored (B source, RN, BASE) reproduces CFG629 (1e-6): max diff 2.2e-16
+  T4(b) H-CB labels (B1): {'R0': {'can': 'FAIL', 'alt': 'FAIL'}, 'RI': {'can': 'TENSION', 'alt': 'TENSION'}, 'RN': {'can': 'TENSION', 'alt': 'TENSION'}}
+  T4(b) H-CB labels, all variants: BASE|can|HCB|R0 FAIL; BASE|can|HCB|RI PASS; BASE|can|HCB|RN TENSION; BASE|alt|HCB|R0 FAIL; BASE|alt|HCB|RI PASS; BASE|alt|HCB|RN TENSION; B1|can|HCB|R0 FAIL; B1|can|HCB|RI TENSION; B1|can|HCB|RN TENSION; B1|alt|HCB|R0 FAIL; B1|alt|HCB|RI TENSION; B1|alt|HCB|RN TENSION; B2|can|HCB|R0 FAIL; B2|can|HCB|RI TENSION; B2|can|HCB|RN PASS; B2|alt|HCB|R0 FAIL; B2|alt|HCB|RI TENSION; B2|alt|HCB|RN PASS; B3|can|HCB|R0 FAIL; B3|can|HCB|RI TENSION; B3|can|HCB|RN PASS; B3|alt|HCB|R0 FAIL; B3|alt|HCB|RI TENSION; B3|alt|HCB|RN TENSION
+
+4/4 checks pass; elapsed 2.5 s

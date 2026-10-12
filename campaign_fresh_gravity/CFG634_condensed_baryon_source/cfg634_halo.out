@@ -1,0 +1,44 @@
+CFG634 T5 (FROZEN_CRITERIA.md, 1fea20013): CFG556's resolution-free halo model with the phantom sourced by CONDENSED baryons only.
+CONTEXT ONLY: Tinker08 mass function, Tinker10 bias, Duffy08 concentrations and Moster13 stars are LCDM-inherited (as in CFG556).
+No native verdict; the native test is the PM shear run specified in the README.
+
+CFG556's source (up to its run section) is exec'd read-only. The H-CB profile changes ONE thing: the phantom term uses the condensed
+baryons, M_in(r) = m_b(r) + m_c(r) [nu(G m_c / r^2 a0) - 1]. Baryons are placed exactly as in CFG556 (truncated at B's census edge for
+'cen'; untruncated for 'emg'). Condensed = stars (Moster13, Hernquist) + the cold share of the gas (gas shape), with
+M_c = max(M*, 0.10 f_b M_ta) capped at the retained baryons (HC-1; 0.10 = census floor = stars + cold gas) or M_c = M* wherever
+f_ret > 0.10 (HC-2). The H-CB settling edge is the census formula with the condensed source, r_e = r_M,c / ln(1 + M_c / supply)
+('cen'), or where the condensed phantom exhausts the supply ('emg'), capped at r_ta; the unsettled remainder is handled as in CFG556.
+MUTATE in the same pass: M1 condensed = all retained baryons reproduces CFG556; M3 teeth (|dR(k=1)| >= 0.01).
+
+[canonical]
+  canonical|M1 all-source cen  E +0.715 (k 0.99)  D +0.002  R(0.3) 1.124  R(1) 1.716  s8 ratio 1.0402  capped 0
+  canonical|M1 all-source emg  E +0.077 (k 0.58)  D -0.009  R(0.3) 1.032  R(1) 0.988  s8 ratio 1.0072  capped 0
+  canonical|HCB HC1 cen (PRIMARY) E -0.001 (k 0.05)  D -0.406  R(0.3) 0.924  R(1) 0.593  s8 ratio 0.9746  capped 61
+  canonical|HCB HC1 emg        E -0.003 (k 0.05)  D -0.758  R(0.3) 0.826  R(1) 0.241  s8 ratio 0.9440  capped 61
+  canonical|HCB HC2 cen        E +0.003 (k 0.42)  D -0.030  R(0.3) 1.002  R(1) 0.969  s8 ratio 0.9998  capped 124
+  canonical|HCB HC1 cen spread* E -0.001 (k 0.05)  D -0.364  R(0.3) 0.929  R(1) 0.635  s8 ratio 0.9766  capped 61
+  canonical|B all-source cen spread* E +0.759 (k 0.99)  D +0.002  R(0.3) 1.130  R(1) 1.760  s8 ratio 1.0422  capped 0
+    logM_ta 12: M_F/M_L at 0.1 / 0.3 r_ta  B 0.91 / 1.27 (r_e/r_ta 0.35)  H-CB 0.91 / 1.27 (r_e/r_ta 0.35, M_c/M_b 1.00)
+    logM_ta 13: M_F/M_L at 0.1 / 0.3 r_ta  B 0.75 / 1.59 (r_e/r_ta 0.29)  H-CB 0.53 / 0.96 (r_e/r_ta 0.51, M_c/M_b 0.31)
+    logM_ta 14: M_F/M_L at 0.1 / 0.3 r_ta  B 0.76 / 1.75 (r_e/r_ta 0.30)  H-CB 0.41 / 0.81 (r_e/r_ta 0.75, M_c/M_b 0.14)
+    logM_ta 15: M_F/M_L at 0.1 / 0.3 r_ta  B 0.57 / 1.25 (r_e/r_ta 0.40)  H-CB 0.40 / 0.67 (r_e/r_ta 1.00, M_c/M_b 0.11)
+  class (CONTEXT ONLY): primary REDUCED, emg REDUCED, HC-2 REMOVED; post-freeze spread* REDUCED  (* = POST-FREEZE reservoir bracket, reported, no verdict weight)
+
+[alt]
+  alt|M1 all-source cen        E +0.883 (k 0.99)  D +0.002  R(0.3) 1.140  R(1) 1.885  s8 ratio 1.0463  capped 0
+  alt|M1 all-source emg        E +0.146 (k 0.67)  D +0.001  R(0.3) 1.047  R(1) 1.086  s8 ratio 1.0124  capped 0
+  alt|HCB HC1 cen (PRIMARY)    E -0.001 (k 0.05)  D -0.323  R(0.3) 0.933  R(1) 0.676  s8 ratio 0.9782  capped 52
+  alt|HCB HC1 emg              E -0.002 (k 0.05)  D -0.721  R(0.3) 0.828  R(1) 0.278  s8 ratio 0.9451  capped 52
+  alt|HCB HC2 cen              E +0.003 (k 0.44)  D -0.028  R(0.3) 1.002  R(1) 0.972  s8 ratio 0.9998  capped 121
+  alt|HCB HC1 cen spread*      E -0.001 (k 0.05)  D -0.276  R(0.3) 0.939  R(1) 0.723  s8 ratio 0.9806  capped 52
+  alt|B all-source cen spread* E +0.925 (k 0.99)  D +0.002  R(0.3) 1.145  R(1) 1.928  s8 ratio 1.0482  capped 0
+    logM_ta 12: M_F/M_L at 0.1 / 0.3 r_ta  B 1.00 / 1.39 (r_e/r_ta 0.32)  H-CB 1.00 / 1.39 (r_e/r_ta 0.32, M_c/M_b 1.00)
+    logM_ta 13: M_F/M_L at 0.1 / 0.3 r_ta  B 0.85 / 1.61 (r_e/r_ta 0.26)  H-CB 0.60 / 1.05 (r_e/r_ta 0.47, M_c/M_b 0.31)
+    logM_ta 14: M_F/M_L at 0.1 / 0.3 r_ta  B 0.87 / 1.76 (r_e/r_ta 0.27)  H-CB 0.46 / 0.87 (r_e/r_ta 0.69, M_c/M_b 0.14)
+    logM_ta 15: M_F/M_L at 0.1 / 0.3 r_ta  B 0.66 / 1.44 (r_e/r_ta 0.36)  H-CB 0.36 / 0.67 (r_e/r_ta 1.00, M_c/M_b 0.11)
+  class (CONTEXT ONLY): primary REDUCED, emg REDUCED, HC-2 REMOVED; post-freeze spread* REDUCED  (* = POST-FREEZE reservoir bracket, reported, no verdict weight)
+  [PASS] M1-T5 condensed = all retained baryons reproduces CFG556 primary E (1e-3): +0.7151/+0.7151, +0.8829/+0.8829
+  [PASS] M1-T5e ... and CFG556's emergent-edge E (1e-3): +0.0770/+0.0770, +0.1458/+0.1458
+  [PASS] M3-T5 teeth: |R_HCB(k=1) - R_B(k=1)| >= 0.01: 1.123, 1.209
+
+3/3 checks pass; elapsed 16.5 s
