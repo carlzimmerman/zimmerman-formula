@@ -79,3 +79,11 @@ Values at z = 0.5 and z = 1 are in the `.out`. At 256³, M1 and M2 together remo
 - The intended-direction outcome does not affect T1.
 - The bit-for-bit reproduction claim (V-0) holds at 256³ with 3 threads. V-2 shows that the P(k) measurement can differ at the 1e-8 level from one run to the next.
 - All verdicts will be conditional on the inherited inputs listed in criteria §7.
+
+## Orchestrator decision on V-2 (2026-10-12)
+V-2 ("M2 alone reproduces CFG640's VPh bit for bit") failed as literally frozen: only the z = 0 P_grav measurement differs,
+by ≤ 1.4e-8, while positions, f_d and the full-resolution fields are identical at every snapshot; re-measuring the same
+field in fresh processes reproduces either value (multithreaded P(k) reduction order). This is measurement nondeterminism
+far below any statistic used, not an engine difference. Production proceeds with this disclosure; the frozen V-2 label
+stays FAIL-as-written. Queue: T1 starts automatically after CFG640 H1 finishes (cfg650_waiter.sh, CFG650_JOB=T1); if
+CFG648 commits a FAILS verdict for H-SP with the condensed source before launch, the waiter is restarted with T1x per §criteria.
