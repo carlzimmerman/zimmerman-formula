@@ -1,0 +1,150 @@
+SPATIAL EXCHANGE: CORRECTION TO THE HOMOGENEOUS K2 EXCLUSION
+
+Checkpoint: spatial-exchange-1
+Base inspected: fcdd11ebc7ad86677f2b7b8385a2f4e2495fb888.
+Goal remains: find a predictive dynamical law for the stipulated cold-energy
+framework. This is a partial analytic result, not a completed physical model.
+Previous goal turn: no progress (assessment without a new derivation).
+This turn: an exact scope correction and an explicit exchange counterexample.
+
+Audited sources (read only):
+ campaign_fresh_gravity/CFG635_one_dark_sector/cfg635.py, K2, lines 65-133;
+ campaign_fresh_gravity/CFG635_one_dark_sector/README.md, structural result 2.
+Claim under audit: shift symmetry prevents secular radial-to-phase energy
+transfer, so a field Hamiltonian cannot supply a settling hand-off.
+Verdict: correct only after a stated restriction. The exact K2b calculation
+applies to a homogeneous phase, conserved homogeneous phase momentum, and a
+radial cycle returning to its initial radius. The general field inference
+does not follow. No claim here overturns the separate rest-energy requirement.
+
+1. Restore the omitted spatial degrees of freedom
+
+Use flat spacetime, units c=1, r>0, and the SAME shift-symmetric kinetic action:
+
+ L = (rdot^2 - |grad r|^2)/2
+     + r^2 (thetadot^2 - |grad theta|^2)/2 - U(r).
+
+The phase equation and conserved shift current are
+
+ d_t(r^2 thetadot) - div(r^2 grad theta) = 0,
+ j^0 = r^2 thetadot,  j = -r^2 grad theta.
+
+Conservation of the integral of j^0 is NOT conservation of phase energy.
+Define
+
+ e_theta = r^2 (thetadot^2 + |grad theta|^2)/2,
+ F_theta = -r^2 thetadot grad theta.
+
+Product differentiation followed by the phase equation gives EXACTLY
+
+ d_t e_theta + div F_theta
+       = r rdot (|grad theta|^2 - thetadot^2) = Q_theta.
+
+This has both signs and a spatial energy flux, with no explicit shift breaking.
+The radial equation is
+
+ rddot - Laplacian r + U'(r)
+       = r (thetadot^2 - |grad theta|^2).
+
+With e_r=(rdot^2+|grad r|^2)/2+U and F_r=-rdot grad r,
+d_t e_r+div F_r=-Q_theta. Therefore total local energy is conserved.
+There is no phenomenological alpha in these identities. They do not select
+U, its scales, the initial state, a halo target, or a coarse-grained rate.
+
+2. Why K2's conserved homogeneous momentum does not remove wave exchange
+
+For a homogeneous radial background r(t), a nonzero spatial Fourier mode
+theta_k obeys
+
+ d_t(r^2 thetadot_k) + r^2 k^2 theta_k = 0.
+
+Thus its canonical momentum p_k=r^2 thetadot_k is NOT constant when k!=0.
+Its spatially integrated shift charge can vanish throughout while its energy
+changes. Setting chi_k=r theta_k gives
+
+ chiddot_k + [k^2 - rddot/r] chi_k = 0.
+
+This exhibits the missing parametric channel without adding a phase potential.
+The k=0 homogeneous sector instead recovers the exact K2 identity.
+
+3. Exact finite-mode counterexample to 'shift symmetry forbids secular exchange'
+
+Prescribe positive r(t) alternating r1 and r2. Each plateau lasts pi/(2k),
+k>0. At a jump theta_k and p_k are continuous, as follows by integrating the
+phase equation. For constant radius r_i, one quarter-period maps (theta,p) by
+
+ A_i = [[0, 1/(r_i^2 k)], [-r_i^2 k, 0]].
+
+One cycle, returning the background to r1, has
+
+ A_2 A_1 = diag(-r1^2/r2^2, -r2^2/r1^2).
+
+For r2!=r1, an eigenvalue has absolute value greater than one. An initial
+state along that eigendirection gains energy each cycle, measured at the same
+background radius. For r2=2r1 and theta_initial=0, p grows by -4 per cycle
+and its phase-mode energy grows by 16 per cycle. Shift symmetry is exact.
+The global charge of a nonzero Fourier mode on a periodic box is zero.
+
+This is an externally pumped linear subsystem, not a finite-energy autonomous
+halo solution. The pump supplies its energy. Narrow smooth transitions give
+nearby transfer matrices because the first-order system for (theta,p) has
+bounded coefficients when r is bounded away from zero. The strict instability
+therefore is not contingent on literal discontinuities. An autonomous radial
+sector must include backreaction; indefinite exponential growth is not claimed.
+
+In the actual smooth radial model U=(omega^2/2)(r-f)^2, theta=constant and
+r=f[1+epsilon cos(omega t)] are a background solution for |epsilon|<1.
+Linear phase perturbations obey the preceding chi equation, whose small-
+epsilon frequency squared is k^2+epsilon omega^2 cos(omega t)+O(epsilon^2).
+This identifies a resonance candidate near 2k=omega; no quantitative rate
+or full nonlinear solution is asserted from this expansion in this record.
+
+4. Consequence for the requested dynamical law
+
+The homogeneous calculation cannot close the spatial-transport route.
+However, this example does NOT supply the required cold-energy dynamics:
+
+ - If radial oscillations represent cold rest mass, conversion into phase
+   waves consumes that rest energy, just as CFG635's separate decay estimate
+   already anticipates. Symmetry preservation does not cure that failure.
+ - Propagating canonical massless phase waves carry radiation-like stress
+   after isotropic short-wavelength averaging; they are not a vacuum deposit.
+ - Both signs of instantaneous Q do not prove a sustained import reservoir,
+   equilibration, entropy production, or a universal relaxation time.
+ - No baryon-only switch, nu_mono target, kappa=1/2, cold abundance, reservoir
+   profile, cosmological growth, or observational fit has been derived here.
+ - The field is examined to audit an existing candidate, not adopted as an
+   additional particle species for the user's theory.
+
+The useful correction is exact: a microscopic energy current must be evaluated
+with spatial modes and boundary fluxes before an exchange channel is excluded.
+The next discriminating obligation is a rest-mass-preserving interaction that
+couples orbital/binding energy to that current. Merely repeating radial-decay
+or externally pumped wave amplification would not meet it.
+
+5. Self-review and provenance
+
+Analytic self-review, not independent referee review; no numerical experiment.
+Checked: phase Euler-Lagrange sign; opposite radial source; energy-flux sign;
+canonical matching at jumps; two quarter-period matrix multiplication; same-
+radius endpoint energy; zero total charge for k!=0; constant-radius and k=0
+limits. The finite pump counterexample is not promoted to an autonomous model.
+
+Dependency graph: action -> phase/radial equations -> energy identity;
+phase equation + prescribed positive r(t) -> exact transfer matrices -> gain.
+All these arrows are displayed internally. Autonomous halo realization remains
+unproved. The unchanged homogeneous K2b arrow passes on its actual domain.
+
+Literature discovery (not a proof dependency): a web search for 'Goldstone
+boson parametric resonance radial oscillations shift symmetry' located Daniel
+Kaplan, Pavel A. Volkov, Andrea Cavalleri and Premala Chandra,
+'Optically-Induced Faraday-Goldstone Waves', arXiv:2511.07320v1 (2025-11-10),
+https://arxiv.org/abs/2511.07320v1 . The primary abstract was inspected; it
+describes amplitude/phase coupling and coherent energy exchange in an ordered
+solid. Classification: adjacent result only. Full-text transfer to cosmology
+was not checked, and no novelty is claimed for the channel or this derivation.
+
+Route status: homogeneous cyclic receiver obstruction retained; spatial
+exchange exclusion withdrawn at the inference level; binding-energy-only
+coupling open and unsolved; empirical reservoir tests separate and still needed.
+No edits to CFG635 or other researchers' lanes.
