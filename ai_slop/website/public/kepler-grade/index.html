@@ -97,6 +97,7 @@ h3 { font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-sp
   <div class="box">
     <span><b>Standing terms.</b> κ = ½ is fitted, not derived. Two footings, canonical a₀ = 9.36e-11 and alt 1.13e-10 m/s², are never pooled and are written can / alt. The cold energy's mass is still required. This is not a closed theory.</span>
     <span><b>Built 2026-10-11</b> from nine sweeps of the repo (predictions ledgers, prep_2026 pre-registrations, lanes CFG1 to CFG700, the atomos kill sheet, real_research, hunt_2026, the multi-model push folders, git history since April, memory notes). Some lane folders were only keyword-screened, so this is thorough but not a guarantee of completeness. Release dates for Euclid, Rubin, JUNO, LISA and 4MOST come from the record's own inventories and are not independently verified.</span>
+    <span><b>Frozen version.</b> The 2026-10-11 version of this ledger is archived as a paper: <a href="https://doi.org/10.5281/zenodo.23303805" style="color:var(--accent)">doi:10.5281/zenodo.23303805</a>. This page keeps changing; the paper does not.</span>
     <span><b>Rules applied.</b> Verdicts use raw data against framework-native predictions. Rows tied to the retired modified-inertia arm are tagged MI-ARM and are not live. Rows from AI exploration branches (deepseek, kimik3, hy4, the OpenAI math lane) are tagged BRANCH: non-authoritative, and several conflict with the standing record. Rows from the old clock-host candidate are tagged CANDIDATE-CONDITIONAL.</span>
   </div>
 
@@ -619,6 +620,7 @@ CONF.push(
 );
 
 var DEPO = [
+ ["PAPER46: this ledger, frozen at 2026-10-11","DOI 10.5281/zenodo.23303805 (concept 23303804), v1.0, 22 pages. The paper version of this chart as of 2026-10-11, generated from the same data by PAPER46_build.py and audited by PAPER46_audit.py (10/10). It is not updated in place; this web chart is. Cite the DOI for the frozen version.","done","PAPER46"],
  ["PAPER35: wide binaries exactly Newtonian","DOI 10.5281/zenodo.23142564, recorded 2026-10-04. γ<sub>v</sub> = 1.000 on the pre-registered DR4 estimator; the same law with an external field gives 1.16–1.23 (Arm A's floor).","open","qwen papers_2026/PAPER35"],
  ["PAPER7: flat a₀(z), the sharp null","Pre-registration DOI 10.5281/zenodo.22563139 (2026-09-06); v3 22833314. BTFR zero point 0.00 dex at z ≈ 2.5 against ΛCDM +0.33.","open","PAPER7"],
  ["PAPER14 v2: observing case at z ≈ 2.5","DOI 10.5281/zenodo.22961490 (2026-09-25). Gate window z ≥ 2, lens gate 0.05 dex; needs 3 galaxies at ±0.10 or 4 at ±0.20. v1 superseded (a ledger row contradicted its sources).","open","PAPER14"],
@@ -635,11 +637,11 @@ var DEPO = [
  ["Modified-inertia era deposits (June–July 2026)","s^TX note 20978308; dwarf orbital-history σ 20949773 (v3 20969585); sign-flip 21179352; σ-spread 21421896; SHLEM 21458606; TDG history 21461435; cross-scale a₀(z) 21440408. All superseded with the MI arm; the retractions file says lensing excludes pure MI at 21σ.","sup","RETRACTIONS.md"],
  ["Sealed hashes in the repo","CFG553 (Milky Way, f8bea44f…), CFG571 (ALMA, be27457d…), CFG549 (dark energy, f110566e…). Never edited after the seal.","open","PREDICTIONS_HASH.txt files"]
 ];
-var DL = {open:"OPEN", sup:"SUPERSEDED", nd:"NOTE", pass:"DONE"};
+var DL = {open:"OPEN", sup:"SUPERSEDED", nd:"NOTE", pass:"DONE", done:"DEPOSITED"};
 function renderDepo(){
   var out = '<div class="h2"><span>Deposit</span><span>What it registered</span><span>Status</span><span>Source</span></div>';
   DEPO.forEach(function(r){
-    out += '<div class="r2"><div class="t"><b>'+r[0]+'</b></div><div>'+r[1]+'</div><div><span class="chip '+(r[2]==="open"?"open":r[2])+'">'+DL[r[2]]+'</span></div><div class="src" style="margin:0">'+r[3]+'</div></div>';
+    out += '<div class="r2"><div class="t"><b>'+r[0]+'</b></div><div>'+r[1]+'</div><div><span class="chip '+(r[2]==="done"?"pass":r[2]==="open"?"open":r[2])+'">'+DL[r[2]]+'</span></div><div class="src" style="margin:0">'+r[3]+'</div></div>';
   });
   document.getElementById("depo").innerHTML = out;
 }
