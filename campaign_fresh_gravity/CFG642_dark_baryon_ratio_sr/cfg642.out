@@ -1,0 +1,122 @@
+CFG642 -- non-numerology symbolic regression for Omega_c/Omega_b (criteria: FROZEN_CRITERIA.md, committed first).
+
+Buckingham-pi monomials F = P * g1^n1 g2^n2 g3^n3 g4^n4 kappa^n5 at a named epoch, with
+  g1 = G rho_b/H^2, g2 = G rho_r/H^2, g3 = G rho_DE/H^2, g4 = a0/(c H), all at that epoch;
+exponents -2..2 step 1/2; 11 declared geometric prefactors; epochs today / z* / z_eq / BBN; two footings never
+pooled. Gates: (a) FDR vs random decoy targets and shuffled inputs; (b) interlock; (c) omega_c elasticity;
+epoch rule; (d) BBN omega_b and SH0ES h. kappa = 1/2 FITTED. Nothing here derives 5.364.
+
+MUTATE=1 replaces the target with one planted grammar member at 0.001% precision (writes *_MUTATE outputs).
+
+TARGET  R = omega_c/omega_b = 5.3643 +- 0.0646 (rel 1.204%)   footings never pooled; kappa = 0.5 FITTED
+epochs: z* = 1089.92, z_eq = 3402.3, z_BBN = 2.9804e+08;  grammar members per footing = 2,598,156
+BBN omega_b (Cooke+18 D/H): PRIMAT 0.02193 +- 0.00022 -> R_BBN = 5.4715 +- 0.0770;  PArthENoPE bracket 0.02270 -> 5.2866
+grammar control: kappa*g3^(1/2) today = 0.142943  vs a0_canonical/(cH0) = 0.143027  (EXPRESSIBLE)
+
+====================================================================================================
+FOOTING canonical  (a0 = 9.3603e-11)
+N_eff (distinct values) = 1,598,139  of 2,598,156 members;  distinct in [1,10] = 37,196
+clean subspace (|eps_c| <= 0.05 and epoch rule): 57,420 members, N_eff = 34,465, in [1,10] = 2,055
+group elasticities d ln g/d ln omega_c by epoch (g1..g5):
+   today          +0.000  +0.000  -0.386  -0.193  +0.000
+   recombination  -0.638  -0.629  -1.053  -0.526  +0.000
+   equality       -0.841  +0.002  -3.756  -1.878  +0.000
+   BBN            -0.000  -0.000  -0.386  -0.193  +0.000
+distinct values within 1 sigma of target: full 375, clean 14
+best MDL full : L = 10.16 bits  z = -1.177  2 * (a0/(cH))^-0.5  @ today
+best MDL clean: L = 8.66 bits  z = -0.293  1/pi * (G rho_r/H^2)^-1  @ equality
+GATE (a) full : p_rand = 0.6771  p_shuf = 0.5557  -> FAIL
+GATE (a) clean: p_rand = 0.3797  p_shuf = 0.6357  -> FAIL
+decoy best-L distribution (random targets, full): median 9.44, 1% 1.73, 0.1% 0.00, real 10.16;  clean: median 9.79, real 8.66
+decoy best-L distribution (shuffled inputs, full): median 9.77, 1% 5.51; clean median 8.65
+
+Top 15 (full search, by MDL):
+       L       z   C   eps_c   slope  c  E  d1 d2 b1   member
+   10.16  -1.177   2  +0.097   -0.24  n  n  n  n  Fal  2 * (a0/(cH))^-0.5  @ today
+   11.60  -0.293   3  -0.002   +0.50  Y  Y  n  Y  n/a  1/pi * (G rho_r/H^2)^-1  @ equality
+   12.60  +1.213   3  +0.193   +0.55  n  n  Y  n  n/a  3/(8pi) * (G rho_b/H^2)^-0.5 * (G rho_DE/H^2)^-0.5  @ today
+   12.81  +1.329   3  -0.051   -1.19  n  Y  Y  n  Fal  1/(4pi) * (G rho_r/H^2)^0.5 * (a0/(cH))^-0.5  @ recombination
+   13.07  -1.456   3  -0.193   +1.50  n  n  n  n  n/a  1 * (G rho_b/H^2)^-0.5 * (G rho_DE/H^2)^0.5 * (kappa)^-0.5  @ today
+   13.37  -0.206   4  +0.319   -0.12  n  Y  Y  Y  n/a  1/pi * (G rho_b/H^2)^-0.5 * (kappa)^-1  @ recombination
+   13.51  +0.495   4  -0.056   -0.69  n  Y  n  n  Fal  1/(4pi) * (G rho_b/H^2)^0.5 * (a0/(cH))^-0.5 * (kappa)^-0.5  @ recombination
+   14.12  +1.040   4  -0.290   +0.71  n  n  Y  n  Fal  8pi * (G rho_DE/H^2)^1 * (a0/(cH))^-0.5  @ today
+   14.42  -1.225   4  +0.097   -0.24  n  n  n  n  Fal  1 * (G rho_DE/H^2)^0.5 * (a0/(cH))^-1.5  @ today
+   14.80  -0.098   5  -0.097   +0.76  n  n  Y  n  Fal  8pi * (G rho_b/H^2)^-1 * (G rho_r/H^2)^0.5 * (a0/(cH))^0.5  @ today
+   14.82  +0.187   5  +0.193   -0.97  n  n  Y  n  n/a  8pi * (G rho_b/H^2)^-0.5 * (G rho_r/H^2)^0.5 * (G rho_DE/H^2)^-0.5 * (kappa)^-0.5  @ today
+   14.84  -0.255   5  +0.319   -0.12  n  Y  Y  Y  Fal  1/pi * (G rho_b/H^2)^-0.5 * (G rho_DE/H^2)^0.5 * (a0/(cH))^-1  @ recombination
+   14.96  -0.479   5  +0.000   +0.00  Y  Y  n  Y  n/a  1/pi * (G rho_r/H^2)^-1 * (kappa)^-1  @ BBN
+   15.01  +0.545   5  -0.056   -0.69  n  Y  n  n  Fal  1/pi * (G rho_b/H^2)^0.5 * (G rho_DE/H^2)^-0.5 * (a0/(cH))^0.5 * (kappa)^0.5  @ recombination
+   15.07  -1.549   4  +0.097   -0.00  n  Y  n  n  Fal  1/pi * (G rho_b/H^2)^1 * (a0/(cH))^-0.5  @ BBN
+Top 10 (clean subspace):
+   11.60  -0.293   3  -0.002   +0.50  Y  Y  n  Y  n/a  1/pi * (G rho_r/H^2)^-1  @ equality
+   14.96  -0.479   5  +0.000   +0.00  Y  Y  n  Y  n/a  1/pi * (G rho_r/H^2)^-1 * (kappa)^-1  @ BBN
+   16.20  -0.528   6  +0.000   +0.00  Y  Y  n  Y  Fal  1/pi * (G rho_r/H^2)^-1 * (G rho_DE/H^2)^0.5 * (a0/(cH))^-1  @ BBN
+   15.50  +1.733   4  -0.003   +0.75  Y  Y  Y  n  n/a  1/(4pi) * (G rho_r/H^2)^-1.5  @ equality
+   16.30  +1.448   5  +0.000   +0.00  Y  Y  Y  n  n/a  1/pi * (G rho_r/H^2)^-1.5 * (kappa)^0.5  @ BBN
+   17.37  -0.708   7  -0.000   -0.50  Y  Y  n  Y  n/a  3/(8pi) * (G rho_b/H^2)^-0.5 * (G rho_r/H^2)^1.5 * (kappa)^1  @ BBN
+   17.88  -0.244   8  -0.002   +0.50  Y  Y  n  Y  Fal  1/pi * (G rho_r/H^2)^-1 * (G rho_DE/H^2)^-0.5 * (a0/(cH))^1 * (kappa)^-1  @ equality
+   17.92  -0.342   8  -0.002   +0.50  Y  Y  n  Y  Fal  1/(4pi) * (G rho_r/H^2)^-1 * (G rho_DE/H^2)^0.5 * (a0/(cH))^-1 * (kappa)^-1  @ equality
+   18.15  -0.659   8  -0.000   -0.50  Y  Y  n  Y  Fal  3/(8pi) * (G rho_b/H^2)^-0.5 * (G rho_r/H^2)^1.5 * (G rho_DE/H^2)^-0.5 * (a0/(cH))^1  @ BBN
+   18.64  -0.391   9  -0.002   +0.50  Y  Y  n  Y  Fal  1/(4pi) * (G rho_r/H^2)^-1 * (G rho_DE/H^2)^1 * (a0/(cH))^-2  @ equality
+1-sigma members passing (c)+epoch+(d1)+(d2): 1 members, 1 distinct values; (b) passes for none (b3 unavailable).
+    L 19.93 z +0.243  1/(8pi) * (G rho_b/H^2)^-0.5 * (G rho_DE/H^2)^-1 * (a0/(cH))^2 * (kappa)^2  @ BBN  (b1 False, z_other 38.602375283922925)
+
+INJECTED POSITIVE CONTROLS (200 clean members, C <= 6, value in [1,10]; full canonical search):
+   precision 0.012: gate (a, random-decoy half) certifies 4/200 planted true formulas
+   precision 0.001: gate (a, random-decoy half) certifies 2/200 planted true formulas
+   precision 1e-05: gate (a, random-decoy half) certifies 29/200 planted true formulas
+   precision 1e-07: gate (a, random-decoy half) certifies 189/200 planted true formulas
+
+====================================================================================================
+FOOTING alt  (a0 = 1.1312e-10)
+N_eff (distinct values) = 1,598,139  of 2,598,156 members;  distinct in [1,10] = 37,227
+clean subspace (|eps_c| <= 0.05 and epoch rule): 94,050 members, N_eff = 57,401, in [1,10] = 1,764
+group elasticities d ln g/d ln omega_c by epoch (g1..g5):
+   today          +0.000  +0.000  -0.386  +0.000  +0.000
+   recombination  -0.638  -0.629  -1.053  -0.333  +0.000
+   equality       -0.841  +0.002  -3.756  -1.685  +0.000
+   BBN            -0.000  -0.000  -0.386  -0.000  +0.000
+distinct values within 1 sigma of target: full 399, clean 17
+best MDL full : L = 9.69 bits  z = +0.855  1 * (G rho_b/H^2)^-0.5 * (a0/(cH))^0.5  @ today
+best MDL clean: L = 9.31 bits  z = -0.293  1/pi * (G rho_r/H^2)^-1  @ equality
+GATE (a) full : p_rand = 0.5704  p_shuf = 0.4728  -> FAIL
+GATE (a) clean: p_rand = 0.4001  p_shuf = 0.6202  -> FAIL
+decoy best-L distribution (random targets, full): median 9.46, 1% 1.73, 0.1% 0.00, real 9.69;  clean: median 10.33, real 9.31
+decoy best-L distribution (shuffled inputs, full): median 9.82, 1% 5.50; clean median 9.31
+
+Top 15 (full search, by MDL):
+       L       z   C   eps_c   slope  c  E  d1 d2 b1   member
+    9.69  +0.855   2  +0.000   +1.26  Y  n  Y  n  Fal  1 * (G rho_b/H^2)^-0.5 * (a0/(cH))^0.5  @ today
+   11.60  -0.293   3  -0.002   +0.50  Y  Y  n  Y  n/a  1/pi * (G rho_r/H^2)^-1  @ equality
+   11.62  -0.328   3  +0.000   -0.24  Y  n  n  Y  Fal  pi * (a0/(cH))^-0.5 * (kappa)^0.5  @ today
+   12.54  -2.165   2  +0.000   +0.24  Y  n  n  n  Fal  4pi * (a0/(cH))^0.5  @ today
+   12.60  +1.213   3  +0.193   +0.55  n  n  Y  n  n/a  3/(8pi) * (G rho_b/H^2)^-0.5 * (G rho_DE/H^2)^-0.5  @ today
+   13.07  -1.456   3  -0.193   +1.50  n  n  n  n  n/a  1 * (G rho_b/H^2)^-0.5 * (G rho_DE/H^2)^0.5 * (kappa)^-0.5  @ today
+   13.37  -0.206   4  +0.319   -0.12  n  Y  Y  Y  n/a  1/pi * (G rho_b/H^2)^-0.5 * (kappa)^-1  @ recombination
+   13.55  +0.542   4  +0.195   -0.38  n  Y  n  n  Fal  1 * (G rho_b/H^2)^1 * (G rho_DE/H^2)^-0.5 * (a0/(cH))^0.5  @ equality
+   13.65  +0.662   4  +0.193   -1.74  n  n  n  n  Fal  8pi/3 * (G rho_b/H^2)^0.5 * (G rho_DE/H^2)^-0.5 * (a0/(cH))^-0.5  @ today
+   14.21  -1.098   4  -0.462   -1.57  n  Y  n  n  Fal  1/2 * (G rho_r/H^2)^1 * (a0/(cH))^-0.5  @ recombination
+   14.22  -1.107   4  +0.000   +0.79  Y  n  n  n  Fal  3/(8pi) * (G rho_b/H^2)^-0.5 * (a0/(cH))^-0.5 * (kappa)^-0.5  @ today
+   14.80  +0.126   5  +0.193   -0.00  n  Y  n  n  Fal  4pi * (G rho_DE/H^2)^-0.5 * (a0/(cH))^1 * (kappa)^0.5  @ equality
+   14.80  -0.127   5  +0.193   -0.71  n  n  n  n  Fal  1/pi * (G rho_DE/H^2)^-0.5 * (a0/(cH))^-0.5 * (kappa)^-1  @ today
+   14.82  +0.187   5  +0.193   -0.97  n  n  Y  n  n/a  8pi * (G rho_b/H^2)^-0.5 * (G rho_r/H^2)^0.5 * (G rho_DE/H^2)^-0.5 * (kappa)^-0.5  @ today
+   14.96  -0.479   5  +0.000   +0.00  Y  Y  n  Y  n/a  1/pi * (G rho_r/H^2)^-1 * (kappa)^-1  @ BBN
+Top 10 (clean subspace):
+   11.60  -0.293   3  -0.002   +0.50  Y  Y  n  Y  n/a  1/pi * (G rho_r/H^2)^-1  @ equality
+   14.96  -0.479   5  +0.000   +0.00  Y  Y  n  Y  n/a  1/pi * (G rho_r/H^2)^-1 * (kappa)^-1  @ BBN
+   15.15  -0.704   5  -0.000   -0.00  Y  Y  n  n  Fal  1/2 * (G rho_b/H^2)^1 * (a0/(cH))^-0.5 * (kappa)^0.5  @ BBN
+   15.50  +1.733   4  -0.003   +0.75  Y  Y  Y  n  n/a  1/(4pi) * (G rho_r/H^2)^-1.5  @ equality
+   16.30  +1.448   5  +0.000   +0.00  Y  Y  Y  n  n/a  1/pi * (G rho_r/H^2)^-1.5 * (kappa)^0.5  @ BBN
+   16.91  +1.121   6  -0.002   +0.63  Y  Y  Y  n  Fal  8pi/3 * (G rho_b/H^2)^-1 * (G rho_r/H^2)^-0.5 * (a0/(cH))^0.5 * (kappa)^-0.5  @ equality
+   17.36  -0.705   7  -0.003   +0.88  Y  Y  Y  n  Fal  2 * (G rho_b/H^2)^-1 * (G rho_r/H^2)^-1 * (a0/(cH))^0.5 * (kappa)^-0.5  @ equality
+   17.37  -0.708   7  -0.000   -0.50  Y  Y  n  Y  n/a  3/(8pi) * (G rho_b/H^2)^-0.5 * (G rho_r/H^2)^1.5 * (kappa)^1  @ BBN
+   17.93  +0.353   8  -0.000   -0.00  Y  Y  n  n  Fal  8pi * (G rho_b/H^2)^1 * (G rho_r/H^2)^2 * (a0/(cH))^-0.5  @ BBN
+   18.24  +1.312   7  -0.004   +1.13  Y  Y  n  n  Fal  1 * (G rho_b/H^2)^-1 * (G rho_r/H^2)^-1.5 * (a0/(cH))^0.5 * (kappa)^0.5  @ equality
+1-sigma members passing (c)+epoch+(d1)+(d2): 0 members, 0 distinct values; (b) passes for none (b3 unavailable).
+
+TRUE-VALUE control (F = R): b2 Om_pred 0.3152 (z +1.77 vs DESI), d1 z -1.39, d2 z 0 (h-free)
+
+NAIVE SPACE illustration (16,384 expressions; e, phi, sqrt7 allowed): 49 within 1 sigma; best |z| = 0.0046; e + sqrt7 = 5.36403, z = -0.0046
+   decoy p (fraction of 4000 random targets with a match at least as close): best 0.102, e+sqrt7 0.102; 100.0% of decoys have a 1-sigma match
+
+VERDICT: CHANCE-LEVEL   (runtime 102 s; kappa FITTED; not a derivation; not theory closed)
