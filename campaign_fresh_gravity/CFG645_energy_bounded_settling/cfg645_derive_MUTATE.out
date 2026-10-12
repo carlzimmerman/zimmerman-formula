@@ -1,0 +1,82 @@
+CFG645 derivation (FROZEN_CRITERIA.md, 21b7b0857): energy-bounded settling H-EB.
+
+S1 point-mass R(y) control vs CFG635; S2 astra receiver_capacity exact channel for BOTH signs (sympy + ODE); D1 settled amount vs mass
+(CFG556 halo machinery executed from its committed source, inherited context ingredients as in CFG556), export E_V / E_Phi, global
+capacity C_rest = rho_DE c^2 V_ta, Xi = C/E_Phi, EB-L removal, eta_crit; D2-D4 labels; T5 KiDS magnitude-and-sign bound; T6 growth
+proxy (CONTEXT ONLY) for EB-R / EB-L / EB-eta boundary; local-reaction flag.  MUTATE: CFG645_MUTATE=1 -> *_MUTATE outputs
+(M-inf: capacity -> inf reproduces CFG556 primary; M0: capacity -> 0; Mc: cap x 1e-3).
+
+== S1 point-mass R(y) = rho_ph V_c^2/(rho_DE c^2) (finite differences of the profile) vs CFG635
+  [FAIL] S1a deep limit kappa^2 y/(4 pi) to 1e-3 at y = 1e-4 (frozen tolerance): rel dev +5.00e-03 (analytic next order +sqrt(y)/2 = +5.0e-03)
+  [PASS] (reported) S1a' (post-freeze, disclosed) same at y = 1e-6, tolerance 1e-3: rel dev +5.00e-04
+  [PASS] S1b exponential-kernel peak 0.43 +- 0.01 near y ~ 24: peak 0.4280 at y 23.9
+  [PASS] S1c repaired nu_mono R = 1 at y = 36 +- 2: y(R=1) = 36.05
+  deep-regime boundary R = 1 at g* = sqrt(4 pi)/kappa a0 = 7.090 a0 (outside the deep regime: the kernels set where R = 1)
+  R at g = 0.05 a0 (KiDS RAR upper edge, deep): 4.97e-05;  at y = 1: exp 0.029
+
+== S2 astra receiver_capacity exact channel, both signs of D (export: D < 0)
+  [PASS] S2a sympy: implicit solution satisfies xdot = 2 m D (L - x)(A - x) for either sign of D: residual 0
+  [PASS] S2b sympy: E = D q + pi^2/2 conserved by the bracket flow: dE/dt = 0
+  export D = -1, A = 1, m = 1: pi0^2 = 1e-06 -> x(60)/A = 1.000000, t_half = 7.260
+  export D = -1, A = 1, m = 1: pi0^2 = 0.01 -> x(60)/A = 1.000000, t_half = 2.650
+  export D = -1, A = 1, m = 1: pi0^2 = 1 -> x(60)/A = 1.000000, t_half = 0.470
+  export D = -1, A = 1, m = 1: pi0^2 = 0 -> x(60)/A = 0.000000, t_half = nan
+  import D = +1 (astra's case): pi0^2 = 0.5 / 2 / 4 -> x(60)/A = 0.2500 / 0.9917 / 1.0000  (endpoint min(A, L), L = pi0^2/2D)
+  [PASS] S2c export channel: x -> A for every pi0 != 0, x = 0 for pi0 = 0 (BINARY endpoint): 1e-06: 1.000000, 0.01: 1.000000, 1.0: 1.000000, 0.0: 0.000000
+  pi0 sets only a lag: t_half(1e-6) - t_half(1) = 6.79 (logarithmic in pi0); the amount does not depend on pi0 or m
+  D3 EB-K label: BINARY
+
+== D1 settled amount vs mass (CFG556 machinery executed read-only from its source up to its run block)
+
+  [canonical] rho_DE c^2 = a0^2/(kappa^2 G) = 7.7585e+21 Msun (km/s)^2 / Mpc^3
+   M200m[Msun/h] logMta  fret  M_set/Mta  Vf[km/s]  E_V/(MsVf2) E_Phi/(MsVf2)   C_rest/E_Phi   eta_crit  | EB-L removed frac (V / Phi)  band0.2-0.5rta (V / Phi)  bind r/rta (Phi)  g/a0 at bind
+      1e+11    11.37  0.10   0.843       82.4      0.837      1.441      2.018e+06   4.95e-07 | 0.00e+00 / 6.12e-05   0.0e+00 / 0.0e+00   1.7e-05-5.7e-04   3.1-10.8
+      3e+11    11.86  0.10   0.843      108.8      1.023      1.711      9.737e+05   1.03e-06 | 0.00e+00 / 9.62e-05   0.0e+00 / 0.0e+00   1.7e-05-1.0e-03   6.6-38.5
+      1e+12    12.39  0.10   0.843      147.7      1.017      1.626      5.561e+05   1.80e-06 | 0.00e+00 / 7.69e-05   0.0e+00 / 0.0e+00   1.7e-05-1.3e-03   7.8-56.5
+      3e+12    12.87  0.19   0.843      229.3      0.830      1.330      2.821e+05   3.54e-06 | 0.00e+00 / 8.02e-05   0.0e+00 / 0.0e+00   1.6e-05-1.4e-03   6.0-46.6
+      1e+13    13.40  0.43   0.843      381.8      0.783      1.281      1.056e+05   9.47e-06 | 0.00e+00 / 1.08e-04   0.0e+00 / 0.0e+00   1.6e-05-1.7e-03   3.8-34.4
+      1e+14    14.42  0.78   0.843      795.4      0.800      1.238      2.520e+04   3.97e-05 | 0.00e+00 / 9.89e-05   0.0e+00 / 0.0e+00   1.6e-05-2.2e-03   1.8-19.1
+      1e+15    15.44  0.90   0.843     1485.8      0.815      1.119      7.986e+03   1.25e-04 | 0.00e+00 / 5.38e-05   0.0e+00 / 0.0e+00   1.6e-05-2.6e-03   1.0-10.9
+
+  [alt] rho_DE c^2 = a0^2/(kappa^2 G) = 1.1331e+22 Msun (km/s)^2 / Mpc^3
+   M200m[Msun/h] logMta  fret  M_set/Mta  Vf[km/s]  E_V/(MsVf2) E_Phi/(MsVf2)   C_rest/E_Phi   eta_crit  | EB-L removed frac (V / Phi)  band0.2-0.5rta (V / Phi)  bind r/rta (Phi)  g/a0 at bind
+      1e+11    11.37  0.10   0.843       86.3      0.835      1.461      2.644e+06   3.78e-07 | 0.00e+00 / 5.89e-05   0.0e+00 / 0.0e+00   1.7e-05-5.1e-04   2.8-9.2
+      3e+11    11.86  0.10   0.843      114.1      1.021      1.738      1.274e+06   7.85e-07 | 0.00e+00 / 1.03e-04   0.0e+00 / 0.0e+00   1.7e-05-9.5e-04   6.1-32.0
+      1e+12    12.39  0.10   0.843      154.9      1.015      1.660      7.237e+05   1.38e-06 | 0.00e+00 / 8.58e-05   0.0e+00 / 0.0e+00   1.7e-05-1.2e-03   7.2-46.9
+      3e+12    12.87  0.19   0.843      240.4      0.829      1.358      3.669e+05   2.73e-06 | 0.00e+00 / 8.51e-05   0.0e+00 / 0.0e+00   1.6e-05-1.3e-03   5.6-38.8
+      1e+13    13.40  0.43   0.843      400.3      0.781      1.304      1.379e+05   7.25e-06 | 0.00e+00 / 1.08e-04   0.0e+00 / 0.0e+00   1.6e-05-1.5e-03   3.6-28.7
+      1e+14    14.42  0.78   0.843      833.9      0.797      1.265      3.275e+04   3.05e-05 | 0.00e+00 / 9.60e-05   0.0e+00 / 0.0e+00   1.6e-05-2.0e-03   1.7-16.0
+      1e+15    15.44  0.90   0.843     1557.8      0.813      1.159      1.024e+04   9.76e-05 | 0.00e+00 / 5.20e-05   0.0e+00 / 0.0e+00   1.6e-05-2.3e-03   1.0-9.3
+
+  D2 EB-R: min Xi = C_rest/E_Phi over all masses, both footings = 7.986e+03 -> INERT (capacity never binds; EB-R = candidate B)
+  D4 EB-eta: eta_crit spread (max/min over the D1 masses) = 252.8 / 258.2 -> KNOB (mass-dependent effect)
+  EB-L: largest removed fraction of settled mass inside 0.2-0.5 r_ta, any mass, either e bracket, both footings: 0.00e+00
+
+== T5 KiDS isolated lenses: magnitude-and-sign bound (innermost RAR bin g_obs = 5e-12 m s^-2)
+  [canonical] log M_gal 9.82 (nu_mono): R_min   59.9 kpc; removed / M_law(<R_min): e_V 5.20e-04, e_Phi 9.19e-04
+  [canonical] log M_gal 9.82 (exp    ): R_min   59.9 kpc; removed / M_law(<R_min): e_V 0.00e+00, e_Phi 0.00e+00
+  [canonical] log M_gal 10.67 (nu_mono): R_min  161.1 kpc; removed / M_law(<R_min): e_V 5.20e-04, e_Phi 9.05e-04
+  [canonical] log M_gal 10.67 (exp    ): R_min  161.1 kpc; removed / M_law(<R_min): e_V 0.00e+00, e_Phi 0.00e+00
+  [canonical] log M_gal 11.00 (nu_mono): R_min  234.1 kpc; removed / M_law(<R_min): e_V 5.20e-04, e_Phi 8.99e-04
+  [canonical] log M_gal 11.00 (exp    ): R_min  234.1 kpc; removed / M_law(<R_min): e_V 0.00e+00, e_Phi 0.00e+00
+  [alt] log M_gal 9.82 (nu_mono): R_min   65.6 kpc; removed / M_law(<R_min): e_V 4.34e-04, e_Phi 7.70e-04
+  [alt] log M_gal 9.82 (exp    ): R_min   65.6 kpc; removed / M_law(<R_min): e_V 0.00e+00, e_Phi 0.00e+00
+  [alt] log M_gal 10.67 (nu_mono): R_min  176.3 kpc; removed / M_law(<R_min): e_V 4.34e-04, e_Phi 7.59e-04
+  [alt] log M_gal 10.67 (exp    ): R_min  176.3 kpc; removed / M_law(<R_min): e_V 0.00e+00, e_Phi 0.00e+00
+  [alt] log M_gal 11.00 (nu_mono): R_min  256.2 kpc; removed / M_law(<R_min): e_V 4.34e-04, e_Phi 7.54e-04
+  [alt] log M_gal 11.00 (exp    ): R_min  256.2 kpc; removed / M_law(<R_min): e_V 0.00e+00, e_Phi 0.00e+00
+  T5 EB-L label: canonical UNCHANGED (FAIL, = CFG529 record) (max delta 9.2e-04); alt UNCHANGED (FAIL, = CFG529 record) (max delta 7.7e-04). EB-R inert -> record (census edge FAILS f30, both footings).
+
+== T6 growth proxy, CFG556 halo model (CONTEXT ONLY): R = 1 + (P_F,ta - P_L,ta)/P_L,std
+  [canonical] M-inf (capacity inf)       R(k=0.3) 1.124  R(k=1) 1.716  sigma8 ratio 1.0402
+  [canonical] M0 (capacity 0)            R(k=0.3) 0.797  R(k=1) 0.177  sigma8 ratio 0.9354
+  [canonical] Mc EB-L e_Phi cap x 1e-3   R(k=0.3) 0.986  R(k=1) 0.866  sigma8 ratio 0.9945
+  [PASS] S3/M-inf [canonical] capacity -> inf reproduces CFG556 primary R(k=0.3), R(k=1) (1e-9): 1.124364351/1.124364351, 1.715973180/1.715973180
+  [alt] M-inf (capacity inf)       R(k=0.3) 1.140  R(k=1) 1.885  sigma8 ratio 1.0463
+  [alt] M0 (capacity 0)            R(k=0.3) 0.819  R(k=1) 0.221  sigma8 ratio 0.9418
+  [alt] Mc EB-L e_Phi cap x 1e-3   R(k=0.3) 1.004  R(k=1) 0.971  sigma8 ratio 1.0004
+  [PASS] S3/M-inf [alt] capacity -> inf reproduces CFG556 primary R(k=0.3), R(k=1) (1e-9): 1.139791786/1.139791786, 1.885232461/1.885232461
+  [canonical] M0 changes R(k=1) by -1.539; Mc by -0.850
+  [alt] M0 changes R(k=1) by -1.664; Mc by -0.914
+
+8/9 checks pass (1 load-bearing failures); elapsed 6.1 s

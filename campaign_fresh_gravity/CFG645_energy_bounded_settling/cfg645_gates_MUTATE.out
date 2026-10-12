@@ -1,0 +1,45 @@
+CFG645 gates (FROZEN_CRITERIA.md, 21b7b0857): energy-bounded settling H-EB on candidate B's own source (all baryons) and B's derived
+reservoir (CFG637 RD = empty = CFG634 R0), both footings.
+
+Routes: B (capacity inf), EB-R (global rest-energy capacity rho_DE c^2 V_ta, inside-out), EB-L e_V and EB-L e_Phi (local cap
+rho_set <= a0^2/(kappa^2 G e)).  T1 SPARC (CFG487 harness as CFG634 T1 executes it), T2 Tian+26 groups, T3 X-COP (+ inner band) and
+T4 Bullet are CFG634's committed code executed from its source text with ONE patch per function applying the cap to the settled
+phantom (same method as CFG637's gates).  MUTATE (CFG645_MUTATE=1): M-inf reproduces CFG634 / CFG637 B numbers; M0 capacity 0;
+Mc EB-L e_Phi cap x 1e-3.
+
+== T1 SPARC (CFG487 harness executed read-only, as CFG634 T1)
+  B                      rms 0.10033 / 0.10127  max removed fraction of a galaxy's phantom inside R_last 0.00e+00 / 0.00e+00
+  M0 capacity 0          rms 0.39661 / 0.39661  max removed fraction of a galaxy's phantom inside R_last 1.00e+00 / 1.00e+00
+  Mc EB-L e_Phi x1e-3    rms 0.36398 / 0.35596  max removed fraction of a galaxy's phantom inside R_last 9.98e-01 / 9.98e-01
+  [PASS] M-inf T1: capacity inf reproduces CFG624's B rms (1e-9): 0.100328994/0.100328994, 0.101268350/0.101268350
+
+== T2 Tian+26 groups (CFG634 sigma_hcb, src = all, res = R0; one patch: the cap on mph)
+  B                      mean +0.0596 (Z +1.65) CLOSES / +0.0435 (Z +1.20) CLOSES
+  M0 capacity 0          mean +0.8098 (Z +15.17) ABOVE / +0.8098 (Z +15.17) ABOVE
+  Mc EB-L e_Phi x1e-3    mean +0.0796 (Z +2.41) ABOVE / +0.0605 (Z +1.80) CLOSES
+  [PASS] M-inf T2: capacity inf reproduces CFG634 B R0 and CFG637 B RD (mean, Z; 1e-9): max abs diff 0.0e+00
+
+== T3 X-COP (CFG634 cl_model / t3_cell, src = all, res = R0; one patch: subtract the capped-away settled mass)
+  B                      eta headline 1.8196+-0.067 / 1.6787+-0.062 -> FAIL     | inner 200-420 3.1632 / 2.9270 (FAIL)
+  M0 capacity 0          eta headline 6.7280+-0.196 / 6.7278+-0.196 -> FAIL     | inner 200-420 9.7688 / 9.7685 (FAIL)
+  Mc EB-L e_Phi x1e-3    eta headline 5.5579+-0.179 / 5.2563+-0.184 -> FAIL     | inner 200-420 9.0225 / 8.8620 (FAIL)
+  [PASS] M-inf T3: capacity inf reproduces CFG634 B R0 and CFG637 B RD (headline, inner band; 1e-9): max abs diff 0.0e+00
+
+== T4 Bullet (CFG634 dark_components, src = all, res = R0; one patch: the cap on rho_set; Paraficz PROVISIONAL)
+  B                      [can] dkappa main +0.0208 (z -3.41), sub +0.0007 (z -2.30) -> FAIL    | M(<250)/P16 main 0.323, sub 0.169 | M_set main 3.403e+14
+  B                      [alt] dkappa main +0.0246 (z -3.36), sub +0.0047 (z -2.24) -> FAIL    | M(<250)/P16 main 0.347, sub 0.183 | M_set main 3.822e+14
+  M0 capacity 0          [can] dkappa main -0.0089 (z -3.76), sub -0.0296 (z -2.68) -> FAIL    | M(<250)/P16 main 0.136, sub 0.043 | M_set main 2.031e+11
+  M0 capacity 0          [alt] dkappa main -0.0089 (z -3.76), sub -0.0296 (z -2.68) -> FAIL    | M(<250)/P16 main 0.136, sub 0.043 | M_set main 2.269e+11
+  Mc EB-L e_Phi x1e-3    [can] dkappa main -0.0097 (z -3.77), sub -0.0298 (z -2.69) -> FAIL    | M(<250)/P16 main 0.142, sub 0.065 | M_set main 2.706e+13
+  Mc EB-L e_Phi x1e-3    [alt] dkappa main -0.0103 (z -3.77), sub -0.0299 (z -2.69) -> FAIL    | M(<250)/P16 main 0.144, sub 0.071 | M_set main 3.670e+13
+  [PASS] M-inf T4: capacity inf reproduces CFG634 B1 B_alpha0 R0 (dkappa, M250/P16; 1e-9): max abs diff 0.0e+00
+
+== per-route labels (frozen rules) and inertness vs B
+  M0 capacity 0          T1 FAIL | T2 FAIL | T3 FAIL (inner FAIL) | T4b FAIL/FAIL | inert vs B: {'T1': False, 'T2': False, 'T3': False, 'T4': False}
+  Mc EB-L e_Phi x1e-3    T1 FAIL | T2 FAIL | T3 FAIL (inner FAIL) | T4b FAIL/FAIL | inert vs B: {'T1': False, 'T2': False, 'T3': False, 'T4': False}
+  reported: max rho_set/rho_cap reached anywhere on the gate profiles (EB-L binds only where > 1): Mc EB-L e_Phi x1e-3 T1 4.43e+04; Mc EB-L e_Phi x1e-3 T2 4.27e+05; Mc EB-L e_Phi x1e-3 T3 679; Mc EB-L e_Phi x1e-3 T4 9.58e+03
+  [PASS] M0: capacity 0 breaks galaxies (T1 rms > 0.15 both footings): 0.397 / 0.397
+  [PASS] M0: capacity 0 -> T2 does not CLOSE: ABOVE / ABOVE
+  [PASS] Mc: cap x 1e-3 changes T1, T2 or T3 beyond the inertness tolerance: {'T1': False, 'T2': False, 'T3': False, 'T4': False}
+
+7/7 checks pass; elapsed 5.3 s

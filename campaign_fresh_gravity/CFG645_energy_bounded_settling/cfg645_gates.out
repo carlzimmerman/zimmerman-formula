@@ -1,0 +1,54 @@
+CFG645 gates (FROZEN_CRITERIA.md, 21b7b0857): energy-bounded settling H-EB on candidate B's own source (all baryons) and B's derived
+reservoir (CFG637 RD = empty = CFG634 R0), both footings.
+
+Routes: B (capacity inf), EB-R (global rest-energy capacity rho_DE c^2 V_ta, inside-out), EB-L e_V and EB-L e_Phi (local cap
+rho_set <= a0^2/(kappa^2 G e)).  T1 SPARC (CFG487 harness as CFG634 T1 executes it), T2 Tian+26 groups, T3 X-COP (+ inner band) and
+T4 Bullet are CFG634's committed code executed from its source text with ONE patch per function applying the cap to the settled
+phantom (same method as CFG637's gates).  MUTATE (CFG645_MUTATE=1): M-inf reproduces CFG634 / CFG637 B numbers; M0 capacity 0;
+Mc EB-L e_Phi cap x 1e-3.
+
+== T1 SPARC (CFG487 harness executed read-only, as CFG634 T1)
+  B                      rms 0.10033 / 0.10127  max removed fraction of a galaxy's phantom inside R_last 0.00e+00 / 0.00e+00
+  EB-R                   rms 0.10033 / 0.10127  max removed fraction of a galaxy's phantom inside R_last 0.00e+00 / 0.00e+00
+  EB-L e_V               rms 0.10033 / 0.10123  max removed fraction of a galaxy's phantom inside R_last 1.44e-02 / 1.25e-02
+  EB-L e_Phi             rms 0.09985 / 0.10012  max removed fraction of a galaxy's phantom inside R_last 5.62e-02 / 4.53e-02
+  [PASS] M-inf T1: capacity inf reproduces CFG624's B rms (1e-9): 0.100328994/0.100328994, 0.101268350/0.101268350
+
+== T2 Tian+26 groups (CFG634 sigma_hcb, src = all, res = R0; one patch: the cap on mph)
+  B                      mean +0.0596 (Z +1.65) CLOSES / +0.0435 (Z +1.20) CLOSES
+  EB-R                   mean +0.0596 (Z +1.65) CLOSES / +0.0435 (Z +1.20) CLOSES
+  EB-L e_V               mean +0.0596 (Z +1.65) CLOSES / +0.0435 (Z +1.20) CLOSES
+  EB-L e_Phi             mean +0.0596 (Z +1.65) CLOSES / +0.0435 (Z +1.20) CLOSES
+  [PASS] M-inf T2: capacity inf reproduces CFG634 B R0 and CFG637 B RD (mean, Z; 1e-9): max abs diff 0.0e+00
+
+== T3 X-COP (CFG634 cl_model / t3_cell, src = all, res = R0; one patch: subtract the capped-away settled mass)
+  B                      eta headline 1.8196+-0.067 / 1.6787+-0.062 -> FAIL     | inner 200-420 3.1632 / 2.9270 (FAIL)
+  EB-R                   eta headline 1.8196+-0.067 / 1.6787+-0.062 -> FAIL     | inner 200-420 3.1632 / 2.9270 (FAIL)
+  EB-L e_V               eta headline 1.8196+-0.067 / 1.6787+-0.062 -> FAIL     | inner 200-420 3.1632 / 2.9270 (FAIL)
+  EB-L e_Phi             eta headline 1.8196+-0.067 / 1.6787+-0.062 -> FAIL     | inner 200-420 3.1632 / 2.9270 (FAIL)
+  [PASS] M-inf T3: capacity inf reproduces CFG634 B R0 and CFG637 B RD (headline, inner band; 1e-9): max abs diff 0.0e+00
+
+== T4 Bullet (CFG634 dark_components, src = all, res = R0; one patch: the cap on rho_set; Paraficz PROVISIONAL)
+  B                      [can] dkappa main +0.0208 (z -3.41), sub +0.0007 (z -2.30) -> FAIL    | M(<250)/P16 main 0.323, sub 0.169 | M_set main 3.403e+14
+  B                      [alt] dkappa main +0.0246 (z -3.36), sub +0.0047 (z -2.24) -> FAIL    | M(<250)/P16 main 0.347, sub 0.183 | M_set main 3.822e+14
+  EB-R                   [can] dkappa main +0.0208 (z -3.41), sub +0.0007 (z -2.30) -> FAIL    | M(<250)/P16 main 0.323, sub 0.169 | M_set main 3.403e+14
+  EB-R                   [alt] dkappa main +0.0246 (z -3.36), sub +0.0047 (z -2.24) -> FAIL    | M(<250)/P16 main 0.347, sub 0.183 | M_set main 3.822e+14
+  EB-L e_V               [can] dkappa main +0.0208 (z -3.41), sub +0.0007 (z -2.30) -> FAIL    | M(<250)/P16 main 0.323, sub 0.169 | M_set main 3.403e+14
+  EB-L e_V               [alt] dkappa main +0.0246 (z -3.36), sub +0.0047 (z -2.24) -> FAIL    | M(<250)/P16 main 0.347, sub 0.183 | M_set main 3.822e+14
+  EB-L e_Phi             [can] dkappa main +0.0208 (z -3.41), sub +0.0006 (z -2.30) -> FAIL    | M(<250)/P16 main 0.323, sub 0.169 | M_set main 3.403e+14
+  EB-L e_Phi             [alt] dkappa main +0.0246 (z -3.36), sub +0.0046 (z -2.25) -> FAIL    | M(<250)/P16 main 0.347, sub 0.183 | M_set main 3.822e+14
+  [PASS] M-inf T4: capacity inf reproduces CFG634 B1 B_alpha0 R0 (dkappa, M250/P16; 1e-9): max abs diff 0.0e+00
+
+== per-route labels (frozen rules) and inertness vs B
+  EB-R                   T1 PASS | T2 PASS | T3 FAIL (inner FAIL) | T4b FAIL/FAIL | inert vs B: {'T1': True, 'T2': True, 'T3': True, 'T4': True}
+  EB-L e_V               T1 PASS | T2 PASS | T3 FAIL (inner FAIL) | T4b FAIL/FAIL | inert vs B: {'T1': True, 'T2': True, 'T3': True, 'T4': True}
+  EB-L e_Phi             T1 PASS | T2 PASS | T3 FAIL (inner FAIL) | T4b FAIL/FAIL | inert vs B: {'T1': True, 'T2': True, 'T3': True, 'T4': True}
+  reported: max rho_set/rho_cap reached anywhere on the gate profiles (EB-L binds only where > 1): EB-L e_Phi T1 44.3; EB-L e_Phi T2 427; EB-L e_Phi T3 0.679; EB-L e_Phi T4 9.58; EB-L e_V T1 2.6; EB-L e_V T2 0.00164; EB-L e_V T3 0.0276; EB-L e_V T4 0.0269
+  VERDICT [EB-R]: INERT (= candidate B; inherits CFG596 / CFG637 fails)  (T6 {'canonical': 'UNCHANGED', 'alt': 'UNCHANGED'})
+  VERDICT [EB-L e_V]: INERT (= candidate B; inherits CFG596 / CFG637 fails)  (T6 {'canonical': 'UNCHANGED', 'alt': 'UNCHANGED'})
+  VERDICT [EB-L e_Phi]: INERT (= candidate B; inherits CFG596 / CFG637 fails)  (T6 {'canonical': 'UNCHANGED', 'alt': 'UNCHANGED'})
+  VERDICT [EB-K]: BINARY (exact Lambda (w = -1): pi0 = 0 -> nothing settles; any pi0 != 0 -> full target; pi0 is a free initial datum that only sets a lag)
+  VERDICT [EB-eta]: KNOB (KNOB (mass-dependent effect))
+  OVERALL: H-EB NOT DERIVABLE KNOB-FREE: every derived capacity is inert (= B) or zero; only a free efficiency (EB-eta) binds where clumping is decided -> KNOB
+
+4/4 checks pass; elapsed 5.7 s
