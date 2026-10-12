@@ -1,0 +1,36 @@
+CFG660: the law as the equilibrium of cold energy's own stress
+
+S1 (A) equilibrium residual along the law, general F and rho_b: 0  -> IDENTICALLY ZERO
+S2 (I) equilibrium residual along the law: (r*Derivative(g_N(r), r) + 2*g_N(r))*(F(g_N(r)) - g_N(r))*F(g_N(r))/(4*pi*G*r*g_N(r))
+   ... with F = identity (Newtonian): 0
+S3 deep limit: P_par = -x**2/(8*pi*G) + x**3/(6*pi*G*a0);  P_perp - P_par = x**2/(4*pi*G) - x**3/(4*pi*G*a0)  -> leading -g^2/8piG and +g^2/4piG: True  (= minus the Maxwell stress (g g - g^2 I/2)/4piG up to a constant)
+
+S4 zero point P_par(g->0) = 0: P_par < 0 somewhere in (0, 10 a0]: True -> NOT KINETIC
+   g/a0          0.01      0.10      0.50      1.00      3.00     10.00
+   P_par      -0.0000   -0.0004   -0.0057   -0.0148   -0.0346   -0.0482   (a0^2/G)
+   P_perp     +0.0000   +0.0004   +0.0075   +0.0242   +0.1199   +0.4895
+   beta=1-P_perp/P_par   +2.01    +2.07    +2.32    +2.64    +4.47   +11.15   (a particle gas needs P >= 0 and beta <= 1)
+
+S5 local WKB along the field (deep SIS point, g/a0 = 0.1, tau_ff = 1): max Im omega at k = 1e1/1e3/1e5: 2.47/21.5/214 -> ILL-POSED
+   k perpendicular to g: |g| unchanged at first order, no compressive stress response -> omega^2 = -4 pi G rho0 (Jeans, bounded)
+   addendum, + kinetic pressure c_s^2 = V^2/2: max Im omega at k = 1e1/1e3/1e5: 1.36/1.36/1.36  (bounded; units 1/tau_ff)
+
+N1 Hernquist (max |dlog g| vs the law, 0.5-10 a):
+   nu_mono|0.05    A 7.18e-07   I 0.278
+   nu_mono|0.3     A 6.37e-07   I 0.587
+   nu_mono|1.0     A 4.01e-07   I 0.582
+   nu_mono|3.0     A 3.38e-07   I 0.527
+   nu_mono|10.0    A 3.72e-07   I 0.494
+   exp|0.05        A 6.88e-07   I 0.260
+   exp|0.3         A 6.11e-07   I 0.579
+   exp|1.0         A 4.10e-07   I 0.581
+   exp|3.0         A 3.54e-07   I 0.527
+   exp|10.0        A 3.59e-07   I 0.494
+   N1 (A within 1e-3 dex everywhere): PASS
+
+D1 [canonical] SPARC Upsilon 0.61, 175 galaxies integrated: rms law 0.1003  isotropic 0.1766 (d +0.0763)  anisotropic 0.1003 (d +7.3e-09)  [M2 anisotropy removed 0.1766]
+
+D1 [alt] SPARC Upsilon 0.61, 175 galaxies integrated: rms law 0.1013  isotropic 0.1870 (d +0.0858)  anisotropic 0.1013 (d +1.5e-08)  [M2 anisotropy removed 0.1870]
+D1 label: ISOTROPIC EXCLUDED; anisotropic implementation check |d_A| <= 0.002: True
+
+LANE LABEL: LAW = EQUILIBRIUM OF A FIELD-ALIGNED STRESS (spherical): S1 True, N1 True, D1-A True; ISOTROPIC: ISOTROPIC EXCLUDED; KINETIC: NOT KINETIC; DYNAMICS: ILL-POSED
