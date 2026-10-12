@@ -606,11 +606,8 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 | 2026-06-14 | [10.5281/zenodo.20689216](https://doi.org/10.5281/zenodo.20689216) (concept 20689215) | Why Do the Stars at the Edge of a Galaxy Go So Fast? A Galaxy Mystery Explained for Kids | — |
 | 2026-06-14 | [10.5281/zenodo.20689721](https://doi.org/10.5281/zenodo.20689721) (concept 20689720) | The Search Was Never Wasted: How the Hunt for Dark Matter Built the Measurements That Make a0 = c^2 sqrt(Lambda/32pi) a Decidable Claim | — |
 | 2026-06-12 | [10.5281/zenodo.20670670](https://doi.org/10.5281/zenodo.20670670) (concept 20670669) | The Λ-Anchored Acceleration Scale a0 = c²√(Λ/32π): A Completed Falsification Map, Exact No-Go Results, and the Specification of the Unique Surviving Option | v1 |
-| 2026-06-12 | [10.5281/zenodo.20669204](https://doi.org/10.5281/zenodo.20669204) (concept 20555719) | The Zimmerman Conjecture on Optimal Human Flourishing: A First-Principles Derivation (v2.0 — The Love Correction) | 2.0 (outside the acceleration-scale programme) |
 | 2026-06-07 | [10.5281/zenodo.20576494](https://doi.org/10.5281/zenodo.20576494) (concept 20576493) | The Zimmerman Theory of Gravity — Research Corpus (code, data, and analysis) | 2026-06-06 |
 | 2026-06-07 | [10.5281/zenodo.20576485](https://doi.org/10.5281/zenodo.20576485) (concept 20576484) | The Zimmerman Theory of Gravity (comprehensive edition; the TOE/SM claims in it are RETRACTED, see RETRACTIONS.md) | 2026-06-06 |
-| 2026-06-05 | [10.5281/zenodo.20555720](https://doi.org/10.5281/zenodo.20555720) (concept 20555719) | The Zimmerman Conjecture on Optimal Human Flourishing: A First-Principles Derivation | — (outside the acceleration-scale programme) |
-| 2026-05-08 | [10.5281/zenodo.20077566](https://doi.org/10.5281/zenodo.20077566) (concept 20077565) | Z² Unified Action in the Plant Kingdom: Statistical Evidence for Universal Aromatic Phase-Lock Constants Across 14 Major Agricultural Crops | 1.0.0 (outside the acceleration-scale programme) |
 
 ---
 
