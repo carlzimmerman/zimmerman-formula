@@ -1,0 +1,47 @@
+====================================================================================================
+CFG651  A5 condensed source vs the early-type age signal (POST-HOC mechanism test)  PRIMARY
+====================================================================================================
+--- controls
+  [PASS] C1 CFG700 measured A(K9) reproduced +0.16578 vs +0.16578
+  [PASS] C3 SFR coverage in f30 early 0.9998 (>= 0.98)
+  [PASS] C4 OLD/YOUNG median log M* diff -0.0001
+
+census: f30 groups log M_ta [Msun/h] range 10.89-12.57; f_ret > 0.10 in 0.113 of f30 groups; chi_age,max = 0.0603
+  [PASS] C5 copied law_vecs_df = CFG531 law_vecs at df = 0.1 (max rel 0.0e+00)
+  [PASS] C2 CFG585 D(A, canonical, K9) reproduced +0.9411 vs +0.9411
+
+--- per-lens shift summaries (Delta f in units of M*)
+  OLD7   R2 mean Delta f -0.1286  (record f_cold mean 0.1667; median log sSFR -14.15)
+  YOUNG7 R2 mean Delta f +0.2121  (record f_cold mean 0.1699; median log sSFR -10.43)
+  OLD5   R2 mean Delta f -0.1283  (record f_cold mean 0.1658; median log sSFR -14.15)
+  YOUNG5 R2 mean Delta f +0.2109  (record f_cold mean 0.1707; median log sSFR -10.43)
+
+equal-source law baseline A_base (composition only): canonical -0.00012 / alt -0.00012
+  table cfg651_0 (R2 OLD7) built  t=34s  peak RSS 1.18 GB
+  table cfg651_1 (R2 YOUNG7) built  t=64s  peak RSS 1.18 GB
+  table cfg651_2 (R2 OLD5) built  t=93s  peak RSS 1.18 GB
+  table cfg651_3 (R2 YOUNG5) built  t=123s  peak RSS 1.18 GB
+  [R2 canonical] A_pred -0.06088 (increment -0.06076) vs A_meas +0.1658 +- 0.0712 -> FAILS / DOES NOT ACCOUNT;  D_pred -0.1450 vs +0.9411 +- 0.3544 -> FAILS / DOES NOT ACCOUNT
+  [R2 alt      ] A_pred -0.06068 (increment -0.06056) vs A_meas +0.1658 +- 0.0712 -> FAILS / DOES NOT ACCOUNT;  D_pred -0.1442 vs +0.8619 +- 0.3241 -> FAILS / DOES NOT ACCOUNT
+  table cfg651_4 (R1 OLD7) built  t=156s  peak RSS 1.18 GB
+  table cfg651_5 (R1 YOUNG7) built  t=156s  peak RSS 1.18 GB
+  [R1 canonical] A_pred +0.00094 (increment +0.00106) vs A_meas +0.1658 +- 0.0712 -> TENSION / DOES NOT ACCOUNT;  D_pred +0.0026 vs +0.9411 +- 0.3544 -> TENSION / DOES NOT ACCOUNT
+  [R1 alt      ] A_pred +0.00093 (increment +0.00105) vs A_meas +0.1658 +- 0.0712 -> TENSION / DOES NOT ACCOUNT;  D_pred +0.0026 vs +0.8619 +- 0.3241 -> TENSION / DOES NOT ACCOUNT
+  table cfg651_6 (R3a OLD7) built  t=187s  peak RSS 1.18 GB
+  table cfg651_7 (R3a YOUNG7) built  t=216s  peak RSS 1.18 GB
+  table cfg651_8 (R3a OLD5) built  t=245s  peak RSS 1.18 GB
+  table cfg651_9 (R3a YOUNG5) built  t=274s  peak RSS 1.18 GB
+  [R3a canonical] A_pred +0.08722 (increment +0.08734) vs A_meas +0.1658 +- 0.0712 -> CONSISTENT / ACCOUNTS FOR;  D_pred +0.2117 vs +0.9411 +- 0.3544 -> TENSION / DOES NOT ACCOUNT
+  [R3a alt      ] A_pred +0.08694 (increment +0.08706) vs A_meas +0.1658 +- 0.0712 -> CONSISTENT / ACCOUNTS FOR;  D_pred +0.2105 vs +0.8619 +- 0.3241 -> TENSION / DOES NOT ACCOUNT
+  table cfg651_10 (R3b OLD7) built  t=304s  peak RSS 1.18 GB
+  table cfg651_11 (R3b YOUNG7) built  t=304s  peak RSS 1.18 GB
+  [R3b canonical] A_pred +0.01646 (increment +0.01658) vs A_meas +0.1658 +- 0.0712 -> TENSION / DOES NOT ACCOUNT;  D_pred +0.0411 vs +0.9411 +- 0.3544 -> TENSION / DOES NOT ACCOUNT
+  [R3b alt      ] A_pred +0.01640 (increment +0.01652) vs A_meas +0.1658 +- 0.0712 -> TENSION / DOES NOT ACCOUNT;  D_pred +0.0409 vs +0.8619 +- 0.3241 -> TENSION / DOES NOT ACCOUNT
+
+--- verdicts (PRIMARY = R2, statistic A; secondary D)
+  canonical: PRIMARY FAILS (DOES NOT ACCOUNT the signal); secondary D FAILS (DOES NOT ACCOUNT)
+  alt      : PRIMARY FAILS (DOES NOT ACCOUNT the signal); secondary D FAILS (DOES NOT ACCOUNT)
+  ceiling [canonical]: largest R1/R3 increment +0.08734 vs meas - 2 sigma +0.0233 -> ceiling reaches the 2 sigma band
+  ceiling [alt]: largest R1/R3 increment +0.08706 vs meas - 2 sigma +0.0233 -> ceiling reaches the 2 sigma band
+
+checks: 5/5 pass   peak RSS 1.18 GB   304 s
