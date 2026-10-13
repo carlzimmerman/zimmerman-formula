@@ -19,3 +19,21 @@ for gaps 0.1–0.5, so it is cluster members leaking through SDSS photo-z. With 
 MUTATE (shuffled positions): ratios return to 1 (one bin at 0.72 ± 0.10, the only >2σ excursion of 9).
 SDSS is too shallow for this test; it needs deeper imaging with good photo-z (e.g. HSC, DES, KiDS).
 κ fitted; cold energy mass required; not theory closed.
+
+## Addendum A1 result — KiDS DR5 + DES Y6 (criteria 461d16c55; cfg668_a1_analysis.py → cfg668_a1.out)
+120 KiDS + 248 DES clusters (redMaPPer λ>30), 137 + 256 clean blank fields, 1.45 M galaxies (r 20–24).
+Combined, 0–2', galaxies behind clusters / blank sky:
+| photo-z gap | r 20–22 | r 22–23 | r 23–24 | frozen verdict |
+|---|---|---|---|---|
+| +0.3 (primary) | 1.43 ± 0.06 (s 0.70) | 1.23 ± 0.03 (s 0.48) | 1.03 ± 0.02 (s 0.37) | CONTAMINATED |
+| +0.4 (confirm) | 1.33 ± 0.07 (s 0.84) | 1.09 ± 0.03 (s 0.57) | 0.95 ± 0.02 (s 0.40) | MIXED (no frozen pattern) |
+
+**Verdict as frozen: LENSING NOT DETECTED.** The primary gap is still contaminated by members. At +0.4 the faint bin sits at
+s ≈ 0.40, the null point where magnification changes nothing, so there is no bin with s clearly below 0.4 to show the deficit.
+The faint-core deficit that does appear (DES 0.943 ± 0.018 at +0.4, s = 0.44; 0.899 ± 0.018 at +0.5, s = 0.50) is in a bin where
+lensing predicts a small EXCESS, so it reads as faint galaxies hidden behind bright cluster members (obscuration/blending), not lensing.
+Not frozen, hint only: the bright excess survives a +0.5 gap (DES 1.44 ± 0.12, KiDS 1.17 ± 0.13). A magnification μ ≈ 1.2 would
+give about that, but bright members thrown to high photo-z do the same, and this data cannot split them.
+MUTATE: DES null at every gap; KiDS shows a coherent ~5% low offset (up to −2.4σ), so KiDS field-to-field systematics are ~5%.
+Next honest step: shear (already done: CFG663 says the extra sector lenses) or spectroscopic backgrounds; counts cannot do it.
+κ fitted; cold energy mass required; not theory closed.
