@@ -1,0 +1,88 @@
+EXACT FINITE Q3 ACTION / FESHBACH DERIVATION
+13 October 2026. Conditional on supplied NR quantum Hamiltonian and regulator.
+
+Fourier normalization in a3D torus:
+psi(x)=Vbox^-1/2 sum_p a_p exp(ip.x), b(x)=Vbox^-1/2 sum_K b_K exp(iK.x).
+Exact integer momentum labels n∈[-Kcut,Kcut]^3, no FFT aliasing/modulo.
+D=sum_p p²/(2m) a_p†a_p +sum_K[delta+K²/(2M)]b_K†b_K
+ +gamma sum_(p+q=K retained) [b_K†a_p a_q+a_p†a_q†b_K]
+ +kappa sum_(p+q=r+s, allretained) a_p†a_q†a_r a_s,
+gamma=c3/sqrtVbox,kappa=k/Vbox. All pair orderings remain in the sums.
+No assumed width, spectral density, bath or dissipative/imaginary term occurs.
+
+At Q3 and totalP, only two Fock families exist within the specified cutoff:
+B: oneb atK plus onea atp, K+p=P;
+A: threea atp1,p2,p3, p1+p2+p3=P, unordered occupation basis.
+All these families are enumerated; antiparticles and Q≠3 sectors belong to a
+different quantum/relativistic truncation and are not claimed exhaustive here.
+
+For each annihilated pair(r,s), the ladder factor is
+sqrt(n_r)*sqrt(n_s−1_(r=s)), with ordered multiplicity2if r≠s,1otherwise.
+The remaining daughter carries p=P−(r+s). Source creation has sqrt1.
+These factors generate V_BA directly, including identical-mode stimulation.
+Quartic creation uses sqrt(n_p+1)*sqrt(n_q+1+1_(p=q)), with analogous ordering.
+Every momentum-conserving pair is retained, INCLUDING r+s outside the source
+cutoff when both daughter modes are retained. The latter contributes quartic
+stress/energy even though the corresponding b mode is absent.
+
+Let F_all map each3a state to its remaining singlea, weighted by ordered pair
+annihilation. Each row also has a definite pairtotal S=P−p_remaining.
+F_in uses rows whose S lies on the retained source grid, F_out the others.
+Then U_AA=(kappa)F_all†F_all, V_BA=(gamma)F_in,
+using physical coefficients here; numerical output scales each by1/delta.
+For all positive source delta,
+D−T = R†R + diag_A[(kappa−gamma²/delta)F_in†F_in
+                   +kappa F_out†F_out],
+R=[sqrt(delta)I_B, gamma/sqrt(delta) F_in].
+Thus the outside pair sums are not silently dropped in the positivity argument.
+The source action implies k−c3²/delta>=0; fixed-volume coefficients preserve it.
+The calculation independently builds all quartic ladder terms and compares this
+Gram identity; positivity is a regulator theorem, not a UV removal prescription.
+
+Block evolution with b+psi amplitudes beta and3psi amplitudes alpha:
+i dotbeta=B beta+V alpha, i dotalpha=V†beta+C alpha,
+B=T_B+delta I, C=T_A+U_AA, V=actualtrilinear matrix.
+With an arbitrary prepared3psi component alpha0,
+alpha(t)=exp(-iCt)alpha0−i integral_0^t exp[-iC(t−s)]V†beta(s)ds.
+Hence
+i dotbeta=B beta+V exp(-iCt)alpha0
+            −i integral_0^t K(t−s)beta(s)ds,
+K(t)=V exp(-iCt)V†.
+The tested initial state has alpha0=0, but that preparation is an input.
+This exact kernel is finite, Hermitian-conjugate in time K(−t)=K(t)†, and
+oscillatory. It is NOT a local damping/collision coefficient. Removing it would
+remove real action-mediated conversion and the mixed return amplitudes.
+
+For Imz≠0,
+G_B(z)=[zI−B−V(zI−C)^−1 V†]^−1
+is the b+psi block of the full finite resolvent(zI−H)^−1.
+This was checked numerically at z=Einitial/delta+.37i using the actual D/delta matrices.
+Individual selfenergy/propagator poles at real C eigenvalues do not require a
+separate divergent elastic rate: full Hermitian matrix evolution is bounded.
+Finite real eigenvalues/recurrences and coherent returns remain; no continuum
+resonance width or irreversible limit is inferred.
+
+Interaction-inclusive energy at every stored time:
+<D>=<Tpsi>+<Tb>+delta<Nb>+<W>+<U>,
+<W>=2Re(beta†V alpha), <U>=alpha†U_AA alpha.
+Q=3 and totalP hold for every basis element. Physical energy is3m+<D>.
+Component rest counts/kinetic energies alone do not conserve this energy.
+
+Prepared fixture and exact bare-shell limitation
+m=1,delta=1/5000,M=10001/5000,k0²=m delta,
+initialB=b0+a_(1,0,0), E0/delta=3/2.
+For an arbitrary B=b_n+a_(P−n),
+E_B/delta=1+(2500/10001)|n|²+(1/2)|P−n|².
+Bare degeneracy with the initial state implies
+5000|n|²+10001|P−n|²=10001.
+If |P−n|²>=2, impossible. If it equals1, |n|²=0, the originalstate.
+If it equals0,5000|n|²=10001 is impossible for integer momentum.
+Therefore no distinct B bare-on-shell branch exists for this initial fixture,
+even at larger cutoff with the SAME integergrid/mass convention.
+The observed distinctB probabilities consequently demonstrate coherent off-shell
+momentum-changing amplitudes, not asymptotic elastic/thermalization rates.
+In the dominant returned state n=(1,±1,0) or(1,0,±1), bareE/delta=1.999950005,
+whereas initialE/delta=1.5; interaction coherence balances the full mean energy.
+This restriction is not a universal absence of mixedscattering in other states,
+continuous momenta, or a different declared regulator. No grid/preparation was
+retuned to manufacture a bare-on-shell branch after observing the results.
