@@ -31,3 +31,21 @@ slope **2.234** vs sealed 2.30 / 2.23 → CONSISTENT (Δ 0.061 / 0.008); mass PA
 **q_M 0.924 vs frozen window [0.794, 0.894] → OUTSIDE (rounder by 0.03): P2 INCONSISTENT as previewed**; m3 0.002, m4 0.006 →
 CONSISTENT. Caveats: single optimiser run, no σ; θE moved 0.443″ → 0.474″ (prediction normalised at 0.443″). The verdict waits for
 the stage-2 posterior.
+
+## RESULT (2026-10-13): scored on the maximum-likelihood fit; stage-2 posterior NOT RUN (frozen 12-h rule)
+The Nautilus stage-2 search reached only 2,000 likelihood evaluations in 11 h 12 min (≈ 20 s each in the search; checkpoint
+`checkpoint.hdf5`, n_like = 2000) and was stopped under the frozen 12-h rule: **posterior NOT RUN**. With no posterior σ, the
+frozen tolerances apply unwidened (P1: 0.10; P2: the exact windows). Scored by `cfg710_score.py` on the Nelder–Mead
+maximum-likelihood fit of the identical model (`cfg710_score_preview_NelderMead.json`):
+
+| prediction (sealed before the fit) | measured | verdict |
+|---|---|---|
+| **P1 slope** 2.30 can / 2.23 alt | **2.234** | **CONSISTENT** (Δ 0.061 / 0.008) |
+| **P2 alignment** PA 130.4° ± 10°; q_M ∈ [0.794, 0.894] | PA 132.1° (Δ 1.7°); **q_M 0.924** | **INCONSISTENT** (PA passes; axis ratio rounder than the window by 0.03) |
+| **P3 multipoles** ≤ 0.02 | m3 0.002, m4 0.006 | **CONSISTENT** |
+
+**Label: P1 CONSISTENT, P2 INCONSISTENT (axis ratio), P3 CONSISTENT; both footings; ML-only (posterior not run).**
+Reading: from starlight plus the law, with no halo parameter, the predicted total slope matches the measured one (2.23–2.30 vs
+2.234; pure stars 3.26); mass and light are aligned and multipole-free. The mass is rounder than the frozen window allowed — the
+sign the framework expects (the cold-energy component is rounder than the stars), the size larger than predicted; not rescued.
+Limits: one lens; ML point only; θE 0.443″ (prediction) vs 0.474″ (fit); ν_mono tail and spherical deprojection.
