@@ -145,3 +145,22 @@ halts at r_M — an inserted global scale, not a mechanism.
 4. Before quoting any magnitude: state *where* the rate-limiting step happens and confirm the
    formula is valid there. That single error accounts for most of the withdrawn results.
 5. Nothing is published as a completed theory while row 10 is open.
+
+---
+
+## Status 2026-10-12 (appended; the rows above are the 08-21 record and are not edited)
+
+Current footings 9.3603e-11 / 1.1312e-10. The live picture (campaign_fresh_gravity/MECHANISM_JOINT_2026-10-12.md §5–6): cold
+energy is real, gravitating mass on the one shared metric, arranged inside each bound system by its own baryons through a
+nonlocal, history-driven settling (class A). The law and the supply are axioms; κ = ½ is fitted.
+
+| # | row | status now | source |
+|---|---|---|---|
+| 1 | Rotation curves | ⚠️ unchanged: observed rms 0.100 / 0.101 dex on the CFG4 SPARC harness (not the intrinsic 0.06 target) | CFG663 criteria |
+| 3 | Lensing tracks dynamics | ✅ galaxy scale, and now **required**: a response that does not lens is EXCLUDED (Δrms +0.155/+0.158 dex, 2000/2000 KiDS draws). 🔴 cosmic shear: the current settling rules are EXCLUDED on canonical by raw KiDS-1000 ξ± (Δχ² +68.7) | CFG663; CFG596 |
+| 6 | GW170817 | ✅ on the shared-metric branch. Lean-certified (zero sorry): any sector that tilts light but not gravitons by the law's own deep tilt delays light ≥ 2.36e6 / 2.60e6 s through the Milky Way alone, from **every** sky direction, either kernel — ≥ 1.3e6 × the 1.7 s bound | CFG665 |
+| 8 | Cosmology | background unchanged; 🔴 nonlinear growth on the gravitating field fails at 512³ (PAPER45 v2.2 corrected) | CFG555, CFG596 |
+| 10 | Amplitude law | 🔴 OPEN, now specified: the selector must satisfy S1–S9 (reads c and the enclosed baryons nonlocally, deposits real lensing mass, silent at high g, not thermal, two-way energy exchange, frozen in mergers). No microphysics supplies it | MECHANISM_JOINT §6; CFG660, CFG661 |
+| new | Substructure | NOT DIAGNOSTIC: J0946's dark solution is EXCLUDED (needs ×13 its light limit at g ≈ 10 a0); its luminous solution is CONSISTENT (law on its light 10^8.8 vs measured 10^8.9). Decider: J0946 satellite light ≳ 7e7 L☉ keeps it, < 5e6 kills it | CFG666 |
+
+Rule 5 still binds: nothing is published as a completed theory while row 10 is open.
