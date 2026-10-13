@@ -148,6 +148,8 @@
   - **CFG686: raw KiDS-1000 shear around 8 ACCEPT clusters vs the law's lensing from each cluster's own Chandra gas: LAW SUFFICES** (A_outer 1.02 ± 0.24 / 0.94 ± 0.24 vs Newtonian baryons 3.52 ± 0.91); mid band 1.97σ hint of core excess; inner unusable; N = 8, gas extrapolated, errors ~1.6× low. Note: this is the law sourced by ALL gas — in tension with v2's condensed-only source for clusters, and to be reconciled with CFG652 (groups: more mass than either).
   - **CFG641: H-CB + deficit gate in the merger stopwatch** — no single reservoir rule passes static (X-COP) and merger tests together (RN: X-COP inner pass, Harvey fail; RI: mergers pass, X-COP inner fail).
 
+- **One-action construction C* (CFG694 + CFG695 saturating vacuum + CFG691 stiffness + CFG693 basins) on untested gates (CFG658; criteria 12c5ab6b3; MUTATE all exact):** PASSES all three EFE gates — wide binaries with basins + stiffness γ̂ 1.016 / 1.020 (−0.8σ vs DR3; consistent with the sealed Newtonian DR4 prediction), cluster satellites χ² 0.7 / 0.6 of 5, star nodes 0.035 of the star's mass (stiffness resolves the "every star a node" issue) — and CFG686's cluster shear (law suffices). FAILS C3 early types (Z +3.69, same as ν_mono) and X-COP as built (η 1.81 / 1.67; only condensed + NFW-shaped reservoir passes both bands). eFEDS groups exclude both sources. The kernel swap ν_mono → ν_s changes no recorded verdict; D2 is set by supply/source, not the kernel. **A5 tension:** the action has no phase label (P responds to ∇Φ sourced by all baryons), so v2's condensed-only source needs an added phase-dependent term. PM spec written (K12, K0), not run.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
