@@ -92,6 +92,8 @@ def runs_list():
     if SCORE == "As":
         fs = glob.glob(os.path.join(W650, "S0As", "cfg650_na_As_S0_*.json")); S = json.load(open(fs[0])) if fs else None
         pairs = (("canonical", "T1As"),)
+    elif os.environ.get("CFG650_JOBSET") == "T12":  # addendum A1
+        S = load596("P0"); pairs = (("canonical", "T12"),)
     else:
         S = load596("P0")
         pairs = (("canonical", "T1x" if glob.glob(os.path.join(W650, "T1x", "cfg650_*_RES_*.json")) else "T1"),
@@ -119,7 +121,7 @@ def strip(r): return {k: v for k, v in r.items() if k != "t"}
 RESULT = dict(lane="CFG650", date="2026-10-12", criteria_commit="3087298c7", score=SCORE, cmb_gate=CMB_GATE, statistic_from="CFG596 f6c27d401 + CFG636 89aeaae12 (growth gate demoted to benchmark)", mutate=MUT, test530=TEST, runs={})
 P("CFG650 combination (theory v2 candidate) framework-native shear test (own PM gravitating-field P(k, z) vs matched S0; CFG592 machinery unchanged)" + (" [MUTATE]" if MUT else "") + (" [PIPELINE TEST on CFG530 L100 N512]" if TEST else ""))
 P("kappa = 1/2 FITTED; footings never pooled; cold energy MASS still required; not theory closed. T-OWN is post-hoc relative to CFG592 (disclosed).")
-mfn = os.path.join(HERE, f"cfg650_native_results{'_As' if SCORE == 'As' else ''}{'_test530' if TEST else ''}_MUTATE.json")
+mfn = os.path.join(HERE, f"cfg650_native_results{'_As' if SCORE == 'As' else ''}{'_T12' if os.environ.get('CFG650_JOBSET') == 'T12' else ''}{'_test530' if TEST else ''}_MUTATE.json")
 TOWN = json.load(open(mfn))["T_OWN"] if (not MUT and os.path.exists(mfn)) else {}
 for foot, F, S, N, L in runs_list():
     run, held, extra, B0 = build(F, S, N, L, foot, f"L{L:g}_N{N}_{foot}")
@@ -229,7 +231,7 @@ else:
     RESULT["verdict_per_footing"] = VER; RESULT["verdict_note"] = "raw-data classes only; CMB gate " + CMB_GATE + "; conditional on the inherited inputs (criteria section 7)"
     P("verdict per footing (criteria section 6): " + "; ".join(f"{k}: {v}" for k, v in VER.items()))
     P("\nfooting summary: " + "; ".join(f"{k}: {v.get('class_')}" for k, v in SUM.items()) + f"   ({time.time() - T0:.0f} s)")
-SUF = ("_As" if SCORE == "As" else "") + SUF
+SUF = ("_As" if SCORE == "As" else "") + ("_T12" if os.environ.get("CFG650_JOBSET") == "T12" else "") + SUF
 json.dump(RESULT, open(os.path.join(HERE, f"cfg650_native_results{SUF}.json"), "w"), indent=1)
 open(os.path.join(HERE, f"cfg650_native{SUF}.out"), "w").write("\n".join(OUT) + "\n")
 if MUT: sys.exit(1 if RESULT["NZ1_all_bite"] else 0)

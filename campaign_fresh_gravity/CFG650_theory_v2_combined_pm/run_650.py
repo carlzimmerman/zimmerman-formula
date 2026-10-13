@@ -25,6 +25,7 @@ JOBS = {
     "VM12": _j(_V, "12"), "VM123": _j(_V, "123"), "VM1234": _j(_V, "1234"),
     "T1": _j(_P, "1234", foot="canonical"), "T2": _j(_P, "1234", foot="alt"),
     "T1x": _j(_P, "123", foot="canonical"), "T2x": _j(_P, "123", foot="alt"),
+    "T12": _j(_P, "12", foot="canonical"),  # addendum A1 (FROZEN_CRITERIA_ADDENDUM_T12.md)
     "T1As": _j(_P, "1234", foot="canonical", IC="As"), "S0As": _j(_P, "", sw="S0", foot="canonical", IC="As"),
 }
 
