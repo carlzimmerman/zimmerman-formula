@@ -17,3 +17,10 @@ a₀/(2πG) "plateau" value); the few > 3σ excursions are massive bulge-dominat
 vanish at higher stellar M/L, i.e. they track the stellar-mass assumption. All-radii excursions are inner points where the
 baryon model dominates. **Verdict: CONSISTENT, not discriminating** — the ceiling is a loose upper bound; a sharper test needs
 the capacity's radial form (the tether profile), not just its maximum. κ = ½ fitted; not theory closed.
+
+## Addendum: cluster cores exceed the capacity (cfg724_cluster_cores.py)
+Bullet Cluster cores (lensing M(<250 kpc), Paraficz+16 PROVISIONAL, minus CFG625 projected baryons): dark Σ = 1026 / 942
+M☉/pc², i.e. **4.0–4.8× the capacity** (main) and 3.6–4.4× (sub). If the tether capacity of CFG722 is real, the law-shaped
+(tethered) cold energy can supply at most ~¼ of a cluster core's dark mass: the rest must be a second, UNTETHERED,
+collisionless population that does not obey the capacity — the same structure CFG722 said overflow would need, and the
+"extra core mass in massive systems" seen in CFG669/687/652. Galaxies never reach the ceiling; massive cores always exceed it.
