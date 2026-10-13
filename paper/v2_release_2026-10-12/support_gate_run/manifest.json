@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "V2_SUPPORT_AND_GATING_SCOPE",
+  "repository": {
+    "commit": "2ddb9c4ad2162c354a0dc063eb15ab5b03418e89",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "paper/v2_release_2026-10-12/check_support_and_gates.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "A control-spectrum support cut does not guarantee candidate support; missing T-OWN produces a provisional PASS string; signed cancellation defeats a generic relative-error interpretation.",
+    "coefficient_domain": "IEEE float64 for support; exact integers for cancellation; literal source branch execution for status",
+    "conventions": "One redshift node, two multipoles, positive unit projection kernels, k=1 supported and k=2 outside.",
+    "inputs": [
+      "paper/v2_release_2026-10-12/check_support_and_gates.py",
+      "campaign_fresh_gravity/CFG592_cosmic_shear_likelihood/cfg592_native.py",
+      "campaign_fresh_gravity/CFG650_theory_v2_combined_pm/cfg650_native.py"
+    ],
+    "bounds": {
+      "support_spectra": [
+        [
+          19,
+          1
+        ],
+        [
+          19,
+          100
+        ]
+      ],
+      "gate_cases": [
+        "missing",
+        "failed",
+        "passed"
+      ],
+      "signed_terms": [
+        100,
+        -99,
+        -1
+      ]
+    },
+    "non_claims": [
+      "No actual survey support fraction measured",
+      "No historical production score invalidated",
+      "No calibration of likelihood significance"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T01:39:48.278050+00:00",
+    "runtime_seconds": 0.183593,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "paper/v2_release_2026-10-12/check_support_and_gates.py",
+    "campaign_fresh_gravity/CFG592_cosmic_shear_likelihood/cfg592_native.py",
+    "campaign_fresh_gravity/CFG650_theory_v2_combined_pm/cfg650_native.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "paper/v2_release_2026-10-12/check_support_and_gates.py",
+      "sha256": "2328823115d0cdac5001392cd6b2fbe24e6dd25f2483575e72cd161a208ee437",
+      "sha256_after": "2328823115d0cdac5001392cd6b2fbe24e6dd25f2483575e72cd161a208ee437"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG592_cosmic_shear_likelihood/cfg592_native.py",
+      "sha256": "345ce8f8fbb82dba84a1d2447c24db7de31318fde969f9525ae780e614ecdb5c",
+      "sha256_after": "345ce8f8fbb82dba84a1d2447c24db7de31318fde969f9525ae780e614ecdb5c"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG650_theory_v2_combined_pm/cfg650_native.py",
+      "sha256": "d4fbde863e68107f7d0bbfff68d69d143e47053b3f4c0a0ac09e60fdbeb752de",
+      "sha256_after": "d4fbde863e68107f7d0bbfff68d69d143e47053b3f4c0a0ac09e60fdbeb752de"
+    }
+  ],
+  "output_directory": "paper/v2_release_2026-10-12/support_gate_run",
+  "declared_results": [
+    "paper/v2_release_2026-10-12/support_gate_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "paper/v2_release_2026-10-12/support_gate_run/stdout.txt",
+      "sha256": "7803375062ce59f895395af558da0c740e4be52e2eee53dfc24a1063f4bafef3",
+      "kind": "log"
+    },
+    {
+      "path": "paper/v2_release_2026-10-12/support_gate_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "paper/v2_release_2026-10-12/support_gate_run/result.json",
+      "sha256": "7803375062ce59f895395af558da0c740e4be52e2eee53dfc24a1063f4bafef3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
