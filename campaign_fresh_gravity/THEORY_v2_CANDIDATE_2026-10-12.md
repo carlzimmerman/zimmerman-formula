@@ -4,6 +4,21 @@ Status: **candidate**. It supersedes Theory v1's settling rule (excluded on raw 
 framework-native raw-data test (CFG650 job T12, 1024³; then T1). κ = ½ is fitted; the cold energy's mass is an input; this
 is not "theory closed". Every claim below cites a committed lane.
 
+> **RECONCILIATION 2026-10-13 (supersedes conflicting text below; sources CONSOLIDATED_STATUS_2026-10-13.md bcc948bef and the lanes cited).**
+> 1. **Shear labels are relative** (codex audit): every KiDS/DES verdict is reported with absolute χ²/p. S0: KiDS χ² 144.3 (p 0.014); CFG636: 158.2 (p 0.002); CFG596: 213.0 (p < 0.001).
+> 2. **T12 (M1+M2) is a POST-PREVIEW selection** (CFG650 addendum A1); T1x (M1+M2+M3, the frozen-rule combination after CFG648's FAIL) is the primary pre-declared run. The 256³ "+0.5–3.1%" is a PREVIEW benchmark vs the inherited-input S0, not a verdict; the native-input preview is the same (+0.5/+1.2/+3.0%, CFG654).
+> 3. **Ω_c/Ω_b**: primary = the self-consistent CMB pair (5.364 inherited; 5.376 native, CFG654 A1); BBN-ω_b 5.47–5.48 is a bracket (+2.2% supply, cannot close cluster gaps).
+> 4. **Age signal: NOT ROBUST** (CFG667/669: LePhare-mass artefact likely; Ks Z 0.93 upper bound). CFG651's wrong-sign result binds only if the signal is real. **The matched-mass early-type excess PERSISTS (CFG669, Ks Z 3.37) → C3 is a live FAILURE** (CFG678).
+> 5. **Eq. 9 (field form) is an AQUAL-family equation with an external-field effect; it conflicts with A8 (no EFE)** (astra FIELD_ORIGIN / RIGOROUS_AUDIT). The nonlocal route needs a length ℓ, and **no derivable ℓ passes R7** (CFG653). Eq. 9 is therefore NOT part of v2's mechanism.
+> 6. **Eq. 6: the sign Q ≥ 0 is not established** (v2 independent-audit counterexample; benchmarks need exchange of opposite signs, astra collective_energy).
+> 7. **New prediction**: finite supply forces an outer edge, r ≤ (1 + S/M_d)√(GM_d/a₀) (Lean supply_radius_bound).
+> 8. **Groups**: quote frozen labels (CFG540 "ABOVE LAW"; CFG543), not "resolved".
+> 9. **a₀(z) ∝ √ρ_DE(z)**: flat only for w = −1 (CFG676 DESI w0wa; CFG683/684 BAO degeneracy).
+> 10. **CFG678's 20-gate contract has NOT scored v2**; B1, B3/A2, C3, D2 remain open for it.
+> 11. Scoreboard additions: CFG663 (response must lens — supports A7); CFG655 NGC 1052 trail PASS conditional on the external formation label; CFG657 capture rule BRACKET-DEPENDENT (α knob); CFG690/691 context.
+> 12. Newer results: **CFG648 splashback FAILS** the frozen rule (cuts 35–39% of the growth excess, predicts α_eff = 0 in mergers, but over-corrects groups); **CFG656**: X-COP outskirts depend on unmeasured infall gas (B fails for any supply; v2 flips short ↔ ×2 over); **CFG652** hot-gas groups (eFEDS × KiDS): v2 and B both EXCLUDED, v2 closer (mass beyond members larger and more extended than both).
+> 13. Carry astra's caveat: the SPARC fit is not independent validation (the RAR family was built on SPARC).
+
 ## 1. Statement (one sentence)
 
 Gravity's acceleration scale is set by dark energy, a₀ = κc√(Gρ_DE); a cold, collisionless, gravity-only component ("cold
