@@ -136,6 +136,8 @@
 
 - **⚠️ The shear verdict is RELATIVE (codex v2-independent-audit d992929b9, accepted):** the CFG592/596/636/650 classifier takes only Δχ² vs S0, robustness deltas and a support flag — it would say CONSISTENT for two equally terrible fits. So "CONSISTENT" ≠ an adequate absolute fit and "EXCLUDED" ≠ a calibrated absolute rejection. Every future shear report must also give the candidate's ABSOLUTE χ² and p-value on the raw data (S0 itself: KiDS χ² 144.3, p 0.014; CFG636 158.2, p 0.002; CFG596 213.0, p < 0.001).
 
+- **Nonlocal response filter length (CFG653; criteria d44fee295): no derivable ℓ passes, and no constant ℓ passes R7.** Candidates r_M, c²/a₀, c/H_Λ, r_ta, r_zg all FAIL (cluster satellites at every ℓ; r_M also fails SPARC; cosmic lengths violate causality). The host field leaks through the filter as (ℓ/R)²; the filter removes the k = 0 mode, so the phantom's total mass is zero and curves fall sub-Keplerian beyond ℓ. Astra's nonlocal route cannot rescue the field form under R7.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
