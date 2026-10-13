@@ -34,3 +34,11 @@ The stiffness term is negligible at galaxy scales (ρ̄_cγ/r² ≈ 3–4e-43 s�
    - the polarization as the cold medium's displacement (CFG699: 40–110× too slow).
 
    C3 and D2 are profile failures that no relaxation mechanism changes (CFG678, CFG698).
+
+## Addendum (2026-10-13, after the result; the frozen verdict is unchanged)
+**Scope of the FAIL.** T1 used the frozen *linear* identification: inertia set by the cosmic-mean density, I = 1/ρ̄_c. It rules
+that identification out, not candidate B with a mechanism in general. Cold medium that has already collapsed into a halo is
+10³–10⁵ × denser locally. This lane's own MUTATE shows that ρ × 10⁴ cuts the period exactly 100×, which would put it at
+0.5–1.6 Gyr (y = 0.1–1), near or inside the bar. A nonlinear (Lagrangian) treatment of the tether for collapsed medium is
+needed before candidate B with a mechanism can be scored on settle time. It is **not** done here, and the tether's definition
+for large (collapse-scale) displacements is itself open.
