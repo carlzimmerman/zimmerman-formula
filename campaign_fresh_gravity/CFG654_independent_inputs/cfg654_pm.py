@@ -2,6 +2,8 @@
 """CFG654 engine = cfg650_pm.py (sha256 771d556c..., commit d0f8d3f38) + ONE switch, CFG654_INPUTS = inherited (default) | native.
   inherited: every constant, table and code path of cfg650_pm.py unchanged (the two hard-coded catchment literals 0.315 / 0.674 are
              now the names OM_TA / H_TA holding the SAME floats) -> all CFG650 modules OFF reproduces CFG596 bit for bit.
+  native_cmb (ADDENDUM A1, 2026-10-13, the PRIMARY native set): as native but omega_b = 0.02236 (the self-consistent CMB pair with
+             omega_c 0.1202; cfg654_ics_tables_cmb.npz, cfg654_delta_ta_cmb.json); native (BBN omega_b) is a declared bracket.
   native:    h, omega_b, omega_c, n_s from cfg654_ics_tables.npz (BBN omega_b; Planck 2018 TT,TE,EE+lowE omega_c, A_s, n_s;
              H0 from theta_* in the framework background); E(a) = sqrt(Om/a^3 + Or/a^4 + OL (1 - trickle)) (radiation + CFG630
              trickle); ICs = CAMB pre-switch-era linear cb spectrum at z_i = 49 normalised to A_s (NO sigma8, NO EH shape),
@@ -168,12 +170,13 @@ def dta_table():
     return json.load(open(DTA_FILE))
 
 # ---------------------------------------------------------------- CFG654 input switch
-INPUTS = os.environ.get("CFG654_INPUTS", "inherited"); assert INPUTS in ("inherited", "native")
+INPUTS = os.environ.get("CFG654_INPUTS", "inherited"); assert INPUTS in ("inherited", "native", "native_cmb")
+_SFX = "_cmb" if INPUTS == "native_cmb" else ""                    # addendum A1 (2026-10-13): native_cmb = CMB omega_b/omega_c pair (primary)
 OM_TA, H_TA = 0.315, 0.674                                         # inherited literals (same floats as cfg650_pm.py)
 CFG654_DIR = os.path.dirname(os.path.abspath(__file__))
-if INPUTS == "native":
+if INPUTS in ("native", "native_cmb"):
     assert ICNORM == "sigma8", "CFG654 native inputs replace the IC normalisation; leave CFG650_IC unset"
-    _T = np.load(os.path.join(CFG654_DIR, "cfg654_ics_tables.npz"))
+    _T = np.load(os.path.join(CFG654_DIR, f"cfg654_ics_tables{_SFX}.npz"))
     h = float(_T["h"]); om_b, om_c = float(_T["omega_b"]), float(_T["omega_c"]); OR = float(_T["Or"])
     Om = (om_b + om_c) / h ** 2; OL = 1.0 - Om - OR; FB = om_b / (om_b + om_c)
     NS, SIG8 = float(_T["ns"]), None
@@ -190,7 +193,7 @@ if INPUTS == "native":
         return float(math.exp(np.interp(math.log(a), _LNA, _LND)))
     def fgrow(a, e=1e-4):
         return float(np.interp(math.log(a), _LNA, _FG))
-    DTA_FILE = os.path.join(CFG654_DIR, "cfg654_delta_ta.json")
+    DTA_FILE = os.path.join(CFG654_DIR, f"cfg654_delta_ta{_SFX}.json")
     def ic_amp():
         raise RuntimeError("CFG654 native inputs: no amplitude factor")
 
@@ -1181,7 +1184,7 @@ def run(switch, branch, foot, npg, amp=1.0):
     try: os.nice(10)
     except OSError: pass
     os.makedirs(WORK, exist_ok=True)
-    tag = ("cfg654nat_" if INPUTS == "native" else "") + f"cfg650_{modtag() if switch == 'RES' else ('na_As' if ICNORM == 'As' else 'na')}_{switch}_{foot}_N{npg}_L{L:g}_ns{NSEED}_{MODE}" + (f"_seed{SEED}" if SEED != 359 else "")
+    tag = ({"native": "cfg654nat_", "native_cmb": "cfg654cmb_"}.get(INPUTS, "")) + f"cfg650_{modtag() if switch == 'RES' else ('na_As' if ICNORM == 'As' else 'na')}_{switch}_{foot}_N{npg}_L{L:g}_ns{NSEED}_{MODE}" + (f"_seed{SEED}" if SEED != 359 else "")
     if ICNORM == "As": amp = amp * ic_amp()
     global DIAGX
     DIAGX = npg <= 512

@@ -165,6 +165,8 @@ def input_sets(wbb):
     return {
         "NATIVE": dict(omega_b=wbb, omega_c=oc, As=As, ns=ns, theta=th, mnu=0.0, label="PRIMARY: BBN omega_b, CMB-primary omega_c/A_s/n_s, H0 from theta_* (framework background)"),
         "B_wbCMB": dict(omega_b=PROVENANCE["omega_b_CMB"]["value"], omega_c=oc, As=As, ns=ns, theta=th, mnu=0.0, label="bracket: CMB omega_b (no BBN)"),
+        "NATIVE_CMB": dict(omega_b=PROVENANCE["omega_b_CMB"]["value"], omega_c=oc, As=As, ns=ns, theta=th, mnu=0.0,
+                           label="ADDENDUM A1 PRIMARY (2026-10-13): self-consistent CMB pair omega_b 0.02236 / omega_c 0.1202 (same column), H0 from theta_*"),
         "B_H0loc": dict(omega_b=wbb, omega_c=oc, As=As, ns=ns, h=PROVENANCE["H0_SH0ES"]["value"] / 100, mnu=0.0, label="bracket: H0 = 73.04 local (theta_* not fitted)"),
         "B_H0inh": dict(omega_b=wbb, omega_c=oc, As=As, ns=ns, h=INHERITED["h"], mnu=0.0, label="bracket: H0 = 67.36 (inherited value)"),
         "B_mnu": dict(omega_b=wbb, omega_c=oc, As=As, ns=ns, theta=th, mnu=0.06, label="bracket: one massive neutrino 0.06 eV (oscillation minimum; PM has no neutrino component)"),
@@ -221,14 +223,15 @@ def main():
         P(f"  IC amplitude sqrt(P_native/P_inherited) at z_i, k [h/Mpc] " + ", ".join(f"{q}: {v:.4f}" for q, v in b["amp_vs_inherited_at_k"].items()))
         P(f"  sigma_R(z_i) ratio native/inherited: R8 {b['amp_sigma_ratio_zi']['R8']:.4f}, R2 {b['amp_sigma_ratio_zi']['R2']:.4f}, R0.5 {b['amp_sigma_ratio_zi']['R0p5']:.4f}  (CFG650 A_s bracket: 1.0265, k-independent)")
         RES["sets"][name] = {k: v for k, v in b.items() if not k.startswith("_")}
-        if name == "NATIVE":
+        if name in ("NATIVE", "NATIVE_CMB"):
+            sfx = "" if name == "NATIVE" else "_cmb"                  # _cmb = addendum A1 primary; "" = the frozen BBN set (now a bracket)
             bg = b["_bg"]
-            np.savez(os.path.join(HERE, "cfg654_ics_tables.npz"), kh=kh, Plin0=b["_Plin0"], P_zi=b["_Pi"], lna=bg._lx, lnD=bg._lD, f=bg._f,
+            np.savez(os.path.join(HERE, f"cfg654_ics_tables{sfx}.npz"), kh=kh, Plin0=b["_Plin0"], P_zi=b["_Pi"], lna=bg._lx, lnD=bg._lD, f=bg._f,
                      h=b["h"], omega_b=b["omega_b"], omega_c=b["omega_c"], Or=bg.Or, ns=b["ns"], As=b["As"], zi=ZI,
                      trz=_TRZ, trd=_TRD)
             # z = 0 linear shape for the scorer's k < k_lo continuation
             p, r = camb_results(theta=s["theta"], omega_b=s["omega_b"], omega_c=s["omega_c"], As=s["As"], ns=s["ns"], zs=(0.0,))
-            np.savez(os.path.join(HERE, "cfg654_scorer_tables.npz"), kh=kh, Plin_z0=Pk_cb(r, 0.0, kh), lna=bg._lx, lnD=bg._lD, h=b["h"],
+            np.savez(os.path.join(HERE, f"cfg654_scorer_tables{sfx}.npz"), kh=kh, Plin_z0=Pk_cb(r, 0.0, kh), lna=bg._lx, lnD=bg._lD, h=b["h"],
                      Om=bg.Om, Or=bg.Or, OL=bg.OL, trz=_TRZ, trd=_TRD)
     # footing disclosure: a0 = kappa c sqrt(G rho_DE) scales as sqrt(Omega_L h^2)
     nat = RES["sets"]["NATIVE"]; inhOLh2 = (1 - inh["Om"]) * inh["h"] ** 2

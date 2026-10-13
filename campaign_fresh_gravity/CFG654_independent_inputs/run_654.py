@@ -6,6 +6,8 @@ Validation (256^3 lean L100 NSEED512 RMIN 0.78125, 3 threads, ONE process, RSS k
   VN12 native inputs, M1+M2 (the T12 set), RES canonical -> PREVIEW only (vs VNs)
 Production (1024^3; DEFINED, NOT STARTED by this lane; frozen criteria FROZEN_CRITERIA.md):
   N12  native inputs, M1+M2, RES canonical          NS0  native inputs, S0 canonical (shares the native ICs)
+Addendum A1 (2026-10-13): PRIMARY native = CMB omega_b/omega_c pair: VNcs / VNc12 (256^3), NC12 / NCS0 (1024^3, NOT started);
+  the BBN-omega_b jobs (VNs, VN12, N12, NS0) are the declared bracket.
   python3 run_654.py serial JOB [JOB ...]"""
 import os, sys, subprocess, time, json, re
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -19,6 +21,9 @@ def _j(base, mods, **kw):
 JOBS = {
     "V0i": _j(_V, ""), "VNs": _j(_V, "", sw="S0", INPUTS="native"), "VN12": _j(_V, "12", INPUTS="native"),
     "N12": _j(_P, "12", foot="canonical"), "NS0": _j(_P, "", sw="S0", foot="canonical"),
+    # addendum A1 (2026-10-13): primary native set = CMB omega_b/omega_c pair (CFG654_INPUTS=native_cmb); N12/NS0/VNs/VN12 = BBN bracket
+    "VNcs": _j(_V, "", sw="S0", INPUTS="native_cmb"), "VNc12": _j(_V, "12", INPUTS="native_cmb"),
+    "NC12": _j(_P, "12", foot="canonical", INPUTS="native_cmb"), "NCS0": _j(_P, "", sw="S0", foot="canonical", INPUTS="native_cmb"),
 }
 
 def swap_used_mb():

@@ -25,7 +25,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 EXT = os.path.abspath(os.path.join(HERE, "..", "..", "..", "_external_data"))
 OLD = os.path.join(EXT, "cfg527_work", "cfg361_delta_ta_table.json")
 ZS = [0.0, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0, 4.0, 6.0, 9.0, 14.0, 20.0, 30.0, 49.0]
-T = np.load(os.path.join(HERE, "cfg654_ics_tables.npz"))
+SFX = os.environ.get("CFG654_TABLESET", "")                          # "" = frozen BBN set; "_cmb" = addendum A1 primary
+assert SFX in ("", "_cmb")
+T = np.load(os.path.join(HERE, f"cfg654_ics_tables{SFX}.npz"))
 TRZ, TRD = T["trz"], T["trd"]
 
 # nu_mono (cfg596_pm.py verbatim)
@@ -96,7 +98,7 @@ def main():
     for z, a, b, c in zip(ZS, old["D"], N1, N0):
         P(f"  {z:5.2f}  {a:9.5f}  {b:9.5f}     {c:9.5f}            {c / a - 1:+.4%}")
     json.dump({"z": ZS, "D": N0, "provenance": "CFG654 N0: native background (radiation + cold matter + Lambda + CFG630 trickle), "
-               "cfg654_ics_tables.npz parameters, law off until turnaround"}, open(os.path.join(HERE, "cfg654_delta_ta.json"), "w"), indent=1)
+               f"cfg654_ics_tables{SFX}.npz parameters, law off until turnaround"}, open(os.path.join(HERE, f"cfg654_delta_ta{SFX}.json"), "w"), indent=1)
     # bracket B
     H0 = h * 100 / 3.0856775814913673e19
     BR = {}
@@ -111,9 +113,9 @@ def main():
             P(f"  log M = {lM} Msun/h: " + "  ".join((f"z {z}: {v:.3f} ({v / N0[ZS.index(float(z))] - 1:+.1%})" if v is not None else f"z {z}: below floor 1e-16") for z, v in d.items()))
     RES = dict(lane="CFG654", part="delta_ta", z=ZS, cfg361=old["D"], R0=R0, R0_max_rel=rep, N1=N1, N0=N0,
                N0_over_cfg361=[c / a for a, c in zip(old["D"], N0)], native=dict(h=h, Om=Om, Or=Or, fb=fb, f_ai=fi), bracketB=BR, runtime_s=time.time() - t0)
-    json.dump(RES, open(os.path.join(HERE, "cfg654_delta_ta_results.json"), "w"), indent=1)
+    json.dump(RES, open(os.path.join(HERE, f"cfg654_delta_ta_results{SFX}.json"), "w"), indent=1)
     P(f"\ndone in {time.time() - t0:.0f} s")
-    open(os.path.join(HERE, "cfg654_delta_ta.out"), "w").write("\n".join(OUT) + "\n")
+    open(os.path.join(HERE, f"cfg654_delta_ta{SFX}.out"), "w").write("\n".join(OUT) + "\n")
 
 if __name__ == "__main__":
     main()

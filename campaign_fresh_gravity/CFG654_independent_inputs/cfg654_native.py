@@ -16,7 +16,8 @@ Post-hoc diagnostic (main): CFG596 P1 vs P0 and CFG636 C1 vs P0, stored runs rea
 evolved with the INHERITED ICs/background, so the native-scorer numbers are POST HOC DIAGNOSTICS of the scorer's sensitivity, not
 verdicts and not a corrected CFG596/636 score.
   nice -n 10 python3 cfg654_native.py   -> cfg654_native_posthoc.out / cfg654_native_posthoc.json
-Production (FROZEN_CRITERIA.md):  CFG596_MUTATE=1 nice -n 10 python3 cfg654_native.py --score N12 NS0   (FIRST), then without MUTATE
+Production (FROZEN_CRITERIA.md + ADDENDUM_A1): PRIMARY  CFG596_MUTATE=1 nice -n 10 python3 cfg654_native.py --score NC12 NCS0 (FIRST),
+  then without MUTATE; the BBN bracket the same with N12 NS0.  The input set is read from the runs (both must match).
   -> cfg654_native_N12[_MUTATE].out / cfg654_native_results_N12[_MUTATE].json
 kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed."""
 import os, sys, json, math, glob, time
@@ -29,7 +30,7 @@ warnings.filterwarnings("ignore", message=".*encountered in matmul")   # spuriou
 
 HERE = os.path.dirname(os.path.abspath(__file__)); CFG = os.path.abspath(os.path.join(HERE, ".."))
 SRC = os.path.join(CFG, "CFG592_cosmic_shear_likelihood", "cfg592_native.py")
-ST = np.load(os.path.join(HERE, "cfg654_scorer_tables.npz"))
+ST = np.load(os.path.join(HERE, "cfg654_scorer_tables.npz"))      # frozen BBN set (bracket after addendum A1); native_cmb loads its own
 H0LOC = 0.7304
 
 def native_E(Om, Or, OL, trick=True):
@@ -37,6 +38,7 @@ def native_E(Om, Or, OL, trick=True):
     return lambda z: math.sqrt(Om * (1 + z) ** 3 + Or * (1 + z) ** 4 + OL * ((1.0 - float(np.interp(z, trz, trd))) if trick else 1.0))
 
 def load_lib(inputs="native", parts=("bg", "om", "growth", "lowk")):
+    ST = np.load(os.path.join(HERE, "cfg654_scorer_tables_cmb.npz" if inputs == "native_cmb" else "cfg654_scorer_tables.npz"))
     code = open(SRC).read(); cut = code.index("# ------------------------------------------------------------------ run\n")
     G = {"__file__": SRC, "__name__": "cfg592_native_lib"}
     exec(compile(code[:cut], SRC, "exec"), G)
@@ -50,7 +52,7 @@ def load_lib(inputs="native", parts=("bg", "om", "growth", "lowk")):
     G["BG"]["LOC"] = bgd(native_E(OmL, OrL, 1 - OmL - OrL))          # added distance variant (both modes; nothing else uses it)
     if inputs == "inherited":
         return G
-    assert inputs == "native"
+    assert inputs in ("native", "native_cmb")
     if "bg" in parts:
         G["BG"]["PM"] = bgd(native_E(Om, Or, OL))
     if "om" in parts:
@@ -160,16 +162,16 @@ def score_production(jobF="N12", jobS="NS0", mutate=False):
     def P(*a):
         s_ = " ".join(str(x) for x in a); print(s_, flush=True); OUT.append(s_)
     EXT = os.path.abspath(os.path.join(CFG, "..", "..", "_external_data")); W = os.path.join(EXT, "cfg654_work")
-    fF = glob.glob(os.path.join(W, jobF, "cfg654nat_cfg650_*_RES_*.json")); fS = glob.glob(os.path.join(W, jobS, "cfg654nat_cfg650_*_S0_*.json"))
+    fF = glob.glob(os.path.join(W, jobF, "cfg654*_cfg650_*_RES_*.json")); fS = glob.glob(os.path.join(W, jobS, "cfg654*_cfg650_*_S0_*.json"))
     suf = f"_{jobF}" + ("_MUTATE" if mutate else "")
     P(f"CFG654 independent-inputs score: {jobF} vs {jobS} (native scorer)" + (" [MUTATE]" if mutate else ""))
     P("kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed.")
     if not fF or not fS:
         P("runs not present -> nothing scored"); return None
     F, S = json.load(open(fF[0])), json.load(open(fS[0]))
-    assert F.get("cfg654_inputs") == "native" and S.get("cfg654_inputs") == "native", "both runs must carry native inputs"
+    INP = F.get("cfg654_inputs"); assert INP in ("native", "native_cmb") and S.get("cfg654_inputs") == INP, "both runs must carry the SAME native input set"
     assert "z0" in F["snap"] and "z0" in S["snap"]
-    G = load_lib("native")
+    G = load_lib(INP)
     Pmat, fit, theory, nuis_spec, support_mask, subset, SURV, G_INJ = (G[k] for k in ("Pmat", "fit", "theory", "nuis_spec", "support_mask", "subset", "SURV", "G_INJ"))
     PROF = os.path.join(EXT, "cfg530_work", "profiles", "N512")
     def Binj(foot):
@@ -179,7 +181,7 @@ def score_production(jobF="N12", jobS="NS0", mutate=False):
     foot = F["foot"]; N, L = int(F["np"]), float(F["L"])
     run, held = build(F, S, N, L, foot, f"L{L:g}_N{N}_{foot}")
     PS0 = Pmat(run, "S0"); PF = Pmat(run, "F"); PFh = Pmat(held, "F")
-    R = dict(lane="CFG654", criteria="FROZEN_CRITERIA.md", jobs=[jobF, jobS], foot=foot, cmb_gate=CMB_GATE, mutate=mutate, surveys={})
+    R = dict(lane="CFG654", criteria="FROZEN_CRITERIA.md + ADDENDUM_A1_2026-10-13.md", inputs=INP, jobs=[jobF, jobS], foot=foot, cmb_gate=CMB_GATE, mutate=mutate, surveys={})
     gg = {}
     for key in ("z0", "z0.5", "z1"):
         kk_ = np.array(F["snap"][key]["k"]); rr_ = np.array(F["snap"][key]["P_grav"]) / np.array(S["snap"][key]["P"]); mm_ = kk_ <= 1.0 + 1e-9
