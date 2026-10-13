@@ -3,7 +3,30 @@
 **A relativistic field theory carrying a₀ = κc√(Gρ_Λ)**
 
 Zimmerman, Carl P. — Briar Creek Tech
-Assembled 2026-08-09; **v2, v3, v4, v5 same day; v6 2026-08-10; v7 2026-08-10 (late); v8 2026-08-10 (night, stages 19–22); v9 2026-08-11**.
+Assembled 2026-08-09; **v2, v3, v4, v5 same day; v6 2026-08-10; v7 2026-08-10 (late); v8 2026-08-10 (night, stages 19–22); v9 2026-08-11; v10 2026-10-12 (errata only)**.
+**v10 ERRATA — read before citing anything below. This document is no longer a viable field theory;
+it is kept as the record of the 2026-08-11 state.** Four later results close pillars of v9. Nothing
+below has been rewritten; the text stands as v9 published it.
+1. **The single-field dark sector is EXCLUDED.** "The DBI khronon's dust is Ω_dm" (§1.2) pins
+   R = Λ_D/Q₀ = 2.6ν₀ through β = 1, 18–300× above the P(k = 0.2) ceiling; P(k = 0.2) is suppressed
+   44–100%. A separate pressure-supported field cannot keep Ω_dm out of galaxies for any K
+   (`qwen_claude_field_theory/closure_2026/condensate_pincer_2026/condensate_mu_pincer_2026.py`).
+2. **The static limit fails the Solar System as modified gravity, and lensing as modified inertia.**
+   The kernel of §1.1 (ν_RAR, correctly transcribed here; `hunt_2026/f23_kernel_transcription_audit.py`)
+   gives a Solar-System EFE quadrupole 6.2×/6.8× (QUMOND) over the Cassini/Park ceiling
+   (`hunt_2026/f24_aqual_quadrupole_rar_kernel.py`); no one-argument law μ(g/a₀) passes both galaxies and
+   Cassini (`hunt_2026/f28_one_argument_pincer.py`). The modified-inertia reading is excluded by lensing
+   at ~21σ (`real_research/reviews/mi_mg_arm_standing_2026.py`). Any completion needs a second argument
+   that is a length; none is written here.
+3. **The a₀–dark-energy link of §1.3 is a TARGET relation, not a derivation.** The promotion
+   a₀²(Q) ∝ −K(Q) is a definitional choice. It reproduces −K = ρ_Λ only as an identification at the
+   de Sitter minimum (w = −1, a₀ constant); an evolving a₀(z) ∝ √ρ_DE(z) is not derived from the
+   action (the open inverse-K(Q) problem).
+4. **κ = ½ is fitted** (already non-claim 1; repeated because it carries every number).
+**What survives:** the a₀-line phenomenology g = √(g_N² + g_N a₀), its fit to SPARC, and the
+falsifiable a₀(z) prediction — flat to <1% below z ≈ 5 against the a₀ ∝ H(z) rival. §5's collapse
+speedup stands only as the a₀-line calculation it is (1.96× an upper bound); the theory that would
+source it is items 1–3. Never cite this document as a working relativistic completion.
 **v9 changes — one prediction RE-DERIVED (its mechanism was misattributed), two new predictions added, and an S8 null.** §5's "accelerated structure formation / earlier massive objects" row is
 **RESTORED and re-derived**. A draft of this version withdrew it, arguing that abundance is set by
 linear growth and that rows 19–20 make linear growth ΛCDM's. That reasoning was **wrong in
