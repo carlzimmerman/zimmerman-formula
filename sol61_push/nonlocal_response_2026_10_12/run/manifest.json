@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "claim_id": "NONLOCAL_CONSERVATIVE_FILTER",
+  "repository": {
+    "commit": "fd97db64b4204c7e1026e0b211e360855be6030f",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "sol61_push/nonlocal_response_2026_10_12/calculate.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite 3D static solutions of a nonlocal conservative response: verify functional gradient and uniform-external-field invariance; measure changes versus local response as filter length varies.",
+    "coefficient_domain": "float64/complex128 periodic FFT and L-BFGS",
+    "conventions": "C=a0=1, periodic contrast of Gaussian positive mass 4pi, width2, box64 N32. P_L multiplier 1-exp(-k^2 L^2/2); energy .5|gradPhi|^2+ec(|P_L gradPhi|)+rho Phi, ec derivative B(g)-g. Local comparison uses multiplier1 except zero mode.",
+    "inputs": [
+      "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "N": 32,
+      "box": 64,
+      "L": [
+        4,
+        8,
+        16,
+        "local"
+      ],
+      "optimizer_maxiter": 500,
+      "random_seed": 359,
+      "timeout_seconds": 90,
+      "threads": 1
+    },
+    "criteria": {
+      "relative_poisson_residual": 0.001,
+      "gradient_directional_relative_error": 0.0001,
+      "external_gradient_max_difference": 1e-09
+    },
+    "non_claims": [
+      "Not an isolated boundary solution or observed galaxy",
+      "Filter length is a new undetermined scale",
+      "No metric, causal time dynamics, independent cold mass or coefficient derivation",
+      "No spatial convergence claim from one grid"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng PCG64",
+    "seed": 359
+  },
+  "run": {
+    "started_at": "2026-10-13T00:14:45.544479+00:00",
+    "runtime_seconds": 14.698756,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 80,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "sha256": "9d8fc3f58355d8571c050d13c70b25f4a355780d256d2c67e2208de98b9b8f3c",
+      "sha256_after": "9d8fc3f58355d8571c050d13c70b25f4a355780d256d2c67e2208de98b9b8f3c"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sha256": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c",
+      "sha256_after": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c"
+    }
+  ],
+  "output_directory": "sol61_push/nonlocal_response_2026_10_12/run",
+  "declared_results": [
+    "sol61_push/nonlocal_response_2026_10_12/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/run/stdout.txt",
+      "sha256": "b2c3aeb0b0a02c4e4b44e64ab1e27e794452576151454f535e1cd57d74da2126",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/run/stderr.txt",
+      "sha256": "fd6dc0d7c487587886c2597d536e7dd37b175d15616001ac9704ae6e3825ce00",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/run/results.json",
+      "sha256": "b2c3aeb0b0a02c4e4b44e64ab1e27e794452576151454f535e1cd57d74da2126",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

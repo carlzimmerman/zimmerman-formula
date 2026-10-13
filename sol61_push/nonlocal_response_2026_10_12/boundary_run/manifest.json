@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "claim_id": "NONLOCAL_FILTER_BOX_SENSITIVITY",
+  "repository": {
+    "commit": "5a24ec013f996cd58c40364f332d36ae60b859f0",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "sol61_push/nonlocal_response_2026_10_12/boundary.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "After grid refinement: double box64 to128 at fixed dx2 and L16. Require matched central forces to change <=5% to call the original box insensitive.",
+    "coefficient_domain": "float64/complex128 periodic FFT and L-BFGS",
+    "conventions": "C=a0=1; fixed Gaussian width2 mass4pi with periodic mean subtraction, dx2, box64/N32 versus box128/N64. Fixed L16 and nonzero-mode local comparator.",
+    "inputs": [
+      "sol61_push/nonlocal_response_2026_10_12/boundary.py",
+      "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "N": [
+        32,
+        64
+      ],
+      "box": [
+        64,
+        128
+      ],
+      "L": [
+        16,
+        "local"
+      ],
+      "optimizer_maxiter": 500,
+      "random_seed": 359,
+      "timeout_seconds": 150,
+      "threads": 1
+    },
+    "criteria": {
+      "relative_poisson_residual": 0.001,
+      "gradient_directional_relative_error": 0.0001,
+      "external_gradient_max_difference": 1e-09,
+      "matched_point_box_sensitivity": 0.05
+    },
+    "non_claims": [
+      "Not an isolated boundary solution or observed galaxy",
+      "Filter length is a new undetermined scale",
+      "No metric, causal time dynamics, independent cold mass or coefficient derivation",
+      "Two boxes cannot prove an infinite-domain limit; failure rules out box-insensitivity at this gate."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng PCG64",
+    "seed": 359
+  },
+  "run": {
+    "started_at": "2026-10-13T00:19:30.282741+00:00",
+    "runtime_seconds": 61.228442,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 150.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 140,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/nonlocal_response_2026_10_12/boundary.py",
+    "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/boundary.py",
+      "sha256": "7c99957d15c1c8702b7ece9cdcbdb1005ae6ceb458bd826d405458a83ef3f42a",
+      "sha256_after": "7c99957d15c1c8702b7ece9cdcbdb1005ae6ceb458bd826d405458a83ef3f42a"
+    },
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "sha256": "9d8fc3f58355d8571c050d13c70b25f4a355780d256d2c67e2208de98b9b8f3c",
+      "sha256_after": "9d8fc3f58355d8571c050d13c70b25f4a355780d256d2c67e2208de98b9b8f3c"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sha256": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c",
+      "sha256_after": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c"
+    }
+  ],
+  "output_directory": "sol61_push/nonlocal_response_2026_10_12/boundary_run",
+  "declared_results": [
+    "sol61_push/nonlocal_response_2026_10_12/boundary_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/boundary_run/stdout.txt",
+      "sha256": "9f2f638f29b5fc47cf4ed20eaea24aac6b30473f4f977dba9671f6508a2dde77",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/boundary_run/stderr.txt",
+      "sha256": "c507a127e4394edf7c85215438533793a52b7d5f0b8582f3954350d4c680aa29",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/boundary_run/results.json",
+      "sha256": "62a9934f20596b29b05ef58c2644d962972f51892aedf2180aa7917af1ff5392",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

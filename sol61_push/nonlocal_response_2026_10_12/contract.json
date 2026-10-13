@@ -1,0 +1,60 @@
+{
+  "claim_id": "NONLOCAL_CONSERVATIVE_FILTER",
+  "mathematics": {
+    "assertion_tested": "Finite 3D static solutions of a nonlocal conservative response: verify functional gradient and uniform-external-field invariance; measure changes versus local response as filter length varies.",
+    "coefficient_domain": "float64/complex128 periodic FFT and L-BFGS",
+    "conventions": "C=a0=1, periodic contrast of Gaussian positive mass 4pi, width2, box64 N32. P_L multiplier 1-exp(-k^2 L^2/2); energy .5|gradPhi|^2+ec(|P_L gradPhi|)+rho Phi, ec derivative B(g)-g. Local comparison uses multiplier1 except zero mode.",
+    "inputs": [
+      "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "N": 32,
+      "box": 64,
+      "L": [
+        4,
+        8,
+        16,
+        "local"
+      ],
+      "optimizer_maxiter": 500,
+      "random_seed": 359,
+      "timeout_seconds": 90,
+      "threads": 1
+    },
+    "criteria": {
+      "relative_poisson_residual": 0.001,
+      "gradient_directional_relative_error": 0.0001,
+      "external_gradient_max_difference": 1e-09
+    },
+    "non_claims": [
+      "Not an isolated boundary solution or observed galaxy",
+      "Filter length is a new undetermined scale",
+      "No metric, causal time dynamics, independent cold mass or coefficient derivation",
+      "No spatial convergence claim from one grid"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.14.1"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng PCG64",
+    "seed": 359
+  }
+}

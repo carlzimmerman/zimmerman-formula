@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "claim_id": "NONLOCAL_FILTER_REFINEMENT",
+  "repository": {
+    "commit": "bb1ba0729fc506ee722d9df7a0c1692114572fab",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "sol61_push/nonlocal_response_2026_10_12/refinement.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Follow-up after N32 result: test matched-point N32/N64 radial force agreement <=3% for L16 and the mean-subtracted local comparator.",
+    "coefficient_domain": "float64/complex128 periodic FFT and L-BFGS",
+    "conventions": "C=a0=1, periodic contrast of Gaussian positive mass 4pi, width2, box64 N32. P_L multiplier 1-exp(-k^2 L^2/2); energy .5|gradPhi|^2+ec(|P_L gradPhi|)+rho Phi, ec derivative B(g)-g. Local comparison uses multiplier1 except zero mode. Follow-up runs N32 and N64 with matched coarse-grid force samples.",
+    "inputs": [
+      "sol61_push/nonlocal_response_2026_10_12/refinement.py",
+      "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "N": [
+        32,
+        64
+      ],
+      "box": 64,
+      "L": [
+        16,
+        "local"
+      ],
+      "optimizer_maxiter": 500,
+      "random_seed": 359,
+      "timeout_seconds": 150,
+      "threads": 1
+    },
+    "criteria": {
+      "relative_poisson_residual": 0.001,
+      "gradient_directional_relative_error": 0.0001,
+      "external_gradient_max_difference": 1e-09,
+      "matched_point_force_refinement": 0.03
+    },
+    "non_claims": [
+      "Not an isolated boundary solution or observed galaxy",
+      "Filter length is a new undetermined scale",
+      "No metric, causal time dynamics, independent cold mass or coefficient derivation",
+      "Two-grid check is not continuum or isolated-boundary convergence."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng PCG64",
+    "seed": 359
+  },
+  "run": {
+    "started_at": "2026-10-13T00:17:31.171737+00:00",
+    "runtime_seconds": 26.88834,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 150.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 140,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/nonlocal_response_2026_10_12/refinement.py",
+    "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/refinement.py",
+      "sha256": "ddc0780493cf8fd45f99dee879823618462122cad0676756de0f1a3f175140ae",
+      "sha256_after": "ddc0780493cf8fd45f99dee879823618462122cad0676756de0f1a3f175140ae"
+    },
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "sha256": "9d8fc3f58355d8571c050d13c70b25f4a355780d256d2c67e2208de98b9b8f3c",
+      "sha256_after": "9d8fc3f58355d8571c050d13c70b25f4a355780d256d2c67e2208de98b9b8f3c"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sha256": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c",
+      "sha256_after": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c"
+    }
+  ],
+  "output_directory": "sol61_push/nonlocal_response_2026_10_12/refinement_run",
+  "declared_results": [
+    "sol61_push/nonlocal_response_2026_10_12/refinement_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/refinement_run/stdout.txt",
+      "sha256": "9553ae642b055d852af88a6b18a782dd67cc153bdd4cafecc3a8b3fc25f665bd",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/refinement_run/stderr.txt",
+      "sha256": "c507a127e4394edf7c85215438533793a52b7d5f0b8582f3954350d4c680aa29",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/nonlocal_response_2026_10_12/refinement_run/results.json",
+      "sha256": "11617f324b6341d2c4c2d2f757a413a6218f7eea3ad663d2b892fc9de4d55dbf",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

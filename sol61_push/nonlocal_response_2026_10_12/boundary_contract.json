@@ -1,0 +1,67 @@
+{
+  "claim_id": "NONLOCAL_FILTER_BOX_SENSITIVITY",
+  "mathematics": {
+    "assertion_tested": "After grid refinement: double box64 to128 at fixed dx2 and L16. Require matched central forces to change <=5% to call the original box insensitive.",
+    "coefficient_domain": "float64/complex128 periodic FFT and L-BFGS",
+    "conventions": "C=a0=1; fixed Gaussian width2 mass4pi with periodic mean subtraction, dx2, box64/N32 versus box128/N64. Fixed L16 and nonzero-mode local comparator.",
+    "inputs": [
+      "sol61_push/nonlocal_response_2026_10_12/boundary.py",
+      "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "N": [
+        32,
+        64
+      ],
+      "box": [
+        64,
+        128
+      ],
+      "L": [
+        16,
+        "local"
+      ],
+      "optimizer_maxiter": 500,
+      "random_seed": 359,
+      "timeout_seconds": 150,
+      "threads": 1
+    },
+    "criteria": {
+      "relative_poisson_residual": 0.001,
+      "gradient_directional_relative_error": 0.0001,
+      "external_gradient_max_difference": 1e-09,
+      "matched_point_box_sensitivity": 0.05
+    },
+    "non_claims": [
+      "Not an isolated boundary solution or observed galaxy",
+      "Filter length is a new undetermined scale",
+      "No metric, causal time dynamics, independent cold mass or coefficient derivation",
+      "Two boxes cannot prove an infinite-domain limit; failure rules out box-insensitivity at this gate."
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/nonlocal_response_2026_10_12/boundary.py",
+    "sol61_push/nonlocal_response_2026_10_12/calculate.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.14.1"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy.default_rng PCG64",
+    "seed": 359
+  }
+}
