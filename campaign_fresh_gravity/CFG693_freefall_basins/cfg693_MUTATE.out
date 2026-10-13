@@ -1,0 +1,35 @@
+CFG693: each system reads its own free-fall basin (equivalence principle + merge tree).
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 45ff137aa). T1-T2 sympy, T3 numbers, T4 reported.
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run:  python3 cfg693.py      (CFG693_MUTATE=1: M1 plain static potential, M2 local |g|; exit 1 iff both bite)
+
+T1  a uniform external field g_e (along -z): Phi_e = g_e z
+    div grad Phi_e = 0  => zero flux through every closed surface (Gauss): m_b and the flux density 4 pi G m_b/A see no g_e
+    free-fall frame: Phi_F(uniform part) = Phi_e - Phi_e(X) - grad Phi_e(X).(x - X) = 0  (only the tidal, 2nd-order part survives)
+    M1 plain static potential: saddle at z = [-sqrt(G)*sqrt(M)/sqrt(g_e), sqrt(G)*sqrt(M)/sqrt(g_e)]; basin depends on g_e: True
+    M2 local |g| depends on g_e: True
+  [FAIL] T1 uniform g_e: zero flux and removed from Phi_F (node boost independent of g_e): Phi_F - Phi_sat = g_e*z
+
+T2  SIS satellite V_s at R in a host rho_h ~ R^-alpha; free-fall saddle V_s^2/r = T_h r; aperture rho_s(r_bg) = rho_h(R)
+    r_J = R**(3/2)*V_s/(sqrt(G)*sqrt(M_h)*sqrt(alpha - 1));  r_bg = R**(3/2)*V_s/(sqrt(G)*sqrt(M_h)*sqrt(3 - alpha));  r_J/r_bg = sqrt(3 - alpha)/sqrt(alpha - 1)
+    r_J/r_bg by host slope alpha: 1.5: 1.732, 1.75: 1.291, 2: 1.000, 2.25: 0.775, 2.5: 0.577
+    plain static saddle / r_bg (alpha = 2) at V_s/V_h: 0.05: 0.050, 0.1: 0.099, 0.2: 0.192, 0.3: 0.275
+    M1: plain static saddle / r_bg at V_s/V_h = 0.15: 0.147
+  [FAIL] T2 free-fall basin edge = Sifon aperture for an isothermal host (alpha = 2): ratio(alpha=2) = 1
+
+T3  the Sun in the Galaxy: T = g_ext/R (flat curve, radial stretch)
+    T = 8.502e-31 s^-2;  Sun's free-fall basin r_J = 5.384e+16 m = 1.74 pc;  r_M(Sun) = 0.0341 pc
+    wide binaries (<= 0.1 pc) inside the basin: True  => law with the binary's own mass, no EFE (boost as the law; opposite of CFG691)
+    Cassini: Sun's own node has Q2 = 0; Galaxy node's tidal quadrupole ~ T = 8.50e-31 vs ceiling 5.2e-27: ratio 1.6e-04
+  [PASS] T3 Sun: wide binaries inside its own basin; Galactic tide below the Cassini Q2 ceiling: r_J 1.74 pc; T/ceiling 1.6e-04
+
+T4  (reported) the jumps
+    V_s/V_h = 0.1: across r_J the satellite's own (deep: ~all phantom) field V_s^2/r_J drops to 0; that is 10% of the host's field there
+    V_s/V_h = 0.2: across r_J the satellite's own (deep: ~all phantom) field V_s^2/r_J drops to 0; that is 20% of the host's field there
+    merger: a parent node appears when two basins share a closed level surface of the common free-fall potential; its phantom
+    switches on from 0 at that moment (CFG48's 'jump at every merger'). Persistence weighting (merge-tree depth / node V^2) is the
+    named smoothing; not built here.
+
+MUTATE: {'M1': True, 'M2': True}
