@@ -155,6 +155,8 @@
 
 - **P-field signatures (CFG659; criteria 75e95fe06; MUTATE zero): NO visible signature.** P couples to matter only gravitationally (δa = −4πG δP_L; no EM term). Real settling is far slower than the local P gap, so the response is evanescent: radiated fraction ≤ 1e-195 (galaxy/group/cluster) — settling is ADIABATIC, not radiative (CFG696's radiation holds only for sudden starts). All channels below threshold (gas/disc heating, double-pulsar decay at 0.042 of room — which bounds c_P from below — PTA band, merger lensing); light needs a new coupling. Bears on CFG630's settling→dark-energy reading.
 
+- **Kinetic bridge (CFG722; criteria cb2aac21f):** the P-field bound charge has zero net mass and no inertia → cannot be CFG624's cold mass → a collisionless CARRIER is forced (a new particle species with free mass — tension with the no-particle rule). Identifying the carrier with the polarizable medium gives a derived conservative tether whose static minimum is exactly the law (C_sel = −∇_v·(a_T f)), capacity Σ̄_c ≤ a₀/πG (214 / 258 M☉/pc²), export-only exchange; CONDITIONAL on that identification, a basin-frame anchor (B1) and an export channel the action lacks. Hot vs condensed: OBSTRUCTED. Overflow under ID goes to the basin edge, not the core.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
