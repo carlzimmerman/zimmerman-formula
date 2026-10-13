@@ -138,6 +138,8 @@
 
 - **Nonlocal response filter length (CFG653; criteria d44fee295): no derivable ℓ passes, and no constant ℓ passes R7.** Candidates r_M, c²/a₀, c/H_Λ, r_ta, r_zg all FAIL (cluster satellites at every ℓ; r_M also fails SPARC; cosmic lengths violate causality). The host field leaks through the filter as (ℓ/R)²; the filter removes the k = 0 mode, so the phantom's total mass is zero and curves fall sub-Keplerian beyond ℓ. Astra's nonlocal route cannot rescue the field form under R7.
 
+- **X-COP supply from data (CFG656; criteria c1236bf88): no supply rule passes T3.** Candidate B fails identically for every supply (its reservoir stays empty; the fail is in the "phantom extends to r_ta" premise). H-CB: measured gas alone reproduces CFG637's shortfall (η 1.49 / 1.63); extrapolating the measured slope to r_ta flips it to a ~×2 overshoot (η 0.45 / 0.46, TENSION) and breaks the inner band. Census-consistent supply in groups breaks the group pass (Z 2.6–3.1). Decided only by infall-region baryon data (5–10 R200) or a derived stopping radius for the settled phantom in clusters.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
