@@ -57,6 +57,30 @@ stays collisionless and falls into the core.
 **(9) Early universe.** Before any bound system exists there is no basin and no settling. Cold energy is ordinary cold
 matter and the primary CMB is untouched (CFG649).
 
+## 3b. Two kinds of cold energy (2026-10-13 synthesis; CFG722, CFG723, CFG724, CFG725)
+
+Evidence-first chain:
+1. The P bound charge has zero net mass, so it cannot be the cold mass CFG624 requires (CFG722).
+2. Only a carrier with real rest mass meets the data (CFG723).
+3. The viable carrier is a cold collisionless **medium whose displacement IS P** (∂_tP = −j ⇒ ∇·P = ρ − ρ̄), possibly with its mass value set by ρ_DE (CFG723 B/D5).
+4. Coupled that way, the action gives a tether whose unique static minimum is the law, with a **capacity Σ̄ ≤ a₀/πG** (214 / 258 M☉/pc²) (CFG722).
+5. Galaxies sit below the capacity (SPARC deep-regime median ≈ 0.3 of it); massive cluster cores exceed it by 3.6–4.8× (Bullet) (CFG724).
+
+**So cold energy comes in two kinds:**
+- **Tethered**: in the law's shape, capped at a₀/πG. It dominates galaxies and gives the RAR.
+- **Free**: supply the tether cannot hold. It is collisionless and follows the total potential, pooling in the cores of massive systems. It is the candidate for the early-type, group and cluster-core excess (CFG669/652/687). Testing: the CFG721 two-population variant H-OF2.
+
+**New, framework-specific predictions:**
+
+| # | prediction | test | status |
+|---|---|---|---|
+| P1 | No system's tethered dark surface density exceeds a₀/πG; any excess above it is free cold energy with a NON-law profile | galaxy RAR plus lensing, by surface-density bin | SPARC consistent (CFG724) |
+| P2 | Galaxies whose dark Σ exceeds the capacity across the whole curve hold free cold energy and should deviate from the RAR shape in a specific way (flatter inner, non-law outer) | e.g. NGC 3738 (2–4× capacity, CFG725) | to test |
+| P3 | Free fraction = 1 − (tether capacity × area)/(dark mass): ~0 in galaxies, ~0.7–0.8 in cluster cores | cluster strong lensing minus baryons minus capacity | Bullet ~0.75–0.8 (CFG724/725) |
+| P4 | If the medium is a condensate: σ/m ≈ 0.1–0.8 cm²/g, cored and thermalised free cluster cores with ρ₀,free ≲ 1.4–5.7 × 10⁻³ M☉/pc³ (σ_v 1000 km/s, 10 Gyr) | relaxed-cluster strong lensing plus BCG kinematics | window OPEN-PARTIAL / OPEN (CFG725) |
+| P5 | Merger offsets scale ~41–44 kpc per cm²/g at Bullet conditions | merging-cluster lensing–galaxy offsets | Bullet bound ≤ 0.71 (tight side) |
+| P6 | Lab and direct detection: null (gravity-only carrier; the law is off at Earth's g) | direct-detection experiments | consistent |
+
 ## 4. What is established (raw data unless marked)
 
 | test | result | lane |
