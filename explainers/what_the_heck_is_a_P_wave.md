@@ -34,6 +34,10 @@ The computer test found:
 - The energy lost equals the energy carried off by the waves (within 0.02–0.2%).
 - If you put walls around it, so the waves bounce back instead of leaving, **it never settles**. So the waves really are doing the work.
 
+## ⚠️ Important correction (CFG659)
+
+The "shakes it off as waves" picture is true when the lean starts suddenly out of balance, as in the computer test. **Real galaxies form slowly**, over hundreds of millions of years, which is far slower than the P-field's own natural wobble. In that case the lean doesn't ring at all. It **follows the matter smoothly**, the way a slowly lowered ball sinks into a trampoline with no bouncing. So in real galaxies essentially **no P-waves are emitted** (less than 10⁻¹⁹⁵ of the energy), and settling is a smooth, reversible exchange with the matter rather than radiation. P-waves are a real feature of the field, but they leave **no visible signature**: none in gas, stars, pulsars, lensing or light.
+
 ## How this connects to "cold energy"
 
 When P settles around a galaxy, it leaves behind a **bound "charge"** of extra gravitating stuff. **That leftover is the cold energy:** it grows from zero to exactly the right amount as the waves carry the excess away. So, in this picture:

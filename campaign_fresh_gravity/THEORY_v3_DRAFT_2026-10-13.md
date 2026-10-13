@@ -42,6 +42,7 @@ largest closed level surface of the free-fall potential. A uniform external fiel
 - any initial state relaxes onto the law's static profile (within 0.06–0.12%);
 - energy lost equals P-wave energy radiated (within 0.02–0.2%);
 - the bound charge left behind, the **cold energy**, grows from 0 to the static value.
+- **⚠️ Correction (CFG659, e2704e330):** this holds for a SUDDEN start. Real halos assemble over ≳ 10⁹ dynamical units — far slower than the local P-wave gap — so the response is evanescent: P follows the baryons ADIABATICALLY and the radiated fraction is ≤ 1e-195 even at the most favourable corner (CFG696's own equation: a ramped source radiates ∝ T^-2.2). Settling is therefore an adiabatic, reversible exchange with the baryons, not radiation; this bears on CFG696's energy ledger and on CFG630's "settling feeds dark energy" reading (open). P leaves no visible signature in matter or light (all channels below threshold; light would need a new coupling).
 
 **(6) Cold energy (bound charge).** ρ_c = ρ_ph = (1/4πG) ∇·[(ν_s − 1) g_N] inside the system's basin. Spherically,
 M_c(r) = (ν_s − 1) M_b(r), capped by the supply.
