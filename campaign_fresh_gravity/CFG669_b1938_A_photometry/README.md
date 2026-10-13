@@ -46,7 +46,9 @@ component at A. Frozen method, run once.
 **Why, and what it means (diagnostic, no verdict weight):** the model reproduces the ring by eye, but the residuals are ±5σ
 everywhere (sky level not modelled, single Sérsic too simple at S/N ~400 per pixel). More important, even a perfect model would not
 reach the exclusion line here: the statistical error on A's amplitude at χ²_ν = 1 is 2.4e-7/√1337 = **6.6e-9 Jy, a 2σ floor of
-≈ 28.1 AB**, set by the degeneracy between a point source at A and the reconstructed arc at 0.063″ pixels. So in F277W this data
-could at best **confirm** A if it sits at the bright end of the sealed band (26.4–28.1 AB) but **cannot exclude** it (exclusion
+≈ 28.6 AB**, set by the degeneracy between a point source at A and the reconstructed arc at 0.063″ pixels. So in F277W this data
+could at best **confirm** A if it sits at the bright end of the sealed band (26.4–28.6 AB) but **cannot exclude** it (exclusion
 needs a limit fainter than 30.8). The F115W mosaic (0.031″ pixels, 2.4 GB, not downloaded) and the PI team's dedicated modelling
 are the remaining routes. CFG668 stays sealed and untested.
+
+*Correction 2026-10-12:* the first version of this section said the perfect-model floor was 28.1 AB; the computed value is 28.60 AB (2σ of 6.56e-9 Jy). Conclusion unchanged.
