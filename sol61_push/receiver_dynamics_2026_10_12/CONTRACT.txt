@@ -1,0 +1,47 @@
+POTENTIAL-POWERED RECEIVER: BOUNDED SUBPROBLEM
+Checkpoint RECEIVER-DYNAMICS-2026-10-12
+Base 468748e2e45d795337a1b1f3905f7fc38d5d7bc2.
+
+Original objective: a dynamical mechanism that selects the galaxy law without
+inserting its profile and conserves mass, momentum and energy in one theory.
+This experiment advances only the regular receiver sub-obligation. Success is
+not completion of the original objective or a pass of CFG679 R0/M1.
+
+Nearest record: regular_receiver_lift_2026_10_11/RESULT.txt and
+receiver_capacity_2026_10_11/RESULT.txt. They treat a flat potential, identify
+receiver rest/capacity as a bottleneck, and leave nonconstant potentials open.
+The two-sided density repair already exists in CFG544/550 and is not repeated.
+
+Declared model before execution: dimensionless q in [0,A], receiver position
+phi and momentum pi, E=D q+(pi^2+omega^2 phi^2)/2, S=-(A-q)^2/2,
+qdot=m pi^2(A-q), phidot=pi,
+pidot=-omega^2 phi-m D pi(A-q).
+D is the constant energy cost per transfer, m>0, omega>0, A>0.
+q=0 initially; pi=0 initially; phi=sqrt(2 H0)/omega.
+q is a conserved transfer coordinate between two populations, not mass creation.
+A is an imposed diagnostic endpoint, NOT a derived galaxy profile.
+No particular value of m, omega, A or D is a physical prediction or adopted
+constant of the theory. The model must not be presented as a full action.
+
+Routes considered:
+1. Repeat two-sided density restoring law: not executed; prior implementation
+   already uses the target and has not supplied the kinetic selector.
+2. Nonconstant-potential receiver with the existing regular bracket: execute;
+   decisive checks are exact energy/entropy identities, start from rest, and
+   whether total accessible oscillator energy controls reachability.
+3. Target-free kinetic selector: remains a separate open dependency. A change
+   in receiver dynamics alone cannot select the halo profile. No fabricated
+   proposal is substituted for this missing implication.
+
+Finite experiment: D=m=omega=A=1, H0=0.25,1,4; plus D=-1,H0=0.25;
+zero-seed D=-1,H0=0; and flat omega=0,phi0=1,pi0=0 control.
+Integrate dimensionless times 0..400 with DOP853, rtol=2e-10, atol=2e-12,
+2001 output times. Energy relative-to-max(1,initial H) error <=1e-7;
+q and H nonnegative to 1e-8; q<=min(A,H0/D) for D>0 to 1e-8;
+q nondecreasing and entropy nondecreasing to 1e-8.
+Overcapacity/depleted/exothermic endpoints within 1e-5 at t=400;
+critical endpoint tested for approach only (remaining 0< A-q <0.01).
+One t=0.001 small-time test checks cubic onset coefficient within 0.2%.
+Symbolic mutations: delete damping reaction -> nonzero energy derivative;
+flip both bracket signs -> energy conserved but entropy production negative.
+Wall time <=30 s, one numerical-library thread, no raw-data or PM runs.

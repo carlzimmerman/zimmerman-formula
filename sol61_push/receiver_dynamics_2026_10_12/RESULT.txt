@@ -1,0 +1,127 @@
+POTENTIAL-POWERED REGULAR RECEIVER — 12 October 2026
+Checkpoint RECEIVER-DYNAMICS-2026-10-12; base 468748e2e45d795337a1b1f3905f7fc38d5d7bc2.
+
+Result: a regular energy-exchange channel can start with zero receiver momentum
+by drawing on a nonstationary receiver potential. Exact capacity and convergence
+conditions follow. This advances the receiver component; the original theory
+and full TOE objective remain open. It does not select a galaxy profile.
+
+Nearest antecedents: regular_receiver_lift_2026_10_11 and
+receiver_capacity_2026_10_11. This executes their explicitly open nonconstant-
+potential continuation, rather than redoing the already-tested flat receiver.
+No claim of broader literature novelty.
+
+1. CLOSED REDUCED DYNAMICS
+
+For A,m,omega>0, signed cold energy cost D, and q0=0, define
+ E=Dq+H, H=(pi^2+omega^2 phi^2)/2,
+ S=-(A-q)^2/2,
+ qdot=m pi^2(A-q), phidot=pi,
+ pidot=-omega^2 phi-m D pi(A-q).
+q represents a balanced transfer between populations; this scalar channel
+neither creates mass nor specifies spatial momentum transport.
+
+The constant Poisson matrix has L_phi,pi=1, L_pi,phi=-1. Define
+ v=(pi,0,-D), M=m v v^T. Then M is positive semidefinite,
+ M grad E=0, L grad S=0, and zdot=L grad E+M grad S is exactly the system above.
+Consequently Edot=0 and Sdot=m pi^2(A-q)^2>=0. There is no Q/pi division.
+The term '-mDpi(A-q)' is the reciprocal energy reaction. Removing it breaks
+energy conservation; reversing the dissipative bracket makes S decrease.
+This is a reduced degenerate-Hamiltonian/dissipative construction, not a
+derived covariant action or a claim that S is physical thermodynamic entropy.
+
+2. EXACT GLOBAL CAPACITY RESULT
+
+A-q(t)=A exp[-m int_0^t pi(s)^2 ds], so 0<=q<A at finite time.
+The energy identity gives H(t)=H0-Dq(t). q is increasing and bounded;
+oscillator coordinates remain bounded and the smooth solution is global.
+
+If H0=0, phi=pi=0 and q stays zero, even for D<0: there is no spontaneous
+classical excitation in this channel.
+For H0>0:
+ D>0 -> q_infinity=min(A,H0/D).
+ D<0 -> q_infinity=A.
+
+Proof: q has a limit. If q_infinity<A, every limiting trajectory must have
+constant q, because q(t_n+h) tends to that same limit for each fixed h and
+smooth flows depend continuously on their bounded initial states. qdot=0
+then forces pi=0 all along the limiting trajectory; pidot forces phi=0.
+Thus H_infinity=0. Energy gives q_infinity=H0/D. For D>0 this determines the
+energy-limited branch when H0<DA; for H0>=DA it rules out a limit below A.
+For D<0 and H0>0, H=H0+|D|q cannot vanish, ruling out any limit below A.
+No assertion of finite-time endpoint attainment is made.
+
+3. START FROM REST
+
+If pi0=0 and phi0!=0,
+ q(t)=(m A omega^4 phi0^2/3)t^3+O(t^4)
+     =(2m A H0 omega^2/3)t^3+O(t^4).
+Potential energy, not a constant vacuum offset, supplies the initial motion.
+A flat potential at zero momentum still freezes. A receiver at its minimum
+with zero momentum still freezes. These exceptions are retained.
+
+4. LOCAL COMPUTATION
+
+run/manifest.json: symbolic identities and mutation checks pass; six numerical
+cases plus the cubic-onset comparison pass. At A=D=m=omega=1:
+ H0=.25 -> q(400)=.250000000005 (capacity depleted).
+ H0=1 -> q(400)=.9975028400 (critical capacity, still approaching).
+ H0=4 -> q(400)=1 to reported numerical precision; H approaches 3.
+D=-1,H0=.25 transfers energy into the receiver and approaches q=1.
+Zero seed and flat-potential-at-rest controls stay stationary.
+Maximum reported energy error in these cases is below 4e-9.
+
+5. RATE AND FREQUENCY ARE A REAL OBLIGATION
+
+For the declared rate normalization m=Gamma/(2H0), tau=1/Gamma, and
+epsilon=omega tau, take H0=4, A=D=1. With x=omega phi/sqrt(2H0),
+p=pi/sqrt(2H0), the equations in time t/tau are
+ qdot=p^2(1-q), xdot=epsilon p,
+ pdot=-epsilon x-p(1-q)/(2H0).
+Energy is q/H0+x^2+p^2=1.
+On the slow branch p approximately equals -2H0 epsilon x/(1-q). Hence
+ s90=[.9+(1-H0)log(H0/(H0-.9))]/(4H0),
+ t90/tau approximately equals s90/epsilon^2.
+This is a singular-perturbation approximation, not an exact solution.
+
+timing_run failed its predeclared 2% accuracy test at epsilon=.003: discrepancy
+was 9.17%. The failure and original sources remain. timing_run_v2 extends the
+range: at epsilon=.0003 the discrepancy is .1574%; the approximation converges.
+Its error should not be ignored at the larger physical epsilon.
+
+Conditional physical illustration with tau=100 Myr, a0=9.36e-11 SI:
+ omega=a0/c -> direct t90=883.73 Gyr at this normalization;
+ omega=5.78881 a0/c -> direct t90=32.40 Gyr.
+Neither frequency nor this normalization has been derived for a physical field.
+
+capacity_rate_run scans 25 rates b=mD/omega from .01 to 100 for five capacities.
+Using the second conditional frequency, best sampled t90 in Gyr is
+ capacity H0/(DA): 1      2      4      8      16
+ best sampled:    59.45  27.58  17.92  12.20   8.48
+Thus this declared reduced model has tested sub-universe-age transfer regimes
+at capacities 8 and 16. The scan is not a global rate optimum or a prediction
+of actual galaxy ages. More available energy changes reachability and speed;
+it must be derived from the receiver's field state rather than fitted per halo.
+
+6. STATUS AGAINST THE ACTUAL OBJECTIVE
+
+Established in this reduced model: regular reciprocal energy transfer, either
+sign of receiver energy change, start from nonstationary potential rest,
+global capacity alternatives, and a tested conditional timing window.
+Not established: spatial mass/momentum equations, galaxy profile selection,
+receiver potential/frequency/mobility from microphysics, one covariant action,
+single-metric lensing, cosmological evolution, SM unification, or data validity.
+The imposed A and S make this diagnostic FAIL CFG679 R0 if offered as a halo
+selector. It is a receiver building block only. No historical overclaim or TOE
+retraction is reinstated, and no empirical success is inferred from these ODEs.
+
+Fresh-context review independently reconstructed the exact identities, capacity
+limits and cubic onset; it checked timing-v2's algebra and scope. Same AI system,
+separate context, not a human referee or full nonlinear physical stability audit.
+All four manifests (including the preserved failed run) validate provenance.
+
+Next executable physics obligation: replace diagnostic E_c(q) and S(q) with
+the full kinetic/gravitational derivatives for actual transport channels, and
+derive a receiver state and coupling that supply the required capacity/rate.
+The halo selector and the receiver must eventually be obtained from the same
+dynamics; adding the desired profile as A would evade rather than solve it.

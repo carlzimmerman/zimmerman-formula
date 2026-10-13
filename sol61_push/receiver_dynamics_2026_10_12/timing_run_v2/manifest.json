@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "RECEIVER_CLOCK_CONTINUATION",
+  "repository": {
+    "commit": "59ed881b9a6f3a79b9cf950ebff343d6f6c876fb",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/receiver_dynamics_2026_10_12/timing_v2.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Smaller epsilon tests slow-manifold convergence; finite rate scan tests speed of conditional receiver dynamics.",
+    "coefficient_domain": "IEEE float64 stiff ODE",
+    "conventions": "H0=4, A=D=1; rates/frequencies declared in contract",
+    "inputs": [
+      "sol61_push/receiver_dynamics_2026_10_12/timing_v2.py",
+      "sol61_push/receiver_dynamics_2026_10_12/TIMING_V2_CONTRACT.txt"
+    ],
+    "bounds": {
+      "epsilon": [
+        0.03,
+        0.01,
+        0.003,
+        0.001,
+        0.0003
+      ],
+      "b_logscan": [
+        0.01,
+        100,
+        25
+      ],
+      "stop_q": 0.9,
+      "energy_tol": 1e-07,
+      "approx_tol_at_epsilon_.0003": 0.02
+    },
+    "non_claims": [
+      "No target-free halo profile",
+      "No global optimal-rate theorem",
+      "No derived physical clock"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T02:10:48.649246+00:00",
+    "runtime_seconds": 2.450501,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/receiver_dynamics_2026_10_12/timing_v2.py",
+    "sol61_push/receiver_dynamics_2026_10_12/TIMING_V2_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/timing_v2.py",
+      "sha256": "df7e8ff18edc6ee61b8cd696816672255d4c74568f178d1572e8309f1c8232dd",
+      "sha256_after": "df7e8ff18edc6ee61b8cd696816672255d4c74568f178d1572e8309f1c8232dd"
+    },
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/TIMING_V2_CONTRACT.txt",
+      "sha256": "b7e518f88948ffe1c4c90f0f7036f38458ca445eb045820de564cf6d875c4631",
+      "sha256_after": "b7e518f88948ffe1c4c90f0f7036f38458ca445eb045820de564cf6d875c4631"
+    }
+  ],
+  "output_directory": "sol61_push/receiver_dynamics_2026_10_12/timing_run_v2",
+  "declared_results": [
+    "sol61_push/receiver_dynamics_2026_10_12/timing_run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/timing_run_v2/stdout.txt",
+      "sha256": "79ed76d5b791ff0d9b143f39ed5d1969d9a0399df0643a8b98df500a7af844a1",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/timing_run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/receiver_dynamics_2026_10_12/timing_run_v2/results.json",
+      "sha256": "b84f81dafaf9b6e862da34dbed054a2668d142158673dc6d1eca1590dbe8b025",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
