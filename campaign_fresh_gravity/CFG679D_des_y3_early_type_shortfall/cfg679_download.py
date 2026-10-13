@@ -9,7 +9,13 @@ Order: given by --order (seeded random permutation of slices, so any partial com
 Memory guard (cfg679_lib.guard) before every slice. Log: <data>/download_<tag>.log (repo-relative paths only).
 
 Usage: python3 cfg679_download.py <tag> [--threads 2] [--max-gb X]
-  tags: sm (stellar-mass catalogue: ra, dec, z, mstar), mcal (metacal unsheared ra, dec, e_1, e_2, weight), gold (see GOLD_COLS)
+  tags: sm (stellar-mass catalogue: ra, dec, z, mstar), smid (its coadd_obj_id, for the GOLD match),
+        mcal (metacal unsheared ra, dec, e_1, e_2, weight), resp (unsheared R11, R22 on 20 seeded random 1M-row chunks),
+        gold (GOLD 2.2 coadd_object_id + g, r, i magnitudes chosen by `listcols gold`, or GOLD_COLS env),
+        listcols --file gold|index (metadata only: column list -> <file>_columns.json; for gold also gold_choice.json),
+        index (index select_bin1..4 row lists, any HDF5 layout, read through h5py in 1M-element slices),
+        selresp (select_1p/1m/2p/2m rows inside the 20 response chunks, by a coarse sample + window reads; optional input).
+Modes added 2026-10-13 (smid, resp, listcols, index, selresp; chunked datasets of any chunk length): the mcal path is unchanged.
 """
 import os, sys, json, time, hashlib, argparse, threading
 from concurrent.futures import ThreadPoolExecutor
@@ -24,16 +30,33 @@ ROWS = 1_000_000
 SPEC = {
     "sm": ("stellar_mass/DESY3_stellar_mass_catalog.hdf5", "", ["ra", "dec", "z", "mstar"]),
     "mcal": ("y3kp_cats/DESY3_metacal_v03-004.h5", "catalog/unsheared/", ["ra", "dec", "e_1", "e_2", "weight"]),
-    "gold": ("y3kp_cats/DESY3_GOLD_2_2.1.h5", "catalog/gold/", []),        # filled from PROBE (GOLD_COLS env, comma list)
+    "gold": ("y3kp_cats/DESY3_GOLD_2_2.1.h5", "catalog/gold/", []),        # from gold_choice.json (listcols gold) or GOLD_COLS env
+    "smid": ("stellar_mass/DESY3_stellar_mass_catalog.hdf5", "", ["coadd_obj_id"]),
+    "resp": ("y3kp_cats/DESY3_metacal_v03-004.h5", "catalog/unsheared/", ["R11", "R22"]),
 }
+FILES = {"gold": "y3kp_cats/DESY3_GOLD_2_2.1.h5", "index": "y3kp_cats/DESY3_indexcat.h5"}
+NRESP, RESP_SEED = 20, 6790
 ap = argparse.ArgumentParser()
 ap.add_argument("tag"); ap.add_argument("--threads", type=int, default=2); ap.add_argument("--max-gb", type=float, default=30.0)
 ap.add_argument("--seed", type=int, default=679)
 ap.add_argument("--light-guard", action="store_true", help="network-only job: pause only when free+inactive < 8 GB (orchestrator line), not on every big PM run")
+ap.add_argument("--file", default="", help="listcols: gold or index")
 A = ap.parse_args()
+if A.tag in ("listcols", "index", "selresp"):
+    import cfg679_download_meta as DM                                       # noqa: E402  (metadata / generic-layout modes)
+    sys.exit(DM.main(A))
 path, grp, cols = SPEC[A.tag]
 if A.tag == "gold":
     cols = [c for c in os.environ.get("GOLD_COLS", "").split(",") if c]
+    if not cols:
+        _gc = os.path.join(L.DATA, "gold_choice.json")
+        if not os.path.exists(_gc):
+            print("gold: no GOLD_COLS and no gold_choice.json; run `cfg679_download.py listcols --file gold` first"); sys.exit(2)
+        _gj = json.load(open(_gc))
+        cols = _gj["columns"]
+        if _gj.get("compressed"):                 # compressed GOLD layout: the generic h5py slice reader (same piece files, 1M rows)
+            import cfg679_download_meta as DM                                   # noqa: E402
+            sys.exit(DM.generic(A, "gold", path, [grp + c for c in cols], cols))
 OUT = os.path.join(L.DATA, A.tag)
 os.makedirs(OUT, exist_ok=True)
 LOGP = os.path.join(L.DATA, f"download_{A.tag}.log")
@@ -67,13 +90,14 @@ for c in todo:
         PIECES[c] = [(off + i * ROWS * it, min(ROWS, n - i * ROWS) * it, min(ROWS, n - i * ROWS), d.dtype.str)
                      for i in range((n + ROWS - 1) // ROWS)]
     else:
-        assert d.chunks[0] == ROWS and d.compression is None, (c, d.chunks, d.compression)
+        assert d.compression is None, (c, d.chunks, d.compression)   # compressed layouts go through the generic h5py reader
+        CR = d.chunks[0]                                                # 1,000,000 for metacal (unchanged); any length otherwise
         nch = d.id.get_num_chunks()
         info = sorted((d.id.get_chunk_info(i) for i in range(nch)), key=lambda x: x.chunk_offset[0])
         PIECES[c] = []
         for ci in info:
             r0 = ci.chunk_offset[0]
-            nr = min(ROWS, n - r0)
+            nr = min(CR, n - r0)
             PIECES[c].append((ci.byte_offset, nr * d.dtype.itemsize, nr, d.dtype.str))   # last chunk: only valid rows
     say(f"{A.tag}/{c}: {len(PIECES[c])} pieces, dtype {d.dtype.str}, rows {n:,}")
     json.dump({c: [list(map(lambda x: x if not isinstance(x, np.integer) else int(x), p)) for p in v] for c, v in PIECES.items()},
@@ -81,8 +105,11 @@ for c in todo:
 NP = len(PIECES[cols[0]])
 assert all(len(v) == NP for v in PIECES.values())
 order = np.random.default_rng(A.seed).permutation(NP)
+if A.tag == "resp":                           # 20 seeded random chunks (FROZEN_CRITERIA section 3); the list is stored for the measurement
+    order = np.sort(np.random.default_rng(RESP_SEED).choice(NP, NRESP, replace=False))
+    json.dump({"chunks": [int(i) for i in order], "seed": RESP_SEED, "rows_per_chunk": ROWS}, open(os.path.join(L.DATA, "resp_chunks.json"), "w"))
 say(f"{A.tag}: meta bytes so far {L.BYTES['n'] / 1e6:.1f} MB; {NP} slices x {len(cols)} columns; order seed {A.seed}")
-tot_planned = sum(p[1] for v in PIECES.values() for p in v)
+tot_planned = sum(PIECES[c][int(i)][1] for c in cols for i in order)
 say(f"{A.tag}: planned bytes {tot_planned / 1e9:.2f} GB")
 if tot_planned > A.max_gb * 1e9:
     say("ABORT: plan exceeds --max-gb"); sys.exit(2)
