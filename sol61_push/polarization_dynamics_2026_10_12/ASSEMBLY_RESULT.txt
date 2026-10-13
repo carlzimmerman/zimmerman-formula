@@ -1,0 +1,85 @@
+Gradual baryon-source assembly: conditional formation succeeds
+2026-10-12. Finite effective-model calculation, self-reviewed.
+The complete physical theory remains open.
+
+Decision
+--------
+The conservative polarization model DOES approach its prescribed spherical
+force profile within the declared 10% tolerance for two of three smooth
+source-assembly histories. The earlier sudden-source result cannot be
+generalised to 'this model never forms the profile'. Neither can these
+successes be generalised to universal attraction or realistic halo formation.
+
+Actual change from the failed sudden-source experiment
+-----------------------------------------------------
+Same action, response coefficients, final baryon profile and force kernel.
+No viscosity or target-restoring force added. Initial fields/velocities zero.
+The baryon source is prescribed as rho_b(t)=S(t)*rho_final,
+ S=3u^2-2u^3, u=clip(t/T,0,1).
+T=40,160,320 were declared before this run, after seeing the sudden-source
+failure. Each run continues for 320 time units after assembly finishes.
+Source work is explicitly included:
+ dH/dt = Sdot * integral rho_final*Phi*r^2 dr.
+The integrated work is negative for these preparations. This is an energy
+exchange with the prescribed assembly process, not a closed autonomous
+baryon model and not evidence that waves alone prepare the profile.
+
+Fine-grid results, R=512, N=4096, dt=0.02
+ T       final force RMS error    range over final 80 time units    verdict
+ 40      15.78%                   15.67%-16.49%                    FAIL
+ 160      6.62%                    6.62%-6.74%                     PASS
+ 320      3.92%                    3.92%-3.95%                     PASS
+The force is attractive throughout the scored radial interval r=2..20.
+The formation gate requires <=10% error at every sampled time in that
+last interval, not merely at the last instant. Both resolutions pass for
+T=160 and 320; both fail for T=40.
+
+Validation and limits
+---------------------
+N=2048,dt=0.04 versus N=4096,dt=0.02: final force differences in the
+declared relative L2 norm are 2.21%, 1.19%, 1.01%, below the 3% criterion.
+Maximum fine-grid |H-work|/|H_static| is 2.63e-7. All static-residual,
+work-accounting and refinement controls pass. The manifest validates.
+These are numerical consistency checks, not observational error bars.
+The source-profile tolerance is 10%; it was not loosened to obtain success.
+
+Fixed outer potential, domain radius 512, regular origin; no absorbing
+boundary or added regulator. At the longest final time 640, a centre-to-
+boundary-to-interior return at the continuum fastest speed 1 is beyond
+the scored interval. This run did not repeat the separate box-doubling
+check from the preceding sudden-source study; no new exact finite-volume
+causality theorem or infinite-domain convergence claim is made.
+All times, sizes and source masses are dimensionless. Z=I=1 are selected
+coefficients, not derived physical parameters. Source assembly is imposed,
+not produced by baryon hydrodynamics or an observed accretion history.
+
+Physical advance
+----------------
+There is now an explicit nonlinear preparation path for the force response:
+grow the source slowly enough, let the conservative internal field respond,
+and account for the source work plus field energy. No artificial friction
+is required for this finite approximate agreement. This is more than a
+static identity and less than a microscopic mechanism of dark matter.
+An independent cold mass/current, a derived assembly timescale, a metric
+coupling that lenses, and the a0-vacuum normalisation are still absent.
+The inverse-designed U(P) remains an input encoding the desired kernel.
+
+Next physical discrimination
+----------------------------
+Map Z,I and source-growth time to an actual carrier model before interpreting
+T=160/320 as galaxy ages. Test the same action on multiple baryon profiles,
+coupled baryon motions, and a relativistic lensing prescription. A selected
+successful history is not a new free fitting parameter for each galaxy.
+
+Separate observational update read during this run
+-------------------------------------------------
+CFG636 canonical native-results JSON now reports KiDS delta chi2 +13.9694,
+robustness minimum +9.19165, frozen class EXCLUDED. Its growth benchmark
+G=0.0894223 passes. DES is NOT DIAGNOSTIC, alt pending in this output.
+These are the source-cap settling model's results at its inherited inputs,
+not scores of the polarization model. They do not establish a universal
+exclusion of the acceleration formula. No CFG636 file was modified here.
+
+Artifacts: assembly.py, assembly_contract.json, assembly_run/results.json,
+stdout/stderr and validated provenance manifest. No numerical exceptions
+or failed runs were suppressed. Original full-theory goal is not achieved.

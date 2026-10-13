@@ -1,0 +1,83 @@
+{
+  "claim_id": "POLARIZATION_SOURCE_ASSEMBLY",
+  "mathematics": {
+    "assertion_tested": "After seeing sudden-source formation failure, test prescribed smooth source assembly with unchanged effective action and 10% target tolerance. Count all source work.",
+    "coefficient_domain": "float64, radial finite volume with energy-adjoint gradient/divergence, velocity Verlet",
+    "conventions": "Same radial source, kernel and units as spherical test; rho(t)=S(t)*rho_final, S=3u^2-2u^3 for u=t/T in [0,1], then 1. Prescribed assembly, NOT derived baryon dynamics. Work=int Sdot*int rho_final Phi r^2 dr dt.",
+    "inputs": [
+      "sol61_push/polarization_dynamics_2026_10_12/assembly.py",
+      "sol61_push/polarization_dynamics_2026_10_12/spherical.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "ramp_times": [
+        40,
+        160,
+        320
+      ],
+      "runs": [
+        [
+          512,
+          2048,
+          0.04
+        ],
+        [
+          512,
+          4096,
+          0.02
+        ]
+      ],
+      "end_time": "T+320",
+      "evaluation_radius": [
+        2,
+        20
+      ],
+      "sample_interval": 10,
+      "threads": 1,
+      "timeout_seconds": 180
+    },
+    "criteria": {
+      "energy_error_normalised_to_static_energy": "max |H(t)-work(t)|/|H_static| <=0.002",
+      "static_acceleration_residual": 1e-07,
+      "final_refinement_force_relative_L2": 0.03,
+      "final_box_force_relative_L2": 0.03,
+      "formation": "RMS fractional force error <=0.10 and force nonnegative at every sample during last 80 time units of each run"
+    },
+    "controls": [
+      "Two spatial/time resolutions per ramp",
+      "Static residual and source-work conservation",
+      "No drag or changed response coefficients"
+    ],
+    "non_claims": [
+      "Fixed baryons, not coupled galaxy formation",
+      "No independent cold mass, metric/lensing or cosmology",
+      "No physical time unit or derived response coefficients",
+      "Finite-time approximate agreement is not an attractor theorem",
+      "A successful selected assembly history is not a universal attractor or explanation of that assembly timescale."
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/polarization_dynamics_2026_10_12/assembly.py",
+    "sol61_push/polarization_dynamics_2026_10_12/spherical.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.13.9"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.14.1"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}
