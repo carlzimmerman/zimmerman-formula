@@ -157,6 +157,9 @@
 
 - **Kinetic bridge (CFG722; criteria cb2aac21f):** the P-field bound charge has zero net mass and no inertia → cannot be CFG624's cold mass → a collisionless CARRIER is forced (a new particle species with free mass — tension with the no-particle rule). Identifying the carrier with the polarizable medium gives a derived conservative tether whose static minimum is exactly the law (C_sel = −∇_v·(a_T f)), capacity Σ̄_c ≤ a₀/πG (214 / 258 M☉/pc²), export-only exchange; CONDITIONAL on that identification, a basin-frame anchor (B1) and an export channel the action lacks. Hot vs condensed: OBSTRUCTED. Overflow under ID goes to the basin edge, not the core.
 
+- **What cold energy's mass is (CFG723; criteria e9238960c; data-first E1–E7):** only a carrier with real rest mass (ρ = m n) meets the evidence. P field energy is 1e-11 of the need at recombination and not dust (FAILS); vacuum-displaced energy has no inertia and breaks local energy–momentum (FAILS); phantom-without-inertia fails the Bullet (Z +7.9); coherent P oscillations have Mpc Jeans lengths (FAILS). VIABLE (as a particle in disguise): a cold collisionless medium whose displacement IS P (∂_tP = −j ⇒ ∇·P = ρ − ρ̄ exactly, giving CFG722's tether kinematically), mass possibly induced by ρ_DE; condensate branch m ≲ 16–143 eV, σ/m ~0.1–3 cm²/g (testable via merger offsets/cores). Astra's 193.5 eV daughter would be non-degenerate in halos. The owner's "not the mass we think" survives only for the ORIGIN of the mass value (vacuum-induced), not its kind.
+- **Capacity check (CFG724, quick, post hoc):** SPARC dark Σ stays below a₀/(πG) in the deep regime (median ~0.3 of it); Bullet cores hold 3.6–4.8× the capacity → cluster cores need a second, untethered cold population (links CFG722/669/687/652).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
