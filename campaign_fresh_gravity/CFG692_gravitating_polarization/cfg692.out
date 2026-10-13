@@ -1,0 +1,41 @@
+CFG692: gravitating polarization - the bound charge div P of a vacuum polarization field as the cold mass.
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 097b2feee). Units: u = 4 pi G |P| (an acceleration).
+W(P) = 2 pi G P^2 + (4 pi G)^2 P^3/(3 a0)  =>  W'(P) = u + u^2/a0 (critical medium + SI cubic). Antiscreening: g = g_N + u.
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg692.py      (CFG692_MUTATE=1: off-critical, screening sign, nu = 1; exit 1 iff all bite)
+
+T1  static law: W'(P) = g and g = g_N + sign*u
+    u(g) = sqrt(a_0)*sqrt(a_0 + 4*g)/2 - a_0/2;  g_N(g) = -sqrt(a_0)*sqrt(a_0 + 4*g)/2 + a_0/2 + g;  mu(x = g/a0) = (2*x - sqrt(4*x + 1) + 1)/(2*x)
+    deep: lim g->0 g_N/(g^2/a0) = 1;  Newtonian: lim g->oo mu = 1;  high-field u ~ 1 sqrt(a0 g)
+  [PASS] T1 deep g_N = g^2/a0 and mu -> 1: deep ratio 1, mu(oo) 1
+    inverse g(g_N): [-sqrt(a_0)*sqrt(g_N) + g_N, sqrt(a_0)*sqrt(g_N) + g_N]
+    equals g_N + sqrt(a0 g_N) (nu = 1 + y^-1/2, the CFG690 interpolation): True
+
+T2  second variation per mode: Q = diag(W'', W'/P) - 4 pi G khat khat^T  (+ gamma k^2 I); khat = (c, s), c^2 + s^2 = 1
+    W'' = 4*pi*G*(a_0 + 2*u)/a_0;  W'/P = 4*pi*G*(a_0 + u)/a_0;  longitudinal margin W'' - 4piG = 8*pi*G*u/a_0;  transverse-with-k-along-dP margin = 4*pi*G*u/a_0
+    PD condition (gamma = 0): c^2/(W''/4piG) + s^2/((W'/P)/4piG) = a_0*(a_0 - c**2*u + 2*u)/(a_0**2 + 3*a_0*u + 2*u**2) < 1
+  [PASS] T2 static medium stable for every P > 0 at gamma = 0: max PD condition over u/a0 in {1e-4..1e2}, all k directions = 0.999900 (< 1); longitudinal margin 8*pi*G*u/a_0
+    deep regime (u << a0): margins -> 0 as u/a0 -> 0 (the medium is near-critical there; restoring rate ~ sqrt(8 pi G u/(a0 I)))
+
+T3  (a) Poisson: lap Phi = 4 pi G (rho_b + div P): the cold mass rho_c = div P is in the one equation that sets the metric
+    (b) deep spherical: P = sqrt(M)*sqrt(a_0)/(4*pi*sqrt(G)*r);  rho_c = div P = sqrt(M)*sqrt(a_0)/(4*pi*sqrt(G)*r**2);  M_c(<r) = surface flux 4 pi r^2 P = sqrt(M)*sqrt(a_0)*r/sqrt(G) (= volume integral sqrt(M)*sqrt(a_0)*r/sqrt(G))
+  [PASS] T3 deep cold mass rho_c ~ r^-2, M_c(<r) ~ r, M_c = surface flux (moved, not created): the compensating negative bound charge sits where P falls to zero: the outer edge of each polarized region
+
+T4  raw SPARC, CFG4 statistic (CFG690 copy), nu from T1
+    canonical: nu_crit 0.1012 dex @ Upsilon 0.46  (nu_mono control 0.1003 @ 0.61)
+    alt      : nu_crit 0.1007 dex @ Upsilon 0.42  (nu_mono control 0.0991 @ 0.57)
+  [PASS] T4 CONTROL reproduces CFG4 nu_mono: 
+  [FAIL] T4 C2 line on both footings: 
+
+T5  S2: satellite (g_i << g_e) linear response about the host's P(g_e)
+    g_e =  0.1 a0: satellite boost nu_par 6.458, nu_perp 11.916   vs isolated at g_i = 0.01 a0: 101.99
+    g_e =  1.0 a0: satellite boost nu_par 1.809, nu_perp 2.618   vs isolated at g_i = 0.01 a0: 101.99
+  [FAIL] T5 S2 (ignore external fields): boost depends on g_e: S2 FAILS
+
+T6  (reported) high-field residual dg/g_N = sqrt(a0/g_N)
+    canonical: 1 AU 1.256e-04; Saturn 1.204e-03
+    alt      : 1 AU 1.381e-04; Saturn 1.323e-03
+
+VERDICT (CFG679 rows): R0 R0-SHAPED (criticality + SI); M1a UNTESTED (P-wave radiation named, not run); M1c PASS (fixed baryons, gamma = 0); M2a_M2b PASS structurally: cold mass = surface flux of P, moved not created; M3a CONDITIONAL (Newtonian lensing = dynamics; Phi = Psi not derived); C2 FAIL (Upsilon band, = CFG690); S2 FAIL; S5 needs stiffness screening (CFG691 analogue not run for this equation)
