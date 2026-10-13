@@ -1,0 +1,87 @@
+CFG648 gates (FROZEN_CRITERIA.md, 2e9dffba1): phase-mixed settling H-SP, both sources (B all-baryon, H-CB condensed), both footings.
+
+T1 SPARC (CFG487 harness as CFG645 T1 runs it), T2 Tian+26 groups, T3 X-COP (+ inner band) and T4 Bullet are CFG634's committed code
+executed from its source text with ONE patch per function (as CFG637 / CFG645): res == "RSP" cuts the settled phantom at the system's
+derived H-SP settled edge r_set (held at M_ph(r_set) beyond it) and adds the derived reservoir M_res(<r) (cfg648_profiles.npz, gate
+units). T5 KiDS: ESD ratios H-SP / B from the solver's final mass profiles in CFG700's K-in / K9 bands, and the age-split bound.
+T6 (CONTEXT ONLY): CFG556 halo model (B) and CFG634's frame_hcb (H-CB) executed from source with the settled edge moved inward.
+MUTATE (CFG648_MUTATE=1, *_MUTATE outputs): M-ta, the RD branch with CFG637's own profiles reproduces CFG637's gate JSON, H-SP off
+reproduces candidate B's T1 rms (CFG624) and CFG556's primary R(k).
+
+== T1 SPARC (CFG487 harness executed read-only, as CFG645 T1; B source = H-CB for SPARC)
+  [canonical] rms H-SP 0.10033 vs B 0.10033 (d +0.00000); galaxies with r_set inside the data 0; largest reservoir / phantom at R_last 0.000
+  [alt] rms H-SP 0.10127 vs B 0.10127 (d +0.00000); galaxies with r_set inside the data 0; largest reservoir / phantom at R_last 0.000
+  T1 label: PASS
+
+== T2 Tian+26 groups (CFG634 sigma_hcb; RSP = H-SP)
+  [canonical] B   mean -0.0701  Z -2.97  -> BELOW (over-corrects)   (CFG637 RD: +0.0596, CLOSES)
+  [canonical] HCB mean -0.0763  Z -3.28  -> BELOW (over-corrects)   (CFG637 RD: +0.0661, CLOSES)
+  [alt] B   mean -0.0456  Z -1.80  -> CLOSES   (CFG637 RD: +0.0435, CLOSES)
+  [alt] HCB mean -0.0578  Z -2.37  -> BELOW (over-corrects)   (CFG637 RD: +0.0504, CLOSES)
+
+== T3 X-COP (CFG634 cl_model / t3_cell; RSP = H-SP)
+  B   eta headline 1.784+-0.067 / 1.627+-0.061 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL)   [CFG637 RD: 1.820/1.679 FAIL, inner 3.163/2.927]
+  HCB eta headline 1.342+-0.049 / 1.363+-0.052 -> FAIL     | inner 200-420 0.812 / 0.815 (PASS)   [CFG637 RD: 1.494/1.661 FAIL, inner 0.859/0.889]
+
+== T4 Bullet (CFG634 code; RSP = H-SP)
+  BASE|can|B   dkappa main +0.024 (z -3.37), sub +0.002 (z -2.28) -> FAIL    | M(<250)/P16 main 0.34, sub 0.16 | settled main 3.42e+14, reservoir main 3.78e+14   [CFG637 RD FAIL: z -3.35/-2.29]
+  BASE|can|HCB dkappa main +0.312 (z +0.02), sub +0.083 (z -1.24) -> PASS    | M(<250)/P16 main 0.79, sub 0.17 | settled main 1.53e+14, reservoir main 7.75e+14   [CFG637 RD TENSION: z -0.54/-2.63]
+  BASE|alt|B   dkappa main +0.028 (z -3.32), sub +0.006 (z -2.23) -> FAIL    | M(<250)/P16 main 0.36, sub 0.17 | settled main 3.85e+14, reservoir main 3.74e+14   [CFG637 RD FAIL: z -3.30/-2.24]
+  BASE|alt|HCB dkappa main +0.290 (z -0.24), sub +0.081 (z -1.26) -> PASS    | M(<250)/P16 main 0.78, sub 0.16 | settled main 1.70e+14, reservoir main 7.27e+14   [CFG637 RD TENSION: z -2.39/-2.56]
+  B1|can|B   dkappa main +0.020 (z -3.42), sub +0.002 (z -2.28) -> FAIL    | M(<250)/P16 main 0.33, sub 0.17 | settled main 3.40e+14, reservoir main 3.78e+14   [CFG637 RD FAIL: z -3.41/-2.30]
+  B1|can|HCB dkappa main +0.347 (z +0.44), sub +0.071 (z -1.40) -> PASS    | M(<250)/P16 main 0.83, sub 0.17 | settled main 9.19e+13, reservoir main 9.42e+14   [CFG637 RD TENSION: z +0.30/-2.68]
+  B1|alt|B   dkappa main +0.023 (z -3.39), sub +0.006 (z -2.23) -> FAIL    | M(<250)/P16 main 0.35, sub 0.18 | settled main 3.82e+14, reservoir main 3.74e+14   [CFG637 RD FAIL: z -3.36/-2.24]
+  B1|alt|HCB dkappa main +0.288 (z -0.26), sub +0.009 (z -2.19) -> TENSION | M(<250)/P16 main 0.81, sub 0.14 | settled main 1.01e+14, reservoir main 9.20e+14   [CFG637 RD TENSION: z +0.24/-2.67]
+  B2|can|B   dkappa main +0.022 (z -3.39), sub +0.004 (z -2.26) -> FAIL    | M(<250)/P16 main 0.33, sub 0.17 | settled main 3.40e+14, reservoir main 3.78e+14   [CFG637 RD FAIL: z -3.38/-2.27]
+  B2|can|HCB dkappa main +0.310 (z +0.00), sub +0.083 (z -1.24) -> PASS    | M(<250)/P16 main 0.83, sub 0.18 | settled main 9.23e+13, reservoir main 9.40e+14   [CFG637 RD TENSION: z +0.36/-2.61]
+  B2|alt|B   dkappa main +0.026 (z -3.35), sub +0.008 (z -2.20) -> FAIL    | M(<250)/P16 main 0.36, sub 0.18 | settled main 3.82e+14, reservoir main 3.74e+14   [CFG637 RD FAIL: z -3.33/-2.22]
+  B2|alt|HCB dkappa main +0.328 (z +0.21), sub +0.012 (z -2.15) -> TENSION | M(<250)/P16 main 0.82, sub 0.14 | settled main 1.02e+14, reservoir main 9.17e+14   [CFG637 RD TENSION: z +0.29/-2.57]
+  B3|can|B   dkappa main +0.016 (z -3.47), sub +0.002 (z -2.28) -> FAIL    | M(<250)/P16 main 0.33, sub 0.20 | settled main 3.17e+14, reservoir main 2.83e+14   [CFG637 RD FAIL: z -3.45/-2.28]
+  B3|can|HCB dkappa main +0.286 (z -0.28), sub +0.066 (z -1.45) -> PASS    | M(<250)/P16 main 0.69, sub 0.19 | settled main 9.19e+13, reservoir main 6.63e+14   [CFG637 RD TENSION: z -0.53/-2.68]
+  B3|alt|B   dkappa main +0.018 (z -3.44), sub +0.006 (z -2.23) -> FAIL    | M(<250)/P16 main 0.36, sub 0.21 | settled main 3.55e+14, reservoir main 2.80e+14   [CFG637 RD FAIL: z -3.41/-2.22]
+  B3|alt|HCB dkappa main +0.289 (z -0.25), sub +0.001 (z -2.30) -> TENSION | M(<250)/P16 main 0.68, sub 0.15 | settled main 1.01e+14, reservoir main 6.37e+14   [CFG637 RD TENSION: z -0.35/-2.64]
+  merger statement: H-SP phase-mixing time (pericentre -> first apocentre of the most recent shells, B1 main, B, can) = 2.68 Gyr, vs the scored merger window t - t_peri 0.1-0.6 Gyr (CFG623): LONGER -> H-SP predicts NO new settling during the passage (alpha_eff = 0, the only value CFG623 allows), with no constant
+
+== T5 KiDS isolated lenses: ESD_HSP / ESD_B in CFG700's bands (solver final mass profiles; excess over mean density)
+  [canonical] p5 log M_gal 9.82: K-in R 16-27 kpc, delta_in +0.0577; K9 R 16-151 kpc, delta_9 +0.0343
+  [canonical] p50 log M_gal 10.67: K-in R 42-74 kpc, delta_in +0.0676; K9 R 42-405 kpc, delta_9 +0.0476
+  [canonical] p95 log M_gal 11.00: K-in R 61-107 kpc, delta_in +0.0248; K9 R 61-589 kpc, delta_9 +0.0244
+  [alt] p5 log M_gal 9.82: K-in R 16-27 kpc, delta_in +0.0530; K9 R 16-151 kpc, delta_9 +0.0286
+  [alt] p50 log M_gal 10.67: K-in R 42-74 kpc, delta_in -0.0094; K9 R 42-405 kpc, delta_9 -0.0057
+  [alt] p95 log M_gal 11.00: K-in R 61-107 kpc, delta_in +0.0314; K9 R 61-589 kpc, delta_9 +0.0262
+  T5 label (K-in, all masses, both footings): UNCHANGED (= record FAIL)
+  [canonical] age bound: Gamma 0.16 vs 1.36 -> A_HSP,max = log10(ESD_K9 ratio) = +0.0989 (observed +0.166 +- 0.071): sign MATCHES (old > young), size PARTIAL
+     eps/Gamma/ESD_K9: 0.3/1.36/1.305e+08, 0.5/0.81/1.358e+08, 0.75/0.54/1.389e+08, 1.0/0.40/1.437e+08, 1.5/0.26/1.523e+08, 2.5/0.16/1.639e+08
+  [alt] age bound: Gamma 0.16 vs 1.36 -> A_HSP,max = log10(ESD_K9 ratio) = +0.0947 (observed +0.166 +- 0.071): sign MATCHES (old > young), size PARTIAL
+     eps/Gamma/ESD_K9: 0.3/1.36/1.422e+08, 0.5/0.81/1.486e+08, 0.75/0.54/1.510e+08, 1.0/0.40/1.530e+08, 1.5/0.26/1.623e+08, 2.5/0.16/1.769e+08
+
+== T6 growth proxy (CONTEXT ONLY): CFG556 halo model (B) / CFG634 frame_hcb (H-CB), settled edge moved inward
+  [canonical] B   B base                                         R(k=0.3) 1.124  R(k=1) 1.716  sigma8 ratio 1.0402
+  [canonical] B   H-SP x_set (derived settled edge)              R(k=0.3) 1.065  R(k=1) 1.437  sigma8 ratio 1.0220
+  [canonical] B   H-SP s (r_sp only, literal frozen row)         R(k=0.3) 1.114  R(k=1) 1.719  sigma8 ratio 1.0379
+  [canonical] B   H-SP x_set + derived reservoir shape (bracket) R(k=0.3) 1.056  R(k=1) 1.442  sigma8 ratio 1.0191
+  [canonical] HCB B base                                         R(k=0.3) 0.924  R(k=1) 0.593  sigma8 ratio 0.9746
+  [canonical] HCB H-SP x_set (derived settled edge)              R(k=0.3) 0.933  R(k=1) 0.574  sigma8 ratio 0.9766
+  [canonical] HCB H-SP s (r_sp only, literal frozen row)         R(k=0.3) 0.933  R(k=1) 0.576  sigma8 ratio 0.9767
+  [canonical] HCB H-SP x_set + derived reservoir shape (bracket) R(k=0.3) 1.050  R(k=1) 1.261  sigma8 ratio 1.0152
+  [alt] B   B base                                         R(k=0.3) 1.140  R(k=1) 1.885  sigma8 ratio 1.0463
+  [alt] B   H-SP x_set (derived settled edge)              R(k=0.3) 1.079  R(k=1) 1.572  sigma8 ratio 1.0275
+  [alt] B   H-SP s (r_sp only, literal frozen row)         R(k=0.3) 1.136  R(k=1) 1.887  sigma8 ratio 1.0454
+  [alt] B   H-SP x_set + derived reservoir shape (bracket) R(k=0.3) 1.065  R(k=1) 1.560  sigma8 ratio 1.0232
+  [alt] HCB B base                                         R(k=0.3) 0.933  R(k=1) 0.676  sigma8 ratio 0.9782
+  [alt] HCB H-SP x_set (derived settled edge)              R(k=0.3) 0.936  R(k=1) 0.626  sigma8 ratio 0.9783
+  [alt] HCB H-SP s (r_sp only, literal frozen row)         R(k=0.3) 0.937  R(k=1) 0.629  sigma8 ratio 0.9785
+  [alt] HCB H-SP x_set + derived reservoir shape (bracket) R(k=0.3) 1.048  R(k=1) 1.270  sigma8 ratio 1.0146
+  T6 B H-SP x_set (derived settled edge): REDUCES / REDUCES
+  T6 B H-SP s (r_sp only, literal frozen row): UNCHANGED / UNCHANGED
+  T6 B H-SP x_set + derived reservoir shape (bracket): REDUCES / REDUCES
+  T6 HCB H-SP x_set (derived settled edge): DEFICIT / DEFICIT
+  T6 HCB H-SP s (r_sp only, literal frozen row): DEFICIT / DEFICIT
+  T6 HCB H-SP x_set + derived reservoir shape (bracket): UNCHANGED / UNCHANGED
+
+== verdict (frozen rule, per source; PRIMARY = eps 1 framework run, derived settled edge)
+  [B] FAILS T2 groups, T3 X-COP headline, T4b Bullet B1; T6 (context) REDUCES / REDUCES; shifts vs CFG637 RD: T1 0.0000, T2 0.1297, T3 0.051, T4 z 0.02, T6 0.39 of the excess
+  [HCB] FAILS T2 groups, T3 X-COP headline, T4b Bullet B1; T6 (context) DEFICIT / DEFICIT; shifts vs CFG637 RD: T1 0.0000, T2 0.1424, T3 0.298, T4 z 1.29, T6 50272163.76 of the excess
+  age split: MATCHES (old > young) / MATCHES (old > young); size PARTIAL / PARTIAL
+
+0/0 checks pass (0 load-bearing failures); elapsed 21.3 s
