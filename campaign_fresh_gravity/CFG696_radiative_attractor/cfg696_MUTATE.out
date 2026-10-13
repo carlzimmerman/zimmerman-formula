@@ -1,0 +1,34 @@
+CFG696: does the polarization field relax onto the law's profile by radiating P waves? (M1a attractor + M2b energy ledger)
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 30a4ff252). Point mass, CFG691 units. v = s q:
+    v_tt = v'' - 2 v/s^2 - v|v|/s + 1/s,   v(0) = 0,   outgoing at s = S:  v_t = -v_s + 1/s^2  (static asymptote 1 - 1/s).
+Lagrangian density L = v_t^2/2 - v_s^2/2 - v^2/s^2 - |v|^3/(3s) + v/s  =>  E = int e ds, dE/dt = (v_s v_t)|_S.
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg696.py      (CFG696_MUTATE=1: reflecting boundary, flux omitted; exit 1 iff both bite)
+  [PASS] K1 static profile = CFG691 BVP (S table), discrete residual relative to the source <= 1e-3: |dS| 0.0e+00; discrete residual / (1/s) max on [0.1, 50] = 4.2e-06
+
+A1/A2  grid ds = 0.02, dt = 0.01, S = 200.0, t_end = 2000.0; REFLECTING (M1) boundary
+    (i) zero                 t =   500.0: max|q - q_static|/q_static on [0.1,50] = 1.356e+00;  E0 - E = -2.29139e+01;  radiated = -2.47500e+01;  bound charge s*v at s=50: -17.450 (static 48.989)
+    (i) zero                 t =  1000.0: max|q - q_static|/q_static on [0.1,50] = 6.326e-01;  E0 - E = -2.29573e+01;  radiated = -2.47500e+01;  bound charge s*v at s=50: 50.045 (static 48.989)
+    (i) zero                 t =  1500.0: max|q - q_static|/q_static on [0.1,50] = 2.844e-01;  E0 - E = -2.30265e+01;  radiated = -2.47500e+01;  bound charge s*v at s=50: 42.953 (static 48.989)
+    (i) zero                 t =  2000.0: max|q - q_static|/q_static on [0.1,50] = 4.042e-01;  E0 - E = -2.29918e+01;  radiated = -2.47500e+01;  bound charge s*v at s=50: 65.813 (static 48.989)
+    (ii) 2x static           t =   500.0: max|q - q_static|/q_static on [0.1,50] = 1.398e+00;  E0 - E = -2.29125e+01;  radiated = -2.47499e+01;  bound charge s*v at s=50: 26.529 (static 48.989)
+    (ii) 2x static           t =  1000.0: max|q - q_static|/q_static on [0.1,50] = 7.198e-01;  E0 - E = -2.29562e+01;  radiated = -2.47499e+01;  bound charge s*v at s=50: 32.433 (static 48.989)
+    (ii) 2x static           t =  1500.0: max|q - q_static|/q_static on [0.1,50] = 3.711e-01;  E0 - E = -2.30238e+01;  radiated = -2.47499e+01;  bound charge s*v at s=50: 36.487 (static 48.989)
+    (ii) 2x static           t =  2000.0: max|q - q_static|/q_static on [0.1,50] = 6.028e-01;  E0 - E = -2.29914e+01;  radiated = -2.47499e+01;  bound charge s*v at s=50: 40.327 (static 48.989)
+    (iii) 0.5x static        t =   500.0: max|q - q_static|/q_static on [0.1,50] = 7.159e-01;  E0 - E = -5.72852e+00;  radiated = -6.18750e+00;  bound charge s*v at s=50: 83.846 (static 48.989)
+    (iii) 0.5x static        t =  1000.0: max|q - q_static|/q_static on [0.1,50] = 3.157e-01;  E0 - E = -5.73929e+00;  radiated = -6.18750e+00;  bound charge s*v at s=50: 41.532 (static 48.989)
+    (iii) 0.5x static        t =  1500.0: max|q - q_static|/q_static on [0.1,50] = 1.488e-01;  E0 - E = -5.75615e+00;  radiated = -6.18750e+00;  bound charge s*v at s=50: 53.852 (static 48.989)
+    (iii) 0.5x static        t =  2000.0: max|q - q_static|/q_static on [0.1,50] = 1.390e-01;  E0 - E = -5.74787e+00;  radiated = -6.18750e+00;  bound charge s*v at s=50: 45.922 (static 48.989)
+    (iv) 1 - exp(-s)         t =   500.0: max|q - q_static|/q_static on [0.1,50] = 7.095e-02;  E0 - E = +1.52374e-03;  radiated = -6.28177e-04;  bound charge s*v at s=50: 49.136 (static 48.989)
+    (iv) 1 - exp(-s)         t =  1000.0: max|q - q_static|/q_static on [0.1,50] = 1.407e-02;  E0 - E = +1.59835e-03;  radiated = -6.28177e-04;  bound charge s*v at s=50: 49.673 (static 48.989)
+    (iv) 1 - exp(-s)         t =  1500.0: max|q - q_static|/q_static on [0.1,50] = 1.524e-03;  E0 - E = +1.30993e-03;  radiated = -6.28177e-04;  bound charge s*v at s=50: 48.981 (static 48.989)
+    (iv) 1 - exp(-s)         t =  2000.0: max|q - q_static|/q_static on [0.1,50] = 9.728e-02;  E0 - E = +9.60176e-04;  radiated = -6.28177e-04;  bound charge s*v at s=50: 52.417 (static 48.989)
+  [FAIL] A1 every non-law initial state relaxes to the law's profile (<= 1% on [0.1, 50] at t = 2000, decreasing): (i) zero: 4.04e-01; (ii) 2x static: 6.03e-01; (iii) 0.5x static: 1.39e-01; (iv) 1 - exp(-s): 9.73e-02
+  [FAIL] A2 energy lost = energy radiated by outgoing P waves (within 1%): (i) zero: mismatch 1.00e+00; (ii) 2x static: mismatch 1.00e+00; (iii) 0.5x static: mismatch 1.00e+00; (iv) 1 - exp(-s): mismatch 1.00e+00
+
+A4  (reported) physical relaxation time = t_code * l_gamma / c_P, l_gamma = L*^2 / (2 r_M), L* = 5.75 pc, a0 = 9.36e-11
+    I (equivalently c_P) is not fixed by any gate so far: a constant, unless c_P = c is derived.
+
+MUTATE: {'M1': True, 'M2': True}
