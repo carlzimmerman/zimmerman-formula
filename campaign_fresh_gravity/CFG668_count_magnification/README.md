@@ -1,3 +1,5 @@
+> **ID note (2026-10-12):** this lane is **CFG680** in the LEDGER (alias, fixed forward). The directory name CFG668 collided with the owner chat's `CFG668_early_type_rescore`; commits and criteria are unchanged.
+
 # CFG668 — background galaxies behind clusters vs blank sky (result)
 
 Criteria frozen in 6207c1861. Data: 361 redMaPPer clusters (λ>60, z 0.1–0.3) and 445 clean random SDSS fields
