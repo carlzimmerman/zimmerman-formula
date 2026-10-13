@@ -1,0 +1,100 @@
+CFG659: does the settling field P leave any signature in ordinary matter or light?
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 75e95fe06). Reading lane on CFG694 (action), CFG695 (saturating W), CFG696
+(radiative attractor); no CFG690-699 file is edited or imported.
+  L = -|grad Phi - 4 pi G lam P|^2 / 8 pi G - rho_b Phi - W(P) - (gamma/2)|grad P|^2 + (I/2)|P_t|^2      (lam = 1 is the action)
+  gamma = 2 pi G L*^2  (CFG691: l_gamma = L*^2 / 2 r_M);  c_P = sqrt(gamma / I) unfixed (CFG696).
+  W: CFG695 saturating vacuum minus the critical quadratic; in u = 4 pi G P:  4 pi G W = w(u) = -a0 u - a0^2 ln(1 - u/a0) - u^2/2,
+     w'(u) = u^2/(a0 - u),  w''(u) = u(2 a0 - u)/(a0 - u)^2.   Local gap for P perturbations: m^2 = 4 pi G w''/gamma = 2 w''/L*^2.
+kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; cold energy mass required; no particle species; not
+"theory closed"; no LCDM or standard-MOND yardstick in any verdict.
+
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg659.py        (CFG659_MUTATE=1: lam = 0; exit 1 iff any channel is non-zero)
+
+D1  coupling: Phi equation div(grad Phi - 4 pi G lam P) = 4 pi G rho_b  =>  g = g_N - 4 pi G lam P_L;  P_T never enters Phi
+  [PASS] D1 g = g_N - 4piG lam P_L exactly; a purely transverse P leaves Phi unchanged: max|g - (g_N - 4piG lam P_L)| = 0.0e+00; max|Phi[P_T] - Phi_N| = 0.0e+00
+    Matter feels P ONLY through Phi (universal, composition-blind): a passing longitudinal wave gives delta a = -4 pi G lam delta P_L.
+    Electromagnetism: the action has NO term containing A_mu or F_munu. Any direct P-light coupling would be a NEW TERM (a knob);
+    none is added. Light sees P only through the metric potentials (Phi; Psi = Phi is the open relativistic completion).
+
+D2  linear waves about a background u0 (a0 = footing):
+    longitudinal:  I w^2 = gamma (k^2 + m^2),  m^2 = 2 w''(u0)/L*^2   (the |grad Phi - 4piG P|^2 term is P_L-independent: no mass)
+    transverse:    I w^2 = gamma k^2 + 4 pi G lam^2 + gamma m_T^2         (massive, and decoupled from matter by D1)
+    speed c_P = sqrt(gamma/I) (unfixed, CFG696). These are NOT GR gravitational waves: longitudinal, speed c_P, gapped where u0 != 0.
+    regimes: deep (u0 << a0) m^2 = 4 u0/(a0 L*^2);  saturated (g >> a0) m ~ sqrt2 g/(a0 L*);  screened core of a star: u0 ~ GM/L*^2 ~ 0.
+D3  traveling longitudinal wave: e = I Pdot^2, flux F = c_P e;  delta u0 = 4 pi G lam delta P0 = lam sqrt(16 pi G c_P F)/(w L*)
+
+K1  static field energy of CFG696's functional (cubic W): E_code(S) = -int_0^S [v'^2/2 + v^2/s^2 + |v|^3/(3s) - v/s] ds
+    lam = 0: E_code(200) = -0.000e+00
+
+S1  energy released by settling, saturating W (framework-native): E = M_b V_f^2 * eps(R/r_M),  V_f^4 = G M_b a0, r_M = sqrt(G M_b/a0)
+    canonical galaxy : V_f    165 km/s, r_M    9.5 kpc, R/r_M  10.6, eps -0.000, E -0.00e+00 J; no-trap ceiling L: relaxed (10 Gyr) -0.0e+00 W, merging (R/V_f = 0.59 Gyr) -0.0e+00 W
+    canonical group  : V_f    334 km/s, r_M   38.6 kpc, R/r_M  13.0, eps -0.000, E -0.00e+00 J; no-trap ceiling L: relaxed (10 Gyr) -0.0e+00 W, merging (R/V_f = 1.46 Gyr) -0.0e+00 W
+    canonical cluster: V_f   1056 km/s, r_M  385.9 kpc, R/r_M   5.2, eps -0.000, E -0.00e+00 J; no-trap ceiling L: relaxed (10 Gyr) -0.0e+00 W, merging (R/V_f = 1.85 Gyr) -0.0e+00 W
+    alt       galaxy : V_f    173 km/s, r_M    8.6 kpc, R/r_M  11.6, eps -0.000, E -0.00e+00 J; no-trap ceiling L: relaxed (10 Gyr) -0.0e+00 W, merging (R/V_f = 0.56 Gyr) -0.0e+00 W
+    alt       group  : V_f    350 km/s, r_M   35.1 kpc, R/r_M  14.2, eps -0.000, E -0.00e+00 J; no-trap ceiling L: relaxed (10 Gyr) -0.0e+00 W, merging (R/V_f = 1.40 Gyr) -0.0e+00 W
+    alt       cluster: V_f   1107 km/s, r_M  351.0 kpc, R/r_M   5.7, eps -0.000, E -0.00e+00 J; no-trap ceiling L: relaxed (10 Gyr) -0.0e+00 W, merging (R/V_f = 1.77 Gyr) -0.0e+00 W
+    cosmic ceiling (CFG630 K4 max d rho_DE/rho_DE0 = 5.87e-06): all settling energy ever, as P waves: u_P <= 0.00e+00 J/m^3
+
+S2  trapping: baryon-driven settling at w = 2 pi / t (t = 10 Gyr relaxed, R/V_f merging) below the local gap is evanescent;
+    tau = int_R^r_out sqrt(m^2 - w^2/c_P^2) dr (point-mass law background); radiated fraction <= exp(-2 tau). Minimum over the window:
+    canonical galaxy : min tau 0 (relaxed, L* 5.75 pc, c_P 0.005 c) -> radiated fraction <= 10^-0
+    canonical group  : min tau 0 (relaxed, L* 5.75 pc, c_P 0.005 c) -> radiated fraction <= 10^-0
+    canonical cluster: min tau 0 (relaxed, L* 5.75 pc, c_P 0.005 c) -> radiated fraction <= 10^-0
+    alt       galaxy : min tau 0 (relaxed, L* 5.75 pc, c_P 0.005 c) -> radiated fraction <= 10^-0
+    alt       group  : min tau 0 (relaxed, L* 5.75 pc, c_P 0.005 c) -> radiated fraction <= 10^-0
+    alt       cluster: min tau 0 (relaxed, L* 5.75 pc, c_P 0.005 c) -> radiated fraction <= 10^-0
+
+S3  CFG696 PDE, code units: start static, ramp the baryon source 1 -> 1.1 over T (smooth), run T + 600; radiated = flux out at S = 200
+    T =    0: radiated +0.0000e+00
+    T =    3: radiated +0.0000e+00
+    T =   10: radiated +0.0000e+00
+    T =   30: radiated +0.0000e+00
+    T =  100: radiated +0.0000e+00
+    T =  300: radiated +0.0000e+00
+
+=== CHANNELS (worst corner of L* x c_P, each footing; verdict on the worst)
+
+C1  gas heating. D5: I w^2 = gamma(k^2+m^2) - (4piG lam)^2 rho_b / w^2 (responsive baryons); absorbed fraction per radian
+    <= w_J^2 W_I^2 / w^4 (W_I^2 = 4 pi G/I); heating per unit mass h = 4 pi G W_I^2 F / (w^3 c_P), taken at the lowest propagating w = c_P m.
+    cluster ICM      : cooling 7.23e-07 W/kg; worst corner (canonical, L_relaxed, L* 5.75 pc, c_P 0.005 c): no-trap ceiling h 0.00e+00 W/kg (0.0e+00 of 0.1 x cooling); with trapping 0.0e+00 -> BELOW THRESHOLD
+    galactic hot halo: cooling 1.45e-08 W/kg; worst corner (canonical, L_relaxed, L* 5.75 pc, c_P 0.005 c): no-trap ceiling h 0.00e+00 W/kg (0.0e+00 of 0.1 x cooling); with trapping 0.0e+00 -> BELOW THRESHOLD
+
+C2  disc heating, solar neighbourhood (R0 = 8 kpc, galaxy halo of S1). Stars are collisionless and w >= c_P m >> orbital frequencies,
+    so the linear secular heating is zero (adiabatic); the number below is the D5 full-dissipation ceiling.
+    threshold 0.1 x sigma_z^2/10 Gyr = 1.27e-10 W/kg; worst (canonical, L_relaxed, L* 5.75, c_P 0.005 c): ceiling 0.00e+00 W/kg (0.0e+00); forced oscillation dv 0.00e+00 m/s; with trapping 0.0e+00 -> BELOW THRESHOLD
+
+C3  quadrupole P radiation from a binary in its screened core (sigma = 2 r_M^2/L*^2 << 1: linear; local gap from the Galaxy's u0):
+    chi = div P obeys chi_tt/c_P^2 - lap chi = 4 pi G lam rho_b/gamma; flux c_P gamma chi^2 =>  Pow = G lam^2 (Idd_ii^2 + 2 Idd:Idd)/(30 L*^2 c_P^3)
+    circular orbit: Pow/Pow_GR = lam^2 (1/12) (c/c_P)^3 (c/(w_orb L*))^2.  Double pulsar: P_b = 2.4545 h (e = 0.088 neglected).
+    L*    5.75 pc: ratio c_P 0.005c: 0.0e+00, c_P 0.015c: 0.0e+00, c_P 0.1c: 0.0e+00, c_P 1.0c: 0.0e+00   | room 9e-5 excludes c_P < 0.0e+00 c
+    L*  100.00 pc: ratio c_P 0.005c: 0.0e+00, c_P 0.015c: 0.0e+00, c_P 0.1c: 0.0e+00, c_P 1.0c: 0.0e+00   | room 9e-5 excludes c_P < 0.0e+00 c
+    L* 1000.00 pc: ratio c_P 0.005c: 0.0e+00, c_P 0.015c: 0.0e+00, c_P 0.1c: 0.0e+00, c_P 1.0c: 0.0e+00   | room 9e-5 excludes c_P < 0.0e+00 c
+    binary sigma = 2.3e-04 (screened, linear); v_orb/c_P at the floor = 0.42 (slow-motion OK); all corners propagate (2w >> c_P m_gap): True
+    worst corner 0.0e+00 vs room 9e-5 -> BELOW THRESHOLD (0.0e+00)
+
+C4  nHz band. Settling at w ~ 1/t_dyn is ~7 decades below the band and trapped (S2): no settling signal in band.
+    SMBH binary (1e9 Msun, f_GW 1e-8 Hz): free ratio as C3; the binary sits where g_N ~ 1e9 a0, sigma = 2 r_M^2/L*^2 > 2,
+    so the saturated vacuum (u -> a0) is NOT screened (stiffness shifts the source by 1 - 2/sigma); gap m = sqrt(2 w''(u))/L*.
+    a_bin = 0.017 pc; largest FREE ratio 0.0e+00 at canonical|5.75|0.005 (gap/w at source 0.0e+00, tau 0.00e+00)
+    min tau over window 0.00e+00; worst ESCAPED ratio 0.0e+00 (canonical|5.75|0.005) -> BELOW THRESHOLD
+    local propagation at the Sun needs w > c_P m(u0): band edge 2pi x 2 nHz vs gap 0.0e+00 s^-1 (c_P = c, L* 5.75)
+
+C5  merging cluster (Bullet-like: M_b 1e14, v 4500 km/s, R 500 kpc). Below the gap the response is in phase (no dissipation but
+    trapped radiation): fractional profile change (w/w_m)^2 with w = v/R; even-in-v, so no centroid shift. Ceiling if fully damped: v/w_m.
+    worst (canonical, L* 5.75 pc, c_P 0.005 c): profile change 0.0e+00 (vs 0.05: BELOW THRESHOLD, 0.0e+00); offset 0.0e+00 kpc (BELOW THRESHOLD); fully-damped ceiling 0.00 kpc (0.00 of 10 kpc)
+    NOTE: v_bulk 4500 km/s > c_P at the 5e-3 c floor: True -> the c_P floor must sit above bulk speeds (Cherenkov), a consistency bound, not a signature.
+
+C6  light: no P-photon term in the action -> REQUIRES NEW COUPLING (not added). Via gravity (if Psi = Phi), the cosmic ceiling
+    P-wave energy (u_P 0.0e+00 J/m^3, at the lowest propagating w) gives dPhi/c^2 <= 0.0e+00 (time-varying; vs 1e-5 CMB-level anisotropy: BELOW THRESHOLD, 0.0e+00); trapping removes even this.
+
+=== VERDICT (frozen rule; worst corner)
+    C1 gas heating (cluster ICM)     BELOW THRESHOLD              0e+00 (no-trap ceiling 0e+00)
+    C1 gas heating (hot halo)        BELOW THRESHOLD              0e+00 (ceiling 0e+00)
+    C2 disc heating                  BELOW THRESHOLD              0e+00 (ceiling 0e+00)
+    C3 binary decay                  BELOW THRESHOLD              0.0e+00 of room; excludes c_P < 0.0e+00 c at L* 5.75 pc
+    C4 PTA                           BELOW THRESHOLD              0e+00
+    C5 lensing (profile / offset)    BELOW THRESHOLD / BELOW THRESHOLD 0e+00 / 0e+00 (fully-damped ceiling 0.00)
+    C6 light                         REQUIRES NEW COUPLING        via gravity 0e+00
+
+MUTATE (lam = 0): every channel zero: True
