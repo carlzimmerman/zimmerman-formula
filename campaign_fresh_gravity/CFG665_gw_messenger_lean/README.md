@@ -49,3 +49,11 @@ paths (radius 1-Lipschitz in arclength, cited); M_enc ≥ 5e10 M☉ outside 10 k
 so the exclusion only strengthens. The 1.7 s bound is a direct arrival-time measurement. Caveat for the GW questions list:
 standard-siren Ξ bounds and lensed-GW rate forecasts in the literature usually assume a ΛCDM background or subhalo mass function;
 ask for the raw measured quantities (distance–redshift pairs, sensitivity to a given lens mass), not ΛCDM-derived rates.
+
+## DISCLOSURE (2026-10-12, same day): kernel mislabel in T3, closed by a Lean addendum
+T3's `nuMono` (½ + √(¼ + 1/y)) is the MOND "simple ν", **not** the record's ν_mono (FP1/L340: ν = 1 + h(y)/y, h the exponential-RAR
+phantom with a monotone tail). T3/T6 as certified hold for the simple ν and for P2 (√(1 + 1/y), the framework's own law). The
+record's ν_mono is now covered in the regime T6 uses (g ≤ a0 on the 10–110 kpc shell): `fable_independent_2026/lean_2026/
+CFG670_record_kernel_floor.lean` → `.out` (exit 0, zero sorry, standard axioms): `hrar_floor` (s/(1+√2) ≤ s²/(e^s − 1) for
+0 < s ≤ 1, via the exp chord bound) and `grad_floor_deep`. Premise (numeric, not certified): the FP1 table equals the RAR formula
+on y ≤ 1. Hence T6's ≥ 2.3e6 / 2.5e6 s bound holds for all three kernels; verdict unchanged.

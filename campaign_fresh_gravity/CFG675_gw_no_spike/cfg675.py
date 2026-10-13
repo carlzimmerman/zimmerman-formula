@@ -6,7 +6,9 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, os.path.dirname(HERE))
 with contextlib.redirect_stdout(io.StringIO()):
     import CFG4_common as C4
-MUT = os.environ.get("CFG675_MUTATE", "0") == "1"; TAG = "_MUTATE" if MUT else ""
+MUT = os.environ.get("CFG675_MUTATE", "0") == "1"
+STABLE = os.environ.get("CFG675_V1", "0") != "1"   # v1 (sealed, cancellation bug) reproducible with CFG675_V1=1
+TAG = ("_MUTATE" if MUT else "") + ("" if not STABLE else "_v2")
 G, MSUN, PC, C = C4.G_SI, C4.MSUN, C4.PC, 2.99792458e8
 YR = 3.15576e7; RHO_U = MSUN / PC ** 3
 nu = lambda y: np.asarray(C4.nu_mono(np.asarray(y, float)), float)
@@ -16,7 +18,10 @@ def rho_framework(r, m1, a0):
     lr = np.log(r); h = 1e-4
     def Q(x):
         rr = np.exp(x); gN = G * m1 / rr ** 2
-        return rr ** 2 * (nu(gN / a0) - 1) * gN
+        y = gN / a0
+        if STABLE:   # CORRECTION v2: (nu_mono - 1) g_N = a0 h(y) with the record's own h table (FP1/L340), no cancellation
+            return rr ** 2 * a0 * np.interp(np.log10(np.maximum(y, 1e-14)), C4._KNS["LYG"], C4._KNS["_HM"])
+        return rr ** 2 * (nu(y) - 1) * gN
     dQ = (Q(lr + h) - Q(lr - h)) / (2 * h) / r
     return dQ / (4 * math.pi * G * r ** 2)
 
