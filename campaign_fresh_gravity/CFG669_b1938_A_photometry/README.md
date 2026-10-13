@@ -52,3 +52,28 @@ needs a limit fainter than 30.8). The F115W mosaic (0.031″ pixels, 2.4 GB, not
 are the remaining routes. CFG668 stays sealed and untested.
 
 *Correction 2026-10-12:* the first version of this section said the perfect-model floor was 28.1 AB; the computed value is 28.60 AB (2σ of 6.56e-9 Jy). Conclusion unchanged.
+
+---
+
+# Part 3 (criteria 621ff3964): improved model (sky, 2 Sérsic, 30² source), F115W + F277W — NOT DIAGNOSTIC (both teeth fail)
+
+`CFG669_BAND=f115w|f277w python3 -I cfg669_lensmodel_v3.py` → `cfg669_v3_<band>.log/.out/_results.json/.png`.
+
+| band | fit | A amplitude | σ_tot (stat / same-radius / sys) | 2σ limit | χ²_ν = 1 floor | tooth | verdict |
+|---|---|---|---|---|---|---|---|
+| F115W (0.031″) | χ²_ν 16.9, λ 1e-4 | 4.8 ± 6.2 nJy (S 0.78; 29.69 AB) | 2.0 / 2.6 / 5.2 nJy | 28.67 AB | **31.43 AB** | 29.0 AB recovered, S 1.48 → FAILS | NOT DIAGNOSTIC |
+| F277W (0.063″) | χ²_ν 631, λ at grid edge 1e-6 | 1.4 ± 1.2 µJy (S 1.2) | 0.36 / 0.98 / 0.48 µJy | 23.00 AB | 27.75 AB | 28.0 AB, S 0.02 → FAILS | NOT DIAGNOSTIC |
+
+**Label: NOT DIAGNOSTIC, both footings, both bands.** No light is detected at A (F115W S = 0.78); this is not a limit that tests
+the prediction either, because the injection tooth fails. The point estimate (29.7 AB) happens to fall inside the sealed band; at
+S < 1 it carries no weight and must not be cited.
+
+**What the fits establish about GO 8281 itself (diagnostic, no verdict weight):**
+- F115W is far better modelled (χ²_ν 17 vs 631) and its perfect-model floor is **31.4 AB**: fainter than the sealed faint end
+  (30.9/31.0), so a professional model of this data **can test the whole predicted band** — a ≥ 3σ detection anywhere in
+  26.9–30.9 AB would make CFG668 SURVIVE.
+- But the floor is brighter than the exclusion line (32.1/32.2): **under the frozen CFG668 rules this dataset cannot EXCLUDE the
+  framework at A, only confirm it or return TENSION.** Stated now, before anyone scores it.
+- The remaining gap between this model (limit 28.7) and the floor (31.4) is systematics: source-regularisation and grid choice
+  dominate σ (5.2 nJy). Closing it needs a production lens code (adaptive source grids, multi-band joint fit, PSF from the exact
+  dithers): the PI team's analysis, or PyAutoLens-class work.
