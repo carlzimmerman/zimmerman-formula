@@ -1,0 +1,229 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\title{Cold-energy candidate: equations, assumptions, and the missing halo selector}
+\author{Research synthesis for the Zimmerman-formula repository}
+\date{12 October 2026}
+\begin{document}
+\maketitle
+\noindent\textbf{Status.} This is the equation set for the candidate developed in this research lane, not a completed derivation of the repository's phenomenological law. It distinguishes a proposed microscopic action, consequences of that action, controlled or conditional approximations, and fitted target relations. No known experiment is asserted to have identified these fields. The best current production example is a dilute, near-threshold decay into massive daughter modes; a condensate is not required.
+
+\section{Conventions and proposed microscopic action}
+Unless SI units are explicitly specified, use $\hbar=c=1$, metric signature $(+---)$, real $g$, and complex fields $\phi$ (charge one) and $\chi$ (charge two). Set
+\begin{align}
+ M&=2m\sqrt{1+u_*^2},& \Delta&=M^2-4m^2=4m^2u_*^2,\\
+ \lambda_{\min}&=\frac{g^2}{\Delta},&\alpha&=\frac{\lambda_{\rm rep}}{\lambda_{\min}}>0,\qquad
+ \lambda_{\rm tot}=\lambda_{\min}+\lambda_{\rm rep}.
+\end{align}
+The \emph{proposed} action is
+\begin{align}
+ \mathcal L&=\partial_\mu\phi^*\partial^\mu\phi+
+ \partial_\mu\chi^*\partial^\mu\chi-V,\\
+ V&=m^2|\phi|^2+4m^2|\chi|^2+
+ \left|\sqrt\Delta\,\chi+\frac{g}{\sqrt\Delta}\phi^2\right|^2+
+ \lambda_{\rm rep}|\phi|^4\\
+ &=m^2|\phi|^2+M^2|\chi|^2+g(\chi^*\phi^2+\chi\phi^{*2})+
+ \lambda_{\rm tot}|\phi|^4.
+\end{align}
+Its field equations are
+\begin{align}
+ (\Box+m^2)\phi+2g\chi\phi^*+2\lambda_{\rm tot}|\phi|^2\phi&=0,\\
+ (\Box+M^2)\chi+g\phi^2&=0.
+\end{align}
+The symmetry $(\phi,\chi)\mapsto(e^{\ii\theta}\phi,e^{2\ii\theta}\chi)$ gives
+\begin{align}
+ j^\mu&=\ii(\phi^*\partial^\mu\phi-\phi\partial^\mu\phi^*)+
+ 2\ii(\chi^*\partial^\mu\chi-\chi\partial^\mu\chi^*),\\
+ \partial_\mu j^\mu&=0,\qquad Q=\int j^0\dd^3x.
+\end{align}
+The positive-square structure yields $E\ge m|Q|$ for the classical isolated, nongravitating theory with the stated boundary conditions. It is not automatically a renormalized relativistic quantum theorem.
+
+\section{Nonrelativistic carrier and the quantum energy bound}
+For positive-charge modes, a leading nonrelativistic description uses daughter field $\psi$ and source field $b$:
+\begin{align}
+ \delta&=M-2m,&c_3&=\frac{g}{2m\sqrt{2M}},&k&=\frac{\lambda_{\rm tot}}{4m^2},\\
+ Q&=\int(\psi^\dagger\psi+2b^\dagger b)\dd^3x,\\
+ H&=mQ+D,\\
+ D&=T+\int\!\left[\delta b^\dagger b+c_3(b^\dagger\psi^2+\psi^{\dagger2}b)
+                  +k\psi^{\dagger2}\psi^2\right]\dd^3x,\\
+ T&=\int\!\left[\frac{|\nabla\psi|^2}{2m}+\frac{|\nabla b|^2}{2M}\right]\dd^3x.
+\end{align}
+At a fixed finite regulator, with normal ordering and consistent boundary conditions,
+\begin{align}
+ D=T+\int\!\delta\left(b+\frac{c_3}{\delta}\psi^2\right)^\dagger
+                  \left(b+\frac{c_3}{\delta}\psi^2\right)\dd^3x
+   +\left(k-\frac{c_3^2}{\delta}\right)\int\!\psi^{\dagger2}\psi^2\dd^3x,\\
+ k-\frac{c_3^2}{\delta}
+ =\frac{\lambda_{\rm rep}}{4m^2}+\frac{g^2}{8m^2M(M+2m)}>0.
+\end{align}
+Consequently $0\le\langle T\rangle\le\langle D\rangle$, and $Q,D$ are conserved in a fixed, isolated box. This is an operator statement for this regulated NR Hamiltonian, not an assertion of a continuum ultraviolet completion.
+
+The corresponding mean-field equations, when this approximation applies, are
+\begin{align}
+ \ii\partial_t\psi&=-\frac{\nabla^2\psi}{2m}+2c_3b\psi^*+2k|\psi|^2\psi,\\
+ \ii\partial_t b&=-\frac{\nabla^2b}{2M}+\delta b+c_3\psi^2.
+\end{align}
+They cannot create daughters from an exactly zero classical daughter field. Quantum fluctuations or a specified nonzero seed must be represented, not silently assumed.
+
+For $N$ initially resting sources, $Q=2N$ and $D=\delta N$. Thus
+\begin{equation}
+ \frac{D}{mQ}=\frac{\delta}{2m}\simeq\frac{u_*^2}{2}.
+\end{equation}
+Gravity adds negative potential energy and invalidates a direct application of this nongravitating kinetic bound to arbitrary halo collapse. A halo's gravitational energy must be included explicitly.
+
+\subsection*{Interaction-inclusive pressure bound}
+In a homogeneous expanding finite regulator, write
+\begin{equation}
+ D(a)=a^{-2}T_0+X+a^{-3/2}W_0+a^{-3}Y_0,\qquad
+ PV=\frac23T+\frac12W+Y.
+\end{equation}
+With $r^2=c_3^2/(\delta k)<1$,
+\begin{equation}
+ \beta_-D\le PV\le\beta_+D,\qquad
+ \beta_\pm=\frac12\left(1\pm\frac1{\sqrt{1-r^2}}\right),\qquad
+ \frac{|P|}{\rho_E}\le\frac{\beta_+d}{1+d},\quad d=\frac{\langle D\rangle}{m\langle Q\rangle}.
+\end{equation}
+These are global stress bounds under the regulator and expansion assumptions, not sound speeds or perturbation transfer functions.
+
+\section{Production by near-threshold decay}
+A resting source has daughter momentum and speed
+\begin{equation}
+ p_*=\frac12\sqrt{M^2-4m^2}=m u_*,\qquad
+ v_*=\frac{u_*}{\sqrt{1+u_*^2}},\qquad
+ \frac{P_{\rm free}}{\rho_E}=\frac{u_*^2}{3(1+u_*^2)}.
+\end{equation}
+The vacuum tree width and lifetime are
+\begin{equation}
+ \Gamma_0=\frac{g^2}{8\pi M}\sqrt{1-\frac{4m^2}{M^2}},\qquad
+ \tau_0=\frac{\hbar}{\Gamma_0}\quad\text{(seconds if energies are in eV).}
+\end{equation}
+For a prescribed resting coherent source of energy density $\rho_s$, define
+\begin{equation}
+ A=\frac{\sqrt{\rho_s}}{\sqrt2 M},\quad
+ \Omega=\frac{2gA}{M},\quad \epsilon=\frac{gA}{m^2}.
+\end{equation}
+Under weak pumping and exponential source depletion, the pair amplitude at detuning $\omega=2E-M$ is
+\begin{equation}
+ \beta_\omega(t)=\ii\Omega\frac{1-e^{-(\Gamma_0/2+\ii\omega)t}}{\Gamma_0/2+\ii\omega}.
+\end{equation}
+For the exact two-mode squeezing equations with that \emph{prescribed} pump,
+\begin{equation}
+ f_\omega(t)\le\sinh^2\!\left[\frac{2\Omega}{\Gamma_0}(1-e^{-\Gamma_0t/2})\right]
+ \le\sinh^2(2\Omega/\Gamma_0).
+\end{equation}
+The narrow-line number integral gives
+\begin{equation}
+ n_\phi(t)=\frac{2\rho_s}{M}(1-e^{-\Gamma_0t}).
+\end{equation}
+A separate Hermitian source--pair calculation supports this depletion on a finite resonant band without prescribing the source amplitude. It is not yet a full many-source field evolution.
+
+\subsection*{Current dilute example}
+\begin{center}
+\begin{tabular}{lr}\toprule
+Quantity&Value\\\midrule
+$m$&$10^6\ \mathrm{eV}$\\
+$M$&$2{,}000{,}099.9975\ \mathrm{eV}$\\
+$u_*$, $\alpha$&$0.01,\ 2$\\
+$\rho_s$&$9.71510619\times10^6\ \mathrm{eV}^4$\\
+$g$&$2071.40\ \mathrm{eV}$\\
+$\lambda_{\min},\lambda_{\rm rep}$&$0.0107267,\ 0.0214535$\\
+$\Gamma_0$&$8.53522\times10^{-4}\ \mathrm{eV}$\\
+$\tau_0$&$7.71172\times10^{-13}\ \mathrm{s}$\\
+$\sinh^2(2\Omega/\Gamma_0)$&$2.86044\times10^{-5}$\\
+$P_{\rm free}/\rho_E$&$3.33300\times10^{-5}$\\\bottomrule
+\end{tabular}
+\end{center}
+The initial source and its charge are inputs. These equations do not explain their origin or create energy from vacuum.
+
+\section{Scattering and reversible source conversion}
+Away from the source pole, the matched vacuum tree quartic is
+\begin{equation}
+ x=\frac{s-4m^2}{M^2-4m^2},\qquad
+ \lambda_{\rm eff}(s)=\lambda_{\min}\left(\alpha-\frac{x}{1-x}\right).
+\end{equation}
+The threshold NR relations are
+\begin{equation}
+ g_{\rm NR}=\frac{\lambda_{\rm rep}}{2m^2},\quad
+ a_s=\frac{\lambda_{\rm rep}}{8\pi m},\quad
+ \sigma_0=8\pi a_s^2=\frac{\lambda_{\rm rep}^2}{8\pi m^2},\quad
+ \frac{\sigma(s)}{\sigma_0}=\left[\frac{\lambda_{\rm eff}(s)}{\lambda_{\rm rep}}\right]^2\frac{4m^2}{s}.
+\end{equation}
+The chosen $\sigma_0/m=4\ \mathrm{cm^2/g}$ is illustrative, not observationally established. A bare pole at $x=1$ must not be integrated as a physical collision rate; real conversion and resonant scattering require consistent treatment without double counting.
+
+For a moving source with kinetic energy $e_b$, let $P_b=\sqrt{e_b(2M+e_b)}$ and $\delta=M-2m$. Exact vacuum daughter kinetic energies obey
+\begin{equation}
+ e_{1,2}=\frac{\delta+e_b}{2}\pm\frac{P_b p_*}{M}\cos\theta.
+\end{equation}
+For an incoherent fixed isotropic bath, the source occupation $B$ obeys the conditional gain--loss law
+\begin{equation}
+ \dot B=\Gamma_{\rm lab}\{\langle f_1f_2\rangle-[1+\langle f_1+f_2\rangle]B\},\qquad
+ \Gamma_{\rm lab}=\Gamma_0\frac{M}{M+e_b}.
+\end{equation}
+Occupation rates become inverse seconds after division by $\hbar$ when widths are in eV. The bath must evolve for this to be an energy-conserving closed calculation.
+
+\section{Halo evolution without an imposed target}
+For a dilute daughter gas, let $F(\mathbf x,\mathbf v,t)$ be number density per velocity volume. In SI units,
+\begin{align}
+ \partial_t F+\mathbf v\cdot\nabla_xF-\nabla\Phi\cdot\nabla_vF&=C_{22}[F],\\
+ \nabla^2\Phi&=4\pi G(\rho_b+\rho_c),\qquad
+ \rho_c=m\int F\dd^3v,\\
+ C_{22}[F](\mathbf v_1)&=\int\dd^3v_2\dd\Omega\,|\mathbf v_1-\mathbf v_2|
+ \frac{\dd\sigma}{\dd\Omega}(F_1'F_2'-F_1F_2).
+\end{align}
+Here $m$ in $\rho_c$ is the mass in kg, not its numerical value in eV. For the low-speed contact approximation, scattering is isotropic and $\dd\sigma/\dd\Omega=\sigma/(4\pi)$. The current halo probe retains the below-resonance energy dependence rather than replacing it with a target-temperature relaxation term.
+
+Define velocity mean $\mathbf u$, peculiar velocity $\mathbf c=\mathbf v-\mathbf u$, stress $\Pi_{ij}=\rho_c\langle c_ic_j\rangle$, and heat flux $q_i=\rho_c\langle c^2c_i\rangle/2$. Then
+\begin{equation}
+ \partial_t\rho_c+\nabla\cdot(\rho_c\mathbf u)=0,\qquad
+ \rho_c(\partial_t+\mathbf u\cdot\nabla)u_i=-\partial_j\Pi_{ij}-\rho_c\partial_i\Phi.
+\end{equation}
+The stress and heat flux must come from the evolving distribution; they are not determined by density alone. Elastic collisions conserve their local total mass, momentum and kinetic energy. Halo settling can redistribute energy to outer or escaping particles, but it cannot simply erase it.
+
+For a spherical, non-streaming configuration, a necessary moment equation is
+\begin{equation}
+ \frac{\dd(\rho_c\sigma_r^2)}{\dd r}+\frac{2\beta\rho_c\sigma_r^2}{r}=-\rho_c g(r),\qquad
+ \beta=1-\frac{\sigma_\theta^2+\sigma_\varphi^2}{2\sigma_r^2}.
+\end{equation}
+Jeans balance is not a formation mechanism or a proof that a nonnegative stationary distribution exists. A locally Maxwellian zero-flow kinetic equilibrium requires constant temperature and $\sigma^2\nabla\ln\rho_c=-\nabla\Phi$; a varying Jeans dispersion alone does not make it stationary.
+
+\section{The repository's target law, and the missing implication}
+With $\rho_{\rm DE}$ interpreted as mass-equivalent density, the target scale is
+\begin{equation}
+ a_0=\kappa c\sqrt{G\rho_{\rm DE}},\qquad \kappa=\tfrac12\ \text{(fitted input in the current framework)}.
+\end{equation}
+For a spherical baryonic source,
+\begin{align}
+ g_b(r)&=\frac{GM_b(<r)}{r^2},&y&=g_b/a_0,\\
+ g_{\rm target}(r)&=\nu(y)g_b(r),&
+ M_{c,\rm target}(<r)&=[\nu(y)-1]M_b(<r),\\
+ \rho_{c,\rm target}(r)&=\frac{1}{4\pi r^2}\frac{\dd M_{c,\rm target}}{\dd r}.
+\end{align}
+The frozen CFG626 comparison uses the repaired monotone kernel, not the earlier exponential kernel. Its continuum construction is
+\begin{align}
+ h_R(y)&=\frac{y}{e^{\sqrt y}-1},\quad h_R'(y_P)=0,\quad h_P=h_R(y_P),\\
+ h_{\rm mono}(y)&=h_R(y_{\min})+
+ \int_{y_{\min}}^y\max\!\left[h_R'(z),\frac{0.05h_P}{z+y_P}\right]\dd z,\\
+ \nu_{\rm mono}(y)&=1+\frac{h_{\rm mono}(y)}{y},\qquad y_{\min}=10^{-12}.
+\end{align}
+The code implements this with tabulation/interpolation. In the appropriate deep low-acceleration range, $\nu(y)\simeq y^{-1/2}$ and isolated asymptotic baryonic mass gives
+\begin{equation}
+ \boxed{V_f^4=GM_ba_0.}
+\end{equation}
+This follows from the \emph{specified target kernel}; it has not been derived from the microscopic action above. A proposed later condensed-baryon-only source split is a separate hypothesis and has not silently replaced this frozen comparison.
+
+\medskip\noindent\textbf{The missing formula is a demonstrated dynamical implication:}
+\begin{equation}
+ \boxed{\text{prepared carrier + gravity + its collisions}
+ \ \stackrel{\text{not yet established}}{\longrightarrow}\
+ \rho_{c,\rm target}(r;\rho_b,a_0).}
+\end{equation}
+Adding the target density or temperature as a relaxation destination would assume this implication. A constant vacuum term in the nongravitating matter action does not supply a local selector. The formation experiment tests the implication by evolving first and scoring the target afterward.
+
+\section*{Local evidence map}
+The first isolated spherical formation experiment does not reproduce the target: the two refined extended-cloud cases retain only about 62\% of supplied mass inside the target radius after 24.35 Gyr of model evolution, and the compact start gives a different, more discrepant profile. This finite test is not a cosmological calculation or a universal impossibility theorem.
+
+The accompanying research folder contains the scripts, contracts, results and manifests. The principal readable records are \texttt{NR\_QUANTUM\_PRESSURE.md}, \texttt{DILUTE\_DECAY.md}, \texttt{DILUTE\_FEEDBACK.md}, \texttt{DILUTE\_UNITARY\_DECAY.md}, and \texttt{HALO\_FORMATION.md}. Numerical checks establish their stated finite assertions, not the missing universal halo implication.
+\end{document}
