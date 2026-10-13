@@ -115,7 +115,22 @@ FILES = [
     f"{NB}/stage24_cosmic_dawn_confrontation_2026.py",
     f"{NB}/stage25_cosmic_dawn_own_terms_2026.py",
     f"{NB}/stage26_collapse_acceleration_own_terms_2026.py",
+    # v10 additions (errata only): the evidence for the four closures in the v10 banner
+    "qwen_claude_field_theory/closure_2026/condensate_pincer_2026/condensate_mu_pincer_2026.py",
+    "hunt_2026/f23_kernel_transcription_audit.py",
+    "hunt_2026/f24_aqual_quadrupole_rar_kernel.py",
+    "hunt_2026/f28_one_argument_pincer.py",
+    f"{RR}/mi_mg_arm_standing_2026.py",
 ]
+
+# Scripts whose single FAIL is a hypothesis check that IS the result (exit 1 by design). Accepted only
+# with that exact exit code and that exact marker in the last output line; any other failure still refuses.
+EXPECTED_FAIL = {
+    "hunt_2026/f23_kernel_transcription_audit.py":
+        (1, "19 checks, 1 FAIL -> [\"6c (HYPOTHESIS CHECK -- a FAIL is the result)"),
+    "hunt_2026/f24_aqual_quadrupole_rar_kernel.py":
+        (1, "6 checks, 1 FAIL -> [\"A2 (HYPOTHESIS CHECK -- a FAIL is the result)"),
+}
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")
 PHONE_RE = re.compile(r"(?<!\d)(?:\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4}(?!\d)")
@@ -190,6 +205,10 @@ def guards():
         p = os.path.join(REPO, rel)
         r = subprocess.run([sys.executable, p], cwd=REPO, capture_output=True, timeout=1800)
         tail = (r.stdout or b"").decode(errors="replace").strip().splitlines()[-1:] or [""]
+        exp = EXPECTED_FAIL.get(rel)
+        if exp and r.returncode == exp[0] and exp[1] in tail[0]:
+            print(f"[guard]   {os.path.basename(rel):48s} exit {r.returncode} EXPECTED (hypothesis FAIL = result)")
+            continue
         if r.returncode != 0:
             sys.exit(f"ERROR: SCRIPTS-GREEN failed for {rel} (exit {r.returncode}): {tail[0]}")
         print(f"[guard]   {os.path.basename(rel):48s} exit 0   {tail[0][:40]}")
