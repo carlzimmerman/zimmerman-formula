@@ -12,7 +12,7 @@
 HERE="$(cd "$(dirname "$0")" && pwd)"
 RUNNER="$HERE/run_650.py"
 JOB="${CFG650_JOB:-T1}"
-case "$JOB" in T1|T1x) ;; *) echo "refused job '$JOB' (criteria section 2 allows T1 or T1x)"; exit 1;; esac
+case "$JOB" in T1|T1x|T12) ;; *) echo "refused job '$JOB' (criteria section 2 + addendum A1 allow T1, T1x, T12)"; exit 1;; esac
 WORK="$(cd "$HERE/../../.." && pwd)/_external_data/cfg650_work"
 mkdir -p "$WORK"; LOG="$WORK/cfg650_waiter.log"
 NEED_GB=48
