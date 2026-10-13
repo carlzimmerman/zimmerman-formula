@@ -1,0 +1,97 @@
+EXPLICIT WEAK PHASE NONUNIQUENESS — same assumed C2 + Einstein law
+This control uses exact pure-vacuum de Sitter geometry, not a substitution
+for the previous solved-core/horizon or characteristic-caustic calculations.
+
+Claim. In the broad locally Lipschitz, almost-everywhere-X0, divergence-form
+weak phase class, current/stress equations plus the stated relative Sobolev
+or canonical initial traces do not select a unique phase evolution. This is
+not classical/strong-C1 or viscosity nonuniqueness, and it predicts no physical
+bubble formation or specific static-core postcaustic continuation.
+
+1. Exact metric and distinct fields
+
+Take ds^2=dt^2-A(t)^2dvecx^2, A=exp(Ht), H>0 and
+rho0=3H^2/(8piG). With the same curvature/action conventions, the Einstein
+tensor is Gmu_nu=3H^2 delta_mu_nu. Thus this exact metric solves the SAME
+conditional Einstein equation with vacuum T=rho0g and no extra Lambda.
+Let Q=sqrt(2X0), choose any gradient amplitude c>0, and define
+ Omega_c(t)=sqrt(Q^2+c^2/A(t)^2),
+ D_c(t)=int_0^t [Omega_c(s)-Q]ds,
+ theta_h(t,x)=Qt,
+ theta_c(t,x)=Qt+max[0,D_c(t)-c|x|], t>=0.
+D is smooth, D0=0 and D'>0 at finite times. Its positive part gives a phase
+that is continuous and locally Lipschitz. For any t>0 it differs from theta_h
+on a finite comoving ball Rb=D/c; outside they coincide.
+
+2. Weak equations and unchanged gravitational constraints
+
+Inside the ball and away from its origin,
+ theta_t=Omega_c, grad theta=-c x/|x|,
+ 2X=Omega_c^2-c^2/A^2=Q^2.
+Outside, theta_t=Q, grad theta=0, again giving X0. The front and origin are
+measure-zero sets. The Lipschitz chain rule supplies the same bounded weak
+first derivatives almost everywhere; no delta first derivative occurs because
+the field is continuous. Thus X, PX gradtheta and T are well-defined locally
+bounded function classes, without multiplying any delta distributions.
+
+Consequently PX=0, J=0 and T=rho0g almost everywhere. Their distributions
+are the same everywhere, so divJ=0 has no surface/point source. Explicitly,
+for each compact smooth test f, int sqrt(-g)PX gradtheta.grad f=0.
+The unchanged smooth de Sitter metric satisfies Einstein exactly, including
+its initial gravitational constraints. Both phases have identical zero added
+charge and identical stress; canonical momentum A^3PX theta_t is identically0.
+Use this divergence weak form. Expanding second derivatives across the phase-
+gradient jump would create undefined products and would not be this argument.
+
+3. Same initial traces in the declared weak class
+
+Both initial phases are the smooth function0. The weak canonical momentum
+trace is0 in both. For w=theta_c-theta_h=(D-cr)+, comoving-volume integrals are
+ ||w||_L2^2=2pi D^5/(15c^3),
+ ||grad w||_L2^2=4pi D^3/(3c),
+ ||w_t||_L2^2=4pi(D')^2D^3/(3c^3).
+Since D=O(t), all vanish as t decreases to0. Proper-volume phase/time norms
+have factor A^3; the physical-gradient norm has factor A. These finite positive
+weights do not change the trace limit. Thus the relative perturbations have
+zero H1 x L2 initial trace. Equivalently use local spaces; the absolute constant
+theta_t=Q is not globally L2 on R^3. Identical absolute global-L2 data are NOT
+claimed. The exact canonical-momentum agreement is stronger than needed here.
+
+There is no strong C1/C0-time-derivative trace: ||grad w||_infinity=c,
+and ||w_t||_infinity=D'(t) tends tosqrt(Q^2+c^2)-Q>0. The moving front and
+origin are not classical C1 phase points. These fields therefore do not violate
+classical characteristic uniqueness from smooth data in its stronger class.
+
+4. A separating admissibility condition
+
+The future eikonal equation is F=theta_t-sqrt(Q^2+A^-2|gradtheta|^2)=0.
+At any t>0, the smooth upper test phi(t,x)=Qt+D(t) touches theta_c at x=0.
+It gives F[phi]=Omega_c-Q>0, violating the viscosity subsolution upper-test
+condition F<=0 (Crandall-Ishii-Lions,section2,equation2.2/definition2.2).
+The bubble is therefore not a viscosity solution. A rule imposing that class
+would reject this alternative, but that inequality is additional to the
+original scalar current/stress weak equations tested here. We have not derived
+it from a physical regulator or proved a full coupled interface comparison
+theorem. No viscosity/entropy choice was silently inserted.
+
+The front's physical speed A D'/c=c/[A(Omega_c+Q)] is less than1. Causal
+front speed does not turn an arbitrary weak alternative into a physical
+prediction. The scalar phase fields are distinct, while their stress is
+identical; no claim of gravitational matter creation follows.
+
+5. Computational/proof separation
+
+run_v2 verifies19 exact geometry/algebra/norm identities and bounded controls
+for H=Q=1, c=.1,.5,1, t=1e-6,1e-4,.01,.1,.25. The analytical argument above
+supplies distributional validity and nonuniqueness; sample flags cannot do so.
+The original run counted one manually tagged proof obligation as a check;
+METADATA_REPAIR.txt and checks_v2 separate it, retaining the original code/run.
+Every numerical field/norm/quadrature value is unchanged. No formula or
+criterion was repaired. The smallest-time proper relativeH1 norms are below
+5.46e-10; finite quadrature supports the explicit trace formulas, not their
+universal proof.
+
+Both independent proof reviewers approved this weak-class construction with
+the stated limitations. This is AI-assisted mathematical review, not a human
+referee certificate. The theory still needs a justified solution class and
+predictive continuation; this same-law control alone does not settle that gate.
