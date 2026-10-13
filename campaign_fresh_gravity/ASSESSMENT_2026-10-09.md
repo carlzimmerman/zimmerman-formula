@@ -142,6 +142,12 @@
 
 - **Hot-gas groups (CFG652; criteria 11c7906ef; eFEDS X-ray groups × raw KiDS-1000, 131 groups): BOTH EXCLUDED** (Theory v2 condensed source χ² 22.9 / 22.3 of 8, p 0.004; candidate B 28.7 / 25.2, p ≤ 0.002). Mass beyond the members is larger and more extended than both predict: outer band 0.25–0.8 Mpc obs/pred +0.16 ± 0.08 dex (v2, ~40% short) vs +0.43 ± 0.07 (B, ×2.7 short); v2 also too concentrated inside 200 kpc. v2 is closer (Δχ² +5.8 / +2.8) but not by the frozen margin. Cross-shear null passes. Caveats: noisy condensed masses (66/148 groups lack a bright central; post hoc the 75 with a central give v2 p 0.56), no 2-halo term. Constrains the reservoir's amount and placement more than the source choice. Better condensed masses need GAMA DR4 stellar masses (owner's go).
 
+- **Other chats overnight (2026-10-12/13):**
+  - **CFG694/695 (Lean chat): a ONE-ACTION construction for the law.** L = −|∇Φ − 4πG P|²/8πG − ρ_bΦ − W(P) − (γ/2)|∇P|² + kinetic, with free-fall basins; COMBINED CONSTRUCTION CONSISTENT (C2 as built FAIL; smallest passing quartic c4 = 1). CFG695 (post-hoc origin disclosed): a saturating vacuum W′(u) = u/(1 − u/a₀) with NO new constant resums to g_N = g²/(g + a₀) and passes raw SPARC both footings (0.1009 / 0.0994), stable, Solar-System carry-over. Not yet re-scored on C3, D2, clusters. Open: M1a, B1, Φ = Ψ.
+  - **CFG693: EFE-blindness by definition** — each system reads its own free-fall basin (equivalence principle removes a uniform external field); satellites keep their boost over the lensing aperture. Post-hoc caveat: every star becomes a node (~51 M☉ phantom per M☉) unless a stiffness hierarchy rule (CFG691) caps it — named, not computed.
+  - **CFG686: raw KiDS-1000 shear around 8 ACCEPT clusters vs the law's lensing from each cluster's own Chandra gas: LAW SUFFICES** (A_outer 1.02 ± 0.24 / 0.94 ± 0.24 vs Newtonian baryons 3.52 ± 0.91); mid band 1.97σ hint of core excess; inner unusable; N = 8, gas extrapolated, errors ~1.6× low. Note: this is the law sourced by ALL gas — in tension with v2's condensed-only source for clusters, and to be reconciled with CFG652 (groups: more mass than either).
+  - **CFG641: H-CB + deficit gate in the merger stopwatch** — no single reservoir rule passes static (X-COP) and merger tests together (RN: X-COP inner pass, Harvey fail; RI: mergers pass, X-COP inner fail).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
