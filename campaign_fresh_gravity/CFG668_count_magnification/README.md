@@ -37,3 +37,18 @@ give about that, but bright members thrown to high photo-z do the same, and this
 MUTATE: DES null at every gap; KiDS shows a coherent ~5% low offset (up to −2.4σ), so KiDS field-to-field systematics are ~5%.
 Next honest step: shear (already done: CFG663 says the extra sector lenses) or spectroscopic backgrounds; counts cannot do it.
 κ fitted; cold energy mass required; not theory closed.
+
+## Addendum A2 result — quasars (criteria a17b552d1; cfg668_a2_quasars.py → cfg668_a2.out)
+25,663 redMaPPer λ≥20 clusters vs 48,987 blank fields; quasars at z_Q > z_cl + 0.5 (cannot be members).
+| catalogue (primary aperture) | bright / steep | middle | faint |
+|---|---|---|---|
+| Quaia G<20 (0–4') | 1.068 ± 0.031 (s 0.90, +2.2σ) | 1.026 ± 0.024 (s 0.53) | 0.975 ± 0.021 (s 0.46) |
+| DR16Q (1–4') | 1.000 ± 0.023 (s 0.68) | 0.963 ± 0.016 (s 0.31, −2.3σ) | 0.971 ± 0.013 (s −0.17, −2.3σ) |
+Combined steepest bin: R = 1.025 ± 0.018 (+1.4σ). **Verdict as frozen: NOT DETECTED** (needs ≥ 3σ).
+The DR16Q faint deficits go the lensing way, but the faint DR16Q slope is negative (the spectroscopic catalogue is incomplete there), and
+inside 1' DR16Q drops to 0.75 ± 0.04: fibre collisions and blending near cluster galaxies, far bigger than lensing. Not usable as lensing.
+POST-HOC (cfg668_a2_posthoc_lambda.py, not frozen): the Quaia bright excess does not grow with richness (λ 20–30: 1.11 ± 0.04;
+30–50: 1.03 ± 0.04; ≥50: 1.06 ± 0.06). Lensing must grow with mass, so the +2.2σ is not read as lensing.
+MUTATE: NULL for both catalogues. Expected size for typical weak lensing (μ ≈ 1.05 over 0–4') is R ≈ 1.06 in the steep bin, i.e. at
+the edge of this sample's reach (±0.03); counts alone cannot make the call. Shear (CFG663) remains the measurement that settles lensing.
+κ fitted; cold energy mass required; not theory closed.
