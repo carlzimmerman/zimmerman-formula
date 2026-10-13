@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "clock_energy_loads_initially_empty_source",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/clock_loading.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Autonomous symmetric minimum loading, release and circular preparation with conserved total energy",
+    "coefficient_domain": "binary64",
+    "conventions": "M=L=1; initial source at zero; J10 clock kinetic energy6; positive shifted quadratic potential",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/clock_loading.py"
+    ],
+    "bounds": {
+      "rise_widths": [
+        50,
+        100,
+        200
+      ],
+      "release_width": 0.0001,
+      "clock_edge_width": 0.01,
+      "rtol": [
+        1e-11,
+        2e-13
+      ],
+      "width_search": [
+        1.25,
+        1.38
+      ]
+    },
+    "non_claims": [
+      "No quantum full-chain audit",
+      "No initial clock energy origin",
+      "No abundance or halo law"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:26:20.705165+00:00",
+    "runtime_seconds": 1.060657,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/clock_loading.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_loading.py",
+      "sha256": "b1ac5f63c9cffaa2a72798d4a610da2d874895d4a558b75ad0286d1e07dae3cc",
+      "sha256_after": "b1ac5f63c9cffaa2a72798d4a610da2d874895d4a558b75ad0286d1e07dae3cc"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/clock_loading_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/clock_loading_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_loading_run/stdout.txt",
+      "sha256": "d822c329b8464d370bb5fef29d3d1abf913121b8f3ee5ee1f786e342f3a1ff83",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_loading_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_loading_run/results.json",
+      "sha256": "16bf74fe047bc920824c511833e1f2655ff41c172d406982df3296ba9a4180bd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

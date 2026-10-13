@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "elastic_local_maxwell_stationarity_current_target",
+  "repository": {
+    "commit": "1fea200136b7c5888d9f6f6e2a2e554dcbdc6c0b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/elastic_stationarity.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Local-Maxwellian stationary streaming identity and isothermal force mismatch for frozen nu_mono cells",
+    "coefficient_domain": "binary64",
+    "conventions": "CFG626 dimensionless units; inner excised mass at .001; gravity softening .01",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/elastic_stationarity.py",
+      "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626.py",
+      "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626_results_mono.json",
+      "campaign_fresh_gravity/CFG544_settling_kinetic_consistency/cfg544.py"
+    ],
+    "bounds": {
+      "r": [
+        0.03,
+        0.8
+      ],
+      "r_samples": 201,
+      "log_derivative_steps": [
+        0.02,
+        0.01
+      ],
+      "cells": 6
+    },
+    "non_claims": [
+      "No full kinetic evolution",
+      "No exclusion of nonthermal, open, metastable or quantum configurations",
+      "No test of newly proposed CFG634 phase split"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T00:35:38.301488+00:00",
+    "runtime_seconds": 0.039808,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/cold_production_2026_10_11/elastic_stationarity_run/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/elastic_stationarity.py",
+    "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626.py",
+    "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626_results_mono.json",
+    "campaign_fresh_gravity/CFG544_settling_kinetic_consistency/cfg544.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/elastic_stationarity.py",
+      "sha256": "7d1df277e7f13e956a30fb505c87bccd7c10528dfbc61d7cf040eb3c7c1035ae",
+      "sha256_after": "7d1df277e7f13e956a30fb505c87bccd7c10528dfbc61d7cf040eb3c7c1035ae"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626.py",
+      "sha256": "4d5016e4fb2aaeed57579db9807bc6df3b31285aa53f085129617270621fa612",
+      "sha256_after": "4d5016e4fb2aaeed57579db9807bc6df3b31285aa53f085129617270621fa612"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626_results_mono.json",
+      "sha256": "7145685c86ceee3dddab16c868e6c79d49af2157d7828fd9c25af7590f4b75b0",
+      "sha256_after": "7145685c86ceee3dddab16c868e6c79d49af2157d7828fd9c25af7590f4b75b0"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG544_settling_kinetic_consistency/cfg544.py",
+      "sha256": "0f6ffe6edec4c4435ef5bdcd4d2f3be1d607be1af8fe8f3ce7ebb3da68a6739c",
+      "sha256_after": "0f6ffe6edec4c4435ef5bdcd4d2f3be1d607be1af8fe8f3ce7ebb3da68a6739c"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/elastic_stationarity_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/elastic_stationarity_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/elastic_stationarity_run/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/elastic_stationarity_run/stderr.txt",
+      "sha256": "06a55931009af08da997ed2071adc7d051f34ad43e99ac1b10542ba0f9ab96ec",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/cold_production_2026_10_11/elastic_stationarity_run/results.json"
+  ]
+}

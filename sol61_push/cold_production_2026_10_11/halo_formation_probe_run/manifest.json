@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "claim_id": "unforced_dilute_carrier_halo_formation_probe",
+  "repository": {
+    "commit": "bd8981d3dcea8e9d24d7b0930192c46d626f1f7a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/halo_formation_probe.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exploratory forward halo formation under spherical self gravity and carrier elastic scattering, target scored after evolution only",
+    "coefficient_domain": "binary64",
+    "conventions": "CFG626 MW canonical scales, softened gravity eps=.01, isotropic DSMC scattering alpha2, threshold sigma/m4 cm2/g, no thermostat or target relaxation",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/halo_formation_probe.py",
+      "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626.py",
+      "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626_results_mono.json",
+      "campaign_fresh_gravity/CFG544_settling_kinetic_consistency/cfg544.py"
+    ],
+    "bounds": {
+      "particles": [
+        2048,
+        4096
+      ],
+      "dt": [
+        0.001,
+        0.0005
+      ],
+      "collision_cell_width": [
+        0.05,
+        0.025
+      ],
+      "initial_radius": [
+        2.43039047532204,
+        1.2
+      ],
+      "end_code_time": 8,
+      "seed": 123
+    },
+    "non_claims": [
+      "Not 3D nonspherical gravity",
+      "Not cosmological halo formation",
+      "No single-run attractor proof",
+      "Finite collision-cell angular momentum errors and resolution remain to assess"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy default_rng PCG64",
+    "seed": 123
+  },
+  "run": {
+    "started_at": "2026-10-12T12:42:54.536602+00:00",
+    "runtime_seconds": 92.397396,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/halo_formation_probe.py",
+    "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626.py",
+    "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626_results_mono.json",
+    "campaign_fresh_gravity/CFG544_settling_kinetic_consistency/cfg544.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/halo_formation_probe.py",
+      "sha256": "5694a8d2fd83427d28a6f59b644502158a25e6fd46a842abdf9f818b07cc6885",
+      "sha256_after": "5694a8d2fd83427d28a6f59b644502158a25e6fd46a842abdf9f818b07cc6885"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626.py",
+      "sha256": "4d5016e4fb2aaeed57579db9807bc6df3b31285aa53f085129617270621fa612",
+      "sha256_after": "4d5016e4fb2aaeed57579db9807bc6df3b31285aa53f085129617270621fa612"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626_results_mono.json",
+      "sha256": "7145685c86ceee3dddab16c868e6c79d49af2157d7828fd9c25af7590f4b75b0",
+      "sha256_after": "7145685c86ceee3dddab16c868e6c79d49af2157d7828fd9c25af7590f4b75b0"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG544_settling_kinetic_consistency/cfg544.py",
+      "sha256": "0f6ffe6edec4c4435ef5bdcd4d2f3be1d607be1af8fe8f3ce7ebb3da68a6739c",
+      "sha256_after": "0f6ffe6edec4c4435ef5bdcd4d2f3be1d607be1af8fe8f3ce7ebb3da68a6739c"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/halo_formation_probe_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/halo_formation_probe_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/halo_formation_probe_run/stdout.txt",
+      "sha256": "17aecbbb650f244cb274c4f23d2c77ea7fc7cdf4caa189cc3de5c8a18781e777",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/halo_formation_probe_run/stderr.txt",
+      "sha256": "03e9fc8914b288af305b7cb3e0e4be7bc0186f95aa18ef09bb2a74a3bab0658c",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/halo_formation_probe_run/results.json",
+      "sha256": "c2cb3a3f01e46f5b02721f56db2f43192dc8c2e18b6a75f4bf7129a7c6200ef9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

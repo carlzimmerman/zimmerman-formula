@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "full_loading_linear_fluctuations_local_time_v2",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/loading_fluctuations_v2.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Three-field linear transfer through full loading path; finite nonlinear comparison of homogeneous clock-speed sensitivity",
+    "coefficient_domain": "binary64",
+    "conventions": "Canonical (X,Y,sigma) fields; k=p/M; zero k uses unit phase space normalization; segment local time avoids loss of precision across short release; event position reset to exact edge",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/loading_fluctuations_v2.py",
+      "sol61_push/cold_production_2026_10_11/clock_loading_run/results.json"
+    ],
+    "bounds": {
+      "k": [
+        0,
+        0.001,
+        0.01,
+        0.1,
+        1,
+        10,
+        30
+      ],
+      "rtol": [
+        2e-11,
+        5e-13
+      ],
+      "clock_speed_errors": [
+        -0.001,
+        -0.0001,
+        0.0001,
+        0.001
+      ],
+      "rise_width": 100
+    },
+    "non_claims": [
+      "No energy integral or UV bound",
+      "No nonlinear spatial stability",
+      "No primordial spectrum"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:30:11.483018+00:00",
+    "runtime_seconds": 10.480676,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/loading_fluctuations_v2.py",
+    "sol61_push/cold_production_2026_10_11/clock_loading_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/loading_fluctuations_v2.py",
+      "sha256": "f0aea1b84f4ed6ad6adc6f62e04b166c631cf1e2c9622533cd937c75608846d5",
+      "sha256_after": "f0aea1b84f4ed6ad6adc6f62e04b166c631cf1e2c9622533cd937c75608846d5"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_loading_run/results.json",
+      "sha256": "16bf74fe047bc920824c511833e1f2655ff41c172d406982df3296ba9a4180bd",
+      "sha256_after": "16bf74fe047bc920824c511833e1f2655ff41c172d406982df3296ba9a4180bd"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/loading_fluctuations_run_v2",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/loading_fluctuations_run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/loading_fluctuations_run_v2/stdout.txt",
+      "sha256": "84c4cab352c496629f5781269f3d36bd1eee1677bca4df31b5f45920cd5cd409",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/loading_fluctuations_run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/loading_fluctuations_run_v2/results.json",
+      "sha256": "66add13380a389b89b1ddca2dd9c3b246d81f89cb649f9a2613b732ca428dafb",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

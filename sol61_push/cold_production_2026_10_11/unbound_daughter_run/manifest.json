@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "initial_stimulated_unbound_daughter_population",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/unbound_daughter.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Initial t^2 coefficient of positive-orbital-energy daughter production by newborn source decay",
+    "coefficient_domain": "binary64",
+    "conventions": "NR initial daughter-only Plummer equilibrium, Bose-stimulated source decay, empty unbound modes",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/unbound_daughter.py",
+      "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sol61_push/cold_production_2026_10_11/bound_halo_reactions_run/results.json"
+    ],
+    "bounds": {
+      "radial_energy_orders": [
+        16,
+        24,
+        40
+      ],
+      "angular_order": 32
+    },
+    "non_claims": [
+      "Not finite-time escape or flux at infinity",
+      "No evolved halo or stability claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T21:11:19.196852+00:00",
+    "runtime_seconds": 2.028528,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/unbound_daughter.py",
+    "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+    "sol61_push/cold_production_2026_10_11/bound_halo_reactions_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/unbound_daughter.py",
+      "sha256": "9d18d9d45d5e6961114550ab72a822f50802d820811779037b04ea828182204e",
+      "sha256_after": "9d18d9d45d5e6961114550ab72a822f50802d820811779037b04ea828182204e"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sha256": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0",
+      "sha256_after": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/bound_halo_reactions_run/results.json",
+      "sha256": "8828630314932f6b972038c4a4a89e0c30afaff723e0e0e38b64e2ebb835a66b",
+      "sha256_after": "8828630314932f6b972038c4a4a89e0c30afaff723e0e0e38b64e2ebb835a66b"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/unbound_daughter_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/unbound_daughter_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/unbound_daughter_run/stdout.txt",
+      "sha256": "c6fb930b0a5221bfbabe745311c1c155c8b029c17733c17a7375a8e6fabcbdbc",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/unbound_daughter_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/unbound_daughter_run/results.json",
+      "sha256": "ca12a2166a73682a495f6c7aff561962e9a9c2c971384c07ecc8c4c4e20be35f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

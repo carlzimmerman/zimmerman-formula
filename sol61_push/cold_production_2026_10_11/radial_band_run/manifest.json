@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "radial_lame_band_screen",
+  "repository": {
+    "commit": "05887ff2c2054f6ba61d4c617b864fc81d5adbad",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/radial_band.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Numerical radial monodromy signs agree with translated n=2 Lame gap at specified momenta",
+    "coefficient_domain": "binary64",
+    "conventions": "tau=M t; p2=p^2/M^2; elliptic parameter is modulus squared",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/radial_band.py"
+    ],
+    "bounds": {
+      "epsilon": [
+        0.001,
+        0.003,
+        0.01,
+        0.1,
+        0.3
+      ],
+      "gap_fraction": [
+        0.1,
+        0.5,
+        0.9,
+        1.1,
+        2,
+        10
+      ]
+    },
+    "non_claims": [
+      "No nonlinear fragmentation bound",
+      "No benchmark epsilon=1e-7 growth calculation",
+      "No expanding radial evolution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T19:27:04.843206+00:00",
+    "runtime_seconds": 3.257139,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/radial_band.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/radial_band.py",
+      "sha256": "80afc468a939a5e04d3ae014441343716f314837a2978ce8b613940625ed6865",
+      "sha256_after": "80afc468a939a5e04d3ae014441343716f314837a2978ce8b613940625ed6865"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/radial_band_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/radial_band_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/radial_band_run/stdout.txt",
+      "sha256": "41039cb952b9b8d42d94b77f80a63d8cc19f6bfe5b2f37a084f6f2a0c4921bc5",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/radial_band_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/radial_band_run/results.json",
+      "sha256": "82c6158a707d901f0fb9bd627a4e795762c114ca1fbde7fc023a03a4c5ce5039",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

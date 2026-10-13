@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "claim_id": "time_dependent_baryon_potential_energy_transfer",
+  "repository": {
+    "commit": "1667f7ee58936103d14ae03bc36a44c9fb02cf70",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/gravity_pump.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Phase-averaged energy gain equals work from potential cycles; impulse and adiabatic controls",
+    "coefficient_domain": "symbolic exact identities and binary64 SI scales",
+    "conventions": "SIS V=200km/s for collision diagnostic; rho=V²/(4piGr²); v1D=V/sqrt2",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/gravity_pump.py"
+    ],
+    "bounds": {
+      "drop": [
+        0.1,
+        0.3,
+        0.5
+      ],
+      "fast_duration": 0.001,
+      "slow_duration": 200
+    },
+    "non_claims": [
+      "Not derived baryon feedback histories",
+      "Not full halo formation or BTFR"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T17:06:38.536037+00:00",
+    "runtime_seconds": 0.882949,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 16000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/gravity_pump.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/gravity_pump.py",
+      "sha256": "d83d2a1e6db9a5a86992612bed9bcd4bf152b9dab58fe0af29dedee1f2c94d09",
+      "sha256_after": "d83d2a1e6db9a5a86992612bed9bcd4bf152b9dab58fe0af29dedee1f2c94d09"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/gravity_pump_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/gravity_pump_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/gravity_pump_run/stdout.txt",
+      "sha256": "63925cc1ac5b403de2a6bc281c20068a7aa9f6a99bb20f5c698a1533d0e74f55",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/gravity_pump_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/gravity_pump_run/results.json",
+      "sha256": "63925cc1ac5b403de2a6bc281c20068a7aa9f6a99bb20f5c698a1533d0e74f55",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

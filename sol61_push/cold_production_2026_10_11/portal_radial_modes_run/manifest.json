@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "portal_radial_energy_positive_branch_and_instability_witnesses",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/portal_radial_modes.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Rayleigh-Ritz radial trial energies and positive quadratic form identity",
+    "coefficient_domain": "binary64",
+    "conventions": "Newtonian coherent barotropic pressure only, isolated zero-pressure boundary, no baryons",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/portal_radial_modes.py"
+    ],
+    "bounds": {
+      "central_density_ratios": [
+        0.1,
+        0.8,
+        1,
+        2,
+        3,
+        10,
+        30
+      ],
+      "Gaussian_basis_counts": [
+        8,
+        14
+      ],
+      "quadrature_orders": [
+        8,
+        12
+      ]
+    },
+    "non_claims": [
+      "Positive Ritz eigenvalues do not prove stability",
+      "No full-field result or complete spectrum"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T21:25:47.628760+00:00",
+    "runtime_seconds": 0.489467,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/portal_radial_modes.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_radial_modes.py",
+      "sha256": "1ef645c566db3e154719d0eb4edbb4f3d7d7916a6f986fcf33c40f254de58331",
+      "sha256_after": "1ef645c566db3e154719d0eb4edbb4f3d7d7916a6f986fcf33c40f254de58331"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/portal_radial_modes_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/portal_radial_modes_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_radial_modes_run/stdout.txt",
+      "sha256": "7e9b00cd2fa86cfb07e0d64a43457894af6d89a1c986e4661ca2859dc97ee0e0",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_radial_modes_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_radial_modes_run/results.json",
+      "sha256": "762854d190380f3b4af1a46508f61482bbe4cb63ea61865d02a0572b2977b261",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

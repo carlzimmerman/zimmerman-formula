@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "collisionless_self_gravity_baseline",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/jeans_baseline.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Maxwellian Jeans dispersion, independent Volterra growth and physical scale comparison",
+    "coefficient_domain": "binary64",
+    "conventions": "Poisson sources perturbations only; sigma is one-dimensional; time unit 1/sqrt(4piG rho)",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/jeans_baseline.py",
+      "sol61_push/cold_production_2026_10_11/resonant_kinetics_run/results.json",
+      "sol61_push/cold_production_2026_10_11/repulsive_scales_run/results.json"
+    ],
+    "bounds": {
+      "wavelength_kpc": [
+        10,
+        50,
+        100,
+        1000
+      ],
+      "time_steps": [
+        2048,
+        4096
+      ],
+      "time_end": 12,
+      "rho_kg_m3": 1e-21,
+      "sigma_kms": 200
+    },
+    "non_claims": [
+      "Not finite halo stability",
+      "No collision effect on gravity",
+      "No halo selector"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:49:02.303452+00:00",
+    "runtime_seconds": 0.434087,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/jeans_baseline.py",
+    "sol61_push/cold_production_2026_10_11/resonant_kinetics_run/results.json",
+    "sol61_push/cold_production_2026_10_11/repulsive_scales_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/jeans_baseline.py",
+      "sha256": "ff534ff7cd1a23bfb50ef39637fe4a3e7247ad4f6508a311e64ebaf5d2373ba0",
+      "sha256_after": "ff534ff7cd1a23bfb50ef39637fe4a3e7247ad4f6508a311e64ebaf5d2373ba0"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/resonant_kinetics_run/results.json",
+      "sha256": "833e083386cdff3196f0ec190df280587fac8495b82dbe17605bfed5d0ead29c",
+      "sha256_after": "833e083386cdff3196f0ec190df280587fac8495b82dbe17605bfed5d0ead29c"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_scales_run/results.json",
+      "sha256": "054a2cf641c5827c8c9d72633456780bb50a68b27a5178944d21d28d32a948d0",
+      "sha256_after": "054a2cf641c5827c8c9d72633456780bb50a68b27a5178944d21d28d32a948d0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/jeans_baseline_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/jeans_baseline_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/jeans_baseline_run/stdout.txt",
+      "sha256": "e812ab4604afd2e78ecd804e286ceaa14c7307db831741900d6c2c06440c497f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/jeans_baseline_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/jeans_baseline_run/results.json",
+      "sha256": "e812ab4604afd2e78ecd804e286ceaa14c7307db831741900d6c2c06440c497f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

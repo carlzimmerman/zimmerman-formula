@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "softened_portal_self_gravitating_pressure_only_spheres",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/portal_hydrostatic.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Hydrostatic profiles, virial identity and homologous radial energy curvature",
+    "coefficient_domain": "binary64",
+    "conventions": "Newtonian coherent barotropic pressure only, isolated zero-pressure boundary, no baryons",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/portal_hydrostatic.py",
+      "sol61_push/cold_production_2026_10_11/nonlinear_portal_run/results.json"
+    ],
+    "bounds": {
+      "central_density_ratios": [
+        0.01,
+        0.1,
+        0.3,
+        1,
+        3,
+        10,
+        30,
+        100
+      ],
+      "rtol": [
+        2e-09,
+        2e-11
+      ],
+      "homology_difference_step": 0.001
+    },
+    "non_claims": [
+      "No stability proof from positive trial curvature",
+      "No full reacting or quantum field result"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T21:23:20.078753+00:00",
+    "runtime_seconds": 1.073843,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/cold_production_2026_10_11/portal_hydrostatic_run/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/portal_hydrostatic.py",
+    "sol61_push/cold_production_2026_10_11/nonlinear_portal_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_hydrostatic.py",
+      "sha256": "32dadedd873e68ff963fdc9e30743296a723b43cf26eb5e528f0850ec084da0d",
+      "sha256_after": "32dadedd873e68ff963fdc9e30743296a723b43cf26eb5e528f0850ec084da0d"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nonlinear_portal_run/results.json",
+      "sha256": "615312dcbaa4da87d81b5c740f217cd5e06943e5271529b9357fa8053c0c91c5",
+      "sha256_after": "615312dcbaa4da87d81b5c740f217cd5e06943e5271529b9357fa8053c0c91c5"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/portal_hydrostatic_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/portal_hydrostatic_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_hydrostatic_run/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_hydrostatic_run/stderr.txt",
+      "sha256": "a7fcb84f423d9ab2cabcd826681f9b35992cbfaeccbe49ddf67f3286445c6154",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/cold_production_2026_10_11/portal_hydrostatic_run/results.json"
+  ]
+}

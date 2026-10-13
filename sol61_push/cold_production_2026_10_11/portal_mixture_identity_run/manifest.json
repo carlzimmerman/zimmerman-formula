@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "arbitrary_state_NR_portal_force_and_conversion_commutation",
+  "repository": {
+    "commit": "f2652404da07fb10c0498ef1f285bd365eb69f40",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/portal_mixture_identity.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Pointwise charge conservation, local flow covariance, pressure force and cold mixture mode",
+    "coefficient_domain": "binary64",
+    "conventions": "Canonical NR fields with masses m and 2m; S=(n1+2n2)/(2m)",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/portal_mixture_identity.py"
+    ],
+    "bounds": {
+      "source_fractions": [
+        0,
+        0.1,
+        0.3638167932,
+        0.5,
+        0.9,
+        1
+      ],
+      "field_pairs": 3,
+      "phase_values": [
+        0.1,
+        1,
+        2.5
+      ]
+    },
+    "non_claims": [
+      "No coarse-grained dynamical closure",
+      "No full relativistic identity for mass-weighted density"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T21:46:59.592987+00:00",
+    "runtime_seconds": 0.204364,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/portal_mixture_identity.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_mixture_identity.py",
+      "sha256": "10cceff4dc004b0f4c47f1ebe2a16e20a30214829884fa11e22351d24d9b4f8b",
+      "sha256_after": "10cceff4dc004b0f4c47f1ebe2a16e20a30214829884fa11e22351d24d9b4f8b"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/portal_mixture_identity_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/portal_mixture_identity_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_mixture_identity_run/stdout.txt",
+      "sha256": "92fcce03638979eb5df2170cbbe9eb64037aecb6df19293d4165dab93b52b92b",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_mixture_identity_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_mixture_identity_run/results.json",
+      "sha256": "92fcce03638979eb5df2170cbbe9eb64037aecb6df19293d4165dab93b52b92b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

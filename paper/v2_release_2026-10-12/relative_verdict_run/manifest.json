@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "claim_id": "V2_RELATIVE_VERDICT_SCOPE",
+  "repository": {
+    "commit": "c29c554931ebca0e8c02874aa06bd3cd03846a34",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "paper/v2_release_2026-10-12/check_relative_verdicts.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Actual classifier labels depend on relative scores, not absolute residuals; shared-input cancellation fails in an exact scalar counterexample.",
+    "coefficient_domain": "Exact Python integers for residuals and squared norms",
+    "conventions": "Positive difference means candidate worse; unit covariance; no nuisance parameters in illustrative cases.",
+    "inputs": [
+      "paper/v2_release_2026-10-12/check_relative_verdicts.py",
+      "campaign_fresh_gravity/CFG592_cosmic_shear_likelihood/cfg592_native.py"
+    ],
+    "bounds": {
+      "scalar_cases": 4,
+      "family_M": [
+        0,
+        1,
+        10,
+        100,
+        1000000
+      ],
+      "shared_controls": [
+        0,
+        1
+      ]
+    },
+    "non_claims": [
+      "Not survey data or simulation reproduction",
+      "No cosmological conclusion or calibrated p-value"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T01:34:00.047434+00:00",
+    "runtime_seconds": 0.076369,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "paper/v2_release_2026-10-12/check_relative_verdicts.py",
+    "campaign_fresh_gravity/CFG592_cosmic_shear_likelihood/cfg592_native.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "paper/v2_release_2026-10-12/check_relative_verdicts.py",
+      "sha256": "d669a57f8dceaa3f99839e1a4f1873bea41f6acb629460514646ddcc90037549",
+      "sha256_after": "d669a57f8dceaa3f99839e1a4f1873bea41f6acb629460514646ddcc90037549"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG592_cosmic_shear_likelihood/cfg592_native.py",
+      "sha256": "345ce8f8fbb82dba84a1d2447c24db7de31318fde969f9525ae780e614ecdb5c",
+      "sha256_after": "345ce8f8fbb82dba84a1d2447c24db7de31318fde969f9525ae780e614ecdb5c"
+    }
+  ],
+  "output_directory": "paper/v2_release_2026-10-12/relative_verdict_run",
+  "declared_results": [
+    "paper/v2_release_2026-10-12/relative_verdict_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "paper/v2_release_2026-10-12/relative_verdict_run/stdout.txt",
+      "sha256": "37a51be1aff6b3df357d5c155fa13196c7d3757aad0925d18dba44dc0565e613",
+      "kind": "log"
+    },
+    {
+      "path": "paper/v2_release_2026-10-12/relative_verdict_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "paper/v2_release_2026-10-12/relative_verdict_run/result.json",
+      "sha256": "37a51be1aff6b3df357d5c155fa13196c7d3757aad0925d18dba44dc0565e613",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "full_loading_linear_fluctuations_and_clock_sensitivity",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/loading_fluctuations.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Three-field linear transfer through full loading path; finite nonlinear comparison of homogeneous clock-speed sensitivity",
+    "coefficient_domain": "binary64",
+    "conventions": "Canonical (X,Y,sigma) fields; k=p/M; zero k uses unit phase space normalization",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/loading_fluctuations.py",
+      "sol61_push/cold_production_2026_10_11/clock_loading_run/results.json"
+    ],
+    "bounds": {
+      "k": [
+        0,
+        0.001,
+        0.01,
+        0.1,
+        1,
+        10,
+        30
+      ],
+      "rtol": [
+        1e-09,
+        2e-11
+      ],
+      "clock_speed_errors": [
+        -0.001,
+        -0.0001,
+        0.0001,
+        0.001
+      ],
+      "rise_width": 100
+    },
+    "non_claims": [
+      "No energy integral or UV bound",
+      "No nonlinear spatial stability",
+      "No primordial spectrum"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:28:52.263326+00:00",
+    "runtime_seconds": 27.812082,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/loading_fluctuations.py",
+    "sol61_push/cold_production_2026_10_11/clock_loading_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/loading_fluctuations.py",
+      "sha256": "188401f6b6f950e915764a6237e9784c2abf112a7b947f7153406283a2080f62",
+      "sha256_after": "188401f6b6f950e915764a6237e9784c2abf112a7b947f7153406283a2080f62"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_loading_run/results.json",
+      "sha256": "16bf74fe047bc920824c511833e1f2655ff41c172d406982df3296ba9a4180bd",
+      "sha256_after": "16bf74fe047bc920824c511833e1f2655ff41c172d406982df3296ba9a4180bd"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/loading_fluctuations_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/loading_fluctuations_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/loading_fluctuations_run/stdout.txt",
+      "sha256": "0878a73b6e974f085e34c1df3a48422f8642834b60edb1693800a5b9681bd27b",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/loading_fluctuations_run/stderr.txt",
+      "sha256": "54c936e36f6844bea34d34fb053cf1067d6135d141ee8b1114cd88e4527c6929",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/loading_fluctuations_run/results.json",
+      "sha256": "c89f9fe8355887035767d486862cb145945081561c2f9b6f6f71a39e389fcbe3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

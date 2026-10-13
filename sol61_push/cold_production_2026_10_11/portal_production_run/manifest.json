@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "dense_spatial_production_with_softened_portal_residual",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/portal_production.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Classical envelope conversion with matched mass shift and residual nonlinear portal force",
+    "coefficient_domain": "binary64",
+    "conventions": "Leading NR charge-aligned local density; periodic 24 cubed grid; classical imposed seed",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/portal_production.py",
+      "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sol61_push/cold_production_2026_10_11/nonlinear_portal_run/results.json"
+    ],
+    "bounds": {
+      "N": 24,
+      "dt": [
+        0.01,
+        0.005
+      ],
+      "end": 30,
+      "seed": 471901
+    },
+    "non_claims": [
+      "No quantum vacuum yield or continuum convergence",
+      "No late dilution or halo result"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy default_rng PCG64",
+    "seed": 471901
+  },
+  "run": {
+    "started_at": "2026-10-11T21:28:31.020265+00:00",
+    "runtime_seconds": 29.141411,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/portal_production.py",
+    "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+    "sol61_push/cold_production_2026_10_11/nonlinear_portal_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_production.py",
+      "sha256": "cc0ef1571d13c60645a15b65251983f5a27ce4419c3dc233a8d34007c83d8bbc",
+      "sha256_after": "cc0ef1571d13c60645a15b65251983f5a27ce4419c3dc233a8d34007c83d8bbc"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sha256": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0",
+      "sha256_after": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/nonlinear_portal_run/results.json",
+      "sha256": "615312dcbaa4da87d81b5c740f217cd5e06943e5271529b9357fa8053c0c91c5",
+      "sha256_after": "615312dcbaa4da87d81b5c740f217cd5e06943e5271529b9357fa8053c0c91c5"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/portal_production_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/portal_production_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_production_run/stdout.txt",
+      "sha256": "443e0fdf6a717ca295e4fb489039715647f5168eedb5305e482544814d4eb4cb",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_production_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/portal_production_run/results.json",
+      "sha256": "e16612f9954c517d076eceb14f1dd6e2adb7af83225261f04e386bc75b1e8089",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

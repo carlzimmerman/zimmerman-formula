@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "depleted_quantum_envelope_resolution_and_work",
+  "repository": {
+    "commit": "b7c7299cd63cf094006a761f28ef8d2d95829b4f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/continuum_envelope_v2.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Narrow-band Gaussian pair production from vacuum with physical density weights and coherent source depletion",
+    "coefficient_domain": "binary64 complex128",
+    "conventions": "real daughter unordered momentum pairs; source energy normalization is harmonic; x=m epsilon t",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/continuum_envelope_v2.py"
+    ],
+    "bounds": {
+      "K": [
+        512,
+        768,
+        1024
+      ],
+      "vmax": [
+        2,
+        3
+      ],
+      "x": [
+        0,
+        200
+      ],
+      "m_eV": 1e-12,
+      "epsilon": 1e-07,
+      "u": 0.001,
+      "z": 1000000.0,
+      "rtol": 1e-08
+    },
+    "non_claims": [
+      "No full renormalized quantum field evolution",
+      "No abundance prediction",
+      "No permanent survival or galaxy-law derivation",
+      "Earlier low-resolution result at x=200 was not converged"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T19:23:09.370350+00:00",
+    "runtime_seconds": 4.516591,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/continuum_envelope_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/continuum_envelope_v2.py",
+      "sha256": "75bd36575f1dfe806f2e40aaa1cfe90b8607675ab65995c41a17f21009e34c35",
+      "sha256_after": "75bd36575f1dfe806f2e40aaa1cfe90b8607675ab65995c41a17f21009e34c35"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/envelope_run_v2",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/envelope_run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/envelope_run_v2/stdout.txt",
+      "sha256": "9ab12d92680a4687d8e52466993178752cfae7dd709867a396a6928bdfdb49d7",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/envelope_run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/envelope_run_v2/results.json",
+      "sha256": "44d8e60b18faff39507b62dc4b79b2efdad7c5e6a0c25de0b1c7ae03890c1641",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

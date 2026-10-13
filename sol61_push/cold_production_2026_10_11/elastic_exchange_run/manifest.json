@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "elastic_signed_exchange_moment_and_finite_reservoir_capacity",
+  "repository": {
+    "commit": "1fea200136b7c5888d9f6f6e2a2e554dcbdc6c0b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/elastic_exchange.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Incoming-velocity quadrature audits Maxwellian equal-mass isotropic collision power; illustrative capacity and local rate screens",
+    "coefficient_domain": "binary64",
+    "conventions": "SI energy capacity; inherited dimensionless orbital energies scaled by M_target Vf^2",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/elastic_exchange.py",
+      "sol61_push/collective_energy_lower_2026_10_11/run/results.json"
+    ],
+    "bounds": {
+      "variance_pairs": [
+        [
+          1,
+          4
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          0.0025,
+          0.5
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "quadrature_orders": [
+        64,
+        96
+      ],
+      "speed_cutoff_in_each_sigma": 10,
+      "target_cells": 6
+    },
+    "non_claims": [
+      "No halo evolution or target selection",
+      "No inferred bath existence or exact energy-dependent cross section"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T00:32:55.548509+00:00",
+    "runtime_seconds": 0.230553,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/elastic_exchange.py",
+    "sol61_push/collective_energy_lower_2026_10_11/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/elastic_exchange.py",
+      "sha256": "c0c7171e3465b184992a18a540c9a729c9cf9e64953060f8f3a7ac059c123254",
+      "sha256_after": "c0c7171e3465b184992a18a540c9a729c9cf9e64953060f8f3a7ac059c123254"
+    },
+    {
+      "path": "sol61_push/collective_energy_lower_2026_10_11/run/results.json",
+      "sha256": "634c2690dae8af27f1221842a5485d58a12e57a62fc58f201b8e20d0ca182ce0",
+      "sha256_after": "634c2690dae8af27f1221842a5485d58a12e57a62fc58f201b8e20d0ca182ce0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/elastic_exchange_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/elastic_exchange_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/elastic_exchange_run/stdout.txt",
+      "sha256": "14932c0147869127be91329de3b215ed9a386c05c9dda19714bdbcd6f39f4984",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/elastic_exchange_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/elastic_exchange_run/results.json",
+      "sha256": "14932c0147869127be91329de3b215ed9a386c05c9dda19714bdbcd6f39f4984",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

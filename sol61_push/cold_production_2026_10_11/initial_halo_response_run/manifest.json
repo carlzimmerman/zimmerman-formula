@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "initial_self_gravitating_response_to_reaction_pressure_loss",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/initial_halo_response.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conservative reaction pressure loss and leading Taylor response of enclosed mass and potential",
+    "coefficient_domain": "binary64",
+    "conventions": "NR total-mass moments rho=m(nphi+2nchi); initial Plummer collisionless equilibrium; initial source density zero",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/initial_halo_response.py",
+      "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+    ],
+    "bounds": {
+      "r_over_b": [
+        0,
+        0.1,
+        0.25,
+        0.5,
+        1,
+        2,
+        4
+      ],
+      "quadrature_orders": [
+        48,
+        64,
+        96
+      ],
+      "derivative_step": 0.0001
+    },
+    "non_claims": [
+      "No finite-time evolution or remainder estimate",
+      "No permanent core or halo selector"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T21:04:04.835177+00:00",
+    "runtime_seconds": 0.489662,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/initial_halo_response.py",
+    "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/initial_halo_response.py",
+      "sha256": "7f79ee668de8743ab665e371da67b2637cc82f6cb27b3e7da9eb47f1b1591f0b",
+      "sha256_after": "7f79ee668de8743ab665e371da67b2637cc82f6cb27b3e7da9eb47f1b1591f0b"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sha256": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0",
+      "sha256_after": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/initial_halo_response_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/initial_halo_response_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/initial_halo_response_run/stdout.txt",
+      "sha256": "22ce2d9f023f1ecaf25a7e4feacfb17a14badbd511d4c4758f2b03d51e4ad162",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/initial_halo_response_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/initial_halo_response_run/results.json",
+      "sha256": "b6deeb32a0987e7ec4df44864fca7ecf37f5150c582ee070d80863bd2489068f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

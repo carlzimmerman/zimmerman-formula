@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "dilute_near_threshold_decay_branch",
+  "repository": {
+    "commit": "fcdd11ebc7ad86677f2b7b8385a2f4e2495fb888",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/dilute_decay.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Parameter scaling at fixed threshold scattering per mass; weak-pump narrow-line population and integrated number balance",
+    "coefficient_domain": "binary64",
+    "conventions": "alpha2; hbar=c=1; exact vacuum width and line-centre DOS; constant DOS narrow-line integration",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/dilute_decay.py",
+      "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json"
+    ],
+    "bounds": {
+      "masses_eV": [
+        193.52489171829217,
+        10000,
+        100000,
+        300000,
+        1000000
+      ],
+      "Gamma_t": [
+        0.1,
+        1,
+        5,
+        10
+      ],
+      "detuning_in_halfwidths": 1000
+    },
+    "non_claims": [
+      "No nonlinear full field evolution",
+      "No source origin or halo selection",
+      "No empirical constraint assessment"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T00:59:09.931497+00:00",
+    "runtime_seconds": 0.348951,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/dilute_decay.py",
+    "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_decay.py",
+      "sha256": "f185c5bed88897863c223dfb0857f534578c9f8fa788d1f0d6d59ac7ed118a70",
+      "sha256_after": "f185c5bed88897863c223dfb0857f534578c9f8fa788d1f0d6d59ac7ed118a70"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json",
+      "sha256": "704dd29451fc8d378618723dd5f371af6e21ae76f2bb1dd59c1926a9eb6ba08b",
+      "sha256_after": "704dd29451fc8d378618723dd5f371af6e21ae76f2bb1dd59c1926a9eb6ba08b"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/dilute_decay_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/dilute_decay_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_decay_run/stdout.txt",
+      "sha256": "ea3e8410ec29baed86f9b5cd7f73d7a1f4a04808e54e36f7a8758f59e67c35a4",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_decay_run/stderr.txt",
+      "sha256": "4ca34bc33da5704c4e64fddf7899bd5b4b3be9696ae91d7c40820289f689cd8c",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_decay_run/results.json",
+      "sha256": "ea3e8410ec29baed86f9b5cd7f73d7a1f4a04808e54e36f7a8758f59e67c35a4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

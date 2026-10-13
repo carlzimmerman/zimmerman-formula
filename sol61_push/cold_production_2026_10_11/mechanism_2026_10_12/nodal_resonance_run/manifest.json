@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "claim_id": "isotropic_nodal_second_sheet_resonance",
+  "repository": {
+    "commit": "30e0ed6e6491dd8a51f9bcd02e31e8f6397cf3d2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_resonance.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Complex continuation of retarded isotropic kernel gives decaying collective resonance poles near soft branch",
+    "coefficient_domain": "complex binary64 roots",
+    "conventions": "Continue upper-rim formula into lower half plane across positive-frequency cut; exp(-i omega t); normalized a=Z=I=A*h^2=v=1",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_resonance.py"
+    ],
+    "bounds": {
+      "k": [
+        0.0001,
+        0.001,
+        0.01,
+        0.1,
+        0.3,
+        1
+      ],
+      "root_tolerance": 1e-10
+    },
+    "non_claims": [
+      "Not a global pole count",
+      "Not complex finite-Hamiltonian eigenvalues",
+      "No inhomogeneous halo",
+      "No physical time calibration"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T00:07:32.419786+00:00",
+    "runtime_seconds": 0.399387,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 16000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_resonance.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_resonance.py",
+      "sha256": "4b93fc7cc1c8359846a8c3d7e11c2e8c9a1c16b8c804ca89f29cf8cb8a75da59",
+      "sha256_after": "4b93fc7cc1c8359846a8c3d7e11c2e8c9a1c16b8c804ca89f29cf8cb8a75da59"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_resonance_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_resonance_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_resonance_run/stdout.txt",
+      "sha256": "90c491a68c372083ecac300d0ba4c87d2f652061224da068873f679c47cf1245",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_resonance_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_resonance_run/results.json",
+      "sha256": "90c491a68c372083ecac300d0ba4c87d2f652061224da068873f679c47cf1245",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

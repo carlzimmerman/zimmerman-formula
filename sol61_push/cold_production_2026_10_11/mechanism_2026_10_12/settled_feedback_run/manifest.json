@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "settled_halo_feedback_memory",
+  "repository": {
+    "commit": "62ffc721f4ee39dad90946e7204ef303bb11acaa",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/settled_feedback.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Feedback in exact circular-shell initial equilibria; target and initial-condition memory measured after evolution",
+    "coefficient_domain": "symbolic exact identities and binary64 SI scales",
+    "conventions": "SIS V=200km/s for collision diagnostic; rho=V²/(4piGr²); v1D=V/sqrt2",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/settled_feedback.py",
+      "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json"
+    ],
+    "bounds": {
+      "N": [
+        1024,
+        2048
+      ],
+      "dt": [
+        0.001,
+        0.0005
+      ],
+      "end": 8,
+      "seed": 123,
+      "gas_fraction": 0.5,
+      "scale_expansion": 8,
+      "cycles": 4,
+      "plummer_scales": [
+        0.15,
+        0.3
+      ]
+    },
+    "non_claims": [
+      "Not isotropic halo distribution",
+      "Not self-consistent feedback driver",
+      "No empirical fit",
+      "No non-spherical or collisional relaxation"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy PCG64",
+    "seed": 123
+  },
+  "run": {
+    "started_at": "2026-10-12T18:31:02.067697+00:00",
+    "runtime_seconds": 20.839002,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 16000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/settled_feedback.py",
+    "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/settled_feedback.py",
+      "sha256": "1917653f20bead04650ae894f8f55cd3a4c18fae1d9c363163cb8e4127a47460",
+      "sha256_after": "1917653f20bead04650ae894f8f55cd3a4c18fae1d9c363163cb8e4127a47460"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json",
+      "sha256": "67419750459cb288c99cc1ba735c4a689caa4561daf122dcfc5207a75c3adaa0",
+      "sha256_after": "67419750459cb288c99cc1ba735c4a689caa4561daf122dcfc5207a75c3adaa0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/settled_feedback_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/settled_feedback_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/settled_feedback_run/stdout.txt",
+      "sha256": "c3647d132c286d6a3dcc0fcd47be926a3b56bc372f01aa0c7c3f055fce8e5e51",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/settled_feedback_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/settled_feedback_run/results.json",
+      "sha256": "764e3bf507b7e73b3f7803da095664a681051f8eb40fefd060f84b6e046700d8",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

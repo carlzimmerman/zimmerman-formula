@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "claim_id": "quantum_handoff_box_dependence",
+  "repository": {
+    "commit": "76541195227fab303ed1249eac0cb9c815cc6347",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/box_handoff.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact shell reduction of isotropic Gaussian finite-box growth at four box sizes",
+    "coefficient_domain": "binary64",
+    "conventions": "Unordered nonzero pairs q^2<=4; Wigner half quantum per mode; no expansion",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/box_handoff.py",
+      "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+    ],
+    "bounds": {
+      "dq": [
+        0.4,
+        0.2,
+        0.1,
+        0.05
+      ],
+      "q_max": 2,
+      "target_fraction": 0.0001,
+      "max_time": 100,
+      "max_step": 0.02,
+      "rtol": 1e-12
+    },
+    "non_claims": [
+      "No nonlinear spatial box convergence",
+      "No expansion or full quantum evolution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:00:16.306015+00:00",
+    "runtime_seconds": 12.397526,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/box_handoff.py",
+    "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/box_handoff.py",
+      "sha256": "f8ed17298569a04a068ddd1c6b4041a5031e01c5f9ab640e29f37a7e9c676141",
+      "sha256_after": "f8ed17298569a04a068ddd1c6b4041a5031e01c5f9ab640e29f37a7e9c676141"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sha256": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0",
+      "sha256_after": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/box_handoff_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/box_handoff_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/box_handoff_run/stdout.txt",
+      "sha256": "bf6a6139cd0283a90695d063656dfb16b86f26ac7ee6fbcdf6306eb763fefb42",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/box_handoff_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/box_handoff_run/results.json",
+      "sha256": "d7eb9bd601dbf4c9fcd1997586840c455836933fe6b11af9232304d0a1c159c4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

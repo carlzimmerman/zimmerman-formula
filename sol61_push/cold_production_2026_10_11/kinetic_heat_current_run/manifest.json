@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "resonant_collision_heat_current_response",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/kinetic_heat_current.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Angular dipole collision evolution with zero net momentum; conservation and equilibrium boost checks",
+    "coefficient_domain": "binary64",
+    "conventions": "Same conservative isotropic energy bins; l=1 angular perturbations projected with reaction triangle cosines",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/kinetic_heat_current.py",
+      "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+    ],
+    "bounds": {
+      "grids": [
+        [
+          64,
+          8
+        ],
+        [
+          128,
+          8
+        ],
+        [
+          256,
+          8
+        ],
+        [
+          256,
+          16
+        ]
+      ],
+      "tau_end": 20,
+      "rtol": 2e-09
+    },
+    "non_claims": [
+      "No spatial heat conduction coefficient",
+      "No halo evolution",
+      "No continuum or closure proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:40:42.233032+00:00",
+    "runtime_seconds": 11.434727,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/kinetic_heat_current.py",
+    "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/kinetic_heat_current.py",
+      "sha256": "92677b0a45b77e9c302e4ed57f5e6154c1e1d204ab4854d6f5607da5676dc7a8",
+      "sha256_after": "92677b0a45b77e9c302e4ed57f5e6154c1e1d204ab4854d6f5607da5676dc7a8"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sha256": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0",
+      "sha256_after": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/kinetic_heat_current_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/kinetic_heat_current_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/kinetic_heat_current_run/stdout.txt",
+      "sha256": "abbca51c3b69bce5a6fb771bfcc4ad6abe5a78df4f215b04da6810042d84ff3e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/kinetic_heat_current_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/kinetic_heat_current_run/results.json",
+      "sha256": "68f9dcc2f655b4c0900d75b49f3912b1727a861b5c8190f9cad83a307ad7fd1b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

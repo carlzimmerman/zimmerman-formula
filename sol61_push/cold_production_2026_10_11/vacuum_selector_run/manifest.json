@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "direct_vacuum_gravity_and_optional_ricci_portal_audit",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/vacuum_selector.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Direct Lambda force scale, turnaround-family mass exponent, Ricci mass-shift hierarchy",
+    "coefficient_domain": "binary64",
+    "conventions": "rhoLambda is mass density; kappa=1/2; rhoLambda=6e-27 kg/m3 is illustrative; optional portal defined by positive xi R mass shifts",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/vacuum_selector.py",
+      "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+    ],
+    "bounds": {
+      "comparison_speed_kms": [
+        50,
+        100,
+        200,
+        300
+      ],
+      "turnaround_fraction": 0.5
+    },
+    "non_claims": [
+      "No universal no-go theorem",
+      "No derivation of target law or portal naturalness"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T21:13:40.243399+00:00",
+    "runtime_seconds": 0.048619,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/vacuum_selector.py",
+    "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/vacuum_selector.py",
+      "sha256": "cfbf1d0a22124703ebb4c6fe2d21e50d12c0733c9258a32da3aab64ccadece88",
+      "sha256_after": "cfbf1d0a22124703ebb4c6fe2d21e50d12c0733c9258a32da3aab64ccadece88"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sha256": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0",
+      "sha256_after": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/vacuum_selector_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/vacuum_selector_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/vacuum_selector_run/stdout.txt",
+      "sha256": "f4f084d7ba7fcfbbb380002a7cac8862e7badf46208b74022e9171c810222801",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/vacuum_selector_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/vacuum_selector_run/results.json",
+      "sha256": "f4f084d7ba7fcfbbb380002a7cac8862e7badf46208b74022e9171c810222801",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

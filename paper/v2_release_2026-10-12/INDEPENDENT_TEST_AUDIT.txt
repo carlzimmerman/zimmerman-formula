@@ -1,0 +1,177 @@
+DIRECT AUDIT OF THE V2 TEST — October 12, 2026
+
+Primary verdict: correct only after a stated restriction.
+Restriction: the existing scores compare specified numerical constructions at
+inherited cosmological inputs. They are not an independent test of the whole
+Zimmerman framework, nor a demonstration that Lambda-CDM is correct.
+Fresh source inspection and executable checks by the same reviewer; not an
+independent human referee, full likelihood reproduction or exhaustive audit.
+
+1. DECISIVE FINDING: THE LABEL IS RELATIVE, NOT ABSOLUTE
+
+CFG650 imports klass from CFG592 (cfg592_native.py:288). Its inputs are only
+delta chi-square, robustness deltas and a data-support flag. It has no absolute
+candidate residual as an input. The actual function gives CONSISTENT when both
+models have chi-square 10,000 and their difference is zero.
+
+Exact stronger result, independent of cosmological assumptions:
+Whitened data d=(0,0), C=I, control s=(M,0), candidate f=(M,1).
+chi_s^2=M^2, chi_f^2=M^2+1, delta=1 for every real M.
+If the robustness deltas are also 1 and the support gate passes, the source
+classifier says CONSISTENT for every M. Thus no finite upper bound on absolute
+disagreement follows from that label. The algebra proves the family statement;
+the script checks the extracted source function at five integer M values.
+
+This refutes the interpretation 'CONSISTENT implies an adequate absolute fit'.
+It does not refute legitimate use of this rule as a declared relative comparison.
+Likewise its EXCLUDED label is not, by itself, a calibrated absolute rejection
+or a general three-sigma statement. No result of this audit says the candidate
+fits well; the control's inadequacy cannot make an inadequate candidate adequate.
+
+2. ACTIVE INHERITED ASSUMPTIONS
+
+Current CFG650 PM code fixes h, omega_b, omega_c, n_s and sigma8; defines the
+flat-Lambda expansion; initializes from a CDM transfer/growth prescription;
+and imports a turnaround/census construction. The inherited omega_c/omega_b
+also supplies the 5.364 abundance. These are inputs to predictions.
+
+Current CFG592 scorer fixes Om and distances (lines 31, 47-71); includes Om
+in lensing and alignment kernels (around 122-142); continues low-k power
+with its inherited linear spectrum (214-223); and extends beyond z=1 with
+the inherited growth (224 onward). Its DESI option changes distances, while
+the lensing prefactor and DZG still use the original Om/growth: it is a distance
+sensitivity variant, not a complete alternative cosmological solution.
+
+Measured angular shear correlations are different from these modeling inputs.
+Published calibration, redshift distributions, covariance, scale cuts and
+intrinsic-alignment prescriptions also require assumptions. 'Raw data' does
+not mean assumption-free inference. Atomic physics and conservation identities
+are not Lambda-CDM-specific merely because this pipeline uses them.
+
+The scalar identity delta = e^T C^-1 e + 2(s-d)^T C^-1 e shows why shared inputs
+do not cancel generally. With d=1,C=1,e=1, changing s from 0 to 1 changes delta
+from -1 to +1. This was checked with exact integer arithmetic. No claim is made
+about how much of the actual survey residual these dependencies explain.
+
+3. FITTING AND SIGNIFICANCE
+
+CFG592 fit (163-174) minimizes r^T C^-1 r + prior(x) with L-BFGS-B. That profiles
+penalized nuisances; it does not marginalize by integration. It also returns the
+best objective without recording optimizer success, projected gradients or
+boundary diagnostics. Source inspection identifies this missing diagnostic;
+it does not show that any stored optimization failed.
+
+CFG650 around 193-195 computes chi-square survival at N_kept from chi2_data,
+after nuisance fitting. This is not automatically its true sampling law.
+Counterexample to the general inference: with one Gaussian observation and a
+free fitted mean, minimized data chi-square is identically zero, not chi-square
+with one degree of freedom. Priors/bounds here make an automatic N-p replacement
+unjustified too. Calibrate the full fitting statistic on model-generated mocks;
+do not reinterpret the stored p-values as exact exclusion probabilities.
+
+4. WHAT THE STORED OUTPUT ACTUALLY SAYS
+
+CFG636 canonical KiDS retains 104 values. Stored data quadratic:
+ S0 138.12039675786798; candidate 149.41747358590115.
+Stored penalized objective:
+ S0 144.26236586416482; candidate 158.23176505617096.
+Difference 13.969399192006136 is a difference of penalized objectives, not just
+the data residuals. The fit has six nuisance coordinates. These are read-back
+values, not a new raw-data fit. The existing EXCLUDED label remains part of the
+historical record with the restriction in section 1. No combined v2 production
+result is supplied by these older-variant numbers.
+
+5. REQUIREMENTS FOR AN INDEPENDENT TEST
+
+A. Specify one candidate forward model: conserved cold-mass current, source and
+   catchment dynamics, reciprocal energy transfer, background expansion and
+   perturbations. Derive its early-time equivalence to any borrowed solution,
+   or explicitly fit/condition the independent initial-condition parameters.
+B. Use survey observables with explicit calibration/covariance assumptions.
+   Make absolute candidate residuals primary. Report nuisance penalties apart
+   from data residuals, optimizer diagnostics, priors and fit boundaries.
+C. Calibrate the chosen discrepancy statistic under the candidate with complete
+   nuisance refitting, and under alternatives for power. Freeze support and
+   decision rules before new test results. Disclose already-seen data and model
+   selection; existing previews cannot become a blind test retrospectively.
+D. Infer model-dependent abundance, background and initial amplitude jointly
+   or disclose conditioning; a fixed Planck-derived value is not an independent
+   measurement for every alternative theory. Do not add unrelated per-galaxy
+   parameters to hide residuals. Compare predictive performance separately.
+E. Use fresh/held-out observables to test the specified construction. Numerical
+   equivalence to S0 remains a code/control check, never a substitute for fit.
+
+These are missing mathematical and inference ingredients, not demands that
+the candidate resemble Lambda-CDM. Replacing inherited functions with unnamed
+free functions would leave the observable prediction unspecified.
+
+6. SCOPE AND REPRODUCTION
+
+check_relative_verdicts.py extracts only the pure classifier AST, avoiding all
+survey imports and side effects. Four scalar cases, five exact family cases,
+a support-gate case and two shared-input cases are asserted. No random sampling.
+relative_verdict_run/manifest.json records source hashes, actual command,
+runtime, bounds and output. The manifest validator passes. See result.json.
+The broader dependency inspection was checked against current CFG650/CFG592
+source, not accepted solely from the pre-existing dependency-audit summary.
+
+No production code, frozen criteria or historical results were changed.
+Only the new release draft is revised to reflect these limitations. The audit
+does not establish 'all Lambda-CDM is nonsense' or 'the candidate is correct'.
+It does establish why treating these relative lane labels as independent
+observational verdicts is mathematically unjustified.
+
+7. DEEPER SOURCE CHECKS (v0.3)
+
+Support: CFG592 support_mask (249-259) explicitly uses S0, nominal redshift
+nuisances and no IA. CFG650 passes PS0 into it and retains those bins for both
+fits. The actual function, executed on a one-redshift/two-multipole fixture,
+gives 0.95 for positive contributions (19 inside, 1 outside) and 19/119 for
+(19 inside, 100 outside). Thus the rule does not certify candidate support.
+It may still be adequate for the actual spectra; that quantitative check is
+not performed here. The issue is a missing guarantee, not a demonstrated bias.
+With positive weights, f_candidate = b_in f_control /
+[b_in f_control + b_out (1-f_control)] in a two-region constant-ratio case.
+Additionally, an absolute-support fraction does not control relative error of
+a signed integral near cancellation: supported terms +100,-99 and omitted -1
+give 99.5% absolute support but full signed integral zero versus truncated one.
+This is an algebraic example, not a constructed KiDS bin or convergence verdict.
+
+Gate: extracting the actual CFG650 T-OWN/status source fragments reproduces
+missing -> CONSISTENT + 'PASS ... [PROVISIONAL: T-OWN missing...]',
+failed -> NOT DIAGNOSTIC, passed -> PASS.
+The missing state is warned about, not concealed. It is nevertheless not a
+validated PASS and should be kept distinct in downstream interpretation.
+No historical run is alleged to have a missing gate. The primary scorer also
+reads T_OWN from its mutation JSON without enforcing that JSON's NZ1_all_bite
+flag or binding the cache to input hashes; manual run discipline can satisfy
+the criteria, but the scorer alone does not enforce the entire prerequisite.
+No production scorer or frozen criterion was edited by this audit.
+
+Reproduction: check_support_and_gates.py; support_gate_contract.json;
+support_gate_run/result.json and manifest.json. Runner and validator succeeded.
+The projection kernels are deliberately synthetic positive unit weights; only
+the function and branch logic are production source. This distinction matters.
+
+8. DIRECT PHYSICAL CONSEQUENCES (NO CONTROL COSMOLOGY)
+
+Finite-supply bound: assume isolated spherical Newtonian gravity of real mass,
+total condensed baryons <=M_d, total available cold mass <=S, and no other mass
+or external-force contribution. Then v_c^2(r)<=G(M_d+S)/r. A required flat
+speed v_f can hold only for r<=G(M_d+S)/v_f^2. Under the ideal deep-law
+v_f^4=G M_d a0, this becomes r<=(1+S/M_d)sqrt(G M_d/a0).
+This is an elementary necessary bound, not a novelty claim, measured edge,
+proof of the model, or assumption-free statement about real nonspherical halos.
+It turns finite supply into an explicit prediction obligation: give the outer
+transition and its lensing/dynamical consequences rather than imposing an
+infinite target on a finite reservoir. No Planck ratio is needed for the bound.
+
+Receiver identity: define epsilon_DE=rho_DE c^2 and homogeneous received energy
+Q_DE. From dot epsilon +3H(1+w)epsilon=Q_DE and a0 proportional to sqrt(epsilon),
+dot a0/a0=Q_DE/(2epsilon)-3H(1+w)/2 for constant kappa. A constant exact vacuum
+(w=-1, dot epsilon=0) implies Q_DE=0. A nonzero net homogeneous sink requires
+evolution or another receiver. Local/global averaging, perturbations and
+reciprocal dynamics remain missing. This is conservation algebra, not an
+assumption that Lambda-CDM is observationally correct or an exclusion of a
+dynamical receiver. An approximately constant background could remain usable
+after a quantitative error bound; this pass does not compute that bound.

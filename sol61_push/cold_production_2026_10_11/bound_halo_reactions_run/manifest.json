@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "initial_reactions_in_bound_plummer_halo",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/bound_halo_reactions.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Normalized Plummer occupation, initial source production and bound-source/escape kinematics",
+    "coefficient_domain": "binary64",
+    "conventions": "NR three-wave kernel; isotropic bound daughter distribution proportional to binding energy^(7/2)",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/bound_halo_reactions.py",
+      "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+    ],
+    "bounds": {
+      "quadrature_orders": [
+        24,
+        48,
+        96
+      ],
+      "rho_center_kg_m3": 1e-21,
+      "sigma_center_kms": 200
+    },
+    "non_claims": [
+      "No full halo evolution",
+      "No actual escape rate",
+      "No derived halo selector"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:52:30.757160+00:00",
+    "runtime_seconds": 0.912702,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/bound_halo_reactions.py",
+    "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/bound_halo_reactions.py",
+      "sha256": "062a2ce6795e963ac3531d3cce9350b7d744104b991c602b30fb01d49c5f44e0",
+      "sha256_after": "062a2ce6795e963ac3531d3cce9350b7d744104b991c602b30fb01d49c5f44e0"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sha256": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0",
+      "sha256_after": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/bound_halo_reactions_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/bound_halo_reactions_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/bound_halo_reactions_run/stdout.txt",
+      "sha256": "61b2ab7d8de5ab7bfce52339f3e0fe1afb7b0b84b1931211eceff5db4bd1b2cb",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/bound_halo_reactions_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/bound_halo_reactions_run/results.json",
+      "sha256": "8828630314932f6b972038c4a4a89e0c30afaff723e0e0e38b64e2ebb835a66b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
