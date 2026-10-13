@@ -1,0 +1,80 @@
+CFG656 gates (FROZEN_CRITERIA.md, c1236bf88): CFG634's static T3 (X-COP, headline 1000 kpc + inner band 200-420 kpc) and T2
+(Tian+26 groups) executed from CFG634's committed source with CFG637's single RD patch, the derived reservoir read from
+cfg656_profiles.npz (this lane's catchment supply) and, for T2 primary / M-OLD cross-checks, CFG637's own profiles.
+MUTATE: M-OLD (OLD convention reproduces CFG637's eta to 1e-9), M-HALF (half supply raises eta). Verdict per §3.
+  [PASS] C-T3 audit profile code reproduces the audit rows' g_baryon (1e-9): max rel 2.2e-16
+
+== T3 X-COP (CFG634 code + CFG637 RD patch; reservoir = CFG637 derivation with this lane's catchment supply)
+  HCB|OLD          eta headline 1.494+-0.061 / 1.661+-0.080 -> FAIL     | inner 200-420 0.859 / 0.889 (PASS) | b=0.2 1.867 / 2.076
+  B|OLD            eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|P            eta headline 0.452+-0.324 / 0.460+-0.308 -> TENSION  | inner 200-420 0.244 / 0.247 (TENSION) | b=0.2 0.565 / 0.575
+  B|P              eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|HI           eta headline 0.397+-0.123 / 0.404+-0.315 -> TENSION  | inner 200-420 0.204 / 0.209 (TENSION) | b=0.2 0.496 / 0.505
+  B|HI             eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|LO           eta headline 2.064+-0.418 / 3.449+-0.406 -> TENSION  | inner 200-420 0.990 / 4.902 (TENSION) | b=0.2 2.581 / 4.312
+  B|LO             eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|FLOOR        eta headline 1.491+-0.061 / 1.630+-0.071 -> FAIL     | inner 200-420 0.890 / 0.904 (PASS) | b=0.2 1.864 / 2.037
+  B|FLOOR          eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|RET          eta headline 0.504+-0.321 / 0.506+-0.306 -> TENSION  | inner 200-420 0.279 / 0.280 (TENSION) | b=0.2 0.631 / 0.632
+  B|RET            eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|NAT          eta headline 0.443+-0.325 / 0.439+-0.309 -> TENSION  | inner 200-420 0.239 / 0.239 (TENSION) | b=0.2 0.554 / 0.549
+  B|NAT            eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|HALF         eta headline 0.782+-0.494 / 0.814+-0.483 -> TENSION  | inner 200-420 0.464 / 0.471 (TENSION) | b=0.2 0.977 / 1.017
+  B|HALF           eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|P_eps0.5     eta headline 0.740+-0.307 / 0.761+-0.292 -> TENSION  | inner 200-420 0.717 / 0.770 (TENSION) | b=0.2 0.925 / 0.952
+  B|P_eps0.5       eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|P_q0.05      eta headline 0.435+-0.326 / 0.435+-0.310 -> TENSION  | inner 200-420 0.228 / 0.231 (TENSION) | b=0.2 0.544 / 0.544
+  B|P_q0.05        eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|P_q0.2       eta headline 0.477+-0.323 / 0.478+-0.307 -> TENSION  | inner 200-420 0.328 / 0.294 (TENSION) | b=0.2 0.596 / 0.598
+  B|P_q0.2         eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  HCB|P_uniform    eta headline 1.229+-0.368 / 1.388+-0.370 -> TENSION  | inner 200-420 1.486 / 1.808 (TENSION) | b=0.2 1.537 / 1.735
+  B|P_uniform      eta headline 1.820+-0.067 / 1.679+-0.062 -> FAIL     | inner 200-420 3.163 / 2.927 (FAIL) | b=0.2 2.275 / 2.098
+  per-cluster headline eta (1000 kpc), canonical / alt (reported):
+    A1644    H-CB OLD 1.47/1.66  P 0.35/0.37  LO 2.50/3.30  FLOOR 1.46/1.65  | B P 1.52/1.40
+    A1795    H-CB OLD 1.56/1.73  P 0.74/0.74  LO 2.63/3.37  FLOOR 1.52/1.66  | B P 1.65/1.52
+    A2029    H-CB OLD 1.55/1.70  P 0.50/0.50  LO 1.12/1.15  FLOOR 1.57/1.71  | B P 2.16/2.00
+    A2142    H-CB OLD 1.33/1.39  P 0.35/0.35  LO 0.71/0.71  FLOOR 1.33/1.39  | B P 2.07/1.92
+    A2255    H-CB OLD 1.27/1.33  P 0.33/0.33  LO 1.49/2.79  FLOOR 1.25/1.31  | B P 1.75/1.62
+    A2319    H-CB OLD 1.17/1.19  P 0.16/0.16  LO 0.44/0.45  FLOOR 1.00/1.02  | B P 2.10/1.94
+    A3158    H-CB OLD 1.52/1.66  P 0.55/0.56  LO 1.88/3.53  FLOOR 1.36/1.44  | B P 1.70/1.57
+    A3266    H-CB OLD 1.25/1.29  P 0.41/0.42  LO 2.25/3.55  FLOOR 1.52/1.61  | B P 1.82/1.68
+    A644     H-CB OLD 1.89/2.18  P 4.30/4.11  LO 4.30/4.11  FLOOR 1.65/1.76  | B P 2.06/1.90
+    A85      H-CB OLD 1.33/1.37  P 0.67/0.76  LO 4.25/4.10  FLOOR 1.21/1.21  | B P 1.82/1.68
+    RXC1825  H-CB OLD 1.59/1.76  P 0.32/0.33  LO 1.88/3.73  FLOOR 1.53/1.66  | B P 1.75/1.61
+    ZW1215   H-CB OLD 1.74/1.76  P 0.93/0.99  LO 4.88/4.67  FLOOR 1.79/1.82  | B P 2.25/2.07
+  [PASS] M-OLD OLD convention re-derived here reproduces CFG637 T3 RD|P|phase (headline eta, sigma, inner eta; both sources, both footings; 1e-9): max abs diff 0.0e+00
+  M-OLD (reported) re-derived OLD reservoir profiles vs cfg637_profiles.npz: max rel diff 0.0e+00
+  [PASS] M-HALF half supply never lowers eta and raises it wherever the primary reservoir is non-empty inside 1000 kpc: HCB/canonical: 0.4517 -> 0.7815 (reservoir present); HCB/alt: 0.4602 -> 0.8136 (reservoir present); B/canonical: 1.8196 -> 1.8196 (reservoir empty: n/a); B/alt: 1.6787 -> 1.6787 (reservoir empty: n/a)
+
+== diagnostic eta(R200) (reported only, NO verdict weight): M_FORW(R200) / [M_b(<R200) + source phantom + M_res(<R200)]
+  HCB OLD   eta(R200) 1.875+-0.158 / 2.065+-0.167
+  B   OLD   eta(R200) 1.396+-0.108 / 1.282+-0.099
+  HCB P     eta(R200) 0.601+-0.124 / 0.616+-0.130
+  B   P     eta(R200) 1.395+-0.107 / 1.281+-0.098
+  HCB HI    eta(R200) 0.465+-0.099 / 0.467+-0.123
+  B   HI    eta(R200) 1.394+-0.107 / 1.280+-0.098
+  HCB LO    eta(R200) 2.208+-0.353 / 2.801+-0.370
+  B   LO    eta(R200) 1.385+-0.110 / 1.272+-0.101
+  HCB FLOOR eta(R200) 1.767+-0.202 / 1.939+-0.215
+  B   FLOOR eta(R200) 1.410+-0.124 / 1.295+-0.114
+  HCB RET   eta(R200) 0.673+-0.136 / 0.688+-0.156
+  B   RET   eta(R200) 1.395+-0.107 / 1.281+-0.098
+  HCB NAT   eta(R200) 0.590+-0.122 / 0.601+-0.125
+  B   NAT   eta(R200) 1.395+-0.107 / 1.281+-0.098
+
+== T2 Tian+26 groups (consistency)
+  PRIMARY (rule unchanged)|HCB|canonical mean +0.066  Z +1.85  -> CLOSES
+  PRIMARY (rule unchanged)|B|canonical mean +0.060  Z +1.65  -> CLOSES
+  PRIMARY (rule unchanged)|HCB|alt     mean +0.050  Z +1.38  -> CLOSES
+  PRIMARY (rule unchanged)|B|alt       mean +0.043  Z +1.20  -> CLOSES
+  T2-CEN|HCB|canonical                 mean +0.124  Z +3.09  -> ABOVE
+  T2-CEN|B|canonical                   mean +0.118  Z +2.97  -> ABOVE
+  T2-CEN|HCB|alt                       mean +0.111  Z +2.75  -> ABOVE
+  T2-CEN|B|alt                         mean +0.105  Z +2.58  -> ABOVE
+  [PASS] T2 primary (group rule unchanged) equals CFG637 RD|P|phase (mean, Z; 1e-9): max abs diff 0.0e+00
+
+== verdict (FROZEN §3)
+  VERDICT [HCB]: ROBUST TO THE SUPPLY CONVENTION (T3 TENSION; inner TENSION); BRACKET-DEPENDENT (P_eps0.5: SHRINKS, P_uniform: SHRINKS)
+  VERDICT [B]: ROBUST TO THE SUPPLY CONVENTION (T3 FAIL; inner FAIL)
+
+4/4 checks pass; elapsed 1.2 s
