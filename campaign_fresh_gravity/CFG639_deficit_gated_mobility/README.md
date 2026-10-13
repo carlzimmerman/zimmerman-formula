@@ -12,7 +12,7 @@
 | part | status |
 |---|---|
 | A, galaxy side (CFG544 bench) | **DONE. As frozen: NOT DIAGNOSTIC** (tooth A-M1 did not bite). See the reading below |
-| B, mergers (CFG623 pipeline) | **QUEUED.** Code `cfg639_merger.py` and waiter `run_639.sh` are committed. The waiter starts the grid only when no 1024³ run is live and ≥ 16 GB is free (criteria §4). Expected: 15 runs, about 13 min each, on 4 processes (about 1 h, about 10 GB) |
+| B, mergers (CFG623 pipeline) | **DONE (2026-10-12 19:34–20:42), VALID. VG-1 UNDETERMINED; VG-2 UNDETERMINED (Part A).** See Part B below |
 
 ## Part A (`cfg639_galaxy.py` → `cfg639_galaxy.out`, `cfg639_galaxy_results.json`)
 
@@ -61,3 +61,32 @@ imported read-only. The bench uses the exponential kernel, as CFG544/550/554 did
 | `cfg639_galaxy.py` → `.out`, `_results.json` | Part A |
 | `cfg639_merger.py` | Part B (CFG623 main imported read-only; only `settle` gated; runs cached in `runs/`) |
 | `run_639.sh` | Part B waiter (log in `../../../_external_data/cfg639_work/waiter.log`, outside the repo) |
+
+## Part B (`cfg639_merger.py` → `cfg639_merger.out`, `cfg639_merger_results.json`, `runs/`)
+
+Run by `run_639.sh` once no 1024³ run was live (started 19:34 with 26 GB free; 15 runs on 4 processes; finished 20:42).
+
+**Controls:** B-R (α = 0 reproduces CFG623 exactly): max 0 kpc on both footings; B-G1 (G ≡ 1 at α = 0.1 reproduces CFG623 `a0.1_can`):
+0 kpc; **B-M1 bites**: 71% of cold settle steps gated off in the pericentre window; f moves by 0.545 and β̄ by 0.328 against the
+ungated CFG623 cell. Footing validity holds on both footings.
+
+| α | can: f / Z_B / β̄ / Z_H → status | alt: f / Z_B / β̄ / Z_H → status | ungated CFG623 (can) |
+|---|---|---|---|
+| 0 | +0.181 / +1.09 / +0.063 / +1.47 → ALLOWED | +0.178 / +1.06 / +0.061 / +1.44 → ALLOWED | ALLOWED |
+| 0.03 | +0.209 / +1.32 / +0.069 / +1.56 → UNSCORABLE (Bullet stability 1/4) | +0.178 / +1.06 / +0.070 / +1.57 → **ALLOWED** | UNSCORABLE |
+| **0.1** | **+0.259 / +1.71 / +0.088 / +1.83** → UNSCORABLE (Bullet stability 2/4 at the first epoch) | **+0.224 / +1.44 / +0.091 / +1.88** → UNSCORABLE (2/4) | **EXCLUDED (f +0.803, Z_B +6.07)** |
+| 0.3 | +0.404 / +2.87 / +0.118 / +2.26 → UNSCORABLE | +0.341 / +2.37 / +0.126 / +2.37 → UNSCORABLE | EXCLUDED (f +1.005) |
+| 1 | +0.625 / +4.64 / — → UNSCORABLE (Harvey 0/40) | +0.474 / +3.43 / — → UNSCORABLE | UNSCORABLE (f +1.418) |
+| 3, 10 | f ≈ 1.0, Z_B ≈ +7.4 to +8.2; Harvey < half → UNSCORABLE | same | UNSCORABLE |
+
+**Frozen verdicts:** allowed set {0} (canonical), {0, 0.03} (alt). **VG-1 (merger rescue): UNDETERMINED** — no α ≥ 0.1 node is scorable
+on both footings. **VG-2: UNDETERMINED** (Part A NOT DIAGNOSTIC).
+
+**Reading.**
+- **The gate moves the merger result substantially.** At α = 0.1 the Bullet offset falls from f = 0.80 (Z_B +6.1, excluded) to
+  f = 0.26 / 0.22 (Z_B +1.7 / +1.4), and the Harvey statistic passes (Z_H 1.8 / 1.9). The node misses ALLOWED only through the frozen
+  Bullet stability rule (2 of 4 lensing-peak variants agree at the first bracketing epoch; 3 required), the same bimodal-peak failure
+  that left CFG623's α = 0.03 unscorable. α = 0.3 is marginal (Z_B +2.9 / +2.4); α ≥ 1 still gives large offsets.
+- So, with the gate, mergers no longer exclude α = 0.1 on value; they leave it unscored. That is not a rescue by the frozen rule, and
+  galaxies want α ≳ 0.5 (α = 1 still has Z_B +4.6 / +3.4), so the merger–galaxy tension narrows but is not removed.
+- CFG641 (H-CB + gate) runs next once the orchestrator's CFG640 1024³ job ends.
