@@ -13,7 +13,9 @@
 - **Settings:** κ = ½ FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed";
   nothing here says the data favour the framework.
 
-## Status: QUEUED (no data run yet)
+## Status: DONE (2026-10-12 → 2026-10-13 01:32), VALID — see Result below
+
+### (original status note) QUEUED (no data run yet)
 
 `run_641.sh` (nohup) waits until CFG639 Part B has finished, no 1024³ run is live and ≥ 16 GB is free, then runs `cfg641.py`:
 controls → RN calibration → arm P → arm U → RI calibration → arm S → scoring. Expected cost: about 45 grid runs of about 13 min plus
@@ -44,3 +46,30 @@ Nothing commits them automatically.
 | `FROZEN_CRITERIA.md` | criteria (4b928d160) |
 | `cfg641.py` | the lane (CFG623/639 pipeline and CFG621 `calibrate()` imported read-only; progenitor, phantom field and calibration patches in-process) |
 | `run_641.sh` | waiter |
+
+## Result (`cfg641.py` → `cfg641.out`, `cfg641_results.json`, `cfg641_calibration_RN/RI.json`, `runs*/`)
+
+**Controls:** C-R0 and C-R1 reproduce CFG623's `a0_can` and `a0.1_can` exactly (0 kpc); T-H 0.448 / 0.442 (pass); **T-G bites**:
+99.96% of cold settle steps gated off in the pericentre window, |f_P − f_U| = 0.72, |β̄_P − β̄_U| = 0.63. Calibrations: RN v0 1479 km/s,
+η 1.442 (speed 2774 km/s, d_SG 176 kpc); RI v0 1000 km/s, η 1.442 (2723 km/s, 177 kpc). Footings valid in every arm.
+
+| arm | result (both footings) |
+|---|---|
+| **P** stars, RN, gate | **every node EXCLUDED, including α = 0**: Bullet f +0.142 / +0.113–0.130 (Z_B +0.8 / +0.5–0.7, fine) but Harvey β̄ +0.177 / +0.162 (**Z_H +3.1 / +2.9**). α-independent (gate off) |
+| U stars, RN, no gate | α = 0 as P (EXCLUDED); α ≥ 0.03 large offsets (f 0.40–1.53), UNSCORABLE or EXCLUDED |
+| S stars, RI, gate | **every node ALLOWED**: f −0.008 (Z_B −0.42), β̄ −0.023 to −0.027 (Z_H +0.18 to +0.25). α-independent (gate off) |
+
+**Frozen verdicts:** VH-1 (arm P) **DOES NOT RESCUE** (α = 0 no longer allowed); VH-2 allowed set []; VH-3 **NO RESCUE EITHER WAY**;
+VH-4 **RESERVOIR-DEPENDENT** (arm S rescues).
+
+**Reading (the pre-run disclosure applies).**
+- With the stars-only source the reservoir already exceeds the phantom everywhere, so the gate switches settling off and **α plays no
+  role**. Neither arm tests settling dynamics; both test the unsettled reservoir's profile.
+- **RN (diffuse NFW, c = 4)** fails Harvey: with only stars sourcing the settled mass and the reservoir diffuse, the gas pulls the
+  lensing peaks toward the plasma across the sample (β̄ +0.17 vs −0.04 ± 0.07).
+- **RI (reservoir tracing 5.364 × the enclosed baryons)** passes both Bullet and Harvey: a collisionless component concentrated like the
+  baryons keeps the lensing on the galaxies. This is the collisionless-reservoir statement the disclosure warned about, not evidence
+  for settling.
+- **Across lanes, no single reservoir rule passes:** CFG634 (static) found RN passes X-COP including the inner band while RI fails the
+  inner band (η 1.535); CFG641 (dynamic) finds RI passes the mergers while RN fails Harvey. CFG634's "NO SINGLE RESERVOIR RULE" now holds
+  for static and merger tests together. A derived reservoir (CFG637, another session) is what could break this.
