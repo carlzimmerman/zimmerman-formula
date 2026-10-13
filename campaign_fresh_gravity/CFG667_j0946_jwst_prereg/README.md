@@ -1,3 +1,5 @@
+> **ID NOTE (2026-10-12): this lane is CFG672.** Its directory and commits say CFG667, which collided with another session's same-day use of that number (see LEDGER CFG670–679). Cite it as CFG672. Sealed files and hashes are unchanged.
+
 # CFG667: SEALED prediction for JWST GO 12088 — the J0946+1006 "dark subhalo"
 
 Criteria 44bf95584 (committed alone first). `cfg667.py` → `cfg667_predictions.json`,

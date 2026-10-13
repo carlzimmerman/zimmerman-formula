@@ -1,3 +1,5 @@
+> **ID NOTE (2026-10-12): this lane is CFG671.** Its directory and commits say CFG666, which collided with another session's same-day use of that number (see LEDGER CFG670–679). Cite it as CFG671. Sealed files and hashes are unchanged.
+
 # CFG666: the "dark" strong-lens perturbers vs the law — NOT DIAGNOSTIC (model-selection-limited)
 
 Criteria `FROZEN_CRITERIA.md` (b9b9009ad), committed alone first, 2026-10-12. Block CFG660–669. `cfg666.py` (seconds, exit 0) →

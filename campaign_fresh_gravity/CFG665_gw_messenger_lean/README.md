@@ -1,3 +1,5 @@
+> **ID NOTE (2026-10-12): this lane is CFG670.** Its directory and commits say CFG665, which collided with another session's same-day use of that number (see LEDGER CFG670–679). Cite it as CFG670. Sealed files and hashes are unchanged.
+
 # CFG665: GW messenger theorems — CERTIFIED (Lean 4)
 
 **Label: CERTIFIED** (all of T1–T7 compile, zero `sorry`, axioms ⊆ {propext, Classical.choice, Quot.sound}; T6 ratio ≥ 1e5 on

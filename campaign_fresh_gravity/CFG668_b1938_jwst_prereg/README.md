@@ -1,3 +1,5 @@
+> **ID NOTE (2026-10-12): this lane is CFG673.** Its directory and commits say CFG668, which collided with another session's same-day use of that number (see LEDGER CFG670–679). Cite it as CFG673. Sealed files and hashes are unchanged.
+
 # CFG668: SEALED prediction for JWST GO 8281 (B1938+666) — made before any GO 8281 pixel was viewed here
 
 Criteria a0b9c9bf7. `cfg668.py` → `cfg668_predictions.json`, **sha256 9162427fb4a10de1ea938f398316a81b908998d1d2da2775f4d8ae46e198c04e**.

@@ -1,3 +1,5 @@
+> **ID NOTE (2026-10-12): this lane is CFG674.** Its directory and commits say CFG669, which collided with another session's same-day use of that number (see LEDGER CFG670–679). Cite it as CFG674. Sealed files and hashes are unchanged.
+
 # CFG669: independent F277W photometry of B1938+666 perturber A — NOT DIAGNOSTIC (the method cannot separate A from the arc)
 
 Criteria 899403b81 (committed alone before any pixel was opened). Scores the sealed CFG668 prediction (9162427f…). Data: JWST
