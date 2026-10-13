@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "local_nodal_ring_cubic_generation",
+  "repository": {
+    "commit": "1812f594ac8932acdb8c59391bf9bfddb1dec670",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_ring_v2.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Local 4x4 Clifford Hamiltonian generates positive renormalized cubic static energy from a gap-opening vector; temperature and chemical potential round the cubic response",
+    "coefficient_domain": "complex binary64 matrices and real quadrature",
+    "conventions": "hbar=1, negative bands filled; positive mass and velocity; energy tube cutoff below ring scale; zero-T quadratic subtraction explicit",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_ring_v2.py"
+    ],
+    "bounds": {
+      "gammas": 5,
+      "spectral_cases": 9,
+      "gaps": [
+        0.1,
+        1,
+        2
+      ],
+      "cutoff_over_gap": [
+        10,
+        100,
+        1000
+      ],
+      "gap_over_T": [
+        0.01,
+        0.1,
+        1,
+        3,
+        10,
+        30
+      ],
+      "gap_over_mu": [
+        0.01,
+        0.1,
+        0.5,
+        1,
+        2
+      ]
+    },
+    "non_claims": [
+      "Not an identification with protected scalar carrier",
+      "No vacuum scale selection",
+      "No finite-momentum effective action or live-matter dynamics",
+      "No astrophysical empirical detection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T20:27:35.242272+00:00",
+    "runtime_seconds": 0.549108,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 16000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_ring_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_ring_v2.py",
+      "sha256": "cc92bb7a773805f19ad0d813ac93d4e329f123f9b33de4d2263f141575bb27d2",
+      "sha256_after": "cc92bb7a773805f19ad0d813ac93d4e329f123f9b33de4d2263f141575bb27d2"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_ring_run_v2",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_ring_run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_ring_run_v2/stdout.txt",
+      "sha256": "a48952ecb18a2de3e6122b54cb08b40217c0667c6e97998e7b183e2c9b4c82d0",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_ring_run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_ring_run_v2/results.json",
+      "sha256": "8d98640bce8b72cb48fc55685bf85aeaf882ef19759d726fbaedfd35e1912f04",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

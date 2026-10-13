@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "gapped_nodal_far_field_gradient_correction",
+  "repository": {
+    "commit": "bfe743d37d0940e968f6de4dc612129fa906aea9",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_gapped.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Leading two-derivative isotropized fermion energy yields positive constant source offset for radial P=B/r",
+    "coefficient_domain": "exact symbolic calculus and binary64 quadrature",
+    "conventions": "Static T=mu=0; c=A*h*v^2; beta=A*h^3; equal velocities and isotropic orientations",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_gapped.py"
+    ],
+    "bounds": {
+      "gaps": [
+        0.1,
+        1,
+        10
+      ],
+      "q_over_gap": 0.001,
+      "hB_over_v": [
+        3,
+        10,
+        30
+      ],
+      "compact_variation_radius": [
+        1,
+        5
+      ],
+      "variation_step": 1e-05
+    },
+    "non_claims": [
+      "No validity near zero-gap centre",
+      "No small-B extrapolation",
+      "No UV-dependent analytic gradient terms included",
+      "No frequency stability or empirical fit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T23:10:27.822459+00:00",
+    "runtime_seconds": 1.143361,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 16000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_gapped.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_gapped.py",
+      "sha256": "2dd2eb67369db9e4d11f9186aa2c7f2e3b85dda4bc2da9f7131767474ad84e96",
+      "sha256_after": "2dd2eb67369db9e4d11f9186aa2c7f2e3b85dda4bc2da9f7131767474ad84e96"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_gapped_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_gapped_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_gapped_run/stdout.txt",
+      "sha256": "36a8179464db9aa786c59b4b4a49c775aa326377bc81196d416757836cce74fb",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_gapped_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_gapped_run/results.json",
+      "sha256": "36a8179464db9aa786c59b4b4a49c775aa326377bc81196d416757836cce74fb",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

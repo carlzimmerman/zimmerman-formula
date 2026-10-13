@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "nodal_ring_static_stiffness_axis",
+  "repository": {
+    "commit": "1bbc63af3de562b9fc6cc91548a92d6a80dbebb8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_stiffness.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Static interband response difference K(q)-K(0) is positive in declared mass and axial momentum family; compare subtracted momentum integral to closed-form patch expressions",
+    "coefficient_domain": "binary64 quadrature",
+    "conventions": "Divide by A=N*m_star/(2*pi*v); q is axial energy transfer v*kz; longitudinal means parallel to background polarization",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_stiffness.py"
+    ],
+    "bounds": {
+      "gap": [
+        0,
+        0.1,
+        1
+      ],
+      "q": [
+        0.2,
+        1,
+        3
+      ],
+      "channels": [
+        "longitudinal",
+        "transverse"
+      ],
+      "cutoff_over_q": [
+        500,
+        1000
+      ],
+      "angular_nodes": [
+        512,
+        1024
+      ],
+      "radial_nodes_per_interval": [
+        100,
+        160
+      ]
+    },
+    "non_claims": [
+      "Not full causal response",
+      "No arbitrary-direction stability",
+      "No UV completion",
+      "No certified quadrature error"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T20:30:02.082432+00:00",
+    "runtime_seconds": 0.347858,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 20000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_stiffness.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_stiffness.py",
+      "sha256": "e3467227d85c76cbd7b21fd638162a5f35844454fb416261a00f9a3c2c3fcaa5",
+      "sha256_after": "e3467227d85c76cbd7b21fd638162a5f35844454fb416261a00f9a3c2c3fcaa5"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_stiffness_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_stiffness_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_stiffness_run/stdout.txt",
+      "sha256": "0fce60e5acf9534ad81f701ca4bbd2906e109e76eae8437f28248f92845324b9",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_stiffness_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_stiffness_run/results.json",
+      "sha256": "0fce60e5acf9534ad81f701ca4bbd2906e109e76eae8437f28248f92845324b9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

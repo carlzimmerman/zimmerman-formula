@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "vacuum_running_width_resonance_scan",
+  "repository": {
+    "commit": "74f5b31ebd3377e3da3cfc7d506dd4f875143234",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/resonance_scan.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional vacuum running-width scattering integral with pole-resolving quadrature; production at changed u",
+    "coefficient_domain": "binary64",
+    "conventions": "SI accelerations; log10 residuals; isotropic total cross section cm2/g; all released rows",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/resonance_scan.py",
+      "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json"
+    ],
+    "bounds": {
+      "S": [
+        0.1,
+        0.3
+      ],
+      "u": [
+        0.01,
+        0.015,
+        0.02,
+        0.03
+      ],
+      "speed_cutoff_kms": 25000
+    },
+    "non_claims": [
+      "Not empirically fitted",
+      "Not full kinetic source conversion",
+      "No galaxy formation or cosmological coldness test"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T14:16:42.777904+00:00",
+    "runtime_seconds": 0.288775,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 30000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/resonance_scan.py",
+    "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/resonance_scan.py",
+      "sha256": "48e46cac54cdcf908bdc29d4baa8e32898872d5d3d8bfd966f78e72c5ca1f534",
+      "sha256_after": "48e46cac54cdcf908bdc29d4baa8e32898872d5d3d8bfd966f78e72c5ca1f534"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json",
+      "sha256": "c3a9f407480a25371dc8684d1ddfdbffc4e02ec9c8b42191bc4c96f6f85deb06",
+      "sha256_after": "c3a9f407480a25371dc8684d1ddfdbffc4e02ec9c8b42191bc4c96f6f85deb06"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/resonance_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/resonance_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/resonance_run/stdout.txt",
+      "sha256": "b7343e7c45e3a45fe818628eee196cdd03a9c2115ab00180a42695088b6303d5",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/resonance_run/stderr.txt",
+      "sha256": "77f2368d0a433d3452b76ce920ae7a5772deea47436b4b69c1f9c56aeee21135",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/resonance_run/results.json",
+      "sha256": "b7343e7c45e3a45fe818628eee196cdd03a9c2115ab00180a42695088b6303d5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

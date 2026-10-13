@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "isotropic_nodal_collective_soft_mode",
+  "repository": {
+    "commit": "6207c18614c2b69b5a642ccb5655985a671b27ad",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_collective.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Isotropic gapless response supports a slow collective resonance with positive perturbative damping and k^(3/2) low-k frequency",
+    "coefficient_domain": "complex binary64 quadrature and scalar roots",
+    "conventions": "a=Z=I=A*h^2=v=1, exp(-i omega t), 0<omega/k<1; damping estimated from imaginary determinant divided by real slope",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_collective.py"
+    ],
+    "bounds": {
+      "frequency_ratio": [
+        0.01,
+        0.1,
+        0.5,
+        0.9
+      ],
+      "k": [
+        0.0001,
+        0.0003,
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1
+      ]
+    },
+    "non_claims": [
+      "Not an exact complex pole solution",
+      "No arbitrary-direction single-ring isotropy",
+      "No physical time or length calibration",
+      "No spatially varying halo stability"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T00:06:33.720429+00:00",
+    "runtime_seconds": 0.456137,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 16000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_collective.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_collective.py",
+      "sha256": "4475eb2f5e5efaab2fa88add6e90ad9258700b975450f108be5d24b4137fb9a3",
+      "sha256_after": "4475eb2f5e5efaab2fa88add6e90ad9258700b975450f108be5d24b4137fb9a3"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_collective_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_collective_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_collective_run/stdout.txt",
+      "sha256": "d7bdcf94a953c35156cd9d7f01ef5bcfa5540487f1e878ce0530826a4773b435",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_collective_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_collective_run/results.json",
+      "sha256": "d7bdcf94a953c35156cd9d7f01ef5bcfa5540487f1e878ce0530826a4773b435",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

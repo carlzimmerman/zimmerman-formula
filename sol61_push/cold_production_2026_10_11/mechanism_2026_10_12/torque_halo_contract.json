@@ -1,0 +1,65 @@
+{
+  "claim_id": "nonspherical_torque_profile_gate",
+  "mathematics": {
+    "assertion_tested": "Rotating baryon torque and profile selection, with work and steady Jacobi controls",
+    "coefficient_domain": "symbolic exact identities and binary64 SI scales",
+    "conventions": "SIS V=200km/s for collision diagnostic; rho=V\u00b2/(4piGr\u00b2); v1D=V/sqrt2",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo.py",
+      "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json"
+    ],
+    "bounds": {
+      "N": [
+        1024,
+        2048
+      ],
+      "dt": [
+        0.001,
+        0.0005
+      ],
+      "b": [
+        0.15,
+        0.3
+      ],
+      "d": [
+        0,
+        0.01,
+        0.04
+      ],
+      "omega": 40,
+      "end": 8
+    },
+    "non_claims": [
+      "Not self-consistent bar angular-momentum budget",
+      "Not cosmological halo assembly",
+      "Self gravity remains spherical"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo.py",
+    "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy PCG64",
+    "seed": 123
+  }
+}

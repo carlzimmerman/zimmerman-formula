@@ -1,0 +1,164 @@
+{
+  "schema_version": 2,
+  "claim_id": "nodal_retarded_response_and_passivity",
+  "repository": {
+    "commit": "52f4363bfbaf96077615392de930c5e2ad1fb36a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_dynamics.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Retarded patch kernel has positive low-frequency inertia and nonnegative absorption; verify direct interband and spectral integrals and positive finite oscillator-bath realization",
+    "coefficient_domain": "complex binary64, quadrature and symmetric eigenspectrum",
+    "conventions": "Retarded exp(-i omega t), z=omega+i0; kernels divided by A*h^2; static analytic quadratic subtraction retained",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_dynamics.py"
+    ],
+    "bounds": {
+      "gap_q_pairs": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0.2,
+          0
+        ],
+        [
+          0.2,
+          1
+        ],
+        [
+          1,
+          0.3
+        ]
+      ],
+      "Euclidean_frequency": [
+        0.2,
+        2
+      ],
+      "real_frequency_over_pair_threshold": [
+        0.5,
+        0.99,
+        1.01,
+        2
+      ],
+      "interband_cutoff": "2000*max(1,m,q,omega_E)",
+      "angular_nodes": 768,
+      "radial_nodes_per_interval": 160,
+      "bath_modes": 80,
+      "bath_q": [
+        0.1,
+        1,
+        3
+      ],
+      "bath_gap": 0.3
+    },
+    "non_claims": [
+      "No inhomogeneous halo stability",
+      "No derived positive bare scalar kinetic coefficients",
+      "No cosmological completion",
+      "No finite-temperature state stability",
+      "No full crossover force law"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T00:05:19.258142+00:00",
+    "runtime_seconds": 0.823088,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 20000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_dynamics.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_dynamics.py",
+      "sha256": "b6af895d108050a5ffb5d4db7a302752334706572e2ce49cf8c6f68898233bc5",
+      "sha256_after": "b6af895d108050a5ffb5d4db7a302752334706572e2ce49cf8c6f68898233bc5"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_dynamics_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_dynamics_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_dynamics_run/stdout.txt",
+      "sha256": "21a942daee3f2c23b679b20b3ece243aaa9394794fabdbc4239feff36dc06add",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_dynamics_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/nodal_dynamics_run/results.json",
+      "sha256": "8767b351995c5227aa11f46f9fbd0fe641b79dfe1e27c50339aa818f875809a6",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

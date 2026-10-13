@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "nonspherical_torque_profile_gate",
+  "repository": {
+    "commit": "8ab2f8d70dd7fa79aa751217028f1e5bfc576018",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Rotating baryon torque and profile selection, with work and steady Jacobi controls",
+    "coefficient_domain": "symbolic exact identities and binary64 SI scales",
+    "conventions": "SIS V=200km/s for collision diagnostic; rho=V²/(4piGr²); v1D=V/sqrt2",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo.py",
+      "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json"
+    ],
+    "bounds": {
+      "N": [
+        1024,
+        2048
+      ],
+      "dt": [
+        0.001,
+        0.0005
+      ],
+      "b": [
+        0.15,
+        0.3
+      ],
+      "d": [
+        0,
+        0.01,
+        0.04
+      ],
+      "omega": 40,
+      "end": 8
+    },
+    "non_claims": [
+      "Not self-consistent bar angular-momentum budget",
+      "Not cosmological halo assembly",
+      "Self gravity remains spherical"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy PCG64",
+    "seed": 123
+  },
+  "run": {
+    "started_at": "2026-10-12T19:36:33.411306+00:00",
+    "runtime_seconds": 39.389427,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 16000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo.py",
+    "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo.py",
+      "sha256": "6ed959721e4f0e8d0eb31619d9465f1ce2290486679ba7df514d743646adfc46",
+      "sha256_after": "6ed959721e4f0e8d0eb31619d9465f1ce2290486679ba7df514d743646adfc46"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json",
+      "sha256": "67419750459cb288c99cc1ba735c4a689caa4561daf122dcfc5207a75c3adaa0",
+      "sha256_after": "67419750459cb288c99cc1ba735c4a689caa4561daf122dcfc5207a75c3adaa0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo_run/stdout.txt",
+      "sha256": "037fd2a3af584e29060e92ca15c152832b04550ca652346d3910cbba3a04e2a3",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/torque_halo_run/results.json",
+      "sha256": "42e5155f2178f6f23af90b7b9bc72c3a74ecd550f3b28d20d39190f63abaebcc",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
