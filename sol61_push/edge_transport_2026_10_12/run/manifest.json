@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "EDGE-TRANSPORT-2026-10-12",
+  "repository": {
+    "commit": "634f276da2a2db4d3c1b9d02a78035232094ffad",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/edge_transport_2026_10_12/check.py",
+    "sol61_push/edge_transport_2026_10_12/run"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python scientific runtime",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Direct quadrature and invariant checks for boundary shifts, softened edge profiles, current balances, and the specified killed-diffusion survival law.",
+    "coefficient_domain": "IEEE float64 quadrature checks; analytical results are separately derived.",
+    "conventions": "q=E_R-E; Ito variance 2D; D=d(q+q0); A=d/2; constant orbital period; fixed L, positive nondegenerate boundary slope.",
+    "inputs": [
+      "sol61_push/edge_transport_2026_10_12/check.py",
+      "sol61_push/kinetic_selector_2026_10_11/RESULT.txt"
+    ],
+    "bounds": {
+      "harmonics": 3,
+      "FFT_points": 1024,
+      "density_ratios": [
+        1e-08,
+        100000000.0
+      ],
+      "q0_current_grid": [
+        0.01,
+        1.0
+      ],
+      "half_line_heat_kernel_scaled_gaps": [
+        0.01,
+        5.0
+      ]
+    },
+    "non_claims": [
+      "No empirical halo result, derived microscopic d or D0, or complete gravity mechanism.",
+      "No universal exclusion of moving boundaries or collective correlations.",
+      "Half-line survival is an ideal extension, not a physical halo lifetime."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T01:24:22.069985+00:00",
+    "runtime_seconds": 0.500967,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/edge_transport_2026_10_12/check.py",
+    "sol61_push/kinetic_selector_2026_10_11/RESULT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/edge_transport_2026_10_12/check.py",
+      "sha256": "77e95f01e3c24b11f0d6b92bfdac3f8e6b0c226096ca7fb16098e8e5774b2603",
+      "sha256_after": "77e95f01e3c24b11f0d6b92bfdac3f8e6b0c226096ca7fb16098e8e5774b2603"
+    },
+    {
+      "path": "sol61_push/kinetic_selector_2026_10_11/RESULT.txt",
+      "sha256": "d7d5baa20efc215c57400ae6690d814f757d0f031956981377228a69fe6ac785",
+      "sha256_after": "d7d5baa20efc215c57400ae6690d814f757d0f031956981377228a69fe6ac785"
+    }
+  ],
+  "output_directory": "sol61_push/edge_transport_2026_10_12/run",
+  "declared_results": [
+    "sol61_push/edge_transport_2026_10_12/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/edge_transport_2026_10_12/run/stdout.txt",
+      "sha256": "07f8e67d00b362654b179242c30cddb56154aee0daa8ba07dfe21ff9143b8f7f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/edge_transport_2026_10_12/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/edge_transport_2026_10_12/run/results.json",
+      "sha256": "7eaac2802d836c261c26d1166852d69b30fc6bd348fabb25a425d2807b416e3e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
