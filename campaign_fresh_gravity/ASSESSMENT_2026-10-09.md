@@ -140,6 +140,8 @@
 
 - **X-COP supply from data (CFG656; criteria c1236bf88): no supply rule passes T3.** Candidate B fails identically for every supply (its reservoir stays empty; the fail is in the "phantom extends to r_ta" premise). H-CB: measured gas alone reproduces CFG637's shortfall (η 1.49 / 1.63); extrapolating the measured slope to r_ta flips it to a ~×2 overshoot (η 0.45 / 0.46, TENSION) and breaks the inner band. Census-consistent supply in groups breaks the group pass (Z 2.6–3.1). Decided only by infall-region baryon data (5–10 R200) or a derived stopping radius for the settled phantom in clusters.
 
+- **Hot-gas groups (CFG652; criteria 11c7906ef; eFEDS X-ray groups × raw KiDS-1000, 131 groups): BOTH EXCLUDED** (Theory v2 condensed source χ² 22.9 / 22.3 of 8, p 0.004; candidate B 28.7 / 25.2, p ≤ 0.002). Mass beyond the members is larger and more extended than both predict: outer band 0.25–0.8 Mpc obs/pred +0.16 ± 0.08 dex (v2, ~40% short) vs +0.43 ± 0.07 (B, ×2.7 short); v2 also too concentrated inside 200 kpc. v2 is closer (Δχ² +5.8 / +2.8) but not by the frozen margin. Cross-shear null passes. Caveats: noisy condensed masses (66/148 groups lack a bright central; post hoc the 75 with a central give v2 p 0.56), no 2-halo term. Constrains the reservoir's amount and placement more than the source choice. Better condensed masses need GAMA DR4 stellar masses (owner's go).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
