@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\title{Condensed-baryon sourcing and per-host supply:\\a testable prescription for cold-mass redistribution}
+\author{Carl P. Zimmerman}
+\date{October 12, 2026\quad---\quad Review draft v0.3}
+\begin{document}
+\maketitle
+\begin{abstract}
+We specify a phenomenological prescription in which a bound system's stars and cold gas define a target distribution of additional gravitating mass, while the available cold mass is restricted to that system's own catchment. The acceleration scale is postulated to satisfy $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$, with $\kappa=1/2$ adopted rather than derived. The prescription retains a cosmological cold-mass component. Its concrete content is the combination of a condensed source and a partitioned supply rule, together with a declared numerical implementation and observational test. Stored $256^3$ previews motivate further testing but do not establish agreement with shear data. The combined production result is unavailable in the inspected record. We state the selection history, adverse results, and missing dynamical closure explicitly.
+\end{abstract}
+
+\section{Scope and attribution}
+The radial acceleration relation, the broad possibility of MOND phenomenology from a dark medium, and relativistic MOND theories precede this proposal \cite{rar,dipole,aest}. This note claims neither those ideas nor a derivation of their acceleration scale. It records a particular source-and-supply prescription within the Zimmerman programme. Whether this combination has an exact antecedent remains unverified; this is not a priority or exhaustive novelty claim.
+
+The reference proposal is \texttt{THEORY\_v2\_CANDIDATE\_2026-10-12.md}. The numerical specification is CFG650's frozen criteria and its T12 addendum. The accompanying evidence snapshot identifies the inspected files by SHA-256. Earlier programme claims and different model variants are not evidence for this combination.
+
+\section{The prescription}
+Here $\rho_{\rm DE}$ denotes dark-energy mass-equivalent density. The proposed scale and adopted abundance are
+\begin{equation}
+ a_0=\kappa c\sqrt{G\rho_{\rm DE}},\qquad
+ \kappa=\tfrac12,\qquad \Omega_c/\Omega_b=5.364.
+\end{equation}
+Both dimensionless numbers are inputs. The numerical engine treats its canonical and alternative scale normalizations separately; they are not pooled. For a constant dark-energy density, this ansatz gives a constant $a_0$. An evolving partner requires a separate dynamical calculation.
+
+Let $\rho_d$ denote stars plus cold gas, excluding the hot-gas component from the target source. Write $\nabla^2\Phi_{N,d}=4\pi G\rho_d$ and define the outward potential gradient $\boldsymbol u_d=\nabla\Phi_{N,d}$; physical acceleration is minus a potential gradient. The formal target is
+\begin{equation}\label{eq:target}
+ \rho_{\rm tar}=\frac{1}{4\pi G}\nabla\cdot
+ \left[\left(\nu_{\rm mono}\!\left(\frac{|\boldsymbol u_d|}{a_0}\right)-1\right)\boldsymbol u_d\right].
+\end{equation}
+In spherical symmetry its enclosed target mass is
+\begin{equation}
+ M_{\rm tar}(<r)=[\nu_{\rm mono}(y_d)-1]M_d(<r),
+ \qquad y_d=\frac{GM_d(<r)}{a_0r^2}.
+\end{equation}
+This is a target for redistribution, not newly created mass and not an independently added force. Ordinary gravity responds to all baryons and all cold mass, settled or unsettled. Accordingly, the total acceleration need not equal $\nu_{\rm mono}g_{N,d}$ when other mass contributes.
+
+The kernel is the existing monotonic repair implemented by \texttt{nu\_mono} in CFG650, not an unrestricted use of the usual RAR function. To identify it, the code starts from $h(y)=y/(e^{\sqrt y}-1)$ and integrates
+\begin{equation}
+ H'(y)=\max\left\{h'(y),\frac{\delta h(y_p)}{y+y_p}\right\},
+ \qquad \nu_{\rm mono}(y)=1+\frac{H(y)}{y},\qquad \delta=0.05,
+\end{equation}
+where $h'(y_p)=0$. The pinned implementation specifies its integration grid, lower-end normalization, interpolation and clipping. These are inherited model and numerical choices; this note does not derive them.
+
+For each host $h$, the supply condition is
+\begin{equation}
+ M_{c,\mathrm{settled},h}\leq M_{c,\mathrm{supply},h}.
+\end{equation}
+The conceptual proposal relates the available supply to the host's catchment baryons using the adopted abundance. The implemented M1 rule assigns a catchment cell to the host minimizing $d/r_{\rm ON}$ (periodic distance, with ties assigned to the larger host), then computes the cap and compensating shell withdrawal per host. It does not pool overlapping hosts into a common reservoir. M2 deposits a carried condensed fraction to construct the target source. Its cooling and census rules remain phenomenological inputs.
+
+\section{Evidence and selection history}
+The following are transcribed from stored outputs, not new simulation results. At $z=0$, the $256^3$ benchmark $P_{\rm grav}/P_{S0}-1$ is:
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Modules & $k=0.3$ & $k=0.5$ & $k=1.0$\\
+ & \multicolumn{3}{c}{$k$ in $h\,\mathrm{Mpc}^{-1}$}\\
+\midrule
+All off & $+0.253$ & $+0.567$ & $+0.507$\\
+M1+M2 & $+0.005$ & $+0.014$ & $+0.031$\\
+M1+M2+M3+M4 & $-0.026$ & $-0.046$ & $-0.067$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here $S0$ is an inherited-input control. Proximity to it is neither an observational likelihood nor evidence that the data prefer this model.
+
+T1, including M1--M4, was declared before these previews. T12, containing M1+M2 alone, was selected after the previews and must retain that label. M3 redistributes expelled gas in the gravitational source; M4 gates redistribution by a phase-mixed fraction. T12 is therefore a narrower variant, not the full nine-axiom proposal. It does not replace T1 as the primary pre-declared run.
+
+Two adverse results matter. The earlier CFG636 condensed-source variant has stored canonical KiDS $\Delta\chi^2=13.9694$ and is classified EXCLUDED by that lane; it is not a successful test of the combined prescription. CFG651's post-hoc age test predicts $A=-0.06088$ on the canonical footing, whereas its stored measured value is $+0.16578\pm0.07122$. This is a failure of the specified cold-gas/age mechanism, not a universal exclusion of every time-dependent extension.
+
+CFG650's all-off reproduction and mass-accounting checks pass in the stored validation. Its literal bitwise M2 reproduction gate fails, with a maximum reported difference of $1.42\times10^{-8}$ in the power measurement. The lane attributes this to reduction-order nondeterminism on identical fields. The failure and explanation are both retained; neither is silently relabelled.
+
+\section{Dynamical obligations}
+The source-and-supply construction does not yet provide a complete evolution theory. A proposed settling contribution is
+\begin{equation}
+ \partial_t\rho_c+\nabla\cdot(\rho_c\boldsymbol v_s)=0,\quad
+ \boldsymbol v_s=-m\nabla\psi,\quad
+ \nabla^2\psi=4\pi G\max(\rho_{\rm tar}-\rho_c,0),
+\end{equation}
+where $m=\alpha\,1_B1_C\tau_{\rm ff}\geq0$, $1_B,1_C$ are the bound-system and catchment gates, and $\tau_{\rm ff}=(4\pi G\rho_m)^{-1/2}$. This is not an established replacement for collisionless phase-space evolution. Boundary fluxes, moving host membership, nonnegative mass, the response time $\alpha$, and correspondence with the PM implementation require explicit closure.
+
+The proposed transfer $Q=\rho_c m\nabla\psi\cdot\nabla\Phi$ has no general nonnegativity guarantee: positive Poisson sources do not imply aligned gradients. Its interpretation as an always-positive sink needs additional hypotheses. A dynamical energy receiver, its backreaction and stability, and consistency with merger and galaxy time scales remain unresolved. Equation~\eqref{eq:target} also requires a physical prescription wherever its formal target cannot be realized by nonnegative mass within the available supply.
+
+\section{Existing relative test and the independent test still needed}
+CFG650 specifies raw KiDS-1000 and DES Y3 shear scoring at $1024^3$, with nuisance treatment, a support cut, a sensitivity check (T-OWN), and a source-zero mutation (NZ1). Its statistic is $\Delta\chi^2=\chi^2_{\min}(T)-\chi^2_{\min}(S0)$, positive when the candidate fits worse. The lane's classifications are EXCLUDED at $\Delta\chi^2\geq9$ with robustness minimum at least 9; TENSION at $\Delta\chi^2\geq4$ when exclusion does not apply; CONSISTENT below 4 with robustness maximum below 9; otherwise NOT DIAGNOSTIC. Failed support or sensitivity requirements also prevent a diagnostic verdict.
+
+A shear-side pass requires the declared conditions on both footings; a canonical-only T12 result cannot supply it. These thresholds are project decision rules, not universal significance conversions. All results remain conditional on the inherited initial conditions, background, transfer function, census and cooling inputs, and survey assumptions listed in the criteria. No production T12 or T1 result was found in the inspected locations. This note therefore records a candidate and its test, without claiming observational confirmation, a complete mechanism, or superiority to $\Lambda$CDM.
+
+The existing labels are relative to $S0$, not an independently calibrated goodness-of-fit test. This distinction can be proved without choosing a cosmology. For whitened data zero, take control and candidate predictions $(M,0)$ and $(M,1)$. Their squared residuals are $M^2$ and $M^2+1$, so the classifier returns CONSISTENT at every $M$ when the robustness variants agree. Absolute disagreement can grow without bound while the classification stays fixed. The executable audit accompanying this note tests the actual classifier on this family. Conversely, a positive relative penalty is not by itself an absolute exclusion.
+
+The fitter minimizes a data quadratic plus nuisance penalties; this is profiling with penalties, not integration over nuisance parameters. Its displayed chi-square tail probabilities use the number of retained data points without calibration for this fitting procedure. They are diagnostics whose sampling distribution requires verification. The inherited background, transfer function, cold abundance, supply geometry and high-redshift continuation are active inputs to the candidate prediction, not assumptions removed by subtraction against $S0$.
+
+An independent observational test must evaluate the candidate's absolute residuals using its specified dynamics and geometry, with nuisance parameters and cosmological inputs inferred or explicitly conditioned upon. Its goodness-of-fit statistic must be calibrated with the same fitting procedure, followed by a declared validation on data not used to choose the construction. Comparison with another theory is a separate question. This work has not yet performed that independent fit; the historical lane labels above are preserved only with their restricted meaning.
+
+Two further checks limit the current implementation. First, its support fraction is evaluated using the control spectrum at nominal nuisances and without intrinsic alignment. A 90\% control fraction does not guarantee 90\% support for the candidate: with positive unit weights, in-range/out-of-range contributions $(19,1)$ give 95\% support, while candidate contributions $(19,100)$ give only $19/119\simeq16$\%. This synthetic example is reproduced by the actual support function; it is not a measurement of the candidate's survey support. Signed projection kernels also prevent interpreting an absolute-integrand fraction as a general bound on relative observable error. Second, absent T-OWN evidence preserves a CONSISTENT class and produces a PASS string with a PROVISIONAL warning. That warning must be respected: missing validation cannot establish a validated pass.
+
+\section{Two consequences independent of a control cosmology}
+\textbf{Finite supply requires an outer transition.}
+Consider an isolated spherical system with condensed baryonic mass $M_d$ and at most $S$ cold mass available, with no additional gravitating component or external force in the region considered. Spherical Newtonian gravity for real mass gives
+\begin{equation}
+ v_c^2(r)=\frac{G M_{\rm tot}(<r)}r\leq\frac{G(M_d+S)}r.
+\end{equation}
+If a flat circular speed $v_f$ is required, it can therefore extend only to
+\begin{equation}\label{eq:edge}
+ r\leq\frac{G(M_d+S)}{v_f^2}.
+\end{equation}
+Using the ideal deep-law normalization $v_f^4=GM_da_0$ yields
+\begin{equation}
+ r\leq\left(1+\frac{S}{M_d}\right)r_M,\qquad r_M=\sqrt{\frac{GM_d}{a_0}}.
+\end{equation}
+The first inequality is exact under the stated assumptions; the second imports the ideal deep-law normalization. No numerical cosmic abundance is required for either derivation. An indefinitely flat isolated curve and finite per-host supply cannot both hold. This is a necessary mass-budget condition, not a derivation of the transition profile or a new observational confirmation. Additional hot mass, external matter, or nonspherical forces require their own accounting.
+
+\textbf{A constant vacuum cannot absorb a net homogeneous transfer.}
+Let $\epsilon_{\rm DE}=\rho_{\rm DE}c^2>0$, let $w=p_{\rm DE}/\epsilon_{\rm DE}$, and define $Q_{\rm DE}$ as homogeneous energy received per unit physical volume per unit time. Conservation gives
+\begin{equation}
+ \dot\epsilon_{\rm DE}+3H(1+w)\epsilon_{\rm DE}=Q_{\rm DE}.
+\end{equation}
+For constant $\kappa$ the scale ansatz implies
+\begin{equation}
+ \frac{\dot a_0}{a_0}=\frac{Q_{\rm DE}}{2\epsilon_{\rm DE}}-\frac32H(1+w).
+\end{equation}
+Thus exact $w=-1$ and constant $\epsilon_{\rm DE}$ require $Q_{\rm DE}=0$. A nonzero net transfer requires evolution or a different receiver; small transfer may justify an approximation but not an exact identification. Connecting local settling to this homogeneous transfer requires an averaging prescription and reciprocal dynamics, neither supplied by the scale ansatz alone. These restrictions follow from the candidate's stated mass and energy accounting, without demanding agreement with a $\Lambda$CDM control.
+
+\begin{thebibliography}{9}
+\bibitem{rar} F. Lelli, S. S. McGaugh, J. M. Schombert and M. S. Pawlowski, \emph{One Law To Rule Them All: The Radial Acceleration Relation of Galaxies}, \href{https://arxiv.org/abs/1610.08981v2}{arXiv:1610.08981v2} (2017).
+\bibitem{dipole} L. Blanchet and A. Le Tiec, \emph{Model of Dark Matter and Dark Energy Based on Gravitational Polarization}, Phys. Rev. D 78, 024031 (2008), \href{https://arxiv.org/abs/0804.3518v2}{arXiv:0804.3518v2}.
+\bibitem{aest} C. Skordis and T. Z\l{}o\'{s}nik, \emph{A new relativistic theory for Modified Newtonian Dynamics}, \href{https://arxiv.org/abs/2007.00082}{arXiv:2007.00082}.
+\end{thebibliography}
+\end{document}
