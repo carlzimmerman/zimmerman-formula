@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "detuned_heavier_carrier_Gaussian_vacuum_production",
+  "repository": {
+    "commit": "d4ba61e3263b942cd5b8f3e2ce191b60157f253b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/detuned_production.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Depleting Gaussian source production at u=.01 and matched 193.5-eV carrier",
+    "coefficient_domain": "binary64 complex128",
+    "conventions": "Positive-charge daughter modes; unordered opposite momentum pairs; x=m epsilon t; charged circular source normalization",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/detuned_production.py",
+      "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json"
+    ],
+    "bounds": {
+      "quadratures": [
+        128,
+        256,
+        192
+      ],
+      "vmax": [
+        2,
+        3
+      ],
+      "rtol": [
+        1e-08,
+        1e-10
+      ],
+      "end_x": 200
+    },
+    "non_claims": [
+      "No full quantum field theory",
+      "No moving-source or non-Gaussian scattering",
+      "No abundance prediction",
+      "No validated match to classical survival theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T23:56:29.920345+00:00",
+    "runtime_seconds": 3.504877,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/detuned_production.py",
+    "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_production.py",
+      "sha256": "6375a1431e4420431935457219018a956e4d9cb1b7754914f37cb52a9af290b9",
+      "sha256_after": "6375a1431e4420431935457219018a956e4d9cb1b7754914f37cb52a9af290b9"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json",
+      "sha256": "704dd29451fc8d378618723dd5f371af6e21ae76f2bb1dd59c1926a9eb6ba08b",
+      "sha256_after": "704dd29451fc8d378618723dd5f371af6e21ae76f2bb1dd59c1926a9eb6ba08b"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/detuned_production_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/detuned_production_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_production_run/stdout.txt",
+      "sha256": "6cf66bb90f899964c63d9ece18374ed78c4921fcf33572e642d87b3e6d5b0aa4",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_production_run/stderr.txt",
+      "sha256": "abc0600b973cdb7240ada52a63eba7e36987c65e1020e3f13030f37a6844a9bb",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_production_run/results.json",
+      "sha256": "c4c421578130fca88aa12816a8fb1e3d42ebeb424507fa82e1647b39a0383680",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

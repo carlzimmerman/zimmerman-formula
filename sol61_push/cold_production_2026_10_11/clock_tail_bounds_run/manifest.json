@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "conditional_clock_excitation_tail_bounds",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/clock_tail_bounds.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Evaluate analytical conditional tail inequalities; numerical support for duration/crossing premises",
+    "coefficient_domain": "binary64",
+    "conventions": "M=L=1; canonical fluctuations (deltaY,deltaSigma); incoming and outgoing free oscillator basis",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/clock_tail_bounds.py",
+      "sol61_push/cold_production_2026_10_11/autonomous_clock_run/results.json",
+      "sol61_push/cold_production_2026_10_11/clock_energy_run/results.json"
+    ],
+    "bounds": {
+      "UV_start": 10000,
+      "IR_end": 0.001,
+      "T_bound": 2,
+      "edge_minimum_speed_assumption": 0.8,
+      "energy": 6
+    },
+    "non_claims": [
+      "Not interval-certified background premises",
+      "No nonlinear stability",
+      "No primordial classical fluctuation bound"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:23:12.842732+00:00",
+    "runtime_seconds": 0.048919,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/clock_tail_bounds.py",
+    "sol61_push/cold_production_2026_10_11/autonomous_clock_run/results.json",
+    "sol61_push/cold_production_2026_10_11/clock_energy_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_tail_bounds.py",
+      "sha256": "fc407081f079098f88cd40623642614b6b6586d8f0739ef9adf73ee058376dc4",
+      "sha256_after": "fc407081f079098f88cd40623642614b6b6586d8f0739ef9adf73ee058376dc4"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/autonomous_clock_run/results.json",
+      "sha256": "77acb2466f44ee123fc6347558f8d35f3ab3b33125a1211c73cac15eb170087d",
+      "sha256_after": "77acb2466f44ee123fc6347558f8d35f3ab3b33125a1211c73cac15eb170087d"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_energy_run/results.json",
+      "sha256": "6705c5cae4af73918782daaa35b183da24dfae69fa5612de45d3327e20c811b5",
+      "sha256_after": "6705c5cae4af73918782daaa35b183da24dfae69fa5612de45d3327e20c811b5"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/clock_tail_bounds_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/clock_tail_bounds_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_tail_bounds_run/stdout.txt",
+      "sha256": "e825156a0e3ab5695af619db00234283eaf2122940bbc0c6927ba91ba9437848",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_tail_bounds_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_tail_bounds_run/results.json",
+      "sha256": "e825156a0e3ab5695af619db00234283eaf2122940bbc0c6927ba91ba9437848",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

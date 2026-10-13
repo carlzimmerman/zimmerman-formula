@@ -1,0 +1,65 @@
+{
+  "claim_id": "unforced_dilute_carrier_halo_formation_probe",
+  "mathematics": {
+    "assertion_tested": "Exploratory forward halo formation under spherical self gravity and carrier elastic scattering, target scored after evolution only",
+    "coefficient_domain": "binary64",
+    "conventions": "CFG626 MW canonical scales, softened gravity eps=.01, isotropic DSMC scattering alpha2, threshold sigma/m4 cm2/g, no thermostat or target relaxation",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/halo_formation_probe.py",
+      "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626.py",
+      "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626_results_mono.json",
+      "campaign_fresh_gravity/CFG544_settling_kinetic_consistency/cfg544.py"
+    ],
+    "bounds": {
+      "particles": [
+        2048,
+        4096
+      ],
+      "dt": [
+        0.001,
+        0.0005
+      ],
+      "collision_cell_width": [
+        0.05,
+        0.025
+      ],
+      "initial_radius": [
+        2.43039047532204,
+        1.2
+      ],
+      "end_code_time": 8,
+      "seed": 123
+    },
+    "non_claims": [
+      "Not 3D nonspherical gravity",
+      "Not cosmological halo formation",
+      "No single-run attractor proof",
+      "Finite collision-cell angular momentum errors and resolution remain to assess"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/halo_formation_probe.py",
+    "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626.py",
+    "campaign_fresh_gravity/CFG626_kernel_recheck_anisotropic_target/cfg626_results_mono.json",
+    "campaign_fresh_gravity/CFG544_settling_kinetic_consistency/cfg544.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy default_rng PCG64",
+    "seed": 123
+  }
+}

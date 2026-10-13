@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "unitary_dilute_source_continuum_decay",
+  "repository": {
+    "commit": "fcdd11ebc7ad86677f2b7b8385a2f4e2495fb888",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/dilute_unitary_decay.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Unitary source depletion and pair continuum with real self-energy subtraction, finite-band and spacing refinement",
+    "coefficient_domain": "binary64",
+    "conventions": "tau=Gamma*t; Hermitian star Hamiltonian in source/pair sector; physical vacuum phase-space spectral density",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/dilute_unitary_decay.py",
+      "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json"
+    ],
+    "bounds": {
+      "half_bandwidth_in_widths": [
+        50,
+        100,
+        200,
+        400
+      ],
+      "spectral_spacing_in_widths": [
+        0.2,
+        0.1
+      ],
+      "tau_max": 10
+    },
+    "non_claims": [
+      "Not full QFT",
+      "No many-source or quartic rescattering evolution",
+      "No halo result"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T01:06:33.623546+00:00",
+    "runtime_seconds": 2.458923,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/dilute_unitary_decay.py",
+    "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_unitary_decay.py",
+      "sha256": "b58bcb300d5c8c0d7ff57dabc8ee520b32d4a2a50c1a216f167639b3b3cb89e7",
+      "sha256_after": "b58bcb300d5c8c0d7ff57dabc8ee520b32d4a2a50c1a216f167639b3b3cb89e7"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json",
+      "sha256": "c3a9f407480a25371dc8684d1ddfdbffc4e02ec9c8b42191bc4c96f6f85deb06",
+      "sha256_after": "c3a9f407480a25371dc8684d1ddfdbffc4e02ec9c8b42191bc4c96f6f85deb06"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/dilute_unitary_decay_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/dilute_unitary_decay_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_unitary_decay_run/stdout.txt",
+      "sha256": "0a7ec77f838e4d1bc05a869ffaf0a59b0ee63b802520be19732630ab2b3b7362",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_unitary_decay_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_unitary_decay_run/results.json",
+      "sha256": "0a7ec77f838e4d1bc05a869ffaf0a59b0ee63b802520be19732630ab2b3b7362",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "resonant_spatial_fourier_streaming",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/kinetic_streaming.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Streaming plus angular collision response of a spatial temperature mode",
+    "coefficient_domain": "binary64",
+    "conventions": "Legendre multipoles a_l=(-i)^l h_l; same NR energy-grid collision operator",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/kinetic_streaming.py",
+      "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+    ],
+    "bounds": {
+      "N": 64,
+      "emax": 8,
+      "Lmax": [
+        12,
+        24
+      ],
+      "wavelength_kpc": [
+        10,
+        1000
+      ],
+      "max_streaming_phase": 3
+    },
+    "non_claims": [
+      "No gravity",
+      "No energy grid convergence",
+      "No halo law or conductivity"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:45:31.103219+00:00",
+    "runtime_seconds": 5.585105,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/kinetic_streaming.py",
+    "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/kinetic_streaming.py",
+      "sha256": "eb876fd7ad276d2ea1f84ea2bba3b32506ac9787e179d8e9726a41cdbcbfd140",
+      "sha256_after": "eb876fd7ad276d2ea1f84ea2bba3b32506ac9787e179d8e9726a41cdbcbfd140"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sha256": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0",
+      "sha256_after": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/kinetic_streaming_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/kinetic_streaming_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/kinetic_streaming_run/stdout.txt",
+      "sha256": "e902208493567b274bd2619bd5c4ccec50b92484bf759e8efbf2786b4965f3e8",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/kinetic_streaming_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/kinetic_streaming_run/results.json",
+      "sha256": "b2b2a9f8696b93498b30e9c1176420122952da68b2ba2df70a42d032a3c12214",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

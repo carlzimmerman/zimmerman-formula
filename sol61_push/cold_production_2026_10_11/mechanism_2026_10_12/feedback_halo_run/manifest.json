@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "forward_halo_baryon_cycles",
+  "repository": {
+    "commit": "c7dad5f10aa58600797ad12bc36c34900f051430",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite forward halo response with driver work tracked and no target force",
+    "coefficient_domain": "symbolic exact identities and binary64 SI scales",
+    "conventions": "SIS V=200km/s for collision diagnostic; rho=V²/(4piGr²); v1D=V/sqrt2",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo.py",
+      "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json"
+    ],
+    "bounds": {
+      "N": [
+        1024,
+        2048
+      ],
+      "dt": [
+        0.001,
+        0.0005
+      ],
+      "end": 8,
+      "seed": 123,
+      "gas_fraction": [
+        0.5,
+        0.9
+      ],
+      "scale_expansion": 8,
+      "cycles": 4
+    },
+    "non_claims": [
+      "Not a self-consistent stellar feedback budget",
+      "Not cosmological",
+      "No particle collisions in this isolation test",
+      "No attractor proof"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "numpy PCG64",
+    "seed": 123
+  },
+  "run": {
+    "started_at": "2026-10-12T17:12:45.174286+00:00",
+    "runtime_seconds": 20.331382,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 16000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo.py",
+    "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo.py",
+      "sha256": "2106a5206166b9b7255ce0e8918545957ab331715c80c306339c25fc2fd0beae",
+      "sha256_after": "2106a5206166b9b7255ce0e8918545957ab331715c80c306339c25fc2fd0beae"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json",
+      "sha256": "67419750459cb288c99cc1ba735c4a689caa4561daf122dcfc5207a75c3adaa0",
+      "sha256_after": "67419750459cb288c99cc1ba735c4a689caa4561daf122dcfc5207a75c3adaa0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo_run/stdout.txt",
+      "sha256": "c9ce20f82ecffdb7934e934f89f8487de4f9a56bb6b7b20abefa4eb1a28a66ca",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo_run/results.json",
+      "sha256": "90f239a1a58a340219dcdef0de6572627e04320b0ad1956e819370a26dc59b11",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

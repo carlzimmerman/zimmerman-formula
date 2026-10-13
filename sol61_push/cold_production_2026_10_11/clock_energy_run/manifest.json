@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "clock_fluctuation_finite_band_energy",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/clock_energy.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite momentum-band integral of phase-independent linear excitation energy envelope",
+    "coefficient_domain": "binary64",
+    "conventions": "M=L=1; canonical fluctuations (deltaY,deltaSigma); incoming and outgoing free oscillator basis",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/clock_energy.py",
+      "sol61_push/cold_production_2026_10_11/autonomous_clock_run/results.json",
+      "sol61_push/cold_production_2026_10_11/clock_fluctuations_run/results.json"
+    ],
+    "bounds": {
+      "k_range": [
+        0.001,
+        10000
+      ],
+      "log_grid_points": 257,
+      "rtol": [
+        1e-10,
+        2e-12
+      ]
+    },
+    "non_claims": [
+      "No full UV or IR bound",
+      "No nonlinear stability",
+      "No classical primordial spectrum"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:19:19.987489+00:00",
+    "runtime_seconds": 4.896266,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/clock_energy.py",
+    "sol61_push/cold_production_2026_10_11/autonomous_clock_run/results.json",
+    "sol61_push/cold_production_2026_10_11/clock_fluctuations_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_energy.py",
+      "sha256": "c92fca2ef3da5f4b8207daca0bcf0a384b0bfff7e280d5d9509de6691f1ac890",
+      "sha256_after": "c92fca2ef3da5f4b8207daca0bcf0a384b0bfff7e280d5d9509de6691f1ac890"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/autonomous_clock_run/results.json",
+      "sha256": "77acb2466f44ee123fc6347558f8d35f3ab3b33125a1211c73cac15eb170087d",
+      "sha256_after": "77acb2466f44ee123fc6347558f8d35f3ab3b33125a1211c73cac15eb170087d"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_fluctuations_run/results.json",
+      "sha256": "1f6a0bebff50e605e142f1ee253603bc93fcc3a2990ab03e1c320541011b7fe3",
+      "sha256_after": "1f6a0bebff50e605e142f1ee253603bc93fcc3a2990ab03e1c320541011b7fe3"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/clock_energy_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/clock_energy_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_energy_run/stdout.txt",
+      "sha256": "190455aa7326f162f7fb50e962080e8eb67d53b37bf48aa1c3a9674f3767af00",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_energy_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/clock_energy_run/results.json",
+      "sha256": "6705c5cae4af73918782daaa35b183da24dfae69fa5612de45d3327e20c811b5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

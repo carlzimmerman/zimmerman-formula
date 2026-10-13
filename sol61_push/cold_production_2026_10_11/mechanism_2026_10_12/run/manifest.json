@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "baryon_heating_mechanism_gate",
+  "repository": {
+    "commit": "74f5b31ebd3377e3da3cfc7d506dd4f875143234",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/check.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Necessary scalar screening stability, baryon energy budget, and self-collision relaxation gates",
+    "coefficient_domain": "symbolic exact identities and binary64 SI scales",
+    "conventions": "SIS V=200km/s for collision diagnostic; rho=V²/(4piGr²); v1D=V/sqrt2",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/check.py"
+    ],
+    "bounds": {
+      "radii_kpc": [
+        1,
+        10,
+        50
+      ],
+      "S_cm2_g": [
+        0.1,
+        0.3,
+        4.0
+      ],
+      "C": [
+        0.01,
+        0.1
+      ],
+      "V_kms": [
+        50,
+        100,
+        200,
+        300
+      ]
+    },
+    "non_claims": [
+      "Not full mechanism or empirical confirmation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T14:20:47.658299+00:00",
+    "runtime_seconds": 0.399133,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 20000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/check.py",
+      "sha256": "1ba7f42fa218b6d3e6901bb449897bb52e6efe8b944ade3fb1179818cfad0aeb",
+      "sha256_after": "1ba7f42fa218b6d3e6901bb449897bb52e6efe8b944ade3fb1179818cfad0aeb"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/run/stdout.txt",
+      "sha256": "249b2f4373ad5d00ec007ba78acbd2ac65595dc8f3c31fccb083a2c388c0d8d7",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/run/results.json",
+      "sha256": "249b2f4373ad5d00ec007ba78acbd2ac65595dc8f3c31fccb083a2c388c0d8d7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

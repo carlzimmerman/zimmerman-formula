@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "coupled_isotropic_three_wave_kinetics",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/coupled_kinetics.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conservative daughter/source kinetic evolution on four energy grids with bath depletion",
+    "coefficient_domain": "binary64",
+    "conventions": "Energy unit m u^2 above m per charge; f=A a, F=A b; tau=2 GammaNR A t; ordered pair symmetry factor included",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/coupled_kinetics.py",
+      "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+    ],
+    "bounds": {
+      "grids": [
+        [
+          64,
+          8
+        ],
+        [
+          128,
+          8
+        ],
+        [
+          256,
+          8
+        ],
+        [
+          256,
+          16
+        ]
+      ],
+      "tau_end": 20,
+      "rtol": 2e-09
+    },
+    "non_claims": [
+      "No spatial heat transport",
+      "No condensate",
+      "No continuum proof",
+      "No halo selector"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:36:48.622990+00:00",
+    "runtime_seconds": 4.546266,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/coupled_kinetics.py",
+    "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/coupled_kinetics.py",
+      "sha256": "192439bacfa0dbedc9cca030e7441e8b844dcca7167dae38d8bbd1966291936a",
+      "sha256_after": "192439bacfa0dbedc9cca030e7441e8b844dcca7167dae38d8bbd1966291936a"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/repulsive_envelope_run/results.json",
+      "sha256": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0",
+      "sha256_after": "ab798a1e7a88b99f20474fb6a84005fc4c2a21f8c96869c8c8d99761c760d0a0"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/coupled_kinetics_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/coupled_kinetics_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/coupled_kinetics_run/stdout.txt",
+      "sha256": "a09668b776e2ede1011df55fe84b0c76beade1b7ba5335b5f513f6bb0fb84d43",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/coupled_kinetics_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/coupled_kinetics_run/results.json",
+      "sha256": "6cc4f3c8ddfaaa32f3a986095a53342b7f0416e7c4234308af9d3554d26a0214",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "claim_id": "forward_halo_baryon_cycles",
+  "mathematics": {
+    "assertion_tested": "Finite forward halo response with driver work tracked and no target force",
+    "coefficient_domain": "symbolic exact identities and binary64 SI scales",
+    "conventions": "SIS V=200km/s for collision diagnostic; rho=V\u00b2/(4piGr\u00b2); v1D=V/sqrt2",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo.py",
+      "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json"
+    ],
+    "bounds": {
+      "N": [
+        1024,
+        2048
+      ],
+      "dt": [
+        0.001,
+        0.0005
+      ],
+      "end": 8,
+      "seed": 123,
+      "gas_fraction": [
+        0.5,
+        0.9
+      ],
+      "scale_expansion": 8,
+      "cycles": 4
+    },
+    "non_claims": [
+      "Not a self-consistent stellar feedback budget",
+      "Not cosmological",
+      "No particle collisions in this isolation test",
+      "No attractor proof"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/mechanism_2026_10_12/feedback_halo.py",
+    "sol61_push/cold_production_2026_10_11/halo_formation_probe_v2_run/results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "numpy PCG64",
+    "seed": 123
+  }
+}

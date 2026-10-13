@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "claim_id": "autonomous_clock_source_preparation",
+  "repository": {
+    "commit": "eb55371d3be414dced73d66337d35f8bd222fe6f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/autonomous_clock.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Backreacting smooth clock field prepares nearly circular charged source; total energy, torque, and tolerance checks",
+    "coefficient_domain": "binary64",
+    "conventions": "M=L=1; clock kinetic J sdot^2/2; C2 compact window with edge width .01",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/autonomous_clock.py"
+    ],
+    "bounds": {
+      "inertias": [
+        10,
+        100,
+        10000
+      ],
+      "rtol": [
+        1e-10,
+        1e-12
+      ],
+      "edge_width": 0.01,
+      "width_error": 0.001
+    },
+    "non_claims": [
+      "No initial displacement origin",
+      "No phase selection",
+      "No quantum or spatial stability",
+      "No abundance prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T20:15:00.476980+00:00",
+    "runtime_seconds": 0.668624,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/autonomous_clock.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/autonomous_clock.py",
+      "sha256": "e39d6db4448908d6737848708f7ede52818cc07d899ef2a344cda2bf96945086",
+      "sha256_after": "e39d6db4448908d6737848708f7ede52818cc07d899ef2a344cda2bf96945086"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/autonomous_clock_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/autonomous_clock_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/autonomous_clock_run/stdout.txt",
+      "sha256": "258cdbe5955c22fc2a65f24215868d56937dc736694d5a47301ac2edd4af023e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/autonomous_clock_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/autonomous_clock_run/results.json",
+      "sha256": "77acb2466f44ee123fc6347558f8d35f3ab3b33125a1211c73cac15eb170087d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "conditional_combined_sector_pressure_bound",
+  "repository": {
+    "commit": "f68ed250521153df9386afc39b549b79f7aa9773",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/pressure_bound.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite checks of universal kinetic pressure inequality and benchmark evaluation",
+    "coefficient_domain": "binary64",
+    "conventions": "m=1; M=2sqrt(1+u^2); Q=Ny+2Nh; E=M; natural units",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/pressure_bound.py"
+    ],
+    "bounds": {
+      "u": 0.001,
+      "daughter_fraction": [
+        0.01,
+        0.1,
+        0.5,
+        0.9,
+        1
+      ],
+      "kinetic_allocation": [
+        0,
+        0.1,
+        0.5,
+        0.9,
+        1
+      ],
+      "single_particle_p_over_mass": [
+        0.001,
+        0.1,
+        1,
+        10,
+        10000.0
+      ]
+    },
+    "non_claims": [
+      "No coherent interaction stress",
+      "No number violating processes",
+      "No original action theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T19:33:34.026320+00:00",
+    "runtime_seconds": 0.172448,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/pressure_bound.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/pressure_bound.py",
+      "sha256": "a1855bed853156b0280e12f3fd977a8784578d5c140654ed52be76fea9cad2a1",
+      "sha256_after": "a1855bed853156b0280e12f3fd977a8784578d5c140654ed52be76fea9cad2a1"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/pressure_bound_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/pressure_bound_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/pressure_bound_run/stdout.txt",
+      "sha256": "5395cea8212db24212a4d758c20f205080918943644b3c252bac923c0041dd4d",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/pressure_bound_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/pressure_bound_run/results.json",
+      "sha256": "332a012c1910baddc94577cb1f6fab0c4888c80ec8ed12644071e683eb139618",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

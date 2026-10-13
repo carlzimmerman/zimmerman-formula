@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "lower_scattering_production_screen",
+  "repository": {
+    "commit": "74f5b31ebd3377e3da3cfc7d506dd4f875143234",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/lower_scattering.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reduced cross section preserves conditional dilute production; partial cluster bound and narrow resonance diagnostic",
+    "coefficient_domain": "binary64",
+    "conventions": "SI accelerations; log10 residuals; isotropic total cross section cm2/g; all released rows",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/lower_scattering.py",
+      "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json"
+    ],
+    "bounds": {
+      "sigma_cm2_g": [
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        0.48,
+        1.0,
+        4.0
+      ],
+      "mass_eV": 1000000.0,
+      "u": 0.01
+    },
+    "non_claims": [
+      "Not full cluster likelihood",
+      "Not galaxy core formation",
+      "Pole estimate is conditional vacuum ansatz",
+      "Source origin remains unspecified"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T14:15:48.085330+00:00",
+    "runtime_seconds": 0.55672,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 30000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/lower_scattering.py",
+    "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/lower_scattering.py",
+      "sha256": "efa031f7ea19de196b1b895f53fced497ce134f53b3084b0ecbd5f6b20617087",
+      "sha256_after": "efa031f7ea19de196b1b895f53fced497ce134f53b3084b0ecbd5f6b20617087"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json",
+      "sha256": "c3a9f407480a25371dc8684d1ddfdbffc4e02ec9c8b42191bc4c96f6f85deb06",
+      "sha256_after": "c3a9f407480a25371dc8684d1ddfdbffc4e02ec9c8b42191bc4c96f6f85deb06"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/lower_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/lower_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/lower_run/stdout.txt",
+      "sha256": "a8e326b75b48b34d544acb338ad147ef7803d9d47c16738c7e77f5787b6ad0ea",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/lower_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/empirical_2026_10_12/lower_run/results.json",
+      "sha256": "a8e326b75b48b34d544acb338ad147ef7803d9d47c16738c7e77f5787b6ad0ea",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

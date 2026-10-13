@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "detuned_continuum_moving_source_response",
+  "repository": {
+    "commit": "acdc87f023a509588ba90b687b0415cb7bf331ab",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/detuned_moving_response.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact angular integral of linear source forced by fixed isotropic Gaussian daughter shell",
+    "coefficient_domain": "binary64",
+    "conventions": "Classical envelopes, F=1, Wick connected source variance, x=m epsilon t, q=p/(m u)",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/detuned_moving_response.py",
+      "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json"
+    ],
+    "bounds": {
+      "times": [
+        1e-06,
+        1000
+      ],
+      "direct_quadrature_times": [
+        1e-05,
+        0.001,
+        0.1,
+        1
+      ],
+      "u": 0.01,
+      "epsilon": 1e-07
+    },
+    "non_claims": [
+      "No actual produced-state history",
+      "No nonlinear survival fraction",
+      "No irreversible conversion theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T00:02:35.732955+00:00",
+    "runtime_seconds": 0.941592,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/detuned_moving_response.py",
+    "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_moving_response.py",
+      "sha256": "8baa496ee4a1c175b1a291f6f630555115a8baf470a1d84ee96f929122103105",
+      "sha256_after": "8baa496ee4a1c175b1a291f6f630555115a8baf470a1d84ee96f929122103105"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_carrier_run/results.json",
+      "sha256": "704dd29451fc8d378618723dd5f371af6e21ae76f2bb1dd59c1926a9eb6ba08b",
+      "sha256_after": "704dd29451fc8d378618723dd5f371af6e21ae76f2bb1dd59c1926a9eb6ba08b"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/detuned_moving_response_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/detuned_moving_response_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_moving_response_run/stdout.txt",
+      "sha256": "d6f0e81cf8dfe41a2194d6f513f75d70c983ce9bc68c05ba819e5cae61200bf8",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_moving_response_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/detuned_moving_response_run/results.json",
+      "sha256": "d6f0e81cf8dfe41a2194d6f513f75d70c983ce9bc68c05ba819e5cae61200bf8",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

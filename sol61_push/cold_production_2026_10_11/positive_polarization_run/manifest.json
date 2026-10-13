@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "positive_scalar_polarization_extension_linear_audit",
+  "repository": {
+    "commit": "79e803632832e3f0eaf2eca5dbcaa24dfa002962",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/positive_polarization.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Static scalar force scaling and positive linear frequency matrix for a declared new sector",
+    "coefficient_domain": "binary64",
+    "conventions": "Dimensionless scalar plus three-component polarization, unit positive time kinetic coefficients",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/positive_polarization.py"
+    ],
+    "bounds": {
+      "background_P": [
+        0,
+        0.001,
+        0.1,
+        1
+      ],
+      "wave_numbers": [
+        0.001,
+        0.01,
+        0.1,
+        1,
+        10
+      ],
+      "angles": [
+        0,
+        "pi/4",
+        "pi/2"
+      ],
+      "gradient_regulator": 0.1
+    },
+    "non_claims": [
+      "No microscopic derivation or vacuum coefficient",
+      "No complete cold-energy construction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T00:22:07.973550+00:00",
+    "runtime_seconds": 0.132709,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/positive_polarization.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/positive_polarization.py",
+      "sha256": "1b4658099c8fec03672b94c5de7d9609d8f4db50804865a2331b0b39ca549187",
+      "sha256_after": "1b4658099c8fec03672b94c5de7d9609d8f4db50804865a2331b0b39ca549187"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/positive_polarization_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/positive_polarization_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/positive_polarization_run/stdout.txt",
+      "sha256": "711cac29f76b6cd87fc7d8281eb8c9987dbc992e44a550878c1ce62b2496b851",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/positive_polarization_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/positive_polarization_run/results.json",
+      "sha256": "711cac29f76b6cd87fc7d8281eb8c9987dbc992e44a550878c1ce62b2496b851",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

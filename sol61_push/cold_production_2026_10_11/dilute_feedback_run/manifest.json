@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "dilute_decay_feedback_envelopes",
+  "repository": {
+    "commit": "fcdd11ebc7ad86677f2b7b8385a2f4e2495fb888",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/dilute_feedback.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Prescribed-pump Bose correction bound and line-contained incoherent inverse conversion upper bound",
+    "coefficient_domain": "binary64",
+    "conventions": "tau=Gamma*t; exact two-mode squeezing for prescribed exponential pump; exact source DOS cancellation in inverse bound",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/dilute_feedback.py",
+      "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json"
+    ],
+    "bounds": {
+      "detuning_over_width": [
+        0,
+        0.5,
+        2,
+        10
+      ],
+      "tau_max": 30,
+      "spectral_L": 1000
+    },
+    "non_claims": [
+      "No self-consistent source evolution",
+      "No full spectral tails or connected memory bound",
+      "No halo result"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-12T01:03:37.641224+00:00",
+    "runtime_seconds": 0.55889,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/dilute_feedback.py",
+    "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_feedback.py",
+      "sha256": "cf2642850479d1dfdba94563159d7c45a8957464a0039a7cfe43d9a70db598ca",
+      "sha256_after": "cf2642850479d1dfdba94563159d7c45a8957464a0039a7cfe43d9a70db598ca"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_decay_v2_run/results.json",
+      "sha256": "c3a9f407480a25371dc8684d1ddfdbffc4e02ec9c8b42191bc4c96f6f85deb06",
+      "sha256_after": "c3a9f407480a25371dc8684d1ddfdbffc4e02ec9c8b42191bc4c96f6f85deb06"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/dilute_feedback_run",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/dilute_feedback_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_feedback_run/stdout.txt",
+      "sha256": "1e03624b54fea5cd69e2d02360b02cd91f2bd332cf2a9eed39b31fd331a3bb25",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_feedback_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/dilute_feedback_run/results.json",
+      "sha256": "1e03624b54fea5cd69e2d02360b02cd91f2bd332cf2a9eed39b31fd331a3bb25",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

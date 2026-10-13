@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "moving_source_inverse_channel_kinematics",
+  "repository": {
+    "commit": "d28fbe1edfe3d6d09b8c5375c565b4776033f298",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_production_2026_10_11/inverse_channel_v2.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Identify energy-momentum allowed moving radial production from sampled daughter momenta",
+    "coefficient_domain": "binary64",
+    "conventions": "All momenta in units of m; equal daughter masses; physical endpoint momenta",
+    "inputs": [
+      "sol61_push/cold_production_2026_10_11/inverse_channel_v2.py",
+      "sol61_push/cold_production_2026_10_11/envelope_run_v2/results.json"
+    ],
+    "bounds": {
+      "snapshots": [
+        "x200"
+      ],
+      "quadratures": [
+        512,
+        1024,
+        768
+      ],
+      "analytic_equal_momentum_ratios": [
+        0.8,
+        1,
+        1.2
+      ]
+    },
+    "non_claims": [
+      "No reaction rate",
+      "No angular probability",
+      "No quantum correlation model"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-11T19:31:26.330400+00:00",
+    "runtime_seconds": 0.229231,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_production_2026_10_11/inverse_channel_v2.py",
+    "sol61_push/cold_production_2026_10_11/envelope_run_v2/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/inverse_channel_v2.py",
+      "sha256": "07f6e0f7eefdcb49fd1c8369838c168c8b90d187937b0ba65f66d88daa9f36c6",
+      "sha256_after": "07f6e0f7eefdcb49fd1c8369838c168c8b90d187937b0ba65f66d88daa9f36c6"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/envelope_run_v2/results.json",
+      "sha256": "44d8e60b18faff39507b62dc4b79b2efdad7c5e6a0c25de0b1c7ae03890c1641",
+      "sha256_after": "44d8e60b18faff39507b62dc4b79b2efdad7c5e6a0c25de0b1c7ae03890c1641"
+    }
+  ],
+  "output_directory": "sol61_push/cold_production_2026_10_11/inverse_channel_run_v2",
+  "declared_results": [
+    "sol61_push/cold_production_2026_10_11/inverse_channel_run_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_production_2026_10_11/inverse_channel_run_v2/stdout.txt",
+      "sha256": "15323fed519933f0e0d4d5b05cf3295b421ed60c733ff6cc2cdd5e7becb3b5a7",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/inverse_channel_run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_production_2026_10_11/inverse_channel_run_v2/results.json",
+      "sha256": "15323fed519933f0e0d4d5b05cf3295b421ed60c733ff6cc2cdd5e7becb3b5a7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
