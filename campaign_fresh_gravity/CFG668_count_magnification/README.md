@@ -52,3 +52,20 @@ POST-HOC (cfg668_a2_posthoc_lambda.py, not frozen): the Quaia bright excess does
 MUTATE: NULL for both catalogues. Expected size for typical weak lensing (μ ≈ 1.05 over 0–4') is R ≈ 1.06 in the steep bin, i.e. at
 the edge of this sample's reach (±0.03); counts alone cannot make the call. Shear (CFG663) remains the measurement that settles lensing.
 κ fitted; cold energy mass required; not theory closed.
+
+## Addendum A3 + A3G result — beyond the baryons, and lens geometry (criteria 87dbbb55b, eeb916a58; cfg668_a3_geometry.py → cfg668_a3.out)
+~23.6k (Quaia) / 20.6k (DR16Q) clusters λ≥20, z 0.2–0.6; ~45k / 38k blanks; each pointing self-calibrated against its own 60–90' ring;
+jackknife over 48 sky patches. K ≈ μ − 1 ≈ 2κ (slope-weighted).
+- **A3 (8–40', z_Q > z_l + 0.5): K = +0.0008 ± 0.0021 → NULL.** κ(8–40') = 0.0004 ± 0.0011 at β̄ ≈ 0.7.
+- **A3G geometry fit K = A·β + C (8–40'): A = +0.0064 ± 0.0089 (+0.7σ), C = −0.0043 ± 0.0054 → NULL.** Foreground quasars
+  (β = 0, light never crosses the cluster) K_FG = −0.007 ± 0.015, consistent with 0 as geometry demands.
+  2σ upper limit κ(8–40', β = 1) < 0.012 (geometry fit); the A3 sample alone gives κ < 0.0026 at β̄ ≈ 0.7 (2σ).
+- Shape annuli 8–12 / 12–20 / 20–40': all |K| < 1σ combined.
+- Reference, inside the baryons (0–4', not a decision): K = +0.0475 ± 0.0091 (+5.2σ) for z_Q > z_l + 0.5; Quaia alone +0.107 ± 0.028.
+  DR16Q's part is suspect (its faint bins have negative slope weights, so the fibre-collision deficit counts as positive K);
+  Quaia has no fibres. The geometry fit inside 4' is not significant (A = +0.06 ± 0.06).
+- MUTATE: A3 −0.0011 ± 0.0013, A3G A = −0.010 ± 0.007 → NULL as required (one shape bin at −2.7σ of ~15 printed; noise).
+Scale check (NOT frozen, rough): a deep-MOND 1/r² halo around M_b ≈ 1.5e13 M☉ (σ⁴ = G M_b a0) has θ_E ≈ 8″ and an area-mean
+κ(8–40') ≈ 0.003 at β = 1, i.e. K ≈ 0.004 at β̄ 0.7: about 1.5σ above the measured A3 value. Neither confirmed nor excluded; the
+baryon masses of redMaPPer clusters are not measured here, so this is a scale check only.
+κ fitted; cold energy mass required; not theory closed.
