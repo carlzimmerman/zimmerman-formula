@@ -1,6 +1,6 @@
 # Cold energy mechanism research
 
-Start with [the integrated mechanism and proposed microscopic framework](COLD_ENERGY_MECHANISM.md). It joins the carrier, production, proposed fermion force, static predictions, dynamics and observational constraints while identifying the missing connections.
+Start with [the consolidated equations, Lean certificates and assumption audit](MASTER_COLD_ENERGY_EQUATIONS.md). The earlier [integrated mechanism and proposed microscopic framework](COLD_ENERGY_MECHANISM.md) is retained as its source synthesis. It joins the carrier, production, proposed fermion force, static predictions, dynamics and observational constraints while identifying the missing connections.
 
 For a shorter reference, read [the current candidate equations](mechanism_2026_10_12/EQUATIONS.md).
 
