@@ -1,0 +1,46 @@
+  Cisn = np.linalg.inv(Csn); one = np.ones(len(mb)); A11 = one@Cisn@one
+  Cisn = np.linalg.inv(Csn); one = np.ones(len(mb)); A11 = one@Cisn@one
+  Cisn = np.linalg.inv(Csn); one = np.ones(len(mb)); A11 = one@Cisn@one
+  mu = 5*np.log10((1 + zhel)*np.interp(zhd, zg, I)); r = mb - mu; b = one@Cisn@r
+  mu = 5*np.log10((1 + zhel)*np.interp(zhd, zg, I)); r = mb - mu; b = one@Cisn@r
+  mu = 5*np.log10((1 + zhel)*np.interp(zhd, zg, I)); r = mb - mu; b = one@Cisn@r
+  return r@Cisn@r - b*b/A11
+  return r@Cisn@r - b*b/A11
+  return r@Cisn@r - b*b/A11
+  Ci = np.linalg.inv(Csn[np.ix_(k, k)]); a = Ci@w[k]; a = a/a.sum()
+  Ci = np.linalg.inv(Csn[np.ix_(k, k)]); a = Ci@w[k]; a = a/a.sum()
+  Ci = np.linalg.inv(Csn[np.ix_(k, k)]); a = Ci@w[k]; a = a/a.sum()
+  A = np.array(A); Cbin = A@Csn@A.T
+  A = np.array(A); Cbin = A@Csn@A.T
+  A = np.array(A); Cbin = A@Csn@A.T
+
+=== T1_BAO  (MUTATE=none)
+  X≡1 : chi2 = 10.55  Om = 0.2970
+  free: chi2 = 3.14  Om = 0.1500  X(0.4,0.7,1.0,1.5,2.33) = [1.322, 1.966, 2.212, 3.621, 7.719]
+  Δχ² = 7.41 (5 dof)  p = 0.192  ≈ 1.30σ
+  a0(z)/a0(0) = √X at z=0.5: best 1.240  68% [0.581, 1.355]  95% [0.581, 1.496]  (Δχ² at flat a0: 0.23)
+  a0(z)/a0(0) = √X at z=1.0: best 1.487  68% [1.006, 1.616]  95% [1.006, 1.764]  (Δχ² at flat a0: 0.17)
+  a0(z)/a0(0) = √X at z=1.5: best 1.903  68% [1.556, 2.079]  95% [1.556, 2.196]  (Δχ² at flat a0: 0.08)
+  a0(z)/a0(0) = √X at z=2.33: best 2.778  68% [2.553, 2.987]  95% [2.553, 2.987]  (Δχ² at flat a0: 0.03)
+  fixed Ωm=0.25: χ² const 47.38 free 3.25  √X(2.33) = 1.929
+  fixed Ωm=0.3: χ² const 10.67 free 3.32  √X(2.33) = 1.140
+  fixed Ωm=0.35: χ² const 42.58 free 3.41  √X(2.33) = 0.000
+
+=== T2_BAO+SN  (MUTATE=none)
+  X≡1 : chi2 = 1400.14  Om = 0.3039
+  free: chi2 = 1388.06  Om = 0.1673  X(0.4,0.7,1.0,1.5,2.33) = [1.315, 1.923, 2.096, 3.425, 7.193]
+  Δχ² = 12.08 (5 dof)  p = 0.0337  ≈ 2.12σ
+  a0(z)/a0(0) = √X at z=0.5: best 1.232  68% [0.847, 1.232]  95% [0.719, 1.272]  (Δχ² at flat a0: 0.49)
+  a0(z)/a0(0) = √X at z=1.0: best 1.448  68% [0.946, 1.515]  95% [0.946, 1.548]  (Δχ² at flat a0: 0.26)
+  a0(z)/a0(0) = √X at z=1.5: best 1.851  68% [1.492, 1.956]  95% [1.492, 2.031]  (Δχ² at flat a0: 0.09)
+  a0(z)/a0(0) = √X at z=2.33: best 2.682  68% [2.448, 2.845]  95% [2.448, 2.897]  (Δχ² at flat a0: 0.02)
+  fixed Ωm=0.25: χ² const 1456.84 free 1388.17  √X(2.33) = 1.974
+  fixed Ωm=0.3: χ² const 1400.39 free 1388.33  √X(2.33) = 1.235
+  fixed Ωm=0.35: χ² const 1429.89 free 1388.56  √X(2.33) = 0.000
+
+=== T3 AP ratio, X≡1 shape: Ωm = 0.2979  χ² = 5.98/5  p = 0.309  pulls LRG1 +1.85, LRG2 +1.01, LRG3+ELG1 -0.96, ELG2 -0.67, QSO +0.40, Lya +0.16
+
+=== T4 distance duality (η ∝ (1+z)^ε), tracers [('LRG1', 155), ('LRG2', 85), ('LRG3+ELG1', 6), ('ELG2', 11)]
+  ε = +0.1702 ± 0.1069  (+1.59σ)  χ² = 1.01/2
+
+VERDICTS: {'T1': 'CONSISTENT WITH CONSTANT', 'T2': 'HINT', 'T3': 'X≡1 SHAPE ALLOWED', 'T4': 'CONSERVED'}
