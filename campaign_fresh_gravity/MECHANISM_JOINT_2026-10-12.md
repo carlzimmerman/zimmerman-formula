@@ -109,3 +109,33 @@ matter component: deriving the selector is equivalent to deriving the law's ν f
 done. Until such microphysics exists, the record's position stands: the law (A1, A2) and the supply (A6) are axioms, and class-A
 settling toward the law's profile is the forced dynamical form (§5). The specification above is the target for any proposed
 microphysics (astra's side): a candidate that violates any row is already excluded.
+
+## 7. Addendum (2026-10-12): the known microphysics catalogue scored against the selector specification (§6)
+
+Scored from committed closures only (✗ = violates the row, with the source; – = not reached because an earlier row already fails).
+
+| candidate microphysics | first failing rows | source |
+|---|---|---|
+| Bose–Einstein reading of ν_mono (ν − 1 = 1/(e^√y − 1)) with a de Sitter / graviton bath | S1 in effect: the bath's Λ terms are O(ħ), 10¹²⁹ too small; thermality sets the scale but cannot pump the sign (S7 sign) | graviton-bath CTP drift (closure_2026/a0_promotion_2026), thermostat theorem (mi_state_clause, DOI 10.5281/zenodo.21139029); the identity is a rewriting, "no temperature numerology" |
+| Superfluid phonons (Berezhiani–Khoury class) | S2 (an EFE from a nonlinear field), particle species | CFG461 C6; framework rule (no particle) |
+| Dipolar / polarization medium (Blanchet class) | stability (growing mode), S2 | astra POLARIZATION_REPAIR_GATE; CFG660 S5 |
+| astra's stable φ + P stiff sector (conformal scalar) | S4 (does not lens) | CFG663 |
+| Emergent gravity (Verlinde displaced entropy) | S5 (linear-sum shape; Solar System) | CFG117 |
+| AeST and other single-metric relativistic MOND | S2 (EFE); single-metric pincer | DC-013, DC-019; PAPER44 |
+| Modified inertia (all horns) | S4 / S2 per horn; the quadrichotomy | MI trichotomy → quadrichotomy papers (record) |
+| Nonlocal translation-invariant kernels (Mashhoon class) | S5, Solar System, sum rule | CFG120 |
+| Local stress of the cold energy (any EoS, two-variable) | S3 | CFG660, CFG661 |
+| Thermal equilibrium of the cold energy (+ universal edge) | S6 (no regular solution) | CFG461 C1b, CFG665 |
+| Baryon heating Q = C a₀ v ρ_b | S9 (closed) | CFG643; astra MECHANISM, STABLE_SCREENING_AND_SUPPLY |
+| Energy-bounded settling (ρ_DE c² capacity) | not derivable knob-free | CFG645 |
+| Fixed-flux four-form vacuum portal | S2/S3 (no baryon-reading force) | astra FOUR_FORM_PORTAL |
+| Feedback-driven gravitational work | S5/S6 (no profile selection) | astra SETTLED_HALO_RESULT |
+| Unruh / de Sitter temperature for σ | S1 (c cancels), one σ for all galaxies | CFG461 C3a |
+| Class-A settling toward the law's profile (the record's candidate B) | passes S1–S7 **only because the law is inserted**; S8 open (CFG639, CFG641) | CFG541–554, CFG638 |
+
+**Result.** Nothing in the known catalogue passes the specification on its own. The only construction that meets rows S1–S7 is the
+record's own settling law, and it does so by taking the law as an axiom. The record's September note ("the theory side is fully
+mapped; only data") holds after today's work: the selector is not a missing calculation inside known physics but new physics that
+nobody has. Proposing a genuinely new candidate is legitimate, but it must name its microphysics and pass S1–S9 before a lane is
+spent on it. The live decisions are now data: the merger grids (CFG639, CFG641), the native shear runs (CFG636, the
+orchestrator's CFG640), and the sealed Gaia DR4 predictions (2026-12-02).
