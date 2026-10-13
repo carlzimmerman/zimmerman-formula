@@ -125,6 +125,8 @@
 
 - **CFG636 (capped settling source, 1024³ canonical, 2026-10-12): KiDS Δχ² +68.7 → +14.0** (robust min +9.19, T-OWN passes) → still **EXCLUDED, narrowly**; DES +7.0 not diagnostic. Own boost at k 0.3–1 down from 1.19–1.25 to 1.056–1.058. ~80% of the raw-KiDS tension removed by limiting the settling source alone; gas expulsion (CFG646) and per-host supply (CFG647) are not yet included and each removed a further fraction in static estimates. Conditional on inherited ICs; a census cap, not a phase law.
 
+- **CFG625 (merger, data-based baryons): NO VARIANT TESTED** — MUTATE M3 (role swap) fails in all three variants because the tooth assumed the provisional concentrated stars; α verdicts under measured baryons remain untested and CFG623's stay provisional. M-RAW anchor not met in case L (main 0.54–0.69, sub 0.35–0.43 of Paraficz+16, provisional).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
