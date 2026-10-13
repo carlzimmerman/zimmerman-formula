@@ -1,0 +1,39 @@
+CFG690: does deep-regime scale invariance (SI) fix astra's cubic |P|^3, and is SI independent of the law?
+
+Criteria: FROZEN_CRITERIA.md (committed alone, d87cde1d4). T1/T2 sympy; T3 raw SPARC on the CFG4 statistic (copied, with controls
+that reproduce CFG4's committed numbers); T4 Solar-System residual, reported only.
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run from anywhere:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg690.py      (CFG690_MUTATE=1 for the MUTATE run; exit 1 iff all bite)
+
+T1  SI: x,t -> lambda x, lambda t; fixed mass => rho_b -> lambda^-3 rho_b, d^3x -> lambda^3 d^3x, phi -> phi (+ const ln lambda)
+    int |P|^n d^3x scales as lambda**(3 - n); invariant for all lambda iff n in [3]
+    general W: Eq(lambda**3*W(p/lambda), W(p))  at lambda = p  ->  Eq(p**3*W(1), W(p))  =>  W(p) = W(1) p^3 (homogeneous degree 3)
+    source int alpha rho_b phi d^3x scales as 1 (phi's additive ln(lambda) shift multiplies the fixed mass: no force)
+    quadratic |grad phi - P/a|^2 = |D|^2/a^2: on-shell (Gauss fixes D) 1/lambda; off-shell lambda (a constraint term that enforces P = a grad phi in the deep regime); stiffness |grad P|^2: 1/lambda
+    deep effective action on P = a grad phi: int beta a^3 |grad phi|^3/3 d^3x scales as 1 (the AQUAL deep form)
+  [PASS] T1 SI forces the cubic: |P|^n invariant iff n = 3: True; general W homogeneous degree 3: True; source factor 1; quadratic on-shell 1/lambda, stiffness 1/lambda (irrelevant at large lambda)
+
+T2  W = beta |P|^n / n, gamma = 0, point source: D = a beta p^(n-1) (from grad phi = P/a + beta p^(n-2) P), D = alpha M/(4 pi r^2)
+    dlnV^2/dlnr = (n - 3)/(n - 1)  -> flat iff n in [3];  dlnV^4/dlnM = 2/(n - 1)  -> V^4 propto M iff n in [3]
+    SI + G, a0 only as A0 = G a0 ([L^4 M^-1 T^-4]): V = A0^x M^y r^z with [V] = L T^-1  ->  [{x: 1/4, y: 1/4, z: 0}]  (unique; no r dependence)
+    deep law g = sqrt(A0 M)/r: g(lambda r) / (g(r)/lambda) = 1;  Newton: 1/lambda
+  [PASS] T2 SI is equivalent to the deep law (flat + BTFR): (a) flat and BTFR iff n = 3: True; (b) SI + dims => V = (A0 M)^1/4: True; (c) deep law SI-invariant, Newton not: True
+    reading rule: no committed source derives SI independently (searched before the freeze) => cubic R0 status: R0-SHAPED, REDUCED
+
+T3  raw SPARC: astra's gamma = 0 interpolation nu_SI(y) = 1 + y^-1/2 on the CFG4 statistic (gamma = 0 limit)
+    SPARC: 175 galaxies, 3391 points; Upsilon_disk grid 0.30-1.20
+    canonical a0 9.3603e-11: nu_SI 0.1012 dex @ U 0.46  |  nu_mono 0.1003 @ 0.61 (CFG4 0.1003 @ 0.61)  |  Newton 0.2755 @ 1.20  |  nu_SI - mono +0.0009
+    alt       a0 1.1312e-10: nu_SI 0.1007 dex @ U 0.42  |  nu_mono 0.0991 @ 0.57 (CFG4 0.0991 @ 0.57)  |  Newton 0.2755 @ 1.20  |  nu_SI - mono +0.0016
+    POST-HOC canonical: nu_SI rms at Upsilon_disk 0.50 = 0.1045 dex (no verdict weight)
+    POST-HOC alt      : nu_SI rms at Upsilon_disk 0.50 = 0.1114 dex (no verdict weight)
+  [PASS] T3 CONTROL reproduces CFG4 nu_mono and Newton (|d rms| <= 1e-6, Upsilon exact): both footings
+  [FAIL] T3 nu_SI passes the CFG4 H2 line on both footings (gamma = 0 limit): canonical 0.1012@0.46; alt 0.1007@0.42
+
+T4  (reported only) high-field residual dg/g_N = y^-1/2 at gamma = 0
+    canonical 1 AU           : g_N 5.930e-03 m/s^2, dg/g_N 1.256e-04
+    canonical Saturn 9.58 AU : g_N 6.461e-05 m/s^2, dg/g_N 1.204e-03
+    alt       1 AU           : g_N 5.930e-03 m/s^2, dg/g_N 1.381e-04
+    alt       Saturn 9.58 AU : g_N 6.461e-05 m/s^2, dg/g_N 1.323e-03
+
+VERDICT: cubic R0 = R0-SHAPED, REDUCED; astra gamma = 0 interpolation on SPARC (C2) = FAIL
