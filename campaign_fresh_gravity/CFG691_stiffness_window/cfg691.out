@@ -1,0 +1,75 @@
+CFG691: can astra's stiffness hide the sector from the Sun and keep it in galaxies?
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 9560a93c5). Universal point-mass profile q(s) (solve_bvp), the record's CFG3
+Solar-System gates -> L*_min; raw SPARC on the CFG4 statistic (as copied in CFG690) with the screened form -> L*_max.
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg691.py      (CFG691_MUTATE=1: M1 no stiffness, M2 scalar Laplacian; exit 1 iff both bite)
+
+PROFILE: solve_bvp status 0 (The algorithm converged to the desired accuracy.); nodes 4001; max rel ODE residual 1.57e-10
+    q(1e-3) = 0.499810 (inner limit 1/2);  S(1e3) = s q = 0.998999
+    s =    0.01: q = 0.49811, S = s q = 0.00498
+    s =    0.10: q = 0.48163, S = s q = 0.04816
+    s =    0.30: q = 0.44823, S = s q = 0.13447
+    s =    1.00: q = 0.35806, S = s q = 0.35806
+    s =    3.00: q = 0.22102, S = s q = 0.66307
+    s =   10.00: q = 0.08937, S = s q = 0.89370
+    s =  100.00: q = 0.00990, S = s q = 0.98995
+  [FAIL] K1 profile: ODE residual <= 1e-6, S(1e3) >= 0.999, q(1e-3) -> 1/2 within 1e-3, inner g_an = GM/L*^2 within 1e-3: status 0, residual 1.6e-10, S(1e3) 0.99900, q(1e-3) 0.49981, inner/(GM/L*^2) - 1 = 7.7e-06
+
+G-SS  the record's CFG3 gates for the isolated Sun: sunward anomaly at 1 AU < 3.66e-14 m/s^2; anomalous mass inside 9.54 AU < 6.7e-11 Msun
+    canonical: unscreened ratios 1 AU 2.04e+07, Saturn 1.79e+07;  L*_min = 5.754 pc (ratios 0.115, 0.964); pass set monotone in L*: True
+    alt      : unscreened ratios 1 AU 2.24e+07, Saturn 1.97e+07;  L*_min = 5.754 pc (ratios 0.115, 0.964); pass set monotone in L*: True
+
+G-GAL  raw SPARC, CFG4 statistic (CFG690 copy), screened nu = 1 + y^-1/2 S(R / l(M_b)); M_b = V_bar^2 R / G at the last point
+    canonical L* = 0: rms 0.101214 @ U 0.46 (CFG690 0.101214 @ 0.46)
+    alt       L* = 0: rms 0.100696 @ U 0.42 (CFG690 0.100696 @ 0.42)
+  [PASS] K2 L* -> 0 reproduces CFG690 T3 (rms 1e-6, Upsilon exact), both footings: 
+    canonical: L*_max = 1000 pc (rms 0.1023 @ U 0.46); pass set contiguous from 0.01 pc: True;  at L*_min 5.754 pc: rms 0.1012 @ U 0.46
+        L*     0.01 pc: rms 0.1012 @ U 0.46
+        L*   0.0316 pc: rms 0.1012 @ U 0.46
+        L*      0.1 pc: rms 0.1012 @ U 0.46
+        L*    0.316 pc: rms 0.1012 @ U 0.46
+        L*        1 pc: rms 0.1012 @ U 0.46
+        L*     3.16 pc: rms 0.1012 @ U 0.46
+        L*       10 pc: rms 0.1012 @ U 0.46
+        L*     31.6 pc: rms 0.1012 @ U 0.46
+        L*      100 pc: rms 0.1012 @ U 0.46
+        L*      316 pc: rms 0.1012 @ U 0.46
+        L*    1e+03 pc: rms 0.1023 @ U 0.46
+    alt      : L*_max = 1000 pc (rms 0.1015 @ U 0.43); pass set contiguous from 0.01 pc: True;  at L*_min 5.754 pc: rms 0.1007 @ U 0.42
+        L*     0.01 pc: rms 0.1007 @ U 0.42
+        L*   0.0316 pc: rms 0.1007 @ U 0.42
+        L*      0.1 pc: rms 0.1007 @ U 0.42
+        L*    0.316 pc: rms 0.1007 @ U 0.42
+        L*        1 pc: rms 0.1007 @ U 0.42
+        L*     3.16 pc: rms 0.1007 @ U 0.42
+        L*       10 pc: rms 0.1007 @ U 0.42
+        L*     31.6 pc: rms 0.1007 @ U 0.42
+        L*      100 pc: rms 0.1007 @ U 0.42
+        L*      316 pc: rms 0.1006 @ U 0.42
+        L*    1e+03 pc: rms 0.1015 @ U 0.43
+
+VERDICT: WINDOW OPEN  canonical: [5.7543993733715695, 1000.0] pc; alt: [5.7543993733715695, 1000.0] pc  (Upsilon band failure inherited from CFG690; never a C2 pass)
+
+REPORTED (no verdict weight), at L* = L*_min per footing
+    canonical: Sun's constant inner pull GM/L*^2 = 4.209e-15 m/s^2; l_gamma(Sun) = 429 pc
+      wide binary 2 Msun at   1000 AU: anomaly/Newton 7.098e-07 (unscreened 8.884e-02)
+      wide binary 2 Msun at   3000 AU: anomaly/Newton 6.388e-06 (unscreened 2.665e-01)
+      wide binary 2 Msun at  10000 AU: anomaly/Newton 7.098e-05 (unscreened 8.884e-01)
+      UFD rows from CFG259: NOT REPORTED (its committed tables carry no stellar masses or half-light radii). Generic ladder, disclosed:
+      M_b = 1e3 Msun: l_gamma = 13.6 pc
+      M_b = 1e4 Msun: l_gamma = 4.29 pc
+      M_b = 1e5 Msun: l_gamma = 1.36 pc
+      M_b = 1e7 Msun: l_gamma = 0.136 pc
+      M_b = 1e9 Msun: l_gamma = 0.0136 pc
+    alt: Sun's constant inner pull GM/L*^2 = 4.209e-15 m/s^2; l_gamma(Sun) = 472 pc
+      wide binary 2 Msun at   1000 AU: anomaly/Newton 7.098e-07 (unscreened 9.766e-02)
+      wide binary 2 Msun at   3000 AU: anomaly/Newton 6.388e-06 (unscreened 2.930e-01)
+      wide binary 2 Msun at  10000 AU: anomaly/Newton 7.098e-05 (unscreened 9.766e-01)
+      UFD rows from CFG259: NOT REPORTED (its committed tables carry no stellar masses or half-light radii). Generic ladder, disclosed:
+      M_b = 1e3 Msun: l_gamma = 14.9 pc
+      M_b = 1e4 Msun: l_gamma = 4.72 pc
+      M_b = 1e5 Msun: l_gamma = 1.49 pc
+      M_b = 1e7 Msun: l_gamma = 0.149 pc
+      M_b = 1e9 Msun: l_gamma = 0.0149 pc

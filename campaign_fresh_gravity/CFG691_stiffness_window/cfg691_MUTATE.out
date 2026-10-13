@@ -1,0 +1,57 @@
+CFG691: can astra's stiffness hide the sector from the Sun and keep it in galaxies?
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 9560a93c5). Universal point-mass profile q(s) (solve_bvp), the record's CFG3
+Solar-System gates -> L*_min; raw SPARC on the CFG4 statistic (as copied in CFG690) with the screened form -> L*_max.
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg691.py      (CFG691_MUTATE=1: M1 no stiffness, M2 scalar Laplacian; exit 1 iff both bite)
+
+PROFILE: solve_bvp status 0 (The algorithm converged to the desired accuracy.); nodes 8669; max rel ODE residual 1.27e-08
+    q(1e-3) = 6.829248 (inner limit 1/2);  S(1e3) = s q = 1.000000
+    s =    0.01: q = 4.98345, S = s q = 0.04983
+    s =    0.10: q = 2.74759, S = s q = 0.27476
+    s =    0.30: q = 1.72950, S = s q = 0.51885
+    s =    1.00: q = 0.82009, S = s q = 0.82009
+    s =    3.00: q = 0.32352, S = s q = 0.97057
+    s =   10.00: q = 0.09993, S = s q = 0.99932
+    s =  100.00: q = 0.01000, S = s q = 1.00000
+  [FAIL] K1 profile: ODE residual <= 1e-6, S(1e3) >= 0.999, q(1e-3) -> 1/2 within 1e-3, inner g_an = GM/L*^2 within 1e-3: status 0, residual 1.3e-08, S(1e3) 1.00000, q(1e-3) 6.82925, inner/(GM/L*^2) - 1 = 2.0e+04
+
+G-SS  the record's CFG3 gates for the isolated Sun: sunward anomaly at 1 AU < 3.66e-14 m/s^2; anomalous mass inside 9.54 AU < 6.7e-11 Msun
+    canonical: unscreened ratios 1 AU 2.04e+07, Saturn 1.79e+07;  L*_min = NONE on 1e-4..1e4 pc
+    alt      : unscreened ratios 1 AU 2.24e+07, Saturn 1.97e+07;  L*_min = NONE on 1e-4..1e4 pc
+
+G-GAL  raw SPARC, CFG4 statistic (CFG690 copy), screened nu = 1 + y^-1/2 S(R / l(M_b)); M_b = V_bar^2 R / G at the last point
+    canonical L* = 0: rms 0.101214 @ U 0.46 (CFG690 0.101214 @ 0.46)
+    alt       L* = 0: rms 0.100696 @ U 0.42 (CFG690 0.100696 @ 0.42)
+  [PASS] K2 L* -> 0 reproduces CFG690 T3 (rms 1e-6, Upsilon exact), both footings: 
+    canonical: L*_max = 1000 pc (rms 0.1012 @ U 0.46); pass set contiguous from 0.01 pc: True
+        L*     0.01 pc: rms 0.1012 @ U 0.46
+        L*   0.0316 pc: rms 0.1012 @ U 0.46
+        L*      0.1 pc: rms 0.1012 @ U 0.46
+        L*    0.316 pc: rms 0.1012 @ U 0.46
+        L*        1 pc: rms 0.1012 @ U 0.46
+        L*     3.16 pc: rms 0.1012 @ U 0.46
+        L*       10 pc: rms 0.1012 @ U 0.46
+        L*     31.6 pc: rms 0.1012 @ U 0.46
+        L*      100 pc: rms 0.1012 @ U 0.46
+        L*      316 pc: rms 0.1012 @ U 0.46
+        L*    1e+03 pc: rms 0.1012 @ U 0.46
+    alt      : L*_max = 1000 pc (rms 0.1007 @ U 0.42); pass set contiguous from 0.01 pc: True
+        L*     0.01 pc: rms 0.1007 @ U 0.42
+        L*   0.0316 pc: rms 0.1007 @ U 0.42
+        L*      0.1 pc: rms 0.1007 @ U 0.42
+        L*    0.316 pc: rms 0.1007 @ U 0.42
+        L*        1 pc: rms 0.1007 @ U 0.42
+        L*     3.16 pc: rms 0.1007 @ U 0.42
+        L*       10 pc: rms 0.1007 @ U 0.42
+        L*     31.6 pc: rms 0.1007 @ U 0.42
+        L*      100 pc: rms 0.1007 @ U 0.42
+        L*      316 pc: rms 0.1007 @ U 0.42
+        L*    1e+03 pc: rms 0.1007 @ U 0.42
+
+VERDICT: WINDOW CLOSED  canonical: [None, 1000.0] pc; alt: [None, 1000.0] pc  (Upsilon band failure inherited from CFG690; never a C2 pass)
+
+REPORTED (no verdict weight), at L* = L*_min per footing
+
+MUTATE: M1 (no stiffness) G-SS fails: True; M2 (scalar Laplacian) K1 fails: True
