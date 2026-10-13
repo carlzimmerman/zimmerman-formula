@@ -1,0 +1,29 @@
+CFG724_formula_certificates_MUTATE.lean:42:2: error: Type mismatch
+  Tendsto.congr' ?m.298 hlim
+has type
+  Tendsto ?m.295 atTop (𝓝 √(G * M * a0))
+but is expected to have type
+  Tendsto (fun r => r * gpm G M a0 r) atTop (𝓝 (2 * √(G * M * a0)))
+CFG724_formula_certificates_MUTATE.lean:54:8: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  1 + 1 / S
+in the target expression
+  x = log (1 + S)
+
+case mp
+S x : ℝ
+hS : 0 < S
+h : 1 / (rexp x - 1) = S
+hne : rexp x - 1 ≠ 0
+he : rexp x = 1 + 1 / S
+⊢ x = log (1 + S)
+CFG724_formula_certificates_MUTATE.lean:57:11: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  rexp (log (1 + 1 / S))
+in the target expression
+  1 / (rexp (log (1 + S)) - 1) = S
+
+case mpr
+S x : ℝ
+hS : 0 < S
+h : x = log (1 + S)
+hpos : 0 < 1 + 1 / S
+⊢ 1 / (rexp (log (1 + S)) - 1) = S
