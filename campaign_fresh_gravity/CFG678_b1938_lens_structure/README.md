@@ -24,3 +24,10 @@ unphysical, reported only. A bug in the projected-mass integral (shell fraction)
 Pure stars would give γ = 3.26: in the framework the law, with no halo parameter, turns the steep stellar profile into a
 near-isothermal total one at θE. Scoring (frozen): P1 CONSISTENT if |γ_meas − γ_pred| ≤ max(2σ, 0.10), TENSION ≤ 0.25,
 INCONSISTENT beyond, NOT DIAGNOSTIC on a prior edge; P2/P3 by the tolerances above.
+
+## PREVIEW (2026-10-13; no verdict weight — best-fit Nelder–Mead on the identical stage-2 model, no posterior)
+`cfg710_preview_stage2nm.txt`, scored by the frozen `cfg710_score.py` → `cfg710_score_preview_NelderMead.json`:
+slope **2.234** vs sealed 2.30 / 2.23 → CONSISTENT (Δ 0.061 / 0.008); mass PA 132.1° vs light 130.4° (Δ 1.7°) → aligned;
+**q_M 0.924 vs frozen window [0.794, 0.894] → OUTSIDE (rounder by 0.03): P2 INCONSISTENT as previewed**; m3 0.002, m4 0.006 →
+CONSISTENT. Caveats: single optimiser run, no σ; θE moved 0.443″ → 0.474″ (prediction normalised at 0.443″). The verdict waits for
+the stage-2 posterior.
