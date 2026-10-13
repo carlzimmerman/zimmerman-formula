@@ -53,7 +53,7 @@ else (hot halo gas, cluster outskirts, filaments, mergers, the early universe) c
 (with cold energy); X-COP inner band and Bullet main core (CFG637, condensed source); primary CMB (CFG649).
 **Open / failing**: X-COP at R200 (33–40% short, CFG637, depends on the supply convention); Bullet sub (input-mass-limited);
 raw KiDS for the full v2 rule (T12 pending); CMB lensing CONDITIONAL (+1.3% for v1, CFG649; v2 lowers it); age dependence in
-early types (CFG585/631/700, no mechanism); α free; 5.364 underived; the receiver field's identity.
+early types (CFG585/631/700; CFG651: A5 predicts the WRONG sign, −0.06 in log, so any mechanism must overcome it); α free; 5.364 underived; the receiver field's identity.
 **Conditional on**: inherited ΛCDM initial conditions and background in all PM runs (astra 5c31fcad4).
 
 ## 6. Predictions (dated, falsifiable)

@@ -127,6 +127,8 @@
 
 - **CFG625 (merger, data-based baryons): NO VARIANT TESTED** — MUTATE M3 (role swap) fails in all three variants because the tooth assumed the provisional concentrated stars; α verdicts under measured baryons remain untested and CFG623's stay provisional. M-RAW anchor not met in case L (main 0.54–0.69, sub 0.35–0.43 of Paraficz+16, provisional).
 
+- **Age signal vs Theory v2's condensed source (CFG651, post-hoc mechanism test; criteria 5a24ec013): FAILS, wrong sign, both footings.** Young early types at fixed M* form stars ~3.7 dex faster, so any cold-gas share that tracks star formation gives the YOUNG group more condensed source (predicted D −0.145 vs measured +0.94 ± 0.35). The census route adds ~0; only an unphysical ceiling reaches the band. MUTATE: all-baryon source gives exactly 0. A5 makes the age signal harder, not easier; open problem 4 stays open (settling time; possible LePhare mass bias for the reddest galaxies).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
