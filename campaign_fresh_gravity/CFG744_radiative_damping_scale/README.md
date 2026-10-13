@@ -19,12 +19,15 @@ damping in the construction is radiation, which at galaxy scales is far too slow
 
 | M_b, y | s₀ | (a) medium c_P | (a) t_relax | (a) one crossing r/c_P (reported) | (b) c_P = c |
 |---|---|---|---|---|---|
-| 10⁹, 1 | 7–9e4 | 187–216 m/s | 3.5–4.9e3 Gyr | **5.0–?** Gyr | 0.003 Gyr |
-| 10¹⁰, 0.1 | 2.4–2.8e6 | 35–40 m/s | ~1e6 Gyr | 159–202 Gyr | 0.14–0.17 Gyr |
-| 10¹¹, 0.1 | 2.4–2.8e7 | 20–23 m/s | ~2e7 Gyr | up to 1.9e3 Gyr | 1.4–1.7 Gyr |
+| 10⁹, 1 | 7–9e4 | 187–216 m/s | 3.5–4.9e3 Gyr | **5.0–6.4** Gyr | 0.003 Gyr |
+| 10¹⁰, 0.1 | 2.4–2.8e6 | 35–40 m/s | ~1e6 Gyr | 269–341 Gyr | 0.14–0.17 Gyr |
+| 10¹¹, 0.1 | 2.4–2.8e7 | 20–23 m/s | ~2e7 Gyr | 1.5–1.9e3 Gyr | 1.4–1.7 Gyr |
 
 The minimum over every case of the exponent-free one-crossing bound is **5.0 Gyr** (alt, 10⁹ M☉, y = 1). It is above the bar
 everywhere: the cold medium fails even if relaxation needed only one crossing at its wave speed.
+
+Correction (2026-10-13, same day, before any use): the one-crossing column first carried "5.0–?" and two cells copied from
+other rows; all three are now read from `cfg744_results.json`.
 
 ## Reading
 1. **The cold medium cannot be the polarization field.** With c_P² = 2πG L*² ρ_c, its waves move at 20–220 m/s and cannot carry
