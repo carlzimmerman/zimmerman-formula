@@ -1,0 +1,27 @@
+REPRODUCTION — retain original evidence
+
+Actual scientific argv, input/output hashes, Python/library versions, ceilings
+and logs are in exact_run/manifest.json, numeric_run/manifest.json and
+coupled_spherical/run/manifest.json. All three scientific children exited0,
+read results with all_passed=true, and produced every declared output.
+
+To reproduce, invoke the installed computation-audit run_experiment.py using
+each recorded contract and every explicit --input. Choose a FRESH --output
+run directory, declare results beneath it with --result, and use the original
+scientific argv with only its --output or --output-dir argument changed to
+that new location. Scripts accept output paths explicitly. Keep --timeout60,
+--max-cpu-seconds45,--max-threads1. No unsupported address-space cap.
+Root code and source snapshots remain unchanged; coupled code intentionally
+reads the frozen original numeric profiles. To use newly reproduced profiles
+in the coupled script, make a new copied scope/input contract rather than
+overwriting the original data. Do not silently retarget a frozen evidence run.
+
+Validate every manifest with installed validate_manifest.py --root PROJECT
+manifest.json, then inspect scientific results. Provenance validation alone
+is not mathematical interpretation. Float runs are tolerance-dependent,
+not interval certificates. Library thread caps are cooperative.
+
+No scientific run failed or required a repaired formula. The script's wave-
+norm counterexample metadata leaves its spatial domain implicit: DERIVATION
+explicitly uses a periodic circle with integer k. A bare cosine on R would
+not be L2; this domain clarification does not change the computed algebra.
