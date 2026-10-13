@@ -697,3 +697,49 @@ $$
 A complete result must derive this selector (or demonstrate the target from a specified collisionless history), its reciprocal energy–momentum exchange, its source/phase dependence and metric coupling. It must then predict the galaxy law, lensing, finite mass budget and cosmological evolution with one set of independently fixed parameters. Neither selecting a target density nor fitting kappa supplies that derivation.
 
 This consolidated record provides the equations actually obtained, the tested consequences, the counterexamples and the remaining unknowns. It does not claim a solved source of usable energy or a proven replacement for existing cosmology.
+
+
+## Supplement F — Deriving the drift and the finite-power edge constraint
+
+The [Hamiltonian-bath calculation](../hamiltonian_drift_2026_10_12/REPORT.md)
+now derives the drift and diffusion from the same specified white Hamiltonian
+noise, including the orbital density of states. With $q=E_R-E$, finite regular
+period $T$, and variance convention $2D$, it gives
+
+$$
+A_H=D'+D\partial_q\log T,\qquad n=Tf,\qquad J_H=-DT\partial_q f.
+$$
+
+Here and below primes denote $q$ derivatives. Thus this bath's zero-current
+state has constant phase-space density. Maintaining the proposed target
+$f\propto q^{-1/2}$ instead requires
+
+$$
+A=A_H-\frac{D}{2q},\qquad
+\dot E_{\rm extra}=\frac{D}{2q}.
+$$
+
+With finite positive limiting $D$ and $T$, the exact target requires divergent
+positive bulk input $\int nD/(2q)\,dq$. This conditional obstruction concerns
+the stationary sharp-edge selector; it does not rule out all cold-energy
+models. For $D\sim q^\beta$ the corresponding input is locally finite only
+when $\beta>1/2$. Smooth position-only white noise in a single well cannot
+have an isolated diffusion zero at the cutoff while stirring nested interior
+orbits; the report gives the positivity argument and its restrictions.
+
+For the regularized target $f\propto(q+\epsilon)^{-1/2}$ in a finite reflecting
+interval $[0,Q]$ with constant $D,T$, the normalized mean extra bulk input is
+
+$$
+P=\frac{D}{2\sqrt{\epsilon(Q+\epsilon)}},\qquad
+P\le P_{\max}\ \Longrightarrow
+\epsilon\ge\frac{\sqrt{Q^2+D^2/P_{\max}^2}-Q}{2}.
+$$
+
+This supplies a conditional width–power relation, not a measured halo width.
+The reflecting boundary's energy exchange and the microscopic reservoir must
+also be specified. The new package records 46 numerical checks and six Lean
+algebra theorems with three rejected damaged-proof controls. Stochastic
+averaging, the integral divergence, and physical applicability are analytical
+assumptions/arguments outside those Lean certificates. The microscopic selector
+remains unresolved.
