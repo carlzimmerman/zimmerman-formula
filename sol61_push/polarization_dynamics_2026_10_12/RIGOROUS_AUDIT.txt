@@ -1,0 +1,114 @@
+Conditional formation survives; the full-framework identification fails
+2026-10-12. Analytical proof plus bounded numerical evidence; self-review.
+Primary full-framework verdict: refuted for this candidate under the exact
+no-external-field requirement. Not a refutation of the user's formula.
+No novelty claim: external-field dependence of nonlinear Poisson models
+is known; this audit makes its consequence explicit for our exact candidate.
+
+1. Fixed-history profile tests
+-----------------------------
+No per-profile fitting: all new runs use T=320, C=a0=Z=I=1, the same
+Gaussian shape convention and smoothing, and 320 time units after assembly.
+Only baryon source mass and core radius change. For Gaussian core s,
+rho_final proportional exp[-r^2/(2s^2)], truncated at 4s, with declared
+integral rho*r^2 dr equal to M. Score radial interval 2..20, tolerance 10%
+at every sample in final 80 time units. Two grids/timesteps for each.
+
+Fine-grid outcomes:
+ M     core     final RMS fractional force error    largest late error
+ 0.1   2        6.356%                              6.606%
+ 1     1        4.129%                              4.151%
+ 1     4        0.835%                              0.889%
+ 10    2        2.281%                              2.348%
+All pass at both resolutions. Final force differences on refinement are
+0.71%, 1.85%, 0.17%, 1.42%, within the declared 3% diagnostic. Energy-work
+residuals pass. This supports the limited response-formation result across
+the tested family. It does not verify astrophysical data, derive the assembly
+time, or establish an attractor for arbitrary initial conditions.
+
+2. Exact structural external-field calculation
+----------------------------------------------
+Eliminating the static polarization from the constructed action gives
+ div[mu(g) grad Phi]=C rho_b, mu(g)=B(g)/g, C=4*pi*G,
+ B the inverse prescribed spherical force law. For a uniform external
+gradient q_e of magnitude g_e, write grad Phi=q_e+grad phi, where the
+internal perturbation is small. Linearising gives
+
+ div[K_e grad phi]=C rho_b,
+ K_e=mu_e(I-nn)+B'_e nn, n=q_e/g_e.                         (1)
+
+This follows by differentiating mu(|q|)q:
+ d(mu q)/dq=mu I+(B'-mu)nn. Both eigenvalues are positive on the branch.
+For the compact-source far-field monopole of mass m,
+
+ phi=-Gm/[sqrt(det K_e)*sqrt(x^T K_e^-1 x)].                (2)
+
+One can verify (2) by the coordinate change y=K_e^-1/2 x in the
+constant-coefficient Poisson equation, with the transformed delta-source
+Jacobian sqrt(det K_e). Along the external-field axis and an equatorial
+ray at radius r this gives internal acceleration magnitudes
+
+ g_parallel=(Gm/r^2)/mu_e,
+ g_equatorial=(Gm/r^2)/sqrt(mu_e B'_e).                    (3)
+
+These scale linearly with the weak internal Newtonian field, while the
+isolated deep relation scales as its square root. The mismatch persists
+as that internal field goes to zero: a structural external-field effect.
+Equations (1)-(3) describe the external-dominated far field, not the
+nonlinear source core. They are not a numerical full-3D galaxy solution.
+
+3. Numbers for the actual inverse-deficit interpolant
+----------------------------------------------------
+Internal Newtonian field b/a0=1e-8; isolated response g/a0=0.000100005.
+ External g_e/a0    parallel / isolated    equatorial / isolated
+ 0.01              0.0100994              0.0071592
+ 0.1               0.0010992              0.0007953
+ 1                 0.0001958              0.0001588
+The largest predicted perturbation/external-field ratio is 0.000101,
+within the predeclared small-perturbation regime. Numbers are leading
+linear-response values, not exact finite-amplitude error bounds or measured
+satellite exclusions. No observational sigma level is assigned.
+
+4. Why an assembly-time adjustment cannot cure this
+--------------------------------------------------
+The response tensor K_e depends only on the stationary constitutive action,
+not on the time used to prepare it. If exact independence from every
+uniform external field and orientation is required within this local,
+isotropic scalar-field class, K_e must be one constant isotropic tensor.
+Its eigenvalues then require B'(g)=B(g)/g=k constant, hence B(g)=k*g.
+That is a linear force law, not the prescribed nonlinear relation.
+This restricted no-go argument applies to local static energy e(|grad Phi|)
+and any locally eliminated auxiliaries producing that same equation. It
+does not cover nonlocal selection, history-dependent nonequilibrium states,
+additional metric fields, or relaxed empirical requirements. It does not
+prove that any of those alternatives works.
+
+5. Scientific disposition
+-------------------------
+KEEP: positive-energy effective construction, stable nonzero-background
+linear modes, nonlinear packet transport, and finite-time approximate
+formation under explicit energy-accounted source histories.
+DO NOT PROMOTE: the candidate to the full required mechanism. It violates
+the stipulated no-EFE requirement, has no independent cold mass/current,
+no derived response coefficients, no relativistic lensing completion and
+no derivation of kappa=1/2. These are substantive missing/wrong properties,
+not small numerical margins that the 3.9% isolated fit can excuse.
+
+This is a decision boundary: further isolated-profile fitting in the same
+local scalar action cannot remove (1). A viable continuation must change
+its physical coupling/selection rule (and justify the change), or explicitly
+revisit the no-EFE assumption against observations. Neither is done silently.
+The effective-model branch remains useful conditional mathematics, but it
+is closed as a complete realisation of the current exact specification.
+The broader physical-theory objective remains unresolved.
+
+Provenance
+----------
+profile_audit_contract.json was written before this run and discloses the
+earlier baseline success. profile_audit.py reuses the pinned assembly solver
+with exactly the declared source-profile changes; static comparison, work
+accounting and two resolutions retained. Eight evolutions, one thread.
+profile_audit_run/manifest.json validates with input/output hashes. All
+numerical controls pass; that status is not a full-theory success label.
+Analytic argument independently reconstructed here but reviewed by the
+same assistant, not a separate referee. No proof of physical existence.

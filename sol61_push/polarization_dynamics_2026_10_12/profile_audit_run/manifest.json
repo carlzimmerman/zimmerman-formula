@@ -1,0 +1,197 @@
+{
+  "schema_version": 2,
+  "claim_id": "POLARIZATION_PROFILE_AND_EXTERNAL_FIELD_AUDIT",
+  "repository": {
+    "commit": "90c0618be7073cb080ae467e88465008d1c0ed94",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "sol61_push/polarization_dynamics_2026_10_12/profile_audit.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.14.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Check four new source profiles at a single fixed T=320 and evaluate the static external-field dependence of this effective action. Earlier baseline assembly success seen.",
+    "coefficient_domain": "float64, radial finite volume with energy-adjoint gradient/divergence, velocity Verlet",
+    "conventions": "Same radial source, kernel and units as spherical test; rho(t)=S(t)*rho_final, S=3u^2-2u^3 for u=t/T in [0,1], then 1. Prescribed assembly, NOT derived baryon dynamics. Work=int Sdot*int rho_final Phi r^2 dr dt.",
+    "inputs": [
+      "sol61_push/polarization_dynamics_2026_10_12/profile_audit.py",
+      "sol61_push/polarization_dynamics_2026_10_12/assembly.py",
+      "sol61_push/polarization_dynamics_2026_10_12/spherical.py",
+      "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+    ],
+    "bounds": {
+      "mass_core_pairs": [
+        [
+          0.1,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "T": 320,
+      "end_time": 640,
+      "runs": [
+        [
+          512,
+          2048,
+          0.04
+        ],
+        [
+          512,
+          4096,
+          0.02
+        ]
+      ],
+      "external_field": [
+        0.01,
+        0.1,
+        1
+      ],
+      "internal_newtonian_field": 1e-08,
+      "threads": 1,
+      "timeout_seconds": 240
+    },
+    "criteria": {
+      "energy_error_normalised_to_static_energy": "max |H(t)-work(t)|/|H_static| <=0.002",
+      "static_acceleration_residual": 1e-07,
+      "final_refinement_force_relative_L2": 0.03,
+      "final_box_force_relative_L2": 0.03,
+      "formation": "RMS fractional force error <=0.10 and force nonnegative at every sample during last 80 time units of each run",
+      "external_field": "Report leading linear-response force vs isolated response; require positive ellipticity and internal perturbation/external field <0.001. No observational significance claimed."
+    },
+    "controls": [
+      "Two spatial/time resolutions per ramp",
+      "Static residual and source-work conservation",
+      "No drag or changed response coefficients"
+    ],
+    "non_claims": [
+      "Fixed baryons, not coupled galaxy formation",
+      "No independent cold mass, metric/lensing or cosmology",
+      "No physical time unit or derived response coefficients",
+      "Finite-time approximate agreement is not an attractor theorem",
+      "A successful selected assembly history is not a universal attractor or explanation of that assembly timescale."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T00:09:27.496647+00:00",
+    "runtime_seconds": 22.583055,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 220,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/polarization_dynamics_2026_10_12/profile_audit.py",
+    "sol61_push/polarization_dynamics_2026_10_12/assembly.py",
+    "sol61_push/polarization_dynamics_2026_10_12/spherical.py",
+    "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/profile_audit.py",
+      "sha256": "ade9875a326cea08cc03f6f7c81676f8bc775bc8155966b0da3940901ec3237f",
+      "sha256_after": "ade9875a326cea08cc03f6f7c81676f8bc775bc8155966b0da3940901ec3237f"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/assembly.py",
+      "sha256": "26e4b245bc99e01fa250a43dd0ab5511e4d8e67c3775aabb24e23918b8f9a678",
+      "sha256_after": "26e4b245bc99e01fa250a43dd0ab5511e4d8e67c3775aabb24e23918b8f9a678"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/spherical.py",
+      "sha256": "bddcde63edafa10d378bb504659639a15947765167b30e79e8ac8edf61ff9b1c",
+      "sha256_after": "bddcde63edafa10d378bb504659639a15947765167b30e79e8ac8edf61ff9b1c"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG596_lean_pm_1024/cfg596_pm.py",
+      "sha256": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c",
+      "sha256_after": "1c207fa5fd1d2f799f83bbe5d178b7b27be761c2822fbc5cd470520e7053e08c"
+    }
+  ],
+  "output_directory": "sol61_push/polarization_dynamics_2026_10_12/profile_audit_run",
+  "declared_results": [
+    "sol61_push/polarization_dynamics_2026_10_12/profile_audit_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/profile_audit_run/stdout.txt",
+      "sha256": "ba1ed8273efc9d499fcc7779a501f53fb583a2c819bf7e30929a862c2833ea6f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/profile_audit_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/polarization_dynamics_2026_10_12/profile_audit_run/results.json",
+      "sha256": "c60228098eb096ed005a3d6a3bd69c7e9c6571f5463c762cb8d55b2d659133f0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
