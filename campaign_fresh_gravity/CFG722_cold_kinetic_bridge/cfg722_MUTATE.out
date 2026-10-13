@@ -1,0 +1,89 @@
+CFG722: bridge astra's unsolved cold-energy kinetic equation (Supplement E selector) to the P-field action (CFG694/695).
+Criteria: FROZEN_CRITERIA.md (committed alone, cb2aac21f). kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is
+required; not "theory closed". Analytic + small numerics only (no PM, no merger simulation, no download).
+Run:  nice -n 10 python3 cfg722.py        (CFG722_MUTATE=1: lambda -> 0, saturation 2 a0, tether sign; exit 1 iff all bite)
+
+=== B1 (Q1) bound-charge neutrality: Hernquist 1e11 Msun, a = 3 kpc, P tapered to 0 over [r_e, 1.1 r_e], r_e = 300 kpc
+  canonical: M_c(<r_e) Gauss 2.3856e+12 Msun (= 23.856 M_b); numerical inside 2.3852e+12; edge shell -2.3852e+12; NET -6.407e+00 Msun, |net|/M_c = 2.69e-12 -> PASS
+  alt: M_c(<r_e) Gauss 2.6273e+12 Msun (= 26.273 M_b); numerical inside 2.6269e+12; edge shell -2.6269e+12; NET -7.671e+00 Msun, |net|/M_c = 2.92e-12 -> PASS
+  Reading: the bound charge only MOVES mass from the polarized region's edge to its interior; seen from outside the basin the
+  system weighs M_b. It cannot supply CFG624's missing cold mass (X-COP 3.1/2.8 M_b, LG timing, mean density).
+
+=== B2 (Q1) inertia and transport of the P field (linearised longitudinal sector, sympy)
+  dispersion: omega = sqrt(K + gamma*k**2)/sqrt(I)   group velocity = gamma*k/(sqrt(I)*sqrt(K + gamma*k**2))
+  Noether momentum density T^0x = -I*Derivative(P(x, t), t)*Derivative(P(x, t), x)  (set by I and grad P, not by the bound charge rho_c = div P)
+  translating lump exp(-(x - v t)^2): residual / lump = -4*I*t**2*v**4 + 8*I*t*v**3*x - 4*I*v**2*x**2 + 2*I*v**2 - K + 4*gamma*t**2*v**2 - 8*gamma*t*v*x + 4*gamma*x**2 - 2*gamma
+  -> zero for all x only if K = 0 and v^2 = gamma/I. A gapped (K > 0) field has no translating lump at any v: no ballistic,
+     particle-like transport. The bound charge has no inertia of its own and no phase space; it cannot 'pass through' a merger.
+
+=== B3 (Q1) P response time at fixed baryons: omega0^2 = 2 c_P^2 x(2 - x)/(L*^2 (1 - x)^2), x = u/a0 (footing-free in y)
+  y  0.1: x 0.270; t_resp [Gyr] (L* 5.75 floor/c, 100 floor/c, 1000 floor/c) = 5.23e-05, 8.90e-08, 5.95e-03, 1.55e-06, 2.76e-01, 1.55e-05
+  y  0.3: x 0.418; t_resp [Gyr] (L* 5.75 floor/c, 100 floor/c, 1000 floor/c) = 3.51e-05, 5.97e-08, 3.99e-03, 1.04e-06, 1.85e-01, 1.04e-05
+  y  1.0: x 0.618; t_resp [Gyr] (L* 5.75 floor/c, 100 floor/c, 1000 floor/c) = 2.03e-05, 3.44e-08, 2.30e-03, 5.99e-07, 1.07e-01, 5.99e-06
+  y  3.0: x 0.791; t_resp [Gyr] (L* 5.75 floor/c, 100 floor/c, 1000 floor/c) = 1.05e-05, 1.78e-08, 1.19e-03, 3.09e-07, 5.52e-02, 3.09e-06
+  max t_resp over the allowed window = 0.276 Gyr vs 0.1 Gyr -> CONDITIONAL on (L*, c_P): slow corner reaches the merger window; hand to CFG720
+  Note: even where t_resp is long, B2 says P lags or rings; it never carries a lump along with the galaxies.
+
+=== B4 (Q2) static limit: coupling ID, cold carrier at rest, lam W_rem'(u) = g_N
+  canonical: max |nu_ID/nu_s - 1| = inf; deep coefficient u^2/(g_N a0) at y=1e-4: nan -> FAIL
+  alt: max |nu_ID/nu_s - 1| = inf; deep coefficient u^2/(g_N a0) at y=1e-4: nan -> FAIL
+  M2 isolated (saturation 2 a0): max dev 4.121e-01, deep coefficient 1.9859 (must be != 1)
+  Coupling G: a cold carrier at rest feels g_N + g_c + g_bound (all inward); the action gives it no outward force, so there is
+  NO static cold equilibrium and C_sel = 0 exactly (the carrier is ordinary collisionless matter in the total potential).
+
+=== M1 lam = 0.0: acceleration of matter from a bound-charge perturbation = -0.000e+00; ID net force on a cold carrier at the law position / g_N = 1.000e+00
+
+=== B5 (Q2) coupling ID: static energy U[u] = (1/4 pi G) int dV [w(u) - g_N u]; carrier mass fixed at M_law(<10 r_M)
+  canonical M_b 1e10: M_c = 9.51 M_b; dU/(M_c V_f^2): s 0.5: +inf (wall at r<0.0001 r_M); s 0.8: -0.1363; s 1.25: +0.0954; s 2.0: +0.2249; s 4.0: +0.3254
+  canonical M_b 1e12: M_c = 9.51 M_b; dU/(M_c V_f^2): s 0.5: +inf (wall at r<0.0001 r_M); s 0.8: -0.1363; s 1.25: +0.0954; s 2.0: +0.2249; s 4.0: +0.3254
+  alt M_b 1e10: M_c = 9.51 M_b; dU/(M_c V_f^2): s 0.5: +inf (wall at r<0.0001 r_M); s 0.8: -0.1363; s 1.25: +0.0954; s 2.0: +0.2249; s 4.0: +0.3254
+  alt M_b 1e12: M_c = 9.51 M_b; dU/(M_c V_f^2): s 0.5: +inf (wall at r<0.0001 r_M); s 0.8: -0.1363; s 1.25: +0.0954; s 2.0: +0.2249; s 4.0: +0.3254
+  analytic: d^2/du^2 [tsign w(u) - g_N u] = -sigma*u*(-2*a_0 + u)/(-a_0 + u)**2  (> 0 on 0 < u < a0 for tsign = +1: pointwise convex; the truncated
+  law is then the constrained minimiser at fixed carrier mass, since it is pointwise optimal wherever the mass cap does not bind)
+  M3 note (POST-HOC, no verdict weight): with tsign = -1 the integrand is pointwise CONCAVE and B4 has no equilibrium root;
+  the frozen M3 line (dU < 0 somewhere in the s-family) does not bite, because -g_N u dominates for stretched states and the
+  compressed states (s < 1) sit beyond the wall in either sign.
+  -> some dU < 0: the law is NOT the minimum
+  IC-C analogue (law density, sigma = 0.05 V_f): the tether supplies the support astra's IC-C lacked, so the required exchange is its
+  own kinetic energy, EXPORT 1.5 sigma^2 = 0.00375 M V_f^2 (astra, gravity only: IMPORT 0.50-0.64). IC-B-like (diffuse, s > 1): EXPORT.
+  The bridge offers no export channel: P radiation is trapped (<= 1e-195, CFG659); phase mixing keeps the energy as dispersion.
+
+=== B6 (Q2) anchor: halo displaced d = 300 km/s x 1 Gyr from a cosmic-frame anchor; u_shift = 4 pi G rho_c d
+  canonical: r 38.6 kpc, rho_c 2.927e-23 kg/m^3, d 307 kpc -> u_shift/a0 = 2.48
+  alt: r 35.1 kpc, rho_c 3.889e-23 kg/m^3, d 307 kpc -> u_shift/a0 = 2.73
+  -> cosmic-frame anchor EXCLUDED (beyond saturation): the anchor must be the basin frame, reciprocal with its baryons
+
+=== B7 (Q3) can the bridge separate hot from condensed baryons without a new constant?
+  (a) relativistic pressure, kT 1.0 keV: (rho + 3p/c^2)/rho - 1 = 5.33e-06 (and it ADDS to the hot source)
+  (a) relativistic pressure, kT 8.0 keV: (rho + 3p/c^2)/rho - 1 = 4.26e-05 (and it ADDS to the hot source)
+  (b) stiffness, disc gas, L* 5.75 pc: l_gamma 1.749e-03 pc; (l_gamma/h)^2 = 3.06e-10
+  (b) stiffness, disc gas, L* 1000.0 pc: l_gamma 5.290e+01 pc; (l_gamma/h)^2 = 2.80e-01
+  (b) stiffness, ICM core, L* 5.75 pc: l_gamma 4.284e-05 pc; (l_gamma/h)^2 = 4.59e-20
+  (b) stiffness, ICM core, L* 1000.0 pc: l_gamma 1.296e+00 pc; (l_gamma/h)^2 = 4.20e-11
+      Sign: stiffness suppresses the response to components THINNER than l_gamma, i.e. thin cold discs, not extended hot gas:
+      wrong sign for A5 at any L*; the largest value (0.28, cold disc gas at L* 1000 pc) suppresses the CONDENSED source.
+  (c) granularity: a star's own phantom is screened to 0.0352 of its mass (CFG658 E3). Screening REDUCES the condensed
+      source relative to smooth gas: wrong sign for A5, and <= 3.5% in size.
+  (d) carrier dispersion (reported, not A5): a warm carrier sits BELOW the law (B8), so hot, recently assembled systems would
+      hold LESS settled cold energy. That is a phase of the carrier set by its history, not of the baryons, and its sign is
+      opposite to the cluster-core excess.
+  -> no route reaches 0.5 with the right sign (largest 2.8e-01): OBSTRUCTED
+
+=== B8 (Q4) capacity of the bound charge / tethered medium
+  (i) canonical: hard wall u < a0 => M_c(<r) < a0 r^2/G; mean Sigma_c <= a0/(pi G) = 213.8 Msun/pc^2 (CFG695 S4 214) -> PASS
+  (i) alt: hard wall u < a0 => M_c(<r) < a0 r^2/G; mean Sigma_c <= a0/(pi G) = 258.3 Msun/pc^2 (CFG695 S4 258) -> PASS
+  (ii) y   0.1: u_eq/a0 0.270; net outward accel / g_N at u/u_eq = 0.5: -0.789, 0.9: -0.219, 1.1: +0.257, 1.5: +1.761, 2: +5.351
+  (ii) y   1.0: u_eq/a0 0.618; net outward accel / g_N at u/u_eq = 0.5: -0.862, 0.9: -0.303, 1.1: +0.444, 1.5: +10.781, 1.62: +997.001
+  (ii) y  10.0: u_eq/a0 0.916; net outward accel / g_N at u/u_eq = 0.5: -0.961, 0.9: -0.613, 1.1: -14.208, 1.5: -1.505, 1.09: +98.800
+  -> as frozen: FAIL.
+     DISCLOSED CRITERIA ERROR: the frozen factor list puts these cells beyond the hard wall u >= a0, where the tether energy is
+     infinite and the state is inadmissible (the formula's sign flips there): y 10.0, x1.1: u/a0 1.008; y 10.0, x1.5: u/a0 1.374
+     on admissible cells (u < a0): PASS: excess over the law is pushed OUT, deficits fall IN; no overflow can sit in a tethered core; a warm carrier sits at or below the law
+
+=== VERDICTS
+  Q1: CONDITIONAL (neutrality and no ballistic transport DERIVED; merger tracking adiabatic except at the slow corner L* ~ 1 kpc, c_P at the double-pulsar floor)
+  Q2: OBSTRUCTED
+  Q3: OBSTRUCTED
+  Q4: CONDITIONAL on the disclosed criteria correction (capacity wall DERIVED; B8(ii) fails as frozen only in cells beyond the wall, passes on every admissible cell)
+
+MUTATE teeth: {'M2_sat2_breaks_B4': True, 'M1_decouples': True, 'M3_flip_breaks_B5': False}
