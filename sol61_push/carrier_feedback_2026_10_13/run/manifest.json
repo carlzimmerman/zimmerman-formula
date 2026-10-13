@@ -1,0 +1,172 @@
+{
+  "schema_version": 2,
+  "claim_id": "CARRIER-FEEDBACK-2026-10-13-NUMERICAL",
+  "repository": {
+    "commit": "a84425a1d535dd299da5aca2d4b87172a201569a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/carrier_feedback_2026_10_13/check.py",
+    "sol61_push/carrier_feedback_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python scientific runtime",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "163 deterministic recoil quadratures, conservation checks, rate-cancellation and lifetime-probability integrals, and jump-versus-diffusion moment comparisons.",
+    "coefficient_domain": "IEEE float64 with SciPy adaptive quadrature and central finite differences.",
+    "conventions": "Cold source at rest, isotropic COM Born contact, off-resonant kinetic energy E=z*delta. Constant-rate subsection explicitly freezes rate only as a diagnostic.",
+    "inputs": [
+      "sol61_push/carrier_feedback_2026_10_13/check.py",
+      "sol61_push/carrier_feedback_2026_10_13/INPUT_CARRIER_REDUCTION.txt"
+    ],
+    "bounds": {
+      "mass_ratios": [
+        2,
+        2.0004,
+        2.01,
+        3,
+        10
+      ],
+      "angular_moments": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cosines": [
+        -1,
+        -0.2,
+        0.7,
+        1
+      ],
+      "u": [
+        0.001,
+        0.02,
+        0.1
+      ],
+      "source_density_proxy": [
+        0.001,
+        0.01,
+        0.1
+      ],
+      "E_over_delta": [
+        0.0001,
+        0.001,
+        0.01
+      ],
+      "C": 1e-09,
+      "m": 1,
+      "frozen_rate_exposures": [
+        0.1,
+        1,
+        3
+      ],
+      "rtol": 1e-10,
+      "atol": 1e-13
+    },
+    "non_claims": [
+      "No proof of a Markov reduction, physical source state, or measured collision rate.",
+      "Small density proxy is a specified regime, not a universal necessity for arbitrary quantum source states.",
+      "Source decay treated as unreplenished exponential dilution for first-event diagnostic.",
+      "No microscopic halo selection or irreversible closed-system kinetic energy sink."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T13:26:09.154183+00:00",
+    "runtime_seconds": 0.38071,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 720.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/carrier_feedback_2026_10_13/check.py",
+    "sol61_push/carrier_feedback_2026_10_13/INPUT_CARRIER_REDUCTION.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/carrier_feedback_2026_10_13/check.py",
+      "sha256": "367681296ef34a97a61693c67eb67ce7bad27d4f8ee5ccd5f0dafa56806038fe",
+      "sha256_after": "367681296ef34a97a61693c67eb67ce7bad27d4f8ee5ccd5f0dafa56806038fe"
+    },
+    {
+      "path": "sol61_push/carrier_feedback_2026_10_13/INPUT_CARRIER_REDUCTION.txt",
+      "sha256": "f21a47e2ba689e28056fd3a920b1edb68b75085e80d2d033f1e820d44c643d66",
+      "sha256_after": "f21a47e2ba689e28056fd3a920b1edb68b75085e80d2d033f1e820d44c643d66"
+    }
+  ],
+  "output_directory": "sol61_push/carrier_feedback_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/carrier_feedback_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/carrier_feedback_2026_10_13/run/stdout.txt",
+      "sha256": "5176858d00271839e19ff569f3fdf3ed47e80eecf7c2859b23ec6218c05e2db3",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/carrier_feedback_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/carrier_feedback_2026_10_13/run/results.json",
+      "sha256": "4c8b71abe0a50496327916a0d438b1837e5fb284faf31976faeff3bac0fedc61",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

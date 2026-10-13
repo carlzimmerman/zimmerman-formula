@@ -782,3 +782,46 @@ resolution controls, and eight Lean algebra/trigonometric theorems with three
 rejected damaged-proof controls. The leading-order finite-power construction
 survives; its interpretation as microscopic hard confinement does not survive
 the tested cases. The original same-action selector and reservoir remain OPEN.
+
+
+## Supplement H — Carrier recoil is a jump process; source survival must be checked
+
+The [carrier-feedback calculation](../carrier_feedback_2026_10_13/REPORT.md)
+uses the existing conditional off-resonant mixed elastic channel rather than
+adding a new receiver. With a resting source, isotropic COM scattering,
+$r=M/m$ and $a=4r/(1+r)^2$,
+
+$$
+\frac{E'}{E}=1-\frac a2(1-\cos\theta),\qquad
+\langle\Delta E\rangle=-\frac{aE}{2},\qquad
+\langle(\Delta E)^j\rangle=\frac{(-aE)^j}{j+1}.
+$$
+
+Near $r=2$, a collision removes $4/9$ of daughter kinetic energy on average.
+The large fractional jumps invalidate an untested small-step diffusion closure.
+A frozen-rate diagnostic matches the first two moments but gives an artificial
+13.1% heating tail where the exact cold-source jump process has none.
+
+Using the same conversion vertex in the contact cross section and source width,
+with $\mu=mM/(m+M)$, $\delta=M-2m$, $\epsilon=\sqrt{1-4m^2/M^2}$ and
+$\chi_b=4c_3^2n_b/\delta^2$,
+
+$$
+\frac{\nu_0}{\Gamma_b}=4\chi_b\left(\frac\mu m\right)^2
+\frac v\epsilon,\qquad
+P_{\rm first}=1-e^{-\nu_0/\Gamma_b}.
+$$
+
+The probability formula assumes independent scattering in an unreplenished,
+exponentially decaying cold bath before the tagged daughter's first collision.
+The tested off-resonant grid gives $P_{\rm first}\lesssim2.50\%$.
+Small $\chi_b$ is a chosen regime, not a universal bound on all source states.
+These contact results do not apply to the real production resonance.
+
+An elastically recoiling source stores daughter energy; its subsequent decay
+returns that energy to daughters along with the rest-gap release $\delta$.
+Thus tagged-particle cooling is not a permanent closed-system kinetic-energy
+sink. The package records 163 deterministic checks, seven Lean statements and
+three rejected damaged controls. A live finite-jump, conversion/recoil model
+with a justified source state is needed before claiming microscopic selector
+feedback. No target-free halo or empirical detection is established.
