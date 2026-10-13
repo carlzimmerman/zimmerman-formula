@@ -1,0 +1,35 @@
+EXACT VACUUM NONLINEAR CAUSTIC CONTROL — frozen before computation
+Same basea3c5d2 and conditional C2+EH solved exterior. No flat replacement,
+source, negative d, new regulator, changed charge or metric.
+On an interior static patch x=r/R in[1.75,2.25],Q=sqrt2X0,hat theta=theta/(QR),
+tau=t/R,p=partial_x hat theta,calH=N sqrt(1+Bp²),N=sqrtB/E.
+Vacuum eikonal hat theta_tau=calH gives xdot=-calH_p,pdot=calH_x,
+calH_pp=NB/(1+Bp²)^(3/2)>0. Derive characteristic variational matrix and
+phase-space determinant1; exactX0 implies Jshift0,T=rho0g, Einstein metric
+and total charge unchanged. Initial phase perturb -epsilon/k*xi(x)cos[k(x-2)]
+with plateau xi1 near2,compact support[1.75,2.25]; choose initial time derivative
+calH to keepX0. Atcenter p=p_background and p'_0=p'_background+epsilon*k.
+C2 cutoff can use quintic transitions betweenplateau[1.9,2.1] and supportedge;
+|xi'|<=12.5. Smooth cutoffs also possible. Verify initial p<0 analytically.
+
+Symbolic/proof route: atcenter projectedJacobian J=M11+M12 p'_0,
+M12(t)=-calH_pp(0)t+O(t²),M11=1+O(t). ForA=epsilon*k large,
+J(2/[calH_pp(0)A])<0 uniformly on the fixed phase-space neighborhood.
+This gives an upper bound on first classical caustic time, not a global
+first-event certificate. Perturbation sequenceepsilon=1/n,k=n² approaches
+zero in initial(C1 phase,C0 time-derivative) jet norm while lifespan tends0.
+Do NOT claim ill-posedness in higher-regularity/weighted classes or physical
+UV validity at arbitrarily largek. NoUV cutoff was established in this action.
+
+Numeric route: frozenb1000,Y; epsilon=.001,k in[1024,2048,4096,8192],centerx2.
+Integrate center Hamilton flow plus2x2 fundamentalM,initialM=I, until projection
+J0 downward. DOP853 rtol2e-10,atol2e-12; repeat2e-12/2e-14. Max time
+4/[calH_pp(0)epsilon*k]. Require a transverseJ0 event,nonzero momentum-label
+K,energycalH deviation<1e-9,detM error<1e-8,all center statesx in[1.8,2.2],p<0,
+B>.95; base/tight event/time/state differences<1e-7. Report scaled time
+T*calH_pp(0)*epsilon*k,not fit coefficients. Mutation deletecalH_pp from
+variational matrix: must keepJ>.5 on the same admitted interval. This is an
+implementation-control, not a new physical model.
+
+Each run60swall45sCPU,thread1,no memorycap; exact and bounded evidence distinct.
+Preserve failures and hashes; higher-regularity existence remains a live route.
