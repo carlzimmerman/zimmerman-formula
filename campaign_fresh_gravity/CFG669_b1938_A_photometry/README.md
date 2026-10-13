@@ -103,3 +103,28 @@ sealed CFG673 band (26.9–30.9) and above every control, which is suggestive, b
 has an obvious mimic: **A's own mass (the perturbation that made A famous) is not in the lens model**, so arc residuals at A can be
 absorbed by a point of light there. Required next (Part 5, frozen before running): include A's mass at its published position and
 mass, and re-measure. Never cite the 28.6 AB number as a detection.
+
+---
+
+# Part 5 RESULT (criteria 73fc35c96): the Part-4 excess was A's own mass, not its light — NOT DIAGNOSTIC
+
+`cfg674_part5_results.json`, `cfg674_part5_massprofile.json`, `cfg674_part5_jitter.json` (diagnostics). With A's mass (SIS) in the
+lens model the light at A collapses, and the injection tooth now **bites** (29.0 AB recovered at S 3.08 / 3.13):
+
+| variant | θE,sub | f_A | S | vs 11 controls | 2σ limit | tooth | verdict |
+|---|---|---|---|---|---|---|---|
+| M1 fixed (Vegetti mass) | 0.0050″ | 2.57 nJy (30.37 AB) | 0.87 | 2.4σ (rank 9/11) | **29.47 AB** | bites | NOT DIAGNOSTIC |
+| M2 "free" | 0.00495″ | 2.53 nJy | 0.87 | 2.6σ | 29.49 AB | bites | NOT DIAGNOSTIC |
+
+Frozen diagnostic label: **IN BETWEEN** (neither ≥ 3σ in both nor < 2σ in either). **Disclosed after running:** M2 is ill-defined —
+the likelihood profile in θE,sub is jagged (ΔlogL jumps of 10²–10³ between neighbouring values: adaptive Delaunay re-triangulation),
+so its optimum merely landed near M1; it is not an independent measurement of A's mass. The jitter scan shows A's light trades
+**smoothly** against A's mass (13.2 → 12.4 → 8.7 → 7.3 → 4.5 → 2.3 → 0.7 nJy for θE,sub = 0 → 0.006″): at 0.031″ pixels light and
+mass at A are degenerate. Since A's mass is independently established, the physical model includes it: **Part 4's 3.8σ excess
+was A's mass signature, not starlight. Never cite it as light.**
+
+**What this data says about CFG673 (sealed), stated by the frozen rules:** with the tooth biting, the 2σ limit is 29.47 / 29.49 AB,
+brighter than the sealed faint end (30.88 / 31.02) → **NOT DIAGNOSTIC**. Diagnostic only (no verdict weight, model-conditional):
+the brighter part of the sealed band (26.9–29.5 AB, i.e. the low-M/L or EFE-Newtonian end) is disfavoured at 2σ; the framework's
+prediction survives in 29.5–30.9 AB (isolated cold-mass reading with old, high-M/L stars). Separating A's light from its mass needs
+finer resolution or a joint mass+light model with the light's profile — the PI team's analysis remains the scorer.

@@ -75,7 +75,7 @@ def adapt_from(res):
 def pixelization():
     return af.Model(al.Pixelization, mesh=al.mesh.Delaunay(pixels=NPIX), regularization=af.Model(al.reg.Adapt))
 
-if STAGE in ("2check", "2", "3", "time2", "2fast", "2nm", "2nm3"):
+if STAGE in ("2check", "2", "3", "time2", "2fast", "2nm", "2nm3", "5", "5profile", "5jitter"):
     res1 = run_stage1()
     i1 = res1.max_log_likelihood_instance
     adapt = adapt_from(res1)
@@ -126,6 +126,7 @@ if STAGE == "time2":
     t = time.time(); ll = an.log_likelihood_function(instance=inst); dt2 = time.time() - t
     print(f"TIME2: one stage-2 likelihood {dt:.2f}s (first) / {dt2:.2f}s (second); logL {float(ll):.1f}; free params {m.prior_count}")
 
+EXTRA = []   # extra lens-plane galaxies (Part 5: A's own mass)
 # ------------------------------------------------------------------ stage 3: measure A at the stage-2 maximum-likelihood model
 def run_stage3(res2=None, tag="", i2=None, ad2=None):
     import autoarray as aa
@@ -161,7 +162,7 @@ def run_stage3(res2=None, tag="", i2=None, ad2=None):
         grid = ad2.galaxy_name_image_plane_mesh_grid_dict[SK] if not npix else al.image_mesh.Hilbert(
             pixels=npix, weight_floor=0.2, weight_power=1.0).image_plane_mesh_grid_from(mask=d.mask, adapt_data=ad2.galaxy_name_image_dict[SK])
         A = al.Galaxy(redshift=0.881, light=al.lp_linear.PointSource(centre=tuple(yx)))
-        tr = al.Tracer(galaxies=[lens2, A, src])
+        tr = al.Tracer(galaxies=[lens2, A, src] + list(EXTRA))
         ad = al.AdaptImages(galaxy_image_dict={src: ad2.galaxy_name_image_dict[SK]}, galaxy_image_plane_mesh_grid_dict={src: grid})
         fit = al.FitImaging(dataset=d, tracer=tr, adapt_images=ad, settings=aa.Settings(use_positive_only_solver=False))
         inv = fit.inversion
@@ -275,3 +276,72 @@ if STAGE == "2nm3":     # Nautilus stage 2 NOT RUN (12-h rule: 2000 evals in 11 
     print("2nm3 ML: slope", L2.mass.slope, "theta_E", L2.mass.einstein_radius, "q_M", q, "PA_M", phi, flush=True)
     json.dump({"u": ub.tolist(), "names": [str(n) for n in m.model_component_and_parameter_names]}, open(os.path.join(HERE, "cfg674_stage2_ml_nm.json"), "w"), indent=1)
     run_stage3(tag="_nmML", i2=i2, ad2=adapt)
+
+
+if STAGE == "5":        # Part 5 (criteria 73fc35c96): A's own mass in the lens model
+    import autoarray as aa
+    from scipy.optimize import minimize_scalar
+    plh = res1.positions_likelihood_from(factor=3.0, minimum_threshold=0.2)
+    m = stage2_model(i1, res1)
+    ub = np.array(json.load(open(os.path.join(HERE, "cfg674_stage2_ml_nm.json")))["u"])
+    i2 = m.instance_from_unit_vector(list(ub))
+    SK = "('galaxies', 'source')"; src2 = i2.galaxies.source
+    def ll_sub(th, with_light=True):
+        src = al.Galaxy(redshift=2.059, pixelization=al.Pixelization(mesh=al.mesh.Delaunay(pixels=NPIX), regularization=src2.pixelization.regularization))
+        gals = [i2.galaxies.lens, src, al.Galaxy(redshift=0.881, mass=al.mp.IsothermalSph(centre=AYX, einstein_radius=max(th, 1e-6)))]
+        if with_light: gals.append(al.Galaxy(redshift=0.881, light=al.lp_linear.PointSource(centre=AYX)))
+        ad = al.AdaptImages(galaxy_image_dict={src: adapt.galaxy_name_image_dict[SK]},
+                            galaxy_image_plane_mesh_grid_dict={src: adapt.galaxy_name_image_plane_mesh_grid_dict[SK]})
+        f = al.FitImaging(dataset=ds, tracer=al.Tracer(galaxies=gals), adapt_images=ad, settings=aa.Settings(use_positive_only_solver=False))
+        return float(f.log_likelihood)
+    TH1 = 0.0050
+    o = minimize_scalar(lambda t: -ll_sub(t), bounds=(0.0, 0.05), method="bounded", options=dict(xatol=2e-4))
+    TH2 = float(o.x)
+    dll = ll_sub(TH2, True) - ll_sub(TH2, False)
+    print(f"PART5: theta_E,sub fixed {TH1}, free best {TH2:.4f}; M3 dlogL(light at A | M2 mass) = {dll:.2f}", flush=True)
+    summary = {"theta_sub_M1": TH1, "theta_sub_M2": TH2, "dlogL_light_M3": dll}
+    for tag, th in (("_P5M1", TH1), ("_P5M2", TH2)):
+        EXTRA[:] = [al.Galaxy(redshift=0.881, mass=al.mp.IsothermalSph(centre=AYX, einstein_radius=th))]
+        r = run_stage3(tag=tag, i2=i2, ad2=adapt)
+        a = np.array(r["same_radius_Jy"]); med = np.median(a); mad = 1.4826 * np.median(np.abs(a - med))
+        summary[tag] = dict(S=r["S"], m_A=r["m_A"], f_A_nJy=r["f_A_Jy"] * 1e9, vs_controls_sigma=(r["f_A_Jy"] - med) / mad,
+                            rank=int((a < r["f_A_Jy"]).sum()), n=len(a), tooth=r["tooth"], verdict=r["verdict_canonical"])
+    rob = all(summary[t]["vs_controls_sigma"] >= 3 for t in ("_P5M1", "_P5M2"))
+    absb = any(summary[t]["vs_controls_sigma"] < 2 for t in ("_P5M1", "_P5M2"))
+    summary["diagnostic"] = "ROBUST TO A'S MASS" if rob else ("ABSORBED BY A'S MASS" if absb else "IN BETWEEN")
+    json.dump(summary, open(os.path.join(HERE, "cfg674_part5_results.json"), "w"), indent=1, default=float)
+    print("PART5 SUMMARY", json.dumps(summary, indent=1, default=float), flush=True)
+
+if STAGE == "5profile":   # diagnostic only: likelihood profile of A's mass (does the JWST arc itself prefer A's mass?)
+    import autoarray as aa
+    plh = res1.positions_likelihood_from(factor=3.0, minimum_threshold=0.2)
+    m = stage2_model(i1, res1); ub = np.array(json.load(open(os.path.join(HERE, "cfg674_stage2_ml_nm.json")))["u"]); i2 = m.instance_from_unit_vector(list(ub))
+    SK = "('galaxies', 'source')"; src2 = i2.galaxies.source
+    def ll(th):
+        src = al.Galaxy(redshift=2.059, pixelization=al.Pixelization(mesh=al.mesh.Delaunay(pixels=NPIX), regularization=src2.pixelization.regularization))
+        gals = [i2.galaxies.lens, src, al.Galaxy(redshift=0.881, light=al.lp_linear.PointSource(centre=AYX))]
+        if th > 0: gals.append(al.Galaxy(redshift=0.881, mass=al.mp.IsothermalSph(centre=AYX, einstein_radius=th)))
+        ad = al.AdaptImages(galaxy_image_dict={src: adapt.galaxy_name_image_dict[SK]}, galaxy_image_plane_mesh_grid_dict={src: adapt.galaxy_name_image_plane_mesh_grid_dict[SK]})
+        return float(al.FitImaging(dataset=ds, tracer=al.Tracer(galaxies=gals), adapt_images=ad, settings=aa.Settings(use_positive_only_solver=False)).log_likelihood)
+    prof = {th: ll(th) for th in (0.0, 0.0025, 0.004, 0.005, 0.006, 0.0075, 0.01, 0.02)}
+    b = max(prof.values()); print("PROFILE", {k: round(v - b, 2) for k, v in prof.items()}, flush=True)
+    json.dump({str(k): v for k, v in prof.items()}, open(os.path.join(HERE, "cfg674_part5_massprofile.json"), "w"), indent=1)
+
+if STAGE == "5jitter":    # diagnostic only: A's light amplitude under tiny lens perturbations (mesh re-triangulation systematic)
+    import autoarray as aa
+    plh = res1.positions_likelihood_from(factor=3.0, minimum_threshold=0.2)
+    m = stage2_model(i1, res1); ub = np.array(json.load(open(os.path.join(HERE, "cfg674_stage2_ml_nm.json")))["u"]); i2 = m.instance_from_unit_vector(list(ub))
+    SK = "('galaxies', 'source')"; src2 = i2.galaxies.source; to_jy = 1e6 * meta["pixar_sr"]; kcal = 0.9679391778396114
+    def fa(th):
+        src = al.Galaxy(redshift=2.059, pixelization=al.Pixelization(mesh=al.mesh.Delaunay(pixels=NPIX), regularization=src2.pixelization.regularization))
+        A = al.Galaxy(redshift=0.881, light=al.lp_linear.PointSource(centre=AYX))
+        gals = [i2.galaxies.lens, A, src] + ([al.Galaxy(redshift=0.881, mass=al.mp.IsothermalSph(centre=AYX, einstein_radius=th))] if th > 0 else [])
+        ad = al.AdaptImages(galaxy_image_dict={src: adapt.galaxy_name_image_dict[SK]}, galaxy_image_plane_mesh_grid_dict={src: adapt.galaxy_name_image_plane_mesh_grid_dict[SK]})
+        f = al.FitImaging(dataset=ds, tracer=al.Tracer(galaxies=gals), adapt_images=ad, settings=aa.Settings(use_positive_only_solver=False))
+        inv = f.inversion
+        k = sum(getattr(o, "params", 1) for o in inv.linear_obj_list[:[j for j, o in enumerate(inv.linear_obj_list) if getattr(o, "light_profile_list", None) and any(type(lp).__name__ == "PointSource" for lp in o.light_profile_list)][0]])
+        return float(inv.reconstruction[k]) / kcal * to_jy * 1e9, float(f.log_likelihood)
+    rows = {th: fa(th) for th in (0.0, 0.001, 0.002, 0.0025, 0.003, 0.004, 0.005, 0.006, 0.0075)}
+    for th, (fA, l) in rows.items(): print(f"JITTER theta_sub {th:.4f}: f_A {fA:6.2f} nJy, logL {l:.1f}", flush=True)
+    v = np.array([r[0] for r in rows.values()]); print(f"JITTER spread: min {v.min():.2f} max {v.max():.2f} std {v.std():.2f} nJy", flush=True)
+    json.dump({str(k): v for k, v in rows.items()}, open(os.path.join(HERE, "cfg674_part5_jitter.json"), "w"), indent=1)
