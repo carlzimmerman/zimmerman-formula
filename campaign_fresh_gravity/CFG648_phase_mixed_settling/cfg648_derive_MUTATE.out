@@ -1,0 +1,55 @@
+CFG648 derivations (FROZEN_CRITERIA.md, 2e9dffba1): phase-mixed settling H-SP on CFG637's infall solver (cfg648_lib.InfallSP).
+
+D1 r_sp/r_ta vs Gamma (eps grid) for the CFG637 representative galaxy / group / cluster, both footings, both sources, brackets
+(apo, R5lit), C2 (N 3200), C3 (no-core benchmark); D2 EPS seed (CFG557, CONTEXT) for the representative systems and the T6 masses;
+per-system H-SP runs (eps = 1) for the gate systems: 63 Tian+26 groups, 12 X-COP clusters, Bullet BASE/B1/B2/B3, KiDS lens masses
+(5/50/95 percentiles, and the eps grid at the median for the age-split bound), CFG556 halo masses (T6), SPARC galaxies (T1).
+Writes cfg648_profiles.npz (not committed; regenerated here), cfg648_derive.out, cfg648_derive_results.json. No gate number.
+MUTATE (CFG648_MUTATE=1): M-ta (H-SP off reproduces cfg637_lib to 0 on the three representative systems) and M-Gamma (EPS seeds
+reversed across the T6 masses); writes *_MUTATE outputs.
+  background: Om 0.3138, OL 0.6862, f_b 0.15713, cold/b 5.3643
+  representative group NGC4258 (log M_bar 10.93); cluster A1795
+
+== M-ta: H-SP off (r_sp -> r_ta) vs cfg637_lib.derive, same inputs (canonical)
+  galaxy (B): max rel diff 0.0e+00; reservoir/supply 0.0000 / 0.0000
+  group (B): max rel diff 0.0e+00; reservoir/supply 0.0000 / 0.0000
+  cluster (HCB): max rel diff 0.0e+00; reservoir/supply 0.2566 / 0.2566
+  [PASS] M-ta derive: H-SP off reproduces cfg637_lib.derive (M_res, drawn, r_ta, M_tot) to 0: max rel diff 0.0e+00
+
+== D2 EPS seed shape (CFG557 mean main-progenitor history; LCDM-background, PROVISIONAL, CONTEXT)
+   M200m     src  foot       Gamma_fw  s_fw   x_set_fw  set/B_fw | Gamma_EPS  s_EPS  x_set_EPS  set/B_EPS
+      1e+11  B    canonical   0.401   0.384   0.208    0.728
+      1e+11  B    alt         0.401   0.378   0.190    0.726
+      1e+11  HCB  canonical   0.401   0.384   0.208    0.728
+      1e+11  HCB  alt         0.401   0.378   0.190    0.726
+      3e+11  B    canonical   0.401   0.377   0.231    0.731
+      3e+11  B    alt         0.401   0.379   0.211    0.728
+      3e+11  HCB  canonical   0.401   0.377   0.231    0.731
+      3e+11  HCB  alt         0.401   0.379   0.211    0.728
+      1e+12  B    canonical   0.401   0.383   0.286    0.725
+      1e+12  B    alt         0.401   0.392   0.261    0.722
+      1e+12  HCB  canonical   0.401   0.383   0.286    0.725
+      1e+12  HCB  alt         0.401   0.392   0.261    0.722
+      3e+12  B    canonical   0.401   0.400   0.273    0.732
+      3e+12  B    alt         0.401   0.394   0.246    0.729
+      3e+12  HCB  canonical   0.401   0.406   0.343    0.728
+      3e+12  HCB  alt         0.401   0.400   0.313    0.725
+      1e+13  B    canonical   0.401   0.398   0.231    0.735
+      1e+13  B    alt         0.401   0.393   0.211    0.733
+      1e+13  HCB  canonical   0.401   0.455   0.418    0.729
+      1e+13  HCB  alt         0.401   0.439   0.382    0.730
+      1e+14  B    canonical   0.401   0.407   0.265    0.727
+      1e+14  B    alt         0.401   0.404   0.242    0.735
+      1e+14  HCB  canonical   0.401   0.438   0.438    0.517
+      1e+14  HCB  alt         0.401   0.426   0.426    0.552
+      1e+15  B    canonical   0.401   0.430   0.365    0.730
+      1e+15  B    alt         0.401   0.423   0.333    0.727
+      1e+15  HCB  canonical   0.401   0.462   0.462    0.452
+      1e+15  HCB  alt         0.401   0.455   0.455    0.447
+
+== M-Gamma: EPS seeds reversed across the T6 masses (B, both footings)
+  [canonical] slope ds/dGamma unshuffled -0.1100; shuffled vs own Gamma +0.1828; shuffled vs used Gamma -0.2110
+  [alt] slope ds/dGamma unshuffled -0.1097; shuffled vs own Gamma +0.1781; shuffled vs used Gamma -0.2076
+  [PASS] M-Gamma shuffled EPS seeds remove the trend vs own Gamma and keep it vs the Gamma used: canonical: -0.110 -> own +0.183, used -0.211, alt: -0.110 -> own +0.178, used -0.208
+
+2/2 checks pass (0 load-bearing failures); elapsed 268.8 s

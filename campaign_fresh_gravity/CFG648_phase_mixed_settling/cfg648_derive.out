@@ -1,0 +1,187 @@
+CFG648 derivations (FROZEN_CRITERIA.md, 2e9dffba1): phase-mixed settling H-SP on CFG637's infall solver (cfg648_lib.InfallSP).
+
+D1 r_sp/r_ta vs Gamma (eps grid) for the CFG637 representative galaxy / group / cluster, both footings, both sources, brackets
+(apo, R5lit), C2 (N 3200), C3 (no-core benchmark); D2 EPS seed (CFG557, CONTEXT) for the representative systems and the T6 masses;
+per-system H-SP runs (eps = 1) for the gate systems: 63 Tian+26 groups, 12 X-COP clusters, Bullet BASE/B1/B2/B3, KiDS lens masses
+(5/50/95 percentiles, and the eps grid at the median for the age-split bound), CFG556 halo masses (T6), SPARC galaxies (T1).
+Writes cfg648_profiles.npz (not committed; regenerated here), cfg648_derive.out, cfg648_derive_results.json. No gate number.
+MUTATE (CFG648_MUTATE=1): M-ta (H-SP off reproduces cfg637_lib to 0 on the three representative systems) and M-Gamma (EPS seeds
+reversed across the T6 masses); writes *_MUTATE outputs.
+  background: Om 0.3138, OL 0.6862, f_b 0.15713, cold/b 5.3643
+  representative group NGC4258 (log M_bar 10.93); cluster A1795
+
+== D1 r_sp/r_ta vs Gamma (eps grid), representative systems, PRIMARY (max caustic, phase-mixed draw)
+   system  src  foot       eps   Gamma    s=r_sp/r_ta  x_edge_B  x_edge_SP  x_set  settled/B  res/supply  first-infall/supply  set(0.2-0.5)/B  scattered
+   galaxy   B    canonical 0.30   1.364      0.223      0.418     0.151   0.151    0.352     0.644        0.644             0.000       17
+   galaxy   B    canonical 0.50   0.814      0.304      0.418     0.228   0.228    0.531     0.463        0.463             0.126       55
+   galaxy   B    canonical 0.75   0.538      0.353      0.418     0.278   0.278    0.652     0.340        0.340             0.352       57
+   galaxy   B    canonical 1.00   0.401      0.394      0.418     0.309   0.309    0.728     0.267        0.267             0.494       147
+   galaxy   B    canonical 1.50   0.263      0.424      0.418     0.343   0.343    0.809     0.190        0.190             0.649       186
+   galaxy   B    canonical 2.50   0.163      0.454      0.418     0.365   0.365    0.868     0.122        0.122             0.753       213
+   galaxy   B    alt       0.30   1.364      0.219      0.376     0.138   0.138    0.358     0.642        0.642             0.000       12
+   galaxy   B    alt       0.50   0.814      0.299      0.376     0.205   0.205    0.537     0.463        0.463             0.028       58
+   galaxy   B    alt       0.75   0.538      0.355      0.382     0.253   0.253    0.650     0.340        0.340             0.290       50
+   galaxy   B    alt       1.00   0.401      0.378      0.382     0.282   0.282    0.726     0.267        0.267             0.445       126
+   galaxy   B    alt       1.50   0.263      0.423      0.382     0.313   0.313    0.810     0.186        0.186             0.618       179
+   galaxy   B    alt       2.50   0.163      0.452      0.382     0.333   0.333    0.865     0.122        0.122             0.728       200
+   group    B    canonical 0.30   1.364      0.248      0.525     0.224   0.224    0.348     0.647        0.647             0.077       58
+   group    B    canonical 0.50   0.814      0.336      0.525     0.313   0.313    0.529     0.465        0.465             0.361       179
+   group    B    canonical 0.75   0.538      0.435      0.525     0.370   0.370    0.649     0.343        0.343             0.548       327
+   group    B    canonical 1.00   0.413      0.460      0.525     0.399   0.399    0.717     0.274        0.274             0.651       387
+   group    B    canonical 1.50   0.275      0.487      0.525     0.437   0.437    0.799     0.194        0.194             0.778       520
+   group    B    canonical 2.50   0.163      0.513      0.533     0.479   0.479    0.871     0.118        0.118             0.915       375
+   group    B    alt       0.30   1.364      0.244      0.479     0.211   0.211    0.353     0.645        0.645             0.037       52
+   group    B    alt       0.50   0.814      0.327      0.479     0.290   0.290    0.535     0.465        0.465             0.309       145
+   group    B    alt       0.75   0.538      0.380      0.479     0.343   0.343    0.657     0.343        0.343             0.494       260
+   group    B    alt       1.00   0.413      0.412      0.479     0.370   0.370    0.729     0.271        0.271             0.597       468
+   group    B    alt       1.50   0.275      0.464      0.486     0.405   0.405    0.798     0.190        0.190             0.704       342
+   group    B    alt       2.50   0.163      0.501      0.486     0.437   0.437    0.881     0.118        0.118             0.823       311
+   group    HCB  canonical 0.30   1.364      0.250      0.541     0.231   0.231    0.350     0.647        0.647             0.099       61
+   group    HCB  canonical 0.50   0.814      0.360      0.541     0.323   0.323    0.532     0.465        0.465             0.394       173
+   group    HCB  canonical 0.75   0.538      0.441      0.541     0.382   0.382    0.653     0.343        0.343             0.589       309
+   group    HCB  canonical 1.00   0.413      0.467      0.541     0.412   0.412    0.722     0.274        0.274             0.695       392
+   group    HCB  canonical 1.50   0.275      0.490      0.541     0.451   0.451    0.804     0.194        0.194             0.828       508
+   group    HCB  canonical 2.50   0.163      0.512      0.549     0.494   0.494    0.876     0.118        0.118             0.970       462
+   group    HCB  alt       0.30   1.364      0.246      0.501     0.218   0.218    0.349     0.645        0.645             0.055       55
+   group    HCB  alt       0.50   0.814      0.329      0.501     0.299   0.299    0.528     0.465        0.465             0.317       175
+   group    HCB  alt       0.75   0.538      0.405      0.501     0.354   0.354    0.649     0.343        0.343             0.495       277
+   group    HCB  alt       1.00   0.413      0.429      0.501     0.382   0.382    0.721     0.271        0.271             0.595       314
+   group    HCB  alt       1.50   0.275      0.473      0.501     0.418   0.418    0.799     0.194        0.194             0.713       461
+   group    HCB  alt       2.50   0.163      0.509      0.509     0.458   0.458    0.870     0.118        0.118             0.843       347
+   cluster  B    canonical 0.30   1.364      0.255      0.354     0.166   0.166    0.369     0.625        0.625             0.000       27
+   cluster  B    canonical 0.50   0.814      0.322      0.354     0.211   0.211    0.538     0.454        0.454             0.084       160
+   cluster  B    canonical 0.75   0.538      0.370      0.354     0.246   0.246    0.658     0.333        0.333             0.338       329
+   cluster  B    canonical 1.00   0.401      0.403      0.354     0.269   0.269    0.731     0.263        0.263             0.481       536
+   cluster  B    canonical 1.50   0.263      0.436      0.354     0.295   0.295    0.813     0.186        0.186             0.637       756
+   cluster  B    canonical 2.50   0.163      0.462      0.354     0.313   0.313    0.874     0.118        0.118             0.752       823
+   cluster  B    alt       0.30   1.364      0.252      0.318     0.156   0.156    0.374     0.625        0.625             0.000       25
+   cluster  B    alt       0.50   0.814      0.319      0.318     0.199   0.199    0.545     0.454        0.454             0.003       102
+   cluster  B    alt       0.75   0.538      0.368      0.318     0.228   0.228    0.666     0.333        0.333             0.262       305
+   cluster  B    alt       1.00   0.401      0.399      0.323     0.246   0.246    0.728     0.263        0.263             0.417       419
+   cluster  B    alt       1.50   0.263      0.437      0.323     0.269   0.269    0.809     0.186        0.186             0.593       638
+   cluster  B    alt       2.50   0.163      0.465      0.323     0.286   0.286    0.870     0.118        0.118             0.720       782
+   cluster  HCB  canonical 0.30   1.364      0.278      1.363     0.509   0.278    0.272     0.797        0.627             0.286       32
+   cluster  HCB  canonical 0.50   0.814      0.325      1.363     0.743   0.325    0.318     0.762        0.457             0.436       130
+   cluster  HCB  canonical 0.75   0.540      0.421      1.363     0.905   0.421    0.414     0.690        0.337             0.746       208
+   cluster  HCB  canonical 1.00   0.401      0.446      1.363     1.007   0.446    0.440     0.673        0.267             0.827       323
+   cluster  HCB  canonical 1.50   0.263      0.480      1.363     1.119   0.480    0.473     0.650        0.186             0.934       469
+   cluster  HCB  canonical 2.50   0.163      0.479      1.363     1.208   0.479    0.472     0.648        0.118             0.932       469
+   cluster  HCB  alt       0.30   1.364      0.276      1.226     0.465   0.276    0.270     0.778        0.627             0.281       30
+   cluster  HCB  alt       0.50   0.814      0.320      1.226     0.669   0.320    0.314     0.742        0.457             0.422       110
+   cluster  HCB  alt       0.75   0.541      0.419      1.226     0.814   0.419    0.412     0.661        0.337             0.738       184
+   cluster  HCB  alt       1.00   0.401      0.449      1.245     0.905   0.449    0.443     0.638        0.267             0.837       323
+   cluster  HCB  alt       1.50   0.263      0.479      1.245     1.022   0.479    0.473     0.615        0.186             0.934       482
+   cluster  HCB  alt       2.50   0.163      0.476      1.245     1.086   0.476    0.470     0.615        0.118             0.923       431
+  D1 label galaxy|B: TREND (Spearman rho(s, Gamma) -1.00 / -1.00); r_sp vs B edge at eps 1: BINDS
+  D1 label group|B: TREND (Spearman rho(s, Gamma) -1.00 / -1.00); r_sp vs B edge at eps 1: BINDS
+  D1 label group|HCB: TREND (Spearman rho(s, Gamma) -1.00 / -1.00); r_sp vs B edge at eps 1: BINDS
+  D1 label cluster|B: TREND (Spearman rho(s, Gamma) -1.00 / -1.00); r_sp vs B edge at eps 1: DOES NOT BIND
+  D1 label cluster|HCB: TREND (Spearman rho(s, Gamma) -0.94 / -0.94); r_sp vs B edge at eps 1: BINDS
+
+== D1 brackets at eps = 1 (apo caustic; R5lit draw) and C2 (N 3200)
+  galaxy|B|canonical|apo  : s 0.420  x_set 0.309  settled/B 0.728  res/supply 0.267
+  galaxy|B|canonical|R5lit: s 0.471  x_set 0.418  settled/B 0.755  res/supply 0.240
+  galaxy|B|alt|apo  : s 0.700  x_set 0.282  settled/B 0.726  res/supply 0.267
+  galaxy|B|alt|R5lit: s 0.482  x_set 0.382  settled/B 0.777  res/supply 0.215
+  group|B|canonical|apo  : s 0.390  x_set 0.390  settled/B 0.702  res/supply 0.289
+  group|B|canonical|R5lit: s 0.424  x_set 0.424  settled/B 0.677  res/supply 0.315
+  group|B|alt|apo  : s 0.453  x_set 0.370  settled/B 0.729  res/supply 0.271
+  group|B|alt|R5lit: s 0.433  x_set 0.433  settled/B 0.713  res/supply 0.287
+  group|HCB|canonical|apo  : s 0.398  x_set 0.398  settled/B 0.695  res/supply 0.301
+  group|HCB|canonical|R5lit: s 0.431  x_set 0.431  settled/B 0.666  res/supply 0.330
+  group|HCB|alt|apo  : s 0.449  x_set 0.382  settled/B 0.721  res/supply 0.271
+  group|HCB|alt|R5lit: s 0.429  x_set 0.429  settled/B 0.692  res/supply 0.300
+  cluster|B|canonical|apo  : s 0.376  x_set 0.269  settled/B 0.731  res/supply 0.263
+  cluster|B|canonical|R5lit: s 0.458  x_set 0.354  settled/B 0.791  res/supply 0.203
+  cluster|B|alt|apo  : s 0.375  x_set 0.246  settled/B 0.728  res/supply 0.263
+  cluster|B|alt|R5lit: s 0.418  x_set 0.323  settled/B 0.809  res/supply 0.181
+  cluster|HCB|canonical|apo  : s 0.376  x_set 0.376  settled/B 0.370  res/supply 0.725
+  cluster|HCB|canonical|R5lit: s 0.468  x_set 0.468  settled/B 0.461  res/supply 0.657
+  cluster|HCB|alt|apo  : s 0.358  x_set 0.358  settled/B 0.352  res/supply 0.712
+  cluster|HCB|alt|R5lit: s 0.468  x_set 0.468  settled/B 0.461  res/supply 0.623
+  [PASS] (reported) C2 N 1600 vs 3200: s within 5% (galaxy, group, cluster; eps 1; canonical): galaxy 0.010, group 0.002, cluster 0.012
+  C3 (reported) no-core benchmark (eps 1, q 0.02, Lambda background): s = 0.472, Gamma = 0.413, scattered 408
+
+== D2 EPS seed shape (CFG557 mean main-progenitor history; LCDM-background, PROVISIONAL, CONTEXT)
+   M200m     src  foot       Gamma_fw  s_fw   x_set_fw  set/B_fw | Gamma_EPS  s_EPS  x_set_EPS  set/B_EPS
+      1e+11  B    canonical   0.401   0.384   0.208    0.728  |   0.363    0.377   0.208     0.735
+      1e+11  B    alt         0.401   0.378   0.190    0.726  |   0.363    0.372   0.190     0.733
+      1e+11  HCB  canonical   0.401   0.384   0.208    0.728  |   0.363    0.377   0.208     0.735
+      1e+11  HCB  alt         0.401   0.378   0.190    0.726  |   0.363    0.372   0.190     0.733
+      3e+11  B    canonical   0.401   0.377   0.231    0.731  |   0.388    0.367   0.231     0.725
+      3e+11  B    alt         0.401   0.379   0.211    0.728  |   0.388    0.362   0.208     0.722
+      3e+11  HCB  canonical   0.401   0.377   0.231    0.731  |   0.388    0.367   0.231     0.725
+      3e+11  HCB  alt         0.401   0.379   0.211    0.728  |   0.388    0.362   0.208     0.722
+      1e+12  B    canonical   0.401   0.383   0.286    0.725  |   0.438    0.363   0.269     0.686
+      1e+12  B    alt         0.401   0.392   0.261    0.722  |   0.438    0.359   0.246     0.683
+      1e+12  HCB  canonical   0.401   0.383   0.286    0.725  |   0.438    0.363   0.269     0.686
+      1e+12  HCB  alt         0.401   0.392   0.261    0.722  |   0.438    0.359   0.246     0.683
+      3e+12  B    canonical   0.401   0.400   0.273    0.732  |   0.513    0.355   0.250     0.656
+      3e+12  B    alt         0.401   0.394   0.246    0.729  |   0.513    0.352   0.228     0.657
+      3e+12  HCB  canonical   0.401   0.406   0.343    0.728  |   0.513    0.365   0.313     0.653
+      3e+12  HCB  alt         0.401   0.400   0.313    0.725  |   0.513    0.359   0.286     0.650
+      1e+13  B    canonical   0.401   0.398   0.231    0.735  |   0.601    0.335   0.208     0.616
+      1e+13  B    alt         0.401   0.393   0.211    0.733  |   0.601    0.331   0.187     0.614
+      1e+13  HCB  canonical   0.401   0.455   0.418    0.729  |   0.601    0.381   0.354     0.614
+      1e+13  HCB  alt         0.401   0.439   0.382    0.730  |   0.601    0.356   0.318     0.612
+      1e+14  B    canonical   0.401   0.407   0.265    0.727  |   0.839    0.310   0.211     0.522
+      1e+14  B    alt         0.401   0.404   0.242    0.735  |   0.839    0.305   0.193     0.520
+      1e+14  HCB  canonical   0.401   0.438   0.438    0.517  |   0.839    0.341   0.341     0.400
+      1e+14  HCB  alt         0.401   0.426   0.426    0.552  |   0.839    0.335   0.335     0.433
+      1e+15  B    canonical   0.401   0.430   0.365    0.730  |   1.277    0.275   0.242     0.379
+      1e+15  B    alt         0.401   0.423   0.333    0.727  |   1.277    0.271   0.221     0.379
+      1e+15  HCB  canonical   0.401   0.462   0.462    0.452  |   1.277    0.291   0.291     0.228
+      1e+15  HCB  alt         0.401   0.455   0.455    0.447  |   1.277    0.292   0.292     0.241
+
+== D2 representative systems with the EPS seed (CONTEXT)
+  galaxy|B|canonical: EPS seed slope at M_ta -0.845 -> Gamma 0.476, s 0.358, x_set 0.282, settled/B 0.668
+  galaxy|B|alt: EPS seed slope at M_ta -0.845 -> Gamma 0.476, s 0.354, x_set 0.257, settled/B 0.679
+  group|B|canonical: EPS seed slope at M_ta -0.816 -> Gamma 0.488, s 0.409, x_set 0.376, settled/B 0.660
+  group|B|alt: EPS seed slope at M_ta -0.816 -> Gamma 0.488, s 0.399, x_set 0.348, settled/B 0.659
+  group|HCB|canonical: EPS seed slope at M_ta -0.816 -> Gamma 0.488, s 0.402, x_set 0.387, settled/B 0.664
+  group|HCB|alt: EPS seed slope at M_ta -0.816 -> Gamma 0.488, s 0.417, x_set 0.359, settled/B 0.660
+  cluster|B|canonical: EPS seed slope at M_ta -0.422 -> Gamma 0.976, s 0.290, x_set 0.193, settled/B 0.468
+  cluster|B|alt: EPS seed slope at M_ta -0.422 -> Gamma 0.976, s 0.286, x_set 0.182, settled/B 0.474
+  cluster|HCB|canonical: EPS seed slope at M_ta -0.422 -> Gamma 0.976, s 0.296, x_set 0.296, settled/B 0.289
+  cluster|HCB|alt: EPS seed slope at M_ta -0.422 -> Gamma 0.976, s 0.285, x_set 0.285, settled/B 0.279
+
+== groups (63 Tian+26), X-COP (12), Bullet: H-SP runs (eps 1)
+  [canonical] groups done (3577 s)
+  [alt] groups done (5217 s)
+  [canonical] X-COP done (5416 s)
+  [alt] X-COP done (5616 s)
+  Bullet BASE done (5663 s)
+  Bullet B1 done (5710 s)
+  Bullet B2 done (5772 s)
+  Bullet B3 done (5806 s)
+  G  B   canonical: s 0.404-0.466, x_set 0.399-0.458, settled/B 0.365-0.727, reservoir/supply 0.271-0.629, Gamma 0.40-0.41
+  G  B   alt      : s 0.407-0.468, x_set 0.370-0.460, settled/B 0.401-0.729, reservoir/supply 0.271-0.596, Gamma 0.40-0.41
+  G  HCB canonical: s 0.405-0.467, x_set 0.405-0.460, settled/B 0.356-0.728, reservoir/supply 0.271-0.647, Gamma 0.40-0.41
+  G  HCB alt      : s 0.409-0.467, x_set 0.382-0.460, settled/B 0.390-0.729, reservoir/supply 0.271-0.610, Gamma 0.40-0.41
+  X  B   canonical: s 0.403-0.408, x_set 0.261-0.313, settled/B 0.726-0.736, reservoir/supply 0.263-0.263, Gamma 0.40-0.40
+  X  B   alt      : s 0.399-0.406, x_set 0.246-0.286, settled/B 0.725-0.736, reservoir/supply 0.263-0.263, Gamma 0.40-0.40
+  X  HCB canonical: s 0.397-0.446, x_set 0.397-0.446, settled/B 0.390-0.439, reservoir/supply 0.662-0.802, Gamma 0.40-0.40
+  X  HCB alt      : s 0.402-0.451, x_set 0.402-0.451, settled/B 0.396-0.444, reservoir/supply 0.631-0.781, Gamma 0.40-0.40
+  BU B   can      : s 0.364-0.374, x_set 0.224-0.313, settled/B 0.673-0.680, reservoir/supply 0.313-0.317, Gamma 0.60-0.60
+  BU B   alt      : s 0.361-0.371, x_set 0.208-0.286, settled/B 0.676-0.685, reservoir/supply 0.313-0.313, Gamma 0.60-0.60
+  BU HCB can      : s 0.382-0.420, x_set 0.382-0.420, settled/B 0.395-0.573, reservoir/supply 0.422-0.788, Gamma 0.60-0.60
+  BU HCB alt      : s 0.396-0.423, x_set 0.396-0.423, settled/B 0.401-0.654, reservoir/supply 0.342-0.769, Gamma 0.60-0.60
+  T4 merger statement input: B1 main (B, can) pericentre -> first apocentre of the most recent shells 2.68 Gyr; r_sp 2870 kpc
+
+== KiDS lens masses (point-mass baryons, f_ret 0.10; B = H-CB for the lens source)
+  p5 log M_gal 9.82 [canonical]: r_ta 591 kpc, s 0.379, x_set 0.211
+  p5 log M_gal 9.82 [alt]: r_ta 591 kpc, s 0.374, x_set 0.193
+  p50 log M_gal 10.67 [canonical]: r_ta 1143 kpc, s 0.388, x_set 0.295
+  p50 log M_gal 10.67 [alt]: r_ta 1143 kpc, s 0.389, x_set 0.269
+  p95 log M_gal 11.00 [canonical]: r_ta 1466 kpc, s 0.391, x_set 0.333
+  p95 log M_gal 11.00 [alt]: r_ta 1466 kpc, s 0.393, x_set 0.304
+
+== SPARC galaxies (CFG487 harness exec'd read-only; rotmod baryons; f_ret 0.10)
+  [canonical] 175 galaxies: r_set/R_last min 3.8; reservoir inside R_last / M_bar(R_last) max 0.000, median 0.0000 (12674 s)
+  [alt] 175 galaxies: r_set/R_last min 3.5; reservoir inside R_last / M_bar(R_last) max 0.000, median 0.0000 (18489 s)
+  [PASS] C1 supply = drawn + reservoir (1e-9), every H-SP run: max rel 1.4e-15
+  [FAIL] (reported) C1b gravitating settled = drawn: max (drawn - target)/target <= 1e-3: max 3.8e-02
+  [PASS] S1 settled H-SP M(<r) <= candidate B's at every r, every run (1e-9 rel): max excess 0.0e+00
+  scattering guard (post-freeze, disclosed): shells past pericentre beyond their own turnaround radius excluded from the caustic; max count per run 1433 of 1600 (median 133)
+
+3/4 checks pass (0 load-bearing failures); elapsed 18489.2 s
