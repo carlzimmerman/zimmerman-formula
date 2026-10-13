@@ -79,3 +79,27 @@ S < 1 it carries no weight and must not be cited.
 - The remaining gap between this model (limit 28.7) and the floor (31.4) is systematics: source-regularisation and grid choice
   dominate σ (5.2 nJy). Closing it needs a production lens code (adaptive source grids, multi-band joint fit, PSF from the exact
   dithers): the PI team's analysis, or PyAutoLens-class work.
+
+---
+
+# Part 4 RESULT (criteria c29c55493): PyAutoLens production model, F115W — NOT DIAGNOSTIC (tooth fails), with a 3.8σ excess at A
+
+Stage 1 (Nautilus) ran; **stage 2 Nautilus NOT RUN** (2,000 evaluations in 11 h, ≈ 20 s each in-search; frozen 12-h rule);
+stage 3 ran at the stage-2 **maximum-likelihood** model found by Nelder–Mead on the identical likelihood (disclosed substitute;
+`cfg674_stage2_ml_nm.json`). Deviations, all disclosed: one core and numpy mode (macOS spawn deadlock; JAX preflight), Hilbert
+image-plane mesh for Delaunay, positions likelihood (library standard), A's amplitude with the positive-only solver OFF (sign free).
+
+| quantity | value |
+|---|---|
+| model at A | χ²_ν 4.30 (vs 16.9 own model); slope 2.234, θE 0.474″, m3/m4 small |
+| **A light** | **13.2 nJy = 28.60 AB, σ_tot 3.46 nJy (stat 1.70, same-radius 2.87, mesh 0.92) → S = 3.82** |
+| same-radius controls (11) | −6.3 … +8.6 nJy, median −0.6; **A exceeds all 11; 4.8σ vs controls alone** |
+| 2σ limit / χ²_ν=1 floor | 29.30 / 30.86 AB |
+| tooth (29.0 AB injected) | recovered 29.00 AB but **S = 2.63 < 3 → FAILS** |
+| **verdict (both footings)** | **NOT DIAGNOSTIC (tooth fails)** |
+
+**Reading, stated once and not upgraded:** the frozen rule makes this NOT DIAGNOSTIC. The excess at A (28.6 AB) lies inside the
+sealed CFG673 band (26.9–30.9) and above every control, which is suggestive, but it is **not a detection** under our rules, and it
+has an obvious mimic: **A's own mass (the perturbation that made A famous) is not in the lens model**, so arc residuals at A can be
+absorbed by a point of light there. Required next (Part 5, frozen before running): include A's mass at its published position and
+mass, and re-measure. Never cite the 28.6 AB number as a detection.
