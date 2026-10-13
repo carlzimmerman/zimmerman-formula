@@ -15,7 +15,7 @@
 5. Blue/disc galaxies sit near the law (CFG663); colour and structure carry the excess about equally (CFG721).
 
 ## The target (any capture/settling mechanism must produce it)
-- **Early types:** extra isothermal cold mass with **V_x² ≈ 0.7–0.8 V_f²** (V_f⁴ = G M_b a0), present from ~5 kpc to ~100 kpc.
+- **Early types:** extra isothermal cold mass with **V_x² ≈ 0.6–0.8 V_f²** (V_f⁴ = G M_b a0), present from ~5 kpc to ~100 kpc; confirmed by a third probe (SLUGGS GC dispersions, CFG715, z ≤ 1.5; GCs prefer the low end).
 - **Discs:** ≈ none (on the law).
 - **Selector:** something that tracks galaxy type (colour/structure), not size or stellar mass alone; the age signal is not robust on
   near-IR masses (owner chat CFG669), so a pure-age selector is disfavoured.
