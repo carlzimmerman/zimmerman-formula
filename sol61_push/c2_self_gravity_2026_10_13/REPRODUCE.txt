@@ -1,0 +1,30 @@
+REPRODUCING WITHOUT OVERWRITING FROZEN EVIDENCE
+
+The executed commands, input hashes before/after, environment, ceilings and
+output hashes are in exact_run/manifest.json and numeric_run/manifest.json.
+These scripts use paths relative to their own locations, not the working
+directory. They do not read external datasets; input snapshots pin premises.
+
+For a new run, copy this scope to a FRESH directory; retain the code bytes
+unchanged and omit its exact_run/numeric_run directories. In each copied
+contract, replace only the old scope prefix in the input/artifact paths with
+the new scope prefix. Run the installed computation-audit run_experiment.py
+with --root PROJECT, --contract copied_contract, --output copied_exact_run or
+copied_numeric_run, explicit --input for every listed input, and --result for
+results.json (plus profiles.npz for numeric). Retain --timeout60,
+--max-cpu-seconds45,--max-threads1 and the actual python3 script argv from
+the original manifests. The runner creates the fresh output directory.
+Do not reuse or delete these published run directories.
+
+Validate each new manifest with the installed validate_manifest.py --root
+PROJECT manifest.json. A zero command exit records execution success only;
+read all_passed and every result/admission condition as well. Compare values
+under the recorded tolerances; compressed archive bytes need not be identical
+across environments. Numerical-library thread caps are cooperative; no address-
+space cap was requested because the prior host rejected RLIMIT_AS512MiB.
+
+The initial launch commands omitted explicit --input flags and were rejected
+before either scientific child ran. LAUNCH_REPAIR.json records this command
+repair; no formulas, bounds or thresholds were changed. A later display-only
+reader queried a nonexistent manifest key 'execution'; it was corrected to
+'run'. This did not change either experiment or evidence.
