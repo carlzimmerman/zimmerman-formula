@@ -134,6 +134,8 @@
 
 - **Cold-energy capture rule for the NGC 1052 trail (CFG657; criteria 20d95b0d1): BRACKET-DEPENDENT / KNOB (α), both footings — not a pass.** At primary inputs the derived rule (separation in the collision + capture at formation + drift capture since) reproduces all four CFG655 labels without σ or the external label (DF2 0.08, DF4 0.23, DF9 0.25 of the law target; LEDA 4014647 0.34, just above its minimum), and identifies compactness as what distinguishes LEDA. But it holds only for α ∈ [0.67, 1.14] (canonical) of the frozen [0.5, 2] and flips at several input bracket ends; channel D uses the drift outside its validity. CFG655's pass still rests on the external label.
 
+- **⚠️ The shear verdict is RELATIVE (codex v2-independent-audit d992929b9, accepted):** the CFG592/596/636/650 classifier takes only Δχ² vs S0, robustness deltas and a support flag — it would say CONSISTENT for two equally terrible fits. So "CONSISTENT" ≠ an adequate absolute fit and "EXCLUDED" ≠ a calibrated absolute rejection. Every future shear report must also give the candidate's ABSOLUTE χ² and p-value on the raw data (S0 itself: KiDS χ² 144.3, p 0.014; CFG636 158.2, p 0.002; CFG596 213.0, p < 0.001).
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).
