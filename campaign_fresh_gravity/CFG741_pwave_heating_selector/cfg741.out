@@ -1,0 +1,14 @@
+CFG741: can P-wave heating be the two-sector selector? Criteria: FROZEN_CRITERIA.md (c659126e2).
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+Run:  python3 cfg741.py      (CFG741_MUTATE=1: quadratic (non-SI) W_nl; exit 1 iff the ln Lambda form breaks)
+
+T1  u_min = sqrt(a_0)*sqrt(g_N);  energy density at the minimum = -sqrt(a_0)*g_N**(3/2)/(6*pi*G)
+    Delta H (point mass, R_in..R_out) = log((R_in/R_out)**(2*sqrt(G)*M**(3/2)*sqrt(a_0)/3))
+    == -(2/3) M V_f^2 ln(R_out/R_in): True
+
+T2/T3  Q = E_rad/E_need = 4*lnLambda/(9*Cb)  (no M_b, no a0: scale-free True)
+    ln Lambda = 2: Q galaxy (C/b 5.3) 0.168; galaxy (C/b 10) 0.089; cluster (C/b 5.3) 0.168
+    ln Lambda = 4: Q galaxy (C/b 5.3) 0.335; galaxy (C/b 10) 0.178; cluster (C/b 5.3) 0.335
+    ln Lambda = 6: Q galaxy (C/b 5.3) 0.503; galaxy (C/b 10) 0.267; cluster (C/b 5.3) 0.503
+
+VERDICT: CLOSED  (with perfect absorption: Q <= 0.50 for galaxies, and clusters get the same or more)
