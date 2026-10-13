@@ -59,7 +59,7 @@ if os.path.exists(EXT):
     same_groups = np.array_equal(OT["gi"], gi) and np.allclose(OT["GM"], GM, rtol=1e-12)
     dev = {}
     for foot in K.FOOTS:
-        key = f"{foot}|LAW_RTA|full_moster"
+        key = f"P|{foot}|LAW_RTA|full_moster"
         if key in OT.files and same_groups:
             dev[foot] = float(np.nanmax(np.abs(OT[key][need] / OWN[foot][need] - 1)))
     RES["K_T1"] = dict(same_groups=bool(same_groups), max_rel_dev=dev, ok=bool(same_groups and dev and max(dev.values()) < 1e-6))

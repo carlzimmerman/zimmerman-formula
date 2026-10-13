@@ -48,10 +48,17 @@ def say(s):
 
 
 url = L.BASE + path
-f = L.RangeFile(url, block=256 * 1024, nblocks=4096)
-h = h5py.File(f, "r")
 PIECES = {}                                   # col -> list of (offset, nbytes, nrows, dtype)
-for c in cols:
+PJ = os.path.join(OUT, "pieces.json")
+if os.path.exists(PJ):                        # resume: reuse the chunk map, skip the slow HDF5 metadata reads
+    _pj = json.load(open(PJ))
+    PIECES = {c: [tuple(p) for p in _pj[c]] for c in cols if c in _pj}
+    say(f"{A.tag}: chunk map reused from pieces.json for {sorted(PIECES)}")
+todo = [c for c in cols if c not in PIECES]
+if todo:
+    f = L.RangeFile(url, block=256 * 1024, nblocks=4096)
+    h = h5py.File(f, "r")
+for c in todo:
     d = h[grp + c]
     n = d.shape[0]
     if d.chunks is None:
@@ -69,10 +76,10 @@ for c in cols:
             nr = min(ROWS, n - r0)
             PIECES[c].append((ci.byte_offset, nr * d.dtype.itemsize, nr, d.dtype.str))   # last chunk: only valid rows
     say(f"{A.tag}/{c}: {len(PIECES[c])} pieces, dtype {d.dtype.str}, rows {n:,}")
+    json.dump({c: [list(map(lambda x: x if not isinstance(x, np.integer) else int(x), p)) for p in v] for c, v in PIECES.items()},
+              open(PJ, "w"))                  # saved after each column, so a crash keeps the finished maps
 NP = len(PIECES[cols[0]])
 assert all(len(v) == NP for v in PIECES.values())
-json.dump({c: [list(map(lambda x: x if not isinstance(x, np.integer) else int(x), p)) for p in v] for c, v in PIECES.items()},
-          open(os.path.join(OUT, "pieces.json"), "w"))
 order = np.random.default_rng(A.seed).permutation(NP)
 say(f"{A.tag}: meta bytes so far {L.BYTES['n'] / 1e6:.1f} MB; {NP} slices x {len(cols)} columns; order seed {A.seed}")
 tot_planned = sum(p[1] for v in PIECES.values() for p in v)

@@ -61,7 +61,8 @@ def stack(tab, gi, WW, wl=None):
     ng = tab.shape[0]
     for k in range(15):
         w = np.bincount(gi, weights=w8[:, k], minlength=ng)
-        out[k] = (w @ tab[:, k]) / w.sum()
+        on = w > 0                                   # groups without a lens in the sample carry NaN tables at zero weight
+        out[k] = (w[on] @ tab[on, k]) / w[on].sum()
     return out
 
 
