@@ -1,0 +1,8 @@
+CFG747: can collisionless cold energy relax onto the law's profile? Criteria: FROZEN_CRITERIA.md (ce642f4f2).
+Radial shells; units G = a0 = M_b = 1. Energy E = sum KE - sum dm/r + (1/3) int m^3/r^4 dr (self-gravity cancelled by the critical
+tether); exact discrete force a_i = -1/r_i^2 + (m_i^3 - m_{i-1}^3)/(3 dm r_i^4). Fixed inner cold core 0.5 inside r_min = 0.5.
+kappa = 1/2 FITTED; the cold energy's mass is required; no particle species; not "theory closed".
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg747.py      (CFG747_MUTATE=1: no cold-energy force; exit 1 iff the control collapses)
+K1 force from finite differences of E vs analytic: -8.758695228e-04 vs -8.758678948e-04 (rel 1.9e-06): FAIL
+law     : dE/E 1.3e-01; time-avg m/r at r = 2/5/10/20: 1.946 / 1.772 / 1.377 / 0.946; KE 2.2, baryon potential energy -6.19; escaped mass 0; final m(2)/2 1.958
+MUTATE: control collapses without the cold-energy force (m(2)/2 > 1.5): True
