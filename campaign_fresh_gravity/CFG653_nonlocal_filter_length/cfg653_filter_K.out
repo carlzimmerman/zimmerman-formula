@@ -1,0 +1,33 @@
+CFG653 nonlocal filter length; part K
+  a0 canonical 9.3603e-11 / alt 1.1312e-10; l_dS = c/H_Lambda = 5.3754e+06 kpc; c^2/a0 = 3.1117e+07 / 2.5748e+07 kpc; rho_m (CFG4 r_ta input) = 2.685e-27 kg/m^3
+
+=== K1: local-law reproduction on SPARC (CFG4 statistic) ===
+
+=== K2 / M3: astra's 3D periodic solver (calculate.py re-executed read-only, nothing written) vs this spherical solver ===
+  N 64 box 128 (dx 2.0) L 4: spherical vs 3D radial-force rel L2 (4<=r<=12) = 0.0660
+  N 64 box 128 (dx 2.0) L 8: spherical vs 3D radial-force rel L2 (4<=r<=12) = 0.0266
+  N 64 box 128 (dx 2.0) L local: spherical vs 3D radial-force rel L2 (4<=r<=12) = 0.0058
+  M3 uniform external invariance 4: max change 7.68e-17 (tol 1e-09) -> PASS
+  M3 uniform external invariance 8: max change 7.69e-17 (tol 1e-09) -> PASS
+  M3 uniform external invariance local: max change 8.81e-17 (tol 1e-09) -> PASS
+  (179 s)
+  N 32 box 64 (dx 2.0) L 4: spherical vs 3D radial-force rel L2 (4<=r<=12) = 0.0633
+  N 32 box 64 (dx 2.0) L local: spherical vs 3D radial-force rel L2 (4<=r<=12) = 0.0074
+  M3 uniform external invariance 4: max change 5.50e-17 (tol 1e-09) -> PASS
+  M3 uniform external invariance local: max change 6.85e-17 (tol 1e-09) -> PASS
+  (8 s)
+  N 64 box 64 (dx 1.0) L 4: spherical vs 3D radial-force rel L2 (4<=r<=12) = 0.0361
+  N 64 box 64 (dx 1.0) L local: spherical vs 3D radial-force rel L2 (4<=r<=12) = 0.0024
+  M3 uniform external invariance 4: max change 8.62e-17 (tol 1e-09) -> PASS
+  M3 uniform external invariance local: max change 1.18e-16 (tol 1e-09) -> PASS
+  (81 s)
+  N 128 box 64 (dx 0.5) L 4: spherical vs 3D radial-force rel L2 (4<=r<=12) = 0.0202
+  N 128 box 64 (dx 0.5) L local: spherical vs 3D radial-force rel L2 (4<=r<=12) = 0.0024
+  M3 uniform external invariance 4: max change 1.04e-16 (tol 1e-09) -> PASS
+  M3 uniform external invariance local: max change 1.20e-16 (tol 1e-09) -> PASS
+  (1049 s)
+
+=== (c2): variable-width filter P = 1 - exp(div (L(x)^2/2) grad), 1D periodic check ===
+  |P - P^T| 1.2e-16; |P 1| 1.7e-14; eig(P) in [3.51e-15, 1.000000] -> PASS (self-adjoint, annihilates constants, 0 <= P <= 1: astra's convexity bound carries over)
+
+done.
