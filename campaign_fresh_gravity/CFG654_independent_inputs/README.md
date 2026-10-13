@@ -26,4 +26,9 @@ nonlinear or collapse ingredients** (EH fitting shape, ΛCDM-shell Δ_ta table, 
 | `cfg654_validate.py` → `.out/.json` | V-R reproduction, V-N1/N2 native IC/growth checks, V-C, preview |
 | `FROZEN_CRITERIA.md` | the independent-inputs 1024³ rerun of CFG650 T12 + its S0 (committed alone) |
 
-RESULTS_PLACEHOLDER
+## Results (256³ validation, 2026-10-12; cfg654_validate.out)
+- V-R PASS (inherited inputs, modules off ≡ CFG596 VLr bit for bit, 144 quantities × 6 snapshots).
+- V-N1 FAIL as frozen (bin-centre vs BAO wiggles, max dev 0.041/0.042); post-freeze mode-averaged diagnostic (cfg654_vn1_diag) agrees to 3e-4, so the native ICs carry the intended amplitude.
+- V-N2 PASS (native growth in the run), V-C PASS (source zero-sum ≤ 2.5e-10) for both the CMB pair (primary, A1) and the BBN bracket.
+- PREVIEW 256³, NOT a verdict, P_grav/P_S0 − 1 at k 0.3/0.5/1, z = 0, M1+M2: inherited +0.005/+0.014/+0.031; native CMB pair +0.005/+0.012/+0.030; native BBN +0.005/+0.011/+0.028. Native S0 σ8(z=0) 0.826 vs inherited 0.812. Native inputs leave the M1+M2 preview essentially unchanged.
+- Gates for the primary 1024³ native jobs (NC12, NCS0) are met except V-N1-as-frozen (explained above); no 1024³ run started.
