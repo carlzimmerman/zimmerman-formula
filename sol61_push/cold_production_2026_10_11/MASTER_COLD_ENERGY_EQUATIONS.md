@@ -743,3 +743,42 @@ algebra theorems with three rejected damaged-proof controls. Stochastic
 averaging, the integral divergence, and physical applicability are analytical
 assumptions/arguments outside those Lean certificates. The microscopic selector
 remains unresolved.
+
+
+## Supplement G — Colored noise: finite averaged power does not establish confinement
+
+The [colored-bath calculation and nonlinear tests](../colored_bath_2026_10_13/REPORT.md)
+construct an explicit stationary process from an OU process $\eta$:
+
+$$
+\xi(t)=\eta(t)-\eta(t-T_R),\qquad
+S_\xi(\omega)=4\sin^2(\omega T_R/2)S_\eta(\omega).
+$$
+
+Every integer harmonic of the selected orbit is a spectral zero. In the
+specified non-isochronous Duffing orbit, the leading weak-noise diffusion is
+$D\sim\sigma^2c q^2$, with computed $c=0.44807381982$ in dimensionless units.
+A single-frequency notch fails because higher harmonics leave a diffusion floor.
+
+The second-order external-bath drift still has divergence form and does not
+select $f\propto q^{-1/2}$. If one separately adds the required drift, the
+constant-period toy model $D=c_*q^2$, $A=3c_*q/2$, $0<q\le Q$ has
+
+$$
+n(q)=\frac{1}{2\sqrt{Qq}},\qquad P_{\rm extra}=\frac{c_*Q}{6}.
+$$
+
+The model requires an upper reflecting boundary; its drift, delay and boundary
+are not derived from the carrier action. More importantly, zero secular
+diffusion does not mean zero finite-time energy fluctuations. The time-domain
+variance approaches a nonzero plateau. Nonlinear delayed-noise trajectory
+checks at three amplitudes found about 90% crossing of a fixed *bare-energy*
+cutoff from initial gap $q=\sigma$ within ten periods (512 paths per amplitude;
+coupled 512/1024 steps per period). This is not permanent spatial escape, an
+empirical crossing rate, or a result for every colored bath.
+
+The package adds 41 deterministic checks, three sampled nonlinear cases with
+resolution controls, and eight Lean algebra/trigonometric theorems with three
+rejected damaged-proof controls. The leading-order finite-power construction
+survives; its interpretation as microscopic hard confinement does not survive
+the tested cases. The original same-action selector and reservoir remain OPEN.

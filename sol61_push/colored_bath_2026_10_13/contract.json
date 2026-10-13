@@ -1,0 +1,79 @@
+{
+  "claim_id": "COLORED-BATH-2026-10-13-NUMERICAL",
+  "mathematics": {
+    "assertion_tested": "41 deterministic checks of Duffing orbital harmonics, single-notch leakage, delayed-OU spectrum, quadratic diffusion, detuning floor, bounded finite-time fluctuations, and toy selector power.",
+    "coefficient_domain": "IEEE float64 with SciPy adaptive quadrature and central finite differences.",
+    "conventions": "Dimensionless Duffing lambda=ER=1; h=x; two-sided spectrum S=int C(t) exp(-i omega t) dt; D=variance/2time; coefficient of noise amplitude squared.",
+    "inputs": [
+      "sol61_push/colored_bath_2026_10_13/check.py"
+    ],
+    "bounds": {
+      "FFT_points": [
+        8192,
+        16384
+      ],
+      "harmonics": [
+        64,
+        128
+      ],
+      "q": [
+        0.01,
+        0.001,
+        0.0001,
+        1e-05
+      ],
+      "relative_delay_errors": [
+        0.01,
+        0.001,
+        0.0001
+      ],
+      "harmonic_energies": [
+        0.1,
+        1,
+        10
+      ],
+      "toy_Q": [
+        0.1,
+        1,
+        10
+      ],
+      "finite_time_periods": [
+        2,
+        5,
+        10,
+        20,
+        50
+      ],
+      "omega_derivative_step": 1e-05,
+      "ODE_rtol": 1e-11,
+      "ODE_atol": 1e-12
+    },
+    "non_claims": [
+      "No empirically measured spectrum, no carrier-derived delay, no reservoir backreaction.",
+      "Second-order weak-noise diffusion zero is not an exact finite-amplitude barrier.",
+      "Finite harmonic convergence checks do not bound an arbitrary infinite harmonic tail."
+    ]
+  },
+  "software": [
+    {
+      "name": "Python scientific runtime",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "execution_artifacts": [
+    "sol61_push/colored_bath_2026_10_13/check.py"
+  ]
+}

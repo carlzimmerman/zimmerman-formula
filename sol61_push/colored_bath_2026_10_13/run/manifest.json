@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "claim_id": "COLORED-BATH-2026-10-13-NUMERICAL",
+  "repository": {
+    "commit": "45cd126e7489ec6703c9c6650cbbeda227f28f13",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/colored_bath_2026_10_13/check.py",
+    "sol61_push/colored_bath_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python scientific runtime",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "41 deterministic checks of Duffing orbital harmonics, single-notch leakage, delayed-OU spectrum, quadratic diffusion, detuning floor, bounded finite-time fluctuations, and toy selector power.",
+    "coefficient_domain": "IEEE float64 with SciPy adaptive quadrature and central finite differences.",
+    "conventions": "Dimensionless Duffing lambda=ER=1; h=x; two-sided spectrum S=int C(t) exp(-i omega t) dt; D=variance/2time; coefficient of noise amplitude squared.",
+    "inputs": [
+      "sol61_push/colored_bath_2026_10_13/check.py"
+    ],
+    "bounds": {
+      "FFT_points": [
+        8192,
+        16384
+      ],
+      "harmonics": [
+        64,
+        128
+      ],
+      "q": [
+        0.01,
+        0.001,
+        0.0001,
+        1e-05
+      ],
+      "relative_delay_errors": [
+        0.01,
+        0.001,
+        0.0001
+      ],
+      "harmonic_energies": [
+        0.1,
+        1,
+        10
+      ],
+      "toy_Q": [
+        0.1,
+        1,
+        10
+      ],
+      "finite_time_periods": [
+        2,
+        5,
+        10,
+        20,
+        50
+      ],
+      "omega_derivative_step": 1e-05,
+      "ODE_rtol": 1e-11,
+      "ODE_atol": 1e-12
+    },
+    "non_claims": [
+      "No empirically measured spectrum, no carrier-derived delay, no reservoir backreaction.",
+      "Second-order weak-noise diffusion zero is not an exact finite-amplitude barrier.",
+      "Finite harmonic convergence checks do not bound an arbitrary infinite harmonic tail."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-13T10:59:48.653486+00:00",
+    "runtime_seconds": 0.483775,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 720.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/colored_bath_2026_10_13/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/colored_bath_2026_10_13/check.py",
+      "sha256": "3e94c295c8009562d1e9856cec853243885de21cd05eccf674cc3a6f56310e45",
+      "sha256_after": "3e94c295c8009562d1e9856cec853243885de21cd05eccf674cc3a6f56310e45"
+    }
+  ],
+  "output_directory": "sol61_push/colored_bath_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/colored_bath_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/colored_bath_2026_10_13/run/stdout.txt",
+      "sha256": "c7e7801f0cbd12d71215efbad29f8cc4de0747e0fdef4185cc28b3ac3464e21f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/colored_bath_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/colored_bath_2026_10_13/run/results.json",
+      "sha256": "a677b600d7cefb2b32a113c53896aa394af37083edc3da42a1b07868be13d467",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
