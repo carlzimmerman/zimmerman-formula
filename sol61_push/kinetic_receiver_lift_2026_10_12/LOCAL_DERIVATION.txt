@@ -1,0 +1,125 @@
+LOCAL TWO-FIELD KINETIC RECEIVER — DERIVATION
+12 October 2026. Distinct constructive continuation of DERIVATION.txt.
+
+1. Assumptions and change of receiver
+
+In one spatial dimension, take four populations f_i(x,t) of mass per length
+with fixed velocities v_i, and TWO independent real massless scalar fields:
+Pi_A=partial_t phi_A, g_A=partial_x phi_A, A=1,2. These are two physical fields,
+not the sine/cosine amplitudes of the previous single global Fourier mode.
+Assume free canonical energy/momentum densities
+ e_R=(|Pi|^2+c^2|g|^2)/2, p_R=-Pi.g, c>0.
+Gravity, baryon recoil, microscopic rates and a coupled parent action are absent.
+This is a classical constitutive prototype in a declared frame. Fixed velocity
+bins do not establish Lorentz/Galilean covariance or a complete kinetic kernel.
+
+2. Restriction for the simplest one-local-scalar source
+
+Let J be a cold reaction rate with energy cost D and momentum change p_b. For
+one scalar source s added to Pi_t=c^2*g_x+s, cancellation requires
+ Pi*s=-D*J, g*s=p_b*J.
+Eliminating s gives (D*g+p_b*Pi)*J=0. Generic nonzero reactions therefore fail
+this compatibility condition. It is necessary, not sufficient at Pi=g=0.
+It applies to this source ansatz. Interaction energy/flux, additional reactions,
+or different field content can change the question.
+
+3. Regular two-field reaction
+
+Let b=(-1,-1,1,1), R=f1*f2-f3*f4,
+ D=sum_i b_i*v_i^2/2, p_b=sum_i b_i*v_i,
+ h=Pi2*g1-Pi1*g2,
+ r=(D*g2+p_b*Pi2, -D*g1-p_b*Pi1).
+Direct contractions give Pi.r=-D*h and g.r=p_b*h. For gamma>=0 define
+J=gamma*h^2*R and S=gamma*h*r*R:
+ f_i,t+v_i*f_i,x=b_i*J,
+ Pi_t=c^2*g_x+S, g_t=Pi_x.
+Rates are polynomial, with no division by h at degenerate states. The cold
+sources D*J and p_b*J are canceled by the field sources pointwise. sum_i b_i=0
+cancels mass production. Same-position mass-neutral collisions leave density
+unchanged; gravitational dynamics are not included in this isolated prototype.
+
+The receiver content, collision shape and rate are constructed inputs, not
+derived microscopic physics. No acceleration target, profile or a0 is inserted.
+In this one-dimensional normalization gamma has units L*T/M^3; gamma=.1 is a
+dimensionless diagnostic, not the earlier integrated-mode coefficient.
+
+4. Local stress and actual kinetic current
+
+Define rho=sum_i f_i, j=sum_i v_i*f_i,
+e=sum_i (v_i^2/2)*f_i+e_R and p=sum_i v_i*f_i+p_R. The equations imply
+ rho_t+partial_x j=0,
+ e_t+partial_x [sum_i (v_i^3/2)*f_i-c^2*Pi.g]=0,
+ p_t+partial_x [sum_i v_i^2*f_i+e_R]=0.
+Density moves through the moment of the same velocity populations. The field
+has explicit energy flux and momentum stress. Periodic boundaries conserve
+integrated mass, energy and momentum. These are local flat-space identities,
+not a gravity coupling, covariant action or observed lensing metric.
+
+5. Positivity, entropy and inactive states
+
+Along each cold characteristic the reaction is gain minus loss with coefficient
+gamma*h^2>=0. At f1=0 the reaction is gamma*h^2*f3*f4>=0, similarly for f2;
+at f3=0 it is gamma*h^2*f1*f2>=0, similarly for f4. Smooth solutions therefore
+remain nonnegative while coefficients remain finite. Conservative upwind
+semidiscretization also gives nonnegative inflow at an empty bin. DOP853 has no
+general positivity guarantee; reported numerical positivity is at stored times.
+
+For positive populations and a common reference density, entropy density
+-sum_i f_i*(log(f_i/f_ref)-1) has reaction production
+ gamma*h^2*(a-b_star)*log(a/b_star)>=0,
+ a=f1*f2, b_star=f3*f4.
+Streaming gives its entropy flux. At empty bins the logarithmic gradient may
+diverge, although the polynomial state equations remain finite.
+
+Zero receiver data remain zero. Fixed proportionality Pi2=lambda*Pi1 and
+g2=lambda*g1 stays proportional under free waves, has h=0 and is inactive.
+Variable local proportionality need not persist. If Pi is initially zero,
+ h_t=c^2*(g1*g2_x-g2*g1_x).
+This is not the old oscillator onset formula. Appropriate spatial/phase data
+are needed for activation; the physical initial receiver state is undetermined.
+
+6. Principal propagation and frozen growth estimate
+
+In U=(f1,...,f4,Pi1,Pi2,g1,g2), write U_t+A*U_x=Q(U). A is constant: diag(v_i)
+for matter and [[0,-c^2*I],[-I,0]] for the fields. H=diag(I4,I2,c^2*I2)>0
+symmetrizes A, giving characteristic speeds v_i and +/-c. Requiring all matter
+speeds within c is an additional assumption; the diagnostic velocities satisfy it.
+
+Freeze a finite state and write B=Q'(U). In H variables the Fourier generator
+is B_tilde-ik*A_tilde, with A_tilde symmetric. Its Hermitian part sym(B_tilde)
+is independent of k. Every eigenvalue satisfies
+ Re(lambda)<=lambda_max(sym(B_tilde)).
+The frozen source cannot produce growth unbounded with k. This permits finite
+positive growth. It is not stability about physical backgrounds, global
+continuum existence, gravitational health or a three-dimensional completion.
+
+7. Computation and its limits
+
+LOCAL_CRITERIA.txt fixes grids, states, controls, tolerances and resource limits
+before execution. local_checks.py checks source and field-flux identities and
+rejects source-sign/missing-recoil mutations. Cold fluxes follow by fixed velocity
+moments. Central skew wave derivatives and conservative upwind matter advection
+preserve integrated semidiscrete invariants; time integration adds reported errors.
+
+The initial empty-product fixture gives a strictly positive source for each
+product bin on an open spatial set. The numeric assertion tests aggregate final
+product mass. Both initial gain terms follow from the exact equations. Positivity
+was sampled at 201 times; complete trajectories were not saved. Two-grid RMS
+difference is a diagnostic, without an accuracy/convergence claim. Density changes
+also when gamma=0 due to actual streaming; energy exchange and collision rates
+distinguish reaction activity.
+
+Fresh review found the original single-scalar omission fixture insensitive to
+deleting p_b*Pi. local_control.py closes that exact frozen criterion separately:
+D=0, g=p_b=Pi=J=1 makes the truncated condition zero but the full residual one.
+The original source and completed run are preserved; no trajectories are rerun.
+
+8. Remaining physical derivation
+
+An admissible model must justify the two fields, initial states, interaction and
+coefficient, or replace them with derived degrees of freedom. It must derive
+three-dimensional recoil, live baryon reaction where needed, and consistent
+metric/action/stress coupling. Pointwise e_R>=c*|p_R| follows by Cauchy-Schwarz
+and AM-GM. A local control volume exchanges flux; its initial pointwise energy
+is not a closed capacity budget. No halo selecting principle follows from these
+identities alone. CFG679 admission and the full TOE remain open.
