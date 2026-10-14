@@ -68,6 +68,8 @@ Evidence-first chain:
 4. Coupled that way, the action gives a tether whose unique static minimum is the law, with a **capacity Σ̄ ≤ a₀/πG** (214 / 258 M☉/pc²) (CFG722).
 5. Galaxies sit below the capacity (SPARC deep-regime median ≈ 0.3 of it); massive cluster cores exceed it by 3.6–4.8× (Bullet) (CFG724).
 
+**⚠️ Update (CFG721):** the law's own tethered phantom never reaches the cap a₀/πG, so the capacity does not bind anywhere that matters; the cluster-core excess is mass beyond the law, and supply overflow (H-OF / H-OF2) FAILS to supply it (Bullet main ≤ 0.79, sub ≤ 0.11; early types Z 3.7–3.8). The free component below remains a data-required hypothesis with NO derived origin yet (astra's escape channel CE-FM-026/027 is the live candidate).
+
 **So cold energy comes in two kinds:**
 - **Tethered**: in the law's shape, capped at a₀/πG. It dominates galaxies and gives the RAR.
 - **Free**: supply the tether cannot hold. It is collisionless and follows the total potential, pooling in the cores of massive systems. It is the candidate for the early-type, group and cluster-core excess (CFG669/652/687). Testing: the CFG721 two-population variant H-OF2.
