@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "claim_id": "COHERENT-THRESHOLD-FEEDBACK-SURROGATE",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/coherent_threshold_feedback_2026_10_13/check.py",
+    "sol61_push/coherent_threshold_feedback_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Norm and energy conserving Hamiltonian source/continuum dynamics with mean-field threshold feedback, and population refinement",
+    "coefficient_domain": "Double precision complex arrays",
+    "conventions": "Dimensionless energy D0, time hbar/D0; norm source plus pair probability; spectral weight calibrated only to initial moment slope",
+    "inputs": [
+      "sol61_push/coherent_threshold_feedback_2026_10_13/check.py",
+      "sol61_push/carrier_self_feedback_2026_10_13/run/results.json",
+      "sol61_push/thermal_carrier_initial_production_2026_10_13/run/results.json"
+    ],
+    "bounds": {
+      "continuum_modes": [
+        96,
+        2048,
+        4096,
+        8192
+      ],
+      "cutoff_over_D0": [
+        30,
+        100,
+        120,
+        160
+      ],
+      "regulator_over_D0": [
+        2,
+        5,
+        10
+      ],
+      "end_time": "2*tau_star for feedback",
+      "time_steps": [
+        0.002,
+        0.01,
+        0.02,
+        0.04
+      ],
+      "max_norm_error": 1e-10,
+      "max_energy_error_in_D0_fstar": 0.003,
+      "max_population_refinement_error_in_fstar": 0.002
+    },
+    "non_claims": [
+      "No derivation of surrogate from complete thermal QFT, no final yield or new particle evidence"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T03:40:07.485265+00:00",
+    "runtime_seconds": 0.250913,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/coherent_threshold_feedback_2026_10_13/run/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/coherent_threshold_feedback_2026_10_13/check.py",
+    "sol61_push/carrier_self_feedback_2026_10_13/run/results.json",
+    "sol61_push/thermal_carrier_initial_production_2026_10_13/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/coherent_threshold_feedback_2026_10_13/check.py",
+      "sha256": "726b4c5d70141a6f44cf2352f30674a4f9b00fbfa5904d772311ade07b21ad2c",
+      "sha256_after": "726b4c5d70141a6f44cf2352f30674a4f9b00fbfa5904d772311ade07b21ad2c"
+    },
+    {
+      "path": "sol61_push/carrier_self_feedback_2026_10_13/run/results.json",
+      "sha256": "5e3e712ec471d617b97822d11174a9f963e8941f7a5622b38b905c2be464dd22",
+      "sha256_after": "5e3e712ec471d617b97822d11174a9f963e8941f7a5622b38b905c2be464dd22"
+    },
+    {
+      "path": "sol61_push/thermal_carrier_initial_production_2026_10_13/run/results.json",
+      "sha256": "8b6fb3daa021b320abbdea79f1ec7217e4cf53b9df44bda2b03fc065e2738ea9",
+      "sha256_after": "8b6fb3daa021b320abbdea79f1ec7217e4cf53b9df44bda2b03fc065e2738ea9"
+    }
+  ],
+  "output_directory": "sol61_push/coherent_threshold_feedback_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/coherent_threshold_feedback_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/coherent_threshold_feedback_2026_10_13/run/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/coherent_threshold_feedback_2026_10_13/run/stderr.txt",
+      "sha256": "5667e684384d96f5ee3d97acee1a0960295599b93aba7c91e526f8b5edced2e8",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/coherent_threshold_feedback_2026_10_13/run/results.json"
+  ]
+}
