@@ -24,3 +24,10 @@ Radius at which y = g_bar/a₀ falls to 0.17 (the CFG765 requirement), in units 
    - A baryon-age estimate per galaxy.
 3. Point-mass baryons are used for R_need. Beyond ~3 R_e the enclosed disc mass is close to the total, so this is a fair
    approximation, and it is favourable at smaller radii.
+
+## Data availability check (2026-10-14; web look-ups are PROVISIONAL summaries, not tables read by a script)
+- RC100 per-galaxy curves: no machine-readable release was found. The RotCurves package (arXiv:2601.08348;
+  github.com/nestoramit/RotCurves) holds code only.
+- MSA-3D (JWST/NIRSpec, arXiv:2606.27853): 30 galaxies at z 0.5–1.7, 19 reach ≳ 2 R_e. The tables give V_rot only at R_e; gas is
+  given only as a sample range M_mol/M★ ≈ 0.2–4.5 (≫ 0.15 dex); per-galaxy figures are in an MPE supplementary PDF.
+- **Standing:** no public sample decides the formation clocks today. Per-galaxy outer curves plus gas masses would be needed.
