@@ -1,5 +1,7 @@
 # Selective confinement requires an interaction not yet supplied
 
+**Later angular refinement (2026-10-13):** [Interface scattering](../interface_scattering_2026_10_13/REPORT.md) narrows the all-angle open-channel window to about 0.714–1.291 eV. The wider interval below is a necessary energy window, not a guarantee of transmission at every angle.
+
 2026-10-13. This examines the construction requirement left by the outgoing-transport calculation. The preceding goal turn made progress by correcting the escape threshold. A nonreflecting boundary was still an assumption; this turn asks what could hold the background at that boundary.
 
 Two results follow: the existing repulsive untrapped carrier does not admit the subthreshold stationary localized state needed for self-confinement; an explicitly added external well has a nonempty **necessary** energy window for binding the background while allowing the produced excitations to escape. The well is not derived from the repo's action, so this is a specification of the missing physics, not a completed device.
