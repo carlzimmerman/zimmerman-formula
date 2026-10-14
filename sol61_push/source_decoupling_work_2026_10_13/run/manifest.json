@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOURCE-DECOUPLING-WORK-SURROGATE",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/source_decoupling_work_2026_10_13/check.py",
+    "sol61_push/source_decoupling_work_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Surviving pair-sector weight and externally supplied work for a prescribed source coupling ramp",
+    "coefficient_domain": "Double precision complex Hamiltonian flow",
+    "conventions": "Same effective L=5 continuum as prior package, cos squared source coupling ramp; repulsive coupling fixed",
+    "inputs": [
+      "sol61_push/source_decoupling_work_2026_10_13/check.py",
+      "sol61_push/coherent_threshold_feedback_2026_10_13/run_verified/results.json"
+    ],
+    "bounds": {
+      "modes": [
+        4096,
+        8192
+      ],
+      "cutoff": [
+        120,
+        160
+      ],
+      "ramp_durations_tau": [
+        0,
+        0.1,
+        1,
+        10,
+        50
+      ],
+      "dt": [
+        0.01,
+        0.005
+      ],
+      "work_balance_tolerance_D0_fstar": 0.0001,
+      "refinement_tolerance": 2e-05
+    },
+    "non_claims": [
+      "No physical implementation of q(t), no verified cold-particle preparation or storage"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T03:46:59.963971+00:00",
+    "runtime_seconds": 2.695534,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/source_decoupling_work_2026_10_13/check.py",
+    "sol61_push/coherent_threshold_feedback_2026_10_13/run_verified/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/source_decoupling_work_2026_10_13/check.py",
+      "sha256": "7ae98b71b35c574262468584bdf404fbb345aa1bd70b7286b00e623f981eb3cd",
+      "sha256_after": "7ae98b71b35c574262468584bdf404fbb345aa1bd70b7286b00e623f981eb3cd"
+    },
+    {
+      "path": "sol61_push/coherent_threshold_feedback_2026_10_13/run_verified/results.json",
+      "sha256": "ab572c2a91fbc663cb668c61be48e378b92420dac3563efcf11d3703336a9949",
+      "sha256_after": "ab572c2a91fbc663cb668c61be48e378b92420dac3563efcf11d3703336a9949"
+    }
+  ],
+  "output_directory": "sol61_push/source_decoupling_work_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/source_decoupling_work_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/source_decoupling_work_2026_10_13/run/stdout.txt",
+      "sha256": "cfcf2779c487036f1ebd0130c46b6e68719091c24670c5de7a25ffa8e68b9449",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/source_decoupling_work_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/source_decoupling_work_2026_10_13/run/results.json",
+      "sha256": "a88e7d9c1bd228b1f278aa1267665fff4eb26e3a684b5c2199623be415c89fc7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
