@@ -1,0 +1,20 @@
+CFG763: the formation clock — how slowly must cold energy form at rest for young tidal dwarfs to be Newtonian?
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 5b747a56b). V^2 = V_N^2 + f (V_law^2 - V_N^2), f = 1 - exp(-t/tau).
+V_N, V_law and their errors: CFG441's (code copied). Ages at -1 sigma for the bound (floored at 0.05 Gyr).
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run:  python3 cfg763.py      (CFG763_MUTATE=1: V_obs := V_law; exit 1 iff the lower bound then vanishes)
+
+canonical: K1 chi2 tau->0 34.018 (CFG441 34.018); tau->inf 1.105 (CFG441 1.105)
+    lower_1sigma_ages : tau_min,95 = 0.72443596007499 Gyr (chi2_min 0.78);  f(1/2/3/8 Gyr) = 0.75 / 0.94 / 0.98 / 1.00;  tau/t_orb = 0.24-1.03
+    nominal_ages      : tau_min,95 = 1.202264434617413 Gyr (chi2_min 0.87);  f(1/2/3/8 Gyr) = 0.56 / 0.81 / 0.92 / 1.00;  tau/t_orb = 0.40-1.72
+    F2: window [tau_min,95, 3.47 Gyr] OPEN
+
+alt: K1 chi2 tau->0 40.290 (CFG441 40.290); tau->inf 1.105 (CFG441 1.105)
+    lower_1sigma_ages : tau_min,95 = 0.831763771102671 Gyr (chi2_min 0.78);  f(1/2/3/8 Gyr) = 0.70 / 0.91 / 0.97 / 1.00;  tau/t_orb = 0.28-1.19
+    nominal_ages      : tau_min,95 = 1.3803842646028848 Gyr (chi2_min 0.87);  f(1/2/3/8 Gyr) = 0.52 / 0.77 / 0.89 / 1.00;  tau/t_orb = 0.46-1.97
+    F2: window [tau_min,95, 3.47 Gyr] OPEN
+
+K1 PASS
+VERDICT: F2 window OPEN
