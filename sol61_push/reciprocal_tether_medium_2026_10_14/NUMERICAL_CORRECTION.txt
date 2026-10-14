@@ -1,0 +1,10 @@
+RTM-001 v1 numerical implementation failure, preserved unchanged.
+Grid1342: x=.99,R=1e6,s2=1/3,theta=pi/16. The positive
+rank-one pressure block has norm4.851495e9 and binary64 eigensolver
+returned a spurious minimum -5.40534371e-7 (relative -1.12e-16).
+The frozen absolute -1e-8 tolerance was dimensionally inappropriate for
+this large inertia. Analytically pressure=h*s2*k*k^T is PSD.
+v2 replaces only the potential eigenvalue check with norm-relative
+minimum>=-1e-14; kinetic, Schur, speed and real-part limits unchanged.
+No physical parameter/range removed; all1350 cases retained.
+Original code, contract, failure stderr and manifest are preserved.
