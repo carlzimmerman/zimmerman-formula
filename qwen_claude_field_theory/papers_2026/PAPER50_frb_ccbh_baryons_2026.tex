@@ -1,0 +1,98 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Fast Radio Bursts See All the Baryons: A Dispersion-Measure Constraint on Black-Hole Dark Energy That Consumes Baryons}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries Fast Radio Bursts See All the Baryons:\\ A Dispersion-Measure Constraint on Black-Hole Dark Energy That Consumes Baryons}\\[6pt]
+{\small Working note, 2026-10-15, v1.0. AI-assisted research programme; not peer reviewed.}
+\end{center}
+
+\begin{abstract}\noindent
+Cosmologically coupled black holes (CCBHs) have been proposed as the source of dark energy. In the published background model, dark energy is built up by converting baryons in step with star formation. The best fit to DESI requires about 30\% of the primordial baryons to be gone today (survival fraction $s_b\simeq0.70$). A conserved history using the Madau--Dickinson star-formation rate requires 57\% to be gone.
+
+Fast radio bursts (FRBs) count the ionized baryons along each sightline, so they test this directly. We fit the amplitude $B$ of the mean cosmic dispersion measure to 114 localized FRBs, using the published likelihood with the host contribution marginalised. The result is $B=1.064\,[1.010,1.122]$ (68\%), where $B=1$ means no baryon loss. Baryon-only conversion is excluded at $7.8\sigma$ for $s_b=0.70$ and at $16.6\sigma$ for the 57\% history. Injection tests recover a planted deficit, and the two cases separate at $17\sigma$ in mocks.
+
+The same expansion history can be produced by converting the cold dark component instead. That case is consistent with the FRBs ($0.9\sigma$). If black holes do source dark energy, the converted mass must therefore come mostly from the dark sector, not the baryons. We found no previous application of FRB dispersion measures to CCBH baryon depletion.
+\end{abstract}
+
+\section{The hypothesis and its baryon cost}
+\begin{itemize}
+\item \textbf{The coupling.} In the CCBH picture a black hole's mass grows as $M\propto a^{k}$ with $k\simeq3$. A population therefore keeps a constant physical energy density after it forms, and behaves on cosmological scales like vacuum energy [1--3].
+\item \textbf{The published source rate.} Croker et al. tie production to the cosmic star-formation rate density $\psi$ [3]:
+$$\frac{d\rho_{\rm DE}}{dt}=\frac{\Xi\,\psi}{a^{3}},\qquad \frac{d}{dt}\big(a^{3}\rho_b\big)=-\Xi\,\psi .$$
+They fit $\Xi\simeq1.4$, leaving a baryon survival fraction $s_b\simeq0.70$ today.
+\item \textbf{A conserved history.} With the Madau--Dickinson rate [4] alone, $\Omega_\Lambda$ requires $\Xi\simeq4.7$ and $s_b=0.43$. This was computed in this programme, CFG775 and its follow-up.
+\item \textbf{Generality.} The expansion history alone cannot tell which reservoir is consumed: baryons, cold dark matter, or both. Any split of the same total loss gives the same $H(z)$.
+\end{itemize}
+
+\section{Test with fast radio bursts}
+\begin{itemize}
+\item \textbf{Data.} The localized-FRB sample of Sharma et al.\ (2026; 114 bursts, $z\le2.15$) [5]: raw $\mathrm{DM}_{\rm exgal}$ and host redshifts.
+\item \textbf{Likelihood.} The authors' eq.~1, re-implemented and checked against their own scatter band [6]. The cosmic term is lognormal with mean $B\,\langle{\rm DM}\rangle(z)$. Here $\langle{\rm DM}\rangle$ uses the BBN baryon density, $h=0.70$, and a Madau--Dickinson ionized fraction $f_d(z)$.
+\item \textbf{Nuisances.} The scatter amplitude is free and marginalised, so scatter cannot imitate the mean. The host term is marginalised over the authors' prior box.
+\item \textbf{Prediction.} For each burst, the predicted $B_{\rm pred}$ is the dispersion-measure-weighted average of $s_b(z)$ along its sightline.
+\end{itemize}
+
+\section{Result}
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+hypothesis & $B_{\rm pred}$ (sample median) & $Z$ (stat.) & class\\
+\midrule
+no conversion ($s_b=1$) & 1.000 & $+1.2$ & consistent\\
+CCBH, Croker-like ($s_{b,0}=0.70$) & 0.710 & $+7.8$ & excluded\\
+CCBH, conserved MD14 history ($s_{b,0}=0.43$) & 0.450 & $+16.6$ & excluded\\
+same expansion, proportional split ($s_{b,0}=0.91$) & 0.91 & $\approx+2.2^{\dagger}$ & tension\\
+same expansion, cold-only conversion ($s_{b,0}=1$) & 1.00 & $\approx+0.9^{\dagger}$ & consistent\\
+\bottomrule
+\end{tabular}
+\end{center}
+{\footnotesize $^\dagger$ with a 5\% systematic floor added in quadrature.}
+
+\textbf{Measurement.} $B=1.064\,[1.010,1.122]$, identical on both scatter models. Adding a 5\% systematic floor (to cover $h$, $f_d$ and $\Omega_bh^2$) leaves the Croker-like case excluded at $5.6\sigma$.
+
+\textbf{Controls.}
+\begin{itemize}
+\item The $B=1$ slice reproduces the earlier scatter fit exactly.
+\item 50 mocks injected with $B=0.5$ return $\ln B=-0.705$, against a true $-0.693$. The host prior does not absorb the mean.
+\item Mocks with $B=1$ and $B=0.43$ separate at $17\sigma$.
+\end{itemize}
+
+\ROBUSTNESS
+
+\section{Interpretation}
+\begin{itemize}
+\item \textbf{Main conclusion.} Black-hole dark energy cannot be paid for out of the baryon budget. Today's ionized baryons are all accounted for.
+\item \textbf{The surviving version.} The CCBH hypothesis survives only if the converted mass comes mostly from the dark sector. In that case the cold-to-baryon ratio drifts from its CMB value (5.36) to about 4.8 today. That would lower late-time structure growth, which can be tested with weak lensing.
+\item \textbf{Why the FRB test is strong.} Converted baryons are removed from the total budget. The observed condensed phase (stars and cold gas) is only about 7\% of baryons, so it cannot hide a 30\% deficit.
+\end{itemize}
+
+\textbf{Limitations.}
+\begin{itemize}
+\item The Croker-like history uses the Madau--Dickinson shape, not their fitted high-$z$ history.
+\item The mean model fixes the ionized fraction rather than fitting halo gas.
+\item Independent gravitational-wave bounds already disfavour $k=3$ ($k<2.1$ at $2\sigma$) [7]. The FRB constraint is complementary: it tests the baryon bookkeeping, not the mass growth.
+\end{itemize}
+
+\vspace{4pt}\hrule\vspace{3pt}
+{\footnotesize
+[1] D.~Farrah et al., ApJL 944, L31 (2023).
+[2] K.~S.~Croker et al., ApJL 921, L22 (2021).
+[3] K.~S.~Croker et al., JCAP 2024, 094 (arXiv:2405.12282).
+[4] P.~Madau \& M.~Dickinson, ARA\&A 52, 415 (2014).
+[5] K.~Sharma et al.\ (2026), localized FRB sample.
+[6] This programme, lanes CFG632 and CFG779 (public repository, scripts and frozen criteria).
+[7] L.~Amendola et al., MNRAS 528, 2377 (2024), arXiv:2307.02474.
+AI assistance: Anthropic's Claude; analysis cross-checked by parallel AI sessions.}
+\end{document}
