@@ -82,3 +82,19 @@ U4_27928 is conditional on V_c; it gives FLOOR below 225 km/s. The full grid is 
   Salpeter vs their choice), h (0.70 vs their fitted 0.699), our fixed ρ_DE0 = 0.692ρ_c against their BAO-fitted density,
   and the integration start.
 - Nothing is re-run here. The frozen numbers stand as computed. B2's shape result is unaffected, since it is ε-free.
+
+## Addendum 2 (2026-10-14): the factor of 3 is the SFRD choice (resolved, not re-run)
+- Croker et al. (2024, §2) use the Madau–Dickinson SFRD **rescaled by about 2** at z ≤ 4, matched at z = 4 to the
+  Trinca et al. high-z SFRD. That high-z piece includes faint JWST-era objects and runs higher than our steeply falling
+  MD14 extrapolation, and the (1 + z)³ weight amplifies it.
+- ×2 alone takes our ε_req of 4.6 down to about 2.3. The higher high-z SFRD supplies the rest toward their Ξ = 1.40.
+- So the two calculations agree once the SFRD matches. B1's narrowed statement stands: the observed MD14 SFRD's remnants
+  are not enough, and the coupled-BH source needs about 1.4× the stellar mass formed, via a ×2 SFRD and accretion.
+- **The framework's chain:**
+  - a₀(t)² = κ²c²G · Ξ ∫ψ a⁻³ dt.
+  - In words: galaxies' acceleration scale would equal the integrated black-hole production of the universe.
+  - Test: a₀(z)/a₀(0) = √F(z) ≈ 0.85–0.88 at z = 2 (sealed, B3).
+- **Caveat.** If coupled black-hole mass gravitated locally as mass, every galaxy would carry Ξ(1 + z_f)³ ≈ 10–90 M* of it.
+  That is excluded by rotation curves. The CCBH energy must act as uniform dark energy, not as local mass (consistent with
+  Croker et al. 2020, Paper III).
+- Cold energy (5.364 at recombination, z ≈ 1100) predates any black hole, so it cannot be a black-hole product.
