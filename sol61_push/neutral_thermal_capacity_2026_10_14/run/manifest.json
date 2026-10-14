@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "NEUTRAL-IDEAL-BOSE-CAPACITY",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/neutral_thermal_capacity_2026_10_14/check.py",
+    "sol61_push/neutral_thermal_capacity_2026_10_14/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Ideal three-species chemically equilibrated Bose capacity and kinetic-energy-matched saturated branch at assigned density",
+    "coefficient_domain": "Double precision quadrature and bracketed roots; polylogarithms evaluated at 40 decimal digits before conversion",
+    "conventions": "Natural units; T denotes k_B temperature in eV; N=Na+Nb+2Nr and Q=Na-Nb=0; delta positive; zero-energy atomic condensate",
+    "inputs": [
+      "sol61_push/neutral_thermal_capacity_2026_10_14/check.py",
+      "sol61_push/explicit_neutral_medium_2026_10_14/run/results.json"
+    ],
+    "bounds": {
+      "density_per_m3": 300000000000000.0,
+      "mass_eV": 1,
+      "mediator_kinetic_mass_eV": 2,
+      "detuning_eV": 2e-09,
+      "speeds_m_s": [
+        30000,
+        100000,
+        200000,
+        1000000
+      ],
+      "root_temperature_eV": [
+        1e-10,
+        0.1
+      ],
+      "integral_detuning_over_temperature": [
+        0,
+        "delta/Tc",
+        0.01,
+        1
+      ]
+    },
+    "non_claims": [
+      "No interacting phase diagram or stability conclusion",
+      "No actual halo temperature or condensate fraction",
+      "No mediator quasiparticle validity or thermalization proof",
+      "No experimental identification or completed cold-energy creation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T06:33:14.418672+00:00",
+    "runtime_seconds": 0.718633,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/neutral_thermal_capacity_2026_10_14/check.py",
+    "sol61_push/explicit_neutral_medium_2026_10_14/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/neutral_thermal_capacity_2026_10_14/check.py",
+      "sha256": "61d9f03af893862ba75f91ec4fbdf50df46561dccee83189158ec63b83418e0e",
+      "sha256_after": "61d9f03af893862ba75f91ec4fbdf50df46561dccee83189158ec63b83418e0e"
+    },
+    {
+      "path": "sol61_push/explicit_neutral_medium_2026_10_14/run/results.json",
+      "sha256": "9c4117a680e8ebd2bb37d0685226f58910374beebc628bb5c65b1ed4f43c5e4d",
+      "sha256_after": "9c4117a680e8ebd2bb37d0685226f58910374beebc628bb5c65b1ed4f43c5e4d"
+    }
+  ],
+  "output_directory": "sol61_push/neutral_thermal_capacity_2026_10_14/run",
+  "declared_results": [
+    "sol61_push/neutral_thermal_capacity_2026_10_14/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/neutral_thermal_capacity_2026_10_14/run/stdout.txt",
+      "sha256": "b1f9160ec2906cec9c7b52e46095874e041b475afe39803dd70c18d6fc86023a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/neutral_thermal_capacity_2026_10_14/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/neutral_thermal_capacity_2026_10_14/run/results.json",
+      "sha256": "a8a8055946b05be2809e089831cd6212221f13be4b5367f6abd1d52e6f39dd03",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
