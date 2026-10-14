@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "claim_id": "FINITE-T-RESTING-CARRIER-KICKS",
+  "repository": {
+    "commit": "63b0bc1127247f4f61cb4c3c02db989130dea3b6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/finite_temperature_kicks_2026_10_13/check.py",
+    "sol61_push/finite_temperature_kicks_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Fixed-density finite-temperature ideal Fermi bath: resting-impurity heating and single kicks exceeding a stipulated wall",
+    "coefficient_domain": "Float64 quadrature and root solving",
+    "conventions": "Two equally populated spin states; S(q,w)=2 integral d3k/(2pi)^3 f_k(1-f_k+q)delta(w-energy); g n_imp n_atom interaction",
+    "inputs": [
+      "sol61_push/finite_temperature_kicks_2026_10_13/check.py"
+    ],
+    "bounds": {
+      "T_eV": [
+        1e-09,
+        1e-07,
+        1e-05,
+        0.0001
+      ],
+      "energy_over_T_cutoffs": [
+        80,
+        100
+      ],
+      "occupation_integral_cases": 4
+    },
+    "non_claims": [
+      "No complete evaporation lifetime, no observed particles, no manufacturing protocol"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T01:57:40.968954+00:00",
+    "runtime_seconds": 0.375582,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/finite_temperature_kicks_2026_10_13/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/finite_temperature_kicks_2026_10_13/check.py",
+      "sha256": "e2a4809bc445b5ad0319b803562870954e61fe7b7a436fccaf2621d9479ec1cd",
+      "sha256_after": "e2a4809bc445b5ad0319b803562870954e61fe7b7a436fccaf2621d9479ec1cd"
+    }
+  ],
+  "output_directory": "sol61_push/finite_temperature_kicks_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/finite_temperature_kicks_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/finite_temperature_kicks_2026_10_13/run/stdout.txt",
+      "sha256": "5e7fc754e7fdfded201cf731edee19e0007016ebc3fd0d61b28f8ddc536d4d61",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/finite_temperature_kicks_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/finite_temperature_kicks_2026_10_13/run/results.json",
+      "sha256": "5e7fc754e7fdfded201cf731edee19e0007016ebc3fd0d61b28f8ddc536d4d61",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
