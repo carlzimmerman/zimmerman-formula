@@ -1,0 +1,62 @@
+CFG770  Cassini Q2 for the one-field stiffened action, no basin rule  [MUTATE M1]
+
+K3  sympy: Jacobian of F(P) = R(K|P|) P/|P| at P = (0,0,P0)
+  [PASS] K3 linearization: dF/dP = K diag(R/u, R/u, R'(u)) exactly
+
+K1  no background (A -> 1e-9): anomalous pull at r << Lambda vs CFG691's GM/L*^2
+  [PASS] K1 L*^2 = 2 Lambda^2: |a| = 4.2157e-15 vs GM/L*^2 = 4.2158e-15, rel 2.1e-08
+
+Backgrounds (action's own static solution: g_e = g_Ne + u_e, R(u_e) = g_Ne)
+  canonical g_e 2.00e-10: u_e/a0 0.6812, A_par 8.8388, A_perp 2.1367, boost g_e/g_Ne 1.4680, lambda_e(L*min) 2.296 pc
+  canonical g_e 2.32e-10: u_e/a0 0.7125, A_par 11.1003, A_perp 2.4786, boost g_e/g_Ne 1.4035, lambda_e(L*min) 2.180 pc
+  canonical g_e 2.64e-10: u_e/a0 0.7382, A_par 13.5956, A_perp 2.8204, boost g_e/g_Ne 1.3546, lambda_e(L*min) 2.080 pc
+  alt       g_e 2.00e-10: u_e/a0 0.6387, A_par 6.6620, A_perp 1.7680, boost g_e/g_Ne 1.5656, lambda_e(L*min) 2.444 pc
+  alt       g_e 2.32e-10: u_e/a0 0.6722, A_par 8.3081, A_perp 2.0509, boost g_e/g_Ne 1.4876, lambda_e(L*min) 2.328 pc
+  alt       g_e 2.64e-10: u_e/a0 0.7000, A_par 10.1143, A_perp 2.3338, boost g_e/g_Ne 1.4285, lambda_e(L*min) 2.227 pc
+  [PASS] K2 isotropic -> Q2 = 0: Q2_iso -1.886e-44 vs Q2_aniso -1.581e-32
+
+T1  Q2/ceiling at L* = 0.0001 pc (ceiling 5.2e-27 s^-2, Park+2026 2 sigma)
+  canonical g_e 2.00e-10: Q2 = -2.586e-18 s^-2 -> |Q2|/ceiling = 4.973e+08
+  canonical g_e 2.32e-10: Q2 = -3.006e-18 s^-2 -> |Q2|/ceiling = 5.780e+08
+  canonical g_e 2.64e-10: Q2 = -3.433e-18 s^-2 -> |Q2|/ceiling = 6.602e+08
+  alt       g_e 2.00e-10: Q2 = -2.143e-18 s^-2 -> |Q2|/ceiling = 4.121e+08
+  alt       g_e 2.32e-10: Q2 = -2.482e-18 s^-2 -> |Q2|/ceiling = 4.773e+08
+  alt       g_e 2.64e-10: Q2 = -2.827e-18 s^-2 -> |Q2|/ceiling = 5.437e+08
+  [FAIL] T1 Cassini Q2 (headline): worst |Q2|/ceiling 6.602e+08 over 3 g_e x 2 footings
+
+T2  Q2 across the stiffness window (canonical, g_e 2.32e-10), reported
+  L*    5.75 pc: |Q2|/ceiling 3.041e-06
+  L*   10.00 pc: |Q2|/ceiling 5.780e-07
+  L*   30.00 pc: |Q2|/ceiling 2.141e-08
+  L*  100.00 pc: |Q2|/ceiling 5.780e-10
+  L*  300.00 pc: |Q2|/ceiling 2.141e-11
+  L* 1000.00 pc: |Q2|/ceiling 5.780e-13
+
+T3  planetary gates in the background at L* = 0.0001 pc
+  canonical g_e 2.00e-10: sunward 1 AU -1.2750e-05 (ratio 348365584.1048); Saturn monopole 9.8692e-02 Msun (ratio 1473018235.2166)
+  canonical g_e 2.32e-10: sunward 1 AU -1.2641e-05 (ratio 345381242.1848); Saturn monopole 9.2700e-02 Msun (ratio 1383585142.3653)
+  canonical g_e 2.64e-10: sunward 1 AU -1.2537e-05 (ratio 342532153.0150); Saturn monopole 8.7483e-02 Msun (ratio 1305713357.0527)
+  alt       g_e 2.00e-10: sunward 1 AU -1.2875e-05 (ratio 351770548.4800); Saturn monopole 1.0626e-01 Msun (ratio 1585903468.7031)
+  alt       g_e 2.32e-10: sunward 1 AU -1.2778e-05 (ratio 349138778.1053); Saturn monopole 1.0034e-01 Msun (ratio 1497597875.6394)
+  alt       g_e 2.64e-10: sunward 1 AU -1.2687e-05 (ratio 346626816.2148); Saturn monopole 9.5133e-02 Msun (ratio 1419889233.8932)
+  [FAIL] T3 planetary gates: worst ratio 1585903468.7031
+
+K4  linear validity: max K|p| / u_e (isotropic Yukawa bound with A_min, r -> 0 is the maximum: GM/(2 Lambda^2))
+  [PASS] K4 linear validity: max K|p|/u_e = 2.186e+05 (MUTATE: not required)
+
+T4  Galactic boost at the Sun in this action (reported, no verdict)
+  canonical g_e 2.00e-10: g_e/g_Ne = 1.4680
+  canonical g_e 2.32e-10: g_e/g_Ne = 1.4035
+  canonical g_e 2.64e-10: g_e/g_Ne = 1.3546
+  alt       g_e 2.00e-10: g_e/g_Ne = 1.5656
+  alt       g_e 2.32e-10: g_e/g_Ne = 1.4876
+  alt       g_e 2.64e-10: g_e/g_Ne = 1.4285
+
+C0  no stiffness (gamma = 0): sunward tail at 1 AU = u(g) = a0 g/(a0+g), g from g_N = GM/AU^2
+  canonical: tail 9.3603e-11 m/s^2 = 2557x the bound  (FAIL as expected)
+  alt      : tail 1.1312e-10 m/s^2 = 3091x the bound  (FAIL as expected)
+
+M1 tooth: with the stiffness effectively off (L* = 1e-4 pc) T1 or T3 must FAIL
+  M1 tooth bites
+
+FAILS: ['T1 Cassini Q2 (headline)', 'T3 planetary gates']
