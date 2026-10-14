@@ -87,3 +87,15 @@ field in fresh processes reproduces either value (multithreaded P(k) reduction o
 far below any statistic used, not an engine difference. Production proceeds with this disclosure; the frozen V-2 label
 stays FAIL-as-written. Queue: T1 starts automatically after CFG640 H1 finishes (cfg650_waiter.sh, CFG650_JOB=T1); if
 CFG648 commits a FAILS verdict for H-SP with the condensed source before launch, the waiter is restarted with T1x per §criteria.
+
+## RESULT T12 (2026-10-14): M1+M2 (per-host supply + condensed source), canonical 1024³, vs CFG596 P0 — POST-PREVIEW selection (addendum A1)
+Scored with `CFG650_JOBSET=T12 cfg650_native.py` (MUTATE first). Outputs `cfg650_native_T12.out/json`, `_MUTATE`.
+- Own boost B(z=0) at k 0.3/0.5/1/2/4: 1.005 / 1.012 / 1.023 / 1.015 / 1.005 (CFG596: 1.19/1.25/1.21; CFG636: 1.058/1.056/1.056).
+- **KiDS-1000: Δχ² +2.03** (robust max +3.28: widen2 1.26, noIA 2.88, held-out 2.36, DESI 1.50); T-OWN passes → **CONSISTENT**.
+  Absolute: χ² F 146.29 (p 0.011) vs S0 144.26 (p 0.014) on 104 kept points — the framework fits as well as the same-pipeline
+  control; both are marginal in absolute terms (the classifier is relative; codex audit eb4f5af3a).
+- DES Y3: Δχ² +0.26 (robust ≤ 0.97), T-OWN fails → NOT DIAGNOSTIC.
+- Benchmark (no verdict weight): G = 0.026, σ8_grav ratio 1.0018.
+- Verdict per footing: **canonical PASS (shear side); alt PENDING.**
+Caveats: post-preview selection (T1x is the primary pre-declared run); inherited ΛCDM ICs/background (CFG654 native rerun
+pending); L100 box loses 54% (KiDS) / 77% (DES) of points; no baryonic feedback in either arm. κ = ½ fitted; not theory closed.

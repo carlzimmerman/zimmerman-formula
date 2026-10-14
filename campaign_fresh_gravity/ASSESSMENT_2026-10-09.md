@@ -170,6 +170,8 @@
 
 - **Merger memory H-MM (CFG726; criteria 78e51c189; post-hoc): FAILS** (and VOID as frozen on 3 controls that touch no failing score). Derived excess E = (Σ√f_i − 1)·T_rem (N equal pieces: √N − 1), free memory mass F = S_tot(1 − 1/√N), peaking at the progenitor edges (174–886 kpc). KiDS early types: N = 2 gives +0.115 (Z 1.98, at the 2σ line; N ≥ 3 within 1σ, but only if freed mass stays where progenitor halos were). eRASS1: mid 1.54 (Z 5.6, core only partly filled) and outer 0.76 (overshoot, Z −3.6); ACCEPT outer ×2.2 overshoot (Z −4.8); eFEDS unchanged (p 4e-4). The members' halos carry the whole supply and put too much at 1–3 Mpc. SPARC holds only by assigning discs N = 1; minor accretion would leave memory too (×1.04–1.37 in v at 10–30 kpc) — the N = 1 assignment is not derived.
 
+- **✅ T12 (CFG650 M1+M2: per-host supply + condensed source; 1024³ canonical; 2026-10-14): raw KiDS-1000 CONSISTENT** — Δχ² +2.03 (robust max +3.28; T-OWN passes); absolute χ² 146.3 (p 0.011) vs the same-pipeline control 144.3 (p 0.014); DES +0.26 not diagnostic; own boost 1.005/1.012/1.023 at k 0.3/0.5/1. The raw-KiDS tension fell +68.7 (CFG596) → +14.0 (CFG636) → +2.0 (T12). Caveats: POST-PREVIEW selection (T1x is the primary pre-declared run, next); inherited ΛCDM ICs (CFG654 native rerun pending); relative classifier; alt footing pending.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).

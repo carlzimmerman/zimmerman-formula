@@ -104,7 +104,7 @@ Evidence-first chain:
 | problem | evidence | lead |
 |---|---|---|
 | **Extra mass in the cores of massive systems** | early types +0.280 ± 0.083 at 50–100 kpc (Ks Z 3.37–3.69); cluster cores ×1.8 inside ~1 Mpc (7σ); groups short | supply overflow (CFG720) |
-| **Raw-KiDS cosmic shear** | all-baryon settling EXCLUDED (+68.7); condensed-capped EXCLUDED narrowly (+14.0, absolute p 0.002) | T12 / T1x pending |
+| **Raw-KiDS cosmic shear** | all-baryon settling EXCLUDED (+68.7); condensed-capped narrowly EXCLUDED (+14.0); **per-host + condensed (T12) CONSISTENT: Δχ² +2.03, robust ≤ 3.28, absolute p 0.011 vs control 0.014** (post-preview pick; canonical only) | T1x (primary) + native-input + alt reruns pending |
 | **Hot vs condensed source** | the action has no phase label (P sees all baryons), but restricting to condensed baryons removed 80% of the KiDS tension | needs a derived phase-dependent term, or overflow instead |
 | **Cluster mass scaling** | outer shear ∝ M_gas^0.90 vs the law's 0.47 | selection bias, environment or real; open |
 | **The switch (B1), Φ = Ψ, the relativistic completion** | not built | CFG678 gates |
