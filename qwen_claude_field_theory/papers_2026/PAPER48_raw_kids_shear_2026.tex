@@ -1,0 +1,102 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={From Excluded to Consistent: A Vacuum-Tied MOND Law With Per-Host, Condensed-Sourced Settling Against Raw KiDS-1000 Cosmic Shear}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries From Excluded to Consistent:\\ A Vacuum-Tied MOND Law With Per-Host, Condensed-Sourced Settling\\ Against Raw KiDS-1000 Cosmic Shear}\\[8pt]
+{\large Working note}\\[6pt]
+{\small The authors --- 2026-10-14, version 1.0. AI-assisted research programme; not peer reviewed.}
+\end{center}
+
+\begin{abstract}
+\noindent We test a gravity framework in which the acceleration scale is tied to dark energy, $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$ ($\kappa=\tfrac12$, fitted), and a cold, collisionless component (``cold energy'', $\Omega_c/\Omega_b=5.364$) settles inside bound systems into the profile the law demands.
+
+The test is framework-native. We run the framework's own $1024^3$ particle-mesh simulations in a $100\,h^{-1}$\,Mpc box and score the gravitating-field matter power spectrum on the \emph{raw} KiDS-1000 and DES~Y3 shear correlation functions $\xi_\pm$. The comparison is a same-pipeline control run without settling. No $\Lambda$CDM-calibrated nonlinear machinery enters the verdict.
+
+The original settling rule, in which all baryons source the law and supply is pooled across overlapping catchments, puts 19--25\% too much power at $k=0.3$--$1\,h$\,Mpc$^{-1}$ and is excluded: $\Delta\chi^2_{\rm KiDS}=+68.7$. Limiting the settling source to a census cap of condensed baryons gives $+14.0$, still narrowly excluded. Two physically motivated rules together bring the framework's own boost down to $1.005/1.012/1.023$ at $k=0.3/0.5/1$:
+\begin{itemize}
+\item each halo settles only its \emph{own} catchment's supply (no pooling);
+\item only \emph{condensed} baryons (stars plus cold gas) source the settled profile.
+\end{itemize}
+With these rules KiDS-1000 is \textbf{consistent}: $\Delta\chi^2=+2.03$, robustness maximum $+3.28$, sensitivity tooth passes. The absolute fit, $\chi^2=146.3$ ($p=0.011$), matches the control's $144.3$ ($p=0.014$). DES~Y3 is not diagnostic at this box size.
+
+The passing combination was selected after small-box previews. The primary pre-declared combination, which adds the framework's own gas expulsion, is running. The initial conditions remain inherited ($\Lambda$CDM-fitted); a native-input rerun is prepared and its preview is unchanged. The alternative footing is pending. We state these limits plainly.
+\end{abstract}
+
+\section{Framework and what is assumed}
+\begin{itemize}
+\item \textbf{Law.} $g=\nu(g_N/a_0)\,g_N$ with the repaired monotone kernel. The saturating-vacuum form $g_N=g^2/(g+a_0)$ gives the same verdicts to within 0.01 (CFG658).
+\item \textbf{Acceleration scale.} $a_0=\kappa c\sqrt{G\rho_{\rm DE}}\simeq0.173\,cH_\infty$, with $\kappa=\tfrac12$ fitted. Two footings, $9.3603\times10^{-11}$ and $1.1312\times10^{-10}$\,m\,s$^{-2}$, are never pooled.
+\item \textbf{Cold energy.} Its amount is measured, not derived. It is required: without it, clusters, the Bullet Cluster, Local Group timing and cosmic shear all fail (CFG624).
+\item \textbf{Settling.} Inside bound systems, cold energy drifts into the law's ``phantom'' profile, drawn from each system's turnaround catchment. The switch reads baryons.
+\item \textbf{Provenance.} All numbers come from committed lanes (identifiers CFG\,$n$) of the programme's public repository.
+\end{itemize}
+
+\section{The test}
+\paragraph{Simulations.} We use a lean copy of the programme's census engine:
+\begin{itemize}
+\item $1024^3$ particles, $L=100\,h^{-1}$\,Mpc, 150 steps from $z_i=49$;
+\item snapshots at $z=1$, 0.755, 0.5, 0.256 and 0;
+\item the same seed for every run.
+\end{itemize}
+\paragraph{Statistic.} We use the framework's own boost $B(k,z)=P_{\rm grav}/P_{S0}$ on the \emph{gravitating} field (particles plus settled source; CFG555), applied to the control spectrum. We project it to $\xi_\pm$ with the published redshift distributions and covariances of KiDS-1000 and DES~Y3. Points are kept only if at least 90\% of their integrand lies inside the box's $k$-range. Intrinsic alignment is free.
+\paragraph{Classes.} EXCLUDED if $\Delta\chi^2\ge9$ and every robustness variant gives $\ge9$. The robustness variants are: widened covariance, no intrinsic alignment, held-out bins, and DESI distances. A sensitivity tooth (``T-OWN'') must show that the framework's own boost, injected into the control, is detectable. Otherwise the result is NOT DIAGNOSTIC.
+\paragraph{Freezing.} Criteria were committed before each production run. MUTATE checks confirm the null ($F\equiv S0\Rightarrow\Delta\chi^2=0$).
+
+\section{Results}
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+rule & $B$ at $k=0.3/0.5/1$ & KiDS $\Delta\chi^2$ & robust (max / min) & verdict\\
+\midrule
+all baryons, pooled supply (CFG596) & 1.186/1.252/1.206 & $+68.7$ & min $+43.9$ & EXCLUDED\\
+condensed census cap (CFG636) & 1.058/1.056/1.056 & $+14.0$ & min $+9.19$ & EXCLUDED (narrowly)\\
+\textbf{per-host + condensed (T12)} & \textbf{1.005/1.012/1.023} & $\mathbf{+2.03}$ & max $+3.28$ & \textbf{CONSISTENT}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For T12:
+\begin{itemize}
+\item KiDS keeps 104 of 225 points. Absolute $\chi^2$ is 146.29 ($p=0.011$) against 144.26 for the control ($p=0.014$).
+\item DES keeps 52 of 227 points: $\Delta\chi^2=+0.26$, but the tooth fails, so it is NOT DIAGNOSTIC.
+\item Benchmark: $\sigma_{8,{\rm grav}}$ ratio 1.0018.
+\item Swapping the scorer's inherited background for the framework's own shifts the stored $\Delta\chi^2$ values by $\le1.4$ (CFG654). The tension was real physics, not an input artefact.
+\end{itemize}
+
+\paragraph{Where the original excess came from.}
+\begin{itemize}
+\item 56--79\% of CFG596's KiDS $\Delta\chi^2$ sits at $k<1$, mostly 0.3--1, i.e.\ the halo scale of groups and clusters (CFG646).
+\item The engine itself conserved mass and never exceeded supply. But the original rule pooled supply across merged catchments, so dominant hosts drew their neighbours' cold energy: about 10\% of the settled mass (CFG647).
+\item The phantom of hot gas added settled mass where most baryons in massive halos are hot (CFG634).
+\item The two rules remove exactly these two effects.
+\end{itemize}
+
+\section{Limitations (plainly)}
+\begin{enumerate}
+\item \textbf{Post-preview selection.} The per-host + condensed combination was chosen after seeing $256^3$ previews (CFG650 addendum A1). The pre-declared primary run (T1x, which adds gas expulsion) is in progress.
+\item \textbf{Relative classifier.} The classes compare the framework with a same-pipeline control. Both are marginal in absolute terms ($p\approx0.01$), so CONSISTENT means ``as good as the control'', not ``a perfect fit''.
+\item \textbf{Inherited initial conditions.} The runs use Planck-fitted parameters and $\Lambda$CDM growth to set the starting state. A framework-native-input rerun is validated at $256^3$, with an unchanged preview, but has not been run at $1024^3$ (CFG654).
+\item \textbf{Box size.} The box loses 54\% (KiDS) and 77\% (DES) of points; no baryonic feedback is modelled in either arm; the alternative footing is pending.
+\item \textbf{Unexplained source rule.} The condensed-only source is not yet derived from an action. The one-action form of the law responds to all baryons (CFG658/722).
+\item \textbf{Open failure.} Massive systems carry extra core mass not explained by the law: early types $+0.28$\,dex at $Z\approx3.7$; eRASS1 cluster cores $\times1.8$ at $7\sigma$ (CFG669/687). Two candidate mechanisms failed (CFG721/726).
+\item $\kappa$ is fitted and $\Omega_c/\Omega_b$ is measured. Nothing here closes the theory.
+\end{enumerate}
+
+\section{Related results in the programme}
+Galaxy rotation curves (SPARC, 0.100\,dex); wide binaries Newtonian under free-fall basins plus stiffness ($-0.8\sigma$ against Gaia DR3); cluster satellites; outer cluster lensing on the law ($A=1.01\pm0.09$, 318 eRASS1 clusters); the primary CMB is untouched. The companion note PAPER47 (DOI 10.5281/zenodo.23354043) describes the one-action form and the nature of the cold-energy carrier. Sealed upcoming tests: a flat $a_0(z)$ (ALMA, 2026-11-06 and 11-28) and Gaia DR4 wide binaries and Milky Way force (2026-12-02).
+
+\paragraph{AI assistance.} Anthropic's Claude (analysis, code, text), with independent review by parallel AI research sessions in the programme.
+\end{document}
