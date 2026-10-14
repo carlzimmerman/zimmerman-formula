@@ -1,5 +1,7 @@
 # Pump backreaction: stable excitation below a symmetry-breaking threshold
 
+**Later correction (2026-10-13):** [Nonlinear resonance audit](../nonlinear_resonance_2026_10_13/REPORT.md) finds that the illustrated populations shift their own resonance beyond the matter linewidth. The fixed-frequency linear estimates below require nonlinear retuning and do not by themselves establish those populations.
+
 2026-10-13. Previous turn was progress: it derived and published an explicit optical preparation term. This continuation tests backreaction within a three-mode approximation. It does not replace the full spatial Maxwell–matter problem or complete the cold-energy objective.
 
 ## Closed mode equations

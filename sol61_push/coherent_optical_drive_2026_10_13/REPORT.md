@@ -1,5 +1,7 @@
 # The proposed photon portal also supplies a coherent preparation route
 
+**Later correction (2026-10-13):** [Nonlinear resonance audit](../nonlinear_resonance_2026_10_13/REPORT.md) finds that the illustrated populations shift their own resonance beyond the matter linewidth. The fixed-frequency linear estimates below require nonlinear retuning and do not by themselves establish those populations.
+
 2026-10-13. Conditional theory calculation; no experimental identification of the portal or condensate. The mathematical route uses external optical energy to prepare an excitation. It does not produce energy from an unexcited stationary state or supply a new gravitational interaction.
 
 ## Geometry matters
