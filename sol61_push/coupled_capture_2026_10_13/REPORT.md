@@ -1,5 +1,7 @@
 # Coupled optical capture exposes a faster matter-pair instability
 
+**Later boundary correction (2026-10-13):** [Explicit outgoing transport](../outgoing_pair_transport_2026_10_13/REPORT.md) gives a threshold mu L/v=pi/2 for its specified open-path model. The rough v/L loss estimate below is not that boundary solution; its centimeter verdict does not apply to the lowest target on a nonreflecting one-centimeter path. Whole-sample confinement and angular transport remain unresolved.
+
 2026-10-13. The preceding goal turn constructed a biased single-mode preparation ramp. This turn couples that ramp to dynamical optical modes and then checks the resonant matter modes previously treated as a passive decay bath. The new constraint is substantial: coherent pair amplification can invalidate the passive-width approximation before the target state is sustained. No completed cold-energy mechanism is claimed.
 
 ## Combined nonlinear optical model
