@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "LAB-COLD-PHOTON-ACCEPTANCE",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/lab_cold_photon_acceptance_2026_10_13/check.py",
+    "sol61_push/lab_cold_photon_acceptance_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Joint daughter lab energy acceptance under Gaussian photon imbalance/misalignment and a leading narrow-pole CW rate",
+    "coefficient_domain": "Double precision quadrature with 65-decimal exact kinematics controls",
+    "conventions": "m=1MeV, vacuum pair excess 2neV, unpolarized isolated pole, each daughter K <= 10neV",
+    "inputs": [
+      "sol61_push/lab_cold_photon_acceptance_2026_10_13/check.py",
+      "sol61_push/ordinary_lepton_source_2026_10_13/run/results.json",
+      "sol61_push/threshold_resonance_2026_10_13/run/results.json"
+    ],
+    "bounds": {
+      "net_angle_component_rms_rad": [
+        0,
+        1e-08,
+        1e-07,
+        1e-06,
+        1e-05,
+        0.001
+      ],
+      "per_beam_rms_eV": 5000,
+      "flux_per_beam_per_s": 100000000.0,
+      "cutoff_K_eV": 1e-08
+    },
+    "non_claims": [
+      "No measured joint beam distribution, pulse enhancement, confinement or complete particle model"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T03:54:52.113579+00:00",
+    "runtime_seconds": 0.477314,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/lab_cold_photon_acceptance_2026_10_13/check.py",
+    "sol61_push/ordinary_lepton_source_2026_10_13/run/results.json",
+    "sol61_push/threshold_resonance_2026_10_13/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/lab_cold_photon_acceptance_2026_10_13/check.py",
+      "sha256": "ec13072fd8b79ba1ad86763224fd64579774fba9c3c8f26204b2c243e0e403a7",
+      "sha256_after": "ec13072fd8b79ba1ad86763224fd64579774fba9c3c8f26204b2c243e0e403a7"
+    },
+    {
+      "path": "sol61_push/ordinary_lepton_source_2026_10_13/run/results.json",
+      "sha256": "a613564e0f30d6b5023925a3d954f12920e18e75c7e37060f451b2a0e881c9f3",
+      "sha256_after": "a613564e0f30d6b5023925a3d954f12920e18e75c7e37060f451b2a0e881c9f3"
+    },
+    {
+      "path": "sol61_push/threshold_resonance_2026_10_13/run/results.json",
+      "sha256": "ab3a60e2e408a21996af0dea09c474f84025a8788b003c2c75d203f91b87925e",
+      "sha256_after": "ab3a60e2e408a21996af0dea09c474f84025a8788b003c2c75d203f91b87925e"
+    }
+  ],
+  "output_directory": "sol61_push/lab_cold_photon_acceptance_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/lab_cold_photon_acceptance_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/lab_cold_photon_acceptance_2026_10_13/run/stdout.txt",
+      "sha256": "9a8b5d2caf62a9bb0ac265e817547247165a1246a6687718a8ea25ef2dd59857",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/lab_cold_photon_acceptance_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/lab_cold_photon_acceptance_2026_10_13/run/results.json",
+      "sha256": "9a8b5d2caf62a9bb0ac265e817547247165a1246a6687718a8ea25ef2dd59857",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
