@@ -1,5 +1,7 @@
 # A biased frequency ramp prepares the nonlinear mode in the reduced model
 
+**Later limitation (2026-10-13):** [Coupled optical and matter-pair audit](../coupled_capture_2026_10_13/REPORT.md) finds rapid resonant matter-pair amplification unless losses or detuning suppress it. The single-mode capture below does not establish a sustainable prepared state.
+
 2026-10-13. Conditional progress toward preparation, not a completed cold-energy mechanism. The previous turn found that self-detuning invalidated the fixed-frequency linear drive estimate. This turn constructs a trajectory from zero excitation and tests limited parameter errors, rather than merely prescribing a final resonant state.
 
 ## Constructive trajectory
