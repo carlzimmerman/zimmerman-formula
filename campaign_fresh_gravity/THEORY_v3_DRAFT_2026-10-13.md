@@ -28,6 +28,8 @@ matter (hypothesis, CFG720).
 **(1) Action (CFG694).**
 $$\mathcal L=-\frac{|\nabla\Phi-4\pi G\,\mathbf P|^2}{8\pi G}-\rho_b\Phi-W(\mathbf P)-\frac{\gamma}{2}|\nabla\mathbf P|^2+\mathcal L_{\rm kin}$$
 
+**⚠️ Correction to (1)–(2) (astra CE-FM-010, sol61_push/cold_final_mile_2026_10_13/ACTION_CORRECTION.txt):** pairing the completed-square term with the FULL saturating potential W_full double-counts the critical quadratic; the literal Euler–Lagrange equation then gives g_N = W′_full and ν → 2, losing the deep law. The correct (equivalent, no new parameter) forms are either the expanded action with −W_full, or the completed square with the REMAINDER W_rem(u) = W_full(u) − u²/(8πG). CFG722's selector already uses the residual R = u²/(a₀ − u), so its results stand. Read (1) below with W → W_rem.
+
 **(2) Saturating vacuum (CFG695; no new constant).**
 $$W'(u)=\frac{u}{1-u/a_0}\quad\Longrightarrow\quad g_N=\frac{g^2}{g+a_0},\qquad \nu_s(y)=\tfrac12+\sqrt{\tfrac14+\tfrac1y},\quad y=g_N/a_0$$
 Deep regime: g → √(a₀ g_N), so V_f⁴ = G M_b a₀. Strong regime: g → g_N (Newton, Solar System).
