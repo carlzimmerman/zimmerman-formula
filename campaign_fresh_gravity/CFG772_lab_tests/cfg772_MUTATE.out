@@ -1,0 +1,30 @@
+CFG772  lab tests under the framework's three forms  [MUTATE]
+
+L1  Gundlach 2007 (F = m a at 5e-14 m/s^2): the framework modifies the gravitational field equation only; the
+    pendulum's restoring force is elastic and its inertia is m. Response: Newtonian in F1-F3 identically.
+    Gravitational anomaly of the lab surroundings (1000 kg at 1 m) under F1: G M / L*^2 = 7.01e-33 m/s^2 (L* 0.0001 pc)
+
+K2  Klein F = [1 + (a0/a_N)^b]^(1/2b), b = 1.3, a0 = 1.2e-10: recover Scarpa+2026's two Quinn numbers
+  [PASS] K2 Klein reproduces Scarpa+2026: half-variant a_N = 2.344e-08 m/s^2 (nominal 4.687e-08); predicted G(twice) = 6.67465 vs quoted 6.6747 (rel 8.2e-06)
+    Klein: Delta G/G between half and twice = 3.378e-04 (338 ppm from the paper's own two numbers; a WebFetch summary said the text quotes '2200 ppm' -- unverified, provisional)
+    Quinn-like single source at 0.214 m gives G M/r^2 = 1.60e-08 m/s^2 (x4 sources ~ 6.4e-08): consistent order with a_N
+
+L2  Cavendish-type delta G/G (constant offset) and its source-acceleration dependence (half vs twice)
+  canonical: F1_Lstar_0.0001: offset 4.81e-27, source-dependent dG/G 0.00e+00; F2: offset 1.99e-03, source-dependent dG/G 2.98e-03
+             F3: basin radius inf m vs source radius 0.058 m -> NODE
+  alt      : F1_Lstar_0.0001: offset 4.81e-27, source-dependent dG/G 0.00e+00; F2: offset 2.41e-03, source-dependent dG/G 3.60e-03
+             F3: basin radius inf m vs source radius 0.058 m -> NODE
+
+L3  free-fall torsion balances (F3): boost needs basin r_J = (G m/T)^(1/3) > r_M = sqrt(G m/a0), i.e. m < a0^3/(G T^2)
+  canonical drop tower (Earth surface)        : T 3.08e-06 s^-2 -> mass ceiling 1.29e-09 kg
+  canonical LEO 400 km                        : T 2.57e-06 s^-2 -> mass ceiling 1.86e-09 kg
+  canonical interplanetary 1 AU (solar tide)  : T 7.93e-14 s^-2 -> mass ceiling 1.95e+06 kg
+  alt       drop tower (Earth surface)        : T 3.08e-06 s^-2 -> mass ceiling 2.28e-09 kg
+  alt       LEO 400 km                        : T 2.57e-06 s^-2 -> mass ceiling 3.29e-09 kg
+  alt       interplanetary 1 AU (solar tide)  : T 7.93e-14 s^-2 -> mass ceiling 3.45e+06 kg
+  F1 at L* 0.0001 pc: 1 kg test body, anomaly G m/L*^2 = 7.01e-36 m/s^2 vs Newton at 0.1 m 6.67e-09 (ratio 1.1e-27)
+
+M1 tooth (Earth field off): F2 source-dependent dG/G = 2.98e-03 -> bites
+M2 tooth (L* 1e-4 pc): F1 offset ratio 3.306e+09 vs (5.75e4)^2 = 3.306e+09 -> bites
+
+FAILS: ['MUTATE (designed exit 1)']
