@@ -1,0 +1,18 @@
+CFG773  bench analogue of the tether's field law  [MUTATE]
+
+A1  passive Drude-Lorentz media: eps(0) = 1 + sum f_j wp_j^2 / w_j^2; KK check eps(0)-1 = (2/pi) int eps''/w dw
+  [PASS] A1 ELECTRIC FORBIDDEN: 0 of 10^4 passive media with eps(0) < 1; KK sum rule reproduces eps(0)-1 to 3.0e-13 (20 samples). Gravity's polarization anti-screens (g > g_N) <=> eps < 1: no passive dielectric can do it
+
+A2  magnetic poles in a current-free medium: div(mu_r(H) H) = rho_m; point pole mu_r(H) H = Q/(4 pi r^2)
+  [PASS] A2 mapping reproduces the law: max |H/g - 1| = 1.7e-14 over g_N/a0 = 1e-4..1e4 (H <-> g, B/mu0 <-> g_N, H0 <-> a0)
+
+A3  superconducting grains (mu = 0 spheres; mu_i = 2 under MUTATE M1) in a mu = 1 matrix
+  MG: f_s(x) = 2/(2+3x) (check below);  BR: f_s(x) = (2/3)/(1+x)  -> both a shape-1 Lomax switching-field law
+  M1 tooth: with paramagnetic grains (mu_i = 2) the required f_s is NEGATIVE for every x -> no solution (bites)
+
+A4  seven real superconductors (T -> 0 critical fields, mT; provisional): intermediate-state window (2/3)Hc..Hc per sphere
+  MG f=0.5: best H0 = 68.79 mT, rms |dmu| = 0.0296 (max 0.0767) over x in [0.667, 30]; B(H) monotone: True; weights Al 0.41, In 0.12, Sn 0.28, Pb 0.11, Nb(Hc1) 0.09
+  BR f=0.6: best H0 = 188.36 mT, rms |dmu| = 0.0475 (max 0.0935) over x in [0.111, 30]; B(H) monotone: True; weights Al 0.29, In 0.09, Sn 0.27, Pb 0.17, Nb(Hc1) 0.18
+  M2 tooth: shuffled critical fields rms MG 0.0296, BR 0.0475 vs main MG 0.0283, BR 0.0532 -> DID NOT BITE
+
+FAILS: ['MUTATE M1 (designed)', 'MUTATE M2 (designed)']

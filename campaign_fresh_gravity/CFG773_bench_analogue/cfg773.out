@@ -1,0 +1,26 @@
+CFG773  bench analogue of the tether's field law
+
+A1  passive Drude-Lorentz media: eps(0) = 1 + sum f_j wp_j^2 / w_j^2; KK check eps(0)-1 = (2/pi) int eps''/w dw
+  [PASS] A1 ELECTRIC FORBIDDEN: 0 of 10^4 passive media with eps(0) < 1; KK sum rule reproduces eps(0)-1 to 3.0e-13 (20 samples). Gravity's polarization anti-screens (g > g_N) <=> eps < 1: no passive dielectric can do it
+
+A2  magnetic poles in a current-free medium: div(mu_r(H) H) = rho_m; point pole mu_r(H) H = Q/(4 pi r^2)
+  [PASS] A2 mapping reproduces the law: max |H/g - 1| = 1.7e-14 over g_N/a0 = 1e-4..1e4 (H <-> g, B/mu0 <-> g_N, H0 <-> a0)
+
+A3  superconducting grains (mu = 0 spheres; mu_i = 2 under MUTATE M1) in a mu = 1 matrix
+  MG: f_s(x) = 2/(2+3x) (check below);  BR: f_s(x) = (2/3)/(1+x)  -> both a shape-1 Lomax switching-field law
+  closed forms verified to 2.2e-16
+  [PASS] K1 MG Monte-Carlo (N = 1e5): f = 0.5: x_min = 0.667 (mu_min 0.400, max boost 2.50x); max |mu_eff - x/(1+x)| over [x_min, 100] = 0.0025
+  [PASS] K1 BR Monte-Carlo (N = 1e5): f = 0.6: x_min = 0.111 (mu_min 0.100, max boost 10.00x); max |mu_eff - x/(1+x)| over [x_min, 100] = 0.0008
+
+A4  seven real superconductors (T -> 0 critical fields, mT; provisional): intermediate-state window (2/3)Hc..Hc per sphere
+  MG f=0.5: best H0 = 8.66 mT, rms |dmu| = 0.0283 (max 0.0729) over x in [0.667, 30]; B(H) monotone: True; weights Al 0.43, In 0.26, Hg 0.09, Pb 0.11, Nb(Hc1) 0.11
+  BR f=0.6: best H0 = 25.12 mT, rms |dmu| = 0.0532 (max 0.1203) over x in [0.111, 30]; B(H) monotone: True; weights Al 0.30, In 0.18, Hg 0.12, Pb 0.16, Nb(Hc1) 0.23
+  [PASS] A4 class (reported): MG: BUILDABLE (rms 0.0283), BR: APPROXIMATE (rms 0.0532)
+
+A5  point pole: s(r) = dln(rH)/dln r (law: s -> 0 deep, -1 Newtonian); flat = |s| <= 0.1
+  MG : longest flat run 0.18 decades in r; min |s| = 0.011
+  BR : longest flat run 0.16 decades in r; min |s| = 0.016
+  LAW: longest flat run 2.30 decades in r; min |s| = 0.001
+  [PASS] A5 deep regime (reported): BR flat 0.16 dec -> DEEP REGIME NOT REACHED; MG 0.18 dec; law 2.30 dec (grid edge)
+
+FAILS: none
