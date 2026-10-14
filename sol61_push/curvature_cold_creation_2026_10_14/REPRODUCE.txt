@@ -1,0 +1,22 @@
+Run from the repository root with Python, NumPy, SciPy and SymPy versions
+recorded in contract.json. No data downloads or external programs are needed
+for the calculations. Each output directory must be new; scripts refuse to
+overwrite an existing directory. Example commands:
+
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python3 sol61_push/curvature_cold_creation_2026_10_14/check_creation.py /private/tmp/ccc-creation-new
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python3 sol61_push/curvature_cold_creation_2026_10_14/check_release_modes.py /private/tmp/ccc-modes-new
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python3 sol61_push/curvature_cold_creation_2026_10_14/check_de_sitter.py /private/tmp/ccc-ds-new
+
+Each writes results.json in its new output directory; the mode calculation also
+writes history.json. Canonical runner manifests include timeout, CPU and thread
+limits, execution inputs and output hashes. A successful execution is not a
+certificate of full physical viability. These three checks implement different
+scoped aspects of one candidate action, with different background assumptions.
+
+plot_result.py reads the canonical mode history and results and uses NumPy and
+Matplotlib to regenerate creation.png. The verified rendering used Python3.13,
+NumPy1.26.4 and Matplotlib3.10.8. Plotting is not a numerical proof step.
+
+artifact_hashes.json pins the delivered files; it excludes itself.
+The source and checker scripts are the durable reproduction instructions;
+no execution of commands read from an untrusted manifest is required.

@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "CCC-001-de-Sitter-endpoint",
+  "repository": {
+    "commit": "6d6069b53697cf18116c07b055b3c976ae73d395",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/curvature_cold_creation_2026_10_14/check_de_sitter.py",
+    "sol61_push/curvature_cold_creation_2026_10_14/de_sitter_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact lapse variation, homogeneous perturbation reduction and negative restoring coefficient at all nonzero de Sitter fixed points for canonical positive quadratic/quartic potential plus positive quadratic GB coupling",
+    "coefficient_domain": "SymPy exact rational functions; binary64 illustrative samples",
+    "conventions": "See CONTRACT.txt; scalar-only fixed backgrounds; not physical theory closure",
+    "inputs": [
+      "sol61_push/curvature_cold_creation_2026_10_14/check_de_sitter.py"
+    ],
+    "bounds": {
+      "mass_squared": [
+        0,
+        0.01,
+        1
+      ],
+      "lambda": [
+        0,
+        0.1,
+        1
+      ],
+      "phi_over_MP": [
+        0.01,
+        0.1,
+        1,
+        10
+      ],
+      "excluded": "mass_squared=lambda=0; no independent cosmological constant"
+    },
+    "non_claims": [
+      "No exclusion of different potentials, other sources, or rolling acceleration",
+      "No global theorem about all cold energy or dark energy theories",
+      "Self-audited symbolic derivation, no independent human referee"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T19:35:53.783699+00:00",
+    "runtime_seconds": 0.712112,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/curvature_cold_creation_2026_10_14/check_de_sitter.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/curvature_cold_creation_2026_10_14/check_de_sitter.py",
+      "sha256": "1daf864acc28b8bfc2493bded0bbf52ab6764cde37d7fecce0b8bda4ee5c105e",
+      "sha256_after": "1daf864acc28b8bfc2493bded0bbf52ab6764cde37d7fecce0b8bda4ee5c105e"
+    }
+  ],
+  "output_directory": "sol61_push/curvature_cold_creation_2026_10_14/de_sitter_run_v1",
+  "declared_results": [
+    "sol61_push/curvature_cold_creation_2026_10_14/de_sitter_run_v1/calculation/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/curvature_cold_creation_2026_10_14/de_sitter_run_v1/stdout.txt",
+      "sha256": "b8e0d0e1589363a1c4899fc308808b3b91ddac7a8e4dd1b21f397360171697c9",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/curvature_cold_creation_2026_10_14/de_sitter_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/curvature_cold_creation_2026_10_14/de_sitter_run_v1/calculation/results.json",
+      "sha256": "b8e0d0e1589363a1c4899fc308808b3b91ddac7a8e4dd1b21f397360171697c9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

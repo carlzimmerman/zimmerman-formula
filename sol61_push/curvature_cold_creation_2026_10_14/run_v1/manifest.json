@@ -1,0 +1,161 @@
+{
+  "schema_version": 2,
+  "claim_id": "CCC-001-curvature-activation-to-cold-scalar",
+  "repository": {
+    "commit": "d8972731d0977652bb93d49ca3ee71baff54bcb8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/curvature_cold_creation_2026_10_14/check_creation.py",
+    "sol61_push/curvature_cold_creation_2026_10_14/run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Schwarzschild onset and quartic test-field hair; prescribed actual FRW curvature activates a supplied scalar seed that later redshifts as dust; signed work and ballistic-export distinctions",
+    "coefficient_domain": "Exact SymPy identities and binary64 SciPy numerical approximations",
+    "conventions": "See CONTRACT.txt; scalar-only fixed backgrounds; not physical theory closure",
+    "inputs": [
+      "sol61_push/curvature_cold_creation_2026_10_14/check_creation.py",
+      "sol61_push/curvature_cold_creation_2026_10_14/CONTRACT.txt"
+    ],
+    "bounds": {
+      "mu": [
+        0,
+        0.1,
+        1,
+        3,
+        10,
+        30
+      ],
+      "elements": [
+        480,
+        960,
+        1920,
+        3840
+      ],
+      "cosmic_time": [
+        0,
+        5000
+      ],
+      "FRW_H_initial": 1,
+      "m": 0.1,
+      "eta": 0.1,
+      "lambda": 1,
+      "seed": 1e-06,
+      "nonlinear_hair": {
+        "mu": 1,
+        "zeta": 0.6
+      }
+    },
+    "non_claims": [
+      "No full metric or perturbation stability",
+      "No quantum seed or predicted abundance",
+      "No original tether or dark energy mechanism",
+      "No novelty claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T19:30:46.782649+00:00",
+    "runtime_seconds": 2.456244,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/curvature_cold_creation_2026_10_14/check_creation.py",
+    "sol61_push/curvature_cold_creation_2026_10_14/CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/curvature_cold_creation_2026_10_14/check_creation.py",
+      "sha256": "a9f6ffcc662d834ffbd3a8c8b94d634ea682cd3799b99b06ac1dd4b0e54bccb6",
+      "sha256_after": "a9f6ffcc662d834ffbd3a8c8b94d634ea682cd3799b99b06ac1dd4b0e54bccb6"
+    },
+    {
+      "path": "sol61_push/curvature_cold_creation_2026_10_14/CONTRACT.txt",
+      "sha256": "8c04ff3441c86b2f03ad9808e165bb6e2e39daf5c7c69a595f493fc75c4cfb53",
+      "sha256_after": "8c04ff3441c86b2f03ad9808e165bb6e2e39daf5c7c69a595f493fc75c4cfb53"
+    }
+  ],
+  "output_directory": "sol61_push/curvature_cold_creation_2026_10_14/run_v1",
+  "declared_results": [
+    "sol61_push/curvature_cold_creation_2026_10_14/run_v1/calculation/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/curvature_cold_creation_2026_10_14/run_v1/stdout.txt",
+      "sha256": "edbef9fd62a606953e39dff3ec4d2c19d5f887c799826dc5a3e4b5e22603689e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/curvature_cold_creation_2026_10_14/run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/curvature_cold_creation_2026_10_14/run_v1/calculation/results.json",
+      "sha256": "edbef9fd62a606953e39dff3ec4d2c19d5f887c799826dc5a3e4b5e22603689e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
