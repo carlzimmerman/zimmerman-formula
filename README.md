@@ -416,6 +416,7 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-10-14 | [10.5281/zenodo.23364891](https://doi.org/10.5281/zenodo.23364891) (concept 23364890) | Prediction Before Publication: Dated Zimmerman Forecasts Compared with MUSE-DARK III, MIGHTEE-HI/LADUMA, and JUNO | v1.2; verified March public forecast deposits, unchanged MUSE central-curve comparison within 4.8%, JUNO numerical agreements and conflicting versions; statistical confirmation and uniqueness unverified |
 | 2026-10-11 | [10.5281/zenodo.23303805](https://doi.org/10.5281/zenodo.23303805) (concept 23303804) | A Dated, Graded Ledger of the Testable Predictions of a Vacuum-Tied MOND Framework, with Its Confronted Record and Retracted Claims (Working Note) | v1.0 (PAPER46; 98 future tests graded K1–K4, 51 confronted results, 15 deposits, claims not to cite; built from the Kepler Grade Prediction Chart by `PAPER46_build.py`, `PAPER46_audit.py` 10/10; kappa fitted, not theory closed) |
 | 2026-10-11 | [10.5281/zenodo.23240863](https://doi.org/10.5281/zenodo.23240863) (concept 23219294) | The Supply Edge: A Mass-Conserving Rule Without Tuned Radii Under a Vacuum-Tied MOND Law Keeps Particle Clustering Within 10%, but Not the Gravitating Matter Spectrum at 512^3 (Working Note) | 2.2 |
 | 2026-10-09 | [10.5281/zenodo.23171065](https://doi.org/10.5281/zenodo.23171065) | Dark Energy as the Vacuum Energy of the MOND Field: a Consistent Model with a Turn-Off Near 1e-8 m/s^2 | 1.2 |
