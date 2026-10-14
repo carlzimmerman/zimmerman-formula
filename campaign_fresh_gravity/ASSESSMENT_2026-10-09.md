@@ -168,6 +168,8 @@
 
 - **Other chats (2026-10-13 evening):** CFG760/761/762 — the law's own vacuum curvature gives P perturbations a mass gap; one P-wave speed c_P cannot serve all SPARC galaxies (CLOSED ×171–182, both footings), so **P radiation is closed as the cold-energy export channel** (consistent with CFG659's adiabatic finding). CFG763/764 — a **formation clock** for cold energy formed at rest: window OPEN (young tidal dwarfs need τ ≥ 0.72/0.83 Gyr; old SPARC discs need τ ≤ 3.47 Gyr; orbital form τ = k t_orb with k ∈ [0.46/0.52, 1.20]); prediction: 1-Gyr-old baryons hold 25–75% of the law's cold mass. astra CE-FM-035: partial carrier formation at rest is not in static force balance (R(fu₀)/g_N ≤ f²) — a reservoir/source and actual evolution are required; no universal no-go.
 
+- **Merger memory H-MM (CFG726; criteria 78e51c189; post-hoc): FAILS** (and VOID as frozen on 3 controls that touch no failing score). Derived excess E = (Σ√f_i − 1)·T_rem (N equal pieces: √N − 1), free memory mass F = S_tot(1 − 1/√N), peaking at the progenitor edges (174–886 kpc). KiDS early types: N = 2 gives +0.115 (Z 1.98, at the 2σ line; N ≥ 3 within 1σ, but only if freed mass stays where progenitor halos were). eRASS1: mid 1.54 (Z 5.6, core only partly filled) and outer 0.76 (overshoot, Z −3.6); ACCEPT outer ×2.2 overshoot (Z −4.8); eFEDS unchanged (p 4e-4). The members' halos carry the whole supply and put too much at 1–3 Mpc. SPARC holds only by assigning discs N = 1; minor accretion would leave memory too (×1.04–1.37 in v at 10–30 kpc) — the N = 1 assignment is not derived.
+
 ## Live forks and new predictions
 - a₀ tracking ρ_DE vs the tension −p_DE (CFG511).
 - PBH window 10¹⁷–10²² g, with a LISA test (CFG510).

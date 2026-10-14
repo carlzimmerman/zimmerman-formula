@@ -70,6 +70,8 @@ Evidence-first chain:
 
 **⚠️ Update (CFG721):** the law's own tethered phantom never reaches the cap a₀/πG, so the capacity does not bind anywhere that matters; the cluster-core excess is mass beyond the law, and supply overflow (H-OF / H-OF2) FAILS to supply it (Bullet main ≤ 0.79, sub ≤ 0.11; early types Z 3.7–3.8). The free component below remains a data-required hypothesis with NO derived origin yet (astra's escape channel CE-FM-026/027 is the live candidate).
 
+**⚠️ Update (CFG726):** merger memory (excess ≈ √N − 1 from the law's sub-additivity + conserved cold energy) FAILS on eRASS1, ACCEPT and eFEDS (core only partly filled, outskirts overshot); it reaches the KiDS early-type excess only at the 2σ line. The origin of the free core component remains open after overflow (CFG721) and merger memory (CFG726).
+
 **So cold energy comes in two kinds:**
 - **Tethered**: in the law's shape, capped at a₀/πG. It dominates galaxies and gives the RAR.
 - **Free**: supply the tether cannot hold. It is collisionless and follows the total potential, pooling in the cores of massive systems. It is the candidate for the early-type, group and cluster-core excess (CFG669/652/687). Testing: the CFG721 two-population variant H-OF2.
