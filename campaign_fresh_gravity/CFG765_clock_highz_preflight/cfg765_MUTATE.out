@@ -1,0 +1,11 @@
+CFG765: pre-flight -- can the record's z ~ 2-2.7 KMOS3D fits (CFG270 T1) separate the orbital and universal formation clocks?
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 66b7ab21a). D_orb = nu(y); D_uni = 1 + f (nu - 1), f = 1 - exp(-a/3.47 Gyr).
+kappa = 1/2 FITTED; not "theory closed".  Run: python3 cfg765.py   (CFG765_MUTATE=1: y := 0.01; exit 1 iff P1 then DIAGNOSTIC)
+
+fits (T1): 72; y median 0.01 (16-84%: 0.01-0.01)
+  baryon age 1 Gyr: f_uni = 0.250; separation median 0.493 dex, 84th pct 0.493, max 0.493
+  baryon age 3 Gyr: f_uni = 0.579; separation median 0.208 dex, 84th pct 0.208, max 0.208
+  y needed for a 0.30-dex separation (a = 1 Gyr): y <= 0.1656;  pooled statistical error of log D: 0.038 dex (the shared +-0.15 dex baryon band does not average down)
+
+VERDICT: P1 DIAGNOSTIC
