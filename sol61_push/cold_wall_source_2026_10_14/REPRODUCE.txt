@@ -1,0 +1,14 @@
+Repository root; Python3.9.6,SymPy1.14.0. Scripts require one fresh output path.
+Canonical manifests contain exact argv, hashes, limits and output declarations.
+
+Validate each record:
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/validate_manifest.py sol61_push/cold_wall_source_2026_10_14/run_v1/manifest.json --root .
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/validate_manifest.py sol61_push/cold_wall_source_2026_10_14/vector_run_v1/manifest.json --root .
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/validate_manifest.py sol61_push/cold_wall_source_2026_10_14/time_run_v1/manifest.json --root .
+
+Example new source run (run_repeat must not already exist):
+PYTHONDONTWRITEBYTECODE=1 python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/run_experiment.py --root . --contract sol61_push/cold_wall_source_2026_10_14/computation_contract.json --output sol61_push/cold_wall_source_2026_10_14/run_repeat --input sol61_push/cold_wall_source_2026_10_14/check_source.py --input sol61_push/cold_wall_source_2026_10_14/CONTRACT.txt --result sol61_push/cold_wall_source_2026_10_14/run_repeat/calculation/results.json --result sol61_push/cold_wall_source_2026_10_14/run_repeat/calculation/checks.json --timeout 120 --max-cpu-seconds 90 --max-threads 1 --max-output-bytes 1000000 -- python3 sol61_push/cold_wall_source_2026_10_14/check_source.py sol61_push/cold_wall_source_2026_10_14/run_repeat/calculation
+
+Vector/time repeats: use their respective contract JSON, script, text contract
+and new output path, matching all repeated --input and --result arguments.
+No script imports another shared research file or performs network access.

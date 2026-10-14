@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "CWS-004",
+  "repository": {
+    "commit": "b1dda1e6c63f8b01925e70ac16b05cca13b189fd",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_wall_source_2026_10_14/check_radial_time.py",
+    "sol61_push/cold_wall_source_2026_10_14/time_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Contracted connection and Hessian for radial time-dependent nonminimal scalar extension",
+    "coefficient_domain": "SymPy exact symbolic derivatives",
+    "conventions": "-+++; stationary shift b3; arbitrary A4; equator x>0",
+    "inputs": [
+      "sol61_push/cold_wall_source_2026_10_14/check_radial_time.py",
+      "sol61_push/cold_wall_source_2026_10_14/TIME_CONTRACT.txt"
+    ],
+    "bounds": {
+      "b": "static arbitrary b(x,y,z)",
+      "A": "arbitrary A(t,x,y,z), then radial A(t,r)"
+    },
+    "non_claims": [
+      "No launch metric",
+      "No new global ODE computation; proof is analytic",
+      "No higher-derivative or vector source exclusion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T22:52:29.476427+00:00",
+    "runtime_seconds": 0.443393,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_wall_source_2026_10_14/check_radial_time.py",
+    "sol61_push/cold_wall_source_2026_10_14/TIME_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/check_radial_time.py",
+      "sha256": "c1cc6e74ade521905f015f04bec96358d6aac597ce59d08d5c285a2424fb4e76",
+      "sha256_after": "c1cc6e74ade521905f015f04bec96358d6aac597ce59d08d5c285a2424fb4e76"
+    },
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/TIME_CONTRACT.txt",
+      "sha256": "cb6a897f5d198144060d6ffceffd17e28d2b6b6a5210789ff7eaeee0c23e064d",
+      "sha256_after": "cb6a897f5d198144060d6ffceffd17e28d2b6b6a5210789ff7eaeee0c23e064d"
+    }
+  ],
+  "output_directory": "sol61_push/cold_wall_source_2026_10_14/time_run_v1",
+  "declared_results": [
+    "sol61_push/cold_wall_source_2026_10_14/time_run_v1/calculation/results.json",
+    "sol61_push/cold_wall_source_2026_10_14/time_run_v1/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/time_run_v1/stdout.txt",
+      "sha256": "c486f881608972b352e2e0a4052525b6ebe931892deecaf90b7fb5763531fc49",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/time_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/time_run_v1/calculation/results.json",
+      "sha256": "c486f881608972b352e2e0a4052525b6ebe931892deecaf90b7fb5763531fc49",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/time_run_v1/calculation/checks.json",
+      "sha256": "3ae0b928efe145ac75983c4b07e79d980e9956cd0b4e547e388fe02936cb5534",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

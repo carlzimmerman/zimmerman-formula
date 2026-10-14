@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "CWS-003",
+  "repository": {
+    "commit": "b1dda1e6c63f8b01925e70ac16b05cca13b189fd",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_wall_source_2026_10_14/check_vector.py",
+    "sol61_push/cold_wall_source_2026_10_14/vector_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Transverse Einstein momentum constraint, linear scalar momentum projection and conditional cold-fluid momentum matching",
+    "coefficient_domain": "SymPy exact rational functions, real k not zero",
+    "conventions": "-+++; c=hbar=1; partial_i -> i k_i; covariant normal-spatial stress projection",
+    "inputs": [
+      "sol61_push/cold_wall_source_2026_10_14/check_vector.py",
+      "sol61_push/cold_wall_source_2026_10_14/VECTOR_CONTRACT.txt"
+    ],
+    "bounds": {
+      "Fourier": "arbitrary real k !=0 and arbitrary beta",
+      "test_polynomial": "b=x^2 z+y^2",
+      "fluid": "linear drift, h>0"
+    },
+    "non_claims": [
+      "No full cold-fluid stress or density match",
+      "No universal higher-derivative scalar no-go",
+      "No working drive or stability certificate"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T22:49:51.975003+00:00",
+    "runtime_seconds": 0.668743,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_wall_source_2026_10_14/check_vector.py",
+    "sol61_push/cold_wall_source_2026_10_14/VECTOR_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/check_vector.py",
+      "sha256": "dfad2a21a5e53ef9af84c530e2e29106f5da4cd5f44320bb243ffc9bc7732fb7",
+      "sha256_after": "dfad2a21a5e53ef9af84c530e2e29106f5da4cd5f44320bb243ffc9bc7732fb7"
+    },
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/VECTOR_CONTRACT.txt",
+      "sha256": "6e173d26922f4a158b947f021a61d6293756a3bd06c6eb3908bdd258a19148ba",
+      "sha256_after": "6e173d26922f4a158b947f021a61d6293756a3bd06c6eb3908bdd258a19148ba"
+    }
+  ],
+  "output_directory": "sol61_push/cold_wall_source_2026_10_14/vector_run_v1",
+  "declared_results": [
+    "sol61_push/cold_wall_source_2026_10_14/vector_run_v1/calculation/results.json",
+    "sol61_push/cold_wall_source_2026_10_14/vector_run_v1/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/vector_run_v1/stdout.txt",
+      "sha256": "3e6f221f913b56e14c81ad19bcfdbfda53a0f7707ffdb756e3ba10ab8615e826",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/vector_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/vector_run_v1/calculation/results.json",
+      "sha256": "3e6f221f913b56e14c81ad19bcfdbfda53a0f7707ffdb756e3ba10ab8615e826",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_wall_source_2026_10_14/vector_run_v1/calculation/checks.json",
+      "sha256": "1f271a0d6e70b459cabef324b53b1983f71a67fb12d0a95bd9e69e41ee524f34",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
