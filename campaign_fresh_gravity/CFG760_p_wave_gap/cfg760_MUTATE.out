@@ -1,0 +1,59 @@
+CFG760: can P-wave radiation export the infall energy of cold energy? (the vacuum gap test)
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 6f2ee620b). CFG691/696 units (s = r/l_gamma, t in l_gamma/c_P).
+Linear perturbation about the law's static profile v0:  dv_tt = dv'' - 2 dv/s^2 - (2|v0|/s) dv + J.
+The mass term 2|v0|/s is the curvature of the cubic W (the deep law itself). MUTATE drops it.
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg760.py      (CFG760_MUTATE=1: no vacuum curvature; exit 1 iff both teeth bite)
+  [PASS] K1 static profile reproduces CFG691's S table to <= 1e-6: max |dS| = 0.0e+00
+
+G1  suppression S = P_full / P_ref of a point source below the vacuum gap, vs the WKB exponent
+    s0 =    20, w/w_g = 0.5 (w = 0.1580): S = 1.000e+00  ln S =   +0.000;  WKB dE =   0.000;  invariant spread 9.8e-11/9.8e-11
+    s0 =    20, w/w_g = 0.7 (w = 0.2212): S = 1.000e+00  ln S =   +0.000;  WKB dE =   0.000;  invariant spread 8.9e-11/8.9e-11
+    s0 =    20, w/w_g =   2 (w = 0.6320): S = 1.000e+00  ln S =   +0.000;  WKB dE =   0.000;  invariant spread 1.1e-10/1.1e-10
+    s0 =    50, w/w_g = 0.5 (w = 0.1000): S = 1.000e+00  ln S =   +0.000;  WKB dE =   0.000;  invariant spread 1.5e-10/1.5e-10
+    s0 =    50, w/w_g = 0.7 (w = 0.1400): S = 1.000e+00  ln S =   +0.000;  WKB dE =   0.000;  invariant spread 1.1e-10/1.1e-10
+    s0 =    50, w/w_g =   2 (w = 0.4000): S = 1.000e+00  ln S =   +0.000;  WKB dE =   0.000;  invariant spread 1.5e-10/1.5e-10
+    s0 =   200, w/w_g = 0.5 (w = 0.0500): S = 1.000e+00  ln S =   +0.000;  WKB dE =   0.000;  invariant spread 2.7e-10/2.7e-10
+    s0 =   200, w/w_g = 0.7 (w = 0.0700): S = 1.000e+00  ln S =   +0.000;  WKB dE =   0.000;  invariant spread 2.0e-10/2.0e-10
+    s0 =   200, w/w_g =   2 (w = 0.2000): S = 1.000e+00  ln S =   +0.000;  WKB dE =   0.000;  invariant spread 2.8e-10/2.8e-10
+  [PASS] K2 flux invariant Im(u2* u2') constant to <= 1e-6 (full and reference): 
+  [PASS] K3 above the gap (w = 2 w_g) S in [0.3, 3]: s0 20: 1.000; s0 50: 1.000; s0 200: 1.000
+  [FAIL] G1 below the gap: ln S/(-dE_WKB) in [0.8, 1.25] and S <= 1e-2 for every case with dE >= 5: no case with dE >= 5
+
+K4  time domain: CFG696's nonlinear equation + small oscillating source at s0 = 20 (difference of runs with and without the source)
+    flux above gap (w = 2 w_g) 6.996e-09; below (0.5 w_g) 7.722e-09; reference above 6.996e-09
+    below/above = 1.10e+00;  S time-domain 1.000 vs frequency-domain 1.000
+  [FAIL] K4 nonlinear time domain: below/above-gap flux <= 1e-3 and above-gap S within 30% of the frequency domain: 1.10e+00; S_td/S_fd = 1.000
+
+G2  physical pincer at L* = 5.754 pc: export needs dE(w) <= 1 (w = (V/c_P)/s0, V = 2 V_f); P relaxation needs r/c_P <= 13.8 Gyr
+    canonical M_b 1e+09 y 0.1   r    3.86 kpc  l_gamma 1.357e-02 pc  s0 2.845e+05  c_P,max inf m/s  c_P,min 2.734e+02 m/s (CFG744 law 1.120e+06)  OPEN  margin c_min/c_max = 0.00e+00
+    canonical M_b 1e+09 y 0.01  r   12.20 kpc  l_gamma 1.357e-02 pc  s0 8.995e+05  c_P,max inf m/s  c_P,min 8.646e+02 m/s (CFG744 law 6.298e+06)  OPEN  margin c_min/c_max = 0.00e+00
+    canonical M_b 1e+10 y 0.1   r   12.20 kpc  l_gamma 4.290e-03 pc  s0 2.845e+06  c_P,max inf m/s  c_P,min 8.646e+02 m/s (CFG744 law 1.120e+07)  OPEN  margin c_min/c_max = 0.00e+00
+    canonical M_b 1e+10 y 0.01  r   38.59 kpc  l_gamma 4.290e-03 pc  s0 8.995e+06  c_P,max inf m/s  c_P,min 2.734e+03 m/s (CFG744 law 6.298e+07)  OPEN  margin c_min/c_max = 0.00e+00
+    canonical M_b 1e+11 y 0.1   r   38.59 kpc  l_gamma 1.357e-03 pc  s0 2.845e+07  c_P,max inf m/s  c_P,min 2.734e+03 m/s (CFG744 law 1.120e+08)  OPEN  margin c_min/c_max = 0.00e+00
+    canonical M_b 1e+11 y 0.01  r  122.03 kpc  l_gamma 1.357e-03 pc  s0 8.995e+07  c_P,max inf m/s  c_P,min 8.646e+03 m/s (CFG744 law 6.298e+08)  OPEN  margin c_min/c_max = 0.00e+00
+    canonical M_b 1e+12 y 0.1   r  122.03 kpc  l_gamma 4.290e-04 pc  s0 2.845e+08  c_P,max inf m/s  c_P,min 8.646e+03 m/s (CFG744 law 1.120e+09)  OPEN  margin c_min/c_max = 0.00e+00
+    canonical M_b 1e+12 y 0.01  r  385.89 kpc  l_gamma 4.290e-04 pc  s0 8.995e+08  c_P,max inf m/s  c_P,min 2.734e+04 m/s (CFG744 law 6.298e+09)  OPEN  margin c_min/c_max = 0.00e+00
+    alt       M_b 1e+09 y 0.1   r    3.51 kpc  l_gamma 1.491e-02 pc  s0 2.354e+05  c_P,max inf m/s  c_P,min 2.487e+02 m/s (CFG744 law 9.267e+05)  OPEN  margin c_min/c_max = 0.00e+00
+    alt       M_b 1e+09 y 0.01  r   11.10 kpc  l_gamma 1.491e-02 pc  s0 7.443e+05  c_P,max inf m/s  c_P,min 7.865e+02 m/s (CFG744 law 5.211e+06)  OPEN  margin c_min/c_max = 0.00e+00
+    alt       M_b 1e+10 y 0.1   r   11.10 kpc  l_gamma 4.716e-03 pc  s0 2.354e+06  c_P,max inf m/s  c_P,min 7.865e+02 m/s (CFG744 law 9.267e+06)  OPEN  margin c_min/c_max = 0.00e+00
+    alt       M_b 1e+10 y 0.01  r   35.10 kpc  l_gamma 4.716e-03 pc  s0 7.443e+06  c_P,max inf m/s  c_P,min 2.487e+03 m/s (CFG744 law 5.211e+07)  OPEN  margin c_min/c_max = 0.00e+00
+    alt       M_b 1e+11 y 0.1   r   35.10 kpc  l_gamma 1.491e-03 pc  s0 2.354e+07  c_P,max inf m/s  c_P,min 2.487e+03 m/s (CFG744 law 9.267e+07)  OPEN  margin c_min/c_max = 0.00e+00
+    alt       M_b 1e+11 y 0.01  r  111.00 kpc  l_gamma 1.491e-03 pc  s0 7.443e+07  c_P,max inf m/s  c_P,min 7.865e+03 m/s (CFG744 law 5.211e+08)  OPEN  margin c_min/c_max = 0.00e+00
+    alt       M_b 1e+12 y 0.1   r  111.00 kpc  l_gamma 4.716e-04 pc  s0 2.354e+08  c_P,max inf m/s  c_P,min 7.865e+03 m/s (CFG744 law 9.267e+08)  OPEN  margin c_min/c_max = 0.00e+00
+    alt       M_b 1e+12 y 0.01  r  351.03 kpc  l_gamma 4.716e-04 pc  s0 7.443e+08  c_P,max inf m/s  c_P,min 2.487e+04 m/s (CFG744 law 5.211e+09)  OPEN  margin c_min/c_max = 0.00e+00
+  G2 verdict: OPEN
+
+G3  smallest L* opening each case; SPARC rms at L*_all (CFG691 statistic, copied)
+    K5 canonical L* 5.754 pc: rms 0.10121 (CFG691 0.10121)
+    K5 canonical L* 1000 pc: rms 0.10228 (CFG691 0.10228)
+    K5 alt       L* 5.754 pc: rms 0.10070 (CFG691 0.10070)
+    K5 alt       L* 1000 pc: rms 0.10151 (CFG691 0.10151)
+  [PASS] K5 copied SPARC statistic reproduces CFG691 at L* = 5.754 and 1000 pc to <= 1e-4: 
+    canonical: L*_open per case 1e+09_0.1 5.75, 1e+09_0.01 5.75, 1e+10_0.1 5.75, 1e+10_0.01 5.75, 1e+11_0.1 5.75, 1e+11_0.01 5.75, 1e+12_0.1 5.75, 1e+12_0.01 5.75 pc;  L*_all 5.754 pc: SPARC rms 0.1012 @ U 0.46 -> OPEN
+    alt      : L*_open per case 1e+09_0.1 5.75, 1e+09_0.01 5.75, 1e+10_0.1 5.75, 1e+10_0.01 5.75, 1e+11_0.1 5.75, 1e+11_0.01 5.75, 1e+12_0.1 5.75, 1e+12_0.01 5.75 pc;  L*_all 5.754 pc: SPARC rms 0.1007 @ U 0.42 -> OPEN
+  G3 hatch: OPEN
+
+MUTATE: {'G1': True, 'G2': True}

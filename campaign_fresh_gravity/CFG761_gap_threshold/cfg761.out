@@ -1,0 +1,43 @@
+CFG761: where exactly does P radiation switch on? Exact Green-function threshold x_e = omega/omega_g (hardening CFG760 G2)
+
+Criteria: FROZEN_CRITERIA.md (committed alone, 364fc9c73). Equations and code copied from CFG760. CFG691/696 units (s = r/l_gamma, t in l_gamma/c_P).
+Linear perturbation about the law's static profile v0:  dv_tt = dv'' - 2 dv/s^2 - (2|v0|/s) dv + J.
+The mass term 2|v0|/s is the curvature of the cubic W (the deep law itself). MUTATE drops it.
+kappa = 1/2 FITTED; footings never pooled; the cold energy's mass is required; no particle species; not "theory closed".
+
+Run:  OMP_NUM_THREADS=1 nice -n 10 python3 cfg761.py      (CFG761_MUTATE=1: no vacuum curvature; exit 1 iff both teeth bite)
+  [PASS] K1 static profile reproduces CFG691's S table to <= 1e-6: max |dS| = 0.0e+00
+    K1 (20, 0.5): S = 2.388627e-08 (CFG760 2.388627e-08)
+    K1 (50, 0.5): S = 1.306508e-11 (CFG760 1.306508e-11)
+    K1 (50, 0.7): S = 1.141402e-04 (CFG760 1.141402e-04)
+    K1 (200, 0.7): S = 2.532198e-06 (CFG760 2.532198e-06)
+  [PASS] K1 reproduces CFG760 G1 S values to <= 1e-6 relative: 
+
+SCAN  S(x, s0), x = w/w_g on 0.30..1.50; x_e = smallest x with S >= 1/e
+    s0 =     20: x_e = 0.71;  S at x = 0.5/0.7/0.9/1.0/1.2: 2.39e-08 / 2.32e-01 / 2.11e-01 / 7.26e-01 / 8.85e+01
+    s0 =     50: x_e = 0.77;  S at x = 0.5/0.7/0.9/1.0/1.2: 1.31e-11 / 1.14e-04 / 1.31e-01 / 1.37e+00 / 1.51e+00
+    s0 =    200: x_e = 0.86;  S at x = 0.5/0.7/0.9/1.0/1.2: 1.05e-22 / 2.53e-06 / 7.04e-02 / 8.14e+00 / 2.00e+00
+    s0 =   1000: x_e = 0.94;  S at x = 0.5/0.7/0.9/1.0/1.2: 3.28e-49 / 9.73e-18 / 2.02e-03 / 2.68e+00 / 1.31e+00
+    s0 =   5000: x_e = 0.96;  S at x = 0.5/0.7/0.9/1.0/1.2: 3.08e-108 / 1.36e-37 / 5.18e-06 / 2.44e+00 / 5.43e-01
+  [PASS] K2 flux invariant beyond the outer turning point constant to <= 1e-6 (all scan solves): worst 3.4e-09
+  [PASS] T1 x_e non-decreasing in s0 and x_e(5000) > x_e(20): x_e = [0.71, 0.77, 0.86, 0.94, 0.96]
+
+T2  c_P,max = V/(x_e,min w_g s0 ), x_e,min = 0.71; V = 2 V_f; L* = 5.754 pc; c_P,min = r/13.8 Gyr
+    canonical M_b 1e+09 y 0.1   s0 2.845e+05: c_P,max 2.217e+02 m/s  c_P,min 2.734e+02 m/s  margin 1.23  closed
+    canonical M_b 1e+09 y 0.01  s0 8.995e+05: c_P,max 1.247e+02 m/s  c_P,min 8.646e+02 m/s  margin 6.93  closed
+    canonical M_b 1e+10 y 0.1   s0 2.845e+06: c_P,max 1.247e+02 m/s  c_P,min 8.646e+02 m/s  margin 6.93  closed
+    canonical M_b 1e+10 y 0.01  s0 8.995e+06: c_P,max 7.011e+01 m/s  c_P,min 2.734e+03 m/s  margin 39.00  closed
+    canonical M_b 1e+11 y 0.1   s0 2.845e+07: c_P,max 7.011e+01 m/s  c_P,min 2.734e+03 m/s  margin 39.00  closed
+    canonical M_b 1e+11 y 0.01  s0 8.995e+07: c_P,max 3.943e+01 m/s  c_P,min 8.646e+03 m/s  margin 219.30  closed
+    canonical M_b 1e+12 y 0.1   s0 2.845e+08: c_P,max 3.943e+01 m/s  c_P,min 8.646e+03 m/s  margin 219.30  closed
+    canonical M_b 1e+12 y 0.01  s0 8.995e+08: c_P,max 2.217e+01 m/s  c_P,min 2.734e+04 m/s  margin 1233.20  closed
+    alt       M_b 1e+09 y 0.1   s0 2.354e+05: c_P,max 2.556e+02 m/s  c_P,min 2.487e+02 m/s  margin 0.97  OPEN
+    alt       M_b 1e+09 y 0.01  s0 7.443e+05: c_P,max 1.437e+02 m/s  c_P,min 7.865e+02 m/s  margin 5.47  closed
+    alt       M_b 1e+10 y 0.1   s0 2.354e+06: c_P,max 1.437e+02 m/s  c_P,min 7.865e+02 m/s  margin 5.47  closed
+    alt       M_b 1e+10 y 0.01  s0 7.443e+06: c_P,max 8.081e+01 m/s  c_P,min 2.487e+03 m/s  margin 30.78  closed
+    alt       M_b 1e+11 y 0.1   s0 2.354e+07: c_P,max 8.081e+01 m/s  c_P,min 2.487e+03 m/s  margin 30.78  closed
+    alt       M_b 1e+11 y 0.01  s0 7.443e+07: c_P,max 4.545e+01 m/s  c_P,min 7.865e+03 m/s  margin 173.07  closed
+    alt       M_b 1e+12 y 0.1   s0 2.354e+08: c_P,max 4.545e+01 m/s  c_P,min 7.865e+03 m/s  margin 173.07  closed
+    alt       M_b 1e+12 y 0.01  s0 7.443e+08: c_P,max 2.556e+01 m/s  c_P,min 2.487e+04 m/s  margin 973.25  closed
+
+VERDICT: T1 PASS; T2 OPEN; overall OPEN
