@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "HORIZON-RADIATIVE-SETTLING-ATTEMPT-2026-10-14",
+  "repository": {
+    "commit": "e20f1767db38037cdf22500a0cc3cc0b0db5d655",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/horizon_mechanism_attempt_2026_10_14/check_radiation.py",
+    "sol61_push/horizon_mechanism_attempt_2026_10_14/radiation_run_v1"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Canonical bath Hamiltonian and smooth conserving Gaussian radial-mode source; outgoing spherical scalar power and weak-radiation energy-loss time; assigned metric/medium wave speeds and coupling times.",
+    "coefficient_domain": "Exact SymPy positive real algebra, 80-decimal mpmath",
+    "conventions": "SI; chi is potential with units m2/s2; K=4piG. Lbath=(chi_dot2/cchi2-gradchi2)/(2K), Linteraction=tau*rho*chi_dot. Retarded outgoing-wave boundary and prescribed weak-amplitude Gaussian mode.",
+    "inputs": [
+      "sol61_push/horizon_mechanism_attempt_2026_10_14/check_radiation.py",
+      "sol61_push/horizon_mechanism_attempt_2026_10_14/CONTRACT.txt",
+      "sol61_push/cold_horizon_connection_2026_10_14/run_v1/results.json"
+    ],
+    "bounds": {
+      "assigned_M_solar": 60000000000.0,
+      "assigned_R": "rM",
+      "assigned_omega": "Vflat/rM",
+      "cases": [
+        "cchi=c,tau=1/H",
+        "cchi=Vflat,tau=1/H",
+        "cchi=Vflat,tau=.1/omega"
+      ]
+    },
+    "non_claims": [
+      "No microscopic origin for new scalar or its coupling",
+      "No full covariant/frame completion",
+      "No physical cooling-time prediction outside weak-backreaction limit",
+      "No modified static kernel or stars-only source selector"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T17:45:53.968047+00:00",
+    "runtime_seconds": 0.405251,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 35,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/horizon_mechanism_attempt_2026_10_14/check_radiation.py",
+    "sol61_push/horizon_mechanism_attempt_2026_10_14/CONTRACT.txt",
+    "sol61_push/cold_horizon_connection_2026_10_14/run_v1/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/horizon_mechanism_attempt_2026_10_14/check_radiation.py",
+      "sha256": "ec9afb66f86d7ee34792b0e7b98902fa3319a6a05679f362ed3fe48e8c05e6ab",
+      "sha256_after": "ec9afb66f86d7ee34792b0e7b98902fa3319a6a05679f362ed3fe48e8c05e6ab"
+    },
+    {
+      "path": "sol61_push/horizon_mechanism_attempt_2026_10_14/CONTRACT.txt",
+      "sha256": "b825103feb21b444c2fc69340d90be98456c0c75919cc0552c8f44a33ba5b401",
+      "sha256_after": "b825103feb21b444c2fc69340d90be98456c0c75919cc0552c8f44a33ba5b401"
+    },
+    {
+      "path": "sol61_push/cold_horizon_connection_2026_10_14/run_v1/results.json",
+      "sha256": "eeb94346e570977edb06dfba42d4b7655d0b48c299accb282b67cc327047c71c",
+      "sha256_after": "eeb94346e570977edb06dfba42d4b7655d0b48c299accb282b67cc327047c71c"
+    }
+  ],
+  "output_directory": "sol61_push/horizon_mechanism_attempt_2026_10_14/radiation_run_v1",
+  "declared_results": [
+    "sol61_push/horizon_mechanism_attempt_2026_10_14/radiation_run_v1/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/horizon_mechanism_attempt_2026_10_14/radiation_run_v1/stdout.txt",
+      "sha256": "b343727b776e09433f31bd1b98e90a8666c40623bf10ee70b03fce43755e66d4",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/horizon_mechanism_attempt_2026_10_14/radiation_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/horizon_mechanism_attempt_2026_10_14/radiation_run_v1/results.json",
+      "sha256": "b343727b776e09433f31bd1b98e90a8666c40623bf10ee70b03fce43755e66d4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

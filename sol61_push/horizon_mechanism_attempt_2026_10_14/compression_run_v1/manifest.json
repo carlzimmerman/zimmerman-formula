@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "claim_id": "COVARIANT-COMPRESSION-EXPORT-CANDIDATE-2026-10-14",
+  "repository": {
+    "commit": "e2863f3aeeb071ecbf9df28380eb0cdd2c45fff6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/horizon_mechanism_attempt_2026_10_14/check_compression.py",
+    "sol61_push/horizon_mechanism_attempt_2026_10_14/compression_run_v1"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Actual current-scalar quadratic Lagrangian, canonical momenta and positive Hamiltonian; full homogeneous coupled propagating determinant; zero-frequency dust factor; nontrivial compressional scalar source.",
+    "coefficient_domain": "Exact positive real SymPy algebra and assigned positive canonical energy examples",
+    "conventions": "Natural c=1. Conserved dust current J=rho*u varied; own timelike medium frame. K=4piG, beta length, chi dimensionless potential. This is an added export sector, not a completed tether gauge or Einstein solution.",
+    "inputs": [
+      "sol61_push/horizon_mechanism_attempt_2026_10_14/check_compression.py",
+      "sol61_push/horizon_mechanism_attempt_2026_10_14/CONTRACT.txt"
+    ],
+    "bounds": {
+      "dimensionless_K_beta2_rho": [
+        0.01,
+        1,
+        100,
+        1000000.0
+      ],
+      "wavenumber": [
+        0.1,
+        1,
+        10
+      ],
+      "momenta": [
+        [
+          -2,
+          1
+        ],
+        [
+          1,
+          -3
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "field_amplitude": 0.2
+    },
+    "non_claims": [
+      "No full nonlinear Cauchy or metric audit",
+      "Dust zero-frequency branch not discarded",
+      "No radiative formation or finite-halo cooling rate claimed",
+      "No microphysical origin for tuned disformal kinetic coefficient",
+      "Does not fix nonlinear charged-tether gauge cone"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T17:48:48.280287+00:00",
+    "runtime_seconds": 0.398445,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 35,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/horizon_mechanism_attempt_2026_10_14/check_compression.py",
+    "sol61_push/horizon_mechanism_attempt_2026_10_14/CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/horizon_mechanism_attempt_2026_10_14/check_compression.py",
+      "sha256": "a84d3e280dba4db4a1888050a49b4b3d75fb98bc598d0462dbec277db2372acd",
+      "sha256_after": "a84d3e280dba4db4a1888050a49b4b3d75fb98bc598d0462dbec277db2372acd"
+    },
+    {
+      "path": "sol61_push/horizon_mechanism_attempt_2026_10_14/CONTRACT.txt",
+      "sha256": "b825103feb21b444c2fc69340d90be98456c0c75919cc0552c8f44a33ba5b401",
+      "sha256_after": "b825103feb21b444c2fc69340d90be98456c0c75919cc0552c8f44a33ba5b401"
+    }
+  ],
+  "output_directory": "sol61_push/horizon_mechanism_attempt_2026_10_14/compression_run_v1",
+  "declared_results": [
+    "sol61_push/horizon_mechanism_attempt_2026_10_14/compression_run_v1/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/horizon_mechanism_attempt_2026_10_14/compression_run_v1/stdout.txt",
+      "sha256": "cf44d1490daf3174d467f2985a79c63316893f4d7ad38f9abbf46bbf28db84cd",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/horizon_mechanism_attempt_2026_10_14/compression_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/horizon_mechanism_attempt_2026_10_14/compression_run_v1/results.json",
+      "sha256": "cf44d1490daf3174d467f2985a79c63316893f4d7ad38f9abbf46bbf28db84cd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
