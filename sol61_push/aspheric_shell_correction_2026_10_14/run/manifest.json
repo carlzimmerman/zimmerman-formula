@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "ASPHERIC-SHELL-CORRECTION",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/aspheric_shell_correction_2026_10_14/check.py",
+    "sol61_push/aspheric_shell_correction_2026_10_14/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Quartic/sextic sag fit reduces weighted one-side geometric wavefront residual for fixed 2mm waist",
+    "coefficient_domain": "Double precision Snell ray tracing, implicit surface roots, least squares and quadrature",
+    "conventions": "Mirror sag relative to inherited sphere; coefficients reported in metres at inherited mirror beam radius; piston/defocus removed",
+    "inputs": [
+      "sol61_push/aspheric_shell_correction_2026_10_14/check.py",
+      "sol61_push/shell_resonator_2026_10_14/run/results.json",
+      "sol61_push/silica_shell_retention_2026_10_14/run/results.json"
+    ],
+    "bounds": {
+      "fit_nodes": 64,
+      "validation_nodes": [
+        96,
+        192
+      ],
+      "fit_max_evaluations": 80,
+      "radial_extent_in_waists": 3,
+      "quartic_coefficient_perturbations_nm": [
+        -1,
+        -0.1,
+        0.1,
+        1
+      ]
+    },
+    "non_claims": [
+      "No diffraction eigenmode, manufacturing feasibility, physical tolerance certification or total resonator loss",
+      "Ideal fitted residual does not include surface roughness, coating phase or thermal deformation",
+      "Changing mirror sag does not validate hypothetical particle physics"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T05:53:08.955761+00:00",
+    "runtime_seconds": 0.811981,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/aspheric_shell_correction_2026_10_14/check.py",
+    "sol61_push/shell_resonator_2026_10_14/run/results.json",
+    "sol61_push/silica_shell_retention_2026_10_14/run/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/aspheric_shell_correction_2026_10_14/check.py",
+      "sha256": "fb4a83009d2d98ca6296a87679d27c4be59a1865f9de761352759a61a4a8e375",
+      "sha256_after": "fb4a83009d2d98ca6296a87679d27c4be59a1865f9de761352759a61a4a8e375"
+    },
+    {
+      "path": "sol61_push/shell_resonator_2026_10_14/run/results.json",
+      "sha256": "6981a9ad7ecbe0040d143fea4f11d6b46b3acb8952753d6387f1305d704f1c93",
+      "sha256_after": "6981a9ad7ecbe0040d143fea4f11d6b46b3acb8952753d6387f1305d704f1c93"
+    },
+    {
+      "path": "sol61_push/silica_shell_retention_2026_10_14/run/results.json",
+      "sha256": "68d7298af7bfc7d950423c4cb3ff2d595876e69918600c3dd88b3d6820c9fdd0",
+      "sha256_after": "68d7298af7bfc7d950423c4cb3ff2d595876e69918600c3dd88b3d6820c9fdd0"
+    }
+  ],
+  "output_directory": "sol61_push/aspheric_shell_correction_2026_10_14/run",
+  "declared_results": [
+    "sol61_push/aspheric_shell_correction_2026_10_14/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/aspheric_shell_correction_2026_10_14/run/stdout.txt",
+      "sha256": "f38d42b408efe453bbe39eaa0c7050634f28067e4cb09f31d06f0aab666bedb9",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/aspheric_shell_correction_2026_10_14/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/aspheric_shell_correction_2026_10_14/run/results.json",
+      "sha256": "8fec4f9ee80e404a8ee1da0a3b683e9fc33f9ad5cc6dd7792923c509b7f2fa9c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
