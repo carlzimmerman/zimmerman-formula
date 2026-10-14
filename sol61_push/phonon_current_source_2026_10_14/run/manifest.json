@@ -1,0 +1,137 @@
+{
+  "schema_version": 2,
+  "claim_id": "PHONON-CONSERVED-CURRENT-SOURCE",
+  "repository": {
+    "commit": "cda53006d0fae491d774c1bb9a25340ea47c9f41",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/phonon_current_source_2026_10_14/check.py",
+    "sol61_push/phonon_current_source_2026_10_14/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conserved harmonic charge and transverse current kernels, finite cold acceptance and production rates in an independent site model",
+    "coefficient_domain": "complex and real double precision; Gaussian quadrature and log Poisson sums",
+    "conventions": "Natural units; metric +---; zero-temperature independent isotropic oscillator sites with anchored center of mass",
+    "inputs": [
+      "sol61_push/phonon_current_source_2026_10_14/check.py"
+    ],
+    "bounds": {
+      "omega_eV": [
+        0.01,
+        0.03,
+        0.1
+      ],
+      "quadrature_orders": [
+        12,
+        24
+      ],
+      "nmax": "ceil(eta0+15sqrt(eta0)+100), repeated with 100 additional levels",
+      "oscillator_matrix_dimension": 100,
+      "matrix_test_eta": [
+        0.1,
+        1,
+        5
+      ],
+      "matrix_final_states": "0 through 11",
+      "cold_daughter_cut_eV": 1e-08
+    },
+    "non_claims": [
+      "No measured target, capture mechanism, complete QFT prediction, all-material exclusion, or demonstrated new particle"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T04:30:30.465787+00:00",
+    "runtime_seconds": 0.547285,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/phonon_current_source_2026_10_14/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/phonon_current_source_2026_10_14/check.py",
+      "sha256": "d2977ebcaec2241b6cc8ada471b252da8f9127bbc1a2d306e2a65adce74450a2",
+      "sha256_after": "d2977ebcaec2241b6cc8ada471b252da8f9127bbc1a2d306e2a65adce74450a2"
+    }
+  ],
+  "output_directory": "sol61_push/phonon_current_source_2026_10_14/run",
+  "declared_results": [
+    "sol61_push/phonon_current_source_2026_10_14/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/phonon_current_source_2026_10_14/run/stdout.txt",
+      "sha256": "3f2afb3b28c1493f52b47b5e1e6bc34e07928b14bb00e39cc715e1797c222c9d",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/phonon_current_source_2026_10_14/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/phonon_current_source_2026_10_14/run/results.json",
+      "sha256": "552aae99e93a7664ff7e1ac04c7fc1b9bbb5f1e114e281a70f83e5c215a65592",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
