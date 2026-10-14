@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "claim_id": "DRESSED-PREPARATION-BOTTLENECK",
+  "repository": {
+    "commit": "717393a1f4da068916c36b981b0ddeba34a23bc8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/dressed_preparation_2026_10_13/check.py",
+    "sol61_push/dressed_preparation_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Forward-minus-inverse Bose kinetics agrees with analytic damped-mode occupation and emitted count; stationary flux ceiling.",
+    "coefficient_domain": "float64 SciPy integration",
+    "conventions": "Fixed incoherent bath, one normalized gapped mode; rates from prior dressed calculation.",
+    "inputs": [
+      "sol61_push/dressed_preparation_2026_10_13/check.py",
+      "sol61_push/dressed_preparation_2026_10_13/INPUT_WIDTHS.json"
+    ],
+    "bounds": {
+      "bath_occupations": [
+        0.01,
+        1,
+        100
+      ],
+      "rate_ratios": [
+        1e-06,
+        0.01,
+        1,
+        100,
+        "prior benchmark"
+      ],
+      "dimensionless_end_time": 3,
+      "rtol": 1e-10,
+      "atol": 1e-12
+    },
+    "non_claims": [
+      "No bath preparation, depletion, finite-cloud mode inventory or gravity derived.",
+      "Markov closure assumed, not derived from the Hamiltonian."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T00:02:35.603928+00:00",
+    "runtime_seconds": 0.453654,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/dressed_preparation_2026_10_13/check.py",
+    "sol61_push/dressed_preparation_2026_10_13/INPUT_WIDTHS.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/dressed_preparation_2026_10_13/check.py",
+      "sha256": "177de78c850bc2b4ef5fcf7db12e4ae54ce4c331ff8836c20b5c8357833eb8d1",
+      "sha256_after": "177de78c850bc2b4ef5fcf7db12e4ae54ce4c331ff8836c20b5c8357833eb8d1"
+    },
+    {
+      "path": "sol61_push/dressed_preparation_2026_10_13/INPUT_WIDTHS.json",
+      "sha256": "1da54d498d4be1c94abed81a2aaed5e348433d3141d8459773243172e5c3ade9",
+      "sha256_after": "1da54d498d4be1c94abed81a2aaed5e348433d3141d8459773243172e5c3ade9"
+    }
+  ],
+  "output_directory": "sol61_push/dressed_preparation_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/dressed_preparation_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/dressed_preparation_2026_10_13/run/stdout.txt",
+      "sha256": "e43bce65331b848c147916177ba28e70c9ed6ec8115a04ba5440c12dc2c76105",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/dressed_preparation_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/dressed_preparation_2026_10_13/run/results.json",
+      "sha256": "2980dedf907945dabcd08b3eb71dbe39b72f975a574fb52e278e307f2330eb18",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
