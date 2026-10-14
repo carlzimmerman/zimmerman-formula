@@ -71,3 +71,14 @@ U4_27928 is conditional on V_c; it gives FLOOR below 225 km/s. The full grid is 
 - dt/dz uses a constant-ρ_DE expansion; the DE evolution's effect on dt is second order.
 - The DESI CPL values are the record's (CFG571).
 - κ fitted; not theory closed.
+
+## Addendum 2026-10-14 (after reading Croker et al. 2024, arXiv:2405.12282): B1's wording narrowed
+- Their fit uses the same (1 + z)³ weighting (their Eq. 2.5, dρ_DE/dt = Ξψ/a³). It finds Ξ = 1.40 (+0.05/−0.05): the
+  baryon mass depleted per unit stellar mass formed.
+- They also need more mass converted into black holes than was formed into stars. They attribute the excess (about 3.5× the
+  ≳ 20 M☉ remnants) to post-collapse accretion and IMF uncertainty.
+- So B1's "EXCLUDED" applies to **stellar-remnant mass alone** (ε ≤ 0.05), not to their model as published.
+- Our ε_req = 3.8–4.6 is about 3× their Ξ. This discrepancy is **unresolved**. Candidates: SFRD normalisation (MD14
+  Salpeter vs their choice), h (0.70 vs their fitted 0.699), our fixed ρ_DE0 = 0.692ρ_c against their BAO-fitted density,
+  and the integration start.
+- Nothing is re-run here. The frozen numbers stand as computed. B2's shape result is unaffected, since it is ε-free.
