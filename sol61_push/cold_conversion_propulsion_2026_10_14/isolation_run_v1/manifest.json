@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "CCP-002",
+  "repository": {
+    "commit": "01d69f307ae970da017905180befac110241c4f2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_conversion_propulsion_2026_10_14/check_isolation.py",
+    "sol61_push/cold_conversion_propulsion_2026_10_14/isolation_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Angular momentum of isotropic radiation escaping a rear cone; nonzero ordinary Compton scattering below cold activation threshold",
+    "coefficient_domain": "Binary64 quadrature and closed forms",
+    "conventions": "Isotropic source with ideal absorbing escape mask; free electron initially at rest; MeV and barn units",
+    "inputs": [
+      "sol61_push/cold_conversion_propulsion_2026_10_14/check_isolation.py",
+      "sol61_push/cold_conversion_propulsion_2026_10_14/ISOLATION_CONTRACT.txt"
+    ],
+    "bounds": {
+      "cone_half_angle_degrees": [
+        15,
+        30,
+        60,
+        90
+      ],
+      "photon_MeV": [
+        0.1,
+        0.49986703053103493,
+        1,
+        5
+      ],
+      "quadrature": [
+        64,
+        128
+      ],
+      "relative_cross_section_tolerance": 1e-10,
+      "angular_absolute_tolerance": 1e-14
+    },
+    "non_claims": [
+      "No real gamma optics or shielding design",
+      "No material attenuation, dose or safety prediction",
+      "No zero effect on ordinary matter or gravity"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T22:13:54.831927+00:00",
+    "runtime_seconds": 0.14824,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_conversion_propulsion_2026_10_14/check_isolation.py",
+    "sol61_push/cold_conversion_propulsion_2026_10_14/ISOLATION_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_conversion_propulsion_2026_10_14/check_isolation.py",
+      "sha256": "45868a52be0ed39a418511b1eab7bce88d2be6f782f34ea7844526454a25da12",
+      "sha256_after": "45868a52be0ed39a418511b1eab7bce88d2be6f782f34ea7844526454a25da12"
+    },
+    {
+      "path": "sol61_push/cold_conversion_propulsion_2026_10_14/ISOLATION_CONTRACT.txt",
+      "sha256": "8f7e2319338b2e455cd134a3b70ada0b1b5d9a39a7504198f9ea9b0fcf9892db",
+      "sha256_after": "8f7e2319338b2e455cd134a3b70ada0b1b5d9a39a7504198f9ea9b0fcf9892db"
+    }
+  ],
+  "output_directory": "sol61_push/cold_conversion_propulsion_2026_10_14/isolation_run_v1",
+  "declared_results": [
+    "sol61_push/cold_conversion_propulsion_2026_10_14/isolation_run_v1/calculation/results.json",
+    "sol61_push/cold_conversion_propulsion_2026_10_14/isolation_run_v1/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_conversion_propulsion_2026_10_14/isolation_run_v1/stdout.txt",
+      "sha256": "96ba476ec41e22488b5e1885bcf0fc8cf8827ef71c7c16d1f1a3eddf1b967714",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_conversion_propulsion_2026_10_14/isolation_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_conversion_propulsion_2026_10_14/isolation_run_v1/calculation/results.json",
+      "sha256": "96ba476ec41e22488b5e1885bcf0fc8cf8827ef71c7c16d1f1a3eddf1b967714",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_conversion_propulsion_2026_10_14/isolation_run_v1/calculation/checks.json",
+      "sha256": "9978e9b34ba2cd2f81795b287abd00ade770b1fba83228bcccbb4b3121b91afb",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
