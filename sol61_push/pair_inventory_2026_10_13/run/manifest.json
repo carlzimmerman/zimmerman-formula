@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "claim_id": "DILUTE-PHOTON-PAIR-INVENTORY",
+  "repository": {
+    "commit": "0fee9c16c129c6b6c7f5cc9dec465ffcb1446f17",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/pair_inventory_2026_10_13/check.py",
+    "sol61_push/pair_inventory_2026_10_13/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.11.16"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Crossed contact cross section, dilute rate equation equilibria and analytic solutions",
+    "coefficient_domain": "SymPy exact and float64",
+    "conventions": "Natural units amplitude; SI rates include (hbar c)^2 c; per-sign number density n; per-beam photon density ng; cold NR annihilation",
+    "inputs": [
+      "sol61_push/pair_inventory_2026_10_13/check.py"
+    ],
+    "bounds": {
+      "dimensionless_loss": [
+        0,
+        0.1,
+        1,
+        10
+      ],
+      "time": [
+        0,
+        10
+      ],
+      "kinetic_eV": [
+        1e-06,
+        0.001,
+        1,
+        5
+      ],
+      "C_eVminus2": [
+        1e-25,
+        1e-22,
+        1e-19
+      ]
+    },
+    "non_claims": [
+      "No full quantum kinetic equation",
+      "No empirical coupling",
+      "No dense assembly"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-14T01:14:06.768590+00:00",
+    "runtime_seconds": 0.500509,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/pair_inventory_2026_10_13/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/pair_inventory_2026_10_13/check.py",
+      "sha256": "06044c913fbfb326c056dd7348dd470d58722f42a3e03390c0cbb68cc02fe4f0",
+      "sha256_after": "06044c913fbfb326c056dd7348dd470d58722f42a3e03390c0cbb68cc02fe4f0"
+    }
+  ],
+  "output_directory": "sol61_push/pair_inventory_2026_10_13/run",
+  "declared_results": [
+    "sol61_push/pair_inventory_2026_10_13/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/pair_inventory_2026_10_13/run/stdout.txt",
+      "sha256": "fee239dd52fd6630ae1eca7be31f95d2d57e067334c5dd4c6f60e30d6e00a893",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/pair_inventory_2026_10_13/run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/pair_inventory_2026_10_13/run/results.json",
+      "sha256": "fee239dd52fd6630ae1eca7be31f95d2d57e067334c5dd4c6f60e30d6e00a893",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
