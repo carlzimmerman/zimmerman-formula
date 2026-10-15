@@ -128,6 +128,32 @@ sealed file SEALED_EVENT_HORIZON.json  sha256 b9f3e827f79256c0509c15fdcd60c7fdc2
   <p class="cap">Every number is read from the sealed JSON, not recomputed. GS4_24110's integrated gas is already public and the tracers disagree by about 0.7 dex (CFG572), so the 2026-11-28 resolved [CI](2-1) data is one disc, a demonstration, not a decision.</p>
 </section>
 
+<section class="sec" id="s6">
+  <div class="sechead"><h2>6. Cold-energy fluid and field-stress results</h2><span class="chip">simulation results</span><span class="chip fit">κ fitted · mass required</span><span class="chip bad">several routes closed</span></div>
+  <div class="eq">shell dynamics (CFG747/748):  r̈ = −1/r² + m(&lt;r)²/r⁴     law:  m(r) = r     units G = a0 = M_b = 1
+tether:  4πG P = −g_c  (cancels cold self-gravity)     stiffness: γ = 2πG L*²     c_P² = 2πG L*² ρ_c</div>
+  <div class="ctl">
+    <span>a0 footing (settling plot)</span>
+    <label><input type="radio" name="foot6" value="0" checked> canonical</label>
+    <label><input type="radio" name="foot6" value="1"> alt</label>
+    <label for="win6">time window (relaxation plot)</label>
+    <select id="win6"><option>1000-2000</option><option>3000-4000</option><option>5000-6000</option><option>7000-8000</option><option selected>9000-10000</option></select>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Does cold energy relax onto the law? (CFG748)</h3><svg id="c6a" viewBox="0 0 640 340" role="img" aria-label="Enclosed cold energy mass over the law against radius for two starts"></svg><div class="legend" id="l6a"></div>
+      <p class="cap">Collisionless shells starting at rest. m(&lt;r)/r = 1 is the law. The mass-starved start stays short at 50 r_M. The cold-infall start failed its energy-conservation control (3.2e-3 against 1e-3), so treat its curve with that caveat.</p></div>
+    <div class="card"><h3>Different starting states (CFG747, t = 2000–3000)</h3><svg id="c6b" viewBox="0 0 640 340" role="img" aria-label="Enclosed mass over the law for four starting states"></svg><div class="legend" id="l6b"></div>
+      <p class="cap">Every start lands within 2% of the law out to 5 r_M, but not beyond. This lane failed its frozen outer-radius criterion (R1 FAIL) and its force-check bar (1e-6) sat below floating-point noise. The result is inner halo only.</p></div>
+    <div class="card"><h3>Orbiting cold energy is unbound (CFG749)</h3><svg id="c6c" viewBox="0 0 640 230" role="img" aria-label="Total energy of the cold energy for three orbital fractions"></svg>
+      <p class="cap">Total initial energy, in the same units. Binding is the baryons' alone, −1.50. Any orbital speed of 30% of the law's circular speed pushes the total positive, so the mechanism needs cold energy nearly at rest.</p></div>
+    <div class="card"><h3>Settling time of the cold medium (CFG743, CFG699)</h3><svg id="c6d" viewBox="0 0 640 340" role="img" aria-label="Oscillation period against baryonic mass"></svg><div class="legend" id="l6d"></div>
+      <p class="cap">Solid: oscillation period at the cold medium's own halo density (CFG743). Dashed: period if the medium sits at the cosmic mean density (CFG699), 36–113× too slow. Bar: 1.38 Gyr, ten periods in a Hubble time. A short period is not settling, since CFG744 shows settling also needs damping.</p></div>
+    <div class="card" style="grid-column:1/-1"><h3>Damping needs a light independent field (CFG744)</h3><svg id="c6e" viewBox="0 0 640 300" role="img" aria-label="Relaxation crossing times for the cold medium and an independent light field"></svg><div class="legend" id="l6e"></div>
+      <p class="cap">One-crossing time r/c_P, the exponent-free lower bound. If the polarization is the cold medium (waves at 20–220 m/s) it fails by orders of magnitude. An independent field at c_P = c relaxes within a Hubble time. That leaves the cold energy as a separate component, with baryon-state dependence as the open selector.</p></div>
+  </div>
+  <p class="cap">All values are read from the committed lane READMEs and result JSONs (CFG743, 744, 747, 748, 749, 699). The Israel–Stewart fluid form (η = pτ/2α, Kn = √2/4α, Re = 4α) has no result curve of its own, so it is not plotted.</p>
+</section>
+
 <footer>Constants: G = 6.674e-11, M☉ = 1.989e30 kg, kpc = 3.0857e19 m. Status labels follow the equation document. This page is a visual aid, not a result, and nothing here should be cited as "the data favour the framework" or "theory closed".</footer>
 </main>
 
@@ -281,8 +307,55 @@ function draw5(){
     Vs.forEach(V=>{const v=ALMA.U4[V][ft][md[0]];if(v){run.push([V,v[rg]]);c.dots([[V,v[rg]]],md[1],3.5)}else flush()});flush()});
   legend('l5b',MODELS.map(md=>[md[2],md[1]]));
 }
-function all(){draw1();draw2();draw3();draw4();draw5()}
-document.querySelectorAll('input').forEach(i=>i.addEventListener('input',all));
+/* ---- 6. cold-energy fluid ---- */
+const CE={"r748":{"uniform":{"1000-2000":{"2.0":0.8732,"5.0":0.7942,"10.0":0.7069,"20.0":0.5941,"50.0":0.5126},"3000-4000":{"2.0":0.9964,"5.0":0.9949,"10.0":0.983,"20.0":0.9704,"50.0":0.9082},"5000-6000":{"2.0":1.0017,"5.0":0.9944,"10.0":0.9988,"20.0":0.9908,"50.0":0.9478},"7000-8000":{"2.0":0.9982,"5.0":0.9997,"10.0":0.9956,"20.0":0.9836,"50.0":0.9125},"9000-10000":{"2.0":0.9991,"5.0":1.0007,"10.0":0.9978,"20.0":0.9958,"50.0":0.9447}},"half":{"1000-2000":{"2.0":0.9989,"5.0":0.9945,"10.0":0.9712,"20.0":0.8986,"50.0":0.7328},"3000-4000":{"2.0":1.0005,"5.0":0.9981,"10.0":0.9883,"20.0":0.9528,"50.0":0.8109},"5000-6000":{"2.0":0.9996,"5.0":1.0006,"10.0":0.9999,"20.0":0.9705,"50.0":0.7816},"7000-8000":{"2.0":0.9981,"5.0":0.9984,"10.0":0.998,"20.0":0.981,"50.0":0.7919},"9000-10000":{"2.0":1.0011,"5.0":0.9986,"10.0":1.0024,"20.0":0.985,"50.0":0.8125}}},"r747":{"law":{"2.0":0.9987,"5.0":1.0009,"10.0":1.0004,"20.0":1.0001},"uniform":{"2.0":0.9976,"5.0":0.9865,"10.0":0.8795,"20.0":0.6236},"1.5x":{"2.0":0.9993,"5.0":0.9939,"10.0":0.9592,"20.0":0.8183},"0.5x":{"2.0":0.9987,"5.0":0.9834,"10.0":0.877,"20.0":0.6202}}};
+function draw6(){
+  const w=document.getElementById('win6').value, f6=+document.querySelector('input[name=foot6]:checked').value;
+  const R=['2','5','10','20','50'];
+  let c=chart(document.getElementById('c6a'),{x0:2,x1:50,y0:0.4,y1:1.1,xlog:1,xl:'radius  (r_M)',yl:'m(<r) / r',xt:[2,5,10,20,50],yt:[0.4,0.6,0.8,1.0]});
+  c.line([[2,1],[50,1]],'--axis',1.5,'6 4');
+  [['uniform','--c3'],['half','--c2']].forEach(s=>{const pts=R.map(r=>[+r,CE.r748[s[0]][w][r+'.0']]);c.line(pts,s[1],2.5);c.dots(pts,s[1])});
+  legend('l6a',[['law (m/r = 1)','--axis','dash'],['cold infall (uniform start)','--c3'],['mass-starved (half start)','--c2']]);
+  const R7=['2','5','10','20'];
+  c=chart(document.getElementById('c6b'),{x0:2,x1:20,y0:0.55,y1:1.05,xlog:1,xl:'radius  (r_M)',yl:'m(<r) / r',xt:[2,5,10,20],yt:[0.6,0.8,1.0]});
+  c.line([[2,1],[20,1]],'--axis',1.5,'6 4');
+  [['law','--axis'],['uniform','--c3'],['1.5x','--c4'],['0.5x','--c2']].forEach(s=>{const pts=R7.map(r=>[+r,CE.r747[s[0]][r+'.0']]);c.line(pts,s[1],2.5);c.dots(pts,s[1])});
+  legend('l6b',[['law start (control)','--axis'],['uniform sphere','--c3'],['1.5 × law','--c4'],['0.5 × law','--c2']]);
+  /* 749 */
+  let svg=document.getElementById('c6c');svg.innerHTML='';
+  const rows=[['λ = 0 (at rest)',-1.22,'binding −1.50, push 0.28'],['λ = 0.3 of v_c',7.83,'binding −1.50, KE 9.04, push 0.28'],['λ = 0.6 of v_c',35.0,'binding −1.50, KE 36.2, push 0.28']];
+  const sx=v=>230+(v+5)/45*360; rows.forEach((r,i)=>{const y=20+i*52;
+    el(svg,'text',{x:222,y:y+16,'text-anchor':'end',style:'fill:'+css('--fg')},r[0]);
+    el(svg,'rect',{x:Math.min(sx(0),sx(r[1])),y:y,width:Math.abs(sx(r[1])-sx(0)),height:24,fill:css(r[1]<0?'--ok':'--bad')});
+    el(svg,'text',{x:r[1]<0?sx(0)+8:sx(r[1])+6,y:y+16,'text-anchor':'start',style:'fill:'+css('--fg')},(r[1]>0?'+':'')+r[1].toFixed(2));
+    el(svg,'text',{x:230,y:y+40,style:'fill:'+css('--muted')},r[2])});
+  el(svg,'line',{x1:sx(0),x2:sx(0),y1:10,y2:180,stroke:css('--axis')});
+  el(svg,'text',{x:sx(0),y:204,'text-anchor':'middle'},'total energy 0 (bound below, unbound above)');
+  /* 743 / 699 */
+  const Mb=[1e9,1e10,1e11,1e12];
+  const P1=[[.055,.098,.18,.31],[.048,.085,.15,.27]][f6], P01=[[.43,.76,1.36,2.41],[.37,.66,1.18,2.09]][f6];
+  const T699=[[60,156],[50,129]][f6];
+  c=chart(document.getElementById('c6d'),{x0:1e9,x1:1e12,y0:0.01,y1:1000,xlog:1,ylog:1,xl:'baryonic mass  (M☉)',yl:'period  (Gyr)'});
+  c.line(Mb.map((m,i)=>[m,P1[i]]),'--c1',2.5);c.dots(Mb.map((m,i)=>[m,P1[i]]),'--c1');
+  c.line(Mb.map((m,i)=>[m,P01[i]]),'--c2',2.5);c.dots(Mb.map((m,i)=>[m,P01[i]]),'--c2');
+  c.hline(T699[0],'--c1','5 4','');c.hline(T699[1],'--c2','5 4','');
+  c.hline(1.38,'--bad','2 3','1.38 Gyr bar');
+  legend('l6d',[['own density, y = 1','--c1'],['own density, y = 0.1','--c2'],['cosmic-mean density, y = 1','--c1','dash'],['cosmic-mean density, y = 0.1','--c2','dash']]);
+  /* 744 */
+  svg=document.getElementById('c6e');svg.innerHTML='';
+  const X=v=>200+(Math.log10(v)+3)/7*380, cases=[['10⁹ M☉, y=1',[5.0,6.4],[0.003,0.003]],['10¹⁰ M☉, y=0.1',[269,341],[0.14,0.17]],['10¹¹ M☉, y=0.1',[1500,1900],[1.4,1.7]]];
+  [-3,-2,-1,0,1,2,3,4].forEach(e=>{const x=X(Math.pow(10,e));el(svg,'line',{x1:x,x2:x,y1:8,y2:250,stroke:css('--grid')});el(svg,'text',{x:x,y:266,'text-anchor':'middle'},'1e'+e)});
+  el(svg,'text',{x:410,y:286,'text-anchor':'middle'},'one-crossing time  (Gyr)');
+  cases.forEach((cs,i)=>{[[1,'--bad','cold medium'],[2,'--ok','light field c_P = c']].forEach((k,j)=>{const y=14+i*78+j*32,lo=cs[k[0]][0],hi=cs[k[0]][1];
+    el(svg,'text',{x:192,y:y+14,'text-anchor':'end',style:'fill:'+css('--fg')},j?'':cs[0]);
+    el(svg,'rect',{x:X(lo),y:y,width:Math.max(7,X(hi)-X(lo)),height:20,fill:css(k[1])});
+    (function(){const xr=Math.max(X(hi),X(lo)+7),hl=X(13.8)>xr&&X(13.8)<xr+75;el(svg,'text',{x:hl?X(lo)-6:xr+6,y:y+14,'text-anchor':hl?'end':'start',style:'fill:'+css('--fg')},lo===hi?String(lo):lo+'–'+hi)})()})});
+  el(svg,'line',{x1:X(13.8),x2:X(13.8),y1:8,y2:250,stroke:css('--c3'),'stroke-width':1.5,'stroke-dasharray':'4 3'});
+  el(svg,'text',{x:X(13.8)+4,y:246,style:'fill:'+css('--c3')},'Hubble time 13.8 Gyr');
+  legend('l6e',[['polarization = cold medium','--bad'],['independent light field','--ok']]);
+}
+function all(){draw1();draw2();draw3();draw4();draw5();draw6()}
+document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',all));
 all();
 const mq=window.matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',all);
 new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
