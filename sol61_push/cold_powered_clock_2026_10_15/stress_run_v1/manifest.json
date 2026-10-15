@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "CPC-002",
+  "repository": {
+    "commit": "7941ca1805da28cdd857ab07332e4e878811b7a7",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_powered_clock_2026_10_15/check_stress.py",
+    "sol61_push/cold_powered_clock_2026_10_15/stress_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact constitutive stress corrections, fixed-B controller source, scalar wave operator, and homogeneous infinite-volume controller energy.",
+    "coefficient_domain": "SymPy exact rational functions and differential polynomials over real symbols.",
+    "conventions": "Signature -+++; E_A^mu inverse material Jacobian; W density as in CLA.",
+    "inputs": [
+      "sol61_push/cold_powered_clock_2026_10_15/check_stress.py",
+      "sol61_push/cold_harmonic_boundary_2026_10_15/SOURCE.md",
+      "sol61_push/cold_lapse_algebra_2026_10_15/PROOF.md"
+    ],
+    "bounds": {
+      "action": "EH+algebraic F(PhiI,Lambda,B,C), canonical Lambda, J^mu partial_mu Lambda; no other derivative repairs",
+      "family": "Unitary gauge; homogeneous time-varying Lambda for ramp; N=1 gamma=I for exact compensation",
+      "resources": "60 wall seconds, 45 CPU seconds, one numerical library thread"
+    },
+    "non_claims": [
+      "No full metric/controller solution or Hamiltonian constraint classification.",
+      "No nonlinear or curved stability theorem.",
+      "No established physical cold carrier or propulsion."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T18:25:07.296611+00:00",
+    "runtime_seconds": 0.350388,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_powered_clock_2026_10_15/check_stress.py",
+    "sol61_push/cold_harmonic_boundary_2026_10_15/SOURCE.md",
+    "sol61_push/cold_lapse_algebra_2026_10_15/PROOF.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_powered_clock_2026_10_15/check_stress.py",
+      "sha256": "95cad6ecf98d54fde15f09102c79ee46271d738d34bb4906c6793d38635c0a5b",
+      "sha256_after": "95cad6ecf98d54fde15f09102c79ee46271d738d34bb4906c6793d38635c0a5b"
+    },
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/SOURCE.md",
+      "sha256": "134664baf072a06c6055ee98016c2eb044e75a940af97f846b7000a4edbdd47d",
+      "sha256_after": "134664baf072a06c6055ee98016c2eb044e75a940af97f846b7000a4edbdd47d"
+    },
+    {
+      "path": "sol61_push/cold_lapse_algebra_2026_10_15/PROOF.md",
+      "sha256": "e7c8e5c4f33bd52b9883f3fe42be13a2027b23338c62aa3d3c56f225b85ccfc7",
+      "sha256_after": "e7c8e5c4f33bd52b9883f3fe42be13a2027b23338c62aa3d3c56f225b85ccfc7"
+    }
+  ],
+  "output_directory": "sol61_push/cold_powered_clock_2026_10_15/stress_run_v1",
+  "declared_results": [
+    "sol61_push/cold_powered_clock_2026_10_15/stress_run_v1/calculation/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_powered_clock_2026_10_15/stress_run_v1/stdout.txt",
+      "sha256": "8cd2d437a9d370c787de7cd7325ffb3313b52f21f41b66c41bc19c31a2db5d3e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_powered_clock_2026_10_15/stress_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_powered_clock_2026_10_15/stress_run_v1/calculation/results.json",
+      "sha256": "8cd2d437a9d370c787de7cd7325ffb3313b52f21f41b66c41bc19c31a2db5d3e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
