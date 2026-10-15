@@ -1,0 +1,62 @@
+{
+ "referee_of": "423c96eef",
+ "K1": true,
+ "S": 6.387744000000001e+34,
+ "Ea": 1698970.0921300899,
+ "r": 9.019324141987948e-24,
+ "loss": 37981.68622023776,
+ "short_b": 4.2111454940864584e+27,
+ "lc": 0.00010288198341802702,
+ "Ec": 42338.810048108746,
+ "passive": 71932372008.1137,
+ "mutate_bites": true,
+ "native": {
+  "m_eV": 0.00224,
+  "passive": 8.960007275404789e+16,
+  "passive_short_orders": 17.853039140401627,
+  "laser_short_orders": 12.385940294762317
+ },
+ "checks": [
+  {
+   "name": "K1 [Planck] reproduces aT^4 within 1% at 5800 K",
+   "ok": true,
+   "detail": "8.5618e-01 vs 8.5618e-01 (0.00%)"
+  },
+  {
+   "name": "K2 [recompute] S = tau/(d/sig) = 6.39e34 (CFG794 6.39e34, CFG792 6.4e34)",
+   "ok": true,
+   "detail": "S = 6.388e+34"
+  },
+  {
+   "name": "(a) Q_field = 1.70e6, min(QC=1e11) = 1.70e6 (field-bandwidth limited)",
+   "ok": true,
+   "detail": "1.699e+06"
+  },
+  {
+   "name": "(b) r = 9.0e-24 s^-1, laser threshold 3.8e4 s^-1 -> short by x4.2e27 (reproduced)",
+   "ok": true,
+   "detail": "r = 9.019e-24, loss = 3.798e+04, short x4.21e+27"
+  },
+  {
+   "name": "(c) l_c = 0.103 mm, (l_c/d)^2 = 4.2e4 (reproduced)",
+   "ok": true,
+   "detail": "l_c = 0.103 mm, gain 4.23e+04"
+  },
+  {
+   "name": "passive (a)x(c) = 7.2e10, short x8.9e23 (~24 orders) -> NOT CLOSABLE (reproduced)",
+   "ok": true,
+   "detail": "passive 7.19e+10 vs S 6.39e+34 -> short x8.9e+23 (24 orders)"
+  },
+  {
+   "name": "MUTATE [tau = 1 us] r = 1.25e6 s^-1 > 3.8e4 s^-1 (bites, reproduced)",
+   "ok": true,
+   "detail": "r = 1.252e+06 vs loss 3.798e+04"
+  },
+  {
+   "name": "robustness: verdict NOT CLOSABLE holds at the framework-native mass (2.24 meV)",
+   "ok": true,
+   "detail": "passive still 18 orders short; laser still 12 orders short"
+  }
+ ],
+ "wall_s": 0.0001647472381591797
+}

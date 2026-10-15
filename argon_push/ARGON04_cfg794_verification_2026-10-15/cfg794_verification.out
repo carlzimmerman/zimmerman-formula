@@ -1,0 +1,22 @@
+======================================================================================================================
+ARGON04 -- independent referee of CFG794 (commit 423c96eef) + native-mass robustness
+======================================================================================================================
+  [PASS] K1 [Planck] reproduces aT^4 within 1% at 5800 K   (8.5618e-01 vs 8.5618e-01 (0.00%))
+  [PASS] K2 [recompute] S = tau/(d/sig) = 6.39e34 (CFG794 6.39e34, CFG792 6.4e34)   (S = 6.388e+34)
+  [PASS] (a) Q_field = 1.70e6, min(QC=1e11) = 1.70e6 (field-bandwidth limited)   (1.699e+06)
+  [PASS] (b) r = 9.0e-24 s^-1, laser threshold 3.8e4 s^-1 -> short by x4.2e27 (reproduced)   (r = 9.019e-24, loss = 3.798e+04, short x4.21e+27)
+  [PASS] (c) l_c = 0.103 mm, (l_c/d)^2 = 4.2e4 (reproduced)   (l_c = 0.103 mm, gain 4.23e+04)
+  [PASS] passive (a)x(c) = 7.2e10, short x8.9e23 (~24 orders) -> NOT CLOSABLE (reproduced)   (passive 7.19e+10 vs S 6.39e+34 -> short x8.9e+23 (24 orders))
+  [PASS] MUTATE [tau = 1 us] r = 1.25e6 s^-1 > 3.8e4 s^-1 (bites, reproduced)   (r = 1.252e+06 vs loss 3.798e+04)
+    SUPPLEMENT (m_native = 2.24 meV, ARGON03): l_c = 114.8 mm, (l_c/d)^2 = 5.27e+10;
+      passive (a)x(c) = 8.96e+16 -> short x7.1e+17 (18 orders);
+      laser test r = 1.40e-11 s^-1 vs loss 3.40e+01 s^-1 -> short x2.4e+12 (12 orders)
+  [PASS] robustness: verdict NOT CLOSABLE holds at the framework-native mass (2.24 meV)   (passive still 18 orders short; laser still 12 orders short)
+----------------------------------------------------------------------------------------------------------------------
+  READING: CFG794 (423c96eef) is verified — every committed number reproduced independently to <5%.
+  The NOT CLOSABLE verdict is robust to the portal mass: at the framework-native 2.24 meV the passive
+  gain (9.0e16) and the laser test (x2.4e12 short) still fail by wide margins. No known enhancement
+  closes the CFG792 S = 6.4e34 gap; the ramjet converter requirement stands.
+----------------------------------------------------------------------------------------------------------------------
+  RESULT: 0 FAIL
+  wall 0.00 s; threads 1; max RSS 70.9 MB
