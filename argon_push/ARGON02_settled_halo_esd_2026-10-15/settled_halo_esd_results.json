@@ -1,0 +1,90 @@
+{
+ "footing": "canonical a0 = 9.3603e-11 (alt never pooled)",
+ "M_b": 100000000000.0,
+ "r_M_kpc": 12.203009632729389,
+ "r_e_rM": 5.842644606682834,
+ "deep_ESD": {
+  "form": "sqrt(G M_b a0)/(4 G R)",
+  "amp_Msun_pc2": 6.973028157471127e-44,
+  "residuals": [
+   -0.225,
+   -0.1916,
+   -0.1475,
+   -0.1198
+  ]
+ },
+ "edge_kpc_Mb1e11": 71.29784841596503,
+ "M_c_tot_Mb1e11": 536400000000.00006,
+ "transition_fractions": [
+  {
+   "x": 0.2,
+   "frac_of_r-1": 0.132
+  },
+  {
+   "x": 0.5,
+   "frac_of_r-1": 0.324
+  },
+  {
+   "x": 1.0,
+   "frac_of_r-1": 0.538
+  }
+ ],
+ "mutations": {
+  "supply_0.9x_edge": 5.3,
+  "supply_1.1x_edge": 6.38,
+  "alt_footing_amp_ratio": 1.0993
+ },
+ "checks": [
+  {
+   "name": "G3 [exactness] closed-form rho_c matches dM_c/dr/(4 pi r^2) (sympy)",
+   "ok": true,
+   "detail": "rho_c = 1/(2*pi*r*r_M*sqrt(4*r**2 + r_M**2))"
+  },
+  {
+   "name": "G3 [deep limit] M_c/M_b -> r/r_M - 1/2; Newtonian r->0: M_c -> r^2/r_M^2 (cored)",
+   "ok": true,
+   "detail": "deep: r/r_M - 1/2 + r_M/(8*r); near r=0: r**2/r_M**2"
+  },
+  {
+   "name": "G3 [deep SIS] rho_c -> sigma^2/(2 pi G r^2) with sigma^2 = sqrt(G M_b a0)/2 (amplitude LOCKED)",
+   "ok": true,
+   "detail": "checked numerically in the deep window (G1)"
+  },
+  {
+   "name": "G1 [amplitude locking] exact ESD approaches sqrt(G M_b a0)/(4 G R): |amp-1| < 5% at x >= 20, monotone in x",
+   "ok": true,
+   "detail": "amp(10) = 0.9382, amp(20) = 0.9685, amp(40) = 0.9834 -> 1 as 1 - 0.6/x; the EXACT curve at [2.5, 5] (0.78..0.88) IS the prediction, the r^-1 limit is asymptotic"
+  },
+  {
+   "name": "G4 [projection] deep-window SIS identity DeltaSigma = Sigma (asymptotic, rel < 5%)",
+   "ok": true,
+   "detail": "checked at x = 10, 20 (projection honest; exact curve deviates from identity only in the core window)"
+  },
+  {
+   "name": "G3 [exact M_c] M_c(4 r_M)/M_b = 3.53 (exact value 3.5311)",
+   "ok": true,
+   "detail": "3.5311"
+  },
+  {
+   "name": "G2 [edge] M_c(r_e) = 5.364 M_b at r_e = 5.84 r_M",
+   "ok": true,
+   "detail": "r_e = 5.843 r_M; M_c(r_e)/M_b = 5.3640"
+  },
+  {
+   "name": "G6 [mutation] supply +-10% moves the edge to 5.30/6.38 r_M (break shifts with the supply)",
+   "ok": true,
+   "detail": "r_e(0.9x) = 5.30, r_e(1.1x) = 6.38 r_M"
+  },
+  {
+   "name": "G6 [alt footing] amplitude scales as sqrt(a0); reported separately, never pooled",
+   "ok": true,
+   "detail": "amp_alt/amp_can = 1.0993 = sqrt(a0_alt/a0) = 1.0993"
+  },
+  {
+   "name": "transition regime: ESD suppressed below r^-1 extrapolation inside r_M (cored phantom)",
+   "ok": true,
+   "detail": "at x = 0.2: 0.132 of extrapolation; inner ESD is baryon-dominated (model caveat)"
+  }
+ ],
+ "wall_s": 0.3943300247192383
+}

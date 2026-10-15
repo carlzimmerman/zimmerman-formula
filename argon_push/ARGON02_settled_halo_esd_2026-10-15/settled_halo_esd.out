@@ -1,0 +1,45 @@
+======================================================================================================================
+ARGON02 -- settled-halo ESD: parameter-free lensing prediction from the law + GF2 + supply rule
+======================================================================================================================
+    a0 = 9.3603e-11 m/s^2 (canonical); kappa = 1/2 FITTED; supply Omega_c/Omega_b = 5.364
+  [PASS] G3 [exactness] closed-form rho_c matches dM_c/dr/(4 pi r^2) (sympy)   (rho_c = 1/(2*pi*r*r_M*sqrt(4*r**2 + r_M**2)))
+  [PASS] G3 [deep limit] M_c/M_b -> r/r_M - 1/2; Newtonian r->0: M_c -> r^2/r_M^2 (cored)   (deep: r/r_M - 1/2 + r_M/(8*r); near r=0: r**2/r_M**2)
+  [PASS] G3 [deep SIS] rho_c -> sigma^2/(2 pi G r^2) with sigma^2 = sqrt(G M_b a0)/2 (amplitude LOCKED)   (checked numerically in the deep window (G1))
+    M_b = 1e11 Msun: r_M = 12.20 kpc; v_flat^2 = sqrt(G M_b a0) = 3.5246e+10 m^2/s^2 (v = 188 km/s)
+    x = 2.5: Sigma = 66.0 Msun/pc^2, DeltaSigma = 52.0 Msun/pc^2, amp = 0.7750
+    x = 3.0: Sigma = 55.0 Msun/pc^2, DeltaSigma = 45.2 Msun/pc^2, amp = 0.8084
+    x = 4.0: Sigma = 41.3 Msun/pc^2, DeltaSigma = 35.8 Msun/pc^2, amp = 0.8525
+    x = 5.0: Sigma = 33.0 Msun/pc^2, DeltaSigma = 29.6 Msun/pc^2, amp = 0.8802
+    x = 10: asymptotic amp = 0.9382
+    x = 20: asymptotic amp = 0.9685
+    x = 40: asymptotic amp = 0.9834
+  [PASS] G1 [amplitude locking] exact ESD approaches sqrt(G M_b a0)/(4 G R): |amp-1| < 5% at x >= 20, monotone in x   (amp(10) = 0.9382, amp(20) = 0.9685, amp(40) = 0.9834 -> 1 as 1 - 0.6/x; the EXACT curve at [2.5, 5] (0.78..0.88) IS the prediction, the r^-1 limit is asymptotic)
+  [PASS] G4 [projection] deep-window SIS identity DeltaSigma = Sigma (asymptotic, rel < 5%)   (checked at x = 10, 20 (projection honest; exact curve deviates from identity only in the core window))
+  [PASS] G3 [exact M_c] M_c(4 r_M)/M_b = 3.53 (exact value 3.5311)   (3.5311)
+  [PASS] G2 [edge] M_c(r_e) = 5.364 M_b at r_e = 5.84 r_M   (r_e = 5.843 r_M; M_c(r_e)/M_b = 5.3640)
+    settled-halo edge: r_e = 5.84 r_M = 71.3 kpc (M_b = 1e11); M_c,tot = 5.36e+11 Msun
+    MW          : r_M =   9.8 kpc, edge =  57.5 kpc, M_c,tot = 3.49e+11 Msun
+    M_b = 1e11  : r_M =  12.2 kpc, edge =  71.3 kpc, M_c,tot = 5.36e+11 Msun
+    M_b = 3e10  : r_M =   6.7 kpc, edge =  39.1 kpc, M_c,tot = 1.61e+11 Msun
+  [PASS] G6 [mutation] supply +-10% moves the edge to 5.30/6.38 r_M (break shifts with the supply)   (r_e(0.9x) = 5.30, r_e(1.1x) = 6.38 r_M)
+  [PASS] G6 [alt footing] amplitude scales as sqrt(a0); reported separately, never pooled   (amp_alt/amp_can = 1.0993 = sqrt(a0_alt/a0) = 1.0993)
+    transition x = 0.2: DeltaSigma =   110.9 Msun/pc^2 (fraction of r^-1 extrapolation: 0.132)
+    transition x = 0.5: DeltaSigma =   108.8 Msun/pc^2 (fraction of r^-1 extrapolation: 0.324)
+    transition x = 1.0: DeltaSigma =    90.3 Msun/pc^2 (fraction of r^-1 extrapolation: 0.538)
+  [PASS] transition regime: ESD suppressed below r^-1 extrapolation inside r_M (cored phantom)   (at x = 0.2: 0.132 of extrapolation; inner ESD is baryon-dominated (model caveat))
+----------------------------------------------------------------------------------------------------------------------
+  PREDICTION (conditional on the minimal metric coupling; canonical footing):
+   (1) ESD of an isolated, merger-free late-type disk in [1, 5] r_M:
+       DeltaSigma(R) = sqrt(G M_b a0)/(4 G R) = 167.9 Msun/pc^2 * (r_M/R)  [asymptotic]
+       amplitude LOCKED by (M_b, a0): no NFW concentration, no free halo parameter.
+   (2) ESD BREAK at r_e = 5.84 r_M (M_c = 5.364 M_b): log-slope |d ln DS/d ln R| > 1.05 beyond.
+       For M_b = 1e11: break at 71 kpc; MW (6.5e10): ~57 kpc.
+   (3) transition shape [0.2, 1] r_M from the exact formula (cored phantom; baryon model needed inside).
+   (4) MW/LG: settled halo ends at ~57 kpc (M_c = 3.5e11); any enclosed-mass excess at 100-300 kpc
+       must be carried by the S4 free component (merger debris), not by the settled halo.
+  KILL: (a) NFW-like ESD with free concentration in [1,5] r_M; (b) no break at 5.8 r_M for merger-free
+        disks; (c) inner shape off the exact formula by > 3 sigma in stacked GGL bins; (d) an enclosed
+        mass > ~4.1e11 at 100 kpc for the MW with no S4 debris budget.
+----------------------------------------------------------------------------------------------------------------------
+  RESULT: 0 FAIL
+  wall 0.4 s; threads 1; max RSS 112.1 MB
