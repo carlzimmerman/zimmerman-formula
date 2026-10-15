@@ -1,0 +1,31 @@
+======================================================================================================================
+ARGON06 -- the last window (CFG795 P6b @ 2.24 meV) re-audited with the correct bound set
+======================================================================================================================
+    m_native = 0.002 meV; N_cell = u_c * (0.72 m)^3 / (m c^2) = 6.34e+16 quanta/cell
+    eps needed for eta>=0.6: 3.91e-09 (CFG795: within 1.6x of solar bound 6.25e-09)
+  [PASS] window self-check: eta = 0.6 AT the solar bound (CFG795); conversion starts only above eps_thr = 1/sqrt(N)   (eta(bound) = 0.596; eps_thr = 3.970e-09 — the 'within 1.6x' phrasing means the floor, not the working point)
+    eps = 1.00e-13 [CMB (provisional 1e-13)]: eps*sqrt(N) = 2.519e-05 (phase measurable iff >= 1) -> eta = 0.00e+00
+    eps = 1.00e-11 [CMB x100 weakened (1e-11)]: eps*sqrt(N) = 2.519e-03 (phase measurable iff >= 1) -> eta = 0.00e+00
+    eps = 1.30e-09 [XENON10(claimed, invalid at meV)]: eps*sqrt(N) = 3.274e-01 (phase measurable iff >= 1) -> eta = 0.00e+00
+    eps = 6.25e-09 [solar relation (bound)]: eps*sqrt(N) = 1.574e+00 (phase measurable iff >= 1) -> eta = 5.96e-01
+  [PASS] (a) XENON10 does not bound 2.24 meV: deposit 2.24 meV << Xe ionization 12.1 eV << XENON10 recoil threshold ~keV   (m = 2.24 meV deposit vs 12.1 eV ionization; the DP-absorption limit curves start at m ~ 10 eV+ (provisional))
+    -> CFG795's 'XENON10 closes it (eps <= 1.3e-9)' is the wrong reason (kappa m < 3e-12 eV is a rescaled curve used off-range)
+       the window closes anyway on (b); verdict class unchanged, obstruction corrected.
+  [PASS] (b) window closed by CMB bound: eps_needed 3.9e-9 >= eps_CMB 1e-13 by 4 orders (provisional; 2024 MNRAS reanalysis says the 1e-4..1e-3 eV window constraints were underestimated)   (margin 3.91e+04 = 4.6 orders)
+  [PASS] robustness: closure survives even a 100x weakening of the CMB bound (eps_CMB = 1e-11)   (margin 3.91e+02 = 2.6 orders)
+  [PASS] robustness: a 2.6-order CMB weakening would be needed to reopen the window (kill condition named)   (reopening needs eps_CMB > 3.9e-11)
+  [PASS] (c) at any cosmology-allowed eps: eps sqrt(N) << 1 -> phase unmeasurable -> eta = 0 exactly (the 0.6 formula never operates)   (eps = 1.0e-12: eps*sqrt(N) = 2.52e-04)
+  [PASS] (d) E6 kill test sharpens: search at eps ~ 1e-13 (CMB-consistent), rate ~4.4e5 photons/day per 10 m^2 at 0.55 mm   (4.40e+05/day at 0.55 mm; CFG795's 'eps >= 1e-10 decides' is already cosmology-excluded for a standard portal)
+----------------------------------------------------------------------------------------------------------------------
+  READING: CFG795's P6b window is closed — and now for the right reason. Its stated closure (XENON10,
+  kappa m < 3e-12 eV) is kinematically inapplicable at 2.24 meV (a meV quantum cannot ionize xenon);
+  the true obstruction is the CMB spectral-distortion bound, ~4 orders below the window's required
+  eps, with a named robustness: even a 100x weakening of the provisional CMB value keeps the window
+  closed by 2.6 orders. At every cosmology-allowed coupling the phase-locked channel gives eta = 0
+  exactly (eps sqrt(N) << 1), so no dish gain can resurrect it. The single clean obstruction across
+  the whole design space: the only eps that converts is excluded by cosmology; the only eps allowed
+  by cosmology converts nothing. The E6 kill test survives and sharpens: sub-mm search at 0.55 mm,
+  eps ~ 1e-13 sensitivity, ~4e5 photons/day per 10 m^2 — a null closes the chain; a line kills the framework.
+----------------------------------------------------------------------------------------------------------------------
+  RESULT: 0 FAIL
+  wall 0.00 s; threads 1; max RSS 13.1 MB

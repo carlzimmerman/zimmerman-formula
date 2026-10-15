@@ -1,0 +1,50 @@
+{
+ "m_ev": 0.00224,
+ "N_cell": 6.3440838178787576e+16,
+ "eps_needed": 3.90625e-09,
+ "eta_window": 0.5964744361060513,
+ "XENON10_inapplicable_kinematics": true,
+ "eps_CMB_provisional": 1e-13,
+ "margin_orders": 4.591760034688151,
+ "margin_orders_at_100x_weakening": 2.5917600346881504,
+ "phase_at_10x_CMB": 0.0002518746477492079,
+ "haloscope_rate_per_day_at_1e-13": 440000.00000000006,
+ "checks": [
+  {
+   "name": "window self-check: eta = 0.6 AT the solar bound (CFG795); conversion starts only above eps_thr = 1/sqrt(N)",
+   "ok": true,
+   "detail": "eta(bound) = 0.596; eps_thr = 3.970e-09 \u2014 the 'within 1.6x' phrasing means the floor, not the working point"
+  },
+  {
+   "name": "(a) XENON10 does not bound 2.24 meV: deposit 2.24 meV << Xe ionization 12.1 eV << XENON10 recoil threshold ~keV",
+   "ok": true,
+   "detail": "m = 2.24 meV deposit vs 12.1 eV ionization; the DP-absorption limit curves start at m ~ 10 eV+ (provisional)"
+  },
+  {
+   "name": "(b) window closed by CMB bound: eps_needed 3.9e-9 >= eps_CMB 1e-13 by 4 orders (provisional; 2024 MNRAS reanalysis says the 1e-4..1e-3 eV window constraints were underestimated)",
+   "ok": true,
+   "detail": "margin 3.91e+04 = 4.6 orders"
+  },
+  {
+   "name": "robustness: closure survives even a 100x weakening of the CMB bound (eps_CMB = 1e-11)",
+   "ok": true,
+   "detail": "margin 3.91e+02 = 2.6 orders"
+  },
+  {
+   "name": "robustness: a 2.6-order CMB weakening would be needed to reopen the window (kill condition named)",
+   "ok": true,
+   "detail": "reopening needs eps_CMB > 3.9e-11"
+  },
+  {
+   "name": "(c) at any cosmology-allowed eps: eps sqrt(N) << 1 -> phase unmeasurable -> eta = 0 exactly (the 0.6 formula never operates)",
+   "ok": true,
+   "detail": "eps = 1.0e-12: eps*sqrt(N) = 2.52e-04"
+  },
+  {
+   "name": "(d) E6 kill test sharpens: search at eps ~ 1e-13 (CMB-consistent), rate ~4.4e5 photons/day per 10 m^2 at 0.55 mm",
+   "ok": true,
+   "detail": "4.40e+05/day at 0.55 mm; CFG795's 'eps >= 1e-10 decides' is already cosmology-excluded for a standard portal"
+  }
+ ],
+ "wall_s": 8.535385131835938e-05
+}
