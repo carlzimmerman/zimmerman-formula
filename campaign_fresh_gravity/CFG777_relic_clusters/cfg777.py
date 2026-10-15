@@ -53,7 +53,6 @@ KALL = dict(KERN, **KCAP)
 A0SI = {"canonical": C4.A0["canonical"], "alt": C4.A0["alt"]}
 FEET = ("canonical", "alt")
 # runs per system: primary (Tacconi p) x 2 kernels x 2 footings; brackets + M1 (p = 1) at nu_s / canonical; M1 also nu_mono canonical
-CASES = [("s", f, P_TAC) for f in FEET] + [("mono", f, P_TAC) for f in FEET] + [("s", "canonical", pb) for pb in (1.5, 2.0, 3.0, 1.0)] + [("mono", "canonical", 1.0)]
 
 
 def tacconi_p(z=1.5, lmstar=10.8):                                   # CFG776 D3 (coefficients PROVISIONAL, from memory)
@@ -62,6 +61,7 @@ def tacconi_p(z=1.5, lmstar=10.8):                                   # CFG776 D3
 
 
 P_TAC = tacconi_p()
+CASES = [("s", f, P_TAC) for f in FEET] + [("mono", f, P_TAC) for f in FEET] + [("s", "canonical", pb) for pb in (1.5, 2.0, 3.0, 1.0)] + [("mono", "canonical", 1.0)]
 
 
 def run_system(r_obs, Mcond, Mhot, z, foot, kern, p, N=N_SH):
