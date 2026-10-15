@@ -1,0 +1,52 @@
+CFG806  baryon census f_ret(M_ta) from the framework
+  K1 dPhi(r_M -> r_ta) 1e10.5 Msun: quad 1.09929e+11, trapz 1.09929e+11 (rel -6.7e-12); V^2 ln(r_ta/r_M) = 9.8882e+10 (+ Newtonian-regime offset 1.105e+10): PASS
+  K2 e_SN = 5.0277e+11 m^2/s^2 (709 km/s): PASS
+  K3 Delta_ta(0) = 11.8308: PASS
+
+  f_ret (ratio to census) at log M_ta =        12              13              14              15
+  census (CFG416)                    0.100         0.325         0.700         0.900       
+  M2 PRIMARY eps=1 canonical         0.989 (9.89)  0.999 (3.08)  1.000 (1.43)  1.000 (1.11)   NOT DERIVED
+  M1 (s=1) eps=1 canonical           0.160 (1.60)  0.460 (1.41)  0.746 (1.07)  0.899 (1.00)   SHAPE DERIVED
+  M2 eps=0.1 canonical               0.999 (9.99)  1.000 (3.08)  1.000 (1.43)  1.000 (1.11)   NOT DERIVED
+  M2 PRIMARY eps=1 alt               0.993 (9.93)  1.000 (3.08)  1.000 (1.43)  1.000 (1.11)   NOT DERIVED
+  M1 (s=1) eps=1 alt                 0.185 (1.85)  0.496 (1.53)  0.770 (1.10)  0.910 (1.01)   SHAPE DERIVED
+  M2 eps=0.1 alt                     0.999 (9.99)  1.000 (3.08)  1.000 (1.43)  1.000 (1.11)   NOT DERIVED
+  -- brackets (canonical M2 unless stated)
+  e_SN 0.7e49                        0.992 (9.92)  1.000 (3.08)  1.000 (1.43)  1.000 (1.11)   NOT DERIVED
+  e_SN 1.2e49                        0.987 (9.87)  0.999 (3.07)  1.000 (1.43)  1.000 (1.11)   NOT DERIVED
+  z = 1                              0.968 (9.68)  0.998 (3.07)  1.000 (1.43)  1.000 (1.11)   NOT DERIVED
+  M_ta in Msun/h                     0.994 (9.94)  1.000 (3.08)  1.000 (1.43)  1.000 (1.11)   NOT DERIVED
+  + AGN (E4)                         0.980 (9.80)  0.999 (3.07)  1.000 (1.43)  1.000 (1.11)   NOT DERIVED
+  M1 eps=0.1                         0.783 (7.83)  0.917 (2.82)  0.970 (1.39)  0.989 (1.10)   NOT DERIVED
+  eps=0.3                            0.997 (9.97)  1.000 (3.08)  1.000 (1.43)  1.000 (1.11)   NOT DERIVED
+
+  primary internals (canonical, M2, eps=1): log M_ta, f, log M_b, V km/s, r_M kpc, r_ta kpc, dPhi/V^2, chi, kT keV
+     11.5  0.934   10.67     155     8.3     545   4.74  0.016  0.075
+     12.0  0.989   11.19     210    15.2     800   4.51  0.004  0.138
+     12.5  0.998   11.70     280    27.2    1174   4.31  0.001  0.246
+     13.0  0.999   12.20     374    48.4    1723   4.12  0.001  0.437
+     13.5  1.000   12.70     498    86.0    2529   3.92  0.000  0.778
+     14.0  1.000   13.20     665   153.0    3712   3.73  0.000  1.384
+     14.5  1.000   13.70     886   272.0    5449   3.53  0.000  2.461
+     15.0  1.000   14.20    1182   483.8    7998   3.34  0.000  4.376
+
+  M3 accretion vs the catchment's law potential (step): f at 12/13/14/15
+    canonical T 1e+04 K: 1 1 1 1   NOT DERIVED
+    canonical T 1e+06 K: 1 1 1 1   NOT DERIVED
+    alt       T 1e+04 K: 1 1 1 1   NOT DERIVED
+    alt       T 1e+06 K: 1 1 1 1   NOT DERIVED
+
+  KiDS check (CFG804 primary log M_b per bin; N_min 3 canonical / 4 alt): log M_ta, f, N
+    canonical: M_b 10.38 -> M_ta 11.26, f 0.837, N 1.2; M_b 10.78 -> M_ta 11.60, f 0.955, N 1.0; M_b 10.91 -> M_ta 11.73, f 0.972, N 1.0; M_b 11.12 -> M_ta 11.93, f 0.986, N 1.0  -> FAIL
+    alt: M_b 10.24 -> M_ta 11.13, f 0.820, N 1.2; M_b 10.71 -> M_ta 11.53, f 0.961, N 1.0; M_b 10.84 -> M_ta 11.65, f 0.975, N 1.0; M_b 11.05 -> M_ta 11.86, f 0.988, N 1.0  -> FAIL
+
+  POST-FREEZE diagnostic 1: sign changes of the M2 fixed-point function over f in [1e-4, 1] (canonical, eps 1)
+    log M_ta 12: roots near f = 0.9772
+    log M_ta 13: roots near f = 0.9772
+    log M_ta 14: roots near f = 0.9772
+    log M_ta 15: roots near f = 0.9772
+  POST-FREEZE diagnostic 2: KiDS check with M1 (s = 1, eps = 1) instead of M2
+    canonical: M_b 10.38 -> M_ta 11.99, f 0.157, N 6.4; M_b 10.78 -> M_ta 12.24, f 0.220, N 4.5; M_b 10.91 -> M_ta 12.33, f 0.244, N 4.1; M_b 11.12 -> M_ta 12.47, f 0.285, N 3.5  -> PASS
+    alt: M_b 10.24 -> M_ta 11.86, f 0.153, N 6.6; M_b 10.71 -> M_ta 12.16, f 0.226, N 4.4; M_b 10.84 -> M_ta 12.25, f 0.250, N 4.0; M_b 11.05 -> M_ta 12.39, f 0.293, N 3.4  -> FAIL
+
+  CLASS (M2 primary, canonical, eps = 1): NOT DERIVED;  alt: NOT DERIVED;  eps = 0.1: NOT DERIVED
