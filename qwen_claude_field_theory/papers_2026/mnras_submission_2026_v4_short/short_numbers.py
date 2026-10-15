@@ -106,7 +106,7 @@ check("algebra", "S6c kappa(0.6)/kappa(0.5) = 0.82 close to 0.5/0.6 = 0.83 (a0 p
       close(r1, 0.82, 5e-3) and close(0.5 / 0.6, 0.83, 5e-3), f"{r1:.4f} vs {0.5/0.6:.4f}", ["$0.457/0.560=0.82$", "$0.5/0.6=0.83$"])
 check("data", "S6d kappa = 1/2 needs Upsilon = 0.555", close(PN["S2"]["ud_for_half_L"], 0.555, 1e-3), f"{PN['S2']['ud_for_half_L']:.4f}", ["0.555"])
 check("data", "S6e SPARC counts: 2803 points in 164 galaxies", PN["S2"]["n_pts"] == 2803 and PN["S2"]["n_gal"] == 164, "", ["2803", "164 galaxies"])
-check("lit", "S6f SPARC has 175 galaxies; 97 on Hubble-flow distances at H0 = 73; Upsilon 0.5-0.7 at 3.6 um (Meidt+14)", True, "", ["175 disc galaxies", "97 galaxies", "73"])
+check("lit", "S6f SPARC has 175 galaxies; 97 on Hubble-flow distances at H0 = 73; Upsilon 0.5-0.7 at 3.6 um (Meidt+14)", True, "", ["175 nearby disc galaxies", "97 galaxies", "73"])
 
 # 5. Estimators A, B, C and the pulls (data)
 meas = {m[0][0]: (m[1], m[2]) for m in PN["S3"]["meas"]}
@@ -139,9 +139,9 @@ check("lit", "S7f Desmond a0 = 1.19 +- 0.10 ... (quoted as kappa only); Milgrom 
 fA = os.path.join(V3, "reproduce_outputs", "estimator_A.out")
 if os.path.exists(fA):
     ok24 = "y_cut = 0.05 (N = 24" in open(fA).read()
-    check("data", "S7g estimator A uses N = 24 galaxies at y_cut = 0.05 (v3 estimator_A.out, git-ignored)", ok24, "", ["24 deep galaxies"])
+    check("data", "S7g estimator A uses N = 24 galaxies at y_cut = 0.05 (v3 estimator_A.out, git-ignored)", ok24, "", ["24 galaxies with the weakest pull"])
 else:
-    check("data", "S7g estimator A N = 24: v3 estimator_A.out ABSENT -> run ../mnras_submission_2026_v3/reproduce_all.sh", False, "file missing", ["24 deep galaxies"])
+    check("data", "S7g estimator A N = 24: v3 estimator_A.out ABSENT -> run ../mnras_submission_2026_v3/reproduce_all.sh", False, "file missing", ["24 galaxies with the weakest pull"])
 check("data", "S7h estimator C uses all 3391 points", PN["S3_C"]["EC"]["n_pts"] == 3391, "", ["3391"])
 
 # 6. H0 degeneracy

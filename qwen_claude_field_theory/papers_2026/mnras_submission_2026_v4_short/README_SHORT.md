@@ -1,7 +1,7 @@
 # Short plain-language MNRAS manuscript (v4, 2026-10-15)
 
-`mnras_a0_lambda_short.tex` / `.pdf` — "Crispy Fried Chicken Conjecture on Galaxy Dynamics", 4 pages including references.
-It is the v3.4 paper (`../mnras_submission_2026_v3/`, MN-26-3158-P, rejected 2026-10-07) rewritten at about three pages of
+`mnras_a0_lambda_short.tex` / `.pdf` — "Crispy Fried Chicken Conjecture on Galaxy Dynamics", 5 pages including references (4.3 of text/tables + references).
+It states the conjecture as (P1)/(P2) with refutation criteria (R1)/(R2), defines every symbol (Table 1) and ends with a claim-by-claim ledger (Table 2). It is the v3.4 paper (`../mnras_submission_2026_v3/`, MN-26-3158-P, rejected 2026-10-07) rewritten at about three pages of
 text, every step of the algebra shown and every symbol explained in words.
 
 **Why:** the editors' comment on MN-26-3158-P was that the paper "does not reach the standards of clarity, rigour and
