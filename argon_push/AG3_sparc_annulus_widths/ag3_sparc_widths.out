@@ -1,0 +1,56 @@
+================================================================================================
+AG3 — SPARC phantom-annulus widths vs AG1 ladders (FROZEN 4560f945c + AMD-A 7527066a6)
+a0 = 2888.7805 (km/s)^2/kpc  (runtime from G081_results.json: 9.3619e-11 m/s^2)
+AG1 thresholds (closed forms, recomputed): w1(DF) = 7.4403, w1(DD) = 10.7491
+G = 4.301827e-06 kpc (km/s)^2/Msun;  MUTATE = False
+================================================================================================
+B2 symbolic assembly (from primitives, sigma^2(r) local-hydrostatic):
+  xi'' coeff  : (-C*r - Gm*Mb)/(2*r)   /pred -1
+  xi'  coeff  : Gm*Mb/(2*r**2)   /pred -1
+  xi   coeff  : -C/r**2 - w2   /pred -1
+  assembly matches predicted coefficients up to global sign -1: True
+
+SPARC galaxies in corpus v7: 175
+cleaned sample: 165 (dropped 10 with <6 valid points)
+eligible (in-band run reaching the edge, f=2.0): 78; no eligible run: 87
+left-censored (already in band at innermost point): 4
+
+K1 law diagnostic: median per-galaxy rms log10[(g^2-gbar^2)/(a0*gbar)] = 0.5564 dex (registered benchmark ~0.15; report only)
+K1-deep variant (u = gbar/a0 <= 1 points only, n_gal = 160): median rms = 0.5024 dex  [post-hoc diagnostic variant, report only: the full-point K1 is dominated by the deep interior where g^2-gbar^2 is a noise-amplified small difference]
+K2a exact law identity in rho-space: median ln(rho_meas/rho_pred) = -0.1981, IQR = 1.1457  -> quiet
+K2b r_lo measured-vs-predicted crossings: median |ln| = 0.3256 (signed +0.0000; grid-start variant median ln = +0.1392) -> FAIL
+K2d [post-hoc, non-gated] MC noise budget (errV propagated, seed 20261015, 300 draws): n = 71, median |z| = 1.696 (0.67 expected if noise-dominated), frac |z|>2 = 0.465, median sigma_ln(r_lo) = 0.120
+    -> K2b scatter NOT explained by errV noise — systematic suspicion stands
+K2c point-mass corollary (report): median ln(r_lo/((4/3)r_M)) = +0.1709; median enclosed-mass correction ln sqrt(M(r_lo)/M_b) = -0.0952
+
+K3 widths w = r_hi/r_lo (f=2.0): n = 78
+    median = 1.843  IQR = [1.403, 3.180]  max = 8.98
+    frac(w > 7.4403 DF rung) = 0.038;  frac(w > 10.7491 DD rung) = 0.000
+    VERDICT (primary sample): S
+    robustness, censored excluded: n = 74, median = 1.810, verdict = S
+    robustness, G071 isolated/low-EFE subset: n = 15, median = 1.875, frac>DF = 0.000, verdict = S
+    K3 branch stable under robustness cuts: True
+    top-5 widths (AG1 unstable candidates if conservative): UGC06787 w=8.98 (tier 1); UGC02953 w=8.67 (tier 1); UGC09133 w=7.63 (tier 1); IC4202 w=6.56 (tier 1); NGC2915 w=5.98 (tier 1)
+
+K4 interior discriminator: X_ball = median over 128 galaxies of median rho(r <= 0.62 r_M) = 0.0025
+    (static ball predicts ~1; law-haze <= 0.285*sqrt(M/M_b)) -> LAW-HAZE reading realized inside the cap (phantom NOT A/r^2 there)
+    noise floor (post-hoc refinement): interior median sigma_rho = 0.0589 vs law-haze signal median rho_pred = 0.1305 vs X_ball = 0.0025
+    Upsilon-systematic proxy (20% mass-to-light error): interior median delta_rho ~ 0.1667
+    -> STATIC-BALL reading (rho ~ 1) excluded decisively: |1 - X_ball| exceeds every
+       statistical and systematic scale above by >10x. Haze-vs-Newtonian interior is
+       NOT decidable at SPARC precision (haze signal <= combined noise+systematics).
+       Load-bearing K4 statement: the cap interior is NOT an A/r^2 static ball.
+K5 f=1.4142: n=41 median=1.758 frac>DF=0.000 verdict=S
+K5 f=2.0000: n=78 median=1.843 frac>DF=0.038 verdict=S
+K5 f=3.0000: n=78 median=2.754 frac>DF=0.064 verdict=S
+K5 branch-stable across bands: True ({'S'})
+a0 robustness (a0_alt = 1.1279e-10 m/s^2): n = 67, median = 1.914, verdict = S -> stable: True
+
+B1 baryon/phantom force ratio r_M/r over annuli: median = 0.464 IQR = [0.325, 0.714] (non-negligible => AG1 phantom-only threshold is an idealization; B2 refines)
+B2 baryon-inclusive local-hydrostatic eigen-solve (D at r_lo, F at r_hi): n = 78, unstable frac = 0/78
+    omega0^2/(C/r_lo^2): median = +3.4267, IQR = [+0.6127, +15.0585]
+
+================================================================================================
+K3 VERDICT = S (median w = 1.843 vs DF rung 7.4403; frac>DF = 0.038); K4 = LAW-HAZE reading realized inside the cap (phantom NOT A/r^2 there) (X_ball = 0.002). Branch S: observed A/r^2 annuli are NARROW — the conservative reading is NOT falsified at observed scales; AG1's stability requirement is met by the data-implied inner cutoff.
+AG3 MAIN COMPLETE: gates FAIL (K2b=FAIL, K5-stable=True, B2-assembly=True)
+results -> ag3_sparc_widths_results.json

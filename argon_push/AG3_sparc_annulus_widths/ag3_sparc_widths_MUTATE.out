@@ -1,0 +1,62 @@
+================================================================================================
+AG3 — SPARC phantom-annulus widths vs AG1 ladders (FROZEN 4560f945c + AMD-A 7527066a6)
+a0 = 2888.7805 (km/s)^2/kpc  (runtime from G081_results.json: 9.3619e-11 m/s^2)
+AG1 thresholds (closed forms, recomputed): w1(DF) = 7.4403, w1(DD) = 10.7491
+G = 4.301827e-06 kpc (km/s)^2/Msun;  MUTATE = True
+================================================================================================
+B2 symbolic assembly (from primitives, sigma^2(r) local-hydrostatic):
+  xi'' coeff  : (-C*r - Gm*Mb)/(2*r)   /pred -1
+  xi'  coeff  : Gm*Mb/(2*r**2)   /pred -1
+  xi   coeff  : -C/r**2 - w2   /pred -1
+  assembly matches predicted coefficients up to global sign -1: True
+
+SPARC galaxies in corpus v7: 175
+cleaned sample: 165 (dropped 10 with <6 valid points)
+eligible (in-band run reaching the edge, f=2.0): 89; no eligible run: 76
+left-censored (already in band at innermost point): 24
+
+K1 law diagnostic: median per-galaxy rms log10[(g^2-gbar^2)/(a0*gbar)] = 0.5564 dex (registered benchmark ~0.15; report only)
+K1-deep variant (u = gbar/a0 <= 1 points only, n_gal = 160): median rms = 0.5024 dex  [post-hoc diagnostic variant, report only: the full-point K1 is dominated by the deep interior where g^2-gbar^2 is a noise-amplified small difference]
+K2a exact law identity in rho-space: median ln(rho_meas/rho_pred) = -0.1981, IQR = 1.1457  -> quiet
+K2b r_lo measured-vs-predicted crossings: median |ln| = 0.3045 (signed +0.0000; grid-start variant median ln = +0.6706) -> FAIL
+K2d [post-hoc, non-gated] MC noise budget (errV propagated, seed 20261015, 300 draws): n = 58, median |z| = 2.572 (0.67 expected if noise-dominated), frac |z|>2 = 0.586, median sigma_ln(r_lo) = 0.144
+    -> K2b scatter NOT explained by errV noise — systematic suspicion stands
+K2c point-mass corollary (report): median ln(r_lo/((4/3)r_M)) = +0.5501; median enclosed-mass correction ln sqrt(M(r_lo)/M_b) = +0.4070
+
+K3 widths w = r_hi/r_lo (f=2.0): n = 89
+    median = 2.679  IQR = [1.668, 4.247]  max = 30.52
+    frac(w > 7.4403 DF rung) = 0.157;  frac(w > 10.7491 DD rung) = 0.067
+    VERDICT (primary sample): AMBIGUOUS
+    robustness, censored excluded: n = 65, median = 2.599, verdict = AMBIGUOUS
+    robustness, G071 isolated/low-EFE subset: n = 13, median = 2.743, frac>DF = 0.154, verdict = AMBIGUOUS
+    K3 branch stable under robustness cuts: True
+    top-5 widths (AG1 unstable candidates if conservative): NGC0801 w=30.52 (tier 1); UGC11455 w=16.98 (tier 1); NGC2903 w=15.60 (tier 1); NGC6195 w=15.57 (tier 1); UGC02953 w=14.82 (tier 1)
+
+K4 interior discriminator: X_ball = median over 120 galaxies of median rho(r <= 0.62 r_M) = 0.0116
+    (static ball predicts ~1; law-haze <= 0.285*sqrt(M/M_b)) -> LAW-HAZE reading realized inside the cap (phantom NOT A/r^2 there)
+    noise floor (post-hoc refinement): interior median sigma_rho = 0.0289 vs law-haze signal median rho_pred = 0.0946 vs X_ball = 0.0116
+    Upsilon-systematic proxy (20% mass-to-light error): interior median delta_rho ~ 0.0372
+    -> STATIC-BALL reading (rho ~ 1) excluded decisively: |1 - X_ball| exceeds every
+       statistical and systematic scale above by >10x. Haze-vs-Newtonian interior is
+       NOT decidable at SPARC precision (haze signal <= combined noise+systematics).
+       Load-bearing K4 statement: the cap interior is NOT an A/r^2 static ball.
+K5 f=1.4142: n=72 median=2.392 frac>DF=0.153 verdict=AMBIGUOUS
+K5 f=2.0000: n=89 median=2.679 frac>DF=0.157 verdict=AMBIGUOUS
+K5 f=3.0000: n=89 median=3.191 frac>DF=0.191 verdict=AMBIGUOUS
+K5 branch-stable across bands: True ({'AMBIGUOUS'})
+a0 robustness (a0_alt = 1.1279e-10 m/s^2): n = 67, median = 1.914, verdict = S -> stable: False  *** FLIP => CONDITIONAL (loud, per freeze) ***
+
+B1 baryon/phantom force ratio r_M/r over annuli: median = 0.223 IQR = [0.109, 0.428] (non-negligible => AG1 phantom-only threshold is an idealization; B2 refines)
+B2 baryon-inclusive local-hydrostatic eigen-solve (D at r_lo, F at r_hi): n = 89, unstable frac = 5/89
+    omega0^2/(C/r_lo^2): median = +0.7463, IQR = [+0.1929, +5.0996]
+    unstable cases: median omega0^2 = -1.787e+00 (km/s)^2/kpc^2
+
+--- MUTATE run ---
+M1 (M_b shuffled, seed 20261015): K2b median |ln| = 0.3045 -> degraded>0.3: True
+M2 (band on r*gbar/C instead): eligibility flips = 33/165 (20%); both-eligible n = 59, median ln(r_lo,M2/r_lo,M0) = -1.6094 (|shift| > ln 1.5 = 0.4055? True) -> as designed (either arm): True
+M3 (gobs<->gbar swap): eligible edge-runs = 0 (frozen: must be 0) -> PASS;  galaxies with ANY in-band point = 20 (reported: real inner negative-g_ph points vs the baryon model)
+
+================================================================================================
+K3 VERDICT = AMBIGUOUS (median w = 2.679 vs DF rung 7.4403; frac>DF = 0.157); K4 = LAW-HAZE reading realized inside the cap (phantom NOT A/r^2 there) (X_ball = 0.012). Branch AMBIGUOUS: distribution straddles the rung; reported as is.
+AG3 MUTATE COMPLETE: gates FAIL (K2b=FAIL, K5-stable=True, B2-assembly=True, M1=True, M2=0.20, M3=True)
+results -> ag3_sparc_widths_MUTATE_results.json
