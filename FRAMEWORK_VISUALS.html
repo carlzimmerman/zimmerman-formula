@@ -1,0 +1,290 @@
+<title>Framework Equation Plots</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one header, then four sections (baryons, dark energy, cold energy, black holes); each section = equation strip + 1-2 interactive plots. */
+:root{
+  --bg:#f4f6f8; --panel:#ffffff; --fg:#14202b; --muted:#5a6b7a; --grid:#dbe2e8; --axis:#8796a3;
+  --c1:#0b7f86; --c2:#b8620a; --c3:#4a56c9; --c4:#b3265a; --ok:#2e7d32; --bad:#b3261e; --warn:#8a6100;
+  --chip:#e6ecf1;
+  --f-body:'IBM Plex Sans',system-ui,sans-serif; --f-head:'IBM Plex Sans Condensed','IBM Plex Sans',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e151b; --panel:#16202a; --fg:#e4ebf1; --muted:#9aabb9; --grid:#26333f; --axis:#6a7c8b;
+  --c1:#3fc3c9; --c2:#f0a050; --c3:#8e9aff; --c4:#ff7fa8; --ok:#7bd37f; --bad:#ff8a80; --warn:#e8c066; --chip:#223140; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e151b; --panel:#16202a; --fg:#e4ebf1; --muted:#9aabb9; --grid:#26333f; --axis:#6a7c8b;
+  --c1:#3fc3c9; --c2:#f0a050; --c3:#8e9aff; --c4:#ff7fa8; --ok:#7bd37f; --bad:#ff8a80; --warn:#e8c066; --chip:#223140; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5;padding-inline:16px;padding-block:24px 48px}
+main{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+h1{font-family:var(--f-head);font-size:2rem;margin:0;letter-spacing:.01em;text-wrap:balance}
+h2{font-family:var(--f-head);font-size:1.35rem;margin:0;text-wrap:balance}
+p{margin:0}
+.lede{color:var(--muted);max-width:68ch}
+.sec{display:flex;flex-direction:column;gap:12px;min-width:0}
+.sechead{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.chip{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;background:var(--chip);color:var(--muted);padding:2px 8px;border-radius:4px}
+.chip.fit{color:var(--warn)} .chip.bad{color:var(--bad)} .chip.ok{color:var(--ok)}
+.eq{font-family:var(--f-mono);font-size:.85rem;background:var(--panel);border:1px solid var(--grid);border-radius:6px;padding:10px 12px;overflow-x:auto;white-space:pre;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--grid);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card h3{font-size:.95rem;margin:0;font-weight:600}
+.cap{color:var(--muted);font-size:.85rem}
+svg{width:100%;height:auto;display:block}
+svg text{font-family:var(--f-mono);font-size:11px;fill:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:18px;height:0;border-top:3px solid currentColor;display:inline-block}
+.sw.dash{border-top-style:dashed}.sw.dot{border-top-style:dotted}
+.ctl{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:.85rem}
+.ctl label{display:inline-flex;align-items:center;gap:6px}
+.ctl input[type=range]{flex:1 1 160px;min-width:120px;accent-color:var(--c1)}
+.out{font-family:var(--f-mono);font-size:.82rem;color:var(--fg)}
+:focus-visible{outline:2px solid var(--c3);outline-offset:2px}
+footer{color:var(--muted);font-size:.82rem;max-width:72ch}
+</style>
+
+<main>
+<header class="sec">
+  <h1>Framework Equation Plots</h1>
+  <p class="lede">Every curve is computed in the page from the equations in FRAMEWORK_EQUATIONS_2026-10-15.md. Controls change the fitted constants so you can see how each relation moves. The framework's own inputs (κ, the cold-energy mass) are fitted or required, not derived.</p>
+</header>
+
+<section class="sec" id="s1">
+  <div class="sechead"><h2>1. Baryons and the gravity law</h2><span class="chip">target</span><span class="chip fit">a0 fitted</span></div>
+  <div class="eq">g_b = G M_b(&lt;r) / r²        g = ν(g_b/a0) g_b        deep limit: g → √(a0 g_b),  V_f⁴ = G M a0
+standard:  g_N = g² / (g + a0)         quadratic:  g² − g_b² = a0 g_b   (open split, AG3)</div>
+  <div class="ctl">
+    <span>a0 footing</span>
+    <label><input type="radio" name="foot" value="9.36e-11" checked> 9.36e-11 m/s²</label>
+    <label><input type="radio" name="foot" value="1.13e-10"> 1.13e-10 m/s²</label>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Observed g against baryonic g_b</h3><svg id="c1a" viewBox="0 0 640 340" role="img" aria-label="Log-log plot of total acceleration against baryonic acceleration"></svg><div class="legend" id="l1a"></div>
+      <p class="cap">Newtonian is the diagonal. Both law forms bend onto the √(a0 g_b) line below a0 and agree above it.</p></div>
+    <div class="card"><h3>Rotation curve of a point baryonic mass</h3><svg id="c1b" viewBox="0 0 640 340" role="img" aria-label="Rotation speed against radius"></svg><div class="legend" id="l1b"></div>
+      <div class="ctl"><label for="logM">log M<sub>b</sub> (M☉)</label><input id="logM" type="range" min="8" max="12" step="0.1" value="10.5"><span class="out" id="logMo"></span></div>
+      <p class="cap">The Newtonian curve falls off. The law flattens at V_f = (G M a0)^¼.</p></div>
+  </div>
+</section>
+
+<section class="sec" id="s2">
+  <div class="sechead"><h2>2. Dark energy and a0(z)</h2><span class="chip fit">κ fitted</span><span class="chip">branches sealed for ALMA</span></div>
+  <div class="eq">a0 = κ c √(G ρ_DE)        κ = 1/2 (estimate 0.42 ± 0.10)
+flat: a0(z) = const        density-tracking: a0 ∝ √ρ_DE(z)        rival: a0 ∝ H(z)
+event horizon: a0(z)/a0(0) = R_E(0)/R_E(z),   R_E(a) = c a ∫_a^∞ da′ / (a′² H(a′))</div>
+  <div class="card"><h3>a0(z) / a0(0) for each branch</h3><svg id="c2" viewBox="0 0 640 360" role="img" aria-label="Ratio of a0 at redshift z to a0 today for each branch"></svg><div class="legend" id="l2"></div>
+    <div class="ctl"><label for="om">Ω<sub>m</sub></label><input id="om" type="range" min="0.25" max="0.36" step="0.002" value="0.308"><span class="out" id="omo"></span></div>
+    <p class="cap">Event-horizon and a0 ∝ H are computed live from Ω<sub>m</sub> (flat ΛCDM background). The BH-k3 and DESI points are the committed CFG775 table values (z_max = 8) and do not move with the slider. Sealed gas predictions for the November releases are in CFG571, CFG775 and CFG778.</p></div>
+</section>
+
+<section class="sec" id="s3">
+  <div class="sechead"><h2>3. Cold energy</h2><span class="chip">model</span><span class="chip fit">mass required, not derived</span></div>
+  <div class="eq">source X (mass M) → two daughters Φ (mass m)      M = 2m √(1+u*²)
+free-stream pressure / energy = u*² / (3 (1+u*²))      daughter speed v* = u* / √(1+u*²)
+initial excess-energy fraction δ/2m = √(1+u*²) − 1      Γ_c = g_c² /(8π M) · v*</div>
+  <div class="grid">
+    <div class="card"><h3>What the production velocity does</h3><svg id="c3a" viewBox="0 0 640 340" role="img" aria-label="Daughter speed, pressure ratio and excess energy against u star"></svg><div class="legend" id="l3a"></div>
+      <div class="ctl"><label for="ustar">u*</label><input id="ustar" type="range" min="-3" max="1" step="0.01" value="-1.699"><span class="out" id="ustaro"></span></div>
+      <p class="cap">The revised screening benchmark sits at u* = 0.02 (dashed line). The pressure ratio there is 1.33e-4, so the daughters are cold.</p></div>
+    <div class="card"><h3>Energy budget implied by Ω<sub>c</sub> / Ω<sub>b</sub></h3><svg id="c3b" viewBox="0 0 640 200" role="img" aria-label="Stacked bar of baryon, cold energy and dark energy fractions"></svg><div class="legend" id="l3b"></div>
+      <div class="ctl"><label for="rat">Ω<sub>c</sub>/Ω<sub>b</sub></label><input id="rat" type="range" min="3" max="8" step="0.01" value="5.364"><span class="out" id="rato"></span></div>
+      <p class="cap">Arithmetic only: Ω<sub>m</sub> = 0.308 is split by the ratio, with Ω<sub>DE</sub> = 1 − Ω<sub>m</sub>. The ratio 5.36 is required by the framework, not derived from it.</p></div>
+  </div>
+  <p class="cap">Not plotted: the fluid and field-stress sector (Israel–Stewart form, tether 4πG P = −g_c). Those are simulation results (CFG743–749), not closed-form curves.</p>
+</section>
+
+<section class="sec" id="s4">
+  <div class="sechead"><h2>4. Black holes and the horizon</h2><span class="chip">one coincidence</span><span class="chip bad">source role excluded for stellar BHs</span></div>
+  <div class="eq">q ≡ a0 / (c H∞) = κ √(3/8π)        r_M = √(G M / a0)
+r_M / √(r_s R_H) = 1/√(2q)     tether capacity / horizon surface density = 8q     BH(g_surface = a0) / horizon mass = 1/(2q)</div>
+  <div class="grid">
+    <div class="card"><h3>Every horizon relation is a function of q</h3><svg id="c4a" viewBox="0 0 640 230" role="img" aria-label="Horizon relations computed from q"></svg>
+      <div class="ctl"><label for="kap">κ</label><input id="kap" type="range" min="0.3" max="0.6" step="0.005" value="0.5"><span class="out" id="kapo"></span></div>
+      <p class="cap">Moving κ moves all four bars together. None carries an independent constant, which is what "one coincidence" means.</p></div>
+    <div class="card"><h3>Can stellar black holes supply the dark energy?</h3><svg id="c4b" viewBox="0 0 640 230" role="img" aria-label="Required black hole mass fraction against the allowed ceiling"></svg>
+      <p class="cap">Required ε = BH mass / star mass formed, in the k = 3 coupled-BH picture (CFG775). The timing matches DESI to 0.02–0.03 dex, but the amount is short by about 80–400×.</p></div>
+  </div>
+</section>
+
+<section class="sec" id="s5">
+  <div class="sechead"><h2>5. Sealed ALMA gas predictions</h2><span class="chip ok">sealed before release</span><span class="chip">U4_27928 · 2026-11-06</span><span class="chip">GS4_24110 · 2026-11-28</span></div>
+  <div class="eq">required gas mass: the log M_gas each branch needs for the disc to match its observed rotation
+FLOOR = the branch's a0 is already large enough that no gas is needed, so the disc cannot be told apart from stars alone
+sealed file SEALED_EVENT_HORIZON.json  sha256 b9f3e827f79256c0509c15fdcd60c7fdc258ac45dbfa81be3d9b0ce554dc9aad</div>
+  <div class="ctl">
+    <span>a0 footing</span>
+    <label><input type="radio" name="foot5" value="canon" checked> canonical 9.36e-11</label>
+    <label><input type="radio" name="foot5" value="alt"> alt 1.13e-10</label>
+    <span>gas radius</span>
+    <label><input type="radio" name="rg5" value="0" checked> R_g = R_d</label>
+    <label><input type="radio" name="rg5" value="1"> R_g = 1.5 R_d</label>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>GS4_24110 (z = 1.997): required gas by branch</h3><svg id="c5a" viewBox="0 0 640 300" role="img" aria-label="Required gas mass for GS4_24110 by branch"></svg><div class="legend" id="l5a"></div>
+      <p class="cap">Hollow markers on the left edge are FLOOR. The branches separate most at log M* = 10.89: flat needs the most gas, the horizon branch is at the floor, and a0 ∝ H needs none.</p></div>
+    <div class="card"><h3>U4_27928 (z = 1.419): required gas against V_c</h3><svg id="c5b" viewBox="0 0 640 340" role="img" aria-label="Required gas mass for U4_27928 against circular velocity"></svg><div class="legend" id="l5b"></div>
+      <p class="cap">U4_27928 depends on the measured V_c, which is not yet public. A branch with no line at a given V_c is at the floor there. The branches separate only for V_c ≥ 225 km/s.</p></div>
+  </div>
+  <p class="cap">Every number is read from the sealed JSON, not recomputed. GS4_24110's integrated gas is already public and the tracers disagree by about 0.7 dex (CFG572), so the 2026-11-28 resolved [CI](2-1) data is one disc, a demonstration, not a decision.</p>
+</section>
+
+<footer>Constants: G = 6.674e-11, M☉ = 1.989e30 kg, kpc = 3.0857e19 m. Status labels follow the equation document. This page is a visual aid, not a result, and nothing here should be cited as "the data favour the framework" or "theory closed".</footer>
+</main>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const G=6.674e-11, MSUN=1.989e30, KPC=3.0857e19;
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function el(p,t,a,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;p.appendChild(e);return e}
+function fmt(v){return v===0?'0':(Math.abs(v)<0.01||Math.abs(v)>=1e4)?v.toExponential(0).replace('e+','e'):String(+v.toPrecision(3))}
+let rafs={};
+function chart(svg,o){
+  svg.innerHTML='';
+  const W=640,H=+svg.getAttribute('viewBox').split(' ')[3],m={l:58,r:18,t:12,b:44},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const lx=v=>Math.log10(v), sx=v=>m.l+((o.xlog?lx(v)-lx(o.x0):v-o.x0)/((o.xlog?lx(o.x1)-lx(o.x0):o.x1-o.x0)))*iw;
+  const sy=v=>m.t+ih-((o.ylog?lx(v)-lx(o.y0):v-o.y0)/((o.ylog?lx(o.y1)-lx(o.y0):o.y1-o.y0)))*ih;
+  const id='clip'+Math.random().toString(36).slice(2,8);
+  const defs=el(svg,'defs',{});const cp=el(defs,'clipPath',{id});el(cp,'rect',{x:m.l,y:m.t,width:iw,height:ih});
+  const ticks=(lo,hi,log,arr)=>{if(arr)return arr;if(log){const t=[];for(let e=Math.ceil(lx(lo)-1e-9);e<=Math.floor(lx(hi)+1e-9);e++)t.push(Math.pow(10,e));return t}
+    const step=(hi-lo)/5,mag=Math.pow(10,Math.floor(Math.log10(step))),s=[1,2,5,10].map(k=>k*mag).find(k=>k>=step);const t=[];for(let v=Math.ceil(lo/s)*s;v<=hi+1e-9;v+=s)t.push(+v.toPrecision(6));return t};
+  ticks(o.x0,o.x1,o.xlog,o.xt).forEach(v=>{el(svg,'line',{x1:sx(v),x2:sx(v),y1:m.t,y2:m.t+ih,stroke:css('--grid')});el(svg,'text',{x:sx(v),y:H-m.b+16,'text-anchor':'middle'},fmt(v))});
+  ticks(o.y0,o.y1,o.ylog,o.yt).forEach(v=>{el(svg,'line',{x1:m.l,x2:m.l+iw,y1:sy(v),y2:sy(v),stroke:css('--grid')});el(svg,'text',{x:m.l-6,y:sy(v)+4,'text-anchor':'end'},fmt(v))});
+  el(svg,'rect',{x:m.l,y:m.t,width:iw,height:ih,fill:'none',stroke:css('--axis')});
+  el(svg,'text',{x:m.l+iw/2,y:H-6,'text-anchor':'middle'},o.xl);
+  const yl=el(svg,'text',{x:14,y:m.t+ih/2,'text-anchor':'middle',transform:`rotate(-90 14 ${m.t+ih/2})`},o.yl);
+  const g=el(svg,'g',{'clip-path':`url(#${id})`});
+  return {sx,sy,g,svg,m,iw,ih,
+    line(pts,col,w,dash){const d=pts.filter(p=>isFinite(p[1])&&p[1]>0||!o.ylog&&isFinite(p[1])).map((p,i)=>(i?'L':'M')+sx(p[0]).toFixed(1)+' '+sy(p[1]).toFixed(1)).join('');el(g,'path',{d,fill:'none',stroke:css(col),'stroke-width':w||2,'stroke-dasharray':dash||'', 'stroke-linejoin':'round'})},
+    dots(pts,col,r){pts.forEach(p=>el(g,'circle',{cx:sx(p[0]),cy:sy(p[1]),r:r||3.5,fill:css(col)}))},
+    vline(x,col,dash,label){const l=el(svg,'line',{x1:sx(x),x2:sx(x),y1:m.t,y2:m.t+ih,stroke:css(col),'stroke-dasharray':dash||'4 3','stroke-width':1.5});if(label)el(svg,'text',{x:sx(x)+4,y:m.t+12,fill:css(col),style:'fill:'+css(col)},label)},
+    hline(y,col,dash,label){el(svg,'line',{x1:m.l,x2:m.l+iw,y1:sy(y),y2:sy(y),stroke:css(col),'stroke-dasharray':dash||'4 3','stroke-width':1.5});if(label)el(svg,'text',{x:m.l+iw-4,y:sy(y)-4,'text-anchor':'end',style:'fill:'+css(col)},label)}};
+}
+function legend(id,items){document.getElementById(id).innerHTML=items.map(i=>`<span style="color:var(--fg)"><i class="sw ${i[2]||''}" style="color:var(${i[1]})"></i>${i[0]}</span>`).join('')}
+function range(a,b,n,log){const r=[];for(let i=0;i<=n;i++){const t=i/n;r.push(log?a*Math.pow(b/a,t):a+(b-a)*t)}return r}
+
+/* ---- 1. law ---- */
+const gStd=(gb,a0)=>(gb+Math.sqrt(gb*gb+4*a0*gb))/2;
+const gQuad=(gb,a0)=>Math.sqrt(gb*gb+a0*gb);
+function a0(){return +document.querySelector('input[name=foot]:checked').value}
+function draw1(){
+  const A=a0();
+  let c=chart(document.getElementById('c1a'),{x0:1e-13,x1:1e-8,y0:1e-13,y1:1e-8,xlog:1,ylog:1,xl:'g_b  (m/s²)',yl:'g  (m/s²)'});
+  const xs=range(1e-13,1e-8,160,true);
+  c.line(xs.map(x=>[x,x]),'--axis',1.5,'6 4');
+  c.line(xs.map(x=>[x,Math.sqrt(A*x)]),'--c3',1.5,'2 3');
+  c.line(xs.map(x=>[x,gStd(x,A)]),'--c1',2.5);
+  c.line(xs.map(x=>[x,gQuad(x,A)]),'--c2',2.5);
+  c.vline(A,'--c4','4 3','a0');
+  legend('l1a',[['Newtonian g = g_b','--axis','dash'],['standard form','--c1'],['quadratic form','--c2'],['deep limit √(a0 g_b)','--c3','dot']]);
+  const lm=+document.getElementById('logM').value,M=Math.pow(10,lm)*MSUN;
+  document.getElementById('logMo').textContent='M = '+Math.pow(10,lm).toExponential(1)+' M☉';
+  const Vf=Math.pow(G*M*A,0.25)/1e3, ymax=Math.ceil(Vf*1.5/50)*50;
+  const V=(r,f)=>{const gb=G*M/Math.pow(r*KPC,2);return Math.sqrt(f(gb,A)*r*KPC)/1e3};
+  const c2=chart(document.getElementById('c1b'),{x0:0.5,x1:100,y0:0,y1:ymax,xlog:1,xl:'radius  (kpc)',yl:'V  (km/s)'});
+  const rs=range(0.5,100,160,true);
+  c2.line(rs.map(r=>[r,V(r,(gb)=>gb)]),'--axis',1.5,'6 4');
+  c2.line(rs.map(r=>[r,V(r,gStd)]),'--c1',2.5);
+  c2.line(rs.map(r=>[r,V(r,gQuad)]),'--c2',2.5);
+  c2.hline(Vf,'--c3','2 3','V_f = '+Vf.toFixed(0)+' km/s');
+  legend('l1b',[['Newtonian','--axis','dash'],['standard form','--c1'],['quadratic form','--c2'],['V_f asymptote','--c3','dot']]);
+}
+/* ---- 2. dark energy ---- */
+function integ(f,a,b,n){n=n||400;const h=(b-a)/n;let s=f(a)+f(b);for(let i=1;i<n;i++)s+=f(a+i*h)*(i%2?4:2);return s*h/3}
+function draw2(){
+  const Om=+document.getElementById('om').value,OL=1-Om;
+  document.getElementById('omo').textContent='Ωm = '+Om.toFixed(3);
+  const E=z=>Math.sqrt(Om*Math.pow(1+z,3)+OL), f=u=>1/Math.sqrt(Om*u*u*u+OL), I1=integ(f,0,1);
+  const evh=z=>(1+z)*I1/integ(f,0,1+z);
+  const c=chart(document.getElementById('c2'),{x0:0,x1:2.5,y0:0.6,y1:3.8,xl:'redshift z',yl:'a0(z) / a0(0)',xt:[0,0.5,1,1.5,2,2.5],yt:[0.6,1,1.5,2,2.5,3,3.5]});
+  const zs=range(0,2.5,100);
+  c.line(zs.map(z=>[z,1]),'--axis',2,'');
+  c.line(zs.map(z=>[z,E(z)]),'--c4',2.5);
+  c.line(zs.map(z=>[z,evh(z)]),'--c2',2.5);
+  const Z=[0,0.5,1,1.5,2,2.5],desi=[1,1.032,0.989,0.931,0.874,0.822],bh=[1,0.993,0.970,0.923,0.851,0.769];
+  c.line(Z.map((z,i)=>[z,desi[i]]),'--c1',2.5);c.dots(Z.map((z,i)=>[z,desi[i]]),'--c1');
+  c.line(Z.map((z,i)=>[z,bh[i]]),'--c3',2.5,'6 4');c.dots(Z.map((z,i)=>[z,bh[i]]),'--c3');
+  legend('l2',[['flat (distinctive law)','--axis'],['a0 ∝ H(z) (rival)','--c4'],['event horizon','--c2'],['DESI-tracking','--c1'],['BH k=3 (z_max=8)','--c3','dash']]);
+}
+/* ---- 3. cold energy ---- */
+function draw3(){
+  const lu=+document.getElementById('ustar').value,u=Math.pow(10,lu),s=Math.sqrt(1+u*u);
+  document.getElementById('ustaro').textContent=`u*=${u.toPrecision(3)}  v*=${(u/s).toPrecision(3)}  P/ρ=${(u*u/(3*s*s)).toExponential(2)}  δ/2m=${(s-1).toExponential(2)}`;
+  const c=chart(document.getElementById('c3a'),{x0:1e-3,x1:10,y0:1e-8,y1:1,xlog:1,ylog:1,xl:'u*  (daughter momentum / m)',yl:'dimensionless'});
+  const xs=range(1e-3,10,160,true);
+  c.line(xs.map(x=>[x,x/Math.sqrt(1+x*x)]),'--c1',2.5);
+  c.line(xs.map(x=>[x,x*x/(3*(1+x*x))]),'--c2',2.5);
+  c.line(xs.map(x=>[x,Math.sqrt(1+x*x)-1]),'--c3',2.5,'6 4');
+  c.vline(0.02,'--axis','4 3','benchmark');
+  c.vline(u,'--c4','','');
+  c.dots([[u,u/s],[u,u*u/(3*s*s)],[u,s-1]],'--c4',4);
+  legend('l3a',[['daughter speed v*','--c1'],['free pressure / energy','--c2'],['excess energy fraction δ/2m','--c3','dash'],['your u*','--c4']]);
+  const r=+document.getElementById('rat').value;
+  document.getElementById('rato').textContent='Ωc/Ωb = '+r.toFixed(2);
+  const Om=0.308,Ob=Om/(1+r),Oc=Om-Ob,OL=1-Om;
+  const svg=document.getElementById('c3b');svg.innerHTML='';
+  const x0=16,w=608,y=50,h=56,parts=[[Ob,'--c2','baryons'],[Oc,'--c1','cold energy'],[OL,'--c3','dark energy']];
+  let x=x0;
+  parts.forEach(p=>{const ww=p[0]*w;el(svg,'rect',{x:x,y:y,width:ww,height:h,fill:css(p[1])});x+=ww});
+  x=x0;
+  parts.forEach((p,i)=>{const ww=p[0]*w;const lab=(p[0]*100).toFixed(1)+'%';
+    if(ww>40)el(svg,'text',{x:x+ww/2,y:y+h/2+4,'text-anchor':'middle',style:'fill:#fff;font-weight:500'},lab);
+    else el(svg,'text',{x:x+ww/2,y:y-8,'text-anchor':'middle',style:'fill:'+css('--fg')},lab);
+    x+=ww});
+  el(svg,'text',{x:x0,y:140,style:'fill:'+css('--muted')},`Ωb = ${Ob.toFixed(4)}   Ωc = ${Oc.toFixed(4)}   ΩDE = ${OL.toFixed(3)}`);
+  legend('l3b',[['baryons','--c2'],['cold energy','--c1'],['dark energy','--c3']]);
+}
+/* ---- 4. black holes ---- */
+function bars(svg,rows,o){
+  svg.innerHTML='';const W=640,m={l:210,r:60,t:10},rh=o.rh,bh=o.bh;
+  const sx=v=>m.l+(o.log?(Math.log10(v)-Math.log10(o.x0))/(Math.log10(o.x1)-Math.log10(o.x0)):(v-o.x0)/(o.x1-o.x0))*(W-m.l-m.r);
+  o.ticks.forEach(t=>{el(svg,'line',{x1:sx(t),x2:sx(t),y1:m.t,y2:m.t+rows.length*rh,stroke:css('--grid')});el(svg,'text',{x:sx(t),y:m.t+rows.length*rh+16,'text-anchor':'middle'},fmt(t))});
+  rows.forEach((r,i)=>{const y=m.t+i*rh+(rh-bh)/2;
+    el(svg,'text',{x:m.l-8,y:y+bh/2+4,'text-anchor':'end',style:'fill:'+css('--fg')},r[0]);
+    el(svg,'rect',{x:sx(o.x0),y:y,width:Math.max(1,sx(r[1])-sx(o.x0)),height:bh,fill:css(r[2])});
+    el(svg,'text',{x:sx(r[1])+6,y:y+bh/2+4,style:'fill:'+css('--fg')},r[3]||r[1].toFixed(3))});
+  return {sx,top:m.t,bottom:m.t+rows.length*rh}
+}
+function draw4(){
+  const k=+document.getElementById('kap').value,q=k*Math.sqrt(3/(8*Math.PI));
+  document.getElementById('kapo').textContent=`κ = ${k.toFixed(3)}   q = ${q.toFixed(4)}`;
+  bars(document.getElementById('c4a'),[
+    ['q = a0 / cH∞',q,'--c4'],['tether / horizon density (8q)',8*q,'--c2'],['r_M / √(r_s R_H)  (1/√2q)',1/Math.sqrt(2*q),'--c1'],['BH(g=a0) / horizon mass (1/2q)',1/(2*q),'--c3']],
+    {x0:0,x1:4,ticks:[0,1,2,3,4],rh:46,bh:26});
+  const b=bars(document.getElementById('c4b'),[
+    ['z_max = 8',4.60,'--c4','4.60'],['z_max = 15',4.07,'--c4','4.07'],['z_max = 30',3.85,'--c4','3.85'],['generous ceiling',0.05,'--ok','0.05']],
+    {x0:0.01,x1:10,log:1,ticks:[0.01,0.1,1,10],rh:44,bh:24});
+  const svg=document.getElementById('c4b');
+  el(svg,'line',{x1:b.sx(1),x2:b.sx(1),y1:b.top,y2:b.bottom,stroke:css('--bad'),'stroke-dasharray':'4 3','stroke-width':1.5});
+  el(svg,'text',{x:b.sx(1)-4,y:b.top+10,'text-anchor':'end',style:'fill:'+css('--bad')},'ε = 1 (all stellar mass)');
+}
+/* ---- 5. sealed ALMA ---- */
+const ALMA={"GS4":{"10.76":{"alt":{"BH-k3":[10.345,10.611],"E":[9.753,10.02],"E-CCBH":[9.791,10.058],"F-DESI":[10.33,10.596],"F-flat":[10.24,10.507],"R-H":null},"canon":{"BH-k3":[10.439,10.705],"E":[10.062,10.329],"E-CCBH":[10.081,10.348],"F-DESI":[10.427,10.694],"F-flat":[10.361,10.628],"R-H":null}},"10.89":{"alt":{"BH-k3":[9.31,9.577],"E":null,"E-CCBH":null,"F-DESI":[9.109,9.376],"F-flat":null,"R-H":null},"canon":{"BH-k3":[9.868,10.134],"E":null,"E-CCBH":null,"F-DESI":[9.824,10.09],"F-flat":[9.459,9.726],"R-H":null}}},"U4":{"150":{"alt":{"BH-k3":null,"E":null,"E-CCBH":null,"F-DESI":null,"F-flat":null,"R-H":null},"canon":{"BH-k3":null,"E":null,"E-CCBH":null,"F-DESI":null,"F-flat":null,"R-H":null}},"175":{"alt":{"BH-k3":null,"E":null,"E-CCBH":null,"F-DESI":null,"F-flat":null,"R-H":null},"canon":{"BH-k3":null,"E":null,"E-CCBH":null,"F-DESI":null,"F-flat":null,"R-H":null}},"200":{"alt":{"BH-k3":null,"E":null,"E-CCBH":null,"F-DESI":null,"F-flat":null,"R-H":null},"canon":{"BH-k3":null,"E":null,"E-CCBH":null,"F-DESI":null,"F-flat":null,"R-H":null}},"225":{"alt":{"BH-k3":[9.49,9.607],"E":null,"E-CCBH":null,"F-DESI":[9.462,9.58],"F-flat":[9.195,9.313],"R-H":null},"canon":{"BH-k3":[9.848,9.965],"E":null,"E-CCBH":null,"F-DESI":[9.836,9.954],"F-flat":[9.748,9.866],"R-H":null}},"250":{"alt":{"BH-k3":[10.345,10.462],"E":[10.124,10.242],"E-CCBH":[10.123,10.241],"F-DESI":[10.34,10.458],"F-flat":[10.309,10.426],"R-H":null},"canon":{"BH-k3":[10.426,10.543],"E":[10.264,10.382],"E-CCBH":[10.263,10.381],"F-DESI":[10.422,10.54],"F-flat":[10.398,10.516],"R-H":[9.502,9.619]}},"275":{"alt":{"BH-k3":[10.642,10.759],"E":[10.529,10.647],"E-CCBH":[10.528,10.646],"F-DESI":[10.639,10.757],"F-flat":[10.622,10.739],"R-H":[10.188,10.306]},"canon":{"BH-k3":[10.688,10.806],"E":[10.598,10.715],"E-CCBH":[10.597,10.715],"F-DESI":[10.686,10.804],"F-flat":[10.672,10.79],"R-H":[10.34,10.458]}},"300":{"alt":{"BH-k3":[10.833,10.95],"E":[10.756,10.874],"E-CCBH":[10.756,10.873],"F-DESI":[10.831,10.949],"F-flat":[10.819,10.937],"R-H":[10.555,10.672]},"canon":{"BH-k3":[10.863,10.981],"E":[10.803,10.92],"E-CCBH":[10.802,10.92],"F-DESI":[10.862,10.98],"F-flat":[10.853,10.97],"R-H":[10.638,10.755]}}}};
+const MODELS=[['F-flat','--c1','flat'],['F-DESI','--c3','DESI-tracking'],['BH-k3','--c2','BH k=3'],['E','--c4','event horizon'],['E-CCBH','--ok','event horizon (CCBH)'],['R-H','--warn','a0 ∝ H']];
+function draw5(){
+  const ft=document.querySelector('input[name=foot5]:checked').value, rg=+document.querySelector('input[name=rg5]:checked').value;
+  const svg=document.getElementById('c5a');svg.innerHTML='';
+  const W=640,m={l:150,r:20,t:14,b:40},x0=8.8,x1=10.8,rh=(300-m.t-m.b)/MODELS.length,sx=v=>m.l+(v-x0)/(x1-x0)*(W-m.l-m.r);
+  [9,9.5,10,10.5].forEach(t=>{el(svg,'line',{x1:sx(t),x2:sx(t),y1:m.t,y2:300-m.b,stroke:css('--grid')});el(svg,'text',{x:sx(t),y:300-m.b+16,'text-anchor':'middle'},String(t))});
+  el(svg,'text',{x:m.l+(W-m.l-m.r)/2,y:294,'text-anchor':'middle'},'required log M_gas  (M☉)');
+  const stars=[['10.76','--c1'],['10.89','--c3']];
+  MODELS.forEach((md,i)=>{const yc=m.t+i*rh+rh/2;
+    el(svg,'text',{x:m.l-10,y:yc+4,'text-anchor':'end',style:'fill:'+css('--fg')},md[2]);
+    stars.forEach((s,j)=>{const y=yc+(j?9:-9),v=ALMA.GS4[s[0]][ft][md[0]];
+      if(v){el(svg,'circle',{cx:sx(v[rg]),cy:y,r:5,fill:css(s[1])});el(svg,'text',{x:sx(v[rg])+9,y:y+4},v[rg].toFixed(2))}
+      else{el(svg,'circle',{cx:sx(x0)+8,cy:y,r:5,fill:'none',stroke:css(s[1]),'stroke-width':2});el(svg,'text',{x:sx(x0)+18,y:y+4},'FLOOR')}})});
+  el(svg,'rect',{x:m.l,y:m.t,width:W-m.l-m.r,height:300-m.t-m.b,fill:'none',stroke:css('--axis')});
+  legend('l5a',[['log M* = 10.76','--c1'],['log M* = 10.89','--c3']]);
+  const c=chart(document.getElementById('c5b'),{x0:150,x1:300,y0:8.6,y1:11,xl:'V_c  (km/s)',yl:'required log M_gas',xt:[150,175,200,225,250,275,300],yt:[9,9.5,10,10.5,11]});
+  const Vs=Object.keys(ALMA.U4).map(Number);
+  MODELS.forEach(md=>{let run=[];const flush=()=>{if(run.length>1)c.line(run,md[1],2.5);run=[]};
+    Vs.forEach(V=>{const v=ALMA.U4[V][ft][md[0]];if(v){run.push([V,v[rg]]);c.dots([[V,v[rg]]],md[1],3.5)}else flush()});flush()});
+  legend('l5b',MODELS.map(md=>[md[2],md[1]]));
+}
+function all(){draw1();draw2();draw3();draw4();draw5()}
+document.querySelectorAll('input').forEach(i=>i.addEventListener('input',all));
+all();
+const mq=window.matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',all);
+new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
