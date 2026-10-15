@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "claim_id": "CVI-001",
+  "repository": {
+    "commit": "97aa409418928f091a44bb33618adf7ead8520f6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_vacuum_interface_2026_10_15/check_interface_v2.py",
+    "sol61_push/cold_vacuum_interface_2026_10_15/run_v2/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact scalar kinetic Schur complement for naive phase taper, tensor matching flux, and canonical controller work identity",
+    "coefficient_domain": "SymPy exact rational functions over real symbols",
+    "conventions": "Signature -+++; Mp=1,D=1; flat background; Q=diag(a,a,c); Fourier shift phase chosen so dz v=k v",
+    "inputs": [
+      "sol61_push/cold_vacuum_interface_2026_10_15/check_interface_v2.py"
+    ],
+    "bounds": {
+      "phase": "0<p<=1; p=0 handled separately as constraint limit",
+      "momentum": "all real k symbolically",
+      "mode_scope": "scalar helicity and one transverse tensor at flat collar"
+    },
+    "non_claims": [
+      "No stability certification for an arbitrary finite interface",
+      "No identified cold carrier or engine",
+      "No finite-energy nonlinear launch solution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T11:01:16.932153+00:00",
+    "runtime_seconds": 0.661205,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 60,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_vacuum_interface_2026_10_15/check_interface_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_vacuum_interface_2026_10_15/check_interface_v2.py",
+      "sha256": "2943b14c40af28f5339988d2741b811091b30292788da0a5b3ba502f756295f1",
+      "sha256_after": "2943b14c40af28f5339988d2741b811091b30292788da0a5b3ba502f756295f1"
+    }
+  ],
+  "output_directory": "sol61_push/cold_vacuum_interface_2026_10_15/run_v2",
+  "declared_results": [
+    "sol61_push/cold_vacuum_interface_2026_10_15/run_v2/calculation/results.json",
+    "sol61_push/cold_vacuum_interface_2026_10_15/run_v2/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_vacuum_interface_2026_10_15/run_v2/stdout.txt",
+      "sha256": "8473c04c661f6017c69a89070ec26d9c628cc3df9c73f7c20e4341b768ea9f0d",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_vacuum_interface_2026_10_15/run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_vacuum_interface_2026_10_15/run_v2/calculation/results.json",
+      "sha256": "8473c04c661f6017c69a89070ec26d9c628cc3df9c73f7c20e4341b768ea9f0d",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_vacuum_interface_2026_10_15/run_v2/calculation/checks.json",
+      "sha256": "bfb49c4a10224b4a27fc22c5c8b25939bfda451244f0b1f741d4de33dcc3de8f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
