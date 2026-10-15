@@ -1,0 +1,49 @@
+{
+ "footing": "canonical a0 = 9.3603e-11",
+ "m_native_eV": 0.002240116040689346,
+ "lambda_mm": 0.5534722138548095,
+ "nu_Hz": 541657648740.8699,
+ "G1_cfg790_rates_reproduced": true,
+ "G2_exclusion_factor": 100.0,
+ "G5_eps_max_native": 6.249676242527067e-09,
+ "G5_margin": 6249.676242527067,
+ "native_rate_eps1e-12_per_day": 43935358.97297008,
+ "native_rate_eps1e-14_per_day": 439353.5897297008,
+ "background_W_per_10m2": {
+  "cmb_broadband": 1e-12,
+  "inband_R1e3": 1e-15
+ },
+ "checks": [
+  {
+   "name": "G3 [native mass] m_native ~ 2.2 meV, lambda ~ 0.55 mm (sub-mm, NOT optical)",
+   "ok": true,
+   "detail": "m = 0.002 meV, lambda = 0.553 mm, nu = 542 GHz"
+  },
+  {
+   "name": "G4 [knob] 2-3 eV is not expressible in (a0,G,c,hbar,rho_DE) to <5%; the optical line mass is a free parameter",
+   "ok": true,
+   "detail": "no exact combination found"
+  },
+  {
+   "name": "G1 [rate consistency] reproduce CFG790's P = 1.8e-19 W, 9.8e4 day^-1 at (1e-12, 1 eV) to <2% (their constants are truncated to 4 sig figs)",
+   "ok": true,
+   "detail": "max rel. err 1.39e-02 (CFG790 uses MSUN = 1.989e30, PC = 3.0857e16)"
+  },
+  {
+   "name": "G2 [stellar bound] eps = 1e-12 at 2-3 eV excluded by >= 2 orders (provisional); surviving class is eps = 1e-14 at the boundary",
+   "ok": true,
+   "detail": "exclusion factor 1.0e+02; CFG790's own eps=1e-14 line (1-10/day) sits at the band edge"
+  },
+  {
+   "name": "G5 [allowed portal] at m_native, eps = 1e-12 allowed with margin >= 1e3 (provisional; CMB-era bounds out of scope)",
+   "ok": true,
+   "detail": "margin x6.2e+03"
+  },
+  {
+   "name": "G3 [native rates] rate(m_native, eps=1e-12) ~ 4e7 photons/day per 10 m^2 (scales as 1/m at fixed power)",
+   "ok": true,
+   "detail": "4.39e+07/day"
+  }
+ ],
+ "wall_s": 0.00013303756713867188
+}

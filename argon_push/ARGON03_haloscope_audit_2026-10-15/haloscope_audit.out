@@ -1,0 +1,28 @@
+======================================================================================================================
+ARGON03 -- haloscope re-audit (CFG790) + framework-native sub-mm search
+======================================================================================================================
+    framework-native mass m_native = (rho_DE hbar^3/c^3)^(1/4), rho_DE = 4 a0^2/(G c^2) = 5.842e-27 kg/m^3
+      m_native = 3.993e-39 kg = 2.24 meV;  lambda = 0.553 mm;  nu = 5.42e+11 Hz
+  [PASS] G3 [native mass] m_native ~ 2.2 meV, lambda ~ 0.55 mm (sub-mm, NOT optical)   (m = 0.002 meV, lambda = 0.553 mm, nu = 542 GHz)
+  [PASS] G4 [knob] 2-3 eV is not expressible in (a0,G,c,hbar,rho_DE) to <5%; the optical line mass is a free parameter   (no exact combination found)
+    G1 check m = 1 eV, eps = 1e-12: P = 1.83e-19 W (CFG790 1.8e-19), 9.8e+04/day (CFG790 9.8e+04)
+    G1 check m = 2 eV, eps = 1e-12: P = 1.83e-19 W (CFG790 1.8e-19), 4.9e+04/day (CFG790 4.9e+04)
+  [PASS] G1 [rate consistency] reproduce CFG790's P = 1.8e-19 W, 9.8e4 day^-1 at (1e-12, 1 eV) to <2% (their constants are truncated to 4 sig figs)   (max rel. err 1.39e-02 (CFG790 uses MSUN = 1.989e30, PC = 3.0857e16))
+    G2 scoring: at 2-3 eV the stellar band is 3.0e-15..1.0e-14 (provisional); eps = 1e-12 exceeds the top by x1.0e+02
+  [PASS] G2 [stellar bound] eps = 1e-12 at 2-3 eV excluded by >= 2 orders (provisional); surviving class is eps = 1e-14 at the boundary   (exclusion factor 1.0e+02; CFG790's own eps=1e-14 line (1-10/day) sits at the band edge)
+    G5: solar relation (m < 0.1 eV): eps_max(m_native) = 1.4e-11/(m/eV) = 6.25e-09; margin vs 1e-12: x6.2e+03
+  [PASS] G5 [allowed portal] at m_native, eps = 1e-12 allowed with margin >= 1e3 (provisional; CMB-era bounds out of scope)   (margin x6.2e+03)
+    native search at eps = 1e-12: P = 1.83e-19 W per 10 m^2 -> 4.4e+07 photons/day at 0.55 mm
+    (at eps = 1e-14: 4.4e+05 photons/day)
+    background: CMB broadband over 10 m^2 ~ 1e-12 W; in-band (R ~ 1e3) ~ 1e-15 W; signal 1.8e-19 W is ~5e+03 below -> needs R >= 1e4 and/or photon counting
+  [PASS] G3 [native rates] rate(m_native, eps=1e-12) ~ 4e7 photons/day per 10 m^2 (scales as 1/m at fixed power)   (4.39e+07/day)
+----------------------------------------------------------------------------------------------------------------------
+  KILL TEST (pre-registered): sub-mm line search at nu = 542 GHz (lambda = 0.55 mm).
+    - line found at m_native with eps-consistent rate  => CFG723 E6 dead (P has a visible channel) => FRAMEWORK DEAD.
+    - null at eps = 1e-12 sensitivity (provisional)    => E6 consistent; portal bounded at eps < 1e-12.
+    - background honesty: CMB broadband ~1e-12 W over 10 m^2, ~1e-15 W in R~1e3 band vs signal 1.8e-19 W:
+      spectral resolution R >= 1e4 and/or cryogenic bolometer arrays required; an optical search at 2-3 eV
+      is a G6 knob and is excluded at eps=1e-12 by stellar cooling anyway.
+----------------------------------------------------------------------------------------------------------------------
+  RESULT: 0 FAIL
+  wall 0.00 s; threads 1; max RSS 13.6 MB
