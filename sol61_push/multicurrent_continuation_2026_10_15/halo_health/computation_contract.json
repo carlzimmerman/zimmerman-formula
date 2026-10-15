@@ -1,0 +1,44 @@
+{
+  "claim_id": "MC-HALO-001",
+  "mathematics": {
+    "assertion_tested": "Exact equilibrium-density and principal-domain identities for nonnegative spherical baryon sources; exact Hernquist uniform-bound reduction; finite healthy/failure controls and point-source inner asymptotic coefficient",
+    "coefficient_domain": "Q and symbolic algebraic expressions with positive square-root branches; exact SymPy arithmetic",
+    "conventions": "Spherical Newtonian rest-mass comparison; critical pure-chi q/m; dust h=rho c^2; B=0; x=u/a0 in (0,1); gb/a0=x^2/(1-x); alpha=dlog Mb/dlog r>=0; ordinary baryons outside material frame; Hernquist Mb=M r^2/(r+b)^2 with independent b>0",
+    "inputs": [
+      "sol61_push/multicurrent_continuation_2026_10_15/halo_health/PROOF.md",
+      "sol61_push/multicurrent_continuation_2026_10_15/halo_health/check_profile_domain.py",
+      "sol61_push/multicurrent_continuation_2026_10_15/inputs/RTM_REPORT.md",
+      "sol61_push/multicurrent_continuation_2026_10_15/modes/PROOF.md",
+      "sol61_push/multicurrent_continuation_2026_10_15/inputs/source_manifest.json"
+    ],
+    "bounds": {
+      "symbolic_scope": "Differentiate the implicit force and actual enclosed chi mass; derive rho/rhocrit; verify source maxima, Hernquist density and rational lower-bound identities; point-source leading inner ratio",
+      "finite_radial_samples": 10,
+      "sample_B_epsilon_pairs": [["1/100", "1/1000000"], ["1", "1/100"]],
+      "sample_r_over_b": ["1/100", "1/10", "1", "10", "100"],
+      "exact_witnesses": 3,
+      "healthy_uniform_witness": "B=1/100,epsilon=1/1000000 gives H>20000/2501 throughout finite r>0 by the separate analytic proof",
+      "failure_witnesses": "d=1/1000,x=1-d^2,epsilon=1/1000000; compact Hernquist B=d/(2x),r=b and point source r/rM=d/x both have H<1",
+      "success_means": "Declared symbolic residuals vanish, stated uniform rational bound exceeds one, failure H values are below one and all radial sample differences from the analytic lower bound are positive",
+      "failure_means": "An exact implemented identity or bound check requires diagnosis; timeout/output limit gives no mathematical verdict"
+    },
+    "non_claims": [
+      "Finite radial samples do not prove the all-radius result; PROOF.md provides the independent analytic inequalities.",
+      "No regular origin or finite-supply outer halo is supplied; both cusped origin and zero-current vacuum matching remain outside the proof.",
+      "No pressure/stiffness, field-stress or metric backreaction, remnant/conversion population, full finite-frequency health, formation, global stability, observed source fit or cosmology is computed.",
+      "Local principal-domain compatibility is not a global halo solution or full theory closure."
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/multicurrent_continuation_2026_10_15/halo_health/PROOF.md",
+    "sol61_push/multicurrent_continuation_2026_10_15/halo_health/check_profile_domain.py",
+    "sol61_push/multicurrent_continuation_2026_10_15/inputs/RTM_REPORT.md",
+    "sol61_push/multicurrent_continuation_2026_10_15/modes/PROOF.md",
+    "sol61_push/multicurrent_continuation_2026_10_15/inputs/source_manifest.json"
+  ],
+  "software": [
+    {"name": "Python child", "version": "3.12.14; Clang 22.1.3; bundled Codex primary runtime"},
+    {"name": "SymPy", "version": "1.14.0"}
+  ],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

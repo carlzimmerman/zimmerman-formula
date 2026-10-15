@@ -1,0 +1,25 @@
+Run from repository root. Authoritative current evidence is run_v4/.
+Use a fresh run directory if run_v4/ already exists.
+The report supplies the uniform derivations; this is exact finite bookkeeping.
+
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/run_experiment.py \
+  --root . \
+  --contract sol61_push/multicurrent_continuation_2026_10_15/conversion/contract.json \
+  --input sol61_push/multicurrent_continuation_2026_10_15/conversion/check_conversion.py \
+  --input sol61_push/multicurrent_continuation_2026_10_15/conversion/REPORT.md \
+  --input sol61_push/multicurrent_continuation_2026_10_15/inputs/CANONICAL_2026-10-14.md \
+  --input sol61_push/multicurrent_continuation_2026_10_15/inputs/OPEN_ITEMS_RESULT.txt \
+  --input sol61_push/multicurrent_continuation_2026_10_15/inputs/RTM_REPORT.md \
+  --input sol61_push/multicurrent_continuation_2026_10_15/inputs/PORTAL_REPORT.md \
+  --input sol61_push/multicurrent_continuation_2026_10_15/inputs/JOIN_RESULT.txt \
+  --output sol61_push/multicurrent_continuation_2026_10_15/conversion/run_v4 \
+  --result sol61_push/multicurrent_continuation_2026_10_15/conversion/run_v4/results.json \
+  --timeout 45 --max-cpu-seconds 35 --max-threads 1 --max-output-bytes 1048576 \
+  -- python3 sol61_push/multicurrent_continuation_2026_10_15/conversion/check_conversion.py \
+  sol61_push/multicurrent_continuation_2026_10_15/conversion/run_v4/results.json
+
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/validate_manifest.py \
+  sol61_push/multicurrent_continuation_2026_10_15/conversion/run_v4/manifest.json --root .
+
+No memory or CPU-affinity limit requested. Threads are a cooperative library cap.
+No random sampling, numerical fit, source-lane rerun or dependency installation.

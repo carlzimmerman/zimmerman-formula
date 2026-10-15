@@ -1,0 +1,67 @@
+MC-HALO-001 — the actual static density can satisfy the local principal gate.
+Base 5c06d239febe644b9f485477b4c2f93390a23b3e. Conditional weak-field pure-chi
+dust comparison; no full halo or theory closure. Canonical derivation PROOF.md.
+
+Independent differentiation verifies
+ rho_chi=a0*x/(4piG*r) * [2+alpha*(1-x)]/(2-x),
+ H=rho_chi/rhocrit=c^2/(gb*r) * (1-x)[2+alpha*(1-x)]/(2-x),
+where alpha=dlog Mb/dlog r>=0 and gb/a0=x^2/(1-x).
+This inserts the equilibrium density into the gate instead of choosing h freely.
+
+For any nonnegative spherical baryon density with gb/a0<=qmax and
+gb*r<=Vmax^2, analytic inequalities give
+ H >= (c^2/Vmax^2)[1-sqrt(qmax/(qmax+4))].
+A right-hand side above one is sufficient throughout the stated occupied
+interval; a lower bound below one is inconclusive.
+
+For independent Hernquist source scale b>0, Mb=M r^2/(r+b)^2,
+rM=sqrt(GM/a0), B=b/rM, epsilon=sqrt(GM*a0)/c^2:
+ H(r)>=4B/epsilon[1-1/sqrt(1+4B^2)]
+      >8B^3/[epsilon(1+4B^2)] for every finite r>0.
+Thus 8B^3>epsilon(1+4B^2) suffices. Assigned B=1/100,epsilon=1e-6 gives
+H>20000/2501 everywhere in that formal interval, with GM/(bc^2)=1e-4.
+This all-r statement is analytic, not inferred from the finite sample grid.
+
+A compact finite-source member still fails: B=500/999999,epsilon=1e-6,
+r=b has x=999999/1000000 and H=1333334000/333333333333<1.
+The point-source inner behavior is independently recovered:
+H~2(c^2/Vf^2)(r/rM)^3 ->0. A fixed finite Hernquist b instead gives H->infinity
+at both ends, so finite source size can change the inner domain obstruction.
+
+Canonical run_exact/manifest.json is completed and validates against current
+pinned inputs. Exact tested counts: 11 symbolic identities, 10 algebraic radial
+samples, and 3 exact witnesses (uniform healthy member, compact Hernquist
+one-radius failure, point-source inner failure). No numerical eigenspectrum,
+ODE simulation, observed source fitting or expanded grid was run.
+
+Principal input SHA256:
+ ../inputs/RTM_REPORT.md
+ 1940b17de6e270567b2c0a9d617b9fc2d34c6cfd7b7228153a649fa51d761046
+ ../modes/PROOF.md
+ d46b9a2b8adeb7d2692b29d6ac8d8283dfe6054eb619cc9686aa33e747d2b2ac
+ ../inputs/source_manifest.json
+ b080655d034a304c6d9470814c6f41582c2c93f8248d96c39a133b5e44d0dc0a
+New canonical SHA256:
+ PROOF.md
+ 82b40b165c6682ecd172d52b39a7838f3c3dc6b9ad528d6d55299e7f75680be4
+ check_profile_domain.py
+ 048200a3bae93213b679dccf2bde2f370bf428288f19684cdea8b591277ab2cd
+ run_exact/manifest.json
+ dc080406de5c770f2f49ac70d16dc004c95ca1f903fad1634aa64bd990e70598
+ run_exact/results.json
+ d990012cd1d3f724fce5dc5e8764d6aa0f4fa8b6ef0d2d3a73fdcefd55d5f5cb
+
+Scope exclusions: the Hernquist carrier profile has a central 1/r cusp and
+infinite total outer carrier mass. The origin and zero-current vacuum interface
+are not included. Pressure/additional stiffness, field-stress gravity and full
+metric backreaction are omitted; ordinary baryons are outside the material
+frame. No remnant population, portal conversion, settling, full finite-frequency
+health or global stability follows. Pinned modes were read but not edited.
+
+Next gap: construct a regular core and finite-supply edge in the same action,
+including stress/flux matching and the matter/metric constraints, then check
+the actual background's finite-frequency modes and settling. Full goal open.
+
+Proofread: self-review of new PROOF.md, all new equations/prose and source links.
+Routine edits: none. Mathematical-token changes: none. No unresolved local
+notation or syntax issue identified; substantive scope gaps are listed above.

@@ -1,0 +1,218 @@
+OPEN ITEMS — systematic research checkpoint, 2026-10-15
+Base Git: 80a82199cbf46fb7bbabc8d0f65e4764d6a709f4.
+Exclusive write scope: sol61_push/open_items_2026_10_15/.
+Verdict: INCOMPLETE, with a new finite-sample exclusion of the proposed dwarf
+selector and explicit necessary equations for the core/constant problems.
+Self-review only. No independent referee or new cosmological simulation.
+
+Target contract
+Address the image's five open items using the canonical October 14 model.
+Closing an empirical item requires its observational likelihood and control
+populations under one consistent model; closing a constant requires an
+independent physical equation selecting it, not matching it to data.
+The image's green labels and future-release dates were not audited here.
+Documents were treated as evidence, not authority to message other chats,
+modify frozen criteria, or execute their queued simulations.
+
+Current decision view
+1. Ultra-faints: the tested photo-evaporation threshold is excluded by its
+   own population-protection gates. The broader dwarf problem remains open.
+2. Elliptical cores: untethering remains conditional on a conserving transfer
+   model, retained phase-space distribution and an actual projected fit.
+3. Cluster cores: same transfer issue, plus radial placement and joint outer
+   mass constraints; no new cluster likelihood was run.
+4. Derive 1/2: reduced action admits a continuous vacuum-offset family;
+   the local galaxy law cannot select the coefficient.
+5. Derive 5.4: separately conserved dust equations preserve arbitrary
+   initial ratios; an independently normalized production history is missing.
+
+A. Executed dwarf experiment and stronger obstruction
+Sources: campaign_fresh_gravity/CFG782_unbinding_selector/{cfg782.py,
+FROZEN_CRITERIA.md,ERRATUM_PRE_SCRIPT_2026-10-14.md}; CFG317 nominal-yield data.
+The original script was executed with only its two output destinations changed.
+Existing source lanes and outputs were not modified. selector_verified/ is
+the authoritative reproduction; selector_run/ is the initial run whose
+manifest omitted two imported helper sources, corrected in the later run.
+
+Primary canonical T=15000 K, original implementation:
+  MW UFD        30/30 flagged; gate >=90% PASS
+  MW classical   0/12 flagged; gate <=10% PASS
+  M31 Collins    7/14 flagged; gate <=10% FAIL
+  M31 LVD       15/29 flagged; gate <=10% FAIL
+  LV field       1/12 flagged; gate <=10% PASS
+  SPARC          0/175 flagged; gate <=10% PASS
+Both arithmetic controls pass against the pre-existing erratum. At the
+alternate acceleration footing the primary M31 fractions are unchanged.
+Original script verdict: DEAD. This is a sample-selection failure, not a new
+kinematic exclusion or a refutation of every reionization mechanism.
+The two M31 catalogues overlap and are NOT independent significance measures.
+
+Implementation/specification discrepancy: the frozen text requests the fitted
+R_ind(M_b) relation for systems other than MW UFDs/classicals. The script uses
+individual R_ind whenever available in every dwarf group. An independent
+standard-library implementation evaluated BOTH readings. Under the literal
+frozen reading primary flags become Collins 8/14, LVD 15/29, field 0/12;
+the conclusion still fails. No frozen document was retrospectively changed.
+
+Stronger result, independent of temperature tuning:
+Let sorted velocities be v_(1)<=...<=v_(N), flag iff v<t. At least 90% of
+30 UFDs requires t>v_UFD,(27)=15.08915059 km/s. At most floor(.1 N)
+flagged controls requires t<=v_control,(floor(.1 N)+1).
+Implementation control upper limits:
+  Collins 12.85774454; M31 LVD 11.43312082 km/s.
+Literal specification upper limits:
+  Collins 14.61020524; M31 LVD 14.34722212 km/s.
+The required interval is empty under either reading. At the minimum UFD
+cutoff, M31 must already flag at least 4/14 and 8/29 (implementation), or
+2/14 and 4/29 (literal specification). This is a finite-catalogue ordering
+argument over ALL common scalar thresholds, not a coarse grid scan.
+Uniformly changing a0 rescales every velocity by the same positive factor
+and cannot repair these orderings. Changing yields, input histories, or the
+selector's variables would be a new model, not an escape within this result.
+The 30 matched UFDs are not the full 31 detections plus 9 limits of AUDIT_UFD;
+no kinematic closure is inferred for unmatched objects.
+
+CFG784's own conditional explicitly forbids scoring when CFG782 is DEAD.
+Therefore its fossil fit was not run. This is scientifically appropriate:
+a chosen post-failure sample restriction would invalidate the frozen test.
+The original selector output truncates printed non-UFD names to eight; its
+JSON retains all flagged names.
+
+B. Ellipticals and clusters: a necessary transfer equation
+Sources: THEORY_CANONICAL_2026-10-14.md S2-S4; THEORY_PUSH_2026-10-14/B_condensed_rule.md
+and C_early_types.md; sol61_push/cold_baryon_selection_2026_10_14/RESULT.txt.
+Use a local nonexpanding patch, mass-transfer rate S>=0, and mass currents:
+  partial_t rho_t + div j_t = -S,
+  partial_t rho_f + div j_f = +S.
+Total mass is conserved. But the old identities
+  div P_t = rho_t - rhobar_t,     partial_t P_t = -j_t
+cannot both survive with fixed rhobar_t and nonzero S. Differentiating gives
+  div(partial_t P_t + j_t) = -S - partial_t rhobar_t.
+Thus a completed model needs J_conversion in
+  partial_t P_t = -j_t + J_conversion,
+  div J_conversion = -S - partial_t rhobar_t.
+On a periodic box, compatibility requires partial_t rhobar_t=-<S>; then the
+source is -(S-<S>). With fixed reference density and a closed boundary,
+positive net conversion is incompatible with zero boundary flux. This does
+not prohibit two populations; it identifies the missing transfer structure.
+A longitudinal Poisson solution can enforce this identity, but does not by
+itself provide a causal, reciprocal action or energy balance.
+
+Conversion also changes the polarization energy. At fixed a0, gamma, and
+spatial boundaries, its contribution includes
+  dE_pol/dt|conversion = integral (delta E_pol/delta P_t).J_conversion dV.
+The gravitational field and particle terms must be varied consistently too.
+An instantaneous relabeling that deletes tether energy without accounting
+for it is not an energy-conserving derivation. A kinetic implementation needs
+mass-, momentum- and total-energy-consistent conversion operators, not only
+a positive-energy flag.
+
+Second obligation: detachment and retention differ. In a chosen common frame,
+with potential zero at escape, the desired particles must obey simultaneously
+  v^2/2 + Phi_t > 0,   v^2/2 + Phi_total < 0.
+The allowed velocity window exists only where Phi_total<Phi_t, and its
+occupied fraction depends on the distribution function. For a truncated
+flat-speed halo of edge Re and speed V, Phi_total=-V^2[1+ln(Re/r)] inside,
+including its exterior point-mass contribution. Retention requires
+  v^2 < 2 V^2[1+ln(Re/r)].
+This demonstrates a possible window in a prescribed potential, NOT a retained
+fraction for a live merger. The potential itself changes during conversion.
+A claim that all freed material stays is not implied by E_t>0.
+
+Third obligation: equilibrium is not selection. For isotropic constant
+sigma_f in a flat-speed region, the Jeans equation gives
+  rho_f proportional to r^(-V_c^2/sigma_f^2).
+The r^-2 profile requires sigma_f^2=V_c^2/2; its normalization and cutoff are
+still independent data. Calling the profile isothermal does not derive these.
+This matters to both core problems: adequate total supply does not locate mass
+inside the measured apertures or prevent excessive mass farther out.
+
+Elliptical-specific consequence: the +0.280 dex target is a PROJECTED excess
+surface density statistic. A three-dimensional enclosed-mass multiplier is
+not an exact ESD prediction. DeltaSigma=mean(Sigma)-Sigma is unchanged by a
+constant surface-density sheet; finite radial data need profile/boundary
+information. The hand estimates in C_early_types are motivation, not an
+independent fit. An eta borrowed from SLACS is calibration, not derived merger
+efficiency. No new elliptical data PASS is awarded.
+
+Cluster-specific consequence: the earlier CFG726 ledger entry already reports
+inner/outer tradeoffs and failure. A universal untethering source must predict
+the entire radial free profile; matching the quoted core factor alone is
+insufficient. CFG781 has multi-stage work files outside this checkout and
+none were present at the inspected cfg781_work path. Its expensive projected
+pipeline was not launched; no live job was interrupted. Process inventory was
+unavailable under sandbox permissions. This checkpoint used only small CPU
+checks and does not assert that the large T1x job has finished.
+
+C. The 1/2: independently rechecked response degeneracy
+Use c=1, K=4piG, a>0, 0<=u<a and the corrected full potential
+  W_C(u)=a^2/K [C-u/a-ln(1-u/a)].
+Every derivative in u is independent of the arbitrary additive C. In particular
+  g=K W'_C=au/(a-u),   g_N=g-u=g^2/(a+g).
+If W_C(0) is additionally identified as the complete vacuum energy, then
+  rho_DE=C a^2/(4piG),  kappa=sqrt(4pi/C).
+Hence kappa=1/2 is exactly the extra requirement C=16pi; C=8pi instead gives
+kappa=1/sqrt(2), with the same fixed-a local response. Both have positive
+vacuum energy. They do NOT have identical cosmological expansion.
+This repeats and independently symbolically checks the decisive counterfamily
+in puzzle_32pi_coefficient_verdict_2026_10_14/RESULT.txt. It is not a new full
+cosmological countermodel. A boundary/microscopic condition must select the
+absolute vacuum normalization; derivative matching cannot do it.
+
+D. The 5.4: conserved-ratio freedom and the needed production equation
+For separately conserved pressureless baryons and cold mass in FLRW,
+  dot rho_b+3H rho_b=0,   dot rho_c+3H rho_c=0,
+so R=rho_c/rho_b is an arbitrary integration constant. The Friedmann equation
+can constrain total density but does not split two fluids with identical
+background dilution. This establishes non-selection in that class only.
+For baryons conserved and cold-sector production/exchange Q,
+  dot rho_c+3H rho_c=Q,  dot R=Q/rho_b,
+  R(t)=R(t_i)+integral[Q/rho_b]dt.
+Thus selection needs both initial conditions and a physically normalized Q,
+or an attractor demonstrably erasing initial dependence. Writing
+Q=Gamma rho_b(R_star-R) gives an attractor but merely inserts R_star=5.364.
+For baryon-to-cold conversion instead, dot rho_b+3H rho_b=-Q and the ratio
+obeys dot R=Q(1+R)/rho_b; the previous formula must not be reused. For
+cold-to-DE conversion Q<0, the present ratio is history-dependent, not a
+universal consequence of the local galaxy law. No microscopic abundance
+calculation selecting 5.364 was supplied by the inspected canonical model.
+
+Dependency/obligation matrix (self-review)
+  CFG782 unchanged computation: PASSED reproduction; frozen gates FAILED.
+  Literal input interpretation: PASSED independent finite check; gates FAILED.
+  Any common threshold on these inputs: REFUTED by incompatible order bounds.
+  Conservation across t->f transfer: old identities INCOMPLETE; source required.
+  Retention, core distribution and energy exchange: NOT ESTABLISHED.
+  W_C local derivative degeneracy: PASSED exact symbolic check.
+  Conserved dust abundance selection: REFUTED within stated class.
+  Full physical theory / new empirical closure: NOT ESTABLISHED.
+
+Reproducibility and limitations
+selector_verified/manifest.json pins script, input data, SPARC files and the
+imported helper sources. threshold_run/ uses independent Python arithmetic;
+structure_run/ uses exact SymPy identities. Commands and actual versions,
+input hashes before/after, exit codes and resource limits are in each manifest.
+No randomized fit or new significance calculation was performed. No primary
+external literature claim is newly authenticated: observational inputs and
+prior statuses above are explicitly repository evidence, not independent data
+verification. The Jeans equation and continuity results are direct derivations.
+No Lean rerun is claimed. The threshold proof is for the fixed nominal-yield
+catalogue only; input uncertainties and sample selection remain limitations.
+
+Executable continuation, without recycling excluded routes
+Dwarfs: a changed predictor must explain host/history differences at fixed
+initial mass; obtain object-level quenching/infall histories with uncertainties
+and evaluate the full MW+M31+field samples. Current scalar cutoff is closed.
+Core physics: specify a conversion operator and energy reservoir, solve one
+controlled merger with occupied velocity distributions, verify mass/momentum/
+energy and survival, THEN project its density through the existing likelihoods.
+This route remains open; the missing physical operator cannot be inferred by
+choosing a profile that fits the known excess.
+Coefficient: require a new independently justified absolute-vacuum matching
+condition before more derivative/geometry coefficient searches.
+Abundance: specify carrier identity, production/exchange rate and initial state;
+solve background abundance and perturbations jointly. A free 5.364 initial
+condition must continue to be labeled an input.
+These are unresolved inputs and deferred routes, not a claim that all possible
+physics has been exhausted. This checkpoint does not mark the five-item goal
+complete and does not alter the frozen canonical theory or shared ledger.

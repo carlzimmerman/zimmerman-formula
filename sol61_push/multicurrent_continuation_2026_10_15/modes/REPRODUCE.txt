@@ -1,0 +1,27 @@
+MC-MODES-001 exact checks. Run at repository root.
+The run directory must be new; choose a different run suffix when reproducing.
+No software installation or external source access is required.
+
+/Users/carlzimmerman/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/run_experiment.py \
+  --root /Users/carlzimmerman/new_physics/zimmerman-formula \
+  --contract sol61_push/multicurrent_continuation_2026_10_15/modes/computation_contract.json \
+  --input sol61_push/multicurrent_continuation_2026_10_15/modes/PROOF.md \
+  --input sol61_push/multicurrent_continuation_2026_10_15/modes/check_two_current.py \
+  --input sol61_push/multicurrent_continuation_2026_10_15/inputs/RTM_REPORT.md \
+  --input sol61_push/multicurrent_continuation_2026_10_15/inputs/JOIN_RESULT.txt \
+  --input sol61_push/multicurrent_continuation_2026_10_15/inputs/source_manifest.json \
+  --output sol61_push/multicurrent_continuation_2026_10_15/modes/run_exact \
+  --result sol61_push/multicurrent_continuation_2026_10_15/modes/run_exact/results.json \
+  --timeout 60 --max-output-bytes 1048576 --max-cpu-seconds 50 --max-threads 1 \
+  -- /Users/carlzimmerman/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 \
+  sol61_push/multicurrent_continuation_2026_10_15/modes/check_two_current.py \
+  --output sol61_push/multicurrent_continuation_2026_10_15/modes/run_exact/results.json
+
+/Users/carlzimmerman/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/validate_manifest.py \
+  sol61_push/multicurrent_continuation_2026_10_15/modes/run_exact/manifest.json \
+  --root /Users/carlzimmerman/new_physics/zimmerman-formula
+
+Resource scope: wall time and combined logs are bounded; POSIX CPU time is
+bounded per process. The conventional one-thread cap is cooperative. No memory
+or CPU-affinity bound is claimed. The exact symbolic/matrix problem is small.
+Python version 3.10+ is needed by the provenance runner; child needs SymPy.
