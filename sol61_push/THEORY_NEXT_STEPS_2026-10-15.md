@@ -2,7 +2,7 @@
 
 15 October 2026. Planning baseline: `80a82199cbf46fb7bbabc8d0f65e4764d6a709f4`.
 
-**Current direction:** [Progress review and executable next steps](progress_direction_2026_10_15/RESULT.md), incorporating CFG803–805 and the DR4 readiness note. Retention-based supply and neighbouring matter narrow the relative lensing gap; absolute fit, normalization, mass-unit/exclusion consistency and actual finite-supply dynamics remain unresolved. The [joined radial mechanism result](vacuum_core_round3_2026_10_15/RESULT.md) remains a separate restricted theorem. The joined physical theory remains open.
+**Current direction:** [Fourth-round results](ambitious_round4_2026_10_15/RESULT.md) and [next execution](ambitious_round4_2026_10_15/CURRENT.md). All angular static sectors of the specified hybrid body and a separate full static Einstein branch now have analytic arguments and independent same-team audits. The continuous lensing successor resolves its stated projection/unit/exclusion controls and passes its relative gate, while absolute fit fails. Extended baryons improve chi-square from 165.36 to 75.73 with four extra radii but still miss the declared absolute threshold. Prioritize measured baryon distributions and the isolation-selected lens–matter statistic, constrained GR dynamics, and finite-stiffness formation with a physical energy receiver. The joined physical theory remains open.
 
 The next decisive task is to connect the proposed cold medium to the galaxy law through one reciprocal action with actual mass, charge and energy accounting. Static profiles, prescribed formation clocks and conditional mathematical certificates do not supply that connection. The theory remains **INCOMPLETE**.
 
@@ -10,27 +10,29 @@ These instructions organize the remaining work; they do not change the [frozen O
 
 ## Latest mechanism continuation, 15 October 2026
 
-The [latest progress assessment](progress_direction_2026_10_15/RESULT.md)
-directs the next calculation: reconcile CFG805's spectrum estimator with the
-stored discrete-mode measurement; resolve the retention mass units and
-mass-dependent exclusion edge; then save full-covariance residuals for the
-actual refitted models. The independent bounded shell replay supports a
-compression/quadrature contribution to the sigma8 discrepancy without
-correcting the original score. CFG804's primary relative success is conditional
-on calibrated retention and profiled masses, and its absolute fit is poor.
-CFG805 narrows the all-radius relative gap to +11.06 but fails its CLOSED
-criterion and normalization control. Derive unique catchment ownership and
-the finite profile at the actual supply before claiming that physical bridge.
-In parallel, retain O1/O2's same-candidate phase/metric/formation obligations
-and define the sealed DR4 statistic/error convention before unsealing. No
-frozen criterion, old classification or sealed file changes with these directions.
+The [fourth executed round](ambitious_round4_2026_10_15/RESULT.md) supersedes
+the immediately preceding [progress assessment](progress_direction_2026_10_15/RESULT.md)
+on its completed follow-ups. The source-native retention argument is now
+explicitly Msun/h; continuous cutoffs and trial-dependent exclusion are
+implemented, independent projections/refinements and actual mutations pass,
+and full-covariance predictions/residuals are saved. The new point-source
+relative gap is +3.5171, with absolute p=9.78e-14. Even a self-consistent
+four-size Plummer source gives nominal p=.006516<.01. These post-data results
+leave the old CFG804/805 scores and failed K2 unchanged. T1x already supplies
+numerical host ownership and caps; derive its physical current/transport and
+selected lens–matter correlation. An exact zero-stiffness binding-energy
+formula now quantifies the finite-start formation budget. The owner has
+filed DR4 Amendment 22; the readiness task is to audit its executable scoring
+map. No sealed file was opened in this round.
 
 The [third current/vacuum research round](vacuum_core_round3_2026_10_15/RESULT.md)
 now supplies a single actual critical charged/baryonic body with both fluids
 dynamical, a counted moving wall, true Maxwell vacuum and positive complete
 radial energy. Two independent audits accept that declared hybrid scope.
-Its high-pressure EOSs and reflecting phase are chosen inputs; all-angular
-interface health, a full metric and the physical galaxy law remain open.
+Its high-pressure EOSs and reflecting phase are chosen inputs. Round four
+now closes its static angular configuration-energy obligation and supplies
+a separately scoped covariant static Einstein branch; dynamic interface
+health and the physical galaxy law remain open.
 The round also proves canonical finite-stock Newtonian energetic results and
 an exact nonzero-stiffness member, while preserving the zero-density taper
 and unchanged-law Lorentz-vacuum obstructions. The new CFG801 lane excludes
