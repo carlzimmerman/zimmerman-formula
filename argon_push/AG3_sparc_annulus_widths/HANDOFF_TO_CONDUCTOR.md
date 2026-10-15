@@ -52,6 +52,9 @@ touched only `argon_push/`.
 
 ## CROSS-TRACK FLAG (added post-commit of main results; sibling ARGON07 ab94d5171)
 
+**RESOLVED 2026-10-15 (same day, post-flag investigation — see RESOLUTION below; the
+original flag text is kept unedited per append-only style).**
+
 **Settled-halo inner edge: ARGON02/ARGON07 model vs AG3 rotation-curve measurement.**
 ARGON07's commit states the settled halo: M_c = 5.364·M_b within 5.84·r_M, locked
 amplitude g_ph = √(G M_b a₀)/r = C/r (ARGON02 ESD: ΔΣ → √(GM_b a₀)/(4GR), break
@@ -70,6 +73,69 @@ benign direction: an inner cutoff near ~1–1.5 r_M makes the realized A/r² ann
 than the model shell — strictly favorable for AG1 stability (AG3's S verdict already
 measures the realized widths, median 1.84). This flag does NOT reopen AG1 or AG3; it
 routes a model-vs-data reconciliation to the ARGON02/07 track owner via the conductor.
+
+## RESOLUTION of the flag (post-investigation, same session)
+
+**1. The flag's premise was wrong; the ARGON02-vs-AG3 tension DISSOLVES.** ARGON02's
+settled halo is explicitly CORED (their own P2: "exact cored transition curve, 13–54%
+of r⁻¹ within r_M"): locked amplitude g_ph = C/r is the ASYMPTOTE (x ≳ 10), not the
+interior. My "r_in = 0.476 r_M" was a shell-mass-equivalent misreading: M_c = 5.364 M_b
+integrates the cored profile from 0 to 5.84 r_M; the 0.476 r_M mass deficit is spread
+over the whole core, not a hard edge. ARGON02's canonical core amplitude over x ≤ 0.62
+is ρ ∈ [0, 0.48] (median ~0.2–0.3), which AG3's X_ball = 0.0025 ± 0.003(stat) ± ~0.17
+(correlated Υ systematics) cannot resolve from zero. **No contradiction between tracks.**
+AG3 K4's load-bearing claim stands unchanged: ρ ≈ 1 (locked/static ball) is excluded
+inside the cap; both tracks' cores survive.
+
+**2. The investigation surfaced a sharper, real issue: the repo runs TWO law lines.**
+- **Canonical (frozen):** THEORY_CANONICAL_2026-10-14 S2 line 21: g_N = g²/(g + a₀);
+  PAPER49 (§line 37) numerics confirm: ν = g/g_N = 100.5 at g_N = 10⁻⁴a₀ matches
+  standard-μ (x/(1+x)) to 3 digits (quadratic would give 100.005; "simple"
+  x/√(1+x²) would give 100.00). ARGON02 script line 11 uses exactly this ("from
+  g_N = g²/(g + a0)"). NB: S2/PAPER49 both LABEL it the "simple interpolating function
+  (Famaey & Binney 2005)" — a misnomer; the algebra + numerics pin standard μ.
+- **Quadratic "equipartition" a₀-line:** g² − ḡ² = a₀ḡ ⇔ ḡ = g²/(g + ḡ): the form in
+  the user-profile statement of the program, G071's tested law (0.145 dex pooled,
+  benchmark-validated), and AG3's K2 prediction bands. The two forms are the SAME
+  expression with (g+a₀) vs (g+ḡ) in the denominator — a natural transcription trap.
+- **What is NOT affected:** deep asymptote identical (g_ph → C/r; C, σ² = C/2, A/r²,
+  M_b/(4πr_Mr²)) ⇒ the entire AG1/GF2/κ=½ algebraic chain, ARGON02 P1 deep-window ESD,
+  and AG3's measured widths/verdict S (law-agnostic: ρ_meas is data over the shared C).
+- **What IS law-form dependent:** ARGON02 P2 exact-curve ESD numbers (canonical runs
+  6–27% above quadratic through their [1,5]r_M window: density ratio
+  2√(1+x²)/√(1+4x²)); supply edge r_e = 5.843 r_M (canonical) vs 6.285 r_M (quadratic)
+  at fixed M_c = 5.364 M_b — kill-test (b) targets shift accordingly; ρ = 1/2 crossing
+  (2/3 vs 4/3)·r_M; AG3 K4 band predictions (core amplitude 2× higher in canonical).
+
+**3. New empirical discriminator, measured today (ag3_lawform_diagnostic.py/.out,
+identical 165-galaxy AG3 sample, both laws, verdict-free):** rotation data prefer the
+QUADRATIC form, consistently:
+- paired velocity-space rms: quadratic 0.178 dex vs canonical 0.220 dex (paired median
+  difference −0.042; same sign and size in the deep subset);
+- ρ = 1/2 crossings: measured/quadratic median +0.063 (consistent) vs measured/canonical
+  +0.493 (1.6× outside — canonical crossings predicted far too deep);
+- band-region ρ ratios: measured/quadratic −0.204 vs measured/canonical −0.466;
+- stacked ρ_meas(x) tracks ~1.2× below quadratic and ~1.7–1.9× below canonical through
+  x ∈ [0.1, 3]. A ~20% Υ-disk overestimation bias plausibly absorbs the quadratic gap;
+  it cannot absorb the canonical gap.
+This does NOT by itself overturn the frozen canonical doc (fit quality is not the
+framework's arbiter — PAPER49's claim is that the law is the medium's unique rest state,
+a theory-internal fact). It does mean: if standard μ stays canonical, its transition-
+regime phantom over-predicts SPARC rotation by ~1.7× at the 0.2-dex level — a
+kill-test-(c)-class embarrassment arriving BEFORE the lensing data; and G071's
+benchmark-validated 0.145-dex result is validating the non-canonical form.
+
+**4. Decisive route — proposed lane AG4 (theory-internal, no data needed):** derive the
+static rest-state law from S2's own action (L = −|∇Φ−KP|²/(2K) − ρ_bΦ − W_rem(u) −
+(γ/2)|∇P|², K W_rem′(u) = u²/(a₀−u), u = K|P|): solve the settled/tethered equilibrium
+for a point baryon mass and read off which interpolation emerges. Pre-registered
+readings: (a) rest state = standard μ ⇒ canonical stands; the quadratic's better SPARC
+fit becomes an anomaly to explain (or weakens PAPER49's uniqueness claim); (b) rest
+state = quadratic ⇒ THEORY_CANONICAL S2 line 21 + PAPER49 eq/numerics get a dated v2
+erratum (never an edit), ARGON02 P2/P3 re-derive (r_e → 6.285 r_M, ESD inner bins
+−6…−27%); (c) rest state = neither/both-in-limits ⇒ report as falls. Until adjudicated:
+AG3 verdict S stands (law-agnostic); ARGON02 numbers stand AS canonical-form numbers
+with this dependency recorded; no file outside argon_push/ touched.
 
 ## Housekeeping
 
