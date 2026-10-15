@@ -1,0 +1,40 @@
+CFG807 script 1: solar-system objections to the vacuum route in the stiffened action
+
+S1  Cassini Q2 at L* = 5.75 pc, background response from the law with a k = 2 phantom turn-off (ceiling 5.2e-27)
+  y_t = None    : worst |Q2|/ceiling = 3.473e-06
+  y_t = 32.0    : worst |Q2|/ceiling = 3.618e-06
+  y_t = 64.0    : worst |Q2|/ceiling = 3.508e-06
+  y_t = 128.915 : worst |Q2|/ceiling = 3.481e-06
+  y_t = 1000.0  : worst |Q2|/ceiling = 3.473e-06
+  (no turn-off, canonical, g_e 2.32e-10: Q2 = -1.581e-32; CFG770 reported -1.1 to -1.8e-32)
+  [PASS] S1 Cassini Q2 < ceiling for every y_t: worst |Q2|/ceiling 3.618e-06
+  largest fractional change of Q2 from any turn-off: 4.202e-02
+
+S2  extreme-TNO apsidal precession from the stiff action's anomaly (canonical, g_e 2.32e-10)
+  anomaly at     30 AU: -4.2155e-15 m/s^2
+  anomaly at    100 AU: -4.2150e-15 m/s^2
+  anomaly at    300 AU: -4.2136e-15 m/s^2
+  anomaly at   1000 AU: -4.2084e-15 m/s^2
+  anomaly at   3000 AU: -4.1939e-15 m/s^2
+  anomaly at  10000 AU: -4.1435e-15 m/s^2
+  data: 90 objects (SBDB a > 150 AU, q > 30 AU; data_assembly/etno_sbdb/FETCH_LOG.md)
+  objects where the anomaly precesses faster than the planets: 1/90 (p56 turn-off y_t = 128.9: 43/90)
+  objects with anomaly apsidal period > 4.5 Gyr: 90/90
+    (2020 MQ53)                        a =  13940.0 AU: |w_anom/w_pl| = 5.309e+00, anomaly period 142 Gyr
+    541132 Leleakuhonua (2015 TG387)   a =   1346.0 AU: |w_anom/w_pl| = 3.854e-02, anomaly period 126 Gyr
+    (2014 FE72)                        a =   2687.0 AU: |w_anom/w_pl| = 2.925e-02, anomaly period 168 Gyr
+    (2019 EU5)                         a =   1341.0 AU: |w_anom/w_pl| = 1.883e-02, anomaly period 147 Gyr
+    (2021 RR205)                       a =    949.0 AU: |w_anom/w_pl| = 1.495e-02, anomaly period 136 Gyr
+    Sedna: |w_anom/w_pl| = 1.323e-02, anomaly period 118 Gyr (p56 turn-off: 0.02 Gyr)
+  [FAIL] S2 TNO: |w_anom/w_pl| < 0.1 for all 90 and anomaly period > 4.5 Gyr for >= 80/90: max ratio 5.309e+00; 90/90 slower than 4.5 Gyr
+
+S3  (reported) turn-off radius vs stiffness; the Sun's response amplitude
+  y_t =     32.0: r_t =    1407 AU = 0.0068 pc = 1.19e-03 L*
+  y_t =     64.0: r_t =     995 AU = 0.0048 pc = 8.39e-04 L*
+  y_t =    128.9: r_t =     701 AU = 0.0034 pc = 5.91e-04 L*
+  y_t =   1000.0: r_t =     252 AU = 0.0012 pc = 2.12e-04 L*
+  the Sun's stiff response |u| at 1000 AU = 4.208e-15 m/s^2 = 4.50e-05 a0 (GM/L*^2 = 4.216e-15)
+  The turn-off acts on the phantom at y ~ y_t >> 1; the Sun's own P response is the linear critical (stiff) one,
+  u << a0 everywhere inside L*, so the turn-off cannot change it (only the Galactic background's A_par/A_perp, S1).
+
+FAILS: ['S2 TNO: |w_anom/w_pl| < 0.1 for all 90 and anomaly period > 4.5 Gyr for >= 80/90']

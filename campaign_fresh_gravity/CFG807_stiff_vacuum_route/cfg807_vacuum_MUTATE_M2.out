@@ -1,0 +1,60 @@
+CFG807 script 2: the P-sector vacuum energy in the stiffened action  [MUTATE M2]
+
+V0  sympy: EL equations vs an additive constant in W_rem; criticality K W_rem''(0) = 0
+  [PASS] V0a K W_rem' = u^2/(a-u) for the explicit W_rem (any C): exact
+  [PASS] V0b K W_rem''(0) = 0 for every additive C (criticality): exact
+  [PASS] V0c Euler-Lagrange equations identical with and without the constant C: exact
+  [PASS] V0d gamma (stiffness) absent from the uniform-state Lagrangian: d L_uniform / d gamma = 0
+
+V1  the vacuum energy with the PAPER42 premise, frozen W_rem (units a^2/K)
+  (a) potential form: K W_rem(u)/a^2 - const -> oo as u -> a  =>  eps_W = W(0) - W(strong) = -oo (log wall, AdS sign)
+  (b) QUMOND-dual: I(Y) = int_0^Y (u/a) dy: I/Y -> 1; I - Y + ln Y -> 1/2 = 0.500000
+      I(1e+02) = 95.8751   (asymptote Y - ln Y + 0.5000 = 95.8948)
+      I(1e+04) = 9991.29   (asymptote Y - ln Y + 0.5000 = 9991.29)
+      I(1e+06) = 999987   (asymptote Y - ln Y + 0.5000 = 999987)
+      => eps_Q = +oo (linear, de Sitter sign): the phantom saturates at u -> a0, so int u dg_N grows like a0 g_N,max
+  [FAIL] V1 vacuum energy well-defined (finite and positive) for the frozen W_rem: eps_W = -oo (log wall), eps_Q = +oo (linear): NOT well-defined
+
+V2  representability: a finite eps_Q needs u -> 0 at strong field; is u(g_N) then monotone (single-valued R(u))?
+  frozen S2 law (simple mu)         : u(g_N) monotone = True   -> single-valued W_rem(u) EXISTS;  int (u/a) dy = inf
+  exponential RAR                   : u(g_N) monotone = True   -> single-valued W_rem(u) EXISTS;  int (u/a) dy = 12.988
+  S2 law + k=2 turn-off y_t=32      : u(g_N) monotone = True   -> single-valued W_rem(u) EXISTS;  int (u/a) dy = 47.214
+  S2 law + k=2 turn-off y_t=128.9   : u(g_N) monotone = True   -> single-valued W_rem(u) EXISTS;  int (u/a) dy = 198.12
+  [FAIL] V2-control detector: frozen law monotone, RAR and turn-off non-monotone: {'frozen S2 law (simple mu)': True, 'exponential RAR': True, 'S2 law + k=2 turn-off y_t=32': True, 'S2 law + k=2 turn-off y_t=128.9': True}
+  RAR control: int = 12.9879 (record p21: 12.99)
+  General statement, numerically: continuous R(u) = K W_rem'(u), R(0) = 0, onto [0, inf):
+    for g_N > max R on [0, d] every stationary u exceeds d > 0, so int u dg_N >= d (g_N - const) -> +oo.
+    frozen u^2/(a-u)                      : I(1e2,1e3,1e4) = 95.88, 993.6, 9991  (>= linear: True);  eps_W = -inf
+    u^2 a/(a^2-u^2)                       : I(1e2,1e3,1e4) = 97.5, 996.4, 9995  (>= linear: True);  eps_W = -inf
+    integrable wall u^2/(a sqrt(1-u/a))   : I(1e2,1e3,1e4) = 98.94, 998.9, 9999  (>= linear: True);  eps_W = -1.067
+    non-saturating u^2 (1+u/a)/a          : I(1e2,1e3,1e4) = 318.1, 7183, 1.583e+05  (>= linear: True);  eps_W = -inf
+  [PASS] V2-general eps_Q diverges (>= linear) for every continuous admissible R: 4 families
+    eps_W is NEGATIVE whenever finite (W_rem increases with u because R = g_N >= 0): anti-de Sitter sign.
+  [PASS] V2 a finite turn-off representable by a single-valued W_rem(u): finite eps_Q requires non-monotone u(g_N) => R(u) double-valued => no W_rem(u)
+
+V3  candidate turn-offs from the action's own elements (L*, gamma = K L*^2/2, K = 4 pi G)
+  (i) c^2/(a0 L*) at L* = 5.75 pc: y_t = 5.412e+09 -> C ~ (pi/2) y_t = 8.501e+09 = 1.69e+08 x 16 pi; at 1 kpc: y_t = 3.112e+07
+  (ii) point-mass screening edge y_t(M) = (r_M/L*)^2, M =   1e+00 Msun: L* 5.75 pc 4.504e-05; L* x2 1.126e-05
+  (ii) point-mass screening edge y_t(M) = (r_M/L*)^2, M =   1e+05 Msun: L* 5.75 pc 4.504e+00; L* x2 1.126e+00
+  (ii) point-mass screening edge y_t(M) = (r_M/L*)^2, M =   1e+06 Msun: L* 5.75 pc 4.504e+01; L* x2 1.126e+01
+  (ii) point-mass screening edge y_t(M) = (r_M/L*)^2, M =   1e+11 Msun: L* 5.75 pc 4.504e+06; L* x2 1.126e+06
+  [PASS] V3-tooth: screening cut-off moves with M (x10) and L* (x2) => not a universal vacuum number: y_t ratios M x10: 10, L* x2: 0.25
+  (iii) gamma enters only gradients (V0d): the uniform vacuum state has zero stiffness energy.
+  (iv) K = 4 pi G fixes only the unit a0^2/K; with it the target reads C = 16 pi (D_kappa Route D).
+  [FAIL] V3 an action element fixes y_t or C with no hand-set number: none of L*, gamma, K does
+
+V4  (reported) hand-set turn-off in the QUMOND-dual form: C(y_t) = int_0^inf (u/a)/(1+(y/y_t)^k) dy
+  k = 2: slope c_k = 1.57080; C = 16 pi at y_t = 33.9778; C(32) = 47.2143; C(128.9) = 198.117
+  k = 3: slope c_k = 1.20920; C = 16 pi at y_t = 44.3344; C(32) = 35.6579; C(128.9) = 151.506
+  k = 4: slope c_k = 1.11072; C = 16 pi at y_t = 48.3362; C(32) = 32.5114; C(128.9) = 138.812
+  canonical: k = 2 turn-off g_t = 3.180e-09 m/s^2 (needed, hand-set)
+  alt: k = 2 turn-off g_t = 3.844e-09 m/s^2 (needed, hand-set)
+  Lambda c^4/a0^2 = 2C: at y_t = 33.978 this is 32 pi = 100.5310 by construction
+  NOTE: the turn-off is NOT representable in S2 (V2); this is the QUMOND-dual number, outside the frozen action.
+
+VERDICT (frozen rule): S1 True, S2 False, V1 False, V2 True, V3 False -> STILL BLOCKED (BLOCKED-SOLAR as frozen)
+
+M2 tooth (detector restricted to y <= 1 -> control must FAIL): bites
+
+findings (negative answers): ['V1 vacuum energy well-defined (finite and positive) for the frozen W_rem', 'V3 an action element fixes y_t or C with no hand-set number']
+control failures: ['V2-control detector: frozen law monotone, RAR and turn-off non-monotone']
