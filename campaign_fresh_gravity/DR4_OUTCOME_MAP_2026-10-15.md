@@ -49,7 +49,9 @@ CFG800's rule says "at ≥ 3σ" and "at 2σ" and defines no error model. The out
   (γ_v ≥ 1.01 at s ≤ 50 kAU) kills the stiffness construction CFG740, not the Arm C ownership rule. A result with γ̂ in 1.01-1.084 would
   read "CFG740 killed, Arm C alive, Arm A falsified or no-verdict (row dependent)".
 
-**Decisions only the owner can make before 12-02:**
+**FILED 2026-10-15 as Amendment 22** (`prep_2026/gaia_dr4_prep/AMENDMENT22_HASH.txt`): sigma_R = max(sigma_tot, R's own error); KILLED needs R-1 >= 0.01 and >= 3 sigma_R; CONSISTENT needs 2 sigma_R <= 0.01 (unavailable at sigma_tot); "FRAMEWORK KILLED" means CFG740's stiffness construction; Arms A, B, C and the settling model keep their own rows. The three decisions below were settled that way under the owner's instruction to file.
+
+**Decisions that were open before filing:**
 1. Which σ governs the CFG800 rule (σ_tot of the prereg, or a stated alternative). Record it in a dated file.
 2. Whether "FRAMEWORK KILLED" in CFG800 is re-worded to "CFG740 killed".
 3. Whether this note, or part of it, is filed as Amendment 22 into the prereg (with the SHA-256 stamp).
