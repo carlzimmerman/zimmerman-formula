@@ -1,0 +1,46 @@
+From repository root /Users/carlzimmerman/new_physics/zimmerman-formula:
+
+python3 \
+  /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/run_experiment.py \
+  --root \
+  /Users/carlzimmerman/new_physics/zimmerman-formula \
+  --contract \
+  sol61_push/ambient_support_round2_2026_10_15/self_gravity/computation_contract.json \
+  --input \
+  sol61_push/ambient_support_round2_2026_10_15/self_gravity/PROOF.md \
+  --input \
+  sol61_push/ambient_support_round2_2026_10_15/self_gravity/check_self_gravity.py \
+  --input \
+  sol61_push/ambient_support_round2_2026_10_15/self_gravity/inputs/source_manifest.json \
+  --input \
+  sol61_push/ambient_support_round2_2026_10_15/self_gravity/inputs/ACTION_PROOF.md \
+  --input \
+  sol61_push/ambient_support_round2_2026_10_15/self_gravity/inputs/STABILITY_REPORT.md \
+  --input \
+  sol61_push/ambient_support_round2_2026_10_15/inputs/source_manifest.json \
+  --input \
+  sol61_push/ambient_support_round2_2026_10_15/inputs/RTM_REPORT.md \
+  --input \
+  sol61_push/ambient_support_round2_2026_10_15/inputs/MC_MODES_PROOF.md \
+  --input \
+  sol61_push/ambient_support_round2_2026_10_15/inputs/MC_BOUNDARY_PROOF.md \
+  --input \
+  sol61_push/ambient_support_round2_2026_10_15/inputs/CE053_FINITE_EDGE.txt \
+  --output \
+  sol61_push/ambient_support_round2_2026_10_15/self_gravity/run_exact \
+  --result \
+  sol61_push/ambient_support_round2_2026_10_15/self_gravity/run_exact/results.json \
+  --timeout \
+  30 \
+  --max-output-bytes \
+  1048576 \
+  --max-threads \
+  1 \
+  -- \
+  python3 \
+  sol61_push/ambient_support_round2_2026_10_15/self_gravity/check_self_gravity.py \
+  sol61_push/ambient_support_round2_2026_10_15/self_gravity/run_exact/results.json
+
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/validate_manifest.py sol61_push/ambient_support_round2_2026_10_15/self_gravity/run_exact/manifest.json --root /Users/carlzimmerman/new_physics/zimmerman-formula
+
+Use a new output directory for replay, replacing --output, --result and the final script argument consistently.

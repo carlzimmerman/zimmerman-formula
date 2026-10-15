@@ -1,0 +1,28 @@
+From repository root /Users/carlzimmerman/new_physics/zimmerman-formula:
+
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/run_experiment.py \
+  --root /Users/carlzimmerman/new_physics/zimmerman-formula \
+  --contract sol61_push/ambient_support_round2_2026_10_15/action/computation_contract.json \
+  --input sol61_push/ambient_support_round2_2026_10_15/action/PROOF.md \
+  --input sol61_push/ambient_support_round2_2026_10_15/action/check_neutral_support.py \
+  --input sol61_push/ambient_support_round2_2026_10_15/inputs/source_manifest.json \
+  --input sol61_push/ambient_support_round2_2026_10_15/inputs/RTM_REPORT.md \
+  --input sol61_push/ambient_support_round2_2026_10_15/inputs/MC_MODES_PROOF.md \
+  --input sol61_push/ambient_support_round2_2026_10_15/inputs/MC_BOUNDARY_PROOF.md \
+  --input sol61_push/ambient_support_round2_2026_10_15/inputs/CE053_FINITE_EDGE.txt \
+  --output sol61_push/ambient_support_round2_2026_10_15/action/run_exact \
+  --result sol61_push/ambient_support_round2_2026_10_15/action/run_exact/results.json \
+  --timeout 30 --max-output-bytes 1048576 --max-threads 1 -- \
+  python3 sol61_push/ambient_support_round2_2026_10_15/action/check_neutral_support.py \
+  sol61_push/ambient_support_round2_2026_10_15/action/run_exact/results.json
+
+The output directory must be fresh. For a replay use a new output directory
+consistently in --output, --result and the final script argument.
+
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/validate_manifest.py \
+  sol61_push/ambient_support_round2_2026_10_15/action/run_exact/manifest.json \
+  --root /Users/carlzimmerman/new_physics/zimmerman-formula
+
+The manifest records actual argv, current Git revision/dirty state, code and
+snapshot hashes, software versions, runtime and result hashes. Exit success
+is evidence only for the finite exact checks described in the contract.

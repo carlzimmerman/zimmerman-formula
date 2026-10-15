@@ -8,6 +8,21 @@ The next decisive task is to connect the proposed cold medium to the galaxy law 
 
 These instructions organize the remaining work; they do not change the [frozen October 14 theory](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-14.md), its predictions or its criteria. Any changed action, interaction, source rule or parameter prescription must be a separately dated candidate with its own evidence. A failed attempt closes that specified route, not every possible completion.
 
+## Latest mechanism continuation, 15 October 2026
+
+The [second ambient-support research round](ambient_support_round2_2026_10_15/RESULT.md)
+now supplies an actual finite-mass neutral equilibrium with its own Newtonian
+rest-mass gravity, an exact regular-core weak branch, and a conditional joined
+fluid/gauge quadratic energy for fixed central sources. A separately specified
+magnetic-response patch repairs the occupied center's differentiability defect
+without changing the static electric law. It does not continue continuously to
+vacuum; the dilute tail, a dynamical charged core, the new species/EOS/abundance,
+formation and the full metric remain open. The [updated executable handoff](ambient_support_round2_2026_10_15/CURRENT.md)
+sets the next discriminator: an actual asymptotic/vacuum phase and reciprocal
+matching action, then the counted dynamical central source. These conditional
+results do not change O0–O8's whole-theory completion standard or confer a new
+empirical pass.
+
 ## Current results to carry forward
 
 - **Primary T1x shear run is complete on the canonical footing.** The [stored CFG650 output](../campaign_fresh_gravity/CFG650_theory_v2_combined_pm/cfg650_native.out) reports KiDS chi-square 136.56, p = 0.033, against control 144.26, p = 0.014; delta chi-square is -7.70 and the frozen classifier says CONSISTENT. DES is NOT DIAGNOSTIC. The alternative footing is pending and the [CMB gate is NOT EVALUATED](../campaign_fresh_gravity/CFG650_theory_v2_combined_pm/cfg650_native_results.json). Initial conditions remain inherited; the filename `native` does not mean framework-derived cosmological initial conditions. This supersedes earlier instructions calling T1x pending.
