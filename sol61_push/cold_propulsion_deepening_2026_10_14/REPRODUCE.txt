@@ -1,0 +1,10 @@
+Python3.9.6, SymPy1.14.0. From repository root.
+Canonical frozen inputs: GRAVITY_CONTRACT.txt,gravity_contract.json,check_gravity.py; EXHAUST_CONTRACT.txt,exhaust_contract.json,check_exhaust.py; BOUNDARY_CONTRACT.txt,boundary_contract.json,check_boundaries_and_burn.py.
+Each run manifest records exact hashes, argv, dependencies, runtime and outcomes. Inspect manifests for runner commands. To reproduce use a NEW output directory; do not overwrite canonical runs.
+Standalone calculations (new output paths required):
+python3 sol61_push/cold_propulsion_deepening_2026_10_14/check_gravity.py /tmp/cpd_gravity_new
+python3 sol61_push/cold_propulsion_deepening_2026_10_14/check_exhaust.py /tmp/cpd_exhaust_new
+python3 sol61_push/cold_propulsion_deepening_2026_10_14/check_boundaries_and_burn.py /tmp/cpd_boundary_new
+Exhaust and boundary scripts use repository-relative dependency results; run from repository root. Canonical runs freeze dependencies in their manifests.
+Validate each manifest using the mathbox computation-audit scripts/validate_manifest.py MANIFEST --root .
+Counts59,17,6 verify mathematical assertions only. artifact_hashes.json covers package files excluding itself.

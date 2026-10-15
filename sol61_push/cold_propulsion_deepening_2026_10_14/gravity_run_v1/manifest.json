@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "CPD-G001",
+  "repository": {
+    "commit": "26858818dc70efcd09c4e009b0be7dd4ec4950e2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_propulsion_deepening_2026_10_14/check_gravity.py",
+    "sol61_push/cold_propulsion_deepening_2026_10_14/gravity_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Constraint-reduced scalar/vector/tensor exterior of previous regulated medium, independently checked EH action, exact kinetic/potential determinants and finite spectra",
+    "coefficient_domain": "SymPy exact rational differential identities and50digit frequency displays",
+    "conventions": "-+++; unitary gauge; tau=t/sqrtD; q=Dk2,r=hD/Mp2; all nondynamical lapse/shift constraints eliminated",
+    "inputs": [
+      "sol61_push/cold_propulsion_deepening_2026_10_14/check_gravity.py",
+      "sol61_push/cold_propulsion_deepening_2026_10_14/GRAVITY_CONTRACT.txt"
+    ],
+    "bounds": {
+      "Kclock": 1000000000000,
+      "L": 100,
+      "mu": 2,
+      "r": [
+        "1e-14",
+        "1e-10",
+        "1e-6",
+        "1",
+        "100000"
+      ],
+      "q": [
+        1,
+        50,
+        99,
+        103,
+        1000,
+        100000
+      ],
+      "excluded": "q=L degenerate shift constraint, k=0"
+    },
+    "non_claims": [
+      "No universal modified-gravity no-go",
+      "No finite wall/interface or full nonlinear construction",
+      "No exterior low-k mode removal without physical change",
+      "No inference from positive frozen matter to coupled stability"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T01:25:57.336215+00:00",
+    "runtime_seconds": 1.103355,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 90,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_propulsion_deepening_2026_10_14/check_gravity.py",
+    "sol61_push/cold_propulsion_deepening_2026_10_14/GRAVITY_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_propulsion_deepening_2026_10_14/check_gravity.py",
+      "sha256": "9cf50f8605ff157d04e1e4c874ce8bacf5b48313692bb6879a30dafbe141c8ae",
+      "sha256_after": "9cf50f8605ff157d04e1e4c874ce8bacf5b48313692bb6879a30dafbe141c8ae"
+    },
+    {
+      "path": "sol61_push/cold_propulsion_deepening_2026_10_14/GRAVITY_CONTRACT.txt",
+      "sha256": "3996abcb1c14c6a060fd52bc1bafcfe79aafdd83458d20ec7809b08fdc021475",
+      "sha256_after": "3996abcb1c14c6a060fd52bc1bafcfe79aafdd83458d20ec7809b08fdc021475"
+    }
+  ],
+  "output_directory": "sol61_push/cold_propulsion_deepening_2026_10_14/gravity_run_v1",
+  "declared_results": [
+    "sol61_push/cold_propulsion_deepening_2026_10_14/gravity_run_v1/calculation/results.json",
+    "sol61_push/cold_propulsion_deepening_2026_10_14/gravity_run_v1/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_propulsion_deepening_2026_10_14/gravity_run_v1/stdout.txt",
+      "sha256": "8fa598827c7170f0f00a52e86f101f9aa10bd3ebc3f6b276c924f7d4967d8a60",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_propulsion_deepening_2026_10_14/gravity_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_propulsion_deepening_2026_10_14/gravity_run_v1/calculation/results.json",
+      "sha256": "8fa598827c7170f0f00a52e86f101f9aa10bd3ebc3f6b276c924f7d4967d8a60",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_propulsion_deepening_2026_10_14/gravity_run_v1/calculation/checks.json",
+      "sha256": "d84585bdfc670f78e2da080614067d247d441b15940e21c222efc00f6b1fc865",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
