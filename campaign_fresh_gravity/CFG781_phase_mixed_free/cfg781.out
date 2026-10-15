@@ -1,0 +1,49 @@
+CFG781 (FROZEN_CRITERIA.md, 3028fcc80): phase-mixed free cold energy (Argon's rule) as a two-population model.
+Tethered: law phantom of the CONDENSED baryons, cumulative min(phantom, S_t), S_t = 5.364 M_cond/0.10, to r_ta.
+Free: M_free = 5.364 M_hot,tot, untethered, placed by CFG637 Method B (maxent_reservoir) at turnaround energy
+E = -G (M_b + S_t + M_free)/r_ta * M_free, self-consistent in baryons + tethered + free.
+  [PASS] M0 eRASS1 plain law reproduces CFG687 PL: max 1.55e-15
+  [FAIL] K2 Method B converged >= 95% (eRASS1): 0.0%
+
+== eRASS1 318 (jackknife 30): pass |A_MID-1| < 2 sig AND |A_OUTER-1| < 2 sig
+  s|canonical|P       : A INNER 1.00+-0.13 MID 1.49+-0.09 (Z +5.3) OUTER 0.98+-0.08 (Z -0.3) -> FAIL
+  s|alt|P             : A INNER 0.93+-0.12 MID 1.41+-0.09 (Z +4.7) OUTER 0.93+-0.08 (Z -0.8) -> FAIL
+  mono|canonical|P    : A INNER 1.00+-0.13 MID 1.49+-0.09 (Z +5.3) OUTER 0.98+-0.08 (Z -0.3) -> FAIL
+  mono|alt|P          : A INNER 0.94+-0.13 MID 1.41+-0.09 (Z +4.7) OUTER 0.93+-0.08 (Z -0.8) -> FAIL
+  s|canonical|M1      : A INNER 1.04+-0.14 MID 1.87+-0.12 (Z +7.5) OUTER 1.59+-0.14 (Z +4.3) -> FAIL
+  s|canonical|M2      : A INNER 1.04+-0.14 MID 1.87+-0.12 (Z +7.5) OUTER 1.57+-0.13 (Z +4.2) -> FAIL
+  MUTATE M1 (free = 0): MID changes by 0.375 -> bites
+
+== ACCEPT 8 (bootstrap 1000, seed 1); pass |A_OUTER-1| < 2 sig
+  s|canonical|P       : A INNER 0.65 MID 1.12 OUTER 0.96+-0.23 (Z -0.2) -> PASS
+  s|alt|P             : A INNER 0.63 MID 1.06 OUTER 0.92+-0.22 (Z -0.4) -> PASS
+  mono|canonical|P    : A INNER 0.67 MID 1.12 OUTER 0.96+-0.23 (Z -0.2) -> PASS
+  mono|alt|P          : A INNER 0.64 MID 1.06 OUTER 0.92+-0.22 (Z -0.4) -> PASS
+  s|canonical|M1      : A INNER 0.66 MID 1.26 OUTER 1.36+-0.33 (Z +1.1) -> PASS
+  s|canonical|M2      : A INNER 0.66 MID 1.26 OUTER 1.35+-0.33 (Z +1.1) -> PASS
+
+== eFEDS 131; pass chi2 p >= 0.01
+  s|canonical|P       : chi2 41.6/8 p 1.6e-06 -> FAIL
+  s|alt|P             : chi2 40.0/8 p 3.15e-06 -> FAIL
+  mono|canonical|P    : chi2 41.6/8 p 1.59e-06 -> FAIL
+  mono|alt|P          : chi2 40.0/8 p 3.14e-06 -> FAIL
+  s|canonical|M1      : chi2 57.7/8 p 1.33e-09 -> FAIL
+  s|canonical|M2      : chi2 57.6/8 p 1.39e-09 -> FAIL
+
+== KiDS early - late at matched M_b (obs +0.280 +- 0.083; pred = -0.027 + mean dOF)
+  s|canonical|P        h 0.25: pred -0.026 (Z +3.68) -> FAIL
+  s|canonical|P        h 0.5: pred -0.023 (Z +3.65) -> FAIL
+  s|canonical|P        h 1.0: pred -0.018 (Z +3.60) -> FAIL
+  s|canonical|P        h 2.0: pred -0.011 (Z +3.51) -> FAIL
+  s|alt|P              h 1.0: pred -0.018 (Z +3.60) -> FAIL
+  mono|canonical|P     h 1.0: pred -0.018 (Z +3.60) -> FAIL
+  mono|alt|P           h 1.0: pred -0.018 (Z +3.60) -> FAIL
+  s|canonical|M1       h 1.0: pred -0.034 (Z +3.78) -> FAIL
+  s|canonical|M2       h 1.0: pred -0.034 (Z +3.78) -> FAIL
+  [PASS] K1 discs (M_hot = 0) carry no free mass: late types M_free = 0 in every T-K row
+  MUTATE M2 (uniform placement): KiDS and eRASS1 MID change -> bites
+
+== VERDICT (nu_s; PASS = eRASS1 + ACCEPT + eFEDS + KiDS on >= 1 footing)
+  canonical: eRASS1 False, ACCEPT True, eFEDS False, KiDS False
+  alt: eRASS1 False, ACCEPT True, eFEDS False, KiDS False
+  -> FAIL   (UFDs: M_hot = 0, no change predicted; declared expected FAIL of the UFD problem)

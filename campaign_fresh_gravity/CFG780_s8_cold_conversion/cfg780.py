@@ -49,6 +49,7 @@ def branch(cold_surv, prop=False):
         Ba, Ca = B0 * np.ones_like(AA), CI - Dtot * FC
     loss = -(np.gradient(Ba + Ca, np.log(AA)))                        # comoving loss per dln a
     Va = np.concatenate([[0.0], np.cumsum(0.5 * (loss[1:] * AA[1:] ** -3 + loss[:-1] * AA[:-1] ** -3) * np.diff(np.log(AA)))])
+    Va = Va + (1.0 - (Ba[-1] + Ca[-1]) - Va[-1])       # flatness today: constant vacuum part so E(1) = 1 (criteria: V0 set by flatness; first run omitted it)
     Ea = np.sqrt((Ba + Ca) / AA ** 3 + Va)
     return Ba, Ca, Va, Ea
 
@@ -76,7 +77,7 @@ P("CFG780  growth with cold -> dark-energy conversion" + ("  [MUTATE x3]" if MUT
 for lab, (cs, prop) in VARS.items():
     Ba, Ca, Va, Ea = branch(cs, prop)
     D_C = growth(Ba, Ca, Ea)
-    g = lambda z: float(np.interp(math.log(1 / (1 + z)), np.log(AA), D_C / D_R))
+    g = (lambda ratio: (lambda z: float(np.interp(math.log(1 / (1 + z)), np.log(AA), ratio))))(D_C / D_R)   # bind per variant (first run: late-binding bug)
     G[lab] = dict(g0=g(0.0), g05=g(0.5), g1=g(1.0), E_today=float(Ea[-1]), V0=float(Va[-1]),
                   P_factor_z0=g(0.0) ** 2, fn=g)
     P(f"  {lab:42s}: E(today) {Ea[-1]:.4f} (flatness check; V0 {Va[-1]:.4f}); g = D_C/D_R at z 0 / 0.5 / 1 = "

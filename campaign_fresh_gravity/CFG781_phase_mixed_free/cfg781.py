@@ -48,6 +48,7 @@ KERN = {"mono": C4.nu_mono, "s": nu_s}
 KCAP = {k + "_cap": (lambda y, f=f: np.minimum(f(y), 1.0 + 1.0 / np.maximum(np.asarray(y, float), 1e-300))) for k, f in KERN.items()}
 KALL = dict(KERN, **KCAP)
 
+A0SI = {"canonical": C4.A0["canonical"], "alt": C4.A0["alt"]}
 FEET = ("canonical", "alt")
 CASES = [("s", f, "P") for f in FEET] + [("mono", f, "P") for f in FEET] + [("s", "canonical", "M1"), ("s", "canonical", "M2")]
 CPB = 5.364
