@@ -33,3 +33,12 @@
 - Remaining: the residual +11, and the poor absolute χ² shared by all models.
 
 κ fitted; not theory closed.
+
+## Diagnostic: where the shared absolute χ² comes from (`diag_chi2_breakdown.py`, not a verdict)
+- Block χ² for the no-edge law, by mass bin (lightest to heaviest): 17.9 / 43.2 / 45.9 / 60.6. **The heavy bins carry it.**
+- The pattern is the same in bins 2–4:
+  - the innermost point (35 kpc) is over-predicted (pulls −2.4 / −3.8 / −4.4);
+  - 0.2–1.4 Mpc is under-predicted (pulls +2 to +3).
+- So heavy lenses have relatively more mass at 0.2–1.4 Mpc than the law allows, once their mass is set by the inner points.
+- This is the record's known **early-type / massive-galaxy lensing excess** (CFG585, T-K +0.28 dex), here seen in the
+  profile shape. CFG727, the hot-gas reservoir currently running, is the lane aimed at it.
