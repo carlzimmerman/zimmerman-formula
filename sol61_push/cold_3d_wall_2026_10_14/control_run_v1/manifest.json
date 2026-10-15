@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "C3W-004",
+  "repository": {
+    "commit": "cabce594b9a2b682026189af188c3a98ab89d0fe",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_3d_wall_2026_10_14/check_control.py",
+    "sol61_push/cold_3d_wall_2026_10_14/control_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "ExactsingleactioncontrollerEulercompletionandpurestaticgradientidentity",
+    "coefficient_domain": "SymPy exact symbolic differential polynomials",
+    "conventions": "-+++; normaln=dt-bdz; b smoothstationary onR3",
+    "inputs": [
+      "sol61_push/cold_3d_wall_2026_10_14/CONTROL_CONTRACT.txt",
+      "sol61_push/cold_3d_wall_2026_10_14/check_control.py"
+    ],
+    "bounds": {
+      "dimension": 3,
+      "profile": "arbitrarysmooths",
+      "controller": "stationaryfamilyandrestrictedspatialvaryingLambda"
+    },
+    "non_claims": [
+      "No finite-test to continuum inference",
+      "No physicalcarrier/engine",
+      "No causalfront/nonlinearproof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T02:38:30.338811+00:00",
+    "runtime_seconds": 0.696453,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_3d_wall_2026_10_14/CONTROL_CONTRACT.txt",
+    "sol61_push/cold_3d_wall_2026_10_14/check_control.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/CONTROL_CONTRACT.txt",
+      "sha256": "1ca53c3397ba1ff53b3742e023e2be53120e252642d4f8055a23f67daa595ad3",
+      "sha256_after": "1ca53c3397ba1ff53b3742e023e2be53120e252642d4f8055a23f67daa595ad3"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/check_control.py",
+      "sha256": "c251fc9424914bfb290ffa64e23d71901afc2b680ad87bd15e2e3dc44c71b907",
+      "sha256_after": "c251fc9424914bfb290ffa64e23d71901afc2b680ad87bd15e2e3dc44c71b907"
+    }
+  ],
+  "output_directory": "sol61_push/cold_3d_wall_2026_10_14/control_run_v1",
+  "declared_results": [
+    "sol61_push/cold_3d_wall_2026_10_14/control_run_v1/calculation/results.json",
+    "sol61_push/cold_3d_wall_2026_10_14/control_run_v1/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/control_run_v1/stdout.txt",
+      "sha256": "7a7bd24524bd85642bd689ff7f2136dd6c0c52719b37bec4ba557a49460b07d2",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/control_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/control_run_v1/calculation/results.json",
+      "sha256": "7a7bd24524bd85642bd689ff7f2136dd6c0c52719b37bec4ba557a49460b07d2",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/control_run_v1/calculation/checks.json",
+      "sha256": "b9c0f07212eb7efaf555f3e0181d427107ea4a23b1f063bb11e247ceb749470c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

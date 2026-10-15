@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "C3W-006",
+  "repository": {
+    "commit": "cabce594b9a2b682026189af188c3a98ab89d0fe",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_3d_wall_2026_10_14/check_tensor.py",
+    "sol61_push/cold_3d_wall_2026_10_14/tensor_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "ExactTTdispersionandconflictwithspecifiedhistoricalprimaryvacuumGWspeedbound",
+    "coefficient_domain": "SymPy exact symbolic differential polynomials",
+    "conventions": "-+++; normaln=dt-bdz; b smoothstationary onR3",
+    "inputs": [
+      "sol61_push/cold_3d_wall_2026_10_14/TENSOR_CONTRACT.txt",
+      "sol61_push/cold_3d_wall_2026_10_14/check_tensor.py"
+    ],
+    "bounds": {
+      "q": "allpositive",
+      "kappa": 4,
+      "cs_squared": "1/2",
+      "mu": 2,
+      "observational_input": "GW1708172017 intervalstatedincontract,primaryverified"
+    },
+    "non_claims": [
+      "No finite-test to continuum inference",
+      "No physicalcarrier/engine",
+      "No causalfront/nonlinearproof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T03:00:25.137163+00:00",
+    "runtime_seconds": 0.375759,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_3d_wall_2026_10_14/TENSOR_CONTRACT.txt",
+    "sol61_push/cold_3d_wall_2026_10_14/check_tensor.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/TENSOR_CONTRACT.txt",
+      "sha256": "3d2a56d3d6e40c3d5410e1d5d133db8f2c6e3fdb1e23e59955c2d4b7dda23f80",
+      "sha256_after": "3d2a56d3d6e40c3d5410e1d5d133db8f2c6e3fdb1e23e59955c2d4b7dda23f80"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/check_tensor.py",
+      "sha256": "2d35e7fa72f5723c9cdce4617724cea5ebf83c54f3976798b7d3dc64bbfbf2e7",
+      "sha256_after": "2d35e7fa72f5723c9cdce4617724cea5ebf83c54f3976798b7d3dc64bbfbf2e7"
+    }
+  ],
+  "output_directory": "sol61_push/cold_3d_wall_2026_10_14/tensor_run_v1",
+  "declared_results": [
+    "sol61_push/cold_3d_wall_2026_10_14/tensor_run_v1/calculation/results.json",
+    "sol61_push/cold_3d_wall_2026_10_14/tensor_run_v1/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/tensor_run_v1/stdout.txt",
+      "sha256": "648fb2d77dc719bf336c4b9126ce58047d4e560634a756b3e596a2944a13586a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/tensor_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/tensor_run_v1/calculation/results.json",
+      "sha256": "648fb2d77dc719bf336c4b9126ce58047d4e560634a756b3e596a2944a13586a",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/tensor_run_v1/calculation/checks.json",
+      "sha256": "5213819c8a4e8863980e7320753c4b8f230aa2d4da2493a920cdaca42395d595",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

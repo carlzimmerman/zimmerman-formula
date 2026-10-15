@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "C3W-005",
+  "repository": {
+    "commit": "cabce594b9a2b682026189af188c3a98ab89d0fe",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_3d_wall_2026_10_14/check_pump.py",
+    "sol61_push/cold_3d_wall_2026_10_14/pump_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Maxwellcontrollerpositiveenergy/workexchangeandsphericalcapacitycost",
+    "coefficient_domain": "SymPy exact symbolic differential polynomials",
+    "conventions": "-+++; normaln=dt-bdz; b smoothstationary onR3",
+    "inputs": [
+      "sol61_push/cold_3d_wall_2026_10_14/PUMP_CONTRACT.txt",
+      "sol61_push/cold_3d_wall_2026_10_14/check_pump.py"
+    ],
+    "bounds": {
+      "epsilon": "strictlypositive",
+      "geometry": "decayingcontrollerfieldoutsideuniformcore",
+      "controllerchoice": "specifiedstrongsufficientcriterion",
+      "SI_example": {
+        "G": "6.67430e-11",
+        "c": 299792458,
+        "a_m": 1,
+        "Delta": 0.01
+      }
+    },
+    "non_claims": [
+      "No finite-test to continuum inference",
+      "No physicalcarrier/engine",
+      "No causalfront/nonlinearproof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T02:52:07.052964+00:00",
+    "runtime_seconds": 0.493466,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_3d_wall_2026_10_14/PUMP_CONTRACT.txt",
+    "sol61_push/cold_3d_wall_2026_10_14/check_pump.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/PUMP_CONTRACT.txt",
+      "sha256": "84570af4f0e565541314337744cdc0658ffc45f6b57baf5fdcde2ebf0243d690",
+      "sha256_after": "84570af4f0e565541314337744cdc0658ffc45f6b57baf5fdcde2ebf0243d690"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/check_pump.py",
+      "sha256": "d0d7c0d69479360de6fae83ef933f12e430b2fe871953852366e5489133947fc",
+      "sha256_after": "d0d7c0d69479360de6fae83ef933f12e430b2fe871953852366e5489133947fc"
+    }
+  ],
+  "output_directory": "sol61_push/cold_3d_wall_2026_10_14/pump_run_v1",
+  "declared_results": [
+    "sol61_push/cold_3d_wall_2026_10_14/pump_run_v1/calculation/results.json",
+    "sol61_push/cold_3d_wall_2026_10_14/pump_run_v1/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/pump_run_v1/stdout.txt",
+      "sha256": "ee49e92f4b27bf9dee9a501406c8b10ab510770f7cd284ca11a02b590e7533a9",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/pump_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/pump_run_v1/calculation/results.json",
+      "sha256": "ee49e92f4b27bf9dee9a501406c8b10ab510770f7cd284ca11a02b590e7533a9",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/pump_run_v1/calculation/checks.json",
+      "sha256": "2bacc6f91586a36c1da425985fa0fae7fb5f717b185e9e940816ad5f7fff6723",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "claim_id": "C3W-001G",
+  "repository": {
+    "commit": "cabce594b9a2b682026189af188c3a98ab89d0fe",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_3d_wall_2026_10_14/check_geometry.py",
+    "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent arbitrary3Dstatic targetnormalRicci andsource identity",
+    "coefficient_domain": "SymPy exact symbolic differential polynomials",
+    "conventions": "-+++; normaln=dt-bdz; b smoothstationary onR3",
+    "inputs": [
+      "sol61_push/cold_3d_wall_2026_10_14/CONTRACT.txt",
+      "sol61_push/cold_3d_wall_2026_10_14/check_geometry.py"
+    ],
+    "bounds": {
+      "dimensions": 4,
+      "profile": "arbitrary smoothstaticb(x,y,z)",
+      "derivatives": "up tosecondtargetb"
+    },
+    "non_claims": [
+      "No finite-test to continuum inference",
+      "No physicalcarrier/engine",
+      "No causalfront/nonlinearproof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T02:23:26.322508+00:00",
+    "runtime_seconds": 0.906127,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 70,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v1/calculation/results.json",
+      "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v1/calculation/checks.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_3d_wall_2026_10_14/CONTRACT.txt",
+    "sol61_push/cold_3d_wall_2026_10_14/check_geometry.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/CONTRACT.txt",
+      "sha256": "b8e9227ebfd8ab73f8a5ac2b3a0bdfaef1f543fe89fd961c4a5696b5769a3667",
+      "sha256_after": "b8e9227ebfd8ab73f8a5ac2b3a0bdfaef1f543fe89fd961c4a5696b5769a3667"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/check_geometry.py",
+      "sha256": "a5197eb6b7e3b97d4ec3996f5e80dac2d3c853f1749a581c1fe56173526e2a26",
+      "sha256_after": "a5197eb6b7e3b97d4ec3996f5e80dac2d3c853f1749a581c1fe56173526e2a26"
+    }
+  ],
+  "output_directory": "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v1",
+  "declared_results": [
+    "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v1/calculation/results.json",
+    "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v1/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v1/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v1/stderr.txt",
+      "sha256": "edf80e2fbde882bffd94e6435fa195a04e4b3026552cce315d3e9d0c6111c92d",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: sol61_push/cold_3d_wall_2026_10_14/geometry_run_v1/calculation/results.json, sol61_push/cold_3d_wall_2026_10_14/geometry_run_v1/calculation/checks.json"
+  ]
+}
