@@ -148,3 +148,16 @@ the internal hot/cold loads, keeps it.
 one is running, do no computation.
 
 External numbers are provisional: HIFI sideband gain, load coupling, WBS response and S.
+
+## ADDENDUM A (committed before any statistic at or near the target frequency was computed)
+- **Converter-window tier.** This is a single-spectrum test, separate from the stacked kill-line tier.
+  - A_conv(S) is the DSB peak amplitude implied by ε = 4e-9 through the conversion above, for S = 10, 50, 1000.
+  - A fixed mirror line has the same amplitude in every spectrum.
+  - The window is **EXCLUDED at coupling S** if at least 80% of usable observations individually have
+    a_obs + 5σ_obs < A_conv(S). Here a_obs is the per-observation weighted stack.
+  - The window is **ALLOWED** (a converter-window line is present) if the median a_obs ≥ A_conv(S)/2 and the stacked
+    LINE CANDIDATE tests pass.
+  - This tier does not use the χ² inflation, so a single huge line cannot be diluted.
+- **Load identification (clarification).** Hot/cold rows come only from the HIFI_Calibrate_hot_cold datasets
+  (bbtype 6005). WBS_Zero_Comb datasets (bbtype 6004) supply only the zero (dark) spectrum. A load in which the hot
+  row minus the cold row is non-positive in more than 1% of channels is rejected as corrupt (dropout).
