@@ -2,6 +2,8 @@
 
 **One claim: the galactic acceleration scale is set by the dark-energy density.**
 
+**Next steps (15 October 2026):** [Open items and research instructions](sol61_push/THEORY_NEXT_STEPS_2026-10-15.md), with priorities, dependencies, required evidence and stop conditions. The theory remains incomplete.
+
 $$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;c^2\sqrt{\frac{\Lambda}{32\pi}}\;=\;9.3619\times10^{-11}\ \mathrm{m\,s^{-2}}$$
 
 Plain text, for the record: `a0 = kappa * c * sqrt(G * rho_Lambda) = c^2 * sqrt(Lambda / (32 pi)) = 9.36e-11 m/s^2`, with κ = ½ **adopted** — measured **0.551 ± 0.043** by a distance-free method (fitted, **not derived**; four candidate coefficients sit inside 2σ). Alternative footing (ρ_total, cH₀): a₀ = 1.1279×10⁻¹⁰ — every dimensional result in this repository is quoted on both footings.
