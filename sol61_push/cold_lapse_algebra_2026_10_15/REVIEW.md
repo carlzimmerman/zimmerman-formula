@@ -1,0 +1,16 @@
+# Adversarial self-review
+
+No independent reviewer was used.
+
+1. Functional variation precedes setting gamma flat. The exact Hamiltonian includes spatial curvature, momentum-density metric derivatives, and the constitutive potential. All six diagonal Euler derivatives are compared against independent flat formulas. The diagonal sector's off-diagonal derivatives vanish for z-only smearings, so omitted off-diagonal bracket terms do not create a false local result.
+2. The arbitrary positive diagonal-metric extension is a separate exact calculation; it is not an extrapolation from flat sampling. It reproduces the off-shell s*C term as well as the constitutive current. It does not cover arbitrary non-diagonal/transverse perturbations.
+3. Weak noncommutation is evaluated modulo the bare Hamiltonian constraint and its derivatives only. It does not disprove closure after further constraints, prove a ghost or count a fractional degree of freedom. The report explicitly withholds those inferences.
+4. The positive-lapse obstruction is an inadmissible initial-data example, not a claimed solution or physical instability. The exponential lapse profile solves only the local consistency equation on the stated family, not the full evolving Einstein equations. A constant-h patch is not silently extended through the material boundary.
+5. The general clock current follows from normalized U variation and has the measure factor N²sqrtgamma. It assumes no explicit clock-value dependence and no additional controller-current term. The full powered model must include the latter's extra variation.
+6. The stationary geometric current uses the earlier exact normal Ricci as a declared frozen hashed input. Independent frame-to-coordinate stress conversion confirms W=T^i_0. The conventional Killing-energy current has the opposite sign. No particle velocity or invariant fuel inventory is inferred.
+7. Closed-orbit range conditions use flow parameter dx/ds=W. Arclength requires the reciprocal |W| factor. Smooth nonzero regular level components of the radial streamfunction are compact closed curves. Critical points are excluded from that orbit argument and treated by their separate necessary divergence condition.
+8. Lapse functions F(streamfunction) form a kernel of the clock equation alone. They are not declared physical modes, gauge modes or instabilities without the remaining constraint algorithm. Fixing the asymptotic lapse does not by itself eliminate compactly supported members of that kernel.
+9. The plot uses a stated smooth radial illustrative profile and normalized directions. Its shape need not coincide with an earlier particular step profile. It is visually checked and does not act as proof or evidence of stability, horizons, thrust or a material source.
+10. Frozen failed/counter-reporting runs are preserved and explained. Exact identities are supported by analytic reductions; the assertion count is not used as a proof certificate. No novelty, cold carrier, material realization or operating engine is claimed.
+
+Verdict: the nonlinear diagonal-sector bracket, exact pure-core clock consistency law and stationary geometric current are established in their stated scopes. The replacement's full Dirac classification, curved stability and physical propulsion remain open.

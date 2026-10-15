@@ -1,0 +1,21 @@
+{
+  "claim_id": "CLA-001",
+  "checks_passed": 14,
+  "normalization": "Mp=1; constant h>0 patch; diagonal gamma=diag(a,b,c), p^{ij}=diag(pa,pb,pc); fields only z",
+  "Hamiltonian_constraint": "h*sqrt(a(z)*b(z)*c(z))*((-1 + 1/a(z))**2 + (-1 + 1/b(z))**2 + (-1 + 1/c(z))**2)/2 - sqrt(a(z)*b(z)*c(z))*(-Derivative(b(z), (z, 2))/(b(z)*c(z)) + Derivative(b(z), z)*Derivative(c(z), z)/(2*b(z)*c(z)**2) + Derivative(b(z), z)**2/(2*b(z)**2*c(z)) - Derivative(a(z), (z, 2))/(a(z)*c(z)) + Derivative(a(z), z)*Derivative(c(z), z)/(2*a(z)*c(z)**2) - Derivative(a(z), z)*Derivative(b(z), z)/(2*a(z)*b(z)*c(z)) + Derivative(a(z), z)**2/(2*a(z)**2*c(z)))/2 + (-(a(z)*pa(z) + b(z)*pb(z) + c(z)*pc(z))**2 + 2*a(z)**2*pa(z)**2 + 2*b(z)**2*pb(z)**2 + 2*c(z)**2*pc(z)**2)/sqrt(a(z)*b(z)*c(z)) + (-2*c(z)*Derivative(pc(z), z) + pa(z)*Derivative(a(z), z) + pb(z)*Derivative(b(z), z) - pc(z)*Derivative(c(z), z))**2/(8*h*sqrt(a(z)*b(z)*c(z)))",
+  "flat_Euler_metric": [
+    "(2*h*Derivative(n(z), (z, 2)) - (2*h*(-(pa(z) + pb(z) + pc(z))**2 + 4*(pa(z) + pb(z) + pc(z))*pa(z) - 6*pa(z)**2 + 2*pb(z)**2 + 2*pc(z)**2) + Derivative(pc(z), z)**2)*n(z) + 2*(pa(z)*Derivative(pc(z), (z, 2)) + Derivative(pa(z), z)*Derivative(pc(z), z))*n(z) + 2*pa(z)*Derivative(n(z), z)*Derivative(pc(z), z))/(4*h)",
+    "(2*h*Derivative(n(z), (z, 2)) - (2*h*(-(pa(z) + pb(z) + pc(z))**2 + 4*(pa(z) + pb(z) + pc(z))*pb(z) + 2*pa(z)**2 - 6*pb(z)**2 + 2*pc(z)**2) + Derivative(pc(z), z)**2)*n(z) + 2*(pb(z)*Derivative(pc(z), (z, 2)) + Derivative(pb(z), z)*Derivative(pc(z), z))*n(z) + 2*pb(z)*Derivative(n(z), z)*Derivative(pc(z), z))/(4*h)",
+    "((2*h*((pa(z) + pb(z) + pc(z))**2 - 4*(pa(z) + pb(z) + pc(z))*pc(z) - 2*pa(z)**2 - 2*pb(z)**2 + 6*pc(z)**2) + 3*Derivative(pc(z), z)**2)*n(z) - 2*(pc(z)*Derivative(pc(z), (z, 2)) + Derivative(pc(z), z)**2)*n(z) - 2*pc(z)*Derivative(n(z), z)*Derivative(pc(z), z))/(4*h)"
+  ],
+  "flat_Euler_momentum": [
+    "2*(pa(z) - pb(z) - pc(z))*n(z)",
+    "2*(-pa(z) + pb(z) - pc(z))*n(z)",
+    "(-2*h*(pa(z) + pb(z) - pc(z))*n(z) - n(z)*Derivative(pc(z), (z, 2)) - Derivative(n(z), z)*Derivative(pc(z), z))/h"
+  ],
+  "family_constraint": "p(z)**2 - 4*p(z)*t(z) + Derivative(p(z), z)**2/(2*h)",
+  "family_Poisson_coefficient": "-(8*h**2 + 2*h*p(z)**2 - 8*h*p(z)*t(z) + Derivative(p(z), z)**2)*Derivative(p(z), z)/(4*h**2)",
+  "weak_coefficient": "-2*pprime=Pz",
+  "lapse_condition": "2 Pz Nprime+Pzprime N=0, equivalently (N^2 Pz)prime=0 when N>0",
+  "scope": "Exact local planar subsector at gamma=I, arbitrary z-dependent canonical momenta and compact smearings. Not full constraint algorithm, spherical gluing, physical DOF count or propulsion."
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "claim_id": "CLA-002",
+  "repository": {
+    "commit": "570dc52c59f1c9eecdeac1c02659059dc9aabc3b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_lapse_algebra_2026_10_15/check_clock_v2.py",
+    "sol61_push/cold_lapse_algebra_2026_10_15/clock_run_v2/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact clock-current variation, target geometric current, independent frame/coordinate energy-flux identity, axisymmetric streamfunction and local lapse compatibility obstruction",
+    "coefficient_domain": "SymPy exact differential polynomials and rational identities",
+    "conventions": "-+++; Mp=1; clock current sign W=T^i_0, conventional Killing-energy current -T^mu_0",
+    "inputs": [
+      "sol61_push/cold_lapse_algebra_2026_10_15/check_clock_v2.py",
+      "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v2/calculation/results.json"
+    ],
+    "bounds": {
+      "phase": "pure EH+algebraic proper F(PhiI,B,C), no explicit Phi0; no controller current",
+      "geometry": "arbitrary smooth stationary b(x,y,z), flat spatial slices, N1, beta=b ez",
+      "bump": "p=amp(1+epsilon cos z),amp>0,0<epsilon<1; constant h>0 patch",
+      "linearization": "Axisymmetric streamfunction kernel and lapse transport; closed-orbit range condition separately proved"
+    },
+    "non_claims": [
+      "No energy circulation as thrust or material flow",
+      "No all-background stability or closed full Dirac algebra",
+      "No established physical carrier"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T18:13:20.627846+00:00",
+    "runtime_seconds": 0.782813,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 90,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/cold_lapse_algebra_2026_10_15/clock_run_v2/calculation/results.json",
+      "sol61_push/cold_lapse_algebra_2026_10_15/clock_run_v2/calculation/checks.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_lapse_algebra_2026_10_15/check_clock_v2.py",
+    "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v2/calculation/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_lapse_algebra_2026_10_15/check_clock_v2.py",
+      "sha256": "6cf5fbc7adf594555835c81d5d84ffbf351dbedd1f393dd9e28bca4271d5c6d3",
+      "sha256_after": "6cf5fbc7adf594555835c81d5d84ffbf351dbedd1f393dd9e28bca4271d5c6d3"
+    },
+    {
+      "path": "sol61_push/cold_3d_wall_2026_10_14/geometry_run_v2/calculation/results.json",
+      "sha256": "9efe6f64ad8ec473d77a70fae8ac1219ca1b065b55b52b804e63b98d97a6332d",
+      "sha256_after": "9efe6f64ad8ec473d77a70fae8ac1219ca1b065b55b52b804e63b98d97a6332d"
+    }
+  ],
+  "output_directory": "sol61_push/cold_lapse_algebra_2026_10_15/clock_run_v2",
+  "declared_results": [
+    "sol61_push/cold_lapse_algebra_2026_10_15/clock_run_v2/calculation/results.json",
+    "sol61_push/cold_lapse_algebra_2026_10_15/clock_run_v2/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_lapse_algebra_2026_10_15/clock_run_v2/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_lapse_algebra_2026_10_15/clock_run_v2/stderr.txt",
+      "sha256": "f2a9ddfea7be14f04a0fa602dee24993544286cbe458188c677fe4062ef48eb5",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: sol61_push/cold_lapse_algebra_2026_10_15/clock_run_v2/calculation/results.json, sol61_push/cold_lapse_algebra_2026_10_15/clock_run_v2/calculation/checks.json"
+  ]
+}
