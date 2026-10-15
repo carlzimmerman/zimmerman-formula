@@ -1,0 +1,23 @@
+# Adversarial self-review of this checkpoint
+
+This is a self-review. No independent reviewer was used.
+
+**Harmonic counterexample.** The witness is globally smooth and compact after the outer cutoff; its gradient is curl-free even through that cutoff. The cutoff lies beyond θ and h, so its nonzero divergence is not penalized by the material expansion term. The velocity is tracefree and supported strictly inside the positive lapse/shift-mass region. It obeys the exterior lapse constraint and couples to no shift-null multiplier. The integrated Einstein shift cancellation and its sign are derived by a divergence identity. The reduced shift minimization is bounded and justified in the completed energy norm, so a negative trial really bounds a negative reduced kinetic form. Neither the pure-shift density alone nor a negative potential is being mislabeled a physical ghost.
+
+**Quantifiers.** For each finite κmax choose a finite k and then a compact velocity cutoff capturing half the weighted Hessian norm. Its derivatives need not be uniformly bounded as k grows. The continuum action supplies no such bound; a microscopic cutoff would change the hypothesis. The theorem applies to the old shared positive clock/shift-mass support, not arbitrary actions with unrelated supports. The finite-clock-mass family has a rest state satisfying these hypotheses. No unproved assertion about every nonzero-speed background is needed to reject that family's claimed universal health.
+
+**Explicit witness.** The k=17 capture estimate uses e^-a≥1−a and rational arithmetic, with strict margins. The decimal ball integral is informational only. The witness can be rescaled arbitrarily small despite its outer exponential profile. The unconfined and massless-cap theorems escape the construction for stated reasons.
+
+**Replacement theorem.** The global lapse constraint is imposed before the TT decomposition. Positive shift/spatial masses are additions to the massless constrained energy proof. A massless or nondynamical clock direction is not counted as a positive-gap mode. Only quadratic rest-state nonnegativity and conservation for existing smooth solutions are claimed; no existence or nonlinear stability statement is supplied by that calculation.
+
+**Shear operator.** Its unitary-gauge projector has no temporal components, so the new term supplies spatial auxiliary gradients rather than shift/lapse velocities. The completed square proves positivity only for the stated velocity support. Passing finite matrices do not prove its full all-mode continuum or curved behavior.
+
+**Proper source.** The ten stress variations include the lapse/shift dependence and the measure. Momentum sign j=-Tni agrees with the independent ADM evaluation. B and C are the projected proper variables, not the old inverse-metric strains. The Hamiltonian factorization is exact for pure EH plus algebraic F(B,C). The explicit shift elimination divides by h only in h>0 regions; it must not be used in vacuum. The old derivative repair operators are not included in that Hamiltonian proof. Source matching is inverse engineering, not an identified material.
+
+**Constraint logic.** Lapse factorization proves a Hamiltonian constraint, not its full nonlinear Poisson algebra. Zero rest quadratic modes can become strongly coupled or change rank on curved backgrounds. The report explicitly leaves that question open. The old potential-Hessian comparison is a potential-sector test, not a full ghost theorem for derivative theories.
+
+**Controller.** The new source's Lambda derivative is taken at fixed B,C and includes the target Bstar derivative. Its transverse current has the newly derived positive sign, rather than the old inverse-Ricci current. Constant-Lambda stationary states solve that controller equation; arbitrary prescribed Lambda(t,x) is not a powered solution. Canonical controller/current lapse factorization is checked in unitary gauge; coupled energy positivity and a launch are unproved.
+
+**Physics and literature.** Neither a cold carrier nor a source for the negative wall stress has been found. Known massive-gravity constraint results are context only, with no parameter-window transfer or originality claim. The exact primary sources and bounded search scope are recorded in LITERATURE.json.
+
+Verdict: the old finite-clock-mass stronger-κ route is refuted within the stated continuum class. The replacement flat constrained energy theorem, source matching, controller cancellation and potential-only nonlinear lapse factorization are established as scoped. Full nonlinear constraint closure, curved stability and physical propulsion remain open.

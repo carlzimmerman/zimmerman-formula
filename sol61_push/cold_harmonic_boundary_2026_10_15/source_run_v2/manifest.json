@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "claim_id": "CHB-003",
+  "repository": {
+    "commit": "e3632583bf03cceb4f39840bdab6e76dd868e3d1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_harmonic_boundary_2026_10_15/check_source_v2.py",
+    "sol61_push/cold_harmonic_boundary_2026_10_15/source_run_v2/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "All ten ADM stress-source coefficients of proper B,C constitutive inverse source, lapse/shift Hessian of old strain potential and homogeneous proper potential",
+    "coefficient_domain": "SymPy exact real-symbol rational polynomials",
+    "conventions": "-+++; delta L_ADM=-rho deltaN+j delta beta+S:delta gamma/2; gamma background I; shift b ez",
+    "inputs": [
+      "sol61_push/cold_harmonic_boundary_2026_10_15/check_source_v2.py"
+    ],
+    "bounds": {
+      "variables": "all symbols in rational domains where denominators nonzero; lapse N>0 physically",
+      "canonical_claim": "pure EH + algebraic F(B,C), no added time/spatial derivative repair operators"
+    },
+    "non_claims": [
+      "No nonlinear secondary-constraint theorem",
+      "No full curved-background stability",
+      "No physical matter identification or propulsion demonstration"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T15:23:33.247664+00:00",
+    "runtime_seconds": 0.461401,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 90,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_harmonic_boundary_2026_10_15/check_source_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/check_source_v2.py",
+      "sha256": "4e5d04cbb0305515a952426c7146850afee58a748d6f4e7b47062583ee568f15",
+      "sha256_after": "4e5d04cbb0305515a952426c7146850afee58a748d6f4e7b47062583ee568f15"
+    }
+  ],
+  "output_directory": "sol61_push/cold_harmonic_boundary_2026_10_15/source_run_v2",
+  "declared_results": [
+    "sol61_push/cold_harmonic_boundary_2026_10_15/source_run_v2/calculation/results.json",
+    "sol61_push/cold_harmonic_boundary_2026_10_15/source_run_v2/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/source_run_v2/stdout.txt",
+      "sha256": "55475da637564aa6d16ed8d154f40c7fc72da7d600181cf6c5b8dabfd7e333c4",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/source_run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/source_run_v2/calculation/results.json",
+      "sha256": "55475da637564aa6d16ed8d154f40c7fc72da7d600181cf6c5b8dabfd7e333c4",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/source_run_v2/calculation/checks.json",
+      "sha256": "e03fde3a7766026a837b170cc29f08539091234dc3481cd0902990380eb27791",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

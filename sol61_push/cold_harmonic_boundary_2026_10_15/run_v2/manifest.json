@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "claim_id": "CHB-001",
+  "repository": {
+    "commit": "7ababab3ece1cdd36786736e7ea1cdd049ba48d0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_harmonic_boundary_2026_10_15/check_harmonic_v2.py",
+    "sol61_push/cold_harmonic_boundary_2026_10_15/run_v2/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Harmonic-gradient finite-boundary kinetic counterexample identities, exact explicit capture bounds, and new shear-regulator square",
+    "coefficient_domain": "SymPy exact expressions, rational inequalities; decimal integral informational only",
+    "conventions": "-+++; spatial gamma=I; Frobenius norm; u=dotQ; shift v=grad compact cutoff harmonic potential; positive h clock/shift mass",
+    "inputs": [
+      "sol61_push/cold_harmonic_boundary_2026_10_15/check_harmonic_v2.py"
+    ],
+    "bounds": {
+      "k": "arbitrary positive, with explicit k=17 test",
+      "kappa": "arbitrary bounded nonnegative profile; explicit max64",
+      "phase": "h positive on nonempty bounded open Omega, compact theta, finite h_max",
+      "exclusions": "unconfined theta, globally massless lapse, unspecified UV cutoff outside continuum action"
+    },
+    "non_claims": [
+      "No no-go for all possible finite-phase actions",
+      "No full stability certificate for proposed new shear operator",
+      "No established physical carrier or engine"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T15:13:25.160499+00:00",
+    "runtime_seconds": 0.835714,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 90,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_harmonic_boundary_2026_10_15/check_harmonic_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/check_harmonic_v2.py",
+      "sha256": "b48af148edac007d7d61094212281b21bbcca2ef14a3d08c281e8874a2b50d06",
+      "sha256_after": "b48af148edac007d7d61094212281b21bbcca2ef14a3d08c281e8874a2b50d06"
+    }
+  ],
+  "output_directory": "sol61_push/cold_harmonic_boundary_2026_10_15/run_v2",
+  "declared_results": [
+    "sol61_push/cold_harmonic_boundary_2026_10_15/run_v2/calculation/results.json",
+    "sol61_push/cold_harmonic_boundary_2026_10_15/run_v2/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/run_v2/stdout.txt",
+      "sha256": "5feda29f2f3c1f0f8db71e28303fb91b3850ca9c254a601a876d50c9e8b4917a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/run_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/run_v2/calculation/results.json",
+      "sha256": "5feda29f2f3c1f0f8db71e28303fb91b3850ca9c254a601a876d50c9e8b4917a",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_harmonic_boundary_2026_10_15/run_v2/calculation/checks.json",
+      "sha256": "7e8924a013f5a7aeb883fd7cc5f6fb9a02e6473cb8cea764a909e9651d92d040",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
