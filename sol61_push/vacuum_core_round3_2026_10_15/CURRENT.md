@@ -1,5 +1,11 @@
 # Current decision: joined radial model established; physical theory OPEN
 
+Later evidence and revised execution order are in the
+[progress review](../progress_direction_2026_10_15/RESULT.md): CFG803–805 add
+conditional infall/catchment/two-halo comparisons, while controls, absolute
+fit and physical inventory remain open. The dated third-round decision below
+is retained as the mechanism checkpoint; its mathematical scope is unchanged.
+
 VC3-2026-10-15-01. [RESULT.md](RESULT.md) is this phase's synthesis;
 [CONTRACT.md](CONTRACT.md) preserves the original objective and route changes.
 

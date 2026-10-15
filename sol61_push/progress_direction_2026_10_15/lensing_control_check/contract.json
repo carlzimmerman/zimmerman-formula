@@ -1,0 +1,66 @@
+{
+  "claim_id": "CFG805-K2-ESTIMATOR-AUDIT-20261015",
+  "mathematics": {
+    "assertion_tested": "On the stored T1x x0.2562 shell spectrum, compare trapezoidal continuum sigma8 with bounded exact-integer-lattice top-hat weighting after replacing each mode power by its saved shell mean.",
+    "coefficient_domain": "IEEE-754 float64; integer lattice coordinates exact in int64; NumPy summation.",
+    "conventions": "L=100 Mpc/h, kf=2*pi/L; sigma8 radius=8 Mpc/h; original CFG650 shells [j-0.5,j+0.5)*kf; full signed lattice modes; exclude DC; sigma^2=sum P(k)W(8k)^2/L^3.",
+    "inputs": [
+      "Exact copied T1x lean JSON x0.2562; saved shell mean k/P_grav and stored sigma8_grav",
+      "Source snapshots of CFG650 measure_pk and CFG805 trapezoid for estimator interpretation."
+    ],
+    "bounds": {
+      "nmax_values": [
+        16,
+        32,
+        64
+      ],
+      "largest_lattice_shape": [
+        129,
+        129,
+        129
+      ],
+      "maximum_allocated_lattice_entries": 2146689,
+      "max_k_h_per_Mpc": "(64-0.5)*2*pi/100",
+      "simulation_steps": 0,
+      "fits": 0,
+      "random_samples": 0
+    },
+    "non_claims": [
+      "Does not recover individual mode powers or exactly reproduce CFG650 stored sigma8.",
+      "Does not infer power below the finite-box fundamental.",
+      "Does not rerun or correct original lensing fits, K2, or class."
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/progress_direction_2026_10_15/lensing_control_check/shell_window_replay.py",
+    "sol61_push/progress_direction_2026_10_15/lensing_control_check/input_snapshots/FROZEN_CRITERIA.md",
+    "sol61_push/progress_direction_2026_10_15/lensing_control_check/input_snapshots/ORIGINS.json",
+    "sol61_push/progress_direction_2026_10_15/lensing_control_check/input_snapshots/cfg650_m1m2m3_RES_canonical_N1024_L100_ns1024_lean.json",
+    "sol61_push/progress_direction_2026_10_15/lensing_control_check/input_snapshots/cfg650_pm.py",
+    "sol61_push/progress_direction_2026_10_15/lensing_control_check/input_snapshots/cfg805.py"
+  ],
+  "software": [
+    {
+      "name": "computation Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "OS/hardware",
+      "version": "macOS-26.5.2-arm64-arm-64bit"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "interpretation_rules": {
+    "completed": "Bounded numerical diagnostic only; inspect result before interpretation.",
+    "failed_or_timeout": "No audit numerical conclusion; original source/scores unchanged.",
+    "distinguishing_result": "Same-box discrete shell weighting removes most discrepancy; full cause still conditional on unavailable within-shell power distribution."
+  }
+}

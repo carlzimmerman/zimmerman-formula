@@ -2,13 +2,28 @@
 
 15 October 2026. Planning baseline: `80a82199cbf46fb7bbabc8d0f65e4764d6a709f4`.
 
-**Execution checkpoint:** [Multi-current mechanism results](multicurrent_continuation_2026_10_15/RESULT.md) and [current decision](multicurrent_continuation_2026_10_15/CURRENT.md). Conditional current dynamics, charge-conserving conversion, source-profile bounds and the smooth charged-edge obstruction are now derived and audited; the joined physical mechanism remains open.
+**Current direction:** [Progress review and executable next steps](progress_direction_2026_10_15/RESULT.md), incorporating CFG803–805 and the DR4 readiness note. Retention-based supply and neighbouring matter narrow the relative lensing gap; absolute fit, normalization, mass-unit/exclusion consistency and actual finite-supply dynamics remain unresolved. The [joined radial mechanism result](vacuum_core_round3_2026_10_15/RESULT.md) remains a separate restricted theorem. The joined physical theory remains open.
 
 The next decisive task is to connect the proposed cold medium to the galaxy law through one reciprocal action with actual mass, charge and energy accounting. Static profiles, prescribed formation clocks and conditional mathematical certificates do not supply that connection. The theory remains **INCOMPLETE**.
 
 These instructions organize the remaining work; they do not change the [frozen October 14 theory](../campaign_fresh_gravity/THEORY_CANONICAL_2026-10-14.md), its predictions or its criteria. Any changed action, interaction, source rule or parameter prescription must be a separately dated candidate with its own evidence. A failed attempt closes that specified route, not every possible completion.
 
 ## Latest mechanism continuation, 15 October 2026
+
+The [latest progress assessment](progress_direction_2026_10_15/RESULT.md)
+directs the next calculation: reconcile CFG805's spectrum estimator with the
+stored discrete-mode measurement; resolve the retention mass units and
+mass-dependent exclusion edge; then save full-covariance residuals for the
+actual refitted models. The independent bounded shell replay supports a
+compression/quadrature contribution to the sigma8 discrepancy without
+correcting the original score. CFG804's primary relative success is conditional
+on calibrated retention and profiled masses, and its absolute fit is poor.
+CFG805 narrows the all-radius relative gap to +11.06 but fails its CLOSED
+criterion and normalization control. Derive unique catchment ownership and
+the finite profile at the actual supply before claiming that physical bridge.
+In parallel, retain O1/O2's same-candidate phase/metric/formation obligations
+and define the sealed DR4 statistic/error convention before unsealing. No
+frozen criterion, old classification or sealed file changes with these directions.
 
 The [third current/vacuum research round](vacuum_core_round3_2026_10_15/RESULT.md)
 now supplies a single actual critical charged/baryonic body with both fluids
