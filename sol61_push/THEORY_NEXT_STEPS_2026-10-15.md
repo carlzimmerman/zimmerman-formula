@@ -10,6 +10,23 @@ These instructions organize the remaining work; they do not change the [frozen O
 
 ## Latest mechanism continuation, 15 October 2026
 
+The [third current/vacuum research round](vacuum_core_round3_2026_10_15/RESULT.md)
+now supplies a single actual critical charged/baryonic body with both fluids
+dynamical, a counted moving wall, true Maxwell vacuum and positive complete
+radial energy. Two independent audits accept that declared hybrid scope.
+Its high-pressure EOSs and reflecting phase are chosen inputs; all-angular
+interface health, a full metric and the physical galaxy law remain open.
+The round also proves canonical finite-stock Newtonian energetic results and
+an exact nonzero-stiffness member, while preserving the zero-density taper
+and unchanged-law Lorentz-vacuum obstructions. The new CFG801 lane excludes
+the tested sharp settled-only halo as all outer lensing mass; the theorem's
+mechanical validity supplies no empirical pass. The [current instructions](vacuum_core_round3_2026_10_15/CURRENT.md)
+therefore require one counted, physically viable outer population, then that
+same candidate's metric/interface modes, phase/formation dynamics and
+candidate-matched empirical gates. O0–O8 remain the completion standard.
+
+Earlier checkpoint retained:
+
 The [second ambient-support research round](ambient_support_round2_2026_10_15/RESULT.md)
 now supplies an actual finite-mass neutral equilibrium with its own Newtonian
 rest-mass gravity, an exact regular-core weak branch, and a conditional joined

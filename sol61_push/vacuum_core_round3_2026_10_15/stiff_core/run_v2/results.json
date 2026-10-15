@@ -1,0 +1,101 @@
+{
+  "claim_id": "VC3-STIFF-001",
+  "exact_checks": 15,
+  "check_names": [
+    "base enclosed core mass",
+    "base core Euler equation",
+    "base Poisson potential equation",
+    "base first zero",
+    "base mass at edge",
+    "base potential at edge",
+    "base center potential",
+    "transverse core boundary",
+    "matching mismatch at base",
+    "matching derivative",
+    "base radial coercivity margin",
+    "Gamma2 relativistic effective inertia",
+    "electric-to-material energy normalization",
+    "exterior first Picard edge",
+    "exterior first Picard asymptotic mass"
+  ],
+  "sample_parameters": {
+    "alpha": 0.5,
+    "delta": 1e-06,
+    "eta": 0.001
+  },
+  "ODE": {
+    "method": "DOP853",
+    "rtol": 2e-11,
+    "atol": 2e-13,
+    "central_start": 1e-06,
+    "outer_radii": [
+      100,
+      200,
+      400
+    ]
+  },
+  "base_benchmark": {
+    "radius_error": 1.3820056210533949e-12,
+    "mass_error": -3.5635494555208425e-11
+  },
+  "samples": [
+    {
+      "outer_radius": 100.0,
+      "psi_center": 3.9989539652947963,
+      "core_radius": 4.441391563435444,
+      "base_radius": 4.442882938158366,
+      "charged_mass": 8.87389641257183,
+      "neutral_mass_upper_diagnostic": 0.006478318008018649,
+      "central_neutral_potential_upper_diagnostic": 0.002750279432285715,
+      "qs_upper_diagnostic": 0.0068825842108876005,
+      "kappa_diagnostic": 0.20345017336819482,
+      "radial_Schur_margin_diagnostic_G1": 0.09414237099774667,
+      "matching_residual": 1.6514567491299204e-15,
+      "tail_mu": 3.1094092681934304e-07,
+      "tail_first_Picard_error_bound_given_ODE_state": 6.868842193049263e-13,
+      "max_x_sampled_not_uniform_bound": 0.0006159197838407808,
+      "shooting_evaluations": 6
+    },
+    {
+      "outer_radius": 200.0,
+      "psi_center": 3.9989539652949175,
+      "core_radius": 4.441391563435443,
+      "base_radius": 4.442882938158366,
+      "charged_mass": 8.87389641257182,
+      "neutral_mass_upper_diagnostic": 0.006414119102295242,
+      "central_neutral_potential_upper_diagnostic": 0.0027497801073493315,
+      "qs_upper_diagnostic": 0.006881334648431181,
+      "kappa_diagnostic": 0.20345017336819593,
+      "radial_Schur_margin_diagnostic_G1": 0.09414374767205283,
+      "matching_residual": 9.71445146547012e-17,
+      "tail_mu": 7.773530421814515e-08,
+      "tail_first_Picard_error_bound_given_ODE_state": 2.146477643900926e-14,
+      "max_x_sampled_not_uniform_bound": 0.0006159197838407807,
+      "shooting_evaluations": 6
+    },
+    {
+      "outer_radius": 400.0,
+      "psi_center": 3.9989539652949704,
+      "core_radius": 4.441391563435442,
+      "base_radius": 4.442882938158366,
+      "charged_mass": 8.873896412571813,
+      "neutral_mass_upper_diagnostic": 0.006398069351842356,
+      "central_neutral_potential_upper_diagnostic": 0.0027497176916497744,
+      "qs_upper_diagnostic": 0.006881178452917653,
+      "kappa_diagnostic": 0.20345017336819637,
+      "radial_Schur_margin_diagnostic_G1": 0.09414391975656873,
+      "matching_residual": -7.216449660063518e-16,
+      "tail_mu": 1.9433830586621164e-08,
+      "tail_first_Picard_error_bound_given_ODE_state": 6.707714871066557e-16,
+      "max_x_sampled_not_uniform_bound": 0.0006159197838407802,
+      "shooting_evaluations": 6
+    }
+  ],
+  "interpretation": "Exact reduction checks passed; bounded non-interval shooting illustrates a small positive branch and radial Schur margin. Existence and positivity for sufficiently small parameters rest on the analytic proof, not this finite sample.",
+  "nonclaims": [
+    "No interval ODE certification of the listed sample.",
+    "No quantified universal sufficiently-small threshold.",
+    "No angular, full Einstein, nonlinear free-boundary or vacuum-phase closure.",
+    "Subcritical charge changes the original critical-charge model."
+  ]
+}

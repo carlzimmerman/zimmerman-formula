@@ -1,0 +1,11 @@
+# Parameter and auxiliary-limit clarification
+
+15 October 2026. This supplements the frozen proof without changing its equations.
+
+The phrase fixed EOS means that the functional forms P_c=K rho_c^2 and P_s=K_s rho_s^(6/5) are specified before solving, and their constants remain fixed throughout each individual equilibrium. The existence family ranges over chosen constants and central densities. In particular, choosing epsilon independently of eta in Section 5 changes the assigned K and rho_* as explicitly shown there, and K_s then sets delta. The report does not claim that a single prescribed pair (K,K_s) permits all three parameters to vary independently, or that its arbitrarily low-density sequence automatically satisfies the principal gate.
+
+The base delta=0, eta=0 is an auxiliary Newtonian ODE limit used to construct a positive-parameter branch. At that limit there is no material current outside the compact core, so it is not claimed to be a globally defined solution of the material-frame covariant action in empty vacuum. Every physical member being constructed has delta>0; its neutral current is positive at every finite radius, so the static comparison equations and varied frame are defined there. This does not provide a vacuum phase or uniform hyperbolicity at infinity.
+
+The initial finite run `run_v1` passed its computations but its contract misstated NumPy as 1.26.4. The actual version was 1.26.2. The corrected `computation_contract_v2.json` and `run_v2` are authoritative for provenance. No mathematical constants, script bytes or proof bytes changed for this metadata repair.
+
+For the charged free boundary, the charged chemical first integral is a constant lambda_c that need not be zero (at the base, in the displayed units, lambda_c=-1). The neutral first integral is zero. The quadratic form is the Hessian of energy minus lambda_c times the separately conserved charged mass; equivalently, second-order path terms proportional to lambda_c cancel because that mass is fixed. The zero charged surface density and pressure give no added quadratic surface energy for the finite-inertia free-boundary displacement domain u(0)=u(R ell)=0. This is the required modification of the zero-chemical-constant discussion for the earlier infinite co-Plummer core. It does not supply a nonlinear charged free-boundary existence theorem.

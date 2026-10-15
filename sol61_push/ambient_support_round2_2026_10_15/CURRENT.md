@@ -1,5 +1,11 @@
 # Current decision after the second round
 
+Subsequent executed work: [third-round result](../vacuum_core_round3_2026_10_15/RESULT.md)
+and [current instructions](../vacuum_core_round3_2026_10_15/CURRENT.md). The new
+joined critical two-fluid/wall/Maxwell radial model and canonical mechanical
+theorems have explicit audits and limits. The second-round evidence and its
+historical next steps below are retained; the full physical theory remains open.
+
 AS2-2026-10-15-01. Whole physical theory **OPEN**. Read [RESULT.md](RESULT.md)
 for the integrated evidence and [AUDIT.md](AUDIT.md) for its exact limits.
 
