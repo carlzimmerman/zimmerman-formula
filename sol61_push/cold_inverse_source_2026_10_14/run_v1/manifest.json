@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "CIS-001",
+  "repository": {
+    "commit": "6ed48b14bf28a573b375818b4754206bb77b4f5c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_inverse_source_2026_10_14/check_inverse.py",
+    "sol61_push/cold_inverse_source_2026_10_14/run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Inverse covariant four-scalar source solves all Einstein and scalar equations; arbitrary quadratic first-derivative strain cannot make both selected kinetic/gradient forms positive for specified target in normal frame; planar benchmark extends obstruction to all frames",
+    "coefficient_domain": "SymPy exact rational/function derivatives; no random sampling",
+    "conventions": "-+++; c=hbar=1; Mp2 factored out; full-rank material-coordinate background; normal-frame positive-energy criterion separated from real dispersion",
+    "inputs": [
+      "sol61_push/cold_inverse_source_2026_10_14/check_inverse.py",
+      "sol61_push/cold_inverse_source_2026_10_14/CONTRACT.txt"
+    ],
+    "bounds": {
+      "target_metric": "stationary arbitrary b(x,y,z)",
+      "Einstein_components": 10,
+      "scalar_equations": 4,
+      "strain_Hessian": "arbitrary symmetric3x3 on clock/z subspace, restriction of full10x10",
+      "planar_benchmark": "constant transverse shear, exact tensor",
+      "gyro_control": "exact one-field speed polynomial u2-4u+1"
+    },
+    "non_claims": [
+      "No discovered cold species or physical engineering realization",
+      "No autonomous metric prediction, creation, launch or stability certificate",
+      "No identity between Hamiltonian indefiniteness and exponential instability",
+      "No universal modified/degenerate/higher-derivative exclusion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T00:15:03.488442+00:00",
+    "runtime_seconds": 2.101587,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 90,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_inverse_source_2026_10_14/check_inverse.py",
+    "sol61_push/cold_inverse_source_2026_10_14/CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/check_inverse.py",
+      "sha256": "b21a0ee35385c91c96727fb3ae6996f64d06fe15601cd9adad05b2ba97bfc47d",
+      "sha256_after": "b21a0ee35385c91c96727fb3ae6996f64d06fe15601cd9adad05b2ba97bfc47d"
+    },
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/CONTRACT.txt",
+      "sha256": "a782689f66a602bf3bcd180897407a10ca791501c2b9c9dd347c9e5cf56e056d",
+      "sha256_after": "a782689f66a602bf3bcd180897407a10ca791501c2b9c9dd347c9e5cf56e056d"
+    }
+  ],
+  "output_directory": "sol61_push/cold_inverse_source_2026_10_14/run_v1",
+  "declared_results": [
+    "sol61_push/cold_inverse_source_2026_10_14/run_v1/calculation/results.json",
+    "sol61_push/cold_inverse_source_2026_10_14/run_v1/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/run_v1/stdout.txt",
+      "sha256": "25f98694869597dd632f7c0e01fefb5040b1e179cfe4d177194cd88327ef31e2",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/run_v1/calculation/results.json",
+      "sha256": "25f98694869597dd632f7c0e01fefb5040b1e179cfe4d177194cd88327ef31e2",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/run_v1/calculation/checks.json",
+      "sha256": "75e1a68ad4ae2d05a7f9e73ba310358cb37af020df579d3489def3b3a8ddc47f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

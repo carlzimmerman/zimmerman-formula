@@ -1,0 +1,16 @@
+Repository root; Python3.9.6,SymPy1.14.0,NumPy1.26.2.
+Three canonical manifests record exact argv/input hashes/output hashes/limits.
+Validate:
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/validate_manifest.py sol61_push/cold_inverse_source_2026_10_14/run_v1/manifest.json --root .
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/validate_manifest.py sol61_push/cold_inverse_source_2026_10_14/regulated_run_v1/manifest.json --root .
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/validate_manifest.py sol61_push/cold_inverse_source_2026_10_14/general_run_v1/manifest.json --root .
+
+To repeat, use bounded runner with the corresponding JSON contract, script,
+text contract and a fresh output directory. Replace every output-directory
+occurrence consistently; never overwrite canonical runs.
+Example inverse repeat:
+PYTHONDONTWRITEBYTECODE=1 python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/run_experiment.py --root . --contract sol61_push/cold_inverse_source_2026_10_14/computation_contract.json --output sol61_push/cold_inverse_source_2026_10_14/run_repeat --input sol61_push/cold_inverse_source_2026_10_14/check_inverse.py --input sol61_push/cold_inverse_source_2026_10_14/CONTRACT.txt --result sol61_push/cold_inverse_source_2026_10_14/run_repeat/calculation/results.json --result sol61_push/cold_inverse_source_2026_10_14/run_repeat/calculation/checks.json --timeout 120 --max-cpu-seconds 90 --max-threads 1 --max-output-bytes 1000000 -- python3 sol61_push/cold_inverse_source_2026_10_14/check_inverse.py sol61_push/cold_inverse_source_2026_10_14/run_repeat/calculation
+Other scripts are check_regulated.py (regulated_contract.json and
+REGULATED_CONTRACT.txt) and check_general.py (general_contract.json and
+GENERAL_CONTRACT.txt). Each creates its own fresh calculation directory.
+No network or shared research import in scientific scripts.

@@ -1,0 +1,38 @@
+CIS-002.2026-10-14. Followup to completed CIS-001, inputs preserved.
+Question: can a separate covariant projected-clock-curvature square preserve
+the exact inverse background yet make the local frozen matter sector positive?
+Full action prototype: inverse Ricci source + strain squares vanishing to first
+order + -hD[Q-Q*(phi)]2/2, Q=(gmunu+Umu Unu) nabla_mu nabla_nu phi0,
+U_mu=-partial_mu phi0/sqrt[-(dphi0)2]. Q* is its value on the target, expressed
+in material coordinates. Check zero background/first variation algebra, clock
+projector, Q*=b_z for directed metric, and frozen flat-principal Delta pi0.
+
+Local benchmark: planar constant shear, H/h=diag(-1,1,0,-1). Strain terms
+Lct/h=(K0+1)(S00)2/8 +sum_i bi(S0i)2/2 -mu sum_ij(Sij)2/4,
+K0=10^12,Ksp=100, bi=(99,100,101),mu=2. S is the target-coframe material
+strain B-B*. Baseline + counterterms + clock regulator give frozen matter
+K/h=diag(K0,100,100,100),
+G00/h=D k4-100kx2-101ky2-102kz2,
+Gsp/h=k2 diag(3,2,1)+2 k kT; mixed velocity-gradient terms retained.
+
+Band: q=D k2 in[103,10^5], no claim outside it. Analytic all-direction bounds:
+positive K and G; normalized spatial G >=k2/100, clock G>=k2/K0.
+Hermitian linearization A=[[S,sqrtG],[sqrtG,0]] has real frequencies.
+For any unit m, norm(d_m S)<=101/sqrt(K0 Ksp)=0.0000101;
+norm(d_m sqrtGsp)<=5/sqrt(Ksp)=0.5;
+norm(d_m sqrtGclock)<=(2qmax-100)/(sqrtK0 sqrt(qmin-102))=0.1999.
+Hence every differentiable frozen branch has |group velocity|<=0.5000101
+in units c=1, throughout this band. This is not a UV/front-velocity claim.
+
+Finite independent checks: SymPy full4-field Hessians and Legendre energy;
+NumPy Hermitian8x8 spectral/group-derivative evaluation, six nondegenerate
+directions proportional to (1,2,3),(2,3,5),(3,1,4),(-1,2,4),(4,-3,2),
+(5,2,-1), q=103,1000,100000. Analytic norm proof, not grid, supplies uniformity.
+No randomness. Exact rational identities plus binary64 eigenvalues.
+Caps60s wall,45s CPU,one cooperative library thread,1MB logs.
+
+Critical exclusions: no full coupled gravity stability; projector term also
+perturbs metric modes. No global inhomogeneous mode spectrum, realized field
+coefficients, physical confinement removing low-k modes, derived EFT cutoff,
+radiative stability, launch/control, actual cold particles or baryon conversion.
+Large assigned coefficients are a mathematical tuning, not measured constants.

@@ -1,0 +1,33 @@
+CIS-003.2026-10-14. Extend the local regulated prototype to arbitrary symmetric
+source matrix H in target orthonormal material frame, normalized by constant
+h>0 with operator norm(H/h)<=1. This can bound a smooth compact target Ricci.
+This is a frozen-matter principal calculation, not a global/gravity spectrum.
+
+Define Kclock=10^12,L=100,mu=2; a_i=H0i/h, Hs=Hij/h, Ht=H00/h.
+B=L I-Hs; strains S00=-2 v0,S0i=-vi+partial_i pi0,
+Sij=partial_i pij+partial_j pii. Add, in units h,
+(Kclock-Ht)S00^2/8 + S0^T B S0/2 - S00(a.S0)/2
+-mu sum_ij Sij^2/4 +sum_i a_i[sum_j S0j Sij-S0i trS/2].
+Add separate projected-clock-curvature square giving -D(Delta pi0)^2/2.
+All terms are quadratic in quantities zero on the target, so no background
+stress/matter equation changes. Check all arbitrary-H polynomial Hessians.
+
+Expected K=diag(Kclock,L,L,L), no gradient clock/material cross block,
+G00=Dk4+(Ht-L)k2+k^T Hs k,
+Gsp=k2(Hs+mu I)+mu kkT.
+Expected normalized S=M+MT: S00=2 a.k/Kclock,
+Ssp=-2 a.k I/L, S0sp=-(B k)/sqrt(Kclock L).
+
+Uniform band q=Dk2 in[103,10^5]. Norm(H)<=1 gives |Ht|<=1,normHs<=1,
+norma<=1. K/G positive with normalized Gclock>=k2/Kclock and Gsp>=k2/L.
+Directional square-root derivative bounds: clock<=0.199902,sp<=0.5.
+Norm(dS)<=2/Kclock+2/L+101/sqrt(Kclock L).
+Thus Hermitian eigenfrequency derivative/group speed <=0.520010100002<1.
+This is a finite-band local group-speed result, not front velocity/UV causality.
+Algebra exact; no random matrices/grid used for uniform proof.
+
+Caps45s wall,30s CPU,one cooperative numerical-library thread,1MB logs.
+Missing: actual microphysics, cutoff/radiative control, physical IR boundary,
+global coefficient-gradient stability, gravity constraints, finite hardware,
+launch and conversion feeding this medium. Infinite-space low-k modes are
+not stabilized by this construction and cannot be discarded by assertion.

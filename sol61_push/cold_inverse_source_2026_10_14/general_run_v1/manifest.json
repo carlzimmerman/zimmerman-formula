@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "CIS-003",
+  "repository": {
+    "commit": "6ed48b14bf28a573b375818b4754206bb77b4f5c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_inverse_source_2026_10_14/check_general.py",
+    "sol61_push/cold_inverse_source_2026_10_14/general_run_v1/calculation"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Arbitrary symmetric source H exact kinetic/gradient tuning, Legendre form and normalized mixed symbol; analytic uniform finite-band group bound constants",
+    "coefficient_domain": "Exact SymPy rational algebra",
+    "conventions": "H/h norm<=1, -+++, c=hbar=1, full-rank material-coordinate background, frozen gravity",
+    "inputs": [
+      "sol61_push/cold_inverse_source_2026_10_14/check_general.py",
+      "sol61_push/cold_inverse_source_2026_10_14/GENERAL_CONTRACT.txt"
+    ],
+    "bounds": {
+      "H": "arbitrary symbolic symmetric4x4, with norm bound used only in analytic report proof",
+      "Kclock": 1000000000000,
+      "Ksp": 100,
+      "Dk2": [
+        103,
+        100000
+      ],
+      "scope": "all spatial directions by norm proof"
+    },
+    "non_claims": [
+      "No full gravitational/global/interface stability",
+      "No physical cutoff, cold particle or launch mechanism",
+      "No removal of infinite-space low-k modes by assertion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-15T00:22:39.722377+00:00",
+    "runtime_seconds": 1.240536,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_inverse_source_2026_10_14/check_general.py",
+    "sol61_push/cold_inverse_source_2026_10_14/GENERAL_CONTRACT.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/check_general.py",
+      "sha256": "d9646f2ea6210eeb9687dd92ed634f7fa7d5b0151dfb7c57ee5f1b063121388d",
+      "sha256_after": "d9646f2ea6210eeb9687dd92ed634f7fa7d5b0151dfb7c57ee5f1b063121388d"
+    },
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/GENERAL_CONTRACT.txt",
+      "sha256": "8844d2f7db6195bc541aaf320a3dc342f0a936089a8ae6eecc79c32e405d0caa",
+      "sha256_after": "8844d2f7db6195bc541aaf320a3dc342f0a936089a8ae6eecc79c32e405d0caa"
+    }
+  ],
+  "output_directory": "sol61_push/cold_inverse_source_2026_10_14/general_run_v1",
+  "declared_results": [
+    "sol61_push/cold_inverse_source_2026_10_14/general_run_v1/calculation/results.json",
+    "sol61_push/cold_inverse_source_2026_10_14/general_run_v1/calculation/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/general_run_v1/stdout.txt",
+      "sha256": "3fb97b3461a41cc88239c92e49a7132bdf90b8a990cf31e286897a55b8276759",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/general_run_v1/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/general_run_v1/calculation/results.json",
+      "sha256": "3fb97b3461a41cc88239c92e49a7132bdf90b8a990cf31e286897a55b8276759",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_inverse_source_2026_10_14/general_run_v1/calculation/checks.json",
+      "sha256": "1dc875ec68d4f103cd8925b4d696fee35edba9bab271acf90e056e121fcc106f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
