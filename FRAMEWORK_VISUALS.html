@@ -154,6 +154,28 @@ tether:  4πG P = −g_c  (cancels cold self-gravity)     stiffness: γ = 2πG L
   <p class="cap">All values are read from the committed lane READMEs and result JSONs (CFG743, 744, 747, 748, 749, 699). The Israel–Stewart fluid form (η = pτ/2α, Kn = √2/4α, Re = 4α) has no result curve of its own, so it is not plotted.</p>
 </section>
 
+<section class="sec" id="s7">
+  <div class="sechead"><h2>7. Hot-gas selector and its sealed prediction</h2><span class="chip">consistent, not a mechanism</span><span class="chip fit">two fitted constants: k, L*</span><span class="chip ok">sealed 2026-10-13</span></div>
+  <div class="eq">selector:  C = k · M_hot     (cold mass kept in proportion to hot gas)     k calibrated on X-COP only
+states:  galaxies f_hot ≈ 0 → no cold mass    groups f_hot ≈ 0.08 → a little    clusters f_hot ≈ 0.9 → about 3 M_b
+prediction (CFG746):  log M* = 10.8 quiescent galaxy, all gas inside 100 kpc, isothermal
+sealed file cfg746_predictions.json  sha256 79140240f3317e2b7a44cc9ed687c2e186809036ad9c5453d35d2bff88b9f937</div>
+  <div class="ctl"><label for="sc7">scenario (footing, cluster hot-gas fraction)</label>
+    <select id="sc7"><option value="canonical|0.85">canonical, f_hot,cl 0.85</option><option value="canonical|0.95">canonical, f_hot,cl 0.95</option><option value="alt|0.85">alt, f_hot,cl 0.85</option><option value="alt|0.95">alt, f_hot,cl 0.95</option></select>
+    <span class="out" id="sc7o"></span></div>
+  <div class="grid">
+    <div class="card"><h3>Do groups survive the selector? (CFG745)</h3><svg id="c7a" viewBox="0 0 640 260" role="img" aria-label="Group mass shift against the two-sigma bar for four scenarios"></svg><div class="legend" id="l7a"></div>
+      <p class="cap">Shift in group mass from the selector, for two group gas-fraction values ν_g. The bar is the 2σ limit, 0.0645. Three of four scenarios sit at or just above it (TENSION). The test brackets ν_g rather than computing it per group.</p></div>
+    <div class="card"><h3>Hot gas needed by early types against what eROSITA allows</h3><svg id="c7b" viewBox="0 0 640 330" role="img" aria-label="Hot gas mass needed against allowed by eROSITA for two footings"></svg><div class="legend" id="l7b"></div>
+      <p class="cap">M_hot inside 100 kpc in units of M*. The needed amount is below every allowed value, so the selector is not excluded. For the alt footing at Z = 1 the margin is thin (0.17–0.19 against 0.198). The hot gas around these galaxies is not measured.</p></div>
+    <div class="card"><h3>Sealed prediction: X-ray luminosity</h3><svg id="c7c" viewBox="0 0 640 220" role="img" aria-label="Predicted X-ray luminosity ranges for three metallicities"></svg>
+      <p class="cap">Predicted L_X (0.5–2 keV) range for three gas metallicities. Across all four scenarios and metallicities it sits 1.2–70× below the eROSITA stack's 1.1e40 erg/s. That is consistent with the stack but not a test, and the highest-metallicity case comes close.</p></div>
+    <div class="card"><h3>Sealed prediction: hot-gas mass and falsifier</h3><svg id="c7d" viewBox="0 0 640 250" role="img" aria-label="Predicted hot gas mass for four scenarios with falsifier tick at half"></svg>
+      <p class="cap">Predicted M_hot(&lt;100 kpc). The tick on each bar is half its value. A measured M_hot for log M* 10.5–11.0 quiescent galaxies below half the tabled values kills the selector as the early-type explanation. The decisive measurement is a mass, from SZ (Y D_A² ≈ 2e-10 Mpc²) or X-ray profiles.</p></div>
+  </div>
+  <p class="cap">Values are from cfg745_results.json and cfg746_predictions.json. No SZ or X-ray profile data were read. The selector has no mechanism: nothing explains why cold mass is retained in proportion to hot gas.</p>
+</section>
+
 <footer>Constants: G = 6.674e-11, M☉ = 1.989e30 kg, kpc = 3.0857e19 m. Status labels follow the equation document. This page is a visual aid, not a result, and nothing here should be cited as "the data favour the framework" or "theory closed".</footer>
 </main>
 
@@ -354,7 +376,62 @@ function draw6(){
   el(svg,'text',{x:X(13.8)+4,y:246,style:'fill:'+css('--c3')},'Hubble time 13.8 Gyr');
   legend('l6e',[['polarization = cold medium','--bad'],['independent light field','--ok']]);
 }
-function all(){draw1();draw2();draw3();draw4();draw5();draw6()}
+/* ---- 7. hot-gas selector ---- */
+const HG={g:{'canonical|0.85':[0.0722,0.0327,'TENSION'],'canonical|0.95':[0.0652,0.0294,'TENSION'],'alt|0.85':[0.0649,0.0293,'TENSION'],'alt|0.95':[0.0585,0.0263,'PASS']},
+ need:{canonical:[0.2211,0.2471],alt:[0.1706,0.1907]},allow:{canonical:[1.488,0.896,0.496],alt:[0.5885,0.352,0.198]},
+ P:{"alt|0.85":{M:1.07673e10,Ms:0.17065,kT:0.118917,Y:1.82569e-10,k:3.22298,L:{"0.1":[1.56e38,4.9e38],"0.3":[4.37e38,1.293e39],"1.0":[1.426e39,4.234e39]}},"alt|0.95":{M:1.2034e10,Ms:0.190726,kT:0.119978,Y:2.05869e-10,k:2.88372,L:{"0.1":[1.95e38,6.12e38],"0.3":[5.46e38,1.615e39],"1.0":[1.782e39,5.289e39]}},"canonical|0.85":{M:1.39488e10,Ms:0.221074,kT:0.11407,Y:2.26874e-10,k:3.6187,L:{"0.1":[2.62e38,8.23e38],"0.3":[7.33e38,2.169e39],"1.0":[2.394e39,7.107e39]}},"canonical|0.95":{M:1.55899e10,Ms:0.247083,kT:0.115317,Y:2.56339e-10,k:3.23778,L:{"0.1":[3.27e38,1.028e39],"0.3":[9.16e38,2.71e39],"1.0":[2.99e39,8.877e39]}}}};
+function draw7(){
+  const sc=document.getElementById('sc7').value,P=HG.P[sc];
+  document.getElementById('sc7o').textContent=`k = ${P.k.toFixed(2)}   kT = ${P.kT.toFixed(3)} keV   Y D_A² = ${P.Y.toExponential(2)} Mpc²`;
+  /* a: groups */
+  let svg=document.getElementById('c7a');svg.innerHTML='';
+  const XA=v=>230+v/0.08*380, keys=Object.keys(HG.g);
+  [0,0.02,0.04,0.06,0.08].forEach(t=>{el(svg,'line',{x1:XA(t),x2:XA(t),y1:8,y2:222,stroke:css('--grid')});el(svg,'text',{x:XA(t),y:238,'text-anchor':'middle'},String(t))});
+  keys.forEach((k,i)=>{const y=14+i*52,g=HG.g[k],lab=k.replace('|',', f=');
+    el(svg,'text',{x:222,y:y+20,'text-anchor':'end',style:'fill:'+css('--fg')},lab);
+    el(svg,'rect',{x:XA(0),y:y,width:XA(g[0])-XA(0),height:16,fill:css('--c1')});el(svg,'text',{x:XA(g[0])+6,y:y+12,style:'fill:'+css('--fg')},g[0].toFixed(4));
+    el(svg,'rect',{x:XA(0),y:y+19,width:XA(g[1])-XA(0),height:16,fill:css('--c3')});el(svg,'text',{x:XA(g[1])+6,y:y+31,style:'fill:'+css('--fg')},g[1].toFixed(4));
+    el(svg,'text',{x:630,y:y+20,'text-anchor':'end',style:'fill:'+css(g[2]==='PASS'?'--ok':'--bad')},g[2])});
+  el(svg,'line',{x1:XA(0.0645),x2:XA(0.0645),y1:8,y2:222,stroke:css('--bad'),'stroke-width':1.5,'stroke-dasharray':'4 3'});
+  el(svg,'text',{x:XA(0.0645)-4,y:20,'text-anchor':'end',style:'fill:'+css('--bad')},'2σ = 0.0645');
+  el(svg,'text',{x:420,y:254,'text-anchor':'middle'},'group mass shift');
+  legend('l7a',[['ν_g = 1.6','--c1'],['ν_g = 3.7','--c3']]);
+  /* b: needed vs allowed */
+  svg=document.getElementById('c7b');svg.innerHTML='';
+  const XB=v=>190+v/1.6*420;
+  [0,0.4,0.8,1.2,1.6].forEach(t=>{el(svg,'line',{x1:XB(t),x2:XB(t),y1:8,y2:290,stroke:css('--grid')});el(svg,'text',{x:XB(t),y:306,'text-anchor':'middle'},String(t))});
+  el(svg,'text',{x:400,y:322,'text-anchor':'middle'},'M_hot(<100 kpc) / M*');
+  ['canonical','alt'].forEach((f,i)=>{const rows=[['needed',HG.need[f][1],'--c2',HG.need[f][0].toFixed(2)+'–'+HG.need[f][1].toFixed(2)],['allowed, Z = 0.1',HG.allow[f][0],'--c1',HG.allow[f][0].toFixed(2)],['allowed, Z = 0.3',HG.allow[f][1],'--c1',HG.allow[f][1].toFixed(2)],['allowed, Z = 1',HG.allow[f][2],'--c1',HG.allow[f][2].toFixed(2)]];
+    el(svg,'text',{x:8,y:20+i*146,style:'fill:'+css('--fg')+';font-weight:600'},f);
+    rows.forEach((r,j)=>{const y=28+i*146+j*28;
+      el(svg,'text',{x:182,y:y+14,'text-anchor':'end',style:'fill:'+css('--fg')},r[0]);
+      el(svg,'rect',{x:XB(0),y:y,width:XB(r[1])-XB(0),height:20,fill:css(r[2]),opacity:j?0.55:1});
+      if(!j)el(svg,'rect',{x:XB(HG.need[f][0]),y:y,width:Math.max(2,XB(HG.need[f][1])-XB(HG.need[f][0])),height:20,fill:css('--fg'),opacity:0.35});
+      el(svg,'text',{x:XB(r[1])+6,y:y+14,style:'fill:'+css('--fg')},r[3])})});
+  legend('l7b',[['needed (f_hot,cl 0.85–0.95)','--c2'],['eROSITA-allowed','--c1']]);
+  /* c: Lx */
+  svg=document.getElementById('c7c');svg.innerHTML='';
+  const XC=v=>150+(Math.log10(v)-38)/3*440;
+  [38,39,40,41].forEach(e=>{el(svg,'line',{x1:XC(Math.pow(10,e)),x2:XC(Math.pow(10,e)),y1:8,y2:160,stroke:css('--grid')});el(svg,'text',{x:XC(Math.pow(10,e)),y:176,'text-anchor':'middle'},'1e'+e)});
+  el(svg,'text',{x:370,y:208,'text-anchor':'middle'},'L_X 0.5–2 keV  (erg/s)');
+  ['0.1','0.3','1.0'].forEach((z,i)=>{const y=18+i*46,r=P.L[z];
+    el(svg,'text',{x:142,y:y+16,'text-anchor':'end',style:'fill:'+css('--fg')},'Z = '+z);
+    el(svg,'rect',{x:XC(r[0]),y:y,width:XC(r[1])-XC(r[0]),height:22,fill:css('--c1')});
+    el(svg,'text',{x:XC(r[0]),y:y+35,style:'fill:'+css('--fg')},r[0].toExponential(1)+' – '+r[1].toExponential(1))});
+  el(svg,'line',{x1:XC(1.1e40),x2:XC(1.1e40),y1:8,y2:160,stroke:css('--bad'),'stroke-width':1.5,'stroke-dasharray':'4 3'});
+  el(svg,'text',{x:XC(1.1e40)-4,y:20,'text-anchor':'end',style:'fill:'+css('--bad')},'eROSITA stack 1.1e40');
+  /* d: M_hot + falsifier */
+  svg=document.getElementById('c7d');svg.innerHTML='';
+  const XD=v=>200+v/1.8e10*400, ks=Object.keys(HG.P);
+  [0,0.5,1,1.5].forEach(t=>{el(svg,'line',{x1:XD(t*1e10),x2:XD(t*1e10),y1:8,y2:200,stroke:css('--grid')});el(svg,'text',{x:XD(t*1e10),y:216,'text-anchor':'middle'},t+'e10')});
+  el(svg,'text',{x:400,y:240,'text-anchor':'middle'},'M_hot(<100 kpc)  (M☉)');
+  ks.forEach((k,i)=>{const y=14+i*46,d=HG.P[k],cur=k===sc;
+    el(svg,'text',{x:192,y:y+16,'text-anchor':'end',style:'fill:'+css('--fg')},k.replace('|',', f='));
+    el(svg,'rect',{x:XD(0),y:y,width:XD(d.M)-XD(0),height:24,fill:css(cur?'--c1':'--c3'),opacity:cur?1:0.55});
+    el(svg,'line',{x1:XD(d.M/2),x2:XD(d.M/2),y1:y-3,y2:y+27,stroke:css('--bad'),'stroke-width':2.5});
+    el(svg,'text',{x:XD(d.M)+6,y:y+16,style:'fill:'+css('--fg')},d.Ms.toFixed(2)+' M*')});
+}
+function all(){draw1();draw2();draw3();draw4();draw5();draw6();draw7()}
 document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',all));
 all();
 const mq=window.matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',all);
