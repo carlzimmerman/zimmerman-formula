@@ -24,6 +24,8 @@ JOBS = {
     # addendum A1 (2026-10-13): primary native set = CMB omega_b/omega_c pair (CFG654_INPUTS=native_cmb); N12/NS0/VNs/VN12 = BBN bracket
     "VNcs": _j(_V, "", sw="S0", INPUTS="native_cmb"), "VNc12": _j(_V, "12", INPUTS="native_cmb"),
     "NC12": _j(_P, "12", foot="canonical", INPUTS="native_cmb"), "NCS0": _j(_P, "", sw="S0", foot="canonical", INPUTS="native_cmb"),
+    # addendum A2 (2026-10-15): native-input T1x (M1+M2+M3)
+    "NC1x": _j(_P, "123", foot="canonical", INPUTS="native_cmb"),
 }
 
 def swap_used_mb():
