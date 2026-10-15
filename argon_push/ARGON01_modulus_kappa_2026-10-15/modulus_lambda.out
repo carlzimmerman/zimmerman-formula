@@ -1,0 +1,36 @@
+======================================================================================================================
+ARGON01 -- modulus lambda: local modulus completions of MU_lambda cannot derive kappa = 1/2 (AS069.C01)
+======================================================================================================================
+    rho_L = 5.8444e-27 kg/m^3; s = c sqrt(G rho_L) = 1.872380e-10 m/s^2 = 2 a0_canonical; alpha = 2 - K_B = 2.0 (K_B = 0 corner)
+  [PASS] MU_lambda primitive J_0.5 integrates mu_0.5 (sympy exact)   (J_0.5' - mu_0.5 = 0)
+  [PASS] MU_lambda primitive J_1.0 integrates mu_1.0 (sympy exact)   (J_1.0' - mu_1.0 = 0)
+  [PASS] MU_lambda primitive J_2.0 integrates mu_2.0 (sympy exact)   (J_2.0' - mu_2.0 = 0)
+  [PASS] MU_lambda primitive J_3.0 integrates mu_3.0 (sympy exact)   (J_3.0' - mu_3.0 = 0)
+  [PASS] modulus source dJ/dlambda at lambda = 0.5: positive, strictly increasing in Y   (src(Y=1) = 0.3037, src(Y=10) = 6.6393; d/dY = (1+Y)^(-lambda) ln(1+Y) > 0)
+  [PASS] modulus source dJ/dlambda at lambda = 1.0: positive, strictly increasing in Y   (src(Y=1) = 0.2402, src(Y=10) = 2.8750; d/dY = (1+Y)^(-lambda) ln(1+Y) > 0)
+  [PASS] modulus source dJ/dlambda at lambda = 2.0: positive, strictly increasing in Y   (src(Y=1) = 0.1534, src(Y=10) = 0.6911; d/dY = (1+Y)^(-lambda) ln(1+Y) > 0)
+  [PASS] modulus source dJ/dlambda at lambda = 3.0: positive, strictly increasing in Y   (src(Y=1) = 0.1009, src(Y=10) = 0.2380; d/dY = (1+Y)^(-lambda) ln(1+Y) > 0)
+  [PASS] deep regime: d/dY[dJ/dlambda] = Y - (5/2) Y^2 + (13/3) Y^3 ... (lambda=2) so dJ/dlambda ~ Y^2/2 - ...   (series = 13*Y**3/3 - 5*Y**2/2 + Y)
+  [PASS] N1 [C-invisibility] C enters no EL except as C'(lambda) in EL(lambda); C_0 survives -> rho_vac free   (EL(lambda) = -2*eps*Derivative(Lambda(x), (x, 2)) + eps*Derivative(W(Lambda(x)), Lambda(x)) - 2*Derivative(C(Lambda(x)), Lambda(x)) - 2*Derivative(J(Derivative(phi(x), x)**2, Lambda(x)), Lambda(x)) = 0; C(lambda) = C_0 + int C' dlambda, C_0 free (calibration only))
+  [PASS] N2 [no constant-modulus halo] EL(lambda)|_{lambda const} cannot vanish on the log branch   (residual at 5/10/20 kpc: ['-0.4637', '-0.0813', '-0.0075'] (spread 0.4562))
+  [PASS] N2 [eps=0 corner] constraint corner: C'(lambda) = -dJ/dlambda(Y) slaved to the profile; lambda const impossible while Y varies   (EL(lambda)|_eps=0 = -2*Derivative(C(Lambda(x)), Lambda(x)) - 2*Derivative(J(Derivative(phi(x), x)**2, Lambda(x)), Lambda(x)))
+  [PASS] N3 [background] Y=0 (J(0;lambda)=0 convention): C'(lambda) = eps W'(lambda)/alpha; lambda_bg = free critical point of W   (EL_bg = eps*Derivative(W(Lambda(x)), Lambda(x)) - 2*Derivative(C(Lambda(x)), Lambda(x)) = 0)
+  [PASS] N4 [control (i)] any bounded W with a minimum at lambda* carries lambda* as a free parameter; 2 is input   (W = 1 - cos(2 pi (lambda-2)): W'(2) = +0.0e+00 (minimum by construction))
+  [PASS] N4 [control (iii)] one C'(lambda) cannot compensate two different halos at equal lambda   (dJ/dlambda = 0.2319 (halo A) vs 0.0004 (halo B); (b) C_0 survives (N1) -> rho_vac free)
+  [PASS] N5 [mutation] degenerate shift family: EL(lambda) leaves C_0 free and lambda unpinned   (EL = -2.0*C0s - 2*eps*Derivative(Lambda(x), (x, 2)) + eps*Derivative(W(Lambda(x)), Lambda(x)))
+  [PASS] C-compensability [parent rank survives] dF/dC_0 = 0, dV/dC_0 = alpha/64 pi != 0; rank-2 structure unchanged   (dV/dC_0 = 9.947184e-03)
+    eps-dilemma: source at transition = 0.1534; excursion dlambda ~ alpha <dJ/dlambda> R^2/(2 eps);
+      keep dlambda <= 0.35 (F3 lambda_eff 2.15 +/- 0.35) at R = 10 kpc -> eps >= 4.17e+40 (SI, 4D-action units)
+  [PASS] eps-dilemma: small eps -> kappa_eff spread (excluded by F3 band + env slope -0.010 +/- 0.015); large eps -> frozen (no selection)   (falsifier for ANY position-dependent-kernel model: kappa_eff universality)
+  [PASS] independent representation: lattice deltaS/dlambda = w*(-alpha src - 2 eps lap + eps W') reproduced from the discretized action   (structure verified on 298 interior points; max |lattice density + alpha src + 2 eps lap| = 5.55e-17)
+  [PASS] K1 [numerology guard] 5.364 ~ 16/3 (0.6%) recorded; Z^2/2 pi = 16/3; NOT a claim (k01 K6 spirit)   (Z^2/2 pi = 5.333333 = 16/3; deviation 0.57%)
+  [PASS] K2 [k02 scale check] dust-Lagrangian sequestering gives rho_vac/rho_c = alpha/16 pi (65x short); binding functionals (v/c)^2 (1.6e7x short); O(1) coefficient = new constant (CFG-D G6)   (alpha/16 pi = 0.0398 vs required 2.589; (v/c)^2 ~ 1.6e-7)
+----------------------------------------------------------------------------------------------------------------------
+  RESULT: 0 FAIL
+  wall 0.2 s; threads 1; max RSS 112.4 MB (macOS ru_maxrss is bytes)
+  VERDICT: NO-GO. No (eps, W), eps != 0, W >= 0 bounded, fixes (C, lambda) = (64 pi a0^2/alpha, 2)
+           jointly with rho_vac = rho_L and exact MU_lambda forces: C_0 survives (N1/N4), no
+           constant-modulus halo exists (N2), lambda_bg and W's minimum are new constants (N3),
+           the mutation survives (N5), the parent's rank-2 theorem is C-compensable. The only
+           remaining route is global/sequestering (k02-class); its naive static-sector scale is
+           65x (dust) to 1.6e7x (binding) short of O(1) (K2). kappa = 1/2 stays FITTED, not derived.
