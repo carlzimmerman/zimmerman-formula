@@ -50,6 +50,27 @@ touched only `argon_push/`.
 - **AG3b — the three named candidates** (row 3).
 - **AG1-L — Lean certification** of AG1's exact identities (unchanged).
 
+## CROSS-TRACK FLAG (added post-commit of main results; sibling ARGON07 ab94d5171)
+
+**Settled-halo inner edge: ARGON02/ARGON07 model vs AG3 rotation-curve measurement.**
+ARGON07's commit states the settled halo: M_c = 5.364·M_b within 5.84·r_M, locked
+amplitude g_ph = √(G M_b a₀)/r = C/r (ARGON02 ESD: ΔΣ → √(GM_b a₀)/(4GR), break
+5.84 r_M). Under the A/r² shell reading, M_c/M_b = 5.84 − r_in/r_M ⇒ **r_in = 0.476
+r_M**. But AG3's measurement: X_ball = median ρ(r ≤ 0.62 r_M) = **0.0025** (128
+galaxies) excludes locked amplitude (ρ = 1) inside 0.62 r_M at >10× every statistical
+and systematic scale; the ρ ≥ 1/2 band starts at median ~1.6 r_M (K2c offset +0.17 over
+(4/3)r_M). **If the ARGON02 halo model extends locked amplitude down to 0.476 r_M, it is
+in tension with rotation curves across the zone 0.48–1.5 r_M.** Possible resolutions for
+the conductor: (i) the ESD fit's 1/R form is an outer-regime asymptote with no inner
+leverage (lensing stacks have little constraining power inside ~r_M where baryons
+dominate ΔΣ) — the halo may have an inner cutoff/transition near the r_M scale; (ii) the
+interior "haze" (non-A/r² phantom, g_ph ≪ C/r) projects to part of the measured ESD and
+the 1/R extrapolation inward is unwarranted; (iii) a real tension to adjudicate. Note the
+benign direction: an inner cutoff near ~1–1.5 r_M makes the realized A/r² annulus NARROWER
+than the model shell — strictly favorable for AG1 stability (AG3's S verdict already
+measures the realized widths, median 1.84). This flag does NOT reopen AG1 or AG3; it
+routes a model-vs-data reconciliation to the ARGON02/07 track owner via the conductor.
+
 ## Housekeeping
 
 - Frozen-first chain: FROZEN_CRITERIA (4560f945c) + AMENDMENT_A (7527066a6), both
