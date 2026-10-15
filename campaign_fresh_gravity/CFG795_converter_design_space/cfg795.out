@@ -1,0 +1,61 @@
+CFG795  converter design space (hypothetical cold-energy ramjet)
+  rho c^2 6.084e-05 J/m^3; flux rho c^2 v0 13.99 W/m^2; intake 1 mg/m^2; target eta >= 0.01
+  K1 ground light (full conversion) 162.7 lux vs CFG792 160: PASS
+  K2 Earth interception 38.0 x 47 TW vs CFG792 38: PASS
+
+P1 per-mass portal (nucleons / bound electrons)
+   night sky (whole atmosphere)  : k <= 5.97e-10 m^2/kg
+   Earth heat flow               : k <= 5.62e-13 m^2/kg
+   Moon heat flow                : k <= 7.38e-13 m^2/kg
+   eta(1 mg/m^2) <= 5.6e-19; needs natural-matter 'off' factor 1.8e+16; ramjet figure of merit tau0 >= 1/(k rho c) = 2.8e+17 yr for ANY areal mass
+
+P2 free-electron portal
+   core column 8.2e+35 e/m^2 (excess x11.3) -> k <= 1.1e-37 m^2; ionosphere k <= 6.1e-23 m^2
+   1 mg/m^2 Al foil (6.7e+19 e/m^2): eta <= 7.2e-18; 'off' factor needed 1.4e+15
+
+P3/P4 coherent-field portals, dish formula x engineered gain G <= 1e+06 (c/v0 = 1303)
+   P3 CFG790 line 2.4 eV: g 6.6e-11/GeV, B 1e3 T -> eta <= 3.8e-20
+   P4 CFG790 line 2.4 eV: eps <= 1.00e-14 -> eta <= 1.3e-19 (bare dish 1.3e-25)
+   P3 native 2.24 meV: g 6.6e-11/GeV, B 1e3 T -> eta <= 4.3e-14
+   P4 native 2.24 meV: eps <= 6.25e-09 -> eta <= 5.1e-08 (bare dish 5.1e-14)
+
+P5 superconductor / condensate-gated
+   neutron star full conversion: 3.7e+15 W -> T 2452 K vs coldest limits ~4e4 K: NOT constraining
+   SNSPD film (1e-8 m^2, 1e-5 Hz dark, 10% absorbed, 1 eV): eta <= 1.1e-16
+
+P6a laser (Bose) stimulation without phase knowledge: net transfer ∝ (N_cold - N_mode); N_mode > N_cold REVERSES it
+P6b phase-locked extraction (displacement nulling): needs the cold phase per coherence cell; frozen test eps*sqrt(N) >= 1
+    eta_lock = max(0, 1 - 1/s), s = eps^2 N (quantum-limited residual; formula set after the freeze, disclosed)
+   2.4 eV, stellar eps: cell 6.73e-04 m, t_c 2.9e-09 s, N_cold 4.8e+04; eps_need 4.5e-03 (allowed/need 0.00); s 4.83e-24 (dish-geometry s 6.3e-21); eta_lock 0.00; LO field 3.7e+17 V/m (1.0e+13 with G 1e6, c/v)
+   2.24 meV, solar-relation eps: cell 7.21e-01 m, t_c 3.1e-06 s, N_cold 6.4e+16; eps_need 4.0e-09 (allowed/need 1.58); s 2.49e+00 (dish-geometry s 3.2e+03); eta_lock 0.60; LO field 5.9e+11 V/m (1.6e+07 with G 1e6, c/v)
+   2.24 meV, XENON10 eps (sensitivity): cell 7.21e-01 m, t_c 3.1e-06 s, N_cold 6.4e+16; eps_need 4.0e-09 (allowed/need 0.34); s 1.14e-01 (dish-geometry s 1.5e+02); eta_lock 0.00; LO field 2.8e+12 V/m (7.7e+07 with G 1e6, c/v)
+   a 100 km^2 intake at 2.24 meV holds 1.9e+08 cells, each re-measured every ~3 us
+
+P7 2-3 eV material resonance: cold line width (v/c)^2 = 5.9e-07; natural bands (~0.1 eV) cover 2-3 eV -> P1 bound
+
+P8 gravity only: kinetic ceiling (v0/c)^2/2 = 2.9e-07; dynamical friction on 100 km^2 sheet: 1.6e-41 W -> eta 1.2e-50
+
+P9 framework screening (R1, cold energy = bound charge of stiff P), L* = 5.75 pc
+   d = 1 m: eta <= (d/L*)^2 = 3.2e-35
+   d = 10000 m: eta <= (d/L*)^2 = 3.2e-27
+   eta 0.01 needs d >= 1.77e+16 m = 0.57 pc
+
+class                                              eta_max  tau0 (1 mg/m^2)  bound
+P1 per-mass                                        5.6e-19       2.8e+17 yr  Earth heat flow
+P2 free electrons                                  7.2e-18       2.2e+16 yr  Earth core heat
+P3 axion-like, CFG790 line 2.4 eV                  3.8e-20       4.2e+18 yr  CAST/HB g, B 1e3 T, G 1e6
+P4 kinetic mixing, CFG790 line 2.4 eV              1.3e-19       1.2e+18 yr  eps 1e-14, G 1e6
+P3 axion-like, native 2.24 meV                     4.3e-14       3.6e+12 yr  CAST/HB g, B 1e3 T, G 1e6
+P4 kinetic mixing, native 2.24 meV                 5.1e-08       3.1e+06 yr  eps 6e-09, G 1e6
+P5 superconductor-gated                            1.1e-16       1.4e+15 yr  SNSPD dark counts
+P6a laser-stimulated (no phase)                    0.0e+00              inf  detailed balance
+P6b phase-locked, 2.4 eV, stellar eps              0.0e+00              inf  phase unmeasurable
+P6b phase-locked, 2.24 meV, solar-relation eps     6.0e-01       2.6e-01 yr  quantum phase noise; framework E6 kill
+P7 2-3 eV resonance                                5.6e-19       2.8e+17 yr  nature has the resonance (P1)
+P8 gravity only                                    1.2e-50       1.3e+49 yr  ceiling 2.9e-07; actual dyn. friction
+
+least-constrained window (R2, portal added by hand): P6b phase-locked, 2.24 meV, solar-relation eps eta_max 6.0e-01 (eta_max/0.01 = 6.0e+01)
+best WITHOUT phase-locked extraction: P4 kinetic mixing, native 2.24 meV eta_max 5.1e-08 (short of 0.01 by x2.0e+05)
+framework-native (no portal; only gravity): P8, eta ~1e-50; a visible line at 2.24 meV would be ARGON03/CFG723-E6's kill
+under R1 the framework's own screening caps a 10 km device at 3.2e-27
+VERDICT (eta >= 0.01 anywhere): WINDOW OPEN -- ONLY outside the framework (hand-added 2.24 meV mixing near its bound); CLOSED within it (R1 screening, R2 gravity-only)
