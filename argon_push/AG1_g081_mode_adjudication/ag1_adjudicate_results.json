@@ -1,0 +1,220 @@
+{
+ "lane": "AG1_g081_mode_adjudication",
+ "frozen": "FROZEN_CRITERIA.md (committed c902d2cdd, before runs)",
+ "constants_source": "deepseek_push/G081_results.json (runtime)",
+ "sign_convention": "xi ~ exp(-i w t): w^2>0 stable, w^2<0 growth; G081 printed ODE = exp(w t) convention",
+ "checks": [
+  {
+   "name": "C0 first-principles linearization -> (E-corr)",
+   "pass_": true,
+   "detail": "delta_rho=-rho0*xi': True; coeffs/rho0 of full Euler: xi''=-sigma2, xi'=(-C + 2*sigma2)/r, xi=-C/r**2 - w2, const=0  (predicted -sigma2, -(C-2sigma2)/r, -(C/r^2+w2), 0)"
+  },
+  {
+   "name": "C0b drift cancels EXACTLY at sigma^2=C/2 (closure)",
+   "pass_": true,
+   "detail": "xi' coefficient at closure: 0 (identically 0: the omitted +C/r pairs with the pressure-curvature -2sigma^2/r); xi'' coefficient: -C/2; xi coefficient: -C/r**2 - w2 = -(C/r^2+w2)"
+  },
+  {
+   "name": "C0c GF2 P1 base re-verified (Laplacian(C ln r)=C/r^2; rho0=C/(4 pi G r^2); hydrostatic residual=0 at sigma^2=C/2)",
+   "pass_": true,
+   "detail": "lap=C/r**2; rho0=A/r**2; hydro residual=0"
+  },
+  {
+   "name": "C1 omission pinpointed (MUTATE M2): term-deleted machinery reproduces G081 L36 + its {r, r^2} zero modes",
+   "pass_": true,
+   "detail": "deleted-term coefficients match sigma2*xi''-(2sigma2/r)xi'+(C/r^2+w2)xi exactly: True; at closure, under the time-convention relabel w^2_G081 = -w^2_here (G081 prints the exp(w t) form), coefficient-by-coefficient identical to G081 L36: True; zero-mode residuals at w=0: xi=r -> 0, xi=r^2 -> 0"
+  },
+  {
+   "name": "C2 homology zero modes KILLED by the corrected equation",
+   "pass_": true,
+   "detail": "at w=0, sigma^2=C/2: residual(xi=r) = 2/r (!= 0), residual(xi=r^2) = 4 (!= 0). G081's double homology zero mode does not survive the -delta_rho*grad(Phi0) term."
+  },
+  {
+   "name": "M1 (mutation, must fail as designed): 'xi=r solves (E-corr*) at some real constant w^2'",
+   "pass_": true,
+   "detail": "formal solution w^2 = [-C/r**2] \u2014 r-dependent, so no constant-w^2 mode exists. Mutation fails as designed: True"
+  },
+  {
+   "name": "C3 'homology of the isothermal family at fixed sigma^2' (G081 L177) is not a family of equilibria",
+   "pass_": true,
+   "detail": "hydrostatic residual of A/(1+eps)^2 r^-2 at sigma^2=C/2 fixed (C=4 pi G A substituted): first order = -8*pi*A**2*G*eps/r**3; per unit density = -8*pi*A*G*eps/r (frozen prediction: -2 eps C/r). True homology scales (A, C, sigma^2) together; at fixed sigma^2 the equilibrium is unique (A itself)."
+  },
+  {
+   "name": "C4(i)(ii) exact spectral structure: w=0 basis sqrt(r){cos,sin}(nu0 ln r) residual=0; xi=sqrt(r)J_{i nu0}(kr) pointwise |resid|<1e-12 (mpmath, dps=30, 200 pts, both real branches)",
+   "pass_": true,
+   "detail": "symbolic basis residuals: 0, 0; Bessel max pointwise residual 1.010e-28; nu0 = sqrt(7)/2 = 1.322875655532"
+  },
+  {
+   "name": "C4(iii) shooting reproduces the closed-form first rungs |ln w_num - ln w_closed| < 1e-8",
+   "pass_": true,
+   "detail": "DD: w1_num=10.7490870292 vs closed=10.7490870292 (e-form); DF: w1_num=7.4403211931 vs closed=7.4403211931 (e-form); FD: w1_num=1.4447073924 vs closed=1.4447073924 (e-form); FF: w1_num=10.7490870292 vs closed=10.7490870292 (e-form); closed forms: DD/FF=e^(2pi/sqrt7)=10.749087, DF=e^((pi-atan(sqrt7/5))/nu0)=7.440321, FD=1.444707"
+  },
+  {
+   "name": "C4(iv) Sturm counts match the CLOSED-FORM DD ladder (governing clause)",
+   "pass_": true,
+   "detail": "widths w1*(1.5,3,12) = [16.124, 32.247, 128.989]; computed negative-eigenvalue counts [1, 1, 2]; ladder prediction floor(ln w/ln w1) = [1, 1, 2]. FROZEN-TEXT DISCREPANCY (recorded loudly): the frozen integer tuple (1,2,3) came from a decimal slip ('~5.4 per rung' in the frozen verdict text); the closed-form rung spacing is e^(pi/nu0) = 10.7491, and the same frozen sentence's governing clause ('within the DD ladder prediction') matches exactly: [1, 1, 2] == [1, 1, 2]."
+  },
+  {
+   "name": "C7 r->0 ill-posedness: limit-circle (both branches sqrt(r)e^{+-i nu0 ln r} -> 0, both in L^2(A dr)); xi(0)=0 selects nothing; Lambda0(r_in) diverges ~ -const/r_in^2 (fall to center)",
+   "pass_": true,
+   "detail": "Lambda0(DD) at r_in/r_break = [0.1, 0.01, 0.001, 0.0001]: ['7.873e-01', '-2.449e+02', '-2.449e+04', '-2.449e+06']; log-log slope -2.148 (predicted -2); L2 tail integrals converge: [0.495, 0.4999995, 0.49999999995]"
+  },
+  {
+   "name": "M4 (mutation, must fail as designed): corrupted F-BC phase (+10%) moves the DF first rung off the closed form",
+   "pass_": true,
+   "detail": "corrupted first rung w1 = 7.171561 vs closed form 7.440321: relative shift 3.61% (>1% required); corrupted BC coefficient b = 1.730270 (b=2 unperturbed)"
+  }
+ ],
+ "gate": {
+  "C0": true,
+  "C1": true,
+  "C2": true,
+  "C3": true,
+  "C4": true,
+  "C7": true,
+  "MUT": true
+ },
+ "closed_forms": {
+  "nu0": 1.3228756555322954,
+  "w1_DD": 10.749087029163503,
+  "w1_DF": 7.440321193074208,
+  "w1_FD": 1.4447073923595193,
+  "rung_factor": 10.749087029163503,
+  "F_BC_phase": 0.48669495507477323
+ },
+ "c5_table": [
+  {
+   "r_in_kpc": 0.05,
+   "width": 126.60181142627728,
+   "Lambda0_DD": -392.57338376421706,
+   "n_unst_DD": 2,
+   "n_ladder_DD": 2,
+   "Lambda0_DF": -392.57338376421717,
+   "n_ladder_DF": 2,
+   "stable_both": false,
+   "row_consistent": true,
+   "growth_time_Myr": 2.572436632533708
+  },
+  {
+   "r_in_kpc": 0.1,
+   "width": 63.30090571313864,
+   "Lambda0_DD": -98.14333630503853,
+   "n_unst_DD": 1,
+   "n_ladder_DD": 1,
+   "Lambda0_DF": -98.1433523259648,
+   "n_ladder_DF": 1,
+   "stable_both": false,
+   "row_consistent": true,
+   "growth_time_Myr": 5.144873097712443
+  },
+  {
+   "r_in_kpc": 0.2,
+   "width": 31.65045285656932,
+   "Lambda0_DD": -24.496573447393956,
+   "n_unst_DD": 1,
+   "n_ladder_DD": 1,
+   "Lambda0_DF": -24.552051716824423,
+   "n_ladder_DF": 1,
+   "stable_both": false,
+   "row_consistent": true,
+   "growth_time_Myr": 10.286348073204485
+  },
+  {
+   "r_in_kpc": 0.4,
+   "width": 15.82522642828466,
+   "Lambda0_DD": -5.0030213468581195,
+   "n_unst_DD": 1,
+   "n_ladder_DD": 1,
+   "Lambda0_DF": -6.1721617185288284,
+   "n_ladder_DF": 1,
+   "stable_both": false,
+   "row_consistent": true,
+   "growth_time_Myr": 20.515705814359983
+  },
+  {
+   "r_in_kpc": 0.5888,
+   "width": 10.750833171389035,
+   "Lambda0_DD": -0.0018024349501750692,
+   "n_unst_DD": 1,
+   "n_ladder_DD": 1,
+   "Lambda0_DF": -2.413472568887867,
+   "n_ladder_DF": 1,
+   "stable_both": false,
+   "row_consistent": true,
+   "growth_time_Myr": 32.80831511876364
+  },
+  {
+   "r_in_kpc": 0.85,
+   "width": 7.447165378016311,
+   "Lambda0_DD": 3.839356047803916,
+   "n_unst_DD": 0,
+   "n_ladder_DD": 0,
+   "Lambda0_DF": -0.005447358498785526,
+   "n_ladder_DF": 1,
+   "stable_both": false,
+   "row_consistent": true,
+   "growth_time_Myr": 690.5770356281597
+  },
+  {
+   "r_in_kpc": 1.0,
+   "width": 6.330090571313864,
+   "Lambda0_DD": 5.5363695770222705,
+   "n_unst_DD": 0,
+   "n_ladder_DD": 0,
+   "Lambda0_DF": 0.9424680563952714,
+   "n_ladder_DF": 0,
+   "stable_both": true,
+   "row_consistent": true,
+   "growth_time_Myr": null
+  },
+  {
+   "r_in_kpc": 2.0,
+   "width": 3.165045285656932,
+   "Lambda0_DD": 15.827112094074138,
+   "n_unst_DD": 0,
+   "n_ladder_DD": 0,
+   "Lambda0_DF": 5.772391066512064,
+   "n_ladder_DF": 0,
+   "stable_both": true,
+   "row_consistent": true,
+   "growth_time_Myr": null
+  }
+ ],
+ "r_crit_kpc": {
+  "DD": 0.588895647987555,
+  "DF": 0.8507818959759698
+ },
+ "timescale_r_break_over_sigma_Myr": 50.96888243415917,
+ "c7": {
+  "xs": [
+   0.1,
+   0.01,
+   0.001,
+   0.0001
+  ],
+  "lams": [
+   0.7872984805139924,
+   -244.92945271588303,
+   -24492.945271735647,
+   -2449294.5271749124
+  ],
+  "slope": -2.1478704796506474,
+  "ok": true
+ },
+ "m4": {
+  "w1_corrupt": 7.171560963967536,
+  "shift": 0.03612212727547919
+ },
+ "fixed_well_corrected_z_roots": [
+  2.2889297281034042,
+  5.08698509410227,
+  8.096163603222921
+ ],
+ "g081_neutral_families_anomaly": {
+  "0.0": 0.0,
+  "1.0": 0.0,
+  "-1.0": 0.0
+ },
+ "verdict": "ADJUDICATION = FLAG UPHELD: G081's [SELF-CONSISTENT]/[FIXED-WELL] mode machinery and its V2/V3 verdicts (double homology zero mode, omega0^2 = 0 EXACT, cap-invariant neutral continuum, well-posed linear relaxation) are INVALID as committed \u2014 the linearization omits -delta_rho*grad(Phi0). Corrected structure: xi'' + (w^2/sigma^2 + 2/r^2) xi = 0 at closure; sqrt(r) J_{i sqrt7/2}(w r/sigma); w=0 log-periodic basis; discrete BC-ladder spectrum on [r_in, r_break]: stable iff width < w_1 (DF-binding: 7.4403; DD/FF: 10.7491), one more unstable mode per width rung e^(pi/nu0); singular ball ill-posed (limit-circle). GF2 kappa=1/2 algebraic base UNAFFECTED (C0c); its P1-acceptance boundary SHARPENS: the static branch as a CONSERVATIVE fluid needs a stabilizing inner cutoff (r_in > r_crit) or the dissipative settling channel (S3). G111 reading-(c) tests the WRONG mode structure \u2014 re-spec required.",
+ "mutate_mode": false
+}

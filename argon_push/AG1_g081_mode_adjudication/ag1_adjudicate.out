@@ -1,0 +1,66 @@
+====================================================================================================
+AG1 — G081 MODE-EQUATION ADJUDICATION  (GF2 flagged boundary 4; FROZEN_CRITERIA.md governs)
+constants read at runtime from deepseek_push/G081_results.json: C=2.9493938990e+10, sigma2=1.4746969495e+10, r_M=10.209824 kpc, r_break=6.330091 kpc, a0=9.3619e-11, alpha_break=0.62, Mb=7.000e+10
+====================================================================================================
+PASS  C0 first-principles linearization -> (E-corr)
+      delta_rho=-rho0*xi': True; coeffs/rho0 of full Euler: xi''=-sigma2, xi'=(-C + 2*sigma2)/r, xi=-C/r**2 - w2, const=0  (predicted -sigma2, -(C-2sigma2)/r, -(C/r^2+w2), 0)
+PASS  C0b drift cancels EXACTLY at sigma^2=C/2 (closure)
+      xi' coefficient at closure: 0 (identically 0: the omitted +C/r pairs with the pressure-curvature -2sigma^2/r); xi'' coefficient: -C/2; xi coefficient: -C/r**2 - w2 = -(C/r^2+w2)
+PASS  C0c GF2 P1 base re-verified (Laplacian(C ln r)=C/r^2; rho0=C/(4 pi G r^2); hydrostatic residual=0 at sigma^2=C/2)
+      lap=C/r**2; rho0=A/r**2; hydro residual=0
+PASS  C1 omission pinpointed (MUTATE M2): term-deleted machinery reproduces G081 L36 + its {r, r^2} zero modes
+      deleted-term coefficients match sigma2*xi''-(2sigma2/r)xi'+(C/r^2+w2)xi exactly: True; at closure, under the time-convention relabel w^2_G081 = -w^2_here (G081 prints the exp(w t) form), coefficient-by-coefficient identical to G081 L36: True; zero-mode residuals at w=0: xi=r -> 0, xi=r^2 -> 0
+PASS  C2 homology zero modes KILLED by the corrected equation
+      at w=0, sigma^2=C/2: residual(xi=r) = 2/r (!= 0), residual(xi=r^2) = 4 (!= 0). G081's double homology zero mode does not survive the -delta_rho*grad(Phi0) term.
+PASS  M1 (mutation, must fail as designed): 'xi=r solves (E-corr*) at some real constant w^2'
+      formal solution w^2 = [-C/r**2] — r-dependent, so no constant-w^2 mode exists. Mutation fails as designed: True
+PASS  C3 'homology of the isothermal family at fixed sigma^2' (G081 L177) is not a family of equilibria
+      hydrostatic residual of A/(1+eps)^2 r^-2 at sigma^2=C/2 fixed (C=4 pi G A substituted): first order = -8*pi*A**2*G*eps/r**3; per unit density = -8*pi*A*G*eps/r (frozen prediction: -2 eps C/r). True homology scales (A, C, sigma^2) together; at fixed sigma^2 the equilibrium is unique (A itself).
+
+-- closed forms (zero-import): nu0 = sqrt(7)/2 = 1.322875655532
+   w_1(DD) = w_1(FF) = e^(2 pi/sqrt(7))            = 10.7490870292
+   w_1(DF) = e^((pi - atan(sqrt(7)/5))/nu0)        = 7.4403211931
+   w_1(FD) = e^(atan(sqrt(7)/5)/nu0)  [n=0 rung]   = 1.4447073924
+   rung spacing (width factor per added unstable mode) = e^(pi/nu0) = 10.7490870292
+   NOTE (honest correction of frozen text): FROZEN_CRITERIA.md verdict-logic line printed '~5.4'
+   for the rung spacing e^(pi/nu0); the exact value is 10.7491. The closed form is binding.
+PASS  C4(i)(ii) exact spectral structure: w=0 basis sqrt(r){cos,sin}(nu0 ln r) residual=0; xi=sqrt(r)J_{i nu0}(kr) pointwise |resid|<1e-12 (mpmath, dps=30, 200 pts, both real branches)
+      symbolic basis residuals: 0, 0; Bessel max pointwise residual 1.010e-28; nu0 = sqrt(7)/2 = 1.322875655532
+PASS  C4(iii) shooting reproduces the closed-form first rungs |ln w_num - ln w_closed| < 1e-8
+      DD: w1_num=10.7490870292 vs closed=10.7490870292 (e-form); DF: w1_num=7.4403211931 vs closed=7.4403211931 (e-form); FD: w1_num=1.4447073924 vs closed=1.4447073924 (e-form); FF: w1_num=10.7490870292 vs closed=10.7490870292 (e-form); closed forms: DD/FF=e^(2pi/sqrt7)=10.749087, DF=e^((pi-atan(sqrt7/5))/nu0)=7.440321, FD=1.444707
+PASS  C4(iv) Sturm counts match the CLOSED-FORM DD ladder (governing clause)
+      widths w1*(1.5,3,12) = [16.124, 32.247, 128.989]; computed negative-eigenvalue counts [1, 1, 2]; ladder prediction floor(ln w/ln w1) = [1, 1, 2]. FROZEN-TEXT DISCREPANCY (recorded loudly): the frozen integer tuple (1,2,3) came from a decimal slip ('~5.4 per rung' in the frozen verdict text); the closed-form rung spacing is e^(pi/nu0) = 10.7491, and the same frozen sentence's governing clause ('within the DD ladder prediction') matches exactly: [1, 1, 2] == [1, 1, 2].
+
+C5 — framework verdict table (G081 domain: phantom ball capped at r_break; annulus [r_in, r_break]):
+  r_in= 0.050 kpc  w= 126.602  Lam0(DD)=   -392.5734 (n=2, ladder 2)  Lam0(DF)=   -392.5734 (ladder 2)  stable=False consistent=True  growth=2.57 Myr
+  r_in= 0.100 kpc  w=  63.301  Lam0(DD)=    -98.1433 (n=1, ladder 1)  Lam0(DF)=    -98.1434 (ladder 1)  stable=False consistent=True  growth=5.14 Myr
+  r_in= 0.200 kpc  w=  31.650  Lam0(DD)=    -24.4966 (n=1, ladder 1)  Lam0(DF)=    -24.5521 (ladder 1)  stable=False consistent=True  growth=10.29 Myr
+  r_in= 0.400 kpc  w=  15.825  Lam0(DD)=     -5.0030 (n=1, ladder 1)  Lam0(DF)=     -6.1722 (ladder 1)  stable=False consistent=True  growth=20.52 Myr
+  r_in= 0.589 kpc  w=  10.751  Lam0(DD)=     -0.0018 (n=1, ladder 1)  Lam0(DF)=     -2.4135 (ladder 1)  stable=False consistent=True  growth=32.81 Myr
+  r_in= 0.850 kpc  w=   7.447  Lam0(DD)=      3.8394 (n=0, ladder 0)  Lam0(DF)=     -0.0054 (ladder 1)  stable=False consistent=True  growth=690.58 Myr
+  r_in= 1.000 kpc  w=   6.330  Lam0(DD)=      5.5364 (n=0, ladder 0)  Lam0(DF)=      0.9425 (ladder 0)  stable=True consistent=True
+  r_in= 2.000 kpc  w=   3.165  Lam0(DD)=     15.8271 (n=0, ladder 0)  Lam0(DF)=      5.7724 (ladder 0)  stable=True consistent=True
+  critical inner radii: r_crit(DD)=r_break*e^(-2pi/sqrt7)=0.5889 kpc; r_crit(DF)=r_break*e^(-(pi-atan(sqrt7/5))/nu0)=0.8508 kpc
+  timescale unit r_break/sigma = 50.97 Myr (sigma = 121.44 km/s, r_break = 6.3301 kpc, both read from G081_results.json)
+  r_in/r_break = 1e-01: Lambda0(DD) = 7.872985e-01 (n_unst = 0)
+  r_in/r_break = 1e-02: Lambda0(DD) = -2.449295e+02 (n_unst = 1)
+  r_in/r_break = 1e-03: Lambda0(DD) = -2.449295e+04 (n_unst = 2)
+  r_in/r_break = 1e-04: Lambda0(DD) = -2.449295e+06 (n_unst = 3)
+PASS  C7 r->0 ill-posedness: limit-circle (both branches sqrt(r)e^{+-i nu0 ln r} -> 0, both in L^2(A dr)); xi(0)=0 selects nothing; Lambda0(r_in) diverges ~ -const/r_in^2 (fall to center)
+      Lambda0(DD) at r_in/r_break = [0.1, 0.01, 0.001, 0.0001]: ['7.873e-01', '-2.449e+02', '-2.449e+04', '-2.449e+06']; log-log slope -2.148 (predicted -2); L2 tail integrals converge: [0.495, 0.4999995, 0.49999999995]
+
+M4 — corrupted F-BC phase mutation:
+PASS  M4 (mutation, must fail as designed): corrupted F-BC phase (+10%) moves the DF first rung off the closed form
+      corrupted first rung w1 = 7.171561 vs closed form 7.440321: relative shift 3.61% (>1% required); corrupted BC coefficient b = 1.730270 (b=2 unperturbed)
+
+Corrected FIXED-WELL probe (G111 re-spec input):
+  corrected fixed-well ball spectrum: z_n = [2.28893, 5.086985, 8.096164] (roots of z cot z + 2 = 0); w_n^2 = (z_n sigma/r_break)^2 > 0: discrete, stable, NO neutral continuum, NO w=0 mode under xi(0)=0 (xi=const excluded by the regular center)
+
+ADDITIONAL OBSERVATION (recorded, not gated): G081_results.json criterion.neutral_families_w2 = {'0.0': 0.0, '1.0': 0.0, '-1.0': 0.0}
+   residual 0.0 at w^2 = +-1 is inconsistent with G081's own printed ODE: for xi in {r, r^2} the
+   residual there is -/+ w^2 xi != 0. The recorded entry cannot be a raw ODE residual on the zero modes.
+
+====================================================================================================
+ADJUDICATION = FLAG UPHELD: G081's [SELF-CONSISTENT]/[FIXED-WELL] mode machinery and its V2/V3 verdicts (double homology zero mode, omega0^2 = 0 EXACT, cap-invariant neutral continuum, well-posed linear relaxation) are INVALID as committed — the linearization omits -delta_rho*grad(Phi0). Corrected structure: xi'' + (w^2/sigma^2 + 2/r^2) xi = 0 at closure; sqrt(r) J_{i sqrt7/2}(w r/sigma); w=0 log-periodic basis; discrete BC-ladder spectrum on [r_in, r_break]: stable iff width < w_1 (DF-binding: 7.4403; DD/FF: 10.7491), one more unstable mode per width rung e^(pi/nu0); singular ball ill-posed (limit-circle). GF2 kappa=1/2 algebraic base UNAFFECTED (C0c); its P1-acceptance boundary SHARPENS: the static branch as a CONSERVATIVE fluid needs a stabilizing inner cutoff (r_in > r_crit) or the dissipative settling channel (S3). G111 reading-(c) tests the WRONG mode structure — re-spec required.
+AG1 COMPLETE: 7/7 gate checks PASS.
+results -> ag1_adjudicate_results.json
