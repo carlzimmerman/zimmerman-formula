@@ -1,0 +1,77 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={No Edge to the Halo: KiDS-1000 Galaxy Lensing Against a Dark-Energy-Tied Gravity Framework's Cold Halos}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{4pt}\setlength{\parindent}{0pt}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries No Edge to the Halo: KiDS-1000 Galaxy Lensing Against\\ a Dark-Energy-Tied Gravity Framework's Cold Halos}\\[6pt]
+{\small Working note, 2026-10-16, v1.0. AI-assisted research programme; not peer reviewed.}
+\end{center}
+
+\begin{abstract}\noindent
+In a gravity framework where the galactic acceleration scale is set by the dark-energy density, $a_0=\tfrac12c\sqrt{G\rho_{\rm DE}}$ (the $\tfrac12$ is fitted), each galaxy's extra lensing mass is a collisionless ``cold'' component. That component settles onto the law $g_N=g^2/(g+a_0)$. We test four pre-registered statements about it against the KiDS-1000 lensing rotation curves of isolated galaxies (Brouwer et al.\ 2021; 4 stellar-mass bins, full covariance).
+\begin{enumerate}
+\item \textbf{The edge is excluded.} A halo that stops where it has used up the galaxy's own cosmic share of cold energy ($5.364\,M_b$, at $5.84\,r_M$) is excluded: $\Delta\chi^2=+197$ within 0.31\,Mpc and $+753$ over all radii, on both $a_0$ footings.
+\item \textbf{The framework's own infall repairs it.} The framework's collisionless infall fills onto the law out to 20--50\,$r_M$, and fits as well as an edgeless law ($\Delta\chi^2=+0.1$), provided each galaxy draws on $N\ge3$--4 times its own baryons.
+\item \textbf{The supply needs no fit inside 0.31\,Mpc.} Taking $N=1/f_{\rm ret}$ from the baryon census used in the framework's simulations ($N\approx6$--10 at these masses) fits within 0.31\,Mpc with no fitted parameter ($\Delta\chi^2=-0.2$ and $-1.5$ for the two footings).
+\item \textbf{Neighbours narrow the outer gap.} Beyond each catchment edge (0.32--0.45\,Mpc), adding a two-halo term from the framework's own billion-particle simulation narrows the outer deficit from $\Delta\chi^2=+149$ to $+11$, with an effective bias of 0.2--0.5.
+\end{enumerate}
+The absolute fit is poor for every model, including the plain law ($\chi^2\approx160$ on 52 degrees of freedom). The misfit sits in the most massive bins: the known massive and early-type lensing excess.
+\end{abstract}
+
+\section{Setup}
+\begin{itemize}
+\item \textbf{Settled profile.} For a galaxy of baryonic mass $M_b$, the settled cold mass is
+$$M_c(r)=\tfrac12M_b\left(\sqrt{1+4r^2/r_M^2}-1\right),\qquad r_M=\sqrt{GM_b/a_0}.$$
+Far out it behaves as an isothermal sphere with locked amplitude, $\Delta\Sigma\to\sqrt{GM_ba_0}/(4GR)$.
+\item \textbf{Data.} The KiDS-1000 lensing rotation curves of isolated galaxies [1]. They span 0.035--2.6\,Mpc in four stellar-mass bins ($\log M_\star=8.5$--11), with the full $60\times60$ covariance and the multiplicative bias applied.
+\item \textbf{Fitting.} Baryonic masses are profiled per bin, with the same freedom for every model.
+\item \textbf{Ranges.} The primary range is $R\le0.31$\,Mpc, where the isolated sample is clean. All radii are secondary.
+\item \textbf{Footings.} $a_0=9.36\times10^{-11}$ (canonical) and $1.13\times10^{-10}$\,m\,s$^{-2}$ (alternative), never pooled.
+\end{itemize}
+
+\section{Results}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+model & $\Delta\chi^2$ vs edgeless law ($R\le0.31$\,Mpc) & all radii\\
+\midrule
+edge at $5.84\,r_M$ (own share only) & $+197$ & $+753$\\
+infall-filled law (no edge) & $+0.1$ & $+2.8$\\
+census catchment edge ($N=1/f_{\rm ret}$, no fit) & $-0.2$ & $+149$\\
+census catchment $+$ framework two-halo (vs edgeless $+$ two-halo) & $-2.1$ & $+11$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Controls.} Every lane passed its reproduction checks. Each deliberately broken variant reproduced the failure it should, except two:
+\begin{itemize}
+\item In the two-halo lane, a $\sigma_8$ cross-check failed by 3.2\% (a 2\% tolerance). The amplitude is absorbed by the profiled bias.
+\item The no-exclusion variant shifted the bias in only two of the four bins.
+\end{itemize}
+
+\section{Interpretation and limits}
+\begin{itemize}
+\item \textbf{Where the cold mass is.} The data rule out a cold halo confined to each galaxy's own cosmic share. They are consistent with cold energy gathered from a larger catchment by collisionless infall, which is the framework's own dynamics.
+\item \textbf{The supply factor is an input.} $N$ comes from an observational baryon census. A framework-native derivation was attempted and failed: an energy-budget model retains almost all baryons.
+\item \textbf{Inherited simulation inputs.} The two-halo term uses a simulation with inherited $\Lambda$CDM initial conditions. A native-input rerun is queued.
+\item \textbf{The absolute fit is poor for all models.} The heavy bins dominate it: the inner points are over-predicted and the 0.2--1.4\,Mpc points under-predicted. This is the massive and early-type excess, which the framework does not yet explain.
+\end{itemize}
+
+\vspace{4pt}\hrule\vspace{3pt}
+{\footnotesize
+[1] M.~M.~Brouwer et al., A\&A 650, A113 (2021) (KiDS-1000 weak-lensing RAR; public ESD profiles and covariance).
+[2] This programme (public repository): lanes CFG801 (edge), CFG803 (infall), CFG804 (census catchment), CFG805 (two-halo), CFG806 (census derivation, not derived), and ARGON02/AG4 (settled profile from the action). Each lane has frozen criteria committed before its script.
+[3] T.~Mistele, S.~McGaugh, F.~Lelli, J.~Schombert, P.~Li, ApJL 969, L3 (2024).
+AI assistance: Anthropic's Claude; parallel AI sessions.}
+\end{document}
