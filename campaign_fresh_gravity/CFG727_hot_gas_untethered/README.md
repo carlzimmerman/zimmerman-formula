@@ -26,3 +26,19 @@
 MID 1.72) and M2 (shuffled: MID 0.99) bite.
 
 κ fitted; cold energy mass required; not theory closed.
+
+## Post-hoc diagnostic: eRASS1 by gas-mass tercile (`diag_terciles.py`, not a verdict)
+
+| tercile (log M_gas) | plain law MID | **CFG727 MID (canonical)** | CFG727 OUTER | CFG727 INNER |
+|---|---|---|---|---|
+| ≤ 12.88 | 1.39 ± 0.26 | 1.29 ± 0.23 | 0.89 ± 0.32 | 1.24 |
+| 12.88–13.23 | 2.24 ± 0.17 | **1.32 ± 0.11** (Z +2.9) | 1.19 ± 0.15 | 0.43 |
+| > 13.23 | 2.00 ± 0.19 | **0.64 ± 0.06** (Z −6) | 1.03 ± 0.09 | 0.16 |
+
+**The 318-cluster pass is partly a cancellation.**
+- The middle tercile is still short: Z +2.9 canonical, and +5 on the alt footing (MID 1.65 ± 0.13).
+- The heaviest tercile is overshot (Z −6), with its inner band ~6× over-predicted.
+- That heavy-end overshoot is the same failure ACCEPT shows (×2).
+- The hot-gas rule frees **too much** cold energy in the most massive systems and **not enough** at intermediate mass.
+- It does flatten the plain law's large core excess in every tercile (2.0–2.2 → 0.6–1.3), which is real progress. The
+  mass dependence is wrong, though.
