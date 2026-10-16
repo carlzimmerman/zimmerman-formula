@@ -176,6 +176,40 @@ sealed file cfg746_predictions.json  sha256 79140240f3317e2b7a44cc9ed687c2e18680
   <p class="cap">Values are from cfg745_results.json and cfg746_predictions.json. No SZ or X-ray profile data were read. The selector has no mechanism: nothing explains why cold mass is retained in proportion to hot gas.</p>
 </section>
 
+<section class="sec" id="s8">
+  <div class="sechead"><h2>8. Saddle point and laboratory tests</h2><span class="chip">CFG771 · CFG772</span><span class="chip ok">NULL predicted in every form</span><span class="chip">one sealed kill line</span></div>
+  <div class="eq">saddle: gravity of Sun and Earth cancel on the Sun–Earth line; the tide there is the residual field gradient
+stiffened action:  anomalous stress ∝ L*⁻²  (the stiff P field cannot vary below ~2 pc, so no MOND bubble forms)
+lab forms:  F1 stiffened (committed)    F2 γ = 0, local    F3 γ = 0 + free-fall basin rule
+sealed kill line:  a Quinn-type repeat with the source acceleration changed ×4 shows a source-dependent |ΔG/G| ≥ 1e-6  ⇒  framework excluded in every form</div>
+  <div class="ctl">
+    <span>a0 footing</span>
+    <label><input type="radio" name="foot8" value="canonical" checked> canonical</label>
+    <label><input type="radio" name="foot8" value="alt"> alt</label>
+    <span>saddle case</span>
+    <label><input type="radio" name="scen8" value="none" checked> no Moon</label>
+    <label><input type="radio" name="scen8" value="line"> Moon on the line</label>
+    <label><input type="radio" name="scen8" value="quad"> Moon at quadrature</label>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>Saddle-point anomaly against the stiffness length L* (CFG771)</h3><svg id="c8a" viewBox="0 0 640 340" role="img" aria-label="Anomalous tidal stress against L star"></svg><div class="legend" id="l8a"></div>
+      <div class="ctl"><label for="Ls8">L*</label><input id="Ls8" type="range" min="0.7597" max="3" step="0.005" value="0.7597"><span class="out" id="Ls8o"></span></div>
+      <p class="cap">The stiffened action's anomaly is 15–20 orders of magnitude below the Newtonian tide, and falls as L*⁻². The shaded band is the unscreened (γ = 0) form's peak stress, which the ephemerides already kill (CFG770). Slide L* to read the stress and the one-year signal-to-noise ratio. The noise figure for LISA Pathfinder is quoted from memory and is provisional.</p></div>
+    <div class="card"><h3>The saddle's tidal field</h3><svg id="c8b" viewBox="0 0 640 300" role="img" aria-label="Tidal eigenvalue arrows at the Sun–Earth saddle point"></svg>
+      <p class="cap" id="cap8b"></p></div>
+    <div class="card"><h3>What the unscreened form would have shown (context only)</h3><svg id="c8c" viewBox="0 0 640 320" role="img" aria-label="Anomalous stress against miss distance for the gamma zero form"></svg><div class="legend" id="l8c"></div>
+      <p class="cap">γ = 0 form, a₀ tail around the saddle, for a flyby missing the saddle by 1, 10 and 100 m. Labels give the idealised white-noise SNR, which is optimistic. This form is already excluded, so this is what a stiffened-action null looks like against a test that could have seen something.</p></div>
+    <div class="card"><h3>Source-dependent ΔG/G: the sealed kill line (CFG772)</h3><svg id="c8d" viewBox="0 0 640 280" role="img" aria-label="Predicted source dependent change in G for each form and Klein"></svg>
+      <div class="ctl"><label for="meas8">hypothetical measured |ΔG/G|</label><input id="meas8" type="range" min="-9" max="-2" step="0.05" value="-8"><span class="out" id="meas8o"></span></div>
+      <p class="cap" id="cap8d"></p></div>
+    <div class="card"><h3>Cavendish offset δG/G</h3><svg id="c8e" viewBox="0 0 640 240" role="img" aria-label="Predicted Cavendish offset for the three forms"></svg>
+      <p class="cap">F1 depends on L* only through (r/L*)². F2 is set by Earth's field. F3 has no offset: the supported source's basin is 8.7 μm across, inside the 5.8-cm source. The F2 source-dependent term is a second-order heuristic, not a solved AQUAL problem.</p></div>
+    <div class="card"><h3>Free-fall test: where F3 would show a boost (CFG772 L3)</h3><svg id="c8f" viewBox="0 0 640 230" role="img" aria-label="Maximum mass showing a boost for three free fall settings"></svg>
+      <p class="cap">Under F3, only bodies lighter than the bar's end show their own MOND boost. F1 predicts Newton everywhere because stiffness wins. An interplanetary free-fall experiment would separate F1 from F3. Only F1 survives Cassini without the basin rule (CFG770).</p></div>
+  </div>
+  <p class="cap">Values are from cfg771_results.json and cfg772_results.json. The Quinn geometry (11 kg at 0.214 m) and the Scarpa et al. summary are provisional, quoted in the lane READMEs. The margin to the kill line is about 14 orders of magnitude, so it is robust to those. The framework predicts a null in every case here. A null result cannot confirm it. A shift of 1e-6 or more would exclude it.</p>
+</section>
+
 <footer>Constants: G = 6.674e-11, M☉ = 1.989e30 kg, kpc = 3.0857e19 m. Status labels follow the equation document. This page is a visual aid, not a result, and nothing here should be cited as "the data favour the framework" or "theory closed".</footer>
 </main>
 
@@ -431,7 +465,77 @@ function draw7(){
     el(svg,'line',{x1:XD(d.M/2),x2:XD(d.M/2),y1:y-3,y2:y+27,stroke:css('--bad'),'stroke-width':2.5});
     el(svg,'text',{x:XD(d.M)+6,y:y+16,style:'fill:'+css('--fg')},d.Ms.toFixed(2)+' M*')});
 }
-function all(){draw1();draw2();draw3();draw4();draw5();draw6();draw7()}
+/* ---- 8. saddle + lab ---- */
+const SP={S1:{none:{e:[-2.3032e-11,-2.3032e-11,4.6064e-11],d:2.58813e8},line:{e:[-2.6846e-11,-2.6846e-11,5.3691e-11],d:2.52872e8},quad:{e:[-2.3007e-11,-2.2905e-11,4.5913e-11],d:2.59091e8}},
+ S3:{5.75:[2.82795e-26,3.43304e-8],30:[1.03888e-27,1.26117e-9],100:[9.34992e-29,1.13505e-10],1000:[9.34992e-31,1.13505e-12]},
+ S2:{canonical:{1:[7.6942e-11,461.7],10:[1.46974e-11,241.0],100:[1.81098e-12,88.1]},alt:{1:[8.65838e-11,526.7],10:[1.71475e-11,283.8],100:[2.17435e-12,106.0]}},
+ klein:3.378e-4, f2:{canonical:3.4193e-20,alt:4.1324e-20}, off:{f1a:1.4548e-36,f1b:4.8098e-41,f2:{canonical:4.7709e-12,alt:5.7658e-12}},
+ L3:{canonical:[['drop tower',1.2929e-9],['LEO 400 km',1.8631e-9],['interplanetary 1 AU',1.9549e6]],alt:[['drop tower',2.2820e-9],['LEO 400 km',3.2885e-9],['interplanetary 1 AU',3.4505e6]]}};
+function draw8(){
+  const ft=document.querySelector('input[name=foot8]:checked').value, sc=document.querySelector('input[name=scen8]:checked').value;
+  const lg=+document.getElementById('Ls8').value, L=Math.pow(10,lg), st=SP.S3[5.75][0]*Math.pow(5.75/L,2), snr=SP.S3[5.75][1]*Math.pow(5.75/L,2);
+  document.getElementById('Ls8o').textContent=`L* = ${L.toPrecision(3)} pc   stress ${st.toExponential(2)} s⁻²   1-yr SNR ${snr.toExponential(1)}`;
+  let c=chart(document.getElementById('c8a'),{x0:5.75,x1:1000,y0:1e-32,y1:1e-9,xlog:1,ylog:1,xl:'L*  (pc)',yl:'anomalous stress  (s⁻²)',xt:[10,100,1000],yt:[1e-30,1e-25,1e-20,1e-15,1e-10]});
+  el(c.g,'rect',{x:c.m.l,y:c.sy(8.7e-11),width:c.iw,height:c.sy(1.8e-12)-c.sy(8.7e-11),fill:css('--c4'),opacity:0.22});
+  c.hline(4.6e-11,'--axis','4 3','Newtonian tide 4.6e-11');
+  const xs=range(5.75,1000,120,true);c.line(xs.map(x=>[x,SP.S3[5.75][0]*Math.pow(5.75/x,2)]),'--c1',2.5);
+  c.dots([[5.75,SP.S3[5.75][0]],[30,SP.S3[30][0]],[100,SP.S3[100][0]],[1000,SP.S3[1000][0]]],'--c1',3);
+  c.vline(Math.max(5.75,L),'--c3','4 3','');c.dots([[Math.max(5.75,L),st]],'--c3',5);
+  legend('l8a',[['stiffened action (verdict)','--c1'],['γ = 0 peak stress band (excluded)','--c4'],['your L*','--c3']]);
+  /* tide schematic */
+  const S=SP.S1[sc], svg=document.getElementById('c8b');svg.innerHTML='';
+  const cx=320,cy=140,k=95/5.4e-11;
+  el(svg,'line',{x1:40,x2:600,y1:cy,y2:cy,stroke:css('--grid'),'stroke-dasharray':'4 4'});
+  el(svg,'text',{x:40,y:cy-10,style:'fill:'+css('--fg')},'← toward Sun');el(svg,'text',{x:600,y:cy-10,'text-anchor':'end',style:'fill:'+css('--fg')},'toward Earth →');
+  const arrow=(x1,y1,x2,y2,col)=>{el(svg,'line',{x1,y1,x2,y2,stroke:css(col),'stroke-width':3});const a=Math.atan2(y2-y1,x2-x1);
+    el(svg,'path',{d:`M${x2} ${y2} L${x2-10*Math.cos(a-0.45)} ${y2-10*Math.sin(a-0.45)} L${x2-10*Math.cos(a+0.45)} ${y2-10*Math.sin(a+0.45)}Z`,fill:css(col)})};
+  const sA=S.e[2]*k, tB=-S.e[0]*k;
+  arrow(cx+6,cy,cx+6+sA,cy,'--c4');arrow(cx-6,cy,cx-6-sA,cy,'--c4');
+  arrow(cx,cy-8-tB,cx,cy-8,'--c1');arrow(cx,cy+8+tB,cx,cy+8,'--c1');
+  el(svg,'circle',{cx,cy,r:5,fill:css('--fg')});
+  el(svg,'text',{x:cx+sA+14,y:cy+4,style:'fill:'+css('--c4')},'+'+(S.e[2]*1e11).toFixed(2)+'e-11 (stretch)');
+  el(svg,'text',{x:cx+14,y:cy-8-tB-6,style:'fill:'+css('--c1')},(S.e[0]*1e11).toFixed(2)+'e-11 (compress, twice)');
+  el(svg,'text',{x:320,y:282,'text-anchor':'middle'},'tidal eigenvalues at the saddle (s⁻²), arrows to scale');
+  document.getElementById('cap8b').textContent=`Saddle ${(S.d/1e6).toFixed(1)} thousand km from Earth. One axis stretches and two compress, so the saddle is a stable point only transversely. The stiffened action adds only 2.8e-26 s⁻² on top of this.`;
+  /* gamma=0 context */
+  c=chart(document.getElementById('c8c'),{x0:1,x1:100,y0:1e-12,y1:1e-10,xlog:1,ylog:1,xl:'miss distance  (m)',yl:'anomalous stress  (s⁻²)',xt:[1,10,100],yt:[1e-12,1e-11,1e-10]});
+  [['canonical','--c1'],['alt','--c2']].forEach(f=>{const pts=[1,10,100].map(r=>[r,SP.S2[f[0]][r][0]]);c.line(pts,f[1],2.5);c.dots(pts,f[1],4);
+    [1,10,100].forEach(r=>{el(c.svg,'text',{x:c.sx(r)+(r===100?-8:8),y:c.sy(SP.S2[f[0]][r][0])+(f[0]==='alt'?-8:18),'text-anchor':r===100?'end':'start',style:'fill:'+css(f[1])},'SNR '+Math.round(SP.S2[f[0]][r][1]))})});
+  legend('l8c',[['canonical footing','--c1'],['alt footing','--c2']]);
+  /* kill line */
+  const svgd=document.getElementById('c8d');svgd.innerHTML='';
+  const XD=v=>170+(Math.log10(v)+22)/20*440;
+  [-20,-16,-12,-8,-4,-2].forEach(e=>{el(svgd,'line',{x1:XD(Math.pow(10,e)),x2:XD(Math.pow(10,e)),y1:8,y2:200,stroke:css('--grid')});el(svgd,'text',{x:XD(Math.pow(10,e)),y:216,'text-anchor':'middle'},'1e'+e)});
+  el(svgd,'text',{x:390,y:236,'text-anchor':'middle'},'source-dependent |ΔG/G|  (×4 source change)');
+  const rows=[['F1 stiffened (committed)',0],['F2 γ = 0, local',SP.f2[ft]],['F3 γ = 0 + basin',0],["Klein (Scarpa et al.)",SP.klein]];
+  rows.forEach((r,i)=>{const y=14+i*44;el(svgd,'text',{x:162,y:y+18,'text-anchor':'end',style:'fill:'+css('--fg')},r[0]);
+    if(r[1]===0){el(svgd,'circle',{cx:XD(1e-22)+8,cy:y+12,r:6,fill:'none',stroke:css('--ok'),'stroke-width':2});el(svgd,'text',{x:XD(1e-22)+20,y:y+16,style:'fill:'+css('--fg')},'exactly 0')}
+    else{el(svgd,'circle',{cx:XD(r[1]),cy:y+12,r:6,fill:css(i===3?'--bad':'--c1')});el(svgd,'text',{x:XD(r[1])+12,y:y+16,style:'fill:'+css('--fg')},r[1].toExponential(1))}});
+  el(svgd,'line',{x1:XD(1e-6),x2:XD(1e-6),y1:8,y2:200,stroke:css('--bad'),'stroke-width':1.5,'stroke-dasharray':'4 3'});
+  el(svgd,'text',{x:XD(1e-6)-4,y:20,'text-anchor':'end',style:'fill:'+css('--bad')},'kill line 1e-6');
+  const mv=Math.pow(10,+document.getElementById('meas8').value);
+  el(svgd,'line',{x1:XD(mv),x2:XD(mv),y1:8,y2:200,stroke:css('--c3'),'stroke-width':2});
+  document.getElementById('meas8o').textContent='|ΔG/G| = '+mv.toExponential(1);
+  document.getElementById('cap8d').textContent=mv>=1e-6?'A shift this size EXCLUDES the framework in every form. Klein predicts 338 ppm (3.4e-4), so a shift near that would also support Klein.':'A shift below 1e-6 is consistent with the framework in every form. Klein (338 ppm) would be ruled out if the measurement is clean. A null cannot confirm the framework: it predicts the same null as ordinary gravity.';
+  /* offset */
+  const svge=document.getElementById('c8e');svge.innerHTML='';
+  const XE=v=>190+(Math.log10(v)+42)/32*420;
+  [-40,-32,-24,-16,-10].forEach(e=>{el(svge,'line',{x1:XE(Math.pow(10,e)),x2:XE(Math.pow(10,e)),y1:8,y2:170,stroke:css('--grid')});el(svge,'text',{x:XE(Math.pow(10,e)),y:186,'text-anchor':'middle'},'1e'+e)});
+  el(svge,'text',{x:400,y:208,'text-anchor':'middle'},'Cavendish offset δG/G');
+  [['F1, L* = 5.75 pc',SP.off.f1a,'--c1'],['F1, L* = 1000 pc',SP.off.f1b,'--c1'],['F2, γ = 0 local',SP.off.f2[ft],'--c2'],['F3, basin rule',0,'--ok']].forEach((r,i)=>{const y=12+i*38;
+    el(svge,'text',{x:182,y:y+16,'text-anchor':'end',style:'fill:'+css('--fg')},r[0]);
+    if(!r[1]){el(svge,'circle',{cx:XE(1e-42)+8,cy:y+11,r:6,fill:'none',stroke:css(r[2]),'stroke-width':2});el(svge,'text',{x:XE(1e-42)+20,y:y+15,style:'fill:'+css('--fg')},'none')}
+    else{el(svge,'rect',{x:XE(1e-42),y:y,width:XE(r[1])-XE(1e-42),height:22,fill:css(r[2])});el(svge,'text',{x:XE(r[1])+6,y:y+16,style:'fill:'+css('--fg')},r[1].toExponential(1))}});
+  /* L3 */
+  const svgf=document.getElementById('c8f');svgf.innerHTML='';
+  const XF=v=>170+(Math.log10(v)+10)/18*440;
+  [-9,-6,-3,0,3,6].forEach(e=>{el(svgf,'line',{x1:XF(Math.pow(10,e)),x2:XF(Math.pow(10,e)),y1:8,y2:150,stroke:css('--grid')});el(svgf,'text',{x:XF(Math.pow(10,e)),y:166,'text-anchor':'middle'},'1e'+e)});
+  el(svgf,'text',{x:390,y:190,'text-anchor':'middle'},'maximum body mass showing a boost under F3  (kg)');
+  SP.L3[ft].forEach((r,i)=>{const y=14+i*44;el(svgf,'text',{x:162,y:y+18,'text-anchor':'end',style:'fill:'+css('--fg')},r[0]);
+    el(svgf,'rect',{x:XF(1e-10),y:y,width:XF(r[1])-XF(1e-10),height:24,fill:css('--c3')});el(svgf,'text',{x:XF(r[1])+6,y:y+17,style:'fill:'+css('--fg')},r[1].toExponential(1)+' kg')});
+  el(svgf,'line',{x1:XF(1),x2:XF(1),y1:8,y2:150,stroke:css('--bad'),'stroke-width':1.5,'stroke-dasharray':'4 3'});el(svgf,'text',{x:XF(1)+4,y:20,style:'fill:'+css('--bad')},'1 kg test mass');
+}
+function all(){draw1();draw2();draw3();draw4();draw5();draw6();draw7();draw8()}
 document.querySelectorAll('input,select').forEach(i=>i.addEventListener('input',all));
 all();
 const mq=window.matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',all);
