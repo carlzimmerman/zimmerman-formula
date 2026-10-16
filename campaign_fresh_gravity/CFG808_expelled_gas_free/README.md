@@ -16,3 +16,5 @@ ACCEPT 0.92, eFEDS 29.4).
 - Census catchments (f_ret(M_ta)) leave giant clusters unchanged and raise group supply by up to +160%.
 
 κ fitted; not theory closed.
+
+**Note added (CFG812 finding):** in eRASS1 and ACCEPT the catchment f_ret is pinned at 0.60 by the condensed-fraction floor (condensed fixed at 0.20 M_gas), so census/retention changes did not act there; see CFG812 README.

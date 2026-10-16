@@ -42,3 +42,5 @@ MID 1.72) and M2 (shuffled: MID 0.99) bite.
 - The hot-gas rule frees **too much** cold energy in the most massive systems and **not enough** at intermediate mass.
 - It does flatten the plain law's large core excess in every tercile (2.0–2.2 → 0.6–1.3), which is real progress. The
   mass dependence is wrong, though.
+
+**Note added (CFG812 finding):** in eRASS1 and ACCEPT the catchment f_ret is pinned at 0.60 by the condensed-fraction floor (condensed fixed at 0.20 M_gas), so census/retention changes did not act there; see CFG812 README.

@@ -25,3 +25,5 @@ reproduces CFG727 exactly.
 MUTATE M1 (free removed) gives MID 1.38; M2 (shuffled) gives 0.72. Both bite.
 
 κ fitted; not theory closed.
+
+**Note added (CFG812 finding):** in eRASS1 and ACCEPT the catchment f_ret is pinned at 0.60 by the condensed-fraction floor (condensed fixed at 0.20 M_gas), so census/retention changes did not act there; see CFG812 README.
