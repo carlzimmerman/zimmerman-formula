@@ -55,3 +55,11 @@ how the gas density falls **beyond R200** (r_ta ≈ 7 Mpc ≈ 8.5 R500, median):
 **Prediction (falsifiable).** Under H-EX, stacked cluster gas or pressure profiles (eROSITA outskirts, Planck/ACT SZ
 stacks) must show the gas density falling as ≈ r^−3 (n = 3.0 ± 0.25) from R200 out to several R200. A shallow r^−2 to
 r^−2.5 continuation to the turnaround radius would rule H-EX out at cluster scale.
+
+**Check against published data (provisional; read from the abstract and summary, not re-analysed).**
+- **Measured, consistent:** the 2026 SRG/eROSITA stack of 680 clusters (A&A, arXiv:2509.25317) fits a gas density slope
+  running from ≈ −1 in the core to **≈ −3 at r200m**, with signal out to ≈ 2 r200m (~4.5 Mpc). That supports n ≈ 3 at
+  R200, as the prediction requires.
+- **Not measured:** the slope beyond ~2 r200m, out to the turnaround radius (~4–8 R200). Simulations cited there flatten
+  beyond r200m because of filaments, which would lower f_eff toward the overshoot side.
+- **The decisive measurement:** the stacked slope between 2 r200m and r_ta.
