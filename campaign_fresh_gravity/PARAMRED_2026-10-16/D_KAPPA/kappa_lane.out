@@ -1,0 +1,147 @@
+PARAMRED lane D (KAPPA)
+K0 inputs and reproduction of the CFG493 combination
+  [PASS] K0a prior S_gas from JSON 0.04730 vs frozen 0.0473
+  [PASS] K0a prior S_star from JSON 0.06800 vs frozen 0.068
+  [PASS] K0a prior S_HF from JSON 0.01740 vs frozen 0.0174
+  [PASS] K-rep L_hat -10.1073217 vs CFG493 JSON -10.1073217 (tol 1e-6)
+  [PASS] K-rep sigma_hat 0.0984754 vs CFG493 JSON 0.0984754 (tol 1e-6)
+  [PASS] K-rep consistency p 0.3661 vs JSON 0.3661 (tol 1e-5)
+
+STEP 1: the two footings
+  recorded a0: canonical 9.3603e-11, alt 1.1312e-10; ratio 1.208508 = 0.08225 dex
+  predicted before computing: 1/sqrt(Omega_Lambda=0.685) = 1.208244 (0.08215 dex); relative deviation 2.19e-04
+  [PASS] T1 identity: ratio of recorded footings equals 1/sqrt(Omega_Lambda) within 0.0005 (dev 2.19e-04)
+  alt footing's kappa=1/2 expressed as kappa_Lambda = 0.60425 (predicted 0.5/sqrt(Omega_Lambda) = 0.60412)
+  cH0/Z with H0 67.4, Z = sqrt(32 pi/3) = 5.78881: 1.13120e-10 vs alt 1.1312e-10 (rel 3.13e-06); kappa_crit*Z = 2.8944 vs sqrt(8 pi/3) 2.8944
+  [PASS] T1c cH0/Z equals the alt footing's kappa_crit = 1/2 within 5e-4
+  alt-1/2 vs canonical kappa_Lambda=0.6: 1.00709 (a 0.0031 dex coincidence of two labels for one number region)
+  pipeline-convention shifts in log10 a0 (dex) against the footing shift 0.0822 dex:
+    Hubble-flow H0 73.04 vs 67.4 (S_HF)                                +0.0349   |diff| to footing 0.0473
+    Upsilon 0.5 -> 0.7 (CFG493 criteria, K1)                           -0.0310   |diff| to footing 0.0512
+    SPARC minus ALFALFA HI flux scale (CFG306 P6, from CFG493 K2b)     +0.0527   |diff| to footing 0.0295
+    kernel quadrature vs nu_mono (CFG493 V3, combined shift)           +0.0689   |diff| to footing 0.0134
+  [PASS] T1b no pipeline-convention shift matches the footing shift within 0.002 dex
+  route dependence (CFG493 levers, dex a0 per dex): gas -1.05 / -0.84 / -1.21;  Hubble-flow +0.00 / +2.17 / +2.28;  the footing lever is +1.00 for every route (it is a denominator).
+  STEP 1 CLASS: RELABELLING BY THE COSMIC DENSITY RATIO
+  Framework's say: S1 (THEORY_CANONICAL) writes rho_DE, so the framework's own statement selects the canonical footing; it says nothing about H0, M/L or the HI flux scale. At z=0 the data measure ONE number (a0); the two footings are two hypotheses about its value: kappa_Lambda = 0.5000 and kappa_Lambda = 0.6043.
+
+STEP 2a: screening of every other ledger a0 estimate against CFG493 I1-I5 (adopted unchanged)
+  candidate                                  I1 I2 I3 I4 I5  passes   reason
+  C1 CFG281 local ALFALFA chain               1  1  0  1  1  no      I3 fails: its own lane's frozen calibration rule says NOT calibrated (clause ii recipe half 0.216>0.20; clause iii drift 0.105>0.10); I4 up to 23 galaxies may coincide with P2's ALFALFA flux-tie matches (<2% of 1370)
+  C2 SPARC estimators A/B/C                   1  0  1  0  1  no      I4: same galaxies as P1; A and C are M/L-entangled (I2)
+  C3 SPARC Hubble-flow gas points             1  1  1  0  1  no      I4: same survey as P1
+  C4 KiDS-1000 late-type z 0.2 / 0.4          1  0  0  1  1  no      I2: M* lever -1.1; I3: joint rows fail one a0 (p 4.6e-6); the two redshift bins differ by 0.39 dex; early-type rows 1.2-2.3 are class-inconsistent
+  C5 PAPER43 pool                             1  1  1  0  1  no      I4: contains P1-like and P3-like data
+  C6 free-M/L SPARC literature value (2023)   1  0  1  0  1  no      I4: SPARC; I2: M/L free and degenerate
+  C7 CFG397 anchor (10 gal)                   1  1  0  0  1  no      I4: 10 of the same ladder galaxies as P1; NOT ESTABLISHED (sigma > 0.05)
+  C8 LITTLE THINGS / 2017 reduction           1  1  0  0  1  no      I3: failed the overlap control twice (CFG442, CFG449); I4: same dwarfs as P1
+  C9 high-z s* bounds (CFG270, 272-280)       0  0  1  1  0  no      I1: one-sided bounds, not estimates (e.g. PT1 s* <= 2.44 is kappa_Lambda <= 1.2); calibration-limited; z-dependent
+  C10 CFG260 BUDHIES z~0.2                    1  0  0  1  0  no      I3: NOT CALIBRATED; rho = 0.18 vs the local control, unresolved; I5 not put on the footing
+  Fixed-a0 score tests, not a0 estimators (READMEs opened): CFG515, CFG516, CFG529, CFG531, CFG549 (a0(z)/a0(0) ratio; kappa cancels). CFG583/584 report outer residuals on SPARC / WALLABY, i.e. the same galaxies as P1 / P3, so I4 excludes them even read as level estimates.
+  [PASS] S2a pre-registered expectation: no candidate passes all of I1-I5
+
+STEP 2b: extended primary set = P1-P3 + nothing
+  L_hat -10.10732, sigma_hat 0.09848 dex = 1.000 x CFG493; consistency p 0.366; shared-systematic floor 0.03854 dex
+  H2 verdict (rule: sigma <= 0.9 x CFG493 and p >= 0.05): NO REDUCTION
+  [PASS] K1 CFG493 candidate a0 for 1/2 match the frozen constants
+
+STEP 2c: per-route kappa (from the CFG493 JSON), then the within-footing combination
+  route                                 log a0   sigma  kappa_Lambda  kappa_crit  weight
+  P1 SPARC gas points (ladder)        -10.0152  0.1408         0.516       0.427   0.414
+  P2 MeerKAT MIGHTEE-HI widths        -10.0807  0.1511         0.444       0.367   0.343
+  P3 WALLABY DR2 gas points           -10.3020  0.1714         0.266       0.220   0.243
+
+  COMBINED primary set (P1-P3, GLS with shared S_gas, S_star, S_HF): L_hat -10.1073 +- 0.0985 dex; a0 = 7.8105e-11 (68% 6.226e-11-9.798e-11; 95% 5.008e-11-1.218e-10)
+    canonical footing: kappa_Lambda = 0.4172  (68% 0.333-0.523; 95% 0.268-0.651)
+    alt footing:       kappa_crit   = 0.3452  (68% 0.275-0.433; 95% 0.221-0.538)
+      canonical 1/2                                a0 9.3603e-11  kappa 0.5000  pull  0.80 sigma  ALLOWED
+      canonical 1/sqrt(pi)                         a0 1.0562e-10  kappa 0.5642  pull  1.33 sigma  DISFAVOURED
+      canonical 0.6                                a0 1.1232e-10  kappa 0.6000  pull  1.60 sigma  DISFAVOURED
+      canonical cH0/2pi (MOND-form)                  a0 1.0422e-10  kappa 0.5567  pull  1.27 sigma  DISFAVOURED
+      canonical cH_Lambda/2pi                      a0 8.6257e-11  kappa 0.4608  pull  0.44 sigma  ALLOWED
+      canonical literal 1/(2 pi)                   a0 2.9795e-11  kappa 0.1592  pull  4.25 sigma  EXCLUDED
+      canonical alt-1/2 as kappa_Lambda=0.6041     a0 1.1312e-10  kappa 0.6043  pull  1.63 sigma  DISFAVOURED
+      alt       1/2                                a0 1.1312e-10  kappa 0.5000  pull  1.63 sigma  DISFAVOURED
+      alt       1/sqrt(pi)                         a0 1.2764e-10  kappa 0.5642  pull  2.17 sigma  EXCLUDED
+      alt       0.6                                a0 1.3574e-10  kappa 0.6000  pull  2.44 sigma  EXCLUDED
+      alt       cH0/2pi (MOND-form)                  a0 1.0422e-10  kappa 0.4607  pull  1.27 sigma  DISFAVOURED
+      alt       literal 1/(2 pi)                   a0 3.6007e-11  kappa 0.1592  pull  3.41 sigma  EXCLUDED
+    canonical-1/2 pull 0.80, alt-1/2 pull 1.63; footing separation 0.84 sigma; LR(canonical:alt) = 2.76 -> WEAK favouring canonical
+
+STEP 2d: which pairs are NOT independent
+  GLS route correlation (shared S terms only):
+   P1 SPARC gas points (ladder)      +1.000 +0.105 +0.122
+   P2 MeerKAT MIGHTEE-HI widths      +0.105 +1.000 +0.151
+   P3 WALLABY DR2 gas points         +0.122 +0.151 +1.000
+  effective number of independent routes = mean single-route variance / sigma_hat^2 = 2.48 of 3
+  P1-P2                                                                  share S_gas (HI mass scale; both tied to the ALFALFA flux anchor) and S_star; galaxies independent (SPARC vs MIGHTEE)
+  P1-P3                                                                  share S_gas and S_star; galaxies independent (SPARC vs WALLABY); P1 is ladder-distance, P3 Hubble-flow
+  P2-P3                                                                  share S_gas, S_star AND S_HF (Hubble-flow scale, levers +2.17/+2.28); both HI-survey products on the single-dish scale
+  P1 - SPARC A/B/C, HF gas points, free-M/L lit. value, CFG397, CFG442, CFG449, LITTLE THINGS SAME GALAXIES (P1's 12 are in SPARC's 175); never combine with P1
+  P2 - CFG301/CFG304/CFG306/CFG309                                       same MIGHTEE data and the same flux offset
+  P3 - PAPER43 pool, CFG537, CFG583/584 WALLABY residuals                same WALLABY DR2 data
+  C1 (CFG281) - P2                                                       same width -> V -> baryon recipe family (delta, sin i_eff, M*), shared ALFALFA flux anchor; correlated through the recipe even if galaxies differ
+  KiDS rows - all                                                        share the stellar-mass scale and baryon masses (lever -1.1); lensing-weighted
+  C10 BUDHIES - C1                                                       same chain; the unresolved factor 5.6 between them is a method gap, not independent information
+
+STEP 2e: sensitivities (labelled departures from I1-I5; never the verdict)
+  BASE CFG493 P1-P3                              L -10.1073 sigma 0.0985 (1.00x) p 0.366 | kappa_L 0.417 kappa_c 0.345 | pull(1/2) can 0.80 alt 1.63 | LR can:alt 2.8
+  C1 as built: L -9.9052 (a0 1.244e-10 at H0 67.4), unique 0.1891, levers gas -0.624 star -0.594 HF +2.204
+  S1 + C1 (CFG493 priors)                        L -10.0743 sigma 0.0929 (0.94x) p 0.388 | kappa_L 0.450 kappa_c 0.372 | pull(1/2) can 0.49 alt 1.38 | LR can:alt 2.3
+  S1c + C1 (CFG281's own M* width as unique)     L -10.0831 sigma 0.0941 (0.96x) p 0.439 | kappa_L 0.441 kappa_c 0.365 | pull(1/2) can 0.58 alt 1.45 | LR can:alt 2.4
+  S2 P1 -> SPARC estimator C (as CFG493 V1/V2, gas independent) L -10.1148 sigma 0.0651 (0.66x) p 0.485 | kappa_L 0.410 kappa_c 0.339 | pull(1/2) can 1.32 alt 2.59 | LR can:alt 11.8
+  [PASS] K-V reproduction: S2 P1 -> SPARC estimator C sigma 0.06511 vs CFG493 V1 SPARC = estimator C 0.06511 (tol 2e-3, reported)
+  S2 P1 -> SPARC estimator C (gas part reassigned as SHARED) L -10.1061 sigma 0.0716 (0.73x) p 0.450 | kappa_L 0.418 kappa_c 0.346 | pull(1/2) can 1.08 alt 2.23 | LR can:alt 6.7
+  S3 P1 -> SPARC estimator A (as CFG493 V1/V2, gas independent) L -10.0995 sigma 0.0609 (0.62x) p 0.445 | kappa_L 0.425 kappa_c 0.352 | pull(1/2) can 1.16 alt 2.51 | LR can:alt 12.0
+  [PASS] K-V reproduction: S3 P1 -> SPARC estimator A sigma 0.06091 vs CFG493 V2 SPARC = estimator A 0.06091 (tol 2e-3, reported)
+  S3 P1 -> SPARC estimator A (gas part reassigned as SHARED) L -10.0880 sigma 0.0670 (0.68x) p 0.398 | kappa_L 0.436 kappa_c 0.361 | pull(1/2) can 0.88 alt 2.11 | LR can:alt 6.3
+  S4 CFG493 V8 (+ KiDS late rows), from JSON     L -10.0654 sigma 0.0877 (0.89x) p 0.176 | kappa_L 0.459 kappa_c 0.380 | pull(1/2) can 0.42 alt 1.36
+  S5 leave out P1 SPARC gas points (ladder)      L -10.1751 sigma 0.1215 (1.23x) p 0.293 | kappa_L 0.357 kappa_c 0.295 | pull(1/2) can 1.20 alt 1.88 | LR can:alt 2.8
+  S5 leave out P2 MeerKAT MIGHTEE-HI widths      L -10.1270 sigma 0.1151 (1.17x) p 0.168 | kappa_L 0.399 kappa_c 0.330 | pull(1/2) can 0.85 alt 1.57 | LR can:alt 2.4
+  S5 leave out P3 WALLABY DR2 gas points         L -10.0454 sigma 0.1083 (1.10x) p 0.737 | kappa_L 0.481 kappa_c 0.398 | pull(1/2) can 0.15 alt 0.91 | LR can:alt 1.5
+
+STEP 2f: envelope over CFG493 variants V1-V11 (from the JSON)
+  V1 SPARC = estimator C                                     L -10.1148 sigma 0.0651 | pull(1/2) canonical 1.32  alt 2.59 | LR can:alt 11.8
+  V2 SPARC = estimator A                                     L -10.0995 sigma 0.0609 | pull(1/2) canonical 1.16  alt 2.51 | LR can:alt 12.0
+  V3 kernel = quadrature sqrt(1+1/y) (all routes)            L -10.0385 sigma 0.0985 | pull(1/2) canonical 0.10  alt 0.93 | LR can:alt 1.5
+  V4 no flux tie (own flux scales)                           L -10.0310 sigma 0.0908 | pull(1/2) canonical 0.03  alt 0.93 | LR can:alt 1.5
+  V5 P2 flux offset -0.087 (S2 z-trend)                      L -10.0734 sigma 0.0985 | pull(1/2) canonical 0.45  alt 1.29 | LR can:alt 2.1
+  V6 HF distances at H0 73.04, rho_Lambda at 67.4            L -10.0621 sigma 0.0985 | pull(1/2) canonical 0.34  alt 1.17 | LR can:alt 1.9
+  V7 footing rebuilt at H0 73.04 (Omega_Lambda fixed)        L -10.0621 sigma 0.0985 | pull(1/2) canonical 0.34  alt 1.17 | LR can:alt 1.9
+  V8 + KiDS late-type rows (M* band 0.17 shared)             L -10.0654 sigma 0.0877 | pull(1/2) canonical 0.42  alt 1.36 | LR can:alt 2.3
+  V9 no P1 rotation-curve reduction term                     L -10.0825 sigma 0.0885 | pull(1/2) canonical 0.61  alt 1.54 | LR can:alt 2.7
+  V10 recipe and transfer half-widths uniform (/sqrt 3)      L -10.0942 sigma 0.0850 | pull(1/2) canonical 0.77  alt 1.74 | LR can:alt 3.4
+  V11 P1 = CFG397 10-galaxy anchor                           L -10.0474 sigma 0.0955 | pull(1/2) canonical 0.20  alt 1.06 | LR can:alt 1.7
+  envelope: L in [-10.1148, -10.0310] (kappa_Lambda 0.410-0.497); sigma in [0.0609, 0.0985]; canonical-1/2 pull max 1.32; alt-1/2 pull range 0.93-2.59; LR can:alt range 1.5-12.0
+
+STEP 2g: report-only rows against the primary combination (NOT independent of it; no combination)
+  SPARC estimator A (Planck-consistent)                            L -10.0741 +- 0.0704  kappa_Lambda 0.450  difference to primary +0.27 sigma (errors added in quadrature, overlap ignored)
+  SPARC estimator B (shape only)                                   L  -9.9612 +- 0.1371  kappa_Lambda 0.584  difference to primary +0.87 sigma (errors added in quadrature, overlap ignored)
+  SPARC estimator C (profile likelihood)                           L -10.0906 +- 0.0771  kappa_Lambda 0.434  difference to primary +0.13 sigma (errors added in quadrature, overlap ignored)
+  SPARC Hubble-flow gas points (tabulated H0 73)                   L -10.1797 +- 0.0850  kappa_Lambda 0.353  difference to primary -0.56 sigma (errors added in quadrature, overlap ignored)
+  SPARC Hubble-flow gas points moved to H0 67.4 (x(67.4/73)^2)     L -10.2490 +- 0.0850  kappa_Lambda 0.301  difference to primary -1.09 sigma (errors added in quadrature, overlap ignored)
+  KiDS late, z 0.20 (stat only; M* band +-0.17)                    L  -9.8061 +- 0.1054  kappa_Lambda 0.835  difference to primary +2.09 sigma (errors added in quadrature, overlap ignored)
+  KiDS late, z 0.40                                                L -10.1943 +- 0.1805  kappa_Lambda 0.341  difference to primary -0.42 sigma (errors added in quadrature, overlap ignored)
+  PAPER43 pool (quadrature kernel, mixed H0)                       L -10.0800 +- 0.0582  kappa_Lambda 0.444  difference to primary +0.24 sigma (errors added in quadrature, overlap ignored)
+  free-M/L SPARC literature value 2023 (literature, SPARC, free M/L)                       L  -9.9245 +- 0.0365  kappa_Lambda 0.636  difference to primary +1.74 sigma (errors added in quadrature, overlap ignored)
+
+H3: can z = 0 data separate the footings?
+  primary set: LR(canonical:alt) = 2.76 -> WEAK; H3 (needs STRONG) holds: False
+
+STEP 3: what could pin kappa better than the combined error
+  pin threshold: a0 precision < sigma_hat/2 = 0.0492 dex; the nearest competitor (cH_Lambda/2pi) is 0.0355 dex from canonical 1/2 (2-sigma separation needs 0.0177 dex); footings are 0.0822 dex apart (needs 0.0411)
+  floor if every unique term were removed: 0.0385 dex (CFG493 power floor 0.0385)
+    shared-term floor (all route-unique terms -> 0) with S_gas x0.25 (HI scale + CO-dark known to ~3%): 0.0168 dex
+    shared-term floor (all route-unique terms -> 0) with S_gas x0.25 and S_HF x0.25 (ladder-quality distances for the Hubble-flow routes): 0.0167 dex
+    shared-term floor (all route-unique terms -> 0) with S_gas, S_star and S_HF all x0.25: 0.0096 dex
+  ALMA 2026-11-06 / 11-28: required M_gas ~ 1/a0 (lever -1), so the whole kappa interval is +-0.098 dex in required gas; the stellar-mass branch moves it 0.6 dex, the KURVS floor is 0.15 dex, F-DESI vs F-flat differ <= 0.02 dex. Best reachable a0 precision >= 0.15 dex > 0.049 dex: cannot pin kappa. The tests decide the z-dependence (flat vs dark-energy-tracking vs H(z)), not the level.
+  Gaia DR4 2026-12-02: current canonical prediction is Newtonian (gamma_v - 1 <= 8.9e-4 at 50 kAU), lever on kappa = 0. Under the superseded MI prescription (22% of a0 -> 3.3% of gamma_v, lever 0.382 per dex) the frozen sigma_sys 0.02 gives 0.052 dex > 0.049: cannot pin kappa either, and it constrains the prescription, not a0.
+  [PASS] S3 H4 evaluation uses the frozen threshold (ALMA floor and DR4 lever both above sigma_hat/2 => no test pins kappa)
+
+FINAL (frozen mapping): NO REDUCTION
+  H1 (footing is an astrophysical convention): rejected; step-1 class: RELABELLING BY THE COSMIC DENSITY RATIO
+  H2 (within-footing interval shrinks): NO REDUCTION (sigma ratio 1.000; floor 0.0385 dex)
+  H3 (footings separable at z=0, LR >= 10): no (LR 2.76, WEAK)
+  H4 (a sealed test pins kappa): no
+
+14/14 checks pass; load-bearing failures: 0

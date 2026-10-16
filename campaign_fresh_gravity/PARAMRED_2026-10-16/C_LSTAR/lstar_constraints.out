@@ -1,0 +1,93 @@
+PARAMRED lane C (LSTAR): what is the stiffness length L*?  Criteria: FROZEN_CRITERIA.md (written before this script ran).
+
+Part 1: every constraint on L* on the record, read from the recorded JSONs (read only), plus ONE new compute: the SPARC upper
+edge of the window (CFG691's own statistic copied, scanned from 1 kpc to 30 kpc).  Part 2: the P-sector branch conditions.
+kappa = 1/2 FITTED; both footings (never pooled); no particle species; not "theory closed".
+
+Run:  OMP_NUM_THREADS=1 nice -n 19 python3 lstar_constraints.py        (LSTAR_MUTATE=1: S = 1 negative control; exit 1 iff it bites)
+Inputs: small JSON / text only (CFG4_common reads the SPARC rotmod text files).  Writes only next to itself.
+
+K1  profile table vs CFG691 JSON
+  [PASS] K1 S(s) table reproduces CFG691 JSON (1e-6 relative): status 0, max rel diff 0.00e+00
+
+K2  SPARC statistic vs CFG691 JSON (316.2 pc, 1000 pc), and K3 vs CFG760 JSON (7585 pc alt, 9549 pc canonical)
+  [PASS] K2 rms/Upsilon at 316 and 1000 pc reproduce CFG691 JSON (1e-6): canonical 316: 0.10116597@0.46 vs 0.10116597@0.46; canonical 1e+03: 0.10228234@0.46 vs 0.10228234@0.46; alt 316: 0.10058903@0.42 vs 0.10058903@0.42; alt 1e+03: 0.10150706@0.43 vs 0.10150706@0.43
+  [PASS] K3 rms/Upsilon at L*_all reproduce CFG760 JSON (1e-6): canonical 9549 pc: 0.17182456@0.65 vs 0.17182456@0.65; alt 7585 pc: 0.16090866@0.58 vs 0.16090866@0.58
+
+R7  SPARC upper edge of the window: CFG691 statistic, L* 1 kpc .. 30 kpc on a 0.01-dex grid, Upsilon_disk profiled 0.30-1.20
+    canonical [last] rms(1 kpc) 0.10228  rms(30 kpc) 0.22236  non-monotone steps 0  edges (0.105/0.110/0.115): 1479 pc / 2042 pc / 2570 pc
+    canonical [pt  ] rms(1 kpc) 0.10540  rms(30 kpc) 0.22339  non-monotone steps 0  edges (0.105/0.110/0.115): none / 1445 pc / 1862 pc
+    alt       [last] rms(1 kpc) 0.10151  rms(30 kpc) 0.22244  non-monotone steps 0  edges (0.105/0.110/0.115): 1585 pc / 2138 pc / 2630 pc
+    alt       [pt  ] rms(1 kpc) 0.10505  rms(30 kpc) 0.22351  non-monotone steps 0  edges (0.105/0.110/0.115): none / 1445 pc / 1862 pc
+
+R1/R2  Solar-System gates (CFG691): ratio(L*) = ratio(L*_grid) (L*_grid/L*)^2 exactly (inner pull GM/L*^2)
+    canonical: grid L*_min 5.7544 pc;  Saturn edge 5.6505 pc (full-profile root 5.6505);  1-AU edge 1.9515 pc
+    alt      : grid L*_min 5.7544 pc;  Saturn edge 5.6505 pc (full-profile root 5.6505);  1-AU edge 1.9515 pc
+  [PASS] K4 Saturn edge: scaling vs full-profile root (1e-3): canonical 5.6505 vs 5.6505; alt 5.6505 vs 5.6505
+  [PASS] K6 Q2 ~ L*^-3 on CFG770's own ladder (1e-2 relative at 5.75 vs 30 pc): ratio/(30/5.75)^3 - 1 = 2.22e-16
+R3  Cassini Q2: worst |Q2| 1.8057e-32 s^-2 over 3 g_e x 2 footings at 5.75 pc = 3.473e-06 of the ceiling -> L* >= 0.0871 pc
+R4  star halos (CFG694 G3 / CFG658 E3): worst M_ph/M 0.03521 at L* 5.7544 pc, r_b 1.08 pc; allowance 0.155 -> L* >= 2.7426 pc  (pure scaling 1.08/sqrt(0.155) = 2.7432)
+    lower edge = max(R1..R4) = 5.6505 pc (canonical) / 5.6505 pc (alt); set by the Saturn gate
+
+     sensitivity of the lower edge to the Saturn-orbit enclosed-mass bound B (L*_min = r/sqrt(B), r = 9.54 AU): improvement needed to probe L*
+        to reach L* =     5.8 pc the bound must fall to 6.46e-11 Msun  (1.04e+00 x tighter than 6.7e-11)
+        to reach L* =    10.0 pc the bound must fall to 2.14e-11 Msun  (3.13e+00 x tighter than 6.7e-11)
+        to reach L* =    30.0 pc the bound must fall to 2.38e-12 Msun  (2.82e+01 x tighter than 6.7e-11)
+        to reach L* =   100.0 pc the bound must fall to 2.14e-13 Msun  (3.13e+02 x tighter than 6.7e-11)
+        to reach L* =   300.0 pc the bound must fall to 2.38e-14 Msun  (2.82e+03 x tighter than 6.7e-11)
+        to reach L* =  1000.0 pc the bound must fall to 2.14e-15 Msun  (3.13e+04 x tighter than 6.7e-11)
+
+R5  wide binaries (CFG740 formula gamma_v - 1 = (1/2)(s/L*)^2; CFG816 error model)
+  [PASS] K7 CFG740 envelope at 50 kAU, L* 5.7544 pc (1e-3 vs JSON inner limit): formula 8.872782e-04, rel diff 2.06e-07
+  [PASS] K5 CFG816 sigma_tot values (6e-4): 0.0896, 0.0507, 0.0385, 0.0276, 0.0225
+    s = 50 kAU = 0.24241 pc.  Envelope (1/2)(s/L*)^2 at L*=5.7544: 8.8728e-04 at 50 kAU, 1.9767e-02 at 236 kAU; at the exact Saturn edge 5.650 pc: 9.2021e-04 at 50 kAU
+    NULL (DR4 R-statistic error model): 2-sigma upper limit beta = 2 sigma_tot on gamma_v - 1 at 50 kAU  ->  L* >= s / sqrt(2 beta)
+        N =   1421: sigma_tot 0.0896, 2-sigma beta 0.1791 -> L* >= 0.405 pc at 50 kAU (1.91 pc if the 236 kAU bin were usable at the same error); exceeds Saturn edge 5.65? False
+        N =   5000: sigma_tot 0.0507, 2-sigma beta 0.1013 -> L* >= 0.539 pc at 50 kAU (2.54 pc if the 236 kAU bin were usable at the same error); exceeds Saturn edge 5.65? False
+        N =  10000: sigma_tot 0.0385, 2-sigma beta 0.0770 -> L* >= 0.618 pc at 50 kAU (2.92 pc if the 236 kAU bin were usable at the same error); exceeds Saturn edge 5.65? False
+        N =  30000: sigma_tot 0.0276, 2-sigma beta 0.0552 -> L* >= 0.730 pc at 50 kAU (3.44 pc if the 236 kAU bin were usable at the same error); exceeds Saturn edge 5.65? False
+        N = 100000: sigma_tot 0.0225, 2-sigma beta 0.0451 -> L* >= 0.807 pc at 50 kAU (3.81 pc if the 236 kAU bin were usable at the same error); exceeds Saturn edge 5.65? False
+    to move the lower edge ABOVE the Saturn edge a null needs 2 sigma < 9.202e-04, i.e. sigma < 4.60e-04; the irreducible floor is 0.02 -> 43 x short, at any N
+    DETECTION b = R - 1 at 50 kAU (maps to L* = s / sqrt(2 b); the framework needs L* >= the Saturn edge):
+        b = 9.2021e-04: L* =   5.650 pc  (>= Saturn edge)
+        b = 3.0000e-03: L* =   3.129 pc  < Saturn edge: no L* in the stiffened action reproduces it
+        b = 1.0000e-02: L* =   1.714 pc  < Saturn edge: no L* in the stiffened action reproduces it
+        b = 5.0000e-02: L* =   0.767 pc  < Saturn edge: no L* in the stiffened action reproduces it
+        b = 1.0000e-01: L* =   0.542 pc  < Saturn edge: no L* in the stiffened action reproduces it
+        b = 1.5000e-01: L* =   0.443 pc  < Saturn edge: no L* in the stiffened action reproduces it
+        b = 2.0000e-01: L* =   0.383 pc  < Saturn edge: no L* in the stiffened action reproduces it
+    kill rule b >= 0.01 (3 sigma) maps to L* <= 1.714 pc (3.3 x below the Saturn edge).  Untestable zone: b between 9.20e-04 and 0.068 (3 sigma at N = 1e5)
+    DR3 (CFG658 E1, record as given): L* -> 0 gives gamma-hat 1.500, excluded at +7.73 / +8.25 sigma; L* = 5.754 pc gives 1.0162 / 1.0200, -0.82 / -0.83 sigma (CONSISTENT). No injection at 0 < L* < 5.754 pc is on the record: DR3 gives NO L* bound beyond that.
+  [PASS] K8 CFG774 pull ~ L*^-2 (1e-3): 1.02e-05
+
+R6  CFG774 probe pull a(L*) = 4.2157e-15 (5.75/L*)^2 m/s^2:  5.75 pc: 4.22e-15, 10 pc: 1.39e-15, 30 pc: 1.55e-16, 100 pc: 1.39e-17, 300 pc: 1.55e-18, 1000 pc: 1.39e-19
+    kill line 1e-13 beyond 1000 AU maps to L* <= 1.181 pc (below the Saturn edge -> a detection kills the stiffened action, it does not select an L*).
+    CFG771 saddle stress ~ L*^-2 (null at 5.75 pc; larger L* is smaller); CFG772 lab prediction is L*-independent (F1: 0): neither bounds L*.
+
+R8  P-sector branch conditions vs the SPARC edge (R7, primary 'last' mass, line 0.110)
+    canonical: SPARC edge 2042 pc
+        (a) P-wave export (CFG760 G3): L*_all 9549 pc; 5/8 cases already open by 1 kpc;  closed over the window: True
+        (b) identification, CFG744 law t ~ L*^-2, 4.6 Gyr: L*_open per case 188 .. 13723 pc; min s0 at L*_open 5.00 (law fitted on s0 10-80); closed over the window: True
+        (c) identification, exponent-free one-crossing bound t ~ L*^-1, 13.8 Gyr (necessary only): L*_open 3 .. 800 pc; closed over the window: False
+    alt      : SPARC edge 2138 pc
+        (a) P-wave export (CFG760 G3): L*_all 7585 pc; 5/8 cases already open by 1 kpc;  closed over the window: True
+        (b) identification, CFG744 law t ~ L*^-2, 4.6 Gyr: L*_open per case 159 .. 11628 pc; min s0 at L*_open 5.76 (law fitted on s0 10-80); closed over the window: True
+        (c) identification, exponent-free one-crossing bound t ~ L*^-1, 13.8 Gyr (necessary only): L*_open 2 .. 631 pc; closed over the window: False
+
+R9  screening factor S(r_h / ell_gamma) for a generic dwarf (r_h = 30 pc), canonical a0 -- generic, NOT scored
+    M_b    1e+03 Msun: L*=5.754: S=0.578  L*=30: S=0.0395  L*=100: S=0.00365  L*=300: S=0.000407  L*=1000: S=3.66e-05
+    M_b    1e+04 Msun: L*=5.754: S=0.846  L*=30: S=0.117  L*=100: S=0.0115  L*=300: S=0.00129  L*=1000: S=0.000116
+    M_b    1e+05 Msun: L*=5.754: S=0.954  L*=30: S=0.308  L*=100: S=0.0356  L*=300: S=0.00406  L*=1000: S=0.000366
+    M_b    1e+07 Msun: L*=5.754: S=0.995  L*=30: S=0.868  L*=100: S=0.284  L*=300: S=0.0395  L*=1000: S=0.00365
+
+Part 2  scale argument (D-B), numbers frozen before the comparison
+    canonical: c^2/a0 = 9.6018e+26 m = 3.1117e+10 pc;  / SPARC edge 2042 pc = 1.52e+07;  / lower edge 5.65 pc = 5.51e+09
+    alt      : c^2/a0 = 7.9451e+26 m = 2.5748e+10 pc;  / SPARC edge 2138 pc = 1.20e+07;  / lower edge 5.65 pc = 4.56e+09
+
+ALLOWED INTERVAL (each footing alone; the lower edge is a-priori footing-free):
+    canonical: L* in [5.650 pc, 2042 pc]  (2.56 decades)
+    alt      : L* in [5.650 pc, 2138 pc]  (2.58 decades)
+    softness (6 edges: 3 lines x 2 mass rules): canonical spread x1.78 (firm; all 6 found: False); alt spread x1.82 (firm; all 6 found: False)
+
+VERDICT: Part 1: CONSTRAINT TIGHTENED (upper edge located; approximation-conditional);  Part 2: NO REDUCTION (no derived relation fixes L*).  elapsed 7.4 s
+controls: 8/8 pass

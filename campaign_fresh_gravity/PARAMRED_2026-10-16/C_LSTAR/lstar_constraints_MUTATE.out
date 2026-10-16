@@ -1,0 +1,17 @@
+PARAMRED lane C (LSTAR): what is the stiffness length L*?  Criteria: FROZEN_CRITERIA.md (written before this script ran).
+
+Part 1: every constraint on L* on the record, read from the recorded JSONs (read only), plus ONE new compute: the SPARC upper
+edge of the window (CFG691's own statistic copied, scanned from 1 kpc to 30 kpc).  Part 2: the P-sector branch conditions.
+kappa = 1/2 FITTED; both footings (never pooled); no particle species; not "theory closed".
+
+Run:  OMP_NUM_THREADS=1 nice -n 19 python3 lstar_constraints.py        (LSTAR_MUTATE=1: S = 1 negative control; exit 1 iff it bites)
+Inputs: small JSON / text only (CFG4_common reads the SPARC rotmod text files).  Writes only next to itself.
+
+K1  profile table vs CFG691 JSON
+  [PASS] K1 S(s) table reproduces CFG691 JSON (1e-6 relative): status 0, max rel diff 0.00e+00
+
+R7  SPARC upper edge of the window: CFG691 statistic, L* 1 kpc .. 30 kpc on a 0.01-dex grid, Upsilon_disk profiled 0.30-1.20   [MUTATE: S = 1, no stiffness]
+    canonical [last] rms(1 kpc) 0.10121  rms(30 kpc) 0.10121  non-monotone steps 0  edges (0.105/0.110/0.115): none / none / none
+    alt       [last] rms(1 kpc) 0.10070  rms(30 kpc) 0.10070  non-monotone steps 0  edges (0.105/0.110/0.115): none / none / none
+
+MUTATE (S = 1): edge found on either footing? NO -> the edge is caused by the stiffness; tooth bites

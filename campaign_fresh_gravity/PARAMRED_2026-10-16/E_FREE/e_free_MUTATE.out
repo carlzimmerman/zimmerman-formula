@@ -1,0 +1,63 @@
+PARAMRED lane E (FREE): constraint intersection  [MUTATE R_ind = 1]
+T1 inputs: CFG317 per-object table, 97 objects with R_ind; OLS log R_ind = +3.387 -0.343 log M_b,now
+
+  T1 canonical: S1 needs V_th > 4.60 km/s (UFD 27-th of 30: Hercules)
+      S2 MW classicals : V_th <= 8.99 km/s (allowed flagged 1 of 12; set by Sextans); 0 objects have V_init < L
+      S2 M31 (Collins) : V_th <= 5.39 km/s (allowed flagged 1 of 14; set by And XXII); 0 objects have V_init < L
+      S2 M31 (LVD)     : V_th <= 5.25 km/s (allowed flagged 2 of 29; set by Andromeda XI); 0 objects have V_init < L
+      S2 LV field      : V_th <= 10.86 km/s (allowed flagged 1 of 12; set by Tucana); 0 objects have V_init < L
+      WINDOW = (4.60, 5.25] km/s  non-empty: True  (L/U = 0.877; tightest group M31 (LVD) via Andromeda XI)
+      exploratory, S2 on classicals+field only: (4.60, 8.99] non-empty True
+      T10000: c_s 11.83  lambda window (0.389, 0.444]  sqrt2 inside: False  (exploratory-no-M31: False)
+      T15000: c_s 14.49  lambda window (0.318, 0.362]  sqrt2 inside: False  (exploratory-no-M31: False)
+      T20000: c_s 16.73  lambda window (0.275, 0.314]  sqrt2 inside: False  (exploratory-no-M31: False)
+
+  T1 alt: S1 needs V_th > 4.82 km/s (UFD 27-th of 30: Hercules)
+      S2 MW classicals : V_th <= 9.43 km/s (allowed flagged 1 of 12; set by Sextans); 0 objects have V_init < L
+      S2 M31 (Collins) : V_th <= 5.65 km/s (allowed flagged 1 of 14; set by And XXII); 0 objects have V_init < L
+      S2 M31 (LVD)     : V_th <= 5.50 km/s (allowed flagged 2 of 29; set by Andromeda XI); 0 objects have V_init < L
+      S2 LV field      : V_th <= 11.39 km/s (allowed flagged 1 of 12; set by Tucana); 0 objects have V_init < L
+      WINDOW = (4.82, 5.50] km/s  non-empty: True  (L/U = 0.877; tightest group M31 (LVD) via Andromeda XI)
+      exploratory, S2 on classicals+field only: (4.82, 9.43] non-empty True
+      T10000: c_s 11.83  lambda window (0.408, 0.465]  sqrt2 inside: False  (exploratory-no-M31: False)
+      T15000: c_s 14.49  lambda window (0.333, 0.380]  sqrt2 inside: False  (exploratory-no-M31: False)
+      T20000: c_s 16.73  lambda window (0.288, 0.329]  sqrt2 inside: False  (exploratory-no-M31: False)
+
+  post-hoc sensitivity (canonical): window (L, U] for S1 fraction f1 (UFDs flagged >=) and S2 fraction f2 (others flagged <=)
+    f1=0.9: EMPTY(15.1,11.4)  EMPTY(15.1,13.5)  open(15.1,15.6)  open(15.1,17.5)  open(15.1,19.4)
+    f1=0.8: EMPTY(13.3,11.4)  open(13.3,13.5)  open(13.3,15.6)  open(13.3,17.5)  open(13.3,19.4)
+    f1=0.7: open(11.2,11.4)  open(11.2,13.5)  open(11.2,15.6)  open(11.2,17.5)  open(11.2,19.4)
+    f1=0.6: open(11.0,11.4)  open(11.0,13.5)  open(11.0,15.6)  open(11.0,17.5)  open(11.0,19.4)
+    f1=0.5: open(10.9,11.4)  open(10.9,13.5)  open(10.9,15.6)  open(10.9,17.5)  open(10.9,19.4)
+
+T2 family A: M_free = F x 5.364 x M_exp, universal F
+  U: r_U = M_free/M_law = 3.47 [1.91, 5.85]; m_U = 68.6 M_b,now [19.9, 225.5]
+     supply leaky_box_primary: 624.9 M_b  ->  F_U >= 0.0318 (mid 0.1097)
+     supply CFG336_lead_R6_30_largestS: 155.6 M_b  ->  F_U >= 0.1277 (mid 0.4407)
+     supply CFG317_Rneed_log3.65: 23954.7 M_b  ->  F_U >= 0.0008 (mid 0.0029)
+  E amount: F_E in [0.0114, 0.0324]  (S_E = 24.7-48.3 M_b)
+  E differential (frozen linear form): F needed [15.2, 21.5, 27.9] vs cap 1; universal-rule Z = 3.22
+  C: F_C in [0.619, 1.000] (raw upper 1.83 before the cap)
+  pairwise (primary U): U-E (0.0317940018428324, 0.032422267613396887)  U-C (0.6189001155444109, 1.0)  E-C None  joint None
+  pairwise (generous U): U-E (0.011392824591929739, 0.032422267613396887)  U-C (0.6189001155444109, 1.0)  E-C None  joint None
+  E-C gap factor (C lower / E upper) = 19.1
+T3 family B: M_free = k M_hot
+  k_C = (2.88, 3.62); U with present hot gas: VIOLATED (M_hot = 0 today, needed m_U >= 19.9 M_b); alt 'ever-hot' reading k_U >= 0.169 (overlaps k_C range if inside-fraction free: True); E: PENDING (sealed CFG746 prediction, not a pass)
+T4 single power law F ~ M_b^p
+  log M_b: U 3.95, E 10.8, C (13.0, 14.0); p_EC in [0.40, 0.88]
+    U accounting leaky_box_primary: p_UE <= 0.001  -> single power law possible: False
+    U accounting CFG336_lead_R6_30_largestS: p_UE <= -0.087  -> single power law possible: False
+    U accounting CFG317_Rneed_log3.65: p_UE <= 0.232  -> single power law possible: False
+  [PASS] N2 control (E := C interval) gives non-empty E-C and joint: E-C (0.6189001155444109, 1.0), joint (0.6189001155444109, 1.0)
+
+T5 dimensionless combinations (exponents in the listed order):
+  G,a0,M: 0 combination(s) []
+  G,a0,M,c: 1 combination(s) [['-1/4', '-1/4', '-1/4', '1']]
+  G,a0,M,cs: 1 combination(s) [['-1/4', '-1/4', '-1/4', '1']]
+  [PASS] T5 control (G,M,r,c): exactly one combination, proportional to (1,1,-1,-2): [['-1/2', '-1/2', '1/2', '1']] (scalar multiple ['-1/2'])
+  [PASS] T5 (G,a0,M) has no dimensionless combination: []
+  V_flat canonical: U median 3.2, E 167.3, C 593.7-1055.8 km/s
+  V_flat alt: U median 3.4, E 175.4, C 622.5-1107.0 km/s
+
+Q1 (one form for U,E,C): False   Q2: False   Q3 (selector forced): False
+MUTATE: window with R_ind = 1 is (4.60, 5.25] vs main (15.09, 11.43]; moved True
