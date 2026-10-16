@@ -1,0 +1,46 @@
+ARGON10 Part F   mode=scored   criteria db69ec1a0
+
+== extra (not frozen)  coexistence phase I*, omega*^2 vs astra's table ==
+  M=    1: I* = 0.530967 (astra 0.530967),  omega*^2 = 0.777373 (astra 0.777373)
+  M=   10: I* = 4.351594 (astra 4.351594),  omega*^2 = 0.774215 (astra 0.774215)
+  M=  100: I* = 48.989314 (astra 48.989310),  omega*^2 = 0.753423 (astra 0.753423)
+  M= 1000: I* = 498.929190 (astra 498.929051),  omega*^2 = 0.750358 (astra 0.750358)
+  table reproduction: AGREES
+
+== F1  spinodal growth, rotating-frame fluctuations (r,pi,xi), M=100 ==
+  s=0.1: gamma_max = 0.04372 at k = 0.285   (astra 0.04369 at 0.29)  ok
+  s=0.5: gamma_max = 0.07436 at k = 0.340   (astra 0.07436 at 0.34)  ok
+  s=1.0: max growth over k in [0,2] = 1.31e-14  (expect stable)  ok   omega^2=0.75342
+  s=2.0: max growth over k in [0,2] = 1.18e-14  (expect stable)  ok   omega^2=2.02377
+  F1: AGREES
+  info M=10: s=0.1: 0.03867@0.265; s=0.5: 0.06583@0.315; s=1.0: 0.00000@1.325; s=2.0: 0.00000@0.535
+
+== F2  self-interaction consequences (ESTIMATE; CFG725 window) ==
+  gas channel (tree, threshold)  M=100:
+      eps    channel      |amp|  S=(sig/m)m_h^3  cm2/g @1MeV      class   m_h range for [0.105,10] cm2/g
+    1e+00   same-chg  4.000e-02       3.979e-06    8.691e-01  ABOVE-LOW   443 keV - 2.02e+03 keV
+    1e+00    opp-chg  4.160e-02       8.607e-06    1.880e+00  ABOVE-LOW   573 keV - 2.62e+03 keV
+    1e-03   same-chg  4.000e-05       3.979e-12    8.691e-07      BELOW   4.43 keV - 20.2 keV
+    1e-03    opp-chg  4.160e-05       8.607e-12    1.880e-06      BELOW   5.73 keV - 26.2 keV
+    1e-06   same-chg  4.000e-08       3.979e-18    8.691e-13      BELOW   0.0443 keV - 0.202 keV
+    1e-06    opp-chg  4.160e-08       8.607e-18    1.880e-12      BELOW   0.0573 keV - 0.262 keV
+
+  lump channel (spinodal fragments), M=100; lambda_f = 2 pi / k_s; bracket x[0.5, 2] in lambda_f:
+     s     eps  lambda_f        Q_f      R_f  S=(sig/m)m_h^3  cm2/g @1MeV      class        bracket cm2/g   m_h range
+   0.1   1e+00     22.05  1.001e+05     6.55       5.385e-03    1.176e+03   EXCLUDED  5.88e+02-2.35e+03   4.9e+03 keV - 2.24e+04 keV
+   0.1   1e-03     22.05  1.001e+08     6.55       5.385e-06    1.176e+00  ABOVE-LOW  5.88e-01-2.35e+00   490 keV - 2.24e+03 keV
+   0.1   1e-06     22.05  1.001e+11     6.55       5.385e-09    1.176e-03      BELOW  5.88e-04-2.35e-03   49 keV - 224 keV
+   0.5   1e+00     18.48  2.572e+05     8.97       3.932e-03    8.589e+02   EXCLUDED  4.29e+02-1.72e+03   4.41e+03 keV - 2.01e+04 keV
+   0.5   1e-03     18.48  2.572e+08     8.97       3.932e-06    8.589e-01  ABOVE-LOW  4.29e-01-1.72e+00   441 keV - 2.01e+03 keV
+   0.5   1e-06     18.48  2.572e+11     8.97       3.932e-09    8.589e-04      BELOW  4.29e-04-1.72e-03   44.1 keV - 201 keV
+  note: sigma/m ~ eps for lumps (charge ~ 1/eps at fixed size) but ~ eps^2 for free quanta (amplitude ~ eps).
+  ESTIMATE only: linear spinodal scale, hard-sphere cross-section; no nonlinear formation, merging or fragment-size evolution.
+
+== F3  POST-HOC joint map (NOT frozen): quantum-protected eps vs lump self-interaction window ==
+  protected: Delta_net <= 1 and Delta_m <= 1 (Q2, both scale as eps);  window: lump sigma/m in [0.105, 10] cm2/g (CFG725 bracket);
+  s=0.1 fragments, lambda_f = 2pi/k_s.  m_h is a free scale, so this is a RELATION between eps and m_h, not a constraint on eps alone.
+      M   eps_max    k_s   lump cm2/g@1MeV, eps=1  m_h window at eps_max (MeV)
+     10  8.41e-02  0.265                1.218e+04  4.68 - 21.4
+    100  4.29e-04  0.285                1.176e+03  0.369 - 1.69
+   1000  2.86e-06  0.290                1.177e+02  0.0323 - 0.147
+  reading: at the protection limit the fragments sit in the window only for m_h below the upper value; larger m_h needs larger eps (unprotected).

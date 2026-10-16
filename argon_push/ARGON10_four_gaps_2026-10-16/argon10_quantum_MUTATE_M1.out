@@ -1,0 +1,57 @@
+ARGON10 Part Q + D1   mode=MUTATE 1   criteria db69ec1a0
+
+== Q1  one-loop MS-bar beta, M=100 ==
+  net quartic L - a^2/(2B) = -0.010000   beta_net = 0.565461   beta_m2/m2 = 1013.4135
+  astra targets: beta_net 0.28273, beta_m2/m2 506.7
+  identity  dV1/dln(mu) = -TrH^2/(32 pi^2):  max rel diff over 5 random points = 3.46e-12
+  Q1: DISAGREES
+
+== Q2  radiative sensitivity span  (Delta = |beta| ln(M/m_h) / |tree value|) ==
+       M     eps   net quartic    beta_net   Delta_net          cls |     beta_m2     Delta_m          cls
+      10   1e+00    -1.000e-01  5.1326e-01   1.182e+01  UNPROTECTED |  1.0325e+01   2.377e+01  UNPROTECTED
+      10   1e-03    -1.000e-04  5.1326e-07   1.182e-02    PROTECTED |  1.0325e-02   2.377e-02    PROTECTED
+      10   1e-06    -1.000e-07  5.1326e-13   1.182e-05    PROTECTED |  1.0325e-05   2.377e-05    PROTECTED
+     100   1e+00    -1.000e-02  5.6546e-01   2.604e+02  UNPROTECTED |  1.0134e+03   4.667e+03  UNPROTECTED
+     100   1e-03    -1.000e-05  5.6546e-07   2.604e-01    PROTECTED |  1.0134e+00   4.667e+00     MARGINAL
+     100   1e-06    -1.000e-08  5.6546e-13   2.604e-04    PROTECTED |  1.0134e-03   4.667e-03    PROTECTED
+    1000   1e+00    -1.000e-03  5.7091e-01   3.944e+03  UNPROTECTED |  1.0132e+05   6.999e+05  UNPROTECTED
+    1000   1e-03    -1.000e-06  5.7091e-07   3.944e+00     MARGINAL |  1.0132e+02   6.999e+02  UNPROTECTED
+    1000   1e-06    -1.000e-09  5.7091e-13   3.944e-03    PROTECTED |  1.0132e-01   6.999e-01    PROTECTED
+  cross-check vs astra (M=100, eps=1e-6, UNIT log): quartic rel shift 5.6546e-05 (astra 2.8273e-5), m2 shift 1.0134e-03 (astra 5.0671e-4)
+
+== Q3  classicality of the galaxy-law (S2) sector ==
+  Planck length 1.616e-35 m;  halo M_b = 6e10 Msun, M_c = 5.364 M_b
+     footing       L*      g_loop       g_act        g_zp
+   canonical   5.75pc   8.30e-105   3.42e-102    2.89e-88
+   canonical  24.00pc   4.76e-106   3.42e-102    9.51e-91
+   canonical 1000.00pc   2.74e-109   3.42e-102    3.15e-97
+  (canonical: V_f = 165.2 km/s, r_M = 9452 pc, t = 0.06 Gyr, classical action S = 3.08e+67 J s)
+         alt   5.75pc   8.30e-105   3.59e-102    1.98e-88
+         alt  24.00pc   4.76e-106   3.59e-102    6.51e-91
+         alt 1000.00pc   2.74e-109   3.59e-102    2.16e-97
+  (alt: V_f = 173.2 km/s, r_M = 8598 pc, t = 0.05 Gyr, classical action S = 2.94e+67 J s)
+  Q3: NEGLIGIBLE
+
+== Q4  partial MS-bar scalar vacuum value V1(0) at mu=M, m_h = 1 MeV  (scheme-dependent, informative) ==
+  M=   10  canonical: |V1(0)| = 2.377e+01 MeV^4, rho_DE c^2 = 2.518e-35 MeV^4, log10 ratio = 36.0
+  M=   10        alt: |V1(0)| = 2.377e+01 MeV^4, rho_DE c^2 = 3.678e-35 MeV^4, log10 ratio = 35.8
+  M=  100  canonical: |V1(0)| = 2.375e+05 MeV^4, rho_DE c^2 = 2.518e-35 MeV^4, log10 ratio = 40.0
+  M=  100        alt: |V1(0)| = 2.375e+05 MeV^4, rho_DE c^2 = 3.678e-35 MeV^4, log10 ratio = 39.8
+  M= 1000  canonical: |V1(0)| = 2.375e+09 MeV^4, rho_DE c^2 = 2.518e-35 MeV^4, log10 ratio = 44.0
+  M= 1000        alt: |V1(0)| = 2.375e+09 MeV^4, rho_DE c^2 = 3.678e-35 MeV^4, log10 ratio = 43.8
+  (no cancellation mechanism is claimed; astra's sequestering route fixes only the vacuum-FORM stress)
+
+== D1  normalization bookkeeping ==
+  canonical: hbar*a0/c = 2.055e-34 eV;  / (1 MeV) = 2.06e-40;  / (2 MeV) = 1.03e-40;  / (2.25 meV) = 9.13e-32
+  alt: hbar*a0/c = 2.484e-34 eV;  / (1 MeV) = 2.48e-40;  / (2 MeV) = 1.24e-40;  / (2.25 meV) = 1.10e-31
+  rho_DE^(1/4) at kappa=1/2 (canonical) = 2.240 meV;  2 MeV / 2.6757 meV = 7.475e+08  (astra: 7.47e8)
+  parameter count (astra, FOUR_GAP_AUDIT NORMALIZATION):
+    observed: ONE ratio  kappa = a0 / (c sqrt(G rho_DE)).
+    a0 = q_b^3 / (4 pi C^3 beta G_lab)  -> free: (q_b, C, beta, G_lab)  [4 parameters, 1 output]
+    B_eff = Q^2/2 + Delta_F + <tau>/4   -> free: (Q, Delta_F, <tau>)    [3 parameters, 1 output]
+    Imposing kappa = 1/2 is ONE relation among >= 7 parameters: >= 6 free directions remain.
+    Explicit degeneracy: (Q, Delta_F) = (1, 2.5) and (2, 1) give B_eff = 3 with a0 differing (astra).
+  D1: NOT FIXED (agrees with astra)
+
+== gate summary ==
+  Q1 DISAGREES | Q3 NEGLIGIBLE | D1 NOT FIXED

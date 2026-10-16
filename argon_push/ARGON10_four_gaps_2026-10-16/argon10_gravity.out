@@ -1,0 +1,36 @@
+ARGON10 Part G   mode=scored   criteria db69ec1a0
+
+== G1(a) scalar attachment:  c_L^2 = 2*Y*Derivative(F(Y), (Y, 2))/Derivative(F(Y), Y) + 1 ==
+== G1(b) vector attachment (dE || E):  v^2 = Derivative(L(Fv), Fv)/(2*Fv*Derivative(L(Fv), (Fv, 2)) + Derivative(L(Fv), Fv))   (other polarization: v^2 = 1) ==
+
+== G1(c) the law D(E)=E^2/(E+a0), x=E/a0 ==
+  scalar attachment  c_L^2 = (x + 2)/(x + 1)   expected (2+x)/(1+x)
+  vector attachment  v^2   = (x + 1)/(x + 2)   expected (1+x)/(2+x)
+  product c_L^2 * v^2 = 1
+  general D(E): c_L^2 * v^2 = 1
+
+== astra's cubic-response cone ==
+  c_r^2 (from y D_y/D) = 2*(C*beta*p + 1)/(2*C*beta*p + 1);  astra: 2(1+C beta p)/(1+2 C beta p)
+  max |difference| over 200 random (C, beta, p) = 0.00e+00
+  cross-check, F(Y)=Y^1.5+Y/3: c_L^2 from F_YY vs from d lnD/d lnE differ by 0
+
+== first-principles linearisation check ==
+  (a) scalar EOM -> omega^2/k^2 = (F1 + 2*F2*y**2)/F1  matches formula: True
+  (b) Maxwell+constitutive -> omega^2/k^2 = L_F/(E**2*L_FF + L_F)  matches formula: True;  other polarisation v=1: True
+
+  G1: AGREES   (law formulas True, duality True, astra cone True, F_YY cross-check True, PDE linearisation True)
+
+== ranges over x = g/a0 in [1e-6, 1e6] ==
+  scalar attachment: c_L^2 in [1.0000, 2.0000]  -> superluminal everywhere (criterion A fails), max 1.4142 c
+  vector attachment: v^2   in [0.5000, 1.0000]  -> subluminal everywhere
+
+== G2  criterion B (global time function compatible with every cone) ==
+  medium moving at v along the gradient: dt is G-timelike iff v^2 < 1/c_L^2  ->  v < c/c_L,max = 0.7071 c = 211985 km/s
+  largest speed in the record (Bullet merger, CFG725): 4700 km/s = 0.0157 c;  margin = 45.1x
+  criterion B: PASSES;   criterion A (cone inside the light cone): FAILS for the scalar attachment
+  Reading: astra's 'fails common metric-cone requirement' is criterion A (strict). The owner's criterion B (09-26) holds with the margin above.
+  Both attachments reproduce the same static law; only the vector (source-side/D) attachment is within the light cone, and
+  its hyperbolic health, sign (attraction vs repulsion) and lensing/metric coupling are NOT established here.
+
+== gate summary ==
+  G1 AGREES | G2 criterion B PASSES
