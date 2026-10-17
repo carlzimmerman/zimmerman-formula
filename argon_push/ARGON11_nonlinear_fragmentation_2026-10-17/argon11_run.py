@@ -17,8 +17,12 @@ RUNS = {  # id: (s, N, dx, seed, eps, t_end, Lq_flip)
     "R7": (0.1, 64, 1.0, 1, 1e-6, 800, False),
     "R8": (0.1, 128, 1.0, 3, 1e-4, 700, False),
 }
-BUSY = r"run_650|run_654|cfg6[0-9][0-9]_pm|cfg596_pm|cfg7[0-9][0-9]\.py"
-def busy(): return subprocess.run(["pgrep", "-f", BUSY], capture_output=True).returncode == 0
+import re
+# match only real interpreter processes (a shell whose command text merely mentions these names must not trigger the watchdog)
+BUSY = re.compile(r"^(\S*/)?[Pp]ython[\d.]*\s+(\S*/)?(run_650|run_654|cfg6\d\d_pm|cfg596_pm|cfg7\d\d)(\.py)?(\s|$)")
+def busy():
+    out = subprocess.run(["ps", "-axo", "args="], capture_output=True, text=True).stdout.splitlines()
+    return any(BUSY.match(l.strip()) for l in out)
 
 rid = sys.argv[1]
 s, N, dx, seed, eps, tend, flip = RUNS[rid]
