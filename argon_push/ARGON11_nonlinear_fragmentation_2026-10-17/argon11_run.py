@@ -19,7 +19,7 @@ RUNS = {  # id: (s, N, dx, seed, eps, t_end, Lq_flip)
 }
 import re
 # match only real interpreter processes (a shell whose command text merely mentions these names must not trigger the watchdog)
-BUSY = re.compile(r"^(\S*/)?[Pp]ython[\d.]*\s+(\S*/)?(run_650|run_654|cfg6\d\d_pm|cfg596_pm|cfg7\d\d)(\.py)?(\s|$)")
+BUSY = re.compile(r"^(nice(\s+-n\s+\d+)?\s+)?(\S*/)?[Pp]ython[\d.]*\s+(\S*/)?(run_650|run_654|cfg6\d\d_pm|cfg596_pm|cfg7\d\d)(\.py)?(\s|$)")
 def busy():
     out = subprocess.run(["ps", "-axo", "args="], capture_output=True, text=True).stdout.splitlines()
     return any(BUSY.match(l.strip()) for l in out)
