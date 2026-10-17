@@ -33,7 +33,7 @@ I0 = s*Istar
 L, a, chi0, om2 = background(M, I0, Lq)
 cmd = ["nice", "-n", "10", os.path.join(HERE, "frag3d"), rid, str(N), str(dx), str(dt), str(M), repr(L), repr(a), repr(I0), repr(chi0),
        repr(math.sqrt(om2)), repr(eps), str(seed), str(tend), "25", OUT]
-resume = False
+resume = len(sys.argv) > 2 and sys.argv[2] == "resume"     # start from the checkpoint (used after the app quit at t~25-50)
 while True:
     while busy():
         print(time.strftime("%H:%M:%S"), rid, "waiting: 1024^3-type run live", flush=True); time.sleep(120)
