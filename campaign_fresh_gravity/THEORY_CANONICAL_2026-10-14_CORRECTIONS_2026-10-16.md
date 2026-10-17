@@ -1,6 +1,6 @@
 # Corrections and status updates to THEORY_CANONICAL_2026-10-14 (dated 2026-10-16) — DRAFT
 
-**Status: draft for the owner's review; committed locally, not pushed by this note's author.** The frozen file `THEORY_CANONICAL_2026-10-14.md` is not edited.
+**Status: draft for the owner's review. Committed; it reached `origin/main` through another session's push, not this note's author's.** The frozen file `THEORY_CANONICAL_2026-10-14.md` is not edited.
 
 **Written against the 10-14 file.** A dated v2 (`THEORY_CANONICAL_2026-10-16.md`) landed on 2026-10-16 while this note was being drafted. The section "Status against v2" below says which items v2 already resolves and which still apply.
 
@@ -52,8 +52,8 @@ v2 supersedes the 10-14 text "only where stated" and leaves S1, S2, S5, §2 and 
 | C6 | **STILL APPLIES, plus a tension to check (not asserted).** v2 removes "each halo settles only its own supply" (citing CFG801), while T12 was run with per-host supply (M1; `CFG650_theory_v2_combined_pm/README.md:91`). How T12 and T1x score under v2's catchment rule is not on the record. |
 | C7 | **STILL APPLIES.** S5 is unchanged. |
 | C8 | **PARTLY ADDRESSED.** v2 names "CFG800's decision rule and Amendment 22" for DR4, but the "MOND-size" wording in the 10-14 table is not itself edited. Read the DR4 row through CFG800. |
-| C9 | **UPDATED.** CFG820 (landed 2026-10-16 17:33, after v2) reports **L\* ≥ 24.0 pc (95%, canonical; 24.7 alt; ≥ 13.8 pc if all four globulars including Pal 3 are used)** from outer-halo globulars (CFG332 data × CFG691 screening). That is consistent with a DR4 envelope smaller by (24/5.754)² ≈ 17, as it states. Its upper end still reads ">~1 kpc" (the grid-edge wording); CFG832's soft ≈ 2 kpc edge is a separate lane. If both hold the window is [24 pc, ≈ 2 kpc soft]. Both are single-lane results, and for CFG820 I read the ledger row only. |
-| C10 | **NARROWED to the 10-14 file.** v2 replaces the dead selector by H-EX and leaves §4 "unchanged". Under v2, S4 has a recorded failure on the full 318 clusters (CFG815) and the early-type miss (CFG811). Whether "the pending lanes on S4 pass their frozen gates" can still be met is the owner's reading; this note does not decide it. |
+| C9 | **UPDATED.** CFG820 (landed 2026-10-16 17:33, after v2) reports **L\* ≥ 24.0 pc (95%, canonical; 24.7 alt; ≥ 13.8 pc if all four globulars including Pal 3 are used)** from outer-halo globulars (CFG332 data × CFG691 screening). That is consistent with a DR4 envelope smaller by (24/5.754)² ≈ 17, as it states. Its upper end still reads ">~1 kpc" (the grid-edge wording); CFG832's soft ≈ 2 kpc edge is a separate lane. If both hold the window is [24 pc, ≈ 2 kpc soft]. Both are single-lane results, and for CFG820 I read the ledger row only (the id CFG820 is also used on a DR4-scoring row; the one meant here is titled "Stiffness length lower bound from outer-halo globulars"). **CFG821 (landed 2026-10-17, after this note was first drafted) conflicts with it:** 11 MW classical dSphs want L\* ≤ 22 pc (95%, floor-preferring) against the globulars' ≥ 24 pc, and the row marks this INCONSISTENT (CONDITIONAL). Its own reading is that the unscreened isolated law already fits the dSphs badly (χ² 58 for 10), so a gravity-only stiffness cannot serve both and the dwarfs need real bound cold mass; on that reading L\* ≥ 24 pc stands. Taken at face value as a bound, ≤ 22 pc would leave no L\* satisfying both, and it is a stricter upper bound than CFG832's ≈ 2 kpc, from different data. The [24 pc, ≈ 2 kpc soft] window above therefore holds only on CFG821's own reading (the dSph preference is a missing-mass signal, not an L\* bound). I read the CFG821 ledger row only. |
+| C10 | **NARROWED to the 10-14 file.** v2 replaces the dead selector by H-EX and leaves §4 "unchanged". Under v2, S4 has a recorded failure on the full 318 clusters (CFG815) and the early-type miss (CFG811). Whether "the pending lanes on S4 pass their frozen gates" can still be met is the owner's reading; this note does not decide it. **CFG821 adds a second pointer on the dwarf side of S4:** its row concludes the classical dSphs need real bound cold mass (its words: a two-population S4), so the dwarf arm has no quantified rule under v2 either (v2 already lists the UFDs as still open). That is a status fact from one ledger row, not a decision on §4. |
 
 ## Considered and NOT included (so they are not re-flagged)
 
@@ -72,7 +72,7 @@ v2 supersedes the 10-14 text "only where stated" and leaves S1, S2, S5, §2 and 
 
 ```bash
 cd campaign_fresh_gravity
-grep -n -E "^\| CFG(782|784|747|748|776|779|780|740|800|691) " LEDGER.md | cut -c1-400
+grep -n -E "^\| CFG(782|784|747|748|776|779|780|740|800|691|820|821|832) " LEDGER.md | cut -c1-400
 sed -n 3p CFG782_unbinding_selector/README.md
 sed -n 117,118p CFG252_FROZEN_CRITERIA.md; sed -n 107p CFG252_timescape_between_the_bands/README.md
 sed -n 91,101p CFG650_theory_v2_combined_pm/README.md
