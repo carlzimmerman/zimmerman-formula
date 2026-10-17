@@ -20,9 +20,11 @@ RUNS = {  # id: (s, N, dx, seed, eps, t_end, Lq_flip)
 import re
 # match only real interpreter processes (a shell whose command text merely mentions these names must not trigger the watchdog)
 BUSY = re.compile(r"^(nice(\s+-n\s+\d+)?\s+)?(\S*/)?[Pp]ython[\d.]*\s+(\S*/)?(run_650|run_654|cfg6\d\d_pm|cfg596_pm|cfg7\d\d)(\.py)?(\s|$)")
+CHAIN = re.compile(r"^(/bin/)?bash\s+\S*overnight_chain/chain\d+\.sh(\s|$)")
 def busy():
+    """True while a 1024^3-type run is live OR while any overnight_chain script is alive (the T1x reruns: 'no other computation while they run')."""
     out = subprocess.run(["ps", "-axo", "args="], capture_output=True, text=True).stdout.splitlines()
-    return any(BUSY.match(l.strip()) for l in out)
+    return any(BUSY.match(l.strip()) or CHAIN.match(l.strip()) for l in out)
 
 rid = sys.argv[1]
 s, N, dx, seed, eps, tend, flip = RUNS[rid]
@@ -36,11 +38,11 @@ cmd = ["nice", "-n", "10", os.path.join(HERE, "frag3d"), rid, str(N), str(dx), s
 resume = len(sys.argv) > 2 and sys.argv[2] == "resume"     # start from the checkpoint (used after the app quit at t~25-50)
 while True:
     while busy():
-        print(time.strftime("%H:%M:%S"), rid, "waiting: 1024^3-type run live", flush=True); time.sleep(120)
+        print(time.strftime("%H:%M:%S"), rid, "waiting: 1024^3-type run live", flush=True); time.sleep(30)
     p = subprocess.Popen(cmd + (["resume"] if resume else []))
     stopped = False
     while p.poll() is None:
-        time.sleep(20)
+        time.sleep(5)
         if busy():
             p.terminate(); p.wait(); stopped = True; print(time.strftime("%H:%M:%S"), rid, "STOPPED: 1024^3-type run appeared", flush=True); break
     if not stopped:
