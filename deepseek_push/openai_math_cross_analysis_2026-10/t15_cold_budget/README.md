@@ -109,3 +109,26 @@ conclusions stand untouched: deficits ≠ settled fractions (branch
 error), the cluster/group overdraft, the λ ceiling 0.0073–0.0172, the
 T12-range violation (≥ 3.95×), the reservoir reading, MUTATE = the T12
 identification.
+
+## Correction (2026-10-18, calc chat; owner go): the group/cluster overdraft is a units mismatch
+The group and cluster inputs 0.79/1.76 and 0.41/0.91 are CFG382 definition A,
+x_A = (M_tot - M_b - M_ph)/(5.364 M_b): the excess beyond the law, per cosmic cold share. They are not
+x = M_missing/M_b = (M_tot - M_b)/M_b, the definition stated in FROZEN_CRITERIA and used for the MW-30 point. The exact
+relation is x = 5.364 x_A + (nu - 1) (verified per object to 4e-15). The tell is in T15 C1 itself: f_obs(clusters) =
+1/(1 + 0.41) = 0.709, while X-COP measures f_b = 0.163 (b = 0).
+
+On the stated definition (campaign_fresh_gravity/CFG453_t15_deficit_units, criteria b1132dd48, result de0514adb; both
+a0 footings, never pooled), with x = 5.12/7.74 for clusters and 10.8/15.9 for groups at b = 0/0.3:
+- Clusters M_cold/M_b = +3.8 to +4.3 (b = 0) and +6.4 to +6.9 (b = 0.3); groups +9 to +14. Positive, not overdrawn.
+- No lambda ceiling: the dark mass exceeds even the fully settled kernel supply, so the floor lambda 0.028 is allowed at R500.
+- Clusters dark mass = 0.95 of one cosmic cold share; groups 2.0 (gas-poor, f_b 0.084).
+
+Therefore, NOT TO BE CITED:
+- S2 (the group/cluster overdraft, "cold fluid forced NEGATIVE"), S3 (reservoir fraction 0.083-0.28; "cold fluid
+  (nearly) absent at cluster scales"), C3-C5 (the lambda ceilings 0.0073-0.025, the T12 violation >= 3.95x) and C4's
+  f_res windows, for groups and clusters.
+
+Unaffected: the MW-30 rows, which use the stated definition (the T16/T17/T18 MW knife-edge stands as computed), the
+budget identity and the Lean certificates (arithmetic only), and the branch-audit point that leftover e is not settled f.
+T17's motivating "reservoir complement (T15)" rests on S3 and should be read with this note. CFG382's own P2 cluster miss
+(leftover branch, like-for-like) is a separate result and stands. Nothing above this section was changed.

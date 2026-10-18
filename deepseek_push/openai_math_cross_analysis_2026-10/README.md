@@ -115,3 +115,7 @@ SPARC record can be re-audited against at fixed M_b errors.
   sorry and axioms = {propext, Classical.choice, Quot.sound}. They certify the
   arithmetic only, per house practice; the physics mapping lives in the lane
   scripts.
+**Correction (2026-10-18):** the T15 group/cluster overdraft and the T16 group/cluster lambda windows used CFG382
+definition-A deficits (excess per cosmic share) in place of x = (M_tot - M_b)/M_b. On the stated definition, clusters and
+groups carry POSITIVE cold mass with no lambda ceiling (campaign_fresh_gravity/CFG453_t15_deficit_units). See
+t15_cold_budget/README.md and t16_coupling_gradient/CORRECTION_2026-10-18.md. The MW-30 rows are unaffected.
