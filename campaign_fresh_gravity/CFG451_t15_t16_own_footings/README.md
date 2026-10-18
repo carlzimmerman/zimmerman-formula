@@ -47,3 +47,10 @@ The lower a0 makes the kernel supply S smaller everywhere. That helps the R500 b
 - C1 reproduces the committed T15 and T16 JSON at 1.2e-10 to 1e-9.
 - C2 reads CFG450's deficits correctly.
 - MUTATE failed as frozen (see above).
+
+## Correction (2026-10-18): superseded by CFG453
+The group and cluster deficits used here are CFG382's definition A (beyond-law excess per cosmic cold share). T15's
+identity needs x = (M_tot − M_b)/M_b, and the two are related by x_T15 = 5.364 x_A + (ν − 1). On T15's own definition,
+clusters have M_cold/M_b of +3.8 to +6.9 on both footings, with no λ ceiling (`CFG453_t15_deficit_units`, de0514adb). The
+"no rescue" verdict above answered a problem that does not exist on that definition. The footing and a0(z) shifts reported
+here remain valid as sensitivities of the misread branch only. No number above was changed.
