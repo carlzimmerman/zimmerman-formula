@@ -1179,6 +1179,58 @@ def block_mean(x, f):
         out[i] = sl.astype(np.float64).reshape(f, n, f, n, f).mean(axis=(0, 2, 4)).astype(np.float32)
     return out
 
+# ---------------------------------------------------------------- checkpoint / resume (infrastructure only: no formula, step or output changes)
+# A rolling checkpoint is written after a step whose NEXT forces() call refreshes the whole census state (_INC["calls"] % 10 == 0),
+# so the particle arrays, the call counter and res are all a bit-identical continuation needs.  CFG596_CKPT=0 disables.
+CKPT = os.environ.get("CFG596_CKPT", "1") == "1"
+def _ck_arrays(P):
+    d = {f"x{c}": P.x[c] for c in range(3)}; d.update({f"m{c}": P.mom[c] for c in range(3)})
+    for k in ("fd", "pm"):
+        if getattr(P, k, None) is not None: d[k] = getattr(P, k)
+    return d
+def _nocache(fd):
+    try:
+        import fcntl; fcntl.fcntl(fd, 48, 1)                      # F_NOCACHE: no dirty pages competing with RAM (as DField)
+    except Exception:
+        pass
+def ckpt_save(tag, P, n_done, res):
+    import shutil
+    d = os.path.join(WORK, f"{tag}_ckpt"); new = d + ".new"; arrs = _ck_arrays(P)
+    need = sum(a.nbytes for a in arrs.values()) / 1e9
+    if os.path.isdir(new): shutil.rmtree(new)
+    if os.path.isdir(d) and shutil.disk_usage(WORK).free / 1e9 < 2 * need + 20:
+        os.remove(os.path.join(d, "meta.json")); shutil.rmtree(d)  # disk too small for two copies: drop the old one first
+    os.makedirs(new)
+    for k, a in arrs.items():
+        fd = os.open(os.path.join(new, k + ".bin"), os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600); _nocache(fd)
+        mv = memoryview(a).cast("B"); o = 0
+        while o < len(mv): o += os.write(fd, mv[o:o + (1 << 28)])
+        os.fsync(fd); os.close(fd)
+    meta = dict(n_done=n_done, calls=_INC["calls"], res=res, arrays={k: [str(a.dtype), int(a.size)] for k, a in arrs.items()})
+    with open(os.path.join(new, "meta.json"), "w") as f: json.dump(meta, f); f.flush(); os.fsync(f.fileno())
+    if os.path.isdir(d): shutil.rmtree(d)
+    os.rename(new, d)
+def ckpt_load(tag, P):
+    for d in (os.path.join(WORK, f"{tag}_ckpt"), os.path.join(WORK, f"{tag}_ckpt.new")):
+        mf = os.path.join(d, "meta.json")
+        if not os.path.exists(mf): continue
+        meta = json.load(open(mf)); out = {}
+        for k, (dt, n) in meta["arrays"].items():
+            a = np.empty(n, dt); fd = os.open(os.path.join(d, k + ".bin"), os.O_RDONLY); _nocache(fd)
+            mv = memoryview(a).cast("B"); o = 0
+            while o < len(mv):
+                r = os.readv(fd, [mv[o:o + (1 << 28)]]); assert r > 0, "truncated checkpoint"; o += r
+            os.close(fd); out[k] = a
+        P.x = [out[f"x{c}"] for c in range(3)]; P.mom = [out[f"m{c}"] for c in range(3)]
+        for k in ("fd", "pm"):
+            if k in out: setattr(P, k, out[k])
+        return meta
+    return None
+def ckpt_clear(tag):
+    import shutil
+    for d in (os.path.join(WORK, f"{tag}_ckpt"), os.path.join(WORK, f"{tag}_ckpt.new")):
+        if os.path.isdir(d): shutil.rmtree(d)
+
 # ---------------------------------------------------------------- run
 def run(switch, branch, foot, npg, amp=1.0):
     try: os.nice(10)
@@ -1192,7 +1244,9 @@ def run(switch, branch, foot, npg, amp=1.0):
     _P[0] = P
     if PHASE: P.fd = np.zeros(P.N, np.float16)                    # CFG640 (M2): condensed fraction per particle, diffuse at z_i
     if M4: P.pm = np.zeros(P.N, np.uint8)                         # CFG650 M4: bit0 infalling-last, bit1 phase-mixed
-    if MODE == "exact":
+    ck = ckpt_load(tag, P) if CKPT else None
+    if ck is not None: pass
+    elif MODE == "exact":
         pos, mom = initial_conditions_exact(npg, amp)
         P.x = [np.ascontiguousarray(pos[:, c]) for c in range(3)]; P.mom = [np.ascontiguousarray(mom[:, c]) for c in range(3)]; del pos, mom
     else:
@@ -1204,6 +1258,7 @@ def run(switch, branch, foot, npg, amp=1.0):
            "modules": dict(M1=M1, M2=PHASE, M3=M3, M4=M4, M5=False), "cfg654_inputs": INPUTS, "cosmo": dict(h=h, om_b=om_b, om_c=om_c, Om=Om, OL=OL, FB=FB, NS=NS, OM_TA=OM_TA, H_TA=H_TA, dta=DTA_FILE), "ic_norm": ICNORM, "ic_amp": amp, "mode": MODE,
            "switch": switch, "branch": branch, "foot": foot, "np": npg, "mesh": npg, "L": L, "nseed": NSEED, "seed": SEED, "rmin": RMIN_PHYS,
            "draw": DRAW, "mix": MIX, "z_i": ZI, "nsteps": nsteps, "threads": NTH, "spill": SPILL, "snap": {}, "mem": []}
+    if ck is not None: res = ck["res"]; _INC["calls"] = ck["calls"]
     jfn = os.path.join(WORK, f"{tag}.json")
     def log(msg):
         print(f"  [{tag}] {msg} t={time.time() - t0:.0f}s maxrss={rss_gb():.2f}GB", flush=True)
@@ -1241,16 +1296,20 @@ def run(switch, branch, foot, npg, amp=1.0):
                 for cc in kicks: P.kick(c, i0, i1, cc, accp)
             pmap(task, P.ichunks)
         del b
-    snapshot("zi", AI)
-    stage("deposit"); box = [deposit(mesh, P)]; phik, _ = forces(mesh, box, AI, switch, branch, foot, dta)
-    stage("accel")
-    a0_, a1_ = aa[0], aa[1]; am = math.sqrt(a0_ * a1_)
-    accel_pass(phik, AI, [quad(lambda x: 1 / (x * x * E(x)), a0_, am)[0]]); del phik
-    if M4 and switch == "RES": update_pm_flags(mesh, P, AI)
-    stage("drift"); P.drift(quad(lambda x: 1 / (x ** 3 * E(x)), a0_, a1_)[0])
-    log("step 0 drift done")
+    if ck is None:
+        snapshot("zi", AI)
+        stage("deposit"); box = [deposit(mesh, P)]; phik, _ = forces(mesh, box, AI, switch, branch, foot, dta)
+        stage("accel")
+        a0_, a1_ = aa[0], aa[1]; am = math.sqrt(a0_ * a1_)
+        accel_pass(phik, AI, [quad(lambda x: 1 / (x * x * E(x)), a0_, am)[0]]); del phik
+        if M4 and switch == "RES": update_pm_flags(mesh, P, AI)
+        stage("drift"); P.drift(quad(lambda x: 1 / (x ** 3 * E(x)), a0_, a1_)[0])
+        log("step 0 drift done")
+    else:
+        log(f"RESUMED from checkpoint after step {ck['n_done']} (forces calls {ck['calls']})")
+        res.setdefault("resumed_after_step", []).append(ck["n_done"])
     TM = res.setdefault("timing_s", {"deposit": 0.0, "forces": 0.0, "accel": 0.0, "drift": 0.0, "snap": 0.0})
-    for n in range(nsteps):
+    for n in range(ck["n_done"] if ck is not None else 0, nsteps):
         a0_, a1_ = aa[n], aa[n + 1]; am = math.sqrt(a0_ * a1_)
         stage("deposit"); t_ = time.time(); box = [deposit(mesh, P)]; TM["deposit"] += time.time() - t_
         t_ = time.time(); phik, _ = forces(mesh, box, a1_, switch, branch, foot, dta); TM["forces"] += time.time() - t_
@@ -1270,6 +1329,8 @@ def run(switch, branch, foot, npg, amp=1.0):
             t_ = time.time(); P.drift(quad(lambda x: 1 / (x ** 3 * E(x)), b0, b1)[0]); TM["drift"] += time.time() - t_
         if (n + 1) % 5 == 0 or n < 3: log(f"step {n + 1}/{nsteps} a={a1_:.4f} timing " + " ".join(f"{k} {v:.0f}" for k, v in TM.items()))
         res["mem"].append([f"step{n + 1}", rss_gb()]); res["mem_stage"] = dict(MEMST)
+        if CKPT and not last and _INC["calls"] % 10 == 0:
+            t_ = time.time(); ckpt_save(tag, P, n + 1, res); log(f"checkpoint after step {n + 1} ({time.time() - t_:.0f}s)")
         if n + 1 >= MAXSTEPS:
             res["stopped_at_step"] = n + 1; break
     if _INC["fcode"] is not None: _INC["fcode"].close()
@@ -1280,6 +1341,7 @@ def run(switch, branch, foot, npg, amp=1.0):
         if PHASE: np.savez_compressed(os.path.join(WORK, f"{tag}_z0fd.npz"), fd=P.fd)
         if M4: np.savez_compressed(os.path.join(WORK, f"{tag}_z0pm.npz"), pm=P.pm)
     json.dump(res, open(jfn, "w"))
+    if CKPT and "stopped_at_step" not in res: ckpt_clear(tag)
     log("done")
     return res
 

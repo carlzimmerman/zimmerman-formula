@@ -51,7 +51,7 @@ def start(job):
                CFG596_PROFILE=s.get("PROFILE", "0"), CFG650_IC=s["IC"],
                **{f"CFG650_M{i}": ("1" if str(i) in s["MODS"] else "0") for i in (1, 2, 3, 4)})
     json.dump(dict(job=job, spec=s, start=time.strftime("%Y-%m-%d %H:%M")), open(os.path.join(d, "job.json"), "w"), indent=1)
-    log = open(os.path.join(d, "engine.log"), "w")
+    log = open(os.path.join(d, "engine.log"), "a")              # append: a resumed run keeps its earlier log
     p = subprocess.Popen(["nice", "-n", "10", sys.executable, ENGINE, s["sw"], s["foot"], str(s["N"])], stdout=log, stderr=subprocess.STDOUT, env=env)
     return dict(job=job, p=p, d=d, swap0=swap_used_mb(), peak=0.0, rmax=s.get("RSSMAX", RSS_MAX_GB), sgrow=s.get("SWAPGROW", SWAP_GROW_MB), wl=open(os.path.join(d, "watch.log"), "a"))
 
