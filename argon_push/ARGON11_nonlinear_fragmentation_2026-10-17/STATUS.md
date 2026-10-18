@@ -16,3 +16,9 @@ If the machine reboots they must be re-armed:
 **Expected cost once allowed**: 8 runs, single thread each, 8 cores, about 25–40 min wall, < 1.2 GB in total (R1 reached t=102 in 40 s of wall time).
 **After the runs**: `python3 argon11_analyze.py` (refuses to run while the chain is alive) prints K1–K8 and the M5 reading; then write REPORT.md and HANDOFF_TO_ASTRA.md.
 The analysis script was written without being run; bugs found on its first run will be fixed and disclosed (no gate or definition changes).
+
+## Update 2026-10-18 17:55
+Owner chose **leave queued** (options offered: SIGSTOP-pause the T2x engine for ~35 min / run capped beside it / leave queued). Nothing was run or touched.
+T2x (relaunched 10-18 10:15 after the owner added rolling checkpoint + exact resume to the 1024³ engines, commit 269b18e50) is at step 25/150 at ~290 s/step and rising;
+NCS0/NC1x follow, so the first window for these jobs is the end of chain6, around 10-20/21 at the earliest. The eight waiters have been alive since 10-17 13:49; they do not survive a reboot.
+Engine guards, for the record (run_650.py): RSS > 52 GB, system swap growth > 4 GB, disk free; no wall-clock or stall detection.
