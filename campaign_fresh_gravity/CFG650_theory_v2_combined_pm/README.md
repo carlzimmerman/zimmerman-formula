@@ -99,3 +99,20 @@ Scored with `CFG650_JOBSET=T12 cfg650_native.py` (MUTATE first). Outputs `cfg650
 - Verdict per footing: **canonical PASS (shear side); alt PENDING.**
 Caveats: post-preview selection (T1x is the primary pre-declared run); inherited ΛCDM ICs/background (CFG654 native rerun
 pending); L100 box loses 54% (KiDS) / 77% (DES) of points; no baryonic feedback in either arm. κ = ½ fitted; not theory closed.
+
+## RESULT T1x + T2x (2026-10-19): theory-v2 combination M1+M2+M3, 1024³, both footings — **shear side PASSES on both footings (conditional)**
+T2x (alt footing) ran 2026-10-17 → 2026-10-19 under `chain6.sh` (restarted once after a reboot; stopped and resumed from its
+step-69 rolling checkpoint on 2026-10-18 — resume is bit-identical, verified at 128³, commit 269b18e50). Scored by
+`cfg650_native.py` unchanged (MUTATE first: NZ1 bites on every run × survey; T-OWN DIAGNOSTIC on KiDS, not on DES).
+| footing | KiDS-1000 Δχ² (F − S0) | robustness (widen2 / noIA / held / DESI) | class | DES Y3 |
+|---|---|---|---|---|
+| canonical (T1x) | −7.70 | −4.6 / −11.0 / −6.7 / −5.4 | CONSISTENT | −1.96, NOT DIAGNOSTIC (T-OWN fails) |
+| alt (T2x) | −7.18 | −4.3 / −10.2 / −6.1 / −5.1 | CONSISTENT | −1.84, NOT DIAGNOSTIC (T-OWN fails) |
+
+- **Verdict per footing (criteria §5–6):** canonical PASS, alt PASS → **the shear-side pass holds on both footings**, the
+  criterion's requirement. Benchmark (no verdict weight): gravitating-field P/P_S0 at k 0.3/0.5/1 = 0.974/0.965/0.949 (alt).
+- **Conditional (§7, astra's audit list):** inherited ΛCDM-shaped initial conditions and background, survey nuisance priors,
+  massless neutrinos; T1x was selected post-preview under the CFG648 clause (disclosed); T-OWN is post-hoc relative to CFG592.
+  The native-input reruns NCS0 + NC1x (CFG654 addendum A2) started 2026-10-19 08:19 and decide the IC condition.
+- Chain note: the first scoring attempt stopped because the resumable chain treated the MUTATE scorer's designed exit code 1
+  (= control bites) as a failure; fixed in the chain script (not in the repo), no result affected.
