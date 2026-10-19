@@ -1,0 +1,29 @@
+{
+ "self_test": {
+  "V1 both switches OFF reproduces the registered DR3 catalogue byte for byte (REF_SHA_DR3)": true,
+  "V0 the registered catalogue has no NSS-flagged component and no pair at or beyond 30 kAU (so every such pair in a variant is an intended addition)": true,
+  "V2 BASELINE: reseeding the REGISTERED build alone flips 1-4% of pairs each way and adds no NSS-flagged or wide pair": true,
+  "V3 NSS cut dropped alone: it adds NSS-flagged pairs (all s < 30 kAU) and no wide pair": true,
+  "V4 ... the rest of the change is flip noise: lost and other-added within baseline + 1 percentage point": true,
+  "V5 cap 50 kAU alone: it adds wide pairs (30 <= s < 50 kAU, none NSS-flagged) and no NSS-flagged pair": true,
+  "V6 ... the rest is flip noise within baseline + 1 percentage point": true,
+  "V7 both switches: the NSS-flagged additions agree with the NSS-only build (Jaccard >= 0.9) and the wide additions with the cap-only build (overlap >= half)": true,
+  "V8 both switches: separations lie in (2, 50) kAU, some exceed 30, and the flip noise is within baseline + 1 pp": true,
+  "V9 patching a function whose source does not contain the registered cut lines is refused": true
+ },
+ "n_registered": 6210,
+ "nss_flagged_added": 100,
+ "wide_added": 6,
+ "baseline_flip": [
+  {
+   "lost": 0.02383252818035427,
+   "added": 0.0214170692431562
+  },
+  {
+   "lost": 0.02206119162640902,
+   "added": 0.022705314009661835
+  }
+ ],
+ "n_variant": 6308,
+ "max_sep_kAU": 36.90084434908196
+}

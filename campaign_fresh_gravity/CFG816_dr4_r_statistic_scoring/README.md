@@ -70,3 +70,8 @@ frozen-file hashes OK; self-test rc 0; controls rc 0; mutate rc 1 (the test bite
 Label UNDECIDED, as expected at DR3 size: R lies within 1.3 σ_R of every registered number (Newton −0.15, Arm A canonical −1.06,
 alt −1.23, MOND 1.15 −1.00, MOND 1.20 −1.28). The a0-footing regime splits give R = 1.097 ± 0.163 (canonical) and 0.997 ± 0.173 (alt).
 This is a code-path control, not a verdict: DR3 cannot separate the arms. Outputs: `cfg816_r_dr3.out`, `cfg816_r_dr3_results.json`.
+
+## The catalogue variant (2026-10-18) and the DR3 C4 result
+`build_variant_catalogue.py` builds the R-analysis input: the registered stage G minus the NSS cut and with the cap at 50 kAU (declaration and validation in `CATALOGUE_VARIANT_2026-10-18.md`; self-test 10/10 PASS, byte-identical with both
+switches off). `wide_binaries_dr3_variant.csv` (6,308 pairs) and `pairs_dr3_variant.csv` are the DR3 results of the build and the converter. **Official C4 (made 2026-10-18 21:37, owner override beside T2x, on the registered-catalogue table
+`pairs_dr3.csv`): R = 0.9728, σ_R = 0.1775, UNDECIDED, PASS.** The variant table has not been scored; doing so is a second DR3 run and needs the once-only guard relaxed with a tag (to be listed under Departures).
