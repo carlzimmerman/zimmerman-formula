@@ -69,3 +69,14 @@ same asymptote predicts an outer rotation decline (37% by 200 kpc) that
 no other piece of the framework has implied and no existing halo model
 predicts. The spatial face is the first radial prediction of the
 settling family, and it is killable in three independent ways.
+## Correction (2026-10-18, calc chat; owner go): T15 input in the stated claim
+FROZEN_CRITERIA.md states the fixed-point profile with ρ_cold = (1 − f)·ρ_supply, the "reservoir complement" taken from
+T15 S3. T15 S3 rests on a units mismatch: its group/cluster deficits were CFG382 definition A (excess beyond the law per
+cosmic cold share), not x = (M_tot − M_b)/M_b. On the stated definition, groups and clusters carry positive cold mass with
+no λ ceiling (campaign_fresh_gravity/CFG453_t15_deficit_units; see t15_cold_budget/README.md, Correction 2026-10-18).
+So "ρ_cold = reservoir complement" is not supported by T15 and should not be cited as derived from it.
+
+**T17's computed results are not affected.** The script uses the record's rotation-density convention
+(Γ ∝ √(V²/4πGr²)) and never evaluates ρ_cold: the closed form f(r) = 1 − e^{−c/r}, the front radius 80–85 kpc, the
+slope decline, the M_dark(∞) asymptote (0.96–1.22 × 5.36 M_b), the V(200)/V(60) = 0.63 prediction and the Lean
+front-density certificate stand as computed. Nothing above this section was changed.
