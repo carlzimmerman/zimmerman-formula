@@ -1,0 +1,17 @@
+CFG854  symbolic regression for the dwarf extra mass  [MUTATE]   N 19 (dropped, missing [Fe/H] or tau90: ['Andromeda XIII', 'Andromeda XI', 'Andromeda VI', 'LGS 3', 'NGC 185', 'NGC 205'])
+
+  [split A: train MW N 10 -> test N 9]
+     PySR selected: y = logr*(-1*4.4026523 + 14.941945/logM) - 1*(-5.8700686)   (train RMSE 0.271, TEST RMSE 0.913)
+     baselines test RMSE: B0 constant 0.484, B1 linear(logM, logr) 0.804  [B1 coef 3.16 +0.434 logM -1.906 logr]
+       Pareto: c 9 loss 0.0736  (((14.941945 / logM) - 4.4026523) * logr) - -5.8700686
+       Pareto: c 3 loss 0.1503  6.1742077 - logr
+       Pareto: c 5 loss 0.1286  (0.026532788 / logr) + 6.867172
+
+  [split B: train M31+field N 9 -> test N 10]
+     PySR selected: y = 9.991591 - (-1)*4.6679525/FeH   (train RMSE 0.230, TEST RMSE 1.283)
+     baselines test RMSE: B0 constant 0.529, B1 linear(logM, logr) 0.902  [B1 coef 10.91 -0.595 logM +0.533 logr]
+       Pareto: c 3 loss 0.0737  5.451891 - FeH
+       Pareto: c 5 loss 0.0530  9.991591 - (-4.6679525 / FeH)
+       Pareto: c 7 loss 0.0471  ((logr - -3.910846) / FeH) + 9.308526
+
+  CLASS: NO GENERALISING STRUCTURE
