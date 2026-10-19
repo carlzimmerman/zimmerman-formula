@@ -1,0 +1,3 @@
+# Pauli-tensor comparison representation fix
+
+The first bounded run failed at component (1,2) because SymPy factor returned the unevaluated expression `Mul(Integer(0), I)`, printed `0*I`. Its simplify and expand are exactly zero and equals(0) is true. The literal Python comparison with zero rejected that representation. The original script, failed run and manifest are preserved. The v2 script adds simplify around factor before the equality check; no vertex, graph, target amplitude or convention changed. This was a reviewer implementation defect, not a mathematical counterexample. The fresh v2 run is the complete tensor check.

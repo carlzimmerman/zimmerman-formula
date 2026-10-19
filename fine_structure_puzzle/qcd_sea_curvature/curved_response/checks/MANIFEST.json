@@ -1,0 +1,78 @@
+{
+  "schema": "fsp007.reproducible_check.v1",
+  "claim_id": "FSP007_CURVED_TRACE_CUT",
+  "repository_metadata": {
+    "observed": false,
+    "reason": "Task explicitly prohibits Git; no revision/dirty-state claim is made."
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "fine_structure_puzzle/qcd_sea_curvature/curved_response/checks/check_trace_cut.py"
+  ],
+  "working_directory": "/Users/carlzimmerman/new_physics/zimmerman-formula",
+  "environment": {
+    "software": [
+      {
+        "name": "CPython",
+        "version": "3.9.6"
+      }
+    ],
+    "os": "macOS-26.5.2-arm64-arm-64bit",
+    "machine": "arm64"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact moment coefficients and 20 dimensionless dispersion/Feynman kernel comparisons",
+    "domain": "Exact rational polynomial coefficients and finite double-precision quadrature grid",
+    "conventions": "rho=Im Pi/pi; W=-log Z; P=Q_E^2; three subtractions through P^2; three real pion species",
+    "inputs": [
+      "dimensionless c=-0.5,0,1,2",
+      "dimensionless P/M^2=0.1,1,4,16,64",
+      "five cutoff ratios smax/M^2=5,9,16,25,100",
+      "six matched charge-mass scenarios y=0,1/100,1/10,1/2,1,2"
+    ],
+    "bounds": {
+      "simpson_intervals_per_integral": 32768,
+      "kernel_cases": 20,
+      "absolute_tolerance": 2e-11
+    },
+    "non_claims": [
+      "Not a measurement of QCD, of alpha, of A_rho, or of R=A_rho/m_p^3",
+      "LO pion amplitude does not fix the high-energy QCD spectral tail",
+      "The matched mass-shift contribution omits photon radiative and independent curvature-LEC contributions",
+      "A flat quadratic curvature response does not determine the curved-sphere one-point vacuum stress"
+    ]
+  },
+  "run": {
+    "started_at": "2026-10-19T12:15:04.030664+00:00",
+    "runtime_seconds": 0.28972808299999997,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30,
+    "memory_cpu_affinity_limits": "not imposed; bounded small stdlib computation",
+    "randomness_used": false
+  },
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_sea_curvature/curved_response/checks/check_trace_cut.py",
+      "sha256_before": "53268f27bdcaa7bc5a4dbb3dca4a78c7142a6739d8393d218ab4b627fc5a1303",
+      "sha256_after": "53268f27bdcaa7bc5a4dbb3dca4a78c7142a6739d8393d218ab4b627fc5a1303"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_sea_curvature/curved_response/checks/RESULTS.json",
+      "sha256": "691359311e05a3af78826306f03003b284fc08602ebd5bc082358129b32faeaf"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_sea_curvature/curved_response/checks/stdout.txt",
+      "sha256": "2751f3940d846211291107ce9021406d85f40fb1353a8d92a0ebb44fcc50c89a"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_sea_curvature/curved_response/checks/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "result": "all bounded checks passed",
+  "interpretation": "Exact coefficient identities verified; numerical kernel identity verified only on stated finite grid. Scientific scope remains LO chiral/dispersive component.",
+  "provenance_limit": "This local manifest is not asserted to validate against mathbox v2, whose required Boolean Git dirty field cannot be observed under the task restriction."
+}

@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP008_CURVATURE_MATCHING_INDEPENDENT",
+  "repository": {
+    "commit": "9bffb96bdc5ee6aa67f9d549d04fcb7c4263cd9f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/check_curvature.py",
+    "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact source-potential Laplacian, heat-pole normalization and sigma/geodesic off-shell EOM bridge; not a full QCD+QED RG calculation",
+    "coefficient_domain": "Exact rational symbolic algebra",
+    "conventions": "d=4-2epsilon, canonical SU2 pion field, ordinary 2x2 charge trace, C=ZF^4; unit quaternion and positive sigma coordinate patch",
+    "inputs": [
+      "SU2 LO action and exact Kubis-Meissner v2 source receipt"
+    ],
+    "bounds": {
+      "wall_seconds": 30,
+      "CPU_seconds": 20,
+      "RLIMIT_AS": "not used"
+    },
+    "non_claims": [
+      "No full source-beta derivation",
+      "No source error inference",
+      "No common-scheme global response or alpha"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T14:09:43.583714+00:00",
+    "runtime_seconds": 1.056581,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/check_curvature.py",
+    "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/PRETARGET_DERIVATION.md",
+    "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/SOURCE_RECEIPT.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/check_curvature.py",
+      "sha256": "0a2492879f6ce7215a2ab33025215d186f3a99be6015e1eb33028725442aad70",
+      "sha256_after": "0a2492879f6ce7215a2ab33025215d186f3a99be6015e1eb33028725442aad70"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/PRETARGET_DERIVATION.md",
+      "sha256": "400930ff46c446f1ee34e8cf999008847e321d3ccad0cc90c8aabc423a897626",
+      "sha256_after": "400930ff46c446f1ee34e8cf999008847e321d3ccad0cc90c8aabc423a897626"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/SOURCE_RECEIPT.json",
+      "sha256": "626deaf0c02183be52d7ce2e0df2b642e6792373f275f94d704181482672d40c",
+      "sha256_after": "626deaf0c02183be52d7ce2e0df2b642e6792373f275f94d704181482672d40c"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/run_001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/run_001/stdout.txt",
+      "sha256": "2b9c5b08c3718d3ac6e926fb20159435c5a79802abc3b7d3c633f59720bad4e0",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/curvature_matching/run_001/result.json",
+      "sha256": "c7b557a0ae149dea619a2f269ae734adcea8c682179b5e552cdf54e05fda5e3e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

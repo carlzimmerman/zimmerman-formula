@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP004-VACMATCH-CALORON-TAIL",
+  "repository": {
+    "commit": "e4cbf0d3ec1440a1a8f3740b4560e624812e44f4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_completion/vacuum_matching/check_matching.py",
+    "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/matching-002/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "computation Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Eleven exact symbolic identities translate DGPS v2 eqs.54-56,74,84 to dimensionless common-holonomy neutral-caloron weight, and derive the local GPY and double-trace-potential Coulomb tails. Three independent 60-digit quadratures check the quartic tail primitive.",
+    "coefficient_domain": "Exact rational-symbolic functions over pi, EulerGamma, logarithms, and elementary trigonometric functions; finite numerical diagnostics at 60 decimal digits.",
+    "conventions": "T=1/L fixed, D=d*T is constituent separation; a=v/T, b=(2*pi*T-v)/T, nu=v/(2*pi*T). adef is an independent double-trace coupling. P is a three-dimensional action density. Gaussian weight has minus log determinant and plus log collective-coordinate Jacobian.",
+    "inputs": [
+      "source_equations.json, authenticated source extraction",
+      "q(r)=v-1/r is only an explicitly declared BPS far-tail insertion",
+      "Neutral caloron asymptotic requires D>>1,nu*D>>(2*pi)^-1,(1-nu)*D>>(2*pi)^-1"
+    ],
+    "bounds": {
+      "center_weight_D_samples": [
+        10,
+        30,
+        100
+      ],
+      "quadrature_R": [
+        3,
+        10,
+        30
+      ],
+      "quadrature_r0": 2,
+      "quadrature_T": 1,
+      "quadrature_v": "pi",
+      "mpmath_dps": 60,
+      "quadrature_relative_tolerance": "1e-50",
+      "randomness": false
+    },
+    "non_claims": [
+      "No complete finite-wall determinant is computed",
+      "Does not independently prove the external caloron determinant",
+      "No evaluation on the true deformed monopole saddle",
+      "No vacuum stress or metric derivative",
+      "No strong coupling, matter, proton, or electromagnetic charge matching",
+      "Diagnostic samples do not prove asymptotics or fit coefficients"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:38:50.682886+00:00",
+    "runtime_seconds": 0.609357,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_completion/vacuum_matching/check_matching.py",
+    "fine_structure_puzzle/qcd_completion/vacuum_matching/source_equations.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/vacuum_matching/check_matching.py",
+      "sha256": "2a19a62956be254059e152afee8d22129582557e45369a259e4d56c782f48381",
+      "sha256_after": "2a19a62956be254059e152afee8d22129582557e45369a259e4d56c782f48381"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/vacuum_matching/source_equations.json",
+      "sha256": "86a17123225d5d456f51cd87561a3c5e4ccc318ae2b25bc08ec1d830880f06cd",
+      "sha256_after": "86a17123225d5d456f51cd87561a3c5e4ccc318ae2b25bc08ec1d830880f06cd"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/matching-002",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/matching-002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/matching-002/stdout.txt",
+      "sha256": "5deafcbe89e5a2e27f73df4fc1c12e4b81092c8ad54d775b76ea60bad1ec3816",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/matching-002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/matching-002/results.json",
+      "sha256": "5deafcbe89e5a2e27f73df4fc1c12e4b81092c8ad54d775b76ea60bad1ec3816",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

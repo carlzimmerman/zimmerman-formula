@@ -1,0 +1,15 @@
+# Self-review scope and outcome
+
+Reviewed DERIVATION.md, INPUTS.json, compute_uv.py and the successful run_003 result. This is an author self-review; it does not replace the required fresh independent review.
+
+The normalization was checked both from the full Cottingham prefactor i/[4m²(2pi)^4] per e² and from the parent's scalar subtraction factor. The two give the same scalar shell sign and magnitude. The visible Hill–Paz v2 equation (9) has c3f=-4Qf², while obsolete overlapping extraction layers have a positive sign; the visible negative sign was used. Equations (18),(19) were inspected on the rendered PDF. The corrected Gasser v3 counterterm signs and rescaled-field conversion were checked separately. The counterterm symbol delta g is not treated as an actual boundary tangent.
+
+A direct exact projector calculation checks the traced tensor identity before angular averaging. The 112 tested basis tensors span the complete symmetric traceless spaces at each dimension d=2,…,8. The axis design reproduces the required second angular moment exactly; the computation does not assert that it integrates an arbitrary fourth moment. The analytic proof is the d-dimensional trace and tracelessness argument in DERIVATION equation (7). Both coefficient directions were checked, so any linear combination of c2,c3 obeys the tested trace result.
+
+The operator anomalous-dimension sign was translated from dO/dlnmu=-gamma O. The gluon-fed log check is only a partial one-loop scale check; the uncomputed quark one-loop Wilson coefficients are explicitly required for full finite-scale invariance. The scalar counterterm factors cancel independently of using the trace anomaly. The chiral n_f=3 UV coefficient then follows from the trace sum rule rather than a numerical gluon matrix element. The asymptotic momentum fractions use evolution as well as the momentum sum rule; no assertion that the finite-scale sum rule fixes f_g was made.
+
+Proofreading covered the new derivation and report. Routine corrections: none required after final reread. Mathematical-token correction during drafting: equation (14)'s initially mistyped decimal was replaced by the executed value of -ln(4)/(216 pi²). This correction occurred before the successful run and is pinned by its input hash. No alpha-dependent empirical values were imported.
+
+Validation: run_003 completed with all exact assertions passing; input content hashes unchanged; installed computation-manifest validator accepted the record. The Git revision was deliberately not queried under the assignment restriction. The conservative manifest dirty=true placeholder is labeled as unobserved. The run_001 pre-exec failure is retained, and no successful result is claimed for it.
+
+Outstanding correctness obligations: independent audit of normalization/counterterm conversion and interpretation of the asymptotic OPE; nonperturbative infrared matching. The finite band result does not imply a full sea mass, and no R(alpha) or curved-response prediction is asserted.

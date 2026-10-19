@@ -1,0 +1,183 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP004_STATIC_J1_ADJOINT_GHOST",
+  "repository": {
+    "commit": "e4cbf0d3ec1440a1a8f3740b4560e624812e44f4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_completion/angular_modes/check_angular_v1.py",
+    "--result",
+    "fine_structure_puzzle/qcd_completion/angular_modes/runs/angular-001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The original Cartesian static adjoint Faddeev-Popov action gives the displayed J=1 R/E/M matrix; its smooth-origin framed Dirichlet determinant equals the derived elementary RE and M formulas, checked independently at the declared finite radii.",
+    "coefficient_domain": "Exact rational/algebraic expressions and formal radial functions for Cartesian and BPS identities; IEEE double DOP853; 70-digit mpmath quadrature.",
+    "conventions": "D_i=partial_i+A_i cross, A_i=(1-K)(e_i cross n)/r, Phi=h n; K=r/sinh r,h=coth r-1/r. Reduced norm dr. Cartesian J1 basis R=n n_z,E=(e_z-n n_z)/sqrt2,M=n cross e_z/sqrt2. Matrix ODE uses E,R order. Origin l0 and l2 columns normalized in e0=(sqrt2,1)/sqrt3,e2=(-1,sqrt2)/sqrt3; free determinant x^4. Magnetic l1 normalized r^2; free determinant x^2. All outer ghost fields Dirichlet, no zero eigenvalue removed.",
+    "inputs": [
+      "FSP003 checkpoint and frozen real/phase determinant blocks",
+      "new independent raw derivation",
+      "exact fixed-small-circle pure SU2 BPS profile",
+      "unbroken K=1,h=0 auxiliary reference"
+    ],
+    "bounds": {
+      "J_Cartesian": 1,
+      "general_origin_j": "symbolic positive integer",
+      "radii": [
+        2,
+        5,
+        10,
+        20
+      ],
+      "origin_cutoffs": [
+        0.001,
+        0.0005
+      ],
+      "ODE_rtol": 2e-12,
+      "ODE_atol": 2e-13,
+      "ODE_max_step": 0.08,
+      "ODE_relative_tolerance": 2e-07,
+      "Frobenius_max_power": 11,
+      "quadrature_dps": 70,
+      "quadrature_relative_tolerance": "1e-55"
+    },
+    "non_claims": [
+      "No full J1 vector determinant",
+      "No angular or Fourier sum",
+      "No renormalized physical broken-vacuum subtraction",
+      "No c_H, physical R(alpha), or alpha root",
+      "Floating numerical agreement is not interval certification"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:38:22.540198+00:00",
+    "runtime_seconds": 0.002559,
+    "exit_status": 127,
+    "status": "launch-failed",
+    "timeout_seconds": 100.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": 2147483648,
+      "cpu_seconds": 80,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "fine_structure_puzzle/qcd_completion/angular_modes/runs/angular-001/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_completion/angular_modes/check_angular_v1.py",
+    "fine_structure_puzzle/qcd_completion/angular_modes/INDEPENDENT_RAW.md",
+    "fine_structure_puzzle/qcd_completion/CONTRACT.md",
+    "fine_structure_puzzle/checkpoints/FSP-003_navigation/CHECKPOINT.json.snapshot.txt",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/VECTOR_BLOCK.md",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/REPORT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/angular_modes/check_angular_v1.py",
+      "sha256": "7f7b1cd73e5bd02baf15e4591ea9dfd7896e5d411f57a6b07f05ff511531ca15",
+      "sha256_after": "7f7b1cd73e5bd02baf15e4591ea9dfd7896e5d411f57a6b07f05ff511531ca15"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/angular_modes/INDEPENDENT_RAW.md",
+      "sha256": "ce4ed72017875df33b3a89e26deab8d7055d0fac5956302d8e425fc34c132b5b",
+      "sha256_after": "ce4ed72017875df33b3a89e26deab8d7055d0fac5956302d8e425fc34c132b5b"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/CONTRACT.md",
+      "sha256": "9ebafcae2324cfd421a5d4793e2f9e6cf4312ea7858494972c72a48dcef401c1",
+      "sha256_after": "9ebafcae2324cfd421a5d4793e2f9e6cf4312ea7858494972c72a48dcef401c1"
+    },
+    {
+      "path": "fine_structure_puzzle/checkpoints/FSP-003_navigation/CHECKPOINT.json.snapshot.txt",
+      "sha256": "145619bda80938f63620428e4d25f1aa17760700986083828e362a5c725d1c4c",
+      "sha256_after": "145619bda80938f63620428e4d25f1aa17760700986083828e362a5c725d1c4c"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/VECTOR_BLOCK.md",
+      "sha256": "f19455ffde4d72993c168e6e4c0ad993dfef2f73a676c9ee41dd3bcf78c09cb1",
+      "sha256_after": "f19455ffde4d72993c168e6e4c0ad993dfef2f73a676c9ee41dd3bcf78c09cb1"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/REPORT.md",
+      "sha256": "20fb9a08510d149f2d726a0e921f01508d3e86b7bbd808d796e8a20b6d0ec690",
+      "sha256_after": "20fb9a08510d149f2d726a0e921f01508d3e86b7bbd808d796e8a20b6d0ec690"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_completion/angular_modes/runs/angular-001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_completion/angular_modes/runs/angular-001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/angular_modes/runs/angular-001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/angular_modes/runs/angular-001/stderr.txt",
+      "sha256": "97b04bd17975dace90a0e9603018f34ff5a21665573fae9edb4da19ee21550cd",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run launch-failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: fine_structure_puzzle/qcd_completion/angular_modes/runs/angular-001/result.json"
+  ]
+}

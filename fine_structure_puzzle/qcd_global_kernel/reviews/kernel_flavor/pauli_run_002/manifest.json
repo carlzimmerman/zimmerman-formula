@@ -1,0 +1,120 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP008_INDEPENDENT_PAULI_TENSOR",
+  "repository": {
+    "commit": "e9e63300be112179545a9e8dfed96df37055c241",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/check_pauli_tensor_v2.py",
+    "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/pauli_run_002/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact 16-component two-graph Pauli Born spin trace, four Ward identities and photon trace",
+    "coefficient_domain": "Q(i,F1,F2,nu,k) rational functions",
+    "conventions": "m=1 by units, spin-average 1/2, WLCM current convention, q spatial along z by rotation",
+    "inputs": [
+      "Symbolic F1,F2,nu,k and explicit 4x4 gamma matrices"
+    ],
+    "bounds": {
+      "wall_seconds": 40,
+      "CPU_seconds": 30,
+      "exact_checks": 21
+    },
+    "non_claims": [
+      "No QCD full current tensor",
+      "Posttarget orthogonal check, not pretarget"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T13:55:07.424167+00:00",
+    "runtime_seconds": 0.83831,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/check_pauli_tensor_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/check_pauli_tensor_v2.py",
+      "sha256": "4787e8d6f9d7ef513b988e7255cbee393c50656a4a0cfb004a19ebd5ccdf2378",
+      "sha256_after": "4787e8d6f9d7ef513b988e7255cbee393c50656a4a0cfb004a19ebd5ccdf2378"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/pauli_run_002",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/pauli_run_002/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/pauli_run_002/stdout.txt",
+      "sha256": "be99ab97184a291f3c7bdac14926ab0a63a7d80fb0036863384858b4a14f5abe",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/pauli_run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/pauli_run_002/result.json",
+      "sha256": "b576dcc855a7ef56eeb3e5cd5e83736b20380d900f311e396c4cc93c23012ee4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

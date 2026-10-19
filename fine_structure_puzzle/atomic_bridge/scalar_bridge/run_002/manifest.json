@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP002_B_SHARED_SCALAR",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/atomic_bridge/scalar_bridge/check_scalar_bridge.py",
+    "--output",
+    "fine_structure_puzzle/atomic_bridge/scalar_bridge/run_002"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact symbolic stationary-point, reduced-mass, finite-family, and Jacobian identities for the explicitly proposed one-scalar EFT truncation",
+    "coefficient_domain": "real positive parameters, symbolic SymPy exact arithmetic",
+    "conventions": "hbar=c=1; fixed electron-normalized photon connection; B=1/g^2; QCD Lambda=M_U exp(-a B); a=8 pi^2 k3/b0>0; physical scalar=f x; B(x)=B0+beta x^2/2",
+    "inputs": [
+      "common scalar inverse-gauge function",
+      "leading one-loop QCD dimensional transmutation",
+      "matched candidate V_QCD=-C Lambda^4, C>0",
+      "electron mass y M_U exp(-p B)",
+      "hydrogenic Bohr reduced mass",
+      "positive nonrelativistic matter energy n_N m_N+n_e m_e"
+    ],
+    "bounds": {
+      "random_samples": 0,
+      "symbolic_families": 3,
+      "timeout_seconds": 30,
+      "finite_family_domain": "0<t<R/(4*pi*kg); any smaller shared valid EFT interval is admitted"
+    },
+    "non_claims": [
+      "Does not derive alpha(0)",
+      "Does not assert the candidate is part of the canonical framework",
+      "Does not calculate complete threshold corrections",
+      "Does not determine C or an absolute QCD vacuum energy",
+      "Does not prove cosmological attraction or full nonlinear stability",
+      "Identities are exact only in the specified leading EFT model"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T01:06:12.307345+00:00",
+    "runtime_seconds": 0.435563,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/atomic_bridge/scalar_bridge/check_scalar_bridge.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/scalar_bridge/check_scalar_bridge.py",
+      "sha256": "00acefba3eac3b888d9ab35497553aaac04c9b8ceeaf0c7ff96a0eddd53110c8",
+      "sha256_after": "00acefba3eac3b888d9ab35497553aaac04c9b8ceeaf0c7ff96a0eddd53110c8"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/atomic_bridge/scalar_bridge/run_002",
+  "declared_results": [
+    "fine_structure_puzzle/atomic_bridge/scalar_bridge/run_002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/scalar_bridge/run_002/stdout.txt",
+      "sha256": "27608195fb11aca3c6fef8d27027831596b49166e88f4a0f875d71fbcf8d2ce9",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/scalar_bridge/run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/scalar_bridge/run_002/results.json",
+      "sha256": "87371111e1cf05369f62fba865613509eff563fba87aad39972926ece1226672",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

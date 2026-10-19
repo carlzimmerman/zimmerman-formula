@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-N",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/normalization_gate/check.py",
+    "--output",
+    "fine_structure_puzzle/normalization_gate/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact symbolic 2x2 pole limits and basis covariance; pole-projection identity for 24 nonzero integer Higgs vectors in [-2,2]^2 and 3 source charges each; fixed-eigenvalue rotation counterfamily.",
+    "coefficient_domain": "Exact rational expressions over R, sympy symbolic algebra",
+    "conventions": "Euclidean z=p_E^2, positive definite K, M^2 positive semidefinite, rationalized hbar=c=1, alpha_q = pole coefficient/(4*pi)",
+    "inputs": [
+      "K=[[a,b],[b,c]] with a>0,c>0,ac>b^2; m^2>0",
+      "K0=[[2,1],[1,3]]; h in {-2,-1,0,1,2}^2 except zero; q in {(1,0),(0,1),(1,1)}",
+      "K(u)=R(u) diag(1,2) R(u)^T; u in {0,1/2,1} and symbolic u"
+    ],
+    "bounds": {
+      "h_coordinate_min": -2,
+      "h_coordinate_max": 2,
+      "higgs_vectors": 24,
+      "charges_each": 3,
+      "rational_rotations": 3
+    },
+    "non_claims": [
+      "Does not derive alpha",
+      "Does not establish a UV completion",
+      "Finite fixtures do not replace the general proof in CLAIM.md"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T00:44:37.951560+00:00",
+    "runtime_seconds": 0.451337,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/normalization_gate/check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/normalization_gate/check.py",
+      "sha256": "624737ecae7242949bfcb008fd9dbbdf8f11117f35df6a350bcd86a9308c6938",
+      "sha256_after": "624737ecae7242949bfcb008fd9dbbdf8f11117f35df6a350bcd86a9308c6938"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/normalization_gate/run_001",
+  "declared_results": [
+    "fine_structure_puzzle/normalization_gate/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/normalization_gate/run_001/stdout.txt",
+      "sha256": "a2f6fe16ff35ac75fbaa52a8b308c3cb8e92a94a6327722b774465a9b707135b",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/normalization_gate/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/normalization_gate/run_001/results.json",
+      "sha256": "0961b6c6a570b4020446fd5475e18097c9d11bc7b1d7e66f6888b8b871f23dc3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

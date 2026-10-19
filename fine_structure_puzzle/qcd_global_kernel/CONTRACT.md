@@ -1,0 +1,29 @@
+# FSP-008: full current kernel and global sphere response
+
+Parent: FSP-007. Exact initial revision, target and verified parent inventory are in [BASELINE.json](BASELINE.json). The [original target](../TARGET.md) is retained: derive physical alpha(0) without encoding its measured value. The immediate QCD obligation remains R(alpha)=A_rho(alpha)/m_p(alpha)^3 with rho(H)-rho(0)=A_rho H+o(H), if that coefficient exists.
+
+Use W=-log Z, V=8pi^2/(3H^4), D=H partial_H at fixed renormalized parameters, and rho=-DW/(4V). A finite-radius or effective-theory result is partial evidence, not a value for the physical H-linear coefficient. Changes in charge, quark masses, strong scale and geometry require a common matching prescription. No alpha target or cosmological coefficient may be fitted.
+
+## Live work packages
+
+The physical proton and vacuum are jointly required obligations of the QCD route, not alternative proofs of the target. The different controlled theories below test different proposed transfers and missing mechanisms.
+
+1. **Full proton kernel**, owner proton_kernel_full, write scope proton_kernel/. Replace isolated subtraction moments by the complete tensor/Born/inelastic photon kernel. First uncertain implication: accessible data or protected low-momentum information determine a new complete sector. Execute an actual radial integral or source-authenticated data convolution, with UV convention, contacts, state normalization and all sea limitations explicit.
+2. **Global chiral sphere**, owner sphere_chiral_global, write scope sphere_chiral/. Replace a flat quadratic response by a direct determinant on round S4. First uncertain implication: a controlled low-energy QCD sector has an evaluable global stress and uniform charge/radius limit. Compute the full sphere spectral function in this declared sector, including local subtraction and zero modes; do not promote it to uncomputed nonperturbative QCD sectors.
+3. **Flavor completion**, owner sea_flavor_completion, write scope sea_flavor/. Replace the bare statement Tr Q=0 by exact normalized-correlator and resolvent identities at unequal strange/light masses. First uncertain implication: omitted topology classes admit a contact-complete reduced estimator. Derive the actual mass-splitting orders and test the algebra independently; a finite matrix check is not a gauge ensemble.
+
+The coordinator owns coordinator/, reviews/ and shared navigation. A later isolated review receives frozen claims and sources. All earlier scientific artifacts and executed records are read-only. Public source retrieval is allowed; no author message, installation, large external computation, Git mutation, publication or automation is requested.
+
+A subsequent **global-state discriminator**, owner global_state_challenge, write scope global_state/, tests whether a macroscopic wall's dimension-three tension can produce the required H-linear stress in an unconditioned sphere partition. Its first uncertain implication is transfer from a forced defect to the unconditioned vacuum. The exact partition model and positive-tension limits are evaluated without assigning a QCD wall tension or assuming that physical QCD contains that ensemble. The coordinator also evaluates the distinct weak-coupling small-sphere regime in coordinator/; no infrared continuation is assumed.
+
+An additional **matched compact-mode continuation**, owner compact_chiral_zero_mode, write scope chiral_zero_mode/, resumes FSP-003 zero-mode section 9. The initial dispatch overlapped the inherited Haar/Dashen integral and was redirected before any redundant base-grid execution. The new obligation is the exact-over-Gaussian replacement and first constant/nonconstant-pion source contraction on S4, with explicit double-count subtraction and curvature/UV matching. Its independent reviewer owns reviews/compact_chiral/. A separate source-first reviewer in reviews/curvature_matching/ audits a possible counterterm-convention bridge; a partial tadpole is not identified with the full published beta function without resolving that bridge.
+
+The **nonconstant photon continuation**, owner sphere_chiral_global, write scope epsilon_photon/, evaluates the same-order photon seagull and pion mixing around a compact orientation. Its independent reviewer derives gauge cancellation, transverse spectrum and metric/source derivatives before reading the frozen targets, in reviews/epsilon_photon/. Absolute gauge volume, source-only contacts and the unresolved pion operator-basis bridge remain separate obligations.
+
+The **published elastic-data continuation**, owner proton_kernel_full, write scope proton_elastic_data/, authenticates exact primary per-momentum form-factor points and applies the already derived full Born kernel. It permits a declared finite quadrature functional without a fitted form-factor ansatz. Published lattice scale setting, flavor coverage, covariance availability and unmeasured momentum ranges must be exposed; a table functional is not a complete mass derivative or a prediction of alpha.
+
+## Evidence and decision rule
+
+Save derivations, exact source versions and input hashes before bounded execution. Use a declared finite assertion, CPU/wall/output caps and actual run manifests. Freeze run inputs; a later correction needs a transition or a new run. Separate formula checks, numerical quadrature agreement, source verification and physical premises. Agreement between agents is not a proof certificate.
+
+The goal is achieved only by a complete physical ratio, a justified charge dependence and an independently specified principle selecting alpha, with all free choices and limit errors exposed. A useful scoped sector or exact estimator changes the next calculation but does not close the goal. Missing measurements, lattice resources and unproved uniform limits remain named open dependencies.

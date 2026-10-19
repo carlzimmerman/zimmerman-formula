@@ -1,0 +1,15 @@
+# FSP-009: non-Born proton and unconditioned curved QCD
+
+Parent FSP-008; exact initial revision and verified inventory in BASELINE.json. The original TARGET.md is unchanged. The goal is the full physical coefficient A_rho(alpha) in rho(H)-rho(0)=A_rho H+o(H), its ratio R=A_rho/m_p^3 and common-path alpha dependence, without a target fit. Use u=e^2=4pi alpha, W=-log Z, V=8pi^2/(3H^4), rho=-H partial_H W/(4V), with renormalized parameters fixed in the metric derivative. A source value or controlled sector is not the full ratio; no measured alpha may enter as a solved output.
+
+## Required work packages
+
+1. nonborn_proton/ owns the complete Born-subtracted two-current proton response: source-authenticated finite data or an actual controlled derivation beyond the prior elastic data. Distinguish two-current sea classes, inelastic dispersive and independent subtraction functions, finite mass/strong matching and the common calibration path.
+2. vacuum_global/ attacks the unconditioned curved-space QCD coefficient directly through primary global data or a justified nonperturbative implication. The first uncertain implication is whether available sphere/curved QCD evidence actually controls the H-linear coefficient and its charge derivative. Do not assume a forced sector equals the sum or q=H equals a sphere response.
+3. common_response/ tests a shared exact identity that could connect or eliminate the remaining unknowns: independent vacuum/proton matrix elements and mixed metric/current contacts, or a demonstrated matching relation. Derive the proposed comparison before using it; distinguish a genuine Ward identity from a model assumption.
+
+The coordinator owns coordinator/, reviews/ and shared navigation. Each worker checks nearest existing ancestry before dispatching new computation, saves exact sources and inputs before bounded runs, and returns actual artifacts/hashes. Prior science is read-only. Public retrieval and bounded local symbolic/numerical computation are authorized. No author messages, installations, Git mutations, external large jobs, automation or publication are requested.
+
+## Decision rule
+
+Prior scoped zero coefficients, exact estimators, Haar integrals and finite source-data functionals remain inherited evidence, not new discoveries. A useful continuation must change the missing step, source, regime, comparison map or executable method. Do not impose a fixed attempt quota. On an inaccessible data step, pursue a distinct executable implication and preserve the exact resumption condition. Independent review derives the critical step before reading the candidate implementation. Neither agreement nor a passed manifest proves a full QCD result. Keep each genuinely open dependency open.

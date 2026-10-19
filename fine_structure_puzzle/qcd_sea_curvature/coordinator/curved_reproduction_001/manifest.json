@@ -1,0 +1,123 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP007_CURVED_REPRODUCTION",
+  "repository": {
+    "commit": "f4424595259bd1ae40addb890e338f85c4f48eb1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_sea_curvature/coordinator/reproduce_curved.py",
+    "fine_structure_puzzle/qcd_sea_curvature/coordinator/curved_reproduction_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Byte-identical rerun of author exact pion trace moments and finite spectral/Feynman kernel grid, with output isolated under fresh run",
+    "coefficient_domain": "Exact fractions and finite double-precision quadrature",
+    "conventions": "Author declared spectral/source normalization; no physical data",
+    "inputs": [
+      "c=-1/2,0,1,2; z=1/10,1,4,16,64; author cutoff and mass-shift scenarios"
+    ],
+    "bounds": {
+      "kernel_comparisons": 20,
+      "simpson_intervals": 32768,
+      "absolute_tolerance": 2e-11
+    },
+    "non_claims": [
+      "No full QCD moment or vacuum coefficient",
+      "No interval arithmetic proof",
+      "No full alpha response"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T12:21:06.748851+00:00",
+    "runtime_seconds": 0.385237,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 35.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_sea_curvature/coordinator/reproduce_curved.py",
+    "fine_structure_puzzle/qcd_sea_curvature/curved_response/checks/check_trace_cut.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_sea_curvature/coordinator/reproduce_curved.py",
+      "sha256": "6e7a2fc64b49c9d7d53d630da1eae3b05a87fc912ebd8a99969ae7c3ce2b1197",
+      "sha256_after": "6e7a2fc64b49c9d7d53d630da1eae3b05a87fc912ebd8a99969ae7c3ce2b1197"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_sea_curvature/curved_response/checks/check_trace_cut.py",
+      "sha256": "53268f27bdcaa7bc5a4dbb3dca4a78c7142a6739d8393d218ab4b627fc5a1303",
+      "sha256_after": "53268f27bdcaa7bc5a4dbb3dca4a78c7142a6739d8393d218ab4b627fc5a1303"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_sea_curvature/coordinator/curved_reproduction_001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_sea_curvature/coordinator/curved_reproduction_001/reproduction/checks/RESULTS.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_sea_curvature/coordinator/curved_reproduction_001/stdout.txt",
+      "sha256": "2751f3940d846211291107ce9021406d85f40fb1353a8d92a0ebb44fcc50c89a",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_sea_curvature/coordinator/curved_reproduction_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_sea_curvature/coordinator/curved_reproduction_001/reproduction/checks/RESULTS.json",
+      "sha256": "691359311e05a3af78826306f03003b284fc08602ebd5bc082358129b32faeaf",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
