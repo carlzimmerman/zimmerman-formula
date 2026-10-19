@@ -26,3 +26,7 @@ Criteria: `FROZEN_CRITERIA.md` (13399acac, before the script). Run: `python3 cfg
 - MUTATE (b = 0): the prediction equals the flat alternative (+0.147); the primary then classes UFDs ABOVE TREND (z +2.14).
 
 κ = ½ fitted; cold energy mass required; not theory closed.
+
+**Superseded reading (2026-10-18, CFG827):** with each dwarf's own SFH-based stellar M/L (E-MILES × Weisz+14), the
+out-of-sample age trend vanishes (ρ +0.09, p 0.33). The trend here came from stellar M/L; H-FOSSIL as an age effect is not
+supported. The numbers above stand as computed; only their interpretation is superseded. See `../CFG827_dwarf_age_sfh_ml/`.
