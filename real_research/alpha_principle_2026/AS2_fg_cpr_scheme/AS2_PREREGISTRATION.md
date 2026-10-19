@@ -265,3 +265,18 @@ No fixed point, f_g or P has been computed in CPR's gauge for this lane.
 * Gravity contributions to g_2, g_3 and the Yukawas.
 * Threshold effects beyond the declared M_Planck / reduced-Planck systematic.
 * kappa = 1/2 stays FITTED; the SM mass sector stays walled.
+
+## Amendment 1 (appended 2026-10-19 after the pre-registration commit c1789e555 and BEFORE any AS2 script was written or run; nothing above was edited)
+
+* **Error found in my paraphrase** of CPR's trace convention.  The bullet "every scalar trace omits l = 0 and l = 1" contradicts CPR's own
+  scheme, which the pre-registration freezes as "exactly as used for their Table 1".
+  * CPR eq. (8) (`faerge`) adds the two lowest modes of h back explicitly: "+ (1/2) sum_{j=0,1} d_t R_hh(lambda_j)/(Gamma_hh(lambda_j) +
+    R_hh(lambda_j))", with the text "the first two modes of h do contribute, and their contribution to the trace is added separately".
+  * So in CPR's Table-1 scheme the h trace is effectively UNPRIMED.  CPR's "all scalar traces double primed, i.e. Sigma = 0" refers to
+    the remaining scalar traces: sigma, ghosts, third ghost and Jacobians.
+* **How it was found:** by hand, while starting the trace code, before any computation.  The f' term of the h block in `george`,
+  1008(29R^2+360R+1080) f', carries +29R^2, which is the unprimed scalar b_4.  A double-primed trace would give -511R^2.  The f'' term,
+  -2016(29R^3+273R^2-3240) f'', agrees with the same reading.
+* **Implemented:** the TT trace and the h trace are unprimed (CPR eq. 8).  All transverse-vector traces are single-primed, and all other
+  scalar traces are double-primed (Sigma = 0).
+* No other frozen item changes.
