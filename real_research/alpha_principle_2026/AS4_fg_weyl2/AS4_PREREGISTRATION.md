@@ -266,3 +266,42 @@ What each outcome would mean, stated now:
 * Fluctuation couplings, matter anomalous dimensions, and gravity contributions to g_2, g_3 and the Yukawas.
 * Truncations beyond four derivatives.
 * kappa = 1/2 stays FITTED; the SM mass sector stays walled.
+
+## Amendment 1 (appended after the runs; nothing above was edited)
+
+* **Outcome.**
+  * PASS: G-PUB (i) (every printed BMS block exact), G-PUB (ii) (higher-derivative pure-gravity fixed point and exponents), G-PUB (iii)
+    (EH), G-MAT-C2, G0, and the classifier controls including CC6a/CC6b.
+  * G-EH-LIMIT is reported.  MUTATE_1, MUTATE_2 and MUTATE_3 break their targeted checks.
+  * The stop rule was not triggered in the final run.
+  * EH reference: unique admissible root, P_EH = 96.37265.
+  * **Graded EH + C^2 + R^2 trial: NOT PREDICTED.**  The only in-domain root, (g, lambda, g2, g3) = (0.863182, -1.07628, 0.0210528,
+    -0.0072056), has a positive spin-2 denominator (+0.058) but a spin-0 denominator of the wrong sign (-0.070).
+* **as4_gates.py run 1** was stopped by hand after about 20 min with no flushed output (`as4_gates_FIRSTRUN.out`).
+  * Profiling afterwards (scratch development runs, not committed) located the time in sympy simplification of the summed 4-coupling
+    expressions and of the beta-system solve.  The same scratch runs showed the printed blocks cancelling exactly.
+  * Fixes, with no gate logic changed:
+    * block sums are no longer simplified;
+    * the higher-derivative beta system is solved numerically per evaluation (it is linear in the d_t terms), with a central-difference
+      Jacobian (relative step 1e-6) for the exponents;
+    * the EH system stays symbolic, using cancel;
+    * output is flushed.
+  * Run 2 of the gates is the reported one.
+* **as4_trial.py run 1** was stopped at 1.94 GB RSS (cap 2 GB) inside the symbolic f_g step (`as4_trial_FIRSTRUN.out`).  No f_g, fixed
+  point or P existed at that point.
+  * Fix: an exact reduction from the kernel (TT + conformal mode + photon) to TT + photon.  It is verified symbolically in the code: the
+    conformal mode has no kinetic mixing with TT and no h-a vertex, and its M2 entries are TT-off-diagonal only.
+  * The F-bar^2 coefficient is now evaluated one field-strength component at a time.
+  * A scratch development test confirmed that the reduced formula equals AS3's f_g at u3 = 0.
+* **as4_trial.py run 2** completed (`as4_trial_RUN2.out`) with the same roots, f_g and P values as the final run.
+  * But its stop-rule check printed relative differences 3.3e-9, 2.2e-12, 1.6e-10 (beta = 1e3, 1e5, 1e7), which are not decreasing.  The
+    run therefore ended "NOT COMPLETED (stop rule)".
+  * Cause: a precision bug in my check.  The couplings entered the 40-digit evaluation as 15-digit sympy Floats, giving a noise floor
+    proportional to beta.
+  * Fix: exact rational couplings and an exactly evaluated restricted value.  The frozen criterion (decreasing, below 1e-4 at 1e7) is
+    unchanged.
+  * **Run 3 (reported):** 3.28e-9, 3.27e-13, 6.65e-16, convergence True.
+* **Implementation readings:**
+  * the EH reference is BMS's EH truncation, i.e. Table T.1 with u2 = u3 = 0, and the universal traces;
+  * the systematics use AS3's method (`as4_systematics.py`);
+  * the gate re-run inside the trial prints its full gate log.
