@@ -36,3 +36,7 @@ It does NOT exclude extra bound mass concentrated inside small systems: the only
 sub-kpc radii are the satellite / pressure-supported dwarfs themselves (the two gas-free field dSphs, Cetus +0.13 and Tucana
 +0.17 dex, are the only same-scale isolated comparison, N = 2). "Satellite property" should be read as "property of the
 faint dwarfs (satellite vs. small-scale origin not separated)".
+
+**Robustness amendment (2026-10-18, CFG840):** FRAGILE by its frozen rule — with the window shifted 0.3 dex lower or B21 lens
+masses lowered 0.2 dex, blue lenses sit 1.23–1.31× above the law (> 2σ). Read "on the law" as "within ~0.1 dex of it"
+(A 0.90–1.31 across variants). The exclusion of the dwarfs' ×2.75 holds in every variant (≥ 12σ).
