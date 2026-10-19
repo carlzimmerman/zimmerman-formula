@@ -75,3 +75,16 @@ This is a code-path control, not a verdict: DR3 cannot separate the arms. Output
 `build_variant_catalogue.py` builds the R-analysis input: the registered stage G minus the NSS cut and with the cap at 50 kAU (declaration and validation in `CATALOGUE_VARIANT_2026-10-18.md`; self-test 10/10 PASS, byte-identical with both
 switches off). `wide_binaries_dr3_variant.csv` (6,308 pairs) and `pairs_dr3_variant.csv` are the DR3 results of the build and the converter. **Official C4 (made 2026-10-18 21:37, owner override beside T2x, on the registered-catalogue table
 `pairs_dr3.csv`): R = 0.9728, σ_R = 0.1775, UNDECIDED, PASS.** The variant table has not been scored; doing so is a second DR3 run and needs the once-only guard relaxed with a tag (to be listed under Departures).
+
+## Departure D-variant (2026-10-18): R on the variant table
+**Information only. The official C4 stands** (2026-10-18 21:37, `pairs_dr3.csv`: R = 0.9728, σ_R = 0.1775, N = 348, UNDECIDED, PASS; `cfg816_r_dr3.out` and `cfg816_r_dr3_results.json` unchanged, SHA-256 checked before and after).
+This is a second DR3 code-path run on a different input, made after the official one, so it is listed here as a departure; DR3 is never a result (Amendment 7(e)) and the frozen criteria are untouched.
+- **Guard change (the smallest opt-in):** `cfg816_r.py` now accepts `CFG825_DEPARTURE_TAG=<word>` with `--dr3` only (refused with `--dr4`; the word must be alphanumeric). With it, the run writes only
+  `cfg816_r_dr3_<word>_DEPARTURE.out` / `cfg816_r_dr3_<word>_DEPARTURE_results.json`, refuses if those exist, and never writes the official files; the C4 rule is printed and stored as `C4_rule_information_only`, not `C4_pass`.
+  Without the tag the script behaves exactly as before (the once-only guard on `cfg816_r_dr3_results.json` still refuses).
+- **Command:** `CFG825_DEPARTURE_TAG=variant OMP_NUM_THREADS=1 nice -n 19 python3 cfg816_r.py --dr3 pairs_dr3_variant.csv` (beside the T2x 1024³ run on the owner's authorisation; 1 core, under 0.2 s, about 110 MB).
+- **Result (primary):** R = 0.9223 (R − 1 = −0.078), σ_R = 0.1783 (σ_tot; bootstrap 0.096), N = 345 (170 outer / 175 inner), f_tail 0/0 events, **UNDECIDED**; the C4 rule would read PASS ((R − 1)/σ_R = −0.44; (1.20 − R)/σ_R = +1.56).
+  Distance in σ_R: Newton −0.44, Arm A canonical −1.34, alt −1.51, MOND 1.15 −1.28, MOND 1.20 −1.56. a0-footing branches: R = 1.114 ± 0.164 (9.36×10⁻¹¹) and 0.932 ± 0.174 (1.13×10⁻¹⁰).
+- **Shift from the registered R:** ΔR = −0.051 (−0.28 σ_R, about half the bootstrap σ). Within the variant, the NSS-screened branch (168 / 173) and the r_sky ≤ 30 kAU branch give the same R as the primary (0.9223), so the
+  intended additions (NSS-flagged and wider pairs) do not move R on DR3; the shift comes from the changed pair membership, which `CATALOGUE_VARIANT_2026-10-18.md` attributes to the stage-G Monte-Carlo flip (about 2% of pairs each way; not separately tested here).
+- Outputs: `cfg816_r_dr3_variant_DEPARTURE.out`, `cfg816_r_dr3_variant_DEPARTURE_results.json`. Nothing here says the data favour the framework; κ = ½ is fitted.

@@ -266,17 +266,26 @@ def main():
     R = dict(lane="CFG816", seed=SEED)
     if a.dr4 or a.dr3:
         tag = "dr4" if a.dr4 else "dr3"
-        resf = os.path.join(HERE, f"cfg816_r_{tag}_results.json")
+        # DEPARTURE opt-in (added 2026-10-18, after the official C4 was made): CFG825_DEPARTURE_TAG=<word> lets a SECOND --dr3 run score a
+        # different input as a tagged departure (information only, listed under "Departures" in the README). It writes ONLY
+        # cfg816_r_dr3_<word>_DEPARTURE.out / ..._DEPARTURE_results.json, refuses if those exist, never writes the official files, and is refused with --dr4.
+        dep = os.environ.get("CFG825_DEPARTURE_TAG", "")
+        if dep and (tag == "dr4" or not dep.isalnum()): sys.exit("REFUSING: CFG825_DEPARTURE_TAG is allowed only with --dr3 and must be alphanumeric.")
+        stem = f"cfg816_r_{tag}_{dep}_DEPARTURE" if dep else f"cfg816_r_{tag}"
+        resf = os.path.join(HERE, f"{stem}_results.json")
         if os.path.exists(resf): sys.exit(f"REFUSING: {resf} exists. The {tag.upper()} run is done once; a change goes under 'Departures' in the README, with its reason.")
+        if dep: P(f"DEPARTURE '{dep}' (information only): a second DR3 run on a different input; the official C4 is cfg816_r_dr3_results.json and is not touched.")
         t = read_table(a.dr4 or a.dr3)
         res, final = score(t, rng, B_RUN, f"{tag.upper()} table {os.path.basename(a.dr4 or a.dr3)}")
         R.update(mode=tag, branches=res, primary_label=final)
+        if dep: R.update(departure=dep, note="information only; NOT the official C4")
         if tag == "dr3":
             p = res["primary"]
             c4 = bool(p["ok"] and p["R"] - 1 < 2 * p["sigma_R"])
-            R["C4_pass"] = c4; P(f"  C4 (DR3 code path, interpretation I5): {'PASS' if c4 else 'FAIL'}   (R-1)/sigma_R = {(p['R']-1)/p['sigma_R']:+.2f}; information only: (1.20-R)/sigma_R = {(1.20-p['R'])/p['sigma_R']:+.2f}")
+            R["C4_rule_information_only" if dep else "C4_pass"] = c4
+            P(f"  C4 {'rule applied as information only (departure)' if dep else '(DR3 code path, interpretation I5)'}: {'PASS' if c4 else 'FAIL'}   (R-1)/sigma_R = {(p['R']-1)/p['sigma_R']:+.2f}; information only: (1.20-R)/sigma_R = {(1.20-p['R'])/p['sigma_R']:+.2f}")
         json.dump(R, open(resf, "w"), indent=1, default=float)
-        open(os.path.join(HERE, f"cfg816_r_{tag}.out"), "w").write("\n".join(OUT) + "\n")
+        open(os.path.join(HERE, f"{stem}.out"), "w").write("\n".join(OUT) + "\n")
         return 0
     if a.mutate:
         t = synth(30000, rng, mutate=1.2)
