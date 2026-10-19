@@ -280,3 +280,27 @@ No fixed point, f_g or P has been computed in CPR's gauge for this lane.
 * **Implemented:** the TT trace and the h trace are unprimed (CPR eq. 8).  All transverse-vector traces are single-primed, and all other
   scalar traces are double-primed (Sigma = 0).
 * No other frozen item changes.
+
+## Amendment 2 (appended after the runs; nothing above was edited)
+
+* **Outcome.**
+  * PASS: G-MAT, HK-CPR, G-CPR-EH (i), G-CPR-R2 (i) (exact agreement with CPR's closed form at R^0, R^1, R^2, with N = 725760),
+    G-CPR-R2 (ii) (0.12936, 1.56329, 1.514408e-3; exponents equal Table 2), G0, and the classifier controls.
+  * **G-CPR-EH (ii) FAILS:** Lambda~* = 0.12927 and G~* = 0.98417 vs 0.1297 and 0.9878 (-0.33% and -0.37%; tolerance 0.1%).
+  * Per the frozen rule the lane is **NOT COMPLETED**.
+  * MUTATE_1, MUTATE_2 and MUTATE_3 fail their stated checks as required.
+* **Diagnostic** (`as2_diag_cpr_n1.py`, added after the gate run, not a gate).
+  * At CPR's printed Table 1 n = 1 point, the n = 1 flow that reproduces CPR's closed form has nonzero beta functions (1.0e-4, -2.9e-4),
+    and exponents 2.380 +- 2.187 i.
+  * CPR's Table 2 n = 1 lists 2.382 +- 2.168 i, which equals the exponents at my root (5.2261e-3, -20.2143e-3).
+  * So CPR's Table 1 n = 1 row is internally inconsistent with their Table 2 and their closed form; it is consistent with a misprint of
+    g~1*.
+  * This does not change the verdict.
+* **Stop.** No SM fixed point, f_g or P was computed in this scheme.  This keeps any follow-up lane with a re-specified EH gate blind.
+  The f_g stop rule was therefore not reached.
+* **Fixes after a first run.**
+  * `as2_gcpr.py` run 1 crashed with a NameError (`R` instead of `A.R`) after the HK-CPR check and before any gate comparison. It was
+    fixed with no other change.
+  * `as2_gcpr_FIRSTRUN.out` is kept, with the path prefix replaced by `<repo>/`.
+* **Edits before any run** (not post-run fixes): a dead line was removed from `as2_common.em_coeffs`, and the edge-flag rule was written
+  out per finite bound (g > 47.5, lambda < -47.5, lambda > 0.475, |b| > 950).  The rule was never exercised.

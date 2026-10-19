@@ -1,0 +1,16 @@
+MODE: MUTATE_3
+G0  (AS1 definition; lane B b3 executed by import)
+  [PASS] G0a  lane B f_g = 0.047954969: P = 92.914075 vs C5 92.914075
+  [PASS] G0b  f_g = 0.04795: P = 92.91525 vs 92.914
+  [PASS] G0c  f_g = 0.009805: P = 137.03410 vs 137.036
+  [PASS] G0d  lane B C6 reproduced
+  MUTATE_3: AGREES <-> NO IMPROVEMENT swapped
+
+Classifier controls (AS2 rule: CLOSER iff |Delta| > 2% and |P - 137.036| < |P_EH - 137.036|; no reference -> 44.12)
+  [FAIL] CC1  f_g = 0.009805: P = 137.03410, Delta = -0.0000 -> NO IMPROVEMENT (must be AGREES)
+  [FAIL] CC2  P = P(0.04795), reference P_EH = P(0.04795) (equality): P = 92.91525, Delta = -0.3220 -> AGREES (must be NO IMPROVEMENT)
+  [PASS] CC3  P = 120, reference 92.914: P = 120.00000, Delta = -0.1243 -> CLOSER (must be CLOSER)
+  [FAIL] CC4  P = 80, reference 92.914: P = 80.00000, Delta = -0.4162 -> AGREES (must be NO IMPROVEMENT)
+  [FAIL] CC5  P = P(0.04795), no reference -> 44.12: P = 92.91525, Delta = -0.3220 -> AGREES (must be NO IMPROVEMENT)
+
+CHECKS FAILED: ['CC1', 'CC2', 'CC4', 'CC5']
