@@ -1,0 +1,57 @@
+--- cfg799_fetch.py	2026-10-15 16:07:09
++++ ADDENDUM_C_595/cfg799_fetch.py	2026-10-19 06:51:25
+@@ -17,12 +17,12 @@
+ HERE = os.path.dirname(os.path.abspath(__file__))
+ DATA = os.path.abspath(sys.argv[1])
+ MAXOBS = int(sys.argv[2]) if len(sys.argv) > 2 else 10 ** 6
+-NU_T = 541.664  # GHz, primary (FROZEN_CRITERIA)
++NU_T = 595.463  # GHz, primary (ADDENDUM C FROZEN_CRITERIA; CFG797 alt footing 595.4630)
+ URL = "https://archives.esac.esa.int/hsa/whsa-tap-server/data?RETRIEVAL_TYPE=OBSERVATION&OBSERVATION_ID={}&INSTRUMENT_NAME=HIFI&PRODUCT_LEVEL={}"
+ MODES = {"HifiPointModeDBS", "HifiPointModeFastDBS", "HifiSScanModeDBS", "HifiSScanModeFastDBS"}
+ FREE_MIN_GB = 25.0
+ MAN = os.path.join(DATA, "cfg799_manifest.json")
+-H_NU_K = 6.62607015e-34 * 541.7e9 / 1.380649e-23
++H_NU_K = 6.62607015e-34 * 595.5e9 / 1.380649e-23
+ EV = np.arange(1976) % 2 == 0
+ 
+ 
+@@ -249,7 +249,7 @@
+ 
+ def main():
+     rows = [r for r in csv.DictReader(open(os.path.join(HERE, "..", "CFG798_herschel_hifi_dish", "cfg798_matches.csv")))
+-            if r["target_GHz"] == "541.7" and r["mode"] in MODES]
++            if r["target_GHz"] == "595.5" and r["mode"] in MODES]
+     # point observations first (most hours per downloaded byte), then scans; largest integration first within each
+     rows.sort(key=lambda r: ("SScan" in r["mode"], -float(r["t_int_h"])))
+     if os.environ.get("CFG799_ONLY"):
+--- cfg799.py	2026-10-15 15:21:25
++++ ADDENDUM_C_595/cfg799.py	2026-10-19 06:51:25
+@@ -1,4 +1,4 @@
+-"""CFG799 -- HIFI band-1a total-power search for a fixed spacecraft-frame mirror line at 541.664 / 541.700 GHz.
++"""CFG799 ADDENDUM C -- HIFI band-1b total-power search for a fixed spacecraft-frame mirror line at 595.463 / 595.500 GHz.
+ Criteria: FROZEN_CRITERIA.md (+ addendum A).  Inputs: red_<obsid>.npz written by cfg799_fetch.py (data dir, not in repo).
+ Run:  python3 -I cfg799.py <data_dir>        (CFG799_MUTATE=1: inject a line of 10 sigma_a at nu_t, separate outputs)
+ kappa = 1/2 FITTED; not theory closed.  External numbers (sideband gain, load coupling, WBS response, S) provisional.
+@@ -18,9 +18,9 @@
+     print(s, flush=True); OUT.append(str(s))
+ 
+ 
+-NU_T, NU_2 = 541.664, 541.700          # GHz
++NU_T, NU_2 = 595.463, 595.500          # GHz (ADDENDUM C: CFG797 alt footing)
+ H2O = 556.936
+-FWHM = np.hypot(0.3, 1.1)              # MHz
++FWHM = np.hypot(0.35, 1.1)             # MHz (CFG797 alt-footing intrinsic width 0.350 MHz)
+ SIG_G = FWHM / 2.3548
+ HALF = 50.0                            # MHz fit half-window
+ EDGE = 100.0                           # MHz common window (M2)
+@@ -423,8 +423,8 @@
+             ax[0].axvline(0, color="#c33", lw=0.6); ax[0].axvline(36, color="#36c", lw=0.6, ls="--")
+             ax[0].set_ylabel("stacked residual [mK]")
+             ax[1].plot(deltas, zscan, lw=0.8, color="#333"); ax[1].axhline(5, color="#c33", lw=0.5, ls=":")
+-            ax[1].axhline(-5, color="#c33", lw=0.5, ls=":"); ax[1].set_ylabel("line z"); ax[1].set_xlabel("RF - 541.664 GHz [MHz]")
+-            fig.suptitle("CFG799 HIFI total power at 541.664 GHz (spacecraft frame)", fontsize=9)
++            ax[1].axhline(-5, color="#c33", lw=0.5, ls=":"); ax[1].set_ylabel("line z"); ax[1].set_xlabel("RF - 595.463 GHz [MHz]")
++            fig.suptitle("CFG799 ADDENDUM C HIFI total power at 595.463 GHz (spacecraft frame)", fontsize=9)
+             fig.tight_layout(); fig.savefig(os.path.join(HERE, "cfg799_stack.png"), dpi=110)
+         except Exception as ex:  # noqa
+             P(f"  (plot skipped: {ex})")
