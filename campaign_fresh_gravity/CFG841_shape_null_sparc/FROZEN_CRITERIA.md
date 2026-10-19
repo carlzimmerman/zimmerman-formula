@@ -36,3 +36,17 @@ used to set anything below.
 
 κ = ½ fitted (it cancels here); cold energy mass required; not theory closed. The test checks the law's algebraic shape, not
 its dark-energy normalisation.
+
+## AMENDMENT A1 (2026-10-18, committed BEFORE any real-data statistic; only the power controls had run)
+**What failed.** Run 1 of the power controls (outputs kept as `cfg841_MUTATE_{S,Q}_run1_zspace.out` / `.json`): MUTATE-S
+(synthetic simple-law data) classed QUADRATIC FAVOURED (primary ΣΔχ² −15.1; secondary −1335). The z-space residuals of the two
+models carry different propagated errors ((2q/h − α) vs 2q/h times dq σ_V), so χ² values are not comparable between models:
+a defect of the estimator, not a property of the data.
+**Change.** Both models are fitted in the observed-velocity space with the SAME errors σ_V (errV with the 3% floor):
+- simple: q = [α h + √(α² h² + 4 β h)]/2,  quadratic: q = √(h (α h + β)),  V_pred = √(q R); α, β > 0 (fitted on a log scale,
+  bounded positive), two free parameters each, exactly the calibration-free families of the original statement (α, β absorb
+  λ/Q and a0 λ/Q², resp. λ²/Q² and a0 λ/Q²).
+- χ² = Σ (V − V_pred)²/σ_V²; Δχ² = χ²_quadratic − χ²_simple. "Physical" is now automatic (positivity enforced); the
+  ≥ half-physical clauses are therefore satisfied by construction and are dropped.
+- Classes, samples, K1 and both power controls are otherwise unchanged; the power controls are re-run first with this
+  estimator, and the real-data class is NOT DIAGNOSTIC unless both pass.
