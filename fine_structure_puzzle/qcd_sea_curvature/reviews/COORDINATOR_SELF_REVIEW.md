@@ -1,0 +1,12 @@
+# Coordinator self-review
+
+The current synthesis preserves the original target and does not assert a physical ratio or alpha. This note is self-review, separate from the isolated source-first reviewers.
+
+- Re-derived the mixed strong beta conversion from source alpha_s to canonical g and u=e^2. Checked the weak-window inverse-coupling sign and the boundary tangent. The beta is in the source MS-bar convention; its formal pole scale is not used as a reliable confinement calculation.
+- Independently checked Gasser's source Lagrangian and its counterterm matrix element: the source delta g contributes -delta g partial_g M, with rescaled G=g G_canonical. This agrees with the ultraviolet scalar shell's opposite logarithm and with the fresh UV review.
+- Re-derived the pion cut's identical-particle factor and its beta-variable third moment. Its leading coefficient is 17/(2240pi^2M^2) per real pion. The scheme-independent cut, defined dispersive Taylor contribution, independent gravity EFT terms, and homogeneous-sphere one-point functional remain distinct. An independent k15 does not make A_rho arbitrary: its computed positive-mass local expansion has even curvature powers.
+- Checked the raw/modified Fu Compton-function distinction. The raw derivative equals -alpha_E^ii/(4pi alpha_ref); the modified function's zero-momentum value is alpha_E^ii. The current sum already includes all spatial directions; averaging changes its factor. Source data are not combined into a fitted continuum result or a complete sea mass.
+- The inverse-moment counterexamples have explicit non-QCD scope. They show that specified scalar moments do not determine another convolution, without claiming that every such function has a microscopic QCD realization.
+- Checked the supplementary curved reproduction uses a byte-identical copied script under a fresh output directory and leaves author results unchanged. Its result is byte-identical. Historical OPE run002 is stale against the current derivation; its exact old input was recovered with matching SHA256, including its embedded CR. No old manifest was rewritten.
+
+Mathematical prose self-review covered the coordinator derivation, source check, synthesis and new checkpoint/navigation. Routine edits clarified schemes, cutoffs and incomplete contributions. No mathematical-token corrections were hidden as proofreading. Physical missing inputs and asymptotic hypotheses remain explicit. Structural/link/JSON and content-hash checks are recorded separately; none verifies a nonperturbative QCD radius limit.

@@ -1,0 +1,10 @@
+# Reproduction
+
+Run from the repository root, with a new output directory. The command reads no network data and imports no numerical alpha.
+
+```bash
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/4.0.0/skills/computation-audit/scripts/run_experiment.py --root /Users/carlzimmerman/new_physics/zimmerman-formula --contract fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/COMPUTATION_CONTRACT.json --input fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/check_filters.py --input fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/INPUTS.json --input fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/DERIVATION.md --input fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/SOURCE_RECEIPTS.json --input fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/sources/1507.08916v3.selected_equations.txt --input fine_structure_puzzle/qcd_nonborn_vacuum/nonborn_proton/check_finite_band.py --input fine_structure_puzzle/qcd_nonborn_vacuum/nonborn_proton/FINITE_BAND_DERIVATION.md --input fine_structure_puzzle/qcd_nonborn_vacuum/nonborn_proton/DERIVATION.md --input fine_structure_puzzle/qcd_global_kernel/proton_kernel/DERIVATION.md --output fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/run_REPRODUCE --result fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/run_REPRODUCE/result.json --timeout 300 --max-output-bytes 1048576 --max-cpu-seconds 280 --max-threads 1 -- python3 fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/check_filters.py fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/run_REPRODUCE/result.json
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/4.0.0/skills/computation-audit/scripts/validate_manifest.py fine_structure_puzzle/qcd_nonborn_vacuum/photon_mass/run_REPRODUCE/manifest.json --root /Users/carlzimmerman/new_physics/zimmerman-formula
+```
+
+The authoritative original is run_001, completed. Post-run REPORT, SIX_MASS_STENCIL and COORDINATE_MOMENT companions are outside that numerical computation contract; no execution of those extra companions is implied. No RLIMIT_AS or CPU affinity cap is requested on macOS.

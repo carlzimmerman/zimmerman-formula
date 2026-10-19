@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-S-DISPERSION-SIGN-CONTROL",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/spectral_route/spectral_check.py",
+    "--output",
+    "fine_structure_puzzle/spectral_route/runs/sign_control_001/results.json",
+    "--mutate-spectral-sign"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The deliberately sign-flipped spectral integral disagrees with the independent Feynman integral and violates screening positivity; the script must exit 1. The runner must report failed, with all results retained.",
+    "coefficient_domain": "Real integrals approximated by mpmath at 70 and 100 decimal digits; vectorlike charge anomalies are exact integers",
+    "conventions": "hbar=c_light=1; compact connection A has charge lattice Z and minimal charge 1; L=-K F^2/4+A.j; alpha=1/(4*pi*K); rho=(1+2/s)*sqrt(1-4/s)/(12*pi^2) for s>=4; P=-[Pi(-Q^2)-Pi(0)]",
+    "inputs": [
+      "one free unit-charge massive Dirac fermion, m=1",
+      "Q/m grid 0,0.1,1,10,100,1000",
+      "Lambda/m 100,10000,100000000",
+      "local coefficient c=0,1,10"
+    ],
+    "bounds": {
+      "dps": [
+        70,
+        100
+      ],
+      "absolute_integral_tolerance": "1e-40",
+      "precision_stability_tolerance": "1e-33",
+      "low_Q_relative_tolerance": "1e-12",
+      "high_Q_relative_tolerance": "1e-4"
+    },
+    "non_claims": [
+      "No alpha value is derived",
+      "No observed alpha or measured mass is used",
+      "Finite band spectral model is not asserted to be a local UV-complete QFT",
+      "Fixed background-matter rho is not an assertion of identical exact rho for fully gauged QED at different e",
+      "Numerical quadrature is not an interval-certified proof",
+      "Expected failed run is a control, not positive evidence for the unmutated assertion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T00:46:33.562600+00:00",
+    "runtime_seconds": 3.891537,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/spectral_route/spectral_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/spectral_route/spectral_check.py",
+      "sha256": "4d58b8727f2391ed4ca9f3edec3402cc35a782dff6d2ce5f86ec4c2304503412",
+      "sha256_after": "4d58b8727f2391ed4ca9f3edec3402cc35a782dff6d2ce5f86ec4c2304503412"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/spectral_route/runs/sign_control_001",
+  "declared_results": [
+    "fine_structure_puzzle/spectral_route/runs/sign_control_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/spectral_route/runs/sign_control_001/stdout.txt",
+      "sha256": "1eb4dd6225881cbbcd9d8688c456754930a7ae191a561a08dbdb50be5616ed9b",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/spectral_route/runs/sign_control_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/spectral_route/runs/sign_control_001/results.json",
+      "sha256": "8ae17632458d68b8aa79250f122858eb6a30d4bdc6e9c78fe06a2399c66131ec",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

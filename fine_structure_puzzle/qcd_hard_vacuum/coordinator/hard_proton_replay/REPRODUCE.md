@@ -1,0 +1,5 @@
+# Current hard-proton replay command
+
+COMMAND.json records the exact actual argv for the successful bounded installed-runner execution. It uses CONTRACT.json and exactly its execution_artifacts, the original hard_proton/calculate_hard.py and original INPUTS.json. The only prior dependency path replaced is the archived handoff; the added TRANSLATION.md documents this administrative change. No code or numerical source data were copied or edited.
+
+For a reproduction, use the same argv from the repository root and replace both occurrences of coordinator/hard_proton_replay/run_001 by a fresh output directory. Do not overwrite the completed original. The literal recorded command includes its observed Python path, wall30/CPU15/log1MiB/thread1 limits and no RLIMIT_AS. Validate the new manifest with the installed validate_manifest.py --root command. COMPARISON.json records that the original and replay result files are byte-identical. The final authoritative execution is the replay; the old live-input record is retained as historically completed with stale administrative input.

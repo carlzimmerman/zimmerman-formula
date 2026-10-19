@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP008_DIRAC_FINITE_MSBAR_MATCHING",
+  "repository": {
+    "commit": "8e554a2966fbf26a2b3dacfd46b81e7bcdf55ba8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_global_kernel/proton_kernel/check_dirac_msbar.py",
+    "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/msbar_reproduction_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact elementary one-loop Feynman-parameter integrals including the evanescent numerator; exact finite regulator conversion; finite numerical translation of ten saved double-PV Dirac integrals.",
+    "coefficient_domain": "Exact symbolic rational/log integrals in SymPy; 55-digit mpmath translation of saved 48-digit results.",
+    "conventions": "u=e^2; single elementary unit-charge Dirac field; d=4-2epsilon; Feynman gauge; fixed MSbar fermion mass; evaluated first derivative at u=0.",
+    "inputs": [
+      "Frozen run_001 RESULTS.json",
+      "DIRAC_MSBAR_MATCHING.md standalone derivation"
+    ],
+    "bounds": {
+      "exact_assertions": 6,
+      "saved_PV_cases": 10,
+      "wall_seconds": 30,
+      "CPU_seconds": 20,
+      "log_bytes": 1048576,
+      "threads": 1
+    },
+    "non_claims": [
+      "No QCD matching counterterm or physical-proton total mass response is calculated.",
+      "No finite cutoff is claimed to equal the proved limit.",
+      "No measured alpha or cosmological ratio is input."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T13:48:52.083550+00:00",
+    "runtime_seconds": 0.395378,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_global_kernel/proton_kernel/check_dirac_msbar.py",
+    "fine_structure_puzzle/qcd_global_kernel/proton_kernel/DIRAC_MSBAR_MATCHING.md",
+    "fine_structure_puzzle/qcd_global_kernel/proton_kernel/run_001/RESULTS.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/proton_kernel/check_dirac_msbar.py",
+      "sha256": "196e02f333079c7c5c307c3d4a63d61ffa456af681ff28d4cd2366807781c943",
+      "sha256_after": "196e02f333079c7c5c307c3d4a63d61ffa456af681ff28d4cd2366807781c943"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/proton_kernel/DIRAC_MSBAR_MATCHING.md",
+      "sha256": "eeaa5cbfc08956a2005ceeeddbc5e2505b979b3ffb5244b8a1513c62d078fe6a",
+      "sha256_after": "eeaa5cbfc08956a2005ceeeddbc5e2505b979b3ffb5244b8a1513c62d078fe6a"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/proton_kernel/run_001/RESULTS.json",
+      "sha256": "49f568fe65985b2566e2aecda47f103e8ce5c7de7ea70d4205e4d6c824dbaf83",
+      "sha256_after": "49f568fe65985b2566e2aecda47f103e8ce5c7de7ea70d4205e4d6c824dbaf83"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/msbar_reproduction_001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/msbar_reproduction_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/msbar_reproduction_001/stdout.txt",
+      "sha256": "6c144a0301c81b4d0e6633e5ead3dd61156dee54b8470f12fbc17fabd85f2612",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/msbar_reproduction_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_global_kernel/reviews/kernel_flavor/msbar_reproduction_001/result.json",
+      "sha256": "1cf139d78cb9ec55ae57ee9ef5894a61154bbf720e7ecbecb298ecfbcb438144",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

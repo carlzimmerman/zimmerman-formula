@@ -1,0 +1,161 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-004-CONTACT-INDEPENDENT",
+  "repository": {
+    "commit": "9516ee01c79f35c04b7556050669ba77b0c98b99",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_completion/reviews/contact/independent_check.py",
+    "--output",
+    "fine_structure_puzzle/qcd_completion/reviews/contact/run-001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite canonical metric-derivative identities, B=0 screening and Gaussian-zero replacement controls, and two distinct B(V)->0 partition-ratio paths at nonzero theta; independently implemented without importing target code",
+    "coefficient_domain": "60-digit mpmath floating arithmetic, not interval certificates",
+    "conventions": "Closed S4 volume response rho=-d_V log Z; chi=1.7, mu=1.2, f_s=0.9; canonical p-form gauge volume and scalar zero-mode measure; branch unfolding once",
+    "inputs": [
+      "INDEPENDENT_RAW.md equations independently derived before target read"
+    ],
+    "bounds": {
+      "top_V": [
+        0.1,
+        1,
+        3
+      ],
+      "top_theta": [
+        0,
+        0.8,
+        "pi"
+      ],
+      "flux_Q_max": 120,
+      "branch_k_max": 60,
+      "singlet_V": [
+        0.3,
+        2,
+        7
+      ],
+      "singlet_B": [
+        0,
+        0.4,
+        5
+      ],
+      "singlet_theta": [
+        0,
+        0.8
+      ],
+      "gaussian_y_max": 24,
+      "dps": 60,
+      "identity_abs_tolerance": "1e-40 or 1e-45 by named check",
+      "limit_path_V": 10000,
+      "limit_path_theta": 0.8,
+      "limit_path_B": [
+        "V^-2",
+        "V^-1/2"
+      ]
+    },
+    "non_claims": [
+      "No full QCD or metric-dependent matching",
+      "No physical fine-structure prediction",
+      "No certified interval estimates or universal numerical proof",
+      "No reproduction of the target script claimed"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:47:01.804434+00:00",
+    "runtime_seconds": 27.611706,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_completion/reviews/contact/independent_check.py",
+    "fine_structure_puzzle/qcd_completion/reviews/contact/INDEPENDENT_RAW.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/contact/independent_check.py",
+      "sha256": "d785207fe5ca4b7c5724809e11ddb6fe80d25910373476656299a1c054a528ee",
+      "sha256_after": "d785207fe5ca4b7c5724809e11ddb6fe80d25910373476656299a1c054a528ee"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/contact/INDEPENDENT_RAW.md",
+      "sha256": "5d45824d9b1296aa690d82f207c2e64028b27c39b8a25ba6e42858c7c76cd0d4",
+      "sha256_after": "5d45824d9b1296aa690d82f207c2e64028b27c39b8a25ba6e42858c7c76cd0d4"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_completion/reviews/contact/run-001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_completion/reviews/contact/run-001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/contact/run-001/stdout.txt",
+      "sha256": "e7286dd86297be0f7e112825dc67a92d9676cb373b66bffd49c43cdb33695053",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/contact/run-001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/contact/run-001/results.json",
+      "sha256": "578e491f33da4882226f3ab8d304d94924f38ef1b9ec3fde46bdf53bebca8abd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

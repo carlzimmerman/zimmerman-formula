@@ -1,0 +1,14 @@
+{
+  "claim_id": "FSP-S-DISPERSION-001",
+  "mathematics": {
+    "assertion_tested": "For a free unit-charge Dirac background current with m=1, the once-subtracted positive spectral integral agrees with the independent Feynman-parameter vacuum polarization at Q/m=0,0.1,1,10,100,1000; its low/high momentum coefficients agree with analytic benchmarks. The hard spectral band integral matches its closed form at Lambda/m=100,10000,100000000. Adding c=0,1,10 preserves positive Euclidean kernels at Q/m=0,1,10,100 and shifts alpha(0)^-1 by 4*pi*c.",
+    "coefficient_domain": "Real integrals approximated by mpmath at 50 and 80 decimal digits; vectorlike charge anomalies are exact integers",
+    "conventions": "hbar=c_light=1; compact connection A has charge lattice Z and minimal charge 1; L=-K F^2/4+A.j; alpha=1/(4*pi*K); rho=(1+2/s)*sqrt(1-4/s)/(12*pi^2) for s>=4; P=-[Pi(-Q^2)-Pi(0)]",
+    "inputs": ["one free unit-charge massive Dirac fermion, m=1", "Q/m grid 0,0.1,1,10,100,1000", "Lambda/m 100,10000,100000000", "local coefficient c=0,1,10"],
+    "bounds": {"dps": [50,80], "absolute_integral_tolerance": "1e-40", "precision_stability_tolerance": "1e-33", "low_Q_relative_tolerance": "1e-12", "high_Q_relative_tolerance": "1e-4"},
+    "non_claims": ["No alpha value is derived", "No observed alpha or measured mass is used", "Finite band spectral model is not asserted to be a local UV-complete QFT", "Fixed background-matter rho is not an assertion of identical exact rho for fully gauged QED at different e", "Numerical quadrature is not an interval-certified proof"]
+  },
+  "execution_artifacts": ["fine_structure_puzzle/spectral_route/spectral_check.py"],
+  "software": [{"name": "Python", "version": "3.9.6"}, {"name": "mpmath", "version": "1.3.0"}],
+  "randomness": {"used": false, "generator": "", "seed": null}
+}

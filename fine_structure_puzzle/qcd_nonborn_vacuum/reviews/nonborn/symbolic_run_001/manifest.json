@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP009_INDEPENDENT_NONBORN_EXACT_REDUCTION",
+  "repository": {
+    "commit": "219d4d5dc689b31c67077d74870eef524d16a105",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/independent_symbolic.py",
+    "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/symbolic_run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact source-trace rationalization modulo H²=1+t*y, source soft scalar/trace coefficients, covariant static loop series through mu² and logarithm cancellation.",
+    "coefficient_domain": "Q[t,y,H,I] localized away from interior zero denominators, exact symbolic pi/log/algebraic functions",
+    "conventions": "Definitions in independent finite derivation; positive t and interior angle, extended to endpoints by continuity",
+    "inputs": [
+      "NP explicit amplitudes",
+      "Authenticated covariant AHLP formulas established in independent run001"
+    ],
+    "bounds": {
+      "series_t_max": 1,
+      "series_mu_max": 2,
+      "wall_seconds": 30,
+      "cpu_seconds": 20
+    },
+    "non_claims": [
+      "No full-QCD EFT truncation certificate",
+      "No full A/R or alpha"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T14:55:57.730689+00:00",
+    "runtime_seconds": 1.479647,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/independent_symbolic.py",
+    "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/INDEPENDENT_FINITE_DERIVATION.md",
+    "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/run_001/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/independent_symbolic.py",
+      "sha256": "4b2f590a94051b190bbe39e1f5d41f20807fc56cb32c150fc1a9702621f459ba",
+      "sha256_after": "4b2f590a94051b190bbe39e1f5d41f20807fc56cb32c150fc1a9702621f459ba"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/INDEPENDENT_FINITE_DERIVATION.md",
+      "sha256": "76a972449bf86e4774bc84e62f3af95fed3bd4633c78295c38c76678a60f2114",
+      "sha256_after": "76a972449bf86e4774bc84e62f3af95fed3bd4633c78295c38c76678a60f2114"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/run_001/result.json",
+      "sha256": "27628e619faab1b3ef163df9422144596d043cd6fede26e359d86058bc1827b6",
+      "sha256_after": "27628e619faab1b3ef163df9422144596d043cd6fede26e359d86058bc1827b6"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/symbolic_run_001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/symbolic_run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/symbolic_run_001/stdout.txt",
+      "sha256": "e366fb8a36e45329b6bc9a9fcac0ca83a9dfc6cf00914864f2eb92f5d5e8800a",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/symbolic_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_nonborn_vacuum/reviews/nonborn/symbolic_run_001/result.json",
+      "sha256": "e366fb8a36e45329b6bc9a9fcac0ca83a9dfc6cf00914864f2eb92f5d5e8800a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

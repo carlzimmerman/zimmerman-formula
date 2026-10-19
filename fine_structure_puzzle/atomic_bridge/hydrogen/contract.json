@@ -1,0 +1,80 @@
+{
+  "claim_id": "FSP-H-001",
+  "mathematics": {
+    "assertion_tested": "Hydrogen radial moments and amplified eigenvalue derivatives agree with exact first-order linear-potential shifts; finite uniform-source convolution and conditional S2 stiffness normalization pass declared controls. Physical results are derivative rescalings, not resolvable eigenvalue subtractions.",
+    "coefficient_domain": "SI real parameters; 100-digit mpmath for physical scales; binary64 quadratures and finite differences",
+    "conventions": "K=4piG, gamma/K=Lstar^2/2, Coulomb kappa=alpha*hbar*c, x=r/a_reduced, energies in reduced-mass Hartrees. Finite difference wavefunctions are reduced radial functions.",
+    "inputs": [
+      "CODATA 2022 central values in inputs.json",
+      "Frozen canonical S2 action and two declared a0 footings; Lstar=5.75 and 1000 pc",
+      "1s,2s,2p normalized nonrelativistic Coulomb wavefunctions",
+      "Illustrative uniform mass ball with Rm=sqrt(5/3) rp_charge; no identification as measured gravitational radius"
+    ],
+    "bounds": {
+      "radial_FD_dx": [
+        0.01,
+        0.005
+      ],
+      "radial_FD_xmax": 100,
+      "radial_FD_epsilon_step": 2e-05,
+      "finite_ball_test_radii": [
+        0.1,
+        1,
+        4
+      ],
+      "finite_ball_test_positions": [
+        0.03,
+        0.5,
+        2,
+        10
+      ],
+      "screened_direct_quadrature_z": [
+        0.1,
+        1,
+        4
+      ],
+      "Cartesian_vector_Laplacian_stencil_step": 0.001
+    },
+    "non_claims": [
+      "No derivation of alpha",
+      "No microscopic quantum source rule in the frozen macroscopic theory",
+      "No finite difference resolution of 1e-95 physical perturbations",
+      "No global ionization potential inferred from local linear term",
+      "Deep-MOND controls do not predict frozen stiffness model",
+      "No covariance or quantum-medium health certification"
+    ]
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/atomic_bridge/hydrogen/compute.py",
+    "fine_structure_puzzle/atomic_bridge/hydrogen/inputs.json",
+    "fine_structure_puzzle/atomic_bridge/CONTRACT.md",
+    "README.md",
+    "sol61_push/THEORY_NEXT_STEPS_2026-10-15.md",
+    "campaign_fresh_gravity/THEORY_CANONICAL_2026-10-14.md",
+    "campaign_fresh_gravity/CFG770_cassini_stiff_action/cfg770.py",
+    "campaign_fresh_gravity/CFG770_cassini_stiff_action/README.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

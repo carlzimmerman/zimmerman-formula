@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP004_INDEPENDENT_LOCAL_SECOND_ORDER_WALL_CHECK",
+  "repository": {
+    "commit": "9516ee01c79f35c04b7556050669ba77b0c98b99",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/check_second_order_v1.py",
+    "--operator",
+    "fine_structure_puzzle/qcd_completion/angular_modes/transverse_followup/runs/derive-001/operator.json",
+    "--local-result",
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/result.json",
+    "--result",
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Check exact charged outer solutions including Ei channel, the neutral companion Wronskian relation, and full mixed-wall1/t,1/t2 coefficients with arbitrary allowed neutral scattering constants, conditional on previously stated global ranks.",
+    "coefficient_domain": "Exact SymPy rational/algebraic matrices and exact Ei derivative identities.",
+    "conventions": "Reuse independently derived P,C,charged eigenvectors from local-001; actual target T,N; charged expansion througha2; neutral g=t v0+gamma/t2 v6 and h=t3v6+5gamma v0+delta/t2 v6.",
+    "inputs": [
+      "Immutable derive-001 operator.json",
+      "Independent local-001 exact result"
+    ],
+    "bounds": {
+      "channels": 10,
+      "charged_series_order": 2,
+      "neutral_scattering_parameters": [
+        "gamma",
+        "delta",
+        "eta"
+      ]
+    },
+    "non_claims": [
+      "No global kernel/rank proof",
+      "No higher coefficient from truncated charged polynomial",
+      "No finite ODE or physicalQCD inference"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T03:08:11.225665+00:00",
+    "runtime_seconds": 40.305989,
+    "exit_status": -24,
+    "status": "resource-limit",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-001/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/check_second_order_v1.py",
+    "fine_structure_puzzle/qcd_completion/angular_modes/transverse_followup/runs/derive-001/operator.json",
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/check_second_order_v1.py",
+      "sha256": "b8cbf37a16b8efdbef8a38b47f583b9b387ad2edf93dbef4095d82b1bf934dff",
+      "sha256_after": "b8cbf37a16b8efdbef8a38b47f583b9b387ad2edf93dbef4095d82b1bf934dff"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/angular_modes/transverse_followup/runs/derive-001/operator.json",
+      "sha256": "4e98fa28d208693d6559c8bf5b2dd4b1c05e4d5b88827c38fb21230ac645f6bd",
+      "sha256_after": "4e98fa28d208693d6559c8bf5b2dd4b1c05e4d5b88827c38fb21230ac645f6bd"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/local-001/result.json",
+      "sha256": "14cbd8aef502bc1bf2bca4ea2d216379ffd35437a40c180a3f4c8f3fde5c6363",
+      "sha256_after": "14cbd8aef502bc1bf2bca4ea2d216379ffd35437a40c180a3f4c8f3fde5c6363"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run resource-limit; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "The child reached its POSIX CPU-time limit.",
+    "Declared results were not produced: fine_structure_puzzle/qcd_completion/reviews/vector/asymptotic/runs/second-001/result.json"
+  ]
+}

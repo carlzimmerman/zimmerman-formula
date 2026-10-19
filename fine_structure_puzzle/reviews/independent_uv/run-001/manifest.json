@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-U2-INDEPENDENT-SQUARED-AUDIT",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/reviews/independent_uv/independent_squared.py",
+    "--output",
+    "fine_structure_puzzle/reviews/independent_uv/run-001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "One local central SM inverse fit using squared Yukawa variables and integrated inverse gauge squares, plus one forward check of the second crossover using its recorded fitted parameters; verify gauge analytic solution and integrated Yukawa-ratio identity",
+    "coefficient_domain": "64-bit floating point NumPy/SciPy",
+    "conventions": "t=ln(mu/mt), L=16 pi^2, k_i=1/g_i^2, u=yt^2, v=yb^2; positive nonzero interacting UV Yukawa branch",
+    "inputs": [
+      "inverse_inputs.json supplies two Yukawa targets, weak and strong reference data, masses and two step scales",
+      "inverse-002/result.json supplies comparison values and second crossover parameters only"
+    ],
+    "bounds": {
+      "independent_inverse_fits": 1,
+      "forward_check_crossovers": 1,
+      "UV_log_spans": [
+        2000,
+        4000
+      ],
+      "initial_guess_fg_v": [
+        0.0062,
+        5.3e-06
+      ],
+      "parameter_search": false
+    },
+    "non_claims": [
+      "No global uniqueness",
+      "No interval certification",
+      "No full flavor or gravity calculation",
+      "No alpha or hypercharge empirical input independence certificate"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T00:55:11.648623+00:00",
+    "runtime_seconds": 0.808283,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/reviews/independent_uv/independent_squared.py",
+    "fine_structure_puzzle/uv_selection/inverse_inputs.json",
+    "fine_structure_puzzle/uv_selection/inverse-002/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/reviews/independent_uv/independent_squared.py",
+      "sha256": "846d843c6555f53e259e4a0f88a317c711e91ef7c3f29f069af584a982a669cc",
+      "sha256_after": "846d843c6555f53e259e4a0f88a317c711e91ef7c3f29f069af584a982a669cc"
+    },
+    {
+      "path": "fine_structure_puzzle/uv_selection/inverse_inputs.json",
+      "sha256": "dd32ae2879cfc3f13405664d56000c9e16481b401e4103f06daabeb856ef1597",
+      "sha256_after": "dd32ae2879cfc3f13405664d56000c9e16481b401e4103f06daabeb856ef1597"
+    },
+    {
+      "path": "fine_structure_puzzle/uv_selection/inverse-002/result.json",
+      "sha256": "54a98ed42970c9367c70ebf91bcae020c86e7dd75feb53404f4dae0f6cabdfa4",
+      "sha256_after": "54a98ed42970c9367c70ebf91bcae020c86e7dd75feb53404f4dae0f6cabdfa4"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/reviews/independent_uv/run-001",
+  "declared_results": [
+    "fine_structure_puzzle/reviews/independent_uv/run-001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/reviews/independent_uv/run-001/stdout.txt",
+      "sha256": "552e2650dcb7b5d37eeeea082bf008aefcab0179eee6f248c75d5339a1fd98bd",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/reviews/independent_uv/run-001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/reviews/independent_uv/run-001/result.json",
+      "sha256": "552e2650dcb7b5d37eeeea082bf008aefcab0179eee6f248c75d5339a1fd98bd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

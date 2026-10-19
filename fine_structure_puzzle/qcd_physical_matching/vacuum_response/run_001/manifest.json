@@ -1,0 +1,124 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-006-VACUUM-TOPOLOGY-METRIC-001",
+  "repository": {
+    "commit": "5c3444b8f60820a4ea78ea1e798ce8429cf2622a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_physical_matching/vacuum_response/checks.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact rational finite-ensemble differentiation of chi and rho mixed topology/metric/current insertions; Gaussian fixed-Q scale derivative; fixed-mass versus fixed-pion susceptibility matching coefficients",
+    "coefficient_domain": "Q exact; deterministic integer-charge finite ensemble and formal coefficient dictionaries",
+    "conventions": "t=log a, V_t=4V, action S=S0+t T+lambda I+t lambda J, theta source +i theta Q; lambda=e^2=4pi alpha; CP-even ensemble",
+    "inputs": [
+      "seven charges -3 through 3 with fixed rational weights",
+      "explicit even T,I,J arrays in checks.py",
+      "Q=0,1,2 fixed-sector formula",
+      "chi(H)=2+3H+5H^2 as an algebraic fixture only",
+      "Gorghetto-Villadoro equations (10),(31),(36) symbolic coefficients"
+    ],
+    "bounds": {
+      "wall_seconds": 20,
+      "cpu_seconds": 10,
+      "output_bytes": 50000,
+      "max_threads": 1,
+      "arithmetic": "exact Fraction"
+    },
+    "non_claims": [
+      "Finite ensemble is an algebra check, not QCD or a physical toy prediction",
+      "No QCD data, alpha, cosmological number or LEC value is fitted",
+      "Does not establish existence or differentiated convergence of a QCD small-H expansion",
+      "Does not evaluate A_rho or a physical QCD correlator",
+      "Does not prove sphere-extension uniformity of fixed-topology saddle"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T10:58:47.643465+00:00",
+    "runtime_seconds": 0.042428,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 50000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_physical_matching/vacuum_response/checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/vacuum_response/checks.py",
+      "sha256": "7014b0aac7e993ecd7f36681f7d4f111cf9576cfffb02e8c14777d399e25352c",
+      "sha256_after": "7014b0aac7e993ecd7f36681f7d4f111cf9576cfffb02e8c14777d399e25352c"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_physical_matching/vacuum_response/run_001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_physical_matching/vacuum_response/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/vacuum_response/run_001/stdout.txt",
+      "sha256": "c294022ab3c1827e22af6a4c0fd4a55f716ea4d70b9c547a41e4052665e0c58c",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/vacuum_response/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_physical_matching/vacuum_response/run_001/results.json",
+      "sha256": "489a8dbf2d70fcac950beaccb028e5d27bdd54985c183262c204313fd1ab230e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-U2-SM-INVERSE",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/uv_selection/inverse_bvp.py",
+    "--output",
+    "fine_structure_puzzle/uv_selection/inverse-002/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Within explicitly reduced SM third-generation one-loop gravity-step model, solve two Yukawa boundary equations for f_g and f_y without an electromagnetic or hypercharge numerical input; evaluate predicted hypercharge and local parameter-map rank, repeat at two UV cutoffs and two tolerances; evaluate separate crossover sensitivity",
+    "coefficient_domain": "64-bit floating point SciPy integrations and finite differences",
+    "conventions": "t=ln(mu/mt), beta_g=b*g^3/(16*pi^2)-f_g*g above crossover; universal f_y, two nonzero UV Yukawa fixed points, non-Abelian gauge boundary data supplied independently",
+    "inputs": [
+      "inverse_inputs.json contains y_t,y_b,g2,g3 reference data, masses and declared crossover choices; no alpha_em or gY input"
+    ],
+    "bounds": {
+      "f_g_min": 0.0005,
+      "f_g_max": 0.1,
+      "yb_UV_squared_min": 4.248354255291589e-18,
+      "yb_UV_squared_max": 0.1353352832366127,
+      "UV_log_intervals": [
+        2000,
+        4000
+      ],
+      "crossover_choices": 2
+    },
+    "non_claims": [
+      "Not a full flavor or gravity calculation",
+      "Not the B-L/chi coupled model",
+      "Not alpha(0)",
+      "Crossover step, measured-coupling matching, thresholds and universal gravity terms are assumptions"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T00:49:37.703845+00:00",
+    "runtime_seconds": 2.95159,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 200000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/uv_selection/inverse_bvp.py",
+    "fine_structure_puzzle/uv_selection/inverse_inputs.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/uv_selection/inverse_bvp.py",
+      "sha256": "e20cb0c3b886453f99c7670ec0b938936b1fea4dc83545f02fe51c0896874470",
+      "sha256_after": "e20cb0c3b886453f99c7670ec0b938936b1fea4dc83545f02fe51c0896874470"
+    },
+    {
+      "path": "fine_structure_puzzle/uv_selection/inverse_inputs.json",
+      "sha256": "dd32ae2879cfc3f13405664d56000c9e16481b401e4103f06daabeb856ef1597",
+      "sha256_after": "dd32ae2879cfc3f13405664d56000c9e16481b401e4103f06daabeb856ef1597"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/uv_selection/inverse-002",
+  "declared_results": [
+    "fine_structure_puzzle/uv_selection/inverse-002/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/uv_selection/inverse-002/stdout.txt",
+      "sha256": "54a98ed42970c9367c70ebf91bcae020c86e7dd75feb53404f4dae0f6cabdfa4",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/uv_selection/inverse-002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/uv_selection/inverse-002/result.json",
+      "sha256": "54a98ed42970c9367c70ebf91bcae020c86e7dd75feb53404f4dae0f6cabdfa4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-005-QED-SPHERE-SPECTRAL-001",
+  "repository": {
+    "commit": "9516ee01c79f35c04b7556050669ba77b0c98b99",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_closure/qed_infrared/spectral_check.py",
+    "fine_structure_puzzle/qcd_closure/qed_infrared/run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact rational Hurwitz/Bernoulli formulas for coexact Hodge-one-form zeta at 0,-1 and nonzero scalar zeta at 0; Maxwell global-scale coefficient; finite heat-spectrum consistency; Dirac spectral moment benchmark; finite soft-mode diagnostic",
+    "coefficient_domain": "Q exact for Bernoulli/Hurwitz special values; mpmath 60/80 decimal digits for finite heat sums and 70 digits for one bounded quadrature",
+    "conventions": "Unit S4, Delta1=-nabla^2+Ric on coexact one-forms: lambda_l=(l+1)(l+2), d_l=l(l+3)(2l+3)/2, l>=1. Scalar constant excluded. Canonical compact-U1 global volume proportional sqrt(V). Positive spectral rho with Pi_R(Q2)=-Q2 integral rho/[s(s+Q2)].",
+    "inputs": [
+      "l=1,...,300 for each direct heat sum",
+      "t=0.02,0.01,0.005,0.0025",
+      "exact Bernoulli polynomials degrees 2,4,6 at q=5/2",
+      "Dirac moment u in [0,1], m=1",
+      "soft-model l=1,2,3"
+    ],
+    "bounds": {
+      "l_max": 300,
+      "precisions": [
+        60,
+        80
+      ],
+      "wall_seconds": 30,
+      "max_output_bytes": 100000,
+      "heat_estimator_absolute_tolerance": "0.004",
+      "Dirac_moment_absolute_tolerance": "1e-65"
+    },
+    "non_claims": [
+      "Does not determine QCD current or curvature LECs",
+      "Does not prove uniform metric clustering",
+      "Does not prove local reflection positivity of global soft-mode countermodel",
+      "Does not calculate full QCD A_rho or select alpha",
+      "Heat checks cover only stated finite grid; hand analytic continuation separately establishes exact zeta formulas"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T03:41:12.564103+00:00",
+    "runtime_seconds": 0.001966,
+    "exit_status": 127,
+    "status": "launch-failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": 1073741824,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "fine_structure_puzzle/qcd_closure/qed_infrared/run_001/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_closure/qed_infrared/spectral_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_closure/qed_infrared/spectral_check.py",
+      "sha256": "5767a6917012652c274e78667973f894501a8f1715f8dfbe63012bf2ba6db203",
+      "sha256_after": "5767a6917012652c274e78667973f894501a8f1715f8dfbe63012bf2ba6db203"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_closure/qed_infrared/run_001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_closure/qed_infrared/run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_closure/qed_infrared/run_001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_closure/qed_infrared/run_001/stderr.txt",
+      "sha256": "97b04bd17975dace90a0e9603018f34ff5a21665573fae9edb4da19ee21550cd",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run launch-failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: fine_structure_puzzle/qcd_closure/qed_infrared/run_001/result.json"
+  ]
+}

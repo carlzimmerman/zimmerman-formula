@@ -1,0 +1,156 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-003-QCD-C-CHIRAL-ZERO-MODES",
+  "repository": {
+    "commit": "01eccb7e5aac97177c5fd6d7b958c149c64d518f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/check_qcd_zero_modes.py",
+    "--inputs",
+    "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/inputs.json",
+    "--output",
+    "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "On the stated deterministic grids, normalized SU2 Haar quadrature, Bessel/hypergeometric closed forms and fixed-topology sums agree for the leading two-degenerate-flavor QCD chiral zero-mode integral. Independent mass/theta derivatives, topology variance, posterior condensate, finite-volume Ward relation and canonical constant-mode measure matching are checked. The apparent Haar saddle 3/(2V) stress cancels against its canonical measure Jacobian.",
+    "coefficient_domain": "Real positive scaling mass mu=m Sigma V, real theta modulo2pi; SU2 normalized Haar. Exact identities derived analytically, finite checks in mpmath arbitrary precision.",
+    "conventions": "Nc>=3, two fundamental degenerate flavors, pure QCD without QED; leading chiral action and epsilon-regime only. Per-flavor condensate magnitude C=(1/(2V))d_m logZ. chi=-(1/V)d_theta^2 logZ. Group integral Ztilde=2I1(2mu cos(theta/2))/(2mu cos(theta/2)); full Z=N(V)Ztilde. No absolute gravitational N(V) is set to1. Constant mode has positive eigenvalue Mpi^2 at positive mass, q0=F sqrt(V)phi.",
+    "inputs": [
+      "inputs.json: 5 scaling masses times6theta values (30 cases) per precision; topology cutoff|nu|<=80, 3 selected fixed sectors, 4 asymptotic saddle points.",
+      "All inputs are theoretical scaling values; no fit or observational calibration."
+    ],
+    "bounds": {
+      "mu_min": 0.01,
+      "mu_max": 20,
+      "theta_over_pi_min": 0,
+      "theta_over_pi_max": 2,
+      "topology_cutoff": 80,
+      "cases_per_precision": 30,
+      "precisions_decimal": [
+        100,
+        130
+      ],
+      "saddle_mu_max": 400,
+      "saddle_points": 4
+    },
+    "non_claims": [
+      "The finite computation does not prove all-parameter identities; Haar/Bessel/Fourier derivations provide the analytic reduction.",
+      "The large-mu zero-mode saddle is not a fixed-positive-mass H->0 QCD calculation.",
+      "N(V) contains matching and nonzero-mode/gravitational contributions beyond the fixed local Jacobian; no c_H or c_H/Cp^3 is predicted.",
+      "Canonical constant-mode matching must not be added again to a full S4 determinant that already includes that mode.",
+      "The source's flat-torus result is not an exact theorem about all curved-space QCD modes.",
+      "No electromagnetic derivative or matched physical alpha root is computed.",
+      "Arbitrary-precision checks and analytic topology tails do not certify all rounding error."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:14:04.797647+00:00",
+    "runtime_seconds": 20.866919,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 80,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/check_qcd_zero_modes.py",
+    "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/inputs.json",
+    "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/source_records.json",
+    "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/RAW_DERIVATION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/check_qcd_zero_modes.py",
+      "sha256": "2fb3dcceb3f4ca0ee4e6d9bdb02180f6645c9d1a96b4f82bd164b581c85ee228",
+      "sha256_after": "2fb3dcceb3f4ca0ee4e6d9bdb02180f6645c9d1a96b4f82bd164b581c85ee228"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/inputs.json",
+      "sha256": "e82da6c30648eb52ea4fb381261e943c52ecb228c9a62b3dafb66c43890b8255",
+      "sha256_after": "e82da6c30648eb52ea4fb381261e943c52ecb228c9a62b3dafb66c43890b8255"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/source_records.json",
+      "sha256": "99c0f911c080d4065d0decc4a5df9e4476f0207bba04757681c745267995e151",
+      "sha256_after": "99c0f911c080d4065d0decc4a5df9e4476f0207bba04757681c745267995e151"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/RAW_DERIVATION.md",
+      "sha256": "2d3444d6701c70f456a11e4a69bf7428f0348f446eb30482b7636fd5ed49f6bc",
+      "sha256_after": "2d3444d6701c70f456a11e4a69bf7428f0348f446eb30482b7636fd5ed49f6bc"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/run_001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/run_001/stdout.txt",
+      "sha256": "d233fc1b9f8c82e2b84eea909565c07825fe89388d5fc252eddee9170d07a477",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/controlled_model/qcd_zero_modes/run_001/results.json",
+      "sha256": "1ac7746a0a26aed5560baeabbcdb432e4a7dd82d80954a0ed7fbbc56cb2ed656",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

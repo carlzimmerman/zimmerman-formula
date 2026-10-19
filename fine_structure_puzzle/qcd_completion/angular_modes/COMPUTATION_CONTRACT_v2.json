@@ -1,0 +1,78 @@
+{
+  "claim_id": "FSP004_STATIC_J1_ADJOINT_GHOST",
+  "mathematics": {
+    "assertion_tested": "The original Cartesian static adjoint Faddeev-Popov action gives the displayed J=1 R/E/M matrix; its smooth-origin framed Dirichlet determinant equals the derived elementary RE and M formulas, checked independently at the declared finite radii.",
+    "coefficient_domain": "Exact rational/algebraic expressions and formal radial functions for Cartesian and BPS identities; IEEE double DOP853; 70-digit mpmath quadrature.",
+    "conventions": "D_i=partial_i+A_i cross, A_i=(1-K)(e_i cross n)/r, Phi=h n; K=r/sinh r,h=coth r-1/r. Reduced norm dr. Cartesian J1 basis R=n n_z,E=(e_z-n n_z)/sqrt2,M=n cross e_z/sqrt2. Matrix ODE uses E,R order. Origin l0 and l2 columns normalized in e0=(sqrt2,1)/sqrt3,e2=(-1,sqrt2)/sqrt3; free determinant x^4. Magnetic l1 normalized r^2; free determinant x^2. All outer ghost fields Dirichlet, no zero eigenvalue removed.",
+    "inputs": [
+      "FSP003 checkpoint and frozen real/phase determinant blocks",
+      "new independent raw derivation",
+      "exact fixed-small-circle pure SU2 BPS profile",
+      "unbroken K=1,h=0 auxiliary reference"
+    ],
+    "bounds": {
+      "J_Cartesian": 1,
+      "general_origin_j": "symbolic positive integer",
+      "radii": [
+        2,
+        5,
+        10,
+        20
+      ],
+      "origin_cutoffs": [
+        0.001,
+        0.0005
+      ],
+      "ODE_rtol": 2e-12,
+      "ODE_atol": 2e-13,
+      "ODE_max_step": 0.08,
+      "ODE_relative_tolerance": 2e-07,
+      "Frobenius_max_power": 11,
+      "quadrature_dps": 70,
+      "quadrature_relative_tolerance": "1e-55",
+      "Frobenius_potential_max_power": 8
+    },
+    "non_claims": [
+      "No full J1 vector determinant",
+      "No angular or Fourier sum",
+      "No renormalized physical broken-vacuum subtraction",
+      "No c_H, physical R(alpha), or alpha root",
+      "Floating numerical agreement is not interval certification"
+    ]
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_completion/angular_modes/check_angular_v2.py",
+    "fine_structure_puzzle/qcd_completion/angular_modes/INDEPENDENT_RAW.md",
+    "fine_structure_puzzle/qcd_completion/CONTRACT.md",
+    "fine_structure_puzzle/checkpoints/FSP-003_navigation/CHECKPOINT.json.snapshot.txt",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/VECTOR_BLOCK.md",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/REPORT.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

@@ -1,0 +1,7 @@
+# Coordinator self-review
+
+Re-derived square phase and cyclic multiplicity from the actual anti-Hermitian hopping operator. Reverse-link signs are essential. Compared the flux second derivative with a direct four-site matrix calculation that retains both H-prime and H-double-prime contributions. Checked Haar color factor from SU3 center/orthogonality, signs under W=-logZ, canonical photon normalization, and cotree gauge dimensions.
+
+The rank identity uses the real cohomology of the cubical sphere; finite-field checks do not alone establish its real version. Direct tree-gauge inversions give an independent real/complex numerical check for n1. Counts refer to the full closed cubical complex, not ten disconnected face theories. Matching the photon and color plaquette weights is essential to the trace reduction. Uniform hopping is a declared finite model premise.
+
+The ambient staggered phases define a global finite operator; they are not a derived continuum spin connection. No physical quark/taste/smooth-curvature matching is asserted. The radius derivative is of a polynomial interpolation of an integer-size polyhedral family and is not a stress measurement on a differentiable round-sphere regulator. Finite Taylor coefficients do not bound omitted orders at physical couplings. No constant normalization is inserted to obtain a desired alpha or A. Independent review remains separately identified.

@@ -1,0 +1,82 @@
+{
+  "claim_id": "FSP008_CONDITIONAL_GLOBAL_WALL_STATE",
+  "mathematics": {
+    "assertion_tested": "Exact symbolic stress/charge, finite-sector covariance, multiplicity, entropy, critical and latitude-area identities; 72 fixed dimensionless partition-derivative cases at each of 60 and 90 digits, with four derivative comparisons per case and precision stability.",
+    "coefficient_domain": "SymPy exact symbolic expressions over rational constants and pi; mpmath arbitrary precision numerical derivatives",
+    "conventions": "W=-logZ; SAME curved-background Z0; V=8pi^2/(3H^4); rho=-H*d_H W/(4V); u=e^2; sigma(u) independent of H in metric derivatives; positive wall weights",
+    "inputs": [
+      "INPUTS.json dimensionless fixture; symbolic sigma(u), log kappa(H,u); declared partition model only"
+    ],
+    "bounds": {
+      "sigma0": [
+        "1/5",
+        "1"
+      ],
+      "kappa0": [
+        "1/3",
+        "2"
+      ],
+      "nu0": [
+        -2,
+        0,
+        3
+      ],
+      "h": [
+        "1",
+        "1/2",
+        "1/4"
+      ],
+      "u": [
+        "0",
+        "1/7"
+      ],
+      "sigma(u)": "sigma0*(1+u+u^2/5)",
+      "log_kappa(h,u)": "log(kappa0)+(nu0+u/3)*log(h)+u/5",
+      "cases": 72,
+      "decimal_precisions": [
+        60,
+        90
+      ],
+      "relative_tolerances": [
+        "1e-40",
+        "1e-65"
+      ],
+      "precision_stability_relative_tolerance": "1e-45"
+    },
+    "non_claims": [
+      "No microscopic or physical theta=0 QCD wall sector/tension/measure",
+      "No evaluation of bulk Z0 or full physical A_rho, R(alpha), proton mass or alpha selection",
+      "Finite grid does not establish an asymptotic limit; universal result uses separately stated analytic bound",
+      "No interval certificate for numerical derivatives",
+      "No inference from theta=pi or axion walls; no all-QCD no-go",
+      "No empirical input, alpha/target fit, author message, install, lattice job or Git mutation"
+    ]
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_global_kernel/global_state/check_wall.py",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/DERIVATION.md",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/REPORT.md",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/INPUTS.json",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/SOURCE_RECEIPTS.json",
+    "fine_structure_puzzle/qcd_global_kernel/global_state/REPRODUCE.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "SymPy",
+      "version": "1.14.0"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

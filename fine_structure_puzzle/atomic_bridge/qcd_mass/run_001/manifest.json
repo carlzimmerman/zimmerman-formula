@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-Q-002",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/atomic_bridge/qcd_mass/discriminator.py",
+    "--output",
+    "fine_structure_puzzle/atomic_bridge/qcd_mass/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact sequential one-loop QCD threshold relation, QCD+QED integration-constant Jacobian rank, and leading chiral/EM-sensitive vacuum-proton matching null direction with known-quark-mass positive control",
+    "coefficient_domain": "Q(pi) and rational functions of formal positive Lambda,q,alpha and real fixed matching constants",
+    "conventions": "hbar=c=1 for symbolic matching; beta_n=11−2nf/3 in d/dln(mu), QCD+QED product-gauge theory only; H=d q Lambda^2(1+v alpha), mp=(C0+cg alpha)Lambda+cq q. q is one effective common light-quark mass, no experimental fit",
+    "inputs": [
+      "nf=6→5→4→3 with thresholds mt,mb,mc",
+      "symbolic independent inverse alpha_s(M), inverse alpha(M), log me",
+      "fixed but uncomputed matching constants d,C0,cq,cg,v",
+      "FSP-001 parent and FSP-002 contract hashes"
+    ],
+    "bounds": {
+      "loop_order": 1,
+      "thresholds": 3,
+      "chiral_mass_order": 1,
+      "EM_order": 1,
+      "numerical_scan": false
+    },
+    "non_claims": [
+      "No four-dimensional cosmological QCD vacuum computation",
+      "No all-orders SM exclusion or precision alpha prediction",
+      "No inference of numerical EFT coefficients",
+      "No baryon abundance or electron Yukawa generation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T01:04:44.795030+00:00",
+    "runtime_seconds": 0.46885,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/atomic_bridge/qcd_mass/discriminator.py",
+    "fine_structure_puzzle/atomic_bridge/qcd_mass/SOURCES.json",
+    "fine_structure_puzzle/atomic_bridge/qcd_mass/INPUTS.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/qcd_mass/discriminator.py",
+      "sha256": "8a99b56b21d187699301839f26b83a2810097eaf24c7527072af5221dd752f31",
+      "sha256_after": "8a99b56b21d187699301839f26b83a2810097eaf24c7527072af5221dd752f31"
+    },
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/qcd_mass/SOURCES.json",
+      "sha256": "464d6d4d46bc03fb5625105f69f35b6bfd4630165ae0068ed1ff0945d3fd3926",
+      "sha256_after": "464d6d4d46bc03fb5625105f69f35b6bfd4630165ae0068ed1ff0945d3fd3926"
+    },
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/qcd_mass/INPUTS.json",
+      "sha256": "eb5e9ba4fdf6ae0f40e433b2ac29bd1ee112fde9ff611c69b0683b1b9603e6d4",
+      "sha256_after": "eb5e9ba4fdf6ae0f40e433b2ac29bd1ee112fde9ff611c69b0683b1b9603e6d4"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/atomic_bridge/qcd_mass/run_001",
+  "declared_results": [
+    "fine_structure_puzzle/atomic_bridge/qcd_mass/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/qcd_mass/run_001/stdout.txt",
+      "sha256": "4f487a2e5ce33da7bccc7b456efc809aa7bb8fb5e423d949b3e21a012fbe3f5a",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/qcd_mass/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/atomic_bridge/qcd_mass/run_001/results.json",
+      "sha256": "a6bd28df0771750e7b910e897d2db0fce2ca6c6e667dab6f00d0688ab00bdc87",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP005_BOUNDARY_RELATIVE_CONSTANT_HOLONOMY",
+  "repository": {
+    "commit": "9516ee01c79f35c04b7556050669ba77b0c98b99",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_closure/boundary_heat/check_exact.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "fractions",
+        "version": "Python 3.9.6 standard library"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For R=1, exact rational matrix evaluation of the authenticated mixed a4 theorem agrees with independent scalar TE/TM a4 specialization; lower heat and smearing-jet contractions have the recorded exact values.",
+    "coefficient_domain": "Rational arithmetic in Python fractions; symbolic pi and mR factors recorded separately",
+    "conventions": "Four Lorentz components, rank-one normal Robin S=-2, rank-three Dirichlet; inward normal; sphere tangents two; K=2; Gamma=vector-2scalar ghost per charged Matsubara conjugate pair",
+    "inputs": [
+      "Mixed coefficients in BGKV Theorem 2.1, exact version hep-th/9906144v1",
+      "Relative domain in Vassilevich hep-th/0306138v3 Eq. (3.58)",
+      "P_normal=diag(0,0,1,0) and its exact spherical tangential derivatives"
+    ],
+    "bounds": {
+      "matrix_dimension": 4,
+      "sphere_tangent_directions": 2,
+      "frequency_sum_terms": 0,
+      "root_fitting_points": 0,
+      "random_samples": 0
+    },
+    "non_claims": [
+      "No full monopole determinant",
+      "No physical alpha or charge selector",
+      "No non-asymptotic finite-radius determinant",
+      "No numerical fitting or uniform remainder proof",
+      "The tentative Coulomb scalar-mass coefficient still requires an independent review"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T03:42:53.361933+00:00",
+    "runtime_seconds": 0.049872,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 15.0,
+    "max_output_bytes": 32768,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_closure/boundary_heat/check_exact.py",
+    "fine_structure_puzzle/qcd_closure/boundary_heat/INDEPENDENT_DERIVATION.md",
+    "fine_structure_puzzle/qcd_closure/boundary_heat/SOURCE_RECORDS.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_closure/boundary_heat/check_exact.py",
+      "sha256": "913fef4b532d8ed0688effeb63e49e1a0f38e964aafcc2cbe5215f12fc34b905",
+      "sha256_after": "913fef4b532d8ed0688effeb63e49e1a0f38e964aafcc2cbe5215f12fc34b905"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_closure/boundary_heat/INDEPENDENT_DERIVATION.md",
+      "sha256": "6423b09b5d1f1b9b4f1898c019bc8e429568656abf13508871391893d8ad5a97",
+      "sha256_after": "6423b09b5d1f1b9b4f1898c019bc8e429568656abf13508871391893d8ad5a97"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_closure/boundary_heat/SOURCE_RECORDS.json",
+      "sha256": "5414c7edd43a416da719815258a2c1baf4e0a98c1c387b1c11982861ebef102e",
+      "sha256_after": "5414c7edd43a416da719815258a2c1baf4e0a98c1c387b1c11982861ebef102e"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_closure/boundary_heat/runs/exact-001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_closure/boundary_heat/runs/exact-001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_closure/boundary_heat/runs/exact-001/stdout.txt",
+      "sha256": "4ec11b04b72ccf379cd888b1cfb1da7c77e845b0307315499e3a982035a5b910",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_closure/boundary_heat/runs/exact-001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_closure/boundary_heat/runs/exact-001/result.json",
+      "sha256": "4ec11b04b72ccf379cd888b1cfb1da7c77e845b0307315499e3a982035a5b910",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

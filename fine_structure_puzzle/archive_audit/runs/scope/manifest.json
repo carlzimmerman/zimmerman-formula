@@ -1,0 +1,109 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-A-scope",
+  "repository": {
+    "commit": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+    "dirty": true
+  },
+  "command": [
+    "/usr/bin/python3",
+    "fine_structure_puzzle/archive_audit/scope_checks.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.12.11"
+      },
+      {
+        "name": "child Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact dimensional nullspaces, external-field rescaling versus dynamical Maxwell terms, and the stationary locus/energy/counterterm sensitivity of the restricted lifting ansatz V=M0^4 t^p(A+B log t).",
+    "coefficient_domain": "Q and symbolic real expressions, exact SymPy except report-only AH5 floats",
+    "conventions": "Natural units as specified in each source; Gaussian charge only in dimensional matrix.",
+    "inputs": [
+      "No measured alpha; exact rational/symbolic algebra; t,M0,p positive; A real and B real nonzero."
+    ],
+    "bounds": {
+      "scope": "Only algebra explicitly stated in assertion_tested; no scans."
+    },
+    "non_claims": [
+      "This does not derive the Salam-Sezgin quantum potential, a photon identification, or alpha(0)."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T00:44:13.785031+00:00",
+    "runtime_seconds": 0.340745,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/archive_audit/scope_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/archive_audit/scope_checks.py",
+      "sha256": "9f4c5fb1a63d0b661929a2025b33ba182411f041639a25b647c4fcda5756ea2d",
+      "sha256_after": "9f4c5fb1a63d0b661929a2025b33ba182411f041639a25b647c4fcda5756ea2d"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/archive_audit/runs/scope",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/archive_audit/runs/scope/stdout.txt",
+      "sha256": "ae361f3fe13df4a49729a4c4d36f67f14755141d867d2f12a3f639a7eb42abd1",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/archive_audit/runs/scope/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

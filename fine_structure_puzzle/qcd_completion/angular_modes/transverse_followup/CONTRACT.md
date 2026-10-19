@@ -1,0 +1,7 @@
+# Full static J1 vector follow-up
+
+Authorized continuation of FSP-004. Write scope is this transverse_followup directory only. Parent angular_modes artifacts and all earlier evidence are frozen. Use exact pure SU2 BPS K=t/sinh(t),h=coth(t)-1/t, fixed small circle, static Fourier mode, dimensionless x=m_W R. Actual adjoint Hessian H_mu_nu=-D_lambda D_lambda delta_mu_nu-2adF_mu_nu is derived from the gauge-fixed covariant action, with D4=adPhi. Relative vector wall data fix spatial tangential connection and A4; the free normal component has G=0, equivalently (d/dt+2/x)a_r=0. Ghosts remain framed Dirichlet. Smooth Cartesian origin data select all regular radial channels. Keep every finite positive small eigenvalue.
+
+Goal: calculate the actual full ten-channel J1 vector determinant or its seven-combination transverse restriction against the same K=1,h=0 auxiliary reference, with canonical angular Gram and exact common boundary normalization. This comparison has different holonomy and is not physical QCD subtraction. Do not infer an inverse-radius coefficient from unstable fits, drop positive near-zero eigenvalues, equate YM g and EM e, or claim physical A_rho, R(alpha), or an alpha root.
+
+Load-bearing runs require immutable code/contract, explicit finite bounds and limits, observed hashes and validated v2 manifests. A Cartesian action derivation and orthogonal self-duality/gauge intertwiners will be used where feasible. Preserve failed runs; supersede inputs instead of modifying them after execution.

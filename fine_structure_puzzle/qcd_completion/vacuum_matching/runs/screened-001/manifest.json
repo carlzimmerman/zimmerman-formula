@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP004-VACMATCH-SCREENED-EXTERIOR",
+  "repository": {
+    "commit": "127c29c267638682a416d7dc2bf1b75f9589c238",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_completion/vacuum_matching/check_screened_tail.py",
+    "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/screened-001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "computation Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Twelve exact symbolic identities for the spherically symmetric Abelian Yukawa exterior with fixed core/wall Higgs values and unit magnetic flux, including the on-shell action, massless limit, magnetic inverse-radius tail, and conditional BPS-core first-order matching. Three 60-digit action quadratures verify finite positive-mass examples.",
+    "coefficient_domain": "Exact elementary functions over positive real symbolic variables; 60-digit mpmath finite quadratures.",
+    "conventions": "S_ext=4*pi*integral_rc^R r^2[kappa/2*(psi'^2+B^2)+kappa*m^2/2*psi^2]dr, B=1/r^2, psi(rc)=psi0, psi(R)=0, 0<rc<R, m>0, kappa>0. Conditional core matching uses v^-1<<rc<<m^-1 and q_core=v_core-1/r, psi_outer=-exp(-m*r)/r.",
+    "inputs": [
+      "The explicitly defined linear Abelian exterior model",
+      "For deformed Yang-Mills application only: kappa=L/g^2, m^2=V_eff''(pi*T)/kappa, T=1/L; this identification is conditional on omitted matching terms being subleading"
+    ],
+    "bounds": {
+      "m_R_pairs": [
+        [
+          0.1,
+          5
+        ],
+        [
+          0.1,
+          20
+        ],
+        [
+          0.3,
+          20
+        ]
+      ],
+      "rc": 2,
+      "kappa": 1,
+      "psi0": -0.5,
+      "mpmath_dps": 60,
+      "quadrature_relative_tolerance": "1e-50"
+    },
+    "non_claims": [
+      "Not a full deformed monopole saddle or determinant",
+      "Not a neutral-ensemble computation",
+      "Does not compute cosmological vacuum stress",
+      "No fitted parameter",
+      "No full QCD or electromagnetic matching"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:40:36.938926+00:00",
+    "runtime_seconds": 0.772006,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_completion/vacuum_matching/check_screened_tail.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/vacuum_matching/check_screened_tail.py",
+      "sha256": "11249f5f0465a6aef837394666e3db56a39b430e433cd502de266963616cfaeb",
+      "sha256_after": "11249f5f0465a6aef837394666e3db56a39b430e433cd502de266963616cfaeb"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/screened-001",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/screened-001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/screened-001/stdout.txt",
+      "sha256": "e4310a5a19431ddd235c6ca4d790f570c0ca5047d054304ecea70ff30ed6aaf8",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/screened-001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_completion/vacuum_matching/runs/screened-001/results.json",
+      "sha256": "e4310a5a19431ddd235c6ca4d790f570c0ca5047d054304ecea70ff30ed6aaf8",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

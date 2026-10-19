@@ -1,0 +1,14 @@
+{
+  "claim_id": "FSP-003-QCD-V-DETERMINANT-001",
+  "mathematics": {
+    "assertion_tested": "Check exact BPS adjoint ghost radial equations, origin normalization, Darboux domain map, and determinant formula against independent eigenvalue products for x=2,5,10 and q=0,1,2",
+    "coefficient_domain": "Exact symbolic real x,q,k>0; mpmath 60 decimal digits; 256 positive eigenvalues per operator",
+    "conventions": "x=m_W R, q=|omega|/m_W; framed Dirichlet ghost at R; origin Friedrichs regular u~x^2; determinant reference -d^2+2/x^2+q^2",
+    "inputs": ["BPS K(x)=x/sinh(x), H/m_W=coth(x)-1/x", "ghost c^a=e^{i omega tau} n^a u(r)/r", "Dirichlet radial spectrum tan z=z tanh(x)/x and reference tan z=z"],
+    "bounds": {"x": [2,5,10], "q": [0,1,2], "N": 256, "root_bisections": 110, "decimal_digits": 60, "corrected_log_tolerance": "2e-8"},
+    "non_claims": ["Does not compute all grand-spin channels or vector determinant", "Does not identify auxiliary reference with physical vacuum", "Does not infer full coefficient by summing an unrenormalized KK slice", "Does not combine distinct boundary domains with the earlier zero-mode Jacobian"]
+  },
+  "execution_artifacts": ["fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/check_radial.py"],
+  "software": [{"name":"Python","version":"3.9.6"},{"name":"SymPy","version":"1.14.0"},{"name":"mpmath","version":"1.3.0"}],
+  "randomness": {"used": false,"generator":"","seed":null}
+}

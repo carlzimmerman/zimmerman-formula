@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "FSP-003-QCD-V-PHASE-001",
+  "repository": {
+    "commit": "becd424bfe15c44ad599cbc18040c1e1d480a549",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/check_phase_v2.py",
+    "--result",
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/runs/phase-002/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact factorization of static spherical phase/radial-gauge Hessian, scalar zero-energy Robin solution and determinant ratios; compare actual mixed-boundary matrix ODE with exact determinant at six finite cutoff/radius cases; evaluate Rayleigh upper bounds",
+    "coefficient_domain": "Exact symbolic real positive x, rational/sqrt2 constants; double-precision matrix ODE; 60-digit scalar quadrature",
+    "conventions": "Canonical fields eta=sqrt2 delta Im W,zeta=r delta A_r; ghost u=r theta; vector outer eta=0,zeta'+zeta/r=0; ghost Dirichlet; regular origin l=0/l=2 vector and l=1 scalar partner; no zero mode removed",
+    "inputs": [
+      "BPS K=x/sinhx,h=cothx-1/x",
+      "Unbroken auxiliary reference K=1,h=0 with same mixed vector boundary data",
+      "Coordinator candidate u_A=3(sinhx/x-x/sinhx), checked independently"
+    ],
+    "bounds": {
+      "matrix_x": [
+        2,
+        4,
+        6
+      ],
+      "origin_cutoffs": [
+        0.001,
+        0.0005
+      ],
+      "ODE_rtol": 5e-13,
+      "ODE_atol": 1e-14,
+      "relative_matrix_tolerance": 5e-06,
+      "Rayleigh_x": [
+        5,
+        10,
+        20
+      ],
+      "quadrature_digits": 60
+    },
+    "non_claims": [
+      "Not complete angular or Fourier sum",
+      "Auxiliary vacuum has different holonomy",
+      "No full finite-boundary semiclassical weight including collective coordinates",
+      "No physical c_H or R(alpha)",
+      "Numerical errors are not certified intervals"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T02:05:50.299188+00:00",
+    "runtime_seconds": 51.700804,
+    "exit_status": -24,
+    "status": "resource-limit",
+    "timeout_seconds": 55.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 50,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/runs/phase-002/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/check_phase_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/check_phase_v2.py",
+      "sha256": "2b6df4444137a289469554cb6ad9363721ddea38ff238b0110c25e23fdab77b2",
+      "sha256_after": "2b6df4444137a289469554cb6ad9363721ddea38ff238b0110c25e23fdab77b2"
+    }
+  ],
+  "output_directory": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/runs/phase-002",
+  "declared_results": [
+    "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/runs/phase-002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/runs/phase-002/stdout.txt",
+      "sha256": "8df5ac82c6a3ac2f20f7ae9aeedfb52c9371e88ba61b8033112f69439c1fc2ff",
+      "kind": "log"
+    },
+    {
+      "path": "fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/runs/phase-002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run resource-limit; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "The child reached its POSIX CPU-time limit.",
+    "Declared results were not produced: fine_structure_puzzle/qcd_prediction/vacuum_geometry/determinant_followup/phase_block/runs/phase-002/results.json"
+  ]
+}
