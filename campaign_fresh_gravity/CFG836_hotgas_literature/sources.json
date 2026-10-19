@@ -1,0 +1,51 @@
+{
+ "lane": "CFG836",
+ "date": "2026-10-18",
+ "status": "ALL LOOK-UPS PROVISIONAL (page-summariser output, not read in the paper's own table unless marked A for abstract-level text)",
+ "sealed_target": {
+  "source": "campaign_fresh_gravity/CFG746_sealed_hot_gas_prediction/cfg746_predictions.json",
+  "M_hot_over_Mstar_band": [0.17065, 0.247083],
+  "M_hot_Msun_band": [1.07673e10, 1.55899e10],
+  "Mstar_Msun": 6.3095734448e10,
+  "falsifier_F_Msun": 5.38365e9,
+  "falsifier_F_over_Mstar": 0.08533,
+  "K_Y_Mpc2_per_Msun_keV": 1.426e-19
+ },
+ "sources": [
+  {"id": "S1", "arxiv": "2411.19945", "journal": "A&A 693, A197 (2025)", "table_or_fig": "Table 3 (T); abstract medians (A)",
+   "quantity": "L_X,CGM 0.5-2 keV, eRASS:4 stack, quiescent centrals",
+   "bin": "log M* 10.5-11.0, median 10.8, N 16485 (T)", "aperture": "R500c",
+   "value": "1.1 +/- 0.4 e40 erg/s", "needs_for_mass": "kT, Z, profile, non-CGM share (none given in paper; deferred)",
+   "class": "NOT DIAGNOSTIC (L_X-only); ceiling M_max/M* 0.28-1.43 depending on Z 1-0.1 and kT 0.10-0.13"},
+  {"id": "S2", "arxiv": "2601.16499", "journal": "ApJ (accepted, v2)", "table_or_fig": "Table 1, Sec. IV.1-IV.2",
+   "quantity": "M_hot from beta-model integral", "bin": "474 L* galaxies, median M* 2.4e10 (log 10.38), mostly main-sequence",
+   "aperture": "10-200 kpc", "value": "log M_hot = 10.3 +0.2/-0.5 (full); 10.5 +0.1/-0.5 (low-SFR half)",
+   "needs_for_mass": "kT 0.23 keV, solar Z, isothermal, all diffuse emission = CGM (paper's own, 'not necessarily true')",
+   "own_profile_extrapolation_hand": {"full_fraction_10_100_over_10_200": 0.35, "lowSFR_fraction": 0.28, "M_10_100_full_Msun": 7.0e9, "M_10_100_lowSFR_Msun": 8.9e9},
+   "class": "NOT DIAGNOSTIC (median M* below 10.5; mixed SFR; quiescent fraction not given)"},
+  {"id": "S3", "arxiv": "2508.09514", "journal": "ApJ 2025", "table_or_fig": "Figs 5, 7, 9 (no table values retrieved)",
+   "quantity": "ACT DR4 Compton-y of quiescent WISE x DESI galaxies, thermal energy", "bin": "halo mass 12-14 via SHMR, quiescent 0.7M",
+   "aperture": "R200", "value": "not retrieved (figures)", "class": "NOT DIAGNOSTIC"},
+  {"id": "S4", "arxiv": "2604.19745", "journal": "preprint 2026", "table_or_fig": "Tables 1, 2, 4; Sec. IV.4",
+   "quantity": "kSZ tau profile, DESI BGS x ACT DR6", "bin": "M* > 10 / 10.5 / 11 / 11.25; log Mh 13.26 / 13.34 / 13.51 / 13.68 [Msun/h]",
+   "aperture": "CAP 1-14 arcmin, R_vir", "value": "gas fraction ~0.2-0.3 of cosmic near R_vir (approximate in text)", "class": "NOT DIAGNOSTIC"},
+  {"id": "S5", "arxiv": "2607.08721", "journal": "preprint 2026", "table_or_fig": "Table 1",
+   "quantity": "ACT DR6 cylinder Y of Planck locally-bright centrals", "bin": "11.2-11.8 shown; <11.1 noise dominated, not shown",
+   "aperture": "3 arcmin (~750 kpc at z 0.25, source scaling)", "value": "Y(11.2-11.3) = 1.4 +/- 1.0 e-6 arcmin^2 (radio-cut)", "class": "NOT DIAGNOSTIC"},
+  {"id": "S6", "arxiv": "2609.08939", "journal": "preprint 2026", "table_or_fig": "Table X (y_AP), Table II (bins)",
+   "quantity": "y_AP in 2.7 arcmin disk, BGS", "bin": "mean log M* 10.72 (M*>10) ... 11.42; log Mh 13.1-13.5",
+   "aperture": "2.7 arcmin", "value": "M*>10.5: 0.04+/-0.02 (ILC), 0.02+/-0.02 (CIB-deproj), 0.01+/-0.04 (dbeta) x1e-7",
+   "class": "NOT DIAGNOSTIC; 1 sigma noise ~16x sealed mean y (hand arithmetic)"},
+  {"id": "S7", "arxiv": "2107.14281", "journal": "ApJ 2022 (DOI 10.3847/1538-4357/ac51de)", "table_or_fig": "abstract (A)",
+   "quantity": "Planck SZ stack, 11 nearby L* spirals", "bin": "spirals only", "aperture": "250 kpc",
+   "value": "9.8 +/- 2.8 e10 Msun at assumed T 3e6 K", "class": "NOT DIAGNOSTIC (spirals; larger aperture)"},
+  {"id": "S8", "arxiv": "2609.18006", "journal": "preprint 2026", "table_or_fig": "Secs II-V",
+   "quantity": "joint XMM + Planck SZ of NGC 4594", "bin": "single galaxy, M200 ~1e13", "aperture": "33-330 kpc annuli",
+   "value": "kT ~0.75 keV; no gas mass tabulated", "class": "NOT DIAGNOSTIC"}
+ ],
+ "not_read": ["2401.17308", "2401.17309", "2201.05169", "2506.09123", "2507.07991"],
+ "ceiling_table_Mmax_over_Mstar": {
+  "basis": "M_max = 5.1e10 x sqrt(1.1e40 / L_CFG580), CFG580 canonical uniform-sphere rows, M* = 6.31e10",
+  "Z0.1": [1.43, 0.81], "Z0.3": [0.86, 0.50], "Z1.0": [0.47, 0.28], "columns": "kT 0.10, kT 0.13"
+ }
+}
