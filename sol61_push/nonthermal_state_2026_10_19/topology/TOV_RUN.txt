@@ -1,0 +1,18 @@
+Bounded supplementary TOV integration; EOS effective model only, not full two-field Einstein-Klein-Gordon.
+Python 3.9.6, NumPy 1.26.2, SciPy 1.11.4
+Natural dimensionless input m=G=lambda_tot=1; u_star=.02; r_lambda=2; positive g=sqrt(lambda_tot*Delta/(1+r_lambda)).
+Delta=0.0016; g=0.023094010767585032; zeta=0.0002666666666666667; Hcap=0.00013331555871541742; length a=0.16286750396763996; mass scale=4.343133439137066e-05
+solve_ivp RK45 enthalpy/M/Q equations in DERIVATION.txt; x0=1e-7, xmax=10, max_step=.025; surface event H/Hcap=0 downward; rtol 1e-9 and1e-11; atol=rtol*1e-3.
+Each row: central t=delta/delta_cap, R, M, Q, C=GM/R, M/(mQ), central cs2, maximum relative R/M/Q resolution change.
+{'tc': 0.01, 'R': 0.5108668162330462, 'M': 6.801513490322549e-07, 'Q': 6.801518015622185e-07, 'C': 1.3313672515421021e-06, 'EmQ': 0.9999993346632876, 'Hc': 1.333331555558716e-06, 'cs2': 1.3265493695666186e-06, 'steps': 172, 'resolution_relerr': 2.057261649923703e-08}
+{'tc': 0.05, 'R': 0.5075745554558767, 'M': 3.35764286237422e-06, 'Q': 3.3576539375428623e-06, 'C': 6.615073246448618e-06, 'EmQ': 0.9999967015157464, 'Hc': 6.6666222226172805e-06, 'cs2': 6.485428761020805e-06, 'steps': 192, 'resolution_relerr': 2.541906884978573e-08}
+{'tc': 0.1, 'R': 0.5032061031908486, 'M': 6.598891912519139e-06, 'Q': 6.598934928336373e-06, 'C': 1.3113696099223201e-05, 'EmQ': 0.9999934813999984, 'Hc': 1.3333155558715988e-05, 'cs2': 1.254629402137521e-05, 'steps': 205, 'resolution_relerr': 6.11142847439794e-09}
+{'tc': 0.2, 'R': 0.49352686788752126, 'M': 1.2666660008255314e-05, 'Q': 1.2666820387749567e-05, 'C': 2.566559357238915e-05, 'EmQ': 0.9999873386146371, 'Hc': 2.6665955580838497e-05, 'cs2': 2.2975848799522448e-05, 'steps': 211, 'resolution_relerr': 8.29694213333454e-09}
+{'tc': 0.4, 'R': 0.46960438543353167, 'M': 2.2539700787787804e-05, 'Q': 2.25402220274223e-05, 'C': 4.799721102898026e-05, 'EmQ': 0.9999768751330904, 'Hc': 5.333048909114432e-05, 'cs2': 3.396170430556954e-05, 'steps': 217, 'resolution_relerr': 2.1931919724771376e-08}
+{'tc': 0.6, 'R': 0.43860767599857237, 'M': 2.7825028906904047e-05, 'Q': 2.782584153603854e-05, 'C': 6.343944812081815e-05, 'EmQ': 0.9999707958829047, 'Hc': 7.999360068258476e-05, 'cs2': 2.8930704156321115e-05, 'steps': 232, 'resolution_relerr': 2.510457897120233e-08}
+{'tc': 0.8, 'R': 0.4068911105798503, 'M': 2.68321334723748e-05, 'Q': 2.6832879174878735e-05, 'C': 6.594426069947068e-05, 'EmQ': 0.9999722093742132, 'Hc': 0.00010665529050680287, 'cs2': 1.4274966075962968e-05, 'steps': 248, 'resolution_relerr': 2.1364616742403086e-09}
+{'tc': 0.9, 'R': 0.40243770014504715, 'M': 2.5198974090212407e-05, 'Q': 2.5199614516773876e-05, 'C': 6.26158386282651e-05, 'EmQ': 0.9999745858588018, 'Hc': 0.00011998560230358537, 'cs2': 6.824662798799001e-06, 'steps': 267, 'resolution_relerr': 1.4234267542434509e-08}
+{'tc': 0.97, 'R': 0.40548530788917164, 'M': 2.5234195402405952e-05, 'Q': 2.5234837975282347e-05, 'C': 6.223208316416494e-05, 'EmQ': 0.9999745362788925, 'Hc': 0.00012931660910616013, 'cs2': 2.004553195536604e-06, 'steps': 291, 'resolution_relerr': 2.4486620286978678e-08}
+{'tc': 0.99, 'R': 0.4052660674062873, 'M': 2.5268978019877933e-05, 'Q': 2.5269622758919043e-05, 'C': 6.235157604385683e-05, 'EmQ': 0.9999744856087778, 'Hc': 0.00013198257906601695, 'cs2': 6.666862165253576e-07, 'steps': 311, 'resolution_relerr': 1.6512298417481475e-08}
+Checks passed: 10 finite surfaces each resolution; all M/(mQ)<1; each C below its actual central-enthalpy bound and universal cap; all relative resolution changes <2e-7.
+No radial/nonradial eigenvalue or dynamical stability computation; no variational ground-state certification; no error bound from omitted scalar gradients.

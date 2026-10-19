@@ -1,0 +1,205 @@
+FULL TWO-FIELD GRAVITY: EQUILIBRIA, STABILITY AND THE FLUID BOUND
+Checkpoint EKG-2026-10-19-C; parent NTS-2026-10-19-B; 19 October 2026.
+
+The full static spherical Einstein--two-complex-scalar equations have been
+solved numerically with both gradients, the metric and the conserved charge
+retained. Localized nodeless solutions with BOTH fields populated exist in
+the declared parameter regimes. A diffuse mixed solution passes the tested
+full constrained radial energy criterion. A more compact mixed solution
+has a resolved slow growing mode in the finite Galerkin dynamics.
+
+The old homogeneous chemical ceiling is not a universal full-field ceiling.
+Its finite-surface TF compactness theorem remains valid with its original
+hypotheses. A separately declared R99 extension fails for full-field
+equilibria, but the compact mixed witness is not a demonstrated stable
+counterexample. A universal compactness theorem restricted to stable MIXED
+states remains open. All stability statements below have an explicit finite
+radial scope; none is a quantum/nonradial/nonlinear stability theorem.
+
+1. EXACT EQUATIONS USED
+
+The original minimally Einstein-coupled action is unchanged:
+ L_matter=|dPhi|^2+|dX|^2-V,
+ V=m^2|Phi|^2+M^2|X|^2+g(X*Phi^2+X Phi*^2)+lambda|Phi|^4,
+ M>2m, Delta=M^2-4m^2,
+ lambda=lambda_rep+g^2/Delta, lambda_rep>0.
+Natural units c=hbar=1, signature +---, charge weights1 and2. Parameters
+remain inputs of the action. No equation of state, galaxy law, baryonic
+portal, new interaction or fitted acceleration scale is inserted.
+
+Set ds^2=alpha^2dt^2-N^(-1)dr^2-r^2dOmega^2,
+N=1-2G Menc(r)/r, Phi=f exp(-iomega t), X=-h exp(-2iomega t),
+Omega=omega/alpha, T=Omega^2(f^2+4h^2), K=N(f'^2+h'^2).
+Then, exactly,
+ rho=T+K+V, p_r=T+K-V, p_t=p_r-2K,
+ Menc'=4pi r^2rho,
+ alpha'/alpha=G(Menc+4pi r^3p_r)/(r^2N),
+ f''+B f'=[m^2-Omega^2-2gh+2lambda f^2]f/N,
+ h''+B h'=[(M^2-4Omega^2)h-gf^2]/N,
+ B=2/r+alpha'/alpha+N'/(2N),
+ Q'=8pi omega r^2(f^2+4h^2)/(alpha sqrt(N)).
+Regular centers and asymptotically flat, decaying massive tails close the
+boundary problem. Detailed derivation: equilibria/DERIVATION.txt and
+gradient_analysis/DERIVATION.txt, independently reconstructed before the
+crosscheck. This is a numerical solution of the spherical stationary system,
+not a closed-form solution or classification of every initial condition.
+
+The full radial perturbation problem uses the constrained ADM Hamiltonian,
+not a fluid perturbation equation. With y=sqrt(4piG)(Phi,X),
+Pi=a/alpha ydot, a=N^(-1/2), S=sum(|Pi|^2+|y'|^2), U=4piG V,
+ mu'+2rSmu=r^2(S+U), mu=G Menc,
+ qbar=GQ=-2 integral r^2 Im(y1*Pi1+2y2*Pi2)dr.
+The second variation of mu_infinity-omega qbar is restricted to deltaQ=0
+and quotiented by the common phase. Both fields' real/imaginary amplitudes
+AND canonical momenta are retained; the metric is recomputed under every
+variation. HAMILTONIAN_DICTIONARY.txt gives the full normalization.
+
+2. MIXED SOLUTIONS AND THEIR DIFFERENT STABILITY OUTCOMES
+
+Both mixed examples fix m=lambda_total=1, u_star=.02, r_lambda=2,
+M=2.000399960007998, g=.023094010767585032, lambda_rep=2/3.
+Here Gm^2/lambda is dimensionless and differs between the examples. These
+are declared members of the same action family, not direct simulations at
+the earlier MeV benchmark's approximately10^-41 gravity/quartic ratio.
+
+Diffuse mixed candidate: G=1e-8,
+ omega_infinity=.999951920216,
+ M_ADM=2.26685206e7, Q=2.26690439e7,
+ M_ADM/(mQ)=.9999769167,
+ R99 approximately4631.36, C99 approximately4.89457e-5.
+The full constrained radial Hessian has positive even/odd blocks in the
+tested spaces. Refined B120,R10000,dx.5 gives lowest values9.64146e-6 and
+9.64420e-7, respectively. Doubling the basis and halving the grid spacing
+preserves both signs. The associated lowest represented radial angular
+frequency is2.303832927e-6 in units of m (period approximately2.727e6
+in units m^(-1)). An R8000 comparison gives2.303787933e-6; the relative
+frequency difference is approximately2e-5. Refinement results and final
+finite scope are in stability/RESULT.txt. Finite-basis positivity establishes only the tested
+span, not coercivity on all radial functions. This is a classical radially
+stable candidate. Formation and long-time nonlinear stability are open.
+
+Compact mixed witness: G=8.5e-5, centralh=.02,
+ centralf=.00106392809814,
+ omega_infinity=.999559268298785,
+ M_ADM=368.688643676558, Q=368.693700202112,
+ M_ADM/(mQ)=.9999862852944,
+ R99=79.6940278051,
+ C99=G M_ADM/R99=.000393235673684.
+The frozen profile is equilibria/run_001/mixed_center.npz, SHA256
+a138cfa3b8f053b610be2ef39b40755fa7af59fee758f23faaa75c0310a19fa5.
+Its local central Omega=1.00080124882352 exceeds the homogeneous ceiling
+1.00013332444563. Max enclosed G Menc/r=.0005518562; no horizon.
+
+Four center/tolerance/domain variants and a diffuse control passed44 finite
+checks in equilibria/run_001. Independent off-grid KG residual<=1.36e-10,
+mass constraint residual approximately2e-12, stress-conservation residual
+1.12e-15. Independent integrated mass agrees to3e-13 relatively. Domain
+and center refinement leave the compact witness's frequency/mass/R99
+essentially unchanged. Separate reconstructed saved-grid quadratures in
+gradient_analysis reproduce the result; their R99 interpolation differs
+by4.7e-5, immaterial to the comparisons.
+
+This compact witness has a very soft negative fixed-charge energy direction.
+At R600,B120,dx.0125 its lowest even curvature is-2.00973e-8, while the
+phase-reduced odd block is positive. The properly paired canonical flow
+has a real growing pair with gamma=1.411084089e-6, corresponding
+to an e-fold time approximately7.1e5 in units m^(-1). The coarser
+dx.025,B60 rate1.41459e-6 agrees to.25%. A separate50-digit mpmath
+analytic directional derivative confirms the dx.025 curvature within
+2.91e-16 absolute (1.44e-8 relative). Grid/domain/basis and high-precision
+directional controls are recorded in stability/.
+This is a finite-Galerkin instability prediction, not a rigorous continuum
+spectral enclosure. It rules out calling this profile a verified stable
+mixed condensate merely because M_ADM<mQ or the BVP converges.
+
+3. WHY THE OLD BOUND CHANGES SCOPE
+
+The old finite-surface isotropic TF theorem used the algebraic local
+minimum and zeta=u_star^2 r_lambda/(1+r_lambda):
+ C_TF<[1-(1+zeta)^(-2)]/2=.000266560037913255.
+Gradients turn that algebraic problem into differential equations and
+produce p_t-p_r=-2K. At a central maximum one obtains inequalities, not
+h=gf^2/(M^2-4Omega^2). The old local chemical ceiling therefore cannot
+be imported into the full equations.
+
+A regular nontrivial smooth massive scalar equilibrium also has a tail,
+not an exact finite zero-pressure edge. R99 here is explicitly the areal
+radius enclosing99% of ADM mass; C99 uses TOTAL ADM mass. Our compact
+mixed equilibrium has C99 about1.475 times the old number. This refutes
+the separately stated universal R99 extension. It is not a same-radius
+contradiction of the actual TF theorem. Stability may still restrict the
+mixed branch; the compact witness's slow instability makes this distinction
+essential.
+
+There is also an exact full-action pure-X sector, Phi=0. Its integrated
+KG identity and monotone lapse imply Omega_center>M/2, strictly above the
+TF ceiling sqrt(M^2-g^2/lambda)/2. This independently proves that the local
+ceiling is not universal, even before inspecting mixed numerical profiles.
+
+A much weaker known full-field bound survives. The positive-square
+potential implies V>=0 and the dominant energy condition. Exact stress
+conservation with regular decaying tails gives p_r>=0, and
+p_r+2p_t<=3rho. Andreasson's Theorem1 therefore yields
+ sup_r G Menc(r)/r<=24/49.
+For the total-mass/R99 convention it gives C99<=24/(49*.99).
+This is a known anisotropic-gravity corollary, not a new zeta-linked or
+scalar-sharp theorem. Primary source, checked exact version:
+https://arxiv.org/pdf/gr-qc/0702137v2 . Hypotheses and notation translation
+are recorded in gradient_analysis/DERIVATION.txt.
+
+4. PURE-X CONTROL AND THE ALLOWED CONVERSION CHANNEL
+
+reference/run_004 solves the compact pure-X control, sourceM=1,4piG=1,
+centralh=.05, omega_X=.9540245202627796, G M_ADM=.4746929221648993,
+R99=17.2785734087, C99=.02747292331. Its declared full-action embedding
+uses m=.49990002999, lambda=.01, g=.00115446966753, r_lambda=2.
+
+The action allows X->PhiPhi, so single-field stability would not suffice.
+In the stellar background, the daughter fluctuation has positive lower
+stiffness K_-=-spatialLaplace+m^2-omega^2/alpha^2-2gh in the tested
+spectral discretizations, with lowest value approximately.010905.
+The positive conserved daughter quadratic energy is a sufficient sector
+criterion; angular gradients add nonnegative terms in that decoupled
+sector. Independent full radial ADM Galerkin blocks are also positive,
+approximately.0184894 and.0185546. Full constrained two-field time
+evolution with1% shape and daughter seeds remains bounded throughT1000.
+At the finest dx=.1, relative ADM/charge drifts are2.57e-8/4.57e-14,
+and the independent momentum-constraint maximum is2.68e-8. The interval
+covers approximately2.7 mother breathing cycles. Resolution and boundary
+controls are detailed in stability/RESULT.txt.
+
+This strengthens the classical radial control. It does not prove an
+all-mode quantum state. In particular the pure-X example's declared
+embedding has totalQ only about12, whereas the diffuse mixed example has
+Q approximately2.27e7. The classical control should not silently be treated
+as a large-occupation quantum condensate.
+
+5. PREDICTION, LIMITS AND CONTINUATION
+
+The directly reproducible dynamical predictions at the declared couplings
+are a slow growing radial mode on the compact mixed branch and a positive
+lowest radial oscillation frequency on the diffuse mixed branch. They
+follow from the action, solved background and constrained Hamiltonian;
+they were not read off a galaxy relation. They can be tested by independent
+full-field spectral calculations and appropriately long dynamical runs.
+An observational prediction needs physical parameter selection, formation,
+occupation/lifetime, abundance and coupling to a measurable channel.
+
+The original protected nonthermal quantum-state objective remains open.
+Exact charge conservation protects total charge, not arbitrary coherence.
+No global novelty, Nobel-level result, quantum lifetime, nonradial stability,
+cosmological population or galaxy law has been established here.
+
+The next sharp obligation is continuum radial spectral/error control and
+nonradial stability of the diffuse mixed candidate, followed by continuation
+toward the actual weak-gravity benchmark. For stable-mixed compactness,
+continue a fixed-coupling family through the slow-mode crossing and locate
+the stable endpoint with a declared mass-containment radius. Do not turn
+this one unstable compact profile into a universal stable-state bound.
+
+All scripts, failures, bounded runner records and independent checks remain
+in their owner directories. reference/RESULT.txt explains its initial failed
+continuation; equilibria/METHODS_AND_LIMITS.txt preserves nodeful and failed
+mixed routes. A completed manifest authenticates the declared execution,
+not a proof of every attempted mathematical assertion. checkpoint.json,
+HANDOFF.json and SELF_REVIEW.txt record the final reconciliation and pins.

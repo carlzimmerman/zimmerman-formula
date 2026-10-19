@@ -1,0 +1,71 @@
+RADIAL HAMILTONIAN AND INDEPENDENT DIRECTIONAL DERIVATIVE
+EKG-2026-10-19-C; supplements HAMILTONIAN_DICTIONARY.txt.
+
+The canonical action locators are internal_polarization/INTERNAL_POLARIZATION.md
+Eq(1) and cold_production_2026_10_11/MASTER_COLD_ENERGY_EQUATIONS.md,
+section 'Charge protected scalar carrier'. Their byte pins appear in
+SOURCE_PINS.json. Our exact radial dictionary independently matches the
+equilibrium and compactness-audit equations. Natural units c=hbar=1.
+
+Let y=(F,Y)=sqrt(4piG)(Phi,X), Pi=a/alpha ydot,
+S=|Pi|²+|y'|² and U=4piG V. With mu=GM_enc,
+ mu'+2rSmu=r²(S+U).
+Set I(r)=integral_0^r2sSds, J(r)=integral_0^r s²(S+U)exp(I(s))ds.
+Then mu=exp(-I)J. Also alpha*a=exp[I(r)-I(infinity)], so variation
+of mu(infinity) has Pi derivative2r²(alpha/a)Pi. Together with
+ qbar=-2 integral r² Im(F*Pi_F+2Y*Pi_Y)dr
+this fixes the grand functionalC=mu_infinity-omega qbar and real canonical
+brackets1/(2r²). There is no extra a/alpha in the charge, nor extra1/2
+in the complex scalar stress tensor. See dictionary equationsH1--H9 for
+the correct fixed-charge/common-phase symplectic reduction.
+
+The code differentiates the discretized integrating-factor expression,
+not a matter energy on a frozen metric. Variation of mu and alpha therefore
+includes the spherical Einstein constraints. On a sampled continuum
+equilibrium the discrete first derivative is small rather than identically
+zero; its stationarity/gauge residuals are explicitly reported. Refinement
+and independent witness checks, not that first-derivative norm alone,
+support the finite conclusions.
+
+Independent mpmath witness derivation:
+take even perturbations realf->f+e df, realx->x+e dx,
+imaginarypF->pF+e dpF, imaginarypX->pX+e dpX.
+Write S=S0+e S1+e²S2 and U=U0+e U1+e²U2+O(e³). Then
+ S1=2(pF dpF+pX dpX+f'df'+x'dx'),
+ S2=dpF²+dpX²+df'²+dx'²,
+ U1=2m²fdf+2M²xdx+2c(dx f²+2xfdf)+4L f³df,
+ U2=m²df²+M²dx²+2c(x df²+2dx fdf)+6L f²df².
+Here U0=m²f²+M²x²+2cxf²+Lf⁴ and c=g/sqrt(4piG),L=lambda/(4piG).
+Let Aj=Sj+Uj and Ij=integral2rSjdr (j0,1,2), with the same origin and
+trapezoid terms as the executed functional. Derivatives ofJ at e0 are
+ J'=integral r² exp(I0)(A1+A0 I1)dr,
+ J''=integral r² exp(I0)[2A2+2A1I1+A0(2I2+I1²)]dr.
+The code's originJ=(S0+U0)r0³/3 and corresponding directional derivatives
+are added without a spurious exponential. Hence, at the outer endpoint,
+ mu''=exp(-I0)[J''-2I1 J'+(I1²-2I2)J],
+ qbar''=-4 integral r²(df dpF+2dx dpX)dr,
+ C''=mu''-omega qbar''.
+
+witness_mpmath.py evaluates these identities independently at50 decimal
+digits on fixed saved float64 background and basis-witness contraction.
+Every later stencil, potential coefficient, quadrature and exponential
+operation is evaluated in MP. No autograd and no subtraction of nearby
+ADM masses is used. The run013 direction has C'' approximately-2.02138e-8
+despite separate mass and charge curvatures near2; MP prevents this
+cancellation from hiding its sign. Agreement with AD is2.91e-16 absolute.
+The input coefficient values are the executed float64 c,L values, so this
+checks the same finite functional, not a subtly changed pi/parameter model.
+
+The double precision imported direction/background still limit the question
+being asked. Fifty-digit arithmetic evaluates that discrete direction,
+not exact continuum background coefficients, spectral completeness or a
+nonlinear theorem. Float64 finite-difference tests at tiny epsilon and the
+machine's52-bit longdouble are retained only as diagnostics.
+
+For pure-X, Phi perturbations have zero first-order stress/current source,
+so the metric and X decouple at linear order. The anomalous2gX deltaPhi*
+term remains; dropping it would miss conversion. The rotating real/imaginary
+daughter system is gyroscopic with stiffness K-/K+ as inH10. Positive
+stiffness gives a positive conserved quadratic energy. Mother/metric radial
+behavior is tested separately by full nonlinear evolution; the companion
+owner also evaluated its full ADM Hessian.

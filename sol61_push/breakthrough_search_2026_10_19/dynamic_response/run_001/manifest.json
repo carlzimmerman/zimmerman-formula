@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "DR-2026-10-19-1",
+  "repository": {
+    "commit": "a575dcd0954fc2792fdf2f4ac5461193604b9c59",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/breakthrough_search_2026_10_19/dynamic_response/check_response.py",
+    "sol61_push/breakthrough_search_2026_10_19/dynamic_response/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact two-level double commutator; independent 35-digit numerical static/Kramers-Kronig response at biases 0,.3,1,3; imaginary-frequency spectral reconstruction at nu=.2,2; Bessel Fourier transform at x=0,.3,1,3; direct gap sine transform at t=.2,1,3; threshold Jacobian at (b,q)=(.3,.8),(1,2),(3,5); biased isotropic low-frequency asymptotic at q/b=1e-5; finite first spectral moment at cutoffs10,100,1000; two convergent variable-d moments.",
+    "coefficient_domain": "Symbolic complex 2x2 matrices and mpmath 35 decimal digit quadrature",
+    "conventions": "a=p_sat=gamma=1; retarded Fourier convention integral_0^infinity exp(+i omega t) chi(t)dt; gamma=2d/hbar; positive absorption chi double-prime for omega>0.",
+    "inputs": [
+      "Exact rational completion source pinned in source_pins.json",
+      "Common-d occupied two-level ensemble; fixed bias, infinitesimal longitudinal probe"
+    ],
+    "bounds": {
+      "decimal_digits": 35,
+      "ordinary_absolute_tolerance": "1e-28",
+      "isotropic_asymptotic_tolerance": "2e-9",
+      "variable_d_number_density_tolerance": "1e-16",
+      "timeout_seconds": 60
+    },
+    "non_claims": [
+      "Numerical checks do not establish the analytic identities for all parameters",
+      "No finite-temperature calculation here",
+      "No microscopic derivation of mass dipoles from scalar action",
+      "No generic dissipation theorem from static law alone"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T13:42:14.988889+00:00",
+    "runtime_seconds": 60.007105,
+    "exit_status": -9,
+    "status": "timeout",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/breakthrough_search_2026_10_19/dynamic_response/run_001/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/breakthrough_search_2026_10_19/dynamic_response/check_response.py",
+    "sol61_push/breakthrough_search_2026_10_19/dynamic_response/source_pins.json",
+    "sol61_push/gravity_restoring_2026_10_19/rational_completion/RATIONAL_COMPLETION.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/dynamic_response/check_response.py",
+      "sha256": "6e445dc36d547df52247c487cc241f3a110396048839000dd7a9cd4952084839",
+      "sha256_after": "6e445dc36d547df52247c487cc241f3a110396048839000dd7a9cd4952084839"
+    },
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/dynamic_response/source_pins.json",
+      "sha256": "b737494ac7291ef4535d9cb4e72783b84179bcf952792ae8850f69e731a0553f",
+      "sha256_after": "b737494ac7291ef4535d9cb4e72783b84179bcf952792ae8850f69e731a0553f"
+    },
+    {
+      "path": "sol61_push/gravity_restoring_2026_10_19/rational_completion/RATIONAL_COMPLETION.md",
+      "sha256": "4c055419d663114a2831feebab02f704da35c2724bf728db80b8b475595e8367",
+      "sha256_after": "4c055419d663114a2831feebab02f704da35c2724bf728db80b8b475595e8367"
+    }
+  ],
+  "output_directory": "sol61_push/breakthrough_search_2026_10_19/dynamic_response/run_001",
+  "declared_results": [
+    "sol61_push/breakthrough_search_2026_10_19/dynamic_response/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/dynamic_response/run_001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/dynamic_response/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run timeout; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/breakthrough_search_2026_10_19/dynamic_response/run_001/results.json"
+  ]
+}

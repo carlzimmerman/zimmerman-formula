@@ -1,0 +1,88 @@
+INDEPENDENT FOCUSED PROOF AUDIT: SPECTRAL_BOUND.txt
+
+Reviewer: delegated agent /root/many_body, 2026-10-19. Independent reconstruction from the definitions and raw proof, rather than from the author's verdict. This is an analytic review, not a formal proof certificate or an external literature/novelty audit. No source file was edited.
+
+Exact source reviewed:
+sol61_push/breakthrough_search_2026_10_19/SPECTRAL_BOUND.txt
+SHA256 d8a1eb45e9a7603e31ad7d91c0c84716bf9c1742275d5c86f66472c3134250f6
+Base repository checkpoint 970c67ce3dcd1c14e3488b9bce45e813ccfe0799.
+
+PRIMARY VERDICT: PROVED AS WRITTEN for (A), (B) and (C), under the claim card's explicit response assumptions and, for (B)/(C), the exact independent fixed-inventory zero-field off-diagonal Gibbs TLS assumptions. Omega>0 is the natural domain of (A); its displayed quotient is undefined at Omega=0. The identification of rho_D with gravitating carrier density, and application to a real gravitational medium, remain CONDITIONAL ON THE NAMED SOURCE/INERTIA/STATE DICTIONARY. The formulas do not prove a no-go for arbitrary finite-inertia matter, interacting matter, multilevel systems, nonground-state passive media, or non-Gibbs states.
+
+No mathematical error was found in the commutator, normalization, spectral fraction, TLS weight, concavity, Jensen step, inversion, or numerical illustration. The most important restriction is that the TLS thermal weighting is an additional microscopic model; it does not follow from passivity or the oscillator sum rule alone.
+
+NORMALIZED CLAIMS AND DEPENDENCIES
+
+Claim S1: For H0=sum p_i^2/(2m_i)+V(x), positive masses and coordinate source D=sum q_i x_i with constant q_i, the source double commutator is hbar^2 sum q_i^2/m_i. Verdict: proved as written, conditional only on the already stated common operator-domain/commutator assumptions. Momentum-dependent interactions or field-dependent charges are outside this claim.
+
+Claim S2: At zero temperature, positive-frequency spectral weight has M1=<[D,[H0,D]]>/(V hbar^2), and static susceptibility is its inverse-frequency moment. Verdict: proved as written given the stated Lehmann and unsubtracted static dispersion assumptions, no contact term, and no zero-frequency contribution omitted from the representation. A nonzero <D> contributes no response matrix element at positive frequency; degenerate zero-gap contributions require the explicitly excluded treatment.
+
+Claim A: Given chi0=1/K and M1<=rho_D, the fraction of ZERO-T STATIC susceptibility at frequencies >=Omega is at most min(1,K rho_D/Omega^2), for Omega>0. Verdict: proved as written. It is a weighted spectral fraction, not a fraction of sites, particles, total mass or dissipated power, and not a relaxation-time theorem.
+
+Claim T: For an exact independent TLS inventory at fixed gaps and source matrix elements, in Gibbs equilibrium at a common T, with source purely off-diagonal at zero applied field, chiT/chi0 is the chi0-weighted average of tanh(hbar omega/(2kBT)). Verdict: proved as written. A truncated physical multilevel system does not inherit this exact finite-T relation merely because its ground-state low-energy response has a TLS approximation; all thermally occupied transitions and source terms must obey the model premises.
+
+Claim B: Within Claim T, chiT/chi0<=tanh[hbar sqrt(K rho_D)/(2kBT)] and deltaT>=1-tanh[...]. Verdict: proved as written. The spectral moment is the ZERO-T inventory budget. The independent TLS model, rather than a finite-T version of that moment identity, is what transfers the ground-state weights to finite T.
+
+Claim C: Within Claim B, deltaT<=epsilon with 0<epsilon<1 necessarily implies the stated upper temperature limit. Verdict: proved as written. It is necessary, not sufficient; a broad frequency distribution will generally make the condition stricter.
+
+Claim M: rho_D equals gravitating carrier mass density. Verdict: conditional on a named input, specifically universal force charges q_i=m_i together with the complete participating inertia inventory and a physical source construction. The source explicitly labels this rather than silently assuming it. The isolated-composite/COM obstruction is not repaired by the bound.
+
+FRESH DERIVATION OF THE LOAD-BEARING STEPS
+
+1. Canonical source and double commutator.
+Since [V(x),D]=0 and [p_i^2,x_i]=-2 i hbar p_i,
+ [H0,D]=-i hbar sum_i (q_i/m_i) p_i.
+A second commutator gives
+ [D,[H0,D]]=hbar^2 sum_i q_i^2/m_i.
+In a ground eigenstate, direct insertion of a complete energy eigenbasis independently gives
+ <[D,[H0,D]]>=2 sum_n (E_n-E_0)|D_0n|^2
+ =2 hbar sum_n omega_n |D_0n|^2.
+Thus the first moment is 2 sum_n omega_n |D_0n|^2/(V hbar), exactly matching the proof. There is no missing factor of two or hbar. Completeness and nonnegative excitation energies imply a true ground-state subspace consumes at most the full oscillator budget. This is not automatically a statement about a thermally truncated multilevel theory.
+
+Units also agree: for mass charges and acceleration source, chi has units kg s^2/m^3, 1/K has the same units, M1 and rho_D have units kg/m^3, and K rho_D has units s^-2. No density is obtained from the static chi0 condition alone.
+
+2. Static spectral probability and Markov.
+The unsubtracted zero-frequency dispersion relation is
+ chi0=(2/pi) integral_0^infinity Im chi_R(omega)/omega domega.
+Positivity makes the measure defined in the source a probability measure. Its second frequency moment is
+ integral omega^2 dP=M1/chi0<=K rho_D.
+On {omega>=Omega}, Omega^2 <= omega^2. Therefore
+ Omega^2 P(omega>=Omega)<=integral_{omega>=Omega}omega^2dP
+ <=integral omega^2dP<=K rho_D.
+Combine with P<=1. The event includes equality at the threshold, so the result is still correct for discrete atoms at Omega. The excluded zero-frequency and contact terms are material: without the specified complete static representation, the chosen measure need not account for chi0.
+
+3. Gibbs TLS response, reconstructed without assuming the tanh factor.
+For a single TLS choose H0=(Delta/2) sigma_z, Delta=hbar omega>0, and rotate the transverse source phase so D=d sigma_x. The perturbed levels are +/-R(E), with
+ R(E)=sqrt(Delta^2/4+d^2 E^2).
+The Gibbs free energy is F(E)=-kBT log[2 cosh(R(E)/(kBT))]. The source expectation is -F'(E), giving at E=0
+ chi_j,T=2d^2/Delta *tanh(Delta/(2kBT)),
+ chi_j,0=2d^2/Delta.
+The same formula follows from the population difference p_ground-p_excited. Divide summed per-volume susceptibilities by their zero-T sum. The resulting weights are exactly dP_j=chi_j,0/chi0, with no missing occupation factor, extra omega or extra volume. A purely off-diagonal source has zero diagonal covariance contribution at zero field. For a general biased source that contribution can exist and destroys the claimed universal thermal weighting; the source expressly excludes it.
+
+4. Jensen.
+For c>0 define f(z)=tanh(c sqrt z), z>=0. It is continuous at zero with f(0)=0, increasing, and strictly concave on z>0. Direct differentiation gives exactly the source's
+ f''=-c sech^2(c sqrt z)/(4 z^(3/2))
+     -c^2 sech^2(c sqrt z)tanh(c sqrt z)/(2z)<0.
+The continuous extension is concave on the whole nonnegative half-line; an infinite right derivative at zero is not a failure of Jensen. The finite second frequency moment provides the required finite E[z]. Jensen and monotonicity then give
+ E_P[tanh(c omega)]=E_P[f(omega^2)]
+ <=f(E_P[omega^2])<=f(K rho_D).
+For a single frequency saturating the oscillator budget the abstract TLS model attains equality. This does not assert that an exact finite-inertia canonical particle Hamiltonian with a physical gravitational source realizes such an ideal inventory.
+
+5. Inversion and illustration.
+Because chi0=1/K, deltaT=1-chiT/chi0. If deltaT<=epsilon, then 1-epsilon<=chiT/chi0<=tanh(A/T), A=hbar sqrt(K rho_D)/(2kB)>0. Monotonic atanh on (0,1) gives T<=A/atanh(1-epsilon). No inequality reverses incorrectly.
+Independent direct numerical check of the constants gives
+ sqrt(4 pi G*10^-21)=9.158150871842e-16 s^-1,
+ hbar sqrt(4 pi G*10^-21)/(2 kB atanh(.99))=1.321520083501e-27 K.
+These reproduce the illustration. The chosen rho_D remains a reference input, not a measured halo value or a bound on actual bath temperature.
+
+OBLIGATION MATRIX / REMAINING GAPS
+
+Passed: source commutator and mass-charge normalization; ground-state first moment; positive normalized susceptibility weights; threshold fraction inequality; exact Gibbs TLS response; correct zero-T weights in the thermal average; concavity including endpoint; Jensen with finite moment; monotone inversion; units; numerical constants; sharpness within the abstract class.
+Conditional: every physical identification of rho_D; existence of the required anchored/internal mass source; a valid microscopic TLS reduction over the occupied finite-T state; actual sector internal Gibbs temperature; self-consistent gravitational feedback and finite wavevector response; nonlinear MOND constitutive accuracy.
+Not addressed: external authentication of the source's literature/prior-art claims; global novelty; stability or existence of an actual candidate material; dynamical equilibration; observed halo forces; abundance; kappa; cosmological thermodynamics.
+
+The nearest earlier PASSIVE_RESPONSE_AUDIT.txt was read. It already states finite inertial-sum/positive reciprocal slow-response bounds and explicitly requires actual source/inertia/occupied-state matching. This supports the source's overlap caveat; it supplies no hidden proof of the additional Gibbs TLS hypotheses.
+
+Strongest safe conclusion: the mathematical spectral budget plus the explicitly specified TLS Gibbs model imposes the displayed necessary temperature condition. The result is a clean conditional model-selection constraint. It cannot be advertised as a universal temperature bound on cold matter or a first-principles construction of gravitational polarization.
+
+Source hash was rechecked at completion; any later edit requires a new review pin. No repairs or extra assumptions were inserted into the reviewed source.

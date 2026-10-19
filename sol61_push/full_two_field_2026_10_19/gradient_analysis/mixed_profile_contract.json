@@ -1,0 +1,77 @@
+{
+  "claim_id": "EKG-GRADIENT-MIXED-CAP-CHECK-3",
+  "mathematics": {
+    "assertion_tested": "Independent full-gradient canonical stress/current and mass-constraint checks on exactly three saved positive-both mixed profiles (initial, tighter tolerance, larger domain), each with local central chemical frequency above the old homogeneous cap and declared R99 compactness above the proposed universal R99 extension of the old finite-surface bound.",
+    "coefficient_domain": "float64 numpy quadrature of finite saved grids",
+    "conventions": "m=lambda=1,G=8.5e-5,u_star=.02,r_lambda=2,full g=sqrt(4u_star^2/3). R99 encloses 99 percent of truncated ADM mass; C99=G totalADM/R99. Positivity on grid tolerates 1e-10 of peak field to exclude numerical tail roundoff.",
+    "inputs": [
+      "mixed_G85em6_h020",
+      "mixed_refined",
+      "mixed_domain"
+    ],
+    "bounds": {
+      "profile_count": 3,
+      "mass_constraint_gate": 2e-05
+    },
+    "non_claims": [
+      "No rigorous infinite-domain existence or stability theorem.",
+      "No refutation of the prior TF theorem under its actual finite-surface/algebraic-minimum assumptions.",
+      "No direct computation of the MeV benchmark or all action parameters.",
+      "No independent BVP rerun; this is an independent check of saved fields and definitions."
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/full_two_field_2026_10_19/gradient_analysis/check_mixed_profiles.py",
+    "sol61_push/full_two_field_2026_10_19/gradient_analysis/mixed_profile_contract.json",
+    "sol61_push/full_two_field_2026_10_19/equilibria/mixed_G85em6_h020.npz",
+    "sol61_push/full_two_field_2026_10_19/equilibria/mixed_refined.npz",
+    "sol61_push/full_two_field_2026_10_19/equilibria/mixed_domain.npz"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "profiles": [
+    {
+      "name": "mixed_G85em6_h020",
+      "kind": "mixed",
+      "path": "sol61_push/full_two_field_2026_10_19/equilibria/mixed_G85em6_h020.npz",
+      "u_star": 0.02,
+      "r_lambda": 2,
+      "lambda_total": 1,
+      "expect_cap_violation": true,
+      "positive_both_fields": true
+    },
+    {
+      "name": "mixed_refined",
+      "kind": "mixed",
+      "path": "sol61_push/full_two_field_2026_10_19/equilibria/mixed_refined.npz",
+      "u_star": 0.02,
+      "r_lambda": 2,
+      "lambda_total": 1,
+      "expect_cap_violation": true,
+      "positive_both_fields": true
+    },
+    {
+      "name": "mixed_domain",
+      "kind": "mixed",
+      "path": "sol61_push/full_two_field_2026_10_19/equilibria/mixed_domain.npz",
+      "u_star": 0.02,
+      "r_lambda": 2,
+      "lambda_total": 1,
+      "expect_cap_violation": true,
+      "positive_both_fields": true
+    }
+  ]
+}

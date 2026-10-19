@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "EKG-REFERENCE-002",
+  "repository": {
+    "commit": "e54c33252909e38a529a69f7adac265e37b54cb4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/full_two_field_2026_10_19/reference/pure_reference_refined.py",
+    "sol61_push/full_two_field_2026_10_19/reference/run_002"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Full-GR pure-X reference at central.01 with Schwarzschild outer lapse and Coulomb-tail Robin boundary, three domain/tolerance controls and finite mass agreement",
+    "coefficient_domain": "IEEE float64, scipy solve_bvp",
+    "conventions": "M=1,4piG=1,X=h exp(-i omega_X t); v=G mass, asymptotic lapse normalized at finite domain",
+    "inputs": [
+      "central h=.01",
+      "original action pure-X branch Phi=0"
+    ],
+    "bounds": {
+      "r_max_values": [
+        100,
+        160,
+        220
+      ],
+      "tol_values": [
+        1e-07,
+        1e-08,
+        2e-09
+      ],
+      "base_nodes": 600,
+      "max_nodes": 20000
+    },
+    "non_claims": [
+      "No stable-state conclusion",
+      "No two-nonzero-field solution",
+      "Finite-domain reference, no exact infinity normalization"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T17:44:25.131467+00:00",
+    "runtime_seconds": 0.289821,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/full_two_field_2026_10_19/reference/pure_reference_refined.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/pure_reference_refined.py",
+      "sha256": "53e3617fd9f1df432150bdb9720dced91ed8d0f8a3b37ea36bf43c41c527e754",
+      "sha256_after": "53e3617fd9f1df432150bdb9720dced91ed8d0f8a3b37ea36bf43c41c527e754"
+    }
+  ],
+  "output_directory": "sol61_push/full_two_field_2026_10_19/reference/run_002",
+  "declared_results": [
+    "sol61_push/full_two_field_2026_10_19/reference/run_002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_002/stdout.txt",
+      "sha256": "4f930320ce59669d9aee47c9d775b8166f362dbb47fc92344a51131f2a344d4b",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_002/results.json",
+      "sha256": "5cbd81a18d9194524d7c37662dd525bedc6e379593d4038c830219aa7f23b2b4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

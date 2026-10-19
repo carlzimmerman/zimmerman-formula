@@ -1,0 +1,107 @@
+{
+  "claim_id": "EKG-2026-10-19-C-MIXED",
+  "mathematics": {
+    "assertion_tested": "Five fixed full Einstein-two-complex-scalar static spherical BVP solutions: four convergence/domain/center variants of one nodeless mixed gradient branch and one TF-like mixed branch. Both exact KG gradients, selfconsistent mass/lapse and proper-volume charge retained. Each tested solution has finite-box converged localization, no resolved field node, positive N, ADM mass below mQ, small physical ODE/constraint residuals and independent mass/charge quadrature agreement. The gradient branch locally exceeds the homogeneous chemical cap; C99 is reported with its separate radius convention.",
+    "coefficient_domain": "double precision real collocation and independent polynomial/quadrature residuals",
+    "conventions": "m=lambda_total=1, u_star=.02,r_lambda=2, g=sqrt(4u_star^2/3); z=sqrt(G)r; X=-h exp(-2iomega t). These dimensionless couplings are action-family witnesses, not the physical MeV benchmark.",
+    "inputs": [
+      "five cases explicitly listed",
+      "seed profiles are numerical initial guesses only",
+      "positive-square original carrier potential"
+    ],
+    "bounds": {
+      "cases": 5,
+      "per_case_timeout": 20,
+      "max_nodes": 30000,
+      "outer_Z_max": 14,
+      "points_max": 24001
+    },
+    "non_claims": [
+      "No stability or prepared quantum-state proof",
+      "No same-radius violation of the TF finite-surface theorem",
+      "No direct simulation at MeV benchmark gravitational coupling",
+      "No exact infinity existence theorem or analytic error bound",
+      "No scalar-gradient deletion or inherited MOND law"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/full_two_field_2026_10_19/equilibria/solve_tf_seeded_ekg.py",
+    "sol61_push/full_two_field_2026_10_19/equilibria/verify_profiles.py",
+    "sol61_push/full_two_field_2026_10_19/equilibria/run_family.py",
+    "sol61_push/full_two_field_2026_10_19/equilibria/contract.json",
+    "sol61_push/full_two_field_2026_10_19/equilibria/mixed_G85em6_h020.npz",
+    "sol61_push/full_two_field_2026_10_19/equilibria/mixed_G1em8_x04.npz",
+    "sol61_push/cold_production_2026_10_11/MASTER_COLD_ENERGY_EQUATIONS.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "cases": [
+    {
+      "name": "mixed_coarse",
+      "G": 8.5e-05,
+      "Z": 10,
+      "tol": 1e-08,
+      "z0": 1e-06,
+      "points": 16001,
+      "central_h": 0.02,
+      "seed": "sol61_push/full_two_field_2026_10_19/equilibria/mixed_G85em6_h020.npz"
+    },
+    {
+      "name": "mixed_refined",
+      "G": 8.5e-05,
+      "Z": 10,
+      "tol": 1e-10,
+      "z0": 1e-06,
+      "points": 16001,
+      "central_h": 0.02,
+      "seed": "@mixed_coarse"
+    },
+    {
+      "name": "mixed_domain",
+      "G": 8.5e-05,
+      "Z": 14,
+      "tol": 1e-10,
+      "z0": 1e-06,
+      "points": 24001,
+      "central_h": 0.02,
+      "seed": "@mixed_refined"
+    },
+    {
+      "name": "mixed_center",
+      "G": 8.5e-05,
+      "Z": 14,
+      "tol": 1e-10,
+      "z0": 5e-07,
+      "points": 24001,
+      "central_h": 0.02,
+      "seed": "@mixed_domain"
+    },
+    {
+      "name": "tf_like",
+      "G": 1e-08,
+      "Z": 1.5,
+      "tol": 1e-09,
+      "z0": 1e-06,
+      "points": 24001,
+      "central_h": null,
+      "seed": "sol61_push/full_two_field_2026_10_19/equilibria/mixed_G1em8_x04.npz"
+    }
+  ]
+}

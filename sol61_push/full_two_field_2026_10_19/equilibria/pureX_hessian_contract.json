@@ -1,0 +1,82 @@
+{
+  "claim_id": "EKG-2026-10-19-C-PUREX-ADM-GALERKIN",
+  "mathematics": {
+    "assertion_tested": "Four fixed radial parity-block full two-field constrained ADM Hessians around the independently solved fundamental pure-X boson-star profile, after an explicit physical-parameter adapter. Report signs and grid/domain/basis dependence without continuum or nonlinear inference.",
+    "coefficient_domain": "double precision PyTorch autodiff and SciPy symmetric eigenspectrum",
+    "conventions": "G=1/(4pi),source M=1, daughterm=1/(2sqrt(1+.02^2)),lambda_total=.01,r_lambda=2, g=sqrt((M^2-4m^2)lambda_total/3), omega=omegaX/2. Original action; Phi background0 but both complex-field variations retained.",
+    "inputs": [
+      "reference/run_004/pureX_h0.050.npz",
+      "four explicit cases"
+    ],
+    "bounds": {
+      "cases": 4,
+      "Rmax": 150,
+      "Nmax": 6000,
+      "Bmax": 60,
+      "dimension_per_parity_max": 240
+    },
+    "non_claims": [
+      "No continuum coercivity or complete-mode theorem",
+      "No nonlinear/nonradial/quantum stability certificate",
+      "No prepared state or abundance",
+      "Smallest finite-difference controls can be cancellation limited",
+      "Reference profile adapter is not a new equilibrium solve"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/full_two_field_2026_10_19/equilibria/hessian_frozen.py",
+    "sol61_push/full_two_field_2026_10_19/equilibria/pureX_hessian_family.py",
+    "sol61_push/full_two_field_2026_10_19/equilibria/pureX_hessian_contract.json",
+    "sol61_push/full_two_field_2026_10_19/reference/run_004/pureX_h0.050.npz"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "PyTorch",
+      "version": "2.8.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "source_profile": "sol61_push/full_two_field_2026_10_19/reference/run_004/pureX_h0.050.npz",
+  "cases": [
+    {
+      "name": "R100_dx005_B40",
+      "R": 100,
+      "dx": 0.05,
+      "B": 40
+    },
+    {
+      "name": "R100_dx0025_B40",
+      "R": 100,
+      "dx": 0.025,
+      "B": 40
+    },
+    {
+      "name": "R150_dx005_B60",
+      "R": 150,
+      "dx": 0.05,
+      "B": 60
+    },
+    {
+      "name": "R150_dx0025_B60",
+      "R": 150,
+      "dx": 0.025,
+      "B": 60
+    }
+  ]
+}

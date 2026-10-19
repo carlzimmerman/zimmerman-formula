@@ -1,0 +1,49 @@
+INDEPENDENT FOCUSED PROOF AUDIT — NTS-2026-10-19-B
+
+Reviewed source: sol61_push/nonthermal_state_2026_10_19/COMPACTNESS_CLAIM.txt
+SHA256 e61bdc391be66a7be79eb820caa49a22f387d9dbf6b2f9e55d87fa01f56f7a59.
+Base HEAD 3ac0427149a2108afa8f102df4d82da33b9060c4.
+Reviewer: delegated /root/many_body. I had separately derived the coherent cap and a weaker TOV consequence before receiving the coordinator's stronger claim. I then reconstructed the stronger mass-integral bound and scattering normalization from definitions. This is a separate-agent analytic review, not formal certification or a completely blind review of every precursor.
+
+PRIMARY VERDICT: PROVED AS WRITTEN for Claims 1-4 under the exact mean-field/TF/TOV/tree-level hypotheses stated there. Application to actual finite-charge solutions of the original Einstein-two-scalar equations is CONDITIONAL on a controlled gradient reduction and matching. Application to a protected prepared many-body quantum state is not established, and the source expressly disclaims it. No mathematical repair or extra assumption was inserted into the source.
+
+CLAIM 1 — LOCAL AMPLITUDE MINIMUM AND CAP
+Verdict: proved as written. For positive amplitude h with X=-h exp(-2i omega t), the rotating-frame potential is
+ W_omega=-delta n+D h^2-2g h n+lambda n^2,
+ delta=omega^2-m^2, D=M^2-4omega^2.
+Differentiation in h gives D h=g n. Differentiation in f=sqrt n gives delta=2lambda n-2g h. Thus the displayed n formula follows. At a stationary point the Hessian in (f,h) is
+ [[8lambda n,-4g sqrt n],[-4g sqrt n,2D]].
+Its determinant is 16n(lambda D-g^2). With lambda,n>0 it is positive definite precisely when D>0 and lambda D-g^2>0. The locked relative phase has positive energy curvature 2g h n. Hence delta>0 and
+ 0<delta<(Delta-g^2/lambda)/4.
+Since lambda=(1+r)g^2/Delta, the upper delta is m^2 u_star^2 r/(1+r)=m^2 zeta. The endpoint denominator tends to zero with a positive numerator, so n tends to infinity. The source correctly avoids calling this a finite-density decay threshold. The Hessian is a local rotating-frame amplitude statement; it is not full spatial, fixed-charge, quantum or gravitational stability.
+
+CLAIM 2 — CHARGE, EOS AND SOUND SPEED
+Verdict: proved as written. The charge-one and charge-two time derivatives give q=2omega n+8omega h^2. The classical homogeneous pressure equals the Lagrangian on the amplitudes: p=omega^2(n+4h^2)-V. Use D h=g n and delta=2lambda n-2g h to reduce it to delta n/2. The energy is omega q-p.
+The envelope theorem can be checked directly: differentiating p before eliminating stationary amplitudes leaves only the explicit frequency derivative 2omega(n+4h^2)=q. Consequently epsilon'=omega q'. Both n and h are strictly increasing with omega on the finite branch: n=delta D/[2(lambda D-g^2)], h=g delta/[2(lambda D-g^2)]. Their derivatives are positive on 0<delta<delta_cap. Thus q'>0 and epsilon'>0. The sound speed is q/(omega q') and lies strictly between zero and one. The last upper bound is additional straightforward algebra, not needed to rescue the source.
+The hydrodynamic enthalpy identity dp/(epsilon+p)=domega/omega follows since epsilon+p=omega q. It uses the charge chemical potential omega, not mass per particle inferred from gravitational ADM energy.
+
+CLAIM 3 — TOV COMPACTNESS
+Verdict: proved as written. In a static lapse alpha the common coordinate phase frequency gives omega_local alpha=omega_infinity; the charge-two phase automatically has twice that frequency. The finite zero-pressure surface of this positive-density branch has local omega=m. Thus Hc=log(omega_c/m) and the strict chemical cap gives Hc<log(1+zeta)/2.
+For nonincreasing epsilon, the mean interior density is at least the total mean density. One direct proof compares the inner and outer averages using epsilon(s)<=epsilon(r) for s>=r, yielding mathcal M(r)>=M_g r^3/R^3. At fixed radius below the horizon, d[density-mass/(1-2G mass/r)]/d mass=1/(1-2G mass/r)^2>0. The nonnegative pressure term may be dropped. Substitute the enclosed-mass lower bound in the remaining positive increasing function to obtain
+ Hc>=integral_0^R (G M_g r/R^3)/(1-2C r^2/R^2)dr
+    =-log(1-2C)/4.
+Combine this with the strict cap and exponentiate without reversing the inequality incorrectly: 1-2C>(1+zeta)^-2. This proves C<[1-(1+zeta)^-2]/2.
+No Buchdahl theorem is needed. Positive pressure, isotropy, finite surface, monotone energy density, no horizon and the specified vacuum exterior are material hypotheses. Scalar-gradient anisotropy or the original scalar's noncompact tail would invalidate direct application, exactly as the source says. A strongly gradient-supported boson star is not excluded by this bound.
+
+CLAIM 4 — SAME-ACTION SCATTERING ZERO
+Verdict: proved as written at tree level. With potential lambda(Phi*Phi)^2+g(X*Phi^2+X Phi*^2), the contact rule is -4i lambda and each conversion vertex is -2i g. The same-charge process has an s-channel X exchange; multiplication with i/(s-M^2) gives amplitude +4g^2/(M^2-s), in the convention i M for diagrams. This reproduces the source normalization. The zero obeys M^2-s_z=g^2/lambda. Positive lambda_rep ensures 4m^2<s_z<M^2, so it is a physical elastic energy below the mediator pole. Identical-particle external-state factors affect cross-section conventions, not this zero. Since 4omega_cap^2=M^2-g^2/lambda and s=4(m^2+k^2), the two equalities in (B) follow exactly at that order.
+Finite width, absorptive effects, loops and allowed additional scalar operators require a consistent higher-order treatment. The absence of |X|^4 and |Phi|^2|X|^2 is part of the specified classical model; global U(1) does not forbid them. Therefore neither the cap nor its tree scattering relation is a symmetry-protected nonrenormalization theorem.
+
+ILLUSTRATION AND FINITE EVIDENCE
+For u_star=.02,r=2, zeta=.0002666666666666667, the bound is .0002665600379132549. The reciprocal is about3751.5, consistent with the stated rounded radius inequality. No mass or radius is fixed by this dimensionless bound.
+The separate topology/tov_run_001 runner-v2 record gives ten fixed central states at two tolerances, with finite surfaces/charge and M/(mQ)<1 for the stated EOS. The analytic bound does not depend on those numerical samples. I wrote that numerical experiment, so this review is not an independent implementation audit of its solver. Its scope is separately declared and the manifest validates provenance, not a mathematical theorem.
+
+OBLIGATION MATRIX
+Passed: local potential and Hessian; relative-phase sign; finite interval and endpoint; charge factors1:2; p/epsilon normalization; thermodynamic identity and monotonicity; sound-speed sign; lapse-frequency relation; enclosed-mass inequality; TOV integral and its exact evaluation; strict compactness inequality; same-charge tree amplitude and physical zero location; benchmark arithmetic.
+Conditional: original-field TF validity including surface/tail matching; minimal gravitational realization; actual quantum state and radiative control; radial/nonradial/full nonlinear stability; preparation and charge supply; observational identification of a dark object's effective radius and microscopic scattering input.
+Out of scope: a universal theorem about all boson stars, all carrier states or galaxy gravity; a protected many-body state; global novelty.
+
+Strongest safe statement: the specified classical carrier action predicts a tree/mean-field relation between its elastic-scattering zero, the chemical-potential cap, and the compactness of its controlled coherent-fluid gravitational branch. It does not establish the existence, formation or long-term quantum protection of that branch in nature. The theorem is a conditional testable model consequence, not a completed solution of the user's protected-state objective.
+
+FINAL SOURCE RECONCILIATION
+The root source explicitly added omega>0 on the positive-frequency/positive-charge branch. The final hash above pins those bytes. This makes explicit the already audited m<omega<omega_cap branch; no other mathematical change or new assumption was supplied by this review. The verdict remains proved within the same premises.

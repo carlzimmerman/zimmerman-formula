@@ -1,0 +1,365 @@
+RETARDED RESPONSE AND FINITE-INERTIA TEST OF THE RATIONAL DIPOLE COMPLETION
+Checkpoint DR-2026-10-19-1; 19 October 2026; owner dynamic_response.
+
+Base checkpoint: 970c67ce3dcd1c14e3488b9bce45e813ccfe0799. Concurrent Git
+changes are not ancestry evidence. source_pins.json pins actual source bytes.
+Assigned write scope: this directory only. No applicable AGENTS.md was found
+in the project ancestry or assigned subtree. The requested rational lane's
+RESULT.txt does not exist; RATIONAL_COMPLETION.md and FINAL_RECONCILIATION.json
+were read instead. No canonical action, shared index or ledger was edited.
+
+TARGET AND VERDICT
+
+Determine dynamical consequences of the exact rational zero-temperature law
+p(E)=p_s E/(a+E), E>=0, from its positive independent two-level completion.
+An exact retarded susceptibility and positive absorption spectrum are derived
+below. A common dipole magnitude d gives Ohmic absorption at E=0, exponential
+retarded memory there, and a bias-dependent longitudinal excitation threshold.
+The full common-d UV tail has an infinite first spectral moment: it cannot be
+the complete displacement response of a finite-inertia canonical system with
+finite mass density. This is a restriction on this implementation, not on the
+static rational law: an explicit variable-d completion preserves that law and
+has finite site density and oscillator strength.
+
+The broader finite-inertia inequality is useful: at critical susceptibility
+chi_s=1/K, a passive polarization response has susceptibility-weighted mean
+excitation frequency squared at most K rho_eff. Consequently the fraction of
+static susceptibility above Omega is at most K rho_eff/Omega^2. This is a
+standard positive-measure sum-rule corollary, not a new gravitational scale;
+related gravitational plasma frequencies are explicit in Blanchet (2007).
+Neither result derives local gravitational dipoles from the original minimally
+coupled scalar action. The original first-principles target remains open.
+
+1. MODEL, UNITS AND SOURCE
+
+Let K=4 pi G, a>0 an acceleration/field scale, p_s>0 a polarization density,
+and take the source Hamiltonian H=H0-E D. For the initial aligned two-state
+construction use
+
+ H_Delta(E)=d[Delta I+Delta sigma_x-E sigma_z], D=d sigma_z,
+ w(Delta)=p_s a Delta/(a^2+Delta^2)^(3/2), Delta>=0.
+
+Here d has dipole units (mass times length for an ordinary supported mass
+displacement), d E is an ENERGY, and Delta has acceleration/field units.
+The number density per reduced-gap interval is n(Delta)=w(Delta)/d.
+Define gamma=2d/hbar and Omega_a=gamma a. These convert fields to angular
+frequencies. Neither a nor Delta alone is a frequency. No hbar=1 identification
+of an acceleration with frequency is used.
+
+At fixed bias b=E0>=0 write R=(Delta^2+b^2)^(1/2). The excitation energy is
+epsilon=2dR and its frequency is Omega_Delta=gamma R. The transition matrix
+element is |D_ge|^2=d^2 Delta^2/R^2. The static response from the pinned source is
+
+ p(b)=p_s b/(a+b), chi_s(b)=dp/db=p_s a/(a+b)^2.
+
+The gravitational calibration p_s=a/K makes chi_s(0)=1/K. It remains an
+additional normalization, not a consequence of the spectrum.
+
+2. FULL ZERO-TEMPERATURE RETARDED RESPONSE
+
+Use delta p(t)=integral_0^infinity chi_R(tau;b) delta E(t-tau) d tau and
+chi_R(z)=integral_0^infinity exp(i z t) chi_R(t)dt, Im z>0. Kubo response for
+H'= -delta E D is +(i/hbar) theta(t)<[D(t),D(0)]>. For one occupied site,
+
+ chi_site(z)=2 epsilon |D_ge|^2/[epsilon^2-hbar^2 z^2].
+
+Multiplying by n=w/d gives the exact continuum expression
+
+ chi_R(z;b)=integral_0^infinity
+   w(Delta) Delta^2/[R(R^2-(z/gamma)^2)] dDelta.                 (1)
+
+It is analytic for Im z>0, has chi_R(-omega)=chi_R(omega)^*, and approaches
+zero at large imaginary frequency. Positivity of w gives chi''(omega)>=0
+for omega>0. A spectral integral or Eq. (1), with its upper-half-plane
+prescription, specifies the full real and imaginary response; no relaxation
+constant or bath has been inserted.
+
+For q=omega/gamma>0 the resonant reduced gap is Delta_*=(q^2-b^2)^(1/2).
+The delta-function Jacobian is delta(R^2-q^2)=delta(Delta-Delta_*)/(2Delta_*).
+Thus
+
+ chi''(omega;b)=pi w(Delta_*) Delta_*/(2q)
+ =pi p_s a(q^2-b^2)/[2q(a^2+q^2-b^2)^(3/2)] theta(q-b).         (2)
+
+This is the LONGITUDINAL susceptibility at a fixed bias in the aligned
+one-axis model. For b>0 it has a hard threshold Omega_b=gamma b. Just above
+threshold, chi''=pi p_s(omega-Omega_b)/(a^2 gamma)+O((omega-Omega_b)^2).
+This threshold must not be claimed for the isotropic fixed-axis construction
+in Section 7 below.
+
+For an elementary real-part reduction let C=a^2-b^2+q^2 and
+J=integral_(b/a)^1 dt/(C t^2-q^2), using q=z/gamma in the retarded domain.
+The substitution t=R/(Delta^2+a^2)^(1/2) gives
+
+ chi_R=p_s a^2/[(a+b)C]+p_s a(q^2-b^2)J/C.                    (3)
+
+For C,q nonzero an antiderivative of J is
+ [2q sqrt(C)]^-1 log[(sqrt(C)t-q)/(sqrt(C)t+q)]. Continue branches from
+Im z>0, or retain the integral definition to avoid branch bookkeeping.
+Points b=a, C=0 and q=0 are removable limits of Eq. (1). Formula (3) is
+not intended as a numerically stable expression at those exceptional charts.
+
+3. ZERO FIELD: CLOSED FORM, OHMIC LOSS, AND MEMORY
+
+At b=0 define x=omega/Omega_a and chi_0=p_s/a. For positive real omega,
+
+ chi_R(omega;0)/chi_0 =
+  [1-x asinh(x)/sqrt(1+x^2)]/(1+x^2)
+  +i pi x/[2(1+x^2)^(3/2)].                                  (4)
+
+One proof sets u=Delta/sqrt(a^2+Delta^2) in Eq. (1); the remaining integral
+is rational in u. The imaginary term follows from the retarded pole inside
+0<u<1. At low frequency,
+
+ chi'/chi_0=1-2x^2+O(x^4),
+ chi''/chi_0=(pi/2)x+O(x^3),
+ eta=lim_(omega->0)chi''/omega=pi p_s/(2a Omega_a).             (5)
+
+This is Ohmic absorption in the linear-response sense. It does not mean
+that each individual site is damped; each has a discrete undamped resonance.
+The continuum produces dephasing and a continuous absorption spectrum.
+
+The exact time-domain kernel is
+
+ chi_R(t;0)=theta(t) chi_0 Omega_a^2 t K_0(Omega_a t),           (6)
+
+where K_0 is the modified Bessel function. To derive it directly, use
+chi_R(t)=gamma integral w(Delta) sin(gamma Delta t)dDelta, integrate by
+parts using Delta/(a^2+Delta^2)^(3/2)=-d/dDelta[1/sqrt(a^2+Delta^2)],
+and evaluate the resulting cosine transform as K_0. Equivalently its Fourier
+transform gives Eq. (4), independently checked numerically.
+The exact transform identity and x>0 domain were checked in NIST DLMF
+10.32.6, https://dlmf.nist.gov/10.32.E6.
+
+At late time, chi_R(t;0)~chi_0 Omega_a sqrt(pi Omega_a t/2)
+exp(-Omega_a t). Therefore soft gaps plus Ohmic loss do NOT force a power-law
+tail in this retarded kernel. The spectral oddness cancels the would-be
+zero-endpoint algebraic sine-transform terms. Nevertheless the zero-T
+symmetrized fluctuation spectrum is S_sym(omega)=hbar chi''(|omega|), whose
+|omega| cusp gives an algebraic 1/t^2 correlation tail. Retarded response
+and symmetrized fluctuations are different functions.
+
+For b>0, the threshold in (2) produces instead
+
+ chi_R(t;b)~ -2p_s sin(Omega_b t)/(a^2 gamma t^2).              (7)
+
+This follows by the endpoint sine transform of the linear onset in (2).
+It is a fixed-b>0 late-time expansion and is nonuniform as b->0; setting b=0
+in (7) does not reproduce (6). No finite-sample recurrence or finite linewidth
+is represented in these thermodynamic-continuum formulas.
+
+4. ABSORPTION, STATIC SUM RULE, AND DIVERGENT UV OSCILLATOR STRENGTH
+
+A small drive delta E=A cos(omega t) transfers average power density
+P_abs=omega A^2 chi''/2>=0. Energy per cycle is pi A^2 chi''. For b=0 the
+power vanishes as omega^2 in the adiabatic limit; no frequency-independent
+minimum heating follows. Sustained steady heating also requires maintaining
+the initial occupations, e.g. a reservoir; a closed finite collection of
+two-level sites eventually saturates under resonant driving. Linear-response
+continuum absorption describes the initial/weak-drive thermodynamic limit.
+
+The causal static sum rule is finite:
+
+ chi_s(b)=(2/pi) integral_0^infinity chi''(omega;b)/omega d omega
+         =p_s a/(a+b)^2.                                     (8)
+
+The first spectral moment for common d is
+
+ M1=(2/pi) integral_0^infinity omega chi''d omega
+   =gamma^2 integral_0^infinity w(Delta) Delta^2/R dDelta
+   =< [D_tot,[H,D_tot]] >/(hbar^2 V).                        (9)
+
+The exact one-site double commutator is -4d^3 Delta sigma_x; its ground
+expectation is 4d^3 Delta^2/R. Because w~p_s a/Delta^2, the integral in
+(9) diverges logarithmically for every finite b. At zero field the finite
+frequency-cutoff primitive is
+
+ M1(Omega)=chi_0 Omega_a^2[asinh X-X/sqrt(1+X^2)],
+ X=Omega/Omega_a.                                             (10)
+
+Correspondingly chi'(omega;0)~chi_0[1-log(2x)]/x^2 and
+chi''~pi chi_0/(2x^2). The exact rational common-d construction is an idealized
+UV continuum, with finite static susceptibility and finite causal response
+but infinite energy-weighted oscillator strength. A finite UV cutoff gives
+finite M1 and changes the exact rational strong-field endpoint, as already
+shown statically in the parent note.
+
+5. CANONICAL FINITE-INERTIA COMPARISON AND A GENERAL SPECTRAL BOUND
+
+For a complete nonrelativistic canonical Hamiltonian
+H=sum_i p_i^2/(2m_i)+V({x_i}), and one source component D=sum_i q_i x_i,
+
+ [D,[H,D]]=hbar^2 sum_i q_i^2/m_i.
+
+Coordinate-dependent interactions and supports do not alter the identity.
+It requires this kinetic/source structure, finite positive inertia, and a
+well-defined source-preserving Hilbert space. Velocity-dependent effective
+interactions, constrained coordinates, relativistic UV degrees, and external
+anchors cannot be silently discarded. Their actual source and oscillator
+strength have to be derived. With q_i=m_i, the full sum per volume is the
+participating mass density rho_eff; with a projected source it is the actual
+sum q_i^2/m_i/V. Supports must be counted wherever they participate. A
+retained two-level sector carries at most the full positive spectral sum.
+
+Consequently the common-d exact UV spectrum cannot be the COMPLETE ordinary
+finite-inertia mass-displacement response at finite rho_eff. This obstruction
+does not by itself apply to a fundamental spin with an independently declared
+source; nor does it prove any such spin has a gravitational mass-dipole source.
+
+More generally let a stable passive zero-T source have chi_0=1/K, no omitted
+zero-frequency singular weight, and M1<=rho_eff. Define its static
+susceptibility measure
+
+ d mu(omega)=[2/(pi chi_0)] chi''(omega)d omega/omega,
+ integral d mu=1,    E_mu[omega^2]=M1/chi_0<=K rho_eff.         (11)
+
+Then for every Omega>0,
+
+ mu([Omega,infinity))<=K rho_eff/Omega^2.                     (12)
+
+In particular, an entirely gapped spectrum with minimum source-active
+frequency Omega_gap requires Omega_gap^2<=K rho_eff. A fraction f of the
+static susceptibility above Omega requires rho_eff>=f Omega^2/K. These are
+Markov's inequality for the positive measure (11), and require no TLS or
+rational-spectrum assumption. At imaginary frequency Jensen's inequality
+for y/(y+nu^2) also gives
+
+ chi_R(i nu)<=rho_eff/(K rho_eff+nu^2), nu>0.                 (13)
+
+These bounds concern excitation frequencies weighted by STATIC response.
+They are not a proof that every perturbation has a long lag, a prediction of
+thermalization times, or a global halo exclusion. For an isolated composite
+with universal mass coupling D is its center-of-mass coordinate; there is no
+uniform internal mass-dipole response in the first place. Supported/exotic
+internal dipoles are extra hypotheses, as in the rational parent.
+
+6. EXPLICIT VARIABLE-d COUNTEREXAMPLE: STATIC LAW DOES NOT FIX THE f-SUM
+
+Allow d=d(Delta) while retaining exactly the occupied dipole weight w and
+set n(Delta)=w/d(Delta). Each site's ground polarization is still
+d(Delta) E/sqrt(Delta^2+E^2), so the full static rational law is unchanged.
+Take, for instance,
+
+ d(Delta)=d0[1+(Delta/a)^2]^(-1/4).
+
+Both site density and oscillator strength now converge:
+
+ integral n dDelta=2p_s/d0,
+ M1=(4/hbar^2) integral w d(Delta)^2 Delta dDelta
+   =pi p_s d0^2 a/hbar^2.                                    (14)
+
+The last integral uses integral_0^infinity Delta^2/(a^2+Delta^2)^2 dDelta
+=pi/(4a). The IR value d(0)=d0 leaves the low-frequency Ohmic coefficient
+eta=pi p_s hbar/(4d0 a^2). Thus a finite UV f-sum and exact static rational
+saturation are compatible at the declared two-state level. This is a
+counterexample to inferring the common-d divergence from the static law alone.
+
+If this PARTICULAR variable-d model is realized as a retained ordinary
+mass-displacement sector, then (14)<=rho_eff. With p_s=a/K and
+Omega_a=2d0a/hbar this requires
+
+ Omega_a^2<=4K rho_eff/pi=16 G rho_eff.                       (15)
+
+The coefficient 16 is spectrum-specific. It is NOT a bound on the IR dipole
+parameter for all possible d(Delta). Equation (12), rather than (15), is the
+general invariant. This construction does not derive actual site potentials,
+supports, finite-mass coordinates, or their coupling from the scalar action.
+
+7. ORIENTATION IS A MATERIAL DYNAMICAL ASSUMPTION
+
+The parent's isotropic fixed-axis model has a different bare density
+w0(Delta)=p_s a Delta(4a^2+Delta^2)/(a^2+Delta^2)^(5/2), and c=|cos theta|
+uniform on [0,1]. At common d its longitudinal absorption is
+
+ chi_iso''=(pi/2) integral_0^min(1,q/b)
+      c^2 w0(sqrt(q^2-c^2 b^2)) sqrt(q^2-c^2 b^2)/q dc.        (16)
+
+At b=0 this becomes pi w0(q)/6. In particular the Ohmic coefficient is
+4/3 times the aligned coefficient. At any b>0 arbitrarily nearly transverse
+sites have arbitrarily soft field-biased gaps, so there is NO hard global
+threshold. For q<<min(a,b),
+
+ chi_iso''~4pi p_s q^4/(15 a^2 b^3).                         (17)
+
+Thus low-frequency loss changes from Ohmic to omega^4 at fixed nonzero bias.
+At zero field the retarded kernel is
+chi_iso(t)=theta(t) chi_0 Omega_a^2 t[K0(Omega_a t)
+                    +Omega_a t K1(Omega_a t)]/3,
+which also decays exponentially. No claim about the complete finite-bias
+isotropic late-time expansion is needed here. The common-d isotropic UV
+f-sum still diverges; angular averaging only changes finite factors.
+
+8. THERMAL CONNECTION (COORDINATOR'S ROUTE, INDEPENDENTLY CHECKED HERE)
+
+For the common-d aligned model, the small-T static deficit from the parent's
+thermal derivation is delta_T=1-K chi_T~ln(2) kBT/(da). Combining it with
+K eta=pi hbar/(4da) eliminates d:
+
+ delta_T/(K eta)~(4 ln2/pi) kBT/hbar.                         (18)
+
+The isotropic fixed-axis density has four times the IR w coefficient and
+the source angular average contributes 1/3. Therefore BOTH delta_T and K eta
+gain 4/3 at leading order, leaving (18) unchanged. A variable-d model with
+d(0)=d0 has the same leading aligned ratio provided the IR behavior is
+regular. It is an asymptotic small-T/low-frequency statement, not an exact
+identity at arbitrary T.
+
+A more general conditional statement follows from (11). For a fixed ensemble
+of independent SYMMETRIC zero-field TLS with purely off-diagonal source in
+each zero-field energy basis,
+
+ chi_T/chi_0=E_mu[tanh(hbar omega/(2kBT))].                    (19)
+
+Writing c=hbar/(2kBT), f(z)=tanh(c sqrt(z)) has
+f''(z)=-c sech^2(c sqrt(z))/(4z^(3/2))
+       -c^2 sech^2(c sqrt(z))tanh(c sqrt(z))/(2z)<0, z>0.
+Jensen and (11) imply
+
+ chi_T/chi_0<=tanh[hbar sqrt(K rho_eff)/(2kBT)],
+ delta_T>=1-tanh[hbar sqrt(K rho_eff)/(2kBT)].                 (20)
+
+Hence delta_T<=epsilon<1 requires
+T<=hbar sqrt(K rho_eff)/[2 kB artanh(1-epsilon)].
+This removes common-d and the detailed gap spectrum, while keeping the
+independent symmetric TLS, fixed inventory/gaps, Gibbs-state and finite-inertia
+source assumptions. It is NOT established for arbitrary multilevel systems.
+A diagonal source component, as occurs at nonzero bias or asymmetry, adds a
+population susceptibility and invalidates (19) as the full Gibbs response.
+Changing populations, gaps or available sites with temperature also changes
+the comparison. The result provides a consistency test for a declared
+thermal TLS implementation, not a no-go for a zero-temperature pure state.
+
+9. NOVELTY, VERIFICATION, AND REMAINING PHYSICAL GAP
+
+The techniques are known linear-response, Kramers-Kronig and dipole sum-rule
+methods. literature_check.txt records exact primary sources inspected and
+bounded queries. Blanchet's gravitational plasma frequency is already of
+order sqrt(G rho), and the bound (12) is a formal positive-measure sum-rule
+corollary rather than a newly discovered scale. Martinis et al. explicitly
+analyze resonant absorption by electric TLS dipoles, including thermal tanh
+and finite-volume discreteness. Those are adjacent/known ingredients, not
+evidence for gravitational dipoles from the Zimmerman scalar action.
+No global novelty claim is warranted for (4), (6), (12), (18), or (20).
+The repository already contains the positive reciprocal spectral sum and
+finite-time step bound in closure_particle_bridge_2026_10_16/
+PASSIVE_RESPONSE_AND_CLOSURE.tex, Section 1; its audit was read after the
+coordinator identified this closer overlap. This further prevents treating
+the general slow-response mechanism as new. overlap_pins.json fixes those
+later-read source bytes separately from the initial computation inputs.
+
+The analytical calculations, not finite numerical agreement, support these
+identities. check_response.py run_001 timed out at 60s during costly arbitrary
+precision oscillatory transforms, with no result file; this is resource
+inconclusiveness. check_response_fast.py uses scipy's compiled quadrature for
+those seven transforms, retaining 35-digit mpmath for the nonoscillatory
+checks. Its exact scope, tolerances, results and runner status are preserved
+in contract_fast.json and run_002. VERIFICATION.txt records observed outcome.
+
+The remaining source-preserving step is still decisive: construct actual local
+mass-dipole degrees of freedom, their support/inertia and occupied spectrum
+from the original action. The minimally coupled scalar charge sector gives
+no internal response to uniform gravity. A new supported/exotic model can be
+tested against the response and sum rules here, but it would be a named new
+model, with independent d or d(Delta), participating inertia, population state,
+UV completion and source operator. No observation-ready lag or heating rate
+follows from static rational saturation by itself.

@@ -1,0 +1,58 @@
+Full radial constrained Hamiltonian and stability scope
+EKG-2026-10-19-C; coordinator reconstruction, checked independently by
+gradient_analysis and used by stability. No fluid/NR approximation here.
+
+Metric ds^2=alpha^2 dt^2-a^2 dr^2-r^2 dOmega^2, N=a^-2=1-2mu/r,
+mu=G M_enclosed. Scale both complex physical fields by sqrt(4piG),
+calling them y1,y2. Define Pi_j=a/alpha times partial_t y_j.
+Use full potential
+ U=m^2|y1|^2+M^2|y2|^2
+   +2[g/sqrt(4piG)] Re(y2* y1^2)+[lambda/(4piG)]|y1|^4,
+ S=sum_j(|Pi_j|^2+|partial_r y_j|^2).
+
+The Hamiltonian constraint and charge in these variables are
+ mu'=r^2(NS+U), equivalently mu'+2rS mu=r^2(S+U),
+ qbar=GQ=-2 integral r^2 Im(y1*Pi1+2y2*Pi2)dr.
+The polar slicing lapse has alpha infinity=1 and
+ (log(alpha a))'=2rS.
+The full spherical KG equations, with both complex fields retained, are
+ ydot=alpha Pi/a,
+ Pidot=r^-2 partial_r[r^2 alpha partial_r y/a]
+         -alpha a partial U/partial y*.
+These include the anomalous conversion term 2gX Phi* in the Phi equation.
+
+The ADM Hamiltonian is mu_infinity/G. In polar-areal gauge only the radial
+extrinsic-curvature component remains; KijKij-K^2 cancels, giving the stated
+constraint. Its eliminated solution is
+ mu(r)=exp[-I(r)] integral_0^r exp[I(s)]s^2(S+U)ds,
+ I(r)=2 integral_0^r sS(s)ds.
+
+At fixed fields/Pi, variation gives
+ delta mu_infinity=integral alpha a r^2[N delta S+delta U]dr,
+because alpha a(r)=exp[I(r)-I(infinity)]. In particular its derivative with
+respect to real momentum components is 2r^2 alpha Pi/a, agreeing with
+canonical momentum 2r^2 Pi for each real scalar component. The global U1
+charge weights are 1 and 2; no extra source charge or mass is dropped.
+
+For a coherent stationary solution with frequencies omega and 2omega,
+mu_infinity-omega qbar is stationary. A coercive second variation on the
+linear deltaQ=0 subspace modulo the common U1 orbit gives an energetic
+sufficient criterion for radial linear stability in the reduced full system.
+A finite Galerkin matrix tests only its specified span. Positive sampled
+eigenvalues do not establish coercivity on all perturbations. A negative
+energy direction is not automatically a growing gyroscopic mode either.
+
+The pure-X branch is an exact equilibrium of the two-field action even
+for nonzero g, with Phi=0. Its daughter perturbation is first-order metric
+decoupled. In the rotating frame, the lower stiffness is
+ K_-=-spatial_Laplacian+m^2-omega^2/alpha^2-2g h,
+weighted by alpha sqrt(gamma); K_+=K_-+4g h. Positive K_- is sufficient
+for positive conserved daughter quadratic energy (angular gradients add
+nonnegative terms). This does not by itself establish source/metric stability.
+
+Full radial time evolution tests a finite interval, specified perturbations
+and resolutions. It must track charge, ADM drift and independent metric
+constraints and keep boundary reflection outside claimed core diagnostics.
+It is evidence about radial classical dynamics, not nonradial/global quantum
+stability or cosmological formation. Full-field scalar tails need a defined
+mass-containment radius; they do not inherit the TF finite surface.

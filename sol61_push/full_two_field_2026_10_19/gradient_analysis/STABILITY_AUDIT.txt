@@ -1,0 +1,247 @@
+READ-ONLY FOCUSED HAMILTONIAN STABILITY AUDIT — EKG-2026-10-19-C
+Independent derivation, 2026-10-19. Reviewer /root/compactness_audit.
+
+TARGET AND VERDICT
+
+Target: stability/hessian_ekg.py and the proposed finite-dimensional
+Hamiltonian dynamics test for the complete radial two-field system.
+Reviewed script SHA256 at first read:
+7b850793bebee2bc9b8207e91c18f9c66869aec88990d3be53e96133e8f42e68.
+No stability-lane file was edited by this reviewer. No solver was run here.
+
+Exact conditional result: on a genuinely stationary, U(1)-symmetric
+canonical Galerkin system with the stated normalization, positivity of the
+complete odd Hessian modulo its phase kernel, together with a genuine
+negative direction of the complete even Hessian on the fixed-charge
+tangent, DOES imply a real growing/decaying eigenvalue pair. The proof and
+correct symplectic reduction are below. Negative energy by itself, without
+that positive complementary block, is not sufficient.
+
+The current tiny negative numerical values do not by themselves verify
+all hypotheses or a continuum unstable mode. Phase-kernel residual,
+stationarity, mesh/domain effects and a correctly projected dynamical
+eigenvalue need to be resolved and reported. This audit does not turn the
+existing unresolved result into a stability or instability certificate.
+
+1. CANONICAL SIGNS AND FACTORS
+
+For each complex scaled field q=q_R+i q_I and momentum Pi=p_R+i p_I,
+the REAL canonical momenta are 2r^2 p_R and 2r^2 p_I. On a radial basis
+orthonormal in integral r^2 dr, real coefficient brackets are therefore
+{q_R,p_R}={q_I,p_I}=1/2. Put the two species into each vector and order
+
+ e=(Re F, Re X, Im Pi_F, Im Pi_X),
+ o=(Im F, Im X, Re Pi_F, Re Pi_X),
+ J0=(1/2)[[0,I],[-I,0]].
+
+At the real rotating-frame background, conjugation/time parity makes the
+quadratic grand Hamiltonian block diagonal,
+ H2=(1/2)e^T He e+(1/2)o^T Ho o.
+The exact canonical equations BEFORE charge/phase reduction are
+
+ e_dot=J0 Ho o,
+ o_dot=J0 He e.
+
+Both displayed J0 signs are correct. The full Poisson matrix is
+[[0,J0],[J0,0]], which is skew because J0^T=-J0. Confusing this with
+[[0,J0],[-J0,0]] would give the wrong Hamiltonian signs.
+
+The code's basis sqrt(2/R)sin(j pi r/R)/r has the claimed continuum
+normalization. Its midpoint radial quadrature also gives the identity
+Gram matrix for the resolved sine modes j<N, up to floating error. The
+canonical factor 1/2 must nevertheless be retained in a dynamical test.
+
+2. CHARGE TANGENT AND U(1) ZERO MODE
+
+Let c=gradient_e Q_bar at the background, where Q_bar=GQ. The linear charge
+constraint is c^T e=0. With background real amplitudes F0,X0 and imaginary
+momenta P0,P1, the common positive-phase generator in the odd block is
+
+ z=(F0,2X0,-P0,-2P1) projected onto the radial basis.
+
+Direct differentiation of the code's charge convention gives exactly
+ z=-J0 c.
+The overall sign is immaterial to its span. A stationary U(1)-invariant
+Hamiltonian has Ho z=0. The physical odd space is a quotient by span(z),
+and the physical even space is c-perpendicular. In the unreduced system,
+ d(c^T e)/dt=c^T J0 Ho o=z^T Ho o=0.
+Thus the charge tangent is invariant when the phase-kernel identity holds.
+
+A small phase Rayleigh quotient z^T Ho z/(z^T z) is NOT a sufficient
+kernel test: Ho z can have orthogonal components even if that scalar is
+small. Record its full norm, a scale-relative norm, the z+J0c residual,
+and the basis Gram error.
+
+3. EXACT SYMPLECTIC PROJECTION
+
+Choose a matrix E with Euclidean-orthonormal columns spanning c-perpendicular.
+One convenient PAIRED odd basis is
+ O=-2 J0 E.
+It is orthonormal and spans z-perpendicular. In the reduced coordinates
+e=E x, o=O y, set He_r=E^T He E and Ho_r=O^T Ho O. Then
+
+ A=E^T J0 O=(1/2)I,
+ x_dot=(1/2) Ho_r y,
+ y_dot=-(1/2) He_r x.
+
+This is the charge-fixed, phase-quotiented canonical system, not an
+independent deletion of an arbitrary eigenvector from each block.
+
+Independent orthonormal null-space bases E and O are also valid, but the
+cross bracket must actually be computed:
+ A=E^T J0 O,
+ x_dot=A Ho_r y,
+ y_dot=-A^T He_r x.
+For the stated orthonormal spaces A is invertible and A A^T=A^T A=I/4.
+It is generally NOT a skew J0 matrix of the old dimension. Reusing J0
+unchanged after separate null-space projections is wrong. Equivalently,
+one may pull back the symplectic form and invert it; the same reduced
+bracket follows. If the basis Gram matrix differs from I materially,
+whiten the basis or derive the bracket with its mass matrix first.
+
+4. PROOF OF THE GROWING-PAIR IMPLICATION
+
+Assume Ho_r is positive definite. Then
+ x_ddot=-B He_r x, B=A Ho_r A^T>0.
+If B=L L^T is a Cholesky factorization, this second-order matrix is similar
+to the real symmetric matrix
+
+ S=-L^T He_r L.
+
+By Sylvester inertia, S has a positive eigenvalue exactly when He_r has a
+negative eigenvalue. Each positive eigenvalue sigma of S produces real
+first-order exponents s=+sqrt(sigma) and -sqrt(sigma), with a nonzero odd
+partner reconstructed from the first-order equations. The number of real
+pairs equals the number of negative eigenvalues of He_r, counted with
+multiplicity. Under these hypotheses all squared exponents are real;
+zero exponents need separate treatment.
+
+With paired bases A=I/2 one may instead factor Ho_r=L_o L_o^T and compute
+the symmetric squared-growth matrix
+ S=-(1/4)L_o^T He_r L_o.
+This avoids interpreting spurious tiny complex parts of a nonnormal
+first-order matrix. Check agreement with the correctly assembled full
+reduced generator [[0,A Ho_r],[-A^T He_r,0]] and its +/- symmetry.
+
+This theorem concerns COMPLETE canonical Hessian blocks, including both
+fields and their momenta. It does not contradict the earlier warning
+that a negative spatial daughter operator K_- alone need not imply
+growth in a gyroscopic system: that weaker spatial condition does not
+establish positivity of the complete complementary canonical block.
+
+5. SCRIPT REVIEW AND NUMERICAL LIMITS
+
+The script's full potential, complex cubic pairing signs, momentum terms,
+integrating-factor mass constraint and charge normalization agree with the
+independent action derivation in DERIVATION.txt. Its even exclusion vector
+is the correct linear charge gradient. Its odd exclusion vector is the
+projected common U(1) generator. Those null-space restrictions are suitable
+for testing energy signs. The script as reviewed does not itself assemble
+the projected dynamical matrix or save the full Hessians for this audit.
+
+The background is imported by spline and need not lie in the finite radial
+basis. A projected common-phase tangent can consequently fail to be an
+exact kernel even if the full continuum action has U(1) symmetry. The
+orbit's unrepresented radial components matter. The script's mass integral
+uses trapezoidal accumulation and its charge uses midpoint summation, so
+the imported continuum equilibrium is also only approximately stationary
+for the discrete functional. Neither fact is automatically a bug, but both
+must be controlled before interpreting an extremely small negative mode.
+An exactly discrete U(1) representation can be obtained by representing
+all background amplitudes and momenta in the same finite space; at an
+actual discrete stationary point its Ward identity supplies Ho z=0.
+This is an optional diagnostic route, not a change made by this reviewer.
+
+Read-only observed existing outputs:
+ run_005, R300, dx.1, B30: even lambda_min=-1.25446e-8;
+ run_006, R300, dx.05, B30: even lambda_min=-7.24269e-9;
+ run_007, R300, dx.025, B30: even lambda_min=-6.48393e-9;
+ run_008, R300, dx.05, B60: even lambda_min=-7.24282e-9;
+ run_011, R450, dx.05, B45: even lambda_min=-2.09602e-8;
+ run_012, R600, dx.05, B60: even lambda_min=-2.09649e-8.
+The latter two projected odd minima are about3.57e-4, but their excluded
+phase Rayleigh quotients are about-4.55e-9. The relative stationarity
+gradient reported for run_012 is about2.89e-9. Relative residuals alone
+are not eigenvalue error bounds, and the scalar phase Rayleigh quotient
+does not control the full phase residual. No interval or analytic error
+estimate is supplied by these output scalars.
+
+The negative sign's persistence across these particular larger boxes is
+a reason to compute the proper growth matrix and resolve numerical errors,
+not a reason to call the state stable. Conversely its small magnitude is
+not grounds to discard it as roundoff. A finite unstable pair, once
+resolved, would be finite-dimensional evidence; a continuum conclusion
+still needs mesh, basis and domain control and a genuine background.
+No universal stability statement follows from a few finite basis choices.
+
+CHEAPEST DISCRIMINATING CHECKS
+
+1. Compute c,z, their canonical relation, Gram, stationarity and full Ho z
+   residuals on the SAME discretization as the Hessian.
+2. Use paired bases (or the actual projected cross bracket) and compute
+   the symmetric squared-growth eigenvalues, then cross-check the full
+   reduced generator and the eigenvector's charge/phase residuals.
+3. Repeat the resolved large-domain calculation at a finer dx and enough
+   basis resolution to distinguish the putative negative direction from
+   the phase/discretization residual. Report the actual growth timescale.
+4. Keep any finite-basis conclusion distinct from continuum, nonlinear,
+   nonradial and quantum stability.
+
+The exact linear-algebra implication above is proved internally and has no
+external theorem dependency. Existing output files were inspected, not
+rerun or independently interval-verified. The final reviewed script and
+supplement hashes are recorded separately in STABILITY_AUDIT_HASH.txt.
+
+TIMED UPDATE — 2026-10-19 18:01:21 UTC
+
+This update supplements, without deleting, the earlier unresolved numerical
+assessment. I read the frozen stability/hessian_ekg_v2.py (SHA256
+ecfceed04571f49fc2834f7f2e8b067f273fba5d275e25eb0a32d8571fd617e8),
+the actual run_013/018/019/020 outputs, and witness_mpmath.py plus run_021.
+All five manifests report completed, and their listed input/output hashes
+match current bytes. No duplicate numerical test was executed by me.
+
+The v2 symplectic_reduced_flow implementation uses E as the even charge
+null basis, O=-2J0E, the correct He/Ho congruences, and the Cholesky matrix
+-.25 L^T He L. It agrees exactly with the proof in sections 1--4. No
+projection, sign or canonical-factor defect was found. The new full phase-
+kernel and phase/charge diagnostics address the omissions identified in
+the first review. The saved longdouble has only 52 mantissa bits on this
+platform and is not an independent extended-precision check; run_021 is.
+
+The compact mixed profile's run_019 (R=600, dx=.0125, B=120) gives
+ constrained even minimum -2.0097292740e-8,
+ paired odd minimum +0.00035698366323,
+ largest squared growth +1.9911583060e-12,
+ real growth rate gamma=1.4110840889e-6.
+The paired Poisson error is 1.49e-15, phase/charge error 6.35e-14,
+relative phase-kernel residual 1.73e-10 and relative stationarity gradient
+2.31e-10. Run_013 (dx=.025,B=60 at the same R) gives gamma=1.4145877430e-6.
+These finite projected systems therefore resolve a real growing pair for
+this branch, rather than positive energy or a stable-branch certificate.
+
+The independent MP50 implementation differentiates the integrating-factor
+ADM constraint analytically along the saved run_013 direction, with correct
+quadratic expansion coefficients and exponential chain rule. It avoids
+subtraction of nearby masses. On its fixed float64 background/direction,
+the second grand-Hamiltonian variation is -2.021381185049e-8, differing
+from the saved autograd contraction by 2.91e-16. This verifies the negative
+DISCRETE directional curvature beyond float64 cancellation. It does not
+prove continuum spectral convergence or an exact stationary background.
+
+The weaker mixed profile in run_018 (R=10000,dx=.5,B=120) instead gives
+positive constrained even/odd minima 9.6414649454e-6 and 9.6442024372e-7.
+Its largest squared-growth eigenvalue is negative, with lowest represented
+oscillation frequency about 2.30383e-6. Run_020 (R=8000,B=96, same dx and
+maximum wavenumber) gives about 2.30379e-6. This is positive-energy/no-growth
+evidence for those finite spaces, not continuum positivity or mode
+completeness. The domains resolve the stated low frequency consistently.
+
+Updated bounded verdict: the finalized finite Hamiltonian implementation
+is consistent with the independently derived projection; the compact
+mixed branch has convergent finite-space instability evidence, while the
+weak mixed branch has finite-space stability evidence. No rigorous
+continuum, all-mode, nonlinear or quantum-stability certificate follows.
+In particular the compact mixed witness must not be called a stable
+counterexample to a hypothetical stability-restricted compactness bound.
+The old TF theorem and its actual hypotheses remain unchanged.

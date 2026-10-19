@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "claim_id": "EKG-2026-10-19-C-STAB",
+  "repository": {
+    "commit": "e54c33252909e38a529a69f7adac265e37b54cb4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/full_two_field_2026_10_19/stability/evolve_ekg.py",
+    "--profile",
+    "sol61_push/full_two_field_2026_10_19/reference/run_003/pureX_h0.050.npz",
+    "--dx",
+    ".4",
+    "--R",
+    "400",
+    "--T",
+    "20",
+    "--eps-x",
+    ".01",
+    "--eps-phi",
+    ".01",
+    "--result",
+    "sol61_push/full_two_field_2026_10_19/stability/run_001/smoke.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Full nonlinear two-complex-field spherical EKG finite-time radial evolution and lowest daughter stiffness eigenvalues around pure-X nodeless equilibrium. Initial smoke test before long convergence runs.",
+    "coefficient_domain": "NumPy double precision complex method-of-lines and SciPy symmetric tridiagonal eigenvalues",
+    "conventions": "ds2=-alpha2dt2+a2dr2+r2dOmega2; scaled fields sqrt(4piG); m=M/(2sqrt1.0004),M=1,4piG=1,lambda_total=.01,g2=lambda_total*(M2-4m2)/3; rotationomegaPhi=omegaX/2",
+    "inputs": [
+      "Root independently refined pureX reference profile",
+      "Infinitesimal/small charge-renormalized amplitude/composition perturbations"
+    ],
+    "bounds": {
+      "dx": 0.4,
+      "R": 400,
+      "T": 20,
+      "dt_factor": 0.2,
+      "eps_X": 0.01,
+      "eps_Phi": 0.01
+    },
+    "non_claims": [
+      "Not a continuum stability theorem",
+      "Not a populated-both-fields equilibrium stability test",
+      "No MOND/EOS/newforce assumption",
+      "No time evolution from production state"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T17:45:58.812663+00:00",
+    "runtime_seconds": 0.404193,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/full_two_field_2026_10_19/stability/evolve_ekg.py",
+    "sol61_push/full_two_field_2026_10_19/reference/run_003/pureX_h0.050.npz"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/stability/evolve_ekg.py",
+      "sha256": "d0e68365a96f626a9c7928bb3a5c7c1afdeee9d8f28969850a279c19937be684",
+      "sha256_after": "d0e68365a96f626a9c7928bb3a5c7c1afdeee9d8f28969850a279c19937be684"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_003/pureX_h0.050.npz",
+      "sha256": "1a764fef6c0a2f2bbbb70ec47eb4a2ba95f9397210e7d208ddc6b91a3d610eee",
+      "sha256_after": "1a764fef6c0a2f2bbbb70ec47eb4a2ba95f9397210e7d208ddc6b91a3d610eee"
+    }
+  ],
+  "output_directory": "sol61_push/full_two_field_2026_10_19/stability/run_001",
+  "declared_results": [
+    "sol61_push/full_two_field_2026_10_19/stability/run_001/smoke.json",
+    "sol61_push/full_two_field_2026_10_19/stability/run_001/smoke.npz"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/stability/run_001/stdout.txt",
+      "sha256": "b8b4b0dd9c98e96e62857eb69fda521eb40b05e89225b40e17ebe854ce8136d5",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/stability/run_001/stderr.txt",
+      "sha256": "c92f27c2e236e293dac2c814cbe0214cc27d8b1d1cb1a227b154e13fdc202534",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/stability/run_001/smoke.json",
+      "sha256": "edfbad29dd5eb84f0df3b89d8e6ac8f4fe6ce7b1f63c42ebaf5db21574427a1c",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/stability/run_001/smoke.npz",
+      "sha256": "ce299cec8dcc8baf8dcbcdd8af929d558166e5b036c3d77345199a9e6264cbdd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

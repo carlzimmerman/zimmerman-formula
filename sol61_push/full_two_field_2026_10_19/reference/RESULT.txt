@@ -1,0 +1,53 @@
+PURE-X FULL-ACTION CONTROL: EKG-2026-10-19-C
+
+Phi=0 is an exact invariant equilibrium sector of the original two-field
+action for any g. This control solves its full massive-X Einstein equations,
+including spatial gradients and asymptotically flat metric normalization.
+It is not a solution with both amplitudes populated. Stability against the
+second field is a separate obligation and is tested in ../stability/.
+
+Units for these reference solves: source mass M=1, 4piG=1; h is the
+physical field. The embedding used in the full-action response calculation is
+u_star=.02, r_lambda=2, lambda=.01,
+m=1/(2sqrt(1.0004))=.49990002999000355,
+g=.001154469667530218, lambda_rep=.006666666666666666.
+These are dimensionless members of the action family. They are not the
+earlier MeV/weak-gravity benchmark.
+
+Preferred compact control: run_004/pureX_h0.050.npz,
+central h=.05, omega_X,infinity=.9540245202627796,
+G M_ADM=.4746929221648993,
+R99=17.278573408684384,
+C99=G M_ADM/R99=.02747292331011042,
+outer radius180, maximum collocation residual1.999e-10,
+outer field amplitude2.907e-24.
+The R120,tol2e-9 predecessor (run_003) agrees in frequency and mass to
+about2e-12 and8.5e-12 in absolute units respectively; its interpolated
+R99 differs by3.1e-5. The stability evolutions use that predecessor.
+
+For source mass1, a bound profile has omega_X<1 at infinity. The local
+central charge chemical frequency is omega_X/(2alpha_c)>1/2, as follows
+also from the exact integrated KG identity in ../gradient_analysis/.
+This exceeds the homogeneous mixture chemical cap; it does not violate
+the old fluid theorem, whose both-populated algebraic-minimum and finite
+surface hypotheses do not apply.
+
+Execution history and evidence scope:
+run_001 was a diagnostic using finite-boundary alpha=1. Its centralh=.01
+solve converged, but its attempted continuation to .02 failed with a
+singular Jacobian. The completed runner status records the script's
+execution; it does not mean every attempted BVP succeeded. That failed
+continuation is preserved and is not primary numerical evidence.
+
+run_002 corrects the outer lapse to sqrt(N) and uses a massive Coulomb-tail
+Robin condition. Three .01 profiles at R100/160/220 converge. run_003
+uses independent initial guesses at centralh=.02,.03,.05, all converged.
+run_004 refines the .05 compact control to R180,tolerance2e-10.
+All four runner manifests validate against their pinned current inputs.
+The independent stress/mass/charge checks in ../gradient_analysis/ verify
+the accepted controls without calling the source solver's stress routines.
+
+Numerical existence on these refined domains is finite floating-point
+evidence, not an interval proof, universal action-family classification or
+proof of a prepared nonthermal quantum state. No fluid EOS or galaxy law
+appears in the field residuals.

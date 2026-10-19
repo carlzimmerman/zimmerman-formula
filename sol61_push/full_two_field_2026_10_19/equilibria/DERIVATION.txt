@@ -1,0 +1,75 @@
+FULL TWO-FIELD SPHERICAL EINSTEIN-KLEIN-GORDON EQUILIBRIA
+Checkpoint EKG-2026-10-19-C; base999af428573322d0ae3e749f651bfef51bbd03b8.
+
+ACTION AND CONVENTIONS
+Natural units c=hbar=1. The original carrier is minimally coupled to Einstein gravity, with
+ V=m^2|Phi|^2+M^2|X|^2+g(X*Phi^2+X Phi*^2)+lambda|Phi|^4,
+ Delta=M^2-4m^2>0,
+ lambda=g^2/Delta+lambda_rep, lambda_rep>0.
+The gravitational choice is ordinary minimal Einstein coupling. No MOND law, a0, extra U(S), source gate or new scalar interaction is inserted.
+
+Use polar-areal coordinates
+ ds^2=alpha(r)^2 dt^2-a(r)^2 dr^2-r^2dOmega^2,
+ N=1/a^2=1-2G mathcal M(r)/r,
+ Phi=f(r)exp(-i omega t), X=-h(r)exp(-2i omega t).
+The frequency is positive and lapse-normalized at infinity. It is not a position-dependent fitted parameter. Define S=f^2+4h^2, K=N(f'^2+h'^2), T=omega^2S/alpha^2. The potential on the ansatz is V=m^2f^2+M^2h^2-2g h f^2+lambda f^4. Its exact energy density and pressures are
+ rho=T+K+V,
+ p_r=T+K-V,
+ p_t=T-K-V.
+Thus p_t-p_r=-2K. Scalar spatial gradients create anisotropic stress and were not discarded.
+
+EXACT RADIAL FIELD EQUATIONS
+ mathcal M'=4pi r^2 rho,
+ alpha'/alpha=G(mathcal M/r^2+4pi r p_r)/N,
+ a'/a=(G mathcal M'/r-G mathcal M/r^2)/N,
+ B=2/r+alpha'/alpha-a'/a,
+ f''+B f'=[(m^2-omega^2/alpha^2)f-2g h f+2lambda f^3]/N,
+ h''+B h'=[(M^2-4omega^2/alpha^2)h-g f^2]/N.
+The minus sign in X=-h is essential for both cubic terms. Both gradients, both conversion equations, and their stress contribution are retained. The same equations follow directly from the original complex Euler equations and the Einstein tt/rr equations. The separate compactness audit reconstructed the signs and normalizations before inspecting this implementation.
+
+The exact conserved charge is
+ Q=8pi omega integral_0^infinity a r^2(f^2+4h^2)/alpha dr.
+It is not inferred from an assumed mass density. M_ADM=mathcal M(infinity), while M in the potential remains the source particle mass. Complete dispersion into free positive charge-one particles would require energy at least mQ. Finding M_ADM<mQ is a binding diagnostic, not a proof of radial, angular or quantum stability.
+
+CENTER AND TAIL BOUNDARIES
+Regularity gives f'(0)=h'(0)=0, mathcal M(0)=0 and finite alpha(0). The code starts at small r0 using
+ f(r0)=f0+f2 r0^2/2, f'(r0)=f2 r0,
+ h(r0)=h0+h2 r0^2/2, h'(r0)=h2 r0,
+ f2=[(m^2-omega^2/alpha0^2)f0-2g h0 f0+2lambda f0^3]/3,
+ h2=[(M^2-4omega^2/alpha0^2)h0-g f0^2]/3,
+ mathcal M(r0)=4pi rho0 r0^3/3.
+A central amplitude is fixed and omega is the BVP eigenparameter. The lapse is not fixed at the center.
+
+Localization requires omega<m and 2omega<M in the asymptotically normalized time. The Phi homogeneous tail has exponential rate sqrt(m^2-omega^2), with Schwarzschild power corrections. X has its massive homogeneous tail and a forced tail sourced by f^2. Because sqrt(M^2-4omega^2)>2sqrt(m^2-omega^2), the forced X tail can decay more slowly than its homogeneous tail. A naive free-X Robin condition is therefore not an exact general outer condition for this mixed branch.
+
+The accepted solver uses f=h=0 at a large finite outer radius, with alpha(Rbox)=sqrt(N(Rbox)), the vacuum Schwarzschild normalization. This is approximate tail truncation, not an assertion of an exact finite material surface. Expanding Rbox and examining outer mass and both field tails control it numerically. Neither a rigorous infinity error bound nor an analytic existence theorem is claimed.
+
+SOLVER COORDINATES AND FILE DICTIONARY
+For m=lambda=1 and variable dimensionless G, the TF-seeded full solver uses z=sqrt(G)r and v=G^(3/2)mathcal M. Then N=1-2v/z. Its BVP states are
+ (f,f_z,h,h_z,v,b=log alpha).
+The source terms in both KG equations are divided by G N; the full energy includes G N(f_z^2+h_z^2). Its Einstein equations are
+ v_z=4pi z^2rho,
+ b_z=(v/z^2+4pi z p_r)/N.
+This rescaling reduces numerical scale separation; it does not remove gradients.
+
+NPZ profiles contain physical r, f,fp=df/dr,h,hp=dh/dr,alpha,a,Q(r), and z,fz,hz,v,b. They also contain G,m,g,lambda_total,M,omega, the frequency logit, and the original collocation nodes/y/cubic-polynomial coefficients. The scalar NPZ key M is the SOURCE particle mass. ADM mass is stored explicitly in the companion JSON. For evolution, X=-h, Pi_Phi=-i omega a f/alpha, Pi_X=+i2omega a h/alpha in the standard Pi=a/alpha times field time derivative convention. The rescaled evolution fields sqrt(4piG)Phi and sqrt(4piG)X must be constructed explicitly; saved f and h are not rescaled that way.
+
+INPUTS AND ACCEPTED EQUILIBRIA
+All accepted final cases use m=lambda_total=1, u_star=.02, r_lambda=2, M^2=4.0016 and g=sqrt(.0016/3)=.023094010767585032. Thus lambda_rep=2/3. G is an independently declared dimensionless coupling, not the SI numerical value of Newton's constant.
+
+A TF-like mixed branch was found at G=1e-8, centralf=.0098882646494. TF served only as the initial guess. The full BVP returned omega=.9999519202156233, M_ADM=22668520.61895, GaussQ=22669043.89594, R99=4631.35920, C99=G M_ADM/R99=4.89457191e-5. Both fields are nonzero and resolved nodeless. Its central local frequency1.00005349 lies below the homogeneous cap1.00013332445.
+
+Continuation in G with fixed central f approached a difficult fold. Reparametrizing the BVP by central h allowed continuation onto a more source-dominated mixed branch. The final accepted gradient witness has
+ G=8.5e-5, h0=.02, f0=.00106392809814,
+ omega=.9995592682987847,
+ alpha0=.99875901381399,
+ omega_local(0)=1.00080124882352,
+ M_ADM=368.688643676558,
+ Q_Gauss=368.693700202112,
+ M_ADM/(mQ_Gauss)=.999986285294403,
+ R99=79.694027805079,
+ C99=G M_ADM/R99=.000393235673684,
+ min N=.9988962870677.
+The preferred profile is run_001/mixed_center.npz. It is a genuine BOTH-field solution; no amplitude was set to zero. Its homogeneous chemical cap is exceeded locally because gradient terms invalidate the algebraic minimum equations. The original TF bound used a finite zero-pressure surface R; R99 instead encloses99% of the ADM mass of a noncompact field. C99 above the old numerical bound tests a naive extension, and is NOT a same-radius counterexample to the stated TF surface theorem.
+
+The physical MeV benchmark has a vastly smaller Gm^2/lambda_rep than either numerical family point. These are classical action-family witnesses, not direct solutions at that physical benchmark. No extrapolated benchmark stability or population is asserted.

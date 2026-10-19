@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "claim_id": "BZS-THERMAL-001",
+  "repository": {
+    "commit": "a575dcd0954fc2792fdf2f4ac5461193604b9c59",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/breakthrough_search_2026_10_19/thermal/check_thermal.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite-T susceptibility quadratures agree on theta=1e-4..100 declared grid; low-T cubic, logcosh scaling bound, linear source limit and zero-T absorption ratio controls pass at declared points",
+    "coefficient_domain": "IEEE float64 with scipy adaptive quadrature",
+    "conventions": "a=d=hbar=kB=1 for dimensionless checks; positive fields and temperatures; common-d fixed two-level inventory",
+    "inputs": [
+      "exact rational dipole-weighted reduced-gap distribution",
+      "Gibbs state and zero-stiffness spherical source matching"
+    ],
+    "bounds": {
+      "theta_min": 0.0001,
+      "theta_max": 100,
+      "thermal_integral_v_max": 45,
+      "field_to_thermal_ratios": [
+        0.01,
+        0.1,
+        1,
+        10
+      ]
+    },
+    "non_claims": [
+      "No general proof from finite points",
+      "No interval certification",
+      "No physical dipole source, temperature, a0, or halo relaxation time derived"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T13:42:34.469179+00:00",
+    "runtime_seconds": 0.240191,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/breakthrough_search_2026_10_19/thermal/check_thermal.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/thermal/check_thermal.py",
+      "sha256": "6d2e54894e7ba951f29ed17ee1c9ae3bf538a80adeeb09bb2b317585d45203b8",
+      "sha256_after": "6d2e54894e7ba951f29ed17ee1c9ae3bf538a80adeeb09bb2b317585d45203b8"
+    }
+  ],
+  "output_directory": "sol61_push/breakthrough_search_2026_10_19/thermal/run_002",
+  "declared_results": [
+    "sol61_push/breakthrough_search_2026_10_19/thermal/run_002/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/thermal/run_002/stdout.txt",
+      "sha256": "7da58d387fa981db059bacb94967a4d43437abd3c3b398f410e2391cbc4010ec",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/thermal/run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/thermal/run_002/results.json",
+      "sha256": "99fcd054baae35153d6e813afaf73922f310eee93a7a424768fabb89c47b7ab0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

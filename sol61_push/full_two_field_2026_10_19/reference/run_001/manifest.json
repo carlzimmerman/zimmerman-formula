@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "claim_id": "EKG-REFERENCE-001",
+  "repository": {
+    "commit": "e54c33252909e38a529a69f7adac265e37b54cb4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/full_two_field_2026_10_19/reference/pure_reference.py",
+    "sol61_push/full_two_field_2026_10_19/reference/run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Attempt regular full-GR pure-X BVP at three central amplitudes with gradient energy, ADM/lapse equations and decaying outer Robin boundary; records convergence and nodelessness, not stability",
+    "coefficient_domain": "IEEE float64, scipy solve_bvp",
+    "conventions": "M=1,4piG=1,X=h exp(-i omega_X t); v=G mass, asymptotic lapse normalized at finite domain",
+    "inputs": [
+      "central h=.01,.02,.04",
+      "original action pure-X branch with Phi=0"
+    ],
+    "bounds": {
+      "r_max": 100,
+      "base_nodes": 600,
+      "max_nodes": 20000,
+      "tol": 1e-06
+    },
+    "non_claims": [
+      "No stable-state conclusion",
+      "No two-nonzero-field solution",
+      "Finite-domain reference, no exact infinity normalization"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T17:42:53.417692+00:00",
+    "runtime_seconds": 0.406037,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/full_two_field_2026_10_19/reference/pure_reference.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/pure_reference.py",
+      "sha256": "335505a543325b6579faadc86ce531a6600527a98f9ff6bab00081c6ec40f2de",
+      "sha256_after": "335505a543325b6579faadc86ce531a6600527a98f9ff6bab00081c6ec40f2de"
+    }
+  ],
+  "output_directory": "sol61_push/full_two_field_2026_10_19/reference/run_001",
+  "declared_results": [
+    "sol61_push/full_two_field_2026_10_19/reference/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_001/stdout.txt",
+      "sha256": "9ae2c67276537815401d48f44796de92f7c97e0b336204972178159257defaa3",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_001/results.json",
+      "sha256": "01710ad886015a223fe70f809f6073d952d5f5a02290d46c06ee5e0c1b378b58",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

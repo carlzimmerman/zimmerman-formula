@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "EKG-GRADIENT-FINAL-FROZEN-MIXED-CHECK",
+  "repository": {
+    "commit": "e54c33252909e38a529a69f7adac265e37b54cb4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/full_two_field_2026_10_19/gradient_analysis/check_mixed_profiles.py",
+    "--contract",
+    "sol61_push/full_two_field_2026_10_19/gradient_analysis/final_profile_contract.json",
+    "--result",
+    "sol61_push/full_two_field_2026_10_19/gradient_analysis/profile_run_003/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent stress/current, integrated mass-constraint, positivity and cap-extension comparison on the one final frozen central-resolution mixed profile.",
+    "coefficient_domain": "float64 numpy quadrature of finite saved grids",
+    "conventions": "m=lambda=1,G=8.5e-5,u_star=.02,r_lambda=2,full g=sqrt(4u_star^2/3). R99 encloses 99 percent of truncated ADM mass; C99=G totalADM/R99. Positivity on grid tolerates 1e-10 of peak field to exclude numerical tail roundoff.",
+    "inputs": [
+      "final_mixed_center"
+    ],
+    "bounds": {
+      "profile_count": 1,
+      "mass_constraint_gate": 2e-05
+    },
+    "non_claims": [
+      "No rigorous infinite-domain existence or stability theorem.",
+      "No refutation of the prior TF theorem under its actual finite-surface/algebraic-minimum assumptions.",
+      "No direct computation of the MeV benchmark or all action parameters.",
+      "No independent BVP rerun; this is an independent check of saved fields and definitions."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T17:51:07.419319+00:00",
+    "runtime_seconds": 0.134886,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/full_two_field_2026_10_19/gradient_analysis/check_mixed_profiles.py",
+    "sol61_push/full_two_field_2026_10_19/gradient_analysis/final_profile_contract.json",
+    "sol61_push/full_two_field_2026_10_19/equilibria/run_001/mixed_center.npz"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/gradient_analysis/check_mixed_profiles.py",
+      "sha256": "5b0f65b672c606e476044fa26d07d7a1ab37a4bdb28df7127102bbbf5550961e",
+      "sha256_after": "5b0f65b672c606e476044fa26d07d7a1ab37a4bdb28df7127102bbbf5550961e"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/gradient_analysis/final_profile_contract.json",
+      "sha256": "a6726003f59dd44abe6d717b46c4b33c60ab029fe8fd927c0dca23b0262a24bf",
+      "sha256_after": "a6726003f59dd44abe6d717b46c4b33c60ab029fe8fd927c0dca23b0262a24bf"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/equilibria/run_001/mixed_center.npz",
+      "sha256": "a138cfa3b8f053b610be2ef39b40755fa7af59fee758f23faaa75c0310a19fa5",
+      "sha256_after": "a138cfa3b8f053b610be2ef39b40755fa7af59fee758f23faaa75c0310a19fa5"
+    }
+  ],
+  "output_directory": "sol61_push/full_two_field_2026_10_19/gradient_analysis/profile_run_003",
+  "declared_results": [
+    "sol61_push/full_two_field_2026_10_19/gradient_analysis/profile_run_003/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/gradient_analysis/profile_run_003/stdout.txt",
+      "sha256": "27b499daeed4bab2cb444c6755f7cc92b6c7b22badf6946bc2a466bde9b25ffc",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/gradient_analysis/profile_run_003/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/gradient_analysis/profile_run_003/results.json",
+      "sha256": "7369a3431ebe26a79203dff1018bd79905f4b9425307d5beea48e1d7429bfb3b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

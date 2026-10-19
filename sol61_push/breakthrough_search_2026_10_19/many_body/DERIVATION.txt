@@ -1,0 +1,83 @@
+DERIVATION AND CLAIM CARDS
+
+Conventions: K=4 pi G>0, q=grad Phi is OUTWARD for a positive spherical mass; physical acceleration is -q. P is the frozen action's vector, u=K|P|, 0<=u<a0. W(0)=0. All density signs below use Laplacian Phi/K. gamma=K Lstar^2/2>0. These are the 14 October canonical action's conventions.
+
+A. EXACT ACTION TO FINITE-STIFFNESS RESPONSE
+
+The static field energy density is
+ E=|q-KP|^2/(2K)+W(u)+(gamma/2)|grad P|^2,
+ K W'(u)=u^2/(a0-u).
+Write d=q-KP, n=P/|P|. Euler equations of the stated Lagrangian are
+ div d=K rho_b,
+ d=K W'(u)n-gamma Delta P.
+Therefore
+ Delta Phi=K(rho_b+div P).
+This exact identity is the action-to-Poisson-source dictionary; it is not the assumption that div P is nonnegative. Literal S3 separately says div P=rho_c-rho_bar.
+
+Take a constant external solution q_e=g_e zhat and P_e=(u_e/K) zhat. Put x=g_e/a0; u_e=a0 x/(1+x). The local constitutive derivative of K W'(u)n has eigenvalues A_perp=x and A_parallel=x(2+x), with respect to u-vector=KP. In Fourier space, linearization of the full action gives
+ delta P_i=delta q_i/[K(1+A_i+ell^2 k^2)], ell^2=gamma/K,
+ delta d_i=m_i(k) delta q_i,
+ m_i(k)=(A_i+ell^2 k^2)/(1+A_i+ell^2 k^2).
+Hence
+ delta Phi_hat=-K rho_hat/[sum_i k_i^2 m_i(k)].
+This matches the frozen CFG770 response formula by direct differentiation. At k->0,
+ m_perp=mu_e=x/(1+x),
+ m_parallel=mu_e Gamma,
+ Gamma=1+L_e=2-mu_e,
+ L_e=1/(1+x).
+For a general local AQUAL response, the same definitions are mu_e=mu(g_e) and L_e=g_e mu'(g_e)/mu_e, with mu_e>0, Gamma>0. Our sign test additionally requires L_e>0.
+
+At distances large compared with the response length, the leading monopole is thus the known Green function
+ phi=-Gm/[mu_e sqrt(Gamma R^2+z^2)], R^2=X^2+Y^2.
+Finite stiffness changes the Fourier denominator first at order k^4; its first noncontact far-field potential correction to this linear centered monopole is of degree r^-3, and its density correction of degree r^-5. For very small A_i one needs r>>ell/sqrt(min A_i), not merely r>>ell. A centered finite source also has source-size corrections. This is a linear-response asymptotic expansion; no claim of a global nonlinear remainder bound is made.
+
+B. DENSITY, FINITE-HOST CANCELLATION AND THE POSITIVITY TEST
+
+Directly differentiating the full three-dimensional Green function, outside the compact baryons, gives
+ delta rho_c,s=Delta phi/K
+ =m(Gamma-1)/(4 pi mu_e) * [2z^2-Gamma R^2]/[Gamma R^2+z^2]^(5/2).
+On the equator z=0,R=r>0,
+ g_s=Gm/[mu_e sqrt(Gamma) r^2],
+ delta rho_c,s=-g_s L_e/[K Gamma r].
+It is strictly negative if L_e>0. Its zero-density cone obeys tan^2(theta)=2/Gamma, another known/formal consequence already in the repo's September field-orbit report.
+
+Now let the external acceleration be supplied by a spherical baryonic host, whose source is interior to radius D. In the local, long-wavelength constitutive regime,
+ D^2 mu(g_e) g_e=G M_H,
+ g_e'=-2g_e/(Gamma D).
+Thus its baryon-free local inferred cold density is
+ rho_c,H=(g_e'+2g_e/D)/K=2g_e L_e/(K Gamma D).
+Substitution yields
+ -delta rho_c,s/rho_c,H=(g_s/g_e) D/(2r).
+This cancellation is independent of the interpolation function. It assumes the same local response function in both configurations, not object-wise retuned response parameters. For the canonical simple mu, all its coefficients are explicitly fixed above.
+
+Let epsilon=g_s/g_e and delta=r/D. External-field dominance means epsilon<<1; slow host variation means delta<<1; dominance of the negative perturbation over the host's positive density means delta<<epsilon/2. The host's radial tidal-gradient magnitude is T_H=2g_e/(Gamma D), so the leading negativity criterion can equivalently be written g_s>Gamma T_H r. It therefore occurs where satellite self-gravity is already larger than the host's tidal differential acceleration by a factor Gamma. This is not a theorem about a rotating-frame Jacobi radius, orbital stability, stellar distribution functions or lensing.
+
+If the cold background is rho_bar plus another component rho_other, positivity requires
+ rho_bar+rho_other+rho_c,H+delta rho_c,s >=0.
+The negative perturbation alone is not a negative total density theorem. At fixed independently specified positive background, the leading necessary background floor is
+ rho_bar+rho_other >= (epsilon-2r/D) g_e L_e/(K Gamma r).
+Finite-host/source/nonlinear corrections must be included before applying the floor quantitatively.
+
+Exactly proved statement: the frozen full action's long-wavelength UNIFORM-BACKGROUND linearization has a negative material-density perturbation when its Poisson source is identified literally with div P. With zero material baseline this rules out a positive material interpretation in that model problem. Conditional statement: a finite positive-host / cosmological-baseline solution must become negative in the ordered regime after a sufficiently strong signed gap is proven to dominate all errors. The present calculation supplies the gap formula but not that nonlinear estimate.
+
+C. EXACT ISOLATED SCALAR VIRIAL WITH STIFFNESS
+
+This branch uses a different configuration: smooth isolated baryons of total mass M, no external field, no pressure surface term, and a regular solution with q=A rhat/r+o(r^-1), P=A rhat/(Kr)+o(r^-1), A=sqrt(GMa0). Required derivative falloffs and integrability of every displayed bulk term are hypotheses. Point sources or source self-energy excisions require extra inner-boundary terms and are not covered.
+
+Define the static canonical translation tensor
+ T_ij=d_j q_i/K+gamma (partial_j P_a)(partial_i P_a)-delta_ij E.
+Its divergence on the Euler equations is +rho_b q_i. It need not be symmetric; a translation tensor is sufficient for its trace identity. The scalar gravitational virial is V_b=-integral rho_b x.q d^3x. Integrating div(x_i T_ij),
+ V_b=integral trace(T) d^3x -lim_R surface_R x_i T_ij n_j dS.
+The leading far-field radial traction has value 2A^3/(3Ka0 R^3), so the outer surface is
+ B=(2/3)sqrt(Ga0) M^(3/2).
+Before using the P equation, trace(T)=q.d/K-3|d|^2/(2K)-3W-(gamma/2)|grad P|^2. Insert q=d+KP and integrate P.d=uW'-gamma P.Delta P. The latter integrates to uW'+gamma|grad P|^2 when the additional P normal-derivative surface integral vanishes. Therefore
+
+ V_b=-B+integral[-|d|^2/(2K)+uW'-3W+(gamma/2)|grad P|^2]d^3x.
+
+Signs checked against the gamma=0 exact cubic deep-MOND limit: the integrand vanishes at leading deep order and V_b=-B. The positive gradient term reduces the magnitude of a negative virial if other terms were held fixed; they are not independent because the solution changes with gamma. Thus no monotonic-force or universal-dispersion theorem follows from its sign alone.
+
+For the canonical saturation potential,
+ W=[-a0^2 log(1-u/a0)-a0u-u^2/2]/K.
+The local term uW'-3W is positive for 0<u<a0, whereas -|d|^2/(2K) is negative. Together with the positive stiffness term, the full defect has no sign supplied by this identity. In equilibrium, 2T_b=-V_b only if ordinary baryonic inertia and the relevant isolated equilibrium/pressure assumptions hold. We do not insert unproven equilibrium or cold-sector kinetic assumptions.
+
+In a reduced exactly cubic deep-MOND plus gradient model with P=q/K at the retained order, the dilation defect is +(gamma/(2K^2)) integral |Hess Phi|^2. Subject to decaying derivative boundary terms, integral |Hess Phi|^2=integral (Delta Phi)^2, making a density-squared link possible. But replacing the exact frozen fields by that reduced model without a controlled approximation changes the claim. This attractive observable route remains conditional and was not promoted.

@@ -1,0 +1,164 @@
+FULL TWO-FIELD RADIAL STABILITY: FINITE COMPUTATIONAL VERDICT
+Checkpoint EKG-2026-10-19-C; 19 October 2026.
+
+The original minimally coupled Einstein--Phi/X action admits a classical
+both-populated, nodeless equilibrium with positive full constrained radial
+Hessians in the tested spaces. Another, more compact mixed equilibrium has
+a resolved growing mode in the finite Hamiltonian radial model. The pure-X
+control also survives full nonlinear two-field radial evolution through the
+declared finite time and has positive daughter conversion stiffness.
+
+These are branch-specific finite numerical statements. They are not a
+continuum coercivity theorem, all-angular-mode stability proof, protected
+quantum state, preparation mechanism or galaxy prediction. No EOS, MOND
+law, new force or bath was inserted. The full matter gradients, complex
+amplitudes, momenta and metric constraints are retained.
+
+1. BOTH-POPULATED DIFFUSE CANDIDATE
+
+Input: equilibria/mixed_G1em8_x04.npz, byte-pinned in runs015--018/020.
+m=lambda_total=1, M=2.000399960007998, g=.023094010767585032,
+lambda_rep=2/3, G=1e-8, omega=.9999519202156226.
+Its independently solved full-field background has centralf=.0098882646494,
+M_ADM approximately2.26685206e7, Q approximately2.26690439e7,
+R99 approximately4631.36 and C99 approximately4.89457e-5.
+
+For each background, the exact polar-areal ADM mass functional is solved
+from its constraint under every variation. The Hessian of GM_ADM-omegaGQ
+uses all four real components of BOTH fields and their canonical momenta.
+Each parity block has dimension4B; fixed charge and common phase remove
+one dimension each. The reduced flow is paired symplectically, not inferred
+from the sign of M-mQ or a turning point.
+
+Finite space controls (R, grid spacing, basis modes per component):
+ run015: (10000,1,60), He_min9.641455887e-6, Ho_min9.643044206e-7,
+         lowest radial angular frequency2.303609585e-6.
+ run016: (10000,.5,60), He_min9.641464946e-6, Ho_min9.644202508e-7,
+         frequency2.303738807e-6.
+ run017: (10000,1,120), He_min9.641455869e-6, Ho_min9.643039824e-7,
+         frequency2.303657912e-6.
+ run018: (10000,.5,120), He_min9.641464945e-6, Ho_min9.644202440e-7,
+         frequency2.303832927e-6, period2.727274723e6.
+ run020: (8000,.5,96), He_min9.641464938e-6, Ho_min9.644202371e-7,
+         frequency2.303787933e-6.
+
+The last domain comparison holds maximum radial wavenumber fixed at
+120pi/10000. Physical f(8000)=9.1829e-11 and h(8000)=1.2204e-19,
+versus centralf approximately.00989; f,h at sourceR10000 are numerically
+zero by its distant BVP boundary. The R8000/R10000 frequency difference
+is1.95e-5 relative. Halving dx suppresses the phase-kernel residual;
+run018 stationarity gradient norm4.11e-10, phase-kernel relative residual
+1.13e-10, phase/charge generator error approximately1e-14 and canonical
+pairing error approximately1e-15. These residuals are diagnostics, not a
+rigorous bound on the continuum Hessian error.
+
+The positive finite matrices exclude unstable radial modes only in these
+tested spaces (through kmax=.0376991m). They supply a stable CLASSICAL
+radial candidate. The listed frequency is a reproducible conditional
+small-oscillation prediction for these declared couplings/background,
+not an astrophysical frequency without physical parameter selection.
+No nonlinear mixed evolution was claimed: one period already requires
+approximately2.73e6m^-1 and a full carrier-resolving time integration was
+outside this bounded run.
+
+2. MORE COMPACT MIXED PROFILE: GROWING FINITE RADIAL MODE
+
+Final background: equilibria/run_001/mixed_center.npz, SHA256
+a138cfa3b8f053b610be2ef39b40755fa7af59fee758f23faaa75c0310a19fa5.
+m=lambda_total=1, sameM,g,lambda_rep as above, but G=8.5e-5;
+centralh=.02, centralf=.00106392809814296,
+omega=.9995592682987847, M_ADM=368.688643676558,
+Q=368.693700202112, R99 approximately79.6940,
+C99 approximately.000393236. This profile exceeds the separately declared
+R99 extension of the old TF number, but is NOT a demonstrated stable
+counterexample to a stability-restricted compactness statement.
+
+The negative constrained even direction persists with domain/basis/grid
+refinement. Accepted central controls:
+ run013: R600,dx.025,B60: He_min=-2.021381070e-8,
+         Ho_min=.0003569836306, gamma=1.414587743e-6.
+ run014: R600,dx.05,B120: He_min=-2.096499267e-8,
+         Ho_min=.0003569834286, gamma=1.440271026e-6.
+ run019: R600,dx.0125,B120: He_min=-2.009729274e-8,
+         Ho_min=.0003569836632, gamma=1.411084089e-6.
+R450/R600 comparison also preserves the sign. At R600 the physical Phi
+tail is4.63e-11. The run019 e-fold time is7.08675e5m^-1; the run013/run019
+growth rates agree to approximately.25%. The Cholesky-symmetrized canonical
+flow has a real +/-gamma pair; negative energy alone was not used as the
+dynamical claim.
+
+Run021 independently evaluates the saved run013 minimum direction with
+mpmath50 analytic directional derivatives of the constraint functional.
+It obtains -2.0213811850490715e-8, versus the saved AD Rayleigh value
+-2.021381214123088e-8. Absolute difference2.91e-16, relative1.44e-8.
+First charge derivative=-1.20e-16. This avoids subtracting nearly equal
+ADM masses and confirms the finite negative direction. It does not turn
+the Galerkin calculation into a rigorous continuum spectral enclosure.
+
+This is a resolved finite-Galerkin instability prediction for this branch.
+M_ADM<mQ and a converged nodeless BVP alone cannot establish its stability.
+
+3. PURE-X FULL-ACTION NONLINEAR RADIAL CONTROL
+
+Actual stability input: reference/run_003/pureX_h0.050.npz. The owner's
+later run004 refinement changes the profile negligibly; the actual run003
+bytes remain pinned and were not silently substituted. Full-action inputs:
+M_source=1, 4piG=1, m=.49990002999000355,
+lambda_total=.01, g=.001154469667530218, lambda_rep=.006666666666666666.
+The exact equilibrium has Phi=0, centralh=.05,
+omega_X approximately.95402452026, R99 approximately17.27854,
+GM_ADM approximately.4746929222, C99 approximately.02747297.
+
+Full nonlinear complex Phi AND X equations and polar-areal metric were
+evolved throughT1000, Rbox600. A1% relative X-shape seed and1% relative
+Phi amplitude seed were added and total charge was renormalized to the
+unperturbed charge. This retains the allowed X->PhiPhi conversion channel.
+The final run010 uses dx.1,dt.02; run004 uses dx.2; run003 dx.4.
+Unperturbed baselines are run002(dx.4) and run009(dx.2).
+
+Perturbed grid controls (dx; max relative ADM/charge drift; momentumLinf):
+ .4: 1.4221e-6 /1.5152e-10; 1.1720e-6.
+ .2: 1.6944e-7 /2.3221e-12; 1.4734e-7.
+ .1: 2.5657e-8 /4.5741e-14; 2.6773e-8.
+The independent radial mass-constraint relative residual falls from
+.00570 to.00168 to.000437; the constraints are recomputed at every RK4
+substage and the momentum equation is checked independently by directional
+time differentiation of the metric solver.
+
+In run010 central|X| remains[.04986025470,.05029936209], or within
+[-.2795%,+.5987%] of.05. The seeded Phi radial norm and central amplitude
+never exceed their initial values at the recorded times; minN>.9220.
+Resolved central breathing peaks occur nearT360 and725, so coverage is
+approximately2.7 cycles. This is a bounded-seed, bounded-time radial test,
+not arbitrary-perturbation or asymptotic nonlinear stability. The central
+star is observed before a light signal could travel toR600 and return.
+
+The daughter pairing sector has positive K-/K+ lowest numerical stiffness
+eigenvalues .01090474283/.01094402994 at dx.1; the dx.2 values are
+.01090514034/.01094442314. The free daughter bound frequency-squared
+is.2384651060, aboveomega_frame²=.2275406963. This is a curved-space
+bound-mode test, not just comparison with the free Phi mass. The positive
+daughter quadratic energy is sufficient for the decoupled linear sector.
+The other owner's independent full ADM Galerkin check also has positive
+pure-X blocks; see equilibria/AUDIT_STABILITY.txt and its runner records.
+
+4. CLAIM CALIBRATION AND REMAINING GAP
+
+Both-populated radial finite-space evidence is now present, not merely
+a proposed calculation. The compact mixed branch's finite growing mode
+and the diffuse branch's oscillation frequency are action-derived
+conditional predictions at the stated couplings. Boson-star stability and
+Hamiltonian constrained mode methods are established techniques; no
+discovery/priority claim follows from these computations.
+
+The principal open obligation is continuum radial error/coercivity control
+and nonradial stability, followed by formation, occupation and lifetime at
+physically selected parameters. The numerical action-family points are
+not the earlier MeV weak-gravity/quartic benchmark. No observable channel,
+cosmological abundance or galaxy law is supplied by this lane.
+
+All21 bounded-run manifests validate against current input/result bytes.
+VALIDATION.json records the checks; RUN_INDEX.txt distinguishes accepted
+controls from superseded diagnostics. HAMILTONIAN_DICTIONARY.txt and
+DERIVATION.txt contain the exact normalizations and independent derivative.
+SOURCE_PINS.json and ARTIFACT_HASHES.json fix inputs and final lane artifacts.

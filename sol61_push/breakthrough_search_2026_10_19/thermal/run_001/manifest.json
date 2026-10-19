@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "claim_id": "BZS-THERMAL-001",
+  "repository": {
+    "commit": "c2f63ebbe3d6b3f13666d351d056c4f7cb88aa18",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/breakthrough_search_2026_10_19/thermal/check_thermal.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite-T susceptibility quadratures agree on theta=1e-4..100 declared grid; low-T cubic, logcosh scaling bound, linear source limit and zero-T absorption ratio controls pass at declared points",
+    "coefficient_domain": "IEEE float64 with scipy adaptive quadrature",
+    "conventions": "a=d=hbar=kB=1 for dimensionless checks; positive fields and temperatures; common-d fixed two-level inventory",
+    "inputs": [
+      "exact rational dipole-weighted reduced-gap distribution",
+      "Gibbs state and zero-stiffness spherical source matching"
+    ],
+    "bounds": {
+      "theta_min": 0.0001,
+      "theta_max": 100,
+      "thermal_integral_v_max": 45,
+      "field_to_thermal_ratios": [
+        0.01,
+        0.1,
+        1,
+        10
+      ]
+    },
+    "non_claims": [
+      "No general proof from finite points",
+      "No interval certification",
+      "No physical dipole source, temperature, a0, or halo relaxation time derived"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T13:41:47.333709+00:00",
+    "runtime_seconds": 0.237387,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/breakthrough_search_2026_10_19/thermal/run_001/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/breakthrough_search_2026_10_19/thermal/check_thermal.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/thermal/check_thermal.py",
+      "sha256": "8a09855ea26ddfedbb5f3882881a64732fe27f2cfc563b982abc5ab0dd3f64dc",
+      "sha256_after": "8a09855ea26ddfedbb5f3882881a64732fe27f2cfc563b982abc5ab0dd3f64dc"
+    }
+  ],
+  "output_directory": "sol61_push/breakthrough_search_2026_10_19/thermal/run_001",
+  "declared_results": [
+    "sol61_push/breakthrough_search_2026_10_19/thermal/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/thermal/run_001/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/breakthrough_search_2026_10_19/thermal/run_001/stderr.txt",
+      "sha256": "7d55fb0c47aa2e095aa83921266381f6945be5448853d5f3e3a6da148984e585",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: sol61_push/breakthrough_search_2026_10_19/thermal/run_001/results.json"
+  ]
+}

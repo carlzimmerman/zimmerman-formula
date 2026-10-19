@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "EKG-2026-10-19-C-HESSIAN",
+  "repository": {
+    "commit": "e54c33252909e38a529a69f7adac265e37b54cb4",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "sol61_push/full_two_field_2026_10_19/stability/hessian_ekg.py",
+    "--profile",
+    "sol61_push/full_two_field_2026_10_19/equilibria/run_001/mixed_center.npz",
+    "--R",
+    "300",
+    "--dx",
+    "0.05",
+    "--basis",
+    "30",
+    "--result",
+    "sol61_push/full_two_field_2026_10_19/stability/run_006/hessian.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "torch",
+        "version": "2.8.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Charge-constrained second variation of exact polar-areal ADM mass around a both-nonzero full two-field equilibrium, in a declared finite radial Galerkin space; automatic Hessian checked by directional finite variations and stationarity.",
+    "coefficient_domain": "Double precision PyTorch automatic differentiation and SciPy symmetric matrix eigenspectra",
+    "conventions": "Scaled fields sqrt4piG times physicalf,h; canonicalmomenta2r2Pi for real components; mu=GM; qbar=GQ; Hessian ofmu-omegaqbar; noEOS/NR substitution",
+    "inputs": [
+      "mixed_domain.npz independently solved and domainrefined by equilibriumowner"
+    ],
+    "bounds": {
+      "R": 300,
+      "dx": 0.05,
+      "basis_per_real_component": 30,
+      "dimension_per_parity": 120
+    },
+    "non_claims": [
+      "Finitebasispositivity does not establish continuumcoercivity",
+      "No nonlinearstabilitytheorem",
+      "No assumedM/Qturningpointstability"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T17:50:49.519373+00:00",
+    "runtime_seconds": 1.912528,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/full_two_field_2026_10_19/stability/hessian_ekg.py",
+    "sol61_push/full_two_field_2026_10_19/equilibria/run_001/mixed_center.npz"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/stability/hessian_ekg.py",
+      "sha256": "7b850793bebee2bc9b8207e91c18f9c66869aec88990d3be53e96133e8f42e68",
+      "sha256_after": "7b850793bebee2bc9b8207e91c18f9c66869aec88990d3be53e96133e8f42e68"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/equilibria/run_001/mixed_center.npz",
+      "sha256": "a138cfa3b8f053b610be2ef39b40755fa7af59fee758f23faaa75c0310a19fa5",
+      "sha256_after": "a138cfa3b8f053b610be2ef39b40755fa7af59fee758f23faaa75c0310a19fa5"
+    }
+  ],
+  "output_directory": "sol61_push/full_two_field_2026_10_19/stability/run_006",
+  "declared_results": [
+    "sol61_push/full_two_field_2026_10_19/stability/run_006/hessian.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/stability/run_006/stdout.txt",
+      "sha256": "45a798851620fc60097f1e4c70fa5a862feb09e5a4e251f61a65d28d19124d25",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/stability/run_006/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/stability/run_006/hessian.json",
+      "sha256": "c1c79fb8597a29a66e7ecf0002ba3c4af75a91683473001e9d9b6e707f555919",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,166 @@
+FULL SPHERICAL TWO-FIELD STABILITY: CANONICAL AND METRIC DICTIONARY
+EKG-2026-10-19-C; stability lane, 19 October 2026.
+
+The original action has canonical complex Phi of charge1 and X of charge2,
+V=m²|Phi|²+M²|X|²+g(X*Phi²+c.c.)+lambda_total|Phi|⁴,
+M>2m, lambda_total=lambda_rep+g²/(M²-4m²), lambda_rep>0.
+No equation of state, NR dynamics, new force, dipole law or bath is added.
+The following uses dimensionless numerical length/time units chosen by each
+input equilibrium. Physical m,M,G,g,lambda_total are recorded per run.
+
+1. POLAR-AREAL GAUGE AND FIELD SCALING
+
+ds²=−alpha²dt²+a²dr²+r²dOmega², N=a^−2=1−2mu/r, mu=G M_enclosed.
+This is the opposite overall metric sign convention to the equilibrium
+owner's +--- form; the displayed physical KG/stress equations agree.
+Define scaled fields F=sqrt(4piG)Phi, Y=sqrt(4piG)X,
+c=g/sqrt(4piG), L=lambda_total/(4piG), and
+
+ U=m²|F|²+M²|Y|²+2c Re(Y*F²)+L|F|⁴,
+ Pi_F=(a/alpha) Fdot, Pi_Y=(a/alpha) Ydot,
+ S=|Pi_F|²+|Pi_Y|²+|F'|²+|Y'|².
+
+The energy density in units4piG is N S+U. The radial pressure is
+N S−U. Einstein constraints are
+
+ mu'=r²(N S+U), or mu'+2rS mu=r²(S+U),                  (H1)
+ (ln alpha)'=[mu/r²+r(N S−U)]/N,
+ (ln a)'=[mu'/r−mu/r²]/N,
+ (ln alpha a)'=2rS.                                     (H2)
+
+Asymptotic flatness fixes alpha a->1. Hence
+alpha a=exp[−integral_r^infinity2sS(s)ds]. Equation(H1) is a linear radial
+ODE for mu once the canonical matter data F,Y,Pi are specified. The code
+solves it by its integrating factor at EVERY Runge-Kutta substage and
+reconstructs alpha by(H2), normalized against exterior Schwarzschild lapse.
+
+The full two-field time evolution is
+
+ Fdot=(alpha/a)Pi_F,
+ Pi_Fdot=r^−2 partial_r[r²(alpha/a)F']
+          −alpha a[m²F+2cY F*+2L|F|²F],
+ Ydot=(alpha/a)Pi_Y,
+ Pi_Ydot=r^−2 partial_r[r²(alpha/a)Y']−alpha a[M²Y+cF²].    (H3)
+
+The independent momentum constraint is
+
+ mudot=2r² alpha/a³ Re(Pi_F*F'+Pi_Y*Y').                  (H4)
+
+The exact signed charge in the positive-frequency convention is
+
+ qbar=GQ=−2 integral r² Im(F*Pi_F+2Y*Pi_Y)dr.             (H5)
+
+No extra a or alpha factor multiplies(H5); those factors are already in Pi.
+The ADM physical mass is mu(infinity)/G, not the dimensionless v variable
+in every equilibrium file. In the final mixed equilibrium, z=sqrt(G)r and
+v=G^(3/2)M_enclosed; thus v is NOT mu. Hessian code ignores v and integrates
+mu from(H1), while a supplied a gives mu=r(1−a^−2)/2 if needed.
+
+2. EXACT REDUCED CANONICAL ENERGY
+
+In areal/polar gauge the spherical gravitational canonical kinetic term
+vanishes after the constraints are eliminated (K_theta_theta=0 and R=r).
+The canonical real matter momenta are 2r²Pi_R and 2r²Pi_I, up to the overall
+common1/G in the reduced action. Complex momentum is r²Pi*.
+Variation of the exact integrating-factor solution of(H1) gives
+
+ delta mu_infinity/delta Pi_R=2r²(alpha/a)Pi_R,
+ delta mu_infinity/delta Pi_I=2r²(alpha/a)Pi_I,            (H6)
+
+using(H2). This reproduces(H3) with the canonical factor1/(2r²), and fixes
+the relative normalization of ADM energy and(H5).
+
+For stationary F=f_s exp(−i omega t), Y=−h_s exp(−2i omega t), the correct
+constrained grand functional is
+
+ C=mu_infinity−omega qbar.                               (H7)
+
+The second variation on delta qbar=0, modulo the common U(1) phase, is the
+radial constrained energy criterion. Strict coercive positivity of the
+full continuum quadratic form would be sufficient for radial linear
+energetic stability. A finite Galerkin positive matrix establishes that
+only for its tested subspace; no omitted-mode/coercivity theorem is inferred.
+
+3. BOTH FIELDS, COMPLEX PHASES AND THE CORRECT SYMPLECTIC REDUCTION
+
+Use spherical radial modes b_j(r)=sqrt(2/R)sin(j pi r/R)/r, j=1..B. They
+are regular at the origin, vanish at R, and are orthonormal in integral r²dr.
+The time-even variables are e=(delta ReF,delta ReY,delta ImPi_F,delta ImPi_Y);
+time-odd variables are o=(delta ImF,delta ImY,delta RePi_F,delta RePi_Y).
+The Hessian at a real-amplitude/imaginary-momentum background separates as
+C2=(e^T He e+o^T Ho o)/2. Each block has dimension4B.
+
+J0=(1/2)[[0,I],[-I,0]], e_dot=J0 Ho o, o_dot=J0 He e.     (H8)
+
+Let cQ=gradient_e qbar. The common phase vector is
+z=(F0,2Y0,−ImPi_F0,−2ImPi_Y0)=−J0 cQ, represented in the same basis.
+Choose orthonormal E spanning cQ-perp, and PAIR the odd basis as
+
+ O=−2J0E, HeR=E^T HeE, HoR=O^T HoO.
+
+Then E^T J0O=(1/2)I and the reduced flow is
+
+ eR_dot=(1/2)HoR oR, oR_dot=−(1/2)HeR eR,
+ eR_ddot=−(1/4)HoR HeR eR.                              (H9)
+
+If HoR is positive and HoR=LL^T, the growth squares are the symmetric
+eigenvalues of −(1/4)L^T HeR L. A genuine negative HeR direction then gives
+a real growing/decaying pair in this FINITE Hamiltonian system. Negative
+energy alone is not declared a dynamical instability without this check.
+The unreduced system includes charge/gauge zeros, which must not be treated
+as physical unstable modes. The code records phase/charge-generator error,
+phase-kernel residual, stationarity gradient, Poisson normalization and
+finite-difference directional controls.
+
+4. PURE-X CONVERSION SECTOR: A SEPARATE SUFFICIENT TEST
+
+On a Phi=0, X=−h exp(−2i omega t) background, delta Phi is first-order
+decoupled from delta metric and delta X because its background stress is
+quadratic in Phi. Write delta Phi=exp(−i omega t)(u+i v). Define
+
+ W=a r²/alpha, P=alpha r²/a,
+ K_±=−partial_r(P partial_r)+alpha a r²[m²−omega²/alpha²±2gh].
+
+The full linear daughter equations are
+W u_ddot+2omega W v_dot+K_-u=0,
+W v_ddot−2omega W u_dot+K_+v=0.                          (H10)
+
+The relative energy is integral[W(u_dot²+v_dot²)+uK_-u+vK_+v]dr.
+Thus K_->0 (with h,g>=0) makes both stiffnesses positive and is sufficient
+to exclude exponential daughter-conversion growth in the continuum if
+operator positivity is established. The numerical finite-volume eigenvalue
+test uses the full curved metric, regular center and distant Dirichlet
+endpoint, and is mesh controlled. Comparing omega only with the FREE mass m
+would miss bound daughter modes; the code also computes the lowest bound
+test-daughter frequency in the same metric. This conversion-sector test
+does not certify the mother/metric sector by itself; that sector is evolved.
+
+5. EVOLUTION AND NUMERICAL BOUNDARIES
+
+evolve_ekg.py/v2 evolve all complex fields and momenta with full(H3), after
+the exact carrier rotation F->exp(i omega t)F and Y->exp(2i omega t)Y.
+The rotation only removes the equilibrium phase and makes no NR expansion.
+Metric constraints are recomputed from the actual perturbed data. The code
+uses centered radial finite volumes, regular origin, RK4 time stepping,
+and a distant Dirichlet outer endpoint. The initial 1% mother-shape seed is
+charge neutralized; a 1% relative daughter amplitude is also added and total
+charge is renormalized to the original reference value.
+
+Independent controls: unperturbed evolution, three spacings, mass/charge
+drift, radial mass constraint, and momentum constraint(H4), with its left
+side evaluated by a centered directional derivative of the metric solver
+along the actual KG flow. The outer boundary is600 and finaltime1000 in
+source-mass units, so central-star diagnostics lie before reflected outgoing
+signals return from the boundary (R99~17.28). This does not justify claims
+about late-time outgoing flux, arbitrary environments or nonradial modes.
+
+The v2 time-evolution parser is valid for the pure-X profiles used in its
+recorded runs. It still expects older uppercase mixed-file keys; it was
+NOT used on the final mixed file. The Hessian parser correctly reads
+physical lowercase f,h and scales by sqrt(4piG). No unexecuted mixed-time
+parser is counted as stability evidence.
+
+Independent analytic audits: root and compactness_audit independently
+reconstructed(H1),(H5)-(H10); many_body checked the mixed-file dictionary
+and Hessian normalization. Agreement is not a continuum proof. All finite
+claims are tied to actual run manifests and input hashes below this scope.

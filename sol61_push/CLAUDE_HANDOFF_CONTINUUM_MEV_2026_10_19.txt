@@ -1,0 +1,197 @@
+CLAUDE HANDOFF: FULL TWO-FIELD CONDENSATE / CONTINUUM / MeV CONTINUATION
+19 October2026. User explicitly requested this file and a Git push.
+
+LATEST USER OBJECTIVE
+"check continuum and nonradial stability of the diffuse mixed condensate,
+then continue it toward our physical MeV parameters. does a stable state
+survive without changing the action?"
+The user then requested handoff to Claude. No new continuation or nonradial
+calculation was executed after that request: only the exact benchmark was
+located. Pick up the unresolved physics below, rather than redoing the
+completed spherical calculations or treating their finite evidence as proof.
+
+START HERE
+1. sol61_push/full_two_field_2026_10_19/RESULT.txt
+2. sol61_push/full_two_field_2026_10_19/HANDOFF.json
+3. sol61_push/full_two_field_2026_10_19/stability/RESULT.txt
+4. sol61_push/full_two_field_2026_10_19/gradient_analysis/STABILITY_AUDIT.txt
+Checkpoint EKG-2026-10-19-C, parent NTS-2026-10-19-B.
+Full packet checkpoint SHA256:
+1a111b5c9abe2078e459ee0739b4bbf1e54ad513c33a3a83e0c7817680324e64
+Primary result SHA256:
+f3d800c3a7ebca70343c5099bd8dead6f040a76c6de52c7880f2f0c8eb80aba9
+Base for this handoff was Git e54c33252909e38a529a69f7adac265e37b54cb4.
+The current repository is shared with many live chats. Preserve unrelated
+changes, original records, canonical action and sealed/frozen material.
+Use a fresh output folder and bounded runs; do not overwrite this packet.
+
+ACTION AND EXACT CONVENTIONS
+Canonical complex Phi(q=1,m), X(q=2,M), minimal Einstein gravity, +---:
+ L=|dPhi|^2+|dX|^2-V,
+ V=m^2|Phi|^2+M^2|X|^2+g(X*Phi^2+c.c.)+lambda|Phi|^4,
+ Delta=M^2-4m^2>0,
+ lambda=lambda_rep+g^2/Delta, lambda_rep>0.
+No extra interaction, bath, portal, EOS or galaxy law is authorized by this
+physics target. Numerical homotopy through the action's parameters is not
+a claim that changing units alone maps an intermediate point to MeV physics.
+
+Static ansatz: Phi=f exp(-iomega t), X=-h exp(-2iomega t),
+ds^2=alpha^2dt^2-N^-1dr^2-r^2dOmega^2,
+N=1-2G Menc/r, Omega_local=omega/alpha, alpha(infinity)=1.
+Full equations, stress, proper-volume Q and center/tail conditions are in
+equilibria/DERIVATION.txt and gradient_analysis/DERIVATION.txt.
+DO NOT discard gradients when assessing the full-field stability claim.
+
+EXACT PHYSICAL BENCHMARK NOW LOCATED
+Original source:
+ sol61_push/cold_production_2026_10_11/MASTER_COLD_ENERGY_EQUATIONS.md
+ under "Charge protected scalar carrier" and the revised screening
+ benchmark paragraph (approximately line177 in the captured version).
+It specifies m=1 MeV, u_star=.02, r_lambda=2,
+sigma0/m=.3 cm^2/g, lambda_total approximately.00881292,
+g approximately2168 eV, M=2m sqrt(1+.02^2), lambda_rep=2lambda_total/3.
+The quoted lifetime is a vacuum production benchmark, not a condensate
+lifetime. This is a chosen screening point, not an independently derived
+or globally allowed cosmological model. The older4 cm^2/g branch differs.
+
+Nondimensionalization matters. With fields scaled bym/sqrt(lambda),
+rhat=mr, the lambda=1 solver's gravitational parameter is
+ Gamma=G_N m^2/lambda_total.
+Its normalized g isg/(m sqrt(lambda_total))=sqrt(4u_star^2/(1+r_lambda)).
+The physical benchmark therefore has Gamma of order7.6e-43, or
+4piGamma of order9.6e-42; recompute from documented constants before a
+precision claim. The completed diffuse calculation instead usedGamma1e-8.
+This is a separation of about34orders, not a simple units substitution.
+Hold u_star,r_lambda and the stated physical action parameters fixed at
+the endpoint. State what branch label is continued (e.g. scaled center
+field/central local chemical frequency, or scaled charge). Do not silently
+change charge or density and call it the same state.
+
+COMPLETED FULL-FIELD EQUILIBRIUM AND RADIAL EVIDENCE
+Diffuse BOTH-populated nodeless profile:
+ sol61_push/full_two_field_2026_10_19/equilibria/mixed_G1em8_x04.npz
+ m=lambda_total=1, G=1e-8, u_star=.02, r_lambda=2,
+ M=2.000399960007998, g=.023094010767585032,
+ centralf=.0098882646494, omega=.9999519202156226,
+ M_ADM approximately2.26685206e7, Q approximately2.26690439e7,
+ M_ADM/(mQ)=.9999769167,
+ R99 approximately4631.36, C99 approximately4.89457e-5.
+
+The full constrained ADM functional includes BOTH complex fields and their
+momenta, recomputing the metric under every variation. It is not a fluid
+or nonrelativistic Hessian. In sqrt(4piG)-scaled fields y, Pi=a/alpha ydot:
+ mu'+2rSmu=r^2(S+U), mu=G Menc,
+ S=sum(|Pi|^2+|y'|^2), U=4piG V,
+ qbar=GQ=-2 integral r^2 Im(y1*Pi1+2y2*Pi2)dr.
+Use delta^2[mu_infinity-omega qbar], fixed deltaQ=0 and common-phase
+quotient. HAMILTONIAN_DICTIONARY.txt gives all canonical factors.
+
+Accepted mixed radial runs015--018/020:
+ R10000,dx.5,B120 per component gives positive even/odd minima
+ 9.641464945e-6 /9.644202440e-7 and lowest REPRESENTED angular frequency
+ nu=2.303832927e-6 m, period2.727274723e6 m^-1.
+ R8000,dx.5,B96 (same maximum wavenumber) gives2.303787933e-6 m.
+ Grid spacing1->.5, basis60->120 and domain comparisons preserve signs.
+ Tested maximum radial wavenumber=.0376991m.
+THIS IS FINITE RADIAL EVIDENCE, not continuum coercivity, angular stability
+or a prepared/protected quantum state. No long mixed nonlinear evolution
+was claimed: even one radial period is millions of Compton times.
+
+COMPACT BRANCH: USE AS AN INSTABILITY CONTROL, NOT A STABLE COUNTEREXAMPLE
+ equilibria/run_001/mixed_center.npz SHA256
+ a138cfa3b8f053b610be2ef39b40755fa7af59fee758f23faaa75c0310a19fa5
+ G8.5e-5,centralh=.02,centralf=.00106392809814,
+ omega=.999559268298785,M_ADM368.688643676558,Q368.693700202112,
+ R99=79.6940278051,C99=.000393235673684.
+Its local central frequency exceeds the homogeneous cap. However run019,
+R600,dx.0125,B120 gives even curvature-2.009729274e-8, positive odd block,
+and a correctly paired real growing mode gamma=1.411084089e-6 m,
+e-fold7.08675e5 m^-1. Run021 independent50-digit mpmath analytic
+directional differentiation confirms a coarser negative curvature within
+2.91e-16 absolute. Short evolution can miss this slow instability.
+
+COMPACTNESS CONCLUSIONS TO PRESERVE
+The original finite-surface, isotropic TF theorem remains valid under its
+hypotheses. Its number for u=.02,r=2 is.000266560037913255.
+Gradients remove its algebraic chemical cap, and scalar profiles have tails.
+R99 encloses99% ADM mass; C99 uses TOTAL ADM mass, a distinct radius
+convention. The proposed universal R99 extension fails for equilibria.
+A universal bound restricted to CONTINUUM-STABLE MIXED states is OPEN:
+the compact mixed witness is unstable in tested radial spaces.
+The known weak bound sup_r G Menc(r)/r<=24/49 follows from exact scalar
+stress and Andreasson Theorem1, gr-qc/0702137v2. It is not new/scalar-sharp.
+
+NEXT EXECUTABLE RESEARCH, IN ORDER
+A. Continuum radial check. Use a genuinely different discretization or an
+   analytic high-frequency/coercivity estimate with low-mode error bounds.
+   A larger sine matrix alone does not certify the omitted continuum.
+   Include tails, constraint metric response, phase zero mode and charge
+   tangent. Reproduce the unstable compact control as a sign check.
+B. Nonradial check. Derive full coupled scalar AND gravitational angular
+   perturbations (l=1,2 and a justified higher-l reduction). Translational
+   l=1 zero modes must not be mislabeled instabilities. Adding l(l+1)/r^2
+   to matter gradients while freezing the metric is not a full GR test.
+   Separate axial/polar sectors, constraints/gauge and radiative boundary
+   conditions. Any Newtonian/TF leading-order approximation must be labeled
+   and its error/transfer to full GR justified.
+C. Physical continuation. Existing full BVP is
+   equilibria/solve_tf_seeded_ekg.py, z=sqrt(G)r. It already becomes a
+   singular perturbation asGamma->0; its KG RHS contains1/Gamma.
+   Continue through resolvable ratios with independent residual controls,
+   then derive a controlled TF/interior plus gradient-edge/tail expansion.
+   Numerical mesh failure is not physical nonexistence, and a TF solution
+   alone is not a full-field certificate atGamma~1e-42.
+D. Assess whether a stable state survives at the exact benchmark. State
+   separately: equilibrium existence, radial continuum, angular, nonlinear
+   and quantum stability. No global/Nobel novelty claim, lifetime, formation,
+   abundance or galaxy prediction is currently established.
+
+FILE/SCALING TRAPS AND FAILED ROUTES
+Mixed NPZ keys are lowercase f,h (physical amplitudes), fp,hp=d/dr,
+fz,hz=d/dz, z=sqrt(G)r, b=lnalpha, v=G^(3/2)Menc (NOT G Menc).
+For evolution scale BOTH fields bysqrt(4piG); X=-h,
+PiPhi=-iomega a f/alpha and PiX=+i2omega a h/alpha before that scaling.
+The old evolve_ekg_v2.py unused mixed parser expects uppercase fields;
+it was never used for a mixed nonlinear run. Fix via a new version first.
+R300 mixed Hessian runs005--008 are excluded: a significant Phi tail
+made background nonstationarity contaminate the tiny curvature.
+Platform longdouble has52mantissa bits; it is not extended precision.
+No stability claim follows from M<mQ or a turning point alone.
+An early branch had a node in h and was rejected as a ground candidate.
+Large-G continuation mesh failures were methodological, not no-go results.
+
+PURE-X CONTROL (ADDITIONAL, NOT THE LARGE-OCCUPATION MIXED TARGET)
+Phi=0 is an exact original-action branch. Full radial Galerkin blocks and
+daughter conversion stiffness are positive in tested spaces, and full
+two-field constrained evolution with1% seeds remains bounded throughT1000
+at three resolutions. Its chosen embedding hasQ only approximately12,
+so it is a classical control, not automatically a large-N quantum state.
+Detailed results are in stability/RESULT.txt and equilibria/AUDIT_STABILITY.txt.
+
+PROVENANCE / REPRODUCTION / SOURCES
+All30 completed bounded runner manifests in the full-field packet validate
+locally against the current pinned bytes. ROOT_VALIDATION.json records
+that check; completion is execution provenance, not a theorem.20Python
+files parsed;174 scientific/report artifacts pinned by checkpoint.json.
+The stability lane separately pins134files and validates21manifests.
+
+The push includes the earlier two packets from this same conversation:
+ sol61_push/breakthrough_search_2026_10_19/
+ sol61_push/nonthermal_state_2026_10_19/
+The original broad protected quantum-state goal remains open in both.
+
+Some original source inputs are untracked or modified by other chats.
+Their exact read/input bytes are preserved in
+ sol61_push/claude_handoff_2026_10_19/source_snapshots/
+ with original-path/hash mapping inSOURCE_SNAPSHOTS.json.
+Historical manifests retain their ORIGINAL paths/hashes. For old validator
+reproduction, overlay snapshots only in a separate review checkout; do not
+overwrite live canonical documents. Unrelated working-tree changes were
+not included just to make a historical validator pass.
+
+If installed, use mathbox research-program, computation-audit and proof-audit
+workflows; retain bounded contracts, raw failures and input/output hashes.
+External mathematical claims need exact primary-source hypothesis checks.
+Internal agreement is not a proof certificate. No external jobs remain.
+No message was sent to another Claude chat; this file is the requested
+handoff artifact for Claude to read after pulling.

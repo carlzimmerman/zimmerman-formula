@@ -1,0 +1,91 @@
+{
+  "claim_id": "EKG-GRADIENT-PROFILE-CHECK-5",
+  "mathematics": {
+    "assertion_tested": "Independent stress/current and integrated mass-constraint checks on exactly five saved full-gradient profiles, including comparison of pure-X local chemical frequency and declared R99 compactness against a proposed universal extension of the old TF caps.",
+    "coefficient_domain": "float64, numpy trapezoidal quadrature of finite saved grids",
+    "conventions": "Pure-X reference source M=1 and 4*pi*G=1, embedded in declared m=M/(2sqrt(1+u_star^2)), lambda=.01, g^2=lambda*(M^2-4m^2)/(1+r). Mixed profile uses its saved parameters. R99 encloses 99 percent of truncated ADM mass; C99=G*totalADM/R99.",
+    "inputs": [
+      "pureX_R100",
+      "pureX_R160",
+      "pureX_R220",
+      "pureX_h005",
+      "mixed_G1em8_x04"
+    ],
+    "bounds": {
+      "profile_count": 5,
+      "mass_constraint_gate": 2e-05
+    },
+    "non_claims": [
+      "Not a new BVP solve, interval proof or all-parameter statement.",
+      "No radial, angular, nonlinear or quantum stability assertion.",
+      "Pure-X fields are outside the original positive-both-amplitudes TF theorem. R99 is not its zero-pressure radius.",
+      "Finite grids, tail truncation and floating arithmetic remain numerical approximations."
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/full_two_field_2026_10_19/gradient_analysis/check_profiles.py",
+    "sol61_push/full_two_field_2026_10_19/gradient_analysis/profile_contract.json",
+    "sol61_push/full_two_field_2026_10_19/reference/run_002/pureX_R100.npz",
+    "sol61_push/full_two_field_2026_10_19/reference/run_002/pureX_R160.npz",
+    "sol61_push/full_two_field_2026_10_19/reference/run_002/pureX_R220.npz",
+    "sol61_push/full_two_field_2026_10_19/reference/run_003/pureX_h0.050.npz",
+    "sol61_push/full_two_field_2026_10_19/equilibria/mixed_G1em8_x04.npz"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "profiles": [
+    {
+      "name": "pureX_R100",
+      "kind": "pureX",
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_002/pureX_R100.npz",
+      "u_star": 0.02,
+      "r_lambda": 2,
+      "lambda_total": 0.01
+    },
+    {
+      "name": "pureX_R160",
+      "kind": "pureX",
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_002/pureX_R160.npz",
+      "u_star": 0.02,
+      "r_lambda": 2,
+      "lambda_total": 0.01
+    },
+    {
+      "name": "pureX_R220",
+      "kind": "pureX",
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_002/pureX_R220.npz",
+      "u_star": 0.02,
+      "r_lambda": 2,
+      "lambda_total": 0.01
+    },
+    {
+      "name": "pureX_h005",
+      "kind": "pureX",
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_003/pureX_h0.050.npz",
+      "u_star": 0.02,
+      "r_lambda": 2,
+      "lambda_total": 0.01
+    },
+    {
+      "name": "mixed_G1em8_x04",
+      "kind": "mixed",
+      "path": "sol61_push/full_two_field_2026_10_19/equilibria/mixed_G1em8_x04.npz",
+      "u_star": 0.02,
+      "r_lambda": 2,
+      "lambda_total": 1
+    }
+  ]
+}

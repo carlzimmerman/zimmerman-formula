@@ -1,0 +1,82 @@
+{
+  "claim_id": "NTS-TF-TOV-10",
+  "mathematics": {
+    "assertion_tested": "For exactly ten declared central chemical-potential states and two integration tolerances, the original carrier tree-level TF EOS yields finite-surface TOV solutions with finite charge, positive central sound speed, ADM mass below mQ, and compactness below the proven enthalpy bounds, with R/M/Q refinement changes below 2e-7.",
+    "coefficient_domain": "real floating arithmetic, Python float64/scipy RK45",
+    "conventions": "Natural units m=G=lambda_total=1 are dimensionless EOS scaling, not a claim of semiclassical validity at Planck mass. q is conserved charge density; mass is ADM/TOV mass. x=(omega_local^2-m^2)/(m^2 zeta).",
+    "inputs": [
+      "u_star=.02",
+      "r_lambda=2",
+      "exactly ten central x values .01,.05,.1,.2,.4,.6,.8,.9,.97,.99",
+      "two tolerances1e-9,1e-11"
+    ],
+    "bounds": {
+      "central_states": 10,
+      "refinements": 2,
+      "radial_start": 1e-07,
+      "radial_end": 10,
+      "max_step": 0.025
+    },
+    "non_claims": [
+      "No full Einstein-Klein-Gordon field solution",
+      "No radial, angular or nonlinear stability theorem",
+      "No ground-state/formation/preparation proof",
+      "No full-action gradient error bound",
+      "No exhaustive scan or observed compact object",
+      "No universal result beyond the declared TF EOS branch"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/nonthermal_state_2026_10_19/topology/tov_check.py",
+    "sol61_push/nonthermal_state_2026_10_19/topology/tov_contract.json",
+    "sol61_push/cold_production_2026_10_11/MASTER_COLD_ENERGY_EQUATIONS.md",
+    "sol61_push/cold_production_2026_10_11/PORTAL_COHERENT_MODES.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "parameters": {
+    "m": 1,
+    "G": 1,
+    "u_star": 0.02,
+    "r_lambda": 2,
+    "lambda_total": 1,
+    "central_states": [
+      0.01,
+      0.05,
+      0.1,
+      0.2,
+      0.4,
+      0.6,
+      0.8,
+      0.9,
+      0.97,
+      0.99
+    ],
+    "tolerances": [
+      1e-09,
+      1e-11
+    ],
+    "absolute_tolerance_ratio": 0.001,
+    "radial_start": 1e-07,
+    "radial_end": 10,
+    "max_step": 0.025,
+    "resolution_relative_gate": 2e-07
+  }
+}

@@ -1,0 +1,170 @@
+INDEPENDENT SAME-TEAM AUDIT OF THERMAL RESPONSE, 2026-10-19
+Reviewer: /root/normalization. No author proof or numerical file was edited.
+Primary verdict: PROVED AS WRITTEN for the declared fixed-inventory,
+independent, common-d symmetric TLS model, AFTER the prefactor correction
+recorded below. Physical source realization and halo application remain
+CONDITIONAL. The finite quadrature evidence is verified only on its grids.
+This is a separate derivation by a same-team subagent, not external review
+or a theorem certificate. The reviewer inspected the raw Hamiltonian,
+weight, proof, implementation and outputs and reconstructed the main arrows.
+
+Normalized claim and dependency graph
+Given H_Delta=d(Delta I+Delta sigma_x-E sigma_z), d,a,K>0,
+w(Delta)=(a/K) a Delta/(a^2+Delta^2)^(3/2), a canonical Gibbs state,
+and no T-dependence of gaps/site inventory, let p_T be the Gibbs dipole
+density and b=E-Kp_T. For T>0 and E tending to zero, b/E has a strictly
+positive limit delta_T. At low T, delta_T~log(2) kBT/(da). At T=0,
+the same inventory instead has b/E tending to zero. For the common-d
+retarded susceptibility, the T=0 zero-field absorption slope gives the
+stated thermal/absorption ratio. These are mathematical ensemble claims.
+
+Chain: declared spectrum and source -> Gibbs expectation -> continuum
+polarization -> susceptibility limit -> delta integral -> inequalities and
+low-T expansion -> local source consequence. A separate Kubo transition
+matrix element gives the absorption slope, which then eliminates da.
+The source identification with gravitational acceleration is an explicit
+model premise, not a consequence of TLS quantum mechanics. The original
+minimally coupled particle action does not supply that premise in this packet.
+
+1. Gibbs expectation and susceptibility: PASS
+The energy levels are d(Delta +/- R), R=sqrt(Delta^2+E^2).
+The free-energy derivative gives each site's expectation d E tanh(R/t)/R,
+t=kBT/d. Multiplying by the number density w/d gives exactly the stated
+p_T integral. Ground-state integration follows from the elementary change
+R=sqrt(Delta^2+E^2):
+ integral_E^infinity dR/(a^2+R^2-E^2)^(3/2)=1/[a(a+E)],
+with E=a supplied by the continuous limit. Hence p_0=(a/K)E/(a+E).
+At positive T, w/Delta is integrable at both endpoints and dominates the
+E-derivative locally; the derivative-at-zero and change of variables are valid.
+K chi_T=integral(1+x^2)^(-3/2)tanh(x/theta)dx follows with theta=t/a.
+
+2. Deficit, strict signs, monotonicity, low-T coefficient: PASS
+The weight integrates to one. For T>0, 0<tanh(x/theta)<1 at x>0,
+so 0<delta_T<1. Increasing T strictly decreases the integrand for chi_T,
+giving strict increase of delta_T. The scaled formula bounds its denominator
+below by one and uses integral_0^infinity(1-tanh y)dy=log2.
+The exact second moment is 3 zeta(3)/8, giving -9 zeta(3)theta^3/16.
+The expansion has a valid O(theta^5) remainder: for z>=0,
+ |(1+z)^(-3/2)-1+(3/2)z| <=(15/8)z^2,
+and the fourth moment of 1-tanh y is finite. This independently supplies
+a uniform analytic error argument rather than extrapolating finite points.
+High-T limit delta_T->1 also follows by dominated convergence in x.
+
+3. Exact thermal deficit transform and log-cosh scaling: PASS AFTER CORRECTION
+The original inspected proof had K D_T=a E times the transformed integral.
+This omitted one factor a. I reported it; the coordinator corrected the
+proof to K D_T=a^2 E times that integral before this final audit.
+Indeed w/R times dDelta becomes p_sat a dR/(a^2+R^2-E^2)^(3/2), and
+Kp_sat=a. The exact coefficient is therefore a^2 E. The following leading
+(E/a) integral, log-cosh formula, and dimensionless a=1 code were correct.
+An independent non-unit test at a=3 confirms the corrected dimensional form.
+
+The source has the exact split
+ b=E^2/(a+E)+a^2 E integral_E^infinity
+      [1-tanh(R/t)]/(a^2+R^2-E^2)^(3/2)dR.
+Replacing the thermal denominator by a^3 gives
+ (Et/a)log(1+exp(-2E/t)); combining E^2/a gives (Et/a)log[2cosh(E/t)].
+The cold-source error is exactly E^3/[a(a+E)]. For R>=E the thermal
+denominator error is bounded using |(1+z)^(-3/2)-1|<=3z/2, z>=0,
+which gives an O(Et^3/a^3) bound after integrating the exponentially
+decaying second moment. Thus both reported remainder orders are correct.
+The fixed-E/t low-temperature regime is explicit. E_cross~t log2 remains
+an asymptote-matching convention, not an exact transition point.
+
+4. Far-field and physical interpretation: CONDITIONAL, correctly scoped
+b/E->delta_T gives E~GM/(delta_T r^2) for a prescribed spherical local
+zero-stiffness source law GM/r^2. It does not establish a global finite
+halo at fixed temperature, physical settling, lensing or source inventory.
+The report explicitly retains those limitations. No excluded finite-T
+ground-state MOND claim was silently transferred to a different state.
+
+5. Retarded leaf and temperature/absorption ratio: PASS
+At E=0 each transition frequency is omega=2dDelta/hbar and the transition
+source element is d. The positive-frequency Kubo delta function, multiplied
+by w/d and its frequency Jacobian, gives
+ K Im chi=(pi/2)x/(1+x^2)^(3/2), x=omega/(2da/hbar).
+Therefore tau0=pi hbar/(4da), and eliminating da from the low-T deficit
+gives delta_T/(T tau0)->(4log2/pi)kB/hbar. Units are inverse-temperature
+times inverse-time on both sides. At T>0 the transition population difference
+is tanh(hbar omega/(2kBT)), so Im chi becomes quadratic near omega=0 and
+its strict low-frequency slope is zero. The noncommuting limits and the
+distinction from a bath's relaxation time are correctly stated. Variable
+d(Delta) is correctly identified as extra freedom preserving the ground law.
+
+6. General spectral mass-temperature bound: PASS under its separate premises
+I also checked dynamic_response/DERIVATION.txt section 8, equations (19)-(20),
+because this is the coordinator's proposed broader thermal result.
+Let dmu=(2/(pi chi0))chi''_0(omega)domega/omega be a probability measure,
+chi0=1/K, with E_mu[omega^2]<=K rho_eff. For independent symmetric TLS
+with purely off-diagonal zero-field source, fixed gaps/inventory, and Gibbs
+populations, chi_T/chi0=E_mu[tanh(hbar omega/(2kBT))].
+The function F(z)=tanh(c sqrt(z)), c=hbar/(2kBT)>0, is increasing and
+concave on z>=0; its printed second derivative has the correct two negative
+terms for z>0, while F itself extends continuously to F(0)=0. Jensen followed by
+the moment bound proves
+ delta_T>=1-tanh[hbar sqrt(Krho_eff)/(2kBT)].
+For 0<epsilon<1, delta_T<=epsilon therefore requires
+ T<=hbar sqrt(Krho_eff)/[2kB artanh(1-epsilon)].
+The bound is sharp as a statement about probability measures with a fixed
+second moment: a point measure and saturated moment attain equality.
+That mathematical sharpness does not construct a microscopic mass source.
+A diagonal source term/population susceptibility, changing gaps or inventory,
+multilevel effects or a non-Gibbs state can invalidate the TLS averaging
+identity. Those are named assumptions, not covered cases. The finite-inertia
+mass source/sum-rule premise is conditional on its declared canonical source
+operator and must not be inferred from formal gravitational labels alone.
+
+7. Finite computation audit: PASS ONLY ON THE DECLARED POINTS
+run_001 is an explicitly preserved failure: its compact-interval quadrature
+missed the narrow low-theta layer. NUMERICAL_CORRECTION.txt explains the
+added breakpoints. run_002 is completed; I ran the installed validator with
+--root and received 'valid evidence record (run status: completed)'.
+This validates provenance, not the analytic theorem.
+After the coordinator's historical-input retention, I re-read the ancillary
+note and checked check_thermal_run001_historical.py: its SHA256 is exactly
+the old input hash in run_001's manifest. It was not executed by this audit.
+The 37 recorded checks comprise:
+ - two quadratures and the deficit bound at seven theta values
+   {1e-4,1e-3,1e-2,.1,1,10,100};
+ - monotonicity of that seven-point list;
+ - cubic asymptotics at {.01,.003,.001};
+ - log-cosh bound at theta {.01,.001,.0001} crossed with E/t {.01,.1,1,10};
+ - linear floor and thermal/absorption asymptotics at three theta values each;
+ - a resolved thermal-effect mutation.
+It is not a continuous scan of the range [1e-4,100] or an interval proof.
+The integration cutoff45 omits less than theta exp(-90) in the deficit;
+at the largest tested theta this is below 9e-38. Numerical tolerance is
+still non-rigorous float quadrature. No gap discretization or finite-volume
+recurrence, independent physical dataset, or measured halo temperature is tested.
+
+Independent numerical check, supplementary outside the bounded runner:
+I used 55-digit mpmath and z=tanh y to obtain the independent finite integral
+ delta=theta integral_0^1 dz/[(1+z)(1+theta^2 atanh(z)^2)^(3/2)].
+All seven values agree with run_002; for example theta=.01 gives
+0.00693079592175622602879032615. Direct original-gap integration at
+E/theta=1e-5 gives b/E=.00693079592224632998396471359 for theta=.01,
+agreeing with the transformed source. A non-unit a=3,K=5,E=.2,t=.1 direct
+original p_T integral and corrected exact transformed deficit differ by
+approximately 1.1e-57. These calculations are independent diagnostics,
+not interval-certified errors or additional claims of universal coverage.
+
+Remaining gap and safest deliverable
+The TLS formulas, asymptotic relation and conditional probability-measure
+inequality survive audit. The missing physical implication remains the
+actual gravitational source operator, support/inertia and independently
+derived spectrum/state from one action. No kappa, source population,
+temperature, actual halo lag or complete physical theory is derived here.
+The general thermal inequality is a useful consistency requirement for a
+specified TLS realization; novelty and applicability to arbitrary cold
+matter are not established by this audit.
+
+Exact artifact hashes follow. These pin what was reviewed, not a later edit.
+Observed UTC 2026-10-19T13:48:21.670886+00:00
+54d883a386d90459100e5c51cc7517a4ce6a7ca19f4abc92b81e2cf1bedba34a  sol61_push/breakthrough_search_2026_10_19/thermal/DERIVATION.txt
+6d2e54894e7ba951f29ed17ee1c9ae3bf538a80adeeb09bb2b317585d45203b8  sol61_push/breakthrough_search_2026_10_19/thermal/check_thermal.py
+cc3580ceeb364bd5095565c27fa9b302cf99dc9bef5236d4e7f0634d6a0153fd  sol61_push/breakthrough_search_2026_10_19/thermal/contract.json
+ac311b2a5733a3c8a569406e6d53ecc6916e35f2d7ad0d0923dcc4d398d8d4dd  sol61_push/breakthrough_search_2026_10_19/thermal/NUMERICAL_CORRECTION.txt
+fb6dcb120b50a36563e333f6f08ac5e9926713302f908176f3adb64b71b64175  sol61_push/breakthrough_search_2026_10_19/thermal/run_002/manifest.json
+99fcd054baae35153d6e813afaf73922f310eee93a7a424768fabb89c47b7ab0  sol61_push/breakthrough_search_2026_10_19/thermal/run_002/results.json
+6c5702394f43bb64131efd01e1e96202f0b0c32cdcad8862308d6852feb49505  sol61_push/breakthrough_search_2026_10_19/dynamic_response/DERIVATION.txt
+8a09855ea26ddfedbb5f3882881a64732fe27f2cfc563b982abc5ab0dd3f64dc  sol61_push/breakthrough_search_2026_10_19/thermal/check_thermal_run001_historical.py

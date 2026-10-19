@@ -1,0 +1,90 @@
+INDEPENDENT READ-ONLY AUDIT OF CONSTRAINED ADM HESSIAN
+Checkpoint EKG-2026-10-19-C. Reviewer /root/many_body.
+
+Source examined: stability/hessian_ekg.py SHA2567b850793bebee2bc9b8207e91c18f9c66869aec88990d3be53e96133e8f42e68.
+Hamiltonian dictionary examined: full_two_field_2026_10_19/HAMILTONIAN_DICTIONARY.txt SHA256e48ffdceea6615102bf26d542d401dd2fca20db7755ef8f802c9d96afa3aba18.
+Profile: equilibria/run_001/mixed_center.npz SHA256a138cfa3b8f053b610be2ef39b40755fa7af59fee758f23faaa75c0310a19fa5.
+No stability file was edited. This review independently derives the continuum normalization and then audits the numerical implementation; it is not a formal proof certificate.
+
+PRIMARY VERDICT AT THIS CHECKPOINT
+The continuum constrained-ADM functional and charge/phase projections are PROVED AS WRITTEN under the polar-areal canonical-field conventions. No factor-of-two, charge-weight, cubic-sign or mass-normalization bug was found in hessian_ekg.py. The reported mixed negative eigenvalue is a negative direction of its finite discretized projected Hessian. Calling it a reliable continuum negative-energy direction remains CONDITIONAL on same-domain radial grid refinement and the discretized-stationarity error control described below. Its central finite-difference controls are cancellation limited. Neither a negative energy direction nor a positive finite Galerkin block establishes full dynamical stability/instability by itself.
+
+FRESH CONTINUUM RECONSTRUCTION
+Let y_j=sqrt(4piG) times the physical complex fields and Pi_j=a/alpha times their coordinate-time derivative. Pi is an independent canonical variable. Set S=sum(|Pi_j|^2+|y'_j|^2), and U=4piG times the original physical potential. The polar-areal Einstein constraint is
+ mu'=r^2[(1-2mu/r)S+U], mu=G M_enclosed,
+ or mu'+2rS mu=r^2(S+U).
+The integrating-factor solution is exactly
+ mu(R)=exp[-I(R)] integral_0^R exp[I(s)]s^2[S(s)+U(s)]ds,
+ I(r)=integral_0^r2sS(s)ds.
+This is what functional() computes. The source profile's stored v=G^(3/2)M is correctly ignored; the metric constraint is recomputed from the perturbed fields and Pi. Thus varying a or the source mass profile independently is neither needed nor permitted in this reduced functional.
+
+The Noether charge is
+ GQ=-2 integral r^2 Im(y1*Pi1+2 y2*Pi2)dr.
+The real-component code expands it correctly as -2 integral r^2(Fr PiFi-Fi PiFr+2Xr PiXi-2Xi PiXr). Its background Xr=-sqrt(4piG)h and PiXi=-2omega a Xr/alpha have the correct signs. The amplitude Pi includes a/alpha; omitting it would be a real bug, but it is present.
+
+Varying the integrating-factor formula gives delta mu_infinity=integral alpha a r^2[N delta S+delta U]dr, since alpha a=exp[I(r)-I(infinity)]. The real-component momentum derivative is2r^2 alpha Pi/a, consistent with real canonical momentum2r^2 Pi after removing the common action factor1/G. Accordingly the relative equilibrium is stationary for mu_infinity-omega GQ. There is no missing factor4pi or extra factor2omega in this grand functional.
+
+PARITY BLOCKS AND CONSTRAINTS
+At the real-field/imaginary-momentum background, the two blocks are amplitude/momentum-imaginary(even) and phase/momentum-real(odd). They cover all eight real radial field/momentum components in two uncoupled quadratic blocks.
+In the even block, projecting the Hessian of mu-omega qbar to ker(dqbar) is the correct fixed-total-charge constrained second variation at a stationary background. Projecting the Hessian of mu alone would be wrong because second-order charge changes require the Lagrange-multiplier term; the code does include it.
+In the odd block, first-order deltaQ vanishes identically. The common phase generator is
+ (delta Imy1,delta Imy2,delta RePi1,delta RePi2)
+ =(F0,2X0,-P0,-2P1).
+The code's excluded vector has exactly these weights. Its L2(r^2dr) projection is correct because the spherical sine/r basis is orthonormal in that measure, including the midpoint discrete orthogonality for the tested B<N. Removing one common phase direction does not remove relative composition or relative phase modes.
+
+DISCRETIZATION AND BOUNDARIES
+The centered derivative at the first cell implements regular even extension about r=0. The last derivative implements the perturbation's Dirichlet extension at R. The integrating factor uses trapezoidal cell-center quadrature with leading center expansions. These are consistent finite-grid approximations, but the background is an interpolated continuum equilibrium rather than a stationary point of this exact discrete functional.
+At finite R the background tail is not precisely Dirichlet. This made R300 stationarity norms around2.67e-7 and changing B30->60 worsened its projected gradient. Domain expansion is necessary. R450 and600 reduce that defect substantially. The finite functional also stops at the last cell center and approximates the last shell; it must converge with dx before its tiny curvature sign is assigned continuum meaning.
+
+U1 symmetry is exact for the discrete functional too. Therefore a nonzero Rayleigh quotient on its approximate common-phase vector need not be an AD bug: on the exact phase orbit,
+ 0=d^2L/dtheta^2=v_phase^T H v_phase+gradL dot a_phase.
+Here the even phase acceleration is(-F0,-4X0,-P0,-4P1). Thus the removed odd-direction curvature is a direct stationarity/discretization consistency diagnostic. A small gradient norm alone is not a quantitative bound on a small Hessian eigenvalue; one also needs the relevant Hessian sensitivity and gradient component along its witness.
+
+RESULTS READ AT INITIAL AUDIT
+R300,B30 gives the lowest even constrained value−1.25446e-8 at dx.1,−7.24269e-9 at dx.05 and−6.48393e-9 at dx.025. This sequence is contaminated by the R300 background tail and should not be used alone as the infinite-domain limit.
+R450,B45,dx.05 gives−2.09602e-8; R600,B60,dx.05 gives−2.09649e-8. These hold the same maximum wavenumber pi/10 and show strong domain agreement. The corresponding stationarity norms are5.74e-9 and3.23e-9. The projected odd blocks are positive in the tested span, with lowest values about3.57e-4, while their removed common-phase Rayleigh quotient is about−4.55e-9 at dx.05. The latter is not negligible compared with the tiny negative even curvature and motivates an R600 grid refinement.
+The constrained eigenvector's reported linear charge error is around1e-16, consistent with the intended tangent restriction. Hessian symmetry error about3e-14 is much smaller than the negative eigenvalue and supplies an AD/eigensolver consistency check; it does not measure spatial discretization error.
+
+DIRECTIONAL FINITE-DIFFERENCE ISSUE
+The source tests eps1e-4,5e-5,2.5e-5. For an eigenvalue~−2e-8 the desired symmetric energy difference is of ordereps^2 times2e-8, namely about2e-16 at the largest epsilon, while subtracting masses/grand energies computed from quantities of order.03. The reported finite-difference values change sign or fluctuate by~1e-7 as epsilon decreases. They do not independently corroborate the tiny negative direction in double precision. Higher precision or a saved directional-polynomial/AD check is needed; the well-resolved positive odd curvature is not affected comparably.
+
+SCOPE OF A SIGN CLAIM
+If a converged negative Rayleigh direction survives the exact charge restriction and numerical error controls, a single valid direction suffices to refute positive constrained-energy coercivity, without basis completeness. It still does not prove a growing mode in the gyroscopic Hamiltonian dynamics. Conversely positive eigenvalues in B finite sine/r modes test only their finite span; omitted radial wavelengths, larger domains, angular modes, nonlinear evolution and quantum protection remain separate. No all-mode stability certificate follows from these matrices.
+
+The stability owner was contacted with these findings and asked for same-domain dx.025 refinement, saved witness coefficients/gradient projection, and a higher-precision directional check. A final refinement addendum follows when available. All initial results above refer to the exact pinned source version.
+
+FINAL MIXED REFINEMENT / SYMPLECTIC ADDENDUM
+Reviewed the v2 source SHA256ecfceed04571f49fc2834f7f2e8b067f273fba5d275e25eb0a32d8571fd617e8 and its exact diff from the pinned original: unchanged continuum/grid functional; additional saved matrices/witness; correctly paired charge/gauge symplectic reduction; larger finite-variation amplitudes; attempted longdouble check. No normalization repair was necessary.
+
+In run013, R600,B60,dx.025, the even minimum is−2.0213810703410756e-8. This differs from the same-domain dx.05 value−2.0964944023811252e-8 by about3.6%, preserving the sign. The stationarity norm drops to3.73787e-10 and the removed phase Rayleigh magnitude to6.82749e-10. At R600,dx.05, enlarging B60->120 in run014 changes the even minimum only from−2.0964944e-8 to−2.0964993e-8. Thus the negative direction is numerically reliable in the tested projected Galerkin spaces and is not an eigensolver-roundoff sign. There is no rigorous continuum discretization-error bound or exact discrete-stationarity correction, so a certified all-space continuum spectral theorem is still not claimed.
+
+The v2 symplectic pairing is correct. In the even/odd orderings, J0=1/2[[0,I],[-I,0]]. Let E be the even charge-tangent orthonormal basis and O=-2J0E. Then E^T J0O=I/2, and O is the matching odd phase-quotient basis. The code checks phase_generator=-J0 gradQ and uses the paired Hessians He=E^THe_fullE and Ho=O^THo_fullO. If Ho=L L^T>0, the reduced even squared growth spectrum is that of−L^THeL/4. All signs/factors match the canonical real-field momentum normalization.
+For run013 the largest squared value is+2.0010584825e-12, giving the finite-Galerkin real rate1.414587743e-6; inverse rate about7.07e5 in the chosen time units. The positive paired odd block and negative even direction therefore produce a growing mode IN THIS FINITE HAMILTONIAN MODEL, which is stronger than merely quoting a negative energy direction. A continuum growing-mode theorem or long evolution over that growth time has not been established by this audit.
+
+The purported extended-precision check reports longdouble_mantissa_bits52 on this ARM environment. It therefore provides no precision increase over float64 and cannot be cited as a high-precision independent check. Its fluctuating smallest finite variations retain the cancellation warning above. The analytic AD Hessian, symmetry, grid/domain and basis controls supply the numerical sign evidence; any mpmath follow-up is a separate artifact not needed to relabel these checks.
+
+Final mixed normalized verdict: implementation and finite-dimensional negative curvature/growth assertion verified in the stated tested spaces, with the specified grid/domain controls. Continuum/nonlinear/quantum claims remain incomplete. Calling this compactness witness a proven stable condensate would be unsupported.
+
+PURE-X ADDITIONAL FINITE-BASIS EVIDENCE
+At the coordinator's request I independently adapted the reference/run_004/pureX_h0.050.npz profile, retaining its physical h, alpha and a. The adapter sets f=0 but retains BOTH complex field and momentum perturbations in the Hessian. Parameters are
+ G=1/(4pi)=.07957747154594767,
+ M=1, m=1/[2sqrt(1+.02^2)]=.49990002999000355,
+ lambda_total=.01, lambda_rep=.006666666666666667,
+ g=sqrt[(M^2-4m^2)lambda_total/3]=.001154469667530218,
+ omega=omega_X/2=.4770122601313898.
+Since4piG=1 the reference h is already both the physical and rescaled amplitude. a=(1-2 mass_G/r)^-1/2 is reconstructed with regular a(0)=1, alpha=exp(logalpha), and mass_G is not reused inside the perturbed ADM functional. The original full action with nonzero conversion coupling is respected: Phi=0 is an exact background, not deletion of the daughter fluctuation sector.
+
+A FROZEN COPY of the original Hessian implementation was used, SHA2567b850793bebee2bc9b8207e91c18f9c66869aec88990d3be53e96133e8f42e68; no stability-owned source was modified. The adapter/runner is pureX_hessian_family.py SHA256898965253981f6cd805f09901bb0d516f8ddc45a3cc39e33b4b033bb6be33b81. Its fixed contract SHA256865662572a6b21ef1636d6bb6d20b2e032d5811f3fb9d935bf6a61e900a687bb declares four cases:
+ R100,dx.05,B40: even minimum+.01848936690, odd minimum+.01855451936;
+ R100,dx.025,B40: even+.01848943400, odd+.01855458593;
+ R150,dx.05,B60: even+.01848935318, odd+.01855450509;
+ R150,dx.025,B60: even+.01848942025, odd+.01855457163.
+The same maximum radial wavenumber is maintained across the domain comparison. Grid changes are about6.7e-8 and domain changes about1.4e-8 in the lowest values. At fine grid the stationarity norm is1.66e-6 and removed phase Rayleigh about−2.48e-7, far below the positive~.0185 margin. All tested charge-constrained even and phase-quotiented odd spaces are positive. These are finite-basis radial energetic controls, not a complete continuum or nonlinear theorem.
+
+The fine-grid reference embedding has GM≈.4746928815 and GQ≈.9629118447, so M_ADM/(mQ)≈.98615011. Its total Q is only about12.1 at the declared G. Therefore it is a CLASSICAL REFERENCE family, not automatically a macroscopic large-occupation quantum condensate. The more weakly gravitational mixed example has Q~2.27e7, but that alone also does not derive its quantum occupied state or preparation.
+
+PROVENANCE AND FINAL SCOPE
+The pureX_hessian_run_001 bounded runner completed four fixed cases and its manifest validated against current inputs. Manifest SHA2568ccc6e0df596cf4232bc560e768de9bb342e865f8a815e3caffc5ba9713747f1; results SHA2563394c1b95c8f4329f7015edde8e5a3beb45a3f0ed109cc65fcbbecbc77fb5405; adapted profile SHA2564fe814cee48a0ec4f0ae56953c752ac7f3b83b5295208fb4afa7e49242c57211.
+Read-only validator runs also passed for stability/run013 andrun014 with current v2/profile hashes. Exact mixed result hashes read: run013/hessian.json84b9571a98537b7c6611e85ca1fd79996e84e9c20c989b5cfa3c56db15a11064; run014/hessian.json513946f7c59b96bb550a4c457d558a5d35576c65fd7b086059351030babf05c9.
+
+No concrete continuum normalization or charge-projection bug was found. The material numerical issues were the R300 tail/nonstationarity, cancellation-limited tiny-direction finite differences, and lack of actual extended precision from np.longdouble. They are now separated from the refined evidence instead of being hidden. The main mixed witness has credible finite-subspace radial instability evidence; the pure-X reference has robust positive finite-subspace radial energy evidence. Neither verdict supplies formation, quantum protection, nonradial/global stability or a universal stable compactness theorem.

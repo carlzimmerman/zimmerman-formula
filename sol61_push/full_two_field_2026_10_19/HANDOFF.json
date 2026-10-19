@@ -1,0 +1,94 @@
+{
+  "checkpoint_id": "EKG-2026-10-19-C",
+  "parent_checkpoint_id": "NTS-2026-10-19-B",
+  "initial_observed_git_head": "999af428573322d0ae3e749f651bfef51bbd03b8",
+  "workspace": "shared dirty checkout; changes restricted to this packet",
+  "goal": "Solve the original full spherical two-field gravitational system; check stable condensate candidates and the fluid compactness bound with gradients retained.",
+  "definition_of_done": "Finite numerical static solutions with both fields populated, declared boundary/convergence/constraint controls, full radial stability discrimination, and a radius-qualified verdict on the old bound. A protected physical quantum state additionally requires continuum/angular/many-body/formation evidence and remains open.",
+  "strongest_current_result": "Localized nodeless mixed full-EKG solutions are numerically verified. A diffuse mixed branch has positive constrained radial Galerkin energy and oscillatory spectrum in all tested spaces. A compact mixed branch violates the homogeneous cap and proposed R99 extension but has a resolved slow finite-space growing mode. A known weak anisotropic-gravity bound applies.",
+  "conventions": {
+    "units": "hbar=c=1, metric +---",
+    "action": "Canonical complex fields, minimal Einstein gravity, V=m^2|Phi|^2+M^2|X|^2+g(X*Phi^2+c.c.)+lambda|Phi|^4; M>2m; lambda=lambda_rep+g^2/(M^2-4m^2), lambda_rep>0",
+    "ansatz": "Phi=f exp(-i omega t), X=-h exp(-2i omega t), local Omega=omega/alpha, alpha(infinity)=1",
+    "charge_weights": [1, 2],
+    "radius": "R99 encloses 99% of ADM mass; C99 uses total ADM mass, distinct from local G Menc(r)/r and the prior finite TF surface",
+    "mixed_file_mass": "z=sqrt(G)r; v=G^(3/2)Menc, not G Menc; lowercase f,h are physical amplitudes",
+    "physical_parameter_limit": "Computed action-family gravity/quartic ratios differ from the earlier physical MeV benchmark; no direct benchmark simulation or galaxy law is claimed"
+  },
+  "claims": [
+    {
+      "id": "EKG-EQUATIONS",
+      "status": "proved",
+      "statement": "Full spherical stress/current/Klein-Gordon/Einstein equations and constrained radial ADM Hamiltonian derived from the original action.",
+      "artifacts": ["equilibria/DERIVATION.txt", "gradient_analysis/DERIVATION.txt", "HAMILTONIAN_DICTIONARY.txt"]
+    },
+    {
+      "id": "EKG-MIXED-EXISTENCE",
+      "status": "computationally verified in a stated range",
+      "statement": "Finite-domain refined nodeless two-populated localized equilibria at the declared dimensionless couplings.",
+      "artifacts": ["equilibria/run_001/manifest.json", "equilibria/run_001/results.json", "equilibria/run_001/mixed_center.npz"]
+    },
+    {
+      "id": "EKG-CAP-EXTENSION",
+      "status": "refuted",
+      "statement": "The homogeneous local chemical ceiling is not a universal full-field bound: exact pure-X integral obstruction plus positive-both numerical witnesses. The numerical universal R99 compactness extension also fails for equilibria; the actual finite-surface TF theorem is unchanged.",
+      "dependencies": ["EKG-EQUATIONS", "EKG-MIXED-EXISTENCE"],
+      "artifacts": ["gradient_analysis/DERIVATION.txt", "gradient_analysis/profile_run_003/manifest.json"]
+    },
+    {
+      "id": "EKG-RADIAL-FINITE",
+      "status": "computationally verified in a stated range",
+      "statement": "Weak mixed positive radial Hessians and lowest frequency 2.303832927e-6 m; compact mixed real finite-Galerkin growth gamma=1.411084089e-6 m. Pure-X full radial energy and finite-time controls positive/bounded. No continuum completeness certificate.",
+      "dependencies": ["EKG-EQUATIONS", "EKG-MIXED-EXISTENCE"],
+      "artifacts": ["stability/RESULT.txt", "stability/run_018/manifest.json", "stability/run_019/manifest.json", "stability/run_020/manifest.json", "stability/run_021/manifest.json", "equilibria/AUDIT_STABILITY.txt", "gradient_analysis/STABILITY_AUDIT.txt"]
+    },
+    {
+      "id": "EKG-KNOWN-GR-BOUND",
+      "status": "externally proved plus verified formal corollary",
+      "statement": "For the declared regular AF horizon-free static scalar solutions, sup_r G Menc(r)/r<=24/49 via Andreasson Theorem1 and the exact scalar stress inequalities.",
+      "source": "https://arxiv.org/pdf/gr-qc/0702137v2",
+      "artifacts": ["gradient_analysis/DERIVATION.txt"]
+    },
+    {
+      "id": "EKG-STABLE-MIXED-BOUND",
+      "status": "open",
+      "statement": "A universal compactness bound restricted to continuum-stable mixed states is not determined by the current unstable compact witness or the one diffuse stable candidate."
+    },
+    {
+      "id": "NTS-PROTECTED-QUANTUM-STATE",
+      "status": "open",
+      "statement": "A fully stable, prepared nonthermal quantum condensate at physical benchmark couplings and a new observable prediction remain unestablished. Exact charge conservation is not coherence protection."
+    }
+  ],
+  "routes": [
+    {"id": "R-EQUILIBRIA", "owner": "/root/many_body", "scope": "equilibria/", "outcome": "successful finite numerical witnesses and independent Hamiltonian audit; no quantum stability inference"},
+    {"id": "R-RADIAL", "owner": "/root/dynamic_response", "scope": "stability/", "outcome": "resolved finite radial branch discriminator, precision and resolution controls"},
+    {"id": "R-GRADIENT", "owner": "/root/compactness_audit", "scope": "gradient_analysis/", "outcome": "exact equations, cap obstruction, source theorem transfer, independent profile and symplectic audits"},
+    {"id": "R-REFERENCE", "owner": "/root", "scope": "reference/ and packet root", "outcome": "independent pure-X BVP/refinement, normalization reconciliation, provenance and synthesis"}
+  ],
+  "failed_or_excluded_routes": [
+    "reference/run_001 continuation to central h=.02 failed singular Jacobian and initial outer lapse condition was diagnostic; refined successful controls are runs002-004",
+    "First g-continuation produced a nodeful second field; retained as stationary diagnostic, excluded as nodeless condensate candidate",
+    "Mixed jumps toward G=1e-4 exhausted mesh or Newton convergence; this is not physical nonexistence",
+    "stability/run_005-008 R300 mixed Hessian signs excluded because the Phi tail and background stationarity defect contaminate the tiny eigenvalue",
+    "Platform longdouble has 52 mantissa bits and is not higher precision; independent run021 uses actual 50-digit mpmath analytic derivatives",
+    "Negative binding energy and mass-turn diagnostics were not used as stability proofs"
+  ],
+  "review_provenance": [
+    {"artifact": "gradient_analysis/DERIVATION.txt", "scope": "independent full ODE/stress/current, known bound transfer and independent numerical profile reconstruction", "limitation": "same-team research review, finite floating evidence"},
+    {"artifact": "equilibria/AUDIT_STABILITY.txt", "scope": "independent ADM normalization and finite symplectic implementation, extra pure-X Hessians", "limitation": "no full continuum coercivity proof"},
+    {"artifact": "gradient_analysis/STABILITY_AUDIT.txt", "scope": "proved finite paired-projection implication; read-only final code/MP derivative audit", "limitation": "finite matrices and numerical backgrounds"},
+    {"artifact": "SELF_REVIEW.txt", "scope": "coordinator reconciliation and mathematical proofreading", "limitation": "internal review, not independent external certification"}
+  ],
+  "next_action": "Use the frozen diffuse mixed profile in an independent full constrained radial spectral discretization and derive an omitted-mode/tail error estimate; then test full gravitational angular sectors l=1,2. Continue fixed-coupling mixed families through the slow-mode crossing before proposing a stable-state compactness bound.",
+  "deferred_continuations": [
+    "Continuation toward actual MeV weak-gravity ratio with a controlled singular TF limit including edge/tail corrections",
+    "Large-occupation number-conserving quantum treatment, depletion/radiative corrections and decay bounds",
+    "Formation, nonthermal preparation, abundance, and a derived measurable coupling/channel",
+    "Broader novelty search only after an exact claim is ready; no global novelty currently asserted"
+  ],
+  "authorized_scope": "Sustained local derivation, bounded numerical experiments, internal parallel audits and public primary literature. No action/manuscript freeze changes, other-chat messaging, publication, external compute commitment or shared navigation edits.",
+  "resource_bounds": "Per-run runner contracts/time/CPU/thread/log limits are preserved in manifests. No open-ended parameter scan or unattended job.",
+  "external_jobs": [],
+  "navigation": {"result": "RESULT.txt", "figure": "FULL_EKG_WITNESS.png", "provenance": "checkpoint.json", "validation": "ROOT_VALIDATION.json"}
+}

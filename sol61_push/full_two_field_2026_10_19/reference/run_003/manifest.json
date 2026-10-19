@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "EKG-REFERENCE-003",
+  "repository": {
+    "commit": "e54c33252909e38a529a69f7adac265e37b54cb4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/full_two_field_2026_10_19/reference/pure_compact.py",
+    "sol61_push/full_two_field_2026_10_19/reference/run_003"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Attempt full-GR nodeless pure-X references at three central amplitudes for subsequent radial stability tests; records failures and successes separately",
+    "coefficient_domain": "IEEE float64, scipy solve_bvp",
+    "conventions": "M=1,4piG=1,X=h exp(-i omega_X t); v=G mass, asymptotic lapse normalized at finite domain",
+    "inputs": [
+      "central h=.02,.03,.05",
+      "original action pure-X branch"
+    ],
+    "bounds": {
+      "r_max": 120,
+      "tol": 2e-09,
+      "base_nodes": 600,
+      "max_nodes": 20000
+    },
+    "non_claims": [
+      "No stable-state conclusion",
+      "No two-nonzero-field solution",
+      "Finite-domain reference, no exact infinity normalization"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-19T17:44:58.609000+00:00",
+    "runtime_seconds": 0.29576,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 45.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 40,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/full_two_field_2026_10_19/reference/pure_compact.py",
+    "sol61_push/full_two_field_2026_10_19/reference/pure_reference_refined.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/pure_compact.py",
+      "sha256": "eb8beb49ba66d1576084a4281cfac5d5bc911272642181592da3b3a602ab97ae",
+      "sha256_after": "eb8beb49ba66d1576084a4281cfac5d5bc911272642181592da3b3a602ab97ae"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/pure_reference_refined.py",
+      "sha256": "53e3617fd9f1df432150bdb9720dced91ed8d0f8a3b37ea36bf43c41c527e754",
+      "sha256_after": "53e3617fd9f1df432150bdb9720dced91ed8d0f8a3b37ea36bf43c41c527e754"
+    }
+  ],
+  "output_directory": "sol61_push/full_two_field_2026_10_19/reference/run_003",
+  "declared_results": [
+    "sol61_push/full_two_field_2026_10_19/reference/run_003/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_003/stdout.txt",
+      "sha256": "e975f0cac5e2bef87bb2932e6f3f2af78ba0a0c88d29c037acc3cfdcbae9b3c7",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_003/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/full_two_field_2026_10_19/reference/run_003/results.json",
+      "sha256": "91a1743071305464d1a68cfb6d5a2a235fd94799bea1f10126960e4ba66ef077",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
