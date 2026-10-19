@@ -1,0 +1,231 @@
+{
+  "checkpoint": "ZAR-2026-10-19-05",
+  "parent_checkpoint": "ZAR-2026-10-18-04",
+  "date": "2026-10-19",
+  "timezone": "America/New_York",
+  "parent_assessment_git": "055269e4d75d1e0973e416849c215b5ec9a328af",
+  "original_lineage_git": "3c01aa2861bf576f4c2d942251eb9d2f89cae108",
+  "head_at_verification": "5c3444b8f60820a4ea78ea1e798ce8429cf2622a",
+  "concurrent_repository_state": "HEAD may advance during concurrent work; all pinned analytic input hashes and prior checkpoint artifacts verified unchanged. This work makes no commits and modifies no existing files.",
+  "target": "finish nonlinear radial stability for the exact bounded smooth halo and determine law, dispersion and finite-boundary behavior, including uniform outer confinement",
+  "overall_outcome": "nonlinear stability proved in the stated angular-gap/height-bounded class; uniform all-time outer support is refuted by an arbitrarily small smooth accessible escape perturbation",
+  "hypotheses": [
+    "same positive point baryon mass and two-response spherical deep-cubic Hamiltonian",
+    "unchanged exact bounded smooth hollow equilibrium and its prior core condition",
+    "smooth nonnegative compact radial initial data",
+    "one fixed finite angular interval [ell,Lambda] with ell>0 containing the original supports",
+    "one prescribed initial height bound, preserved by transport",
+    "initial smallness in weighted L1 mass-plus-kinetic norm X"
+  ],
+  "claims": [
+    {
+      "id": "ZAR-N1",
+      "status": "proved analytically; independent artifact audit",
+      "statement": "local nonlinear energy coercivity on all nonnegative measurable fixed-L submajorized states with finite mass and kinetic energy, including weak limits",
+      "proof": "NONLINEAR_COERCIVITY.md",
+      "dependencies": [
+        "ZAR-S1",
+        "ZAR-S2"
+      ]
+    },
+    {
+      "id": "ZAR-N2",
+      "status": "proved analytically with modular audit",
+      "statement": "nonlinear Lyapunov stability in X for general nearby radial data; exact Casimir equality is not required",
+      "proof": "NONLINEAR_FLOW.md",
+      "dependencies": [
+        "ZAR-N1",
+        "ZAR-N3"
+      ]
+    },
+    {
+      "id": "ZAR-N3",
+      "status": "proved analytically; actual artifact audit",
+      "statement": "global classical radial flow, time-uniform positive inner radius and speed bounds for each initial support, and finite-time compact spatial support; no smallness needed for this existence statement",
+      "proof": "NONLINEAR_FLOW.md"
+    },
+    {
+      "id": "ZAR-N4",
+      "status": "proved analytically given N2/N3, whose dependencies are satisfied",
+      "statement": "uniform cumulative-mass/force and integrated centered-pressure control; finite-time positive annulus dispersion for connected smooth positivity sets; no universal pointwise floor",
+      "proof": "LAW_DISPERSION_BOUNDARY.md"
+    },
+    {
+      "id": "ZAR-N5",
+      "status": "uniform outer-support conjecture refuted analytically",
+      "statement": "small canonical outer-layer boosts retain exact initial density/centered dispersion/R and all fixed-L Casimirs, converge in X and each fixed Ck norm, yet launch a positive-mass packet to infinity",
+      "proof": "LAW_DISPERSION_BOUNDARY.md"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "real_research/analytic_review_2026_10_18_codex/KINETIC_PARTITION.md",
+      "bytes": 10449,
+      "sha256": "4fc5f73161d04197c5901fecfd97a2bdd2f3a9c33e685a487e22ca7eaf184758"
+    },
+    {
+      "path": "real_research/analytic_review_2026_10_18_codex/finite_halo_2026_10_18/BOUNDARY_MATCHING.md",
+      "bytes": 14150,
+      "sha256": "eab2312cf87a23267dd639c064ee8fb39a5b07d809e27ffae0b3eedd1557b774"
+    },
+    {
+      "path": "real_research/analytic_review_2026_10_18_codex/smooth_exact_2026_10_18/EXACT_SMOOTH_INVERSE.md",
+      "bytes": 13781,
+      "sha256": "490b137269ea5c918dae517085974752a3e1bc3d9df4f3e88b99eeccde41a55b"
+    },
+    {
+      "path": "real_research/analytic_review_2026_10_18_codex/smooth_exact_2026_10_18/CLASSICAL_RADIAL_STABILITY.md",
+      "bytes": 6378,
+      "sha256": "ff33f52fb33a7166a10ae5ba0c99b873ae581916286c6eefca2f70f86b880cb4"
+    },
+    {
+      "path": "real_research/analytic_review_2026_10_18_codex/smooth_exact_2026_10_18/CHECKPOINT.json",
+      "bytes": 7917,
+      "sha256": "55443c2612cfe98eee202af552c533d68fdc99c4495543aad39b5c43e142f6b7"
+    }
+  ],
+  "resource_boundary": {
+    "scientific_script_runs": 0,
+    "numerical_integrations": 0,
+    "simulations": 0,
+    "statistics": 0,
+    "array_analysis": false,
+    "process_inspection_or_control": false,
+    "claude_jobs_touched": false,
+    "prior_research_artifacts_modified": false,
+    "writes": "only this new checkpoint directory",
+    "permitted_bookkeeping": "small source reads, hashes, source word count and document/JSON validation"
+  },
+  "reviews": [
+    {
+      "reviewer": "nonlinear_tangent_audit",
+      "provenance": "fresh independent raw argument and actual N1 artifact audit; final wording confirmed",
+      "verdict": "proved as written using ZAR-S2",
+      "proof_sha256": "ec85b126c078e00f9cd5f364c08f78e9022c83f55228d06a7db1b3279bfe4c92",
+      "scope": "dual weighted bound, full measurable hull domain, Casimir tangency, DA closure, mass compactness and cubic remainder"
+    },
+    {
+      "reviewer": "nonlinear_full_flow_audit",
+      "provenance": "independent raw argument and actual N2/N3 artifact audit",
+      "verdict": "conditional on named N1; all N2/N3 obligations pass",
+      "named_input_status": "N1 separately proved and audited",
+      "proof_sha256": "e10655b7eac3f141490398e84ebe5be5bd639fe8df0cb445776b020ec90c8058",
+      "scope": "uniform centrifugal/speed bounds, global classical flow, entropy extension, nearby leaves, weak hull and first-exit argument"
+    },
+    {
+      "reviewer": "nonlinear_observable_audit",
+      "provenance": "independent actual artifact audit and final clarifications confirmed",
+      "verdict": "proved as written conditional on stated N2/N3, both established",
+      "proof_sha256": "63adbe540d269d0b7f50a76182416f9be3e7fa3c57c3352ac5c7df29971a3646",
+      "scope": "law and centered pressure estimates, connectedness, dispersion noncoercivity, C-infinity-small positive-mass escape counterexample"
+    }
+  ],
+  "post_review_clarifications": [
+    "species-vector dual test",
+    "generated perturbations rather than generators converge in A",
+    "explicit scaled outer cutoff",
+    "bulk mass quantifier does not track fixed particle labels",
+    "finite-time positivity does not imply an all-time dispersion floor",
+    "stationary Jeans formula is not imposed on moving data"
+  ],
+  "routes": [
+    {
+      "id": "NL1",
+      "status": "selected proof complete",
+      "mechanism": "inverse entropy, weak constraint hull, normalized tangents, compact nonlinear remainder and nearby-leaf first exit"
+    },
+    {
+      "id": "NL1-Taylor",
+      "status": "naive mechanism excluded",
+      "obstruction": "inverse entropy is only C1 at zero with divergent second derivative; global cubic height Taylor is invalid",
+      "replacement": "local convex-dual expansion and exhaustion"
+    },
+    {
+      "id": "NL2",
+      "status": "alternative deferred, no proof dependency",
+      "mechanism": "convex tether split and reduced attractive-field functional",
+      "reason": "direct hull proof avoids nearby-minimizer and C2 machinery",
+      "resumption": "a field-only formulation or quantitative modulus for a different model"
+    },
+    {
+      "id": "NL3",
+      "status": "confinement consequences resolved in open perturbation class",
+      "mechanism": "characteristic barriers plus explicit small canonical escape",
+      "outcome": "uniform inner/velocity bounds and bulk confinement; no uniform outer-support theorem"
+    }
+  ],
+  "source_check": {
+    "source": "https://arxiv.org/pdf/0904.2443v2",
+    "checked_version": "v2, PDF header dated 2010-03-05",
+    "checked_date": "2026-10-19",
+    "theorems": "1.3, 1.4, 1.5",
+    "application": "adjacent Newtonian result; direct application to present model inapplicable",
+    "proof_role": "context only; present nonlinear steps derived separately",
+    "record": "SOURCE_CHECK.md",
+    "full_text_retained": false,
+    "global_novelty_claim": false
+  },
+  "continuation": {
+    "present_nonlinear_stability_missing_implications": [],
+    "uniform_outer_support_in_open_class": "refuted, not deferred",
+    "narrower_unresolved_target": "all-time outer confinement with an additionally imposed uniform negative initial individual-energy gap",
+    "first_missing_step": "propagate an individual-energy gap in the changing self-consistent potential",
+    "other_out_of_scope": [
+      "low-angular-momentum point-mass collisions",
+      "nonspherical dynamics",
+      "universal pointwise dispersion floor",
+      "full interpolation/covariant completion",
+      "formation, temperature/parameter selection and observational validation"
+    ],
+    "resource_boundary": "analytic only; no scientific jobs authorized by this checkpoint"
+  },
+  "artifacts": [
+    {
+      "path": "AUDIT_AND_HANDOFF.md",
+      "lines": 48,
+      "math_display_pairs": 0,
+      "sha256": "3e39553022b0247529cd1c210049ab0d73e8c6a232ffd2e678120b2fdf032efe"
+    },
+    {
+      "path": "LAW_DISPERSION_BOUNDARY.md",
+      "lines": 139,
+      "math_display_pairs": 16,
+      "sha256": "63adbe540d269d0b7f50a76182416f9be3e7fa3c57c3352ac5c7df29971a3646"
+    },
+    {
+      "path": "NONLINEAR_COERCIVITY.md",
+      "lines": 180,
+      "math_display_pairs": 20,
+      "sha256": "ec85b126c078e00f9cd5f364c08f78e9022c83f55228d06a7db1b3279bfe4c92"
+    },
+    {
+      "path": "NONLINEAR_FLOW.md",
+      "lines": 136,
+      "math_display_pairs": 14,
+      "sha256": "e10655b7eac3f141490398e84ebe5be5bd639fe8df0cb445776b020ec90c8058"
+    },
+    {
+      "path": "README.md",
+      "lines": 31,
+      "math_display_pairs": 1,
+      "sha256": "9e03a66aedace774976328689881af5f2f3f8aac5c9a3837713af7f0b05347bb"
+    },
+    {
+      "path": "SOURCE_CHECK.md",
+      "lines": 9,
+      "math_display_pairs": 0,
+      "sha256": "50a6162a82be661eed5609efde283f0169d7ef830c9c91f6a981bfe7bad391eb"
+    }
+  ],
+  "verification": {
+    "local_links": "all resolve",
+    "math_delimiters_and_environments": "balanced and correctly nested",
+    "placeholders": "none",
+    "prior_three_checkpoint_artifacts": "all match recorded hashes",
+    "original_kinetic_input": "unchanged",
+    "reviewed_final_proof_hashes": "all match current artifacts",
+    "json_roundtrip": "pass",
+    "proofreading": "six new Markdown artifacts; no unresolved notation or cross-reference issue",
+    "mathematical_validation": "analytic proof reconstruction and modular independent internal audits; no numerical tests claimed"
+  }
+}
