@@ -22,3 +22,5 @@ normalization, measured with the Cookson quality checklist and a calibrated trip
 
 K1 PASS (published tensions reproduced). MUTATE (shift 0.20) gives p 0.007, so the test bites. The Δχ² bound is a declared
 linear-response scaling, and their binned data are not re-analysed. κ fitted; not theory closed.
+
+2026-10-18 (addendum, before DR4): the rival "Binary Emergent Gravity" (Zenodo 10.5281/zenodo.20544019; uniform G_eff/G_N ≈ 1.077) is registered in `ADDENDUM_BEG_RIVAL_2026-10-18.md`. Its R-equivalent is 1.000, so the frozen R rule cannot separate it from Newton or CFG740 at any N. The frozen files are unchanged.
