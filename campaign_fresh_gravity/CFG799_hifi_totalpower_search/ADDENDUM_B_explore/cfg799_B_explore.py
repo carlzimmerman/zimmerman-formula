@@ -168,7 +168,7 @@ P("\nE6 integration in the added scans")
 tin = {o: man[o]["t_int_h"] for o in new}; fail = [o for o in new if not anc[o]["ok"]]
 usedn = {s["obs"] for s in sp_new}
 P(f"  added scans {sum(tin.values()):.2f} h; failing the anchor {sum(tin[o] for o in fail):.2f} h ({len(fail)} scans); used {sum(tin[o] for o in usedn):.2f} h")
-tuse = m.np.sum([man[o]["t_int_h"] for o in {s['obs'] for s in sp}])
+tuse = np.sum([man[o]["t_int_h"] for o in {s['obs'] for s in sp}])
 gain = np.sqrt((tuse + sum(tin[o] for o in fail)) / tuse)
 P(f"  all used observations {tuse:.2f} h; recovering every failed scan would give at most a x{gain:.2f} sensitivity gain "
   f"(sigma down {100 * (1 - 1 / gain):.0f}%), before the baseline limit")
