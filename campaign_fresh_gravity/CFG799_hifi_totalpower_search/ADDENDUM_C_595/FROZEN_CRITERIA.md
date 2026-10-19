@@ -10,7 +10,7 @@ window for the alternate footing at the sensitivity reached. The framework predi
 **What is unchanged.** Everything in CFG799 `FROZEN_CRITERIA.md`, its addendum A, and the pipeline as implemented by
 `cfg799_fetch.py` and `cfg799.py` (including the disclosed deviations D1 and D2): selection and masks M1–M4, total-power
 calibration, the Level-1 anchor, the statistic, controls C1–C4, MUTATE, the classes, and the converter-window tier. The two
-script copies in this folder differ from the CFG799 originals **only** in frequency constants (`DIFF_vs_CFG799.txt`, 8 changed
+script copies in this folder differ from the CFG799 originals **only** in frequency constants (`DIFF_vs_CFG799.txt`, 8 changed at first commit, 9 after the correction below
 lines):
 - primary ν_t = **595.463 GHz** (CFG797 value 595.46298); secondary ν_2 = **595.500 GHz** (the rounded value of the brief);
 - profile FWHM = √(0.35² + 1.1²) = 1.154 MHz (intrinsic 0.35 MHz from CFG797);
@@ -18,7 +18,11 @@ lines):
 - sha256 of the originals: `cfg799.py` 7486117b9e1c8c1e0736e811f606fc58502c311dbc96712fcd06faa840a81488,
   `cfg799_fetch.py` 84bb972c43deeb84fbe3f520388fe501d1b5ff6cebac14d3fae0d99293a0a784.
 - sha256 of the copies in this folder: `cfg799.py` a5820f71ef94151683c4556c04bf67f65ed1f863931166f21cf47eac54042154,
-  `cfg799_fetch.py` 549c30a85acaf0c4404d7b2d8e4749544b37e9be40f57650333e96cf383bd125.
+  `cfg799_fetch.py` cd111e2191234672d5f2e78a55d2bf2c7f74acc7627fb08a718478f76c10aeec.
+- **Correction, 2026-10-19, before any download or statistic.** The first committed copy of `cfg799_fetch.py` (sha256
+  549c30a85acaf0c4404d7b2d8e4749544b37e9be40f57650333e96cf383bd125) read the CFG798 observation list through a path that
+  is one folder too short for this directory. The copy now reads `../../CFG798_herschel_hifi_dish/cfg798_matches.csv`, which
+  changes one more line (9 in all) and no logic. The 46-row selection was checked against that file.
 
 **Data.** The 595.5 rows of `../../CFG798_herschel_hifi_dish/cfg798_matches.csv`, in the same four modes as CFG799 (DBS and
 FastDBS, point and spectral scan): **46 observations, 4.61 h, all band 1b, none already reduced**. Excluded by the frozen mode

@@ -1,5 +1,5 @@
 --- cfg799_fetch.py	2026-10-15 16:07:09
-+++ ADDENDUM_C_595/cfg799_fetch.py	2026-10-19 06:51:25
++++ ADDENDUM_C_595/cfg799_fetch.py	2026-10-19 08:02:29
 @@ -17,12 +17,12 @@
  HERE = os.path.dirname(os.path.abspath(__file__))
  DATA = os.path.abspath(sys.argv[1])
@@ -15,11 +15,13 @@
  EV = np.arange(1976) % 2 == 0
  
  
-@@ -249,7 +249,7 @@
+@@ -248,8 +248,8 @@
+ 
  
  def main():
-     rows = [r for r in csv.DictReader(open(os.path.join(HERE, "..", "CFG798_herschel_hifi_dish", "cfg798_matches.csv")))
+-    rows = [r for r in csv.DictReader(open(os.path.join(HERE, "..", "CFG798_herschel_hifi_dish", "cfg798_matches.csv")))
 -            if r["target_GHz"] == "541.7" and r["mode"] in MODES]
++    rows = [r for r in csv.DictReader(open(os.path.join(HERE, "..", "..", "CFG798_herschel_hifi_dish", "cfg798_matches.csv")))
 +            if r["target_GHz"] == "595.5" and r["mode"] in MODES]
      # point observations first (most hours per downloaded byte), then scans; largest integration first within each
      rows.sort(key=lambda r: ("SScan" in r["mode"], -float(r["t_int_h"])))

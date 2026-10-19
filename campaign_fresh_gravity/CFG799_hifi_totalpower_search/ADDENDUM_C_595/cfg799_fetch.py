@@ -248,7 +248,7 @@ def save(obsid, res, out):
 
 
 def main():
-    rows = [r for r in csv.DictReader(open(os.path.join(HERE, "..", "CFG798_herschel_hifi_dish", "cfg798_matches.csv")))
+    rows = [r for r in csv.DictReader(open(os.path.join(HERE, "..", "..", "CFG798_herschel_hifi_dish", "cfg798_matches.csv")))
             if r["target_GHz"] == "595.5" and r["mode"] in MODES]
     # point observations first (most hours per downloaded byte), then scans; largest integration first within each
     rows.sort(key=lambda r: ("SScan" in r["mode"], -float(r["t_int_h"])))
