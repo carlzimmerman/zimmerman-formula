@@ -21,7 +21,9 @@ INTERPRETATIONS made while implementing the frozen text (also listed in README.m
   I3  C2 (coverage) is applied to the bootstrap sigma alone, because sigma_tot contains an assumed 0.02 systematic that synthetic data do not carry and would over-cover by design;
       coverage with sigma_R is printed too. The class KILLED null-rate is checked with sigma_R.
   I4  C2 uses 300 resamples per repeat (the real run uses 2000).
-  I5  C4's pass rule is: R - 1 < 2 sigma_R and (1.20 - R)/sigma_R > 1 on the DR3 primary (the frozen text says only "no 20% boost").
+  I5  C4's pass rule is: R - 1 < 2 sigma_R on the DR3 primary (the frozen text says only "no 20% boost"). The first draft also required (1.20 - R)/sigma_R > 1; it was DROPPED on
+      2026-10-17, after the DR3 pair table was built (counts known, no R value computed): the registered catalogue gives only 175 + 173 pairs in the two regimes, so sigma_R ~ 0.18 and that leg
+      would demand R < 1.02, failing a flat truth about 40% of the time. (1.20 - R)/sigma_R is still printed, as information.
   I6  C0 (added; not in the frozen list): the v-tilde computed here equals the registered pipeline's ingest_csv v-tilde (read-only import).
   I8  The f_tail comparison (frozen: "differs between regimes by more than its 2 sigma") uses a binomial z-test, which is invalid with few events. It is applied only if BOTH regimes
       hold at least 5 pairs with v-tilde > 2; otherwise it is reported "n/a (<5 events)" and does not trigger CONTAMINATION-LIMITED. Found by MUTATE: on a clean synthetic sample
@@ -271,8 +273,8 @@ def main():
         R.update(mode=tag, branches=res, primary_label=final)
         if tag == "dr3":
             p = res["primary"]
-            c4 = bool(p["ok"] and p["R"] - 1 < 2 * p["sigma_R"] and (1.20 - p["R"]) / p["sigma_R"] > 1)
-            R["C4_pass"] = c4; P(f"  C4 (DR3 code path, interpretation I5): {'PASS' if c4 else 'FAIL'}")
+            c4 = bool(p["ok"] and p["R"] - 1 < 2 * p["sigma_R"])
+            R["C4_pass"] = c4; P(f"  C4 (DR3 code path, interpretation I5): {'PASS' if c4 else 'FAIL'}   (R-1)/sigma_R = {(p['R']-1)/p['sigma_R']:+.2f}; information only: (1.20-R)/sigma_R = {(1.20-p['R'])/p['sigma_R']:+.2f}")
         json.dump(R, open(resf, "w"), indent=1, default=float)
         open(os.path.join(HERE, f"cfg816_r_{tag}.out"), "w").write("\n".join(OUT) + "\n")
         return 0

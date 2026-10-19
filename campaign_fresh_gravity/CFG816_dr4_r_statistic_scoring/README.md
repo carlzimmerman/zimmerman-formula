@@ -12,7 +12,7 @@ pairs and pass; C4 (the DR3 code-path run) is NOT RUN; no DR3 or DR4 data have b
 | `python3 cfg816_r.py --dr4 TABLE` | THE RUN, once, after DR4 is public and only on the owner's yes; refuses a second run; a change goes under "Departures" below |
 
 Pair table (CSV): `sep_kAU, v_perp_kms, M1_msun, M2_msun, d_pc` (the registered `ingest_csv` columns) plus `plx_err_frac, ruwe1, ruwe2, ipd1, ipd2, vt_err, drv_kms` (blank if no RV), `nss1, nss2`.
-The script refuses a table that lacks any checklist column. **Building that table from the registered pipeline's stage-G pair array is not written yet.**
+The script refuses a table that lacks any checklist column. The converter `make_pair_table.py` builds that table (section "The converter" below).
 
 ## Results of the controls (synthetic; Rayleigh ṽ with median 0.489, x log-uniform 0.05-5, M = 1.8 M☉)
 - **C0 (added):** the ṽ computed here equals the registered `wide_binary_pipeline.ingest_csv` ṽ exactly (difference 0).
@@ -24,7 +24,7 @@ The script refuses a table that lacks any checklist column. **Building that tabl
 
 ## Interpretations made while implementing the frozen text (none changes a frozen threshold)
 I1 N = pairs that enter R (numerator + denominator); numerator-only is printed as a sensitivity. I2 stratified bootstrap (within each regime). I3 C2 coverage is applied to the bootstrap σ alone; σ_tot carries an
-assumed 0.02 systematic that synthetic data lack. I4 C2 uses 300 resamples per repeat (the run uses 2000). I5 C4 passes if R − 1 < 2σ_R and (1.20 − R)/σ_R > 1 on the DR3 primary. I6 C0 added. I7 C5 added.
+assumed 0.02 systematic that synthetic data lack. I4 C2 uses 300 resamples per repeat (the run uses 2000). I5 C4 passes if R − 1 < 2σ_R on the DR3 primary (the second leg, (1.20 − R)/σ_R > 1, was dropped on 2026-10-17 before any R was computed: the registered DR3 catalogue gives only 175 + 173 pairs in the two regimes, σ_R ≈ 0.18, and that leg would demand R < 1.02). I6 C0 added. I7 C5 added.
 I8 the f_tail z-test applies only if both regimes hold ≥ 5 pairs with ṽ > 2, else "n/a (<5 events)" (found by MUTATE: on a clean sample, one or two stray events gave a spurious 2.1σ).
 
 ## Known weaknesses, stated against interest
@@ -36,3 +36,29 @@ I8 the f_tail z-test applies only if both regimes hold ≥ 5 pairs with ṽ > 2,
 
 ## Departures
 None yet (no data read).
+
+## The converter (`make_pair_table.py`, written 2026-10-17)
+`python3 make_pair_table.py --catalogue <stage-G CSV> --per-star <per-star .npz> --out <pairs.csv>` joins the registered stage-G catalogue (`sep_kAU, v_perp_kms, M1_msun, M2_msun, d_pc, source_id1, source_id2`) with the per-star
+columns by source_id and writes the table `cfg816_r.py` reads, plus `<out>.manifest.json` (input and output SHA-256, counts, every choice). It computes no R. `--self-test` runs nine synthetic checks (all pass), including
+that a missing source_id, a missing column and a constant column are all REFUSED, never silently filled. Choices P1-P5 are listed in its docstring (the larger parallax fraction of the two stars; ΔRV only where both stars have an RV;
+a leading-order ṽ error, not Cookson's full Jacobian; the per-star NSS flag; v_perp, masses and distance taken unchanged from stage G).
+
+**DR3 pair table built (no download; the on-disk extract):** `pairs_dr3.csv` from `real_research/data/widebinaries/dr3_extract/wide_binaries_dr3.csv` (6210 pairs, SHA-256 in the manifest) and `stage_A.npz`; 0 source_ids missing. The primary
+sample (d < 130 pc, RUWE < 1.25, ipd = 0, ΔRV < 10, ṽ ≤ 2.5, ṽ error < 0.1) has 1307 pairs; **175 in the outer regime (x > 1) and 173 in the inner (x < 0.3), so N = 348 enter R** and σ_R ≈ 0.18 (σ_tot 0.1775). A
+KILLED label at that N would need R ≥ 1.53. DR3 is a code-path test, never a result (Amendment 7(e)); **the DR3 run `--dr3` has NOT been made** (its once-only slot is untouched).
+
+### Two findings about the registered catalogue that the frozen design did not anticipate
+1. **Every catalogue pair is already NSS-clean.** The registered stage G applies cut 12 (NSS screen) before it writes the catalogue (`build_catalog.py`, `frozen_cuts`; PLAN.md Q2: 0 flagged components), so `nss1 = nss2 = 0` for all
+   12,420 stars. With the registered catalogue as input, **the "NSS-screened" branch is identical to the primary and the NSS leg of the CONTAMINATION-LIMITED rule can never fire**; only the f_tail leg can. To realise the frozen
+   design, the R analysis needs a catalogue built WITHOUT cut 12 (flags joined per star), which is a new, separately declared run of the registered driver. The converter's constant-column guard caught this (`--declare-neutral non_single_star`
+   was needed, and is recorded in the manifest as constant by construction).
+2. **No catalogue pair is wider than 30 kAU** (stage G keeps 2 < s < 30 kAU; DR3 maximum 29.6). The frozen primary's numerator cap of 50 kAU is therefore moot on this catalogue: the primary is the "r_sky ≤ 30 kAU" branch (identical counts, 175/173).
+   Pairs between 30 and 50 kAU would need a rebuilt catalogue.
+Both are decisions for the owner before 12-02; neither changes a frozen number.
+
+## Checks queued behind the 1024³ chain (2026-10-18)
+The owner chose "queue behind chain6" (no computation beside a 1024³ run). `_external_data/overnight_chain/cfg816_checks_waiter.sh` (untracked, like the other chain scripts; pid 28884 when armed, sleeping, ~2 MB) waits for an
+idle window (no chain script, no heavy-run process, no process over 4 GB or 120% CPU, on three consecutive polls 120 s apart), then runs once at the lowest priority: the three frozen-file hash checks, `make_pair_table.py --self-test`,
+`cfg816_r.py`, `cfg816_r.py --mutate`, and, only if all pass and `cfg816_r_dr3_results.json` does not exist, the once-only `cfg816_r.py --dr3 pairs_dr3.csv` (C4). Log: `_external_data/overnight_chain/cfg816_checks.log`; per-step logs
+`cfg816_checks_<step>.log`; done marker `cfg816_checks_state/done`. Cancel with `kill 28884`. **The delay is unknown**: ARGON11 is queued behind chain6, so the first idle window may be days away.
+Disclosure: the 2026-10-17 controls and converter run (13:50-13:51) probably overlapped a T2x 1024³ run (your notes give its start as 13:47); they were about 40 s on one core at `nice 10`, under 200 MB, and the run survived.
