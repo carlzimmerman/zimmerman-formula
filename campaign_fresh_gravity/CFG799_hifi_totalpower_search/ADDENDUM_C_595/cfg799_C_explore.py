@@ -79,8 +79,8 @@ for key, lab in (("Tall", "total power"), ("Tref", "REF-only"), ("L1", "Level-1"
       f"max |z| {np.nanmax(np.abs(z)):.2f} at {deltas[np.nanargmax(np.abs(z))]:+.1f} MHz")
 sd_a = float(np.nanstd(Z["Tall"][far])); st_t = base["nu_t"][1]; k_sc = max(1.0, sd_a)
 a95_f = max(st_t["a"], 0) + 1.645 * st_t["sig"]; a95_e = max(st_t["a"], 0) + 1.645 * st_t["sig"] * k_sc
-P("  nu_t 95% limit: frozen a95 %.2f mK -> sigma x%.2f: %.2f mK;  eps95 (S=10/50/1000) frozen %s -> scaled %s" % (
-    a95_f * 1e3, k_sc, a95_e * 1e3, "/".join(f"{m.eps_of(a95_f, S):.2e}" for S in m.S_LIST), "/".join(f"{m.eps_of(a95_e, S):.2e}" for S in m.S_LIST)))
+P(f"  nu_t 95 pct limit: frozen a95 {a95_f * 1e3:.2f} mK -> sigma x{k_sc:.2f}: {a95_e * 1e3:.2f} mK;  eps95 (S=10/50/1000) frozen "
+  + "/".join(f"{m.eps_of(a95_f, S):.2e}" for S in m.S_LIST) + " -> scaled " + "/".join(f"{m.eps_of(a95_e, S):.2e}" for S in m.S_LIST))
 R["CE2_limit"] = dict(far_std=sd_a, a95_frozen=a95_f, a95_scaled=a95_e, eps95_scaled={f"S{S:.0f}": m.eps_of(a95_e, S) for S in m.S_LIST})
 
 # CE3
