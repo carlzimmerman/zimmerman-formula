@@ -22,3 +22,20 @@ Owner chose **leave queued** (options offered: SIGSTOP-pause the T2x engine for 
 T2x (relaunched 10-18 10:15 after the owner added rolling checkpoint + exact resume to the 1024³ engines, commit 269b18e50) is at step 25/150 at ~290 s/step and rising;
 NCS0/NC1x follow, so the first window for these jobs is the end of chain6, around 10-20/21 at the earliest. The eight waiters have been alive since 10-17 13:49; they do not survive a reboot.
 Engine guards, for the record (run_650.py): RSS > 52 GB, system swap growth > 4 GB, disk free; no wall-clock or stall detection.
+
+## RESULT (2026-10-18 22:20; analysis run beside T2x on owner request, 1 core, nice 19)
+All 8 runs reached t_end (R3/R8 finished unsupervised at 22:02 after the owner had them run beside the resumed T2x; their
+watchdog wrappers were removed so the job would not stop). `argon11_analyze.py` ran unchanged except an env override of its
+busy-guard (`ARGON11_ALLOW_BESIDE=1`, owner 10-18). Output: `argon11_analysis.out`, `argon11_results.json`.
+- **K1 conservation PASS** in all runs (|dQ/Q| ≤ 3e-13, |dE/E| ≤ 9e-7). **K2 linear growth PASS** (γ within 2–4% of prediction).
+- **K3, s = 0.1: FRAGMENTS** in R1, R2, R3 (and R6, R7, R8): the coherent charged state breaks into 24–156 bound lumps
+  (Q-ball-like: n_in ≈ 0.85 n*, E/Q ≈ 0.95 < 1) at t_A = 325–450; the lumps then merge slowly (N_lump falls ×2–3 by t_end).
+- **K3, s = 0.5 (R4): NO STABLE FRAGMENTS** — one dominant lump (median |n_in/n* − 1| = 0.52); **K4 REVISED** there
+  (r_Q = 136, r_S = 0.20): σ/m drops to 0.17 cm²/g at ε = 1e-3 (LOW-EDGE).
+- **K4, s = 0.1: F2 estimate SURVIVES** over the full run range (r_Q 0.59–0.88, r_S 0.86–0.91): S ≈ 4.2–4.8e-3,
+  σ/m ≈ 1.0–1.1 cm²/g at ε = 1e-3 (ABOVE-LOW), ~1e3 (EXCLUDED) at ε = 1, ~1e-3 (BELOW) at ε = 1e-6.
+- **K5: NOT CONVERGED** on resolution (R3 vs R1: t_A +23%, Q_med 30%) → numbers are quoted as ranges (above); seed OK;
+  box (R8) changes the lump count ×2 (reported only).
+- **K6:** amplitude ε 1e-4 vs 1e-6 changes Q_med ×1.17 (within 1.5). **MUTATE M5 bites** (repulsive quartic: no lumps).
+- **Reading:** at s = 0.1 the ARGON10 F2 self-interaction estimate holds in full 3+1D nonlinear evolution (within the
+  resolution range); at s = 0.5 it does not fragment and the F2 estimate is revised downward. Handoff to astra; astra's files untouched.

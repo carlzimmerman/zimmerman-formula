@@ -212,7 +212,7 @@ def rel(a, b):
     return abs(a/b - 1) if b else float('nan')
 
 def main():
-    if busy():
+    if busy() and os.environ.get("ARGON11_ALLOW_BESIDE") != "1":      # owner 2026-10-18: light analysis may run beside T2x (1 core, nice 19)
         print("a 1024^3-type run or an overnight_chain script is alive: not computing (rule). Exiting."); sys.exit(3)
     tags = sys.argv[1:] or [t for t in RUNS if os.path.exists(f"{W}/log_{t}.txt")]
     allres = {}
