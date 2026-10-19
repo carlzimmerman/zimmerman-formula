@@ -62,3 +62,11 @@ idle window (no chain script, no heavy-run process, no process over 4 GB or 120%
 `cfg816_r.py`, `cfg816_r.py --mutate`, and, only if all pass and `cfg816_r_dr3_results.json` does not exist, the once-only `cfg816_r.py --dr3 pairs_dr3.csv` (C4). Log: `_external_data/overnight_chain/cfg816_checks.log`; per-step logs
 `cfg816_checks_<step>.log`; done marker `cfg816_checks_state/done`. Cancel with `kill 28884`. **The delay is unknown**: ARGON11 is queued behind chain6, so the first idle window may be days away.
 Disclosure: the 2026-10-17 controls and converter run (13:50-13:51) probably overlapped a T2x 1024³ run (your notes give its start as 13:47); they were about 40 s on one core at `nice 10`, under 200 MB, and the run survived.
+
+## Checks RUN (2026-10-18 21:37, owner: run beside the 1024³ job, 1 core, nice 19)
+The queued checks ran once via `cfg816_checks_now.sh` (the waiter with the idle-window wait removed; same steps, same order). All passed:
+frozen-file hashes OK; self-test rc 0; controls rc 0; mutate rc 1 (the test bites); C4 rc 0.
+**C4 (DR3 code path, I5): PASS**, (R − 1)/σ_R = −0.15 on the NSS-screened primary (R = 0.973 ± 0.178, N = 348: 175 / 173).
+Label UNDECIDED, as expected at DR3 size: R lies within 1.3 σ_R of every registered number (Newton −0.15, Arm A canonical −1.06,
+alt −1.23, MOND 1.15 −1.00, MOND 1.20 −1.28). The a0-footing regime splits give R = 1.097 ± 0.163 (canonical) and 0.997 ± 0.173 (alt).
+This is a code-path control, not a verdict: DR3 cannot separate the arms. Outputs: `cfg816_r_dr3.out`, `cfg816_r_dr3_results.json`.
