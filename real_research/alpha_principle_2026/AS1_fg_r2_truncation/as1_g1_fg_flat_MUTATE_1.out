@@ -1,0 +1,29 @@
+MODE: MUTATE_1 (graviton contribution to f_g sign-flipped)
+
+Internal checks of the flat-space graviton-photon quadratic action
+  [PASS] I1  Lambda-free EH quadratic form annihilates pure-gauge h (Fierz-Pauli structure)
+  [PASS] I2  photon block: transverse s/(2e^2), longitudinal s/(2 xi e^2) in the Phi(-q) M Phi(q) normalisation
+  [PASS] I3  full quadratic matrix (kinetic + F-bar vertices) is Hermitian
+  [PASS] I4  kinetic matrix depends on q only via q^2; h-a vertex is linear in |q| (not regulated)
+
+f_g per declared combination (alpha, beta) x d_t R_k convention; target (Eichhorn-Versteegen 4.x): f_g = G (1 - 4 Lambda) / (4 pi (1 - 2 Lambda)^2)
+    (alpha,beta)=(0, 1), without eta terms        f_g = g*(4*lambda - 1)/(4*pi*(2*lambda - 1)**2)
+                                                  xi-independent: True; parity (SD = ASD weight): True; f_g - target = g*(4*lambda - 1)/(2*pi*(2*lambda - 1)**2)
+  [G1(iii) FAIL] (alpha,beta)=(0, 1), without eta terms
+    (alpha,beta)=(0, 1), WITH eta_N terms         f_g = -g*(eta_N - 16*lambda + 4)/(16*pi*(2*lambda - 1)**2)
+                                                  xi-independent: True; parity (SD = ASD weight): True; f_g - target = -g*(eta_N - 32*lambda + 8)/(16*pi*(2*lambda - 1)**2)
+  [G1(iii) FAIL] (alpha,beta)=(0, 1), WITH eta_N terms
+    (alpha,beta)=(1, 1), without eta terms        f_g = g*(4*lambda - 1)/(2*pi*(2*lambda - 1)**2)
+                                                  xi-independent: True; parity (SD = ASD weight): True; f_g - target = 3*g*(4*lambda - 1)/(4*pi*(2*lambda - 1)**2)
+  [G1(iii) FAIL] (alpha,beta)=(1, 1), without eta terms
+    (alpha,beta)=(1, 1), WITH eta_N terms         f_g = -g*(eta_N - 16*lambda + 4)/(8*pi*(2*lambda - 1)**2)
+                                                  xi-independent: True; parity (SD = ASD weight): True; f_g - target = -g*(eta_N - 24*lambda + 6)/(8*pi*(2*lambda - 1)**2)
+  [G1(iii) FAIL] (alpha,beta)=(1, 1), WITH eta_N terms
+
+  TT-approximation cross-check (alpha = 0, beta = 1, with eta_N terms; graviton restricted to the 5 TT modes):
+    derived f_g^TT = -5*g*(eta_N - 16*lambda + 4)/(72*pi*(2*lambda - 1)**2)
+    Eichhorn-Versteegen sec. 3.2 TT formula (5 G/(36 pi)) (8/(1-2L) + (8 - eta_h)/(1-2L)^2) = -5*g*(eta_N + 16*lambda - 16)/(36*pi*(2*lambda - 1)**2)
+  [NOTE-NOT-REPRODUCED] TT  derived TT-approximation f_g vs the published TT formula (informational; not a pre-registered check)
+  [FAIL] G1(iii)  the published f_g is reproduced exactly in at least one declared combination
+
+CHECKS FAILED: ['G1(iii)']

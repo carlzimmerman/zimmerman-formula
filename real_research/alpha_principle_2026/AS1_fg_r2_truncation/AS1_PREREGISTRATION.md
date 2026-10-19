@@ -100,3 +100,55 @@ transition beyond the declared M_Planck / reduced-Planck systematic. kappa = 1/2
 ## Queue note
 
 The computation is light (one core). On completion the lane sets the queue flag that releases the re-ordered 1024^3 chain (NCS0 -> NC1x -> T2x last).
+
+## Amendment 1 (appended after the runs; nothing above was edited)
+
+* **Outcome.** G0 passes. G1 fails in all four declared gauge/convention combinations, so the lane is **NOT COMPLETED** and stops at G1,
+  as specified above. No R^2 fixed point was searched for, and no f_g*, P or class exists. G2, G3 and MUTATE_2 were not run. Details
+  are in `AS1_REPORT.md`, `as1_g1_eh_betas.out` and `as1_g1_fg_flat.out`.
+* **Interpretations made at scripting time, before any run.** None of them is a change of a frozen choice.
+  * The frozen "type I" rule (every -D^2 of Gamma^(2) replaced by P_k) is applied to each York-decomposed operator, in the form
+    Gamma^(2)(Delta) + R_k = Gamma^(2)(P_k). This is CPR's "type Ib" wording. The regulator includes the gauge-fixing term and carries
+    Z_N.
+  * Matter is regulated by the same rule: minimal operators, with curvature endomorphisms left in the denominators (vectors in Feynman
+    gauge, Delta + Ric; Dirac, D-slash^2 = Delta + R/4). The natural-operator (type II) matter of Dona-Eichhorn-Percacci, which E-V
+    use, was computed as a diagnostic only.
+  * "EH limit with b = 0" is taken as the EH truncation: b is identically 0, so there are no d_t b terms.
+  * "With anomalous-dimension terms" means that d_t Z_N = -eta_N Z_N is kept in d_t R_k, with Lambda held fixed. Neither eta_A nor a
+    ghost eta is included.
+  * The Jacobians are exponentiated and regulated, as in CPR section VII. The ghost operator is used without the gauge-weight factor.
+  * The G0 tolerance is read as relative 1e-4 against the quoted 92.914 and 137.036. In addition, lane B's own C5 and C6 values are
+    reproduced exactly (1e-9).
+  * The CLOSER / NO IMPROVEMENT threshold is the frozen literal 44.12.
+  * The G1(ii) tolerance is 1e-3 absolute, against lane B's numeric root (2.7262, -3.7583).
+  * In the f_g computation the ghosts are omitted. The graviton Faddeev-Popov operator does not depend on A, and the abelian /
+    diffeomorphism ghost mixing is triangular under a ghost-diagonal regulator. The angular average uses rotation invariance (orbit
+    average of F at fixed qhat).
+  * Lane B's C5 chain has no importable function, so `b3_forced_vs_required.py` (and `b1_reproduce_literature.py`) are executed as
+    modules with their stdout captured, and their own objects are used.
+* **Checks added at scripting time that are not in the pre-registration:**
+  * I1-I4, checks of the flat-space action;
+  * V1-V6, machinery validations against CPR's published EH results and against lane B's b1;
+  * a TT-approximation cross-check of f_g against E-V section 3.2;
+  * diagnostics D1-D4.
+* **Disclosures for re-runs after a first run** (the first-run outputs are kept).
+  * `as1_g1_fg_flat.py`.
+    * What failed: the first run exited 1 only because my added TT cross-check, which was gating in that run, did not reproduce E-V's
+      section 3.2 TT formula. I derived 5G(4 - 16L + eta)/(72 pi (1-2L)^2); the paper has (5G/36 pi)(8/(1-2L) + (8 - eta_h)/(1-2L)^2).
+    * Why: I have not identified the reason.
+    * What changed: the check was demoted to informational. The derivation was not changed, and every pre-registered result is
+      identical in both runs.
+    * File: `as1_g1_fg_flat_FIRSTRUN.out`.
+  * `as1_g1_eh_betas.py`, run 1.
+    * What failed: the script crashed at (alpha, beta) = (0, 1) with eta terms.
+    * Why: the alpha -> 0 limit of the (h, sigma) eta_N term diverges, which gave NaN, and sympy's solve then failed.
+    * What changed: the script now detects the divergence and reports that combination as having no finite flow (a G1 FAIL). No frozen
+      choice changed.
+    * File: `as1_g1_eh_betas_FIRSTRUN.out`. Its traceback path prefix was replaced by `<repo>/` (no home paths in committed files).
+  * `as1_g1_eh_betas.py`, run 2.
+    * What failed: the run completed, but a Python integer rho made 1/16 a float, so the alpha = 1 rows were printed in decimals. The
+      values were unchanged and so were all fixed points. Separately, a diagnostic line wrongly called the O(G) term of beta_Lambda
+      eta-independent.
+    * What changed: rho is now an exact sympy integer, and the O(G) comparison is made at Lambda = 0, where it is a pure a_0 count.
+    * File: `as1_g1_eh_betas_RUN2.out`.
+* **Queue flag.** It was not set by this run; the coordinating instruction was not to touch any queue flag.

@@ -1,0 +1,46 @@
+MODE: NORMAL (no MUTATE control is pre-registered for this script)
+
+V  validations of the machinery (gating)
+  [PASS] V3  S^4 York heat-kernel coefficients derived from the unconstrained ones: VT (b0, b2/R) = (3, 1/4), TT = (5, -5/6) (CPR table taba6: (3, 1/4), (5, -5/6))
+  [PASS] V1  CPR f(R) York Hessian at f = Z(2 Lambda - R), alpha_CPR = Z, rho = 1 equals CPR's EH York operators (kinIb, d = 4)
+  [PASS] V2  on shell (2 f = R f') the f-part of the Hessian annihilates the pure-gauge xi and (h, sigma) = (-Delta, 1) directions, any f''
+  [PASS] V4  type Ib, alpha = 1 de Donder, no eta: A0 = -4.0*(1.0*lambda + 0.125)/(1.0*lambda - 0.5), A1 = -2.20833333333333*(0.943396226415094*lambda**2 - 1.0*lambda + 0.495283018867925)/(1.0*lambda - 0.5)**2; CPR sec. IV.B: A1_CPR = pi A0, B1_CPR = pi A1 with A0 = (1+8L)/(1-2L), A1 = -(105-212L+200L^2)/(24(1-2L)^2)
+  [PASS] V5  type Ia, alpha = 1 (Reuter), no eta: A1 = -(28*lambda**2 - 18*lambda + 11)/(3*(2*lambda - 1)**2); CPR eq. (betasIa) at eta = 0: -(11-18L+28L^2)/(3(1-2L)^2)
+
+E-V (4.8)-(4.9): symbolic transcription checked against lane B's numeric implementation (b1_reproduce_literature.py, by import)
+  [PASS] V6  transcription equals b1.betas at 20 random points (max abs diff 8.9e-15)
+
+G1  per declared combination: derived EH-limit beta functions vs E-V (4.8)-(4.9)
+    coefficient convention: beta_G = 2G + (G^2/pi) [c_S N_S + c_D N_D + c_V N_V + c_grav(L)],  beta_L = -2L + (G/pi) [...] (no-eta case)
+
+  --- (alpha,beta)=(0, 1), no eta
+    gravity sector (16 pi^2/Vol) d_t Gamma = A0 + A1 R:  A0 = -(4*lambda + 1)/(2*lambda - 1),  A1 = -(100*lambda**2 - 132*lambda + 81)/(24*(2*lambda - 1)**2)
+        TT             A0 -5/(2*(2*lambda - 1))                    A1 5*(2*lambda - 3)/(6*(2*lambda - 1)**2)
+        xi             A0 3                                        A1 5/4
+        (h,sigma)      A0 (3*lambda - 2)/(2*lambda - 1)            A1 (22*lambda - 13)/(12*(2*lambda - 1))
+        J_V            A0 -3/2                                     A1 -5/8
+        J_S            A0 -1                                       A1 -1/2
+        ghost c^T      A0 -3                                       A1 -5/4
+        ghost c + J_c  A0 -1                                       A1 -5/6
+    betaG N_S  : derived 1/6                                           E-V 1/6                                           ==
+    betaL N_S  : derived (2*lambda + 3)/12                             E-V (2*lambda + 3)/12                             ==
+    betaG N_D  : derived -1/6                                          E-V 1/3                                           DIFFERENT
+    betaL N_D  : derived -(lambda + 6)/6                               E-V (lambda - 3)/3                                DIFFERENT
+    betaG N_V  : derived -1/6                                          E-V -2/3                                          DIFFERENT
+    betaL N_V  : derived -(lambda - 3)/6                               E-V -(4*lambda - 3)/6                             DIFFERENT
+    betaG grav : derived -(100*lambda**2 - 132*lambda + 81)/(24*(2*lambda - 1)**2) E-V -(56*lambda**2 - 68*lambda + 29)/(6*(2*lambda - 1)**2) DIFFERENT
+    betaL grav : derived -(100*lambda**3 - 36*lambda**2 + 57*lambda - 12)/(24*(2*lambda - 1)**2) E-V -(56*lambda**3 - 20*lambda**2 - lambda + 3)/(6*(2*lambda - 1)**2) DIFFERENT
+    O(G) term of beta_Lambda, derived minus E-V: -(48*N_D*lambda**3 - 48*N_D*lambda**2 + 12*N_D*lambda - 48*N_V*lambda**3 + 48*N_V*lambda**2 - 12*N_V*lambda - 124*lambda**3 + 44*lambda**2 + 61*lambda - 24)/(24*pi*(2*lambda - 1)**2)
+  [FAIL] G1(i) (alpha,beta)=(0, 1), no eta  every coefficient of (4.8)-(4.9), matter and gravity parts, exactly
+  [FAIL] G1(ii) (alpha,beta)=(0, 1), no eta  SM fixed point(s) of the derived system: [(0.97371, -1.24522)]; E-V (2.726, -3.758) to 1e-3
+  [PASS] G1(iii) (alpha,beta)=(0, 1), no eta  f_g = -g*(4*lambda - 1)/(4*pi*(2*lambda - 1)**2) (from as1_g1_fg_flat.py); E-V: G(1-4L)/(4 pi (1-2L)^2)
+Traceback (most recent call last):
+  File "<repo>/real_research/alpha_principle_2026/AS1_fg_r2_truncation/as1_g1_eh_betas.py", line 255, in <module>
+    bG, bL, esol = betas_from_rhs(A0g + matI[0], A1g + matI[1], weta)
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>/real_research/alpha_principle_2026/AS1_fg_r2_truncation/as1_g1_eh_betas.py", line 161, in betas_from_rhs
+    e_sol = sp.solve(sp.Eq(eta, g * A1e / sp.pi), eta)[0]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+[note added when archiving: the absolute path prefix in the traceback above was replaced by <repo>/ (privacy rule: no home-directory paths in committed files); 2 occurrences; nothing else changed]

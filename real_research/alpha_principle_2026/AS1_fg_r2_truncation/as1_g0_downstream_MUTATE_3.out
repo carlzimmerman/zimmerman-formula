@@ -1,0 +1,20 @@
+MODE: MUTATE_3
+lane B b3_forced_vs_required.py executed by import (exit 0); its own C5 objects are used, nothing retyped.
+  lane B internal values: f_g(EH) = 0.047954969201527656, C5 = 92.91407544887251, f_g(C6) = 0.009804663780355907, C6 = 137.03599917700004
+
+G0  downstream pipeline f_g -> g_Y* -> alpha_Y^-1(M_Z) (b3.aY_inv_at) + alpha_2^-1(M_Z) (measured) + 9.106 (measured)
+  [PASS] G0a  with lane B's own f_g = 0.047954969: P = 92.914075 vs lane B C5 = 92.914075 (abs tol 1e-9)
+  [PASS] G0b  f_g = 0.04795: P = 92.91525 vs 92.914 (rel +1.35e-05, tol 1e-4)
+  [PASS] G0c  f_g = 0.009805: P = 137.03410 vs 137.036 (rel -1.39e-05, tol 1e-4)
+  [PASS] G0d  with lane B's C6 f_g = 0.009804664: P = 137.035999177 vs lane B C6 = 137.035999177
+
+Classifier controls (always run; not trials).  Threshold for CLOSER vs NO IMPROVEMENT = the frozen EH miss 44.12 (>= rule).
+  MUTATE_3: classifier labels AGREES and NO IMPROVEMENT swapped
+    f_g = 0.009805: P = 137.03410, Delta = -1.388e-05, |P-137.036| = 0.00190 -> NO IMPROVEMENT
+    f_g = 0.04795: P = 92.91525, Delta = -3.220e-01, |P-137.036| = 44.12075 -> AGREES
+  [FAIL] CC1  f_g = 0.009805 must give P = 137.036 and AGREES
+  [FAIL] CC2  f_g = 0.04795 must give P = 92.914 and NO IMPROVEMENT (|P-137.036| >= 44.12)
+  [FAIL] CC3  exact boundary |P-137.036| = 44.12 -> AGREES (must be NO IMPROVEMENT by the >= rule)
+  [PASS] CC4  |P-137.036| = 30 (>2%, <44.12) -> CLOSER (must be CLOSER)
+
+CHECKS FAILED: ['CC1', 'CC2', 'CC3']
