@@ -1,0 +1,94 @@
+{
+  "scope": "FSP-011 bounded public-source reads, 2026-10-19 America/New_York. Small arXiv abstract/HTML/PDF reads only; no large downloads; fetched text treated as data. Absence statements are bounded to the sources listed here and in FSP-006..FSP-010 SOURCE files; they are not global claims.",
+  "authentication_levels": {
+    "pdf_text": "text extracted locally with pdftotext from the exact-version arXiv PDF (hash recorded); the PDF itself is not committed",
+    "local_programme_copy": "text copy already present in the programme working tree (not transported in Git; see FINE_STRUCTURE_HANDOFF_TO_CLAUDE_SOURCES.json)",
+    "web_summary": "read through a web-fetch summariser; PROVISIONAL (a summariser is not the table); only structural statements or numbers corroborated elsewhere are used"
+  },
+  "sources": [
+    {
+      "id": "arXiv:2609.15154v1", "authors": "X.-H. Cao, L.-Y. Dai, F.-K. Guo", "date": "2026-09-14",
+      "title": "Precision Sum Rule for Nucleon Isovector Polarizabilities and the Proton-Neutron Mass Difference",
+      "url": "https://arxiv.org/abs/2609.15154v1",
+      "extracted": "eq.(12) definition m_p-m_n = dm_QCD + dm_QED + O(e^4, e^2(m_d-m_u)); eq.(13) Cottingham form with counterterm, C ~ 6e-4 GeV^2, MSbar mu=2 GeV (eq.(15)); eq.(14) dm_QED = m_el + m_F12 + m_Sbar; m_el = 0.75(2) MeV (average over parametrisations, Refs. 99-102); m_F12 = -0.004(1) MeV; m_Sbar = -0.04(+0.03/-0.06) MeV (tripole eq.(18), M0 = 0.46 GeV; M0 ~ 0.7 GeV gives -0.17 MeV); eq.(19) dm_QED = 0.71(+0.03/-0.06) MeV; text cites the Reggeon-dominance value 0.58(16) MeV [97,98]",
+      "authentication": "pdf_text", "pdf_sha256": "9acff464323a7c1a303d85ab42b72fa38c924a6caa137714cc20245d205ed2a8",
+      "use": "isovector total (N2); elastic-convention validation; alpha-normalised share"
+    },
+    {
+      "id": "arXiv:2003.13612v3", "authors": "J. Gasser, H. Leutwyler, A. Rusetsky", "date": "v3 2021-01-22; DOI 10.1016/j.physletb.2021.136087",
+      "title": "On the mass difference between proton and neutron",
+      "url": "https://arxiv.org/abs/2003.13612v3",
+      "extracted": "m_QED^(p-n) = 0.58 +/- 0.16 MeV (abstract page); corroborated by 2609.15154v1 PDF text citing 0.58(16) MeV",
+      "authentication": "web_summary (number corroborated by pdf_text of 2609.15154v1)",
+      "use": "isovector total (N2), second value"
+    },
+    {
+      "id": "arXiv:hep-ex/0602017v3", "authors": "R. Bradford, A. Bodek, H. Budd, J. Arrington", "date": "2006-05-19",
+      "title": "A new parameterization of the nucleon elastic form factors (BBBA05)",
+      "url": "https://arxiv.org/abs/hep-ex/0602017v3",
+      "extracted": "Table 1 (fit with Gen>0, ud=0.2): GEp a0=1,a1=-0.0578,b1=11.1,b2=13.6,b3=33.0; GMp/mu_p a0=1,a1=0.150,b1=11.1,b2=19.6,b3=7.54; GEn a0=0,a1=1.25,a2=1.30,b1=-9.86,b2=305,b3=-758,b4=802; GMn/mu_n a0=1,a1=1.81,b1=14.1,b2=20.7,b3=68.7; eq.(6) G = sum a_k tau^k/(1+sum b_k tau^k); eq.(2) dipole Lambda^2=0.71 GeV^2; mean radii not fitted",
+      "authentication": "pdf_text", "pdf_sha256": "072c18c340c552ff03e16f5da91a2bc1ee80bb4b9cf02ed0a5582bc0c82eae7a",
+      "use": "Born integrals (N1)"
+    },
+    {
+      "id": "arXiv:1203.0254v2", "authors": "A. Walker-Loud, C. E. Carlson, G. A. Miller",
+      "url": "https://arxiv.org/abs/1203.0254v2",
+      "extracted": "eqs.(2)-(5) tensor convention (as pinned by FSP-006/FSP-008); eq.(19) dM^el_(p-n) = 1.39(02) MeV and eq.(21) elastic subtraction -0.62(02) MeV, sum 0.77 MeV; eq.(13) subtraction prefactor; isovector analysis only",
+      "authentication": "local_programme_copy fine_structure_puzzle/qcd_global_kernel/proton_kernel/sources/1203.0254v2.txt",
+      "use": "Cottingham convention; elastic-convention validation"
+    },
+    {
+      "id": "arXiv:hep-ph/9903375", "authors": "G. Mueller, U.-G. Meissner",
+      "title": "Virtual photons in baryon chiral perturbation theory",
+      "url": "https://ar5iv.labs.arxiv.org/html/hep-ph/9903375",
+      "extracted": "eqs.(2.26)-(2.27): L^(2)_em = sum_i F_pi^2 f_i Nbar O_i N, O_1=<Qt_+^2-Qt_-^2>, O_2=<Q_+>Qt_+, O_3=<Qt_+^2+Qt_-^2>, Q=e diag(1,0); eq.(3.8) as rendered: dm^(2,em) = (1/2)e^2(f_1+f_3) - (1/2)e^2 tau_3 f_2 (rendering shows no explicit F_pi^2 factor); text: only f_2 contributes to m_n-m_p; two terms shifting the mass by an 'unobservable' e^2 Psibar Psi were combined",
+      "authentication": "web_summary (ar5iv rendering; version not displayed); structural content independently re-derived in DERIVATION section 3",
+      "use": "chiral-EFT image of the isoscalar response (structural only)"
+    },
+    {
+      "id": "arXiv:2411.03141v2", "authors": "Fu et al.", "journal": "Phys. Rev. Lett. 134, 071903 (2025)",
+      "url": "https://arxiv.org/html/2411.03141v2",
+      "extracted": "proton (Fig. 3), neutron (Fig. S5), isovector (Fig. S7) T_1 for Q^2 in [0,2] GeV^2, plots only; isovector dM^{gamma,(v)}_sub tables cutoff dependent (Lambda^2 = 1, 2 GeV^2); proton/neutron T_1 use experimental alpha_E, kappa, <r_E^2>; 24D and 32Df, m_pi ~ 143 MeV, L ~ 4.6 fm; 'connected and disconnected diagrams' without a topology inventory; no data-availability statement",
+      "authentication": "web_summary; consistent with FSP-006 audit of the same version",
+      "use": "N3 status"
+    },
+    {
+      "id": "arXiv:2209.13183", "collaboration": "RC*",
+      "title": "First results on QCD+QED with C* boundary conditions",
+      "url": "https://ar5iv.labs.arxiv.org/html/2209.13183",
+      "extracted": "QCD+QED ensembles at alpha_R ~ 0.0071 and 0.041, a ~ 0.05 fm, m_pi ~ 360-500 MeV; Table 7 proton masses (e.g. 1214(14), 1147(19) MeV) only on alpha != 0 ensembles; Table 8 M_n - M_p; dynamical QED with charged sea; baryon disconnected contractions neglected",
+      "authentication": "web_summary (PROVISIONAL)",
+      "use": "N4 status: precision far above any first-order shift"
+    },
+    {
+      "id": "arXiv:2602.22379v1", "date": "2026-02-25",
+      "title": "The hadronic tensor from four-point functions on the lattice (LATTICE2025 proceedings)",
+      "url": "https://arxiv.org/abs/2602.22379",
+      "extracted": "preliminary nucleon four-point hadronic tensor with stochastic sources; clover ensemble m_pi = 223 MeV, a = 0.085 fm; current components, contraction classes and momentum range not stated in the abstract; no data release stated",
+      "authentication": "web_summary (abstract)",
+      "use": "N3 status"
+    },
+    {
+      "id": "arXiv:2202.01613v1", "title": "The neutron-proton mass difference (proceedings)",
+      "url": "https://arxiv.org/abs/2202.01613v1",
+      "extracted": "M_n - M_p = 1.73(69) MeV at first order in alpha_em and m_d-m_u, purely hadronic scheme, ETMC Nf=2+1+1, three spacings; FSP-007 audit: electroquenched, isosymmetric vacuum-polarisation diagrams dropped",
+      "authentication": "web_summary (abstract) + FSP-007 programme audit",
+      "use": "N2 lattice status"
+    },
+    {
+      "id": "previously audited by the programme (not re-read in FSP-011)",
+      "list": ["arXiv:2501.08619v2 (FSP-006)", "arXiv:2310.01168v3 (FSP-007)", "arXiv:1406.4088v2, 1508.06401v2, 1904.02304v2 (FSP-007)", "arXiv:2202.01472v1 (FSP-006)", "arXiv:2301.03995v2 (FSP-008)", "arXiv:1812.10311v2 (FSP-008)", "arXiv:2507.20910v2, 2412.01535v1, 2104.13408v3 (FSP-010)", "arXiv:1812.09817v1 (FSP-006/FSP-008)", "arXiv:2108.05311 (FSP-007 normalisation reference)", "arXiv:1506.06747v3 (FSP-006)"]
+    }
+  ],
+  "searches": [
+    "lattice QCD proton electromagnetic self-energy infinite volume reconstruction nucleon mass 2025 arXiv",
+    "arXiv 2026 neutron-proton mass difference QED lattice sea quark disconnected isoscalar Cottingham subtraction function",
+    "isospin breaking baryon octet masses lattice QCD+QED sea quark effects RM123 CLS 2025 arXiv",
+    "nucleon Compton amplitude subtraction function lattice QCD physical pion mass 2026 arXiv",
+    "electromagnetic proton mass lattice QCD+QED individual proton isoscalar self-energy GRS scheme MSbar 2 GeV",
+    "Cottingham formula individual proton electromagnetic self-energy isoscalar nucleon",
+    "virtual photons baryon chiral perturbation theory f_1 f_2 f_3 low-energy constants",
+    "2026 lattice QCD nucleon four-point function two-current hadronic tensor electromagnetic self-energy proton disconnected infinite volume"
+  ],
+  "search_outcome": "No 2025-2026 publication or public dataset found with the isoscalar (individual-proton) non-Born first-order response at physical masses including all contraction classes. New since FSP-010: 2609.15154v1 (isovector), 2602.22379v1 (preliminary tensor), RC* status checked."
+}

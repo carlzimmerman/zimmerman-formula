@@ -1,0 +1,55 @@
+{
+ "record": "FSP-011 run_001 (plain manifest; the programme's local mathbox-v2 runner was not available in this session, so this is NOT a mathbox-v2 manifest)",
+ "date": "2026-10-19 America/New_York",
+ "commands_from_repository_root": [
+  "python3 -I fine_structure_puzzle/qcd_full_proton/compute_fsp011.py --inputs fine_structure_puzzle/qcd_full_proton/INPUTS.json --output fine_structure_puzzle/qcd_full_proton/run_001/result.json",
+  "python3 -I fine_structure_puzzle/qcd_full_proton/rederive_fsp011.py --inputs fine_structure_puzzle/qcd_full_proton/INPUTS.json --output fine_structure_puzzle/qcd_full_proton/run_001/rederive_blind.json",
+  "python3 -I fine_structure_puzzle/qcd_full_proton/rederive_fsp011.py --inputs fine_structure_puzzle/qcd_full_proton/INPUTS.json --output fine_structure_puzzle/qcd_full_proton/run_001/rederive_compare.json --author-result fine_structure_puzzle/qcd_full_proton/run_001/result.json"
+ ],
+ "exit_codes": [
+  0,
+  0,
+  0
+ ],
+ "status": "completed",
+ "all_checks_pass": {
+  "compute": true,
+  "rederive_blind": true,
+  "rederive_compare": true
+ },
+ "n_checks": {
+  "compute": 7,
+  "rederive_independent": 6,
+  "rederive_comparison": 2
+ },
+ "software": {
+  "python": "3.13.9",
+  "numpy": "1.26.4",
+  "scipy": "1.14.1",
+  "sympy": "1.13.1",
+  "mpmath": "1.3.0"
+ },
+ "resources": "single core, under nice 19; each script runs in about one second; no network access during execution",
+ "history": "Before commit, run_001 was regenerated once after two INPUTS keys (FSP-010 sigma calibration) and a ledger section were added; an earlier comparison draft flagged two-loop labels V_lc/V_sc as absent because the enumeration sorts flavour labels; only the comparison's label normalisation changed. No committed artifact was rewritten.",
+ "input_sha256": {
+  "INPUTS.json": "18af00759454bb955245736d3f01a6694f4e7182e23ab715a3e4f34c128c619d",
+  "compute_fsp011.py": "795194c019312ceb89613c0043aade40707ff84190eadef7dc04e0d8286b95a1",
+  "rederive_fsp011.py": "ad63e43219876cdb22346b738e410f66e65faefb03c64002493d1564a3b9afbb"
+ },
+ "output_sha256": {
+  "run_001/compute_stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "run_001/compute_stdout.txt": "1a2c535061d5e59ad324d3fdb4407df483e274252c56870b8aa9332f21180059",
+  "run_001/rederive_blind.json": "93d3c686ee5060b6ddcd103ed0e0681f279043f3294caff2aea7f15bd745e46e",
+  "run_001/rederive_blind_stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "run_001/rederive_blind_stdout.txt": "b959b4889899c35e9281a6203790a72ecf7f1f6384ff9b3c269a46cbfce11c9c",
+  "run_001/rederive_compare.json": "45a35ffff10266e2d320d1e01253b5f707493fff9f94e17af1d75f813abd828b",
+  "run_001/rederive_compare_stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "run_001/rederive_compare_stdout.txt": "01e6587062b05c54e9fa099482cc589a760b3ab55a83d1fd2424993e7f645560",
+  "run_001/result.json": "7d9a4bb4fd0898519c5d02d78f761c8d4d853c94bb582d6a6d744e6221ab4a1d"
+ },
+ "imported_programme_file_sha256": {
+  "fine_structure_puzzle/qcd_hard_vacuum/hard_proton/run_001/result.json": "92b8af4610fa44bf7c338c52c105eefda0a07a60391457742ccb8e71dff84e6e",
+  "fine_structure_puzzle/qcd_hard_vacuum/hard_proton/INPUTS.json": "2b0463aa8284529a060aed5e054ca7809a2628daa4d2cff4d366a05f028696c2"
+ },
+ "scope": "implementation and finite assertions verified in the stated range; physical interpretation limited as in REPORT.md"
+}

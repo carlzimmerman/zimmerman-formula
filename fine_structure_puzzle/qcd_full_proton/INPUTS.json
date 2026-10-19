@@ -1,0 +1,63 @@
+{
+  "package": "FSP-011 full-proton-response data inventory and assembly",
+  "created": "2026-10-19 America/New_York",
+  "policy": "No numerical alpha is fitted. alpha_ref appears ONLY to undo the multiplicative alpha that a cited source applied to its own alpha-free Cottingham integral, and to print comparison values in the source's MeV units. Every quantity labelled per_e2 is the coefficient of u=e^2.",
+  "nucleon_kinematics": {
+    "M_p_MeV": 938.27208816,
+    "M_n_MeV": 939.56542052,
+    "mu_p": 2.79284734463,
+    "mu_n": -1.91304273,
+    "note": "CODATA 2018 masses and magnetic moments in nuclear magnetons, used only as kinematic scale and form-factor normalisation. The measured masses contain their own O(alpha) shifts; at first order in u this changes M_u at relative O(alpha) only."
+  },
+  "form_factor_parametrisations": {
+    "BBBA05": {
+      "source": "arXiv:hep-ex/0602017v3 (Bradford, Bodek, Budd, Arrington), Table 1 and eq. (6); preferred fit 'Gen > 0, ud = 0.2'",
+      "form": "G(Q^2) = sum_{k>=0} a_k tau^k / (1 + sum_{k>=1} b_k tau^k), tau = Q^2/(4 M^2)",
+      "GEp": {"a": [1, -0.0578], "b": [11.1, 13.6, 33.0]},
+      "GMp_over_mu_p": {"a": [1, 0.150], "b": [11.1, 19.6, 7.54]},
+      "GEn": {"a": [0, 1.25, 1.30], "b": [-9.86, 305, -758, 802]},
+      "GMn_over_mu_n": {"a": [1, 1.81], "b": [14.1, 20.7, 68.7]},
+      "alpha_status": "Elastic Sachs form factors are normalised by G(0) (charge, magnetic moment); cross-section normalisations float in such fits, so the measured alpha cancels at leading order. Radiative corrections enter at relative O(alpha)."
+    },
+    "dipole_Galster": {
+      "source": "standard dipole G_D=(1+Q^2/Lambda^2)^-2, Lambda^2=0.71 GeV^2 (quoted as such in hep-ex/0602017v3 eq. (2)); Galster G_En=-mu_n tau G_D/(1+5.6 tau)",
+      "Lambda2_GeV2": 0.71,
+      "Galster_B": 5.6,
+      "role": "second, cruder parametrisation; the spread between the two is a parametrisation-sensitivity indicator, not an uncertainty"
+    }
+  },
+  "published_isovector": {
+    "CaoDaiGuo_2609.15154v1": {
+      "quantity": "delta m_QED = O(e^2) part of m_p - m_n, eq. (12)-(13), MSbar mu = 2 GeV for the UV counterterm (eq. (15))",
+      "delta_m_QED_MeV": 0.71, "err_plus_MeV": 0.03, "err_minus_MeV": 0.06,
+      "m_el_MeV": 0.75, "m_el_err_MeV": 0.02,
+      "m_F12_MeV": -0.004, "m_F12_err_MeV": 0.001,
+      "m_Sbar_MeV": -0.04, "m_Sbar_err_plus_MeV": 0.03, "m_Sbar_err_minus_MeV": 0.06,
+      "m_Sbar_alternative_M0_0p7GeV_MeV": -0.17,
+      "inputs": "elastic: average over form-factor parametrisations; F1,2: structure functions; Sbar: tripole ansatz normalised by a new dispersive (alpha_E1-beta_M1)^(p-n) built from photoproduction multipoles and gamma gamma -> pi eta / K Kbar amplitudes"
+    },
+    "GasserLeutwylerRusetsky_2003.13612v3": {
+      "quantity": "m_QED^(p-n), Cottingham with Reggeon-dominance sum rule",
+      "delta_m_QED_MeV": 0.58, "err_MeV": 0.16
+    }
+  },
+  "alpha_ref": {
+    "value_inverse": 137.035999177,
+    "role": "inverse of the cited sources' own multiplicative normalisation only (CODATA 2022 value); NOT an input to any QCD quantity computed here"
+  },
+  "programme_imports": {
+    "sigma_weighted_MeV": 52.071146666666664,
+    "sigma_weighted_exact": "488167/9375",
+    "finite_quark_counterterm_mu_eq_Lambda_MeV_per_u": 0.8243609709188183,
+    "UV_quark_log_coefficient_MeV_per_u_per_logLambda2": 0.9892331651025821,
+    "source_file": "fine_structure_puzzle/qcd_hard_vacuum/hard_proton/run_001/result.json",
+    "source_sha256": "92b8af4610fa44bf7c338c52c105eefda0a07a60391457742ccb8e71dff84e6e",
+    "sigma_calibration_from": "fine_structure_puzzle/qcd_hard_vacuum/hard_proton/INPUTS.json (sha256 2b0463aa8284529a060aed5e054ca7809a2628daa4d2cff4d366a05f028696c2), key sigma_calibration; FSP-010 combination sigma_u,d=(sigma_piN +/- m_l gS^(u-d))/2",
+    "sigma_piN_MeV": "41.9",
+    "sigma_s_MeV": "30",
+    "sigma_c_MeV": "82",
+    "gS_u_minus_d": "1.08",
+    "ml_MSbar2GeV_MeV": "3.636",
+    "status": "FSP-010 source-calibrated leading strong-order local conversion; imported unchanged, not re-derived"
+  }
+}
