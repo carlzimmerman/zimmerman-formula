@@ -44,3 +44,21 @@ Caveats for whoever runs it (interpretation, not code bugs; the script was left 
 ### To run (only after no 1024^3 job is live: the CFG650 engine, `run_650.py` and the overnight chain all gone)
     for P in A B C; do CFG837_I_CHECKED=1 CFG837_PART=$P OMP_NUM_THREADS=1 nice -n 19 python3 cfg837_shell_check.py; done > cfg837_shell_check.out 2>&1
 Estimated: Part A seconds, Part B about a minute, Part C about 10 minutes, all under 200 MB.
+
+## Script run (2026-10-18, owner chat): EXECUTED — Parts A, B, C confirm the derivation
+Run beside the live 1024³ job on the owner's explicit 2026-10-18 instruction (light lanes allowed, 1 core, nice 19);
+`CFG837_I_CHECKED=1` was set under that override (the guard's literal meaning, "no 1024³ job live", did not hold — disclosed).
+Script unchanged from 1eaa5a118. Total 4.9 min, < 50 MB. Outputs: `cfg837_part{A,B,C}.out` and `cfg837_part{A,B,C}_results.json` (written by the script).
+- **Part A (DERIVATION §3.2–3.4): all PASS.** Apocentres x_apo 1.1036 / 1.6180 / 2.7321 / 5.8541 and half periods
+  2.398 / 3.393 / 6.106 / 16.770 at p = 1.1 / 1.5 / 2 / 2.5 match the closed forms to 1e-4; p = 3 is exactly parabolic
+  (v² = 2(r² − 1)/r³); p = 3.4 escapes.
+- **Part B (§4.2–4.3): confirmed.** Slow loss always ends at the adiabatic ε = −2/3 (bound) for every p; at p = 10
+  (f_loss 0.90) sudden loss unbinds (ε +7.38). The critical ramp lies between ν = 2.5 (unbound) and ν = 25 (bound), so
+  **ν_c(0.90) ∈ (2.5, 25)** — the bracket §4.3 asked for.
+- **Part C (§5, shell crossing): confirms the sign, and is stricter than the bound.** On the physical edge the unbound
+  fraction u(ε > 0) is 0.023 / 0.023 / 0.095 / 0.939 / 0.975 at p = 1.5 / 2 / 3 / 5.6 / 10: monotone in p (§5.3's
+  "expected, not proven" now shown for these p). Early-type-like losses (f_loss 0.82–0.90) unbind ~94–98%; cluster-like
+  losses (f_loss ~0.33–0.36) unbind ~2.3%, ten times below the u_C ≥ 0.23 the record needs and inside §5.2's u_max
+  (0.16–0.24). Energy is conserved to ≤ 5e-4. Caveat 2 of the review applied (read u(ε > 0), not u(r > 1000)).
+- **Verdict unchanged and now checked numerically: NO REDUCTION — the dynamics unbind more where more baryons were lost
+  (early types), while the data need the clusters (which lost less) to carry the larger free fraction.**
