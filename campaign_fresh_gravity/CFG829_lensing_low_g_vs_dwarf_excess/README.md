@@ -28,3 +28,11 @@ Window = the dwarfs' range, 10^−13.3 ≤ g_bar < 10^−11.9 m/s². A = full-co
 - Caveats: lensing assumed to trace the dynamical g (as CFG801–805); B21's g_bar (stars + cold-gas estimate) used as published.
 
 κ = ½ fitted; cold energy mass required; not theory closed.
+
+**Clarification (2026-10-18, same night, owner chat): scope of "satellite property".** KiDS lensing probes 30–300 kpc around
+isolated galaxies; the dwarf dispersions probe r_1/2 ≈ 0.1–1 kpc. CFG829 therefore shows that the law's g(g_bar) relation holds
+for isolated systems at these g_bar, i.e. the dwarf excess is not a failure of the law's deep regime as a function of g_bar.
+It does NOT exclude extra bound mass concentrated inside small systems: the only systems reaching g_bar < 10⁻¹² m/s² at
+sub-kpc radii are the satellite / pressure-supported dwarfs themselves (the two gas-free field dSphs, Cetus +0.13 and Tucana
++0.17 dex, are the only same-scale isolated comparison, N = 2). "Satellite property" should be read as "property of the
+faint dwarfs (satellite vs. small-scale origin not separated)".
