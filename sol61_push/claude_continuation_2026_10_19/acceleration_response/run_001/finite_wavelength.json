@@ -1,0 +1,136 @@
+{
+ "checkpoint": "CL-AR-2026-10-19-01",
+ "script": "finite_wavelength.py",
+ "checks": {
+  "A1_odd_probe_dipole_vanishes": {
+   "passed": true,
+   "detail": "k^0 (uniform) coefficient of D_k is identically zero about the COM"
+  },
+  "A2_odd_probe_octupole": {
+   "passed": true,
+   "detail": "D_k = -(k^2/6) q3 z^3 + O(k^4), q3 = mu_red (m_h - m_c)/M"
+  },
+  "A3_equal_masses_zero_all_k": {
+   "passed": true,
+   "detail": "m_c = m_h: D_k == 0 identically (all k)"
+  },
+  "A4_ground_state_chi_D_leading": {
+   "passed": true,
+   "detail": "chi_D = (11/18) k^4 q3^2 s^6/(hbar w) + O(k^6)"
+  },
+  "A5_exact_sum_matches_k4_law": {
+   "passed": true,
+   "detail": "ratios exact/leading at k s=0.01,0.1,0.3,1: 0.999963, 0.996315, 0.967402, 0.699302"
+  },
+  "A6_equal_mass_exact_sum_zero": {
+   "passed": true,
+   "detail": "m_c=m_h: every odd matrix element cancels"
+  },
+  "A7_medium_rho_k_no_internal_dipole": {
+   "passed": true,
+   "detail": "rho_k = e^{ikR}[M + 0*k - (k^2/2) mu_red z^2 + ...]: first internal coupling is the quadrupole"
+  },
+  "A8_medium_alpha_int_order_k2": {
+   "passed": true,
+   "detail": "chi_int = -n k^4 T/(2 w^4) -> alpha_int = n k^2 T/(2 w^4) -> 0"
+  },
+  "B1_single_Jeans_root": {
+   "passed": true,
+   "detail": "one positive root k_J^2; TF limit k*^2 = 2 pi G/K; root = 2*(-K*rho + sqrt(rho)*sqrt(2*pi*G*tau + K**2*rho))/tau"
+  },
+  "B2_kernel_minus_gravity_increasing": {
+   "passed": true,
+   "detail": "d/dk^2 [h - 4piG/k^2] = tau/(2 rho) + 4 pi G/k^4 > 0"
+  },
+  "B3_dressed_perfect_screening_below_kJ": {
+   "passed": true,
+   "detail": "chi_p/eps = +k^2/(4 pi G) + O(k^4) (unstable branch): drho = -rho_ext, total density perturbation -> 0"
+  },
+  "B4_limit_order_proper": {
+   "passed": true,
+   "detail": "lim_k->0 chi/k^2 = rho/omega**2 (free fall); static chi(k,0)=chi_p; lim_k->0 chi(k,0)/k^2 = -oo"
+  },
+  "B5_limit_order_dressed": {
+   "passed": true,
+   "detail": "dressed: lim_k->0 chi/k^2 = 2*rho/(8*pi*G*rho + 2*omega**2); then w->0: 1/(4*pi*G) (homogeneous background collapse/swindle branch, not a static stable state)"
+  },
+  "B6_benchmark_matches_record_L0": {
+   "passed": true,
+   "detail": "1/k* = 3.683472e+07 m (record L0 3.68347e7 m); pi/k* = 1.1572e+08 m; at k=1/kpc eps = -7.018e+23"
+  },
+  "C1_mode_family_exponent": {
+   "passed": true,
+   "detail": "alpha ~ k^(2a-2-b); internal modes a>=2 (EP) need b=2a-2>=2: a gap closing like k^2 at the probe scale; a=1 at finite gap is the pinned COM (external anchor)"
+  },
+  "C2_critical_limits_noncommuting": {
+   "passed": true,
+   "detail": "internal quadrupole family: lim_k lim_Omega = oo, lim_Omega lim_k = 0"
+  },
+  "D1_supported_dielectric_normalization": {
+   "passed": true,
+   "detail": "4 pi G alpha = 3 rho_c/rho_h  (rho_c = n m_c, rho_h host core)"
+  },
+  "D2_hard_wall_saturation_scale": {
+   "passed": true,
+   "detail": "g* = w^2 R_c = G M_core/R_c^2 (core surface gravity); p_sat/g* = alpha, so the target needs rho_c = rho_h/3 AND a0 = G M_core/R_c^2 -- state selections"
+  },
+  "D3_compressible_support_fails": {
+   "passed": true,
+   "detail": "with site compressibility C_site>0: 4 pi G(-chi)/k^2 -> oo (k->0); only C_site=0 (incompressible static support) passes"
+  },
+  "D4_displacement_over_radius": {
+   "passed": true,
+   "detail": "deep regime, flat curve: |u|/r = rho_dyn/rho_carrier; locality (|u|<<r) requires carrier density >> total dynamical density"
+  },
+  "E1_target_is_exact_marginality": {
+   "passed": true,
+   "detail": "target quadratic medium energy K|P|^2/2 cancels the Newtonian self-energy at every k: h_target(k) = 4 pi G/k^2"
+  },
+  "F1_record_n1_cubic_response_reproduced": {
+   "passed": true,
+   "detail": "A=2piE/3, lambda/E=10/pi^2-5/3, COM integral 0, chi_1 = -40/63 + 20/(3*pi**2) = 0.040554 R^7/G (record: 20/(3pi^2)-40/63); plane-probe l=1 part gives chi_k = (k^4/100) chi_1 + O(k^6) per centred object"
+  }
+ },
+ "numbers": {
+  "A_two_body_chi_D": [
+   {
+    "k_s": 0.01,
+    "chi_exact": 8.593432624116882e-10,
+    "chi_leading": 8.59375e-10,
+    "ratio": 0.9999630689881462
+   },
+   {
+    "k_s": 0.1,
+    "chi_exact": 8.562080574586932e-06,
+    "chi_leading": 8.593750000000002e-06,
+    "ratio": 0.9963148304973882
+   },
+   {
+    "k_s": 0.3,
+    "chi_exact": 0.0006734024019577344,
+    "chi_leading": 0.0006960937500000001,
+    "ratio": 0.9674018793556677
+   },
+   {
+    "k_s": 1.0,
+    "chi_exact": 0.06009629376637798,
+    "chi_leading": 0.0859375,
+    "ratio": 0.6993023274633073
+   }
+  ],
+  "B_benchmark": {
+   "m_kg": 1.782661921627898e-30,
+   "lambda_rep": 0.00587528017,
+   "K_SI_m5_per_kg_s2": 568984.4767361102,
+   "kstar_per_m": 2.7148296708635818e-08,
+   "one_over_kstar_m": 36834723.39838919,
+   "polytrope_radius_pi_over_kstar_m": 115719696.42539154,
+   "record_L0_m": 36834700.0,
+   "kpc_over_one_over_kstar": 837708905295.1342,
+   "eps_at_k_equal_1_over_kpc": -7.01756210010772e+23
+  },
+  "F_chi1_R7_over_G": 0.04055392269495022
+ },
+ "all_passed": true,
+ "sympy_version": "1.13.1"
+}

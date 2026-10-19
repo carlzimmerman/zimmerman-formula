@@ -1,0 +1,84 @@
+{
+ "checkpoint": "CL-AR-2026-10-19-01",
+ "script": "affine_exact.py",
+ "checks": {
+  "A1_internal_forces_sum_to_zero": {
+   "passed": true,
+   "detail": "translation-invariant pair forces obey Newton's third law"
+  },
+  "A2_COM_acceleration": {
+   "passed": true,
+   "detail": "R'' = (sum_i gamma_i / M) E exactly"
+  },
+  "A3_internal_E_dependence_is_EP_violation_only": {
+   "passed": true,
+   "detail": "d(y_i'')/dE = (gamma_i/m_i - sum gamma/M) * Identity"
+  },
+  "A4_minimal_coupling_internal_E_free": {
+   "passed": true,
+   "detail": "gamma_i=m_i: every internal acceleration is E-independent for arbitrary pair potentials (nonlinear, all orders)"
+  },
+  "B1_COM_commutes_with_relative_variables": {
+   "passed": true,
+   "detail": "N=4: [R,P]=i hbar, [R,pi_a]=[P,y_a]=0, [y_a,pi_b]=i hbar(delta_ab - m_b/M)"
+  },
+  "B2_kinetic_split": {
+   "passed": true,
+   "detail": "sum p^2/2m = P^2/2M + sum pi^2/2m (momenta commute)"
+  },
+  "B3_uniform_coupling_is_COM_only": {
+   "passed": true,
+   "detail": "-E sum m_a x_a = -E M R (gravitational = inertial weights)"
+  },
+  "C1_GP_Avron_Herbst_covariance": {
+   "passed": true,
+   "detail": "residual_E = phase * residual_0(x - xi, t) with S' = m|xi'|^2/2; E(t)=xi'' arbitrary (time-dependent uniform field)"
+  },
+  "C2_Euler_continuity_covariance": {
+   "passed": true,
+   "detail": "barotropic baryon fluid (any P(rho), incl. K_b rho^(5/3)): residuals map exactly; v_E = v_0 + xi'"
+  },
+  "C3_Poisson_translation": {
+   "passed": true,
+   "detail": "(trivial identity) Laplacian is translation invariant and m|psi|^2+rho_b translate rigidly: one-copy Poisson maps to itself"
+  },
+  "D1_closed_chain_zero_internal_response": {
+   "passed": true,
+   "detail": "k3=0: internal extensions vanish identically at every omega>0 and every m_s; displacement = -E/omega^2 common to all bodies"
+  },
+  "D2_heavy_free_support_is_not_an_anchor": {
+   "passed": true,
+   "detail": "lim_{m_s->oo} (closed chain) internal extension = 0"
+  },
+  "D3_anchored_static_sag": {
+   "passed": true,
+   "detail": "omega=0, any k3>0: c-h extension m_c E/k1, h-s extension (m_c+m_h)E/k2, anchor carries the total weight (support displacement M_tot E/k3)"
+  },
+  "D4_noncommuting_limits": {
+   "passed": true,
+   "detail": "lim_w lim_k3 = 0; lim_k3 lim_w = E*m_c/k_1"
+  },
+  "D5_source_multipole_change": {
+   "passed": true,
+   "detail": "dQ/dE closed = 0; anchored = 2*(k_1*m_c**2*m_s*r_1 + k_1*m_c**2*m_s*r_2 + k_1*m_c*m_h*m_s*r_1 + 2*k_1*m_c*m_h*m_s*r_2 + k_1*m_h**2*m_s*r_2 + k_2*m_c**2*m_h*r_1 + k_2*m_c**2*m_s*r_1 + k_2*m_c**2*m_s*r_2)/(k_1*k_2*(m_c + m_h + m_s))"
+  },
+  "D6_closed_chain_exact_trajectory": {
+   "passed": true,
+   "detail": "x_i(t)=x_i(0)+E t^2/2 solves the closed chain exactly from a relaxed state: no transient internal motion at any E"
+  },
+  "E1_g_is_frame_dependent": {
+   "passed": true,
+   "detail": "g' = g - xi''"
+  },
+  "E2_tidal_tensor_invariant": {
+   "passed": true,
+   "detail": "d_i d_j U' = d_i d_j U"
+  },
+  "E3_support_acceleration_invariant": {
+   "passed": true,
+   "detail": "(x'' - g) is invariant: the only local scalar equal to |g| is |f/rho| of NON-geodesic (supported) matter"
+  }
+ },
+ "all_passed": true,
+ "sympy_version": "1.13.1"
+}

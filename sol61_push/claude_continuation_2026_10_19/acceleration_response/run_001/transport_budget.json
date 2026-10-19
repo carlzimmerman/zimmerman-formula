@@ -1,0 +1,162 @@
+{
+ "checkpoint": "CL-AR-2026-10-19-01",
+ "script": "transport_budget.py",
+ "checks": {
+  "A1_shell_bounds_hold": {
+   "passed": true,
+   "detail": "N=20000, ell=0.7, 3 centres x 3 transports (random/inward/outward), 240 radii: worst violation = 0.0 particles"
+  },
+  "A2_integrated_bound_holds": {
+   "passed": true,
+   "detail": "int_0^R M_pol(<r) dr <= ell M_ref(B_{R+ell}) in every case"
+  },
+  "A3_bound_is_sharp": {
+   "passed": true,
+   "detail": "radial inward transport by ell attains M_fin(B_r) = M_ref(B_{r+ell})"
+  },
+  "B1_monotone_corollary": {
+   "passed": true,
+   "detail": "M_ref(B_r)/M_pol(<r) >= 1/((1+x)^3-1) = 1/(3x) - 1/3 + 2x/9 + ..., x=ell/r"
+  },
+  "B2_generated_fraction_bound": {
+   "passed": true,
+   "detail": "f_gen <= 1-(1+ell/r)^-3 = 3 ell/r + O((ell/r)^2); max f_gen at ell/r=0.01,0.1,0.3: 0.029, 0.249, 0.545; ell/r needed for f_gen=0.5,0.9,0.99: 0.260, 1.154, 3.642"
+  },
+  "C1_law_mass_identity": {
+   "passed": true,
+   "detail": "M_law(<r) = r^2 (g - g_N)/G = 4 pi r^2 p(g) for the simple law"
+  },
+  "D1_illustrations": {
+   "passed": true,
+   "detail": "Sigma_sat = 53.4 Msun/pc^2 (a0=9.36e-11), 64.5 Msun/pc^2 (a0=1.13e-10); disc gas |a_rel|/g = 0.080 (v_c=50), 0.020 (v_c=100), 0.005 (v_c=200)"
+  }
+ },
+ "numbers": {
+  "B_min_ell_over_r_to_generate_fraction_f": {
+   "0.5": 0.2599210498948732,
+   "0.9": 1.1544346900318838,
+   "0.99": 3.6415888336127775
+  },
+  "B_max_generated_fraction_at_ell_over_r": {
+   "0.01": 0.02940985207235558,
+   "0.1": 0.24868519909842246,
+   "0.3": 0.5448338643604916
+  },
+  "C_illustrative_galaxy": {
+   "declared_inputs": {
+    "M_b_Msun": 10000000000.0,
+    "H0_km_s_Mpc": 67.4,
+    "Omega_m": 0.315,
+    "rho_bar_kg_m3": 2.687849376577885e-27,
+    "baryons": "point mass (illustration)"
+   },
+   "footings": {
+    "9.36e-11": [
+     {
+      "r_kpc": 10.0,
+      "g_over_a0": 0.46747612566940366,
+      "g_N_over_a0": 0.14891821696328425,
+      "M_law_Msun": 21391466752.83251,
+      "rho_dyn_kg_m3": 1.3703963340604487e-22,
+      "rho_dyn_over_rho_bar": 50984.86343774253,
+      "ell_min_uniform_background_kpc": 494.74567218769585,
+      "ell_min_over_r": 49.47456721876959,
+      "pointwise_u_over_r_if_carriers_at_rho_bar": 42864.047708915205
+     },
+     {
+      "r_kpc": 30.0,
+      "g_over_a0": 0.1371720898054023,
+      "g_N_over_a0": 0.016546468551476023,
+      "M_law_Msun": 72901127439.16339,
+      "rho_dyn_kg_m3": 1.5475501011318576e-23,
+      "rho_dyn_over_rho_bar": 5757.577469248544,
+      "ell_min_uniform_background_kpc": 729.5883417983172,
+      "ell_min_over_r": 24.31961139327724,
+      "pointwise_u_over_r_if_carriers_at_rho_bar": 5410.321789787781
+     },
+     {
+      "r_kpc": 100.0,
+      "g_over_a0": 0.03934169700632859,
+      "g_N_over_a0": 0.001489182169632842,
+      "M_law_Msun": 254183239690.73767,
+      "rho_dyn_kg_m3": 1.395413119223664e-24,
+      "rho_dyn_over_rho_bar": 519.1559956385188,
+      "ell_min_uniform_background_kpc": 1052.0419793238325,
+      "ell_min_over_r": 10.520419793238323,
+      "pointwise_u_over_r_if_carriers_at_rho_bar": 509.3303156253986
+     }
+    ],
+    "1.13e-10": [
+     {
+      "r_kpc": 10.0,
+      "g_over_a0": 0.4182647564787459,
+      "g_N_over_a0": 0.12335172661737528,
+      "M_law_Msun": 23908301727.803234,
+      "rho_dyn_kg_m3": 1.5103921908624956e-22,
+      "rho_dyn_over_rho_bar": 56193.33449352344,
+      "ell_min_uniform_background_kpc": 513.8117145199656,
+      "ell_min_over_r": 51.38117145199656,
+      "pointwise_u_over_r_if_carriers_at_rho_bar": 47907.261233687954
+     },
+     {
+      "r_kpc": 30.0,
+      "g_over_a0": 0.12412481953581517,
+      "g_N_over_a0": 0.013705747401930583,
+      "M_law_Msun": 80564064764.77963,
+      "rho_dyn_kg_m3": 1.700981726629414e-23,
+      "rho_dyn_over_rho_bar": 6328.411634416319,
+      "ell_min_uniform_background_kpc": 755.3196853881592,
+      "ell_min_over_r": 25.17732284627197,
+      "pointwise_u_over_r_if_carriers_at_rho_bar": 5979.0229641442065
+     },
+     {
+      "r_kpc": 100.0,
+      "g_over_a0": 0.03574363804736505,
+      "g_N_over_a0": 0.0012335172661737525,
+      "M_law_Msun": 279770066682.8787,
+      "rho_dyn_kg_m3": 1.5332676532913107e-24,
+      "rho_dyn_over_rho_bar": 570.444038513585,
+      "ell_min_uniform_background_kpc": 1089.4451610525052,
+      "ell_min_over_r": 10.894451610525051,
+      "pointwise_u_over_r_if_carriers_at_rho_bar": 560.6009921799022
+     }
+    ]
+   }
+  },
+  "D_Sigma_sat": {
+   "9.36e-11": {
+    "Sigma_sat_kg_m2": 0.11159898920786754,
+    "Sigma_sat_Msun_pc2": 53.43702951101509
+   },
+   "1.13e-10": {
+    "Sigma_sat_kg_m2": 0.1347295489368486,
+    "Sigma_sat_Msun_pc2": 64.51265314898188
+   }
+  },
+  "D_disc_gas_support_fraction": [
+   {
+    "c_s_km_s": 10.0,
+    "v_c_km_s": 50.0,
+    "dlnP_dlnr": 2.0,
+    "a_rel_over_g": 0.08000000000000002
+   },
+   {
+    "c_s_km_s": 10.0,
+    "v_c_km_s": 100.0,
+    "dlnP_dlnr": 2.0,
+    "a_rel_over_g": 0.020000000000000004
+   },
+   {
+    "c_s_km_s": 10.0,
+    "v_c_km_s": 200.0,
+    "dlnP_dlnr": 2.0,
+    "a_rel_over_g": 0.005000000000000001
+   }
+  ]
+ },
+ "all_passed": true,
+ "versions": {
+  "numpy": "1.26.4",
+  "sympy": "1.13.1"
+ }
+}
