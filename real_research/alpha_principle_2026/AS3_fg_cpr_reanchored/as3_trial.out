@@ -1,0 +1,61 @@
+MODE: NORMAL
+(0) GATES (re-run here)
+  [PASS] G-MAT(i) scalar  spectra == Vassilevich (E = 0)
+  [PASS] G-MAT(i) 1-form  spectra (transverse + longitudinal) == Vassilevich (Omega = Riemann)
+  [PASS] G-MAT(i) spinor  spinor bundle dim 4, b2/R = 2/3; b4/R^2 = 101/2160
+  [PASS] G-MAT(ii) scalar  a0, a2, a4 exact
+  [PASS] G-MAT(ii) Dirac  a0, a2, a4 exact
+  [PASS] G-MAT(ii) vector  a0, a2, a4 exact
+   G-MAT: PASS
+  [PASS] HK-CPR  S^4 coefficients from the spectra equal CPR table taba6: S (1, 1/6, 29/2160), V (4, 2/3, 43/1080), VT (3, 1/4, -7/1440), TT (5, -5/6, -1/432)
+  [PASS] no-gdot0  d_t f (the g_0 flow) does not enter, as CPR state
+
+  normalisation N = Y_const/X_const = 725760  (frozen: 725760)
+    R^0: george - 725760 X = 0
+    R^1: george - 725760 X = 0
+    R^2: george - 725760 X = 0
+  [PASS] G-CPR-EH(i)  R^0 and R^1 coefficients equal CPR 'george' / 725760 exactly
+  [PASS] G-CPR-R2(i)  R^2 coefficient equals CPR 'george' / 725760 exactly
+
+  n = 1 pure gravity: real roots (g~0, g~1) -> (Lambda~, G~):
+    g~ = [ 0.005226 -0.020214]  Lambda~ = 0.12927  G~ = 0.98417  theta = [2.382-2.168j 2.382+2.168j]
+  [PASS] G-CPR-EH(ii)  g~0* = 0.0052261 vs Table 1 0.005226; theta = 2.3824 +- 2.1682 i vs Table 2 2.382 +- 2.168 i (tol 0.1% each).  Reported, not gated: g~1* = -0.0202143, Lambda~* = 0.12927, G~* = 0.98417 vs Table 1 -0.02014, 0.1297, 0.9878
+
+  n = 2 pure gravity: real roots (g~0, g~1, g~2) -> (Lambda~, G~):
+    g~ = [-0.00272   0.000188 -0.000349]  Lambda~ = 7.24312  G~ = -105.95814  theta = [-5.811+0.j  2.876+0.j 14.235+0.j]
+    g~ = [ 0.003292 -0.012726  0.001514]  Lambda~ = 0.12936  G~ = 1.56329  theta = [ 1.376-2.325j  1.376+2.325j 26.862-0.j   ]
+  [PASS] G-CPR-R2(ii)  Lambda~* = 0.12936, G~* = 1.56329, g~2* = 1.514408e-03 vs CPR Table 1 (0.1294, 1.5633, 0.001514) (tol 1%); theta = [ 1.376-2.325j  1.376+2.325j 26.862-0.j   ] (CPR Table 2: 1.376 +- 2.325 i, 26.862, reported only)
+   HK-CPR, G-CPR-EH (i), (ii re-anchored), G-CPR-R2 (i), (ii): PASS
+   G0: PASS
+
+(1) f_g on the flat background, CPR gauge rho = 0, alpha = 0, |beta| -> infinity, eta terms d_t f', d_t f''
+   beta-limit: numerator degree 11, denominator degree 11, divergent = False
+   beta -> +inf and -inf limits equal: True; parity (SD = ASD weight): True
+   free symbols: ['F0', 'F1', 'dF1']
+   f_g(F0 = f, F1 = f', F2 = f'', dF1 = d_t f', dF2 = d_t f'', xi) = -5*(8*F0 + 4*F1 - dF1)/(1152*pi**2*(F0 + F1)**2)
+   d f_g / d xi = 0
+
+(2) SM matter (type I), (16 pi^2/V) d_t Gamma contribution: -1751*R**2/4320 - 61*R/12 - 31
+
+   EH reference (n = 1): 1 real root(s) from the frozen grid
+     g~ = [-0.0503111 -0.0205699]  (g, lambda) = (0.967159, -1.22293)  in-domain True  edge False  admissible True  theta = [1.8917+0.j 3.8961+0.j]
+   selection: FP
+   f_g* = 0.03883093  (xi = 1, frozen); xi -> 0: 0.03883093; d f_g/d xi at the FP: 0.000e+00
+   f_g*/0.04795 = 0.80982; f_g*/0.009805 = 3.96032; theta_Y = -2 f_g* = -0.077662 (g_Y* IR-attractive (UV-repulsive))
+   g_Y* = 0.947289;  P = alpha^-1(0) = 95.57847
+
+   R^2 trial (n = 2), GRADED: 4 real root(s) from the frozen grid
+     g~ = [-0.0500001 -0.0197714 -0.0037661]  (g, lambda, b) = (1.00622, -1.26446, -0.0037661)  in-domain True  edge False  admissible True  theta = [-0.2098+0.j  1.8588+0.j  3.8892+0.j]
+     g~ = [-0.048497  -0.0223937  0.0302638]  (g, lambda, b) = (0.888392, -1.08283, 0.0302638)  in-domain True  edge False  admissible False  theta = [0.3434+0.j 2.1847+0.j 3.9685+0.j]
+     g~ = [-0.0522299 -0.0201236  0.0055494]  (g, lambda, b) = (0.988607, -1.29773, 0.00554939)  in-domain True  edge False  admissible True  theta = [1.7286-0.7115j 1.7286+0.7115j 4.1562-0.j    ]
+     g~ = [-0.0843214  0.0727897 -0.0267791]  (g, lambda, b) = (-0.273313, 0.579213, -0.0267791)  in-domain False  edge True  admissible False  theta = [-21.8487-23.3566j -21.8487+23.3566j   5.1082 -0.j    ]
+   selection: NOT DIAGNOSTIC (several admissible roots)
+
+(3) CLASSIFICATION
+   graded R^2 trial: NOT DIAGNOSTIC (several admissible roots)
+
+(4) reported, not graded: systematics
+   EH reference: one-loop P = 95.57847; one-loop switch of the two-loop integrator = 95.57847 (check, diff -2.6e-10); two-loop P = 96.07582 (shift +0.49735); run started at the reduced Planck mass: P = 93.82509 (shift -1.75338)
+
+VERDICT (graded R^2 trial): NOT DIAGNOSTIC (several admissible roots)
+Meaning (frozen): AGREES would NOT be a derivation of alpha (alpha_2, the hadronic offset and the masses are measured; convergence untested); CLOSER / NO IMPROVEMENT = the route is not supported at this truncation; kappa and Z enter nowhere.

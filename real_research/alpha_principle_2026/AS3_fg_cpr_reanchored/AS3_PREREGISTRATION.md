@@ -40,3 +40,23 @@ MUTATE_1 and MUTATE_2 of AS2 must still make this gate (and the others they targ
 
 Reuse the AS2 code by import or by copying it into this directory with only the gate changed (diff to be shown in the report). Same compute
 rules as AS2 (one core, nice 19, < 2 GB RSS, one process at a time beside any live 1024^3 run). Commit locally; do not push.
+
+## Amendment 1 (appended after the runs; nothing above was edited)
+
+* **Outcome.** Every gate passes:
+  * G-MAT, HK-CPR, G-CPR-EH (i), G-CPR-R2 (i) and (ii), and G0;
+  * G-CPR-EH (ii) re-anchored: g~0* = 0.0052261, theta = 2.3824 +- 2.1682 i;
+  * the classifier controls.
+
+  MUTATE_1, MUTATE_2 and MUTATE_3 break their targeted checks.  The f_g stop rule was not triggered: the beta-limit is finite, the
+  +-infinity limits agree, parity holds, and f_g is xi-independent.
+* **EH reference:** unique admissible root (g, lambda) = (0.967159, -1.22293), f_g = 0.03883093, P_EH = 95.57847.
+* **Graded R^2 trial:** two admissible roots, (1.006220, -1.264456, -0.0037661) and (0.988607, -1.297727, 0.0055494), so the verdict is
+  **NOT DIAGNOSTIC**.  Reported, not graded, P at those roots: 95.26961 and 95.70584.
+* **as3_trial.py ran once** (no fix, no re-run): 1120 s, peak RSS 1.35 GB.
+* **as3_roots_report.py was added after that run**, to report f_g and P at every admissible root, as the frozen rule "all are reported"
+  requires.  It also re-derives f_g by an exact second route (restriction to the kernel of the gauge fixing), which agrees identically.
+  No class changes.
+* **Caveat carried from AS1:** in CPR's gauge f_g reduces to the TT-mode contribution, because the conformal mode decouples from the
+  conformally invariant Maxwell term.  Eichhorn-Versteegen's printed TT-approximation formula is not reproduced by this TT computation
+  (the reason has not been identified), although the same machinery reproduces their full alpha = 0, beta = 1 f_g exactly.
