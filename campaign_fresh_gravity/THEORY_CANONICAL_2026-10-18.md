@@ -47,3 +47,5 @@ faint dwarfs (satellite vs. small-scale origin not separated)".
 **Robustness amendment (2026-10-18, CFG840):** FRAGILE by its frozen rule — with the window shifted 0.3 dex lower or B21 lens
 masses lowered 0.2 dex, blue lenses sit 1.23–1.31× above the law (> 2σ). Read "on the law" as "within ~0.1 dex of it"
 (A 0.90–1.31 across variants). The exclusion of the dwarfs' ×2.75 holds in every variant (≥ 12σ).
+
+**Addendum (2026-10-19, CFG843–845):** MW and M31 satellites carry the same excess at matched g_bar (CFG843: not environmental). A free cold core collapsed at each dwarf's assembly epoch (H-PRIM) reaches the dSph densities (CFG844) but is EXCLUDED at 10σ by SPARC's small rotating dwarfs, which assembled as early and show no excess (CFG845). The excess tracks gas-poor, pressure-supported systems at g_bar < 10⁻¹² m/s², not mass or formation epoch.
