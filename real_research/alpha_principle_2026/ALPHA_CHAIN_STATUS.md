@@ -129,3 +129,39 @@ No claim among the 16 audited by lane K (three 2024-26 claims read only as summa
 ## Claim audit (lane P)
 
 Of 49 audited statements in the previous version of this document, 32 were supported as worded, 15 overstated (wording only) and 2 unsupported (a false sentence about control exit codes, and an unscripted plausibility rating); no number was wrong, all nine commit hashes and all script names resolve, and every deciding number was recomputed independently (40 checks). The wording fixes are applied above; the full table with file:line evidence, the not-tested hypotheses by route, and the statements resting on recalled or abstract-only facts are in `P_claim_audit/P_REPORT.md`.
+
+## Asymptotic-safety f_g lanes AS1-AS4 (2026-10-18/19; appended)
+
+Question: lane B reproduced the one literature route with no adjustable constant -- the hypercharge coupling at an IR-attractive interacting fixed point,
+g_Y* = 4 pi sqrt(6 f_g/41), with f_g a number computed by the gravity sector -- and found alpha^-1(0) = 92.914 in Eichhorn-Versteegen's Einstein-Hilbert (EH)
+truncation; 137.036 needs f_g = 0.009805, 4.89 times smaller. AS1-AS4 each computed f_g ONCE in one frozen scheme and truncation, pre-registered and
+committed before any computation, with the downstream identical to lane B C5 (alpha_2 and the hadronic offset 9.106 MEASURED). One graded trial per lane.
+Every script, control and trial was re-run independently with identical output. kappa and Z enter nowhere; none of this is a framework result.
+
+* **AS1 (EH + R^2, Litim type I; pre-reg 4811df3f0, run 3d8900c10): NOT COMPLETED at gate G1.** None of the four declared gauge/eta combinations reproduces
+  Eichhorn-Versteegen (4.8)-(4.9): the vacuum term of beta_Lambda comes out +G/(2 pi) against their -G/(2 pi); their matter is the type II (natural-operator)
+  treatment; they cite an unpublished computation for these equations. The same machinery reproduces CPR's (arXiv:0805.2909) published EH coefficients exactly.
+  Design error (ours): the gate was anchored on equations that cannot be rebuilt from a published scheme.
+* **AS2 (every choice from CPR 0805.2909; pre-reg c1789e555, Amendment 1 8ce28c967 before any run, run 7df554f35): NOT COMPLETED at one gate.** All gates pass
+  (heat kernels; CPR's closed form exactly at R^0, R^1, R^2; CPR's n = 2 fixed point (0.12936, 1.56329, 1.514e-3) and exponents) except G-CPR-EH (ii): the n = 1
+  root Lambda~ = 0.12927, G~ = 0.98417 vs CPR Table 1's 0.1297, 0.9878 (-0.33%, -0.37%; tolerance 0.1%). Diagnostic: the root's g~0 and exponents
+  (2.3824 +- 2.1682 i) equal CPR's Table 1/Table 2; CPR's printed point is not a zero of the flow that reproduces their closed form (betas 1e-4, -3e-4); consistent
+  with g~1 = -0.020214 printed as -0.02014 (not confirmed with the authors).
+* **AS3 (AS2 with that gate re-anchored on CPR's mutually consistent numbers; pre-reg c9935aa03, still blind; run 0c3ccc779): NOT DIAGNOSTIC.** All gates pass.
+  EH + SM matter: unique admissible root (g, lambda) = (0.967159, -1.22293), f_g = 0.03883, P_EH = 95.578 (reference). Graded R^2 + SM trial: two admissible
+  roots, so no root is picked; reported P = 95.270 and 95.706. In CPR's gauge f_g = 5 g (1 - 8 lambda)/(36 pi (1 - 2 lambda)^2) at a fixed point: only the TT
+  gravitons couple (the conformal mode decouples from the conformally invariant Maxwell term), so the R^2 coupling drops out of f_g. g_Y* is IR-attractive.
+  Systematics (not graded): two-loop +0.50, run started at the reduced Planck mass -1.75.
+* **AS4 (EH + C^2 + R^2, every choice from Benedetti-Machado-Saueressig arXiv:0902.4630; pre-reg 3ac042714, run 999af4285): NOT PREDICTED.** All gates pass
+  (BMS's printed trace blocks exactly; their higher-derivative pure-gravity fixed point (g, lambda) = (1.960, 0.218) and exponents (2.51, 1.69, 8.40, -2.11);
+  Christensen-Duff coefficients on Einstein spaces exactly). EH + SM reference: P_EH = 96.373 (f_g = 0.03675). Graded EH + C^2 + R^2 + SM: no admissible root;
+  the one in-domain root fails spin-0 positivity (reported only: P = 91.045). Disclosed before computation: the frozen admissibility rule (every regulated
+  propagator denominator positive at the cutoff) also rejects BMS's published pure-gravity fixed point. Two post-first-run fixes (sympy memory/time; a
+  float-precision bug in the stop-rule convergence check that had ended run 2 as NOT COMPLETED with identical roots and P) are disclosed in its Amendment 1.
+
+**Net (2026-10-19).** Across three published schemes (Eichhorn-Versteegen, CPR, BMS) and three truncations (EH, EH + R^2, EH + C^2 + R^2), every value of the
+predicted alpha^-1(0) on the asymptotic-safety predictive trajectory lies at 91-96 (89-97 including the two-loop and matching-scale systematics), 30-35%
+below 137.036; computed f_g at admissible points = 0.037-0.048 (0.057 at the inadmissible AS4 root) against the required 0.0098. No graded trial reached AGREES or CLOSER. The measured value is consistent
+with asymptotic safety (it lies on the side where the hypercharge coupling flows from the free fixed point, where alpha is an input), but it is NOT predicted
+at any truncation computed. Untried rung: f_g from the fluctuation photon-graviton vertex beyond the background-field approximation. alpha stays an INPUT;
+kappa = 1/2 stays FITTED; the SM mass sector stays walled.

@@ -37,3 +37,13 @@ Charged fermions and vector bosons in four-dimensional de Sitter with a full cov
 ## A recommendation
 
 The programme's distinctive, decisive tests are elsewhere: whether a₀ stays flat out to redshift ≈ 2.5, and Gaia DR4 on 2 December 2026. Those can confirm or break the framework. The fine structure search cannot, and it sits in the walled sector.
+
+## Update 2026-10-19: the one constant-free route, computed in four frozen lanes (AS1-AS4)
+
+In asymptotically safe quantum gravity, gravity can fix the hypercharge coupling at the Planck scale, so alpha follows with nothing adjusted, once one gravity
+number (f_g) is computed. We computed it in three published schemes and three levels of approximation, each frozen and committed before computing, and
+re-ran every result independently. Every prediction lands at 1/alpha of about 91 to 96, not 137 (the coupling comes out about 40-50% too strong). Two lanes stopped at
+validation checks (one on equations nobody can rebuild from a published scheme, one on a misprint in a published table), one gave two candidate answers
+(both near 95), and the largest approximation gave no acceptable answer. Hitting 137 would need f_g about four times smaller than every value computed.
+Nature's 137 is allowed by this picture but not predicted by it. Nothing here involves kappa or Z, and nothing derives alpha. Details and commit hashes:
+`ALPHA_CHAIN_STATUS.md`, section "Asymptotic-safety f_g lanes AS1-AS4".
