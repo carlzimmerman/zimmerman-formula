@@ -119,3 +119,54 @@ and the limit rescaled by the empirical error scale.
   data built to average it down (many LO settings per target, both polarisations), not more of this archive.
 
 κ = ½ is fitted; the framework predicts no line; not "theory closed".
+
+---
+
+## EXPLORATORY PARTS 2 TO 4 (2026-10-18; `ADDENDUM_B_explore/cfg799_B_explore2.py`, `3.py`, `4.py`; sets no class)
+
+Each script's declared list was committed before its run, and each reproduces B1 first (K1). Everything below is
+exploratory. The frozen H+V result of B1 stays the number of record.
+
+**E7, where the 541.700 excess lives.**
+- At ν_2, H only, the excess is present in every target-IF tercile (+30.6, +31.3, +44.2 mK; z +2.6, +2.4, +3.4), in three of the
+  four WBS sub-bands (+35.4, +42.2, +6.2, +48.7 mK) and in every epoch tercile (+28.1, +26.2, +43.0 mK; z +1.4, +2.5, +3.8). It
+  is not tied to an IF range or a sub-band. V at ν_2 is flat or negative (sub-band 3: −38.9 mK, z −2.4).
+- At ν_t, H changes sign with IF (terciles +28.9, −18.4, +27.6 mK) and V is negative everywhere (−46 mK, z −3.0, in the lowest IF
+  tercile). A baseline term that depends on IF and polarisation.
+
+**E8, baseline robustness** (15 variants declared, 10 computable). The ±25 MHz window holds about 90 channels, below the frozen
+100-channel minimum, so those five variants return no spectra. Degree 4 and 5 fits raise numerical warnings on some spectra, so
+read those rows with care.
+- ν_2 total-power z: ±50 MHz, degree 1 to 5: +3.15, +3.49, **+3.04** (frozen), +1.55, +1.30; ±100 MHz: +4.14, +3.60, +3.14, +3.44,
+  +2.86. The H-only z runs from +0.8 to +8.0. The fitted amplitude runs from +4 to +55 mK. A narrow line should not move like this.
+- ν_t amplitude across the ten variants: −31.8 to +1.7 mK, against a formal σ of 5.8 mK. The empirical-null scale never reaches 1
+  (1.15 to 1.88).
+- **The 541.664 limit across the ten variants:** ε95 (S = 50) = 1.35e-11 to 2.78e-11 with formal errors, 1.8e-11 to 3.3e-11 with
+  the errors scaled by the empirical-null std. The kill line 1e-12 is missed by ×18 to ×33 (scaled). The converter window
+  4e-9 stays closed by at least ×120 in every variant. The frozen 1.65e-11 (formal) and the post-hoc 1.92e-11 (scaled) both
+  sit inside this range.
+
+**E9, ripple scan, H only and V only over ±60 MHz about ν_t** (1 MHz steps).
+- Each polarisation carries smooth structure far larger than the combined stack's: z(δ) has std 5.9 (H) and 7.2 (V), and 90 and
+  84 of 121 steps reach |z| ≥ 3. Within ±40 MHz, H runs from −9.6 to +9.2 and V from −15.5 to +11.6, while the combined stack
+  stays between −3.3 and +4.8.
+- H and V are anticorrelated: r = −0.85 over ±60 MHz and −0.91 over ±40 MHz. The frozen H+V stack is the small residual of two
+  large opposite structures.
+- It is not a regular ripple. The strongest periodogram peak is at 30 MHz (H, p 0.66) and 40 MHz (V, p 0.65) against phase-randomised
+  surrogates. The structure is smooth over tens of MHz.
+
+**E10, does it scale with target continuum?** The proxy is the median total-power temperature in the fit window; it is a
+calibration-scale number (median −4.3 K), not a clean continuum brightness, so this test is weak.
+- At δ = +15 MHz the same structure is in both halves: faint H +67.3 mK (z +5.4), V −96.8 mK (z −7.2); bright H +47.0 mK
+  (z +5.7), V −101.3 mK (z −11.4). Spearman correlations of amplitude with the proxy are weak (|ρ| ≤ 0.31) and have the same sign
+  in both polarisations.
+- Within matched (observation, LO) pairs H and V amplitudes correlate positively (r = +0.60 at δ = 0, +0.72 at +15), so each
+  spectrum has a common-mode part on top of a fixed differential offset of about 150 mK at +15 MHz.
+
+**Reading (exploratory).** The total power carries an RF-fixed, polarisation-differential baseline of tens to a hundred mK that does
+not scale with the target and largely cancels in H+V. The 541.700 excess is the part that does not cancel: H-only, broad, and
+dependent on the baseline model. An RF-fixed, observation-independent feature is also what a real mirror line would be, so E7 alone
+does not separate the two; the width (E3) and the baseline sensitivity (E8) do, and both point to structure, not a narrow line. Two
+consequences: the combined null depends on that cancellation, and per-polarisation limits would be several times worse, so a
+line polarised along one receiver axis would be diluted in the H+V stack. The H−V calibration term is the thing to understand
+before a tighter limit means anything; this archive reduction cannot remove it.
