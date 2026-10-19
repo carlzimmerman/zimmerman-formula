@@ -15,8 +15,12 @@ DECLARED LIST (fixed before the first run; everything is reported, nothing is se
   E3  Gaussian FWHM 1.14, 2, 4, 8, 16 MHz at nu_t and nu_2 (same baseline); a narrow line should peak at <= 2 MHz.
   E4  empirical null: the +-40 MHz scan (0.5 MHz steps, centred on nu_t, nu_2 sits at +36) for total power, REF-only and
       Level-1.  Report mean and standard deviation of z over steps away from nu_t and nu_2 (+-5 MHz), the fraction of
-      steps with |z| >= the z at nu_2 and at nu_t REF-only, and a look-elsewhere p with the effective trials 161/3
-      (as in CFG802) and 80/1.14 = 70.  Also print the total/REF/Level-1 z at the steps +34 to +40 MHz.
+      those far steps with |z| >= the z at nu_2 and at nu_t REF-only.  Also print the total/REF/Level-1 z at the steps
+      +34 to +40 MHz.  (The first run also printed a "look-elsewhere p" that multiplied this fraction, which already
+      counts steps, by a trials factor: it double counted and is dropped in the re-run.)
+  E4b ADDED AFTER THE FIRST RUN (post-hoc arithmetic on the E4 output, labelled as such): the empirical-null z of the
+      nu_2 total-power stack and of the nu_t REF-only stack, (z - mean)/std over the far steps; and the nu_t 95% limit
+      with the formal sigma_a scaled by max(1, std of the total-power far-step z), reported beside the frozen number.
   E5  power of B2: the expected z of the 35 added scans if the nu_2 amplitude were the original +20.5 mK or the B1
       +15.3 mK, and the chance of B2's observed amplitude or lower in each case.
   E6  integration locked in the added scans that fail the anchor, and the best-case sensitivity gain from recovering
@@ -143,14 +147,22 @@ for key, lab in (("Tall", "total power"), ("Tref", "REF-only"), ("L1", "Level-1"
     z = Z[key]
     P(f"  {lab:12s}: z over steps away from nu_t and nu_2: mean {np.nanmean(z[far]):+.2f}, std {np.nanstd(z[far]):.2f}; "
       f"max |z| {np.nanmax(np.abs(z)):.2f} at {deltas[np.nanargmax(np.abs(z))]:+.1f} MHz; steps |z|>=3: {int(np.sum(np.abs(z) >= 3))}")
-fr2 = float(np.mean(np.abs(Z["Tall"]) >= abs(z2))); frr = float(np.mean(np.abs(Z["Tref"]) >= abs(ref_t)))
-P(f"  total power |z| >= {abs(z2):.2f} (the nu_2 value): {fr2 * 100:.1f}% of {len(deltas)} steps; look-elsewhere p with 161/3 trials "
-  f"{min(1, fr2 * 161 / 3):.2f}, with 70 trials {min(1, fr2 * 70):.2f}")
-P(f"  REF-only |z| >= {abs(ref_t):.2f} (the nu_t value): {frr * 100:.1f}% of steps")
+fr2 = float(np.mean(np.abs(Z["Tall"][far]) >= abs(z2))); frr = float(np.mean(np.abs(Z["Tref"][far]) >= abs(ref_t)))
+P(f"  far steps ({int(far.sum())}): total power |z| >= {abs(z2):.2f} (the nu_2 value) at {fr2 * 100:.1f}% of them; "
+  f"REF-only |z| >= {abs(ref_t):.2f} (the nu_t REF-only value) at {frr * 100:.1f}%")
 idx = [i for i, d in enumerate(deltas) if 34 <= d <= 40]
 P("  z at +34..+40 MHz (total / REF-only / Level-1): " + "; ".join(f"{deltas[i]:+.1f}: {Z['Tall'][i]:+.1f}/{Z['Tref'][i]:+.1f}/{Z['L1'][i]:+.1f}" for i in idx[::2]))
-R["E4_summary"] = dict(p_la_53=min(1, fr2 * 161 / 3), p_la_70=min(1, fr2 * 70), frac_ge_z2=fr2, frac_ref_ge=frr,
-                       std_far={k: float(np.nanstd(v[far])) for k, v in Z.items()})
+mu_a, sd_a = float(np.nanmean(Z["Tall"][far])), float(np.nanstd(Z["Tall"][far]))
+mu_r, sd_r = float(np.nanmean(Z["Tref"][far])), float(np.nanstd(Z["Tref"][far]))
+P(f"  E4b (post-hoc arithmetic): empirical-null z of nu_2 total power {(z2 - mu_a) / sd_a:+.2f}; of nu_t REF-only {(ref_t - mu_r) / sd_r:+.2f}")
+st_t = base["nu_t"][1]; k_sc = max(1.0, sd_a)
+a95_f = max(st_t["a"], 0) + 1.645 * st_t["sig"]; a95_e = max(st_t["a"], 0) + 1.645 * st_t["sig"] * k_sc
+P(f"  E4b nu_t 95% limit: frozen a95 {a95_f * 1e3:.2f} mK -> with sigma x{k_sc:.2f}: {a95_e * 1e3:.2f} mK;  eps95 (S=10/50/1000) frozen "
+  + "/".join(f"{m.eps_of(a95_f, S):.2e}" for S in m.S_LIST) + " -> scaled " + "/".join(f"{m.eps_of(a95_e, S):.2e}" for S in m.S_LIST)
+  + f";  kill line 1e-12 missed by x" + "/".join(f"{m.eps_of(a95_e, S) / 1e-12:.1f}" for S in m.S_LIST) + " (scaled)")
+R["E4_summary"] = dict(frac_ge_z2_far=fr2, frac_ref_ge_far=frr, mean_far={"Tall": mu_a, "Tref": mu_r}, std_far={k: float(np.nanstd(v[far])) for k, v in Z.items()},
+                       z_emp_nu2=(z2 - mu_a) / sd_a, z_emp_ref_nut=(ref_t - mu_r) / sd_r, a95_frozen=a95_f, a95_scaled=a95_e,
+                       eps95_scaled={f"S{S:.0f}": m.eps_of(a95_e, S) for S in m.S_LIST})
 
 # ---- E5
 P("\nE5 power of the 35 added scans alone (B2 numbers recomputed here)")

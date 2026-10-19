@@ -74,3 +74,48 @@ fails). Numbers are reported anyway: 12 observations used, 1.54 h.
 (1342192348, 1342192349) still fail the anchor. Nothing else is left to download.
 
 External numbers stay provisional (sideband gain 0.5, load coupling 1, WBS response, S). κ = ½ is fitted.
+
+---
+
+## EXPLORATORY DECOMPOSITION (2026-10-18; `ADDENDUM_B_explore/`; sets no class, changes no frozen rule)
+
+The declared list (K1, E1 to E6) was committed in the script header before the first run. K1 reproduces B1 exactly. Twelve
+stack comparisons were made, so read any single one against that count. The first run printed a "look-elsewhere p" that
+double counted (a fraction of steps multiplied by a trials factor); it is dropped in the re-run, and the first output is kept
+as `explore_run1.out`. Two items were added after the first run and are labelled post-hoc (E4b): the empirical-null z values
+and the limit rescaled by the empirical error scale.
+
+**1. The 541.700 GHz hint looks instrumental, as CFG802 found for the first 55.**
+- **H polarisation only.** H +34.3 ± 7.3 mK (z +4.72), V −2.8 ± 6.8 mK (z −0.41), difference z +3.73.
+- **Broad, not narrow.** z by Gaussian FWHM 1.14 / 2 / 4 / 8 / 16 MHz: +3.04 / +3.58 / +4.16 / +3.75 / +4.16. A mirror line
+  should peak at 2 MHz or less.
+- **A contiguous excess, not a line.** From +34 to +40 MHz about ν_t (541.698 to 541.704 GHz) the total power is at z +3.0 to
+  +4.8 and the REF-only power at +3.6 to +5.5, with Level-1 near zero. The scan maximum is +4.84 (total) and +5.59 (REF-only).
+- **Not driven by one observation.** Leave-one-out z runs from +2.68 to +3.59. USB (+14.9 mK) and LSB (+15.7 mK) agree;
+  early and late halves agree. It is absent in line-rich targets (+0.5 ± 8.6 vs +21.7 ± 6.3 mK, difference z −1.99).
+- **Weaker in new data.** Old 55: +20.5 ± 6.5 mK; added 35: +8.7 ± 7.8 mK (difference z +1.16). If the true amplitude were
+  +20.5 mK, the 35 added scans would reach B2's amplitude or lower 7% of the time (20% if the true value were +15.3 mK).
+- **Under CFG802's own definitions applied to the 90 observations,** the splits test fails (V and line-rich halves are not
+  at z ≥ 1.5) and the width test fails (not NARROW); only the leave-one-out test passes. That is the HINT FADES pattern.
+
+**2. The ν_t error bars are optimistic, and the halves disagree.**
+- **Per-observation scatter.** The per-observation z has standard deviation 2.55 at ν_t (1.22 at ν_2); 27% exceed |z| = 2.
+- **Empirical null.** Over the 121 scan steps away from ν_t and ν_2 (±5 MHz): total power mean −0.82, std 1.35; REF-only
+  mean −0.67, std 1.38; Level-1 mean −0.42, std 1.06. So Level-1 is well calibrated and total power is not. |z| ≥ 3.04
+  occurs at 4.1% of these steps (0.3% if the errors were right).
+- **Halves disagree at ν_t.** H +10.6 mK (z +1.40) vs V −27.8 mK (z −3.19), difference z +3.33; early +17.7 vs late −16.5,
+  difference z +2.72; line-rich +18.1 vs other −17.9, difference z +3.01. The stack value −6.6 mK is a cancellation. No half
+  shows a significant positive line; the largest, line-rich (z +1.91), includes two Orion KL scans at +267 and +354 mK.
+- **Rescaled limit (post-hoc estimate, does not replace the frozen number).** Scaling the formal σ_a by the empirical 1.35
+  gives a95 = 12.9 mK and ε95 = 8.6e-12 / 1.92e-11 / 8.6e-11 for S = 10 / 50 / 1000, with the kill line missed by
+  ×8.6 / ×19 / ×86. That is the original CFG799 limit (×8.5 / ×19 / ×85), so the apparent gain from 1.9e-11 to 1.65e-11 is not
+  robust. Quote 1.9e-11 at S = 50.
+- **The REF-only z of −2.99 at ν_t is not anomalous.** Its empirical-null z is −1.68, and 3.3% of the far steps are as extreme.
+
+**3. What more data would and would not do.**
+- The 21 added scans that fail the anchor hold 2.64 h. Recovering all of them would improve the sensitivity by at most ×1.14
+  (σ down 13%), before the baseline limit, so it is not worth loosening the frozen anchor rule.
+- The kill line is limited by baseline structure in the total power, not by integration time. A better test needs
+  data built to average it down (many LO settings per target, both polarisations), not more of this archive.
+
+κ = ½ is fitted; the framework predicts no line; not "theory closed".
