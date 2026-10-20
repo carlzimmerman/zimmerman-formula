@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (609 rows)
+## Totals (614 rows)
 
-- **451 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **453 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **117 produced a number.** 51 produced one determinate value; 66 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -145,7 +145,7 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 59 | 4 | 10 | 45 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 102 | 4 | 6 | 87 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 104 | 4 | 6 | 89 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 33 | 1 | 4 | 24 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 43 | 0 | 0 | 0 | 0 | 33 |
-| AU Audits, controls, meta-analyses | 67 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 70 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -436,6 +436,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K602 | CFG911 | `campaign_fresh_gravity/CFG911_kappa_constructive_coupling` | constructive pi-free portals of a dynamical rho_DE (premise A as bimetric horizon / multiplier xi G F[T_DE]; G-free tie; canonical field strength; trace share; dynamical quintessence; areal; hemispherical flux) | {0.5, 1, 2, 1.414, 0.816, 0.707, 1.772} | menu | 1/2 ONLY IN MENUS OR POSITS: multiplier portals TRADE (kappa^2 = xi); bimetric posit X7; trace share needs d = 4 (X4); hemisphere 1/4 needs w = +1/3 (excluded); kappa-free targets: a0(z) spread by stress reading 0.13-0.25 dex at z = 2; running -(3/2)(1+w); kinetic portal excluded if DESI crossing confirmed; dynamical portal locally silent | 36a18db2e |
 | K604 | W4-01/F2 | `why_4_puzzle/W4_01_untouched_gravity_families` | Kaluza-Klein on a circle (G4=G5/(2pi R)): a0 from G5 rho_DE, force-law G5N rho_DE, or c^2/R; R free, R=c/H_Lambda, or Casimir-stabilised | - | free | TRADE: R unstabilised; R=c/H_Lambda gives menu {2.171, 0.921, 2.894} all pi-odd misses; Casimir radius hbar-bearing; force-law G5 gives a pi-free a0=(8/3) R G rho but R free (R=c/sqrt(G rho) is the forbidden J=1 posit) | cafc0bf78 |
 | K607 | W4-01/F5 | `why_4_puzzle/W4_01_untouched_gravity_families` | Einstein-Cartan spin-torsion energy (pi/2) G hbar^2 n^2 as the a0 scale; with independent rho_DE, or as the dark energy itself | - | free | HBAR: kappa^2 ~ hbar^2 n^2/rho (excluded); spin energy as the DE gives kappa = 1 by construction (identity, wrong sign, not scored) | cafc0bf78 |
+| K610 | W4-02/portal/R1 | `why_4_puzzle/W4_02_independent_portal_audit` | fixed-metric symmetry, canonical normalization, Born-Infeld duality and granted weak-field no-force | - | free | TRADE/CLOSURE: physical xi=(alpha_c^2/G)(T/C); vacuum identity operator and source normalization remain independent; even C=T plus no-force yields a non-MOND threshold xi=Omega_(d-2), not law selection | 04d9b80a9 |
+| K611 | W4-02/portal/R2 | `why_4_puzzle/W4_02_independent_portal_audit` | causal response selection with fixed vacuum: exact simple-mu and quadratic preferred-frame scalar families | - | free | NO SELECTION: every xi>0 has the same fixed vacuum parameter and high-field G, positive scalar time kinetic energy and subluminal local cones at finite nonzero gradient; effective toys, not full covariant completions; independent proof audit; 34/34 checks and three mutations bite | 04d9b80a9 |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -808,6 +810,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K597 | CFG891 | `campaign_fresh_gravity/CFG891_kappa_D3_c_term_census` | census of every c-a0 relation in the record (67 relations, 36 files; pi tracked) | - | audit | PI-FREE BUT NOT 1/2: the five pi-free rational halves carry the target; only target-free pi-free value CFG380 S4 kappa 1.278 (irrational, posit, miss); all horizon-type values pi-odd; no record equation gives exact 1/2 | 9bc3dbec4 |
 | K599 | CFG904 | `campaign_fresh_gravity/CFG904_rt17_vs_rt19_audit` | RT-17 vs RT-19 recomputed; correction: K459 (RT-17 0.4607) reclassified MENU {0.4607, 0.921, 0.230, 2.894} (scale unfixed; I1 Unruh-inconsistent) | - | audit | RT-19 withdrawal stands; 4pi = 2pi (RT-17 S4) x 2 (DeltaT slope); both kappa^2 pi-odd; determinate in-window count drops by one on rerun of kappa_campaign_lee.py | c7e5c0e53 |
 | K601 | CFG908 | `campaign_fresh_gravity/CFG908_kappa_derived_claims_audit` | audit of the four unaudited kappa-derived claims (Q010, G031, glm53 README/G002, gemini38) in sympy with rename and mutation controls | - | audit | none derives the law kappa: Q010 DIFFERENT QUANTITY (SIS ratio); G031 IDENTITY; G002 MEASUREMENT RELABELLED; gemini38 PREMISE-A INSERTION; 200 lines in 142 tracked files still say derived | c16f82613 |
+| K612 | W4-02/portal/R3 | `why_4_puzzle/W4_02_independent_portal_audit` | explicit source-connected constitutive counterfamily after the vacuum zero mode is fixed; extension of CFG911 | - | audit | NONSELECTION PROOF: W_xi(0;epsilon) and source variations vanish for every xi>0; convexity and identical dimensionless simple-mu algebraic law survive xi rescaling in every spatial dimension n>=2; stiffness omitted only in algebraic reduction | 04d9b80a9 |
+| K613 | W4-02/portal/DBI | `why_4_puzzle/W4_02_independent_portal_audit` | primary-source audit of Cai-Wang arXiv:1511.00627v3 screening-radius identification and dark-energy stress | - | audit | TRADE: xi=2pi eta^4/(g^2 gamma); transition-radius equality and canonical matter coupling are free; action has negative time kinetic Hessian; no healthy coefficient selection | 04d9b80a9 |
+| K614 | W4-02/portal/PI | `why_4_puzzle/W4_02_independent_portal_audit` | qualification of H-only pi obstruction and rational-function extension | - | audit | RESTRICTED THEOREM: q=R(pi), R rational function over algebraic numbers, forbids exact half; H-only does not imply that grammar, since horizon-area prescription gives xi=2/3; no numerical selection or global no-go | 04d9b80a9 |
 
 ## LN: Logic / Lean formalisations
 

@@ -144,6 +144,13 @@ source-zero constitutive family, globally bounded local scalar cones for
 both interpolation branches, the screening-source translation, and a
 qualified pi-grammar proof.
 
+Results are committed as `04d9b80a9`; the campaign register records the
+distinct scoped entries `W4-02/portal/R1`, `R2`, `R3`, `DBI`, and `PI` as
+K610-K614. Full path/portal labels disambiguate this lane from other work.
+The register rerun passes its integrity checks; determinate/menu trial
+counts and look-elsewhere probabilities are unchanged. Continuation scope
+is recorded in [HANDOFF.md](HANDOFF.md).
+
 Reproduce from repository root:
 
     OMP_NUM_THREADS=1 nice -n 10 python3 why_4_puzzle/W4_02_independent_portal_audit/checks.py
