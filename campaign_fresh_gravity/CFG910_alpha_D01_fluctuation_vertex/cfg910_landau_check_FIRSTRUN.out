@@ -1,0 +1,58 @@
+MODE: NORMAL
+python 3.13.9, numpy 1.26.4, sympy 1.13.1, scipy 1.14.1, mpmath 1.3.0
+
+(0) PRE-FLIGHT (rules section 1.6): route error frozen from the record (inherited from CFG901)
+   sigma_route = 6.2303 (frozen 6.230); admissible-only variant 3.2452 (frozen 3.245)
+  [PASS] PF sigma_route  sigma_route and the admissible-only variant equal the frozen values
+
+(1) GATE G-REC: AS3 CPR-EH with SM matter (AS2/AS3 code, imported read-only)
+  [PASS] G-REC a: AS3 CPR-EH (SM)  (g, lambda) = (0.9671594, -1.222930), f_g = 0.038830931, P = 95.578469 vs (0.967159, -1.22293), 0.03883093, 95.57847
+  [PASS] G-REC b: AS3 EH systematics (SM)  two-loop 96.075819, M_red 93.825087 vs 96.07582, 93.82509
+  [PASS] G-DS downstream G0  P(0.04795) = 92.9153, P(0.009805) = 137.0341, P(f_needed = 0.009805) = 137.035999
+   [G-REC: 4.0 s, peak RSS 161 MB]
+
+(2) MACHINERY: flat background + constant h_c (zero-momentum graviton) + constant F-bar; fields h (10) + a (4); q = kappa q-hat
+
+== CPR: kernel restriction (as graded) vs finite gauge-fixing weight beta -> infinity (eta_h = -2, lambda_3 = lambda*, xi = 1)
+   [restricted CPR: 27.5 s, peak RSS 165 MB]
+   [brute CPR beta = 10000: 54.7 s, peak RSS 167 MB]
+   [brute CPR beta = 100000: 82.0 s, peak RSS 169 MB]
+   [brute CPR beta = 1000000: 108.0 s, peak RSS 170 MB]
+   2pt_V1V1  c_0: restricted +0.0349677436; beta 1e6 +0.0349678895; extrapolated +0.0349677437 (rel dev 1.5e-10)
+   2pt_V2    c_0: restricted -0.0148930114; beta 1e6 -0.0148931411; extrapolated -0.0148930114 (rel dev 4.0e-10)
+   g5        c_B: restricted +0.0443856839; beta 1e4 +0.0444331306, 1e5 +0.0443904305, 1e6 +0.0443861586; extrapolated +0.0443856839 (rel dev 6.8e-10; |dev at 1e4| 4.7e-05)
+   g4h       c_B: restricted -0.0245110565; beta 1e4 -0.0245235229, 1e5 -0.0245123031, 1e6 -0.0245111812; extrapolated -0.0245110565 (rel dev 9.4e-12; |dev at 1e4| 1.2e-05)
+   g4        c_B: restricted -0.0932473164; beta 1e4 -0.0932875291, 1e5 -0.0932513389, 1e6 -0.0932477187; extrapolated -0.0932473164 (rel dev 1.6e-10; |dev at 1e4| 4.0e-05)
+   g3h       c_B: restricted +0.0258813096; beta 1e4 +0.0258660584, 1e5 +0.0258797838, 1e6 +0.0258811570; extrapolated +0.0258813096 (rel dev 4.9e-10; |dev at 1e4| 1.5e-05)
+   g3        c_B: restricted +0.0150637575; beta 1e4 +0.0150717720, 1e5 +0.0150645591, 1e6 +0.0150638376; extrapolated +0.0150637575 (rel dev 1.4e-10; |dev at 1e4| 8.0e-06)
+  [PASS] LANDAU CPR  Richardson-extrapolated finite-beta classes reproduce the kernel restriction (worst relative deviation 6.8e-10)
+   G1-type closure (eta_h = -2, lambda_3 = lambda*, g_4 = g_5 = g_3): restricted a = -0.01270318, b = -0.00274051; extrapolated a = -0.01270318, b = -0.00274051; root needs -b/a > 0: False
+
+== LdD: kernel restriction (as graded) vs finite gauge-fixing weight beta -> infinity (eta_h = -2, lambda_3 = lambda*, xi = 1)
+   [restricted LdD: 130.5 s, peak RSS 170 MB]
+   [brute LdD beta = 10000: 154.3 s, peak RSS 171 MB]
+   [brute LdD beta = 100000: 178.1 s, peak RSS 171 MB]
+   [brute LdD beta = 1000000: 201.9 s, peak RSS 172 MB]
+   2pt_V1V1  c_0: restricted +0.0314709693; beta 1e6 +0.0314711483; extrapolated +0.0314709693 (rel dev 2.2e-10)
+   2pt_V2    c_0: restricted -0.0134037103; beta 1e6 -0.0134038694; extrapolated -0.0134037103 (rel dev 5.8e-10)
+   g5        c_B: restricted +0.0357432274; beta 1e4 +0.0358068583, 1e5 +0.0357495933, 1e6 +0.0357438640; extrapolated +0.0357432274 (rel dev 1.7e-09; |dev at 1e4| 6.4e-05)
+   g4h       c_B: restricted -0.0302326747; beta 1e4 -0.0302326851, 1e5 -0.0302326749, 1e6 -0.0302326747; extrapolated -0.0302326747 (rel dev 4.1e-10; |dev at 1e4| 1.0e-08)
+   g4        c_B: restricted -0.0629419386; beta 1e4 -0.0630015990, 1e5 -0.0629479066, 1e6 -0.0629425354; extrapolated -0.0629419386 (rel dev 2.3e+00; |dev at 1e4| 6.0e-05)
+   g3h       c_B: restricted +0.0355636432; beta 1e4 +0.0355374226, 1e5 +0.0355610198, 1e6 +0.0355633809; extrapolated +0.0355636432 (rel dev 5.7e-10; |dev at 1e4| 2.6e-05)
+   g3        c_B: restricted +0.0090382545; beta 1e4 +0.0090509826, 1e5 +0.0090395277, 1e6 +0.0090383818; extrapolated +0.0090382545 (rel dev 4.7e-10; |dev at 1e4| 1.3e-05)
+  [FAIL] LANDAU LdD  Richardson-extrapolated finite-beta classes reproduce the kernel restriction (worst relative deviation 2.3e+00)
+   G1-type closure (eta_h = -2, lambda_3 = lambda*, g_4 = g_5 = g_3): restricted a = -0.03594812, b = -0.01066194; extrapolated a = -0.03594812, b = -0.01066194; root needs -b/a > 0: False
+
+== Decomposition of Delta = a g_3 + b sqrt(g_3 g*) at G1's point (CPR), per unit coupling
+   eta_A^grav (-4 c_0)                      -0.08029893
+   [U2] (aahhh tadpole)                     -0.08877137
+   [U1 V1] (aahh x aah)                     +0.18649463
+   [V1 V1 W_A] (photon-line h_c)            -0.03012751
+   [V2 W_h] (graviton-line h_c, tadpole)    +0.04902211
+   [V1 V1 W_h] (graviton-line h_c, loop)    -0.05176262
+   a = -0.01270318 (sum of the first four), b = -0.00274051 (sum of the last two)
+   at the background line g_3 = g*: Delta/g* = a + b = -0.01544369, i.e. +19.2% of eta_A^grav per unit coupling (the covariant regulator gives exactly 0)
+   charged-matter bracket of the pre-registration: +/- eta_A^matter = +/- 2 f_g = +/- 0.08029893 per unit g_3, i.e. 6.3 x |a|
+
+CHECKS FAILED: ['LANDAU LdD']
+   [done: 201.9 s, peak RSS 172 MB]

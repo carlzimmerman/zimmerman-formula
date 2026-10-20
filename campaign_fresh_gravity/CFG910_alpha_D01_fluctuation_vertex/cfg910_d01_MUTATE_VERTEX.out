@@ -1,0 +1,125 @@
+MODE: MUTATE_VERTEX
+python 3.13.9, numpy 1.26.4, sympy 1.13.1, scipy 1.14.1, mpmath 1.3.0
+
+(0) PRE-FLIGHT (rules section 1.6): route error frozen from the record (inherited from CFG901)
+   sigma_route = 6.2303 (frozen 6.230); admissible-only variant 3.2452 (frozen 3.245)
+  [PASS] PF sigma_route  sigma_route and the admissible-only variant equal the frozen values
+
+(1) GATE G-REC: AS3 CPR-EH with SM matter (AS2/AS3 code, imported read-only)
+  [PASS] G-REC a: AS3 CPR-EH (SM)  (g, lambda) = (0.9671594, -1.222930), f_g = 0.038830931, P = 95.578469 vs (0.967159, -1.22293), 0.03883093, 95.57847
+  [PASS] G-REC b: AS3 EH systematics (SM)  two-loop 96.075819, M_red 93.825087 vs 96.07582, 93.82509
+  [PASS] G-DS downstream G0  P(0.04795) = 92.9153, P(0.009805) = 137.0341, P(f_needed = 0.009805) = 137.035999
+   [G-REC: 4.0 s, peak RSS 160 MB]
+
+(2) MACHINERY: flat background + constant h_c (zero-momentum graviton) + constant F-bar; fields h (10) + a (4); q = kappa q-hat
+
+(3) GATE G-VTX: vertex builder and EH block at h_c = 0 vs AS1's bilinear action (FdD, a_gf = 1, g = 1, e = 1)
+  [PASS] G-VTX  kinetic matrix (EH + Lambda + FdD gauge fixing + photon), V1 and V2 equal AS1's exactly (symbolic s, lambda, xi, F-bar)
+   [G-VTX: 11.3 s, peak RSS 173 MB]
+
+(4) GATE G-BF (door's gate): background-field limit g_3 = g_4 = g, mu_h = -2 lambda, eta_h = eta_N; two-point f_g = 2 c_0, exact
+  [PASS] G-BF CPR  f_g^BF = 5*(eta_N - 16*lambda + 4)/(72*pi*(2*lambda - 1)**2)  (expected 5*(eta_N - 16*lambda + 4)/(72*pi*(2*lambda - 1)**2); difference 0); xi-free True; fit True; parity True
+      split: loop [V1V1] 2c_0 = -5*(eta_N + 16*lambda - 16)/(72*pi*(2*lambda - 1)**2);  tadpole [V2] 2c_0 = 5*(eta_N - 6)/(36*pi*(2*lambda - 1)**2)
+   [G-BF CPR: 15.0 s, peak RSS 173 MB]
+  [PASS] G-BF LdD  f_g^BF = (eta_N - 16*lambda + 4)/(16*pi*(2*lambda - 1)**2)  (expected (eta_N - 16*lambda + 4)/(16*pi*(2*lambda - 1)**2); difference 0); xi-free True; fit True; parity True
+      split: loop [V1V1] 2c_0 = -(eta_N + 16*lambda - 16)/(16*pi*(2*lambda - 1)**2);  tadpole [V2] 2c_0 = (eta_N - 6)/(8*pi*(2*lambda - 1)**2)
+   [G-BF LdD: 18.1 s, peak RSS 174 MB]
+  [PASS] G-BF FdD  f_g^BF = (eta_N - 16*lambda + 4)/(8*pi*(2*lambda - 1)**2)  (expected (eta_N - 16*lambda + 4)/(8*pi*(2*lambda - 1)**2); difference 0); xi-free True; fit True; parity True
+      split: loop [V1V1] 2c_0 = -(eta_N + 16*lambda - 16)/(8*pi*(2*lambda - 1)**2);  tadpole [V2] 2c_0 = (eta_N - 6)/(4*pi*(2*lambda - 1)**2)
+   [G-BF FdD: 21.4 s, peak RSS 174 MB]
+  [PASS] G-BF CPR = AS3 at eta_N = -2  5 (eta - 16 lambda + 4)/(72 pi (1 - 2 lambda)^2) at eta = -2 equals AS3's 5 (1 - 8 lambda)/(36 pi (1 - 2 lambda)^2)
+
+(5) GATE G-EXP: f^2 eps coefficient of (1/2) Tr[(M0 + X)^-1 d_t R_k] by 60-digit finite differences vs the expansion (kappa = 1/2)
+  [PASS] G-EXP FdD  vertex: FD 471.864762199926 vs expansion 471.864762199926 (rel 2.34e-22); two-point: FD -41.233403578366 vs -41.2334035783660 (rel 1.88e-22)
+  [PASS] G-EXP CPR  vertex: FD 332.299781271895 vs expansion 332.299781271895 (rel 1.35e-22); two-point: FD -22.9074464324256 vs -22.9074464324256 (rel 1.07e-22)
+   [G-EXP: 25.8 s, peak RSS 174 MB]
+
+(6) GATE G-COV (FdD): regulator, gauge fixings and measure built with g_c = delta + h_c -> c_A = c_0/2, c_B = -2 c_0 (identities in lambda, eta)
+   [G-COV classes xi = 1: 60.1 s, peak RSS 186 MB]
+  [FAIL] G-COV xi = 1  c_0 = (eta_N - 16*lambda + 4)/(16*pi*(2*lambda - 1)**2); c_A - c_0/2 = -(eta_N + 16*lambda - 16)/(24*pi*(2*lambda - 1)**2); c_B + 2 c_0 = (eta_N + 16*lambda - 16)/(24*pi*(2*lambda - 1)**2); fit True; parity True
+   [G-COV classes xi = 2: 96.9 s, peak RSS 188 MB]
+  [FAIL] G-COV xi = 2  c_0 = (eta_N - 16*lambda + 4)/(16*pi*(2*lambda - 1)**2); c_A - c_0/2 = -(eta_N + 16*lambda - 16)/(24*pi*(2*lambda - 1)**2); c_B + 2 c_0 = (eta_N + 16*lambda - 16)/(24*pi*(2*lambda - 1)**2); fit True; parity True
+  [FAIL] PC2 covariant closure r = 1  admissible roots r = [] (bookkeeping: block h_c dependence carries the block's 3-point coupling, the measure carries g_3; disclosed in the README)
+   [G-COV/PC2: 97.1 s, peak RSS 188 MB]
+
+(7) FLUCTUATION MODE (delta regulator and gauge fixing): class coefficients at lambda_2 = lambda* (symbolic lambda_3, eta_h)
+   lambda* = -1.2229296867557307 -> rational -353904708929/289390888750 (difference 0.00e+00)
+   [fl CPR xi = 1: 120.7 s, peak RSS 189 MB]
+  [PASS] G-FIT/G-PAR CPR xi = 1  fit residual zero on 2 extra configs: True; reflected config identical: True; real: True
+   [fl CPR xi = 2: 146.3 s, peak RSS 189 MB]
+  [PASS] G-FIT/G-PAR CPR xi = 2  fit residual zero on 2 extra configs: True; reflected config identical: True; real: True
+  [PASS] G-XI CPR  every class (two-point c_0, vertex c_A and c_B) identical at xi = 1 and xi = 2
+   CPR: f_g^BF/g at lambda*, eta = -2: 0.0401494644447963 (G-BF formula 0.0401494644447963)
+      class g5  : c_B = 0.04438568388 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.033289263 - 0.0055482105*eta_N
+      class g4h : c_B = 0.01536711855*lambda_3 - 0.005718151013 + lambda_3-part, full c_B(lambda_3, eta_h) = -0.0019208898*eta_N*lambda_3 + 0.0005718151*eta_N + 0.011525339*lambda_3 - 0.0045745208
+      class g4  : c_B = -0.09324731639 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.0024821686*eta_N - 0.088282979
+      class g3h : c_B = 0.008421938815 - 0.01427667592*lambda_3 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.00060027807*eta_N*lambda_3 - 0.00028813347*eta_N - 0.01307612*lambda_3 + 0.0078456719
+      class g3  : c_B = -0.01506375747 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.00018616264*eta_N - 0.014691432
+   [fl LdD xi = 1: 172.1 s, peak RSS 189 MB]
+  [PASS] G-FIT/G-PAR LdD xi = 1  fit residual zero on 2 extra configs: True; reflected config identical: True; real: True
+   [fl LdD xi = 2: 198.2 s, peak RSS 189 MB]
+  [PASS] G-FIT/G-PAR LdD xi = 2  fit residual zero on 2 extra configs: True; reflected config identical: True; real: True
+  [PASS] G-XI LdD  every class (two-point c_0, vertex c_A and c_B) identical at xi = 1 and xi = 2
+   LdD: f_g^BF/g at lambda*, eta = -2: 0.0361345180003167 (G-BF formula 0.0361345180003167)
+      class g5  : c_B = 0.03574322742 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.026807421 - 0.0044679034*eta_N
+      class g4h : c_B = 0.02074561004*lambda_3 - 0.004862252354 + lambda_3-part, full c_B(lambda_3, eta_h) = -0.0025932013*eta_N*lambda_3 + 0.00048622524*eta_N + 0.015559208*lambda_3 - 0.0038898019
+      class g4  : c_B = -0.06294193856 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.0016754638*eta_N - 0.059591011
+      class g3h : c_B = 0.01042214928 - 0.02055841332*lambda_3 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.00086440042*eta_N*lambda_3 - 0.00035656517*eta_N - 0.018829612*lambda_3 + 0.009709019
+      class g3  : c_B = -0.009038254480 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.00011169759*eta_N - 0.0088148593
+   [fl FdD xi = 1: 222.8 s, peak RSS 189 MB]
+  [PASS] G-FIT/G-PAR FdD xi = 1  fit residual zero on 2 extra configs: True; reflected config identical: True; real: True
+   [fl FdD xi = 2: 246.8 s, peak RSS 190 MB]
+  [PASS] G-FIT/G-PAR FdD xi = 2  fit residual zero on 2 extra configs: True; reflected config identical: True; real: True
+  [PASS] G-XI FdD  every class (two-point c_0, vertex c_A and c_B) identical at xi = 1 and xi = 2
+   FdD: f_g^BF/g at lambda*, eta = -2: 0.0722690360006334 (G-BF formula 0.0722690360006334)
+      class g5  : c_B = 0.08935806854 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.067018551 - 0.011169759*eta_N
+      class g4h : c_B = 0.04149122009*lambda_3 - 0.004862252354 + lambda_3-part, full c_B(lambda_3, eta_h) = -0.0051864025*eta_N*lambda_3 + 0.00048622524*eta_N + 0.031118415*lambda_3 - 0.0038898019
+      class g4  : c_B = -0.1678451695 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.0044679034*eta_N - 0.15890936
+      class g3h : c_B = 0.01042214928 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.009709019 - 0.00035656517*eta_N
+      class g3  : c_B = -0.03615301792 + lambda_3-part, full c_B(lambda_3, eta_h) = 0.00044679034*eta_N - 0.035259437
+
+(8) CLOSURE F1 at the background point (g_h3, lambda_3, mu_h, eta_h) = (g*, lambda* or 0, -2 lambda*, -2 or 0)
+  [PASS] PC1 planted f_needed  P = 137.035999177, graded CONSISTENT (|z| = 0 for any sigma)
+   G1 (CPR, eta_h = -2, lambda_3 = lambda_2, U): Delta = a g_3 + b sqrt(g_3 g*), a = 0.04755185, b = -0.00274051
+   roots: [(0.00332144, 0.00012897)]
+   G1 root: r = 0.00332144, g_3* = 0.00321236, f_g = 0.00012897, P = 4297.74552 (reported in every mode; graded only if all gates pass)
+
+   CPR closure probes (one-loop at M_P):
+     eta_h -2, lambda_3 lambda*, U     , matter +0: r = 0.003321, f_g = 0.0001290, P = 4297.7455 (two-loop 4298.0710, M_red 4295.9921)
+     eta_h -2, lambda_3 lambda*, Uprime, matter +0: r = 1.379804, f_g = 0.0645204, P = 90.0027 (two-loop 90.5492, M_red 88.2493)
+     eta_h -2, lambda_3 0      , U     , matter +0: r = 0.012932, f_g = 0.0005022, P = 1164.4404 (two-loop 1164.7694, M_red 1162.6870)
+     eta_h -2, lambda_3 0      , Uprime, matter +0: r = 1.475647, f_g = 0.0710031, P = 89.2332 (two-loop 89.7895, M_red 87.4798)
+     eta_h +0, lambda_3 lambda*, U     , matter +0: no admissible root; roots []
+     eta_h +0, lambda_3 lambda*, Uprime, matter +0: r = 10.588761, f_g = 0.6564749, P = 82.4030 (two-loop 83.1978, M_red 80.6497)
+     eta_h +0, lambda_3 0      , U     , matter +0: no admissible root; roots []
+     eta_h +0, lambda_3 0      , Uprime, matter +0: r = 11.500720, f_g = 0.7148747, P = 82.3354 (two-loop 83.1389, M_red 80.5820)
+     eta_h -2, lambda_3 lambda*, U     , matter +1: r = 0.000459, f_g = 0.0000178, P = 30559.8303 (two-loop 30560.1546, M_red 30558.0769)
+     eta_h -2, lambda_3 lambda*, U     , matter -1: no admissible root; roots []
+   sigma_fl = 15238.7475 (half-range over 7 probes; 3 without an admissible root excluded); sigma_tot = 15238.7487
+
+   Reported gauge variants (CPR fixed-point inputs; gauge-inconsistent, not in sigma_fl):
+     LdD: eta_h -2, lambda_3 lambda*, U     : r = 2707.749191, f_g = 94.6299789, P = 81.5804
+     LdD: eta_h -2, lambda_3 lambda*, Uprime: r = 0.924348, f_g = 0.0303425, P = 99.4961
+     LdD: eta_h -2, lambda_3 0      , U     : r = 2945.300987, f_g = 102.9319005, P = 81.5800
+     LdD: eta_h -2, lambda_3 0      , Uprime: r = 0.870596, f_g = 0.0270704, P = 101.6623
+     LdD: eta_h +0, lambda_3 lambda*, U     : no admissible root; roots []
+     LdD: eta_h +0, lambda_3 lambda*, Uprime: r = 9.716799, f_g = 0.5405728, P = 82.5806
+     LdD: eta_h +0, lambda_3 0      , U     : no admissible root; roots []
+     LdD: eta_h +0, lambda_3 0      , Uprime: r = 10.981237, f_g = 0.6134474, P = 82.4611
+     FdD: eta_h -2, lambda_3 lambda*, U     : no admissible root; roots []
+     FdD: eta_h -2, lambda_3 lambda*, Uprime: r = 2.038745, f_g = 0.1963626, P = 84.3440
+     FdD: eta_h -2, lambda_3 0      , U     : r = 0.017218, f_g = 0.0012035, P = 533.4078
+     FdD: eta_h -2, lambda_3 0      , Uprime: r = 1.571224, f_g = 0.1394421, P = 85.4744
+     FdD: eta_h +0, lambda_3 lambda*, U     : no admissible root; roots []
+     FdD: eta_h +0, lambda_3 lambda*, Uprime: r = 8.098628, f_g = 0.8946222, P = 82.1825
+     FdD: eta_h +0, lambda_3 0      , U     : no admissible root; roots []
+     FdD: eta_h +0, lambda_3 0      , Uprime: r = 7.939898, f_g = 0.8763257, P = 82.1952
+
+   Weyl-breaking diagnostic at G1's root (per tau_3): 4 c_A + c_B = 0.000098 vs c_B = -0.000129
+
+(9) GRADE (pre-registration section 8)
+
+   VERDICT (G1): NOT COMPLETED  [required gate(s) failed: ['G-COV xi = 1', 'G-COV xi = 2', 'PC2 covariant closure r = 1']]
+
+CHECKS FAILED: ['G-COV xi = 1', 'G-COV xi = 2', 'PC2 covariant closure r = 1']
+   [done: 247.2 s, peak RSS 190 MB]
