@@ -50,6 +50,8 @@ positive leading cubic in that sector. Two additional Lean modules
 verify the current-energy and trial algebra, with genuine false controls.
 No model selects vacuum energy. Current details and scoped remaining
 routes are in current_interactions/RESULT.md; the original goal is active.
+Result/evidence commit 73cb47a32, campaign entries K680-K685; no new
+determinate normalization trial was added.
 
 The actual pi adapter awaits a viable lightweight import or relaxation of
 the temporary resource constraint after the large simulation is confirmed

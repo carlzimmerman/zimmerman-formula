@@ -3,6 +3,8 @@
 The original why-4 goal remains open. [RESULT.md](RESULT.md) records
 three executed current/gauge routes under criteria commit 33e139648.
 No route derives positive vacuum normalization or the requested ratio.
+Reviewed result/evidence commit: 73cb47a32. Campaign rows K680-K685
+record the six distinct scoped outcomes; none adds a determinate trial.
 
 The strongest new obstruction is explicit: an apparent cubic induced by
 a Jacobian charge under local neutrality has a cheaper electric-flux
