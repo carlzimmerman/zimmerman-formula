@@ -1,0 +1,124 @@
+======================================================================================================================
+CFG899 alpha door D08 -- charged vector boson in dS_4, covariant R_xi completion -- mode REAL (graded g = 2, count dimension D = 4)
+STRUCTURAL CLOSURE: alpha stays a free symbol; no comparison with 137.036; N_mech unchanged (374).
+======================================================================================================================
+
+======================================================================================================================
+PART A. Structure of the R_xi completion in dS_4 (sympy, exact)
+======================================================================================================================
+  [PASS] A1 R = 12, R_mn = 3 g_mn, R_mnrs = g g - g g, nabla Riem = 0, |nabla^n F_nz| = 2E at tau = -1 (coordinate 2*E/tau; AH4 V3, S2 D0c)
+   [A1: 0.2 s, peak RSS 88 MB]
+  [PASS] A2 Euler-Lagrange(Wbar) of the xi = 1 action = -sqrt(-g) g^nn (-box + Ric + m^2 - g Omega) W_n, for g = 1 (p = 0) and g = 2 (p = 1)
+   [A2: 0.8 s, peak RSS 92 MB]
+  [PASS] A3 the W-phi cross terms of -|D phi - m W|^2 - (1/xi)|D.W - xi m phi|^2 are a total derivative (all Euler-Lagrange derivatives vanish, symbolic xi)
+   [A3: 0.9 s, peak RSS 93 MB]
+  [PASS] A4 Delta_g(D theta) = D(Delta_0 theta) + (2 - g) Omega.D theta - (nabla^n Omega_nm) theta identically (generic theta and f), g = 1, 2
+  [PASS] A4b graded g = 2: defect on the vacuum-Maxwell background vanishes; on the dS background nabla^n Omega_nz = -2*I*E*e/tau (nonzero: BRST decoupling broken by the non-vacuum background)
+   [A4: 1.0 s, peak RSS 93 MB]
+  [PASS] A5 Goldstone/ghost (xi = 1): chi = a phi obeys chi'' + [k_x^2 + (k_z + lambda/tau)^2 + (mu^2 - 2)/tau^2] chi = 0: Whittaker index mu_w^2 = -lambda**2 - mu**2 + 9/4 (AH4: 9/4 - lambda^2 - mu^2)
+  [PASS] A6 W_y (k_y = 0) decouples in Feynman gauge and obeys W_y'' + [k_x^2 + (k_z + lambda/tau)^2 + mu^2/tau^2] W_y = 0 (S1: index 1/4 - lambda^2 - mu^2), g = 1, 2
+     coupled block (components entering the W_tau, W_x, W_z equations; 0 = tau, 1 = x, 3 = z): g = 2: {(2, 0): [0, 1, 3], (2, 1): [0, 1], (2, 3): [0, 3]}
+  [PASS] A7 AH3 premise: Delta_g and the Goldstone/ghost operator are invariant under (e, A) -> (s e, A/s): e and E enter only through e A, i.e. lambda
+   [A: 1.6 s, peak RSS 96 MB]
+
+======================================================================================================================
+PART B. UV structure: a_2, regulators, proper-time factors
+======================================================================================================================
+     D = 4, g = 1: Delta_1 / scalar = -2, R_xi (vector + Goldstone - 2 ghosts) = -3, massless YM (vector - 2 ghosts) = -4;  b = -1
+     D = 4, g = 2: Delta_1 / scalar = -20, R_xi (vector + Goldstone - 2 ghosts) = -21, massless YM (vector - 2 ghosts) = -22;  b = -7
+     Dirac / complex scalar = 4 (gamma algebra ok)
+  [PASS] B1 graded (g = 2, D = 4): b = -7 [gate -7], split -22/3 + 1/3 [gate -22/3 + 1/3]; Dirac 4 [gate 4]
+  [PASS] B1b AH4 V3 b_s = 0.3333333333 [1/3]; Q1 Dirac = 4 b_s [4]; S1 B3 ratio -21, b -7 [-21, -7]; S1 E4 exact-mode c_inf 6.837 (g=2), 1.032 (g=1) vs -b = 7, 1 (5%: -0.023, +0.032)
+  [PASS] B2 tr E_V = -12 (F-free: no Lambda^2 term); a_2 F^2 part has no m; dS a_2 ratio Delta_1/scalar = -20 = flat -20; its dS current is tau-independent with a mu-independent coefficient (scalar: G per unit ln(Lambda^2/m^2) = 1/(6*pi))
+     contrast S1 (unitary gauge): log coefficient c_inf + a/mu^2 (a = 5.12 at g = 2) and quadratic c1/lambda = -(8/3 + 4/(3 mu^2)); both mass-dependent pieces are absent in R_xi
+  [PASS] B3 PV: n=2 2*log(M) - 2*log(m), n=3 m**(-2) - 1/M**2; PS (Hadamard): n=2 -> -ln(m^2/mu_PS^2), n=3 -> 1/m^2 (mpmath, 1e-9); PV - PS = 2*log(M) - 2*log(mu_PS) x (a_2 current): m-independent, so G_v^PV - G_v^PS is a mu-independent constant (a charge renormalisation)
+     D = 4, g = 1: (x/sinh x)(D - 3 + 2 cosh g x): polarizations 3, x^2 ratio to scalar -3; electric leading-pole weight -1
+     D = 4, g = 2: (x/sinh x)(D - 3 + 2 cosh g x): polarizations 3, x^2 ratio to scalar -21; electric leading-pole weight 3
+  [PASS] B4 graded (g = 2, D = 4): polarizations 3 [3], x^2 ratio -21 [-21], pair-rate weight 3 [3 = S1 B4/B5]
+   [B: 2.5 s, peak RSS 100 MB]
+
+======================================================================================================================
+PART C. Heavy-mass current from the recalled a_3 (explicit bundle traces) in dS_4
+======================================================================================================================
+     scalar xi_R = 0: sigma_HFY M^2 = 7/(72*pi**2)  (target 7/(72*pi**2); linear part 0; tau-independent True)
+     scalar xi_R = 1/6: sigma_HFY M^2 = 1/(72*pi**2)  (target 1/(72*pi**2); linear part 0; tau-independent True)
+     scalar xi_R = 1/12: sigma_HFY M^2 = 1/(18*pi**2)  (target 1/(18*pi**2); linear part 0; tau-independent True)
+   [C0 scalar: 2.7 s, peak RSS 101 MB]
+     Dirac (S2 reduction): sigma_HFY M^2 = -1/(36*pi**2) [-1/(36 pi^2)]
+     AH4 closed form: mu^2 G_s at mu = 10, 20, 40: ['0.1252604396', '0.1241511270', '0.1238778969'];  Richardson 0.123787184455 vs 7/(18 pi) = 0.123787177960 (rel 5.25e-08)
+     Q1 closed form:  mu^2 G_f at mu = 20, 40, 80: ['-0.0353766176', '-0.0353699763', '-0.0353683178'];  Richardson -0.035367765132 vs -1/(9 pi) = -0.035367765132 (rel 1.23e-11)
+  [PASS] C0 positive controls: my trace code gives the scalar law (7/18 - 2 xi_R)/(4 pi^2) exactly; S2's Dirac reduction -1/(36 pi^2); AH4's and Q1's closed forms tend to 7/(18 pi) and -1/(9 pi)
+   [C0: 3.7 s, peak RSS 102 MB]
+     Delta_1(g = 0): sigma_HFY M^2 = -1/(9*pi**2)  (hand (3g^2 - 3g - 2)/(18 pi^2) = -1/(9*pi**2); linear part 0; tau-independent True)
+   [C1 g=0: 3.8 s, peak RSS 103 MB]
+     Delta_1(g = 1): sigma_HFY M^2 = -1/(9*pi**2)  (hand (3g^2 - 3g - 2)/(18 pi^2) = -1/(9*pi**2); linear part 0; tau-independent True)
+   [C1 g=1: 3.9 s, peak RSS 103 MB]
+     Delta_1(g = 2): sigma_HFY M^2 = 2/(9*pi**2)  (hand (3g^2 - 3g - 2)/(18 pi^2) = 2/(9*pi**2); linear part 0; tau-independent True)
+   [C1 g=2: 4.0 s, peak RSS 103 MB]
+     single-structure currents u_i (sigma_HFY M^2 per unit coefficient, bosonic prefactor): [1/(360*pi**2), -1/(720*pi**2), -1/(360*pi**2), 1/(360*pi**2), -1/(240*pi**2), -1/(60*pi**2)]
+  [PASS] C1 vector-bundle trace code = hand reduction (3g^2 - 3g - 2)/(18 pi^2) for g = 0, 1, 2; linear-in-F parts vanish; u_i = hand values
+     R_xi total (xi = 1), g = 1: sigma_HFY M^2 = -5/(24*pi**2) = -2.1108579925e-02;  G_v mu^2 -> -5/(6*pi) = -0.265258
+     R_xi total (xi = 1), g = 2: sigma_HFY M^2 = 1/(8*pi**2) = 1.2665147955e-02;  G_v mu^2 -> 1/(2*pi) = 0.159155
+     comparators: scalar G_s mu^2 -> 7/(18 pi) = 0.123787;  Dirac G_f mu^2 -> -1/(9 pi) = -0.035368
+  [PASS] C2 graded g = 2: R_xi heavy coefficient sigma_HFY M^2 = 1/(8*pi**2) (expected 1/(8 pi^2) at g = 2), G_v mu^2 -> 1/(2*pi); current tau-independent (dS invariant)
+     flat plane-wave a_3 (period average): scalar 3*Q**4; R_xi/scalar q^4 ratio: g = 1: -7, g = 2: -37 (hand 3 - 10 g^2: -7, -37)
+   [C: 4.4 s, peak RSS 105 MB]
+
+======================================================================================================================
+PART D. Gauge-parameter dependence: flat Euclidean momentum space, general xi (route D) and the exact formula H4
+======================================================================================================================
+  [PASS] D-G2 scalar positive control: log coefficient 1/3, q^4 coefficient -1/30, ratio -1/10 [-1/10] (common 1/(16 pi^2) dropped)
+   [D scalar: 4.4 s, peak RSS 105 MB]
+   [D route-D transverse integrand: 4.7 s, peak RSS 116 MB]
+   [D route-D longitudinal integrand: 4.9 s, peak RSS 118 MB]
+     longitudinal a: xi = 1/2, g = 1: q^2 log coefficient 0, q^4 integral 0
+     longitudinal a: xi = 1/2, g = 2: q^2 log coefficient 0, q^4 integral 0
+     longitudinal a: xi = 1, g = 1: q^2 log coefficient 0, q^4 integral 0
+     longitudinal a: xi = 1, g = 2: q^2 log coefficient 0, q^4 integral 0
+     longitudinal a: xi = 2, g = 1: q^2 log coefficient 0, q^4 integral 0
+     longitudinal a: xi = 2, g = 2: q^2 log coefficient 0, q^4 integral 0
+  [PASS] D-G1 Ward identity: the longitudinal (pure-gauge) background gives no q^2 log and no q^4 term
+     transverse: g = 1, xi = 1/2: log ratio to scalar -9/2 (a_2: -3)
+     transverse: g = 1, xi = 1: log ratio to scalar -3 (a_2: -3)
+     transverse: g = 1, xi = 2: log ratio to scalar 0 (a_2: -3)
+     transverse: g = 1, xi = 3: log ratio to scalar 3 (a_2: -3)
+     transverse: g = 2, xi = 1/2: log ratio to scalar -21 (a_2: -21)
+     transverse: g = 2, xi = 1: log ratio to scalar -21 (a_2: -21)
+     transverse: g = 2, xi = 2: log ratio to scalar -21 (a_2: -21)
+     transverse: g = 2, xi = 3: log ratio to scalar -21 (a_2: -21)
+  [FAIL] D-G4 AS FROZEN (both g): charge-renormalisation (log) coefficient is xi-independent and equals the a_2 ratio 3 - 6 g^2
+  [PASS] D-G4(A1) AMENDMENT A1 (post hoc; graded g = 2 only, where H4 applies): log coefficient xi-independent and = a_2 ratio -21
+     (g = 1 is not a gauge theory: its R_xi family is not a family of gauges, cf. A4's (2 - g) defect; its log ratio 3 xi - 6 is a finding)
+   [D-G1/G4: 5.9 s, peak RSS 118 MB]
+     xi = 1, g = 1: q^4 ratio R_xi/scalar = -7 (a_3 flat, C3: -7)
+     xi = 1, g = 2: q^4 ratio R_xi/scalar = -37 (a_3 flat, C3: -37)
+  [PASS] D-G3 Feynman gauge: route-D q^4 ratio = the a_3 flat ratio (validates the vector-bundle flat terms)
+   [D-G3: 5.9 s, peak RSS 118 MB]
+     route D, g = 1: c4(xi) = -xi*(xi**2 - 3*xi + 6)*log(xi)/(3*(xi - 1)**3) + (8*xi**2 - xi + 53)/(45*(xi - 1)**2)
+     route D, g = 2: c4(xi) = -(15*xi - 179)/60 - (7*xi + 2)*log(xi)/(6*(xi - 1))
+   [D symbolic xi: 9.3 s, peak RSS 118 MB]
+  [PASS] D-G5 graded g = 2: K-formula q^4 = (3*(7 - xi)*(xi - 1) - log(xi**(14*xi + 4)))/(12*(xi - 1)); route D c4(xi) - c4(1) = (3*(7 - xi)*(xi - 1) - log(xi**(14*xi + 4)))/(12*(xi - 1)); K-formula q^2 log 0 (finite q^2 part xi - 1)
+   [D-G5: 9.7 s, peak RSS 118 MB]
+     r(xi) (g = 1) = (30*xi*(xi**2 - 3*xi + 6)*log(xi) + 21*(xi - 1)**3 + 2*(xi - 1)*(-8*xi**2 + xi - 53))/(3*(xi - 1)**3)
+        values: {'1/10': -18.569600986288066, '1/2': -6.635369026943724, '2': 7.118441111462292, '3': 11.385443161699135, '10': 24.06673073628909, '100': 47.62756307612439};  xi -> oo: r/xi -> 0, (r - 0 xi)/ln xi -> 10;  xi -> 0: xi r -> 0, r/ln xi -> 0
+     r(xi) (g = 2) = 5*(3*(xi - 7)*(xi - 1) + 2*(7*xi + 2)*log(xi))/(2*(xi - 1))
+        values: {'1/10': -17.211223605089316, '1/2': -10.626905069203008, '2': 17.951774444795625, '3': 33.17020659841631, '10': 114.60340371976183, '100': 860.7742156850323};  xi -> oo: r/xi -> 15/2, (r - 15/2 xi)/ln xi -> 35;  xi -> 0: xi r -> 0, r/ln xi -> -10
+     dS shift of the heavy coefficient (graded g): delta(G_v mu^2) = 4 pi x 6 r(xi) u2 = (-3*(xi - 7)*(xi - 1) - log(xi**(14*xi + 4)))/(12*pi*(xi - 1))  (hand: -r/(30 pi))
+     G_v mu^2 (heavy limit) in R_xi gauge, graded g: {'1/10': 0.34177169731922036, '1/2': 0.2719099078606939, '1': 0.15915494309189535, '2': -0.03131929958543724, '3': -0.1927918798092619, '10': -1.056824936718518}
+     continuity of the symbolic c4(xi) at xi = 1: True
+     (not graded) finite q^2 part, c0(xi) - c0(1) in this 4D routing: (xi - 1)*(7*xi - 1)/(3*xi)
+  PART-D VERDICT as frozen: NOT ESTABLISHED;  as frozen + A1: GAUGE DEPENDENT at O(1/mu^2)
+     (informational, heuristic) the unitary limit xi -> oo diverges like xi and ln xi: the R_xi images of S1's quadratic (4/(3 mu^2)) and logarithmic (a/mu^2) unitary-gauge terms
+   [D: 10.7 s, peak RSS 118 MB]
+
+======================================================================================================================
+PART E. Selection
+======================================================================================================================
+  [PASS] E1 G_v(mu) = 0.159155/mu^2 over mu in [3, 5, 10, 20]: spread 44.4 -> NOT SELECTED; planted constant -> SELECTED, planted 1/(2 pi mu^2) -> NOT SELECTED. A tie sigma/H = c gives alpha = c mu^2/C: a function of the mass, not a number
+  [PASS] E2 no condition constrains e: renormalisability (B1-B3), on-shell gauge independence (A4/H4) and g = 2 hold for symbolic e; e enters only via e A (A7); all coefficients are e-free after the overall e^2
+
+======================================================================================================================
+CHECKS: 23/24 passed; closure gates (A, B, C, E): 18/18
+VERDICT: CLOSED, NO SELECTION;  Part D: NOT ESTABLISHED as frozen, GAUGE DEPENDENT at O(1/mu^2) as frozen + A1
+failed: ['D-G4']
+kappa = 1/2 FITTED; alpha stays an INPUT; SM mass sector walled; not theory closed.
