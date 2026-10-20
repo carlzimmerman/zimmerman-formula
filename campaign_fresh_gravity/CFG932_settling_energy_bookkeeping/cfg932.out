@@ -1,0 +1,71 @@
+CFG932: energy bookkeeping of cold-energy settling (criteria dce2a2e3d)
+native: h 0.6777, Omega_m 0.3104, sigma8(native table) 0.8252, Delta_ta(0) 11.8977, rhobar_m 39.566 Msun/kpc^3
+K1 analytic binding energies (< 1e-6): PASS  NFW_c10 rel 1.24e-12, NFW_c30 rel 1.24e-12, Plummer rel 3.01e-13
+K2 CFG541 MW-like record: M_cat/M_b 53.6432722396066 (rel 0.0e+00), r_* 514.3182020135 kpc vs 514.3182020135 (rel 2.2e-16), phantom cont/cells rel 1.0e-04: PASS
+Q1 1-D drift-only test (G = 1; Plummer M_b 1, a 1; a0 0.05; NFW cold 30, r_s 3, R_C 30; alpha 1):
+  two-sided (FIX-1): t 200.0, steps 804, dW/|W0| +5.9266e-01, int P dt +2.5349e+01 vs dW +2.5302e+01 (identity rel 1.86e-03); outward +2.535e+01, inward -4.635e-21; central zone r < 30.000: mass 30.0000 -> 30.0000; mass err 4.7e-16
+  one-sided (E5)  : t 0.0, steps 0, dW/|W0| +0.0000e+00, int P dt +0.0000e+00 vs dW +0.0000e+00 (identity rel 0.00e+00); outward +0.000e+00, inward +0.000e+00; central zone r < 30.000: mass 30.0000 -> 30.0000; mass err 0.0e+00
+Q1 CLASS: NON-CONSERVING (source: P_drift = int rho_c v_s.grad Phi dV [+ P_bath = int (alpha/tau)(3 rho_c sigma_J^2 - tr Pi) dV]; booked to CFG542's dark-energy partner, Q = -rho_c v_s.grad Phi)
+K3 virial cross-check (whole catchment, central corner, can): PASS  MW-like: direct -2.3886e+59 vs 1/2 dW -2.3828e+59, Draco-like: direct -1.5720e+52 vs 1/2 dW -1.5728e+52
+
+CENTRAL CORNER (can; EPS F 0.05, L 1, cluster M_BH 5e9): per system
+  system             M_ta f_ret   c_ta  r_s kpc   r_* kpc   R_x kpc     M_sur   dE_b erg   dE_a erg   dE_c erg    dEtot_b   E_avail eps_req b  X_ret E_M3/Eav
+  UFD-c         3.182e+05  0.10  56.54   0.0963     0.152 0.0001788 1.233e-02  6.807e+38  2.267e+38  6.807e+38 -4.304e+49 8.333e+52  8.17e-15 +0.000 7.73e-06
+  UFD-e         1.909e+06  0.10  52.53    0.188     0.439   0.02791 5.228e+02  6.044e+45  2.096e+45  6.044e+45 -3.971e+50 5.000e+53  1.21e-08 +0.000 2.43e-05
+  Draco-like    3.182e+07  0.10  46.65    0.542     1.501  0.007854 8.031e+01  6.541e+44  2.178e+44  6.541e+44 -3.867e+52 8.333e+54  7.85e-11 +0.000 1.47e-04
+  Fornax-like   2.546e+09  0.10  37.47     2.91     13.24   0.03147 3.771e+03  3.884e+47  1.279e+47  3.884e+47 -2.402e+55 6.667e+56  5.83e-10 +0.000 2.35e-03
+  SPARC-dwarf   2.495e+10  0.10  32.61     7.15     41.37      none 0.000e+00  0.000e+00  0.000e+00  0.000e+00 -6.005e+56 4.333e+56  0.00e+00 -0.000 1.48e-01
+  MW-like       3.819e+12  0.10  22.16     56.2     514.2   0.05112 3.365e+03  1.184e+50  3.977e+49  1.184e+50 -4.340e+59 1.602e+60  7.39e-11 +0.000 1.35e-01
+  cluster-core  1.645e+15  0.90  11.44      823      3795      1158 2.683e+13  7.500e+62  3.140e+62  7.500e+62 -1.357e+64 9.897e+62  7.58e-01 +0.098 3.78e-01
+  window (b, S_A): eps in [7.389e-11, 8.168e-15) -> EMPTY
+
+CENTRAL CORNER (alt; EPS F 0.05, L 1, cluster M_BH 5e9): per system
+  system             M_ta f_ret   c_ta  r_s kpc   r_* kpc   R_x kpc     M_sur   dE_b erg   dE_a erg   dE_c erg    dEtot_b   E_avail eps_req b  X_ret E_M3/Eav
+  UFD-c         3.182e+05  0.10  56.54   0.0963     0.139 0.0001479 8.437e-03  3.850e+38  1.282e+38  3.850e+38 -4.718e+49 8.333e+52  4.62e-15 +0.000 7.73e-06
+  UFD-e         1.909e+06  0.10  52.53    0.188    0.4094   0.02408 3.875e+02  3.951e+45  1.363e+45  3.951e+45 -4.290e+50 5.000e+53  7.90e-09 +0.000 2.43e-05
+  Draco-like    3.182e+07  0.10  46.65    0.542     1.369  0.006511 5.519e+01  3.724e+44  1.240e+44  3.724e+44 -4.309e+52 8.333e+54  4.47e-11 +0.000 1.47e-04
+  Fornax-like   2.546e+09  0.10  37.47     2.91     12.05   0.02582 2.548e+03  2.133e+47  7.035e+46  2.133e+47 -2.762e+55 6.667e+56  3.20e-10 +0.000 2.35e-03
+  SPARC-dwarf   2.495e+10  0.10  32.61     7.15     37.63      none 0.000e+00  0.000e+00  0.000e+00  0.000e+00 -7.063e+56 4.333e+56  0.00e+00 -0.000 1.48e-01
+  MW-like       3.819e+12  0.10  22.16     56.2       468      none 0.000e+00  0.000e+00  0.000e+00  0.000e+00 -6.119e+59 1.602e+60  0.00e+00 -0.000 1.35e-01
+  cluster-core  1.645e+15  0.90  11.44      823      3452     912.8 1.665e+13  4.314e+62  1.746e+62  4.314e+62 -1.749e+64 9.710e+62  4.44e-01 +0.065 3.85e-01
+  window (b, S_A): eps in [0.000e+00, 4.620e-15) -> NON-EMPTY
+
+eps_req (measure b) ranges over all corners, per footing [min, max]; 'n0' = corners with eps_req = 0 (no surplus / net release):
+  can UFD-c         [8.025e-17, 2.094e-02]  n0 0/36
+  can UFD-e         [2.774e-10, 7.778e-02]  n0 0/36
+  can Draco-like    [0.000e+00, 1.471e-06]  n0 6/36
+  can Fornax-like   [0.000e+00, 1.199e-01]  n0 9/36
+  can SPARC-dwarf   [0.000e+00, 0.000e+00]  n0 36/36
+  can MW-like       [0.000e+00, 2.587e-02]  n0 18/36
+  can cluster-core  [0.000e+00, 6.970e+00]  n0 9/36
+  alt UFD-c         [4.539e-17, 1.924e-02]  n0 0/36
+  alt UFD-e         [1.653e-10, 7.456e-02]  n0 0/36
+  alt Draco-like    [0.000e+00, 6.622e-07]  n0 3/36
+  alt Fornax-like   [0.000e+00, 1.014e-01]  n0 6/36
+  alt SPARC-dwarf   [0.000e+00, 0.000e+00]  n0 36/36
+  alt MW-like       [0.000e+00, 0.000e+00]  n0 36/36
+  alt cluster-core  [0.000e+00, 5.465e+00]  n0 9/36
+
+retained-excess diagnostic X_ret (dex, total mass at r_obs, one-sided minimiser) by cusp x L (canonical):
+  UFD-c         PS1/L1 +0.000  PS1/L10 +0.000  PS1/L100 +0.000  EPS0.2/L1 +0.000  EPS0.2/L10 +0.000  EPS0.2/L100 +0.000  EPS0.05/L1 +0.000  EPS0.05/L10 +0.000  EPS0.05/L100 +0.000  EPS0.01/L1 +0.000  EPS0.01/L10 +0.000  EPS0.01/L100 +0.000
+  UFD-e         PS1/L1 +0.000  PS1/L10 +0.001  PS1/L100 +0.033  EPS0.2/L1 +0.000  EPS0.2/L10 +0.000  EPS0.2/L100 +0.043  EPS0.05/L1 +0.000  EPS0.05/L10 +0.004  EPS0.05/L100 +0.244  EPS0.01/L1 +0.001  EPS0.01/L10 +0.020  EPS0.01/L100 +0.393
+  Draco-like    PS1/L1 +0.000  PS1/L10 +0.000  PS1/L100 +0.000  EPS0.2/L1 +0.000  EPS0.2/L10 +0.000  EPS0.2/L100 +0.000  EPS0.05/L1 +0.000  EPS0.05/L10 +0.000  EPS0.05/L100 +0.023  EPS0.01/L1 +0.000  EPS0.01/L10 +0.001  EPS0.01/L100 +0.175
+  Fornax-like   PS1/L1 +0.000  PS1/L10 +0.000  PS1/L100 +0.000  EPS0.2/L1 +0.000  EPS0.2/L10 +0.000  EPS0.2/L100 +0.000  EPS0.05/L1 +0.000  EPS0.05/L10 +0.000  EPS0.05/L100 +0.040  EPS0.01/L1 +0.000  EPS0.01/L10 +0.002  EPS0.01/L100 +0.196
+  SPARC-dwarf   PS1/L1 -0.000  PS1/L10 -0.000  PS1/L100 -0.000  EPS0.2/L1 -0.000  EPS0.2/L10 -0.000  EPS0.2/L100 -0.000  EPS0.05/L1 -0.000  EPS0.05/L10 -0.000  EPS0.05/L100 -0.000  EPS0.01/L1 -0.000  EPS0.01/L10 -0.000  EPS0.01/L100 -0.000
+  MW-like       PS1/L1 -0.000  PS1/L10 -0.000  PS1/L100 -0.000  EPS0.2/L1 -0.000  EPS0.2/L10 -0.000  EPS0.2/L100 -0.000  EPS0.05/L1 +0.000  EPS0.05/L10 +0.000  EPS0.05/L100 +0.000  EPS0.01/L1 +0.000  EPS0.01/L10 +0.000  EPS0.01/L100 +0.000
+  cluster-core  PS1/L1 -0.000  PS1/L10 -0.000  PS1/L100 -0.000  EPS0.2/L1 +0.020  EPS0.2/L10 +0.020  EPS0.2/L100 +0.020  EPS0.05/L1 +0.098  EPS0.05/L10 +0.098  EPS0.05/L100 +0.098  EPS0.01/L1 +0.181  EPS0.01/L10 +0.181  EPS0.01/L100 +0.181
+
+Q3 CLASSES (windows over 72 corners):
+  measure b_S_A: BRACKET-DEPENDENT (36/72 non-empty)
+  measure b_S_B: BRACKET-DEPENDENT (33/72 non-empty)
+  measure a_S_A: BRACKET-DEPENDENT (36/72 non-empty)
+  measure a_S_B: BRACKET-DEPENDENT (33/72 non-empty)
+  measure c_S_A: BRACKET-DEPENDENT (30/72 non-empty)
+  measure c_S_B: BRACKET-DEPENDENT (27/72 non-empty)
+  footing can (b, S_A): BRACKET-DEPENDENT (12/36)
+  footing alt (b, S_A): BRACKET-DEPENDENT (24/36)
+Q3 CLASS (primary b, S_A, robustness downgrade applied): BRACKET-DEPENDENT
+flags (r_* beyond r_ta, non-monotone phantom, c without root): 16 system-corners {'can|PS1|L1': [], 'can|PS1|L10': [], 'can|PS1|L100': ['Draco-like', 'Fornax-like'], 'can|EPS0.2|L1': [], 'can|EPS0.2|L10': [], 'can|EPS0.2|L100': ['Draco-like', 'Fornax-like'], 'can|EPS0.05|L1': [], 'can|EPS0.05|L10': [], 'can|EPS0.05|L100': ['Draco-like', 'Fornax-like'], 'can|EPS0.01|L1': [], 'can|EPS0.01|L10': [], 'can|EPS0.01|L100': ['Draco-like', 'Fornax-like'], 'alt|PS1|L1': [], 'alt|PS1|L10': [], 'alt|PS1|L100': ['Draco-like', 'Fornax-like'], 'alt|EPS0.2|L1': [], 'alt|EPS0.2|L10': [], 'alt|EPS0.2|L100': ['Draco-like', 'Fornax-like'], 'alt|EPS0.05|L1': [], 'alt|EPS0.05|L10': [], 'alt|EPS0.05|L100': ['Draco-like', 'Fornax-like'], 'alt|EPS0.01|L1': [], 'alt|EPS0.01|L10': [], 'alt|EPS0.01|L100': ['Draco-like', 'Fornax-like']}
+
+CONTROLS K1 PASS, K2 PASS, K3 PASS; Q1 identity PASS
+kappa = 1/2 FITTED; footings never pooled; cold energy mass required; no particle; not theory closed.
