@@ -1,0 +1,118 @@
+CFG921  excess-selector constraint intersection: five candidate new posits, one constant each, calibrated on the 83 LVD dwarfs
+  kappa = 1/2 FITTED; footings never pooled; criteria 0abd82098
+
+=== K-stage
+  [PASS] K1 CFG919 input/cell code exec'd read-only: all its K-checks pass (incl. CFG914's 9): 7/7 CFG919 checks pass
+  [PASS] K2 CFG919 V0 cells reproduced (cls, w, n exact; E, lg, f, se_stat), both footings: 37 cells x 2; max |diff| 0.0e+00
+  [PASS] K3 CFG919 V0 class means (7 classes) and F1 (A, sA, chi2) by this lane's GLS, both footings: max |diff| 1.1e-16; canonical DW +0.856
+  [PASS] K4 quoted source numbers (CFG687, 829, 850, 845, 820, 876, 860, 920) match the source files: 33/33 match
+  [PASS] K6 per-dwarf inputs: w == CFG919 f_sph exactly; sigma_law^2 == r12 g_L/3: max |dw| 0.0e+00; max rel d sigma_law 8.9e-16; HI-bearing 8/83
+
+=== P5 geometry: QUMOND thin exponential disc (Hankel quadrature, cell-exact kernels; units R_d = G = 1, 2 pi G Sigma0 = 1)
+  [PASS] K7 P5 numerics: (a) thin-disc g_R vs Freeman; (b) Plummer volume field vs GM(<r)/r^2; (c) QUMOND Plummer vs algebraic; (d, added) Kuzmin disc vs exact QUMOND: (a) 1.3e-04 (<=1e-3)  (b) 2.9e-03 (<=1e-2)  (c) 2.7e-03 (<=2e-2)  (d) 1.3e-03 (<=3e-3)
+  y0 =  0.1: delta(R) nu_e  R=0.5 -0.4254  R=1 -0.2340  R=2 -0.0782  R=4 +0.0126  R=6 +0.0211  R=8 +0.0156;  mean over [1,6] -0.0301 (nu_s -0.0300)
+  y0 =  1.0: delta(R) nu_e  R=0.5 -0.3334  R=1 -0.1880  R=2 -0.0663  R=4 +0.0116  R=6 +0.0199  R=8 +0.0149;  mean over [1,6] -0.0240 (nu_s -0.0235)
+  y0 = 10.0: delta(R) nu_e  R=0.5 -0.1401  R=1 -0.0860  R=2 -0.0369  R=4 +0.0087  R=6 +0.0163  R=8 +0.0129;  mean over [1,6] -0.0102 (nu_s -0.0092)
+  <delta_disc> = -0.0214 (nu_e, ln units = -0.0093 dex); diagnostic nu_s -0.0209.  P5 predicts E = -<delta> = +0.0214 for spheres / point-mass lensing, 0 for SPARC discs.  [2 s, 446 MB]
+  [PASS] K5 solvers: zero surplus -> E = 0 everywhere; P1 closed form = bisection; self-consistent roots satisfy their equations: zero-surplus max |E| 3.3e-16; P1 closed vs bisect 1.1e-16; root residual 2.0e-14; cluster nu identity 9.9e-07
+  K-stage ALL PASS (K8 checked below)  [2 s, 446 MB]
+  [PASS] K8 interpolated calibration (INJECT only) vs exact brentq: every predicted class mean: 6 posit-footings calibrated; max |d class mean| 5.6e-16
+  K-stage K1-K8 ALL PASS  [4 s, 458 MB]
+
+=== observed facts (E in ln units; dex = E/ln10)
+  [canonical] F0 +0.856+-0.102  F1 +0.293+-0.067  F2 +0.008+-0.091  F3 +0.137+-0.084  F4 +0.002+-0.050  F5 +0.560+-0.077  F6 +0.831+-0.157  F7 +0.628+-0.130  F8b -0.659+-0.164  F9 -0.156+-0.277  F10 -1.356+-0.179
+  [alt] F0 +0.765+-0.102  F1 +0.203+-0.067  F2 -0.083+-0.091  F3 +0.057+-0.084  F4 -0.053+-0.050  F5 +0.476+-0.077  F6 +0.841+-0.156  F7 +0.627+-0.130  F8b -0.656+-0.164  F9 -0.152+-0.277  F10 -1.355+-0.179
+
+=== stage P: each posit's predictions at its calibrated constant (nominal corner), BEFORE any comparison
+  [canonical] P1: calibration impossible
+  [canonical] P2 theta      6.95: F0 +0.856  F1 +0.000  F2 +0.000  F3 +0.001  F4 +0.000  F5 +0.000  F6 -0.000  F7 +0.887  F8b -0.773  F9 -0.069  F10 -1.083  | per-dwarf E +0.00..+2.68, resid sd 0.76 (obs sd 1.06)
+        DW cells pred +1.34 +1.56 +1.63 +1.40 +0.58 +0.37  | CL cells pred +0.00 +0.00 +0.00 +0.00 +0.00  | LS cells pred +0.00 +0.00 +0.00 +0.00 +0.00  | GC unscreened {'s_med': 44.39166003262833, 'E_unscreened_med': 3.5353236591953197}
+  [canonical] P3 theta     27.64: F0 +0.856  F1 +0.007  F2 +0.010  F3 +0.022  F4 +0.003  F5 +0.000  F6 -0.000  F7 +0.871  F8b -0.549  F9 -0.121  F10 -0.657  | per-dwarf E +0.01..+1.98, resid sd 0.81 (obs sd 1.06)
+        DW cells pred +1.24 +1.36 +1.39 +1.23 +0.70 +0.50  | CL cells pred +0.00 +0.00 +0.00 +0.00 +0.00  | LS cells pred +0.01 +0.01 +0.01 +0.01 +0.01  | GC unscreened {'L_med': 79.57180225340412, 'E_unscreened_med': 2.18832989352188}
+  [canonical] P4 theta 5.036e-07: F0 +0.856  F1 +0.005  F2 +0.000  F3 +0.005  F4 +0.000  F5 +0.000  F6 +0.000  F7 +0.900  F8b -0.304  F9 -0.159  F10 -1.504  | per-dwarf E +0.00..+2.85, resid sd 0.82 (obs sd 1.06)
+        DW cells pred +0.29 +0.75 +1.26 +1.40 +0.55 +0.65  | CL cells pred +0.00 +0.00 +0.00 +0.00 +0.00  | LS cells pred +0.00 +0.00 +0.00 +0.00 +0.00  | GC unscreened {'s_med': 10355.376566360424, 'E_unscreened_med': 8.960927683194852}
+  [canonical] P5 theta         -: F0 +0.021  F1 +0.021  F2 +0.021  F3 +0.000  F4 +0.000  F5 +0.021  F6 +0.000  F7 +0.000  F8b -0.000  F9 +0.000  F10 +0.000  | per-dwarf E +0.02..+0.02, resid sd 1.06 (obs sd 1.06)
+        DW cells pred +0.02 +0.02 +0.02 +0.02 +0.02 +0.02  | CL cells pred +0.02 +0.02 +0.02 +0.02 +0.02  | LS cells pred +0.02 +0.02 +0.02 +0.02 +0.02  | GC unscreened {'note': 'not applicable'}
+  [alt] P1: calibration impossible
+  [alt] P2 theta     6.457: F0 +0.765  F1 +0.000  F2 +0.000  F3 +0.001  F4 +0.000  F5 +0.000  F6 -0.000  F7 +0.794  F8b -0.734  F9 -0.061  F10 -1.042  | per-dwarf E +0.00..+2.54, resid sd 0.76 (obs sd 1.06)
+        DW cells pred +1.23 +1.44 +1.51 +1.28 +0.50 +0.31  | CL cells pred +0.00 +0.00 +0.00 +0.00 +0.00  | LS cells pred +0.00 +0.00 +0.00 +0.00 +0.00  | GC unscreened {'s_med': 35.60313888486183, 'E_unscreened_med': 3.3469084216226714}
+  [alt] P3 theta     23.88: F0 +0.765  F1 +0.005  F2 +0.007  F3 +0.018  F4 +0.003  F5 +0.000  F6 -0.000  F7 +0.781  F8b -0.524  F9 -0.112  F10 -0.645  | per-dwarf E +0.01..+1.86, resid sd 0.81 (obs sd 1.06)
+        DW cells pred +1.12 +1.24 +1.27 +1.13 +0.61 +0.42  | CL cells pred +0.00 +0.00 +0.00 +0.00 +0.00  | LS cells pred +0.01 +0.01 +0.01 +0.00 +0.00  | GC unscreened {'L_med': 59.6558076168524, 'E_unscreened_med': 2.0442957526806085}
+  [alt] P4 theta 6.296e-07: F0 +0.765  F1 +0.003  F2 +0.000  F3 +0.004  F4 +0.000  F5 +0.000  F6 +0.000  F7 +0.808  F8b -0.297  F9 -0.159  F10 -1.424  | per-dwarf E +0.00..+2.71, resid sd 0.82 (obs sd 1.06)
+        DW cells pred +0.24 +0.67 +1.16 +1.28 +0.48 +0.56  | CL cells pred +0.00 +0.00 +0.00 +0.00 +0.00  | LS cells pred +0.00 +0.00 +0.00 +0.00 +0.00  | GC unscreened {'s_med': 8282.754862718255, 'E_unscreened_med': 8.76332609900993}
+  [alt] P5 theta         -: F0 +0.021  F1 +0.021  F2 +0.021  F3 +0.000  F4 +0.000  F5 +0.021  F6 +0.000  F7 -0.000  F8b +0.000  F9 +0.000  F10 +0.000  | per-dwarf E +0.02..+0.02, resid sd 1.06 (obs sd 1.06)
+        DW cells pred +0.02 +0.02 +0.02 +0.02 +0.02 +0.02  | CL cells pred +0.02 +0.02 +0.02 +0.02 +0.02  | LS cells pred +0.02 +0.02 +0.02 +0.02 +0.02  | GC unscreened {'note': 'not applicable'}
+
+=== stage G: grading (lenient-corner rule; FAIL = min|z| >= 3 or sign wrong at every corner; SURVIVES at nominal; z_TF = 4.060)
+  [canonical | V0]
+    P1: FAILS (calibration impossible)
+      VC (clusters withheld): P1: FAILS (calibration impossible)
+    P2: FAILS  theta_nom 6.95  [robust to trials factor]  failed: F1 min|z| 4.4, F5 min|z| 7.3, F6 min|z| 5.3  | joint chi2 74.8/5 p 1e-14
+      VC (clusters withheld): P2: FAILS  theta_nom 6.95  [robust to trials factor]  failed: F1 min|z| 4.4  | joint chi2 21.8/4 p 0.00022
+      nominal z: F1 -4.4  F2 -0.1  F3 -1.6  F4 -0.0  F5 -7.3  F6 -5.3  F7 +1.6  F8b -0.7  F9 +0.3  F10 +1.5  F8a p 0.87
+    P3: FAILS  theta_nom 27.64  [robust to trials factor]  failed: F1 min|z| 4.2, F5 min|z| 7.3, F6 min|z| 5.3, F10 min|z| 3.9  | joint chi2 73.1/5 p 2.3e-14
+      VC (clusters withheld): P3: FAILS  theta_nom 27.64  [robust to trials factor]  failed: F1 min|z| 4.2, F10 min|z| 3.9  | joint chi2 20.2/4 p 0.00046
+      nominal z: F1 -4.3  F2 +0.0  F3 -1.4  F4 +0.0  F5 -7.3  F6 -5.3  F7 +1.5  F8b +0.7  F9 +0.1  F10 +3.9  F8a p 0.61
+    P4: FAILS  theta_nom 5.036e-07  [robust to trials factor]  failed: F1 min|z| 3.8, F5 min|z| 7.3, F6 min|z| 5.3  | joint chi2 74.1/5 p 1.4e-14
+      VC (clusters withheld): P4: FAILS  theta_nom 5.036e-07  [local only]  failed: F1 min|z| 3.8  | joint chi2 21.1/4 p 0.0003
+      nominal z: F1 -4.3  F2 -0.1  F3 -1.6  F4 -0.0  F5 -7.3  F6 -5.3  F7 +1.6  F8b +2.2  F9 -0.0  F10 -0.8  F8a p 0.33
+    P5: FAILS  [robust to trials factor]  failed: F0 min|z| 8.2, F1 min|z| 4.1, F5 min|z| 7.0, F6 min|z| 5.3, F7 min|z| 4.8, F8a max p 2.2e-18, F8b min|z| 4.0, F10 min|z| 7.6  | joint chi2 68.2/5 p 2.4e-13
+      VC (clusters withheld): P5: FAILS  [robust to trials factor]  failed: F0 min|z| 8.2, F1 min|z| 4.1, F7 min|z| 4.8, F8a max p 2.2e-18, F8b min|z| 4.0, F10 min|z| 7.6  | joint chi2 19.2/4 p 0.00072
+      nominal z: F0 -8.2  F1 -4.1  F2 +0.1  F3 -1.6  F4 -0.0  F5 -7.0  F6 -5.3  F7 -4.8  F8b +4.0  F9 +0.6  F10 +7.6  F8a p 2.2e-18
+  [canonical | V6]
+    P1: FAILS (calibration impossible)
+    P2: FAILS  theta_nom 6.775  [local only]  failed: F5 min|z| 4.0, F6 min|z| 3.4  | joint chi2 22.9/5 p 0.00036
+    P3: FAILS  theta_nom 28  [local only]  failed: F5 min|z| 4.0, F6 min|z| 3.4, F10 min|z| 3.9  | joint chi2 22.2/5 p 0.00047
+    P4: FAILS  theta_nom 4.22e-07  [local only]  failed: F5 min|z| 4.0, F6 min|z| 3.4  | joint chi2 22.6/5 p 0.00041
+    P5: FAILS  [robust to trials factor]  failed: F0 min|z| 6.5, F5 min|z| 3.8, F6 min|z| 3.4, F7 min|z| 3.5, F8a max p 7.4e-11, F10 min|z| 7.6  | joint chi2 20.7/5 p 0.00091
+  [canonical | V7]
+    P1: FAILS (calibration impossible)
+    P2: FAILS  theta_nom 6.95  [robust to trials factor]  failed: F1 min|z| 6.3, F5 min|z| 7.3, F6 min|z| 5.3  | joint chi2 95.0/5 p 6e-19
+    P3: FAILS  theta_nom 27.64  [robust to trials factor]  failed: F1 min|z| 6.1, F5 min|z| 7.3, F6 min|z| 5.3, F10 min|z| 3.9  | joint chi2 92.7/5 p 1.8e-18
+    P4: FAILS  theta_nom 5.036e-07  [robust to trials factor]  failed: F1 min|z| 5.3, F5 min|z| 7.3, F6 min|z| 5.3  | joint chi2 93.6/5 p 1.2e-18
+    P5: FAILS  [robust to trials factor]  failed: F0 min|z| 8.2, F1 min|z| 6.0, F5 min|z| 7.0, F6 min|z| 5.3, F7 min|z| 3.6, F8a max p 2.2e-18, F8b min|z| 4.0, F10 min|z| 7.6  | joint chi2 87.3/5 p 2.5e-17
+  [alt | V0]
+    P1: FAILS (calibration impossible)
+      VC (clusters withheld): P1: FAILS (calibration impossible)
+    P2: FAILS  theta_nom 6.457  [robust to trials factor]  failed: F1 min|z| 3.0, F5 min|z| 6.2, F6 min|z| 5.4  | joint chi2 49.9/5 p 1.5e-09
+      VC (clusters withheld): P2: FAILS  theta_nom 6.457  [local only]  failed: F1 min|z| 3.0  | joint chi2 11.6/4 p 0.021
+      nominal z: F1 -3.0  F2 +0.9  F3 -0.7  F4 +1.1  F5 -6.2  F6 -5.4  F7 +1.0  F8b -0.5  F9 +0.3  F10 +1.7  F8a p 0.88
+    P3: FAILS  theta_nom 23.88  [robust to trials factor]  failed: F5 min|z| 6.2, F6 min|z| 5.4, F10 min|z| 3.9  | joint chi2 49.5/5 p 1.8e-09
+      VC (clusters withheld): P3: FAILS  theta_nom 23.88  [local only]  failed: F10 min|z| 3.9  | joint chi2 11.2/4 p 0.025
+      nominal z: F1 -3.0  F2 +1.0  F3 -0.5  F4 +1.1  F5 -6.2  F6 -5.4  F7 +0.9  F8b +0.8  F9 +0.1  F10 +3.9  F8a p 0.57
+    P4: FAILS  theta_nom 6.296e-07  [robust to trials factor]  failed: F5 min|z| 6.2, F6 min|z| 5.4  | joint chi2 49.5/5 p 1.7e-09
+      VC (clusters withheld): P4: UNDERDETERMINED  theta_nom 6.296e-07  | joint chi2 11.2/4 p 0.024
+      nominal z: F1 -3.0  F2 +0.9  F3 -0.6  F4 +1.1  F5 -6.2  F6 -5.4  F7 +1.1  F8b +2.2  F9 -0.0  F10 -0.3  F8a p 0.32
+    P5: FAILS  [robust to trials factor]  failed: F0 min|z| 7.3, F5 min|z| 5.9, F6 min|z| 5.4, F7 min|z| 4.8, F8a max p 1.9e-15, F8b min|z| 4.0, F10 min|z| 7.6  | joint chi2 45.2/5 p 1.3e-08
+      VC (clusters withheld): P5: FAILS  [robust to trials factor]  failed: F0 min|z| 7.3, F7 min|z| 4.8, F8a max p 1.9e-15, F8b min|z| 4.0, F10 min|z| 7.6  | joint chi2 10.3/4 p 0.036
+      nominal z: F0 -7.3  F1 -2.7  F2 +1.1  F3 -0.7  F4 +1.1  F5 -5.9  F6 -5.4  F7 -4.8  F8b +4.0  F9 +0.5  F10 +7.6  F8a p 1.9e-15
+  [alt | V6]
+    P1: FAILS (calibration impossible)
+    P2: FAILS  theta_nom 6.323  [local only]  failed: F5 min|z| 3.3, F6 min|z| 3.4  | joint chi2 14.7/5 p 0.012
+    P3: FAILS  theta_nom 24.34  [local only]  failed: F5 min|z| 3.3, F6 min|z| 3.4, F10 min|z| 3.9  | joint chi2 14.5/5 p 0.012
+    P4: FAILS  theta_nom 5.221e-07  [local only]  failed: F5 min|z| 3.3, F6 min|z| 3.4  | joint chi2 14.5/5 p 0.012
+    P5: FAILS  [robust to trials factor]  failed: F0 min|z| 5.9, F5 min|z| 3.1, F6 min|z| 3.4, F7 min|z| 3.5, F8a max p 3.5e-09, F10 min|z| 7.6  | joint chi2 13.3/5 p 0.021
+  [alt | V7]
+    P1: FAILS (calibration impossible)
+    P2: FAILS  theta_nom 6.457  [robust to trials factor]  failed: F1 min|z| 5.0, F5 min|z| 6.2, F6 min|z| 5.4  | joint chi2 65.2/5 p 1e-12
+    P3: FAILS  theta_nom 23.88  [robust to trials factor]  failed: F1 min|z| 4.8, F5 min|z| 6.2, F6 min|z| 5.4, F10 min|z| 3.9  | joint chi2 64.4/5 p 1.5e-12
+    P4: FAILS  theta_nom 6.296e-07  [robust to trials factor]  failed: F1 min|z| 4.2, F5 min|z| 6.2, F6 min|z| 5.4  | joint chi2 64.4/5 p 1.5e-12
+    P5: FAILS  [robust to trials factor]  failed: F0 min|z| 7.3, F1 min|z| 4.6, F5 min|z| 5.9, F6 min|z| 5.4, F7 min|z| 3.6, F8a max p 1.9e-15, F8b min|z| 4.0, F10 min|z| 7.6  | joint chi2 59.4/5 p 1.6e-11
+
+=== classes
+  P1 stress coupling (theta = c_*, km/s): canonical FAILS, alt FAILS -> FAILS  | VC (clusters withheld, pending CFG922): FAILS / FAILS -> FAILS
+  P2 velocity-space capture (theta = v_2, km/s): canonical FAILS, alt FAILS -> FAILS  | VC (clusters withheld, pending CFG922): FAILS / FAILS -> FAILS
+  P3 late binding + post-binding escape (theta = v_w, km/s): canonical FAILS, alt FAILS -> FAILS  | VC (clusters withheld, pending CFG922): FAILS / FAILS -> FAILS
+  P4 phase-space-density capture (theta = Q_*, Msun pc^-3 (km/s)^-3): canonical FAILS, alt FAILS -> FAILS  | VC (clusters withheld, pending CFG922): FAILS / UNDERDETERMINED -> UNDERDETERMINED (SPLIT BY FOOTING)
+  P5 QUMOND geometry (no constant): canonical FAILS, alt FAILS -> FAILS  | VC (clusters withheld, pending CFG922): FAILS / FAILS -> FAILS
+  survivors (any footing): NONE; trials factor N_T = 5 (z_TF 4.06)
+
+=== A1 diagnostics (post-freeze; no class weight)
+  [canonical] P1 in the frozen equilibrium domain (all 83 dwarfs): runaway threshold c_crit 49.600 km/s set by NGC 205 (log g_bar -9.88, in a graded cell: False); max DW class mean 0.0059 < observed 0.856 -> calibration impossible
+        relaxed (equilibrium only for dwarfs in graded cells): threshold 9.490 km/s set by Fornax; DW class mean at c_* = threshold x (1 + 1e-7) 0.726, x (1 + 1e-12) 1.167 (E diverges only logarithmically); dwarfs outside the cells in runaway at that threshold: 3 -> not reachable within the 1e-7 bracket; reachable only with c_* fine-tuned to between 1e-12 and 1e-7 (fractional) of Fornax's runaway, the class mean then carried by one dwarf at the edge of runaway
+  [canonical] P3 upper root (diagnostic): v_w 1185 km/s; DW chi2 49.4; z: F1 +16.5  F2 +17.0  F3 +2.6  F4 +4.0  F5 -5.9  F6 -5.9  F7 -9.6  F8b -5.5  F9 +2.0  F10 +15.3
+  [alt] P1 in the frozen equilibrium domain (all 83 dwarfs): runaway threshold c_crit 49.600 km/s set by NGC 205 (log g_bar -9.88, in a graded cell: False); max DW class mean 0.0058 < observed 0.765 -> calibration impossible
+        relaxed (equilibrium only for dwarfs in graded cells): threshold 9.490 km/s set by Fornax; DW class mean at c_* = threshold x (1 + 1e-7) 0.725, x (1 + 1e-12) 1.166 (E diverges only logarithmically); dwarfs outside the cells in runaway at that threshold: 3 -> not reachable within the 1e-7 bracket; reachable only with c_* fine-tuned to between 1e-12 and 1e-7 (fractional) of Fornax's runaway, the class mean then carried by one dwarf at the edge of runaway
+  [alt] P3 upper root (diagnostic): v_w 1582 km/s; DW chi2 62.5; z: F1 +20.9  F2 +20.2  F3 +2.6  F4 +4.6  F5 -4.1  F6 -6.3  F7 -12.0  F8b -5.4  F9 +2.9  F10 +15.3
+
+  runtime 26 s, peak RSS 458 MB
