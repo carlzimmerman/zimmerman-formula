@@ -9,6 +9,15 @@ Read README.md, PROOF.md and REVIEW.md together. The single-mediator
 dictionary is xi=8Omega/(9R), with R=epsilon C3^2/C2^3; n=3 gives the
 target. For tensor-plus-phonon gravity derive its force dictionary anew.
 
+Subsequent active-goal checkpoint: formal/README.md and
+formal/GOAL_STATUS.md. Four partial Lean modules compile with standard
+axioms, while the actual-pi adapter is deferred under the live-job memory
+cap. A temporal-vector parent now avoids the scalar-regulator tachyon
+and gives a regular radial MOND branch. Its regular charged-scalar
+pressure origin has an exact missing-Gauss-current obstruction. The
+original microscopic normalization target remains open; the new vector
+construction does not invalidate the old scalar-regulator calculation.
+
 ## Preserved results
 
 1. The entire critical regulated Dirac-band response is statically

@@ -1,0 +1,84 @@
+Working directory for all local compile commands:
+  why_4_puzzle/W4_08_positive_mond_amplitudes/formal
+
+Installed environment was queried read-only, with no build or download:
+  (cd ../../../fable_independent_2026/lean_2026 && lake env printenv LEAN_PATH)
+Lean --version returned 4.34.0-rc2, commit
+  6a10ac8c22beadecabdbb0919c2b50214762f91d
+
+Attempts 01 and 02 used the queried LEAN_PATH. Attempts 03 onward used
+the following equivalent installed-directory construction:
+  task_lean_project="$PWD/../../../fable_independent_2026/lean_2026"
+  task_lean_path="$task_lean_project/.lake/build/lib/lean"
+  for task_lean_dir in "$task_lean_project"/.lake/packages/*/.lake/build/lib/lean; do
+    task_lean_path="$task_lean_dir:$task_lean_path"
+  done
+  export LEAN_PATH="$task_lean_path"
+
+Before each numbered attempt, its exact input and source digest were saved:
+  cp PairedBandStress.lean dev_stress/attemptNN.lean
+  shasum -a 256 PairedBandStress.lean > dev_stress/attemptNN.source.sha256
+Each compiler stdout/stderr was redirected to dev_stress/attemptNN.log.
+The shell return code was saved in dev_stress/attemptNN.exit.
+
+Attempt 01:
+  ulimit -t 50
+  gtimeout -s TERM -k 2s 55s lean -j1 -M4096 \
+    -o dev_stress/PairedBandStress.olean -i dev_stress/PairedBandStress.ilean \
+    PairedBandStress.lean > dev_stress/attempt01.log 2>&1
+  Exit 134. Memory exception at interpreter. Umbrella Mathlib import.
+
+Attempt 02:
+  ulimit -t 50
+  gtimeout -s TERM -k 2s 55s lean -j1 -M4096 \
+    -o dev_stress/PairedBandStress.olean -i dev_stress/PairedBandStress.ilean \
+    PairedBandStress.lean > dev_stress/attempt02.log 2>&1
+  Exit 1. Narrow imports. Single-band bounds have standard axioms;
+  finite sum elaboration failed because Finset.sum_div was not imported.
+  Its downstream sorryAx diagnostics are failed implementation evidence.
+
+Following the parent's lower light-job cap, all subsequent attempts used:
+  ulimit -t 30
+  gtimeout -s TERM -k 2s 45s lean -j1 -M1024 \
+    -o dev_stress/PairedBandStress.olean -i dev_stress/PairedBandStress.ilean \
+    PairedBandStress.lean > dev_stress/attemptNN.log 2>&1
+
+Attempt 03: Exit 134, interpreter memory exception; imported sum_div.
+Attempt 04: Exit 134, interpreter memory exception; minimal Real imports.
+Attempt 05: Exit 134, interpreter memory exception; ordered-field algebra,
+  no Real/analysis imports. r is explicit with nonnegative-root conditions.
+
+The same 1024 MB/30s CPU/45s wall flags were used on imports-only probes,
+without -o/-i, and with filenames substituted:
+  dev_stress/probe_imports.lean: seven imports, #check Real.sqrt_nonneg.
+  dev_stress/probe_sqrt.lean: only import Mathlib.Analysis.Real.Sqrt and
+    #check Real.sqrt_nonneg.
+Both exited 134 with interpreter memory exceptions. Source/log/exit files
+are preserved. No ulimit -v, RLIMIT_AS or external virtual-address cap was
+used; -M is Lean's own advertised memory option. No repeated run was made
+with unchanged source and unchanged resource limits.
+
+The compile slot was released to the parent for a resource audit. Installed
+Lean source explains the baseline: Lean/Elab/Import.lean processHeaderCore
+sets import level .private without a module header, .exported with module.
+Lean/Environment.lean sets importAll for global level .private. Thus the
+legacy client loads private declarations/IR transitively. The parent
+independently confirmed an imports-only sqrt probe passes with module at
+the same 1024 MB cap. No memory-limit relaxation was used for the fix.
+
+Attempt 06: same 1024 MB/30s CPU/45s wall compile command; Exit 1.
+  Added module/public/meta header. Imports and elaboration now fit.
+  Ring.Basic exposes ring1; ring had previously been visible only through
+  legacy private imports. Unknown-ring errors and cascades are preserved.
+Attempt 07: same command; Exit 0. Replaced terminal ring calls with ring1.
+  dev_stress/attempt07.log prints exact public critical theorem types and
+  their axioms, all exactly [propext, Classical.choice, Quot.sound].
+  No sorryAx occurs in this successful output. Two harmless linter warnings
+  note unused order instances in algebraic helper theorems.
+  Artifacts: dev_stress/PairedBandStress.olean and PairedBandStress.ilean.
+
+Final results prove the displayed root-data stress obstruction over any
+ordered field. They do NOT prove that every healthy quantum sector obeys
+the NEC, do not derive a new physical stress prescription, and do not
+select xi=1/4. The physical why-4 objective remains unachieved. The parent
+owns the independent combined run and mutation controls.
