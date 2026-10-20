@@ -148,3 +148,11 @@ touched.
 
 κ = ½ FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; raw data, framework-native; no HMcode / BAHAMAS in any
 computation; a CONSISTENT class does not mean the data favour the framework; not theory closed.
+
+## Commit provenance (appended; no criterion above is changed)
+
+The text above (git blob 3bb5e5a479167b782994b32234d28a35d980a7ae) was staged alone for its own commit, but a parallel
+session's commit 1049b615c ("CFG906 ledger row ...", 2026-10-20 02:40:42) landed between this lane's `git add` and
+`git commit` and swept the staged file into it, together with that session's two ledger rows. The content is identical to
+what was staged; no CFG909 script existed at that time. History is not rewritten; this provenance note is committed alone
+(path-limited commit) as the forward fix, still before any CFG909 script.
