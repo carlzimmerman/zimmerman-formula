@@ -23,7 +23,19 @@ def P(*a):
 import re   # guard reads `ps` (no pattern in any argv, so other chains' pgrep gates never match this process); shell wrappers ignored
 BUSY = re.compile(r"cfg[0-9]{3}_pm\.py|cfg59[6]_pm|run_6[0-9]{2}\.py|^\s*bash \S*chain[0-9]*\.sh|argon11_run\.py|cfg[0-9]{3}_native\.py|cfg9[0-9]{2}_rescore\.py")
 WRAP = re.compile(r"^\s*(\S*/)?(ba|z)?sh -c ")
+PARALLEL = os.environ.get("CFG689_PARALLEL", "") == "1"   # owner 2026-10-20: small runs may go beside a 1024^3 job, under a memory watchdog
+SWAP0 = [None]
+def mem_state():          # (free+inactive GB, swap used MB) from vm_stat / sysctl
+    vs = subprocess.run(["vm_stat"], capture_output=True, text=True).stdout; pg = int(re.search(r"page size of (\d+)", vs).group(1))
+    fi = sum(int(re.search(k + r":\s+(\d+)", vs).group(1)) for k in ("Pages free", "Pages inactive"))*pg/1e9
+    used = float(re.search(r"used = ([0-9.]+)M", subprocess.run(["sysctl", "-n", "vm.swapusage"], capture_output=True, text=True).stdout).group(1))
+    return fi, used
 def guard():
+    if PARALLEL:          # exit long before a 1024^3 job's own swap guard (+5 GB) could trip: swap +1 GB over its minimum, or < 8 GB free
+        fi, used = mem_state(); SWAP0[0] = used if SWAP0[0] is None else min(SWAP0[0], used)
+        if used > SWAP0[0] + 1000 or fi < 8:
+            P(f"GUARD (parallel): swap {used:.0f} MB (min {SWAP0[0]:.0f}) or free+inactive {fi:.1f} GB -> exit 75 (no verdict; mode {MODE} reruns later)"); sys.exit(75)
+        return
     cmds = subprocess.run(["ps", "-axo", "command="], capture_output=True, text=True).stdout.splitlines()
     if any(BUSY.search(c) and not WRAP.match(c) for c in cmds):
         P(f"GUARD: a PM / 1024^3 / chain process is alive -> exit 75 (no verdict; mode {MODE} reruns later)"); sys.exit(75)
