@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (672 rows)
+## Totals (678 rows)
 
-- **501 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **504 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **123 produced a number.** 56 produced one determinate value; 67 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -144,8 +144,8 @@ fact.
 |---|---|---|---|---|---|---|
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
-| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 63 | 4 | 10 | 49 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 124 | 8 | 7 | 104 | 5 | 0 |
+| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 126 | 8 | 7 | 106 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 48 | 0 | 0 | 0 | 0 | 38 |
-| AU Audits, controls, meta-analyses | 75 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 78 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -333,6 +333,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K633 | W4-04/R2T | `why_4_puzzle/W4_04_microscopic_normalization` | gapless bosonic thermal zero mode and common amplitude ratios | - | free | NO MOND PREDICTION: formal ratios 16/15 and 16/5 cancel species/hbar/common slope; cubic negative, low-field quadratic dominant, high-field response suppressed, state w=1/3; relative species slopes alter ratio unless symmetry forbids | a811e18fb |
 | K655 | W4-08/R1b | `why_4_puzzle/W4_08_positive_mond_amplitudes` | equal-weight split boson-fermion bands with critical quadratic cancellation and positive same-band energy | - | free | TRADE: R(d)=(8/27)f/b^3 with physical d=Delta/L free; common factors cancel; reciprocal minimum wrong target; sheet stress not vacuum; no gap selection | 4131def0e |
 | K658 | W4-08/R3FI | `why_4_puzzle/W4_08_positive_mond_amplitudes` | generate positive vacuum energy from same auxiliary using linear J deformation | - | free | CLOSURE for this branch: vacuum moves to y0>0 and IR becomes quadratic; nominal target ratio uses obsolete cubic and removes intermediate cubic window; no operational MOND amplitude | 4131def0e |
+| K674 | W4-08/R1scale | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal` | common dynamical scale and physical gap with running effective potential | - | free | CLOSURE for single-log positive vacuum minimum: negative radial curvature; strict quadratic stability needs running curvature above the Schur bound; added stabilizer changes total amplitude and leaves normalization unselected | f77a0cd8d |
 
 ## FN: Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field)
 
@@ -462,6 +463,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K666 | p63-C1b | `sonnet55_push/puzzle_32pi/p63_a0_field_coupling` | RESULT of pending K070: patch bootstrap (bound charge inside R = c/H_L equals the vacuum mass) | 2.894 | odd | FORCED-OUT / MISS: Z = 1, kappa_L 2.894 (tracking, finite W). Supersedes the PENDING status of K070 | 5df0e1cd8 |
 | K667 | p63-C2 | `sonnet55_push/puzzle_32pi/p63_a0_field_coupling` | RESULT of pending K071: flux lattice kappa = kappa_1/N | {0.5, 0.333, 0.25} | menu | MENU (spurious 1/2): kappa_1 = 1 lands at N = 2, 3, 4; null 0.71; the lattice does not single out N = 2. Supersedes the PENDING status of K071 | 5df0e1cd8 |
 | K668 | p63-C3 | `sonnet55_push/puzzle_32pi/p63_a0_field_coupling` | RESULT of pending K072: Kaloper-Sorbo monodromy quantisation | - | free | FREE: quantisation fixes (f, mu, e) only; beta^2/Z free; no hbar. Supersedes the PENDING status of K072 | 5df0e1cd8 |
+| K675 | W4-08/R4vector | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal` | temporal-vector second-class completion with radial MOND source and principal cones | - | free | TRADE: nonnegative constrained classical energy and positive-source MOND branch; epsilon0/(gamma b^3) free; zero-field longitudinal degeneration and microscopic clock/current completion unresolved | f77a0cd8d |
+| K676 | W4-08/R5scalar | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal` | regular charged sextic scalar pressure parent with amplitudes retained | - | free | TRADE: regular classical cubic pressure and mV^2=gamma Y/2 derived; this half is not law kappa; exact Gauss current forbids sole nonzero homogeneous condensate without compensating charge | f77a0cd8d |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -871,6 +874,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K635 | W4-04/R4 | `why_4_puzzle/W4_04_microscopic_normalization` | operational amplitude normalization from one mediator source and actual high/low-gradient force coefficients | - | audit | CONDITIONAL REDUCTION: xi=8Omega C2^3/(9epsilon C3^2); in4D quarter requires epsilon C3^2/C2^3=128pi/9; common factors cancel; no selecting law supplied; tensor-plus-scalar measured-G dictionary must be rederived | a811e18fb |
 | K659 | W4-08/R1dyn | `why_4_puzzle/W4_08_positive_mond_amplitudes` | continuum mass bubble and gradient-source adiabatic range audit | - | audit | SCOPE: continuum kernel has k^2 sqrt(omegaE^2+v^2 k_parallel^2); hard finite-band projection unspecified; homogeneous convexity does not prove source dynamics; 53 exact checks and independent raw proof review | 4131def0e |
 | K669 | p62 | `sonnet55_push/puzzle_32pi/p62_gf1_data_pin_audit.py` | RESULT of pending K068: audit of GF1's n = 2 'data pin' | - | audit | IDENTITY: GF1's A0 = c sqrt(G rho_L)/2, so n = 2 by construction; measured n_L 2.40 +- 0.54 (CFG493), consistent not pinned. Supersedes the PENDING status of K068 | b3aae484f |
+| K673 | W4-08/R1stress | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal` | quantitative paired-band directional null stress and finite positive completion | - | audit | SCOPE: rho/2 < rho+p_parallel < rho; positive finite sums plus vacuum offsets and nonnegative extra null stress cannot form a vacuum; negative compensating stress required; no general NEC no-go | f77a0cd8d |
+| K677 | W4-08/R5BMB | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal` | conditional timelike charged extension of K257 critical sextic large-N functional | - | audit | SCOPE: conditional leading-N P=N mu^3/(6pi), twice naive tree pressure; BMB zero-density direction has zero relative vacuum energy and is not finite-N beta zero; no current or vacuum normalization selector | f77a0cd8d |
+| K678 | W4-08/Lean | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal` | four kernel-checked partial stress amplitude scale and cone modules with negative controls | - | lean | PARTIAL: 25 printed critical theorem axiom lists standard; normal control passes and two false controls reduce to False and fail; actual-pi adapter memory-deferred; physical selection and original goal remain open | f77a0cd8d |
 
 ## LN: Logic / Lean formalisations
 

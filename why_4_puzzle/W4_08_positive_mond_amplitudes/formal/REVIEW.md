@@ -102,3 +102,19 @@ Conservative mathematical self-proofreading covered the new proof/report
 files and their final corrections. Substantive corrections above belong
 to proof audit. There were no further mathematical-token changes from
 proofreading and no additional document build was required.
+
+Evidence checkpoint f77a0cd8d preserves the raw diagnostic logs. The
+compiler warning in dev_stress/attempt02.log has one trailing space;
+git diff --check flags that raw output, which is intentionally unchanged
+so its recorded hash remains accurate. Source and report files have no
+reported whitespace defects. The campaign regeneration after K673-K678
+passes all four checks and adds no determinate normalization trial.
+
+The neutral-current follow-up received a separate independent analytic
+audit at SHA256
+5f22ea960ef195963e1a3bf3ab7212c6792082efb99f831ac81426cdaccf7551.
+Verdict: proved as written under its explicit ensemble and affine-gradient
+hypotheses. The audit checked the neutral solution, pressure/charge/stress,
+fixed-charge Hamiltonian/Hessian, exact dilute current, concavity and
+joint-pressure Hessian. It did not certify a general microscopic no-go,
+quantum theory or Lean proof. No correction was required.

@@ -5,6 +5,9 @@ below prove exact necessary obstructions and classical coefficient/cone
 implications. They do not derive xi=1/4 from a healthy microscopic theory.
 The frozen scope is committed as 63afb2ca2. The earlier W4-08 result and
 registry checkpoints are 4131def0e and 58ae06c36.
+The reviewed formal/physical checkpoint is f77a0cd8d; registry rows
+K673-K678 record its separate stress, scale, vector, pressure, BMB and
+formal scopes. None is a determinate normalization candidate.
 
 ## What Lean now verifies
 
@@ -60,6 +63,14 @@ sector and the derived vector relation mV^2=gamma Y/2. Its exact Gauss
 law still requires a regular compensating current. A conditional BMB
 large-N pressure coefficient fixes neither that current nor positive
 same-state vacuum energy.
+
+[NEUTRAL_CURRENT_TEST.md](NEUTRAL_CURRENT_TEST.md) tests two regular
+oppositely charged condensates. Their exact dilute Gauss equation removes
+the apparent branch; a regular finite-density neutral clock generically
+retains quadratic infrared stiffness. A restricted variational argument
+also excludes positive cubic energy from amplitude-only relaxation with
+an affine gradient energy and gradient-independent charge constraints.
+Derivative-current completions remain outside that result.
 
 ## Verification and reproduction
 

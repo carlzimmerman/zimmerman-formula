@@ -9,6 +9,8 @@ formal results below.
 Previous goal turn: progress (committed W4-08 models and scoped audits).
 This continuation: progress (new canonical completion/source theorem,
 quantitative stress obstruction and kernel-checked formal modules).
+Committed evidence checkpoint: f77a0cd8d. Campaign entries K673-K678
+record these partial results without adding a determinate trial.
 
 | Required end state | Current authoritative evidence | Status |
 |---|---|---|
@@ -29,6 +31,14 @@ its exact Gauss equation forbids the proposed nonzero homogeneous branch
 without compensating charge. BMB fixes a conditional leading-N pressure
 coefficient while leaving zero relative vacuum energy. The earlier static
 sextic failure was not rerun.
+
+The neutral-pair follow-up in NEUTRAL_CURRENT_TEST.md computes both
+currents before eliminating amplitudes. Opposite charges neutralize a
+finite-density clock but generically retain quadratic stiffness; the
+exact dilute sextic pair switches off. The concavity obstruction rules
+out the stated amplitude-only affine-gradient fixed-charge completion,
+including a critical linear subtraction. A derivative current or another
+explicitly different constraint structure remains to be constructed.
 
 The actual pi adapter awaits a viable lightweight import or relaxation of
 the temporary resource constraint after the large simulation is confirmed
