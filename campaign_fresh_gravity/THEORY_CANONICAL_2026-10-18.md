@@ -133,3 +133,11 @@ scales (the KiDS-excluded CFG596 P1 reaches only +1.88): it neither threatens no
 LC latching plus release beyond the tidal radius is CONTRADICTED as posed (release is inert under exact capture); with a new capped-capture
 rule it is UNDERDETERMINED (clusters return to the law statically; Bullet undecided; dwarfs conditional on ×4.3 formation baryon loss).
 
+**Note (2026-10-20, CFG918–923) the pressure-supported excesses after today's lanes.** Every system with an excess is pressure-supported
+and no rotator carries one (CFG919), but no single form in the kinematic measure fits, and the record's kinetic equation cannot select on
+kinematics at all (it sees baryons only through ρ_b). The cluster-core ×1.8 excess is not a baryon-census artefact (CFG922). No one-constant
+selector — stress coupling, velocity-space capture, late binding + escape, phase-space-density capture, QUMOND geometry — reproduces dwarfs,
+red lenses and clusters together (CFG921). The dwarf routes' conditions are strained: ×4.3 formation baryon loss only at low Fe yield / metal-
+enhanced winds / late binding (CFG920), the framework clock binds too early (CFG923), and a bound outer envelope cannot take the formation
+energy in Sextans/Draco (CFG918; only an escaping receiver remains). Status: the excess family is OPEN and unexplained by the record.
+
