@@ -109,3 +109,12 @@ a script result that disagrees with a hand value replaces it, with the disagreem
 ## Files to be produced (after the 1024³ job)
 
 `p63_a0_field_coupling.py` (+ `.out`, `_results.json`), `p63_a0_field_coupling_MUTATE.out`, `README.md` with the verdict.
+
+## Erratum (appended 2026-10-19, while writing the script, before any run)
+
+- **M1 direction.** With the saturation at 2a₀ and the cosmic state still at saturation, κ_C1 **halves**; it does not double.
+  The test is the factor-2 response: check T4-C1 (κ_dS = √(2π/3)) must FAIL under MUTATE.
+- **M2 target.** C1's class is set by its premise gate whatever the window, so M2 is applied to C1's **window verdict**
+  (check W1) instead of its class.
+- **M1 and M2 in one run.** W1 always uses the σ = 1 construction, so M1's halving cannot cancel M2's ×2 window.
+- **MUTATE run, declared:** T4-C1 (M1), W1 (M2), C2's "only N = 2" (M2) and H1 (M3) must FAIL. K1, K2 and T4-C1b must PASS.
