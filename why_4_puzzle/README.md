@@ -65,6 +65,7 @@ independent second prediction to reach 3σ.
 | [W4-04](W4_04_microscopic_normalization/README.md) | Can local supersymmetry, a common finite quantum determinant, or string D3 normalization force ξ? | **NO OPERATIONAL SELECTION.** A restricted locally SUSY BI action fixes T=ε/2 and an electric quartic εc₄=¼, but its force is Coulombic. A finite common determinant computes vacuum and Einstein coefficients but lacks the positive MOND cubic and fails its low-curvature vacuum limit. Thermal cubic and D3 alternatives fail their physical force/state bridges. The useful target is ξ=32πC₂³/(9εC₃²), with common species/ħ factors able to cancel. 39/39 exact checks, five expected control failures, and scoped independent rederivation. |
 | [W4-05](W4_05_self_determined_vacua/README.md) | Can a theory that fixes its own vacuum (EiBI, f(R) = R − μ⁴/R, Brans–Dicke, Maggiore RR, Deser–Woodard, running vacuum, TeVeS) fix the 4? | **DICHOTOMY HOLDS.** Self-determined vacua give κ² = 8π × algebraic: never ½, and of size √(8π) (EiBI 5.01, f(R) 7.62, DGP 2.89), about ten times the measured 0.42. Every other family leaves Λ or a₀ free (TRADE). |
 | [W4-06](W4_06_lensing_kappa/README.md) | Is there a 4 in weak lensing? κ fitted to KiDS-1000 isolated blue lenses (a route with no rotation-curve systematics). | **CONSISTENT, NOT DECISIVE.** κ_Λ = 0.52 ± 0.09 (stat) ± 0.24 (lens M★), agreeing with CFG493 (z = +0.38) and with ½; ½ vs 0.461 not separated (Δχ² 0.4). Stellar mass caps lensing near 46% per 0.2 dex, so the decisive 3% stays a rotation-curve and distance problem. |
+| [W4-07](W4_07_symmetry_fixed_and_bound_ratios/README.md) | Can a ratio fixed by a symmetry (partially massless spin-2, conformal scalar in dS) or by a consistency bound (weak gravity, dS/TCC conjectures, species scale, positivity, superfluid seesaw) fix the 4? | **RIGID BUT π-ODD.** The symmetry-fixed points give κ² = 16π/3 (κ 4.09), π × algebraic, about ten times the measured value. The bounds are inequalities or carry ħ. The superfluid seesaw cancels ħ but leaves κ² = α⁶ (or 8πα⁶) with α free. |
 
 ## What would change the answer
 
@@ -83,6 +84,6 @@ Follow `KAPPA_CAMPAIGN_RULES.md`:
 3. Run a light single-core script (nothing beside a live 1024³ job beyond that).
 4. Append one register row per attempt to CFG894's CSV, then rerun `kappa_campaign_lee.py`.
 
-Name lanes W4-07, W4-08, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
+Name lanes W4-08, W4-09, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
 
 κ = ½ FITTED. Not theory closed.

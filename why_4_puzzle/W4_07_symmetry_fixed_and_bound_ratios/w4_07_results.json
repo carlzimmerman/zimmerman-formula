@@ -1,0 +1,152 @@
+{
+ "mutate": false,
+ "readings": [
+  {
+   "id": "B1",
+   "k2": "16*pi/3",
+   "kappa": 4.093306831785954,
+   "pi_weight": 1,
+   "hbar_power": "0",
+   "free": [],
+   "k2_over_pi_algebraic": true,
+   "class": "MISS"
+  },
+  {
+   "id": "B2",
+   "k2": "16*pi/3",
+   "kappa": 4.093306831785954,
+   "pi_weight": 1,
+   "hbar_power": "0",
+   "free": [],
+   "k2_over_pi_algebraic": true,
+   "class": "MISS"
+  },
+  {
+   "id": "B1_general_d",
+   "k2": "16*pi/(d - 1)",
+   "kappa": null,
+   "pi_weight": null,
+   "hbar_power": "0",
+   "free": [
+    "d"
+   ],
+   "k2_over_pi_algebraic": null,
+   "class": "d-dependent (S3)"
+  },
+  {
+   "id": "B2_general_d",
+   "k2": "4*pi*d/(d - 1)",
+   "kappa": null,
+   "pi_weight": null,
+   "hbar_power": "0",
+   "free": [
+    "d"
+   ],
+   "k2_over_pi_algebraic": null,
+   "class": "d-dependent (S3)"
+  },
+  {
+   "id": "B3",
+   "k2": "c**5*g**4*q**4/(2*pi*G**2*hbar*rho)",
+   "kappa": null,
+   "pi_weight": -1,
+   "hbar_power": "-1",
+   "free": [
+    "G",
+    "c",
+    "g",
+    "hbar",
+    "q",
+    "rho"
+   ],
+   "k2_over_pi_algebraic": null,
+   "class": "HBAR / TRADE"
+  },
+  {
+   "id": "B6",
+   "k2": "c**5/(8*pi*G**2*N**2*hbar*rho)",
+   "kappa": null,
+   "pi_weight": -1,
+   "hbar_power": "-1",
+   "free": [
+    "G",
+    "N",
+    "c",
+    "hbar",
+    "rho"
+   ],
+   "k2_over_pi_algebraic": null,
+   "class": "HBAR / TRADE"
+  },
+  {
+   "id": "B7_reduced",
+   "k2": "8*pi*alpha**6",
+   "kappa": null,
+   "pi_weight": 1,
+   "hbar_power": "0",
+   "free": [
+    "alpha"
+   ],
+   "k2_over_pi_algebraic": null,
+   "class": "TRADE"
+  },
+  {
+   "id": "B7_nonreduced",
+   "k2": "alpha**6",
+   "kappa": null,
+   "pi_weight": 0,
+   "hbar_power": "0",
+   "free": [
+    "alpha"
+   ],
+   "k2_over_pi_algebraic": null,
+   "class": "TRADE"
+  }
+ ],
+ "B8_eps_free": true,
+ "lane_verdict": "RIGID BUT PI-ODD",
+ "checks": [
+  {
+   "name": "I1 forbidden inputs",
+   "detail": "tokens in the compute block: none",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K1 B1 vs B2",
+   "detail": "d = 4: 16*pi/3 vs 16*pi/3; d = 5: 4*pi vs 5*pi",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K2 B7 hbar cancels",
+   "detail": "hbar power of kappa^2 (reduced, non-reduced): [0, 0]",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K3 hand values (normal-run)",
+   "detail": "B1 16pi/3, B2 16pi/3, B7 8pi alpha^6 / alpha^6; mismatches none",
+   "pass": true,
+   "kind": "K"
+  },
+  {
+   "name": "I3 dimensions (SI items)",
+   "detail": "failures none",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "I7 hbar",
+   "detail": "hbar-bearing: {'B3': '-1', 'B6': '-1'} (declared B3, B6; B7 cancels)",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "I8 pi x algebraic",
+   "detail": "B1 True, B2 True; neither 1/4",
+   "pass": true,
+   "kind": "B"
+  }
+ ]
+}
