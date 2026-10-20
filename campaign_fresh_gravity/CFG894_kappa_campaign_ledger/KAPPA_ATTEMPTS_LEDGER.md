@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (644 rows)
+## Totals (653 rows)
 
-- **479 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **488 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **121 produced a number.** 55 produced one determinate value; 66 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -149,9 +149,9 @@ fact.
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
-| QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 25 | 6 | 1 | 18 | 0 | 0 |
+| QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 27 | 6 | 1 | 20 | 0 | 0 |
 | KS Kinetic / settling / collective / cold-energy dynamics | 32 | 0 | 2 | 30 | 0 | 0 |
-| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 39 | 2 | 4 | 29 | 0 | 0 |
+| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 46 | 2 | 4 | 36 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 44 | 0 | 0 | 0 | 0 | 34 |
 | AU Audits, controls, meta-analyses | 73 | 0 | 0 | 0 | 1 | 0 |
@@ -592,6 +592,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K640 | W4-07/B4 | `why_4_puzzle/W4_07_symmetry_fixed_and_bound_ratios` | dS swampland conjecture /V'//V >= c/M_P | - | free | BOUND: an inequality on the quintessence slope; no a0 | 2e238ed36 |
 | K641 | W4-07/B5 | `why_4_puzzle/W4_07_symmetry_fixed_and_bound_ratios` | trans-Planckian censorship conjecture | - | free | BOUND: inequalities on Lambda and inflation; no a0 | 2e238ed36 |
 | K642 | W4-07/B6 | `why_4_puzzle/W4_07_symmetry_fixed_and_bound_ratios` | species scale M_P/sqrt(N) + seesaw | - | free | HBAR/TRADE: kappa^2 ~ hbar^-1, N free | 2e238ed36 |
+| K650 | W4-09/E6 | `why_4_puzzle/W4_09_dark_energy_models` | loop quantum cosmology bounce density sqrt3/(32pi^2 gamma^3) rho_Pl | - | free | HBAR: Planck-scale density, 3.5e122 x dark-energy scale | 01db38324 |
+| K651 | W4-09/E7 | `why_4_puzzle/W4_09_dark_energy_models` | causal-set everpresent Lambda ~ alpha_s/sqrt(V4), a = cH | - | free | TRADE: hbar cancels, kappa^2 = 8pi/alpha_s with alpha_s a random O(1) amplitude | 01db38324 |
 
 ## KS: Kinetic / settling / collective / cold-energy dynamics
 
@@ -678,6 +680,13 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K627 | W4-05/V4 | `why_4_puzzle/W4_05_self_determined_vacua` | Maggiore RR nonlocal gravity (m^2 R box^-2 R): rho_DE fixed by m through the expansion history | - | free | CONDITION: the m <-> rho_DE relation needs the measured matter history (forbidden upstream); rho_DE,RR(z) drifts at constant m, not tracking | c506c58b3 |
 | K628 | W4-05/V5 | `why_4_puzzle/W4_05_self_determined_vacua` | Deser-Woodard nonlocal MOND (f(box^-1 R) built for MOND; a0 a parameter) | - | free | TRADE: a0 and Lambda both free | c506c58b3 |
 | K629 | W4-05/V6 | `why_4_puzzle/W4_05_self_determined_vacua` | running vacuum (Shapiro-Sola) rho0 + 3 nu H^2/(8piG); a = cH | - | free | TRADE: rho0 and nu free; a = cH is H-type | c506c58b3 |
+| K645 | W4-09/E1 | `why_4_puzzle/W4_09_dark_energy_models` | holographic dark energy (Li): rho = 3 c_H^2 M_P^2/L^2, a = c^2/L | - | free | TRADE: kappa^2 = 8pi/(3 c_H^2); saturated c_H = 1 gives 8pi/3 (H-type, = CKN) | 01db38324 |
+| K646 | W4-09/E2 | `why_4_puzzle/W4_09_dark_energy_models` | agegraphic dark energy: rho = 3 n^2 M_P^2/T^2, a = c/T | - | free | TRADE: kappa^2 = 8pi/(3 n^2) | 01db38324 |
+| K647 | W4-09/E3 | `why_4_puzzle/W4_09_dark_energy_models` | generalized Chaplygin gas p = -A/rho^alpha | - | free | TRADE: no intrinsic acceleration; A, alpha free | 01db38324 |
+| K648 | W4-09/E4 | `why_4_puzzle/W4_09_dark_energy_models` | Cardassian expansion H^2 = (8piG/3)(rho + B rho^n) | - | free | TRADE: B, n free | 01db38324 |
+| K649 | W4-09/E5 | `why_4_puzzle/W4_09_dark_energy_models` | exponential-potential scaling attractor Omega_phi = 3(1+w_b)/lambda^2, a = cH | - | free | TRADE: kappa^2 = 8pi lambda^2/(9(1+w_b)) | 01db38324 |
+| K652 | W4-09/E8 | `why_4_puzzle/W4_09_dark_energy_models` | Dirac large-number hypothesis (G ~ 1/t, a0 ~ cH) | - | free | CLOSURE: G(t) excluded (recalled); a0 ~ cH is H-type | 01db38324 |
+| K653 | W4-09/E9 | `why_4_puzzle/W4_09_dark_energy_models` | interacting dark energy Q = xi H rho_DE | - | free | TRADE: xi free, no scale | 01db38324 |
 
 ## NU: Numerology and grammar searches (flagged)
 
