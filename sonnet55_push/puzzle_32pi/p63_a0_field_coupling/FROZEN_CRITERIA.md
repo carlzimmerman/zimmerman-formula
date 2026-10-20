@@ -118,3 +118,21 @@ a script result that disagrees with a hand value replaces it, with the disagreem
   (check W1) instead of its class.
 - **M1 and M2 in one run.** W1 always uses the σ = 1 construction, so M1's halving cannot cancel M2's ×2 window.
 - **MUTATE run, declared:** T4-C1 (M1), W1 (M2), C2's "only N = 2" (M2) and H1 (M3) must FAIL. K1, K2 and T4-C1b must PASS.
+
+## Erratum 2 (appended 2026-10-19, after a read-only provenance audit, before any run): the window source was superseded
+
+- **What was wrong.** The PRIMARY window used κ_Λ = 0.551 ± 0.043 from THE_HORIZON_FORM_OF_THE_BTFR.md §6.1. That value is
+  superseded twice in the committed record. It mixed H₀ conventions: SPARC's Hubble-flow distances are at H₀ = 73 while ρ_Λ is
+  at 67.4. And its ±0.043 held the bulge M/L fixed. MNRAS v3.1 (`qwen_claude_field_theory/papers_2026/mnras_submission_2026_v3/
+  paper_numbers.out`, tracked) gives the same estimator as κ_B = 0.58 ± 0.18 on the consistent (R1) convention.
+- **Replacement PRIMARY window.** CFG493's GLS combination of the M/L-insensitive routes, with shared systematics included
+  (`campaign_fresh_gravity/CFG493_kappa_combined/cfg493_kappa_combined.out`, tracked): κ_Λ = 0.4172 ± 0.0946 and
+  κ_crit = 0.3452 ± 0.0783. That is 2σ ⇒ κ_Λ ∈ [0.228, 0.606], κ_crit ∈ [0.189, 0.502]. It is the record's own designated
+  combined value, and its verdict there is CONSISTENT BUT NOT DISCRIMINATING.
+- **SECONDARY (reported).** MNRAS v3.1 R1 estimators: A 0.450 ± 0.073, B 0.58 ± 0.18, C 0.43 ± 0.08.
+- **Consequences, declared before the run:**
+  - C1 (1.20) and C1b (2.89) stay far outside.
+  - C2 with κ₁ = 1 now lands at N = 2, 3 **and** 4. The pre-freeze line "only N = 2 lands" no longer holds. The C2 check is
+    re-declared as `hits == [2, 3, 4]`; under M2 the hits become [1, 2] and the check must FAIL.
+  - The C2 null rises to about 0.71.
+  - Nothing else in the classification rules changes.
