@@ -1,0 +1,32 @@
+protected_auxiliaries/ChiralFold.lean:28:0: warning: automatically included section variable(s) unused in theorem `Why4.ChiralFold.zero_gradient_factorization`:
+  [LinearOrder K]
+  [IsStrictOrderedRing K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LinearOrder K] [IsStrictOrderedRing K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+protected_auxiliaries/ChiralFold.lean:33:0: warning: automatically included section variable(s) unused in theorem `Why4.ChiralFold.exact_fold_expansion`:
+  [LinearOrder K]
+  [IsStrictOrderedRing K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LinearOrder K] [IsStrictOrderedRing K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+@zero_gradient_factorization : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (y : K), cubic 0 y = (y - 1) ^ 2 * (y + 2)
+@exact_fold_expansion : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K] (x t : K),
+  cubic x (1 + t) = t ^ 2 * (3 + t) - 3 * x * (1 + t)
+@timelike_root_square_gt_three : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (x y : K), -(1 / 4) < x → x < 0 → cubic x y = 0 → 3 < y ^ 2
+@timelike_chi_coefficient_negative : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (g x y : K), 0 < g → -(1 / 4) < x → x < 0 → cubic x y = 0 → chiTimeCoefficient g x y < 0
+@timelike_base_coefficient_negative : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (g x y : K), 0 < g → -(1 / 4) < x → x < 0 → cubic x y = 0 → g * (1 - y ^ 2 / 3) < 0
+@nominal_local_taylor_ratio : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (g tau : K), g ≠ 0 → tau ≠ 0 → g ^ 2 / (12 * tau) * (4 * tau * g / 81) / (g / 3) ^ 3 = 1 / 9
+'Why4.ChiralFold.zero_gradient_factorization' depends on axioms: [propext, Quot.sound]
+'Why4.ChiralFold.exact_fold_expansion' depends on axioms: [propext, Quot.sound]
+'Why4.ChiralFold.timelike_root_square_gt_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.ChiralFold.timelike_chi_coefficient_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.ChiralFold.timelike_base_coefficient_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.ChiralFold.nominal_local_taylor_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]

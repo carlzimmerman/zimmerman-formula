@@ -94,3 +94,24 @@ The original goal remains active, with six partial modules and explicit
 unformalized current/PDE/quantum bridges. Continue only with a changed
 constraint, a specified boundary sector, or a protected auxiliary parent;
 do not reuse an excluded empty/flux trial or choose the required constant.
+
+## Protected auxiliary continuation
+
+Criteria-only commit 3a6b85cac tests supersymmetric auxiliary vacuum
+normalization directly. Read formal/protected_auxiliaries/README.md and
+RESULT.md. A chiral fold calculates positive rigid energy and a positive
+static cubic, but the critical branches lack timelike continuation and
+the alternatives have a decoupled scalar ghost. The cubic branch
+equation and all-root obstruction are now kernel checked. The nominal
+Taylor ratio 1/9 cannot enter the physical force bridge: IR quadratic
+stiffness survives, and the displayed large-gradient action is quartic.
+A permitted derivative-coefficient deformation changes the nominal ratio.
+
+Ordinary vector auxiliary convexity, the specified extra portal and
+Born-Infeld/FI were tested separately. The exact rigid BI normalization
+relation gives no MOND cubic or gravitating vacuum selection. No global
+SUSY or generalized-D exclusion is claimed. The goal remains active with
+seven partial Lean modules. Continue only with an explicitly different
+regular dynamical neighborhood, retained-mode analysis, actual MOND
+crossover and a same-state gravitating vacuum relation; an auxiliary
+Hessian sign alone is not a ghost proof or a selection law.

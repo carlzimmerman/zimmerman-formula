@@ -14,11 +14,11 @@ record these partial results without adding a determinate trial.
 
 | Required end state | Current authoritative evidence | Status |
 |---|---|---|
-| Regular healthy microscopic action and zero-field quantum state | Preferred-clock vector action is classically controlled on positive Y; its zero-field longitudinal limit degenerates. A pressure-sector amplitude parent is under investigation. | Incomplete |
+| Regular healthy microscopic action and zero-field quantum state | Preferred-clock vector action is classically controlled on positive Y; its zero-field longitudinal limit degenerates. Tested regular pressure/current and protected chiral parents fail specified completion tests. | Incomplete |
 | Actual MOND force and force-calibrated G | Independently audited positive radial source branch and asymptotic force for the specified classical vector action; operational Newtonian regime remains source-dependent. | Partial |
 | Same-state positive gravitating vacuum stress | Paired-band stress has a kernel-checked order-one defect under its prescription. Temporal parent carries an independent epsilon0 and unspecified gravitating clock. | Missing |
 | Independent principle forcing xi=1/4 | All surviving response parameters and epsilon0/(gamma b^3) remain free. No Ward, gap or constraint equation selects it. | Missing |
-| End-to-end Lean proof with all leaves established | Six partial modules compile using only standard axioms. Physical dictionaries and field/PDE bridges remain explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
+| End-to-end Lean proof with all leaves established | Seven partial modules compile using only standard axioms. Physical dictionaries and field/PDE bridges remain explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
 | Independent second physical prediction | No determinate normalization candidate exists. | Missing |
 
 The next high-impact constructive implication is a regular microscopic
@@ -52,6 +52,27 @@ No model selects vacuum energy. Current details and scoped remaining
 routes are in current_interactions/RESULT.md; the original goal is active.
 Result/evidence commit 73cb47a32, campaign entries K680-K685; no new
 determinate normalization trial was added.
+
+The protected-auxiliary continuation, criteria 3a6b85cac, is progress.
+A chiral supersymmetric fold calculates positive rigid vacuum energy and
+a positive static cubic correction. Its exact small-timelike equations
+have no continuation of the critical root; every remaining real root has
+a decoupled scalar ghost. One new partial Lean module proves the all-root
+inequality and negative coefficient implications, with true/two genuine
+false controls. Surviving quadratic infrared stiffness and quartic
+large-gradient response also prevent physical MOND amplitude calibration.
+The local Taylor ratio is not the campaign amplitude R.
+
+Ordinary/minimal vector-auxiliary convexity preserves a regular branch,
+while the specified critical portal violates that class; the parity-even
+orientation admits an explicit supermetric photon mode. Born-Infeld/FI
+calculates a displayed rigid vacuum/nonlinearity relation with a free
+parameter and no MOND cubic. These are restricted tests, not a global
+supersymmetry no-go. The remaining opening is an explicitly different
+multiple/generalized auxiliary or clock model, with actual mode analysis,
+MOND crossover and a gravitating vacuum relation in one action. Details
+and exact evidence are in protected_auxiliaries/README.md. The original
+goal remains active; no determinate normalization trial was added.
 
 The actual pi adapter awaits a viable lightweight import or relaxation of
 the temporary resource constraint after the large simulation is confirmed

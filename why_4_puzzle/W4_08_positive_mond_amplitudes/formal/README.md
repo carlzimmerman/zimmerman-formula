@@ -19,6 +19,7 @@ formal scopes. None is a determinate normalization candidate.
 | [GaugeCones.lean](GaugeCones.lean) | Exact discriminant/root bounds, the refined cone identity, and the fully substituted principal coefficients of the temporal-vector action put every existing root in (0,1]. The microscopic/PDE interpretation of the polynomial is an explicit input. |
 | [CurrentEnergy.lean](current_interactions/CurrentEnergy.lean) | Exact Legendre identity with the full canonical charge, an empty neutral amplitude minimum, and a unique global minimum of the charged sextic energy. Current and Gauss dictionaries remain analytic inputs. |
 | [FluxComparison.lean](current_interactions/FluxComparison.lean) | The compact flux trial's jet cancellation and quartic energy, plus the quartic-versus-cubic bound. Admissibility, integration and the physical variational infimum remain analytic inputs. |
+| [ChiralFold.lean](protected_auxiliaries/ChiralFold.lean) | Exact auxiliary fold identities and all-root timelike bounds imply negative coefficients; nominal Taylor arithmetic is distinguished from a physical force ratio. Component dictionaries, mode interpretation and asymptotics remain analytic inputs. |
 
 The original four modules' printed critical theorem axioms are exactly
 `[propext, Classical.choice, Quot.sound]`. There are no proof admissions or
@@ -29,6 +30,10 @@ No irrational/transcendental gap theorem is silently assumed.
 The two new current modules add nine printed critical theorems, using
 only subsets of those same standard axioms. Their evidence and controls
 are checked separately in [current_interactions](current_interactions/README.md).
+The [protected-auxiliary continuation](protected_auxiliaries/README.md)
+adds six critical theorem prints and true/two false controls. W4-08 now
+has seven partial modules using only standard axioms, not a complete
+microscopic normalization proof.
 
 The rational control has A=L=1,d=3/4,r=5/4, giving rho=17/32 and
 N=3/8. The normal control compiles. Reversing N makes the unchanged lower
@@ -86,6 +91,17 @@ cheaper electric-flux trial for compact profiles. CS flux attachment and
 the specified zero-flux axion model supply no three-dimensional MOND
 normalization or positive vacuum relation. Boundary/topological sectors
 and protected auxiliary completions remain open obligations.
+
+The [protected-auxiliary test](protected_auxiliaries/RESULT.md) constructs
+a supersymmetric chiral fold with calculated positive rigid vacuum energy
+and a positive static cubic correction. Its small-timelike critical
+branches disappear; every remaining real branch has a decoupled scalar
+ghost. The response also retains quadratic infrared stiffness. Ordinary
+Born-Infeld/FI calculates a displayed vacuum/nonlinearity relation, but
+no MOND cubic; its diagnostic portal gives a quartic correction. The
+minimal vector convexity and specified portal tests are explicitly
+restricted. Generalized/multiple auxiliary sectors and a regular clock
+remain constructive openings; none has supplied the missing selector.
 
 ## Verification and reproduction
 

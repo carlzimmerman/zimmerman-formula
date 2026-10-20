@@ -12,7 +12,7 @@ Standing empirical status: **kappa=1/2 FITTED**. CFG493 gives
 kappa_Lambda=0.417+/-0.095 and kappa_crit=0.345+/-0.078 on separate
 footings. Neither is used as an input to any calculation here.
 
-**Formal continuation:** [six partial Lean modules](formal/README.md) verify
+**Formal continuation:** [seven partial Lean modules](formal/README.md) verify
 the quantitative band-stress obstruction, coefficient bridge, scale/gap
 curvature implications and temporal-vector cone bounds. A new classical
 vector parent admits a regular MOND source branch; a charged scalar gives
@@ -24,6 +24,14 @@ derives the full canonical charge and a new electric-flux upper bound:
 compact Jacobian profiles can relax with O(delta^4) excess energy rather
 than a positive leading cubic. Nontrivial boundary sectors and protected
 auxiliary completions remain unproved routes.
+
+The [protected-auxiliary follow-up](formal/protected_auxiliaries/RESULT.md)
+finds positive rigid vacuum energy and a positive cubic correction in a
+supersymmetric chiral model, then excludes its proposed dynamical branch:
+timelike continuation either disappears or has a physical scalar ghost.
+Its local Taylor ratio is not an operational MOND amplitude. A separate
+Born-Infeld/FI normalization calculation has no MOND cubic. The requested
+healthy microscopic model and independent ratio remain unachieved.
 
 ## Strongest new construction
 
