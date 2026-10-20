@@ -9,6 +9,8 @@ formal results below.
 Previous goal turn: progress (committed W4-08 models and scoped audits).
 This continuation: progress (new canonical completion/source theorem,
 quantitative stress obstruction and kernel-checked formal modules).
+Committed evidence checkpoint: f77a0cd8d. Campaign entries K673-K678
+record these partial results without adding a determinate trial.
 
 | Required end state | Current authoritative evidence | Status |
 |---|---|---|
@@ -16,7 +18,7 @@ quantitative stress obstruction and kernel-checked formal modules).
 | Actual MOND force and force-calibrated G | Independently audited positive radial source branch and asymptotic force for the specified classical vector action; operational Newtonian regime remains source-dependent. | Partial |
 | Same-state positive gravitating vacuum stress | Paired-band stress has a kernel-checked order-one defect under its prescription. Temporal parent carries an independent epsilon0 and unspecified gravitating clock. | Missing |
 | Independent principle forcing xi=1/4 | All surviving response parameters and epsilon0/(gamma b^3) remain free. No Ward, gap or constraint equation selects it. | Missing |
-| End-to-end Lean proof with all leaves established | Four partial modules compile with standard axioms. Physical dictionaries and field/PDE bridges are explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
+| End-to-end Lean proof with all leaves established | Six partial modules compile using only standard axioms. Physical dictionaries and field/PDE bridges remain explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
 | Independent second physical prediction | No determinate normalization candidate exists. | Missing |
 
 The next high-impact constructive implication is a regular microscopic
@@ -29,6 +31,27 @@ its exact Gauss equation forbids the proposed nonzero homogeneous branch
 without compensating charge. BMB fixes a conditional leading-N pressure
 coefficient while leaving zero relative vacuum energy. The earlier static
 sextic failure was not rerun.
+
+The neutral-pair follow-up in NEUTRAL_CURRENT_TEST.md computes both
+currents before eliminating amplitudes. Opposite charges neutralize a
+finite-density clock but generically retain quadratic stiffness; the
+exact dilute sextic pair switches off. The concavity obstruction rules
+out the stated amplitude-only affine-gradient fixed-charge completion,
+including a critical linear subtraction. A derivative current or another
+explicitly different constraint structure remains to be constructed.
+Neutral-current evidence: 3a26d1eb9, campaign row K679.
+
+The next continuation, criteria 33e139648, is progress: a polynomial
+current coupling, neutral off-shell currents, Jacobian charge, CS flux
+attachment and a zero-external-flux axion model were tested directly.
+The new compact-profile electric-flux trial proves an O(delta^4) upper
+bound on the Jacobian toy's fully relaxed excess energy, excluding a
+positive leading cubic in that sector. Two additional Lean modules
+verify the current-energy and trial algebra, with genuine false controls.
+No model selects vacuum energy. Current details and scoped remaining
+routes are in current_interactions/RESULT.md; the original goal is active.
+Result/evidence commit 73cb47a32, campaign entries K680-K685; no new
+determinate normalization trial was added.
 
 The actual pi adapter awaits a viable lightweight import or relaxation of
 the temporary resource constraint after the large simulation is confirmed

@@ -78,3 +78,19 @@ the single-process/thread limits still applied. Exact artifact hashes,
 normal/mutant output and independent review are preserved in this lane.
 The shared repository had unrelated concurrent work; only this lane and
 its dashboard/registry entries belong to this result.
+
+## Regular-current continuation
+
+Criteria-only commit 33e139648 starts from b760753a3. The completed
+analytic tests and two new partial Lean modules are indexed in
+formal/current_interactions/README.md. A regular own-current coupling
+leaves the neutral vacuum empty; an independent Jacobian source gives
+a cubic only under added local-neutrality restrictions. A compact
+electric-flux trial bounds the fully relaxed excess by O(delta^4), so
+that sector cannot supply the positive leading MOND cubic. Neutral
+off-shell current, CS and zero-external-flux axion tests have their
+precise scopes in RESULT.md. No positive vacuum normalization is fixed.
+The original goal remains active, with six partial modules and explicit
+unformalized current/PDE/quantum bridges. Continue only with a changed
+constraint, a specified boundary sector, or a protected auxiliary parent;
+do not reuse an excluded empty/flux trial or choose the required constant.
