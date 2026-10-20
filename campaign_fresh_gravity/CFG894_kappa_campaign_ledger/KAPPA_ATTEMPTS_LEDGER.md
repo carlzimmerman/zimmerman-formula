@@ -17,11 +17,11 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (594 rows)
+## Totals (609 rows)
 
-- **439 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **451 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
-- **114 produced a number.** 51 produced one determinate value; 63 are menus of several values from
+- **117 produced a number.** 51 produced one determinate value; 66 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
   - a condition equal to the target,
   - a free ratio, or a trade for a new constant,
@@ -37,7 +37,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
 - The rate (about 33%) is what a random draw from the record-natural number set gives (27–28%; see
   `kappa_campaign_lee.out`). So the landings are no evidence that any route knows κ.
 
-**64 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
+**65 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
 The ½ got in by one of these routes:
 - inserted or written in (CFG43, CFG187, G031);
 - posited (the free-fall surface gravity c²/2R*, i.e. J = Gρr²/c² = 1);
@@ -144,17 +144,17 @@ fact.
 |---|---|---|---|---|---|---|
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
-| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 57 | 4 | 10 | 43 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 99 | 4 | 5 | 85 | 5 | 0 |
+| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 59 | 4 | 10 | 45 | 0 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 102 | 4 | 6 | 87 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
-| QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 18 | 6 | 1 | 11 | 0 | 0 |
+| QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 20 | 6 | 1 | 13 | 0 | 0 |
 | KS Kinetic / settling / collective / cold-energy dynamics | 30 | 0 | 1 | 29 | 0 | 0 |
-| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 29 | 1 | 3 | 21 | 0 | 0 |
+| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 33 | 1 | 4 | 24 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 43 | 0 | 0 | 0 | 0 | 33 |
-| AU Audits, controls, meta-analyses | 64 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 65 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -327,6 +327,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K508 | CFG807 | `campaign_fresh_gravity/CFG807_stiff_vacuum_route` | stiffened action revives PAPER42 vacuum route | - | free | BLOCKED: hand-set y_t | f1ba33360 |
 | K518 | ARGON10-D1 | `argon_push/ARGON10_four_gaps_2026-10-16` | dark-energy normalisation gap | - | free | NOT FIXED: needs Hubble or boundary input | 3839aa9b0 |
 | K567 | H016 | `hy4_push/lean/H016_the_seesaw.lean` | seesaw a0 = Lambda^2/(n M_Pl) | - | free | restatement; n empirical | 7733ce681 |
+| K595 | CFG897 | `campaign_fresh_gravity/CFG897_kappa_D1_stiffness_frw_vacuum` | stiffness term's own FRW vacuum (covariant completions of -(gamma/2)/grad P/^2; timelike P; 4piG/P/<=a0) = rho_DE | - | free | CLOSURE: fixed-norm eps <= 0 (sign); w = w_total (G renorm 1e-19..1e-15); size-only kappa >= 1e7 (3e6 with O(1) non-minimal; TRADE kappa ~ c/(L* sqrt(G rho))), L* needed >= 4.9 Gpc: EXCLUDED; Maxwell/tether/law vacuum vanish; free (div P)^2 CONDITION | 303517f23 |
+| K598 | CFG900 | `campaign_fresh_gravity/CFG900_kappa_D4_lorentz_nodal_medium` | nodal fermion medium made Lorentz-invariant (v = c), its own filled-band vacuum = rho_DE (strict LI Dirac sea; ring with cone dim reg / tube / Pauli-Villars; timelike P0 loci) | - | free | CLOSURE: strict LI has only point nodes -> m^D vs /P/^(D-1) (NO LAW); universal beta/P/^3/3 vanishes at P_cos = 0 (IDENTITY); tube E0 < 0, w = +1/2 (sign lock); PV constant sign free; every link kappa^2 = 12pi/(sigma lambda^3) (one-parameter map; v and hbar cancel); excluded posits slot 6.14 / horizon 0.643 miss | 8b1267c5d |
 
 ## FN: Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field)
 
@@ -431,6 +433,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K580 | G031 | `glm53_push/G031_gr_fluid_action.out` | rho_L = 4a0^2/(G c^2) 'derived at action level' | - | free | VOID: tie written in (CFG43 class) | 6fc60a401 |
 | K587 | R07 | `RETRACTIONS.md` | covariant MI action v1-v11 | - | free | fails for orbits | 508a12052 |
 | K591 | R15 | `RETRACTIONS.md` | 'a0^2 = kappa^2 c^2 G rho derived from AeST' | - | free | RETRACTED: a target relation | 508a12052 |
+| K602 | CFG911 | `campaign_fresh_gravity/CFG911_kappa_constructive_coupling` | constructive pi-free portals of a dynamical rho_DE (premise A as bimetric horizon / multiplier xi G F[T_DE]; G-free tie; canonical field strength; trace share; dynamical quintessence; areal; hemispherical flux) | {0.5, 1, 2, 1.414, 0.816, 0.707, 1.772} | menu | 1/2 ONLY IN MENUS OR POSITS: multiplier portals TRADE (kappa^2 = xi); bimetric posit X7; trace share needs d = 4 (X4); hemisphere 1/4 needs w = +1/3 (excluded); kappa-free targets: a0(z) spread by stress reading 0.13-0.25 dex at z = 2; running -(3/2)(1+w); kinetic portal excluded if DESI crossing confirmed; dynamical portal locally silent | 36a18db2e |
+| K604 | W4-01/F2 | `why_4_puzzle/W4_01_untouched_gravity_families` | Kaluza-Klein on a circle (G4=G5/(2pi R)): a0 from G5 rho_DE, force-law G5N rho_DE, or c^2/R; R free, R=c/H_Lambda, or Casimir-stabilised | - | free | TRADE: R unstabilised; R=c/H_Lambda gives menu {2.171, 0.921, 2.894} all pi-odd misses; Casimir radius hbar-bearing; force-law G5 gives a pi-free a0=(8/3) R G rho but R free (R=c/sqrt(G rho) is the forbidden J=1 posit) | cafc0bf78 |
+| K607 | W4-01/F5 | `why_4_puzzle/W4_01_untouched_gravity_families` | Einstein-Cartan spin-torsion energy (pi/2) G hbar^2 n^2 as the a0 scale; with independent rho_DE, or as the dark energy itself | - | free | HBAR: kappa^2 ~ hbar^2 n^2/rho (excluded); spin energy as the DE gives kappa = 1 by construction (identity, wrong sign, not scored) | cafc0bf78 |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -564,6 +569,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K418 | RV-50 | `real_research/reviews/project_which_horizon_dssyk.py` | DSSYK static patch selects the event horizon | - | free | density choice only | ece947970 |
 | K588 | R08 | `RETRACTIONS.md` | rapidity-gap modified inertia | - | free | lensing excludes at 21 sigma | 508a12052 |
 | K592 | S01 | `STANDING.md` | Oppenheim-Russo postquantum gravity | {1.30, 1.45} | menu | MISS | a7a1e0e05 |
+| K600 | CFG905 | `campaign_fresh_gravity/CFG905_kappa_D5_festina_lente` | gauged carrier U(1) + Festina Lente (recalled m^2 >~ sqrt6 g q M_P H; V form m^4 >= 2 s^2 e^2 V) with the carrier setting a0 (posited S_bridge) | - | free | CLOSURE: FL is a bound on V, G-free; applied: BOUND on the carrier, kappa-free; saturated: unique hbar-free e-free carrier acceleration = law unit so kappa = sqrt2 s N, N free (TRADE; pi-even only via premise A); FL acceleration hbar-bearing; Nariai X3 7.09/5.01; gauged q_b repels; natural menu sqrt2/pi = 0.450 not 1/2 | 89df85f82 |
+| K609 | W4-01/F7 | `why_4_puzzle/W4_01_untouched_gravity_families` | Horava-Lifshitz gravity (projectable / non-projectable; detailed balance) | - | free | TRADE: Lambda free; detailed balance gives Lambda < 0 and needs a free soft-breaking term; no a0 scale | cafc0bf78 |
 
 ## KS: Kinetic / settling / collective / cold-energy dynamics
 
@@ -638,6 +645,10 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K566 | hunt-70 | `hunt_2026/WHAT_THE_HUNT_TAUGHT.md` | Lambda = 32pi a0^2/c^4 vs Planck | - | audit | consistency only | 0cc476387 |
 | K581 | G052 | `glm53_push/STATE.md` | Omega_L from canonical a0 | - | free | VOID: circular (CFG835) | n/a |
 | K594 | XR20 | `real_research/cross_thread_review_2026_09_26` | Henneaux-Teitelboim unimodular multiplier ties a0 to Lambda | - | free | TIED not derived: a0 constant, kappa still fitted | a075ad7f7 |
+| K603 | W4-01/F1 | `why_4_puzzle/W4_01_untouched_gravity_families` | DGP brane-induced gravity: self-accelerating vacuum H=1/r_c with r_c=G5/(2G) (pi-free); a0 readings crossover c^2/r_c, 5D product G5 rho_DE (action G5), same with force-law G5N=4G5/(3pi); normal branch with a brane Lambda | {2.894, 0.691, 0.293} | menu | MENU: self-acc values all pi-odd (8pi/3, 3/(2pi), 8/(3pi^3)); rho_DE reaches a0 only via the brane Friedmann 8piG; 0.293 a spurious in-window landing; normal branch TRADE (r_c free) and a0 ~ rho breaks the LOCK | cafc0bf78 |
+| K605 | W4-01/F3 | `why_4_puzzle/W4_01_untouched_gravity_families` | dRGT massive gravity / Hassan-Rosen bigravity self-accelerating branch (Lambda_eff = m^2 X); a0 = graviton Compton acceleration c^2 m | - | free | TRADE: kappa^2 = 8pi/X with X free in the potential parameters; pi-odd at any algebraic X, never 1/2 | cafc0bf78 |
+| K606 | W4-01/F4 | `why_4_puzzle/W4_01_untouched_gravity_families` | mimetic gravity (constraint g^{mn} d_m phi d_n phi = 1; Lambda an integration constant or a free V scale) | - | free | TRADE: no intrinsic acceleration scale; Lambda is initial data | cafc0bf78 |
+| K608 | W4-01/F6 | `why_4_puzzle/W4_01_untouched_gravity_families` | teleparallel f(T) = T + alpha(-T)^n: de Sitter vacuum (6H^2)^(1-n) = alpha(2n-1); a0 from the correction's scale /T_*/ = alpha^(1/(1-n)) | - | free | TRADE: kappa^2 = 16pi (2n-1)^(1/(n-1)) (alpha cancels), free in n; pi-odd at rational n, never 1/2 | cafc0bf78 |
 
 ## NU: Numerology and grammar searches (flagged)
 
@@ -793,6 +804,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K572 | H001 | `hy4_push/H001_CROSS_TRACK_AUDIT.md` | cross-track audit glm/gemini | - | audit | measured integer; Lean sorry | eb4a58376 |
 | K584 | INV4 | `predictions_2026/INVENTORY_4_lensing_clusters_environment_kappa.md` | kappa inventory (L4-29..35) | - | audit | inventory; 0.551 superseded | c005dd00f |
 | K585 | R05 | `RETRACTIONS.md` | pi-counting | - | audit | no leverage | 508a12052 |
+| K601 | CFG908 | `campaign_fresh_gravity/CFG908_kappa_derived_claims_audit` | audit of the four unaudited kappa-derived claims (Q010, G031, glm53 README/G002, gemini38) in sympy with rename and mutation controls | - | audit | none derives the law kappa: Q010 DIFFERENT QUANTITY (SIS ratio); G031 IDENTITY; G002 MEASUREMENT RELABELLED; gemini38 PREMISE-A INSERTION; 200 lines in 142 tracked files still say derived | c16f82613 |
 
 ## LN: Logic / Lean formalisations
 
