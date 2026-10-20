@@ -1,0 +1,186 @@
+CFG886  rebuild Omega_c/Omega_b = 5.364 and census f_ret without the Planck LCDM fit   [MUTATE dh10: D/H x 1.10]
+  CAMB 1.6.6; N_eff 3.044; T_CMB 2.7255 K; Sigma m_nu 0.06 eV (one massive; variant 0); a0 enters none of T1-T4
+
+==============================================================================================================
+T1  omega_b FROM D/H (standard BBN, assumption E1-E2)
+==============================================================================================================
+  D/H PDG 2024: (2.8017 +- 0.0319) e-5
+    PRIMAT 2024            omega_b = 0.020583 +- 0.000198  (obs 0.00014, theory 0.00013; dlnDH/dlnwb -1.618)
+    PArthENoPE 2017        omega_b = 0.021278 +- 0.000210  (obs 0.00015, theory 0.00014; dlnDH/dlnwb -1.589)
+    PArthENoPE Marcucci    omega_b = 0.020654 +- 0.000192  (obs 0.00014, theory 0.00013; dlnDH/dlnwb -1.674)
+    PRIMARY (midpoint)     omega_b = 0.020931 +- 0.000401  (obs 0.00015, theory 0.00013, codes 1/2-offset 0.00035)
+  D/H Cooke+18: (2.7797 +- 0.0330) e-5
+    PRIMAT 2024            omega_b = 0.020684 +- 0.000203  (obs 0.00015, theory 0.00014; dlnDH/dlnwb -1.619)
+    PArthENoPE 2017        omega_b = 0.021384 +- 0.000216  (obs 0.00016, theory 0.00015; dlnDH/dlnwb -1.589)
+    PArthENoPE Marcucci    omega_b = 0.020751 +- 0.000198  (obs 0.00015, theory 0.00013; dlnDH/dlnwb -1.667)
+    PRIMARY (midpoint)     omega_b = 0.021034 +- 0.000406  (obs 0.00016, theory 0.00014, codes 1/2-offset 0.00035)
+  -> PRIMARY omega_b = 0.020931 +- 0.000401  (PRIMAT-PArthENoPE offset 0.000695 = 3.32%)
+
+==============================================================================================================
+r_d FROM CAMB (assumptions E2-E4: cold energy as pressureless matter before recombination; standard recombination)
+==============================================================================================================
+  omega_nu (Sigma m_nu 0.06 eV, CAMB omnuh2) = 6.448666e-04
+  r_d spline (mnu 0.06): 10 x 26 CAMB calls in 1.2 s; omega_b [0.018, 0.0255], omega_c [0.040, 0.270]
+  r_d spline (mnu 0.0): 7 x 18 CAMB calls in 0.6 s; omega_b [0.018, 0.0255], omega_c [0.040, 0.270]
+
+==============================================================================================================
+K1  CONTROLS: 5.364 and the record's r_d
+==============================================================================================================
+  [PASS] K1i the lane's R function at Planck's omega_b 0.02237, omega_c 0.1200 returns 5.364 to <= 1e-3
+         measured: R = 5.364327
+  [PASS] K1ii CAMB rdrag at (0.02237, 0.1200; m_nu 0.06, N_eff 3.044, h 0.6736) within 0.1% of the record's 147.05 Mpc (CFG254/XR26)
+         measured: r_d = 147.1018 Mpc (+0.0352%)
+  [PASS] (reported) K1ii' (reported) XR26's exact settings (0.022383, 0.12011, N_eff 3.046, PArthENoPE, H0 67.32) give 147.049 within 0.01%
+         measured: r_d = 147.0491 Mpc (+0.00008%)
+
+==============================================================================================================
+K3  BBN CONTROLS (unscaled observed D/H; independent of the MUTATE)
+==============================================================================================================
+  [PASS] K3a BBN round trip DH(omega_b,inv) = D/H_obs to 1e-8 (all three tables)
+         measured: max |rel| = 2.89e-15
+  [PASS] K3b Cooke+18 with PRIMAT 2024 reproduces CFG654's omega_b 0.021932 (sigma 0.00022) within 1e-5 (CFG654's own sigma formula)
+         measured: omega_b = 0.021932, sigma = 0.000217
+  [PASS] K3c PArthENoPE at omega_b 0.02236 gives D/H within 1.5% of Planck 2018's quoted 2.587e-5 (XR26 K1)
+         measured: D/H = 2.5875e-05
+
+==============================================================================================================
+T2(a)  H0 FROM DESI DR2 BAO + BBN, flat a0 at all z (X = 1); grid posterior
+==============================================================================================================
+  grid 221 x 361 x 9 in 2.6 s; chi2_min 10.550 (7 tracers, 13 numbers; 3 parameters) at {'Om': 0.297, 'h': 0.6855, 'omega_b': 0.02221629391145389}
+  (a) PRIMARY BAO+BBN, X=1, PDG D/H midpoint                 h 0.6753+-0.0049  Om 0.2976+-0.0085  omega_m 0.1357  R = 5.454 +- 0.223 [68% 5.232-5.675; 95% 5.030-5.904]  z +0.40 -> 5.364 RECOVERED
+      omega_b 0.02093+-0.00040; omega_c 0.1141+-0.0046; r_d 150.36+-1.45 Mpc; h r_d 101.53+-0.72 Mpc; f_b 0.1544+-0.0053; f_b,fw = 1/(1+R) 0.1551+-0.0054; R literal (nu kept) 5.484
+  V1 + CFG682 conditional Om 0.3085+-0.0075 (double-uses BAO) h 0.6759+-0.0049  Om 0.3037+-0.0057  omega_m 0.1388  R = 5.600 +- 0.166 [68% 5.434-5.765; 95% 5.280-5.931]  z +1.42 -> CONSISTENT
+  V2 Cooke+18 D/H (midpoint)                                 h 0.6761+-0.0050  Om 0.2976+-0.0085  omega_m 0.1361  R = 5.438 +- 0.223 [68% 5.217-5.659; 95% 5.015-5.888]  z +0.33 -> 5.364 RECOVERED
+  V3 PRIMAT 2024 alone                                       h 0.6724+-0.0040  Om 0.2976+-0.0085  omega_m 0.1346  R = 5.507 +- 0.218 [68% 5.290-5.723; 95% 5.093-5.947]  z +0.65 -> 5.364 RECOVERED
+  V3 PArthENoPE 2017 alone                                   h 0.6781+-0.0041  Om 0.2976+-0.0085  omega_m 0.1369  R = 5.401 +- 0.215 [68% 5.188-5.616; 95% 4.992-5.837]  z +0.17 -> 5.364 RECOVERED
+  V4 Sigma m_nu = 0 (R = omega_m/omega_b - 1 literally)      h 0.6768+-0.0049  Om 0.2975+-0.0085  omega_m 0.1363  R = 5.513 +- 0.224 [68% 5.291-5.735; 95% 5.088-5.966]  z +0.66 -> 5.364 RECOVERED
+
+==============================================================================================================
+K2  CONTROLS: BAO identity with CFG681/682, analytic background vs CAMB, r_d spline
+==============================================================================================================
+  [PASS] K2a BAO identity: CFG681 X=1 minimum (chi2 10.5515, Om 0.29703) to 1e-3 / 2e-4 AND CFG682's 49 BAO-only fixed-Om chi2 at their nodes to 1e-6
+         measured: chi2 10.55149 at Om 0.29703 (record 10.55149, 0.29703); max |dchi2| at CFG682 nodes 0.00e+00
+  [PASS] K2b analytic background + spline r_d vs CAMB at the (a) posterior mean: D_M/r_d and D_H/r_d at the seven redshifts agree to 5e-4
+         measured: max |rel| = 1.56e-06 (CAMB r_d 150.3422, spline 150.3421)
+  [PASS] K2c r_d spline vs direct CAMB at six interior points to 2e-4 (m_nu 0.06; three points for m_nu 0) and r_d varies < 1e-4 over h 0.62-0.76
+         measured: spline max |rel| 2.39e-06 / 1.53e-06; h dependence 1.02e-07
+
+==============================================================================================================
+K4  GRID ADEQUACY
+==============================================================================================================
+  [PASS] K4 posterior mass within 3 grid steps of any Om/h boundary < 1e-6 and sd(Om), sd(h) >= 5 grid steps (primary and every (a) variant)
+         measured: primary edge 3.8e-31 steps 9/10; V1 edge 3.3e-77 steps 6/10; V2 edge 3.8e-31 steps 9/10; V3 edge 3.8e-31 steps 9/8; V3 edge 3.9e-31 steps 9/8; V4 edge 3.7e-31 steps 9/10
+
+==============================================================================================================
+V5  FREE DARK ENERGY (no flat-a0 assumption): CFG682's committed fixed-Om best fits, q profiled, h solved with BBN r_d
+==============================================================================================================
+  BAO: chi2 3.24..3.43 over Om 0.24-0.36; 49/49 rows within dchi2 <= 1; R over those rows 3.07 .. 8.29
+      Om 0.240  chi2 3.240  h 0.5983  R 3.074
+      Om 0.260  chi2 3.267  h 0.6175  R 3.706
+      Om 0.280  chi2 3.295  h 0.6380  R 4.415
+      Om 0.300  chi2 3.325  h 0.6599  R 5.212
+      Om 0.320  chi2 3.357  h 0.6835  R 6.111
+      Om 0.340  chi2 3.390  h 0.7088  R 7.130
+      Om 0.360  chi2 3.425  h 0.7361  R 8.288
+  BAO+SN: chi2 1388.14..1388.62 over Om 0.24-0.36; 49/49 rows within dchi2 <= 1; R over those rows 3.00 .. 7.95
+      Om 0.240  chi2 1388.142  h 0.5931  R 3.003
+      Om 0.260  chi2 1388.191  h 0.6113  R 3.612
+      Om 0.280  chi2 1388.253  h 0.6308  R 4.291
+      Om 0.300  chi2 1388.327  h 0.6514  R 5.052
+      Om 0.320  chi2 1388.412  h 0.6736  R 5.905
+      Om 0.340  chi2 1388.510  h 0.6973  R 6.867
+      Om 0.360  chi2 1388.620  h 0.7227  R 7.953
+
+==============================================================================================================
+T2(b)  LOCAL LADDER H0 (SH0ES 73.04 +- 1.04, record value) with BAO-shape Om (X = 1, ruler free; BBN r_d NOT used)
+==============================================================================================================
+  BAO shape only: Om = 0.2975 +- 0.0085; h r_d = 101.54 +- 0.72 Mpc; chi2_min 10.549
+  (b) PRIMARY SH0ES + BAO-shape Om + BBN omega_b             h 0.7304+-0.0104  Om 0.2975+-0.0085  omega_m 0.1587  R = 6.556 +- 0.339 [68% 6.219-6.893; 95% 5.912-7.243]  z +3.51 -> NOT RECOVERED
+      omega_m 0.1587+-0.0064; f_b 0.1321+-0.0059; f_b,fw 0.1326; R literal 6.587
+      implied r_d = (h r_d)/h = 139.05 +- 2.21 Mpc vs BBN+BAO (a) 150.36 +- 1.45  -> 4.3 sigma apart (the Hubble tension, not resolved here)
+  V1b SH0ES + CFG682 conditional Om                          h 0.7304+-0.0104  Om 0.3085+-0.0075  omega_m 0.1646  R = 6.837 +- 0.331 [68% 6.508-7.165; 95% 6.205-7.502]  z +4.45 -> NOT RECOVERED
+  reported: TDCOSMO 2025 71.6 +- 3.6                         h 0.7160+-0.0360  Om 0.2975+-0.0085  omega_m 0.1529  R = 6.277 +- 0.776 [68% 5.505-7.047; 95% 4.829-7.866]  z +1.18 -> CONSISTENT  NOT INFORMATIVE
+  reported: standard sirens 68.0 +- 4.1                      h 0.6800+-0.0410  Om 0.2975+-0.0085  omega_m 0.1381  R = 5.568 +- 0.826 [68% 4.747-6.386; 95% 4.037-7.267]  z +0.25 -> 5.364 RECOVERED  NOT INFORMATIVE
+
+==============================================================================================================
+T3  THE REBUILT RATIO: CLASSES
+==============================================================================================================
+  Planck ratio 5.364 (its own sigma ~0.065 from sigma(omega_c) 0.0012, sigma(omega_b) 0.00015; stated, not added)
+  (a) BAO+BBN : R = 5.454 +- 0.223  z +0.40  -> 5.364 RECOVERED  (precision 4.1%)
+  (b) SH0ES   : R = 6.556 +- 0.339  z +3.51  -> NOT RECOVERED  (precision 5.2%)
+  +-10% band [4.828, 5.901]; spread (b)-(a) = +20.5% of 5.364  -> NOT PINNED
+
+==============================================================================================================
+T4  CENSUS f_ret: PROVENANCE AND WHAT CAN BE REBUILT
+==============================================================================================================
+  evidence: census data table in repo: NONE; lane files citing Shull: 13; lane .py files carrying the ramp code: 25; files with the ramp text: 5
+  G galaxy floor 0.10 (log M_ta < 12.5 Msun/h): CLEAN (traceable in repo: False)
+      mass coordinate: framework fixed point M_ta = M_b h/(f_ret f_b) (no measured halo mass enters); CFG804 drops the h (Msun, 0.171 dex)
+      note: cosmic-mean census fraction applied per catchment (assumption: every baryon belongs to some catchment; a per-galaxy value is not measured); recalled, PROVISIONAL (CFG525); the quoted 0.10 includes group/cluster hot gas, the galaxies-only value is 0.07
+  C group/cluster ramp (0.10 -> 0.55 @13.5 -> 0.85 @14.5, cap 0.90): UNDETERMINED (traceable in repo: False)
+      mass coordinate: hand-set in M_ta; the R500 -> turnaround-catchment mapping (r_ta ~ 5-13 R200, CFG656) is not documented anywhere in the record
+      note: no source table, no script and no derivation in the repo (declared in CFG416); CFG830 counts these as hand-set census numbers
+  -> f_ret provenance class: MIXED (UNDETERMINED segment: C)
+  (a) census denominator rebuilt (f ∝ h/omega_b, relative to the record's h 0.674, omega_b 0.02237): f_ret 0.10 -> 0.1071; stock S/M_b: record 53.64 -> ratio-only 54.54, census-consistent 50.93 (= 10 (omega_c/0.02237)(0.674/h): 50.93)
+  (b) census denominator rebuilt (f ∝ h/omega_b, relative to the record's h 0.674, omega_b 0.02237): f_ret 0.10 -> 0.1158; stock S/M_b: record 53.64 -> ratio-only 65.56, census-consistent 56.60 (= 10 (omega_c/0.02237)(0.674/h): 56.60)
+  (the census's own adopted h and Omega_b are not in the repo; the census-consistent numbers assume the record's constants were the census's)
+
+==============================================================================================================
+T5  SENSITIVITY OF RECORD RESULTS (report only)
+==============================================================================================================
+  [PASS] K5 CFG876 read-only exec with stock 53.64 reproduces the committed 'primary B' and 'supply-capped (B)' E on both footings to 1e-12
+         measured: max |dE| = 0.0e+00
+  CFG876 supply-capped variant (reported row there; 18 large dwarfs, cap = stock x M_b):
+    record 53.64             stock  53.64: canonical E -0.185 +- 0.092 N_fail 2 (BROKEN); alt E -0.203 +- 0.093 N_fail 3 (BROKEN)
+    (a) ratio-only           stock  54.54: canonical E -0.185 +- 0.092 N_fail 2 (BROKEN); alt E -0.203 +- 0.093 N_fail 3 (BROKEN)
+    (a)-1sigma ratio-only    stock  52.31: canonical E -0.184 +- 0.092 N_fail 2 (BROKEN); alt E -0.202 +- 0.093 N_fail 3 (BROKEN)
+    (a)+1sigma ratio-only    stock  56.77: canonical E -0.187 +- 0.093 N_fail 2 (BROKEN); alt E -0.204 +- 0.093 N_fail 3 (BROKEN)
+    (b) ratio-only           stock  65.56: canonical E -0.190 +- 0.094 N_fail 2 (BROKEN); alt E -0.208 +- 0.094 N_fail 3 (BROKEN)
+    (a) census-consistent    stock  50.93: canonical E -0.183 +- 0.092 N_fail 2 (BROKEN); alt E -0.201 +- 0.092 N_fail 3 (BROKEN)
+    (b) census-consistent    stock  56.60: canonical E -0.186 +- 0.093 N_fail 2 (BROKEN); alt E -0.204 +- 0.093 N_fail 3 (BROKEN)
+  CFG878 stock note (a universal clump exceeds the stock for M_b below M_cl/stock):
+    record 53.64             stock  53.64: threshold M_b = 9.789e+04 (canonical, M_cl 5.251e+06) / 7.896e+04 (alt) Msun
+    (a) ratio-only           stock  54.54: threshold M_b = 9.628e+04 (canonical, M_cl 5.251e+06) / 7.766e+04 (alt) Msun
+    (a)-1sigma ratio-only    stock  52.31: threshold M_b = 1.004e+05 (canonical, M_cl 5.251e+06) / 8.097e+04 (alt) Msun
+    (a)+1sigma ratio-only    stock  56.77: threshold M_b = 9.250e+04 (canonical, M_cl 5.251e+06) / 7.461e+04 (alt) Msun
+    (b) ratio-only           stock  65.56: threshold M_b = 8.009e+04 (canonical, M_cl 5.251e+06) / 6.460e+04 (alt) Msun
+    (a) census-consistent    stock  50.93: threshold M_b = 1.031e+05 (canonical, M_cl 5.251e+06) / 8.316e+04 (alt) Msun
+    (b) census-consistent    stock  56.60: threshold M_b = 9.276e+04 (canonical, M_cl 5.251e+06) / 7.483e+04 (alt) Msun
+  [PASS] K6 CFG804 fixed point (its own Msun convention) at its canonical primary masses reproduces the README's N 10.0 / 8.8 / 7.4 / 5.6 to <= 0.05
+         measured: 10.00 / 8.83 / 7.35 / 5.62
+  CFG804 bins (primary masses): N, stock R N [M_b], edge in r_M; KiDS demand (CFG803 N >= 3-4 at 5.364) = stock >= 16.1-21.5
+    [canonical] record (R 5.364)  Msun (CFG804): N 10.00/8.83/7.35/5.62  stock 53.6/47.3/39.4/30.1  edge 54.1/47.8/39.9/30.6 r_M
+    [canonical]                   Msun/h (CFG416): N 10.00/10.00/9.38/6.98  stock 53.6/53.6/50.3/37.4  edge 54.1/54.1/50.8/37.9 r_M
+    [canonical] (a)               Msun (CFG804): N 10.00/8.75/7.29/5.58  stock 54.5/47.7/39.8/30.4  edge 55.0/48.2/40.3/30.9 r_M
+    [canonical]                   Msun/h (CFG416): N 10.00/10.00/9.29/6.92  stock 54.5/54.5/50.6/37.7  edge 55.0/55.0/51.1/38.2 r_M
+    [canonical] (b)               Msun (CFG804): N 10.00/7.94/6.66/5.15  stock 65.6/52.0/43.6/33.7  edge 66.1/52.5/44.1/34.2 r_M
+    [canonical]                   Msun/h (CFG416): N 10.00/9.67/8.01/6.06  stock 65.6/63.4/52.5/39.7  edge 66.1/63.9/53.0/40.2 r_M
+    [alt] record (R 5.364)  Msun (CFG804): N 10.00/9.79/8.10/6.12  stock 53.6/52.5/43.4/32.8  edge 54.1/53.0/43.9/33.3 r_M
+    [alt]                   Msun/h (CFG416): N 10.00/10.00/10.00/7.67  stock 53.6/53.6/53.6/41.2  edge 54.1/54.1/54.1/41.7 r_M
+    [alt] (a)               Msun (CFG804): N 10.00/9.70/8.03/6.08  stock 54.5/52.9/43.8/33.1  edge 55.0/53.4/44.3/33.6 r_M
+    [alt]                   Msun/h (CFG416): N 10.00/10.00/10.00/7.60  stock 54.5/54.5/54.5/41.5  edge 55.0/55.0/55.0/41.9 r_M
+    [alt] (b)               Msun (CFG804): N 10.00/8.77/7.31/5.59  stock 65.6/57.5/47.9/36.6  edge 66.1/58.0/48.4/37.1 r_M
+    [alt]                   Msun/h (CFG416): N 10.00/10.00/8.85/6.63  stock 65.6/65.6/58.0/43.4  edge 66.1/66.1/58.5/43.9 r_M
+  CFG650/654 census edge r_M(f_ret f_b M_ta)/ln(1 + f_ret f_b/(1 - f_b)) at fixed M_ta, f_b 0.1571 -> 0.1550 (a): factor 1.0094 (f_ret 0.10), 1.0088 (0.55)
+  CFG650/654 census edge r_M(f_ret f_b M_ta)/ln(1 + f_ret f_b/(1 - f_b)) at fixed M_ta, f_b 0.1571 -> 0.1323 (b): factor 1.1198 (f_ret 0.10), 1.1120 (0.55)
+  Planck inputs still inside the shear engines (not rebuilt here): cfg596/650 h 0.6736, omega_b 0.02237, omega_c 0.1200, n_s 0.965, sigma8 0.811; CFG654 native: omega_c 0.1202, A_s, n_s, theta_* (CMB-primary). A CMB-free rerun would need this lane's omega_c AND a non-CMB amplitude (none in the record).
+
+==============================================================================================================
+MUTATE dh10 EXPECTATIONS (vs the main run's committed numbers)
+==============================================================================================================
+  [PASS] M1 omega_b (primary) lower by 4-8%
+         measured: -5.74%
+  [PASS] M2 R(a) higher by +1% to +6%
+         measured: +3.44% (R 5.272 -> 5.454)
+  [PASS] M3 R(b)+1 higher by the inverse omega_b ratio to within 0.5%
+         measured: ratio 1.06088 vs expected 1.06090 (R 6.122 -> 6.556)
+
+==============================================================================================================
+SUMMARY
+==============================================================================================================
+  T1 omega_b (D/H PDG 2024, BBN midpoint) = 0.02093 +- 0.00040
+  T2a h = 0.6753 +- 0.0049, Om = 0.2976 +- 0.0085  ->  R = 5.454 +- 0.223  (5.364 RECOVERED, z +0.40); f_b 0.1544
+  T2b h = 0.7304 (SH0ES), Om = 0.2975  ->  R = 6.556 +- 0.339  (NOT RECOVERED, z +3.51); f_b 0.1321
+  T3 NOT PINNED (spread +20.5% of 5.364);  T4 f_ret MIXED;  V5 free dark energy: R 3.07-8.29 (BAO), 3.00-7.95 (BAO+SN) over Om 0.24-0.36
+  controls: K1i PASS, K1ii PASS, K1ii' PASS(rep), K3a PASS, K3b PASS, K3c PASS, K2a PASS, K2b PASS, K2c PASS, K4 PASS, K5 PASS, K6 PASS, M1 PASS, M2 PASS, M3 PASS  -> rc 0
+  runtime 22 s.  kappa fitted; cold energy mass required; not theory closed.
