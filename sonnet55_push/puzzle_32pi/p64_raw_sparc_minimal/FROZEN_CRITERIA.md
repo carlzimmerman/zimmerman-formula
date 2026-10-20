@@ -116,3 +116,14 @@ Cross-match the (B) sample to ALFALFA α.100 by position (≤ 60″ and |Δcz| �
 - **The κ input.** CFG886's BAO+BBN ω_Λ is read from its committed output (cfg886.out line "(a) PRIMARY BAO+BBN": h, Ω_m;
   ω_Λ = (1 − Ω_m)h², flat, w = −1).
 - Nothing else changes: no cut, grid, seed, estimator, verdict rule or MUTATE.
+
+## Amendment 2 (appended 2026-10-20, before any p64 script exists): the frozen M2 window looks mis-set
+
+- Under D → 1.10 D with SPARC's scaling (R ∝ D, V_bar² ∝ D), g_bar does not change and g_obs ∝ 1/D. The simple-μ inversion
+  a₀ = g_obs(g_obs − g_bar)/g_bar has the lever d ln a₀/d ln g_obs = 1 + g_obs/(g_obs − g_bar). That is 2 in the deep regime and
+  about 3 near y ≈ 1. The expected E2 shift is therefore −(2 to 3) × log₁₀(1.10) = **−0.083 to −0.124 dex**, not the frozen
+  −0.15 to −0.30.
+- **M2 is run exactly as frozen,** and its PASS or FAIL against −0.15 to −0.30 is reported unchanged. The measured shift and the
+  lever arithmetic above are reported beside it. A FAIL that lands in −0.08 to −0.13 is read as a mis-set window, not a dead
+  control. The direction and the lever are the real test.
+- Nothing else changes.
