@@ -1,0 +1,126 @@
+{
+ "mutate": false,
+ "readings": [
+  {
+   "id": "E1",
+   "k2": "8*pi/(3*c_H**2)",
+   "free": [
+    "c_H"
+   ],
+   "hbar_power": "0",
+   "pi_weight": 1,
+   "class": "TRADE"
+  },
+  {
+   "id": "E2",
+   "k2": "8*pi/(3*n**2)",
+   "free": [
+    "n"
+   ],
+   "hbar_power": "0",
+   "pi_weight": 1,
+   "class": "TRADE"
+  },
+  {
+   "id": "E3",
+   "k2": "a**2/(A**(1/(alpha + 1))*G)",
+   "free": [
+    "A",
+    "G",
+    "a",
+    "alpha"
+   ],
+   "hbar_power": "0",
+   "pi_weight": 0,
+   "class": "TRADE"
+  },
+  {
+   "id": "E4",
+   "k2": "a**2/(B*G)",
+   "free": [
+    "B",
+    "G",
+    "a"
+   ],
+   "hbar_power": "0",
+   "pi_weight": 0,
+   "class": "TRADE"
+  },
+  {
+   "id": "E5",
+   "k2": "8*pi*lambda**2/(9*(w_b + 1))",
+   "free": [
+    "lambda",
+    "w_b"
+   ],
+   "hbar_power": "0",
+   "pi_weight": 1,
+   "class": "TRADE"
+  },
+  {
+   "id": "E7",
+   "k2": "8*pi/alpha_s",
+   "free": [
+    "alpha_s"
+   ],
+   "hbar_power": "0",
+   "pi_weight": 1,
+   "class": "TRADE"
+  },
+  {
+   "id": "E9",
+   "k2": "a**2/(G*xi)",
+   "free": [
+    "G",
+    "a",
+    "xi"
+   ],
+   "hbar_power": "0",
+   "pi_weight": 0,
+   "class": "TRADE"
+  }
+ ],
+ "lqc": {
+  "rho_c": 2.1102600064338814e+96,
+  "ratio": 3.5171000107231354e+122
+ },
+ "lane_verdict": "NO MODEL FIXES THE 4",
+ "checks": [
+  {
+   "name": "I1 forbidden inputs",
+   "detail": "tokens in the compute block: none",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K1 saturated horizon routes agree",
+   "detail": "E1(c_H = 1) = 8*pi/3, E2(n = 1) = 8*pi/3, DGP crossover 8pi/3",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K2 causal-set hbar cancels",
+   "detail": "hbar power of E7 kappa^2 = 0",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K4 LQC scale",
+   "detail": "rho_c / dark-energy-scale density = 3.5e+122 > 1e100",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "I3 dimensions (E7, SI)",
+   "detail": "dimensionless True",
+   "pass": true,
+   "kind": "B"
+  },
+  {
+   "name": "K3 hand values (normal-run)",
+   "detail": "E1 8pi/(3c_H^2), E2 8pi/(3n^2), E5 8pi lam^2/(9(1+w_b)), E7 8pi/alpha_s; mismatches none",
+   "pass": true,
+   "kind": "K"
+  }
+ ]
+}
