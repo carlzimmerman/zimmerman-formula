@@ -1,0 +1,102 @@
+==============================================================================================================
+CFG912  red/blue isolated-lens split vs the framework's catalogue two-halo term (CFG903 machinery) on B21's g_bar bins
+  criteria 96de8091f; kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled
+  cfg850.py blob ab29c5de3033 (definitions exec'd), cfg829.py blob abe7a7d9e56d
+  [PASS] K1 two-halo = 0 reproduces CFG850's committed rows: 10 rows x 6 quantities, max |d| = 0.0e+00
+  cfg903_score.py blob 062b9f95af68 (profile / F2 / brute definitions exec'd); cfg903_lib.py blob 3c8cafed94dc
+  neighbour profiles: 74 in 4 s
+  [PASS] K2a-i annulus integral (Simpson in ln X) vs adaptive quadrature of CFG903 F2 (12 random points): max |d| / 2 ln(X2/X1) = 7.7e-07 (<= 2e-3); F is evaluated directly with CFG903's F2, no table (see README)
+  [PASS] K2a-ii annulus kernel vs CFG903's independent brute-force polar F + Gauss-Legendre (4 configurations): max |d| / 2 ln(X2/X1) = 2.9e-04 (<= 3e-3); 3 s
+  [PASS] K2c uniform neighbour field gives Delta Sigma = 0 (point part; cold part P1/P2, 2 lens cells x 2 neighbour cells, both footings): point 1.0e-16, cold 1.6e-04 of Sigma0 (<= 2e-3)
+    kernel ('canonical', 'P1', 'nom'): 22 s (cache 467 entries; current RSS 545 MB)
+    kernel ('canonical', 'P2', 'nom'): 24 s (cache 918 entries; current RSS 579 MB)
+    kernel ('canonical', 'P1', 'file'): 22 s (cache 1373 entries; current RSS 601 MB)
+    kernel ('alt', 'P1', 'nom'): 21 s (cache 1824 entries; current RSS 623 MB)
+    kernel ('alt', 'P2', 'nom'): 27 s (cache 2275 entries; current RSS 684 MB)
+    kernel ('alt', 'P1', 'file'): 22 s (cache 2730 entries; current RSS 705 MB)
+  kernels ready; current RSS 707 MB
+  [PASS] K0b this lane's pair loop reproduces CFG903's committed-run v0 histograms (lens + random, 4 bins): max |d| / max cell = 0.0e+00
+  histograms loaded; current RSS 976 MB
+
+--------------------------------------------------------------------------------------------------------------
+  FOOTING canonical (a0 9.3603e-11); exclusion edge x_x = r_x / rho_l at lens cells 9.35/10.25/11.05: unshifted 3.03/3.03/2.35, +0.123 3.49/3.49/2.28
+  PRIMARY (I0, u-r 2.0, shifts +0.123/0, W500, P1, E1, C1', nominal edges):
+    A_red 1.451 +- 0.067   A_blue 1.016 +- 0.086   split 0.435 (3.98 sigma)
+    two-halo: dA_red +0.0611   dA_blue +0.0333   -> A_red^corr 1.390, A_blue^corr 0.983
+    f_env = +0.064   z_corr = 3.73   ==> NOT ENVIRONMENT
+    blue law check after the term: (A_blue^corr - 1)/sA = -0.20
+    multiplier on (dg_red - dg_blue) for split = 0: 15.7; for z_corr = 2: 7.8
+    per bin (file g_bar | window R/B | two-halo dSigma red / blue [Msun/pc^2] | dg/g_law red / blue | data g_obs/g_law - 1 red / blue | host share red / blue):
+      2.36e-14 | .. |  0.399 /  0.276 | +0.129 / +0.103 | +0.860 / +0.062 | 1.20 / 1.15
+      4.17e-14 | R. |  0.408 /  0.275 | +0.099 / +0.077 | +0.774 / +0.493 | 1.23 / 1.15
+      7.36e-14 | RB |  0.461 /  0.308 | +0.084 / +0.065 | +0.609 / -0.077 | 1.09 / 1.06
+      1.30e-13 | RB |  0.496 /  0.310 | +0.067 / +0.049 | +0.459 / +0.407 | 1.04 / 1.03
+      2.29e-13 | RB |  0.526 /  0.297 | +0.053 / +0.035 | +0.266 / +0.247 | 1.02 / 1.02
+      4.04e-13 | RB |  0.535 /  0.292 | +0.041 / +0.026 | +0.336 / +0.088 | 1.01 / 1.01
+      7.13e-13 | RB |  0.555 /  0.286 | +0.031 / +0.019 | +0.319 / -0.246 | 1.01 / 1.01
+      1.26e-12 | .B |  0.548 /  0.265 | +0.023 / +0.013 | +0.272 / -0.267 | 1.00 / 1.00
+      2.22e-12 | .. |  0.582 /  0.249 | +0.018 / +0.009 | +0.133 / -0.033 | 1.00 / 1.00
+    Sersic split with the colour-proxy vectors (reported): A_sph 1.486 -> 1.425, A_disc 1.066 -> 1.033; f_env +0.066, z 3.81 -> 3.56
+  BRACKETS (one at a time; class by f_env / z_corr):
+    ISO-f30 (I1)                         A_r 1.451 A_b 1.016  dA_r +0.0590 dA_b +0.0273  f_env +0.073  z_corr  3.69  -> NOT ENVIRONMENT
+    ISO-B21n (I5, count-matched)         A_r 1.451 A_b 1.016  dA_r +0.0634 dA_b +0.0343  f_env +0.067  z_corr  3.72  -> NOT ENVIRONMENT
+    P0 (point cold energy)               A_r 1.451 A_b 1.016  dA_r +0.1763 dA_b +0.1458  f_env +0.070  z_corr  3.70  -> NOT ENVIRONMENT
+    P2 (diffuse cold energy)             A_r 1.451 A_b 1.016  dA_r +0.0329 dA_b +0.0183  f_env +0.034  z_corr  3.85  -> NOT ENVIRONMENT
+    W300                                 A_r 1.451 A_b 1.016  dA_r +0.0601 dA_b +0.0298  f_env +0.070  z_corr  3.71  -> NOT ENVIRONMENT
+    W1000                                A_r 1.451 A_b 1.016  dA_r +0.0613 dA_b +0.0355  f_env +0.059  z_corr  3.75  -> NOT ENVIRONMENT
+    CUT-2.5                              A_r 1.451 A_b 1.016  dA_r +0.0398 dA_b +0.0488  f_env -0.021  z_corr  4.07  -> NOT ENVIRONMENT (OPPOSITE SIGN)
+    MSTAR-0 (no M* shift)                A_r 1.587 A_b 1.016  dA_r +0.0561 dA_b +0.0333  f_env +0.040  z_corr  4.77  -> NOT ENVIRONMENT
+  REPORTED ONLY (no class weight):
+    shift (+0.20, 0)                     A_r 1.324 A_b 1.016  dA_r +0.0557 dA_b +0.0333  f_env +0.073  z_corr  2.70  (NOT ENVIRONMENT)
+    shift (+0.123, +0.05)                A_r 1.451 A_b 1.017  dA_r +0.0611 dA_b +0.0358  f_env +0.058  z_corr  3.65  (NOT ENVIRONMENT)
+    E0 (no exclusion; double counts)     A_r 1.451 A_b 1.016  dA_r +0.1367 dA_b +0.0534  f_env +0.191  z_corr  3.22  (NOT ENVIRONMENT)
+    E2 (hosts inside r_x dropped too)    A_r 1.451 A_b 1.016  dA_r -0.0097 dA_b -0.0024  f_env -0.017  z_corr  4.05  (NOT ENVIRONMENT (OPPOSITE SIGN))
+    edges centred on the file g_bar      A_r 1.451 A_b 1.016  dA_r +0.0614 dA_b +0.0333  f_env +0.065  z_corr  3.73  (NOT ENVIRONMENT)
+
+--------------------------------------------------------------------------------------------------------------
+  FOOTING alt (a0 1.1312e-10); exclusion edge x_x = r_x / rho_l at lens cells 9.35/10.25/11.05: unshifted 2.75/2.75/2.14, +0.123 3.17/3.17/2.07
+  PRIMARY (I0, u-r 2.0, shifts +0.123/0, W500, P1, E1, C1', nominal edges):
+    A_red 1.324 +- 0.061   A_blue 0.928 +- 0.078   split 0.396 (3.98 sigma)
+    two-halo: dA_red +0.0592   dA_blue +0.0327   -> A_red^corr 1.264, A_blue^corr 0.895
+    f_env = +0.067   z_corr = 3.71   ==> NOT ENVIRONMENT
+    blue law check after the term: (A_blue^corr - 1)/sA = -1.34
+    multiplier on (dg_red - dg_blue) for split = 0: 14.9; for z_corr = 2: 7.4
+    per bin (file g_bar | window R/B | two-halo dSigma red / blue [Msun/pc^2] | dg/g_law red / blue | data g_obs/g_law - 1 red / blue | host share red / blue):
+      2.36e-14 | .. |  0.425 /  0.304 | +0.125 / +0.103 | +0.694 / -0.034 | 1.17 / 1.11
+      4.17e-14 | R. |  0.417 /  0.283 | +0.092 / +0.072 | +0.616 / +0.360 | 1.30 / 1.22
+      7.36e-14 | RB |  0.484 /  0.326 | +0.080 / +0.062 | +0.466 / -0.159 | 1.13 / 1.09
+      1.30e-13 | RB |  0.536 /  0.334 | +0.066 / +0.048 | +0.330 / +0.282 | 1.05 / 1.04
+      2.29e-13 | RB |  0.572 /  0.322 | +0.053 / +0.034 | +0.155 / +0.137 | 1.03 / 1.03
+      4.04e-13 | RB |  0.583 /  0.318 | +0.040 / +0.025 | +0.219 / -0.007 | 1.01 / 1.02
+      7.13e-13 | RB |  0.604 /  0.311 | +0.031 / +0.019 | +0.205 / -0.312 | 1.01 / 1.01
+      1.26e-12 | .B |  0.597 /  0.288 | +0.023 / +0.013 | +0.164 / -0.329 | 1.00 / 1.01
+      2.22e-12 | .. |  0.631 /  0.270 | +0.018 / +0.009 | +0.039 / -0.114 | 1.00 / 1.00
+    Sersic split with the colour-proxy vectors (reported): A_sph 1.356 -> 1.297, A_disc 0.973 -> 0.940; f_env +0.069, z 3.81 -> 3.54
+  BRACKETS (one at a time; class by f_env / z_corr):
+    ISO-f30 (I1)                         A_r 1.324 A_b 0.928  dA_r +0.0588 dA_b +0.0267  f_env +0.081  z_corr  3.66  -> NOT ENVIRONMENT
+    ISO-B21n (I5, count-matched)         A_r 1.324 A_b 0.928  dA_r +0.0608 dA_b +0.0337  f_env +0.069  z_corr  3.70  -> NOT ENVIRONMENT
+    P0 (point cold energy)               A_r 1.324 A_b 0.928  dA_r +0.1584 dA_b +0.1327  f_env +0.065  z_corr  3.72  -> NOT ENVIRONMENT
+    P2 (diffuse cold energy)             A_r 1.324 A_b 0.928  dA_r +0.0319 dA_b +0.0179  f_env +0.035  z_corr  3.84  -> NOT ENVIRONMENT
+    W300                                 A_r 1.324 A_b 0.928  dA_r +0.0584 dA_b +0.0294  f_env +0.073  z_corr  3.69  -> NOT ENVIRONMENT
+    W1000                                A_r 1.324 A_b 0.928  dA_r +0.0592 dA_b +0.0347  f_env +0.062  z_corr  3.73  -> NOT ENVIRONMENT
+    CUT-2.5                              A_r 1.324 A_b 0.928  dA_r +0.0384 dA_b +0.0479  f_env -0.024  z_corr  4.07  -> NOT ENVIRONMENT (OPPOSITE SIGN)
+    MSTAR-0 (no M* shift)                A_r 1.448 A_b 0.928  dA_r +0.0551 dA_b +0.0327  f_env +0.043  z_corr  4.75  -> NOT ENVIRONMENT
+  REPORTED ONLY (no class weight):
+    shift (+0.20, 0)                     A_r 1.208 A_b 0.928  dA_r +0.0540 dA_b +0.0327  f_env +0.076  z_corr  2.69  (NOT ENVIRONMENT)
+    shift (+0.123, +0.05)                A_r 1.324 A_b 0.928  dA_r +0.0592 dA_b +0.0351  f_env +0.061  z_corr  3.64  (NOT ENVIRONMENT)
+    E0 (no exclusion; double counts)     A_r 1.324 A_b 0.928  dA_r +0.1349 dA_b +0.0532  f_env +0.206  z_corr  3.16  (PARTIAL)
+    E2 (hosts inside r_x dropped too)    A_r 1.324 A_b 0.928  dA_r -0.0124 dA_b -0.0035  f_env -0.022  z_corr  4.07  (NOT ENVIRONMENT (OPPOSITE SIGN))
+    edges centred on the file g_bar      A_r 1.324 A_b 0.928  dA_r +0.0595 dA_b +0.0327  f_env +0.068  z_corr  3.71  (NOT ENVIRONMENT)
+
+--------------------------------------------------------------------------------------------------------------
+  JACKKNIFE (50 patches, delete-one; coarse cells: 5 x-bins = one annulus edge step, 0.2-dex neighbour cells) and K3
+  [canonical] coarse full sample: dA_red +0.0613 dA_blue +0.0329 f_env +0.065 (fine: +0.0611 / +0.0333 / +0.064)
+  [canonical] sigma_jk(dA_red - dA_blue) = 0.0019; sigma_jk(f_env) = 0.004; class boundary within 2 sigma: False; z_corr with jackknife variance 3.73
+  [canonical] K3 random halves A - B (window mean dg, m/s^2): red +1.27e-15 +- 6.28e-15, blue -5.58e-15 +- 8.17e-15
+  [alt] coarse full sample: dA_red +0.0595 dA_blue +0.0324 f_env +0.068 (fine: +0.0592 / +0.0327 / +0.067)
+  [alt] sigma_jk(dA_red - dA_blue) = 0.0019; sigma_jk(f_env) = 0.005; class boundary within 2 sigma: False; z_corr with jackknife variance 3.71
+  [alt] K3 random halves A - B (window mean dg, m/s^2): red +1.37e-15 +- 7.09e-15, blue -7.02e-15 +- 8.91e-15
+  [PASS] K3 random halves A - B consistent with zero (window mean, red and blue, both footings): canonical red +0.2 sigma; canonical blue -0.7 sigma; alt red +0.2 sigma; alt blue -0.8 sigma
+
+  checks: K1 PASS, K2a-i PASS, K2a-ii PASS, K2c PASS, K0b PASS, K3 PASS
+  runtime 151.1 s; peak current RSS 1131.0 MB
