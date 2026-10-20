@@ -86,3 +86,9 @@ dominates. Over the whole bracket T runs from 0.968 to 1.062.
 - **Assumption.** Lensing is assumed to trace the dynamical g, as in CFG801–805.
 
 κ = ½ fitted; cold energy mass required; not theory closed. Removing a ΛCDM input cannot favour the framework over ΛCDM.
+
+## Note added 2026-10-20 (from CFG886)
+CFG682's Ω_m = 0.3085 ± 0.0075, used here as the "native no-CMB Ω_m", is a forecast row: it assumes a 0.02 dex flat-a0
+measurement at z = 2.33 that does not exist. The measured no-CMB value from DESI DR2 BAO + BBN with flat a0 is Ω_m = 0.2976 ± 0.0085
+(CFG886). This lane's Ω_m effect on T was only +0.7–1.5% against H0's 0.968–1.062 range, so no class can change. The verdict
+(SHIFTED, SAME CLASS) stands, but the native Ω_m should be cited as CFG886's measured value.
