@@ -115,3 +115,5 @@ seven partial Lean modules. Continue only with an explicitly different
 regular dynamical neighborhood, retained-mode analysis, actual MOND
 crossover and a same-state gravitating vacuum relation; an auxiliary
 Hessian sign alone is not a ghost proof or a selection law.
+Evidence commit 814cbf3fe; campaign entries K686-K692. The campaign
+regeneration passes 4/4 and adds no determinate normalization prediction.

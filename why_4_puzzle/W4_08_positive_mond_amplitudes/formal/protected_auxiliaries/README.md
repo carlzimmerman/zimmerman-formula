@@ -4,6 +4,9 @@
 criteria-only commit 3a6b85cac, [RESULT.md](RESULT.md) tests whether
 supersymmetric auxiliary sectors can fix vacuum energy and a MOND cubic
 together. No healthy model here forces the requested amplitude ratio.
+Reviewed analytic/formal evidence: 814cbf3fe. Campaign entries K686-K692
+record the distinct scoped tests; no determinate normalization trial was
+added, and the regenerated campaign integrity checks pass 4/4.
 
 The chiral prototype does calculate positive rigid vacuum energy and a
 positive static cubic correction. Positive quadratic coefficients at its

@@ -73,6 +73,9 @@ multiple/generalized auxiliary or clock model, with actual mode analysis,
 MOND crossover and a gravitating vacuum relation in one action. Details
 and exact evidence are in protected_auxiliaries/README.md. The original
 goal remains active; no determinate normalization trial was added.
+Evidence commit 814cbf3fe; campaign entries K686-K692. The seven new
+scoped rows leave determinate-trial count and significance unchanged;
+the regenerated campaign checks pass 4/4.
 
 The actual pi adapter awaits a viable lightweight import or relaxation of
 the temporary resource constraint after the large simulation is confirmed
