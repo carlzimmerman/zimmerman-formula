@@ -74,3 +74,10 @@ at ~200 pc), fits MW classical, M31 + field, UFDs, both out-of-sample groups and
 post-hoc model choice; PARTIAL only through M31 + field at 2.2σ; Crater II fails individually, as the law alone does).
 Working description: one bound, self-gravitating cold-energy clump per faint dwarf. Underived: σ ≈ 7.5 km/s (≡ 5e6 M_⊙).
 For the cold-energy equations: CFG638's bath σ_J² is not a universal floor.
+
+**Addendum (2026-10-19 night, CFG878): the fragment mass.** Under the full law a self-gravitating isothermal cold clump has
+M = (0.75–0.95)·81σ⁴/(4Ga0), so the clump mass follows from its σ alone. The record's own bath (the settled cold energy's Jeans
+dispersion) makes fragments ≈ 3–4 × the host's baryons, a one-to-one scaling EXCLUDED by CFG872 (4.9σ). The cold-energy
+equations therefore need a universal velocity scale from outside the cold sector. Candidate (post-hoc, not in the record):
+the thermal speed of neutral primordial gas at the hydrogen-cooling floor (8000–10⁴ K → 7.4–8.2 km/s → 3.6–7.1e6 M_⊙), set
+once in the first systems that can cool. Not derived until that mechanism is written into the equations and tested.
