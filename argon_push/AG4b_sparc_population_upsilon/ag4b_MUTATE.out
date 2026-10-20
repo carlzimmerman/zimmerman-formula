@@ -1,0 +1,31 @@
+AG4b: n=1 vs n=2 on SPARC with stellar-population Upsilon (MAP per galaxy)   *** MUTATE: n=1-truth mock in place of data ***
+kappa = 1/2 fitted; footings never pooled; cold-energy mass required; not theory closed.
+a0 canonical 9.3603e-11, alt 1.1312e-10 m/s^2; prior log10 U ~ N(log10 0.50, 0.1); s0 = 0.05 dex; bulge = 1.4 U
+SPARC: 175 rotmod files, 170 galaxies with >= 5 usable points, 3366 points
+
+Controls
+  [PASS] K2 nu1(1e-4) = 100.50125, nu2(1e-4) = 100.00500: 100.50125 / 100.00500
+  [PASS] K2 algebraic forms to 1e-12 (n=1: y = g^2/(g+1); n=2: g^2 - y^2 = y)
+  [PASS] K3 deep limits agree at y = 1e-6
+  [PASS] K1 CFG695 n=1 global-Upsilon scan reproduced (1e-5): canonical 0.10091@0.60; alt 0.09943@0.55
+  (reported) n=2 on the same global scan: canonical 0.10827@0.70; alt 0.10355@0.65
+
+=== footing: canonical (a0 = 9.3603e-11) ===
+  PRIMARY paired rms: median d (n2 - n1) = +0.0004 dex, sigma 0.0002, z = -2.19 (n = 170); median rms n1 0.0410 / n2 0.0410
+  POWER: n=1-truth mocks z <= -2 in 80% (median z -2.91); n=2-truth mocks z >= +2 in 90% (median z +3.31) -> DIAGNOSTIC
+  READING (canonical): FLIPS (n=1 preferred)
+  S1 sum dchi2_min (n2 - n1) = +322.5, z -4.89;  S2 MAP Upsilon median n1 0.483 / n2 0.581, >=3 sigma from prior n1 2.4% / n2 5.3%;  S4 transition-regime d +0.0005, z -1.69 (n 81)
+  S3 best global a0 (per-galaxy MAP Upsilon): n1 9.333e-11 (kappa 0.499); n2 1.122e-10 (kappa 0.599)
+  VARIANTS: V1 sigma_U 0.15: z -2.67 (FLIPS (n=1 preferred)); V2 D/inc coherent term: z -2.15 (FLIPS (n=1 preferred)); V4 s0 0.03: z -2.20 (FLIPS (n=1 preferred)); V4 s0 0.08: z -1.69 (NOT SIGNIFICANT); V3 Q <= 2: z -1.89 (NOT SIGNIFICANT)
+
+=== footing: alt (a0 = 1.1312e-10) ===
+  PRIMARY paired rms: median d (n2 - n1) = +0.0003 dex, sigma 0.0001, z = -2.28 (n = 170); median rms n1 0.0410 / n2 0.0406
+  POWER: n=1-truth mocks z <= -2 in 80% (median z -2.57); n=2-truth mocks z >= +2 in 90% (median z +2.97) -> DIAGNOSTIC
+  READING (alt): FLIPS (n=1 preferred)
+  S1 sum dchi2_min (n2 - n1) = +291.5, z -4.73;  S2 MAP Upsilon median n1 0.483 / n2 0.581, >=3 sigma from prior n1 2.4% / n2 5.3%;  S4 transition-regime d +0.0004, z -1.08 (n 74)
+  S3 best global a0 (per-galaxy MAP Upsilon): n1 1.122e-10 (kappa 0.599); n2 1.349e-10 (kappa 0.721)
+  VARIANTS: V1 sigma_U 0.15: z -1.87 (NOT SIGNIFICANT); V2 D/inc coherent term: z -1.62 (NOT SIGNIFICANT); V4 s0 0.03: z -1.68 (NOT SIGNIFICANT); V4 s0 0.08: z -1.82 (NOT SIGNIFICANT); V3 Q <= 2: z -2.08 (FLIPS (n=1 preferred))
+
+AG4b: canonical FLIPS (n=1 preferred); alt FLIPS (n=1 preferred).  n=2 survives AG4b: False
+MUTATE (n=1-truth mock as data): FLIPS on both footings -> control BITES (exit 1, as designed)
+controls failed: none
