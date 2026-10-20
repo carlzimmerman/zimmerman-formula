@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""cfg896_preflight.py -- CFG896, alpha door D02 (frozen criteria: CFG896_PREREGISTRATION.md, commit cfc23448b).
+"""cfg896_preflight.py -- CFG896, alpha door D02 (frozen criteria: CFG896_PREREGISTRATION.md, commit cfc23448b; amendments A1-A4, commit b2fa5ad0d).
 
 A Higgs-sector boundary condition (lambda = 0, beta_lambda = 0, the one-loop Veltman condition, the multiple point principle) is read as an
 equation for the hypercharge coupling g_Y(M_t); the joint pairs solve (g_Y, g_2) and would predict alpha(0) and M_W together.
@@ -82,8 +82,11 @@ def bnd(Mt=None, als=None, Mh=None, MW=None, dyt=0.0, dlam=0.0, rel_g3=0.0, dg2=
     return u0, Mt, dict(c, gY=gYv, g2=g2v, g3=g3)
 
 
+RTOL = [1e-11]                  # Y1's Traj default; A1 diagnosis (i) re-runs one item at 1e-13
+
+
 def traj(u0, Mt, o=None):
-    return L.Traj(u0, Mt, OPTS if o is None else o, mu_max=MUMAX)
+    return L.Traj(u0, Mt, OPTS if o is None else o, mu_max=MUMAX, rtol=RTOL[0])
 
 
 def beta_cond(u, loops):
@@ -262,7 +265,7 @@ LABEL["E6"] = "gauge five-loop estimate D4^2/D3 (Y1 E6)"
 def jacobian(mode, sY=0.0, s2=0.0):
     """Central differences of every output key w.r.t. every item (at fixed unknowns) and w.r.t. the unknowns."""
     base = evaluate(mode, sY, s2)
-    out = dict(base=base, items={}, asym={}, unk={})
+    out = dict(base=base, items={}, asym={}, dd={}, unk={})
     for key, _lab, plus, minus, _pf, _full, modes in ITEMS:
         if mode not in modes:
             continue
@@ -272,6 +275,7 @@ def jacobian(mode, sY=0.0, s2=0.0):
             d[k] = (vp[k] - vm[k]) / 2
             a[k] = abs((vp[k] - base[k]) + (vm[k] - base[k])) / abs(d[k]) if abs(d[k]) > 1e-14 else 0.0
         out["items"][key], out["asym"][key] = d, a
+        out["dd"][key] = {k: (vp[k] + vm[k] - 2 * base[k]) / 2 for k in OKEYS}      # quadratic coefficient per sigma^2 (A2)
     v4 = base
     v2 = evaluate(mode, sY, s2, o=L.Opts(gauge_loops=2, yuk_loops=3))
     v3 = evaluate(mode, sY, s2, o=L.Opts(gauge_loops=3, yuk_loops=3))
@@ -376,8 +380,8 @@ def substitution(mode, pr):
 
 
 # ------------------------------------------------------------------------------------------------ K5 finite differences
-print("\nK5  finite differences: linearity of the items, linearity and step stability of the unknown-derivatives")
-bad_lin = []
+print("\nK5(a)  derivatives with respect to the unknowns: linearity (asymmetry < 5%) and step stability (eps vs eps/2 within 2%)  [frozen, unchanged]")
+bad_lin, bad_unk = [], []
 for mode in ("single", "joint", "measured"):
     jac = JAC[mode]
     for key, a in jac["asym"].items():
@@ -389,26 +393,54 @@ for mode in ("single", "joint", "measured"):
             else:
                 significant = abs(d) >= 1e-4
             if significant and a[k] >= 0.05:
-                bad_lin.append((mode, key, k, a[k]))
+                bad_lin.append((mode, key, k, round(a[k], 4)))
     for nm, u in jac["unk"].items():
         for k in CKEYS + PKEYS + ["invA", "MW"]:
             d, dh = u["d"][k], u["d_half"][k]
             if abs(d) < 1e-12 or k in ("invA", "MW"):
                 continue
             if abs(dh / d - 1) > 0.02 or u["asym"][k] >= 0.05:
-                bad_lin.append((mode, nm, k, abs(dh / d - 1), u["asym"][k]))
-chk("K5 every significant derivative is linear (asymmetry < 5%) and step-stable (eps vs eps/2 within 2%)", not bad_lin, f"violations: {bad_lin[:6]}")
+                bad_unk.append((mode, nm, k, abs(dh / d - 1), u["asym"][k]))
+chk("K5(a) every derivative w.r.t. the unknowns is linear and step-stable", not bad_unk, f"violations: {bad_unk}")
+print(f"  frozen K5 item criterion (asymmetry < 5%): {'PASS' if not bad_lin else 'FAIL, superseded by amendment A1'}; full list ({len(bad_lin)}): {bad_lin}")
+print("  A1 diagnosis of the item asymmetries (genuine curvature, not numerical noise):")
+diag_rtol = {}
+for k in ("cP", "cR"):
+    diag_rtol[k] = [JAC["single"]["asym"]["Mt"][k]]
+RTOL[0] = 1e-13
+_v0 = evaluate("single")
+_vp = evaluate("single", Mt=P["Mt"] + SMT)
+_vm = evaluate("single", Mt=P["Mt"] - SMT)
+RTOL[0] = 1e-11
+for k in ("cP", "cR"):
+    diag_rtol[k].append(abs((_vp[k] - _v0[k]) + (_vm[k] - _v0[k])) / abs((_vp[k] - _vm[k]) / 2))
+    print(f"      (i) asymmetry of C_{k} w.r.t. M_t: rtol 1e-11 {diag_rtol[k][0]:.5f}, rtol 1e-13 {diag_rtol[k][1]:.5f}")
+chk("K5 A1-diagnosis (i) the asymmetry does not depend on the ODE tolerance (rtol 1e-11 vs 1e-13 within 2%)",
+    all(abs(v[1] / v[0] - 1) <= 0.02 for v in diag_rtol.values()))
+share24 = {}
+for item in ("Mt", "als"):
+    for tag in ("P", "R"):
+        d, dd = JAC["single"]["items"][item]["b" + tag], JAC["single"]["dd"][item]["b" + tag]
+        l0 = B0["b" + tag]
+        lp, lm = l0 + d + dd, l0 - d + dd
+        dd24 = 24 * (lp ** 2 + lm ** 2 - 2 * l0 ** 2) / 2
+        share24[f"{item}:c{tag}"] = dd24 / JAC["single"]["dd"][item]["c" + tag]
+        print(f"      (ii) {item}: second difference of 16pi^2 beta_lambda at M_{tag}: total {JAC['single']['dd'][item]['c' + tag]:+.3e}, from 24 lambda^2 alone {dd24:+.3e} (share {share24[f'{item}:c{tag}']:.2f})")
+chk("K5 A1-diagnosis (ii) the 24 lambda^2 term carries most (> 50%) of the M_t curvature of C_c", all(share24[f"Mt:c{t}"] > 0.5 for t in ("P", "R")))
 
-# ------------------------------------------------------------------------------------------------ K6: M_t moved by 5 sigma
-print("K6  M_t + 5 x 0.42 GeV: condition values move by 5 x their linear derivative (within 15%)")
+# ------------------------------------------------------------------------------------------------ K6: M_t moved by 5 sigma (amendment A2: quadratic expectation)
+print("K6  M_t + 5 x 0.42 GeV: condition values move by 5a + 25b (a, b from the +-1 sigma points; amendment A2), within 15%")
 v5 = evaluate("single", Mt=P["Mt"] + 5 * SMT)
-worst6 = []
+worst6, lin6 = [], []
 for k in CKEYS:
-    pred = 5 * JAC["single"]["items"]["Mt"][k]
+    a1, b1 = JAC["single"]["items"]["Mt"][k], JAC["single"]["dd"]["Mt"][k]
+    pred, predq = 5 * a1, 5 * a1 + 25 * b1
     got = v5[k] - B0[k]
-    worst6.append((k, got / pred if abs(pred) > 0 else float("nan")))
-    print(f"      {k:3s}: linear 5-sigma prediction {pred:+.5e}, actual {got:+.5e}, ratio {got / pred:.4f}")
-chk("K6 every condition moves as the linear derivative predicts within 15%", all(abs(r - 1) <= 0.15 for _, r in worst6))
+    worst6.append((k, got / predq))
+    lin6.append((k, got / pred))
+    print(f"      {k:3s}: actual {got:+.5e};  linear 5a {pred:+.5e} (ratio {got / pred:.4f}, frozen check);  quadratic 5a + 25b {predq:+.5e} (ratio {got / predq:.4f})")
+chk("K6 every condition moves as the quadratic model of the +-1 sigma points predicts, within 15%", all(abs(r - 1) <= 0.15 for _, r in worst6))
+print(f"  frozen linear K6: {'PASS' if all(abs(r - 1) <= 0.15 for _, r in lin6) else 'FAIL, superseded by amendment A2'}")
 
 # ------------------------------------------------------------------------------------------------ solvers (used by K7 and by stage 2)
 GRID1 = np.exp(np.linspace(math.log(0.5), math.log(2.0), 41))
@@ -453,18 +485,25 @@ def solve_single(fun):
 def solve_joint(fun):
     """fun(r) -> 2-vector.  fsolve from a 5 x 5 grid of starts in [0.6, 1.6]^2 x (GY0, G20)."""
     starts = np.linspace(0.6, 1.6, 5)
-    roots, nfail = [], 0
+    roots, nfail, log = [], 0, []
     for fy in starts:
         for f2 in starts:
             def F(x):
                 r = safe_eval("joint", x[0], x[1])
                 return np.array([1e3, 1e3]) if r is None else np.array(fun(r))
             x, info, ier, _msg = fsolve(F, [math.log(fy), math.log(f2)], full_output=True, xtol=1e-12)
-            if ier != 1 or np.max(np.abs(F(x))) > 1e-9:
+            res = float(np.max(np.abs(F(x))))
+            log.append((int(ier), res))
+            if res > 1e-9:                         # amendment A3: accept by residual, whatever fsolve's flag (ier 5 at the ODE noise floor)
                 nfail += 1
                 continue
             if all(np.max(np.abs(x - y)) > 1e-6 for y in roots):
                 roots.append(x)
+    flags = {}
+    for ier, res in log:
+        flags[ier] = flags.get(ier, 0) + 1
+    acc = [res for ier, res in log if res <= 1e-9]
+    print(f"      fsolve flags over 25 starts: {flags}; accepted {len(acc)} (max residual {max(acc) if acc else float('nan'):.1e}); rejected residuals >= {min([r for _, r in log if r > 1e-9], default=float('nan')):.1e}")
     return roots, nfail
 
 
@@ -506,7 +545,7 @@ print(f"  map: d(1/alpha(0))/d ln g_Y = {DINV['sY']:.3f} ; d(1/alpha(0))/d ln g_
 print("\n" + "=" * 132)
 print(f"LEVERAGE PRE-FLIGHT (frozen rule: NOT DIAGNOSTIC and stop if sigma_PF > {THRESH:.2f} or sigma_full > {THRESH:.2f})")
 print("=" * 132)
-RES = {}
+RES, PR = {}, {}
 for vid, mode, keys, desc, kern in VARIANTS:
     jac = JAC[mode]
     rec = dict(mode=mode, keys=keys, desc=desc, kernel=kern, C_measured={k: B0[k] for k in keys})
@@ -516,6 +555,7 @@ for vid, mode, keys, desc, kern in VARIANTS:
         print(f"\n{vid} [{kern}] {desc}: NOT COMPLETED (no interior minimum)")
         continue
     pr = propagate(mode, keys, jac)
+    PR[vid] = pr
     z = zstat(keys)
     sub = substitution(mode, pr)
     rec.update(sigma_PF=pr["s_pf"], sigma_full=pr["s_full"], leverage={k: {u: jac["unk"][u]["d"][k] for u in jac["unk"]} for k in keys},
@@ -545,6 +585,74 @@ for vid, mode, keys, desc, kern in VARIANTS:
         print(f"   by-product (not an alpha result): z of the principle at the measured point = {z[0]:+.2f}  (C = {B0[keys[0]]:+.4e} +- {z[1]:.3e})")
     print(f"   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= {sub:.4f} ({sub / (0.01 * A0INV):.2%} of an identity's 1.37)")
     print(f"   PRE-FLIGHT: {'PASS -> proceeds to solving' if passes else 'FAIL -> NOT DIAGNOSTIC (stop; no solving)'}")
+
+# ------------------------------------------------------------------------------------------------ K5(b): nonlinear Monte Carlo of the pre-flight (amendment A1)
+MC_ITEMS = [("Mt", "Mt", SMT, P["Mt"]), ("als", "als", P["sals"], P["als"]), ("Mh", "Mh", P["sMh"], P["Mh"]), ("MW", "MW", P["sMW"], P["MW"]),
+            ("ytm", "dyt", 0.0005, 0.0), ("lamm", "dlam", 0.0003, 0.0), ("g3m", "rel_g3", SG3, 0.0), ("g2m", "dg2", SG2, 0.0)]
+NMC = 200
+
+
+def mc_solve(mode, keys, Jm, target, inp):
+    """Chord-Newton with the measured-point Jacobian: solve C(unknowns; inputs) = C(measured point; central inputs)."""
+    n = 1 if mode == "single" else 2
+    x = np.zeros(n)
+    for _ in range(40):
+        r = evaluate(mode, x[0], x[1] if n == 2 else 0.0, **inp)
+        F = vec(r, keys) - target
+        if not np.all(np.isfinite(F)):
+            return None
+        dx = -np.linalg.solve(Jm, F)
+        x = x + dx
+        if np.max(np.abs(dx)) < 1e-10:
+            gY = GY0 * math.exp(x[0])
+            g2 = None if n == 1 else G20 * math.exp(x[1])
+            _, Mt, c = bnd(gY=gY, g2=g2, **inp)
+            return inv_alpha0(c["gY"], c["g2"]), MW_from_g2(c["g2"] - (inp.get("dg2", 0.0) if mode == "joint" else 0.0), Mt)
+    return None
+
+
+MC_TARGETS = [(vid, mode, keys) for vid, mode, keys, _d, _k in VARIANTS if vid in PR] + [("P1", "single", ["aYP"]), ("P2", "joint", ["aYP", "a2P"])]
+PR["P1"], PR["P2"] = pr_p1, pr_p2
+MC = {}
+if MUT:
+    print("\nK5(b) Monte Carlo: SKIPPED in MUTATE mode (the control concerns K3/K4; this saves ~7 min of CPU while a 1024^3 run is live)")
+else:
+    print(f"\nK5(b) nonlinear Monte Carlo of the pre-flight (amendment A1): N = {NMC}, seed 896, chord-Newton re-solves of the shifted conditions ...")
+    Zmc = np.random.default_rng(896).standard_normal((NMC, len(MC_ITEMS)))
+    for tag, mode, keys in MC_TARGETS:
+        jac = JAC[mode]
+        unk = ["sY"] if mode == "single" else ["sY", "s2"]
+        Jm = np.array([[jac["unk"][u]["d"][k] for u in unk] for k in keys])
+        target = vec(jac["base"], keys)
+        vals, nfail = [], 0
+        for j in range(NMC):
+            inp = {arg: cen + Zmc[j, i] * sig for i, (_key, arg, sig, cen) in enumerate(MC_ITEMS)}
+            r = mc_solve(mode, keys, Jm, target, inp)
+            if r is None:
+                nfail += 1
+            else:
+                vals.append(r)
+        vals = np.array(vals)
+        pr = PR[tag]
+        s_lin = math.sqrt(sum(pr["contrib"][k][0] ** 2 for k, *_ in MC_ITEMS if k in pr["contrib"]))
+        s_mc = float(np.std(vals[:, 0], ddof=1))
+        s_full_mc = math.sqrt(s_mc ** 2 + pr["contrib"]["E6"][0] ** 2 + pr["contrib"]["E7"][0] ** 2 + SIG_MAP ** 2 + THOMSON ** 2)
+        MC[tag] = dict(sigma_MC=s_mc, sigma_lin=s_lin, ratio=s_mc / s_lin, unconverged=nfail, sigma_full_MC=s_full_mc,
+                       mean_shift=float(np.mean(vals[:, 0]) - inv_alpha0(GY0, G20)),
+                       sigma_MW_MC=float(np.std(vals[:, 1], ddof=1)) if mode == "joint" else None)
+        print(f"      {tag:3s}: sigma_MC(1/alpha(0)) {s_mc:8.3f}  linear (same items) {s_lin:8.3f}  ratio {s_mc / s_lin:.3f}  unconverged {nfail}/{NMC}"
+              f"  -> sigma_full_MC {s_full_mc:.3f} (linear sigma_full {pr['s_full']:.3f})" + (f"  sigma_MC(M_W) {MC[tag]['sigma_MW_MC']:.3f}" if mode == "joint" else ""))
+    chk("K5(b) Monte Carlo and linear propagation agree within 20% for every variant and both planted controls, <= 2% unconverged",
+        all(0.8 <= v["ratio"] <= 1.2 and v["unconverged"] <= 0.02 * NMC for v in MC.values()),
+        f"ratios {min(v['ratio'] for v in MC.values()):.3f}-{max(v['ratio'] for v in MC.values()):.3f}")
+    for vid in PR:
+        if vid in RES and vid in MC:
+            RES[vid].update(MC[vid])
+            lin_pass = RES[vid]["preflight"] == "PASS"
+            mc_pass = MC[vid]["sigma_full_MC"] <= THRESH and RES[vid]["sigma_PF"] <= THRESH
+            RES[vid]["fragile"] = bool(lin_pass != mc_pass)
+            if RES[vid]["fragile"]:
+                print(f"      {vid}: FRAGILE (linear pre-flight {'PASS' if lin_pass else 'FAIL'}, MC {'PASS' if mc_pass else 'FAIL'}) -> graded NOT DIAGNOSTIC (amendment A1)")
 
 # ------------------------------------------------------------------------------------------------ stage 2: solving (only variants that passed)
 print("\n" + "=" * 132)
@@ -603,6 +711,11 @@ for vid in passed:
         else:
             rec["grade"] = "KILLED" if rec["roots"][0]["chi2"] > 6.18 else "CONSISTENT (pending)"
 
+for vid in passed:
+    if RES[vid].get("fragile"):
+        RES[vid]["stage2_grade"] = RES[vid]["grade"]
+        RES[vid]["grade"] = f"NOT DIAGNOSTIC (FRAGILE; solved: {RES[vid]['stage2_grade']})"
+
 # ------------------------------------------------------------------------------------------------ disclosure: M_Z blindness of the g_2 matching (joints)
 dg2dMZ = (L.threshold1_g2(Mt_c, Mt_c, P["Mh"], P["MW"], P["MZ"] + 0.5) - L.threshold1_g2(Mt_c, Mt_c, P["Mh"], P["MW"], P["MZ"] - 0.5)) / 1.0
 dMZ_per_1pct_gY = 0.01 * P["MZ"] * (GY0 ** 2 / (GY0 ** 2 + G20 ** 2))
@@ -613,16 +726,24 @@ print(f"\nM_Z blindness of Buttazzo's g_2 formula (joint variants, reported): on
 print("\n" + "=" * 132)
 print("SUMMARY (grades by ALPHA_CAMPAIGN_RULES.md section 5)")
 print("=" * 132)
-print(f"  {'ID':4s} {'variant':52s} {'kernel':26s} {'sigma_PF':>9s} {'sigma_full':>11s} {'sig(M_W)':>9s} {'z / chi2':>9s}  grade")
+print(f"  {'ID':4s} {'variant':52s} {'kernel':26s} {'sigma_PF':>9s} {'sigma_full':>11s} {'full_MC':>8s} {'sig(M_W)':>9s} {'z / chi2':>9s}  grade")
 for vid, mode, keys, desc, kern in VARIANTS:
     r = RES[vid]
+    if fails:                                    # amendment A4: any gate failure -> NOT COMPLETED
+        r["would_be_grade"] = r["grade"]
+        r["grade"] = f"NOT COMPLETED (gate) [would-be: {r['would_be_grade']}]"
     zz = r.get("z_measured", r.get("chi2_measured", float("nan")))
-    print(f"  {vid:4s} {desc:52s} {kern:26s} {r.get('sigma_PF', float('nan')):9.3f} {r.get('sigma_full', float('nan')):11.3f} {r.get('sigma_MW', float('nan')):9.3f} {zz:9.2f}  {r['grade']}")
+    print(f"  {vid:4s} {desc:52s} {kern:26s} {r.get('sigma_PF', float('nan')):9.3f} {r.get('sigma_full', float('nan')):11.3f} {r.get('sigma_full_MC', float('nan')) or float('nan'):8.3f}"
+          f" {r.get('sigma_MW', float('nan')):9.3f} {zz:9.2f}  {r['grade']}")
+for vid in passed:
+    for rt in RES[vid].get("roots", []):
+        print(f"  {vid} root: 1/alpha(0) = {rt['invA']:.3f} +- {rt['sigma']:.3f} (miss {rt['invA'] - A0INV:+.3f} = {(rt['invA'] - A0INV) / rt['sigma']:+.1f} sigma)"
+              + (f", M_W = {rt['MW']:.3f} +- {rt['sigma_MW']:.3f}, chi2 {rt['chi2']:.1f}" if "MW" in rt else ""))
 print(f"\n  attempt counter: post-ledger alpha attempt #1; N_mech 359 -> {N_MECH_NEW} (all 13 pre-declared variants counted, rules section 3, conservative reading)")
 print(f"  precision demanded campaign-wide (single coupling): reading (A) {1e-3 / (N_MECH_NEW * 2 * RHO_A):.2e}, reading (B, stricter, applies) {1e-3 / (13 * 360 * 2 * RHO_A):.2e}")
 print("  gates: " + ("all passed" if not fails else f"FAILED: {fails}"))
 
-out = dict(mode="MUTATE" if MUT else "REAL", prereg_commit="cfc23448b", inputs=dict(PDG=P, Mt_sigma_total=SMT), sigma_map=SIG_MAP, thomson=THOMSON,
+out = dict(mode="MUTATE" if MUT else "REAL", prereg_commit="cfc23448b", amendments_commit="b2fa5ad0d", inputs=dict(PDG=P, Mt_sigma_total=SMT), sigma_map=SIG_MAP, thomson=THOMSON,
            measured_point=dict(gY=GY0, g2=G20, g3=c_c["g3"], yt=c_c["yt"], lam=c_c["lam"], aY_t=AY_T, a2_t=A2_T, Delta_t=DELTA_T),
            conditions_measured={k: B0[k] for k in CKEYS + ["mustar"]},
            door_leverages=dict(dlamMP_dlngY=du["bP"], dbetalamMP_dlngY=du["cP"] / K16, dVeltMP_dlngY=du["dP"], dlammin_dlngY=du["a"]),
@@ -630,7 +751,8 @@ out = dict(mode="MUTATE" if MUT else "REAL", prereg_commit="cfc23448b", inputs=d
            K2_sensitivities=sens, K6_ratios=dict(worst6), substitution_inputs=dict(d_lam=d_lam_sub, d_yt=d_yt_sub, d_g2=d_g2_sub, lep2loop=lep2, d_delta=d_delta_sub),
            planted=dict(single=dict(s_pf=pr_p1["s_pf"], s_full=pr_p1["s_full"], invA=inv_p1),
                         joint=dict(s_pf=pr_p2["s_pf"], s_full=pr_p2["s_full"], s_MW=pr_p2["s_mw"], sol=sol2)),
-           variants=RES, N_mech_new=N_MECH_NEW, gates_failed=fails,
+           variants=RES, N_mech_new=N_MECH_NEW, gates_failed=fails, MC=MC, A1_diag=dict(asym_rtol=diag_rtol, share24=share24, frozen_item_violations=bad_lin),
+           K6_linear_ratios=dict(lin6),
            MZ_blindness=dict(dg2_dMZ=dg2dMZ, dMZ_per_1pct_gY=dMZ_per_1pct_gY))
 
 
