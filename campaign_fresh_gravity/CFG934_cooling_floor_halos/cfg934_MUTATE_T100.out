@@ -1,0 +1,114 @@
+CFG934 -- cooling-floor primordial halos (H-CF): a parameter-free supply for faint dwarfs.
+Criteria: FROZEN_CRITERIA.md (9782c3df7, committed alone before this script existed).
+
+H-CF: every star-forming dwarf sits in a primordial cold-matter halo of at least M_cool(z_f), the halo whose virial temperature
+T_vir = mu m_p V_c^2 / (2 k_B) reaches 1e4 K at its formation epoch z_f (Weisz+14 tau50 / tau90).  Native background and
+Delta_vir from CFG654 (A1 CMB set, N0 turnaround table); NFW with rho_s = C rho_m(z_f), C in {1500, 3000, 6000}; CFG42/CFG45
+readings (S) sum [primary] and (M) max [alternative]; classes U, C, M, I, S, L (criteria section 3).
+
+  MODE MUTATE_T100   *** T_vir x 100 ***
+  inputs loaded (0.1 s, 119 MB)
+  native background: h 0.67770, Omega_m 0.31040, Omega_r 9.106e-05, f_b 0.15685; age t0 13.7723 Gyr; onset 13.3 Gyr -> z 9.980
+
+======================================================================================================================
+M_cool(z): floor halo mass at T_vir 1e+06 K (native Delta_vir), r_vir, concentration for C 1500/3000/6000
+======================================================================================================================
+  z  0.0 mu 0.59: M_cool 2.338e+12 Msun  r_vir 359.413 kpc  Delta_vir  303.9  c 1.78/2.53/3.51
+  z  0.0 mu 1.22: M_cool 7.862e+11 Msun  r_vir 249.942 kpc  Delta_vir  303.9  c 1.78/2.53/3.51
+  z  0.5 mu 0.59: M_cool 1.496e+12 Msun  r_vir 229.952 kpc  Delta_vir  220.0  c 2.10/2.95/4.06
+  z  0.5 mu 1.22: M_cool 5.030e+11 Msun  r_vir 159.913 kpc  Delta_vir  220.0  c 2.10/2.95/4.06
+  z  1.0 mu 0.59: M_cool 1.027e+12 Msun  r_vir 157.934 kpc  Delta_vir  196.7  c 2.22/3.11/4.27
+  z  1.0 mu 1.22: M_cool 3.455e+11 Msun  r_vir 109.830 kpc  Delta_vir  196.7  c 2.22/3.11/4.27
+  z  2.0 mu 0.59: M_cool 5.792e+11 Msun  r_vir  89.052 kpc  Delta_vir  183.3  c 2.30/3.21/4.41
+  z  2.0 mu 1.22: M_cool 1.948e+11 Msun  r_vir  61.928 kpc  Delta_vir  183.3  c 2.30/3.21/4.41
+  z  3.0 mu 0.59: M_cool 3.796e+11 Msun  r_vir  58.364 kpc  Delta_vir  180.1  c 2.32/3.24/4.44
+  z  3.0 mu 1.22: M_cool 1.277e+11 Msun  r_vir  40.588 kpc  Delta_vir  180.1  c 2.32/3.24/4.44
+  z  5.0 mu 0.59: M_cool 2.077e+11 Msun  r_vir  31.933 kpc  Delta_vir  178.2  c 2.34/3.26/4.46
+  z  5.0 mu 1.22: M_cool 6.985e+10 Msun  r_vir  22.207 kpc  Delta_vir  178.2  c 2.34/3.26/4.46
+  z  7.0 mu 0.59: M_cool 1.351e+11 Msun  r_vir  20.768 kpc  Delta_vir  177.8  c 2.34/3.26/4.47
+  z  7.0 mu 1.22: M_cool 4.543e+10 Msun  r_vir  14.442 kpc  Delta_vir  177.8  c 2.34/3.26/4.47
+  z  9.0 mu 0.59: M_cool 9.671e+10 Msun  r_vir  14.869 kpc  Delta_vir  177.5  c 2.34/3.26/4.47
+  z  9.0 mu 1.22: M_cool 3.253e+10 Msun  r_vir  10.340 kpc  Delta_vir  177.5  c 2.34/3.26/4.47
+  V_vir (fixed by T and mu): mu 0.59 167.28 km/s, mu 1.22 116.33 km/s
+
+  formation-epoch defaults (criteria 2.4): sat-faint: tau50 12.47 tau90 9.76 Gyr (sat-faint median N6); sat-bright: tau50 9.95 tau90 3.91 Gyr (sat-bright median N21); field-faint: tau50 12.47 tau90 9.76 Gyr (field-faint N0 < 3 -> lum-faint median N6); field-bright: tau50 10.55 tau90 1.58 Gyr (field-bright median N13)
+     field-bright Weisz members: Cetus (12.59/4.69), Aquarius (12.59/3.16), IC 1613 (6.35/1.58), Leo A (3.16/0.53), Leo T (7.52/1.58), NGC 6822 (4.11/1.00), Pegasus dIrr (12.59/1.66), Phoenix (10.59/2.61), Sagittarius dIrr (6.56/0.71), Sextans A (12.59/0.63), Sextans B (11.62/1.71), Tucana (10.55/6.47), WLM (2.22/0.71)
+     sat-bright Weisz members: Andromeda I (10.00/7.12), Andromeda II (9.88/5.62), Andromeda III (10.47/5.13), Andromeda V (10.86/7.33), Andromeda VI (10.68/3.91), Andromeda VII (12.59/12.59), Carina (4.92/2.82), Canes Venatici I (12.59/8.31), Draco (11.48/10.14), Fornax (7.47/2.24), IC 10 (4.03/1.62), Leo I (5.31/1.68), Leo II (8.46/6.41), LGS 3 (11.04/3.65), M 32 (12.59/1.71), NGC 147 (6.20/2.66), NGC 185 (9.41/3.35), NGC 205 (8.67/2.11), Sagittarius (5.62/3.40), Sculptor (11.93/10.59), Ursa Minor (9.95/9.06)
+     sat-faint Weisz members: Andromeda XI (12.59/5.35), Andromeda XII (7.45/5.64), Andromeda XIII (12.59/12.59), Canes Venatici II (10.56/8.27), Hercules (12.59/12.59), Leo IV (12.35/11.25)
+  z_f U     : tau50 -> z 4.59 (range 2.04-4.96), tau90 -> z 1.61 (range 1.09-4.96); own SFH 3/31
+  z_f C     : tau50 -> z 1.70 (range 0.46-4.96), tau90 -> z 0.34 (range 0.13-2.06); own SFH 9/14
+  z_f M LVD : tau50 -> z 1.70 (range 0.65-4.96), tau90 -> z 0.34 (range 0.13-4.96); own SFH 13/34
+  z_f I     : tau50 -> z 2.03 (range 0.91-4.96), tau90 -> z 0.26 (range 0.12-1.61); own SFH 5/11
+  z_f L     : tau50 -> z 3.42 (range 0.46-4.96), tau90 -> z 1.09 (range 0.12-4.96); own SFH 29/83
+
+======================================================================================================================
+BARE LAW (reference; no debris)
+======================================================================================================================
+  canonical: U +0.325 (+3.77) CONT | C +0.027 (+0.32) CONS | M +0.064 (+0.78) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.518 (+8.86) CONT
+  alt      : U +0.304 (+3.55) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.55) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.472 (+8.10) CONT
+
+======================================================================================================================
+H-CF, reading (S) [PRIMARY]: 12 corners x 2 footings
+======================================================================================================================
+  canonical mu0.59|t50|C1500  : U -0.463 (-8.54) CONT | C -0.267 (-3.11) CONT | M -0.348 (-7.28) CONT | I -0.649 (-7.45) CONT | S 0.12 (110 f_ex>0, max +0.096) CONT | L -0.862 (-14.74) CONT  [0.0 s, 138 MB]
+  canonical mu0.59|t50|C3000  : U -0.540 (-9.94) CONT | C -0.316 (-3.59) CONT | M -0.399 (-8.63) CONT | I -0.779 (-8.75) CONT | S 0.05 (110 f_ex>0, max +0.125) CONT | L -1.019 (-17.06) CONT  [0.0 s, 138 MB]
+  canonical mu0.59|t50|C6000  : U -0.620 (-11.41) CONT | C -0.343 (-3.71) CONT | M -0.472 (-10.05) CONT | I -0.920 (-10.18) CONT | S 0.03 (110 f_ex>0, max +0.161) CONT | L -1.187 (-19.47) CONT  [0.0 s, 138 MB]
+  canonical mu0.59|t90|C1500  : U -0.221 (-3.92) CONT | C -0.177 (-2.40) TENS | M -0.227 (-5.01) CONT | I -0.227 (-3.30) CONT | S 0.12 (110 f_ex>0, max +0.096) CONT | L -0.437 (-7.76) CONT  [0.0 s, 138 MB]
+  canonical mu0.59|t90|C3000  : U -0.297 (-5.25) CONT | C -0.209 (-2.86) TENS | M -0.284 (-6.28) CONT | I -0.321 (-4.46) CONT | S 0.05 (110 f_ex>0, max +0.125) CONT | L -0.577 (-10.04) CONT  [0.0 s, 138 MB]
+  canonical mu0.59|t90|C6000  : U -0.377 (-6.63) CONT | C -0.259 (-3.57) CONT | M -0.348 (-7.42) CONT | I -0.431 (-5.72) CONT | S 0.03 (110 f_ex>0, max +0.161) CONT | L -0.732 (-12.45) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t50|C1500  : U -0.384 (-7.11) CONT | C -0.215 (-2.60) TENS | M -0.295 (-6.97) CONT | I -0.515 (-6.28) CONT | S 0.65 (79 f_ex>0, max +0.065) CONT | L -0.699 (-12.29) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t50|C3000  : U -0.460 (-8.50) CONT | C -0.258 (-3.04) CONT | M -0.338 (-7.56) CONT | I -0.635 (-7.55) CONT | S 0.53 (79 f_ex>0, max +0.086) CONT | L -0.849 (-14.60) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t50|C6000  : U -0.540 (-9.95) CONT | C -0.308 (-3.44) CONT | M -0.397 (-8.83) CONT | I -0.768 (-8.96) CONT | S 0.46 (79 f_ex>0, max +0.114) CONT | L -1.010 (-16.98) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t90|C1500  : U -0.148 (-2.62) TENS | C -0.137 (-1.91) CONS | M -0.172 (-3.68) CONT | I -0.141 (-2.14) TENS | S 0.65 (79 f_ex>0, max +0.065) CONT | L -0.298 (-5.43) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t90|C3000  : U -0.219 (-3.89) CONT | C -0.169 (-2.32) TENS | M -0.223 (-4.99) CONT | I -0.223 (-3.25) CONT | S 0.53 (79 f_ex>0, max +0.086) CONT | L -0.430 (-7.68) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t90|C6000  : U -0.298 (-5.28) CONT | C -0.207 (-2.91) TENS | M -0.282 (-6.33) CONT | I -0.321 (-4.46) CONT | S 0.46 (79 f_ex>0, max +0.114) CONT | L -0.576 (-10.07) CONT  [0.0 s, 138 MB]
+  alt       mu0.59|t50|C1500  : U -0.464 (-8.55) CONT | C -0.273 (-3.21) CONT | M -0.356 (-7.47) CONT | I -0.656 (-7.60) CONT | S 0.16 (109 f_ex>0, max +0.089) CONT | L -0.867 (-14.90) CONT  [0.0 s, 138 MB]
+  alt       mu0.59|t50|C3000  : U -0.540 (-9.95) CONT | C -0.322 (-3.68) CONT | M -0.401 (-8.58) CONT | I -0.784 (-8.87) CONT | S 0.14 (109 f_ex>0, max +0.116) CONT | L -1.023 (-17.20) CONT  [0.0 s, 138 MB]
+  alt       mu0.59|t50|C6000  : U -0.621 (-11.41) CONT | C -0.354 (-3.82) CONT | M -0.473 (-10.11) CONT | I -0.924 (-10.28) CONT | S 0.07 (109 f_ex>0, max +0.151) CONT | L -1.189 (-19.60) CONT  [0.0 s, 138 MB]
+  alt       mu0.59|t90|C1500  : U -0.221 (-3.93) CONT | C -0.185 (-2.54) TENS | M -0.233 (-5.12) CONT | I -0.244 (-3.59) CONT | S 0.16 (109 f_ex>0, max +0.089) CONT | L -0.447 (-7.98) CONT  [0.0 s, 138 MB]
+  alt       mu0.59|t90|C3000  : U -0.297 (-5.26) CONT | C -0.216 (-2.96) TENS | M -0.288 (-6.36) CONT | I -0.335 (-4.70) CONT | S 0.14 (109 f_ex>0, max +0.116) CONT | L -0.585 (-10.24) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t90|C6000  : U -0.377 (-6.64) CONT | C -0.265 (-3.66) CONT | M -0.352 (-7.57) CONT | I -0.442 (-5.92) CONT | S 0.07 (109 f_ex>0, max +0.151) CONT | L -0.738 (-12.62) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t50|C1500  : U -0.385 (-7.12) CONT | C -0.223 (-2.72) TENS | M -0.298 (-7.21) CONT | I -0.522 (-6.46) CONT | S 0.71 (72 f_ex>0, max +0.059) CONT | L -0.705 (-12.47) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t50|C3000  : U -0.461 (-8.51) CONT | C -0.264 (-3.14) CONT | M -0.345 (-7.90) CONT | I -0.641 (-7.71) CONT | S 0.60 (72 f_ex>0, max +0.079) CONT | L -0.853 (-14.75) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t50|C6000  : U -0.540 (-9.96) CONT | C -0.313 (-3.56) CONT | M -0.399 (-8.95) CONT | I -0.772 (-9.09) CONT | S 0.55 (72 f_ex>0, max +0.104) CONT | L -1.013 (-17.11) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t90|C1500  : U -0.150 (-2.66) TENS | C -0.146 (-2.03) TENS | M -0.180 (-3.79) CONT | I -0.161 (-2.47) TENS | S 0.71 (72 f_ex>0, max +0.059) CONT | L -0.310 (-5.68) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t90|C3000  : U -0.220 (-3.90) CONT | C -0.178 (-2.46) TENS | M -0.229 (-5.10) CONT | I -0.240 (-3.53) CONT | S 0.60 (72 f_ex>0, max +0.079) CONT | L -0.439 (-7.90) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t90|C6000  : U -0.299 (-5.29) CONT | C -0.214 (-3.01) CONT | M -0.286 (-6.43) CONT | I -0.335 (-4.70) CONT | S 0.55 (72 f_ex>0, max +0.104) CONT | L -0.584 (-10.26) CONT  [0.0 s, 139 MB]
+
+======================================================================================================================
+H-CF, reading (M) [ALTERNATIVE]: 12 corners x 2 footings
+======================================================================================================================
+  canonical mu0.59|t50|C1500  : U -0.462 (-8.45) CONT | C -0.190 (-2.04) TENS | M -0.310 (-6.72) CONT | I -0.579 (-6.01) CONT | S 1.00 (110 f_ex>0, max +0.000) CONS | L -0.814 (-13.27) CONT  [0.0 s, 139 MB]
+  canonical mu0.59|t50|C3000  : U -0.539 (-9.87) CONT | C -0.263 (-2.81) TENS | M -0.376 (-8.25) CONT | I -0.728 (-7.56) CONT | S 1.00 (110 f_ex>0, max +0.000) CONS | L -0.981 (-15.70) CONT  [0.0 s, 139 MB]
+  canonical mu0.59|t50|C6000  : U -0.620 (-11.35) CONT | C -0.340 (-3.57) CONT | M -0.456 (-9.59) CONT | I -0.885 (-9.22) CONT | S 0.91 (110 f_ex>0, max +0.054) CONS | L -1.158 (-18.29) CONT  [0.0 s, 139 MB]
+  canonical mu0.59|t90|C1500  : U -0.215 (-3.74) CONT | C -0.128 (-1.60) CONS | M -0.147 (-3.03) CONT | I -0.041 (-0.50) CONS | S 1.00 (110 f_ex>0, max +0.000) CONS | L -0.337 (-5.63) CONT  [0.0 s, 139 MB]
+  canonical mu0.59|t90|C3000  : U -0.293 (-5.10) CONT | C -0.153 (-2.00) TENS | M -0.220 (-4.84) CONT | I -0.168 (-2.01) TENS | S 1.00 (110 f_ex>0, max +0.000) CONS | L -0.498 (-8.20) CONT  [0.0 s, 139 MB]
+  canonical mu0.59|t90|C6000  : U -0.374 (-6.52) CONT | C -0.232 (-3.03) CONT | M -0.298 (-6.16) CONT | I -0.308 (-3.55) CONT | S 0.91 (110 f_ex>0, max +0.054) CONS | L -0.670 (-10.84) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t50|C1500  : U -0.382 (-6.99) CONT | C -0.150 (-1.61) CONS | M -0.252 (-5.93) CONT | I -0.423 (-4.46) CONT | S 1.00 (79 f_ex>0, max +0.000) CONS | L -0.639 (-10.66) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t50|C3000  : U -0.459 (-8.41) CONT | C -0.185 (-2.01) TENS | M -0.308 (-6.71) CONT | I -0.569 (-6.02) CONT | S 1.00 (79 f_ex>0, max +0.000) CONS | L -0.804 (-13.20) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t50|C6000  : U -0.539 (-9.88) CONT | C -0.260 (-2.83) TENS | M -0.375 (-8.29) CONT | I -0.723 (-7.68) CONT | S 1.00 (79 f_ex>0, max +0.000) CONS | L -0.976 (-15.76) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t90|C1500  : U -0.136 (-2.36) TENS | C -0.086 (-1.14) CONS | M -0.104 (-2.20) TENS | I +0.048 (+0.64) CONS | S 1.00 (79 f_ex>0, max +0.000) CONS | L -0.179 (-3.05) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t90|C3000  : U -0.213 (-3.72) CONT | C -0.126 (-1.60) CONS | M -0.144 (-2.98) TENS | I -0.037 (-0.45) CONS | S 1.00 (79 f_ex>0, max +0.000) CONS | L -0.331 (-5.55) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t90|C6000  : U -0.294 (-5.14) CONT | C -0.153 (-2.02) TENS | M -0.220 (-4.89) CONT | I -0.169 (-2.02) TENS | S 1.00 (79 f_ex>0, max +0.000) CONS | L -0.499 (-8.24) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t50|C1500  : U -0.462 (-8.45) CONT | C -0.194 (-2.08) TENS | M -0.317 (-6.90) CONT | I -0.579 (-6.01) CONT | S 1.00 (109 f_ex>0, max +0.000) CONS | L -0.815 (-13.34) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t50|C3000  : U -0.539 (-9.87) CONT | C -0.263 (-2.82) TENS | M -0.376 (-8.18) CONT | I -0.728 (-7.56) CONT | S 1.00 (109 f_ex>0, max +0.000) CONS | L -0.982 (-15.77) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t50|C6000  : U -0.620 (-11.35) CONT | C -0.340 (-3.57) CONT | M -0.456 (-9.62) CONT | I -0.885 (-9.22) CONT | S 0.99 (109 f_ex>0, max +0.035) CONS | L -1.158 (-18.34) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t90|C1500  : U -0.215 (-3.74) CONT | C -0.137 (-1.76) CONS | M -0.151 (-3.10) CONT | I -0.054 (-0.67) CONS | S 1.00 (109 f_ex>0, max +0.000) CONS | L -0.342 (-5.72) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t90|C3000  : U -0.293 (-5.10) CONT | C -0.154 (-1.99) CONS | M -0.220 (-4.84) CONT | I -0.171 (-2.06) TENS | S 1.00 (109 f_ex>0, max +0.000) CONS | L -0.501 (-8.26) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t90|C6000  : U -0.374 (-6.52) CONT | C -0.232 (-3.05) CONT | M -0.298 (-6.30) CONT | I -0.311 (-3.62) CONT | S 0.99 (109 f_ex>0, max +0.035) CONS | L -0.672 (-10.91) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t50|C1500  : U -0.382 (-6.99) CONT | C -0.159 (-1.68) CONS | M -0.252 (-6.01) CONT | I -0.423 (-4.46) CONT | S 1.00 (72 f_ex>0, max +0.000) CONS | L -0.642 (-10.73) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t50|C3000  : U -0.459 (-8.41) CONT | C -0.191 (-2.07) TENS | M -0.316 (-6.89) CONT | I -0.569 (-6.02) CONT | S 1.00 (72 f_ex>0, max +0.000) CONS | L -0.806 (-13.27) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t50|C6000  : U -0.539 (-9.88) CONT | C -0.260 (-2.84) TENS | M -0.375 (-8.21) CONT | I -0.723 (-7.68) CONT | S 1.00 (72 f_ex>0, max +0.000) CONS | L -0.977 (-15.82) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t90|C1500  : U -0.136 (-2.36) TENS | C -0.095 (-1.26) CONS | M -0.104 (-2.16) TENS | I +0.029 (+0.40) CONS | S 1.00 (72 f_ex>0, max +0.000) CONS | L -0.185 (-3.17) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t90|C3000  : U -0.213 (-3.72) CONT | C -0.136 (-1.75) CONS | M -0.149 (-3.09) CONT | I -0.051 (-0.63) CONS | S 1.00 (72 f_ex>0, max +0.000) CONS | L -0.336 (-5.64) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t90|C6000  : U -0.294 (-5.14) CONT | C -0.154 (-2.00) CONS | M -0.220 (-4.89) CONT | I -0.172 (-2.07) TENS | S 1.00 (72 f_ex>0, max +0.000) CONS | L -0.502 (-8.30) CONT  [0.0 s, 139 MB]
+
+======================================================================================================================
+MUTATE MUTATE_T100 (criteria section 5)
+======================================================================================================================
+  [FAIL] MUTATE T100: T_vir x 100 over-predicts every class at every corner on both footings (U, C, M both, I, L: stat < 0 and z <= -2; S not CONSISTENT)
+         7 failing cells: canonical mu0.59|t90|C1500 M-collins -0.135 (-1.52); canonical mu1.22|t90|C1500 C -0.137 (-1.91); canonical mu1.22|t90|C1500 M-collins -0.088 (-1.01); canonical mu1.22|t90|C3000 M-collins -0.133 (-1.50); alt mu0.59|t90|C1500 M-collins -0.143 (-1.61); alt mu1.22|t90|C1500 M-collins -0.097 (-1.12); alt mu1.22|t90|C3000 M-collins -0.140 (-1.59)
+
+  (MUTATE run, no verdict weight) H-CF verdict as computed: S FAILS; M FAILS
+
+  runtime 4 s, peak RSS 139 MB, exit 1

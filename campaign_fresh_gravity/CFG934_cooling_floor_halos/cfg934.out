@@ -1,0 +1,183 @@
+CFG934 -- cooling-floor primordial halos (H-CF): a parameter-free supply for faint dwarfs.
+Criteria: FROZEN_CRITERIA.md (9782c3df7, committed alone before this script existed).
+
+H-CF: every star-forming dwarf sits in a primordial cold-matter halo of at least M_cool(z_f), the halo whose virial temperature
+T_vir = mu m_p V_c^2 / (2 k_B) reaches 1e4 K at its formation epoch z_f (Weisz+14 tau50 / tau90).  Native background and
+Delta_vir from CFG654 (A1 CMB set, N0 turnaround table); NFW with rho_s = C rho_m(z_f), C in {1500, 3000, 6000}; CFG42/CFG45
+readings (S) sum [primary] and (M) max [alternative]; classes U, C, M, I, S, L (criteria section 3).
+
+  MODE main
+  inputs loaded (0.1 s, 119 MB)
+  native background: h 0.67770, Omega_m 0.31040, Omega_r 9.106e-05, f_b 0.15685; age t0 13.7723 Gyr; onset 13.3 Gyr -> z 9.980
+
+======================================================================================================================
+M_cool(z): floor halo mass at T_vir 10000 K (native Delta_vir), r_vir, concentration for C 1500/3000/6000
+======================================================================================================================
+  z  0.0 mu 0.59: M_cool 2.338e+09 Msun  r_vir  35.941 kpc  Delta_vir  303.9  c 1.78/2.53/3.51
+  z  0.0 mu 1.22: M_cool 7.862e+08 Msun  r_vir  24.994 kpc  Delta_vir  303.9  c 1.78/2.53/3.51
+  z  0.5 mu 0.59: M_cool 1.496e+09 Msun  r_vir  22.995 kpc  Delta_vir  220.0  c 2.10/2.95/4.06
+  z  0.5 mu 1.22: M_cool 5.030e+08 Msun  r_vir  15.991 kpc  Delta_vir  220.0  c 2.10/2.95/4.06
+  z  1.0 mu 0.59: M_cool 1.027e+09 Msun  r_vir  15.793 kpc  Delta_vir  196.7  c 2.22/3.11/4.27
+  z  1.0 mu 1.22: M_cool 3.455e+08 Msun  r_vir  10.983 kpc  Delta_vir  196.7  c 2.22/3.11/4.27
+  z  2.0 mu 0.59: M_cool 5.792e+08 Msun  r_vir   8.905 kpc  Delta_vir  183.3  c 2.30/3.21/4.41
+  z  2.0 mu 1.22: M_cool 1.948e+08 Msun  r_vir   6.193 kpc  Delta_vir  183.3  c 2.30/3.21/4.41
+  z  3.0 mu 0.59: M_cool 3.796e+08 Msun  r_vir   5.836 kpc  Delta_vir  180.1  c 2.32/3.24/4.44
+  z  3.0 mu 1.22: M_cool 1.277e+08 Msun  r_vir   4.059 kpc  Delta_vir  180.1  c 2.32/3.24/4.44
+  z  5.0 mu 0.59: M_cool 2.077e+08 Msun  r_vir   3.193 kpc  Delta_vir  178.2  c 2.34/3.26/4.46
+  z  5.0 mu 1.22: M_cool 6.985e+07 Msun  r_vir   2.221 kpc  Delta_vir  178.2  c 2.34/3.26/4.46
+  z  7.0 mu 0.59: M_cool 1.351e+08 Msun  r_vir   2.077 kpc  Delta_vir  177.8  c 2.34/3.26/4.47
+  z  7.0 mu 1.22: M_cool 4.543e+07 Msun  r_vir   1.444 kpc  Delta_vir  177.8  c 2.34/3.26/4.47
+  z  9.0 mu 0.59: M_cool 9.671e+07 Msun  r_vir   1.487 kpc  Delta_vir  177.5  c 2.34/3.26/4.47
+  z  9.0 mu 1.22: M_cool 3.253e+07 Msun  r_vir   1.034 kpc  Delta_vir  177.5  c 2.34/3.26/4.47
+  V_vir (fixed by T and mu): mu 0.59 16.73 km/s, mu 1.22 11.63 km/s
+
+  formation-epoch defaults (criteria 2.4): sat-faint: tau50 12.47 tau90 9.76 Gyr (sat-faint median N6); sat-bright: tau50 9.95 tau90 3.91 Gyr (sat-bright median N21); field-faint: tau50 12.47 tau90 9.76 Gyr (field-faint N0 < 3 -> lum-faint median N6); field-bright: tau50 10.55 tau90 1.58 Gyr (field-bright median N13)
+     field-bright Weisz members: Cetus (12.59/4.69), Aquarius (12.59/3.16), IC 1613 (6.35/1.58), Leo A (3.16/0.53), Leo T (7.52/1.58), NGC 6822 (4.11/1.00), Pegasus dIrr (12.59/1.66), Phoenix (10.59/2.61), Sagittarius dIrr (6.56/0.71), Sextans A (12.59/0.63), Sextans B (11.62/1.71), Tucana (10.55/6.47), WLM (2.22/0.71)
+     sat-bright Weisz members: Andromeda I (10.00/7.12), Andromeda II (9.88/5.62), Andromeda III (10.47/5.13), Andromeda V (10.86/7.33), Andromeda VI (10.68/3.91), Andromeda VII (12.59/12.59), Carina (4.92/2.82), Canes Venatici I (12.59/8.31), Draco (11.48/10.14), Fornax (7.47/2.24), IC 10 (4.03/1.62), Leo I (5.31/1.68), Leo II (8.46/6.41), LGS 3 (11.04/3.65), M 32 (12.59/1.71), NGC 147 (6.20/2.66), NGC 185 (9.41/3.35), NGC 205 (8.67/2.11), Sagittarius (5.62/3.40), Sculptor (11.93/10.59), Ursa Minor (9.95/9.06)
+     sat-faint Weisz members: Andromeda XI (12.59/5.35), Andromeda XII (7.45/5.64), Andromeda XIII (12.59/12.59), Canes Venatici II (10.56/8.27), Hercules (12.59/12.59), Leo IV (12.35/11.25)
+  z_f U     : tau50 -> z 4.59 (range 2.04-4.96), tau90 -> z 1.61 (range 1.09-4.96); own SFH 3/31
+  z_f C     : tau50 -> z 1.70 (range 0.46-4.96), tau90 -> z 0.34 (range 0.13-2.06); own SFH 9/14
+  z_f M LVD : tau50 -> z 1.70 (range 0.65-4.96), tau90 -> z 0.34 (range 0.13-4.96); own SFH 13/34
+  z_f I     : tau50 -> z 2.03 (range 0.91-4.96), tau90 -> z 0.26 (range 0.12-1.61); own SFH 5/11
+  z_f L     : tau50 -> z 3.42 (range 0.46-4.96), tau90 -> z 1.09 (range 0.12-4.96); own SFH 29/83
+
+======================================================================================================================
+BARE LAW (reference; no debris)
+======================================================================================================================
+  canonical: U +0.325 (+3.77) CONT | C +0.027 (+0.32) CONS | M +0.064 (+0.78) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.518 (+8.86) CONT
+  alt      : U +0.304 (+3.55) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.55) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.472 (+8.10) CONT
+
+======================================================================================================================
+H-CF, reading (S) [PRIMARY]: 12 corners x 2 footings
+======================================================================================================================
+  canonical mu0.59|t50|C1500  : U +0.055 (+1.28) CONS | C +0.027 (+0.32) CONS | M +0.064 (+0.82) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.229 (+4.75) CONT  [0.0 s, 137 MB]
+  canonical mu0.59|t50|C3000  : U -0.009 (-0.20) CONS | C +0.027 (+0.32) CONS | M +0.064 (+0.82) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.178 (+3.62) CONT  [0.0 s, 137 MB]
+  canonical mu0.59|t50|C6000  : U -0.066 (-1.38) CONS | C +0.027 (+0.32) CONS | M +0.064 (+0.82) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.121 (+2.38) TENS  [0.0 s, 137 MB]
+  canonical mu0.59|t90|C1500  : U +0.194 (+3.14) CONT | C +0.027 (+0.33) CONS | M +0.064 (+0.82) CONS | I +0.165 (+2.42) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.321 (+6.32) CONT  [0.0 s, 138 MB]
+  canonical mu0.59|t90|C3000  : U +0.158 (+2.76) TENS | C +0.027 (+0.33) CONS | M +0.064 (+0.83) CONS | I +0.155 (+2.35) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.271 (+5.44) CONT  [0.0 s, 138 MB]
+  canonical mu0.59|t90|C6000  : U +0.101 (+1.85) CONS | C +0.027 (+0.34) CONS | M +0.064 (+0.83) CONS | I +0.142 (+2.22) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.212 (+4.29) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t50|C1500  : U +0.192 (+5.09) CONT | C +0.027 (+0.32) CONS | M +0.064 (+0.78) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.365 (+7.57) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t50|C3000  : U +0.127 (+2.76) TENS | C +0.027 (+0.32) CONS | M +0.064 (+0.78) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.334 (+7.01) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t50|C6000  : U +0.086 (+1.51) CONS | C +0.027 (+0.32) CONS | M +0.064 (+0.78) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.299 (+6.27) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t90|C1500  : U +0.239 (+3.85) CONT | C +0.027 (+0.32) CONS | M +0.064 (+0.81) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.403 (+7.93) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t90|C3000  : U +0.211 (+3.63) CONT | C +0.027 (+0.32) CONS | M +0.064 (+0.81) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.371 (+7.53) CONT  [0.0 s, 138 MB]
+  canonical mu1.22|t90|C6000  : U +0.176 (+3.32) CONT | C +0.027 (+0.32) CONS | M +0.064 (+0.81) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.334 (+6.94) CONT  [0.0 s, 138 MB]
+  alt       mu0.59|t50|C1500  : U +0.055 (+1.33) CONS | C +0.007 (+0.09) CONS | M +0.045 (+0.57) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.211 (+4.40) CONT  [0.0 s, 138 MB]
+  alt       mu0.59|t50|C3000  : U +0.007 (+0.15) CONS | C +0.007 (+0.09) CONS | M +0.045 (+0.58) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.163 (+3.36) CONT  [0.0 s, 138 MB]
+  alt       mu0.59|t50|C6000  : U -0.052 (-1.01) CONS | C +0.007 (+0.09) CONS | M +0.045 (+0.58) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.110 (+2.20) TENS  [0.0 s, 138 MB]
+  alt       mu0.59|t90|C1500  : U +0.184 (+2.98) TENS | C +0.007 (+0.09) CONS | M +0.045 (+0.57) CONS | I +0.131 (+1.90) CONS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.292 (+5.77) CONT  [0.0 s, 138 MB]
+  alt       mu0.59|t90|C3000  : U +0.150 (+2.58) TENS | C +0.007 (+0.09) CONS | M +0.045 (+0.57) CONS | I +0.123 (+1.84) CONS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.246 (+4.95) CONT  [0.0 s, 138 MB]
+  alt       mu0.59|t90|C6000  : U +0.098 (+1.79) CONS | C +0.007 (+0.09) CONS | M +0.045 (+0.57) CONS | I +0.112 (+1.73) CONS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.190 (+3.88) CONT  [0.0 s, 138 MB]
+  alt       mu1.22|t50|C1500  : U +0.196 (+6.20) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.55) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.340 (+6.95) CONT  [0.0 s, 138 MB]
+  alt       mu1.22|t50|C3000  : U +0.160 (+3.80) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.55) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.311 (+6.47) CONT  [0.0 s, 138 MB]
+  alt       mu1.22|t50|C6000  : U +0.126 (+2.17) TENS | C +0.007 (+0.09) CONS | M +0.045 (+0.55) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.279 (+5.83) CONT  [0.0 s, 138 MB]
+  alt       mu1.22|t90|C1500  : U +0.227 (+3.67) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.56) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.369 (+7.22) CONT  [0.0 s, 138 MB]
+  alt       mu1.22|t90|C3000  : U +0.202 (+3.50) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.57) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.340 (+6.85) CONT  [0.0 s, 138 MB]
+  alt       mu1.22|t90|C6000  : U +0.168 (+3.20) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.57) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.305 (+6.32) CONT  [0.0 s, 138 MB]
+
+======================================================================================================================
+H-CF, reading (M) [ALTERNATIVE]: 12 corners x 2 footings
+======================================================================================================================
+  canonical mu0.59|t50|C1500  : U +0.060 (+1.11) CONS | C -0.021 (-0.27) CONS | M +0.064 (+0.79) CONS | I +0.157 (+2.59) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.193 (+3.78) CONT  [0.0 s, 138 MB]
+  canonical mu0.59|t50|C3000  : U -0.010 (-0.19) CONS | C -0.034 (-0.45) CONS | M +0.064 (+0.78) CONS | I +0.140 (+2.33) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.101 (+1.99) CONS  [0.0 s, 138 MB]
+  canonical mu0.59|t50|C6000  : U -0.081 (-1.55) CONS | C -0.058 (-0.80) CONS | M +0.050 (+0.60) CONS | I +0.097 (+1.54) CONS | S 1.00 (0 f_ex>0, max +0.000) CONS | L -0.008 (-0.16) CONS  [0.0 s, 138 MB]
+  canonical mu0.59|t90|C1500  : U +0.292 (+5.01) CONT | C +0.027 (+0.34) CONS | M +0.064 (+0.78) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.421 (+7.41) CONT  [0.0 s, 138 MB]
+  canonical mu0.59|t90|C3000  : U +0.217 (+3.85) CONT | C +0.007 (+0.09) CONS | M +0.064 (+0.79) CONS | I +0.183 (+2.60) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.355 (+6.44) CONT  [0.0 s, 138 MB]
+  canonical mu0.59|t90|C6000  : U +0.139 (+2.47) TENS | C -0.020 (-0.26) CONS | M +0.064 (+0.78) CONS | I +0.170 (+2.64) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.274 (+5.07) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t50|C1500  : U +0.146 (+2.75) TENS | C +0.027 (+0.34) CONS | M +0.064 (+0.80) CONS | I +0.174 (+2.63) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.301 (+5.96) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t50|C3000  : U +0.082 (+1.57) CONS | C +0.020 (+0.26) CONS | M +0.064 (+0.80) CONS | I +0.164 (+2.63) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.229 (+4.62) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t50|C6000  : U +0.016 (+0.32) CONS | C +0.010 (+0.13) CONS | M +0.064 (+0.80) CONS | I +0.154 (+2.56) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.148 (+3.01) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t90|C1500  : U +0.315 (+3.95) CONT | C +0.027 (+0.32) CONS | M +0.064 (+0.79) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.472 (+8.13) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t90|C3000  : U +0.300 (+5.03) CONT | C +0.027 (+0.32) CONS | M +0.064 (+0.79) CONS | I +0.194 (+2.53) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.430 (+7.62) CONT  [0.0 s, 139 MB]
+  canonical mu1.22|t90|C6000  : U +0.224 (+4.00) CONT | C +0.027 (+0.33) CONS | M +0.064 (+0.79) CONS | I +0.186 (+2.59) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.366 (+6.75) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t50|C1500  : U +0.060 (+1.11) CONS | C -0.039 (-0.51) CONS | M +0.045 (+0.55) CONS | I +0.122 (+1.98) CONS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.174 (+3.41) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t50|C3000  : U -0.010 (-0.19) CONS | C -0.042 (-0.56) CONS | M +0.045 (+0.55) CONS | I +0.109 (+1.82) CONS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.086 (+1.70) CONS  [0.0 s, 139 MB]
+  alt       mu0.59|t50|C6000  : U -0.081 (-1.55) CONS | C -0.066 (-0.92) CONS | M +0.040 (+0.48) CONS | I +0.079 (+1.27) CONS | S 1.00 (0 f_ex>0, max +0.000) CONS | L -0.019 (-0.36) CONS  [0.0 s, 139 MB]
+  alt       mu0.59|t90|C1500  : U +0.292 (+4.69) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.55) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.391 (+6.85) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t90|C3000  : U +0.217 (+3.86) CONT | C -0.003 (-0.04) CONS | M +0.045 (+0.55) CONS | I +0.148 (+2.05) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.329 (+5.95) CONT  [0.0 s, 139 MB]
+  alt       mu0.59|t90|C6000  : U +0.139 (+2.47) TENS | C -0.029 (-0.40) CONS | M +0.045 (+0.55) CONS | I +0.135 (+2.05) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.252 (+4.66) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t50|C1500  : U +0.146 (+2.75) TENS | C +0.007 (+0.09) CONS | M +0.045 (+0.56) CONS | I +0.139 (+2.05) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.278 (+5.48) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t50|C3000  : U +0.082 (+1.57) CONS | C +0.007 (+0.10) CONS | M +0.045 (+0.56) CONS | I +0.129 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.207 (+4.18) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t50|C6000  : U +0.016 (+0.32) CONS | C +0.000 (+0.01) CONS | M +0.045 (+0.56) CONS | I +0.119 (+1.96) CONS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.130 (+2.66) TENS  [0.0 s, 139 MB]
+  alt       mu1.22|t90|C1500  : U +0.295 (+3.46) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.56) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.436 (+7.47) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t90|C3000  : U +0.293 (+4.57) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.55) CONS | I +0.155 (+2.03) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.398 (+7.01) CONT  [0.0 s, 139 MB]
+  alt       mu1.22|t90|C6000  : U +0.224 (+4.03) CONT | C +0.007 (+0.09) CONS | M +0.045 (+0.55) CONS | I +0.151 (+2.04) TENS | S 1.00 (0 f_ex>0, max +0.000) CONS | L +0.340 (+6.23) CONT  [0.0 s, 139 MB]
+
+======================================================================================================================
+VERDICT (criteria section 4)
+======================================================================================================================
+  (S) canonical U: CONSISTENT  5 / TENSION  2 / CONTRADICTED  5 of 12
+  (S) canonical C: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (S) canonical M: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (S) canonical I: CONSISTENT  0 / TENSION 12 / CONTRADICTED  0 of 12
+  (S) canonical S: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (S) canonical L: CONSISTENT  0 / TENSION  1 / CONTRADICTED 11 of 12
+  (S) alt       U: CONSISTENT  4 / TENSION  3 / CONTRADICTED  5 of 12
+  (S) alt       C: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (S) alt       M: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (S) alt       I: CONSISTENT  3 / TENSION  9 / CONTRADICTED  0 of 12
+  (S) alt       S: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (S) alt       L: CONSISTENT  0 / TENSION  1 / CONTRADICTED 11 of 12
+  (M) canonical U: CONSISTENT  5 / TENSION  2 / CONTRADICTED  5 of 12
+  (M) canonical C: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (M) canonical M: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (M) canonical I: CONSISTENT  1 / TENSION 11 / CONTRADICTED  0 of 12
+  (M) canonical S: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (M) canonical L: CONSISTENT  2 / TENSION  0 / CONTRADICTED 10 of 12
+  (M) alt       U: CONSISTENT  5 / TENSION  2 / CONTRADICTED  5 of 12
+  (M) alt       C: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (M) alt       M: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (M) alt       I: CONSISTENT  4 / TENSION  8 / CONTRADICTED  0 of 12
+  (M) alt       S: CONSISTENT 12 / TENSION  0 / CONTRADICTED  0 of 12
+  (M) alt       L: CONSISTENT  2 / TENSION  1 / CONTRADICTED  9 of 12
+
+  H-CF (S) [headline]: PARTIAL
+  H-CF (M) [alternative]: PARTIAL (corner-selectable)
+
+======================================================================================================================
+VARIANTS (reading S; a variant that changes the verdict marks it FRAGILE)
+======================================================================================================================
+  V1 Delta_vir = 18 pi^2            : PARTIAL
+  V2 onset z_coll (13.3 Gyr)        : PARTIAL
+  V3 Upsilon_V 1 for I and L        : FAILS   <-- changes the verdict
+  V3 Upsilon_V 4 for I and L        : PARTIAL (corner-selectable)   <-- changes the verdict
+  V4 uniform recipe (Ups floor on I, L): PARTIAL (corner-selectable)   <-- changes the verdict
+  V5 Upsilon_SFH (CFG827) for I and L: PARTIAL
+  V6 luminosity-class tau default   : PARTIAL
+
+  FRAGILE: YES (V3 Upsilon_V 1 for I and L, V3 Upsilon_V 4 for I and L, V4 uniform recipe (Ups floor on I, L))
+
+======================================================================================================================
+UNGRADED REPORTS (criteria section 6)
+======================================================================================================================
+  D3 [canonical] LVD-83 intrinsic scatter of ln(sigma_obs/sigma_pred) (ML, eps + s_int): bare law 0.462 (95% 0.388-0.557); CFG877 universal clump sigma_x 7.53: 0.271 (mean E -0.013); H-CF (S) 0.335-0.378, (M) 0.340-0.450 over 12 corners
+       Spearman rho(H-CF predicted boost, observed excess): (S) +0.56 to +0.62; (M) +0.30 to +0.60; dwarfs boosted (S) 26-55 of 83
+  D3 [alt] LVD-83 intrinsic scatter of ln(sigma_obs/sigma_pred) (ML, eps + s_int): bare law 0.462 (95% 0.388-0.557); CFG877 universal clump sigma_x 7.49: 0.282 (mean E -0.012); H-CF (S) 0.331-0.383, (M) 0.335-0.456 over 12 corners
+       Spearman rho(H-CF predicted boost, observed excess): (S) +0.56 to +0.63; (M) +0.25 to +0.60; dwarfs boosted (S) 25-53 of 83
+  D4 cold floor-halo mass inside 300 pc over the 83 (1-f_b) M_NFW(<0.3 kpc): mu0.59|t50|C1500 median 4.44e+06 (16-84% 2.3e+06-5.9e+06); mu0.59|t90|C1500 median 1.62e+06 (16-84% 8.3e+05-2.2e+06); mu1.22|t50|C1500 median 2.88e+06 (16-84% 1.6e+06-3.7e+06); mu1.22|t90|C1500 median 1.10e+06 (16-84% 5.7e+05-1.5e+06)
+       floor-halo V_max (z_f 5): mu0.59|C1500 16.7 km/s, mu0.59|C3000 17.0 km/s, mu0.59|C6000 17.5 km/s, mu1.22|C1500 11.6 km/s, mu1.22|C3000 11.8 km/s, mu1.22|C6000 12.2 km/s; V_vir 16.7 / 11.6 km/s for every epoch
+  D5 clusters: canonical|Mb1e+13|mu0.59: f_ex 0 (edge phantom 2.1e+14 vs cold floor 2.0e+09); (M) floor(<0.5 Mpc) 2.0e+09 vs phantom 3.6e+13; canonical|Mb1e+13|mu1.22: f_ex 0 (edge phantom 2.1e+14 vs cold floor 6.6e+08); (M) floor(<0.5 Mpc) 6.6e+08 vs phantom 3.6e+13; canonical|Mb1e+14|mu0.59: f_ex 0 (edge phantom 1.2e+15 vs cold floor 2.0e+09); (M) floor(<0.5 Mpc) 2.0e+09 vs phantom 8.6e+13; canonical|Mb1e+14|mu1.22: f_ex 0 (edge phantom 1.2e+15 vs cold floor 6.6e+08); (M) floor(<0.5 Mpc) 6.6e+08 vs phantom 8.6e+13
+  D7 Coma UDGs [canonical] <E_obs> +0.760 ln; H-CF <E_pred> (S) +0.000 to +0.000 (f_ex > 0 in 0/9 at most), (M) +0.000 to +0.000 over z_f 0-5, both mu, C 3000
+  D6 DF2/DF4 [canonical] E_obs NGC1052-DF2 -1.71, NGC1052-DF4 -2.17; H-CF (no primordial halo): E_pred = 0 exactly; with a floor halo (any z_f 0-5): (S) up to +0.000, (M) up to +0.000
+  D7 Coma UDGs [alt] <E_obs> +0.669 ln; H-CF <E_pred> (S) +0.000 to +0.000 (f_ex > 0 in 0/9 at most), (M) +0.000 to +0.000 over z_f 0-5, both mu, C 3000
+  D6 DF2/DF4 [alt] E_obs NGC1052-DF2 -1.80, NGC1052-DF4 -2.26; H-CF (no primordial halo): E_pred = 0 exactly; with a floor halo (any z_f 0-5): (S) up to +0.000, (M) up to +0.000
+
+======================================================================================================================
+HEADLINE (reading S, both footings): class statistic range over the 12 corners
+======================================================================================================================
+  canonical U: bare +0.325 (+3.77)  ->  H-CF -0.066 to +0.239 (z -1.38 to +5.09)
+  canonical C: bare +0.027 (+0.32)  ->  H-CF +0.027 to +0.027 (z +0.32 to +0.34)
+  canonical M: bare +0.064 (+0.78)  ->  H-CF +0.064 to +0.064 (z +0.78 to +0.83)
+  canonical I: bare +0.194 (+2.53)  ->  H-CF +0.142 to +0.194 (z +2.22 to +2.53)
+  canonical S: bare +1.000  ->  H-CF +1.000 to +1.000
+  canonical L: bare +0.518 (+8.86)  ->  H-CF +0.121 to +0.403 (z +2.38 to +7.93)
+  alt       U: bare +0.304 (+3.55)  ->  H-CF -0.052 to +0.227 (z -1.01 to +6.20)
+  alt       C: bare +0.007 (+0.09)  ->  H-CF +0.007 to +0.007 (z +0.09 to +0.09)
+  alt       M: bare +0.045 (+0.55)  ->  H-CF +0.045 to +0.045 (z +0.55 to +0.58)
+  alt       I: bare +0.155 (+2.03)  ->  H-CF +0.112 to +0.155 (z +1.73 to +2.03)
+  alt       S: bare +1.000  ->  H-CF +1.000 to +1.000
+  alt       L: bare +0.472 (+8.10)  ->  H-CF +0.110 to +0.369 (z +2.20 to +7.22)
+
+  H-CF (S) PARTIAL; H-CF (M) PARTIAL (corner-selectable); FRAGILE YES.  kappa = 1/2 FITTED; footings never pooled; not theory closed.
+
+  runtime 5 s, peak RSS 142 MB, exit 0
