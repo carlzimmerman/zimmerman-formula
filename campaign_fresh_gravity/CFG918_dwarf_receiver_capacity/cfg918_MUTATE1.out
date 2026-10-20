@@ -1,0 +1,119 @@
+CFG918 -- sol61 roadmap gate 1: outer-envelope E/J receiver capacity (Draco, Sextans, Fornax, Leo I)
+criteria d74df7476 (+ A1 8c450e4d1, post hoc, reported only); mode main; MUTATE 1; G = 4.301969e-03 pc (km/s)^2/Msun
+kappa = 1/2 FITTED; footings never pooled; B0/B1 never pooled; necessary capacity only (not formation)
+inputs:
+  real_research/data/dsph/lvd_dwarf_mw.csv  sha256 6970dea6a1c29f9e
+  campaign_fresh_gravity/CFG827_dwarf_age_sfh_ml/cfg827_results.json  sha256 c0ea9e1f8697afba
+  campaign_fresh_gravity/CFG824_dwarf_age_fossil/cfg824_results.json  sha256 4f94c8e9876946fa
+  campaign_fresh_gravity/CFG822_hex_dsph/cfg822_results.json  sha256 82cf421196215193
+  campaign_fresh_gravity/CFG861_classical_dsph_binaries/cfg861_results.json  sha256 11d55e10040389a5
+  campaign_fresh_gravity/CFG853_cold_core_transport/cfg853_results.json  sha256 27574c911ceddaeb
+  campaign_fresh_gravity/CFG916_lock_and_release/cfg916_results.json  sha256 6eb1bc0fa1b84ee2
+  sol61_push/formation_one_shot_2026_10_19/receipt.json  sha256 38ab9bfe5b72c2cc
+  sol61_push/ROADMAP_COLD_ENERGY_MECHANISMS_2026-10-19.md  sha256 48b1e13332d6b4b4
+  Draco    M_V -8.87 a 193.22 pc Ups 1.9016 (CFG827 SFH) sigma 9.55 delta861 -0.03173 r_ta 26342/26342 pc
+  Sextans  M_V -8.72 a 485.89 pc Ups 2.0000 (assumed 2) sigma 7.9 delta861 -0.16063 r_ta 25156/25157 pc
+  Fornax   M_V -13.39 a 695.33 pc Ups 1.0200 (CFG827 SFH) sigma 12.1 delta861 -0.00609 r_ta 105514/105514 pc
+  Leo I    M_V -11.82 a 229.10 pc Ups 0.8093 (CFG827 SFH) sigma 9.29 delta861 -0.00019 r_ta 65160/65159 pc
+CONTROLS
+  K1 roadmap table (12 numbers, half-digit) + CFG853 JSON (1e-9): PASS  Draco Mrem 2.77236e+07 vs 2.77236e7 (ok); Draco F_B0 0.4693028 vs .469303 (ok); Draco F_B1 0.4276637 vs .427664 (ok); Sextans Mrem 2.539576e+07 vs 2.53958e7 (ok); Sextans F_B0 0.9885403 vs .988540 (ok); Sextans F_B1 0.6452872 vs .645287 (ok); Fornax Mrem 9.90289e+08 vs 9.90289e8 (ok); Fornax F_B0 0.01306947 vs .0130695 (ok); Fornax F_B1 0.01173927 vs .0117393 (ok); Leo I Mrem 1.884366e+08 vs 1.88437e8 (ok); Leo I F_B0 0.03451309 vs .0345131 (ok); Leo I F_B1 0.03447143 vs .0344714 (ok)
+  K2 roadmap j^2/alpha receiver fractions (9, 1e-12): PASS  (0.05,0.1)->0.025 (0.05,1)->0.0025 (0.05,10)->0.00025 (0.1,0.1)->0.1 (0.1,1)->0.01 (0.1,10)->0.001 (0.2,0.1)->0.4 (0.2,1)->0.04 (0.2,10)->0.004
+  K3a ring J^2 = 2IK: PASS  ratio 1.000000000000000
+  K3b random isotropic J^2 < 2IK: PASS  J^2/(2IK) = 4.925e-06
+  K4 analytic energetics (1e-6): PASS  uniform +1.46e-12; thin shell -6.81e-09; r^-2 shell +6.66e-16; Plummer -2.22e-16; patch W_ext worst 5.55e-16
+  K5 CE-FM-089 release 6.37e46 J / 469 km/s: PASS  6.3684e+46 J, 469.03 km/s
+  K6 Sextans 1-F .01146 / .35471: PASS  0.011460 / 0.354713
+  K3c optimum J^2 <= 2 Mout Rmax^2 (KA+KB) [subset]: PASS  max ratio 1.000000 over 74 optima
+  K7 ledger closure, independent recomputation (1e-9 rel) [subset]: PASS  max |dE/E| 2.29e-11 (discrete-shell core, Richardson 2e4/4e4)
+controls ALL PASS  (0.8 s)
+
+MOST FAVOURABLE RECEIVER AUDIT FIRST: lam_c = 0 column of each cell decides EXCLUDED (see 'MF' entries)
+
+  K3c [all 68793 optima of the frozen run]: PASS  max J^2/(2 Mout Rmax^2 K) = 1.000000
+  K7  [all 68793 optima of the frozen run]: PASS  max |dE/E| = 2.29e-11
+
+=== CLASSES (frozen) ===
+
+-- footing canonical, mass branch B0 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.469303  1.301e+07  1.471e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.988540   2.51e+07   2.91e+05 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   EXCL  MF   - all   -   INDET MF1.00 all0.37
+Fornax    0.013069  1.294e+07  9.773e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.034513  6.504e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing canonical, mass branch B1 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.427664  1.186e+07  1.587e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.645287  1.639e+07  9.008e+06 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF0.86 all   -   ALLOW MF1.00 all1.00
+Fornax    0.011739  1.163e+07  9.787e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.034471  6.496e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing alt, mass branch B0 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.469303  1.301e+07  1.471e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.988540   2.51e+07   2.91e+05 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   EXCL  MF   - all   -   INDET MF1.00 all0.37
+Fornax    0.005456  5.362e+06  9.773e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.028957  5.425e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing alt, mass branch B1 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.427664  1.186e+07  1.587e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.645287  1.639e+07  9.008e+06 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF0.86 all   -   ALLOW MF1.00 all1.00
+Fornax    0.004116  4.044e+06  9.787e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.028915  5.417e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+=== CLASSES (MUTATE-1) ===
+
+-- footing canonical, mass branch B0 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.469303  1.301e+07  1.471e+07 |   INDET MF1.00 all   -   INDET MF1.00 all   - |   INDET MF1.00 all   -   INDET MF1.00 all   -
+Sextans   0.988540   2.51e+07   2.91e+05 |   EXCL  MF   - all   -   INDET MF0.17 all   - |   EXCL  MF   - all   -   INDET MF1.00 all   -
+Fornax    0.013069  1.294e+07  9.773e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.034513  6.504e+06  1.819e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing canonical, mass branch B1 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.427664  1.186e+07  1.587e+07 |   INDET MF1.00 all   -   INDET MF1.00 all   - |   INDET MF1.00 all   -   INDET MF1.00 all   -
+Sextans   0.645287  1.639e+07  9.008e+06 |   INDET MF0.77 all   -   INDET MF1.00 all   - |   INDET MF1.00 all   -   INDET MF1.00 all   -
+Fornax    0.011739  1.163e+07  9.787e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.034471  6.496e+06  1.819e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing alt, mass branch B0 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.469303  1.301e+07  1.471e+07 |   INDET MF1.00 all   -   INDET MF1.00 all   - |   INDET MF1.00 all   -   INDET MF1.00 all   -
+Sextans   0.988540   2.51e+07   2.91e+05 |   EXCL  MF   - all   -   INDET MF0.17 all   - |   EXCL  MF   - all   -   INDET MF1.00 all   -
+Fornax    0.005456  5.362e+06  9.773e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.028957  5.425e+06  1.819e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing alt, mass branch B1 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.427664  1.186e+07  1.587e+07 |   INDET MF1.00 all   -   INDET MF1.00 all   - |   INDET MF1.00 all   -   INDET MF1.00 all   -
+Sextans   0.645287  1.639e+07  9.008e+06 |   INDET MF0.77 all   -   INDET MF1.00 all   - |   INDET MF1.00 all   -   INDET MF1.00 all   -
+Fornax    0.004116  4.044e+06  9.787e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.028915  5.417e+06  1.819e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+MUTATE-1: 24 of 64 graded classes change -> BITES
+  canonical|B0|Draco|G1|RB: CAPACITY EXCLUDED -> INDETERMINATE
+  canonical|B0|Draco|G1|RE: CAPACITY ALLOWED -> INDETERMINATE
+  canonical|B0|Draco|G2|RE: CAPACITY ALLOWED -> INDETERMINATE
+  canonical|B0|Sextans|G1|RE: CAPACITY ALLOWED -> INDETERMINATE
+  canonical|B0|Leo I|G1|RB: INDETERMINATE -> CAPACITY ALLOWED
+  canonical|B1|Draco|G1|RB: CAPACITY EXCLUDED -> INDETERMINATE
+  canonical|B1|Draco|G1|RE: CAPACITY ALLOWED -> INDETERMINATE
+  canonical|B1|Draco|G2|RE: CAPACITY ALLOWED -> INDETERMINATE
+  canonical|B1|Sextans|G1|RB: CAPACITY EXCLUDED -> INDETERMINATE
+  canonical|B1|Sextans|G1|RE: CAPACITY ALLOWED -> INDETERMINATE
+  canonical|B1|Sextans|G2|RE: CAPACITY ALLOWED -> INDETERMINATE
+  canonical|B1|Leo I|G1|RB: INDETERMINATE -> CAPACITY ALLOWED
+  alt|B0|Draco|G1|RB: CAPACITY EXCLUDED -> INDETERMINATE
+  alt|B0|Draco|G1|RE: CAPACITY ALLOWED -> INDETERMINATE
+  alt|B0|Draco|G2|RE: CAPACITY ALLOWED -> INDETERMINATE
+  alt|B0|Sextans|G1|RE: CAPACITY ALLOWED -> INDETERMINATE
+  alt|B0|Leo I|G1|RB: INDETERMINATE -> CAPACITY ALLOWED
+  alt|B1|Draco|G1|RB: CAPACITY EXCLUDED -> INDETERMINATE
+  alt|B1|Draco|G1|RE: CAPACITY ALLOWED -> INDETERMINATE
+  alt|B1|Draco|G2|RE: CAPACITY ALLOWED -> INDETERMINATE
+  alt|B1|Sextans|G1|RB: CAPACITY EXCLUDED -> INDETERMINATE
+  alt|B1|Sextans|G1|RE: CAPACITY ALLOWED -> INDETERMINATE
+  alt|B1|Sextans|G2|RE: CAPACITY ALLOWED -> INDETERMINATE
+  alt|B1|Leo I|G1|RB: INDETERMINATE -> CAPACITY ALLOWED

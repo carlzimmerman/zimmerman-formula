@@ -1,0 +1,490 @@
+CFG918 -- sol61 roadmap gate 1: outer-envelope E/J receiver capacity (Draco, Sextans, Fornax, Leo I)
+criteria d74df7476 (+ A1 8c450e4d1, post hoc, reported only); mode main; MUTATE off; G = 4.301969e-03 pc (km/s)^2/Msun
+kappa = 1/2 FITTED; footings never pooled; B0/B1 never pooled; necessary capacity only (not formation)
+inputs:
+  real_research/data/dsph/lvd_dwarf_mw.csv  sha256 6970dea6a1c29f9e
+  campaign_fresh_gravity/CFG827_dwarf_age_sfh_ml/cfg827_results.json  sha256 c0ea9e1f8697afba
+  campaign_fresh_gravity/CFG824_dwarf_age_fossil/cfg824_results.json  sha256 4f94c8e9876946fa
+  campaign_fresh_gravity/CFG822_hex_dsph/cfg822_results.json  sha256 82cf421196215193
+  campaign_fresh_gravity/CFG861_classical_dsph_binaries/cfg861_results.json  sha256 11d55e10040389a5
+  campaign_fresh_gravity/CFG853_cold_core_transport/cfg853_results.json  sha256 27574c911ceddaeb
+  campaign_fresh_gravity/CFG916_lock_and_release/cfg916_results.json  sha256 6eb1bc0fa1b84ee2
+  sol61_push/formation_one_shot_2026_10_19/receipt.json  sha256 38ab9bfe5b72c2cc
+  sol61_push/ROADMAP_COLD_ENERGY_MECHANISMS_2026-10-19.md  sha256 48b1e13332d6b4b4
+  Draco    M_V -8.87 a 193.22 pc Ups 1.9016 (CFG827 SFH) sigma 9.55 delta861 -0.03173 r_ta 26342/26342 pc
+  Sextans  M_V -8.72 a 485.89 pc Ups 2.0000 (assumed 2) sigma 7.9 delta861 -0.16063 r_ta 25156/25157 pc
+  Fornax   M_V -13.39 a 695.33 pc Ups 1.0200 (CFG827 SFH) sigma 12.1 delta861 -0.00609 r_ta 105514/105514 pc
+  Leo I    M_V -11.82 a 229.10 pc Ups 0.8093 (CFG827 SFH) sigma 9.29 delta861 -0.00019 r_ta 65160/65159 pc
+CONTROLS
+  K1 roadmap table (12 numbers, half-digit) + CFG853 JSON (1e-9): PASS  Draco Mrem 2.77236e+07 vs 2.77236e7 (ok); Draco F_B0 0.4693028 vs .469303 (ok); Draco F_B1 0.4276637 vs .427664 (ok); Sextans Mrem 2.539576e+07 vs 2.53958e7 (ok); Sextans F_B0 0.9885403 vs .988540 (ok); Sextans F_B1 0.6452872 vs .645287 (ok); Fornax Mrem 9.90289e+08 vs 9.90289e8 (ok); Fornax F_B0 0.01306947 vs .0130695 (ok); Fornax F_B1 0.01173927 vs .0117393 (ok); Leo I Mrem 1.884366e+08 vs 1.88437e8 (ok); Leo I F_B0 0.03451309 vs .0345131 (ok); Leo I F_B1 0.03447143 vs .0344714 (ok)
+  K2 roadmap j^2/alpha receiver fractions (9, 1e-12): PASS  (0.05,0.1)->0.025 (0.05,1)->0.0025 (0.05,10)->0.00025 (0.1,0.1)->0.1 (0.1,1)->0.01 (0.1,10)->0.001 (0.2,0.1)->0.4 (0.2,1)->0.04 (0.2,10)->0.004
+  K3a ring J^2 = 2IK: PASS  ratio 1.000000000000000
+  K3b random isotropic J^2 < 2IK: PASS  J^2/(2IK) = 4.925e-06
+  K4 analytic energetics (1e-6): PASS  uniform +1.46e-12; thin shell -6.81e-09; r^-2 shell +6.66e-16; Plummer -2.22e-16; patch W_ext worst 5.55e-16
+  K5 CE-FM-089 release 6.37e46 J / 469 km/s: PASS  6.3684e+46 J, 469.03 km/s
+  K6 Sextans 1-F .01146 / .35471: PASS  0.011460 / 0.354713
+  K3c optimum J^2 <= 2 Mout Rmax^2 (KA+KB) [subset]: PASS  max ratio 1.000000 over 74 optima
+  K7 ledger closure, independent recomputation (1e-9 rel) [subset]: PASS  max |dE/E| 2.29e-11 (discrete-shell core, Richardson 2e4/4e4)
+controls ALL PASS  (0.6 s)
+
+MOST FAVOURABLE RECEIVER AUDIT FIRST: lam_c = 0 column of each cell decides EXCLUDED (see 'MF' entries)
+
+  K3c [all 68793 optima of the frozen run]: PASS  max J^2/(2 Mout Rmax^2 K) = 1.000000
+  K7  [all 68793 optima of the frozen run]: PASS  max |dE/E| = 2.29e-11
+
+=== CLASSES (frozen) ===
+
+-- footing canonical, mass branch B0 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.469303  1.301e+07  1.471e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.988540   2.51e+07   2.91e+05 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   EXCL  MF   - all   -   INDET MF1.00 all0.37
+Fornax    0.013069  1.294e+07  9.773e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.034513  6.504e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing canonical, mass branch B1 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.427664  1.186e+07  1.587e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.645287  1.639e+07  9.008e+06 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF0.86 all   -   ALLOW MF1.00 all1.00
+Fornax    0.011739  1.163e+07  9.787e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.034471  6.496e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing alt, mass branch B0 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.469303  1.301e+07  1.471e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.988540   2.51e+07   2.91e+05 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   EXCL  MF   - all   -   INDET MF1.00 all0.37
+Fornax    0.005456  5.362e+06  9.773e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.028957  5.425e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing alt, mass branch B1 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.427664  1.186e+07  1.587e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.645287  1.639e+07  9.008e+06 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF0.86 all   -   ALLOW MF1.00 all1.00
+Fornax    0.004116  4.044e+06  9.787e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.028915  5.417e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+=== SUMMARY ACROSS GEOMETRIES (per dwarf x branch x footing x receiver branch) ===
+  canonical|B0|Draco|RB: INDETERMINATE
+  canonical|B0|Sextans|RB: CAPACITY EXCLUDED
+  canonical|B0|Fornax|RB: CAPACITY ALLOWED
+  canonical|B0|Leo I|RB: INDETERMINATE
+  canonical|B0|Draco|RE: CAPACITY ALLOWED
+  canonical|B0|Sextans|RE: INDETERMINATE
+  canonical|B0|Fornax|RE: CAPACITY ALLOWED
+  canonical|B0|Leo I|RE: CAPACITY ALLOWED
+  canonical|B1|Draco|RB: INDETERMINATE
+  canonical|B1|Sextans|RB: INDETERMINATE
+  canonical|B1|Fornax|RB: CAPACITY ALLOWED
+  canonical|B1|Leo I|RB: INDETERMINATE
+  canonical|B1|Draco|RE: CAPACITY ALLOWED
+  canonical|B1|Sextans|RE: CAPACITY ALLOWED
+  canonical|B1|Fornax|RE: CAPACITY ALLOWED
+  canonical|B1|Leo I|RE: CAPACITY ALLOWED
+  alt|B0|Draco|RB: INDETERMINATE
+  alt|B0|Sextans|RB: CAPACITY EXCLUDED
+  alt|B0|Fornax|RB: CAPACITY ALLOWED
+  alt|B0|Leo I|RB: INDETERMINATE
+  alt|B0|Draco|RE: CAPACITY ALLOWED
+  alt|B0|Sextans|RE: INDETERMINATE
+  alt|B0|Fornax|RE: CAPACITY ALLOWED
+  alt|B0|Leo I|RE: CAPACITY ALLOWED
+  alt|B1|Draco|RB: INDETERMINATE
+  alt|B1|Sextans|RB: INDETERMINATE
+  alt|B1|Fornax|RB: CAPACITY ALLOWED
+  alt|B1|Leo I|RB: INDETERMINATE
+  alt|B1|Draco|RE: CAPACITY ALLOWED
+  alt|B1|Sextans|RE: CAPACITY ALLOWED
+  alt|B1|Fornax|RE: CAPACITY ALLOWED
+  alt|B1|Leo I|RE: CAPACITY ALLOWED
+
+=== FOUR-DWARF LINE (per footing x branch x geometry x receiver branch) ===
+  canonical|B0|G1|RB: BROKEN
+  canonical|B0|G2|RB: BROKEN
+  canonical|B0|G1|RE: no capacity obstruction (not formation)
+  canonical|B0|G2|RE: no capacity obstruction (not formation)
+  canonical|B1|G1|RB: BROKEN
+  canonical|B1|G2|RB: no capacity obstruction (not formation)
+  canonical|B1|G1|RE: no capacity obstruction (not formation)
+  canonical|B1|G2|RE: no capacity obstruction (not formation)
+  alt|B0|G1|RB: BROKEN
+  alt|B0|G2|RB: BROKEN
+  alt|B0|G1|RE: no capacity obstruction (not formation)
+  alt|B0|G2|RE: no capacity obstruction (not formation)
+  alt|B1|G1|RB: BROKEN
+  alt|B1|G2|RB: no capacity obstruction (not formation)
+  alt|B1|G1|RE: no capacity obstruction (not formation)
+  alt|B1|G2|RE: no capacity obstruction (not formation)
+
+=== AMENDMENT A1 (POST HOC, reported only, no class weight) ===
+
+=== CLASSES (PH1 receiver r >= 2R) ===
+
+-- footing canonical, mass branch B0 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.469303  1.301e+07  1.471e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.988540   2.51e+07   2.91e+05 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   EXCL  MF   - all   -   INDET MF1.00 all0.37
+Fornax    0.013069  1.294e+07  9.773e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.034513  6.504e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing canonical, mass branch B1 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.427664  1.186e+07  1.587e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.645287  1.639e+07  9.008e+06 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF0.86 all   -   ALLOW MF1.00 all1.00
+Fornax    0.011739  1.163e+07  9.787e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.034471  6.496e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing alt, mass branch B0 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.469303  1.301e+07  1.471e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.988540   2.51e+07   2.91e+05 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   EXCL  MF   - all   -   INDET MF1.00 all0.37
+Fornax    0.005456  5.362e+06  9.773e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.028957  5.425e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing alt, mass branch B1 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.427664  1.186e+07  1.587e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.645287  1.639e+07  9.008e+06 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF0.86 all   -   ALLOW MF1.00 all1.00
+Fornax    0.004116  4.044e+06  9.787e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.028915  5.417e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+  PH1 receiver r >= 2R: 0 of 64 classes differ from the frozen classes
+
+=== CLASSES (PH3 record cored core only) ===
+
+-- footing canonical, mass branch B0 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.469303  1.301e+07  1.471e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF0.88 all   -   ALLOW MF1.00 all1.00
+Sextans   0.988540   2.51e+07   2.91e+05 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   EXCL  MF   - all   -   INDET MF1.00 all0.52
+Fornax    0.013069  1.294e+07  9.773e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.034513  6.504e+06  1.819e+08 |   INDET MF0.95 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing canonical, mass branch B1 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.427664  1.186e+07  1.587e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.645287  1.639e+07  9.008e+06 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00
+Fornax    0.011739  1.163e+07  9.787e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.034471  6.496e+06  1.819e+08 |   INDET MF0.95 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing alt, mass branch B0 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.469303  1.301e+07  1.471e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF0.88 all   -   ALLOW MF1.00 all1.00
+Sextans   0.988540   2.51e+07   2.91e+05 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   EXCL  MF   - all   -   INDET MF1.00 all0.52
+Fornax    0.005456  5.362e+06  9.773e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.028957  5.425e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+
+-- footing alt, mass branch B1 --
+dwarf            F   Mx[Msun]       Mout |                  G1 RB                  G1 RE |                  G2 RB                  G2 RE
+Draco     0.427664  1.186e+07  1.587e+07 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00
+Sextans   0.645287  1.639e+07  9.008e+06 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00 |   EXCL  MF   - all   -   ALLOW MF1.00 all1.00
+Fornax    0.004116  4.044e+06  9.787e+08 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+Leo I     0.028915  5.417e+06  1.819e+08 |   INDET MF1.00 all   -   ALLOW MF1.00 all1.00 |   ALLOW MF1.00 all1.00   ALLOW MF1.00 all1.00
+  PH3 record cored core only: 2 of 64 classes differ from the frozen classes
+    canonical|B1|Sextans|G2|RB: INDETERMINATE -> CAPACITY EXCLUDED
+    alt|B1|Sextans|G2|RB: INDETERMINATE -> CAPACITY EXCLUDED
+  PH2 Peebles spin at the critical lambda_c (phiK 0 / 1), frozen classes:
+    canonical|B0|Draco|G2|RB: lam_c,MF 1.0 -> lambda_P 0.336/0.291; lam_c,all None -> lambda_P -
+    canonical|B0|Sextans|G2|RE: lam_c,MF 1.0 -> lambda_P 0.336/0.291; lam_c,all 0.37 -> lambda_P 0.149/0.108
+    canonical|B0|Leo I|G1|RB: lam_c,MF 1.0 -> lambda_P 0.341/0.296; lam_c,all None -> lambda_P -
+    canonical|B1|Draco|G2|RB: lam_c,MF 1.0 -> lambda_P 0.336/0.291; lam_c,all None -> lambda_P -
+    canonical|B1|Sextans|G2|RB: lam_c,MF 0.86 -> lambda_P 0.307/0.251; lam_c,all None -> lambda_P -
+    canonical|B1|Leo I|G1|RB: lam_c,MF 1.0 -> lambda_P 0.341/0.296; lam_c,all None -> lambda_P -
+    alt|B0|Draco|G2|RB: lam_c,MF 1.0 -> lambda_P 0.336/0.291; lam_c,all None -> lambda_P -
+    alt|B0|Sextans|G2|RE: lam_c,MF 1.0 -> lambda_P 0.336/0.291; lam_c,all 0.37 -> lambda_P 0.149/0.108
+    alt|B0|Leo I|G1|RB: lam_c,MF 1.0 -> lambda_P 0.347/0.301; lam_c,all None -> lambda_P -
+    alt|B1|Draco|G2|RB: lam_c,MF 1.0 -> lambda_P 0.336/0.291; lam_c,all None -> lambda_P -
+    alt|B1|Sextans|G2|RB: lam_c,MF 0.86 -> lambda_P 0.307/0.251; lam_c,all None -> lambda_P -
+    alt|B1|Leo I|G1|RB: lam_c,MF 1.0 -> lambda_P 0.347/0.301; lam_c,all None -> lambda_P -
+
+=== LEDGERS (canonical and alt; B0 and B1) ===
+
+[canonical B0 Draco] M*=5.743e+05 R=257.6 pc s=5.3640 sigma=9.5500 M_need=1.639e+07 M_rem=2.77236e+07 M_x=1.30108e+07 (F=0.469303) M_out=1.47128e+07
+  G1: r_out=26342 pc  W_cc,i=-1.21e+08  W_ext,i=-7.702e+07  K_vir=9.873e+07  J_1=5.83e+11  E_init(lam0,phiK0)=-1.98e+08  E_init(lam1,phiK1)=-9.926e+07  lambda_P(lam1,phiK0/1)=0.385/0.334
+      cores: S: E_f=-1.109e+09 J_keep=4.31e+10  U: E_f=-1.496e+09 J_keep=0  C: E_f=-1.889e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|26341.7=-1.138e+09  U|26341.7=-1.525e+09  C|26341.7=-1.918e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = 9.4e+08  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.85e+08)
+      RB: CAPACITY EXCLUDED  lam_crit,MF=None  lam_crit,all=None  fail@lam0: 9/9  pass@lam1: 0/9
+         optimum (phiK1, core S, Rmax 26342, lam 1): no energy-feasible configuration
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=5.4e+11 J_cap=5.024e+12 [A: 4.66e+06 at 258 pc; B: 1.01e+07 at 26342 pc, K_B=1.79e+09, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=7.176e+12]
+  G2: r_out=1288 pc  W_cc,i=-1.918e+09  W_ext,i=-6.733e+08  K_vir=1.289e+09  J_1=1.406e+11  E_init(lam0,phiK0)=-2.591e+09  E_init(lam1,phiK1)=-1.302e+09  lambda_P(lam1,phiK0/1)=0.336/0.291
+      cores: S: E_f=-1.109e+09 J_keep=4.31e+10  U: E_f=-1.496e+09 J_keep=0  C: E_f=-1.889e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|1288.13=-1.699e+09  S|26341.7=-1.138e+09  U|1288.13=-2.087e+09  U|26341.7=-1.525e+09  C|1288.13=-2.479e+09  C|26341.7=-1.918e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -1.453e+09  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.85e+08)
+      RB: INDETERMINATE  lam_crit,MF=1.0  lam_crit,all=None  fail@lam0: 7/18  pass@lam1: 5/18
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=9.752e+10 J_cap=6.425e+11 [A: 1.47e+06 at 345 pc; B: 1.32e+07 at 22097 pc, K_B=3.12e+07, bound; CS form sqrt(2 Mout Rmax^2 K)=1.964e+12]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=9.752e+10 J_cap=3.419e+12 [A: 8.34e+06 at 258 pc; B: 6.38e+06 at 26342 pc, K_B=1.29e+09, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=7.454e+12]
+
+[canonical B0 Sextans] M*=5.261e+05 R=647.9 pc s=5.3640 sigma=7.9000 M_need=2.82e+07 M_rem=2.53958e+07 M_x=2.51047e+07 (F=0.988540) M_out=291027
+  G1: r_out=25156 pc  W_cc,i=-1.023e+08  W_ext,i=-5.433e+07  K_vir=7.806e+07  J_1=5.04e+11  E_init(lam0,phiK0)=-1.566e+08  E_init(lam1,phiK1)=-7.853e+07  lambda_P(lam1,phiK0/1)=0.369/0.319
+      cores: S: E_f=-1.329e+09 J_keep=1.66e+11  U: E_f=-1.711e+09 J_keep=0  C: E_f=-2.476e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|25156.4=-1.33e+09  U|25156.4=-1.712e+09  C|25156.4=-2.477e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = 1.173e+09  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.16e+08)
+      RB: CAPACITY EXCLUDED  lam_crit,MF=None  lam_crit,all=None  fail@lam0: 9/9  pass@lam1: 0/9
+         optimum (phiK1, core S, Rmax 25156, lam 1): no energy-feasible configuration
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 25156, lam 1): J_req=3.382e+11 J_cap=6.791e+11 [A: 0 at 648 pc; B: 2.91e+05 at 25156 pc, K_B=1.25e+09, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=6.791e+11]
+  G2: r_out=3239 pc  W_cc,i=-6.399e+08  W_ext,i=-2.247e+08  K_vir=4.302e+08  J_1=1.954e+11  E_init(lam0,phiK0)=-8.645e+08  E_init(lam1,phiK1)=-4.344e+08  lambda_P(lam1,phiK0/1)=0.336/0.291
+      cores: S: E_f=-1.329e+09 J_keep=1.66e+11  U: E_f=-1.711e+09 J_keep=0  C: E_f=-2.476e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|3239.27=-1.335e+09  S|25156.4=-1.33e+09  U|3239.27=-1.717e+09  U|25156.4=-1.712e+09  C|3239.27=-2.481e+09  C|25156.4=-2.477e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = 4.653e+08  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.16e+08)
+      RB: CAPACITY EXCLUDED  lam_crit,MF=None  lam_crit,all=None  fail@lam0: 18/18  pass@lam1: 0/18
+         optimum (phiK1, core S, Rmax 25156, lam 1): no energy-feasible configuration
+      RE: INDETERMINATE  lam_crit,MF=1.0  lam_crit,all=0.37  fail@lam0: 0/18  pass@lam1: 12/18
+         optimum (phiK1, core S, Rmax 25156, lam 1): J_req=2.968e+10 J_cap=5.746e+11 [A: 0 at 648 pc; B: 2.91e+05 at 25156 pc, K_B=8.96e+08, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=5.746e+11]
+
+[canonical B0 Fornax] M*=1.98e+07 R=927.1 pc s=3.6158 sigma=12.1000 M_need=9.466e+07 M_rem=9.90289e+08 M_x=1.29426e+07 (F=0.013069) M_out=9.77346e+08
+  G1: r_out=105514 pc  W_cc,i=-3.864e+10  W_ext,i=-1.753e+10  K_vir=2.801e+10  J_1=2.414e+14  E_init(lam0,phiK0)=-5.617e+10  E_init(lam1,phiK1)=-2.817e+10  lambda_P(lam1,phiK0/1)=0.352/0.305
+      cores: S: E_f=-2.99e+09 J_keep=2.43e+11  U: E_f=-4.679e+09 J_keep=0  C: E_f=-7.244e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|105514=-1.481e+10  U|105514=-1.649e+10  C|105514=-1.906e+10
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -4.137e+10  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.03e+10)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=2.412e+14 J_cap=4.85e+14 [A: 4.89e+07 at 1045 pc; B: 9.28e+08 at 99376 pc, K_B=1.28e+10, bound; CS form sqrt(2 Mout Rmax^2 K)=7.357e+14]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=2.412e+14 J_cap=2.185e+15 [A: 6.19e+08 at 927 pc; B: 3.58e+08 at 105514 pc, K_B=5.85e+11, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=5.036e+15]
+  G2: r_out=4636 pc  W_cc,i=-6.799e+11  W_ext,i=-1.664e+11  K_vir=4.21e+11  J_1=5.505e+13  E_init(lam0,phiK0)=-8.463e+11  E_init(lam1,phiK1)=-4.253e+11  lambda_P(lam1,phiK0/1)=0.312/0.270
+      cores: S: E_f=-2.99e+09 J_keep=2.43e+11  U: E_f=-4.679e+09 J_keep=0  C: E_f=-7.244e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|4635.53=-2.72e+11  S|105514=-1.481e+10  U|4635.53=-2.737e+11  U|105514=-1.649e+10  C|4635.53=-2.763e+11  C|105514=-1.906e+10
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -8.315e+11  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.03e+10)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=5.48e+13 J_cap=2.411e+14 [A: 5.54e+08 at 1110 pc; B: 4.24e+08 at 69361 pc, K_B=1.16e+10, bound; CS form sqrt(2 Mout Rmax^2 K)=2.996e+15]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=5.48e+13 J_cap=1.497e+15 [A: 7.66e+08 at 927 pc; B: 2.12e+08 at 105514 pc, K_B=4.54e+11, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=5.324e+15]
+
+[canonical B0 Leo I] M*=3.699e+06 R=305.5 pc s=2.6998 sigma=9.2900 M_need=1.838e+07 M_rem=1.88437e+08 M_x=6.50353e+06 (F=0.034513) M_out=1.81933e+08
+  G1: r_out=65160 pc  W_cc,i=-2.296e+09  W_ext,i=-9.12e+08  K_vir=1.599e+09  J_1=1.546e+13  E_init(lam0,phiK0)=-3.208e+09  E_init(lam1,phiK1)=-1.609e+09  lambda_P(lam1,phiK0/1)=0.341/0.296
+      cores: S: E_f=-7.906e+08 J_keep=2.9e+10  U: E_f=-1.187e+09 J_keep=0  C: E_f=-1.568e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|65159.5=-1.458e+09  U|65159.5=-1.855e+09  C|65159.5=-2.235e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -1.75e+09  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.13e+09)
+      RB: INDETERMINATE  lam_crit,MF=1.0  lam_crit,all=None  fail@lam0: 2/9  pass@lam1: 5/9
+         optimum (phiK1, core S, Rmax 65160, lam 1): J_req=1.543e+13 J_cap=3.168e+13 [A: 3.03e+06 at 969 pc; B: 1.79e+08 at 65160 pc, K_B=6.6e+08, bound; CS form sqrt(2 Mout Rmax^2 K)=3.524e+13]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 65160, lam 1): J_req=1.543e+13 J_cap=1.905e+14 [A: 1.15e+08 at 305 pc; B: 6.67e+07 at 65160 pc, K_B=6.33e+10, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=4.394e+14]
+  G2: r_out=1527 pc  W_cc,i=-7.472e+10  W_ext,i=-1.434e+10  K_vir=4.43e+10  J_1=2.576e+12  E_init(lam0,phiK0)=-8.905e+10  E_init(lam1,phiK1)=-4.476e+10  lambda_P(lam1,phiK0/1)=0.300/0.260
+      cores: S: E_f=-7.906e+08 J_keep=2.9e+10  U: E_f=-1.187e+09 J_keep=0  C: E_f=-1.568e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|1527.33=-2.928e+10  S|65159.5=-1.458e+09  U|1527.33=-2.968e+10  U|65159.5=-1.855e+09  C|1527.33=-3.006e+10  C|65159.5=-2.235e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -8.76e+10  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.13e+09)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 65160, lam 1): J_req=2.547e+12 J_cap=1.62e+13 [A: 1e+08 at 350 pc; B: 8.19e+07 at 49665 pc, K_B=5.71e+08, bound; CS form sqrt(2 Mout Rmax^2 K)=2.572e+14]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 65160, lam 1): J_req=2.547e+12 J_cap=1.291e+14 [A: 1.39e+08 at 305 pc; B: 4.25e+07 at 65160 pc, K_B=4.52e+10, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=4.511e+14]
+
+[canonical B1 Draco] M*=5.743e+05 R=257.6 pc s=5.3640 sigma=9.2074 M_need=1.523e+07 M_rem=2.77236e+07 M_x=1.18564e+07 (F=0.427664) M_out=1.58672e+07
+  G1: r_out=26342 pc  W_cc,i=-1.21e+08  W_ext,i=-7.702e+07  K_vir=9.873e+07  J_1=5.83e+11  E_init(lam0,phiK0)=-1.98e+08  E_init(lam1,phiK1)=-9.926e+07  lambda_P(lam1,phiK0/1)=0.385/0.334
+      cores: S: E_f=-9.536e+08 J_keep=3.81e+10  U: E_f=-1.295e+09 J_keep=0  C: E_f=-1.637e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|26341.7=-9.84e+08  U|26341.7=-1.325e+09  C|26341.7=-1.668e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = 7.86e+08  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.72e+08)
+      RB: CAPACITY EXCLUDED  lam_crit,MF=None  lam_crit,all=None  fail@lam0: 9/9  pass@lam1: 0/9
+         optimum (phiK1, core S, Rmax 26342, lam 1): no energy-feasible configuration
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=5.449e+11 J_cap=5.029e+12 [A: 5.82e+06 at 258 pc; B: 1e+07 at 26342 pc, K_B=1.79e+09, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=7.676e+12]
+  G2: r_out=1288 pc  W_cc,i=-1.918e+09  W_ext,i=-6.733e+08  K_vir=1.289e+09  J_1=1.406e+11  E_init(lam0,phiK0)=-2.591e+09  E_init(lam1,phiK1)=-1.302e+09  lambda_P(lam1,phiK0/1)=0.336/0.291
+      cores: S: E_f=-9.536e+08 J_keep=3.81e+10  U: E_f=-1.295e+09 J_keep=0  C: E_f=-1.637e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|1288.13=-1.575e+09  S|26341.7=-9.84e+08  U|1288.13=-1.916e+09  U|26341.7=-1.325e+09  C|1288.13=-2.259e+09  C|26341.7=-1.668e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -1.607e+09  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.72e+08)
+      RB: INDETERMINATE  lam_crit,MF=1.0  lam_crit,all=None  fail@lam0: 6/18  pass@lam1: 7/18
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=1.025e+11 J_cap=6.613e+11 [A: 3.17e+06 at 366 pc; B: 1.27e+07 at 23430 pc, K_B=2.98e+07, bound; CS form sqrt(2 Mout Rmax^2 K)=2.758e+12]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=1.025e+11 J_cap=3.424e+12 [A: 9.52e+06 at 258 pc; B: 6.35e+06 at 26342 pc, K_B=1.3e+09, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=7.971e+12]
+
+[canonical B1 Sextans] M*=5.261e+05 R=647.9 pc s=5.3640 sigma=6.5662 M_need=1.948e+07 M_rem=2.53958e+07 M_x=1.63876e+07 (F=0.645287) M_out=9.0082e+06
+  G1: r_out=25156 pc  W_cc,i=-1.023e+08  W_ext,i=-5.433e+07  K_vir=7.806e+07  J_1=5.04e+11  E_init(lam0,phiK0)=-1.566e+08  E_init(lam1,phiK1)=-7.853e+07  lambda_P(lam1,phiK0/1)=0.369/0.319
+      cores: S: E_f=-6.305e+08 J_keep=9.19e+10  U: E_f=-8.324e+08 J_keep=0  C: E_f=-1.211e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|25156.4=-6.492e+08  U|25156.4=-8.511e+08  C|25156.4=-1.23e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = 4.926e+08  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 8.02e+07)
+      RB: CAPACITY EXCLUDED  lam_crit,MF=None  lam_crit,all=None  fail@lam0: 9/9  pass@lam1: 0/9
+         optimum (phiK1, core S, Rmax 25156, lam 1): no energy-feasible configuration
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 25156, lam 1): J_req=4.121e+11 J_cap=2.592e+12 [A: 0 at 648 pc; B: 9.01e+06 at 25156 pc, K_B=5.89e+08, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=2.592e+12]
+  G2: r_out=3239 pc  W_cc,i=-6.399e+08  W_ext,i=-2.247e+08  K_vir=4.302e+08  J_1=1.954e+11  E_init(lam0,phiK0)=-8.645e+08  E_init(lam1,phiK1)=-4.344e+08  lambda_P(lam1,phiK0/1)=0.336/0.291
+      cores: S: E_f=-6.305e+08 J_keep=9.19e+10  U: E_f=-8.324e+08 J_keep=0  C: E_f=-1.211e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|3239.27=-7.755e+08  S|25156.4=-6.492e+08  U|3239.27=-9.775e+08  U|25156.4=-8.511e+08  C|3239.27=-1.356e+09  C|25156.4=-1.23e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -2.154e+08  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 8.02e+07)
+      RB: INDETERMINATE  lam_crit,MF=0.86  lam_crit,all=None  fail@lam0: 14/18  pass@lam1: 0/18
+         optimum (phiK1, core S, Rmax 25156, lam 1): no energy-feasible configuration
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 25156, lam 1): J_req=1.035e+11 J_cap=1.841e+12 [A: 3.15e+06 at 648 pc; B: 5.86e+06 at 25156 pc, K_B=4.46e+08, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=2.756e+12]
+
+[canonical B1 Fornax] M*=1.98e+07 R=927.1 pc s=3.6158 sigma=12.0155 M_need=9.334e+07 M_rem=9.90289e+08 M_x=1.16253e+07 (F=0.011739) M_out=9.78664e+08
+  G1: r_out=105514 pc  W_cc,i=-3.864e+10  W_ext,i=-1.753e+10  K_vir=2.801e+10  J_1=2.414e+14  E_init(lam0,phiK0)=-5.617e+10  E_init(lam1,phiK1)=-2.817e+10  lambda_P(lam1,phiK0/1)=0.352/0.305
+      cores: S: E_f=-2.668e+09 J_keep=2.17e+11  U: E_f=-4.181e+09 J_keep=0  C: E_f=-6.475e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|105514=-1.449e+10  U|105514=-1.6e+10  C|105514=-1.829e+10
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -4.169e+10  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.01e+10)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=2.412e+14 J_cap=4.836e+14 [A: 6.52e+07 at 1410 pc; B: 9.13e+08 at 105514 pc, K_B=1.14e+10, bound; CS form sqrt(2 Mout Rmax^2 K)=7.286e+14]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=2.412e+14 J_cap=2.185e+15 [A: 6.2e+08 at 927 pc; B: 3.59e+08 at 105514 pc, K_B=5.84e+11, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=5.036e+15]
+  G2: r_out=4636 pc  W_cc,i=-6.799e+11  W_ext,i=-1.664e+11  K_vir=4.21e+11  J_1=5.505e+13  E_init(lam0,phiK0)=-8.463e+11  E_init(lam1,phiK1)=-4.253e+11  lambda_P(lam1,phiK0/1)=0.312/0.270
+      cores: S: E_f=-2.668e+09 J_keep=2.17e+11  U: E_f=-4.181e+09 J_keep=0  C: E_f=-6.475e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|4635.53=-2.718e+11  S|105514=-1.449e+10  U|4635.53=-2.733e+11  U|105514=-1.6e+10  C|4635.53=-2.756e+11  C|105514=-1.829e+10
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -8.318e+11  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.01e+10)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=5.483e+13 J_cap=2.85e+14 [A: 5.38e+08 at 1045 pc; B: 4.4e+08 at 99376 pc, K_B=7.97e+09, bound; CS form sqrt(2 Mout Rmax^2 K)=2.992e+15]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=5.483e+13 J_cap=1.497e+15 [A: 7.67e+08 at 927 pc; B: 2.12e+08 at 105514 pc, K_B=4.54e+11, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=5.326e+15]
+
+[canonical B1 Leo I] M*=3.699e+06 R=305.5 pc s=2.6998 sigma=9.2880 M_need=1.838e+07 M_rem=1.88437e+08 M_x=6.49568e+06 (F=0.034471) M_out=1.81941e+08
+  G1: r_out=65160 pc  W_cc,i=-2.296e+09  W_ext,i=-9.12e+08  K_vir=1.599e+09  J_1=1.546e+13  E_init(lam0,phiK0)=-3.208e+09  E_init(lam1,phiK1)=-1.609e+09  lambda_P(lam1,phiK0/1)=0.341/0.296
+      cores: S: E_f=-7.894e+08 J_keep=2.9e+10  U: E_f=-1.185e+09 J_keep=0  C: E_f=-1.565e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|65159.5=-1.457e+09  U|65159.5=-1.853e+09  C|65159.5=-2.233e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -1.751e+09  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.13e+09)
+      RB: INDETERMINATE  lam_crit,MF=1.0  lam_crit,all=None  fail@lam0: 2/9  pass@lam1: 5/9
+         optimum (phiK1, core S, Rmax 65160, lam 1): J_req=1.543e+13 J_cap=3.166e+13 [A: 3.03e+06 at 969 pc; B: 1.79e+08 at 65160 pc, K_B=6.58e+08, bound; CS form sqrt(2 Mout Rmax^2 K)=3.521e+13]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 65160, lam 1): J_req=1.543e+13 J_cap=1.905e+14 [A: 1.15e+08 at 305 pc; B: 6.67e+07 at 65160 pc, K_B=6.33e+10, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=4.394e+14]
+  G2: r_out=1527 pc  W_cc,i=-7.472e+10  W_ext,i=-1.434e+10  K_vir=4.43e+10  J_1=2.576e+12  E_init(lam0,phiK0)=-8.905e+10  E_init(lam1,phiK1)=-4.476e+10  lambda_P(lam1,phiK0/1)=0.300/0.260
+      cores: S: E_f=-7.894e+08 J_keep=2.9e+10  U: E_f=-1.185e+09 J_keep=0  C: E_f=-1.565e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|1527.33=-2.928e+10  S|65159.5=-1.457e+09  U|1527.33=-2.968e+10  U|65159.5=-1.853e+09  C|1527.33=-3.006e+10  C|65159.5=-2.233e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -8.76e+10  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.13e+09)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 65160, lam 1): J_req=2.547e+12 J_cap=1.617e+13 [A: 1e+08 at 350 pc; B: 8.19e+07 at 49665 pc, K_B=5.68e+08, bound; CS form sqrt(2 Mout Rmax^2 K)=2.572e+14]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 65160, lam 1): J_req=2.547e+12 J_cap=1.291e+14 [A: 1.39e+08 at 305 pc; B: 4.25e+07 at 65160 pc, K_B=4.52e+10, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=4.511e+14]
+
+[alt B0 Draco] M*=5.743e+05 R=257.6 pc s=5.3640 sigma=9.5500 M_need=1.639e+07 M_rem=2.77236e+07 M_x=1.30108e+07 (F=0.469303) M_out=1.47128e+07
+  G1: r_out=26342 pc  W_cc,i=-1.21e+08  W_ext,i=-7.702e+07  K_vir=9.873e+07  J_1=5.83e+11  E_init(lam0,phiK0)=-1.98e+08  E_init(lam1,phiK1)=-9.926e+07  lambda_P(lam1,phiK0/1)=0.385/0.334
+      cores: S: E_f=-1.109e+09 J_keep=4.31e+10  U: E_f=-1.496e+09 J_keep=0  C: E_f=-1.889e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|26341.7=-1.138e+09  U|26341.7=-1.525e+09  C|26341.7=-1.918e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = 9.4e+08  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.85e+08)
+      RB: CAPACITY EXCLUDED  lam_crit,MF=None  lam_crit,all=None  fail@lam0: 9/9  pass@lam1: 0/9
+         optimum (phiK1, core S, Rmax 26342, lam 1): no energy-feasible configuration
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=5.4e+11 J_cap=5.024e+12 [A: 4.66e+06 at 258 pc; B: 1.01e+07 at 26342 pc, K_B=1.79e+09, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=7.176e+12]
+  G2: r_out=1288 pc  W_cc,i=-1.918e+09  W_ext,i=-6.733e+08  K_vir=1.289e+09  J_1=1.406e+11  E_init(lam0,phiK0)=-2.591e+09  E_init(lam1,phiK1)=-1.302e+09  lambda_P(lam1,phiK0/1)=0.336/0.291
+      cores: S: E_f=-1.109e+09 J_keep=4.31e+10  U: E_f=-1.496e+09 J_keep=0  C: E_f=-1.889e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|1288.13=-1.699e+09  S|26341.7=-1.138e+09  U|1288.13=-2.087e+09  U|26341.7=-1.525e+09  C|1288.13=-2.479e+09  C|26341.7=-1.918e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -1.453e+09  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.85e+08)
+      RB: INDETERMINATE  lam_crit,MF=1.0  lam_crit,all=None  fail@lam0: 7/18  pass@lam1: 5/18
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=9.752e+10 J_cap=6.425e+11 [A: 1.47e+06 at 345 pc; B: 1.32e+07 at 22097 pc, K_B=3.12e+07, bound; CS form sqrt(2 Mout Rmax^2 K)=1.964e+12]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=9.752e+10 J_cap=3.419e+12 [A: 8.34e+06 at 258 pc; B: 6.38e+06 at 26342 pc, K_B=1.29e+09, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=7.454e+12]
+
+[alt B0 Sextans] M*=5.261e+05 R=647.9 pc s=5.3640 sigma=7.9000 M_need=2.82e+07 M_rem=2.53958e+07 M_x=2.51047e+07 (F=0.988540) M_out=291027
+  G1: r_out=25157 pc  W_cc,i=-1.023e+08  W_ext,i=-5.433e+07  K_vir=7.806e+07  J_1=5.04e+11  E_init(lam0,phiK0)=-1.566e+08  E_init(lam1,phiK1)=-7.853e+07  lambda_P(lam1,phiK0/1)=0.369/0.319
+      cores: S: E_f=-1.329e+09 J_keep=1.66e+11  U: E_f=-1.711e+09 J_keep=0  C: E_f=-2.476e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|25156.8=-1.33e+09  U|25156.8=-1.712e+09  C|25156.8=-2.477e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = 1.173e+09  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.16e+08)
+      RB: CAPACITY EXCLUDED  lam_crit,MF=None  lam_crit,all=None  fail@lam0: 9/9  pass@lam1: 0/9
+         optimum (phiK1, core S, Rmax 25157, lam 1): no energy-feasible configuration
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 25157, lam 1): J_req=3.382e+11 J_cap=6.791e+11 [A: 0 at 648 pc; B: 2.91e+05 at 25157 pc, K_B=1.25e+09, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=6.791e+11]
+  G2: r_out=3239 pc  W_cc,i=-6.399e+08  W_ext,i=-2.247e+08  K_vir=4.302e+08  J_1=1.954e+11  E_init(lam0,phiK0)=-8.645e+08  E_init(lam1,phiK1)=-4.344e+08  lambda_P(lam1,phiK0/1)=0.336/0.291
+      cores: S: E_f=-1.329e+09 J_keep=1.66e+11  U: E_f=-1.711e+09 J_keep=0  C: E_f=-2.476e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|3239.27=-1.335e+09  S|25156.8=-1.33e+09  U|3239.27=-1.717e+09  U|25156.8=-1.712e+09  C|3239.27=-2.481e+09  C|25156.8=-2.477e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = 4.653e+08  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.16e+08)
+      RB: CAPACITY EXCLUDED  lam_crit,MF=None  lam_crit,all=None  fail@lam0: 18/18  pass@lam1: 0/18
+         optimum (phiK1, core S, Rmax 25157, lam 1): no energy-feasible configuration
+      RE: INDETERMINATE  lam_crit,MF=1.0  lam_crit,all=0.37  fail@lam0: 0/18  pass@lam1: 12/18
+         optimum (phiK1, core S, Rmax 25157, lam 1): J_req=2.968e+10 J_cap=5.746e+11 [A: 0 at 648 pc; B: 2.91e+05 at 25157 pc, K_B=8.96e+08, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=5.746e+11]
+
+[alt B0 Fornax] M*=1.98e+07 R=927.1 pc s=3.9988 sigma=12.1000 M_need=9.466e+07 M_rem=9.82708e+08 M_x=5.36162e+06 (F=0.005456) M_out=9.77346e+08
+  G1: r_out=105514 pc  W_cc,i=-3.806e+10  W_ext,i=-1.884e+10  K_vir=2.837e+10  J_1=2.403e+14  E_init(lam0,phiK0)=-5.69e+10  E_init(lam1,phiK1)=-2.853e+10  lambda_P(lam1,phiK0/1)=0.360/0.312
+      cores: S: E_f=-1.286e+09 J_keep=1.03e+11  U: E_f=-2.039e+09 J_keep=0  C: E_f=-3.171e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|105514=-1.31e+10  U|105514=-1.385e+10  C|105514=-1.499e+10
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -4.38e+10  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.03e+10)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=2.402e+14 J_cap=4.858e+14 [A: 6.52e+07 at 1251 pc; B: 9.12e+08 at 105514 pc, K_B=1.15e+10, bound; CS form sqrt(2 Mout Rmax^2 K)=7.542e+14]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=2.402e+14 J_cap=2.181e+15 [A: 6.19e+08 at 927 pc; B: 3.58e+08 at 105514 pc, K_B=5.83e+11, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=5.031e+15]
+  G2: r_out=4636 pc  W_cc,i=-6.695e+11  W_ext,i=-1.79e+11  K_vir=4.221e+11  J_1=5.482e+13  E_init(lam0,phiK0)=-8.486e+11  E_init(lam1,phiK1)=-4.264e+11  lambda_P(lam1,phiK0/1)=0.317/0.275
+      cores: S: E_f=-1.286e+09 J_keep=1.03e+11  U: E_f=-2.039e+09 J_keep=0  C: E_f=-3.171e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|4635.53=-2.703e+11  S|105514=-1.31e+10  U|4635.53=-2.711e+11  U|105514=-1.385e+10  C|4635.53=-2.722e+11  C|105514=-1.499e+10
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -8.355e+11  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.03e+10)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=5.472e+13 J_cap=2.582e+14 [A: 5.38e+08 at 1045 pc; B: 4.4e+08 at 78194 pc, K_B=1.04e+10, bound; CS form sqrt(2 Mout Rmax^2 K)=3.001e+15]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=5.472e+13 J_cap=1.493e+15 [A: 7.66e+08 at 927 pc; B: 2.12e+08 at 105514 pc, K_B=4.52e+11, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=5.318e+15]
+
+[alt B0 Leo I] M*=3.699e+06 R=305.5 pc s=2.9912 sigma=9.2900 M_need=1.838e+07 M_rem=1.87358e+08 M_x=5.42534e+06 (F=0.028957) M_out=1.81933e+08
+  G1: r_out=65159 pc  W_cc,i=-2.27e+09  W_ext,i=-9.786e+08  K_vir=1.62e+09  J_1=1.541e+13  E_init(lam0,phiK0)=-3.248e+09  E_init(lam1,phiK1)=-1.629e+09  lambda_P(lam1,phiK0/1)=0.347/0.301
+      cores: S: E_f=-6.801e+08 J_keep=2.46e+10  U: E_f=-1.034e+09 J_keep=0  C: E_f=-1.371e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|65159.4=-1.348e+09  U|65159.4=-1.702e+09  C|65159.4=-2.038e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -1.901e+09  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.13e+09)
+      RB: INDETERMINATE  lam_crit,MF=1.0  lam_crit,all=None  fail@lam0: 2/9  pass@lam1: 6/9
+         optimum (phiK1, core S, Rmax 65159, lam 1): J_req=1.538e+13 J_cap=3.155e+13 [A: 3.03e+06 at 526 pc; B: 1.79e+08 at 65159 pc, K_B=6.54e+08, bound; CS form sqrt(2 Mout Rmax^2 K)=3.756e+13]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 65159, lam 1): J_req=1.538e+13 J_cap=1.903e+14 [A: 1.15e+08 at 305 pc; B: 6.67e+07 at 65159 pc, K_B=6.32e+10, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=4.392e+14]
+  G2: r_out=1527 pc  W_cc,i=-7.386e+10  W_ext,i=-1.54e+10  K_vir=4.44e+10  J_1=2.569e+12  E_init(lam0,phiK0)=-8.926e+10  E_init(lam1,phiK1)=-4.486e+10  lambda_P(lam1,phiK0/1)=0.304/0.263
+      cores: S: E_f=-6.801e+08 J_keep=2.46e+10  U: E_f=-1.034e+09 J_keep=0  C: E_f=-1.371e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|1527.33=-2.917e+10  S|65159.4=-1.348e+09  U|1527.33=-2.952e+10  U|65159.4=-1.702e+09  C|1527.33=-2.986e+10  C|65159.4=-2.038e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -8.792e+10  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.13e+09)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 65159, lam 1): J_req=2.544e+12 J_cap=1.397e+13 [A: 1e+08 at 350 pc; B: 8.19e+07 at 35371 pc, K_B=8.19e+08, bound; CS form sqrt(2 Mout Rmax^2 K)=2.58e+14]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 65159, lam 1): J_req=2.544e+12 J_cap=1.288e+14 [A: 1.39e+08 at 305 pc; B: 4.25e+07 at 65159 pc, K_B=4.5e+10, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=4.508e+14]
+
+[alt B1 Draco] M*=5.743e+05 R=257.6 pc s=5.3640 sigma=9.2074 M_need=1.523e+07 M_rem=2.77236e+07 M_x=1.18564e+07 (F=0.427664) M_out=1.58672e+07
+  G1: r_out=26342 pc  W_cc,i=-1.21e+08  W_ext,i=-7.702e+07  K_vir=9.873e+07  J_1=5.83e+11  E_init(lam0,phiK0)=-1.98e+08  E_init(lam1,phiK1)=-9.926e+07  lambda_P(lam1,phiK0/1)=0.385/0.334
+      cores: S: E_f=-9.536e+08 J_keep=3.81e+10  U: E_f=-1.295e+09 J_keep=0  C: E_f=-1.637e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|26341.7=-9.84e+08  U|26341.7=-1.325e+09  C|26341.7=-1.668e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = 7.86e+08  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.72e+08)
+      RB: CAPACITY EXCLUDED  lam_crit,MF=None  lam_crit,all=None  fail@lam0: 9/9  pass@lam1: 0/9
+         optimum (phiK1, core S, Rmax 26342, lam 1): no energy-feasible configuration
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=5.449e+11 J_cap=5.029e+12 [A: 5.82e+06 at 258 pc; B: 1e+07 at 26342 pc, K_B=1.79e+09, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=7.676e+12]
+  G2: r_out=1288 pc  W_cc,i=-1.918e+09  W_ext,i=-6.733e+08  K_vir=1.289e+09  J_1=1.406e+11  E_init(lam0,phiK0)=-2.591e+09  E_init(lam1,phiK1)=-1.302e+09  lambda_P(lam1,phiK0/1)=0.336/0.291
+      cores: S: E_f=-9.536e+08 J_keep=3.81e+10  U: E_f=-1.295e+09 J_keep=0  C: E_f=-1.637e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|1288.13=-1.575e+09  S|26341.7=-9.84e+08  U|1288.13=-1.916e+09  U|26341.7=-1.325e+09  C|1288.13=-2.259e+09  C|26341.7=-1.668e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -1.607e+09  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.72e+08)
+      RB: INDETERMINATE  lam_crit,MF=1.0  lam_crit,all=None  fail@lam0: 6/18  pass@lam1: 7/18
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=1.025e+11 J_cap=6.613e+11 [A: 3.17e+06 at 366 pc; B: 1.27e+07 at 23430 pc, K_B=2.98e+07, bound; CS form sqrt(2 Mout Rmax^2 K)=2.758e+12]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 26342, lam 1): J_req=1.025e+11 J_cap=3.424e+12 [A: 9.52e+06 at 258 pc; B: 6.35e+06 at 26342 pc, K_B=1.3e+09, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=7.971e+12]
+
+[alt B1 Sextans] M*=5.261e+05 R=647.9 pc s=5.3640 sigma=6.5662 M_need=1.948e+07 M_rem=2.53958e+07 M_x=1.63876e+07 (F=0.645287) M_out=9.0082e+06
+  G1: r_out=25157 pc  W_cc,i=-1.023e+08  W_ext,i=-5.433e+07  K_vir=7.806e+07  J_1=5.04e+11  E_init(lam0,phiK0)=-1.566e+08  E_init(lam1,phiK1)=-7.853e+07  lambda_P(lam1,phiK0/1)=0.369/0.319
+      cores: S: E_f=-6.305e+08 J_keep=9.19e+10  U: E_f=-8.324e+08 J_keep=0  C: E_f=-1.211e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|25156.8=-6.492e+08  U|25156.8=-8.511e+08  C|25156.8=-1.23e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = 4.926e+08  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 8.02e+07)
+      RB: CAPACITY EXCLUDED  lam_crit,MF=None  lam_crit,all=None  fail@lam0: 9/9  pass@lam1: 0/9
+         optimum (phiK1, core S, Rmax 25157, lam 1): no energy-feasible configuration
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 25157, lam 1): J_req=4.121e+11 J_cap=2.592e+12 [A: 0 at 648 pc; B: 9.01e+06 at 25157 pc, K_B=5.89e+08, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=2.592e+12]
+  G2: r_out=3239 pc  W_cc,i=-6.399e+08  W_ext,i=-2.247e+08  K_vir=4.302e+08  J_1=1.954e+11  E_init(lam0,phiK0)=-8.645e+08  E_init(lam1,phiK1)=-4.344e+08  lambda_P(lam1,phiK0/1)=0.336/0.291
+      cores: S: E_f=-6.305e+08 J_keep=9.19e+10  U: E_f=-8.324e+08 J_keep=0  C: E_f=-1.211e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|3239.27=-7.755e+08  S|25156.8=-6.492e+08  U|3239.27=-9.775e+08  U|25156.8=-8.511e+08  C|3239.27=-1.356e+09  C|25156.8=-1.23e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -2.154e+08  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 8.02e+07)
+      RB: INDETERMINATE  lam_crit,MF=0.86  lam_crit,all=None  fail@lam0: 14/18  pass@lam1: 0/18
+         optimum (phiK1, core S, Rmax 25157, lam 1): no energy-feasible configuration
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 25157, lam 1): J_req=1.035e+11 J_cap=1.841e+12 [A: 3.15e+06 at 648 pc; B: 5.86e+06 at 25157 pc, K_B=4.46e+08, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=2.756e+12]
+
+[alt B1 Fornax] M*=1.98e+07 R=927.1 pc s=3.9988 sigma=12.0155 M_need=9.334e+07 M_rem=9.82708e+08 M_x=4.04434e+06 (F=0.004116) M_out=9.78664e+08
+  G1: r_out=105514 pc  W_cc,i=-3.806e+10  W_ext,i=-1.884e+10  K_vir=2.837e+10  J_1=2.403e+14  E_init(lam0,phiK0)=-5.69e+10  E_init(lam1,phiK1)=-2.853e+10  lambda_P(lam1,phiK0/1)=0.360/0.312
+      cores: S: E_f=-9.639e+08 J_keep=7.72e+10  U: E_f=-1.53e+09 J_keep=0  C: E_f=-2.381e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|105514=-1.278e+10  U|105514=-1.335e+10  C|105514=-1.42e+10
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -4.412e+10  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.01e+10)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=2.402e+14 J_cap=4.773e+14 [A: 6.52e+07 at 1251 pc; B: 9.13e+08 at 99376 pc, K_B=1.25e+10, bound; CS form sqrt(2 Mout Rmax^2 K)=7.673e+14]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=2.402e+14 J_cap=2.181e+15 [A: 6.36e+08 at 927 pc; B: 3.43e+08 at 105514 pc, K_B=6.09e+11, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=5.148e+15]
+  G2: r_out=4636 pc  W_cc,i=-6.695e+11  W_ext,i=-1.79e+11  K_vir=4.221e+11  J_1=5.482e+13  E_init(lam0,phiK0)=-8.486e+11  E_init(lam1,phiK1)=-4.264e+11  lambda_P(lam1,phiK0/1)=0.317/0.275
+      cores: S: E_f=-9.639e+08 J_keep=7.72e+10  U: E_f=-1.53e+09 J_keep=0  C: E_f=-2.381e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|4635.53=-2.701e+11  S|105514=-1.278e+10  U|4635.53=-2.706e+11  U|105514=-1.335e+10  C|4635.53=-2.715e+11  C|105514=-1.42e+10
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -8.358e+11  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.01e+10)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=5.474e+13 J_cap=2.981e+14 [A: 5.22e+08 at 984 pc; B: 4.57e+08 at 99376 pc, K_B=8.56e+09, bound; CS form sqrt(2 Mout Rmax^2 K)=3.001e+15]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 105514, lam 1): J_req=5.474e+13 J_cap=1.493e+15 [A: 7.67e+08 at 927 pc; B: 2.12e+08 at 105514 pc, K_B=4.51e+11, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=5.32e+15]
+
+[alt B1 Leo I] M*=3.699e+06 R=305.5 pc s=2.9912 sigma=9.2880 M_need=1.838e+07 M_rem=1.87358e+08 M_x=5.41749e+06 (F=0.028915) M_out=1.81941e+08
+  G1: r_out=65159 pc  W_cc,i=-2.27e+09  W_ext,i=-9.786e+08  K_vir=1.62e+09  J_1=1.541e+13  E_init(lam0,phiK0)=-3.248e+09  E_init(lam1,phiK1)=-1.629e+09  lambda_P(lam1,phiK0/1)=0.347/0.301
+      cores: S: E_f=-6.79e+08 J_keep=2.46e+10  U: E_f=-1.032e+09 J_keep=0  C: E_f=-1.368e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|65159.4=-1.347e+09  U|65159.4=-1.7e+09  C|65159.4=-2.036e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -1.902e+09  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.13e+09)
+      RB: INDETERMINATE  lam_crit,MF=1.0  lam_crit,all=None  fail@lam0: 2/9  pass@lam1: 6/9
+         optimum (phiK1, core S, Rmax 65159, lam 1): J_req=1.538e+13 J_cap=3.152e+13 [A: 3.03e+06 at 526 pc; B: 1.79e+08 at 65159 pc, K_B=6.53e+08, bound; CS form sqrt(2 Mout Rmax^2 K)=3.753e+13]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/9  pass@lam1: 9/9
+         optimum (phiK1, core S, Rmax 65159, lam 1): J_req=1.538e+13 J_cap=1.903e+14 [A: 1.15e+08 at 305 pc; B: 6.67e+07 at 65159 pc, K_B=6.32e+10, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=4.392e+14]
+  G2: r_out=1527 pc  W_cc,i=-7.386e+10  W_ext,i=-1.54e+10  K_vir=4.44e+10  J_1=2.569e+12  E_init(lam0,phiK0)=-8.926e+10  E_init(lam1,phiK1)=-4.486e+10  lambda_P(lam1,phiK0/1)=0.304/0.263
+      cores: S: E_f=-6.79e+08 J_keep=2.46e+10  U: E_f=-1.032e+09 J_keep=0  C: E_f=-1.368e+09 J_keep=0
+      RB max bound-envelope final energy (core|Rmax): S|1527.33=-2.917e+10  S|65159.4=-1.347e+09  U|1527.33=-2.952e+10  U|65159.4=-1.7e+09  C|1527.33=-2.986e+10  C|65159.4=-2.036e+09
+      RB energy shortfall at MF corner (lam0, phiK0, best core/Rmax) = -8.792e+10  (stars' permissive tolerance p M* 3 sigma^2 ln10 = 1.13e+09)
+      RB: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 65159, lam 1): J_req=2.544e+12 J_cap=1.395e+13 [A: 1e+08 at 350 pc; B: 8.19e+07 at 35371 pc, K_B=8.16e+08, bound; CS form sqrt(2 Mout Rmax^2 K)=2.58e+14]
+      RE: CAPACITY ALLOWED  lam_crit,MF=1.0  lam_crit,all=1.0  fail@lam0: 0/18  pass@lam1: 18/18
+         optimum (phiK1, core S, Rmax 65159, lam 1): J_req=2.544e+12 J_cap=1.288e+14 [A: 1.39e+08 at 305 pc; B: 4.25e+07 at 65159 pc, K_B=4.5e+10, leaves R_max; CS form sqrt(2 Mout Rmax^2 K)=4.508e+14]
+
+context: CFG916 Jacobi radius / R (R = 4a/3), present and pericentre: canonical|present|Draco=9.60  canonical|present|Fornax=12.87  canonical|present|Leo I=33.45  canonical|peri|Draco=7.13  canonical|peri|Fornax=8.07  canonical|peri|Leo I=10.75  alt|present|Draco=9.32  alt|present|Fornax=12.49  alt|present|Leo I=32.41  alt|peri|Draco=6.74  alt|peri|Fornax=7.53  alt|peri|Leo I=10.32
+
+grid refinement (r 160, x 120): separate process, `python3 cfg918.py R` -> cfg918_REFINE.out
+
+runtime 80.0 s
