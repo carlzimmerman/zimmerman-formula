@@ -60,8 +60,8 @@ independent second prediction to reach 3σ.
 | lane | question | verdict |
 |---|---|---|
 | [W4-01](W4_01_untouched_gravity_families/README.md) | Do the seven gravity families the register never touched (DGP, Kaluza–Klein, dRGT/bigravity, mimetic, Einstein–Cartan, f(T), Hořava–Lifshitz) fix the 4? | **NO FAMILY SELECTS κ.** DGP's two Planck masses make r_c π-free, but the dark energy reaches the a₀ scale only through Friedmann's 8π, giving the menu {2.894, 0.691, 0.293}, all π-odd. KK with the force-law G₅ gives a π-free a₀ = (8/3)RGρ, but R is free. Everything else is a trade, ħ-bearing or an identity. |
-| [W4-02](W4_02_unrun_as_proposals/README.md) | Run the eight κ proposals the register listed as never executed (AS119, AS562, AS654, AS655, AS672, AS698, AS725, AS1923). | **BACKLOG CLEARED, NO SELECTION.** AS119's exact ½ is the MU2 kernel's n = 2 read back through premise A. The four-form items trade the 4 for C₀, λ or β²/Z (and give κ-free tracking predictions). AS672 and AS725 hold for every κ. AS698 is an averaging ambiguity in an excluded class. AS562 confirms the ħ wall. |
 | [W4-02](W4_02_independent_portal_audit/README.md) | Can a fixed vacuum, protected normalization, and positive subluminal response select the coefficient? | **NO SELECTION IN THE TESTED EFFECTIVE SECTORS.** Explicit simple-μ and quadratic scalar toys keep the vacuum parameter fixed while allowing every κ>0; local kinetic energy and characteristic speeds pass the same conditions. A source-connected constitutive family also has zero background source for every κ. These are scoped countermodels, not full covariant theories. 34/34 symbolic checks and an independent proof audit; the unrestricted π-parity wording is corrected. |
+| [W4-03](W4_03_unrun_as_proposals/README.md) | Run the eight κ proposals the register listed as never executed (AS119, AS562, AS654, AS655, AS672, AS698, AS725, AS1923). | **BACKLOG CLEARED, NO SELECTION.** AS119's exact ½ is the MU2 kernel's n = 2 read back through premise A. The four-form items trade the 4 for C₀, λ or β²/Z (and give κ-free tracking predictions). AS672 and AS725 hold for every κ. AS698 is an averaging ambiguity in an excluded class. AS562 confirms the ħ wall. |
 
 ## What would change the answer
 
@@ -80,6 +80,6 @@ Follow `KAPPA_CAMPAIGN_RULES.md`:
 3. Run a light single-core script (nothing beside a live 1024³ job beyond that).
 4. Append one register row per attempt to CFG894's CSV, then rerun `kappa_campaign_lee.py`.
 
-Name lanes W4-02, W4-03, and so on.
+Name lanes W4-04, W4-05, and so on; check `ls why_4_puzzle` first, because more than one session adds lanes here.
 
 κ = ½ FITTED. Not theory closed.

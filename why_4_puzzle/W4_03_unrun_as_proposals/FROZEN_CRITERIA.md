@@ -101,3 +101,10 @@ to both footings identically; nothing is pooled.
 `w4_02.py`, `w4_02.out`, `w4_02_results.json`, `w4_02_MUTATE.out`, `w4_02_results_MUTATE.json`, `README.md`. Register rows (one
 per item, plus a K547 correction row for AS025), then `kappa_campaign_lee.py` rerun. Nothing downloaded; no file in
 `deepseek_push/` is edited.
+
+## Erratum (appended 2026-10-20, after the run; no criterion changed)
+
+**Lane id W4-02 → W4-03.** A parallel session froze a different lane as W4-02 at 15:12:56
+(`why_4_puzzle/W4_02_independent_portal_audit/`, criteria 72a3b470d), four minutes before this file (4708fd74c, 15:17:05). This
+lane is renumbered **W4-03**: folder `why_4_puzzle/W4_03_unrun_as_proposals/`, files `w4_03.*`, env `W4_03_MUTATE`. Everything
+above, including the hand expectations, controls and verdict rules, is unchanged; read "W4-02" in this file as W4-03.

@@ -1,0 +1,70 @@
+W4-03  the eight unrun kappa proposals (K547)
+kappa = 1/2 FITTED (CFG493 0.417 +- 0.095). Not theory closed. deepseek_push read only.
+
+[PASS] I1 forbidden inputs: tokens in the compute block: none
+
+AS119  max-ent {1, E[ln(1+u)] = c}: EL shape (1+u)^-l1 True; norm int = gamma(l1 - 1)/gamma(l1); E[ln(1+u)] = 1/(l1 - 1); n(c) = -1 + (c + 1)/c
+       c = 1/2 -> n = 2 -> kappa = 1/n = 1/2 (ONLY under the identification s = c sqrt(G rho): premise A)
+       u_max    10 cells  128: E_trunc 0.4760806116 (exact 0.4760504523), tail bound 2.395e-02, |E + tail - 1/n| 3.02e-05
+       u_max    10 cells  256: E_trunc 0.4760579928 (exact 0.4760504523), tail bound 2.395e-02, |E + tail - 1/n| 7.54e-06
+       u_max    10 cells  512: E_trunc 0.4760523375 (exact 0.4760504523), tail bound 2.395e-02, |E + tail - 1/n| 1.89e-06
+       u_max   100 cells  128: E_trunc 0.4996069389 (exact 0.4994985668), tail bound 5.014e-04, |E + tail - 1/n| 1.08e-04
+       u_max   100 cells  256: E_trunc 0.4995256690 (exact 0.4994985668), tail bound 5.014e-04, |E + tail - 1/n| 2.71e-05
+       u_max   100 cells  512: E_trunc 0.4995053429 (exact 0.4994985668), tail bound 5.014e-04, |E + tail - 1/n| 6.78e-06
+       u_max  1000 cells  128: E_trunc 0.5002351336 (exact 0.4999926060), tail bound 7.394e-06, |E + tail - 1/n| 2.43e-04
+       u_max  1000 cells  256: E_trunc 0.5000532843 (exact 0.4999926060), tail bound 7.394e-06, |E + tail - 1/n| 6.07e-05
+       u_max  1000 cells  512: E_trunc 0.5000077785 (exact 0.4999926060), tail bound 7.394e-06, |E + tail - 1/n| 1.52e-05
+[PASS] K1 AS119 Lomax from max-ent: EL gives (l1-1)(1+u)^-l1, E[ln(1+u)] = 1/(l1-1), n = 1/c; kappa = c under premise A (hand: c = 1/2 -> kappa 1/2): got 1/2
+[PASS] K1b AS119 truncation (as frozen: converges, analytic tail): max |exact truncated + tail - 1/n| = 0.0e+00; quadrature error ratios per doubling 4.00, 4.00, 4.00, 4.00, 4.00, 4.00 (second order -> 4)
+       interval (CFG493, propagation only): c = kappa = 0.417 +- 0.095 -> n = 2.40 +- 0.55
+[PASS] NC AS119 'kappa exact while c inferred' rejected: under kappa = c, sigma_kappa = sigma_c = 0.095 > 0, so 'kappa exact' contradicts the inferred c
+
+AS562  Pi_quant = hbar/(M*R*v): (M, L, T) exponents [0, 0, 0]; hbar power 1; fixture (1e10 Msun, 100 km/s, 10 kpc) = 1.719e-100
+       law a0^2 = kappa^2 c^2 G rho: hbar power 0; 'A/(4 l_P^2)' restored: hbar power -1
+[PASS] K2 AS562: Pi_quant dimensionless, ~1e-100 at the galaxy fixture; the law is hbar-free
+[PASS] NC AS562 'hbar = 1 normalisation is classical' rejected: an entropy count written with l_P = 1 carries hbar^-1 once units are restored
+
+AS654  P = Z q^2/2 + C0: kappa^2(q) = 2*beta**2*q**2/(-2*C_0 + Z*q**2); d kappa^2/dq = -8*C_0*beta**2*q/(2*C_0 - Z*q**2)**2; a0^2 - (2 beta^2 G/Z)(eps + C0) = 0
+[PASS] K3 AS654: hand: kappa^2 = 2 beta^2/(Z - 2 C0/q^2), q-dependent unless C0 = 0
+[PASS] NC AS654 'amplitude cancellation removes every offset' rejected: kappa^2 depends on q when C0 != 0
+
+AS655  P = Z q^2/2 + lambda q^4/Q0^2: kappa^2(q) = 2*Q_0**2*beta**2/(Q_0**2*Z + 6*lambda*q**2); d ln a0/d ln eps = (Z + 6*x)/(2*(Z + 12*x)) (x = lambda q^2/Q0^2)
+[PASS] K4 AS655: hand: kappa^2 = 2 beta^2/(Z + 6 lambda q^2/Q0^2); slope (Z + 6x)/(2(Z + 12x))
+[PASS] NC AS655 'quadratic formula survives q^4' rejected: kappa^2 != 2 beta^2/Z at lambda > 0
+
+AS672  q P' - P = a0^2/(kappa^2 G), a0 = beta sqrt(G) q:
+       kappa 3/10: P = q*(C1 + 100*beta**2*q)/9, residual 0
+       kappa 1/2: P = q*(C1 + 4*beta**2*q), residual 0
+       kappa 7/10: P = q*(C1 + 100*beta**2*q)/49, residual 0
+       general a0 = sqrt(G)(q + q^3): residual 0; homogeneous mode C q has energy 0; k04 relation kappa^2 = 2*beta**2/(Z + 2*b*beta**2)
+[PASS] K5 AS672: solvable for every kappa; free mode C q with zero energy; reproduces k04
+[PASS] NC AS672 'satisfying the equation derives kappa' rejected: satisfied at kappa = 0.3, 0.5 and 0.7 alike
+
+AS698  a = t^2/3 on [1, T], L = H^2: A_a/A_t = 4*(T**(2/3) - 1)*(T**3 - 1)/(3*(T - 1)*(T**(8/3) - 1))
+       T = 10, 100, 1000: 1.1637, 1.2843, 1.3213; L = const: 1.0000, 1.0000, 1.0000; de Sitter constant-L equality True
+[PASS] K6 AS698: A_a/A_t != 1 and T-dependent for L = H^2; equal for constant L (both fixtures)
+[PASS] NC AS698 'A_t and A_a are the same covariant average' rejected: ratio at T = 10 is 1.1637; only A_t carries sqrt(-g) = a^3 in cosmic time
+
+AS725  K = int 2 g mu dg + K0: Q integrable True, (K - g^2)/g -> -a_0; MU2 integrable True, (K - g^2)/ln g -> -8*a_0**2; K0 free True
+[PASS] K7 AS725: hand: integrable for any mu, K0 free; Newtonian offset diverges (Q linear -a0, MU2 log -8 a0^2)
+[PASS] NC AS725 'derivative equation closes the vacuum' rejected: dK/dK0 = 1 after solving K' = 2 g mu
+
+AS1923 q = 2 pi n f/Vol: kappa^2 = 2*beta**2/(Z + 2*b*beta**2); free of (n, f, Vol) True; at f = 1: 2*beta**2/(Z + 2*b*beta**2)
+[PASS] K8 AS1923: hand: kappa^2 = 2 beta^2/(Z + 2 b beta^2), independent of n, f, Vol (= FL1/K144)
+[PASS] NC AS1923 'unit flux spacing gives 1/2' rejected: setting f = 1 leaves kappa^2 unchanged and unfixed
+[PASS] I4 rename: no item reads the law's kappa; AS119's kappa = c is the identification itself (consistency relation)
+
+per-item classes
+  AS119: free (reparametrisation; kappa = c only under premise A)
+  AS562: audit
+  AS654: free (CONDITION: LOCK needs C0 = 0, nothing names it)
+  AS655: free (TRADE; running kappa, LOCK slope below 1/2)
+  AS672: free (CLOSURE: no rigidity)
+  AS698: free (prescription ambiguity in the excluded global-average class)
+  AS725: free (CLOSURE: k01 zero mode as integrability)
+  AS1923: free (TRADE; = FL1/K144)
+
+LANE VERDICT: BACKLOG CLEARED, NO SELECTION
+  None of the eight fixes kappa. The one exact 1/2 (AS119) is the committed MU2 kernel's n = 2 read back through premise A. The four-form items move the 4 into C0, lambda or beta^2/Z. AS672 and AS725 show the equations hold for every kappa. AS698 adds a prescription ambiguity to an already-excluded class. AS562 confirms the hbar wall.
+
+checks: 19/19 pass
