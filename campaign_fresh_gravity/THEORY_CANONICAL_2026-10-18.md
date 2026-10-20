@@ -61,3 +61,7 @@ the gas-bearing isolated dwarfs' excess (CFG873 disc model +0.46 → +0.23; CFG8
 CFG874 pools all 11 isolated Local Group dwarfs with stellar σ (the whole supply), gas counted: c = −0.10 ± 0.09 below
 satellites, E = +0.19 ± 0.08 over the law (2.5 se): UNDECIDED. Reading: isolated dwarfs carry part of the excess,
 possibly less than satellites; existing kinematics cannot decide.
+CFG875 (host-distance slope at fixed g_bar, 66 dwarfs, 19–1350 kpc): k = −0.19 ± 0.15 per dex, UNDECIDED; among dwarfs
+brighter than M_V = −6, k = 0.00 ± 0.13. No test of environment (host mass CFG843, tides CFG838/839, stripping CFG860,
+isolation CFG873/874, distance CFG875) shows the host mattering beyond 1.6σ. Working description: a small-system
+component (CFG870), with its velocity scale (~7.5 km/s) not derived.
