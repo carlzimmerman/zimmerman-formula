@@ -1,0 +1,24 @@
+CFG927 forecast  pair NC1x (native_cmb inputs, canonical footing)  MUTATE=True
+  F  = _external_data/cfg654_work/NC1x/cfg654cmb_cfg650_m1m2m3_RES_canonical_N1024_L100_ns1024_lean.json
+  S0 = _external_data/cfg654_work/NCS0/cfg654cmb_cfg650_na_S0_canonical_N1024_L100_ns1024_lean.json
+  cfg917_lib sha256 ec1e971bdb31c7b4; variance correction vc = True
+  support 0.0802-7.980 h/Mpc (127 bins); KCUT top 4.021; background Om 0.310403, h 0.677698, chi_* 9399.9 Mpc/h
+
+box support cut (FROZEN section 3)
+  L_sup = ≥ 3000 (max over L 8-3000: s_S0 0.0012, s_dX 0.0011; threshold 0.10)
+    L 400: k>k_top share S0 0.0000, dX 0.0001; k<k_lo share S0 0.334, dX -0.000; z>1 share S0 0.845, dX 0.476; X_F/X_S0 0.9909
+    L 763: k>k_top share S0 0.0000, dX 0.0001; k<k_lo share S0 0.000, dX -0.000; z>1 share S0 0.834, dX 0.595; X_F/X_S0 0.9765
+    L 1000: k>k_top share S0 0.0001, dX 0.0002; k<k_lo share S0 0.000, dX -0.000; z>1 share S0 0.823, dX 0.625; X_F/X_S0 0.9670
+    L 2000: k>k_top share S0 0.0005, dX 0.0005; k<k_lo share S0 0.000, dX -0.000; z>1 share S0 0.800, dX 0.724; X_F/X_S0 0.9336
+    L 3000: k>k_top share S0 0.0012, dX 0.0011; k<k_lo share S0 0.000, dX -0.000; z>1 share S0 0.799, dX 0.777; X_F/X_S0 0.9122
+
+MUTATE set (FROZEN section 8)
+  [PASS] M1: F == S0 -> forecast dchi2 = 0 (<= 1e-12) in every model, range and member -- max |dchi2| 2.8e-27
+    M2 1.05 x S0: ACT-DR6-like L 40-3000 dchi2 18.67 (analytic 18.67, rel 1.5e-15) DISCRIMINATING; SO-baseline-like L 30-3000 dchi2 78.84 (analytic 78.84, rel 1.3e-15) DISCRIMINATING; S4-like L 30-3000 dchi2 408.68 (analytic 408.68, rel 1.3e-15) DISCRIMINATING
+    M2 0.95 x S0: ACT-DR6-like L 40-3000 dchi2 18.67 (analytic 18.67, rel 2.1e-15) DISCRIMINATING; SO-baseline-like L 30-3000 dchi2 78.84 (analytic 78.84, rel 1.6e-15) DISCRIMINATING; S4-like L 30-3000 dchi2 408.68 (analytic 408.68, rel 1.8e-15) DISCRIMINATING
+  [PASS] M2: +-5% amplitude: pipeline = analytic (<= 1e-8 rel) AND S4-like over L 30-min(3000, L_sup) >= 9 for both signs -- S4-like dchi2 +5% 408.68, -5% 408.68; identity holds
+    M3 context, box-only 1.05 (k_lo <= k <= k_top, z <= 1): ACT-DR6-like 400: 0.27, 763: 0.38, 1000: 0.42, 2000: 0.47, 3000: 0.47; SO-baseline-like 400: 0.91, 763: 1.56, 1000: 1.78, 2000: 2.08, 3000: 2.11; S4-like 400: 1.72, 763: 4.65, 1000: 6.61, 2000: 11.33, 3000: 12.44
+    M3 context, box-only 0.95 (k_lo <= k <= k_top, z <= 1): ACT-DR6-like 400: 0.27, 763: 0.38, 1000: 0.42, 2000: 0.47, 3000: 0.47; SO-baseline-like 400: 0.91, 763: 1.56, 1000: 1.78, 2000: 2.08, 3000: 2.11; S4-like 400: 1.72, 763: 4.65, 1000: 6.61, 2000: 11.33, 3000: 12.44
+  MUTATE bites: True
+
+runtime 2 s; maxrss 0.26 GB. kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed.
