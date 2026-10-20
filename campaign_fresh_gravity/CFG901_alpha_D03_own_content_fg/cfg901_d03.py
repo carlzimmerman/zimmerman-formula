@@ -1,4 +1,5 @@
-"""CFG901: alpha door D03, f_g evaluated with the record's own matter content (frozen criteria: CFG901_PREREGISTRATION.md, commit f1e4cb90d).
+"""CFG901: alpha door D03, f_g evaluated with the record's own matter content (frozen criteria: CFG901_PREREGISTRATION.md, commit f1e4cb90d;
+post-hoc amendments A1-A4 appended there, commit ced3bd06b, written after the first run (cfg901_d03_FIRSTRUN.out, NOT COMPLETED as frozen)).
 
 Usage (from any directory; one core, about 3 minutes, < 300 MB):
     OMP_NUM_THREADS=1 nice -n 10 python3 -B cfg901_d03.py                 real run          -> cfg901_d03.out/.json, exit 0 iff every gate passes
@@ -68,7 +69,7 @@ BRACKET = {"B1 (+1 real scalar)": (Q(5), Q(24), Q(12)), "B2 (+2 real scalars)": 
 N_MECH_BEFORE = 372
 
 fails = []
-results = {"mode": MODE, "prereg_commit": "f1e4cb90d", "content_A": [float(x) for x in CONTENT_A],
+results = {"mode": MODE, "prereg_commit": "f1e4cb90d", "amendments_commit": "ced3bd06b", "content_A": [float(x) for x in CONTENT_A],
            "graded_content_used": [float(x) for x in GRADED]}
 
 
@@ -287,7 +288,8 @@ def root_cs(fun, jac, c, x0):
         sol, info, ier, _ = fsolve(lambda v: np.array(fun(*v, *cc), dtype=float), np.array(x0, dtype=float),
                                    fprime=lambda v: np.array(jac(*v, *cc), dtype=float), full_output=True, xtol=1e-14, maxfev=400)
     res = float(np.max(np.abs(np.array(fun(*sol, *cc), dtype=float))))
-    return sol, (ier == 1 and res < 1e-12 and np.all(np.isfinite(sol)))
+    # Amendment A1: accept by residual (fsolve's flag 3 'xtol too small' at a residual of 1e-17 is converged); the AS2/AS4 grid searches keep ier == 1
+    return sol, bool(np.all(np.isfinite(sol)) and res < 1e-12)
 
 
 def continue_to(fun, jac, c_from, c_to, x0, dN=0.25):
@@ -494,31 +496,42 @@ results["map_at_SM"] = {k: dict(dglb=np.asarray(v["dglb"]).tolist(), dfg=np.asar
 results["map_linear_prediction_dP_A"] = pred_shift
 
 # K8: map vs finite differences; continuation SM -> A equals the grid root
+# Amendment A2: central differences at h and h/2; the Richardson value (4 D(h/2) - D(h))/3 must agree with the IFT derivative to
+# max(1e-4 |IFT|, 1e-6); the raw error ratio (D(h) - IFT)/(D(h/2) - IFT) (about 4 for an O(h^2) error) is printed.
 fd_ok = True
 fd_txt = []
+k8a_rows = []
+
+
+def _fd(fun, jac, fgfun, x0, i, h):
+    cp = [float(x) for x in SM]; cm = [float(x) for x in SM]
+    cp[i] += h; cm[i] -= h
+    xp, okp_ = root_cs(fun, jac, cp, x0)
+    xm, okm_ = root_cs(fun, jac, cm, x0)
+    return (C1.downstream_P(fgfun(xp)) - C1.downstream_P(fgfun(xm))) / (2 * h), (okp_ and okm_)
+
+
 if GT_SM_CPR is not None:
-    for i, (nm, h) in enumerate((("N_S", 1.0), ("N_D", 0.5), ("N_V", 1.0))):
-        cp = [float(x) for x in SM]; cm = [float(x) for x in SM]
-        cp[i] += h; cm[i] -= h
-        xp, okp_ = root_cs(f_cs, Jx_cs, cp, GT_SM_CPR)
-        xm, okm_ = root_cs(f_cs, Jx_cs, cm, GT_SM_CPR)
-        dPfd = (C1.downstream_P(fg_cpr(xp)) - C1.downstream_P(fg_cpr(xm))) / (2 * h)
-        rel = abs(dPfd / maps["CPR-EH"]["dP"][i] - 1)
-        fd_ok = fd_ok and okp_ and okm_ and rel < 1e-3
-        fd_txt.append(f"dP/d{nm}: IFT {maps['CPR-EH']['dP'][i]:+.6f}, FD {dPfd:+.6f} (rel {rel:.1e})")
+    sets = [("CPR", f_cs, Jx_cs, fg_cpr, GT_SM_CPR, maps["CPR-EH"])]
     if r4:
+        sets.append(("BMS", f4_cs, Jx4_cs, fg_bms, r4[0]["gt"], maps["BMS-EH"]))
+    for sch, fun, jac, fgfun, x0, mp_ in sets:
         for i, (nm, h) in enumerate((("N_S", 1.0), ("N_D", 0.5), ("N_V", 1.0))):
-            cp = [float(x) for x in SM]; cm = [float(x) for x in SM]
-            cp[i] += h; cm[i] -= h
-            xp, okp_ = root_cs(f4_cs, Jx4_cs, cp, r4[0]["gt"])
-            xm, okm_ = root_cs(f4_cs, Jx4_cs, cm, r4[0]["gt"])
-            dPfd = (C1.downstream_P(fg_bms(xp)) - C1.downstream_P(fg_bms(xm))) / (2 * h)
-            rel = abs(dPfd / maps["BMS-EH"]["dP"][i] - 1)
-            fd_ok = fd_ok and okp_ and okm_ and rel < 1e-3
-            fd_txt.append(f"BMS dP/d{nm}: IFT {maps['BMS-EH']['dP'][i]:+.6f}, FD {dPfd:+.6f} (rel {rel:.1e})")
+            D1, ok1 = _fd(fun, jac, fgfun, x0, i, h)
+            D2, ok2 = _fd(fun, jac, fgfun, x0, i, h / 2)
+            DR = (4 * D2 - D1) / 3
+            ift = mp_["dP"][i]
+            tol = max(1e-4 * abs(ift), 1e-6)
+            ratio = (D1 - ift) / (D2 - ift) if D2 != ift else float("inf")
+            okk = ok1 and ok2 and abs(DR - ift) <= tol
+            fd_ok = fd_ok and okk
+            k8a_rows.append(dict(scheme=sch, N=nm, h=h, D_h=D1, D_h2=D2, richardson=DR, ift=ift, err_ratio=ratio))
+            fd_txt.append(f"{sch} dP/d{nm}: IFT {ift:+.7f}, FD(h={h:g}) {D1:+.7f}, FD(h/2) {D2:+.7f}, Richardson {DR:+.7f} "
+                          f"(|diff| {abs(DR - ift):.1e}, tol {tol:.1e}; error ratio {ratio:.2f})")
+    results["K8a"] = k8a_rows
 else:
     fd_ok = False
-chk("K8a IFT map vs finite differences (1e-3)", fd_ok, "; ".join(fd_txt))
+chk("K8a IFT map vs Richardson finite differences (A2)", fd_ok, "\n         " + "\n         ".join(fd_txt))
 stamp("map")
 
 # ================================================================== (4) GRADED TRIAL G1
@@ -674,6 +687,26 @@ for lab, c in BRACKET.items():
 results["bracket"] = brk
 
 # ================================================================== (8) TUNED CONTENT (by construction; a knob, not a prediction)
+
+
+def guarded_step(x, Nfrom, Nto, i, c0):
+    """Amendment A3: continue the CPR-EH root from count Nfrom to Nto in 2^k equal substeps (k = 0..10), accepting the first k for which
+    every substep converges (A1 residual rule) and moves the root by at most 20% (relative norm)."""
+    for k in range(11):
+        xx = np.array(x, dtype=float)
+        ok = True
+        for Nsub in np.linspace(Nfrom, Nto, 2**k + 1)[1:]:
+            cc = list(c0); cc[i] = Nsub
+            xn, okn = root_cs(f_cs, Jx_cs, cc, xx)
+            if not okn or np.linalg.norm(xn - xx) > 0.2 * np.linalg.norm(xx):
+                ok = False
+                break
+            xx = xn
+        if ok:
+            return xx, True
+    return np.array(x, dtype=float), False
+
+
 print(f"\n(8) TUNED CONTENT (like lane B's C6): count at which P(CPR-EH) would reach 137.036, i.e. f_g = {B3.f_needed:.6f}; scanned upward to 1000")
 tuned = {}
 if GT_SM_CPR is not None:
@@ -687,7 +720,8 @@ if GT_SM_CPR is not None:
         grid = list(np.arange(c0[i] + 0.25, 200.0, 0.25)) + list(np.arange(200.0, 1000.0 + 1e-9, 2.0))
         for Nv in grid:
             cc = list(c0); cc[i] = Nv
-            xn, okn = root_cs(f_cs, Jx_cs, cc, x)
+            # Amendment A3: halve the step (up to 10 times) if the root moves by more than 20% in one (sub)step
+            xn, okn = guarded_step(x, last, Nv, i, c0)
             glb = A2.to_glb(xn)
             if not okn or not A2.admissible(glb) or not A2.in_domain(glb)[0]:
                 status = f"root lost or inadmissible at {nm} = {Nv:g} (last admissible {last:g}, f_g {fprev:.6f})"
