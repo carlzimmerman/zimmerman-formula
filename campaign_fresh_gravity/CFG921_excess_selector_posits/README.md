@@ -126,6 +126,10 @@ So all of them need the L* ≥ 24 pc stiffness screening (CFG820) to remove it.
 - P4: canonical FAILS (F1 3.79, local); alt UNDERDETERMINED (F1 min |z| 2.59; F8b 2.01). Split → UNDERDETERMINED.
 - P1 and P5 FAIL.
 
+**Note (2026-10-20, after this lane's run).** CFG922's ledger row (commit 154790f43, not read in detail here) reports the
+cluster-core excess against the baryon census as "EXCESS STANDS". The VC condition is therefore not met, and the main (V0)
+classes are the ones that apply: all five posits FAIL.
+
 ## A1 diagnostics (post-freeze, no class weight)
 
 - **P1 equilibrium domain.** Inside the frozen domain the runaway threshold is c_crit = 49.6 km/s, set by NGC 205
