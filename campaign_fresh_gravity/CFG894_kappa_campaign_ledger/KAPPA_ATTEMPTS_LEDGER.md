@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (653 rows)
+## Totals (659 rows)
 
-- **488 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **493 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **121 produced a number.** 55 produced one determinate value; 66 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -144,8 +144,8 @@ fact.
 |---|---|---|---|---|---|---|
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
-| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 61 | 4 | 10 | 47 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 116 | 7 | 6 | 98 | 5 | 0 |
+| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 63 | 4 | 10 | 49 | 0 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 119 | 7 | 6 | 101 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 46 | 2 | 4 | 36 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 44 | 0 | 0 | 0 | 0 | 34 |
-| AU Audits, controls, meta-analyses | 73 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 74 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -331,6 +331,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K598 | CFG900 | `campaign_fresh_gravity/CFG900_kappa_D4_lorentz_nodal_medium` | nodal fermion medium made Lorentz-invariant (v = c), its own filled-band vacuum = rho_DE (strict LI Dirac sea; ring with cone dim reg / tube / Pauli-Villars; timelike P0 loci) | - | free | CLOSURE: strict LI has only point nodes -> m^D vs /P/^(D-1) (NO LAW); universal beta/P/^3/3 vanishes at P_cos = 0 (IDENTITY); tube E0 < 0, w = +1/2 (sign lock); PV constant sign free; every link kappa^2 = 12pi/(sigma lambda^3) (one-parameter map; v and hbar cancel); excluded posits slot 6.14 / horizon 0.643 miss | 8b1267c5d |
 | K621 | W4-03/AS725 | `why_4_puzzle/W4_03_unrun_as_proposals` | mu(g) = K'(g)/(2g) integrability with a vacuum functional of K | - | free | CLOSURE: K0 free (k01 zero mode); Newtonian offsets diverge (Q: -a0 g; MU2: -8 a0^2 ln g), no finite K0-free vacuum | 3c96c6ce3 |
 | K633 | W4-04/R2T | `why_4_puzzle/W4_04_microscopic_normalization` | gapless bosonic thermal zero mode and common amplitude ratios | - | free | NO MOND PREDICTION: formal ratios 16/15 and 16/5 cancel species/hbar/common slope; cubic negative, low-field quadratic dominant, high-field response suppressed, state w=1/3; relative species slopes alter ratio unless symmetry forbids | a811e18fb |
+| K655 | W4-08/R1b | `why_4_puzzle/W4_08_positive_mond_amplitudes` | equal-weight split boson-fermion bands with critical quadratic cancellation and positive same-band energy | - | free | TRADE: R(d)=(8/27)f/b^3 with physical d=Delta/L free; common factors cancel; reciprocal minimum wrong target; sheet stress not vacuum; no gap selection | 4131def0e |
+| K658 | W4-08/R3FI | `why_4_puzzle/W4_08_positive_mond_amplitudes` | generate positive vacuum energy from same auxiliary using linear J deformation | - | free | CLOSURE for this branch: vacuum moves to y0>0 and IR becomes quadratic; nominal target ratio uses obsolete cubic and removes intermediate cubic window; no operational MOND amplitude | 4131def0e |
 
 ## FN: Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field)
 
@@ -452,6 +454,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K638 | W4-07/B2 | `why_4_puzzle/W4_07_symmetry_fixed_and_bound_ratios` | conformally coupled scalar in dS: m^2 = R/6 = 2H^2 fixed by conformal symmetry; a0 = m c^2 | 4.093 | odd | MISS: kappa^2 = 4pi d/(d-1) = 16pi/3 at d=4 (pi x algebraic); differs from B1 at d=5 | 2e238ed36 |
 | K643 | W4-07/B7 | `why_4_puzzle/W4_07_symmetry_fixed_and_bound_ratios` | seesaw realised as Berezhiani-Khoury superfluid a0 = alpha^3 Lambda^2/M_P with Lambda^4 = eps_DE | - | free | TRADE: hbar cancels; kappa^2 = alpha^6 (non-reduced M_Pl) or 8pi alpha^6 (reduced); alpha free | 2e238ed36 |
 | K644 | W4-07/B8 | `why_4_puzzle/W4_07_symmetry_fixed_and_bound_ratios` | flat-space amplitude positivity bounds | - | free | CLOSURE: no flat-space vertex depends on a vacuum constant; eps enters only via curvature (H-type) | 2e238ed36 |
+| K654 | W4-08/R1 | `why_4_puzzle/W4_08_positive_mond_amplitudes` | full regulated critical Dirac band with positive cubic IR and quadratic UV static response | - | free | TRADE: full homogeneous static Hessians positive but raw band energy negative; positive baseline sigma remains free; criticality unprotected; no healthy microscopic normalization | 4131def0e |
+| K656 | W4-08/R2 | `why_4_puzzle/W4_08_positive_mond_amplitudes` | documented two-field MOND superfluid amplitude parent with both radial modes retained | - | free | TRADE: open local quadratic positive Hamiltonian region but a0=lambda^3/(8pi G Lambda) with lambda and V0 free; charged state not vacuum; supermetric low-energy characteristic; no full healthy UV claim | 4131def0e |
+| K657 | W4-08/R3 | `why_4_puzzle/W4_08_positive_mond_amplitudes` | exact second-class auxiliary MOND response with positive reduced energy and canonical physical bracket | - | free | TRADE: exact attractive g=gN+sqrt(a0gN) but R=8epsilon0/(9gamma b^3) free; positive kinetic regulator tachyon; quantum vacuum constraint rank changes | 4131def0e |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -852,6 +857,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K616 | W4-03/AS562 | `why_4_puzzle/W4_03_unrun_as_proposals` | hidden-hbar audit: Pi_quant = hbar/(M_b v R) | - | audit | AUDIT: dimensionless, 1.7e-100 for a 1e10 Msun / 100 km/s / 10 kpc galaxy; the law is hbar-free; an l_P = 1 entropy count carries hbar^-1 when restored | 3c96c6ce3 |
 | K623 | W4-03/K547 | `deepseek_push/astra_spawn_ideas/results/AS025` | correction to K547: which of its nine proposals were unrun | - | audit | CORRECTION of K547: AS025 was executed 2026-09-28 (run_20260928T000953; dimensional uniqueness, kappa-blind); the other eight are now run in W4-03 (K615-K622) | 3c96c6ce3 |
 | K635 | W4-04/R4 | `why_4_puzzle/W4_04_microscopic_normalization` | operational amplitude normalization from one mediator source and actual high/low-gradient force coefficients | - | audit | CONDITIONAL REDUCTION: xi=8Omega C2^3/(9epsilon C3^2); in4D quarter requires epsilon C3^2/C2^3=128pi/9; common factors cancel; no selecting law supplied; tensor-plus-scalar measured-G dictionary must be rederived | a811e18fb |
+| K659 | W4-08/R1dyn | `why_4_puzzle/W4_08_positive_mond_amplitudes` | continuum mass bubble and gradient-source adiabatic range audit | - | audit | SCOPE: continuum kernel has k^2 sqrt(omegaE^2+v^2 k_parallel^2); hard finite-band projection unspecified; homogeneous convexity does not prove source dynamics; 53 exact checks and independent raw proof review | 4131def0e |
 
 ## LN: Logic / Lean formalisations
 

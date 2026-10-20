@@ -60,6 +60,8 @@ on selection.
 ## Provenance and resource limits
 
 Criteria-only commit: 6ac11cdc9. Verification-scope-only commit: e75b39dc8.
+Audited result commit: 4131def0e. Registry entries: K654-K659; none is a
+determinate kappa candidate. The regenerated campaign check passes 4/4.
 No numerical target root search, scan, fit, source download or heavy job.
 One process, one library thread; exact runs take seconds under bounded
 CPU/wall/output limits. The OS declined the requested nice priority;

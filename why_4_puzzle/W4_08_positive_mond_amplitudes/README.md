@@ -81,6 +81,10 @@ not a no-go for all constraints or all microscopic theories.
 
 ## Evidence and continuation
 
+Result commit: `4131def0e`. Campaign entries K654-K659 record five scoped
+construction/completion attempts and one dynamical audit. They add no
+determinate prediction or exact candidate; campaign significance is unchanged.
+
 The raw derivations are in [PROOF.md](PROOF.md); authenticated primary
 source locators and original-work boundaries are in [SOURCES.md](SOURCES.md).
 Three independent raw-proof reviewers checked the band/dynamical,
