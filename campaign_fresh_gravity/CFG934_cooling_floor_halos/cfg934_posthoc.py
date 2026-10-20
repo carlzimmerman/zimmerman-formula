@@ -46,5 +46,16 @@ for f in ("canonical", "alt"):
               "; ".join(f"{v['E']:+.2f} ({v['n_act']}/{v['N']} act)" for v in r["by_MV"].values()))
     best = RES[f"{f}|S|mu0.59|t50|C6000"]
     P(f"  largest residuals, (S) mu0.59|t50|C6000: " + ", ".join(f"{n} (M_V {m:.1f}, E {e:+.2f}, f_ex {x:.2f})" for n, m, e, x, _ in best["top"]))
+    # where f_ex switches off: baryon mass of the f_ex = 0 / f_ex > 0 boundary (part 2 of this post-hoc diagnostic, same date)
+    Mb = np.array([2.0 * 10 ** (0.4 * (4.83 - PRE[n]["MV"])) + (1.33 * 10 ** PRE[n]["lHI"] if PRE[n]["lHI"] is not None else 0.0) for n in names])
+    EP = np.array([g["ephan"](m, f) for m in Mb])
+    for c in CK:
+        Hf = hcf(*c)["lvd"]; cold = np.array([(1 - FBN) * Hf(d)[0] for d in SAMP]); on = EP < cold
+        RES[f"{f}|S|{ckey(c)}"]["switch"] = dict(max_Mb_on=float(Mb[on].max()) if on.any() else None, min_Mb_off=float(Mb[~on].min()) if (~on).any() else None)
+        P(f"  f_ex switch (S) {ckey(c):18s}: f_ex > 0 up to M_b {Mb[on].max():.2e}; f_ex = 0 from M_b {Mb[~on].min():.2e} (edge phantom vs cold floor (1-f_b) M_cool)")
+    Hf = hcf(0.59, "t50", 6000)["lvd"]
+    for n in ("Eridanus II", "Draco", "Andromeda IX", "Andromeda V", "Bootes I", "Segue 1"):
+        i = names.index(n); cold = (1 - FBN) * Hf(SAMP[i])[0]
+        P(f"     {n:14s} M_V {MV[i]:6.2f}  M_b {Mb[i]:.2e}  edge phantom {EP[i]:.2e}  cold floor {cold:.2e}  f_ex {max(0.0, 1 - EP[i] / cold):.3f}  (mu0.59|t50|C6000)")
 json.dump(RES, open(os.path.join(HERE, "cfg934_posthoc.json"), "w"), indent=1)
 open(os.path.join(HERE, "cfg934_posthoc.out"), "w").write("\n".join(OUT) + "\n")
