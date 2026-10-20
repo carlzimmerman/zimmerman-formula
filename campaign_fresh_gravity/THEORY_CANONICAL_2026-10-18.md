@@ -65,4 +65,12 @@ CFG875 (host-distance slope at fixed g_bar, 66 dwarfs, 19–1350 kpc): k = −0.
 brighter than M_V = −6, k = 0.00 ± 0.13. No test of environment (host mass CFG843, tides CFG838/839, stripping CFG860,
 isolation CFG873/874, distance CFG875) shows the host mattering beyond 1.6σ in its graded result (one CFG875
 variant that adds the faintest, closest ultra-faints reaches 2.0σ). Working description: a small-system
-component (CFG870), with its velocity scale (~7.5 km/s) not derived.
+component, with its velocity scale (~7.5 km/s) not derived.
+
+**Addendum (2026-10-19 night, CFG876–877): the component is a finite clump, not an atmosphere.** CFG870's extended form
+(mass ∝ r, read as a universal cold-energy temperature floor) is BROKEN by 18 large out-of-sample dwarfs (CFG876: Crater II,
+Antlia II, Cassiopeia III). A finite clump fixed by earlier lanes, σ = 7.53 km/s and M_cl = 81σ⁴/(4Ga0) = 5.3e6 M_⊙ (capping
+at ~200 pc), fits MW classical, M31 + field, UFDs, both out-of-sample groups and SPARC within ~2σ on both footings (CFG877,
+post-hoc model choice; PARTIAL only through M31 + field at 2.2σ; Crater II fails individually, as the law alone does).
+Working description: one bound, self-gravitating cold-energy clump per faint dwarf. Underived: σ ≈ 7.5 km/s (≡ 5e6 M_⊙).
+For the cold-energy equations: CFG638's bath σ_J² is not a universal floor.
