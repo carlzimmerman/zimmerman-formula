@@ -282,6 +282,6 @@ KAPPA_DOORS.md have now run without producing κ.
 
 ## Proposed register line (not appended by this lane; for the orchestrator)
 
-`K599,CFG905,QG,campaign_fresh_gravity/CFG905_kappa_D5_festina_lente,"gauged carrier U(1) + Festina Lente (recalled m^2 >~ sqrt6 g q M_P H; V form m^4 >= 2 s^2 e^2 V) with the carrier setting a0 (posited S_bridge)",,,free,0,"CLOSURE: FL is a bound on V, G-free (E_uc^2 = 2V/(d-3)); applied: BOUND on the carrier, kappa-free; saturated: unique hbar-free e-free carrier acceleration = sqrt2 s c sqrt(G rho_DE) (the law's unit) so kappa = sqrt2 s N, N free (TRADE; pi-even only for the G-normalised map = premise A; 4piG/8piG pi-odd); FL's own acceleration mc^3/hbar hbar-bearing (x3.6e30); Nariai geometry X3 7.09/5.01; gauged q_b repels; natural N=1 menu 1/6 in W (sqrt2/pi, kappa^2 = 2/pi^2, not 1/2)",<this commit>`
+`K600,CFG905,QG,campaign_fresh_gravity/CFG905_kappa_D5_festina_lente,"gauged carrier U(1) + Festina Lente (recalled m^2 >~ sqrt6 g q M_P H; V form m^4 >= 2 s^2 e^2 V) with the carrier setting a0 (posited S_bridge)",,,free,0,"CLOSURE: FL is a bound on V, G-free (E_uc^2 = 2V/(d-3)); applied: BOUND on the carrier, kappa-free; saturated: unique hbar-free e-free carrier acceleration = sqrt2 s c sqrt(G rho_DE) (the law's unit) so kappa = sqrt2 s N, N free (TRADE; pi-even only for the G-normalised map = premise A; 4piG/8piG pi-odd); FL's own acceleration mc^3/hbar hbar-bearing (x3.6e30); Nariai geometry X3 7.09/5.01; gauged q_b repels; natural N=1 menu 1/6 in W (sqrt2/pi, kappa^2 = 2/pi^2, not 1/2)",<this commit>`
 
-Use the next free K id (K599 unless another lane has taken it). κ = ½ FITTED; not theory closed.
+Use the next free K id: K600 (K599 was taken by CFG904 while this lane ran). κ = ½ FITTED; not theory closed.
