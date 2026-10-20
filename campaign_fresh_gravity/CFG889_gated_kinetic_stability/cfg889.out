@@ -1,0 +1,52 @@
+CFG889  gated kinetic stability of the deficit gate (orbits + drift + OU), H2 primary
+  kappa = 1/2 FITTED; footings never pooled; cold energy is real mass; not theory closed.
+
+  K-V [canonical] max|dlog rho| 0.027 dex (<=0.05), |dR| 0.023 (<=0.05), |dE/E| 3.8e-03 (<=0.01), |dvir| 0.005 (<=0.02) -> PASS
+  K-V [alt      ] max|dlog rho| 0.021 dex (<=0.05), |dR| 0.039 (<=0.05), |dE/E| 3.4e-03 (<=0.01), |dvir| 0.006 (<=0.02) -> PASS
+  K1 gated path with chi forced to 1 vs ungated (100 Myr, alpha 1): every snapshot and the R series identical -> PASS
+  K1b d > 0 in every occupied bin (rho_c ~ rho_tgt/2): precondition NOT MET; gated = ungated DIFFER -> NOT APPLICABLE
+  K-OU OU alone on the no-clump equilibrium (500 Myr): max|dlog rho| 0.185, |dE/E| 6.5e-03, W_OU/|E0| -5.1e-03 -> FAIL
+  K-M particle number conserved, positions finite and > 0 in all 42 runs -> PASS
+  K-E |eps_E| <= 0.01 in every verdict run: worst 1.50e-03 (U|canonical|H2|a0.5|e0.01|noclump) -> PASS
+
+  D-noorbit (drift only, gated, no Vlasov/OU; CFG882-like): tooth T-H
+    eps 0.01: He clump 0.217 vs no clump 0.000 (dHe +0.217); Hd 0.217 vs 0.000; R 1.0000; C(1 kpc) +1.004 (no clump +0.004); dMzone +0.000
+    eps 0.10: He clump 0.261 vs no clump 0.022 (dHe +0.239); Hd 0.261 vs 0.022; R 1.0000; C(1 kpc) +0.975 (no clump -0.025); dMzone +0.000
+    T-H (dHe >= 0.10 at both eps) -> BITES   [CFG882 D1, 12 Gyr density flow: 39-45% emptied vs 0-5%; M_ex(<1 kpc)/M_cl 0.91-0.94]
+
+  D-mix (comb of emptied zone bins, pure Vlasov): He 0.500 -> 0.000, Hd 0.500 -> 0.978; first time He = 0 and Hd <= 0.05: None Myr; zone ratio 0.506 -> 0.342
+
+  PRIMARY gated cells (H2; clump minus paired no-clump)
+    [canonical|a0.5|e0.01] R -0.0134 R90 0.0228 | dHe +0.000 dHd +0.000 (mid +0.000) dMzone -0.207 (mid -0.268) | C 0.5/1/2/3 kpc +0.17/+0.39/+0.43/+0.01 | duty 0.33->0.12 | Einj/|E0| +2.91e-01 (drift +2.55e-01, OU +3.59e-02) fesc 0.1303 -> KEPT False HEALED False GROWING False WB False
+    [canonical|a0.5|e0.1 ] R -0.0101 R90 0.0214 | dHe +0.000 dHd +0.000 (mid +0.000) dMzone -0.206 (mid -0.257) | C 0.5/1/2/3 kpc +0.18/+0.44/+0.43/-0.00 | duty 0.37->0.14 | Einj/|E0| +2.85e-01 (drift +2.58e-01, OU +2.74e-02) fesc 0.1295 -> KEPT False HEALED False GROWING False WB False
+    [canonical|a1.0|e0.01] R -0.0216 R90 -0.0060 | dHe +0.000 dHd +0.000 (mid +0.000) dMzone -0.277 (mid -0.264) | C 0.5/1/2/3 kpc +0.10/+0.26/+0.24/-0.00 | duty 0.33->0.18 | Einj/|E0| +3.17e-01 (drift +2.51e-01, OU +6.56e-02) fesc 0.1320 -> KEPT False HEALED False GROWING False WB False
+    [canonical|a1.0|e0.1 ] R -0.0241 R90 0.0003 | dHe +0.000 dHd +0.000 (mid +0.000) dMzone -0.273 (mid -0.240) | C 0.5/1/2/3 kpc +0.13/+0.25/+0.25/-0.02 | duty 0.37->0.19 | Einj/|E0| +3.15e-01 (drift +2.55e-01, OU +5.98e-02) fesc 0.1311 -> KEPT False HEALED False GROWING False WB False
+    [alt|a0.5|e0.01      ] R -0.0041 R90 0.0385 | dHe +0.000 dHd +0.000 (mid +0.000) dMzone -0.155 (mid -0.349) | C 0.5/1/2/3 kpc +0.31/+0.62/+0.65/-0.03 | duty 0.30->0.11 | Einj/|E0| +2.29e-01 (drift +2.23e-01, OU +5.61e-03) fesc 0.1258 -> KEPT False HEALED False GROWING False WB False
+    [alt|a0.5|e0.1       ] R -0.0087 R90 0.0346 | dHe +0.000 dHd +0.000 (mid +0.000) dMzone -0.207 (mid -0.357) | C 0.5/1/2/3 kpc +0.30/+0.61/+0.61/-0.08 | duty 0.42->0.14 | Einj/|E0| +2.31e-01 (drift +2.28e-01, OU +3.55e-03) fesc 0.1270 -> KEPT False HEALED False GROWING False WB False
+    [alt|a1.0|e0.01      ] R -0.0321 R90 -0.0149 | dHe +0.000 dHd +0.000 (mid +0.000) dMzone -0.295 (mid -0.306) | C 0.5/1/2/3 kpc +0.19/+0.34/+0.35/-0.09 | duty 0.30->0.20 | Einj/|E0| +2.64e-01 (drift +2.36e-01, OU +2.80e-02) fesc 0.1244 -> KEPT False HEALED False GROWING False WB False
+    [alt|a1.0|e0.1       ] R -0.0332 R90 -0.0098 | dHe +0.000 dHd +0.000 (mid +0.000) dMzone -0.287 (mid -0.286) | C 0.5/1/2/3 kpc +0.18/+0.36/+0.34/-0.05 | duty 0.42->0.18 | Einj/|E0| +2.58e-01 (drift +2.27e-01, OU +3.06e-02) fesc 0.1229 -> KEPT False HEALED False GROWING False WB False
+
+  RESOLUTION N = 400000 (x4): R 0.0171, dHe +0.000, dHd +0.000, dMzone -0.264, C(1 kpc) +0.240; KEPT False HEALED False (N1e5: KEPT False HEALED False) -> AGREES; dMzone ratio N4/N1 = 0.95
+
+  HOSTS (report-only; canonical, gated, alpha 1, eps 0.01)
+    [H1] N 100000 (clump 33638): R -0.0217 R90 -0.0142 dHe +0.000 dHd +0.000 dMzone -0.256 C(1 kpc) +0.024 C(2 kpc) +0.048 -> KEPT False HEALED False GROWING True WB False
+    [H3] N 200000 (clump 2340): R -0.0510 R90 0.0001 dHe +0.000 dHd +0.000 dMzone -0.273 C(1 kpc) +1.807 C(2 kpc) +2.056 -> KEPT False HEALED False GROWING True WB False
+
+  V-U ungated two-sided drift + OU (eps 0.01)
+    [canonical a 0.5] R(T) -0.0386  t50 21.0 Myr vs CFG882 20.74 Myr (ratio 1.01)  dHe +0.000 dHd +0.000 dMzone -0.218 C(1/2/3 kpc) +0.30/+0.45/-0.10  Einj/|E0| +3.39e-01 fesc 0.1444
+    [canonical a 1.0] R(T) -0.0092  t50 11.0 Myr vs CFG882 10.37 Myr (ratio 1.06)  dHe +0.000 dHd +0.000 dMzone -0.251 C(1/2/3 kpc) +0.08/+0.24/+0.07  Einj/|E0| +3.07e-01 fesc 0.1063
+    [alt       a 0.5] R(T) -0.0321  t50 19.0 Myr vs CFG882 17.16 Myr (ratio 1.11)  dHe +0.000 dHd +0.000 dMzone -0.230 C(1/2/3 kpc) +0.39/+0.59/-0.29  Einj/|E0| +2.96e-01 fesc 0.1437
+    [alt       a 1.0] R(T) -0.0044  t50 9.5 Myr vs CFG882 8.58 Myr (ratio 1.11)  dHe +0.000 dHd +0.000 dMzone -0.294 C(1/2/3 kpc) +0.12/+0.31/+0.01  Einj/|E0| +2.56e-01 fesc 0.1024
+    V-U: DRAINS; CFG882 O(1) drain rate CONFIRMED
+
+  M1 (from the MUTATE run): BITES
+
+  K all: FAIL; T-H bites; M1 bites; resolution agrees
+  CLASS: INCONCLUSIVE (K-test) + CLUMP ERODED (canonical|a0.5|e0.01, canonical|a0.5|e0.1, canonical|a1.0|e0.01, canonical|a1.0|e0.1, alt|a0.5|e0.01, alt|a0.5|e0.1, alt|a1.0|e0.01, alt|a1.0|e0.1)
+
+  ---- POST-HOC diagnostics (added after the frozen runs; NO class weight) ----
+    PnoOU    (canonical, alpha 1.0): R(T) 0.0056  t50 153.5 Myr  dHe +0.000 dHd +0.000 dMzone -0.570  C(1 kpc) -0.048 (base +0.005)  Einj/|E0| +2.18e-01  fesc 0.0422 (base 0.0000)
+    PnoDrift (canonical, alpha 1.0): R(T) 1.0134  t50 None Myr  dHe +0.000 dHd +0.000 dMzone -0.201  C(1 kpc) +1.505 (base +0.662)  Einj/|E0| -2.13e-02  fesc 0.1012 (base 0.0888)
+    Pa0.05   (canonical, alpha 0.05): R(T) 0.7047  t50 None Myr  dHe +0.000 dHd +0.000 dMzone -0.326  C(1 kpc) +0.484 (base +0.007)  Einj/|E0| +1.49e-01  fesc 0.0672 (base 0.0514)
+    Dmix2 (mass-conserving comb, pure Vlasov): (t, He, Hd, zone ratio) (0,0.50,0.50,0.993) (10,0.00,0.00,0.984) (20,0.00,0.00,0.983) (30,0.00,0.00,0.983) (40,0.00,0.00,0.985) (50,0.00,0.00,0.985) ... T: He 0.00 Hd 0.00
+    PnoOU N x 4 (N 400000): R(T) 0.0022  t50 158.5 Myr  dHe +0.000 dHd +0.000 dMzone -0.612  C(1 kpc) -0.055
