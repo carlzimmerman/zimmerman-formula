@@ -126,3 +126,10 @@ not as a −7.7 preference. NC1x (native initial conditions) is scored by the ch
 HOLDS against its own control: KiDS Δχ² −10.08, CONSISTENT; CFG909 re-score ROBUST with the size again amplitude-driven (−3.1 to −15.8
 over projection Ω_m). Absolute KiDS fit p ≈ 0.02 (data χ²). The inherited-IC condition is lifted on the canonical footing only; the alt
 native rerun NC2x (A3) is running. CMB-lensing gate CFG917 in progress.
+
+**Note (2026-10-20, CFG916/917).** CMB lensing (CFG917): the theory-v2 runs are SAFE on CFG649's relative check and CONSISTENT with raw
+Planck PR4 lensing (Δχ² −0.28 / −0.09 / −0.09; the PASS needs post-hoc A1, NOT DIAGNOSTIC as frozen), but the gate has LOW POWER at box
+scales (the KiDS-excluded CFG596 P1 reaches only +1.88): it neither threatens nor supports the shear pass. Mobility (CFG916): CFG915's
+LC latching plus release beyond the tidal radius is CONTRADICTED as posed (release is inert under exact capture); with a new capped-capture
+rule it is UNDERDETERMINED (clusters return to the law statically; Bullet undecided; dwarfs conditional on ×4.3 formation baryon loss).
+
