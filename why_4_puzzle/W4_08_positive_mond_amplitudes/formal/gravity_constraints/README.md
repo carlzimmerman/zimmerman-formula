@@ -1,7 +1,9 @@
 # Physical constraints and the normalization discriminator
 
 **The original goal remains open.** Criteria-only commit 201229b5f
-continues the clock/flux checkpoint f1565bc90. [RESULT.md](RESULT.md)
+continues the clock/flux checkpoint f1565bc90. Reviewed evidence is
+committed as 590d17d77; campaign entries K701-K706 record the separate
+scopes. Regeneration passes 4/4 and adds no determinate prediction. [RESULT.md](RESULT.md)
 derives the covariant actions, their retained modes and actual physical
 force/density dictionaries. No healthy microscopic selector is found.
 

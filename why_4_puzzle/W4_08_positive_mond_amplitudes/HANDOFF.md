@@ -164,3 +164,7 @@ and normal controls pass; three deliberate false controls each fail only
 at False. Development failures and parser-format limitations are retained
 in the raw evidence directories. Actual pi and all physical dictionaries
 remain explicit unformalized leaves. The original goal stays active.
+
+Gravitational-constraint evidence commit: 590d17d77; campaign rows
+K701-K706. The regenerated campaign checks pass 4/4. Determinate-trial
+count and campaign significance are unchanged; the original goal is open.

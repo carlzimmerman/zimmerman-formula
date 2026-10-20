@@ -134,3 +134,7 @@ Details and qualifications: gravity_constraints/README.md and RESULT.md.
 The next constructive change needs a new protected microscopic relation
 and a viable physical matter metric; repeating the same quadratic
 constraint test or fitting the scalar charge cannot finish the goal.
+
+Gravitational-constraint evidence commit: 590d17d77; campaign rows
+K701-K706. The regenerated campaign checks pass 4/4. Determinate-trial
+count and campaign significance are unchanged; the original goal is open.
