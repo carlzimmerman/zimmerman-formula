@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (668 rows)
+## Totals (669 rows)
 
 - **501 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 45 | 0 | 0 | 0 | 0 | 35 |
-| AU Audits, controls, meta-analyses | 74 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 75 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -867,6 +867,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K623 | W4-03/K547 | `deepseek_push/astra_spawn_ideas/results/AS025` | correction to K547: which of its nine proposals were unrun | - | audit | CORRECTION of K547: AS025 was executed 2026-09-28 (run_20260928T000953; dimensional uniqueness, kappa-blind); the other eight are now run in W4-03 (K615-K622) | 3c96c6ce3 |
 | K635 | W4-04/R4 | `why_4_puzzle/W4_04_microscopic_normalization` | operational amplitude normalization from one mediator source and actual high/low-gradient force coefficients | - | audit | CONDITIONAL REDUCTION: xi=8Omega C2^3/(9epsilon C3^2); in4D quarter requires epsilon C3^2/C2^3=128pi/9; common factors cancel; no selecting law supplied; tensor-plus-scalar measured-G dictionary must be rederived | a811e18fb |
 | K659 | W4-08/R1dyn | `why_4_puzzle/W4_08_positive_mond_amplitudes` | continuum mass bubble and gradient-source adiabatic range audit | - | audit | SCOPE: continuum kernel has k^2 sqrt(omegaE^2+v^2 k_parallel^2); hard finite-band projection unspecified; homogeneous convexity does not prove source dynamics; 53 exact checks and independent raw proof review | 4131def0e |
+| K669 | p62 | `sonnet55_push/puzzle_32pi/p62_gf1_data_pin_audit.py` | RESULT of pending K068: audit of GF1's n = 2 'data pin' | - | audit | IDENTITY: GF1's A0 = c sqrt(G rho_L)/2, so n = 2 by construction; measured n_L 2.40 +- 0.54 (CFG493), consistent not pinned. Supersedes the PENDING status of K068 | b3aae484f |
 
 ## LN: Logic / Lean formalisations
 
