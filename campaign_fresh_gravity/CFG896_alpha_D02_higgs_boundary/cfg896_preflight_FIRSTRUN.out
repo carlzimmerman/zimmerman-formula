@@ -1,0 +1,210 @@
+====================================================================================================================================
+CFG896 alpha door D02: Higgs-sector boundary condition solved for g_Y (pre-flight, gates, controls) -- mode: REAL RUN
+====================================================================================================================================
+Y1 error carried for the running + map: sigma_map = 0.1206 (= 8.80e-04 x 137.036), Thomson link 0.0080
+
+measured point (Y1-central boundary at mu = M_t = 172.57 GeV): g_Y = 0.358427, g_2 = 0.647643, g_3 = 1.163421, y_t = 0.932859, lambda = 0.125968
+   a_Y(M_t) = 97.8158, a_2(M_t) = 29.9598, a_em(M_t) = 127.7756;  Delta_t = 137.035999177 - a_em(M_t) = 9.2604  (target transport)
+   M_W from inverting Buttazzo's g_2 formula at the measured point: 80.3692 (input 80.3692)
+
+K1  reproduce Y1's validated numbers exactly
+  [PASS] K1(i) Y1-central aY(X_P)  mine 55.23423 printed 55.2342
+  [PASS] K1(i) Y1-central a2(X_P)  mine 49.20258 printed 49.2026
+  [PASS] K1(i) Y1-central a3(X_P)  mine 52.97131 printed 52.9713
+  [PASS] K1(i) Y1-central aem(X_P)  mine 104.43681 printed 104.4368
+  [PASS] K1(ii) Buttazzo-input like-for-like g1(M_P)  mine +0.615371 printed +0.61537
+  [PASS] K1(ii) Buttazzo-input like-for-like g2(M_P)  mine +0.505457 printed +0.50546
+  [PASS] K1(ii) Buttazzo-input like-for-like g3(M_P)  mine +0.487311 printed +0.48731
+  [PASS] K1(ii) Buttazzo-input like-for-like yt(M_P)  mine +0.382475 printed +0.38248
+  [PASS] K1(ii) Buttazzo-input like-for-like lam(M_P)  mine -0.014367 printed -0.01437
+K2  lambda(M_P) sensitivities at Buttazzo's point (Y1 steps)
+  [PASS] K2 lambda(M_P) sensitivity M_t per GeV  mine -0.00649 Y1 printed -0.00649
+  [PASS] K2 lambda(M_P) sensitivity alpha_3 per 0.0007  mine +0.00186 Y1 printed +0.00186
+  [PASS] K2 lambda(M_P) sensitivity M_h per GeV  mine +0.00281 Y1 printed +0.00281
+K3  Veltman coefficients from the field-dependent supertrace
+      STr M^2 phi^2-coefficient = 9*g**2/4 + 3*gp**2/4 + 6*lambda - 6*y_t**2  -> (lambda, g^2, g'^2, y_t^2) = (6, 9/4, 3/4, -6);  typed in C_d: (6, 9/4, 3/4, -6)
+  [PASS] K3 C_d coefficients equal the supertrace derivation exactly  
+K4  beta_lambda used in C_c
+  [PASS] K4(a) C_c's beta_lambda equals the beta_lambda that runs lambda (Y1, 3 loops) on the trajectory  worst relative difference 0.00e+00
+  [PASS] K4(b) one-loop part equals the textbook 16pi^2 beta_lambda (20 random points, y_b = y_tau = 0)  worst relative difference 2.22e-16
+
+computing the Jacobians (single, joint, measured modes) ...
+
+substitution inputs (alpha x 1.01): delta lambda(M_t) 3.11e-05 (1% of NNLO - tree -0.00311); delta y_t 1.87e-04; delta g_2 5.18e-05 (1% of NNLO - tree -0.00518); two-loop QED part of Delta_t (leptons) 0.00913 -> delta Delta_t <= 3.65e-04
+
+K5  finite differences: linearity of the items, linearity and step stability of the unknown-derivatives
+  [FAIL] K5 every significant derivative is linear (asymmetry < 5%) and step-stable (eps vs eps/2 within 2%)  violations: [('single', 'Mt_exp', 'cP', 0.07729738510000246), ('single', 'Mt_exp', 'cR', 0.09612561745894717), ('single', 'Mt', 'cP', 0.11121840369557726), ('single', 'Mt', 'cR', 0.1383062919621033), ('single', 'als', 'cP', 0.28198690753548744), ('single', 'als', 'cR', 0.41531311271076526)]
+K6  M_t + 5 x 0.42 GeV: condition values move by 5 x their linear derivative (within 15%)
+      a  : linear 5-sigma prediction -1.37176e-02, actual -1.39073e-02, ratio 1.0138
+      bP : linear 5-sigma prediction -1.35682e-02, actual -1.36905e-02, ratio 1.0090
+      cP : linear 5-sigma prediction +8.63530e-03, actual +1.10114e-02, ratio 1.2752
+      dP : linear 5-sigma prediction -1.29781e-01, actual -1.32301e-01, ratio 1.0194
+      bR : linear 5-sigma prediction -1.36477e-02, actual -1.37943e-02, ratio 1.0107
+      cR : linear 5-sigma prediction +6.89723e-03, actual +9.26772e-03, ratio 1.3437
+      dR : linear 5-sigma prediction -1.31762e-01, actual -1.34442e-01, ratio 1.0203
+  [FAIL] K6 every condition moves as the linear derivative predicts within 15%  
+
+K7  positive controls (planted known answers)
+      planted single C = a_Y(M_P) - 55.234233: sigma_PF 0.0034, sigma_full 0.1214
+  [PASS] K7(i) planted single condition passes the pre-flight  
+      solver: 1 root(s), 11 grid points excluded (Landau); 1/alpha(0) = [137.035999177]
+  [PASS] K7(i) single solver recovers 1/alpha(0) = 137.035999177 within 1e-6 relative  137.035999177
+      planted joint (a_Y, a_2)(M_P) = (55.234233, 49.202581): sigma_PF 0.0026, sigma_full 0.1209, sigma(M_W) 0.0040
+  [PASS] K7(ii) planted joint pair passes the pre-flight  
+      joint solver: 0 distinct root(s), 25 of 25 starts failed; (1/alpha(0), M_W) = []
+  [FAIL] K7(ii) joint solver recovers 1/alpha(0) within 1e-6 relative and M_W = 80.3692 within 1e-4 GeV  []
+
+====================================================================================================================================
+THE MEASURED POINT (Y1-central inputs, g_Y and g_2 at their Y1-central values)
+====================================================================================================================================
+  mu = 1.2209e+19: lambda = -0.011327   16pi^2 beta_lambda = +0.026605 (beta_lambda = +1.685e-04)   Veltman = -0.192441
+  mu = 2.4350e+18: lambda = -0.011542   16pi^2 beta_lambda = +0.015266 (beta_lambda = +9.668e-05)   Veltman = -0.229143
+  lambda_min = -0.011637 at mu* = 3.5653e+17 GeV
+
+  door's leverages at fixed measured m_H, m_t, alpha_s, M_W:  d lambda(M_P)/d ln g_Y = +0.05856 ;  d beta_lambda(M_P)/d ln g_Y = +1.9438e-03 (16pi^2 x: +0.30695) ;  d Veltman(M_P)/d ln g_Y = +1.29473 ;  d lambda_min/d ln g_Y = +0.05191
+  and per ln g_2 (joint):  d lambda(M_P) +0.15967 ;  16pi^2 d beta_lambda(M_P) +0.20418 ;  d Veltman(M_P) +2.34568
+  map: d(1/alpha(0))/d ln g_Y = -195.632 ; d(1/alpha(0))/d ln g_2 = -59.920 ; d M_W/d ln g_2 = 82.427 GeV
+
+====================================================================================================================================
+LEVERAGE PRE-FLIGHT (frozen rule: NOT DIAGNOSTIC and stop if sigma_PF > 1.37 or sigma_full > 1.37)
+====================================================================================================================================
+
+S1 [K2 (MPP)] lambda = beta_lambda = 0 at free mu* (lambda_min = 0)
+   C at the measured point: a = -1.16368e-02
+   leverage dC/d ln g_Y: a +5.19095e-02
+   sigma_PF(1/alpha(0)) = 11.491  [M_t(0.29) 7.187, alpha_s 8.909, M_H 1.012]   sigma_full = 14.191  (largest: M_t +-0.42 10.341, alpha_s +-0.0009 8.909, y_t, lambda betas at 2 instead of 3 loops 2.597, y_t matching +-0.0005 2.144)
+   by-product (not an alpha result): z of the principle at the measured point = -3.09  (C = -1.1637e-02 +- 3.760e-03)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 1.0117 (73.82% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+S2 [K1-conditional (AS) / K2] lambda(M_P) = 0
+   C at the measured point: bP = -1.13270e-02
+   leverage dC/d ln g_Y: bP +5.85596e-02
+   sigma_PF(1/alpha(0)) = 10.152  [M_t(0.29) 6.302, alpha_s 7.912, M_H 0.864]   sigma_full = 12.502  (largest: M_t +-0.42 9.067, alpha_s +-0.0009 7.912, y_t, lambda betas at 2 instead of 3 loops 2.288, y_t matching +-0.0005 1.879)
+   by-product (not an alpha result): z of the principle at the measured point = -3.03  (C = -1.1327e-02 +- 3.736e-03)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.8842 (64.52% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+S3 [K2] beta_lambda(M_P) = 0
+   C at the measured point: cP = +2.66048e-02
+   leverage dC/d ln g_Y: cP +3.06947e-01
+   sigma_PF(1/alpha(0)) = 0.833  [M_t(0.29) 0.764, alpha_s 0.165, M_H 0.288]   sigma_full = 1.279  (largest: M_t +-0.42 1.099, lambda matching +-0.0003 0.466, M_H +-0.09 0.288, y_t matching +-0.0005 0.234)
+   by-product (not an alpha result): z of the principle at the measured point = +13.04  (C = +2.6605e-02 +- 2.041e-03)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.1416 (10.33% of an identity's 1.37)
+   PRE-FLIGHT: PASS -> proceeds to solving
+
+S4 [K2] Veltman at M_P
+   C at the measured point: dP = -1.92441e-01
+   leverage dC/d ln g_Y: dP +1.29473e+00
+   sigma_PF(1/alpha(0)) = 4.868  [M_t(0.29) 2.727, alpha_s 4.025, M_H 0.235]   sigma_full = 5.798  (largest: alpha_s +-0.0009 4.025, M_t +-0.42 3.923, y_t, lambda betas at 2 instead of 3 loops 1.071, y_t matching +-0.0005 0.808)
+   by-product (not an alpha result): z of the principle at the measured point = -5.03  (C = -1.9244e-01 +- 3.825e-02)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.3649 (26.63% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+S5 [K1-conditional (AS) / K2] lambda(M_red) = 0
+   C at the measured point: bR = -1.15418e-02
+   leverage dC/d ln g_Y: bR +5.54749e-02
+   sigma_PF(1/alpha(0)) = 10.744  [M_t(0.29) 6.691, alpha_s 8.354, M_H 0.928]   sigma_full = 13.247  (largest: M_t +-0.42 9.627, alpha_s +-0.0009 8.354, y_t, lambda betas at 2 instead of 3 loops 2.424, y_t matching +-0.0005 1.995)
+   by-product (not an alpha result): z of the principle at the measured point = -3.08  (C = -1.1542e-02 +- 3.751e-03)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.9401 (68.60% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+S6 [K2] beta_lambda(M_red) = 0
+   C at the measured point: cR = +1.52664e-02
+   leverage dC/d ln g_Y: cR +2.97644e-01
+   sigma_PF(1/alpha(0)) = 0.701  [M_t(0.29) 0.629, alpha_s 0.097, M_H 0.293]   sigma_full = 1.098  (largest: M_t +-0.42 0.905, lambda matching +-0.0003 0.475, M_H +-0.09 0.293, y_t matching +-0.0005 0.195)
+   by-product (not an alpha result): z of the principle at the measured point = +8.97  (C = +1.5266e-02 +- 1.701e-03)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.1299 (9.48% of an identity's 1.37)
+   PRE-FLIGHT: PASS -> proceeds to solving
+
+S7 [K2] Veltman at M_red
+   C at the measured point: dR = -2.29143e-01
+   leverage dC/d ln g_Y: dR +1.22977e+00
+   sigma_PF(1/alpha(0)) = 5.195  [M_t(0.29) 2.915, alpha_s 4.293, M_H 0.252]   sigma_full = 6.191  (largest: alpha_s +-0.0009 4.293, M_t +-0.42 4.194, y_t, lambda betas at 2 instead of 3 loops 1.145, y_t matching +-0.0005 0.864)
+   by-product (not an alpha result): z of the principle at the measured point = -5.91  (C = -2.2914e-01 +- 3.880e-02)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.3903 (28.48% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+J1 [K2 (weaker leg)] lambda = beta_lambda = 0 at M_P (door's AS pair)
+   C at the measured point: bP = -1.13270e-02, cP = +2.66048e-02
+   leverage dC/d ln g_Y: bP +5.85596e-02, cP +3.06947e-01;  dC/d ln g_2: bP +1.59665e-01, cP +2.04177e-01
+   sigma_PF(1/alpha(0)) = 2.586  [M_t(0.29) 1.994, alpha_s 1.571, M_H 0.489]   sigma_full = 3.508  (largest: M_t +-0.42 2.869, alpha_s +-0.0009 1.571, lambda matching +-0.0003 0.791, y_t, lambda betas at 2 instead of 3 loops 0.603)
+   sigma_full(M_W) = 2.772 GeV ; corr(1/alpha, M_W) = +0.981 ; cond(J) in sigma units = 6.998e+00
+   by-product (not an alpha result): chi^2 (2 dof) of the principle at the measured point = 340.03  (sigma_C = 3.736e-03, 2.041e-03)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.3069 (22.39% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+J2 [K2] lambda = 0 and Veltman at M_P
+   C at the measured point: bP = -1.13270e-02, dP = -1.92441e-01
+   leverage dC/d ln g_Y: bP +5.85596e-02, dP +1.29473e+00;  dC/d ln g_2: bP +1.59665e-01, dP +2.34568e+00
+   sigma_PF(1/alpha(0)) = 4.028  [M_t(0.29) 3.156, alpha_s 2.371, M_H 0.800]   sigma_full = 5.509  (largest: M_t +-0.42 4.541, alpha_s +-0.0009 2.371, lambda matching +-0.0003 1.295, y_t matching +-0.0005 0.953)
+   sigma_full(M_W) = 3.111 GeV ; corr(1/alpha, M_W) = +0.982 ; cond(J) in sigma units = 1.431e+01
+   by-product (not an alpha result): chi^2 (2 dof) of the principle at the measured point = 433.84  (sigma_C = 3.736e-03, 3.825e-02)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.4902 (35.77% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+J3 [K2] beta_lambda = 0 and Veltman at M_P
+   C at the measured point: cP = +2.66048e-02, dP = -1.92441e-01
+   leverage dC/d ln g_Y: cP +3.06947e-01, dP +1.29473e+00;  dC/d ln g_2: cP +2.04177e-01, dP +2.34568e+00
+   sigma_PF(1/alpha(0)) = 2.415  [M_t(0.29) 1.857, alpha_s 1.477, M_H 0.452]   sigma_full = 3.272  (largest: M_t +-0.42 2.671, alpha_s +-0.0009 1.477, lambda matching +-0.0003 0.731, y_t, lambda betas at 2 instead of 3 loops 0.564)
+   sigma_full(M_W) = 2.504 GeV ; corr(1/alpha, M_W) = +0.976 ; cond(J) in sigma units = 6.271e+00
+   by-product (not an alpha result): chi^2 (2 dof) of the principle at the measured point = 222.92  (sigma_C = 2.041e-03, 3.825e-02)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.2852 (20.81% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+J4 [K2] lambda = beta_lambda = 0 at M_red
+   C at the measured point: bR = -1.15418e-02, cR = +1.52664e-02
+   leverage dC/d ln g_Y: bR +5.54749e-02, cR +2.97644e-01;  dC/d ln g_2: bR +1.57400e-01, cR +2.39905e-01
+   sigma_PF(1/alpha(0)) = 3.162  [M_t(0.29) 2.430, alpha_s 1.935, M_H 0.594]   sigma_full = 4.282  (largest: M_t +-0.42 3.496, alpha_s +-0.0009 1.935, lambda matching +-0.0003 0.961, y_t, lambda betas at 2 instead of 3 loops 0.736)
+   sigma_full(M_W) = 2.902 GeV ; corr(1/alpha, M_W) = +0.983 ; cond(J) in sigma units = 9.882e+00
+   by-product (not an alpha result): chi^2 (2 dof) of the principle at the measured point = 94.98  (sigma_C = 3.751e-03, 1.701e-03)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.3735 (27.26% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+J5 [K2] lambda = 0 and Veltman at M_red
+   C at the measured point: bR = -1.15418e-02, dR = -2.29143e-01
+   leverage dC/d ln g_Y: bR +5.54749e-02, dR +1.22977e+00;  dC/d ln g_2: bR +1.57400e-01, dR +2.36379e+00
+   sigma_PF(1/alpha(0)) = 4.822  [M_t(0.29) 3.753, alpha_s 2.877, M_H 0.943]   sigma_full = 6.572  (largest: M_t +-0.42 5.400, alpha_s +-0.0009 2.877, lambda matching +-0.0003 1.525, y_t matching +-0.0005 1.133)
+   sigma_full(M_W) = 3.275 GeV ; corr(1/alpha, M_W) = +0.985 ; cond(J) in sigma units = 1.554e+01
+   by-product (not an alpha result): chi^2 (2 dof) of the principle at the measured point = 822.25  (sigma_C = 3.751e-03, 3.880e-02)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.5812 (42.41% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+J6 [K2] beta_lambda = 0 and Veltman at M_red
+   C at the measured point: cR = +1.52664e-02, dR = -2.29143e-01
+   leverage dC/d ln g_Y: cR +2.97644e-01, dR +1.22977e+00;  dC/d ln g_2: cR +2.39905e-01, dR +2.36379e+00
+   sigma_PF(1/alpha(0)) = 2.894  [M_t(0.29) 2.216, alpha_s 1.782, M_H 0.537]   sigma_full = 3.912  (largest: M_t +-0.42 3.188, alpha_s +-0.0009 1.782, lambda matching +-0.0003 0.869, y_t, lambda betas at 2 instead of 3 loops 0.675)
+   sigma_full(M_W) = 2.599 GeV ; corr(1/alpha, M_W) = +0.979 ; cond(J) in sigma units = 8.807e+00
+   by-product (not an alpha result): chi^2 (2 dof) of the principle at the measured point = 81.22  (sigma_C = 1.701e-03, 3.880e-02)
+   substitution (alpha x 1.01 in every contamination slot): would-be shift of 1/alpha(0) <= 0.3399 (24.80% of an identity's 1.37)
+   PRE-FLIGHT: FAIL -> NOT DIAGNOSTIC (stop; no solving)
+
+====================================================================================================================================
+STAGE 2: SOLVING (only variants that passed the pre-flight)
+====================================================================================================================================
+  S3: roots [{'sY': -0.1138856855323639, 'invA': 162.0571072533205, 'sigma': 2.4457619905693573, 'substitution': 0.29089845409923637}] (11 grid points excluded)
+  S6: roots [{'sY': -0.05913812511651008, 'invA': 149.31726441529446, 'sigma': 1.5453581808656929, 'substitution': 0.18707995425543725}] (11 grid points excluded)
+
+M_Z blindness of Buttazzo's g_2 formula (joint variants, reported): one-loop d g_2/d M_Z = -6.982e-05 per GeV; a 1% change of g_Y moves M_Z by 0.214 GeV (tree), i.e. an M_W bias of 0.0019 GeV per 1% of g_Y
+
+====================================================================================================================================
+SUMMARY (grades by ALPHA_CAMPAIGN_RULES.md section 5)
+====================================================================================================================================
+  ID   variant                                              kernel                      sigma_PF  sigma_full  sig(M_W)  z / chi2  grade
+  S1   lambda = beta_lambda = 0 at free mu* (lambda_min = 0) K2 (MPP)                      11.491      14.191       nan     -3.09  NOT DIAGNOSTIC
+  S2   lambda(M_P) = 0                                      K1-conditional (AS) / K2      10.152      12.502       nan     -3.03  NOT DIAGNOSTIC
+  S3   beta_lambda(M_P) = 0                                 K2                             0.833       1.279       nan     13.04  KILLED
+  S4   Veltman at M_P                                       K2                             4.868       5.798       nan     -5.03  NOT DIAGNOSTIC
+  S5   lambda(M_red) = 0                                    K1-conditional (AS) / K2      10.744      13.247       nan     -3.08  NOT DIAGNOSTIC
+  S6   beta_lambda(M_red) = 0                               K2                             0.701       1.098       nan      8.97  KILLED
+  S7   Veltman at M_red                                     K2                             5.195       6.191       nan     -5.91  NOT DIAGNOSTIC
+  J1   lambda = beta_lambda = 0 at M_P (door's AS pair)     K2 (weaker leg)                2.586       3.508     2.772    340.03  NOT DIAGNOSTIC
+  J2   lambda = 0 and Veltman at M_P                        K2                             4.028       5.509     3.111    433.84  NOT DIAGNOSTIC
+  J3   beta_lambda = 0 and Veltman at M_P                   K2                             2.415       3.272     2.504    222.92  NOT DIAGNOSTIC
+  J4   lambda = beta_lambda = 0 at M_red                    K2                             3.162       4.282     2.902     94.98  NOT DIAGNOSTIC
+  J5   lambda = 0 and Veltman at M_red                      K2                             4.822       6.572     3.275    822.25  NOT DIAGNOSTIC
+  J6   beta_lambda = 0 and Veltman at M_red                 K2                             2.894       3.912     2.599     81.22  NOT DIAGNOSTIC
+
+  attempt counter: post-ledger alpha attempt #1; N_mech 359 -> 372 (all 13 pre-declared variants counted, rules section 3, conservative reading)
+  precision demanded campaign-wide (single coupling): reading (A) 6.19e-06, reading (B, stricter, applies) 4.92e-07
+  gates: FAILED: ['K5 every significant derivative is linear (asymmetry < 5%) and step-stable (eps vs eps/2 within 2%)', 'K6 every condition moves as the linear derivative predicts within 15%', 'K7(ii) joint solver recovers 1/alpha(0) within 1e-6 relative and M_W = 80.3692 within 1e-4 GeV']
