@@ -1,0 +1,123 @@
+CFG905: kappa door D5 -- gauged carrier + Festina Lente (normal run)
+criteria 9e3b6754e (FROZEN_CRITERIA.md)
+kappa = 1/2 is FITTED (kappa_L 0.417 +- 0.095, CFG493 -- quoted, not used). Footings never pooled. Not theory closed.
+FL form used (RECALLED, not re-read): m^2 >~ sqrt6 g q M_P H, M_P reduced (arXiv:1910.01648). K1 re-derives sqrt6.
+
+== I1: self-grep for forbidden constants
+  [PASS] I1 no forbidden constants used: hits outside the quoted standing-fact line: []
+
+== K1: Einstein-Maxwell-Lambda on M2(k) x S^n(R), explicit metric (Christoffel/Ricci), units M^(d-2) = M_grav
+  n = 2 (d = 4): closed-form mixed Einstein components match: True; E_uc^2 = 2*V; 1/R_uc^2 = 2*V/M_grav; neutral Nariai 1/R^2 = V/M_grav, k = V/M_grav
+  n = 3 (d = 5): closed-form mixed Einstein components match: True; E_uc^2 = V; 1/R_uc^2 = V/(2*M_grav); neutral Nariai 1/R^2 = V/(3*M_grav), k = 2*V/(3*M_grav)
+  [PASS] K1 product geometry + ultracold field: E_uc^2 = 2V/(n-1) = 2V/(d-3) (no Planck-mass dependence: True); d = 4, V = 3 M_P^2 H^2: E_uc = sqrt(6)*H*M_P (recalled sqrt6 reproduced: True); 1/R_uc^2 = 6*H**2, neutral 1/R^2 = 3*H**2
+  reading: FL is natively a bound on the vacuum energy V; G (or M_P) never enters it.
+
+== K2: Schwinger saturation m^2 = e E  =>  proper acceleration e E / m
+  [PASS] K2 saturating charge accelerates at a = m (natural) = m c^3/hbar (SI): e E/m = m_nat; SI dims of m c^3/hbar = m_/s_**2
+
+== K3: FL in V form and in H form (reduced M_P, Friedmann H^2 = V/(3 M_P^2))
+  [PASS] K3 m^4 = 2 s^2 e^2 V, pi-free, M_P-free: V form m^4 = 2*V*e**2*s**2; equals H form via Friedmann: True; pi-weight 0
+
+== K4: SI dimensions
+  [PASS] K4 (mc^2)^4 = 2 s^2 e^2 (hbar c)^3 eps consistent; a_FL is an acceleration: [lhs] = kg_**4*m_**8/s_**8, [rhs] = kg_**4*m_**8/s_**8, [a_FL] = m_/s_**2
+
+== K5: every acceleration from (m, e, hbar, c, G): a = m^x e^n hbar^y c^z G^w
+  one-parameter family: x = 2*w + 1, y = -w - 1, z = 3 - w  ->  a = (m c^3/hbar) (G m^2/(hbar c))^w (dims verified at two w: True); e^n multiplies freely (dimensionless)
+  [PASS] K5 unique hbar-free, e-free carrier acceleration at FL saturation = sqrt2 s sqrt(G eps): hbar power at saturation = w/2 - 1/4 (zero iff w = 1/2); e power = n + w + 1/2; solution [{n: -1, w: 1/2}]; a_FL(m_sat) = sqrt(2)*sqrt(G)*c*sqrt(rho_DE)*s  ( = sqrt2 s c sqrt(G rho_DE): True)
+  reading: FL makes the carrier mass track the vacuum (m^4 ∝ e^2 eps), so the only hbar-free, e-free carrier
+  acceleration IS the law's own unit c sqrt(G rho_DE) times a number. The number is the map's normalisation.
+
+== K6: which charged state binds (Phi: q = 1, mass m; X: q = 2, mass M = 2 m sqrt(1 + u*^2))
+  [PASS] K6 Phi binds; X saturation would violate Phi's bound for every u* >= 0: X slack at Phi saturation = 2*eE*s*(2*u_star**2 + 1) > 0; Phi slack at X saturation = eE*s*(-2*u_star**2 - 1)/(2*(u_star**2 + 1)) < 0
+
+== K7: gauge invariance of V_c and of D_mu with charges (1, 2)
+  [PASS] K7 the carrier U(1) is gaugeable (V_c invariant; covariant derivatives with q = 1, 2): V_c invariant: True; D Phi covariant: True; D X covariant: True. Gauging adds one massless hidden vector (H_g; not in the record).
+
+== V1: apply FL (inequality), no bridge. a0 from the force sector: a0 = K/G, K = q_b^3/(4 pi C^3 beta_3)
+  [PASS] K10 kappa independent of the carrier (m, e, s) when S_bridge = 0: kappa_record = q_b**3/(4*pi*C**3*G**(3/2)*beta_3*c*sqrt(rho_DE)): d/dm, d/de, d/ds = [0, 0, 0]; free: ['C', 'G', 'beta_3', 'c', 'q_b', 'rho_DE']
+  V1 output: the FL BOUND (m c^2)^4 >= 2 s^2 e^2 (hbar c)^3 eps_L on Phi (binding), weaker on X; and the same
+  form for the record's messenger S under the photon. kappa is untouched -> class BOUND (kappa-free).
+  If a map a0 = N a_FL existed, applying (not saturating) FL would give only kappa >= sqrt2 s N (a lower bound).
+
+== V2: saturate FL on Phi + a0 = N sqrt(G_x) m^2 c^(5/2)/(e hbar^(3/2)), G_x in {G, 4piG, 8piG}, s in {1, 1/pi}
+  G_x = G    : kappa = sqrt(2)*N*s,  kappa^2 = 2*N**2*s**2,  pi-weight 0, free: ['N', 's']
+  G_x = 4piG : kappa = 2*sqrt(2)*sqrt(pi)*N*s,  kappa^2 = 8*pi*N**2*s**2,  pi-weight 1, free: ['N', 's']
+  G_x = 8piG : kappa = 4*sqrt(pi)*N*s,  kappa^2 = 16*pi*N**2*s**2,  pi-weight 1, free: ['N', 's']
+  natural values (N = 1; report only; not a trial; never CONSISTENT/EXACT):
+    s = 1    G_x = G    : kappa =          sqrt(2) = 1.4142  kappa^2 =          2 (pi-weight 0)  in W_DE: False  = 1/2: False
+    s = 1    G_x = 4piG : kappa = 2*sqrt(2)*sqrt(pi) = 5.0133  kappa^2 =       8*pi (pi-weight 1)  in W_DE: False  = 1/2: False
+    s = 1    G_x = 8piG : kappa =       4*sqrt(pi) = 7.0898  kappa^2 =      16*pi (pi-weight 1)  in W_DE: False  = 1/2: False
+    s = 1/pi G_x = G    : kappa =       sqrt(2)/pi = 0.4502  kappa^2 =    2/pi**2 (pi-weight -2)  in W_DE: True  = 1/2: False
+    s = 1/pi G_x = 4piG : kappa = 2*sqrt(2)/sqrt(pi) = 1.5958  kappa^2 =       8/pi (pi-weight -1)  in W_DE: False  = 1/2: False
+    s = 1/pi G_x = 8piG : kappa =       4/sqrt(pi) = 2.2568  kappa^2 =      16/pi (pi-weight -1)  in W_DE: False  = 1/2: False
+  natural menu: 1/6 inside W_DE, 0/6 at 1/2. kappa = 1/2 needs N = sqrt(2)/4 (s = 1) or sqrt(2)*pi/4 (s = 1/pi): a posit, fixed by nothing in FL, the carrier action or the record.
+  general d (FL V form m^4 = s^2 e^2 * 2V/(d-3)): G-normalised kappa^2 = 2*N**2*s**2/(d - 3); d = 4, 5, 6: [2*N**2*s**2, N**2*s**2, 2*N**2*s**2/3]
+  S3 disclosure: at N = 1, s = 1 the G-normalised kappa^2 = 1/4 only at d = [11] -- a dimension choice, void under S3; DO NOT CITE.
+  [PASS] K8 V2 kappa^2 = 2 s^2 N^2 x {1, 4pi, 8pi}; general-d form: kappa^2 = {'G': 2*N**2*s**2, '4piG': 8*pi*N**2*s**2, '8piG': 16*pi*N**2*s**2}
+
+== V3: a0 = e E_uc / m at saturation = m c^3/hbar
+  [PASS] K11 V3 is hbar-bearing (wall 3): a = 2**(1/4)*c**(9/4)*sqrt(e)*rho_DE**(1/4)/hbar**(1/4); d ln a/d ln hbar = -1/4; kappa_V3 = 2**(1/4)*c**(5/4)*sqrt(e)/(sqrt(G)*hbar**(1/4)*rho_DE**(1/4)) (depends on hbar, e)
+
+== V4 (EXCLUDED-CLASS POSIT, X3; report only): geometric accelerations of the FL solutions
+  ultracold c^2/R: kappa^2 = 2*eta  (eta = 8pi: 16*pi = 7.0898, pi-weight 1)
+  neutral Nariai c^2/R: kappa^2 = eta  (eta = 8pi: 8*pi = 5.0133, pi-weight 1)
+  a0 = c H_L: kappa^2 = eta/3  (eta = 8pi: 8*pi/3 = 2.8944, pi-weight 1)
+  [PASS] K9 V4 values pi-odd; V5 sign (record scalar force attracts, a gauged baryon charge repels): V4 kappa^2 = {'ultracold c^2/R': 16*pi, 'neutral Nariai c^2/R': 8*pi, 'a0 = c H_L': 8*pi/3}; record g_r = -M_b*q_b**2/(4*pi*C*r**2) (attractive), vector g_r = M_b*q_b**2/(4*pi*r**2) (repulsive)
+
+== I2: symbolic kappa and its free constants per variant
+  V1 (record, S_bridge = 0): kappa = q_b**3/(4*pi*C**3*G**(3/2)*beta_3*c*sqrt(rho_DE)); depends on ['C', 'G', 'beta_3', 'c', 'q_b', 'rho_DE']
+  V2 G: kappa = sqrt(2)*N*s; depends on ['N', 's']
+  V2 4piG: kappa = 2*sqrt(2)*sqrt(pi)*N*s; depends on ['N', 's']
+  V2 8piG: kappa = 4*sqrt(pi)*N*s; depends on ['N', 's']
+  V3: kappa = 2**(1/4)*c**(5/4)*sqrt(e)/(sqrt(G)*hbar**(1/4)*rho_DE**(1/4)); depends on ['G', 'c', 'e', 'hbar', 'rho_DE']
+  [PASS] I2 no graded variant gives a constant-free kappa: V1: q_b, C, beta_3, G, c, rho (TRADE, the record's own status); V2: N, s (TRADE); V3: hbar, e (NO SOLUTION)
+
+== I3: scaling G -> lam G, rho -> mu rho, c -> nu c at saturation (V2)
+  [PASS] I3 a0 -> nu sqrt(lam mu) a0, kappa invariant: ratio = sqrt(lambda_s)*sqrt(mu_s)*nu_s; kappa after scaling = sqrt(2)*N*s
+
+== I4: rename test (law's kappa set to 2/5)
+  required N follows the law's kappa: {'1': sqrt(2)/5, '1/pi': sqrt(2)*pi/5} (was {'1': sqrt(2)/4, '1/pi': sqrt(2)*pi/4} at 1/2) -> a consistency relation, not a derivation
+  natural values do not move with the law's kappa, and none equals 0.4: True
+  V1 bound unchanged (kappa-free).
+  [PASS] I4 rename test: V2 is a consistency relation in N; natural values are not
+
+== I5: no Friedmann tautology
+  [PASS] I5 V2 G-normalised kappa uses FL's V form only (no Friedmann); not Z^2 = 32pi/3: kappa^2 = 2 s^2 N^2 from m^4 = 2 s^2 e^2 V and the posited map; the H form (K3) used Friedmann once
+
+== I6/I7/I8: footing, hbar, pi-weights
+  [PASS] I6 declared footing rho_DE only (FL with V = eps_L); rho_crit reported separately: rho_crit reading: FL with today's H0 (V = rho_crit c^2) gives the same kappa formula on that footing; with H_L, kappa_crit = kappa_L sqrt(Omega_L). Never pooled.
+  [PASS] I7 hbar bookkeeping: a_FL at fixed m: hbar^-3/2; at FL saturation: hbar^0; V3: hbar^-1/4; no Bekenstein-Hawking 1/4
+  [PASS] I8 pi-weights as declared: {'V2 G': 0, 'V2 4piG': 1, 'V2 8piG': 1, 'V4 ultracold': 1, 'V4 neutral': 1, 'a0 = c H_L': 1}
+
+== Report-only numbers (measured H0 = 67.4 km/s/Mpc, Omega_L = 0.685 enter here only)
+  eps_L^(1/4) [eV]: 0.002240365322934731
+  law unit c sqrt(G rho_DE) [m/s^2] (kappa-free): 1.8724750409402e-10
+  reduced M_P [eV]: 2.4353234593382037e+27
+  m_sat (e = 0.303, s = 1) [eV]: 0.0014665526367579824
+  m_sat (e = 1, s = 1) [eV]: 0.0026642583822393514
+  m_sat (e = 0.303, s = 1/pi) [eV]: 0.0008274137213833502
+  e_sat for the record benchmark m = 1 MeV (s = 1): 1.4087934324492699e+17
+  roundtrip m_sat(e_sat(1 MeV)) [MeV]: 0.9999999999999998
+  V1 benchmark slack in mass at e = 0.303 (1 MeV / m_sat): 681871195.7114873
+  messenger S (10 MeV) slack in mass, photon e = 0.303: 6818711957.114873
+  baryon-charge g_max for the proton (s = 1): 1.2402374208504317e+23
+  V3 a = m_sat c^3/hbar (e = 0.303) [m/s^2]: 6.679632835388286e+20
+  V3 ratio to the law unit: 3.567274697575854e+30
+  a_FL at benchmark (m = 1 MeV, e = 0.303) / law unit: 6.57536230611189e+17
+  Coulomb/gravity between two saturating carriers (e = 0.303): 5.063295186210711e+59
+  rho_crit reading: m_sat (e = 0.303, V = rho_crit c^2) [eV]: 0.0016120370242997551
+  [PASS] K12 numbers finite and self-consistent: roundtrip = 0.9999999999999998
+
+== Classification (frozen section 9)
+  V1: BOUND (kappa-free)
+  V2: TRADE (N free; s and G_x conventions; natural values report only)
+  V3: NO SOLUTION (hbar-bearing)
+  V4: EXCLUDED-CLASS POSIT (X3)
+  V5: NO SOLUTION (sign)
+  checks: 20/20 PASS
+  OVERALL: CLOSURE.  p_exact = 0, p_data = 0 (no determinate graded value).
+  naive (menu) figure, report only: natural N = 1 menu 1/6 in W_DE, 0/6 at 1/2.
+  Door questions: (i) pure number: NO (N free); (ii) galaxy-mass independent: yes, trivially (nothing galactic
+  enters); (iii) pi: pi-free only for the G-normalised map = premise A; pi-odd for 4piG/8piG; (iv) second
+  prediction: NO (carrier mass at saturation depends on the free e; unobserved field).
+  kappa = 1/2 stays FITTED. Not theory closed.
