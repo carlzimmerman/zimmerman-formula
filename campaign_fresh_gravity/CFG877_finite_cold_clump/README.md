@@ -43,3 +43,17 @@ One self-gravitating cold-energy clump per dwarf, fixed by one number from earli
 
 ## Disclosed limits
 Post-hoc model choice. No per-dwarf scatter in M_cl (CFG872 found 0.52 dex). No EFE or tides. Υ as in each source lane.
+
+## Audit and corrections (2026-10-20, Codex arrival audit `sol61_push/cold_final_mile_2026_10_13/finite_clump_arrival_2026_10_20/`, verified here)
+- **Cap radius:** G M_cl/V_x² = 199 pc (163 alt) is an asymptotic scale. The coded cored profile reaches M_cl where r³/(r² + 104²) = 199 pc,
+  i.e. at **237 pc** (205 alt). The saved predictions used min(profile, M_cl) correctly and are unchanged. Only the quoted radius was wrong.
+- **Under-prediction was not tested dwarf by dwarf.** The individual-failure count covered only over-predictions (large out-of-sample
+  group). Under-predictions entered only through group means. At central values, with CFG877's own baseline and the estimator
+  M_extra = 3 r12 (σ_obs² − σ_law²)/G, the clump falls short:
+  - Draco needs 2.41× M_cl (predicted σ 7.07 vs observed 9.55 km/s);
+  - Sextans 3.71× (5.57 vs 7.90);
+  - Fornax 2.67× (11.53 vs 12.10);
+  - Leo I 1.27× (8.93 vs 9.29).
+  These are not error-weighted exclusions. They do show that "fits within ~2σ" is a statement about group means. Whether one clump
+  fits each dwarf within its errors is tested by CFG880 (intrinsic scatter of the clump σ).
+- **Fitted inputs.** "No new parameter" means no parameter fitted in this lane. V_x is fitted (CFG870) and r_c is post-hoc (CFG859).

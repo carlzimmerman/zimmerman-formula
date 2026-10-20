@@ -55,3 +55,12 @@ debris such as DF2/DF4 is a possible case.
 - **Derived:** M_frag(σ) (Part A); the record bath's s ≈ 1 and its exclusion (Part B).
 - **Not derived:** the value σ ≈ 7.5 km/s. Candidate (i) matches it, but post-hoc, and either route needs physics the record
   does not contain yet.
+
+## Audit notes (2026-10-20; Codex arrival audit `sol61_push/cold_final_mile_2026_10_13/gas_bath_arrival_2026_10_20/`, checked here)
+- **Equal-temperature thermal contact cannot transfer 7.5 km/s.** In thermal equilibrium σ² = k_B T/m depends on the carrier's mass.
+  At 8000–10⁴ K, 1 MeV carriers would have 249–278 km/s, and much heavier lumps far less. Candidate (i) survives only as
+  velocity inheritance in a shared potential (route 2: cold energy relaxing to the same per-unit-mass dispersion as the gas in the
+  first cooling systems), not as thermal equilibrium with the gas. Route 1 would need velocity matching (drag), not heat exchange.
+- **Catchment stock.** A universal 5.25e6 M_⊙ clump exceeds the record's largest catchment stock (53.64 M_b) for every dwarf with
+  M_b ≲ 1e5 M_⊙ (the ultra-faints). The clump therefore cannot be drawn from a stock proportional to today's baryons. Route 2
+  requires the stock to be set by the progenitor's original baryons.
