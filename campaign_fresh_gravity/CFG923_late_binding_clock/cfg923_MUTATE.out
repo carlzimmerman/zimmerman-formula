@@ -1,0 +1,94 @@
+CFG923 -- does the framework's own formation clock put cold-energy binding late enough for the dwarfs?
+Criteria: FROZEN_CRITERIA.md (d60088d9c), committed alone before this script.
+
+CONDITION TEST of CFG920's late-binding escape for route D-i (CFG915/916).  The clock (CFG763 universal, f = 1 - exp(-s/tau),
+tau in [tau_min95, 8/ln10]; CFG764 orbital, tau = k t_orb, k in [k_min95, k_max]) runs from the SF onset (13.3 Gyr lookback).
+Primary binding epoch s_bind = tau.  F_bind = Weisz+14 cumulative SFH fraction at t_bind (CFG920's t_of_F mapping, forward form).
+A dwarf is rescued at tau iff F_bind >= CFG920's central F_need (yield -0.5 primary).  Classes per dwarf: LATE ENOUGH / TOO EARLY /
+BRACKET-DEPENDENT; sample: SUPPORTED / CONTRADICTED / UNDERDETERMINED (criteria sections 6-7).
+Run (from this directory):
+    CFG923_MODE=K       OMP_NUM_THREADS=1 nice -n 10 python3 cfg923.py   -> cfg923_K.out, cfg923_results_K.json (exit 0 = all K pass)
+    CFG923_MODE=MUTATE  OMP_NUM_THREADS=1 nice -n 10 python3 cfg923.py   -> cfg923_MUTATE.out, cfg923_results_MUTATE.json (exit 1 = bites)
+    CFG923_MODE=MAIN    OMP_NUM_THREADS=1 nice -n 10 python3 cfg923.py   -> cfg923.out, cfg923_results.json (exit 0 = all K pass)
+Read-only inputs: CFG763/764/920/824/838/839/873/874/875 result JSONs, cfg920.py text (exec'd read-only), Weisz+14 tables, LVD CSVs,
+CFG763's own inputs (K1b).  kappa = 1/2 FITTED; footings never pooled; not theory closed.
+
+MODE = MUTATE
+sha256(cfg920.py) = 2545a1e7acab59507cd838b0e0d13e4fb3f49eaadcb6b8cfee0e9b166d7afb28
+
+INPUTS
+  canonical: C-U tau in [0.7244, 3.4744] Gyr -> binding lookback [9.826, 12.576] Gyr;  C-O k in [0.4571, 1.1957]
+  alt      : C-U tau in [0.8318, 3.4744] Gyr -> binding lookback [9.826, 12.468] Gyr;  C-O k in [0.5248, 1.1957]
+  F_need / t_need: CFG920's stored central values (criteria a229bb78c); yield -0.5 primary
+
+CONTROLS
+  K1: PASS -- canonical: tau_min95 0.724436 Gyr, F2 OPEN; alt: tau_min95 0.831764 Gyr, F2 OPEN; 8/ln10 = 3.474356 (record 3.47)
+  K1b: PASS -- canonical: recomputed tau_min95 0.724436 (stored 0.724436); chi2 tau->0 34.018 (CFG441 34.018), tau->inf 1.105 (CFG441 1.105); alt: recomputed tau_min95 0.831764 (stored 0.831764); chi2 tau->0 40.290 (CFG441 40.290), tau->inf 1.105 (CFG441 1.105)
+  K2: PASS -- (a) t_need from F_need: 68 entries, max |dt| 0.00e+00 Gyr; (b) F_need recomputed with CFG920's functions: 80 entries, readings identical, max |dF| 0.00e+00; (c) reading counts = timing_summary: True
+  K3: PASS -- E from CFG824 sigma_obs + LVD M_V, R_e + CFG920 Upsilon: max |dE| 0.00e+00 (40 values); k_max 8/(ln10 torb_max) 1.195670799 = stored 1.195670799
+  K4: PASS -- F(t_of_F(F)) = F on 380 points, max |dF| 3.59e-14; F_bind non-decreasing in tau on 80 brackets
+  all K: PASS
+
+MUTATE: every bracket end x0.1 and x10 (tau for C-U, k for C-O); compared with the unscaled primary grading
+  canonical C-U x0.1 : {'LATE ENOUGH': 0, 'TOO EARLY': 7, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  (unscaled CONTRADICTED; 3 per-dwarf classes changed)
+      Andromeda VII      LATE ENOUGH        -> TOO EARLY           F_bind 0.097-0.472 vs F_need 0.779
+      Hercules           TOO EARLY          -> TOO EARLY           F_bind 0.090-0.439 vs F_need 0.999
+      Leo IV             BRACKET-DEPENDENT  -> TOO EARLY           F_bind 0.042-0.202 vs F_need 0.839
+      Canes Venatici II  BRACKET-DEPENDENT  -> TOO EARLY           F_bind 0.024-0.116 vs F_need 0.514
+      Andromeda I        TOO EARLY          -> TOO EARLY           F_bind 0.019-0.092 vs F_need 0.516
+      Tucana             TOO EARLY          -> TOO EARLY           F_bind 0.040-0.193 vs F_need 0.797
+      Cetus              TOO EARLY          -> TOO EARLY           F_bind 0.059-0.284 vs F_need 0.909
+  canonical C-U x10.0: {'LATE ENOUGH': 5, 'TOO EARLY': 0, 'BRACKET-DEPENDENT': 2}  sample LATE BINDING SUPPORTED BY THE CLOCK  (unscaled CONTRADICTED; 6 per-dwarf classes changed)
+      Andromeda VII      LATE ENOUGH        -> LATE ENOUGH         F_bind 0.980-1.000 vs F_need 0.779
+      Hercules           TOO EARLY          -> BRACKET-DEPENDENT   F_bind 0.910-1.000 vs F_need 0.999
+      Leo IV             BRACKET-DEPENDENT  -> LATE ENOUGH         F_bind 0.910-1.000 vs F_need 0.839
+      Canes Venatici II  BRACKET-DEPENDENT  -> LATE ENOUGH         F_bind 0.990-1.000 vs F_need 0.514
+      Andromeda I        TOO EARLY          -> LATE ENOUGH         F_bind 0.920-1.000 vs F_need 0.516
+      Tucana             TOO EARLY          -> LATE ENOUGH         F_bind 0.990-1.000 vs F_need 0.797
+      Cetus              TOO EARLY          -> BRACKET-DEPENDENT   F_bind 0.740-1.000 vs F_need 0.909
+  canonical C-O x0.1 : {'LATE ENOUGH': 0, 'TOO EARLY': 7, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  (unscaled CONTRADICTED; 0 per-dwarf classes changed)
+      Andromeda VII      TOO EARLY          -> TOO EARLY           F_bind 0.017-0.045 vs F_need 0.779
+      Hercules           TOO EARLY          -> TOO EARLY           F_bind 0.014-0.037 vs F_need 0.999
+      Leo IV             TOO EARLY          -> TOO EARLY           F_bind 0.004-0.010 vs F_need 0.839
+      Canes Venatici II  TOO EARLY          -> TOO EARLY           F_bind 0.001-0.002 vs F_need 0.514
+      Andromeda I        TOO EARLY          -> TOO EARLY           F_bind 0.004-0.011 vs F_need 0.516
+      Tucana             TOO EARLY          -> TOO EARLY           F_bind 0.004-0.010 vs F_need 0.797
+      Cetus              TOO EARLY          -> TOO EARLY           F_bind 0.012-0.032 vs F_need 0.909
+  canonical C-O x10.0: {'LATE ENOUGH': 1, 'TOO EARLY': 6, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  (unscaled CONTRADICTED; 1 per-dwarf classes changed)
+      Andromeda VII      TOO EARLY          -> LATE ENOUGH         F_bind 0.980-0.980 vs F_need 0.779
+      Hercules           TOO EARLY          -> TOO EARLY           F_bind 0.910-0.910 vs F_need 0.999
+      Leo IV             TOO EARLY          -> TOO EARLY           F_bind 0.392-0.782 vs F_need 0.839
+      Canes Venatici II  TOO EARLY          -> TOO EARLY           F_bind 0.073-0.194 vs F_need 0.514
+      Andromeda I        TOO EARLY          -> TOO EARLY           F_bind 0.283-0.500 vs F_need 0.516
+      Tucana             TOO EARLY          -> TOO EARLY           F_bind 0.400-0.417 vs F_need 0.797
+      Cetus              TOO EARLY          -> TOO EARLY           F_bind 0.590-0.590 vs F_need 0.909
+  alt       C-U x0.1 : {'LATE ENOUGH': 0, 'TOO EARLY': 6, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  (unscaled UNDERDETERMINED; 3 per-dwarf classes changed)
+      Andromeda VII      LATE ENOUGH        -> TOO EARLY           F_bind 0.112-0.472 vs F_need 0.867
+      Leo IV             BRACKET-DEPENDENT  -> TOO EARLY           F_bind 0.048-0.202 vs F_need 0.869
+      Canes Venatici II  BRACKET-DEPENDENT  -> TOO EARLY           F_bind 0.027-0.116 vs F_need 0.599
+      Andromeda I        TOO EARLY          -> TOO EARLY           F_bind 0.022-0.092 vs F_need 0.634
+      Tucana             TOO EARLY          -> TOO EARLY           F_bind 0.046-0.193 vs F_need 0.859
+      Cetus              TOO EARLY          -> TOO EARLY           F_bind 0.067-0.284 vs F_need 0.943
+  alt       C-U x10.0: {'LATE ENOUGH': 5, 'TOO EARLY': 0, 'BRACKET-DEPENDENT': 1}  sample LATE BINDING SUPPORTED BY THE CLOCK  (unscaled UNDERDETERMINED; 5 per-dwarf classes changed)
+      Andromeda VII      LATE ENOUGH        -> LATE ENOUGH         F_bind 0.980-1.000 vs F_need 0.867
+      Leo IV             BRACKET-DEPENDENT  -> LATE ENOUGH         F_bind 0.962-1.000 vs F_need 0.869
+      Canes Venatici II  BRACKET-DEPENDENT  -> LATE ENOUGH         F_bind 0.990-1.000 vs F_need 0.599
+      Andromeda I        TOO EARLY          -> LATE ENOUGH         F_bind 0.920-1.000 vs F_need 0.634
+      Tucana             TOO EARLY          -> LATE ENOUGH         F_bind 0.990-1.000 vs F_need 0.859
+      Cetus              TOO EARLY          -> BRACKET-DEPENDENT   F_bind 0.864-1.000 vs F_need 0.943
+  alt       C-O x0.1 : {'LATE ENOUGH': 0, 'TOO EARLY': 6, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  (unscaled CONTRADICTED; 0 per-dwarf classes changed)
+      Andromeda VII      TOO EARLY          -> TOO EARLY           F_bind 0.020-0.045 vs F_need 0.867
+      Leo IV             TOO EARLY          -> TOO EARLY           F_bind 0.004-0.010 vs F_need 0.869
+      Canes Venatici II  TOO EARLY          -> TOO EARLY           F_bind 0.001-0.002 vs F_need 0.599
+      Andromeda I        TOO EARLY          -> TOO EARLY           F_bind 0.005-0.011 vs F_need 0.634
+      Tucana             TOO EARLY          -> TOO EARLY           F_bind 0.004-0.010 vs F_need 0.859
+      Cetus              TOO EARLY          -> TOO EARLY           F_bind 0.014-0.032 vs F_need 0.943
+  alt       C-O x10.0: {'LATE ENOUGH': 1, 'TOO EARLY': 5, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  (unscaled CONTRADICTED; 1 per-dwarf classes changed)
+      Andromeda VII      TOO EARLY          -> LATE ENOUGH         F_bind 0.980-0.980 vs F_need 0.867
+      Leo IV             TOO EARLY          -> TOO EARLY           F_bind 0.438-0.782 vs F_need 0.869
+      Canes Venatici II  TOO EARLY          -> TOO EARLY           F_bind 0.084-0.194 vs F_need 0.599
+      Andromeda I        TOO EARLY          -> TOO EARLY           F_bind 0.310-0.500 vs F_need 0.634
+      Tucana             TOO EARLY          -> TOO EARLY           F_bind 0.401-0.417 vs F_need 0.859
+      Cetus              TOO EARLY          -> TOO EARLY           F_bind 0.590-0.590 vs F_need 0.943
+
+MUTATE bites (C-U, both footings: x0.1 and x10 each change >= 1 class; >= 1 changes the sample class): True

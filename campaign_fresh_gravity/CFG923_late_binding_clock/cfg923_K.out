@@ -1,0 +1,30 @@
+CFG923 -- does the framework's own formation clock put cold-energy binding late enough for the dwarfs?
+Criteria: FROZEN_CRITERIA.md (d60088d9c), committed alone before this script.
+
+CONDITION TEST of CFG920's late-binding escape for route D-i (CFG915/916).  The clock (CFG763 universal, f = 1 - exp(-s/tau),
+tau in [tau_min95, 8/ln10]; CFG764 orbital, tau = k t_orb, k in [k_min95, k_max]) runs from the SF onset (13.3 Gyr lookback).
+Primary binding epoch s_bind = tau.  F_bind = Weisz+14 cumulative SFH fraction at t_bind (CFG920's t_of_F mapping, forward form).
+A dwarf is rescued at tau iff F_bind >= CFG920's central F_need (yield -0.5 primary).  Classes per dwarf: LATE ENOUGH / TOO EARLY /
+BRACKET-DEPENDENT; sample: SUPPORTED / CONTRADICTED / UNDERDETERMINED (criteria sections 6-7).
+Run (from this directory):
+    CFG923_MODE=K       OMP_NUM_THREADS=1 nice -n 10 python3 cfg923.py   -> cfg923_K.out, cfg923_results_K.json (exit 0 = all K pass)
+    CFG923_MODE=MUTATE  OMP_NUM_THREADS=1 nice -n 10 python3 cfg923.py   -> cfg923_MUTATE.out, cfg923_results_MUTATE.json (exit 1 = bites)
+    CFG923_MODE=MAIN    OMP_NUM_THREADS=1 nice -n 10 python3 cfg923.py   -> cfg923.out, cfg923_results.json (exit 0 = all K pass)
+Read-only inputs: CFG763/764/920/824/838/839/873/874/875 result JSONs, cfg920.py text (exec'd read-only), Weisz+14 tables, LVD CSVs,
+CFG763's own inputs (K1b).  kappa = 1/2 FITTED; footings never pooled; not theory closed.
+
+MODE = K
+sha256(cfg920.py) = 2545a1e7acab59507cd838b0e0d13e4fb3f49eaadcb6b8cfee0e9b166d7afb28
+
+INPUTS
+  canonical: C-U tau in [0.7244, 3.4744] Gyr -> binding lookback [9.826, 12.576] Gyr;  C-O k in [0.4571, 1.1957]
+  alt      : C-U tau in [0.8318, 3.4744] Gyr -> binding lookback [9.826, 12.468] Gyr;  C-O k in [0.5248, 1.1957]
+  F_need / t_need: CFG920's stored central values (criteria a229bb78c); yield -0.5 primary
+
+CONTROLS
+  K1: PASS -- canonical: tau_min95 0.724436 Gyr, F2 OPEN; alt: tau_min95 0.831764 Gyr, F2 OPEN; 8/ln10 = 3.474356 (record 3.47)
+  K1b: PASS -- canonical: recomputed tau_min95 0.724436 (stored 0.724436); chi2 tau->0 34.018 (CFG441 34.018), tau->inf 1.105 (CFG441 1.105); alt: recomputed tau_min95 0.831764 (stored 0.831764); chi2 tau->0 40.290 (CFG441 40.290), tau->inf 1.105 (CFG441 1.105)
+  K2: PASS -- (a) t_need from F_need: 68 entries, max |dt| 0.00e+00 Gyr; (b) F_need recomputed with CFG920's functions: 80 entries, readings identical, max |dF| 0.00e+00; (c) reading counts = timing_summary: True
+  K3: PASS -- E from CFG824 sigma_obs + LVD M_V, R_e + CFG920 Upsilon: max |dE| 0.00e+00 (40 values); k_max 8/(ln10 torb_max) 1.195670799 = stored 1.195670799
+  K4: PASS -- F(t_of_F(F)) = F on 380 points, max |dF| 3.59e-14; F_bind non-decreasing in tau on 80 brackets
+  all K: PASS

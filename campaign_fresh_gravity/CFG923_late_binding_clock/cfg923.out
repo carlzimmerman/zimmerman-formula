@@ -1,0 +1,136 @@
+CFG923 -- does the framework's own formation clock put cold-energy binding late enough for the dwarfs?
+Criteria: FROZEN_CRITERIA.md (d60088d9c), committed alone before this script.
+
+CONDITION TEST of CFG920's late-binding escape for route D-i (CFG915/916).  The clock (CFG763 universal, f = 1 - exp(-s/tau),
+tau in [tau_min95, 8/ln10]; CFG764 orbital, tau = k t_orb, k in [k_min95, k_max]) runs from the SF onset (13.3 Gyr lookback).
+Primary binding epoch s_bind = tau.  F_bind = Weisz+14 cumulative SFH fraction at t_bind (CFG920's t_of_F mapping, forward form).
+A dwarf is rescued at tau iff F_bind >= CFG920's central F_need (yield -0.5 primary).  Classes per dwarf: LATE ENOUGH / TOO EARLY /
+BRACKET-DEPENDENT; sample: SUPPORTED / CONTRADICTED / UNDERDETERMINED (criteria sections 6-7).
+Run (from this directory):
+    CFG923_MODE=K       OMP_NUM_THREADS=1 nice -n 10 python3 cfg923.py   -> cfg923_K.out, cfg923_results_K.json (exit 0 = all K pass)
+    CFG923_MODE=MUTATE  OMP_NUM_THREADS=1 nice -n 10 python3 cfg923.py   -> cfg923_MUTATE.out, cfg923_results_MUTATE.json (exit 1 = bites)
+    CFG923_MODE=MAIN    OMP_NUM_THREADS=1 nice -n 10 python3 cfg923.py   -> cfg923.out, cfg923_results.json (exit 0 = all K pass)
+Read-only inputs: CFG763/764/920/824/838/839/873/874/875 result JSONs, cfg920.py text (exec'd read-only), Weisz+14 tables, LVD CSVs,
+CFG763's own inputs (K1b).  kappa = 1/2 FITTED; footings never pooled; not theory closed.
+
+MODE = MAIN
+sha256(cfg920.py) = 2545a1e7acab59507cd838b0e0d13e4fb3f49eaadcb6b8cfee0e9b166d7afb28
+
+INPUTS
+  canonical: C-U tau in [0.7244, 3.4744] Gyr -> binding lookback [9.826, 12.576] Gyr;  C-O k in [0.4571, 1.1957]
+  alt      : C-U tau in [0.8318, 3.4744] Gyr -> binding lookback [9.826, 12.468] Gyr;  C-O k in [0.5248, 1.1957]
+  F_need / t_need: CFG920's stored central values (criteria a229bb78c); yield -0.5 primary
+
+CONTROLS
+  K1: PASS -- canonical: tau_min95 0.724436 Gyr, F2 OPEN; alt: tau_min95 0.831764 Gyr, F2 OPEN; 8/ln10 = 3.474356 (record 3.47)
+  K1b: PASS -- canonical: recomputed tau_min95 0.724436 (stored 0.724436); chi2 tau->0 34.018 (CFG441 34.018), tau->inf 1.105 (CFG441 1.105); alt: recomputed tau_min95 0.831764 (stored 0.831764); chi2 tau->0 40.290 (CFG441 40.290), tau->inf 1.105 (CFG441 1.105)
+  K2: PASS -- (a) t_need from F_need: 68 entries, max |dt| 0.00e+00 Gyr; (b) F_need recomputed with CFG920's functions: 80 entries, readings identical, max |dF| 0.00e+00; (c) reading counts = timing_summary: True
+  K3: PASS -- E from CFG824 sigma_obs + LVD M_V, R_e + CFG920 Upsilon: max |dE| 0.00e+00 (40 values); k_max 8/(ln10 torb_max) 1.195670799 = stored 1.195670799
+  K4: PASS -- F(t_of_F(F)) = F on 380 points, max |dF| 3.59e-14; F_bind non-decreasing in tau on 80 brackets
+  all K: PASS
+
+PER-DWARF TABLE (yield -0.5; t in Gyr lookback; binding lookback at the fast / slow bracket end)
+
+  [canonical]  S = ['Andromeda VII', 'Hercules', 'Leo IV', 'Canes Venatici II', 'Andromeda I', 'Tucana', 'Cetus']
+  dwarf               tau50  tau90  F_need  t_need | C-U t_bind   F_bind      class             | t_orb  C-O t_bind     F_bind      class
+  Andromeda VII       12.59  12.59   0.779   12.73 | 12.58- 9.83 0.980-0.980 LATE ENOUGH       | 0.282 13.171-12.963 0.174-0.458 TOO EARLY
+  Hercules            12.59  12.59   0.999    0.64 | 12.58- 9.83 0.910-0.910 TOO EARLY         | 0.249 13.186-13.002 0.143-0.375 TOO EARLY
+  Leo IV              12.35  11.25   0.839   11.41 | 12.58- 9.83 0.425-0.910 BRACKET-DEPENDENT | 0.145 13.234-13.126 0.038-0.101 TOO EARLY
+  Canes Venatici II   10.56   8.27   0.514   10.52 | 12.58- 9.83 0.240-0.730 BRACKET-DEPENDENT | 0.048 13.278-13.242 0.007-0.019 TOO EARLY
+  Andromeda I         10.00   7.12   0.516    8.40 | 12.58- 9.83 0.191-0.500 TOO EARLY         | 0.346 13.142-12.886 0.041-0.109 TOO EARLY
+  Tucana              10.55   6.47   0.797    6.65 | 12.58- 9.83 0.400-0.570 TOO EARLY         | 0.155 13.229-13.114 0.039-0.102 TOO EARLY
+  Cetus               12.59   4.69   0.909    4.62 | 12.58- 9.83 0.590-0.590 TOO EARLY         | 0.327 13.150-12.909 0.122-0.321 TOO EARLY
+  C-U: N 7  {'LATE ENOUGH': 1, 'TOO EARLY': 4, 'BRACKET-DEPENDENT': 2}  -> SAMPLE: CONTRADICTED   [V-HALF: CONTRADICTED]
+  C-O: N 7  {'LATE ENOUGH': 0, 'TOO EARLY': 7, 'BRACKET-DEPENDENT': 0}  -> SAMPLE: CONTRADICTED   [V-HALF: CONTRADICTED]
+
+  [alt]  S = ['Andromeda VII', 'Leo IV', 'Canes Venatici II', 'Andromeda I', 'Tucana', 'Cetus']
+  dwarf               tau50  tau90  F_need  t_need | C-U t_bind   F_bind      class             | t_orb  C-O t_bind     F_bind      class
+  Andromeda VII       12.59  12.59   0.867   12.67 | 12.47- 9.83 0.980-0.980 LATE ENOUGH       | 0.282 13.152-12.963 0.200-0.458 TOO EARLY
+  Leo IV              12.35  11.25   0.869   11.33 | 12.47- 9.83 0.461-0.910 BRACKET-DEPENDENT | 0.145 13.224-13.126 0.044-0.101 TOO EARLY
+  Canes Venatici II   10.56   8.27   0.599   10.31 | 12.47- 9.83 0.240-0.730 BRACKET-DEPENDENT | 0.048 13.275-13.242 0.008-0.019 TOO EARLY
+  Andromeda I         10.00   7.12   0.634    7.70 | 12.47- 9.83 0.203-0.500 TOO EARLY         | 0.346 13.118-12.886 0.048-0.109 TOO EARLY
+  Tucana              10.55   6.47   0.859    6.54 | 12.47- 9.83 0.402-0.570 TOO EARLY         | 0.155 13.218-13.114 0.045-0.102 TOO EARLY
+  Cetus               12.59   4.69   0.943    2.45 | 12.47- 9.83 0.590-0.590 TOO EARLY         | 0.327 13.128-12.909 0.140-0.321 TOO EARLY
+  C-U: N 6  {'LATE ENOUGH': 1, 'TOO EARLY': 3, 'BRACKET-DEPENDENT': 2}  -> SAMPLE: UNDERDETERMINED   [V-HALF: CONTRADICTED]
+  C-O: N 6  {'LATE ENOUGH': 0, 'TOO EARLY': 6, 'BRACKET-DEPENDENT': 0}  -> SAMPLE: CONTRADICTED   [V-HALF: CONTRADICTED]
+
+f_pre = cold-energy fraction the clock has formed before t_need (fastest / slowest clock)
+  [canonical] Andromeda VII: C-U 0.544/0.151, C-O 0.988/0.815; Hercules: C-U 1.000/0.974, C-O 1.000/1.000; Leo IV: C-U 0.927/0.420, C-O 1.000/1.000; Canes Venatici II: C-U 0.978/0.551, C-O 1.000/1.000; Andromeda I: C-U 0.999/0.756, C-O 1.000/1.000; Tucana: C-U 1.000/0.852, C-O 1.000/1.000; Cetus: C-U 1.000/0.918, C-O 1.000/1.000
+  [alt] Andromeda VII: C-U 0.532/0.166, C-O 0.986/0.846; Leo IV: C-U 0.907/0.433, C-O 1.000/1.000; Canes Venatici II: C-U 0.972/0.577, C-O 1.000/1.000; Andromeda I: C-U 0.999/0.800, C-O 1.000/1.000; Tucana: C-U 1.000/0.857, C-O 1.000/1.000; Cetus: C-U 1.000/0.956, C-O 1.000/1.000
+  [canonical] NO TIMING REQUIREMENT (AT FORMATION) 11: ['Andromeda V', 'Andromeda III', 'Sagittarius', 'Aquarius', 'Phoenix', 'Pegasus dIrr', 'Leo T', 'NGC 6822', 'Sagittarius dIrr', 'WLM', 'Leo A']
+  [canonical] NO TIMING RESCUE (NONE) 2: ['Andromeda II', 'IC 1613']
+  [alt] NO TIMING REQUIREMENT (AT FORMATION) 10: ['Andromeda V', 'Andromeda III', 'Aquarius', 'Phoenix', 'Pegasus dIrr', 'Leo T', 'NGC 6822', 'Sagittarius dIrr', 'WLM', 'Leo A']
+  [alt] NO TIMING RESCUE (NONE) 4: ['Hercules', 'Andromeda II', 'Sagittarius', 'IC 1613']
+
+CLASSES
+  canonical: C-U (headline) CONTRADICTED;  C-O CONTRADICTED;  record level CONTRADICTED
+  alt      : C-U (headline) UNDERDETERMINED;  C-O CONTRADICTED;  record level UNDERDETERMINED
+  OVERALL: UNDERDETERMINED
+
+VARIANTS (reported; no class weight)
+  canonical C-U V-MED  : {'LATE ENOUGH': 0, 'TOO EARLY': 5, 'BRACKET-DEPENDENT': 2}  sample CONTRADICTED  | Andromeda VII BR, Hercules TO, Leo IV BR, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  canonical C-U V-90   : {'LATE ENOUGH': 1, 'TOO EARLY': 2, 'BRACKET-DEPENDENT': 4}  sample UNDERDETERMINED  | Andromeda VII LA, Hercules TO, Leo IV BR, Canes Venatici II BR, Andromeda I BR, Tucana BR, Cetus TO
+  canonical C-U V-STEP : {'LATE ENOUGH': 1, 'TOO EARLY': 4, 'BRACKET-DEPENDENT': 2}  sample CONTRADICTED  | Andromeda VII LA, Hercules TO, Leo IV BR, Canes Venatici II BR, Andromeda I TO, Tucana TO, Cetus TO
+  canonical C-U V-DIST : {'LATE ENOUGH': 0, 'TOO EARLY': 6, 'BRACKET-DEPENDENT': 1}  sample CONTRADICTED  | Andromeda VII BR, Hercules TO, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  canonical C-U -> RULE-FRAGILE (V-90)
+  canonical C-O V-MED  : {'LATE ENOUGH': 0, 'TOO EARLY': 7, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  | Andromeda VII TO, Hercules TO, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  canonical C-O V-90   : {'LATE ENOUGH': 0, 'TOO EARLY': 6, 'BRACKET-DEPENDENT': 1}  sample CONTRADICTED  | Andromeda VII BR, Hercules TO, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  canonical C-O V-STEP : {'LATE ENOUGH': 1, 'TOO EARLY': 6, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  | Andromeda VII LA, Hercules TO, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  canonical C-O V-DIST : {'LATE ENOUGH': 0, 'TOO EARLY': 7, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  | Andromeda VII TO, Hercules TO, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  canonical C-O -> RULE-ROBUST
+  alt       C-U V-MED  : {'LATE ENOUGH': 0, 'TOO EARLY': 4, 'BRACKET-DEPENDENT': 2}  sample CONTRADICTED  | Andromeda VII BR, Leo IV BR, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  alt       C-U V-90   : {'LATE ENOUGH': 1, 'TOO EARLY': 1, 'BRACKET-DEPENDENT': 4}  sample UNDERDETERMINED  | Andromeda VII LA, Leo IV BR, Canes Venatici II BR, Andromeda I BR, Tucana BR, Cetus TO
+  alt       C-U V-STEP : {'LATE ENOUGH': 1, 'TOO EARLY': 3, 'BRACKET-DEPENDENT': 2}  sample UNDERDETERMINED  | Andromeda VII LA, Leo IV BR, Canes Venatici II BR, Andromeda I TO, Tucana TO, Cetus TO
+  alt       C-U V-DIST : {'LATE ENOUGH': 0, 'TOO EARLY': 5, 'BRACKET-DEPENDENT': 1}  sample CONTRADICTED  | Andromeda VII BR, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  alt       C-U -> RULE-FRAGILE (V-MED, V-DIST)
+  alt       C-O V-MED  : {'LATE ENOUGH': 0, 'TOO EARLY': 6, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  | Andromeda VII TO, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  alt       C-O V-90   : {'LATE ENOUGH': 0, 'TOO EARLY': 5, 'BRACKET-DEPENDENT': 1}  sample CONTRADICTED  | Andromeda VII BR, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  alt       C-O V-STEP : {'LATE ENOUGH': 1, 'TOO EARLY': 5, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  | Andromeda VII LA, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  alt       C-O V-DIST : {'LATE ENOUGH': 0, 'TOO EARLY': 6, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED  | Andromeda VII TO, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Cetus TO
+  alt       C-O -> RULE-ROBUST
+
+V-1sigma (F_need from CFG920's functions at L_req = e^{4(E +- sE)}, [Fe/H] +- s; yield -0.5)
+  [canonical] Andromeda VII      F_need fav 0.000 (AT FORMATION), central 0.779, unf NONE (NONE)
+  [canonical] Hercules           F_need fav 0.950 (LATE), central 0.999, unf NONE (NONE)
+  [canonical] Leo IV             F_need fav 0.000 (AT FORMATION), central 0.839, unf 0.966 (LATE)
+  [canonical] Canes Venatici II  F_need fav 0.000 (AT FORMATION), central 0.514, unf 0.872 (LATE)
+  [canonical] Andromeda I        F_need fav 0.000 (AT FORMATION), central 0.516, unf 0.969 (LATE)
+  [canonical] Tucana             F_need fav 0.000 (AT FORMATION), central 0.797, unf NONE (NONE)
+  [canonical] Cetus              F_need fav 0.507 (LATE), central 0.909, unf NONE (NONE)
+  canonical C-U V-1sigma: {'LATE ENOUGH': 0, 'TOO EARLY': 1, 'BRACKET-DEPENDENT': 6}  sample UNDERDETERMINED  | Andromeda VII BR, Hercules TO, Leo IV BR, Canes Venatici II BR, Andromeda I BR, Tucana BR, Cetus BR
+  canonical C-O V-1sigma: {'LATE ENOUGH': 0, 'TOO EARLY': 2, 'BRACKET-DEPENDENT': 5}  sample UNDERDETERMINED  | Andromeda VII BR, Hercules TO, Leo IV BR, Canes Venatici II BR, Andromeda I BR, Tucana BR, Cetus TO
+  [alt] Andromeda VII      F_need fav 0.000 (AT FORMATION), central 0.867, unf NONE (NONE)
+  [alt] Leo IV             F_need fav 0.445 (EARLY), central 0.869, unf 0.974 (LATE)
+  [alt] Canes Venatici II  F_need fav 0.000 (AT FORMATION), central 0.599, unf 0.894 (LATE)
+  [alt] Andromeda I        F_need fav 0.000 (AT FORMATION), central 0.634, unf NONE (NONE)
+  [alt] Tucana             F_need fav 0.000 (AT FORMATION), central 0.859, unf NONE (NONE)
+  [alt] Cetus              F_need fav 0.617 (LATE), central 0.943, unf NONE (NONE)
+  alt       C-U V-1sigma: {'LATE ENOUGH': 0, 'TOO EARLY': 1, 'BRACKET-DEPENDENT': 5}  sample UNDERDETERMINED  | Andromeda VII BR, Leo IV BR, Canes Venatici II BR, Andromeda I BR, Tucana BR, Cetus TO
+  alt       C-O V-1sigma: {'LATE ENOUGH': 0, 'TOO EARLY': 2, 'BRACKET-DEPENDENT': 4}  sample UNDERDETERMINED  | Andromeda VII BR, Leo IV TO, Canes Venatici II BR, Andromeda I BR, Tucana BR, Cetus TO
+
+V-Y02 (yield -0.2; its own test set)
+  canonical C-U: N 9 {'LATE ENOUGH': 1, 'TOO EARLY': 7, 'BRACKET-DEPENDENT': 1}  sample CONTRADICTED [V-HALF CONTRADICTED] | Andromeda VII LA, Hercules TO, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Andromeda III BR, Cetus TO, Sagittarius TO
+  canonical C-O: N 9 {'LATE ENOUGH': 0, 'TOO EARLY': 9, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED [V-HALF CONTRADICTED] | Andromeda VII TO, Hercules TO, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Andromeda III TO, Cetus TO, Sagittarius TO
+  alt       C-U: N 7 {'LATE ENOUGH': 1, 'TOO EARLY': 5, 'BRACKET-DEPENDENT': 1}  sample CONTRADICTED [V-HALF CONTRADICTED] | Andromeda VII LA, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Andromeda III BR, Cetus TO
+  alt       C-O: N 7 {'LATE ENOUGH': 0, 'TOO EARLY': 7, 'BRACKET-DEPENDENT': 0}  sample CONTRADICTED [V-HALF CONTRADICTED] | Andromeda VII TO, Leo IV TO, Canes Venatici II TO, Andromeda I TO, Tucana TO, Andromeda III TO, Cetus TO
+
+R1 (ungraded): tides vs late binding, for the S dwarfs (union of footings)
+  Andromeda VII      host m_031     logT(838) -2.71  logT_p(839)   -   tau90 12.59  C-U binds before tau90 (fast/slow, can): [False, False]
+  Hercules           host mw        logT(838) -2.49  logT_p(839) -1.86  tau90 12.59  C-U binds before tau90 (fast/slow, can): [False, False]
+  Leo IV             host mw        logT(838) -2.63  logT_p(839) -2.24  tau90 11.25  C-U binds before tau90 (fast/slow, can): [True, False]
+  Canes Venatici II  host mw        logT(838) -3.26  logT_p(839) -1.36  tau90 8.27  C-U binds before tau90 (fast/slow, can): [True, True]
+  Andromeda I        host m_031     logT(838) -0.88  logT_p(839)   -   tau90 7.12  C-U binds before tau90 (fast/slow, can): [True, True]
+  Tucana             host field     logT(838)   -   logT_p(839)   -   tau90 6.47  C-U binds before tau90 (fast/slow, can): [True, True]
+  Cetus              host field     logT(838)   -   logT_p(839)   -   tau90 4.69  C-U binds before tau90 (fast/slow, can): [True, True]
+
+R2 (ungraded): field dwarfs
+  Cetus     gas False tau90 4.69 | canonical: LATE, C-U TOO EARLY, C-O TOO EARLY | alt: LATE, C-U TOO EARLY, C-O TOO EARLY
+  Tucana    gas False tau90 6.47 | canonical: LATE, C-U TOO EARLY, C-O TOO EARLY | alt: LATE, C-U TOO EARLY, C-O TOO EARLY
+  Aquarius  gas True  tau90 3.16 | canonical: AT FORMATION, C-U NO TIMING REQUIREMENT, C-O NO TIMING REQUIREMENT | alt: AT FORMATION, C-U NO TIMING REQUIREMENT, C-O NO TIMING REQUIREMENT
+  Phoenix   gas True  tau90 2.61 | canonical: AT FORMATION, C-U NO TIMING REQUIREMENT, C-O NO TIMING REQUIREMENT | alt: AT FORMATION, C-U NO TIMING REQUIREMENT, C-O NO TIMING REQUIREMENT
+  Leo T     gas True  tau90 1.58 | canonical: AT FORMATION, C-U NO TIMING REQUIREMENT, C-O NO TIMING REQUIREMENT | alt: AT FORMATION, C-U NO TIMING REQUIREMENT, C-O NO TIMING REQUIREMENT
+  canonical: CFG873 E_F +0.199+-0.068, D -0.150+-0.097 (UNDECIDED); CFG874 c -0.100+-0.091, E +0.194 (UNDECIDED); CFG875 k -0.190+-0.150 (UNDECIDED)
+  alt: CFG873 E_F +0.159+-0.068, D -0.150+-0.096 (UNDECIDED); CFG874 c -0.100+-0.091, E +0.155 (UNDECIDED); CFG875 k -0.190+-0.150 (UNDECIDED)
+
+VERDICT: C-U (headline) canonical CONTRADICTED, alt UNDERDETERMINED; C-O canonical CONTRADICTED, alt CONTRADICTED; OVERALL UNDERDETERMINED.  K PASS.
+kappa = 1/2 FITTED; footings never pooled; not theory closed.
