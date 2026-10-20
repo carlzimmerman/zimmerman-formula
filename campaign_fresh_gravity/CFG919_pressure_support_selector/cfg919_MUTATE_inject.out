@@ -1,0 +1,36 @@
+CFG919  pressure-support selector H-KIN: does ONE kinematic measure order the excess E = ln(g_obs/g_pred) at matched g_bar?   [MUTATE inject]
+  primary f_P = 3 sigma^2/(v^2 + 3 sigma^2); alternative f_sph = pressure-supported mass fraction; kappa = 1/2 FITTED
+
+=== K-stage
+    cfg914> [PASS] K1 dwarfs: sigma_law = CFG880 committed law (83 x 2 footings): max rel 0.0e+00
+    cfg914> [PASS] K1b dwarfs: CFG880 pred_univ from committed sigma_bar_univ: max rel 0.0e+00
+    cfg914> [PASS] K2a SPARC: CFG828 n_sparc and overall median (both footings): n 2696 vs 2696; max |d median| 0.0e+00
+    cfg914> [PASS] K2b SPARC: CFG870 sparc_D and bootstrap sigma with committed V_x (both footings): max |diff| 0.0e+00
+    cfg914> SPARC: 2696 points, 147 galaxies; small 555 pts / 56 gal, large 2141 pts / 91 gal; galaxies without M_b in the master table: 0
+    cfg914> [PASS] K3 lensing: CFG850 (+0.123, 0) rows both footings and CFG829 blue window A: max |diff| 0.0e+00
+    cfg914> [PASS] K3b lens medians parsed from cfg912_colour.out: red 10.81 blue 10.45 (I0 red 88,079,)
+    cfg914> [PASS] K4a clusters: recomputed canonical law = cfg687_percluster.npz PL (318 x 8): max rel 0.0e+00 (cluster law uses CFG687's FP0 a0: 9.360325e-11 / 1.131204e-10)
+    cfg914> [PASS] K4b clusters: CFG687 primary A (INNER/MID/OUTER, value + jackknife) both footings: max rel 0.0e+00
+    cfg914> [PASS] K5 globulars: CFG883 primary rows (R_pc, s_obs, s_B at Ups 1.6) for the tidally safe set; 31 per footing: max rel 0.0e+00; N {'canonical': 31, 'alt': 31}
+    cfg914> [1 s, 116 MB] inputs loaded
+  [PASS] K4 CFG914 input section exec'd read-only: all its input checks pass: 9/9 pass (K1, K1b, K2a, K2b, K3, K3b, K4a, K4b, K5)
+  [PASS] K-extra own SPARC loader == CFG914 SP arrays (bit-for-bit): 2696 points, 147 galaxies
+  [PASS] K1 CFG828 reproduced (own code; N_in, mean D, se D, SPARC median, out-of-range mean; canonical+alt nu_e): max |diff| 0.0e+00; canonical: N_in 8, D +0.051+-0.073 dex, out-of-range mean +0.438, SPARC median +0.031
+  [PASS] K-extra own B21 loader == CFG914 LDAT (blue, red, disc, sph; bit-for-bit): 4 lens sets
+  [PASS] K2 CFG829 reproduced (own B21 loader + GLS; blue/red window A, sA, both footings; class): max |diff| 0.0e+00; canonical blue A 1.016+-0.086, red A 1.587; class 'LAW HOLDS AT LOW g'
+  [PASS] K3 CFG849 Sersic disc/sph window A, sA reproduced (both footings): max |diff| 0.0e+00; canonical disc 1.066, sph 1.602
+  [PASS] K5 Baumgardt ARot/sigma0 parse (47 Tuc 5.00/11.9) and every globular f_P in (0, 1]: 10/31 safe globulars with ARot and sigma0; f_P 0.235..0.999, median v/sigma 0.387
+  K-stage ALL PASS  [1 s, 116 MB]
+
+  SPARC: 2696 pts / 147 gal (small 56, large 91); V_flat = 0 -> max V_obs for 27 galaxies
+  dwarfs: 83; HI-bearing (gas inside r1/2 > 0): 8; globulars: 31 (ARot/sigma0 for 10); clusters: 318
+  [canonical] I0 (E = 0): SUPPORTED 0.5%  median A_F1 +0.002  |A-1|<=2sA 0.0%  classes {'NOT DIAGNOSTIC': 174, 'SELECTOR CONTRADICTED': 25, 'SELECTOR SUPPORTED': 1} -> OK
+  [canonical] I1 (E = 1.0 f): SUPPORTED 85.0%  median A_F1 +1.002  |A-1|<=2sA 98.0%  classes {'SELECTOR SUPPORTED': 170, 'SELECTOR CONTRADICTED': 24, 'NOT DIAGNOSTIC': 6} -> FAIL
+  [canonical] I2 (E = 1.0 step(f-0.5)): SUPPORTED 92.0%  median A_F1 +1.074  |A-1|<=2sA 71.5%  classes {'SELECTOR SUPPORTED': 184, 'NOT DIAGNOSTIC': 8, 'SELECTOR CONTRADICTED': 8} -> OK
+  [alt] I0 (E = 0): SUPPORTED 0.5%  median A_F1 +0.002  |A-1|<=2sA 0.0%  classes {'NOT DIAGNOSTIC': 174, 'SELECTOR CONTRADICTED': 25, 'SELECTOR SUPPORTED': 1} -> OK
+  [alt] I1 (E = 1.0 f): SUPPORTED 85.0%  median A_F1 +1.002  |A-1|<=2sA 98.0%  classes {'SELECTOR SUPPORTED': 170, 'SELECTOR CONTRADICTED': 24, 'NOT DIAGNOSTIC': 6} -> FAIL
+  [alt] I2 (E = 1.0 step(f-0.5)): SUPPORTED 92.0%  median A_F1 +1.074  |A-1|<=2sA 71.5%  classes {'SELECTOR SUPPORTED': 184, 'NOT DIAGNOSTIC': 8, 'SELECTOR CONTRADICTED': 8} -> OK
+
+  INJECT: a required recovery FAILED (exit 1)
+
+  done [2 s, peak RSS 118 MB].  kappa = 1/2 FITTED; footings never pooled; not theory closed.
