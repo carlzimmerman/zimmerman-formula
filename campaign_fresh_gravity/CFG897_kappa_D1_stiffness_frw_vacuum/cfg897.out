@@ -1,0 +1,155 @@
+CFG897: kappa door D1 -- the stiffness term's own vacuum on flat FRW (timelike homogeneous P)
+kappa = 1/2 is FITTED (kappa_L 0.417 +- 0.095, CFG493 -- quoted, not used). Footings never pooled. Not theory closed.
+
+== I1: self-grep for forbidden constants
+  [PASS] I1 no forbidden constants used: hits outside the quoted standing-fact line: []
+
+== K1: scalar-field sanity of the eps/p extraction (n = 3)
+  [PASS] K1 scalar eps = chi'^2/2 + V, p = chi'^2/2 - V: eps = V(chi(tau)) + Derivative(chi(tau), tau)**2/2, p = -V(chi(tau)) + Derivative(chi(tau), tau)**2/2
+
+== K2: static flat limit (Minkowski, spatial P(x,y,z))
+  [PASS] K2 (a)_static = (c)_static + (b)_static + total derivative: EL of difference = [0, 0, 0]
+  [PASS] K2b Maxwell form vanishes on curl-free P (cannot stiffen longitudinal modes): F_ij(grad chi) = 0; static energy of (a) = +(gamma/2) sum (d_i P_j)^2 >= 0 for gamma > 0
+
+== FRW, n = 3 (d = 4), V1: proper norm f = |P| held fixed; units x0 = c t, h = H/c
+  (a) -(g/2) D_mu P_nu D^mu P^nu      : eps = -3*f**2*gamma*h**2/2,   p = f**2*gamma*(3*h**2 + 2*hp)/2,   A = 3/2
+  (b) -(g/2)(D.P)^2                   : eps = -9*f**2*gamma*h**2/2,   p = 3*f**2*gamma*(3*h**2 + 2*hp)/2,   A = 9/2
+  (c) -(g/4) F^2                      : eps = 0,   p = 0,   A = 0
+  (e) -(g/2) D_mu P_nu D^nu P^mu      : eps = -3*f**2*gamma*h**2/2,   p = f**2*gamma*(3*h**2 + 2*hp)/2,   A = 3/2
+  -(g/2) R_mn P^m P^n                 : eps = -3*f**2*gamma*h**2,   p = f**2*gamma*(3*h**2 + 2*hp),   A = 3
+  -(g/2) R P_m P^m                    : eps = -3*f**2*gamma*h**2,   p = f**2*gamma*(3*h**2 + 2*hp),   A = 3
+  any history f(tau):  eps_a = -gamma*(3*f**2*h**2 + fp**2)/2   eps_b = -gamma*(3*f*h + fp)**2/2
+  [PASS] FRW eps_a = -(g/2)(f'^2 + 3h^2 f^2), eps_b = -(g/2)(f' + 3hf)^2 (negative semi-definite for g > 0): hand estimate reproduced
+  [PASS] FRW eps_c = p_c = 0 identically (F = 0 on the homogeneous ansatz): IDENTITY
+  [PASS] fixed norm: w_a = w_b = -1 - 2h'/(3h^2) = w_total (an H^2 term: renormalises G, never a separate Lambda): w_a = -1 - 2*hp/(3*h**2), w_b = -1 - 2*hp/(3*h**2)
+
+== K3: (a) - (1/2)F^2 - (b) + Ric(P,P) and (e) - (b) + Ric(P,P) are total derivatives (general N, a, f)
+  [PASS] K3 (a)-F^2/2-(b)+Ric total derivative: EL_N, EL_a, EL_f = [0, 0, 0]
+  [PASS] K3 (e)-(b)+Ric total derivative: EL_N, EL_a, EL_f = [0, 0, 0]
+
+== K4: conservation eps' + n h (eps + p) = 0
+  [PASS] K4 fixed norm, a: residual = 0
+  [PASS] K4 fixed norm, b: residual = 0
+  [PASS] K4 fixed norm, e: residual = 0
+  [PASS] K4 fixed norm, Ric: residual = 0
+  [PASS] K4 fixed norm, R: residual = 0
+  [PASS] K4 on the stiffness EOM, a: f'' = 3*h*(f*h - fp), residual = 0
+  [PASS] K4 on the stiffness EOM, b: f'' = -3*f*hp - 3*fp*h, residual = 0
+
+== N4: no constraint, no potential
+  [PASS] N4 (b): EOM is d/dtau(div P) = 0, so div P = C; eps = -(g/2)C^2, p = +(g/2)C^2, w = -1: eps = -C**2*gamma/2, p = C**2*gamma/2: negative (AdS sign) for g > 0 and C is a free integration constant -> CONDITION
+  (a) free EOM: f'' = 3*h*(f*h - fp)
+  (a) de Sitter modes f ~ exp(lam h tau), lam = [-3/2 + sqrt(21)/2, -sqrt(21)/2 - 3/2] = [0.79128784747792, -3.79128784747792]
+      the growing mode makes eps_a = -(g/2)(lam^2 + 3) h^2 f^2 grow without bound and negative: no constant w = -1 energy
+
+== K5: V2 (P^0 fixed) and V3 (P_0 fixed) with the norm constraint reproduce V1
+  [PASS] K5 V2 a with constraint = V1: eps_tot = -3*gamma*h**2*phi0**2/2; naive (off-shell, not used) = 3*gamma*h**2*phi0**2/2
+  [PASS] K5 V2 b with constraint = V1: eps_tot = -9*gamma*h**2*phi0**2/2; naive (off-shell, not used) = 3*gamma*phi0**2*(-3*h**2 - 2*hp)/2
+  [PASS] K5 V3 a with constraint = V1: eps_tot = -3*gamma*h**2*phi0**2/2; naive (off-shell, not used) = -9*gamma*h**2*phi0**2/2
+  [PASS] K5 V3 b with constraint = V1: eps_tot = -9*gamma*h**2*phi0**2/2; naive (off-shell, not used) = 3*gamma*phi0**2*(-3*h**2 + 2*hp)/2
+
+== K6: general dimension (fixed norm): A_a = n/2, A_b = n^2/2, A_c = 0, A_Ric, A_R
+  n = 2 (d = 3): A_a = 1, A_b = 2, eps_c = 0, A_Ric = 1, A_R = 1
+  n = 3 (d = 4): A_a = 3/2, A_b = 9/2, eps_c = 0, A_Ric = 3, A_R = 3
+  n = 4 (d = 5): A_a = 2, A_b = 8, eps_c = 0, A_Ric = 6, A_R = 6
+  n = 5 (d = 6): A_a = 5/2, A_b = 25/2, eps_c = 0, A_Ric = 10, A_R = 10
+  [PASS] K6 A_a = n/2, A_b = n^2/2, eps_c = 0 for n = 2..5 (sign negative in every d): 
+
+== K7: Einstein-aether form eps = -3 alpha m^2 h^2, p = alpha m^2 (2h' + 3h^2), alpha = b1 + 3 b2 + b3
+  [PASS] K7 a (alpha = gamma/2): consistency with the published fixed-norm form (not an input)
+  [PASS] K7 b (alpha = 3*gamma/2): consistency with the published fixed-norm form (not an input)
+  [PASS] K7 e (alpha = gamma/2): consistency with the published fixed-norm form (not an input)
+
+== Family (G): -(g/2)[F^2/2 + (D.P)^2 + xi Ric(P,P) + zeta R P^2] (exact static limit for every xi, zeta)
+  fixed norm: eps = -A gamma h^2 f^2 with A(xi, zeta) = 3*xi + 3*zeta + 9/2
+  [PASS] (G) at xi = -1, zeta = 0 reproduces (a): A(-1, 0) = 3/2
+  positive energy needs A < 0, i.e. xi + zeta < -3/2: possible with O(1) non-minimal couplings (sign is then a choice)
+  largest |A| with |xi|, |zeta| <= 10: 129/2 (positive-energy branch: |A| = 111/2 at xi = zeta = -10)
+
+== Matching |eps_s| = rho_DE c^2 at N1 (K phi = a0), symbolic
+  eps_s(a0) = A*Lstar**2*a0**2*rho_DE/(3*Omega_H*c**2)
+  a0_needed = sqrt(3)*sqrt(Omega_H)*c**2/(sqrt(A)*Lstar)      kappa_needed = sqrt(3)*sqrt(Omega_H)*c/(sqrt(A)*sqrt(G)*Lstar*sqrt(rho_DE))
+  [PASS] I2 kappa_needed depends on L* (TRADE), hbar-free: d ln kappa / d ln X = {'G': -1/2, 'c': 1, 'rho_DE': -1/2, 'Lstar': -1, 'hbar': 0}
+  [PASS] I3 scaling at fixed L*: kappa_needed is NOT invariant (pure number only if L* ~ c/sqrt(G rho)): kappa(lambda G, mu rho, nu c)/kappa = nu_s/(sqrt(lambda_s)*sqrt(mu_s))
+  [PASS] I4 law kappa -> 0.4: a0_needed and kappa_needed do not move; the fraction eps_s/rho c^2 does: fraction = A*G*Lstar**2*kappa**2*rho_DE/(3*Omega_H*c**2) (at kappa = 0.4: 4*A*G*Lstar**2*rho_DE/(75*Omega_H*c**2))
+  [PASS] I5 no Friedmann tautology: kappa_needed depends on L*, not Z^2 = 32 pi/3: 
+  I5 note: at Omega_H = 1 the condition fixes a0 = sqrt(3)*c**2/(sqrt(A)*Lstar) with rho_DE cancelled: it is the
+     degenerate point of the renormalised Friedmann equation (G_cosmo -> infinity), not a determination of a0 by rho_DE
+  [PASS] I7 hbar-power 0: classical route
+  [PASS] I8 pi-weight of kappa_needed^2 prefactor: prefactor = 3*Omega_H/A (pi-weight 0; TRADE class)
+  [PASS] I6 declared footing rho_DE; rho_crit reported as kappa_crit = kappa_L sqrt(Omega_L), never pooled: 
+  S4: fixed-norm stiffness renormalises Friedmann: G_cosmo/G_N = 1/(1 + delta), delta = A*Lstar**2*a0**2/(3*c**4)
+  [PASS] K8a delta = 8 pi G A gamma phi^2/(3 c^4) at K phi = a0: 
+
+== K8: dimensions (SI base units)
+  [PASS] K8 a0_needed [m s^-2], kappa_needed and delta dimensionless: [a0] = m/s**2, [kappa] = 1, [delta] = 1
+
+== Numbers (end conversion only: H0 = 67.4 km/s/Mpc, Omega_L = 0.685)
+  rho_DE = 5.8450e-27 kg/m^3, l_DE = c/sqrt(G rho_DE) = 4.7998e+26 m = 15.56 Gpc, c/H0 = 4.45 Gpc
+  variant                                                     Om_H   L*/pc  |kappa_L| |kappa_crit| a0_need m/s2
+  (a) minimal                                                1.000    5.75  3.826e+09    3.166e+09    7.164e-01
+  (a) minimal                                                1.000   24.00  9.166e+08    7.586e+08    1.716e-01
+  (a) minimal                                                1.000  100.00  2.200e+08    1.821e+08    4.119e-02
+  (a) minimal                                                1.000 1000.00  2.200e+07    1.821e+07    4.119e-03
+  (a) minimal                                                0.685    5.75  3.166e+09    2.621e+09    5.929e-01
+  (a) minimal                                                0.685   24.00  7.586e+08    6.279e+08    1.420e-01
+  (a) minimal                                                0.685  100.00  1.821e+08    1.507e+08    3.409e-02
+  (a) minimal                                                0.685 1000.00  1.821e+07    1.507e+07    3.409e-03
+  (b) minimal                                                1.000    5.75  2.209e+09    1.828e+09    4.136e-01
+  (b) minimal                                                1.000   24.00  5.292e+08    4.380e+08    9.909e-02
+  (b) minimal                                                1.000  100.00  1.270e+08    1.051e+08    2.378e-02
+  (b) minimal                                                1.000 1000.00  1.270e+07    1.051e+07    2.378e-03
+  (b) minimal                                                0.685    5.75  1.828e+09    1.513e+09    3.423e-01
+  (b) minimal                                                0.685   24.00  4.380e+08    3.625e+08    8.201e-02
+  (b) minimal                                                0.685  100.00  1.051e+08    8.700e+07    1.968e-02
+  (b) minimal                                                0.685 1000.00  1.051e+07    8.700e+06    1.968e-03
+  (G) xi=zeta=-10 (positive energy, most favourable O(1))    1.000    5.75  6.290e+08    5.206e+08    1.178e-01
+  (G) xi=zeta=-10 (positive energy, most favourable O(1))    1.000   24.00  1.507e+08    1.247e+08    2.822e-02
+  (G) xi=zeta=-10 (positive energy, most favourable O(1))    1.000  100.00  3.617e+07    2.993e+07    6.772e-03
+  (G) xi=zeta=-10 (positive energy, most favourable O(1))    1.000 1000.00  3.617e+06    2.993e+06    6.772e-04
+  (G) xi=zeta=-10 (positive energy, most favourable O(1))    0.685    5.75  5.206e+08    4.308e+08    9.747e-02
+  (G) xi=zeta=-10 (positive energy, most favourable O(1))    0.685   24.00  1.247e+08    1.032e+08    2.335e-02
+  (G) xi=zeta=-10 (positive energy, most favourable O(1))    0.685  100.00  2.993e+07    2.477e+07    5.605e-03
+  (G) xi=zeta=-10 (positive energy, most favourable O(1))    0.685 1000.00  2.993e+06    2.477e+06    5.605e-04
+  smallest |kappa| over all variants with L* in [24 pc, 1 kpc]: 2.993e+06 (rho_DE), 2.477e+06 (rho_crit)
+  W_data = (0.227, 0.607) (rho_DE), (0.189, 0.501) (rho_crit)
+  L*_needed for kappa at the W_data edges (rho_DE footing):
+    (a) minimal                                                Om_H 1.000 kappa 0.227: L* =   96.909 Gpc (21.79 c/H0)
+    (a) minimal                                                Om_H 1.000 kappa 0.607: L* =   36.241 Gpc (8.15 c/H0)
+    (a) minimal                                                Om_H 0.685 kappa 0.227: L* =   80.206 Gpc (18.03 c/H0)
+    (a) minimal                                                Om_H 0.685 kappa 0.607: L* =   29.995 Gpc (6.74 c/H0)
+    (b) minimal                                                Om_H 1.000 kappa 0.227: L* =   55.950 Gpc (12.58 c/H0)
+    (b) minimal                                                Om_H 1.000 kappa 0.607: L* =   20.924 Gpc (4.70 c/H0)
+    (b) minimal                                                Om_H 0.685 kappa 0.227: L* =   46.307 Gpc (10.41 c/H0)
+    (b) minimal                                                Om_H 0.685 kappa 0.607: L* =   17.318 Gpc (3.89 c/H0)
+    (G) xi=zeta=-10 (positive energy, most favourable O(1))    Om_H 1.000 kappa 0.227: L* =   15.932 Gpc (3.58 c/H0)
+    (G) xi=zeta=-10 (positive energy, most favourable O(1))    Om_H 1.000 kappa 0.607: L* =    5.958 Gpc (1.34 c/H0)
+    (G) xi=zeta=-10 (positive energy, most favourable O(1))    Om_H 0.685 kappa 0.227: L* =   13.186 Gpc (2.96 c/H0)
+    (G) xi=zeta=-10 (positive energy, most favourable O(1))    Om_H 0.685 kappa 0.607: L* =    4.931 Gpc (1.11 c/H0)
+  smallest L*_needed = 4931.1 Mpc  (> 1 Mpc: every galaxy would be screened, CFG820 K1)
+  |A| required to put kappa in W_data (Omega_H = 1):
+    L* =   24.0 pc, kappa = 0.227: |A| = 2.446e+19  (|xi + zeta| ~ 8.15e+18; natural bound 20)
+    L* =   24.0 pc, kappa = 0.607: |A| = 3.420e+18  (|xi + zeta| ~ 1.14e+18; natural bound 20)
+    L* = 1000.0 pc, kappa = 0.227: |A| = 1.409e+16  (|xi + zeta| ~ 4.70e+15; natural bound 20)
+    L* = 1000.0 pc, kappa = 0.607: |A| = 1.970e+15  (|xi + zeta| ~ 6.57e+14; natural bound 20)
+  S4 delta = (A/3) kappa^2 (L*/l_DE)^2 at the fitted kappa = 1/2 (report only):
+    (a) minimal  L* =   24.0 pc: |delta| = 2.98e-19  (BBN/CMB sensitivity ~1e-1..1e-2): untestable, p_second ~ 1
+    (a) minimal  L* = 1000.0 pc: |delta| = 5.17e-16  (BBN/CMB sensitivity ~1e-1..1e-2): untestable, p_second ~ 1
+    (b) minimal  L* =   24.0 pc: |delta| = 8.93e-19  (BBN/CMB sensitivity ~1e-1..1e-2): untestable, p_second ~ 1
+    (b) minimal  L* = 1000.0 pc: |delta| = 1.55e-15  (BBN/CMB sensitivity ~1e-1..1e-2): untestable, p_second ~ 1
+  tuned positive branch (eps_s(today) = rho_DE c^2): eps_s ~ H^2 means G_cosmo/G_N = 1/(1 - Omega_L) = 3.17 and no acceleration (an H^2 term only rescales G): EXCLUDED on equation of state as well
+
+== Per-variant classes (frozen rules, first that applies)
+  (c) Maxwell, any normalisation            : IDENTITY (vanishing): F = 0 on the homogeneous ansatz
+  N2 tether (P = 0 on FRW)                  : IDENTITY (vanishing)
+  N3 law vacuum (g_N = 0 => u = 0)          : IDENTITY (vanishing)
+  N4 (b) free, div P = C                    : CONDITION (free zero mode C); also negative energy
+  N4 (a) free                               : NO SOLUTION (sign; runaway, no constant energy)
+  (a) fixed norm N1/N1b                     : NO SOLUTION (sign); magnitude-only |kappa| >= 1.82e+07
+  (b) fixed norm N1/N1b                     : NO SOLUTION (sign); magnitude-only |kappa| >= 1.05e+07
+  (G) O(1) non-minimal, positive branch     : MISS (TRADE, magnitude): kappa >= 2.99e+06; L*_needed >= 4931 Mpc -> EXCLUDED
+
+OVERALL LABEL (frozen rule): CLOSURE
+  p_exact = 0 (TRADE form: kappa ~ c/(L* sqrt(G rho_DE)), exact 1/2 needs a horizon-scale L*); p_data = 0.
+  kappa = 1/2 stays FITTED. Not theory closed.
+  checks: 35/35 PASS
