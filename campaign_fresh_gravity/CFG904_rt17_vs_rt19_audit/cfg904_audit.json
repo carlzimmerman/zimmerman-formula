@@ -1,0 +1,114 @@
+{
+ "rt17": {
+  "I1": {
+   "lam": "1",
+   "Z": "2*pi",
+   "kappa": "sqrt(6)/(3*sqrt(pi))",
+   "kappa_f": 0.460659
+  },
+  "I2": {
+   "lam": "1/2",
+   "Z": "pi",
+   "kappa": "2*sqrt(6)/(3*sqrt(pi))",
+   "kappa_f": 0.921318
+  },
+  "I3": {
+   "lam": "2",
+   "Z": "4*pi",
+   "kappa": "sqrt(6)/(6*sqrt(pi))",
+   "kappa_f": 0.230329
+  },
+  "I4": {
+   "lam": "1/(2*pi)",
+   "Z": "1",
+   "kappa": "2*sqrt(6)*sqrt(pi)/3",
+   "kappa_f": 2.894405
+  }
+ },
+ "rt19": {
+  "mu_dS": "(sqrt(u**2 + 1) - 1)/u",
+  "lam_star": "2",
+  "Z": "1/2",
+  "kappa": "4*sqrt(6)*sqrt(pi)/3",
+  "kappa_f": 5.78881,
+  "D5_ratio": "4*pi"
+ },
+ "verdict": "V-C WITHDRAWAL STANDS, 4pi ATTRIBUTION DOES NOT",
+ "internal_checks": [
+  {
+   "ok": true,
+   "msg": "hbar and k_B cancel inside x (declared in FROZEN_CRITERIA \u00a73)"
+  },
+  {
+   "ok": true,
+   "msg": "RT-17 rerun table parsed (4 identification rows)"
+  },
+  {
+   "ok": true,
+   "msg": "RT-19 rerun's Z and kappa reproduced"
+  },
+  {
+   "ok": true,
+   "msg": "RT-19 rerun's D5 ratio reproduced"
+  },
+  {
+   "ok": true,
+   "msg": "factorisation multiplies back to the D5 ratio"
+  }
+ ],
+ "tests": {
+  "T1": {
+   "result": "PASS",
+   "detail": "I1 gives Z = 2 pi, kappa = sqrt(2/(3 pi)) exactly; I1-I4 reproduce RT-17's printed table"
+  },
+  "T2": {
+   "result": "FAIL",
+   "detail": "no equation of S1-S3 fixes lambda; Z = 2 pi lambda is a one-parameter family; spread over I1-I4 2.664 > window width 0.380 -> MENU",
+   "menu_inside_window": [
+    "I1",
+    "I3"
+   ]
+  },
+  "T3": {
+   "result": "FAIL",
+   "detail": "T_U(a0_I1)/T_GH = 1/(2*pi): I1 makes a0 the Unruh acceleration of T_GH/(2 pi), not of T_GH; the Unruh-consistent reading is Z = 1 (RT-17's I4, kappa 2.8944)",
+   "ratio": "1/(2*pi)",
+   "Z_unruh": "1"
+  },
+  "T4": {
+   "result": "PASS",
+   "detail": "mu_dS(2x) == mu_1(x) identically at the unique scale lambda* = 2 -> a0 = 2 c H_Lambda (Z = 1/2, kappa = 2 sqrt(8 pi/3) = 5.7888); thermal 2 pi, hbar, k_B cancel in mu",
+   "alpha2_full_identity": false
+  },
+  "T5": {
+   "result": "FAIL",
+   "detail": "no single corrected step gives Z = 1/2; 4 pi = 2*pi (RT-17's S4, an error against the Unruh reading it invokes) x 2 (the Delta-T deep-limit slope, a different construction, not an error in RT-17)",
+   "factor_S4": "2*pi",
+   "factor_construction": "2"
+  },
+  "T6": {
+   "result": "PASS",
+   "detail": {
+    "I4_rename": true,
+    "convention_rename": true,
+    "I3_scaling": true,
+    "I8_pi_weight": true,
+    "I1_grep": true
+   },
+   "pi_weights": {
+    "RT-17 S1 T_GH": "-1",
+    "RT-17 S2 x/omega": "1",
+    "RT-17 S4 Z": "1",
+    "RT-17 S5 kappa": "-1/2",
+    "RT-17 kappa^2": "-1",
+    "RT-19 T(a) prefactor": "-1",
+    "RT-19 T_U(a)/a": "-1",
+    "RT-19 mu_dS": "0 (pi-free function)",
+    "RT-19 lambda*": "0",
+    "RT-19 Z": "0",
+    "RT-19 kappa": "1/2",
+    "RT-19 kappa^2": "1"
+   }
+  }
+ }
+}

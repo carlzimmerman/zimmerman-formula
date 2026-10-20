@@ -1,0 +1,97 @@
+CFG904 -- RT-17 vs RT-19 audit
+
+==============================================================================================================
+  T1  RT-17 ARITHMETIC, step by step
+==============================================================================================================
+  S1 T_GH            = H_Lambda*hbar/(2*pi*k_B)
+  S2 KMS variable x  = hbar omega/(k_B T_GH) = 2*pi*omega/H_Lambda      (hbar and k_B cancel: True)
+  S3 kernel variable w = omega c/a0 = Z*omega/H_Lambda   (a0 = c H_Lambda / Z)
+  S4 identification w = lambda x  ->  Z = 2 pi lambda;  I1 (lambda = 1): Z = 2*pi
+  S5 kappa = sqrt(8 pi/3)/Z = sqrt(6)/(3*sqrt(pi)) = 0.460659
+  [ok] hbar and k_B cancel inside x (declared in FROZEN_CRITERIA §3)
+
+  id      lambda   Z (exact)             kappa (exact)     kappa  RT-17 printed
+  I1           1        2*pi      sqrt(6)/(3*sqrt(pi))   0.46066        0.46066  match
+  I2         1/2          pi    2*sqrt(6)/(3*sqrt(pi))   0.92132        0.92132  match
+  I3           2        4*pi      sqrt(6)/(6*sqrt(pi))   0.23033        0.23033  match
+  I4    1/(2*pi)           1      2*sqrt(6)*sqrt(pi)/3   2.89441        2.89441  match
+  [ok] RT-17 rerun table parsed (4 identification rows)
+  T1 PASS: I1 gives Z = 2 pi, kappa = sqrt(2/(3 pi)) exactly; I1-I4 reproduce RT-17's printed table
+
+==============================================================================================================
+  T2  RT-17 DETERMINACY (KAPPA_CAMPAIGN_RULES §4)
+==============================================================================================================
+  without a chosen lambda the chain gives Z(lambda) = 2*pi*lambda; dZ/dlambda = 2*pi
+  does any of S1-S3 contain or fix lambda?  False
+  kappa over RT-17's own I1-I4: 0.4607, 0.9213, 0.2303, 2.8944; spread 2.664 vs W_data width 0.380  (ratio of extremes 12.57 = 4 pi: True)
+  RT-17's own text, line 95: 'The identification is an ADDED AXIOM ... not a theorem.'
+  report-only: menu entries inside today's W_data [0.227, 0.607]: ['I1', 'I3']
+  T2 FAIL: no equation of S1-S3 fixes lambda; Z = 2 pi lambda is a one-parameter family; spread over I1-I4 2.664 > window width 0.380 -> MENU
+
+==============================================================================================================
+  T3  RT-17 INTERNAL CONSISTENCY: is I1 'a0 is the de Sitter-Unruh scale'?
+==============================================================================================================
+  a0(I1) = H_Lambda*c/(2*pi);  T_U(a0(I1)) / T_GH = 1/(2*pi)
+  the Unruh relation T_U(a0) = T_GH gives a0 = H_Lambda*c, Z = 1, kappa = 2*sqrt(6)*sqrt(pi)/3 = 2.89441  (= RT-17's own I4: True)
+  equivalently: I1 sets a0/c = k_B T_GH/hbar (thermal angular frequency) = H_Lambda/(2*pi), while the Unruh rate of T_GH is 2 pi k_B T_GH/hbar = H_Lambda
+  T3 FAIL: T_U(a0_I1)/T_GH = 1/(2*pi): I1 makes a0 the Unruh acceleration of T_GH/(2 pi), not of T_GH; the Unruh-consistent reading is Z = 1 (RT-17's I4, kappa 2.8944)
+
+==============================================================================================================
+  T4  RT-19 CHAIN, recomputed from the temperatures (scale solved, not assumed)
+==============================================================================================================
+  mu(a) = [T(a) - T(0)]/T_U(a) = (-a_dS + sqrt(a**2 + a_dS**2))/a
+  mu_dS(u) = (sqrt(u**2 + 1) - 1)/u   (contains pi: False, hbar: False, k_B: False)
+  limits: u -> oo: 1;  mu_dS/u at u -> 0: 1/2
+  series match mu_dS(lambda x) = mu_1(x) at O(x): lambda roots = [2]
+  full-function residual at lambda* = 2: 0
+  residual series to O(x^7): 0
+  => a0 = lambda* a_dS = 2 c H_Lambda, Z = 1/2, kappa = 4*sqrt(6)*sqrt(pi)/3 = 5.78881   (RT-19 printed Z = 1/2, kappa = 5.78881)
+  D5: Z_RT17 / Z_RT19 = 4*pi   (RT-19 printed '4*pi')
+  [ok] RT-19 rerun's Z and kappa reproduced
+  [ok] RT-19 rerun's D5 ratio reproduced
+  report-only: deep limit mu_dS -> u/2 fixes a0 = 2 a_dS for ANY kernel with mu -> x (kernel-independent)
+  report-only: alpha = 2 kernel: O(x) gives lambda = [2], O(x^3) consistent: [False] -> no full-function identity; only the deep limit ties the scale
+  T4 PASS: mu_dS(2x) == mu_1(x) identically at the unique scale lambda* = 2 -> a0 = 2 c H_Lambda (Z = 1/2, kappa = 2 sqrt(8 pi/3) = 5.7888); thermal 2 pi, hbar, k_B cancel in mu
+
+==============================================================================================================
+  T5  IS THE 4 pi ONE ERROR IN RT-17's CHAIN?
+==============================================================================================================
+  c1 (S1 T_GH vs Gibbons-Hawking)                  step in error: False  corrected Z = 2*pi   kappa = 0.4607   reaches Z = 1/2: False
+  c2 (S4 -> Unruh-consistent T_U(a0) = T_GH)       step in error: True   corrected Z = 1      kappa = 2.8944   reaches Z = 1/2: False
+  c3 (S2 -> Unruh variable omega c/a_U(T_GH))      step in error: True   corrected Z = 1      kappa = 2.8944   reaches Z = 1/2: False
+  c4 (S5 vs Friedmann)                             step in error: False  corrected Z = 2*pi   kappa = 0.4607   reaches Z = 1/2: False
+
+  factorisation: Z_RT17/Z_RT19 = 4*pi = (Z_RT17/Z_Unruh) x (Z_Unruh/Z_RT19) = 2*pi x 2
+    2*pi: carried by S4 -- I1 equates a0/c with k_B T_GH/hbar instead of the Unruh rate 2 pi k_B T_GH/hbar
+    2  : carried by RT-19's Delta-T construction -- its deep-limit slope mu_dS -> u/2 (a0 = 2 a_dS); no step of RT-17 contains it
+  [ok] factorisation multiplies back to the D5 ratio
+  T5 FAIL: no single corrected step gives Z = 1/2; 4 pi = 2*pi (RT-17's S4, an error against the Unruh reading it invokes) x 2 (the Delta-T deep-limit slope, a different construction, not an error in RT-17)
+
+==============================================================================================================
+  T6  IDENTITY CHECKS
+==============================================================================================================
+  I4 law kappa = 1/2: RT-17 kappa = sqrt(6)/(3*sqrt(pi)), RT-19 kappa = 4*sqrt(6)*sqrt(pi)/3; ratios to law 0.9213, 11.5776; RT-19's kappa equals the law's Z: True
+  I4 law kappa = 2/5: RT-17 kappa = sqrt(6)/(3*sqrt(pi)), RT-19 kappa = 4*sqrt(6)*sqrt(pi)/3; ratios to law 1.1516, 14.4720; RT-19's kappa equals the law's Z: False
+  I4 PASS: outputs do not move with the law's kappa (both chains are predictions of their own axioms, not consistency relations); only the comparison lines move. Note: 'RT-19's kappa = Z' holds only at law kappa = 1/2 (2 sqrt(8pi/3) = sqrt(8pi/3)/kappa_law iff kappa_law = 1/2) -- a coincidence
+  convention rename: RT-17 Z = 2*pi (was 2*pi); RT-19 mu = (-a_dS + sqrt(a**2 + a_dS**2))/a (unchanged: True)  -> PASS (no convention leak; the 2 pi of RT-17 is an identification choice, not a units artefact)
+  I3 scaling RT-17: a0 -> sqrt(l_G)*l_c*sqrt(l_rho) a0, kappa invariant: True
+  I3 scaling RT-19: a0 -> sqrt(l_G)*l_c*sqrt(l_rho) a0, kappa invariant: True
+  I8 pi-weight (exponent k in rational-ish x pi^k) of every intermediate:
+    RT-17: S1 T_GH: -1; S2 x/omega: 1; S4 Z: 1; S5 kappa: -1/2; kappa^2: -1
+    RT-19: T(a) prefactor: -1; T_U(a)/a: -1; mu_dS: 0 (pi-free function); lambda*: 0; Z: 0; kappa: 1/2; kappa^2: 1
+  I8 PASS: kappa^2 pi-weights -1 (RT-17) and 1 (RT-19), both odd as declared (a-and-H class; exact 1/2 impossible). Z_RT17/Z_RT19 carries pi^1: it enters at RT-17's S1 (T_GH's 1/2pi, kept by S2's x) and cancels in RT-19's ratio mu.
+  I1 grep: forbidden constants in this script: none -> PASS
+
+==============================================================================================================
+  VERDICT (frozen table, FROZEN_CRITERIA §6)
+==============================================================================================================
+  T1: PASS
+  T2: FAIL
+  T3: FAIL
+  T4: PASS
+  T5: FAIL
+  T6: PASS
+
+  VERDICT: V-C WITHDRAWAL STANDS, 4pi ATTRIBUTION DOES NOT
+
+  5/5 internal checks held; exit 0.
