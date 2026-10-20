@@ -69,6 +69,7 @@ independent second prediction to reach 3σ.
 | [W4-08](W4_08_positive_mond_amplitudes/README.md) | Can a positive microscopic MOND response force the amplitude ratio 128pi/9? | **POSITIVE RESPONSE, NO SELECTION.** A paired critical-band family has positive energy, cubic IR, quadratic UV and positive static Hessians; its exact ratio retains a physical gap and its stress is not a vacuum. A two-field superfluid parent and exact constrained MOND construction expose free source/vacuum parameters and completion failures. 53 exact checks plus independent scoped proof audits; no healthy microscopic normalization found. |
 | [W4-09](W4_09_dark_energy_models/README.md) | Do the dark-energy models themselves (holographic, agegraphic, Chaplygin, Cardassian, scaling attractor, LQC, causal-set Λ, Dirac, interacting) fix the 4? | **NO MODEL FIXES THE 4.** Each carries its own free amplitude. The saturated holographic/agegraphic value is 8π/3 (κ 2.89), the same H-type number as DGP and CKN. |
 | [W4-10](W4_10_one_kappa_lensing/README.md) | Is there ONE 4? κ in every KiDS isolated-lens subsample (colour, Sérsic, mass, hot gas, GAMA). | **ONE κ FOR LATE TYPES ONLY** (B21 Chabrier masses). Blue 0.52 vs red 1.29, n<2 0.57 vs n>2 1.32 (>4σ); mass bins agree (p 0.73, no trend). B21's hot gas doesn't close the gap. An early-type IMF (CFG926 R5, post hoc) brings red to 0.73 (z +1.8). The 4 holds for discs. |
+| [W4-11](W4_11_last_gravity_classes/README.md) | The last gravity classes with no register row: f(Q), f(R,T), bumblebee, Weyl conformal geometry. | **NO CLASS FIXES THE 4.** f(Q) = f(T)'s trade in n; f(R,T) is GR in vacuum; bumblebee trade; Weyl geometry ħ-bearing with free couplings. Every standard modified-gravity and dark-energy class now has a row. |
 
 ## What would change the answer
 
@@ -87,6 +88,6 @@ Follow `KAPPA_CAMPAIGN_RULES.md`:
 3. Run a light single-core script (nothing beside a live 1024³ job beyond that).
 4. Append one register row per attempt to CFG894's CSV, then rerun `kappa_campaign_lee.py`.
 
-Name lanes W4-11, W4-12, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
+Name lanes W4-12, W4-13, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
 
 κ = ½ FITTED. Not theory closed.
