@@ -98,3 +98,13 @@ once in the first systems that can cool. Not derived until that mechanism is wri
 Reading: the dwarf excess is real and not host-made, but its amount and extent vary strongly from dwarf to dwarf (Sextans needs
 far more and far wider mass than Draco-like or Crater II-like systems). No single component, compact or extended, fits all of them.
 The variation itself is now the target (Codex's selectivity problem).
+
+
+**Caveat (2026-10-20, CFG888) on the CFG871/877/878 addenda above.** The record's equations source the law with baryons only, in
+every formulation (class-A equations, canonical action, the S3 identification). A cold-energy clump's own gravity is therefore
+Newtonian (class A) or absent and pushed out (canonical action with ∇·P = ρ_c). The law-boosted self-gravity that gives
+M_cl = 81σ⁴/(4Ga0) and r_c = (9/2)σ²/a0 appears only under a coupling the record does not write and CFG722 rejected as double
+counting. So CFG871's core link, CFG877's clump mass and CFG878 Part A are CONDITIONAL on that unwritten coupling, not
+derived. In the record's own branch the clump is a Newtonian isothermal (CFG870's extended form, broken by CFG876). It becomes
+finite only with a truncation, which adds a parameter. Status of the dwarf excess: described empirically (group means), not
+derived; no single component fits all dwarfs (CFG880, CFG884).
