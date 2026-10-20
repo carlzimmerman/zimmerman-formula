@@ -1,0 +1,136 @@
+CFG888  clump self-gravity from the record's equations   [MUTATE: branch swapped]
+  sigma (CFG877) 7.5340 / 7.4861 km/s; M_cl(CFG877) 5.251e+06 / 4.235e+06; rho0_870 0.582 / 0.575 Msun/pc^3
+
+== Q1 record citations (file:line)
+  [i    ] CFG541_cold_energy_equations_precise/EQUATIONS.md:65  -- class A gravity: Newtonian, baryons + cold energy
+  [i    ] CFG541_cold_energy_equations_precise/EQUATIONS.md:90  -- E7 round-rule phantom: region's own baryons
+  [i    ] CFG541_cold_energy_equations_precise/EQUATIONS.md:106  -- rho_ph is a functional of the baryons
+  [i    ] CFG541_cold_energy_equations_precise/cfg541.py:255  -- code: law argument from baryon mass only
+  [i    ] CFG541_cold_energy_equations_precise/cfg541.py:256  -- code: phantom = M_b (nu - 1)
+  [i    ] CFG638_cold_energy_fluid_equations/README.md:24  -- fluid system: Newtonian Phi, psi toward rho_ph
+  [i    ] CFG638_cold_energy_fluid_equations/README.md:63  -- fluid system: overfill open item
+  [ii   ] THEORY_CANONICAL_2026-10-14.md:18  -- canonical S2 action: matter term -rho_b Phi only
+  [ii   ] THEORY_CANONICAL_2026-10-14.md:26  -- canonical S3: cold energy = displacement of P (ID)
+  [ii   ] THEORY_CANONICAL_2026-10-14.md:34  -- canonical S4: free cold energy 'bound by ordinary gravity', coupling not written
+  [ii   ] CFG722_cold_kinetic_bridge/README.md:75  -- ID: carrier self-gravity cancelled
+  [ii   ] CFG722_cold_kinetic_bridge/README.md:67  -- coupling G: cold mass would source the phantom
+  [ii   ] CFG722_cold_kinetic_bridge/README.md:98  -- ID: tether reads baryons' g_N
+  [ii   ] CFG722_cold_kinetic_bridge/README.md:112  -- ID: overflow pushed out
+  [ii   ] CFG747_collisionless_relaxation/README.md:15  -- tether dynamics: r'' = -1/r^2 + m^2/r^4
+  [ii   ] CFG776_frozen_relic/README.md:10  -- surplus expelled
+  [iii  ] CFG809_expelled_gas_split/cfg809.py:119  -- H-EX: law source = condensed/core baryons
+  [iii  ] CFG809_expelled_gas_split/cfg809.py:124  -- H-EX: free reservoir returned separately
+  [iii  ] CFG822_hex_dsph/cfg822.py:34  -- free mass added outside nu
+  [iii  ] CFG877_finite_cold_clump/cfg877.py:30  -- clump added Newtonianly to sigma^2
+  [hlink] CFG877_finite_cold_clump/cfg877.py:80  -- H-LINK: clump mass from the self-boost formula
+  [hlink] CFG878_fragment_mass/cfg878.py:20  -- H-LINK: clump's own mass inside nu
+  [hlink] CFG871_law_linked_core/README.md:21  -- H-LINK flagged as assumption
+
+== Part S: the canonical square action, one Fourier mode (rho_b = B cos kx, rho_c = C cos kx)
+  S1 (ID) on-shell <L> = K*(B + C)**2/(4*k**2);  Newtonian -V = K*(B + C)**2/(4*k**2)
+      C^2 coefficient K/(4*k**2) (Newtonian K/(4*k**2)); BC K/(2*k**2) (Newtonian K/(2*k**2)); B^2 K/(4*k**2) -> carrier self-gravity NOT cancelled
+  S2 (coupling G, matter term -(rho_b + rho_c) Phi): (Phi' - K P)' = K*(B + C)*cos(k*x)  -> law source includes rho_c: True
+  S3 (ID, dP/dx = rho_c, matter term -rho_b Phi):     (Phi' - K P)' = B*K*cos(k*x)  -> law source baryons only: True
+  S4 longitudinal P: <|dP/dx|^2> = <rho_c^2> (True); 3-D |k|^2|P_hat|^2 = |rho_hat|^2 (True) -> (gamma/2)|grad P|^2 = pi G L*^2 rho_c^2: a local repulsive self-energy (pressure pi G L*^2 rho_c^2)
+
+== S5: ID energy E[M] = -int M g_Nb dr + int W(GM/r^2) 4 pi r^2 dr;  F = dE/dM(<r) = -g_Nb + u^2/(a0-u)  (F > 0: outward)
+  [canonical] H1: law |F|/g_Nb max 2.6e+03;  law+clump F/g_Nb on 1-1000 pc: min +3.429e-01 max +1.089e+02;  max u/a0 0.226;  FD check 2.1e-09;  at r_half 148 pc stiffness(24 pc)/tether push 0.142
+  [canonical] H2: law |F|/g_Nb max 4.7e+02;  law+clump F/g_Nb on 1-1000 pc: min +9.339e-01 max +2.034e+01;  max u/a0 0.251;  FD check 1.8e-09;  at r_half 148 pc stiffness(24 pc)/tether push 0.100
+  [canonical] H3: law |F|/g_Nb max 1.1e+02;  law+clump F/g_Nb on 1-1000 pc: min +1.448e-01 max +1.286e+01;  max u/a0 0.283;  FD check 9.5e-10;  at r_half 148 pc stiffness(24 pc)/tether push 0.073
+  [alt      ] H1: law |F|/g_Nb max 2.8e+03;  law+clump F/g_Nb on 1-1000 pc: min +3.049e-01 max +8.073e+01;  max u/a0 0.188;  FD check 1.9e-09;  at r_half 132 pc stiffness(24 pc)/tether push 0.212
+  [alt      ] H2: law |F|/g_Nb max 5.2e+02;  law+clump F/g_Nb on 1-1000 pc: min +6.531e-01 max +1.631e+01;  max u/a0 0.211;  FD check 1.5e-09;  at r_half 132 pc stiffness(24 pc)/tether push 0.152
+  [alt      ] H3: law |F|/g_Nb max 1.2e+02;  law+clump F/g_Nb on 1-1000 pc: min +1.038e-01 max +1.040e+01;  max u/a0 0.241;  FD check 8.2e-10;  at r_half 132 pc stiffness(24 pc)/tether push 0.116
+  ID verdict on the clump: EXCESS PUSHED OUT (no self-bound clump)  (F > 0 at every radius 1-1000 pc, H1-H3, both footings: True)
+
+== Part A: branch (a) -- isolated clump with Newtonian self-gravity  [M1: self-boost forced ON]
+   r_0 = 3 sigma/sqrt(4 pi G rho0);  M(<100/200/500/1000 pc);  dlnM/dlnr and M/(2 sigma^2 r/G) at 1e4 pc
+  [canonical] rho0  0.010: r_0   972.1 pc | M(<100) 3.515e+04  M(<200) 2.107e+05  M(<500) 1.257e+06  M(<1000) 2.691e+06 | dlnM/dlnr(1e4 pc) 0.038  M/(2s^2r/G) 0.018
+  [canonical] rho0  0.100: r_0   307.4 pc | M(<100) 2.464e+05  M(<200) 9.573e+05  M(<500) 2.649e+06  M(<1000) 3.685e+06 | dlnM/dlnr(1e4 pc) 0.017  M/(2s^2r/G) 0.018
+  [canonical] rho0  0.600: r_0   125.5 pc | M(<100) 7.718e+05  M(<200) 1.859e+06  M(<500) 3.210e+06  M(<1000) 3.797e+06 | dlnM/dlnr(1e4 pc) 0.012  M/(2s^2r/G) 0.016
+      K1: Emden series |d(rho/rho0)| at xi 0.5/1 = 1.5e-01/2.9e-01; dlnM/dlnr at 1e4 r_s 0.0002; M/(2s^2r/G) 0.0004
+  [canonical] rho0  3.000: r_0    56.1 pc | M(<100) 1.398e+06  M(<200) 2.336e+06  M(<500) 3.197e+06  M(<1000) 3.557e+06 | dlnM/dlnr(1e4 pc) 0.013  M/(2s^2r/G) 0.015
+  [canonical] rho0  0.582: r_0   127.4 pc | M(<100) 7.603e+05  M(<200) 1.846e+06  M(<500) 3.206e+06  M(<1000) 3.799e+06 | dlnM/dlnr(1e4 pc) 0.012  M/(2s^2r/G) 0.016
+  [alt      ] rho0  0.010: r_0   965.9 pc | M(<100) 3.451e+04  M(<200) 2.014e+05  M(<500) 1.129e+06  M(<1000) 2.306e+06 | dlnM/dlnr(1e4 pc) 0.034  M/(2s^2r/G) 0.015
+  [alt      ] rho0  0.100: r_0   305.4 pc | M(<100) 2.347e+05  M(<200) 8.719e+05  M(<500) 2.277e+06  M(<1000) 3.086e+06 | dlnM/dlnr(1e4 pc) 0.015  M/(2s^2r/G) 0.015
+  [alt      ] rho0  0.600: r_0   124.7 pc | M(<100) 7.100e+05  M(<200) 1.640e+06  M(<500) 2.728e+06  M(<1000) 3.178e+06 | dlnM/dlnr(1e4 pc) 0.010  M/(2s^2r/G) 0.014
+  [alt      ] rho0  3.000: r_0    55.8 pc | M(<100) 1.257e+06  M(<200) 2.041e+06  M(<500) 2.724e+06  M(<1000) 2.996e+06 | dlnM/dlnr(1e4 pc) 0.010  M/(2s^2r/G) 0.013
+  [alt      ] rho0  0.575: r_0   127.4 pc | M(<100) 6.954e+05  M(<200) 1.624e+06  M(<500) 2.723e+06  M(<1000) 3.180e+06 | dlnM/dlnr(1e4 pc) 0.010  M/(2s^2r/G) 0.014
+  R1 (report): Newtonian clump at rho0_870 vs CFG870 extended M_x (uncapped) and CFG877 capped M_x
+  [canonical] Emden/CFG870 at 100/200/500/1000 pc: 0.600 / 0.444 / 0.254 / 0.146   Emden/CFG877(capped): 0.60 / 0.44 / 0.61 / 0.72   (asymptotic V_c = sqrt2 sigma = 10.655 = V_x 10.655 km/s by identity)
+  [alt      ] Emden/CFG870 at 100/200/500/1000 pc: 0.556 / 0.396 / 0.218 / 0.123   Emden/CFG877(capped): 0.56 / 0.40 / 0.64 / 0.75   (asymptotic V_c = sqrt2 sigma = 10.587 = V_x 10.587 km/s by identity)
+
+== Part B: branch (b) -- isolated clump whose own gravity follows the law (CONDITIONAL)  [M2: self-boost forced OFF]
+  [canonical] rho0  0.010: M_tot 8.103e+09 (tail-corr inf), f 1543.175 | M(<100) 4.149e+04  M(<200) 3.228e+05  M(<500) 4.220e+06  M(<1000) 2.105e+07 | r_half 152782.9 pc | phantom(<200) 0.00e+00  (<1000) 0.00e+00
+  [canonical] rho0  0.100: M_tot 7.983e+09 (tail-corr inf), f 1520.315 | M(<100) 3.823e+05  M(<200) 2.415e+06  M(<500) 1.461e+07  M(<1000) 3.316e+07 | r_half 148021.6 pc | phantom(<200) 0.00e+00  (<1000) 0.00e+00
+  [canonical] rho0  0.600: M_tot 7.872e+09 (tail-corr inf), f 1499.281 | M(<100) 1.585e+06  M(<200) 5.788e+06  M(<500) 1.631e+07  M(<1000) 2.877e+07 | r_half 148507.2 pc | phantom(<200) -9.31e-10  (<1000) 0.00e+00
+  [canonical] rho0  3.000: M_tot 7.865e+09 (tail-corr inf), f 1497.820 | M(<100) 3.038e+06  M(<200) 6.597e+06  M(<500) 1.406e+07  M(<1000) 2.511e+07 | r_half 149968.4 pc | phantom(<200) -9.31e-10  (<1000) 0.00e+00
+  [canonical] rho0  0.582: M_tot 7.873e+09 (tail-corr inf), f 1499.460 | M(<100) 1.556e+06  M(<200) 5.745e+06  M(<500) 1.634e+07  M(<1000) 2.886e+07 | r_half 148481.2 pc | phantom(<200) 0.00e+00  (<1000) 0.00e+00
+  [alt      ] rho0  0.010: M_tot 8.000e+09 (tail-corr inf), f 1888.969 | M(<100) 4.149e+04  M(<200) 3.226e+05  M(<500) 4.210e+06  M(<1000) 2.091e+07 | r_half 152743.9 pc | phantom(<200) 0.00e+00  (<1000) 3.73e-09
+  [alt      ] rho0  0.100: M_tot 7.881e+09 (tail-corr inf), f 1860.659 | M(<100) 3.819e+05  M(<200) 2.406e+06  M(<500) 1.447e+07  M(<1000) 3.273e+07 | r_half 148013.5 pc | phantom(<200) 0.00e+00  (<1000) 3.73e-09
+  [alt      ] rho0  0.600: M_tot 7.772e+09 (tail-corr inf), f 1835.070 | M(<100) 1.577e+06  M(<200) 5.733e+06  M(<500) 1.609e+07  M(<1000) 2.837e+07 | r_half 148518.5 pc | phantom(<200) 0.00e+00  (<1000) 0.00e+00
+  [alt      ] rho0  3.000: M_tot 7.765e+09 (tail-corr inf), f 1833.422 | M(<100) 3.007e+06  M(<200) 6.510e+06  M(<500) 1.387e+07  M(<1000) 2.478e+07 | r_half 149978.0 pc | phantom(<200) 0.00e+00  (<1000) 0.00e+00
+  [alt      ] rho0  0.575: M_tot 7.774e+09 (tail-corr inf), f 1835.382 | M(<100) 1.536e+06  M(<200) 5.673e+06  M(<500) 1.613e+07  M(<1000) 2.850e+07 | r_half 148481.2 pc | phantom(<200) 0.00e+00  (<1000) 0.00e+00
+  K2: f(rho0=0.01) = 1543.175, 1888.969; all f in [1497.820, 1888.969].  K3 (CFG878 f at sigma 7.53 within 1%): FAIL
+  R3 (report): self-boost needs tethered cold energy = the clump's phantom; vs the largest catchment stock 53.64 M_b
+  [canonical] phantom(<200 pc)/(53.64 M_b) for M_b 1e3/1e4/1e5/1e6: -0.00 / -0.00 / -0.00 / -0.00   (<1 kpc): 0.00 / 0.00 / 0.00 / 0.00
+  [alt      ] phantom(<200 pc)/(53.64 M_b) for M_b 1e3/1e4/1e5/1e6: 0.00 / 0.00 / 0.00 / 0.00   (<1 kpc): 0.00 / 0.00 / 0.00 / 0.00
+
+== Part C: stiffness at the clump scale: u^2/(a0-u) - (L*^2/2)(u'' + 2u'/r - 2u/r^2) = g_N (branch b source, rho0 0.6)
+  [canonical] L*      1 pc: R_s at 50/100/200/500 pc = 0.9997 / 0.9999 / 1.0000 / 1.0000   (solver ok; estimate L*^2/(r r_M) at 100 pc 0.000)
+  [canonical] L*     24 pc: R_s at 50/100/200/500 pc = 0.8450 / 0.9432 / 0.9782 / 0.9924   (solver ok; estimate L*^2/(r r_M) at 100 pc 0.065)
+  [canonical] L*    100 pc: R_s at 50/100/200/500 pc = 0.4608 / 0.5682 / 0.6940 / 0.8607   (solver ok; estimate L*^2/(r r_M) at 100 pc 1.131)
+  [canonical] L*    300 pc: R_s at 50/100/200/500 pc = 0.3178 / 0.3417 / 0.3406 / 0.3998   (solver ok; estimate L*^2/(r r_M) at 100 pc 10.177)
+  [canonical] L*   1000 pc: R_s at 50/100/200/500 pc = 0.2894 / 0.2923 / 0.2430 / 0.1640   (solver ok; estimate L*^2/(r r_M) at 100 pc 113.077)
+  [alt      ] L*      1 pc: R_s at 50/100/200/500 pc = 0.9996 / 0.9999 / 1.0000 / 1.0000   (solver ok; estimate L*^2/(r r_M) at 100 pc 0.000)
+  [alt      ] L*     24 pc: R_s at 50/100/200/500 pc = 0.8176 / 0.9284 / 0.9724 / 0.9906   (solver ok; estimate L*^2/(r r_M) at 100 pc 0.080)
+  [alt      ] L*    100 pc: R_s at 50/100/200/500 pc = 0.4180 / 0.5169 / 0.6420 / 0.8287   (solver ok; estimate L*^2/(r r_M) at 100 pc 1.384)
+  [alt      ] L*    300 pc: R_s at 50/100/200/500 pc = 0.2868 / 0.3038 / 0.2983 / 0.3526   (solver ok; estimate L*^2/(r r_M) at 100 pc 12.457)
+  [alt      ] L*   1000 pc: R_s at 50/100/200/500 pc = 0.2622 / 0.2602 / 0.2113 / 0.1389   (solver ok; estimate L*^2/(r r_M) at 100 pc 138.410)
+  stiffness class (R_s(100 pc, L* 24 pc) >= 0.95 both footings): MATTERS AT 24 pc
+
+== Part D: clump (rho0 0.6) in hosts H1-H3; (a) host law field + Newtonian clump; (b) law(M_b + M_cl)
+  [canonical] M_crit = 9 sigma^4/(G a0) = 2.334e+06 Msun;  sqrt3 sigma = 13.05 km/s
+    H1 (V_h,inf  3.34 km/s) branch (a): M(<100/200/500/1e3/5e3/1e4 pc) = 7.54e+05 1.82e+06 3.18e+06 3.77e+06 4.26e+06 4.31e+06  dlnM/dlnr(1e4) 0.012
+    H1 (V_h,inf  3.34 km/s) branch (b): M(<100/200/500/1e3/5e3/1e4 pc) = 1.32e+06 4.85e+06 1.47e+07 2.69e+07 1.11e+08 2.26e+08  dlnM/dlnr(1e4) 1.050
+    H2 (V_h,inf  7.81 km/s) branch (a): M(<100/200/500/1e3/5e3/1e4 pc) = 7.63e+05 1.82e+06 3.07e+06 3.59e+06 3.99e+06 4.04e+06  dlnM/dlnr(1e4) 0.011
+    H2 (V_h,inf  7.81 km/s) branch (b): M(<100/200/500/1e3/5e3/1e4 pc) = 1.40e+06 4.62e+06 1.14e+07 1.81e+07 5.54e+07 1.04e+08  dlnM/dlnr(1e4) 0.967
+    H3 (V_h,inf 22.33 km/s) branch (a): M(<100/200/500/1e3/5e3/1e4 pc) = 7.57e+05 1.77e+06 2.70e+06 2.82e+06 2.83e+06 2.83e+06  dlnM/dlnr(1e4) 0.000
+    H3 (V_h,inf 22.33 km/s) branch (b): M(<100/200/500/1e3/5e3/1e4 pc) = 1.34e+06 4.12e+06 7.57e+06 8.13e+06 8.16e+06 8.16e+06  dlnM/dlnr(1e4) 0.000
+  [alt] M_crit = 9 sigma^4/(G a0) = 1.882e+06 Msun;  sqrt3 sigma = 12.97 km/s
+    H1 (V_h,inf  3.50 km/s) branch (a): M(<100/200/500/1e3/5e3/1e4 pc) = 6.92e+05 1.61e+06 2.70e+06 3.15e+06 3.51e+06 3.55e+06  dlnM/dlnr(1e4) 0.010
+    H1 (V_h,inf  3.50 km/s) branch (b): M(<100/200/500/1e3/5e3/1e4 pc) = 1.29e+06 4.71e+06 1.43e+07 2.63e+07 1.08e+08 2.20e+08  dlnM/dlnr(1e4) 1.047
+    H2 (V_h,inf  8.19 km/s) branch (a): M(<100/200/500/1e3/5e3/1e4 pc) = 7.02e+05 1.60e+06 2.60e+06 2.98e+06 3.27e+06 3.30e+06  dlnM/dlnr(1e4) 0.008
+    H2 (V_h,inf  8.19 km/s) branch (b): M(<100/200/500/1e3/5e3/1e4 pc) = 1.37e+06 4.46e+06 1.08e+07 1.68e+07 4.89e+07 8.89e+07  dlnM/dlnr(1e4) 0.928
+    H3 (V_h,inf 23.41 km/s) branch (a): M(<100/200/500/1e3/5e3/1e4 pc) = 6.96e+05 1.55e+06 2.27e+06 2.34e+06 2.34e+06 2.34e+06  dlnM/dlnr(1e4) 0.000
+    H3 (V_h,inf 23.41 km/s) branch (b): M(<100/200/500/1e3/5e3/1e4 pc) = 1.31e+06 3.94e+06 6.95e+06 7.33e+06 7.35e+06 7.35e+06  dlnM/dlnr(1e4) 0.000
+  HOST CONFINEMENT CRITERION NOT CONFIRMED;  replacement (branch a) does not add a parameter by the frozen rule
+  R2 (report): extra acceleration over the host's law at 200/500/1000/2000 pc: (b) / CFG870 extended, (b) / CFG877 capped
+  [canonical] H1: (b)/extended 3.25 / 4.44 / 5.58 / 7.17   (b)/capped 3.3 / 10.7 / 27.8 / 71.9
+  [canonical] H2: (b)/extended 2.90 / 3.46 / 4.08 / 4.98   (b)/capped 2.9 / 8.3 / 20.3 / 49.9
+  [canonical] H3: (b)/extended 2.39 / 1.76 / 1.21 / 0.96   (b)/capped 2.4 / 4.2 / 6.0 / 9.6
+  [alt      ] H1: (b)/extended 3.49 / 4.80 / 6.08 / 7.85   (b)/capped 3.5 / 14.2 / 37.0 / 96.3
+  [alt      ] H2: (b)/extended 3.09 / 3.68 / 4.32 / 5.24   (b)/capped 3.1 / 10.8 / 26.3 / 64.2
+  [alt      ] H3: (b)/extended 2.52 / 1.79 / 1.21 / 0.97   (b)/capped 2.5 / 5.3 / 7.4 / 11.8
+  R2 label: (b) EXTERNAL NOT >= CFG870 EXTENDED
+
+== Classes
+  Q1 law source: NOT DETERMINED AS FROZEN (see citations/S checks)
+  Q1b clump self-gravity: class A NEWTONIAN; canonical action (ID) self-gravity present + EXCESS PUSHED OUT (no self-bound clump); coupling G SELF-BOOST (not written in the record)
+  implemented branch for a clump that is not expelled: (undetermined);  branch (b) CONDITIONAL on a new coupling
+  CFG871 r_c = (9/2) sigma^2/a0: NOT DERIVED BY THE RECORD'S EQUATIONS;  CFG877 M_cl = 81 sigma^4/(4 G a0): NOT DERIVED;  stiffness: MATTERS AT 24 pc;  HOST CONFINEMENT CRITERION NOT CONFIRMED;  (b) EXTERNAL NOT >= CFG870 EXTENDED
+
+== K-tests
+  K4_S1                  FAIL
+  K4_S2                  PASS
+  K4_S3                  PASS
+  K4_S4                  PASS
+  K5_i_law_stationary    FAIL
+  K5_ii_fd               PASS
+  K1_series              FAIL
+  K1_M_propto_r          FAIL
+  K1_SIS_norm            FAIL
+  K2_deep_limit          FAIL
+  K2_band                FAIL
+  K3_cfg878              FAIL
+  K6_stiff_control       PASS
+  MUTATE teeth: M1_K1 BITES, M2_K2 BITES, M3_S1 BITES, M4_K5i BITES
