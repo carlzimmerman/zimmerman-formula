@@ -217,3 +217,23 @@ Summaries (reported):
 - Nothing is downloaded, no PDE is run, and no other lane's files are edited.
 - Outputs: `cfg918.py`, `cfg918_K.out`, `cfg918.out`, `cfg918_results.json`, and the MUTATE outputs.
 - Any change after a number is seen will be a dated, labelled amendment appended below.
+
+## Amendment A1 (2026-10-20, POST HOC, committed alone before it is run): three reported-only diagnostics
+
+This was written after the K, MUTATE-1, MUTATE-2 and main runs, whose classes have been seen. It changes no frozen class,
+control, grid or input; it adds three ungraded diagnostics to the main output.
+
+Why: in the frozen receiver family, the energy-optimal configuration can put a large envelope mass on circular orbits just
+outside R. Example: Leo I, RE, G1, λ_c = 1, which puts 1.15e8 M☉ at r1 = R. That respects the declared aperture rule (mass
+outside R is not aperture mass). But the roadmap warns that Fornax and Leo I must not acquire extra uncounted inner envelope
+mass, and a resolved stellar-kinematics test (gate 4) would see such mass. Separately, the core state C-S (thin shell at R)
+is a kinematic limit, not the record's description of the dwarf core.
+
+- **PH1, no envelope crowding.** Classes recomputed with the receiver family restricted to r1, r2 ≥ 2R. Otherwise identical.
+- **PH2, Peebles spin at the critical points.** λ_P = λ_c J_1 |E_init(λ_c, φ_K)|^{1/2} / (G M_rem^{5/2}) at λ_crit,MF and
+  λ_crit,all (φ_K = 0 and 1). For orientation only; no spin distribution is used.
+- **PH3, record core only.** Classes recomputed with the core state restricted to C-C (the CFG870 cored, pressure-supported
+  shape), dropping the C-S and C-U limits.
+
+PH1 and PH3 are reported next to the frozen classes. They carry no class weight. The graded classes remain those of the
+frozen criteria.
