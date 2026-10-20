@@ -63,5 +63,6 @@ satellites, E = +0.19 ± 0.08 over the law (2.5 se): UNDECIDED. Reading: isolate
 possibly less than satellites; existing kinematics cannot decide.
 CFG875 (host-distance slope at fixed g_bar, 66 dwarfs, 19–1350 kpc): k = −0.19 ± 0.15 per dex, UNDECIDED; among dwarfs
 brighter than M_V = −6, k = 0.00 ± 0.13. No test of environment (host mass CFG843, tides CFG838/839, stripping CFG860,
-isolation CFG873/874, distance CFG875) shows the host mattering beyond 1.6σ. Working description: a small-system
+isolation CFG873/874, distance CFG875) shows the host mattering beyond 1.6σ in its graded result (one CFG875
+variant that adds the faintest, closest ultra-faints reaches 2.0σ). Working description: a small-system
 component (CFG870), with its velocity scale (~7.5 km/s) not derived.
