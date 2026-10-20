@@ -26,11 +26,11 @@ Phoenix +0.47 (+0.34), Leo T +0.22 (+0.36). Gas-free pair: E +0.15, D −0.25. H
 excess falls from +0.46 (stars only) to +0.23 (primary) or +0.12 (all gas inside). Leo T's gas outweighs its stars about 4:1
 within r½ in the primary model, and Aquarius's about 2:1.
 
-**Relation to CFG860** (stripping chat; stars only, Υ_V = 2): CFG860 found isolated gas-free dwarfs 0.15 ± 0.12 and
-gas-bearing 0.06 ± 0.09 below satellites, with the gas-bearing group +0.37 ± 0.07 over the law (5.1σ). The offsets agree
-with CFG873. CFG860's gas-bearing excess did not count those dwarfs' gas in g_bar, and with gas it is substantially smaller.
-The two lanes together: isolated dwarfs carry part of the excess, plausibly less than satellites; the difference is not
-resolved.
+**Relation to CFG860** (stripping chat; stars only, Υ_V = 2): CFG860 found isolated gas-free and gas-bearing dwarfs
+0.15 ± 0.12 and 0.06 ± 0.09 below satellites, with the gas-bearing group +0.37 ± 0.07 over the law in its base fit. Its
+reported gas bracket (half of 1.33 M_HI inside r½) gave that group +0.31 ± 0.10 and cG −0.13 ± 0.11. The offsets agree
+with CFG873. *(Corrected 2026-10-19: the first version of this README said CFG860's +0.37 "did not count gas"; CFG860
+did report a gas bracket.)* Pooled follow-up with all 11 isolated dwarfs: CFG874.
 
 ## Controls
 - **K1 PASS:** with gas set to zero, per-dwarf Δ reproduces CFG828's rows exactly (max |ΔΔ| = 0 over 29 dwarfs).
@@ -51,3 +51,12 @@ resolved.
 ## For the record
 Canonical v3's headline "a satellite property" is corrected (2026-10-19) to "a property of faint pressure-supported dwarfs;
 satellite vs isolated difference unresolved" (CFG860 + CFG873).
+
+## Audit (2026-10-19, after the owner asked whether this was done right)
+- **Matching bias:** satellites in each ±0.4 dex window sit 0.01–0.10 dex lower in g_bar than the field dwarf. With the
+  satellites' slope (about −0.36 per dex), that biases D by about −0.02. A regression cross-check (Δ = a + b log g_bar +
+  c[field], satellites in the field range ±0.6 dex) gives c = −0.133 ± 0.084 against D = −0.150 ± 0.097, with the same class.
+- **Isolation:** Leo T and Phoenix lie only ~410 kpc from the MW, within backsplash reach, as well as Tucana and Cetus.
+- **Errors:** bootstrap errors from five objects are approximate (biased low).
+- **Not treated:** stellar rotation in the field dwarfs. If present, σ alone understates their mass and lowers their Δ.
+- None of these changes the class (UNDECIDED).

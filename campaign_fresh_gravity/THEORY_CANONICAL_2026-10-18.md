@@ -56,6 +56,8 @@ masses lowered 0.2 dex, blue lenses sit 1.23–1.31× above the law (> 2σ). Rea
 **Addendum (2026-10-19, CFG860 + CFG873): isolated dwarfs.** CFG860 (stars only, Υ_V = 2) found isolated gas-free and
 gas-bearing dwarfs above the law and 0.15 ± 0.12 / 0.06 ± 0.09 dex below satellites at matched g_bar (NOT GAS). CFG873
 (SFH-based Υ, HI-bearing dwarfs' gas inside r½ counted) gives five isolated field dwarfs +0.20 ± 0.07 dex over the law and
-0.15 ± 0.10 below satellites: UNDECIDED, gas-sensitive (all gas inside: +0.13; no gas: +0.34). Counting the gas roughly
-halves the gas-bearing isolated dwarfs' excess. Reading: isolated dwarfs carry part of the excess, plausibly less than
-satellites; the satellite–isolated difference needs ~20 isolated dwarfs with stellar kinematics to decide.
+0.15 ± 0.10 below satellites: UNDECIDED, gas-sensitive (all gas inside: +0.13; no gas: +0.34). Counting the gas lowers
+the gas-bearing isolated dwarfs' excess (CFG873 disc model +0.46 → +0.23; CFG860's half-gas bracket +0.37 → +0.31).
+CFG874 pools all 11 isolated Local Group dwarfs with stellar σ (the whole supply), gas counted: c = −0.10 ± 0.09 below
+satellites, E = +0.19 ± 0.08 over the law (2.5 se): UNDECIDED. Reading: isolated dwarfs carry part of the excess,
+possibly less than satellites; existing kinematics cannot decide.
