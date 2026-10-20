@@ -1,0 +1,255 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-STATIC-MODE-BACKREACTION-FIXED-TOTAL-CHARGE-2026-10-20",
+  "repository": {
+    "commit": "8ee694096f4ef99c7000cd909256e3fe26f837e6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_fragment_modes_2026_10_20/dc_backreaction.py",
+    "sol61_push/cold_fragment_modes_2026_10_20/profile_origin/run_001",
+    "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002",
+    "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The action-derived zero-frequency source admits a static order-K response and frequency adjustment cancelling the raw unit-K mode charge, checked by independent real-field angular Noether integration.",
+    "coefficient_domain": "Double precision same-grid canonical static Hessian, sparse bordered solve and exact polynomial source",
+    "conventions": "No-half real mode with dphiY=-imY, K=A². Normalized real Y_l0 static correction. Wamp dw-sqrt(4pi)*a*domega=source and sqrt(4pi)<a,dw>+4pi<p,p>*domega=-Qmode2; inner products include dr.",
+    "inputs": [
+      "Deterministic mode caches in natural_run_002",
+      "True-origin stationary profiles as same-action discrete seeds",
+      "Independently derived DC source and angular coefficients"
+    ],
+    "bounds": {
+      "Q": [
+        80000,
+        160000
+      ],
+      "grids_L_N": [
+        [
+          40,
+          399
+        ],
+        [
+          60,
+          599
+        ],
+        [
+          60,
+          1199
+        ]
+      ],
+      "ell_DC": [
+        0,
+        2,
+        4
+      ],
+      "relative_residual_max": 1e-09,
+      "charge_coefficient_absolute_max": 1e-08,
+      "direct_charge_absolute_max": 1e-07,
+      "coefficient_grid_box_relative_max": 0.02,
+      "K_direct_initializers": [
+        1,
+        0.25,
+        0.0625
+      ]
+    },
+    "non_claims": [
+      "No full nonlinear time-domain solution",
+      "No nonlinear fundamental-frequency shift or small-divisor control",
+      "No fixed-Q remnant during subsequent radiation",
+      "No merger or galactic selectivity proved"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T20:23:48.578210+00:00",
+    "runtime_seconds": 2.023588,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 90,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_fragment_modes_2026_10_20/dc_backreaction.py",
+    "sol61_push/cold_fragment_modes_2026_10_20/radial_tools.py",
+    "sol61_push/cold_completion_2026_10_20/run_001/results.json",
+    "sol61_push/cold_fragment_modes_2026_10_20/profile_origin/run_001/Q80000.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/profile_origin/run_001/Q160000.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q80000_L40_N399.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q80000_L60_N599.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q80000_L60_N1199.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q160000_L40_N399.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q160000_L60_N599.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q160000_L60_N1199.npz"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/dc_backreaction.py",
+      "sha256": "90860076b41fd8b4bdddae5fc108b3c798480173a2380f584dfb81afe0a19661",
+      "sha256_after": "90860076b41fd8b4bdddae5fc108b3c798480173a2380f584dfb81afe0a19661"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/radial_tools.py",
+      "sha256": "4ecd52a9c849e095b68a4127299fc68584ae7ba1b8fbae0a8f093d81be491f20",
+      "sha256_after": "4ecd52a9c849e095b68a4127299fc68584ae7ba1b8fbae0a8f093d81be491f20"
+    },
+    {
+      "path": "sol61_push/cold_completion_2026_10_20/run_001/results.json",
+      "sha256": "0f8fcb2cf8d3bfb057c213ff87abc1728257cca3e119c5d2c0905036ee2c9eac",
+      "sha256_after": "0f8fcb2cf8d3bfb057c213ff87abc1728257cca3e119c5d2c0905036ee2c9eac"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/profile_origin/run_001/Q80000.npz",
+      "sha256": "121ef8d5beb7a92163ab3743fafbf7852ca5e5aecf0f5814051500d5d8eabf68",
+      "sha256_after": "121ef8d5beb7a92163ab3743fafbf7852ca5e5aecf0f5814051500d5d8eabf68"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/profile_origin/run_001/Q160000.npz",
+      "sha256": "3f492f7098f827ce14554786f5bcc1d32dc9dcb5d5d1826e1ef22148f913d57e",
+      "sha256_after": "3f492f7098f827ce14554786f5bcc1d32dc9dcb5d5d1826e1ef22148f913d57e"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q80000_L40_N399.npz",
+      "sha256": "aacc035973e69f4d56a169af4c55f82038f7db0bc4cf831d6452f8b832b9e42b",
+      "sha256_after": "aacc035973e69f4d56a169af4c55f82038f7db0bc4cf831d6452f8b832b9e42b"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q80000_L60_N599.npz",
+      "sha256": "b49f3798fee173395cce3876ac763398979ed04860817843afad9cd028266a34",
+      "sha256_after": "b49f3798fee173395cce3876ac763398979ed04860817843afad9cd028266a34"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q80000_L60_N1199.npz",
+      "sha256": "9e383eca200f212fc6cb8d53ba37337960748169646b461fef0e38f57dcd34f3",
+      "sha256_after": "9e383eca200f212fc6cb8d53ba37337960748169646b461fef0e38f57dcd34f3"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q160000_L40_N399.npz",
+      "sha256": "a02cae51fe19aa78186652802c7eb2d7cf813bed16c65de0858f6f1c6b713a6e",
+      "sha256_after": "a02cae51fe19aa78186652802c7eb2d7cf813bed16c65de0858f6f1c6b713a6e"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q160000_L60_N599.npz",
+      "sha256": "328ed8e70b07eaa21e1878659f9d767446aec9398a72119b74f0786dcba00972",
+      "sha256_after": "328ed8e70b07eaa21e1878659f9d767446aec9398a72119b74f0786dcba00972"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/Q160000_L60_N1199.npz",
+      "sha256": "2500367f3e35c9151410975fcddde3d05e32e7e98440bdd53c7444e0f93e1b21",
+      "sha256_after": "2500367f3e35c9151410975fcddde3d05e32e7e98440bdd53c7444e0f93e1b21"
+    }
+  ],
+  "output_directory": "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001",
+  "declared_results": [
+    "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/results.json",
+    "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q80000_L40_N399.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q80000_L60_N599.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q80000_L60_N1199.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q160000_L40_N399.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q160000_L60_N599.npz",
+    "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q160000_L60_N1199.npz"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/stdout.txt",
+      "sha256": "0a3d60484439aa78e8f98cfb9e3322edc5937cd0650fc8e3c4c7c361afc417b4",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/results.json",
+      "sha256": "1d16a5db936d00ae0c969f5b4dee9a6efe87e23a98e17b35ed7d20e3fc2243ee",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q80000_L40_N399.npz",
+      "sha256": "c8fe08f88d05429929018930f3ae5b0d04db07a7c23f7ce4ce326b1575d0d05d",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q80000_L60_N599.npz",
+      "sha256": "67aa08107e6b324c146a621ca124a531bb4df16a58f496b6169e9476e5107200",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q80000_L60_N1199.npz",
+      "sha256": "5fe40d880f6ce30ed9b29e35e13a7a9836cd44c003428de1b71cb1c7a072762d",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q160000_L40_N399.npz",
+      "sha256": "f202c0e744fde22261ecc8eb01670411e22096d0dba89422c6cdde5c00590b02",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q160000_L60_N599.npz",
+      "sha256": "3e57d78058f71cb9dae0a75bda0cc0fd35179c14988dd27e68d2b615fa732612",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/cold_fragment_modes_2026_10_20/dc_run_001/dc_Q160000_L60_N1199.npz",
+      "sha256": "75412e9376b3e601e8bd6eb32ed7c19ab5200d3a363a03749463021318eb1c1f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
