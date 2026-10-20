@@ -108,3 +108,11 @@ counting. So CFG871's core link, CFG877's clump mass and CFG878 Part A are CONDI
 derived. In the record's own branch the clump is a Newtonian isothermal (CFG870's extended form, broken by CFG876). It becomes
 finite only with a truncation, which adds a parameter. Status of the dwarf excess: described empirically (group means), not
 derived; no single component fits all dwarfs (CFG880, CFG884).
+
+**Caveat (2026-10-20, CFG889) on CFG882's retention result.** With collisionless orbits included (shell code, N ~ 1e5),
+the deficit gate does NOT keep a dwarf's cold clump: it erodes with half-life ~105–148 Myr/α, because clump orbits reach the
+clump's skin where the gate opens and the drift pumps them outward. CFG882's 'gated retention' was a property of the drift-only
+density flow. Keeping half a clump for 12 Gyr would need α ≲ 1e-2, far below the galaxy side's α ≳ 0.5. (Frozen class INCONCLUSIVE
+because the OU-only control fails; the erosion persists with the OU switched off.) Together with CFG888, the record's cold-energy
+equations neither bind (no law-boosted self-gravity) nor retain (drift erodes, gated or not) a dwarf clump. The dwarf excess
+remains an empirical finding without a mechanism in the record.
