@@ -1,0 +1,44 @@
+CFG914  common density threshold across sectors?  E = ln(g_obs/g_law);  primary rho = 3 g_law/(4 pi G r), V1 rho = 3 g_bar/(4 pi G r)   [MUTATE inject]
+
+=== inputs and K-tests
+  [PASS] K1 dwarfs: sigma_law = CFG880 committed law (83 x 2 footings): max rel 0.0e+00
+  [PASS] K1b dwarfs: CFG880 pred_univ from committed sigma_bar_univ: max rel 0.0e+00
+  [PASS] K2a SPARC: CFG828 n_sparc and overall median (both footings): n 2696 vs 2696; max |d median| 0.0e+00
+  [PASS] K2b SPARC: CFG870 sparc_D and bootstrap sigma with committed V_x (both footings): max |diff| 0.0e+00
+  SPARC: 2696 points, 147 galaxies; small 555 pts / 56 gal, large 2141 pts / 91 gal; galaxies without M_b in the master table: 0
+  [PASS] K3 lensing: CFG850 (+0.123, 0) rows both footings and CFG829 blue window A: max |diff| 0.0e+00
+  [PASS] K3b lens medians parsed from cfg912_colour.out: red 10.81 blue 10.45 (I0 red 88,079,)
+  [PASS] K4a clusters: recomputed canonical law = cfg687_percluster.npz PL (318 x 8): max rel 0.0e+00 (cluster law uses CFG687's FP0 a0: 9.360325e-11 / 1.131204e-10)
+  [PASS] K4b clusters: CFG687 primary A (INNER/MID/OUTER, value + jackknife) both footings: max rel 0.0e+00
+  [PASS] K5 globulars: CFG883 primary rows (R_pc, s_obs, s_B at Ups 1.6) for the tidally safe set; 31 per footing: max rel 0.0e+00; N {'canonical': 31, 'alt': 31}
+  [1 s, 110 MB] inputs loaded
+
+=== MUTATE-INJECT: bin values replaced by 0.7 H(log rho - log rho*_inj) + draws from each sector's covariance (incl. floor)
+  [canonical | log rho_law [Msun/pc^3]] injected -2.02, recovered -2.21; PARTIAL; all-sector fit rho*_eff -2.21 (valid True, above +0.55 at 14.6 sigma); violators dropped in order: SS (z 6.5), SL (z 13.2); survivors ['DW', 'LR', 'LB', 'CL', 'GC'] (rho*_eff -2.17, threshold ok True)  -> FAIL
+     per-sector z: DW -1.03, SS 6.49, SL 5.44, LR -0.84, LB 1.00, CL 0.17, GC 0.75
+  [canonical | log rho_b [Msun/pc^3]] injected -3.18, recovered -4.17; PARTIAL; all-sector fit rho*_eff -4.17 (valid True, above +0.64 at 21.5 sigma); violators dropped in order: SL (z 2.3); survivors ['DW', 'SS', 'LR', 'LB', 'CL', 'GC'] (rho*_eff -3.98, threshold ok True)  -> FAIL
+     per-sector z: DW -2.05, SS 0.30, SL 2.32, LR 0.42, LB 0.39, CL 0.53, GC -0.61
+  [alt | log rho_law [Msun/pc^3]] injected -1.99, recovered -2.21; PARTIAL; all-sector fit rho*_eff -2.21 (valid True, above +0.57 at 15.1 sigma); violators dropped in order: SS (z 5.6), SL (z 10.7); survivors ['DW', 'LR', 'LB', 'CL', 'GC'] (rho*_eff -2.68, threshold ok True)  -> FAIL
+     per-sector z: DW -0.26, SS 5.60, SL 4.81, LR -1.41, LB 0.50, CL 0.32, GC -2.04
+  [alt | log rho_b [Msun/pc^3]] injected -3.18, recovered -4.81; COMMON THRESHOLD; all-sector fit rho*_eff -4.81 (valid True, above +0.49 at 17.3 sigma); violators dropped in order: none; survivors ['DW', 'SS', 'SL', 'LR', 'LB', 'CL', 'GC'] (rho*_eff -4.81, threshold ok True)  -> FAIL
+     per-sector z: DW 0.57, SS -2.32, SL 0.73, LR -0.19, LB -0.77, CL 1.67, GC -1.18
+
+  MUTATE-INJECT (frozen) overall: FAIL
+
+=== AMENDMENT A1 (POST HOC): fit with per-sector offsets (prior N(0, floor^2)); sector test unchanged
+  single seed-914 draw [canonical|law] injected -2.02: A1 COMMON THRESHOLD; all-sector fit rho*_eff -2.02 (valid True, above +0.67 at 17.0 sigma); violators dropped in order: none; survivors ['DW', 'SS', 'SL', 'LR', 'LB', 'CL', 'GC'] (rho*_eff -2.02, threshold ok True); rho*_half -1.84
+  single seed-914 draw [canonical|bar] injected -3.18: A1 COMMON THRESHOLD; all-sector fit rho*_eff -3.18 (valid True, above +0.70 at 20.7 sigma); violators dropped in order: none; survivors ['DW', 'SS', 'SL', 'LR', 'LB', 'CL', 'GC'] (rho*_eff -3.18, threshold ok True); rho*_half -3.16
+  single seed-914 draw [alt|law] injected -1.99: A1 COMMON THRESHOLD; all-sector fit rho*_eff -1.99 (valid True, above +0.69 at 17.6 sigma); violators dropped in order: none; survivors ['DW', 'SS', 'SL', 'LR', 'LB', 'CL', 'GC'] (rho*_eff -1.99, threshold ok True); rho*_half -1.80
+  single seed-914 draw [alt|bar] injected -3.18: A1 COMMON THRESHOLD; all-sector fit rho*_eff -4.84 (valid True, above +0.51 at 18.1 sigma); violators dropped in order: none; survivors ['DW', 'SS', 'SL', 'LR', 'LB', 'CL', 'GC'] (rho*_eff -4.84, threshold ok True); rho*_half -3.16
+  power [canonical|law] 100 injected common thresholds: frozen {'PARTIAL': 56, 'NO COMMON ORDERING': 23, 'COMMON THRESHOLD': 21};  A1 {'COMMON THRESHOLD': 83, 'PARTIAL': 14, 'NO COMMON ORDERING': 3};  A1 rho*_eff within 0.5 dex 0.71, rho*_half 1.00
+     false-positive check (per-sector thresholds, median +- U(1.5) dex): frozen {'PARTIAL': 72, 'NO COMMON ORDERING': 20, 'COMMON THRESHOLD': 8};  A1 {'PARTIAL': 74, 'COMMON THRESHOLD': 16, 'NO COMMON ORDERING': 10}
+  power [canonical|bar] 100 injected common thresholds: frozen {'PARTIAL': 45, 'COMMON THRESHOLD': 41, 'NO COMMON ORDERING': 14};  A1 {'COMMON THRESHOLD': 78, 'PARTIAL': 21, 'NO COMMON ORDERING': 1};  A1 rho*_eff within 0.5 dex 0.66, rho*_half 1.00
+     false-positive check (per-sector thresholds, median +- U(1.5) dex): frozen {'NO COMMON ORDERING': 18, 'PARTIAL': 71, 'COMMON THRESHOLD': 11};  A1 {'NO COMMON ORDERING': 18, 'PARTIAL': 62, 'COMMON THRESHOLD': 20}
+  power [alt|law] 100 injected common thresholds: frozen {'PARTIAL': 60, 'NO COMMON ORDERING': 23, 'COMMON THRESHOLD': 17};  A1 {'COMMON THRESHOLD': 79, 'NO COMMON ORDERING': 9, 'PARTIAL': 12};  A1 rho*_eff within 0.5 dex 0.47, rho*_half 0.99
+     false-positive check (per-sector thresholds, median +- U(1.5) dex): frozen {'COMMON THRESHOLD': 6, 'PARTIAL': 72, 'NO COMMON ORDERING': 22};  A1 {'COMMON THRESHOLD': 19, 'NO COMMON ORDERING': 10, 'PARTIAL': 71}
+  power [alt|bar] 100 injected common thresholds: frozen {'PARTIAL': 43, 'COMMON THRESHOLD': 43, 'NO COMMON ORDERING': 14};  A1 {'COMMON THRESHOLD': 77, 'PARTIAL': 21, 'NO COMMON ORDERING': 2};  A1 rho*_eff within 0.5 dex 0.63, rho*_half 1.00
+     false-positive check (per-sector thresholds, median +- U(1.5) dex): frozen {'NO COMMON ORDERING': 18, 'PARTIAL': 72, 'COMMON THRESHOLD': 10};  A1 {'NO COMMON ORDERING': 22, 'PARTIAL': 62, 'COMMON THRESHOLD': 16}
+
+  A1 power (min over footing x variable): 0.77 COMMON THRESHOLD (stated expectation >= 0.70; seen in scratch before A1 was written)
+
+  [194.5 s, peak RSS 111.1 MB]  kappa = 1/2 FITTED; footings never pooled; not theory closed.
