@@ -1,0 +1,123 @@
+MODE: NORMAL
+python 3.13.9, numpy 1.26.4, sympy 1.13.1, scipy 1.14.1
+
+(0) PRE-FLIGHT (rules section 1.6), frozen route error from record numbers
+   two_loop  0.49735
+   m_red     1.75338
+   y1        0.12059
+   scheme    2.66447
+   trunc     5.32738
+   sigma_route = 6.2303 (frozen 6.230); admissible-only variant 3.2452 (frozen 3.245)
+  [PASS] PF-sigma  sigma_route and the admissible-only variant equal the frozen values
+   delta_route = sigma_route / 137.036 = 0.0455  ->  diagnostic (< 1); 1% would need sigma <= 1.37: NOT reachable, ceiling CONSISTENT
+
+(1) BUILDING THE FLOWS (AS3 CPR f(R); AS4 BMS; lane B EV)
+  ... CPR traces: t = 5.7 s, peak RSS 168 MB
+  ... CPR symbolic-content betas: t = 6.3 s, peak RSS 170 MB
+  ... BMS traces: t = 10.2 s, peak RSS 172 MB
+  ... BMS symbolic-content EH betas: t = 10.5 s, peak RSS 173 MB
+
+(2) GATES
+  [PASS] K1a AS3 CPR-EH (SM)  (g, lambda) = (0.9671594, -1.222930), f_g = 0.038830931, P = 95.578469 vs (0.967159, -1.22293), 0.03883093, 95.57847
+  [PASS] K1b AS3 EH systematics (SM)  two-loop 96.075819, M_red 93.825087 vs 96.07582, 93.82509
+  [PASS] K1c AS3 CPR-R^2 (SM)  4 real roots, 2 admissible, 2/2 match AS3's printed roots, f_g and P
+  ... K1: t = 25.2 s, peak RSS 190 MB
+  [PASS] K2a AS4 BMS-EH (SM)  (g, lambda) = (0.8647728, -1.090055), f_g = 0.036746945, P = 96.372649 vs (0.864773, -1.09006), 0.03674694, 96.37265
+  [PASS] K2b AS4 EH systematics (SM)  two-loop 96.864957, M_red 94.619266 vs 96.86496, 94.61927
+  [PASS] K2c AS4 BMS-HD (SM)  3 real roots, 0 admissible; in-domain root [ 0.8631825 -1.0762843  0.0210528 -0.0072056], f_g 0.057417837, P 91.045266; root 3 P 83.505781 (AS4: 91.04527, 83.50578)
+  ... K2: t = 73.0 s, peak RSS 190 MB
+  [PASS] K3 lane B EV (SM)  f_g = 0.0479549692 (b3 0.0479549692), P = 92.914075 (b3 c5 92.914075; printed 92.914)
+  [PASS] K4 downstream G0  P(0.04795) = 92.9153, P(0.009805) = 137.0341, P(f_needed = 0.009805) = 137.035999
+  [PASS] K5 f_g closed forms  CPR general (d_t f' = 2 f') == 5 g (1 - 8 lambda)/(36 pi (1 - 2 lambda)^2): True; BMS at u3 = 0 == CPR: True
+  [PASS] K6 matter traces  per field (R^0, R^1) = scalar (1/2, 1/6), Dirac (-2, -1/6), vector (1, -1/6): CPR True, BMS True; SM totals: AS3 '-31 - 61R/12 - 1751R^2/4320' True, AS4 dict True
+  [PASS] K7a CPR pure gravity (CPR Tables 1-2)  g~0 = 0.0052261, theta = [2.3824-2.1682j 2.3824+2.1682j]; g~0 = 0.0128907, theta = [-286.8857+0.j    3.5044+0.j]
+  [PASS] K7b BMS-EH pure gravity (0.902, 0.109; 2.52 +- 1.78 i)  (0.90160, 0.10926), theta [2.5164-1.7762j 2.5164+1.7762j]; (10.51848, 0.70737), theta [-509.3507+0.j    1.8691+0.j]
+  [PASS] K7c BMS-EH n_s = 1 (0.860, 0.131; 2.58 +- 1.95 i)  (0.86006, 0.13077), theta [2.5808-1.9544j 2.5808+1.9544j]; (9.83476, 0.70611), theta [-476.6701+0.j    1.9454+0.j]
+  [PASS] C-DEF graded content = SM + 3 Weyl singlets  graded (N_S, N_D, N_V) = (4, 24, 12); Delta N_D = 1.5 (3 Weyl = 3/2 Dirac)
+  [PASS] CC classifier controls  10/10 planted cases classified as frozen (NOT COMPLETED on a failed gate is the script's verdict rule)
+  [PASS] PC planted answer f_g = f_needed  P = 137.035999177, grade CONSISTENT, z = 4.6e-15
+  ... gates: t = 73.6 s, peak RSS 190 MB
+
+(3) DIAGNOSTIC MAP d(g*, lambda*, f_g, P)/d(N_S, N_D, N_V) at SM content (implicit-function theorem; finite differences in K8)
+   scheme   | quantity     |   d/dN_S      |   d/dN_D      |   d/dN_V
+   CPR-EH   | g*           | +2.557239e-02 | -2.195566e-02 | -2.918911e-02
+   CPR-EH   | lambda*      | -1.345123e-02 | -5.054405e-02 | +7.744651e-02
+   CPR-EH   | f_g          | +8.078979e-04 | -1.703740e-03 | +8.794430e-05
+   CPR-EH   | P            | -2.913558e-01 | +6.144273e-01 | -3.171574e-02
+   BMS-EH   | g*           | +2.052243e-02 | -1.598631e-02 | -2.505854e-02
+   BMS-EH   | lambda*      | -8.912061e-03 | -5.005522e-02 | +6.787934e-02
+   BMS-EH   | f_g          | +7.296668e-04 | -1.479089e-03 | +1.975513e-05
+   BMS-EH   | P            | -2.938359e-01 | +5.956272e-01 | -7.955366e-03
+   EV-EH    | g*           | +2.086885e-01 | +4.328841e-01 | -9.336787e-01
+   EV-EH    | lambda*      | -2.352567e-01 | -8.223970e-01 | +1.419839e+00
+   EV-EH    | f_g          | +1.180566e-03 | -1.062495e-03 | -1.296990e-03
+   EV-EH    | P            | -2.789930e-01 | +2.512338e-01 | +3.067601e-01
+   linear-map prediction for content A (Delta N_D = +3/2): Delta P = +0.92164  [CPR-EH]
+   linear-map prediction for content A (Delta N_D = +3/2): Delta P = +0.89344  [BMS-EH]
+   linear-map prediction for content A (Delta N_D = +3/2): Delta P = +0.37685  [EV-EH]
+  [FAIL] K8a IFT map vs finite differences (1e-3)  dP/dN_S: IFT -0.291356, FD -0.291355 (rel 1.7e-06); dP/dN_D: IFT +0.614427, FD +0.614394 (rel 5.4e-05); dP/dN_V: IFT -0.031716, FD -0.031624 (rel 2.9e-03); BMS dP/dN_S: IFT -0.293836, FD -0.293837 (rel 2.5e-06); BMS dP/dN_D: IFT +0.595627, FD +0.595574 (rel 8.9e-05); BMS dP/dN_V: IFT -0.007955, FD -0.007852 (rel 1.3e-02)
+  ... map: t = 73.6 s, peak RSS 190 MB
+
+(4) GRADED TRIAL G1: content (N_S, N_D, N_V) = (4, 24, 12) in CPR-EH (AS3 code), g_Y* at M_P, lane B one-loop downstream
+   root g~ = [-0.0551367 -0.0212787]  (g, lambda) = (0.934943, -1.295585)  in-domain True  admissible True  theta = [1.9008+0.j 3.9072+0.j]  f_g = 0.03642403  P = 96.50384
+  [FAIL] K8b continuation SM -> graded content lands on the grid root  continuation root failed
+   selection: unique admissible root; (g*, lambda*) = (0.934943, -1.295585); f_g* = 0.03642403 (= 3.7150 x the required 0.009805); theta_Y = -2 f_g = -0.072848 (g_Y* IR-attractive)
+   g_Y* = 0.917461;  P = 1/alpha(0) = 96.50384;  P - P_SM(CPR-EH) = +0.92537 (map predicted +0.92164)
+   z = (P - 137.036)/sigma_route = -6.506  (admissible-only sigma: -12.490);  miss -40.5322 = -29.58%
+   UV cross-check (no measured alpha): 1/alpha_Y*(M_P) = 41/(24 pi f_g) = 14.9291 vs Y1 target 55.234 -> z_UV = -6.469 (same verdict)
+   substitution test: alpha_2^-1(M_Z) and Delta_0 scaled (alpha x 1.01): P 96.50384 -> 96.12081 (shift -0.3830); an identity would shift -1.3568; fraction 0.282; the gravitational piece 41/(24 pi f_g) shifts 0
+   G1 GRADE: NOT COMPLETED (gate failure: K8a IFT map vs finite differences (1e-3), K8b continuation SM -> graded content lands on the grid root)
+  ... G1: t = 73.8 s, peak RSS 190 MB
+
+(5) REPORTED, NOT GRADED: content A in the other schemes and truncations; systematics for every in-domain root with a value
+   CPR-EH (G1 itself, systematics): 1 real root(s); selection: FP
+     (g, lambda) [ 0.934943 -1.295585]  in-domain True  admissible True  theta [1.9008+0.j 3.9072+0.j]  f_g 0.03642403
+        P = 96.50384  two-loop 96.99535  M_red 94.75045  -> z -6.506 (KILLED by the frozen rule; not graded)
+   CPR-R^2: 4 real root(s); selection: NOT DIAGNOSTIC (several admissible roots)
+     (g, lambda, b) [ 0.96545  -1.331076 -0.003376]  in-domain True  admissible True  theta [-0.186 +0.j  1.8753+0.j  3.9008+0.j]  f_g 0.03707222
+        P = 96.24281  two-loop 96.73592  M_red 94.48943  -> z -6.548 (KILLED by the frozen rule; not graded)
+     (g, lambda, b) [ 0.861412 -1.153989  0.03206 ]  in-domain True  admissible False  theta [0.3265+0.j 2.1762+0.j 3.9753+0.j]  f_g 0.03560901
+        P = 96.84554  two-loop 97.33500  M_red 95.09215  [not admissible: reported only]
+     (g, lambda, b) [ 0.951317 -1.363144  0.00589 ]  in-domain True  admissible True  theta [1.6229-0.6227j 1.6229+0.6227j 4.1311-0.j    ]  f_g 0.03605995
+        P = 96.65457  two-loop 97.14517  M_red 94.90119  -> z -6.481 (KILLED by the frozen rule; not graded)
+     (g, lambda, b) [-0.251105  0.574725 -0.029141]  in-domain False  admissible False  theta [-24.0135-23.9162j -24.0135+23.9162j   5.1097 -0.j    ]  f_g 1.78819801
+   BMS-EH: 1 real root(s); selection: FP
+     (g, lambda) [ 0.840968 -1.162299]  in-domain True  admissible True  theta [1.8772+0.j 3.9036+0.j]  f_g 0.03464080  denominators spin-2 +0.07865 spin-0 +0.06032
+        P = 97.27236  two-loop 97.75935  M_red 95.51897  -> z -6.382 (KILLED by the frozen rule; not graded)
+   BMS-EH+C^2+R^2: 3 real root(s); selection: NOT DIAGNOSTIC (no admissible root)
+     (g, lambda, g2, g3) [ 0.837289 -1.144989  0.022595 -0.007631]  in-domain True  admissible False  theta [-0.4121+0.j  0.641 +0.j  2.3775+0.j  4.1975+0.j]  f_g 0.05364793  denominators spin-2 +0.06291 spin-0 -0.07554
+        P = 91.71077  two-loop 92.23888  M_red 89.95739  [not admissible: reported only]
+     (g, lambda, g2, g3) [-0.172795  0.021082 -0.016625  0.057949]  in-domain False  admissible False  theta [-23.3248 -0.j       0.5766 -0.j      84.038 -91.6474j  84.038 +91.6474j]  f_g -2.66568730  denominators spin-2 +0.00562 spin-0 -0.01215
+     (g, lambda, g2, g3) [-2.360989e+00  7.296755e-01 -3.948252e-06  3.849917e-03]  in-domain False  admissible False  theta [-264.6374-351.8198j -264.6374+351.8198j   -3.4609  -0.j
+    2.7191  -0.j    ]  f_g 0.26779058  denominators spin-2 +0.01157 spin-0 -0.00020
+   EV-EH (lane B betas, flagged: not rebuildable from a published scheme, AS1): (G, L) = (3.563801, -5.352021), converged True, admissible True, f_g 0.04639130, P = 93.29628 (lane B SM 92.914; shift +0.38221)
+        two-loop 93.81031  M_red 91.54290;  z -7.020 (not graded)
+   content shift P_A - P_SM by scheme (EH):
+     CPR-EH: 96.50384 - 95.57847 = +0.92537  (linear map +0.92164); |shift| < sigma_route: True
+     BMS-EH: 97.27236 - 96.37265 = +0.89971  (linear map +0.89344); |shift| < sigma_route: True
+     EV-EH: 93.29628 - 92.91408 = +0.38221  (linear map +0.37685); |shift| < sigma_route: True
+   content loophole closed at the computed truncations (|P_A - P_SM| < sigma_route in every EH scheme): True
+  ... reported: t = 136.5 s, peak RSS 204 MB
+
+(6) LINEARITY CHECKS L1/L2 (CPR-EH; the content-count MUTATE expectation)
+  [FAIL] L1/L2 continuation  continuation failed
+
+(7) BRACKET B1-B4 (content B is NOT DEFINED by the record; sensitivity only, not graded, not counted)
+   B1 (+1 real scalar)              CPR-EH 96.21330 (-0.29054 vs A);  BMS-EH 96.97901 (-0.29335);  EV-EH 93.01925 (-0.27703)
+   B2 (+2 real scalars)             CPR-EH 95.92281 (-0.58103 vs A);  BMS-EH 96.68560 (-0.58676);  EV-EH 92.74260 (-0.55369)
+   B3 (+1 gauge vector)             CPR-EH 96.46837 (-0.03547 vs A);  BMS-EH 97.25841 (-0.01395);  EV-EH 93.59768 (+0.30140)
+   B4 (+1 vector +1 scalar, Proca)  CPR-EH 96.17723 (-0.32660 vs A);  BMS-EH 96.96484 (-0.30751);  EV-EH 93.31887 (+0.02259)
+
+(8) TUNED CONTENT (like lane B's C6): count at which P(CPR-EH) would reach 137.036, i.e. f_g = 0.009805; scanned upward to 1000
+   N_S: root lost or inadmissible at N_S = 8 (last admissible 7.75, f_g 0.042116)
+   N_D: root lost or inadmissible at N_D = 22.75 (last admissible 22.5, f_g 0.038831)
+   N_V: root lost or inadmissible at N_V = 12.25 (last admissible 12, f_g 0.038831)
+  ... tuned: t = 137.6 s, peak RSS 205 MB
+
+SUMMARY
+   gates: FAILED: K8a IFT map vs finite differences (1e-3), K8b continuation SM -> graded content lands on the grid root, L1/L2 continuation
+   G1 (content (N_S, N_D, N_V) = (4, 24, 12), CPR-EH): NOT COMPLETED (gate failure: K8a IFT map vs finite differences (1e-3), K8b continuation SM -> graded content lands on the grid root); P = 96.50384, z = -6.506
+   content B (canonical dark fields): NOT DEFINED by the record -> not a trial
+   N_mech: 372 -> 373 (one graded trial)
+   Alpha stays an INPUT; kappa = 1/2 stays FITTED; kappa and Z enter nowhere; the SM mass sector stays walled; not theory closed.
+  ... done: t = 137.6 s, peak RSS 205 MB
