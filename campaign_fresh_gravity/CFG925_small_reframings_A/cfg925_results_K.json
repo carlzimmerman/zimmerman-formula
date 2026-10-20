@@ -1,0 +1,98 @@
+{
+ "lane": "CFG925",
+ "criteria": "661668f32",
+ "amendment_A1": "cc07e00a3",
+ "mode": "K",
+ "checks": {
+  "K1 CFG919 exec'd read-only (via CFG921): all its checks pass, incl. CFG828 exact and CFG914's 9": {
+   "ok": true,
+   "measured": "7/7 CFG919 checks pass"
+  },
+  "K2 CFG921 prefix exec'd read-only: its K1-K4, K6 pass; CFG919 V0 cells reproduced; 5 helper functions extracted": {
+   "ok": true,
+   "measured": "5/5 CFG921 K-checks; helpers ['boot_ops', 'fact_values', 'obs_facts', 'obs_struct', 'ols_obs']"
+  },
+  "K3 CFG921 observed facts F0-F8b (value and se) reproduced, both footings": {
+   "ok": true,
+   "measured": "max |diff| 0.0e+00; canonical F0 +0.856 (+0.372 dex), F1 +0.293, F5 +0.560"
+  },
+  "K4 Wolf path: CFG880 sigma_law (83 x 2), own gas copy = CFG880 gas_in at r12, CFG828 rows + out-of-range mean": {
+   "ok": true,
+   "measured": "max rel d sigma_law 2.2e-16; gas 0.0e+00; CFG828 0.0e+00 (29 rows; out-of-range mean canonical +0.438 dex); HI-bearing 8/83"
+  },
+  "K5 Jeans solver: Newton Plummer aperture <s2> (X 0.1..inf), L(<X), virial identity (beta 0.5/OM/0.9), deep-law global": {
+   "ok": true,
+   "measured": "max rel error 1.2e-05 (task bar 1e-2; target 1e-3); Newton <s2>(<1) 0.126929 vs analytic 0.126929 GM/a"
+  },
+  "K6 R2 solvers: residuals, monotone h above floor, Newtonian limit, R2-0 ill-posed (nu > 1, runaway iteration)": {
+   "ok": true,
+   "measured": "A1 residual ratio max 0.11 (<= 1; rel residual max 1.5e-10); data min y_b 5.8e-05; Newtonian limit nu_e 1.0e-08 (nu_mono, info: 5.2e-05, nu_mono(100)-1 7.5e-03); floors y_f nu_e 0.48045 ((ln2)^2 = 0.48045), nu_mono 0.48045; R2-0 iterates after 200 steps 38.8, 38.9, 40.2 a0 (still rising)"
+  },
+  "K7 R3: g_e -> 0 = isolated law; EFE-dominated limits; E2 <= exact linear QUMOND <= E1; CFG874 primary reproduced at E0": {
+   "ok": true,
+   "measured": "max 3.0e-08; at y_e 0.05: E1 4.9908, exact-linear QUMOND 4.2485, E2 2.7640 (nu_e 4.9908, L_e -0.4462); MW-M31 separation (LVD M 32 distance_gc) 776.6 kpc; dwarfs without distance_gc/m31: 0"
+  }
+ },
+ "K5": {
+  "Newton iso <s2>(<0.1)": 5.48415733048202e-07,
+  "Newton iso <s2>(<0.5)": 6.53363462665979e-07,
+  "Newton iso <s2>(<1.0)": 4.6700984046577076e-07,
+  "Newton iso <s2>(<2.0)": 1.133097223160462e-06,
+  "Newton iso <s2>(<inf)": 9.940609322356408e-07,
+  "L(<0.5)": 7.299296335805394e-06,
+  "L(<1.0)": 1.218130950353391e-05,
+  "L(<2.0)": 5.760394635068167e-06,
+  "virial beta=0.5": 4.4163229606652976e-07,
+  "virial beta=('OM', 1.0)": 2.760776631749451e-07,
+  "virial beta=0.9": 6.95305654496714e-07,
+  "deep-law global Y=0.001": 9.938986191837529e-07,
+  "deep-law global Y=1.0": 9.93898618517619e-07
+ },
+ "K5x_posthoc_diagnostic": {
+  "Newton Plummer beta 0, R_e": 6.321158934063931e-06,
+  "Newton Plummer beta 0.5, R_e": 3.937479301607816e-05,
+  "Newton Plummer beta OM r_a=a, R_e": 2.6625200538976657e-05,
+  "Antlia II law field beta 0.5, R_e": 3.543923502902224e-05,
+  "Antlia II law field beta OM r_a=a, R_e": 2.1037160625070328e-05
+ },
+ "K6": {
+  "nu_e R2-A rel residual [info]": 1.5143597487110583e-10,
+  "nu_e R2-B rel residual [info]": 6.661338147750939e-16,
+  "nu_e R2-A A1 residual ratio": 0.111928735207636,
+  "nu_e R2-B A1 residual ratio": 6.474060725051417e-06,
+  "nu_e h(y) monotone above floor": 0.0,
+  "nu_e nu decreasing, >=1": 0.0,
+  "nu_e Newtonian limit y_b=100 (A,B)": 1.0303078776593705e-08,
+  "nu_mono R2-A rel residual [info]": 8.05324695818399e-11,
+  "nu_mono R2-B rel residual [info]": 6.661338147750939e-16,
+  "nu_mono R2-A A1 residual ratio": 0.0819242374349262,
+  "nu_mono R2-B A1 residual ratio": 6.100724270344211e-06,
+  "nu_mono h(y) monotone above floor": 0.0,
+  "nu_mono nu decreasing, >=1": 0.0,
+  "nu_mono Newtonian limit y_b=100 (A,B) [info]": 5.209294582681258e-05,
+  "nu_mono(100) - 1 [info]": 0.0074558198480836335,
+  "R2-0 nu_e - 1 > 0 on grid": 0.0,
+  "R2-0 iteration monotone increasing, no fixed point": 0.0
+ },
+ "R2_floor": {
+  "nu_e": 0.4804530139182016,
+  "nu_mono": 0.4804530171122669
+ },
+ "R2_0_iter_end": [
+  38.771569383963765,
+  38.89074766447976,
+  40.2387577078239
+ ],
+ "K7": {
+  "canonical g_e->0 (E1,E2)": 0.0,
+  "alt g_e->0 (E1,E2)": 0.0,
+  "EFE limit E1 -> nu_e": 4.46179904134425e-09,
+  "EFE limit E2 -> nu_e(1+L_e)": 2.9676482937723847e-08,
+  "bracket E2 <= QUMOND <= E1": 0.0,
+  "canonical CFG874 primary at E0": 0.0,
+  "alt CFG874 primary at E0": 0.0
+ },
+ "K_all": true,
+ "runtime_s": 2.3628621101379395,
+ "peak_rss_mb": 271.28125
+}
