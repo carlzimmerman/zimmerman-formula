@@ -12,7 +12,7 @@ Standing empirical status: **kappa=1/2 FITTED**. CFG493 gives
 kappa_Lambda=0.417+/-0.095 and kappa_crit=0.345+/-0.078 on separate
 footings. Neither is used as an input to any calculation here.
 
-**Formal continuation:** [seven partial Lean modules](formal/README.md) verify
+**Formal continuation:** [eight partial Lean modules](formal/README.md) verify
 the quantitative band-stress obstruction, coefficient bridge, scale/gap
 curvature implications and temporal-vector cone bounds. A new classical
 vector parent admits a regular MOND source branch; a charged scalar gives
@@ -32,6 +32,14 @@ timelike continuation either disappears or has a physical scalar ghost.
 Its local Taylor ratio is not an operational MOND amplitude. A separate
 Born-Infeld/FI normalization calculation has no MOND cubic. The requested
 healthy microscopic model and independent ratio remain unachieved.
+
+The [clock/flux continuation](formal/clock_flux/RESULT.md) repairs the
+fixed-clock cubic and ultraviolet crossover in a new chiral branch,
+then finds an actual dynamical-clock tilt instability. Its conditional
+rigid amplitude is 4096/1125 and changes under an allowed operator.
+A top-form branch gives exact MOND, but using its positive vacuum flux
+restores a quadratic infrared response and bounds the force enhancement.
+No healthy microscopic normalization or complete Lean proof is obtained.
 
 ## Strongest new construction
 

@@ -20,6 +20,7 @@ formal scopes. None is a determinate normalization candidate.
 | [CurrentEnergy.lean](current_interactions/CurrentEnergy.lean) | Exact Legendre identity with the full canonical charge, an empty neutral amplitude minimum, and a unique global minimum of the charged sextic energy. Current and Gauss dictionaries remain analytic inputs. |
 | [FluxComparison.lean](current_interactions/FluxComparison.lean) | The compact flux trial's jet cancellation and quartic energy, plus the quartic-versus-cubic bound. Admissibility, integration and the physical variational infimum remain analytic inputs. |
 | [ChiralFold.lean](protected_auxiliaries/ChiralFold.lean) | Exact auxiliary fold identities and all-root timelike bounds imply negative coefficients; nominal Taylor arithmetic is distinguished from a physical force ratio. Component dictionaries, mode interpretation and asymptotics remain analytic inputs. |
+| [ClockTilt.lean](clock_flux/ClockTilt.lean) | Complete-square and frequency signs for a retained clock tilt; positive static stiffness and conditional fixed-clock amplitude arithmetic. Physical mode, force and vacuum dictionaries remain analytic inputs. |
 
 The original four modules' printed critical theorem axioms are exactly
 `[propext, Classical.choice, Quot.sound]`. There are no proof admissions or
@@ -31,9 +32,12 @@ The two new current modules add nine printed critical theorems, using
 only subsets of those same standard axioms. Their evidence and controls
 are checked separately in [current_interactions](current_interactions/README.md).
 The [protected-auxiliary continuation](protected_auxiliaries/README.md)
-adds six critical theorem prints and true/two false controls. W4-08 now
-has seven partial modules using only standard axioms, not a complete
+adds six critical theorem prints and true/two false controls. That
+checkpoint had seven partial modules using only standard axioms, not a complete
 microscopic normalization proof.
+The [clock/flux continuation](clock_flux/README.md) adds seven critical
+theorem prints and true/two false controls, bringing the total to eight
+partial modules. Earlier checkpoints retain their original scopes.
 
 The rational control has A=L=1,d=3/4,r=5/4, giving rho=17/32 and
 N=3/8. The normal control compiles. Reversing N makes the unchanged lower
@@ -102,6 +106,14 @@ no MOND cubic; its diagnostic portal gives a quartic correction. The
 minimal vector convexity and specified portal tests are explicitly
 restricted. Generalized/multiple auxiliary sectors and a regular clock
 remain constructive openings; none has supplied the missing selector.
+
+[Clock projection and flux](clock_flux/RESULT.md) now produce actual
+static MOND branches with Newtonian crossovers. The new chiral branch
+also has positive rigid vacuum energy, with conditional R=4096/1125;
+its simple dynamical unit-clock completion has a retained tilt tachyon.
+A top-form's positive same-form vacuum flux instead cuts off its MOND
+infrared law. Branch selection, full clock/metric constraints and an
+independent gravitating normalization remain open.
 
 ## Verification and reproduction
 

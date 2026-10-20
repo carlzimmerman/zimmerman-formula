@@ -117,3 +117,19 @@ crossover and a same-state gravitating vacuum relation; an auxiliary
 Hessian sign alone is not a ghost proof or a selection law.
 Evidence commit 814cbf3fe; campaign entries K686-K692. The campaign
 regeneration passes 4/4 and adds no determinate normalization prediction.
+
+## Clock projection and top forms
+
+Criteria-only commit 609570aa2 starts from b5e54cc3c. The exact new action,
+retained-mode derivations and conditional amplitudes are indexed in
+formal/clock_flux/README.md. A clock-projected chiral branch repairs the
+old timelike-root and force limits, but its derivative-only dynamical
+unit clock has a physical tilt tachyon. A top form supplies exact MOND
+on a selected zero-flux branch; positive same-form vacuum flux cuts off
+the infrared law. A convexified branch prescription changes the original
+analytic theory. Neither route fixes a healthy gravitational amplitude.
+
+The goal remains active with eight partial Lean modules. The next change
+must actually address full metric/clock constraints, a distinct invariant
+structure or independently protected same-state vacuum physics. Do not
+rerun the constant-clock/Fenchel/nominal-flux match as a solved model.

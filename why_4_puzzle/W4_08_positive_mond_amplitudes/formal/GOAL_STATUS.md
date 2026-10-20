@@ -18,7 +18,7 @@ record these partial results without adding a determinate trial.
 | Actual MOND force and force-calibrated G | Independently audited positive radial source branch and asymptotic force for the specified classical vector action; operational Newtonian regime remains source-dependent. | Partial |
 | Same-state positive gravitating vacuum stress | Paired-band stress has a kernel-checked order-one defect under its prescription. Temporal parent carries an independent epsilon0 and unspecified gravitating clock. | Missing |
 | Independent principle forcing xi=1/4 | All surviving response parameters and epsilon0/(gamma b^3) remain free. No Ward, gap or constraint equation selects it. | Missing |
-| End-to-end Lean proof with all leaves established | Seven partial modules compile using only standard axioms. Physical dictionaries and field/PDE bridges remain explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
+| End-to-end Lean proof with all leaves established | Eight partial modules compile using only standard axioms. Physical dictionaries and field/PDE bridges remain explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
 | Independent second physical prediction | No determinate normalization candidate exists. | Missing |
 
 The next high-impact constructive implication is a regular microscopic
@@ -76,6 +76,25 @@ goal remains active; no determinate normalization trial was added.
 Evidence commit 814cbf3fe; campaign entries K686-K692. The seven new
 scoped rows leave determinate-trial count and significance unchanged;
 the regenerated campaign checks pass 4/4.
+
+The clock/flux continuation, criteria 609570aa2, is progress: a new
+clock-projected chiral action has positive rigid vacuum energy, a
+leading cubic, actual Newtonian crossover and unique static source
+inversion on the selected branch. Its conditional R=4096/1125 is not
+the target and is not protected against a permitted operator. Promoting
+the simple unit clock gives a physical tilt tachyon; a separate chi
+characteristic lies outside the metric cone. A top-form gives exact
+MOND at zero flux, but positive same-form vacuum flux makes the true
+infrared quadratic and cuts off the enhancement. Its obsolete nominal
+target match removes the intermediate MOND window. Original branches
+cannot be removed using an unproved convexification prescription.
+
+ClockTilt.lean adds one partial module with seven standard-axiom theorem
+prints and true/two genuine false controls. Component/branch/mode/force
+and gravitational bridges remain analytic. Full retained metric/clock
+constraints or a different invariant structure are the next constructive
+opening; the fixed-metric test does not settle them. The full original
+goal remains active. Details: clock_flux/README.md and RESULT.md.
 
 The actual pi adapter awaits a viable lightweight import or relaxation of
 the temporary resource constraint after the large simulation is confirmed
