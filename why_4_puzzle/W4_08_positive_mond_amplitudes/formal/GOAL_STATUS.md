@@ -95,6 +95,9 @@ and gravitational bridges remain analytic. Full retained metric/clock
 constraints or a different invariant structure are the next constructive
 opening; the fixed-metric test does not settle them. The full original
 goal remains active. Details: clock_flux/README.md and RESULT.md.
+Reviewed evidence commit 65be2b68f; campaign entries K693-K700. The
+regeneration passes 4/4; determinate-trial count and significance are
+unchanged. This is progress toward the original goal, not completion.
 
 The actual pi adapter awaits a viable lightweight import or relaxation of
 the temporary resource constraint after the large simulation is confirmed

@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (692 rows)
+## Totals (700 rows)
 
-- **513 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **516 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **123 produced a number.** 56 produced one determinate value; 67 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -145,7 +145,7 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 135 | 8 | 7 | 115 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 138 | 8 | 7 | 118 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 48 | 0 | 0 | 0 | 0 | 38 |
-| AU Audits, controls, meta-analyses | 83 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 88 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -474,6 +474,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K687 | W4-08/R13Ffold | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_auxiliaries` | linear-superpotential chiral fold with positive rigid vacuum and positive static cubic correction | - | free | CLOSURE for this model: double root imposed; critical timelike continuation disappears and alternative roots have a decoupled chi ghost; IR remains quadratic and displayed large-gradient action quartic; nominal Taylor ratio is not physical MOND R | 814cbf3fe |
 | K689 | W4-08/R14D | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_auxiliaries` | ordinary minimal nonlinear-electrodynamics auxiliary and specified neutral-gradient portal | - | free | SCOPED CLOSURE: regular convex branch cannot give cubic cusp; finite critical portal cusp violates stated convexity class and parity-even oriented case has a supermetric photon mode; generalized D operators remain outside test | 814cbf3fe |
 | K690 | W4-08/R14BI | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_auxiliaries` | exact Born-Infeld ordinary-FI elimination and vacuum versus canonical nonlinearity relation | - | free | TRADE: displayed rigid vacuum over canonical tension equals 1-1/B with free FI ratio; no MOND cubic and diagnostic gradient portal gives h^4; gravitating vacuum interpretation not derived | 814cbf3fe |
+| K693 | W4-08/R15clock | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/clock_flux` | rational clock-projected chiral auxiliary branch with positive rigid vacuum and actual MOND plus Newtonian limits | - | free | PARTIAL/TRADE: conditional rigid R4096/1125 and scalar xi125pi/128 use real IR and UV coefficients; selected static branch convex; allowed operator changes ratio; gravitating clock and quantum bridges absent | 65be2b68f |
+| K696 | W4-08/R16form | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/clock_flux` | analytic nonlinear top form with bounded scalar gradient portal and fixed canonical flux | - | free | PARTIAL/TRADE: selected zero-flux branch gives exact MOND plus Newtonian crossover and bounded scalar cones with fixed clock; same-form vacuum zero; extra inner branch and zero-field degeneration remain | 65be2b68f |
+| K697 | W4-08/R16flux | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/clock_flux` | same-form positive vacuum from finite flux in the exact MOND crossover prototype | - | free | CLOSURE for tested normalization: finite flux gives nonzero IR stiffness and force boost at most1+b/Y0; using obsolete zero-flux C3 to match target forces Y0>b and removes cubic window; no operational target ratio | 65be2b68f |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -891,6 +894,11 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K688 | W4-08/R13Fdeform | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_auxiliaries` | regular derivative-dependent chiral coefficient at the same positive vacuum fold | - | audit | NONSELECTION test: permitted local coefficient deformation varies nominal Taylor ratio while vacuum and imposed fold condition stay fixed; local scalar signs do not establish full health | 814cbf3fe |
 | K691 | W4-08/Auxcritical | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_auxiliaries` | full auxiliary Hessian regularity and higher-criticality cusp discriminators | - | audit | SCOPE: invertible C2 elimination excludes cubic cusp; singular higher-criticality example disproves universal nonzero linear overlap necessity; ordinary energy minima obey a separate vacuum-trial upper bound; no global auxiliary no-go | 814cbf3fe |
 | K692 | W4-08/Lean-fold | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/protected_auxiliaries` | one kernel-checked chiral-fold module with all-root timelike obstruction and genuine controls | - | lean | PARTIAL: six critical theorem prints use only standard axioms; true controls pass and two false controls fail only at False; component-mode and force/gravity/quantum bridges remain analytic; original goal open | 814cbf3fe |
+| K694 | W4-08/R15tilt | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/clock_flux` | retained homogeneous unit-clock tilt at zero scalar momentum | - | audit | CLOSURE for fixed-metric derivative-only physical tilt class: omega2=-H2ja/((a+j)M)<0; positive finite vacuum time kinetic and zero static stiffness imply this near zero when coefficients continuous; full gravity and different invariants excluded | 65be2b68f |
+| K695 | W4-08/R15chi | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/clock_flux` | decoupled imaginary-scalar characteristic of the clock-projected branch | - | audit | BOUND: exact branch point x4/9 and r2/3 has principal speed squared75/67; no linear chi mixing; not a UV front-velocity theorem | 65be2b68f |
+| K698 | W4-08/R16branches | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/clock_flux` | fixed-flux boundary Legendre term and original versus convexified top-form branches | - | audit | SCOPE: original action has multiple Hamiltonian sheets; nearby inner branch has negative scalar radial stiffness; Fenchel prescription convexifies and changes theory; no universal propagating top-form ghost claim | 65be2b68f |
+| K699 | W4-08/ClockGram | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/clock_flux` | physical post-constraint spatial Gram matrix with zero scalar stiffness and healthy gapless clock | - | audit | SCOPED CLOSURE: nonzero constant spatial mixing gives negative generalized eigenvalue; time mixing alone counterexample; massive-clock low-frequency k4 and principal regimes distinguished; no all-clock exclusion | 65be2b68f |
+| K700 | W4-08/Lean-clock | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/clock_flux` | one kernel-checked clock-tilt and conditional static amplitude module | - | lean | PARTIAL: seven critical theorem prints standard; true controls pass and stable-tilt and quarter-ratio mutations fail only at False; physical mode source and gravity bridges explicit; full goal open | 65be2b68f |
 
 ## LN: Logic / Lean formalisations
 

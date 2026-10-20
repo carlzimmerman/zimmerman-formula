@@ -4,6 +4,9 @@
 new completions of the protected-auxiliary failure. [RESULT.md](RESULT.md)
 contains the exact action, branch equations, force coefficients and
 retained-mode obstructions. None yields a healthy microscopic xi=1/4.
+Reviewed analytic/formal evidence: 65be2b68f. Campaign entries K693-K700
+record the distinct scopes without adding a determinate physical trial.
+The regenerated campaign integrity checks pass 4/4.
 
 The fixed-clock chiral branch genuinely has positive rigid vacuum energy,
 a leading cubic infrared response and a quadratic ultraviolet response.

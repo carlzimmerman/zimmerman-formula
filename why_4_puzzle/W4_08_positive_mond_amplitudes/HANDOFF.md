@@ -133,3 +133,5 @@ The goal remains active with eight partial Lean modules. The next change
 must actually address full metric/clock constraints, a distinct invariant
 structure or independently protected same-state vacuum physics. Do not
 rerun the constant-clock/Fenchel/nominal-flux match as a solved model.
+Reviewed evidence: 65be2b68f; registry entries K693-K700. The regenerated
+campaign passes 4/4 and adds no determinate physical normalization trial.
