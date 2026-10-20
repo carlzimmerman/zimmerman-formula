@@ -1,0 +1,173 @@
+CFG919  pressure-support selector H-KIN: does ONE kinematic measure order the excess E = ln(g_obs/g_pred) at matched g_bar?
+  primary f_P = 3 sigma^2/(v^2 + 3 sigma^2); alternative f_sph = pressure-supported mass fraction; kappa = 1/2 FITTED
+
+=== K-stage
+    cfg914> [PASS] K1 dwarfs: sigma_law = CFG880 committed law (83 x 2 footings): max rel 0.0e+00
+    cfg914> [PASS] K1b dwarfs: CFG880 pred_univ from committed sigma_bar_univ: max rel 0.0e+00
+    cfg914> [PASS] K2a SPARC: CFG828 n_sparc and overall median (both footings): n 2696 vs 2696; max |d median| 0.0e+00
+    cfg914> [PASS] K2b SPARC: CFG870 sparc_D and bootstrap sigma with committed V_x (both footings): max |diff| 0.0e+00
+    cfg914> SPARC: 2696 points, 147 galaxies; small 555 pts / 56 gal, large 2141 pts / 91 gal; galaxies without M_b in the master table: 0
+    cfg914> [PASS] K3 lensing: CFG850 (+0.123, 0) rows both footings and CFG829 blue window A: max |diff| 0.0e+00
+    cfg914> [PASS] K3b lens medians parsed from cfg912_colour.out: red 10.81 blue 10.45 (I0 red 88,079,)
+    cfg914> [PASS] K4a clusters: recomputed canonical law = cfg687_percluster.npz PL (318 x 8): max rel 0.0e+00 (cluster law uses CFG687's FP0 a0: 9.360325e-11 / 1.131204e-10)
+    cfg914> [PASS] K4b clusters: CFG687 primary A (INNER/MID/OUTER, value + jackknife) both footings: max rel 0.0e+00
+    cfg914> [PASS] K5 globulars: CFG883 primary rows (R_pc, s_obs, s_B at Ups 1.6) for the tidally safe set; 31 per footing: max rel 0.0e+00; N {'canonical': 31, 'alt': 31}
+    cfg914> [1 s, 119 MB] inputs loaded
+  [PASS] K4 CFG914 input section exec'd read-only: all its input checks pass: 9/9 pass (K1, K1b, K2a, K2b, K3, K3b, K4a, K4b, K5)
+  [PASS] K-extra own SPARC loader == CFG914 SP arrays (bit-for-bit): 2696 points, 147 galaxies
+  [PASS] K1 CFG828 reproduced (own code; N_in, mean D, se D, SPARC median, out-of-range mean; canonical+alt nu_e): max |diff| 0.0e+00; canonical: N_in 8, D +0.051+-0.073 dex, out-of-range mean +0.438, SPARC median +0.031
+  [PASS] K-extra own B21 loader == CFG914 LDAT (blue, red, disc, sph; bit-for-bit): 4 lens sets
+  [PASS] K2 CFG829 reproduced (own B21 loader + GLS; blue/red window A, sA, both footings; class): max |diff| 0.0e+00; canonical blue A 1.016+-0.086, red A 1.587; class 'LAW HOLDS AT LOW g'
+  [PASS] K3 CFG849 Sersic disc/sph window A, sA reproduced (both footings): max |diff| 0.0e+00; canonical disc 1.066, sph 1.602
+  [PASS] K5 Baumgardt ARot/sigma0 parse (47 Tuc 5.00/11.9) and every globular f_P in (0, 1]: 10/31 safe globulars with ARot and sigma0; f_P 0.235..0.999, median v/sigma 0.387
+  K-stage ALL PASS  [1 s, 120 MB]
+
+  SPARC: 2696 pts / 147 gal (small 56, large 91); V_flat = 0 -> max V_obs for 27 galaxies
+  dwarfs: 83; HI-bearing (gas inside r1/2 > 0): 8; globulars: 31 (ARot/sigma0 for 10); clusters: 318
+
+=== [canonical] V0 primary (f_P; Sersic lenses +0.123 on n>2; clusters MID+OUTER; globulars vs screened baseline; floor 0.05 dex)
+    class window  <log g_bar>  n     f      E        sigma_tot   dex
+    DW   [-14.5,-14.0)   -14.10     3  1.000  +0.532  +- 0.776   +0.231
+    DW   [-14.0,-13.5)   -13.77     6  1.000  +1.132  +- 0.537   +0.492
+    DW   [-13.5,-13.0)   -13.22    19  1.000  +1.712  +- 0.268   +0.743
+    DW   [-13.0,-12.5)   -12.74    23  1.000  +1.406  +- 0.234   +0.611
+    DW   [-12.5,-12.0)   -12.30    17  1.000  +0.602  +- 0.212   +0.262
+    DW   [-12.0,-11.5)   -11.78    10  1.000  +0.403  +- 0.165   +0.175
+    SS   [-12.0,-11.5)   -11.65    19  0.104  +0.079  +- 0.167   +0.034
+    SS   [-11.5,-11.0)   -11.26    49  0.086  +0.023  +- 0.128   +0.010
+    SS   [-11.0,-10.5)   -10.86    24  0.061  +0.184  +- 0.149   +0.080
+    SS   [-10.5,-10.0)   -10.36     5  0.048  +0.327  +- 0.180   +0.142
+    SL   [-12.0,-11.5)   -11.59    12  0.025  -0.081  +- 0.148   -0.035
+    SL   [-11.5,-11.0)   -11.17    55  0.020  +0.077  +- 0.121   +0.033
+    SL   [-11.0,-10.5)   -10.75    74  0.014  +0.038  +- 0.119   +0.016
+    SL   [-10.5,-10.0)   -10.26    66  0.010  +0.037  +- 0.120   +0.016
+    SL   [-10.0,-9.5)    -9.80    51  0.008  +0.040  +- 0.127   +0.017
+    SL   [-9.5,-9.0)    -9.30    31  0.007  -0.106  +- 0.129   -0.046
+    SL   [-9.0,-8.5)    -8.83    14  0.006  -0.032  +- 0.132   -0.014
+    SL   [-8.5,-8.0)    -8.36     5  0.007  +0.012  +- 0.213   +0.005
+    LD   [-13.5,-13.0)   -13.13     1  0.200  -0.017  +- 0.250   -0.007
+    LD   [-13.0,-12.5)   -12.76     2  0.200  +0.180  +- 0.171   +0.078
+    LD   [-12.5,-12.0)   -12.27     2  0.200  +0.024  +- 0.183   +0.011
+    LD   [-12.0,-11.5)   -11.77     2  0.200  -0.065  +- 0.188   -0.028
+    LD   [-11.5,-11.0)   -11.41     1  0.200  -0.306  +- 0.282   -0.133
+    LS   [-13.5,-13.0)   -13.13     2  0.800  +0.552  +- 0.136   +0.240
+    LS   [-13.0,-12.5)   -12.64     2  0.800  +0.282  +- 0.146   +0.123
+    LS   [-12.5,-12.0)   -12.14     2  0.800  +0.350  +- 0.141   +0.152
+    LS   [-12.0,-11.5)   -11.65     2  0.800  +0.105  +- 0.151   +0.046
+    LS   [-11.5,-11.0)   -11.28     1  0.800  +0.012  +- 0.186   +0.005
+    CL   [-13.0,-12.5)   -12.73    37  1.000  +0.270  +- 0.405   +0.117
+    CL   [-12.5,-12.0)   -12.16   129  1.000  -0.350  +- 0.313   -0.152
+    CL   [-12.0,-11.5)   -11.75   256  1.000  +0.205  +- 0.143   +0.089
+    CL   [-11.5,-11.0)   -11.33   194  1.000  +0.652  +- 0.128   +0.283
+    CL   [-11.0,-10.5)   -10.91    24  1.000  +1.181  +- 0.151   +0.513
+    GC   [-12.0,-11.5)   -11.74     5  0.952  +1.371  +- 0.397   +0.595
+    GC   [-11.5,-11.0)   -11.13    10  0.886  +0.243  +- 0.251   +0.106
+    GC   [-11.0,-10.5)   -10.73    10  0.950  +0.008  +- 0.207   +0.003
+    GC   [-10.0,-9.5)    -9.83     3  0.952  +0.142  +- 0.310   +0.062
+    class means (GLS over the class's cells):
+      dwarfs (83 LVD, CFG880)    f 1.000  E +0.856 +- 0.102 (+0.372 dex)  cells 6  log g_bar -14.10..-11.78
+      SPARC small (Mb<=3e9)      f 0.075  E +0.137 +- 0.084 (+0.059 dex)  cells 4  log g_bar -11.65..-10.36
+      SPARC large                f 0.012  E +0.002 +- 0.050 (+0.001 dex)  cells 8  log g_bar -11.59..-8.36
+      lenses disc (n<2)          f 0.200  E +0.008 +- 0.091 (+0.003 dex)  cells 5  log g_bar -13.13..-11.41
+      lenses sph (n>2)           f 0.800  E +0.293 +- 0.067 (+0.127 dex)  cells 5  log g_bar -13.13..-11.28
+      eRASS1 clusters            f 1.000  E +0.560 +- 0.077 (+0.243 dex)  cells 5  log g_bar -12.73..-10.91
+      globulars (31, CFG883)     f 0.935  E +0.254 +- 0.134 (+0.110 dex)  cells 4  log g_bar -11.74..-9.83
+    C1 rotating with excess (A1 rule): 0
+    C1 (frozen rule): 0
+    C2 pressure-supported on the law at the same g_bar: 0 (0 non-GC)
+    W1 lenses sph - disc (combined window): dE +0.290 (z +3.5) -> ok
+    W2 SPARC Spearman(f, E) rho -0.172 p 0.0376 (n 147) -> ok
+    W3 globulars Spearman(f, E) rho 0.104 p 0.578 (n 31) -> ok  [STIFFNESS-CONDITIONAL]
+    F1 E = A f: A +0.558 +- 0.049 (A/sA +11.3); chi2 89.4/32 p 2.48e-07; class z: DW +2.9 SS +1.1 SL -0.1 LD -1.1 LS -2.3 CL +0.0 -> FAIL
+    F2 E = A step(f-0.5): A +0.496 +- 0.045 (A/sA +11.0); chi2 97.7/32 p 1.43e-08; class z: DW +3.5 SS +1.6 SL +0.0 LD +0.1 LS -3.0 CL +0.8 -> FAIL
+    ordering statistic T +0.528 over 36 pairs;  coverage True (rotating ['LD', 'SL', 'SS'], pressure ['CL', 'DW', 'LS'])
+    ==> [canonical] V0 class AS FROZEN: SELECTOR CONTRADICTED  (because: C3 (F1 and F2 FAIL))
+    ==> [canonical] V0 class UNDER A1:  SELECTOR CONTRADICTED  (because: C3 (F1 and F2 FAIL))
+    secondary (no class weight): F3 A f step(g_bar<1e-12): A +0.639+-0.075 chi2 145.0/32 p 2.48e-16 DW +4.5 SS +1.6 SL +0.0 LD -0.8 LS -0.8 CL +6.3 -> FAIL;  with GC: F1 FAIL (p 2.8e-08), F2 FAIL (p 1.9e-09)
+
+    variants [canonical]:
+      V1   alternative measure f_sph        -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 2.8e-08, A +0.56)  F2 FAIL (p 2.5e-09)  T +0.44  [C3 (F1 and F2 FAIL)]
+      V2   colour lens bins                 -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 1.5e-07, A +0.56)  F2 FAIL (p 9.5e-09)  T +0.54  [C3 (F1 and F2 FAIL)]
+      V3a  f brackets: less pressure        -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 2.0e-07, A +0.64)  F2 FAIL (p 1.4e-08)  T +0.50  [C3 (F1 and F2 FAIL)]
+      V3b  f brackets: more extreme         -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 2.5e-08, A +0.51)  F2 FAIL (p 1.4e-08)  T +0.66  [C3 (F1 and F2 FAIL)]
+      V4   globulars vs law+EFE             -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 2.5e-07, A +0.56)  F2 FAIL (p 1.4e-08)  T +0.53  [C3 (F1 and F2 FAIL)]
+      V5   clusters + INNER band            -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 4.1e-05, A +0.51)  F2 FAIL (p 6.2e-06)  T +0.53  [C3 (F1 and F2 FAIL)]
+      V6   floor 0.10 dex                   -> A1 SELECTOR SUPPORTED     frozen SELECTOR SUPPORTED     C1 0/0  C2(non-GC) 0  F1 PASS (p 5.6e-02, A +0.58)  F2 MARGINAL (p 2.8e-02)  T +0.47
+      V7   no +0.123 M* shift on n>2/red    -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 2.9e-06, A +0.62)  F2 FAIL (p 6.5e-07)  T +0.56  [C3 (F1 and F2 FAIL)]
+    [1 s, 120 MB]
+
+=== [alt] V0 primary (f_P; Sersic lenses +0.123 on n>2; clusters MID+OUTER; globulars vs screened baseline; floor 0.05 dex)
+    class window  <log g_bar>  n     f      E        sigma_tot   dex
+    DW   [-14.5,-14.0)   -14.10     3  1.000  +0.437  +- 0.776   +0.190
+    DW   [-14.0,-13.5)   -13.77     6  1.000  +1.038  +- 0.537   +0.451
+    DW   [-13.5,-13.0)   -13.22    19  1.000  +1.618  +- 0.268   +0.703
+    DW   [-13.0,-12.5)   -12.74    23  1.000  +1.313  +- 0.234   +0.570
+    DW   [-12.5,-12.0)   -12.30    17  1.000  +0.511  +- 0.212   +0.222
+    DW   [-12.0,-11.5)   -11.78    10  1.000  +0.314  +- 0.164   +0.136
+    SS   [-12.0,-11.5)   -11.65    19  0.104  -0.009  +- 0.167   -0.004
+    SS   [-11.5,-11.0)   -11.26    49  0.086  -0.061  +- 0.128   -0.026
+    SS   [-11.0,-10.5)   -10.86    24  0.061  +0.106  +- 0.149   +0.046
+    SS   [-10.5,-10.0)   -10.36     5  0.048  +0.260  +- 0.179   +0.113
+    SL   [-12.0,-11.5)   -11.59    12  0.025  -0.169  +- 0.148   -0.073
+    SL   [-11.5,-11.0)   -11.17    55  0.020  -0.006  +- 0.121   -0.003
+    SL   [-11.0,-10.5)   -10.75    74  0.014  -0.038  +- 0.119   -0.017
+    SL   [-10.5,-10.0)   -10.26    66  0.010  -0.027  +- 0.120   -0.012
+    SL   [-10.0,-9.5)    -9.80    51  0.008  -0.007  +- 0.127   -0.003
+    SL   [-9.5,-9.0)    -9.30    31  0.007  -0.132  +- 0.129   -0.057
+    SL   [-9.0,-8.5)    -8.83    14  0.006  -0.041  +- 0.132   -0.018
+    SL   [-8.5,-8.0)    -8.36     5  0.007  +0.011  +- 0.213   +0.005
+    LD   [-13.5,-13.0)   -13.13     1  0.200  -0.110  +- 0.250   -0.048
+    LD   [-13.0,-12.5)   -12.76     2  0.200  +0.087  +- 0.171   +0.038
+    LD   [-12.5,-12.0)   -12.27     2  0.200  -0.067  +- 0.183   -0.029
+    LD   [-12.0,-11.5)   -11.77     2  0.200  -0.153  +- 0.188   -0.067
+    LD   [-11.5,-11.0)   -11.41     1  0.200  -0.391  +- 0.282   -0.170
+    LS   [-13.5,-13.0)   -13.13     2  0.800  +0.459  +- 0.136   +0.199
+    LS   [-13.0,-12.5)   -12.64     2  0.800  +0.190  +- 0.146   +0.083
+    LS   [-12.5,-12.0)   -12.14     2  0.800  +0.259  +- 0.141   +0.113
+    LS   [-12.0,-11.5)   -11.65     2  0.800  +0.017  +- 0.151   +0.007
+    LS   [-11.5,-11.0)   -11.28     1  0.800  -0.073  +- 0.186   -0.032
+    CL   [-13.0,-12.5)   -12.73    37  1.000  +0.178  +- 0.404   +0.077
+    CL   [-12.5,-12.0)   -12.16   129  1.000  -0.441  +- 0.313   -0.191
+    CL   [-12.0,-11.5)   -11.75   256  1.000  +0.117  +- 0.142   +0.051
+    CL   [-11.5,-11.0)   -11.33   194  1.000  +0.569  +- 0.128   +0.247
+    CL   [-11.0,-10.5)   -10.91    24  1.000  +1.104  +- 0.150   +0.479
+    GC   [-12.0,-11.5)   -11.74     5  0.952  +1.371  +- 0.397   +0.595
+    GC   [-11.5,-11.0)   -11.13    10  0.886  +0.243  +- 0.251   +0.106
+    GC   [-11.0,-10.5)   -10.73    10  0.950  +0.008  +- 0.207   +0.003
+    GC   [-10.0,-9.5)    -9.83     3  0.952  +0.142  +- 0.310   +0.062
+    class means (GLS over the class's cells):
+      dwarfs (83 LVD, CFG880)    f 1.000  E +0.765 +- 0.102 (+0.332 dex)  cells 6  log g_bar -14.10..-11.78
+      SPARC small (Mb<=3e9)      f 0.075  E +0.057 +- 0.084 (+0.025 dex)  cells 4  log g_bar -11.65..-10.36
+      SPARC large                f 0.012  E -0.053 +- 0.050 (-0.023 dex)  cells 8  log g_bar -11.59..-8.36
+      lenses disc (n<2)          f 0.200  E -0.083 +- 0.091 (-0.036 dex)  cells 5  log g_bar -13.13..-11.41
+      lenses sph (n>2)           f 0.800  E +0.203 +- 0.067 (+0.088 dex)  cells 5  log g_bar -13.13..-11.28
+      eRASS1 clusters            f 1.000  E +0.476 +- 0.077 (+0.207 dex)  cells 5  log g_bar -12.73..-10.91
+      globulars (31, CFG883)     f 0.935  E +0.254 +- 0.134 (+0.110 dex)  cells 4  log g_bar -11.74..-9.83
+    C1 rotating with excess (A1 rule): 0
+    C1 (frozen rule): 0
+    C2 pressure-supported on the law at the same g_bar: 0 (0 non-GC)
+    W1 lenses sph - disc (combined window): dE +0.290 (z +3.5) -> ok
+    W2 SPARC Spearman(f, E) rho -0.173 p 0.0359 (n 147) -> ok
+    W3 globulars Spearman(f, E) rho 0.104 p 0.578 (n 31) -> ok  [STIFFNESS-CONDITIONAL]
+    F1 E = A f: A +0.455 +- 0.049 (A/sA +9.3); chi2 93.5/32 p 6.10e-08; class z: DW +3.0 SS +0.3 SL -1.2 LD -1.9 LS -2.4 CL +0.3 -> FAIL
+    F2 E = A step(f-0.5): A +0.408 +- 0.045 (A/sA +9.0); chi2 97.8/32 p 1.38e-08; class z: DW +3.5 SS +0.7 SL -1.1 LD -0.9 LS -3.1 CL +0.9 -> FAIL
+    ordering statistic T +0.528 over 36 pairs;  coverage True (rotating ['LD', 'SL', 'SS'], pressure ['CL', 'DW', 'LS'])
+    ==> [alt] V0 class AS FROZEN: SELECTOR CONTRADICTED  (because: C3 (F1 and F2 FAIL))
+    ==> [alt] V0 class UNDER A1:  SELECTOR CONTRADICTED  (because: C3 (F1 and F2 FAIL))
+    secondary (no class weight): F3 A f step(g_bar<1e-12): A +0.528+-0.075 chi2 129.4/32 p 1.17e-13 DW +4.3 SS +0.7 SL -1.1 LD -1.7 LS -1.2 CL +5.4 -> FAIL;  with GC: F1 FAIL (p 1.4e-08), F2 FAIL (p 3.5e-09)
+
+    variants [alt]:
+      V1   alternative measure f_sph        -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 9.7e-09, A +0.45)  F2 FAIL (p 4.7e-09)  T +0.45  [C3 (F1 and F2 FAIL)]
+      V2   colour lens bins                 -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 3.6e-08, A +0.45)  F2 FAIL (p 8.3e-09)  T +0.54  [C3 (F1 and F2 FAIL)]
+      V3a  f brackets: less pressure        -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 1.5e-08, A +0.51)  F2 FAIL (p 1.4e-08)  T +0.50  [C3 (F1 and F2 FAIL)]
+      V3b  f brackets: more extreme         -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 1.4e-08, A +0.41)  F2 FAIL (p 1.4e-08)  T +0.66  [C3 (F1 and F2 FAIL)]
+      V4   globulars vs law+EFE             -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 6.1e-08, A +0.45)  F2 FAIL (p 1.4e-08)  T +0.53  [C3 (F1 and F2 FAIL)]
+      V5   clusters + INNER band            -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 1.6e-05, A +0.41)  F2 FAIL (p 7.3e-06)  T +0.53  [C3 (F1 and F2 FAIL)]
+      V6   floor 0.10 dex                   -> A1 NOT DIAGNOSTIC         frozen NOT DIAGNOSTIC         C1 0/0  C2(non-GC) 0  F1 MARGINAL (p 3.8e-02, A +0.47)  F2 MARGINAL (p 2.7e-02)  T +0.47
+      V7   no +0.123 M* shift on n>2/red    -> A1 SELECTOR CONTRADICTED  frozen SELECTOR CONTRADICTED  C1 0/0  C2(non-GC) 0  F1 FAIL (p 8.8e-07, A +0.52)  F2 FAIL (p 6.4e-07)  T +0.56  [C3 (F1 and F2 FAIL)]
+    [2 s, 120 MB]
+
+=== CLASS AS FROZEN: SELECTOR CONTRADICTED  (canonical SELECTOR CONTRADICTED; alt SELECTOR CONTRADICTED);  FRAGILE  changed in: canonical:V6, alt:V6
+=== CLASS UNDER A1:  SELECTOR CONTRADICTED  (canonical SELECTOR CONTRADICTED; alt SELECTOR CONTRADICTED);  FRAGILE  changed in: canonical:V6, alt:V6
+
+  done [2 s, peak RSS 120 MB].  kappa = 1/2 FITTED; footings never pooled; not theory closed.

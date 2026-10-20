@@ -1,5 +1,6 @@
 """CFG919 -- is the baryons' kinematic state (pressure vs rotation support) the selector of the law's excesses?
-Criteria: FROZEN_CRITERIA.md (8d34dc761, committed alone before this script).
+Criteria: FROZEN_CRITERIA.md (8d34dc761, committed alone before this script); AMENDMENT_A1.md (5c9edd07b, POST HOC after the frozen
+INJECT I1 failed, before the main run): C1 comparison clause; every class reported AS FROZEN and UNDER A1.
 Run: OMP_NUM_THREADS=1 nice -n 10 python3 cfg919.py      (CFG919_MUTATE=shuffle|inject -> separate outputs named by mode).
 Inputs: CFG914's input section exec'd read-only (83 LVD dwarfs of CFG880, eRASS1 shear stack of CFG687, 31 globulars of
 CFG883, with CFG914's own K-checks); this lane's own SPARC and B21 loaders (checked equal to CFG914's arrays); Baumgardt GC
@@ -33,7 +34,7 @@ CLASSES = ("DW", "SS", "SL", "LD", "LS", "CL", "GC")
 CNAME = {"DW": "dwarfs (83 LVD, CFG880)", "SS": "SPARC small (Mb<=3e9)", "SL": "SPARC large", "LD": "lenses disc (n<2)",
          "LS": "lenses sph (n>2)", "CL": "eRASS1 clusters", "GC": "globulars (31, CFG883)"}
 E_C1_ABS = math.log(10 ** 0.15)                              # 0.345: C1 absolute excess level (0.15 dex)
-RES = dict(lane="CFG919", criteria="8d34dc761", mutate=MUT or None, checks={})
+RES = dict(lane="CFG919", criteria="8d34dc761", amendment_A1="5c9edd07b", mutate=MUT or None, checks={})
 def check(name, ok, measured):
     RES["checks"][name] = dict(ok=bool(ok), measured=str(measured))
     P(f"  [{'PASS' if ok else 'FAIL'}] {name}: {measured}")
@@ -357,10 +358,14 @@ def build(f, opt):
 
 # =====================================================================================================================  tests
 def fit_form(x, E, C, cls):
-    Ci = np.linalg.inv(C); a = float(x @ Ci @ x)
+    with np.errstate(over="ignore", invalid="ignore", divide="ignore"):     # spurious Accelerate FP flags (A1); finiteness asserted
+        return _fit_form(x, E, C, cls)
+def _fit_form(x, E, C, cls):
+    Ci = np.linalg.inv(C); a = float(x @ Ci @ x); assert np.isfinite(a)
     if a <= 0: return dict(A=float("nan"), sA=float("nan"), AsA=float("nan"), chi2=float("nan"), dof=len(E) - 1, p=0.0, zc={}, maxz=float("nan"),
                            grade="FAIL", note="x == 0")
     A = float(x @ Ci @ E) / a; sA = a ** -0.5; r = E - A * x; chi2 = float(r @ Ci @ r); dof = len(E) - 1; p = float(CHI2.sf(chi2, dof))
+    assert np.isfinite(A) and np.isfinite(chi2)
     zc = {}
     for c in dict.fromkeys(cls):
         ix = np.where(cls == c)[0]; Cc = np.linalg.inv(C[np.ix_(ix, ix)]); one = np.ones(len(ix))
@@ -372,16 +377,18 @@ def fit_form(x, E, C, cls):
 def evaluate(cells, Ctot, mem=None, level="full"):
     E = np.array([c["E"] for c in cells]); fm = np.array([c["f"] for c in cells]); cls = np.array([c["cls"] for c in cells])
     w = np.array([c["w"] for c in cells]); sg = np.sqrt(np.diag(Ctot)); isgc = cls == "GC"; rot, prs = fm <= 0.3, fm >= 0.7
-    C1 = []
+    C1, C1f = [], []                                       # C1 = AMENDMENT A1 rule (governing); C1f = frozen rule (reported)
     for i in np.where(rot)[0]:
         if E[i] / sg[i] < 3: continue
         Pj = [j for j in range(len(E)) if w[j] == w[i] and prs[j] and not isgc[j]]
         if Pj:
             wt = 1 / sg[Pj] ** 2; EP = float(np.sum(wt * E[Pj]) / wt.sum()); sP = float(wt.sum() ** -0.5)
-            cond = E[i] >= EP - 2 * math.sqrt(sg[i] ** 2 + sP ** 2); ref = f"pressure mean {EP:+.3f}+-{sP:.3f}"
+            cond_f = E[i] >= EP - 2 * math.sqrt(sg[i] ** 2 + sP ** 2); cond_a = E[i] >= EP; ref = f"pressure mean {EP:+.3f}+-{sP:.3f}"
         else:
-            cond = E[i] >= E_C1_ABS; ref = "absolute 0.15 dex"
-        if cond: C1.append(dict(cls=str(cls[i]), w=int(w[i]), lg=cells[i]["lg"], E=float(E[i]), z=float(E[i] / sg[i]), f=float(fm[i]), ref=ref))
+            cond_f = cond_a = E[i] >= E_C1_ABS; ref = "absolute 0.15 dex"
+        el = dict(cls=str(cls[i]), w=int(w[i]), lg=cells[i]["lg"], E=float(E[i]), z=float(E[i] / sg[i]), f=float(fm[i]), ref=ref)
+        if cond_a: C1.append(el)
+        if cond_f: C1f.append(el)
     C2 = []
     for i in np.where(prs)[0]:
         if E[i] >= 2 * sg[i]: continue
@@ -415,18 +422,21 @@ def evaluate(cells, Ctot, mem=None, level="full"):
     prs_cls = {c for c in present if np.any(prs[ng][cls[ng] == c])}
     coverage = len(present) >= 4 and len(rot_cls) >= 1 and len(prs_cls) >= 2
     c2w = [x for x in C2 if not x["gc_conditional"]]; wv = [k for k, v in Wt.items() if v["violation"] and not v["gc"]]
-    contra = []
-    if C1: contra.append("C1")
-    if c2w: contra.append("C2")
-    if wv: contra += wv
-    if F["F1"]["grade"] == "FAIL" and F["F2"]["grade"] == "FAIL": contra.append("C3 (F1 and F2 FAIL)")
     sup_form = [k for k in ("F1", "F2") if F[k]["grade"] == "PASS" and F[k]["AsA"] >= 3]
-    if not coverage: cl = "NOT DIAGNOSTIC (coverage)"
-    elif contra: cl = "SELECTOR CONTRADICTED"
-    elif sup_form: cl = "SELECTOR SUPPORTED"
-    else: cl = "NOT DIAGNOSTIC"
-    return dict(cls=cl, contra=contra, sup_form=sup_form, C1=C1, C2=C2, F=F, W=Wt, T=T, npairs=len(tt), coverage=coverage,
-                classes=sorted(present), rot_classes=sorted(rot_cls), prs_classes=sorted(prs_cls))
+    def decide(c1list):
+        contra = []
+        if c1list: contra.append("C1")
+        if c2w: contra.append("C2")
+        if wv: contra += wv
+        if F["F1"]["grade"] == "FAIL" and F["F2"]["grade"] == "FAIL": contra.append("C3 (F1 and F2 FAIL)")
+        if not coverage: cl = "NOT DIAGNOSTIC (coverage)"
+        elif contra: cl = "SELECTOR CONTRADICTED"
+        elif sup_form: cl = "SELECTOR SUPPORTED"
+        else: cl = "NOT DIAGNOSTIC"
+        return cl, contra
+    cl, contra = decide(C1); cl_f, contra_f = decide(C1f)
+    return dict(cls=cl, contra=contra, cls_frozen=cl_f, contra_frozen=contra_f, sup_form=sup_form, C1=C1, C1_frozen=C1f, C2=C2, F=F, W=Wt, T=T,
+                npairs=len(tt), coverage=coverage, classes=sorted(present), rot_classes=sorted(rot_cls), prs_classes=sorted(prs_cls))
 
 def class_summary(cells, Ctot):
     cls = np.array([c["cls"] for c in cells]); E = np.array([c["E"] for c in cells]); out = {}
@@ -467,7 +477,8 @@ if not MUT:
         P("    class means (GLS over the class's cells):")
         for c in CLASSES:
             if cs[c]: P(f"      {CNAME[c]:26s} f {cs[c]['f']:.3f}  E {cs[c]['E']:+.3f} +- {cs[c]['se']:.3f} ({cs[c]['dex']:+.3f} dex)  cells {cs[c]['n_cells']}  log g_bar {cs[c]['lg'][0]:+.2f}..{cs[c]['lg'][1]:+.2f}")
-        P(f"    C1 rotating with excess: {len(ev['C1'])}" + "".join(f"\n      {x['cls']} w[{GRID[x['w']]:+.1f}) E {x['E']:+.3f} z {x['z']:+.1f} f {x['f']:.2f} vs {x['ref']}" for x in ev["C1"]))
+        P(f"    C1 rotating with excess (A1 rule): {len(ev['C1'])}" + "".join(f"\n      {x['cls']} w[{GRID[x['w']]:+.1f}) E {x['E']:+.3f} z {x['z']:+.1f} f {x['f']:.2f} vs {x['ref']}" for x in ev["C1"]))
+        P(f"    C1 (frozen rule): {len(ev['C1_frozen'])}" + "".join(f"\n      {x['cls']} w[{GRID[x['w']]:+.1f}) E {x['E']:+.3f} z {x['z']:+.1f} f {x['f']:.2f} vs {x['ref']}" for x in ev["C1_frozen"]))
         P(f"    C2 pressure-supported on the law at the same g_bar: {len(ev['C2'])} ({sum(not x['gc_conditional'] for x in ev['C2'])} non-GC)")
         for x in ev["C2"]:
             P(f"      i={x['i']} (f {x['f_i']:.2f}, E {x['E_i']:+.3f}) vs j={x['j']} (f {x['f_j']:.2f}, E {x['E_j']:+.3f}) in [{GRID[x['w']]:+.1f},{GRID[x['w'] + 1]:+.1f}): z {x['z']:+.1f}"
@@ -480,7 +491,9 @@ if not MUT:
             P(f"    {k} {'E = A f' if k == 'F1' else 'E = A step(f-0.5)'}: A {F_['A']:+.3f} +- {F_['sA']:.3f} (A/sA {F_['AsA']:+.1f}); chi2 {F_['chi2']:.1f}/{F_['dof']} p {F_['p']:.2e}; "
               f"class z: " + " ".join(f"{c} {z:+.1f}" for c, z in F_["zc"].items()) + f" -> {F_['grade']}")
         P(f"    ordering statistic T {ev['T']:+.3f} over {ev['npairs']} pairs;  coverage {ev['coverage']} (rotating {ev['rot_classes']}, pressure {ev['prs_classes']})")
-        P(f"    ==> [{f}] V0 class: {ev['cls']}" + (f"  (because: {', '.join(ev['contra'])})" if ev["contra"] else "") + (f"  (form {ev['sup_form']})" if ev["sup_form"] else ""))
+        P(f"    ==> [{f}] V0 class AS FROZEN: {ev['cls_frozen']}" + (f"  (because: {', '.join(ev['contra_frozen'])})" if ev["contra_frozen"] else "")
+          + (f"  (form {ev['sup_form']})" if ev["sup_form"] else ""))
+        P(f"    ==> [{f}] V0 class UNDER A1:  {ev['cls']}" + (f"  (because: {', '.join(ev['contra'])})" if ev["contra"] else "") + (f"  (form {ev['sup_form']})" if ev["sup_form"] else ""))
         # secondary (no class weight)
         E = np.array([c["E"] for c in cells]); fm = np.array([c["f"] for c in cells]); cl = np.array([c["cls"] for c in cells])
         wq = np.array([c["w"] for c in cells]); ng = cl != "GC"
@@ -493,20 +506,24 @@ if not MUT:
         P(f"\n    variants [{f}]:")
         for vk in VARIANTS:
             if vk == "V0": continue
-            cv, Cv, mv, evv = run_variant(f, vk)
+            cv, Cv, mvv, evv = run_variant(f, vk)
             BYF[f]["variants"][vk] = dict(desc=VDESC[vk], cells=jcells(cv), class_summary=class_summary(cv, Cv), **{k: v for k, v in evv.items()})
-            P(f"      {vk:4s} {VDESC[vk]:32s} -> {evv['cls']:24s} C1 {len(evv['C1'])}  C2(non-GC) {sum(not x['gc_conditional'] for x in evv['C2'])}  "
+            P(f"      {vk:4s} {VDESC[vk]:32s} -> A1 {evv['cls']:22s} frozen {evv['cls_frozen']:22s} C1 {len(evv['C1'])}/{len(evv['C1_frozen'])}  C2(non-GC) {sum(not x['gc_conditional'] for x in evv['C2'])}  "
               f"F1 {evv['F']['F1']['grade']} (p {evv['F']['F1']['p']:.1e}, A {evv['F']['F1']['A']:+.2f})  F2 {evv['F']['F2']['grade']} (p {evv['F']['F2']['p']:.1e})  T {evv['T']:+.2f}"
               + (f"  [{', '.join(evv['contra'])}]" if evv["contra"] else ""))
         P(f"    [{time.time() - T0:.0f} s, {rss_mb():.0f} MB]")
-    c0 = {f: BYF[f]["V0"]["cls"] for f in FOOTS}
-    if all(c == "SELECTOR CONTRADICTED" for c in c0.values()): overall = "SELECTOR CONTRADICTED"
-    elif all(c == "SELECTOR SUPPORTED" for c in c0.values()): overall = "SELECTOR SUPPORTED"
-    else: overall = "SPLIT BY FOOTING -> NOT DIAGNOSTIC" if len(set(c0.values())) > 1 else "NOT DIAGNOSTIC"
-    changed = [f"{f}:{vk}" for f in FOOTS for vk, v in BYF[f]["variants"].items() if v["cls"] != c0[f]]
-    label = "FRAGILE" if changed else "ROBUST (no variant changes the class)"
-    P(f"\n=== CLASS: {overall}  (canonical {c0['canonical']}; alt {c0['alt']});  {label}" + (f"  changed in: {', '.join(changed)}" if changed else ""))
-    RES.update(byfoot=BYF, class_per_footing=c0, overall=overall, robustness=label, variants_changing=changed)
+    def overall_of(key):
+        c0 = {f: BYF[f]["V0"][key] for f in FOOTS}
+        if all(c == "SELECTOR CONTRADICTED" for c in c0.values()): ov = "SELECTOR CONTRADICTED"
+        elif all(c == "SELECTOR SUPPORTED" for c in c0.values()): ov = "SELECTOR SUPPORTED"
+        else: ov = "SPLIT BY FOOTING -> NOT DIAGNOSTIC" if len(set(c0.values())) > 1 else "NOT DIAGNOSTIC"
+        ch = [f"{f}:{vk}" for f in FOOTS for vk, v in BYF[f]["variants"].items() if v[key] != c0[f]]
+        return c0, ov, ch, ("FRAGILE" if ch else "ROBUST (no variant changes the class)")
+    c0f, ovf, chf, labf = overall_of("cls_frozen"); c0, overall, changed, label = overall_of("cls")
+    P(f"\n=== CLASS AS FROZEN: {ovf}  (canonical {c0f['canonical']}; alt {c0f['alt']});  {labf}" + (f"  changed in: {', '.join(chf)}" if chf else ""))
+    P(f"=== CLASS UNDER A1:  {overall}  (canonical {c0['canonical']}; alt {c0['alt']});  {label}" + (f"  changed in: {', '.join(changed)}" if changed else ""))
+    RES.update(byfoot=BYF, class_per_footing=c0, overall=overall, robustness=label, variants_changing=changed,
+               class_per_footing_frozen=c0f, overall_frozen=ovf, robustness_frozen=labf, variants_changing_frozen=chf)
 
 elif MUT == "shuffle":
     S = {}; bites = []
@@ -519,32 +536,34 @@ elif MUT == "shuffle":
             for c, e, ff in zip(cc, Ev, fv): c["E"], c["f"] = float(e), float(ff)
             return cc
         ev_true = evaluate(with_E_f(Einj, fm), Ctot, None, "cell")
-        rs = np.random.default_rng(9191); ns, Ts = 0, []
+        rs = np.random.default_rng(9191); ns, nsf, Ts = 0, 0, []
         for t in range(1000):
-            ev_s = evaluate(with_E_f(Einj, rs.permutation(fm)), Ctot, None, "cell"); ns += ev_s["cls"] == "SELECTOR SUPPORTED"; Ts.append(ev_s["T"])
-        frac = ns / 1000; medT = float(np.nanmedian(Ts)); bite = (frac <= 0.10) and (medT <= 0.5 * ev_true["T"])
-        bites.append(bite)
+            ev_s = evaluate(with_E_f(Einj, rs.permutation(fm)), Ctot, None, "cell"); ns += ev_s["cls"] == "SELECTOR SUPPORTED"
+            nsf += ev_s["cls_frozen"] == "SELECTOR SUPPORTED"; Ts.append(ev_s["T"])
+        frac, fracf = ns / 1000, nsf / 1000; medT = float(np.nanmedian(Ts)); bite = (frac <= 0.10) and (medT <= 0.5 * ev_true["T"])
+        bitef = (fracf <= 0.10) and (medT <= 0.5 * ev_true["T"]); bites.append(bite)
         Ereal = np.array([c["E"] for c in cells]); Tr = ev["T"]; rs2 = np.random.default_rng(9192); Tsr = []
         for t in range(1000):
             Tsr.append(evaluate(with_E_f(Ereal, rs2.permutation(fm)), Ctot, None, "cell")["T"])
         pr = float(np.mean(np.array(Tsr) >= Tr))
-        S[f] = dict(S1=dict(true_class=ev_true["cls"], T_true=ev_true["T"], F1_true=ev_true["F"]["F1"], frac_supported_shuffled=frac,
-                            median_T_shuffled=medT, bites=bite),
+        S[f] = dict(S1=dict(true_class=ev_true["cls"], true_class_frozen=ev_true["cls_frozen"], T_true=ev_true["T"], F1_true=ev_true["F"]["F1"],
+                            frac_supported_shuffled=frac, frac_supported_shuffled_frozen=fracf, median_T_shuffled=medT, bites=bite, bites_frozen=bitef),
                     S2=dict(T_real=Tr, median_T_shuffled=float(np.nanmedian(Tsr)), p_perm=pr))
-        P(f"\n  [{f}] S1 planted (E = 1.0 f + noise): true labels -> {ev_true['cls']} (T {ev_true['T']:+.3f}, F1 A {ev_true['F']['F1']['A']:+.3f}+-{ev_true['F']['F1']['sA']:.3f}); "
-          f"1000 label shuffles -> SUPPORTED in {100 * frac:.1f}%, median T {medT:+.3f} -> {'BITES' if bite else 'DOES NOT BITE'}")
+        P(f"\n  [{f}] S1 planted (E = 1.0 f + noise): true labels -> A1 {ev_true['cls']} / frozen {ev_true['cls_frozen']} (T {ev_true['T']:+.3f}, "
+          f"F1 A {ev_true['F']['F1']['A']:+.3f}+-{ev_true['F']['F1']['sA']:.3f}); 1000 label shuffles -> SUPPORTED in {100 * frac:.1f}% (A1) / {100 * fracf:.1f}% (frozen), "
+          f"median T {medT:+.3f} -> A1 {'BITES' if bite else 'DOES NOT BITE'}, frozen {'BITES' if bitef else 'DOES NOT BITE'}")
         P(f"  [{f}] S2 real cells: T {Tr:+.3f}; shuffled median T {np.nanmedian(Tsr):+.3f}; permutation p(T_shuf >= T) = {pr:.3f}  (no class weight)")
     RES.update(shuffle=S, bites=all(bites)); EXIT = 1 if all(bites) else 0
     P(f"\n  MUTATE shuffle: {'BITES on both footings (exit 1, as designed)' if all(bites) else 'does NOT bite (control failure, exit 0)'}")
 
 elif MUT == "inject":
-    INJ = {}; ok_all = True
+    INJ = {}; ok_all = True; okf_all = [True]
     sig_fun = {"I0": lambda x: 0.0 * x, "I1": lambda x: 1.0 * x, "I2": lambda x: 1.0 * (x > 0.5)}
     for f in FOOTS:
         cells, Ctot, mem, ev = run_variant(f, "V0"); fm = np.array([c["f"] for c in cells]); n = len(cells); L = np.linalg.cholesky(Ctot)
         sd_g = float(np.std(mem["sp_eps"], ddof=1)); INJ[f] = {}
         for ik, sfun in sig_fun.items():
-            rng = np.random.default_rng(919); cnt = {}; Ahat, rec = [], 0
+            rng = np.random.default_rng(919); cnt, cntf = {}, {}; Ahat, rec = [], 0
             for t in range(200):
                 Ev = sfun(fm) + mv(L, rng.standard_normal(n))
                 cc = [dict(c) for c in cells]
@@ -554,16 +573,19 @@ elif MUT == "inject":
                 m2 = dict(lens={"LS": (dW1, sS, fS), "LD": (0.0, sD, fD)},
                           sp_f=mem["sp_f"], sp_eps=sfun(mem["sp_f"]) + rng.normal(0, sd_g, len(mem["sp_f"])),
                           gc_f=mem["gc_f"], gc_E=sfun(mem["gc_f"]) + rng.normal(0, 1, len(mem["gc_f"])) * mem["gc_sE"], gc_sE=mem["gc_sE"])
-                e_ = evaluate(cc, Ctot, m2, "full"); cnt[e_["cls"]] = cnt.get(e_["cls"], 0) + 1
+                e_ = evaluate(cc, Ctot, m2, "full"); cnt[e_["cls"]] = cnt.get(e_["cls"], 0) + 1; cntf[e_["cls_frozen"]] = cntf.get(e_["cls_frozen"], 0) + 1
                 A1, s1 = e_["F"]["F1"]["A"], e_["F"]["F1"]["sA"]; Ahat.append(A1); rec += abs(A1 - 1.0) / s1 <= 2
-            fs = cnt.get("SELECTOR SUPPORTED", 0) / 200
-            need = {"I0": fs <= 0.10, "I1": fs >= 0.90 and rec / 200 >= 0.90, "I2": fs >= 0.90}[ik]
-            ok_all &= need
-            INJ[f][ik] = dict(counts=cnt, frac_supported=fs, median_A_F1=float(np.median(Ahat)), frac_A_within_2sigma_of_1=rec / 200, required_met=bool(need))
-            P(f"  [{f}] {ik} ({'E = 0' if ik == 'I0' else ('E = 1.0 f' if ik == 'I1' else 'E = 1.0 step(f-0.5)')}): SUPPORTED {100 * fs:.1f}%  "
-              f"median A_F1 {np.median(Ahat):+.3f}  |A-1|<=2sA {100 * rec / 200:.1f}%  classes {cnt} -> {'OK' if need else 'FAIL'}")
-    RES.update(inject=INJ, recovered=bool(ok_all)); EXIT = 0 if ok_all else 1
-    P(f"\n  INJECT: {'all required recoveries met (exit 0)' if ok_all else 'a required recovery FAILED (exit 1)'}")
+            fs, fsf = cnt.get("SELECTOR SUPPORTED", 0) / 200, cntf.get("SELECTOR SUPPORTED", 0) / 200
+            req = lambda x: {"I0": x <= 0.10, "I1": x >= 0.90 and rec / 200 >= 0.90, "I2": x >= 0.90}[ik]
+            need, needf = req(fs), req(fsf); ok_all &= need; okf_all[0] &= needf
+            INJ[f][ik] = dict(counts=cnt, frac_supported=fs, required_met=bool(need), counts_frozen=cntf, frac_supported_frozen=fsf, required_met_frozen=bool(needf),
+                              median_A_F1=float(np.median(Ahat)), frac_A_within_2sigma_of_1=rec / 200)
+            P(f"  [{f}] {ik} ({'E = 0' if ik == 'I0' else ('E = 1.0 f' if ik == 'I1' else 'E = 1.0 step(f-0.5)')}): median A_F1 {np.median(Ahat):+.3f}  |A-1|<=2sA {100 * rec / 200:.1f}%")
+            P(f"        AS FROZEN: SUPPORTED {100 * fsf:.1f}%  classes {cntf} -> {'OK' if needf else 'FAIL'}")
+            P(f"        UNDER A1:  SUPPORTED {100 * fs:.1f}%  classes {cnt} -> {'OK' if need else 'FAIL'}")
+    RES.update(inject=INJ, recovered=bool(ok_all), recovered_frozen=bool(okf_all[0])); EXIT = 0 if ok_all else 1
+    P(f"\n  INJECT AS FROZEN: {'all required recoveries met' if okf_all[0] else 'a required recovery FAILED (frozen C1; see AMENDMENT_A1.md)'}")
+    P(f"  INJECT UNDER A1:  {'all required recoveries met (exit 0)' if ok_all else 'a required recovery FAILED (exit 1)'}")
 
 P(f"\n  done [{time.time() - T0:.0f} s, peak RSS {rss_mb():.0f} MB].  kappa = 1/2 FITTED; footings never pooled; not theory closed.")
 RES["runtime_s"] = time.time() - T0; RES["peak_rss_mb"] = rss_mb()
