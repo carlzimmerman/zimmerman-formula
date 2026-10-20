@@ -1,0 +1,132 @@
+CFG898 - kappa door D2: saturation of the drift-causality ceiling (MUTATE=False)
+kappa = 1/2 FITTED (CFG493 measurement, quoted in the README); footings never pooled; not theory closed.
+
+== alpha sources ==
+K3 Hurwitz a2 a1 - a0 = c**2*k**2*(-Gamma*tau_psi + 1)/tau_psi -> (alpha q/tau)(beta tau) < 1 form: -alpha*q + 1/beta > 0
+   alpha_max = 1/(beta*q) ; source A (beta = 1, q -> 1): alpha* = 1 ; d alpha_max/d beta = -1/(beta**2*q) (nonzero: A is a TRADE in beta)
+K6 overdamped drift u - V = -psi_x/gamma ; mobility = 1/gamma
+   B1 (Fokker-Planck, gamma = alpha/tau): mobility tau/alpha = alpha tau -> alpha* = 1
+   B2 (BGK, tau_c = tau_pi = tau/2alpha): tau/(2 alpha) = alpha tau -> alpha* = sqrt(2)/2
+
+== K-tests ==
+  [PASS] K1 c_nu  nu_mono c_nu 0.64761024 at y 2.5396 (CFG893 0.64761024, y 2.53963834043521); simple sup = 1
+  [PASS] K2 ceiling structure vs CFG893 R12 (kappa_H12 ~ sqrt(Delta)/c_nu)  can: 6 cells, rel spread 1.9e-16; alt: 6 cells, rel spread 2.2e-16
+  [PASS] K3 Routh-Hurwitz alpha beta q < 1; alpha_max(beta 1, q 1-f_b) = 1.186 (CFG542 K9)  alpha_max = 1/(beta*q); at q = 1 - f_b: 1.18642; source A alpha* = 1
+  [PASS] K4 IS closure: characteristic speeds u, u +- sqrt(3P/rho), alpha-free; front^2 = p/rho  eigs [-sqrt(3)*sqrt(P)/sqrt(rho) + u, sqrt(3)*sqrt(P)/sqrt(rho) + u, u]; dA/dalpha = 0; eta/(rho tau_pi) = p/rho; large-k phase speeds (sigma=1): alpha 0.03: ['-1.732051', '0.000000', '1.732051'] | alpha 1: ['-1.732051', '0.000000', '1.732051'] | alpha 30: ['-1.732051', '0.000000', '1.732051']
+  [PASS] K5 Fokker-Planck stationary state independent of the mobility  J = 0 -> Eq(rho_f(x), C1*exp(-psi_f(x)/s2))
+  [PASS] K6 one-relaxation-time alpha*: B1 = 1, B2 = 1/sqrt(2)  mobility 1/gamma; B1 1; B2 sqrt(2)/2
+  [PASS] K7 deep realized loci: v/c = alpha V_f/c (L1, L2b), alpha V_f/(sqrt3 c) (L2); saturated a0 has no rho_DE  v/c: L1 G**(1/4)*M**(1/4)*a0**(1/4)*alpha/c, L2 sqrt(3)*G**(1/4)*M**(1/4)*a0**(1/4)*alpha/(3*c), L2b G**(1/4)*M**(1/4)*a0**(1/4)*alpha/c; saturated a0: {'L1': c**4/(G*M*alpha**4), 'L2': 9*c**4/(G*M*alpha**4), 'L2b': c**4/(G*M*alpha**4)}; d ln kappa/d ln M = {'L1': -1, 'L2': -1, 'L2b': -1}
+  [PASS] K9 point-mass phantom density closed forms; L3 saturated a0 is kappa-free and mass-dependent  kernels ['nu_mono', 'simple']; L3 a0 = 16*pi**2*c**4*h**2/(G*M*alpha**4*c_nu**4)
+  [PASS] K10 dimensions: kappa dimensionless; alpha tau c_nu a0 is a speed  kappa [0. 0. 0.]; v [ 0.  1. -1.]
+  [PASS] K11 classifier controls  {'a0 = 1/2 c sqrt(G rho_DE) (pure number)': True, 'a0 = c^4/(G M) (mass exponent -1)': True, 'two values 0.3, 0.9 (menu)': True, 'single in-window 0.46': True, 'single 5.0 (miss)': True, 'forbidden input': True}
+
+== identity checks ==
+  [PASS] I1 script free of forbidden constants (rules section 2)  hits: []
+I2 symbolic kappa (rho* = r rho_DE): 2*sqrt(pi)*sqrt(r_ratio)/(alpha_star*c_nu)
+  [PASS] I2 kappa independent of G, c, rho_DE, hbar; depends on alpha*, c_nu, r only  d/dG,c,rho_DE,hbar = [0, 0, 0, 0]; d/dalpha*,c_nu,r nonzero
+  [PASS] I3 scaling G->lG, rho->m rho, c->n c leaves kappa invariant  2*sqrt(pi)*sqrt(rho_star)/(alpha_star*c_nu*sqrt(rho_DE))
+  [PASS] I4 rename law kappa 0.5 -> 0.4: selected values do not move (they do not follow the law's kappa)  max |diff| 0.0e+00; none of the cells is near 0.4 (min 2.894)
+  [PASS] I5 no Friedmann relation in the kappa path (no H symbol)  free symbols ['alpha_star', 'c_nu', 'rho_DE', 'rho_star']
+  [PASS] I6 declared footing rho_DE; rho_crit reported separately, never pooled  see footing block
+  [PASS] I7 hbar absent  
+  [PASS] I8 pi-weight matches section 5 (simple: pi^odd; nu_mono: cont); no cell gives exact 1/2  
+
+== option space (18 cells, equal weights): kappa = sqrt(4 pi rho*/rho_DE)/(alpha* c_nu) ==
+alpha*: A 1.000000 (beta 1, q -> 1), B1 1.000000, B2 0.707107 ; c_nu: nu_mono 0.64761024 (y 2.5396), simple 1
+src  loc  kernel      kappa_L kappa_crit(a) kappa_crit(b)
+A    L1   nu_mono      5.4738     5.4738     4.5304
+A    L1   simple       3.5449     3.5449     2.9339
+A    L2   nu_mono      7.7412     7.7412     6.4070
+A    L2   simple       5.0133     5.0133     4.1492
+A    L2b  nu_mono      4.4694     4.4694     3.6991
+A    L2b  simple       2.8944     2.8944     2.3955
+B1   L1   nu_mono      5.4738     5.4738     4.5304
+B1   L1   simple       3.5449     3.5449     2.9339
+B1   L2   nu_mono      7.7412     7.7412     6.4070
+B1   L2   simple       5.0133     5.0133     4.1492
+B1   L2b  nu_mono      4.4694     4.4694     3.6991
+B1   L2b  simple       2.8944     2.8944     2.3955
+B2   L1   nu_mono      7.7412     7.7412     6.4070
+B2   L1   simple       5.0133     5.0133     4.1492
+B2   L2   nu_mono     10.9477    10.9477     9.0608
+B2   L2   simple       7.0898     7.0898     5.8679
+B2   L2b  nu_mono      6.3206     6.3206     5.2313
+B2   L2b  simple       4.0933     4.0933     3.3878
+range 2.8944 .. 10.9477 (spread 8.053 vs window widths 0.380 / 0.312) -> class MENU (rho_DE), MENU (rho_crit)
+p_data: rho_DE 0.000 ; rho_crit (a) relabel 0.000, (b) end conversion 0.000 ; p_exact 0.000
+canonical single cell (L2, nu_mono, alpha* = 1): kappa_L = 7.7412 -> MISS; implied a0 / a0(kappa = 1/2) = 15.48
+canonical sub-menu (nu_mono, alpha* = 1; L1/L2/L2b): ['5.474', '7.741', '4.469'] -> MENU
+
+== what an in-window landing would need (report-only) ==
+  L1   nu_mono  alpha needed for kappa <= 0.607: 9.02 ; for kappa = 1/2: 10.95 (record causal max 1.186)
+  L1   simple   alpha needed for kappa <= 0.607: 5.84 ; for kappa = 1/2: 7.09 (record causal max 1.186)
+  L2   nu_mono  alpha needed for kappa <= 0.607: 12.75 ; for kappa = 1/2: 15.48 (record causal max 1.186)
+  L2   simple   alpha needed for kappa <= 0.607: 8.26 ; for kappa = 1/2: 10.03 (record causal max 1.186)
+  L2b  nu_mono  alpha needed for kappa <= 0.607: 7.36 ; for kappa = 1/2: 8.94 (record causal max 1.186)
+  L2b  simple   alpha needed for kappa <= 0.607: 4.77 ; for kappa = 1/2: 5.79 (record causal max 1.186)
+  inverse: kappa = 1/2 needs rho*/rho_DE = 0.00834 (alpha* A, nu_mono)
+  inverse: kappa = 1/2 needs rho*/rho_DE = 0.00417 (alpha* B2, nu_mono)
+  inverse: kappa = 1/2 needs rho*/rho_DE = 0.01989 (alpha* A, simple)
+  inverse: kappa = 1/2 needs rho*/rho_DE = 0.00995 (alpha* B2, simple)
+  simple, alpha* = 1: rho* = rho_DE x 1/(16*pi); then a0^2 = G*c**2*rho_DE/4, i.e. G rho_DE c^2 = 4 a0^2: the target restated (rules section 2)
+
+== rho_m-bar loci (cosmic mean Delta = 1, turnaround Delta_ta, catchment edge): VOID as selections ==
+  kappa = 2*sqrt(pi)*sqrt(Delta)*sqrt(Omega_m)/(sqrt(Omega_L)*alpha_star*c_nu) (needs Omega_m/Omega_L: forbidden input, X13); d ln kappa/d ln(1+z) = 3/2 at fixed rho_DE (fails S8)
+
+== realized-field branches (exact kernels; point mass; kappa solving sup v_s = c at the locus) ==
+deep-regime forms (K7): saturated a0 = {'L1': 'c**4/(G*M*alpha**4)', 'L2': '9*c**4/(G*M*alpha**4)', 'L2b': 'c**4/(G*M*alpha**4)'} ; d ln kappa/d ln M_b = {'L1': -1, 'L2': -1, 'L2b': -1}
+  L1   nu_mono  alpha* A  kappa_sat at M_b 1e8..1e12: ['3.25e+15', '3.25e+14', '3.25e+13', '3.25e+12', '3.25e+11'] ; d ln kappa/d ln M_b = -1.0000
+  L1   nu_mono  alpha* B2 kappa_sat at M_b 1e8..1e12: ['1.3e+16', '1.3e+15', '1.3e+14', '1.3e+13', '1.3e+12'] ; d ln kappa/d ln M_b = -1.0000
+  L1   simple   alpha* A  kappa_sat at M_b 1e8..1e12: ['3.25e+15', '3.25e+14', '3.25e+13', '3.25e+12', '3.25e+11'] ; d ln kappa/d ln M_b = -1.0000
+  L1   simple   alpha* B2 kappa_sat at M_b 1e8..1e12: ['1.3e+16', '1.3e+15', '1.3e+14', '1.3e+13', '1.3e+12'] ; d ln kappa/d ln M_b = -1.0000
+  L2   nu_mono  alpha* A  kappa_sat at M_b 1e8..1e12: ['2.93e+16', '2.93e+15', '2.93e+14', '2.93e+13', '2.93e+12'] ; d ln kappa/d ln M_b = -1.0000
+  L2   nu_mono  alpha* B2 kappa_sat at M_b 1e8..1e12: ['1.17e+17', '1.17e+16', '1.17e+15', '1.17e+14', '1.17e+13'] ; d ln kappa/d ln M_b = -1.0000
+  L2   simple   alpha* A  kappa_sat at M_b 1e8..1e12: ['2.93e+16', '2.93e+15', '2.93e+14', '2.93e+13', '2.93e+12'] ; d ln kappa/d ln M_b = -1.0000
+  L2   simple   alpha* B2 kappa_sat at M_b 1e8..1e12: ['1.17e+17', '1.17e+16', '1.17e+15', '1.17e+14', '1.17e+13'] ; d ln kappa/d ln M_b = -1.0000
+  L2b  nu_mono  alpha* A  kappa_sat at M_b 1e8..1e12: ['3.25e+15', '3.25e+14', '3.25e+13', '3.25e+12', '3.25e+11'] ; d ln kappa/d ln M_b = -1.0000
+  L2b  nu_mono  alpha* B2 kappa_sat at M_b 1e8..1e12: ['1.3e+16', '1.3e+15', '1.3e+14', '1.3e+13', '1.3e+12'] ; d ln kappa/d ln M_b = -1.0000
+  L2b  simple   alpha* A  kappa_sat at M_b 1e8..1e12: ['3.25e+15', '3.25e+14', '3.25e+13', '3.25e+12', '3.25e+11'] ; d ln kappa/d ln M_b = -1.0000
+  L2b  simple   alpha* B2 kappa_sat at M_b 1e8..1e12: ['1.3e+16', '1.3e+15', '1.3e+14', '1.3e+13', '1.3e+12'] ; d ln kappa/d ln M_b = -1.0000
+
+report-only at the fitted kappa = 1/2 (alpha* = 1): realized v/c at the locus vs the CFG893 ceiling there
+  L1   nu_mono  M_b 1e+08: r 0.49 Mpc, y 6.23e-07, V_f 33 km/s, v/c 1.113e-04 (deep form 1.114e-04), ceiling 0.0913, attained 1.22e-03
+  L1   nu_mono  M_b 1e+09: r 0.87 Mpc, y 1.97e-06, V_f 59 km/s, v/c 1.979e-04 (deep form 1.980e-04), ceiling 0.0913, attained 2.17e-03
+  L1   nu_mono  M_b 1e+10: r 1.55 Mpc, y 6.23e-06, V_f 106 km/s, v/c 3.517e-04 (deep form 3.522e-04), ceiling 0.0913, attained 3.85e-03
+  L1   nu_mono  M_b 1e+11: r 2.75 Mpc, y 1.97e-05, V_f 188 km/s, v/c 6.249e-04 (deep form 6.263e-04), ceiling 0.0913, attained 6.84e-03
+  L1   nu_mono  M_b 1e+12: r 4.89 Mpc, y 6.23e-05, V_f 334 km/s, v/c 1.109e-03 (deep form 1.114e-03), ceiling 0.0913, attained 1.21e-02
+  L1   simple   M_b 1e+08: r 0.49 Mpc, y 6.23e-07, V_f 33 km/s, v/c 1.113e-04 (deep form 1.114e-04), ceiling 0.1410, attained 7.89e-04
+  L1   simple   M_b 1e+09: r 0.87 Mpc, y 1.97e-06, V_f 59 km/s, v/c 1.979e-04 (deep form 1.980e-04), ceiling 0.1410, attained 1.40e-03
+  L1   simple   M_b 1e+10: r 1.55 Mpc, y 6.23e-06, V_f 106 km/s, v/c 3.517e-04 (deep form 3.522e-04), ceiling 0.1410, attained 2.49e-03
+  L1   simple   M_b 1e+11: r 2.75 Mpc, y 1.97e-05, V_f 188 km/s, v/c 6.249e-04 (deep form 6.263e-04), ceiling 0.1410, attained 4.43e-03
+  L1   simple   M_b 1e+12: r 4.89 Mpc, y 6.23e-05, V_f 334 km/s, v/c 1.109e-03 (deep form 1.114e-03), ceiling 0.1410, attained 7.86e-03
+  L2   nu_mono  M_b 1e+08: r 0.60 Mpc, y 4.15e-07, V_f 33 km/s, v/c 6.427e-05 (deep form 6.430e-05), ceiling 0.0646, attained 9.95e-04
+  L2   nu_mono  M_b 1e+09: r 1.06 Mpc, y 1.31e-06, V_f 59 km/s, v/c 1.142e-04 (deep form 1.143e-04), ceiling 0.0646, attained 1.77e-03
+  L2   nu_mono  M_b 1e+10: r 1.89 Mpc, y 4.15e-06, V_f 106 km/s, v/c 2.030e-04 (deep form 2.033e-04), ceiling 0.0646, attained 3.14e-03
+  L2   nu_mono  M_b 1e+11: r 3.37 Mpc, y 1.31e-05, V_f 188 km/s, v/c 3.606e-04 (deep form 3.616e-04), ceiling 0.0646, attained 5.58e-03
+  L2   nu_mono  M_b 1e+12: r 5.99 Mpc, y 4.14e-05, V_f 334 km/s, v/c 6.399e-04 (deep form 6.430e-04), ceiling 0.0646, attained 9.91e-03
+  L2   simple   M_b 1e+08: r 0.60 Mpc, y 4.15e-07, V_f 33 km/s, v/c 6.427e-05 (deep form 6.430e-05), ceiling 0.0997, attained 6.44e-04
+  L2   simple   M_b 1e+09: r 1.06 Mpc, y 1.31e-06, V_f 59 km/s, v/c 1.142e-04 (deep form 1.143e-04), ceiling 0.0997, attained 1.15e-03
+  L2   simple   M_b 1e+10: r 1.89 Mpc, y 4.15e-06, V_f 106 km/s, v/c 2.030e-04 (deep form 2.033e-04), ceiling 0.0997, attained 2.04e-03
+  L2   simple   M_b 1e+11: r 3.37 Mpc, y 1.31e-05, V_f 188 km/s, v/c 3.606e-04 (deep form 3.616e-04), ceiling 0.0997, attained 3.62e-03
+  L2   simple   M_b 1e+12: r 5.99 Mpc, y 4.14e-05, V_f 334 km/s, v/c 6.399e-04 (deep form 6.430e-04), ceiling 0.0997, attained 6.42e-03
+  L2b  nu_mono  M_b 1e+08: r 0.60 Mpc, y 4.15e-07, V_f 33 km/s, v/c 1.113e-04 (deep form 1.114e-04), ceiling 0.1119, attained 9.95e-04
+  L2b  nu_mono  M_b 1e+09: r 1.06 Mpc, y 1.31e-06, V_f 59 km/s, v/c 1.979e-04 (deep form 1.980e-04), ceiling 0.1119, attained 1.77e-03
+  L2b  nu_mono  M_b 1e+10: r 1.89 Mpc, y 4.15e-06, V_f 106 km/s, v/c 3.516e-04 (deep form 3.522e-04), ceiling 0.1119, attained 3.14e-03
+  L2b  nu_mono  M_b 1e+11: r 3.37 Mpc, y 1.31e-05, V_f 188 km/s, v/c 6.246e-04 (deep form 6.263e-04), ceiling 0.1119, attained 5.58e-03
+  L2b  nu_mono  M_b 1e+12: r 5.99 Mpc, y 4.14e-05, V_f 334 km/s, v/c 1.108e-03 (deep form 1.114e-03), ceiling 0.1119, attained 9.91e-03
+  L2b  simple   M_b 1e+08: r 0.60 Mpc, y 4.15e-07, V_f 33 km/s, v/c 1.113e-04 (deep form 1.114e-04), ceiling 0.1727, attained 6.44e-04
+  L2b  simple   M_b 1e+09: r 1.06 Mpc, y 1.31e-06, V_f 59 km/s, v/c 1.979e-04 (deep form 1.980e-04), ceiling 0.1727, attained 1.15e-03
+  L2b  simple   M_b 1e+10: r 1.89 Mpc, y 4.15e-06, V_f 106 km/s, v/c 3.516e-04 (deep form 3.522e-04), ceiling 0.1727, attained 2.04e-03
+  L2b  simple   M_b 1e+11: r 3.37 Mpc, y 1.31e-05, V_f 188 km/s, v/c 6.246e-04 (deep form 6.263e-04), ceiling 0.1727, attained 3.62e-03
+  L2b  simple   M_b 1e+12: r 5.99 Mpc, y 4.14e-05, V_f 334 km/s, v/c 1.108e-03 (deep form 1.114e-03), ceiling 0.1727, attained 6.42e-03
+  [PASS] K8 exact-kernel realized v/c matches the deep form within 5% (M_b 1e10, report-only kappa)  max rel dev 1.53e-03
+
+L3 (rho* = rho_ph at y = 2.5396): a0 = 16*pi**2*c**4*h**2/(G*M*alpha**4*c_nu**4) ; implied kappa (report-only) at alpha* = 1:
+  M_b 1e8..1e12: kappa ['7.87e+16', '7.87e+15', '7.87e+14', '7.87e+13', '7.87e+12'] (h = 0.16426)
+
+OVERALL: NOT A SELECTION - mass-free set MENU on rho_DE (MENU on rho_crit), kappa 2.89..10.95, p_data 0.00, p_exact 0.00; canonical cell 7.741 (MISS)
+alpha: IS closure gives no bound; source A is a TRADE in beta; B1/B2 need a one-relaxation-time hypothesis.
+realized field at the loci: mass-dependent (exponent -1), kappa_sat 3.3e+11 .. 1.2e+17 over M_b 1e8..1e12: EXCLUDED.
+kappa = 1/2 stays FITTED.
+post-freeze reading (report-only): saturated a0 = N c H_L/(alpha* c_nu) with N = {'L1': 'sqrt(6)/2', 'L2': 'sqrt(3)', 'L2b': '1'}; the rho_DE-defined loci make the saturation an H-type relation (pi-parity: kappa^2 in Q pi^odd for the simple kernel)
+checks: 19/19 PASS -> exit 0

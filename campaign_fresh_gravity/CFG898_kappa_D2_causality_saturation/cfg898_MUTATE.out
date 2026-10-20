@@ -1,0 +1,79 @@
+CFG898 - kappa door D2: saturation of the drift-causality ceiling (MUTATE=True)
+kappa = 1/2 FITTED (CFG493 measurement, quoted in the README); footings never pooled; not theory closed.
+
+== alpha sources ==
+K3 Hurwitz a2 a1 - a0 = c**2*k**2*(-Gamma*tau_psi + 1)/tau_psi -> (alpha q/tau)(beta tau) < 1 form: -alpha*q + 1/beta > 0
+   alpha_max = 1/(beta*q) ; source A (beta = 1, q -> 1): alpha* = 1 ; d alpha_max/d beta = -1/(beta**2*q) (nonzero: A is a TRADE in beta)
+K6 overdamped drift u - V = -psi_x/gamma ; mobility = 1/gamma
+   B1 (Fokker-Planck, gamma = alpha/tau): mobility tau/alpha = alpha tau -> alpha* = 1
+   B2 (BGK, tau_c = tau_pi = tau/2alpha): tau/(2 alpha) = alpha tau -> alpha* = sqrt(2)/2
+
+== identity checks ==
+  [PASS] I1 script free of forbidden constants (rules section 2)  hits: []
+I2 symbolic kappa (rho* = r rho_DE): 2*sqrt(pi)*sqrt(r_ratio)/(alpha_star*c_nu)
+  [PASS] I2 kappa independent of G, c, rho_DE, hbar; depends on alpha*, c_nu, r only  d/dG,c,rho_DE,hbar = [0, 0, 0, 0]; d/dalpha*,c_nu,r nonzero
+  [PASS] I3 scaling G->lG, rho->m rho, c->n c leaves kappa invariant  2*sqrt(pi)*sqrt(rho_star)/(alpha_star*c_nu*sqrt(rho_DE))
+  [PASS] I4 rename law kappa 0.5 -> 0.4: selected values do not move (they do not follow the law's kappa)  max |diff| 0.0e+00; none of the cells is near 0.4 (min 2.894)
+  [PASS] I5 no Friedmann relation in the kappa path (no H symbol)  free symbols ['alpha_star', 'c_nu', 'rho_DE', 'rho_star']
+  [PASS] I6 declared footing rho_DE; rho_crit reported separately, never pooled  see footing block
+  [PASS] I7 hbar absent  
+  [PASS] I8 pi-weight matches section 5 (simple: pi^odd; nu_mono: cont); no cell gives exact 1/2  
+
+== option space (18 cells, equal weights): kappa = sqrt(4 pi rho*/rho_DE)/(alpha* c_nu) ==
+alpha*: A 1.000000 (beta 1, q -> 1), B1 1.000000, B2 0.707107 ; c_nu: nu_mono 0.64761024 (y 2.5396), simple 1
+src  loc  kernel      kappa_L kappa_crit(a) kappa_crit(b)
+A    L1   nu_mono      5.4738     5.4738     4.5304
+A    L1   simple       3.5449     3.5449     2.9339
+A    L2   nu_mono      7.7412     7.7412     6.4070
+A    L2   simple       5.0133     5.0133     4.1492
+A    L2b  nu_mono      4.4694     4.4694     3.6991
+A    L2b  simple       2.8944     2.8944     2.3955
+B1   L1   nu_mono      5.4738     5.4738     4.5304
+B1   L1   simple       3.5449     3.5449     2.9339
+B1   L2   nu_mono      7.7412     7.7412     6.4070
+B1   L2   simple       5.0133     5.0133     4.1492
+B1   L2b  nu_mono      4.4694     4.4694     3.6991
+B1   L2b  simple       2.8944     2.8944     2.3955
+B2   L1   nu_mono      7.7412     7.7412     6.4070
+B2   L1   simple       5.0133     5.0133     4.1492
+B2   L2   nu_mono     10.9477    10.9477     9.0608
+B2   L2   simple       7.0898     7.0898     5.8679
+B2   L2b  nu_mono      6.3206     6.3206     5.2313
+B2   L2b  simple       4.0933     4.0933     3.3878
+range 2.8944 .. 10.9477 (spread 8.053 vs window widths 0.380 / 0.312) -> class MENU (rho_DE), MENU (rho_crit)
+p_data: rho_DE 0.000 ; rho_crit (a) relabel 0.000, (b) end conversion 0.000 ; p_exact 0.000
+canonical single cell (L2, nu_mono, alpha* = 1): kappa_L = 7.7412 -> MISS; implied a0 / a0(kappa = 1/2) = 15.48
+canonical sub-menu (nu_mono, alpha* = 1; L1/L2/L2b): ['5.474', '7.741', '4.469'] -> MENU
+
+== what an in-window landing would need (report-only) ==
+  L1   nu_mono  alpha needed for kappa <= 0.607: 9.02 ; for kappa = 1/2: 10.95 (record causal max 1.186)
+  L1   simple   alpha needed for kappa <= 0.607: 5.84 ; for kappa = 1/2: 7.09 (record causal max 1.186)
+  L2   nu_mono  alpha needed for kappa <= 0.607: 12.75 ; for kappa = 1/2: 15.48 (record causal max 1.186)
+  L2   simple   alpha needed for kappa <= 0.607: 8.26 ; for kappa = 1/2: 10.03 (record causal max 1.186)
+  L2b  nu_mono  alpha needed for kappa <= 0.607: 7.36 ; for kappa = 1/2: 8.94 (record causal max 1.186)
+  L2b  simple   alpha needed for kappa <= 0.607: 4.77 ; for kappa = 1/2: 5.79 (record causal max 1.186)
+  inverse: kappa = 1/2 needs rho*/rho_DE = 0.00834 (alpha* A, nu_mono)
+  inverse: kappa = 1/2 needs rho*/rho_DE = 0.00417 (alpha* B2, nu_mono)
+  inverse: kappa = 1/2 needs rho*/rho_DE = 0.01989 (alpha* A, simple)
+  inverse: kappa = 1/2 needs rho*/rho_DE = 0.00995 (alpha* B2, simple)
+  simple, alpha* = 1: rho* = rho_DE x 1/(16*pi); then a0^2 = G*c**2*rho_DE/4, i.e. G rho_DE c^2 = 4 a0^2: the target restated (rules section 2)
+
+== rho_m-bar loci (cosmic mean Delta = 1, turnaround Delta_ta, catchment edge): VOID as selections ==
+  kappa = 2*sqrt(pi)*sqrt(Delta)*sqrt(Omega_m)/(sqrt(Omega_L)*alpha_star*c_nu) (needs Omega_m/Omega_L: forbidden input, X13); d ln kappa/d ln(1+z) = 3/2 at fixed rho_DE (fails S8)
+
+== MUTATE teeth (mass-free cells) ==
+  M1 alpha* -> 2 alpha*: x 0.5                   BITES  (sample ratios ['0.500000', '0.500000', '0.500000', '0.500000'])
+  M2 nu_mono -> simple: nu_mono cells x c_nu     BITES  (sample ratios ['0.647610', '0.647610', '0.647610', '0.647610'])
+  M3 4 pi G -> 8 pi G in tau: x sqrt2            BITES  (sample ratios ['1.414214', '1.414214', '1.414214', '1.414214'])
+  M4 w -1 -> -0.9: L2, L2b x sqrt(0.85); L1 x 1  BITES  (sample ratios ['1.000000', '1.000000', '0.921954', '0.921954'])
+  M5 D 4 -> 5: L1 x sqrt(4/3), L2 x sqrt(2/3), L2b x 1 (declared) BITES  (sample ratios ['1.154701', '1.154701', '0.816497', '0.816497'])
+  M1 range 1.447 .. 5.474, p_data(rho_DE) 0.000
+  M3 range 4.093 .. 15.482, p_data(rho_DE) 0.000
+  M4 range 2.669 .. 10.093, p_data(rho_DE) 0.000
+  M5 range 2.894 .. 8.939, p_data(rho_DE) 0.000
+
+OVERALL: NOT A SELECTION - mass-free set MENU on rho_DE (MENU on rho_crit), kappa 2.89..10.95, p_data 0.00, p_exact 0.00; canonical cell 7.741 (MISS)
+alpha: IS closure gives no bound; source A is a TRADE in beta; B1/B2 need a one-relaxation-time hypothesis.
+kappa = 1/2 stays FITTED.
+post-freeze reading (report-only): saturated a0 = N c H_L/(alpha* c_nu) with N = {'L1': 'sqrt(6)/2', 'L2': 'sqrt(3)', 'L2b': '1'}; the rho_DE-defined loci make the saturation an H-type relation (pi-parity: kappa^2 in Q pi^odd for the simple kernel)
+MUTATE: 5/5 teeth bite -> exit 1
