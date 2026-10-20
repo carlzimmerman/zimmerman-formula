@@ -1,0 +1,322 @@
+CFG940  faint gas-rich rotators (McQuinn+2022): ABOVE / ON / BELOW the law at g_bar < 1e-12   [mode main]
+  estimator A = total M_bary at R_max (primary, upper bound on spherical g_bar); B = exponential-disc enclosed fractions (bracket); kappa = 1/2 FITTED
+
+=== K-stage
+  [PASS] K0 sha256 = PROVENANCE; 25 rows each, same names/order; 7 AGC (SHIELD) rows first; all needed fields parse: t1 476bc7c70f87.. t2 46dc6a2df7b4..; rows 25/25; order match True
+  [PASS] K1 log M_dyn = log10(V_cor^2 R_max / G) reproduces Table 2 to rounding (all 25): V_cor: 25/25 within tol (max |diff| 0.121); V_rot instead: 17/25
+  [PASS] K2 helium: some f_He in {1.00,1.33,1.36,1.40} reproduces logMbary for all 25 to <= 0.015 dex: f 1.00: max 0.120 rms 0.0886; f 1.33: max 0.018 rms 0.0049; f 1.36: max 0.013 rms 0.0076; f 1.40: max 0.023 rms 0.0159  -> best passing f_He = 1.36
+  [PASS] K3 V_rot = V_PV/(2 sin i) to <= 1.0 km/s and recomputed R_max = (D_PV/2) x Dist to <= 0.051 kpc + 0.5 arcsec x Dist (A1) (all 25): max |dV| 0.92 km/s; max |dR| 0.053 kpc; max |dR|/tol_R 0.84
+  [DECISION] K4 inclination error inside e_Vrot/e_Vcor: rms residual with i-term 0.33 km/s vs without 2.88 -> INCLUDED (not added again)
+  [PASS] K5 CFG828 reproduced through this code path (N_in, mean D, se D, SPARC median, out-of-range mean; canonical+alt nu_e): max |diff| 0.0e+00; canonical: N_in 8, D +0.051+-0.073 dex, dSph out-of-range mean +0.438 (alt +0.398), SPARC median +0.031
+  [PASS] K6 CFG919 DW class mean reproduced via CFG880 input slice exec'd read-only (E, se; both footings): max |diff| 0.0e+00; 83 dwarfs; canonical +0.372 dex, alt +0.332 dex
+  [PASS] K7 SPARC loader 2696 points / 147 galaxies: 2696 points, 147 galaxies
+  K-stage ALL PASS  [0 s, 90 MB]
+
+  stellar size relation (SPARC Table 1, M* < 1e9, N 66): log10 R_d = -2.945 + 0.360 log10 M*  (rms 0.242 dex)
+
+=== Per-galaxy table (V = V_cor, R = (D_PV/2) x Dist; E in dex; A = total M_bary, B = exponential-disc enclosed)
+  name       survey        R/P   i   R_kpc  V   log g_obs  log gA   log gB   E_A can   E_A alt   E_B can   E_B alt   sE_A  sE_B  log(gobs/gA) log(gobs/gB)  fallback
+  AGC110482  SHIELD        R    55   0.61  13   -11.04   -10.72   -11.33   -0.763   -0.796    -0.412   -0.449   0.140 0.145    -0.32        +0.29     no
+  AGC111164  SHIELD        R    50   0.35  15   -10.68   -10.98   -11.52   -0.246   -0.281    +0.058   +0.020   0.122 0.147    +0.30        +0.84     no
+  AGC229053  SHIELD        R    50   1.82  22   -11.06   -11.71   -11.93   -0.223   -0.261    -0.111   -0.150   0.120 0.123    +0.65        +0.86     no
+  AGC731921  SHIELD        R    40   1.79  38   -10.58   -11.34   -11.57   +0.055   +0.018    +0.182   +0.144   0.142 0.143    +0.76        +0.99     no
+  AGC739005  SHIELD        R    55   0.75  22   -10.68   -10.99   -11.47   -0.242   -0.277    +0.029   -0.009   0.086 0.108    +0.31        +0.79     no
+  AGC742601  SHIELD        R    45   0.48  15   -10.81   -10.96   -11.54   -0.392   -0.427    -0.067   -0.105   0.120 0.131    +0.15        +0.73     no
+  AGC749237  SHIELD        R    54   0.99  26   -10.65   -10.77   -11.35   -0.341   -0.374    -0.012   -0.049   0.104 0.107    +0.12        +0.69     no
+  DDO99      VLA-ANGST     R    90   2.16  22   -11.14   -11.57   -11.81   -0.379   -0.417    -0.249   -0.288   0.048 0.046    +0.43        +0.67     no
+  DDO125     VLA-ANGST     R    66   1.68  16   -11.31   -11.29   -11.52   -0.694   -0.730    -0.568   -0.605   0.116 0.114    -0.01        +0.22     no
+  DDO181     VLA-ANGST     R    65   1.76  22   -11.05   -11.59   -11.77   -0.278   -0.316    -0.179   -0.217   0.122 0.122    +0.54        +0.72     no
+  DDO183     VLA-ANGST     R    90   1.38  16   -11.22   -11.36   -11.63   -0.570   -0.607    -0.424   -0.463   0.114 0.113    +0.14        +0.41     no
+  NGC3109    VLA-ANGST     P    83   5.82  58   -10.73   -11.48   -11.72   -0.016   -0.053    +0.117   +0.078   0.031 0.030    +0.75        +0.99     no
+  NGC3741    VLA-ANGST     P    67   3.21  31   -11.01   -11.45   -11.84   -0.316   -0.354    -0.108   -0.147   0.062 0.058    +0.44        +0.82     no
+  SextansA   VLA-ANGST     P    38   1.28  32   -10.59   -10.89   -11.48   -0.205   -0.239    +0.129   +0.092   0.168 0.167    +0.30        +0.90     no
+  SextansB   VLA-ANGST     R    53   1.74  34   -10.67   -11.31   -11.60   -0.048   -0.085    +0.114   +0.076   0.106 0.107    +0.64        +0.94     no
+  UGC04483   VLA-ANGST     R    64   0.66  18   -10.80   -10.70   -11.48   -0.528   -0.560    -0.085   -0.122   0.103 0.108    -0.09        +0.68     no
+  UGC08508   VLA-ANGST     R    63   1.16  24   -10.80   -11.21   -11.57   -0.231   -0.268    -0.034   -0.072   0.078 0.079    +0.41        +0.77     no
+  UGC08833   VLA-ANGST     R    30   0.78  22   -10.70   -11.18   -11.58   -0.148   -0.185    +0.072   +0.034   0.203 0.204    +0.49        +0.89     no
+  UGCA292    VLA-ANGST     R    52   0.99  15   -11.13   -10.99   -11.61   -0.689   -0.724    -0.344   -0.382   0.120 0.121    -0.14        +0.48     no
+  DDO53      LITTLE THINGS R    33   0.99  21   -10.84   -10.77   -11.40   -0.532   -0.566    -0.169   -0.206   0.213 0.214    -0.07        +0.56     no
+  DDO126     LITTLE THINGS R    59   3.07  36   -10.86   -11.38   -11.68   -0.205   -0.242    -0.043   -0.082   0.101 0.100    +0.52        +0.81     no
+  DDO154     LITTLE THINGS P    49   5.60  55   -10.76   -11.70   -11.96   +0.077   +0.039    +0.215   +0.176   0.112 0.112    +0.95        +1.20     no
+  F564v3     LITTLE THINGS R    51   1.61  27   -10.83   -11.47   -11.73   -0.125   -0.163    +0.019   -0.019   0.101 0.101    +0.63        +0.90     no
+  HoII       LITTLE THINGS P    34   4.44  43   -10.87   -11.09   -11.48   -0.373   -0.408    -0.154   -0.192   0.187 0.187    +0.22        +0.61     no
+  WLM        LITTLE THINGS P    90   2.27  29   -10.92   -11.51   -11.75   -0.191   -0.229    -0.058   -0.097   0.103 0.095    +0.59        +0.83     no
+  gas root fallbacks: 0/25;  median R_max/R_HI(Wang) 0.83;  median R_max/R_s 1.27;  median R_max/R_d* 2.74
+
+=== N at g_bar < 1e-12 per estimator (canonical footing; g_bar does not depend on the footing)
+  A  : N(W1) =  0   
+  B  : N(W1) =  0   
+  B2 : N(W1) =  0   
+  B3 : N(W1) =  0   
+  B4 : N(W1) =  0   
+  B5 : N(W1) =  0   
+  B6 : N(W1) =  0   
+
+=== PRIMARY window W1: g_bar < 1e-12
+  --- estimator A
+   [canonical]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+     V1   V = V_rot (no AD)        NOT DIAGNOSTIC (DATA)                    N 0
+     V2   AD term x2               NOT DIAGNOSTIC (DATA)                    N 0
+     V3   i - e_i                  NOT DIAGNOSTIC (DATA)                    N 0
+     V4   i + e_i                  NOT DIAGNOSTIC (DATA)                    N 0
+     V5   subset i >= 40           NOT DIAGNOSTIC (DATA)                    N 0
+     V6   distance -10%            NOT DIAGNOSTIC (DATA)                    N 0
+     V7   distance +10%            NOT DIAGNOSTIC (DATA)                    N 0
+     V9   kernel nu_simple         NOT DIAGNOSTIC (DATA)                    N 0
+     V10  dSphs = CFG880 83 LVD    NOT DIAGNOSTIC (DATA)                    N 0
+     V11  floor 0                  NOT DIAGNOSTIC (DATA)                    N 0
+     V12  floor 0.10               NOT DIAGNOSTIC (DATA)                    N 0
+     V13  subset plateau (P)       NOT DIAGNOSTIC (DATA)                    N 0
+     V14  subset rising (R)        NOT DIAGNOSTIC (DATA)                    N 0
+     V15  subset D_PV >= 100"      NOT DIAGNOSTIC (DATA)                    N 0
+     V16  tabulated R_max          NOT DIAGNOSTIC (DATA)                    N 0
+   [alt]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+     V1   V = V_rot (no AD)        NOT DIAGNOSTIC (DATA)                    N 0
+     V2   AD term x2               NOT DIAGNOSTIC (DATA)                    N 0
+     V3   i - e_i                  NOT DIAGNOSTIC (DATA)                    N 0
+     V4   i + e_i                  NOT DIAGNOSTIC (DATA)                    N 0
+     V5   subset i >= 40           NOT DIAGNOSTIC (DATA)                    N 0
+     V6   distance -10%            NOT DIAGNOSTIC (DATA)                    N 0
+     V7   distance +10%            NOT DIAGNOSTIC (DATA)                    N 0
+     V9   kernel nu_simple         NOT DIAGNOSTIC (DATA)                    N 0
+     V10  dSphs = CFG880 83 LVD    NOT DIAGNOSTIC (DATA)                    N 0
+     V11  floor 0                  NOT DIAGNOSTIC (DATA)                    N 0
+     V12  floor 0.10               NOT DIAGNOSTIC (DATA)                    N 0
+     V13  subset plateau (P)       NOT DIAGNOSTIC (DATA)                    N 0
+     V14  subset rising (R)        NOT DIAGNOSTIC (DATA)                    N 0
+     V15  subset D_PV >= 100"      NOT DIAGNOSTIC (DATA)                    N 0
+     V16  tabulated R_max          NOT DIAGNOSTIC (DATA)                    N 0
+  --- estimator B
+   [canonical]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+     V1   V = V_rot (no AD)        NOT DIAGNOSTIC (DATA)                    N 0
+     V2   AD term x2               NOT DIAGNOSTIC (DATA)                    N 0
+     V3   i - e_i                  NOT DIAGNOSTIC (DATA)                    N 0
+     V4   i + e_i                  NOT DIAGNOSTIC (DATA)                    N 0
+     V5   subset i >= 40           NOT DIAGNOSTIC (DATA)                    N 0
+     V6   distance -10%            NOT DIAGNOSTIC (DATA)                    N 0
+     V7   distance +10%            NOT DIAGNOSTIC (DATA)                    N 0
+     V9   kernel nu_simple         NOT DIAGNOSTIC (DATA)                    N 0
+     V10  dSphs = CFG880 83 LVD    NOT DIAGNOSTIC (DATA)                    N 0
+     V11  floor 0                  NOT DIAGNOSTIC (DATA)                    N 0
+     V12  floor 0.10               NOT DIAGNOSTIC (DATA)                    N 0
+     V13  subset plateau (P)       NOT DIAGNOSTIC (DATA)                    N 0
+     V14  subset rising (R)        NOT DIAGNOSTIC (DATA)                    N 0
+     V15  subset D_PV >= 100"      NOT DIAGNOSTIC (DATA)                    N 0
+     V16  tabulated R_max          NOT DIAGNOSTIC (DATA)                    N 0
+   [alt]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+     V1   V = V_rot (no AD)        NOT DIAGNOSTIC (DATA)                    N 0
+     V2   AD term x2               NOT DIAGNOSTIC (DATA)                    N 0
+     V3   i - e_i                  NOT DIAGNOSTIC (DATA)                    N 0
+     V4   i + e_i                  NOT DIAGNOSTIC (DATA)                    N 0
+     V5   subset i >= 40           NOT DIAGNOSTIC (DATA)                    N 0
+     V6   distance -10%            NOT DIAGNOSTIC (DATA)                    N 0
+     V7   distance +10%            NOT DIAGNOSTIC (DATA)                    N 0
+     V9   kernel nu_simple         NOT DIAGNOSTIC (DATA)                    N 0
+     V10  dSphs = CFG880 83 LVD    NOT DIAGNOSTIC (DATA)                    N 0
+     V11  floor 0                  NOT DIAGNOSTIC (DATA)                    N 0
+     V12  floor 0.10               NOT DIAGNOSTIC (DATA)                    N 0
+     V13  subset plateau (P)       NOT DIAGNOSTIC (DATA)                    N 0
+     V14  subset rising (R)        NOT DIAGNOSTIC (DATA)                    N 0
+     V15  subset D_PV >= 100"      NOT DIAGNOSTIC (DATA)                    N 0
+     V16  tabulated R_max          NOT DIAGNOSTIC (DATA)                    N 0
+  --- estimator B2
+   [canonical]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+   [alt]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+  --- estimator B3
+   [canonical]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+   [alt]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+  --- estimator B4
+   [canonical]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+   [alt]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+  --- estimator B5
+   [canonical]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+   [alt]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+  --- estimator B6
+   [canonical]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+   [alt]
+     V0   primary                  NOT DIAGNOSTIC (DATA)                    N 0
+
+=== SECONDARY WS: all g_bar (labelled secondary)
+  --- estimator A
+   [canonical]
+     V0   primary                  S-BELOW                                  N 25  mean E -0.304 +- 0.068 (z -4.5)  dSph_m +0.240 D +0.438 +- 0.122 (z +3.6, N_m 5)  D_SP -0.327 +- 0.085
+     V1   V = V_rot (no AD)        S-BELOW                                  N 25  mean E -0.406 +- 0.077 (z -5.3)  dSph_m +0.240 D +0.504 +- 0.130 (z +3.9, N_m 5)  D_SP -0.428 +- 0.092
+     V2   AD term x2               S-BELOW                                  N 25  mean E -0.229 +- 0.063 (z -3.6)  dSph_m +0.240 D +0.383 +- 0.116 (z +3.3, N_m 5)  D_SP -0.252 +- 0.081
+     V3   i - e_i                  S-BELOW                                  N 25  mean E -0.217 +- 0.071 (z -3.1)  dSph_m +0.240 D +0.381 +- 0.134 (z +2.8, N_m 5)  D_SP -0.239 +- 0.087
+     V4   i + e_i                  S-BELOW                                  N 25  mean E -0.365 +- 0.066 (z -5.5)  dSph_m +0.240 D +0.478 +- 0.115 (z +4.1, N_m 5)  D_SP -0.388 +- 0.084
+     V5   subset i >= 40           S-BELOW                                  N 21  mean E -0.302 +- 0.072 (z -4.2)  dSph_m +0.240 D +0.438 +- 0.122 (z +3.6, N_m 5)  D_SP -0.324 +- 0.089
+     V6   distance -10%            S-BELOW                                  N 25  mean E -0.258 +- 0.068 (z -3.8)  dSph_m +0.240 D +0.393 +- 0.122 (z +3.2, N_m 5)  D_SP -0.281 +- 0.085
+     V7   distance +10%            S-BELOW                                  N 25  mean E -0.346 +- 0.068 (z -5.1)  dSph_m +0.240 D +0.480 +- 0.122 (z +3.9, N_m 5)  D_SP -0.368 +- 0.085
+     V9   kernel nu_simple         S-BELOW                                  N 25  mean E -0.305 +- 0.068 (z -4.5)  dSph_m +0.239 D +0.438 +- 0.122 (z +3.6, N_m 5)  D_SP -0.326 +- 0.085
+     V10  dSphs = CFG880 83 LVD    S-BELOW                                  N 25  mean E -0.304 +- 0.068 (z -4.5)  dSph_m +0.175 D +0.374 +- 0.116 (z +3.2, N_m 5)  D_SP -0.327 +- 0.085
+     V11  floor 0                  S-BELOW                                  N 25  mean E -0.304 +- 0.045 (z -6.7)  dSph_m +0.240 D +0.438 +- 0.100 (z +4.4, N_m 5)  D_SP -0.327 +- 0.047
+     V12  floor 0.10               S-BELOW                                  N 25  mean E -0.304 +- 0.110 (z -2.8)  dSph_m +0.240 D +0.438 +- 0.173 (z +2.5, N_m 5)  D_SP -0.327 +- 0.149
+     V13  subset plateau (P)       S-ON                                     N  6  mean E -0.171 +- 0.086 (z -2.0)  dSph_m +0.240 D +0.297 +- 0.165 (z +1.8, N_m 2)  D_SP -0.189 +- 0.101
+     V14  subset rising (R)        S-BELOW                                  N 19  mean E -0.346 +- 0.073 (z -4.8)  dSph_m +0.240 D +0.533 +- 0.113 (z +4.7, N_m 3)  D_SP -0.370 +- 0.089
+     V15  subset D_PV >= 100"      S-BELOW                                  N 16  mean E -0.300 +- 0.076 (z -3.9)  dSph_m +0.240 D +0.432 +- 0.137 (z +3.2, N_m 4)  D_SP -0.320 +- 0.092
+     V16  tabulated R_max          S-BELOW                                  N 25  mean E -0.303 +- 0.067 (z -4.5)  dSph_m +0.240 D +0.438 +- 0.122 (z +3.6, N_m 5)  D_SP -0.324 +- 0.085
+   [alt]
+     V0   primary                  S-BELOW                                  N 25  mean E -0.340 +- 0.067 (z -5.0)  dSph_m +0.201 D +0.438 +- 0.122 (z +3.6, N_m 5)  D_SP -0.327 +- 0.085
+     V1   V = V_rot (no AD)        S-BELOW                                  N 25  mean E -0.442 +- 0.077 (z -5.8)  dSph_m +0.201 D +0.503 +- 0.130 (z +3.9, N_m 5)  D_SP -0.429 +- 0.092
+     V2   AD term x2               S-BELOW                                  N 25  mean E -0.266 +- 0.063 (z -4.2)  dSph_m +0.201 D +0.382 +- 0.116 (z +3.3, N_m 5)  D_SP -0.253 +- 0.081
+     V3   i - e_i                  S-BELOW                                  N 25  mean E -0.253 +- 0.071 (z -3.6)  dSph_m +0.201 D +0.380 +- 0.134 (z +2.8, N_m 5)  D_SP -0.240 +- 0.087
+     V4   i + e_i                  S-BELOW                                  N 25  mean E -0.401 +- 0.066 (z -6.0)  dSph_m +0.201 D +0.477 +- 0.115 (z +4.1, N_m 5)  D_SP -0.388 +- 0.084
+     V5   subset i >= 40           S-BELOW                                  N 21  mean E -0.338 +- 0.072 (z -4.7)  dSph_m +0.201 D +0.438 +- 0.122 (z +3.6, N_m 5)  D_SP -0.324 +- 0.089
+     V6   distance -10%            S-BELOW                                  N 25  mean E -0.294 +- 0.067 (z -4.4)  dSph_m +0.201 D +0.392 +- 0.122 (z +3.2, N_m 5)  D_SP -0.282 +- 0.085
+     V7   distance +10%            S-BELOW                                  N 25  mean E -0.382 +- 0.067 (z -5.7)  dSph_m +0.201 D +0.479 +- 0.122 (z +3.9, N_m 5)  D_SP -0.369 +- 0.085
+     V9   kernel nu_simple         S-BELOW                                  N 25  mean E -0.341 +- 0.067 (z -5.1)  dSph_m +0.201 D +0.438 +- 0.122 (z +3.6, N_m 5)  D_SP -0.327 +- 0.085
+     V10  dSphs = CFG880 83 LVD    S-BELOW                                  N 25  mean E -0.340 +- 0.067 (z -5.0)  dSph_m +0.136 D +0.373 +- 0.116 (z +3.2, N_m 5)  D_SP -0.327 +- 0.085
+     V11  floor 0                  S-BELOW                                  N 25  mean E -0.340 +- 0.045 (z -7.5)  dSph_m +0.201 D +0.438 +- 0.100 (z +4.4, N_m 5)  D_SP -0.327 +- 0.047
+     V12  floor 0.10               S-BELOW                                  N 25  mean E -0.340 +- 0.110 (z -3.1)  dSph_m +0.201 D +0.438 +- 0.173 (z +2.5, N_m 5)  D_SP -0.327 +- 0.149
+     V13  subset plateau (P)       S-BELOW                                  N  6  mean E -0.207 +- 0.086 (z -2.4)  dSph_m +0.201 D +0.296 +- 0.165 (z +1.8, N_m 2)  D_SP -0.189 +- 0.101
+     V14  subset rising (R)        S-BELOW                                  N 19  mean E -0.382 +- 0.072 (z -5.3)  dSph_m +0.201 D +0.532 +- 0.113 (z +4.7, N_m 3)  D_SP -0.371 +- 0.089
+     V15  subset D_PV >= 100"      S-BELOW                                  N 16  mean E -0.336 +- 0.076 (z -4.4)  dSph_m +0.201 D +0.432 +- 0.137 (z +3.2, N_m 4)  D_SP -0.321 +- 0.092
+     V16  tabulated R_max          S-BELOW                                  N 25  mean E -0.339 +- 0.067 (z -5.0)  dSph_m +0.201 D +0.438 +- 0.122 (z +3.6, N_m 5)  D_SP -0.325 +- 0.085
+  --- estimator B
+   [canonical]
+     V0   primary                  S-ON                                     N 25  mean E -0.083 +- 0.064 (z -1.3)  dSph_m +0.240 D +0.318 +- 0.108 (z +2.9, N_m 18)  D_SP -0.091 +- 0.086
+     V1   V = V_rot (no AD)        S-BELOW                                  N 25  mean E -0.185 +- 0.071 (z -2.6)  dSph_m +0.240 D +0.422 +- 0.115 (z +3.7, N_m 18)  D_SP -0.193 +- 0.092
+     V2   AD term x2               S-ON                                     N 25  mean E -0.009 +- 0.061 (z -0.1)  dSph_m +0.240 D +0.243 +- 0.105 (z +2.3, N_m 18)  D_SP -0.016 +- 0.084
+     V3   i - e_i                  S-ON                                     N 25  mean E +0.004 +- 0.068 (z +0.1)  dSph_m +0.240 D +0.243 +- 0.112 (z +2.2, N_m 18)  D_SP -0.004 +- 0.089
+     V4   i + e_i                  S-BELOW                                  N 25  mean E -0.144 +- 0.062 (z -2.3)  dSph_m +0.240 D +0.369 +- 0.106 (z +3.5, N_m 18)  D_SP -0.152 +- 0.085
+     V5   subset i >= 40           S-ON                                     N 21  mean E -0.093 +- 0.067 (z -1.4)  dSph_m +0.240 D +0.327 +- 0.109 (z +3.0, N_m 17)  D_SP -0.099 +- 0.090
+     V6   distance -10%            S-ON                                     N 25  mean E -0.035 +- 0.064 (z -0.5)  dSph_m +0.240 D +0.270 +- 0.108 (z +2.5, N_m 18)  D_SP -0.042 +- 0.086
+     V7   distance +10%            S-ON                                     N 25  mean E -0.127 +- 0.064 (z -2.0)  dSph_m +0.240 D +0.361 +- 0.108 (z +3.3, N_m 18)  D_SP -0.135 +- 0.086
+     V9   kernel nu_simple         S-ON                                     N 25  mean E -0.084 +- 0.064 (z -1.3)  dSph_m +0.239 D +0.318 +- 0.108 (z +2.9, N_m 18)  D_SP -0.091 +- 0.086
+     V10  dSphs = CFG880 83 LVD    S-ON                                     N 25  mean E -0.083 +- 0.064 (z -1.3)  dSph_m +0.175 D +0.253 +- 0.100 (z +2.5, N_m 18)  D_SP -0.091 +- 0.086
+     V11  floor 0                  S-BELOW                                  N 25  mean E -0.083 +- 0.040 (z -2.1)  dSph_m +0.240 D +0.318 +- 0.081 (z +3.9, N_m 18)  D_SP -0.091 +- 0.049
+     V12  floor 0.10               S-ON                                     N 25  mean E -0.083 +- 0.108 (z -0.8)  dSph_m +0.240 D +0.318 +- 0.163 (z +1.9, N_m 18)  D_SP -0.091 +- 0.150
+     V13  subset plateau (P)       S-ON                                     N  6  mean E +0.023 +- 0.079 (z +0.3)  dSph_m +0.240 D +0.198 +- 0.122 (z +1.6, N_m 4)  D_SP +0.014 +- 0.097
+     V14  subset rising (R)        S-ON                                     N 19  mean E -0.117 +- 0.068 (z -1.7)  dSph_m +0.240 D +0.352 +- 0.112 (z +3.1, N_m 14)  D_SP -0.124 +- 0.089
+     V15  subset D_PV >= 100"      S-ON                                     N 16  mean E -0.105 +- 0.074 (z -1.4)  dSph_m +0.240 D +0.354 +- 0.115 (z +3.1, N_m 13)  D_SP -0.111 +- 0.095
+     V16  tabulated R_max          S-ON                                     N 25  mean E -0.088 +- 0.064 (z -1.4)  dSph_m +0.240 D +0.322 +- 0.108 (z +3.0, N_m 18)  D_SP -0.096 +- 0.086
+   [alt]
+     V0   primary                  S-ON                                     N 25  mean E -0.121 +- 0.064 (z -1.9)  dSph_m +0.201 D +0.318 +- 0.108 (z +2.9, N_m 18)  D_SP -0.092 +- 0.086
+     V1   V = V_rot (no AD)        S-BELOW                                  N 25  mean E -0.223 +- 0.071 (z -3.1)  dSph_m +0.201 D +0.421 +- 0.115 (z +3.7, N_m 18)  D_SP -0.193 +- 0.092
+     V2   AD term x2               S-ON                                     N 25  mean E -0.047 +- 0.061 (z -0.8)  dSph_m +0.201 D +0.242 +- 0.105 (z +2.3, N_m 18)  D_SP -0.017 +- 0.084
+     V3   i - e_i                  S-ON                                     N 25  mean E -0.034 +- 0.068 (z -0.5)  dSph_m +0.201 D +0.243 +- 0.112 (z +2.2, N_m 18)  D_SP -0.004 +- 0.089
+     V4   i + e_i                  S-BELOW                                  N 25  mean E -0.182 +- 0.062 (z -2.9)  dSph_m +0.201 D +0.369 +- 0.106 (z +3.5, N_m 18)  D_SP -0.152 +- 0.085
+     V5   subset i >= 40           S-ON                                     N 21  mean E -0.131 +- 0.067 (z -2.0)  dSph_m +0.201 D +0.326 +- 0.109 (z +3.0, N_m 17)  D_SP -0.100 +- 0.090
+     V6   distance -10%            S-ON                                     N 25  mean E -0.073 +- 0.064 (z -1.1)  dSph_m +0.201 D +0.269 +- 0.108 (z +2.5, N_m 18)  D_SP -0.043 +- 0.086
+     V7   distance +10%            S-BELOW                                  N 25  mean E -0.165 +- 0.064 (z -2.6)  dSph_m +0.201 D +0.361 +- 0.108 (z +3.3, N_m 18)  D_SP -0.136 +- 0.086
+     V9   kernel nu_simple         S-ON                                     N 25  mean E -0.122 +- 0.064 (z -1.9)  dSph_m +0.201 D +0.318 +- 0.108 (z +2.9, N_m 18)  D_SP -0.091 +- 0.086
+     V10  dSphs = CFG880 83 LVD    S-ON                                     N 25  mean E -0.121 +- 0.064 (z -1.9)  dSph_m +0.136 D +0.253 +- 0.100 (z +2.5, N_m 18)  D_SP -0.092 +- 0.086
+     V11  floor 0                  S-BELOW                                  N 25  mean E -0.121 +- 0.040 (z -3.1)  dSph_m +0.201 D +0.318 +- 0.081 (z +3.9, N_m 18)  D_SP -0.092 +- 0.049
+     V12  floor 0.10               S-ON                                     N 25  mean E -0.121 +- 0.108 (z -1.1)  dSph_m +0.201 D +0.318 +- 0.163 (z +1.9, N_m 18)  D_SP -0.092 +- 0.150
+     V13  subset plateau (P)       S-ON                                     N  6  mean E -0.015 +- 0.079 (z -0.2)  dSph_m +0.201 D +0.198 +- 0.122 (z +1.6, N_m 4)  D_SP +0.014 +- 0.097
+     V14  subset rising (R)        S-BELOW                                  N 19  mean E -0.155 +- 0.068 (z -2.3)  dSph_m +0.201 D +0.352 +- 0.112 (z +3.1, N_m 14)  D_SP -0.125 +- 0.089
+     V15  subset D_PV >= 100"      S-ON                                     N 16  mean E -0.143 +- 0.074 (z -1.9)  dSph_m +0.201 D +0.354 +- 0.115 (z +3.1, N_m 13)  D_SP -0.111 +- 0.095
+     V16  tabulated R_max          S-ON                                     N 25  mean E -0.126 +- 0.064 (z -2.0)  dSph_m +0.201 D +0.322 +- 0.108 (z +3.0, N_m 18)  D_SP -0.096 +- 0.086
+  --- estimator B2
+   [canonical]
+     V0   primary                  S-BELOW                                  N 25  mean E -0.168 +- 0.064 (z -2.6)  dSph_m +0.240 D +0.396 +- 0.111 (z +3.5, N_m 10)  D_SP -0.183 +- 0.083
+   [alt]
+     V0   primary                  S-BELOW                                  N 25  mean E -0.205 +- 0.064 (z -3.2)  dSph_m +0.201 D +0.395 +- 0.111 (z +3.5, N_m 10)  D_SP -0.184 +- 0.083
+  --- estimator B3
+   [canonical]
+     V0   primary                  S-ON                                     N 25  mean E -0.044 +- 0.064 (z -0.7)  dSph_m +0.240 D +0.274 +- 0.104 (z +2.6, N_m 23)  D_SP -0.047 +- 0.089
+   [alt]
+     V0   primary                  S-ON                                     N 25  mean E -0.082 +- 0.064 (z -1.3)  dSph_m +0.201 D +0.274 +- 0.104 (z +2.6, N_m 23)  D_SP -0.048 +- 0.089
+  --- estimator B4
+   [canonical]
+     V0   primary                  S-ON                                     N 25  mean E -0.023 +- 0.063 (z -0.4)  dSph_m +0.240 D +0.262 +- 0.103 (z +2.5, N_m 25)  D_SP -0.024 +- 0.089
+   [alt]
+     V0   primary                  S-ON                                     N 25  mean E -0.061 +- 0.063 (z -1.0)  dSph_m +0.201 D +0.262 +- 0.103 (z +2.5, N_m 25)  D_SP -0.025 +- 0.089
+  --- estimator B5
+   [canonical]
+     V0   primary                  S-ON                                     N 25  mean E -0.123 +- 0.064 (z -1.9)  dSph_m +0.240 D +0.360 +- 0.107 (z +3.4, N_m 14)  D_SP -0.134 +- 0.084
+   [alt]
+     V0   primary                  S-BELOW                                  N 25  mean E -0.161 +- 0.064 (z -2.5)  dSph_m +0.201 D +0.359 +- 0.107 (z +3.4, N_m 14)  D_SP -0.135 +- 0.084
+  --- estimator B6
+   [canonical]
+     V0   primary                  S-ON                                     N 25  mean E -0.122 +- 0.065 (z -1.9)  dSph_m +0.240 D +0.338 +- 0.111 (z +3.0, N_m 12)  D_SP -0.135 +- 0.084
+   [alt]
+     V0   primary                  S-BELOW                                  N 25  mean E -0.159 +- 0.065 (z -2.5)  dSph_m +0.201 D +0.338 +- 0.111 (z +3.0, N_m 12)  D_SP -0.136 +- 0.084
+
+=== C-UP corner (INFO, no class weight): B + AD x2 + i - e_i + distance -10%
+  W1|canonical   NOT DIAGNOSTIC (DATA)                    N 0
+  W1|alt         NOT DIAGNOSTIC (DATA)                    N 0
+  WS|canonical   S-ON                                     N 25  mean E +0.117 +- 0.064 (z +1.8)  dSph_m +0.240 D +0.129 +- 0.109 (z +1.2, N_m 18)  D_SP +0.109 +- 0.086
+  WS|alt         S-ON                                     N 25  mean E +0.079 +- 0.064 (z +1.2)  dSph_m +0.201 D +0.129 +- 0.109 (z +1.2, N_m 18)  D_SP +0.109 +- 0.086
+
+=== LANE CLASS (W1, estimator A): NOT DIAGNOSTIC (DATA)
+    A  : NOT DIAGNOSTIC (DATA)   (canonical NOT DIAGNOSTIC (DATA); alt NOT DIAGNOSTIC (DATA))
+    B  : NOT DIAGNOSTIC (DATA)   (canonical NOT DIAGNOSTIC (DATA); alt NOT DIAGNOSTIC (DATA))
+    B2 : NOT DIAGNOSTIC (DATA)   (canonical NOT DIAGNOSTIC (DATA); alt NOT DIAGNOSTIC (DATA))
+    B3 : NOT DIAGNOSTIC (DATA)   (canonical NOT DIAGNOSTIC (DATA); alt NOT DIAGNOSTIC (DATA))
+    B4 : NOT DIAGNOSTIC (DATA)   (canonical NOT DIAGNOSTIC (DATA); alt NOT DIAGNOSTIC (DATA))
+    B5 : NOT DIAGNOSTIC (DATA)   (canonical NOT DIAGNOSTIC (DATA); alt NOT DIAGNOSTIC (DATA))
+    B6 : NOT DIAGNOSTIC (DATA)   (canonical NOT DIAGNOSTIC (DATA); alt NOT DIAGNOSTIC (DATA))
+
+=== SECONDARY CLASS (WS, estimator A): S-BELOW  [BRACKET-DEPENDENT: B: S-ON; B3: S-ON; B4: S-ON; B5: NOT DIAGNOSTIC (SPLIT BY FOOTING); B6: NOT DIAGNOSTIC (SPLIT BY FOOTING)]
+    A  : S-BELOW   (canonical S-BELOW; alt S-BELOW)
+    B  : S-ON   (canonical S-ON; alt S-ON)
+    B2 : S-BELOW   (canonical S-BELOW; alt S-BELOW)
+    B3 : S-ON   (canonical S-ON; alt S-ON)
+    B4 : S-ON   (canonical S-ON; alt S-ON)
+    B5 : NOT DIAGNOSTIC (SPLIT BY FOOTING)   (canonical S-ON; alt S-BELOW)
+    B6 : NOT DIAGNOSTIC (SPLIT BY FOOTING)   (canonical S-ON; alt S-BELOW)
+    subset variants changing A's class (no FRAGILE weight): V13/canonical: S-ON
+    variants changing B's class (reported): V1/canonical: S-BELOW; V4/canonical: S-BELOW; V11/canonical: S-BELOW; V1/alt: S-BELOW; V4/alt: S-BELOW; V7/alt: S-BELOW; V11/alt: S-BELOW
+
+=== INFO (no class weight)
+  I1 rising (R) vs plateau (P) (mean E +- se, N), WS:
+     A canonical: rising -0.346 +- 0.073 (N 19); plateau -0.171 +- 0.086 (N 6); R - P -0.176
+     A alt      : rising -0.382 +- 0.072 (N 19); plateau -0.207 +- 0.086 (N 6); R - P -0.175
+     B canonical: rising -0.117 +- 0.068 (N 19); plateau +0.023 +- 0.079 (N 6); R - P -0.141
+     B alt      : rising -0.155 +- 0.068 (N 19); plateau -0.015 +- 0.079 (N 6); R - P -0.140
+  I2 M* < 1e7 subset (log M* < 7):
+     A canonical W1: N 0
+     A canonical WS: N 6, mean E -0.371 +- 0.098  (AGC111164, AGC229053, AGC742601, UGC04483, UGC08833, UGCA292)
+     A alt       W1: N 0
+     A alt       WS: N 6, mean E -0.406 +- 0.098  (AGC111164, AGC229053, AGC742601, UGC04483, UGC08833, UGCA292)
+     B canonical W1: N 0
+     B canonical WS: N 6, mean E -0.080 +- 0.079  (AGC111164, AGC229053, AGC742601, UGC04483, UGC08833, UGCA292)
+     B alt       W1: N 0
+     B alt       WS: N 6, mean E -0.118 +- 0.079  (AGC111164, AGC229053, AGC742601, UGC04483, UGC08833, UGCA292)
+  I3 Newtonian reading (CFG936): mean log10(g_obs/g_bar) +- se:
+     A   W1: N 0
+     A   WS: N 25, +0.347 +- 0.081 -> ABOVE NEWTON
+     B   W1: N 0
+     B   WS: N 25, +0.744 +- 0.067 -> ABOVE NEWTON
+     B2  W1: N 0
+     B2  WS: N 25, +0.589 +- 0.068 -> ABOVE NEWTON
+     B3  W1: N 0
+     B3  WS: N 25, +0.817 +- 0.067 -> ABOVE NEWTON
+     B4  W1: N 0
+     B4  WS: N 25, +0.856 +- 0.064 -> ABOVE NEWTON
+     B5  W1: N 0
+     B5  WS: N 25, +0.671 +- 0.066 -> ABOVE NEWTON
+     B6  W1: N 0
+     B6  WS: N 25, +0.674 +- 0.072 -> ABOVE NEWTON
+  I4 overlap calibration vs SPARC at the same angular radius (rotmod without point cut; R_SP = R_max x D_SP/D_McQ):
+     name      SPARC     Q  Inc   D_McQ  D_SP   R_McQ  R_SP  [SPARC R range]   V_McQ  V_SP   E_McQ(A) E_McQ(B) E_SP    log(gSP/gA) log(gSP/gB)  (canonical)
+     DDO154    DDO154    2    64   4.04   4.04   5.60   5.60  [0.49, 5.92]     55   46.7   +0.077   +0.215   -0.016    -0.090      +0.169
+     NGC3109   NGC3109   1    70   1.34   1.33   5.82   5.78  [0.26, 6.45]     58   66.5   -0.016   +0.117   +0.162    -0.102      +0.143
+     NGC3741   NGC3741   1    70   3.23   3.21   3.21   3.19  [0.23, 7.00]     31   41.1   -0.316   -0.108   +0.114    -0.339      +0.048
+     HoII      UGC04305  3    40   3.47   3.45   4.44   4.42  [0.25, 5.52]     43   34.5   -0.373   -0.154   -0.561    +0.000      +0.392
+     UGC04483  UGC04483  2    58   3.53   3.34   0.66   0.62  [0.08, 1.21]     18   20.8   -0.528   -0.085   -0.126    -0.431      +0.343
+     DDO126    UGC07559  2    61   4.97   4.97   3.07   3.07  [0.36, 2.53]   out of range
+     DDO125    UGC07577  2    63   2.60   2.59   1.68   1.67  [0.19, 1.69]     16   17.6   -0.694   -0.568   -0.483    -0.230      -0.000
+     WLM       UGCA444   2    78   0.97   0.98   2.27   2.29  [0.12, 2.62]     29   35.5   -0.191   -0.058   -0.060    +0.071      +0.318
+     median log(g_bar^SPARC/g_bar^A) -0.102, /g_bar^B +0.169 (N 7) -> better-calibrated end of the bracket: A;  median E_McQ(A) - E_SP -0.177, E_McQ(B) - E_SP +0.002;  median V_McQ/V_SP 0.873   (* = held at the SPARC edge, within 10 %)
+  I5 survey split (mean E, N), WS:
+     A canonical: SHIELD -0.308 (N 7); VLA-ANGST -0.342 (N 12); LITTLE THINGS -0.225 (N 6)
+     A alt      : SHIELD -0.343 (N 7); VLA-ANGST -0.378 (N 12); LITTLE THINGS -0.261 (N 6)
+     B canonical: SHIELD -0.048 (N 7); VLA-ANGST -0.130 (N 12); LITTLE THINGS -0.032 (N 6)
+     B alt      : SHIELD -0.085 (N 7); VLA-ANGST -0.168 (N 12); LITTLE THINGS -0.070 (N 6)
+
+  done [0 s, peak RSS 91 MB], exit 0.  kappa = 1/2 FITTED; footings never pooled; not theory closed.
