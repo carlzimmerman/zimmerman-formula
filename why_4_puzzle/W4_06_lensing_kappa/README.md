@@ -89,3 +89,8 @@ the CFG894 §11 light-script rule. NC2x's swap was flat (5.46 GB, below its 5.79
 
 The B21 files are read only and nothing was downloaded. B21's ESDs use flat ΛCDM distances. CFG885's native-background
 bracket (S2) covers that, and it is a small effect next to M★.
+
+## Register
+
+Row **K636** in `campaign_fresh_gravity/CFG894_kappa_campaign_ledger/kappa_attempts_register.csv` (obs class). The register commit
+b1fd309ec says "K631" in its message: a parallel session had appended K631–K635 a moment earlier. The CSV row itself is K636.
