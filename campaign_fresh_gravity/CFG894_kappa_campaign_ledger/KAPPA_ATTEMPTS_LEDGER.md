@@ -17,11 +17,11 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (664 rows)
+## Totals (668 rows)
 
-- **497 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **501 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
-- **121 produced a number.** 55 produced one determinate value; 66 are menus of several values from
+- **123 produced a number.** 56 produced one determinate value; 67 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
   - a condition equal to the target,
   - a free ratio, or a trade for a new constant,
@@ -29,7 +29,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
   - a closure.
 - 35 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
 
-**17 of the 55 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
+**17 of the 56 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
 κ_Λ = 0.417 ± 0.095.
 - Every landing is an O(1) number that the window cannot separate from ½.
 - They are mostly the same few values, recurring: 0.461 (Z = 2π), 0.482 (Z = 6, Verlinde), 0.55–0.557 (particle horizon,
@@ -37,7 +37,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
 - The rate (about 33%) is what a random draw from the record-natural number set gives (27–28%; see
   `kappa_campaign_lee.out`). So the landings are no evidence that any route knows κ.
 
-**66 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
+**67 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
 The ½ got in by one of these routes:
 - inserted or written in (CFG43, CFG187, G031);
 - posited (the free-fall surface gravity c²/2R*, i.e. J = Gρr²/c² = 1);
@@ -145,7 +145,7 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 63 | 4 | 10 | 49 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 120 | 7 | 6 | 102 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 124 | 8 | 7 | 104 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -458,6 +458,10 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K656 | W4-08/R2 | `why_4_puzzle/W4_08_positive_mond_amplitudes` | documented two-field MOND superfluid amplitude parent with both radial modes retained | - | free | TRADE: open local quadratic positive Hamiltonian region but a0=lambda^3/(8pi G Lambda) with lambda and V0 free; charged state not vacuum; supermetric low-energy characteristic; no full healthy UV claim | 4131def0e |
 | K657 | W4-08/R3 | `why_4_puzzle/W4_08_positive_mond_amplitudes` | exact second-class auxiliary MOND response with positive reduced energy and canonical physical bracket | - | free | TRADE: exact attractive g=gN+sqrt(a0gN) but R=8epsilon0/(9gamma b^3) free; positive kinetic regulator tachyon; quantum vacuum constraint rank changes | 4131def0e |
 | K663 | W4-11/Q3 | `why_4_puzzle/W4_11_last_gravity_classes` | bumblebee vector with V(B^2 -+ b^2) | - | free | TRADE: vacuum constant independent of b | 1cbcd12ee |
+| K665 | p63-C1 | `sonnet55_push/puzzle_32pi/p63_a0_field_coupling` | RESULT of pending K069: saturated dual polarization (dark energy = cold energy's cosmic bound charge) | 1.198 | free | INCONSISTENT: cosmic state at saturation, W -> +inf (premise gate fails); kappa_L 1.198, a0 ~ 1/H(z) (OTHER). Supersedes the PENDING status of K069 | 5df0e1cd8 |
+| K666 | p63-C1b | `sonnet55_push/puzzle_32pi/p63_a0_field_coupling` | RESULT of pending K070: patch bootstrap (bound charge inside R = c/H_L equals the vacuum mass) | 2.894 | odd | FORCED-OUT / MISS: Z = 1, kappa_L 2.894 (tracking, finite W). Supersedes the PENDING status of K070 | 5df0e1cd8 |
+| K667 | p63-C2 | `sonnet55_push/puzzle_32pi/p63_a0_field_coupling` | RESULT of pending K071: flux lattice kappa = kappa_1/N | {0.5, 0.333, 0.25} | menu | MENU (spurious 1/2): kappa_1 = 1 lands at N = 2, 3, 4; null 0.71; the lattice does not single out N = 2. Supersedes the PENDING status of K071 | 5df0e1cd8 |
+| K668 | p63-C3 | `sonnet55_push/puzzle_32pi/p63_a0_field_coupling` | RESULT of pending K072: Kaloper-Sorbo monodromy quantisation | - | free | FREE: quantisation fixes (f, mu, e) only; beta^2/Z free; no hbar. Supersedes the PENDING status of K072 | 5df0e1cd8 |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
