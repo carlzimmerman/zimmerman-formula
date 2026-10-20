@@ -138,3 +138,12 @@ The load-bearing element is the boundary ratio g_1²(SM)/g_U² = C_2/C_Y = 3/5 (
 ## 12. Files (planned)
 
 `CFG907_PREREGISTRATION.md` (this file, committed alone first), `cfg907_d07.py` (gates, pre-flight, G1, reported configurations, R1–R4, substitution, MUTATE modes), `cfg907_d07.out` / `.json` (real run), `cfg907_d07_MUTATE.out` / `.json`, `cfg907_d07_MUTATE_NORM.out` / `.json`, `README.md`.
+
+## Amendment A1 (appended 2026-10-20 after a crashed first execution; nothing above was edited)
+
+**What happened.** The first execution of `cfg907_d07.py` (kept unchanged as `cfg907_d07_FIRSTRUN.py`, stdout `cfg907_d07_FIRSTRUN.out`, stderr with the traceback `cfg907_d07_FIRSTRUN.err`; local paths in the traceback replaced by `<repo>` and `<python>`) printed gates K3, K4, K5, K6, K1, K2 and K7(c) in that order, then **crashed at the first root solve of G1**: scipy's `brentq` refuses rtol = 4e-16 (its floor is 8.9e-16). **No graded value, no leg-A or leg-Y number and no reported configuration had been computed or printed** when it stopped (the scan's grid values are printed only after the solve returns). As frozen, that execution is NOT COMPLETED. Three gates had failed, all from code bugs, not from the physics:
+
+* **K3b and K3c**: the spinor trace tr_S(E_F²) was built from complex gamma matrices and not expanded, so sympy printed an unreduced expression. Expanding the printed value by hand: −1636/225 + 2(−1/3 − 5i/3)(1/3 − 5i/3) + 2(−1/3 + i/3)(1/3 + i/3) = −1636/225 − 52/9 − 4/9 = −1012/75 = −2 × (506/75) = −2 F.F, the frozen value; T4 = −4048/75 = −8 F.F passed as printed. K3c failed only because it used the unreduced trace.
+* **K3d**: the script added an anomaly sanity check that the frozen K3 does not list (sum Y = sum Y³ = 0 per generation) and summed left- and right-handed fields with the same sign. With the chirality sign (right-handed fields enter with −1) both sums vanish; without it the cubic sum is −4/9. The frozen K3d numbers printed correctly in the first execution: dim 96, C_3 = 12, C_2 = 12, C_Y = 20.
+
+**Fixes (code only).** (1) `brentq` rtol 4e-16 → 2e-15 (xtol 1e-12 unchanged; the K8a residual gate is unchanged). (2) `sp.expand` before `nsimplify` for T4 and tr_S(E_F²). (3) Chirality signs in the extra anomaly check. No criterion, input, formula, option, threshold, kill rule or grade changes. The fixed script is run once as the real run; its gates must all pass.
