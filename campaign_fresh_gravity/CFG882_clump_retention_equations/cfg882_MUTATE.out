@@ -1,0 +1,87 @@
+CFG882  clump retention in the cold-energy equations   [MUTATE: inverted gate]
+  kappa = 1/2 FITTED; footings never pooled; density sub-flow of the record's drift; not theory closed.
+
+  K4 (sympy) dM_ex(<r)/dt = -alpha 4 pi G tau rho_c M_ex(<r): residual 0 -> PASS
+  K5 (sympy) centre div v_s -> 4 pi G alpha tau0 rho_ex0: True; uniform rho0/(1+alpha t/2tau0)^2 solves it: True; I(rho) closed form: True; I -> 2 tau at rho_b = 0: True -> PASS
+  K7 (sympy) steady counter-flow pressure p = -3*rho_c*sigma2/(q - 3)  (= rho sigma_J^2/(1 - q/3), not hydrostatic for q > 0) -> PASS: no stationary counter-flow; the drift-only density evolution is the record's to O(1)
+
+  numeric K-tests
+  K1 gated solver with G = 1 vs two-sided: max |dm| = 0.0e+00 Msun -> PASS
+  K3 alpha = 0 (2 Gyr): max |dm| = 0.0e+00 -> PASS
+  K8 alpha 0.5 to 1 Gyr vs alpha 1 to 0.5 Gyr: max rel |dm| = 0.0e+00 -> PASS
+  K6 uniform sphere, alpha t = 4 tau0 = 22.0 Myr: centre cell 0.06652 vs centre ODE 0.06652 Msun/pc^3 (rel 2.89e-05; analytic cold-only 0.06472) -> PASS
+
+  V1  record two-sided drift (FIX-1 psi, ungated): clump drain
+    [canonical H1] s50 = alpha t50 =    12.19 Myr -> alpha_50 = 1.02e-03 (alpha_90 1.45e-04); central bound alpha_c = 1.36e-03 (target rho_x0/2; 9.41e-04 at rho_x0); R(alpha 0.05) = 0.000, R(alpha 0.5) = 0.000; steps 13312
+    [canonical H2] s50 = alpha t50 =    10.37 Myr -> alpha_50 = 8.64e-04 (alpha_90 1.25e-04); central bound alpha_c = 1.31e-03 (target rho_x0/2; 9.21e-04 at rho_x0); R(alpha 0.05) = 0.000, R(alpha 0.5) = 0.000; steps 7559
+    [canonical H3] s50 = alpha t50 =     8.67 Myr -> alpha_50 = 7.23e-04 (alpha_90 1.06e-04); central bound alpha_c = 1.31e-03 (target rho_x0/2; 9.22e-04 at rho_x0); R(alpha 0.05) = 0.000, R(alpha 0.5) = 0.000; steps 8353
+    -> [canonical] max over hosts of max(alpha_50, alpha_c) = 1.36e-03  (floor 0.05, galaxy side 0.5) -> EXCLUDED
+    [alt       H1] s50 = alpha t50 =    10.09 Myr -> alpha_50 = 8.41e-04 (alpha_90 1.19e-04); central bound alpha_c = 1.37e-03 (target rho_x0/2; 9.47e-04 at rho_x0); R(alpha 0.05) = 0.000, R(alpha 0.5) = 0.000; steps 13948
+    [alt       H2] s50 = alpha t50 =     8.58 Myr -> alpha_50 = 7.15e-04 (alpha_90 1.03e-04); central bound alpha_c = 1.31e-03 (target rho_x0/2; 9.27e-04 at rho_x0); R(alpha 0.05) = 0.000, R(alpha 0.5) = 0.000; steps 7905
+    [alt       H3] s50 = alpha t50 =     7.42 Myr -> alpha_50 = 6.18e-04 (alpha_90 8.96e-05); central bound alpha_c = 1.32e-03 (target rho_x0/2; 9.28e-04 at rho_x0); R(alpha 0.05) = 0.000, R(alpha 0.5) = 0.000; steps 8749
+    -> [alt] max over hosts of max(alpha_50, alpha_c) = 1.37e-03  (floor 0.05, galaxy side 0.5) -> EXCLUDED
+  K9 centre overfill <= initial-condition-free bound rho*(alpha t): worst ratio 0.0410 -> PASS
+  M2 (gate removed, alpha = 0.5): R < 0.5 in every cell -> BITES
+
+  V2  deficit-gated mobility (CFG639 HG) -- MUTATE M1: INVERTED gate (G = 1 iff d < 0): smooth settled halo + clump, T_ret = 12 Gyr
+    [canonical H1 alpha 0.500] R(T_ret) = 0.000000   moving faces at t=0: 466   steps 6802
+    [canonical H1 alpha 1.000] R(T_ret) = 0.000000   moving faces at t=0: 466   steps 13303
+    [canonical H1 alpha 1.186] R(T_ret) = 0.000000   moving faces at t=0: 466   steps 15722
+    [canonical H2 alpha 0.500] R(T_ret) = 0.000000   moving faces at t=0: 466   steps 3859
+    [canonical H2 alpha 1.000] R(T_ret) = 0.000000   moving faces at t=0: 466   steps 7558
+    [canonical H2 alpha 1.186] R(T_ret) = 0.000000   moving faces at t=0: 466   steps 8934
+    [canonical H3 alpha 0.500] R(T_ret) = 0.000000   moving faces at t=0: 466   steps 4226
+    [canonical H3 alpha 1.000] R(T_ret) = 0.000000   moving faces at t=0: 466   steps 8353
+    [canonical H3 alpha 1.186] R(T_ret) = 0.000000   moving faces at t=0: 466   steps 9888
+    [alt       H1 alpha 0.500] R(T_ret) = 0.000000   moving faces at t=0: 455   steps 7115
+    [alt       H1 alpha 1.000] R(T_ret) = 0.000000   moving faces at t=0: 455   steps 13940
+    [alt       H1 alpha 1.186] R(T_ret) = 0.000000   moving faces at t=0: 455   steps 16478
+    [alt       H2 alpha 0.500] R(T_ret) = 0.000000   moving faces at t=0: 455   steps 4024
+    [alt       H2 alpha 1.000] R(T_ret) = 0.000000   moving faces at t=0: 455   steps 7904
+    [alt       H2 alpha 1.186] R(T_ret) = 0.000000   moving faces at t=0: 455   steps 9347
+    [alt       H3 alpha 0.500] R(T_ret) = 0.000000   moving faces at t=0: 455   steps 4420
+    [alt       H3 alpha 1.000] R(T_ret) = 0.000000   moving faces at t=0: 455   steps 8749
+    [alt       H3 alpha 1.186] R(T_ret) = 0.000000   moving faces at t=0: 455   steps 10359
+    -> GATED FAILS (failing cells: canonical|H1|0.5, canonical|H1|1.0, canonical|H1|1.186, canonical|H2|0.5, canonical|H2|1.0, canonical|H2|1.186, canonical|H3|0.5, canonical|H3|1.0, canonical|H3|1.186, alt|H1|0.5, alt|H1|1.0, alt|H1|1.186, alt|H2|0.5, alt|H2|1.0, alt|H2|1.186, alt|H3|0.5, alt|H3|1.0, alt|H3|1.186)
+  M1 (inverted gate, alpha = 0.5): R < 0.5 in every host x footing -> BITES
+
+  D2  tides: clump keeps its identity outside D_crit = sqrt(2 V_h^2 r_t^3/(G m)) (flat host; estimate)
+    [canonical] host M_b 6e+10 (V_h 165.2 km/s), clump only                   m = 5.25e+06: D_crit = 4.36 kpc
+    [canonical] host M_b 6e+10 (V_h 165.2 km/s), clump + H2 baryons + phantom m = 6.98e+06: D_crit = 3.79 kpc
+    [canonical] host M_b 1e+11 (V_h 187.7 km/s), clump only                   m = 5.25e+06: D_crit = 4.96 kpc
+    [canonical] host M_b 1e+11 (V_h 187.7 km/s), clump + H2 baryons + phantom m = 6.98e+06: D_crit = 4.30 kpc
+    [alt      ] host M_b 6e+10 (V_h 173.3 km/s), clump only                   m = 4.24e+06: D_crit = 3.76 kpc
+    [alt      ] host M_b 6e+10 (V_h 173.3 km/s), clump + H2 baryons + phantom m = 5.54e+06: D_crit = 3.29 kpc
+    [alt      ] host M_b 1e+11 (V_h 196.9 km/s), clump only                   m = 4.24e+06: D_crit = 4.27 kpc
+    [alt      ] host M_b 1e+11 (V_h 196.9 km/s), clump + H2 baryons + phantom m = 5.54e+06: D_crit = 3.74 kpc
+
+  D3  one clump's pull on a point-baryon host, Delta g / g_law (CFG877 capped shape)
+    [canonical] M_b 1e+07: r 0.2 kpc 1.90e-01  r 0.5 kpc 1.14e-01  r 1.0 kpc 6.03e-02  r 2.0 kpc 3.11e-02  r 5.0 kpc 1.27e-02
+    [canonical] M_b 1e+08: r 0.2 kpc 3.55e-02  r 0.5 kpc 2.82e-02  r 1.0 kpc 1.68e-02  r 2.0 kpc 9.21e-03  r 5.0 kpc 3.90e-03
+    [canonical] M_b 1e+09: r 0.2 kpc 4.15e-03  r 0.5 kpc 4.79e-03  r 1.0 kpc 3.70e-03  r 2.0 kpc 2.40e-03  r 5.0 kpc 1.14e-03
+    [canonical] M_b 1e+10: r 0.2 kpc 4.15e-04  r 0.5 kpc 5.25e-04  r 1.0 kpc 5.14e-04  r 2.0 kpc 4.49e-04  r 5.0 kpc 2.82e-04
+    [canonical] M_b 1e+11: r 0.2 kpc 4.15e-05  r 0.5 kpc 5.25e-05  r 1.0 kpc 5.25e-05  r 2.0 kpc 5.24e-05  r 5.0 kpc 4.79e-05
+    [alt      ] M_b 1e+07: r 0.2 kpc 1.75e-01  r 0.5 kpc 8.43e-02  r 1.0 kpc 4.45e-02  r 2.0 kpc 2.29e-02  r 5.0 kpc 9.30e-03
+    [alt      ] M_b 1e+08: r 0.2 kpc 3.39e-02  r 0.5 kpc 2.14e-02  r 1.0 kpc 1.25e-02  r 2.0 kpc 6.82e-03  r 5.0 kpc 2.87e-03
+    [alt      ] M_b 1e+09: r 0.2 kpc 4.09e-03  r 0.5 kpc 3.78e-03  r 1.0 kpc 2.84e-03  r 2.0 kpc 1.80e-03  r 5.0 kpc 8.43e-04
+    [alt      ] M_b 1e+10: r 0.2 kpc 4.10e-04  r 0.5 kpc 4.23e-04  r 1.0 kpc 4.11e-04  r 2.0 kpc 3.50e-04  r 5.0 kpc 2.14e-04
+    [alt      ] M_b 1e+11: r 0.2 kpc 4.10e-05  r 0.5 kpc 4.24e-05  r 1.0 kpc 4.24e-05  r 2.0 kpc 4.22e-05  r 5.0 kpc 3.78e-05
+
+  D4  Chandrasekhar sinking time of one clump in a flat host (lnLambda = 5; estimate)
+    [canonical] host M_b 6e10 (V_h 165 km/s): t_df = 1 kpc 1.7 Gyr, 3 kpc 15.1 Gyr, 10 kpc 167.4 Gyr
+    [alt      ] host M_b 6e10 (V_h 173 km/s): t_df = 1 kpc 2.2 Gyr, 3 kpc 19.6 Gyr, 10 kpc 217.6 Gyr
+
+  D5  clump scales (t = 0, alpha = 1, two-sided)
+    [canonical] rho_x0 = 0.582 Msun/pc^3, tau(rho_x0) = 5.51 Myr, tau near r_t = 13.9 Myr; psi_ex(0) = 198.8 (km/s)^2; max |v_s| = 11.3 alpha km/s (H2); T_ret 13.5 Gyr: alpha_50 9.03e-04, alpha_c 1.21e-03 (max over hosts)
+    [alt      ] rho_x0 = 0.575 Msun/pc^3, tau(rho_x0) = 5.55 Myr, tau near r_t = 11.4 Myr; psi_ex(0) = 177.8 (km/s)^2; max |v_s| = 10.2 alpha km/s (H2); T_ret 13.5 Gyr: alpha_50 7.48e-04, alpha_c 1.22e-03 (max over hosts)
+
+  D6  big-galaxy condition under the smooth gate: overfill mass conserved (F_ret = 1) -> phi <= F_max (CFG881, massive, primary)
+    [canonical] phi_max = CORE1 0.27, CORE3 0.92, BARYON 2.07, FLAT 3.17
+    [alt      ] phi_max = CORE1 0.26, CORE3 0.90, BARYON 2.08, FLAT 3.20
+
+  K2 mass conservation over 30 runs: max |dM|/M = 4.8e-13 (V2 alt H3 1.186) -> PASS
+
+  V1: canonical EXCLUDED, alt EXCLUDED;  V2 (inv): GATED FAILS;  K all: PASS
+  CLASS: NO RETENTION   [MUTATE run; the class is the control's, not the lane's]
+  MUTATE: tooth M1 bites (inverted gate drains the clump) -> exit 1 as designed
+  wall 19 s
