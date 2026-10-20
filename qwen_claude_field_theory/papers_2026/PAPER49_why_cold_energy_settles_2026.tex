@@ -1,5 +1,5 @@
 \documentclass[10pt]{article}
-\usepackage[margin=0.9in]{geometry}
+\usepackage[margin=0.8in]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -15,8 +15,9 @@
 \begin{center}
 {\Large\bfseries Why Cold Energy Settles}\\[3pt]
 {\large A tethered medium whose displacement is the gravitational polarization}\\[5pt]
-{\small Working note, 2026-10-14, v1.0. AI-assisted research programme; not peer reviewed.}
+{\small Working note, v1.0, 2026-10-20 (drafted 2026-10-14). AI-assisted research programme; not peer reviewed.}
 \end{center}
+{\footnotesize\textit{Updated before deposit.} The stiffness floor is raised from 5.75\,pc to 24\,pc by the outer-halo globular clusters (lane CFG820), and the Solar System and wide-binary numbers that scale with $L_*$ are updated. The supply rule ``each halo settles only its own supply'', excluded by isolated-galaxy lensing (CFG801), is replaced by catchment supply, and the cosmic-shear result is updated (CFG650; native-input rerun CFG654). The hot-gas test result is added (CFG815).}
 
 \paragraph{The question.} Galaxy rotation curves follow a single relation between observed and baryonic acceleration. In the framework studied here the acceleration scale is set by dark energy:
 $$a_0=\kappa c\sqrt{G\rho_{\rm DE}}\simeq0.173\,cH_\infty,\qquad \kappa=\tfrac12\ \text{(fitted)}.$$
@@ -28,7 +29,7 @@ So the ``polarization'' of the gravitational vacuum is not an extra field: it is
 
 \paragraph{2. The action.} With $K=4\pi G$ and $u=K|\mathbf P|$,
 $$\mathcal L=-\frac{|\nabla\Phi-K\mathbf P|^2}{2K}-\rho_b\Phi-W_{\rm rem}(u)-\frac{\gamma}{2}|\nabla\mathbf P|^2,\qquad W_{\rm rem}=W_{\rm full}-\frac{u^2}{2K},\qquad K\frac{dW_{\rm full}}{du}=\frac{a_0u}{a_0-u}.$$
-The vacuum term saturates at the wall $u\to a_0$. (The subtraction in $W_{\rm rem}$ is required; pairing the completed square with $W_{\rm full}$ double-counts the quadratic term.) The stiffness $\gamma=KL_*^2/2$ is the one extra constant, $L_*\in[5.75\,{\rm pc},\gtrsim1\,{\rm kpc}]$. It is not optional: without it the Sun's own field carries the simple function's constant $a_0$ tail, which the planetary ephemerides exclude by $\sim2600\times$. It is irrelevant on galaxy scales.
+The vacuum term saturates at the wall $u\to a_0$. (The subtraction in $W_{\rm rem}$ is required; pairing the completed square with $W_{\rm full}$ double-counts the quadratic term.) The stiffness $\gamma=KL_*^2/2$ is the one extra constant, $L_*\in[24\,{\rm pc},\gtrsim1\,{\rm kpc}]$. The floor comes from the outer-halo globular clusters NGC\,2419, Pal\,4 and Pal\,14, which are Newtonian and so must be screened (95\% bound; it was 5.75\,pc from Saturn's ephemeris). It is not optional: without it the Sun's own field carries the simple function's constant $a_0$ tail, which the planetary ephemerides exclude by $\sim2600\times$. It is irrelevant on galaxy scales.
 
 \paragraph{3. The tether.} Varying $\Phi$ gives the Newtonian flux of the baryons, $g-u=g_N$. Varying $\mathbf P$ gives the balance of the medium. Its self-gravity cancels against the quadratic part of the field energy, so each element feels only
 $$\underbrace{g_N}_{\text{baryons pull in}}\quad\text{against}\quad\underbrace{R(u)=K\frac{dW_{\rm rem}}{du}=\frac{u^2}{a_0-u}}_{\text{vacuum pushes back}}.$$
@@ -41,10 +42,10 @@ This is the ``simple'' interpolating function [1]: $g\to\sqrt{a_0g_N}$ for $g_N\
 \paragraph{5. What settles, and what does not.}
 \begin{itemize}
 \item \textbf{Galaxies.} Nearly all baryons are condensed (stars and cold gas), and the medium tethers to them. This reproduces the radial acceleration relation: 0.100\,dex on raw SPARC.
-\item \textbf{Solar System.} The stiff medium cannot bend on scales below $\sim2$\,pc, so the Sun is screened even inside the Galaxy's field. Cassini's quadrupole comes out at $\le3.5\times10^{-6}$ of the 2026 bound [4], even though the Galactic boost at the Sun is kept at 35--57\%. The only residue is a uniform sunward pull $GM_\odot/L_*^2\le4.2\times10^{-15}$\,m\,s$^{-2}$. Wide binaries come out Newtonian ($-0.8\sigma$ against Gaia DR3); cluster satellites keep their boost.
-\item \textbf{Large scales.} Two rules (each halo tethers only its own supply, and only condensed baryons source the tether) make the framework's own simulations consistent with raw KiDS-1000 cosmic shear: $\Delta\chi^2=+2.03$ against a same-pipeline control.
+\item \textbf{Solar System.} The stiff medium cannot bend on scales below $L_*$, so the Sun is screened even inside the Galaxy's field. Cassini's quadrupole comes out at $\le3.5\times10^{-6}$ of the 2026 bound [4] at $L_*=5.75$\,pc, even though the Galactic boost at the Sun is kept at 35--57\%; it scales as $L_*^{-3}$, so it is $\le5\times10^{-8}$ of the bound at 24\,pc. The only residue is a uniform sunward pull $GM_\odot/L_*^2\le2.4\times10^{-16}$\,m\,s$^{-2}$. Wide binaries come out Newtonian ($-0.8\sigma$ against Gaia DR3); any boost is at most $\tfrac12(s/L_*)^2$, $\le5\times10^{-5}$ at 50\,kAU. Dwarf satellites much larger than $L_*$ keep their boost.
+\item \textbf{Large scales.} Each system draws cold energy from its catchment, the baryons inside its turnaround radius, and only condensed baryons source the tether. With these rules the framework's own $1024^3$ simulations are consistent with raw KiDS-1000 cosmic shear on both footings: $\Delta\chi^2=-7.70$ (canonical) and $-7.18$ (alternative) against a same-pipeline control, with initial conditions inherited from a standard fit. Rerun with the framework's own initial conditions, the canonical footing still passes ($\Delta\chi^2=-10.08$). The alternative-footing rerun is queued, so that footing's pass remains conditional. The earlier rule, that each halo settles only its own supply, is excluded by KiDS-1000 lensing of isolated galaxies ($\Delta\chi^2=+197$ within 0.31\,Mpc).
 \item \textbf{Mergers.} At collision speeds the tether cannot follow, so cold energy is collisionless. This is consistent with the Bullet Cluster.
-\item \textbf{Hot-gas systems (prediction).} Groups and clusters are dominated by hot, pressure-supported gas. We predict that much of their cold energy stays \emph{untethered}: collisionless and concentrated in the core. This is a candidate for the extra core mass seen in cluster lensing ($\times1.8$ inside $\sim$1\,Mpc, $7\sigma$). A frozen test is queued.
+\item \textbf{Hot-gas systems (prediction).} Groups and clusters are dominated by hot, pressure-supported gas. We predict that much of their cold energy stays \emph{untethered}: collisionless and concentrated in the core. This is a candidate for the extra core mass seen in cluster lensing ($\times1.8$ inside $\sim$1\,Mpc, $7\sigma$). Tested since: freeing the cold share of the gas a system has expelled lowers the eRASS1 core excess from $\times1.85$ to $\times1.1$--$1.2$, but on the full 318 clusters the middle-mass third is still short by $\times1.5$--$1.6$ ($Z=+4.0$ to $+4.6$). That test fails.
 \end{itemize}
 
 \paragraph{What is not yet derived.}
@@ -53,13 +54,13 @@ This is the ``simple'' interpolating function [1]: $g\to\sqrt{a_0g_N}$ for $g_N\
 \item The energy-export channel and the frame anchor.
 \item The origin of the medium's mass, possibly set by $\rho_{\rm DE}$.
 \item The relativistic completion, needed so that lensing is predicted rather than assumed.
-\item $\kappa$ is fitted, $L_*$ is only bounded, $\Omega_c/\Omega_b$ is measured, and massive early-type galaxies still show unexplained core mass.
+\item $\kappa$ is fitted, $L_*$ is only bounded, $\Omega_c/\Omega_b$ is measured, and massive early-type galaxies still show unexplained core mass. Faint pressure-supported dwarfs sit about $+0.4$\,dex above the law below $g_{\rm bar}=10^{-12}$\,m\,s$^{-2}$ (PAPER55). The theory is not closed.
 \end{itemize}
 
-\paragraph{Sealed predictions that can kill it.} (i) A Cavendish experiment whose source acceleration is changed $\times4$ must see $|\Delta G/G|<10^{-6}$; MOND-boosted lab models predict $\sim3\times10^{-4}$. (ii) A probe beyond 1000\,AU must see no non-thermal anomaly $\ge10^{-13}$\,m\,s$^{-2}$. (iii) A Sun--Earth saddle-point flyby sees nothing. (iv) Gaia DR4 wide binaries are Newtonian.
+\paragraph{Sealed predictions that can kill it.} (i) A Cavendish experiment whose source acceleration is changed $\times4$ must see $|\Delta G/G|<10^{-6}$; MOND-boosted lab models predict $\sim3\times10^{-4}$. (ii) A probe beyond 1000\,AU must see no non-thermal anomaly $\ge10^{-13}$\,m\,s$^{-2}$. (iii) A Sun--Earth saddle-point flyby sees nothing. (iv) Gaia DR4 wide binaries are Newtonian, with any boost at most $\tfrac12(s/L_*)^2$.
 
-\paragraph{What is new here.} The interpolating function [1] and the polarization picture [2,3] are not new. New are: the scale is tied to dark energy, so $a_0$ is flat in redshift if $\rho_{\rm DE}$ is constant (testable with ALMA, Nov 2026); the medium-is-the-polarization identification, which makes the law the tether's unique rest state; EFE-blindness from free-fall basins (Gaia DR4, Dec 2026); and the condensed-only, own-supply settling that passes raw cosmic shear.
+\paragraph{What is new here.} The interpolating function [1] and the polarization picture [2,3] are not new. New are: the scale is tied to dark energy, so $a_0$ is flat in redshift if $\rho_{\rm DE}$ is constant (testable with ALMA, Nov 2026); the medium-is-the-polarization identification, which makes the law the tether's unique rest state; EFE-blindness from free-fall basins (Gaia DR4, Dec 2026); and condensed-only, catchment-supplied settling that is consistent with raw cosmic shear on both footings (conditional, as stated above).
 
 \vspace{4pt}\hrule\vspace{3pt}
-{\footnotesize [1] B.~Famaey \& J.~Binney, MNRAS 363, 603 (2005). [2] L.~Blanchet, Class.\ Quantum Grav.\ 24, 3529 (2007); L.~Blanchet \& A.~Le~Tiec, Phys.\ Rev.\ D 78, 024031 (2008). [3] L.~Berezhiani \& J.~Khoury, Phys.\ Rev.\ D 92, 103510 (2015). [4] R.~S.~Park et al., arXiv:2602.17884 (2026). Companion notes: PAPER47 (doi:10.5281/zenodo.23354043), PAPER48 (doi:10.5281/zenodo.23372002). AI assistance: Anthropic's Claude, with review by parallel AI sessions.}
+{\footnotesize [1] B.~Famaey \& J.~Binney, MNRAS 363, 603 (2005). [2] L.~Blanchet, Class.\ Quantum Grav.\ 24, 3529 (2007); L.~Blanchet \& A.~Le~Tiec, Phys.\ Rev.\ D 78, 024031 (2008). [3] L.~Berezhiani \& J.~Khoury, Phys.\ Rev.\ D 92, 103510 (2015). [4] R.~S.~Park et al., arXiv:2602.17884 (2026). Companion notes: PAPER47 (doi:10.5281/zenodo.23354043), PAPER48 (doi:10.5281/zenodo.23372002), PAPER55 (doi:10.5281/zenodo.23482936). AI assistance: Anthropic's Claude, with review by parallel AI sessions.}
 \end{document}
