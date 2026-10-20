@@ -1,0 +1,169 @@
+CFG920  D-i post-formation baryon loss vs the dwarfs' own chemistry (homogeneous leaky box)
+        kappa = 1/2 FITTED; footings never pooled; raw data + framework-native only; not theory closed
+
+K TESTS
+  K1     PASS  CFG827 E_SFH max|dE| 0.0e+00 over 36 rows; alt rho +0.078883 vs +0.078883; CFG915 loss factor median 4.324714 (stored 4.324714), p16 1.184758, p84 17.7686, n_le1 3, N 28
+  K2     PASS  CFG852 primary N 22 slope 0.507934 rho -0.107849 (stored 0.507934 / -0.107849); secondary N 67 slope 0.344138 rho -0.023505 (stored 0.344138 / -0.023505)
+  K3     PASS  CFG317 EST reproduced for 318 object-yield entries: max rel d(eta) 1.2e-13, max |d log R_ind| 4.1e-14
+  K4     PASS  zeta>1 closed form vs ODE max rel 1.8e-13; zeta=1 quadrature mean ln Z vs closed form 6.2e-15; W2 eta=0 endpoint vs closed-box truncation 1.3e-15
+  impl.  (not frozen) Gauss-quadrature Phi vs adaptive quad max abs 1.1e-05; zeta = 1 family min vs W2 rel 0.0e+00
+
+SAMPLE: CFG827 out-of-sample N 28; tested (LVD [Fe/H]) 20; NOT TESTED (no LVD metallicity): Andromeda XIII, Andromeda XI, Andromeda VI, LGS 3, NGC 185, NGC 147, NGC 205, M 32
+  corners: yield log y in {-0.5, -0.2, +0.1} x form {W1 continuous wind, W2 + terminal strip (gas-free only; W2 = W1 if gas-bearing)}
+  allowed set per corner: [L_min, inf) (unseen unprocessed loss only raises L).  graded class at 1 sigma (E and [Fe/H]).
+
+  dwarf             gas [Fe/H]     s  E_can  L_req can/alt | L_min W2/W1 @-0.5   @-0.2   @+0.1  | graded can / alt          | central can
+  Andromeda VII     no   -1.37  0.10 +0.132   1.70/  1.42 |   2.99/  4.16    5.70/  8.30   11.11/ 16.57 | UNDERDETERMINED / UNDERDETERMINED | CONTRADICTED
+  Hercules          no   -2.64  0.11 +0.023   1.09/  0.91 |  51.03/ 77.50  101.57/154.64  202.41/308.54 | CONTRADICTED    / CONTRADICTED    | CONTRADICTED
+  Leo IV            no   -2.56  0.13 +0.604  11.19/  9.28 |  42.49/ 64.46   84.53/128.62  168.40/256.64 | UNDERDETERMINED / CONTRADICTED    | CONTRADICTED
+  Canes Venatici II no   -2.85  0.13 +1.029  61.41/ 51.04 |  82.61/125.70  164.58/250.79  328.12/500.40 | UNDERDETERMINED / UNDERDETERMINED | CONTRADICTED
+  Andromeda V       no   -1.84  0.10 +0.793  23.86/ 19.85 |   8.30/ 12.28   16.31/ 24.51   32.29/ 48.90 | UNDERDETERMINED / UNDERDETERMINED | UNDERDETERMINED
+  Andromeda I       no   -1.51  0.10 +0.298   3.29/  2.74 |   4.03/  5.75    7.77/ 11.46   15.24/ 22.87 | UNDERDETERMINED / UNDERDETERMINED | CONTRADICTED
+  Tucana            no   -1.58  0.22 +0.194   2.17/  1.81 |   4.68/  6.75    9.08/ 13.47   17.86/ 26.87 | UNDERDETERMINED / UNDERDETERMINED | CONTRADICTED
+  Andromeda II      no   -1.47  0.10 -0.045   0.84/  0.70 |   3.70/  5.24    7.11/ 10.45   13.92/ 20.86 | CONTRADICTED    / CONTRADICTED    | CONTRADICTED
+  Andromeda III     no   -1.75  0.10 +0.625  12.20/ 10.16 |   6.80/  9.98   13.31/ 19.92   26.30/ 39.75 | UNDERDETERMINED / UNDERDETERMINED | UNDERDETERMINED
+  Cetus             no   -1.74  0.12 +0.147   1.80/  1.50 |   6.65/  9.76   13.01/ 19.47   25.70/ 38.84 | CONTRADICTED    / CONTRADICTED    | CONTRADICTED
+  Sagittarius       no   -0.53  0.10 +0.001   1.00/  0.83 |   1.00/  1.00    1.10/  1.20    1.85/  2.40 | UNDERDETERMINED / UNDERDETERMINED | UNDERDETERMINED
+  Aquarius          yes  -1.44  0.13 +0.302   3.34/  2.78 |   1.00/  1.00    1.87/  1.87    4.13/  4.13 | UNDERDETERMINED / UNDERDETERMINED | UNDERDETERMINED
+  Phoenix           yes  -1.49  0.11 +0.617  11.80/  9.83 |   4.46/  4.46    9.06/  9.06   18.24/ 18.24 | UNDERDETERMINED / UNDERDETERMINED | UNDERDETERMINED
+  Pegasus dIrr      yes  -1.39  0.10 +0.496   7.28/  6.06 |   1.21/  1.21    2.73/  2.73    5.83/  5.83 | UNDERDETERMINED / UNDERDETERMINED | COMPATIBLE
+  IC 1613           yes  -1.19  0.10 -0.317   0.28/  0.23 |   1.00/  1.00    1.97/  1.97    4.26/  4.26 | CONTRADICTED    / CONTRADICTED    | CONTRADICTED
+  Leo T             yes  -1.74  0.11 +0.678  15.06/ 12.51 |   1.35/  1.35    3.07/  3.07    6.61/  6.61 | UNDERDETERMINED / UNDERDETERMINED | COMPATIBLE
+  NGC 6822          yes  -1.05  0.10 +0.364   4.28/  3.58 |   1.00/  1.00    1.00/  1.00    1.49/  1.49 | COMPATIBLE      / UNDERDETERMINED | COMPATIBLE
+  Sagittarius dIrr  yes  -1.85  0.12 +0.368   4.37/  3.65 |   1.21/  1.21    2.80/  2.80    6.08/  6.08 | UNDERDETERMINED / UNDERDETERMINED | UNDERDETERMINED
+  WLM               yes  -1.28  0.10 +0.415   5.26/  4.40 |   1.00/  1.00    1.00/  1.00    2.14/  2.14 | UNDERDETERMINED / UNDERDETERMINED | COMPATIBLE
+  Leo A             yes  -1.60  0.10 +0.302   3.35/  2.79 |   1.00/  1.00    1.62/  1.62    3.64/  3.64 | UNDERDETERMINED / UNDERDETERMINED | UNDERDETERMINED
+
+  chemistry under-produces [Fe/H] at some corner (eta = 0, L_min = 1, pre-enrichment needed): ['Aquarius', 'IC 1613', 'Leo A', 'NGC 6822', 'Sagittarius', 'WLM']
+  W2 minimum at the eta = 0 endpoint (pure closed box + strip) in 32 of 32 feasible gas-free dwarf-yield cases (1 under-produce)
+
+[canonical] per-dwarf graded: COMPATIBLE 1, UNDERDETERMINED 15, CONTRADICTED 4  (central values: 4 / 7 / 9)
+     COMPATIBLE: NGC 6822
+     CONTRADICTED: Hercules, Andromeda II, Cetus, IC 1613
+     sample median: M_req 3.81 over the tested 20 (CFG915 headline, all 28: 4.32)
+       corner -0.5|W1  : median L_min    4.31; ratio 0.885 [16-84% 0.623-3.142]; median per-dwarf ratio 1.113; headline/M_k 1.003
+       corner -0.5|W2  : median L_min    3.34; ratio 1.141 [16-84% 0.831-3.144]; median per-dwarf ratio 1.399; headline/M_k 1.293
+       corner -0.2|W1  : median L_min    8.68; ratio 0.439 [16-84% 0.311-1.395]; median per-dwarf ratio 0.724; headline/M_k 0.498
+       corner -0.2|W2  : median L_min    6.40; ratio 0.596 [16-84% 0.430-1.408]; median per-dwarf ratio 0.913; headline/M_k 0.675
+       corner +0.1|W1  : median L_min   17.41; ratio 0.219 [16-84% 0.156-0.647]; median per-dwarf ratio 0.363; headline/M_k 0.248
+       corner +0.1|W2  : median L_min   12.52; ratio 0.305 [16-84% 0.218-0.660]; median per-dwarf ratio 0.504; headline/M_k 0.346
+     SAMPLE-MEDIAN CLASS [canonical]: UNDERDETERMINED
+
+[alt] per-dwarf graded: COMPATIBLE 0, UNDERDETERMINED 15, CONTRADICTED 5  (central values: 4 / 6 / 10)
+     COMPATIBLE: -
+     CONTRADICTED: Hercules, Leo IV, Andromeda II, Cetus, IC 1613
+     sample median: M_req 3.18 over the tested 20 (CFG915 headline, all 28: 3.62)
+       corner -0.5|W1  : median L_min    4.31; ratio 0.738 [16-84% 0.521-2.623]; median per-dwarf ratio 0.926; headline/M_k 0.838
+       corner -0.5|W2  : median L_min    3.34; ratio 0.953 [16-84% 0.692-2.625]; median per-dwarf ratio 1.165; headline/M_k 1.081
+       corner -0.2|W1  : median L_min    8.68; ratio 0.367 [16-84% 0.260-1.165]; median per-dwarf ratio 0.603; headline/M_k 0.417
+       corner -0.2|W2  : median L_min    6.40; ratio 0.497 [16-84% 0.358-1.178]; median per-dwarf ratio 0.760; headline/M_k 0.565
+       corner +0.1|W1  : median L_min   17.41; ratio 0.183 [16-84% 0.130-0.539]; median per-dwarf ratio 0.302; headline/M_k 0.208
+       corner +0.1|W2  : median L_min   12.52; ratio 0.254 [16-84% 0.182-0.552]; median per-dwarf ratio 0.419; headline/M_k 0.289
+     SAMPLE-MEDIAN CLASS [alt]: UNDERDETERMINED
+
+OVERALL CFG920 CLASS (sample median, both footings): UNDERDETERMINED
+
+DIAGNOSTICS (reported): E_pred = ln(L_min)/4 at (-0.5, W2) and (-0.2, W1) vs E_obs; unseen-loss factor L_req / L_W1(-0.2)
+  Andromeda VII     E_obs +0.132 (alt +0.088, sE 0.189)  E_pred +0.274 / +0.529  unseen x0.20
+  Hercules          E_obs +0.023 (alt -0.024, sE 0.321)  E_pred +0.983 / +1.260  unseen x0.01
+  Leo IV            E_obs +0.604 (alt +0.557, sE 0.265)  E_pred +0.937 / +1.214  unseen x0.09
+  Canes Venatici II E_obs +1.029 (alt +0.983, sE 0.251)  E_pred +1.104 / +1.381  unseen x0.24
+  Andromeda V       E_obs +0.793 (alt +0.747, sE 0.202)  E_pred +0.529 / +0.800  unseen x0.97
+  Andromeda I       E_obs +0.298 (alt +0.252, sE 0.254)  E_pred +0.348 / +0.610  unseen x0.29
+  Tucana            E_obs +0.194 (alt +0.148, sE 0.272)  E_pred +0.386 / +0.650  unseen x0.16
+  Andromeda II      E_obs -0.045 (alt -0.091, sE 0.223)  E_pred +0.327 / +0.587  unseen x0.08
+  Andromeda III     E_obs +0.625 (alt +0.580, sE 0.229)  E_pred +0.479 / +0.748  unseen x0.61
+  Cetus             E_obs +0.147 (alt +0.101, sE 0.211)  E_pred +0.474 / +0.742  unseen x0.09
+  Sagittarius       E_obs +0.001 (alt -0.045, sE 0.183)  E_pred +0.000 / +0.046  unseen x0.84
+  Aquarius          E_obs +0.302 (alt +0.256, sE 0.223)  E_pred +0.000 / +0.157  unseen x1.78
+  Phoenix           E_obs +0.617 (alt +0.571, sE 0.188)  E_pred +0.374 / +0.551  unseen x1.30
+  Pegasus dIrr      E_obs +0.496 (alt +0.450, sE 0.194)  E_pred +0.048 / +0.251  unseen x2.67
+  IC 1613           E_obs -0.317 (alt -0.362, sE 0.192)  E_pred +0.000 / +0.169  unseen x0.14
+  Leo T             E_obs +0.678 (alt +0.632, sE 0.224)  E_pred +0.075 / +0.280  unseen x4.90
+  NGC 6822          E_obs +0.364 (alt +0.319, sE 0.180)  E_pred +0.000 / +0.000  unseen x4.28
+  Sagittarius dIrr  E_obs +0.368 (alt +0.324, sE 0.209)  E_pred +0.049 / +0.257  unseen x1.56
+  WLM               E_obs +0.415 (alt +0.371, sE 0.207)  E_pred +0.000 / +0.000  unseen x5.26
+  Leo A             E_obs +0.302 (alt +0.256, sE 0.185)  E_pred +0.000 / +0.120  unseen x2.07
+  [post-hoc summary, canonical] gas-free N 11: graded {'COMPATIBLE': 0, 'UNDERDETERMINED': 8, 'CONTRADICTED': 3}; E_pred > E_obs (D-i over-predicts) at (-0.5,W2) 8, at (-0.2,W1) 11; L_req 0.84-61.41; L_min(-0.5,W2) 1.00-82.61; L_min(-0.2,W2) 1.10-164.58
+  [post-hoc summary, canonical] gas-bearing N 9: graded {'COMPATIBLE': 1, 'UNDERDETERMINED': 7, 'CONTRADICTED': 1}; E_pred > E_obs (D-i over-predicts) at (-0.5,W2) 1, at (-0.2,W1) 1; L_req 0.28-15.06; L_min(-0.5,W2) 1.00-4.46; L_min(-0.2,W2) 1.00-9.06
+  [post-hoc summary, alt] gas-free N 11: graded {'COMPATIBLE': 0, 'UNDERDETERMINED': 7, 'CONTRADICTED': 4}; E_pred > E_obs (D-i over-predicts) at (-0.5,W2) 9, at (-0.2,W1) 11; L_req 0.70-51.04; L_min(-0.5,W2) 1.00-82.61; L_min(-0.2,W2) 1.10-164.58
+  [post-hoc summary, alt] gas-bearing N 9: graded {'COMPATIBLE': 0, 'UNDERDETERMINED': 8, 'CONTRADICTED': 1}; E_pred > E_obs (D-i over-predicts) at (-0.5,W2) 1, at (-0.2,W1) 1; L_req 0.23-12.51; L_min(-0.5,W2) 1.00-4.46; L_min(-0.2,W2) 1.00-9.06
+
+TIMING MAP (central values; binding after a fraction F of the star formation; Weisz+14 clock, onset 13.3 Gyr)
+  dwarf              tau50  tau90 | yield -0.5: F_need  t_need  reading     | yield -0.2: F_need  t_need  reading   [canonical; alt]
+  Andromeda VII      12.59  12.59 |  0.779  12.73  LATE        |  0.904  12.64  LATE       [alt: LATE / LATE]
+  Hercules           12.59  12.59 |  0.999   0.64  LATE        |  0.999   0.64  LATE       [alt: NONE / NONE]
+  Leo IV             12.35  11.25 |  0.839  11.41  LATE        |  0.920   5.49  LATE       [alt: LATE / LATE]
+  Canes Venatici II  10.56   8.27 |  0.514  10.52  LATE        |  0.758   8.80  LATE       [alt: LATE / LATE]
+  Andromeda V        10.86   7.33 |  0.000  13.30  AT FORMATION  |  0.000  13.30  AT FORMATION [alt: AT FORMATION / AT FORMATION]
+  Andromeda I        10.00   7.12 |  0.516   8.40  LATE        |  0.781   7.38  LATE       [alt: LATE / LATE]
+  Tucana             10.55   6.47 |  0.797   6.65  LATE        |  0.906   6.46  LATE       [alt: LATE / LATE]
+  Andromeda II        9.88   5.62 |      -      -  NONE        |      -      -  NONE       [alt: NONE / NONE]
+  Andromeda III      10.47   5.13 |  0.000  13.30  AT FORMATION  |  0.391  10.78  EARLY      [alt: AT FORMATION / LATE]
+  Cetus              12.59   4.69 |  0.909   4.62  LATE        |  0.957   2.39  LATE       [alt: LATE / LATE]
+  Sagittarius         5.62   3.40 |  0.000  13.30  AT FORMATION  |  0.986   3.19  LATE       [alt: NONE / NONE]
+  Aquarius           12.59   3.16 |  0.000  13.30  AT FORMATION  |  0.000  13.30  AT FORMATION [alt: AT FORMATION / AT FORMATION]
+  Phoenix            10.59   2.61 |  0.000  13.30  AT FORMATION  |  0.000  13.30  AT FORMATION [alt: AT FORMATION / AT FORMATION]
+  Pegasus dIrr       12.59   1.66 |  0.000  13.30  AT FORMATION  |  0.000  13.30  AT FORMATION [alt: AT FORMATION / AT FORMATION]
+  IC 1613             6.35   1.58 |      -      -  NONE        |      -      -  NONE       [alt: NONE / NONE]
+  Leo T               7.52   1.58 |  0.000  13.30  AT FORMATION  |  0.000  13.30  AT FORMATION [alt: AT FORMATION / AT FORMATION]
+  NGC 6822            4.11   1.00 |  0.000  13.30  AT FORMATION  |  0.000  13.30  AT FORMATION [alt: AT FORMATION / AT FORMATION]
+  Sagittarius dIrr    6.56   0.71 |  0.000  13.30  AT FORMATION  |  0.000  13.30  AT FORMATION [alt: AT FORMATION / AT FORMATION]
+  WLM                 2.22   0.71 |  0.000  13.30  AT FORMATION  |  0.000  13.30  AT FORMATION [alt: AT FORMATION / AT FORMATION]
+  Leo A               3.16   0.53 |  0.000  13.30  AT FORMATION  |  0.000  13.30  AT FORMATION [alt: AT FORMATION / AT FORMATION]
+  [canonical] readings at yield -0.5: {'AT FORMATION': 11, 'EARLY': 0, 'LATE': 7, 'NONE': 2}; at -0.2: {'AT FORMATION': 9, 'EARLY': 1, 'LATE': 8, 'NONE': 2}
+  [alt] readings at yield -0.5: {'AT FORMATION': 10, 'EARLY': 0, 'LATE': 6, 'NONE': 4}; at -0.2: {'AT FORMATION': 9, 'EARLY': 0, 'LATE': 7, 'NONE': 4}
+
+METAL-ENHANCED-WIND PRICE (reported escape, no class weight): zeta_need at yield -0.5 for the central L_req
+  Andromeda VII     zeta_need canonical     7.52   alt    12.96
+  Hercules          zeta_need canonical   > 1000   alt none (L_req <= 1)
+  Leo IV            zeta_need canonical    10.44   alt    13.00
+  Canes Venatici II zeta_need canonical     2.98   alt     3.75
+  Andromeda V       zeta_need canonical     1.00   alt     1.00
+  Andromeda I       zeta_need canonical     3.01   alt     4.22
+  Tucana            zeta_need canonical     8.18   alt    12.11
+  Andromeda II      zeta_need canonical none (L_req <= 1)   alt none (L_req <= 1)
+  Andromeda III     zeta_need canonical     1.00   alt     1.00
+  Cetus             zeta_need canonical    19.03   alt    30.97
+  Sagittarius       zeta_need canonical     1.00   alt none (L_req <= 1)
+  Aquarius          zeta_need canonical     1.00   alt     1.00
+  Phoenix           zeta_need canonical     1.00   alt     1.00
+  Pegasus dIrr      zeta_need canonical     1.00   alt     1.00
+  IC 1613           zeta_need canonical none (L_req <= 1)   alt none (L_req <= 1)
+  Leo T             zeta_need canonical     1.00   alt     1.00
+  NGC 6822          zeta_need canonical     1.00   alt     1.00
+  Sagittarius dIrr  zeta_need canonical     1.00   alt     1.00
+  WLM               zeta_need canonical     1.00   alt     1.00
+  Leo A             zeta_need canonical     1.00   alt     1.00
+  [canonical] zeta_need = 1 (held by the homogeneous box at -0.5): 11; > 1000: 1; none (L_req <= 1): 2; median zeta_need 1.00 (> 1000 / none counted as infinite)
+  [alt] zeta_need = 1 (held by the homogeneous box at -0.5): 10; > 1000: 0; none (L_req <= 1): 4; median zeta_need 2.38 (> 1000 / none counted as infinite)
+
+VARIANTS (reported, not graded)
+  V-NOUNSEEN [canonical]: L_req > L_W1(+0.1) (needs unseen loss even at the most generous chemistry): central 4 ['Pegasus dIrr', 'Leo T', 'NGC 6822', 'WLM']; at 1 sigma 1 ['NGC 6822']
+  V-NOUNSEEN [alt]: L_req > L_W1(+0.1) (needs unseen loss even at the most generous chemistry): central 4 ['Pegasus dIrr', 'Leo T', 'NGC 6822', 'WLM']; at 1 sigma 0 []
+  V-2sigma [canonical]: COMPATIBLE 0, UNDERDETERMINED 19, CONTRADICTED 1 ['Hercules']
+  V-2sigma [alt]: COMPATIBLE 0, UNDERDETERMINED 19, CONTRADICTED 1 ['Hercules']
+  V-GAS Aquarius          E +0.302 -> -0.071; L_req 3.34 -> 0.75; graded UNDERDETERMINED -> UNDERDETERMINED (alt -> UNDERDETERMINED)
+  V-GAS Phoenix           E +0.617 -> +0.573; L_req 11.80 -> 9.90; graded UNDERDETERMINED -> UNDERDETERMINED (alt -> UNDERDETERMINED)
+  V-GAS Pegasus dIrr      E +0.496 -> +0.236; L_req 7.28 -> 2.58; graded UNDERDETERMINED -> UNDERDETERMINED (alt -> UNDERDETERMINED)
+  V-GAS IC 1613           E -0.317 -> -0.541; L_req 0.28 -> 0.12; graded CONTRADICTED -> CONTRADICTED (alt -> CONTRADICTED)
+  V-GAS Leo T             E +0.678 -> +0.246; L_req 15.06 -> 2.68; graded UNDERDETERMINED -> UNDERDETERMINED (alt -> UNDERDETERMINED)
+  V-GAS NGC 6822          E +0.364 -> -0.013; L_req 4.28 -> 0.95; graded COMPATIBLE -> UNDERDETERMINED (alt -> UNDERDETERMINED)
+  V-GAS Sagittarius dIrr  E +0.368 -> -0.179; L_req 4.37 -> 0.49; graded UNDERDETERMINED -> UNDERDETERMINED (alt -> CONTRADICTED)
+  V-GAS WLM               E +0.415 -> -0.025; L_req 5.26 -> 0.90; graded UNDERDETERMINED -> UNDERDETERMINED (alt -> UNDERDETERMINED)
+  V-GAS Leo A             E +0.302 -> -0.200; L_req 3.35 -> 0.45; graded UNDERDETERMINED -> CONTRADICTED (alt -> CONTRADICTED)
+  V-COL Andromeda XIII    [Fe/H] -1.70 (Collins+13); L_req 19.38; L_min(-0.5,W2) 6.09; graded UNDERDETERMINED / alt UNDERDETERMINED
+  V-COL Andromeda XI      [Fe/H] -1.80 (Collins+13); L_req 88.56; L_min(-0.5,W2) 7.60; graded UNDERDETERMINED / alt UNDERDETERMINED
+  V-COL Andromeda VI      [Fe/H] -1.50 (Collins+13); L_req 9.58; L_min(-0.5,W2) 3.94; graded UNDERDETERMINED / alt UNDERDETERMINED
+  V-COL [canonical] sample median over 23: UNDERDETERMINED (most favourable corner -0.5|W2 ratio 1.108, p84 2.642)
+  V-COL [alt] sample median over 23: UNDERDETERMINED (most favourable corner -0.5|W2 ratio 0.927, p84 2.202)
+  V-TR  Sculptor          [Fe/H] -1.73; E +0.237; L_req 2.58; L_min(-0.5,W2) 6.50, (+0.1,W1) 37.96; graded UNDERDETERMINED / alt CONTRADICTED
+  V-TR  Draco             [Fe/H] -2.20; E +0.741; L_req 19.37; L_min(-0.5,W2) 18.69, (+0.1,W1) 112.03; graded UNDERDETERMINED / alt UNDERDETERMINED
+  V-TR  Ursa Minor        [Fe/H] -2.23; E +0.699; L_req 16.37; L_min(-0.5,W2) 20.01, (+0.1,W1) 120.04; graded UNDERDETERMINED / alt UNDERDETERMINED
+  V-TR  Canes Venatici I  [Fe/H] -2.34; E +0.567; L_req 9.64; L_min(-0.5,W2) 25.70, (+0.1,W1) 154.64; graded CONTRADICTED / alt CONTRADICTED
+  V-TR  Leo II            [Fe/H] -1.97; E +0.415; L_req 5.27; L_min(-0.5,W2) 11.11, (+0.1,W1) 65.97; graded UNDERDETERMINED / alt UNDERDETERMINED
+  V-TR  Carina            [Fe/H] -1.80; E +0.401; L_req 4.97; L_min(-0.5,W2) 7.60, (+0.1,W1) 44.60; graded UNDERDETERMINED / alt UNDERDETERMINED
+  V-TR  Fornax            [Fe/H] -1.07; E +0.080; L_req 1.38; L_min(-0.5,W2) 1.65, (+0.1,W1) 8.30; graded UNDERDETERMINED / alt UNDERDETERMINED
+  V-TR  Leo I             [Fe/H] -1.58; E +0.225; L_req 2.46; L_min(-0.5,W2) 4.68, (+0.1,W1) 26.87; graded UNDERDETERMINED / alt UNDERDETERMINED
+
+K: 4/4 PASS
