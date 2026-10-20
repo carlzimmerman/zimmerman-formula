@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CFG903 stage A (criteria FROZEN_CRITERIA.md, bb665cf4f): isolation rebuild (I0 I1 I2 I5), lens table, neighbour pool,
+"""CFG903 stage A (criteria FROZEN_CRITERIA.md, bb665cf4f; completeness per AMENDMENT_A1.md, 26ecb00ce): isolation rebuild (I0 I1 I2 I5), lens table, neighbour pool,
 random clones (mask-emulated), B21-like lens weights, completeness factors, jackknife patches.  No lensing statistic here.
 Output (git-ignored, large): ../../../_external_data/cfg903_work/cfg903_stage.npz ; log cfg903_stage.out ; cfg903_stage_results.json
 Run: OMP_NUM_THREADS=1 nice -n 10 python3 -u cfg903_stage.py
@@ -178,38 +178,67 @@ WB = np.interp(lens["z"], ZLG, WZ); WB /= WB[lens["I0"]].mean()
 lens["W_B21"] = WB
 P(f"B21-like weights: W(z) at z 0.15/0.25/0.35/0.45 = " + " / ".join(f"{np.interp(q, ZLG, WZ) / np.interp(0.25, ZLG, WZ):.3f}" for q in (0.15, 0.25, 0.35, 0.45)) + " (relative to z 0.25)")
 
-# ================================================================ completeness factors (criteria C1, C2)
+# ================================================================ completeness (AMENDMENT A1: complete-slab mass function; C1' faint-end up-weighting, C2' whole-sum)
 unm = NB["masked"] == 0
 Z0 = np.round(np.arange(0.05, 0.6001, 0.01), 2)
-mlim = np.array([np.percentile(NB["logMs"][unm & (np.abs(NB["z"] - z0) < 0.01)], 5) for z0 in Z0])
+mlim = np.array([np.percentile(NB["logMs"][unm & (np.abs(NB["z"] - z0) < 0.01)], 5) for z0 in Z0])   # frozen m_lim definition
 Nv = np.vectorize(L.N_of_declared)
-def Rc_table(zlo, zhi, zref):
-    msl = unm & (NB["z"] >= zlo) & (NB["z"] < zhi)
-    ls, lb = NB["logMs"][msl], NB["logMb"][msl]
-    Mt = 10 ** lb * (1 + L.SUP * Nv(lb))
-    mref = float(np.interp(zref, Z0, mlim))
-    S = lambda m: float(Mt[ls >= m].sum())
-    return mref, np.array([S(mref) / S(max(mref, m)) if S(max(mref, m)) > 0 else np.nan for m in mlim]), int(msl.sum())
-m1, RC1, n1 = Rc_table(0.10, 0.12, 0.11)
-m2, RC2, n2 = Rc_table(0.06, 0.08, 0.07)
-lens["Rc1"] = np.interp(lens["z"], Z0, RC1); lens["Rc2"] = np.interp(lens["z"], Z0, RC2)
-check("K0e completeness factors finite for every lens", bool(np.all(np.isfinite(lens["Rc1"])) and np.all(np.isfinite(lens["Rc2"]))),
-      f"R_c1 range {np.nanmin(lens['Rc1']):.3f}-{np.nanmax(lens['Rc1']):.3f}, R_c2 range {np.nanmin(lens['Rc2']):.3f}-{np.nanmax(lens['Rc2']):.3f}")
-P(f"completeness: m_lim(z) 0.10/0.20/0.30/0.40/0.50 = " + " / ".join(f"{np.interp(q, Z0, mlim):.2f}" for q in (0.1, 0.2, 0.3, 0.4, 0.5)))
-P(f"  C1 slice 0.10-0.12 ({n1:,} gal, m1 {m1:.2f}): R_c1 at z 0.2/0.3/0.4/0.5 = " + " / ".join(f"{np.interp(q, Z0, RC1):.3f}" for q in (0.2, 0.3, 0.4, 0.5)))
-P(f"  C2 slice 0.06-0.08 ({n2:,} gal, m2 {m2:.2f}): R_c2 at z 0.2/0.3/0.4/0.5 = " + " / ".join(f"{np.interp(q, Z0, RC2):.3f}" for q in (0.2, 0.3, 0.4, 0.5)))
+ZS = Z0[(Z0 >= 0.10 - 1e-9) & (Z0 <= 0.50 + 1e-9)]; MS = np.interp(ZS, Z0, mlim)
+ME = np.round(np.arange(8.5, 12.0001, 0.1), 1)                    # 0.1-dex log M* bins 8.5-12.0
+sl = unm & (NB["z"] >= 0.10) & (NB["z"] < 0.50) & (NB["logMs"] >= 8.5) & (NB["logMs"] < 12.0)
+lsS, lbS, zS_ = NB["logMs"][sl], NB["logMb"][sl], NB["z"][sl]
+MtS = 10 ** lbS * (1 + L.SUP * Nv(lbS))
+chi10 = float(L.DC(np.array([0.10, 0.50]))[0])
+zc_lit, zc_run, rho = [], [], []
+for lo in ME[:-1]:
+    ok = MS <= lo + 1e-9
+    zc_l = float(ZS[ok].max()) if ok.any() else 0.0                  # amendment's literal: largest z with m_lim(z) <= m
+    run = 0
+    while run < len(ZS) and MS[run] <= lo + 1e-9: run += 1
+    zc_r = float(ZS[run - 1]) if run > 0 else 0.0                   # contiguous from 0.10 (reported)
+    zc_lit.append(zc_l); zc_run.append(zc_r)
+    if zc_l < 0.12:
+        rho.append(np.nan); continue
+    m = (lsS >= lo) & (lsS < lo + 0.1) & (zS_ >= 0.10) & (zS_ < zc_l)
+    chic = float(L.DC(np.array([zc_l, 0.50]))[0])
+    rho.append(float(MtS[m].sum()) / (chic ** 3 - chi10 ** 3))
+rho = np.array(rho); keep = np.isfinite(rho)
+kf = int(np.argmax(keep)); assert keep[kf:].all(), "kept bins must be contiguous above m_f"
+m_f = float(ME[kf])
+CUM = np.concatenate([[0.0], np.cumsum(np.where(keep, rho, 0.0) * 0.1)])   # cumulative over ME edges (per dex * 0.1 dex)
+def Ccum(m):
+    return np.interp(m, ME, CUM)                                     # piecewise-linear inside bins; flat above 12.0
+CT = float(CUM[-1])
+def f_C1(ml):
+    ml = np.asarray(ml, float)
+    num = Ccum(ml) - Ccum(m_f); den = Ccum(ml + 0.5) - Ccum(ml)
+    return np.where(ml > m_f, num / np.maximum(den, 1e-300), 0.0)
+def R_C2(ml):
+    ml = np.asarray(ml, float)
+    return (CT - Ccum(m_f)) / (CT - Ccum(np.maximum(ml, m_f)))
+lens["mlim"] = np.interp(lens["z"], Z0, mlim)
+lens["fC1"] = f_C1(lens["mlim"]); lens["RcC2"] = R_C2(lens["mlim"])
+check("K0e completeness factors finite for every lens (A1 definitions)", bool(np.all(np.isfinite(lens["fC1"])) and np.all(np.isfinite(lens["RcC2"]))),
+      f"f_C1' range {lens['fC1'].min():.3f}-{lens['fC1'].max():.3f}, R_C2' range {lens['RcC2'].min():.3f}-{lens['RcC2'].max():.3f}")
+P(f"completeness: m_lim(z) 0.10/0.20/0.30/0.40/0.50 = " + " / ".join(f"{np.interp(q, Z0, mlim):.2f}" for q in (0.1, 0.2, 0.3, 0.4, 0.5))
+  + f"; m_lim monotone on 0.10-0.50: {bool(np.all(np.diff(MS) >= 0))}; z_c literal = contiguous: {zc_lit == zc_run}")
+P(f"  slab mass function: m_f = {m_f:.1f}; z_c(m) at 8.7/9.0/9.5/10.0/10.5 = " + " / ".join(f"{zc_lit[int(round((q - 8.5) / 0.1))]:.2f}" for q in (8.7, 9.0, 9.5, 10.0, 10.5)))
+P(f"  share of rho_tot above log M* 9.5/10.0/10.5/11.0: " + " / ".join(f"{(CT - Ccum(q)) / (CT - Ccum(m_f)):.3f}" for q in (9.5, 10.0, 10.5, 11.0)))
+P(f"  f_C1'(z) at z 0.2/0.3/0.4/0.5 = " + " / ".join(f"{float(f_C1(np.interp(q, Z0, mlim))):.3f}" for q in (0.2, 0.3, 0.4, 0.5))
+  + "; R_C2'(z) = " + " / ".join(f"{float(R_C2(np.interp(q, Z0, mlim))):.3f}" for q in (0.2, 0.3, 0.4, 0.5)))
 for q in range(4):
     m = (lens["bin"] == q) & lens["I0"]
-    P(f"  bin {q + 1} (I0): weighted mean R_c1 {np.average(lens['Rc1'][m], weights=WB[m]):.3f}, R_c2 {np.average(lens['Rc2'][m], weights=WB[m]):.3f}, median z {np.median(lens['z'][m]):.3f}")
+    P(f"  bin {q + 1} (I0): median z {np.median(lens['z'][m]):.3f}, weighted mean m_lim {np.average(lens['mlim'][m], weights=WB[m]):.2f}, f_C1' {np.average(lens['fC1'][m], weights=WB[m]):.3f}, R_C2' {np.average(lens['RcC2'][m], weights=WB[m]):.3f}")
 
 # ================================================================ save
 np.savez(os.path.join(L.WORK, "cfg903_stage.npz"),
          **{f"L_{k}": v for k, v in lens.items()}, R_ra=rra, R_dec=rdec, R_patch=rnd_patch,
-         NB_xyz=NB["xyz"], NB_chi=NB["chi"], NB_logMb=NB["logMb"], NB_masked=NB["masked"])
+         NB_xyz=NB["xyz"], NB_chi=NB["chi"], NB_logMb=NB["logMb"], NB_logMs=NB["logMs"], NB_masked=NB["masked"])
 RES.update(checks=CHK, n_candidates=int(NA), counts_all=dict(I0=int(I0.sum()), I1=int(I1.sum()), I2=int(I2.sum()), I5=int(I5.sum()), W_B=W_B, B21=259383),
            counts_bins={s: [int(((lens['bin'] == q) & lens[s]).sum()) for q in range(4)] for s in ("I0", "I1", "I2", "I5")},
            n_lens_table=int(NL), n_neighbour_pool=int(len(inb)), random_acceptance=nacc / ntry,
-           completeness=dict(Z0=Z0.tolist(), mlim=mlim.tolist(), RC1=RC1.tolist(), RC2=RC2.tolist(), m1=m1, m2=m2),
+           completeness=dict(Z0=Z0.tolist(), mlim=mlim.tolist(), ME=ME.tolist(), rho_tot=[None if not np.isfinite(x) else float(x) for x in rho], z_c=zc_lit, z_c_contiguous=zc_run, m_f=m_f,
+                             f_C1=[float(f_C1(x)) for x in mlim], R_C2=[float(R_C2(x)) for x in mlim]),
            weights=dict(ZLG=ZLG.tolist(), WZ=(WZ / np.interp(0.25, ZLG, WZ)).tolist()),
            runtime_s=round(time.time() - L.T0, 1), peak_current_rss_MB=round(L.PEAK_CUR[0] / 1e6, 1), ru_maxrss_MB=round(L.rss() / 1e6, 1))
 json.dump(RES, open(os.path.join(L.HERE, "cfg903_stage_results.json"), "w"), indent=1, default=float)

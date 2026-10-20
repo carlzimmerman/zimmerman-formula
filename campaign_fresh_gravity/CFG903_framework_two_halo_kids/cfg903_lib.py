@@ -107,4 +107,4 @@ WEDGES = np.array([100.0, 200.0, 300.0, 500.0, 1000.0])  # |dchi| bins: [0,100) 
 NW = 5
 NCELL = ND * NM * 2 * NW * 2           # (d, m, flag less-massive, w, masked)
 NCELL_JK = ND * NM * 2                  # jackknife: (d, m, flag) for |dchi| < 500, unmasked
-VARIANTS = ["v0_primary_I0_B21_C1", "v1_C0", "v2_C2", "v3_uniform", "v4_I1", "v5_I2", "v6_I5"]
+VARIANTS = ["v0_primary_I0_B21_C1p", "v1_C0", "v2_C2p", "v3_uniform", "v4_I1", "v5_I2", "v6_I5", "v7_z017_diag"]

@@ -1,0 +1,85 @@
+
+====================================================================================================
+CFG903  framework catalogue two-halo term + CFG804/CFG902 one-halo vs KiDS-1000 B21 Fig. 3
+  criteria bb665cf4f, amendment A1 26ecb00ce; kappa = 1/2 FITTED; footings never pooled
+  [PASS] K1a exec'd CFG804 (R1/R2) reproduces CFG902 declared JSON: canonical max |d| 0.0e+00, alt max |d| 0.0e+00
+
+  kernel tables: 74 (N in NGRID u {1.25,1.5,1.75}, shapes P1/P2) built in 29 s
+  [FAIL] K2a projected cold profile vs CFG804 profile() (N 1, 5.5, 10): max relative difference 1.15e-02 (<= 5e-3)
+  [FAIL] K2b kernel limits (inside 1, outside 0) and F(x, 0): limits max |d| 2.2e-16 (<= 1e-6); F(x,0) vs direct 3.2e-03 (<= 1e-3)
+  [FAIL] K2c uniform neighbour field gives Delta Sigma = 0 (log M_b 10.5, 12.0; P1; both footings): max |DS| / Sigma0 = 1.7e-02 (<= 2e-3)
+  [PASS] K1b this lane's D+2h fit with two-halo = 0 reproduces CFG902 (both footings, both radius sets): max |d| 0.0e+00; all radii +100.10 / +123.12, primary +0.84 / -0.27
+
+----------------------------------------------------------------------------------------------------
+  FOOTING canonical (a0 9.3603e-11); CFG902 reference: all radii +100.10, primary +0.84
+  PRIMARY (I0, W500, C1', P1, E1, unmasked, B21 weights):
+    all radii: chi2(D+2h) 203.82 (p 1.14e-18) vs chi2_B 163.13 -> dchi2 +40.68  ==> PARTIAL
+      masses log M_b 10.38 / 10.82 / 10.96 / 11.18; exclusion edges r_x 324 / 537 / 553 / 531 kpc
+    primary R <= 0.31: dchi2 -5.02 -> SUFFICES still (chi2 78.83)
+    two-halo Delta Sigma (Msun/pc^2) at R = 0.22, 0.41, 0.76, 1.04, 1.41, 1.92, 2.60 Mpc:
+      bin 1: 2h  0.328  0.323  0.308  0.277  0.200  0.111 -0.099   | data - D_1h -1.148 -0.939  1.343  0.893  0.514  0.205  0.191
+      bin 2: 2h  0.481  0.458  0.436  0.378  0.298  0.186 -0.040   | data - D_1h  3.586  2.311  0.870  1.589  0.531  0.330  0.087
+      bin 3: 2h  0.542  0.497  0.406  0.380  0.318  0.203 -0.011   | data - D_1h -1.643  0.694  1.116  1.632  1.001  1.203  0.389
+      bin 4: 2h  0.373  0.321  0.247  0.304  0.291  0.211  0.028   | data - D_1h  5.652  1.328  0.983  1.542  1.537  0.730  0.522
+    share of the (unexcluded) 2h at 1.04 Mpc from neighbours MORE massive than the lens: 0.87 / 0.72 / 0.60 / 0.40
+    random-only signal (mask/edge term, subtracted) at 0.41 / 1.04 / 2.60 Mpc, bin 1-4: 0.212/0.204/0.167; 0.227/0.203/0.161; 0.195/0.190/0.154; 0.220/0.170/0.156
+  BRACKETS (one at a time; class on all radii; primary-range dchi2):
+    C0 (no completeness)               all   +45.38 -> PARTIAL                      primary   -4.73
+    C2' (whole-sum completeness)       all   +26.09 -> PARTIAL                      primary   -7.44
+    W300                               all   +46.91 -> PARTIAL                      primary   -4.91
+    W1000                              all   +34.95 -> PARTIAL                      primary   -5.49
+    I1 (f30 isolation)                 all   +83.09 -> DOES NOT CLOSE               primary   -3.66   <== CLASS CHANGES
+    I2 (physical 3 Mpc)                all   +29.63 -> PARTIAL                      primary   -4.28
+    I5 (count-matched W 6.1)           all   +30.54 -> PARTIAL                      primary   -5.46
+    P0 (point cold energy)             all   +55.03 -> DOES NOT CLOSE               primary  -10.28   <== CLASS CHANGES
+    P2 (diffuse cold energy)           all   +49.92 -> PARTIAL                      primary   -2.29
+    E0 (no exclusion)                  all   +10.22 -> PARTIAL                      primary  -11.61
+    E2 (all within r_x dropped)        all   +80.22 -> DOES NOT CLOSE               primary   +1.33   <== CLASS CHANGES
+    uniform weights                    all   +41.18 -> PARTIAL                      primary   -5.25
+    M1 (masked objects added)          all   +31.29 -> PARTIAL                      primary   -4.94
+    W100 (reported)                    all   +72.22 -> DOES NOT CLOSE               primary   -2.87   <== CLASS CHANGES
+    W200 (reported)                    all   +54.19 -> DOES NOT CLOSE               primary   -4.46   <== CLASS CHANGES
+    v7 z_l >= 0.17 (A1 diagnostic)     all   +40.36 -> PARTIAL                      primary   -5.01
+  JACKKNIFE (50 patches, delete-one, refit): sigma(dchi2_all) = 1.49; threshold within 2 sigma: False
+  AMPLITUDE SCAN (reported only): A_best 3.5 (dchi2 -26.47); A with dchi2 <= 4: 1.9-5.2
+
+----------------------------------------------------------------------------------------------------
+  FOOTING alt (a0 1.1312e-10); CFG902 reference: all radii +123.12, primary -0.27
+  PRIMARY (I0, W500, C1', P1, E1, unmasked, B21 weights):
+    all radii: chi2(D+2h) 208.11 (p 2.33e-19) vs chi2_B 155.33 -> dchi2 +52.78  ==> PARTIAL
+      masses log M_b 10.26 / 10.76 / 10.89 / 11.10; exclusion edges r_x 256 / 456 / 516 / 491 kpc
+    primary R <= 0.31: dchi2 -7.21 -> SUFFICES still (chi2 72.50)
+    two-halo Delta Sigma (Msun/pc^2) at R = 0.22, 0.41, 0.76, 1.04, 1.41, 1.92, 2.60 Mpc:
+      bin 1: 2h  0.347  0.351  0.316  0.282  0.201  0.113 -0.100   | data - D_1h -1.130 -0.347  1.516  0.986  0.565  0.232  0.206
+      bin 2: 2h  0.524  0.479  0.461  0.392  0.305  0.190 -0.039   | data - D_1h  3.396  2.005  1.125  1.727  0.605  0.371  0.109
+      bin 3: 2h  0.593  0.534  0.427  0.397  0.328  0.208 -0.010   | data - D_1h -1.732  0.580  1.243  1.700  1.038  1.223  0.400
+      bin 4: 2h  0.407  0.328  0.277  0.334  0.307  0.221  0.031   | data - D_1h  5.692  1.224  1.207  1.663  1.603  0.766  0.541
+    share of the (unexcluded) 2h at 1.04 Mpc from neighbours MORE massive than the lens: 0.87 / 0.72 / 0.60 / 0.40
+    random-only signal (mask/edge term, subtracted) at 0.41 / 1.04 / 2.60 Mpc, bin 1-4: 0.216/0.206/0.167; 0.233/0.204/0.161; 0.199/0.192/0.154; 0.229/0.170/0.156
+  BRACKETS (one at a time; class on all radii; primary-range dchi2):
+    C0 (no completeness)               all   +58.47 -> PARTIAL                      primary   -6.84
+    C2' (whole-sum completeness)       all   +36.92 -> PARTIAL                      primary   -9.71
+    W300                               all   +60.23 -> PARTIAL                      primary   -6.98
+    W1000                              all   +45.97 -> PARTIAL                      primary   -7.67
+    I1 (f30 isolation)                 all  +100.39 -> DOES NOT CLOSE               primary   -5.84   <== CLASS CHANGES
+    I2 (physical 3 Mpc)                all   +41.28 -> PARTIAL                      primary   -6.47
+    I5 (count-matched W 6.1)           all   +41.26 -> PARTIAL                      primary   -7.62
+    P0 (point cold energy)             all   +69.89 -> DOES NOT CLOSE               primary  -10.83   <== CLASS CHANGES
+    P2 (diffuse cold energy)           all   +62.39 -> DOES NOT CLOSE               primary   -3.97   <== CLASS CHANGES
+    E0 (no exclusion)                  all   +22.64 -> PARTIAL                      primary  -14.14
+    E2 (all within r_x dropped)        all   +96.78 -> DOES NOT CLOSE               primary   +0.39   <== CLASS CHANGES
+    uniform weights                    all   +53.20 -> PARTIAL                      primary   -7.54
+    M1 (masked objects added)          all   +41.51 -> PARTIAL                      primary   -7.22
+    W100 (reported)                    all   +89.95 -> DOES NOT CLOSE               primary   -4.52   <== CLASS CHANGES
+    W200 (reported)                    all   +68.67 -> DOES NOT CLOSE               primary   -6.45   <== CLASS CHANGES
+    v7 z_l >= 0.17 (A1 diagnostic)     all   +52.14 -> PARTIAL                      primary   -7.34
+  JACKKNIFE (50 patches, delete-one, refit): sigma(dchi2_all) = 1.65; threshold within 2 sigma: False
+  AMPLITUDE SCAN (reported only): A_best 3.6 (dchi2 -23.76); A with dchi2 <= 4: 2.1-5.1
+  [PASS] K3 random halves A - B consistent with zero (28 outer points, inverse-variance mean): mean -0.0033 Msun/pc^2, sigma_jk 0.0066 (-0.50 sigma)
+
+====================================================================================================
+  VERDICT
+  canonical: PARTIAL (all-radii dchi2 +40.68; CFG902 +100.10); class changes under: I1 (f30 isolation), P0 (point cold energy), E2 (all within r_x dropped)
+  alt: PARTIAL (all-radii dchi2 +52.78; CFG902 +123.12); class changes under: I1 (f30 isolation), P0 (point cold energy), P2 (diffuse cold energy), E2 (all within r_x dropped)
+  checks: K1a PASS, K2a FAIL, K2b FAIL, K2c FAIL, K1b PASS, K3 PASS
+  kappa = 1/2 FITTED; footings never pooled; framework-native neighbours (no LCDM halo model); not theory closed.
