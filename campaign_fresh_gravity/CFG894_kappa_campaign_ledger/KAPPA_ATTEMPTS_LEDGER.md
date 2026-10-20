@@ -17,11 +17,11 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (623 rows)
+## Totals (630 rows)
 
-- **460 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **467 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
-- **117 produced a number.** 51 produced one determinate value; 66 are menus of several values from
+- **119 produced a number.** 53 produced one determinate value; 66 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
   - a condition equal to the target,
   - a free ratio, or a trade for a new constant,
@@ -29,7 +29,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
   - a closure.
 - 33 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
 
-**17 of the 51 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
+**17 of the 53 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
 κ_Λ = 0.417 ± 0.095.
 - Every landing is an O(1) number that the window cannot separate from ½.
 - They are mostly the same few values, recurring: 0.461 (Z = 2π), 0.482 (Z = 6, Verlinde), 0.55–0.557 (particle horizon,
@@ -145,13 +145,13 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 60 | 4 | 10 | 46 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 108 | 4 | 6 | 93 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 110 | 5 | 6 | 94 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
 | QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 20 | 6 | 1 | 13 | 0 | 0 |
 | KS Kinetic / settling / collective / cold-energy dynamics | 32 | 0 | 2 | 30 | 0 | 0 |
-| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 34 | 1 | 4 | 25 | 0 | 0 |
+| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 39 | 2 | 4 | 29 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 43 | 0 | 0 | 0 | 0 | 33 |
 | AU Audits, controls, meta-analyses | 72 | 0 | 0 | 0 | 1 | 0 |
@@ -443,6 +443,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K618 | W4-03/AS655 | `why_4_puzzle/W4_03_unrun_as_proposals` | four-form P(q) = Z q^2/2 + lambda q^4/Q0^2 | - | free | TRADE: kappa^2 = 2beta^2/(Z + 6 lambda q^2/Q0^2) runs; tracking slope (Z+6x)/(2(Z+12x)) < 1/2 | 3c96c6ce3 |
 | K619 | W4-03/AS672 | `why_4_puzzle/W4_03_unrun_as_proposals` | rigidity as the functional equation a0(q)^2 = kappa^2 G [q P_q - P] | - | free | CLOSURE: solvable for every kappa (0.3, 0.5, 0.7 and general a0(q)); free zero-energy mode C q; linear a0 reproduces k04 | 3c96c6ce3 |
 | K622 | W4-03/AS1923 | `why_4_puzzle/W4_03_unrun_as_proposals` | compact three-form quantisation q = 2 pi n f/Vol in k04 | - | free | TRADE: kappa^2 = 2beta^2/(Z + 2b beta^2) independent of n, f, Vol (= FL1/K144); unit flux spacing gives nothing | 3c96c6ce3 |
+| K624 | W4-05/V1 | `why_4_puzzle/W4_05_self_determined_vacua` | EiBI gravity: no separate cosmological term (lambda = 0, kappa_E < 0) fixes Lambda_eff = 1/l^2; a = c^2/l; lambda free variant | 5.013 | odd | MISS: kappa^2 = 8pi (pi x algebraic), kappa 5.013; lambda free -> TRADE | c506c58b3 |
+| K630 | W4-05/V7 | `why_4_puzzle/W4_05_self_determined_vacua` | TeVeS a0 = sqrt(3k) c^2/(4 pi l) with Lambda free | - | free | TRADE: k, l, Lambda independent (original TeVeS tensor speed excluded by GW170817, recalled) | c506c58b3 |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -659,6 +661,11 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K606 | W4-01/F4 | `why_4_puzzle/W4_01_untouched_gravity_families` | mimetic gravity (constraint g^{mn} d_m phi d_n phi = 1; Lambda an integration constant or a free V scale) | - | free | TRADE: no intrinsic acceleration scale; Lambda is initial data | cafc0bf78 |
 | K608 | W4-01/F6 | `why_4_puzzle/W4_01_untouched_gravity_families` | teleparallel f(T) = T + alpha(-T)^n: de Sitter vacuum (6H^2)^(1-n) = alpha(2n-1); a0 from the correction's scale /T_*/ = alpha^(1/(1-n)) | - | free | TRADE: kappa^2 = 16pi (2n-1)^(1/(n-1)) (alpha cancels), free in n; pi-odd at rational n, never 1/2 | cafc0bf78 |
 | K620 | W4-03/AS698 | `why_4_puzzle/W4_03_unrun_as_proposals` | time vs scale-factor averaging prescriptions A_t, A_a | - | free | AMBIGUITY in the already-excluded global-average class: A_a/A_t = 1.164/1.284/1.321 at T = 10/100/1000 (a = t^2/3, L = H^2); only A_t is covariant | 3c96c6ce3 |
+| K625 | W4-05/V2 | `why_4_puzzle/W4_05_self_determined_vacua` | f(R) = R - mu^4/R self-accelerating vacuum R = sqrt3 mu^2 (metric or Palatini); a = mu c^2 | 7.619 | odd | MISS: kappa^2 = 32pi/sqrt3 (pi x algebraic), kappa 7.619 | c506c58b3 |
+| K626 | W4-05/V3 | `why_4_puzzle/W4_05_self_determined_vacua` | Brans-Dicke / scalar-tensor (G_eff = 1/phi; Lambda or V free) | - | free | TRADE: Lambda free, no intrinsic acceleration | c506c58b3 |
+| K627 | W4-05/V4 | `why_4_puzzle/W4_05_self_determined_vacua` | Maggiore RR nonlocal gravity (m^2 R box^-2 R): rho_DE fixed by m through the expansion history | - | free | CONDITION: the m <-> rho_DE relation needs the measured matter history (forbidden upstream); rho_DE,RR(z) drifts at constant m, not tracking | c506c58b3 |
+| K628 | W4-05/V5 | `why_4_puzzle/W4_05_self_determined_vacua` | Deser-Woodard nonlocal MOND (f(box^-1 R) built for MOND; a0 a parameter) | - | free | TRADE: a0 and Lambda both free | c506c58b3 |
+| K629 | W4-05/V6 | `why_4_puzzle/W4_05_self_determined_vacua` | running vacuum (Shapiro-Sola) rho0 + 3 nu H^2/(8piG); a = cH | - | free | TRADE: rho0 and nu free; a = cH is H-type | c506c58b3 |
 
 ## NU: Numerology and grammar searches (flagged)
 
