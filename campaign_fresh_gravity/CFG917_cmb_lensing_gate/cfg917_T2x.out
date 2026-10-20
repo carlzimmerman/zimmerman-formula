@@ -1,0 +1,41 @@
+CFG917 Part B  pair T2x (inherited, alt)  MUTATE=False
+  F  = _external_data/cfg650_work/T2x/cfg650_m1m2m3_RES_alt_N1024_L100_ns1024_lean.json
+  S0 = _external_data/cfg596_work/P0/cfg596_S0_canonical_N1024_L100_ns1024_lean.json
+  background: Om 0.313772, Or 0.000e+00, h 0.673600; chi_* = 9405.2 Mpc/h (z* = 1090); other background chi_* = 9399.9
+
+K4 / K5 (inputs)
+  [PASS] K4a: this code's growth D_X at every stored snapshot = stored D (<= 1e-5 rel) -- max rel dev 0.00e+00
+  [PASS] K4b: P_grav,F(z_i) = P_grav,S0(z_i) in every bin (<= 1e-6 rel): shared realisation -- max rel dev 0.00e+00
+  [PASS] K4c: lattice mode-averaged |k| = stored k_b on the 15 variance-corrected bins (<= 1e-5 rel) -- max rel dev 5.96e-08
+  [PASS] (reported) K4d: S0 max|P_grav/P - 1| per snapshot -- zi 4.1e-07, z1 3.5e-07, x0.7548 3.0e-07, z0.5 3.2e-07, x0.2562 2.5e-07, z0 3.4e-07
+  [PASS] K5: z_i field = input linear spectrum x Gaussian realisation: reduced chi2_sv in [0.2, 3] and |mean x - 1| <= 3 sigma -- chi2_sv/n 2.10 (n 15), mode-weighted mean x 1.0129 +- 0.0114; x_b 0.776 1.009 1.466 0.996 1.046 0.957 1.043 0.971 0.939 0.960 1.072 1.044 1.091 0.978 0.980
+  measured P_grav,F/P_grav,S0 at k = 0.1: a 0.500: 0.9938, a 0.570: 0.9930, a 0.667: 0.9930, a 0.796: 0.9934, a 1.000: 0.9937
+  measured P_grav,F/P_grav,S0 at k = 0.3: a 0.500: 0.9653, a 0.570: 0.9660, a 0.667: 0.9680, a 0.796: 0.9717, a 1.000: 0.9744
+  measured P_grav,F/P_grav,S0 at k = 0.5: a 0.500: 0.9340, a 0.570: 0.9404, a 0.667: 0.9480, a 0.796: 0.9583, a 1.000: 0.9649
+  measured P_grav,F/P_grav,S0 at k = 1.0: a 0.500: 0.8957, a 0.570: 0.9147, a 0.667: 0.9292, a 0.796: 0.9401, a 1.000: 0.9489
+
+PART B scoring (FROZEN B2-B3)
+  coverage of the S0 bandpowers (inverse-variance band summary): i_z<=1_support 0.149, ii_z>1_support 0.155, iii_k<k_lo 0.696, iv_k>k_top 0.000
+
+  [gravitating field (VERDICT)] PRIMARY (PR4 marged 8-400, 9 bands): chi2 F 9.558 (p 0.387), S0 9.643 (p 0.380) -> dchi2 -0.0848
+    robustness dchi2: AGG -1.1565, ZHOLD -0.0644, ZREL -0.0666, KCUT -0.0849, KLOW +0.2851, BG -0.0745   [AGG chi2 F 16.75 / S0 17.91, 14 bands]
+    best-fit amplitude (context): A_F 1.0049 +- 0.0242, A_S0 1.0027 +- 0.0241
+    per-band (B - d)/err  F: +0.15 -1.91 -1.01 +1.42 +1.05 +0.57 -1.06 -0.99 +0.88
+                       S0: +0.15 -1.90 -0.99 +1.46 +1.09 +0.63 -1.00 -0.92 +0.95
+    per-band B_F/B_S0: 0.9998 0.9995 0.9990 0.9982 0.9972 0.9958 0.9941 0.9922 0.9905
+  context: particle-field F dchi2 -0.0162 (chi2 9.627); raw spectra (C_b = 1): chi2 F 9.395, S0 9.382, dchi2 +0.0128
+
+K tests
+  [PASS] K1: F == S0 (S0 JSON as both arms) -> dchi2 = 0 (<= 1e-12) on the primary and every member -- max |dchi2| 0.0e+00
+  [PASS] K2: CFG649 canonical (base-1, Z-b, K-a) on CFG596 P1 vs P0 through this code path = stored dA(8-400) (<= 5e-4 abs) -- this path +0.01325 vs stored +0.01325 (|d| 3.2e-07)
+  [PASS] (reported) K3a: PR4 windows on FFP10 PP vs PP_b/Ahat_b (Ahat printed to 3 decimals) -- max rel dev 4.53e-04
+  [FAIL] K3b: linear-correction fiducial values = sum_L M_b(L) X_L^FFP10 (<= 2% per band) -- max rel dev 3.99e-01
+  [N/A] K3c: no published chi2 exists for the on-disk fiducial model file (FFP10); K3e substitutes (frozen)
+  [PASS] K3d: Limber normalisation vs CAMB linear (native), PR4-binned, <= 3% every band (cfg917_camb_ktests.json) -- max |dev| 0.0046
+  [PASS] K3e: package unit test -2 lnL = 8.368 reproduced <= 0.15 (cfg917_camb_ktests.json) -- 8.3724
+  [PASS] K6: doubling both z-node counts changes every reported chi2 by <= 0.01 -- max |change| 3.3e-04
+
+CLASS (T2x, alt footing, inherited inputs): NOT DIAGNOSTIC   [dchi2 -0.0848; robustness min -1.1565, max +0.2851]; flags: gating K test failed: K3b
+  A CONSISTENT class does not mean the data favour the framework. Part A (CFG649 checklist) is reported separately.
+
+runtime 6 s; maxrss 0.43 GB. kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed.
