@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (678 rows)
+## Totals (679 rows)
 
-- **504 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **505 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **123 produced a number.** 56 produced one determinate value; 67 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -145,7 +145,7 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 126 | 8 | 7 | 106 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 127 | 8 | 7 | 107 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
@@ -465,6 +465,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K668 | p63-C3 | `sonnet55_push/puzzle_32pi/p63_a0_field_coupling` | RESULT of pending K072: Kaloper-Sorbo monodromy quantisation | - | free | FREE: quantisation fixes (f, mu, e) only; beta^2/Z free; no hbar. Supersedes the PENDING status of K072 | 5df0e1cd8 |
 | K675 | W4-08/R4vector | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal` | temporal-vector second-class completion with radial MOND source and principal cones | - | free | TRADE: nonnegative constrained classical energy and positive-source MOND branch; epsilon0/(gamma b^3) free; zero-field longitudinal degeneration and microscopic clock/current completion unresolved | f77a0cd8d |
 | K676 | W4-08/R5scalar | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal` | regular charged sextic scalar pressure parent with amplitudes retained | - | free | TRADE: regular classical cubic pressure and mV^2=gamma Y/2 derived; this half is not law kappa; exact Gauss current forbids sole nonzero homogeneous condensate without compensating charge | f77a0cd8d |
+| K679 | W4-08/R6neutral | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/NEUTRAL_CURRENT_TEST.md` | two opposite-charge regular sextic condensates with a neutral clock and exact Gauss current | - | free | CLOSURE under explicit affine-gradient fixed-charge hypotheses: regular neutral clock has quadratic IR and medium stress; dilute exact pair switches off; concavity excludes positive cubic after critical linear subtraction; derivative-current completions remain open | 3a26d1eb9 |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 

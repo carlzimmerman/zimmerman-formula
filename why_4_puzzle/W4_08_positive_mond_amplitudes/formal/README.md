@@ -71,6 +71,7 @@ retains quadratic infrared stiffness. A restricted variational argument
 also excludes positive cubic energy from amplitude-only relaxation with
 an affine gradient energy and gradient-independent charge constraints.
 Derivative-current completions remain outside that result.
+Its reviewed evidence is committed as 3a26d1eb9 and registered as K679.
 
 ## Verification and reproduction
 

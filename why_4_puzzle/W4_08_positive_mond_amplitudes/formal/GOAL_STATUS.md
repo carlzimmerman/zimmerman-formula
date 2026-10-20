@@ -39,6 +39,7 @@ exact dilute sextic pair switches off. The concavity obstruction rules
 out the stated amplitude-only affine-gradient fixed-charge completion,
 including a critical linear subtraction. A derivative current or another
 explicitly different constraint structure remains to be constructed.
+Neutral-current evidence: 3a26d1eb9, campaign row K679.
 
 The actual pi adapter awaits a viable lightweight import or relaxation of
 the temporary resource constraint after the large simulation is confirmed
