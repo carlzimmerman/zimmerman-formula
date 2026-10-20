@@ -1,0 +1,36 @@
+== (A) ledger ==
+   rows 101; per family {'FP': 16, 'GEO': 4, 'QED': 2, 'GRAV': 2, 'WGC': 2, 'HOR': 12, 'STR': 5, 'EMG': 4, 'DIL': 3, 'QCD': 13, 'SEL': 2, 'NUM': 19, 'EXT': 5, 'META': 12}
+   graded mechanism-level value trials (record, lower bound) N_mech = 359; rule-search trials N_rule = 78586900; external claims audited = 22
+[PASS] A1 ledger parses, every row has a known family code (101 rows)
+[PASS] A2 ledger ids are unique 
+[PASS] A3 no ledger row claims a derivation 
+== (B1) asymptotic-safety map (one loop, by construction) ==
+[FAIL] K2 AS3 f_g reproduced from its root (0.03883) (f_g = -0.03163)
+[FAIL] K3 one-loop map reproduces P_EH (AS3 95.578, AS4 96.373) within 0.5% (64.610, 96.599)
+[PASS] K4 required f_g reproduced (record 0.009805) within 1% (0.009845)
+[PASS] K4b the alpha_em(M_P) split is consistent (1/a_Y + 1/a_2 = 1/a_em within 0.01) (104.437)
+[FAIL] K5 lambda roots for f_g = 0.009805 at g = 0.967159 satisfy the formula (lambda = -7.829, 0.1073; AS3 has -1.22293)
+   d(1/alpha(0))/d ln f_g = -55.2 at the required f_g; computed f_g 0.037-0.048 -> 1/alpha(0) 93.1-96.5 (one loop; record 91-96)
+   to fix 1/alpha(0) to 1% the route needs f_g to 2.5%; to 5e-10 it needs 1.2e-09 in ln f_g
+== (B2) leverage of the FSP QCD-vacuum selection equation (order of magnitude) ==
+[PASS] K6 first-order EM fraction of m_p is O(5e-4) (p_alpha 4.92e-04-5.76e-04)
+[PASS] K7 kappa cancels from the FSP-002 bridge once a_M = kappa c sqrt(G rho_DE) (R independent of kappa) 
+[PASS] K8 FSP selection equation is NON-DIAGNOSTIC for alpha even with |S| = 10 p_alpha (sigma ln alpha > 1) (sigma ln alpha >= 11.0 with the H0 bracket, 1.74 at 1%)
+   to infer alpha to 1% the cosmological side and c_H/C_p^3 must be known to 5.8e-05; to 5e-10, to 2.9e-12
+== (B3) precision a hit must reach (P < 1e-3) ==
+   option space K =          1: formula bar delta <= 2.00e-02; mechanism delta <= 2.30e-03; campaign-wide (x N_mech = 359) delta <= 6.41e-06
+   option space K =         10: formula bar delta <= 2.00e-03; mechanism delta <= 2.30e-04; campaign-wide (x N_mech = 359) delta <= 6.41e-07
+   option space K =        100: formula bar delta <= 2.00e-04; mechanism delta <= 2.30e-05; campaign-wide (x N_mech = 359) delta <= 6.41e-08
+   option space K =      1e+03: formula bar delta <= 2.00e-05; mechanism delta <= 2.30e-06; campaign-wide (x N_mech = 359) delta <= 6.41e-09
+   option space K =      1e+06: formula bar delta <= 2.00e-08; mechanism delta <= 2.30e-09; campaign-wide (x N_mech = 359) delta <= 6.41e-12
+   option space K =    3.6e+07: formula bar delta <= 5.56e-10; mechanism delta <= 6.40e-11; campaign-wide (x N_mech = 359) delta <= 1.78e-13
+[PASS] K9 a single-coupling UV route cannot reach campaign-wide P < 1e-3 at Y1's running error (P_single >= 3.8e-04; x N_mech = 0.14)
+   a joint two-coupling hit at Y1 precision: P_single ~ 9.1e-08 (x N_mech = 3.3e-05)
+== (B4) by-construction arithmetic used in ALPHA_DOORS.md (pre-statements and pre-kills) ==
+   spectral-dimension fixed point: f = 1.0 vs required 0.009805: ratio 102
+   unimodular pre-statement: f_g = 5 g*/(36 pi) = 0.009805 needs g* = 0.2218 (AS3 EH+SM has g* = 0.967159)
+   NCG: 1/alpha_unif = {'entropy h(0)=ln2': 1.7650848012212128, 'characteristic f(0)=1': 2.5464790894703255} vs 1/alpha_2 ~ 46.1 at the g2 = g3 crossing (one loop from Y1): miss x26 / x18
+   Festina Lente for the electron: m_e^2 / (sqrt6 e M_P H) = 1.9e+16 (satisfied by ~16 orders)
+[PASS] K10 pre-kill arithmetic is as quoted (f ratio ~102, g* 0.222, NCG miss > 15x, FL > 1e15) 
+failed: ['K2 AS3 f_g reproduced from its root (0.03883)', 'K3 one-loop map reproduces P_EH (AS3 95.578, AS4 96.373) within 0.5%', 'K5 lambda roots for f_g = 0.009805 at g = 0.967159 satisfy the formula']
+MUTATE: control works (K2 fails as required)
