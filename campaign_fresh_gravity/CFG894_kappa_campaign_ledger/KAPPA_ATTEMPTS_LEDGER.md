@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (660 rows)
+## Totals (664 rows)
 
-- **493 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **497 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **121 produced a number.** 55 produced one determinate value; 66 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -145,13 +145,13 @@ fact.
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
 | VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 63 | 4 | 10 | 49 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 119 | 7 | 6 | 101 | 5 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 120 | 7 | 6 | 102 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
-| QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 27 | 6 | 1 | 20 | 0 | 0 |
+| QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 28 | 6 | 1 | 21 | 0 | 0 |
 | KS Kinetic / settling / collective / cold-energy dynamics | 32 | 0 | 2 | 30 | 0 | 0 |
-| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 46 | 2 | 4 | 36 | 0 | 0 |
+| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 45 | 0 | 0 | 0 | 0 | 35 |
 | AU Audits, controls, meta-analyses | 74 | 0 | 0 | 0 | 1 | 0 |
@@ -457,6 +457,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K654 | W4-08/R1 | `why_4_puzzle/W4_08_positive_mond_amplitudes` | full regulated critical Dirac band with positive cubic IR and quadratic UV static response | - | free | TRADE: full homogeneous static Hessians positive but raw band energy negative; positive baseline sigma remains free; criticality unprotected; no healthy microscopic normalization | 4131def0e |
 | K656 | W4-08/R2 | `why_4_puzzle/W4_08_positive_mond_amplitudes` | documented two-field MOND superfluid amplitude parent with both radial modes retained | - | free | TRADE: open local quadratic positive Hamiltonian region but a0=lambda^3/(8pi G Lambda) with lambda and V0 free; charged state not vacuum; supermetric low-energy characteristic; no full healthy UV claim | 4131def0e |
 | K657 | W4-08/R3 | `why_4_puzzle/W4_08_positive_mond_amplitudes` | exact second-class auxiliary MOND response with positive reduced energy and canonical physical bracket | - | free | TRADE: exact attractive g=gN+sqrt(a0gN) but R=8epsilon0/(9gamma b^3) free; positive kinetic regulator tachyon; quantum vacuum constraint rank changes | 4131def0e |
+| K663 | W4-11/Q3 | `why_4_puzzle/W4_11_last_gravity_classes` | bumblebee vector with V(B^2 -+ b^2) | - | free | TRADE: vacuum constant independent of b | 1cbcd12ee |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -599,6 +600,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K642 | W4-07/B6 | `why_4_puzzle/W4_07_symmetry_fixed_and_bound_ratios` | species scale M_P/sqrt(N) + seesaw | - | free | HBAR/TRADE: kappa^2 ~ hbar^-1, N free | 2e238ed36 |
 | K650 | W4-09/E6 | `why_4_puzzle/W4_09_dark_energy_models` | loop quantum cosmology bounce density sqrt3/(32pi^2 gamma^3) rho_Pl | - | free | HBAR: Planck-scale density, 3.5e122 x dark-energy scale | 01db38324 |
 | K651 | W4-09/E7 | `why_4_puzzle/W4_09_dark_energy_models` | causal-set everpresent Lambda ~ alpha_s/sqrt(V4), a = cH | - | free | TRADE: hbar cancels, kappa^2 = 8pi/alpha_s with alpha_s a random O(1) amplitude | 01db38324 |
+| K664 | W4-11/Q4 | `why_4_puzzle/W4_11_last_gravity_classes` | Weyl conformal geometry (Ghilencea) broken to Einstein-Proca | - | free | HBAR/TRADE: kappa^2 = 8pi c^3 q^2/(G hbar xi^2) | 1cbcd12ee |
 
 ## KS: Kinetic / settling / collective / cold-energy dynamics
 
@@ -692,6 +694,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K649 | W4-09/E5 | `why_4_puzzle/W4_09_dark_energy_models` | exponential-potential scaling attractor Omega_phi = 3(1+w_b)/lambda^2, a = cH | - | free | TRADE: kappa^2 = 8pi lambda^2/(9(1+w_b)) | 01db38324 |
 | K652 | W4-09/E8 | `why_4_puzzle/W4_09_dark_energy_models` | Dirac large-number hypothesis (G ~ 1/t, a0 ~ cH) | - | free | CLOSURE: G(t) excluded (recalled); a0 ~ cH is H-type | 01db38324 |
 | K653 | W4-09/E9 | `why_4_puzzle/W4_09_dark_energy_models` | interacting dark energy Q = xi H rho_DE | - | free | TRADE: xi free, no scale | 01db38324 |
+| K661 | W4-11/Q1 | `why_4_puzzle/W4_11_last_gravity_classes` | f(Q) = Q + alpha Q^n symmetric teleparallel (background = f(T)) | - | free | TRADE: kappa^2 = 16pi(2n-1)^(1/(n-1)), as f(T) | 1cbcd12ee |
+| K662 | W4-11/Q2 | `why_4_puzzle/W4_11_last_gravity_classes` | f(R,T) = R + 2 lambda T | - | free | TRADE: GR in vacuum, Lambda free | 1cbcd12ee |
 
 ## NU: Numerology and grammar searches (flagged)
 
