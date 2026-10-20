@@ -97,6 +97,10 @@ Khronon dust self-clusters as ordinary dust only on comoving scales k < a·μ (p
 
 **Unchanged:** κ measured 0.465 ± 0.076, consistent with ½, not derived; every derivation route closed. C-H/K has no cosmology as built; the khronon-dust route is the reading that might supply one.
 
+> **Correction (2026-10-19, fix-forward).** 0.465 ± 0.076 is on a mixed H₀ convention: SPARC's Hubble-flow distances are at H₀ = 73, while ρ_Λ is at 67.4.
+> - **H₀-consistent value:** 0.450 ± 0.073 ([`paper_numbers.out`](qwen_claude_field_theory/papers_2026/mnras_submission_2026_v3/paper_numbers.out)).
+> - **Current combined value:** κ = 0.417 ± 0.095 from the M/L-insensitive routes, with ½ at 0.8σ ([`CFG493`](campaign_fresh_gravity/CFG493_kappa_combined/cfg493_kappa_combined.out)).
+
 **Swarm landing, same date (BSK3 / Z2ETA / COS1, committed c7da37e7f, 9f7572c58, e9e792d03, 2345369c5, all re-run and reproduced):**
 - **BSK3 — the khronon-dust KiDS gate FAILS.** Khronon dust at Ω_τ = Ω_dm does NOT rescue the isolated-lensing leg: its real-mass halos score Δχ² +373.7/+364.1 all points and +90.8/+89.1 inside 0.3 Mpc (gate <100/<30), essentially the switch's +404/+415 penalty; khronon dust's own field at 0.3 Mpc is only 0.19× the web rms, so its kernel reads a web-dominated field (4× web shifts +154). The K4 dwarf check was mis-gated (mean-fit instead of the registered FLOOR reading) and is corrected on top (2345369c5): on the deep cut, signed median +0.313 dex → **excess factor 2.06** (khronon dust carrying the excess — mechanism working) and cov-weighted slope 0.42 ± 1.19 (1.0 within 0.5σ); the "slope 0.364" was unweighted polyfit on 5 correlated points. Headline FAIL stands on K1/K2. **PAPER32's last route is now closed as built**: khronon dust passes σ₈ (BSK2, μ ≥ 4.7e-27 eV) but fails the isolated-lensing field gate — the same KiDS wall that killed the switch. The surviving window is the baryons-only kernel inside 0.3 Mpc plus pure-MOND-scale web fields.
 - **Z2ETA — the a0(z) exponent is UNDECIDED, measured range η ∈ [0, 1.82] (2σ).** L328's virial floor bounds η ≤ 1.96 (1σ)/1.82 (2σ), separation value 2.09; the a0∝H(z) rival (η = 1) survives at 5.6σ. Direct a0(z) points give η = 0.76 ± 0.17 (RAR arm, non-diagnostic); KMOS3D z-trend kinematics give η = −0.51 ± 0.22 raw, −0.30 ± 0.23 AD-controlled (ΛCDM-degenerate). Controls (η_true = 0/1 injections) recover 0.00 ± 0.08 / 1.00 ± 0.09. The registered deep-rotator BTFR test is DATA-GATED: 0 of 2–4 clean rotators on disk (needs 3 at ±0.10 dex or 4 at ±0.20). On-disk proxy (not scored): median BTFR displacement +0.64 ± 0.05 dex (N = 46, all high-g_bar) — beyond the rival's +0.33, closer to a0~H(z) — a live threat until the clean rotators land.
@@ -112,6 +116,10 @@ Khronon dust self-clusters as ordinary dust only on comoving scales k < a·μ (p
 - KS01;
 - the channel-count capstone;
 - Oppenheim–Russo postquantum gravity, which gives κ = 1.30–1.45 (L313–L314).
+
+> **Correction (2026-10-19, fix-forward).** 0.465 ± 0.076 and 0.55 ± 0.17 are on a mixed H₀ convention.
+> - **H₀-consistent values:** 0.450 ± 0.073 (BTFR) and 0.58 ± 0.18 (shape-only); the profile likelihood gives 0.43 ± 0.08 ([`paper_numbers.out`](qwen_claude_field_theory/papers_2026/mnras_submission_2026_v3/paper_numbers.out)).
+> - **Combined:** the M/L-insensitive routes give κ = 0.417 ± 0.095 ([`CFG493`](campaign_fresh_gravity/CFG493_kappa_combined/cfg493_kappa_combined.out)).
 
 **Relativistic completion: none.** The one open candidate, astra's C-H, reproduces T-B statically. Under the global-time causality criterion it also survives causality (L318). It **fails the moving-source gate** ([`L330`](real_research/g03_audit_2026/L330_moving_source_momentum_gate.py)):
 - Its MOND sector is independent of the shift and of every time derivative. The momentum constraint is therefore GR's with matter alone, and ∂_t[R⁽³⁾ − 16πGρ_m] = 0.
@@ -211,6 +219,11 @@ The same shift-independence is what gives α₁ = α₂ = 0. That is the **momen
 **Arm.** Operative arm is **modified gravity** since 2026-08-08 (the modified-inertia arm is closed as physics, 21σ by lensing; kept as mathematics). Kernel: Route A exponential, $\nu(y)=1/(1-e^{-\sqrt y})$. The relativistic completion is **v9** (AeST chassis + offset-DBI condensate clock, [DOI 10.5281/zenodo.21895046](https://doi.org/10.5281/zenodo.21895046)).
 
 **The claim, unchanged and still narrow.** $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$, κ = ½ **fitted** (measured 0.551 ± 0.043 distance-free / 0.465 ± 0.076 BTFR; four candidate coefficients inside 2σ; every derivation lane — action modulus, in-action postulates, graviton-bath CTP — closed 2026-09-01). Both footings always (9.36e-11 / 1.13e-10).
+
+> **Correction (2026-10-19, fix-forward).** Both measured values in this paragraph are superseded.
+> - **0.551 ± 0.043:** it mixed H₀ conventions and held the bulge M/L fixed. The H₀-consistent value is 0.58 ± 0.18.
+> - **0.465 ± 0.076:** the H₀-consistent value is 0.450 ± 0.073.
+> - **Sources:** [`paper_numbers.out`](qwen_claude_field_theory/papers_2026/mnras_submission_2026_v3/paper_numbers.out) for both. The current combined value is κ = 0.417 ± 0.095 ([`CFG493`](campaign_fresh_gravity/CFG493_kappa_combined/cfg493_kappa_combined.out)).
 
 **What the September closure established (all committed scripts, checks that can fail, mutation controls):**
 1. **The condensate polytrope.** In the static limit the AeST dust is a γ = 2 polytrope, $p_d=(2\pi G/\mu^2)\rho_d^2$, $c_s^2=|\Psi|c^2$; the Helmholtz equation is its hydrostatics with a Bernoulli constant. Published ([22242701](https://doi.org/10.5281/zenodo.22242701), v2 [22254075](https://doi.org/10.5281/zenodo.22254075)). The 23–33% cluster-core yield built on it is **withdrawn as a live number** (item 3).

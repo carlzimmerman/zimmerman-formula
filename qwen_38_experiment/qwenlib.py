@@ -22,6 +22,9 @@ OM_DM, OM_B, OM_M, OM_L = 0.265, 0.0493, 0.315, 0.685
 A0_CAN = 9.3619e-11             # canonical footing: kappa c sqrt(G rho_Lambda)
 A0_ALT = 1.1279e-10             # alt footing: rho_total / cH0
 KAPPA_MEAS, KAPPA_ERR = 0.551, 0.043   # distance-free measurement; 1/2 is ADOPTED
+# CORRECTION 2026-10-19: 0.551 +/- 0.043 is superseded (mixed H0 convention, bulge M/L held fixed). Current: CFG493 combined
+#   kappa 0.417 +/- 0.095; MNRAS v3.1 (H0-consistent) shape-only 0.58 +/- 0.18. Left unchanged so earlier qwen_38 runs reproduce;
+#   change it deliberately before any new run.
 NU0_LO, NU0_HI = 2.14e-5, 1.77e-4      # the committed nu0 window (stage17)
 Q0_LO, Q0_HI = 0.0024, 0.0146          # Mpc^-1, operative pinned band (stage58+61)
 X_CORE = (106.0, 453.0)                # pinned X, core (stage56/58)

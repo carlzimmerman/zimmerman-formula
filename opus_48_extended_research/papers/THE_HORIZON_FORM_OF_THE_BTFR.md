@@ -135,6 +135,11 @@ This paper would be dishonest without them. Neither is resolved here.
 
 $\kappa=\tfrac12$ is an empirical boundary condition (measured $0.551\pm0.043$ distance-free, $0.465\pm0.076$ BTFR; four candidate coefficients sit inside $2\sigma$). The `kappa_closure` programme (`k01`–`k04`) shows it is **not** derivable from the candidate action: the MOND primitive enters the field equations only through $J'$ and the background only through a normalisation zero mode; the $\Lambda$-free repair gives a vacuum energy of the wrong sign and $220\times$ too small; a sequestering-type global constraint misses by five orders; the four-form promotion makes $a_0\propto\sqrt{G\rho_\Lambda}$ *structural* but leaves $\kappa$ a free ratio. The one coefficient-free alternative, $a_0=c^2/(2\pi L_{\rm dS})$ ($\kappa=0.461$), is below the BTFR mass-budget floor and **exactly degenerate with the $H_0$ tension**. So: the *form* $a_0\propto\sqrt{G\rho_\Lambda}$ is defensible; the *number* $Z=5.789$ is $\kappa=\tfrac12$ restated, and $\kappa=\tfrac12$ is a fit. Its determination is a precision problem ($M/L$ zero point, absolute gas scale, $H_0$), not a theory result of this class. (Published: `kappa_closure`, DOI 10.5281/zenodo.22559892.)
 
+> **Correction (2026-10-19, fix-forward; the paragraph above is left as written).** The two measured values above are superseded. They sit on a mixed $H_0$ convention: SPARC's Hubble-flow distances are at $H_0=73$, while $\rho_\Lambda$ is at 67.4. The $\pm0.043$ also held the bulge $M/L$ fixed.
+> - **$H_0$-consistent values:** $0.58\pm0.18$ (shape-only) and $0.450\pm0.073$ (BTFR), from `qwen_claude_field_theory/papers_2026/mnras_submission_2026_v3/paper_numbers.out`.
+> - **Combined:** the $M/L$-insensitive routes give $\kappa=0.417\pm0.095$, from `campaign_fresh_gravity/CFG493_kappa_combined/cfg493_kappa_combined.out`.
+> - **Reading:** $\kappa=\tfrac12$ remains consistent and is still not singled out.
+
 ### 6.2 The non-relativistic completion faces a Cassini-vs-lensing pincer
 
 The kernel that reproduces the RAR ($\nu_{\rm RAR}$) has a non-relativistic pincer, both arms now numbers (field-theory arm, `hunt_2026/f23`–`f28`):

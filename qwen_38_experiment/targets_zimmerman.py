@@ -8,6 +8,8 @@
 Searches must never count a CONVENTION-target match as a hit; the engine tags them.
 """
 ZIMMERMAN = {
+    # CORRECTION 2026-10-19: 0.551 +/- 0.043 is superseded (mixed H0 convention, bulge M/L held fixed); current CFG493 combined
+    #   kappa 0.417 +/- 0.095, MNRAS v3.1 shape-only 0.58 +/- 0.18. Left as run so earlier results reproduce.
     "kappa_meas":  dict(v=0.551,      s=0.043,  grade="MEASURED",   note="distance-free kappa"),
     "kappa_adopt": dict(v=0.5,        s=None,   grade="CONVENTION", note="adopted 1/2"),
     "Z_const":     dict(v=5.788805,   s=None,   grade="CONVENTION", note="sqrt(32 pi / 3)"),

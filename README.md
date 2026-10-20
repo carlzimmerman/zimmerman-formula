@@ -8,6 +8,12 @@ $$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;c^2\sqrt{\frac{\Lambda}{32\pi}}\;=
 
 Plain text, for the record: `a0 = kappa * c * sqrt(G * rho_Lambda) = c^2 * sqrt(Lambda / (32 pi)) = 9.36e-11 m/s^2`, with κ = ½ **adopted** — measured **0.551 ± 0.043** by a distance-free method (fitted, **not derived**; four candidate coefficients sit inside 2σ). Alternative footing (ρ_total, cH₀): a₀ = 1.1279×10⁻¹⁰ — every dimensional result in this repository is quoted on both footings.
 
+> **Correction (2026-10-19, fix-forward; the text above is left as written).** The measured κ quoted above is superseded.
+> - **What was wrong with 0.551 ± 0.043.** It mixed H₀ conventions: SPARC's Hubble-flow distances are at H₀ = 73, while ρ_Λ is at 67.4. It also held the bulge M/L fixed.
+> - **Current combined value.** The GLS combination of the M/L-insensitive routes gives **κ = 0.417 ± 0.095**, with κ = ½ at 0.8σ ([`CFG493`](campaign_fresh_gravity/CFG493_kappa_combined/cfg493_kappa_combined.out)).
+> - **SPARC estimators, H₀-consistent convention** ([`paper_numbers.out`](qwen_claude_field_theory/papers_2026/mnras_submission_2026_v3/paper_numbers.out)): 0.58 ± 0.18 (shape-only), 0.450 ± 0.073 (BTFR) and 0.43 ± 0.08 (profile likelihood).
+> - **Reading.** κ = ½ is consistent with every one of them and singled out by none.
+
 <details open><summary><b>Key equations, plain text (for search; every symbol defined)</b></summary>
 
 ```
@@ -238,6 +244,10 @@ $g_{\rm obs}^2-g_{\rm bar}^2=a_0g_{\rm bar}$ is an exact identity.
 (anchoring is cost-free, not "better"; both are indistinguishable after Υ-refit). κ is **measured**:
 0.551 ± 0.043 distance-free, 0.465 ± 0.076 from the BTFR.
 [`prep_2026/a0_line/`](prep_2026/a0_line/) · paper [THE_COSMOLOGICAL_CONSTANT_SETS_A0.md](opus_48_extended_research/papers/THE_COSMOLOGICAL_CONSTANT_SETS_A0.md)
+
+> **Correction (2026-10-19, fix-forward).** Both κ values above are superseded. They sit on a mixed H₀ convention, and the first also held the bulge M/L fixed.
+> - **H₀-consistent values:** 0.58 ± 0.18 (shape-only) and 0.450 ± 0.073 (BTFR) ([`paper_numbers.out`](qwen_claude_field_theory/papers_2026/mnras_submission_2026_v3/paper_numbers.out)).
+> - **Combined:** the M/L-insensitive routes give κ = 0.417 ± 0.095 ([`CFG493`](campaign_fresh_gravity/CFG493_kappa_combined/cfg493_kappa_combined.out)).
 
 ### 2 · The field theory — THE COMPLETION (v9)
 The full action, the pressure promotion, the derived a₀(z), and the no-ghost/c_T = 1 health

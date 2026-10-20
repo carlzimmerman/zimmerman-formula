@@ -30,6 +30,11 @@ def a0_pred(kappa, H0kms):
     H0 = H0kms*1e3/MPC; rhoL = OL*3*H0**2/(8*math.pi*G)
     return kappa*c*math.sqrt(G*rhoL)
 K_HALF = 0.5; K_2PI = math.sqrt(8*math.pi/3)/(2*math.pi)
+# CORRECTION 2026-10-19 (fix-forward; MEAS is left as run so the committed .out reproduces): both inputs are superseded.
+# 0.551 +/- 0.043 mixed H0 conventions (SPARC Hubble-flow distances at 73, rho_Lambda at 67.4) and held the bulge M/L fixed.
+# On the consistent convention MNRAS v3.1 gives 0.58 +/- 0.18 (shape-only) and 0.450 +/- 0.073 (BTFR)
+# (qwen_claude_field_theory/papers_2026/mnras_submission_2026_v3/paper_numbers.out); CFG493's combined kappa is 0.417 +/- 0.095.
+# P3's 'ln LR = +1.40' rests on the +/- 0.043; with the corrected estimators ln[L(1/2)/L(1/2pi)] is A -0.22, B +0.12, C -0.31.
 MEAS = {"BTFR": (0.465, 0.076), "distance-free": (0.551, 0.043)}; FLOOR = 0.0947; DR4 = 0.21
 print("=" * 112); print("k03 -- separating kappa = 1/2 from kappa = sqrt(8 pi/3)/(2 pi) = %.4f" % K_2PI); print("=" * 112)
 sep = K_HALF/K_2PI - 1; sep_dex = math.log10(K_HALF/K_2PI)
