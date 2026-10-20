@@ -24,8 +24,9 @@ record sits, and the lanes run here.
 ## The walls any answer must clear (KAPPA_DOORS.md)
 
 1. **c is required.** {a₀, G, ρ} have no dimensionless group, and the c-free cold-energy system is scale invariant (CFG893).
-2. **π-parity.** A route built from a₀ and H alone gives κ² ∈ ℚ·π^odd, so never ½. Einstein's 8πG or Poisson's 4πG is always
-   left over unless π cancels between sectors.
+2. **π-parity has a coefficient-domain hypothesis.** The odd-power obstruction applies to the recorded monomial grammar;
+   more generally, κ cannot be ½ if a₀/(cH_Λ) is a rational function of π with algebraic coefficients. Horizon inputs alone
+   do not establish that grammar: a₀ = c²/√A_dS gives κ² = 2/3. This is not a selection principle. See W4-02's proof and audit.
 3. **ħ-freedom.** a₀ carries no ħ.
 4. **The zero mode.** A local action can shift its vacuum constant freely, so a symmetry, quantisation or dynamics must be
    named that fixes it.
@@ -59,6 +60,8 @@ independent second prediction to reach 3σ.
 | lane | question | verdict |
 |---|---|---|
 | [W4-01](W4_01_untouched_gravity_families/README.md) | Do the seven gravity families the register never touched (DGP, Kaluza–Klein, dRGT/bigravity, mimetic, Einstein–Cartan, f(T), Hořava–Lifshitz) fix the 4? | **NO FAMILY SELECTS κ.** DGP's two Planck masses make r_c π-free, but the dark energy reaches the a₀ scale only through Friedmann's 8π, giving the menu {2.894, 0.691, 0.293}, all π-odd. KK with the force-law G₅ gives a π-free a₀ = (8/3)RGρ, but R is free. Everything else is a trade, ħ-bearing or an identity. |
+| [W4-02](W4_02_unrun_as_proposals/README.md) | Run the eight κ proposals the register listed as never executed (AS119, AS562, AS654, AS655, AS672, AS698, AS725, AS1923). | **BACKLOG CLEARED, NO SELECTION.** AS119's exact ½ is the MU2 kernel's n = 2 read back through premise A. The four-form items trade the 4 for C₀, λ or β²/Z (and give κ-free tracking predictions). AS672 and AS725 hold for every κ. AS698 is an averaging ambiguity in an excluded class. AS562 confirms the ħ wall. |
+| [W4-02](W4_02_independent_portal_audit/README.md) | Can a fixed vacuum, protected normalization, and positive subluminal response select the coefficient? | **NO SELECTION IN THE TESTED EFFECTIVE SECTORS.** Explicit simple-μ and quadratic scalar toys keep the vacuum parameter fixed while allowing every κ>0; local kinetic energy and characteristic speeds pass the same conditions. A source-connected constitutive family also has zero background source for every κ. These are scoped countermodels, not full covariant theories. 34/34 symbolic checks and an independent proof audit; the unrestricted π-parity wording is corrected. |
 
 ## What would change the answer
 
