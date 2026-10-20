@@ -1,0 +1,69 @@
+W4-01  untouched gravity families vs the 4 in G rho_DE = 4 a0^2/c^2  [MUTATE]
+kappa^2 = a^2/(G rho_DE), c = 1; footing rho_DE (declared); rho_crit = report only (kappa sqrt(Omega_L))
+kappa = 1/2 FITTED (CFG493 0.417 +- 0.095). Not theory closed.
+
+[PASS] K1 DGP self-accelerating vacuum root: roots of H^2 - H/r_c = 0 (H > 0): [1/r_c]
+[PASS] K2 D=5 force law: G5N = 4*G5/(3*pi); flux of grad r^-2 through S^3 = -4*pi**2 (expect -4 pi^2)
+[PASS] K3 f(T): f = T gives 6H^2 = 16 pi G rho; vacuum root (6H^2)^(1-n) = alpha(2n-1) at n = 2, 3/2, 3
+[PASS] I1 forbidden inputs: tokens found in the compute block: none
+
+readings (kappa^2 symbolic; pi-weight; hbar power; free constants; class)
+  F1-S-A1    k2 = 4*pi/3                                     pi^1  hbar^0  free -  kappa 2.0467 (crit report 1.694)  -> MISS
+             DGP self-acc, crossover acceleration 1/r_c
+  F1-S-A2    k2 = 3/pi                                       pi^-1 hbar^0  free -  kappa 0.9772 (crit report 0.809)  -> MISS
+             DGP self-acc, 5D product G5 rho_DE (action G5)
+  F1-S-A2N   k2 = 16/(3*pi**3)                               pi^-3 hbar^0  free -  kappa 0.4147 (crit report 0.343)  -> CONSISTENT
+             DGP self-acc, 5D product G5N rho_DE (force-law G5)
+  F1-N-A1    k2 = 1/(G*r_c**2*rho)                           pi^0  hbar^0  free ['G', 'r_c', 'rho']  kappa -  -> TRADE
+             DGP normal branch + brane Lambda, 1/r_c
+  F1-N-A2    k2 = 4*G*r_c**2*rho                             pi^0  hbar^0  free ['G', 'r_c', 'rho']  kappa -  -> TRADE
+             DGP normal branch + brane Lambda, G5 rho_DE
+  F2-R0-B1   k2 = 16*pi**4*G*R**2*rho                        pi^4  hbar^0  free ['G', 'R', 'rho']  kappa -  -> TRADE
+             KK D=6, G_D rho/R^1, radius R0
+  F2-R0-B2   k2 = 9*pi**2*G*R**2*rho                         pi^2  hbar^0  free ['G', 'R', 'rho']  kappa -  -> TRADE
+             KK D=6, force-law G_D rho/R^1, radius R0
+  F2-R0-B3   k2 = 1/(G*R**2*rho)                             pi^0  hbar^0  free ['G', 'R', 'rho']  kappa -  -> TRADE
+             KK D=6, compactification acceleration 1/R, radius R0
+  F2-R1-B1   k2 = 6*pi**3                                    pi^3  hbar^0  free -  kappa 13.6396 (crit report 11.289)  -> MISS
+             KK D=6, G_D rho/R^1, radius R1
+  F2-R1-B2   k2 = 27*pi/8                                    pi^1  hbar^0  free -  kappa 3.2562 (crit report 2.695)  -> MISS
+             KK D=6, force-law G_D rho/R^1, radius R1
+  F2-R1-B3   k2 = 8*pi/3                                     pi^1  hbar^0  free -  kappa 2.8944 (crit report 2.396)  -> MISS
+             KK D=6, compactification acceleration 1/R, radius R1
+  F2-R2-B1   k2 = 16*pi**4*G*c_C*hbar/R**2                   pi^4  hbar^1  free ['G', 'R', 'c_C', 'hbar']  kappa -  -> HBAR
+             KK D=6, G_D rho/R^1, Casimir radius
+  F3-C1      k2 = 4*pi/X                                     pi^1  hbar^0  free ['X']  kappa -  -> TRADE
+             massive gravity, graviton Compton acceleration m
+  F5-E1a     k2 = pi*G*hbar**2*n_d**2/(4*rho)                pi^1  hbar^2  free ['G', 'hbar', 'n_d', 'rho']  kappa -  -> HBAR
+             spin-torsion energy, independent rho_DE
+  F5-E1b     k2 = 1                                          pi^0  hbar^0  free -  kappa 1.0000 (crit report 0.828)  -> IDENTITY
+             spin-torsion energy AS the dark energy (density matched to itself)
+  F6-F1      k2 = 8*pi/(1/(2*n - 1))**(1/(n - 1))            pi^1  hbar^0  free ['n']  kappa -  -> TRADE
+             f(T) scale |T_*| = alpha^(1/(1-n))
+[PASS] I2 free constants printed: every TRADE reading lists its free symbols above
+[PASS] I3 dimensions: kappa^2 dimensionless under (L, M) rescaling for every reading
+[PASS] I4 rename: outputs identical when the law's kappa is set to 0.4 (no route reads it)
+[PASS] I5 Friedmann use flagged: readings using the family's own Friedmann relation: ['F1-S-A1', 'F1-S-A2', 'F1-S-A2N', 'F2-R1-B1', 'F2-R1-B2', 'F2-R1-B3', 'F3-C1', 'F6-F1']; none scored as a Z match
+[PASS] I6 footing: rho_DE only; rho_crit numbers are report-only conversions
+[PASS] I7 hbar: hbar-bearing readings: {'F2-R2-B1': 1, 'F5-E1a': 2} (declared: F2-R2, F5-E1a)
+[PASS] I8 pi-parity: declared pi-odd readings with even weight: none
+[PASS] I8b pi-weight of the free families: F3 kappa^2 = einst/X and F6 = 2 einst (2n-1)^(1/(n-1)) carry pi^1: F3-C1 pi^1, F6-F1 pi^1
+[FAIL] K4 hand expectations (normal-run values): mismatches: ['F1-S-A1', 'F1-S-A2', 'F1-S-A2N', 'F2-R0-B1', 'F2-R1-B1', 'F2-R1-B2', 'F3-C1', 'F5-E1a', 'F6-F1']
+  MUTATE expectations as frozen: F1-S-A1 4*pi/3 met; F1-S-A2 3/pi met; F1-S-A2N 16/(3*pi**3) met; F2-R1-B1 6*pi**3 met
+  F2 under M1 alone (report): F2-R0-B1 4*pi**2*G*R**2*rho; F2-R0-B2 64*G*R**2*rho/9; F2-R0-B3 1/(G*R**2*rho); F2-R1-B1 3*pi; F2-R1-B2 16/(3*pi); F2-R1-B3 4*pi/3; F2-R2-B1 4*pi**2*G*c_C*hbar/R**2
+
+family verdicts
+  F1 DGP brane-induced gravity: MENU  F1-S {0.415, 0.977, 2.047}; plus TRADE readings (F1-N-A1, F1-N-A2)
+  F2 Kaluza-Klein compactification: TRADE  radius unstabilised (R0) -> TRADE; R tied to c/H_Lambda (R1) -> menu {13.640, 3.256, 2.894} all pi-odd; Casimir radius (R2) hbar-bearing
+  F3 dRGT massive gravity / Hassan-Rosen bigravity: TRADE  kappa^2 = 8 pi/X: free in the potential parameters; pi-odd at any algebraic X, never 1/2
+  F4 mimetic gravity: TRADE  no intrinsic acceleration: Lambda is an integration constant or a free potential scale
+  F5 Einstein-Cartan spin-torsion: HBAR  E1a hbar^2 (excluded); E1b kappa = 1 by construction (identity, wrong sign, not scored)
+  F6 teleparallel f(T): TRADE  kappa^2 = 16 pi (2n-1)^(1/(n-1)): alpha cancels, free in n; pi-odd at rational n, never 1/2
+  F7 Horava-Lifshitz: TRADE  Lambda free; detailed balance gives Lambda < 0 and needs a free soft-breaking term
+
+LANE VERDICT: NO FAMILY SELECTS KAPPA
+  No reading outputs kappa^2 = 1/4. Every determinate reading uses the family's own 4D Friedmann relation (Einstein's 8 pi G) and is pi-odd; every other reading is a trade, hbar-bearing or an identity.
+  DGP's crossover r_c = G5/(2G) is pi-free (both Planck masses carry the same 8 pi), but the dark energy reaches the a0 scale only through the self-accelerating Friedmann equation, where the 8 pi returns.
+
+checks: 12/13 pass
+MUTATE: K4 bites True; bookkeeping checks still pass True
