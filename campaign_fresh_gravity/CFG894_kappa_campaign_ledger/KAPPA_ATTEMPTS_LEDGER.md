@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (630 rows)
+## Totals (635 rows)
 
-- **467 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **471 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **119 produced a number.** 53 produced one determinate value; 66 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -144,17 +144,17 @@ fact.
 |---|---|---|---|---|---|---|
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
-| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 60 | 4 | 10 | 46 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 110 | 5 | 6 | 94 | 5 | 0 |
+| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 61 | 4 | 10 | 47 | 0 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 112 | 5 | 6 | 96 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
-| QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 20 | 6 | 1 | 13 | 0 | 0 |
+| QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 21 | 6 | 1 | 14 | 0 | 0 |
 | KS Kinetic / settling / collective / cold-energy dynamics | 32 | 0 | 2 | 30 | 0 | 0 |
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 39 | 2 | 4 | 29 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 43 | 0 | 0 | 0 | 0 | 33 |
-| AU Audits, controls, meta-analyses | 72 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 73 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -330,6 +330,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K595 | CFG897 | `campaign_fresh_gravity/CFG897_kappa_D1_stiffness_frw_vacuum` | stiffness term's own FRW vacuum (covariant completions of -(gamma/2)/grad P/^2; timelike P; 4piG/P/<=a0) = rho_DE | - | free | CLOSURE: fixed-norm eps <= 0 (sign); w = w_total (G renorm 1e-19..1e-15); size-only kappa >= 1e7 (3e6 with O(1) non-minimal; TRADE kappa ~ c/(L* sqrt(G rho))), L* needed >= 4.9 Gpc: EXCLUDED; Maxwell/tether/law vacuum vanish; free (div P)^2 CONDITION | 303517f23 |
 | K598 | CFG900 | `campaign_fresh_gravity/CFG900_kappa_D4_lorentz_nodal_medium` | nodal fermion medium made Lorentz-invariant (v = c), its own filled-band vacuum = rho_DE (strict LI Dirac sea; ring with cone dim reg / tube / Pauli-Villars; timelike P0 loci) | - | free | CLOSURE: strict LI has only point nodes -> m^D vs /P/^(D-1) (NO LAW); universal beta/P/^3/3 vanishes at P_cos = 0 (IDENTITY); tube E0 < 0, w = +1/2 (sign lock); PV constant sign free; every link kappa^2 = 12pi/(sigma lambda^3) (one-parameter map; v and hbar cancel); excluded posits slot 6.14 / horizon 0.643 miss | 8b1267c5d |
 | K621 | W4-03/AS725 | `why_4_puzzle/W4_03_unrun_as_proposals` | mu(g) = K'(g)/(2g) integrability with a vacuum functional of K | - | free | CLOSURE: K0 free (k01 zero mode); Newtonian offsets diverge (Q: -a0 g; MU2: -8 a0^2 ln g), no finite K0-free vacuum | 3c96c6ce3 |
+| K633 | W4-04/R2T | `why_4_puzzle/W4_04_microscopic_normalization` | gapless bosonic thermal zero mode and common amplitude ratios | - | free | NO MOND PREDICTION: formal ratios 16/15 and 16/5 cancel species/hbar/common slope; cubic negative, low-field quadratic dominant, high-field response suppressed, state w=1/3; relative species slopes alter ratio unless symmetry forbids | a811e18fb |
 
 ## FN: Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field)
 
@@ -445,6 +446,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K622 | W4-03/AS1923 | `why_4_puzzle/W4_03_unrun_as_proposals` | compact three-form quantisation q = 2 pi n f/Vol in k04 | - | free | TRADE: kappa^2 = 2beta^2/(Z + 2b beta^2) independent of n, f, Vol (= FL1/K144); unit flux spacing gives nothing | 3c96c6ce3 |
 | K624 | W4-05/V1 | `why_4_puzzle/W4_05_self_determined_vacua` | EiBI gravity: no separate cosmological term (lambda = 0, kappa_E < 0) fixes Lambda_eff = 1/l^2; a = c^2/l; lambda free variant | 5.013 | odd | MISS: kappa^2 = 8pi (pi x algebraic), kappa 5.013; lambda free -> TRADE | c506c58b3 |
 | K630 | W4-05/V7 | `why_4_puzzle/W4_05_self_determined_vacua` | TeVeS a0 = sqrt(3k) c^2/(4 pi l) with Lambda free | - | free | TRADE: k, l, Lambda independent (original TeVeS tensor speed excluded by GW170817, recalled) | c506c58b3 |
+| K631 | W4-04/R1 | `why_4_puzzle/W4_04_microscopic_normalization` | local supersymmetry: nilpotent de Sitter SUGRA and canonical BI/new-FI vacuum-response identity | - | free | NO OPERATIONAL SELECTION: V=2T-3Mp^2 m32^2; restricted m32=0 fixes electric c4 V=1/4, not xi; actual field Coulombic in IR; fixed-V fixed-canonical-source SUSY deformation changes T | a811e18fb |
+| K634 | W4-04/R3 | `why_4_puzzle/W4_04_microscopic_normalization` | D3 DBI+CS+bulk normalization, stretched endpoint electric threshold and leading KKLT stabilized vacuum | - | free | TRADE/WRONG FORCE: endpoint critical electric force equals string tension, acceleration depends on mass/separation; IR Coulombic; net vacuum differs from brane tension; explicit single-real-modulus Minkowski crossing leaves vacuum ratio variable; no flux-landscape no-go | a811e18fb |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -580,6 +583,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K592 | S01 | `STANDING.md` | Oppenheim-Russo postquantum gravity | {1.30, 1.45} | menu | MISS | a7a1e0e05 |
 | K600 | CFG905 | `campaign_fresh_gravity/CFG905_kappa_D5_festina_lente` | gauged carrier U(1) + Festina Lente (recalled m^2 >~ sqrt6 g q M_P H; V form m^4 >= 2 s^2 e^2 V) with the carrier setting a0 (posited S_bridge) | - | free | CLOSURE: FL is a bound on V, G-free; applied: BOUND on the carrier, kappa-free; saturated: unique hbar-free e-free carrier acceleration = law unit so kappa = sqrt2 s N, N free (TRADE; pi-even only via premise A); FL acceleration hbar-bearing; Nariai X3 7.09/5.01; gauged q_b repels; natural menu sqrt2/pi = 0.450 not 1/2 | 89df85f82 |
 | K609 | W4-01/F7 | `why_4_puzzle/W4_01_untouched_gravity_families` | Horava-Lifshitz gravity (projectable / non-projectable; detailed balance) | - | free | TRADE: Lambda free; detailed balance gives Lambda < 0 and needs a free soft-breaking term; no a0 scale | cafc0bf78 |
+| K632 | W4-04/R2 | `why_4_puzzle/W4_04_microscopic_normalization` | common finite scalar/Dirac determinant inducing vacuum and Einstein coefficients with exact spectral cancellation | - | free | CLOSURE OF TEST MODEL: positive finite coefficients without regulator moments, but no positive MOND cubic; analytic gapped response, negative scalar spurion slope; constructed spectrum gives 3<H^2/M^2<4 outside low-curvature vacuum regime; finite curvature-coupling freedom remains | a811e18fb |
 
 ## KS: Kinetic / settling / collective / cold-energy dynamics
 
@@ -829,6 +833,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K614 | W4-02/portal/PI | `why_4_puzzle/W4_02_independent_portal_audit` | qualification of H-only pi obstruction and rational-function extension | - | audit | RESTRICTED THEOREM: q=R(pi), R rational function over algebraic numbers, forbids exact half; H-only does not imply that grammar, since horizon-area prescription gives xi=2/3; no numerical selection or global no-go | 04d9b80a9 |
 | K616 | W4-03/AS562 | `why_4_puzzle/W4_03_unrun_as_proposals` | hidden-hbar audit: Pi_quant = hbar/(M_b v R) | - | audit | AUDIT: dimensionless, 1.7e-100 for a 1e10 Msun / 100 km/s / 10 kpc galaxy; the law is hbar-free; an l_P = 1 entropy count carries hbar^-1 when restored | 3c96c6ce3 |
 | K623 | W4-03/K547 | `deepseek_push/astra_spawn_ideas/results/AS025` | correction to K547: which of its nine proposals were unrun | - | audit | CORRECTION of K547: AS025 was executed 2026-09-28 (run_20260928T000953; dimensional uniqueness, kappa-blind); the other eight are now run in W4-03 (K615-K622) | 3c96c6ce3 |
+| K635 | W4-04/R4 | `why_4_puzzle/W4_04_microscopic_normalization` | operational amplitude normalization from one mediator source and actual high/low-gradient force coefficients | - | audit | CONDITIONAL REDUCTION: xi=8Omega C2^3/(9epsilon C3^2); in4D quarter requires epsilon C3^2/C2^3=128pi/9; common factors cancel; no selecting law supplied; tensor-plus-scalar measured-G dictionary must be rederived | a811e18fb |
 
 ## LN: Logic / Lean formalisations
 

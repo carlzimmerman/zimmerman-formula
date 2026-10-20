@@ -91,6 +91,12 @@ read-only agents pursued the microscopic routes. The coordinator derived
 the operational invariant and reconciled their raw calculations. A separate
 review reconstructed the proof, including an isolated additional E review.
 
+Results commit: `a811e18fb`. Scoped campaign rows K631-K635 record R1,
+R2, R2T, R3 and the operational reduction R4. The register's integrity
+check passes; no determinate operational value or menu was added, so
+its existing look-elsewhere probabilities are unchanged. Current research
+scope and untried continuations are in [HANDOFF.md](HANDOFF.md).
+
 The checker has 39 exact assertions. Rational log intervals certify the
 spectral signs; decimal values only report those exact intervals. There
 are no numerical parameter scans. Five baseline checks fail as intended
