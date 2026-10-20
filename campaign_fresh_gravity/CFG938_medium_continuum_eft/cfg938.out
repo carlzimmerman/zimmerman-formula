@@ -1,0 +1,128 @@
+CFG938  the cold-energy medium as a relativistic continuum   stage=MAIN
+  criteria 7a0d41e8b; kappa = 1/2 FITTED; footings never pooled; not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2
+
+==================== K CONTROLS ====================
+  FRW (x0 = ct): B^IJ = delta/a^2, n = a(t)**(-3);  fluid T^mu_nu off-diagonal all zero: True; T^i_i equal: True
+  dust F = -m c^2 n:  rho = m/a(t)**3, p = 0, w = 0
+  [PASS] K2_FRW_dust_w0: rho = m/a(t)**3, p = 0, w = 0 exactly; fluid stress diagonal and isotropic
+  [PASS] K3_newtonian_limit: sqrt(-g)(-m c^2 n) = detA*m*(-Phi*epsilon - 1)/epsilon  (Psi drops out exactly for a static medium)
+  K1[action: tether on, W_full] EL(gamma->0) = -(-a_0*g_N + g_N*u + u**2)/(-a_0 + u)
+     canonical N=43  max|g/g_law - 1| = 2.220e-16   max|g/g_N - 1| = 4.781e+00   unsolved = 0
+     alt       N=43  max|g/g_law - 1| = 2.220e-16   max|g/g_N - 1| = 5.302e+00   unsolved = 0
+  [PASS] K1_SPARC_NGC3198_reduction: EL = +/-(R(u) - g_N) symbolically: True; max rel dev canonical 2.22e-16, alt 2.22e-16 (line < 1e-6)
+  K controls: ALL PASS
+
+==================== S1 BACKGROUND (Q1) ====================
+  [PASS] S1a_FRW_homogeneous_isotropic_fluid_and_solid: T^mu_nu diagonal with T^1_1 = T^2_2 = T^3_3 for F(n) and for generic solid F(tr B, tr B^2, tr B^3)
+  [PASS] S1a2_Bianchi_I_contrast: anisotropic expansion: fluid stress stays isotropic (always); solid stress anisotropic only if a1 != a2
+  [PASS] S1b_rest_frame_is_cosmic_frame: u^mu = [1, 0, 0, 0] (comoving); g_mu nu u^mu u^nu = -1
+  [PASS] S1c_w0: F = -m c^2 n -> w = 0 (K2)
+  [PASS] S1d_tether_sector_vanishes_on_FRW: h^{mu nu} d chi d chi = 0; traceless tidal tensor = 0; D^2 chibar = -3*Derivative(a(t), t)*Derivative(chibar(t), t)/a(t) -> chibar' = -K rho/(3H) (homogeneous solution exists); P = 0
+
+==================== S2 MATCHING TO S2 (Q2) ====================
+  [PASS] S2a_P_is_electric_part_of_current_2form: J^mu = d_nu Q^{mu nu}, Q = (1/6) eps eps phi dphi dphi; J^0 = det(d_i phi^I); P^i = m(Q^{0i} - nbar x^i/3): div P = rho - rhobar EXACT (nonlinear), d_t P + j divergence-free (d_t P_L = -j_L exact)
+  [PASS] S2a2_linear_P_minus_rhobar_xi: P = -rhobar xi + (divergence-free) at linear order, xi = x - phi (sign: div P = +delta rho)
+  [PASS] S2b_tether_is_minimal_gravitational_coupling: -delta rho_c Phi = P.grad Phi - div(P Phi) with div P = delta rho_c; -|grad Phi - KP|^2/2K - W_rem = -|grad Phi|^2/2K + P.grad Phi - W_full; the medium's rest-mass coupling gives -rho Phi (K3): FORCED
+  [PASS] S2b2_W_identities: K W_full' = u/(1 - u/a0), K W_rem' = u^2/(a0 - u), D_full = u + R
+  [PASS] S2c_W_not_a_strain_or_local_function: uniform compression phi = x/lambda: B = delta/lambda^2 everywhere but |P|^2 = (lambda**3 - 1)**2*(x**2 + y**2 + z**2)/(9*lambda**6) grows with position; two profiles identical near R with different interiors: u differs by pi*Delta*G*R/6 -> u is an enclosed-mass (nonlocal) quantity; a local covariant W(K|P|) needs an extra structure
+  [PASS] S2c2_chi_constraint_gives_u: D^2 chi = K rho_c (medium frame) -> chi' = G M_c(<r)/r^2 = u = K|P_L| (Gauss)
+  [PASS] S2d_stiffness_is_density_squared: |d_i d_j chi|^2 = (lap chi)^2 + divergence (3-D, exact); with K P_L = grad chi: (gamma/2)|grad P_L|^2 = (gamma/2) delta rho_c^2 + divergence; traceless form (3 gamma/4K^2) tau^2 gives the same (2/3 factor absorbed)
+  [PASS] S2d2_static_equation_with_stiffness: EL: D_full(u) = g + gamma d rho_c/dr, i.e. R(u) = g_N + gamma rho_c' (stiffness = pressure p = (gamma/2) rho_c^2 = pi G L*^2 rho_c^2; rho_c' < 0 pushes u below the law: screening)
+  local EoS p = pi G L*^2 rho_c^2, L* = 24pc: eps_stiff/eps_rad(z=4e8) = 1.33e+03; reaches 10% of radiation at z = 3.47e+06; w(z=1100) = 3.85e-09; w(0) = 2.89e-18
+  local EoS p = pi G L*^2 rho_c^2, L* = 1000pc: eps_stiff/eps_rad(z=4e8) = 2.30e+06; reaches 10% of radiation at z = 8.34e+04; w(z=1100) = 6.69e-06; w(0) = 5.01e-15
+  [PASS] S2d3_local_stiffness_EoS_early_universe: computed (a result, not a pass line): the LOCAL covariant stiffness is a stiff EoS; EXCLUDED at BBN for the whole L* window if the medium exists then (ratio >> 0.1); the chi-tidal (traceless) form vanishes on FRW (S1d) and has no background
+
+==================== S3 CONSERVATION AND SETTLING (Q3) ====================
+  [PASS] S3a_tether_sector_stress_by_metric_variation: T_ij = (W'/u) d_i chi d_j chi - delta_ij W + 2 d_(i lambda d_j) chi - delta_ij grad lambda.grad chi
+  [PASS] S3b_momentum_balance_identity: d_j T_ij = d_i chi [div(W' grad chi/|grad chi|) + lap lambda] + d_i lambda lap chi  ->  on shell = rho_c d_i(K lambda) = -(tether force density on the medium): medium + tether + gravity conserve momentum
+  [PASS] S3c_static_stress_equals_CFG660_Pi: p_r = -W_full(u), p_t = p_r + D(u) u/K; on the law: dP_par/dg = (g/K)(dg_N/dg - 1), P_perp - P_par = g(g - g_N)/K, deep P_par = -g**2/(8*pi*G) + g**3/(6*pi*G*a_0); radial balance p_r' + 2(p_r - p_t)/r = -rho_c g. CFG660's stress is the derived stress of this action
+  [PASS] S3d_drift_is_linearised_tether_force: f = D(u) - g = R(u) - g_N ~ R'(u_L)(u - u_L) = R'(u_L)(g - g_law): same direction as CFG638/CFG544 v_s = alpha tau (g - g_law); an overdamped limit needs a drag (mobility tau_d: alpha tau = tau_d R'(u_L)), which the ideal action does not contain
+  overdamped flow ({'N': 300, 'dM': 0.02, 'rs': 0.5, 'r_edge': 10.0, 'nstep': 40000}): records 81; E_total monotone non-increasing: True
+     Delta E_grav = +5.3048e-03 (CFG932's 'drift work', >0 = energy against gravity)   Delta E_W = -6.5661e-03   heat = -(sum) = +1.2613e-03   [code units G = a0 = M_b = 1]
+  [PASS] S3e_settling_energy_books_close_with_tether_energy: pushing a central surplus out raises the gravitational energy (CFG932's injection) but releases more tether energy W; total potential energy falls, the difference is dissipated (heat). BY CONSTRUCTION for a gradient flow; the content is that CFG932's books omit E_W
+
+==================== S4 LENSING AND SLIP (Q4) ====================
+  [canonical] system    v_c km/s  s_grad(W)   s_847(W)  s_grad(+stiff 1kpc)  s_847(+stiff 1kpc)  1/eps_inertia
+           dwarf         20.8   1.39e-09   3.63e-09             7.16e-09            2.07e-08       2.50e+08
+           MW disc      207.6   6.77e-08   2.49e-07             6.73e-08            2.50e-07       2.98e+06
+           MW outer     169.2   1.40e-07   2.99e-07             1.40e-07            2.99e-07       3.29e+06
+           group        344.8   5.57e-07   1.21e-06             5.57e-07            1.21e-06       8.05e+05
+           cluster     1313.6   5.08e-06   1.39e-05             5.08e-06            1.39e-05       6.41e+04
+  [alt] system    v_c km/s  s_grad(W)   s_847(W)  s_grad(+stiff 1kpc)  s_847(+stiff 1kpc)  1/eps_inertia
+           dwarf         21.6   1.57e-09   4.03e-09             8.06e-09            2.33e-08       2.28e+08
+           MW disc      213.5   8.00e-08   2.80e-07             7.96e-08            2.81e-07       2.75e+06
+           MW outer     177.0   1.55e-07   3.29e-07             1.55e-07            3.29e-07       2.99e+06
+           group        360.4   6.18e-07   1.34e-06             6.18e-07            1.34e-06       7.32e+05
+           cluster     1363.0   5.79e-06   1.54e-05             5.79e-06            1.54e-05       5.85e+04
+  worst s_grad = 5.79e-06; worst s_847 = 1.54e-05  (CFG847 largest 1.9e-5; class line 1e-2). Lensing/dynamics mass mismatch = s_grad/2. The medium is cold here (no dispersion term).
+  [PASS] S4_slip_within_CFG847_bound: anisotropic stress is present (p_r - p_t = -g u/K, the field-aligned stress) but s <= 1.5e-05
+
+==================== S5 WELL-POSEDNESS (Q5) ====================
+  potential per mode v(k) = rho_0**2*(-4*pi*G*a_0*u_0*sin(theta)**2 + 8*pi*G*a_0*u_0 - 4*pi*G*u_0**2 + a_0**2*gamma*k**2 - 2*a_0*gamma*k**2*u_0 + gamma*k**2*u_0**2)/(a_0 - u_0)**2
+  inertia: rho0 delta_ij - a_0*u_0**2/(4*pi*G*c**2*(a_0 - u_0)) z_i z_j   (= D(u0) u0/(K c^2) along grad chi)
+  omega^2 (longitudinal) = -rho_0*(-4*pi*G*a_0*c**2*rho_0 + 4*pi*G*c**2*rho_0*u_0 + a_0*u_0**2*sin(theta)**2)*(4*pi*G*a_0*u_0*sin(theta)**2 - 8*pi*G*a_0*u_0 + 4*pi*G*u_0**2 - a_0**2*gamma*k**2 + 2*a_0*gamma*k**2*u_0 - gamma*k**2*u_0**2)/((a_0 - u_0)**2*(-4*pi*G*a_0*c**2*rho_0 + 4*pi*G*c**2*rho_0*u_0 + a_0*u_0**2));  other two roots: [0]
+  c -> infinity: omega^2 = rho0 [K (R'(u0) cos^2 + (R(u0)/u0) sin^2) + gamma k^2];  R' = -u*(-2*a_0 + u)/(-a_0 + u)**2,  R/u = -u/(-a_0 + u)
+  [PASS] S5a_dispersion_relation: omega^2 = c_s^2 k^2 + K rho0 [R'(u0) cos^2 theta + (R(u0)/u0) sin^2 theta], c_s^2 = gamma rho0; self-gravity (-K rho0) cancelled and over-cancelled by the tether; transverse (vortical) roots omega^2 = 0
+     u0/a0 = 0.0909: min omega^2/(K rho0) over kL* in [1e-2, 1e5], theta in [0, pi/2] = 1.0004e-01; max Im omega = 0.0e+00
+     u0/a0 = 0.5000: min omega^2/(K rho0) over kL* in [1e-2, 1e5], theta in [0, pi/2] = 1.0001e+00; max Im omega = 0.0e+00
+     u0/a0 = 0.9000: min omega^2/(K rho0) over kL* in [1e-2, 1e5], theta in [0, pi/2] = 9.0000e+00; max Im omega = 0.0e+00
+     u0/a0 = 0.9900: min omega^2/(K rho0) over kL* in [1e-2, 1e5], theta in [0, pi/2] = 9.9000e+01; max Im omega = 0.0e+00
+  [PASS] S5b_no_gradient_instability_bounded_growth: omega^2 >= 0 for every k and angle (gamma > 0, 0 <= u0 < a0): no growth at all, versus CFG660's growth proportional to sqrt(k)
+  inertia condition rho_c c^2 > D(u) u / K on CFG847's systems: min margin 1/eps = 5.85e+04
+  [PASS] S5c_positive_inertia_condition: kinetic matrix positive iff rho_c c^2 > D(u) u/K (the tether stress); margin ~ c^2/v^2 on the law; screened regions (u ~ K rho_c r/3) need only r < 3c/sqrt(K rho_c). CONDITION, not automatic
+  [PASS] S5d_chi_lambda_non_propagating: in the medium rest frame the chi/lambda sector has no time derivatives: constraints (elliptic, instantaneous in that frame); propagating dof = medium (1 longitudinal at c_s, 2 vortical at 0) + graviton (2)
+
+==================== S6 LINEAR GROWTH FLAG (D2) ====================
+  matter era, Omega_c/Omega_b = 5.364, baryons free (post recombination):
+     this parent (tethered medium feels baryon gravity only, CFG888): mu = 0.4509, delta ~ t^0.4064 ~ a^0.6095
+     record's class-A engine (Newtonian cold gravity, used by CFG650/T2x): mu = 1.0000, delta ~ a^1.0000
+  [PASS] S6_growth_flag_computed: a result, not a pass line: the covariant parent of S2 + ID suppresses linear growth of the tethered medium; the record's growth pass (T2x, class A) does NOT transfer to this parent. Before recombination the medium would follow photon-locked baryons only
+
+==================== S8 TETHERED-TETHERED GRAVITY (structural consequence, found while scoring C1) ====================
+  <L>_ID = pi*B*G*(B + 2*C_1 + 2*C_2)/k**2   (Newtonian: pi*G*(B + C_1 + C_2)**2/k**2)
+  [PASS] S8a_no_gravity_between_tethered_components: d2<L>/dC1 dC2 = 0 (Newtonian 2*pi*G/k**2); baryon-medium term kept (2*pi*G/k**2). Astra's C^2 cancellation (audit sec. 4) extends to cross terms: tethered medium feels baryons (+ residual R) but NOT the gravity of any tethered medium; baryons and light feel all of it
+  [canonical] MW-like host (6e10 Msun) at    50 kpc: host-medium field 1.61e-11 m/s^2 = 0.172 a0 acts on a satellite's stars, not on its tethered medium; residual R(u_host) = 3.35e-12
+  [canonical] MW-like host (6e10 Msun) at   100 kpc: host-medium field 8.44e-12 m/s^2 = 0.090 a0 acts on a satellite's stars, not on its tethered medium; residual R(u_host) = 8.37e-13
+  [canonical] MW-like host (6e10 Msun) at   250 kpc: host-medium field 3.47e-12 m/s^2 = 0.037 a0 acts on a satellite's stars, not on its tethered medium; residual R(u_host) = 1.34e-13
+  [alt] MW-like host (6e10 Msun) at    50 kpc: host-medium field 1.79e-11 m/s^2 = 0.158 a0 acts on a satellite's stars, not on its tethered medium; residual R(u_host) = 3.35e-12
+  [alt] MW-like host (6e10 Msun) at   100 kpc: host-medium field 9.32e-12 m/s^2 = 0.082 a0 acts on a satellite's stars, not on its tethered medium; residual R(u_host) = 8.37e-13
+  [alt] MW-like host (6e10 Msun) at   250 kpc: host-medium field 3.82e-12 m/s^2 = 0.034 a0 acts on a satellite's stars, not on its tethered medium; residual R(u_host) = 1.34e-13
+  [PASS] S8b_differential_free_fall_flag: a result, not a pass line: CL-AR's premise (universal coupling) holds for fields of baryons but not for fields of tethered medium; a satellite's stars and its tethered medium fall differently by ~ the host-medium field (0.03-0.17 a0 for a 6e10 Msun host at 50-250 kpc, both footings). Not scored against a CFG678 gate; tension with CFG925 R3 (no satellite EFE) is UNTESTED and needs its own lane
+
+==================== S7 CFG678 SCORECARD (Q6) ====================
+  A1  no ghost; 2nd-order eqs                CONDITIONAL  positive inertia iff rho_c c^2 > D(u)u/K (S5c; margin ~c^2/v^2); medium eqs 2nd order; chi/lambda auxiliary; chi-tidal stiffness makes the chi constraint 4th order in space (no higher time derivatives)
+  A2  strongly hyperbolic                    CONDITIONAL  Euler + c_s^2 = gamma rho > 0 symmetric hyperbolic; tether/gravity are order-0 (elliptic) terms; omega^2 >= 0 (S5b). Needs gamma > 0 and the A1 inequality; CFG292's khronon line does not apply
+  A3  nonlinear local WP                     UNTESTED     not proved; single-stream EFT ends at shell crossing (CFG939's domain)
+  A4  strong coupling                        UNTESTED     not computed (classical lane); dust-like c_s << c lowers the phonon EFT cutoff
+  A5  GW at c                                PASS         Einstein-Hilbert unmodified; medium and chi sector couple through g and u^mu only, no curvature couplings: c_T = c (structural)
+  A6  BH exteriors                           UNTESTED     no BH computation
+  A7  radiative stability                    DECLARED     CFG320
+  B1  switch from variation                  UNTESTED     no switch term; law acts on every tethered element; S4 untethering not derived
+  B2  a0-Lambda tie                          UNTESTED     a0 is a constant inside W; kappa = 1/2 FITTED
+  B3  well-posed cold sector, lenses like mass CONDITIONAL  linear well-posed (S5) under gamma > 0 + inertia inequality; T_00 = rho_c c^2 (lenses like mass, slip <= 1.9e-5, S4); one metric; static stress = CFG660 Pi (S3c) now derived from an action. Conditions: extra non-propagating chi/lambda; spherical/longitudinal matching only; single stream
+  C1  Cassini                                CONDITIONAL  static spherical sector = S2 (inherits CFG770); the quadrupole (non-spherical) sector is not identical to S2 (fluid has no transverse P). Uniform fields of BARYONS free-fall out (CL-AR holds); fields of TETHERED MEDIUM do not act on tethered medium (S8a): differential free fall, a flag beyond CFG678's gates
+  C2  SPARC RAR                              PASS         the static spherical limit IS the law (K1: 2.2e-16 on NGC 3198); CFG4 rms 0.1003/0.0991 <= 0.110
+  C3  early types 50-100 kpc                 FAIL         inherits the law's CFG529 failure (same static predictions)
+  C4  cluster lensing 8-40'                  NOT DECIDED  CFG680 amplitude not frozen for the law (as CFG678)
+  D1  zero-field nonlinear dependence        UNTESTED     not run; tether sector vanishes identically on FRW (S1d)
+  D2  growth vs raw KiDS/DES                 UNTESTED     frozen CFG596 line not run; FLAG: tethered medium has no linear self-gravity, delta ~ a^0.61 vs the class-A engine a^1 (S6); T2x pass used class A and does not transfer
+  D3  flat a0(z)                             PENDING      constant a0 in W gives flat a0; sealed tests 2026-11-06 / 2026-11-28
+  E1  kappa from the action                  DECLARED     kappa = 1/2 FITTED
+  E2  quantum completion                     DECLARED     -
+  E3  SM structure                           DECLARED     -
+
+  P1 law True | P2 conservation True | P3 well-posed (conditions) True | P4 background True | P5 slip True
+  CLASS: CONDITIONAL
+   - extra non-propagating fields chi (the medium's own potential, medium-frame constraint D^2 chi = K rho_c) and lambda (multiplier); u = K|P| is |D chi|, not a strain function (S2c)
+   - gamma > 0 (stiffness sign; M2) and the inertia inequality rho_c c^2 > D(u) u/K (S5c)
+   - stiffness built on chi's traceless tidal tensor (background-free); the local EoS form p = pi G L*^2 rho^2 is excluded at BBN if the medium exists then (S2d3)
+   - S2 reproduced in the longitudinal (curl-free P) sector: exact in spherical symmetry; non-spherical sectors differ from S2 with an independent P
+   - single-stream continuum: valid until shell crossing; the medium-frame constraint needs the medium present everywhere (rho_c > 0)
+  Particle in disguise (CFG723): YES for the mass. F = -m c^2 n is a conserved-number rest-mass dust; its gravitating and inertial content is that of a cold matter component (one stream). The chi/lambda tether sector is not a particle (no propagating mode).
+  Flags reported with equal prominence (data/structure, not part of P1-P5):
+   ! D2: the tethered medium has no linear self-gravity (S6): delta ~ a^0.61 vs a^1 for the class-A engine; T2x's pass does not transfer
+   ! S8: no gravity between tethered components (any source); a satellite's stars and tethered medium fall differently in a host-medium field (0.03-0.17 a0 at 50-250 kpc for a 6e10 Msun host): UNTESTED against satellites (CFG925 R3)
+   ! C3 FAIL inherited (same static law)
+
+  all checks pass: True; runtime 7.2 s; peak RSS 0.144 GB

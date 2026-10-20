@@ -1,0 +1,34 @@
+CFG938  the cold-energy medium as a relativistic continuum   [MUTATE]   stage=MAIN
+  criteria 7a0d41e8b; kappa = 1/2 FITTED; footings never pooled; not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2
+
+==================== K CONTROLS ====================
+  FRW (x0 = ct): B^IJ = delta/a^2, n = a(t)**(-3);  fluid T^mu_nu off-diagonal all zero: True; T^i_i equal: True
+  dust F = -m c^2 n:  rho = m/a(t)**3, p = 0, w = 0
+  [PASS] K2_FRW_dust_w0: rho = m/a(t)**3, p = 0, w = 0 exactly; fluid stress diagonal and isotropic
+  [PASS] K3_newtonian_limit: sqrt(-g)(-m c^2 n) = detA*m*(-Phi*epsilon - 1)/epsilon  (Psi drops out exactly for a static medium)
+  K1[action: tether on, W_full] EL(gamma->0) = -(-a_0*g_N + g_N*u + u**2)/(-a_0 + u)
+     canonical N=43  max|g/g_law - 1| = 2.220e-16   max|g/g_N - 1| = 4.781e+00   unsolved = 0
+     alt       N=43  max|g/g_law - 1| = 2.220e-16   max|g/g_N - 1| = 5.302e+00   unsolved = 0
+  [PASS] K1_SPARC_NGC3198_reduction: EL = +/-(R(u) - g_N) symbolically: True; max rel dev canonical 2.22e-16, alt 2.22e-16 (line < 1e-6)
+  K controls: ALL PASS
+
+==================== MUTATE (each tooth must bite) ====================
+  K1[M1: tether coefficient 0] EL(gamma->0) = -a_0*u/(-a_0 + u)
+     canonical N=43  max|g/g_law - 1| = 8.270e-01   max|g/g_N - 1| = 0.000e+00   unsolved = 0
+     alt       N=43  max|g/g_law - 1| = 8.413e-01   max|g/g_N - 1| = 0.000e+00   unsolved = 0
+  [PASS] M1_no_tether_gives_Newton_and_K1_fails: max|g/g_N - 1| = 0.0e+00 (Newtonian); law dev 0.827 > 1e-6
+  K1[M3: W_rem in place of W_full] EL(gamma->0) = -(-a_0*g_N - a_0*u + g_N*u + 2*u**2)/(-a_0 + u)
+     canonical N=43  max|g/g_law - 1| = 1.645e+00   max|g/g_N - 1| = 1.429e+01   unsolved = 0
+     alt       N=43  max|g/g_law - 1| = 1.884e+00   max|g/g_N - 1| = 1.718e+01   unsolved = 0
+  [PASS] M3_Wrem_breaks_reduction: law dev canonical 1.645, alt 1.884
+  M2 dispersion (gamma -> -gamma): omega^2 = -rho_0*(-4*pi*G*a_0*c**2*rho_0 + 4*pi*G*c**2*rho_0*u_0 + a_0*u_0**2*sin(theta)**2)*(4*pi*G*a_0*u_0*sin(theta)**2 - 8*pi*G*a_0*u_0 + 4*pi*G*u_0**2 + a_0**2*gamma*k**2 - 2*a_0*gamma*k**2*u_0 + gamma*k**2*u_0**2)/((a_0 - u_0)**2*(-4*pi*G*a_0*c**2*rho_0 + 4*pi*G*c**2*rho_0*u_0 + a_0*u_0**2))
+     canonical|u0=0.0909    min omega^2/(K rho0) = -5.000e+09; d ln Im(omega)/d ln k = 1.0000; Im omega(kL*=1e5) = 7.071e+04 sqrt(K rho0)
+     canonical|u0=0.5       min omega^2/(K rho0) = -5.000e+09; d ln Im(omega)/d ln k = 1.0000; Im omega(kL*=1e5) = 7.071e+04 sqrt(K rho0)
+     canonical|u0=0.9       min omega^2/(K rho0) = -5.000e+09; d ln Im(omega)/d ln k = 1.0000; Im omega(kL*=1e5) = 7.071e+04 sqrt(K rho0)
+     alt|u0=0.0909          min omega^2/(K rho0) = -5.000e+09; d ln Im(omega)/d ln k = 1.0000; Im omega(kL*=1e5) = 7.071e+04 sqrt(K rho0)
+     alt|u0=0.5             min omega^2/(K rho0) = -5.000e+09; d ln Im(omega)/d ln k = 1.0000; Im omega(kL*=1e5) = 7.071e+04 sqrt(K rho0)
+     alt|u0=0.9             min omega^2/(K rho0) = -5.000e+09; d ln Im(omega)/d ln k = 1.0000; Im omega(kL*=1e5) = 7.071e+04 sqrt(K rho0)
+  [PASS] M2_negative_stiffness_gradient_instability: omega^2 < 0 at large k with |Im omega| proportional to k (slope 1)
+
+  MUTATE: ALL TEETH BITE (exit 1 by design)

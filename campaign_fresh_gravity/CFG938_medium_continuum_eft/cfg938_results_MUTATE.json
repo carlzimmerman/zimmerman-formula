@@ -1,0 +1,111 @@
+{
+ "lane": "CFG938",
+ "criteria": "7a0d41e8b",
+ "mutate": true,
+ "stage": "MAIN",
+ "checks": {
+  "K2_FRW_dust_w0": {
+   "pass": true,
+   "detail": "rho = m/a(t)**3, p = 0, w = 0 exactly; fluid stress diagonal and isotropic"
+  },
+  "K3_newtonian_limit": {
+   "pass": true,
+   "detail": "sqrt(-g)(-m c^2 n) = detA*m*(-Phi*epsilon - 1)/epsilon  (Psi drops out exactly for a static medium)"
+  },
+  "K1_SPARC_NGC3198_reduction": {
+   "pass": true,
+   "detail": "EL = +/-(R(u) - g_N) symbolically: True; max rel dev canonical 2.22e-16, alt 2.22e-16 (line < 1e-6)"
+  },
+  "M1_no_tether_gives_Newton_and_K1_fails": {
+   "pass": true,
+   "detail": "max|g/g_N - 1| = 0.0e+00 (Newtonian); law dev 0.827 > 1e-6"
+  },
+  "M3_Wrem_breaks_reduction": {
+   "pass": true,
+   "detail": "law dev canonical 1.645, alt 1.884"
+  },
+  "M2_negative_stiffness_gradient_instability": {
+   "pass": true,
+   "detail": "omega^2 < 0 at large k with |Im omega| proportional to k (slope 1)"
+  }
+ },
+ "K1": {
+  "canonical": {
+   "max_rel_vs_law": 2.220446049250313e-16,
+   "max_rel_vs_newton": 4.781451350820557,
+   "n": 43,
+   "nan": 0
+  },
+  "alt": {
+   "max_rel_vs_law": 2.220446049250313e-16,
+   "max_rel_vs_newton": 5.301524838849128,
+   "n": 43,
+   "nan": 0
+  }
+ },
+ "K_all": true,
+ "MUTATE": {
+  "M1": {
+   "canonical": {
+    "max_rel_vs_law": 0.8270330511631702,
+    "max_rel_vs_newton": 0.0,
+    "n": 43,
+    "nan": 0
+   },
+   "alt": {
+    "max_rel_vs_law": 0.8413082506895848,
+    "max_rel_vs_newton": 0.0,
+    "n": 43,
+    "nan": 0
+   }
+  },
+  "M3": {
+   "canonical": {
+    "max_rel_vs_law": 1.6445195768435839,
+    "max_rel_vs_newton": 14.289161279813746,
+    "n": 43,
+    "nan": 0
+   },
+   "alt": {
+    "max_rel_vs_law": 1.8844347042715879,
+    "max_rel_vs_newton": 17.176336935005846,
+    "n": 43,
+    "nan": 0
+   }
+  },
+  "M2": {
+   "canonical|u0=0.0909": {
+    "min_w2": -4999999999.900012,
+    "slope_ImOmega_vs_k": 1.0000005161796575,
+    "Im_at_k1e5": 70710.67811794773
+   },
+   "canonical|u0=0.5": {
+    "min_w2": -4999999999.0,
+    "slope_ImOmega_vs_k": 1.000005162606227,
+    "Im_at_k1e5": 70710.67811158368
+   },
+   "canonical|u0=0.9": {
+    "min_w2": -4999999991.000034,
+    "slope_ImOmega_vs_k": 1.000046482814908,
+    "Im_at_k1e5": 70710.67805501538
+   },
+   "alt|u0=0.0909": {
+    "min_w2": -4999999999.900012,
+    "slope_ImOmega_vs_k": 1.0000005161796575,
+    "Im_at_k1e5": 70710.67811794773
+   },
+   "alt|u0=0.5": {
+    "min_w2": -4999999999.0,
+    "slope_ImOmega_vs_k": 1.000005162606227,
+    "Im_at_k1e5": 70710.67811158368
+   },
+   "alt|u0=0.9": {
+    "min_w2": -4999999991.000034,
+    "slope_ImOmega_vs_k": 1.000046482814908,
+    "Im_at_k1e5": 70710.67805501538
+   }
+  }
+ },
+ "runtime_s": 1.64,
+ "peak_rss_GB": 0.145
+}
