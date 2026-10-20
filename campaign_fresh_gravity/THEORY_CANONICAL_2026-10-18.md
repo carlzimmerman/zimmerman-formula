@@ -72,7 +72,10 @@ component, with its velocity scale (~7.5 km/s) not derived.
 Antlia II, Cassiopeia III). A finite clump fixed by earlier lanes, σ = 7.53 km/s and M_cl = 81σ⁴/(4Ga0) = 5.3e6 M_⊙ (capping
 at ~240 pc), fits MW classical, M31 + field, UFDs, both out-of-sample groups and SPARC within ~2σ in group means on both footings (CFG877,
 post-hoc model choice; PARTIAL only through M31 + field at 2.2σ; Crater II fails individually, as the law alone does).
-Working description: one bound, self-gravitating cold-energy clump per faint dwarf. Underived: σ ≈ 7.5 km/s (≡ 5e6 M_⊙). Individually, at central values, Draco and Sextans need 2.4× and 3.7× the clump mass (Codex audit, 2026-10-20); one-clump universality is under test (CFG880).
+Working description: one bound, self-gravitating cold-energy clump per faint dwarf. Underived: σ ≈ 7.5 km/s (≡ 5e6 M_⊙). Individually, at central values, Draco and Sextans need 2.4× and 3.7× the clump mass (Codex audit, 2026-10-20); one-clump universality is EXCLUDED by CFG880 (83 dwarfs, hierarchical: intrinsic scatter in the clump σ 0.38, 95% 0.28–0.51,
+both footings; a test that would have returned UNIVERSAL in 94% of null trials). The extra mass is compact and finite in
+group terms but varies by dwarf (×1.5 in σ, ~0.7 dex in mass) beyond the quoted errors, or the errors miss ~20% per-dwarf
+systematics. A single fixed velocity (e.g. the hydrogen-cooling floor taken literally) is excluded.
 For the cold-energy equations: CFG638's bath σ_J² is not a universal floor.
 
 **Addendum (2026-10-19 night, CFG878): the fragment mass.** Under the full law a self-gravitating isothermal cold clump has
