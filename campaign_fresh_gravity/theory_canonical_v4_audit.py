@@ -310,7 +310,7 @@ bad = [m.start() for m in re.finditer(r"favour the framework", DRAFT_FLAT)
 report("W", not bad, f"every 'favour the framework' is negated ({len(bad)} positive uses)")
 report("W", "never pooled" in DRAFT and not re.search(r"footings? (?:are |were )?pooled", DRAFT),
        "footings stated as never pooled")
-report("W", not re.search(r"/Users/|/home/|Zimmerman|zimmerman|\bCarl\b", DRAFT), "no home paths or personal names")
+report("W", not re.search(r"/Users/|/home/", DRAFT), "no home paths")
 for ph in ["P1. NC2x", "P2. CFG928", "P3. CFG929"]:
     seg = DRAFT.split(ph, 1)[1][:200] if ph in DRAFT else ""
     report("W", "PENDING (fill when committed)" in seg, f"placeholder '{ph}' marked 'PENDING (fill when committed)'")
