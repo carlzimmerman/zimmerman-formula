@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """cfg907_d07.py -- CFG907, alpha door D07 (frozen criteria: CFG907_PREREGISTRATION.md, commit 088b4e0b2; amendment A1 2bac4efb6,
-code fixes only: brentq rtol, sympy expand, chirality signs in an extra anomaly check).
+code fixes only: brentq rtol, sympy expand, chirality signs in an extra anomaly check; amendment A2 4b8b675f9, post hoc: K8c monotonicity on the
+perturbative domain + a perturbative root, and the integration range per loop order).
 
 The noncommutative-geometry spectral action Tr f(D_A/Lambda) fixes, at the cutoff scale Lambda,
     g_3^2 = g_2^2 = (5/3) g'^2 = g_U^2   and   g_U^2 f_0/(2 pi^2) = 1/4      (CCM hep-th/0610241, RECALLED; re-derived here, gates K3-K6),
@@ -358,12 +359,24 @@ def meas_cross(kind, inp):
     return L.crossing(trm, "a1", "a2" if kind == "meas12" else "a3")
 
 
-def setup(spec, inp):
+_MU23 = {}
+
+
+def mu23_meas(o):
+    """A2b: the measured trajectory's mu_23 at the loop order in use (sets the integration range only)."""
+    o = OPTS if o is None else o
+    key = (o.gauge_loops, o.yuk_loops, o.qcd4)
+    if key not in _MU23:
+        _MU23[key] = L.crossing(L.Traj(u_c, Mt_c, o, mu_max=1e19), "a2", "a3")
+    return _MU23[key]
+
+
+def setup(spec, inp, o=None):
     """Resolve Lambda (when it does not depend on the shot trajectory) and mu_max for a configuration."""
     s = dict(spec)
     fac = s.get("fac", 1.0)
     if s["place"] == "mu23":
-        s["mu_max"] = 1.15 * max(fac, 1.0) * MU23_M
+        s["mu_max"] = 1.15 * max(fac, 1.0) * mu23_meas(o)         # A2b
     else:
         if s["place"] in ("meas12", "meas13"):
             base = meas_cross(s["place"], inp)
@@ -390,8 +403,11 @@ def evaluate(aYMt, s, inp, o=None, rtol=1e-11):
         tgt = s["r"] * A[1]
     tgt *= s.get("bscale", 1.0)
     a2t = 4 * PI / c["g2"] ** 2
+    lgp = np.linspace(math.log(Mt), math.log(Lm), 300)            # A2a: perturbativity on [M_t, Lambda]
+    Up = tr.sol.sol(lgp)
+    amax = max(float(np.max(0.6 * Up[0])), float(np.max(Up[1])), float(np.max(Up[2]))) / (4 * PI)
     return dict(f=A[0] - tgt, tgt=tgt, Lam=Lm, mu23=m23, A=A.tolist(), aYMt=aYMt, a2Mt=a2t, P=aYMt + a2t + DELTA_T,
-                abar=0.5 * (A[1] + A[2]), dE1=A[2] - A[1], tr=tr)
+                abar=0.5 * (A[1] + A[2]), dE1=A[2] - A[1], amax=amax, pert=amax <= 1.0, tr=tr)
 
 
 GRID = [400, 300, 220, 160, 130, 110, 100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50, 46, 42, 39, 36, 33, 30, 27, 24, 21, 18, 15, 12, 9, 6]
@@ -404,17 +420,28 @@ def fval(a, s, inp, o, rtol):
         return -math.inf
 
 
+def fpt(a, s, inp, o, rtol):
+    try:
+        ev = evaluate(a, s, inp, o, rtol)
+        return ev["f"], ev["pert"]
+    except NoReach:
+        return -math.inf, False
+
+
 def solve(spec, inp=None, o=None, rtol=1e-11, guess=None, scan=False):
     inp = {} if inp is None else inp
-    s = setup(spec, inp)
+    s = setup(spec, inp, o)
     f = lambda a: fval(a, s, inp, o, rtol)
+    fp = lambda a: fpt(a, s, inp, o, rtol)
     status = "unique"
     info = {}
     if scan or guess is None:
         pts = []
+        pert = {}
         for a in GRID:
-            fa = f(a)
+            fa, pa = fp(a)
             pts.append((a, fa))
+            pert[a] = pa
             if fa == -math.inf:
                 break
         # refine a jump from a positive finite value straight into NoReach
@@ -422,19 +449,21 @@ def solve(spec, inp=None, o=None, rtol=1e-11, guess=None, scan=False):
             hi, lo = pts[-2][0], pts[-1][0]
             for _ in range(60):
                 mid = 0.5 * (hi + lo)
-                fm = f(mid)
+                fm, pm = fp(mid)
                 if fm == -math.inf:
                     lo = mid
                 elif fm > 0:
                     hi = mid
                 else:
                     pts.insert(len(pts) - 1, (mid, fm))
+                    pert[mid] = pm
                     break
-        fin = [(a, fa) for a, fa in pts if fa != -math.inf]
+        fin = [(a, fa) for a, fa in pts if fa != -math.inf and pert.get(a, False)]       # A2a: monotonicity on perturbative points
         mono = all(fin[i][1] > fin[i + 1][1] for i in range(len(fin) - 1))
         sgn = [fa > 0 for _, fa in pts]
         nchg = sum(1 for i in range(len(sgn) - 1) if sgn[i] != sgn[i + 1])
-        info = dict(grid=[(a, (None if fa == -math.inf else fa)) for a, fa in pts], monotone=mono, sign_changes=nchg)
+        info = dict(grid=[(a, (None if fa == -math.inf else fa), bool(pert.get(a, False))) for a, fa in pts], monotone=mono, sign_changes=nchg,
+                    nonpert=[a for a, fa in pts if fa != -math.inf and not pert.get(a, False)])
         if nchg == 0:
             return dict(status="none", info=info, spec=s)
         if nchg > 1 or not mono:
@@ -469,6 +498,8 @@ def solve(spec, inp=None, o=None, rtol=1e-11, guess=None, scan=False):
             raise RuntimeError("no bracket near the guess")
     root = brentq(f, a_lo, a_hi, xtol=1e-12, rtol=2e-15, maxiter=300)      # A1: rtol above scipy's floor
     ev = evaluate(root, s, inp, o, rtol)
+    if status == "unique" and not ev["pert"]:
+        status = "non-perturbative root"                            # A2a
     ev.update(status=status, info=info, spec=s, resid=abs(ev["f"]))
     return ev
 
@@ -527,7 +558,7 @@ def grade(zs, root_status, gates_ok, delta_route):
         return "NOT COMPLETED"
     if delta_route > 1:
         return "NOT DIAGNOSTIC"
-    if root_status in ("multiple", "non-monotone"):
+    if root_status in ("multiple", "non-monotone", "non-perturbative root"):      # A2a adds the last
         return "NOT DIAGNOSTIC"
     if root_status == "none":
         return "KILLED"
@@ -553,8 +584,9 @@ cc = [("z = 0 both legs", grade([0.0, 0.0], "unique", True, 0.007), "CONSISTENT"
       ("no root", grade([None, None], "none", True, 0.007), "KILLED"),
       ("two roots", grade([0.0, 0.0], "multiple", True, 0.007), "NOT DIAGNOSTIC"),
       ("delta_route > 1", grade([0.0, 0.0], "unique", True, 1.5), "NOT DIAGNOSTIC"),
-      ("failed gate", grade([0.0, 0.0], "unique", False, 0.007), "NOT COMPLETED")]
-chk("K7(c) classifier returns the frozen grade in all 10 planted cases", all(g == e for _, g, e in cc), "; ".join(f"{n}: {g}" for n, g, _ in cc))
+      ("failed gate", grade([0.0, 0.0], "unique", False, 0.007), "NOT COMPLETED"),
+      ("non-perturbative root (A2a)", grade([0.0, 0.0], "non-perturbative root", True, 0.007), "NOT DIAGNOSTIC")]
+chk("K7(c) classifier returns the frozen grade in all 10 planted cases (+ A2a's non-perturbative root)", all(g == e for _, g, e in cc), "; ".join(f"{n}: {g}" for n, g, _ in cc))
 
 # ================================================================================================ D. G1 and the gates on it
 print("\n" + "=" * 132)
@@ -563,15 +595,16 @@ print("=" * 132)
 FE = FUNCS["entropy"]
 SPEC_G1 = dict(place="mu23", target="const", val=FE["aYb"], aU=FE["aU"])
 g1 = solve(SPEC_G1, scan=True)
-print(f"   scan over a_Y(M_t): {[(a, (round(fv, 3) if fv is not None else 'NoReach')) for a, fv in g1['info']['grid']]}")
+print(f"   scan over a_Y(M_t) (np = non-perturbative below Lambda, A2a): {[(a, (round(fv, 3) if fv is not None else 'NoReach'), '' if pp else 'np') for a, fv, pp in g1['info']['grid']]}")
 print(f"   root: a_Y(M_t) = {g1['aYMt']:.8f} (Y1-central {AY_T:.5f}); mu_23 = {g1['mu23']:.5e} (measured trajectory {MU23_M:.5e}); "
-      f"a_Y(mu_23) = {g1['A'][0]:.8f} (target {g1['tgt']:.8f}), a_2 = a_3 = {g1['A'][1]:.5f}")
+      f"a_Y(mu_23) = {g1['A'][0]:.8f} (target {g1['tgt']:.8f}), a_2 = a_3 = {g1['A'][1]:.5f}; max alpha on [M_t, Lambda] = {g1['amax']:.4f}")
 print("\nK8  solver")
 chk("K8a boundary residual < 1e-8 at the root", g1["resid"] < 1e-8, f"{g1['resid']:.2e}")
 g1b = solve(SPEC_G1, rtol=1e-13, guess=g1["aYMt"])
 chk("K8b root stable between ODE rtol 1e-11 and 1e-13 (|dP| < 1e-6)", abs(g1b["P"] - g1["P"]) < 1e-6, f"|dP| = {abs(g1b['P'] - g1['P']):.2e}")
-chk("K8c f strictly monotone on the scan grid with exactly one sign change", g1["status"] == "unique" and g1["info"]["monotone"] and g1["info"]["sign_changes"] == 1,
-    f"status {g1['status']}, sign changes {g1['info']['sign_changes']}")
+chk("K8c (A2a) exactly one sign change over the grid; f strictly monotone over the perturbative points; perturbative root",
+    g1["status"] == "unique" and g1["info"]["monotone"] and g1["info"]["sign_changes"] == 1 and g1["pert"],
+    f"status {g1['status']}, sign changes {g1['info']['sign_changes']}, non-perturbative grid points {g1['info']['nonpert']}, root max alpha {g1['amax']:.4f}")
 print("\nK7(a,b)  planted known answers")
 pl = solve(dict(place="mu23", target="const", val=float(A23_M[0])), guess=AY_T)
 chk("K7(a) boundary planted at Y1-central a_Y(mu_23): the shooting returns P = 137.035999177 (1e-6)", abs(pl["P"] - A0INV) < 1e-6,

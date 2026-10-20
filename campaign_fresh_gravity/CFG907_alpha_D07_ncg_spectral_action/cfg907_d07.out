@@ -1,0 +1,141 @@
+====================================================================================================================================
+CFG907 alpha door D07: NCG spectral action with a forced cutoff function -- mode: REAL RUN
+====================================================================================================================================
+
+K3  the boundary condition derived from the Gilkey a_4 coefficient and the SM + nu_R content (sympy, exact)
+  [PASS] K3a Euclidean gamma matrices: Clifford relations and hermiticity  
+  [PASS] K3b spinor traces: tr(g^m g^n g^r g^s) F_mn F_rs = -8 F.F and tr_S(E_F^2) = -2 F.F (random antisymmetric F)  F.F = 506/75, T4 = -4048/75, tr E_F^2 = -1012/75
+  [PASS] K3c Gilkey combination (1/360)(180 tr E^2 + 30 tr Omega^2) per tr_V(F.F) = -2/3  -2/3
+  [PASS] K3d content traces over H_F: dim 96, C_3 = C_2 = 12, C_Y = 20 (and sum Y = sum Y^3 = 0 per generation)  dim 96, C_3 12, C_2 12, C_Y 20
+  [PASS] K3e boundary ratio used = C_Y/C_2 derived = the recalled printed 5/3  used 5/3, derived 5/3
+  [PASS] K3f sin^2 theta_W at Lambda = 3/8 (recalled printed)  3/8
+  [PASS] K3g normalisation f_0 g^2/(2 pi^2) = 3/C derived = the recalled printed 1/4 (SU(3), SU(2); and (5/3) f_0 g'^2/(2 pi^2) = 1/4)  1/4
+  [PASS] K3h C_3 = C_2 (the E1 leg g_3 = g_2 at Lambda)  
+
+K4  Gilkey coefficients checked numerically on exact spectra
+  [PASS] K4a S^2: coefficients of t and t^2 in t K(t) equal Gilkey's 1/3 (R/6) and 1/15 (curvature^2) to 1e-6  0.3333333333 vs 0.3333333333; 0.0666666666 vs 0.0666666667
+  [PASS] K4b Landau scalar: t^2 coefficient of 4 pi t K/area = Gilkey (30/360) tr Omega^2 = -1/6 (rel 1e-6)  -0.1666666666 vs -1/6
+  [PASS] K4c Landau spinor: t^2 coefficient = Gilkey (1/360)(180 tr E^2 + 30 tr Omega^2) = +2/3 (rel 1e-6)  0.6666666666 vs 2/3
+
+K5  cutoff functions and their moments
+  [PASS] K5a h = binary entropy of the Fermi occupation 1/(1+e^x), h even, h(0) = ln 2 exactly  max|h - s| 3.49e-31, max|h(x)-h(-x)| 2.64e-30, h(0) = log(2)
+  [PASS] K5b entropy moments: f_2 = 9 zeta(3)/4, f_4 = 225 zeta(5)/8 (quadrature, rel 1e-10)  f_2 2.70462803211 vs 2.70462803211; f_4 29.1635931134 vs 29.1635931134
+  [PASS] K5c characteristic function chi_[0,1]: f_0 = 1, f_2 = 1/2, f_4 = 1/4  
+
+K6  Einstein-Hilbert coefficient and Lambda_G
+  [PASS] K6 2 f_2 Lambda^2 a_2|_R = -(96 f_2 Lambda^2/(24 pi^2)) R (the recalled CCM form, Majorana c neglected)  -4*Lambda**2*R*f_2/pi**2
+   entropy h, f_0 = ln 2 (forced): 1/alpha_U = 1.765085, a_Y(Lambda) = 2.941808, Lambda_G = 1.64478e+18 GeV  (f_2 = 2.704628)
+   characteristic chi / any f(0) = 1, f_0 = 1 (K0): 1/alpha_U = 2.546479, a_Y(Lambda) = 4.244132, Lambda_G = 3.82540e+18 GeV  (f_2 = 0.500000)
+
+Y1 error carried for the running + map: sigma_map = 0.1206, Thomson link 0.0080
+measured point at mu = M_t = 172.57: g_Y 0.358427 (target only), g_2 0.647643, g_3 1.163421, y_t 0.932859, lambda 0.125968
+   a_Y(M_t) = 97.81582, a_2(M_t) = 29.95978; Delta_t = 9.26040 (CFG896's target transport)
+
+K1  reproduce Y1's validated numbers exactly
+  [PASS] K1(i) Y1-central aY(X_P)  mine 55.23423 printed 55.2342
+  [PASS] K1(i) Y1-central a2(X_P)  mine 49.20258 printed 49.2026
+  [PASS] K1(i) Y1-central a3(X_P)  mine 52.97131 printed 52.9713
+  [PASS] K1(i) Y1-central aem(X_P)  mine 104.43681 printed 104.4368
+  [PASS] K1(ii) Buttazzo-input like-for-like g1(M_P)  mine +0.615371 printed +0.61537
+  [PASS] K1(ii) Buttazzo-input like-for-like g2(M_P)  mine +0.505457 printed +0.50546
+  [PASS] K1(ii) Buttazzo-input like-for-like g3(M_P)  mine +0.487311 printed +0.48731
+  [PASS] K1(ii) Buttazzo-input like-for-like yt(M_P)  mine +0.382475 printed +0.38248
+  [PASS] K1(ii) Buttazzo-input like-for-like lam(M_P)  mine -0.014367 printed -0.01437
+
+K2  the SM one-scale unification failure (lane Z1) reproduced with Z1's grid
+  [PASS] K2(i) GUT-normalised minimum spread  mine 7.619% at 1.7370e+14 (40.470, 43.634, 40.473); Z1 7.62% at 1.737e+14
+  [PASS] K2(i) Y-normalised minimum spread  mine 8.367% at 3.3883e+19 (54.117, 49.712, 54.113); Z1 8.37% at 3.388e+19
+  [PASS] K2(ii) Y a_Y=a_2 crossing and third-coupling miss  mine 5.3514e+20 +11.95%; Z1 5.351e+20 +12.0%
+  [PASS] K2(ii) Y a_Y=a_3 crossing and third-coupling miss  mine 3.3883e+19 -8.14%; Z1 3.388e+19 -8.1%
+  [PASS] K2(ii) Y a_2=a_3 crossing and third-coupling miss  mine 2.7850e+16 +34.07%; Z1 2.785e+16 +34.1%
+  [PASS] K2(ii) GUT a_Y=a_2 crossing and third-coupling miss  mine 1.1117e+13 -11.54%; Z1 1.112e+13 -11.5%
+  [PASS] K2(ii) GUT a_Y=a_3 crossing and third-coupling miss  mine 1.7184e+14 +7.81%; Z1 1.718e+14 +7.8%
+  [PASS] K2(ii) GUT a_2=a_3 crossing and third-coupling miss  mine 2.7850e+16 -19.56%; Z1 2.785e+16 -19.6%
+  [PASS] K2(iii) refined a_2=a_3 crossing inside Z1's grid step  2.80552e+16 in [2.78498e+16, 2.81516e+16]
+  [PASS] K2(iii) refined a_1=a_2 crossing inside Z1's grid step  1.12314e+13 in [1.11172e+13, 1.12377e+13]
+  [PASS] K2(iii) refined a_1=a_3 crossing inside Z1's grid step  1.73446e+14 in [1.71837e+14, 1.73699e+14]
+   measured trajectory: mu_23 = 2.80552e+16 (a_2 = a_3 = 46.1698, a_Y = 61.8839, a_1 = 37.1304: -19.58%); mu_12 = 1.12314e+13; mu_13 = 1.73446e+14
+
+K7(c)  classifier controls (planted inputs)
+  [PASS] K7(c) classifier returns the frozen grade in all 10 planted cases (+ A2a's non-perturbative root)  z = 0 both legs: CONSISTENT; z_Y = +3.01: KILLED; z_Y = -3.01: KILLED; z_Y = +2.99: CONSISTENT; z_Y = -2.99: CONSISTENT; leg A fails, leg Y passes: KILLED; no root: KILLED; two roots: NOT DIAGNOSTIC; delta_route > 1: NOT DIAGNOSTIC; failed gate: NOT COMPLETED; non-perturbative root (A2a): NOT DIAGNOSTIC
+
+====================================================================================================================================
+G1 (graded): entropy function, Lambda = mu_23 on the self-consistent trajectory, joint legs A and Y
+====================================================================================================================================
+   scan over a_Y(M_t) (np = non-perturbative below Lambda, A2a): [(400, 361.176, ''), (300, 261.171, ''), (220, 181.164, ''), (160, 121.154, ''), (130, 91.145, ''), (110, 71.135, ''), (100, 61.128, ''), (95, 56.124, ''), (90, 51.119, ''), (85, 46.114, ''), (80, 41.108, ''), (75, 36.1, ''), (70, 31.091, ''), (65, 26.08, ''), (60, 21.065, ''), (55, 16.046, ''), (50, 11.019, ''), (46, 6.986, ''), (42, 2.934, ''), (39, -0.138, ''), (36, -2.519, 'np'), (33, -2.52, 'np'), (30, -2.533, 'np'), (27, -2.521, 'np'), (24, -2.521, 'np'), (21, -2.521, 'np'), (18, -2.522, 'np'), (15, -2.636, 'np'), (12, -2.655, 'np'), (9, -2.655, 'np'), (6, -2.656, 'np')]
+   root: a_Y(M_t) = 39.13348911 (Y1-central 97.81582); mu_23 = 2.84152e+16 (measured trajectory 2.80552e+16); a_Y(mu_23) = 2.94180800 (target 2.94180800), a_2 = a_3 = 46.14085; max alpha on [M_t, Lambda] = 0.3399
+
+K8  solver
+  [PASS] K8a boundary residual < 1e-8 at the root  4.00e-15
+  [PASS] K8b root stable between ODE rtol 1e-11 and 1e-13 (|dP| < 1e-6)  |dP| = 3.24e-11
+  [PASS] K8c (A2a) exactly one sign change over the grid; f strictly monotone over the perturbative points; perturbative root  status unique, sign changes 1, non-perturbative grid points [36, 33, 30, 27, 24, 21, 18, 15, 12, 9, 6], root max alpha 0.3399
+
+K7(a,b)  planted known answers
+  [PASS] K7(a) boundary planted at Y1-central a_Y(mu_23): the shooting returns P = 137.035999177 (1e-6)  P = 137.0359991769, a_Y(M_t) = 97.81581713
+  [PASS] K7(b) f_0 planted at 3 pi a_23/(2 C_2): leg A residual 0 (1e-9)  0.00e+00
+
+K9  one-loop linearity
+  [PASS] K9 one-loop: a_Y^pred(M_t) - a_Y^meas(M_t) = a_Y^target(Lambda) - a_Y^meas(Lambda) (1e-6)  -59.286750062 vs -59.286750062
+
+G1 route error (frozen formulas):
+   alpha_s(M_Z) +-0.0009       : dP +0.11070   d a_23 +0.04893
+   M_W +-0.0133                : dP -0.02673   d a_23 -0.01746
+   M_t +-0.417                 : dP -0.00986   d a_23 -0.00505
+   M_H +-0.09                  : dP +0.00000   d a_23 -0.00000
+   g_3 matching (Y1 E5b)       : dP +0.00136   d a_23 +0.00060
+   g_2 matching (Y1 E5a)       : dP -0.00296   d a_23 -0.00193
+   y_t matching +-0.0005       : dP -0.00006   d a_23 +0.00002
+   lambda matching +-0.0003    : dP +0.00000   d a_23 -0.00000
+   sigma_map 0.1206, Thomson 0.0080, sigma_in 0.1144, sigma_thr,Y 0.7583 (P at 2 mu_23 79.1121, at mu_23/2 77.5955), sigma_bnd,Y 0.3857 (eps 0.1353), sigma_loop 0.0052  ->  sigma_Y = 0.8669
+   leg A: sigma_in,A 0.0522, Y1 0.0554, thr 0.5599, bnd 0.2387  ->  sigma_A = 0.6134
+   P by loop order: 1-loop 79.0188, 2-loop 78.3909, 3-loop 78.3590, 4-loop (Y1) 78.3537
+   pre-flight: delta_route = sigma_Y/137.036 = 0.00633 (diagnostic)
+
+substitution test (alpha x 1.01 in every contamination slot; identity would move P by 1.3568)
+   slots: d g_2 -5.18e-05 (1% of NNLO - tree), rel d g_3 +6.72e-07 (1% of the SMDR calibration - 1), d lambda -3.11e-05, d y_t +1.87e-04, Delta_t two-loop bound 3.65e-04; measured-g_Y slot (placements mu_12/mu_13 only) d g_Y +1.79e-03 (moves a_Y^meas(M_t) by -0.9685)
+   G1: shifts Delta_t +3.65e-04, g2 +1.33e-02, g3 +2.14e-05, lam -1.13e-08, yt -2.35e-05; total 0.0137 = 0.010 of an identity
+
+====================================================================================================================================
+Reported configurations (same rules, not graded)
+====================================================================================================================================
+   entropy@mu_23     : Lambda 2.8415e+16  P =  78.3537 ( -58.682, z_Y    -67.7, sigma_Y 0.867)  leg A: 1/alpha_U 1.7651 vs (a_2+a_3)/2 46.1409 (x26.14, z_A    -72.3)  subst 0.010  -> KILLED [GRADED]
+   entropy@mu_12     : Lambda 1.1231e+13  P =  69.7588 ( -67.277, z_Y    -77.8, sigma_Y 0.864)  leg A: 1/alpha_U 1.7651 vs (a_2+a_3)/2 39.7990 (x22.55, z_A    -61.9)  E1: a_3 - a_2 -4.875 (z -11.0)  subst 0.000 / g_Y slot 0.570 of the a_Y^meas shift  -> KILLED
+   entropy@mu_13     : Lambda 1.7345e+14  P =  72.7628 ( -64.273, z_Y    -74.5, sigma_Y 0.863)  leg A: 1/alpha_U 1.7651 vs (a_2+a_3)/2 42.0144 (x23.80, z_A    -65.7)  E1: a_3 - a_2 -3.170 (z -7.2)  subst 0.004 / g_Y slot 0.370 of the a_Y^meas shift  -> KILLED
+   entropy@Lambda_G  : Lambda 1.6448e+18  P =  82.7999 ( -54.236, z_Y    -63.0, sigma_Y 0.860)  leg A: 1/alpha_U 1.7651 vs (a_2+a_3)/2 49.4249 (x28.00, z_A    -77.7)  E1: a_3 - a_2 +2.518 (z +5.7)  subst 0.004  -> KILLED
+   char@mu_23        : Lambda 2.8366e+16  P =  79.6213 ( -57.415, z_Y    -66.1, sigma_Y 0.868)  leg A: 1/alpha_U 2.5465 vs (a_2+a_3)/2 46.1448 (x18.12, z_A    -71.0)  subst 0.010  -> KILLED
+   char@mu_12        : Lambda 1.1231e+13  P =  71.0295 ( -66.007, z_Y    -76.3, sigma_Y 0.865)  leg A: 1/alpha_U 2.5465 vs (a_2+a_3)/2 39.8042 (x15.63, z_A    -60.7)  E1: a_3 - a_2 -4.874 (z -11.0)  subst 0.000 / g_Y slot 0.570 of the a_Y^meas shift  -> KILLED
+   char@mu_13        : Lambda 1.7345e+14  P =  74.0330 ( -63.003, z_Y    -72.9, sigma_Y 0.864)  leg A: 1/alpha_U 2.5465 vs (a_2+a_3)/2 42.0197 (x16.50, z_A    -64.5)  E1: a_3 - a_2 -3.169 (z -7.2)  subst 0.004 / g_Y slot 0.370 of the a_Y^meas shift  -> KILLED
+   char@Lambda_G     : Lambda 3.8254e+18  P =  84.9934 ( -52.043, z_Y    -60.4, sigma_Y 0.861)  leg A: 1/alpha_U 2.5465 vs (a_2+a_3)/2 50.1133 (x19.68, z_A    -77.6)  E1: a_3 - a_2 +3.043 (z +6.9)  subst 0.004  -> KILLED
+
+R1  the f_0-free ratio leg alone (a_Y(Lambda) = (C_Y/C_2) a_2(Lambda); the classic sin^2 theta_W = 3/8 run-down)
+   mu_23: Lambda 2.8041e+16  P =  152.0935 ( +15.058, z   +10.7, sigma 1.412); substitution 0.021
+   mu_12: Lambda 1.1231e+13  P =  137.0360 (  -0.000, z    -0.0, sigma 1.401); substitution 0.004, g_Y slot moves P by -0.9685 = 1.000 of the a_Y^meas(M_t) shift (1 = identity)
+   mu_13: Lambda 1.7345e+14  P =  142.3043 (  +5.268, z    +3.8, sigma 1.400); substitution 0.010, g_Y slot moves P by -0.6293 = 0.650 of the a_Y^meas(M_t) shift (1 = identity)
+
+R2  full NCG run-down: all three couplings at g_U at Lambda = mu_23 (G1 trajectory), run down with Y1's betas
+   1-loop: alpha_3 = 1 at mu = 1.430e+16 GeV (Lambda/1.99), above M_t -> NO SOLUTION with a perturbative SM
+   2-loop: alpha_3 = 1 at mu = 1.589e+16 GeV (Lambda/1.79), above M_t -> NO SOLUTION with a perturbative SM
+   4-loop: alpha_3 = 1 at mu = 1.619e+16 GeV (Lambda/1.76), above M_t -> NO SOLUTION with a perturbative SM
+
+R3  the upper end of the allowed range: Lambda = M_P
+   entropy h, f_0 = ln 2 (forced): P(Lambda = M_P) = 84.9950 (-52.041); P rises with Lambda, so this is the largest value any Lambda <= M_P gives
+   characteristic chi / any f(0) = 1, f_0 = 1 (K0): P(Lambda = M_P) = 86.2640 (-50.772); P rises with Lambda, so this is the largest value any Lambda <= M_P gives
+
+R4  tuned knobs (by construction, not predictions)
+   f_0 needed by leg A: 18.1195 (26.14 x ln 2; fermion-multiplicity equivalent 78.4 generations)
+   f_0 needed by leg Y: 14.5811 (21.04 x ln 2) -- different from leg A because the couplings do not unify
+   one-loop Lambda at which the entropy boundary would meet Y1's a_Y: 9.30e+39 GeV (far past M_P; U(1) Landau region)
+
+====================================================================================================================================
+GATES: all PASS
+G1 (graded; entropy f_0 = ln 2, Lambda = mu_23 = 2.8415e+16 GeV):
+   leg A: 1/alpha_U = 8 ln2/pi = 1.76508 vs a_23 = 46.1409  (x26.14; z_A = -72.3, sigma_A 0.613)
+   leg Y: 1/alpha(0) = 78.3537 vs 137.035999  (miss -58.682 = -42.82%; z_Y = -67.7, sigma_Y 0.867)
+   UV cross-check: a_Y(mu_23) boundary 2.9418 vs Y1-central 61.8839: z_UV = -68.0 (same verdict: True)
+   joint chi^2 (2 dof) = 9815.3; input correlation of the legs +0.994; substitution fraction 0.010
+   P_single (log-uniform 1/alpha in [10, 1000], leg Y window) = 0.199 (not significant at any level)
+   GRADE: KILLED
+   N_mech: +1 (373 -> 374 if CFG906 has not landed; otherwise CFG906's count + 1)
+Nothing here derives alpha. alpha stays an INPUT; kappa = 1/2 stays FITTED; the SM mass sector stays walled.
+====================================================================================================================================
+wrote cfg907_d07.json; runtime 135.8 s
