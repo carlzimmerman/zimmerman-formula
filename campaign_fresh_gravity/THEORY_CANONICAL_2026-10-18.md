@@ -116,3 +116,8 @@ density flow. Keeping half a clump for 12 Gyr would need α ≲ 1e-2, far below 
 because the OU-only control fails; the erosion persists with the OU switched off.) Together with CFG888, the record's cold-energy
 equations neither bind (no law-boosted self-gravity) nor retain (drift erodes, gated or not) a dwarf clump. The dwarf excess
 remains an empirical finding without a mechanism in the record.
+
+**Note (2026-10-20, CFG909) on the shear pass.** The KiDS CONSISTENT class survives every ΛCDM-input variant of the scoring
+(projection Ω_m, covariance), but the size of the framework's advantage is amplitude-driven: Δχ² = −7.70 at the as-scored
+Ω_m 0.3138, −4.15 at the no-CMB measured Ω_m 0.2976 (CFG886), −0.94 at 0.2806. Quote the shear result as CONSISTENT (class),
+not as a −7.7 preference. NC1x (native initial conditions) is scored by the chain and then re-scored by CFG909's script.
