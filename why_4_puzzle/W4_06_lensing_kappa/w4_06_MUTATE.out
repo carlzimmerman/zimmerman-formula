@@ -1,0 +1,52 @@
+W4-06  kappa from KiDS-1000 isolated blue-lens lensing (B21)  [MUTATE g_obs x1.21]
+law g_obs = g_bar nu(g_bar/(kappa s)), s = c sqrt(G rho); obs lane. kappa = 1/2 FITTED. Not theory closed.
+
+[PASS] I1 forbidden inputs: tokens in the compute block: none
+blue lenses: 15 points, g_bar 1.38e-15 .. 3.92e-12; s(rho_DE) = 1.87252e-10, s(rho_crit) = 2.26246e-10
+[PASS] K1 reproduce CFG829: A = 1.2298 +- 0.1039 (6 pts) vs CFG829 1.016 +- 0.086
+
+fits (kappa best, Delta chi2 = 1 interval, n points, chi2_min, Delta chi2(0.461 - 0.5))
+  rho_DE   nu_simple W     kappa 0.770 [0.642, 0.909]  n  6  chi2 8.3  dchi2 +1.82
+  rho_DE   nu_simple WC    NOT DIAGNOSTIC (<3 points)
+  rho_DE   nu_simple W+WC  kappa 0.678 [0.575, 0.791]  n  8  chi2 11.9  dchi2 +1.74
+  rho_DE   nu_simple all   kappa 0.712 [0.629, 0.799]  n 15  chi2 21.2  dchi2 +3.44
+  rho_DE   nu_e      W     kappa 0.770 [0.642, 0.909]  n  6  chi2 8.3  dchi2 +1.82
+  rho_DE   nu_e      WC    NOT DIAGNOSTIC (<3 points)
+  rho_DE   nu_e      W+WC  kappa 0.678 [0.575, 0.791]  n  8  chi2 11.9  dchi2 +1.74
+  rho_DE   nu_e      all   kappa 0.712 [0.630, 0.799]  n 15  chi2 21.2  dchi2 +3.45
+  rho_crit nu_simple W     kappa 0.637 [0.531, 0.752]  n  6  chi2 8.3  dchi2 +1.25
+  rho_crit nu_simple WC    NOT DIAGNOSTIC (<3 points)
+  rho_crit nu_simple W+WC  kappa 0.562 [0.475, 0.655]  n  8  chi2 11.9  dchi2 +0.91
+  rho_crit nu_simple all   kappa 0.589 [0.521, 0.661]  n 15  chi2 21.2  dchi2 +2.06
+  rho_crit nu_e      W     kappa 0.637 [0.531, 0.752]  n  6  chi2 8.3  dchi2 +1.25
+  rho_crit nu_e      WC    NOT DIAGNOSTIC (<3 points)
+  rho_crit nu_e      W+WC  kappa 0.562 [0.476, 0.655]  n  8  chi2 11.9  dchi2 +0.91
+  rho_crit nu_e      all   kappa 0.589 [0.521, 0.661]  n 15  chi2 21.2  dchi2 +2.06
+
+systematics on the PRIMARY (S2 T bracket from CFG885: 0.9676, 1.0622)
+  rho_DE   S1 M* -0.2 dex       kappa 1.294 [1.068, 1.543] n 5
+  rho_DE   S1 M* +0.2 dex       kappa 0.602 [0.510, 0.700] n 6
+  rho_DE   S2 T 0.968           kappa 0.719 [0.600, 0.850] n 6
+  rho_DE   S2 T 1.062           kappa 0.871 [0.727, 1.029] n 6
+  rho_DE   S3 window -0.3 dex   kappa 1.121 [0.949, 1.308] n 5
+  rho_DE   S3 window +0.3 dex   kappa 0.782 [0.654, 0.921] n 6
+  rho_crit S1 M* -0.2 dex       kappa 1.071 [0.883, 1.278] n 5
+  rho_crit S1 M* +0.2 dex       kappa 0.498 [0.423, 0.579] n 6
+  rho_crit S2 T 0.968           kappa 0.596 [0.497, 0.703] n 6
+  rho_crit S2 T 1.062           kappa 0.721 [0.601, 0.851] n 6
+  rho_crit S3 window -0.3 dex   kappa 0.928 [0.786, 1.081] n 5
+  rho_crit S3 window +0.3 dex   kappa 0.647 [0.541, 0.763] n 6
+[PASS] K2 mock recovery kappa_true 0.3: median 0.285 within the mocks' own 1-sigma (16-84%: 0.205-0.365); PRIMARY sigma_stat 0.133
+[PASS] K2 mock recovery kappa_true 0.5: median 0.499 within the mocks' own 1-sigma (16-84%: 0.415-0.608); PRIMARY sigma_stat 0.133
+[PASS] K3 interior minimum and brackets (PRIMARY windows): True
+
+K4 (report): deep-limit 1/2 A^2 = 0.756 vs fitted PRIMARY (nu_e, rho_DE) 0.770
+
+grading
+  rho_DE   kappa_lens = 0.770 +- 0.133 (stat) +- 0.346 (S1 M*); systematic envelope 0.602-1.294; vs CFG493 0.417 +- 0.095: z_stat +2.15, z_total +0.92; sigma_total/kappa 48.2%; 1/2 vs 0.461 dchi2 +1.82 (WEAK) -> CONSISTENT, NOT DECISIVE
+  rho_crit kappa_lens = 0.637 +- 0.110 (stat) +- 0.287 (S1 M*); systematic envelope 0.498-1.071; vs CFG493 0.345 +- 0.078: z_stat +2.16, z_total +0.92; sigma_total/kappa 48.3%; 1/2 vs 0.461 dchi2 +1.25 (WEAK) -> CONSISTENT, NOT DECISIVE
+
+LANE VERDICT (rho_DE, the canonical footing): CONSISTENT, NOT DECISIVE; rho_crit: CONSISTENT, NOT DECISIVE
+
+checks: 5/5 pass
+MUTATE: kappa ratio vs normal run 1.481 (expected ~1.46 in the deep regime); bites True; bookkeeping passes True
