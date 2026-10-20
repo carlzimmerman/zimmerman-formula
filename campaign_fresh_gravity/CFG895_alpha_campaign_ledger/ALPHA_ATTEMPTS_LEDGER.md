@@ -222,3 +222,7 @@ Counts and the attempt counter are produced by `cfg895_check.py` (see `README.md
 * Whether these files are deployed was not checked.
 * The `ai_slop/` Zenodo v6/v7 drafts and the publisher-pitch drafts still state the 'two-loop' claim.
 * Under the record's rules, only the owner decides about public content.
+
+## Post-ledger attempts (appended by the orchestrator)
+| CFG896 | HIGGS/FP | campaign_fresh_gravity/CFG896_alpha_D02_higgs_boundary | Door D02: Higgs boundary conditions (λ=0, β_λ=0, Veltman, MPP at M_P/M_red; singles and joint pairs) solved for g_Y | β_λ=0: 162.06 / 149.32; others NOT DIAGNOSTIC (σ 3.3–14.2) | 11 NOT DIAGNOSTIC, 2 KILLED (+10.2σ/+7.9σ); joint α–M_W 98% correlated (one test) | 13 | cfc23448b / b2fa5ad0d / 9c1069bb0 |
+| CFG901 | FP | campaign_fresh_gravity/CFG901_alpha_D03_own_content_fg | Door D03: AS f_g with SM + 3 ν_R, CPR-EH graded | 96.504 (reported 96.24/96.65, 97.27, 93.30) | KILLED: z = −6.51 vs σ_route 6.230; ν_R shift ≪ σ (content loophole closed) | 1 | f1e4cb90d / ced3bd06b / 4845e8377 |
