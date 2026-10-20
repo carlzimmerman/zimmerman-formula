@@ -150,11 +150,11 @@ fact.
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
 | QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 20 | 6 | 1 | 13 | 0 | 0 |
-| KS Kinetic / settling / collective / cold-energy dynamics | 30 | 0 | 1 | 29 | 0 | 0 |
+| KS Kinetic / settling / collective / cold-energy dynamics | 31 | 0 | 2 | 29 | 0 | 0 |
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 33 | 1 | 4 | 24 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 43 | 0 | 0 | 0 | 0 | 33 |
-| AU Audits, controls, meta-analyses | 65 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 67 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -606,6 +606,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K550 | Q007 | `qwen38_push/Q007_virial_half.py` | virial amplitude half | - | free | VOID (naming): SIS-class ratio | 9e7e9604d |
 | K577 | G001 | `glm53_push/G001_clockmaker_dilemma.py` | clock-derived kappa | - | free | closed | be5a58d00 |
 | K583 | deepseek_moa | `deepseek_moa/HARVEST.md` | kappa = sigma^2/v^2 = c_s^2 = 1/2 | - | free | VOID (naming): SIS class | d78d7525a |
+| K596 | CFG898 | `campaign_fresh_gravity/CFG898_kappa_D2_causality_saturation` | saturate CFG893 drift-causality ceiling (v_s = c) at rho_DE-defined loci x kernels x alpha* (causal bound / FP / BGK) | - | menu | NOT A SELECTION: menu 2.894-10.948 all miss; real field at loci gives kappa_sat 3.3e11-1.2e17 ~ M_b^-1 (mass-dependent, excluded); H-type a0 = N c H_L/(alpha c_nu) (horizon family, pi-parity forbids 1/2); alpha not fixed by IS closure | d663eb027 |
 
 ## CC: Cosmological consistency (horizons, epochs, H0, unimodular, sequestering)
 
@@ -804,6 +805,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K572 | H001 | `hy4_push/H001_CROSS_TRACK_AUDIT.md` | cross-track audit glm/gemini | - | audit | measured integer; Lean sorry | eb4a58376 |
 | K584 | INV4 | `predictions_2026/INVENTORY_4_lensing_clusters_environment_kappa.md` | kappa inventory (L4-29..35) | - | audit | inventory; 0.551 superseded | c005dd00f |
 | K585 | R05 | `RETRACTIONS.md` | pi-counting | - | audit | no leverage | 508a12052 |
+| K597 | CFG891 | `campaign_fresh_gravity/CFG891_kappa_D3_c_term_census` | census of every c-a0 relation in the record (67 relations, 36 files; pi tracked) | - | audit | PI-FREE BUT NOT 1/2: the five pi-free rational halves carry the target; only target-free pi-free value CFG380 S4 kappa 1.278 (irrational, posit, miss); all horizon-type values pi-odd; no record equation gives exact 1/2 | 9bc3dbec4 |
+| K599 | CFG904 | `campaign_fresh_gravity/CFG904_rt17_vs_rt19_audit` | RT-17 vs RT-19 recomputed; correction: K459 (RT-17 0.4607) reclassified MENU {0.4607, 0.921, 0.230, 2.894} (scale unfixed; I1 Unruh-inconsistent) | - | audit | RT-19 withdrawal stands; 4pi = 2pi (RT-17 S4) x 2 (DeltaT slope); both kappa^2 pi-odd; determinate in-window count drops by one on rerun of kappa_campaign_lee.py | c7e5c0e53 |
 | K601 | CFG908 | `campaign_fresh_gravity/CFG908_kappa_derived_claims_audit` | audit of the four unaudited kappa-derived claims (Q010, G031, glm53 README/G002, gemini38) in sympy with rename and mutation controls | - | audit | none derives the law kappa: Q010 DIFFERENT QUANTITY (SIS ratio); G031 IDENTITY; G002 MEASUREMENT RELABELLED; gemini38 PREMISE-A INSERTION; 200 lines in 142 tracked files still say derived | c16f82613 |
 
 ## LN: Logic / Lean formalisations
