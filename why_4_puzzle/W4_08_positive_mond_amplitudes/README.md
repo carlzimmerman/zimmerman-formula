@@ -52,6 +52,16 @@ local unscreened light-deflection gamma below 1/2. Fourteen further Lean
 statements certify the displayed algebra, without asserting microscopic
 health or an end-to-end selection proof.
 
+The [protected-normalization continuation](formal/protected_normalization/RESULT.md)
+tests a five-dimensional protected cubic, an actual de Sitter quantum
+determinant and a disformal physical metric. Radial gauge relaxation
+produces a cubic electric response, but its source force is repulsive,
+its critical vacuum has zero energy and FI uplift restores quadratic IR
+response. The free sphere determinant and finite-cutoff quartic model
+give analytic or logarithmic responses for actual smooth source profiles.
+A TeVeS-shaped metric repairs gamma while leaving the scalar charge free.
+These new analytic tests add no healthy selector or new Lean module.
+
 ## Strongest new construction
 
 Pair equal-weight two-dimensional Dirac and bosonic bands. Their squared

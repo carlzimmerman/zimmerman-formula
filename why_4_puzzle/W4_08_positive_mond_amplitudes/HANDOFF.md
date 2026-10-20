@@ -168,3 +168,47 @@ remain explicit unformalized leaves. The original goal stays active.
 Gravitational-constraint evidence commit: 590d17d77; campaign rows
 K701-K706. The regenerated campaign checks pass 4/4. Determinate-trial
 count and campaign significance are unchanged; the original goal is open.
+
+## Protected operators, invariant states and a physical metric
+
+Criteria-only2591280c8 continues9a9ab4032. The previous turn made
+committed progress; this continuation adds analytic operator/state/source
+evidence. See formal/protected_normalization/RESULT.md from the lane root
+(or protected_normalization/RESULT.md from the formal directory).
+The goal remains the healthy microscopic selector and end-to-end Lean proof.
+
+Five-dimensional cubic-prepotential protection does not by itself give a
+static MOND operator. An added radial potential produces a real electric
+cubic with a positive fixed-displacement minimum, but no regular positive
+critical-vacuum energy or photon kinetic coefficient, and universal like
+charges repel. FI uplift restores quadratic IR response. Its static-L
+16/27 and electric-H64/27 diagnostic combinations have reversed force
+regimes and are not the operational scalar amplitude. Minimal ungauged
+supergravity's fixed Einstein/Maxwell/CS ratio also has the wrong operator.
+
+The actual free S4 determinant, including bounded smooth nonuniform scalar
+profiles, is analytic at a positive gap and logarithmic at the free zero
+mode. A retained bounded quartic zero mode and the finite-cutoff positive
+interacting measure are analytic, with a negative variance second response.
+The complete quantum-sector invariant stress is W-H W_H/4, not W itself;
+finite gravitational matching data remain. No full Lorentzian interacting
+force or continuum quantum completion is constructed.
+
+A universal disformal metric gives dust charge Q=alpha+beta and
+ gamma=1-[(2alpha+beta)/Q]f. The TeVeS-shaped gamma=1 family leaves Q free
+at fixed response coefficients; physical Q^2/C2 and xi vary. Arbitrary
+constant A0,B0 conversions preserve actual-V xi but add B0^2 to inferred
+xi. The extra saturated-neighborhood cone rule is an explicit assumption,
+not general causality. This new coupling does not repair the matter-free
+clock instability. Do not transfer the old conformal PPN exclusion to it.
+
+No new Lean module was added merely to duplicate the existing charged
+energy factorization or scalar/tensor cube. Nine partial modules retain
+their scopes; actual pi and all physical selector leaves remain open.
+A constructive continuation needs an explicit attractive universal source
+map beyond the protected Coulomb theory, a Lorentzian nonlocal/critical
+state outside the tested finite-volume class, or a microscopic symmetry
+fixing both charge and response/vacuum normalization. A nondegenerate
+analytic gap/Einstein equation alone preserves analyticity; a critical
+mode must be analyzed dynamically. Those routes are deferred, not globally
+excluded or declared solved. No determinate normalization is registered.

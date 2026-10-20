@@ -132,6 +132,17 @@ window. Its universal conformal matter coupling gives a free scalar
 force fraction; forcing the inferred-density target would imply a local
 unscreened gamma below 1/2. None of these constraints selects the target.
 
+[Protected normalization](protected_normalization/RESULT.md) tests a
+five-dimensional exact gauge prepotential, the actual de Sitter sphere
+determinant with smooth source profiles and a universal disformal metric.
+A real radial electric cubic has the wrong universal force sign and
+critical-vacuum/UV problems; the tested quantum responses are analytic or
+logarithmic; a gamma=1 metric leaves the physical scalar charge free.
+These are analytic results, with cross-reviews and exact source pins.
+No extra Lean module is claimed: the existing charged-energy theorem
+already covers the radial Hamiltonian's algebra, and the physical selector
+is still missing. The module count remains nine.
+
 ## Verification and reproduction
 
 Installed pin: Lean 4.34.0-rc2, mathlib commit
