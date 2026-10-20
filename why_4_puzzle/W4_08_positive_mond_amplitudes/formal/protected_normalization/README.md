@@ -1,7 +1,9 @@
 # Protected operators, invariant states and physical matter
 
 **No healthy model forces128pi/9 here.** Criteria-only2591280c8 continues
-base9a9ab4032. [RESULT.md](RESULT.md) gives the outcomes and the precise
+base9a9ab4032. Reviewed analytic evidence is committed as eeb8b9492.
+Campaign entries K707-K710 record the scoped outcomes; regeneration passes
+4/4 and adds no determinate normalization trial. [RESULT.md](RESULT.md) gives the outcomes and the precise
 remaining physical obligations. No numerical prediction or new Lean module
 is claimed; the original goal stays active with nine existing partial modules.
 

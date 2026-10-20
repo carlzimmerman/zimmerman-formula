@@ -182,3 +182,7 @@ fixing both charge and response/vacuum normalization. A nondegenerate
 analytic gap/Einstein equation alone preserves analyticity; a critical
 mode must be analyzed dynamically. Those routes are deferred, not globally
 excluded or declared solved. No determinate normalization is registered.
+
+Protected-normalization evidence: eeb8b9492; campaign entriesK707-K710.
+The regenerated campaign checks pass4/4. Determinate-trial count and
+campaign significance are unchanged; no healthy selector is claimed.
