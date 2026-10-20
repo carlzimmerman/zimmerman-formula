@@ -12,13 +12,18 @@ Standing empirical status: **kappa=1/2 FITTED**. CFG493 gives
 kappa_Lambda=0.417+/-0.095 and kappa_crit=0.345+/-0.078 on separate
 footings. Neither is used as an input to any calculation here.
 
-**Formal continuation:** [four Lean modules](formal/README.md) now verify
+**Formal continuation:** [six partial Lean modules](formal/README.md) verify
 the quantitative band-stress obstruction, coefficient bridge, scale/gap
 curvature implications and temporal-vector cone bounds. A new classical
 vector parent admits a regular MOND source branch; a charged scalar gives
 a regular pressure sector but still lacks the required compensating
 current. No healthy microscopic xi=1/4 selector has been found. The active
 goal and the unverified real-pi adapter are tracked in formal/GOAL_STATUS.md.
+The [regular-current follow-up](formal/current_interactions/RESULT.md)
+derives the full canonical charge and a new electric-flux upper bound:
+compact Jacobian profiles can relax with O(delta^4) excess energy rather
+than a positive leading cubic. Nontrivial boundary sectors and protected
+auxiliary completions remain unproved routes.
 
 ## Strongest new construction
 

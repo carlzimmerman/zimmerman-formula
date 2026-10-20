@@ -1,0 +1,31 @@
+current_interactions/CurrentEnergy.lean:44:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+current_interactions/CurrentEnergy.lean:78:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+@exact_legendre_identity : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (Q nu alpha z p : K),
+  Q ≠ 0 → p = 2 * Q * (nu - alpha * z) → p * nu - timeLagrangian Q nu alpha z = timeHamiltonian Q p alpha z
+@neutral_energy_nonnegative : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (Q lambda alpha z : K), 0 ≤ Q → 0 < lambda → 0 ≤ neutralEnergy Q lambda alpha z
+@neutral_energy_zero_iff : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (Q lambda alpha z : K), 0 ≤ Q → 0 < lambda → (neutralEnergy Q lambda alpha z = 0 ↔ Q = 0)
+@charged_gap_factorization : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (n Q lambda a : K),
+  Q ≠ 0 →
+    n ^ 2 = 4 * lambda * a ^ 4 →
+      chargedEnergy n Q lambda - 4 * lambda * a ^ 3 / 3 =
+        lambda * (Q - a) ^ 2 * (Q ^ 2 + 2 * Q * a + 3 * a ^ 2) / (3 * Q)
+@charged_global_lower_bound : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (n Q lambda a : K),
+  0 < Q → 0 < lambda → 0 < a → n ^ 2 = 4 * lambda * a ^ 4 → 4 * lambda * a ^ 3 / 3 ≤ chargedEnergy n Q lambda
+@charged_equality_iff : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (n Q lambda a : K),
+  0 < Q → 0 < lambda → 0 < a → n ^ 2 = 4 * lambda * a ^ 4 → (chargedEnergy n Q lambda = 4 * lambda * a ^ 3 / 3 ↔ Q = a)
+'Why4.CurrentEnergy.exact_legendre_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.CurrentEnergy.neutral_energy_nonnegative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.CurrentEnergy.neutral_energy_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.CurrentEnergy.charged_gap_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.CurrentEnergy.charged_global_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.CurrentEnergy.charged_equality_iff' depends on axioms: [propext, Classical.choice, Quot.sound]

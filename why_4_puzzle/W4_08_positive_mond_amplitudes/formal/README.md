@@ -17,13 +17,18 @@ formal scopes. None is a determinate normalization candidate.
 | [AmplitudeBridge.lean](AmplitudeBridge.lean) | The source-coefficient definitions imply xi=8Omega/(9R); for Omega=4P, xi=1/4 iff R=128P/9. Common factors cancel. A target match in the reduced band formula imposes u=(96P-1)/(96P+2). P is any positive ordered-field element, not an asserted selecting law. |
 | [ScaleGap.lean](ScaleGap.lean) | The stated stationary scale/gap Hessian with positive energy requires a strict lower bound on running curvature when that Hessian is positive definite. A single-log positive-energy stationary point has negative radial curvature. The differentiated potential dictionary is explicit analytic input. |
 | [GaugeCones.lean](GaugeCones.lean) | Exact discriminant/root bounds, the refined cone identity, and the fully substituted principal coefficients of the temporal-vector action put every existing root in (0,1]. The microscopic/PDE interpretation of the polynomial is an explicit input. |
+| [CurrentEnergy.lean](current_interactions/CurrentEnergy.lean) | Exact Legendre identity with the full canonical charge, an empty neutral amplitude minimum, and a unique global minimum of the charged sextic energy. Current and Gauss dictionaries remain analytic inputs. |
+| [FluxComparison.lean](current_interactions/FluxComparison.lean) | The compact flux trial's jet cancellation and quartic energy, plus the quartic-versus-cubic bound. Admissibility, integration and the physical variational infimum remain analytic inputs. |
 
-All printed critical theorem axioms are exactly
+The original four modules' printed critical theorem axioms are exactly
 `[propext, Classical.choice, Quot.sound]`. There are no proof admissions or
 custom axioms in the successful modules. Their statements quantify
 arbitrary ordered fields except the real scale/gap module. The stress
 module represents r by r>=0 and r^2=1+d^2 and proves its uniqueness.
 No irrational/transcendental gap theorem is silently assumed.
+The two new current modules add nine printed critical theorems, using
+only subsets of those same standard axioms. Their evidence and controls
+are checked separately in [current_interactions](current_interactions/README.md).
 
 The rational control has A=L=1,d=3/4,r=5/4, giving rho=17/32 and
 N=3/8. The normal control compiles. Reversing N makes the unchanged lower
@@ -72,6 +77,15 @@ also excludes positive cubic energy from amplitude-only relaxation with
 an affine gradient energy and gradient-independent charge constraints.
 Derivative-current completions remain outside that result.
 Its reviewed evidence is committed as 3a26d1eb9 and registered as K679.
+
+The [regular-current continuation](current_interactions/RESULT.md) goes
+beyond the amplitude-only restriction. A polynomial current interaction
+changes the canonical charge but leaves the neutral vacuum empty; a
+Jacobian current supplies charge under local neutrality but permits a
+cheaper electric-flux trial for compact profiles. CS flux attachment and
+the specified zero-flux axion model supply no three-dimensional MOND
+normalization or positive vacuum relation. Boundary/topological sectors
+and protected auxiliary completions remain open obligations.
 
 ## Verification and reproduction
 
