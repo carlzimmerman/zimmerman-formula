@@ -65,3 +65,9 @@ Units c = 1; M_P² = 1/(8πG); κ² = a²/(Gρ_DE).
 ## Files
 
 `w4_08.py`, outputs, `README.md`. One register row per family (E1–E9), then `kappa_campaign_lee.py` rerun.
+
+## Erratum (appended 2026-10-20, before any script; no criterion changed)
+
+**Lane id W4-08 → W4-09.** A parallel session froze a different W4-08 at 16:53:41 (`why_4_puzzle/W4_08_positive_mond_amplitudes/`,
+criteria 6ac11cdc9), ten minutes before this file (89d2a43c5, 17:03:09). This lane is renumbered **W4-09**: folder
+`why_4_puzzle/W4_09_dark_energy_models/`, files `w4_09.*`, env `W4_09_MUTATE`. Read "W4-08" above as W4-09.
