@@ -1,0 +1,84 @@
+G: M31 Galactocentric position fitted to 175 LVD distance_m31 values: d = 780.2 kpc (rms 0.00 kpc); r_J,MW (present; no MW-M31 pericentre yet) = 484 / 479 kpc
+  [vm_stat before G runs: free+inactive 33.7 GB]
+
+CFG916  lock-and-release H-LR   criteria a3b2ffd2d   HYPOTHESIS TEST   mode main
+  kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; cold energy real gravitating mass; no species; not theory closed.
+  readings: LR-x = CFG915 LC exactly + release; LR-c = capped capture + release.  t = latched (alpha_t 0), f = mobile (alpha_f 0.5/1).
+
+K-G-NONE: LR-x with r_J = inf vs CFG915 cached LC MW runs (min q, max q, M_c/M_ph, f share, t share; alpha_f 0.5, 1; both footings): max rel 0.0e+00 -> PASS
+K-G-ALL: release-all vs CFG915 REF: exact capture max rel 0.0e+00; vs cfg598_results.json MW P0 0.0e+00; capped capture 0.0e+00 -> PASS
+K-H14: LR-x log-14 host runs vs CFG915 cache phi_f(<200), t share: max rel 0.0e+00 -> PASS
+K-M-NONE: release-none per-cluster DeltaSigma vs CFG726 stored arrays: eRASS1 0.0e+00, ACCEPT 0.0e+00; Z (MID, OUTER) max |diff| 0.0e+00; A_OUTER max rel 0.0e+00 -> PASS
+K-M-ALL: release-all = CFG726 stored law arrays: eRASS1 0.0e+00, ACCEPT 0.0e+00; A_law (MID, OUTER) max rel 0.0e+00 -> PASS
+K-M-W: truncated convolution with weight 1 vs CFG726 convolve_members: max rel 0.0e+00 -> PASS
+K-ORB: median eRASS1 cluster (canonical), d 489 kpc, node 1: solver r_p 408.76 kpc vs leapfrog 408.76 kpc (rel 1.6e-07); all nodes r_p <= d: True -> PASS
+K-SAT: CFG839 r_peri reproduced with its own settings for 12 satellites: max rel 0.0e+00 -> PASS
+K-R: CFG915 phi_lin B 0.1346/0.1338 H 0.0390/0.0411, LC log-14 phi_f 0.864/0.882; CFG726 Z_outer ok True, law A ok True; CFG873 D -0.150+-0.097, CFG874 c -0.100+-0.091, CFG875 k -0.190+-0.150; CFG838 NO TIDAL SIGNAL, CFG839 NO SIGNAL; CFG827 loss factor median 4.32 -> PASS
+K-tests: 9/9 PASS
+
+Inputs and summaries
+  r_J,MW in M31's field: 484 / 479 kpc at d = 780 kpc; MW drift grid outer cell centre 1228 kpc
+  eRASS1 [can] members: N_mem median 38, own halo edge median 1099 kpc; r_J median at pericentre 178.0 kpc (r_p/d median 0.48), at present 385.8 kpc; retained free memory F_J/F peri 0.000, present 0.000; released-surplus clock 1/Gamma at 1.5 Mpc alpha_f 0.5: 3.24 Gyr, alpha_f 1.0: 1.62 Gyr (report only)
+  eRASS1 [alt] members: N_mem median 38, own halo edge median 996 kpc; r_J median at pericentre 178.7 kpc (r_p/d median 0.48), at present 386.8 kpc; retained free memory F_J/F peri 0.000, present 0.000; released-surplus clock 1/Gamma at 1.5 Mpc alpha_f 0.5: 3.07 Gyr, alpha_f 1.0: 1.54 Gyr (report only)
+  eFEDS (report only; CFG726 T-E fails at the law's level): base|can chi2 28.7 p 0.00036 A_out +0.425+-0.065; hmm|can chi2 28.4 p 0.00041 A_out +0.419+-0.065; lrp|can chi2 28.6 p 0.00037 A_out +0.425+-0.065; lrn|can chi2 28.6 p 0.00037 A_out +0.425+-0.065; base|alt chi2 25.1 p 0.0015 A_out +0.386+-0.065; hmm|alt chi2 24.9 p 0.0016 A_out +0.382+-0.066; lrp|alt chi2 25.1 p 0.0015 A_out +0.386+-0.065; lrn|alt chi2 25.1 p 0.0015 A_out +0.386+-0.065; reproduction of CFG726 stored arrays: hmm 0.0e+00, law 0.0e+00
+
+--- LR-x ---
+  G [can] CONSISTENT: min q af 0.5 0.9909, af 1 0.9955; M_c/M_ph(<30) 1.0015, 1.0038; t share 0.0380, 0.0380; r_J,MW 483.8 kpc; max t found beyond r_J at a release 0, 0 Msun
+  G [alt] CONSISTENT: min q af 0.5 0.9915, af 1 0.9957; M_c/M_ph(<30) 1.0000, 1.0021; t share 0.0305, 0.0305; r_J,MW 479.1 kpc; max t found beyond r_J at a release 0, 0 Msun
+  G joint pass alpha_f (both footings): ['0.5', '1']
+  M [can] peri    (hmm): eRASS1 OUTER 0.765+-0.065 (Z -3.63), MID 1.536+-0.096 (Z +5.56); ACCEPT OUTER 0.448+-0.114 (Z -4.83), MID 1.034 (Z +0.14) -> CONTRADICTED
+  M [can] present (hmm): eRASS1 OUTER 0.765+-0.065 (Z -3.63), MID 1.536+-0.096 (Z +5.56); ACCEPT OUTER 0.448+-0.114 (Z -4.83), MID 1.034 (Z +0.14) -> CONTRADICTED
+  M [alt] peri    (hmm): eRASS1 OUTER 0.744+-0.063 (Z -4.05), MID 1.440+-0.090 (Z +4.87); ACCEPT OUTER 0.430+-0.110 (Z -5.19), MID 0.963 (Z -0.17) -> CONTRADICTED
+  M [alt] present (hmm): eRASS1 OUTER 0.744+-0.063 (Z -4.05), MID 1.440+-0.090 (Z +4.87); ACCEPT OUTER 0.430+-0.110 (Z -5.19), MID 0.963 (Z -0.17) -> CONTRADICTED
+  B [can] peri UNDERDETERMINED | present UNDERDETERMINED: r_J(720 kpc) 304 kpc; record head-on d_min 21.537383683493218 kpc (r_J 54.4 kpc, report only); af 0.5: phi_f 0.8644, phi_mob present 0.8644; af 1: phi_f 0.8648, phi_mob present 0.8648 (alphas used ['0.5', '1']; phi_lin,H 0.0390)
+  B [alt] peri UNDERDETERMINED | present UNDERDETERMINED: r_J(720 kpc) 306 kpc; record head-on d_min 9.547356943678182 kpc (r_J 24.1 kpc, report only); af 0.5: phi_f 0.8819, phi_mob present 0.8819; af 1: phi_f 0.8822, phi_mob present 0.8822 (alphas used ['0.5', '1']; phi_lin,H 0.0411)
+  D-sat [can] peri    N 12: exposed ['Sagittarius'] (ref Delta +0.361; above ref []) -> CONSISTENT; min r_J/r_1/2 0.26 (Sagittarius)
+  D-sat [can] present N 24: exposed ['Sagittarius'] (ref Delta +0.361; above ref []) -> CONSISTENT; min r_J/r_1/2 0.46 (Sagittarius)
+  D-field [can]: CFG873 D -0.150+-0.097 (z -1.55), CFG874 c -0.100+-0.091 (z -1.10), CFG875 k -0.190+-0.150 (z -1.27) -> CONSISTENT;  D [can] = CONSISTENT (conditional) | present CONSISTENT (conditional)
+  D-sat [alt] peri    N 12: exposed ['Sagittarius'] (ref Delta +0.322; above ref []) -> CONSISTENT; min r_J/r_1/2 0.27 (Sagittarius)
+  D-sat [alt] present N 24: exposed ['Sagittarius'] (ref Delta +0.322; above ref []) -> CONSISTENT; min r_J/r_1/2 0.47 (Sagittarius)
+  D-field [alt]: CFG873 D -0.150+-0.096 (z -1.55), CFG874 c -0.100+-0.091 (z -1.10), CFG875 k -0.190+-0.150 (z -1.27) -> CONSISTENT;  D [alt] = CONSISTENT (conditional) | present CONSISTENT (conditional)
+  CLASS LR-x: CONTRADICTED
+     - M[can] CONTRADICTED
+     - B[can] UNDERDETERMINED
+     - M[alt] CONTRADICTED
+     - B[alt] UNDERDETERMINED
+
+--- LR-c ---
+  G [can] CONSISTENT: min q af 0.5 0.9909, af 1 0.9955; M_c/M_ph(<30) 1.0014, 1.0038; t share 0.0283, 0.0283; r_J,MW 483.8 kpc; max t found beyond r_J at a release 0, 0 Msun
+  G [alt] CONSISTENT: min q af 0.5 0.9914, af 1 0.9957; M_c/M_ph(<30) 1.0000, 1.0022; t share 0.0254, 0.0254; r_J,MW 479.1 kpc; max t found beyond r_J at a release 0, 0 Msun
+  G joint pass alpha_f (both footings): ['0.5', '1']
+  M [can] peri    (lrp): eRASS1 OUTER 1.011+-0.087 (Z +0.13), MID 1.907+-0.118 (Z +7.66); ACCEPT OUTER 1.019+-0.253 (Z +0.08), MID 1.686 (Z +1.93) -> CONSISTENT (static)
+  M [can] present (lrn): eRASS1 OUTER 1.011+-0.087 (Z +0.13), MID 1.907+-0.118 (Z +7.66); ACCEPT OUTER 1.019+-0.253 (Z +0.08), MID 1.686 (Z +1.93) -> CONSISTENT (static)
+  M [alt] peri    (lrp): eRASS1 OUTER 0.926+-0.079 (Z -0.93), MID 1.751+-0.109 (Z +6.91); ACCEPT OUTER 0.941+-0.234 (Z -0.25), MID 1.562 (Z +1.70) -> CONSISTENT (static)
+  M [alt] present (lrn): eRASS1 OUTER 0.926+-0.079 (Z -0.93), MID 1.751+-0.109 (Z +6.91); ACCEPT OUTER 0.941+-0.234 (Z -0.25), MID 1.562 (Z +1.70) -> CONSISTENT (static)
+  B [can] peri UNDERDETERMINED | present UNDERDETERMINED: r_J(720 kpc) 304 kpc; record head-on d_min 21.537383683493218 kpc (r_J 54.4 kpc, report only); af 0.5: phi_f 0.8676, phi_mob present 0.8676, d* 20.561972404447637 kpc, phi_mob(d_min) 0.8930; af 1: phi_f 0.8680, phi_mob present 0.8680, d* 20.561972404447637 kpc, phi_mob(d_min) 0.8933 (alphas used ['0.5', '1']; phi_lin,H 0.0390)
+  B [alt] peri UNDERDETERMINED | present UNDERDETERMINED: r_J(720 kpc) 306 kpc; record head-on d_min 9.547356943678182 kpc (r_J 24.1 kpc, report only); af 0.5: phi_f 0.8843, phi_mob present 0.8843, d* 20.138817511744534 kpc, phi_mob(d_min) 0.9784; af 1: phi_f 0.8847, phi_mob present 0.8847, d* 20.138817511744534 kpc, phi_mob(d_min) 0.9785 (alphas used ['0.5', '1']; phi_lin,H 0.0411)
+  D-sat [can] peri    N 12: exposed ['Sagittarius'] (ref Delta +0.361; above ref []) -> CONSISTENT; min r_J/r_1/2 0.26 (Sagittarius)
+  D-sat [can] present N 24: exposed ['Sagittarius'] (ref Delta +0.361; above ref []) -> CONSISTENT; min r_J/r_1/2 0.46 (Sagittarius)
+  D-field [can]: CFG873 D -0.150+-0.097 (z -1.55), CFG874 c -0.100+-0.091 (z -1.10), CFG875 k -0.190+-0.150 (z -1.27) -> CONSISTENT;  D [can] = CONSISTENT (conditional) | present CONSISTENT (conditional)
+  D-sat [alt] peri    N 12: exposed ['Sagittarius'] (ref Delta +0.322; above ref []) -> CONSISTENT; min r_J/r_1/2 0.27 (Sagittarius)
+  D-sat [alt] present N 24: exposed ['Sagittarius'] (ref Delta +0.322; above ref []) -> CONSISTENT; min r_J/r_1/2 0.47 (Sagittarius)
+  D-field [alt]: CFG873 D -0.150+-0.096 (z -1.55), CFG874 c -0.100+-0.091 (z -1.10), CFG875 k -0.190+-0.150 (z -1.27) -> CONSISTENT;  D [alt] = CONSISTENT (conditional) | present CONSISTENT (conditional)
+  CLASS LR-c: UNDERDETERMINED
+     - B[can] UNDERDETERMINED
+     - B[alt] UNDERDETERMINED
+
+OVERALL H-LR (best over LR-x, LR-c; two chances, disclosed): UNDERDETERMINED
+Conditions carried (D): alpha_t = 0; D-i formation-epoch baryon loss, loss factor median x4.32 (16-84% 1.18-17.77, CFG827 28 OOS dwarfs); LR-c adds: t latched (exact settling, growth halted) before the loss.
+
+POST HOC diagnostics (added after the first full main run; no class weight; frozen numbers above unchanged):
+  PH1 eRASS1 [can]: static pass survives while <= 0.57 of the released surplus remains in place at t_obs (A_OUTER >= 0.853); with the median transport clock that needs a time since release >= 1.8 Gyr (alpha_f 0.5), 0.9 Gyr (alpha_f 1.0)  [linear estimate; heavy run (a) decides]
+  PH1 ACCEPT [can]: static pass survives while <= 0.41 of the released surplus remains in place at t_obs (A_OUTER >= 0.668); with the median transport clock that needs a time since release >= 2.9 Gyr (alpha_f 0.5), 1.4 Gyr (alpha_f 1.0)  [linear estimate; heavy run (a) decides]
+  PH1 eRASS1 [alt]: static pass survives while <= 0.35 of the released surplus remains in place at t_obs (A_OUTER >= 0.853); with the median transport clock that needs a time since release >= 3.2 Gyr (alpha_f 0.5), 1.6 Gyr (alpha_f 1.0)  [linear estimate; heavy run (a) decides]
+  PH1 ACCEPT [alt]: static pass survives while <= 0.34 of the released surplus remains in place at t_obs (A_OUTER >= 0.668); with the median transport clock that needs a time since release >= 3.3 Gyr (alpha_f 0.5), 1.6 Gyr (alpha_f 1.0)  [linear estimate; heavy run (a) decides]
+  PH2 D-sat [can] peri: closest intact satellite Canes Venatici II r_J/r_1/2 = 4.04; exposed: ['Sagittarius']
+  PH2 D-sat [can] present: closest intact satellite Andromeda I r_J/r_1/2 = 2.26; exposed: ['Sagittarius']
+  PH2 D-sat [alt] peri: closest intact satellite Canes Venatici II r_J/r_1/2 = 3.80; exposed: ['Sagittarius']
+  PH2 D-sat [alt] present: closest intact satellite Andromeda I r_J/r_1/2 = 2.28; exposed: ['Sagittarius']
+  PH3 frozen-text inconsistency (MUTATE): section 6 grades release-all M as the plain law for BOTH readings; under LR-x's own identity argument
+      (exact capture re-latches released surplus in a settled host) release-all M would be H-MM instead. The LR-x release-all tooth bites
+      on D (class change) and G (min q move) without the M entry, so the MUTATE status does not depend on it.
+  PH4 B under the record's head-on geometry (report only by the frozen rule): LR-c phi_mob at the model's minimum sampled separation [can] d_min 21.5 kpc -> af 0.5 0.893, af 1 0.893 (d* 20.6 kpc); [alt] d_min 9.5 kpc -> af 0.5 0.978, af 1 0.978 (d* 20.1 kpc); threshold 0.9
+K-tests: all PASS (9/9)
+elapsed 0 s
