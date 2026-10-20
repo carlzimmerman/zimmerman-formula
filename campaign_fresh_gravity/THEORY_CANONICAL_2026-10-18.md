@@ -84,3 +84,17 @@ dispersion) makes fragments ≈ 3–4 × the host's baryons, a one-to-one scalin
 equations therefore need a universal velocity scale from outside the cold sector. Candidate (post-hoc, not in the record):
 the thermal speed of neutral primordial gas at the hydrogen-cooling floor (8000–10⁴ K → 7.4–8.2 km/s → 3.6–7.1e6 M_⊙), set
 once in the first systems that can cool. Not derived until that mechanism is written into the equations and tested.
+
+**Addendum (2026-10-20 early, CFG880–884, owner block 880–889): the clump picture under stress.**
+- CFG880: one clump σ for all dwarfs is EXCLUDED (intrinsic scatter 0.38 in ln σ, powered; both footings).
+- CFG881: SPARC cannot exclude retained first-cooling clumps; sunk clumps ≤ ~27% of baryons inside 1 kpc, spread clumps unbounded.
+- CFG882: the record's two-sided drift drains any clump in ~10 Myr/α (EXCLUDED for galaxy-side α); only CFG639's deficit gate
+  retains it (exactly). The gate is load-bearing and not established.
+- CFG883: globulars mostly carry no clump (6 of 13 diagnostic exclude it; one escaper-like exception). A clump in every old stellar
+  system is excluded. Tidal dwarfs, UCDs and the NGC 1052 trail are not diagnostic.
+- CFG884: Sextans' metal-poor population (provisional extraction) needs ≳ 6e8 M_⊙ of extra mass out to ≳ 1.7 kpc, i.e. ~120 clumps.
+  The finite clump is short at ≥ 5σ everywhere on the grid, and the extended form fits only in the most lenient corner. Meanwhile,
+  Crater II and Antlia II cannot carry an extended component (CFG876).
+Reading: the dwarf excess is real and not host-made, but its amount and extent vary strongly from dwarf to dwarf (Sextans needs
+far more and far wider mass than Draco-like or Crater II-like systems). No single component, compact or extended, fits all of them.
+The variation itself is now the target (Codex's selectivity problem).
