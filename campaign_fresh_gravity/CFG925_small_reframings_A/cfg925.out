@@ -1,0 +1,79 @@
+CFG925  small reframings A: R1 law-Jeans estimator, R2 self-sourcing, R3 EFE sign (zero new constants)
+  kappa = 1/2 FITTED; footings never pooled; criteria 661668f32
+
+=== K-stage
+    cfg921> [PASS] K1 CFG919 input/cell code exec'd read-only: all its K-checks pass (incl. CFG914's 9): 7/7 CFG919 checks pass
+    cfg921> [PASS] K2 CFG919 V0 cells reproduced (cls, w, n exact; E, lg, f, se_stat), both footings: 37 cells x 2; max |diff| 0.0e+00
+    cfg921> [PASS] K3 CFG919 V0 class means (7 classes) and F1 (A, sA, chi2) by this lane's GLS, both footings: max |diff| 1.1e-16; canonical DW +0.856
+    cfg921> [PASS] K4 quoted source numbers (CFG687, 829, 850, 845, 820, 876, 860, 920) match the source files: 33/33 match
+    cfg921> [PASS] K6 per-dwarf inputs: w == CFG919 f_sph exactly; sigma_law^2 == r12 g_L/3: max |dw| 0.0e+00; max rel d sigma_law 8.9e-16; HI-bearing 8/83
+  [PASS] K1 CFG919 exec'd read-only (via CFG921): all its checks pass, incl. CFG828 exact and CFG914's 9: 7/7 CFG919 checks pass
+  [PASS] K2 CFG921 prefix exec'd read-only: its K1-K4, K6 pass; CFG919 V0 cells reproduced; 5 helper functions extracted: 5/5 CFG921 K-checks; helpers ['boot_ops', 'fact_values', 'obs_facts', 'obs_struct', 'ols_obs']
+  [PASS] K3 CFG921 observed facts F0-F8b (value and se) reproduced, both footings: max |diff| 0.0e+00; canonical F0 +0.856 (+0.372 dex), F1 +0.293, F5 +0.560
+  [PASS] K4 Wolf path: CFG880 sigma_law (83 x 2), own gas copy = CFG880 gas_in at r12, CFG828 rows + out-of-range mean: max rel d sigma_law 2.2e-16; gas 0.0e+00; CFG828 0.0e+00 (29 rows; out-of-range mean canonical +0.438 dex); HI-bearing 8/83
+  [PASS] K5 Jeans solver: Newton Plummer aperture <s2> (X 0.1..inf), L(<X), virial identity (beta 0.5/OM/0.9), deep-law global: max rel error 1.2e-05 (task bar 1e-2; target 1e-3); Newton <s2>(<1) 0.126929 vs analytic 0.126929 GM/a
+  [OK  ] K5x (post-freeze diagnostic, not a gate): anisotropic R_e aperture weight vs direct LOS projection: max rel diff 3.9e-05 over 5 cases (Newton Plummer beta 0 / 0.5 / OM; Antlia II law field beta 0.5 / OM)
+  [PASS] K6 R2 solvers: residuals, monotone h above floor, Newtonian limit, R2-0 ill-posed (nu > 1, runaway iteration): A1 residual ratio max 0.11 (<= 1; rel residual max 1.5e-10); data min y_b 5.8e-05; Newtonian limit nu_e 1.0e-08 (nu_mono, info: 5.2e-05, nu_mono(100)-1 7.5e-03); floors y_f nu_e 0.48045 ((ln2)^2 = 0.48045), nu_mono 0.48045; R2-0 iterates after 200 steps 38.8, 38.9, 40.2 a0 (still rising)
+  [PASS] K7 R3: g_e -> 0 = isolated law; EFE-dominated limits; E2 <= exact linear QUMOND <= E1; CFG874 primary reproduced at E0: max 3.0e-08; at y_e 0.05: E1 4.9908, exact-linear QUMOND 4.2485, E2 2.7640 (nu_e 4.9908, L_e -0.4462); MW-M31 separation (LVD M 32 distance_gc) 776.6 kpc; dwarfs without distance_gc/m31: 0
+  K-stage ALL PASS  [2 s, 256 MB]
+
+=== R1 estimator: law-Jeans sigma_los (Plummer stars + gas, law potential) instead of Wolf g(r12) = 3 sigma^2/r12
+  [canonical J0 A1] sigma_J/sigma_W median 1.0009 (1.001-1.031); F0 Wolf +0.372 -> Jeans +0.369 dex; g_bar<1e-12 mean (68) +0.533 -> +0.532; CFG828 oor (21) +0.438 -> +0.437  => NO EFFECT
+  [canonical J1 A1] sigma_J/sigma_W median 1.1389 (1.126-1.159); F0 Wolf +0.372 -> Jeans +0.258 dex; g_bar<1e-12 mean (68) +0.533 -> +0.420; CFG828 oor (21) +0.438 -> +0.325  => PARTIAL
+  [canonical J2 A1] sigma_J/sigma_W median 1.0839 (1.080-1.108); F0 Wolf +0.372 -> Jeans +0.300 dex; g_bar<1e-12 mean (68) +0.533 -> +0.463; CFG828 oor (21) +0.438 -> +0.368  => PARTIAL
+  [canonical J0 A2] sigma_J/sigma_W median 0.9692 (0.935-0.985); F0 Wolf +0.372 -> Jeans +0.399 dex; g_bar<1e-12 mean (68) +0.533 -> +0.560; CFG828 oor (21) +0.438 -> +0.465  => NO EFFECT
+  [canonical] R1 CLASS NO EFFECT (BRACKET-DEPENDENT; corner classes ['NO EFFECT', 'PARTIAL'])
+  [alt J0 A1] sigma_J/sigma_W median 1.0009 (1.001-1.031); F0 Wolf +0.332 -> Jeans +0.329 dex; g_bar<1e-12 mean (68) +0.493 -> +0.492; CFG828 oor (21) +0.398 -> +0.397  => NO EFFECT
+  [alt J1 A1] sigma_J/sigma_W median 1.1390 (1.127-1.159); F0 Wolf +0.332 -> Jeans +0.218 dex; g_bar<1e-12 mean (68) +0.493 -> +0.380; CFG828 oor (21) +0.398 -> +0.285  => PARTIAL
+  [alt J2 A1] sigma_J/sigma_W median 1.0839 (1.080-1.108); F0 Wolf +0.332 -> Jeans +0.261 dex; g_bar<1e-12 mean (68) +0.493 -> +0.423; CFG828 oor (21) +0.398 -> +0.328  => PARTIAL
+  [alt J0 A2] sigma_J/sigma_W median 0.9694 (0.937-0.985); F0 Wolf +0.332 -> Jeans +0.359 dex; g_bar<1e-12 mean (68) +0.493 -> +0.520; CFG828 oor (21) +0.398 -> +0.425  => NO EFFECT
+  [alt] R1 CLASS NO EFFECT (BRACKET-DEPENDENT; corner classes ['NO EFFECT', 'PARTIAL'])
+
+=== R2 self-sourcing: cold energy's own mass in the law's argument
+  R2-0 literal (g = nu(g/a0) g): ILL-POSED - nu_e > 1 for all finite y; iterates rise without a fixed point (K6). No class.
+  [canonical R2-A primary  g_b = g (2 - nu(g/a0))]  WORSENS   | F0 DW -0.489 (-0.861)  F1 red -0.680 (-0.807)  F5 CL -0.174 (-0.417) | F2 blue -0.820 (-0.824)  F3 SS -0.200 (-0.259)  F4 SL -0.120 (-0.120) dex  DAMAGE ['F2', 'F3', 'F4']  SPLIT BROKEN
+      median shift dwarfs +1.016 dex, SPARC points +0.094, blue bins +0.38..+1.23, red bins +0.32..+1.29, clusters +0.12..+1.77
+  [canonical R2-B second   g = nu(g/a0) g_b]  WORSENS   | F0 DW +0.758 (+0.386)  F1 red +0.493 (+0.366)  F5 CL +0.475 (+0.232) | F2 blue +0.375 (+0.372)  F3 SS +0.231 (+0.171)  F4 SL +0.090 (+0.089) dex  DAMAGE ['F2', 'F3', 'F4']  SPLIT BROKEN
+      median shift dwarfs -0.438 dex, SPARC points -0.104, blue bins -0.51..-0.22, red bins -0.53..-0.20, clusters -0.69..-0.12
+  [canonical] R2 CLASS WORSENS (R2-B WORSENS).  Diagnostic R2-S (no class): surplus needed, Newtonian / self-sourced, median 4.73 (16-84% 2.96-10.13, 67 dwarfs with an excess)
+  [alt R2-A primary  g_b = g (2 - nu(g/a0))]  WORSENS   | F0 DW -0.569 (-0.901)  F1 red -0.759 (-0.847)  F5 CL -0.246 (-0.453) | F2 blue -0.900 (-0.864)  F3 SS -0.264 (-0.288)  F4 SL -0.159 (-0.136) dex  DAMAGE ['F2', 'F3', 'F4']  SPLIT BROKEN
+      median shift dwarfs +1.058 dex, SPARC points +0.114, blue bins +0.41..+1.27, red bins +0.36..+1.33, clusters +0.15..+1.81
+  [alt R2-B second   g = nu(g/a0) g_b]  WORSENS   | F0 DW +0.732 (+0.400)  F1 red +0.468 (+0.380)  F5 CL +0.451 (+0.244) | F2 blue +0.350 (+0.386)  F3 SS +0.208 (+0.183)  F4 SL +0.074 (+0.097) dex  DAMAGE ['F2', 'F3', 'F4']  SPLIT BROKEN
+      median shift dwarfs -0.452 dex, SPARC points -0.115, blue bins -0.52..-0.23, red bins -0.55..-0.22, clusters -0.71..-0.13
+  [alt] R2 CLASS WORSENS (R2-B WORSENS).  Diagnostic R2-S (no class): surplus needed, Newtonian / self-sourced, median 5.45 (16-84% 3.40-11.88, 66 dwarfs with an excess)
+
+=== R3 EFE sign: E0 none (baseline), E1 record's algebraic nu((gNi + gNe)/a0), E2 1-D QUMOND subtraction
+  [canonical E0 nom] satellites (72) mean EFE shift +0.000 dex (median +0.000, max -0.000); field (11) +0.000; mean E sat +0.489 / field +0.194 dex
+      F0 +0.372 (+0.000) => NO EFFECT;  CFG874: c -0.100 +- 0.091, E +0.194 +- 0.077 -> UNDECIDED
+  [canonical E1 nom] satellites (72) mean EFE shift +0.480 dex (median +0.417, max +1.335); field (11) +0.025; mean E sat +0.969 / field +0.220 dex
+      F0 +0.654 (+0.282) => WORSENS;  CFG874: c -0.284 +- 0.105, E +0.220 +- 0.080 -> PARTIAL
+  [canonical E1 brk] satellites (72) mean EFE shift +0.530 dex (median +0.488, max +1.391); field (11) +0.035; mean E sat +1.018 / field +0.229 dex
+      F0 +0.688 (+0.316) => WORSENS;  CFG874: c -0.309 +- 0.105, E +0.229 +- 0.082 -> PARTIAL
+  [canonical E2 nom] satellites (72) mean EFE shift +0.710 dex (median +0.684, max +1.595); field (11) +0.120; mean E sat +1.198 / field +0.314 dex
+      F0 +0.834 (+0.462) => WORSENS;  CFG874: c -0.370 +- 0.101, E +0.314 +- 0.091 -> PARTIAL
+  [canonical E2 brk] satellites (72) mean EFE shift +0.762 dex (median +0.748, max +1.646); field (11) +0.141; mean E sat +1.250 / field +0.336 dex
+      F0 +0.874 (+0.502) => WORSENS;  CFG874: c -0.390 +- 0.100, E +0.336 +- 0.094 -> PARTIAL
+  [canonical] R3 CLASS include-EFE WORSENS (ROBUST); remove-EFE NO EFFECT (identical to the baseline); satellite-field comparison changed: {'E1|nom': True, 'E1|brk': True, 'E2|nom': True, 'E2|brk': True}
+  [alt E0 nom] satellites (72) mean EFE shift +0.000 dex (median +0.000, max -0.000); field (11) +0.000; mean E sat +0.449 / field +0.155 dex
+      F0 +0.332 (+0.000) => NO EFFECT;  CFG874: c -0.100 +- 0.091, E +0.155 +- 0.077 -> UNDECIDED
+  [alt E1 nom] satellites (72) mean EFE shift +0.482 dex (median +0.418, max +1.338); field (11) +0.025; mean E sat +0.931 / field +0.181 dex
+      F0 +0.616 (+0.283) => WORSENS;  CFG874: c -0.285 +- 0.105, E +0.181 +- 0.080 -> PARTIAL
+  [alt E1 brk] satellites (72) mean EFE shift +0.532 dex (median +0.490, max +1.395); field (11) +0.035; mean E sat +0.981 / field +0.190 dex
+      F0 +0.650 (+0.317) => WORSENS;  CFG874: c -0.311 +- 0.105, E +0.190 +- 0.081 -> PARTIAL
+  [alt E2 nom] satellites (72) mean EFE shift +0.714 dex (median +0.686, max +1.602); field (11) +0.120; mean E sat +1.163 / field +0.276 dex
+      F0 +0.797 (+0.464) => WORSENS;  CFG874: c -0.372 +- 0.102, E +0.276 +- 0.091 -> PARTIAL
+  [alt E2 brk] satellites (72) mean EFE shift +0.766 dex (median +0.752, max +1.654); field (11) +0.142; mean E sat +1.215 / field +0.297 dex
+      F0 +0.837 (+0.505) => WORSENS;  CFG874: c -0.393 +- 0.100, E +0.297 +- 0.093 -> PARTIAL
+  [alt] R3 CLASS include-EFE WORSENS (ROBUST); remove-EFE NO EFFECT (identical to the baseline); satellite-field comparison changed: {'E1|nom': True, 'E1|brk': True, 'E2|nom': True, 'E2|brk': True}
+
+=== CLASSES (per footing; never pooled)
+  R1|canonical   NO EFFECT
+  R1|alt         NO EFFECT
+  R2|canonical   WORSENS
+  R2B|canonical  WORSENS
+  R2|alt         WORSENS
+  R2B|alt        WORSENS
+  R3|canonical   WORSENS
+  R3|alt         WORSENS
+
+  done [5 s, peak RSS 269 MB].  kappa = 1/2 FITTED; footings never pooled; not theory closed.

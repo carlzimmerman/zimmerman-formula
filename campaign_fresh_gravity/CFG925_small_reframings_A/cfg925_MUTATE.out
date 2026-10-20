@@ -1,0 +1,33 @@
+CFG925  small reframings A: R1 law-Jeans estimator, R2 self-sourcing, R3 EFE sign (zero new constants)   [MUTATE]
+  kappa = 1/2 FITTED; footings never pooled; criteria 661668f32
+
+=== K-stage
+    cfg921> [PASS] K1 CFG919 input/cell code exec'd read-only: all its K-checks pass (incl. CFG914's 9): 7/7 CFG919 checks pass
+    cfg921> [PASS] K2 CFG919 V0 cells reproduced (cls, w, n exact; E, lg, f, se_stat), both footings: 37 cells x 2; max |diff| 0.0e+00
+    cfg921> [PASS] K3 CFG919 V0 class means (7 classes) and F1 (A, sA, chi2) by this lane's GLS, both footings: max |diff| 1.1e-16; canonical DW +0.856
+    cfg921> [PASS] K4 quoted source numbers (CFG687, 829, 850, 845, 820, 876, 860, 920) match the source files: 33/33 match
+    cfg921> [PASS] K6 per-dwarf inputs: w == CFG919 f_sph exactly; sigma_law^2 == r12 g_L/3: max |dw| 0.0e+00; max rel d sigma_law 8.9e-16; HI-bearing 8/83
+  [PASS] K1 CFG919 exec'd read-only (via CFG921): all its checks pass, incl. CFG828 exact and CFG914's 9: 7/7 CFG919 checks pass
+  [PASS] K2 CFG921 prefix exec'd read-only: its K1-K4, K6 pass; CFG919 V0 cells reproduced; 5 helper functions extracted: 5/5 CFG921 K-checks; helpers ['boot_ops', 'fact_values', 'obs_facts', 'obs_struct', 'ols_obs']
+  [PASS] K3 CFG921 observed facts F0-F8b (value and se) reproduced, both footings: max |diff| 0.0e+00; canonical F0 +0.856 (+0.372 dex), F1 +0.293, F5 +0.560
+  [PASS] K4 Wolf path: CFG880 sigma_law (83 x 2), own gas copy = CFG880 gas_in at r12, CFG828 rows + out-of-range mean: max rel d sigma_law 2.2e-16; gas 0.0e+00; CFG828 0.0e+00 (29 rows; out-of-range mean canonical +0.438 dex); HI-bearing 8/83
+  [PASS] K5 Jeans solver: Newton Plummer aperture <s2> (X 0.1..inf), L(<X), virial identity (beta 0.5/OM/0.9), deep-law global: max rel error 1.2e-05 (task bar 1e-2; target 1e-3); Newton <s2>(<1) 0.126929 vs analytic 0.126929 GM/a
+  [OK  ] K5x (post-freeze diagnostic, not a gate): anisotropic R_e aperture weight vs direct LOS projection: max rel diff 3.9e-05 over 5 cases (Newton Plummer beta 0 / 0.5 / OM; Antlia II law field beta 0.5 / OM)
+  [PASS] K6 R2 solvers: residuals, monotone h above floor, Newtonian limit, R2-0 ill-posed (nu > 1, runaway iteration): A1 residual ratio max 0.11 (<= 1; rel residual max 1.5e-10); data min y_b 5.8e-05; Newtonian limit nu_e 1.0e-08 (nu_mono, info: 5.2e-05, nu_mono(100)-1 7.5e-03); floors y_f nu_e 0.48045 ((ln2)^2 = 0.48045), nu_mono 0.48045; R2-0 iterates after 200 steps 38.8, 38.9, 40.2 a0 (still rising)
+  [PASS] K7 R3: g_e -> 0 = isolated law; EFE-dominated limits; E2 <= exact linear QUMOND <= E1; CFG874 primary reproduced at E0: max 3.0e-08; at y_e 0.05: E1 4.9908, exact-linear QUMOND 4.2485, E2 2.7640 (nu_e 4.9908, L_e -0.4462); MW-M31 separation (LVD M 32 distance_gc) 776.6 kpc; dwarfs without distance_gc/m31: 0
+  K-stage ALL PASS  [4 s, 266 MB]
+
+=== MUTATE (teeth must bite: |move| >= 0.02 dex)
+  canonical M1 R1 beta 0.9 vs 0          move -0.150 dex -> BITES
+  canonical M2 R1 F0_J a0x10 vs main     move -0.488 dex -> BITES
+  canonical M2 R2-A dF0 a0x10 vs main    move -0.502 dex -> BITES
+  canonical M2 R3-E1 dF0 a0x10 vs main   move +0.009 dex -> TOOTHLESS
+  canonical M3 R3 host x10 sat mean shift move +0.360 dex -> BITES
+  alt M1 R1 beta 0.9 vs 0                move -0.150 dex -> BITES
+  alt M2 R1 F0_J a0x10 vs main           move -0.489 dex -> BITES
+  alt M2 R2-A dF0 a0x10 vs main          move -0.502 dex -> BITES
+  alt M2 R3-E1 dF0 a0x10 vs main         move +0.008 dex -> TOOTHLESS
+  alt M3 R3 host x10 sat mean shift      move +0.364 dex -> BITES
+  MUTATE: TOOTHLESS tooth present (exit 3)
+
+  done [5 s, peak RSS 275 MB].  kappa = 1/2 FITTED; footings never pooled; not theory closed.

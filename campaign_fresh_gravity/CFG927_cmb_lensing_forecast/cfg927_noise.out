@@ -1,0 +1,15 @@
+CFG927 noise models (flat-sky Hu-Okamoto QE, MV of TT/TE/EE/EB/TB; FFP10 lensed spectra; C^BB = 0 in the response)
+  FFP10 lensed spectra _external_data/cmb_lensing_raw/planck_PR4_lensing/planckpr4lensing/data_pr4/FFP10_wdipole_lensedCls.dat sha256 7b0bfb4502248500; L nodes 64 log-spaced in [2, 3000]
+  ACT-DR6-like: dT 15.0 uK', beam 1.4', CMB l T 600-3000 / P 600-3000, f_sky 0.25; N_MV^kk = L^4 N^pp/4 at L~10: 4.20e-08, 104: 5.02e-08, 417: 1.07e-07, 1055: 1.40e-07, 1886: 2.35e-07, 3000: 8.57e-07
+  SO-baseline-like: dT 6.0 uK', beam 1.4', CMB l T 30-3000 / P 30-5000, f_sky 0.4; N_MV^kk = L^4 N^pp/4 at L~10: 1.83e-08, 104: 2.13e-08, 417: 4.27e-08, 1055: 6.82e-08, 1886: 1.09e-07, 3000: 2.68e-07
+  S4-like: dT 1.0 uK', beam 1.4', CMB l T 30-3000 / P 30-5000, f_sky 0.4; N_MV^kk = L^4 N^pp/4 at L~10: 5.32e-09, 104: 5.71e-09, 417: 7.80e-09, 1055: 1.19e-08, 1886: 1.97e-08, 3000: 3.76e-08
+  Planck-like-anchor: dT 30.0 uK', beam 5.0', CMB l T 100-2048 / P 100-2048, f_sky 0.65; N_MV^kk = L^4 N^pp/4 at L~10: 1.44e-07, 104: 1.76e-07, 417: 5.10e-07, 1055: 1.02e-06, 1886: 2.88e-06, 3000: 1.09e-05
+  noise scan (f_sky 0.40, beam 1.4', T 30-3000, P 30-5000): dT = [20.0, 10.0, 6.0, 3.0, 2.0, 1.0, 0.5] uK-arcmin computed; 9 distinct HO configurations
+
+K tests
+  [PASS] K5: flat C^TT on [30, 3000], no noise, TT: N_L = 8 pi^2/(L^4 Area) at L 100/1000/2000 (<= 0.5%) -- L 100: +6.29e-04, L 1000: +7.57e-04, L 2000: +9.22e-04
+  [PASS] K4: halving dl and doubling the angle count changes N_L^MV by <= 1% at every L node (5 models) -- ACT-DR6-like 5.1e-04, SO-baseline-like 2.3e-03, S4-like 4.2e-04, Planck-like-anchor 2.5e-04, scan 0.5 2.0e-04
+  [PASS] (reported) K7: noise anchors: Fisher sigma(A) on FFP10 PP vs on-disk published (Planck 8-400 0.028; ACT DR6 40-763 0.023); flag outside [0.5, 2] -- Planck-like-anchor: 0.0190 vs 0.028 (ratio 0.68, anchored); ACT-DR6-like: 0.0127 vs 0.023 (ratio 0.55, anchored)
+  context: Fisher sigma(A) on FFP10 PP over 30-3000: SO-baseline-like 0.0058, S4-like 0.0026
+
+all gating K pass: True; runtime 60 s; maxrss 0.22 GB. kappa = 1/2 FITTED; footings never pooled; not theory closed.

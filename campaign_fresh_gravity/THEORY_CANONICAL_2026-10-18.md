@@ -141,3 +141,9 @@ red lenses and clusters together (CFG921). The dwarf routes' conditions are stra
 enhanced winds / late binding (CFG920), the framework clock binds too early (CFG923), and a bound outer envelope cannot take the formation
 energy in Sextans/Draco (CFG918; only an escaping receiver remains). Status: the excess family is OPEN and unexplained by the record.
 
+**Note (2026-10-20, CFG925/926) small reframings.** The dwarf excess is not a Wolf-estimator artefact (law-Jeans σ agrees to 0.1%), and
+including the framework's EFE would RAISE the satellite excess by ~+0.5 dex (the quoted excess is EFE-free, i.e. a lower bound). The red-lens
+excess is removed by a literature IMF α–σ relation (ATLAS3D/SLACS) on top of CFG667's +0.123 dex, CONDITIONAL on discs staying near
+Chabrier — so it may be a stellar-population effect, not cold energy. A 'fossil a0' helps the dwarfs only under the RIVAL a0 ∝ H(z)
+(the framework's flat/DE-tracking a0 gives zero or the wrong sign): evidence about a0(z), not a rescue. Dwarfs and cluster cores stay open.
+

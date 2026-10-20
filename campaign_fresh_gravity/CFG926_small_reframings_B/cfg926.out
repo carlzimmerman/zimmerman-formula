@@ -1,0 +1,103 @@
+CFG926  three small reframings (B): R4 fossil a0, R5 IMF alpha-sigma, R6 lensing estimator round vs flat
+  kappa = 1/2 FITTED; footings never pooled; criteria 48a7a31ae + A1 (post-hoc clarifications)
+
+=== K-stage
+  [PASS] K3a CFG921 machinery exec'd read-only: its own K1-K4, K6 pass inside the exec: 5/5 CFG921 checks pass
+  [PASS] K3b CFG921 observed facts F0-F10 (value and se, both footings) reproduced by obs_facts: max |diff| 0.0e+00; canonical F0 +0.8562 +- 0.1019, F1 +0.2934, F5 +0.5598
+  [PASS] K3c this lane's arbitrary-shift lens path at shift 0.123 (n>2) / 0 (n<2) equals CFG921's F1 / F2: max |diff| 5.6e-17
+  [PASS] K1 CFG850 rows (A_red, A_blue, z_colour, A_sph, A_disc, z_sersic; 10 rows) through CFG829's loader: 10 rows; max |diff| 0.0e+00; canonical +0.123: A_red 1.451
+  [PASS] K2 CFG851 red calibration (b, log g_dagger, chi2) at shifts 0.123 and 0, both footings: max rel diff 0.0e+00; canonical +0.123: b 0.060, lgd -10.05
+  [PASS] K4 CFG824 tau50/tau90 (36 rows), CFG827 Ups_SFH and E_SFH (36 rows) and the OOS slope reproduced: tau max |diff| 0.0e+00 (36 rows); Ups/E max |diff| 0.0e+00 (36 rows); slope +0.0101 +- 0.0121 vs +0.0101 +- 0.0121; OOS N 28
+  [PASS] K5 a0(z) laws (CFG223 C1) and footing background: M-DEC R(1,2,3) 0.989 0.874 0.775; E(1), E(2) at 0.315 1.790 3.032; Omega_m(footings) 0.31530, H0 67.400 km/s/Mpc; age 13.793 Gyr (Om 0.308: 13.884) > max tau 13.3
+  [PASS] K6 R6 numerics: SIS beta = 1, point mass 4/pi, Plummer ESD closed form, ring-sum disc vs Freeman at 3 R_d, far field = point mass, point-mass law scale invariance (A1-1), Monte-Carlo isotropy of M_cyl: SIS 1.8e-11; pm 0.0e+00; Plummer 2.2e-16; Freeman 1.5e-07; far 3.3e-06; scale inv 1.8e-12; MC R 0.5: 0.1732 vs 0.1704 (z +0.9); R 1.0: 0.4019 vs 0.3995 (z +0.6); R 2.0: 0.7236 vs 0.7229 (z +0.2); R 4.0: 0.9521 vs 0.9520 (z +0.0)
+  [PASS] K7 CFG922 needed alpha (72.43 / 59.83), SLACS Salpeter/Chabrier 1.778 and alpha_max 3.78 from the files: alpha_need 72.43 / 59.83; lam 2.237 / 1.844; S/C 1.7783; alpha_max 3.782
+  K-stage ALL PASS  [2 s, 191 MB]
+
+=== R4 fossil a0.  83 LVD dwarfs: Weisz+14 matched 29, unmatched UFD (M_V > -7.7) 33, unmatched brighter 21; matched tau50 median 10.56 (min 4.92, max 12.59) Gyr
+  background (footings): Omega_m 0.31530, H0 67.40; z_f red lenses 1.000/1.828/3.000, clusters 0.300/0.612/1.000 (primary = middle)
+  [canonical] FLAT          (framework): F0 pred +0.000 (obs +0.856) NO EFFECT; F1 -0.000 (+0.293) NO EFFECT; F5 +0.000 (+0.560) NO EFFECT  | dwarf z +8.41, slope pred +0.0000 vs obs +0.0101+-0.0121 (z +0.83)  => NO EFFECT
+              diag: F6 pred +0.000 (obs +0.831); F8b +0.000 (-0.659); F10 +0.000 (-1.356); mean E_sigma CFG827 obs +0.325 vs fossil +0.000; HI-resettle F0 +0.000 -> NO EFFECT
+  [canonical] M-DEC         (framework (primary DESI CPL)): F0 pred -0.161 (obs +0.856) WORSENS; F1 -0.054 (+0.293) NO EFFECT; F5 +0.011 (+0.560) NO EFFECT  | dwarf z +9.11, slope pred -0.0078 vs obs +0.0101+-0.0121 (z +1.48)  => WORSENS  [BRACKET-DEPENDENT: NO EFFECT, WORSENS]
+              diag: F6 pred -0.001 (obs +0.831); F8b +0.133 (-0.659); F10 +0.206 (-1.356); mean E_sigma CFG827 obs +0.325 vs fossil -0.032; HI-resettle F0 -0.147 -> WORSENS
+  [canonical] M-DEC|DESY5   (framework corner): F0 pred -0.199 (obs +0.856) WORSENS; F1 -0.057 (+0.293) NO EFFECT; F5 +0.023 (+0.560) NO EFFECT  | dwarf z +8.93, slope pred -0.0099 vs obs +0.0101+-0.0121 (z +1.65)  => WORSENS
+              diag: F6 pred -0.002 (obs +0.831); F8b +0.174 (-0.659); F10 +0.270 (-1.356); mean E_sigma CFG827 obs +0.325 vs fossil -0.037; HI-resettle F0 -0.182 -> WORSENS
+  [canonical] M-DEC|Union3  (framework corner): F0 pred -0.232 (obs +0.856) WORSENS; F1 -0.059 (+0.293) NO EFFECT; F5 +0.035 (+0.560) NO EFFECT  | dwarf z +8.70, slope pred -0.0118 vs obs +0.0101+-0.0121 (z +1.81)  => WORSENS
+              diag: F6 pred -0.004 (obs +0.831); F8b +0.213 (-0.659); F10 +0.331 (-1.356); mean E_sigma CFG827 obs +0.325 vs fossil -0.040; HI-resettle F0 -0.214 -> WORSENS
+  [canonical] M-DEC-c       (framework variant (clamped at z 2.5)): F0 pred -0.069 (obs +0.856) NO EFFECT; F1 -0.054 (+0.293) NO EFFECT; F5 +0.011 (+0.560) NO EFFECT  | dwarf z +9.03, slope pred -0.0043 vs obs +0.0101+-0.0121 (z +1.19)  => NO EFFECT
+              diag: F6 pred -0.001 (obs +0.831); F8b +0.022 (-0.659); F10 +0.025 (-1.356); mean E_sigma CFG827 obs +0.325 vs fossil -0.019; HI-resettle F0 -0.060 -> NO EFFECT
+  [canonical] H(z)          (RIVAL (declared contrast)): F0 pred +0.814 (obs +0.856) RESOLVES; F1 +0.495 (+0.293) NO EFFECT; F5 +0.157 (+0.560) PARTIAL  | dwarf z +0.23, slope pred +0.0326 vs obs +0.0101+-0.0121 (z -1.86)  => PARTIAL  [BRACKET-DEPENDENT: PARTIAL, PARTIAL (MIXED)]
+              diag: F6 pred -0.015 (obs +0.831); F8b -0.403 (-0.659); F10 -0.614 (-1.356); mean E_sigma CFG827 obs +0.325 vs fossil +0.233; HI-resettle F0 +0.717 -> PARTIAL
+  [canonical] H(z)|Om0.308  (RIVAL variant): F0 pred +0.780 (obs +0.856) RESOLVES; F1 +0.490 (+0.293) NO EFFECT; F5 +0.155 (+0.560) PARTIAL  | dwarf z +0.43, slope pred +0.0315 vs obs +0.0101+-0.0121 (z -1.77)  => PARTIAL  [BRACKET-DEPENDENT: PARTIAL, PARTIAL (MIXED)]
+              diag: F6 pred -0.015 (obs +0.831); F8b -0.374 (-0.659); F10 -0.568 (-1.356); mean E_sigma CFG827 obs +0.325 vs fossil +0.226; HI-resettle F0 +0.686 -> PARTIAL
+  [alt      ] FLAT          (framework): F0 pred +0.000 (obs +0.765) NO EFFECT; F1 +0.000 (+0.203) NO EFFECT; F5 +0.000 (+0.476) NO EFFECT  | dwarf z +7.51, slope pred +0.0000 vs obs +0.0094+-0.0121 (z +0.78)  => NO EFFECT
+              diag: F6 pred +0.000 (obs +0.841); F8b +0.000 (-0.656); F10 +0.000 (-1.355); mean E_sigma CFG827 obs +0.283 vs fossil +0.000; HI-resettle F0 +0.000 -> NO EFFECT
+  [alt      ] M-DEC         (framework (primary DESI CPL)): F0 pred -0.162 (obs +0.765) WORSENS; F1 -0.054 (+0.203) NO EFFECT; F5 +0.011 (+0.476) NO EFFECT  | dwarf z +8.29, slope pred -0.0078 vs obs +0.0094+-0.0121 (z +1.42)  => WORSENS  [BRACKET-DEPENDENT: NO EFFECT, WORSENS]
+              diag: F6 pred -0.001 (obs +0.841); F8b +0.133 (-0.656); F10 +0.206 (-1.355); mean E_sigma CFG827 obs +0.283 vs fossil -0.032; HI-resettle F0 -0.148 -> WORSENS
+  [alt      ] M-DEC|DESY5   (framework corner): F0 pred -0.199 (obs +0.765) WORSENS; F1 -0.058 (+0.203) NO EFFECT; F5 +0.023 (+0.476) NO EFFECT  | dwarf z +8.16, slope pred -0.0099 vs obs +0.0094+-0.0121 (z +1.60)  => WORSENS
+              diag: F6 pred -0.002 (obs +0.841); F8b +0.174 (-0.656); F10 +0.271 (-1.355); mean E_sigma CFG827 obs +0.283 vs fossil -0.037; HI-resettle F0 -0.183 -> WORSENS
+  [alt      ] M-DEC|Union3  (framework corner): F0 pred -0.232 (obs +0.765) WORSENS; F1 -0.059 (+0.203) NO EFFECT; F5 +0.036 (+0.476) NO EFFECT  | dwarf z +7.97, slope pred -0.0118 vs obs +0.0094+-0.0121 (z +1.75)  => WORSENS
+              diag: F6 pred -0.003 (obs +0.841); F8b +0.213 (-0.656); F10 +0.331 (-1.355); mean E_sigma CFG827 obs +0.283 vs fossil -0.040; HI-resettle F0 -0.214 -> WORSENS
+  [alt      ] M-DEC-c       (framework variant (clamped at z 2.5)): F0 pred -0.069 (obs +0.765) NO EFFECT; F1 -0.054 (+0.203) NO EFFECT; F5 +0.011 (+0.476) NO EFFECT  | dwarf z +8.14, slope pred -0.0044 vs obs +0.0094+-0.0121 (z +1.14)  => NO EFFECT
+              diag: F6 pred -0.001 (obs +0.841); F8b +0.022 (-0.656); F10 +0.025 (-1.355); mean E_sigma CFG827 obs +0.283 vs fossil -0.019; HI-resettle F0 -0.060 -> NO EFFECT
+  [alt      ] H(z)          (RIVAL (declared contrast)): F0 pred +0.815 (obs +0.765) RESOLVES; F1 +0.497 (+0.203) NO EFFECT; F5 +0.159 (+0.476) PARTIAL  | dwarf z -0.27, slope pred +0.0324 vs obs +0.0094+-0.0121 (z -1.90)  => PARTIAL  [BRACKET-DEPENDENT: PARTIAL, PARTIAL (MIXED), RESOLVES]
+              diag: F6 pred -0.014 (obs +0.841); F8b -0.402 (-0.656); F10 -0.614 (-1.355); mean E_sigma CFG827 obs +0.283 vs fossil +0.235; HI-resettle F0 +0.718 -> PARTIAL
+              [post-hoc report] RESOLVES corner: tau_UFD 13.3, bright median, z_f lens 1.000, z_f cl 1.000: F0 +0.815 F1 +0.280 F5 +0.267
+              [post-hoc report] RESOLVES corner: tau_UFD 13.3, bright min, z_f lens 1.000, z_f cl 1.000: F0 +0.726 F1 +0.280 F5 +0.267
+              [post-hoc report] RESOLVES corner: tau_UFD 13.3, bright max, z_f lens 1.000, z_f cl 1.000: F0 +0.916 F1 +0.280 F5 +0.267
+              [post-hoc report] RESOLVES corner: tau_UFD 12.59, bright median, z_f lens 1.000, z_f cl 1.000: F0 +0.700 F1 +0.280 F5 +0.267
+              [post-hoc report] RESOLVES corner: tau_UFD 12.59, bright min, z_f lens 1.000, z_f cl 1.000: F0 +0.611 F1 +0.280 F5 +0.267
+              [post-hoc report] RESOLVES corner: tau_UFD 12.59, bright max, z_f lens 1.000, z_f cl 1.000: F0 +0.801 F1 +0.280 F5 +0.267
+  [alt      ] H(z)|Om0.308  (RIVAL variant): F0 pred +0.782 (obs +0.765) RESOLVES; F1 +0.492 (+0.203) NO EFFECT; F5 +0.156 (+0.476) PARTIAL  | dwarf z -0.10, slope pred +0.0314 vs obs +0.0094+-0.0121 (z -1.81)  => PARTIAL  [BRACKET-DEPENDENT: PARTIAL, PARTIAL (MIXED), RESOLVES]
+              diag: F6 pred -0.014 (obs +0.841); F8b -0.372 (-0.656); F10 -0.568 (-1.355); mean E_sigma CFG827 obs +0.283 vs fossil +0.228; HI-resettle F0 +0.687 -> PARTIAL
+              [post-hoc report] RESOLVES corner: tau_UFD 13.3, bright median, z_f lens 1.000, z_f cl 1.000: F0 +0.782 F1 +0.276 F5 +0.263
+              [post-hoc report] RESOLVES corner: tau_UFD 13.3, bright min, z_f lens 1.000, z_f cl 1.000: F0 +0.694 F1 +0.276 F5 +0.263
+              [post-hoc report] RESOLVES corner: tau_UFD 13.3, bright max, z_f lens 1.000, z_f cl 1.000: F0 +0.878 F1 +0.276 F5 +0.263
+              [post-hoc report] RESOLVES corner: tau_UFD 12.59, bright median, z_f lens 1.000, z_f cl 1.000: F0 +0.679 F1 +0.276 F5 +0.263
+              [post-hoc report] RESOLVES corner: tau_UFD 12.59, bright min, z_f lens 1.000, z_f cl 1.000: F0 +0.592 F1 +0.276 F5 +0.263
+              [post-hoc report] RESOLVES corner: tau_UFD 12.59, bright max, z_f lens 1.000, z_f cl 1.000: F0 +0.775 F1 +0.276 F5 +0.263
+
+=== R5 IMF alpha-sigma.  ATLAS3D qual >= 1: N 187; log alpha_Salp = -0.0748 + 0.0986 log(sigma_e/200); log sigma_e = 2.1496 + 0.2792 (log M*_Chab - 10.5); S/C 1.7783
+  red/n>2 lenses: log M* 10.933 -> sigma 186.4 km/s -> Delta_IMF +0.1722 dex; blue variant log M* 10.45 -> sigma 136.7 -> +0.1589
+  R5-law (canonical): log alpha_law = -0.0752 + 0.2169 x; median (law - literature) -0.0166 dex; Delta_IMF(red) +0.1682
+  R5-law (alt): log alpha_law = -0.0879 + 0.2545 x; median (law - literature) -0.0332 dex; Delta_IMF(red) +0.1543
+  [canonical] F1 +0.293 -> +0.112 (dex +0.127 -> +0.048; removed 62%) RESOLVES => RESOLVES
+              split cells z +2.53 -> +0.92;  CFG850 window A_red 1.451 -> 1.208 (A_blue 1.016), z_colour +3.98 -> +1.82, z_sersic +3.81 -> +1.73;  IMF alone (no +0.123): F1 +0.260, A_red 1.369
+              CFG851 law after: b 0.057 (0.050-0.065), log g_dagger -11.24;  R5-law F1 +0.116 -> RESOLVES;  R5-blue F1 +0.112 F2 -0.112 -> PARTIAL (MIXED);  dwarfs unclipped F0 +0.856 -> +0.823
+              clusters (CFG922 bound): sigma 250: alpha_Chab 1.530, f_m 0.0074, removal <= 0.0172 (NO EFFECT); sigma 300: alpha_Chab 1.558, f_m 0.0078, removal <= 0.0181 (NO EFFECT); sigma 400: alpha_Chab 1.603, f_m 0.0084, removal <= 0.0195 (NO EFFECT);  zero-slope (reported): split change -0.0460
+              [post-hoc, no class weight] SLUGGS ceiling Delta +0.130: F1 +0.163 (removed 45%) PARTIAL; split cells z +1.38
+  [alt      ] F1 +0.203 -> +0.022 (dex +0.088 -> +0.009; removed 89%) RESOLVES => RESOLVES
+              split cells z +2.53 -> +0.93;  CFG850 window A_red 1.324 -> 1.102 (A_blue 0.928), z_colour +3.98 -> +1.82, z_sersic +3.81 -> +1.73;  IMF alone (no +0.123): F1 +0.170, A_red 1.249
+              CFG851 law after: b 0.048 (0.040-0.060), log g_dagger -11.61;  R5-law F1 +0.043 -> RESOLVES;  R5-blue F1 +0.022 F2 -0.203 -> PARTIAL (MIXED);  dwarfs unclipped F0 +0.765 -> +0.732
+              clusters (CFG922 bound): sigma 250: alpha_Chab 1.530, f_m 0.0090, removal <= 0.0172 (NO EFFECT); sigma 300: alpha_Chab 1.558, f_m 0.0095, removal <= 0.0181 (NO EFFECT); sigma 400: alpha_Chab 1.603, f_m 0.0102, removal <= 0.0195 (NO EFFECT);  zero-slope (reported): split change -0.0458
+              [post-hoc, no class weight] SLUGGS ceiling Delta +0.130: F1 +0.072 (removed 64%) RESOLVES; split cells z +1.38
+
+=== R6 lensing estimator (B21 Eq. 7: g_obs = 4 G DeltaSigma; g_bar = G M_b / R^2), QUMOND law, isotropic stack
+  [canonical] truncation none  : conv  beta n>2 1.0020-1.0171, n<2 1.0038-1.0268; Delta_est -0.0041 (samp +0.0007, geom -4.74e-03) vs E_obs +0.286 -> NO EFFECT => NO EFFECT  [corners: NO EFFECT; max |Delta| 0.0042]
+              full  beta n>2 0.9697-0.9975, n<2 1.0038-1.0267; Delta_est -0.0234 (samp -0.0015, geom -2.19e-02) -> NO EFFECT => NO EFFECT; F2 bias +0.0116; orientation bound 2.2e-01  [corners: NO EFFECT]
+              [post-hoc, no class weight] disc q2 at the n<2 window points: R 32-231 kpc, max |q2| 0.019, class-weighted mean |q2| 0.0049
+  [canonical] truncation 3 Mpc : conv  beta n>2 1.0022-1.0171, n<2 1.0038-1.0268; Delta_est -0.0040 (samp +0.0007, geom -4.72e-03) vs E_obs +0.286 -> NO EFFECT => NO EFFECT  [corners: NO EFFECT; max |Delta| 0.0042]
+              full  beta n>2 0.9697-0.9977, n<2 1.0038-1.0267; Delta_est -0.0234 (samp -0.0015, geom -2.19e-02) -> NO EFFECT => NO EFFECT; F2 bias +0.0116; orientation bound 2.2e-01  [corners: NO EFFECT]
+              [post-hoc, no class weight] disc q2 at the n<2 window points: R 32-231 kpc, max |q2| 0.019, class-weighted mean |q2| 0.0049
+  [canonical] truncation 1 Mpc : conv  beta n>2 1.0046-1.0171, n<2 1.0045-1.0268; Delta_est -0.0030 (samp +0.0010, geom -4.03e-03) vs E_obs +0.286 -> NO EFFECT => NO EFFECT  [corners: NO EFFECT; max |Delta| 0.0037]
+              full  beta n>2 0.9697-1.0035, n<2 1.0045-1.0267; Delta_est -0.0224 (samp -0.0012, geom -2.12e-02) -> NO EFFECT => NO EFFECT; F2 bias +0.0118; orientation bound 2.2e-01  [corners: NO EFFECT]
+              [post-hoc, no class weight] disc q2 at the n<2 window points: R 32-231 kpc, max |q2| 0.019, class-weighted mean |q2| 0.0049
+  [canonical] [4 s, 193 MB]
+  [alt      ] truncation none  : conv  beta n>2 1.0018-1.0146, n<2 1.0035-1.0245; Delta_est -0.0041 (samp +0.0006, geom -4.71e-03) vs E_obs +0.286 -> NO EFFECT => NO EFFECT  [corners: NO EFFECT; max |Delta| 0.0043]
+              full  beta n>2 0.9677-0.9972, n<2 1.0035-1.0244; Delta_est -0.0233 (samp -0.0016, geom -2.18e-02) -> NO EFFECT => NO EFFECT; F2 bias +0.0106; orientation bound 2.1e-01  [corners: NO EFFECT]
+              [post-hoc, no class weight] disc q2 at the n<2 window points: R 32-231 kpc, max |q2| 0.019, class-weighted mean |q2| 0.0049
+  [alt      ] truncation 3 Mpc : conv  beta n>2 1.0020-1.0146, n<2 1.0035-1.0245; Delta_est -0.0041 (samp +0.0006, geom -4.69e-03) vs E_obs +0.286 -> NO EFFECT => NO EFFECT  [corners: NO EFFECT; max |Delta| 0.0042]
+              full  beta n>2 0.9677-0.9974, n<2 1.0035-1.0244; Delta_est -0.0233 (samp -0.0016, geom -2.18e-02) -> NO EFFECT => NO EFFECT; F2 bias +0.0106; orientation bound 2.1e-01  [corners: NO EFFECT]
+              [post-hoc, no class weight] disc q2 at the n<2 window points: R 32-231 kpc, max |q2| 0.019, class-weighted mean |q2| 0.0049
+  [alt      ] truncation 1 Mpc : conv  beta n>2 1.0041-1.0146, n<2 1.0041-1.0245; Delta_est -0.0031 (samp +0.0009, geom -4.00e-03) vs E_obs +0.286 -> NO EFFECT => NO EFFECT  [corners: NO EFFECT; max |Delta| 0.0037]
+              full  beta n>2 0.9677-1.0032, n<2 1.0041-1.0244; Delta_est -0.0223 (samp -0.0012, geom -2.11e-02) -> NO EFFECT => NO EFFECT; F2 bias +0.0107; orientation bound 2.1e-01  [corners: NO EFFECT]
+              [post-hoc, no class weight] disc q2 at the n<2 window points: R 32-231 kpc, max |q2| 0.019, class-weighted mean |q2| 0.0049
+  [alt] [4 s, 197 MB]
+
+=== SUMMARY (class per reframing and footing; ln units, dex = ln/2.3026)
+  [canonical] R4: FLAT NO EFFECT; M-DEC WORSENS [BRACKET-DEPENDENT]; M-DEC|DESY5 WORSENS; M-DEC|Union3 WORSENS; M-DEC-c NO EFFECT; H(z) PARTIAL [BRACKET-DEPENDENT]; H(z)|Om0.308 PARTIAL [BRACKET-DEPENDENT]
+  [canonical] R5 (red lenses): RESOLVES;  clusters (secondary): NO EFFECT;  R6 conversion: NO EFFECT;  R6 full estimator: NO EFFECT
+  [alt] R4: FLAT NO EFFECT; M-DEC WORSENS [BRACKET-DEPENDENT]; M-DEC|DESY5 WORSENS; M-DEC|Union3 WORSENS; M-DEC-c NO EFFECT; H(z) PARTIAL [BRACKET-DEPENDENT]; H(z)|Om0.308 PARTIAL [BRACKET-DEPENDENT]
+  [alt] R5 (red lenses): RESOLVES;  clusters (secondary): NO EFFECT;  R6 conversion: NO EFFECT;  R6 full estimator: NO EFFECT
+
+  kappa = 1/2 FITTED; footings never pooled; cold energy, not a particle; not theory closed; nothing here says the data favour the framework.
+  [4 s, peak 197 MB]

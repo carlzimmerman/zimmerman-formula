@@ -1,0 +1,56 @@
+CFG927 forecast  pair T1x (inherited inputs, canonical footing)  MUTATE=False
+  F  = _external_data/cfg650_work/T1x/cfg650_m1m2m3_RES_canonical_N1024_L100_ns1024_lean.json
+  S0 = _external_data/cfg596_work/P0/cfg596_S0_canonical_N1024_L100_ns1024_lean.json
+  cfg917_lib sha256 ec1e971bdb31c7b4; variance correction vc = True
+  support 0.0802-7.980 h/Mpc (127 bins); KCUT top 4.021; background Om 0.313772, h 0.673600, chi_* 9405.2 Mpc/h
+
+box support cut (FROZEN section 3)
+  L_sup = ≥ 3000 (max over L 8-3000: s_S0 0.0013, s_dX 0.0014; threshold 0.10)
+    L 400: k>k_top share S0 0.0000, dX 0.0001; k<k_lo share S0 0.328, dX -0.000; z>1 share S0 0.846, dX 0.451; X_F/X_S0 0.9914
+    L 763: k>k_top share S0 0.0000, dX 0.0002; k<k_lo share S0 0.000, dX -0.000; z>1 share S0 0.837, dX 0.580; X_F/X_S0 0.9776
+    L 1000: k>k_top share S0 0.0001, dX 0.0003; k<k_lo share S0 0.000, dX -0.000; z>1 share S0 0.826, dX 0.615; X_F/X_S0 0.9681
+    L 2000: k>k_top share S0 0.0005, dX 0.0007; k<k_lo share S0 0.000, dX -0.000; z>1 share S0 0.802, dX 0.722; X_F/X_S0 0.9340
+    L 3000: k>k_top share S0 0.0013, dX 0.0014; k<k_lo share S0 0.000, dX -0.000; z>1 share S0 0.800, dX 0.774; X_F/X_S0 0.9116
+
+forecast (FROZEN sections 4-6)
+  ACT-DR6-like: f_sky 0.25, L_min 40; L_9 = None
+    L 40-400: dchi2 0.067  BLIND ROBUST  [members 0.058..0.507: ZHOLD 0.067, ZREL 0.058, KCUT 0.067, KLOW 0.507, BG 0.067]
+    L 40-763: dchi2 0.453  BLIND ROBUST  [members 0.297..0.948: ZHOLD 0.446, ZREL 0.297, KCUT 0.453, KLOW 0.948, BG 0.452]
+    L 40-1000: dchi2 0.792  BLIND ROBUST  [members 0.488..1.286: ZHOLD 0.772, ZREL 0.488, KCUT 0.792, KLOW 1.286, BG 0.791]
+    L 40-2000: dchi2 1.863  BLIND ROBUST  [members 1.030..2.358: ZHOLD 1.727, ZREL 1.030, KCUT 1.864, KLOW 2.358, BG 1.860]
+    L 40-3000: dchi2 1.968  BLIND ROBUST  [members 1.076..2.463: ZHOLD 1.808, ZREL 1.076, KCUT 1.970, KLOW 2.463, BG 1.965]
+  SO-baseline-like: f_sky 0.4, L_min 30; L_9 = 1590
+    L 30-400: dchi2 0.287  BLIND ROBUST  [members 0.245..1.661: ZHOLD 0.286, ZREL 0.245, KCUT 0.287, KLOW 1.661, BG 0.287]
+    L 30-763: dchi2 2.531  BLIND RULE-DEPENDENT  [members 1.642..4.201: ZHOLD 2.504, ZREL 1.642, KCUT 2.532, KLOW 4.201, BG 2.530]
+    L 30-1000: dchi2 4.578  MARGINAL RULE-DEPENDENT  [members 2.801..6.248: ZHOLD 4.490, ZREL 2.801, KCUT 4.580, KLOW 6.248, BG 4.574]
+    L 30-2000: dchi2 11.026  DISCRIMINATING RULE-DEPENDENT  [members 6.068..12.696: ZHOLD 10.246, ZREL 6.068, KCUT 11.034, KLOW 12.696, BG 11.011]
+    L 30-3000: dchi2 12.766  DISCRIMINATING RULE-DEPENDENT  [members 6.818..14.436: ZHOLD 11.562, ZREL 6.818, KCUT 12.777, KLOW 14.436, BG 12.746]
+  S4-like: f_sky 0.4, L_min 30; L_9 = 703
+    L 30-400: dchi2 0.680  BLIND ROBUST  [members 0.572..3.110: ZHOLD 0.679, ZREL 0.572, KCUT 0.680, KLOW 3.110, BG 0.681]
+    L 30-763: dchi2 12.407  DISCRIMINATING RULE-DEPENDENT  [members 7.893..15.904: ZHOLD 12.490, ZREL 7.893, KCUT 12.411, KLOW 15.904, BG 12.414]
+    L 30-1000: dchi2 31.704  DISCRIMINATING ROBUST  [members 19.085..35.202: ZHOLD 31.675, ZREL 19.085, KCUT 31.717, KLOW 35.202, BG 31.708]
+    L 30-2000: dchi2 143.113  DISCRIMINATING ROBUST  [members 76.721..146.611: ZHOLD 133.384, ZREL 76.721, KCUT 143.231, KLOW 146.611, BG 142.983]
+    L 30-3000: dchi2 200.712  DISCRIMINATING ROBUST  [members 102.049..204.209: ZHOLD 177.733, ZREL 102.049, KCUT 200.949, KLOW 204.209, BG 200.460]
+  CV-limited (context, ceiling; no class weight): f_sky 0.4, L_min 30; L_9 = 623
+    L 30-400: dchi2 0.894  BLIND ROBUST  [members 0.750..3.852: ZHOLD 0.895, ZREL 0.750, KCUT 0.894, KLOW 3.852, BG 0.896]
+    L 30-763: dchi2 24.401  DISCRIMINATING ROBUST  [members 15.536..29.052: ZHOLD 24.944, ZREL 15.536, KCUT 24.408, KLOW 29.052, BG 24.435]
+    L 30-1000: dchi2 87.737  DISCRIMINATING ROBUST  [members 53.368..92.389: ZHOLD 89.851, ZREL 53.368, KCUT 87.771, KLOW 92.389, BG 87.846]
+    L 30-2000: dchi2 1768.093  DISCRIMINATING ROBUST  [members 1036.636..1833.046: ZHOLD 1833.046, ZREL 1036.636, KCUT 1769.231, KLOW 1772.745, BG 1769.410]
+    L 30-3000: dchi2 8032.324  DISCRIMINATING ROBUST  [members 4821.369..8409.684: ZHOLD 8409.684, ZREL 4821.369, KCUT 8038.634, KLOW 8036.976, BG 8035.570]
+  noise scan (f_sky 0.40, beam 1.4', L 30-3000): dT 20: 2.69, dT 10: 6.92, dT 6: 12.77, dT 3: 33.88, dT 2: 64.46, dT 1: 200.71, dT 0.5: 591.07, dT 0: 8032.32; dT_9 = 8.03 uK-arcmin
+  PR4 Asimov (context; PR4 8-400 covariance, dB = (W + M) dX): 0.0182
+  reading: ACT-DR6-like: not within L <= 3000; SO-baseline-like: DISCRIMINATING from L 30-2000 (RULE-DEPENDENT); S4-like: DISCRIMINATING from L 30-763 (RULE-DEPENDENT)
+
+K tests
+  [PASS] K1: F == S0 -> 0 (<= 1e-12) in every cell, member, PR4 Asimov and PR4 dchi2 -- max |dchi2| 2.5e-27
+  [PASS] K2: CFG917 PR4 8-400 dchi2 (primary + AGG/ZHOLD/ZREL/KCUT/KLOW/BG) reproduced vs cfg917_T1x.json (<= 1e-6 abs) -- primary -0.0881 (|d| 0.0e+00), AGG -1.1996 (|d| 0.0e+00), ZHOLD -0.0669 (|d| 0.0e+00), ZREL -0.0692 (|d| 0.0e+00), KCUT -0.0882 (|d| 0.0e+00), KLOW +0.2919 (|d| 0.0e+00), BG -0.0773 (|d| 0.0e+00)
+  [PASS] K3: extended projector = LB.limber_X on L 2-2500 (<= 1e-12 rel, both arms, primary) -- max rel dev 0.0e+00
+  [PASS] K6: doubling the z nodes changes every primary forecast cell by <= max(0.01, 1%) and leaves L_sup unchanged -- max |change| 2.51e-02; L_sup 3000 -> 3000
+  [PASS] K4: halving dl and doubling the angle count changes N_L^MV by <= 1% at every L node (5 models) (cfg927_noise.json) -- ACT-DR6-like 5.1e-04, SO-baseline-like 2.3e-03, S4-like 4.2e-04, Planck-like-anchor 2.5e-04, scan 0.5 2.0e-04
+  [PASS] K5: flat C^TT on [30, 3000], no noise, TT: N_L = 8 pi^2/(L^4 Area) at L 100/1000/2000 (<= 0.5%) (cfg927_noise.json) -- L 100: +6.29e-04, L 1000: +7.57e-04, L 2000: +9.22e-04
+  [PASS] (reported) K7: noise anchors: Fisher sigma(A) on FFP10 PP vs on-disk published (Planck 8-400 0.028; ACT DR6 40-763 0.023); flag outside [0.5, 2] (cfg927_noise.json) -- Planck-like-anchor: 0.0190 vs 0.028 (ratio 0.68, anchored); ACT-DR6-like: 0.0127 vs 0.023 (ratio 0.55, anchored)
+
+STATUS (T1x, canonical footing, inherited inputs): gating K PASS; MUTATE bites True
+  A forecast is not a measurement; DISCRIMINATING means a survey of that kind could tell the two arms apart, not that either is right.
+
+runtime 7 s; maxrss 0.56 GB. kappa = 1/2 FITTED; footings never pooled; cold energy mass required; not theory closed.
