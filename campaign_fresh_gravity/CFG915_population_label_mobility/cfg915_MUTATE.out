@@ -1,0 +1,59 @@
+CFG915  population-label (history) mobility H-POP vs mergers / galaxies / dwarf clumps   criteria 014b7ba1d   HYPOTHESIS TEST
+  kappa = 1/2 FITTED; footings 9.3603e-11 / 1.1312e-10 never pooled; cold energy real mass; no species; not theory closed.
+  naming: t = H-POP 'tethered' (bound at formation, alpha_t = 0) = the record's untethered/collisionless class;
+          f = H-POP 'free' (later arrival, alpha_f 0.5/1.0) = the record's settling class.
+
+K-M1: CFG623 alpha 0 ALLOWED both, 0.1/0.3/inf EXCLUDED both, Z_B(0.03) +3.12/+2.65; beta_obs = beta_bar - 0.07 Z_H over scorable nodes: can -0.0400..-0.0400; alt -0.0400..-0.0400 -> PASS
+K-M2: CFG641 arm S ['ALLOWED'] over 14 cells, arm P ['EXCLUDED']; gated off 0.9996; RN main reservoir share 0.872 -> PASS
+K-G1: CFG598 MW P0 min q 0.25: 0.9842/0.9849, 0.5: 0.9928/0.9930 -> PASS
+K-C: CFG542 alpha_max 1.0000 (q = 1), 1.1864 (q = 1 - f_b) -> PASS
+K-D1: CFG882 alpha_c max 1.371e-03; alpha_50 6.18e-04..1.02e-03 -> PASS
+K-D2: CFG889 alpha*t50 105.5..147.5 Myr over 8 cells -> alpha_D,gated 8.79e-03..1.23e-02 -> PASS
+K-R827: CFG827 OOS N 28, above 25, mean E +0.3747, rho +0.089 -> PASS
+K-R880: CFG880 s_hat 0.38/0.38 (NOT UNIVERSAL) -> PASS
+K-R843: CFG843 c +0.0550 +- 0.1165 (SAME) -> PASS
+K-R845: CFG845 D -0.2728 +- 0.0262 (H-PRIM EXCLUDED) -> PASS
+K-R860: CFG860 canonical base not stored (README +0.285 +- 0.108 / +0.370 +- 0.073); nearest stored 'canonical|cut 350 kpc' a+c0 +0.357 +- 0.112, a+cG +0.371 +- 0.075; class NOT GAS -> PARTIAL
+K-R829: CFG829 blue A 1.016 +- 0.086, red A 1.587 +- 0.076 -> PASS
+K-R883: CFG883 NO CLUMP 6/6, robust CLUMP PRESENT 1/1 (NGC 1851) -> PASS
+K-R890: CFG890 M5 V_x 6.480/6.295 km/s -> PASS
+K-R726: CFG726 Z_outer T_R|can|primary -3.63, T_R|alt|primary -4.05, T_A|can|primary -4.83, T_A|alt|primary -5.19, T_R|can|Nx0.5 -2.50, T_R|alt|Nx0.5 -3.19, T_A|can|Nx0.5 -3.13, T_A|alt|Nx0.5 -3.59; verdict H-MM FAILS:  -> PASS
+(report) CFG777 frozen relic verdict s/mono: FAIL/FAIL (condensed-baryon framework)
+
+K-G2 / K-G3: the two-population code with no t (rule REF, all f) against CFG598
+  MW can alpha 0.5: min q 0.992774 vs 0.992774, M_c/M_ph 1.002403 vs 1.002403; max rel 0.00e+00
+  MW can alpha 1: min q 0.996274 vs 0.996274, M_c/M_ph 1.004234 vs 1.004234; max rel 0.00e+00
+  MW can alpha inf: min q 0.999584 vs 0.999584, M_c/M_ph 1.006016 vs 1.006016; max rel 0.00e+00
+  MW alt alpha 0.5: min q 0.993030 vs 0.993030, M_c/M_ph 1.000776 vs 1.000776; max rel 0.00e+00
+  MW alt alpha 1: min q 0.996386 vs 0.996386, M_c/M_ph 1.002537 vs 1.002537; max rel 0.00e+00
+  MW alt alpha inf: min q 0.999583 vs 0.999583, M_c/M_ph 1.004259 vs 1.004259; max rel 0.00e+00
+K-G2: two-population code (REF) vs CFG598 MW P0 at 0.5, 1, inf, both footings: max rel 0.00e+00 -> PASS
+  host 15.0 can alpha 0.5: S(0.5 r_ta) 9.071175e+14 vs 9.071175e+14; max rel 0.00e+00
+  host 15.0 alt alpha 0.5: S(0.5 r_ta) 9.554929e+14 vs 9.554929e+14; max rel 0.00e+00
+  host 14.0 can alpha 0.5: S(0.5 r_ta) 1.123448e+14 vs 1.123448e+14; max rel 0.00e+00
+  host 14.0 alt alpha 0.5: S(0.5 r_ta) 1.156785e+14 vs 1.156785e+14; max rel 0.00e+00
+K-G3: two-population code (REF) vs CFG598 grid hosts log 15, 14 (P0, alpha 0.5): max rel 0.00e+00 -> PASS
+
+MUTATE: swap the labels' mobilities (alpha_t in {0.5, 1.0}, alpha_f = 0)
+    run MW|can|L0|af0|at0.5|X05|tol1e-12: 2.0 s, n 59665
+  SWAPPED L0 can alpha_t 0.5: min q 0.9928 (at 28.8 kpc, 0 cells < 0.99), max q 104, M_c/M_ph(<30) 1.0024, f share(<30) 0.000, t share(all) 0.500 -> (i) holds
+    run MW|alt|L0|af0|at0.5|X05|tol1e-12: 2.0 s, n 59665
+  SWAPPED L0 alt alpha_t 0.5: min q 0.9930 (at 28.8 kpc, 0 cells < 0.99), max q 73.8, M_c/M_ph(<30) 1.0008, f share(<30) 0.000, t share(all) 0.500 -> (i) holds
+    run MW|can|L0|af0|at1|X05|tol1e-12: 3.9 s, n 118810
+  SWAPPED L0 can alpha_t 1: min q 0.9963 (at 28.8 kpc, 0 cells < 0.99), max q 104, M_c/M_ph(<30) 1.0042, f share(<30) 0.000, t share(all) 0.500 -> (i) holds
+    run MW|alt|L0|af0|at1|X05|tol1e-12: 3.9 s, n 118810
+  SWAPPED L0 alt alpha_t 1: min q 0.9964 (at 28.8 kpc, 0 cells < 0.99), max q 73.8, M_c/M_ph(<30) 1.0025, f share(<30) 0.000, t share(all) 0.500 -> (i) holds
+    run MW|can|LC|af0|at0.5|X05|tol1e-12: 4.3 s, n 85590
+  SWAPPED LC can alpha_t 0.5: min q 0.0000 (at 25.9 kpc, 7 cells < 0.99), max q 104, M_c/M_ph(<30) 0.7961, f share(<30) 0.000, t share(all) 0.037 -> (i) FAILS
+    run MW|alt|LC|af0|at0.5|X05|tol1e-12: 4.3 s, n 85590
+  SWAPPED LC alt alpha_t 0.5: min q 0.0000 (at 20.9 kpc, 13 cells < 0.99), max q 73.8, M_c/M_ph(<30) 0.5946, f share(<30) 0.000, t share(all) 0.030 -> (i) FAILS
+    run MW|can|LC|af0|at1|X05|tol1e-12: 8.6 s, n 171035
+  SWAPPED LC can alpha_t 1: min q 0.0000 (at 25.9 kpc, 6 cells < 0.99), max q 104, M_c/M_ph(<30) 0.7961, f share(<30) 0.000, t share(all) 0.037 -> (i) FAILS
+    run MW|alt|LC|af0|at1|X05|tol1e-12: 8.6 s, n 171035
+  SWAPPED LC alt alpha_t 1: min q 0.0000 (at 20.1 kpc, 13 cells < 0.99), max q 73.8, M_c/M_ph(<30) 0.5946, f share(<30) 0.000, t share(all) 0.030 -> (i) FAILS
+  L0: G swapped PASS at [0.5, 1.0] (unswapped FAIL); M swapped FAILS at first order (min mobile fraction 0.802/0.785); D swapped FAILS (clump drifts at alpha >= 0.5 >> alpha_c 1.37e-03, CFG882) -> newly failed ['M', 'D'] -> BITES
+  LC: G swapped FAIL (unswapped PASS); M swapped not failed (min mobile fraction 0.135/0.118); D swapped FAILS (clump drifts at alpha >= 0.5 >> alpha_c 1.37e-03, CFG882) -> newly failed ['G', 'D'] -> BITES
+TOOTH: BITES (per rule: L0 bites, LC bites)
+
+K-tests: all PASS (16/17 PASS, 1 PARTIAL)
+elapsed 40 s
