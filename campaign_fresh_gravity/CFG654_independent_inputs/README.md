@@ -71,3 +71,11 @@ the framework's own early-universe inputs it stays CONSISTENT and the relative �
 - DES is not diagnostic; the CMB gate is not evaluated. A CONSISTENT class does not mean the data favour the framework.
 
 κ = ½ FITTED; footings never pooled; cold energy mass required; not theory closed.
+
+## Run-plan disclosure (2026-10-20): NC2x aborts and restart gate (A3 job; no science change)
+- NC2x (A3) started 10:33 under chain7 (gate: free + inactive ≥ 48 GB, the frozen §3 start rule). It was aborted twice by the frozen swap-growth
+  rule and resumed each time from its own rolling checkpoint (bit-identical resume): 12:44 at step ~21 (disk free fell to ~8 GB while a parallel
+  session set up a job), and 15:42 at step 40 (a 31 GB local Ollama model loaded beside it).
+- Restart 16:24:36 from the step-39 checkpoint under chain7b: the gate waits only for heavy jobs (1024³ engines, an Ollama server) and for
+  free + inactive ≥ **46 GB**, i.e. 2 GB below the frozen §3 start rule (owner: "i need this finished"; NC2x peak RSS 42–44 GB; the frozen abort rule
+  — RSS > 52 GB or swap growth > 4 GB — is unchanged). This is a disclosed deviation from the start rule only; no input, setting, statistic or data cut changes.
