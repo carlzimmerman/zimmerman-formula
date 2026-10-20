@@ -39,3 +39,17 @@ the source named in hunt item 44, downloaded 2026-09-03 from the CfA VizieR mirr
 sigV = 0.0 (dispersion unresolved) and are treated as upper limits, not measurements.
 
 Public catalogue data.  No personal information.
+
+---
+
+## Added 2026-10-19 for CFG874/875 (owner approved the download in chat)
+
+`lvd_dwarf_local_field_distant.csv` — the Local Volume Database's dwarfs beyond the Local Group (Pace 2024, ApJS 273, 15),
+downloaded 2026-10-19 from
+
+    https://raw.githubusercontent.com/apace7/local_volume_database/main/data/dwarf_local_field_distant.csv
+
+736 rows, 329,856 bytes. Only 7 rows carry a measured `vlos_sigma`, and all are satellites of other hosts (NGC 5128: Fluffy,
+KV19-212/271/329/442; M81: KDG 64; NGC 4594: SUCD1), mostly compact objects with r_h 4–30 pc. None is an isolated dwarf, so the
+Local Group's 11 isolated dwarfs with stellar σ (CFG860/874) are the full LVD supply. The three LG tables above were checked the
+same day against upstream sizes (unchanged).
