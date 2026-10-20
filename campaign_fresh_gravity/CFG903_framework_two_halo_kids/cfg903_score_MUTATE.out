@@ -1,0 +1,49 @@
+
+====================================================================================================
+CFG903  framework catalogue two-halo term + CFG804/CFG902 one-halo vs KiDS-1000 B21 Fig. 3   [MUTATE: neighbour M_b x 2]
+  criteria bb665cf4f, amendment A1 26ecb00ce (completeness), A2 a6449299a (kernel numerics, post hoc); kappa = 1/2 FITTED; footings never pooled
+  [PASS] K1a exec'd CFG804 (R1/R2) reproduces CFG902 declared JSON: canonical max |d| 0.0e+00, alt max |d| 0.0e+00
+
+  neighbour profiles: 74 (N in NGRID u {1.25,1.5,1.75}, shapes P1/P2) in 5 s; kernel F evaluated directly (A2)
+  [PASS] K2a projected cold profile vs CFG804 profile() (N 1, 5.5, 10): max relative difference 3.05e-04 (<= 5e-3)
+  [PASS] K2b kernel limits and off-centre F vs independent brute-force polar integration: limits max |d| 0.0e+00 (<= 1e-6); 24 random points max |d| 6.7e-05 (<= 1e-3); F(x,0) vs cumulative 0.0e+00 (by construction)
+  [PASS] K2c uniform neighbour field gives Delta Sigma = 0 (log M_b 10.5, 12.0; P1; both footings): max |DS| / Sigma0 = 5.9e-05 (<= 2e-3)
+  kernels: 2 (footing x shape x MUTATE) evaluated directly
+  histograms reduced bin by bin (1 selections per bin); current RSS 435 MB
+  [PASS] K1b this lane's D+2h fit with two-halo = 0 reproduces CFG902 (both footings, both radius sets): max |d| 0.0e+00; all radii +100.10 / +123.12, primary +0.84 / -0.27
+
+----------------------------------------------------------------------------------------------------
+  FOOTING canonical (a0 9.3603e-11); CFG902 reference: all radii +100.10, primary +0.84
+  PRIMARY (I0, W500, C1', P1, E1, unmasked, B21 weights):
+    all radii: chi2(D+2h) 183.31 (p 1.93e-15) vs chi2_B 163.13 -> dchi2 +20.17  ==> PARTIAL
+      masses log M_b 10.36 / 10.79 / 10.94 / 11.15; exclusion edges r_x 316 / 519 / 555 / 532 kpc
+    primary R <= 0.31: dchi2 -7.11 -> SUFFICES still (chi2 76.74)
+    two-halo Delta Sigma (Msun/pc^2) at R = 0.22, 0.41, 0.76, 1.04, 1.41, 1.92, 2.60 Mpc:
+      bin 1: 2h  0.472  0.502  0.521  0.473  0.345  0.191 -0.163   | data - D_1h -1.050 -0.829  1.375  0.910  0.524  0.210  0.194
+      bin 2: 2h  0.681  0.644  0.663  0.590  0.476  0.298 -0.066   | data - D_1h  3.851  2.433  1.002  1.660  0.569  0.351  0.098
+      bin 3: 2h  0.773  0.700  0.566  0.538  0.465  0.304 -0.026   | data - D_1h -1.429  0.813  1.160  1.655  1.013  1.210  0.393
+      bin 4: 2h  0.533  0.453  0.343  0.437  0.425  0.305  0.032   | data - D_1h  6.071  1.556  1.079  1.594  1.565  0.745  0.530
+    share of the (unexcluded) 2h at 1.04 Mpc from neighbours MORE massive than the lens: 0.85 / 0.66 / 0.54 / 0.37
+    random-only signal (mask/edge term, subtracted) at 0.41 / 1.04 / 2.60 Mpc, bin 1-4: 0.303/0.341/0.282; 0.325/0.334/0.264; 0.268/0.308/0.247; 0.300/0.265/0.245
+
+----------------------------------------------------------------------------------------------------
+  FOOTING alt (a0 1.1312e-10); CFG902 reference: all radii +123.12, primary -0.27
+  PRIMARY (I0, W500, C1', P1, E1, unmasked, B21 weights):
+    all radii: chi2(D+2h) 182.46 (p 2.61e-15) vs chi2_B 155.33 -> dchi2 +27.13  ==> PARTIAL
+      masses log M_b 10.23 / 10.73 / 10.89 / 11.10; exclusion edges r_x 248 / 440 / 516 / 491 kpc
+    primary R <= 0.31: dchi2 -9.53 -> SUFFICES still (chi2 70.18)
+    two-halo Delta Sigma (Msun/pc^2) at R = 0.22, 0.41, 0.76, 1.04, 1.41, 1.92, 2.60 Mpc:
+      bin 1: 2h  0.502  0.554  0.538  0.483  0.349  0.195 -0.164   | data - D_1h -1.034 -0.223  1.553  1.006  0.576  0.238  0.209
+      bin 2: 2h  0.736  0.670  0.706  0.618  0.490  0.306 -0.064   | data - D_1h  3.663  2.068  1.240  1.789  0.639  0.389  0.119
+      bin 3: 2h  0.840  0.750  0.597  0.568  0.483  0.314 -0.024   | data - D_1h -1.732  0.580  1.243  1.700  1.038  1.223  0.400
+      bin 4: 2h  0.575  0.463  0.386  0.484  0.451  0.320  0.036   | data - D_1h  5.692  1.224  1.207  1.663  1.603  0.766  0.541
+    share of the (unexcluded) 2h at 1.04 Mpc from neighbours MORE massive than the lens: 0.85 / 0.66 / 0.54 / 0.37
+    random-only signal (mask/edge term, subtracted) at 0.41 / 1.04 / 2.60 Mpc, bin 1-4: 0.321/0.343/0.283; 0.346/0.336/0.264; 0.285/0.311/0.247; 0.321/0.266/0.246
+  [PASS] MUTATE neighbour M_b x 2 moves the all-radii dchi2 by >= 1 (both footings): canonical: +40.72 -> +20.17 (-20.55), alt: +52.80 -> +27.13 (-25.67)
+
+====================================================================================================
+  VERDICT (MUTATE run: not a verdict)
+  canonical: PARTIAL (all-radii dchi2 +20.17; CFG902 +100.10)
+  alt: PARTIAL (all-radii dchi2 +27.13; CFG902 +123.12)
+  checks: K1a PASS, K2a PASS, K2b PASS, K2c PASS, K1b PASS, MUTATE PASS
+  kappa = 1/2 FITTED; footings never pooled; framework-native neighbours (no LCDM halo model); not theory closed.
