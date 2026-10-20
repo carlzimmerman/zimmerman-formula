@@ -1,0 +1,80 @@
+PairedBandStress.lean:46:0: warning: automatically included section variable(s) unused in theorem `Why4.PairedBandStress.shape_factorization`:
+  [LinearOrder K]
+  [IsStrictOrderedRing K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LinearOrder K] [IsStrictOrderedRing K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+PairedBandStress.lean:119:0: warning: automatically included section variable(s) unused in theorem `Why4.PairedBandStress.energy_add_pressure`:
+  [LinearOrder K]
+  [IsStrictOrderedRing K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LinearOrder K] [IsStrictOrderedRing K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+@nonnegative_root_unique : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {d r t : K}, 0 ≤ r → 0 ≤ t → r ^ 2 = 1 + d ^ 2 → t ^ 2 = 1 + d ^ 2 → r = t
+@band_strict_bounds : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K] {A L d r : K},
+  0 < A →
+    0 < L →
+      0 < d → 0 ≤ r → r ^ 2 = 1 + d ^ 2 → energy A L d r / 2 < nullStress A L d r ∧ nullStress A L d r < energy A L d r
+@pressure_strict_bounds : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {A L d r : K},
+  0 < A → 0 < L → 0 < d → 0 ≤ r → r ^ 2 = 1 + d ^ 2 → -energy A L d r / 2 < pressure A L d r ∧ pressure A L d r < 0
+@finite_band_strict_bounds : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {ι : Type u_3} (s : Finset ι) (A L d r : ι → K),
+  s.Nonempty →
+    (∀ i ∈ s, 0 < A i) →
+      (∀ i ∈ s, 0 < L i) →
+        (∀ i ∈ s, 0 < d i) →
+          (∀ i ∈ s, 0 ≤ r i) →
+            (∀ i ∈ s, r i ^ 2 = 1 + d i ^ 2) →
+              (∑ i ∈ s, energy (A i) (L i) (d i) (r i)) / 2 < ∑ i ∈ s, nullStress (A i) (L i) (d i) (r i) ∧
+                ∑ i ∈ s, nullStress (A i) (L i) (d i) (r i) < ∑ i ∈ s, energy (A i) (L i) (d i) (r i)
+@finite_nec_obstruction : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  {ι : Type u_3} (s : Finset ι) (A L d r : ι → K),
+  s.Nonempty →
+    (∀ i ∈ s, 0 < A i) →
+      (∀ i ∈ s, 0 < L i) →
+        (∀ i ∈ s, 0 < d i) →
+          (∀ i ∈ s, 0 ≤ r i) →
+            (∀ i ∈ s, r i ^ 2 = 1 + d i ^ 2) →
+              ∀ (offset extraEnergy extraPressure : K),
+                0 ≤ extraEnergy + extraPressure →
+                  0 <
+                    offset + ∑ i ∈ s, energy (A i) (L i) (d i) (r i) + extraEnergy +
+                      (-offset + ∑ i ∈ s, pressure (A i) (L i) (d i) (r i) + extraPressure)
+@finite_no_vacuum : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K] {ι : Type u_3}
+  (s : Finset ι) (A L d r : ι → K),
+  s.Nonempty →
+    (∀ i ∈ s, 0 < A i) →
+      (∀ i ∈ s, 0 < L i) →
+        (∀ i ∈ s, 0 < d i) →
+          (∀ i ∈ s, 0 ≤ r i) →
+            (∀ i ∈ s, r i ^ 2 = 1 + d i ^ 2) →
+              ∀ (offset extraEnergy extraPressure : K),
+                0 ≤ extraEnergy + extraPressure →
+                  offset + ∑ i ∈ s, energy (A i) (L i) (d i) (r i) + extraEnergy +
+                      (-offset + ∑ i ∈ s, pressure (A i) (L i) (d i) (r i) + extraPressure) ≠
+                    0
+@required_negative_extra_null_stress : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K]
+  [IsStrictOrderedRing K] {ι : Type u_3} (s : Finset ι) (A L d r : ι → K),
+  s.Nonempty →
+    (∀ i ∈ s, 0 < A i) →
+      (∀ i ∈ s, 0 < L i) →
+        (∀ i ∈ s, 0 < d i) →
+          (∀ i ∈ s, 0 ≤ r i) →
+            (∀ i ∈ s, r i ^ 2 = 1 + d i ^ 2) →
+              ∀ (offset extraEnergy extraPressure : K),
+                offset + ∑ i ∈ s, energy (A i) (L i) (d i) (r i) + extraEnergy +
+                      (-offset + ∑ i ∈ s, pressure (A i) (L i) (d i) (r i) + extraPressure) =
+                    0 →
+                  (∑ i ∈ s, energy (A i) (L i) (d i) (r i)) / 2 < -(extraEnergy + extraPressure) ∧
+                    extraEnergy + extraPressure < 0
+'Why4.PairedBandStress.nonnegative_root_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.band_strict_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.pressure_strict_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.finite_band_strict_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.finite_nec_obstruction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.finite_no_vacuum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.required_negative_extra_null_stress' depends on axioms: [propext, Classical.choice, Quot.sound]

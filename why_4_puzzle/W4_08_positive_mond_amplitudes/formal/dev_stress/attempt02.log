@@ -1,0 +1,60 @@
+PairedBandStress.lean:1:0: warning: 
+'Mathlib.Data.Real.Sqrt' has been deprecated: please replace this import by
+
+import Mathlib.Analysis.Real.Sqrt
+PairedBandStress.lean:130:16: error(lean.unknownIdentifier): Unknown constant `Finset.sum_div`
+PairedBandStress.lean:130:4: error: Type mismatch: After simplification, term
+  h
+ has type
+  ∑ i ∈ s, energy (A i) (L i) (d i) / 2 < ∑ i ∈ s, nullStress (A i) (L i) (d i)
+but is expected to have type
+  (∑ i ∈ s, energy (A i) (L i) (d i)) / 2 < ∑ i ∈ s, nullStress (A i) (L i) (d i)
+@band_strict_bounds : ∀ {A L d : ℝ},
+  0 < A → 0 < L → 0 < d → energy A L d / 2 < nullStress A L d ∧ nullStress A L d < energy A L d
+@pressure_strict_bounds : ∀ {A L d : ℝ}, 0 < A → 0 < L → 0 < d → -energy A L d / 2 < pressure A L d ∧ pressure A L d < 0
+@finite_band_strict_bounds : ∀ {ι : Type u_1} (s : Finset ι) (A L d : ι → ℝ),
+  s.Nonempty →
+    (∀ i ∈ s, 0 < A i) →
+      (∀ i ∈ s, 0 < L i) →
+        (∀ i ∈ s, 0 < d i) →
+          (∑ i ∈ s, energy (A i) (L i) (d i)) / 2 < ∑ i ∈ s, nullStress (A i) (L i) (d i) ∧
+            ∑ i ∈ s, nullStress (A i) (L i) (d i) < ∑ i ∈ s, energy (A i) (L i) (d i)
+@finite_nec_obstruction : ∀ {ι : Type u_1} (s : Finset ι) (A L d : ι → ℝ),
+  s.Nonempty →
+    (∀ i ∈ s, 0 < A i) →
+      (∀ i ∈ s, 0 < L i) →
+        (∀ i ∈ s, 0 < d i) →
+          ∀ (offset extraEnergy extraPressure : ℝ),
+            0 ≤ extraEnergy + extraPressure →
+              0 <
+                offset + ∑ i ∈ s, energy (A i) (L i) (d i) + extraEnergy +
+                  (-offset + ∑ i ∈ s, pressure (A i) (L i) (d i) + extraPressure)
+@finite_no_vacuum : ∀ {ι : Type u_1} (s : Finset ι) (A L d : ι → ℝ),
+  s.Nonempty →
+    (∀ i ∈ s, 0 < A i) →
+      (∀ i ∈ s, 0 < L i) →
+        (∀ i ∈ s, 0 < d i) →
+          ∀ (offset extraEnergy extraPressure : ℝ),
+            0 ≤ extraEnergy + extraPressure →
+              offset + ∑ i ∈ s, energy (A i) (L i) (d i) + extraEnergy +
+                  (-offset + ∑ i ∈ s, pressure (A i) (L i) (d i) + extraPressure) ≠
+                0
+@required_negative_extra_null_stress : ∀ {ι : Type u_1} (s : Finset ι) (A L d : ι → ℝ),
+  s.Nonempty →
+    (∀ i ∈ s, 0 < A i) →
+      (∀ i ∈ s, 0 < L i) →
+        (∀ i ∈ s, 0 < d i) →
+          ∀ (offset extraEnergy extraPressure : ℝ),
+            offset + ∑ i ∈ s, energy (A i) (L i) (d i) + extraEnergy +
+                  (-offset + ∑ i ∈ s, pressure (A i) (L i) (d i) + extraPressure) =
+                0 →
+              (∑ i ∈ s, energy (A i) (L i) (d i)) / 2 < -(extraEnergy + extraPressure) ∧ extraEnergy + extraPressure < 0
+'Why4.PairedBandStress.band_strict_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.pressure_strict_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.finite_band_strict_bounds' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.finite_nec_obstruction' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.finite_no_vacuum' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'Why4.PairedBandStress.required_negative_extra_null_stress' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
