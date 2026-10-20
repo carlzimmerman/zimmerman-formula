@@ -121,3 +121,8 @@ remains an empirical finding without a mechanism in the record.
 (projection Ω_m, covariance), but the size of the framework's advantage is amplitude-driven: Δχ² = −7.70 at the as-scored
 Ω_m 0.3138, −4.15 at the no-CMB measured Ω_m 0.2976 (CFG886), −0.94 at 0.2806. Quote the shear result as CONSISTENT (class),
 not as a −7.7 preference. NC1x (native initial conditions) is scored by the chain and then re-scored by CFG909's script.
+
+**Note (2026-10-20, CFG654 A2) native-input shear rerun.** NC1x (theory-v2, canonical, the framework's own early-universe inputs)
+HOLDS against its own control: KiDS Δχ² −10.08, CONSISTENT; CFG909 re-score ROBUST with the size again amplitude-driven (−3.1 to −15.8
+over projection Ω_m). Absolute KiDS fit p ≈ 0.02 (data χ²). The inherited-IC condition is lifted on the canonical footing only; the alt
+native rerun NC2x (A3) is running. CMB-lensing gate CFG917 in progress.

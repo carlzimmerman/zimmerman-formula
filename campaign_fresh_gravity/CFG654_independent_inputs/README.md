@@ -32,3 +32,42 @@ nonlinear or collapse ingredients** (EH fitting shape, ΛCDM-shell Δ_ta table, 
 - V-N2 PASS (native growth in the run), V-C PASS (source zero-sum ≤ 2.5e-10) for both the CMB pair (primary, A1) and the BBN bracket.
 - PREVIEW 256³, NOT a verdict, P_grav/P_S0 − 1 at k 0.3/0.5/1, z = 0, M1+M2: inherited +0.005/+0.014/+0.031; native CMB pair +0.005/+0.012/+0.030; native BBN +0.005/+0.011/+0.028. Native S0 σ8(z=0) 0.826 vs inherited 0.812. Native inputs leave the M1+M2 preview essentially unchanged.
 - Gates for the primary 1024³ native jobs (NC12, NCS0) are met except V-N1-as-frozen (explained above); no 1024³ run started.
+
+## RESULT: NC1x vs NCS0 (addendum A2, the native-input rerun of T1x; 1024³, chain6, scored 2026-10-20 10:07)
+
+Theory-v2 (CFG650 M1 + M2 + M3, canonical footing) rerun from the framework's own initial conditions and background (A1 primary
+set: Planck TT,TE,EE+lowE ω_b/ω_c, A_s, n_s, θ*; CAMB in the switch-off era; native Δ_ta and catchment), against its own control
+NCS0 on the same ICs. Scored by the frozen `cfg654_native.py` (MUTATE first). Numbers from `cfg654_native_results_NC1x.json`; p-values from CFG909's K1 reproduction (`../CFG909_shear_score_lcdm_input_sensitivity/cfg909_NC1x.out`, χ²_data with N_kept dof, reproduces the scorer to 0).
+
+| survey | N_kept | χ²_min control NCS0 | χ²_min NC1x | Δχ² | robustness (widen2 / noIA / held / LOC) | DESI (reported) | class |
+|---|---|---|---|---|---|---|---|
+| KiDS-1000 | 108 | 154.76 (data-χ² p = 0.008) | 144.68 (data-χ² p = 0.024) | **−10.08** | −6.13 / −13.78 / −8.75 / −12.74 | −7.39 | **CONSISTENT** |
+| DES Y3 | 78 | 93.99 | 91.78 | −2.21 | −0.79 / −4.97 / −2.14 / −2.90 | −2.12 | NOT DIAGNOSTIC (T-OWN fails) |
+
+- **MUTATE** (`cfg654_native_NC1x_MUTATE.out`): NZ1 bites on both surveys; T-OWN S0 χ²_min 17.11 on KiDS (DIAGNOSTIC), 8.14 on
+  DES (NOT DIAGNOSTIC).
+- **Benchmark** (no verdict weight; vs the native control, not an observational exclusion): P_grav/P_S0 at k = 0.3 / 0.5 / 1 h/Mpc
+  = 0.972 / 0.961 / 0.949 at z = 0 (G 0.050), 0.966 / 0.944 / 0.921 at z = 0.5, 0.964 / 0.932 / 0.891 at z = 1.
+- **CMB-lensing gate:** NOT EVALUATED (no committed CFG649 raw-data CMB-lensing form at the scorer's freeze).
+- **Verdict (frozen §5):** PASS, shear side, canonical footing. **A2 reading: HOLDS** (NC1x CONSISTENT and Δχ²(NC1x − NCS0) =
+  −10.08 ≤ 0).
+
+**What this changes.** The canonical shear pass no longer rests on inherited ΛCDM-shaped initial conditions and background: with
+the framework's own early-universe inputs it stays CONSISTENT and the relative Δχ² moves from −7.70 (T1x, inherited) to −10.08.
+
+**What it does not change.**
+- Canonical footing only. The alt footing's pass (T2x, −7.18) is still on inherited inputs; A2 froze no alt native rerun.
+- Absolute fits are worse with native inputs, for both arms (implied linear σ8 0.825 vs 0.811): KiDS χ²_min 144.68 / 108 points
+  for the framework (p = 0.024 on the data part of χ², CFG909's convention) against 136.6 (p = 0.033, A2) inherited; the control falls
+  further (154.76, p = 0.008). The framework
+  beats its own control by suppressing small-scale power (≈5% at k = 1 h/Mpc, z = 0; 11% at z = 1); it is not a good absolute
+  fit.
+- CFG909's script re-scored NC1x (2026-10-20, K1–K4 PASS, K1 reproduces this table to 0): the KiDS class is ROBUST (CONSISTENT in
+  every variant), but the size is again amplitude-driven: Δχ² −3.11 / −6.86 / −9.58 / −10.97 / −15.80 at projection Ω_m
+  0.2806 / 0.2976 (CFG886 no-CMB) / 0.3085 / 0.3138 / 0.3308 (as scored: native 0.3104, −10.08); framework's own covariance
+  (CV1_OWN) −2.94. Quote the canonical native result as CONSISTENT, not as a −10 preference.
+- Still shared: the Planck column comes from a base-ΛCDM chain (late lensing smoothing of the peaks), H0 from θ* (SH0ES only as
+  LOC), massless ν, the empirical f_ret census, M2 cooling inputs, survey nuisances and covariances, seed 359 (§6).
+- DES is not diagnostic; the CMB gate is not evaluated. A CONSISTENT class does not mean the data favour the framework.
+
+κ = ½ FITTED; footings never pooled; cold energy mass required; not theory closed.

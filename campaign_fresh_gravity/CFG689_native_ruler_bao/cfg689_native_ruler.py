@@ -20,9 +20,12 @@ TAG = "" if MODE == "primary" else "_" + MODE
 OUTF = open(os.path.join(HERE, f"cfg689{TAG}.out"), "w")
 def P(*a):
     s = " ".join(str(x) for x in a); print(s, flush=True); OUTF.write(s + "\n"); OUTF.flush()
-BUSY = r"cfg6[0-9][0-9]_pm\.py|cfg650_pm|cfg596_pm|run_65[04]\.py|overnight_chain/chain[0-9]*\.sh|argon11_run\.py|cfg6[0-9][0-9]_native\.py"
+import re   # guard reads `ps` (no pattern in any argv, so other chains' pgrep gates never match this process); shell wrappers ignored
+BUSY = re.compile(r"cfg[0-9]{3}_pm\.py|cfg59[6]_pm|run_6[0-9]{2}\.py|^\s*bash \S*chain[0-9]*\.sh|argon11_run\.py|cfg[0-9]{3}_native\.py|cfg9[0-9]{2}_rescore\.py")
+WRAP = re.compile(r"^\s*(\S*/)?(ba|z)?sh -c ")
 def guard():
-    if subprocess.run(["pgrep", "-f", BUSY], capture_output=True).returncode == 0:
+    cmds = subprocess.run(["ps", "-axo", "command="], capture_output=True, text=True).stdout.splitlines()
+    if any(BUSY.search(c) and not WRAP.match(c) for c in cmds):
         P(f"GUARD: a PM / 1024^3 / chain process is alive -> exit 75 (no verdict; mode {MODE} reruns later)"); sys.exit(75)
 guard()
 P(f"CFG689 mode={MODE}  NSTEP={NSTEP}" + ("" if NSTEP == FROZEN_NSTEP else f"  (NOT the frozen {FROZEN_NSTEP}: no verdict weight)"))
@@ -193,7 +196,10 @@ def prior(wb, wc, om, w0, wk):
 def split(p, const=False):
     nw = 1 if const else NN; wn = np.full(NN, p[0]) if const else np.asarray(p[:NN])
     return wn, (p[nw] if FREEK else 0.0), p[-2], p[-1]
+NEVAL = [0]
 def chi2_total(p, use_sn=True, const=False):
+    NEVAL[0] += 1
+    if NEVAL[0] % 2000 == 0: guard()                     # also guards the fitting stages (every ~2000 evaluations)
     wn, wk, wb, wc = split(p, const)
     if np.any(wn < WMIN) or np.any(wn > 3) or abs(wk) > 0.25 or not (0 < wb < 0.05) or not (0.05 <= wc <= 0.25): return 1e9
     b = bg(wn, wb, wc, wk)

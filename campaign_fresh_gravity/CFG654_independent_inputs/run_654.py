@@ -26,6 +26,8 @@ JOBS = {
     "NC12": _j(_P, "12", foot="canonical", INPUTS="native_cmb"), "NCS0": _j(_P, "", sw="S0", foot="canonical", INPUTS="native_cmb"),
     # addendum A2 (2026-10-15): native-input T1x (M1+M2+M3)
     "NC1x": _j(_P, "123", foot="canonical", INPUTS="native_cmb"),
+    # addendum A3 (2026-10-20): native-input T2x (M1+M2+M3, alt footing); control = NCS0 (S0 never reads the footing)
+    "NC2x": _j(_P, "123", foot="alt", INPUTS="native_cmb"),
 }
 
 def swap_used_mb():
