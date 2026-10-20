@@ -151,3 +151,25 @@ shrinks |Δχ²| for runs that differ from the control mainly in amplitude, whic
 - `cfg909_T_MUTATE.out` / `cfg909_results_T_MUTATE.json`: MUTATE run.
 - `cfg909_native_check.out` / `cfg909_results_native_check.json`: K5 native-path check.
 - `cfg909_slogdet_check.py` / `.out`: the log-determinant sanity check.
+
+
+## NC1x re-score (2026-10-20, after the chain scored NC1x; frozen 'NC1x applicability' section, unchanged)
+
+`OMP_NUM_THREADS=1 nice -n 10 python3 cfg909_rescore.py --score NC1x NCS0 --mutate`, then without `--mutate`. Outputs `cfg909_NC1x[_MUTATE].out`,
+`cfg909_results_NC1x[_MUTATE].json`. Canonical footing only (NC1x is canonical; NC2x, the alt native rerun, is CFG654 A3).
+
+| check / variant | KiDS Δχ² (F − S0) | class |
+|---|---|---|
+| K1 as scored (reproduces cfg654_native_results_NC1x.json, max diff 0) | −10.08 | CONSISTENT |
+| projection Ω_m 0.2806 / 0.2976 / 0.3085 / 0.3138 / 0.3308 | −3.11 / −6.86 / −9.58 / −10.97 / −15.80 | CONSISTENT in all |
+| CV1_COMMON / CVh_COMMON | −11.04 / −10.53 | CONSISTENT |
+| CV1_OWN / CVh_OWN (framework's own covariance; Δχ² only) | −2.94 / −7.07 | CONSISTENT |
+| COMB Ω_m 0.2976 + CV1_COMMON | −7.53 | CONSISTENT |
+| DIAG (reported only) | −19.50 | CONSISTENT |
+
+- LANE CLASS: **ROBUST**, no flips; worst class-driving statistic Ω_m 0.2806, −3.11 (margin 7.11 to the TENSION line). K1–K4 PASS.
+- MUTATE bites (M1 Ω_m 0.25 on the framework arm: KiDS shift −22.19; M2 framework covariance × 0.5: +134.67).
+- DES NOT DIAGNOSTIC throughout (T-OWN fails). numpy prints 'invalid value encountered in slogdet' warnings in the stderr logs
+  (cfg909_NC1x*.err), as in the T1x run; cfg909_slogdet_check covers the determinant path.
+- Reading: with native inputs the class survives every ΛCDM-input variant; the size of the advantage is set by the projection
+  Ω_m (amplitude), as for T1x. Quote CONSISTENT, not a −10 preference. κ = ½ FITTED; not theory closed.
