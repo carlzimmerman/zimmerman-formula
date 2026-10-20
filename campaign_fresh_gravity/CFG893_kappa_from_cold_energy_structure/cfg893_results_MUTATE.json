@@ -1,0 +1,974 @@
+{
+ "lane": "CFG893",
+ "mutate": true,
+ "K7_scaling": {
+  "cfree": {
+   "round-rule phantom density invariant (nu_mono)": true,
+   "round-rule phantom density invariant (simple)": true,
+   "Poisson Phi": true,
+   "deficit Poisson psi": true,
+   "drift v_s = alpha tau grad psi": true,
+   "tau = (4 pi G rho_m)^(-1/2)": true,
+   "continuity rho/t ~ rho v/x": true,
+   "law g = nu(g_N/a0) g_N (mono)": true,
+   "law g = nu(g_N/a0) g_N (simple)": true,
+   "energy eq. sink term rho v grad Phi vs dE/dt": true,
+   "energy eq. bath term (alpha/tau) rho sigma^2": true,
+   "supply M_ph(<r_*) = 5.364 N M_b": true,
+   "catchment M_ta = (4pi/3) Delta rho r_ta^3": true,
+   "stiffened action K W'(u) = u^2/(a0-u)": true
+  },
+  "c_bearing": {
+   "R2-R4 sink to DE: dE_DE/dt = Qbar (eps_DE fixed)": {
+    "homogeneous": false,
+    "lhs_degree": "1",
+    "rhs_degree": "lambda**2"
+   },
+   "R12 causality v_s/c": {
+    "homogeneous": false,
+    "lhs_degree": "lambda",
+    "rhs_degree": "1"
+   },
+   "R10' damped psi with tau_psi = c/a0": {
+    "homogeneous": false,
+    "lhs_degree": "1/lambda",
+    "rhs_degree": "1"
+   }
+  }
+ },
+ "T1_nullspaces": {
+  "a0,G,rho": {
+   "rank": 3,
+   "null": []
+  },
+  "a0,G,rho,c": {
+   "rank": 3,
+   "null": [
+    [
+     "1",
+     "-1/2",
+     "-1/2",
+     "-1"
+    ]
+   ]
+  },
+  "a0,G,rho,M_b": {
+   "rank": 3,
+   "null": [
+    [
+     "1",
+     "-1",
+     "-2/3",
+     "-1/3"
+    ]
+   ]
+  },
+  "a0,G,rho,L*": {
+   "rank": 3,
+   "null": [
+    [
+     "1",
+     "-1",
+     "-1",
+     "-1"
+    ]
+   ]
+  }
+ },
+ "K12_rows": {
+  "can_MW": {
+   "measured": 0.00476143693655463,
+   "bound": 0.04278296660156133,
+   "ratio": 0.11129281849241528,
+   "ok": true
+  },
+  "can_group": {
+   "measured": 0.0022280082873208664,
+   "bound": 0.04278296660156133,
+   "ratio": 0.05207699382023586,
+   "ok": true
+  },
+  "can_cluster": {
+   "measured": 0.04273483270870185,
+   "bound": 0.04278296660156133,
+   "ratio": 0.9988749285829627,
+   "ok": true
+  },
+  "alt_MW": {
+   "measured": 0.0052605472443245215,
+   "bound": 0.05170356913740603,
+   "ratio": 0.10174437339798015,
+   "ok": true
+  },
+  "alt_group": {
+   "measured": 0.0024588249029477596,
+   "bound": 0.05170356913740603,
+   "ratio": 0.04755619281162683,
+   "ok": true
+  },
+  "alt_cluster": {
+   "measured": 0.0516561065143468,
+   "bound": 0.05170356913740603,
+   "ratio": 0.9990820242422125,
+   "ok": true
+  }
+ },
+ "mutate_numbers": {
+  "dln_normal": {
+   "can": 5.774991888784672e-06,
+   "alt": 6.519956753975992e-06
+  },
+  "dln_mutate": {
+   "can": -2.887495944392336e-06,
+   "alt": -3.259978376987996e-06
+  },
+  "R3_kappa": {
+   "can": null,
+   "alt": null
+  },
+  "R5a_a0_normal": 1.1199732404944736e-10,
+  "R5a_a0_theta1": 1.3561774311399305e-10,
+  "rstar_normal_kpc": 511.82286880182755,
+  "rstar_theta1_kpc": 515.39216999607
+ },
+ "relations": {
+  "R1": {
+   "statement": "exact Lambda: d eps_DE/dt + 3H(1+w) eps_DE = Qbar with w = -1 and d eps_DE/dt = 0 => Qbar = 0",
+   "source": "CFG541 S(ii)",
+   "added_hypothesis": null,
+   "cls": "IDENTITY",
+   "why": "a0-free (holds for every a0)",
+   "dims_ok": true,
+   "dims": "[1.0, -1.0, -3.0] vs [1.0, -1.0, -3.0]",
+   "note": "kappa-independent constraint: incompatible with E_sink > 0 (CFG541) for every kappa; dark energy must be dynamical (record)"
+  },
+  "R2": {
+   "statement": "dynamical DE absorbing Q, a0 = kappa sqrt(G eps_DE): d ln a0/dt = Qbar/(2 eps_DE)",
+   "source": "CFG541 S(ii) + S1 tracking",
+   "added_hypothesis": null,
+   "cls": "IDENTITY",
+   "why": "a0(t) = C1*exp(Integral(q_s(t), t)/2): the integration constant (hence kappa) is free",
+   "dims_ok": true,
+   "dims": "[-0.0, -0.0, -1.0] vs [0.0, 0.0, -1.0]",
+   "B_budget": {
+    "can": -5.774991888784672e-06,
+    "alt": -6.519956753975992e-06
+   },
+   "cum_dln_a0_max": {
+    "can": -2.887495944392336e-06,
+    "alt": -3.259978376987996e-06
+   },
+   "cum_dlog10_a0_max": {
+    "can": -1.2540235551676102e-06,
+    "alt": -1.4157906202498054e-06
+   },
+   "note": "constrains the a0 drift only (flat a0 to ~1e-6), for any kappa"
+  },
+  "R3": {
+   "statement": "DE is the accumulated settling energy: eps_DE = int Qbar dt",
+   "source": "added hypothesis",
+   "added_hypothesis": "H3",
+   "cls": "MASS-DEPENDENT",
+   "why": "d ln a0/d ln M_b = -1",
+   "dims_ok": true,
+   "dims": "[1.0, -1.0, -2.0] vs [1.0, -1.0, -2.0]",
+   "a0_solution": "epsilon_DE**2/(G*M_b*rho_c**2*xi**2)",
+   "M_b_exponent": "-1",
+   "k": "epsilon_DE**2/(G**(3/2)*M_b*c*sqrt(rho_DE)*rho_c**2*xi**2)",
+   "kappa_required_can": null,
+   "kappa_required_alt": null,
+   "numeric_class": "EXCLUDED (kappa_req non-positive/none or outside [0.01, 100])"
+  },
+  "R4": {
+   "statement": "the sink drives a DE evolution of size X = 0.01: int Qbar dt = X eps_DE",
+   "source": "added hypothesis",
+   "added_hypothesis": "H4",
+   "cls": "MASS-DEPENDENT",
+   "why": "d ln a0/d ln M_b = -1",
+   "dims_ok": true,
+   "dims": "[1.0, -1.0, -2.0] vs [1.0, -1.0, -2.0]",
+   "a0_solution": "X**2*epsilon_DE**2/(G*M_b*rho_c**2*xi**2)",
+   "M_b_exponent": "-1",
+   "k": "X**2*epsilon_DE**2/(G**(3/2)*M_b*c*sqrt(rho_DE)*rho_c**2*xi**2)",
+   "kappa_required_can": null,
+   "kappa_required_alt": null,
+   "numeric_class": "EXCLUDED (kappa_req non-positive/none or outside [0.01, 100])"
+  },
+  "R5a": {
+   "statement": "rho_ph(r_ta) = rho_edge [(1-f_b) Delta_ta rho_m]",
+   "source": "added hypothesis",
+   "added_hypothesis": "H5",
+   "cls": "MASS-DEPENDENT",
+   "why": "d ln a0/d ln M_b = 1/3",
+   "dims_ok": true,
+   "dims": "[1.0, -3.0, 0.0] vs [1.0, -3.0, 0.0]",
+   "a0_solution": "6*6**(1/3)*pi**(2/3)*Delta_ta**(2/3)*G*M_b**(1/3)*rho_m**(2/3)*(f_b - 1)**2/(f_b**(4/3)*f_ret**(4/3))",
+   "M_b_exponent": "1/3",
+   "k": "6*6**(1/3)*pi**(2/3)*Delta_ta**(2/3)*sqrt(G)*M_b**(1/3)*rho_m**(2/3)*(f_b - 1)**2/(c*f_b**(4/3)*f_ret**(4/3)*sqrt(rho_DE))",
+   "numeric": {
+    "nu_mono": {
+     "a": {
+      "rows": [
+       {
+        "M_b": 100000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 148.20318936944594,
+        "a0": 1.643895902154028e-11,
+        "kappa_can": 0.08779331150911229,
+        "kappa_alt": 0.07266189440710433,
+        "rM_over_rta": 0.006213868894618193
+       },
+       {
+        "M_b": 1000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 319.2940923508988,
+        "a0": 3.541666358401975e-11,
+        "kappa_can": 0.18914495586801108,
+        "kappa_alt": 0.15654530595410268,
+        "rM_over_rta": 0.006213868894618124
+       },
+       {
+        "M_b": 10000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 687.8982688830204,
+        "a0": 7.63028886306015e-11,
+        "kappa_can": 0.407500454366595,
+        "kappa_alt": 0.3372666377091754,
+        "rM_over_rta": 0.006213868894618108
+       },
+       {
+        "M_b": 100000000000.0,
+        "f_ret": 0.12157008526819209,
+        "r_ta_kpc": 1388.6153959931307,
+        "a0": 1.2669904853923602e-10,
+        "kappa_can": 0.6766443679151567,
+        "kappa_alt": 0.560022862419421,
+        "rM_over_rta": 0.0075541940967499945
+       },
+       {
+        "M_b": 1000000000000.0,
+        "f_ret": 0.3596150651591368,
+        "r_ta_kpc": 2084.0665872513127,
+        "a0": 6.428709816056838e-11,
+        "kappa_can": 0.3433293572562745,
+        "kappa_alt": 0.28415560451008964,
+        "rM_over_rta": 0.0223451508060024
+       }
+      ],
+      "local_slopes": [
+       0.3333333333333428,
+       0.33333333333333565,
+       0.22023237397712767,
+       -0.2946495308197398
+      ]
+     },
+     "b": {
+      "rows": [
+       {
+        "M_b": 100000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 148.20318936944594,
+        "a0": 1.8266450351875577e-12,
+        "kappa_can": 0.009755314578049767,
+        "kappa_alt": 0.008073959457660568,
+        "rM_over_rta": 0.018641126857481375
+       },
+       {
+        "M_b": 1000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 319.2940923508988,
+        "a0": 3.9353874301824945e-12,
+        "kappa_can": 0.02101718813912368,
+        "kappa_alt": 0.01739481834149454,
+        "rM_over_rta": 0.018641126857481587
+       },
+       {
+        "M_b": 10000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 687.8982688830204,
+        "a0": 8.478535198300674e-12,
+        "kappa_can": 0.04528015921385514,
+        "kappa_alt": 0.03747600006171908,
+        "rM_over_rta": 0.0186411268574815
+       },
+       {
+        "M_b": 100000000000.0,
+        "f_ret": 0.12157008526819209,
+        "r_ta_kpc": 1388.6153959931307,
+        "a0": 1.4078743142956878e-11,
+        "kappa_can": 0.07518842773358167,
+        "kappa_alt": 0.062229496788564036,
+        "rM_over_rta": 0.022661720211546832
+       },
+       {
+        "M_b": 1000000000000.0,
+        "f_ret": 0.3596150651591368,
+        "r_ta_kpc": 2084.0665872513127,
+        "a0": 7.147764127690431e-12,
+        "kappa_can": 0.038173091242196366,
+        "kappa_alt": 0.031593854672463735,
+        "rM_over_rta": 0.06701315962113046
+       }
+      ],
+      "local_slopes": [
+       0.3333333333333233,
+       0.3333333333333374,
+       0.22024305813485334,
+       -0.29439367300900615
+      ]
+     },
+     "c": {
+      "rows": [
+       {
+        "M_b": 100000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 148.20318936944594,
+        "a0": 7.919002474229344e-13,
+        "kappa_can": 0.0042291938933022915,
+        "kappa_alt": 0.0035002807710517443,
+        "rM_over_rta": 0.02831157322422027
+       },
+       {
+        "M_b": 1000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 319.2940923508988,
+        "a0": 1.7060973640927622e-12,
+        "kappa_can": 0.009111522034601248,
+        "kappa_alt": 0.007541126318005254,
+        "rM_over_rta": 0.028311573224220603
+       },
+       {
+        "M_b": 10000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 687.8982688830204,
+        "a0": 3.6756753457735595e-12,
+        "kappa_can": 0.019630179150335648,
+        "kappa_alt": 0.016246864141423616,
+        "rM_over_rta": 0.028311573224220003
+       },
+       {
+        "M_b": 100000000000.0,
+        "f_ret": 0.12157008526819209,
+        "r_ta_kpc": 1388.6153959931307,
+        "a0": 6.103738316692735e-12,
+        "kappa_can": 0.032597404659586576,
+        "kappa_alt": 0.026979152905910016,
+        "rM_over_rta": 0.03441730520803987
+       },
+       {
+        "M_b": 1000000000000.0,
+        "f_ret": 0.3596150651591368,
+        "r_ta_kpc": 2084.0665872513127,
+        "a0": 3.1015420304935844e-12,
+        "kappa_can": 0.01656398347881609,
+        "kappa_alt": 0.013709135671159112,
+        "rM_over_rta": 0.10173171500380966
+       }
+      ],
+      "local_slopes": [
+       0.3333333333333233,
+       0.33333333333335163,
+       0.22025876067573869,
+       -0.2940182351247422
+      ]
+     }
+    },
+    "simple": {
+     "a": {
+      "rows": [
+       {
+        "M_b": 100000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 148.20318936944594,
+        "a0": 1.64390119157022e-11,
+        "kappa_can": 0.08779359399376525,
+        "kappa_alt": 0.07266212820475557,
+        "rM_over_rta": 0.006213858897738406
+       },
+       {
+        "M_b": 1000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 319.2940923508988,
+        "a0": 3.541677754103622e-11,
+        "kappa_can": 0.18914556446274222,
+        "kappa_alt": 0.15654580965586914,
+        "rM_over_rta": 0.006213858897738416
+       },
+       {
+        "M_b": 10000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 687.8982688830204,
+        "a0": 7.630313414355002e-11,
+        "kappa_can": 0.4075017655441909,
+        "kappa_alt": 0.33726772290173035,
+        "rM_over_rta": 0.006213858897738436
+       },
+       {
+        "M_b": 100000000000.0,
+        "f_ret": 0.12157008526819209,
+        "r_ta_kpc": 1388.6153959931307,
+        "a0": 1.266996510354767e-10,
+        "kappa_can": 0.6766475855848444,
+        "kappa_alt": 0.5600255255149469,
+        "rM_over_rta": 0.007554176135457607
+       },
+       {
+        "M_b": 1000000000000.0,
+        "f_ret": 0.3596150651591368,
+        "r_ta_kpc": 2084.0665872513127,
+        "a0": 6.428977231378082e-11,
+        "kappa_can": 0.34334363874244983,
+        "kappa_alt": 0.2841674245431037,
+        "rM_over_rta": 0.022344686074396984
+       }
+      ],
+      "local_slopes": [
+       0.33333333333333215,
+       0.3333333333333303,
+       0.2202330417992702,
+       -0.2946335310392739
+      ]
+     },
+     "b": {
+      "rows": [
+       {
+        "M_b": 100000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 148.20318936944594,
+        "a0": 1.826697920091999e-12,
+        "kappa_can": 0.009755597013262583,
+        "kappa_alt": 0.008074193214392804,
+        "rM_over_rta": 0.01864085701501398
+       },
+       {
+        "M_b": 1000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 319.2940923508988,
+        "a0": 3.935501367255732e-12,
+        "kappa_can": 0.021017796627346694,
+        "kappa_alt": 0.017395321955109844,
+        "rM_over_rta": 0.01864085701501294
+       },
+       {
+        "M_b": 10000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 687.8982688830204,
+        "a0": 8.4787806682836e-12,
+        "kappa_can": 0.045281470161990536,
+        "kappa_alt": 0.03747708506436164,
+        "rM_over_rta": 0.018640857015012998
+       },
+       {
+        "M_b": 100000000000.0,
+        "f_ret": 0.12157008526819209,
+        "r_ta_kpc": 1388.6153959931307,
+        "a0": 1.4079345483378457e-11,
+        "kappa_can": 0.07519164457110751,
+        "kappa_alt": 0.06223215919535345,
+        "rM_over_rta": 0.022661235451224736
+       },
+       {
+        "M_b": 1000000000000.0,
+        "f_ret": 0.3596150651591368,
+        "r_ta_kpc": 2084.0665872513127,
+        "a0": 7.150432243356041e-12,
+        "kappa_can": 0.0381873404844669,
+        "kappa_alt": 0.03160564801889804,
+        "rM_over_rta": 0.06700065579357942
+       }
+      ],
+      "local_slopes": [
+       0.33333333333338183,
+       0.3333333333333303,
+       0.22024906497019,
+       -0.29425017023714156
+      ]
+     },
+     "c": {
+      "rows": [
+       {
+        "M_b": 100000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 148.20318936944594,
+        "a0": 7.919531187242418e-13,
+        "kappa_can": 0.004229476255866703,
+        "kappa_alt": 0.003500514467656726,
+        "rM_over_rta": 0.028310628158996796
+       },
+       {
+        "M_b": 1000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 319.2940923508988,
+        "a0": 1.706211271858441e-12,
+        "kappa_can": 0.009112130366305368,
+        "kappa_alt": 0.007541629802078123,
+        "rM_over_rta": 0.02831062815899684
+       },
+       {
+        "M_b": 10000000000.0,
+        "f_ret": 0.1,
+        "r_ta_kpc": 687.8982688830204,
+        "a0": 3.675920752615297e-12,
+        "kappa_can": 0.01963148976126149,
+        "kappa_alt": 0.01624794886497562,
+        "rM_over_rta": 0.02831062815899664
+       },
+       {
+        "M_b": 100000000000.0,
+        "f_ret": 0.12157008526819209,
+        "r_ta_kpc": 1388.6153959931307,
+        "a0": 6.1043404281828335e-12,
+        "kappa_can": 0.03260062027448921,
+        "kappa_alt": 0.02698181430079868,
+        "rM_over_rta": 0.03441560776290178
+       },
+       {
+        "M_b": 1000000000000.0,
+        "f_ret": 0.3596150651591368,
+        "r_ta_kpc": 2084.0665872513127,
+        "a0": 3.1042013207902808e-12,
+        "kappa_can": 0.016578185588639778,
+        "kappa_alt": 0.013720890008552568,
+        "rM_over_rta": 0.10168813018127765
+       }
+      ],
+      "local_slopes": [
+       0.33333333333333215,
+       0.3333333333333392,
+       0.22027260537935506,
+       -0.29368886608892447
+      ]
+     }
+    }
+   },
+   "Mb_where_fitted_a0": {
+    "nu_mono": {
+     "can": 18460623541.15504,
+     "alt": 32583313781.92168
+    },
+    "simple": {
+     "can": 18460445345.033035,
+     "alt": 32582999262.742767
+    }
+   }
+  },
+  "R5b": {
+   "statement": "rho_ph(r_ta) = rho_edge [(1-f_b) Delta_ta rho_m/3]",
+   "source": "added hypothesis",
+   "added_hypothesis": "H5",
+   "cls": "MASS-DEPENDENT",
+   "why": "d ln a0/d ln M_b = 1/3",
+   "dims_ok": true,
+   "dims": "[1.0, -3.0, 0.0] vs [1.0, -3.0, 0.0]",
+   "a0_solution": "2*6**(1/3)*pi**(2/3)*Delta_ta**(2/3)*G*M_b**(1/3)*rho_m**(2/3)*(f_b - 1)**2/(3*f_b**(4/3)*f_ret**(4/3))",
+   "M_b_exponent": "1/3",
+   "k": "2*6**(1/3)*pi**(2/3)*Delta_ta**(2/3)*sqrt(G)*M_b**(1/3)*rho_m**(2/3)*(f_b - 1)**2/(3*c*f_b**(4/3)*f_ret**(4/3)*sqrt(rho_DE))"
+  },
+  "R5c": {
+   "statement": "rho_ph(r_ta) = rho_edge [rho_DE]",
+   "source": "added hypothesis",
+   "added_hypothesis": "H5",
+   "cls": "MASS-DEPENDENT",
+   "why": "d ln a0/d ln M_b = 1/3",
+   "dims_ok": true,
+   "dims": "[1.0, -3.0, 0.0] vs [1.0, -3.0, 0.0]",
+   "a0_solution": "6*6**(1/3)*pi**(2/3)*G*M_b**(1/3)*rho_DE**2/(Delta_ta**(4/3)*f_b**(4/3)*f_ret**(4/3)*rho_m**(4/3))",
+   "M_b_exponent": "1/3",
+   "k": "6*6**(1/3)*pi**(2/3)*sqrt(G)*M_b**(1/3)*rho_DE**(3/2)/(Delta_ta**(4/3)*c*f_b**(4/3)*f_ret**(4/3)*rho_m**(4/3))"
+  },
+  "R6": {
+   "statement": "M_ph(<r_*) = 5.364 N M_b",
+   "source": "record S3 / CFG804",
+   "added_hypothesis": null,
+   "cls": "IDENTITY",
+   "why": "in r_* = x r_M the relation is a0-free: it fixes x_* = r_*/r_M (kappa-independent constraint on the edge)",
+   "dims_ok": true,
+   "dims": "[1.0, 0.0, 0.0] vs [1.0, 0.0, 0.0]",
+   "x_star": {
+    "nu_mono": {
+     "0.07": 77.13216566295822,
+     "0.1": 54.141733078320286,
+     "0.18": 30.299067601161124
+    },
+    "simple": {
+     "0.07": 77.13162546728188,
+     "0.1": 54.140963500958826,
+     "0.18": 30.297692465019335
+    }
+   },
+   "r_star_MW_6e10_kpc": {
+    "can": {
+     "nu_mono": 511.82286880182755,
+     "simple": 511.81559368759474
+    },
+    "alt": {
+     "nu_mono": 465.5805967314835,
+     "simple": 465.5739789106861
+    }
+   },
+   "note": "mass-independent in r_M units iff f_ret is constant (census 0.10 for galaxies); physical r_* \u221d kappa^-1/2"
+  },
+  "R7": {
+   "statement": "supply exhausted exactly at turnaround: r_* = r_ta",
+   "source": "added hypothesis",
+   "added_hypothesis": "H7",
+   "cls": "MASS-DEPENDENT",
+   "why": "d ln a0/d ln M_b = 1/3",
+   "dims_ok": true,
+   "dims": "[0.0, 1.0, 0.0] vs [0.0, 1.0, 0.0]",
+   "a0_solution": "2*6**(1/3)*pi**(2/3)*Delta_ta**(2/3)*G*M_b**(1/3)*f_b**(2/3)*f_ret**(2/3)*rho_m**(2/3)*x_s**2/3",
+   "M_b_exponent": "1/3",
+   "k": "2*6**(1/3)*pi**(2/3)*Delta_ta**(2/3)*sqrt(G)*M_b**(1/3)*f_b**(2/3)*f_ret**(2/3)*rho_m**(2/3)*x_s**2/(3*c*sqrt(rho_DE))",
+   "numeric": {
+    "nu_mono": {
+     "rows": [
+      {
+       "M_b": 100000000.0,
+       "f_ret": 0.1,
+       "a0": 1.8606418781496056e-12,
+       "kappa_can": 0.009936876891124612,
+       "kappa_alt": 0.008224229010023731
+      },
+      {
+       "M_b": 1000000000.0,
+       "f_ret": 0.1,
+       "a0": 4.008631408011588e-12,
+       "kappa_can": 0.02140835228481504,
+       "kappa_alt": 0.017718564277961705
+      },
+      {
+       "M_b": 10000000000.0,
+       "f_ret": 0.1,
+       "a0": 8.636334564971518e-12,
+       "kappa_can": 0.04612289681882886,
+       "kappa_alt": 0.03817348953800043
+      },
+      {
+       "M_b": 100000000000.0,
+       "f_ret": 0.12157008526819209,
+       "a0": 1.4397175553172433e-11,
+       "kappa_can": 0.07688903637601578,
+       "kappa_alt": 0.06363700088517772
+      },
+      {
+       "M_b": 1000000000000.0,
+       "f_ret": 0.3596150651591368,
+       "a0": 7.623905900894132e-12,
+       "kappa_can": 0.0407159568191833,
+       "kappa_alt": 0.033698450419798166
+      }
+     ],
+     "local_slopes": [
+      0.3333333333333333,
+      0.33333333333333326,
+      0.22194784206777443,
+      -0.2760997729666568
+     ]
+    },
+    "simple": {
+     "rows": [
+      {
+       "M_b": 100000000.0,
+       "f_ret": 0.1,
+       "a0": 1.8605889837330757e-12,
+       "kappa_can": 0.009936594405111878,
+       "kappa_alt": 0.008223995211247082
+      },
+      {
+       "M_b": 1000000000.0,
+       "f_ret": 0.1,
+       "a0": 4.008517450445707e-12,
+       "kappa_can": 0.02140774368714976,
+       "kappa_alt": 0.017718060573766806
+      },
+      {
+       "M_b": 10000000000.0,
+       "f_ret": 0.1,
+       "a0": 8.636089050838391e-12,
+       "kappa_can": 0.046121585634906495,
+       "kappa_alt": 0.038172404340209416
+      },
+      {
+       "M_b": 100000000000.0,
+       "f_ret": 0.12157008526819209,
+       "a0": 1.4396573052575916e-11,
+       "kappa_can": 0.07688581868306545,
+       "kappa_alt": 0.06363433777039855
+      },
+      {
+       "M_b": 1000000000000.0,
+       "f_ret": 0.3596150651591368,
+       "a0": 7.621231554017059e-12,
+       "kappa_can": 0.04070167429872963,
+       "kappa_alt": 0.033686629530766496
+      }
+     ],
+     "local_slopes": [
+      0.3333333333333333,
+      0.33333333333333315,
+      0.22194201342276912,
+      -0.2762339684355577
+     ]
+    }
+   }
+  },
+  "R8": {
+   "statement": "stationarity of v_s = -alpha tau 1[d > theta rho_m] grad psi (theta = 0: CFG639)",
+   "source": "CFG639",
+   "added_hypothesis": null,
+   "cls": "IDENTITY",
+   "why": "residual at rho_c = rho_ph(a0) - theta rho_m is 0 for every a0",
+   "dims_ok": true,
+   "dims": "[0.0, 1.0, -1.0] vs [0.0, 1.0, -1.0]"
+  },
+  "R9": {
+   "statement": "linear relaxation rate Gamma = 2*sqrt(pi)*sqrt(G)*alpha*rho_c/sqrt(rho_m)",
+   "source": "CFG638 K6",
+   "added_hypothesis": null,
+   "cls": "IDENTITY",
+   "why": "d Gamma/d a0 = 0",
+   "dims_ok": true,
+   "dims": "[0.0, 0.0, -1.0] vs [0.0, 0.0, -1.0]"
+  },
+  "R10": {
+   "statement": "damped-psi stability Gamma tau_psi < 1, tau_psi = beta tau: alpha*beta*q < 1",
+   "source": "CFG541 \u00a76 / CFG542 K9",
+   "added_hypothesis": null,
+   "cls": "IDENTITY",
+   "why": "a0-free (alpha beta q < 1; the record's alpha bound)",
+   "dims_ok": true,
+   "dims": "[0.0, 0.0, 0.0] vs [0.0, 0.0, 0.0]",
+   "variant_tau_psi_c_over_a0": "2*sqrt(pi)*alpha*q*sqrt(rho_m)/(kappa*sqrt(rho_DE)) < 1  => kappa > 2*sqrt(pi)*alpha*q*sqrt(rho_m)/sqrt(rho_DE)",
+   "variant_kappa_min_at_Delta_1e5_alpha1_q05": 379.12200858384875,
+   "variant_class": "JOINT/BOUND; violated inside galaxies for any O(1) kappa (that is why CFG541 rejected it)"
+  },
+  "R11": {
+   "statement": "bath stationarity tr Pi = 3 rho sigma_J^2, deep 1/r^2 halo: sigma^2/V^2 = 1/2",
+   "source": "CFG638 energy eq.; GF2 audit",
+   "added_hypothesis": null,
+   "cls": "IDENTITY",
+   "why": "sigma^2/V^2 = 1/2 for every a0 (K5); this 1/2 is the SIS ratio, not kappa",
+   "dims_ok": true,
+   "dims": "[1.0, -1.0, -2.0] vs [1.0, -1.0, -2.0]"
+  },
+  "R12": {
+   "statement": "|v_s| <= c on B\u2229C (drift causality)",
+   "source": "record causality (CFG541 C1, CFG542 K9)",
+   "added_hypothesis": null,
+   "cls": "JOINT/BOUND",
+   "why": "inequality in alpha*kappa*c_nu*sqrt(rho_foot/(4 pi rho_loc)); state-dependent",
+   "dims_ok": true,
+   "dims": "[0.0, 1.0, -1.0] vs [0.0, 1.0, -1.0]",
+   "bound_over_c": "alpha*c_nu*kappa*sqrt(rho_DE)/(2*sqrt(pi)*sqrt(rho_m))",
+   "c_nu": {
+    "nu_mono": 0.6476102378919147,
+    "simple": 1.0
+   },
+   "table": {
+    "can": {
+     "nu_mono": {
+      "(1-f_b)Delta_ta (CFG541 reservoir)": {
+       "Delta_loc": 9.9591301490253,
+       "vmax_over_c_alpha1": 0.04279214080535071,
+       "alpha_max": 23.368777097381408,
+       "alpha_max_1pct_margin": 0.23368777097381407,
+       "kappa_H12_alpha1": 11.684388548690702
+      },
+      "cosmic mean (1)": {
+       "Delta_loc": 1.0,
+       "vmax_over_c_alpha1": 0.1350438210796328,
+       "alpha_max": 7.4050037388257755,
+       "alpha_max_1pct_margin": 0.07405003738825776,
+       "kappa_H12_alpha1": 3.7025018694128873
+      },
+      "f_b (baryons only)": {
+       "Delta_loc": 0.15712579897450307,
+       "vmax_over_c_alpha1": 0.34068339647588114,
+       "alpha_max": 2.9352765950564765,
+       "alpha_max_1pct_margin": 0.029352765950564765,
+       "kappa_H12_alpha1": 1.467638297528238
+      },
+      "rho_caus_over_rho_m_alpha1": 0.018236833611787885
+     },
+     "simple": {
+      "(1-f_b)Delta_ta (CFG541 reservoir)": {
+       "Delta_loc": 9.9591301490253,
+       "vmax_over_c_alpha1": 0.06607699863523878,
+       "alpha_max": 15.133859295278302,
+       "alpha_max_1pct_margin": 0.15133859295278304,
+       "kappa_H12_alpha1": 7.56692964763915
+      },
+      "cosmic mean (1)": {
+       "Delta_loc": 1.0,
+       "vmax_over_c_alpha1": 0.20852638389291714,
+       "alpha_max": 4.795556232891479,
+       "alpha_max_1pct_margin": 0.04795556232891479,
+       "kappa_H12_alpha1": 2.397778116445739
+      },
+      "f_b (baryons only)": {
+       "Delta_loc": 0.15712579897450307,
+       "vmax_over_c_alpha1": 0.526062400719398,
+       "alpha_max": 1.9009151740030943,
+       "alpha_max_1pct_margin": 0.019009151740030945,
+       "kappa_H12_alpha1": 0.950457587001547
+      },
+      "rho_caus_over_rho_m_alpha1": 0.04348325277945626
+     }
+    },
+    "alt": {
+     "nu_mono": {
+      "(1-f_b)Delta_ta (CFG541 reservoir)": {
+       "Delta_loc": 9.9591301490253,
+       "vmax_over_c_alpha1": 0.05170335536281631,
+       "alpha_max": 19.3411045179318,
+       "alpha_max_1pct_margin": 0.193411045179318,
+       "kappa_H12_alpha1": 9.6705522589659
+      },
+      "cosmic mean (1)": {
+       "Delta_loc": 1.0,
+       "vmax_over_c_alpha1": 0.1631659117638673,
+       "alpha_max": 6.128731112949584,
+       "alpha_max_1pct_margin": 0.06128731112949584,
+       "kappa_H12_alpha1": 3.0643655564747916
+      },
+      "f_b (baryons only)": {
+       "Delta_loc": 0.15712579897450307,
+       "vmax_over_c_alpha1": 0.4116287332836879,
+       "alpha_max": 2.429373654318772,
+       "alpha_max_1pct_margin": 0.02429373654318772,
+       "kappa_H12_alpha1": 1.214686827159386
+      },
+      "rho_caus_over_rho_m_alpha1": 0.02662311476173413
+     },
+     "simple": {
+      "(1-f_b)Delta_ta (CFG541 reservoir)": {
+       "Delta_loc": 9.9591301490253,
+       "vmax_over_c_alpha1": 0.07983714947299139,
+       "alpha_max": 12.525497297950201,
+       "alpha_max_1pct_margin": 0.125254972979502,
+       "kappa_H12_alpha1": 6.2627486489751005
+      },
+      "cosmic mean (1)": {
+       "Delta_loc": 1.0,
+       "vmax_over_c_alpha1": 0.2519507911039224,
+       "alpha_max": 3.9690290140328597,
+       "alpha_max_1pct_margin": 0.0396902901403286,
+       "kappa_H12_alpha1": 1.9845145070164296
+      },
+      "f_b (baryons only)": {
+       "Delta_loc": 0.15712579897450307,
+       "vmax_over_c_alpha1": 0.6356118374898022,
+       "alpha_max": 1.5732872502017303,
+       "alpha_max_1pct_margin": 0.015732872502017305,
+       "kappa_H12_alpha1": 0.7866436251008652
+      },
+      "rho_caus_over_rho_m_alpha1": 0.06347920113789235
+     }
+    }
+   },
+   "H12_equality_class": "JOINT/BOUND",
+   "H12_why": "not of the form k c sqrt(G rho_DE): k depends on ['alpha_', 'c_nu', 'rho_DE', 'rho_m']",
+   "alpha_bounds_tighter_than_record": []
+  },
+  "R13": {
+   "statement": "M_cl = f 81 sigma^4/(4 G a0) (CFG878)",
+   "source": "record v3 addendum",
+   "added_hypothesis": null,
+   "cls": "IDENTITY",
+   "why": "CFG877 computes M_cl from sigma and the footing a0, so substituting it back returns a0 for every a0 (by construction); as an independent relation it is JOINT (sigma external, M_cl measured and dwarf-dependent, CFG880): JOINT/BOUND",
+   "dims_ok": true,
+   "dims": "[1.0, 0.0, 0.0] vs [1.0, 0.0, 0.0]"
+  },
+  "R14": {
+   "statement": "stiffened action: Euler-Lagrange equations unchanged by W_rem -> W_rem + W0; a0 a parameter of W_rem'",
+   "source": "record S2 (CFG807 V0)",
+   "added_hypothesis": null,
+   "cls": "IDENTITY",
+   "why": "W0 absent from all EL terms: True; the rest state is the law for every a0",
+   "dims_ok": true,
+   "dims": "[0.0, 1.0, -2.0] vs [0.0, 1.0, -2.0]"
+  }
+ },
+ "ktests": {
+  "K1 deep limit g^2/(g_N a0) -> 1; V^4 = G M_b a0": {
+   "ok": true,
+   "detail": "[('nu_mono', 1), ('simple', 1)]; V = [G**(1/4)*M_b**(1/4)*a0**(1/4)]"
+  },
+  "K2 Newtonian limit g/g_N -> 1": {
+   "ok": true,
+   "detail": "[('nu_mono', 1), ('simple', 1)]"
+  },
+  "K3 M_cat/M_b,now = (1-f_b)/(f_b f_ret), a0-free (by construction)": {
+   "ok": true,
+   "detail": "(1 - f_b)/(f_b*f_ret)"
+  },
+  "K4 census edge: nu_mono r_*/r_M = 1/ln(1 + f_ret f_b/(1-f_b)); simple ~ 54 at f_ret 0.1": {
+   "ok": true,
+   "detail": "nu_mono 1/log((R + f_ret)/R) -> 54.141733 (cfg515 54.141733); simple sqrt(R)*sqrt(R + f_ret)/f_ret -> 54.1410"
+  },
+  "K5 SIS Jeans sigma^2/V^2 = 1/2 for any a0 (record audit: this 1/2 is NOT kappa)": {
+   "ok": true,
+   "detail": "sigma^2 = V**2/2"
+  },
+  "K6 phantom-field bound g_ph = a0 y(nu-1) <= c_nu a0": {
+   "ok": true,
+   "detail": "nu_mono c_nu = 0.647610 at y = 2.5396; simple sup = 1 (y -> oo; d/dy = (-sqrt(y)*sqrt(y + 4) + y + 2)/(2*sqrt(y)*sqrt(y + 4)) > 0)"
+  },
+  "K7 S_lambda homogeneity of every c-free galaxy-scale equation": {
+   "ok": true,
+   "detail": "14/14 homogeneous; c-bearing relations that BREAK S_lambda: R2-R4 sink to DE: dE_DE/dt = Qbar (eps_DE fixed) (lhs 1, rhs lambda**2); R12 causality v_s/c (lhs lambda, rhs 1); R10' damped psi with tau_psi = c/a0 (lhs 1/lambda, rhs 1)"
+  },
+  "K8 footings reproduce 9.3603e-11 / 1.1312e-10 (rel 5e-4)": {
+   "ok": true,
+   "detail": "can 9.36231e-11 (+2.1e-04), alt 1.13120e-10 (-4.1e-06)"
+  },
+  "K9 T1: {a0,G,rho} no dimensionless group; with c one group a0 c^-1 G^-1/2 rho^-1/2": {
+   "ok": true,
+   "detail": "[a0,G,rho] rank 3, null []; [a0,G,rho,c] rank 3, null [['1', '-1/2', '-1/2', '-1']]; [a0,G,rho,M_b] rank 3, null [['1', '-1', '-2/3', '-1/3']]; [a0,G,rho,L*] rank 3, null [['1', '-1', '-1', '-1']]"
+  },
+  "K11 classifier controls (SELECTED / MASS-DEPENDENT / IDENTITY)": {
+   "ok": true,
+   "detail": "{'P1 a0 = c sqrt(G rho_DE)/2': 'SELECTED', 'P2 a0 = G rho^(2/3) M_b^(1/3)': 'MASS-DEPENDENT', 'P3 a0 M_b = a0 M_b': 'IDENTITY'}"
+  },
+  "K6b closed-form phantom densities equal the sympy derivative (rel 1e-9)": {
+   "ok": true,
+   "detail": "max rel dev 1.5e-14"
+  },
+  "K12 R12 bound >= CFG541 C1 in all 6 cells; point-mass clusters saturate (ratio in [0.90, 1.00])": {
+   "ok": true,
+   "detail": "can_MW 4.7614e-03/4.2783e-02 = 0.1113; can_group 2.2280e-03/4.2783e-02 = 0.0521; can_cluster 4.2735e-02/4.2783e-02 = 0.9989; alt_MW 5.2605e-03/5.1704e-02 = 0.1017; alt_group 2.4588e-03/5.1704e-02 = 0.0476; alt_cluster 5.1656e-02/5.1704e-02 = 0.9991"
+  },
+  "K10 dimensions of every relation R1-R14": {
+   "ok": true,
+   "detail": "16/16 consistent"
+  }
+ },
+ "overall": "NOT SELECTED",
+ "selected": [],
+ "selected_under_hypothesis": [],
+ "constrains_instead": [],
+ "c_nu": {
+  "nu_mono": 0.6476102378919147,
+  "simple": 1.0
+ },
+ "y_peak_mono": 2.53963834043521,
+ "Delta_ta": 11.815677994306101,
+ "teeth": {
+  "M1a R2 Delta ln a0 changes sign": true,
+  "M1b R3 has no positive real kappa": true,
+  "M2a R5(a) implied a0 moves |d ln a0| >= 0.01": true,
+  "M2b R6/R8 MW-like edge moves |d ln r_*| >= 1e-3": true
+ },
+ "settings": {
+  "h": 0.674,
+  "Omega_m": 0.31339978339159447,
+  "Omega_Lambda": 0.685,
+  "f_b": 0.15712579897450307,
+  "kappa_fit": 0.5,
+  "footings": {
+   "can": 9.3603e-11,
+   "alt": 1.1312e-10
+  },
+  "rho_crit": 8.533114727833856e-27
+ }
+}

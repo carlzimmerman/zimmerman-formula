@@ -1,0 +1,92 @@
+CFG893: does any new structure in the cold-energy equations select kappa?  (kappa = 1/2 FITTED; footings never pooled)
+mode: normal
+inputs: h 0.674, Omega_m 0.31340, Omega_Lambda 0.685, rho_crit 8.53311e-27 kg/m^3, f_b 0.15713, 5.364 -> 5.3643, Delta_ta(0) 11.8157
+
+K-TESTS (identities and limits)
+  [PASS] K1 deep limit g^2/(g_N a0) -> 1; V^4 = G M_b a0: [('nu_mono', 1), ('simple', 1)]; V = [G**(1/4)*M_b**(1/4)*a0**(1/4)]
+  [PASS] K2 Newtonian limit g/g_N -> 1: [('nu_mono', 1), ('simple', 1)]
+  [PASS] K3 M_cat/M_b,now = (1-f_b)/(f_b f_ret), a0-free (by construction): (1 - f_b)/(f_b*f_ret)
+  [PASS] K4 census edge: nu_mono r_*/r_M = 1/ln(1 + f_ret f_b/(1-f_b)); simple ~ 54 at f_ret 0.1: nu_mono 1/log((R + f_ret)/R) -> 54.141733 (cfg515 54.141733); simple sqrt(R)*sqrt(R + f_ret)/f_ret -> 54.1410
+  [PASS] K5 SIS Jeans sigma^2/V^2 = 1/2 for any a0 (record audit: this 1/2 is NOT kappa): sigma^2 = V**2/2
+  [PASS] K6 phantom-field bound g_ph = a0 y(nu-1) <= c_nu a0: nu_mono c_nu = 0.647610 at y = 2.5396; simple sup = 1 (y -> oo; d/dy = (-sqrt(y)*sqrt(y + 4) + y + 2)/(2*sqrt(y)*sqrt(y + 4)) > 0)
+  [PASS] K7 S_lambda homogeneity of every c-free galaxy-scale equation: 14/14 homogeneous; c-bearing relations that BREAK S_lambda: R2-R4 sink to DE: dE_DE/dt = Qbar (eps_DE fixed) (lhs 1, rhs lambda**2); R12 causality v_s/c (lhs lambda, rhs 1); R10' damped psi with tau_psi = c/a0 (lhs 1/lambda, rhs 1)
+  [PASS] K8 footings reproduce 9.3603e-11 / 1.1312e-10 (rel 5e-4): can 9.36231e-11 (+2.1e-04), alt 1.13120e-10 (-4.1e-06)
+  [PASS] K9 T1: {a0,G,rho} no dimensionless group; with c one group a0 c^-1 G^-1/2 rho^-1/2: [a0,G,rho] rank 3, null []; [a0,G,rho,c] rank 3, null [['1', '-1/2', '-1/2', '-1']]; [a0,G,rho,M_b] rank 3, null [['1', '-1', '-2/3', '-1/3']]; [a0,G,rho,L*] rank 3, null [['1', '-1', '-1', '-1']]
+  [PASS] K11 classifier controls (SELECTED / MASS-DEPENDENT / IDENTITY): {'P1 a0 = c sqrt(G rho_DE)/2': 'SELECTED', 'P2 a0 = G rho^(2/3) M_b^(1/3)': 'MASS-DEPENDENT', 'P3 a0 M_b = a0 M_b': 'IDENTITY'}
+  [PASS] K6b closed-form phantom densities equal the sympy derivative (rel 1e-9): max rel dev 1.5e-14
+
+RELATIONS (FROZEN_CRITERIA section 2)
+
+(a) the dark-energy sink: Q = rho_c alpha tau 1_B 1_C grad psi . grad Phi >= 0 (CFG542 Pb), eps_DE = rho_DE c^2
+  R1: [IDENTITY] exact Lambda: d eps_DE/dt + 3H(1+w) eps_DE = Qbar with w = -1 and d eps_DE/dt = 0 => Qbar = 0  (a0-free (holds for every a0)); dims ok
+  R2: [IDENTITY] dynamical DE absorbing Q, a0 = kappa sqrt(G eps_DE): d ln a0/dt = Qbar/(2 eps_DE)  (a0(t) = C1*exp(Integral(q_s(t), t)/2): the integration constant (hence kappa) is free); dims ok
+     can: budget B = (Omega_c/Omega_Lambda)(Delta W/M)_cluster/c^2 = +5.7750e-06; cumulative Delta ln a0 <= +2.887e-06 (+1.254e-06 dex)
+     alt: budget B = (Omega_c/Omega_Lambda)(Delta W/M)_cluster/c^2 = +6.5200e-06; cumulative Delta ln a0 <= +3.260e-06 (+1.416e-06 dex)
+  R3: [MASS-DEPENDENT] DE is the accumulated settling energy: eps_DE = int Qbar dt  (d ln a0/d ln M_b = -1); dims ok
+     kappa required (B ∝ kappa^1/2 at fixed M_b): can 14992264898.856012, alt 11761983723.789005 -> EXCLUDED (kappa_req non-positive/none or outside [0.01, 100])
+  R4: [MASS-DEPENDENT] the sink drives a DE evolution of size X = 0.01: int Qbar dt = X eps_DE  (d ln a0/d ln M_b = -1); dims ok
+     kappa required (B ∝ kappa^1/2 at fixed M_b): can 1499226.4898856012, alt 1176198.3723789004 -> EXCLUDED (kappa_req non-positive/none or outside [0.01, 100])
+
+(b) gate edge d = 0 at the catchment edge r_ta [added H5]; deep regime rho_ph = sqrt(M_b a0/G)/(4 pi r^2)
+  R5a: [MASS-DEPENDENT] rho_ph(r_ta) = rho_edge [(1-f_b) Delta_ta rho_m]  (d ln a0/d ln M_b = 1/3); dims ok
+  R5b: [MASS-DEPENDENT] rho_ph(r_ta) = rho_edge [(1-f_b) Delta_ta rho_m/3]  (d ln a0/d ln M_b = 1/3); dims ok
+  R5c: [MASS-DEPENDENT] rho_ph(r_ta) = rho_edge [rho_DE]  (d ln a0/d ln M_b = 1/3); dims ok
+     nu_mono  R5a: implied a0 at M_b 1e8..1e12 = 1.64e-11, 3.54e-11, 7.63e-11, 1.27e-10, 6.43e-11; local slopes d ln a0/d ln M_b = 0.333, 0.333, 0.220, -0.295; kappa_can min..max 0.0878..0.677, kappa_alt min..max 0.0727..0.56
+     nu_mono  R5b: implied a0 at M_b 1e8..1e12 = 1.83e-12, 3.94e-12, 8.48e-12, 1.41e-11, 7.15e-12; local slopes d ln a0/d ln M_b = 0.333, 0.333, 0.220, -0.294; kappa_can min..max 0.00976..0.0752, kappa_alt min..max 0.00807..0.0622
+     nu_mono  R5c: implied a0 at M_b 1e8..1e12 = 7.92e-13, 1.71e-12, 3.68e-12, 6.10e-12, 3.10e-12; local slopes d ln a0/d ln M_b = 0.333, 0.333, 0.220, -0.294; kappa_can min..max 0.00423..0.0326, kappa_alt min..max 0.0035..0.027
+     simple   R5a: implied a0 at M_b 1e8..1e12 = 1.64e-11, 3.54e-11, 7.63e-11, 1.27e-10, 6.43e-11; local slopes d ln a0/d ln M_b = 0.333, 0.333, 0.220, -0.295; kappa_can min..max 0.0878..0.677, kappa_alt min..max 0.0727..0.56
+     simple   R5b: implied a0 at M_b 1e8..1e12 = 1.83e-12, 3.94e-12, 8.48e-12, 1.41e-11, 7.15e-12; local slopes d ln a0/d ln M_b = 0.333, 0.333, 0.220, -0.294; kappa_can min..max 0.00976..0.0752, kappa_alt min..max 0.00807..0.0622
+     simple   R5c: implied a0 at M_b 1e8..1e12 = 7.92e-13, 1.71e-12, 3.68e-12, 6.10e-12, 3.10e-12; local slopes d ln a0/d ln M_b = 0.333, 0.333, 0.220, -0.294; kappa_can min..max 0.00423..0.0326, kappa_alt min..max 0.0035..0.027
+     report-only: M_b at which H5(a) returns each footing's a0 (slope 1/3 from 1e10): {'nu_mono': {'can': 18460623541.15504, 'alt': 32583313781.92168}, 'simple': {'can': 18460445345.033035, 'alt': 32582999262.742767}}
+
+(c) supply: M_ph(<r_*) = 5.364 N M_b, N = 1/f_ret (CFG804); point mass
+  R6: [IDENTITY] M_ph(<r_*) = 5.364 N M_b  (in r_* = x r_M the relation is a0-free: it fixes x_* = r_*/r_M (kappa-independent constraint on the edge)); dims ok
+     x_* = r_*/r_M: {'nu_mono': {0.07: 77.13216566295822, 0.1: 54.141733078320286, 0.18: 30.299067601161124}, 'simple': {0.07: 77.13162546728188, 0.1: 54.140963500958826, 0.18: 30.297692465019335}}; MW-like 6e10 r_* (kpc): {'can': {'nu_mono': 511.82286880182755, 'simple': 511.81559368759474}, 'alt': {'nu_mono': 465.5805967314835, 'simple': 465.5739789106861}}
+  R7: [MASS-DEPENDENT] supply exhausted exactly at turnaround: r_* = r_ta  (d ln a0/d ln M_b = 1/3); dims ok
+     nu_mono  R7: implied a0 at M_b 1e8..1e12 = 1.86e-12, 4.01e-12, 8.64e-12, 1.44e-11, 7.62e-12; slopes 0.333, 0.333, 0.222, -0.276
+     simple   R7: implied a0 at M_b 1e8..1e12 = 1.86e-12, 4.01e-12, 8.64e-12, 1.44e-11, 7.62e-12; slopes 0.333, 0.333, 0.222, -0.276
+
+(d) gated drift, stability, bath, causality, clump mass, stiffened action
+  R8: [IDENTITY] stationarity of v_s = -alpha tau 1[d > theta rho_m] grad psi (theta = 0: CFG639)  (residual at rho_c = rho_ph(a0) - theta rho_m is 0 for every a0); dims ok
+  R9: [IDENTITY] linear relaxation rate Gamma = 2*sqrt(pi)*sqrt(G)*alpha*rho_c/sqrt(rho_m)  (d Gamma/d a0 = 0); dims ok
+  R10: [IDENTITY] damped-psi stability Gamma tau_psi < 1, tau_psi = beta tau: alpha*beta*q < 1  (a0-free (alpha beta q < 1; the record's alpha bound)); dims ok
+     R10 variant (rejected by CFG541) tau_psi = c/a0: stability needs kappa > 379.1 at Delta_loc = 1e5, alpha 1, q 0.5
+  R11: [IDENTITY] bath stationarity tr Pi = 3 rho sigma_J^2, deep 1/r^2 halo: sigma^2/V^2 = 1/2  (sigma^2/V^2 = 1/2 for every a0 (K5); this 1/2 is the SIS ratio, not kappa); dims ok
+     R12: |v_s| <= alpha tau |grad psi| <= alpha c_nu a0/sqrt(4 pi G rho_m,loc)  (one-sided deficit, round rule)
+         |v_s|/c <= alpha*c_nu*kappa*sqrt(rho_DE)/(2*sqrt(pi)*sqrt(rho_m))  (c and galaxy mass cancel)
+  R12: [JOINT/BOUND] |v_s| <= c on B∩C (drift causality)  (inequality in alpha*kappa*c_nu*sqrt(rho_foot/(4 pi rho_loc)); state-dependent); dims ok
+         can nu_mono : (1-f_b)Delta_ta (CFG541 reservoir): v/c<= 0.0428 (alpha 1), alpha_max 23.37, kappa_H12 11.68; cosmic mean (1): v/c<= 0.1350 (alpha 1), alpha_max 7.41, kappa_H12 3.70; f_b (baryons only): v/c<= 0.3407 (alpha 1), alpha_max 2.94, kappa_H12 1.47; rho_caus/rho_m 0.0182
+         can simple  : (1-f_b)Delta_ta (CFG541 reservoir): v/c<= 0.0661 (alpha 1), alpha_max 15.13, kappa_H12 7.57; cosmic mean (1): v/c<= 0.2085 (alpha 1), alpha_max 4.80, kappa_H12 2.40; f_b (baryons only): v/c<= 0.5261 (alpha 1), alpha_max 1.90, kappa_H12 0.95; rho_caus/rho_m 0.0435
+         alt nu_mono : (1-f_b)Delta_ta (CFG541 reservoir): v/c<= 0.0517 (alpha 1), alpha_max 19.34, kappa_H12 9.67; cosmic mean (1): v/c<= 0.1632 (alpha 1), alpha_max 6.13, kappa_H12 3.06; f_b (baryons only): v/c<= 0.4116 (alpha 1), alpha_max 2.43, kappa_H12 1.21; rho_caus/rho_m 0.0266
+         alt simple  : (1-f_b)Delta_ta (CFG541 reservoir): v/c<= 0.0798 (alpha 1), alpha_max 12.53, kappa_H12 6.26; cosmic mean (1): v/c<= 0.2520 (alpha 1), alpha_max 3.97, kappa_H12 1.98; f_b (baryons only): v/c<= 0.6356 (alpha 1), alpha_max 1.57, kappa_H12 0.79; rho_caus/rho_m 0.0635
+         alpha bounds tighter than the record's 1.186: none; H12 equality: [JOINT/BOUND]
+  [PASS] K12 R12 bound >= CFG541 C1 in all 6 cells; point-mass clusters saturate (ratio in [0.90, 1.00]): can_MW 4.7614e-03/4.2783e-02 = 0.1113; can_group 2.2280e-03/4.2783e-02 = 0.0521; can_cluster 4.2735e-02/4.2783e-02 = 0.9989; alt_MW 5.2605e-03/5.1704e-02 = 0.1017; alt_group 2.4588e-03/5.1704e-02 = 0.0476; alt_cluster 5.1656e-02/5.1704e-02 = 0.9991
+  R13: [IDENTITY] M_cl = f 81 sigma^4/(4 G a0) (CFG878)  (CFG877 computes M_cl from sigma and the footing a0, so substituting it back returns a0 for every a0 (by construction); as an independent relation it is JOINT (sigma external, M_cl measured and dwarf-dependent, CFG880): JOINT/BOUND); dims ok
+  R14: [IDENTITY] stiffened action: Euler-Lagrange equations unchanged by W_rem -> W_rem + W0; a0 a parameter of W_rem'  (W0 absent from all EL terms: True; the rest state is the law for every a0); dims ok
+  [PASS] K10 dimensions of every relation R1-R14: 16/16 consistent
+
+CLASSES
+  R1   IDENTITY               exact Lambda: d eps_DE/dt + 3H(1+w) eps_DE = Qbar with w = -1 and d eps_DE/dt = 0 => Qbar = 0
+  R2   IDENTITY               dynamical DE absorbing Q, a0 = kappa sqrt(G eps_DE): d ln a0/dt = Qbar/(2 eps_DE)
+  R3   MASS-DEPENDENT         [H3] DE is the accumulated settling energy: eps_DE = int Qbar dt
+  R4   MASS-DEPENDENT         [H4] the sink drives a DE evolution of size X = 0.01: int Qbar dt = X eps_DE
+  R5a  MASS-DEPENDENT         [H5] rho_ph(r_ta) = rho_edge [(1-f_b) Delta_ta rho_m]
+  R5b  MASS-DEPENDENT         [H5] rho_ph(r_ta) = rho_edge [(1-f_b) Delta_ta rho_m/3]
+  R5c  MASS-DEPENDENT         [H5] rho_ph(r_ta) = rho_edge [rho_DE]
+  R6   IDENTITY               M_ph(<r_*) = 5.364 N M_b
+  R7   MASS-DEPENDENT         [H7] supply exhausted exactly at turnaround: r_* = r_ta
+  R8   IDENTITY               stationarity of v_s = -alpha tau 1[d > theta rho_m] grad psi (theta = 0: CFG639)
+  R9   IDENTITY               linear relaxation rate Gamma = 2*sqrt(pi)*sqrt(G)*alpha*rho_c/sqrt(rho_m)
+  R10  IDENTITY               damped-psi stability Gamma tau_psi < 1, tau_psi = beta tau: alpha*beta*q < 1
+  R11  IDENTITY               bath stationarity tr Pi = 3 rho sigma_J^2, deep 1/r^2 halo: sigma^2/V^2 = 1/2
+  R12  JOINT/BOUND            |v_s| <= c on B∩C (drift causality)
+  R13  IDENTITY               M_cl = f 81 sigma^4/(4 G a0) (CFG878)
+  R14  IDENTITY               stiffened action: Euler-Lagrange equations unchanged by W_rem -> W_rem + W0; a0 a parameter of W_rem'
+
+OVERALL (frozen rule): NOT SELECTED
+  SELECTED: none; SELECTED UNDER HYPOTHESIS: none; constrains instead: no listed constant
+  non-constant consequences: dark energy must be dynamical (R1); a0 drift <= ~1e-6 (R2); edge r_*/r_M fixed by f_ret (R6);
+  drift causality bounds alpha*kappa only jointly and state-dependently (R12); c-free balances are mass-dependent (T1/K7).
+
+K-tests: 13/13 pass
+kappa = 1/2 FITTED; footings never pooled; cold energy mass required; no particle species; not theory closed.
