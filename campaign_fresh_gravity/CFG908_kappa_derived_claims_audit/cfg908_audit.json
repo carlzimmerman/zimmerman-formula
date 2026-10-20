@@ -1,0 +1,262 @@
+{
+ "lane": "CFG908",
+ "mutate": false,
+ "pin": "122af8ada",
+ "params": {
+  "kappa_law": "1/2",
+  "gamma": "2",
+  "d_spatial": 3,
+  "unit": "s",
+  "kappa_true_synthetic": "1/2"
+ },
+ "tests": {
+  "T1a": {
+   "name": "SIS chain reproduced (GF2 closure, Q001 constitutive, Q007 amplitude)",
+   "pass": true,
+   "evidence": [
+    "lap(C ln r) = C/r**2 ; rho = C/(4*pi*G*r**2) ; hydrostatics sigma^2 = C/gamma ; two-point 2^-gamma = 1/4 -> gamma = [2]",
+    "Poisson defect d/dr[lap - 4 pi G A r^-gamma] = 4*pi*A*G*gamma/(r*r**gamma) - 2*C/r**3 (zero for all r iff gamma = 2 with C = 4 pi G A)",
+    "at gamma = 2: kappa_dyn = sigma^2/v_c^2 = 1/2 ; Q001 c_s^2/v_c^2 = 1/2 ; Q007 sigma^2/(2 sigma^2) = 1/2"
+   ]
+  },
+  "T1b": {
+   "name": "kappa_dyn carries no c, no rho_DE, no a0 (no a0 normalisation against the vacuum)",
+   "pass": true,
+   "evidence": "free symbols of kappa_dyn = [] ; the law's kappa = a0/(c sqrt(G rho_DE)) needs a0, c, G, rho_DE"
+  },
+  "T1c": {
+   "name": "rename test: kappa_law -> 2/5 leaves kappa_dyn unchanged while the law's kappa moves",
+   "pass": true,
+   "evidence": "kappa_dyn = 1/2 with the law at 1/2 ; kappa_dyn = 1/2 with the law at 2/5 ; law's kappa then = 2/5"
+  },
+  "T1d": {
+   "name": "germ face: kappa_germ = 1/n is a definition; n_germ follows the law's kappa (footing circularity)",
+   "pass": true,
+   "evidence": [
+    "kappa_germ := a0/s with s := n a0  ->  kappa_germ - 1/n = 0 for every n, a0",
+    "n_germ := s/a0_reg with a0_reg = kappa_law c sqrt(G rho') = sqrt(rho_DE)/(kappa_law*sqrt(rho_prime))",
+    "at kappa_law = 1/2, rho' = rho: n_germ = 2 ; at the rename 2/5: n_germ = 5/2 (it moves with the law)",
+    "report only: GF1 registers (read at run time) give s/a0_reg = 2.0001015 (GF1 printed 2.0001015); implied rho/rho' = (n_germ/2)^2 = 1.000102 -- the 1e-4 offset is a footing-input drift, not physics"
+   ]
+  },
+  "T1e": {
+   "name": "BTFR slope channel (b = 1.004 +/- 0.011) is blind to n and to kappa (H061 I7)",
+   "pass": true,
+   "evidence": [
+    "deep slope of mu_n = n ; v_flat^4 = G*M*u/n ; d ln v^4 / d ln M = 1 for every n and every unit u",
+    "so one of Q010's three anchoring channels carries no information on n (or on kappa)"
+   ]
+  },
+  "T1f": {
+   "name": "junction: no equation of the closure chain contains rho_DE (the link sigma^2/v^2 -> a0/s is posited)",
+   "pass": true,
+   "evidence": [
+    "free symbols of {log branch, Poisson, hydrostatics, C = sqrt(G M a0)} = ['C', 'G', 'M', 'Phi', 'a_0', 'gamma', 'r', 'rho_halo', 'sigma']",
+    "Q010 labels this junction 'rung 5' POSTULATED-CARRIED; the law's kappa = 1/2 enters only through it and through n_germ (T1d)"
+   ]
+  },
+  "T2a": {
+   "name": "G031 V1 reproduced: (c/2) sqrt(G rho_L) - a0 = 0 with rho_L = 4a0^2/(Gc^2) substituted",
+   "pass": true,
+   "evidence": "residual = 0"
+  },
+  "T2b": {
+   "name": "generalised V1 holds for EVERY k: the check is an identity of the substituted tie (S2 fails)",
+   "pass": true,
+   "evidence": "k c sqrt(G a0^2/(k^2 G c^2)) - a0 = 0 for symbolic k > 0"
+  },
+  "T2c": {
+   "name": "rename test: against the law at 2/5, G031's tie returns -a0/5 (the 'derivation' is its own premise)",
+   "pass": true,
+   "evidence": "law at 1/2: residual 0 ; law at 2/5: residual -a_0/5"
+  },
+  "T2d": {
+   "name": "G031 V2: Lambda = 8 pi G rho_L/c^2 = 32 pi a0^2/c^4 follows from the substituted tie",
+   "pass": true,
+   "evidence": "Lambda = 32*pi*a_0**2/c**4"
+  },
+  "T2e": {
+   "name": "G058: Omega_L = 32 pi a0^2/(3 H0^2 c^2) is the tie rewritten; one_constant_closure is witnessed by the tie",
+   "pass": true,
+   "evidence": [
+    "rho_L/rho_crit with the tie = 32*pi*a_0**2/(3*H_0**2*c**2)",
+    "G058 lean line 190: 'refine \u27e84 * a0 ^ 2 / (G * c ^ 2), \u27e8rfl, ?_\u27e9, ?_\u27e9'"
+   ]
+  },
+  "T3a": {
+   "name": "deep slope of mu_n is n; with Y = g/u the deep law gives a0 = u/n, kappa = (u/s)/n",
+   "pass": true,
+   "evidence": [
+    "kappa(u = s) = 1/n (premise A: the unit c sqrt(G rho) with coefficient 1)",
+    "kappa(u = c H_Lambda) = 2*sqrt(6)*sqrt(pi)/(3*n)"
+   ]
+  },
+  "T3b": {
+   "name": "n is a measurement of kappa: the best integer tracks kappa_true of the data",
+   "pass": true,
+   "evidence": [
+    "kappa_true 1/2: n_best = 2, n_cont = 1.835 (rms 0.0090 dex); integer rms {1: 0.1151, 2: 0.0178, 3: 0.0845, 4: 0.1299, 5: 0.1634, 6: 0.1896}",
+    "kappa_true 1/3: n_best = 3, n_cont = 2.616 (rms 0.0148 dex)",
+    "run value kappa_true 1/2: n_best = 2, n_cont = 1.835",
+    "synthetic data in units of s, McGaugh RAR shape; no constants"
+   ]
+  },
+  "T3c": {
+   "name": "G002 text: kappa_pred is the literal 1/2; n is selected by SPARC fits of mu_n(g/s) with s fixed",
+   "pass": true,
+   "evidence": [
+    "G002 line 231: 'kappa_pred = sy.Rational(1, 2)'",
+    "G002 line 15: 'NOTHING fitted (L232: mu_n(g/s) g = g_bar, integer by integer;'"
+   ]
+  },
+  "T3d": {
+   "name": "rename test: data at kappa_true = 2/5 move n_cont by more than 0.25",
+   "pass": true,
+   "evidence": "n_cont(1/2) = 1.835 ; n_cont(2/5) = 2.228 (n_best 2) -- the 'derived' 1/n follows the data"
+  },
+  "T4a": {
+   "name": "deep slope of mu_2 is 2; N_pol(d) = (d+1)(d-2)/2 = 2 at d = 3",
+   "pass": true,
+   "evidence": "slope = 2 ; N_pol(3) = 2"
+  },
+  "T4b": {
+   "name": "kappa(d) at u = s: the 1/2 is the d = 3 value only (S3)",
+   "pass": true,
+   "evidence": "kappa(d=3) = 1/2, kappa(d=4) = 1/5, kappa(d=5) = 1/9"
+  },
+  "T4c": {
+   "name": "unit menu at d = 3: the spread exceeds 0.380 and the only pi-free entry is the premise-A unit (MENU)",
+   "pass": true,
+   "evidence": [
+    "s: kappa = 1/2 = 0.5000, pi-weight of kappa^2 = 0",
+    "cH: kappa = sqrt(6)*sqrt(pi)/3 = 1.4472, pi-weight of kappa^2 = 1",
+    "c sqrt(8 pi G rho): kappa = sqrt(2)*sqrt(pi) = 2.5066, pi-weight of kappa^2 = 1",
+    "c sqrt(4 pi G rho): kappa = sqrt(pi) = 1.7725, pi-weight of kappa^2 = 1",
+    "spread = 2.007 > 0.380"
+   ]
+  },
+  "T4d": {
+   "name": "rename test: kappa_law -> 2/5 leaves the gemini38 output at 1/2 (a value fixed by its posits)",
+   "pass": true,
+   "evidence": "output with the law at 1/2: 1/2 ; with the law at 2/5: 1/2"
+  },
+  "T4e": {
+   "name": "gemini38 text: a0 = s/2 is set before Link 1 and printed, not computed; the Lean kappa part is 1/2 = 1/2",
+   "pass": true,
+   "evidence": [
+    "script line 32: 'a0_canonical = s_de / 2.0' (Link 1 starts at line 34)",
+    "script line 70 prints the conclusion as a string; assignments of a0/kappa from slope_0: 0",
+    "Lean line 27: '((3 + 1 : \u211d) * (3 - 2) / 2 = 2) \u2227 ((1 : \u211d) / 2 = 1 / 2)'"
+   ]
+  }
+ },
+ "checks": {
+  "K1": {
+   "name": "no forbidden literal in this script",
+   "pass": true,
+   "evidence": "hits: []"
+  },
+  "K2": {
+   "name": "every kappa expression printed symbolically",
+   "pass": true,
+   "evidence": [
+    "kappa_dyn = 1/2  [free: []]",
+    "kappa_germ = 1/n  [free: ['n']]",
+    "n_germ = sqrt(rho_DE)/(kappa_law*sqrt(rho_prime))  [free: ['kappa_law', 'rho_DE', 'rho_prime']]",
+    "G031 V1(k) = 0  [free: []]",
+    "C3 kappa(u) = u/(sqrt(G)*c*n*sqrt(rho_DE))  [free: ['G', 'c', 'n', 'rho_DE', 'u']]",
+    "C4 kappa(d=3,u=s) = 1/2  [free: []]"
+   ]
+  },
+  "K3": {
+   "name": "scaling G -> lam G, rho -> mu rho, c -> nu c leaves every kappa output invariant",
+   "pass": true,
+   "evidence": "{'law kappa': True, 'kappa_dyn': True, \"n_germ(rho'=rho)\": True, 'G031 V1/a0': True, 'C3 kappa(u=cH)': True, 'C4 menu cH': True}"
+  },
+  "K4": {
+   "name": "rename test evaluated for every chain (behaviour as declared)",
+   "pass": true,
+   "evidence": "{'C1 kappa_dyn': True, 'C1 n_germ': True, 'C2 V1': True, 'C3 n_cont': True, 'C4 output': True}"
+  },
+  "K5": {
+   "name": "pi-weight of kappa^2 per chain output",
+   "pass": true,
+   "evidence": "{'kappa_dyn^2': 0, 'C3 kappa(u=s)^2 at n=2': 0, 'C3 kappa(u=cH)^2 at n=2': 1, 'C4 menu': {'s': 0, 'cH': 1, 'c sqrt(8 pi G rho)': 1, 'c sqrt(4 pi G rho)': 1}}"
+  },
+  "K6": {
+   "name": "every quoted record line is present in tree 122af8ada",
+   "pass": true,
+   "evidence": [
+    "qwen38_push/Q010_kappa_referee/FROZEN_CRITERIA.md:88  'Register line becomes: \"\u03ba=\u00bd: DERIVED as the closure'",
+    "glm53_push/G031_gr_fluid_action.py:73  'rhoL_of_a0 = 4*a0**2/(G*c**2)'",
+    "glm53_push/G031_gr_fluid_action.py:74  'chk1 = sp.simplify(sp.sqrt(G*rhoL_of_a0)*c/2 - a0) == 0'",
+    "glm53_push/STATE.md:33  '| 0 | \u03c1_\u039b = 4a\u2080\u00b2/(Gc\u00b2) \u27fa \u039b_geom = 32\u03c0a\u2080\u00b2/c\u2074 | DERIVED (action level, sympy-exact 9/9) | G0'",
+    "glm53_push/STATE.md:35  '| 2 | \u03ba = \u00bd = 1/n from SPARC (n = 2) | DERIVED from data | G002 |'",
+    "glm53_push/README.md:102  '**\u03ba = 1/2 is DERIVED (the reciprocal of the SPARC-measured mode count), a_0 ='",
+    "glm53_push/README.md:43  'the OneFunction (kappa = 1/2 derived, Lean 4)'",
+    "gemini38_flash_push/FIRST_PRINCIPLES_DERIVATION_CHAIN_REPORT.md:53  '\\implies \\kappa = \\frac{1}{2}$$'",
+    "gemini38_flash_push/FIRST_PRINCIPLES_DERIVATION_CHAIN_REPORT.md:54  'with **zero free parameters**.'",
+    "deepseek_push/GF1_germ_flip/GF1_germ_flip.py:250  'kappa := a0/s = 1/n (s := n a0; s=2a0 committed)'",
+    "deepseek_push/GF2_closure_half/README.md:1  '# GF2 \u2014 The closure half: \u03ba = \u00bd derived as the self-source closure'",
+    "campaign_fresh_gravity/AUDIT_GF2_kappa_claim_2026-10-09.md:3  'NOT A DERIVATION OF THE LAW'S \u03ba'",
+    "hy4_push/H061_RECIPE_AMENDMENT.md:4  '**That announcement is withdrawn.**'"
+   ]
+  }
+ },
+ "claims": {
+  "C1": {
+   "name": "Q010",
+   "headline": "DIFFERENT QUANTITY",
+   "step": "step 1: kappa_dyn := sigma^2/v_c^2 (the SIS ratio); the law's kappa enters only via the posited junction",
+   "secondary": [
+    "I-W (kappa_germ = 1/n is a definition, GF1 R1e)",
+    "I-M (n_germ = s/a0_reg uses the kappa = 1/2 footing)",
+    "junction posited (rung 5; no equation links sigma^2/v^2 to a0/s)",
+    "BTFR-slope anchor uninformative on n and kappa (H061 I7)"
+   ],
+   "valid_derivation": false
+  },
+  "C2": {
+   "name": "G031 (+G058/G052)",
+   "headline": "IDENTITY/INSERTION (I-W)",
+   "step": "G031 V1: the tie rho_L = 4a0^2/(Gc^2) is substituted, then verified",
+   "secondary": [
+    "G058 one_constant_closure witnessed by the tie; Omega_L from a0 is the tie rewritten (I5)"
+   ],
+   "valid_derivation": false
+  },
+  "C3": {
+   "name": "glm53 README / G002",
+   "headline": "IDENTITY/INSERTION (I-M)",
+   "step": "n = 2 is the integer SPARC selected with s fixed: a measurement of 1/kappa, relabelled",
+   "secondary": [
+    "I-A (kappa = 1/n only with the unit s = c sqrt(G rho) at coefficient 1; u = cH gives sqrt(8pi/3)/n)",
+    "I-W (G002 compares the literal kappa_pred = 1/2 with the fitted 1/2)"
+   ],
+   "valid_derivation": false
+  },
+  "C4": {
+   "name": "gemini38 chain",
+   "headline": "IDENTITY/INSERTION (I-A)",
+   "step": "Y = g/s_DE posits the unit c sqrt(G rho_DE) with coefficient 1 (premise A) and n = N_pol",
+   "secondary": [
+    "MENU over the occupancy unit {0.5, 1.447, 2.507, 1.772}; only the premise-A unit is pi-free",
+    "S3: 1/2 is the d = 3 value of 1/N_pol (1/5 at d = 4)",
+    "retracted class X5: kappa = 1/(polarisation count) (H061, K568, K521)",
+    "I-W hygiene: a0 = s/2 hard-coded before Link 1 and printed; Lean proves 1/2 = 1/2"
+   ],
+   "valid_derivation": false
+  }
+ },
+ "mutate_controls": {},
+ "q010_untracked": {
+  "hash": "f4b2400c774fece13463f4b0d644f1e61f12732d",
+  "lines": [
+   "\u03ba = \u00bd: **DERIVED as the closure coefficient of the dynamical face** -> line 15",
+   "POSTULATED-CARRIED -> line 21",
+   "AUDIT_GF2 -> line None",
+   "a755b66ca -> line None"
+  ]
+ },
+ "exit_code": 0
+}
