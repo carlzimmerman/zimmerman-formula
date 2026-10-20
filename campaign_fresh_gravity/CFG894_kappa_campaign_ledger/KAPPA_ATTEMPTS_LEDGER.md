@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (659 rows)
+## Totals (660 rows)
 
 - **493 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -27,7 +27,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
   - a free ratio, or a trade for a new constant,
   - a bound,
   - a closure.
-- 34 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
+- 35 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
 
 **17 of the 55 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
 κ_Λ = 0.417 ± 0.095.
@@ -153,7 +153,7 @@ fact.
 | KS Kinetic / settling / collective / cold-energy dynamics | 32 | 0 | 2 | 30 | 0 | 0 |
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 46 | 2 | 4 | 36 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
-| OB Observational determinations of kappa (NOT derivations) | 44 | 0 | 0 | 0 | 0 | 34 |
+| OB Observational determinations of kappa (NOT derivations) | 45 | 0 | 0 | 0 | 0 | 35 |
 | AU Audits, controls, meta-analyses | 74 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
@@ -779,6 +779,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K565 | hunt-64 | `hunt_2026/WHAT_THE_HUNT_TAUGHT.md` | hunt item 64 | 0.482 | obs | OBS 0.482+-0.081 | 0cc476387 |
 | K593 | S03 | `STANDING.md` | SPARC by shape | - | obs | 1/2 leans 1.55 sigma shape-free; does not resolve | a7a1e0e05 |
 | K636 | W4-06 | `why_4_puzzle/W4_06_lensing_kappa` | kappa fitted to KiDS-1000 isolated blue lenses (B21 RAR, full covariance; CFG829 window, nu_simple): first route free of rotation-curve systematics | 0.520 | obs | OBS: kappa_Lambda 0.520 +-0.091 stat +-0.235 (lens M* +-0.2 dex), kappa_crit 0.430 +-0.075 +-0.195; consistent with CFG493 (z +0.38 total) and 1/2; 1/2 vs 0.461 not separated; lens-mass limited (48%), not decisive | 10931109e |
+| K660 | W4-10 | `why_4_puzzle/W4_10_one_kappa_lensing` | kappa per KiDS-1000 isolated-lens subsample (colour, Sersic, 4 mass bins, hot gas, GAMA) with W4-06's estimator: is there one kappa? | - | obs | OBS: blue 0.520 vs red 1.293, n<2 0.571 vs n>2 1.320 (NOT UNIVERSAL >4 sigma, follows type not mass); mass bins 0.95-1.16 UNIVERSAL; B21 hot gas does not close it; post-hoc early-type IMF (CFG926 R5) brings red to 0.731 (z +1.8) | 3afae65f5 |
 
 ## AU: Audits, controls, meta-analyses
 
