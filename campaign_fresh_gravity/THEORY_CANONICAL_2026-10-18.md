@@ -147,3 +147,26 @@ excess is removed by a literature IMF α–σ relation (ATLAS3D/SLACS) on top of
 Chabrier — so it may be a stellar-population effect, not cold energy. A 'fossil a0' helps the dwarfs only under the RIVAL a0 ∝ H(z)
 (the framework's flat/DE-tracking a0 gives zero or the wrong sign): evidence about a0(z), not a rescue. Dwarfs and cluster cores stay open.
 
+**Note (2026-10-20, CFG689 fold-in per its HANDOFF_TO_ORCHESTRATOR.md; owner request) the framework's a0(z) from its own BAO ruler.**
+Source: CFG689 (criteria 1c237145d + A1 0db6da294 + A2 bb21587be; results 6c064b83a; numbers from cfg689_summary.md).
+- **a0(z) band (replaces the CPL-chain M-DEC curve).** Tracking √X = a0(z)/a0(0), primary = curvature free, DESI BAO + Pantheon+, native
+  r_d, no CPL, no late-time CMB fit: 0.913 [0.762, 1.027] at z 1.0; 0.925 [0.762, 1.048] at z 1.2; 0.942 [0.706, 1.115] at z 1.5; 0.909
+  [0.325, 1.212] at z 2.33 (68%; z > 2.33 extrapolated). Rival a0 ∝ H(z): 1.761 / 1.987 / 2.353 / 3.490 (closest gaps +0.23 / +0.27 /
+  +0.32 / +0.45 dex).
+- **θ* rows NOT folded in:** the frozen K9 check failed (z* spread 1.24 > 1 over the ±2σ corners; D_M impact 9e-6 < 1e-5, disclosed).
+  Their tighter bands (e.g. flat + θ* [0.88, 1.00] / [0.80, 1.05] / [0.68, 1.05]) are reported only.
+- **Dark-energy constancy (P2):** primary 1.97σ, CONSISTENT WITH CONSTANT; flat mode 2.10σ HINT → FLATNESS-SENSITIVE; the θ* rule across
+  Pantheon+/DES-SN5YR/Union3 gives HINT (2.00–2.61σ). An 'evolving' result would reject a constant Λ only, never favour the framework.
+- **Curvature (P0):** Ω_k +0.011 [−0.037, +0.059], FLAT CONSISTENT.
+- **Decisive framework-vs-ΛCDM target (P6):** a kinematic a0 point at z ≈ 2.5 needs ≈ 0.100 dex error for 20:1 against ΛCDM's own DM14
+  law (primary, TARGET HARDER; flat/θ* modes 0.110–0.126). This replaces the record's 0.13 dex, which assumed an exactly flat a0. z 2.5
+  lies beyond the last BAO node (extrapolated).
+- **No-ΛCDM audit:** P4 inside DESI's tested fiducial span; P5 NEGLIGIBLE (framework vs Newtonian PM ≤ 3.9% at k ≤ 0.33 h/Mpc); B12 (no
+  reconstruction) flips P1 to PARTLY BROKEN, and the post-hoc B12c (DR1 post-recon) shows the same, so it tracks the DR1 isotropic data,
+  not reconstruction. With SH0ES H0 and no CMB ω_c (B5c) the band collapses (EVOLVING DE REQUIRED): it rests on the CMB-anchored ω_c.
+- **P3 (report only, no footing change):** native H0 67.70 [67.09, 68.31]; a0 at κ = ½, z = 0: 9.352e-11 vs footing 9.3603e-11 (κ is
+  fitted, so this is a consistency check, not a derivation).
+- **Checks:** K1–K8 PASS; K9 FAIL (θ* only); K4 FAIL only in B9/B10 (not read); MUTATE M1–M4 PASS.
+- BAO cannot separate the framework from ΛCDM (same background ingredients). Nothing here favours the framework. κ fitted; cold energy
+  mass required; not theory closed.
+
