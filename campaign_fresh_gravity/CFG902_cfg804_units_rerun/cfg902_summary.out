@@ -1,0 +1,59 @@
+CFG902  CFG804 rerun with CFG416's declared Msun/h f_ret ramp (h 0.674, shift -0.17134 dex)
+  runs: orig/canonical 2 s, 89 MB; orig/alt 2 s, 85 MB; declared/canonical 2 s, 86 MB; declared/alt 2 s, 87 MB; mutate/canonical 2 s, 86 MB
+
+ K1  orig convention vs CFG804's committed results
+  [PASS] K1_canonical chi2/dchi2 max|d| <= 1e-6, p_D rel <= 1e-6, logMb <= 1e-9, K1/K2/cls equal (max|d chi2| 0.0e+00, p_D rel 0.0e+00, logMb 0.0e+00, flags equal True)
+       .out byte-identical to cfg804.out (reported): True
+  [PASS] K1_alt chi2/dchi2 max|d| <= 1e-6, p_D rel <= 1e-6, logMb <= 1e-9, K1/K2/cls equal (max|d chi2| 0.0e+00, p_D rel 0.0e+00, logMb 0.0e+00, flags equal True)
+       .out byte-identical to cfg804_alt.out (reported): True
+
+ K2  the change touches only D
+  [PASS] K2 chi2_B orig = declared (<= 1e-9, both footings, both radius sets); internal K1/K2 PASS in all non-mutate runs (max|d chi2_B| 0.0e+00; flags True)
+
+ K3  fixed point in the declared convention
+  [PASS] K3 log M_b 10.5 -> N 10.000, log M_ta[Msun/h] 12.133 +- 0.01; CFG804 canonical primary masses -> CFG886's 10.0/10.0/9.4/7.0 (<= 0.05) (N 10.000, log M_ta 12.132; N 10.00/10.00/9.38/6.98)
+
+ MUTATE  doubled shift (h^2, -0.34268 dex), canonical
+    at declared primary best-fit masses: N declared 10.00/10.00/9.38/7.07 -> mutate 10.00/10.00/10.00/8.99
+    at declared all best-fit masses: N declared 10.00/9.96/7.89/6.13 -> mutate 10.00/10.00/10.00/7.69
+    all-radii dchi2: declared +100.10 -> mutate +69.36 (change -30.74); primary mutate +1.10
+  [PASS] MUTATE (a) N_mutate >= N_declared every bin, > in >= 1; (b) dchi2_all(mutate) <= dchi2_all(declared) - 1.0 (a True; b True)
+
+ RESULT  before (CFG804 committed, Msun) / after (declared Msun/h ramp)
+    footing   radii     B chi2  D before  D after  dchi2 before  dchi2 after  change  class before -> after
+    canonical primary     83.9      83.6     84.7         -0.23        +0.84   +1.07  DERIVED SUPPLY SUFFICES -> DERIVED SUPPLY SUFFICES  CLASS CHANGED: no
+    canonical all        163.1     311.8    263.2       +148.69      +100.10  -48.59  FALLS SHORT -> FALLS SHORT  CLASS CHANGED: no
+    alt       primary     79.7      78.2     79.4         -1.51        -0.27   +1.24  DERIVED SUPPLY SUFFICES -> DERIVED SUPPLY SUFFICES  CLASS CHANGED: no
+    alt       all        155.3     327.6    278.5       +172.25      +123.12  -49.12  FALLS SHORT -> FALLS SHORT  CLASS CHANGED: no
+
+  derived per bin at the declared run's best-fit masses (log M_ta in Msun/h):
+    [canonical primary] bin 1: log M_b 10.38 -> log M_ta 12.01, f_ret 0.100, N 10.00 (grid 10.00), edge 54.1 r_M = 324 kpc
+    [canonical primary] bin 2: log M_b 10.77 -> log M_ta 12.40, f_ret 0.100, N 10.00 (grid 10.00), edge 54.1 r_M = 507 kpc
+    [canonical primary] bin 3: log M_b 10.91 -> log M_ta 12.51, f_ret 0.107, N 9.38 (grid 9.50), edge 50.8 r_M = 559 kpc
+    [canonical primary] bin 4: log M_b 11.11 -> log M_ta 12.59, f_ret 0.141, N 7.07 (grid 7.00), edge 38.4 r_M = 532 kpc
+    [canonical all] bin 1: log M_b 10.44 -> log M_ta 12.07, f_ret 0.100, N 10.00 (grid 10.00), edge 54.1 r_M = 347 kpc
+    [canonical all] bin 2: log M_b 10.87 -> log M_ta 12.50, f_ret 0.100, N 9.96 (grid 10.00), edge 53.9 r_M = 567 kpc
+    [canonical all] bin 3: log M_b 11.03 -> log M_ta 12.56, f_ret 0.127, N 7.89 (grid 8.00), edge 42.8 r_M = 541 kpc
+    [canonical all] bin 4: log M_b 11.22 -> log M_ta 12.64, f_ret 0.163, N 6.13 (grid 6.25), edge 33.4 r_M = 525 kpc
+    [alt primary] bin 1: log M_b 10.24 -> log M_ta 11.87, f_ret 0.100, N 10.00 (grid 10.00), edge 54.1 r_M = 251 kpc
+    [alt primary] bin 2: log M_b 10.70 -> log M_ta 12.33, f_ret 0.100, N 10.00 (grid 10.00), edge 54.1 r_M = 425 kpc
+    [alt primary] bin 3: log M_b 10.84 -> log M_ta 12.47, f_ret 0.100, N 10.00 (grid 10.00), edge 54.1 r_M = 500 kpc
+    [alt primary] bin 4: log M_b 11.05 -> log M_ta 12.57, f_ret 0.130, N 7.67 (grid 7.75), edge 41.7 r_M = 490 kpc
+    [alt all] bin 1: log M_b 10.32 -> log M_ta 11.95, f_ret 0.100, N 10.00 (grid 10.00), edge 54.1 r_M = 275 kpc
+    [alt all] bin 2: log M_b 10.83 -> log M_ta 12.46, f_ret 0.100, N 10.00 (grid 10.00), edge 54.1 r_M = 494 kpc
+    [alt all] bin 3: log M_b 10.91 -> log M_ta 12.51, f_ret 0.107, N 9.38 (grid 9.50), edge 50.8 r_M = 509 kpc
+    [alt all] bin 4: log M_b 11.13 -> log M_ta 12.60, f_ret 0.145, N 6.89 (grid 7.00), edge 37.4 r_M = 483 kpc
+
+  fixed-mass convention effect (CFG804's committed best-fit masses; N Msun -> Msun/h):
+    [canonical primary] N 10.00/8.83/7.35/5.62 -> 10.00/10.00/9.38/6.98; edge kpc 324/453/439/429 -> 324/513/559/531
+    [canonical all] N 10.00/7.66/6.44/5.17 -> 10.00/9.81/8.11/6.37; edge kpc 343/442/433/429 -> 343/565/543/527
+    [alt primary] N 10.00/9.79/8.10/6.12 -> 10.00/10.00/10.00/7.67; edge kpc 251/422/406/392 -> 251/430/500/490
+    [alt all] N 10.00/8.70/6.88/5.42 -> 10.00/10.00/8.72/6.71; edge kpc 275/411/396/390 -> 275/472/501/481
+
+ R-h (reported only): h 0.6736 instead of 0.674 at the declared best-fit masses
+    [canonical] max |dN| 0.0039; NGRID snap changed in any bin: False
+    [alt] max |dN| 0.0036; NGRID snap changed in any bin: False
+  [PASS] UNTOUCHED CFG804 and CFG416 directories unchanged (git status empty) (clean)
+
+  K1 canonical/alt, K2, K3, MUTATE, UNTOUCHED: ALL PASS
+  kappa = 1/2 FITTED; footings never pooled; raw KiDS data; not theory closed.
