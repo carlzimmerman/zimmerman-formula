@@ -1,0 +1,48 @@
+CFG931  faint-rotator discriminator: energy picture E vs kinematic picture K at matched g_bar   [MUTATE shuffle]
+  groups: (i) SPARC rotators M* < split, (ii) M* >= split, (iii) CFG880 dSphs M* < split; W = [1e-12.5, 1e-11.5); kappa = 1/2 FITTED
+
+=== K-stage
+  [PASS] K1 CFG828 reproduced (own code; N_in, mean D, se D, SPARC median, out-of-range mean; canonical+alt nu_e): max |diff| 0.0e+00; canonical: N_in 8, D +0.051+-0.073 dex, out-of-range mean +0.438, SPARC median +0.031
+  [PASS] K2 CFG919 SPARC class means SS/SL (E, se; V0) and W2 (rho, p) reproduced, both footings: max |diff| 0.0e+00; canonical SS +0.137+-0.084, SL +0.002+-0.050 (ln); W2 rho -0.172 p 0.038
+  [PASS] K3 CFG919 DW class mean reproduced via CFG880 input slice exec'd read-only (E, se; both footings): max |diff| 0.0e+00; 83 dwarfs; canonical +0.856+-0.102 ln (+0.372 dex), alt +0.765
+  [PASS] K4 SPARC loader 2696 points / 147 galaxies; lowest-M* Table 1 galaxy UGCA444 at 6.0e6: 2696 points, 147 galaxies; lowest UGCA444 6.00e+06
+  K-stage ALL PASS  [0 s, 89 MB]
+
+=== Inventory (on disk; rotators with resolved rotation = SPARC after Q<=2, Inc>=30, errV/V<0.10)
+  M* < 1e+07: 1 rotators pass the cuts; with g_bar < 1e-11.5: 0 []
+     per cell (low rot / high rot / dSph M*<split): [-12.5,-12.0) 0/3/15  [-12.0,-11.5) 0/31/8  [-11.5,-11.0) 1/103/1
+  M* < 3e+07: 4 rotators pass the cuts; with g_bar < 1e-11.5: 3 ['D564-8', 'DDO154', 'NGC3741']
+     per cell (low rot / high rot / dSph M*<split): [-12.5,-12.0) 2/1/16  [-12.0,-11.5) 3/28/9  [-11.5,-11.0) 3/101/2
+  M* < 1e+08: 15 rotators pass the cuts; with g_bar < 1e-11.5: 8 ['CamB', 'D564-8', 'D631-7', 'DDO154', 'NGC3109', 'NGC3741', 'UGC05764', 'UGCA442']
+     per cell (low rot / high rot / dSph M*<split): [-12.5,-12.0) 3/0/17  [-12.0,-11.5) 8/23/10  [-11.5,-11.0) 12/92/2
+  rotators with M* < 1e8 (name, M*, min log g_bar, points in W, Q, Inc):
+    UGC04483     6.5e+06  -11.32    0  Q2  58
+    NGC3741      1.4e+07  -12.06   16  Q1  70
+    D564-8       1.6e+07  -12.08    5  Q2  63
+    DDO154       2.6e+07  -11.84    5  Q2  64
+    ESO444-G084  3.6e+07  -11.47    0  Q2  32
+    CamB         3.8e+07  -11.54    1  Q2  65
+    KK98-251     4.2e+07  -11.40    0  Q2  59
+    UGC05764     4.2e+07  -11.70    1  Q2  60
+    NGC6789      5.0e+07  -10.68    0  Q2  43
+    UGC07232     5.6e+07  -10.74    0  Q2  59
+    UGCA442      7.0e+07  -11.76    2  Q1  64
+    DDO064       7.8e+07  -11.08    0  Q1  60
+    DDO168       9.6e+07  -11.29    0  Q2  63
+    NGC3109      9.7e+07  -12.01   13  Q1  70
+    D631-7       9.8e+07  -11.82    6  Q1  59
+  not usable as graded rotators (inventory only): Lelli+15 TDGs (6; INFO line), UNGC (W50/i/vAmp but no radius on disk), ALFALFA a100 / Durbala+20 / Leisman+17 HUDs, FASHI DR2, MIGHTEE-HI (unresolved widths); LVD (no rotation column; WLM, NGC 6822, IC 1613, Leo A, Sag dIrr, Pegasus dIrr carry no rotation data on disk); no LITTLE THINGS / SHIELD / FIGGS / Leo P kinematics on disk.
+
+=== MUTATE shuffle (S1: labels shuffled on the I-30 data, rng 9311; S2: real-data permutation p of d_K, rng 9312)
+  [canonical | 1e+07] data gate fails (N_i 0): S1/S2 not run
+  [canonical | 3e+07] data gate fails (N_i 3): S1/S2 not run
+  [canonical | 1e+08] S1 on I-30: true d_K +0.320 (NOT DIAGNOSTIC (NO LEVER)); shuffled median d_K +0.001, E-FAVOURED in 0.0% -> BITES (not required: lever gate (z +1.85))
+      S2 real data: d_K +0.020; permutation p (d_K_shuf >= real) 0.399, two-sided 0.801  (no class weight)
+  [alt | 1e+07] data gate fails (N_i 0): S1/S2 not run
+  [alt | 3e+07] data gate fails (N_i 3): S1/S2 not run
+  [alt | 1e+08] S1 on I-30: true d_K +0.320 (NOT DIAGNOSTIC (NO LEVER)); shuffled median d_K +0.001, E-FAVOURED in 0.0% -> BITES (not required: lever gate (z +1.85))
+      S2 real data: d_K +0.020; permutation p (d_K_shuf >= real) 0.400, two-sided 0.805  (no class weight)
+
+  MUTATE shuffle: all required controls met
+
+  done [4 s, peak RSS 139 MB], exit 0.  kappa = 1/2 FITTED; footings never pooled; not theory closed.
