@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (669 rows)
+## Totals (672 rows)
 
 - **501 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -27,7 +27,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
   - a free ratio, or a trade for a new constant,
   - a bound,
   - a closure.
-- 35 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
+- 38 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
 
 **17 of the 56 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
 κ_Λ = 0.417 ± 0.095.
@@ -153,7 +153,7 @@ fact.
 | KS Kinetic / settling / collective / cold-energy dynamics | 32 | 0 | 2 | 30 | 0 | 0 |
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
-| OB Observational determinations of kappa (NOT derivations) | 45 | 0 | 0 | 0 | 0 | 35 |
+| OB Observational determinations of kappa (NOT derivations) | 48 | 0 | 0 | 0 | 0 | 38 |
 | AU Audits, controls, meta-analyses | 75 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
@@ -788,6 +788,9 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K593 | S03 | `STANDING.md` | SPARC by shape | - | obs | 1/2 leans 1.55 sigma shape-free; does not resolve | a7a1e0e05 |
 | K636 | W4-06 | `why_4_puzzle/W4_06_lensing_kappa` | kappa fitted to KiDS-1000 isolated blue lenses (B21 RAR, full covariance; CFG829 window, nu_simple): first route free of rotation-curve systematics | 0.520 | obs | OBS: kappa_Lambda 0.520 +-0.091 stat +-0.235 (lens M* +-0.2 dex), kappa_crit 0.430 +-0.075 +-0.195; consistent with CFG493 (z +0.38 total) and 1/2; 1/2 vs 0.461 not separated; lens-mass limited (48%), not decisive | 10931109e |
 | K660 | W4-10 | `why_4_puzzle/W4_10_one_kappa_lensing` | kappa per KiDS-1000 isolated-lens subsample (colour, Sersic, 4 mass bins, hot gas, GAMA) with W4-06's estimator: is there one kappa? | - | obs | OBS: blue 0.520 vs red 1.293, n<2 0.571 vs n>2 1.320 (NOT UNIVERSAL >4 sigma, follows type not mass); mass bins 0.95-1.16 UNIVERSAL; B21 hot gas does not close it; post-hoc early-type IMF (CFG926 R5) brings red to 0.731 (z +1.8) | 3afae65f5 |
+| K670 | p64-B | `sonnet55_push/puzzle_32pi/p64_raw_sparc_minimal` | H0-free kappa from the 10 TRGB/Cepheid/SN gas-dominated SPARC galaxies (omega_L x 3(100 km/s/Mpc)^2/(8piG); simple mu; E1-E4) | 0.557 | obs | OBS: E2 0.557 (Planck omega_L) / 0.541 (BAO+BBN); E1-E4 span 0.54-0.61; 1/2 inside 1 sigma in 7 of 8 cells; tau 0.23 dex; RAR 0.559 | 9b8efc6f7 |
+| K671 | p64-A | `sonnet55_push/puzzle_32pi/p64_raw_sparc_minimal` | within-galaxy gas-vs-star a0 contrast (11 SPARC galaxies, frozen Upsilon x f_gas grid) | - | obs | OBS UNDETERMINED as frozen: Delta_g -0.408 +- 0.085 (4.8 sigma) at Upsilon 0.5, -0.152 (1.9 sigma) at 0.8/0.85; kernel-robust (RAR -0.406); gas points want ~2.5x lower a0 than star points at SPS M/L; never a detection | 9b8efc6f7 |
+| K672 | p64-C | `sonnet55_push/puzzle_32pi/p64_raw_sparc_minimal` | one HI flux scale for the TRGB dwarfs (ALFALFA alpha.100 cross-match) | - | obs | UNTESTED: no SPARC coordinates on disk, no downloads | 9b8efc6f7 |
 
 ## AU: Audits, controls, meta-analyses
 
