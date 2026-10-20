@@ -1,0 +1,85 @@
+CFG900  kappa door D4: the nodal fermion medium made Lorentz-invariant (v = c), its own vacuum as the dark energy
+criteria 32264ab5d (FROZEN_CRITERIA.md), amendments 7f72af505 (A1 M4 factor, A2 PV set, A3 hbar under H1r)
+kappa = 1/2 is FITTED (kappa_L 0.417 +- 0.095, CFG493 -- quoted, not used). Footings never pooled. Not theory closed.
+
+== I1: self-grep for forbidden constants
+  [PASS] I1 no forbidden constants used: hits outside the quoted standing-fact line: []
+
+== K1: Clifford algebra and spectra
+  [PASS] K1 Clifford sets and spectra: anticommutator err 4x4 0.0e+00, 8x8 (six matrices) 0.0e+00; spectra err ring 8.9e-16, strict-LI (V1) 3.1e-15, timelike P0 (V5) 1.8e-15; N = 2 bands per sign (4x4), 4 per sign (8x8)
+
+== K2: ring measure
+  [PASS] K2 d^3k/(2pi)^3 = m*/(4 pi^2 hbar^3 v) dq1 dq2, q1-independent: measure = m_star/(4*pi**2*hbar**3*v)
+
+== K3: tube band energy (record's regulator), fermion sea
+  [PASS] K3 tube formula, E0_tube(0) = -beta P_L^3/3, small-gap series: V_band = N*m_star*(Delta**3 - Delta**2*sqrt(Delta**2 + Lambda**2) - Lambda**2*sqrt(Delta**2 + Lambda**2))/(6*pi*hbar**3*v);  E0_tube(0) = -Lambda**3*N*m_star/(6*pi*hbar**3*v) = -beta (Lambda/h)^3/3;  V - V(0) = -Delta**4*N*m_star/(16*pi*Lambda*hbar**3*v) + Delta**3*N*m_star/(6*pi*hbar**3*v) - Delta**2*Lambda*N*m_star/(4*pi*hbar**3*v) + O(Delta^5)
+
+== K4: dimensional regularisation (Lorentz-invariant regulator)
+  [PASS] K4 dim reg: convergent cases, cone = tube's Lambda^0 part, D = 3 sea, ring = (m*/v) x cone, D = 4 finite part: (i) True; (ii) cone eps_dr(Delta) = Delta**3*N*m_star/(6*pi*hbar**3*v), tube Lambda^0 part = Delta**3*N*m_star/(6*pi*hbar**3*v); (iii) D=3 sea = N_b*m**3/(6*pi), ring (hbar=1) = Delta**3*N*m_star/(6*pi*v); odd-D seas: D=3: N_b*m**3/(6*pi), D=5: -N_b*m**5/(60*pi**2), D=7: N_b*m**7/(840*pi**3); (iv) D=4: pole N_b*m**4/(32*pi**2)/epsilon, MS-bar finite N_b*m**4*(log(mubar**4/m**4) + 3)/(64*pi**2)
+
+== V1 / K9: strict Lorentz invariance allows only point nodes; exponent mismatch in every D
+  [PASS] K9 Lorentz-invariant shells vanish only at k = 0, M = 0; boosted ring state leaves the ring spectrum: shell M**2*c**4 + c**2*hbar**2*k**2 is a sum of even squares with positive coefficients; boost beta 0.3: |E'| = 0.3145 vs ring |E(k')| = 0.0495
+  strict-LI exponent p = D vs deep-MOND need p = D - 1: D=3: 3 vs 2; D=4: 4 vs 3; D=5: 5 vs 4; D=6: 6 vs 5
+  record ring (codimension 2) in D = 4: p = 3 vs need 3 -> the cubic needs a nodal LINE, which no Lorentz-invariant spectrum has
+  V1 class: NO LAW
+
+== K5: mode-sum pressure p = (1/3) sum_filled k.grad(eps_k) (isotropic ensemble)
+  [PASS] K5 dim-reg cone vacuum w = -1; tube vacuum w(0) = +1/2; excitations w = 1/2 (ring), 1/3 (LI): <2cos^2+sin^2> = 3/2, <cos> = 0; dim reg eps = Delta**3*N*m_star/(6*pi*hbar**3*v), p = -Delta**3*N*m_star/(6*pi*hbar**3*v), w = -1; tube eps(0) = -Lambda**3*N*m_star/(6*pi*hbar**3*v), p(0) = -Lambda**3*N*m_star/(12*pi*hbar**3*v), w = 1/2; tube w at Delta/Lambda 0.1, 1: 0.4866, 0.1602; w_exc ring 1/2, LI 1/3
+
+== V4: Pauli-Villars in the cone (Lorentz-invariant regulator, regulator masses free)
+  S2 (frozen): sum c = 0, sum c M^2 = 0; E0(0) = M_PV**3*N*m_star*(-1 + sqrt(2))/(3*pi*hbar**3*v) (s = -2 + 2*sqrt(2) = +0.8284); cubic coeff N*m_star/(6*pi*hbar**3*v); quadratic M_PV*N*m_star*(-2 + sqrt(2))/(4*pi*hbar**3*v); w of the constant -1; direct limit agrees: True
+  S3 (A2): sum c = 0, sum c M^2 = 0; E0(0) = -M_PV**3*N*m_star/(pi*hbar**3*v) (s = -6 = -6.0000); cubic coeff N*m_star/(6*pi*hbar**3*v); quadratic 0; w of the constant -1; direct limit agrees: True
+  [PASS] V4/K4b PV: universal cubic A/3, constant w = -1, constant sign set by the regulator set: S2 positive, S3 negative (A2)
+
+== K6: the record's static force algebra from F = |C grad phi - P|^2/(2C) + beta P^3/3 + q_b rho_b phi
+  [PASS] K6 EL equations, P = B/r, V^4 = K M_b, K = q_b^3/(4 pi C^3 beta) = record's q_b^3 v/(2 N m* C^3 h^3) (x hbar^3 in SI): EL: -C*Derivative(phi(x), (x, 2)) + q_b*rho_b(x) + Derivative(P(x), x) = 0, beta*P(x)**2 + (-2*C*Derivative(phi(x), x) + 2*P(x))/(2*C) = 0; P = sqrt(M_b)*sqrt(q_b)/(2*sqrt(pi)*sqrt(C)*sqrt(beta)*r); V^4/M_b = q_b**3/(4*pi*C**3*beta)
+
+== K7: cubic energy at the transition polarisation (the slot) and its general-n coefficient
+  [PASS] K7 beta P*^3/3 = a0^2/(12 pi G); general n: eps* = a0^2/(n S_{n-1} G_n), n S = 12 pi (n=3), 8 pi^2 (n=4): slot = a_0**2/(12*pi*G); n S_(n-1): n=3 12*pi, n=4 8*pi**2
+
+== K8: unified formula: eps0 = sigma beta P_x^3/3  =>  kappa^2 = 12 pi/(sigma lambda_x^3), lambda_x = q_b P_x/(C a0)
+  [PASS] K8 unified formula reproduced for V3 tube (sigma -1), V4 PV (sigma s), V5-N1 (lambda 1), V5-N3 (horizon): general 12*pi*C**3*a_0**3/(P_x**3*q_b**3*sigma); tube kappa^2 = -3*pi*hbar**9*q_b**6*v**3/(2*C**6*G**3*Lambda**3*N**3*h**6*m_star**3) = -12 pi/lambda_L^3; PV kappa^2 = 12 pi/(s lambda_PV^3); N1 kappa^2 = 12*pi; N3 kappa = 4*sqrt(6)*sqrt(pi)/27, a0 = 4*sqrt(6)*sqrt(pi)*sqrt(G)*c*sqrt(rho_DE)/27
+
+== K10 / I7 / K11: dimensions, hbar powers, v-dependence
+  [PASS] K10 SI dimensions (beta, K, a0, E0, kappa^2, lambda_x dimensionless): beta: Mu/(Lu*Pu**3*Tu**2), K: Lu**4/(Mu*Tu**4), a0_micro: Lu/Tu**2, E0_tube: Mu/(Lu*Tu**2), kappa2_micro: 1, lambda_L: 1, lambda_PV: 1, kappa_N3: 1, slot/(rho c^2): 1
+  [PASS] I7 hbar: 0 at fixed (beta, P_x); a0 ~ hbar^3, kappa^2 ~ hbar^9 at fixed (N, m*, v, h, Lambda, q_b, C); A3: hbar^2, hbar^3 under H1r: d ln/d ln hbar: unified 0; a0 3, kappa^2 9; H1r a0 2, kappa^2 3; no Bekenstein-Hawking 1/4 appears
+  [PASS] K11 v: d ln kappa^2/d ln v = 0 at fixed lambda_x (posits v-free), = 3 at fixed microscopic parameters: fixed lambda 0; micro 3; d kappa_N1/dv, d kappa_N3/dv = (0, 0)
+  microscopic tube trade (magnitude only): kappa^2 = 3*pi*hbar**9*q_b**6*v**3/(2*C**6*G**3*Lambda**3*N**3*h**6*m_star**3)
+  under H1 + H1r (v = v_r = c, Lambda = eps_L hbar c k0/2): kappa^2 = 12*pi*c**3*hbar**3*q_b**6/(C**6*G**3*N**3*epsilon_L**3*h**6*k_0**6);  a0 = c**2*hbar**2*q_b**3/(2*C**3*G*N*h**3*k_0)
+
+== K12 / I8: horizon locus and pi-weights
+  [PASS] K12 kappa_H = (2/9) sqrt(8 pi/3) = (8 pi e/3)^(3/2)/(12 pi) at e = 1; kappa_H^2 = 32 pi/243 (pi-odd): kappa_H^2 = 32*pi/243, Z_H = sqrt(8pi/3)/kappa_H = 9/2; pi-weights {'kappa_N1^2 = 12 pi': 1, 'kappa_N3^2': 1, 'slot n=4 (8 pi^2)': 2}
+
+== I2: dependence of every graded output on free constants
+  V3 kappa^2 micro (magnitude): dln/dln C = -6, dln/dln G = -3, dln/dln Lambda = -3, dln/dln N = -3, dln/dln h = -6, dln/dln hbar = 9, dln/dln m_star = -3, dln/dln q_b = 6, dln/dln v = 3
+  V3 kappa^2 (H1r): dln/dln C = -6, dln/dln G = -3, dln/dln N = -3, dln/dln c = 3, dln/dln epsilon_L = -3, dln/dln h = -6, dln/dln hbar = 3, dln/dln k_0 = -6, dln/dln q_b = 6
+  V4 kappa^2 (PV, S2): dln/dln C = -6, dln/dln G = -3, dln/dln M_PV = -3, dln/dln N = -3, dln/dln h = -6, dln/dln hbar = 9, dln/dln m_star = -3, dln/dln q_b = 6, dln/dln v = 3
+  V2 eps0(P_cos = 0) = 0 for every value of every constant (identity); V1 no a0 (no law)
+  H1+H1r: ln a0, ln|E0| vs (ln k0, ln eps_L, ln Q = ln q_b/(C h)): Jacobian [[-1, 0, 3], [4, 3, 0]], rank 2 of 3 -> 1 continuous direction left after fixing both a0 and rho_DE (plus N): any kappa is reachable
+  [PASS] I2 graded kappa outputs depend on free medium constants (TRADE): every graded kappa expression carries free constants; Jacobian rank 2 < 3
+
+== I3: scaling G -> lG, rho -> mu rho, c -> nu c
+  [PASS] I3 a0(N3) -> nu sqrt(l mu) a0, kappa invariant; unified kappa invariant at fixed lambda_x: a0 ratio sqrt(l)*sqrt(mu_s)*nu
+
+  [PASS] I4 rename test (law's kappa 1/2 -> 2/5): posits do not move and fail the comparison; required lambda moves: kappa_N1 6.1400 / 6.1400; kappa_N3 0.6432 / 0.6432; lambda_req 5.3227 -> 6.1764; V2 stays 0
+  [PASS] I5 no Friedmann tautology: kappa_H depends on the Gauss-cubic factor and on Friedmann; Z_H^2 != 32 pi/3: Z_H = 9/2, Z_H^2 = 81/4
+  [PASS] I6 declared footing rho_DE only; rho_crit printed separately as kappa_crit = kappa_L sqrt(Omega_L): no pooling
+
+== Numbers (measured H0 = 67.4 km/s/Mpc and Omega_L = 0.685 enter only here; report only)
+  unified trade: kappa = 1/2 needs lambda_x = (48 pi)^(1/3) = 5.3227; W_data [0.227, 0.607] needs lambda_x in [4.677, 9.011] (a band or cutoff polarisation 4.7-9 x the transition one)
+  V5-N1 (X2 slot) kappa_L = sqrt(12 pi) = 6.1400  (kappa_crit = 5.0817)
+  V5-N3 (X3 horizon) kappa_L = (2/9) sqrt(8 pi/3) = 0.6432 (a0 = (2/9) c H_L, Z_H = 9/2)  (kappa_crit = 0.5323 vs rho_crit window (0.189, 0.501))
+  report-only band scale if |E0_tube| = rho_DE c^2 (N = 2, eps_L = 1, H1r): k0 = 3.346e+04 /m, hbar c k0 = 6.60 meV (rho_DE^(1/4) = 2.24 meV); sign wrong (E0 < 0) and w = +1/2, so this is not a solution
+
+== Grading (frozen section 9)
+  V1 strict Lorentz-invariant Dirac medium: NO LAW -- nonanalytic vacuum term ~ m^D (m^4 ln m at D=4); deep MOND needs |P|^(D-1); only point nodes are Lorentz-invariant
+  V2 ring, v = v_r = c, cone dim reg, P_cos = 0: IDENTITY (vanishing) -- eps0 = 0 at P_cos = 0 for every kappa
+  V3 ring, v = v_r = c, tube band: NO SOLUTION (sign and EOS) -- E0 = -beta P_L^3/3 < 0, w = 1/2; magnitude-only TRADE kappa^2 = 12 pi/lambda_L^3 (window needs lambda_L 4.68-9.01)
+  V4 ring, v = v_r = c, Pauli-Villars: CONDITION -- E0 = s (A/3) M_PV^3, s = +0.828 (S2) / -6.000 (S3), w = -1; TRADE kappa^2 = 12 pi/(s lambda_PV^3)
+  V5-N1 q_b P0/C = a0 (X2 slot): EXCLUDED-CLASS POSIT -- kappa = 6.1400 (outside W_data)
+  V5-N2 tether / law vacuum: IDENTITY (vanishing) -- P0 = 0, eps0 = 0
+  V5-N3 q_b P0/C = c H_L (X3 horizon): EXCLUDED-CLASS POSIT -- kappa = 0.6432 (outside W_data)
+  V5-N4 free minimum: IDENTITY (vanishing) -- minimum of P^2/2C + beta|P|^3/3 at P0 = 0
+
+Checks: 20/20 PASS
+OVERALL: CLOSURE.  p_exact = 0.0, p_data = 0.0 (no graded variant gives a determinate kappa; the two posits are excluded-class and miss). S4 second prediction not reached. kappa = 1/2 stays FITTED. Not theory closed.
