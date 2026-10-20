@@ -18,7 +18,7 @@ record these partial results without adding a determinate trial.
 | Actual MOND force and force-calibrated G | Independently audited positive radial source branch and asymptotic force for the specified classical vector action; operational Newtonian regime remains source-dependent. | Partial |
 | Same-state positive gravitating vacuum stress | Paired-band stress has a kernel-checked order-one defect under its prescription. Temporal parent carries an independent epsilon0 and unspecified gravitating clock. | Missing |
 | Independent principle forcing xi=1/4 | All surviving response parameters and epsilon0/(gamma b^3) remain free. No Ward, gap or constraint equation selects it. | Missing |
-| End-to-end Lean proof with all leaves established | Eight partial modules compile using only standard axioms. Physical dictionaries and field/PDE bridges remain explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
+| End-to-end Lean proof with all leaves established | Nine partial modules compile using only standard axioms. Physical dictionaries and field/PDE bridges remain explicit analytic inputs. Pi adapter is unverified under the current memory cap. | Incomplete |
 | Independent second physical prediction | No determinate normalization candidate exists. | Missing |
 
 The next high-impact constructive implication is a regular microscopic
@@ -104,3 +104,33 @@ the temporary resource constraint after the large simulation is confirmed
 terminal. This is a local formal-tool limitation, not the main physical
 obstruction. It does not justify marking the whole goal blocked: the
 constructive microscopic investigation remains executable.
+
+The gravitational-constraint continuation, criteria 201229b5f, is progress.
+Pure BM at lambda=1 must be tested on its actual de Sitter vacuum: lapse
+and shift constraints retain a positive-kinetic scalar with zero quadratic
+restoring force. Redshift of physical k is essential to this result.
+This is a real loophole in the independent fixed-metric tilt test, not
+full nonlinear or microscopic health. An explicit cubic deformation
+preserves the homogeneous vacuum and every quadratic constraint while
+changing the MOND amplitude; those constraints do not select xi.
+
+A c1-only covariant completion of the rational prototype has a consistent
+local Bianchi-I background and an exact frozen nonzero-k growing band.
+Its weak-gravity persistence is conditional on regular harmonic/constraint
+reduction and a valid action/cutoff window; no finite-coupling threshold
+or global halo is proved. Universal conformal matter coupling gives
+G_UV=G_t+G_s and multiplies the old scalar-only xi by f^3, with a free
+scalar fraction f. For Friedmann-inferred density, the target would imply
+f>1/4 and local unscreened gamma_UV<1/2. That independent second-observable
+failure does not select f or make a viable model. Density V0 and density
+inferred with G_UV are kept separate.
+
+GravitySelection.lean adds fourteen exact conditional statements, all
+using only standard axioms. The true controls pass; boundary omission,
+normalization invariance and scalar-only force mutations each fail only
+at False. There are nine partial modules. Actual-pi, covariant/PDE,
+physical source, quantum and amplitude-selection leaves remain open.
+Details and qualifications: gravity_constraints/README.md and RESULT.md.
+The next constructive change needs a new protected microscopic relation
+and a viable physical matter metric; repeating the same quadratic
+constraint test or fitting the scalar charge cannot finish the goal.

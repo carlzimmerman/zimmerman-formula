@@ -12,7 +12,7 @@ Standing empirical status: **kappa=1/2 FITTED**. CFG493 gives
 kappa_Lambda=0.417+/-0.095 and kappa_crit=0.345+/-0.078 on separate
 footings. Neither is used as an input to any calculation here.
 
-**Formal continuation:** [eight partial Lean modules](formal/README.md) verify
+**Formal continuation:** [nine partial Lean modules](formal/README.md) verify
 the quantitative band-stress obstruction, coefficient bridge, scale/gap
 curvature implications and temporal-vector cone bounds. A new classical
 vector parent admits a regular MOND source branch; a charged scalar gives
@@ -40,6 +40,17 @@ rigid amplitude is 4096/1125 and changes under an allowed operator.
 A top-form branch gives exact MOND, but using its positive vacuum flux
 restores a quadratic infrared response and bounds the force enhancement.
 No healthy microscopic normalization or complete Lean proof is obtained.
+
+The [gravitational-constraint continuation](formal/gravity_constraints/RESULT.md)
+finds a genuine positive-kinetic de Sitter scalar in pure BM at lambda=1,
+but a permitted cubic deformation changes the MOND amplitude while
+preserving its homogeneous vacuum and all quadratic constraints. The
+rational model's universal conformal matter coupling adds an independent
+scalar force fraction. Its actual tensor-plus-scalar normalization is
+therefore free; forcing the inferred-density target would require a
+local unscreened light-deflection gamma below 1/2. Fourteen further Lean
+statements certify the displayed algebra, without asserting microscopic
+health or an end-to-end selection proof.
 
 ## Strongest new construction
 

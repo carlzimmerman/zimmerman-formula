@@ -1,0 +1,56 @@
+@shift_substitution : ∀ {K : Type u_2} [inst : Field K] (d H B X z eta mu : K),
+  H ≠ 0 →
+    rawQuadratic d H (d / H) B X z eta mu = 2 * X * z ^ 2 + 4 * X * z * d / H + (eta * X + 2 * mu ^ 2) * d ^ 2 / H ^ 2
+@redshift_boundary_cancellation : ∀ {K : Type u_2} [inst : Field K] (W X z d H eta mu : K),
+  H ≠ 0 →
+    W * (2 * X * z ^ 2 + 4 * X * z * d / H + (eta * X + 2 * mu ^ 2) * d ^ 2 / H ^ 2) -
+        2 / H * (3 * H * W * X * z ^ 2 - 2 * H * W * X * z ^ 2 + 2 * W * X * z * d) =
+      W * (eta * X + 2 * mu ^ 2) * d ^ 2 / H ^ 2
+@reduced_kinetic_positive : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (W X eta mu H : K), 0 < W → 0 < X → 0 < eta → H ≠ 0 → 0 < reducedKinetic W X eta mu H
+@lapse_polynomial_increment : ∀ {K : Type u_2} [inst : Field K] (d H n B X z eta mu v : K),
+  rawQuadratic d H (n + v) B X z eta mu - rawQuadratic d H n B X z eta mu =
+    lapseEquation d H n B X z eta mu * v + (-6 * H ^ 2 + eta * X + 2 * mu ^ 2) * v ^ 2
+@lapse_substitution_zero : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (d H X z eta mu : K),
+  H ≠ 0 → lapseEquation d H (d / H) (X * z / H + (eta * X + 2 * mu ^ 2) * d / (2 * H ^ 2)) X z eta mu = 0
+@metric_static_amplitude_ratio : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (P G f0 a0 : K),
+  P ≠ 0 →
+    G ≠ 0 → a0 ≠ 0 → f0 / (8 * P * G) * (1 / (12 * P * G * a0)) ^ 2 / (1 / (8 * P * G)) ^ 3 = 4 * f0 / (9 * a0 ^ 2)
+@cubic_ratio_scaling : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (epsilon C2 C3 delta : K), epsilon * ((1 + delta) * C3) ^ 2 / C2 ^ 3 = (1 + delta) ^ 2 * (epsilon * C3 ^ 2 / C2 ^ 3)
+@tensor_scalar_xi_cube : ∀ {K : Type u_2} [inst : Field K] (Gs Gt a0s epsilon : K),
+  Gs ≠ 0 →
+    Gt + Gs ≠ 0 →
+      epsilon ≠ 0 →
+        (Gs / (Gt + Gs) * a0s) ^ 2 / ((Gt + Gs) * epsilon) = (Gs / (Gt + Gs)) ^ 3 * (a0s ^ 2 / (Gs * epsilon))
+@reduced_kinetic_rational_control : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K],
+  reducedKinetic 2 3 2 1 2 = 4
+@target_scalar_fraction_bound : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (P r f : K),
+  0 < P → P < 4 → 0 ≤ r → r < 1 / 2 → 0 ≤ f → f < 1 → 125 * P * (1 + r) * f ^ 3 = 32 * (1 - r) * (1 - f) → 1 / 4 < f
+@inferred_target_gamma_bound : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K]
+  (P r f : K),
+  0 < P →
+    P < 4 → 0 ≤ r → r < 1 / 2 → 0 ≤ f → f < 1 → 125 * P * (1 + r) * f ^ 3 = 32 * (1 - r) * (1 - f) → 1 - 2 * f < 1 / 2
+@band_test_identity : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K] (c : K),
+  bandPolynomial c (-11 / 49) = -913 / 9604 - 103 * c / 784
+@band_test_negative : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K] (c : K),
+  0 ≤ c → bandPolynomial c (-11 / 49) < 0
+@band_zero_negative : ∀ {K : Type u_2} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K] (c : K),
+  0 < c → bandPolynomial c 0 < 0
+'Why4.GravitySelection.shift_substitution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.redshift_boundary_cancellation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.reduced_kinetic_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.lapse_polynomial_increment' depends on axioms: [propext, Quot.sound]
+'Why4.GravitySelection.lapse_substitution_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.metric_static_amplitude_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.cubic_ratio_scaling' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.tensor_scalar_xi_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.reduced_kinetic_rational_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.target_scalar_fraction_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.inferred_target_gamma_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.band_test_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.band_test_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Why4.GravitySelection.band_zero_negative' depends on axioms: [propext, Classical.choice, Quot.sound]

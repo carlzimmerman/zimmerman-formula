@@ -21,6 +21,7 @@ formal scopes. None is a determinate normalization candidate.
 | [FluxComparison.lean](current_interactions/FluxComparison.lean) | The compact flux trial's jet cancellation and quartic energy, plus the quartic-versus-cubic bound. Admissibility, integration and the physical variational infimum remain analytic inputs. |
 | [ChiralFold.lean](protected_auxiliaries/ChiralFold.lean) | Exact auxiliary fold identities and all-root timelike bounds imply negative coefficients; nominal Taylor arithmetic is distinguished from a physical force ratio. Component dictionaries, mode interpretation and asymptotics remain analytic inputs. |
 | [ClockTilt.lean](clock_flux/ClockTilt.lean) | Complete-square and frequency signs for a retained clock tilt; positive static stiffness and conditional fixed-clock amplitude arithmetic. Physical mode, force and vacuum dictionaries remain analytic inputs. |
+| [GravitySelection.lean](gravity_constraints/GravitySelection.lean) | Conditional de Sitter lapse/shift and redshift-boundary algebra, positive reduced kinetic coefficient, amplitude deformation and tensor-plus-scalar force identities, an inferred-density target's PPN bound, and finite-k polynomial signs. Covariant/PDE, source, density and actual-pi dictionaries remain analytic inputs. |
 
 The original four modules' printed critical theorem axioms are exactly
 `[propext, Classical.choice, Quot.sound]`. There are no proof admissions or
@@ -38,6 +39,10 @@ microscopic normalization proof.
 The [clock/flux continuation](clock_flux/README.md) adds seven critical
 theorem prints and true/two false controls, bringing the total to eight
 partial modules. Earlier checkpoints retain their original scopes.
+The [gravitational-constraint continuation](gravity_constraints/README.md)
+adds fourteen critical theorem prints and true/three false controls,
+bringing the total to nine partial modules. These are exact algebraic
+results under displayed hypotheses, not a microscopic selector.
 
 The rational control has A=L=1,d=3/4,r=5/4, giving rho=17/32 and
 N=3/8. The normal control compiles. Reversing N makes the unchanged lower
@@ -114,6 +119,18 @@ its simple dynamical unit-clock completion has a retained tilt tachyon.
 A top-form's positive same-form vacuum flux instead cuts off its MOND
 infrared law. Branch selection, full clock/metric constraints and an
 independent gravitating normalization remain open.
+
+[Physical gravitational constraints](gravity_constraints/RESULT.md)
+resolve a loophole in the earlier fixed-metric clock test: pure BM at
+lambda=1 on its actual de Sitter vacuum retains a positive-kinetic scalar
+with no quadratic restoring force. This does not establish full health.
+An explicit deformation preserves the vacuum and all homogeneous
+quadratic constraints while changing the MOND cubic. The rational
+prototype's finite-k instability also has a conditional weak-gravity
+continuation, subject to a regular constraint reduction and validity
+window. Its universal conformal matter coupling gives a free scalar
+force fraction; forcing the inferred-density target would imply a local
+unscreened gamma below 1/2. None of these constraints selects the target.
 
 ## Verification and reproduction
 

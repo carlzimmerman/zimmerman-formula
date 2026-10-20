@@ -135,3 +135,32 @@ structure or independently protected same-state vacuum physics. Do not
 rerun the constant-clock/Fenchel/nominal-flux match as a solved model.
 Reviewed evidence: 65be2b68f; registry entries K693-K700. The regenerated
 campaign passes 4/4 and adds no determinate physical normalization trial.
+
+## Physical gravitational constraints and actual matter force
+
+Criteria-only commit 201229b5f starts from f1565bc90. See
+formal/gravity_constraints/README.md, RESULT.md and the independent
+reviews. The pure-BM lambda=1 de Sitter calculation is distinct from the
+old lambda>1 canonical/variable-clock work. Both lapse and shift are
+retained and the redshift boundary removes the quadratic restoring
+term. Positive kinetic energy with zero restoring force does not certify
+microscopic health. The explicit f_delta cubic deformation preserves
+the homogeneous vacuum and all its quadratic constraints while changing
+the MOND amplitude. No such constraint selects the ratio.
+
+The rational prototype's c1-only gravitational completion admits a local
+Bianchi background and a frozen finite-k growing band; weak-gravity
+continuity is conditional on regular constraint reduction and an action
+validity window. No full finite-coupling ADM matrix or global source
+solution is supplied. Its universal conformal physical metric has
+G_UV=G_t+G_s, gamma_UV=1-2f and xi_V0=f^3(125pi/128). If density is
+inferred with G_UV, xi gains the G_UV/G_cos factor. On that footing the
+target implies f>1/4 and gamma_UV<1/2, under the stated local unscreened
+UV assumptions. Do not reverse that density factor or import scalar-only
+xi into the combined force. The matter coupling remains free.
+
+Nine partial Lean modules now exist. The new fourteen-statement module
+and normal controls pass; three deliberate false controls each fail only
+at False. Development failures and parser-format limitations are retained
+in the raw evidence directories. Actual pi and all physical dictionaries
+remain explicit unformalized leaves. The original goal stays active.
