@@ -50,6 +50,8 @@ SNL = 0.01                                                  # declared conservat
 DR1PRE = [("BGS", 0.295, 0.9646, 0.0258), ("LRG1", 0.510, 0.9760, 0.0171), ("LRG2", 0.706, 0.9505, 0.0191),   # 2404.03000 Table 15
           ("LRG3+ELG1", 0.930, 1.0027, 0.0114), ("ELG2", 1.317, 0.9882, 0.0176), ("QSO", 1.491, 0.9967, 0.0229)]  # z_eff: 2404.03002 Table 1
 DR1SYS = 0.00245                                            # DR1 Table 13, xi(r) total systematic on alpha_iso
+DR1POST = [("BGS", 0.295, 0.9829, 0.0185), ("LRG1", 0.510, 0.9792, 0.0113), ("LRG2", 0.706, 0.9661, 0.0117),   # 2404.03000 Table 15 POST-recon:
+           ("LRG3+ELG1", 0.930, 0.9983, 0.0081), ("ELG2", 1.317, 0.9876, 0.0147), ("QSO", 1.491, 1.0015, 0.0256)]  # POST-HOC control B12c (not frozen)
 
 # ---- P5: framework-native bound from committed same-seed PM pairs (addendum A1.4); reads JSONs only ----
 if MODE == "P5":
@@ -91,7 +93,7 @@ ANISO = [("LRG1", 0.510, 13.588, 0.167, 21.863, 0.425, -0.459), ("LRG2", 0.706, 
          ("QSO", 1.484, 30.512, 0.760, 12.817, 0.516, -0.500), ("Lya", 2.330, 38.988, 0.531, 8.632, 0.101, -0.431)]
 ISO = [(0.295, 7.942, 0.075)]                                # (z, D_V/r_d, sigma): DR2 BGS
 if MODE == "B10": ANISO = [t for t in ANISO if t[0] != "Lya"]
-if MODE == "B12": ANISO = [t for t in ANISO if t[0] == "Lya"]    # DR1 pre-recon D_V replaces the DR2 galaxy/QSO points (below)
+if MODE in ("B12", "B12c"): ANISO = [t for t in ANISO if t[0] == "Lya"]    # DR1 pre-recon D_V replaces the DR2 galaxy/QSO points (below)
 zg = np.linspace(0, 2.5, 5001); ZS = (1.0, 1.2, 1.5, 2.33)
 def cumchi(Hg): return np.r_[0, np.cumsum(0.5*(1/Hg[1:] + 1/Hg[:-1])*np.diff(zg))]*C       # line-of-sight comoving distance, Mpc
 CFG683_W = {1.0: 0.853, 1.5: 1.596, 2.33: 2.183}                     # CFG683 CMB-free BAO+SN tracking band widths
@@ -120,7 +122,7 @@ elif MODE == "TU3F": cfg.update(theta=True, freek=False, sn="U3")
 elif MODE == "D5": cfg.update(sn="DES5")
 elif MODE == "U3": cfg.update(sn="U3")
 elif MODE == "M4": cfg.update(theta=True, freek=False)
-elif MODE not in ("primary", "M1k", "M2k", "B10", "B12"): sys.exit(f"unknown CFG689_MODE {MODE}")
+elif MODE not in ("primary", "M1k", "M2k", "B10", "B12", "B12c"): sys.exit(f"unknown CFG689_MODE {MODE}")
 if MODE == "M3": cfg.update(rds=1.02)
 NODES = cfg["nodes"]; NN = len(NODES); wb0, sb, wc0, sc = cfg["wb"], cfg["sb"], cfg["wc"], cfg["sc"]
 OMNU = cfg["mnu"]/93.14; NREL = 3.044 if cfg["mnu"] == 0 else 3.044*2/3; OMR = OMG*(1 + 0.2271*NREL)
@@ -139,12 +141,12 @@ def fid_bg():              # DESI's fiducial (flat LCDM, one massive neutrino co
     omf = FID["wb"] + FID["wc"] + FID["mnu"]/93.14; omrf = OMG*(1 + 0.2271*3.044*2/3)
     Hf = 100*np.sqrt(omf*(1 + zg)**3 + omrf*(1 + zg)**4 + (FID["h"]**2 - omf - omrf)); return Hf, cumchi(Hf), camb_rdrag(FID["wb"], FID["wc"], FID["mnu"], FID["h"])
 res = {"mode": MODE, "nstep": NSTEP, "cfg": {k: (v.tolist() if isinstance(v, np.ndarray) else v) for k, v in cfg.items()}}
-if MODE in ("primary", "B12"):
+if MODE in ("primary", "B12", "B12c"):
     HF, DMF, RDF = fid_bg()
     def dvf(z): dm, dh = np.interp(z, zg, DMF), C/np.interp(z, zg, HF); return (z*dm**2*dh)**(1/3)/RDF
-if MODE == "B12":
-    ISO = [(z, a*dvf(z), np.hypot(s, DR1SYS)*dvf(z)) for (_, z, a, s) in DR1PRE]
-    res["B12_data"] = [dict(name=n, z=z, alpha_iso=a, sig=s, DV_rd=d[1], sig_DV=d[2]) for (n, z, a, s), d in zip(DR1PRE, ISO)]
+if MODE in ("B12", "B12c"):   # B12c (POST HOC): same conversion with DR1 POST-recon alpha_iso, to separate reconstruction from DR1-vs-DR2 data
+    ISO = [(z, a*dvf(z), np.hypot(s, DR1SYS)*dvf(z)) for (_, z, a, s) in (DR1PRE if MODE == "B12" else DR1POST)]
+    res["B12_data"] = [dict(name=n, z=z, alpha_iso=a, sig=s, DV_rd=d[1], sig_DV=d[2]) for (n, z, a, s), d in zip(DR1PRE if MODE == "B12" else DR1POST, ISO)]
 CINV = [np.linalg.inv(np.array([[s1**2, r*s1*s2], [r*s1*s2, s2**2]])) for (_, _, _, s1, _, s2, r) in ANISO]
 R0 = camb_rdrag(wb0, wc0, cfg["mnu"])
 BEXP = -np.log(camb_rdrag(wb0 + 2*sb, wc0, cfg["mnu"])/camb_rdrag(wb0 - 2*sb, wc0, cfg["mnu"]))/np.log((wb0 + 2*sb)/(wb0 - 2*sb))
