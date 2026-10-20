@@ -68,6 +68,7 @@ independent second prediction to reach 3σ.
 | [W4-07](W4_07_symmetry_fixed_and_bound_ratios/README.md) | Can a ratio fixed by a symmetry (partially massless spin-2, conformal scalar in dS) or by a consistency bound (weak gravity, dS/TCC conjectures, species scale, positivity, superfluid seesaw) fix the 4? | **RIGID BUT π-ODD.** The symmetry-fixed points give κ² = 16π/3 (κ 4.09), π × algebraic, about ten times the measured value. The bounds are inequalities or carry ħ. The superfluid seesaw cancels ħ but leaves κ² = α⁶ (or 8πα⁶) with α free. |
 | [W4-08](W4_08_positive_mond_amplitudes/README.md) | Can a positive microscopic MOND response force the amplitude ratio 128pi/9? | **POSITIVE RESPONSE, NO SELECTION.** A paired critical-band family has positive energy, cubic IR, quadratic UV and positive static Hessians; its exact ratio retains a physical gap and its stress is not a vacuum. A two-field superfluid parent and exact constrained MOND construction expose free source/vacuum parameters and completion failures. 53 exact checks plus independent scoped proof audits; no healthy microscopic normalization found. |
 | [W4-09](W4_09_dark_energy_models/README.md) | Do the dark-energy models themselves (holographic, agegraphic, Chaplygin, Cardassian, scaling attractor, LQC, causal-set Λ, Dirac, interacting) fix the 4? | **NO MODEL FIXES THE 4.** Each carries its own free amplitude. The saturated holographic/agegraphic value is 8π/3 (κ 2.89), the same H-type number as DGP and CKN. |
+| [W4-10](W4_10_one_kappa_lensing/README.md) | Is there ONE 4? κ in every KiDS isolated-lens subsample (colour, Sérsic, mass, hot gas, GAMA). | **ONE κ FOR LATE TYPES ONLY** (B21 Chabrier masses). Blue 0.52 vs red 1.29, n<2 0.57 vs n>2 1.32 (>4σ); mass bins agree (p 0.73, no trend). B21's hot gas doesn't close the gap. An early-type IMF (CFG926 R5, post hoc) brings red to 0.73 (z +1.8). The 4 holds for discs. |
 
 ## What would change the answer
 
@@ -86,6 +87,6 @@ Follow `KAPPA_CAMPAIGN_RULES.md`:
 3. Run a light single-core script (nothing beside a live 1024³ job beyond that).
 4. Append one register row per attempt to CFG894's CSV, then rerun `kappa_campaign_lee.py`.
 
-Name lanes W4-10, W4-11, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
+Name lanes W4-11, W4-12, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
 
 κ = ½ FITTED. Not theory closed.
