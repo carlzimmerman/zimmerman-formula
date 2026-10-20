@@ -1,0 +1,193 @@
+MODE: NORMAL
+python 3.13.9, numpy 1.26.4, sympy 1.13.1, scipy 1.14.1
+
+(0) PRE-FLIGHT (rules section 1.6): route error frozen from the record (inherited from CFG901)
+   two_loop  0.49735
+   m_red     1.75338
+   y1        0.12059
+   scheme    2.66447
+   trunc     5.32738
+   sigma_route = 6.2303 (frozen 6.230); admissible-only variant 3.2452 (frozen 3.245)
+  [PASS] PF sigma_route  sigma_route and the admissible-only variant equal the frozen values
+   delta_route = 0.0455 -> diagnostic (< 1); 1% would need sigma <= 1.37: not reachable, ceiling CONSISTENT
+
+(1) GATE K0: AS3 CPR-EH with SM matter (AS2/AS3 code, imported read-only)
+  [PASS] K0a AS3 CPR-EH (SM)  (g, lambda) = (0.9671594, -1.222930), f_g = 0.038830931, P = 95.578469 vs (0.967159, -1.22293), 0.03883093, 95.57847
+  [PASS] K0b AS3 EH systematics (SM)  two-loop 96.075819, M_red 93.825087 vs 96.07582, 93.82509
+  [PASS] K0c downstream G0  P(0.04795) = 92.9153, P(0.009805) = 137.0341, P(f_needed = 0.009805) = 137.035999
+   [K0: 4.0 s, peak RSS 160 MB]
+
+(2) FLAT-SPACE f_g: AS1's bilinear action, traceless h (9) + photon (4), q = kappa e_4, Litim q^2 -> P_k, eta terms d_t f'
+   building vertices (AS1 re-implementation, exp parametrisation, unimodular-linear) ...
+   [vertices: 15.0 s, peak RSS 174 MB]
+
+   GATE K2: vertices
+  [PASS] K2a vertex builder = AS1  the re-implemented construction reproduces AS1's V1 and V2 exactly (all 10 h components)
+  [PASS] K2b Weyl invariance (P-lin)  g = (1 + h) det(1 + h)^(-1/4) (sqrt g = 1, det from sympy) gives AS1's vertices on traceless h to second order
+   (info) exp parametrisation: first-order vertex equals AS1's on traceless h: True; the second-order vertex differs (nonzero difference: True)
+
+   GATE K3: flat unimodular kinetic form (no gauge fixing)
+  [PASS] K3a TDiff zero modes  the kinetic form annihilates h = q v + v q for v _|_ q (3 modes) and does NOT annihilate sigma (sigma is not gauge under TDiff)
+  [PASS] K3b kinetic coefficients  per unit Frobenius norm: sigma = F1*s/8 (hand -Z_N s/8 = F1*s/8), TT = -F1*s/4 (hand +Z_N s/4)
+   [K3: 15.1 s, peak RSS 174 MB]
+
+   f_g computations (closed forms in f' = F1 and d_t f' = dF1; photon gauge xi kept symbolic)
+   K1 standard TT (cosmological term restored)  f_g = -5*(8*F0 + 4*F1 - dF1)/(1152*pi**2*(F0 + F1)**2)    [parity True; xi-free True; 0.2 s]
+   UG TT only (P-lin)                           f_g = -5*(4*F1 - dF1)/(1152*pi**2*F1**2)    [parity True; xi-free True; 0.1 s]
+   UG sigma only (P-lin)                        f_g = (4*F1 - dF1)/(576*pi**2*F1**2)    [parity True; xi-free True; 0.1 s]
+   UG TT + sigma, alpha_T -> 0 (P-lin)          f_g = -(4*F1 - dF1)/(384*pi**2*F1**2)    [parity True; xi-free True; 0.1 s]
+   UG 9 modes, a_T -> infinity (P-lin)          f_g = -(4*F1 - dF1)/(384*pi**2*F1**2)    [parity True; xi-free True; 0.1 s]
+   UG 9 modes, alpha_T = 1 (P-lin)              f_g = -(4*F1 - dF1)/(192*pi**2*F1**2)    [parity True; xi-free True; 0.1 s]
+   UG TT only (P-exp)                           f_g = -5*(4*F1 - dF1)/(1152*pi**2*F1**2)    [parity True; xi-free True; 0.1 s]
+   UG TT + sigma, alpha_T -> 0 (P-exp)          f_g = -(4*F1 - dF1)/(384*pi**2*F1**2)    [parity True; xi-free True; 0.1 s]
+   UG 9 modes, alpha_T = 1 (P-exp)              f_g = -(4*F1 - dF1)/(192*pi**2*F1**2)    [parity True; xi-free True; 0.1 s]
+   [f_g: 16.0 s, peak RSS 175 MB]
+
+   GATE K1 (the K-test: TT coincidence limit) and K7 (flat consistency)
+  [PASS] K1a TT + cosmological term = AS3's general formula  -5 (8 F0 + 4 F1 - dF1)/(1152 pi^2 (F0 + F1)^2) reproduced identically
+  [PASS] K1b AS3's committed values at K0's root  f_g = 0.038830931, P = 95.578469 vs 0.03883093, 95.57847
+  [PASS] K1c unimodular TT = AS3's formula at f = 0  f_g^TT = -5*(4*F1 - dF1)/(1152*pi**2*F1**2) = 5(4 - e) g/(72 pi); at the fixed point 5*g/(36*pi)
+  [PASS] K7a parity  self-dual and anti-self-dual F-bar components carry equal weight in every computation
+  [PASS] K7b photon-gauge independence  no f_g depends on xi
+  [PASS] K7c additivity  f_g(TT + sigma) = f_g(TT) + f_g(sigma) at alpha_T -> 0
+  [PASS] K7d alpha_T -> 0 limit  the 9-mode computation with gauge parameter a_T, a_T -> infinity, equals the restriction to TT + sigma
+
+   EXPECTATIONS (pre-registered hand values, section 10.2; reported, not gates)
+   E1 f_g^sigma / f_g^TT = -2/5  (hand -2/5)  [as expected]
+   E2 f_g^xi(alpha_T = 1) / f_g^TT = 3/5  (hand +3/5)  [as expected]
+   E3 P-exp - P-lin (TT, TT + sigma, alpha_T = 1) = [0, 0, 0]  (hand: all 0)  [as expected]
+   graded f_g at a fixed point: g/(12*pi)  (hand g/(12 pi))
+   [K1/K7: 16.0 s, peak RSS 175 MB]
+
+(3) S^4: unimodular blocks from AS2's cpr_blocks with f -> f' R/2, f'' -> 0, CPR gauge term removed
+   GATE K4: S^4 blocks
+  [PASS] K4a on-shell gauge invariance  the action part of AS2's xi block vanishes identically at f = f' R/2
+  [PASS] K4b TT = massless spin-2  TT block = -F1*(6*D + R)/12; Delta_L - D = 2R/3 on traceless tensors (S^4 Riemann tensor), so TT = -(f'/2)(Delta_L - 2 Lambda), Lambda = R/4
+  [PASS] K4c sigma = D^2 x trace block  sigma block = D**2*F1*(3*D - R)/16; on-shell trace block = F1*(3*D - R)/16
+
+   GATE K5: one-loop on-shell equivalence (eta = 0, bulk R^0..R^2, no excluded modes)
+  [PASS] K5a GR on-shell (AS2 CPR blocks) = physical form  per field type: TT: (89*R**2 - 540*R + 1080)/432, VT: -(109*R**2 + 450*R + 1080)/720, S: 0
+  [PASS] K5b unimodular M-eq = physical form  per field type equal (scalar sector cancels)
+  [PASS] K5c M-naive - physical = (1/2) Tr_S[2/P]  difference in the scalar sector: (29*R**2 + 360*R + 1080)/2160 (= (29*R**2 + 360*R + 1080)/2160)
+   (info) 24 x R^2 coefficient of the physical form = 59/45 (expected 59/45); recalled Christensen-Duff -571/45 = 59/45 - 14 -> True (recalled; the integer is the excluded modes; not gating)
+   [K4/K5: 16.8 s, peak RSS 175 MB]
+
+   THE UNIMODULAR FLOW OF g: R^1 coefficients of X = (16 pi^2/V) d_t Gamma by sector (e = d_t f'/f')
+   sector            code R^1                   hand
+   TT                 -5*e/18 - 5/4              -5*e/18 - 5/4   ok
+   sigma + J_S (CPR)  17*e/240 + 1/6             17*e/240 + 1/6   ok
+   sigma normalised   e/24 + 1/6                 e/24 + 1/6   ok
+   VT (xi+ghost+J_V)  -5/8                       -5/8   ok
+   M-eq scalar        -1/6                       -1/6   ok
+   matter (SM)        -61/12                      -61/12 = (N_S - N_D - N_V)/6
+  [PASS] K6 hand closed forms of the R^1 coefficients  TT, sigma (CPR and normalised), VT, M-eq scalar equal the pre-registered hand forms
+  [PASS] K6 matter R^1 coefficient  matter R^1 = -61/12 vs -61/12
+   M-eq    sigma CPR : X1(e) = -149*e/720 - 167/24;  X1(2) = -1327/180 = -7.372222;  g* = 360*pi/1327 = 0.852278;  theta_g = 2.11896;  eta pole at g = 15.181;  admissible
+   M-eq    sigma norm: X1(e) = -17*e/72 - 167/24;  X1(2) = -535/72 = -7.430556;  g* = 640000*2**(12/23)*3**(55/69)*5**(29/69)*7**(52/69)/22235661 = 0.845588;  theta_g = 2.13573;  eta pole at g = 13.306;  admissible
+   M-naive sigma CPR : X1(e) = -149*e/720 - 163/24;  X1(2) = -1297/180 = -7.205556;  g* = 360*pi/1297 = 0.871992;  theta_g = 2.12188;  eta pole at g = 15.181;  admissible
+   M-naive sigma norm: X1(e) = -17*e/72 - 163/24;  X1(2) = -523/72 = -7.263889;  g* = 144*pi/523 = 0.864989;  theta_g = 2.13906;  eta pole at g = 13.306;  admissible
+   cross-check with AS2's beta_system (M-eq, CPR): nonzero roots of beta_g1 -> g* = [0.8522783385774872]
+  [PASS] FP-X beta_system cross-check  AS2's beta_system gives the same unique fixed point
+   [flow: 17.5 s, peak RSS 175 MB]
+  [PASS] CC classifier controls  8/8 planted cases classified as frozen (a failed gate -> NOT COMPLETED is the verdict rule)
+  [PASS] PC(i) planted f_g = f_needed  P = 137.035999177, grade CONSISTENT, z = 4.6e-15
+  [PASS] PC(ii) planted gravity  planted X1 = -16.998713 -> g* = 0.369627 -> f_g = 0.009805 -> P = 137.035999177
+   [gates: 17.6 s, peak RSS 175 MB]
+
+(4) GRADED TRIAL G1: M-eq, CPR sigma regulator, f_g from TT + sigma at alpha_T -> 0, P-lin, g_Y* at M_P, lane B one-loop downstream
+   fixed point: g* = 360*pi/1327 = 0.852278 (admissible); critical exponent theta_g = 2.11896; eta_N = -2
+   f_g / g: TT 0.04420971 (= 5/(36 pi)), sigma -0.01768388, graded 0.02652582
+   f_g* = 0.02260739 (= 2.3058 x the required 0.009805; = 0.6000 x the TT-only value); g_Y* = 0.722801; theta_Y = -2 f_g = -0.045215 (IR-attractive)
+   P = 1/alpha(0) = 105.62788;  z = (P - 137.036)/sigma_route = -5.041 (admissible-only sigma: -9.678);  miss -31.4081 = -22.92%
+   systematics (reported): two-loop 106.07890 (+0.45103); M_red 103.87449 (-1.75338)
+   UV cross-check (no measured alpha): 41/(24 pi f_g) = 24.0532 vs 55.234 -> z_UV = -5.005 (same verdict)
+   137.036 would need g* = f_needed/(f_g/g) = 0.36963 with this f_g/g (the flow gives 0.85228); with the TT-only f_g/g it would need 0.22178 (the door's 0.222)
+   substitution test (alpha_2^-1(M_Z), Delta_0 scaled as alpha x 1.01): P -> 105.24485 (shift -0.3830); an identity would shift -1.3568; fraction 0.282; the gravitational piece shifts 0
+   G1 GRADE: KILLED
+   [G1: 17.6 s, peak RSS 175 MB]
+
+(5) THE DECLARED OPTION SPACE (K = 72): every variant graded by the frozen rule; only G1 counts
+   measure  sigma-reg  modes/gauge               param   matching       g*        f_g          P          z      grade
+   M-eq     CPR        TT+sigma (alpha_T->0)     P-lin   M_P one-loop   0.852278  0.02260739   105.62788  -5.041  KILLED   <- G1 (graded)
+   M-eq     CPR        TT+sigma (alpha_T->0)     P-lin   M_P two-loop   0.852278  0.02260739   106.07890  -4.969  KILLED
+   M-eq     CPR        TT+sigma (alpha_T->0)     P-lin   M_red one-loop 0.852278  0.02260739   103.87449  -5.323  KILLED
+   M-eq     CPR        TT+sigma (alpha_T->0)     P-exp   M_P one-loop   0.852278  0.02260739   105.62788  -5.041  KILLED
+   M-eq     CPR        TT+sigma (alpha_T->0)     P-exp   M_P two-loop   0.852278  0.02260739   106.07890  -4.969  KILLED
+   M-eq     CPR        TT+sigma (alpha_T->0)     P-exp   M_red one-loop 0.852278  0.02260739   103.87449  -5.323  KILLED
+   M-eq     CPR        TT only                   P-lin   M_P one-loop   0.852278  0.03767898   96.00661   -6.585  KILLED
+   M-eq     CPR        TT only                   P-lin   M_P two-loop   0.852278  0.03767898   96.50119   -6.506  KILLED
+   M-eq     CPR        TT only                   P-lin   M_red one-loop 0.852278  0.03767898   94.25322   -6.867  KILLED
+   M-eq     CPR        TT only                   P-exp   M_P one-loop   0.852278  0.03767898   96.00661   -6.585  KILLED
+   M-eq     CPR        TT only                   P-exp   M_P two-loop   0.852278  0.03767898   96.50119   -6.506  KILLED
+   M-eq     CPR        TT only                   P-exp   M_red one-loop 0.852278  0.03767898   94.25322   -6.867  KILLED
+   M-eq     CPR        TT+sigma+xi (alpha_T=1)   P-lin   M_P one-loop   0.852278  0.04521477   93.60129   -6.972  KILLED
+   M-eq     CPR        TT+sigma+xi (alpha_T=1)   P-lin   M_P two-loop   0.852278  0.04521477   94.11287   -6.889  KILLED
+   M-eq     CPR        TT+sigma+xi (alpha_T=1)   P-lin   M_red one-loop 0.852278  0.04521477   91.84791   -7.253  KILLED
+   M-eq     CPR        TT+sigma+xi (alpha_T=1)   P-exp   M_P one-loop   0.852278  0.04521477   93.60129   -6.972  KILLED
+   M-eq     CPR        TT+sigma+xi (alpha_T=1)   P-exp   M_P two-loop   0.852278  0.04521477   94.11287   -6.889  KILLED
+   M-eq     CPR        TT+sigma+xi (alpha_T=1)   P-exp   M_red one-loop 0.852278  0.04521477   91.84791   -7.253  KILLED
+   M-eq     norm       TT+sigma (alpha_T->0)     P-lin   M_P one-loop   0.845588  0.02242991   105.81820  -5.011  KILLED
+   M-eq     norm       TT+sigma (alpha_T->0)     P-lin   M_P two-loop   0.845588  0.02242991   106.26861  -4.938  KILLED
+   M-eq     norm       TT+sigma (alpha_T->0)     P-lin   M_red one-loop 0.845588  0.02242991   104.06482  -5.292  KILLED
+   M-eq     norm       TT+sigma (alpha_T->0)     P-exp   M_P one-loop   0.845588  0.02242991   105.81820  -5.011  KILLED
+   M-eq     norm       TT+sigma (alpha_T->0)     P-exp   M_P two-loop   0.845588  0.02242991   106.26861  -4.938  KILLED
+   M-eq     norm       TT+sigma (alpha_T->0)     P-exp   M_red one-loop 0.845588  0.02242991   104.06482  -5.292  KILLED
+   M-eq     norm       TT only                   P-lin   M_P one-loop   0.845588  0.03738318   96.12080   -6.567  KILLED
+   M-eq     norm       TT only                   P-lin   M_P two-loop   0.845588  0.03738318   96.61467   -6.488  KILLED
+   M-eq     norm       TT only                   P-lin   M_red one-loop 0.845588  0.03738318   94.36742   -6.849  KILLED
+   M-eq     norm       TT only                   P-exp   M_P one-loop   0.845588  0.03738318   96.12080   -6.567  KILLED
+   M-eq     norm       TT only                   P-exp   M_P two-loop   0.845588  0.03738318   96.61467   -6.488  KILLED
+   M-eq     norm       TT only                   P-exp   M_red one-loop 0.845588  0.03738318   94.36742   -6.849  KILLED
+   M-eq     norm       TT+sigma+xi (alpha_T=1)   P-lin   M_P one-loop   0.845588  0.04485981   93.69645   -6.956  KILLED
+   M-eq     norm       TT+sigma+xi (alpha_T=1)   P-lin   M_P two-loop   0.845588  0.04485981   94.20729   -6.874  KILLED
+   M-eq     norm       TT+sigma+xi (alpha_T=1)   P-lin   M_red one-loop 0.845588  0.04485981   91.94307   -7.238  KILLED
+   M-eq     norm       TT+sigma+xi (alpha_T=1)   P-exp   M_P one-loop   0.845588  0.04485981   93.69645   -6.956  KILLED
+   M-eq     norm       TT+sigma+xi (alpha_T=1)   P-exp   M_P two-loop   0.845588  0.04485981   94.20729   -6.874  KILLED
+   M-eq     norm       TT+sigma+xi (alpha_T=1)   P-exp   M_red one-loop 0.845588  0.04485981   91.94307   -7.238  KILLED
+   M-naive  CPR        TT+sigma (alpha_T->0)     P-lin   M_P one-loop   0.871992  0.02313030   105.08410  -5.128  KILLED
+   M-naive  CPR        TT+sigma (alpha_T->0)     P-lin   M_P two-loop   0.871992  0.02313030   105.53693  -5.056  KILLED
+   M-naive  CPR        TT+sigma (alpha_T->0)     P-lin   M_red one-loop 0.871992  0.02313030   103.33071  -5.410  KILLED
+   M-naive  CPR        TT+sigma (alpha_T->0)     P-exp   M_P one-loop   0.871992  0.02313030   105.08410  -5.128  KILLED
+   M-naive  CPR        TT+sigma (alpha_T->0)     P-exp   M_P two-loop   0.871992  0.02313030   105.53693  -5.056  KILLED
+   M-naive  CPR        TT+sigma (alpha_T->0)     P-exp   M_red one-loop 0.871992  0.02313030   103.33071  -5.410  KILLED
+   M-naive  CPR        TT only                   P-lin   M_P one-loop   0.871992  0.03855050   95.68034   -6.638  KILLED
+   M-naive  CPR        TT only                   P-lin   M_P two-loop   0.871992  0.03855050   96.17702   -6.558  KILLED
+   M-naive  CPR        TT only                   P-lin   M_red one-loop 0.871992  0.03855050   93.92696   -6.919  KILLED
+   M-naive  CPR        TT only                   P-exp   M_P one-loop   0.871992  0.03855050   95.68034   -6.638  KILLED
+   M-naive  CPR        TT only                   P-exp   M_P two-loop   0.871992  0.03855050   96.17702   -6.558  KILLED
+   M-naive  CPR        TT only                   P-exp   M_red one-loop 0.871992  0.03855050   93.92696   -6.919  KILLED
+   M-naive  CPR        TT+sigma+xi (alpha_T=1)   P-lin   M_P one-loop   0.871992  0.04626060   93.32940   -7.015  KILLED
+   M-naive  CPR        TT+sigma+xi (alpha_T=1)   P-lin   M_P two-loop   0.871992  0.04626060   93.84316   -6.933  KILLED
+   M-naive  CPR        TT+sigma+xi (alpha_T=1)   P-lin   M_red one-loop 0.871992  0.04626060   91.57602   -7.297  KILLED
+   M-naive  CPR        TT+sigma+xi (alpha_T=1)   P-exp   M_P one-loop   0.871992  0.04626060   93.32940   -7.015  KILLED
+   M-naive  CPR        TT+sigma+xi (alpha_T=1)   P-exp   M_P two-loop   0.871992  0.04626060   93.84316   -6.933  KILLED
+   M-naive  CPR        TT+sigma+xi (alpha_T=1)   P-exp   M_red one-loop 0.871992  0.04626060   91.57602   -7.297  KILLED
+   M-naive  norm       TT+sigma (alpha_T->0)     P-lin   M_P one-loop   0.864989  0.02294455   105.27442  -5.098  KILLED
+   M-naive  norm       TT+sigma (alpha_T->0)     P-lin   M_P two-loop   0.864989  0.02294455   105.72662  -5.025  KILLED
+   M-naive  norm       TT+sigma (alpha_T->0)     P-lin   M_red one-loop 0.864989  0.02294455   103.52104  -5.379  KILLED
+   M-naive  norm       TT+sigma (alpha_T->0)     P-exp   M_P one-loop   0.864989  0.02294455   105.27442  -5.098  KILLED
+   M-naive  norm       TT+sigma (alpha_T->0)     P-exp   M_P two-loop   0.864989  0.02294455   105.72662  -5.025  KILLED
+   M-naive  norm       TT+sigma (alpha_T->0)     P-exp   M_red one-loop 0.864989  0.02294455   103.52104  -5.379  KILLED
+   M-naive  norm       TT only                   P-lin   M_P one-loop   0.864989  0.03824092   95.79453   -6.620  KILLED
+   M-naive  norm       TT only                   P-lin   M_P two-loop   0.864989  0.03824092   96.29048   -6.540  KILLED
+   M-naive  norm       TT only                   P-lin   M_red one-loop 0.864989  0.03824092   94.04115   -6.901  KILLED
+   M-naive  norm       TT only                   P-exp   M_P one-loop   0.864989  0.03824092   95.79453   -6.620  KILLED
+   M-naive  norm       TT only                   P-exp   M_P two-loop   0.864989  0.03824092   96.29048   -6.540  KILLED
+   M-naive  norm       TT only                   P-exp   M_red one-loop 0.864989  0.03824092   94.04115   -6.901  KILLED
+   M-naive  norm       TT+sigma+xi (alpha_T=1)   P-lin   M_P one-loop   0.864989  0.04588910   93.42456   -7.000  KILLED
+   M-naive  norm       TT+sigma+xi (alpha_T=1)   P-lin   M_P two-loop   0.864989  0.04588910   93.93755   -6.918  KILLED
+   M-naive  norm       TT+sigma+xi (alpha_T=1)   P-lin   M_red one-loop 0.864989  0.04588910   91.67118   -7.281  KILLED
+   M-naive  norm       TT+sigma+xi (alpha_T=1)   P-exp   M_P one-loop   0.864989  0.04588910   93.42456   -7.000  KILLED
+   M-naive  norm       TT+sigma+xi (alpha_T=1)   P-exp   M_P two-loop   0.864989  0.04588910   93.93755   -6.918  KILLED
+   M-naive  norm       TT+sigma+xi (alpha_T=1)   P-exp   M_red one-loop 0.864989  0.04588910   91.67118   -7.281  KILLED
+   72 variants: 72 KILLED, 0 CONSISTENT, 0 NOT DIAGNOSTIC; P range 91.576 .. 106.269; z range -7.297 .. -4.938
+   RULE D (door-level statement): KILLED across the declared option space
+   [variants: 17.9 s, peak RSS 175 MB]
+
+SUMMARY
+   gates: all PASS
+   G1: KILLED  (P = 105.62788, z = -5.041)
+   door-level (rule D): KILLED across the declared option space
+   N_mech: 373 -> 374 (one graded trial). Alpha stays an INPUT; kappa = 1/2 FITTED; not theory closed.
+   [done: 17.9 s, peak RSS 175 MB]
+exit 0

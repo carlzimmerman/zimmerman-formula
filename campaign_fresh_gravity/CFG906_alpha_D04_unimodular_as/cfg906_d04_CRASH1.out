@@ -1,0 +1,48 @@
+MODE: NORMAL
+python 3.13.9, numpy 1.26.4, sympy 1.13.1, scipy 1.14.1
+
+(0) PRE-FLIGHT (rules section 1.6): route error frozen from the record (inherited from CFG901)
+   two_loop  0.49735
+   m_red     1.75338
+   y1        0.12059
+   scheme    2.66447
+   trunc     5.32738
+   sigma_route = 6.2303 (frozen 6.230); admissible-only variant 3.2452 (frozen 3.245)
+  [PASS] PF sigma_route  sigma_route and the admissible-only variant equal the frozen values
+   delta_route = 0.0455 -> diagnostic (< 1); 1% would need sigma <= 1.37: not reachable, ceiling CONSISTENT
+
+(1) GATE K0: AS3 CPR-EH with SM matter (AS2/AS3 code, imported read-only)
+  [PASS] K0a AS3 CPR-EH (SM)  (g, lambda) = (0.9671594, -1.222930), f_g = 0.038830931, P = 95.578469 vs (0.967159, -1.22293), 0.03883093, 95.57847
+  [PASS] K0b AS3 EH systematics (SM)  two-loop 96.075819, M_red 93.825087 vs 96.07582, 93.82509
+  [PASS] K0c downstream G0  P(0.04795) = 92.9153, P(0.009805) = 137.0341, P(f_needed = 0.009805) = 137.035999
+   [K0: 4.8 s, peak RSS 161 MB]
+
+(2) FLAT-SPACE f_g: AS1's bilinear action, traceless h (9) + photon (4), q = kappa e_4, Litim q^2 -> P_k, eta terms d_t f'
+   building vertices (AS1 re-implementation, exp parametrisation, unimodular-linear) ...
+   [vertices: 16.6 s, peak RSS 175 MB]
+
+   GATE K2: vertices
+  [PASS] K2a vertex builder = AS1  the re-implemented construction reproduces AS1's V1 and V2 exactly (all 10 h components)
+  [PASS] K2b Weyl invariance (P-lin)  g = (1 + h) det(1 + h)^(-1/4) (sqrt g = 1, det from sympy) gives AS1's vertices on traceless h to second order
+   (info) exp parametrisation: first-order vertex equals AS1's on traceless h: True; the second-order vertex differs (nonzero difference: True)
+
+   GATE K3: flat unimodular kinetic form (no gauge fixing)
+  [PASS] K3a TDiff zero modes  the kinetic form annihilates h = q v + v q for v _|_ q (3 modes) and does NOT annihilate sigma (sigma is not gauge under TDiff)
+  [PASS] K3b kinetic coefficients  per unit Frobenius norm: sigma = F1*s/8 (hand -Z_N s/8 = F1*s/8), TT = -F1*s/4 (hand +Z_N s/4)
+   [K3: 16.7 s, peak RSS 175 MB]
+
+   f_g computations (closed forms in f' = F1 and d_t f' = dF1; photon gauge xi kept symbolic)
+Traceback (most recent call last):
+  File "./cfg906_d04.py", line 407, in <module>
+    run_fg("K1 standard TT (cosmological term restored)", MK_STD, M2_LIN, TT_COLS)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./cfg906_d04.py", line 401, in run_fg
+    fexpr, par = fg_flat(*args, **kw)
+                 ~~~~~~~^^^^^^^^^^^^^
+  File "./cfg906_d04.py", line 337, in fg_flat
+    dR[:nh, :nh] += dF1 * (sp.diff(Kr[:nh, :nh], F1).subs(s, P_) - sp.diff(Kr[:nh, :nh], F1))
+    ~~^^^^^^^^^^
+  File "<site-packages>/sympy/matrices/immutable.py", line 69, in __setitem__
+    raise TypeError("Cannot set values of {}".format(self.__class__))
+TypeError: Cannot set values of <class 'sympy.matrices.immutable.ImmutableDenseMatrix'>
+exit 1
