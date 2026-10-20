@@ -1,0 +1,100 @@
+CFG890  which few-parameter global description of the dwarf excess works best?  one likelihood (split-normal errors, intrinsic scatter s_int in ln sigma), one penalty (AIC/BIC)
+  sample N = 83 (CFG880's LVD sample); Ups_V 2 + gas; r_c 104 pc where fixed; CFG851 (b, log g+) canonical 0.0598, -10.047; alt 0.0588, -10.674
+  K1 (exact identities with CFG880's committed numbers): canonical: per-dwarf law max rel diff 0.0e+00, M2 lnL(s_int 0, sigma_x 8.0425) -448.738864 vs CFG880 -448.738864 (|diff| 0.0e+00); alt: per-dwarf law max rel diff 0.0e+00, M2 lnL(s_int 0, sigma_x 8.3499) -514.479845 vs CFG880 -514.479845 (|diff| 0.0e+00)  -> PASS
+  K2 [frozen +-12, 240001]: max |d lnL_i| 4.84e+01 (s 0.01, x1.5, Fornax) -> FAIL
+  K2 [wide +-40, 400001 (added after freezing)]: max |d lnL_i| 2.35e-04 (s 0.03, x1.5, NGC 147) -> PASS
+  reported (not an identity): M2 with sigma_x fixed at V_x/sqrt2 -> s_int (ln sigma) 0.268 canonical / 0.275 alt; CFG880 (ln sigma_x hierarchy, sigma_bar free) 0.380 / 0.380
+
+  [canonical] PRIMARY  N 83   (83 s)   K3 nesting/optimiser: PASS
+    model description                type     k  s_int^ [     95%     ] WORKS       lnL   Lam_s      AIC      BIC   dBIC  globals
+    M0   law alone                  baseline 0   0.635 [0.527-0.771] no      -234.65  1263.1   471.31   473.73  96.03  
+    M1   free a0                    acc      1   0.448 [0.368-0.548] no      -211.23  1292.6   426.46   431.30  53.60  a_d 6.01e-10  (95% 3.795e-10..9.581e-10)
+    M2   finite clump (CFG877)      mass     1   0.269 [0.210-0.345] no      -186.10   525.3   376.20   381.03   3.34  sigma_x 7.448  (95% 6.625..8.191)
+    M3   extended cored (CFG870)    mass     1   0.294 [0.233-0.374] no      -190.35   728.4   384.70   389.54  11.85  V_x 9  (95% 7.763..10.29)
+    M5   extra mass ~ r             mass     1   0.279 [0.223-0.352] no      -184.43   734.1   372.86   377.69   0.00  V_x 6.48  (95% 5.559..7.431)
+    M6   free Upsilon_V             baryon   1   0.474 [0.391-0.578] no      -214.54  1301.7   433.08   437.91  60.22  Ups_V 9.925  (95% 6.448..15.28)
+    M7   CFG851 law fixed           acc      0   0.499 [0.407-0.614] no      -219.56  1168.8   441.11   443.53  65.84  
+    M11  acceleration floor         acc      1   0.418 [0.344-0.513] no      -207.07  1222.7   418.14   422.98  45.29  g_f 6.242e-12  (95% 4.149e-12..8.919e-12)
+    M4   low-g power shape          acc      2   0.394 [0.322-0.487] no      -203.92  1072.1   413.85   421.10  43.41  b 0.2232, log10 g* -10.81
+    M8   low-g step (CFG828)        acc      2   0.377 [0.305-0.468] no      -201.86   625.7   409.71   416.97  39.27  A 3.34, log10 g_c -12.19, n_below 63
+    M9   finite clump, free core    mass     2   0.274 [0.214-0.349] no      -185.80   518.7   377.60   384.86   7.17  sigma_x 7.006, r_c_pc 80.9
+    M10  extended, free core        mass     2   0.274 [0.219-0.347] no      -183.77   713.7   373.55   380.81   3.11  V_x 6.954, r_c_pc 26.92
+    best by BIC: M5 (extra mass ~ r, mass-like), s_int 0.279; best mass-like M5 (BIC 377.69), best acceleration-like M8 (BIC 416.97); dBIC_type (acc - mass) +39.27; dBIC(M0 - best) +96.03; scatter removed 56%; WORKS: none
+    outlier residuals at each model's MLE: sigma_model / r = ln(sigma_obs/sigma_model) / t = r/sqrt(s^2 + (e/sigma)^2)
+                           Crater II                Antlia II                  Sextans                    Draco                 Bootes I
+      obs                       2.34                     5.98                     7.90                     9.55                     4.00
+      M0       3.87  -0.50   -0.8      5.52  +0.08   +0.1      4.40  +0.59   +0.9      4.61  +0.73   +1.1      2.36  +0.53   +0.8  
+      M1       6.14  -0.97   -2.0      8.78  -0.38   -0.8      6.97  +0.13   +0.3      7.25  +0.28   +0.6      3.74  +0.07   +0.1  
+      M2       4.48  -0.65   -2.0      5.72  +0.04   +0.2      5.52  +0.36   +1.1      7.01  +0.31   +1.1      5.96  -0.40   -1.4  
+      M3       6.47  -1.02   -2.9      7.58  -0.24   -0.8      6.76  +0.16   +0.5      6.67  +0.36   +1.2      5.24  -0.27   -0.9  
+      M5       5.38  -0.83   -2.5      6.67  -0.11   -0.4      5.77  +0.31   +1.0      5.94  +0.48   +1.7      4.42  -0.10   -0.3  
+      M6       5.79  -0.91   -1.8      8.27  -0.32   -0.7      6.63  +0.18   +0.4      7.06  +0.30   +0.6      3.55  +0.12   +0.2  
+      M7       5.06  -0.77   -1.5      7.27  -0.19   -0.4      5.41  +0.38   +0.7      5.35  +0.58   +1.2      2.93  +0.31   +0.6  
+      M11     10.26  -1.48   -3.2     15.30  -0.94   -2.2      7.81  +0.01   +0.0      6.15  +0.44   +1.1      4.40  -0.09   -0.2  
+      M4       8.66  -1.31   -3.0     12.65  -0.75   -1.9      7.84  +0.01   +0.0      6.59  +0.37   +0.9      4.34  -0.08   -0.2  
+      M8       7.06  -1.10   -2.6     10.09  -0.52   -1.4      8.04  -0.02   -0.0      8.43  +0.12   +0.3      4.31  -0.08   -0.2  
+      M9       4.35  -0.62   -1.9      5.68  +0.05   +0.2      5.30  +0.40   +1.3      6.57  +0.37   +1.4      5.64  -0.34   -1.2  
+      M10      5.57  -0.87   -2.6      6.83  -0.13   -0.5      5.95  +0.28   +0.9      6.10  +0.45   +1.6      4.63  -0.15   -0.5  
+    five largest |t| per model:
+      M0   Segue 1 +2.4, Eridanus IV +2.3, Carina III +2.3, Willman 1 +2.1, Andromeda XXVII +2.1
+      M1   Segue 1 +2.3, NGC 147 -2.3, Eridanus IV +2.2, Carina III +2.1, Crater II -2.0
+      M2   Andromeda XXVII +2.9, Segue 1 +2.5, Carina III +2.5, Willman 1 +2.4, NGC 147 -2.3
+      M3   Crater II -2.9, Segue 1 +2.7, Carina III +2.6, Willman 1 +2.6, Andromeda XXVII +2.4
+      M5   Andromeda XXVII +3.0, Crater II -2.5, NGC 147 -2.2, Andromeda IX +1.9, Andromeda XXVI +1.8
+      M6   NGC 147 -2.5, Segue 1 +2.3, Eridanus IV +2.2, Carina III +2.1, Willman 1 +2.0
+      M7   Segue 1 +2.5, Eridanus IV +2.5, Carina III +2.4, Willman 1 +2.3, Andromeda XXVII +2.2
+      M11  Crater II -3.2, Antlia II -2.2, Carina III +2.2, Willman 1 +2.0, Segue 1 +2.0
+      M4   Crater II -3.0, Segue 1 +2.2, Carina III +2.2, Eridanus IV +2.1, Willman 1 +2.0
+      M8   Crater II -2.6, Segue 1 +2.3, Eridanus IV +2.3, Carina III +2.1, Willman 1 +1.9
+      M9   Andromeda XXVII +3.1, NGC 147 -2.3, Hercules -2.2, Carina III +2.2, Andromeda IX +2.1
+      M10  Andromeda XXVII +2.9, Crater II -2.6, NGC 147 -2.3, Andromeda IX +1.9, Hercules -1.7
+
+  [alt] PRIMARY  N 83   (80 s)   K3 nesting/optimiser: PASS
+    model description                type     k  s_int^ [     95%     ] WORKS       lnL   Lam_s      AIC      BIC   dBIC  globals
+    M0   law alone                  baseline 0   0.601 [0.497-0.732] no      -231.16  1252.9   464.32   466.74  89.15  
+    M1   free a0                    acc      1   0.448 [0.368-0.548] no      -211.23  1292.6   426.46   431.30  53.71  a_d 6.01e-10  (95% 3.795e-10..9.581e-10)
+    M2   finite clump (CFG877)      mass     1   0.276 [0.217-0.352] no      -186.75   655.5   377.50   382.33   4.74  sigma_x 7.372  (95% 6.595..8.219)
+    M3   extended cored (CFG870)    mass     1   0.300 [0.238-0.380] no      -191.02   842.6   386.04   390.88  13.29  V_x 8.761  (95% 7.487..10.09)
+    M5   extra mass ~ r             mass     1   0.280 [0.224-0.352] no      -184.38   833.6   372.75   377.59   0.00  V_x 6.295  (95% 5.369..7.252)
+    M6   free Upsilon_V             baryon   1   0.468 [0.386-0.572] no      -213.84  1279.1   431.69   436.53  58.94  Ups_V 8.576  (95% 5.564..13.23)
+    M7   CFG851 law fixed           acc      0   0.499 [0.407-0.614] no      -219.51  1166.1   441.02   443.44  65.85  
+    M11  acceleration floor         acc      1   0.418 [0.343-0.513] no      -207.05  1251.4   418.10   422.94  45.35  g_f 5.833e-12  (95% 3.765e-12..8.488e-12)
+    M4   low-g power shape          acc      2   0.396 [0.323-0.488] no      -204.07  1114.1   414.14   421.40  43.81  b 0.222, log10 g* -10.98
+    M8   low-g step (CFG828)        acc      2   0.375 [0.303-0.465] no      -201.59   708.6   409.18   416.44  38.85  A 3.043, log10 g_c -12.19, n_below 63
+    M9   finite clump, free core    mass     2   0.277 [0.219-0.353] no      -186.50   627.5   379.00   386.26   8.67  sigma_x 7.155, r_c_pc 87.37
+    M10  extended, free core        mass     2   0.277 [0.221-0.349] no      -183.98   822.2   373.96   381.22   3.63  V_x 6.657, r_c_pc 22.9
+    best by BIC: M5 (extra mass ~ r, mass-like), s_int 0.280; best mass-like M5 (BIC 377.59), best acceleration-like M8 (BIC 416.44); dBIC_type (acc - mass) +38.85; dBIC(M0 - best) +89.15; scatter removed 54%; WORKS: none
+    outlier residuals at each model's MLE: sigma_model / r = ln(sigma_obs/sigma_model) / t = r/sqrt(s^2 + (e/sigma)^2)
+                           Crater II                Antlia II                  Sextans                    Draco                 Bootes I
+      obs                       2.34                     5.98                     7.90                     9.55                     4.00
+      M0       4.05  -0.55   -0.9      5.79  +0.03   +0.1      4.61  +0.54   +0.9      4.83  +0.68   +1.1      2.47  +0.48   +0.8  
+      M1       6.14  -0.97   -2.0      8.78  -0.38   -0.8      6.97  +0.13   +0.3      7.25  +0.28   +0.6      3.74  +0.07   +0.1  
+      M2       4.53  -0.66   -2.0      5.94  +0.01   +0.0      5.48  +0.37   +1.1      6.74  +0.35   +1.3      5.72  -0.36   -1.2  
+      M3       6.47  -1.02   -2.9      7.69  -0.25   -0.8      6.80  +0.15   +0.4      6.73  +0.35   +1.2      5.18  -0.26   -0.8  
+      M5       5.44  -0.84   -2.5      6.83  -0.13   -0.5      5.87  +0.30   +0.9      6.04  +0.46   +1.6      4.40  -0.09   -0.3  
+      M6       5.85  -0.92   -1.8      8.35  -0.33   -0.7      6.68  +0.17   +0.3      7.08  +0.30   +0.6      3.58  +0.11   +0.2  
+      M7       5.06  -0.77   -1.5      7.27  -0.19   -0.4      5.42  +0.38   +0.7      5.35  +0.58   +1.2      2.93  +0.31   +0.6  
+      M11     10.04  -1.46   -3.2     14.96  -0.92   -2.2      7.75  +0.02   +0.0      6.23  +0.43   +1.0      4.36  -0.09   -0.2  
+      M4       8.65  -1.31   -3.0     12.64  -0.75   -1.9      7.84  +0.01   +0.0      6.59  +0.37   +0.9      4.34  -0.08   -0.2  
+      M8       7.07  -1.11   -2.7     10.10  -0.52   -1.4      8.04  -0.02   -0.0      8.42  +0.13   +0.3      4.31  -0.08   -0.2  
+      M9       4.47  -0.65   -2.0      5.92  +0.01   +0.0      5.39  +0.38   +1.2      6.56  +0.38   +1.4      5.45  -0.31   -1.1  
+      M10      5.58  -0.87   -2.6      6.95  -0.15   -0.5      6.00  +0.28   +0.9      6.16  +0.44   +1.6      4.55  -0.13   -0.4  
+    five largest |t| per model:
+      M0   Segue 1 +2.4, Eridanus IV +2.4, Carina III +2.3, Willman 1 +2.2, Andromeda XXVII +2.1
+      M1   Segue 1 +2.3, NGC 147 -2.3, Eridanus IV +2.2, Carina III +2.1, Crater II -2.0
+      M2   Andromeda XXVII +3.0, Segue 1 +2.4, Carina III +2.4, NGC 147 -2.4, Willman 1 +2.4
+      M3   Crater II -2.9, Segue 1 +2.7, Carina III +2.6, Willman 1 +2.5, Andromeda XXVII +2.4
+      M5   Andromeda XXVII +3.0, Crater II -2.5, NGC 147 -2.4, Andromeda IX +1.9, Andromeda XXVI +1.8
+      M6   NGC 147 -2.4, Segue 1 +2.3, Eridanus IV +2.2, Carina III +2.1, Willman 1 +2.0
+      M7   Segue 1 +2.5, Eridanus IV +2.5, Carina III +2.4, Willman 1 +2.3, Andromeda XXVII +2.2
+      M11  Crater II -3.2, Carina III +2.2, Antlia II -2.2, Segue 1 +2.1, Willman 1 +2.0
+      M4   Crater II -3.0, Segue 1 +2.2, Carina III +2.2, Eridanus IV +2.1, Willman 1 +2.0
+      M8   Crater II -2.7, Segue 1 +2.3, Eridanus IV +2.3, Carina III +2.1, Willman 1 +1.9
+      M9   Andromeda XXVII +3.1, NGC 147 -2.4, Hercules -2.3, Carina III +2.2, Segue 1 +2.1
+      M10  Andromeda XXVII +2.9, Crater II -2.6, NGC 147 -2.4, Andromeda IX +1.8, Andromeda XXVI +1.7
+
+  dBIC_type (best acc - best mass): canonical +39.27, alt +38.85;  MUTATE behaved: {'shape': True, 'clump': True}
+
+  CLASS: NONE WORKS (best by BIC: canonical M5 extra mass ~ r s_int 0.279 [95% 0.223-0.352], mass-like; alt M5 extra mass ~ r s_int 0.280 [95% 0.224-0.352], mass-like); type: MASS-LIKE PREFERRED
+
+  wall time 168 s

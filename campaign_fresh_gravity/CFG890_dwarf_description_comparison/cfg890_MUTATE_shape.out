@@ -1,0 +1,39 @@
+CFG890  which few-parameter global description of the dwarf excess works best?  one likelihood (split-normal errors, intrinsic scatter s_int in ln sigma), one penalty (AIC/BIC)  [MUTATE shape: synthetic data]
+  sample N = 83 (CFG880's LVD sample); Ups_V 2 + gas; r_c 104 pc where fixed; CFG851 (b, log g+) canonical 0.0598, -10.047; alt 0.0588, -10.674
+
+  [canonical] MUTATE shape (truth M4 b 0.20, log g* -11.0)  N 83   (70 s)   K3 nesting/optimiser: PASS
+    model description                type     k  s_int^ [     95%     ] WORKS       lnL   Lam_s      AIC      BIC   dBIC  globals
+    M0   law alone                  baseline 0   0.349 [0.278-0.441] no      -185.81   662.0   373.63   376.04 122.21  
+    M1   free a0                    acc      1   0.176 [0.134-0.235] no      -157.51   303.8   319.02   323.86  70.03  a_d 3.273e-10  (95% 2.551e-10..4.207e-10)
+    M2   finite clump (CFG877)      mass     1   0.257 [0.205-0.326] no      -170.05   467.9   344.10   348.94  95.10  sigma_x 4.97  (95% 4.107..5.786)
+    M3   extended cored (CFG870)    mass     1   0.163 [0.121-0.220] no      -153.98   153.3   311.96   316.80  62.97  V_x 6.908  (95% 5.862..7.868)
+    M5   extra mass ~ r             mass     1   0.230 [0.178-0.298] no      -168.27   287.2   340.53   345.37  91.54  V_x 4.169  (95% 3.209..5.074)
+    M6   free Upsilon_V             baryon   1   0.208 [0.161-0.272] no      -163.00   381.3   329.99   334.83  81.00  Ups_V 5.764  (95% 4.497..7.402)
+    M7   CFG851 law fixed           acc      0   0.182 [0.135-0.246] no      -159.46   187.7   320.92   323.33  69.50  
+    M11  acceleration floor         acc      1   0.065 [0.038-0.103] no      -131.27    27.2   266.55   271.38  17.55  g_f 3.826e-12  (95% 3.232e-12..4.502e-12)
+    M4   low-g power shape          acc      2   0.000 [0.000-0.035] yes     -120.29     0.0   246.57   253.83   0.00  b 0.1863, log10 g* -10.91
+    M8   low-g step (CFG828)        acc      2   0.138 [0.100-0.191] no      -151.35   195.9   308.71   315.97  62.13  A 2.051, log10 g_c -11.78, n_below 74
+    M9   finite clump, free core    mass     2   0.116 [0.080-0.169] no      -149.11    67.0   304.22   311.48  57.65  sigma_x 14.4, r_c_pc 967.4
+    M10  extended, free core        mass     2   0.050 [0.014-0.093] no      -135.93     5.0   277.86   285.12  31.29  V_x 14.17, r_c_pc 545.7
+    best by BIC: M4 (low-g power shape, acceleration-like), s_int 0.000; best mass-like M10 (BIC 285.12), best acceleration-like M4 (BIC 253.83); dBIC_type (acc - mass) -31.29; dBIC(M0 - best) +122.21; scatter removed 100%; WORKS: M4
+
+  [alt] MUTATE shape (truth M4 b 0.20, log g* -11.0)  N 83   (68 s)   K3 nesting/optimiser: PASS
+    model description                type     k  s_int^ [     95%     ] WORKS       lnL   Lam_s      AIC      BIC   dBIC  globals
+    M0   law alone                  baseline 0   0.351 [0.281-0.441] no      -188.71   735.7   379.42   381.84 127.74  
+    M1   free a0                    acc      1   0.177 [0.135-0.235] no      -159.38   342.8   322.77   327.61  73.51  a_d 3.973e-10  (95% 3.109e-10..5.088e-10)
+    M2   finite clump (CFG877)      mass     1   0.259 [0.207-0.326] no      -172.50   525.1   348.99   353.83  99.74  sigma_x 5.257  (95% 4.356..6.096)
+    M3   extended cored (CFG870)    mass     1   0.164 [0.122-0.219] no      -155.61   172.9   315.22   320.06  65.96  V_x 7.208  (95% 6.14..8.191)
+    M5   extra mass ~ r             mass     1   0.231 [0.180-0.297] no      -170.43   321.1   344.86   349.70  95.61  V_x 4.344  (95% 3.365..5.268)
+    M6   free Upsilon_V             baryon   1   0.207 [0.160-0.269] no      -164.60   421.7   333.20   338.03  83.94  Ups_V 5.895  (95% 4.615..7.545)
+    M7   CFG851 law fixed           acc      0   0.221 [0.169-0.290] no      -168.20   318.8   338.41   340.82  86.73  
+    M11  acceleration floor         acc      1   0.065 [0.039-0.101] no      -131.96    30.0   267.92   272.76  18.66  g_f 4.22e-12  (95% 3.584e-12..4.942e-12)
+    M4   low-g power shape          acc      2   0.000 [0.000-0.033] yes     -120.42     0.0   246.84   254.09   0.00  b 0.1869, log10 g* -10.92
+    M8   low-g step (CFG828)        acc      2   0.138 [0.101-0.190] no      -152.90   218.6   311.81   319.06  64.97  A 2.057, log10 g_c -11.78, n_below 74
+    M9   finite clump, free core    mass     2   0.118 [0.082-0.171] no      -151.11    78.4   308.22   315.47  61.38  sigma_x 15.42, r_c_pc 991.2
+    M10  extended, free core        mass     2   0.052 [0.020-0.094] no      -137.25     6.6   280.51   287.76  33.67  V_x 14.81, r_c_pc 543.6
+    best by BIC: M4 (low-g power shape, acceleration-like), s_int 0.000; best mass-like M10 (BIC 287.76), best acceleration-like M4 (BIC 254.09); dBIC_type (acc - mass) -33.67; dBIC(M0 - best) +127.74; scatter removed 100%; WORKS: M4
+
+  CLASS (synthetic): A DESCRIPTION WORKS (M4); type: ACCELERATION-LIKE PREFERRED
+  MUTATE-shape: truth M4 WORKS on both True; within dBIC <= 2 of the best on both True (dBIC 0.00 / 0.00); type verdict allowed True  -> control behaves as required
+
+  wall time 139 s
