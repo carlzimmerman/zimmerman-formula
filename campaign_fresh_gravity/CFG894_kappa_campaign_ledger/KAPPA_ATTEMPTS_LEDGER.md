@@ -17,9 +17,9 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (614 rows)
+## Totals (623 rows)
 
-- **453 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
+- **460 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
 - **117 produced a number.** 51 produced one determinate value; 66 are menus of several values from
   admissible variants. Every other attempt ended in one of four ways:
@@ -37,7 +37,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
 - The rate (about 33%) is what a random draw from the record-natural number set gives (27–28%; see
   `kappa_campaign_lee.out`). So the landings are no evidence that any route knows κ.
 
-**65 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
+**66 attempts output exactly ½, and every one was voided or left conditional.** That is about one attempt in seven.
 The ½ got in by one of these routes:
 - inserted or written in (CFG43, CFG187, G031);
 - posited (the free-fall surface gravity c²/2R*, i.e. J = Gρr²/c² = 1);
@@ -144,17 +144,17 @@ fact.
 |---|---|---|---|---|---|---|
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 55 | 13 | 13 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 41 | 8 | 14 | 19 | 0 | 0 |
-| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 59 | 4 | 10 | 45 | 0 | 0 |
-| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 104 | 4 | 6 | 89 | 5 | 0 |
+| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 60 | 4 | 10 | 46 | 0 | 0 |
+| FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 108 | 4 | 6 | 93 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 56 | 9 | 11 | 35 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
 | TA Topological / index / anomaly | 24 | 1 | 0 | 23 | 0 | 0 |
 | QG Quantum-gravity programmes (asymptotic safety, DSSYK, RG improvement) | 20 | 6 | 1 | 13 | 0 | 0 |
-| KS Kinetic / settling / collective / cold-energy dynamics | 31 | 0 | 2 | 29 | 0 | 0 |
-| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 33 | 1 | 4 | 24 | 0 | 0 |
+| KS Kinetic / settling / collective / cold-energy dynamics | 32 | 0 | 2 | 30 | 0 | 0 |
+| CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 34 | 1 | 4 | 25 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 43 | 0 | 0 | 0 | 0 | 33 |
-| AU Audits, controls, meta-analyses | 70 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 72 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -329,6 +329,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K567 | H016 | `hy4_push/lean/H016_the_seesaw.lean` | seesaw a0 = Lambda^2/(n M_Pl) | - | free | restatement; n empirical | 7733ce681 |
 | K595 | CFG897 | `campaign_fresh_gravity/CFG897_kappa_D1_stiffness_frw_vacuum` | stiffness term's own FRW vacuum (covariant completions of -(gamma/2)/grad P/^2; timelike P; 4piG/P/<=a0) = rho_DE | - | free | CLOSURE: fixed-norm eps <= 0 (sign); w = w_total (G renorm 1e-19..1e-15); size-only kappa >= 1e7 (3e6 with O(1) non-minimal; TRADE kappa ~ c/(L* sqrt(G rho))), L* needed >= 4.9 Gpc: EXCLUDED; Maxwell/tether/law vacuum vanish; free (div P)^2 CONDITION | 303517f23 |
 | K598 | CFG900 | `campaign_fresh_gravity/CFG900_kappa_D4_lorentz_nodal_medium` | nodal fermion medium made Lorentz-invariant (v = c), its own filled-band vacuum = rho_DE (strict LI Dirac sea; ring with cone dim reg / tube / Pauli-Villars; timelike P0 loci) | - | free | CLOSURE: strict LI has only point nodes -> m^D vs /P/^(D-1) (NO LAW); universal beta/P/^3/3 vanishes at P_cos = 0 (IDENTITY); tube E0 < 0, w = +1/2 (sign lock); PV constant sign free; every link kappa^2 = 12pi/(sigma lambda^3) (one-parameter map; v and hbar cancel); excluded posits slot 6.14 / horizon 0.643 miss | 8b1267c5d |
+| K621 | W4-03/AS725 | `why_4_puzzle/W4_03_unrun_as_proposals` | mu(g) = K'(g)/(2g) integrability with a vacuum functional of K | - | free | CLOSURE: K0 free (k01 zero mode); Newtonian offsets diverge (Q: -a0 g; MU2: -8 a0^2 ln g), no finite K0-free vacuum | 6a394bb98 |
 
 ## FN: Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field)
 
@@ -438,6 +439,10 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K607 | W4-01/F5 | `why_4_puzzle/W4_01_untouched_gravity_families` | Einstein-Cartan spin-torsion energy (pi/2) G hbar^2 n^2 as the a0 scale; with independent rho_DE, or as the dark energy itself | - | free | HBAR: kappa^2 ~ hbar^2 n^2/rho (excluded); spin energy as the DE gives kappa = 1 by construction (identity, wrong sign, not scored) | cafc0bf78 |
 | K610 | W4-02/portal/R1 | `why_4_puzzle/W4_02_independent_portal_audit` | fixed-metric symmetry, canonical normalization, Born-Infeld duality and granted weak-field no-force | - | free | TRADE/CLOSURE: physical xi=(alpha_c^2/G)(T/C); vacuum identity operator and source normalization remain independent; even C=T plus no-force yields a non-MOND threshold xi=Omega_(d-2), not law selection | 04d9b80a9 |
 | K611 | W4-02/portal/R2 | `why_4_puzzle/W4_02_independent_portal_audit` | causal response selection with fixed vacuum: exact simple-mu and quadratic preferred-frame scalar families | - | free | NO SELECTION: every xi>0 has the same fixed vacuum parameter and high-field G, positive scalar time kinetic energy and subluminal local cones at finite nonzero gradient; effective toys, not full covariant completions; independent proof audit; 34/34 checks and three mutations bite | 04d9b80a9 |
+| K617 | W4-03/AS654 | `why_4_puzzle/W4_03_unrun_as_proposals` | four-form P(q) = Z q^2/2 + C0 with a0 = beta sqrt(G) q | - | free | CONDITION: kappa^2 = 2beta^2/(Z - 2C0/q^2); the LOCK needs C0 = 0 and nothing names it; a0^2 = (2beta^2 G/Z)(eps + C0) (offset tracking if w != -1) | 6a394bb98 |
+| K618 | W4-03/AS655 | `why_4_puzzle/W4_03_unrun_as_proposals` | four-form P(q) = Z q^2/2 + lambda q^4/Q0^2 | - | free | TRADE: kappa^2 = 2beta^2/(Z + 6 lambda q^2/Q0^2) runs; tracking slope (Z+6x)/(2(Z+12x)) < 1/2 | 6a394bb98 |
+| K619 | W4-03/AS672 | `why_4_puzzle/W4_03_unrun_as_proposals` | rigidity as the functional equation a0(q)^2 = kappa^2 G [q P_q - P] | - | free | CLOSURE: solvable for every kappa (0.3, 0.5, 0.7 and general a0(q)); free zero-energy mode C q; linear a0 reproduces k04 | 6a394bb98 |
+| K622 | W4-03/AS1923 | `why_4_puzzle/W4_03_unrun_as_proposals` | compact three-form quantisation q = 2 pi n f/Vol in k04 | - | free | TRADE: kappa^2 = 2beta^2/(Z + 2b beta^2) independent of n, f, Vol (= FL1/K144); unit flux spacing gives nothing | 6a394bb98 |
 
 ## PS: 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar)
 
@@ -609,6 +614,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K577 | G001 | `glm53_push/G001_clockmaker_dilemma.py` | clock-derived kappa | - | free | closed | be5a58d00 |
 | K583 | deepseek_moa | `deepseek_moa/HARVEST.md` | kappa = sigma^2/v^2 = c_s^2 = 1/2 | - | free | VOID (naming): SIS class | d78d7525a |
 | K596 | CFG898 | `campaign_fresh_gravity/CFG898_kappa_D2_causality_saturation` | saturate CFG893 drift-causality ceiling (v_s = c) at rho_DE-defined loci x kernels x alpha* (causal bound / FP / BGK) | - | menu | NOT A SELECTION: menu 2.894-10.948 all miss; real field at loci gives kappa_sat 3.3e11-1.2e17 ~ M_b^-1 (mass-dependent, excluded); H-type a0 = N c H_L/(alpha c_nu) (horizon family, pi-parity forbids 1/2); alpha not fixed by IS closure | d663eb027 |
+| K615 | W4-03/AS119 | `why_4_puzzle/W4_03_unrun_as_proposals` | max-ent {1, E[ln(1+u)] = c} -> Lomax (l-1)(1+u)^-l, n = 1/c; kappa = 1/n only if the kernel scale is s = c sqrt(G rho) (premise A) | - | free | REPARAMETRISATION (S5): exact max-ent, but its 1/2 is the committed MU2 kernel's n = 2 read back through premise A; from data c = 0.417+-0.095 -> n = 2.40+-0.55 | 6a394bb98 |
 
 ## CC: Cosmological consistency (horizons, epochs, H0, unimodular, sequestering)
 
@@ -652,6 +658,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K605 | W4-01/F3 | `why_4_puzzle/W4_01_untouched_gravity_families` | dRGT massive gravity / Hassan-Rosen bigravity self-accelerating branch (Lambda_eff = m^2 X); a0 = graviton Compton acceleration c^2 m | - | free | TRADE: kappa^2 = 8pi/X with X free in the potential parameters; pi-odd at any algebraic X, never 1/2 | cafc0bf78 |
 | K606 | W4-01/F4 | `why_4_puzzle/W4_01_untouched_gravity_families` | mimetic gravity (constraint g^{mn} d_m phi d_n phi = 1; Lambda an integration constant or a free V scale) | - | free | TRADE: no intrinsic acceleration scale; Lambda is initial data | cafc0bf78 |
 | K608 | W4-01/F6 | `why_4_puzzle/W4_01_untouched_gravity_families` | teleparallel f(T) = T + alpha(-T)^n: de Sitter vacuum (6H^2)^(1-n) = alpha(2n-1); a0 from the correction's scale /T_*/ = alpha^(1/(1-n)) | - | free | TRADE: kappa^2 = 16pi (2n-1)^(1/(n-1)) (alpha cancels), free in n; pi-odd at rational n, never 1/2 | cafc0bf78 |
+| K620 | W4-03/AS698 | `why_4_puzzle/W4_03_unrun_as_proposals` | time vs scale-factor averaging prescriptions A_t, A_a | - | free | AMBIGUITY in the already-excluded global-average class: A_a/A_t = 1.164/1.284/1.321 at T = 10/100/1000 (a = t^2/3, L = H^2); only A_t is covariant | 6a394bb98 |
 
 ## NU: Numerology and grammar searches (flagged)
 
@@ -813,6 +820,8 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K612 | W4-02/portal/R3 | `why_4_puzzle/W4_02_independent_portal_audit` | explicit source-connected constitutive counterfamily after the vacuum zero mode is fixed; extension of CFG911 | - | audit | NONSELECTION PROOF: W_xi(0;epsilon) and source variations vanish for every xi>0; convexity and identical dimensionless simple-mu algebraic law survive xi rescaling in every spatial dimension n>=2; stiffness omitted only in algebraic reduction | 04d9b80a9 |
 | K613 | W4-02/portal/DBI | `why_4_puzzle/W4_02_independent_portal_audit` | primary-source audit of Cai-Wang arXiv:1511.00627v3 screening-radius identification and dark-energy stress | - | audit | TRADE: xi=2pi eta^4/(g^2 gamma); transition-radius equality and canonical matter coupling are free; action has negative time kinetic Hessian; no healthy coefficient selection | 04d9b80a9 |
 | K614 | W4-02/portal/PI | `why_4_puzzle/W4_02_independent_portal_audit` | qualification of H-only pi obstruction and rational-function extension | - | audit | RESTRICTED THEOREM: q=R(pi), R rational function over algebraic numbers, forbids exact half; H-only does not imply that grammar, since horizon-area prescription gives xi=2/3; no numerical selection or global no-go | 04d9b80a9 |
+| K616 | W4-03/AS562 | `why_4_puzzle/W4_03_unrun_as_proposals` | hidden-hbar audit: Pi_quant = hbar/(M_b v R) | - | audit | AUDIT: dimensionless, 1.7e-100 for a 1e10 Msun / 100 km/s / 10 kpc galaxy; the law is hbar-free; an l_P = 1 entropy count carries hbar^-1 when restored | 6a394bb98 |
+| K623 | W4-03/K547 | `deepseek_push/astra_spawn_ideas/results/AS025` | correction to K547: which of its nine proposals were unrun | - | audit | CORRECTION of K547: AS025 was executed 2026-09-28 (run_20260928T000953; dimensional uniqueness, kappa-blind); the other eight are now run in W4-03 (K615-K622) | 6a394bb98 |
 
 ## LN: Logic / Lean formalisations
 
