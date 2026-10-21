@@ -1,0 +1,52 @@
+{
+ "results": {
+  "K_leading": "Derivative(V(r), r) + 2*V(r)/r",
+  "a_leading": "V(r)*Derivative(V(r), r) + Derivative(Phi(r), r)",
+  "E_cusp_y": "(-C2*K_0**2 + sqrt(C1**2*a_M**2*g**2 + C1*C2*K_0**2*g**2 + C2**2*K_0**4))/(C1*a_M**2 + C2*K_0**2)",
+  "delta_K": "fixed by a strictly monotone constraint; lambda_eff -> inf; C -> 6; c_s^2 = 0 at alpha = 2",
+  "R_amp": "-4*I_0*c1/(27*c2*x_a)",
+  "verdict_target": "NOT SELECTED"
+ },
+ "checks": [
+  {
+   "name": "K1 exact identities: a.u = 0; dS flat slicing K = 3H, a = 0; PG a = 0",
+   "detail": "a.u 0; 3*H, 0; 0",
+   "pass": true
+  },
+  {
+   "name": "M1 leading forms K = (r^2 v)'/r^2, a_r = Phi' + v v'",
+   "detail": "0, 0",
+   "pass": true
+  },
+  {
+   "name": "M2 Euler-Lagrange equations have the stated forms",
+   "detail": "Psi 0, Phi 0, V ratio -2",
+   "pass": true
+  },
+  {
+   "name": "K2 covariant khronon equation == ADM momentum constraint (linear order, static in physical coordinates)",
+   "detail": "covariant -2*H_s*(r*Derivative(phi(r), r) + phi(r)); ADM -2*H_s*(r*Derivative(phi(r), r) + phi(r)); ibp residual 0",
+   "pass": true
+  },
+  {
+   "name": "K4 flat-static limit (H -> 0, V -> 0): Phi equation gives mu = 1 + c1 F'/2",
+   "detail": "c1*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, (-c1*r**2*(V(r)*Derivative(V(r), r) + Derivative(Phi(r), r))**2 + c2*(r*Derivative(V(r), r) + 2*V(r))**2)/(m**2*r**2))/2 + 1",
+   "pass": true
+  },
+  {
+   "name": "M3 closed form mu_eff = (sqrt(eta^2 + g^2) - eta)/a_M with eta = |c2| K0^2/(|c1| a_M) = 9(|c2|/|c1|) H^2/a_M",
+   "detail": "0",
+   "pass": true
+  },
+  {
+   "name": "M3 E-reg has no MOND term: d mu/dg at g = 0 vanishes",
+   "detail": "0",
+   "pass": true
+  },
+  {
+   "name": "I1 no target value in the compute blocks",
+   "detail": "clean",
+   "pass": true
+  }
+ ]
+}

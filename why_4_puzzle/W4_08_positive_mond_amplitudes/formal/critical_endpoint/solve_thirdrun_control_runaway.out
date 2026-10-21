@@ -1,0 +1,28 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/why_4_puzzle/W4_08_positive_mond_amplitudes/formal/critical_endpoint/solve.py:99: RuntimeWarning: overflow encountered in multiply
+  wc_new = v * vp - H ** 2 * R
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/lib/function_base.py:1250: RuntimeWarning: invalid value encountered in add
+  out[tuple(slice1)] = a * f[tuple(slice2)] + b * f[tuple(slice3)] + c * f[tuple(slice4)]
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/lib/function_base.py:1259: RuntimeWarning: invalid value encountered in scalar subtract
+  out[tuple(slice1)] = (f[tuple(slice2)] - f[tuple(slice3)]) / dx_0
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/lib/function_base.py:1266: RuntimeWarning: invalid value encountered in scalar subtract
+  out[tuple(slice1)] = (f[tuple(slice2)] - f[tuple(slice3)]) / dx_n
+/Users/carlzimmerman/new_physics/zimmerman-formula/why_4_puzzle/W4_08_positive_mond_amplitudes/formal/critical_endpoint/solve.py:102: RuntimeWarning: invalid value encountered in divide
+  dg = np.max(np.abs(g_new - g) / np.maximum(np.abs(g_new), 1e-300))
+/Users/carlzimmerman/new_physics/zimmerman-formula/why_4_puzzle/W4_08_positive_mond_amplitudes/formal/critical_endpoint/solve.py:72: RuntimeWarning: overflow encountered in scalar power
+  return m ** 2 * xx + abs(c2) * (Ki ** 2 - K0 ** 2) - abs(c1) * (gi + wi) ** 2
+/Users/carlzimmerman/new_physics/zimmerman-formula/why_4_puzzle/W4_08_positive_mond_amplitudes/formal/critical_endpoint/solve.py:72: RuntimeWarning: invalid value encountered in scalar subtract
+  return m ** 2 * xx + abs(c2) * (Ki ** 2 - K0 ** 2) - abs(c1) * (gi + wi) ** 2
+W4-08 critical endpoint: numerical sourced response on the de Sitter state
+units c = H = 1; K0 = 3H; c1 = -1.0, m = 0.15, a_M = 0.2, x_a = 1.7778, GM = 1e-13, Plummer b = 1e-08
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/why_4_puzzle/W4_08_positive_mond_amplitudes/formal/critical_endpoint/solve.py", line 159, in <module>
+    runs = {"E-cusp": solve("cusp", -1e-5), "E-reg": solve("reg", -1e-5), "L-reg": solve("ctrl", -1e-5)}
+                                                                                   ~~~~~^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/why_4_puzzle/W4_08_positive_mond_amplitudes/formal/critical_endpoint/solve.py", line 91, in solve
+    x_new[i] = brentq(f, lo, hi, xtol=1e-300, rtol=1e-14, maxiter=500)
+               ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/optimize/_zeros_py.py", line 806, in brentq
+    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/optimize/_zeros_py.py", line 102, in f_raise
+    raise err
+ValueError: The function value at x=1908874353.7777781 is NaN; solver cannot continue.

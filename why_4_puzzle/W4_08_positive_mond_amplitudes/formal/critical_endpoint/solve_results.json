@@ -1,0 +1,62 @@
+{
+ "mutate": false,
+ "results": {
+  "E-cusp": {
+   "window_decades_phase1": 0.766017030038306,
+   "resid": 5.363422481808382e-06,
+   "max_w": 0.000970520139231458,
+   "max_beta_phase1": 13.830826189534937,
+   "beta_core_coef": -62.098870215846524
+  },
+  "E-reg": {
+   "window_decades_phase1": 0.08376969956232214,
+   "resid": 1.8315871177349507e-07,
+   "max_w": 0.0005500449002925365,
+   "max_beta_phase1": 13.602920605898495,
+   "beta_core_coef": -60.921236999760616
+  },
+  "L-reg": {
+   "window_decades_phase1": 0.0,
+   "resid": 7.033930252977267e-13,
+   "max_w": 0.0005500336655893463,
+   "max_beta_phase1": 1.3248592552679839,
+   "beta_core_coef": -3.08515241699952
+  },
+  "E-cusp_full": {
+   "status": "diverged",
+   "window": null
+  },
+  "verdict": "UNDETERMINED",
+  "K6_closed_form_dev": 1.9662049766111522e-13,
+  "posthoc": {
+   "r_w": 0.00030836945363308424,
+   "resid_rel_largest": {
+    "E-cusp": 1.5417364360315335e-11,
+    "E-reg": 2.086452489301109e-11,
+    "L-reg": 7.033930252977267e-13
+   },
+   "trunc_phase1_window": 0.7644736248863123,
+   "trunc_core_beta_coef": -1.6105296841679744,
+   "trunc_max_beta": 0.9897064862952557,
+   "trunc_full_status": "ok",
+   "trunc_full_window": 0.8667593849332178
+  }
+ },
+ "checks": [
+  {
+   "name": "K3 control alpha0 = 1 reproduces G_bg = G/(1 - alpha/2) = 2G in the far field (1%; phase 1)",
+   "detail": "g/(2GM/r^2) in [1.0000, 1.0000]",
+   "pass": true
+  },
+  {
+   "name": "K5 Phi-equation residual < 1e-8 and converged (phase 1, all runs)",
+   "detail": "{'E-cusp': '5.4e-06/9.2e-12', 'E-reg': '1.8e-07/8.6e-12', 'L-reg': '7.0e-13/2.0e-12'}",
+   "pass": false
+  },
+  {
+   "name": "K6 frozen closed-form mu_eff matches E-cusp numerics within 2% (r > 3e-8; phase 1 = the closed form's own limit)",
+   "detail": "max deviation 1.97e-13",
+   "pass": true
+  }
+ ]
+}

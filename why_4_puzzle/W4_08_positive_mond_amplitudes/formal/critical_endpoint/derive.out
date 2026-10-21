@@ -1,0 +1,58 @@
+M1  exact kinematics of a stationary radial clock flow on ds^2 = -A dt^2 + Br dr^2 + r^2 dOmega^2
+  K   = Derivative(v(r), r) + v(r)*Derivative(B_r(r), r)/(2*B_r(r)) + v(r)*Derivative(A(r), r)/(2*A(r)) + 2*v(r)/r
+  a_r = ((B_r(r)*v(r)**2 + 1)*Derivative(A(r), r) + (2*B_r(r)*Derivative(v(r), r) + v(r)*Derivative(B_r(r), r))*A(r)*v(r))/(2*A(r))
+  de Sitter flat slicing (A = 1 - H^2 r^2, v = H r): K = 3*H, a_r = 0
+  Painleve-Gullstrand Schwarzschild (v = -sqrt(2M/r)): K = -3*sqrt(2)*sqrt(M)*sqrt(1/r)/(2*r), a_r = 0
+[PASS] K1 exact identities: a.u = 0; dS flat slicing K = 3H, a = 0; PG a = 0: a.u 0; 3*H, 0; 0
+  weak field, leading order: K = sqrt(eps) * [Derivative(V(r), r) + 2*V(r)/r];  a_r = eps * [V(r)*Derivative(V(r), r) + Derivative(Phi(r), r)]
+[PASS] M1 leading forms K = (r^2 v)'/r^2, a_r = Phi' + v v': 0, 0
+
+M2  Newtonian-limit reduced Lagrangian per (B/2) 4 pi dr:  L = r^2[2 Psi'^2 - 4 Phi' Psi' + m^2 F(I)] - (2/B) rho r^2 Phi
+  Psi equation  == -(r^2(4Psi' - 4Phi'))'                 residual 0
+  Phi equation  == (r^2(4Psi' - 2 alpha_I a))' - (2/B) rho r^2      residual 0
+  khronon (V)   == -2 x [r^2 (c2 F'(I) K)' + V (r^2 alpha_I a)']
+[PASS] M2 Euler-Lagrange equations have the stated forms: Psi 0, Phi 0, V ratio -2
+  covariant: d/dr[-2H(phi + r phi')] + 2H (r^2 phi')'/r = 0  (so Pi(r) = int_r^inf of the khronon source)
+  ADM (SINGLE_FUNCTION sec. 5): dK = -2*U/(lambda - 1);  (1 - lambda) dK = 2*U;  U = H_s*(-r*Derivative(phi(r), r) - phi(r))
+[PASS] K2 covariant khronon equation == ADM momentum constraint (linear order, static in physical coordinates): covariant -2*H_s*(r*Derivative(phi(r), r) + phi(r)); ADM -2*H_s*(r*Derivative(phi(r), r) + phi(r)); ibp residual 0
+[PASS] K4 flat-static limit (H -> 0, V -> 0): Phi equation gives mu = 1 + c1 F'/2: c1*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, (-c1*r**2*(V(r)*Derivative(V(r), r) + Derivative(Phi(r), r))**2 + c2*(r*Derivative(V(r), r) + 2*V(r))**2)/(m**2*r**2))/2 + 1
+
+M3  endpoint alpha(I0) = 2.  Leading sub-horizon system (back-reaction U and convective v v' dropped; kept in numerics):
+      khronon:  alpha_I(I) K = 2 K0           (from c2 F'(I) K = c2 F'(I0) K0 and alpha_I = -c1 F')
+      Phi:      (2 - alpha_I) g = 2 G M / r^2  ->  mu_eff = 1 - alpha_I/2,   x = I - I0 = [ -|c2|(K^2 - K0^2) + |c1| g^2 ]/m^2
+  E-cusp deep regime: mu_eff = (-C2*K_0**2 + sqrt(C1**2*a_M**2*g**2 + C2**2*K_0**4))/(C1*a_M**2)
+[PASS] M3 closed form mu_eff = (sqrt(eta^2 + g^2) - eta)/a_M with eta = |c2| K0^2/(|c1| a_M) = 9(|c2|/|c1|) H^2/a_M: 0
+    limits: g >> eta: mu -> 1 * g/a_M (deep MOND);  g << eta: mu -> g**2/(2*a_M*eta) (quartic)
+  E-cusp declared p(y) = y/(1+y): y(g) = (-C2*K_0**2 + sqrt(C1**2*a_M**2*g**2 + C1*C2*K_0**2*g**2 + C2**2*K_0**4))/(C1*a_M**2 + C2*K_0**2),  mu_eff = y/(1+y),  K = K0 (1 + y)
+  E-reg (alpha = 2/(1 + x/x_a)): mu_eff = z/(1+z), small g: mu = (2*C1*C2*K_0**2*g**2*(-C1**2*a_M**4 - 4*C1*C2*K_0**2*a_M**2 - 4*C2**2*K_0**4 + (C1*a_M**2 + 2*C2*K_0**2)*sqrt(C1**2*a_M**4 + 4*C1*C2*K_0**2*a_M**2 + 4*C2**2*K_0**4) - (C1*a_M**2 - sqrt(C1**2*a_M**4 + 4*C1*C2*K_0**2*a_M**2 + 4*C2**2*K_0**4))*sqrt(C1**2*a_M**4 + 4*C1*C2*K_0**2*a_M**2 + 4*C2**2*K_0**4)) + (C1*a_M**2 - sqrt(C1**2*a_M**4 + 4*C1*C2*K_0**2*a_M**2 + 4*C2**2*K_0**4))*(C1*a_M**2 + 2*C2*K_0**2 - sqrt(C1**2*a_M**4 + 4*C1*C2*K_0**2*a_M**2 + 4*C2**2*K_0**4))*(C1**2*a_M**4 + 4*C1*C2*K_0**2*a_M**2 + 4*C2**2*K_0**4))/((C1*a_M**2 - sqrt(C1**2*a_M**4 + 4*C1*C2*K_0**2*a_M**2 + 4*C2**2*K_0**4))**2*(C1**2*a_M**4 + 4*C1*C2*K_0**2*a_M**2 + 4*C2**2*K_0**4))  (quartic; no linear-in-g term)
+[PASS] M3 E-reg has no MOND term: d mu/dg at g = 0 vanishes: 0
+  point mass: deep MOND g = sqrt(GM a_M)/r for eta << g << a_M; quartic g = (2 eta a_M GM/r^2)^(1/3) for g << eta
+  crossover h_c = 2 eta = 18 (|c2|/|c1|) H^2/a_M (K0 = 3H)
+
+M5  the delta-K direction
+  Constraint (fixed a, U): c2 [F'(I) K - F'(I0) K0] = 2U, I = (c2 K^2 - c1 a^2)/m^2.
+  d/dK [F'(I) K] = F'(I) + 2 (c2 K^2/m^2) F''(I) = Q(I) at the background; the cusp gives F'' -> -inf with c2 K^2/m^2 = I0 < 0,
+  so Q -> +inf and lambda_eff = 1 - c2 Q -> +inf (c2 < 0): the map K -> F'(I)K is strictly monotone and the constraint
+  fixes delta K uniquely. Linearising: (1 - lambda) dK = 2U -> dK = -2U/(lambda - 1) -> 0 as lambda -> inf.
+  reduced scalar coefficient C = 2S/(lambda - 1) -> 6 as lambda -> inf (finite; SINGLE_FUNCTION sec. 5)
+  at alpha = 2: K_z = 6*X/(3*H**2 + X) > 0, V_z = 12*H**2*X**2/(3*H**2 + X)**2 > 0, principal c_s^2 = 2(2 - alpha)/(C alpha) = 0; sub-horizon Omega^2 -> 2*H**2
+  k = 0: added matter raises H^2, so I = 9 c2 H^2/m^2 moves to I < I0 (c2 < 0), the side opposite to the static sources (x >= 0).
+  The homogeneous matter response therefore uses the regular opposite branch: G_cos = 2 G_bare/S_left. The cusp
+  (x >= 0 side) is reached only by H^2 < H0^2.
+
+M7  operational amplitudes on the same state (E-cusp)
+  C2 = B (Newton regime alpha_I -> 0), C3 = 2B/(3 a_M), eps = 3 B H^2 (actual de Sitter stress)  ->  R_amp = 4*H**2/(3*a_M**2)
+  in F's parameters (H^2 = m^2 I0/(9 c2), a_M^2 = m^2 x_a/|c1|): R_amp = -4*I_0*c1/(27*c2*x_a)
+  tunings: T1 criticality F'(I0) = -2/c1;  T2 vacuum at the cusp: F(I0) = -2*I_0/(3*c2) - 4*I_0/c1
+  P1 a kink (F' jump) at I0 can pin the Friedmann root there for an open range of F(I0) (removes T2, not T1); H then
+     ignores matter up to a threshold density (a plateau), and R_amp is unchanged in form.
+  P2 the deep static equation div(|grad phi| grad phi) ~ a_M rho is scale invariant for every a_M: exponent fixed, amplitude free.
+  P3 the opposite-branch deformation (I < I0, flat at I0) leaves F(I0), F'(I0), the cusp, the vacuum and the MOND law
+     unchanged and alters only the homogeneous matter response (G_cos): not excluded, not relevant to R_amp.
+     The constant shift of F is fixed by T2 (it would move the root off the cusp and destroy criticality).
+  Surviving parameters in R_amp: |c1|/|c2| and |I0|/x_a (with the window |c2|/|c1| << a_M h_min/(18 H^2)).
+[PASS] I1 no target value in the compute blocks: clean
+
+TARGET COMPARISON: R_amp = 128 pi/9 requires H/a_M = 4*sqrt(6)*sqrt(pi)/3 = 5.7888; equivalently (|c1|/|c2|)(|I0|/x_a) = 96*pi = 301.59. No declared principle fixes either.
+
+checks: 8/8 pass
