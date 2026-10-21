@@ -1,0 +1,91 @@
+CFG947  option 3: a non-local causal parent whose NR limit is the class-A engine   stage=MAIN
+  criteria 9c683a634; A1 fad3a6b86 (pre-result); kappa = 1/2 FITTED; footings never pooled; not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2;  native Delta_ta(0) = 11.830836;  engine f_b = 0.157126;  RMIN = 0.78125 Mpc/h
+  NGC 3198: 43 radii to 44.08 kpc, M_b(< last) = 4.7201e+10 M_sun (Upsilon 0.61)
+
+==================== K CONTROLS ====================
+  K1 CFG938 reduced EL: -(-a_0*g_N + g_N*u + u**2)/(-a_0 + u)
+  [PASS] K1_CFG938_NGC3198_law: max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938 2.2e-16; line 1e-6)
+  deriving growth determinant (sympy, CFG941 route) ...
+  [PASS] K2_CFG941_growth_exponents: n(c2=1, no chi-bar) = 0.609545 (0.60954), n(c2=1, chi-bar) = 0.694330 (0.69433), n(c2=0) = 1.000000000000
+  K3 SPARC (CFG4 statistic, nu_mono):
+     local law canonical                         : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge / outside a domain: 0 of 3389
+     Newton canonical                            : rms 0.27548 dex @ Upsilon 1.20; points beyond their edge / outside a domain: 0 of 3389
+     local law alt                               : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge / outside a domain: 0 of 3389
+     Newton alt                                  : rms 0.27548 dex @ Upsilon 1.20; points beyond their edge / outside a domain: 0 of 3389
+  [PASS] K3_CFG653_CFG4_headline: local 0.10033 @ 0.61 / 0.09910 @ 0.57 (0.1003 @ 0.61 / 0.0991 @ 0.57); Newton 0.2755 / 0.2755 (0.2755)
+  [PASS] K4_CFG938_slip: worst s_847 = 1.5398e-05 (1.5398e-5), s_grad = 5.792e-06
+  [PASS] K5_CFG941_hover_and_EFE: tethered Delta a/g_host in [1.0167, 1.1067] (1.017-1.107); EFE in [-0.728, -0.102] dex (-0.73..-0.10)
+  K controls: ALL PASS
+
+==================== STRUCTURAL STATEMENTS ====================
+  [PASS] T-Z_zero_sum_forced: d_mu d_nu Q^mu nu = 0; d_t rho_s + div j_s = 0; compact P: int rho_s dV = 0; growing domain |int rho_s|/M_ph <= 0.0e+00. With S = 0 on FRW, int rho_s = 0 for all time (no S current leaves a domain)
+  T-M declared histories: max |R|/(M_dom g_ref) = pi**2*epsilon/4 (E8), pi**2*epsilon/12 (N3 switch-on)
+  [PASS] T-M_relocation_term_nonzero: D'' - sum s x'' = sum(s''x + 2 s'x') (identity); E8 two-blob R = -epsilon*(X(t)*Derivative(M_e(t), (t, 2)) + 2*Derivative(M_e(t), t)*Derivative(X(t), t)); N3 switch-on R = M_c*epsilon*(-X(t)*Derivative(s(t), (t, 2)) - 2*Derivative(X(t), t)*Derivative(s(t), t))/3; Plummer toy: F_ms(eps 0/0.01/0.1/0.3) = 0.000e+00, -7.814e-04, -7.814e-03, -2.344e-02, |sum s g_tot + F_ms| <= 6.9e-18 (constant weights conserve); R/(M_dom g_ref) ~ 0.000, 0.025, 0.247, 0.740 (E8), 0.0000, 0.0082, 0.0822, 0.2467 (N3 switch-on) [declared growth time = dynamical time]; surface-integral check 1.000000000000
+  T-E [canonical, simple]: M_law(<r_ON)/M_ta = 8.85, 4.11, 2.18, 3.12, 1.85 at M_b = 1e7, 1e9, 1e11, 1e13, 1e15;  supply N = 53.6, 53.6, 44.1, 8.3, 6.0
+  T-E [alt, simple]: M_law(<r_ON)/M_ta = 9.72, 4.52, 2.39, 3.42, 2.02 at M_b = 1e7, 1e9, 1e11, 1e13, 1e15;  supply N = 53.6, 53.6, 44.1, 8.3, 6.0
+  edge supply ratio q = x[nu(y_e) - 1]: simple kernel 1.00001435..1.00108024; nu_mono 1.0000000042..1.0000000049
+  [PASS] T-E_forced_edge: M_law(<r_ON) > M_ta for every M_b in 1e7-1e15 (min ratio 1.847), both footings and kernels: a zero-sum source with rho_tot >= 0 must end the law at r_e < r_ON
+  [PASS] T-R_RMIN_switches_law_off: resolved iff r_ON >= 0.78125 Mpc/h <=> M_ta >= 2.066e+12 M_sun/h <=> M_b >= 4.815e+10 M_sun (f_r 0.10; footing-independent). NGC 3198 M_b 4.720e+10: r_ON = 0.776 Mpc/h -> NOT resolved; SPARC (Upsilon 0.61): 128 of 175 galaxies below
+  [PASS] T-X_EFE_fork: E4 (global QUMOND) satellite EFE factor -0.730..-0.102 dex on H1-H3 x 50/100/250 kpc; own-domain rule: 0 dex. The two differ by > 1% wherever the host's baryonic field is comparable to the satellite's
+  [FAIL] T-L_label_non_additivity: deep factor (sympy) = sqrt(f) - f*sqrt(-1/(f - 1)) + sqrt(-1/(f - 1)); NGC 3198 max |g/g_law - 1| (canonical, simple): f 0.01/0.1/0.3/0.5 = 0.086, 0.240, 0.349, 0.375; N 2/10/100 = 0.375, 1.964, 8.181
+  [PASS] T-N3_domains_forced: N3 gate (Delta_lo = 2): min total density in the transition / mean matter density = NGC3198 -8.4, dwarf -69.1, MW disc -7.6, MW outer -7.6, group -16.2, cluster -10.1; broad gate (1.1): -6.9, -60.4, -6.3, -6.3, -13.8, -8.4
+  [PASS] T-F_no_hover: stars, cold dust (geodesic) and S (carried, conserved) all fall at g_host: Delta a/g_host = 0 at monopole order; retardation bound <= 1.21e-06 (CFG941 tethered: 1.017-1.107)
+
+==================== TESTS (a)-(h) ====================
+  (a) static law on NGC 3198 (43 radii) and deep points
+   N1   : max dev (P-S / P-I / P-X): canonical|simple 1.19e-05/2.22e-16/8.27e-01; canonical|mono 3.96e-09/2.22e-16/8.27e-01; alt|simple 1.21e-05/2.22e-16/8.41e-01; alt|mono 4.03e-09/2.22e-16/8.41e-01
+   N2-E : max dev (P-S / P-I / P-X): canonical|simple 8.27e-01/2.22e-16/8.27e-01; canonical|mono 8.27e-01/2.22e-16/8.27e-01; alt|simple 8.41e-01/2.22e-16/8.41e-01; alt|mono 8.41e-01/2.22e-16/8.41e-01
+   N2-B : max dev (P-S / P-I / P-X): canonical|simple 1.19e-05/2.22e-16/8.27e-01; canonical|mono 3.96e-09/2.22e-16/8.27e-01; alt|simple 1.21e-05/2.22e-16/8.41e-01; alt|mono 4.03e-09/2.22e-16/8.41e-01
+   N3   : max dev (P-S / P-I / P-X): canonical|simple 2.22e-16/2.22e-16/2.22e-16; canonical|mono 2.22e-16/2.22e-16/2.22e-16; alt|simple 2.22e-16/2.22e-16/2.22e-16; alt|mono 2.22e-16/2.22e-16/2.22e-16
+   class-A edge q (NGC 3198): simple 1.00001435 / 1.00001435; nu_mono 1.000000004795 / 1.000000004795;  r_e = 454.0 / 413.0 kpc; diagnostic (edge = the kernel's own supply root): P-S max dev 2.22e-16
+   (a) N1: a1 FAIL, a2 FAIL -> FAIL  [N1: label purity needs the merge rule M-R; without it T-L deviations apply]
+   (a) N2-E: a1 FAIL, a2 FAIL -> FAIL
+   (a) N2-B: a1 FAIL, a2 FAIL -> FAIL
+   (a) N3: a1 PASS, a2 PASS -> PASS
+  [PASS] b_FRW_S_zero_w0: dust: rho = m/a(t)**3, p = 0, isotropic; S = 0 on FRW for every candidate: Delta_ta(z) >= 5.569 > 1 (no domain at delta = 0), labels unset, per-domain fields unsourced, N3's mean-removed field 0, lambda_2 = 0 < tau - eps
+  [PASS] c_growth_a1: S = 0 in the linear regime -> dust growth n = 1.000000000000; top-hat mean density rises monotonically to 5.5517 = 9 pi^2/16 at turnaround (delta_lin = 1.0624): the gate opens only at turnaround (EdS); local tether (Mu1): 0.69433
+  (d) causality / well-posedness
+   d4 toys: N2-E largest-R rule: r_ON jumps by 0.206 at d = R12 (R12/R1 = 2^(1/3)); N2-B: psi minima merge at d = 2.7375 L*, the domain's edge jumps by 0.414; N1 (rule beta): 0; N3 (gate outer radius): 0
+   (d) N1: d1 PASS, d2 PASS (0 independent initial data), d3 PASS, d4 PASS (0.000), d5 identities PASS / relocation FAIL (T-M: R != 0 for eps > 0) -> FAIL
+   (d) N2-E: d1 PASS, d2 PASS (0 independent initial data), d3 PASS, d4 FAIL (0.206), d5 identities PASS / relocation FAIL (T-M: R != 0 for eps > 0) -> FAIL
+   (d) N2-B: d1 PASS, d2 PASS (0 independent initial data), d3 PASS, d4 FAIL (0.414), d5 identities PASS / relocation FAIL (T-M: R != 0 for eps > 0) -> FAIL
+   (d) N3: d1 PASS, d2 PASS (0 independent initial data), d3 FAIL, d4 PASS (0.000), d5 identities PASS / relocation FAIL (T-M: R != 0 for eps > 0) -> FAIL
+  (e) slip on CFG847's systems
+   (e) N1: worst slip 1.632e-05 (line 1.9e-5) -> PASS
+   (e) N2-E: worst slip 1.632e-05 (line 1.9e-5) -> PASS
+   (e) N2-B: worst slip 1.632e-05 (line 1.9e-5) -> PASS
+   (e) N3: worst slip 1.632e-05 (line 1.9e-5) -> PASS
+  (f) satellites
+   (f) N1: f1 Delta a/g_host = 0 (+ <= 1.2e-06) PASS; f2 host EFE max |0.000| dex PASS -> PASS
+   (f) N2-E: f1 Delta a/g_host = 0 (+ <= 1.2e-06) PASS; f2 host EFE max |0.730| dex FAIL -> FAIL
+   (f) N2-B: f1 Delta a/g_host = 0 (+ <= 1.2e-06) PASS; f2 host EFE max |0.000| dex PASS -> PASS
+   (f) N3: f1 Delta a/g_host = 0 (+ <= 1.2e-06) PASS; f2 host EFE max |0.730| dex FAIL -> FAIL
+   N2-B basin cap (reported): phantom retained fraction canonical|H1|50: 0.03, canonical|H1|100: 0.07, canonical|H1|250: 0.16, canonical|H2|50: 0.01, canonical|H2|100: 0.05, canonical|H2|250: 0.14, canonical|H3|50: 0.00, canonical|H3|100: 0.00, canonical|H3|250: 0.09
+   (g) N1: 2 engine equations differ -> FAIL (unquantified -> transfer not established)
+   (g) N2-E: 0 engine equations differ -> PASS
+   (g) N2-B: 2 engine equations differ -> FAIL (unquantified -> transfer not established)
+   (g) N3: 6 engine equations differ -> FAIL (unquantified -> transfer not established)
+  (h) CFG653's constraints: h1 SPARC (CFG4 statistic, nu_mono)
+     N1 canonical                                : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge / outside a domain: 0 of 3389
+     N1 alt                                      : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge / outside a domain: 0 of 3389
+     N2-B canonical                              : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge / outside a domain: 0 of 3389
+     N2-B alt                                    : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge / outside a domain: 0 of 3389
+     N3 canonical                                : rms 0.10033 dex @ Upsilon 0.61; points beyond their edge / outside a domain: 0 of 3389
+     N3 alt                                      : rms 0.09910 dex @ Upsilon 0.57; points beyond their edge / outside a domain: 0 of 3389
+     N2-E canonical                              : rms 0.25663 dex @ Upsilon 0.82; points beyond their edge / outside a domain: 1811 of 3389
+     N2-E alt                                    : rms 0.26190 dex @ Upsilon 0.77; points beyond their edge / outside a domain: 1820 of 3389
+     N1 without M-R (f = 0.1) canonical          : rms 0.10169 dex @ Upsilon 0.49; points beyond their edge / outside a domain: 0 of 3389
+     N1 without M-R (f = 0.1) alt                : rms 0.10610 dex @ Upsilon 0.44; points beyond their edge / outside a domain: 0 of 3389
+   (h) N1: h1 PASS (0.1003 / 0.0991 vs local 0.1003 / 0.0991); h2 PASS(can)/TENSION(alt); h3 PASS (isolated phantom, CFG478 chi2 0.7/5); h4 PASS -> CONDITIONAL
+   (h) N2-E: h1 FAIL (0.2566 / 0.2619 vs local 0.1003 / 0.0991); h2 PASS(can)/TENSION(alt); h3 FAIL (EFE, CFG478 61-107/5); h4 PASS -> FAIL
+   (h) N2-B: h1 PASS (0.1003 / 0.0991 vs local 0.1003 / 0.0991); h2 PASS(can)/TENSION(alt); h3 PASS (isolated phantom, CFG478 chi2 0.7/5); h4 PASS -> PASS
+   (h) N3: h1 PASS (0.1003 / 0.0991 vs local 0.1003 / 0.0991); h2 PASS(can)/TENSION(alt); h3 FAIL (EFE, CFG478 61-107/5); h4 PASS -> FAIL
+   N1 without M-R (co-spatial labels 0.9/0.1): {'canonical': 'TENSION', 'alt': 'TENSION'}; Newtonian binaries (if a host had no phantom): z -1.36 / -1.51
+
+==================== CLASSES ====================
+  N1   : a:FAIL b:PASS c:PASS d:FAIL e:PASS f:PASS g:FAIL h:CONDITIONAL  -> NOT VIABLE
+  N2-E : a:FAIL b:PASS c:PASS d:FAIL e:PASS f:FAIL g:PASS h:FAIL  -> NOT VIABLE
+  N2-B : a:FAIL b:PASS c:PASS d:FAIL e:PASS f:PASS g:FAIL h:PASS  -> NOT VIABLE
+  N3   : a:PASS b:PASS c:PASS d:FAIL e:PASS f:FAIL g:FAIL h:FAIL  -> NOT VIABLE
+  OVERALL: NO-GO  (generic statements T-M True, T-R True, T-X True; K controls ALL PASS)
