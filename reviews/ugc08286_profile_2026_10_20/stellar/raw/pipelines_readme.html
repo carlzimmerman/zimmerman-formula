@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <link rel="stylesheet" type="text/css" media="screen,projection,print" href="/applications/Atlas/atlas.css" />
+    <title>Spitzer Survey of Stellar Structure in Galaxies (S4G)</title>
+
+
+<link rel="stylesheet" type="text/css" media="screen,projection" href="/style.css" />
+<link rel="stylesheet" type="text/css" media="print" href="/print_style.css" />
+<link rel="stylesheet" type="text/css" media="screen,projection" href="/ui.css" />
+<script type="text/javascript" src="/ui_verbose.js"></script>
+
+<!--[if lt IE 7]>
+<style type="text/css" media="screen, projection">
+#irsa-menu li
+{
+float: left;
+height: 1%;
+}
+#irsa-menu a
+{
+height: 1%;
+}
+</style>
+<![endif]-->
+</head>
+<body >
+
+<div id="irsa-banner"   style= "min-width:768px; min-height:95px"></div>
+<script type="text/javascript" language='javascript' src='/frontpage/frontpage.nocache.js'> </script>
+
+<div id="content">
+<!--   #include virtual="/include/sysnotice.html"  -->
+
+
+<p>
+Below is a brief description of the enhanced products delivered by the
+Spitzer Survey of Stellar Structure in Galaxies (<a href="/data/SPITZER/S4G">S4G</a>). We refer the
+reader to the overview paper (<a href="http://adsabs.harvard.edu/abs/2010PASP..122.1397S">Sheth et al. 2010, PASP, 122, 1397</a>) for
+a more detailed description of the survey strategy and scientific
+goals. More technical details of Pipeline 1 will be presented in Regan
+et al. 2013 (in prep), and of Pipelines 2 and 3 in Munoz-Mateos et
+al. 2013 (in prep).
+</p>
+
+<h3>P1 README</h3>
+
+<p>
+Pipeline 1 takes as an input the original Basic Calibrated Data (BCD)
+fits files and produces science-ready mosaics. For each galaxy we
+deliver the following products:
+</p><p>
+XXX.phot.1.fits, XXX.phot.2.fits:
+Science-ready mosaics of the galaxy in the IRAC 1 and 2 bands. The
+images are calibrated in units of MJy/sr, and have a pixel scale of
+0.75 arcsec/pixel. The background has *not* been subtracted; our best
+estimates of the background level and noise are quoted in the P3
+table.
+</p><p>
+XXX.phot.1_wt.fits, XXX.phot.2_wt.fits:
+Weight maps showing the spatial coverage of each mosaic. The value at a
+given pixel is 10 times the number of frames that cover that
+pixel. The weight maps have the same pixel scale as the science images,
+and each one is spatially aligned to the corresponding science image
+at the same band.
+</p>
+<h3>P2 README</h3>
+<p>
+Pipeline 2 creates masks to exclude foreground stars and background
+galaxies from any subsequent analysis. Masks are first generated
+automatically with SExtractor; they are then visually checked and
+edited by hand, masking extra sources missed by SExtractor and
+unmasking any regions of the galaxy that may have been incorrectly
+identified at first.
+</p><p>
+For each galaxy we provide two fits files, one for each band
+(XXX.1.final_mask.fits, XXX.2.final_mask.fits), that contain our final
+edited masks. Masked pixels have non-zero values.
+</p>
+<h3>P3 README</h3>
+<p>
+Pipeline 3 performs surface photometry on the IRAC 1 and 2 images of
+each galaxy. We first measure the background level, the local
+pixel-to-pixel noise and the large scale noise in a set of boxes
+placed around the galaxy. The coordinates of the galaxy center are
+then determined using the imcenter task in Iraf. We then use the
+ellipse task to obtain different sets of radial profiles:
+</p><p>
+(1) XXX.1fr6a_noclean_fin.dat, XXX.2fr6a_noclean_fin.dat:
+</p><p>
+These fits have a radial increment of 6 arcseconds along the semimajor
+axis ('6a'). The center is kept fixed, but the ellipticity and
+position angle are left as free parameters ('fr'). As with the P1 and
+P2 files, the numbers 1 and 2 refer to the IRAC 1 and 2 bands. These
+fits with a coarse 6 arcsec resolution are used to determine the outer
+size, ellipticity and position angle at 25.5 and 26.5 AB mag arcsec^-2
+at each band, in an RC3-like fashion.
+</p><p>
+(2) XXX.1fr2a_noclean_fin.dat, XXX.2fr2a_noclean_fin.dat:
+</p><p>
+Same as the previous profiles (fixed center, free ellipticity and PA)
+but using a smaller radial increment of 2 arcseconds. These profiles
+can be used to measure structures like bars with a finer detail.
+</p><p>
+(3) XXX.1fx2a_noclean_fin.dat, XXX.2fx2a_noclean_fin.dat:
+</p><p>
+These profiles also have a 2 arcsecond radial resolution, but all
+geometrical parameters are kept fixed and equal to those of the 25.5
+outer isophotes derived in (1). These profiles are ideal to measure
+disk scale-lengths.
+</p><p>
+All these profiles are ASCII tables that follow the structure and
+naming convention of the ellipse task in Iraf. The content of each
+column is detailed <a href="s4g_col.dat">here</a>.
+</p><p>
+Global quantities such as our improved central coordinates, bakground
+level and noise and outer galaxy sizes and shapes can be found in the
+corresponding P3 catalog.
+</p>
+
+</div> <!-- end #content -->
+<div id="irsa-footer" style="position:absolute;left:0;right:0;margin-top:20px">
+<iframe src="/frontpage/footer.html" width="100%" frameborder=0 scrolling=0 seamless=1/>
+</div>  <!-- end #irsa-footer -->
+
+</body>
+</html>
+

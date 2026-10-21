@@ -1,0 +1,99 @@
+{
+  "claim_id": "UGC08286-DISK-INVERSION-2026-10-20",
+  "mathematics": {
+    "assertion_tested": "On declared finite axisymmetric annular bases, compute positive finite additive-mass feasibility and minimum mass; invert the fixed simple law to compute the least pointwise stellar M/L ceiling allowing any annular gradient. Compare with independently sourced calibration sensitivity boxes, not claimed observed intrinsic gradient bounds.",
+    "coefficient_domain": "float64, signed elliptic disk kernels, SciPy HiGHS linear programs; numerical primal/dual residual checks",
+    "conventions": "17 SPARC points retained. Signed gas contribution, published unit stellar disk. Vertical exponential h=.196 Rd^.633 at Rd1.05kpc. Primary constant-M/L .5 baseline uses published Vdisk exactly. Gradient models use nonlocal annular kernels for two fixed interpolations of17 inclination-corrected SB samples; full65 projected profile is not deprojected, used only to set an observed photometric extent. No force/template renormalization. Velocity-error boxes, not likelihood confidences; no added .05dex floor. Source masses are inverse variables, not new fitted fundamental parameters.",
+    "inputs": [
+      "All17 primary rotation/gas/star/corrected light samples",
+      "Published disk geometry and errors",
+      "Two inherited a0 footings kept separate",
+      "Independent old-star3.6 Chabrier population calibration approximately0.1dex; declared0.1/0.2dex upper-ceiling sensitivity controls with uncertain clean-to-total-light/extinction bridge"
+    ],
+    "bounds": {
+      "extra_cases": 108,
+      "stellar_ceiling_cases": 432,
+      "extra_supports": "RHI and2RHI, RHI8.07kpc",
+      "extra_radial_steps": "30arcsec beam and1/2,1/4beam at6.5Mpc",
+      "extra_height_factors": [
+        0.5,
+        1,
+        2
+      ],
+      "vertical": "exponential",
+      "light_interpolation": [
+        "linear",
+        "loglinear"
+      ],
+      "light_steps": "1/2,1/4,1/8beam plus all measured radius knots",
+      "light_cut_kpc": 9.17183,
+      "kernel_orders": [
+        96,
+        192
+      ],
+      "velocity_interval_sigma": [
+        0,
+        1,
+        2
+      ],
+      "distance_controls": [
+        "6.5Mpc",
+        "6.5-0.21",
+        "6.5+0.21",
+        "CF4/SPARC0.9100948218084219 diagnostic"
+      ],
+      "sampling": [
+        "all17",
+        "even indices",
+        "odd indices"
+      ]
+    },
+    "non_claims": [
+      "Not a unique 3D density or a mass detection",
+      "No observed covariance or Gaussian significance",
+      "No exact deprojection of full light",
+      "Calibrated M/L box is not an object-specific radial observational confidence bound",
+      "No smoothing/profile-law fit",
+      "No universal positive-mass exclusion outside declared bases/geometries",
+      "Not a coupled nonlinear polarization solution, formation history, release switch or lifetime"
+    ]
+  },
+  "execution_artifacts": [
+    "reviews/ugc08286_profile_2026_10_20/invert.py",
+    "reviews/ugc08286_profile_2026_10_20/kernel/disk_kernel.py",
+    "reviews/ugc08286_profile_2026_10_20/data/UGC08286_rotmod.dat",
+    "reviews/ugc08286_profile_2026_10_20/data/UGC08286.dens",
+    "reviews/ugc08286_profile_2026_10_20/stellar/observed_constraints.json",
+    "real_research/derivation_chain_2026/FP0_core_postulates_results.json",
+    "reviews/ugc08286_profile_2026_10_20/data/GEOMETRY.md",
+    "reviews/ugc08286_profile_2026_10_20/stellar/CONSTRAINTS.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "Matplotlib",
+      "version": "3.9.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "resources": {
+    "threads": 1,
+    "nominal_working_memory_below_bytes": 1073741824,
+    "hard_memory_or_affinity_not_enforced": "Unsupported on this macOS host, not requested; supported CPU/wall/output caps used"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "claim_id":"UGC08286_CONTINUOUS_EXPONENTIAL_DISK_CONTROL",
+  "mathematics":{
+    "assertion_tested":"At the six listed benchmark radii the continuous uniform-disk boundary superposition for Sigma=exp(-R/Rd), Rd=1 kpc, agrees with the published Freeman I0K0-I1K1 formula to relative tolerance 1e-7; the calculation separates continuous-kernel accuracy from a sharp annular step-function approximation.",
+    "coefficient_domain":"IEEE-754 binary64 with scipy special functions and deterministic QUADPACK integration",
+    "conventions":"G=4.30091e-6 kpc (km/s)^2/Msun; Sigma0=1 Msun/kpc^2. V2(R)=integral_0^A da exp(-a)*V2_uniform_disk_per_Sigma(R,a) plus analytically bounded omitted outer-disk superposition. a and R in kpc; A=40 kpc. No fitted parameter.",
+    "inputs":["radii [0.173,0.573,1.133,2.173,4.133,7.733] kpc", "Bovy textbook equations pinned in SOURCES.json", "annular kernel benchmark code and source conventions"],
+    "bounds":{"radii_count":6,"support_kpc":40,"timeout_seconds":60,"cpu_seconds":45,"threads":1,"nominal_working_memory_bytes":50000000,"memory_hard_cap_enforced":false,"affinity_enforced":false},
+    "non_claims":["Not an observational mass profile or stellar-population constraint","No interval certification of binary64 numerical errors","Sharp annular density discretization has separate convergence limitations"]
+  },
+  "execution_artifacts":["reviews/ugc08286_profile_2026_10_20/kernel/disk_kernel.py","reviews/ugc08286_profile_2026_10_20/kernel/continuous_exponential_control.py","reviews/ugc08286_profile_2026_10_20/kernel/SOURCES.json"],
+  "software":[{"name":"Python","version":"3.9.6"},{"name":"numpy","version":"1.26.2"},{"name":"scipy","version":"1.11.4"}],
+  "randomness":{"used":false,"generator":"","seed":null}
+}

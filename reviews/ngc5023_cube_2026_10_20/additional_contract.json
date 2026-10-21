@@ -1,0 +1,109 @@
+{
+  "claim_id": "NGC5023-ADDITIONAL-DIAGNOSTICS-2026-10-20",
+  "mathematics": {
+    "assertion_tested": "Quantify post-selection controls: footprint-aware knownfeature masks, operator-matched realblank calibration for cubic/dewarp/no-baseline/additional spectral smoothing, fine centering axis slices, and exploratory cross-dataset fixedHR template projections. No new candidate selection.",
+    "coefficient_domain": "float32 image operations; float64 coordinates and statistical reductions",
+    "conventions": "Signed continuum-subtracted HI brightness,Jy/arcsec\u00b2; optical heliocentric velocities; skyangles only,no distance/cosmology/gravitylaw. Blank aperture statistics retain correlation and are not independent p-value trials.",
+    "inputs": [
+      "Actual HALOGAS DR1v2 HR/LR NGC5023 cubes",
+      "SIMBAD optical center and primary HI center/vsys/PA controls",
+      "Known published asymmetric features; empirical centerline diagnostic"
+    ],
+    "bounds": {
+      "cube_shape": [
+        69,
+        1024,
+        1024
+      ],
+      "sampling_shape": [
+        60,
+        60,
+        150
+      ],
+      "bin_shape": [
+        10,
+        6,
+        15
+      ],
+      "centering_grid_arcsec": [
+        -8,
+        -4,
+        0,
+        4,
+        8
+      ],
+      "systemic_offsets_km_s": [
+        -4,
+        0,
+        4
+      ],
+      "common_beam_fwhm_arcsec": 40,
+      "blank_aperture_centers_max": 20,
+      "known_mask_radius_arcsec": 40,
+      "candidate_selection_region": "x>0,abs(x)<=175arcsec,abs(z)>=60arcsec excluding declared known features",
+      "additional_spectral_fwhm_km_s": [
+        20,
+        40
+      ],
+      "strict_known_feature_radii_arcsec": [
+        40,
+        60,
+        80
+      ],
+      "fine_offsets": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "datasets": [
+        "HR",
+        "LR",
+        "WHISP"
+      ]
+    },
+    "non_claims": [
+      "Not a blind preregistration",
+      "No independent HALOGAS HR/LR replication",
+      "No formal independent-pixel or Gaussian significance",
+      "No full asymmetric20-ringwarp/spiral forwardmodel subtraction",
+      "No novel method claim",
+      "A symmetric extra mass lies in the null",
+      "No newgravity/memory identification",
+      "Templateextension follows first independentbincomparison and is exploratory",
+      "Nuisanceprojection is not fullwarpmodel or a confidenceinterval",
+      "Restoringbeam convolution does not certify dirtybeam/CLEAN artifacts"
+    ]
+  },
+  "execution_artifacts": [
+    "reviews/ngc5023_cube_2026_10_20/cube_io.py",
+    "reviews/ngc5023_cube_2026_10_20/cube_analysis.py",
+    "reviews/ngc5023_cube_2026_10_20/additional_controls.py",
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001/candidate.json",
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001/arrays.npz",
+    "reviews/ngc5023_cube_2026_10_20/replication_run001/arrays.npz",
+    "reviews/ngc5023_cube_2026_10_20/data/NGC5023-HR-cube.fits",
+    "reviews/ngc5023_cube_2026_10_20/data/NGC5023-LR-cube.fits",
+    "reviews/ngc5023_cube_2026_10_20/independent/UGC_08286cl_WHISP.fits"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

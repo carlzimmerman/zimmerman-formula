@@ -1,0 +1,204 @@
+{
+  "schema_version": 2,
+  "claim_id": "NGC5023-RAW-CUBE-DISCOVERY-2026-10-20",
+  "repository": {
+    "commit": "7c395c86671d01d94a337e398667ee59036cfa85",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/ngc5023_cube_2026_10_20/cube_analysis.py",
+    "--phase",
+    "discovery",
+    "--output",
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Measure exploratory point-inverted HI emission residuals in actual HALOGAS HR/LR cubes,40arcsec commonbeam and40x40arcsec x24.72km/s bins. Freeze one unmasked inner/extraplanar candidate before independent WHISP intensity analysis. Evaluate centering,systemicvelocity,pairedmask,nativebeam,interpolation,known-feature and empiricaldewarp controls.",
+    "coefficient_domain": "float32 image operations; float64 coordinates and statistical reductions",
+    "conventions": "Signed continuum-subtracted HI brightness,Jy/arcsec²; optical heliocentric velocities; skyangles only,no distance/cosmology/gravitylaw. Blank aperture statistics retain correlation and are not independent p-value trials.",
+    "inputs": [
+      "Actual HALOGAS DR1v2 HR/LR NGC5023 cubes",
+      "SIMBAD optical center and primary HI center/vsys/PA controls",
+      "Known published asymmetric features; empirical centerline diagnostic"
+    ],
+    "bounds": {
+      "cube_shape": [
+        69,
+        1024,
+        1024
+      ],
+      "sampling_shape": [
+        60,
+        60,
+        150
+      ],
+      "bin_shape": [
+        10,
+        6,
+        15
+      ],
+      "centering_grid_arcsec": [
+        -8,
+        -4,
+        0,
+        4,
+        8
+      ],
+      "systemic_offsets_km_s": [
+        -4,
+        0,
+        4
+      ],
+      "common_beam_fwhm_arcsec": 40,
+      "blank_aperture_centers_max": 20,
+      "known_mask_radius_arcsec": 40,
+      "candidate_selection_region": "x>0,abs(x)<=175arcsec,abs(z)>=60arcsec excluding declared known features"
+    },
+    "non_claims": [
+      "Not a blind preregistration",
+      "No independent HALOGAS HR/LR replication",
+      "No formal independent-pixel or Gaussian significance",
+      "No full asymmetric20-ringwarp/spiral forwardmodel subtraction",
+      "No novel method claim",
+      "A symmetric extra mass lies in the null",
+      "No newgravity/memory identification"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-21T00:26:15.259732+00:00",
+    "runtime_seconds": 8.830948,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 210,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/ngc5023_cube_2026_10_20/cube_io.py",
+    "reviews/ngc5023_cube_2026_10_20/cube_analysis.py",
+    "reviews/ngc5023_cube_2026_10_20/TARGET.md",
+    "reviews/ngc5023_cube_2026_10_20/warp/CONTROLS.json",
+    "reviews/ngc5023_cube_2026_10_20/data/NGC5023-HR-cube.fits",
+    "reviews/ngc5023_cube_2026_10_20/data/NGC5023-LR-cube.fits"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/cube_io.py",
+      "sha256": "eb256b7365fd02cc4b1cf006753087e561a82d3c42835ba74c363d76bdd38506",
+      "sha256_after": "eb256b7365fd02cc4b1cf006753087e561a82d3c42835ba74c363d76bdd38506"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/cube_analysis.py",
+      "sha256": "d079c74f118e91694e86f8fd10526d5e46bf90d966d6f98b2f4aece26561b9cf",
+      "sha256_after": "d079c74f118e91694e86f8fd10526d5e46bf90d966d6f98b2f4aece26561b9cf"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/TARGET.md",
+      "sha256": "7520b5e7722bd2c29e9e8bbebc665962dad0fd777bb93d33fe8219cf3068dc9d",
+      "sha256_after": "7520b5e7722bd2c29e9e8bbebc665962dad0fd777bb93d33fe8219cf3068dc9d"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/warp/CONTROLS.json",
+      "sha256": "d6251ae1f9531bc7c23c629d9b2347f134b57eb61f988ff83d906f4570551cff",
+      "sha256_after": "d6251ae1f9531bc7c23c629d9b2347f134b57eb61f988ff83d906f4570551cff"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/data/NGC5023-HR-cube.fits",
+      "sha256": "3174b25fee1285095ee0ae9bed4aeff3a8c114dd818905f1e92d184850207b41",
+      "sha256_after": "3174b25fee1285095ee0ae9bed4aeff3a8c114dd818905f1e92d184850207b41"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/data/NGC5023-LR-cube.fits",
+      "sha256": "0e0574154df6b954c20522813816a47f2ac73b3e1336e3a5472f1e419c81a158",
+      "sha256_after": "0e0574154df6b954c20522813816a47f2ac73b3e1336e3a5472f1e419c81a158"
+    }
+  ],
+  "output_directory": "reviews/ngc5023_cube_2026_10_20/discovery_run001",
+  "declared_results": [
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001/results.json",
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001/arrays.npz",
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001/candidate.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/discovery_run001/stdout.txt",
+      "sha256": "8bf690838125b7f67e0ed4b3b72fe78400a5d75c4d446e389f42a8214d5393e3",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/discovery_run001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/discovery_run001/results.json",
+      "sha256": "218b323dd50220c0f401fd61a1ef42f1866b14170a3e32da4b4302ae54063656",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/discovery_run001/arrays.npz",
+      "sha256": "3b20607a8f00cd096d9d4f4edba8b4fb605341f11a6caf1a67476d1c65af8f59",
+      "kind": "result"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/discovery_run001/candidate.json",
+      "sha256": "0e676a3066f8ca8f87309567b3dedc6885d3fa439ff03fada7aacd7046facf02",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

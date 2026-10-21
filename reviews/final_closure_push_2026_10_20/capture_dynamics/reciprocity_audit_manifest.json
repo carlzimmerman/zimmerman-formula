@@ -1,0 +1,182 @@
+{
+  "schema_version": 2,
+  "claim_id": "reciprocity-independent-algebra-audit-2026-10-20",
+  "repository": {
+    "commit": "f659e6d8e1ee4cf2b756f091aff56b018da1fb1e",
+    "dirty": true
+  },
+  "command": [
+    "env",
+    "OMP_NUM_THREADS=1",
+    "OPENBLAS_NUM_THREADS=1",
+    "MKL_NUM_THREADS=1",
+    "python3",
+    "reviews/final_closure_push_2026_10_20/capture_dynamics/audit_reciprocity.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit; peak RSS 57868288 bytes"
+  },
+  "mathematics": {
+    "assertion_tested": "16 exact symbolic residuals for all quadratic variations, mixed derivative, shell kernel, full-remainder inverse derivative, warm density and Abel positivity/normalization.",
+    "coefficient_domain": "Exact symbolic expressions over positive real parameters; 0<u<a0 for interpreted signs",
+    "conventions": "Reconstruct derivatives directly from declared Ugrav; warm force uses fixed Kepler free source.",
+    "inputs": [
+      "reviews/final_closure_push_2026_10_20/reciprocity/SOURCE_RESPONSE.md",
+      "reviews/final_closure_push_2026_10_20/reciprocity/POSITIVE_WARM_COMPARISON.md"
+    ],
+    "bounds": {
+      "symbolic_residuals": 16
+    },
+    "non_claims": [
+      "No full physical action derived",
+      "No continuum stability or finite halo claimed",
+      "No existing experiment rerun"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "none",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T15:28:28.430156+00:00",
+    "runtime_seconds": 0.566364375,
+    "exit_status": 0,
+    "status": "completed",
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": 1,
+      "max_threads": 1
+    }
+  },
+  "outputs": [
+    {
+      "path": "reviews/final_closure_push_2026_10_20/capture_dynamics/reciprocity_audit_checks.json",
+      "sha256": "d544ccef5710bb11d4912e1e338ad706abaa8602d0b965aca932cdb3b3b1b760",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "name": "independent_t_variation",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "independent_f_variation",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "independent_b_variation",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "mixed_derivative_reconstructed",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "mixed_symmetry",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "shell_cross_coefficient_reconstructed",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "du_ds_inverse_derivative",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "full_simple_law_inverse",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "dg_ds_formula",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "warm_density_from_enclosed_mass",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "warm_density_in_psi",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "Abel_positive_bracket",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "small_psi_bracket_coefficient",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "large_psi_bracket_limit",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "Abel_double_kernel_normalization",
+      "residual": "0",
+      "pass": true
+    },
+    {
+      "name": "Abel_inverse_prefactor",
+      "residual": "0",
+      "pass": true
+    }
+  ],
+  "result": "implementation and finite symbolic assertion verified in the stated domain",
+  "residual_risks": [
+    "Algebraic identities do not establish finite stock, dynamics or stability",
+    "Same-team separate-context audit; parent context and intended claim known"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/final_closure_push_2026_10_20/reciprocity/SOURCE_RESPONSE.md",
+      "sha256": "6deb1b415ac7f5a1713754ea5526a05b878445fa8d6c7e98888114815401e173",
+      "sha256_after": "6deb1b415ac7f5a1713754ea5526a05b878445fa8d6c7e98888114815401e173"
+    },
+    {
+      "path": "reviews/final_closure_push_2026_10_20/reciprocity/POSITIVE_WARM_COMPARISON.md",
+      "sha256": "ccbe87688c616183da4b3cb602552b362b6188e03ac11bfcae425f5f097b9cbf",
+      "sha256_after": "ccbe87688c616183da4b3cb602552b362b6188e03ac11bfcae425f5f097b9cbf"
+    },
+    {
+      "path": "reviews/final_closure_push_2026_10_20/reciprocity/check.py",
+      "sha256": "7f0f36bfc9254ae552200a8263666582d31d89e65d619fe35dc5e2d95448ab81",
+      "sha256_after": "7f0f36bfc9254ae552200a8263666582d31d89e65d619fe35dc5e2d95448ab81"
+    },
+    {
+      "path": "reviews/final_closure_push_2026_10_20/capture_dynamics/audit_reciprocity.py",
+      "sha256": "8c0568c186f2751b88bb084245c6da7a98e43c75894f23514f6671d1493e6538",
+      "sha256_after": "8c0568c186f2751b88bb084245c6da7a98e43c75894f23514f6671d1493e6538"
+    }
+  ],
+  "declared_results": [
+    "reviews/final_closure_push_2026_10_20/capture_dynamics/reciprocity_audit_checks.json"
+  ]
+}

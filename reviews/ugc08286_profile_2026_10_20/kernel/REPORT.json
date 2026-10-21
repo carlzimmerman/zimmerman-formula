@@ -1,0 +1,41 @@
+{
+  "outcome":"implementation and finite assertion verified in the stated range, conditional on binary64/scipy numerical tolerances",
+  "interface":{
+    "module":"kernel.disk_kernel (put the packet directory on sys.path), or import disk_kernel from this kernel directory",
+    "function":"build_annular_kernel(target_radii_kpc, edges_kpc, height_kpc, vertical='exponential', order=96, vertical_cut=24.0, method='gauss', gravitational_constant=4.30091e-6)",
+    "return":"float ndarray (number of targets, number of source annuli), signed (km/s)^2 per solar mass",
+    "source_basis":"Each source-bin mass is uniform in surface density over its stated annulus, exactly normalized by pi*(b^2-a^2); height may be scalar or a prescribed value per source bin.",
+    "source_action":"v2_extra = kernel @ nonnegative_masses_msun. Stellar gradients act on SOURCE-bin light masses before the nonlocal multiplication.",
+    "positive_force_convention":"Positive V2=R*dPhi/dR is inward radial attraction; exterior annuli can pull outward, giving negative entries.",
+    "h_zero":"Razor-thin analytic disk subtraction; a target exactly at a sharp source edge is excluded as divergent. Finite height accepts exact edge targets."
+  },
+  "derivation":"For a uniform disk use the planar divergence theorem on the source Green function: V2/Sigma=G*R*a*integral cos(phi)/s dphi. Its exact elliptic evaluation is 4*G*R*a/sqrt(D)*[((2-m)K(m)-2E(m))/m]. Uniform annuli are differences of disks. The radial source integral is therefore exact. Only the prescribed vertical profile is integrated numerically, with z/h=t^2 to handle integrable edge logarithms.",
+  "primary_runs":[
+    {"manifest":"kernel/run001/manifest.json","result":"kernel/run001/checks.json","run_status":"completed","controls":10,"all_passed":true,"seconds":1.18001075},
+    {"manifest":"kernel/continuous_run002/manifest.json","result":"kernel/continuous_run002/checks.json","run_status":"completed","radii_count":6,"all_passed":true,"max_relative_error":4.969358258222201e-13}
+  ],
+  "superseded_runs":[{"manifest":"kernel/continuous_run001/manifest.json","run_status":"failed","reason":"A numpy bool_ success value could not be serialized to JSON after the calculations. No result file was produced. The script now converts the success flag to a Python bool and its numerical maximum to float; continuous_run002 is the valid evidence. This old manifest's declared script hash no longer matches current input after that output-only fix."}],
+  "benchmark_findings":{
+    "analytic_uniform_disk_vs_boundary_max_relative_error":4.480749105084669e-12,
+    "uniform_mass_subdivision_max_relative_error":2.220446049250313e-16,
+    "ring_original_angular_quadrature":"Six deterministic inside, outside, near-ring and off-plane cases; all relative discrepancies below 2e-10. Interior thin ring outward sign explicitly checked.",
+    "volume_vs_boundary_max_absolute_error_in_G_per_kpc":1.39810819170289e-9,
+    "volume_control":"Six deterministic bins including target at the bin edge and height 0.02 kpc. Independent original ring-force radial/height integral with Duffy triangles; 96/192 refinements stored.",
+    "vertical_gauss192_vs_adaptive_max_absolute_error_in_G_per_kpc":2.038090630955149e-8,
+    "vertical_gauss96_vs192_max_absolute_difference_in_G_per_kpc":6.505893353871805e-7,
+    "vertical_test_domain":"Nine targets including exact/1e-6-kpc near source edges, three source bins; h=0.02,0.2,0.5 kpc; exponential and sech2 laws; orders48/96/192 and adaptive QUADPACK.",
+    "far_field":"Unit mass in each of three annuli at R=1000 kpc agrees with G/R to max relative3.795e-6; this is the expected finite-size multipole departure, not an error estimate.",
+    "continuous_exponential_published_control_max_relative_error":4.969358258222201e-13,
+    "sharp_annular_discretization":"An exponential density represented by 256,1024,4096 sharp constant-surface-density bins over0..24Rd has respective max relative errors0.02191,0.02317,0.006100 at six radii. Slow nonmonotonic convergence reflects target positions relative to density jumps. This is separate from the continuous kernel control and requires reporting the basis as part of the inverse model."
+  },
+  "error_controls":{
+    "quadrature":"Compare order96 with192, and adaptive if a material decision is near a feasibility boundary. Use absolute differences on entries near zero. For a nonnegative source vector M, abs((Kfine-Kcoarse)@M) <= abs(Kfine-Kcoarse)@M; propagate this on each recovered solution. No uniform quadrature error certification is claimed.",
+    "tail":"At cut c=24, omitted positive-and-negative-z mass fraction eta=exp(-24)=3.775134544279098e-11 for exponential; eta=2exp(-48)/(1+exp(-48))=2.85032816548187e-21 for sech2. The implemented truncated profile is renormalized to unit mass.",
+    "analytic_infinite_profile_tail_bound":"For one source annulus [a,b] of height h>0, Z=c*h, target R, and implemented unit-mass coefficient Ktrunc, |Kinfinite-Ktrunc| <= eta*(abs(Ktrunc)+G*R*(R+b)/Z^3). This follows from |R*(R-a*cos(phi))/s^3| <= R*(R+b)/Z^3 at |z|>=Z. For h=0 there is no tail. Sum these per-bin bounds against nonnegative source masses. The inequality bounds vertical truncation only, not quadrature/roundoff.",
+    "roundoff":"Elliptic complementary parameter p=((R-a)^2+z^2)/D is evaluated directly to resolve near-edge logarithms; small-m analytic series avoids K/E cancellation in the production finite-height boundary kernel. Very narrow annuli can still incur outer-minus-inner cancellation and should be refinement-checked.",
+    "support":"No mass is assigned outside the stated source edges; extending radial support changes the inverse family. Finite radial support and vertical-law/height alternatives are geometric controls, not inferred physical laws."
+  },
+  "resource_observation":"Small deterministic single-thread child runs, no installs. Wall/CPU/thread/log caps requested with the approved audit runner; nominal memory below100MB, without a hard memory cap or CPU affinity, as required on this macOS environment. Thread environment variables do not universally enforce library compliance.",
+  "regeneration":"Use the two contract JSON files and the exact argv stored in their primary-run manifests with a fresh output directory. run001 uses timeout180 CPU150 max_threads1 max_output262144; continuous_run002 uses timeout60 CPU45 max_threads1 max_output262144. Validate each new manifest with computation-audit/scripts/validate_manifest.py --root PROJECT.",
+  "non_claims":["No observational geometry authentication by these synthetic controls","No covariance matrix or measurement likelihood is introduced","No stellar gradient or positive density uniquely recovered","No new fitted force, halo-shape or smoothing parameter","No spherical approximation used in the forward operator"]
+}

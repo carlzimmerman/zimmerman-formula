@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "UGC08286-BASELINE-2026-10-20",
+  "repository": {
+    "commit": "8ee694096f4ef99c7000cd909256e3fe26f837e6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/ugc08286_profile_2026_10_20/baseline.py",
+    "--output",
+    "reviews/ugc08286_profile_2026_10_20/baseline_run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reproduce AG4h's exact 17-point UGC08286 legacy data-only fit, then evaluate the fixed-geometry additive spherical residual and nonnegative shell feasibility at 0, 1, 2 quoted velocity-error intervals on each inherited acceleration footing.",
+    "coefficient_domain": "float64; linear programming with SciPy HiGHS",
+    "conventions": "Signed gas V-squared, unit stellar V-squared multiplied by 0.5 only in the baseline; km/s,kpc,Msun; legacy KPC=3.0857e19m retained for exact old result comparison. No new 0.05dex floor in the spherical inference; that floor is used only to reproduce the old fit.",
+    "inputs": [
+      "All 17 UGC08286 published SPARC rotmod rows",
+      "Inherited canonical and alternative a0 from FP0",
+      "Existing AG4h serialized result for exact comparison"
+    ],
+    "bounds": {
+      "point_count": 17,
+      "velocity_interval_sigma": [
+        0,
+        1,
+        2
+      ],
+      "legacy_logU_grid_points": 1201,
+      "legacy_logU_halfwidth_dex": 1.5
+    },
+    "non_claims": [
+      "Not a disk inversion",
+      "Not an independent stellar-gradient constraint",
+      "Not a halo or memory detection",
+      "Interval boxes are not a joint 68/95 percent confidence region",
+      "Recovered masses are inverse quantities, not parameter-free predictions"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T20:25:01.265259+00:00",
+    "runtime_seconds": 0.297907,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 524288,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "reviews/ugc08286_profile_2026_10_20/baseline_run/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/ugc08286_profile_2026_10_20/baseline.py",
+    "real_research/data/sparc_data/UGC08286_rotmod.dat",
+    "real_research/derivation_chain_2026/FP0_core_postulates_results.json",
+    "argon_push/AG4h_pull_systematics/ag4h_results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/baseline.py",
+      "sha256": "cd91ac7255d64d66fedeebf625a0957b7728d38a6a933911e5c6aa81cfc2bef3",
+      "sha256_after": "cd91ac7255d64d66fedeebf625a0957b7728d38a6a933911e5c6aa81cfc2bef3"
+    },
+    {
+      "path": "real_research/data/sparc_data/UGC08286_rotmod.dat",
+      "sha256": "8d22e60665ae11d1c8d510cf69ca88e7c132d39490bfb1e259b3972406bac0b6",
+      "sha256_after": "8d22e60665ae11d1c8d510cf69ca88e7c132d39490bfb1e259b3972406bac0b6"
+    },
+    {
+      "path": "real_research/derivation_chain_2026/FP0_core_postulates_results.json",
+      "sha256": "d02014ca3243d8b52f192328b1cad23fa8e8d948bf1e3a9d2b999fe4099554bd",
+      "sha256_after": "d02014ca3243d8b52f192328b1cad23fa8e8d948bf1e3a9d2b999fe4099554bd"
+    },
+    {
+      "path": "argon_push/AG4h_pull_systematics/ag4h_results.json",
+      "sha256": "fac2c22d09110a17360469cee53a67b94b774c377bd43e261084e7b7d4184870",
+      "sha256_after": "fac2c22d09110a17360469cee53a67b94b774c377bd43e261084e7b7d4184870"
+    }
+  ],
+  "output_directory": "reviews/ugc08286_profile_2026_10_20/baseline_run",
+  "declared_results": [
+    "reviews/ugc08286_profile_2026_10_20/baseline_run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/baseline_run/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ugc08286_profile_2026_10_20/baseline_run/stderr.txt",
+      "sha256": "7a8ec434ca3c4565d4a8b06df8a33e7fe1f1f7066cb36ff8ada015136dd8212a",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: reviews/ugc08286_profile_2026_10_20/baseline_run/results.json"
+  ]
+}

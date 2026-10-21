@@ -1,0 +1,207 @@
+{
+  "schema_version": 2,
+  "claim_id": "NGC5023-ADDITIONAL-CONTROLS-INDEPENDENT-AUDIT",
+  "repository": {
+    "commit": "431f22bd6fe998759b843d13113762d73356aec6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/ngc5023_cube_2026_10_20/audit/check_additional.py",
+    "--output",
+    "reviews/ngc5023_cube_2026_10_20/audit/additional_run001/checks.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Reconstruct finite-bin/known-feature intersections, fixed HR nuisance projection via independent lstsq rather than QR, all recorded template amplitudes, and HR/WHISP candidate/blank statistics for dewarp, extra20/40km/s smoothing and baseline controls.",
+    "coefficient_domain": "binary64 linear algebra/filter operations; native cube interpolation uses independently audited production sampler",
+    "conventions": "Original exploratory region/frozencandidate retained; no reselection. Unit-normalized symmetric spectral Gaussian with nearest boundary. Beam40arcsec; sky/velocity bins40x40x24.72.",
+    "inputs": [
+      "Immutable discovery/replication/additional outputs",
+      "Actual HR and WHISP native cubes",
+      "Frozen HR-derived candidate/warp"
+    ],
+    "bounds": {
+      "mask_radii_arcsec": [
+        40,
+        60,
+        80
+      ],
+      "template_masks": [
+        "original_search",
+        "strict40",
+        "strict60"
+      ],
+      "operators": [
+        "dewarp",
+        "spectral20",
+        "spectral40",
+        "no_spatial_baseline"
+      ],
+      "operator_datasets": [
+        "HR",
+        "WHISP"
+      ],
+      "absolute_scalar_tolerance": 2e-06
+    },
+    "non_claims": [
+      "No joint center likelihood or physical nuisance priors",
+      "No complete asymmetric warp/spiral fit",
+      "No formal Gaussian-tail significance or strong independent residual detection",
+      "No proof of absence"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-21T00:32:20.713494+00:00",
+    "runtime_seconds": 9.423337,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 262144,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 90,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/ngc5023_cube_2026_10_20/audit/check_additional.py",
+    "reviews/ngc5023_cube_2026_10_20/cube_analysis.py",
+    "reviews/ngc5023_cube_2026_10_20/cube_io.py",
+    "reviews/ngc5023_cube_2026_10_20/data/NGC5023-HR-cube.fits",
+    "reviews/ngc5023_cube_2026_10_20/independent/UGC_08286cl_WHISP.fits",
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001/results.json",
+    "reviews/ngc5023_cube_2026_10_20/discovery_run001/arrays.npz",
+    "reviews/ngc5023_cube_2026_10_20/replication_run001/results.json",
+    "reviews/ngc5023_cube_2026_10_20/replication_run001/arrays.npz",
+    "reviews/ngc5023_cube_2026_10_20/additional_run001/results.json",
+    "reviews/ngc5023_cube_2026_10_20/additional_run001/arrays.npz"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/check_additional.py",
+      "sha256": "f9bd2e95c8643d5398293a6404eae1f8e6e93eccadaba9a69fc38913016eaf73",
+      "sha256_after": "f9bd2e95c8643d5398293a6404eae1f8e6e93eccadaba9a69fc38913016eaf73"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/cube_analysis.py",
+      "sha256": "d079c74f118e91694e86f8fd10526d5e46bf90d966d6f98b2f4aece26561b9cf",
+      "sha256_after": "d079c74f118e91694e86f8fd10526d5e46bf90d966d6f98b2f4aece26561b9cf"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/cube_io.py",
+      "sha256": "eb256b7365fd02cc4b1cf006753087e561a82d3c42835ba74c363d76bdd38506",
+      "sha256_after": "eb256b7365fd02cc4b1cf006753087e561a82d3c42835ba74c363d76bdd38506"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/data/NGC5023-HR-cube.fits",
+      "sha256": "3174b25fee1285095ee0ae9bed4aeff3a8c114dd818905f1e92d184850207b41",
+      "sha256_after": "3174b25fee1285095ee0ae9bed4aeff3a8c114dd818905f1e92d184850207b41"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/independent/UGC_08286cl_WHISP.fits",
+      "sha256": "1455c27c290a5ce0951dc2461df8d2c8958615b6c5a646ae735829a941af147d",
+      "sha256_after": "1455c27c290a5ce0951dc2461df8d2c8958615b6c5a646ae735829a941af147d"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/discovery_run001/results.json",
+      "sha256": "218b323dd50220c0f401fd61a1ef42f1866b14170a3e32da4b4302ae54063656",
+      "sha256_after": "218b323dd50220c0f401fd61a1ef42f1866b14170a3e32da4b4302ae54063656"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/discovery_run001/arrays.npz",
+      "sha256": "3b20607a8f00cd096d9d4f4edba8b4fb605341f11a6caf1a67476d1c65af8f59",
+      "sha256_after": "3b20607a8f00cd096d9d4f4edba8b4fb605341f11a6caf1a67476d1c65af8f59"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/replication_run001/results.json",
+      "sha256": "9c8fd742ad7ccf766aefde7eace627f974a50770e92c616d6b6c2221d903e6c9",
+      "sha256_after": "9c8fd742ad7ccf766aefde7eace627f974a50770e92c616d6b6c2221d903e6c9"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/replication_run001/arrays.npz",
+      "sha256": "19118819235916abeb611be099785f98ab8c20b092b65b968235a97d8c9eb5d9",
+      "sha256_after": "19118819235916abeb611be099785f98ab8c20b092b65b968235a97d8c9eb5d9"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/additional_run001/results.json",
+      "sha256": "0f5296ca729ca1c2ca45c3db67cdfce0f227e627e5bdc6b20908e59f54751dfb",
+      "sha256_after": "0f5296ca729ca1c2ca45c3db67cdfce0f227e627e5bdc6b20908e59f54751dfb"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/additional_run001/arrays.npz",
+      "sha256": "5f2f31c78e2eafa7155b7b1af7980ad052a4213fd3cdf834a021659969ed0d0c",
+      "sha256_after": "5f2f31c78e2eafa7155b7b1af7980ad052a4213fd3cdf834a021659969ed0d0c"
+    }
+  ],
+  "output_directory": "reviews/ngc5023_cube_2026_10_20/audit/additional_run001",
+  "declared_results": [
+    "reviews/ngc5023_cube_2026_10_20/audit/additional_run001/checks.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/additional_run001/stdout.txt",
+      "sha256": "92a1ef23067beacf2387c25e819ff971bf91b294bc20f9095e84d8e1abca0735",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/additional_run001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/ngc5023_cube_2026_10_20/audit/additional_run001/checks.json",
+      "sha256": "90ec274b34ccf168cd88efe433f65e2e0724748559847888498867ba60f270dd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

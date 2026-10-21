@@ -1,0 +1,20 @@
+{
+  "claim_id": "UGC08286-BASELINE-2026-10-20",
+  "mathematics": {
+    "assertion_tested": "Reproduce AG4h's exact 17-point UGC08286 legacy data-only fit, then evaluate the fixed-geometry additive spherical residual and nonnegative shell feasibility at 0, 1, 2 quoted velocity-error intervals on each inherited acceleration footing.",
+    "coefficient_domain": "float64; linear programming with SciPy HiGHS",
+    "conventions": "Signed gas V-squared, unit stellar V-squared multiplied by 0.5 only in the baseline; km/s,kpc,Msun; legacy KPC=3.0857e19m retained for exact old result comparison. No new 0.05dex floor in the spherical inference; that floor is used only to reproduce the old fit.",
+    "inputs": ["All 17 UGC08286 published SPARC rotmod rows", "Inherited canonical and alternative a0 from FP0", "Existing AG4h serialized result for exact comparison"],
+    "bounds": {"point_count":17,"velocity_interval_sigma":[0,1,2],"legacy_logU_grid_points":1201,"legacy_logU_halfwidth_dex":1.5},
+    "non_claims": ["Not a disk inversion", "Not an independent stellar-gradient constraint", "Not a halo or memory detection", "Interval boxes are not a joint 68/95 percent confidence region", "Recovered masses are inverse quantities, not parameter-free predictions"]
+  },
+  "execution_artifacts": [
+    "reviews/ugc08286_profile_2026_10_20/baseline.py",
+    "real_research/data/sparc_data/UGC08286_rotmod.dat",
+    "real_research/derivation_chain_2026/FP0_core_postulates_results.json",
+    "argon_push/AG4h_pull_systematics/ag4h_results.json"
+  ],
+  "software": [{"name":"Python","version":"3.9.6"},{"name":"NumPy","version":"1.26.2"},{"name":"SciPy","version":"1.11.4"}],
+  "randomness":{"used":false,"generator":"","seed":null},
+  "resources":{"threads":1,"nominal_memory_below_bytes":1073741824,"unsupported_caps_not_requested":["macOS CPU affinity","macOS RLIMIT_AS"]}
+}

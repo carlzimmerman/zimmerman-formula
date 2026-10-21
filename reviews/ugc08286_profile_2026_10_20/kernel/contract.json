@@ -1,0 +1,14 @@
+{
+  "claim_id": "UGC08286_FINITE_DISK_KERNEL_CONTROLS",
+  "mathematics": {
+    "assertion_tested": "For the explicitly enumerated benchmark targets, uniform annular surface-density elements with declared vertical exponential or sech-squared profiles give signed Newtonian midplane R*dPhi/dR consistent with independent angular/radial quadrature, analytic thin disks/rings, the published exponential-disk Bessel formula, and quadrature refinement within the recorded tolerances.",
+    "coefficient_domain": "IEEE-754 binary64, scipy special functions and deterministic quadrature; no interval certification",
+    "conventions": "R,a,z,height in kpc; nonnegative annular source masses in solar masses; output is signed (km/s)^2 per solar mass, not velocity. G=4.30091e-6 kpc (km/s)^2 per solar mass unless explicitly overridden. Positive output is inward radial attraction; exterior annuli may have negative output. Each source bin has constant surface density M/[pi*(b^2-a^2)] and exactly normalized vertical profile over the declared numerical vertical support. No spherical replacement or local stellar-template rescaling.",
+    "inputs": ["Analytic test disks/rings and explicitly listed benchmark radii in benchmark_kernel.py", "vertical laws exp(-abs(z)/h)/(2h) and sech(z/h)^2/(2h), with h given as geometry; h=0 is the razor-thin limit", "Uniform annulus boundary integral, derived directly from Newtonian Green function by the planar divergence theorem"],
+    "bounds": {"wall_seconds": 180, "cpu_seconds": 150, "threads": 1, "combined_log_bytes": 262144, "nominal_working_memory_bytes": 100000000, "memory_hard_cap_enforced": false, "affinity_enforced": false, "benchmark_source_bins_max": 4096, "quadrature_orders": [48,96,192]},
+    "non_claims": ["No unique density or physical detection is implied by positive source feasibility", "No fitted thickness, smoothing parameter, force coupling or stellar gradient", "No certified global floating-point error bound", "Numerical vertical-tail truncation is explicitly controlled and is not a fitted physical cutoff", "No claim for arbitrary unresolved radial structure outside the declared annular basis", "Published formula agreement is a numerical implementation check, not an observational geometry authentication"]
+  },
+  "execution_artifacts": ["reviews/ugc08286_profile_2026_10_20/kernel/disk_kernel.py", "reviews/ugc08286_profile_2026_10_20/kernel/benchmark_kernel.py", "reviews/ugc08286_profile_2026_10_20/kernel/SOURCES.json"],
+  "software": [{"name":"Python","version":"3.9.6"},{"name":"numpy","version":"1.26.2"},{"name":"scipy","version":"1.11.4"}],
+  "randomness": {"used":false,"generator":"","seed":null}
+}

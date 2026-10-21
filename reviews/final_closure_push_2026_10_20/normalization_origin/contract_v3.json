@@ -1,0 +1,52 @@
+{
+  "claim_id": "THERMAL_NORMALIZATION_BACKREACTION_2026_10_20",
+  "mathematics": {
+    "assertion_tested": "Truncated Gamma moments at x=5,10,20 and stationary spherical selfconsistent gravity/contact compression at eta=.1,1,10, x0=10, s=1,1.1,2,5,10.",
+    "coefficient_domain": "Binary64; analytic gamma recurrence and deterministic RK4 shooting, not intervals.",
+    "conventions": "L=Rc; V=4pi Rc^3/3; s=kappa/kappa0; eta=contact rho_b/c_s^2. Q=m sum r^2/(2Rc).",
+    "inputs": [
+      "x=5,10,20",
+      "eta=.1,1,10; source s=1,1.1,2,5,10",
+      "isothermal thermal boundary, scalar loading prescribed",
+      "Also evaluate exact normalization at L equal to reference rms, fixed under source variation."
+    ],
+    "bounds": {
+      "RK4_steps": [
+        2400,
+        4800,
+        9600
+      ],
+      "max_ODE_root_iterations": 38,
+      "derivative_step": [
+        0.002,
+        0.001
+      ]
+    },
+    "non_claims": [
+      "No global stability, physical loading/thermalization, common acceleration response, kappa selection or all-phase exclusion"
+    ]
+  },
+  "execution_artifacts": [
+    "reviews/final_closure_push_2026_10_20/normalization_origin/check_backreaction.py",
+    "reviews/final_closure_push_2026_10_20/normalization_origin/CONTRACT.md",
+    "campaign_fresh_gravity/THEORY_CANONICAL_2026-10-18.md",
+    "campaign_fresh_gravity/CFG908_kappa_derived_claims_audit/README.md",
+    "campaign_fresh_gravity/CFG911_kappa_constructive_coupling/README.md",
+    "sol61_push/cold_final_mile_2026_10_13/CURRENT.txt",
+    "sol61_push/nonlinear_origin_2026_10_19/RESULT.txt",
+    "sol61_push/nonlinear_origin_2026_10_19/canonical_response/CANONICAL_RESPONSE.md",
+    "sol61_push/nonlinear_origin_2026_10_19/TARGET.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "history": "run_001 launch-failed: macOS rejected RLIMIT_AS; run_002 failed 2/41 mesh controls at eta=.1. Preserve both; refine mesh without relaxing 3e-6 tolerance. Sequential stdlib process has no workers, observed RSS ~12MB. CPU affinity and hard AS enforcement unavailable on this host. run_003 failed central-density mesh .1 by 3.0841e-6 against unchanged 3e-6 tolerance. Refine all grids again; no numerical acceptance tolerance relaxed."
+}
