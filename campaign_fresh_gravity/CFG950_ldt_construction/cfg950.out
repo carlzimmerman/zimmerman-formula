@@ -1,0 +1,87 @@
+CFG950  the labelled-domain theory (LDT): formal construction and tests   stage=MAIN
+  criteria 324edbf93; kappa = 1/2 FITTED; footings never pooled; cold energy; not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10;  NGC 3198: 43 radii, M_b = 4.7201e+10 M_sun;  native Delta_ta(0) = 11.830836; engine f_b = 0.157126;  memory at start: free+inactive 26.2 GB, swap 2.78 GB
+
+==================== K CONTROLS ====================   [t = 0.1 s]
+  [PASS] K1_CFG938_NGC3198_law: reduced EL -(-a_0*g_N + g_N*u + u**2)/(-a_0 + u); max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (2.2e-16; line 1e-6)
+  deriving growth determinant (sympy, CFG941 route) ...
+  [PASS] K2_CFG941_growth_exponents: n(c2=1, no chi-bar) = 0.609545 (0.60954), n(c2=1, chi-bar) = 0.694330 (0.69433), n(c2=0) = 1.000000000000
+  [PASS] K3_CFG945_H1_and_bound: 18 tidal eps 1.57e-05..2.03e-03 (rel diff 0.0e+00); two labels 4.116/4.610 (0.0e+00); debris q=1e-6 2.617e-06 (0.0e+00); eps_B 0.3443/0.3170 (0.0e+00); delta_c 0.0816/0.0816 (0.0e+00)
+  [PASS] K4_CFG947_positive_results: T-F retardation bound max 1.2114e-06 (CFG947 1.2114e-06); dust n = 1.000000000000; T-M identity 6.9e-18; R/(M_dom g_ref) = pi**2*epsilon/4 (0.0247, 0.2467, 0.7402; rel diff 0.0e+00); T-E min ratio 1.846642 (CFG947 1.846642)
+  [PASS] K5_CFG938_slip: worst s_847 = 1.5398e-05 (1.5398e-5), s_grad = 5.792e-06
+  [PASS] K6_CFG938_dispersion_CFG945_two_label: min omega^2/(K rho0) = 0.1000, 1.0001, 9.0001, 99.0000 (0.1/1/9/99); two-label max Im/Jeans 0.7071 (CFG945 0.7071)
+  [PASS] K7_CFG941_hover_ratios: 18 ratios reproduced (max rel diff 0.0e+00); range 1.0167..1.1067
+  K controls: ALL PASS
+
+==================== STRUCTURAL STATEMENTS ====================   [t = 1.6 s]
+  [PASS] T-EQ_static_equivalence_A_B: max |g_A/g_B - 1| = 4.4e-16 (NGC 3198 + CFG847's five systems, both footings, radial grid to r_ON): (A)'s settled label and (B)'s P-S configuration with the kernel's own supply root have the same gravitating density
+  [PASS] T-LE_labelling_cannot_be_paid_kinetically: dE_W/dm at x = K lambda_q(x) = int_x^inf D_full(u_q) dr (sympy integrand identity 0); NGC 3198: K lambda > 0 everywhere, Delta = K lambda - [Phi(r_ON) - Phi(x)] = 9.335e+09 / 9.305e+09 m^2/s^2, x-independent to 4.0e-15 over the 43 radii; M_b grid 1e7-1e15: Delta/(G M_b/r_e) = 4.6, 10.7, 17.1, 2.0, 2.9 (canonical; all > 0 both footings)
+  [PASS] T-T_concentric_tie: R(u1) - u2 = R(u2) - u1  <=>  D_full(u1) = D_full(u2); D_full' = a_0**2/(a_0 - u)**2 > 0 on [0, a0) => u1 = u2: equal tidal fields at every radius (NGC 3198 two-label equilibrium residual 2.0e-15); element-wise tidal comparisons tie, so M-R must be a whole-label rule
+  [PASS] T-G_no_theta_no_ghost: F(theta, u) = W_full(u): F_theta,theta = 0, so the longitudinal kinetic coefficient is rho0 + F_tt k^2 = rho0 (CFG944's identity); the theta-latch acts outside the action, so Theorem G's hypothesis (a local L(theta, u)) is not met
+  [PASS] T-theta_latch_inside_turnaround: f_theta = M_theta/M_ta (EdS, delta_i ~ q^-3eps): eps 0.20: 0.467 (delta_lin at theta=0 1.237), eps 0.33: 0.551 (delta_lin at theta=0 1.296), eps 0.50: 0.635 (delta_lin at theta=0 1.333), eps 0.67: 0.696 (delta_lin at theta=0 1.352), eps 0.90: 0.755 (delta_lin at theta=0 1.368); top-hat: theta = 0 at turnaround, delta_lin = 1.0624, 1 + delta = 9*pi**2/16 = 5.5517; fronts pre-shell-crossing
+
+==================== (a) the law in a single-label galaxy ====================   [t = 3.3 s]
+   (a) PASS: a1 2.2e-16/2.2e-16; a2 limit 1, y = 1e-14 numeric - exact = +4.4e-16/+0.0e+00 (value +1.00e-07); a3 label edge r_e = 454/413 kpc (N = 53.6; E7 454/413; r_ON 1151) vs last radius 44.1 kpc and deep points 84/265 kpc: inside. Reported: theta-latch label mass -> r_e 0.20: 214 kpc (y=1e-3 OUT), 0.33: 252 kpc (y=1e-3 OUT), 0.50: 290 kpc (y=1e-3 in), 0.67: 317 kpc (y=1e-3 in), 0.90: 344 kpc (y=1e-3 in); costs: two labels 4.12/4.61, debris line q <= 3.5e-7
+
+==================== (b) FRW and linear growth ====================   [t = 3.4 s]
+   (b) PASS: b1 unlabelled medium F = -m c^2 n on FRW: rho = c**2*m/a**3, p = 0 (w = 0, isotropic); b2 linear theta = 3H(1 - f delta/3): latch needs delta >= 3/f (= 3 in EdS); top-hat theta = 3*sin(eta)/(B*(cos(eta) - 1)**2) -> 0 at eta = pi (turnaround), delta_lin = 1.0624, 1 + delta = 9 pi^2/16; theta_dot(pi) = -3/(8*B**2) != 0 (transversal); b3 no tether in the linear regime: n = 1.000000000000
+
+==================== (c) no hover and (i) the satellite data bound ====================   [t = 3.4 s]
+   (c) PASS: canonical: own-label Delta a/g_host max 2.03e-03 vs eps_B 0.3443; alt: own-label Delta a/g_host max 2.02e-03 vs eps_B 0.3170; CFG941 0.01 line met; 1-Gyr dynamics with Delta a = tidal residual: stars and own-label medium bound in 18/18 (min P_max/Delta a 1.8e+02, max separation/r_dom 9.1e-04)
+   (i) PASS: Delta a/g_host <= eps_B (as (c)); uniform-field EFE on the satellite phantom 0.0e+00 dex vs delta_c 0.0816/0.0816; tidal term (reported) -0.0572..-0.0002 dex
+
+==================== (d) slip ====================   [t = 11.1 s]
+   (d) PASS: per label (CFG847's five systems, L* 0/24 pc/1 kpc): worst s_grad 5.79e-06, s_847 1.540e-05; satellite inside a host (summed label stresses, upper bound) 2.7e-08; line 1.9e-5
+
+==================== (e) energy and momentum through label events ====================   [t = 11.1 s]
+  e1 1-D toy: |P(t) - P(0)|/sum m|v| max 8.1e-14 across latch / re-latch / merge; max label changes per slab 2; labels at end 1; leapfrog energy drift between events 6.5e-07; 1-D event jumps (box-dependent, not graded) latch +8.52e-02, relatch +3.32e-02, merge +4.53e-01
+  [canonical] NGC 3198 label assembly: Delta E in [2.383e+52, 1.189e+53] J = [0.188, 0.939] |E_grav| (|E_grav| 1.266e+53 J; medium self-binding 1.163e+53 J); merger 1:1 / 1:3: wall u1 + u2 >= a0 crossed: True / True (medium fraction inside the wall 0.007 / 0.001; instant Delta E = inf there); outside the wall 2.519e+53 / 1.062e+53 J = 0.70 / 0.54 |E_grav,merged|; re-latch per unit mass / (g_host R) +1.67..+3.10; R-E cost max |e_L|/c^2 1.7e-06; PN Bianchi residual ~ 2.6e-07
+  [alt] NGC 3198 label assembly: Delta E in [2.382e+52, 1.305e+53] J = [0.172, 0.940] |E_grav| (|E_grav| 1.388e+53 J; medium self-binding 1.277e+53 J); merger 1:1 / 1:3: wall u1 + u2 >= a0 crossed: True / True (medium fraction inside the wall 0.007 / 0.000; instant Delta E = inf there); outside the wall 2.761e+53 / 1.162e+53 J = 0.70 / 0.54 |E_grav,merged|; re-latch per unit mass / (g_host R) +1.58..+3.03; R-E cost max |e_L|/c^2 1.8e-06; PN Bianchi residual ~ 2.9e-07
+   (e) CONDITIONAL: e1 momentum 8.1e-14 (line 1e-12): closes; e2 energy jumps at label events do NOT close with dynamical fields (assembly 0.19-0.94 / 0.17-0.94 |E_grav|; T-LE: no kinetic payment); closed only through R-E (non-dynamical label energy, cost |e_L|/c^2 <= 1.8e-06); instant merging is undefined where the summed field reaches the W_full wall
+
+==================== (f) mergers ====================   [t = 11.5 s]
+  1.000|N0: shells 600, J_LDT 0.0e+00, J_A 0.357, Delta E_merge +inf (E -1.1357e+01), max superposed u 0.580, merged edge 10.657, eq monotone True, midpoint law dev 1.21e-01 (528 shells), mass exact True; flow 6500 steps (451 rejected, 2.3 s), distance 0.258 -> 0.0112 (x23.1), heat inf, max accepted dE/|E| 0.0e+00
+  1.000|2N0: shells 1200, J_LDT 0.0e+00, J_A 0.357, Delta E_merge +inf (E -1.1357e+01), max superposed u 0.617, merged edge 10.657, eq monotone True, midpoint law dev 1.21e-01 (1056 shells), mass exact True
+  0.333|N0: shells 400, J_LDT 0.0e+00, J_A 0.325, Delta E_merge +3.3429e+00 (E -4.7875e+00), max superposed u 0.545, merged edge 8.938, eq monotone True, midpoint law dev 1.25e-01 (351 shells), mass exact True; flow 3500 steps (238 rejected, 1.0 s), distance 0.163 -> 0.0064 (x25.5), heat 1.1887e-01, max accepted dE/|E| 0.0e+00
+  0.333|2N0: shells 800, J_LDT 0.0e+00, J_A 0.325, Delta E_merge +3.3427e+00 (E -4.7879e+00), max superposed u 0.567, merged edge 8.938, eq monotone True, midpoint law dev 1.25e-01 (702 shells), mass exact True
+  A1 1.000|N0: innermost shell r_1 0.166, du_1 0.729; discrete identity <R> = g_b max dev 7.9e-12; resolved-range (r >= 0.447, 524 shells) midpoint dev 2.60e-03; heat from first finite state 4.1047e-01, tiny accepted increases 0
+  A1 1.000|2N0: innermost shell r_1 0.116, du_1 0.738; discrete identity <R> = g_b max dev 1.4e-11; resolved-range (r >= 0.447, 1047 shells) midpoint dev 5.87e-04
+  A1 0.333|N0: innermost shell r_1 0.176, du_1 0.644; discrete identity <R> = g_b max dev 4.3e-12; resolved-range (r >= 0.447, 347 shells) midpoint dev 2.50e-03; heat from first finite state 1.1887e-01, tiny accepted increases 0
+  A1 0.333|2N0: innermost shell r_1 0.124, du_1 0.654; discrete identity <R> = g_b max dev 1.0e-11; resolved-range (r >= 0.447, 695 shells) midpoint dev 9.08e-04
+   (f) FAIL: f1 J_LDT 0.0e+00 vs class-A-type J_A 0.325-0.357; f2 flow monotone, distance x23.1; f3 (frozen) midpoint law dev at 2N0 1:1 1.2e-01 (N0 1.2e-01), 1:3 1.2e-01 (N0 1.3e-01) [frozen metric pinned at the innermost shell, du_1 ~ 0.74]. POST HOC A1: f3-A identity <= 1.4e-11; f3-B resolved-range dev at 2N0 1:1 5.9e-04 (N0 2.6e-03), 1:3 9.1e-04 (N0 2.5e-03) -> (f) under A1: PASS
+
+==================== (g) well-posedness ====================   [t = 16.0 s]
+   (g) CONDITIONAL: g1 per label min omega^2/(K rho0) 0.100, 1.000, 9.000, 99.000 >= 0, max Im 0; inertia margin min 5.9e+04; g2 no theta in the action (kinetic coefficient rho0); g3 co-located labels max Im/Jeans 0.707 <= 1 (bounded, k-independent); label field enters only via n_q; g4 one-way rule: finite label changes (toy max 2), transversal latch. Premises inherited: gamma > 0, rho c^2 > D u/K, per-label single stream; nonlinear WP unproved
+
+==================== (h) forced edge and zero-sum ====================   [t = 16.0 s]
+   (h) PASS: h1 M_ph(<r_ON)/M_c,q = 2.024..11.518 > 1 (edge forced, 1e7-1e15 M_sun); h2 r_e/r_ON 0.088..0.513, NGC 3198 r_e 454/413 kpc; h3 SPARC points beyond r_e: 0/0 (175 galaxies); h4 zero-sum = medium mass conservation, exact in the toys (True) and by rule (events move no mass)
+
+==================== reported R1-R3 ====================   [t = 16.0 s]
+  R1 other labels are baryon-like for a label's equilibrium (R(u_q) = g_b + sum_p u_p): satellites' own-domain medium / stars = 41..854 (H1-H3 x 50/100/250 kpc); a host's law beyond a satellite reads g_b + G M_sat,med/d^2. Example: the three CFG882 dwarfs at 100 kpc carry 1.67e+09 M_sun of own-label medium, 2.8e-02 of a 6e10 M_sun host's baryons
+  R2 baryon-free label: force on labelled medium = -g_b + R(u_q) u_hat with g_b = 0 -> R(u) = u**2/(a_0 - u) > 0 (e.g. a_0/2 at u = a0/2): outward; the label disperses
+  R3 formulation (B) costs (CFG947): no action (retarded kernels); cap q <= 1; deficit clip; kernel's own supply root; T-M dipole condition; own-label phantom non-additive (T-L), so an instant merge recomputation jumps (here J_A 0.32-0.36)
+
+==================== CLASS (frozen rule, criteria sec. 6) ====================   [t = 16.0 s]
+  grades (frozen): (a) PASS, (b) PASS, (c) PASS, (d) PASS, (e) CONDITIONAL, (f) FAIL, (g) CONDITIONAL, (h) PASS, (i) PASS
+  CLASS (frozen rule, frozen metrics): NOT CONSISTENT AS SPECIFIED
+  CLASS under POST-HOC amendment A1 (f3 metric only): LDT CONDITIONAL   [grades: (f) PASS; all others unchanged]
+  A1 ghost / 2nd order         CONDITIONAL  per label CFG938 (inertia iff rho c^2 > D u/K, margin >= 5.9e+04); no theta in the action (T-G) so no CFG944 ghost; label sector has no action (CFG678: a prescribed rule cannot PASS)
+  A2 hyperbolicity             CONDITIONAL  per label omega^2 >= 0 (g1); co-located labels bounded Jeans (g3); needs gamma > 0
+  A3 nonlinear WP              UNTESTED     not proved; event-driven force discontinuities
+  A4 strong coupling           UNTESTED     not computed
+  A5 GW at c                   PASS         Einstein-Hilbert unmodified, no curvature couplings of the medium or chi_q (structural)
+  A6 BH exteriors              UNTESTED     no computation
+  A7 radiative                 DECLARED     CFG320
+  B1 switch from variation     UNTESTED     the switch is the action-less label sector (prescribed); CFG678's rule scores it UNTESTED, never PASS; momentum conserved (e1), unlike CFG48's gate; CFG944 Theorem G: no local variational version
+  B2 a0-Lambda tie             UNTESTED     a0 constant in W; kappa = 1/2 FITTED
+  B3 cold sector               CONDITIONAL  per label CFG938 (well-posed, lenses like mass, slip 1.5e-05); energy closes only through R-E (e)
+  C1 Cassini                   CONDITIONAL  inherits CFG938's C1 (spherical sector = S2); satellites' and hosts' media no longer differential-fall (c)
+  C2 SPARC                     PASS         single-label law (a), no SPARC point beyond its label's edge (h3): CFG4 rms 0.1003/0.0991 <= 0.110
+  C3 early types               FAIL         inherits CFG529 (the law fails)
+  C4 cluster lensing           NOT DECIDED  as CFG678 (CFG680 amplitude not frozen)
+  D1 zero field                UNTESTED     not run
+  D2 growth                    UNTESTED     linear regime dust, n = 1 (b); the CFG596 line needs an LDT PM engine (CFG952); class-A shear passes do not transfer automatically
+  D3 flat a0(z)                PENDING      constant a0; sealed tests 2026-11-06 / 2026-11-28
+  E1 kappa from the action     DECLARED     kappa = 1/2 FITTED
+  E2 quantum completion        DECLARED     none
+  E3 SM structure              DECLARED     walled
