@@ -182,3 +182,51 @@ h72's bounds, the WT-01 coordinator notes and a grep of WT-06's criteria. Withou
 
 No number in this lane has been computed by a script. The rules are written to decide either way. Expectation 1 is tested
 against K7 and MU3; expectation 3's worst case does not set the verdict.
+
+---
+
+## Amendment A1 (POST HOC, 2026-10-21, after runs 1–3; appended, frozen text above unchanged; not committed)
+
+**A1.1 Run history (script and numerics only; no rule changed).**
+- Run 1 crashed before any verdict. K4 FAILED because the Mehler integral was truncated at t = e¹², giving g(0) = 0.9986. E1 then
+  crashed on a sympy Subs substitution. Fixes: the integration range was extended to e⁷⁰; the TT plane wave in E1 is built
+  explicitly; the oscillatory time-kernel integral is split (QAWO). Log kept: `wt02_firstrun_K4fail_E1crash.out`.
+- Run 2 completed with the same labels as run 3, but K4 FAILED on an extra β = 1e-9 check I had added. That check is not in the
+  frozen K4, and it assumed g is analytic at B = 0. It is not: 1 − g(β) = 0.42773 √β (checked over β = 1e-11…1e-5), which is
+  physical. The extra check was removed, and the √β coefficient is printed as a diagnostic. Outputs kept:
+  `wt02_run2_K4extra.out`, `wt02_results_run2_K4extra.json`.
+- Run 3 is final. MUTATE was run from the same script bytes.
+
+**A1.2 D2 at 1 AU is a mis-specified gate.**
+- §2-D lists E1 = R☉ and 1 AU and scores "D2 at E1" against "its bound", but names no bound at 1 AU. The script applies the only
+  weak-field α₂ bound in the record (1e-7, L91) at both radii. That literal reading gives EXCLUDED: α₂_eff = 4.1e-6 at 1 AU for
+  w = 30 km/s and L* = 24 pc, on both footings (ratio 41). This is the only row ≥ 10×.
+- Post hoc, the comparison is wrong in three ways:
+  1. The 1e-7 line is the solar-spin observable, measured at the Sun, not at 1 AU.
+  2. Its value assumes the CMB-frame w_ref ≈ 370 km/s, so the observable anisotropy it allows is
+     δΦ/U ≤ 1e-7 (w_ref/c)² = 1.52e-13.
+  3. D2 is a step in w: |F − 1| ≈ 1 for every w ≫ c_s = 0.36–15 km/s. Dividing by (w/c)² at 30 km/s therefore inflates
+     α₂_eff by (370/30)² = 152 against the bound's own normalisation.
+- Scored on observables instead:
+  - Solar surface: δΦ/U = 8.8e-19 against 1.52e-13.
+  - 1 AU: the frame-dependent pull is ≤ GM☉/L*² = 2.42e-16 m/s², against the record's ephemeris bound on a sunward pull at
+    1 AU, 3.66e-14 m/s² (CFG770 T3, `cfg770.out`:36, 5554648db0). Ratio 0.0066.
+- Post-hoc (d) labels: UNDERDETERMINED + MEDIUM CLOCK + COSMIC CLOCK. Post-hoc headline: ILL-POSED-IVP. Both carry no class
+  weight. The script prints them in a separate block labelled POST HOC (A1); that block was written after run 2's numbers were
+  seen.
+
+**A1.3 What w physically is (reporting, no rule change).**
+- **D1 / D2:** w is the velocity of a baryon pattern relative to the medium that would carry its law. A system in its law state
+  carries its medium (w = 0), and covariance then gives no effect.
+- **The Solar System:** relative to a static (non-rotating, stress-supported) Galactic medium, the Sun moves at roughly the
+  circular speed.
+- **D3:** w is the velocity of the local medium relative to the comoving (CMB) frame, i.e. a peculiar or bulk velocity.
+- **The tabulated values:** 30 km/s is an Earth-orbit-like speed; 370 km/s is CMB-frame-like; 1000 km/s is cluster-galaxy-like.
+
+**A1.4 Flags found while computing (no class weight).**
+- On FRW the medium's kinetic coefficient is K ρ (1 − Kρ_c/(9H²)), i.e. 0.956 at z = 0 and 0.860 at z = 10; this is the
+  cosmic-clock term W ⊃ (χ̄′ v)². The clock gradient Kρ_c/θ diverges as θ → 0. This suggests strong coupling or a ghost near
+  turnaround, but it is not computed beyond FRW.
+- CFG770's static Solar-System solution assumes the Sun at rest in the Galactic medium. At the Sun's actual speed relative to
+  that medium, |F − 1| ≈ 1 at 1 AU, so Q2 needs a moving-source recomputation. It is not done here, and every such effect stays
+  ≤ GM☉/L*².

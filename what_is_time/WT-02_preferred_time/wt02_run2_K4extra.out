@@ -1,0 +1,136 @@
+WT-02  what defines 'now' in the CFG938 parent
+  criteria b85749d1cd; kappa = 1/2 FITTED; footings never pooled; not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10 m/s^2
+
+==================== K CONTROLS ====================
+  [PASS] K1_NGC3198_law_reduction: N = 43; max|g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (line 1e-12; CFG938 2.22e-16)
+  [PASS] K2_S1d_FRW: D^2 chibar = K_m*exp(-3*h*x0) = -3 (a'/a) chibar' = K m nbar (homogeneous solution, S1d)
+  [PASS] K3_S5a_reproduced: k || grad chi: omega^2 -> ['0', 'K_m*(2*D_p + L_s**2*k**2 - 2)/2']; k perp grad chi: ['0', 'D_d*K_m/u_0 + K_m*L_s**2*k**2/2 - K_m'] (= gamma rho0 k^2 + K rho0 R' and + K rho0 R/u with D' = 1 + R', D/u = 1 + R/u; the 0 root is the vortical mode)
+  [FAIL] K4_Mehler_Poisson_limit: g(0) = 1.000000000, g(1e-9) = 0.999986474 (line |g - 1| < 1e-6)
+  [PASS] K5_TT_linearised_Ricci: R^(1)_ij = -(1/2) box h_ij for the TT basis used in E (traceless, transverse)
+  [PASS] K6_screened_pull_GM_over_Lstar2: -dPhi_c/dr (mu -> 0) = -G*M/L**2 : magnitude GM/L*^2 toward the mass (CFG770 K1); Phi_c - Phi_c(0) = GMr/L*^2 => f_c = r^2/L*^2
+  [PASS] K7_FRW_parabolic_coeffs_vanish_at_H0: coefficient of d0 dchi in the chi equation = -3*h; of d0 dlam in the lambda equation = 3*h; both -> 0 as h -> 0 (note: chibar' = -K rho/(3h) itself diverges as h -> 0)
+  K controls all pass: False
+
+==================== A. CHARACTERISTICS ====================
+  A-i static medium (Minkowski), plane-symmetric linearisation of the full covariant action; rows = EL equation of [xi, eta, dchi, dlam, Phi] in the order: medium-long, medium-trans, (chi-variation = lambda eq), (lambda-variation = chi eq), Poisson
+    grad chi par  : chi eq row = ['I*K_m*k', '0', '-k**2', '0', '0']
+                    lambda eq row = ['-D_d*omega**2/c**2', '0', '-k**2*(2*D_p + L_s**2*k**2)/2', '-k**2', '0']
+                    own-field time derivatives: {'chi_eq (from dlam)': 'ELLIPTIC', 'lambda_eq (from dchi)': 'ELLIPTIC', 'Phi_eq': 'ELLIPTIC'}
+    grad chi perp : chi eq row = ['I*K_m*k', '0', '-k**2', '0', '0']
+                    lambda eq row = ['0', '-D_d*omega**2/c**2', '-k**2*(2*D_d + L_s**2*k**2*u_0)/(2*u_0)', '-k**2', '0']
+                    own-field time derivatives: {'chi_eq (from dlam)': 'ELLIPTIC', 'lambda_eq (from dchi)': 'ELLIPTIC', 'Phi_eq': 'ELLIPTIC'}
+    grad chi zero : chi eq row = ['I*K_m*k', '0', '-k**2', '0', '0']
+                    lambda eq row = ['0', '0', '-k**2*(L_s**2*k**2 + 2)/2', '-k**2', '0']
+                    own-field time derivatives: {'chi_eq (from dlam)': 'ELLIPTIC', 'lambda_eq (from dchi)': 'ELLIPTIC', 'Phi_eq': 'ELLIPTIC'}
+    lambda_0 != 0 variant (k || grad chi): chi eq own time derivative: False; lambda eq own time derivative: False; det = -K_m*k**6*omega**2*(c**2 + lambda_0)*(2*D_d*omega**2*u_0 + 2*D_p*K_m**2*c**2 + K_m**2*L_s**2*c**2*k**2 - 2*K_m**2*c**2 - 2*K_m*c**2*omega**2 + 6*K_m*lambda_0*omega**2)/(2*c**4)
+  [PASS] A_static_chi_lambda_elliptic: on static media the chi and lambda equations carry no time derivative of their own field along u (elliptic, instantaneous on the medium's slices); Phi here is the Newtonian limit of the hyperbolic metric
+    medium longitudinal principal speed^2 (k -> inf) = K_m*L_s**2/2  (= gamma rho0 = c_s^2); vortical roots omega^2 = 0
+  A-ii NGC 3198 law state (frozen coefficients, both footings, L* = 24 pc / 1 kpc)
+    canonical L*=24pc : max c_s = 2.328e+00 km/s (c_s/c = 7.77e-06); rho_c > 0 at 43/43 radii; min inertia margin rho c^2 K/(D u) = 3.63e+06
+    canonical L*=1kpc : max c_s = 9.701e+01 km/s (c_s/c = 3.24e-04); rho_c > 0 at 43/43 radii; min inertia margin rho c^2 K/(D u) = 3.63e+06
+    alt       L*=24pc : max c_s = 2.501e+00 km/s (c_s/c = 8.34e-06); rho_c > 0 at 43/43 radii; min inertia margin rho c^2 K/(D u) = 3.31e+06
+    alt       L*=1kpc : max c_s = 1.042e+02 km/s (c_s/c = 3.48e-04); rho_c > 0 at 43/43 radii; min inertia margin rho c^2 K/(D u) = 3.31e+06
+  A-iii FRW (rows: EL equations of [xi, eta, dchi, dlam]; sigma = growth rate in units of H, k in units of H/c)
+    row 0: ['-K_m*sigma*(K_m*h - K_m*sigma + 18*h**3 + 9*h**2*sigma)/(9*h**2)', '0', '-I*K_m*k*sigma/(3*h)', '-I*K_m*k']
+    row 1: ['0', '-K_m*sigma*(K_m*h - K_m*sigma + 18*h**3 + 9*h**2*sigma)/(9*h**2)', '0', '0']
+    row 2: ['-I*K_m*k*sigma/(3*h)', '0', '-k**2*(L_s**2*k**2 + 2)/2', '9*h**2 + 3*h*sigma - k**2']
+    row 3: ['I*K_m*k', '0', '-3*h*sigma - k**2', '0']
+    chi eq: (-k^2 + (-3*h) sigma) dchi + ... ; lambda eq: (... + (3*h) sigma) dlam
+    det M = K_m**2*sigma*(K_m*h - K_m*sigma + 18*h**3 + 9*h**2*sigma)*(-9*K_m*L_s**2*h**2*k**6 + 54*K_m*h**4*sigma**2 - 36*K_m*h**3*k**2*sigma - 36*K_m*h**3*sigma**3 - 18*K_m*h**2*k**4 - 54*K_m*h**2*k**2*sigma**2 - 18*K_m*h**2*sigma**4 - 2*K_m*h*k**4*sigma + 2*K_m*k**4*sigma**2 + 972*h**6*sigma**2 + 324*h**5*k**2*sigma + 810*h**5*sigma**3 + 162*h**4*k**2*sigma**2 + 162*h**4*sigma**4 - 36*h**3*k**4*sigma - 18*h**2*k**4*sigma**2)/(162*h**4)
+    unsourced chi mode sigma = -k**2/(3*h); unsourced lambda mode sigma = -3*h + k**2/(3*h)
+    z =  0.0 L*=24pc  expanding  : max Re sigma / |H| at k l_H = 1e2..1e6: ['3.330e+03', '3.333e+05', '3.333e+07', '3.333e+09', '3.333e+11']; slope 2.0000; Hadamard fires: True
+    z =  0.0 L*=24pc  contracting: max Re sigma / |H| at k l_H = 1e2..1e6: ['3.333e+03', '3.333e+05', '3.333e+07', '3.333e+09', '3.333e+11']; slope 2.0000; Hadamard fires: True
+    z =  0.0 L*=1kpc  expanding  : max Re sigma / |H| at k l_H = 1e2..1e6: ['3.330e+03', '3.333e+05', '3.333e+07', '3.333e+09', '3.333e+11']; slope 2.0000; Hadamard fires: True
+    z =  0.0 L*=1kpc  contracting: max Re sigma / |H| at k l_H = 1e2..1e6: ['3.333e+03', '3.333e+05', '3.333e+07', '3.333e+09', '3.333e+11']; slope 2.0000; Hadamard fires: True
+    z = 10.0 L*=24pc  expanding  : max Re sigma / |H| at k l_H = 1e2..1e6: ['3.331e+03', '3.333e+05', '3.333e+07', '3.333e+09', '3.333e+11']; slope 2.0000; Hadamard fires: True
+    z = 10.0 L*=24pc  contracting: max Re sigma / |H| at k l_H = 1e2..1e6: ['3.334e+03', '3.333e+05', '3.333e+07', '3.333e+09', '3.333e+11']; slope 2.0000; Hadamard fires: True
+    z = 10.0 L*=1kpc  expanding  : max Re sigma / |H| at k l_H = 1e2..1e6: ['3.331e+03', '3.333e+05', '3.333e+07', '3.333e+09', '3.333e+11']; slope 2.0000; Hadamard fires: True
+    z = 10.0 L*=1kpc  contracting: max Re sigma / |H| at k l_H = 1e2..1e6: ['3.334e+03', '3.333e+05', '3.333e+07', '3.333e+09', '3.333e+11']; slope 2.0000; Hadamard fires: True
+    anticipation (final-data reading) at r = 10kpc : tau_k = 3H r^2/c^2 = 2.200e-01 yr (light crossing 3.261e+04 yr)
+    anticipation (final-data reading) at r = 1Mpc  : tau_k = 3H r^2/c^2 = 2.200e+03 yr (light crossing 3.261e+06 yr)
+    anticipation (final-data reading) at r = 100Mpc: tau_k = 3H r^2/c^2 = 2.200e+07 yr (light crossing 3.261e+08 yr)
+    check: leading root at k l_H = 1e6 equals k^2/3 to 8.58e-12
+  (a) labels: ['MEDIUM CLOCK', 'ILL-POSED-IVP']  | criterion B VIOLATED under the final-data reading of the backward field
+
+==================== B. THE FRAME ====================
+  B1 transverse (eta) row, k || grad chi: K_m*omega**2 * eta = 0  -> omega^2 = 0 (vortical, frozen-in, positive kinetic coefficient)
+  B2 canonical momentum: pi_r = rho v_r - [U*v_r*Subs(Derivative(W(_xi_1), _xi_1), _xi_1, U*sqrt(c**2 + v_r**2)/c)/(c*sqrt(c**2 + v_r**2))] ; pi_theta = rho*v_theta
+  B2 if pi is irrotational, curl(rho v) = curl(f(r) v_r rhat) = -f(r)*Derivative(vr(r, theta_p), theta_p)/r  (f = W'(u) U^2/(u c^2) != 0): vorticity of v forced at relative order eps_omega
+  B2 eps_omega = D(u) u/(K rho_c c^2) max on NGC 3198: canonical 2.75e-07, alt 3.02e-07
+  B3 rigid rotation: (u ^ du)_(t x y) = 2*Omega*c/(Omega**2*x**2 + Omega**2*y**2 - c**2)  (nonzero -> u is not hypersurface-orthogonal: no medium slices)
+  B4 [X_x, X_y] f = 2*Omega*Derivative(f(t, x, y), t)/c**2  (bracket-generating: the constraint operator is hypoelliptic in (x, y, t), not a family of slice problems)
+  B4 g(beta) at beta = 0.1, 1, 10: 0.8643, 0.5725, 4.5385e-02; response before the source = 0.5 (evenness, BY CONSTRUCTION)
+  B4 half-mass time t_50 = 0.9433 Omega r^2/c^2
+  B4 illustration (hypothetical medium rotating like NGC 3198's stars): t_50 = 15.7 / 31.7 / 45.1 yr at 10/20/30 kpc; with the B2-forced fraction eps_omega: <= 4.30e+02 s
+  B5 medium moving at beta = v/c through the cosmic chibar(x0): h^mn d chibar d chibar = -beta**2*chi_p**2/(beta**2 - 1)  -> u_v = gamma beta |chibar'|
+  B5 FRW machinery: u^2 at O(eps^2) = (K_m**2*Derivative(eta(x0, x), x0)**2 + K_m**2*Derivative(xi(x0, x), x0)**2 - 6*K_m*h*exp(h*x0)*Derivative(dchi(x0, x), x)*Derivative(xi(x0, x), x0) + 9*h**2*exp(2*h*x0)*Derivative(dchi(x0, x), x)**2)*exp(-4*h*x0)/(9*h**2)
+  B5 |chibar'| /c = K rho_c c/(3 H0) -> u_v = (Omega_c H0/2) gamma v = 2.8881e-19 s^-1 x v
+  (b) labels: ['NOW = MEDIUM SLICES FOR IRROTATIONAL FLOW ONLY', 'COSMIC CLOCK', 'LAW IN MEDIUM FRAME (by construction)']
+
+==================== C. L95 ====================
+  C1 static medium frame (medium unperturbed): p_chi = 0;  A = d^2L/d(chi_dot)^2 = 0
+  C1 FRW: p_chi = -3*h*dlam(x0, x)*exp(3*h*x0);  A = 0;  d^2L/d(lam_dot)^2 = 0
+  C2 FRW Hamiltonian: p_chi + 3 h a^3 dlam = 0 and p_lam = 0 are second class for h != 0 (bracket 3 h a^3); eliminating dlam leaves
+     one canonical pair (dchi, p_chi) with H LINEAR in p_chi (A = 0): a first-order (parabolic) pair, unbounded in p_chi.
+     At h = 0 the bracket vanishes: p_chi ~ 0 and p_lam ~ 0 are constraints and the pair carries no degree of freedom.
+     L95's obstruction A A'/2 = 0 identically on both backgrounds.
+  (c) labels: ['SATISFIES L95', "EVADES L31/DC-019 alpha_3 horn (premise 'non-dynamical foliation' fails: the frame is the varied medium; alpha_3 = 0 by the semi-conservative theorem, CFG938 S3b) -- BY CONSTRUCTION"]
+      reading: the MOND function sits on a non-propagating field (A = 0) and the foliation is supplied by the medium, as L95 requires;
+      L95 is silent on the linear-in-momentum structure that the medium's expansion creates (theta != 0).
+
+==================== D. PREFERRED-FRAME SIZE ====================
+  D1 chi_hat/Phi_hat = (c**2*(k_x**2 + k_y**2) - k_x**2*w**2)/(c**2*(k_x**2 + k_y**2))  ->  C2(theta) = -cos_theta**2*w**2/c**2  (max |C2| = (w/c)^2; even in w: no alpha_1-type term)
+  D1 alpha2_eff = f_c(r) (w-independent):
+    solar_surface|24pc|canonical alpha2_eff = 8.825e-19  bound 1.0e-07  ratio 8.83e-12   (unscreened ceiling f_c = 3.41e-13, context)
+    solar_surface|24pc|alt       alpha2_eff = 8.825e-19  bound 1.0e-07  ratio 8.83e-12   (unscreened ceiling f_c = 4.13e-13, context)
+    solar_surface|1kpc|canonical alpha2_eff = 5.083e-22  bound 1.0e-07  ratio 5.08e-15   (unscreened ceiling f_c = 3.41e-13, context)
+    solar_surface|1kpc|alt       alpha2_eff = 5.083e-22  bound 1.0e-07  ratio 5.08e-15   (unscreened ceiling f_c = 4.13e-13, context)
+    NS_surface|24pc|canonical    alpha2_eff = 1.823e-28  bound 1.6e-09  ratio 1.14e-19   (unscreened ceiling f_c = 5.04e-23, context)
+    NS_surface|24pc|alt          alpha2_eff = 1.823e-28  bound 1.6e-09  ratio 1.14e-19   (unscreened ceiling f_c = 6.09e-23, context)
+    NS_surface|1kpc|canonical    alpha2_eff = 1.050e-31  bound 1.6e-09  ratio 6.56e-23   (unscreened ceiling f_c = 5.04e-23, context)
+    NS_surface|1kpc|alt          alpha2_eff = 1.050e-31  bound 1.6e-09  ratio 6.56e-23   (unscreened ceiling f_c = 6.09e-23, context)
+  D2 CFG770 background consistency R(u_e)/g_Ne - 1: max 3.39e-04
+  D2 worst alpha2_eff at R_sun: 8.814e-11 (alt|ge2.64e-10|24pc|R_sun|w30; |F-1| = 1.0001, x = 6.816e+03, c_s = 3.634e-01 km/s); bound 1e-07; ratio 8.81e-04
+  D2 worst alpha2_eff at 1AU: 4.076e-06 (alt|ge2.64e-10|24pc|1AU|w30; |F-1| = 1.0001, x = 6.816e+03, c_s = 3.634e-01 km/s); bound 1e-07; ratio 4.08e+01
+  D2 at 1 AU: |F-1| range 1.0000-1.3417; rows >= 10x bound: ['canonical|ge2.00e-10|24pc|1AU|w30', 'canonical|ge2.32e-10|24pc|1AU|w30', 'canonical|ge2.64e-10|24pc|1AU|w30', 'alt|ge2.00e-10|24pc|1AU|w30', 'alt|ge2.32e-10|24pc|1AU|w30', 'alt|ge2.64e-10|24pc|1AU|w30']
+  D2 POST HOC (amendment A1, no class weight): solar surface dPhi/U = 8.83e-19 vs alpha2 1e-7 x (370 km/s/c)^2 = 1.52e-13; 1 AU frame-dependent pull <= 2.42e-16 m/s^2 vs CFG770 T3 sunward-pull bound 3.66e-14 (ratio 6.61e-03)
+  D2 NGC 3198 canonical L*=24pc : v_crit = 70.4-151.6 km/s; median |F-1| at w = 30 / 370 km/s: 0.103 / 1.076  (no record bound)
+  D2 NGC 3198 canonical L*=1kpc : v_crit = 70.5-152.4 km/s; median |F-1| at w = 30 / 370 km/s: 0.097 / 1.080  (no record bound)
+  D2 NGC 3198 alt       L*=24pc : v_crit = 70.1-151.4 km/s; median |F-1| at w = 30 / 370 km/s: 0.104 / 1.075  (no record bound)
+  D2 NGC 3198 alt       L*=1kpc : v_crit = 70.2-152.4 km/s; median |F-1| at w = 30 / 370 km/s: 0.098 / 1.079  (no record bound)
+  D3 u_v/a0 = (Omega_c H0/2) gamma w / a0: canonical|w30|uv_over_a0 9.256e-05, canonical|w370|uv_over_a0 1.142e-03, canonical|w1000|uv_over_a0 3.086e-03, alt|w30|uv_over_a0 7.659e-05, alt|w370|uv_over_a0 9.447e-04, alt|w1000|uv_over_a0 2.553e-03
+  D3(i) Solar System worst alpha1_eff = 3.116e-09 (canonical|ge2.64e-10|24pc|w30; M_A = 6.05; delta_a = 1.84e-19 m/s^2); bound 3.4e-5; ratio 9.17e-05
+  D3(ii) canonical r_x / r_end-bound per bin (w = 30 / 370 / 1000 km/s): bin1 30.57/2.48/0.92; bin2 38.53/3.12/1.16; bin3 29.71/2.41/0.89; bin4 45.48/3.69/1.36
+  D3(ii) alt       r_x / r_end-bound per bin (w = 30 / 370 / 1000 km/s): bin1 33.61/2.73/1.01; bin2 42.36/3.43/1.27; bin3 32.66/2.65/0.98; bin4 49.99/4.05/1.50
+  (d) UNDERDETERMINED reasons: ['cosmic-clock crossover r_x within 10x of an h72 KiDS r_end bound', 'D2 on NGC 3198 (MOND-regime Doppler) has no record bound']
+  (d) max strict alpha ratio = 4.08e+01; r_x ratios span 0.89-49.99; in (0.1, 10): ['canonical|bin1|w370', 'canonical|bin1|w1000', 'canonical|bin2|w370', 'canonical|bin2|w1000', 'canonical|bin3|w370', 'canonical|bin3|w1000', 'canonical|bin4|w370', 'canonical|bin4|w1000', 'alt|bin1|w370', 'alt|bin1|w1000', 'alt|bin2|w370', 'alt|bin2|w1000', 'alt|bin3|w370', 'alt|bin3|w1000', 'alt|bin4|w370', 'alt|bin4|w1000']
+  (d) labels: ['EXCLUDED', 'UNDERDETERMINED', 'COSMIC CLOCK']
+
+==================== E. c_T ====================
+  E1 trace Gamma^z_kk at first order (TT) = 0
+  E1 q = Sum(Gamma^z)^2 / Sum(grad h)^2 : plus (sin(theta_k)**6 - 3*sin(theta_k)**4 + 3*sin(theta_k)**2 + cos(theta_k)**6 + 2)/(6*(sin(theta_k)**6 - 3*sin(theta_k)**4 + 3*sin(theta_k)**2 + cos(theta_k)**6 + 1)), cross 1/4, mixing 0
+  E1 delta(c_T^2/c^2) = C_T L*^2 u0^2 / c^4 with C_T in [1.5000, 1.5000] over angle and polarisation (sign +: superluminal)
+  E1 W mass-like terms relative to the EH k^2 term at 100 Hz (u -> 0.999 a0): canonical 3.9e-36, alt 5.8e-36; constant lambda_0 term is a total derivative (sqrt(-g) g^mn Gamma^z_mn = -d_m(sqrt(-g) g^mz))
+  E2 local worst |c_T/c - 1| at u0 = a0: canonical|24pc 4.462e-19, canonical|1kpc 7.746e-16, alt|24pc 6.516e-19, alt|1kpc 1.131e-15
+  E3 canonical|Mb1e+11|24pc         <c_T/c - 1> = 3.630e-22; L*_max = 3.333e+01 kpc
+  E3 canonical|Mb1e+11|1kpc         <c_T/c - 1> = 6.301e-19; L*_max = 3.333e+01 kpc
+  E3 canonical|Mb1e+12|24pc         <c_T/c - 1> = 1.148e-21; L*_max = 1.874e+01 kpc
+  E3 canonical|Mb1e+12|1kpc         <c_T/c - 1> = 1.993e-18; L*_max = 1.874e+01 kpc
+  E3 canonical|worstcase_Lstar_max_kpc 0.950644913724944 kpc (worst case)
+  E3 alt|Mb1e+11|24pc               <c_T/c - 1> = 4.822e-22; L*_max = 2.892e+01 kpc
+  E3 alt|Mb1e+11|1kpc               <c_T/c - 1> = 8.372e-19; L*_max = 2.892e+01 kpc
+  E3 alt|Mb1e+12|24pc               <c_T/c - 1> = 1.525e-21; L*_max = 1.626e+01 kpc
+  E3 alt|Mb1e+12|1kpc               <c_T/c - 1> = 2.647e-18; L*_max = 1.626e+01 kpc
+  E3 alt|worstcase_Lstar_max_kpc    0.78662635500491 kpc (worst case)
+  (e) labels: ['PASS', "CFG938 A5 'c_T = c (structural)' CORRECTED: c_T != c inside the medium at O(L*^2 u^2/c^4); a computed bound, not structural"]
+
+==================== OVERALL ====================
+  (a) ['MEDIUM CLOCK', 'ILL-POSED-IVP']
+  (b) ['NOW = MEDIUM SLICES FOR IRROTATIONAL FLOW ONLY', 'COSMIC CLOCK', 'LAW IN MEDIUM FRAME (by construction)']
+  (c) ['SATISFIES L95', "EVADES L31/DC-019 alpha_3 horn (premise 'non-dynamical foliation' fails: the frame is the varied medium; alpha_3 = 0 by the semi-conservative theorem, CFG938 S3b) -- BY CONSTRUCTION"]
+  (d) ['EXCLUDED', 'UNDERDETERMINED', 'COSMIC CLOCK']
+  (e) ['PASS', "CFG938 A5 'c_T = c (structural)' CORRECTED: c_T != c inside the medium at O(L*^2 u^2/c^4); a computed bound, not structural"]
+  HEADLINE: EXCLUDED
+
+  runtime 12.8 s; peak RSS 0.150 GB
