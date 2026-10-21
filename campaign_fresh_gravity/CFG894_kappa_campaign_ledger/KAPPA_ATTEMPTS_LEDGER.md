@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (724 rows)
+## Totals (728 rows)
 
 - **520 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
-| AU Audits, controls, meta-analyses | 102 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 106 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
 
@@ -923,6 +923,10 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K722 | W4-08/protect-Goldstone | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/symmetry_protection` | exact internal point and nonlinear DBI Galileon Ward identities with physical source and radial response | - | audit | SCOPED CLOSURE: inherited canonical action has only reflection; exact shifts remove required coefficients; flat DBI has no linear induced-matter charge; AdS DBI gives attractive geometric charge but quadratic IR and unselected gravitating height; sourced Galileon has different radial powers; no all-symmetry exclusion | 99963e8f1 |
 | K723 | W4-08/protect-N2 | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/symmetry_protection` | four-dimensional electric magnetic FI partial-breaking action and protected Higgs geometry operator transfer | - | audit | SCOPED CLOSURE: full rigid APT potential retains 2mp and gapped Yukawa scalar; explicit allowed higher prepotential jet preserves vacuum quadratic data; protected Higgs metric has zero-energy vacuum and no derived gravitational NLO MOND operator; local SUGRA and microscopic bridge missing | 99963e8f1 |
 | K724 | W4-08/protect-critical | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/symmetry_protection` | interacting dimension4/3 H1 source and protected anomaly large-charge duality amplitude tests | - | audit | SCOPED CLOSURE: exponent-matching bottom-source runs away on full Coulomb branch; stable common-domain affine source has inherited wrong leading sign; genuine F-terms have other dimensions; anomaly protects on-shell four-derivative observable; large-charge stress nonvacuum and dualization leaves coefficient free; other ensembles portals and microscopic constructions open | 99963e8f1 |
+| K725 | W4-08/unified-matrix | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant` | common IKKT matrix action one-loop Einstein vacuum terms and actual fixed-background point-source Green response | - | audit | SCOPED NONSELECTION: displayed halo is linear in source mass rather than sqrt(M); isolated fixed-measure vacuum variation has preserved source-sign discrepancy; scalar frequency repair possible but full constrained stress nonlinear dilaton higher-spin background quantum health and operational cubic remain open | d51647e98 |
+| K726 | W4-08/unified-induced | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant` | interacting seagull-corrected induced gravity and actual conserved-current covariant frame portals | - | audit | SCOPED CLOSURE: gapped metric functional has no local acceleration cubic; static acceleration connection is pure gauge; chemical-frame workaround alters actual Newton coefficient and total reservoir stress with minimal flat phase-frame instability; curved critical nonlocal microscopic completion remains open | d51647e98 |
+| K727 | W4-08/unified-flux | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant` | six-dimensional Einstein-Maxwell flux sphere with canonical radion positive vacuum full bosonic linear spectrum and physical matter source | - | audit | SCOPED CLOSURE: stable positive vacuum and geometric scalar charge give Yukawa force; exact m_rad^2+9H^2=R_sphere^-2 removes broad 4D subcurvature unscreened window; critical fold is inflection; no operational MOND cubic or quantum UV completion claimed | d51647e98 |
+| K728 | W4-08/unified-function | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant` | single generalized aether function actual dS scalar constraints same-state weak source and opposite-branch deformation | - | audit | SCOPED NONSELECTION: explicit positive dS toy has healthy linear tensor scalar coefficients but linear actual weak force; smooth negative-argument deformation preserves entire positive-argument flat-static MOND law and UV offset while moving vacuum; critical endpoint nonlinear same-state halo and microscopic branch relation remain open | d51647e98 |
 
 ## LN: Logic / Lean formalisations
 

@@ -325,3 +325,8 @@ The actual-pi adapter and full physical/quantum selection proof are still
 unverified. No determinate normalization trial or claimed target hit is
 added. Exact source versions, scope, source discrepancies and nonlinear
 resumption conditions are retained in the new packet.
+
+Common-invariant reviewed evidence:d51647e98; campaign auditsK725-K728.
+Campaign regeneration passes4/4. The56 determinate trials,67 menus
+and all P_LEE values are unchanged. No exact candidate or new
+microscopic/formal success is registered.

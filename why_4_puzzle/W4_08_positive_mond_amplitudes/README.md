@@ -24,6 +24,9 @@ permitted opposite-branch deformation moves the vacuum without changing
 the entire flat-static law. None supplies the required same-state MOND
 invariant. These are analytic audits, with no new determinate trial or
 Lean module; full nonlinear/microscopic continuations remain open.
+Reviewed common-invariant checkpoint:d51647e98; campaign auditsK725-K728.
+All five inherited validators and campaign checks4/4 pass. The56
+determinate trials,67 menus and all campaign P_LEE values are unchanged.
 
 The [microscopic-protection continuation](formal/symmetry_protection/RESULT.md)
 finds that local N1 symmetry permits the exact eta potential at fixed
