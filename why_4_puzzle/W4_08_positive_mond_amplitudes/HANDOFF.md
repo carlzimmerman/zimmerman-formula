@@ -1,5 +1,12 @@
 # W4-08 research handoff
 
+**Latest handoff for Claude:** [CLAUDE_HANDOFF.md](CLAUDE_HANDOFF.md),
+2026-10-20, after the owner's request to wrap up and push. It indexes
+the common-invariant result `d51647e98`, campaign registration `023d6c716`
+and the exact next nonlinear/microscopic obligations. The target remains
+unachieved. The longer historical handoff below retains its original
+checkpoint-specific claims and module counts.
+
 2026-10-20. Requested phase: find a healthy microscopic MOND response
 that forces R=128pi/9. **Unachieved.** This phase closes with explicit
 partial constructions and identified missing physics, not with a global
