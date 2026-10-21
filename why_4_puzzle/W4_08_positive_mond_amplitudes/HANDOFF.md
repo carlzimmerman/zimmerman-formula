@@ -17,6 +17,17 @@ microscopic model, independent selector or new Lean module is obtained.
 Five inherited evidence validators freshly pass; nine partial modules and
 the unverified actual-pi adapter retain their prior scopes.
 
+New microscopic-protection continuation: `formal/symmetry_protection/RESULT.md`,
+criteria1d58a0851. Local N1 explicitly permits the actual eta potential,
+including a finite ordinary scalar parent; full MOND/UV completion is not
+asserted. Exact Goldstone actions protect different responses. The N2
+FI/metric constructions and interacting H1/CFT/anomaly/duality proposals
+leave identified source, vacuum or sign gaps. A successful next model must
+exclude the displayed supersymmetric eta/prepotential directions while
+deriving the full attractive metric/source and positive same-state ratio.
+The goal remains active; no new determinate normalization trial or Lean
+module is added.
+
 Read README.md, PROOF.md and REVIEW.md together. The single-mediator
 dictionary is xi=8Omega/(9R), with R=epsilon C3^2/C2^3; n=3 gives the
 target. For tensor-plus-phonon gravity derive its force dictionary anew.
