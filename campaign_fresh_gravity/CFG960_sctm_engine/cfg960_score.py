@@ -163,7 +163,7 @@ if __name__ == "__main__":
         scorek()
     elif "--score" in sys.argv:
         job = [x for x in sys.argv[1:] if not x.startswith("--")][0]
-        assert job in ("SC1x", "SC2x"), job
+        assert job in ("SC1x", "SC2x", "SC1m", "SC2m"), job              # A5: SC1m / SC2m = secondary M2-condensed variant (reported only)
         mut = os.environ.get("CFG596_MUTATE", "0") == "1"
         fF, fS = files_for(job)
         tf = os.path.join(HERE, f"cfg960_score_results_{job}_MUTATE.json")

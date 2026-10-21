@@ -1,9 +1,10 @@
 #!/bin/bash
-# CFG960 overnight chain (modelled on chain7b): the pre-registered 1024^3 SCT-M shear test (FROZEN_CRITERIA_1024.md).
+# CFG960 overnight chain (modelled on chain7b): the pre-registered 1024^3 SCT-M shear test (FROZEN_CRITERIA_1024.md + ADDENDUM A1).
+# Primary variant only (A5: own baryons = CFG953 census f_ret). The secondary SC1m / SC2m (M2 condensed) are NOT run here.
 #   SC1x (canonical) -> score MUTATE first -> score;  SC2x (alt) -> score MUTATE first -> score.  Control NCS0 (CFG654, existing).
 # Heavy-job-only gate: waits while any heavy job runs (1024^3 engines: CFG6xx engines, CFG650/654 launchers, CFG596, CFG960's own
-#   engine and launcher; an Ollama llama-server) and until free + inactive memory >= 46 GB and free disk >= 45 GB. Light single-core
-#   lanes do not block the start (as chain7b). The frozen abort rule (RSS > 52 GB or swap growth > 4 GB) is enforced by run_960.py.
+#   engine and launcher; an Ollama llama-server), while any other python process has RSS > 1 GB (A5), and until free + inactive
+#   memory >= 46 GB and free disk >= 45 GB. Light (< 1 GB) single-core lanes do not block the start. The frozen abort rule (RSS > 52 GB or swap growth > 4 GB) is enforced by run_960.py.
 # Checkpoint / resume rule: the engine writes a rolling checkpoint (<tag>_ckpt in the job folder) after every step whose next force
 #   call refreshes the census. If a job exits non-zero (abort rule, crash, reboot) and a checkpoint exists, the chain waits at the gate
 #   again and restarts it, up to 3 restarts per job; the engine resumes bit-identically from the checkpoint. Finished steps leave
@@ -17,7 +18,8 @@ W=$EXT/cfg960_work; ST=$W/chain960_state; LOG=$W/chain960.log; mkdir -p "$ST"
 freegb () { vm_stat | awk '/page size of/{ps=$8}/Pages free/{f=$3}/Pages inactive/{i=$3}END{gsub("\\.","",f);gsub("\\.","",i);printf "%.0f",(f+i)*ps/1e9}'; }
 diskgb () { df -g "$W" | awk 'NR==2{print $4}'; }
 heavy () { pgrep -f "cfg6[0-9][0-9]_pm\.py|run_65[04]\.py|cfg596_pm|cfg960_sctm_pm\.py|run_960\.py|llama-server" >/dev/null; }
-gate () { while heavy || [ "$(freegb)" -lt 46 ] || [ "$(diskgb)" -lt 45 ]; do sleep 60; done; }
+bigpy () { ps -axo rss=,command= | awk '{r=$1; $1=""; if (r > 1000000 && $0 ~ /[Pp]ython/) f=1} END{exit f ? 0 : 1}'; }   # A5: any other python process with RSS > 1 GB
+gate () { while heavy || bigpy || [ "$(freegb)" -lt 46 ] || [ "$(diskgb)" -lt 45 ]; do sleep 60; done; }
 step () {  # step NAME NEEDGATE RESTARTS JOBDIR CMD...
   local n=$1 g=$2 rmax=$3 jd=$4; shift 4
   [ -f "$ST/$n.ok" ] && { echo "$(date) chain960 $n already done (skip)" >> "$LOG"; return 0; }

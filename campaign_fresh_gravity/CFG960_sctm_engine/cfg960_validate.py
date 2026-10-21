@@ -29,6 +29,8 @@ VS0, fS0 = load("VS0", "cfg654cmb_cfg650_na_S0_*.json")
 J = {j: load(j, "cfg960sctm_*.json") for j in ("VK", "VC", "VSC", "VSA", "VMU")}
 R = dict(lane="CFG960", stage="validation 128^3", criteria="FROZEN_CRITERIA.md 6fc440225", gates={}, preview={}, diagnostics={}, files={})
 P("CFG960 validation at 128^3 (L 100 Mpc/h, NSEED 128, seed 359, native_cmb, lean, 1 thread). kappa = 1/2 FITTED; footings never pooled; not theory closed.")
+OWN = (J["VSC"][0] or {}).get("sct", {}).get("own_baryons", "M2 condensed (pre-A5 runs)"); R["own_baryons"] = OWN
+P(f"Own-baryon variant (A5): {OWN}")
 for j, (d, f) in list(J.items()) + [("VS0", (VS0, fS0))]:
     R["files"][j] = os.path.basename(f) if f else None
     if d is not None: P(f"  {j}: {os.path.basename(f)}; engine sha256 {d.get('engine_sha256', 'CFG654 engine run()')[:16]}...; runtime {d.get('runtime_s', float('nan')):.0f} s")

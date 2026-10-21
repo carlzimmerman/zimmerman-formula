@@ -1,0 +1,36 @@
+CFG960 validation at 128^3 (L 100 Mpc/h, NSEED 128, seed 359, native_cmb, lean, 1 thread). kappa = 1/2 FITTED; footings never pooled; not theory closed.
+  VK: cfg960sctm_nom3_SCTK_canonical_N128_L100_ns128_lean.json; engine sha256 3ede8034050de3cb...; runtime 111 s
+  VC: cfg960sctm_nom3_SCT_canonical_N128_L100_ns128_lean.json; engine sha256 3ede8034050de3cb...; runtime 134 s
+  VSC: cfg960sctm_m3_SCT_canonical_N128_L100_ns128_lean.json; engine sha256 3ede8034050de3cb...; runtime 149 s
+  VSA: cfg960sctm_m3_SCT_alt_N128_L100_ns128_lean.json; engine sha256 3ede8034050de3cb...; runtime 150 s
+  VMU: cfg960sctm_m3_SCTMU_canonical_N128_L100_ns128_lean.json; engine sha256 3ede8034050de3cb...; runtime 149 s
+  VS0: cfg654cmb_cfg650_na_S0_canonical_N128_L100_ns128_lean.json; engine sha256 CFG654 engine ru...; runtime 101 s
+
+V-K VK (conversion off: births/labels/merges active, nothing converts, M3 off) vs VS0: max |dP/P| over 12 quantities = 0.000e+00 (line 1e-6) -> PASS
+    density and gravitating mesh fields bit-identical at: zi True, z1 True, x0.7548 True, z0.5 True, x0.2562 True, z0 True; VK domains {'n_total': 5918, 'n_merged': 2716, 'n_alive': 3202, 'Mc_total_frac': 0.0}
+V-IC zi particle P(k) bit-identical to VS0: {'VK': True, 'VC': True, 'VSC': True, 'VSA': True, 'VMU': True} -> PASS
+V-MASS VC: max |sum w + sum M_c - N|/N 2.22e-16 (1e-12); |painted - M_c|/N 1.67e-16 (1e-10); |mean delta_g| 1.95e-09 (1e-5) -> PASS
+V-MASS VSC: max |sum w + sum M_c - N|/N 2.22e-16 (1e-12); |painted - M_c|/N 1.67e-16 (1e-10); |mean delta_g| 9.44e-09 (1e-5) -> PASS
+V-MASS VSA: max |sum w + sum M_c - N|/N 4.44e-16 (1e-12); |painted - M_c|/N 1.11e-16 (1e-10); |mean delta_g| 9.23e-09 (1e-5) -> PASS
+V-MOM VC: max |P_book - P_book,0|/P_scale per component 8.99e-10, 5.50e-10, 1.24e-09; event algebra max 1.66e-17  [graded: line 1e-5 / 1e-12]
+V-MOM VSC: max |P_book - P_book,0|/P_scale per component 3.42e-05, 5.37e-05, 5.42e-05; event algebra max 2.11e-17  [reported only, M3 on]
+V-MOM VSA: max |P_book - P_book,0|/P_scale per component 3.82e-05, 5.17e-05, 4.03e-05; event algebra max 2.85e-17  [reported only, M3 on]
+V-MOM VK event algebra max 0.00e+00; -> PASS
+V-N1 VSC: P_grav/P_S0 at k 0.0802/0.1402: z1 0.9960/0.9902; z0.5 0.9962/0.9901; z0 0.9980/0.9922 (3%); fundamental P_grav growth / native D^2: z1 0.9766, z0.5 0.9659, z0 0.9485 (5%) -> FAIL
+V-N1 VSA: P_grav/P_S0 at k 0.0802/0.1402: z1 0.9966/0.9915; z0.5 0.9968/0.9915; z0 0.9985/0.9931 (3%) -> PASS
+V-LAW: from cfg960_law.json -> PASS
+V-SCORE: from cfg960_scorek.json -> PASS
+V-MEM peak RSS (GB, /usr/bin/time -l): VS0 0.351, VK 0.352, VC 0.463, VSC 0.538, VSA 0.489, VMU 0.489, LAW 0.192, SCOREK 0.180 -> PASS
+
+ALL validation gates (V-K, V-IC, V-MASS, V-MOM, V-N1, V-LAW, V-SCORE, V-MEM): NOT ALL PASS  (V-MUT: cfg960_validate_MUTATE.out)
+
+PREVIEW 128^3, NOT A VERDICT (domain floor ~1e12 h^-1 Msun at 128^3; k = 1 at the support limit): P_grav / P_VS0 at k 0.3 / 0.5 / 1
+  SCT-M canonical (= SC1x at 128^3): z0: 0.959/0.881/0.628; z0.5: 0.951/0.867/0.645; z1: 0.953/0.869/0.648
+  SCT-M alt (= SC2x at 128^3): z0: 0.965/0.902/0.679; z0.5: 0.959/0.890/0.699; z1: 0.959/0.883/0.684
+  SCT-M canonical, M3 off: z0: 0.979/0.914/0.673; z0.5: 0.981/0.923/0.714; z1: 0.980/0.924/0.726
+  VC: z1: dom 3396 bodies 3388 conv 0.187 pend 0.060 r_e/dx med 0.81 max 6.68; z0.5: dom 3748 bodies 3748 conv 0.288 pend 0.034 r_e/dx med 0.88 max 6.75; z0: dom 3327 bodies 3278 conv 0.392 pend 0.009 r_e/dx med 0.82 max 7.55
+      totals {'births': 5897, 'labelled_majority_peaks': 7612, 'accreted_particles': 551389, 'merges_bound': 155, 'merges_coalescence': 2415}; final {'n_total': 5897, 'n_merged': 2570, 'n_alive': 3327, 'Mc_total_frac': 0.3919138490953028}; timing (s) deposit 27, snap 4, refresh 6, convert 0, profile 4, bodies 10, xdep 7, poisson 2, accel 71, drift 0, merge 2
+  VSC: z1: dom 3445 bodies 3436 conv 0.186 pend 0.061 r_e/dx med 0.81 max 6.65; z0.5: dom 3822 bodies 3822 conv 0.286 pend 0.035 r_e/dx med 0.88 max 6.74; z0: dom 3446 bodies 3393 conv 0.390 pend 0.010 r_e/dx med 0.81 max 6.73
+      totals {'births': 5941, 'labelled_majority_peaks': 7617, 'accreted_particles': 543640, 'merges_bound': 151, 'merges_coalescence': 2344}; final {'n_total': 5941, 'n_merged': 2495, 'n_alive': 3446, 'Mc_total_frac': 0.38968530233727827}; timing (s) deposit 27, snap 4, refresh 7, convert 0, profile 4, bodies 10, xdep 7, m3 15, poisson 2, accel 69, drift 0, merge 2
+  VSA: z1: dom 3442 bodies 3433 conv 0.186 pend 0.060 r_e/dx med 0.76 max 6.1; z0.5: dom 3819 bodies 3819 conv 0.286 pend 0.035 r_e/dx med 0.82 max 6.19; z0: dom 3438 bodies 3390 conv 0.390 pend 0.010 r_e/dx med 0.76 max 6.76
+      totals {'births': 5947, 'labelled_majority_peaks': 7630, 'accreted_particles': 544371, 'merges_bound': 170, 'merges_coalescence': 2339}; final {'n_total': 5947, 'n_merged': 2509, 'n_alive': 3438, 'Mc_total_frac': 0.39000211540697405}; timing (s) deposit 27, snap 4, refresh 7, convert 0, profile 4, bodies 9, xdep 7, m3 17, poisson 2, accel 70, drift 0, merge 2

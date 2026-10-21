@@ -7,6 +7,7 @@ checkpoint (<tag>_ckpt, written after every step whose next force call refreshes
 Jobs (production, 1024^3, NOT started by CFG960):
   SC1x  SCT-M (CFG953 R0-R9 as FROZEN_CRITERIA.md S1-S13), M3 unchanged, native_cmb, CANONICAL footing a0 9.3603e-11
   SC2x  the same on the ALT footing a0 1.1312e-10
+  (A5: own baryons = CFG953 census f_ret for SC1x / SC2x; SC1m / SC2m = the M2-condensed variant, secondary, reported only, not queued)
 Control: NCS0 (CFG654, existing; native_cmb, same ICs; S0 never reads the footing).
 kappa = 1/2 FITTED; footings never pooled; not theory closed."""
 import os, sys, subprocess, time, json, re, shutil, ctypes
@@ -14,8 +15,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.join(HERE, "cfg960_sctm_pm.py")
 WORK = os.path.abspath(os.path.join(HERE, "..", "..", "..", "_external_data", "cfg960_work"))
 RSS_MAX_GB = 52.0; SWAP_GROW_MB = 4096.0; DISK_START_GB = 45.0
-_P = dict(MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1", INPUTS="native_cmb", M3="1", CONVERT="1", MUTATE="none", N=1024)
-JOBS = {"SC1x": dict(_P, foot="canonical"), "SC2x": dict(_P, foot="alt")}
+_P = dict(MODE="lean", L="100", NSEED="1024", RMIN="0.78125", THREADS="14", SPILL="1", INPUTS="native_cmb", M3="1", CONVERT="1", MUTATE="none", N=1024, OWNB="fret")
+JOBS = {"SC1x": dict(_P, foot="canonical"), "SC2x": dict(_P, foot="alt"),                      # A5 primary: own baryons = census f_ret
+        "SC1m": dict(_P, foot="canonical", OWNB="cond"), "SC2m": dict(_P, foot="alt", OWNB="cond")}   # A5 secondary (M2 condensed): registered, NOT queued
 
 def swap_used_mb():
     out = subprocess.run(["sysctl", "vm.swapusage"], capture_output=True, text=True).stdout
@@ -35,7 +37,7 @@ def start(job):
     s = JOBS[job]; d = os.path.join(WORK, job); os.makedirs(d, exist_ok=True)
     env = dict(os.environ, CFG596_MODE=s["MODE"], CFG596_L=s["L"], CFG596_NSEED=s["NSEED"], CFG596_RMIN=s["RMIN"], CFG596_THREADS=s["THREADS"],
                CFG596_WORK=d, CFG596_SPILL=s["SPILL"], CFG596_CKPT="1", CFG654_INPUTS=s["INPUTS"], CFG960_M3=s["M3"], CFG960_CONVERT=s["CONVERT"],
-               CFG960_MUTATE=s["MUTATE"], CFG960_RSSMAX=str(RSS_MAX_GB), MallocSpaceEfficient="1")   # A1 allocator mode (RSS = live memory)
+               CFG960_MUTATE=s["MUTATE"], CFG960_OWNB=s["OWNB"], CFG960_RSSMAX=str(RSS_MAX_GB), MallocSpaceEfficient="1")   # A1 allocator mode (RSS = live memory)
     json.dump(dict(job=job, spec=s, start=time.strftime("%Y-%m-%d %H:%M")), open(os.path.join(d, "job.json"), "w"), indent=1)
     log = open(os.path.join(d, "engine.log"), "a")
     p = subprocess.Popen(["nice", "-n", "10", sys.executable, ENGINE, "SCT", s["foot"], str(s["N"])], stdout=log, stderr=subprocess.STDOUT, env=env)
@@ -58,7 +60,7 @@ def watch(r):
 
 if __name__ == "__main__":
     mode, jobs = sys.argv[1], sys.argv[2:]
-    assert mode == "serial" and jobs and all(j in JOBS for j in jobs), "usage: run_960.py serial SC1x [SC2x]"
+    assert mode == "serial" and jobs and all(j in JOBS for j in jobs), "usage: run_960.py serial SC1x [SC2x]   (secondary: SC1m SC2m)"
     os.makedirs(WORK, exist_ok=True)
     with open(os.path.join(WORK, "run_960_launcher.log"), "a") as lg:
         print("start", mode, jobs, time.strftime("%Y-%m-%d %H:%M"), os.getpid(), file=lg, flush=True)

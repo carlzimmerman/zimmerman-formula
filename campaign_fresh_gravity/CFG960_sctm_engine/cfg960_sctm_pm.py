@@ -8,7 +8,8 @@ source sector of CFG953 (R0-R9), realised on the PM mesh as the frozen rules S1-
       labelled-majority rule (new domain iff unlabelled > half of the peak's cells' particles), latched labels
   S3  pending particles convert at t_b + u_i tau, tau = free-fall time at turnaround, u_i = splitmix64(particle index)
   S4  conversion algebra: M_c += (1 - f_b) m_p, X -> mass-weighted mean, P += (1 - f_b) m_p v_i
-  S5  own baryons = M2's condensed fraction f_d of the domain's labelled particles (phase law per partition peak, no RMIN)
+  S5  own baryons = f_own of the domain's labelled particles, raised per partition peak (no RMIN); A5: f_own = census f_ret(M_ta)
+      (CFG953's convention, = the baryons M3 keeps in place; primary) | M2's condensed fraction (CFG960_OWNB=cond; secondary)
   S6  monopole body M_sigma(<r) = min{(nu_mono(y) - 1) M_b(<r), M_c} about X_q, cut at the supply root r_e
   S7  quadrature points (equal-width shells, antipodal Fibonacci sets) + CIC; r_e <= dx/2 -> one point
   S8  M_c dV/dt = sum_points w g(x_p) with the particles' CIC-interpolated field and KDK factors
@@ -34,6 +35,7 @@ M3ON = os.environ.get("CFG960_M3", "1") == "1"
 CONVERT = os.environ.get("CFG960_CONVERT", "1") == "1"
 MUTATE = os.environ.get("CFG960_MUTATE", "none"); assert MUTATE in ("none", "mass")
 MUT_FAC = 0.5 if MUTATE == "mass" else 1.0
+OWNB = os.environ.get("CFG960_OWNB", "fret"); assert OWNB in ("fret", "cond")   # A5: own baryons = census f_ret (primary) | M2 condensed (secondary)
 # switches of the imported CFG654 engine (read at its import): native CMB-pair inputs; class-A modules OFF except as stated
 os.environ.setdefault("CFG654_INPUTS", "native_cmb")
 os.environ.setdefault("CFG596_THREADS", "1")
@@ -471,7 +473,10 @@ def refresh(mesh, P, PL, dom, peaks, a, t_now, Dta, foot, step):
     info["n_accrete_peaks"] = int(((~birth) & (dom_h >= 0) & (U > 0)).sum())
     roots = dom.roots(); xref = dom.xref()
     Ru, inv = np.unique(R, return_inverse=True)
-    fct = np.array([E.fcond_of(float(r_), Dta, a, "FLAT", foot) for r_ in Ru])[inv]
+    if OWNB == "fret":                                              # A5 primary: CFG953 census retained fraction (M3's fret_of / M_ta)
+        fct = np.array([E.fret_of(math.log10(E.M_ta(float(r_), Dta))) for r_ in Ru])[inv]
+    else:                                                           # secondary: M2 condensed fraction (FROZEN_CRITERIA.md U5)
+        fct = np.array([E.fcond_of(float(r_), Dta, a, "FLAT", foot) for r_ in Ru])[inv]
     f16 = fct.astype(np.float32).astype(np.float16)
     acc = {}; m = 1.0 - E.FB
     for i0, i1 in P.chunks:
@@ -479,7 +484,7 @@ def refresh(mesh, P, PL, dom, peaks, a, t_now, Dta, foot, step):
         inh = np.nonzero(h >= 0)[0]
         if not len(inh): continue
         gi = i0 + inh
-        P.fd[gi] = np.maximum(P.fd[gi], f16[h[inh]])                  # S5: M2 phase law per partition peak (irreversible)
+        P.fd[gi] = np.maximum(P.fd[gi], f16[h[inh]])                  # S5 (A5): own retained fraction per partition peak (irreversible)
         lab = PL.read(i0, i1); un = inh[lab[inh] == -1]
         if not len(un): continue
         hb = h[un]; tgt = dom_h[hb]; ok = tgt >= 0; un, hb, tgt = un[ok], hb[ok], tgt[ok]
@@ -671,7 +676,7 @@ def run_sct(foot, npg):
     assert E.MODE == "lean", "CFG960 supports the lean engine mode only"
     os.makedirs(E.WORK, exist_ok=True)
     sw = "SCT" + ("K" if not CONVERT else "") + ("MU" if MUTATE != "none" else "")
-    tag = f"cfg960sctm_{'m3' if M3ON else 'nom3'}_{sw}_{foot}_N{npg}_L{E.L:g}_ns{E.NSEED}_{E.MODE}" + (f"_seed{E.SEED}" if E.SEED != 359 else "")
+    tag = f"cfg960sctm_{'m3' if M3ON else 'nom3'}{'' if OWNB == 'fret' else '_ownc'}_{sw}_{foot}_N{npg}_L{E.L:g}_ns{E.NSEED}_{E.MODE}" + (f"_seed{E.SEED}" if E.SEED != 359 else "")
     E.DIAGX = npg <= 512
     mesh = E.Mesh(npg); dta = E.dta_table(); t0 = time.time(); P = E.Particles(npg); E._P[0] = P
     P.fd = np.zeros(P.N, np.float16); PL = PLab(P.N); dom = Dom()
@@ -684,7 +689,7 @@ def run_sct(foot, npg):
     extra = {i: f"x{1 / aa[i] - 1:.4f}" for i in E.EXTRA if 0 < i <= nsteps}
     res = {"tag": tag, "lane": "CFG960", "engine": "cfg960_sctm_pm.py = CFG654 engine (sha256 " + ENG_SHA[:16] + "...) + SCT-M sector",
            "criteria": "FROZEN_CRITERIA.md 6fc440225", "engine_sha256": hashlib.sha256(open(os.path.abspath(__file__), "rb").read()).hexdigest(),
-           "cfg654_engine_sha256": ENG_SHA, "cfg654_inputs": E.INPUTS, "switch": sw, "sct": dict(M3=M3ON, CONVERT=CONVERT, MUTATE=MUTATE, mut_fac=MUT_FAC,
+           "cfg654_engine_sha256": ENG_SHA, "cfg654_inputs": E.INPUTS, "switch": sw, "sct": dict(M3=M3ON, CONVERT=CONVERT, MUTATE=MUTATE, mut_fac=MUT_FAC, own_baryons=("census f_ret (A5 primary)" if OWNB == "fret" else "M2 condensed (A5 secondary)"),
            kernel="nu_mono", domain_floor="r_ON >= dx", refresh_every=10, nb_log=NB_LOG, nr_cap=NR_CAP, na_cap=NA_CAP),
            "cosmo": dict(h=E.h, om_b=E.om_b, om_c=E.om_c, Om=E.Om, OL=E.OL, FB=E.FB, NS=E.NS, OM_TA=E.OM_TA, H_TA=E.H_TA, dta=os.path.basename(E.DTA_FILE)),
            "mode": E.MODE, "branch": "FLAT", "foot": foot, "np": npg, "mesh": npg, "L": E.L, "nseed": E.NSEED, "seed": E.SEED, "rmin_m3": E.RMIN_PHYS,
