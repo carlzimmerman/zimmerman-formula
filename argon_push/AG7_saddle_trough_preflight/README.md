@@ -57,3 +57,10 @@ What is specific here is that a real positive-mass medium cannot supply it.
 - Each run is a small job: single thread, under a second.
 - **Disclosed:** after the first run, two REPORTED blocks were added: AG6C's net column and the saddle-field estimate. The
   caveat text was also made precise. No criterion, number or reading changed.
+
+## Provenance note (disclosed)
+- The criteria were committed alone first: local 3e77d0047, author time 07:06:18. The script and results followed at 07:10:52.
+- On origin the order is inverted. The results commit (f55d65c04) landed before the criteria commit (519634f29), because a
+  cherry-pick abort in the push worktree dropped the criteria the first time.
+- The author dates keep the freeze-first order. The results commit message cites the local hash 3e77d0047. Its origin copy is
+  519634f29, with the same content.
