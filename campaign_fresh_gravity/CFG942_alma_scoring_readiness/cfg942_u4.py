@@ -11,7 +11,7 @@ Reads the frozen plan campaign_fresh_gravity/CFG806_u4_27928_scoring/FROZEN_CRIT
 Implements the owner's CLARIFICATION_2026-10-21.md in the CFG806 dir (commit 35ea5e1be): the beam-corrected V_c interval is primary
 (A-U16), the gap reads "not in tension (within 2σ_tot)" (A-U1), the 20% flux flag uses the 2" diameter aperture (A-U14); CFG571's
 Delta_m on M_bar is printed as information (A-X3); a C2 failure carries the false-failure note (A-U17). MUTATE's continuum excludes
-channels within +-600 km/s of the true line (CFG809 addendum A s2's reading, applied here by instruction after a check on MOCK U4-a).
+channels within +-600 km/s of the true line, and G1's selection-aware S/N decides (CFG806 addendum A, d7a1afae1).
 kappa = 1/2 FITTED; footings never pooled; one disc = a demonstration, no exclusion; not theory closed."""
 import os, sys, json, math, csv
 sys.dont_write_bytecode = True
@@ -310,6 +310,29 @@ def mutate_continuum_check(path, run, m0d_excl):
     return out
 
 
+def mutate_selection_check(path, run, m0d, m, mask):
+    """MUTATE only (CFG806 addendum A, d7a1afae1): does G1's selection-aware null carry the continuum-selection bias that CFG809
+    addendum B describes? The continuum term (the shifted map minus the same window without continuum subtraction) in the target mask,
+    in null masks grown by G1's procedure (200 off-source seeds; fresh rng 942) and in 8 unselected ring copies at 3 arcsec. Information."""
+    if not mask.sum():
+        run.P("  MUTATE continuum-selection check: no target mask in the shifted window; G1's selection-aware S/N decides"); return None
+    raw = C.stream_mom0(path, RA, DEC, NU_OBS, BOX, VWIN, 1e9, 2000.0)                   # no continuum channels -> not subtracted
+    bp = C.beam_pix(m0d["beam"], m0d["pix"]); cont = m0d["m0"] - raw["m0"]; Cm = float(np.nansum(cont[mask]) / bp)
+    nc = C.seeded_null(m0d["m0"], m["sig_mom0"], mask, m0d["xc"], m0d["yc"], m0d["pix"], bp, m["mask_rmax_arcsec"] + 0.8, 200, np.random.default_rng(942), m_meas=cont)
+    rc = C.translated_apertures(cont, mask, bp, C.ring_offsets(3.0 / m0d["pix"], 8))
+    mn, sn = float(np.mean(nc)), float(np.std(nc, ddof=1)); mr, sr = float(np.mean(rc)), float(np.std(rc, ddof=1))
+    zr, zn = (Cm - mr) / sr, (Cm - mn) / sn
+    biased = abs(zr) >= 3
+    run.P(f"  MUTATE continuum-selection check (CFG806 addendum A / CFG809 addendum B): continuum term in the target mask ({int(mask.sum())} px) {Cm:+.6f}; "
+          f"in {len(rc)} unselected ring copies {mr:+.6f} +- {sr:.6f} (target at {zr:+.1f} sd: "
+          + ("the >= 2 sigma selection prefers low-continuum pixels, the addendum-B bias" if biased else "no continuum-selection bias") + f"); "
+          f"in the {len(nc)} selection-aware null masks {mn:+.6f} +- {sn:.6f} (target at {zn:+.2f} null sd"
+          + (": the null carries the same bias" if biased and abs(zn) < 3 else "") + "). "
+          "G1's selection-aware S/N is (flux - null mean)/null sd over masks grown and measured on the same shifted map, i.e. addendum B's null-calibrated "
+          "statistic: the two coincide, and it decides.")
+    return dict(target_continuum_term=Cm, ring_copies=dict(mean=mr, sd=sr, n=len(rc), z=zr), null=dict(mean=mn, sd=sn, n=len(nc), z=zn), bias_vs_unselected=bool(biased))
+
+
 def measure(path, run, vshift=0.0, c1=True, true_flux=None):
     run.P(f"\n=== MEASUREMENT (CFG806 section 3) of {os.path.basename(path)}{'  [MUTATE: velocity axis +2000 km/s]' if vshift else ''} ===")
     ex = C.MUTATE_EXCL if vshift else 0.0
@@ -318,8 +341,8 @@ def measure(path, run, vshift=0.0, c1=True, true_flux=None):
     mcheck = None
     if vshift:
         run.P(f"  MUTATE continuum: the median of the {m0d['ncont']} channels that are line-free relative to BOTH the shifted window (|v| > 600) "
-              f"and the true line (more than {C.MUTATE_EXCL:.0f} km/s from z {Z_CAT}). This is CFG809 addendum A s2's reading (748dd8095), applied to U4 "
-              f"by instruction because the check below shows the same over-subtraction; CFG806's own text does not state it.")
+              f"and the true line (more than {C.MUTATE_EXCL:.0f} km/s from z {Z_CAT}): CFG806 addendum A (d7a1afae1), the reading of CFG809 addendum A s2. "
+              f"Decision: G1's selection-aware S/N (A-U13).")
         mcheck = mutate_continuum_check(path, run, m0d)
     if m0d["beam"] is None: raise SystemExit("C3: no beam (no BMAJ keyword and no BEAMS table): cannot proceed")
     if m0d["beam_source"] != "header": run.flag("A-M2", "per-plane beams (BEAMS table): the harness uses their median")
@@ -334,7 +357,9 @@ def measure(path, run, vshift=0.0, c1=True, true_flux=None):
     if not rfok: run.flag("A-U9", "C3 'rest frequency 230.538 GHz': pipeline cubes may carry another RESTFRQ; the harness checks frequency coverage and reports RESTFRQ")
     if not m0d["win_covered"]: run.P("  NOTE: the window |v| <= 500 km/s is not fully covered by the cube after the shift")
     m, mask = core(m0d, cube, run)
-    if mcheck: m["mutate_continuum_check"] = mcheck
+    if mcheck:
+        m["mutate_continuum_check"] = mcheck
+        m["mutate_selection_check"] = mutate_selection_check(path, run, m0d, m, mask)
     if m["n_random_apertures"] > 2:
         ni = max(m["n_indep"], 1)
         ok_mean = abs(m["ap_mean"]) < 3 * m["ap_rms"] / math.sqrt(ni); ok_rms = abs(m["ap_rms"] / m["quoted_noise"] - 1) <= 0.2
@@ -549,7 +574,7 @@ def main():
     run.P("Frozen predictions = CFG571's four models as sealed. The CFG689 native a0(z) band folded into THEORY_CANONICAL_2026-10-18 does NOT change them and is not scored here.")
     run.P("kappa = 1/2 FITTED; footings never pooled; single disc = demonstration, no exclusion; not theory closed.")
     run.P(f"target: KMOS3D U4_27928 RA {RA:.6f} Dec {DEC:.6f} z {Z_CAT}; CO(2-1) observed at {NU_OBS:.4f} GHz; KMOS3D q {Q_KMOS}")
-    clar = C.announce_clarification(run, C.U4_CLAR, __file__)
+    clar = C.announce_clarification(run, C.U4_CLAR, __file__, addenda=[(C.U4_ADD_A, C.ADD_B_COMMIT)])
     run.P(f"memory guard: MallocMediumZone={os.environ.get('MallocMediumZone', 'unset')} (macOS; see the top of this script)")
     snap0 = C.snapshot()
     res = dict(K1=C.verify_frozen(run), memory_guard=dict(MallocMediumZone=os.environ.get("MallocMediumZone")), **clar)
@@ -574,7 +599,8 @@ def main():
         res["measured"] = {k: v for k, v in meas.items() if k not in ("fits",)}; res["fits"] = meas.get("fits")
         if mutate:
             det = meas["detected"]
-            run.P(f"\nMUTATE (velocity axis +2000 km/s): G1 {'PASSED (NOT detected by the control)' if det else 'FAILED -> the control bites (exit 1)'}")
+            run.P(f"\nMUTATE (velocity axis +2000 km/s): G1 {'PASSED (NOT detected by the control)' if det else 'FAILED -> the control bites (exit 1)'}; "
+                  f"decided by G1's selection-aware S/N {meas['SN_selection']:+.2f} (CFG806 addendum A; the null-calibrated statistic of CFG809 addendum B)")
             res["mutate"] = dict(G1=det); code = 0 if det else 1
         else:
             sc = score(meas, run); res["score"] = sc

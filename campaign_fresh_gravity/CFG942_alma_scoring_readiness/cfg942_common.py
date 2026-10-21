@@ -40,6 +40,8 @@ FROZEN = [
     ("U4 clarification 10-21 (CFG806 dir)", "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md", "35ea5e1be"),
     ("GS4 clarification 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md", "35ea5e1be"),
     ("GS4 clarification addendum A 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md", "748dd8095"),
+    ("GS4 clarification addendum B 10-21 (CFG809 dir)", "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md", "d7a1afae1"),
+    ("U4 clarification addendum A 10-21 (CFG806 dir)", "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md", "d7a1afae1"),
 ]
 SEAL_HASH_EXPECT = "be27457db6bad870a734c52d2bad92c6669cde53ca7a81553e79154dbedc3714"
 CLAR_COMMIT = "35ea5e1be"
@@ -47,6 +49,9 @@ U4_CLAR = "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-
 GS4_CLAR = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md"
 ADD_COMMIT = "748dd8095"
 GS4_ADD = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md"
+ADD_B_COMMIT = "d7a1afae1"
+GS4_ADD_B = "campaign_fresh_gravity/CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md"
+U4_ADD_A = "campaign_fresh_gravity/CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md"
 MUTATE_EXCL = 600.0      # addendum A s2: MUTATE's shifted-window continuum excludes channels within +-600 km/s of the true line
 
 
@@ -495,12 +500,13 @@ def make_mask(m0, sig, xc, yc, pix, seed_r=0.5, thr=2.0):
     return np.isin(lab, list(keep)) if keep else np.zeros_like(m)
 
 
-def seeded_null(m0, sig, src_mask, xc, yc, pix, bpix, rmin, n, rng, seed_r=0.5, thr=2.0):
+def seeded_null(m0, sig, src_mask, xc, yc, pix, bpix, rmin, n, rng, seed_r=0.5, thr=2.0, m_meas=None):
     """selection-aware null for G1: grow the same >= thr*sigma mask from a seed circle (radius seed_r) at n random off-source
-    positions (>= rmin arcsec from the target, the source mask excluded) and return the masked fluxes."""
+    positions (>= rmin arcsec from the target, the source mask excluded) and return the masked fluxes. With m_meas the masks are grown
+    on m0 but their flux is measured in m_meas (same grid): the MUTATE null of CFG809 addendum B (true-window masks, shifted-window flux)."""
     m = np.isfinite(m0) & (m0 >= thr * sig) & ~src_mask
     lab, _ = ndimage.label(m, structure=np.ones((3, 3)))
-    sums = ndimage.sum(np.nan_to_num(m0), lab, index=np.arange(lab.max() + 1)) / bpix
+    sums = ndimage.sum(np.nan_to_num(m0 if m_meas is None else m_meas), lab, index=np.arange(lab.max() + 1)) / bpix
     ny, nx = m0.shape; rs = seed_r / pix; out = []
     yy, xx = np.indices((int(2 * rs) + 3, int(2 * rs) + 3)); disk = np.hypot(xx - (rs + 1), yy - (rs + 1)) <= rs
     tries = 0

@@ -143,12 +143,45 @@ The owner's `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.m
 2. **U4's MUTATE bite now rests on A-U13.** With the over-subtraction removed, the literal translated-mask S/N in the shifted window reads 8.6, a false pass on noise like U4-d's 9.5. The selection-aware S/N (−0.3) decides, as A-U13 says.
 3. **The U4 exclusion follows CFG809 addendum A §2's reasoning, applied by instruction after the check above.** CFG806's own text (and its clarification's A-U3: "the median of channels with |v| > 600 km/s") does not state it, so the owner may wish to confirm it for CFG806.
 
+### Addendum B implemented (CFG809 addendum B and CFG806 addendum A, d7a1afae1)
+The owner ruled on new finding 1 above:
+- `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md`: the GS4 MUTATE is scored against a selection-aware null. At 200 off-source seeds, masks are grown by the true run's procedure and their flux is taken in the shifted window with the addendum-A continuum. The control bites if (flux − null mean)/null sd < 3.
+- `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md`: U4's MUTATE continuum excludes ±600 km/s of the true line, and G1's selection-aware S/N decides.
+
+Implemented here, MOCK only, with the same rules. The self-tests, all seven mocks (regenerated bit-identical, then deleted) and both MUTATE runs were repeated one at a time.
+
+**Before → after** (90bdb0153 → this commit)
+| item | before | after |
+|---|---|---|
+| GS4 MUTATE statistic | flux / ring rms of translated copies of the true-run mask = +2.90σ, bites (exit 1) | (flux − null mean)/null sd = **+151.67**, does **NOT** bite (exit 0). The null comes from 200 seeds on the true-window map (the same seeds as G1's null), measured in the shifted window: mean 0.000001, sd 0.000001 Jy km/s. The old statistic, the split and the 10-21 reading are printed as information. |
+| GS4 tiny-cube fallback (self-test) | −0.1σ, exit 1 | statistic −0.90, bites, exit 1 (mask 35 px). The check now tests the A-G11 logic: the fallback runs, is labelled, and the exit code follows it. |
+| U4 MUTATE | G1 selection-aware S/N −0.3, bites | the same, −0.30, bites (exit 1). A continuum-selection check is printed (see below). The MUTATE continuum is now owned by CFG806 addendum A, no longer "by instruction". |
+| K1 | 23 rows | 25 rows: CFG809 addendum B and CFG806 addendum A == d7a1afae1; 25/25 PASS in every run |
+| memory | at most 457 MB | at most 449 MB |
+
+**Verdict lines moved: none.** The scoring of every mock is unchanged; only the GS4 MUTATE outcome changed.
+
+**U4: does the same null show the continuum-selection bias?**
+- **Yes, and the null carries it.** In the shifted window, the continuum term of the 31-px target mask is +0.000031 Jy km/s. That is +7.9 sd above 8 unselected ring copies (−0.000000 ± 0.000004): the ≥ 2σ selection prefers low-continuum pixels, which is the addendum-B bias.
+- The G1-procedure null masks show the same term (+0.000035 ± 0.000011); the target sits at −0.31 null sd.
+- U4's MUTATE grows its mask and its null on the same shifted map. So G1's selection-aware S/N is itself addendum B's null-calibrated statistic: the two coincide (−0.30), and it decides.
+
+**Finding for the owner (reported, not decided): under addendum B the GS4 MUTATE does not bite on MOCK GS4-a.**
+- The statistic is +151.67, yet no line is in the shifted window: the raw shifted window is +0.57σ in ring units.
+- **Scale mismatch:**
+  - The true-run mask of this bright mock (S/N 1087) has 18,083 px.
+  - The null masks, grown from noise at off-source seeds, have a median of 20 px (max 48).
+  - The null's sd (0.000001) is therefore about 40× smaller than the noise of the true-run mask's flux (ring rms 0.00004), and the small selection bias left in the big mask is measured against it.
+- The mismatch shrinks as the source's mask approaches noise size; on the tiny cube (35 px) the control bites at −0.90.
+- On real data a well-detected [CI] line would give a large mask, and the control could fail exactly as here.
+- The harness implements the ruling literally and prints the mask sizes beside the statistic. Possible rulings are not decided here; for example, a null whose masks match the true-run mask in size.
+
 **Nothing frozen was edited.** These files are unchanged:
-- both plans' FROZEN_CRITERIA.md, both CLARIFICATION files and addendum A;
+- both plans' FROZEN_CRITERIA.md, both CLARIFICATION files, CFG809 addenda A and B, and CFG806 addendum A;
 - `cfg571_prereg.py` and its seal JSON;
 - LEDGER.md, the THEORY_CANONICAL files and CFG572.
 
-K1 (23/23) and K5 checked this in every run, and git status is clean for those paths. No file was written into the plan directories: the copy step runs only for a real cube.
+K1 (25/25) and K5 checked this in every run, and git status is clean for those paths. No file was written into the plan directories: the copy step runs only for a real cube.
 
 ## Hash verification (K1 in every run; all PASS)
 | file | sha256 (prefix) | equals freezing commit |
@@ -165,6 +198,7 @@ K1 (23/23) and K5 checked this in every run, and git status is clean for those p
 | AG5 `FROZEN_SCORING.md` / `score_alma.py` (recorded only, not used) | b7f489bf… / ca6e0a2e… | 7ea94d2ae / c4bfd82fd |
 | `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21.md` / `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21.md` (K1 rows added 10-21) | 5d2fbcea… / ba573d73… | 35ea5e1be |
 | `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md` (K1 row added 10-21) | 50e3e5be… | 748dd8095 |
+| `CFG809_gs4_24110_ci21_scoring/CLARIFICATION_2026-10-21_ADDENDUM_B.md` / `CFG806_u4_27928_scoring/CLARIFICATION_2026-10-21_ADDENDUM_A.md` (K1 rows added 10-21) | 6ba6bd2f… / feacc7c9… | d7a1afae1 |
 
 **Seal reproduction and transcription:**
 - CFG571's own functions reproduce all 56 U4 and 16 GS4 sealed entries to 0.0 dex, with the FLOOR flags identical. The functions are executed from the text above the script's `# ---- controls ----` line; a plain `import` would rewrite the seal file and exit (A-X6).
@@ -300,7 +334,9 @@ Run everything from `campaign_fresh_gravity/CFG942_alma_scoring_readiness/`.
   - The copies are `CFG809_gs4_24110_ci21_scoring/cfg809_gs4[_MUTATE].out` / `_results.json`.
   - MUTATE exits 1 when the control bites.
   - If +2000 km/s leaves the spw, MUTATE reruns at +1000, labelled "MUTATE fallback +1000 (CLARIFICATION A-G11)", and exits by that run. It exits 2 only if +1000 also leaves the spw; that run then has no MUTATE control (addendum A §2).
-  - The shifted window's continuum excludes channels within ±600 km/s of the true line (addendum A §2). See new finding 1 under "Addendum A implemented" on how narrowly the mock control bites.
+  - The shifted window's continuum excludes channels within ±600 km/s of the true line (addendum A §2).
+  - The bite statistic is addendum B's: (flux − null mean)/null sd < 3. On MOCK GS4-a it does not bite (+151.67); see "Addendum B implemented".
+  - U4's MUTATE uses the same continuum exclusion (CFG806 addendum A), and G1's selection-aware S/N decides.
 - The spw must cover 270.006 GHz. The harness reads FREQ cubes, 3D or 4D, with BMAJ keywords or a per-plane BEAMS table.
 
 ## Ambiguities that could cause a release-day dispute
