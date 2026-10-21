@@ -76,6 +76,7 @@ independent second prediction to reach 3σ.
 | [W4-15](W4_15_outward_decline_vs_external_field/README.md) | Does W4-14's outward a₀ decline follow the external field (Chae+2021 environmental e_N)? | **INTERMEDIATE, opposite sign to EFE.** ρ = −0.25 (p 0.03; an EFE predicts ρ > 0). A post-hoc power check puts an EFE-strength ρ ≈ +0.3 about 4.7σ above the observed value. The decline is not an environmental EFE; its cause stays open. |
 | [W4-16](W4_16_what_drives_the_decline/README.md) | What drives the outward a₀ decline (pressure support, radial M/L, beam smearing, warps, quality, universal slope)? | **UNRESOLVED.** No signature is met at p < 0.01. The full-point decline vanishes near Υ_d ≈ 0.7 (median slope +0.29 / +0.12 / −0.07 at Υ_d 0.3 / 0.5 / 0.8), and gas-only points don't decline. Two flaws in my own criteria are disclosed: the D1 sign was wrong and the M1 control failed. |
 | [W4-17](W4_17_single_normalization_test/README.md) | Is the within-galaxy a₀ residual one M/L normalisation error? Do the gap, slope and radial split vanish at one Υ*? | **Population: yes**, s and Δ_r vanish at Υ* 0.48 / 0.59, at population-synthesis M/L. **p64's 11 mixed galaxies: no**, the gap survives any Υ ≤ 1.4 (gradient-like). This corrects W4-14–16's population-wide 'outward decline'. Signature directions were calibrated on planted worlds before freezing. |
+| [W4-18](W4_18_borrowed_exact_numbers/README.md) | Exact numbers borrowed from outside gravity (Mathieu ¼, Fisher–KPP 2, Hardy/BF ¼, Eddington π cancellation, Newton–Hooke duality, mean-field ratios, lattices of touching horizons, Λ thresholds × MOND, Maxwellian √π) | **MENU ONLY.** The record's only π-free ½ is a simple-cubic lattice of touching horizons, but densest packing gives 0.420 and bcc 0.439 (all in window; a dust lattice, not the vacuum). B1–B3 are π-odd at 1.4–5.8; B4/B9 void at w = −1; B5 exponent-only; B8 has no c and no M-independent threshold. |
 
 ## What would change the answer
 
@@ -94,6 +95,6 @@ Follow `KAPPA_CAMPAIGN_RULES.md`:
 3. Run a light single-core script (nothing beside a live 1024³ job beyond that).
 4. Append one register row per attempt to CFG894's CSV, then rerun `kappa_campaign_lee.py`.
 
-Name lanes W4-18, W4-19, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
+Name lanes W4-19, W4-20, and so on (W4-04 is a parallel session's); check `ls why_4_puzzle` first, because more than one session adds lanes here.
 
 κ = ½ FITTED. Not theory closed.
