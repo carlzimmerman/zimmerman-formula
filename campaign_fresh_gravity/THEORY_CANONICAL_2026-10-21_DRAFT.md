@@ -109,7 +109,7 @@ universal (CFG880).
   is ROBUST; the size is not. The framework run's lead comes mainly from lower lensing amplitude, not a shape preference.
 - **Absolute fit:** NC1x χ²_min 144.68 / 108 (data-χ² p 0.024) against its control 154.76 (p 0.008). Both are worse than the
   inherited-input runs (T1x 136.6). The framework beats its control by suppressing small-scale power (P_grav/P_S0 0.949 at
-  k = 1 h/Mpc, z = 0); it is not a good absolute fit (CFG654-A2). NC2x: χ²_min 145.38 / 108 (data-χ² p 0.010) against the
+  k = 1 h/Mpc, z = 0); it is not a good absolute fit (CFG654-A2). NC2x: χ²_min 145.38 / 108 (data-χ² p 0.023) against the
   same control; also not a good absolute fit (CFG654-A3).
 
 ### 3.4 CMB lensing (CFG917, eeb09d2a8)
@@ -345,7 +345,7 @@ Every system with an excess is pressure-supported, and no rotator carries one. B
 Do not use any number for these until the lane's README result and LEDGER row are committed. None is invented here.
 
 - **P1. NC2x, CFG654-A3: FILLED (2026-10-21; result 8e1f1763c).** KiDS CONSISTENT, Δχ² −9.39 against NCS0 (robust −5.69 to
-  −12.85); A3 reading HOLDS; χ²_min 145.38 / 108 (p 0.010) vs 154.76; DES −2.15 CONSISTENT (diagnostic); CFG917 blind CMB
+  −12.85); A3 reading HOLDS; χ²_min 145.38 / 108 (data-χ² p 0.023) vs 154.76 (p 0.008); DES −2.15 CONSISTENT (diagnostic); CFG917 blind CMB
   lensing SAFE / CONSISTENT under A1 (Δχ² −0.265, low power). CFG909's NC2x re-score (reported sensitivity, no verdict weight)
   goes in CFG909's README when it lands.
 - **P2. CFG928: FILLED (82a69be8f).** Re-grade of CFG921's five posits with the IMF-corrected red-lens fact (CFG926 R5) and
