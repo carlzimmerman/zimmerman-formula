@@ -1,0 +1,37 @@
+{
+  "scope": "Analytic independent derivation of the fixed-total-charge quadratic DC equations. No numerical or symbolic mathematical code executed; no DC solve or new experiment.",
+  "verdict": "Proposed bordered signs/factors are correct under the stated local-field, harmonic, quadrature and gauge conventions; actual solvability and finite-amplitude bounds remain untested.",
+  "output": {"path":"sol61_push/cold_fragment_modes_2026_10_20/DC_CORRECTION_DERIVATION.md","sha256":"76d3b000704efa850fa5d62b77b60f12b4b9a9dbb444bc2798202e44ea60c5b1"},
+  "inputs": [
+    {"path":"sol61_push/cold_completion_2026_10_20/common_action.py","sha256":"a700b211d45f339400feebab83db878dfa243cb99c26e22a2a249a2220e1e208"},
+    {"path":"sol61_push/cold_fragment_modes_2026_10_20/radial_tools.py","sha256":"4ecd52a9c849e095b68a4127299fc68584ae7ba1b8fbae0a8f093d81be491f20"},
+    {"path":"sol61_push/cold_fragment_modes_2026_10_20/natural_mode_source_v2.py","sha256":"49aec303dff50f799694ffb39655accea096c0f9926fd6c9f4d103e6a611a386"},
+    {"path":"sol61_push/cold_fragment_modes_2026_10_20/natural_run_002/results.json","sha256":"8ce0579d98e4b6598ed42f2ebd38cab61e7d20fa377df527465dd88f1435fc75"},
+    {"path":"sol61_push/cold_fragment_modes_2026_10_20/REVIEW_NATURAL_RADIATION.md","sha256":"265309b6e8d1d4abbc1c9e318af024add323d61e004fceb3d51a6a5a6b6cbb08","previous_reviewed_sha256":"ff8e15a5212b02b341aae07049e867c155a97eefbf68fc7fe52e0f616143f743","change_note":"Only three comma-exponent typesetting defects corrected to intended ordinary powers; no mathematics, source or experiment changed."}
+  ],
+  "conventions": {
+    "mode": "Real canonical perturbation A[Z Y22 exp(+iOmega t)/r+c.c.], unit mode K=A^2; dphiY=-imY, angular norm1",
+    "DC": "A^2 sum_l w_l Y_l0/r, ell0,2,4; carrier omega_A=omega+A^2 deltaomega",
+    "inner_product": "integral dr or dr times Euclidean array inner product",
+    "cross": "N2(q+q*)-N2(q)-N2(q*), q=Z/r; both conjugate cross terms already included",
+    "a_vector": "a_amp=(-G p)_amp; distinct from the action couplinga200",
+    "gauge": "Amplitude-only solve requires real amplitude/pure-imaginary phase mode quadrature so DC phase force vanishes; otherwise retain static phase equations and fix U1 null direction."
+  },
+  "analytic_checks": [
+    "Legendre expansion: |Y22|^2=1/(4pi)-5P2/(14pi)+3P4/(28pi)",
+    "C0=1/sqrt(4pi), C2=-sqrt5/(7sqrtpi), C4=1/(14sqrtpi)",
+    "Carrier force derivative is -sqrt(4pi)*a_amp*deltaomega in normalized monopole coordinates",
+    "Charge variation is sqrt(4pi)<a,w0>+4pi<p,p>deltaomega+Q2raw",
+    "Eliminating deltaomega gives positive rank-one fixedQ operator and negative raw-charge RHS correction",
+    "Uniform-grid rank-one weights cancel; raw-charge RHS retains its1/dr factor",
+    "Local source is -Cl*r*cross(Z/r), equivalently -Cl*cross(Z)/r; no extra2"
+  ],
+  "remaining_obligations": [
+    "No DC inversion or solvability check performed",
+    "Parent quadrature and any discarded phase source must be checked numerically",
+    "Charge-cancellation scaling, correction norm and carrier shift require an actual declared solve",
+    "Parent oscillation frequency shift, finite-amplitude threshold control and nonlinear trajectory remain separate",
+    "No merger efficiency, galactic orbital transport or four-dwarf mass-budget closure"
+  ],
+  "review_provenance": "Independent analytic reconstruction of parent proposal; self-proofreading of this new derivation. File hashing only, no mathematical computation run."
+}
