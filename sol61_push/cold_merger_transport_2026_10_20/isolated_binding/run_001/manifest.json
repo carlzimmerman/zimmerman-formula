@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "CE-ARGON-ISOLATED-BINDING-2026-10-20",
+  "repository": {
+    "commit": "6c064b83a3c0a80d54b72deb2817133f55bb34b0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/cold_merger_transport_2026_10_20/isolated_binding/solve.py",
+    "sol61_push/cold_merger_transport_2026_10_20/isolated_binding/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exploratory spherical stationary two-field charged profiles at fixed Q=80000 and160000; compare Eiso(Q)+Eiso(Q)-Eiso(2Q).",
+    "coefficient_domain": "double numerical collocation and quadrature",
+    "conventions": "Exact ARGON11 action M100,Lq1.99,a200. Psi=f(r)exp(iomega t), real chi=h(r); Q=8pi omega integral r²f²dr. Coupled radial equations including mediator gradient. Exploratory new isolated-state calculation, not ARGON dynamics or frozen regrade.",
+    "inputs": [
+      "ARGON11 frag3d.c exact potential and charge normalization"
+    ],
+    "bounds": {
+      "Q": [
+        80000,
+        160000
+      ],
+      "outer_radius": [
+        40,
+        60
+      ],
+      "tolerance": 1e-05,
+      "max_nodes": 6000,
+      "initial_nodes": [
+        500,
+        800
+      ],
+      "spherical": true,
+      "commands_cpu_seconds": 45,
+      "measured_RSS_cap_bytes": 200000000
+    },
+    "non_claims": [
+      "No global energy minimum proved",
+      "No actual merger phase dependence or rate",
+      "No emitted energy/J/Q spectrum",
+      "No physical carrier mass or cross section",
+      "No four-dwarf formation mechanism"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-20T19:19:39.111098+00:00",
+    "runtime_seconds": 1.32738,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 45,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/cold_merger_transport_2026_10_20/isolated_binding/solve.py",
+    "argon_push/ARGON11_nonlinear_fragmentation_2026-10-17/frag3d.c"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/cold_merger_transport_2026_10_20/isolated_binding/solve.py",
+      "sha256": "6ee27e73fcc959294266995332c1beea88cc42b4b973d61acfb7c8efbd50def2",
+      "sha256_after": "6ee27e73fcc959294266995332c1beea88cc42b4b973d61acfb7c8efbd50def2"
+    },
+    {
+      "path": "argon_push/ARGON11_nonlinear_fragmentation_2026-10-17/frag3d.c",
+      "sha256": "3e54252e108e01cd2852563c7b932f3ebafa6526ad2e5bb1daf219d43ba91a82",
+      "sha256_after": "3e54252e108e01cd2852563c7b932f3ebafa6526ad2e5bb1daf219d43ba91a82"
+    }
+  ],
+  "output_directory": "sol61_push/cold_merger_transport_2026_10_20/isolated_binding/run_001",
+  "declared_results": [
+    "sol61_push/cold_merger_transport_2026_10_20/isolated_binding/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/cold_merger_transport_2026_10_20/isolated_binding/run_001/stdout.txt",
+      "sha256": "c071a3c6ec9a42885352a718cdec8c5a39048f11e30c5f9e53ab1d5624a194c1",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_merger_transport_2026_10_20/isolated_binding/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/cold_merger_transport_2026_10_20/isolated_binding/run_001/results.json",
+      "sha256": "bfd69ff0ec87f4ac4f289b9c7ab8397053328e0f101601dd2451f166e94c7dca",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
