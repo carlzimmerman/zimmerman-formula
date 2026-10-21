@@ -128,6 +128,21 @@ falsifier is convention-free: 2, 3, 4π, 8π and 32 are all excluded. Four candi
 classes have now been tried and all fail (A19). This is the single remaining hole in Q1,
 and it is now a well-posed target rather than a hunt.
 
+**But the data now select 4 among the natural options.** Every candidate reduces to the
+same master identity (A19)
+
+$$
+R\equiv\frac{\Lambda c^4}{8\pi a_0^2}=\frac{\Lambda L^2}{8\pi}=\frac{A\Lambda}{8\pi^2},
+\qquad R=4\iff \Lambda L^2=32\pi\iff \kappa=\tfrac12,
+$$
+
+and the saturation cap admits only `R ∈ {1, 2, 4}`, i.e. **κ ∈ {1, 0.7071, 0.5}**. Against
+the measured κ these are excluded at **6.14σ, 3.05σ, and 0.87σ** respectively: 4 is the
+only natural value the data admit. That is a selection, not a derivation — but it converts
+"why ½?" into "why is the cap the fourth power of the cell scale?", which is a sharper
+question with a single answer left standing. For calibration, the Unruh/de Sitter control
+gives `R = 3/(8π) = 0.1194 → κ = 2.894`, excluded at 33.5×.
+
 ---
 
 ## 2. What medium produces the saturating term, and n = 1 or n = 2
@@ -186,10 +201,20 @@ exactly (residual 0, A12).
 
 | gate | status | number | source |
 |---|---|---|---|
-| **Lensing = dynamics** | **DERIVED** | `(Φ−Ψ)/Ψ = O(Ψ) = 2.63e-7`; 9.13e-8 at 10 kpc | A12 |
-| **GW speed = c** | pending A3 (in flight) | — | A3 |
+| **Lensing = dynamics** | **DERIVED at first order; NOT an identity** | `(Φ−Ψ)/Ψ = O(Ψ) = 2.63e-7`; 9.13e-8 at 10 kpc | A12, A3 |
+| **GW speed = c** | **DERIVED (exact)** | `c_T² = 1` exactly, not to leading order | A3 15/15; coordinator 6/6 |
 | **Solar System Newtonian** | **CONDITIONAL (turn-off)** | anomaly `a₀ = 2557.38 × B_E` uncured; `y_t = 100.40` closes Λ | A4 |
-| **Stable at every acceleration** | **DERIVED (linear)** | `dg/dg_N ∈ [1, ∞)`, positive everywhere | A4, my Q3.1–3.3 |
+| **Stable at every acceleration** | **DERIVED (linear), CONDITIONAL (scalar)** | `dg/dg_N ∈ [1, ∞)`; scalar front speed `c_s = √(γ/η) ≤ c ⟺ γ ≤ η` | A4, A3 |
+
+**The GW gate is exact, and for the same structural reason as the lensing gate.** No operator in
+the action carries two derivatives of `h^TT`; the constraint sectors are TT-blind; `θ` is
+O(perturbation²) so the `(1+β)θ²` term is quartic and inert at quadratic order. The quadratic
+tensor action is therefore the Einstein one, `a³(ḣ² − p²h²)/(16K)`, and `c_T² = 1` follows
+identically. The operator that would break it is a P–curvature coupling (`ξ R_ij P^iP^j`,
+`ζ R P²`); none is present, and adding one shifts `c_T²` off 1 (my mutation demonstrates it).
+The scalar sector is the one place the theory can exceed c: `c_s = √(γ/η)`, so `γ ≤ η` is
+required, with the joint polarized bound `γ/η + 4γa₀²/K ≤ 1` (the second term is 1.19e-18 at
+L\* = 24 pc, so numerically the condition is just `γ ≤ η`).
 
 **Why lensing equals dynamics, structurally.** Not because the action was tuned, but
 because the extra sector is a **charge** sector, not a stress sector. Under
@@ -227,30 +252,40 @@ $$
 \frac{(1/\rho)\,dp/dr}{g}=\Big(\frac{L_*}{r}\Big)^2
 $$
 
-for cusps `1 ≤ n ≤ 2` — **density-free**. It switches off exactly at `r = L_*` (A16), and
-it is 3.3× inside the innermost SPARC datum for L\* = 24 pc, i.e. the law's fit region is
-untouched. So the theory predicts a **pressure-supported core of size ~L\*** in every
-halo, with a rotation-curve deviation that peaks at **13.4 % at 2 r_switch** and falls to
-0.5 % by 10 r_switch (A20).
+for cusps `1 ≤ n ≤ 2` — **density-free**. Compared with the *cold sector's own* gravity it
+switches off at `r = L_*`; compared with the **total** gravity the switch is at
+`r = L*√f_c` (A16, corrected by A20) — **3.73 pc** for an MW-like halo at L\* = 24 pc, and
+18.40 pc for a dwarf-like one. Both are far inside the innermost SPARC datum, so the law's
+fit region is untouched. The theory predicts a **pressure-supported core of size
+R_core = (π/√2)L\* = 53.31 pc** at L\* = 24 pc (exact n=1 polytrope; the pressure balances
+self-gravity identically). The force-balance deviation is **13.40 % at 2 r_switch**,
+2.02 % at 5 r_switch, 1 % at 7.09 r_switch; the *observable* plateau is
+`1 − √(1−f_c)` = 1.21 % (MW) / 35.82 % (dwarf).
 
 | | value |
 |---|---|
-| window | 24 pc – 1 kpc |
+| published window | 24 pc – 1 kpc |
+| **window after the data** | **24 pc – 90 pc** (LITTLE THINGS: L\* ≤ 90.0 pc from IC 10; 300 pc excluded by 3.33×, 1 kpc by 11.11×) |
 | in horizon units `L*H₀/c` | 5.40e-9 – 2.25e-7 |
 | a `c/√(Gρ)` reading requires | ρ = 2.4e14 – 4.2e17 ρ_Λ (a medium density, not the vacuum) |
-| `L* = σ²/a₀` maps to | 24 pc ↔ 8.33 km/s; 1 kpc ↔ 53.74 km/s |
-| core radius (MW-like, L\*=24 pc) | **R_core = 53.31 pc** (A16 and A20 agree independently) |
+| `L* = σ²/a₀` maps to | 24 pc ↔ 8.33 km/s; 90 pc ↔ 16.1 km/s |
+| core radius (MW-like, L\*=24 pc) | **R_core = 53.31 pc** |
 | Jeans mass at switch-off | **M_J = 3.654 V_f²L\*/G = 2.04e4 (V_f/km/s)² M⊙ = 5.57e8 M⊙** |
 | signature | `d ln M_J/d ln ρ = +1` — *denser regions make bigger clumps* (standard Jeans: −½) |
 
-**No-juggling guard (pre-registered).** L\* is **one number for all galaxies**, there is no
-per-galaxy freedom, and any formula for it must use only quantities already in the theory.
-Two candidates were tested: `L* = σ²/a₀` survives (it is the one that maps the window onto
-a plausible velocity dispersion); `L* = V_f²/(k a₀)` requires k ≈ 9 and is not independent.
-**SPARC cannot resolve a 24 pc core** — its innermost reliable radius is ≳ 80 pc and the
-smallest resolvable L\* is ~1 kpc, so the present data give no bound; the decisive
-measurement is deep HI reaching ~5 r_M (HALOGAS/MIGHTEE-HI class), or high-resolution inner
-curves for a handful of nearby dwarfs.
+**No-juggling guard, and it bit.** L\* is **one number for all galaxies**, no per-galaxy
+freedom, and any formula for it must use only quantities already in the theory. Of the two
+candidates, `L* = V_f²/(9a₀)` **fails** outright: a 2.637 dex spread across SPARC, 30.3 %
+of galaxies outside the window, and an implied cold-phase dispersion of 55 km/s (6.7× the
+8.23 km/s the medium allows). `L* = σ²/a₀` **survives at 24 pc and dies at 1 kpc** — its
+own consistency cap is L\* ≤ 93.8 pc. So the guard does what it was built to do: it
+removes the upper half of the published window and leaves a single number, ~24 pc.
+
+**Resolution.** SPARC's 30-inch beam floors at ~142 pc and its innermost reliable radius is
+80 pc, so **0/175 galaxies probe a 24 pc core** — the present data cannot see it. LITTLE
+THINGS does bound it (beams 20–530 pc). The decisive measurement is **ngVLA at 0.15″**,
+which reaches 24 pc out to 33 Mpc: ~30 dwarfs with V_f < 40 km/s inside 8 Mpc, 3 km/s
+channels, gives a 21.03 % dip at 30 pc and 11.21 % at 40 pc, **≥ 5σ per galaxy** (A20).
 
 **What L\* is not.** It is not a horizon-scale length (7–8 decades below c/H₀), and it is
 not the same as the other two cutoffs the same scale generates: one L\* gives
@@ -279,9 +314,22 @@ that is a prediction (three numbers from one), not a fit.
    "total column still positive" claim does not survive as stated (A6). A naive
    superposition gives the **wrong sign** (+0.64), so the pancake is strictly nonlinear
    (A13).
-4. **The sourcing fraction is radial.** `u = 0.472 ± 0.036` (MID) → `0.986 ± 0.098` (OUT);
-   constant `u` is excluded at 4.9σ. The inner halo is half-sourced, the outer halo fully
-   sourced.
+4. **The sourcing fraction is radial, and it is not ½.** `u = 0.4716 ± 0.0362` (MID) →
+   `0.9865 ± 0.0984` (OUT). MID is 0.78σ from ½ but OUT is **4.9σ** from it, and the two
+   bands differ by ≥ 3.8σ for any band correlation (A21). The "≈ ½ at both anchors" is a
+   **cancellation**, not a law: the law's own ratio spans 9.566× between the anchors and the
+   retention table spans 9.0×, quotient 1.063.
+   **u = ½ is structurally excluded as an identity**: `u = 1 + 3⟨w⟩` exactly, so ½ requires
+   `w = −1/6`, i.e. a negative sound speed; and `f_ret ≤ 1` caps the cluster at
+   `u ≤ 0.4880`, so ½ there would need more baryons than the cosmic share (`f_ret = 1.0245`).
+   The MW anchor needs `f_ret = 0.1071`, which is admissible — so the two anchors cannot both
+   be at ½ for a physical reason, only by coincidence. Scaling:
+   `u ≈ (f_ret/R_cosmic)[y_v^{−1/2} − ½]`, `d ln u/d ln M_v → +1/6`, spanning 0.37–0.72 over
+   1e10–1e14 M⊙. **Correction to A18's prose**: the phantom is too *diffuse*, not too
+   centrally concentrated (its own residuals: 1.910 MID vs 1.012 OUTER).
+   Falsifier at 3σ: `σ(A_MID) ≤ 0.0312`, i.e. ≥ 4602 clusters — or, cheaply, a group stack at
+   `M_v = 1e13` where ½ and the cosmic share differ by 33 % in cold mass (A_MID 1.8122 vs
+   1.4051), needing only `σ(A) ≤ 0.136` from a few hundred `M_500 ~ 2e13` stacks.
 
 ---
 
@@ -291,8 +339,9 @@ that is a prediction (three numbers from one), not a fit.
 |---|---|---|---|---|
 | P1 | No saddle dip between lens pairs | depth difference 2.16–2.37 (MW) / 5.16–5.68 (cluster) M⊙/pc² | stack LRG pairs at ~0.77 Mpc, matched-filter the saddle | a dip of the predicted depth ⇒ law exact, medium must carry negative energy |
 | P2 | Cluster SCT band ratio | MID/OUTER = **0.966 ± 0.102** (native) vs 1.888 ± 0.203 (phantom) | eRASS1×KiDS, 0.46–1.42 Mpc vs outer | ratio > 1.3 (> 3.3σ) kills the native-cold reading |
-| P3 | Sourcing fraction rises outward | u(MID) = 0.472 ± 0.036, u(OUT) = 0.986 ± 0.098 | same stack, two bands | constant u at > 4.9σ |
-| P4 | Pressure core of size L\* | R_core = 53.3 pc; 13.4 % deviation at 2 r_switch | deep HI to ~5 r_M, one L\* for all galaxies | a core size that scales with galaxy mass at fixed L\* |
+| P3 | Sourcing fraction rises outward | u(MID) = 0.4716 ± 0.0362, u(OUT) = 0.9865 ± 0.0984 | same stack, two bands | constant u at ≥ 3.8σ; σ(A_MID) ≤ 0.0312 reaches 3σ |
+| P3b | Group-scale u diagnostic | at M_v = 1e13, A_MID = 1.8122 (u=½) vs 1.4051 (cosmic share) | few hundred M_500 ~ 2e13 stacks, eRASS1×DESI Y3 | σ(A) ≤ 0.136 needed; 33 % difference |
+| P4 | Pressure core of size L\* | R_core = 53.31 pc at L\*=24 pc; 21.0 % dip at 30 pc, 11.2 % at 40 pc | ngVLA 0.15″, ~30 dwarfs V_f<40 km/s within 8 Mpc, 3 km/s channels | a core size that scales with galaxy mass at fixed L\* |
 | P5 | Wide-binary boost (EFE-blind sector) | γ_v = 1.20 at 10 kAU, 1.51 at 20 kAU | Gaia DR4, 4.2σ forecast already on record | γ_v ≤ 1.05 (Arm B) |
 | P6 | Laboratory null | \|δG/G\| < 1e-6 (framework) vs 340 ppm (source-boost) | two-configuration Cavendish, source-density swap, 30–50 ppm | +340 ppm kills the screened framework |
 | P7 | n = 1 vs n = 2 | 15.47 % max in g at g_N = a₀/2 | 1330–1980 SPARC-quality galaxies, free Υ per galaxy | a stacked Δχ² that survives the bootstrap |
@@ -319,7 +368,16 @@ that is a prediction (three numbers from one), not a fit.
 7. **The wide-binary DR4 registration is stale**: the September arms (1.1614–1.1814 /
    ≤1.045) predate the October EFE-blind paper's 1.51 at 20 kAU. One of them is not the
    framework's prediction (A5 tension 2).
-8. **κ has four numbers circulating** (0.42 ± 0.10, 0.551 ± 0.043, 0.45/0.58/0.43, and the
+8. **`r_switch = L*` is right only against the cold sector's own gravity**; against the
+   total gravity it is `r_switch = L*√f_c` (3.73 pc, not 24 pc, for an MW-like halo). A20
+   corrects A16 on this point; A16's `r_switch ∝ L*` scaling and its density-independence
+   stand.
+9. **A18's prose reverses its own sign**: the law's phantom is too diffuse, not too
+   centrally concentrated (A21).
+10. **A19's task statement (mine) was internally inconsistent**: `ℓ₀ = √(8π/Λ)` gives
+   `Λℓ₀² = 8π`, not 32π. The two lengths are distinct — the cell `ℓ₁ = √(8π/Λ)` and the
+   MOND length `L = c²/a₀ = 2ℓ₁`. The master identity is `R = ΛL²/(8π)`.
+11. **κ has four numbers circulating** (0.42 ± 0.10, 0.551 ± 0.043, 0.45/0.58/0.43, and the
    March–May κ = 1). There is no single reconciled κ, and A9 shows why: κ ∝ Υ^−1.23, so an
    IMF change moves it 1.98×. The Υ-free channel gives **κ = 0.354 ± 0.106** from 12
    galaxies and 73 points — consistent with ½ at 1.4σ, but not a measurement (A14). The
@@ -331,9 +389,12 @@ that is a prediction (three numbers from one), not a fit.
 
 **Closed by derivation**
 
-- Lensing = dynamics: slip is second order, `2.63e-7`, structurally (charge sector). A12.
+- Lensing = dynamics: slip is second order, `2.63e-7`, structurally (charge sector). A12, A3.
+- **GW speed = c: `c_T² = 1` exactly**, from the absence of any two-derivative TT operator and
+  the TT-blindness of the constraints. A3 15/15, coordinator 6/6.
 - m = 1 is the unique thermal-lattice law; the canonical law is Langmuir. A2.
-- `r_switch = L*` exactly, and `R_core = 53.31 pc`. A16, A20.
+- `r_switch = L*` against the cold sector's own gravity (`L*√f_c` against the total), and
+  `R_core = 53.31 pc`. A16, A20 corrected.
 - `M_ph/M_b = ½(√(1+4/y)−1)`; the 1.7584e14 M⊙ crossing is concentration-independent. A18.
 - Lean, no `sorry`, standard axioms only: κ–Z identity, `1/(2Z) ≠ 1/12`, both roots and
   their ordering, monotonicity, capacity limits. A8 (23 theorems).
@@ -349,18 +410,25 @@ that is a prediction (three numbers from one), not a fit.
 - n = 2 from a thermal lattice: impossible. A2.
 - A positive-mass medium realising the law at null points: impossible. A6, A13.
 - "Cold energy = the law's phantom": excluded at 7.7σ. A18.
+- **u = ½ as an identity**: impossible — `u = 1 + 3⟨w⟩` forces `w = −1/6` (negative sound
+  speed), and `f_ret ≤ 1` caps the cluster at u ≤ 0.488. A21.
+- **R ≠ 4 in the saturation cap**: `R ∈ {1, 2}` gives κ = 1 and 0.7071, excluded by the
+  measured κ at 6.14σ and 3.05σ. Only R = 4 survives. A19.
 
 **Open, with the missing premise named**
 
 1. **The scale-setting functional** returning exactly 4 in `ρ_DEc²/(a₀²/G)`. This is the
-   only hole in Q1. Falsifier: any value other than 4.
-2. **The GW-speed certificate** (A3, in flight) and the preferred-frame PPN parameters
-   α₁, α₂ (A22, in flight) — the two gates not yet computed.
+   only hole in Q1. The data have already narrowed the cap to three options and picked one;
+   what is missing is the principle that makes the cap the fourth power of the cell scale.
+2. **The preferred-frame PPN parameters** α₁, α₂ and the nonlinear β (A22, in flight) — the
+   only gate not yet computed. GW speed and lensing are closed; the scalar sector needs `γ ≤ η`.
 3. **`u(r)`**: why the inner halo is half-sourced and the outer fully sourced. The
-   measurement exists (P3); the mechanism does not.
+   measurement exists (P3) and the scaling is known (`u ∝ y_v^{−1/2}`, slope +1/6); the
+   mechanism does not.
 4. **The turn-off's origin**: `y_t = 100.4` closes Λ, but nothing yet forces it.
-5. **`L*`'s microscopic value**: the window is a measurement, not a derivation; the
-   `σ²/a₀` map is the surviving candidate.
+5. **`L*`'s microscopic value**: now bounded to **24–90 pc** by LITTLE THINGS, with
+   `L* = σ²/a₀` the surviving map (24 pc ↔ 8.33 km/s) and its own cap at 93.8 pc. The upper
+   half of the published window is gone; the number is not derived.
 6. **A UV completion.** The cold sector has no established covariant parent (A5 clue 4:
    the best candidate fails its own frozen rule).
 

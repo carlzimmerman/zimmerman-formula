@@ -1,0 +1,17 @@
+K0_lapse_eq_is_hamiltonian_constraint    PASS  value=0.0                            threshold=0            R3 = 4K(rho + div P + W + gamma d^2/2)
+K0b_R3_formula_verified                  PASS  value=0.0                            threshold=0            independent 3D Christoffel/Riemann build
+K1_Schwarzschild_solves_constraint       PASS  value=0.0                            threshold=0            exact isotropic chart, no weak-field expansion
+K2_P_zero_is_not_a_solution              PASS  value=0.1469387755102041             threshold=!= 0         EP(P=0) = sqrt(f) Nprime: P is sourced by grad N
+K3_W_anisotropic_stress_exact            PASS  value=0.0                            threshold=0            p_r-p_t = W_u u = u^2/[K(1-u/a0)] > 0 for every u>0
+K4_traceless_stress_is_O_eps_squared     PASS  value=eps**2*q**2/K                  threshold=eps^2 q^2/K  Pi = O(P^2) => no O(eps) anisotropic stress => Phi_1 = Psi_1
+K5_TT_gradient_term_is_exactly_curvature PASS  value=-kz**2/(4*a**2)                threshold=-k^2/(4a^2)  R3^(2) = -(1/4) p^2 h^2 for one TT mode, p = k/a
+K6_TT_kinetic_has_no_beta_and_no_P       PASS  value=hdot**2/4                      threshold=hdot^2/4     theta = 3H for TT, so beta drops out; W,E,F are TT-blind at 2nd order
+K7_cT2_equals_one_exactly                PASS  value=1                              threshold=1            naive |DP|^2 stiffness would give 1+2K|P|^2; Hodge F^2 gives nothing
+K8_scalar_front_speed_is_sqrt_gamma_over_eta PASS  value=gamma/eta                      threshold=gamma/eta    c_s^2 -> gamma/eta as p -> infinity
+K9_scalar_causality_inequality           PASS  value=-(-6*H**2*K*beta - 4*H**2*K + 3*K*beta*p**2 + 2*K*p**2 + beta*eta*p**4 - beta*gamma*p**4)/beta threshold=(gamma-eta)p^4-Bp^2+2BH^2 c_s <= 1 for all p  <=>  gamma <= eta
+K10_superluminal_phase_speed_is_IR_only  PASS  value=p^2 < x_plus                   threshold=root of the quadratic only below the de Sitter gap scale, where omega -> sqrt(2)H is finite
+K11_static_branch_luminality             PASS  value=gamma/eta + 4 gamma a0^2/K     threshold=<= 1         joint causality bound including the polarized static sector
+K12_a0_correction_to_static_bound_is_negligible PASS  value=1.19e-18                       threshold=< 1e-15      4 gamma a0^2/K = 2 (L* a0/c^2)^2 with L* = 24 pc
+K13_slip_is_second_order_in_the_potential PASS  value=O(Psi^2)/Psi = O(Psi)          threshold=O(1e-7)      cross-check: A12 gives |1-Phi/Psi| <= 2.63e-7 for a galaxy
+
+A3 COMPLETE: 15/15 checks PASS.
