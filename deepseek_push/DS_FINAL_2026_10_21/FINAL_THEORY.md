@@ -242,6 +242,22 @@ The scalar sector is the one place the theory can exceed c: `c_s = √(γ/η)`, 
 required, with the joint polarized bound `γ/η + 4γa₀²/K ≤ 1` (the second term is 1.19e-18 at
 L\* = 24 pc, so numerically the condition is just `γ ≤ η`).
 
+**No cosmic aether (partial close of the preferred-frame gate).** The P field has no
+cosmological background value, and this is now a theorem rather than a choice. On FRW every
+derivative operator in the action vanishes for homogeneous P, the clock term `P^iD_i ln N`
+vanishes with `N = 1`, so the P equation reduces to `dW/du = 0`. Since
+
+$$
+\frac{dW}{du}=\frac{u}{K}\frac{1}{1-u/a_0},
+$$
+
+the only zero is `u = 0`, and `W` is strictly increasing away from it — there is no
+symmetry-breaking minimum. Hence **P = 0 is the unique homogeneous solution** (coordinator,
+4/4, mutation bites): the Solar System does not move through a Lorentz-violating VEV. That
+removes the VEV route to α₂. The remaining route to α₁, α₂ is the `(1+β)θ²` deformation,
+which is a genuine preferred-frame term and is **not** closed here — it is the one gate
+still open.
+
 **Why lensing equals dynamics, structurally.** Not because the action was tuned, but
 because the extra sector is a **charge** sector, not a stress sector. Under
 `N = 1+εn₁`, `f = 1+εh₁`, `P = εp₁`, *every* ≤2-derivative operator built from P has
