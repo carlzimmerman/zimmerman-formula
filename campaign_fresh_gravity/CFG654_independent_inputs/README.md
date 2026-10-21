@@ -79,3 +79,36 @@ the framework's own early-universe inputs it stays CONSISTENT and the relative �
 - Restart 16:24:36 from the step-39 checkpoint under chain7b: the gate waits only for heavy jobs (1024³ engines, an Ollama server) and for
   free + inactive ≥ **46 GB**, i.e. 2 GB below the frozen §3 start rule (owner: "i need this finished"; NC2x peak RSS 42–44 GB; the frozen abort rule
   — RSS > 52 GB or swap growth > 4 GB — is unchanged). This is a disclosed deviation from the start rule only; no input, setting, statistic or data cut changes.
+
+## RESULT: NC2x vs NCS0 (addendum A3, the native-input rerun of T2x on the ALT footing; 1024³, chain7/chain7b, scored 2026-10-21 06:32)
+
+Theory-v2 (M1 + M2 + M3) on the alt footing (a₀ = 1.1312e-10), from the framework's own early-universe inputs (A1 CMB-pair set), against
+the footing-independent control NCS0. Scored by the frozen `cfg654_native.py` (MUTATE first). Numbers from `cfg654_native_results_NC2x.json`.
+
+| survey | N_kept | χ²_min NCS0 | χ²_min NC2x | Δχ² | robustness (widen2 / noIA / held / LOC) | DESI (reported) | class |
+|---|---|---|---|---|---|---|---|
+| KiDS-1000 | 108 | 154.76 | 145.38 | **−9.39** | −5.69 / −12.85 / −7.99 / −11.86 | −6.89 | **CONSISTENT** |
+| DES Y3 | 78 | 93.99 | 91.85 | −2.15 | −0.79 / −4.57 / −1.91 / −2.71 | −2.09 | **CONSISTENT** (T-OWN 10.31 ≥ 9: diagnostic this time) |
+
+- **MUTATE** (`cfg654_native_NC2x_MUTATE.out`): NZ1 bites on both surveys; T-OWN S0 χ²_min 22.56 (KiDS) and 10.31 (DES), both DIAGNOSTIC.
+- **Benchmark** (no verdict weight): P_grav/P_S0 at k = 0.3 / 0.5 / 1 h/Mpc = 0.975 / 0.967 / 0.955 at z = 0 (G 0.043); 0.968 / 0.948 / 0.928
+  at z = 0.5; 0.964 / 0.933 / 0.896 at z = 1.
+- **CMB-lensing (CFG917, frozen before NC2x output existed; scored 06:4x):** Part A (CFG649 checklist) ΔA −0.0017, bracket [−0.0113, −0.0011]
+  → SAFE; Part B (raw Planck PR4, L 8–400) Δχ² −0.265 (χ² 9.28 vs 9.54 / 9 bands) → NOT DIAGNOSTIC as frozen, CONSISTENT under CFG917's
+  post-hoc A1 (low power, as for NC1x). Not a CFG654 verdict input.
+- **Verdict (frozen §5):** PASS, shear side, alt footing. **A3 reading: HOLDS** (NC2x CONSISTENT, Δχ²(NC2x − NCS0) = −9.39 ≤ 0).
+- Run history: aborted twice by the frozen swap rule (12:44 and 15:42 on 10-20) and resumed bit-identically from its checkpoints; restarted
+  16:24 under a 46 GB start gate (disclosed deviation from the 48 GB start rule; see the run-plan disclosure above).
+
+**What this changes.** With A2 (NC1x, canonical, HOLDS) and A3 (NC2x, alt, HOLDS), the theory-v2 shear side now passes on BOTH footings with
+the framework's own early-universe inputs — the inherited-IC condition is lifted on both. On the alt footing DES is diagnostic and also
+CONSISTENT.
+
+**What it does not change.** Absolute fits remain mediocre (KiDS χ²_min 145.38 / 108; the control 154.76); the advantage comes from ~4–10%
+less small-scale power; the size of the advantage is amplitude-driven (CFG909 on NC1x; the NC2x rescore is reported in CFG909's README);
+the CMB-lensing gate has low power; and — from the 10-20/21 structural lanes (CFG941/944/946/947/950/951/952) — the class-A engine that
+produces this pass has no established physical parent (its phantom is a global QUMOND field carrying a satellite EFE, its RMIN applies the
+law only to retained baryons ≥ 2.19e11 M☉ at 1024³, its source relocation is not momentum-conserving). The pass is a computational result
+of that engine. A CONSISTENT class does not mean the data favour the framework.
+
+κ = ½ FITTED; footings never pooled; cold energy mass required; not theory closed.

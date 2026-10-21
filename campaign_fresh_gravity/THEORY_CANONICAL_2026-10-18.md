@@ -190,3 +190,8 @@ Positive: a parent that changes the SOURCE of gravity (non-local 𝒮) has no ho
 non-local parent (labelled domains + merge rule) is untested and would need its own engine. **Status: no local theory gives the law,
 a¹ growth and no EFE together; the class-A shear engine has no established physical parent.**
 
+**Note (2026-10-21, CFG654 A3) the native shear pass on BOTH footings.** NC2x (theory-v2, alt footing, native inputs) HOLDS against
+its control: KiDS Δχ² −9.39 (CONSISTENT), DES −2.15 (CONSISTENT, diagnostic); blind CMB lensing (CFG917) SAFE / CONSISTENT under A1 with
+low power. With NC1x (canonical HOLDS), the inherited-IC condition is lifted on both footings. Caveats stand: absolute fits mediocre,
+advantage amplitude-driven, and the class-A engine that produces the pass has no established physical parent (CFG941–CFG952).
+
