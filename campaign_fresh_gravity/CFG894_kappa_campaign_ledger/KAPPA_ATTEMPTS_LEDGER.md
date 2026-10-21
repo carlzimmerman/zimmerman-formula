@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (719 rows)
+## Totals (720 rows)
 
 - **520 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -27,7 +27,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
   - a free ratio, or a trade for a new constant,
   - a bound,
   - a closure.
-- 43 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
+- 44 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
 
 **17 of the 56 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
 κ_Λ = 0.417 ± 0.095.
@@ -153,7 +153,7 @@ fact.
 | KS Kinetic / settling / collective / cold-energy dynamics | 32 | 0 | 2 | 30 | 0 | 0 |
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
-| OB Observational determinations of kappa (NOT derivations) | 53 | 0 | 0 | 0 | 0 | 43 |
+| OB Observational determinations of kappa (NOT derivations) | 54 | 0 | 0 | 0 | 0 | 44 |
 | AU Audits, controls, meta-analyses | 98 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
@@ -815,6 +815,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K713 | W4-14 | `why_4_puzzle/W4_14_gas_star_matched_acceleration` | gas vs star points at matched g_bar pooled across SPARC: is the within-galaxy gas/star a0 gap about baryon type or acceleration? | - | obs | OBS ACCELERATION: matched Delta -0.096 +- 0.111 vs within-galaxy -0.441 +- 0.059; inferred a0 falls outward within galaxies (EFE/outskirts-like), not baryon type; frozen M2 control failed by design, post-hoc control passes | a4b55c5ca |
 | K714 | W4-15 | `why_4_puzzle/W4_15_outward_decline_vs_external_field` | outward a0 decline within SPARC galaxies vs Chae+2021 environmental external field e_N | - | obs | OBS INTERMEDIATE, opposite sign to EFE: rho -0.25 (p 0.03); post-hoc power puts an EFE-strength rho +0.3 ~4.7 sigma above; frozen M1 control failed by design | 3964e4178 |
 | K719 | W4-16 | `why_4_puzzle/W4_16_what_drives_the_decline` | what drives the outward a0 decline inside SPARC galaxies (pressure support, radial M/L, beam smearing, warps, quality, universal slope) | - | obs | OBS UNRESOLVED: no signature at p<0.01; full-point decline M/L-sensitive (gone near Upsilon_d 0.7); gas-only points do not decline; D1 sign mis-declared and frozen M1 control failed (disclosed) | f2342c536 |
+| K720 | W4-17 | `why_4_puzzle/W4_17_single_normalization_test` | single stellar-M/L normalisation test for the within-galaxy a0 residual (Delta_g, slope, radial split vs Upsilon) | - | obs | OBS population (130): single normalisation at Upsilon* 0.48-0.59; p64's 11 mixed galaxies: NOT single (gap survives any Upsilon <= 1.4); corrects the population-wide outward-decline reading | 876f08642 |
 
 ## AU: Audits, controls, meta-analyses
 
