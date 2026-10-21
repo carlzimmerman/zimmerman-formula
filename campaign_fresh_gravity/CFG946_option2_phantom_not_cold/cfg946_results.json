@@ -1,0 +1,1159 @@
+{
+ "lane": "CFG946",
+ "criteria": "08f3b30a6",
+ "amendments": [
+  "A1 23e0a5765 (code/reporting; items 6-7 post-result, no class change)"
+ ],
+ "mutate": false,
+ "stage": "MAIN",
+ "checks": {
+  "K1_NGC3198_law_CFG938_reduction": {
+   "pass": true,
+   "detail": "max |g/g_law - 1| canonical 2.22e-16, alt 2.22e-16 (CFG938/941: 2.2e-16; line 1e-6)"
+  },
+  "K2_CFG941_full_action_exponent": {
+   "pass": true,
+   "detail": "full action (c2 = 1, chi-bar gradient on) n = 0.694330 (CFG941 0.69433, line 1e-4); dust (c2 = 0) n = 1.000000000000"
+  },
+  "K3_CLAR_theorem1_reproduced": {
+   "pass": true,
+   "detail": "three bodies, arbitrary pair potentials V_ab(|x_a - x_b|), uniform E(t): internal accelerations independent of E (minimal coupling), COM acceleration = E; with passive charges the internal acceleration changes by (gamma_a/m_a - sum gamma/M) E (CL-AR A3/A4)"
+  },
+  "K4_CLAR_transport_budget": {
+   "pass": true,
+   "detail": "l_min (1e10 Msun, r = 10 kpc) = 494.7 / 513.9 kpc (CL-AR 495 / 514); f_gen(l/r = 0.01, 0.1, 0.3) = 2.94%, 24.87%, 54.48% (CL-AR 2.9 / 25 / 55)"
+  },
+  "K5_CFG925_K7_exact_linear_QUMOND": {
+   "pass": true,
+   "detail": "Gauss-flux boost at y_e = 0.05 (nu_e, g_i = 1e-6 g_e) = 4.24850; analytic nu_e(1 + L_e/3) = 4.24850; CFG925 K7 exact linear QUMOND 4.249"
+  },
+  "K6_O2c_c2_0_equals_CFG938_M3": {
+   "pass": true,
+   "detail": "O2c(c2 = 0) law dev canonical 1.6445 (CFG938 M3 1.6445), alt 1.8844 (1.8844)"
+  },
+  "L-AR_felt_by_equals_sourced_by": {
+   "pass": true,
+   "detail": "from L = -W(phi') - (sigma_b rho_b + sigma_d rho_d) phi: the field equation's rho_d source coefficient and the dust force coefficient are both sigma_d: a sector felt by dust is sourced by dust. O2a-1/O2b rule (felt by all, sourced by one species): baryon + dust pair (NGC 3198 M_b, dust 5.364 M_b at 50 kpc) self-accelerates at a_cm = 1.217e-11 m/s^2 = 0.130 a0 (canonical)"
+  },
+  "L-G_galilean_dilation_no_deep_law": {
+   "pass": true,
+   "detail": "Hessian of mu^2 phi(x/mu) at x = Hessian of phi at x/mu (generic phi): True; amplitude A -> mu^2 A (sympy A*mu**2), deep law needs mu^(3/2) A; mu^2 = mu^(3/2) only at mu = [1]; X share of the deep amplitude ~ sqrt(mu) -> 0 as mu -> 0. Not Galilean: deep AQUAL div(|grad phi| grad phi) on A ln r = 0.0e+00, with + b z: 1.542e-01; QUMOND div(nu~ grad psi) on -A/r = 6.9e-01, with + b z: 4.966e-01 (EFE). Cubic Galileon r^2 x(r): limits r->0, r->inf = (0, 0) (no flat regime)"
+  },
+  "D-T'_generalized": {
+   "pass": true,
+   "detail": "holding force F(u) = g_N(m u) + m' u: F'(0) = m' for any multiplicity m and any deep-limit law (h1, h2, h3 free); simple law F = uu*(m**2*uu + mprime*(a_0 - m*uu))/(a_0 - m*uu). The dust's linear self-gravity coefficient (m' - F'(0)) K rho vanishes wherever F acts"
+  },
+  "N-L_no_linear_regime": {
+   "pass": true,
+   "detail": "deep-law field g_X(y) = a0 (sqrt(y^2 + 4y) - y)/2: dg_X/dg_N -> oo as g_N -> 0 (no Lipschitz linear response); xi'' = C sqrt(xi), xi(0) = xi'(0) = 0 has xi = 0 and xi = C^2 t^4/144 (non-unique Cauchy problem)"
+  }
+ },
+ "tests": {
+  "O2a-1": {
+   "a": {
+    "pass_": false,
+    "detail": "dust feels the galaxy and no rule keeps it out (dust equilibrium not selected): law dev for D-U (most diffuse) 2.23e-04 ... D-A 0.841 (line 1e-6); BTFR at r_ta 1.1479 / 1.1341; symbolic limit 1 for finite dust, 4 for class-A dust"
+   },
+   "b": {
+    "pass_": false,
+    "detail": "X acts on linear modes: n = 1.884 / 1.955 at the largest linear field (y_max = 0.037); a^1 needs y >= 5.93e+02, i.e. never in the linear regime"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "(c-i) no superposition (L-G); (c-ii) H1-H3 factors -0.525 ... -0.000 dex (host baryonic field); record: E1/E2 lower the satellites by +0.48/+0.71 dex; satellites would need 0.28-0.37 dex more bound cold mass than isolated dwarfs (z 2.7-3.6, against tidal stripping)"
+   },
+   "d": {
+    "pass_": false,
+    "detail": "(d0) FAIL: felt by all, sourced by baryons: no action (L-AR), pair self-acceleration 0.130 a0; (d1) FAIL: deep-law response at zero field is not Lipschitz (N-L); (d2) static QUMOND = two Poisson solves (pass)"
+   },
+   "e": {
+    "pass_": false,
+    "detail": "minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "g1 no (dust feels X, not only Newton); g2 no (the X phantom is a net source: 12.8 x the catchment mass inside r_ta; it reads the total field: EFE); g3 no (X on linear modes) [O2a-G: g3 yes]"
+   },
+   "g": {
+    "pass_": "FAILS",
+    "detail": "RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: the field acts on every baryonic system, TDGs at route (iii) -0.381 +/- 0.110 (z -3.48) / alt z -3.79; DF4 below Newton is unreachable"
+   }
+  },
+  "O2a-2": {
+   "a": {
+    "pass_": false,
+    "detail": "dust feels the galaxy and no rule keeps it out (dust equilibrium not selected): law dev for D-U (most diffuse) 2.23e-04 ... D-A 0.841 (line 1e-6); BTFR at r_ta 1.1479 / 1.1341; symbolic limit 1 for finite dust, 4 for class-A dust"
+   },
+   "b": {
+    "pass_": false,
+    "detail": "X acts on linear modes: n = 1.603 / 1.680 at the largest linear field (y_max = 0.037); a^1 needs y >= 8.91e+01, i.e. never in the linear regime"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "(c-i) no superposition (L-G); (c-ii) H1-H3 factors -0.525 ... -0.000 dex (host baryonic field); record: E1/E2 lower the satellites by +0.48/+0.71 dex; satellites would need 0.28-0.37 dex more bound cold mass than isolated dwarfs (z 2.7-3.6, against tidal stripping)"
+   },
+   "d": {
+    "pass_": false,
+    "detail": "(d0) pass (baryons source and feel X); (d1) FAIL: baryon perturbations respond as sqrt(a0 g_N) about FRW (N-L); (d2) pass"
+   },
+   "e": {
+    "pass_": false,
+    "detail": "minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "g1 yes (dust feels Newton only); g2 no (lensing sees baryons + dust, the phantom is a baryon-only fifth force; net source 12.8 x); g3 no (baryons feel X)"
+   },
+   "g": {
+    "pass_": "FAILS",
+    "detail": "RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: the field acts on every baryonic system, TDGs at route (iii) -0.381 +/- 0.110 (z -3.48) / alt z -3.79; DF4 below Newton is unreachable"
+   }
+  },
+  "O2a-3": {
+   "a": {
+    "pass_": false,
+    "detail": "dust feels the galaxy and no rule keeps it out (dust equilibrium not selected): law dev for D-U (most diffuse) 7.64e-04 ... D-A 1.856 (line 1e-6); BTFR at r_ta 6.5625 / 6.5443; symbolic limit 6.364 (universal: all catchment dust enters nu)"
+   },
+   "b": {
+    "pass_": false,
+    "detail": "X acts on linear modes: n = 2.698 / 2.826 at the largest linear field (y_max = 0.037); a^1 needs y >= 5.99e+02, i.e. never in the linear regime"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "(c-i) no superposition; host baryons + host dust enter nu: -0.585 ... -0.003 dex (larger than O2a-1/2); record: E1/E2 lower the satellites by +0.48/+0.71 dex; satellites would need 0.28-0.37 dex more bound cold mass than isolated dwarfs (z 2.7-3.6, against tidal stripping)"
+   },
+   "d": {
+    "pass_": false,
+    "detail": "(d0) pass; (d1) FAIL (N-L, total-matter source); (d2) pass"
+   },
+   "e": {
+    "pass_": false,
+    "detail": "minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "g1 no (dust feels X, not only Newton); g2 no (the X phantom is a net source: 12.8 x the catchment mass inside r_ta; it reads the total field: EFE); g3 no (X on linear modes) [O2a-G: g3 yes]"
+   },
+   "g": {
+    "pass_": "FAILS",
+    "detail": "RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: as O2a-1/2, host dust raises g_e only x1.36-2.80 at 50-250 kpc (TDGs need x29-36)"
+   }
+  },
+  "O2a-G": {
+   "a": {
+    "pass_": false,
+    "detail": "dust feels the galaxy and no rule keeps it out (dust equilibrium not selected): law dev for D-U (most diffuse) 2.23e-04 ... D-A 0.841 (line 1e-6); BTFR at r_ta 1.1479 / 1.1341; symbolic limit 1 for finite dust, 4 for class-A dust"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "gate off for the cosmic mean (theta = 3H >= 3H0 > theta_s = H0): pure dust, n = 1.000000000000"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "(c-i) no superposition (L-G); (c-ii) H1-H3 factors -0.525 ... -0.000 dex (host baryonic field); record: E1/E2 lower the satellites by +0.48/+0.71 dex; satellites would need 0.28-0.37 dex more bound cold mass than isolated dwarfs (z 2.7-3.6, against tidal stripping)"
+   },
+   "d": {
+    "pass_": false,
+    "detail": "(d0) as O2a-1/3; (d1) the gate removes X at linear order but its kinetic term is a ghost band for k > k_g, k_g R = 0.088 ... 3.1 (CFG941 R3theta mechanism with W_X = W_rem)"
+   },
+   "e": {
+    "pass_": false,
+    "detail": "minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "g1 no (dust feels X, not only Newton); g2 no (the X phantom is a net source: 12.8 x the catchment mass inside r_ta; it reads the total field: EFE); g3 no (X on linear modes) [O2a-G: g3 yes]"
+   },
+   "g": {
+    "pass_": "FAILS",
+    "detail": "RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: the field acts on every baryonic system, TDGs at route (iii) -0.381 +/- 0.110 (z -3.48) / alt z -3.79; DF4 below Newton is unreachable"
+   }
+  },
+  "O2b": {
+   "a": {
+    "pass_": false,
+    "detail": "the law needs the settled dust slaved to the baryons (g_ex = u^2/(u + a0): M_ex/M_ph = 0.147 at NGC 3198's last radius); nothing in O2b selects it: a second admissible equilibrium (dust x 0.5) deviates by 0.256 / 0.259; fair-catchment dust by 0.481 / 0.459"
+   },
+   "b": {
+    "pass_": false,
+    "detail": "X acts on linear modes: n = 2.606 / 2.728 at the largest linear field (y_max = 0.037); a^1 needs y >= 5.99e+02, i.e. never in the linear regime"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "(c-i) no superposition; host settled-dust field enters nu: -0.439 ... -0.000 dex"
+   },
+   "d": {
+    "pass_": false,
+    "detail": "(d0) FAIL: sourced by dust, felt by baryons (L-AR); (d1) FAIL: N-L in the dust's field unless gated; (d2) pass"
+   },
+   "e": {
+    "pass_": false,
+    "detail": "minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "g1 no (dust feels X, not only Newton); g2 no (the X phantom is a net source: 12.8 x the catchment mass inside r_ta; it reads the total field: EFE); g3 no (X on linear modes) [O2a-G: g3 yes]"
+   },
+   "g": {
+    "pass_": "RE-DESCRIBES",
+    "detail": "RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: zero dust -> Newton, route (i) EXPLAINS (label not derived, as CFG936)"
+   }
+  },
+  "O2c": {
+   "a": {
+    "pass_": false,
+    "detail": "at c2 = 3.517e-03 (the largest growth allows): law dev 1.641 / 1.880, acceleration floor 0.4991 a0, V^4/(GMa0) at y = 1e-14: 2.491e+13; only c2 = 1 gives the BTFR (limits {'0': oo, '1/2': oo, '1': 1, '2': 0}) and c2 = 1 is CFG941's cancellation"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "n(c2) from the full action: |n - 1| < 1e-3 iff c2 <= 3.5173e-03 (n = 0.999000 there), where (a) fails; c2 = 1 (the only BTFR value) gives n = 0.6943. No c2 passes (a) and (b) together"
+   },
+   "c": {
+    "pass_": false,
+    "detail": "(c-i) the tether reads the total dust field (no superposition); hover lemma: a dust element at rest in the host's settled field feels F(u_h) - g_bh - u_h = 0 (equilibrium) for any c2, while stars feel g_host: Delta a/g_host = 1 (CFG941 R1 1.0000)"
+   },
+   "d": {
+    "pass_": true,
+    "detail": "(d0) pass (CFG938 action); (d1) min omega^2/(K rho0) about O2c static states (u0/a0 = 0.5/0.9/0.99) = 0.004, 8.004, 98.004: bounded Jeans-type (as CFG941 R1); (d2) pass"
+   },
+   "e": {
+    "pass_": false,
+    "detail": "on O2c's own static states (c2 = 3.52e-03): worst s_847 3.27e-05, s_grad 5.74e-06 (line 1.9e-5; CFG941 R1 3.28e-5)"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "g1 no (the tether R(u) acts in settled regions); g2 no (equilibrium reads the total dust field); g3 yes only for c2 -> 0 (CFG941 R1)"
+   },
+   "g": {
+    "pass_": "RE-DESCRIBES",
+    "detail": "RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: zero dust -> Newton, route (i) EXPLAINS (label not derived, as CFG936)"
+   }
+  },
+  "O2d1": {
+   "a": {
+    "pass_": false,
+    "detail": "L-G: a Galilean-symmetric sector's deep amplitude scales as mu^2, the law's as mu^(3/2): no member gives the deep BTFR (cubic Galileon: r^2 x -> 0 at both ends; BTFR limit 0). Best two-parameter cubic-Galileon fit to NGC 3198: max dev 0.154 / 0.169 (0.072 dex)"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "linear fifth force of fixed strength 1/c1 (Galileon): a^1 within 1e-3 iff c1 >= 600 (free); its best (a) fit needs c1 = 0.205 / 0.189, where n = 2.732 / 2.830 (A1 item 7)"
+   },
+   "c": {
+    "pass_": true,
+    "detail": "(c-i) Galilean symmetry: a uniform external gradient drops out exactly (factor 1); passes by construction"
+   },
+   "d": {
+    "pass_": true,
+    "detail": "(d0) pass (action); (d1) second-order Galilean equations, free scalar about FRW (not tested beyond linear order); (d2) pass"
+   },
+   "e": {
+    "pass_": false,
+    "detail": "minimal (conformal) light coupling: light misses X, s = u/g up to 0.918 (line 1.9e-5); best case (X in both potentials, needs an extra disformal/vector sector): worst s_847 6.59e-06, s_grad 3.30e-06"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "g1 no (Galileon fifth force on dust); g2 no; g3 only for weak coupling"
+   },
+   "g": {
+    "pass_": "NOT COMPUTED",
+    "detail": "fails (a) structurally; no zero-supply escape for a baryon-sourced field"
+   }
+  },
+  "O2d2": {
+   "a": {
+    "pass_": false,
+    "detail": "dust = phantom gives the law exactly, but dust + gravity do not select it: a second Jeans equilibrium (dust x 0.5) deviates by 0.414 / 0.421; assembling NGC 3198's phantom (4.78 M_b inside 44.1 kpc) from cosmic-mean dust needs l_min = 1129 kpc = 25.6 R (CL-AR budget: a local response generates <= 3l/r); isothermal identity sigma^2 = V_f^2/2: True"
+   },
+   "b": {
+    "pass_": true,
+    "detail": "dust, no tether, no sector acting on linear modes: n = 1.000000000000"
+   },
+   "c": {
+    "pass_": true,
+    "detail": "(c-i) dust is real, universally coupled mass: CL-AR Theorem 1 (K3) gives no internal response at uniform order (factor 1; tides only)"
+   },
+   "d": {
+    "pass_": true,
+    "detail": "(d0) pass (dust + gravity); (d1) Vlasov/Euler-Poisson: bounded Jeans growth; (d2) pass"
+   },
+   "e": {
+    "pass_": true,
+    "detail": "dispersion pressure of the phantom-shaped dust: worst s_847 1.54e-05, s_grad 7.70e-06 (line 1.9e-5)"
+   },
+   "f": {
+    "pass_": false,
+    "detail": "g1 yes, g3 yes; g2 only with a selection rule that the local construction lacks: with the catchment rule added it IS class A (option 3, CFG947), not a local option-2 construction"
+   },
+   "g": {
+    "pass_": "RE-DESCRIBES",
+    "detail": "RE-DESCRIBES: dust fractions from 0.002 (SPARC large) to 1.35 (dwarfs) with no derived selector; below-law: zero dust -> Newton, route (i) EXPLAINS (label not derived, as CFG936)"
+   }
+  }
+ },
+ "K1": {
+  "canonical": {
+   "max_rel_vs_law": 2.220446049250313e-16,
+   "unsolved": 0
+  },
+  "alt": {
+   "max_rel_vs_law": 2.220446049250313e-16,
+   "unsolved": 0
+  }
+ },
+ "K4": {
+  "l_min_kpc": {
+   "canonical": 494.7491446142802,
+   "alt": 513.9207290738456
+  },
+  "f_gen": [
+   0.02940985207235558,
+   0.24868519909842246,
+   0.5448338643604916
+  ]
+ },
+ "K_all": true,
+ "L_AR": {
+  "a_cm": 1.2166193847947464e-11,
+  "a_cm_over_a0": 0.12997619287118173
+ },
+ "L_G": {
+  "aqual_pm": 0.0,
+  "aqual_pm_plus_bz": 0.15418858149630382,
+  "qumond_pm": 0.6850922247591342,
+  "qumond_pm_plus_bz": 0.4965805311827,
+  "galileon_limits": "(0, 0)"
+ },
+ "theorems_pass": true,
+ "a_O2a": {
+  "canonical": {
+   "DA": {
+    "a12_dev": 0.8270330511631698,
+    "a12_dex": 0.26174640384293324,
+    "a3_dev": 1.7430896885368976,
+    "a3_dex": 0.4382400076044855
+   },
+   "DF": {
+    "a12_dev": 0.5007511758507841,
+    "a12_dex": 0.17630869230131277,
+    "a3_dev": 0.5197571976357243,
+    "a3_dex": 0.18177420889877224
+   },
+   "DU": {
+    "a12_dev": 0.00024326427299437015,
+    "a12_dex": 0.00010563548325701642,
+    "a3_dev": 0.0007695621816186105,
+    "a3_dex": 0.000334088074666222
+   },
+   "btfr_rta": {
+    "a12_DFDU": 1.147904630618448,
+    "a12_DA": 4.000148190719951,
+    "a3_DFDU": 6.562460474462009,
+    "law": 1.0122476819339528
+   }
+  },
+  "alt": {
+   "DA": {
+    "a12_dev": 0.841308250689585,
+    "a12_dex": 0.2651264991869497,
+    "a3_dev": 1.8561674046741938,
+    "a3_dex": 0.4557836585647763
+   },
+   "DF": {
+    "a12_dev": 0.48271790202688036,
+    "a12_dex": 0.17105853117207828,
+    "a3_dev": 0.5064897424994483,
+    "a3_dex": 0.1779661789625431
+   },
+   "DU": {
+    "a12_dev": 0.000223187338886488,
+    "a12_dex": 9.691821465213124e-05,
+    "a3_dev": 0.0007635918161701394,
+    "a3_dex": 0.00033149716402949776
+   },
+   "btfr_rta": {
+    "a12_DFDU": 1.1341194243187422,
+    "a12_DA": 4.000122622783962,
+    "a3_DFDU": 6.5442796396182645,
+    "law": 1.011134998359282
+   }
+  }
+ },
+ "a_O2b": {
+  "canonical": {
+   "slaved_check": 2.220446049250313e-16,
+   "Mex_over_Mph_last": 0.14746105933193782,
+   "eq2_dev": 0.25571995986249507,
+   "DF_dev": 0.4813970971711625
+  },
+  "alt": {
+   "slaved_check": 2.220446049250313e-16,
+   "Mex_over_Mph_last": 0.1369576933682829,
+   "eq2_dev": 0.25909447336178415,
+   "DF_dev": 0.45915274217132396
+  }
+ },
+ "a_O2c": {
+  "rows": {
+   "canonical": {
+    "dev": 1.6407089831941764,
+    "unsolved": 0,
+    "floor_over_a0": 0.4991191381739581,
+    "btfr_y1e14": 24911991409152.977
+   },
+   "alt": {
+    "dev": 1.8801408129610322,
+    "unsolved": 0,
+    "floor_over_a0": 0.4991191381739581,
+    "btfr_y1e14": 24911991409152.973
+   }
+  },
+  "c2max": 0.003517250880101788,
+  "c2max_noboost": 0.002345810543392887,
+  "floor": "[a_0*(c2 - 1)/(c2 - 2)]",
+  "btfr_limits": {
+   "0": "oo",
+   "1/2": "oo",
+   "1": "1",
+   "2": "0"
+  }
+ },
+ "a_O2d1": {
+  "canonical": {
+   "dev": 0.1537348153055622,
+   "dex": 0.07249352560979598,
+   "c1": 0.20458212167678377
+  },
+  "alt": {
+   "dev": 0.16856108650205193,
+   "dex": 0.08016965324579604,
+   "c1": 0.18933934774801842
+  }
+ },
+ "a_O2d2": {
+  "canonical": {
+   "eq2_dev": 0.41351652558158514,
+   "Mph_over_Mb": 4.781451350820557,
+   "l_min_kpc": 1129.4524344777828,
+   "l_over_R": 25.622786626084004
+  },
+  "alt": {
+   "eq2_dev": 0.4206541253447925,
+   "Mph_over_Mb": 5.301524838849126,
+   "l_min_kpc": 1170.5426189496352,
+   "l_over_R": 26.55495959504617
+  }
+ },
+ "b": {
+  "eps_max": 0.001667333333333051,
+  "rows": {
+   "canonical": {
+    "y_max": 0.03660711688065648,
+    "O2a1": {
+     "eps": 1.9947428435401733,
+     "n": 1.8841542271612564,
+     "y_min": 593.4629147802884
+    },
+    "O2a3": {
+     "eps": 4.75043736797076,
+     "n": 2.6975678197381887,
+     "y_min": 598.7617605196771
+    },
+    "O2b": {
+     "eps": 4.39543912845744,
+     "n": 2.6058113895504653,
+     "y_min": 598.5760102469817
+    },
+    "O2a2": {
+     "lam": 2.246250590888641,
+     "n": 1.6025322902268022,
+     "y_min": 89.11931673703134
+    }
+   },
+   "alt": {
+    "y_max": 0.030291144993598817,
+    "O2a1": {
+     "eps": 2.2003857453893634,
+     "n": 1.9552389027232504,
+     "y_min": 593.4629147802884
+    },
+    "O2a3": {
+     "eps": 5.267403937686714,
+     "n": 2.8262974346655865,
+     "y_min": 598.7617605196771
+    },
+    "O2b": {
+     "eps": 4.870362610767529,
+     "n": 2.727926109921348,
+     "y_min": 598.5760102469817
+    },
+    "O2a2": {
+     "lam": 2.440422977989365,
+     "n": 1.6795425538152942,
+     "y_min": 89.11931673703134
+    }
+   }
+  },
+  "c2max": 0.003517250880101788,
+  "n_at_c2max": 0.9989999999999999
+ },
+ "c": {
+  "rows": {
+   "canonical|H1|50": {
+    "gs_over_a0": 0.005851416248948757,
+    "gbh_over_a0": 0.035748138136369796,
+    "gdh_over_gbh": 0.35946622546192186,
+    "O2a12_dex": -0.4399456499774842,
+    "O2a3_dex": -0.49841559160054316,
+    "O2b_dex": -0.3568831415114151
+   },
+   "canonical|H1|100": {
+    "gs_over_a0": 0.005851416248948757,
+    "gbh_over_a0": 0.008937034534092449,
+    "gdh_over_gbh": 0.7189324509238437,
+    "O2a12_dex": -0.16784518227385414,
+    "O2a3_dex": -0.2746298948810795,
+    "O2b_dex": -0.1477186410866147
+   },
+   "canonical|H1|250": {
+    "gs_over_a0": 0.005851416248948757,
+    "gbh_over_a0": 0.0014299255254547915,
+    "gdh_over_gbh": 1.7973311273096093,
+    "O2a12_dex": -0.005206660130417916,
+    "O2a3_dex": -0.04125936554722733,
+    "O2b_dex": -0.005599672825219699
+   },
+   "canonical|H2|50": {
+    "gs_over_a0": 0.003949705968040412,
+    "gbh_over_a0": 0.035748138136369796,
+    "gdh_over_gbh": 0.35946622546192186,
+    "O2a12_dex": -0.5221923534305659,
+    "O2a3_dex": -0.5807284495129242,
+    "O2b_dex": -0.42983720938287007
+   },
+   "canonical|H2|100": {
+    "gs_over_a0": 0.003949705968040412,
+    "gbh_over_a0": 0.008937034534092449,
+    "gdh_over_gbh": 0.7189324509238437,
+    "O2a12_dex": -0.24759287753301942,
+    "O2a3_dex": -0.3562007710264469,
+    "O2b_dex": -0.2176769418020717
+   },
+   "canonical|H2|250": {
+    "gs_over_a0": 0.003949705968040412,
+    "gbh_over_a0": 0.0014299255254547915,
+    "gdh_over_gbh": 1.7973311273096093,
+    "O2a12_dex": -0.01153994176191887,
+    "O2a3_dex": -0.09149283872304997,
+    "O2b_dex": -0.011940403007116795
+   },
+   "canonical|H3|50": {
+    "gs_over_a0": 0.02149499846552605,
+    "gbh_over_a0": 0.035748138136369796,
+    "gdh_over_gbh": 0.35946622546192186,
+    "O2a12_dex": -0.17599926822041367,
+    "O2a3_dex": -0.2328148504537234,
+    "O2b_dex": -0.1380917408946352
+   },
+   "canonical|H3|100": {
+    "gs_over_a0": 0.02149499846552605,
+    "gbh_over_a0": 0.008937034534092449,
+    "gdh_over_gbh": 0.7189324509238437,
+    "O2a12_dex": -0.014562521798882996,
+    "O2a3_dex": -0.043388670343113535,
+    "O2b_dex": -0.015293709523796696
+   },
+   "canonical|H3|250": {
+    "gs_over_a0": 0.02149499846552605,
+    "gbh_over_a0": 0.0014299255254547915,
+    "gdh_over_gbh": 1.7973311273096093,
+    "O2a12_dex": -0.0003707869371961722,
+    "O2a3_dex": -0.0029043878560410276,
+    "O2b_dex": -0.0004826808226515696
+   },
+   "alt|H1|50": {
+    "gs_over_a0": 0.0048418480644801965,
+    "gbh_over_a0": 0.029580369278198067,
+    "gdh_over_gbh": 0.35946622546192186,
+    "O2a12_dex": -0.4428636575518948,
+    "O2a3_dex": -0.5020526425482296,
+    "O2b_dex": -0.3652953969290484
+   },
+   "alt|H1|100": {
+    "gs_over_a0": 0.0048418480644801965,
+    "gbh_over_a0": 0.007395092319549517,
+    "gdh_over_gbh": 0.7189324509238437,
+    "O2a12_dex": -0.16859256491541202,
+    "O2a3_dex": -0.27604770556219627,
+    "O2b_dex": -0.14999691132209728
+   },
+   "alt|H1|250": {
+    "gs_over_a0": 0.0048418480644801965,
+    "gbh_over_a0": 0.0011832147711279223,
+    "gdh_over_gbh": 1.7973311273096093,
+    "O2a12_dex": -0.005225704475851176,
+    "O2a3_dex": -0.04141660752772179,
+    "O2b_dex": -0.005585545816258651
+   },
+   "alt|H2|50": {
+    "gs_over_a0": 0.0032682474435241334,
+    "gbh_over_a0": 0.029580369278198067,
+    "gdh_over_gbh": 0.35946622546192186,
+    "O2a12_dex": -0.5253757931876308,
+    "O2a3_dex": -0.5846316140462651,
+    "O2b_dex": -0.43919156317609676
+   },
+   "alt|H2|100": {
+    "gs_over_a0": 0.0032682474435241334,
+    "gbh_over_a0": 0.007395092319549517,
+    "gdh_over_gbh": 0.7189324509238437,
+    "O2a12_dex": -0.24859194413793614,
+    "O2a3_dex": -0.35787929005808267,
+    "O2b_dex": -0.22095857921254564
+   },
+   "alt|H2|250": {
+    "gs_over_a0": 0.0032682474435241334,
+    "gbh_over_a0": 0.0011832147711279223,
+    "gdh_over_gbh": 1.7973311273096093,
+    "O2a12_dex": -0.011574564974051215,
+    "O2a3_dex": -0.09179400127316946,
+    "O2b_dex": -0.011941874630517074
+   },
+   "alt|H3|50": {
+    "gs_over_a0": 0.017786380645029295,
+    "gbh_over_a0": 0.029580369278198067,
+    "gdh_over_gbh": 0.35946622546192186,
+    "O2a12_dex": -0.17759303255373832,
+    "O2a3_dex": -0.23511049166624362,
+    "O2b_dex": -0.1420894059516872
+   },
+   "alt|H3|100": {
+    "gs_over_a0": 0.017786380645029295,
+    "gbh_over_a0": 0.007395092319549517,
+    "gdh_over_gbh": 0.7189324509238437,
+    "O2a12_dex": -0.01467024006773712,
+    "O2a3_dex": -0.04372016965250806,
+    "O2b_dex": -0.015349968145075476
+   },
+   "alt|H3|250": {
+    "gs_over_a0": 0.017786380645029295,
+    "gbh_over_a0": 0.0011832147711279223,
+    "gdh_over_gbh": 1.7973311273096093,
+    "O2a12_dex": -0.00037348676717441495,
+    "O2a3_dex": -0.00292559510078711,
+    "O2b_dex": -0.00047557951186719496
+   }
+  },
+  "record": {
+   "canonical": {
+    "E0|nom": {
+     "sat_mean_shift_dex": 0.0,
+     "sat_mean_E_dex": 0.48853357659054586,
+     "c": -0.10026740502972464,
+     "se_c": 0.09095512000370189,
+     "z": -1.1023832965713611
+    },
+    "E1|nom": {
+     "sat_mean_shift_dex": 0.48020711988223547,
+     "sat_mean_E_dex": 0.9687406964727813,
+     "c": -0.28407694368017167,
+     "se_c": 0.10467295471477371,
+     "z": -2.713947881324846
+    },
+    "E2|nom": {
+     "sat_mean_shift_dex": 0.7099059171447842,
+     "sat_mean_E_dex": 1.19843949373533,
+     "c": -0.3695883561991133,
+     "se_c": 0.1013925834313166,
+     "z": -3.645122194262588
+    }
+   },
+   "alt": {
+    "E0|nom": {
+     "sat_mean_shift_dex": 0.0,
+     "sat_mean_E_dex": 0.44894011542191714,
+     "c": -0.10033505759912897,
+     "se_c": 0.0909702047281473,
+     "z": -1.10294417715083
+    },
+    "E1|nom": {
+     "sat_mean_shift_dex": 0.4819926160652709,
+     "sat_mean_E_dex": 0.9309327314871882,
+     "c": -0.28525631122090905,
+     "se_c": 0.10481696579764074,
+     "z": -2.721470794829378
+    },
+    "E2|nom": {
+     "sat_mean_shift_dex": 0.7138626850977075,
+     "sat_mean_E_dex": 1.1628028005196245,
+     "c": -0.3721522224709041,
+     "se_c": 0.10159572394557889,
+     "z": -3.6630697436661057
+    }
+   }
+  }
+ },
+ "d": {
+  "ghost": {
+   "z_ta=0|R=0.1Mpc|baryon-sourced": {
+    "k_g_R": 0.9765974271622936,
+    "k_g_Lstar24": 0.00023438338251895044,
+    "u0_over_a0": 0.0032746649255275106
+   },
+   "z_ta=0|R=0.1Mpc|universal": {
+    "k_g_R": 0.24419235134262224,
+    "k_g_Lstar24": 5.8606164322229334e-05,
+    "u0_over_a0": 0.00824038333416898
+   },
+   "z_ta=0|R=1Mpc|baryon-sourced": {
+    "k_g_R": 1.7412928477855751,
+    "k_g_Lstar24": 4.17910283468538e-05,
+    "u0_over_a0": 0.010318742910194799
+   },
+   "z_ta=0|R=1Mpc|universal": {
+    "k_g_R": 0.4371730224614415,
+    "k_g_Lstar24": 1.0492152539074596e-05,
+    "u0_over_a0": 0.025826312544374713
+   },
+   "z_ta=0|R=10Mpc|baryon-sourced": {
+    "k_g_R": 3.1227417328175253,
+    "k_g_Lstar24": 7.494580158762062e-06,
+    "u0_over_a0": 0.032266876190089895
+   },
+   "z_ta=0|R=10Mpc|universal": {
+    "k_g_R": 0.7942179678752295,
+    "k_g_Lstar24": 1.9061231229005505e-06,
+    "u0_over_a0": 0.07939284727202842
+   },
+   "z_ta=1|R=0.1Mpc|baryon-sourced": {
+    "k_g_R": 0.5819969643139322,
+    "k_g_Lstar24": 0.0001396792714353437,
+    "u0_over_a0": 0.009234418834008967
+   },
+   "z_ta=1|R=0.1Mpc|universal": {
+    "k_g_R": 0.14602570795307723,
+    "k_g_Lstar24": 3.504616990873854e-05,
+    "u0_over_a0": 0.02313168186937294
+   },
+   "z_ta=1|R=1Mpc|baryon-sourced": {
+    "k_g_R": 1.0427904520641749,
+    "k_g_Lstar24": 2.50269708495402e-05,
+    "u0_over_a0": 0.028910377954804514
+   },
+   "z_ta=1|R=1Mpc|universal": {
+    "k_g_R": 0.26468467264106427,
+    "k_g_Lstar24": 6.352432143385542e-06,
+    "u0_over_a0": 0.07132172545594863
+   },
+   "z_ta=1|R=10Mpc|baryon-sourced": {
+    "k_g_R": 1.8994071477255154,
+    "k_g_Lstar24": 4.558577154541237e-06,
+    "u0_over_a0": 0.0885698303998215
+   },
+   "z_ta=1|R=10Mpc|universal": {
+    "k_g_R": 0.5003969210167171,
+    "k_g_Lstar24": 1.200952610440121e-06,
+    "u0_over_a0": 0.20824924752432247
+   },
+   "z_ta=3|R=0.1Mpc|baryon-sourced": {
+    "k_g_R": 0.3482716083258183,
+    "k_g_Lstar24": 8.35851859981964e-05,
+    "u0_over_a0": 0.025898299985058788
+   },
+   "z_ta=3|R=0.1Mpc|universal": {
+    "k_g_R": 0.08824114490113255,
+    "k_g_Lstar24": 2.1177874776271813e-05,
+    "u0_over_a0": 0.06404164154870148
+   },
+   "z_ta=3|R=1Mpc|baryon-sourced": {
+    "k_g_R": 0.6327480969644376,
+    "k_g_Lstar24": 1.51859543271465e-05,
+    "u0_over_a0": 0.07960779104797057
+   },
+   "z_ta=3|R=1Mpc|universal": {
+    "k_g_R": 0.16573249234156787,
+    "k_g_Lstar24": 3.977579816197628e-06,
+    "u0_over_a0": 0.18856499015015002
+   },
+   "z_ta=3|R=10Mpc|baryon-sourced": {
+    "k_g_R": 1.2053061037634607,
+    "k_g_Lstar24": 2.892734649032306e-06,
+    "u0_over_a0": 0.23022432026053305
+   },
+   "z_ta=3|R=10Mpc|universal": {
+    "k_g_R": 0.3516366753918169,
+    "k_g_Lstar24": 8.439280209403606e-07,
+    "u0_over_a0": 0.47818237433896377
+   }
+  },
+  "disp_O2c": {
+   "0.5": 0.0035672508801017967,
+   "0.9": 8.003567250880103,
+   "0.99": 98.00356725088002
+  },
+  "spp_max": 5.773502691894386
+ },
+ "e": {
+  "canonical|dwarf": {
+   "conformal": 0.6676018463910907,
+   "best_grad": 7.472600070234423e-10,
+   "best_847": 1.4945200140468845e-09,
+   "O2c_grad": 1.4174823939677462e-09,
+   "O2c_847": 8.027938728218831e-09,
+   "O2d2_grad": 1.816981139084247e-09,
+   "O2d2_847": 3.633962278168494e-09
+  },
+  "canonical|MW disc": {
+   "conformal": 0.40120364103327794,
+   "best_grad": 8.611493497700351e-08,
+   "best_847": 1.7222986995400702e-07,
+   "O2c_grad": 5.10157966180522e-08,
+   "O2c_847": 3.4485904704995606e-07,
+   "O2d2_grad": 1.2471760141020522e-07,
+   "O2d2_847": 2.4943520282041044e-07
+  },
+  "canonical|MW outer": {
+   "conformal": 0.9098270771857672,
+   "best_grad": 1.7628311091988255e-08,
+   "best_847": 3.5256622183976504e-08,
+   "O2c_grad": 4.413402675945436e-07,
+   "O2c_847": 2.3537098610953057e-06,
+   "O2d2_grad": 1.4945648182600886e-07,
+   "O2d2_847": 2.989129636520177e-07
+  },
+  "canonical|group": {
+   "conformal": 0.8793621152212229,
+   "best_grad": 9.506236451219731e-08,
+   "best_847": 1.901247290243946e-07,
+   "O2c_grad": 1.3302978914131573e-06,
+   "O2c_847": 7.118791407469253e-06,
+   "O2d2_grad": 6.064449579706217e-07,
+   "O2d2_847": 1.2128899159412431e-06
+  },
+  "canonical|cluster": {
+   "conformal": 0.6260117452909537,
+   "best_grad": 3.178877586327397e-06,
+   "best_847": 6.3577551726547945e-06,
+   "O2c_grad": 4.798744406230091e-06,
+   "O2c_847": 2.76888326140491e-05,
+   "O2d2_grad": 6.9408327571639905e-06,
+   "O2d2_847": 1.3881665514327983e-05
+  },
+  "alt|dwarf": {
+   "conformal": 0.6921291965936053,
+   "best_grad": 7.711906773488287e-10,
+   "best_847": 1.5423813546976574e-09,
+   "O2c_grad": 1.6975777234394112e-09,
+   "O2c_847": 9.520973812097589e-09,
+   "O2d2_grad": 2.012557010369587e-09,
+   "O2d2_847": 4.025114020739174e-09
+  },
+  "alt|MW disc": {
+   "conformal": 0.4336842617884319,
+   "best_grad": 9.220858879948854e-08,
+   "best_847": 1.8441717759897706e-07,
+   "O2c_grad": 6.139883180530448e-08,
+   "O2c_847": 4.025668556649916e-07,
+   "O2d2_grad": 1.3990166337487254e-07,
+   "O2d2_847": 2.79803326749745e-07
+  },
+  "alt|MW outer": {
+   "conformal": 0.9176233678764291,
+   "best_grad": 1.7760305786061563e-08,
+   "best_847": 3.552061157212311e-08,
+   "O2c_grad": 5.328389049290173e-07,
+   "O2c_847": 2.839699011865602e-06,
+   "O2d2_grad": 1.6454864410656077e-07,
+   "O2d2_847": 3.290972882131215e-07
+  },
+  "alt|group": {
+   "conformal": 0.8896231590420288,
+   "best_grad": 9.60312350107462e-08,
+   "best_847": 1.920624700214924e-07,
+   "O2c_grad": 1.604867104175857e-06,
+   "O2c_847": 8.577199754691772e-06,
+   "O2d2_grad": 6.680738094815801e-07,
+   "O2d2_847": 1.3361476189631603e-06
+  },
+  "alt|cluster": {
+   "conformal": 0.6526407313741859,
+   "best_grad": 3.2967319084205263e-06,
+   "best_847": 6.5934638168410526e-06,
+   "O2c_grad": 5.7420808301013515e-06,
+   "O2c_847": 3.2728916766155925e-05,
+   "O2d2_grad": 7.698995928422566e-06,
+   "O2d2_847": 1.5397991856845132e-05
+  }
+ },
+ "f": {
+  "net_source_over_catchment": {
+   "canonical": 12.829683111585869,
+   "alt": 14.111710931068659
+  }
+ },
+ "g": {
+  "fractions": {
+   "canonical": {
+    "F0": {
+     "dex": 0.3718406778194623,
+     "f": 1.354185485741748,
+     "f_lo": 1.1262086063383632,
+     "f_hi": 1.6066065600315462
+    },
+    "F1": {
+     "dex": 0.12740514230535838,
+     "f": 0.34092702093539895,
+     "f_lo": 0.2541723391292354,
+     "f_hi": 0.4336827717976015
+    },
+    "F5": {
+     "dex": 0.2431074335307145,
+     "f": 0.7502796102250728,
+     "f_lo": 0.6207233521532352,
+     "f_hi": 0.890192246504997
+    },
+    "F2": {
+     "dex": 0.003409191829536116,
+     "f": 0.00788084595682137,
+     "f_lo": -0.07981104347832013,
+     "f_hi": 0.10392957060304053
+    },
+    "F3": {
+     "dex": 0.05933519491046545,
+     "f": 0.14639740656974665,
+     "f_lo": 0.05397319343497364,
+     "f_hi": 0.24692641328635845
+    },
+    "F4": {
+     "dex": 0.0007564008787626238,
+     "f": 0.0017431949887571907,
+     "f_lo": -0.04719821731583629,
+     "f_hi": 0.05319852139584147
+    }
+   },
+   "alt": {
+    "F0": {
+     "dex": 0.3321737500535053,
+     "f": 1.148689937780898,
+     "f_lo": 0.940677053857055,
+     "f_hi": 1.378998834218681
+    },
+    "F1": {
+     "dex": 0.08817036531973103,
+     "f": 0.22509668673508498,
+     "f_lo": 0.14583651140011877,
+     "f_hi": 0.30983947266207434
+    },
+    "F5": {
+     "dex": 0.20673111639400302,
+     "f": 0.6096487489929636,
+     "f_lo": 0.490459733515086,
+     "f_hi": 0.7383690661834226
+    },
+    "F2": {
+     "dex": -0.03602229449770931,
+     "f": -0.0795976782926191,
+     "f_lo": -0.1596780363356779,
+     "f_hi": 0.00811411629690384
+    },
+    "F3": {
+     "dex": 0.02473080051928462,
+     "f": 0.058597345216358177,
+     "f_lo": -0.026703784711613054,
+     "f_hi": 0.15137439321808133
+    },
+    "F4": {
+     "dex": -0.0229366598458728,
+     "f": -0.051443203482672395,
+     "f_lo": -0.0977911065858782,
+     "f_hi": -0.0027143350201745964
+    }
+   }
+  },
+  "below_law": {
+   "canonical": {
+    "law": {
+     "T": {
+      "rbar": -0.6903781917632702,
+      "se": 0.10162323563111293,
+      "z": -6.7935072867518915,
+      "cls": "FAILS"
+     },
+     "U": {
+      "rbar": -1.939586939670901,
+      "se": 0.4803003108943596,
+      "z": -4.038279583994495,
+      "cls": "FAILS"
+     }
+    },
+    "route_i": {
+     "T": {
+      "rbar": 0.05463367098964588,
+      "se": 0.11439170868036719,
+      "z": 0.4776016690361978,
+      "cls": "EXPLAINS"
+     },
+     "U": {
+      "rbar": 0.021455019186085833,
+      "se": 0.5389626853395986,
+      "z": 0.039807986284926385,
+      "cls": "EXPLAINS"
+     }
+    },
+    "route_iii_EFE_contrast": {
+     "T": {
+      "rbar": -0.3814100826299558,
+      "se": 0.10954168477278543,
+      "z": -3.4818716128119425,
+      "cls": "FAILS"
+     },
+     "U": {
+      "rbar": -1.1527561434779878,
+      "se": 0.4803003108943596,
+      "z": -2.4000736983314854,
+      "cls": "PARTIAL"
+     }
+    }
+   },
+   "alt": {
+    "law": {
+     "T": {
+      "rbar": -0.7276095405858052,
+      "se": 0.1015899706586662,
+      "z": -7.162218237374162,
+      "cls": "FAILS"
+     },
+     "U": {
+      "rbar": -2.0276361759963235,
+      "se": 0.4803003108943596,
+      "z": -4.221600798510195,
+      "cls": "FAILS"
+     }
+    },
+    "route_i": {
+     "T": {
+      "rbar": 0.05463367098964588,
+      "se": 0.11439170868036719,
+      "z": 0.4776016690361978,
+      "cls": "EXPLAINS"
+     },
+     "U": {
+      "rbar": 0.023098903427873685,
+      "se": 0.5389626853395986,
+      "z": 0.04285807544045307,
+      "cls": "EXPLAINS"
+     }
+    },
+    "route_iii_EFE_contrast": {
+     "T": {
+      "rbar": -0.4144056637453004,
+      "se": 0.10944890262629142,
+      "z": -3.7862934556801426,
+      "cls": "FAILS"
+     },
+     "U": {
+      "rbar": -1.2322446346017588,
+      "se": 0.4803003108943596,
+      "z": -2.56557117838882,
+      "cls": "FAILS"
+     }
+    }
+   }
+  },
+  "host_dust_factor": [
+   0.35946622546192186,
+   0.7189324509238437,
+   1.7973311273096093
+  ]
+ },
+ "classes": {
+  "O2a-1": {
+   "cls": "NOT VIABLE",
+   "fails": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "g": "FAILS"
+  },
+  "O2a-2": {
+   "cls": "NOT VIABLE",
+   "fails": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "g": "FAILS"
+  },
+  "O2a-3": {
+   "cls": "NOT VIABLE",
+   "fails": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "g": "FAILS"
+  },
+  "O2a-G": {
+   "cls": "NOT VIABLE",
+   "fails": [
+    "a",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "g": "FAILS"
+  },
+  "O2b": {
+   "cls": "NOT VIABLE",
+   "fails": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "g": "RE-DESCRIBES"
+  },
+  "O2c": {
+   "cls": "NOT VIABLE",
+   "fails": [
+    "a",
+    "c",
+    "e",
+    "f"
+   ],
+   "g": "RE-DESCRIBES"
+  },
+  "O2d1": {
+   "cls": "NOT VIABLE",
+   "fails": [
+    "a",
+    "e",
+    "f"
+   ],
+   "g": "NOT COMPUTED"
+  },
+  "O2d2": {
+   "cls": "NOT VIABLE",
+   "fails": [
+    "a",
+    "f"
+   ],
+   "g": "RE-DESCRIBES"
+  }
+ },
+ "overall": "NO-GO (theorem T-O2)",
+ "runtime_s": 4.6,
+ "peak_rss_GB": 0.15
+}
