@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""PAPER57 audit: the built PDF must be newer than the TeX and 6-8 pages long; every quoted number must match the committed lane
-outputs (JSON where the number is stored there; otherwise the lane's LEDGER row, README or DERIVATION text); every theorem statement
-must match the wording of its lane's DERIVATION / README; the post-hoc disclosures must be present; the in-progress statements must
-still be true; no forbidden claim, local path or personal name may appear.
+"""PAPER57 audit: the built PDF must be newer than the TeX and 6-9 pages long (the update with CFG935 and CFG950-CFG952 needs 9
+pages, which is accepted); every quoted number must match the committed
+lane outputs (JSON where the number is stored there; otherwise the lane's LEDGER row, README or DERIVATION text); every theorem
+statement must match the wording of its lane's DERIVATION / README; the post-hoc disclosures must be present; the lanes the first
+draft called "in progress" (CFG935, CFG950-CFG952) must now have LEDGER rows and no in-progress statement may remain; no forbidden
+claim, local path or personal name may appear.
 Run: python3 PAPER57_audit.py (exit 0 only if all pass).  Read-only: it opens committed files and the PDF, nothing else."""
 import json, os, re, subprocess, sys
 
@@ -47,7 +49,7 @@ def dehyph(t):
 
 
 def keephyph(t):
-    return re.sub(r"([a-z])- ([a-z])", r"\1-\2", t)      # explicit hyphens that fell at a line end
+    return re.sub(r"([A-Za-z])- ([A-Za-z])", r"\1-\2", t)  # explicit hyphens that fell at a line end (also after capitals: CONTROL-LIMITED)
 
 
 def sci(s):
@@ -77,8 +79,8 @@ def src(path):
 # ---------------------------------------------------------------- A. build
 check("A1 PDF newer than TeX", os.path.getmtime(PDF) >= os.path.getmtime(TEX))
 pages = int(re.search(r"Pages:\s+(\d+)", subprocess.run(["pdfinfo", PDF], capture_output=True, text=True, check=True).stdout).group(1))
-check("A2 page count 6-8", 6 <= pages <= 8, f"{pages} pages")
-raw = [norm(subprocess.run(["pdftotext"] + m + [PDF, "-"], capture_output=True, text=True, check=True).stdout) for m in (["-layout"], [])]
+check("A2 page count 6-9 (9 accepted for the updated draft)", 6 <= pages <= 9, f"{pages} pages")
+raw = [norm(subprocess.run(["pdftotext"] + m + [PDF, "-"], capture_output=True, text=True, check=True).stdout) for m in (["-layout"], [], ["-raw"])]  # -raw keeps super/subscripts inline
 flat = " ||| ".join(raw + [keephyph(x) for x in raw] + [dehyph(x) for x in raw])
 flat_ns = nsp(" ".join(raw))
 low = flat.lower()
@@ -104,6 +106,16 @@ def rd(name, path, s, pdf_s=None, ci=False):
     if ci:
         t, p, f, s = t.lower(), p.lower(), low, s.lower()
     check(name, s in t and p in f, f"{path.split('/')[0]}: '{s}'" + (f" / PDF '{pdf_s}'" if pdf_s else ""))
+
+
+def lonly(name, lane, s):
+    """supporting check: s must be in the lane's LEDGER row (the PDF wording and number are checked elsewhere)"""
+    check(name, norm(s) in row(lane), f"{lane} LEDGER: '{norm(s)}'")
+
+
+def sonly(name, path, s):
+    """supporting check: s must be in the lane file (the PDF wording and number are checked elsewhere)"""
+    check(name, norm(s) in src(path), f"{path.split('/')[0]}: '{norm(s)}'")
 
 
 def form(name, path, s, pdf_s=None):
@@ -158,7 +170,7 @@ rd("C no drift in the ideal action", R38, "no drift in the ideal action", "The i
 rd("C books: CFG932 omitted E_W", R38, "CFG932 omitted E_W", "the energy books close with the tether energy plus heat, which CFG932")
 led("C slip 1.54e-5", "CFG938", "slip ≤ 1.54e-5", sci("1.54e-5"))
 check("C slip worst (JSON)", f"{r38['S4']['worst_847']:.2e}" == "1.54e-05")
-form("C dispersion relation", R38, "ω² = γρ₀k² + Kρ₀[R′cos²θ + (R/u)sin²θ] ≥ 0", "ω = γρ0k + Kρ0[R cos θ + (R/u) sin θ] ≥ 0")  # PDF text drops the superscripts
+form("C dispersion relation", R38, "ω² = γρ₀k² + Kρ₀[R′cos²θ + (R/u)sin²θ] ≥ 0")  # matched in the -raw extraction, superscripts kept
 led("C sqrt(k) growth cured", "CFG938", "CFG660's √k growth cured", "cures CFG660's")
 rd("C inertia margin", R38, "margin 5.9e4-2.5e8", "5.9x104-2.5x108")
 form("C inertia condition", D38, "ρ_c c² > D(u)u/K", "ρcc2 > D(u)u/K")
@@ -238,9 +250,72 @@ led("E audit: endpoint-accounting defect", "CFG932-audit", "endpoint-accounting 
 led("E audit: not an audited window", "CFG932-audit", "not an audited physical window")
 led("E audit: Q1/Q2 unaffected", "CFG932-audit", "Q1 (record settling NON-CONSERVING) and the record-supply Q2 finding", "Q1 and the record-supply finding are not affected")
 led("E audit: CFG930 verdict stands", "CFG932-audit", "CFG930's independent CONTRADICTED verdict on H-ELS stands", "CONTRADICTED verdict on H-ELS (CFG930) stands")
-d35 = os.path.join(CFG, "CFG935_energy_conserving_settling")
-check("E CFG935 still in progress (no LEDGER row, no README)", row("CFG935") == "" and "README.md" not in os.listdir(d35)
-      and "FROZEN_CRITERIA.md" in os.listdir(d35) and "CFG935, an energy-conserving repair" in flat and "no ledger result yet" in flat)
+# CFG935: energy-conserving repair of the settling (landed after the first draft)
+R35, A135 = "CFG935_energy_conserving_settling/README.md", "CFG935_energy_conserving_settling/AMENDMENT_A1_s2_discretisation.md"
+r35 = J("CFG935_energy_conserving_settling/cfg935_results.json")
+m35 = J("CFG935_energy_conserving_settling/cfg935_results_MUTATE.json")
+p35, eth = r35["parts"], r35["parts"]["ETH"]["results"]
+check("E CFG935 has a LEDGER row and a README (no longer in progress)", bool(row("CFG935")) and os.path.exists(os.path.join(CFG, R35)))
+led("E CFG935 NO REPAIR (frozen)", "CFG935", "NO REPAIR (frozen)", "An energy-conserving repair (CFG935): NO REPAIR")
+check("E CFG935 overall and five classes NOT VIABLE (JSON)", r35["overall"] == "NO REPAIR" and len(r35["classes"]) == 5
+      and all(v["cls"] == "NOT VIABLE" for v in r35["classes"].values()) and "Five repairs, all NOT VIABLE" in flat)
+rd("E CFG935 toy: N = 10000 shells", R35, "1-D spherical shells (N = 10000)", "1-D shell toy (G = a0 = 1, Plummer baryons, the simple law, 104 shells)")
+rd("E CFG935 toy: units and baryons", R35, "Units G = a₀ = 1; static Plummer baryons", "G = a0 = 1, Plummer baryons")
+rd("E CFG935 law gate |D| <= 0.1", R35, "ON THE LAW iff |D| ≤ 0.1", "(on the law iff |D| ≤ 0.1)")
+check("E CFG935 energy theorem +0.165 / +0.532 / -1.60 (JSON)", f3(eth["N|I"]["excess_frac"]) == "0.165" and f3(eth["S2|I"]["excess_frac"]) == "0.532"
+      and f2(eth["N|S"]["excess_frac"]) == "-1.60" and "+0.165 of |Elaw" in flat and "against a Jeans-supported law and +0.532" in flat and "+0.532 against the cold S2 ground state" in flat
+      and "A cold surplus start carries -1.60" in flat)
+led("E CFG935 books every source and sink", "CFG935", "Every repair books all its sources and sinks", "Each books every source and sink")
+led("E CFG935 none inside matter brings infall onto the law", "CFG935", "none that keeps the released settling energy inside matter brings an infall start onto the law",
+    "None that keeps the released energy inside matter brings an infall start onto the law")
+ra1, ra1x = p35["Ra1_I"], p35["Ra1x100_I"]
+check("E CFG935 FIX-1: D -0.216, baryon reaction 13 / 125 (JSON)", f3(ra1["D_W2"]) == "-0.216" and round(ra1["baryon_reaction_max"]) == 13 and ra1["lam"] == 10.0
+      and round(ra1x["baryon_reaction_max"]) == 125 and ra1x["lam"] == 100.0 and "ends at D = -0.216, with a reaction on the baryons of 13" in flat and "(125 at λ = 100)" in flat)
+rd("E CFG935 FIX-1 is the Hamiltonian lambda F", "CFG935_energy_conserving_settling/FROZEN_CRITERIA.md", "R-a(i), Hamiltonian FIX-1: H = K + W_N + λF", "Hamiltonian version of the record's two-sided drift (FIX-1, an energy λF)")
+led("E CFG935 S2: exact unique ground state", "CFG935", "the law is S2's exact unique ground state", "has the law as its exact unique ground state")
+check("E CFG935 S2: 53% excess, 41% unbound, D -0.271 (JSON)", f"{100 * eth['S2|I']['excess_frac']:.0f}" == "53" and f"{100 * p35['Ra2_I']['fesc_end']:.0f}" == "41"
+      and f3(p35["Ra2_I"]["D_W2"]) == "-0.271" and "infall carries 53% of the binding energy as excess; it is shed by unbinding 41% of the supply" in flat
+      and "warm remnant sits at D = -0.271" in flat)
+lonly("E CFG935 S2 (LEDGER)", "CFG935", "infall carries 53% of the binding energy as excess, shed by unbinding 41% of the supply")
+check("E CFG935 one-sided: D -0.102 / -0.355 (JSON)", f3(p35["Rb_L"]["D_W2"]) == "-0.102" and f3(p35["Rb_I"]["D_W2"]) == "-0.355"
+      and "(D = -0.102 from the settled start, -0.355 on infall)" in flat)
+rd("E CFG935 one-sided: heat-driven circulation", R35, "rectifies orbital fluctuations into a heat-driven circulation", "drives a circulation")
+led("E CFG935 radiation: gravothermal", "CFG935", "a radiation channel (gravothermal runaway; the record's P field is gapped)", "runs away into gravothermal collapse")
+rd("E CFG935 radiation: new gapless field, P gapped", R35, "also needs a new gapless field (P is gapped)", "would need a new gapless field, since the record's own field P is gapped (CFG760-762)")
+check("E CFG935 dark-energy partner as frozen: D -0.145 / -0.215 (JSON)", f3(p35["Rd_L"]["D_W2"]) == "-0.145" and f3(p35["Rd_I"]["D_W2"]) == "-0.215"
+      and not p35["Rd_L"]["on_law"] and not p35["Rd_I"]["on_law"] and "keeps exact books but ends off the law (D = -0.145 / -0.215)" in flat)
+lonly("E CFG935 frozen partner: books exact, off the law", "CFG935", "the dark-energy partner as frozen (books exact, but off the law)")
+ph = r35["post_hoc"]
+check("E CFG935 post hoc on the law +0.003 / +0.010 (JSON)", f3(ph["PHou_L"]["D_W2"]) == "0.003" and f3(ph["PHou_I"]["D_W2"]) == "0.010"
+      and ph["PHou_L"]["on_law"] and ph["PHou_I"]["on_law"] and "(D = +0.003 / +0.010)" in flat)
+led("E CFG935 post hoc: no weight, stochastic isotropising bath", "CFG935", "POST HOC (no weight): the dark-energy partner with FIX-2's stochastic isotropising bath IS on the law from both starts",
+    "Post hoc, no verdict weight. With the record's stochastic, isotropising bath, the dark-energy partner holds the law from both starts")
+led("E CFG935 two reservoirs", "CFG935", "TWO new reservoirs, a dynamical dark-energy partner (an exact Λ cannot exchange energy) and a thermal reservoir at the local Jeans temperature",
+    "two new reservoirs: a dynamical dark-energy partner (an exact Λ cannot exchange energy) and a thermal reservoir at the local Jeans temperature")
+led("E CFG935 REPAIR NEEDS NEW PHYSICS", "CFG935", "REPAIR NEEDS NEW PHYSICS")
+sy = r35["parts"]["PHYS"]["systems"]
+ex = {f: [v["E_x_over_Mcat_Phi"] for v in sy[f].values()] for f in ("can", "alt")}
+check("E CFG935 excess 0.14-0.40 / 0.16-0.39 of the binding (JSON)", f2(min(ex["can"])) == "0.14" and f2(max(ex["can"])) == "0.40" and f2(min(ex["alt"])) == "0.16"
+      and f2(max(ex["alt"])) == "0.39" and "0.14-0.40 (canonical) / 0.16-0.39 (alternative) of each catchment's binding energy" in flat)
+lonly("E CFG935 excess (LEDGER)", "CFG935", "excess energy 0.14-0.40 of each catchment's binding")
+cz = r35["parts"]["PHYS"]["cosmic"]
+check("E CFG935 drho_DE/rho_DE since z = 1 (JSON)", [f"{1e6 * x:.2f}" for x in cz["can"]["drho_DE_over_rhoDE_z1"]] == ["0.80", "1.10"]
+      and [f"{1e6 * x:.2f}" for x in cz["alt"]["drho_DE_over_rhoDE_z1"]] == ["0.92", "1.25"] and "0.80-1.10x10-6 / 0.92-1.25x10-6" in flat)
+led("E CFG935 allowed and unmeasurable", "CFG935", "allowed and unmeasurable", "allowed, and unmeasurable")
+led("E CFG935 energy sink outside matter", "CFG935", "The settled law needs an energy sink outside the matter sector.", "So the settled law needs an energy sink outside the matter sector.")
+led("E CFG935 K0 exact", "CFG935", "K0 exact (CFG932's drift test)", "K0 reproduces CFG932's drift test exactly")
+check("E CFG935 three MUTATE teeth bite (JSON)", sorted(m35["results"]) == ["M1", "M2", "M3"] and all(v["bites"] for v in m35["results"].values())
+      and "all three mutation teeth bite" in flat)
+led("E CFG935 A0 pre-result", "CFG935", "A0 e9a824153 pre-result", "CFG935 A0")
+led("E CFG935 A2 post-result for R-d", "CFG935", "A2 407e7054b (post-result for R-d)", "CFG935 A2 (post-result for the dark-energy repair)")
+rd("E CFG935 A3-A5 post-result compute caps", R35, "A4 / A5 (post-result, compute only)", "A3-A5 (post-result compute caps)"); sonly("E CFG935 A3 post-result", R35, "A3 (post-result, compute only)")
+rd("E CFG935 A1 before any valid S2 number", A135, "before any valid R-a(ii) (S2) number exists", "before any valid S2 result")
+rd("E CFG935 A1 after failed S2 runs", R35, "The first S2 runs (MUTATE M3, Ra2_I, Ra2_S) reached u = a₀ and returned NaN", "after its first S2 runs failed numerically")
+led("E CFG935 not blind", "CFG935", "not blind", "CFG935 and CFG950 froze with hand expectations stated")
+stop = src(R35).split("Own processes stopped by hand")[1].split("8. ")[0]
+check("E CFG935 four own runs stopped by hand (README)", all(s in stop for s in ("frozen-code Rd_I", "A2 Rd_S", "A2 Rb_S", "the first A2 Rc_L"))
+      and "CFG935 stopped four of its own runs by hand" in flat)
+rd("E CFG935 density gate misses central collapse", R35, "The frozen D measure cannot see a collapse inside r = 1", "CFG935's density gate misses a collapse inside r = 1")
 
 # ---------------------------------------------------------------- F. Theorem D-T (CFG941)
 rd("F D-T assumption: always-on tether", D41, "Take a cold static medium held by any always-on tether force F(u). Its phantom is its own gravitating mass, so g = g_N + u.",
@@ -375,30 +450,187 @@ check("J four NOT VIABLE, NO-GO (JSON)", len(r47["classes"]) == 4 and all(v == "
       and r47["overall"] == "NO-GO" and all(r47["structural"].values()))
 led("J NO-GO for exact parenthood", "CFG947", "NO-GO for exact parenthood"); led("J A1 pre-result", "CFG947", "A1 fad3a6b86 pre-result (T-M falsifier corrected to the relocation term)", "it corrected the T-M falsifier")
 
-# ---------------------------------------------------------------- K. labelled-domain construction
+# ---------------------------------------------------------------- K. labelled-domain construction: as first stated (CFG945/947)
 form("K H1 action", R45, "Σ_q W(|Dχ_q|)", "W(|Dχ_q|) plus the constraints")  # the PDF text drops the summation sign
 led("K one tether per catchment", "CFG945", "one tether per catchment", "one tether per catchment")
-rd("K H1 uniform field Delta a = 0", D45, "Δa = 0 in a uniform host field", "falls with its stars (Δa = 0)")
+rd("K H1 uniform field Delta a = 0", D45, "Δa = 0 in a uniform host field", "falls with its stars (Δa = 0")
 rd("K H1 tidal residual", R45, "PASS 1.6e-5 - 2.0e-3", sci("1.6e-5") + " to " + sci("2.0e-3"))
 led("K restores gravity between objects", "CFG945", "restores Newtonian gravity BETWEEN distinct collapsed objects", "Newtonian gravity between distinct collapsed objects is restored")
 rd("K costs: two labels miss NGC 3198", R45, "miss NGC 3198 by 4.12 / 4.61"); rd("K costs: q < 3.5e-7", R45, "q ≲ 3.5e-7", sci("3.5e-7"))
-rd("K costs: no local seeding rule", D45, "No local rule was found", "No local seeding rule was found")
+rd("K costs: no local seeding rule", D45, "No local rule was found", "no local seeding rule was found", ci=True)
 rd("K costs: conserved only between label changes", R45, "Energy-momentum conserved only between label changes", "conserved only between label changes", ci=True)
 rd("K costs: ghost inherited", D45, "R3θ's ghost is inherited", "inherits R3θ's ghost")
 check("K split-galaxy error 8.6% (JSON)", f"{100 * r47['T-L']['canonical|simple|f=0.01']:.1f}" == "8.6" and "8.6% on NGC 3198 at f = 0.01" in flat)
 rd("K dipole-free draw", D47, "a dipole-free relocation: the draw's centroid tied to the phantom's at all times", "centroid tied to the phantom's at all times")
 form("K 1024^3 run", R47, "a 1024³ run")
-res = [l for l in LEDGER if l.startswith("| CFG950–959 |")]
-rv = norm(res[0]) if res else ""
-check("K CFG950-952 reservation text", "label assignment at collapse" in rv and "momentum-conserving source" in rv and "PM-engine implementation design" in rv
-      and "label assignment at collapse" in flat and "momentum-conserving source" in flat)
-ldt = [d for d in os.listdir(CFG) if d.startswith(("CFG950", "CFG951", "CFG952")) and os.path.isdir(os.path.join(CFG, d))]
-ldt_files = sorted(f for d in ldt for f in os.listdir(os.path.join(CFG, d)))
-check("K CFG950-952 still under construction (no LEDGER rows; lane dirs, if any, hold no README or results)",
-      all(row(f"CFG95{i}") == "" for i in "012") and not any(f.startswith("README") or "result" in f.lower() for f in ldt_files)
-      and "under construction; no result exists" in flat, f"dirs {ldt}, files {ldt_files}")
+check("K CFG950-952 landed (LEDGER rows and READMEs exist) and no in-progress statement remains in the TeX",
+      all(row(f"CFG95{i}") for i in "012") and all(os.path.exists(os.path.join(CFG, d, "README.md")) for d in
+      ("CFG950_ldt_construction", "CFG951_ldt_mergers_clusters", "CFG952_ldt_engine_design"))
+      and not any(s in tex.lower() for s in ("in progress", "under construction", "no result exists", "no ledger result yet", "reserved")))
 rd("K engine has no established parent (canonical v3 note)", TC18, "the class-A shear engine has no established physical parent", "its physical parent is not established")
 has("K computational result", "computational result of the engine")
+
+# ---------------------------------------------------------------- K2. CFG950: the construction written down and tested
+R50, D50 = "CFG950_ldt_construction/README.md", "CFG950_ldt_construction/DERIVATION.md"
+r50 = J("CFG950_ldt_construction/cfg950_results.json")
+check("K2 CFG950 frozen class / post-hoc A1 class (JSON)", r50["class"] == "NOT CONSISTENT AS SPECIFIED" and r50["class_A1_post_hoc"] == "LDT CONDITIONAL"
+      and r50["grades"]["f"] == "FAIL" and r50["grades_A1"]["f"] == "PASS" and r50["grades"]["e"] == "CONDITIONAL" and r50["grades"]["g"] == "CONDITIONAL"
+      and all(r50["grades"][k] == "PASS" for k in "abcdhi") and "NOT CONSISTENT AS SPECIFIED under the frozen rule; LDT CONDITIONAL under post-hoc A1" in flat
+      and "The construction (CFG950): NOT CONSISTENT AS SPECIFIED" in flat)
+led("K2 CFG950 class (LEDGER)", "CFG950", "NOT CONSISTENT AS SPECIFIED under the frozen rule", "NOT CONSISTENT AS SPECIFIED under the frozen rule")
+led("K2 CFG950 LDT CONDITIONAL under post-hoc A1", "CFG950", "LDT CONDITIONAL under post-hoc A1")
+for s in ("Σ_q mc²n_q", "W_full(u_q) + (3γ/4K²)τ_q²", "λ_q(D_(q)²χ_q − Kmn_q)", "c⁴R/16πG"):
+    check(f"K2 CFG950 action term '{s}' (LEDGER)", nsp(s) in nsp(row("CFG950")))
+for s in (r"\sum_q mc^2n_q", r"W_{\rm full}(u_q)+\tfrac{3\gamma}{4K^2}\tau_q^2", r"\lambda_q\big(D_{(q)}^2\chi_q-Kmn_q\big)", r"q=0$ unlabelled dust"):
+    check(f"K2 CFG950 action term in TeX '{s[:26]}'", s in tex)
+led("K2 CFG950 q = 0 unlabelled dust", "CFG950", "q = 0 unlabelled dust", "q = 0 unlabelled dust")
+led("K2 CFG950 no theta, no CFG944 ghost", "CFG950", "no θ in the action (no CFG944 ghost)", "There is no θ in the action, so CFG944's ghost does not arise")
+rd("K2 CFG950 D-T cancels only own label", R50, "D-T cancels its own label's gravity only", "D-T cancels only a label's own gravity")
+led("K2 CFG950 action-less, non-local label sector", "CFG950", "Action-less, non-local label sector", "The label sector is non-local and has no action")
+led("K2 CFG950 theta-latch", "CFG950", "θ-latch at first collapse (θ ≤ 0) with contact inheritance within L*", "θ-latch at first collapse (θ ≤ 0) with contact inheritance within L*")
+led("K2 CFG950 merge rule", "CFG950", "whole-label ball-domain merge rule (concentric labels tie, T-T)", "a whole-label ball-domain merge rule, forced because concentric labels tie (T-T)")
+led("K2 CFG950 re-latch and debris", "CFG950", "one-way tidal re-latch; debris ≤ 3.5e-7", "a one-way tidal re-latch; debris ≤ " + sci("3.5e-7"))
+check("K2 CFG950 (a) law 2.2e-16, BTFR 1, edge 454 / 413 kpc (JSON)", all(r50["K1"][f]["max_rel_vs_law"] < 2.3e-16 for f in ("canonical", "alt"))
+      and all(abs(r50["a"]["btfr"][f]["numeric"] - 1) < 1e-6 for f in ("canonical", "alt"))
+      and round(r50["a"]["a3"]["canonical"]["r_e_kpc"]) == 454 and round(r50["a"]["a3"]["alt"]["r_e_kpc"]) == 413
+      and "The NGC 3198 law to " + sci("2.2e-16") + ", the BTFR limit 1 and a label edge at 454 / 413 kpc" in flat)
+led("K2 CFG950 (b) growth n = 1 exactly", "CFG950", "no labels in the linear regime, growth n = 1 exactly", "no labels in the linear regime and growth n = 1 exactly")
+check("K2 CFG950 (b) n = 1 (JSON)", "n = 1.000000000000" in r50["tests"]["b"]["detail"] and abs(r50["K2"]["n_dust"] - 1) < 1e-12)
+check("K2 CFG950 (c) satellites 2.0e-3, 18/18 (JSON)", f"{max(r50['c']['eps_max'].values()):.1e}" == "2.0e-03" and "18/18" in r50["tests"]["c"]["detail"]
+      and "(Δa/ghost ≤ " + sci("2.0e-3") + ", bound in 18/18)" in flat)
+lonly("K2 CFG950 (c) LEDGER", "CFG950", "(Δa/g_host ≤ 2.0e-3, bound 18/18)")
+check("K2 CFG950 (d) slip 1.54e-5 (JSON)", f"{r50['d']['s_847']:.2e}" == "1.54e-05" and "slip ≤ " + sci("1.54e-5") + "; a forced edge" in flat)
+led("K2 CFG950 (h) edge, (i) EFE 0", "CFG950", "(h) edge forced, no SPARC point beyond it; (i) satellite EFE 0", "a forced edge with no SPARC point beyond it; satellite EFE 0")
+check("K2 CFG950 (i) EFE exactly 0 (JSON)", all(v == 0.0 for v in r50["i"]["efe_uniform"].values()))
+rd("K2 CFG950 hover and growth flag gone", R50, "The hover (CFG941/945) and the linear-growth flag (CFG938/941) are gone.")
+led("K2 CFG950 momentum exact", "CFG950", "momentum exact through every label event", "Momentum is exact through every label event (" + sci("8e-14") + ")")
+sonly("K2 CFG950 momentum 8e-14 (README)", R50, "momentum exact through latch, re-latch and merge (8e-14)")
+led("K2 CFG950 energy not conserved", "CFG950", "ENERGY is not conserved by any dynamical field at label events", "energy is not conserved by any dynamical field at label events")
+ev = r50["e"]["events"]
+check("K2 CFG950 assembly 0.17-0.94, merger 0.54-0.70 (JSON)",
+      f2(min(ev[f]["rel_lo"] for f in ev)) == "0.17" and f2(max(ev[f]["rel_hi"] for f in ev)) == "0.94"
+      and f2(min(ev[f]["merger"][q]["rel_outside_wall"] for f in ev for q in ev[f]["merger"])) == "0.54"
+      and f2(max(ev[f]["merger"][q]["rel_outside_wall"] for f in ev for q in ev[f]["merger"])) == "0.70"
+      and "injects 0.17-0.94 of |Egrav" in flat and ", and a merger 0.54-0.70. Theorem T-LE" in flat)
+lonly("K2 CFG950 assembly/merger (LEDGER)", "CFG950", "assembly injects 0.17-0.94 of |E_grav|")
+led("K2 CFG950 T-LE statement", "CFG950", "theorem T-LE: bound cold medium cannot pay the labelling cost", "Theorem T-LE: bound cold medium cannot pay the labelling cost")
+tle = r50["T-LE"]
+check("K2 CFG950 T-LE Delta > 0 on 1e7-1e15, NGC 3198 (97 km/s)^2 (JSON)",
+      all(g["Delta"] > 0 for f in ("canonical", "alt") for g in tle[f]["grid"]) and tle["canonical"]["grid"][0]["Mb"] == 1e7 and tle["canonical"]["grid"][-1]["Mb"] == 1e15
+      and round(tle["canonical"]["Delta_NGC"] ** 0.5 / 1e3) == 97 and 96 <= tle["alt"]["Delta_NGC"] ** 0.5 / 1e3 <= 97
+      and r50["structural"]["T-LE"] and "Δ ≈ (97 km/s)2 on NGC 3198" in flat)
+sonly("K2 CFG950 T-LE (README)", R50, "T-LE: bound cold medium cannot pay (deficit Δ > 0 for M_b 1e7-1e15; NGC 3198 Δ ≈ (97 km/s)²)")
+led("K2 CFG950 R-E non-dynamical label energy", "CFG950", "closed only by a non-dynamical label energy (R-E)", "The books close only through R-E, a declared non-dynamical label energy")
+check("K2 CFG950 R-E cost <= 1.8e-6, PN ~3e-7 (JSON)", f"{max(ev[f]['RE_cost_max'] for f in ev):.1e}" == "1.8e-06"
+      and all(f"{ev[f]['bianchi_PN']:.0e}" == "3e-07" for f in ev) and "(|eL" in flat and "/c2 ≤ " + sci("1.8e-6") + ", post-Newtonian residual" in flat and any(f"residual ∼{sp}{sci('3e-7')})" in flat for sp in ("", " ")))
+sonly("K2 CFG950 R-E (README)", R50, "Closed only via R-E (|e_L|/c² ≤ 1.8e-6; PN residual ~3e-7)")
+led("K2 CFG950 f3 pinned", "CFG950", "the only FAIL is the f3 toy metric, pinned by the innermost equal-mass shell at every resolution",
+    "The frozen merger-toy metric f3 FAILS, pinned at the innermost equal-mass shell at every resolution")
+led("K2 CFG950 (g) CFG938 premises", "CFG950", "(g) CONDITIONAL on CFG938's premises", "Well-posedness is CONDITIONAL on CFG938's premises")
+ft = [x["f_theta"] for x in r50["T-theta"]]
+check("K2 CFG950 theta-latch labels 47-76% (JSON)", f"{100 * min(ft):.0f}" == "47" and f"{100 * max(ft):.0f}" == "76"
+      and "θ-latch labels hold only 47-76% of the engine's catchment mass" in flat)
+lonly("K2 CFG950 47-76% (LEDGER)", "CFG950", "θ-latch labels hold only 47-76% of class A's catchment mass")
+check("K2 CFG950 satellites' media 41-854x (JSON)", round(min(r50["R1"].values())) == 41 and round(max(r50["R1"].values())) == 854
+      and "41-854 times their stars, act as baryons in their hosts' laws" in flat)
+lonly("K2 CFG950 41-854x (LEDGER)", "CFG950", "satellites' own-label media (41-854× their stars) act as baryons in their hosts' laws")
+st = {}
+for s in r50["scorecard"]:
+    st.setdefault(s["status"], []).append(s["gate"].split()[0])
+check("K2 CFG950 scorecard (JSON)", st["PASS"] == ["A5", "C2"] and st["CONDITIONAL"] == ["A1", "A2", "B3", "C1"] and st["FAIL"] == ["C3"]
+      and "B1" in st["UNTESTED"] and "D2" in st["UNTESTED"], json.dumps(st))
+led("K2 CFG950 scorecard (LEDGER)", "CFG950", "PASS A5, C2; CONDITIONAL A1, A2, B3, C1; FAIL C3 (inherited from the law); UNTESTED incl. B1 (prescribed labels) and D2 (needs an LDT PM engine, CFG952)",
+    "(PASS A5, C2; CONDITIONAL A1, A2, B3, C1; FAIL C3, inherited from the law), with B1 (prescribed labels) and D2 (it needs an LDT engine) UNTESTED")
+check("K2 CFG950 K 7/7 (JSON)", r50["K_all"] is True); led("K2 CFG950 K 7/7, MUTATE 6/6 (LEDGER)", "CFG950", "K 7/7; MUTATE 6/6", "K 7/7; MUTATE 6/6 bite")
+led("K2 CFG950 A1 post hoc", "CFG950", "A1 fb9af871f POST HOC", "CFG950 A1 (the merger-toy metric f3 replaced after the first main run; the frozen class is reported alongside)")
+sonly("K2 CFG950 A1 after first complete main run", "CFG950_ldt_construction/AMENDMENT_A1_post_hoc.md", "Written after the first complete main run")
+sonly("K2 CFG950 hand expectations", "CFG950_ldt_construction/FROZEN_CRITERIA.md", "Hand expectations, formed while designing; no script run.")
+
+# ---------------------------------------------------------------- K3. CFG951: mergers and clusters under labels
+R51 = "CFG951_ldt_mergers_clusters/README.md"
+r51 = J("CFG951_ldt_mergers_clusters/cfg951_results.json")
+check("K3 CFG951 FAIL, every variant INCONSISTENT on both footings (JSON)", r51["overall"] == "FAIL" and all(v == "INCONSISTENT" for v in r51["variant_class"].values())
+      and all(r51["class_a"][m]["per_footing"] == {"canonical": "INCONSISTENT", "alt": "INCONSISTENT"} for m in ("M1", "M2", "M3"))
+      and "Mergers and clusters (CFG951): FAIL" in flat and "All three merge variants are INCONSISTENT on both footings" in flat)
+lonly("K3 CFG951 LEDGER class", "CFG951", "LDT MERGERS FAIL - all three merge variants INCONSISTENT on both footings")
+rd("K3 CFG951 froze before CFG950", R51, "CFG950 (the formal LDT specification) had not appeared when this lane froze", "CFG951 froze before CFG950 appeared")
+rd("K3 CFG951 working statement source", R51, "is taken from CFG945 H1 and CFG947 N1 / M-R", "CFG945 H1 and CFG947 N1 / M-R, with full Newtonian sourcing between labels")
+rd("K3 CFG951 post-hoc hypothesis test", R51, "HYPOTHESIS TEST, POST HOC (every target was read before freezing), zero new constants",
+   "post-hoc hypothesis test (its targets were read before freezing) with zero new constants")
+check("K3 CFG951 no member coalesces (JSON)", all(r51["diagnostics"][f]["M3"]["f_coal_med"] < 1e-6 for f in ("canonical", "alt")))
+led("K3 CFG951 members source the host law", "CFG951", "cluster members keep their own-label media (no member coalesces at pericentre)",
+    "Cluster members keep their own labelled media (no member coalesces at pericentre), and those media source the host's law")
+tr51 = r51["T_R"]
+c3, a3_ = tr51["canonical"]["M3"], tr51["alt"]["M3"]
+check("K3 CFG951 eRASS1 A_OUTER and Z (JSON)", f"{c3['A']['OUTER'][0]:.3f} ± {c3['A']['OUTER'][1]:.3f}" == "0.556 ± 0.048" and f"{c3['Z_outer']:.1f}" == "-9.3"
+      and f"{a3_['A']['OUTER'][0]:.3f} ± {a3_['A']['OUTER'][1]:.3f}" == "0.496 ± 0.043" and f"{a3_['Z_outer']:.1f}" == "-11.9"
+      and "AOUTER = 0.556 ± 0.048 (Z = -9.3) / 0.496 ± 0.043 (Z = -11.9)" in flat and "(Z = -9.3 canonical, -11.9 alternative)" in flat)
+lonly("K3 CFG951 eRASS1 (LEDGER)", "CFG951", "eRASS1 A_OUTER 0.556 ± 0.048 (Z −9.3) / 0.496 ± 0.043 (Z −11.9)")
+check("K3 CFG951 H-MM 0.765 / 0.744 (JSON)", f3(tr51["canonical"]["hmm"]["A"]["OUTER"][0]) == "0.765" and f3(tr51["alt"]["hmm"]["A"]["OUTER"][0]) == "0.744"
+      and "H-MM (0.765 / 0.744, CFG726)" in flat)
+lonly("K3 CFG951 worse than H-MM", "CFG951", "merger memory worse than CFG726's H-MM")
+check("K3 CFG951 every bracket fails eRASS1 OUTER (JSON)", all(c == "INCONSISTENT" for m in ("M1", "M3") for c in r51["class_a"][m]["brackets"].values()))
+led("K3 CFG951 brackets (LEDGER)", "CFG951", "every bracket (King r_J truncation, own-domain coupling, ICM-sourced halos) still fails eRASS1 OUTER",
+    "Every bracket (King truncation, own-domain coupling, ICM-sourced halos) still fails eRASS1 OUTER")
+check("K3 CFG951 A_MID and MID/OUTER (JSON)", f3(c3["A"]["MID"][0]) == "1.213" and f3(a3_["A"]["MID"][0]) == "1.089" and f2(c3["A"]["MID"][0] / c3["A"]["OUTER"][0]) == "2.18"
+      and "AMID falls to 1.213 / 1.089 only by overshooting OUTER (MID/OUTER 2.18, against the law's 1.89)" in flat)
+lonly("K3 CFG951 MID/OUTER (LEDGER)", "CFG951", "MID/OUTER 2.18, worse than the law's 1.89")
+led("K3 CFG951 untethered reading needs a selector", "CFG951", "an untethered-host reading (CFG949) fits but needs a selector LDT does not have",
+    "the untethered-host reading (CFG949) fits but needs a selector LDT does not have")
+check("K3 CFG951 Bullet classes (JSON)", r51["class_c"] == {"M1": "INCONSISTENT", "M2": "UNDERDETERMINED", "M3": "UNDERDETERMINED"})
+led("K3 CFG951 Bullet (LEDGER)", "CFG951", "Bullet: UNDERDETERMINED for two variants (no measured pericentre), INCONSISTENT for instant relabelling",
+    "The Bullet is UNDERDETERMINED for two variants (no measured pericentre) and INCONSISTENT for instant relabelling")
+jt = [v["variants"][m]["J_max"] for v in r51["toy"].values() for m in v["variants"]]
+ja = [v["variants"][m]["J_max"] for v in r51["toy_A1_iso_tau_posthoc"].values() for m in v["variants"]]
+check("K3 CFG951 continuity J 1.16-2.34, A1 0.70-1.63 (JSON)", f2(min(jt)) == "1.16" and f2(max(jt)) == "2.34" and f2(min(ja)) == "0.70" and f2(max(ja)) == "1.63"
+      and all(v == "INCONSISTENT" for v in r51["class_d"].values()) and "changes by 1.16-2.34 per dynamical time (0.70-1.63 in the post-hoc A1 variant)" in flat)
+lonly("K3 CFG951 continuity (LEDGER)", "CFG951", "(d) continuity FAILS for all (phantom changes 0.70-2.34 per dynamical time)")
+ud = [r51["udg"][f]["by"]["dmean"]["mean_dE"] for f in ("canonical", "alt")]
+check("K3 CFG951 UDG ceiling +0.054 ln, NOT DIAGNOSTIC (JSON; the README quotes 0.054 for 0.0543-0.0545)", abs(min(ud) - 0.054) < 0.0005 and max(ud) < 0.0546
+      and all(v == "NOT DIAGNOSTIC" for v in r51["class_e"].values()) and "the ceiling rises by +0.054 in natural log (an upper bound), still not diagnostic" in flat)
+lonly("K3 CFG951 UDGs (LEDGER)", "CFG951", "Coma UDGs keep their labels; the ceiling rises by ≤ +0.054 ln (still not diagnostic)")
+sonly("K3 CFG951 upper bound", R51, "This is an upper bound")
+led("K3 CFG951 core problem", "CFG951", "Inter-label sourcing at full Newtonian strength breaks every multi-label system; dropping it would undo CFG945's restored inter-label gravity.")
+led("K3 CFG951 K 9/9, MUTATE bite", "CFG951", "K 9/9 exact; MUTATE all bite", "K 9/9; every tooth bites")
+led("K3 CFG951 318 eRASS1", "CFG951", "eRASS1", "On the 318 eRASS1 clusters"); sonly("K3 CFG951 318 clusters (README)", R51, "eRASS1: 318 clusters")
+led("K3 CFG951 A1 post hoc", "CFG951", "A1 e633ca969 POST HOC after the first MAIN run", "CFG951 A1 (a reported toy variant after the first main run; no class change)")
+sonly("K3 CFG951 A1 no class change", "CFG951_ldt_mergers_clusters/AMENDMENT_A1_post_hoc.md", "Reported only; no class changes")
+
+# ---------------------------------------------------------------- K4. CFG952: an engine for labelled domains
+R52 = "CFG952_ldt_engine_design/README.md"
+r52 = J("CFG952_ldt_engine_design/cfg952_results.json"); p52 = J("CFG952_ldt_engine_design/cfg952_results_POSTHOC.json")
+check("K4 CFG952 SMOKE PARTIAL, grades, K pass (JSON)", r52["class"] == "SMOKE PARTIAL" and r52["grades"] == {"a0": True, "a1": True, "a2": True, "b1": False, "c1": False, "c2": False}
+      and r52["K_all_pass"] is True and "An engine for it (CFG952): SMOKE PARTIAL" in flat)
+led("K4 CFG952 no production run", "CFG952", "DESIGN + 64³ smoke tests only, no production run", "smoke-tested in a separate 643 toy; no production run was made")
+sn = r52["a"]["snapshots"].values()
+check("K4 CFG952 purity 1.0, E4 EFE -0.114 dex (JSON)", all(v["purity_s"] == 1.0 and v["purity_H"] == 1.0 for v in sn) and f3(min(v["E4_EFE_dex"] for v in sn)) == "-0.114"
+      and "persist through infall (purity 1.0)" in flat and "has an EFE of up to -0.114 dex in the toy" in flat)
+lonly("K4 CFG952 own-domain phantom EFE-free (LEDGER)", "CFG952", "the own-domain phantom is EFE-free (a0-a2 PASS; the engine's E4 shows −0.114 dex EFE in the toy)")
+check("K4 CFG952 draw book 81 / 6.5 post hoc (JSON)", round(r52["b"]["DIPSLAVE"]["book"]["max_B_over_I"]) == 81 and f"{p52['PH_b']['book']['max_B_over_I']:.1f}" == "6.5"
+      and "(book residual 81; 6.5 under the post-hoc fallback)" in flat)
+lonly("K4 CFG952 draw INFEASIBLE (LEDGER)", "CFG952", "the momentum-slaved positive draw is INFEASIBLE (book residual 81, 6.5 post hoc - a capacity limit of the non-local formulation)")
+has("K4 CFG952 capacity limit in PDF", "a capacity limit of the non-local formulation")
+c52 = r52["c"]
+check("K4 CFG952 merge blend 0.025 / 2.77, peak 0.94 / 0.053 (JSON)", f3(c52["J_trigger"]) == "0.025" and f2(p52["PH_c_INSTANT"]["J_trigger"]) == "2.77"
+      and f2(c52["max_J"]) == "0.94" and f3(p52["PH_c_RAMP"]["max_J"]) == "0.053" and c52["max_zs"] > 1e-12
+      and "cuts the jump at the trigger to 0.025 (instant relabelling: 2.77), but its peak per-step change, 0.94 as frozen and 0.053 post hoc, exceeds the frozen 0.03 line" in flat)
+lonly("K4 CFG952 merger continuity (LEDGER)", "CFG952", "merger continuity FAILS as frozen (blend 0.025 at the trigger vs 2.77 instant")
+sonly("K4 CFG952 frozen max J 0.94 (README)", R52, "RAMP: max J_Φ 0.94 (line 0.03)")
+check("K4 CFG952 M-R does not fire (JSON)", all(t_["mr1_bound_A"] > 0.99 for t_ in c52["triggers"]) and "and zero-sum breaks on failed Newton steps. CFG947's merge rule" in flat and "never fires in equal-mass mergers. The engine's effective RMIN" in flat)  # a page break may fall inside the sentence
+lonly("K4 CFG952 M-R (LEDGER)", "CFG952", "CFG947's merge rule never fires in equal-mass mergers")
+th = r52["EST"]["thresholds"]
+eff, ctl = th["CFG947_inputs_effective_node_1024"], th["CFG947_inputs_R0.78125 (control: 4.815e10)"]
+check("K4 CFG952 effective RMIN 1.0471 Mpc/h -> 2.19e11 Msun, x4.5 (JSON)", f"{eff['R']:.4f}" == "1.0471" and f"{eff['M_b_ret_Msun']:.2e}" == "2.19e+11"
+      and f"{eff['M_b_ret_Msun'] / ctl['M_b_ret_Msun']:.1f}" == "4.5" and f"{ctl['M_b_ret_Msun']:.3e}" == "4.815e+10"
+      and "effective RMIN at 10243 equal to 1.0471 Mpc/h" in flat and "Mb,ret ≥ " + sci("2.19e11") in flat and "4.5 times CFG947's continuous figure" in flat)
+lonly("K4 CFG952 RMIN (LEDGER)", "CFG952", "the law acts only on systems with retained baryons ≥ 2.19e11 M☉ (4.5× CFG947's figure); 256³ validation cannot reproduce this")
+has("K4 CFG952 256^3 in PDF", "a 2563 validation cannot reproduce this")
+has("K4 CFG952 abstract RMIN", "only above " + sci("2.19e11"))
+led("K4 CFG952 1024^3 cost 17-18 h", "CFG952", "1024³ cost ≈ 17-18 h per footing at ≲ 5000 labels", "(17-18 h per footing at ≲ 5000 labels)")
+led("K4 CFG952 prereg NOT frozen", "CFG952", "Pre-registration draft for an LDT 1024³ run written, NOT frozen", "its pre-registration is drafted, not frozen")
+led("K4 CFG952 A1 pre-result, A2 post hoc", "CFG952", "A1 7a3ade021 pre-result; A2 4141650f1 post hoc", "CFG952 A2 (a reported fallback stage after the main results; no grade change)")
+sonly("K4 CFG952 A2 no grade change", "CFG952_ldt_engine_design/AMENDMENT_A2_post_hoc.md", "Nothing in this amendment can move a grade")
+check("K4 CFG952 post-hoc reading: c1 not explained (JSON)", p52["reading_merge_transition"] == "c1's frozen failure NOT explained by the fallback artefact")
 
 # ---------------------------------------------------------------- L. data confrontations
 r40 = J("CFG940_faint_rotators_mcquinn22/cfg940_results.json")
@@ -448,16 +680,30 @@ led("L CFG949 tethered regime", "CFG949", "tethered (galaxy) regime")
 rd("L CFG949 footing-independent", R49, "B0 contains no a0", "This contains no a0, so it is footing-independent")
 
 # ---------------------------------------------------------------- M. disclosures, companion, honesty, forbidden, names
-for s in ("CFG938 A1", "CFG939 A2", "CFG945 A1", "CFG946 A1", "CFG932 A1", "CFG940 A1", "CFG948 A1", "CFG949 A1", "CFG939 A1, CFG941 A1, CFG947 A1", "CFG944 has none"):
-    has(f"M disclosure '{s}'", s)
+for s in ("CFG938 A1", "CFG939 A2", "CFG945 A1", "CFG946 A1", "CFG932 A1", "CFG940 A1", "CFG948 A1", "CFG949 A1", "CFG939 A1, CFG941 A1, CFG947 A1", "CFG944 has none",
+          "CFG935 A2 (post-result for the dark-energy repair), A3-A5 (post-result compute caps) and its post-hoc runs (no verdict weight)",
+          "CFG950 A1", "CFG951 A1", "CFG951 as a whole is a post-hoc hypothesis test", "CFG952 A2",
+          "Pre-result amendments: CFG935 A0, CFG939 A1, CFG941 A1, CFG947 A1, CFG952 A1", "CFG935 A1 is an implementation fix"):
+    has(f"M disclosure '{s[:60]}'", s)
 kept = ("CFG938_medium_continuum_eft/cfg938_firstrun_S3efail.out", "CFG939_lagrangian_displacement_shell_crossing/cfg939_firstrun_dt0005.out",
         "CFG939_lagrangian_displacement_shell_crossing/cfg939_secondrun_dt00125.out", "CFG945_gated_tether_satellite_hover/cfg945_MUTATE_firstrun_M5toothless.out",
         "CFG945_gated_tether_satellite_hover/cfg945_main_attempt1_killed_pointstars.out", "CFG946_option2_phantom_not_cold/cfg946_firstrun_npbool.out",
-        "CFG947_option3_nonlocal_parent/cfg947_firstrun_TLcheck.out", "CFG949_clusters_untethered/cfg949_K_RUN1.out", "CFG949_clusters_untethered/cfg949_RUN1_acceptbug.out")
-check("M superseded runs disclosed and kept on disk", all(os.path.exists(os.path.join(CFG, k)) for k in kept) and "Superseded runs are kept" in flat)
+        "CFG947_option3_nonlocal_parent/cfg947_firstrun_TLcheck.out", "CFG949_clusters_untethered/cfg949_K_RUN1.out", "CFG949_clusters_untethered/cfg949_RUN1_acceptbug.out",
+        "CFG935_energy_conserving_settling/parts/preA1_Ra2_I.json", "CFG935_energy_conserving_settling/parts/preA2_Rd_L.json",
+        "CFG950_ldt_construction/cfg950_firstrun_f3frozen.out", "CFG951_ldt_mergers_clusters/cfg951_RUN1_toyartefact.out",
+        "CFG952_ldt_engine_design/cfg952_MUTATE_firstrun_rssguard.out", "CFG952_ldt_engine_design/cfg952_firstrun_LINcrash.out",
+        "CFG952_ldt_engine_design/cfg952_POSTHOC_firstrun_nanbeta.out", "CFG952_ldt_engine_design/cfg952_POSTHOC_secondrun_bracket.out")
+check("M superseded runs disclosed and kept on disk", all(os.path.exists(os.path.join(CFG, k)) for k in kept) and "Superseded runs are kept" in flat
+      and "CFG935's pre-A1 and pre-A2 records, the first main runs of CFG950 and CFG951, and CFG952's killed first mutation run, crashed first main run and two failed post-hoc attempts" in flat)
 rd("M CFG944 text-only edits", R44, "Three output strings were changed", "reworded three output strings after its first full run; no number changed")
 rd("M CFG949 graded numbers unchanged", R49, "Every graded number is identical", "(graded numbers unchanged)")
 has("M companion PAPER56", "PAPER56"); has("M companion PAPER55", "PAPER55")
+has("M lane list updated", "CFG947, CFG950, CFG951, CFG952 (structural); CFG932, CFG935 and the ledger row CFG932-")
+rd("M citation eRASS1 (CFG687 criteria)", "CFG687_erass1_shear_stack/FROZEN_CRITERIA.md", "Bulbul+2024, VizieR J/A+A/685/A106", "E. Bulbul et al., A&A 685, A106 (2024)")
+lei = norm(open(os.path.join(HERE, "..", "..", "real_research", "data", "alfalfa_huds_leisman2017.tsv"), encoding="utf-8").read(3000))
+check("M citation Leisman et al. ApJ 842, 133 (VizieR header of the record's table)", "J/ApJ/842/133" in lei and "Leisman+, 2017" in lei
+      and "L. Leisman et al., ApJ 842, 133 (2017)" in flat)
+rd("M citation Coma UDG table (CFG948)", R48, "the Coma table (Freundlich+2022", "the Coma ultra-diffuse galaxy table of J. Freundlich et al. (2022)")
 for s in ("fitted", "the theory is not closed", "not peer reviewed", "never pooled", "post hoc", "Post-hoc", "not established", "AI-assisted",
           "Anthropic's Claude", "not a particle", "computational result"):
     has(f"M honesty '{s}'", s)
