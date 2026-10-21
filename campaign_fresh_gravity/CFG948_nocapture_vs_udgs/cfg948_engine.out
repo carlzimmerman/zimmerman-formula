@@ -1,0 +1,76 @@
+CFG948  the derived no-capture criterion (CFG939) vs the Coma UDGs (CFG933) and the NGC 1052 / tidal dwarfs   [engine: sudden-loss ceiling]
+  criteria e5cc927ce; kappa = 1/2 FITTED; footings never pooled; isolated EFE-free law as the most generous ceiling
+
+=== CFG933's sealed estimator, exec'd read-only through its K-stage
+  [PASS] K0 cfg933.py exec'd read-only through its K-stage: its own K-checks pass: 6/6 CFG933 checks pass
+
+=== K1  CFG933 reproduced (G-Coma <E_obs>, se_obs, z vs its P2 prediction; DF2/DF4 E_obs and z; H)
+  [PASS] K1 CFG933's G-Coma <E_obs>, se_obs, z; DF2/DF4 E_obs, z; H (diff, se, z) == cfg933_results.json (abs <= 1e-12), both footings: max |diff| 0.0e+00; canonical: Coma <E_obs> +0.7604 (se 0.2618, z vs P2 +2.62), DF2/DF4 E_obs -1.709/-2.170, H +2.666 +- 0.547 (z +4.87); alt: Coma <E_obs> +0.6695 (se 0.2618, z vs P2 +2.35), DF2/DF4 E_obs -1.797/-2.258, H +2.672 +- 0.547 (z +4.88)
+
+=== K2  CFG939's V_esc,b-based classification reproduced from its own N5 code (exec'd from its text)
+  [PASS] K2 (A1) CFG939 N5 rows (v_in = V_esc,b, T_c, f_crit, g_N/a0) for 6 TDGs + DF2/DF4 == cfg939_results.json (rel <= 1e-9); derived sides == JSON in all 16 cells; TDGs and DF2/DF4 BELOW at v_rel 100; DF2/DF4 BELOW at 50: max rel diff 0.0e+00; cells passing 16/16; TDGs at v_rel 50: ['MIXED'] (reported, A1); V_esc,b (canonical) NGC5291N 52.9, NGC5291S 43.6, NGC5291SW 35.7, NGC7252E 27.3, NGC7252NW 30.3, VCC2062 21.5, NGC1052-DF2 22.9, NGC1052-DF4 22.1 km/s
+
+=== K3  engine: point-mass identity with CFG939, N4 t=0+ unbound fractions, Plummer law IC
+  [PASS] K3a point-mass mode == CFG939's law_ic / sph_accel / sph_energy / shell_energies (rel <= 1e-12): max rel 2.2e-16
+  [PASS] K3b point-mass t=0+ unbound fractions (co-moving E_q > 0) == CFG939 N4 for f 0.5-0.9: f 0.5: 0.000 (CFG939 0.000); f 0.6: 0.000 (CFG939 0.000); f 0.7: 0.942 (CFG939 0.942); f 0.8: 1.000 (CFG939 1.000); f 0.9: 1.000 (CFG939 1.000)
+  [PASS] K3c Plummer law IC: |force| <= 1e-10 g_N (each A of the grid; M_b 1 and 2): max 4.9e-13
+  [PASS] K4a A-grid covers every admitted Coma UDG's A = R_e/r_M on both footings (extended mechanically if not): A range 5.15-9.13; grid [5.0, 7.0, 9.5]; per footing canonical 5.15-8.31; alt 5.66-9.13
+  [PASS] K4b L23's Coma beta-model constants == the lane's; E_N,i = -ln nu_e(g_bar/a0) == 2 ln(sigma_N/sigma_law) (<= 1e-12): constants equal; max |dE_N| 8.9e-16; g_host(1 Mpc) = 8.806e-11 m/s^2 (0.941 a0 canonical)
+
+=== ENGINE  sudden uniform baryon loss f at t = 0 in the exact S2 + S3 Lagrangian shell dynamics (gamma 0, CFG939 kernel); Plummer baryons, current M_b = 1, scale A; E(t) at r12 = (4/3) A relative to the CURRENT baryons' law
+    grid A [5.0, 7.0, 9.5], f (0, 0.1, ..., 0.8); W1 = mean over [T_q, 10 T_q] (PRIMARY); N 2000, R0 50.0, RMIN 1.0
+     A     f     T_q      dt E(0+) eng   closed       W0       W1   max>Tq   unb0    esc     dE/E
+   5.0  0.00    83.1  0.0200   +0.0003  +0.0000  +0.0003  +0.0003  +0.0003  0.000  0.000  4.1e-14  [6 s]
+   5.0  0.10    83.1  0.0200   +0.0472  +0.0448  -0.0022  -0.0005  +0.0472  0.000  0.000  3.4e-08  [9 s]
+   5.0  0.20    83.1  0.0200   +0.0950  +0.0950  -0.0105  +0.0017  +0.0950  0.000  0.000  3.6e-08  [13 s]
+   5.0  0.30    83.1  0.0200   +0.1501  +0.1520  -0.0272  +0.0123  +0.1501  0.000  0.000  5.0e-08  [16 s]
+   5.0  0.40    83.1  0.0200   +0.2197  +0.2179  -0.0563  -0.0011  +0.1838  0.000  0.000  1.2e-05  [19 s]
+   5.0  0.50    83.1  0.0200   +0.2974  +0.2958  -0.1063  -0.0161  +0.1315  0.000  0.000  9.4e-06  [23 s]
+   5.0  0.60    83.1  0.0200   +0.3890  +0.3910  -0.1839  -0.0467  +0.0814  0.000  0.000  8.3e-06  [26 s]
+   5.0  0.65    83.1  0.0200   +0.4503  +0.4479  -0.2346  -0.0654  +0.0900  0.000  0.000  5.1e-05  [29 s]
+   5.0  0.70    83.1  0.0200   +0.5159  +0.5133  -0.2967  -0.1334  -0.0043  0.650  0.000  2.1e-04  [33 s]
+   5.0  0.80    83.1  0.0200   +0.6818  +0.6841  -0.4673  -0.3874  -0.2314  0.907  0.000  2.3e-04  [36 s]
+   7.0  0.00   139.1  0.0200   +0.0014  +0.0000  +0.0014  +0.0014  +0.0014  0.000  0.000  2.9e-14  [41 s]
+   7.0  0.10   139.1  0.0200   +0.0463  +0.0470  -0.0023  -0.0006  +0.0463  0.000  0.000  2.7e-10  [46 s]
+   7.0  0.20   139.1  0.0200   +0.1005  +0.0995  -0.0112  +0.0037  +0.1005  0.000  0.000  1.4e-08  [51 s]
+   7.0  0.30   139.1  0.0200   +0.1587  +0.1592  -0.0293  +0.0145  +0.1587  0.000  0.000  1.9e-07  [57 s]
+   7.0  0.40   139.1  0.0200   +0.2266  +0.2281  -0.0598  -0.0005  +0.1861  0.000  0.000  4.3e-06  [62 s]
+   7.0  0.50   139.1  0.0200   +0.3114  +0.3097  -0.1136  -0.0240  +0.1335  0.000  0.000  2.3e-08  [68 s]
+   7.0  0.60   139.1  0.0200   +0.4084  +0.4095  -0.1957  -0.0602  +0.0763  0.000  0.000  3.8e-06  [73 s]
+   7.0  0.65   139.1  0.0200   +0.4673  +0.4691  -0.2496  -0.0871  +0.0349  0.000  0.000  1.9e-05  [79 s]
+   7.0  0.70   139.1  0.0200   +0.5396  +0.5378  -0.3151  -0.1355  -0.0292  0.535  0.000  2.6e-05  [87 s]
+   7.0  0.80   139.1  0.0200   +0.7192  +0.7175  -0.4979  -0.4027  -0.2282  0.873  0.000  1.3e-05  [93 s]
+   9.5  0.00   221.4  0.0200   -0.0009  +0.0000  -0.0009  -0.0009  -0.0009  0.000  0.000  6.3e-14  [105 s]
+   9.5  0.10   221.4  0.0200   +0.0484  +0.0484  -0.0026  -0.0011  +0.0484  0.000  0.000  1.2e-08  [116 s]
+   9.5  0.20   221.4  0.0200   +0.1037  +0.1026  -0.0120  +0.0024  +0.1037  0.000  0.000  1.7e-08  [129 s]
+   9.5  0.30   221.4  0.0200   +0.1640  +0.1641  -0.0308  +0.0176  +0.1640  0.000  0.000  3.2e-08  [143 s]
+   9.5  0.40   221.4  0.0200   +0.2341  +0.2351  -0.0626  +0.0040  +0.1883  0.000  0.000  1.7e-06  [154 s]
+   9.5  0.50   221.4  0.0200   +0.3203  +0.3191  -0.1185  -0.0131  +0.1414  0.000  0.000  5.3e-06  [167 s]
+   9.5  0.60   221.4  0.0200   +0.4207  +0.4219  -0.2038  -0.0529  +0.0696  0.000  0.000  6.6e-06  [181 s]
+   9.5  0.65   221.4  0.0200   +0.4841  +0.4834  -0.2596  -0.0934  +0.0489  0.000  0.000  1.7e-05  [194 s]
+   9.5  0.70   221.4  0.0200   +0.5547  +0.5543  -0.3277  -0.1408  -0.0361  0.387  0.000  1.4e-07  [211 s]
+   9.5  0.80   221.4  0.0200   +0.7396  +0.7399  -0.5181  -0.4172  -0.2680  0.827  0.000  7.8e-05  [220 s]
+  [PASS] K3d engine E(0+) == closed form within 0.01 (every grid run): max |diff| 0.0026
+  [PASS] K3e f = 0 controls: |E(t)| <= 0.01 and |dE/E| <= 1e-6 (each A): 3/3
+  [PASS] K3f every grid run |dE/E| <= 1e-3 after <= 3 dt halvings: max 2.3e-04
+  [PASS] K3g frozen-medium tooth: E(0+) > 0 for every f > 0 (the measure registers a surplus): 27/27
+
+  C_dyn = max over (A, f > 0) of W1 = +0.0176 at A9.5|f0.3  ->  E_ceil = max(0, C_dyn) = +0.0176
+  W1 by f (max over A): f 0.1: -0.0005, f 0.2: +0.0037, f 0.3: +0.0176, f 0.4: +0.0040, f 0.5: -0.0131, f 0.6: -0.0467, f 0.65: -0.0654, f 0.7: -0.1334, f 0.8: -0.3874
+  W0 (first period, transient) by f (max over A): f 0.1: -0.0022, f 0.2: -0.0105, f 0.3: -0.0272, f 0.4: -0.0563, f 0.5: -0.1063, f 0.6: -0.1839, f 0.65: -0.2346, f 0.7: -0.2967, f 0.8: -0.4673
+
+  TT (reported): absorbing boundary at r_J = 48.70 r_M (median over the 9 admitted, canonical, dmean), A = 7
+    f 0.00: W1 +0.0014, W0 +0.0014, E(0+) +0.0014, shells kept at end 1946/2000  [226 s]
+    f 0.10: W1 -0.0006, W0 -0.0023, E(0+) +0.0463, shells kept at end 1747/2000  [235 s]
+    f 0.20: W1 +0.0037, W0 -0.0112, E(0+) +0.1005, shells kept at end 1460/2000  [241 s]
+    f 0.30: W1 +0.0145, W0 -0.0293, E(0+) +0.1587, shells kept at end 1294/2000  [249 s]
+    f 0.40: W1 -0.0002, W0 -0.0598, E(0+) +0.2266, shells kept at end 1014/2000  [254 s]
+    f 0.50: W1 -0.0092, W0 -0.1136, E(0+) +0.3114, shells kept at end 722/2000  [260 s]
+    f 0.60: W1 -0.0675, W0 -0.1957, E(0+) +0.4084, shells kept at end 468/2000  [266 s]
+    f 0.65: W1 -0.0938, W0 -0.2496, E(0+) +0.4673, shells kept at end 368/2000  [270 s]
+    f 0.70: W1 -0.1430, W0 -0.3151, E(0+) +0.5396, shells kept at end 271/2000  [273 s]
+    f 0.80: W1 -0.4155, W0 -0.4979, E(0+) +0.7192, shells kept at end 145/2000  [275 s]
+
+  engine K ALL PASS
+
+done [275 s, peak RSS 453 MB], exit 0.  kappa = 1/2 FITTED; footings never pooled; not theory closed.
