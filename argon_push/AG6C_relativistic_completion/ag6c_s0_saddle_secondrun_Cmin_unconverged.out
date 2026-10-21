@@ -1,0 +1,50 @@
+AG6C S0.4  PAPER49's static solution near a two-body saddle
+  rhobar_c = 5.364 Omega_b rho_crit = 2.2569e-27 kg/m^3 (Omega_b h^2 0.0224; range 2.186e-27-2.307e-27)
+
+Control: single unit mass at the origin (deep MOND: |grad Phi| = 1/r, rho_ph = 1/(4 pi r^2) > 0)
+  [single] N = 15625 (125 x 125), iterations 19, last dPhi 5.55e-11, residual/max(rhs) 4.95e-09, t = 0.6 s
+  max | |grad Phi| r^1 - 1 | on 0.2 < r < 5: 2.321e-03;  min rho_ph (vacuum, r < 20): 1.993e-04
+  [PASS] K-single solver + positivity: |grad Phi| r within 2.3e-03 of 1; min rho_ph = 1.993e-04 > 0
+
+Two equal unit masses at z = +-1/2 (deep MOND, G M a0 = 1, d = 1)
+  [pair deep] N = 23750 (125 x 190), iterations 25, last dPhi 9.57e-11, residual/max(rhs) 1.48e-09, t = 1.6 s
+  min rho_ph (dimensionless C) = -0.56986 at R = 0.023, z = 0.001
+  negative region: R in [0.004, 0.426], z in [0.001, 0.050], volume fraction of r<2 ball 0.002
+    mid-plane R =  0.001: C(R) = +0.65107
+    mid-plane R =  0.050: C(R) = -0.50951
+    mid-plane R =  0.096: C(R) = -0.41180
+    mid-plane R =  0.205: C(R) = -0.23303
+    mid-plane R =  0.308: C(R) = -0.10552
+    mid-plane R =  0.516: C(R) = +0.02508
+    mid-plane R =  0.704: C(R) = +0.05617
+    mid-plane R =  1.016: C(R) = +0.05392
+    mid-plane R =  1.459: C(R) = +0.03671
+    mid-plane R =  1.967: C(R) = +0.02352
+    mid-plane R =  2.978: C(R) = +0.01147
+    axis z = 0.001: C = +0.65107
+    axis z = 0.096: C = +0.83105
+    axis z = 0.205: C = +1.10413
+    axis z = 0.301: C = +2.08422
+    axis z = 0.404: C = +6.03237
+  mid-plane column through the saddle (dimensionless, R < 20 d): negative part -0.20640, net +0.01604
+
+Resolution check (fine spacing 0.00125)
+  [pair deep, h/2] N = 30551 (137 x 223), iterations 26, last dPhi 5.68e-11, residual/max(rhs) 7.86e-10, t = 3.1 s
+  C_min -0.67100 (vs -0.56986); negative column -0.21576 (vs -0.20640)
+  [FAIL] K-resolution: C_min and the negative column change by <= 10% on halving the spacing
+
+Full simple-mu cross-check: cluster pair, canonical footing, r_M/d = 0.0345
+  [pair full mu] N = 22878 (123 x 186), iterations 28, last dPhi 9.86e-11, residual/max(rhs) 8.78e-10, t = 4.2 s
+  C_min (full mu, in sqrt(G M a0)/(G d^2) units) = -0.59064  vs deep -0.56986
+  [PASS] K-full-mu: full simple-mu C_min within 15% of the deep-MOND value (-0.5906 vs -0.5699)
+
+Fiducials: min rho_ph vs -rhobar_c, and the mid-plane column a real medium cannot supply
+  F1_MW-M31         canonical: min rho_ph = -4.768e-25 kg/m^3 = -211.3 rhobar_c; mid-plane negative column (AQUAL) -1.9647 Msun/pc^2, unsuppliable by a rho>=0 medium -1.9423 Msun/pc^2 over 674 kpc
+  F1_MW-M31         alt      : min rho_ph = -5.242e-25 kg/m^3 = -232.2 rhobar_c; mid-plane negative column (AQUAL) -2.1599 Msun/pc^2, unsuppliable by a rho>=0 medium -2.1374 Msun/pc^2 over 674 kpc
+  F2_cluster_pair   canonical: min rho_ph = -1.788e-25 kg/m^3 = -79.2 rhobar_c; mid-plane negative column (AQUAL) -4.7840 Msun/pc^2, unsuppliable by a rho>=0 medium -4.6382 Msun/pc^2 over 4374 kpc
+  F2_cluster_pair   alt      : min rho_ph = -1.965e-25 kg/m^3 = -87.1 rhobar_c; mid-plane negative column (AQUAL) -5.2592 Msun/pc^2, unsuppliable by a rho>=0 medium -5.1134 Msun/pc^2 over 4374 kpc
+
+  NEGATIVE DOMAIN EXISTS (min rho_ph < -rhobar_c, even at the high Omega_b h^2): True
+
+run time 4.2 s
+FAILS: ['K-resolution']
