@@ -154,3 +154,29 @@ Hand estimates made before freezing: D ≈ (v_f²/c²)[ln(R_e/r_in) + 1] ~ 1e-6 
 ~1e-5 of the signal or less; R-LAW cluster |Δ_grav| below the lensing-matched value because of the core deficit.
 
 κ = ½ FITTED; footings never pooled; cold energy mass required; not theory closed.
+
+## Amendment A1 (2026-10-21; added after the criteria commit 0493b61a5, before any script or number)
+
+Clarifications of how the frozen text is implemented, plus the data adopted. No rule or threshold changes.
+
+1. **Depth with an outer limit L (§3 FINITE test).** D_L = (1/c²)[∫_0^L g dr + G M_tot(<L)/L]: the exterior is matched to the
+   mass enclosed at L. FINITE iff R_e < ∞ and D_L moves by < 1e-6 (relative) between L = 10 R_e and L = 1000 R_e. Without an
+   edge D_L grows like v_f² ln L, so T3 is a real tooth.
+2. **Percentile clusters.** The cluster at the 16/50/84% quantile of M_gas500 over the 318 CFG687 clusters; its R500 is the
+   median R500 of the clusters within ±0.1 dex of that M_gas500.
+3. **Tracer** excludes the BCG component. The BCG sits at r = 0 at rest. The aperture average runs from the grid minimum
+   (1e-3 Mpc) to R_ap.
+4. **Stress for the ν_mono kernel.** ν_mono has no written action; δΦ uses S2's W_full with u = g − g_N (declared estimate).
+5. **MUTATE T1** adds δΦ_inj = 0.1 Φ_L to every observable's framework side.
+6. **K4** uses σ = 1000 km/s with antithetic velocity pairs; one extra report-only run at σ = 0.05c.
+7. **Data adopted for grading (all PROVISIONAL; WebFetch of arXiv abstract/HTML pages, no PDF, no value suggested in any
+   prompt):**
+   - W11: Δ = −7.7 ± 3.0 km/s, integrated within the 6 Mpc aperture, 7,800 clusters, mean z 0.24, richness threshold
+     ~1e14 M_⊙. Read twice (record L2 script; ar5iv HTML of arXiv:1109.6571, which renders the aperture as "66 Mpc", read as
+     6 Mpc from the bin centres 0.6–5.2 Mpc).
+   - S15: −11 (+7, −5) km/s, average cluster mass 1e14 M_⊙ (arXiv:1410.5262 abstract; record L2).
+   - R23: −11.4 ± 3.3 km/s, 3,058 clusters, z < 0.5 (arXiv:2206.05313 abstract; record L2).
+   - J15: "∼ −10 km/s" with no uncertainty (arXiv:1410.6050 abstract): reported, not graded.
+   - One standard web search (2024–2026) found no newer stacked measurement, only a 2025 theory paper (arXiv:2503.11585).
+   - Kaiser 2013 (arXiv:1303.3663 abstract): TD +⟨β²⟩/2, light cone +⟨β_x²⟩ (more galaxies seen receding), flux weighting
+     opposite in sign to TD. These match the signs in §3.
