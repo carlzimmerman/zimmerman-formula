@@ -1,0 +1,43 @@
+CFG958  one energy channel: cold energy <-> dark energy (interacting vacuum)   [MUTATE]   stage=MAIN
+  criteria 8d7764d74; A1 11e0bdd4b; A2 84c9ebd9c; kappa = 1/2 FITTED; footings never pooled; cold energy (no particle species); not theory closed
+  footings: canonical a0 = 9.3603e-11, alt a0 = 1.1312e-10;  native Delta_ta(0) = 11.830836;  engine f_b = 0.157126
+  CFG689 (transcribed): omega_DE(0) = 0.31161, omega_c = 0.120195; rho_DE0 = 5.8530e-27 kg/m^3; Vbar = 5.2604e-10 J/m^3; H0 = 67.696 km/s/Mpc
+  NGC 3198: 43 radii to 44.08 kpc, M_b(< last) = 4.7201e+10 M_sun (Upsilon 0.61)
+
+==================== SYMPY STRUCTURE ====================
+  [PASS] T1a_vacuum_exchange_identity: Minkowski: div(-V g) + grad V = 0 in all 4 components: True; flat FRW: div(-V g) + grad V = 0 in all 4 components: True (Q^nu = -grad^nu V; matter receives +grad V)
+  [PASS] T1b_event_algebra: capture/merge K-loss = mu|dv|^2/2 >= 0: True; momentum adds: True; Delta(K + W + E_V) = 0 at an event: True; reshape (E_V -= dW_shape): True
+  [PASS] T1c_momentum_and_S-TM: T_V^(0i) = 0 in every boosted frame and T_V boost-invariant: True; net force and torque of the reaction +grad(dV) for a non-spherical off-centre deposit: [0, 0, 0] / [0, 0, 0]; P-U edge shell term 0 => the body's centroid law R4 and CFG953's relocation term R = 0 are unchanged (per-owner holding)
+  [PASS] T1d_composite_is_dust: -dV g + dV (g + u u) = dV u u: True; d_mu(L(x - vt) u^mu u^nu) = [0, 0]: the composite has no stress (no slip) and gravitates as dust of energy dV, exactly as CFG953's E_int would
+  [PASS] T-S_SCT_events_need_no_entropy: S1 conversion: total dust H unchanged by relabelling: True; labelled sector's book energy is identically 0 (T_lab = 0): a zero-temperature entropy store; S2 merger draw D: zero-entropy DE dS = 0, heat bath dS = -D/T_R < 0: True; S3 reshape is reversible work: True
+  [PASS] K6_CFG955_L7_Clausius: dS_d/dt - Q/T_J - (3/2)(rho/tau)(T_J - T)^2/(T T_J) = 0; cooling branch T = T_J(1 + x): dS_d/dt = -3*rho*x/(2*tau*(x + 1)) < 0, so a zero-entropy receiver gives dS_tot < 0 (S4: K-T and the CFG935 bath cannot use a coherent dark energy)
+  V2 (one channel for SCT + CFG935 + CFG955): ONLY WHERE NO ENTROPY IS EXCHANGED  [SCT events and the class-A drift (CFG542 Pb, coherent partner) admissible; CFG955 K-T and CFG935's bath need a heat bath]
+  T4 structure: IV stress has no derivative of V: True; homogeneous dV evolution Eq(dV(x0), C1) (no propagating mode); R-phi perturbation friction = 3*H + Q/Derivative(phi0(t), t)**2 (sympy, = 3H + Q/phidot^2: True); R-F dv/dt = (-Q*v*w - Q*v + Q*v_c - grad_dp)/(rho_0*(w + 1)), d/dv_c = Q/(rho_0*(w + 1)) -> oo as w -> -1+
+
+==================== K CONTROLS ====================
+  [PASS] K1_CFG953_S-En_reproduced: max relative difference over 13 masses x 2 footings x 5 columns = 0.00e+00; E_rel/(M_c c^2) canonical 4.104e-11, 3.920e-09, 3.230e-07, 3.721e-05 (M_b 1e3, 1e7, 1e11, 1e15)
+  [PASS] K3_CFG689_band_nodes: transcribed sqrtX 16/50/84 at z 1.0/1.2/1.5/2.33 vs README/THEORY_CANONICAL: max |diff| 4.9e-04; vs CFG956's independent K4 re-implementation (MC): 0.0e+00 (reported)
+  [PASS] K4_CFG953_NGC3198_law_no_channel: canonical/simple dev 2.2e-16, r_e 453.9 kpc; canonical/mono dev 2.2e-16, r_e 453.9 kpc; alt/simple dev 2.2e-16, r_e 412.9 kpc; alt/mono dev 2.2e-16, r_e 412.9 kpc
+  [PASS] K5_sol61_local_reaction_numbers: eta F at t = tau 0.63212; deposited/rest 2.81332e-07 (200 km/s), 7.03329e-06 (1000 km/s)
+  K overall (K1, K3-K6; K2 in the main stage): PASS
+
+==================== MUTATE ====================
+  MU1 / MU2: CFG953 toys with the exchange OFF (no E_V booking); the wrong-sign ledger is formed from the same run
+     run E, exchange off (ledger +0): dP/P_scale 6.57e-16, dL/L_scale 7.91e-16, |dE_booked|/|E0| 2.493e-01, |dE_mech|/|E0| 2.493e-01, wrong-sign ledger 4.988e-01 (E0 -29.588); E_int/|E0|: conversion -0.22681, reshape -0.00005, merge +0.00000; conversions 260, merges 0
+     run M, exchange off (ledger +0): dP/P_scale 1.61e-15, dL/L_scale 2.33e-15, |dE_booked|/|E0| 2.174e-01, |dE_mech|/|E0| 2.174e-01, wrong-sign ledger 4.347e-01 (E0 -75.932); E_int/|E0|: conversion +0.00000, reshape -0.00924, merge -0.20693; conversions 0, merges 1
+  MU1 exchange off: |dE|/|E0| E 0.249, M 0.217 (line >= 0.2; CFG953 Mu5 0.249 / 0.217) -> BITES
+  MU2 wrong sign: |dE|/|E0| E 0.499, M 0.435 vs 100 x on-residual 0.0147 / 0.0025 -> BITES (conservation broken)
+    MU3 canonical|NGC 3198|1+w=0.01 : (|Q|/((1+w)Vbar) - 3H0)/H0 = P-sigma +1.273e+03, P-U -2.976e+00  -> UNSTABLE
+    MU3 canonical|NGC 3198|1+w=0.1  : (|Q|/((1+w)Vbar) - 3H0)/H0 = P-sigma +1.246e+02, P-U -2.998e+00  -> UNSTABLE
+    MU3 canonical|cluster|1+w=0.01  : (|Q|/((1+w)Vbar) - 3H0)/H0 = P-sigma +1.418e+01, P-U -9.313e-01  -> UNSTABLE
+    MU3 canonical|cluster|1+w=0.1   : (|Q|/((1+w)Vbar) - 3H0)/H0 = P-sigma -1.282e+00, P-U -2.793e+00  -> stable
+    MU3 alt|NGC 3198|1+w=0.01       : (|Q|/((1+w)Vbar) - 3H0)/H0 = P-sigma +1.659e+03, P-U -2.964e+00  -> UNSTABLE
+    MU3 alt|NGC 3198|1+w=0.1        : (|Q|/((1+w)Vbar) - 3H0)/H0 = P-sigma +1.632e+02, P-U -2.996e+00  -> UNSTABLE
+    MU3 alt|cluster|1+w=0.01        : (|Q|/((1+w)Vbar) - 3H0)/H0 = P-sigma +1.848e+01, P-U +9.112e-02  -> UNSTABLE
+    MU3 alt|cluster|1+w=0.1         : (|Q|/((1+w)Vbar) - 3H0)/H0 = P-sigma -8.517e-01, P-U -2.691e+00  -> stable
+  MU3 (literal: all four (class, 1+w) cases unstable for at least one profile, both footings): does NOT bite
+  MU4 reaction NOT held (P-sigma, NGC 3198): |grad dV|/(sigma g_law) median canonical 1.549 [0.196, 10.835], alt 1.632 [0.125, 11.781] (line >= 0.1) -> BITES (the sol61 O(1) reaction returns)
+  reported (canonical): IV wrong sign -> stability unchanged (no DOF), min capacity C_U 6.98e+02 (ordering unchanged); shared reaction: a_sat/g_host H1@50 2.09e-02, H1@100 5.51e-03, H1@250 9.08e-04, H2@50 1.14e-01, H2@100 3.02e-02, H2@250 4.97e-03, H3@50 9.33e-01, H3@100 2.46e-01, H3@250 4.06e-02
+  reported (alt): IV wrong sign -> stability unchanged (no DOF), min capacity C_U 4.67e+02 (ordering unchanged); shared reaction: a_sat/g_host H1@50 1.79e-02, H1@100 4.71e-03, H1@250 7.74e-04, H2@50 9.83e-02, H2@100 2.58e-02, H2@250 4.24e-03, H3@50 8.02e-01, H3@100 2.11e-01, H3@250 3.46e-02
+
+  MUTATE: MU1 bites, MU2 bites, MU3 NO, MU4 bites -> exit 2
