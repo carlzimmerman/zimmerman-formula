@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (712 rows)
+## Totals (713 rows)
 
 - **519 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -27,7 +27,7 @@ Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-1
   - a free ratio, or a trade for a new constant,
   - a bound,
   - a closure.
-- 40 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
+- 41 rows are measurements (κ determinations, not derivations), and 7 are registered but unrun.
 
 **17 of the 56 determinate values land inside today's 2σ data window [0.227, 0.607].** That window is CFG493's
 κ_Λ = 0.417 ± 0.095.
@@ -153,7 +153,7 @@ fact.
 | KS Kinetic / settling / collective / cold-energy dynamics | 32 | 0 | 2 | 30 | 0 | 0 |
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 48 | 2 | 4 | 38 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 29 | 1 | 2 | 8 | 0 | 0 |
-| OB Observational determinations of kappa (NOT derivations) | 50 | 0 | 0 | 0 | 0 | 40 |
+| OB Observational determinations of kappa (NOT derivations) | 51 | 0 | 0 | 0 | 0 | 41 |
 | AU Audits, controls, meta-analyses | 95 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 9 | 2 | 0 | 7 | 0 | 0 |
@@ -811,6 +811,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K672 | p64-C | `sonnet55_push/puzzle_32pi/p64_raw_sparc_minimal` | one HI flux scale for the TRGB dwarfs (ALFALFA alpha.100 cross-match) | - | obs | UNTESTED: no SPARC coordinates on disk, no downloads | 9b8efc6f7 |
 | K711 | W4-12 | `why_4_puzzle/W4_12_one_correction` | consistency map: can one universal stellar-mass factor k and gas factor f reconcile F1 gas-RC kappa, F2 blue lenses, F3 within-galaxy gas/star gap, F4 red/blue split? | - | obs | OBS NO SINGLE CORRECTION: red/blue split never closes under a universal factor (type-dependent physics needed); gap + RC/lens agreement only off the plausible range (Upsilon_d 0.71 with gas x0.71, or Upsilon_d >= 1) | 1f384166d |
 | K712 | W4-13 | `why_4_puzzle/W4_13_gap_vs_law_shape` | within-galaxy gas/star a0 gap (p64 A) under declared law forms L0.5, L1, L1.5, L2 and RAR | - | obs | OBS GAP NOT LAW-SHAPE: Delta_g -0.376..-0.408 dex under every law; a planted law-shape mismatch gives only -0.022 dex; the gap is about baryon type or position-dependent mass errors | cb7136f07 |
+| K713 | W4-14 | `why_4_puzzle/W4_14_gas_star_matched_acceleration` | gas vs star points at matched g_bar pooled across SPARC: is the within-galaxy gas/star a0 gap about baryon type or acceleration? | - | obs | OBS ACCELERATION: matched Delta -0.096 +- 0.111 vs within-galaxy -0.441 +- 0.059; inferred a0 falls outward within galaxies (EFE/outskirts-like), not baryon type; frozen M2 control failed by design, post-hoc control passes | a4b55c5ca |
 
 ## AU: Audits, controls, meta-analyses
 
