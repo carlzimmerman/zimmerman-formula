@@ -185,3 +185,30 @@ Expectations formed (hand reasoning, no script run):
    fails on draws; B-SPLIT probably survives. Expected BATH ARROW [T→0 sink only], bath identity VACUUM (near-tautological).
 5. Rate LOCAL (by construction); destination T_J vacuum-dependent (e_T up to ¼ in the deep regime).
 6. CFG955's collapse is consistent with a thermostat turning the problem canonical.
+
+---
+
+## AMENDMENT A1 (2026-10-21; PRE-RESULT: no WT-05 script has been written or run, no number computed)
+
+Implementation corrections found while designing the script from the frozen text, by hand estimate only. The frozen text above is not
+edited.
+
+- **A1.1 Walls.** Streaming in x and the kick in v wrap periodically on the frozen grid. Mass is then exact. Every toy IC (and every
+  velocity-reversed leg) is mirror-symmetric, f(x, v) = f(−x, −v), and the 1-D potential of a mirror-symmetric mass distribution is even,
+  so the x-wrap is identical to specular reflection at x = ±32. Hand estimate before any run: the hot-IC tail that reaches the walls is
+  ~1e-7 M (speeds ≳ 5σ), so K4's box-edge line becomes **≤ 1e-6 M** (was 1e-10). The B-SPLIT search's asymmetric states are not evolved
+  unless a violation is found (then the wrap is reported as a caveat).
+- **A1.2 Numerical floor.** Pure Vlasov phase-mixes: by t₁ = 10 τ_ff0 the filament spacing in v is expected to reach ~dv (hand
+  estimate δv ~ σ/(ω t₁) ≈ 0.26 against dv ≈ 0.26), so the Vlasov-only control's entropy rise measures resolution coarse-graining (an
+  observer's arrow), not the scheme's error inside a relaxing run, where the relaxation damps filaments. Therefore:
+  **ε_num(run) = Σ over that run's own Vlasov sub-steps of |ΔS| + 1e-10 M** (Vlasov conserves S exactly, S1, so every such change is
+  numerical). The paired control's max |S(t) − S(0)| is reported as the coarse-graining measure and no longer sets the tolerance.
+  B-dS keeps the control's energy error as its tolerance.
+- **A1.3 K4 entropy line.** Replaced by a resolution check: the IC-H Vlasov-only control rerun at N_x = N_v = 1024 (same dt, same t₁);
+  **PASS iff ΔS(1024)/ΔS(512) ≤ 0.9 at t₁** (the control's entropy rise is coarse-graining that falls with resolution). Mass (≤ 1e-12
+  relative) and energy (≤ 5e-3) lines unchanged.
+- **A1.4 Disclosed consequence.** With exact BGK steps (K5) and A1.2's floor, R2's B-TJ PASS in the toy follows from K5 plus S1 by
+  construction of the split scheme; the toy's content for R2 is the counterexamples, the reversed legs and the NESS. R1/R3 (OU and
+  drift steps) are not exact in this sense, so their B-TJ lines are genuine numerical tests.
+
+κ = ½ FITTED; footings never pooled; cold energy is gravitating mass, no particle species; not theory closed.
